@@ -1,6 +1,24 @@
 #include "types.h"
 
 /*
+    Generated from dpostproc
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__20JSUMemoryInputStream
+    __vt__20JSUMemoryInputStream:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__20JSUMemoryInputStreamFv
+        .4byte getAvailable__20JSURandomInputStreamCFv
+        .4byte skip__20JSURandomInputStreamFl
+        .4byte readData__20JSUMemoryInputStreamFPvl
+        .4byte getLength__20JSUMemoryInputStreamCFv
+        .4byte getPosition__20JSUMemoryInputStreamCFv
+        .4byte seekPos__20JSUMemoryInputStreamFl17JSUStreamSeekFrom
+        .4byte 0
+*/
+
+/*
  * --INFO--
  * Address:	80026D5C
  * Size:	000014
@@ -8,12 +26,11 @@
 void JSUMemoryInputStream::setBuffer(const void*, long)
 {
 	/*
-	.loc_0x0:
-	  stw       r4, 0x8(r3)
-	  li        r0, 0
-	  stw       r5, 0xC(r3)
-	  stw       r0, 0x10(r3)
-	  blr
+	stw      r4, 8(r3)
+	li       r0, 0
+	stw      r5, 0xc(r3)
+	stw      r0, 0x10(r3)
+	blr
 	*/
 }
 
@@ -25,41 +42,40 @@ void JSUMemoryInputStream::setBuffer(const void*, long)
 void JSUMemoryInputStream::readData(void*, long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r5
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lwz       r6, 0x10(r3)
-	  lwz       r3, 0xC(r3)
-	  add       r0, r6, r31
-	  cmpw      r0, r3
-	  ble-      .loc_0x34
-	  sub       r31, r3, r6
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r5
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lwz      r6, 0x10(r3)
+	lwz      r3, 0xc(r3)
+	add      r0, r6, r31
+	cmpw     r0, r3
+	ble      lbl_80026DA4
+	subf     r31, r6, r3
 
-	.loc_0x34:
-	  cmpwi     r31, 0
-	  ble-      .loc_0x5C
-	  lwz       r0, 0x8(r30)
-	  mr        r3, r4
-	  mr        r5, r31
-	  add       r4, r0, r6
-	  bl        -0x21C20
-	  lwz       r0, 0x10(r30)
-	  add       r0, r0, r31
-	  stw       r0, 0x10(r30)
+lbl_80026DA4:
+	cmpwi    r31, 0
+	ble      lbl_80026DCC
+	lwz      r0, 8(r30)
+	mr       r3, r4
+	mr       r5, r31
+	add      r4, r0, r6
+	bl       memcpy
+	lwz      r0, 0x10(r30)
+	add      r0, r0, r31
+	stw      r0, 0x10(r30)
 
-	.loc_0x5C:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80026DCC:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -71,52 +87,51 @@ void JSUMemoryInputStream::readData(void*, long)
 void JSUMemoryInputStream::seekPos(long, JSUStreamSeekFrom)
 {
 	/*
-	.loc_0x0:
-	  cmpwi     r5, 0x1
-	  lwz       r6, 0x10(r3)
-	  beq-      .loc_0x40
-	  bge-      .loc_0x1C
-	  cmpwi     r5, 0
-	  bge-      .loc_0x28
-	  b         .loc_0x48
+	cmpwi    r5, 1
+	lwz      r6, 0x10(r3)
+	beq      lbl_80026E28
+	bge      lbl_80026E04
+	cmpwi    r5, 0
+	bge      lbl_80026E10
+	b        lbl_80026E30
 
-	.loc_0x1C:
-	  cmpwi     r5, 0x3
-	  bge-      .loc_0x48
-	  b         .loc_0x30
+lbl_80026E04:
+	cmpwi    r5, 3
+	bge      lbl_80026E30
+	b        lbl_80026E18
 
-	.loc_0x28:
-	  stw       r4, 0x10(r3)
-	  b         .loc_0x48
+lbl_80026E10:
+	stw      r4, 0x10(r3)
+	b        lbl_80026E30
 
-	.loc_0x30:
-	  lwz       r0, 0xC(r3)
-	  sub       r0, r0, r4
-	  stw       r0, 0x10(r3)
-	  b         .loc_0x48
+lbl_80026E18:
+	lwz      r0, 0xc(r3)
+	subf     r0, r4, r0
+	stw      r0, 0x10(r3)
+	b        lbl_80026E30
 
-	.loc_0x40:
-	  add       r0, r6, r4
-	  stw       r0, 0x10(r3)
+lbl_80026E28:
+	add      r0, r6, r4
+	stw      r0, 0x10(r3)
 
-	.loc_0x48:
-	  lwz       r0, 0x10(r3)
-	  cmpwi     r0, 0
-	  bge-      .loc_0x5C
-	  li        r0, 0
-	  stw       r0, 0x10(r3)
+lbl_80026E30:
+	lwz      r0, 0x10(r3)
+	cmpwi    r0, 0
+	bge      lbl_80026E44
+	li       r0, 0
+	stw      r0, 0x10(r3)
 
-	.loc_0x5C:
-	  lwz       r0, 0x10(r3)
-	  lwz       r4, 0xC(r3)
-	  cmpw      r0, r4
-	  ble-      .loc_0x70
-	  stw       r4, 0x10(r3)
+lbl_80026E44:
+	lwz      r0, 0x10(r3)
+	lwz      r4, 0xc(r3)
+	cmpw     r0, r4
+	ble      lbl_80026E58
+	stw      r4, 0x10(r3)
 
-	.loc_0x70:
-	  lwz       r0, 0x10(r3)
-	  sub       r3, r0, r6
-	  blr
+lbl_80026E58:
+	lwz      r0, 0x10(r3)
+	subf     r3, r6, r0
+	blr
 	*/
 }
 
@@ -128,39 +143,38 @@ void JSUMemoryInputStream::seekPos(long, JSUStreamSeekFrom)
 JSUMemoryInputStream::~JSUMemoryInputStream()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x54
-	  lis       r4, 0x804A
-	  addi      r0, r4, 0x80
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x44
-	  lis       r5, 0x804A
-	  li        r4, 0
-	  addi      r0, r5, 0x40
-	  stw       r0, 0x0(r30)
-	  bl        -0xB2C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_80026EB8
+	lis      r4, __vt__20JSUMemoryInputStream@ha
+	addi     r0, r4, __vt__20JSUMemoryInputStream@l
+	stw      r0, 0(r30)
+	beq      lbl_80026EA8
+	lis      r5, __vt__20JSURandomInputStream@ha
+	li       r4, 0
+	addi     r0, r5, __vt__20JSURandomInputStream@l
+	stw      r0, 0(r30)
+	bl       __dt__14JSUInputStreamFv
 
-	.loc_0x44:
-	  extsh.    r0, r31
-	  ble-      .loc_0x54
-	  mr        r3, r30
-	  bl        -0x2E00
+lbl_80026EA8:
+	extsh.   r0, r31
+	ble      lbl_80026EB8
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x54:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80026EB8:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -172,9 +186,8 @@ JSUMemoryInputStream::~JSUMemoryInputStream()
 void JSUMemoryInputStream::getLength() const
 {
 	/*
-	.loc_0x0:
-	  lwz       r3, 0xC(r3)
-	  blr
+	lwz      r3, 0xc(r3)
+	blr
 	*/
 }
 
@@ -186,8 +199,7 @@ void JSUMemoryInputStream::getLength() const
 void JSUMemoryInputStream::getPosition() const
 {
 	/*
-	.loc_0x0:
-	  lwz       r3, 0x10(r3)
-	  blr
+	lwz      r3, 0x10(r3)
+	blr
 	*/
 }

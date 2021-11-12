@@ -1,6 +1,72 @@
 #include "types.h"
 
 /*
+    Generated from dpostproc
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_80473598
+    lbl_80473598:
+        .4byte 0x4A4B5241
+        .4byte 0x72616D53
+        .4byte 0x74726561
+        .4byte 0x6D2E6370
+        .4byte 0x70000000
+    .global lbl_804735AC
+    lbl_804735AC:
+        .4byte 0x3A3A3A43
+        .4byte 0x616E6E6F
+        .4byte 0x7420616C
+        .4byte 0x6C6F6320
+        .4byte 0x6D656D6F
+        .4byte 0x72790A00
+        .4byte 0x00000000
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global sMessageBuffer__13JKRAramStream
+    sMessageBuffer__13JKRAramStream:
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+    .global sMessageQueue__13JKRAramStream
+    sMessageQueue__13JKRAramStream:
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+    .global __vt__13JKRAramStream
+    __vt__13JKRAramStream:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__13JKRAramStreamFv
+        .4byte run__13JKRAramStreamFv
+
+    .section .sbss # 0x80514D80 - 0x80516360
+    .global sAramStreamObject__13JKRAramStream
+    sAramStreamObject__13JKRAramStream:
+        .skip 0x4
+    .global transBuffer__13JKRAramStream
+    transBuffer__13JKRAramStream:
+        .skip 0x4
+    .global transSize__13JKRAramStream
+    transSize__13JKRAramStream:
+        .skip 0x4
+    .global transHeap__13JKRAramStream
+    transHeap__13JKRAramStream:
+        .skip 0x4
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_805164E0
+    lbl_805164E0:
+        .4byte 0x25730000
+        .4byte 0x00000000
+*/
+
+/*
  * --INFO--
  * Address:	80019F20
  * Size:	000070
@@ -8,41 +74,38 @@
 void JKRAramStream::create(long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r0, -0x78A0(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x58
-	  lwz       r4, -0x77D8(r13)
-	  li        r3, 0x7C
-	  li        r5, 0
-	  bl        0x9FF4
-	  mr.       r0, r3
-	  beq-      .loc_0x44
-	  mr        r4, r31
-	  bl        .loc_0x70
-	  mr        r0, r3
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r0, sAramStreamObject__13JKRAramStream@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_80019F78
+	lwz      r4, sSystemHeap__7JKRHeap@sda21(r13)
+	li       r3, 0x7c
+	li       r5, 0
+	bl       __nw__FUlP7JKRHeapi
+	or.      r0, r3, r3
+	beq      lbl_80019F64
+	mr       r4, r31
+	bl       __ct__13JKRAramStreamFl
+	mr       r0, r3
 
-	.loc_0x44:
-	  stw       r0, -0x78A0(r13)
-	  li        r3, 0
-	  li        r4, 0
-	  li        r5, 0
-	  bl        0x4E8
+lbl_80019F64:
+	stw      r0, sAramStreamObject__13JKRAramStream@sda21(r13)
+	li       r3, 0
+	li       r4, 0
+	li       r5, 0
+	bl       setTransBuffer__13JKRAramStreamFPUcUlP7JKRHeap
 
-	.loc_0x58:
-	  lwz       r0, 0x14(r1)
-	  lwz       r3, -0x78A0(r13)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-
-	.loc_0x70:
+lbl_80019F78:
+	lwz      r0, 0x14(r1)
+	lwz      r3, sAramStreamObject__13JKRAramStream@sda21(r13)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -54,27 +117,26 @@ void JKRAramStream::create(long)
 JKRAramStream::JKRAramStream(long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r6, r4
-	  li        r4, 0x4000
-	  stw       r0, 0x14(r1)
-	  li        r5, 0x10
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        0xB688
-	  lis       r3, 0x804A
-	  subi      r0, r3, 0x398
-	  stw       r0, 0x0(r31)
-	  lwz       r3, 0x2C(r31)
-	  bl        0xD8530
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r6, r4
+	li       r4, 0x4000
+	stw      r0, 0x14(r1)
+	li       r5, 0x10
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       __ct__9JKRThreadFUlii
+	lis      r3, __vt__13JKRAramStream@ha
+	addi     r0, r3, __vt__13JKRAramStream@l
+	stw      r0, 0(r31)
+	lwz      r3, 0x2c(r31)
+	bl       OSResumeThread
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -86,33 +148,32 @@ JKRAramStream::JKRAramStream(long)
 JKRAramStream::~JKRAramStream()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x44
-	  lis       r5, 0x804A
-	  li        r4, 0
-	  subi      r0, r5, 0x398
-	  stw       r0, 0x0(r30)
-	  bl        0xB828
-	  extsh.    r0, r31
-	  ble-      .loc_0x44
-	  mr        r3, r30
-	  bl        0xA094
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_8001A024
+	lis      r5, __vt__13JKRAramStream@ha
+	li       r4, 0
+	addi     r0, r5, __vt__13JKRAramStream@l
+	stw      r0, 0(r30)
+	bl       __dt__9JKRThreadFv
+	extsh.   r0, r31
+	ble      lbl_8001A024
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x44:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8001A024:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -124,43 +185,40 @@ JKRAramStream::~JKRAramStream()
 void JKRAramStream::run()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r3, 0x804A
-	  lis       r4, 0x804A
-	  stw       r0, 0x24(r1)
-	  subi      r3, r3, 0x3B8
-	  li        r5, 0x4
-	  subi      r4, r4, 0x3C8
-	  stw       r31, 0x1C(r1)
-	  bl        0xD5458
-	  lis       r3, 0x804A
-	  subi      r31, r3, 0x3B8
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lis      r3, sMessageQueue__13JKRAramStream@ha
+	lis      r4, sMessageBuffer__13JKRAramStream@ha
+	stw      r0, 0x24(r1)
+	addi     r3, r3, sMessageQueue__13JKRAramStream@l
+	li       r5, 4
+	addi     r4, r4, sMessageBuffer__13JKRAramStream@l
+	stw      r31, 0x1c(r1)
+	bl       OSInitMessageQueue
+	lis      r3, sMessageQueue__13JKRAramStream@ha
+	addi     r31, r3, sMessageQueue__13JKRAramStream@l
 
-	.loc_0x30:
-	  mr        r3, r31
-	  addi      r4, r1, 0x8
-	  li        r5, 0x1
-	  bl        0xD5568
-	  lwz       r3, 0x8(r1)
-	  lwz       r0, 0x0(r3)
-	  cmpwi     r0, 0x2
-	  beq-      .loc_0x68
-	  bge+      .loc_0x30
-	  cmpwi     r0, 0x1
-	  bge-      .loc_0x60
-	  b         .loc_0x30
+lbl_8001A070:
+	mr       r3, r31
+	addi     r4, r1, 8
+	li       r5, 1
+	bl       OSReceiveMessage
+	lwz      r3, 8(r1)
+	lwz      r0, 0(r3)
+	cmpwi    r0, 2
+	beq      lbl_8001A0A8
+	bge      lbl_8001A070
+	cmpwi    r0, 1
+	bge      lbl_8001A0A0
+	b        lbl_8001A070
 
-	.loc_0x60:
-	  bl        .loc_0x70
-	  b         .loc_0x30
+lbl_8001A0A0:
+	bl       readFromAram__13JKRAramStreamFv
+	b        lbl_8001A070
 
-	.loc_0x68:
-	  bl        0x10
-	  b         .loc_0x30
-
-	.loc_0x70:
+lbl_8001A0A8:
+	bl       writeToAram__13JKRAramStreamFP20JKRAramStreamCommand
+	b        lbl_8001A070
 	*/
 }
 
@@ -179,160 +237,159 @@ u32 JKRAramStream::readFromAram() { return 0x1; }
 void JKRAramStream::writeToAram(JKRAramStreamCommand*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stmw      r24, 0x10(r1)
-	  mr        r24, r3
-	  li        r28, 0
-	  lwz       r26, 0x1C(r3)
-	  lwz       r30, 0x8(r3)
-	  cmplwi    r26, 0
-	  lwz       r29, 0x14(r3)
-	  lwz       r27, 0x4(r3)
-	  lwz       r0, 0x20(r3)
-	  lwz       r25, 0x24(r3)
-	  beq-      .loc_0x5C
-	  cmplwi    r0, 0
-	  lis       r3, 0x1
-	  subi      r31, r3, 0x8000
-	  beq-      .loc_0x4C
-	  mr        r31, r0
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stmw     r24, 0x10(r1)
+	mr       r24, r3
+	li       r28, 0
+	lwz      r26, 0x1c(r3)
+	lwz      r30, 8(r3)
+	cmplwi   r26, 0
+	lwz      r29, 0x14(r3)
+	lwz      r27, 4(r3)
+	lwz      r0, 0x20(r3)
+	lwz      r25, 0x24(r3)
+	beq      lbl_8001A114
+	cmplwi   r0, 0
+	lis      r3, 0x00008000@ha
+	addi     r31, r3, 0x00008000@l
+	beq      lbl_8001A104
+	mr       r31, r0
 
-	.loc_0x4C:
-	  stw       r31, 0x20(r24)
-	  li        r0, 0
-	  stb       r0, 0x28(r24)
-	  b         .loc_0xB8
+lbl_8001A104:
+	stw      r31, 0x20(r24)
+	li       r0, 0
+	stb      r0, 0x28(r24)
+	b        lbl_8001A170
 
-	.loc_0x5C:
-	  cmplwi    r0, 0
-	  lis       r3, 0x1
-	  subi      r31, r3, 0x8000
-	  beq-      .loc_0x70
-	  mr        r31, r0
+lbl_8001A114:
+	cmplwi   r0, 0
+	lis      r3, 0x00008000@ha
+	addi     r31, r3, 0x00008000@l
+	beq      lbl_8001A128
+	mr       r31, r0
 
-	.loc_0x70:
-	  cmplwi    r25, 0
-	  beq-      .loc_0x94
-	  mr        r3, r31
-	  mr        r5, r25
-	  li        r4, -0x20
-	  bl        0x94A4
-	  mr        r26, r3
-	  stw       r26, 0x1C(r24)
-	  b         .loc_0xAC
+lbl_8001A128:
+	cmplwi   r25, 0
+	beq      lbl_8001A14C
+	mr       r3, r31
+	mr       r5, r25
+	li       r4, -32
+	bl       alloc__7JKRHeapFUliP7JKRHeap
+	mr       r26, r3
+	stw      r26, 0x1c(r24)
+	b        lbl_8001A164
 
-	.loc_0x94:
-	  lwz       r3, -0x77D8(r13)
-	  mr        r4, r31
-	  li        r5, -0x20
-	  bl        0x94E8
-	  mr        r26, r3
-	  stw       r26, 0x1C(r24)
+lbl_8001A14C:
+	lwz      r3, sSystemHeap__7JKRHeap@sda21(r13)
+	mr       r4, r31
+	li       r5, -32
+	bl       alloc__7JKRHeapFUli
+	mr       r26, r3
+	stw      r26, 0x1c(r24)
 
-	.loc_0xAC:
-	  stw       r31, 0x20(r24)
-	  li        r0, 0x1
-	  stb       r0, 0x28(r24)
+lbl_8001A164:
+	stw      r31, 0x20(r24)
+	li       r0, 1
+	stb      r0, 0x28(r24)
 
-	.loc_0xB8:
-	  cmplwi    r26, 0
-	  bne-      .loc_0x114
-	  cmplwi    r25, 0
-	  bne-      .loc_0xE0
-	  lwz       r3, -0x77D4(r13)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0xF4
+lbl_8001A170:
+	cmplwi   r26, 0
+	bne      lbl_8001A1CC
+	cmplwi   r25, 0
+	bne      lbl_8001A198
+	lwz      r3, sCurrentHeap__7JKRHeap@sda21(r13)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_8001A1AC
 
-	.loc_0xE0:
-	  mr        r3, r25
-	  lwz       r12, 0x0(r25)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_8001A198:
+	mr       r3, r25
+	lwz      r12, 0(r25)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0xF4:
-	  lis       r3, 0x8047
-	  lis       r5, 0x8047
-	  addi      r6, r5, 0x35AC
-	  li        r4, 0xAC
-	  addi      r3, r3, 0x3598
-	  subi      r5, r2, 0x7E80
-	  crclr     6, 0x6
-	  bl        0x10478
+lbl_8001A1AC:
+	lis      r3, lbl_80473598@ha
+	lis      r5, lbl_804735AC@ha
+	addi     r6, r5, lbl_804735AC@l
+	li       r4, 0xac
+	addi     r3, r3, lbl_80473598@l
+	addi     r5, r2, lbl_805164E0@sda21
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x114:
-	  cmplwi    r26, 0
-	  beq-      .loc_0x1C4
-	  lwz       r3, 0x10(r24)
-	  mr        r4, r29
-	  li        r5, 0
-	  bl        0xC528
-	  b         .loc_0x19C
+lbl_8001A1CC:
+	cmplwi   r26, 0
+	beq      lbl_8001A27C
+	lwz      r3, 0x10(r24)
+	mr       r4, r29
+	li       r5, 0
+	bl       seek__20JSURandomInputStreamFl17JSUStreamSeekFrom
+	b        lbl_8001A254
 
-	.loc_0x130:
-	  cmplw     r30, r31
-	  mr        r25, r30
-	  ble-      .loc_0x140
-	  mr        r25, r31
+lbl_8001A1E8:
+	cmplw    r30, r31
+	mr       r25, r30
+	ble      lbl_8001A1F8
+	mr       r25, r31
 
-	.loc_0x140:
-	  lwz       r3, 0x10(r24)
-	  mr        r4, r26
-	  mr        r5, r25
-	  bl        0xC1D0
-	  cmpwi     r3, 0
-	  bne-      .loc_0x160
-	  li        r28, 0
-	  b         .loc_0x1A4
+lbl_8001A1F8:
+	lwz      r3, 0x10(r24)
+	mr       r4, r26
+	mr       r5, r25
+	bl       read__14JSUInputStreamFPvl
+	cmpwi    r3, 0
+	bne      lbl_8001A218
+	li       r28, 0
+	b        lbl_8001A25C
 
-	.loc_0x160:
-	  mr        r4, r26
-	  mr        r5, r27
-	  mr        r6, r25
-	  li        r3, 0
-	  li        r7, 0
-	  bl        -0x734
-	  lwz       r3, 0x18(r24)
-	  sub       r30, r30, r25
-	  add       r28, r28, r25
-	  add       r27, r27, r25
-	  cmplwi    r3, 0
-	  beq-      .loc_0x19C
-	  lwz       r0, 0x0(r3)
-	  add       r0, r0, r25
-	  stw       r0, 0x0(r3)
+lbl_8001A218:
+	mr       r4, r26
+	mr       r5, r27
+	mr       r6, r25
+	li       r3, 0
+	li       r7, 0
+	bl       orderSync__12JKRAramPieceFiUlUlUlP12JKRAramBlock
+	lwz      r3, 0x18(r24)
+	subf     r30, r25, r30
+	add      r28, r28, r25
+	add      r27, r27, r25
+	cmplwi   r3, 0
+	beq      lbl_8001A254
+	lwz      r0, 0(r3)
+	add      r0, r0, r25
+	stw      r0, 0(r3)
 
-	.loc_0x19C:
-	  cmplwi    r30, 0
-	  bne+      .loc_0x130
+lbl_8001A254:
+	cmplwi   r30, 0
+	bne      lbl_8001A1E8
 
-	.loc_0x1A4:
-	  lbz       r0, 0x28(r24)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x1C4
-	  mr        r3, r26
-	  li        r4, 0
-	  bl        0x93FC
-	  li        r0, 0
-	  stb       r0, 0x28(r24)
+lbl_8001A25C:
+	lbz      r0, 0x28(r24)
+	cmplwi   r0, 0
+	beq      lbl_8001A27C
+	mr       r3, r26
+	li       r4, 0
+	bl       free__7JKRHeapFPvP7JKRHeap
+	li       r0, 0
+	stb      r0, 0x28(r24)
 
-	.loc_0x1C4:
-	  mr        r4, r28
-	  addi      r3, r24, 0x30
-	  li        r5, 0
-	  bl        0xD5294
-	  mr        r3, r28
-	  lmw       r24, 0x10(r1)
-	  lwz       r0, 0x34(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_8001A27C:
+	mr       r4, r28
+	addi     r3, r24, 0x30
+	li       r5, 0
+	bl       OSSendMessage
+	mr       r3, r28
+	lmw      r24, 0x10(r1)
+	lwz      r0, 0x34(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -344,30 +401,29 @@ void JKRAramStream::writeToAram(JKRAramStreamCommand*)
 void JSURandomInputStream::getAvailable() const
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r31, r3
-	  mr        r3, r30
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  sub       r3, r31, r3
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lwz      r12, 0(r3)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	mr       r31, r3
+	mr       r3, r30
+	lwz      r12, 0(r30)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	subf     r3, r3, r31
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -447,54 +503,53 @@ void JKRAramStream::write_StreamToAram_Async(JSUFileInputStream*, unsigned long,
 void JKRAramStream::sync(JKRAramStreamCommand*, int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  cmpwi     r4, 0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r3
-	  bne-      .loc_0x48
-	  addi      r3, r31, 0x30
-	  addi      r4, r1, 0x8
-	  li        r5, 0x1
-	  bl        0xD51F4
-	  lwz       r0, 0x8(r1)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x40
-	  li        r3, 0
-	  b         .loc_0x80
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	cmpwi    r4, 0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r3
+	bne      lbl_8001A410
+	addi     r3, r31, 0x30
+	addi     r4, r1, 8
+	li       r5, 1
+	bl       OSReceiveMessage
+	lwz      r0, 8(r1)
+	cmplwi   r0, 0
+	bne      lbl_8001A408
+	li       r3, 0
+	b        lbl_8001A448
 
-	.loc_0x40:
-	  mr        r3, r31
-	  b         .loc_0x80
+lbl_8001A408:
+	mr       r3, r31
+	b        lbl_8001A448
 
-	.loc_0x48:
-	  addi      r3, r31, 0x30
-	  addi      r4, r1, 0x8
-	  li        r5, 0
-	  bl        0xD51C8
-	  cmpwi     r3, 0
-	  bne-      .loc_0x68
-	  li        r3, 0
-	  b         .loc_0x80
+lbl_8001A410:
+	addi     r3, r31, 0x30
+	addi     r4, r1, 8
+	li       r5, 0
+	bl       OSReceiveMessage
+	cmpwi    r3, 0
+	bne      lbl_8001A430
+	li       r3, 0
+	b        lbl_8001A448
 
-	.loc_0x68:
-	  lwz       r0, 0x8(r1)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x7C
-	  li        r3, 0
-	  b         .loc_0x80
+lbl_8001A430:
+	lwz      r0, 8(r1)
+	cmplwi   r0, 0
+	bne      lbl_8001A444
+	li       r3, 0
+	b        lbl_8001A448
 
-	.loc_0x7C:
-	  mr        r3, r31
+lbl_8001A444:
+	mr       r3, r31
 
-	.loc_0x80:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8001A448:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -506,32 +561,31 @@ void JKRAramStream::sync(JKRAramStreamCommand*, int)
 void JKRAramStream::setTransBuffer(unsigned char*, unsigned long, JKRHeap*)
 {
 	/*
-	.loc_0x0:
-	  lis       r6, 0x1
-	  li        r7, 0
-	  subi      r0, r6, 0x8000
-	  cmplwi    r3, 0
-	  stw       r7, -0x789C(r13)
-	  stw       r0, -0x7898(r13)
-	  stw       r7, -0x7894(r13)
-	  beq-      .loc_0x2C
-	  addi      r0, r3, 0x1F
-	  rlwinm    r0,r0,0,0,26
-	  stw       r0, -0x789C(r13)
+	lis      r6, 0x00008000@ha
+	li       r7, 0
+	addi     r0, r6, 0x00008000@l
+	cmplwi   r3, 0
+	stw      r7, transBuffer__13JKRAramStream@sda21(r13)
+	stw      r0, transSize__13JKRAramStream@sda21(r13)
+	stw      r7, transHeap__13JKRAramStream@sda21(r13)
+	beq      lbl_8001A488
+	addi     r0, r3, 0x1f
+	rlwinm   r0, r0, 0, 0, 0x1a
+	stw      r0, transBuffer__13JKRAramStream@sda21(r13)
 
-	.loc_0x2C:
-	  cmplwi    r4, 0
-	  beq-      .loc_0x3C
-	  rlwinm    r0,r4,0,0,26
-	  stw       r0, -0x7898(r13)
+lbl_8001A488:
+	cmplwi   r4, 0
+	beq      lbl_8001A498
+	rlwinm   r0, r4, 0, 0, 0x1a
+	stw      r0, transSize__13JKRAramStream@sda21(r13)
 
-	.loc_0x3C:
-	  cmplwi    r5, 0
-	  beqlr-
-	  cmplwi    r3, 0
-	  bnelr-
-	  stw       r5, -0x7894(r13)
-	  blr
+lbl_8001A498:
+	cmplwi   r5, 0
+	beqlr
+	cmplwi   r3, 0
+	bnelr
+	stw      r5, transHeap__13JKRAramStream@sda21(r13)
+	blr
 	*/
 }
 

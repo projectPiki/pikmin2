@@ -1,5 +1,47 @@
 #include "types.h"
 
+/*
+    Generated from dpostproc
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_8048F2C8
+    lbl_8048F2C8:
+        .4byte 0x75666F20
+        .4byte 0x6D656E75
+        .4byte 0x20736372
+        .4byte 0x65656E00
+    .global lbl_8048F2D8
+    lbl_8048F2D8:
+        .4byte 0x7265735F
+        .4byte 0x75666F2E
+        .4byte 0x737A7300
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__Q32og9newScreen7UfoMenu
+    __vt__Q32og9newScreen7UfoMenu:
+        .4byte 0
+        .4byte 0
+        .4byte getSceneType__Q32og9newScreen7UfoMenuFv
+        .4byte getOwnerID__Q32og9newScreen7UfoMenuFv
+        .4byte getMemberID__Q32og9newScreen7UfoMenuFv
+        .4byte isUseBackupSceneInfo__Q32og9newScreen7UfoMenuFv
+        .4byte isDrawInDemo__Q26Screen9SceneBaseCFv
+        .4byte getResName__Q32og9newScreen7UfoMenuCFv
+        .4byte doCreateObj__Q32og9newScreen7UfoMenuFP10JKRArchive
+        .4byte
+   doUserCallBackFunc__Q32og9newScreen7UfoMenuFPQ28Resource10MgrCommand .4byte
+   setPort__Q26Screen9SceneBaseFR8Graphics .4byte
+   doUpdateActive__Q26Screen9SceneBaseFv .4byte
+   doConfirmSetScene__Q32og9newScreen7UfoMenuFRQ26Screen11SetSceneArg .4byte
+   doConfirmStartScene__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg .4byte
+   doConfirmEndScene__Q26Screen9SceneBaseFRPQ26Screen11EndSceneArg .4byte
+   doStart__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg .4byte
+   doEnd__Q26Screen9SceneBaseFPQ26Screen11EndSceneArg .4byte
+   setDefaultDispMember__Q26Screen9SceneBaseFv .4byte
+   doSetBackupScene__Q32og9newScreen7UfoMenuFRQ26Screen11SetSceneArg .4byte
+   doGetFinishState__Q26Screen9SceneBaseFv
+*/
+
 namespace og {
 
 /*
@@ -10,22 +52,21 @@ namespace og {
 newScreen::UfoMenu::UfoMenu(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        0x12CE88
-	  lis       r4, 0x804E
-	  mr        r3, r31
-	  subi      r0, r4, 0x67B0
-	  stw       r0, 0x0(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       __ct__Q26Screen9SceneBaseFv
+	lis      r4, __vt__Q32og9newScreen7UfoMenu@ha
+	mr       r3, r31
+	addi     r0, r4, __vt__Q32og9newScreen7UfoMenu@l
+	stw      r0, 0(r31)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -54,39 +95,38 @@ void newScreen::UfoMenu::doUserCallBackFunc(Resource::MgrCommand*) { }
 void newScreen::UfoMenu::doCreateObj(JKRArchive*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  li        r3, 0x90
-	  bl        -0x300AB0
-	  mr.       r4, r3
-	  beq-      .loc_0x3C
-	  lis       r4, 0x8049
-	  subi      r4, r4, 0xD38
-	  bl        -0x11D0
-	  mr        r4, r3
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	li       r3, 0x90
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_80324970
+	lis      r4, lbl_8048F2C8@ha
+	addi     r4, r4, lbl_8048F2C8@l
+	bl       __ct__Q32og9newScreen10ObjUfoMenuFPCc
+	mr       r4, r3
 
-	.loc_0x3C:
-	  mr        r3, r30
-	  mr        r5, r31
-	  bl        0x12D3FC
-	  mr        r3, r30
-	  li        r4, 0
-	  li        r5, 0
-	  li        r6, 0
-	  li        r7, 0xA0
-	  bl        0x12D8F4
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80324970:
+	mr       r3, r30
+	mr       r5, r31
+	bl       registObj__Q26Screen9SceneBaseFPQ26Screen7ObjBaseP10JKRArchive
+	mr       r3, r30
+	li       r4, 0
+	li       r5, 0
+	li       r6, 0
+	li       r7, 0xa0
+	bl       setColorBG__Q26Screen9SceneBaseFUcUcUcUc
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -98,37 +138,36 @@ void newScreen::UfoMenu::doCreateObj(JKRArchive*)
 void newScreen::UfoMenu::doConfirmSetScene(Screen::SetSceneArg&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r3, r4
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  li        r31, 0
-	  lwz       r12, 0x0(r4)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  cmpwi     r3, 0x2717
-	  bge-      .loc_0x3C
-	  cmpwi     r3, 0x2710
-	  beq-      .loc_0x44
-	  b         .loc_0x48
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r3, r4
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	li       r31, 0
+	lwz      r12, 0(r4)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	cmpwi    r3, 0x2717
+	bge      lbl_803249E8
+	cmpwi    r3, 0x2710
+	beq      lbl_803249F0
+	b        lbl_803249F4
 
-	.loc_0x3C:
-	  cmpwi     r3, 0x2719
-	  bge-      .loc_0x48
+lbl_803249E8:
+	cmpwi    r3, 0x2719
+	bge      lbl_803249F4
 
-	.loc_0x44:
-	  li        r31, 0x1
+lbl_803249F0:
+	li       r31, 1
 
-	.loc_0x48:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803249F4:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -140,10 +179,9 @@ void newScreen::UfoMenu::doConfirmSetScene(Screen::SetSceneArg&)
 void newScreen::UfoMenu::doSetBackupScene(Screen::SetSceneArg&)
 {
 	/*
-	.loc_0x0:
-	  li        r0, 0
-	  stb       r0, 0x9(r4)
-	  blr
+	li       r0, 0
+	stb      r0, 9(r4)
+	blr
 	*/
 }
 
@@ -155,10 +193,9 @@ void newScreen::UfoMenu::doSetBackupScene(Screen::SetSceneArg&)
 void newScreen::UfoMenu::getResName() const
 {
 	/*
-	.loc_0x0:
-	  lis       r3, 0x8049
-	  subi      r3, r3, 0xD28
-	  blr
+	lis      r3, lbl_8048F2D8@ha
+	addi     r3, r3, lbl_8048F2D8@l
+	blr
 	*/
 }
 
@@ -177,10 +214,9 @@ u32 newScreen::UfoMenu::getSceneType(void) { return 0x2719; }
 void newScreen::UfoMenu::getOwnerID(void)
 {
 	/*
-	.loc_0x0:
-	  lis       r3, 0x4F
-	  addi      r3, r3, 0x4741
-	  blr
+	lis      r3, 0x004F4741@ha
+	addi     r3, r3, 0x004F4741@l
+	blr
 	*/
 }
 
@@ -192,12 +228,11 @@ void newScreen::UfoMenu::getOwnerID(void)
 void newScreen::UfoMenu::getMemberID(void)
 {
 	/*
-	.loc_0x0:
-	  lis       r4, 0x4D45
-	  lis       r3, 0x55
-	  addi      r4, r4, 0x4E55
-	  addi      r3, r3, 0x464F
-	  blr
+	lis      r4, 0x4D454E55@ha
+	lis      r3, 0x0055464F@ha
+	addi     r4, r4, 0x4D454E55@l
+	addi     r3, r3, 0x0055464F@l
+	blr
 	*/
 }
 

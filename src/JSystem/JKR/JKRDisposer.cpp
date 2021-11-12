@@ -2,6 +2,18 @@
 #include "JSystem/JKR/JKRHeap.h"
 
 /*
+    Generated from dpostproc
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__11JKRDisposer
+    __vt__11JKRDisposer:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__11JKRDisposerFv
+        .4byte 0
+*/
+
+/*
  * --INFO--
  * Address:	8001CFCC
  * Size:	000068

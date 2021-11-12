@@ -1,6 +1,32 @@
 #include "types.h"
 
 /*
+    Generated from dpostproc
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__20JSURandomInputStream
+    __vt__20JSURandomInputStream:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__20JSURandomInputStreamFv
+        .4byte getAvailable__20JSURandomInputStreamCFv
+        .4byte skip__20JSURandomInputStreamFl
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+    .global __vt__14JSUInputStream
+    __vt__14JSUInputStream:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__14JSUInputStreamFv
+        .4byte 0
+        .4byte skip__14JSUInputStreamFl
+        .4byte 0
+        .4byte 0
+*/
+
+/*
  * --INFO--
  * Address:	80026378
  * Size:	00005C
@@ -8,34 +34,33 @@
 JSUInputStream::~JSUInputStream()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r3
-	  beq-      .loc_0x44
-	  lis       r3, 0x804A
-	  addi      r0, r3, 0x64
-	  stw       r0, 0x0(r31)
-	  beq-      .loc_0x34
-	  lis       r3, 0x804A
-	  addi      r0, r3, 0x30
-	  stw       r0, 0x0(r31)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r3, r3
+	beq      lbl_800263BC
+	lis      r3, __vt__14JSUInputStream@ha
+	addi     r0, r3, __vt__14JSUInputStream@l
+	stw      r0, 0(r31)
+	beq      lbl_800263AC
+	lis      r3, __vt__10JSUIosBase@ha
+	addi     r0, r3, __vt__10JSUIosBase@l
+	stw      r0, 0(r31)
 
-	.loc_0x34:
-	  extsh.    r0, r4
-	  ble-      .loc_0x44
-	  mr        r3, r31
-	  bl        -0x2304
+lbl_800263AC:
+	extsh.   r0, r4
+	ble      lbl_800263BC
+	mr       r3, r31
+	bl       __dl__FPv
 
-	.loc_0x44:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_800263BC:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -47,31 +72,30 @@ JSUInputStream::~JSUInputStream()
 void JSUInputStream::read(void*, long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r5
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  cmpw      r3, r31
-	  beq-      .loc_0x40
-	  lbz       r0, 0x4(r30)
-	  ori       r0, r0, 0x1
-	  stb       r0, 0x4(r30)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r5
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	cmpw     r3, r31
+	beq      lbl_80026414
+	lbz      r0, 4(r30)
+	ori      r0, r0, 1
+	stb      r0, 4(r30)
 
-	.loc_0x40:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80026414:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -83,57 +107,56 @@ void JSUInputStream::read(void*, long)
 void JSUInputStream::read(char*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  li        r5, 0x2
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r4
-	  addi      r4, r1, 0x8
-	  stw       r30, 0x18(r1)
-	  mr        r30, r3
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  cmplwi    r3, 0x2
-	  beq-      .loc_0x58
-	  li        r0, 0
-	  li        r3, 0
-	  stb       r0, 0x0(r31)
-	  lbz       r0, 0x4(r30)
-	  ori       r0, r0, 0x1
-	  stb       r0, 0x4(r30)
-	  b         .loc_0x98
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	li       r5, 2
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r4
+	addi     r4, r1, 8
+	stw      r30, 0x18(r1)
+	mr       r30, r3
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	cmplwi   r3, 2
+	beq      lbl_80026484
+	li       r0, 0
+	li       r3, 0
+	stb      r0, 0(r31)
+	lbz      r0, 4(r30)
+	ori      r0, r0, 1
+	stb      r0, 4(r30)
+	b        lbl_800264C4
 
-	.loc_0x58:
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  lhz       r5, 0x8(r1)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  li        r0, 0
-	  stbx      r0, r31, r3
-	  lhz       r0, 0x8(r1)
-	  cmpw      r3, r0
-	  beq-      .loc_0x94
-	  lbz       r0, 0x4(r30)
-	  ori       r0, r0, 0x1
-	  stb       r0, 0x4(r30)
+lbl_80026484:
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	lhz      r5, 8(r1)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	li       r0, 0
+	stbx     r0, r31, r3
+	lhz      r0, 8(r1)
+	cmpw     r3, r0
+	beq      lbl_800264C0
+	lbz      r0, 4(r30)
+	ori      r0, r0, 1
+	stb      r0, 4(r30)
 
-	.loc_0x94:
-	  mr        r3, r31
+lbl_800264C0:
+	mr       r3, r31
 
-	.loc_0x98:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_800264C4:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -145,49 +168,48 @@ void JSUInputStream::read(char*)
 void JSUInputStream::skip(long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  li        r31, 0
-	  stw       r30, 0x18(r1)
-	  mr        r30, r4
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  b         .loc_0x60
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	li       r31, 0
+	stw      r30, 0x18(r1)
+	mr       r30, r4
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	b        lbl_8002653C
 
-	.loc_0x28:
-	  mr        r3, r29
-	  addi      r4, r1, 0x8
-	  lwz       r12, 0x0(r29)
-	  li        r5, 0x1
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  cmplwi    r3, 0x1
-	  beq-      .loc_0x5C
-	  lbz       r0, 0x4(r29)
-	  ori       r0, r0, 0x1
-	  stb       r0, 0x4(r29)
-	  b         .loc_0x68
+lbl_80026504:
+	mr       r3, r29
+	addi     r4, r1, 8
+	lwz      r12, 0(r29)
+	li       r5, 1
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	cmplwi   r3, 1
+	beq      lbl_80026538
+	lbz      r0, 4(r29)
+	ori      r0, r0, 1
+	stb      r0, 4(r29)
+	b        lbl_80026544
 
-	.loc_0x5C:
-	  addi      r31, r31, 0x1
+lbl_80026538:
+	addi     r31, r31, 1
 
-	.loc_0x60:
-	  cmpw      r31, r30
-	  blt+      .loc_0x28
+lbl_8002653C:
+	cmpw     r31, r30
+	blt      lbl_80026504
 
-	.loc_0x68:
-	  lwz       r0, 0x24(r1)
-	  mr        r3, r31
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80026544:
+	lwz      r0, 0x24(r1)
+	mr       r3, r31
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -199,44 +221,43 @@ void JSUInputStream::skip(long)
 void JSURandomInputStream::align(long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  add       r4, r31, r3
-	  subi      r0, r31, 0x1
-	  subi      r4, r4, 0x1
-	  andc      r4, r4, r0
-	  sub.      r31, r4, r3
-	  beq-      .loc_0x70
-	  lwz       r12, 0x0(r30)
-	  mr        r3, r30
-	  li        r5, 0
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  cmpw      r3, r31
-	  beq-      .loc_0x70
-	  lbz       r0, 0x4(r30)
-	  ori       r0, r0, 0x1
-	  stb       r0, 0x4(r30)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lwz      r12, 0(r3)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	add      r4, r31, r3
+	addi     r0, r31, -1
+	addi     r4, r4, -1
+	andc     r4, r4, r0
+	subf.    r31, r3, r4
+	beq      lbl_800265D4
+	lwz      r12, 0(r30)
+	mr       r3, r30
+	li       r5, 0
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	cmpw     r3, r31
+	beq      lbl_800265D4
+	lbz      r0, 4(r30)
+	ori      r0, r0, 1
+	stb      r0, 4(r30)
 
-	.loc_0x70:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_800265D4:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -248,32 +269,31 @@ void JSURandomInputStream::align(long)
 void JSURandomInputStream::skip(long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r5, 0x1
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  cmpw      r3, r31
-	  beq-      .loc_0x44
-	  lbz       r0, 0x4(r30)
-	  ori       r0, r0, 0x1
-	  stb       r0, 0x4(r30)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	li       r5, 1
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	cmpw     r3, r31
+	beq      lbl_80026634
+	lbz      r0, 4(r30)
+	ori      r0, r0, 1
+	stb      r0, 4(r30)
 
-	.loc_0x44:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80026634:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -285,58 +305,57 @@ void JSURandomInputStream::skip(long)
 void JSURandomInputStream::peek(void*, long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r4
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r29, r5
-	  stw       r28, 0x10(r1)
-	  mr        r28, r3
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r0, r3
-	  mr        r3, r28
-	  lwz       r12, 0x0(r28)
-	  mr        r30, r0
-	  mr        r4, r31
-	  mr        r5, r29
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r31, r3
-	  cmpw      r31, r29
-	  beq-      .loc_0x74
-	  lbz       r0, 0x4(r28)
-	  ori       r0, r0, 0x1
-	  stb       r0, 0x4(r28)
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r4
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	mr       r29, r5
+	stw      r28, 0x10(r1)
+	mr       r28, r3
+	lwz      r12, 0(r3)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	mr       r0, r3
+	mr       r3, r28
+	lwz      r12, 0(r28)
+	mr       r30, r0
+	mr       r4, r31
+	mr       r5, r29
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	mr       r31, r3
+	cmpw     r31, r29
+	beq      lbl_800266C0
+	lbz      r0, 4(r28)
+	ori      r0, r0, 1
+	stb      r0, 4(r28)
 
-	.loc_0x74:
-	  cmpwi     r31, 0
-	  beq-      .loc_0x98
-	  mr        r3, r28
-	  mr        r4, r30
-	  lwz       r12, 0x0(r28)
-	  li        r5, 0
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
+lbl_800266C0:
+	cmpwi    r31, 0
+	beq      lbl_800266E4
+	mr       r3, r28
+	mr       r4, r30
+	lwz      r12, 0(r28)
+	li       r5, 0
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x98:
-	  lwz       r0, 0x24(r1)
-	  mr        r3, r31
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_800266E4:
+	lwz      r0, 0x24(r1)
+	mr       r3, r31
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -348,24 +367,23 @@ void JSURandomInputStream::peek(void*, long)
 void JSURandomInputStream::seek(long, JSUStreamSeekFrom)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  lbz       r0, 0x4(r31)
-	  rlwinm    r0,r0,0,24,30
-	  stb       r0, 0x4(r31)
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	lbz      r0, 4(r31)
+	rlwinm   r0, r0, 0, 0x18, 0x1e
+	stb      r0, 4(r31)
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -377,37 +395,36 @@ void JSURandomInputStream::seek(long, JSUStreamSeekFrom)
 JSURandomInputStream::~JSURandomInputStream()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r3
-	  beq-      .loc_0x54
-	  lis       r3, 0x804A
-	  addi      r0, r3, 0x40
-	  stw       r0, 0x0(r31)
-	  beq-      .loc_0x44
-	  lis       r3, 0x804A
-	  addi      r0, r3, 0x64
-	  stw       r0, 0x0(r31)
-	  beq-      .loc_0x44
-	  lis       r3, 0x804A
-	  addi      r0, r3, 0x30
-	  stw       r0, 0x0(r31)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r3, r3
+	beq      lbl_800267A0
+	lis      r3, __vt__20JSURandomInputStream@ha
+	addi     r0, r3, __vt__20JSURandomInputStream@l
+	stw      r0, 0(r31)
+	beq      lbl_80026790
+	lis      r3, __vt__14JSUInputStream@ha
+	addi     r0, r3, __vt__14JSUInputStream@l
+	stw      r0, 0(r31)
+	beq      lbl_80026790
+	lis      r3, __vt__10JSUIosBase@ha
+	addi     r0, r3, __vt__10JSUIosBase@l
+	stw      r0, 0(r31)
 
-	.loc_0x44:
-	  extsh.    r0, r4
-	  ble-      .loc_0x54
-	  mr        r3, r31
-	  bl        -0x26E8
+lbl_80026790:
+	extsh.   r0, r4
+	ble      lbl_800267A0
+	mr       r3, r31
+	bl       __dl__FPv
 
-	.loc_0x54:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_800267A0:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }

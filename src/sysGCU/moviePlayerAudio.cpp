@@ -1,6 +1,36 @@
 #include "types.h"
 
 /*
+    Generated from dpostproc
+
+    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
+        .4byte __sinit_moviePlayerAudio_cpp
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global lbl_804ED8C8
+    lbl_804ED8C8:
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+    .global __vt__27Pikmin_TCreateObject_JAudio
+    __vt__27Pikmin_TCreateObject_JAudio:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__27Pikmin_TCreateObject_JAudioFv
+        .4byte
+   create__27Pikmin_TCreateObject_JAudioFPPQ27JStudio7TObjectRCQ47JStudio3stb4data20TParse_TBlock_object
+        .4byte 0
+
+    .section .sbss # 0x80514D80 - 0x80516360
+    .global lbl_805162F8
+    lbl_805162F8:
+        .skip 0x4
+    .global lbl_805162FC
+    lbl_805162FC:
+        .skip 0x4
+*/
+
+/*
  * --INFO--
  * Address:	........
  * Size:	0000CC
@@ -184,33 +214,32 @@ void Pikmin_TCreateObject_JAudio::create(
 Pikmin_TCreateObject_JAudio::~Pikmin_TCreateObject_JAudio()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x44
-	  lis       r5, 0x804F
-	  li        r4, 0
-	  subi      r0, r5, 0x272C
-	  stw       r0, 0x0(r30)
-	  bl        -0x43F220
-	  extsh.    r0, r31
-	  ble-      .loc_0x44
-	  mr        r3, r30
-	  bl        -0x430E8C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_80454F44
+	lis      r5, __vt__27Pikmin_TCreateObject_JAudio@ha
+	li       r4, 0
+	addi     r0, r5, __vt__27Pikmin_TCreateObject_JAudio@l
+	stw      r0, 0(r30)
+	bl       __dt__Q214JStudio_JAudio13TCreateObjectFv
+	extsh.   r0, r31
+	ble      lbl_80454F44
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x44:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80454F44:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -222,16 +251,15 @@ Pikmin_TCreateObject_JAudio::~Pikmin_TCreateObject_JAudio()
 void __sinit_moviePlayerAudio_cpp(void)
 {
 	/*
-	.loc_0x0:
-	  lis       r4, 0x8051
-	  li        r0, -0x1
-	  lfs       f0, 0x48B0(r4)
-	  lis       r3, 0x804F
-	  stw       r0, -0x6388(r13)
-	  stfsu     f0, -0x2738(r3)
-	  stfs      f0, -0x6384(r13)
-	  stfs      f0, 0x4(r3)
-	  stfs      f0, 0x8(r3)
-	  blr
+	lis      r4, __float_nan@ha
+	li       r0, -1
+	lfs      f0, __float_nan@l(r4)
+	lis      r3, lbl_804ED8C8@ha
+	stw      r0, lbl_805162F8@sda21(r13)
+	stfsu    f0, lbl_804ED8C8@l(r3)
+	stfs     f0, lbl_805162FC@sda21(r13)
+	stfs     f0, 4(r3)
+	stfs     f0, 8(r3)
+	blr
 	*/
 }

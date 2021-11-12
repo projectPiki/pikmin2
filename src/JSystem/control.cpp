@@ -1,6 +1,18 @@
 #include "types.h"
 
 /*
+    Generated from dpostproc
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__Q28JMessage8TControl
+    __vt__Q28JMessage8TControl:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q28JMessage8TControlFv
+        .4byte 0
+*/
+
+/*
  * --INFO--
  * Address:	800083A4
  * Size:	000044
@@ -8,24 +20,23 @@
 JMessage::TControl::TControl(void)
 {
 	/*
-	.loc_0x0:
-	  lis       r5, 0x804A
-	  lis       r4, 0x1
-	  subi      r0, r5, 0x1BA8
-	  li        r5, 0
-	  stw       r0, 0x0(r3)
-	  subi      r0, r4, 0x1
-	  stw       r5, 0x4(r3)
-	  stw       r5, 0x8(r3)
-	  sth       r0, 0xC(r3)
-	  sth       r0, 0xE(r3)
-	  stw       r5, 0x10(r3)
-	  stw       r5, 0x14(r3)
-	  stw       r5, 0x18(r3)
-	  stw       r5, 0x1C(r3)
-	  stw       r5, 0x20(r3)
-	  stw       r5, 0x24(r3)
-	  blr
+	lis      r5, __vt__Q28JMessage8TControl@ha
+	lis      r4, 0x0000FFFF@ha
+	addi     r0, r5, __vt__Q28JMessage8TControl@l
+	li       r5, 0
+	stw      r0, 0(r3)
+	addi     r0, r4, 0x0000FFFF@l
+	stw      r5, 4(r3)
+	stw      r5, 8(r3)
+	sth      r0, 0xc(r3)
+	sth      r0, 0xe(r3)
+	stw      r5, 0x10(r3)
+	stw      r5, 0x14(r3)
+	stw      r5, 0x18(r3)
+	stw      r5, 0x1c(r3)
+	stw      r5, 0x20(r3)
+	stw      r5, 0x24(r3)
+	blr
 	*/
 }
 
@@ -37,27 +48,26 @@ JMessage::TControl::TControl(void)
 JMessage::TControl::~TControl(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r3
-	  beq-      .loc_0x30
-	  lis       r5, 0x804A
-	  extsh.    r0, r4
-	  subi      r0, r5, 0x1BA8
-	  stw       r0, 0x0(r31)
-	  ble-      .loc_0x30
-	  bl        0x1BCA0
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r3, r3
+	beq      lbl_80008418
+	lis      r5, __vt__Q28JMessage8TControl@ha
+	extsh.   r0, r4
+	addi     r0, r5, __vt__Q28JMessage8TControl@l
+	stw      r0, 0(r31)
+	ble      lbl_80008418
+	bl       __dl__FPv
 
-	.loc_0x30:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80008418:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -69,37 +79,36 @@ JMessage::TControl::~TControl(void)
 void JMessage::TControl::reset(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  li        r0, 0
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  stw       r0, 0x14(r3)
-	  stw       r0, 0x18(r3)
-	  stw       r0, 0x1C(r3)
-	  stw       r0, 0x20(r3)
-	  stw       r0, 0x24(r3)
-	  lwz       r3, 0x4(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x40
-	  li        r4, 0
-	  bl        -0x1314
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	li       r0, 0
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	stw      r0, 0x14(r3)
+	stw      r0, 0x18(r3)
+	stw      r0, 0x1c(r3)
+	stw      r0, 0x20(r3)
+	stw      r0, 0x24(r3)
+	lwz      r3, 4(r3)
+	cmplwi   r3, 0
+	beq      lbl_80008470
+	li       r4, 0
+	bl       reset___Q28JMessage10TProcessorFPCc
 
-	.loc_0x40:
-	  lwz       r3, 0x8(r31)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x54
-	  li        r4, 0
-	  bl        -0x1328
+lbl_80008470:
+	lwz      r3, 8(r31)
+	cmplwi   r3, 0
+	beq      lbl_80008484
+	li       r4, 0
+	bl       reset___Q28JMessage10TProcessorFPCc
 
-	.loc_0x54:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80008484:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -111,49 +120,48 @@ void JMessage::TControl::reset(void)
 void JMessage::TControl::update(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  li        r3, 0
-	  lwz       r0, 0x18(r31)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x34
-	  lwz       r0, 0x4(r31)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x34
-	  li        r3, 0x1
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	li       r3, 0
+	lwz      r0, 0x18(r31)
+	cmplwi   r0, 0
+	beq      lbl_800084CC
+	lwz      r0, 4(r31)
+	cmplwi   r0, 0
+	beq      lbl_800084CC
+	li       r3, 1
 
-	.loc_0x34:
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x44
-	  li        r3, 0
-	  b         .loc_0x74
+lbl_800084CC:
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_800084DC
+	li       r3, 0
+	b        lbl_8000850C
 
-	.loc_0x44:
-	  lwz       r3, 0x4(r31)
-	  li        r4, 0
-	  bl        -0xC60
-	  stw       r3, 0x1C(r31)
-	  lwz       r0, 0x1C(r31)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x70
-	  li        r0, 0
-	  li        r3, 0
-	  stw       r0, 0x18(r31)
-	  b         .loc_0x74
+lbl_800084DC:
+	lwz      r3, 4(r31)
+	li       r4, 0
+	bl       process__Q28JMessage18TSequenceProcessorFPCc
+	stw      r3, 0x1c(r31)
+	lwz      r0, 0x1c(r31)
+	cmplwi   r0, 0
+	bne      lbl_80008508
+	li       r0, 0
+	li       r3, 0
+	stw      r0, 0x18(r31)
+	b        lbl_8000850C
 
-	.loc_0x70:
-	  li        r3, 0x1
+lbl_80008508:
+	li       r3, 1
 
-	.loc_0x74:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8000850C:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -165,106 +173,105 @@ void JMessage::TControl::update(void)
 void JMessage::TControl::render(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r3
-	  li        r3, 0
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  stw       r28, 0x10(r1)
-	  lwz       r28, 0x20(r31)
-	  cmplwi    r28, 0
-	  beq-      .loc_0x40
-	  lwz       r0, 0x8(r31)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x40
-	  li        r3, 0x1
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r3
+	li       r3, 0
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	stw      r28, 0x10(r1)
+	lwz      r28, 0x20(r31)
+	cmplwi   r28, 0
+	beq      lbl_80008560
+	lwz      r0, 8(r31)
+	cmplwi   r0, 0
+	beq      lbl_80008560
+	li       r3, 1
 
-	.loc_0x40:
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x13C
-	  lwz       r30, 0x8(r31)
-	  mr        r4, r28
-	  lwz       r29, 0x14(r31)
-	  lwz       r0, 0x10(r31)
-	  mr        r3, r30
-	  stw       r0, 0x8(r30)
-	  bl        -0x1428
-	  mr        r3, r30
-	  mr        r4, r29
-	  lwz       r12, 0x0(r30)
-	  mr        r5, r28
-	  lwz       r12, 0x30(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x8(r31)
-	  addi      r5, r31, 0x28
-	  lwz       r0, 0x24(r31)
-	  addi      r6, r3, 0x14
-	  stw       r0, 0x10(r3)
-	  lwz       r0, 0x24(r31)
-	  rlwinm    r0,r0,2,0,29
-	  add       r3, r31, r0
-	  addi      r4, r3, 0x28
-	  addi      r3, r4, 0x3
-	  sub       r3, r3, r5
-	  cmplw     r5, r4
-	  rlwinm    r3,r3,30,2,31
-	  bge-      .loc_0x130
-	  rlwinm.   r0,r3,29,3,31
-	  mtctr     r0
-	  beq-      .loc_0x118
+lbl_80008560:
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_8000865C
+	lwz      r30, 8(r31)
+	mr       r4, r28
+	lwz      r29, 0x14(r31)
+	lwz      r0, 0x10(r31)
+	mr       r3, r30
+	stw      r0, 8(r30)
+	bl       reset___Q28JMessage10TProcessorFPCc
+	mr       r3, r30
+	mr       r4, r29
+	lwz      r12, 0(r30)
+	mr       r5, r28
+	lwz      r12, 0x30(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 8(r31)
+	addi     r5, r31, 0x28
+	lwz      r0, 0x24(r31)
+	addi     r6, r3, 0x14
+	stw      r0, 0x10(r3)
+	lwz      r0, 0x24(r31)
+	slwi     r0, r0, 2
+	add      r3, r31, r0
+	addi     r4, r3, 0x28
+	addi     r3, r4, 3
+	subf     r3, r5, r3
+	cmplw    r5, r4
+	srwi     r3, r3, 2
+	bge      lbl_80008650
+	rlwinm.  r0, r3, 0x1d, 3, 0x1f
+	mtctr    r0
+	beq      lbl_80008638
 
-	.loc_0xC4:
-	  lwz       r0, 0x0(r5)
-	  stw       r0, 0x0(r6)
-	  lwz       r0, 0x4(r5)
-	  stw       r0, 0x4(r6)
-	  lwz       r0, 0x8(r5)
-	  stw       r0, 0x8(r6)
-	  lwz       r0, 0xC(r5)
-	  stw       r0, 0xC(r6)
-	  lwz       r0, 0x10(r5)
-	  stw       r0, 0x10(r6)
-	  lwz       r0, 0x14(r5)
-	  stw       r0, 0x14(r6)
-	  lwz       r0, 0x18(r5)
-	  stw       r0, 0x18(r6)
-	  lwz       r0, 0x1C(r5)
-	  addi      r5, r5, 0x20
-	  stw       r0, 0x1C(r6)
-	  addi      r6, r6, 0x20
-	  bdnz+     .loc_0xC4
-	  andi.     r3, r3, 0x7
-	  beq-      .loc_0x130
+lbl_800085E4:
+	lwz      r0, 0(r5)
+	stw      r0, 0(r6)
+	lwz      r0, 4(r5)
+	stw      r0, 4(r6)
+	lwz      r0, 8(r5)
+	stw      r0, 8(r6)
+	lwz      r0, 0xc(r5)
+	stw      r0, 0xc(r6)
+	lwz      r0, 0x10(r5)
+	stw      r0, 0x10(r6)
+	lwz      r0, 0x14(r5)
+	stw      r0, 0x14(r6)
+	lwz      r0, 0x18(r5)
+	stw      r0, 0x18(r6)
+	lwz      r0, 0x1c(r5)
+	addi     r5, r5, 0x20
+	stw      r0, 0x1c(r6)
+	addi     r6, r6, 0x20
+	bdnz     lbl_800085E4
+	andi.    r3, r3, 7
+	beq      lbl_80008650
 
-	.loc_0x118:
-	  mtctr     r3
+lbl_80008638:
+	mtctr    r3
 
-	.loc_0x11C:
-	  lwz       r0, 0x0(r5)
-	  addi      r5, r5, 0x4
-	  stw       r0, 0x0(r6)
-	  addi      r6, r6, 0x4
-	  bdnz+     .loc_0x11C
+lbl_8000863C:
+	lwz      r0, 0(r5)
+	addi     r5, r5, 4
+	stw      r0, 0(r6)
+	addi     r6, r6, 4
+	bdnz     lbl_8000863C
 
-	.loc_0x130:
-	  lwz       r3, 0x8(r31)
-	  lwz       r4, 0x1C(r31)
-	  bl        -0x500
+lbl_80008650:
+	lwz      r3, 8(r31)
+	lwz      r4, 0x1c(r31)
+	bl       process__Q28JMessage19TRenderingProcessorFPCc
 
-	.loc_0x13C:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8000865C:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -276,74 +283,74 @@ void JMessage::TControl::render(void)
 void JMessage::TControl::setMessageCode(unsigned short, unsigned short)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  mr        r6, r5
-	  stw       r0, 0x24(r1)
-	  mr        r0, r4
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  stw       r28, 0x10(r1)
-	  mr        r28, r3
-	  lwz       r4, 0x4(r3)
-	  cmplwi    r4, 0
-	  beq-      .loc_0x38
-	  b         .loc_0x3C
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	mr       r6, r5
+	stw      r0, 0x24(r1)
+	mr       r0, r4
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	stw      r28, 0x10(r1)
+	mr       r28, r3
+	lwz      r4, 4(r3)
+	cmplwi   r4, 0
+	beq      lbl_800086B4
+	b        lbl_800086B8
 
-	.loc_0x38:
-	  lwz       r4, 0x8(r28)
+lbl_800086B4:
+	lwz      r4, 8(r28)
 
-	.loc_0x3C:
-	  mr        r3, r28
-	  mr        r5, r0
-	  bl        0x194
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x58
-	  li        r3, 0
-	  b         .loc_0xBC
+lbl_800086B8:
+	mr       r3, r28
+	mr       r5, r0
+	bl
+setMessageCode_inSequence___Q28JMessage8TControlFPCQ28JMessage10TProcessorUsUs
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_800086D4
+	li       r3, 0
+	b        lbl_80008738
 
-	.loc_0x58:
-	  lwz       r29, 0x18(r28)
-	  li        r3, 0
-	  cmplwi    r29, 0
-	  beq-      .loc_0x78
-	  lwz       r0, 0x4(r28)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x78
-	  li        r3, 0x1
+lbl_800086D4:
+	lwz      r29, 0x18(r28)
+	li       r3, 0
+	cmplwi   r29, 0
+	beq      lbl_800086F4
+	lwz      r0, 4(r28)
+	cmplwi   r0, 0
+	beq      lbl_800086F4
+	li       r3, 1
 
-	.loc_0x78:
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xB8
-	  lwz       r31, 0x4(r28)
-	  mr        r4, r29
-	  lwz       r30, 0x14(r28)
-	  lwz       r0, 0x10(r28)
-	  mr        r3, r31
-	  stw       r0, 0x8(r31)
-	  bl        -0x15BC
-	  mr        r3, r31
-	  mr        r4, r30
-	  lwz       r12, 0x0(r31)
-	  mr        r5, r29
-	  lwz       r12, 0x30(r12)
-	  mtctr     r12
-	  bctrl
+lbl_800086F4:
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80008734
+	lwz      r31, 4(r28)
+	mr       r4, r29
+	lwz      r30, 0x14(r28)
+	lwz      r0, 0x10(r28)
+	mr       r3, r31
+	stw      r0, 8(r31)
+	bl       reset___Q28JMessage10TProcessorFPCc
+	mr       r3, r31
+	mr       r4, r30
+	lwz      r12, 0(r31)
+	mr       r5, r29
+	lwz      r12, 0x30(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0xB8:
-	  li        r3, 0x1
+lbl_80008734:
+	li       r3, 1
 
-	.loc_0xBC:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80008738:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -355,86 +362,84 @@ void JMessage::TControl::setMessageCode(unsigned short, unsigned short)
 void JMessage::TControl::setMessageID(unsigned long, unsigned long, bool*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  stw       r28, 0x10(r1)
-	  mr        r28, r3
-	  lwz       r30, 0x4(r3)
-	  cmplwi    r30, 0
-	  beq-      .loc_0x30
-	  b         .loc_0x34
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	stw      r28, 0x10(r1)
+	mr       r28, r3
+	lwz      r30, 4(r3)
+	cmplwi   r30, 0
+	beq      lbl_80008788
+	b        lbl_8000878C
 
-	.loc_0x30:
-	  lwz       r30, 0x8(r28)
+lbl_80008788:
+	lwz      r30, 8(r28)
 
-	.loc_0x34:
-	  mr        r3, r30
-	  bl        -0x17AC
-	  mr        r6, r3
-	  addis     r0, r6, 0x1
-	  cmplwi    r0, 0xFFFF
-	  bne-      .loc_0x54
-	  li        r3, 0
-	  b         .loc_0xDC
+lbl_8000878C:
+	mr       r3, r30
+	bl       toMessageCode_messageID__Q28JMessage10TProcessorCFUlUlPb
+	mr       r6, r3
+	addis    r0, r6, 1
+	cmplwi   r0, 0xffff
+	bne      lbl_800087AC
+	li       r3, 0
+	b        lbl_80008834
 
-	.loc_0x54:
-	  rlwinm    r5,r6,16,16,31
-	  mr        r3, r28
-	  mr        r4, r30
-	  rlwinm    r6,r6,0,16,31
-	  bl        .loc_0xFC
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x78
-	  li        r3, 0
-	  b         .loc_0xDC
+lbl_800087AC:
+	srwi     r5, r6, 0x10
+	mr       r3, r28
+	mr       r4, r30
+	clrlwi   r6, r6, 0x10
+	bl
+setMessageCode_inSequence___Q28JMessage8TControlFPCQ28JMessage10TProcessorUsUs
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_800087D0
+	li       r3, 0
+	b        lbl_80008834
 
-	.loc_0x78:
-	  lwz       r29, 0x18(r28)
-	  li        r3, 0
-	  cmplwi    r29, 0
-	  beq-      .loc_0x98
-	  lwz       r0, 0x4(r28)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x98
-	  li        r3, 0x1
+lbl_800087D0:
+	lwz      r29, 0x18(r28)
+	li       r3, 0
+	cmplwi   r29, 0
+	beq      lbl_800087F0
+	lwz      r0, 4(r28)
+	cmplwi   r0, 0
+	beq      lbl_800087F0
+	li       r3, 1
 
-	.loc_0x98:
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xD8
-	  lwz       r31, 0x4(r28)
-	  mr        r4, r29
-	  lwz       r30, 0x14(r28)
-	  lwz       r0, 0x10(r28)
-	  mr        r3, r31
-	  stw       r0, 0x8(r31)
-	  bl        -0x16B8
-	  mr        r3, r31
-	  mr        r4, r30
-	  lwz       r12, 0x0(r31)
-	  mr        r5, r29
-	  lwz       r12, 0x30(r12)
-	  mtctr     r12
-	  bctrl
+lbl_800087F0:
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80008830
+	lwz      r31, 4(r28)
+	mr       r4, r29
+	lwz      r30, 0x14(r28)
+	lwz      r0, 0x10(r28)
+	mr       r3, r31
+	stw      r0, 8(r31)
+	bl       reset___Q28JMessage10TProcessorFPCc
+	mr       r3, r31
+	mr       r4, r30
+	lwz      r12, 0(r31)
+	mr       r5, r29
+	lwz      r12, 0x30(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0xD8:
-	  li        r3, 0x1
+lbl_80008830:
+	li       r3, 1
 
-	.loc_0xDC:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-
-	.loc_0xFC:
+lbl_80008834:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 

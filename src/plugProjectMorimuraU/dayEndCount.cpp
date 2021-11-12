@@ -1,6 +1,347 @@
 #include "types.h"
 
 /*
+    Generated from dpostproc
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_804901E8
+    lbl_804901E8:
+        .4byte 0x64617945
+        .4byte 0x6E64436F
+        .4byte 0x756E7400
+    .global lbl_804901F4
+    lbl_804901F4:
+        .4byte 0x44617945
+        .4byte 0x6E64436F
+        .4byte 0x756E7400
+        .4byte 0x636F756E
+        .4byte 0x742E626C
+        .4byte 0x6F000000
+    .global lbl_8049020C
+    lbl_8049020C:
+        .4byte 0x64617945
+        .4byte 0x6E64436F
+        .4byte 0x756E742E
+        .4byte 0x63707000
+    .global lbl_8049021C
+    lbl_8049021C:
+        .asciz "P2Assert"
+        .skip 3
+    .global lbl_80490228
+    lbl_80490228:
+        .4byte 0x6368616C
+        .4byte 0x6C656E67
+        .4byte 0x65456E64
+        .4byte 0x436F756E
+        .4byte 0x74000000
+        .4byte 0x6368616C
+        .4byte 0x6C656E67
+        .4byte 0x65456E64
+        .4byte 0x436F756E
+        .4byte 0x74317000
+        .4byte 0x6368616C
+        .4byte 0x6C656E67
+        .4byte 0x65456E64
+        .4byte 0x436F756E
+        .4byte 0x74327000
+    .global lbl_80490264
+    lbl_80490264:
+        .4byte 0x7265735F
+        .4byte 0x67726F75
+        .4byte 0x6E642E73
+        .4byte 0x7A730000
+        .4byte 0x73637265
+        .4byte 0x656E4F62
+        .4byte 0x6A2E6800
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global deTagName__8Morimura
+    deTagName__8Morimura:
+        .4byte 0x63643030
+        .4byte 0x63643031
+        .4byte 0x63643032
+        .4byte 0x63643033
+        .4byte 0x63643034
+        .4byte 0x63643035
+        .4byte 0x63643036
+        .4byte 0x63643037
+        .4byte 0x63643038
+        .4byte 0x63643039
+        .4byte 0x63643130
+    .global __vt__Q28Morimura15TCountDownScene
+    __vt__Q28Morimura15TCountDownScene:
+        .4byte 0
+        .4byte 0
+        .4byte getSceneType__Q28Morimura15TCountDownSceneFv
+        .4byte getOwnerID__Q28Morimura15TCountDownSceneFv
+        .4byte getMemberID__Q28Morimura15TCountDownSceneFv
+        .4byte isUseBackupSceneInfo__Q26Screen9SceneBaseFv
+        .4byte isDrawInDemo__Q26Screen9SceneBaseCFv
+        .4byte getResName__Q28Morimura15TCountDownSceneCFv
+        .4byte doCreateObj__Q28Morimura15TCountDownSceneFP10JKRArchive
+        .4byte doUserCallBackFunc__Q26Screen9SceneBaseFPQ28Resource10MgrCommand
+        .4byte setPort__Q26Screen9SceneBaseFR8Graphics
+        .4byte doUpdateActive__Q26Screen9SceneBaseFv
+        .4byte doConfirmSetScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg
+        .4byte
+   doConfirmStartScene__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg .4byte
+   doConfirmEndScene__Q26Screen9SceneBaseFRPQ26Screen11EndSceneArg .4byte
+   doStart__Q28Morimura15TCountDownSceneFPQ26Screen13StartSceneArg .4byte
+   doEnd__Q26Screen9SceneBaseFPQ26Screen11EndSceneArg .4byte
+   setDefaultDispMember__Q26Screen9SceneBaseFv .4byte
+   doSetBackupScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg .4byte
+   doGetFinishState__Q26Screen9SceneBaseFv .global
+   __vt__Q28Morimura20TChallengeEndCount2p
+    __vt__Q28Morimura20TChallengeEndCount2p:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q28Morimura20TChallengeEndCount2pFv
+        .4byte getChildCount__5CNodeFv
+        .4byte 0
+        .4byte 0
+        .4byte "@24@__dt__Q28Morimura20TChallengeEndCount2pFv"
+        .4byte update__Q26Screen7ObjBaseFv
+        .4byte draw__Q26Screen7ObjBaseFR8Graphics
+        .4byte start__Q26Screen7ObjBaseFPCQ26Screen13StartSceneArg
+        .4byte end__Q26Screen7ObjBaseFPCQ26Screen11EndSceneArg
+        .4byte setOwner__Q26Screen7ObjBaseFPQ26Screen9SceneBase
+        .4byte getOwner__Q26Screen7ObjBaseCFv
+        .4byte create__Q26Screen7ObjBaseFP10JKRArchive
+        .4byte confirmSetScene__Q26Screen7ObjBaseFRQ26Screen11SetSceneArg
+        .4byte confirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
+        .4byte confirmEndScene__Q26Screen7ObjBaseFPQ26Screen11EndSceneArg
+        .4byte doStart__Q28Morimura12TDayEndCountFPCQ26Screen13StartSceneArg
+        .4byte doEnd__Q28Morimura9TTestBaseFPCQ26Screen11EndSceneArg
+        .4byte doCreate__Q28Morimura18TChallengeEndCountFP10JKRArchive
+        .4byte doUpdateFadein__Q28Morimura9TTestBaseFv
+        .4byte doUpdateFadeinFinish__Q28Morimura9TTestBaseFv
+        .4byte doUpdate__Q28Morimura20TChallengeEndCount2pFv
+        .4byte doUpdateFinish__Q28Morimura9TTestBaseFv
+        .4byte doUpdateFadeout__Q28Morimura9TTestBaseFv
+        .4byte doUpdateFadeoutFinish__Q26Screen7ObjBaseFv
+        .4byte doDraw__Q28Morimura12TDayEndCountFR8Graphics
+        .4byte doConfirmSetScene__Q26Screen7ObjBaseFRQ26Screen11SetSceneArg
+        .4byte doConfirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
+        .4byte doConfirmEndScene__Q26Screen7ObjBaseFRPQ26Screen11EndSceneArg
+        .4byte getDispMemberBase__Q28Morimura12TDayEndCountFv
+    .global __vt__Q28Morimura20TChallengeEndCount1p
+    __vt__Q28Morimura20TChallengeEndCount1p:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q28Morimura20TChallengeEndCount1pFv
+        .4byte getChildCount__5CNodeFv
+        .4byte 0
+        .4byte 0
+        .4byte "@24@__dt__Q28Morimura20TChallengeEndCount1pFv"
+        .4byte update__Q26Screen7ObjBaseFv
+        .4byte draw__Q26Screen7ObjBaseFR8Graphics
+        .4byte start__Q26Screen7ObjBaseFPCQ26Screen13StartSceneArg
+        .4byte end__Q26Screen7ObjBaseFPCQ26Screen11EndSceneArg
+        .4byte setOwner__Q26Screen7ObjBaseFPQ26Screen9SceneBase
+        .4byte getOwner__Q26Screen7ObjBaseCFv
+        .4byte create__Q26Screen7ObjBaseFP10JKRArchive
+        .4byte confirmSetScene__Q26Screen7ObjBaseFRQ26Screen11SetSceneArg
+        .4byte confirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
+        .4byte confirmEndScene__Q26Screen7ObjBaseFPQ26Screen11EndSceneArg
+        .4byte doStart__Q28Morimura12TDayEndCountFPCQ26Screen13StartSceneArg
+        .4byte doEnd__Q28Morimura9TTestBaseFPCQ26Screen11EndSceneArg
+        .4byte doCreate__Q28Morimura18TChallengeEndCountFP10JKRArchive
+        .4byte doUpdateFadein__Q28Morimura9TTestBaseFv
+        .4byte doUpdateFadeinFinish__Q28Morimura9TTestBaseFv
+        .4byte doUpdate__Q28Morimura20TChallengeEndCount1pFv
+        .4byte doUpdateFinish__Q28Morimura9TTestBaseFv
+        .4byte doUpdateFadeout__Q28Morimura9TTestBaseFv
+        .4byte doUpdateFadeoutFinish__Q26Screen7ObjBaseFv
+        .4byte doDraw__Q28Morimura12TDayEndCountFR8Graphics
+        .4byte doConfirmSetScene__Q26Screen7ObjBaseFRQ26Screen11SetSceneArg
+        .4byte doConfirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
+        .4byte doConfirmEndScene__Q26Screen7ObjBaseFRPQ26Screen11EndSceneArg
+        .4byte getDispMemberBase__Q28Morimura12TDayEndCountFv
+    .global __vt__Q28Morimura18TChallengeEndCount
+    __vt__Q28Morimura18TChallengeEndCount:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q28Morimura18TChallengeEndCountFv
+        .4byte getChildCount__5CNodeFv
+        .4byte 0
+        .4byte 0
+        .4byte "@24@__dt__Q28Morimura18TChallengeEndCountFv"
+        .4byte update__Q26Screen7ObjBaseFv
+        .4byte draw__Q26Screen7ObjBaseFR8Graphics
+        .4byte start__Q26Screen7ObjBaseFPCQ26Screen13StartSceneArg
+        .4byte end__Q26Screen7ObjBaseFPCQ26Screen11EndSceneArg
+        .4byte setOwner__Q26Screen7ObjBaseFPQ26Screen9SceneBase
+        .4byte getOwner__Q26Screen7ObjBaseCFv
+        .4byte create__Q26Screen7ObjBaseFP10JKRArchive
+        .4byte confirmSetScene__Q26Screen7ObjBaseFRQ26Screen11SetSceneArg
+        .4byte confirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
+        .4byte confirmEndScene__Q26Screen7ObjBaseFPQ26Screen11EndSceneArg
+        .4byte doStart__Q28Morimura12TDayEndCountFPCQ26Screen13StartSceneArg
+        .4byte doEnd__Q28Morimura9TTestBaseFPCQ26Screen11EndSceneArg
+        .4byte doCreate__Q28Morimura18TChallengeEndCountFP10JKRArchive
+        .4byte doUpdateFadein__Q28Morimura9TTestBaseFv
+        .4byte doUpdateFadeinFinish__Q28Morimura9TTestBaseFv
+        .4byte doUpdate__Q28Morimura12TDayEndCountFv
+        .4byte doUpdateFinish__Q28Morimura9TTestBaseFv
+        .4byte doUpdateFadeout__Q28Morimura9TTestBaseFv
+        .4byte doUpdateFadeoutFinish__Q26Screen7ObjBaseFv
+        .4byte doDraw__Q28Morimura12TDayEndCountFR8Graphics
+        .4byte doConfirmSetScene__Q26Screen7ObjBaseFRQ26Screen11SetSceneArg
+        .4byte doConfirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
+        .4byte doConfirmEndScene__Q26Screen7ObjBaseFRPQ26Screen11EndSceneArg
+        .4byte getDispMemberBase__Q28Morimura12TDayEndCountFv
+    .global __vt__Q28Morimura12TDayEndCount
+    __vt__Q28Morimura12TDayEndCount:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q28Morimura12TDayEndCountFv
+        .4byte getChildCount__5CNodeFv
+        .4byte 0
+        .4byte 0
+        .4byte "@24@__dt__Q28Morimura12TDayEndCountFv"
+        .4byte update__Q26Screen7ObjBaseFv
+        .4byte draw__Q26Screen7ObjBaseFR8Graphics
+        .4byte start__Q26Screen7ObjBaseFPCQ26Screen13StartSceneArg
+        .4byte end__Q26Screen7ObjBaseFPCQ26Screen11EndSceneArg
+        .4byte setOwner__Q26Screen7ObjBaseFPQ26Screen9SceneBase
+        .4byte getOwner__Q26Screen7ObjBaseCFv
+        .4byte create__Q26Screen7ObjBaseFP10JKRArchive
+        .4byte confirmSetScene__Q26Screen7ObjBaseFRQ26Screen11SetSceneArg
+        .4byte confirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
+        .4byte confirmEndScene__Q26Screen7ObjBaseFPQ26Screen11EndSceneArg
+        .4byte doStart__Q28Morimura12TDayEndCountFPCQ26Screen13StartSceneArg
+        .4byte doEnd__Q28Morimura9TTestBaseFPCQ26Screen11EndSceneArg
+        .4byte doCreate__Q28Morimura12TDayEndCountFP10JKRArchive
+        .4byte doUpdateFadein__Q28Morimura9TTestBaseFv
+        .4byte doUpdateFadeinFinish__Q28Morimura9TTestBaseFv
+        .4byte doUpdate__Q28Morimura12TDayEndCountFv
+        .4byte doUpdateFinish__Q28Morimura9TTestBaseFv
+        .4byte doUpdateFadeout__Q28Morimura9TTestBaseFv
+        .4byte doUpdateFadeoutFinish__Q26Screen7ObjBaseFv
+        .4byte doDraw__Q28Morimura12TDayEndCountFR8Graphics
+        .4byte doConfirmSetScene__Q26Screen7ObjBaseFRQ26Screen11SetSceneArg
+        .4byte doConfirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
+        .4byte doConfirmEndScene__Q26Screen7ObjBaseFRPQ26Screen11EndSceneArg
+        .4byte getDispMemberBase__Q28Morimura12TDayEndCountFv
+        .4byte 0
+
+    .section .sdata, "wa"  # 0x80514680 - 0x80514D80
+    .global mWaitTime__Q28Morimura12TDayEndCount
+    mWaitTime__Q28Morimura12TDayEndCount:
+        .float 0.4
+    .global mAlphaMax__Q28Morimura12TDayEndCount
+    mAlphaMax__Q28Morimura12TDayEndCount:
+        .byte 0xC8
+    .global mWaitAlpha__Q28Morimura12TDayEndCount
+    mWaitAlpha__Q28Morimura12TDayEndCount:
+        .byte 0x64
+        .byte 0x0
+        .byte 0x0
+    .global mWaitScale__Q28Morimura12TDayEndCount
+    mWaitScale__Q28Morimura12TDayEndCount:
+        .float 0.2
+    .global mStopScale__Q28Morimura12TDayEndCount
+    mStopScale__Q28Morimura12TDayEndCount:
+        .float 1.0
+    .global mScaleMax__Q28Morimura12TDayEndCount
+    mScaleMax__Q28Morimura12TDayEndCount:
+        .float 2.0
+    .global m2pScale__Q28Morimura12TDayEndCount
+    m2pScale__Q28Morimura12TDayEndCount:
+        .float 0.75
+    .global m2pOffsetY__Q28Morimura12TDayEndCount
+    m2pOffsetY__Q28Morimura12TDayEndCount:
+        .float 170.0
+    .global mColor__Q28Morimura12TDayEndCount
+    mColor__Q28Morimura12TDayEndCount:
+        .4byte 0x00FF00FF
+    .global mNumberColor__Q28Morimura12TDayEndCount
+    mNumberColor__Q28Morimura12TDayEndCount:
+        .4byte 0xFF6400FF
+
+    .section .sbss # 0x80514D80 - 0x80516360
+    .global mColorTest__Q28Morimura12TDayEndCount
+    mColorTest__Q28Morimura12TDayEndCount:
+        .skip 0x1
+    .global mTestChangeColor__Q28Morimura12TDayEndCount
+    mTestChangeColor__Q28Morimura12TDayEndCount:
+        .skip 0x1
+    .global mCountDownType__Q28Morimura12TDayEndCount
+    mCountDownType__Q28Morimura12TDayEndCount:
+        .skip 0x6
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_8051E1F8
+    lbl_8051E1F8:
+        .float 1.0
+    .global lbl_8051E1FC
+    lbl_8051E1FC:
+        .4byte 0x00000000
+    .global lbl_8051E200
+    lbl_8051E200:
+        .4byte 0x3F666666
+    .global lbl_8051E204
+    lbl_8051E204:
+        .4byte 0x41C80000
+    .global lbl_8051E208
+    lbl_8051E208:
+        .4byte 0x38D1B717
+    .global lbl_8051E20C
+    lbl_8051E20C:
+        .4byte 0x3C23D70A
+    .global lbl_8051E210
+    lbl_8051E210:
+        .4byte 0x41200000
+    .global lbl_8051E214
+    lbl_8051E214:
+        .4byte 0x3F8CCCCD
+    .global lbl_8051E218
+    lbl_8051E218:
+        .4byte 0x41300000
+    .global lbl_8051E21C
+    lbl_8051E21C:
+        .float 0.5
+    .global lbl_8051E220
+    lbl_8051E220:
+        .4byte 0x42C80000
+    .global lbl_8051E224
+    lbl_8051E224:
+        .4byte 0x437F0000
+    .global lbl_8051E228
+    lbl_8051E228:
+        .4byte 0x41490FDB
+    .global lbl_8051E22C
+    lbl_8051E22C:
+        .4byte 0xC3A2F983
+    .global lbl_8051E230
+    lbl_8051E230:
+        .4byte 0x43A2F983
+    .global lbl_8051E234
+    lbl_8051E234:
+        .4byte 0x40A00000
+    .global lbl_8051E238
+    lbl_8051E238:
+        .4byte 0x43300000
+        .4byte 0x80000000
+    .global lbl_8051E240
+    lbl_8051E240:
+        .4byte 0x43300000
+        .4byte 0x00000000
+    .global lbl_8051E248
+    lbl_8051E248:
+        .4byte 0x40C90FDB
+    .global lbl_8051E24C
+    lbl_8051E24C:
+        .4byte 0x42100000
+    .global lbl_8051E250
+    lbl_8051E250:
+        .4byte 0x43B40000
+    .global lbl_8051E254
+    lbl_8051E254:
+        .4byte 0x42A00000
+*/
+
+/*
  * --INFO--
  * Address:	80344088
  * Size:	0000E0
@@ -8,63 +349,62 @@
 Morimura::TDayEndCount::TDayEndCount(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r4, 0x8049
-	  stw       r0, 0x14(r1)
-	  addi      r4, r4, 0x1F4
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        0x5124
-	  lis       r4, 0x804E
-	  li        r8, 0
-	  subi      r4, r4, 0x4D98
-	  li        r0, -0x1
-	  stw       r4, 0x0(r31)
-	  addi      r5, r4, 0x10
-	  lis       r3, 0x8004
-	  li        r6, 0x4
-	  stw       r5, 0x18(r31)
-	  subi      r4, r3, 0x6460
-	  addi      r3, r31, 0x96
-	  li        r5, 0
-	  stw       r8, 0x80(r31)
-	  li        r7, 0x4
-	  stw       r8, 0x84(r31)
-	  stw       r8, 0x88(r31)
-	  stw       r8, 0x8C(r31)
-	  stw       r0, 0x90(r31)
-	  stb       r8, 0x94(r31)
-	  bl        -0x2828B8
-	  lis       r4, 0x8004
-	  addi      r3, r31, 0xA6
-	  subi      r4, r4, 0x6460
-	  li        r5, 0
-	  li        r6, 0x4
-	  li        r7, 0x4
-	  bl        -0x2828D4
-	  li        r0, 0x1
-	  li        r5, 0
-	  stb       r0, 0xC9(r31)
-	  li        r0, 0xFF
-	  lfs       f1, -0x168(r2)
-	  subi      r4, r13, 0x7A94
-	  stb       r5, 0xCA(r31)
-	  mr        r3, r31
-	  lfs       f0, -0x164(r2)
-	  stfs      f1, 0xCC(r31)
-	  stfs      f0, 0xD0(r31)
-	  stb       r5, -0x7A94(r13)
-	  stb       r0, 0x1(r4)
-	  stb       r5, 0x2(r4)
-	  stb       r0, 0x3(r4)
-	  stb       r5, -0x676F(r13)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lis      r4, lbl_804901F4@ha
+	stw      r0, 0x14(r1)
+	addi     r4, r4, lbl_804901F4@l
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       __ct__Q28Morimura9TTestBaseFPc
+	lis      r4, __vt__Q28Morimura12TDayEndCount@ha
+	li       r8, 0
+	addi     r4, r4, __vt__Q28Morimura12TDayEndCount@l
+	li       r0, -1
+	stw      r4, 0(r31)
+	addi     r5, r4, 0x10
+	lis      r3, "__ct__Q29JGeometry8TVec2<s>Fv"@ha
+	li       r6, 4
+	stw      r5, 0x18(r31)
+	addi     r4, r3, "__ct__Q29JGeometry8TVec2<s>Fv"@l
+	addi     r3, r31, 0x96
+	li       r5, 0
+	stw      r8, 0x80(r31)
+	li       r7, 4
+	stw      r8, 0x84(r31)
+	stw      r8, 0x88(r31)
+	stw      r8, 0x8c(r31)
+	stw      r0, 0x90(r31)
+	stb      r8, 0x94(r31)
+	bl       __construct_array
+	lis      r4, "__ct__Q29JGeometry8TVec2<s>Fv"@ha
+	addi     r3, r31, 0xa6
+	addi     r4, r4, "__ct__Q29JGeometry8TVec2<s>Fv"@l
+	li       r5, 0
+	li       r6, 4
+	li       r7, 4
+	bl       __construct_array
+	li       r0, 1
+	li       r5, 0
+	stb      r0, 0xc9(r31)
+	li       r0, 0xff
+	lfs      f1, lbl_8051E1F8@sda21(r2)
+	addi     r4, r13, mColor__Q28Morimura12TDayEndCount@sda21
+	stb      r5, 0xca(r31)
+	mr       r3, r31
+	lfs      f0, lbl_8051E1FC@sda21(r2)
+	stfs     f1, 0xcc(r31)
+	stfs     f0, 0xd0(r31)
+	stb      r5, mColor__Q28Morimura12TDayEndCount@sda21(r13)
+	stb      r0, 1(r4)
+	stb      r5, 2(r4)
+	stb      r0, 3(r4)
+	stb      r5, mTestChangeColor__Q28Morimura12TDayEndCount@sda21(r13)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -76,54 +416,53 @@ Morimura::TDayEndCount::TDayEndCount(void)
 Morimura::TTestBase::~TTestBase(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x90
-	  lis       r4, 0x804E
-	  subi      r4, r4, 0x4708
-	  stw       r4, 0x0(r30)
-	  addi      r0, r4, 0x10
-	  stw       r0, 0x18(r30)
-	  beq-      .loc_0x80
-	  lis       r4, 0x804F
-	  subi      r4, r4, 0x28A8
-	  stw       r4, 0x0(r30)
-	  addi      r0, r4, 0x10
-	  stw       r0, 0x18(r30)
-	  beq-      .loc_0x80
-	  lis       r4, 0x804E
-	  subi      r4, r4, 0x7DC0
-	  stw       r4, 0x0(r30)
-	  addi      r0, r4, 0x10
-	  stw       r0, 0x18(r30)
-	  bl        0xCD404
-	  addi      r3, r30, 0x18
-	  li        r4, 0
-	  bl        -0x3271A4
-	  mr        r3, r30
-	  li        r4, 0
-	  bl        0xCD3A4
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_803441F8
+	lis      r4, __vt__Q28Morimura9TTestBase@ha
+	addi     r4, r4, __vt__Q28Morimura9TTestBase@l
+	stw      r4, 0(r30)
+	addi     r0, r4, 0x10
+	stw      r0, 0x18(r30)
+	beq      lbl_803441E8
+	lis      r4, __vt__Q26Screen7ObjBase@ha
+	addi     r4, r4, __vt__Q26Screen7ObjBase@l
+	stw      r4, 0(r30)
+	addi     r0, r4, 0x10
+	stw      r0, 0x18(r30)
+	beq      lbl_803441E8
+	lis      r4, __vt__Q26Screen8IObjBase@ha
+	addi     r4, r4, __vt__Q26Screen8IObjBase@l
+	stw      r4, 0(r30)
+	addi     r0, r4, 0x10
+	stw      r0, 0x18(r30)
+	bl       del__5CNodeFv
+	addi     r3, r30, 0x18
+	li       r4, 0
+	bl       __dt__11JKRDisposerFv
+	mr       r3, r30
+	li       r4, 0
+	bl       __dt__5CNodeFv
 
-	.loc_0x80:
-	  extsh.    r0, r31
-	  ble-      .loc_0x90
-	  mr        r3, r30
-	  bl        -0x320140
+lbl_803441E8:
+	extsh.   r0, r31
+	ble      lbl_803441F8
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x90:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803441F8:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -135,218 +474,217 @@ Morimura::TTestBase::~TTestBase(void)
 void Morimura::TDayEndCount::doCreate(JKRArchive*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  li        r0, 0xC8
-	  stmw      r27, 0xC(r1)
-	  mr        r30, r4
-	  lis       r4, 0x8049
-	  mr        r29, r3
-	  addi      r31, r4, 0x1E8
-	  stw       r30, 0x78(r3)
-	  stb       r0, -0x7AAC(r13)
-	  bl        0x10FD68
-	  lis       r4, 0x4F
-	  lis       r6, 0x4F55
-	  li        r5, 0x4752
-	  mr        r28, r3
-	  addi      r4, r4, 0x4741
-	  addi      r6, r6, 0x4E44
-	  bl        -0x34F40
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x60
-	  addi      r0, r28, 0x68
-	  stw       r0, 0x7C(r29)
-	  b         .loc_0x108
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	li       r0, 0xc8
+	stmw     r27, 0xc(r1)
+	mr       r30, r4
+	lis      r4, lbl_804901E8@ha
+	mr       r29, r3
+	addi     r31, r4, lbl_804901E8@l
+	stw      r30, 0x78(r3)
+	stb      r0, mAlphaMax__Q28Morimura12TDayEndCount@sda21(r13)
+	bl       getDispMember__Q26Screen7ObjBaseFv
+	lis      r4, 0x004F4741@ha
+	lis      r6, 0x4F554E44@ha
+	li       r5, 0x4752
+	mr       r28, r3
+	addi     r4, r4, 0x004F4741@l
+	addi     r6, r6, 0x4F554E44@l
+	bl       isID__Q32og6Screen14DispMemberBaseFUlUx
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80344274
+	addi     r0, r28, 0x68
+	stw      r0, 0x7c(r29)
+	b        lbl_8034431C
 
-	.loc_0x60:
-	  lis       r4, 0x4F
-	  lis       r6, 0x414C
-	  mr        r3, r28
-	  li        r5, 0x4348
-	  addi      r4, r4, 0x4741
-	  addi      r6, r6, 0x3150
-	  bl        -0x34F70
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x90
-	  addi      r0, r28, 0x68
-	  stw       r0, 0x7C(r29)
-	  b         .loc_0x108
+lbl_80344274:
+	lis      r4, 0x004F4741@ha
+	lis      r6, 0x414C3150@ha
+	mr       r3, r28
+	li       r5, 0x4348
+	addi     r4, r4, 0x004F4741@l
+	addi     r6, r6, 0x414C3150@l
+	bl       isID__Q32og6Screen14DispMemberBaseFUlUx
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803442A4
+	addi     r0, r28, 0x68
+	stw      r0, 0x7c(r29)
+	b        lbl_8034431C
 
-	.loc_0x90:
-	  lis       r4, 0x4F
-	  lis       r6, 0x414C
-	  mr        r3, r28
-	  li        r5, 0x4348
-	  addi      r4, r4, 0x4741
-	  addi      r6, r6, 0x3250
-	  bl        -0x34FA0
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xC0
-	  addi      r0, r28, 0x68
-	  stw       r0, 0x7C(r29)
-	  b         .loc_0x108
+lbl_803442A4:
+	lis      r4, 0x004F4741@ha
+	lis      r6, 0x414C3250@ha
+	mr       r3, r28
+	li       r5, 0x4348
+	addi     r4, r4, 0x004F4741@l
+	addi     r6, r6, 0x414C3250@l
+	bl       isID__Q32og6Screen14DispMemberBaseFUlUx
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803442D4
+	addi     r0, r28, 0x68
+	stw      r0, 0x7c(r29)
+	b        lbl_8034431C
 
-	.loc_0xC0:
-	  li        r3, 0x10
-	  bl        -0x320434
-	  cmplwi    r3, 0
-	  beq-      .loc_0xFC
-	  lis       r5, 0x804B
-	  lis       r4, 0x804B
-	  addi      r0, r5, 0x1148
-	  li        r5, 0
-	  stw       r0, 0x0(r3)
-	  addi      r0, r4, 0x10C4
-	  lfs       f0, -0x160(r2)
-	  stw       r5, 0x4(r3)
-	  stw       r0, 0x0(r3)
-	  stfs      f0, 0xC(r3)
-	  stfs      f0, 0x8(r3)
+lbl_803442D4:
+	li       r3, 0x10
+	bl       __nw__FUl
+	cmplwi   r3, 0
+	beq      lbl_80344310
+	lis      r5, __vt__Q32og6Screen14DispMemberBase@ha
+	lis      r4, __vt__Q32og6Screen21DispMemberDayEndCount@ha
+	addi     r0, r5, __vt__Q32og6Screen14DispMemberBase@l
+	li       r5, 0
+	stw      r0, 0(r3)
+	addi     r0, r4, __vt__Q32og6Screen21DispMemberDayEndCount@l
+	lfs      f0, lbl_8051E200@sda21(r2)
+	stw      r5, 4(r3)
+	stw      r0, 0(r3)
+	stfs     f0, 0xc(r3)
+	stfs     f0, 8(r3)
 
-	.loc_0xFC:
-	  stw       r3, 0x7C(r29)
-	  li        r0, 0x1
-	  stb       r0, -0x6760(r13)
+lbl_80344310:
+	stw      r3, 0x7c(r29)
+	li       r0, 1
+	stb      r0, mIsSection__Q28Morimura9TTestBase@sda21(r13)
 
-	.loc_0x108:
-	  li        r3, 0x148
-	  bl        -0x32047C
-	  mr.       r0, r3
-	  beq-      .loc_0x120
-	  bl        0xF0A80
-	  mr        r0, r3
+lbl_8034431C:
+	li       r3, 0x148
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_80344334
+	bl       __ct__Q29P2DScreen10Mgr_tuningFv
+	mr       r0, r3
 
-	.loc_0x120:
-	  stw       r0, 0x80(r29)
-	  mr        r6, r30
-	  addi      r4, r31, 0x18
-	  lis       r5, 0x2
-	  lwz       r3, 0x80(r29)
-	  bl        -0x304D24
-	  lwz       r3, 0x80(r29)
-	  lis       r4, 0x6761
-	  addi      r6, r4, 0x7468
-	  li        r5, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x3C(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x8C(r29)
-	  lwz       r0, 0x8C(r29)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x17C
-	  addi      r3, r31, 0x24
-	  addi      r5, r31, 0x34
-	  li        r4, 0x5A
-	  crclr     6, 0x6
-	  bl        -0x319D4C
+lbl_80344334:
+	stw      r0, 0x80(r29)
+	mr       r6, r30
+	addi     r4, r31, 0x18
+	lis      r5, 2
+	lwz      r3, 0x80(r29)
+	bl       set__9J2DScreenFPCcUlP10JKRArchive
+	lwz      r3, 0x80(r29)
+	lis      r4, 0x67617468@ha
+	addi     r6, r4, 0x67617468@l
+	li       r5, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x3c(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x8c(r29)
+	lwz      r0, 0x8c(r29)
+	cmplwi   r0, 0
+	bne      lbl_80344390
+	addi     r3, r31, 0x24
+	addi     r5, r31, 0x34
+	li       r4, 0x5a
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x17C:
-	  lwz       r4, 0x8C(r29)
-	  li        r3, 0x2C
-	  lfs       f0, 0xD4(r4)
-	  stfs      f0, 0xC0(r29)
-	  lwz       r4, 0x8C(r29)
-	  lfs       f0, 0xD8(r4)
-	  stfs      f0, 0xC4(r29)
-	  bl        -0x320400
-	  lis       r4, 0x804E
-	  stw       r3, 0x88(r29)
-	  subi      r30, r4, 0x4F88
-	  li        r27, 0
-	  li        r28, 0
+lbl_80344390:
+	lwz      r4, 0x8c(r29)
+	li       r3, 0x2c
+	lfs      f0, 0xd4(r4)
+	stfs     f0, 0xc0(r29)
+	lwz      r4, 0x8c(r29)
+	lfs      f0, 0xd8(r4)
+	stfs     f0, 0xc4(r29)
+	bl       __nwa__FUl
+	lis      r4, deTagName__8Morimura@ha
+	stw      r3, 0x88(r29)
+	addi     r30, r4, deTagName__8Morimura@l
+	li       r27, 0
+	li       r28, 0
 
-	.loc_0x1B0:
-	  lwz       r3, 0x80(r29)
-	  li        r5, 0
-	  lwz       r6, 0x0(r30)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x3C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r4, 0x88(r29)
-	  stwx      r3, r4, r28
-	  lwz       r3, 0x88(r29)
-	  lwzx      r0, r3, r28
-	  cmplwi    r0, 0
-	  bne-      .loc_0x1F8
-	  addi      r3, r31, 0x24
-	  addi      r5, r31, 0x34
-	  li        r4, 0x64
-	  crclr     6, 0x6
-	  bl        -0x319DC8
+lbl_803443C4:
+	lwz      r3, 0x80(r29)
+	li       r5, 0
+	lwz      r6, 0(r30)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x3c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r4, 0x88(r29)
+	stwx     r3, r4, r28
+	lwz      r3, 0x88(r29)
+	lwzx     r0, r3, r28
+	cmplwi   r0, 0
+	bne      lbl_8034440C
+	addi     r3, r31, 0x24
+	addi     r5, r31, 0x34
+	li       r4, 0x64
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x1F8:
-	  lwz       r3, 0x88(r29)
-	  li        r4, 0
-	  lwzx      r3, r3, r28
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x24(r12)
-	  mtctr     r12
-	  bctrl
-	  addi      r27, r27, 0x1
-	  addi      r28, r28, 0x4
-	  cmpwi     r27, 0xB
-	  addi      r30, r30, 0x4
-	  blt+      .loc_0x1B0
-	  lwz       r3, 0x80(r29)
-	  lis       r4, 0x6364
-	  addi      r6, r4, 0x3130
-	  li        r5, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x3C(r12)
-	  mtctr     r12
-	  bctrl
-	  mr.       r27, r3
-	  bne-      .loc_0x264
-	  addi      r3, r31, 0x24
-	  addi      r5, r31, 0x34
-	  li        r4, 0x69
-	  crclr     6, 0x6
-	  bl        -0x319E34
+lbl_8034440C:
+	lwz      r3, 0x88(r29)
+	li       r4, 0
+	lwzx     r3, r3, r28
+	lwz      r12, 0(r3)
+	lwz      r12, 0x24(r12)
+	mtctr    r12
+	bctrl
+	addi     r27, r27, 1
+	addi     r28, r28, 4
+	cmpwi    r27, 0xb
+	addi     r30, r30, 4
+	blt      lbl_803443C4
+	lwz      r3, 0x80(r29)
+	lis      r4, 0x63643130@ha
+	addi     r6, r4, 0x63643130@l
+	li       r5, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x3c(r12)
+	mtctr    r12
+	bctrl
+	or.      r27, r3, r3
+	bne      lbl_80344478
+	addi     r3, r31, 0x24
+	addi     r5, r31, 0x34
+	li       r4, 0x69
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x264:
-	  mr        r3, r27
-	  li        r4, 0x4
-	  bl        -0x30B7C4
-	  lfs       f0, 0xD4(r27)
-	  li        r5, 0
-	  lfs       f1, -0x15C(r2)
-	  stfs      f0, 0xB8(r29)
-	  lfs       f0, 0xD8(r27)
-	  fadds     f0, f1, f0
-	  stfs      f0, 0xBC(r29)
-	  b         .loc_0x2C4
+lbl_80344478:
+	mr       r3, r27
+	li       r4, 4
+	bl       setBasePosition__7J2DPaneF15J2DBasePosition
+	lfs      f0, 0xd4(r27)
+	li       r5, 0
+	lfs      f1, lbl_8051E204@sda21(r2)
+	stfs     f0, 0xb8(r29)
+	lfs      f0, 0xd8(r27)
+	fadds    f0, f1, f0
+	stfs     f0, 0xbc(r29)
+	b        lbl_803444D8
 
-	.loc_0x290:
-	  rlwinm    r4,r5,2,22,29
-	  addi      r5, r5, 0x1
-	  addi      r3, r4, 0x112
-	  add       r3, r27, r3
-	  add       r4, r29, r4
-	  lha       r0, 0x0(r3)
-	  sth       r0, 0xA6(r4)
-	  lha       r0, 0x2(r3)
-	  sth       r0, 0xA8(r4)
-	  lha       r0, 0xA6(r4)
-	  sth       r0, 0x96(r4)
-	  lha       r0, 0xA8(r4)
-	  sth       r0, 0x98(r4)
+lbl_803444A4:
+	rlwinm   r4, r5, 2, 0x16, 0x1d
+	addi     r5, r5, 1
+	addi     r3, r4, 0x112
+	add      r3, r27, r3
+	add      r4, r29, r4
+	lha      r0, 0(r3)
+	sth      r0, 0xa6(r4)
+	lha      r0, 2(r3)
+	sth      r0, 0xa8(r4)
+	lha      r0, 0xa6(r4)
+	sth      r0, 0x96(r4)
+	lha      r0, 0xa8(r4)
+	sth      r0, 0x98(r4)
 
-	.loc_0x2C4:
-	  rlwinm    r0,r5,0,24,31
-	  cmplwi    r0, 0x4
-	  blt+      .loc_0x290
-	  mr        r3, r29
-	  bl        0xB18
-	  lmw       r27, 0xC(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_803444D8:
+	clrlwi   r0, r5, 0x18
+	cmplwi   r0, 4
+	blt      lbl_803444A4
+	mr       r3, r29
+	bl       reset__Q28Morimura12TDayEndCountFv
+	lmw      r27, 0xc(r1)
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -358,751 +696,750 @@ void Morimura::TDayEndCount::doCreate(JKRArchive*)
 void Morimura::TDayEndCount::doUpdate(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x120(r1)
-	  mflr      r0
-	  stw       r0, 0x124(r1)
-	  stfd      f31, 0x110(r1)
-	  psq_st    f31,0x118(r1),0,0
-	  stfd      f30, 0x100(r1)
-	  psq_st    f30,0x108(r1),0,0
-	  stmw      r24, 0xE0(r1)
-	  lbz       r0, -0x6760(r13)
-	  mr        r28, r3
-	  cmplwi    r0, 0
-	  beq-      .loc_0x78
-	  lwz       r3, 0x7C(r28)
-	  lfs       f1, -0x158(r2)
-	  lfs       f2, 0x8(r3)
-	  lfs       f0, -0x168(r2)
-	  fadds     f1, f2, f1
-	  stfs      f1, 0x8(r3)
-	  lwz       r3, 0x7C(r28)
-	  lfs       f1, 0x8(r3)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x60
-	  lfs       f0, 0xC(r3)
-	  stfs      f0, 0x8(r3)
+	stwu     r1, -0x120(r1)
+	mflr     r0
+	stw      r0, 0x124(r1)
+	stfd     f31, 0x110(r1)
+	psq_st   f31, 280(r1), 0, qr0
+	stfd     f30, 0x100(r1)
+	psq_st   f30, 264(r1), 0, qr0
+	stmw     r24, 0xe0(r1)
+	lbz      r0, mIsSection__Q28Morimura9TTestBase@sda21(r13)
+	mr       r28, r3
+	cmplwi   r0, 0
+	beq      lbl_80344578
+	lwz      r3, 0x7c(r28)
+	lfs      f1, lbl_8051E208@sda21(r2)
+	lfs      f2, 8(r3)
+	lfs      f0, lbl_8051E1F8@sda21(r2)
+	fadds    f1, f2, f1
+	stfs     f1, 8(r3)
+	lwz      r3, 0x7c(r28)
+	lfs      f1, 8(r3)
+	fcmpo    cr0, f1, f0
+	ble      lbl_80344560
+	lfs      f0, 0xc(r3)
+	stfs     f0, 8(r3)
 
-	.loc_0x60:
-	  lwz       r3, 0x7C(r28)
-	  lfs       f0, 0x8(r3)
-	  lfs       f1, 0xC(r3)
-	  fcmpo     cr0, f0, f1
-	  bge-      .loc_0x78
-	  stfs      f1, 0x8(r3)
+lbl_80344560:
+	lwz      r3, 0x7c(r28)
+	lfs      f0, 8(r3)
+	lfs      f1, 0xc(r3)
+	fcmpo    cr0, f0, f1
+	bge      lbl_80344578
+	stfs     f1, 8(r3)
 
-	.loc_0x78:
-	  lwz       r3, 0x7C(r28)
-	  lbz       r0, -0x6760(r13)
-	  lfs       f2, -0x168(r2)
-	  lfs       f1, 0x8(r3)
-	  cmplwi    r0, 0
-	  lfs       f0, 0xC(r3)
-	  fsubs     f1, f2, f1
-	  fsubs     f0, f2, f0
-	  fdivs     f1, f1, f0
-	  bne-      .loc_0xB4
-	  lfs       f0, -0x154(r2)
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0xB4
-	  li        r3, 0x1
-	  b         .loc_0xA64
+lbl_80344578:
+	lwz      r3, 0x7c(r28)
+	lbz      r0, mIsSection__Q28Morimura9TTestBase@sda21(r13)
+	lfs      f2, lbl_8051E1F8@sda21(r2)
+	lfs      f1, 8(r3)
+	cmplwi   r0, 0
+	lfs      f0, 0xc(r3)
+	fsubs    f1, f2, f1
+	fsubs    f0, f2, f0
+	fdivs    f1, f1, f0
+	bne      lbl_803445B4
+	lfs      f0, lbl_8051E20C@sda21(r2)
+	fcmpo    cr0, f1, f0
+	bge      lbl_803445B4
+	li       r3, 1
+	b        lbl_80344F64
 
-	.loc_0xB4:
-	  lfs       f0, -0x150(r2)
-	  fmuls     f2, f0, f1
-	  fcmpo     cr0, f2, f0
-	  cror      2, 0x1, 0x2
-	  bne-      .loc_0xD8
-	  mr        r3, r28
-	  bl        0xA34
-	  li        r3, 0
-	  b         .loc_0xA64
+lbl_803445B4:
+	lfs      f0, lbl_8051E210@sda21(r2)
+	fmuls    f2, f0, f1
+	fcmpo    cr0, f2, f0
+	cror     2, 1, 2
+	bne      lbl_803445D8
+	mr       r3, r28
+	bl       reset__Q28Morimura12TDayEndCountFv
+	li       r3, 0
+	b        lbl_80344F64
 
-	.loc_0xD8:
-	  lfs       f1, -0x14C(r2)
-	  lfs       f0, -0x148(r2)
-	  fmuls     f30, f2, f1
-	  fcmpo     cr0, f30, f0
-	  cror      2, 0x1, 0x2
-	  bne-      .loc_0xF4
-	  fmr       f30, f0
+lbl_803445D8:
+	lfs      f1, lbl_8051E214@sda21(r2)
+	lfs      f0, lbl_8051E218@sda21(r2)
+	fmuls    f30, f2, f1
+	fcmpo    cr0, f30, f0
+	cror     2, 1, 2
+	bne      lbl_803445F4
+	fmr      f30, f0
 
-	.loc_0xF4:
-	  lfs       f0, -0x164(r2)
-	  fcmpo     cr0, f30, f0
-	  cror      2, 0, 0x2
-	  bne-      .loc_0x108
-	  fmr       f30, f0
+lbl_803445F4:
+	lfs      f0, lbl_8051E1FC@sda21(r2)
+	fcmpo    cr0, f30, f0
+	cror     2, 0, 2
+	bne      lbl_80344608
+	fmr      f30, f0
 
-	.loc_0x108:
-	  fctiwz    f0, f30
-	  stfd      f0, 0x30(r1)
-	  lwz       r31, 0x34(r1)
-	  cmpwi     r31, 0xA
-	  blt-      .loc_0x120
-	  li        r31, 0xA
+lbl_80344608:
+	fctiwz   f0, f30
+	stfd     f0, 0x30(r1)
+	lwz      r31, 0x34(r1)
+	cmpwi    r31, 0xa
+	blt      lbl_80344620
+	li       r31, 0xa
 
-	.loc_0x120:
-	  lwz       r0, 0x90(r28)
-	  cmpw      r0, r31
-	  beq-      .loc_0x20C
-	  addi      r24, r31, 0x1
-	  lis       r5, 0x804E
-	  lis       r4, 0x8049
-	  lis       r3, 0x8049
-	  rlwinm    r6,r24,2,0,29
-	  subi      r0, r5, 0x4F88
-	  add       r25, r0, r6
-	  addi      r27, r4, 0x20C
-	  addi      r30, r3, 0x21C
-	  li        r29, 0
-	  b         .loc_0x19C
+lbl_80344620:
+	lwz      r0, 0x90(r28)
+	cmpw     r0, r31
+	beq      lbl_8034470C
+	addi     r24, r31, 1
+	lis      r5, deTagName__8Morimura@ha
+	lis      r4, lbl_8049020C@ha
+	lis      r3, lbl_8049021C@ha
+	slwi     r6, r24, 2
+	addi     r0, r5, deTagName__8Morimura@l
+	add      r25, r0, r6
+	addi     r27, r4, lbl_8049020C@l
+	addi     r30, r3, lbl_8049021C@l
+	li       r29, 0
+	b        lbl_8034469C
 
-	.loc_0x158:
-	  lwz       r3, 0x80(r28)
-	  li        r5, 0
-	  lwz       r6, 0x0(r25)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x3C(r12)
-	  mtctr     r12
-	  bctrl
-	  mr.       r26, r3
-	  bne-      .loc_0x190
-	  mr        r3, r27
-	  mr        r5, r30
-	  li        r4, 0xA4
-	  crclr     6, 0x6
-	  bl        -0x31A04C
+lbl_80344658:
+	lwz      r3, 0x80(r28)
+	li       r5, 0
+	lwz      r6, 0(r25)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x3c(r12)
+	mtctr    r12
+	bctrl
+	or.      r26, r3, r3
+	bne      lbl_80344690
+	mr       r3, r27
+	mr       r5, r30
+	li       r4, 0xa4
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x190:
-	  stb       r29, 0xB0(r26)
-	  addi      r25, r25, 0x4
-	  addi      r24, r24, 0x1
+lbl_80344690:
+	stb      r29, 0xb0(r26)
+	addi     r25, r25, 4
+	addi     r24, r24, 1
 
-	.loc_0x19C:
-	  cmpwi     r24, 0xB
-	  blt+      .loc_0x158
-	  stw       r31, 0x90(r28)
-	  lis       r4, 0x804E
-	  rlwinm    r0,r31,2,0,29
-	  li        r5, 0
-	  lwz       r3, 0x80(r28)
-	  subi      r4, r4, 0x4F88
-	  lwzx      r6, r4, r0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x3C(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x84(r28)
-	  lwz       r0, 0x84(r28)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x1FC
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  addi      r3, r3, 0x20C
-	  li        r4, 0xAC
-	  addi      r5, r5, 0x21C
-	  crclr     6, 0x6
-	  bl        -0x31A0B8
+lbl_8034469C:
+	cmpwi    r24, 0xb
+	blt      lbl_80344658
+	stw      r31, 0x90(r28)
+	lis      r4, deTagName__8Morimura@ha
+	slwi     r0, r31, 2
+	li       r5, 0
+	lwz      r3, 0x80(r28)
+	addi     r4, r4, deTagName__8Morimura@l
+	lwzx     r6, r4, r0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x3c(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x84(r28)
+	lwz      r0, 0x84(r28)
+	cmplwi   r0, 0
+	bne      lbl_803446FC
+	lis      r3, lbl_8049020C@ha
+	lis      r5, lbl_8049021C@ha
+	addi     r3, r3, lbl_8049020C@l
+	li       r4, 0xac
+	addi     r5, r5, lbl_8049021C@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x1FC:
-	  lwz       r3, 0x84(r28)
-	  li        r0, 0x1
-	  stb       r0, 0xB0(r3)
-	  stb       r0, 0xC8(r28)
+lbl_803446FC:
+	lwz      r3, 0x84(r28)
+	li       r0, 1
+	stb      r0, 0xb0(r3)
+	stb      r0, 0xc8(r28)
 
-	.loc_0x20C:
-	  xoris     r3, r31, 0x8000
-	  lis       r0, 0x4330
-	  stw       r3, 0x34(r1)
-	  lfd       f1, -0x128(r2)
-	  stw       r0, 0x30(r1)
-	  lfs       f4, -0x168(r2)
-	  lfd       f0, 0x30(r1)
-	  lfs       f5, -0x7AB0(r13)
-	  fsubs     f3, f0, f1
-	  lfs       f2, -0x144(r2)
-	  fsubs     f1, f4, f5
-	  lbz       r30, -0x7AAC(r13)
-	  fadds     f0, f4, f5
-	  lfs       f31, -0x7AA4(r13)
-	  fsubs     f3, f30, f3
-	  lfs       f8, -0x7AA0(r13)
-	  fmuls     f5, f2, f1
-	  fmuls     f0, f2, f0
-	  fsubs     f7, f4, f3
-	  fcmpo     cr0, f7, f5
-	  bge-      .loc_0x330
-	  stw       r30, 0x34(r1)
-	  lwz       r3, 0x84(r28)
-	  stw       r0, 0x30(r1)
-	  lfd       f1, -0x120(r2)
-	  lfd       f0, 0x30(r1)
-	  lbz       r4, 0xB2(r3)
-	  fsubs     f0, f0, f1
-	  mr        r30, r4
-	  fdivs     f0, f0, f5
-	  fmuls     f0, f7, f0
-	  fctiwz    f0, f0
-	  stfd      f0, 0x38(r1)
-	  lwz       r5, 0x3C(r1)
-	  rlwinm    r0,r5,0,24,31
-	  cmplw     r0, r4
-	  ble-      .loc_0x2A4
-	  mr        r30, r5
+lbl_8034470C:
+	xoris    r3, r31, 0x8000
+	lis      r0, 0x4330
+	stw      r3, 0x34(r1)
+	lfd      f1, lbl_8051E238@sda21(r2)
+	stw      r0, 0x30(r1)
+	lfs      f4, lbl_8051E1F8@sda21(r2)
+	lfd      f0, 0x30(r1)
+	lfs      f5, mWaitTime__Q28Morimura12TDayEndCount@sda21(r13)
+	fsubs    f3, f0, f1
+	lfs      f2, lbl_8051E21C@sda21(r2)
+	fsubs    f1, f4, f5
+	lbz      r30, mAlphaMax__Q28Morimura12TDayEndCount@sda21(r13)
+	fadds    f0, f4, f5
+	lfs      f31, mStopScale__Q28Morimura12TDayEndCount@sda21(r13)
+	fsubs    f3, f30, f3
+	lfs      f8, mScaleMax__Q28Morimura12TDayEndCount@sda21(r13)
+	fmuls    f5, f2, f1
+	fmuls    f0, f2, f0
+	fsubs    f7, f4, f3
+	fcmpo    cr0, f7, f5
+	bge      lbl_80344830
+	stw      r30, 0x34(r1)
+	lwz      r3, 0x84(r28)
+	stw      r0, 0x30(r1)
+	lfd      f1, lbl_8051E240@sda21(r2)
+	lfd      f0, 0x30(r1)
+	lbz      r4, 0xb2(r3)
+	fsubs    f0, f0, f1
+	mr       r30, r4
+	fdivs    f0, f0, f5
+	fmuls    f0, f7, f0
+	fctiwz   f0, f0
+	stfd     f0, 0x38(r1)
+	lwz      r5, 0x3c(r1)
+	clrlwi   r0, r5, 0x18
+	cmplw    r0, r4
+	ble      lbl_803447A4
+	mr       r30, r5
 
-	.loc_0x2A4:
-	  fdivs     f0, f31, f5
-	  lfs       f1, 0xCC(r3)
-	  fmuls     f0, f7, f0
-	  fmr       f31, f1
-	  fcmpo     cr0, f0, f1
-	  ble-      .loc_0x2C0
-	  fmr       f31, f0
+lbl_803447A4:
+	fdivs    f0, f31, f5
+	lfs      f1, 0xcc(r3)
+	fmuls    f0, f7, f0
+	fmr      f31, f1
+	fcmpo    cr0, f0, f1
+	ble      lbl_803447C0
+	fmr      f31, f0
 
-	.loc_0x2C0:
-	  lbz       r0, 0x94(r28)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x304
-	  lfs       f1, 0xB8(r28)
-	  lfs       f0, 0xD4(r3)
-	  lfs       f2, 0xBC(r28)
-	  fsubs     f3, f1, f0
-	  lfs       f1, 0xD8(r3)
-	  lwz       r12, 0x0(r3)
-	  fsubs     f2, f2, f1
-	  lfs       f0, 0xD0(r28)
-	  lwz       r12, 0x14(r12)
-	  fmuls     f1, f3, f31
-	  fmadds    f2, f2, f31, f0
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x3D8
+lbl_803447C0:
+	lbz      r0, 0x94(r28)
+	cmplwi   r0, 0
+	beq      lbl_80344804
+	lfs      f1, 0xb8(r28)
+	lfs      f0, 0xd4(r3)
+	lfs      f2, 0xbc(r28)
+	fsubs    f3, f1, f0
+	lfs      f1, 0xd8(r3)
+	lwz      r12, 0(r3)
+	fsubs    f2, f2, f1
+	lfs      f0, 0xd0(r28)
+	lwz      r12, 0x14(r12)
+	fmuls    f1, f3, f31
+	fmadds   f2, f2, f31, f0
+	mtctr    r12
+	bctrl
+	b        lbl_803448D8
 
-	.loc_0x304:
-	  lfs       f2, 0xBC(r28)
-	  lfs       f1, 0xD0(r28)
-	  lfs       f0, 0xB8(r28)
-	  fadds     f1, f2, f1
-	  stfs      f0, 0xD4(r3)
-	  stfs      f1, 0xD8(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x2C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x3D8
+lbl_80344804:
+	lfs      f2, 0xbc(r28)
+	lfs      f1, 0xd0(r28)
+	lfs      f0, 0xb8(r28)
+	fadds    f1, f2, f1
+	stfs     f0, 0xd4(r3)
+	stfs     f1, 0xd8(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x2c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_803448D8
 
-	.loc_0x330:
-	  fcmpo     cr0, f7, f0
-	  ble-      .loc_0x3AC
-	  stw       r30, 0x3C(r1)
-	  fsubs     f3, f4, f0
-	  fsubs     f1, f31, f8
-	  lfd       f5, -0x120(r2)
-	  fsubs     f0, f0, f4
-	  stw       r0, 0x38(r1)
-	  lfs       f2, 0xBC(r28)
-	  lfd       f4, 0x38(r1)
-	  fdivs     f6, f1, f0
-	  lfs       f1, 0xD0(r28)
-	  lwz       r3, 0x84(r28)
-	  lfs       f0, 0xB8(r28)
-	  stfs      f0, 0xD4(r3)
-	  fadds     f1, f2, f1
-	  fsubs     f4, f4, f5
-	  fsubs     f0, f8, f6
-	  stfs      f1, 0xD8(r3)
-	  fdivs     f2, f4, f3
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x2C(r12)
-	  fneg      f1, f2
-	  fmadds    f31, f6, f7, f0
-	  fmadds    f0, f1, f7, f2
-	  fctiwz    f0, f0
-	  stfd      f0, 0x30(r1)
-	  lwz       r30, 0x34(r1)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x3D8
+lbl_80344830:
+	fcmpo    cr0, f7, f0
+	ble      lbl_803448AC
+	stw      r30, 0x3c(r1)
+	fsubs    f3, f4, f0
+	fsubs    f1, f31, f8
+	lfd      f5, lbl_8051E240@sda21(r2)
+	fsubs    f0, f0, f4
+	stw      r0, 0x38(r1)
+	lfs      f2, 0xbc(r28)
+	lfd      f4, 0x38(r1)
+	fdivs    f6, f1, f0
+	lfs      f1, 0xd0(r28)
+	lwz      r3, 0x84(r28)
+	lfs      f0, 0xb8(r28)
+	stfs     f0, 0xd4(r3)
+	fadds    f1, f2, f1
+	fsubs    f4, f4, f5
+	fsubs    f0, f8, f6
+	stfs     f1, 0xd8(r3)
+	fdivs    f2, f4, f3
+	lwz      r12, 0(r3)
+	lwz      r12, 0x2c(r12)
+	fneg     f1, f2
+	fmadds   f31, f6, f7, f0
+	fmadds   f0, f1, f7, f2
+	fctiwz   f0, f0
+	stfd     f0, 0x30(r1)
+	lwz      r30, 0x34(r1)
+	mtctr    r12
+	bctrl
+	b        lbl_803448D8
 
-	.loc_0x3AC:
-	  lfs       f2, 0xBC(r28)
-	  lfs       f1, 0xD0(r28)
-	  lwz       r3, 0x84(r28)
-	  lfs       f0, 0xB8(r28)
-	  fadds     f1, f2, f1
-	  stfs      f0, 0xD4(r3)
-	  stfs      f1, 0xD8(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x2C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_803448AC:
+	lfs      f2, 0xbc(r28)
+	lfs      f1, 0xd0(r28)
+	lwz      r3, 0x84(r28)
+	lfs      f0, 0xb8(r28)
+	fadds    f1, f2, f1
+	stfs     f0, 0xd4(r3)
+	stfs     f1, 0xd8(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x2c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x3D8:
-	  lfs       f0, -0x168(r2)
-	  fcmpu     cr0, f0, f31
-	  bne-      .loc_0x43C
-	  lbz       r0, 0xC9(r28)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x43C
-	  lbz       r0, 0xC8(r28)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x43C
-	  lwz       r0, -0x67A8(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x424
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  addi      r3, r3, 0x20C
-	  li        r4, 0xE4
-	  addi      r5, r5, 0x21C
-	  crclr     6, 0x6
-	  bl        -0x31A2E0
+lbl_803448D8:
+	lfs      f0, lbl_8051E1F8@sda21(r2)
+	fcmpu    cr0, f0, f31
+	bne      lbl_8034493C
+	lbz      r0, 0xc9(r28)
+	cmplwi   r0, 0
+	beq      lbl_8034493C
+	lbz      r0, 0xc8(r28)
+	cmplwi   r0, 0
+	beq      lbl_8034493C
+	lwz      r0, spSysIF__8PSSystem@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_80344924
+	lis      r3, lbl_8049020C@ha
+	lis      r5, lbl_8049021C@ha
+	addi     r3, r3, lbl_8049020C@l
+	li       r4, 0xe4
+	addi     r5, r5, lbl_8049021C@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x424:
-	  lwz       r3, -0x67A8(r13)
-	  li        r4, 0x1818
-	  li        r5, 0
-	  bl        -0xC300
-	  li        r0, 0
-	  stb       r0, 0xC8(r28)
+lbl_80344924:
+	lwz      r3, spSysIF__8PSSystem@sda21(r13)
+	li       r4, 0x1818
+	li       r5, 0
+	bl       playSystemSe__Q28PSSystem5SysIFFUlUl
+	li       r0, 0
+	stb      r0, 0xc8(r28)
 
-	.loc_0x43C:
-	  cmpwi     r31, 0
-	  mr        r29, r30
-	  blt-      .loc_0x458
-	  rlwinm    r0,r30,0,24,31
-	  cmplwi    r0, 0x64
-	  bgt-      .loc_0x458
-	  li        r29, 0x64
+lbl_8034493C:
+	cmpwi    r31, 0
+	mr       r29, r30
+	blt      lbl_80344958
+	clrlwi   r0, r30, 0x18
+	cmplwi   r0, 0x64
+	bgt      lbl_80344958
+	li       r29, 0x64
 
-	.loc_0x458:
-	  lbz       r0, -0x7AAC(r13)
-	  rlwinm    r3,r30,0,24,31
-	  li        r4, -0x1
-	  cmplw     r3, r0
-	  stw       r4, 0x28(r1)
-	  bge-      .loc_0x5E4
-	  lbz       r0, -0x6770(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x5E4
-	  cmpwi     r31, 0x3
-	  bgt-      .loc_0x4A4
-	  li        r5, 0xFF
-	  li        r4, 0x64
-	  subi      r3, r13, 0x7A94
-	  li        r0, 0
-	  stb       r5, -0x7A94(r13)
-	  stb       r4, 0x1(r3)
-	  stb       r0, 0x2(r3)
-	  b         .loc_0x4DC
+lbl_80344958:
+	lbz      r0, mAlphaMax__Q28Morimura12TDayEndCount@sda21(r13)
+	clrlwi   r3, r30, 0x18
+	li       r4, -1
+	cmplw    r3, r0
+	stw      r4, 0x28(r1)
+	bge      lbl_80344AE4
+	lbz      r0, mColorTest__Q28Morimura12TDayEndCount@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_80344AE4
+	cmpwi    r31, 3
+	bgt      lbl_803449A4
+	li       r5, 0xff
+	li       r4, 0x64
+	addi     r3, r13, mColor__Q28Morimura12TDayEndCount@sda21
+	li       r0, 0
+	stb      r5, mColor__Q28Morimura12TDayEndCount@sda21(r13)
+	stb      r4, 1(r3)
+	stb      r0, 2(r3)
+	b        lbl_803449DC
 
-	.loc_0x4A4:
-	  cmpwi     r31, 0x6
-	  bgt-      .loc_0x4C8
-	  li        r4, 0xFF
-	  subi      r3, r13, 0x7A94
-	  li        r0, 0
-	  stb       r4, -0x7A94(r13)
-	  stb       r4, 0x1(r3)
-	  stb       r0, 0x2(r3)
-	  b         .loc_0x4DC
+lbl_803449A4:
+	cmpwi    r31, 6
+	bgt      lbl_803449C8
+	li       r4, 0xff
+	addi     r3, r13, mColor__Q28Morimura12TDayEndCount@sda21
+	li       r0, 0
+	stb      r4, mColor__Q28Morimura12TDayEndCount@sda21(r13)
+	stb      r4, 1(r3)
+	stb      r0, 2(r3)
+	b        lbl_803449DC
 
-	.loc_0x4C8:
-	  li        r0, 0xFF
-	  subi      r3, r13, 0x7A94
-	  stb       r0, -0x7A94(r13)
-	  stb       r0, 0x1(r3)
-	  stb       r0, 0x2(r3)
+lbl_803449C8:
+	li       r0, 0xff
+	addi     r3, r13, mColor__Q28Morimura12TDayEndCount@sda21
+	stb      r0, mColor__Q28Morimura12TDayEndCount@sda21(r13)
+	stb      r0, 1(r3)
+	stb      r0, 2(r3)
 
-	.loc_0x4DC:
-	  lis       r7, 0x4330
-	  rlwinm    r0,r29,0,24,31
-	  stw       r0, 0x3C(r1)
-	  subi      r3, r13, 0x7A94
-	  lbz       r6, -0x7A94(r13)
-	  li        r0, 0xFF
-	  stw       r7, 0x38(r1)
-	  addi      r4, r1, 0x1C
-	  lfd       f5, -0x120(r2)
-	  lfd       f1, 0x38(r1)
-	  lfs       f0, -0x140(r2)
-	  fsubs     f2, f1, f5
-	  lbz       r5, 0x1(r3)
-	  lbz       r3, 0x2(r3)
-	  lfs       f1, -0x168(r2)
-	  fdivs     f2, f2, f0
-	  stw       r6, 0x34(r1)
-	  lfs       f3, -0x13C(r2)
-	  stw       r7, 0x30(r1)
-	  lfd       f0, 0x30(r1)
-	  stw       r5, 0x4C(r1)
-	  fsubs     f6, f2, f1
-	  stw       r7, 0x48(r1)
-	  fsubs     f4, f0, f5
-	  lfd       f0, 0x48(r1)
-	  fsubs     f2, f1, f6
-	  stw       r3, 0x5C(r1)
-	  fsubs     f1, f0, f5
-	  stw       r7, 0x58(r1)
-	  fmuls     f3, f3, f2
-	  lfd       f0, 0x58(r1)
-	  stb       r0, 0x27(r1)
-	  fsubs     f0, f0, f5
-	  fmadds    f2, f4, f6, f3
-	  fmadds    f1, f1, f6, f3
-	  fmadds    f0, f0, f6, f3
-	  fctiwz    f2, f2
-	  fctiwz    f1, f1
-	  fctiwz    f0, f0
-	  stfd      f2, 0x40(r1)
-	  stfd      f1, 0x50(r1)
-	  lwz       r5, 0x44(r1)
-	  stfd      f0, 0x60(r1)
-	  lwz       r3, 0x54(r1)
-	  lwz       r0, 0x64(r1)
-	  stb       r5, 0x24(r1)
-	  stb       r3, 0x25(r1)
-	  stb       r0, 0x26(r1)
-	  lwz       r0, 0x24(r1)
-	  stw       r0, 0x20(r1)
-	  lbz       r6, 0x20(r1)
-	  lbz       r5, 0x21(r1)
-	  lbz       r3, 0x22(r1)
-	  lbz       r0, 0x23(r1)
-	  stb       r6, 0x28(r1)
-	  stb       r5, 0x29(r1)
-	  stb       r3, 0x2A(r1)
-	  stb       r0, 0x2B(r1)
-	  lwz       r0, 0x28(r1)
-	  stw       r0, 0x1C(r1)
-	  lwz       r3, 0x8C(r28)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x12C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x62C
+lbl_803449DC:
+	lis      r7, 0x4330
+	clrlwi   r0, r29, 0x18
+	stw      r0, 0x3c(r1)
+	addi     r3, r13, mColor__Q28Morimura12TDayEndCount@sda21
+	lbz      r6, mColor__Q28Morimura12TDayEndCount@sda21(r13)
+	li       r0, 0xff
+	stw      r7, 0x38(r1)
+	addi     r4, r1, 0x1c
+	lfd      f5, lbl_8051E240@sda21(r2)
+	lfd      f1, 0x38(r1)
+	lfs      f0, lbl_8051E220@sda21(r2)
+	fsubs    f2, f1, f5
+	lbz      r5, 1(r3)
+	lbz      r3, 2(r3)
+	lfs      f1, lbl_8051E1F8@sda21(r2)
+	fdivs    f2, f2, f0
+	stw      r6, 0x34(r1)
+	lfs      f3, lbl_8051E224@sda21(r2)
+	stw      r7, 0x30(r1)
+	lfd      f0, 0x30(r1)
+	stw      r5, 0x4c(r1)
+	fsubs    f6, f2, f1
+	stw      r7, 0x48(r1)
+	fsubs    f4, f0, f5
+	lfd      f0, 0x48(r1)
+	fsubs    f2, f1, f6
+	stw      r3, 0x5c(r1)
+	fsubs    f1, f0, f5
+	stw      r7, 0x58(r1)
+	fmuls    f3, f3, f2
+	lfd      f0, 0x58(r1)
+	stb      r0, 0x27(r1)
+	fsubs    f0, f0, f5
+	fmadds   f2, f4, f6, f3
+	fmadds   f1, f1, f6, f3
+	fmadds   f0, f0, f6, f3
+	fctiwz   f2, f2
+	fctiwz   f1, f1
+	fctiwz   f0, f0
+	stfd     f2, 0x40(r1)
+	stfd     f1, 0x50(r1)
+	lwz      r5, 0x44(r1)
+	stfd     f0, 0x60(r1)
+	lwz      r3, 0x54(r1)
+	lwz      r0, 0x64(r1)
+	stb      r5, 0x24(r1)
+	stb      r3, 0x25(r1)
+	stb      r0, 0x26(r1)
+	lwz      r0, 0x24(r1)
+	stw      r0, 0x20(r1)
+	lbz      r6, 0x20(r1)
+	lbz      r5, 0x21(r1)
+	lbz      r3, 0x22(r1)
+	lbz      r0, 0x23(r1)
+	stb      r6, 0x28(r1)
+	stb      r5, 0x29(r1)
+	stb      r3, 0x2a(r1)
+	stb      r0, 0x2b(r1)
+	lwz      r0, 0x28(r1)
+	stw      r0, 0x1c(r1)
+	lwz      r3, 0x8c(r28)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x12c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_80344B2C
 
-	.loc_0x5E4:
-	  lwz       r0, -0x7A94(r13)
-	  addi      r4, r1, 0x14
-	  stw       r0, 0x18(r1)
-	  lbz       r6, 0x18(r1)
-	  lbz       r5, 0x19(r1)
-	  lbz       r3, 0x1A(r1)
-	  lbz       r0, 0x1B(r1)
-	  stb       r6, 0x28(r1)
-	  stb       r5, 0x29(r1)
-	  stb       r3, 0x2A(r1)
-	  stb       r0, 0x2B(r1)
-	  lwz       r0, 0x28(r1)
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x8C(r28)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x12C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_80344AE4:
+	lwz      r0, mColor__Q28Morimura12TDayEndCount@sda21(r13)
+	addi     r4, r1, 0x14
+	stw      r0, 0x18(r1)
+	lbz      r6, 0x18(r1)
+	lbz      r5, 0x19(r1)
+	lbz      r3, 0x1a(r1)
+	lbz      r0, 0x1b(r1)
+	stb      r6, 0x28(r1)
+	stb      r5, 0x29(r1)
+	stb      r3, 0x2a(r1)
+	stb      r0, 0x2b(r1)
+	lwz      r0, 0x28(r1)
+	stw      r0, 0x14(r1)
+	lwz      r3, 0x8c(r28)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x12c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x62C:
-	  lis       r3, 0x4330
-	  rlwinm    r0,r30,0,24,31
-	  stw       r0, 0x64(r1)
-	  lbz       r0, -0x7AAC(r13)
-	  stw       r3, 0x60(r1)
-	  lfd       f3, -0x120(r2)
-	  lfd       f0, 0x60(r1)
-	  stw       r0, 0x5C(r1)
-	  fsubs     f2, f0, f3
-	  lfs       f4, -0x138(r2)
-	  stw       r3, 0x58(r1)
-	  lfs       f0, -0x164(r2)
-	  lfd       f1, 0x58(r1)
-	  fmuls     f2, f4, f2
-	  lwz       r3, 0x84(r28)
-	  fsubs     f1, f1, f3
-	  fdivs     f2, f2, f1
-	  fcmpo     cr0, f2, f0
-	  bge-      .loc_0x6A4
-	  lfs       f0, -0x134(r2)
-	  lis       r4, 0x8050
-	  addi      r4, r4, 0x71A0
-	  fmuls     f0, f2, f0
-	  fctiwz    f0, f0
-	  stfd      f0, 0x50(r1)
-	  lwz       r0, 0x54(r1)
-	  rlwinm    r0,r0,3,18,28
-	  lfsx      f0, r4, r0
-	  fneg      f1, f0
-	  b         .loc_0x6C8
+lbl_80344B2C:
+	lis      r3, 0x4330
+	clrlwi   r0, r30, 0x18
+	stw      r0, 0x64(r1)
+	lbz      r0, mAlphaMax__Q28Morimura12TDayEndCount@sda21(r13)
+	stw      r3, 0x60(r1)
+	lfd      f3, lbl_8051E240@sda21(r2)
+	lfd      f0, 0x60(r1)
+	stw      r0, 0x5c(r1)
+	fsubs    f2, f0, f3
+	lfs      f4, lbl_8051E228@sda21(r2)
+	stw      r3, 0x58(r1)
+	lfs      f0, lbl_8051E1FC@sda21(r2)
+	lfd      f1, 0x58(r1)
+	fmuls    f2, f4, f2
+	lwz      r3, 0x84(r28)
+	fsubs    f1, f1, f3
+	fdivs    f2, f2, f1
+	fcmpo    cr0, f2, f0
+	bge      lbl_80344BA4
+	lfs      f0, lbl_8051E22C@sda21(r2)
+	lis      r4, sincosTable___5JMath@ha
+	addi     r4, r4, sincosTable___5JMath@l
+	fmuls    f0, f2, f0
+	fctiwz   f0, f0
+	stfd     f0, 0x50(r1)
+	lwz      r0, 0x54(r1)
+	rlwinm   r0, r0, 3, 0x12, 0x1c
+	lfsx     f0, r4, r0
+	fneg     f1, f0
+	b        lbl_80344BC8
 
-	.loc_0x6A4:
-	  lfs       f0, -0x130(r2)
-	  lis       r4, 0x8050
-	  addi      r4, r4, 0x71A0
-	  fmuls     f0, f2, f0
-	  fctiwz    f0, f0
-	  stfd      f0, 0x48(r1)
-	  lwz       r0, 0x4C(r1)
-	  rlwinm    r0,r0,3,18,28
-	  lfsx      f1, r4, r0
+lbl_80344BA4:
+	lfs      f0, lbl_8051E230@sda21(r2)
+	lis      r4, sincosTable___5JMath@ha
+	addi     r4, r4, sincosTable___5JMath@l
+	fmuls    f0, f2, f0
+	fctiwz   f0, f0
+	stfd     f0, 0x48(r1)
+	lwz      r0, 0x4c(r1)
+	rlwinm   r0, r0, 3, 0x12, 0x1c
+	lfsx     f1, r4, r0
 
-	.loc_0x6C8:
-	  lfs       f0, -0x164(r2)
-	  fcmpo     cr0, f2, f0
-	  bge-      .loc_0x6D8
-	  fneg      f2, f2
+lbl_80344BC8:
+	lfs      f0, lbl_8051E1FC@sda21(r2)
+	fcmpo    cr0, f2, f0
+	bge      lbl_80344BD8
+	fneg     f2, f2
 
-	.loc_0x6D8:
-	  lfs       f0, -0x130(r2)
-	  lis       r5, 0x4330
-	  lha       r0, 0xA6(r28)
-	  lis       r4, 0x8050
-	  fmuls     f0, f2, f0
-	  lfs       f4, -0x12C(r2)
-	  xoris     r0, r0, 0x8000
-	  lha       r6, 0xA8(r28)
-	  stw       r0, 0x6C(r1)
-	  fmuls     f1, f4, f1
-	  fctiwz    f3, f0
-	  stw       r5, 0x68(r1)
-	  xoris     r6, r6, 0x8000
-	  lfd       f0, -0x128(r2)
-	  lfd       f2, 0x68(r1)
-	  addi      r4, r4, 0x71A0
-	  stfd      f3, 0x38(r1)
-	  fsubs     f2, f2, f0
-	  lwz       r0, 0x3C(r1)
-	  fsubs     f2, f2, f1
-	  stw       r6, 0x44(r1)
-	  rlwinm    r0,r0,3,18,28
-	  stw       r5, 0x40(r1)
-	  add       r4, r4, r0
-	  lfs       f3, 0x4(r4)
-	  fctiwz    f2, f2
-	  lfd       f5, 0x40(r1)
-	  fmuls     f4, f4, f3
-	  stw       r5, 0x88(r1)
-	  fsubs     f3, f5, f0
-	  stfd      f2, 0x70(r1)
-	  fsubs     f2, f3, f4
-	  lwz       r0, 0x74(r1)
-	  stw       r5, 0x78(r1)
-	  fctiwz    f2, f2
-	  sth       r0, 0x96(r28)
-	  stw       r5, 0xA8(r1)
-	  stfd      f2, 0x30(r1)
-	  lwz       r0, 0x34(r1)
-	  stw       r5, 0x98(r1)
-	  sth       r0, 0x98(r28)
-	  lha       r0, 0xAA(r28)
-	  lha       r4, 0xAC(r28)
-	  xoris     r0, r0, 0x8000
-	  stw       r5, 0xB8(r1)
-	  xoris     r4, r4, 0x8000
-	  stw       r0, 0x8C(r1)
-	  stw       r4, 0x7C(r1)
-	  lfd       f2, 0x88(r1)
-	  lfd       f3, 0x78(r1)
-	  fsubs     f2, f2, f0
-	  fsubs     f3, f3, f0
-	  fadds     f2, f2, f1
-	  fsubs     f3, f3, f4
-	  fctiwz    f2, f2
-	  fctiwz    f3, f3
-	  stfd      f2, 0x90(r1)
-	  lwz       r0, 0x94(r1)
-	  stfd      f3, 0x80(r1)
-	  lwz       r4, 0x84(r1)
-	  sth       r0, 0x9A(r28)
-	  sth       r4, 0x9C(r28)
-	  lha       r0, 0xAE(r28)
-	  lha       r4, 0xB0(r28)
-	  xoris     r0, r0, 0x8000
-	  stw       r0, 0xAC(r1)
-	  xoris     r0, r4, 0x8000
-	  stw       r0, 0x9C(r1)
-	  lfd       f2, 0xA8(r1)
-	  lfd       f3, 0x98(r1)
-	  fsubs     f2, f2, f0
-	  fsubs     f3, f3, f0
-	  fadds     f2, f2, f1
-	  fadds     f3, f3, f4
-	  fctiwz    f2, f2
-	  fctiwz    f3, f3
-	  stfd      f2, 0xB0(r1)
-	  lwz       r0, 0xB4(r1)
-	  stfd      f3, 0xA0(r1)
-	  lwz       r4, 0xA4(r1)
-	  sth       r0, 0x9E(r28)
-	  sth       r4, 0xA0(r28)
-	  lha       r0, 0xB4(r28)
-	  xoris     r0, r0, 0x8000
-	  stw       r0, 0xBC(r1)
-	  lfd       f2, 0xB8(r1)
-	  fsubs     f2, f2, f0
-	  fadds     f2, f2, f4
-	  fctiwz    f2, f2
-	  stfd      f2, 0xC0(r1)
-	  lwz       r6, 0xC4(r1)
-	  lha       r0, 0xB2(r28)
-	  addi      r4, r28, 0x96
-	  stw       r5, 0xC8(r1)
-	  xoris     r0, r0, 0x8000
-	  stw       r0, 0xCC(r1)
-	  lfd       f2, 0xC8(r1)
-	  fsubs     f0, f2, f0
-	  fsubs     f0, f0, f1
-	  fctiwz    f0, f0
-	  stfd      f0, 0xD0(r1)
-	  lwz       r0, 0xD4(r1)
-	  sth       r0, 0xA2(r28)
-	  sth       r6, 0xA4(r28)
-	  bl        -0x307F54
-	  lbz       r0, 0x94(r28)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x8F4
-	  lbz       r3, -0x7AAB(r13)
-	  lis       r0, 0x4330
-	  stw       r0, 0xD0(r1)
-	  li        r26, 0
-	  lfd       f2, -0x120(r2)
-	  li        r25, 0
-	  stw       r3, 0xD4(r1)
-	  lfs       f0, 0x40(r28)
-	  lfd       f1, 0xD0(r1)
-	  fsubs     f1, f1, f2
-	  fmuls     f0, f1, f0
-	  fctiwz    f0, f0
-	  stfd      f0, 0xC8(r1)
-	  lwz       r24, 0xCC(r1)
-	  b         .loc_0x8E8
+lbl_80344BD8:
+	lfs      f0, lbl_8051E230@sda21(r2)
+	lis      r5, 0x4330
+	lha      r0, 0xa6(r28)
+	lis      r4, sincosTable___5JMath@ha
+	fmuls    f0, f2, f0
+	lfs      f4, lbl_8051E234@sda21(r2)
+	xoris    r0, r0, 0x8000
+	lha      r6, 0xa8(r28)
+	stw      r0, 0x6c(r1)
+	fmuls    f1, f4, f1
+	fctiwz   f3, f0
+	stw      r5, 0x68(r1)
+	xoris    r6, r6, 0x8000
+	lfd      f0, lbl_8051E238@sda21(r2)
+	lfd      f2, 0x68(r1)
+	addi     r4, r4, sincosTable___5JMath@l
+	stfd     f3, 0x38(r1)
+	fsubs    f2, f2, f0
+	lwz      r0, 0x3c(r1)
+	fsubs    f2, f2, f1
+	stw      r6, 0x44(r1)
+	rlwinm   r0, r0, 3, 0x12, 0x1c
+	stw      r5, 0x40(r1)
+	add      r4, r4, r0
+	lfs      f3, 4(r4)
+	fctiwz   f2, f2
+	lfd      f5, 0x40(r1)
+	fmuls    f4, f4, f3
+	stw      r5, 0x88(r1)
+	fsubs    f3, f5, f0
+	stfd     f2, 0x70(r1)
+	fsubs    f2, f3, f4
+	lwz      r0, 0x74(r1)
+	stw      r5, 0x78(r1)
+	fctiwz   f2, f2
+	sth      r0, 0x96(r28)
+	stw      r5, 0xa8(r1)
+	stfd     f2, 0x30(r1)
+	lwz      r0, 0x34(r1)
+	stw      r5, 0x98(r1)
+	sth      r0, 0x98(r28)
+	lha      r0, 0xaa(r28)
+	lha      r4, 0xac(r28)
+	xoris    r0, r0, 0x8000
+	stw      r5, 0xb8(r1)
+	xoris    r4, r4, 0x8000
+	stw      r0, 0x8c(r1)
+	stw      r4, 0x7c(r1)
+	lfd      f2, 0x88(r1)
+	lfd      f3, 0x78(r1)
+	fsubs    f2, f2, f0
+	fsubs    f3, f3, f0
+	fadds    f2, f2, f1
+	fsubs    f3, f3, f4
+	fctiwz   f2, f2
+	fctiwz   f3, f3
+	stfd     f2, 0x90(r1)
+	lwz      r0, 0x94(r1)
+	stfd     f3, 0x80(r1)
+	lwz      r4, 0x84(r1)
+	sth      r0, 0x9a(r28)
+	sth      r4, 0x9c(r28)
+	lha      r0, 0xae(r28)
+	lha      r4, 0xb0(r28)
+	xoris    r0, r0, 0x8000
+	stw      r0, 0xac(r1)
+	xoris    r0, r4, 0x8000
+	stw      r0, 0x9c(r1)
+	lfd      f2, 0xa8(r1)
+	lfd      f3, 0x98(r1)
+	fsubs    f2, f2, f0
+	fsubs    f3, f3, f0
+	fadds    f2, f2, f1
+	fadds    f3, f3, f4
+	fctiwz   f2, f2
+	fctiwz   f3, f3
+	stfd     f2, 0xb0(r1)
+	lwz      r0, 0xb4(r1)
+	stfd     f3, 0xa0(r1)
+	lwz      r4, 0xa4(r1)
+	sth      r0, 0x9e(r28)
+	sth      r4, 0xa0(r28)
+	lha      r0, 0xb4(r28)
+	xoris    r0, r0, 0x8000
+	stw      r0, 0xbc(r1)
+	lfd      f2, 0xb8(r1)
+	fsubs    f2, f2, f0
+	fadds    f2, f2, f4
+	fctiwz   f2, f2
+	stfd     f2, 0xc0(r1)
+	lwz      r6, 0xc4(r1)
+	lha      r0, 0xb2(r28)
+	addi     r4, r28, 0x96
+	stw      r5, 0xc8(r1)
+	xoris    r0, r0, 0x8000
+	stw      r0, 0xcc(r1)
+	lfd      f2, 0xc8(r1)
+	fsubs    f0, f2, f0
+	fsubs    f0, f0, f1
+	fctiwz   f0, f0
+	stfd     f0, 0xd0(r1)
+	lwz      r0, 0xd4(r1)
+	sth      r0, 0xa2(r28)
+	sth      r6, 0xa4(r28)
+	bl       "setTexCoord__10J2DPictureFPCQ29JGeometry8TVec2<s>"
+	lbz      r0, 0x94(r28)
+	cmplwi   r0, 0
+	beq      lbl_80344DF4
+	lbz      r3, mWaitAlpha__Q28Morimura12TDayEndCount@sda21(r13)
+	lis      r0, 0x4330
+	stw      r0, 0xd0(r1)
+	li       r26, 0
+	lfd      f2, lbl_8051E240@sda21(r2)
+	li       r25, 0
+	stw      r3, 0xd4(r1)
+	lfs      f0, 0x40(r28)
+	lfd      f1, 0xd0(r1)
+	fsubs    f1, f1, f2
+	fmuls    f0, f1, f0
+	fctiwz   f0, f0
+	stfd     f0, 0xc8(r1)
+	lwz      r24, 0xcc(r1)
+	b        lbl_80344DE8
 
-	.loc_0x8C4:
-	  lwz       r3, 0x88(r28)
-	  mr        r4, r24
-	  lwzx      r3, r3, r25
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x24(r12)
-	  mtctr     r12
-	  bctrl
-	  addi      r25, r25, 0x4
-	  addi      r26, r26, 0x1
+lbl_80344DC4:
+	lwz      r3, 0x88(r28)
+	mr       r4, r24
+	lwzx     r3, r3, r25
+	lwz      r12, 0(r3)
+	lwz      r12, 0x24(r12)
+	mtctr    r12
+	bctrl
+	addi     r25, r25, 4
+	addi     r26, r26, 1
 
-	.loc_0x8E8:
-	  lwz       r0, 0x90(r28)
-	  cmpw      r26, r0
-	  blt+      .loc_0x8C4
+lbl_80344DE8:
+	lwz      r0, 0x90(r28)
+	cmpw     r26, r0
+	blt      lbl_80344DC4
 
-	.loc_0x8F4:
-	  lfs       f2, 0xCC(r28)
-	  lfs       f1, 0x2434(r2)
-	  lfs       f0, 0x2438(r2)
-	  fmuls     f1, f2, f1
-	  lwz       r3, 0x80(r28)
-	  fmuls     f0, f2, f0
-	  stfs      f1, 0x138(r3)
-	  stfs      f0, 0x13C(r3)
-	  lbz       r0, 0xCA(r28)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x92C
-	  lbz       r0, -0x676F(r13)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x974
+lbl_80344DF4:
+	lfs      f2, 0xcc(r28)
+	lfs      f1, mstTuningScaleX__Q29P2DScreen10Mgr_tuning@sda21(r2)
+	lfs      f0, mstTuningScaleY__Q29P2DScreen10Mgr_tuning@sda21(r2)
+	fmuls    f1, f2, f1
+	lwz      r3, 0x80(r28)
+	fmuls    f0, f2, f0
+	stfs     f1, 0x138(r3)
+	stfs     f0, 0x13c(r3)
+	lbz      r0, 0xca(r28)
+	cmplwi   r0, 0
+	bne      lbl_80344E2C
+	lbz      r0, mTestChangeColor__Q28Morimura12TDayEndCount@sda21(r13)
+	cmplwi   r0, 0
+	beq      lbl_80344E74
 
-	.loc_0x92C:
-	  lwz       r0, -0x7A90(r13)
-	  addi      r4, r1, 0x10
-	  stw       r0, 0x8(r1)
-	  lbz       r6, 0x8(r1)
-	  lbz       r5, 0x9(r1)
-	  lbz       r3, 0xA(r1)
-	  lbz       r0, 0xB(r1)
-	  stb       r6, 0xC(r1)
-	  stb       r5, 0xD(r1)
-	  stb       r3, 0xE(r1)
-	  stb       r0, 0xF(r1)
-	  lwz       r0, 0xC(r1)
-	  stw       r0, 0x10(r1)
-	  lwz       r3, 0x84(r28)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x12C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_80344E2C:
+	lwz      r0, mNumberColor__Q28Morimura12TDayEndCount@sda21(r13)
+	addi     r4, r1, 0x10
+	stw      r0, 8(r1)
+	lbz      r6, 8(r1)
+	lbz      r5, 9(r1)
+	lbz      r3, 0xa(r1)
+	lbz      r0, 0xb(r1)
+	stb      r6, 0xc(r1)
+	stb      r5, 0xd(r1)
+	stb      r3, 0xe(r1)
+	stb      r0, 0xf(r1)
+	lwz      r0, 0xc(r1)
+	stw      r0, 0x10(r1)
+	lwz      r3, 0x84(r28)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x12c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x974:
-	  rlwinm    r3,r30,0,24,31
-	  lis       r0, 0x4330
-	  stw       r3, 0xD4(r1)
-	  lwz       r3, 0x84(r28)
-	  stw       r0, 0xD0(r1)
-	  lfd       f2, -0x120(r2)
-	  lfd       f1, 0xD0(r1)
-	  lfs       f0, 0x40(r28)
-	  fsubs     f1, f1, f2
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x24(r12)
-	  fmuls     f0, f1, f0
-	  fctiwz    f0, f0
-	  stfd      f0, 0xC8(r1)
-	  lwz       r4, 0xCC(r1)
-	  mtctr     r12
-	  bctrl
-	  lfs       f0, 0xCC(r28)
-	  lwz       r3, 0x84(r28)
-	  fmuls     f0, f31, f0
-	  stfs      f0, 0xCC(r3)
-	  stfs      f0, 0xD0(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x2C(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f2, 0xC4(r28)
-	  lfs       f1, 0xD0(r28)
-	  lwz       r3, 0x8C(r28)
-	  lfs       f0, 0xC0(r28)
-	  fadds     f1, f2, f1
-	  stfs      f0, 0xD4(r3)
-	  stfs      f1, 0xD8(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x2C(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm    r3,r29,0,24,31
-	  lis       r0, 0x4330
-	  stw       r3, 0xC4(r1)
-	  lwz       r3, 0x8C(r28)
-	  stw       r0, 0xC0(r1)
-	  lfd       f2, -0x120(r2)
-	  lfd       f1, 0xC0(r1)
-	  lfs       f0, 0x40(r28)
-	  fsubs     f1, f1, f2
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x24(r12)
-	  fmuls     f0, f1, f0
-	  fctiwz    f0, f0
-	  stfd      f0, 0xB8(r1)
-	  lwz       r4, 0xBC(r1)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x80(r28)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x30(r12)
-	  mtctr     r12
-	  bctrl
-	  li        r3, 0
+lbl_80344E74:
+	clrlwi   r3, r30, 0x18
+	lis      r0, 0x4330
+	stw      r3, 0xd4(r1)
+	lwz      r3, 0x84(r28)
+	stw      r0, 0xd0(r1)
+	lfd      f2, lbl_8051E240@sda21(r2)
+	lfd      f1, 0xd0(r1)
+	lfs      f0, 0x40(r28)
+	fsubs    f1, f1, f2
+	lwz      r12, 0(r3)
+	lwz      r12, 0x24(r12)
+	fmuls    f0, f1, f0
+	fctiwz   f0, f0
+	stfd     f0, 0xc8(r1)
+	lwz      r4, 0xcc(r1)
+	mtctr    r12
+	bctrl
+	lfs      f0, 0xcc(r28)
+	lwz      r3, 0x84(r28)
+	fmuls    f0, f31, f0
+	stfs     f0, 0xcc(r3)
+	stfs     f0, 0xd0(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x2c(r12)
+	mtctr    r12
+	bctrl
+	lfs      f2, 0xc4(r28)
+	lfs      f1, 0xd0(r28)
+	lwz      r3, 0x8c(r28)
+	lfs      f0, 0xc0(r28)
+	fadds    f1, f2, f1
+	stfs     f0, 0xd4(r3)
+	stfs     f1, 0xd8(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x2c(r12)
+	mtctr    r12
+	bctrl
+	clrlwi   r3, r29, 0x18
+	lis      r0, 0x4330
+	stw      r3, 0xc4(r1)
+	lwz      r3, 0x8c(r28)
+	stw      r0, 0xc0(r1)
+	lfd      f2, lbl_8051E240@sda21(r2)
+	lfd      f1, 0xc0(r1)
+	lfs      f0, 0x40(r28)
+	fsubs    f1, f1, f2
+	lwz      r12, 0(r3)
+	lwz      r12, 0x24(r12)
+	fmuls    f0, f1, f0
+	fctiwz   f0, f0
+	stfd     f0, 0xb8(r1)
+	lwz      r4, 0xbc(r1)
+	mtctr    r12
+	bctrl
+	lwz      r3, 0x80(r28)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x30(r12)
+	mtctr    r12
+	bctrl
+	li       r3, 0
 
-	.loc_0xA64:
-	  psq_l     f31,0x118(r1),0,0
-	  lfd       f31, 0x110(r1)
-	  psq_l     f30,0x108(r1),0,0
-	  lfd       f30, 0x100(r1)
-	  lmw       r24, 0xE0(r1)
-	  lwz       r0, 0x124(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x120
-	  blr
+lbl_80344F64:
+	psq_l    f31, 280(r1), 0, qr0
+	lfd      f31, 0x110(r1)
+	psq_l    f30, 264(r1), 0, qr0
+	lfd      f30, 0x100(r1)
+	lmw      r24, 0xe0(r1)
+	lwz      r0, 0x124(r1)
+	mtlr     r0
+	addi     r1, r1, 0x120
+	blr
 	*/
 }
 
@@ -1114,39 +1451,38 @@ void Morimura::TDayEndCount::doUpdate(void)
 void Morimura::TDayEndCount::doDraw(Graphics&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lwz       r3, 0x7C(r3)
-	  lfs       f1, 0x8(r3)
-	  lfs       f0, 0xC(r3)
-	  fcmpo     cr0, f1, f0
-	  blt-      .loc_0x60
-	  addi      r3, r31, 0x190
-	  lwz       r12, 0x190(r31)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x80(r30)
-	  mr        r4, r31
-	  addi      r5, r31, 0x190
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x9C(r12)
-	  mtctr     r12
-	  bctrl
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lwz      r3, 0x7c(r3)
+	lfs      f1, 8(r3)
+	lfs      f0, 0xc(r3)
+	fcmpo    cr0, f1, f0
+	blt      lbl_80344FE8
+	addi     r3, r31, 0x190
+	lwz      r12, 0x190(r31)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 0x80(r30)
+	mr       r4, r31
+	addi     r5, r31, 0x190
+	lwz      r12, 0(r3)
+	lwz      r12, 0x9c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x60:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80344FE8:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1158,288 +1494,287 @@ void Morimura::TDayEndCount::doDraw(Graphics&)
 void Morimura::TDayEndCount::reset(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0xA0(r1)
-	  mflr      r0
-	  stw       r0, 0xA4(r1)
-	  stfd      f31, 0x90(r1)
-	  psq_st    f31,0x98(r1),0,0
-	  stfd      f30, 0x80(r1)
-	  psq_st    f30,0x88(r1),0,0
-	  stfd      f29, 0x70(r1)
-	  psq_st    f29,0x78(r1),0,0
-	  stfd      f28, 0x60(r1)
-	  psq_st    f28,0x68(r1),0,0
-	  stfd      f27, 0x50(r1)
-	  psq_st    f27,0x58(r1),0,0
-	  stmw      r26, 0x38(r1)
-	  li        r0, 0xFF
-	  subi      r6, r13, 0x7A94
-	  stb       r0, -0x7A94(r13)
-	  li        r5, -0x1
-	  mr        r26, r3
-	  addi      r4, r1, 0x8
-	  stb       r0, 0x1(r6)
-	  stb       r0, 0x2(r6)
-	  stb       r0, 0x3(r6)
-	  lwz       r0, -0x7A94(r13)
-	  stw       r5, 0x10(r1)
-	  stw       r0, 0xC(r1)
-	  lbz       r6, 0xC(r1)
-	  lbz       r5, 0xD(r1)
-	  lbz       r3, 0xE(r1)
-	  lbz       r0, 0xF(r1)
-	  stb       r6, 0x10(r1)
-	  stb       r5, 0x11(r1)
-	  stb       r3, 0x12(r1)
-	  stb       r0, 0x13(r1)
-	  lwz       r0, 0x10(r1)
-	  stw       r0, 0x8(r1)
-	  lwz       r3, 0x8C(r26)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x12C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x8C(r26)
-	  li        r4, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x24(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x80(r26)
-	  lis       r4, 0x6364
-	  addi      r6, r4, 0x3130
-	  li        r5, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x3C(r12)
-	  mtctr     r12
-	  bctrl
-	  mr.       r29, r3
-	  bne-      .loc_0x100
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  addi      r3, r3, 0x20C
-	  li        r4, 0x167
-	  addi      r5, r5, 0x21C
-	  crclr     6, 0x6
-	  bl        -0x31AABC
+	stwu     r1, -0xa0(r1)
+	mflr     r0
+	stw      r0, 0xa4(r1)
+	stfd     f31, 0x90(r1)
+	psq_st   f31, 152(r1), 0, qr0
+	stfd     f30, 0x80(r1)
+	psq_st   f30, 136(r1), 0, qr0
+	stfd     f29, 0x70(r1)
+	psq_st   f29, 120(r1), 0, qr0
+	stfd     f28, 0x60(r1)
+	psq_st   f28, 104(r1), 0, qr0
+	stfd     f27, 0x50(r1)
+	psq_st   f27, 88(r1), 0, qr0
+	stmw     r26, 0x38(r1)
+	li       r0, 0xff
+	addi     r6, r13, mColor__Q28Morimura12TDayEndCount@sda21
+	stb      r0, mColor__Q28Morimura12TDayEndCount@sda21(r13)
+	li       r5, -1
+	mr       r26, r3
+	addi     r4, r1, 8
+	stb      r0, 1(r6)
+	stb      r0, 2(r6)
+	stb      r0, 3(r6)
+	lwz      r0, mColor__Q28Morimura12TDayEndCount@sda21(r13)
+	stw      r5, 0x10(r1)
+	stw      r0, 0xc(r1)
+	lbz      r6, 0xc(r1)
+	lbz      r5, 0xd(r1)
+	lbz      r3, 0xe(r1)
+	lbz      r0, 0xf(r1)
+	stb      r6, 0x10(r1)
+	stb      r5, 0x11(r1)
+	stb      r3, 0x12(r1)
+	stb      r0, 0x13(r1)
+	lwz      r0, 0x10(r1)
+	stw      r0, 8(r1)
+	lwz      r3, 0x8c(r26)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x12c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 0x8c(r26)
+	li       r4, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x24(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 0x80(r26)
+	lis      r4, 0x63643130@ha
+	addi     r6, r4, 0x63643130@l
+	li       r5, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x3c(r12)
+	mtctr    r12
+	bctrl
+	or.      r29, r3, r3
+	bne      lbl_80345100
+	lis      r3, lbl_8049020C@ha
+	lis      r5, lbl_8049021C@ha
+	addi     r3, r3, lbl_8049020C@l
+	li       r4, 0x167
+	addi     r5, r5, lbl_8049021C@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x100:
-	  lbz       r0, 0x94(r26)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x148
-	  lfs       f0, -0x7AA8(r13)
-	  mr        r3, r29
-	  stfs      f0, 0xCC(r29)
-	  stfs      f0, 0xD0(r29)
-	  lwz       r12, 0x0(r29)
-	  lwz       r12, 0x2C(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r3, r29
-	  li        r4, 0
-	  lwz       r12, 0x0(r29)
-	  lwz       r12, 0x24(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x180
+lbl_80345100:
+	lbz      r0, 0x94(r26)
+	cmplwi   r0, 0
+	beq      lbl_80345148
+	lfs      f0, mWaitScale__Q28Morimura12TDayEndCount@sda21(r13)
+	mr       r3, r29
+	stfs     f0, 0xcc(r29)
+	stfs     f0, 0xd0(r29)
+	lwz      r12, 0(r29)
+	lwz      r12, 0x2c(r12)
+	mtctr    r12
+	bctrl
+	mr       r3, r29
+	li       r4, 0
+	lwz      r12, 0(r29)
+	lwz      r12, 0x24(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_80345180
 
-	.loc_0x148:
-	  lfs       f0, -0x164(r2)
-	  mr        r3, r29
-	  stfs      f0, 0xCC(r29)
-	  stfs      f0, 0xD0(r29)
-	  lwz       r12, 0x0(r29)
-	  lwz       r12, 0x2C(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r3, r29
-	  li        r4, 0
-	  lwz       r12, 0x0(r29)
-	  lwz       r12, 0x24(r12)
-	  mtctr     r12
-	  bctrl
+lbl_80345148:
+	lfs      f0, lbl_8051E1FC@sda21(r2)
+	mr       r3, r29
+	stfs     f0, 0xcc(r29)
+	stfs     f0, 0xd0(r29)
+	lwz      r12, 0(r29)
+	lwz      r12, 0x2c(r12)
+	mtctr    r12
+	bctrl
+	mr       r3, r29
+	li       r4, 0
+	lwz      r12, 0(r29)
+	lwz      r12, 0x24(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x180:
-	  lis       r3, 0x804E
-	  lfs       f28, -0x118(r2)
-	  lfs       f29, -0x114(r2)
-	  subi      r30, r3, 0x4F88
-	  lfd       f30, -0x128(r2)
-	  li        r28, 0
-	  lfs       f31, -0x110(r2)
-	  lis       r31, 0x4330
+lbl_80345180:
+	lis      r3, deTagName__8Morimura@ha
+	lfs      f28, lbl_8051E248@sda21(r2)
+	lfs      f29, lbl_8051E24C@sda21(r2)
+	addi     r30, r3, deTagName__8Morimura@l
+	lfd      f30, lbl_8051E238@sda21(r2)
+	li       r28, 0
+	lfs      f31, lbl_8051E250@sda21(r2)
+	lis      r31, 0x4330
 
-	.loc_0x1A0:
-	  xoris     r0, r28, 0x8000
-	  lwz       r3, 0x80(r26)
-	  stw       r0, 0x1C(r1)
-	  li        r5, 0
-	  lwz       r12, 0x0(r3)
-	  stw       r31, 0x18(r1)
-	  lwz       r12, 0x3C(r12)
-	  lfd       f0, 0x18(r1)
-	  lwz       r6, 0x0(r30)
-	  fsubs     f0, f0, f30
-	  fmuls     f0, f29, f0
-	  fmuls     f0, f28, f0
-	  fdivs     f27, f0, f31
-	  mtctr     r12
-	  bctrl
-	  mr.       r27, r3
-	  bne-      .loc_0x200
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  addi      r3, r3, 0x20C
-	  li        r4, 0x176
-	  addi      r5, r5, 0x21C
-	  crclr     6, 0x6
-	  bl        -0x31ABBC
+lbl_803451A0:
+	xoris    r0, r28, 0x8000
+	lwz      r3, 0x80(r26)
+	stw      r0, 0x1c(r1)
+	li       r5, 0
+	lwz      r12, 0(r3)
+	stw      r31, 0x18(r1)
+	lwz      r12, 0x3c(r12)
+	lfd      f0, 0x18(r1)
+	lwz      r6, 0(r30)
+	fsubs    f0, f0, f30
+	fmuls    f0, f29, f0
+	fmuls    f0, f28, f0
+	fdivs    f27, f0, f31
+	mtctr    r12
+	bctrl
+	or.      r27, r3, r3
+	bne      lbl_80345200
+	lis      r3, lbl_8049020C@ha
+	lis      r5, lbl_8049021C@ha
+	addi     r3, r3, lbl_8049020C@l
+	li       r4, 0x176
+	addi     r5, r5, lbl_8049021C@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x200:
-	  lbz       r0, 0x94(r26)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x318
-	  mr        r3, r27
-	  li        r4, 0x4
-	  bl        -0x30C558
-	  lfs       f0, -0x164(r2)
-	  fmr       f1, f27
-	  fcmpo     cr0, f27, f0
-	  bge-      .loc_0x22C
-	  fneg      f1, f27
+lbl_80345200:
+	lbz      r0, 0x94(r26)
+	cmplwi   r0, 0
+	beq      lbl_80345318
+	mr       r3, r27
+	li       r4, 4
+	bl       setBasePosition__7J2DPaneF15J2DBasePosition
+	lfs      f0, lbl_8051E1FC@sda21(r2)
+	fmr      f1, f27
+	fcmpo    cr0, f27, f0
+	bge      lbl_8034522C
+	fneg     f1, f27
 
-	.loc_0x22C:
-	  lfs       f3, -0x130(r2)
-	  lis       r3, 0x8050
-	  lfs       f0, -0x164(r2)
-	  addi      r4, r3, 0x71A0
-	  fmuls     f2, f1, f3
-	  lfs       f4, -0x10C(r2)
-	  fcmpo     cr0, f27, f0
-	  lfs       f1, 0xBC(r26)
-	  fctiwz    f0, f2
-	  stfd      f0, 0x18(r1)
-	  lwz       r0, 0x1C(r1)
-	  rlwinm    r0,r0,3,18,28
-	  add       r3, r4, r0
-	  lfs       f0, 0x4(r3)
-	  fnmsubs   f2, f4, f0, f1
-	  bge-      .loc_0x290
-	  lfs       f0, -0x134(r2)
-	  fmuls     f0, f27, f0
-	  fctiwz    f0, f0
-	  stfd      f0, 0x20(r1)
-	  lwz       r0, 0x24(r1)
-	  rlwinm    r0,r0,3,18,28
-	  lfsx      f0, r4, r0
-	  fneg      f1, f0
-	  b         .loc_0x2A8
+lbl_8034522C:
+	lfs      f3, lbl_8051E230@sda21(r2)
+	lis      r3, sincosTable___5JMath@ha
+	lfs      f0, lbl_8051E1FC@sda21(r2)
+	addi     r4, r3, sincosTable___5JMath@l
+	fmuls    f2, f1, f3
+	lfs      f4, lbl_8051E254@sda21(r2)
+	fcmpo    cr0, f27, f0
+	lfs      f1, 0xbc(r26)
+	fctiwz   f0, f2
+	stfd     f0, 0x18(r1)
+	lwz      r0, 0x1c(r1)
+	rlwinm   r0, r0, 3, 0x12, 0x1c
+	add      r3, r4, r0
+	lfs      f0, 4(r3)
+	fnmsubs  f2, f4, f0, f1
+	bge      lbl_80345290
+	lfs      f0, lbl_8051E22C@sda21(r2)
+	fmuls    f0, f27, f0
+	fctiwz   f0, f0
+	stfd     f0, 0x20(r1)
+	lwz      r0, 0x24(r1)
+	rlwinm   r0, r0, 3, 0x12, 0x1c
+	lfsx     f0, r4, r0
+	fneg     f1, f0
+	b        lbl_803452A8
 
-	.loc_0x290:
-	  fmuls     f0, f27, f3
-	  fctiwz    f0, f0
-	  stfd      f0, 0x28(r1)
-	  lwz       r0, 0x2C(r1)
-	  rlwinm    r0,r0,3,18,28
-	  lfsx      f1, r4, r0
+lbl_80345290:
+	fmuls    f0, f27, f3
+	fctiwz   f0, f0
+	stfd     f0, 0x28(r1)
+	lwz      r0, 0x2c(r1)
+	rlwinm   r0, r0, 3, 0x12, 0x1c
+	lfsx     f1, r4, r0
 
-	.loc_0x2A8:
-	  lfs       f0, 0xB8(r26)
-	  mr        r3, r27
-	  fmadds    f0, f4, f1, f0
-	  stfs      f0, 0xD4(r27)
-	  stfs      f2, 0xD8(r27)
-	  lwz       r12, 0x0(r27)
-	  lwz       r12, 0x2C(r12)
-	  mtctr     r12
-	  bctrl
-	  li        r0, 0x1
-	  mr        r3, r27
-	  stb       r0, 0xB0(r27)
-	  lfs       f1, -0x7AA8(r13)
-	  lfs       f0, 0xCC(r26)
-	  fmuls     f0, f1, f0
-	  stfs      f0, 0xCC(r27)
-	  stfs      f0, 0xD0(r27)
-	  lwz       r12, 0x0(r27)
-	  lwz       r12, 0x2C(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r3, r27
-	  li        r4, 0
-	  lwz       r12, 0x0(r27)
-	  lwz       r12, 0x24(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x37C
+lbl_803452A8:
+	lfs      f0, 0xb8(r26)
+	mr       r3, r27
+	fmadds   f0, f4, f1, f0
+	stfs     f0, 0xd4(r27)
+	stfs     f2, 0xd8(r27)
+	lwz      r12, 0(r27)
+	lwz      r12, 0x2c(r12)
+	mtctr    r12
+	bctrl
+	li       r0, 1
+	mr       r3, r27
+	stb      r0, 0xb0(r27)
+	lfs      f1, mWaitScale__Q28Morimura12TDayEndCount@sda21(r13)
+	lfs      f0, 0xcc(r26)
+	fmuls    f0, f1, f0
+	stfs     f0, 0xcc(r27)
+	stfs     f0, 0xd0(r27)
+	lwz      r12, 0(r27)
+	lwz      r12, 0x2c(r12)
+	mtctr    r12
+	bctrl
+	mr       r3, r27
+	li       r4, 0
+	lwz      r12, 0(r27)
+	lwz      r12, 0x24(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_8034537C
 
-	.loc_0x318:
-	  lfs       f1, 0xBC(r26)
-	  mr        r3, r27
-	  lfs       f0, 0xB8(r26)
-	  stfs      f0, 0xD4(r27)
-	  stfs      f1, 0xD8(r27)
-	  lwz       r12, 0x0(r27)
-	  lwz       r12, 0x2C(r12)
-	  mtctr     r12
-	  bctrl
-	  li        r0, 0
-	  lfs       f0, -0x164(r2)
-	  stb       r0, 0xB0(r27)
-	  mr        r3, r27
-	  stfs      f0, 0xCC(r27)
-	  stfs      f0, 0xD0(r27)
-	  lwz       r12, 0x0(r27)
-	  lwz       r12, 0x2C(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r3, r27
-	  li        r4, 0
-	  lwz       r12, 0x0(r27)
-	  lwz       r12, 0x24(r12)
-	  mtctr     r12
-	  bctrl
+lbl_80345318:
+	lfs      f1, 0xbc(r26)
+	mr       r3, r27
+	lfs      f0, 0xb8(r26)
+	stfs     f0, 0xd4(r27)
+	stfs     f1, 0xd8(r27)
+	lwz      r12, 0(r27)
+	lwz      r12, 0x2c(r12)
+	mtctr    r12
+	bctrl
+	li       r0, 0
+	lfs      f0, lbl_8051E1FC@sda21(r2)
+	stb      r0, 0xb0(r27)
+	mr       r3, r27
+	stfs     f0, 0xcc(r27)
+	stfs     f0, 0xd0(r27)
+	lwz      r12, 0(r27)
+	lwz      r12, 0x2c(r12)
+	mtctr    r12
+	bctrl
+	mr       r3, r27
+	li       r4, 0
+	lwz      r12, 0(r27)
+	lwz      r12, 0x24(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x37C:
-	  addi      r28, r28, 0x1
-	  addi      r30, r30, 0x4
-	  cmpwi     r28, 0xA
-	  blt+      .loc_0x1A0
-	  stw       r29, 0x84(r26)
-	  li        r0, 0x1
-	  lha       r3, 0xA6(r26)
-	  sth       r3, 0x96(r26)
-	  lha       r3, 0xA8(r26)
-	  sth       r3, 0x98(r26)
-	  lha       r3, 0xAA(r26)
-	  sth       r3, 0x9A(r26)
-	  lha       r3, 0xAC(r26)
-	  sth       r3, 0x9C(r26)
-	  lha       r3, 0xAE(r26)
-	  sth       r3, 0x9E(r26)
-	  lha       r3, 0xB0(r26)
-	  sth       r3, 0xA0(r26)
-	  lha       r3, 0xB2(r26)
-	  sth       r3, 0xA2(r26)
-	  lha       r3, 0xB4(r26)
-	  sth       r3, 0xA4(r26)
-	  stb       r0, 0xC8(r26)
-	  psq_l     f31,0x98(r1),0,0
-	  lfd       f31, 0x90(r1)
-	  psq_l     f30,0x88(r1),0,0
-	  lfd       f30, 0x80(r1)
-	  psq_l     f29,0x78(r1),0,0
-	  lfd       f29, 0x70(r1)
-	  psq_l     f28,0x68(r1),0,0
-	  lfd       f28, 0x60(r1)
-	  psq_l     f27,0x58(r1),0,0
-	  lfd       f27, 0x50(r1)
-	  lmw       r26, 0x38(r1)
-	  lwz       r0, 0xA4(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0xA0
-	  blr
+lbl_8034537C:
+	addi     r28, r28, 1
+	addi     r30, r30, 4
+	cmpwi    r28, 0xa
+	blt      lbl_803451A0
+	stw      r29, 0x84(r26)
+	li       r0, 1
+	lha      r3, 0xa6(r26)
+	sth      r3, 0x96(r26)
+	lha      r3, 0xa8(r26)
+	sth      r3, 0x98(r26)
+	lha      r3, 0xaa(r26)
+	sth      r3, 0x9a(r26)
+	lha      r3, 0xac(r26)
+	sth      r3, 0x9c(r26)
+	lha      r3, 0xae(r26)
+	sth      r3, 0x9e(r26)
+	lha      r3, 0xb0(r26)
+	sth      r3, 0xa0(r26)
+	lha      r3, 0xb2(r26)
+	sth      r3, 0xa2(r26)
+	lha      r3, 0xb4(r26)
+	sth      r3, 0xa4(r26)
+	stb      r0, 0xc8(r26)
+	psq_l    f31, 152(r1), 0, qr0
+	lfd      f31, 0x90(r1)
+	psq_l    f30, 136(r1), 0, qr0
+	lfd      f30, 0x80(r1)
+	psq_l    f29, 120(r1), 0, qr0
+	lfd      f29, 0x70(r1)
+	psq_l    f28, 104(r1), 0, qr0
+	lfd      f28, 0x60(r1)
+	psq_l    f27, 88(r1), 0, qr0
+	lfd      f27, 0x50(r1)
+	lmw      r26, 0x38(r1)
+	lwz      r0, 0xa4(r1)
+	mtlr     r0
+	addi     r1, r1, 0xa0
+	blr
 	*/
 }
 
@@ -1451,72 +1786,71 @@ void Morimura::TDayEndCount::reset(void)
 Morimura::TChallengeEndCount::TChallengeEndCount(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r4, 0x8049
-	  stw       r0, 0x14(r1)
-	  addi      r4, r4, 0x1F4
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        0x3D98
-	  lis       r4, 0x804E
-	  li        r8, 0
-	  subi      r4, r4, 0x4D98
-	  li        r0, -0x1
-	  stw       r4, 0x0(r31)
-	  addi      r5, r4, 0x10
-	  lis       r3, 0x8004
-	  li        r6, 0x4
-	  stw       r5, 0x18(r31)
-	  subi      r4, r3, 0x6460
-	  addi      r3, r31, 0x96
-	  li        r5, 0
-	  stw       r8, 0x80(r31)
-	  li        r7, 0x4
-	  stw       r8, 0x84(r31)
-	  stw       r8, 0x88(r31)
-	  stw       r8, 0x8C(r31)
-	  stw       r0, 0x90(r31)
-	  stb       r8, 0x94(r31)
-	  bl        -0x283C44
-	  lis       r4, 0x8004
-	  addi      r3, r31, 0xA6
-	  subi      r4, r4, 0x6460
-	  li        r5, 0
-	  li        r6, 0x4
-	  li        r7, 0x4
-	  bl        -0x283C60
-	  li        r9, 0x1
-	  lis       r3, 0x804E
-	  stb       r9, 0xC9(r31)
-	  li        r8, 0
-	  subi      r5, r3, 0x4E14
-	  lis       r3, 0x8049
-	  stb       r8, 0xCA(r31)
-	  li        r7, 0xFF
-	  lfs       f1, -0x168(r2)
-	  subi      r6, r13, 0x7A94
-	  lfs       f0, -0x164(r2)
-	  addi      r4, r5, 0x10
-	  stfs      f1, 0xCC(r31)
-	  addi      r0, r3, 0x228
-	  mr        r3, r31
-	  stfs      f0, 0xD0(r31)
-	  stb       r8, -0x7A94(r13)
-	  stb       r7, 0x1(r6)
-	  stb       r8, 0x2(r6)
-	  stb       r7, 0x3(r6)
-	  stb       r8, -0x676F(r13)
-	  stw       r5, 0x0(r31)
-	  stw       r4, 0x18(r31)
-	  stw       r0, 0x14(r31)
-	  stb       r9, 0xCA(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lis      r4, lbl_804901F4@ha
+	stw      r0, 0x14(r1)
+	addi     r4, r4, lbl_804901F4@l
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       __ct__Q28Morimura9TTestBaseFPc
+	lis      r4, __vt__Q28Morimura12TDayEndCount@ha
+	li       r8, 0
+	addi     r4, r4, __vt__Q28Morimura12TDayEndCount@l
+	li       r0, -1
+	stw      r4, 0(r31)
+	addi     r5, r4, 0x10
+	lis      r3, "__ct__Q29JGeometry8TVec2<s>Fv"@ha
+	li       r6, 4
+	stw      r5, 0x18(r31)
+	addi     r4, r3, "__ct__Q29JGeometry8TVec2<s>Fv"@l
+	addi     r3, r31, 0x96
+	li       r5, 0
+	stw      r8, 0x80(r31)
+	li       r7, 4
+	stw      r8, 0x84(r31)
+	stw      r8, 0x88(r31)
+	stw      r8, 0x8c(r31)
+	stw      r0, 0x90(r31)
+	stb      r8, 0x94(r31)
+	bl       __construct_array
+	lis      r4, "__ct__Q29JGeometry8TVec2<s>Fv"@ha
+	addi     r3, r31, 0xa6
+	addi     r4, r4, "__ct__Q29JGeometry8TVec2<s>Fv"@l
+	li       r5, 0
+	li       r6, 4
+	li       r7, 4
+	bl       __construct_array
+	li       r9, 1
+	lis      r3, __vt__Q28Morimura18TChallengeEndCount@ha
+	stb      r9, 0xc9(r31)
+	li       r8, 0
+	addi     r5, r3, __vt__Q28Morimura18TChallengeEndCount@l
+	lis      r3, lbl_80490228@ha
+	stb      r8, 0xca(r31)
+	li       r7, 0xff
+	lfs      f1, lbl_8051E1F8@sda21(r2)
+	addi     r6, r13, mColor__Q28Morimura12TDayEndCount@sda21
+	lfs      f0, lbl_8051E1FC@sda21(r2)
+	addi     r4, r5, 0x10
+	stfs     f1, 0xcc(r31)
+	addi     r0, r3, lbl_80490228@l
+	mr       r3, r31
+	stfs     f0, 0xd0(r31)
+	stb      r8, mColor__Q28Morimura12TDayEndCount@sda21(r13)
+	stb      r7, 1(r6)
+	stb      r8, 2(r6)
+	stb      r7, 3(r6)
+	stb      r8, mTestChangeColor__Q28Morimura12TDayEndCount@sda21(r13)
+	stw      r5, 0(r31)
+	stw      r4, 0x18(r31)
+	stw      r0, 0x14(r31)
+	stb      r9, 0xca(r31)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1528,60 +1862,59 @@ Morimura::TChallengeEndCount::TChallengeEndCount(void)
 Morimura::TDayEndCount::~TDayEndCount(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0xA8
-	  lis       r4, 0x804E
-	  subi      r4, r4, 0x4D98
-	  stw       r4, 0x0(r30)
-	  addi      r0, r4, 0x10
-	  stw       r0, 0x18(r30)
-	  beq-      .loc_0x98
-	  lis       r4, 0x804E
-	  subi      r4, r4, 0x4708
-	  stw       r4, 0x0(r30)
-	  addi      r0, r4, 0x10
-	  stw       r0, 0x18(r30)
-	  beq-      .loc_0x98
-	  lis       r4, 0x804F
-	  subi      r4, r4, 0x28A8
-	  stw       r4, 0x0(r30)
-	  addi      r0, r4, 0x10
-	  stw       r0, 0x18(r30)
-	  beq-      .loc_0x98
-	  lis       r4, 0x804E
-	  subi      r4, r4, 0x7DC0
-	  stw       r4, 0x0(r30)
-	  addi      r0, r4, 0x10
-	  stw       r0, 0x18(r30)
-	  bl        0xCC03C
-	  addi      r3, r30, 0x18
-	  li        r4, 0
-	  bl        -0x32856C
-	  mr        r3, r30
-	  li        r4, 0
-	  bl        0xCBFDC
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_803455C0
+	lis      r4, __vt__Q28Morimura12TDayEndCount@ha
+	addi     r4, r4, __vt__Q28Morimura12TDayEndCount@l
+	stw      r4, 0(r30)
+	addi     r0, r4, 0x10
+	stw      r0, 0x18(r30)
+	beq      lbl_803455B0
+	lis      r4, __vt__Q28Morimura9TTestBase@ha
+	addi     r4, r4, __vt__Q28Morimura9TTestBase@l
+	stw      r4, 0(r30)
+	addi     r0, r4, 0x10
+	stw      r0, 0x18(r30)
+	beq      lbl_803455B0
+	lis      r4, __vt__Q26Screen7ObjBase@ha
+	addi     r4, r4, __vt__Q26Screen7ObjBase@l
+	stw      r4, 0(r30)
+	addi     r0, r4, 0x10
+	stw      r0, 0x18(r30)
+	beq      lbl_803455B0
+	lis      r4, __vt__Q26Screen8IObjBase@ha
+	addi     r4, r4, __vt__Q26Screen8IObjBase@l
+	stw      r4, 0(r30)
+	addi     r0, r4, 0x10
+	stw      r0, 0x18(r30)
+	bl       del__5CNodeFv
+	addi     r3, r30, 0x18
+	li       r4, 0
+	bl       __dt__11JKRDisposerFv
+	mr       r3, r30
+	li       r4, 0
+	bl       __dt__5CNodeFv
 
-	.loc_0x98:
-	  extsh.    r0, r31
-	  ble-      .loc_0xA8
-	  mr        r3, r30
-	  bl        -0x321508
+lbl_803455B0:
+	extsh.   r0, r31
+	ble      lbl_803455C0
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0xA8:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803455C0:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1593,23 +1926,22 @@ Morimura::TDayEndCount::~TDayEndCount(void)
 void Morimura::TChallengeEndCount::doCreate(JKRArchive*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        -0x13DC
-	  li        r3, 0x80
-	  li        r0, 0
-	  stb       r3, -0x7AAC(r13)
-	  lwz       r3, 0x8C(r31)
-	  stb       r0, 0xB0(r3)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       doCreate__Q28Morimura12TDayEndCountFP10JKRArchive
+	li       r3, 0x80
+	li       r0, 0
+	stb      r3, mAlphaMax__Q28Morimura12TDayEndCount@sda21(r13)
+	lwz      r3, 0x8c(r31)
+	stb      r0, 0xb0(r3)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1621,86 +1953,85 @@ void Morimura::TChallengeEndCount::doCreate(JKRArchive*)
 Morimura::TChallengeEndCount1p::TChallengeEndCount1p(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r4, 0x8049
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  addi      r31, r4, 0x1E8
-	  addi      r4, r31, 0xC
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  bl        0x3B88
-	  lis       r4, 0x804E
-	  li        r8, 0
-	  subi      r4, r4, 0x4D98
-	  li        r0, -0x1
-	  stw       r4, 0x0(r30)
-	  addi      r5, r4, 0x10
-	  lis       r3, 0x8004
-	  li        r6, 0x4
-	  stw       r5, 0x18(r30)
-	  subi      r4, r3, 0x6460
-	  addi      r3, r30, 0x96
-	  li        r5, 0
-	  stw       r8, 0x80(r30)
-	  li        r7, 0x4
-	  stw       r8, 0x84(r30)
-	  stw       r8, 0x88(r30)
-	  stw       r8, 0x8C(r30)
-	  stw       r0, 0x90(r30)
-	  stb       r8, 0x94(r30)
-	  bl        -0x283E54
-	  lis       r4, 0x8004
-	  addi      r3, r30, 0xA6
-	  subi      r4, r4, 0x6460
-	  li        r5, 0
-	  li        r6, 0x4
-	  li        r7, 0x4
-	  bl        -0x283E70
-	  li        r12, 0x1
-	  lis       r3, 0x804E
-	  stb       r12, 0xC9(r30)
-	  li        r11, 0
-	  subi      r8, r3, 0x4E14
-	  lis       r3, 0x804E
-	  stb       r11, 0xCA(r30)
-	  subi      r5, r3, 0x4E90
-	  lfs       f1, -0x168(r2)
-	  li        r10, 0xFF
-	  lfs       f0, -0x164(r2)
-	  subi      r9, r13, 0x7A94
-	  stfs      f1, 0xCC(r30)
-	  addi      r7, r8, 0x10
-	  addi      r6, r31, 0x40
-	  addi      r4, r5, 0x10
-	  stfs      f0, 0xD0(r30)
-	  addi      r0, r31, 0x54
-	  mr        r3, r30
-	  stb       r11, -0x7A94(r13)
-	  stb       r10, 0x1(r9)
-	  stb       r11, 0x2(r9)
-	  stb       r10, 0x3(r9)
-	  stb       r11, -0x676F(r13)
-	  stw       r8, 0x0(r30)
-	  stw       r7, 0x18(r30)
-	  stw       r6, 0x14(r30)
-	  stb       r12, 0xCA(r30)
-	  stw       r5, 0x0(r30)
-	  stw       r4, 0x18(r30)
-	  stw       r0, 0x14(r30)
-	  lfs       f0, -0x7A9C(r13)
-	  stfs      f0, 0xCC(r30)
-	  lfs       f0, -0x7A98(r13)
-	  fneg      f0, f0
-	  stfs      f0, 0xD0(r30)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lis      r4, lbl_804901E8@ha
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	addi     r31, r4, lbl_804901E8@l
+	addi     r4, r31, 0xc
+	stw      r30, 8(r1)
+	mr       r30, r3
+	bl       __ct__Q28Morimura9TTestBaseFPc
+	lis      r4, __vt__Q28Morimura12TDayEndCount@ha
+	li       r8, 0
+	addi     r4, r4, __vt__Q28Morimura12TDayEndCount@l
+	li       r0, -1
+	stw      r4, 0(r30)
+	addi     r5, r4, 0x10
+	lis      r3, "__ct__Q29JGeometry8TVec2<s>Fv"@ha
+	li       r6, 4
+	stw      r5, 0x18(r30)
+	addi     r4, r3, "__ct__Q29JGeometry8TVec2<s>Fv"@l
+	addi     r3, r30, 0x96
+	li       r5, 0
+	stw      r8, 0x80(r30)
+	li       r7, 4
+	stw      r8, 0x84(r30)
+	stw      r8, 0x88(r30)
+	stw      r8, 0x8c(r30)
+	stw      r0, 0x90(r30)
+	stb      r8, 0x94(r30)
+	bl       __construct_array
+	lis      r4, "__ct__Q29JGeometry8TVec2<s>Fv"@ha
+	addi     r3, r30, 0xa6
+	addi     r4, r4, "__ct__Q29JGeometry8TVec2<s>Fv"@l
+	li       r5, 0
+	li       r6, 4
+	li       r7, 4
+	bl       __construct_array
+	li       r12, 1
+	lis      r3, __vt__Q28Morimura18TChallengeEndCount@ha
+	stb      r12, 0xc9(r30)
+	li       r11, 0
+	addi     r8, r3, __vt__Q28Morimura18TChallengeEndCount@l
+	lis      r3, __vt__Q28Morimura20TChallengeEndCount1p@ha
+	stb      r11, 0xca(r30)
+	addi     r5, r3, __vt__Q28Morimura20TChallengeEndCount1p@l
+	lfs      f1, lbl_8051E1F8@sda21(r2)
+	li       r10, 0xff
+	lfs      f0, lbl_8051E1FC@sda21(r2)
+	addi     r9, r13, mColor__Q28Morimura12TDayEndCount@sda21
+	stfs     f1, 0xcc(r30)
+	addi     r7, r8, 0x10
+	addi     r6, r31, 0x40
+	addi     r4, r5, 0x10
+	stfs     f0, 0xd0(r30)
+	addi     r0, r31, 0x54
+	mr       r3, r30
+	stb      r11, mColor__Q28Morimura12TDayEndCount@sda21(r13)
+	stb      r10, 1(r9)
+	stb      r11, 2(r9)
+	stb      r10, 3(r9)
+	stb      r11, mTestChangeColor__Q28Morimura12TDayEndCount@sda21(r13)
+	stw      r8, 0(r30)
+	stw      r7, 0x18(r30)
+	stw      r6, 0x14(r30)
+	stb      r12, 0xca(r30)
+	stw      r5, 0(r30)
+	stw      r4, 0x18(r30)
+	stw      r0, 0x14(r30)
+	lfs      f0, m2pScale__Q28Morimura12TDayEndCount@sda21(r13)
+	stfs     f0, 0xcc(r30)
+	lfs      f0, m2pOffsetY__Q28Morimura12TDayEndCount@sda21(r13)
+	fneg     f0, f0
+	stfs     f0, 0xd0(r30)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1712,66 +2043,65 @@ Morimura::TChallengeEndCount1p::TChallengeEndCount1p(void)
 Morimura::TChallengeEndCount::~TChallengeEndCount(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0xC0
-	  lis       r4, 0x804E
-	  subi      r4, r4, 0x4E14
-	  stw       r4, 0x0(r30)
-	  addi      r0, r4, 0x10
-	  stw       r0, 0x18(r30)
-	  beq-      .loc_0xB0
-	  lis       r4, 0x804E
-	  subi      r4, r4, 0x4D98
-	  stw       r4, 0x0(r30)
-	  addi      r0, r4, 0x10
-	  stw       r0, 0x18(r30)
-	  beq-      .loc_0xB0
-	  lis       r4, 0x804E
-	  subi      r4, r4, 0x4708
-	  stw       r4, 0x0(r30)
-	  addi      r0, r4, 0x10
-	  stw       r0, 0x18(r30)
-	  beq-      .loc_0xB0
-	  lis       r4, 0x804F
-	  subi      r4, r4, 0x28A8
-	  stw       r4, 0x0(r30)
-	  addi      r0, r4, 0x10
-	  stw       r0, 0x18(r30)
-	  beq-      .loc_0xB0
-	  lis       r4, 0x804E
-	  subi      r4, r4, 0x7DC0
-	  stw       r4, 0x0(r30)
-	  addi      r0, r4, 0x10
-	  stw       r0, 0x18(r30)
-	  bl        0xCBDE4
-	  addi      r3, r30, 0x18
-	  li        r4, 0
-	  bl        -0x3287C4
-	  mr        r3, r30
-	  li        r4, 0
-	  bl        0xCBD84
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_80345818
+	lis      r4, __vt__Q28Morimura18TChallengeEndCount@ha
+	addi     r4, r4, __vt__Q28Morimura18TChallengeEndCount@l
+	stw      r4, 0(r30)
+	addi     r0, r4, 0x10
+	stw      r0, 0x18(r30)
+	beq      lbl_80345808
+	lis      r4, __vt__Q28Morimura12TDayEndCount@ha
+	addi     r4, r4, __vt__Q28Morimura12TDayEndCount@l
+	stw      r4, 0(r30)
+	addi     r0, r4, 0x10
+	stw      r0, 0x18(r30)
+	beq      lbl_80345808
+	lis      r4, __vt__Q28Morimura9TTestBase@ha
+	addi     r4, r4, __vt__Q28Morimura9TTestBase@l
+	stw      r4, 0(r30)
+	addi     r0, r4, 0x10
+	stw      r0, 0x18(r30)
+	beq      lbl_80345808
+	lis      r4, __vt__Q26Screen7ObjBase@ha
+	addi     r4, r4, __vt__Q26Screen7ObjBase@l
+	stw      r4, 0(r30)
+	addi     r0, r4, 0x10
+	stw      r0, 0x18(r30)
+	beq      lbl_80345808
+	lis      r4, __vt__Q26Screen8IObjBase@ha
+	addi     r4, r4, __vt__Q26Screen8IObjBase@l
+	stw      r4, 0(r30)
+	addi     r0, r4, 0x10
+	stw      r0, 0x18(r30)
+	bl       del__5CNodeFv
+	addi     r3, r30, 0x18
+	li       r4, 0
+	bl       __dt__11JKRDisposerFv
+	mr       r3, r30
+	li       r4, 0
+	bl       __dt__5CNodeFv
 
-	.loc_0xB0:
-	  extsh.    r0, r31
-	  ble-      .loc_0xC0
-	  mr        r3, r30
-	  bl        -0x321760
+lbl_80345808:
+	extsh.   r0, r31
+	ble      lbl_80345818
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0xC0:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80345818:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1783,20 +2113,19 @@ Morimura::TChallengeEndCount::~TChallengeEndCount(void)
 void Morimura::TChallengeEndCount1p::doUpdate(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lfs       f0, -0x7A9C(r13)
-	  stfs      f0, 0xCC(r3)
-	  lfs       f0, -0x7A98(r13)
-	  fneg      f0, f0
-	  stfs      f0, 0xD0(r3)
-	  bl        -0x1354
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lfs      f0, m2pScale__Q28Morimura12TDayEndCount@sda21(r13)
+	stfs     f0, 0xcc(r3)
+	lfs      f0, m2pOffsetY__Q28Morimura12TDayEndCount@sda21(r13)
+	fneg     f0, f0
+	stfs     f0, 0xd0(r3)
+	bl       doUpdate__Q28Morimura12TDayEndCountFv
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1808,86 +2137,85 @@ void Morimura::TChallengeEndCount1p::doUpdate(void)
 Morimura::TChallengeEndCount2p::TChallengeEndCount2p(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r4, 0x8049
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  addi      r31, r4, 0x1E8
-	  addi      r4, r31, 0xC
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  bl        0x393C
-	  lis       r4, 0x804E
-	  li        r8, 0
-	  subi      r4, r4, 0x4D98
-	  li        r0, -0x1
-	  stw       r4, 0x0(r30)
-	  addi      r5, r4, 0x10
-	  lis       r3, 0x8004
-	  li        r6, 0x4
-	  stw       r5, 0x18(r30)
-	  subi      r4, r3, 0x6460
-	  addi      r3, r30, 0x96
-	  li        r5, 0
-	  stw       r8, 0x80(r30)
-	  li        r7, 0x4
-	  stw       r8, 0x84(r30)
-	  stw       r8, 0x88(r30)
-	  stw       r8, 0x8C(r30)
-	  stw       r0, 0x90(r30)
-	  stb       r8, 0x94(r30)
-	  bl        -0x2840A0
-	  lis       r4, 0x8004
-	  addi      r3, r30, 0xA6
-	  subi      r4, r4, 0x6460
-	  li        r5, 0
-	  li        r6, 0x4
-	  li        r7, 0x4
-	  bl        -0x2840BC
-	  li        r12, 0x1
-	  lis       r3, 0x804E
-	  stb       r12, 0xC9(r30)
-	  li        r11, 0
-	  subi      r8, r3, 0x4E14
-	  lis       r3, 0x804E
-	  stb       r11, 0xCA(r30)
-	  subi      r5, r3, 0x4F0C
-	  lfs       f1, -0x168(r2)
-	  li        r10, 0xFF
-	  lfs       f0, -0x164(r2)
-	  subi      r9, r13, 0x7A94
-	  stfs      f1, 0xCC(r30)
-	  addi      r7, r8, 0x10
-	  addi      r6, r31, 0x40
-	  addi      r4, r5, 0x10
-	  stfs      f0, 0xD0(r30)
-	  addi      r0, r31, 0x68
-	  mr        r3, r30
-	  stb       r11, -0x7A94(r13)
-	  stb       r10, 0x1(r9)
-	  stb       r11, 0x2(r9)
-	  stb       r10, 0x3(r9)
-	  stb       r11, -0x676F(r13)
-	  stw       r8, 0x0(r30)
-	  stw       r7, 0x18(r30)
-	  stw       r6, 0x14(r30)
-	  stb       r12, 0xCA(r30)
-	  stw       r5, 0x0(r30)
-	  stw       r4, 0x18(r30)
-	  stw       r0, 0x14(r30)
-	  lfs       f0, -0x7A9C(r13)
-	  stfs      f0, 0xCC(r30)
-	  lfs       f0, -0x7A98(r13)
-	  stfs      f0, 0xD0(r30)
-	  stb       r11, 0xC9(r30)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lis      r4, lbl_804901E8@ha
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	addi     r31, r4, lbl_804901E8@l
+	addi     r4, r31, 0xc
+	stw      r30, 8(r1)
+	mr       r30, r3
+	bl       __ct__Q28Morimura9TTestBaseFPc
+	lis      r4, __vt__Q28Morimura12TDayEndCount@ha
+	li       r8, 0
+	addi     r4, r4, __vt__Q28Morimura12TDayEndCount@l
+	li       r0, -1
+	stw      r4, 0(r30)
+	addi     r5, r4, 0x10
+	lis      r3, "__ct__Q29JGeometry8TVec2<s>Fv"@ha
+	li       r6, 4
+	stw      r5, 0x18(r30)
+	addi     r4, r3, "__ct__Q29JGeometry8TVec2<s>Fv"@l
+	addi     r3, r30, 0x96
+	li       r5, 0
+	stw      r8, 0x80(r30)
+	li       r7, 4
+	stw      r8, 0x84(r30)
+	stw      r8, 0x88(r30)
+	stw      r8, 0x8c(r30)
+	stw      r0, 0x90(r30)
+	stb      r8, 0x94(r30)
+	bl       __construct_array
+	lis      r4, "__ct__Q29JGeometry8TVec2<s>Fv"@ha
+	addi     r3, r30, 0xa6
+	addi     r4, r4, "__ct__Q29JGeometry8TVec2<s>Fv"@l
+	li       r5, 0
+	li       r6, 4
+	li       r7, 4
+	bl       __construct_array
+	li       r12, 1
+	lis      r3, __vt__Q28Morimura18TChallengeEndCount@ha
+	stb      r12, 0xc9(r30)
+	li       r11, 0
+	addi     r8, r3, __vt__Q28Morimura18TChallengeEndCount@l
+	lis      r3, __vt__Q28Morimura20TChallengeEndCount2p@ha
+	stb      r11, 0xca(r30)
+	addi     r5, r3, __vt__Q28Morimura20TChallengeEndCount2p@l
+	lfs      f1, lbl_8051E1F8@sda21(r2)
+	li       r10, 0xff
+	lfs      f0, lbl_8051E1FC@sda21(r2)
+	addi     r9, r13, mColor__Q28Morimura12TDayEndCount@sda21
+	stfs     f1, 0xcc(r30)
+	addi     r7, r8, 0x10
+	addi     r6, r31, 0x40
+	addi     r4, r5, 0x10
+	stfs     f0, 0xd0(r30)
+	addi     r0, r31, 0x68
+	mr       r3, r30
+	stb      r11, mColor__Q28Morimura12TDayEndCount@sda21(r13)
+	stb      r10, 1(r9)
+	stb      r11, 2(r9)
+	stb      r10, 3(r9)
+	stb      r11, mTestChangeColor__Q28Morimura12TDayEndCount@sda21(r13)
+	stw      r8, 0(r30)
+	stw      r7, 0x18(r30)
+	stw      r6, 0x14(r30)
+	stb      r12, 0xca(r30)
+	stw      r5, 0(r30)
+	stw      r4, 0x18(r30)
+	stw      r0, 0x14(r30)
+	lfs      f0, m2pScale__Q28Morimura12TDayEndCount@sda21(r13)
+	stfs     f0, 0xcc(r30)
+	lfs      f0, m2pOffsetY__Q28Morimura12TDayEndCount@sda21(r13)
+	stfs     f0, 0xd0(r30)
+	stb      r11, 0xc9(r30)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1899,19 +2227,18 @@ Morimura::TChallengeEndCount2p::TChallengeEndCount2p(void)
 void Morimura::TChallengeEndCount2p::doUpdate(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lfs       f0, -0x7A9C(r13)
-	  stfs      f0, 0xCC(r3)
-	  lfs       f0, -0x7A98(r13)
-	  stfs      f0, 0xD0(r3)
-	  bl        -0x14C0
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lfs      f0, m2pScale__Q28Morimura12TDayEndCount@sda21(r13)
+	stfs     f0, 0xcc(r3)
+	lfs      f0, m2pOffsetY__Q28Morimura12TDayEndCount@sda21(r13)
+	stfs     f0, 0xd0(r3)
+	bl       doUpdate__Q28Morimura12TDayEndCountFv
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1923,316 +2250,315 @@ void Morimura::TChallengeEndCount2p::doUpdate(void)
 void Morimura::TCountDownScene::doCreateObj(JKRArchive*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r5, 0x8049
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  addi      r31, r5, 0x1E8
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r29, r4
-	  stw       r28, 0x10(r1)
-	  mr        r28, r3
-	  lbz       r0, -0x676E(r13)
-	  cmpwi     r0, 0x1
-	  beq-      .loc_0x12C
-	  bge-      .loc_0x48
-	  cmpwi     r0, 0
-	  bge-      .loc_0x54
-	  b         .loc_0x46C
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lis      r5, lbl_804901E8@ha
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	addi     r31, r5, lbl_804901E8@l
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	mr       r29, r4
+	stw      r28, 0x10(r1)
+	mr       r28, r3
+	lbz      r0, mCountDownType__Q28Morimura12TDayEndCount@sda21(r13)
+	cmpwi    r0, 1
+	beq      lbl_80345B00
+	bge      lbl_80345A1C
+	cmpwi    r0, 0
+	bge      lbl_80345A28
+	b        lbl_80345E40
 
-	.loc_0x48:
-	  cmpwi     r0, 0x3
-	  bge-      .loc_0x46C
-	  b         .loc_0x224
+lbl_80345A1C:
+	cmpwi    r0, 3
+	bge      lbl_80345E40
+	b        lbl_80345BF8
 
-	.loc_0x54:
-	  li        r3, 0xD4
-	  bl        -0x321B88
-	  mr.       r30, r3
-	  beq-      .loc_0x114
-	  addi      r4, r31, 0xC
-	  bl        0x378C
-	  lis       r4, 0x804E
-	  li        r8, 0
-	  subi      r4, r4, 0x4D98
-	  li        r0, -0x1
-	  stw       r4, 0x0(r30)
-	  addi      r5, r4, 0x10
-	  lis       r3, 0x8004
-	  li        r6, 0x4
-	  stw       r5, 0x18(r30)
-	  subi      r4, r3, 0x6460
-	  addi      r3, r30, 0x96
-	  li        r5, 0
-	  stw       r8, 0x80(r30)
-	  li        r7, 0x4
-	  stw       r8, 0x84(r30)
-	  stw       r8, 0x88(r30)
-	  stw       r8, 0x8C(r30)
-	  stw       r0, 0x90(r30)
-	  stb       r8, 0x94(r30)
-	  bl        -0x284250
-	  lis       r4, 0x8004
-	  addi      r3, r30, 0xA6
-	  subi      r4, r4, 0x6460
-	  li        r5, 0
-	  li        r6, 0x4
-	  li        r7, 0x4
-	  bl        -0x28426C
-	  li        r0, 0x1
-	  li        r4, 0
-	  stb       r0, 0xC9(r30)
-	  li        r0, 0xFF
-	  lfs       f1, -0x168(r2)
-	  subi      r3, r13, 0x7A94
-	  stb       r4, 0xCA(r30)
-	  lfs       f0, -0x164(r2)
-	  stfs      f1, 0xCC(r30)
-	  stfs      f0, 0xD0(r30)
-	  stb       r4, -0x7A94(r13)
-	  stb       r0, 0x1(r3)
-	  stb       r4, 0x2(r3)
-	  stb       r0, 0x3(r3)
-	  stb       r4, -0x676F(r13)
+lbl_80345A28:
+	li       r3, 0xd4
+	bl       __nw__FUl
+	or.      r30, r3, r3
+	beq      lbl_80345AE8
+	addi     r4, r31, 0xc
+	bl       __ct__Q28Morimura9TTestBaseFPc
+	lis      r4, __vt__Q28Morimura12TDayEndCount@ha
+	li       r8, 0
+	addi     r4, r4, __vt__Q28Morimura12TDayEndCount@l
+	li       r0, -1
+	stw      r4, 0(r30)
+	addi     r5, r4, 0x10
+	lis      r3, "__ct__Q29JGeometry8TVec2<s>Fv"@ha
+	li       r6, 4
+	stw      r5, 0x18(r30)
+	addi     r4, r3, "__ct__Q29JGeometry8TVec2<s>Fv"@l
+	addi     r3, r30, 0x96
+	li       r5, 0
+	stw      r8, 0x80(r30)
+	li       r7, 4
+	stw      r8, 0x84(r30)
+	stw      r8, 0x88(r30)
+	stw      r8, 0x8c(r30)
+	stw      r0, 0x90(r30)
+	stb      r8, 0x94(r30)
+	bl       __construct_array
+	lis      r4, "__ct__Q29JGeometry8TVec2<s>Fv"@ha
+	addi     r3, r30, 0xa6
+	addi     r4, r4, "__ct__Q29JGeometry8TVec2<s>Fv"@l
+	li       r5, 0
+	li       r6, 4
+	li       r7, 4
+	bl       __construct_array
+	li       r0, 1
+	li       r4, 0
+	stb      r0, 0xc9(r30)
+	li       r0, 0xff
+	lfs      f1, lbl_8051E1F8@sda21(r2)
+	addi     r3, r13, mColor__Q28Morimura12TDayEndCount@sda21
+	stb      r4, 0xca(r30)
+	lfs      f0, lbl_8051E1FC@sda21(r2)
+	stfs     f1, 0xcc(r30)
+	stfs     f0, 0xd0(r30)
+	stb      r4, mColor__Q28Morimura12TDayEndCount@sda21(r13)
+	stb      r0, 1(r3)
+	stb      r4, 2(r3)
+	stb      r0, 3(r3)
+	stb      r4, mTestChangeColor__Q28Morimura12TDayEndCount@sda21(r13)
 
-	.loc_0x114:
-	  mr        r3, r28
-	  mr        r4, r30
-	  mr        r5, r29
-	  bl        0x10C280
-	  stw       r30, 0x220(r28)
-	  b         .loc_0x46C
+lbl_80345AE8:
+	mr       r3, r28
+	mr       r4, r30
+	mr       r5, r29
+	bl       registObj__Q26Screen9SceneBaseFPQ26Screen7ObjBaseP10JKRArchive
+	stw      r30, 0x220(r28)
+	b        lbl_80345E40
 
-	.loc_0x12C:
-	  li        r3, 0xD4
-	  bl        -0x321C60
-	  mr.       r30, r3
-	  beq-      .loc_0x20C
-	  addi      r4, r31, 0xC
-	  bl        0x36B4
-	  lis       r4, 0x804E
-	  li        r8, 0
-	  subi      r4, r4, 0x4D98
-	  li        r0, -0x1
-	  stw       r4, 0x0(r30)
-	  addi      r5, r4, 0x10
-	  lis       r3, 0x8004
-	  li        r6, 0x4
-	  stw       r5, 0x18(r30)
-	  subi      r4, r3, 0x6460
-	  addi      r3, r30, 0x96
-	  li        r5, 0
-	  stw       r8, 0x80(r30)
-	  li        r7, 0x4
-	  stw       r8, 0x84(r30)
-	  stw       r8, 0x88(r30)
-	  stw       r8, 0x8C(r30)
-	  stw       r0, 0x90(r30)
-	  stb       r8, 0x94(r30)
-	  bl        -0x284328
-	  lis       r4, 0x8004
-	  addi      r3, r30, 0xA6
-	  subi      r4, r4, 0x6460
-	  li        r5, 0
-	  li        r6, 0x4
-	  li        r7, 0x4
-	  bl        -0x284344
-	  li        r8, 0x1
-	  lis       r3, 0x804E
-	  stb       r8, 0xC9(r30)
-	  li        r7, 0
-	  subi      r4, r3, 0x4E14
-	  lfs       f1, -0x168(r2)
-	  stb       r7, 0xCA(r30)
-	  li        r6, 0xFF
-	  lfs       f0, -0x164(r2)
-	  subi      r5, r13, 0x7A94
-	  stfs      f1, 0xCC(r30)
-	  addi      r3, r4, 0x10
-	  addi      r0, r31, 0x40
-	  stfs      f0, 0xD0(r30)
-	  stb       r7, -0x7A94(r13)
-	  stb       r6, 0x1(r5)
-	  stb       r7, 0x2(r5)
-	  stb       r6, 0x3(r5)
-	  stb       r7, -0x676F(r13)
-	  stw       r4, 0x0(r30)
-	  stw       r3, 0x18(r30)
-	  stw       r0, 0x14(r30)
-	  stb       r8, 0xCA(r30)
+lbl_80345B00:
+	li       r3, 0xd4
+	bl       __nw__FUl
+	or.      r30, r3, r3
+	beq      lbl_80345BE0
+	addi     r4, r31, 0xc
+	bl       __ct__Q28Morimura9TTestBaseFPc
+	lis      r4, __vt__Q28Morimura12TDayEndCount@ha
+	li       r8, 0
+	addi     r4, r4, __vt__Q28Morimura12TDayEndCount@l
+	li       r0, -1
+	stw      r4, 0(r30)
+	addi     r5, r4, 0x10
+	lis      r3, "__ct__Q29JGeometry8TVec2<s>Fv"@ha
+	li       r6, 4
+	stw      r5, 0x18(r30)
+	addi     r4, r3, "__ct__Q29JGeometry8TVec2<s>Fv"@l
+	addi     r3, r30, 0x96
+	li       r5, 0
+	stw      r8, 0x80(r30)
+	li       r7, 4
+	stw      r8, 0x84(r30)
+	stw      r8, 0x88(r30)
+	stw      r8, 0x8c(r30)
+	stw      r0, 0x90(r30)
+	stb      r8, 0x94(r30)
+	bl       __construct_array
+	lis      r4, "__ct__Q29JGeometry8TVec2<s>Fv"@ha
+	addi     r3, r30, 0xa6
+	addi     r4, r4, "__ct__Q29JGeometry8TVec2<s>Fv"@l
+	li       r5, 0
+	li       r6, 4
+	li       r7, 4
+	bl       __construct_array
+	li       r8, 1
+	lis      r3, __vt__Q28Morimura18TChallengeEndCount@ha
+	stb      r8, 0xc9(r30)
+	li       r7, 0
+	addi     r4, r3, __vt__Q28Morimura18TChallengeEndCount@l
+	lfs      f1, lbl_8051E1F8@sda21(r2)
+	stb      r7, 0xca(r30)
+	li       r6, 0xff
+	lfs      f0, lbl_8051E1FC@sda21(r2)
+	addi     r5, r13, mColor__Q28Morimura12TDayEndCount@sda21
+	stfs     f1, 0xcc(r30)
+	addi     r3, r4, 0x10
+	addi     r0, r31, 0x40
+	stfs     f0, 0xd0(r30)
+	stb      r7, mColor__Q28Morimura12TDayEndCount@sda21(r13)
+	stb      r6, 1(r5)
+	stb      r7, 2(r5)
+	stb      r6, 3(r5)
+	stb      r7, mTestChangeColor__Q28Morimura12TDayEndCount@sda21(r13)
+	stw      r4, 0(r30)
+	stw      r3, 0x18(r30)
+	stw      r0, 0x14(r30)
+	stb      r8, 0xca(r30)
 
-	.loc_0x20C:
-	  mr        r3, r28
-	  mr        r4, r30
-	  mr        r5, r29
-	  bl        0x10C188
-	  stw       r30, 0x220(r28)
-	  b         .loc_0x46C
+lbl_80345BE0:
+	mr       r3, r28
+	mr       r4, r30
+	mr       r5, r29
+	bl       registObj__Q26Screen9SceneBaseFPQ26Screen7ObjBaseP10JKRArchive
+	stw      r30, 0x220(r28)
+	b        lbl_80345E40
 
-	.loc_0x224:
-	  li        r3, 0xD4
-	  bl        -0x321D58
-	  mr.       r30, r3
-	  beq-      .loc_0x334
-	  addi      r4, r31, 0xC
-	  bl        0x35BC
-	  lis       r4, 0x804E
-	  li        r8, 0
-	  subi      r4, r4, 0x4D98
-	  li        r0, -0x1
-	  stw       r4, 0x0(r30)
-	  addi      r5, r4, 0x10
-	  lis       r3, 0x8004
-	  li        r6, 0x4
-	  stw       r5, 0x18(r30)
-	  subi      r4, r3, 0x6460
-	  addi      r3, r30, 0x96
-	  li        r5, 0
-	  stw       r8, 0x80(r30)
-	  li        r7, 0x4
-	  stw       r8, 0x84(r30)
-	  stw       r8, 0x88(r30)
-	  stw       r8, 0x8C(r30)
-	  stw       r0, 0x90(r30)
-	  stb       r8, 0x94(r30)
-	  bl        -0x284420
-	  lis       r4, 0x8004
-	  addi      r3, r30, 0xA6
-	  subi      r4, r4, 0x6460
-	  li        r5, 0
-	  li        r6, 0x4
-	  li        r7, 0x4
-	  bl        -0x28443C
-	  li        r11, 0x1
-	  lis       r3, 0x804E
-	  stb       r11, 0xC9(r30)
-	  li        r10, 0
-	  subi      r7, r3, 0x4E14
-	  lis       r3, 0x804E
-	  stb       r10, 0xCA(r30)
-	  subi      r4, r3, 0x4E90
-	  lfs       f1, -0x168(r2)
-	  li        r9, 0xFF
-	  lfs       f0, -0x164(r2)
-	  subi      r8, r13, 0x7A94
-	  stfs      f1, 0xCC(r30)
-	  addi      r6, r7, 0x10
-	  addi      r5, r31, 0x40
-	  addi      r3, r4, 0x10
-	  stfs      f0, 0xD0(r30)
-	  addi      r0, r31, 0x54
-	  stb       r10, -0x7A94(r13)
-	  stb       r9, 0x1(r8)
-	  stb       r10, 0x2(r8)
-	  stb       r9, 0x3(r8)
-	  stb       r10, -0x676F(r13)
-	  stw       r7, 0x0(r30)
-	  stw       r6, 0x18(r30)
-	  stw       r5, 0x14(r30)
-	  stb       r11, 0xCA(r30)
-	  stw       r4, 0x0(r30)
-	  stw       r3, 0x18(r30)
-	  stw       r0, 0x14(r30)
-	  lfs       f0, -0x7A9C(r13)
-	  stfs      f0, 0xCC(r30)
-	  lfs       f0, -0x7A98(r13)
-	  fneg      f0, f0
-	  stfs      f0, 0xD0(r30)
+lbl_80345BF8:
+	li       r3, 0xd4
+	bl       __nw__FUl
+	or.      r30, r3, r3
+	beq      lbl_80345D08
+	addi     r4, r31, 0xc
+	bl       __ct__Q28Morimura9TTestBaseFPc
+	lis      r4, __vt__Q28Morimura12TDayEndCount@ha
+	li       r8, 0
+	addi     r4, r4, __vt__Q28Morimura12TDayEndCount@l
+	li       r0, -1
+	stw      r4, 0(r30)
+	addi     r5, r4, 0x10
+	lis      r3, "__ct__Q29JGeometry8TVec2<s>Fv"@ha
+	li       r6, 4
+	stw      r5, 0x18(r30)
+	addi     r4, r3, "__ct__Q29JGeometry8TVec2<s>Fv"@l
+	addi     r3, r30, 0x96
+	li       r5, 0
+	stw      r8, 0x80(r30)
+	li       r7, 4
+	stw      r8, 0x84(r30)
+	stw      r8, 0x88(r30)
+	stw      r8, 0x8c(r30)
+	stw      r0, 0x90(r30)
+	stb      r8, 0x94(r30)
+	bl       __construct_array
+	lis      r4, "__ct__Q29JGeometry8TVec2<s>Fv"@ha
+	addi     r3, r30, 0xa6
+	addi     r4, r4, "__ct__Q29JGeometry8TVec2<s>Fv"@l
+	li       r5, 0
+	li       r6, 4
+	li       r7, 4
+	bl       __construct_array
+	li       r11, 1
+	lis      r3, __vt__Q28Morimura18TChallengeEndCount@ha
+	stb      r11, 0xc9(r30)
+	li       r10, 0
+	addi     r7, r3, __vt__Q28Morimura18TChallengeEndCount@l
+	lis      r3, __vt__Q28Morimura20TChallengeEndCount1p@ha
+	stb      r10, 0xca(r30)
+	addi     r4, r3, __vt__Q28Morimura20TChallengeEndCount1p@l
+	lfs      f1, lbl_8051E1F8@sda21(r2)
+	li       r9, 0xff
+	lfs      f0, lbl_8051E1FC@sda21(r2)
+	addi     r8, r13, mColor__Q28Morimura12TDayEndCount@sda21
+	stfs     f1, 0xcc(r30)
+	addi     r6, r7, 0x10
+	addi     r5, r31, 0x40
+	addi     r3, r4, 0x10
+	stfs     f0, 0xd0(r30)
+	addi     r0, r31, 0x54
+	stb      r10, mColor__Q28Morimura12TDayEndCount@sda21(r13)
+	stb      r9, 1(r8)
+	stb      r10, 2(r8)
+	stb      r9, 3(r8)
+	stb      r10, mTestChangeColor__Q28Morimura12TDayEndCount@sda21(r13)
+	stw      r7, 0(r30)
+	stw      r6, 0x18(r30)
+	stw      r5, 0x14(r30)
+	stb      r11, 0xca(r30)
+	stw      r4, 0(r30)
+	stw      r3, 0x18(r30)
+	stw      r0, 0x14(r30)
+	lfs      f0, m2pScale__Q28Morimura12TDayEndCount@sda21(r13)
+	stfs     f0, 0xcc(r30)
+	lfs      f0, m2pOffsetY__Q28Morimura12TDayEndCount@sda21(r13)
+	fneg     f0, f0
+	stfs     f0, 0xd0(r30)
 
-	.loc_0x334:
-	  mr        r3, r28
-	  mr        r4, r30
-	  mr        r5, r29
-	  bl        0x10C060
-	  stw       r30, 0x220(r28)
-	  li        r3, 0xD4
-	  bl        -0x321E7C
-	  mr.       r30, r3
-	  beq-      .loc_0x458
-	  addi      r4, r31, 0xC
-	  bl        0x3498
-	  lis       r4, 0x804E
-	  li        r8, 0
-	  subi      r4, r4, 0x4D98
-	  li        r0, -0x1
-	  stw       r4, 0x0(r30)
-	  addi      r5, r4, 0x10
-	  lis       r3, 0x8004
-	  li        r6, 0x4
-	  stw       r5, 0x18(r30)
-	  subi      r4, r3, 0x6460
-	  addi      r3, r30, 0x96
-	  li        r5, 0
-	  stw       r8, 0x80(r30)
-	  li        r7, 0x4
-	  stw       r8, 0x84(r30)
-	  stw       r8, 0x88(r30)
-	  stw       r8, 0x8C(r30)
-	  stw       r0, 0x90(r30)
-	  stb       r8, 0x94(r30)
-	  bl        -0x284544
-	  lis       r4, 0x8004
-	  addi      r3, r30, 0xA6
-	  subi      r4, r4, 0x6460
-	  li        r5, 0
-	  li        r6, 0x4
-	  li        r7, 0x4
-	  bl        -0x284560
-	  li        r11, 0x1
-	  lis       r3, 0x804E
-	  stb       r11, 0xC9(r30)
-	  li        r10, 0
-	  subi      r7, r3, 0x4E14
-	  lis       r3, 0x804E
-	  stb       r10, 0xCA(r30)
-	  subi      r4, r3, 0x4F0C
-	  lfs       f1, -0x168(r2)
-	  li        r9, 0xFF
-	  lfs       f0, -0x164(r2)
-	  subi      r8, r13, 0x7A94
-	  stfs      f1, 0xCC(r30)
-	  addi      r6, r7, 0x10
-	  addi      r5, r31, 0x40
-	  addi      r3, r4, 0x10
-	  stfs      f0, 0xD0(r30)
-	  addi      r0, r31, 0x68
-	  stb       r10, -0x7A94(r13)
-	  stb       r9, 0x1(r8)
-	  stb       r10, 0x2(r8)
-	  stb       r9, 0x3(r8)
-	  stb       r10, -0x676F(r13)
-	  stw       r7, 0x0(r30)
-	  stw       r6, 0x18(r30)
-	  stw       r5, 0x14(r30)
-	  stb       r11, 0xCA(r30)
-	  stw       r4, 0x0(r30)
-	  stw       r3, 0x18(r30)
-	  stw       r0, 0x14(r30)
-	  lfs       f0, -0x7A9C(r13)
-	  stfs      f0, 0xCC(r30)
-	  lfs       f0, -0x7A98(r13)
-	  stfs      f0, 0xD0(r30)
-	  stb       r10, 0xC9(r30)
+lbl_80345D08:
+	mr       r3, r28
+	mr       r4, r30
+	mr       r5, r29
+	bl       registObj__Q26Screen9SceneBaseFPQ26Screen7ObjBaseP10JKRArchive
+	stw      r30, 0x220(r28)
+	li       r3, 0xd4
+	bl       __nw__FUl
+	or.      r30, r3, r3
+	beq      lbl_80345E2C
+	addi     r4, r31, 0xc
+	bl       __ct__Q28Morimura9TTestBaseFPc
+	lis      r4, __vt__Q28Morimura12TDayEndCount@ha
+	li       r8, 0
+	addi     r4, r4, __vt__Q28Morimura12TDayEndCount@l
+	li       r0, -1
+	stw      r4, 0(r30)
+	addi     r5, r4, 0x10
+	lis      r3, "__ct__Q29JGeometry8TVec2<s>Fv"@ha
+	li       r6, 4
+	stw      r5, 0x18(r30)
+	addi     r4, r3, "__ct__Q29JGeometry8TVec2<s>Fv"@l
+	addi     r3, r30, 0x96
+	li       r5, 0
+	stw      r8, 0x80(r30)
+	li       r7, 4
+	stw      r8, 0x84(r30)
+	stw      r8, 0x88(r30)
+	stw      r8, 0x8c(r30)
+	stw      r0, 0x90(r30)
+	stb      r8, 0x94(r30)
+	bl       __construct_array
+	lis      r4, "__ct__Q29JGeometry8TVec2<s>Fv"@ha
+	addi     r3, r30, 0xa6
+	addi     r4, r4, "__ct__Q29JGeometry8TVec2<s>Fv"@l
+	li       r5, 0
+	li       r6, 4
+	li       r7, 4
+	bl       __construct_array
+	li       r11, 1
+	lis      r3, __vt__Q28Morimura18TChallengeEndCount@ha
+	stb      r11, 0xc9(r30)
+	li       r10, 0
+	addi     r7, r3, __vt__Q28Morimura18TChallengeEndCount@l
+	lis      r3, __vt__Q28Morimura20TChallengeEndCount2p@ha
+	stb      r10, 0xca(r30)
+	addi     r4, r3, __vt__Q28Morimura20TChallengeEndCount2p@l
+	lfs      f1, lbl_8051E1F8@sda21(r2)
+	li       r9, 0xff
+	lfs      f0, lbl_8051E1FC@sda21(r2)
+	addi     r8, r13, mColor__Q28Morimura12TDayEndCount@sda21
+	stfs     f1, 0xcc(r30)
+	addi     r6, r7, 0x10
+	addi     r5, r31, 0x40
+	addi     r3, r4, 0x10
+	stfs     f0, 0xd0(r30)
+	addi     r0, r31, 0x68
+	stb      r10, mColor__Q28Morimura12TDayEndCount@sda21(r13)
+	stb      r9, 1(r8)
+	stb      r10, 2(r8)
+	stb      r9, 3(r8)
+	stb      r10, mTestChangeColor__Q28Morimura12TDayEndCount@sda21(r13)
+	stw      r7, 0(r30)
+	stw      r6, 0x18(r30)
+	stw      r5, 0x14(r30)
+	stb      r11, 0xca(r30)
+	stw      r4, 0(r30)
+	stw      r3, 0x18(r30)
+	stw      r0, 0x14(r30)
+	lfs      f0, m2pScale__Q28Morimura12TDayEndCount@sda21(r13)
+	stfs     f0, 0xcc(r30)
+	lfs      f0, m2pOffsetY__Q28Morimura12TDayEndCount@sda21(r13)
+	stfs     f0, 0xd0(r30)
+	stb      r10, 0xc9(r30)
 
-	.loc_0x458:
-	  stw       r30, 0x224(r28)
-	  mr        r3, r28
-	  mr        r5, r29
-	  lwz       r4, 0x224(r28)
-	  bl        0x10BF38
+lbl_80345E2C:
+	stw      r30, 0x224(r28)
+	mr       r3, r28
+	mr       r5, r29
+	lwz      r4, 0x224(r28)
+	bl       registObj__Q26Screen9SceneBaseFPQ26Screen7ObjBaseP10JKRArchive
 
-	.loc_0x46C:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80345E40:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -2244,34 +2570,33 @@ void Morimura::TCountDownScene::doCreateObj(JKRArchive*)
 void Morimura::TCountDownScene::doStart(Screen::StartSceneArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  bl        0x10BDEC
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x4C
-	  lwz       r0, 0x224(r30)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x4C
-	  mr        r3, r0
-	  mr        r4, r31
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x24(r12)
-	  mtctr     r12
-	  bctrl
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	bl       doStart__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80345EAC
+	lwz      r0, 0x224(r30)
+	cmplwi   r0, 0
+	beq      lbl_80345EAC
+	mr       r3, r0
+	mr       r4, r31
+	lwz      r12, 0(r3)
+	lwz      r12, 0x24(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x4C:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80345EAC:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2283,10 +2608,9 @@ void Morimura::TCountDownScene::doStart(Screen::StartSceneArg*)
 void Morimura::TCountDownScene::getResName() const
 {
 	/*
-	.loc_0x0:
-	  lis       r3, 0x8049
-	  addi      r3, r3, 0x264
-	  blr
+	lis      r3, lbl_80490264@ha
+	addi     r3, r3, lbl_80490264@l
+	blr
 	*/
 }
 
@@ -2305,10 +2629,9 @@ u32 Morimura::TCountDownScene::getSceneType(void) { return 0x272D; }
 void Morimura::TCountDownScene::getOwnerID(void)
 {
 	/*
-	.loc_0x0:
-	  lis       r3, 0x4D52
-	  addi      r3, r3, 0x4D52
-	  blr
+	lis      r3, 0x4D524D52@ha
+	addi     r3, r3, 0x4D524D52@l
+	blr
 	*/
 }
 
@@ -2320,12 +2643,11 @@ void Morimura::TCountDownScene::getOwnerID(void)
 void Morimura::TCountDownScene::getMemberID(void)
 {
 	/*
-	.loc_0x0:
-	  lis       r4, 0x4E44
-	  lis       r3, 0x4441
-	  addi      r4, r4, 0x4344
-	  addi      r3, r3, 0x5945
-	  blr
+	lis      r4, 0x4E444344@ha
+	lis      r3, 0x44415945@ha
+	addi     r4, r4, 0x4E444344@l
+	addi     r3, r3, 0x44415945@l
+	blr
 	*/
 }
 
@@ -2337,21 +2659,20 @@ void Morimura::TCountDownScene::getMemberID(void)
 void Morimura::TDayEndCount::doStart(Screen::StartSceneArg const*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        0x3340
-	  mr        r3, r31
-	  bl        -0xF14
-	  lwz       r0, 0x14(r1)
-	  li        r3, 0x1
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       doStart__Q28Morimura9TTestBaseFPCQ26Screen13StartSceneArg
+	mr       r3, r31
+	bl       reset__Q28Morimura12TDayEndCountFv
+	lwz      r0, 0x14(r1)
+	li       r3, 1
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2363,24 +2684,23 @@ void Morimura::TDayEndCount::doStart(Screen::StartSceneArg const*)
 void Morimura::TDayEndCount::getDispMemberBase(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lbz       r0, -0x6760(r13)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x20
-	  lwz       r3, 0x7C(r3)
-	  b         .loc_0x24
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lbz      r0, mIsSection__Q28Morimura9TTestBase@sda21(r13)
+	cmplwi   r0, 0
+	beq      lbl_80345F50
+	lwz      r3, 0x7c(r3)
+	b        lbl_80345F54
 
-	.loc_0x20:
-	  bl        0x10E058
+lbl_80345F50:
+	bl       getDispMember__Q26Screen7ObjBaseFv
 
-	.loc_0x24:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80345F54:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2403,72 +2723,71 @@ void Morimura::TTestBase::doUpdateFadeinFinish(void)
 Morimura::TChallengeEndCount2p::~TChallengeEndCount2p(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0xD8
-	  lis       r4, 0x804E
-	  subi      r4, r4, 0x4F0C
-	  stw       r4, 0x0(r30)
-	  addi      r0, r4, 0x10
-	  stw       r0, 0x18(r30)
-	  beq-      .loc_0xC8
-	  lis       r4, 0x804E
-	  subi      r4, r4, 0x4E14
-	  stw       r4, 0x0(r30)
-	  addi      r0, r4, 0x10
-	  stw       r0, 0x18(r30)
-	  beq-      .loc_0xC8
-	  lis       r4, 0x804E
-	  subi      r4, r4, 0x4D98
-	  stw       r4, 0x0(r30)
-	  addi      r0, r4, 0x10
-	  stw       r0, 0x18(r30)
-	  beq-      .loc_0xC8
-	  lis       r4, 0x804E
-	  subi      r4, r4, 0x4708
-	  stw       r4, 0x0(r30)
-	  addi      r0, r4, 0x10
-	  stw       r0, 0x18(r30)
-	  beq-      .loc_0xC8
-	  lis       r4, 0x804F
-	  subi      r4, r4, 0x28A8
-	  stw       r4, 0x0(r30)
-	  addi      r0, r4, 0x10
-	  stw       r0, 0x18(r30)
-	  beq-      .loc_0xC8
-	  lis       r4, 0x804E
-	  subi      r4, r4, 0x7DC0
-	  stw       r4, 0x0(r30)
-	  addi      r0, r4, 0x10
-	  stw       r0, 0x18(r30)
-	  bl        0xCB5B4
-	  addi      r3, r30, 0x18
-	  li        r4, 0
-	  bl        -0x328FF4
-	  mr        r3, r30
-	  li        r4, 0
-	  bl        0xCB554
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_80346048
+	lis      r4, __vt__Q28Morimura20TChallengeEndCount2p@ha
+	addi     r4, r4, __vt__Q28Morimura20TChallengeEndCount2p@l
+	stw      r4, 0(r30)
+	addi     r0, r4, 0x10
+	stw      r0, 0x18(r30)
+	beq      lbl_80346038
+	lis      r4, __vt__Q28Morimura18TChallengeEndCount@ha
+	addi     r4, r4, __vt__Q28Morimura18TChallengeEndCount@l
+	stw      r4, 0(r30)
+	addi     r0, r4, 0x10
+	stw      r0, 0x18(r30)
+	beq      lbl_80346038
+	lis      r4, __vt__Q28Morimura12TDayEndCount@ha
+	addi     r4, r4, __vt__Q28Morimura12TDayEndCount@l
+	stw      r4, 0(r30)
+	addi     r0, r4, 0x10
+	stw      r0, 0x18(r30)
+	beq      lbl_80346038
+	lis      r4, __vt__Q28Morimura9TTestBase@ha
+	addi     r4, r4, __vt__Q28Morimura9TTestBase@l
+	stw      r4, 0(r30)
+	addi     r0, r4, 0x10
+	stw      r0, 0x18(r30)
+	beq      lbl_80346038
+	lis      r4, __vt__Q26Screen7ObjBase@ha
+	addi     r4, r4, __vt__Q26Screen7ObjBase@l
+	stw      r4, 0(r30)
+	addi     r0, r4, 0x10
+	stw      r0, 0x18(r30)
+	beq      lbl_80346038
+	lis      r4, __vt__Q26Screen8IObjBase@ha
+	addi     r4, r4, __vt__Q26Screen8IObjBase@l
+	stw      r4, 0(r30)
+	addi     r0, r4, 0x10
+	stw      r0, 0x18(r30)
+	bl       del__5CNodeFv
+	addi     r3, r30, 0x18
+	li       r4, 0
+	bl       __dt__11JKRDisposerFv
+	mr       r3, r30
+	li       r4, 0
+	bl       __dt__5CNodeFv
 
-	.loc_0xC8:
-	  extsh.    r0, r31
-	  ble-      .loc_0xD8
-	  mr        r3, r30
-	  bl        -0x321F90
+lbl_80346038:
+	extsh.   r0, r31
+	ble      lbl_80346048
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0xD8:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80346048:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2480,72 +2799,71 @@ Morimura::TChallengeEndCount2p::~TChallengeEndCount2p(void)
 Morimura::TChallengeEndCount1p::~TChallengeEndCount1p(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0xD8
-	  lis       r4, 0x804E
-	  subi      r4, r4, 0x4E90
-	  stw       r4, 0x0(r30)
-	  addi      r0, r4, 0x10
-	  stw       r0, 0x18(r30)
-	  beq-      .loc_0xC8
-	  lis       r4, 0x804E
-	  subi      r4, r4, 0x4E14
-	  stw       r4, 0x0(r30)
-	  addi      r0, r4, 0x10
-	  stw       r0, 0x18(r30)
-	  beq-      .loc_0xC8
-	  lis       r4, 0x804E
-	  subi      r4, r4, 0x4D98
-	  stw       r4, 0x0(r30)
-	  addi      r0, r4, 0x10
-	  stw       r0, 0x18(r30)
-	  beq-      .loc_0xC8
-	  lis       r4, 0x804E
-	  subi      r4, r4, 0x4708
-	  stw       r4, 0x0(r30)
-	  addi      r0, r4, 0x10
-	  stw       r0, 0x18(r30)
-	  beq-      .loc_0xC8
-	  lis       r4, 0x804F
-	  subi      r4, r4, 0x28A8
-	  stw       r4, 0x0(r30)
-	  addi      r0, r4, 0x10
-	  stw       r0, 0x18(r30)
-	  beq-      .loc_0xC8
-	  lis       r4, 0x804E
-	  subi      r4, r4, 0x7DC0
-	  stw       r4, 0x0(r30)
-	  addi      r0, r4, 0x10
-	  stw       r0, 0x18(r30)
-	  bl        0xCB4C0
-	  addi      r3, r30, 0x18
-	  li        r4, 0
-	  bl        -0x3290E8
-	  mr        r3, r30
-	  li        r4, 0
-	  bl        0xCB460
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_8034613C
+	lis      r4, __vt__Q28Morimura20TChallengeEndCount1p@ha
+	addi     r4, r4, __vt__Q28Morimura20TChallengeEndCount1p@l
+	stw      r4, 0(r30)
+	addi     r0, r4, 0x10
+	stw      r0, 0x18(r30)
+	beq      lbl_8034612C
+	lis      r4, __vt__Q28Morimura18TChallengeEndCount@ha
+	addi     r4, r4, __vt__Q28Morimura18TChallengeEndCount@l
+	stw      r4, 0(r30)
+	addi     r0, r4, 0x10
+	stw      r0, 0x18(r30)
+	beq      lbl_8034612C
+	lis      r4, __vt__Q28Morimura12TDayEndCount@ha
+	addi     r4, r4, __vt__Q28Morimura12TDayEndCount@l
+	stw      r4, 0(r30)
+	addi     r0, r4, 0x10
+	stw      r0, 0x18(r30)
+	beq      lbl_8034612C
+	lis      r4, __vt__Q28Morimura9TTestBase@ha
+	addi     r4, r4, __vt__Q28Morimura9TTestBase@l
+	stw      r4, 0(r30)
+	addi     r0, r4, 0x10
+	stw      r0, 0x18(r30)
+	beq      lbl_8034612C
+	lis      r4, __vt__Q26Screen7ObjBase@ha
+	addi     r4, r4, __vt__Q26Screen7ObjBase@l
+	stw      r4, 0(r30)
+	addi     r0, r4, 0x10
+	stw      r0, 0x18(r30)
+	beq      lbl_8034612C
+	lis      r4, __vt__Q26Screen8IObjBase@ha
+	addi     r4, r4, __vt__Q26Screen8IObjBase@l
+	stw      r4, 0(r30)
+	addi     r0, r4, 0x10
+	stw      r0, 0x18(r30)
+	bl       del__5CNodeFv
+	addi     r3, r30, 0x18
+	li       r4, 0
+	bl       __dt__11JKRDisposerFv
+	mr       r3, r30
+	li       r4, 0
+	bl       __dt__5CNodeFv
 
-	.loc_0xC8:
-	  extsh.    r0, r31
-	  ble-      .loc_0xD8
-	  mr        r3, r30
-	  bl        -0x322084
+lbl_8034612C:
+	extsh.   r0, r31
+	ble      lbl_8034613C
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0xD8:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8034613C:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2557,9 +2875,8 @@ Morimura::TChallengeEndCount1p::~TChallengeEndCount1p(void)
 @24 @Morimura::TDayEndCount::~TDayEndCount(void)
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x18
-	  b         -0xC44
+	addi     r3, r3, -24
+	b        __dt__Q28Morimura12TDayEndCountFv
 	*/
 }
 
@@ -2571,9 +2888,8 @@ Morimura::TChallengeEndCount1p::~TChallengeEndCount1p(void)
 @24 @Morimura::TChallengeEndCount::~TChallengeEndCount(void)
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x18
-	  b         -0xA0C
+	addi     r3, r3, -24
+	b        __dt__Q28Morimura18TChallengeEndCountFv
 	*/
 }
 
@@ -2585,9 +2901,8 @@ Morimura::TChallengeEndCount1p::~TChallengeEndCount1p(void)
 @24 @Morimura::TChallengeEndCount1p::~TChallengeEndCount1p(void)
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x18
-	  b         -0x108
+	addi     r3, r3, -24
+	b        __dt__Q28Morimura20TChallengeEndCount1pFv
 	*/
 }
 
@@ -2599,8 +2914,7 @@ Morimura::TChallengeEndCount1p::~TChallengeEndCount1p(void)
 @24 @Morimura::TChallengeEndCount2p::~TChallengeEndCount2p(void)
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x18
-	  b         -0x204
+	addi     r3, r3, -24
+	b        __dt__Q28Morimura20TChallengeEndCount2pFv
 	*/
 }

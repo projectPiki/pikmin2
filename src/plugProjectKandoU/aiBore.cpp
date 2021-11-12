@@ -1,6 +1,170 @@
 #include "types.h"
 
 /*
+    Generated from dpostproc
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_80483930
+    lbl_80483930:
+        .4byte 0x00000000
+        .float 0.05
+        .4byte 0x00000003
+        .4byte 0x3EB33333
+        .4byte 0x00000036
+        .4byte 0x3ECCCCCD
+        .4byte 0x00000015
+        .float 0.1
+    .global lbl_80483950
+    lbl_80483950:
+        .4byte 0x6169426F
+        .4byte 0x72652E63
+        .4byte 0x70700000
+    .global lbl_8048395C
+    lbl_8048395C:
+        .asciz "P2Assert"
+        .skip 3
+        .4byte 0x50534761
+        .4byte 0x6D652E68
+        .4byte 0x00000000
+        .4byte 0x50535363
+        .4byte 0x656E652E
+        .4byte 0x68000000
+        .4byte 0x67657420
+        .4byte 0x736F756E
+        .4byte 0x64207363
+        .4byte 0x656E6520
+        .4byte 0x61740A69
+        .4byte 0x6E76616C
+        .4byte 0x69642074
+        .4byte 0x696D6D69
+        .4byte 0x6E670A00
+        .4byte 0x41637469
+        .4byte 0x6F6E4172
+        .4byte 0x67000000
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__Q26PikiAI10ActOneshot
+    __vt__Q26PikiAI10ActOneshot:
+        .4byte 0
+        .4byte 0
+        .4byte init__Q26PikiAI10ActOneshotFPQ26PikiAI9ActionArg
+        .4byte exec__Q26PikiAI10ActOneshotFv
+        .4byte cleanup__Q26PikiAI10ActOneshotFv
+        .4byte emotion_success__Q26PikiAI6ActionFv
+        .4byte emotion_fail__Q26PikiAI6ActionFv
+        .4byte applicable__Q26PikiAI6ActionFv
+        .4byte getNextAIType__Q26PikiAI6ActionFv
+        .4byte bounceCallback__Q26PikiAI6ActionFPQ24Game4PikiPQ23Sys8Triangle
+        .4byte
+   collisionCallback__Q26PikiAI6ActionFPQ24Game4PikiRQ24Game9CollEvent .4byte
+   platCallback__Q26PikiAI6ActionFPQ24Game4PikiRQ24Game9PlatEvent .4byte
+   doDirectDraw__Q26PikiAI6ActionFR8Graphics .4byte
+   "wallCallback__Q26PikiAI6ActionFR10Vector3<f>" .4byte
+   getInfo__Q26PikiAI6ActionFPc .4byte finish__Q26PikiAI10ActOneshotFv .4byte
+   onKeyEvent__Q26PikiAI10ActOneshotFRCQ28SysShape8KeyEvent .4byte 0 .4byte 0
+        .4byte "@28@4@onKeyEvent__Q26PikiAI10ActOneshotFRCQ28SysShape8KeyEvent"
+    .global __vt__Q26PikiAI7ActRest
+    __vt__Q26PikiAI7ActRest:
+        .4byte 0
+        .4byte 0
+        .4byte init__Q26PikiAI7ActRestFPQ26PikiAI9ActionArg
+        .4byte exec__Q26PikiAI7ActRestFv
+        .4byte cleanup__Q26PikiAI7ActRestFv
+        .4byte emotion_success__Q26PikiAI6ActionFv
+        .4byte emotion_fail__Q26PikiAI6ActionFv
+        .4byte applicable__Q26PikiAI6ActionFv
+        .4byte getNextAIType__Q26PikiAI6ActionFv
+        .4byte bounceCallback__Q26PikiAI6ActionFPQ24Game4PikiPQ23Sys8Triangle
+        .4byte
+   collisionCallback__Q26PikiAI6ActionFPQ24Game4PikiRQ24Game9CollEvent .4byte
+   platCallback__Q26PikiAI6ActionFPQ24Game4PikiRQ24Game9PlatEvent .4byte
+   doDirectDraw__Q26PikiAI6ActionFR8Graphics .4byte
+   "wallCallback__Q26PikiAI6ActionFR10Vector3<f>" .4byte
+   getInfo__Q26PikiAI6ActionFPc .4byte finish__Q26PikiAI7ActRestFv .4byte
+   onKeyEvent__Q26PikiAI7ActRestFRCQ28SysShape8KeyEvent .4byte 0 .4byte 0 .4byte
+   "@28@4@onKeyEvent__Q26PikiAI7ActRestFRCQ28SysShape8KeyEvent" .global
+   __vt__Q26PikiAI11ActBoreBase
+    __vt__Q26PikiAI11ActBoreBase:
+        .4byte 0
+        .4byte 0
+        .4byte init__Q26PikiAI6ActionFPQ26PikiAI9ActionArg
+        .4byte exec__Q26PikiAI6ActionFv
+        .4byte cleanup__Q26PikiAI6ActionFv
+        .4byte emotion_success__Q26PikiAI6ActionFv
+        .4byte emotion_fail__Q26PikiAI6ActionFv
+        .4byte applicable__Q26PikiAI6ActionFv
+        .4byte getNextAIType__Q26PikiAI6ActionFv
+        .4byte bounceCallback__Q26PikiAI6ActionFPQ24Game4PikiPQ23Sys8Triangle
+        .4byte
+   collisionCallback__Q26PikiAI6ActionFPQ24Game4PikiRQ24Game9CollEvent .4byte
+   platCallback__Q26PikiAI6ActionFPQ24Game4PikiRQ24Game9PlatEvent .4byte
+   doDirectDraw__Q26PikiAI6ActionFR8Graphics .4byte
+   "wallCallback__Q26PikiAI6ActionFR10Vector3<f>" .4byte
+   getInfo__Q26PikiAI6ActionFPc .4byte 0 .4byte 0 .4byte 0 .4byte 0 .global
+   __vt__Q26PikiAI13ActOneshotArg
+    __vt__Q26PikiAI13ActOneshotArg:
+        .4byte 0
+        .4byte 0
+        .4byte getName__Q26PikiAI9ActionArgFv
+    .global __vt__Q26PikiAI7ActBore
+    __vt__Q26PikiAI7ActBore:
+        .4byte 0
+        .4byte 0
+        .4byte init__Q26PikiAI7ActBoreFPQ26PikiAI9ActionArg
+        .4byte exec__Q26PikiAI7ActBoreFv
+        .4byte cleanup__Q26PikiAI7ActBoreFv
+        .4byte emotion_success__Q26PikiAI6ActionFv
+        .4byte emotion_fail__Q26PikiAI6ActionFv
+        .4byte applicable__Q26PikiAI6ActionFv
+        .4byte getNextAIType__Q26PikiAI6ActionFv
+        .4byte bounceCallback__Q26PikiAI6ActionFPQ24Game4PikiPQ23Sys8Triangle
+        .4byte
+   collisionCallback__Q26PikiAI6ActionFPQ24Game4PikiRQ24Game9CollEvent .4byte
+   platCallback__Q26PikiAI6ActionFPQ24Game4PikiRQ24Game9PlatEvent .4byte
+   doDirectDraw__Q26PikiAI6ActionFR8Graphics .4byte
+   "wallCallback__Q26PikiAI6ActionFR10Vector3<f>" .4byte
+   getInfo__Q26PikiAI6ActionFPc .4byte 0
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_8051A370
+    lbl_8051A370:
+        .4byte 0x47000000
+    .global lbl_8051A374
+    lbl_8051A374:
+        .4byte 0x40000000
+    .global lbl_8051A378
+    lbl_8051A378:
+        .4byte 0x00000000
+        .4byte 0x00000000
+    .global lbl_8051A380
+    lbl_8051A380:
+        .4byte 0x43300000
+        .4byte 0x80000000
+    .global lbl_8051A388
+    lbl_8051A388:
+        .4byte 0x40C00000
+    .global lbl_8051A38C
+    lbl_8051A38C:
+        .4byte 0x42700000
+    .global lbl_8051A390
+    lbl_8051A390:
+        .4byte 0x40A00000
+    .global lbl_8051A394
+    lbl_8051A394:
+        .4byte 0x40800000
+    .global lbl_8051A398
+    lbl_8051A398:
+        .4byte 0x41F00000
+    .global lbl_8051A39C
+    lbl_8051A39C:
+        .float 0.5
+    .global lbl_8051A3A0
+    lbl_8051A3A0:
+        .4byte 0x40400000
+        .4byte 0x00000000
+*/
+
+/*
  * --INFO--
  * Address:	802312F4
  * Size:	000098
@@ -8,49 +172,48 @@
 PikiAI::ActBore::ActBore(Game::Piki*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  bl        -0x9A8F8
-	  lis       r3, 0x804C
-	  li        r0, 0
-	  addi      r4, r3, 0x1300
-	  li        r3, 0x24
-	  stw       r4, 0x0(r30)
-	  stb       r0, 0x18(r30)
-	  bl        -0x20D488
-	  mr.       r0, r3
-	  beq-      .loc_0x54
-	  mr        r5, r31
-	  li        r4, 0x1
-	  bl        0x560
-	  mr        r0, r3
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	bl       __ct__Q26PikiAI6ActionFPQ24Game4Piki
+	lis      r3, __vt__Q26PikiAI7ActBore@ha
+	li       r0, 0
+	addi     r4, r3, __vt__Q26PikiAI7ActBore@l
+	li       r3, 0x24
+	stw      r4, 0(r30)
+	stb      r0, 0x18(r30)
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_80231348
+	mr       r5, r31
+	li       r4, 1
+	bl       __ct__Q26PikiAI7ActRestFPQ24Game4Piki
+	mr       r0, r3
 
-	.loc_0x54:
-	  stw       r0, 0x1C(r30)
-	  li        r3, 0x24
-	  bl        -0x20D4AC
-	  mr.       r0, r3
-	  beq-      .loc_0x78
-	  mr        r5, r31
-	  li        r4, 0x1
-	  bl        0xC54
-	  mr        r0, r3
+lbl_80231348:
+	stw      r0, 0x1c(r30)
+	li       r3, 0x24
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_8023136C
+	mr       r5, r31
+	li       r4, 1
+	bl       __ct__Q26PikiAI10ActOneshotFPQ24Game4Piki
+	mr       r0, r3
 
-	.loc_0x78:
-	  stw       r0, 0x20(r30)
-	  mr        r3, r30
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8023136C:
+	stw      r0, 0x20(r30)
+	mr       r3, r30
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -62,41 +225,38 @@ PikiAI::ActBore::ActBore(Game::Piki*)
 void PikiAI::ActBore::init(PikiAI::ActionArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r3
-	  bl        -0x167E00
-	  xoris     r3, r3, 0x8000
-	  lis       r0, 0x4330
-	  stw       r3, 0xC(r1)
-	  mr        r3, r31
-	  lfd       f3, -0x3FE0(r2)
-	  stw       r0, 0x8(r1)
-	  lfs       f2, -0x3FF0(r2)
-	  lfd       f0, 0x8(r1)
-	  lfs       f1, -0x3FEC(r2)
-	  fsubs     f3, f0, f3
-	  lfs       f0, -0x3FE8(r2)
-	  fdivs     f2, f3, f2
-	  fmuls     f1, f1, f2
-	  fctiwz    f1, f1
-	  stfd      f1, 0x10(r1)
-	  lwz       r0, 0x14(r1)
-	  stb       r0, 0xC(r31)
-	  stfs      f0, 0x14(r31)
-	  bl        .loc_0x80
-	  li        r0, 0
-	  stb       r0, 0x18(r31)
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-
-	.loc_0x80:
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r3
+	bl       rand
+	xoris    r3, r3, 0x8000
+	lis      r0, 0x4330
+	stw      r3, 0xc(r1)
+	mr       r3, r31
+	lfd      f3, lbl_8051A380@sda21(r2)
+	stw      r0, 8(r1)
+	lfs      f2, lbl_8051A370@sda21(r2)
+	lfd      f0, 8(r1)
+	lfs      f1, lbl_8051A374@sda21(r2)
+	fsubs    f3, f0, f3
+	lfs      f0, lbl_8051A378@sda21(r2)
+	fdivs    f2, f3, f2
+	fmuls    f1, f1, f2
+	fctiwz   f1, f1
+	stfd     f1, 0x10(r1)
+	lwz      r0, 0x14(r1)
+	stb      r0, 0xc(r31)
+	stfs     f0, 0x14(r31)
+	bl       startCurrAction__Q26PikiAI7ActBoreFv
+	li       r0, 0
+	stb      r0, 0x18(r31)
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -108,113 +268,112 @@ void PikiAI::ActBore::init(PikiAI::ActionArg*)
 void PikiAI::ActBore::startCurrAction(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x50(r1)
-	  mflr      r0
-	  stw       r0, 0x54(r1)
-	  stw       r31, 0x4C(r1)
-	  mr        r31, r3
-	  lis       r3, 0x8048
-	  stw       r30, 0x48(r1)
-	  stw       r29, 0x44(r1)
-	  addi      r29, r3, 0x3930
-	  lbz       r0, 0xC(r31)
-	  cmplwi    r0, 0x2
-	  blt-      .loc_0x44
-	  addi      r3, r29, 0x20
-	  addi      r5, r29, 0x2C
-	  li        r4, 0x27
-	  crclr     6, 0x6
-	  bl        -0x206E0C
+	stwu     r1, -0x50(r1)
+	mflr     r0
+	stw      r0, 0x54(r1)
+	stw      r31, 0x4c(r1)
+	mr       r31, r3
+	lis      r3, lbl_80483930@ha
+	stw      r30, 0x48(r1)
+	stw      r29, 0x44(r1)
+	addi     r29, r3, lbl_80483930@l
+	lbz      r0, 0xc(r31)
+	cmplwi   r0, 2
+	blt      lbl_80231450
+	addi     r3, r29, 0x20
+	addi     r5, r29, 0x2c
+	li       r4, 0x27
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x44:
-	  lfs       f1, 0x14(r31)
-	  lfs       f0, -0x3FEC(r2)
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x5C
-	  li        r0, 0x1
-	  stb       r0, 0xC(r31)
+lbl_80231450:
+	lfs      f1, 0x14(r31)
+	lfs      f0, lbl_8051A374@sda21(r2)
+	fcmpo    cr0, f1, f0
+	bge      lbl_80231468
+	li       r0, 1
+	stb      r0, 0xc(r31)
 
-	.loc_0x5C:
-	  lbz       r0, 0xC(r31)
-	  cmpwi     r0, 0x1
-	  beq-      .loc_0x9C
-	  bge-      .loc_0x130
-	  cmpwi     r0, 0
-	  bge-      .loc_0x78
-	  b         .loc_0x130
+lbl_80231468:
+	lbz      r0, 0xc(r31)
+	cmpwi    r0, 1
+	beq      lbl_802314A8
+	bge      lbl_8023153C
+	cmpwi    r0, 0
+	bge      lbl_80231484
+	b        lbl_8023153C
 
-	.loc_0x78:
-	  rlwinm    r0,r0,2,22,29
-	  li        r4, 0
-	  add       r3, r31, r0
-	  lwz       r3, 0x1C(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x130
+lbl_80231484:
+	rlwinm   r0, r0, 2, 0x16, 0x1d
+	li       r4, 0
+	add      r3, r31, r0
+	lwz      r3, 0x1c(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_8023153C
 
-	.loc_0x9C:
-	  lis       r3, 0x804B
-	  lwz       r11, 0x0(r29)
-	  addi      r0, r3, 0x530
-	  lwz       r10, 0x4(r29)
-	  lwz       r9, 0x8(r29)
-	  lis       r3, 0x804C
-	  lwz       r8, 0xC(r29)
-	  li        r12, -0x1
-	  lwz       r7, 0x10(r29)
-	  addi      r30, r3, 0x12F4
-	  stw       r0, 0x8(r1)
-	  addi      r3, r1, 0x10
-	  lwz       r6, 0x14(r29)
-	  li        r4, 0x4
-	  lwz       r5, 0x18(r29)
-	  lwz       r0, 0x1C(r29)
-	  stw       r30, 0x8(r1)
-	  stw       r12, 0xC(r1)
-	  stw       r11, 0x10(r1)
-	  stw       r10, 0x14(r1)
-	  stw       r9, 0x18(r1)
-	  stw       r8, 0x1C(r1)
-	  stw       r7, 0x20(r1)
-	  stw       r6, 0x24(r1)
-	  stw       r5, 0x28(r1)
-	  stw       r0, 0x2C(r1)
-	  bl        -0x39C48
-	  stw       r3, 0xC(r1)
-	  addi      r4, r1, 0x8
-	  lbz       r0, 0xC(r31)
-	  rlwinm    r0,r0,2,0,29
-	  add       r3, r31, r0
-	  lwz       r3, 0x1C(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
+lbl_802314A8:
+	lis      r3, __vt__Q26PikiAI9ActionArg@ha
+	lwz      r11, 0(r29)
+	addi     r0, r3, __vt__Q26PikiAI9ActionArg@l
+	lwz      r10, 4(r29)
+	lwz      r9, 8(r29)
+	lis      r3, __vt__Q26PikiAI13ActOneshotArg@ha
+	lwz      r8, 0xc(r29)
+	li       r12, -1
+	lwz      r7, 0x10(r29)
+	addi     r30, r3, __vt__Q26PikiAI13ActOneshotArg@l
+	stw      r0, 8(r1)
+	addi     r3, r1, 0x10
+	lwz      r6, 0x14(r29)
+	li       r4, 4
+	lwz      r5, 0x18(r29)
+	lwz      r0, 0x1c(r29)
+	stw      r30, 8(r1)
+	stw      r12, 0xc(r1)
+	stw      r11, 0x10(r1)
+	stw      r10, 0x14(r1)
+	stw      r9, 0x18(r1)
+	stw      r8, 0x1c(r1)
+	stw      r7, 0x20(r1)
+	stw      r6, 0x24(r1)
+	stw      r5, 0x28(r1)
+	stw      r0, 0x2c(r1)
+	bl       getRandomChoice__8KandoLibFPQ28KandoLib6Choicei
+	stw      r3, 0xc(r1)
+	addi     r4, r1, 8
+	lbz      r0, 0xc(r31)
+	slwi     r0, r0, 2
+	add      r3, r31, r0
+	lwz      r3, 0x1c(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x130:
-	  bl        -0x167F9C
-	  xoris     r3, r3, 0x8000
-	  lis       r0, 0x4330
-	  stw       r3, 0x34(r1)
-	  lfd       f3, -0x3FE0(r2)
-	  stw       r0, 0x30(r1)
-	  lfs       f1, -0x3FF0(r2)
-	  lfd       f2, 0x30(r1)
-	  lfs       f0, -0x3FD8(r2)
-	  fsubs     f2, f2, f3
-	  fdivs     f1, f2, f1
-	  fmadds    f0, f0, f1, f0
-	  stfs      f0, 0x10(r31)
-	  lwz       r31, 0x4C(r1)
-	  lwz       r30, 0x48(r1)
-	  lwz       r29, 0x44(r1)
-	  lwz       r0, 0x54(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x50
-	  blr
+lbl_8023153C:
+	bl       rand
+	xoris    r3, r3, 0x8000
+	lis      r0, 0x4330
+	stw      r3, 0x34(r1)
+	lfd      f3, lbl_8051A380@sda21(r2)
+	stw      r0, 0x30(r1)
+	lfs      f1, lbl_8051A370@sda21(r2)
+	lfd      f2, 0x30(r1)
+	lfs      f0, lbl_8051A388@sda21(r2)
+	fsubs    f2, f2, f3
+	fdivs    f1, f2, f1
+	fmadds   f0, f0, f1, f0
+	stfs     f0, 0x10(r31)
+	lwz      r31, 0x4c(r1)
+	lwz      r30, 0x48(r1)
+	lwz      r29, 0x44(r1)
+	lwz      r0, 0x54(r1)
+	mtlr     r0
+	addi     r1, r1, 0x50
+	blr
 	*/
 }
 
@@ -226,40 +385,39 @@ void PikiAI::ActBore::startCurrAction(void)
 void PikiAI::ActBore::finish(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lbz       r0, 0xC(r3)
-	  cmplwi    r0, 0x2
-	  blt-      .loc_0x3C
-	  lis       r3, 0x8048
-	  lis       r5, 0x8048
-	  addi      r3, r3, 0x3950
-	  li        r4, 0x46
-	  addi      r5, r5, 0x395C
-	  crclr     6, 0x6
-	  bl        -0x206F84
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lbz      r0, 0xc(r3)
+	cmplwi   r0, 2
+	blt      lbl_802315C8
+	lis      r3, lbl_80483950@ha
+	lis      r5, lbl_8048395C@ha
+	addi     r3, r3, lbl_80483950@l
+	li       r4, 0x46
+	addi     r5, r5, lbl_8048395C@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x3C:
-	  lbz       r0, 0xC(r31)
-	  rlwinm    r0,r0,2,0,29
-	  add       r3, r31, r0
-	  lwz       r3, 0x1C(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x3C(r12)
-	  mtctr     r12
-	  bctrl
-	  lbz       r0, 0x18(r31)
-	  ori       r0, r0, 0x1
-	  stb       r0, 0x18(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_802315C8:
+	lbz      r0, 0xc(r31)
+	slwi     r0, r0, 2
+	add      r3, r31, r0
+	lwz      r3, 0x1c(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x3c(r12)
+	mtctr    r12
+	bctrl
+	lbz      r0, 0x18(r31)
+	ori      r0, r0, 1
+	stb      r0, 0x18(r31)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -271,196 +429,195 @@ void PikiAI::ActBore::finish(void)
 void PikiAI::ActBore::exec(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x50(r1)
-	  mflr      r0
-	  lfs       f0, -0x3FEC(r2)
-	  stw       r0, 0x54(r1)
-	  stw       r31, 0x4C(r1)
-	  stw       r30, 0x48(r1)
-	  mr        r30, r3
-	  lis       r3, 0x8048
-	  stw       r29, 0x44(r1)
-	  addi      r31, r3, 0x3930
-	  lfs       f1, 0x14(r30)
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x44
-	  lwz       r3, -0x6514(r13)
-	  lfs       f0, 0x54(r3)
-	  fadds     f0, f1, f0
-	  stfs      f0, 0x14(r30)
+	stwu     r1, -0x50(r1)
+	mflr     r0
+	lfs      f0, lbl_8051A374@sda21(r2)
+	stw      r0, 0x54(r1)
+	stw      r31, 0x4c(r1)
+	stw      r30, 0x48(r1)
+	mr       r30, r3
+	lis      r3, lbl_80483930@ha
+	stw      r29, 0x44(r1)
+	addi     r31, r3, lbl_80483930@l
+	lfs      f1, 0x14(r30)
+	fcmpo    cr0, f1, f0
+	bge      lbl_8023164C
+	lwz      r3, sys@sda21(r13)
+	lfs      f0, 0x54(r3)
+	fadds    f0, f1, f0
+	stfs     f0, 0x14(r30)
 
-	.loc_0x44:
-	  lbz       r0, 0xC(r30)
-	  cmplwi    r0, 0x2
-	  blt-      .loc_0x64
-	  addi      r3, r31, 0x20
-	  addi      r5, r31, 0x2C
-	  li        r4, 0x51
-	  crclr     6, 0x6
-	  bl        -0x207028
+lbl_8023164C:
+	lbz      r0, 0xc(r30)
+	cmplwi   r0, 2
+	blt      lbl_8023166C
+	addi     r3, r31, 0x20
+	addi     r5, r31, 0x2c
+	li       r4, 0x51
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x64:
-	  lbz       r0, 0xC(r30)
-	  rlwinm    r0,r0,2,0,29
-	  add       r3, r30, r0
-	  lwz       r3, 0x1C(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  cmpwi     r3, 0
-	  beq-      .loc_0x94
-	  cmpwi     r3, 0x2
-	  bne-      .loc_0x22C
+lbl_8023166C:
+	lbz      r0, 0xc(r30)
+	slwi     r0, r0, 2
+	add      r3, r30, r0
+	lwz      r3, 0x1c(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	cmpwi    r3, 0
+	beq      lbl_8023169C
+	cmpwi    r3, 2
+	bne      lbl_80231834
 
-	.loc_0x94:
-	  lbz       r0, 0x18(r30)
-	  rlwinm.   r0,r0,0,31,31
-	  beq-      .loc_0xA8
-	  li        r3, 0
-	  b         .loc_0x278
+lbl_8023169C:
+	lbz      r0, 0x18(r30)
+	clrlwi.  r0, r0, 0x1f
+	beq      lbl_802316B0
+	li       r3, 0
+	b        lbl_80231880
 
-	.loc_0xA8:
-	  bl        -0x168110
-	  xoris     r3, r3, 0x8000
-	  lis       r0, 0x4330
-	  stw       r3, 0x34(r1)
-	  lfd       f3, -0x3FE0(r2)
-	  stw       r0, 0x30(r1)
-	  lfs       f1, -0x3FF0(r2)
-	  lfd       f2, 0x30(r1)
-	  lfs       f0, -0x3FEC(r2)
-	  fsubs     f2, f2, f3
-	  fdivs     f1, f2, f1
-	  fmuls     f0, f0, f1
-	  fctiwz    f0, f0
-	  stfd      f0, 0x38(r1)
-	  lwz       r0, 0x3C(r1)
-	  stb       r0, 0xC(r30)
-	  lbz       r0, 0xC(r30)
-	  cmplwi    r0, 0x2
-	  blt-      .loc_0x108
-	  addi      r3, r31, 0x20
-	  addi      r5, r31, 0x2C
-	  li        r4, 0x27
-	  crclr     6, 0x6
-	  bl        -0x2070CC
+lbl_802316B0:
+	bl       rand
+	xoris    r3, r3, 0x8000
+	lis      r0, 0x4330
+	stw      r3, 0x34(r1)
+	lfd      f3, lbl_8051A380@sda21(r2)
+	stw      r0, 0x30(r1)
+	lfs      f1, lbl_8051A370@sda21(r2)
+	lfd      f2, 0x30(r1)
+	lfs      f0, lbl_8051A374@sda21(r2)
+	fsubs    f2, f2, f3
+	fdivs    f1, f2, f1
+	fmuls    f0, f0, f1
+	fctiwz   f0, f0
+	stfd     f0, 0x38(r1)
+	lwz      r0, 0x3c(r1)
+	stb      r0, 0xc(r30)
+	lbz      r0, 0xc(r30)
+	cmplwi   r0, 2
+	blt      lbl_80231710
+	addi     r3, r31, 0x20
+	addi     r5, r31, 0x2c
+	li       r4, 0x27
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x108:
-	  lfs       f1, 0x14(r30)
-	  lfs       f0, -0x3FEC(r2)
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x120
-	  li        r0, 0x1
-	  stb       r0, 0xC(r30)
+lbl_80231710:
+	lfs      f1, 0x14(r30)
+	lfs      f0, lbl_8051A374@sda21(r2)
+	fcmpo    cr0, f1, f0
+	bge      lbl_80231728
+	li       r0, 1
+	stb      r0, 0xc(r30)
 
-	.loc_0x120:
-	  lbz       r0, 0xC(r30)
-	  cmpwi     r0, 0x1
-	  beq-      .loc_0x160
-	  bge-      .loc_0x1F4
-	  cmpwi     r0, 0
-	  bge-      .loc_0x13C
-	  b         .loc_0x1F4
+lbl_80231728:
+	lbz      r0, 0xc(r30)
+	cmpwi    r0, 1
+	beq      lbl_80231768
+	bge      lbl_802317FC
+	cmpwi    r0, 0
+	bge      lbl_80231744
+	b        lbl_802317FC
 
-	.loc_0x13C:
-	  rlwinm    r0,r0,2,22,29
-	  li        r4, 0
-	  add       r3, r30, r0
-	  lwz       r3, 0x1C(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x1F4
+lbl_80231744:
+	rlwinm   r0, r0, 2, 0x16, 0x1d
+	li       r4, 0
+	add      r3, r30, r0
+	lwz      r3, 0x1c(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802317FC
 
-	.loc_0x160:
-	  lis       r3, 0x804B
-	  lwz       r11, 0x0(r31)
-	  addi      r0, r3, 0x530
-	  lwz       r10, 0x4(r31)
-	  lwz       r9, 0x8(r31)
-	  lis       r3, 0x804C
-	  lwz       r8, 0xC(r31)
-	  li        r12, -0x1
-	  lwz       r7, 0x10(r31)
-	  addi      r29, r3, 0x12F4
-	  stw       r0, 0x8(r1)
-	  addi      r3, r1, 0x10
-	  lwz       r6, 0x14(r31)
-	  li        r4, 0x4
-	  lwz       r5, 0x18(r31)
-	  lwz       r0, 0x1C(r31)
-	  stw       r29, 0x8(r1)
-	  stw       r12, 0xC(r1)
-	  stw       r11, 0x10(r1)
-	  stw       r10, 0x14(r1)
-	  stw       r9, 0x18(r1)
-	  stw       r8, 0x1C(r1)
-	  stw       r7, 0x20(r1)
-	  stw       r6, 0x24(r1)
-	  stw       r5, 0x28(r1)
-	  stw       r0, 0x2C(r1)
-	  bl        -0x39F08
-	  stw       r3, 0xC(r1)
-	  addi      r4, r1, 0x8
-	  lbz       r0, 0xC(r30)
-	  rlwinm    r0,r0,2,0,29
-	  add       r3, r30, r0
-	  lwz       r3, 0x1C(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
+lbl_80231768:
+	lis      r3, __vt__Q26PikiAI9ActionArg@ha
+	lwz      r11, 0(r31)
+	addi     r0, r3, __vt__Q26PikiAI9ActionArg@l
+	lwz      r10, 4(r31)
+	lwz      r9, 8(r31)
+	lis      r3, __vt__Q26PikiAI13ActOneshotArg@ha
+	lwz      r8, 0xc(r31)
+	li       r12, -1
+	lwz      r7, 0x10(r31)
+	addi     r29, r3, __vt__Q26PikiAI13ActOneshotArg@l
+	stw      r0, 8(r1)
+	addi     r3, r1, 0x10
+	lwz      r6, 0x14(r31)
+	li       r4, 4
+	lwz      r5, 0x18(r31)
+	lwz      r0, 0x1c(r31)
+	stw      r29, 8(r1)
+	stw      r12, 0xc(r1)
+	stw      r11, 0x10(r1)
+	stw      r10, 0x14(r1)
+	stw      r9, 0x18(r1)
+	stw      r8, 0x1c(r1)
+	stw      r7, 0x20(r1)
+	stw      r6, 0x24(r1)
+	stw      r5, 0x28(r1)
+	stw      r0, 0x2c(r1)
+	bl       getRandomChoice__8KandoLibFPQ28KandoLib6Choicei
+	stw      r3, 0xc(r1)
+	addi     r4, r1, 8
+	lbz      r0, 0xc(r30)
+	slwi     r0, r0, 2
+	add      r3, r30, r0
+	lwz      r3, 0x1c(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x1F4:
-	  bl        -0x16825C
-	  xoris     r3, r3, 0x8000
-	  lis       r0, 0x4330
-	  stw       r3, 0x3C(r1)
-	  lfd       f3, -0x3FE0(r2)
-	  stw       r0, 0x38(r1)
-	  lfs       f1, -0x3FF0(r2)
-	  lfd       f2, 0x38(r1)
-	  lfs       f0, -0x3FD8(r2)
-	  fsubs     f2, f2, f3
-	  fdivs     f1, f2, f1
-	  fmadds    f0, f0, f1, f0
-	  stfs      f0, 0x10(r30)
-	  b         .loc_0x274
+lbl_802317FC:
+	bl       rand
+	xoris    r3, r3, 0x8000
+	lis      r0, 0x4330
+	stw      r3, 0x3c(r1)
+	lfd      f3, lbl_8051A380@sda21(r2)
+	stw      r0, 0x38(r1)
+	lfs      f1, lbl_8051A370@sda21(r2)
+	lfd      f2, 0x38(r1)
+	lfs      f0, lbl_8051A388@sda21(r2)
+	fsubs    f2, f2, f3
+	fdivs    f1, f2, f1
+	fmadds   f0, f0, f1, f0
+	stfs     f0, 0x10(r30)
+	b        lbl_8023187C
 
-	.loc_0x22C:
-	  lwz       r3, -0x6514(r13)
-	  lfs       f2, 0x10(r30)
-	  lfs       f1, 0x54(r3)
-	  lfs       f0, -0x3FE8(r2)
-	  fsubs     f1, f2, f1
-	  stfs      f1, 0x10(r30)
-	  lfs       f1, 0x10(r30)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0, 0x2
-	  bne-      .loc_0x274
-	  lbz       r0, 0xC(r30)
-	  rlwinm    r0,r0,2,0,29
-	  add       r3, r30, r0
-	  lwz       r3, 0x1C(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x3C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_80231834:
+	lwz      r3, sys@sda21(r13)
+	lfs      f2, 0x10(r30)
+	lfs      f1, 0x54(r3)
+	lfs      f0, lbl_8051A378@sda21(r2)
+	fsubs    f1, f2, f1
+	stfs     f1, 0x10(r30)
+	lfs      f1, 0x10(r30)
+	fcmpo    cr0, f1, f0
+	cror     2, 0, 2
+	bne      lbl_8023187C
+	lbz      r0, 0xc(r30)
+	slwi     r0, r0, 2
+	add      r3, r30, r0
+	lwz      r3, 0x1c(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x3c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x274:
-	  li        r3, 0x1
+lbl_8023187C:
+	li       r3, 1
 
-	.loc_0x278:
-	  lwz       r0, 0x54(r1)
-	  lwz       r31, 0x4C(r1)
-	  lwz       r30, 0x48(r1)
-	  lwz       r29, 0x44(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x50
-	  blr
+lbl_80231880:
+	lwz      r0, 0x54(r1)
+	lwz      r31, 0x4c(r1)
+	lwz      r30, 0x48(r1)
+	lwz      r29, 0x44(r1)
+	mtlr     r0
+	addi     r1, r1, 0x50
+	blr
 	*/
 }
 
@@ -479,48 +636,47 @@ void PikiAI::ActBore::cleanup(void) { }
 PikiAI::ActRest::ActRest(Game::Piki*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  extsh.    r0, r4
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  beq-      .loc_0x30
-	  addi      r0, r31, 0x1C
-	  lis       r3, 0x804B
-	  stw       r0, 0xC(r31)
-	  subi      r0, r3, 0x5994
-	  stw       r0, 0x1C(r31)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	extsh.   r0, r4
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	beq      lbl_802318D0
+	addi     r0, r31, 0x1c
+	lis      r3, __vt__Q28SysShape14MotionListener@ha
+	stw      r0, 0xc(r31)
+	addi     r0, r3, __vt__Q28SysShape14MotionListener@l
+	stw      r0, 0x1c(r31)
 
-	.loc_0x30:
-	  mr        r3, r31
-	  mr        r4, r5
-	  bl        -0x9AEC0
-	  lis       r4, 0x804C
-	  lis       r3, 0x804C
-	  addi      r6, r4, 0x12A8
-	  addi      r4, r31, 0x1C
-	  stw       r6, 0x0(r31)
-	  addi      r5, r3, 0x1258
-	  addi      r8, r6, 0x40
-	  li        r0, 0
-	  lwz       r7, 0xC(r31)
-	  addi      r6, r5, 0x44
-	  mr        r3, r31
-	  stw       r8, 0x0(r7)
-	  stw       r5, 0x0(r31)
-	  lwz       r5, 0xC(r31)
-	  stw       r6, 0x0(r5)
-	  lwz       r5, 0xC(r31)
-	  sub       r4, r4, r5
-	  stw       r4, 0x4(r5)
-	  stb       r0, 0x18(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_802318D0:
+	mr       r3, r31
+	mr       r4, r5
+	bl       __ct__Q26PikiAI6ActionFPQ24Game4Piki
+	lis      r4, __vt__Q26PikiAI11ActBoreBase@ha
+	lis      r3, __vt__Q26PikiAI7ActRest@ha
+	addi     r6, r4, __vt__Q26PikiAI11ActBoreBase@l
+	addi     r4, r31, 0x1c
+	stw      r6, 0(r31)
+	addi     r5, r3, __vt__Q26PikiAI7ActRest@l
+	addi     r8, r6, 0x40
+	li       r0, 0
+	lwz      r7, 0xc(r31)
+	addi     r6, r5, 0x44
+	mr       r3, r31
+	stw      r8, 0(r7)
+	stw      r5, 0(r31)
+	lwz      r5, 0xc(r31)
+	stw      r6, 0(r5)
+	lwz      r5, 0xc(r31)
+	subf     r4, r5, r4
+	stw      r4, 4(r5)
+	stb      r0, 0x18(r31)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -532,14 +688,13 @@ PikiAI::ActRest::ActRest(Game::Piki*)
 void PikiAI::ActRest::finish(void)
 {
 	/*
-	.loc_0x0:
-	  lbz       r0, 0x18(r3)
-	  lfs       f0, -0x3FD4(r2)
-	  ori       r0, r0, 0x4
-	  stb       r0, 0x18(r3)
-	  lwz       r3, 0x4(r3)
-	  stfs      f0, 0x234(r3)
-	  blr
+	lbz      r0, 0x18(r3)
+	lfs      f0, lbl_8051A38C@sda21(r2)
+	ori      r0, r0, 4
+	stb      r0, 0x18(r3)
+	lwz      r3, 4(r3)
+	stfs     f0, 0x234(r3)
+	blr
 	*/
 }
 
@@ -551,41 +706,38 @@ void PikiAI::ActRest::finish(void)
 void PikiAI::ActRest::init(PikiAI::ActionArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  li        r0, 0
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r3
-	  stb       r0, 0x10(r3)
-	  bl        .loc_0x80
-	  bl        -0x1683D8
-	  xoris     r0, r3, 0x8000
-	  lis       r3, 0x4330
-	  stw       r0, 0xC(r1)
-	  li        r0, 0
-	  lfd       f1, -0x3FE0(r2)
-	  stw       r3, 0x8(r1)
-	  lfs       f3, -0x3FF0(r2)
-	  lfd       f0, 0x8(r1)
-	  lfs       f2, -0x3FCC(r2)
-	  fsubs     f4, f0, f1
-	  lfs       f1, -0x3FD0(r2)
-	  lfs       f0, -0x3FC8(r2)
-	  fdivs     f3, f4, f3
-	  fmadds    f1, f2, f3, f1
-	  stfs      f1, 0x14(r31)
-	  stb       r0, 0x18(r31)
-	  lwz       r3, 0x4(r31)
-	  stfs      f0, 0x234(r3)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-
-	.loc_0x80:
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	li       r0, 0
+	stw      r31, 0x1c(r1)
+	mr       r31, r3
+	stb      r0, 0x10(r3)
+	bl       sitDown__Q26PikiAI7ActRestFv
+	bl       rand
+	xoris    r0, r3, 0x8000
+	lis      r3, 0x4330
+	stw      r0, 0xc(r1)
+	li       r0, 0
+	lfd      f1, lbl_8051A380@sda21(r2)
+	stw      r3, 8(r1)
+	lfs      f3, lbl_8051A370@sda21(r2)
+	lfd      f0, 8(r1)
+	lfs      f2, lbl_8051A394@sda21(r2)
+	fsubs    f4, f0, f1
+	lfs      f1, lbl_8051A390@sda21(r2)
+	lfs      f0, lbl_8051A398@sda21(r2)
+	fdivs    f3, f4, f3
+	fmadds   f1, f2, f3, f1
+	stfs     f1, 0x14(r31)
+	stb      r0, 0x18(r31)
+	lwz      r3, 4(r31)
+	stfs     f0, 0x234(r3)
+	lwz      r31, 0x1c(r1)
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -597,63 +749,62 @@ void PikiAI::ActRest::init(PikiAI::ActionArg*)
 void PikiAI::ActRest::sitDown(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lbz       r0, 0x10(r3)
-	  cmpwi     r0, 0x1
-	  beq-      .loc_0x6C
-	  bge-      .loc_0xA4
-	  cmpwi     r0, 0
-	  bge-      .loc_0x30
-	  b         .loc_0xA4
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lbz      r0, 0x10(r3)
+	cmpwi    r0, 1
+	beq      lbl_80231A44
+	bge      lbl_80231A7C
+	cmpwi    r0, 0
+	bge      lbl_80231A08
+	b        lbl_80231A7C
 
-	.loc_0x30:
-	  cmplwi    r31, 0
-	  mr        r6, r31
-	  beq-      .loc_0x40
-	  lwz       r6, 0xC(r31)
+lbl_80231A08:
+	cmplwi   r31, 0
+	mr       r6, r31
+	beq      lbl_80231A18
+	lwz      r6, 0xc(r31)
 
-	.loc_0x40:
-	  lwz       r3, 0x4(r31)
-	  li        r4, 0x38
-	  li        r5, 0x38
-	  li        r7, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x208(r12)
-	  mtctr     r12
-	  bctrl
-	  li        r0, 0x1
-	  stb       r0, 0x10(r31)
-	  b         .loc_0xA4
+lbl_80231A18:
+	lwz      r3, 4(r31)
+	li       r4, 0x38
+	li       r5, 0x38
+	li       r7, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x208(r12)
+	mtctr    r12
+	bctrl
+	li       r0, 1
+	stb      r0, 0x10(r31)
+	b        lbl_80231A7C
 
-	.loc_0x6C:
-	  cmplwi    r31, 0
-	  mr        r6, r31
-	  beq-      .loc_0x7C
-	  lwz       r6, 0xC(r31)
+lbl_80231A44:
+	cmplwi   r31, 0
+	mr       r6, r31
+	beq      lbl_80231A54
+	lwz      r6, 0xc(r31)
 
-	.loc_0x7C:
-	  lwz       r3, 0x4(r31)
-	  li        r4, 0x39
-	  li        r5, 0x39
-	  li        r7, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x208(r12)
-	  mtctr     r12
-	  bctrl
-	  li        r0, 0x3
-	  stb       r0, 0x10(r31)
+lbl_80231A54:
+	lwz      r3, 4(r31)
+	li       r4, 0x39
+	li       r5, 0x39
+	li       r7, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x208(r12)
+	mtctr    r12
+	bctrl
+	li       r0, 3
+	stb      r0, 0x10(r31)
 
-	.loc_0xA4:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80231A7C:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -675,261 +826,260 @@ void PikiAI::ActRest::standUp(void)
 void PikiAI::ActRest::exec(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r3
-	  lbz       r0, 0x18(r3)
-	  rlwinm.   r0,r0,0,30,30
-	  beq-      .loc_0x28
-	  li        r3, 0
-	  b         .loc_0x31C
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r3
+	lbz      r0, 0x18(r3)
+	rlwinm.  r0, r0, 0, 0x1e, 0x1e
+	beq      lbl_80231AB8
+	li       r3, 0
+	b        lbl_80231DAC
 
-	.loc_0x28:
-	  lwz       r3, 0x4(r31)
-	  lfs       f0, -0x3FE8(r2)
-	  stfs      f0, 0x1E4(r3)
-	  stfs      f0, 0x1E8(r3)
-	  stfs      f0, 0x1EC(r3)
-	  lwz       r3, 0x4(r31)
-	  lfs       f1, 0x234(r3)
-	  fcmpu     cr0, f0, f1
-	  bne-      .loc_0x54
-	  lfs       f0, -0x3FC8(r2)
-	  stfs      f0, 0x234(r3)
+lbl_80231AB8:
+	lwz      r3, 4(r31)
+	lfs      f0, lbl_8051A378@sda21(r2)
+	stfs     f0, 0x1e4(r3)
+	stfs     f0, 0x1e8(r3)
+	stfs     f0, 0x1ec(r3)
+	lwz      r3, 4(r31)
+	lfs      f1, 0x234(r3)
+	fcmpu    cr0, f0, f1
+	bne      lbl_80231AE4
+	lfs      f0, lbl_8051A398@sda21(r2)
+	stfs     f0, 0x234(r3)
 
-	.loc_0x54:
-	  lwz       r3, 0x4(r31)
-	  lwz       r4, 0x1B8(r3)
-	  cmplwi    r4, 0
-	  beq-      .loc_0x6C
-	  lha       r0, 0x20(r4)
-	  b         .loc_0x70
+lbl_80231AE4:
+	lwz      r3, 4(r31)
+	lwz      r4, 0x1b8(r3)
+	cmplwi   r4, 0
+	beq      lbl_80231AFC
+	lha      r0, 0x20(r4)
+	b        lbl_80231B00
 
-	.loc_0x6C:
-	  li        r0, -0x1
+lbl_80231AFC:
+	li       r0, -1
 
-	.loc_0x70:
-	  cmpwi     r0, 0x39
-	  beq-      .loc_0x88
-	  cmpwi     r0, 0x38
-	  beq-      .loc_0x88
-	  li        r3, 0x2
-	  b         .loc_0x31C
+lbl_80231B00:
+	cmpwi    r0, 0x39
+	beq      lbl_80231B18
+	cmpwi    r0, 0x38
+	beq      lbl_80231B18
+	li       r3, 2
+	b        lbl_80231DAC
 
-	.loc_0x88:
-	  lbz       r4, 0x18(r31)
-	  rlwinm.   r0,r4,0,29,29
-	  beq-      .loc_0x180
-	  rlwinm.   r0,r4,0,31,31
-	  bne-      .loc_0x100
-	  lbz       r0, 0x10(r31)
-	  cmplwi    r0, 0x1
-	  blt-      .loc_0xF8
-	  cmpwi     r0, 0x2
-	  beq-      .loc_0xF0
-	  bge-      .loc_0xC0
-	  cmpwi     r0, 0x1
-	  bge-      .loc_0xCC
-	  b         .loc_0xF0
+lbl_80231B18:
+	lbz      r4, 0x18(r31)
+	rlwinm.  r0, r4, 0, 0x1d, 0x1d
+	beq      lbl_80231C10
+	clrlwi.  r0, r4, 0x1f
+	bne      lbl_80231B90
+	lbz      r0, 0x10(r31)
+	cmplwi   r0, 1
+	blt      lbl_80231B88
+	cmpwi    r0, 2
+	beq      lbl_80231B80
+	bge      lbl_80231B50
+	cmpwi    r0, 1
+	bge      lbl_80231B5C
+	b        lbl_80231B80
 
-	.loc_0xC0:
-	  cmpwi     r0, 0x4
-	  bge-      .loc_0xF0
-	  b         .loc_0xE0
+lbl_80231B50:
+	cmpwi    r0, 4
+	bge      lbl_80231B80
+	b        lbl_80231B70
 
-	.loc_0xCC:
-	  bl        -0xF4A9C
-	  lbz       r0, 0x18(r31)
-	  ori       r0, r0, 0x1
-	  stb       r0, 0x18(r31)
-	  b         .loc_0xF0
+lbl_80231B5C:
+	bl       finishMotion__Q24Game8FakePikiFv
+	lbz      r0, 0x18(r31)
+	ori      r0, r0, 1
+	stb      r0, 0x18(r31)
+	b        lbl_80231B80
 
-	.loc_0xE0:
-	  bl        -0xF4AB0
-	  lbz       r0, 0x18(r31)
-	  ori       r0, r0, 0x1
-	  stb       r0, 0x18(r31)
+lbl_80231B70:
+	bl       finishMotion__Q24Game8FakePikiFv
+	lbz      r0, 0x18(r31)
+	ori      r0, r0, 1
+	stb      r0, 0x18(r31)
 
-	.loc_0xF0:
-	  li        r3, 0x1
-	  b         .loc_0x31C
+lbl_80231B80:
+	li       r3, 1
+	b        lbl_80231DAC
 
-	.loc_0xF8:
-	  li        r3, 0
-	  b         .loc_0x31C
+lbl_80231B88:
+	li       r3, 0
+	b        lbl_80231DAC
 
-	.loc_0x100:
-	  lbz       r0, 0x1C4(r3)
-	  rlwinm.   r0,r0,0,31,31
-	  beq-      .loc_0x178
-	  rlwinm    r0,r4,0,24,30
-	  stb       r0, 0x18(r31)
-	  lbz       r0, 0x10(r31)
-	  cmplwi    r0, 0x3
-	  bne-      .loc_0x178
-	  li        r0, 0x1
-	  cmplwi    r31, 0
-	  stb       r0, 0x10(r31)
-	  mr        r6, r31
-	  beq-      .loc_0x138
-	  lwz       r6, 0xC(r31)
+lbl_80231B90:
+	lbz      r0, 0x1c4(r3)
+	clrlwi.  r0, r0, 0x1f
+	beq      lbl_80231C08
+	rlwinm   r0, r4, 0, 0x18, 0x1e
+	stb      r0, 0x18(r31)
+	lbz      r0, 0x10(r31)
+	cmplwi   r0, 3
+	bne      lbl_80231C08
+	li       r0, 1
+	cmplwi   r31, 0
+	stb      r0, 0x10(r31)
+	mr       r6, r31
+	beq      lbl_80231BC8
+	lwz      r6, 0xc(r31)
 
-	.loc_0x138:
-	  lwz       r3, 0x4(r31)
-	  li        r4, 0x38
-	  li        r5, 0x38
-	  li        r7, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x208(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x4(r31)
-	  li        r4, 0
-	  addi      r3, r3, 0x1AC
-	  bl        0x1F720C
-	  lwz       r3, 0x4(r31)
-	  li        r4, 0
-	  addi      r3, r3, 0x1C8
-	  bl        0x1F71FC
+lbl_80231BC8:
+	lwz      r3, 4(r31)
+	li       r4, 0x38
+	li       r5, 0x38
+	li       r7, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x208(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 4(r31)
+	li       r4, 0
+	addi     r3, r3, 0x1ac
+	bl       setFrameByKeyType__Q28SysShape8AnimatorFUl
+	lwz      r3, 4(r31)
+	li       r4, 0
+	addi     r3, r3, 0x1c8
+	bl       setFrameByKeyType__Q28SysShape8AnimatorFUl
 
-	.loc_0x178:
-	  li        r3, 0x1
-	  b         .loc_0x31C
+lbl_80231C08:
+	li       r3, 1
+	b        lbl_80231DAC
 
-	.loc_0x180:
-	  lwz       r3, -0x6514(r13)
-	  lfs       f1, 0x14(r31)
-	  lfs       f0, 0x54(r3)
-	  fsubs     f0, f1, f0
-	  stfs      f0, 0x14(r31)
-	  lbz       r0, 0x18(r31)
-	  rlwinm.   r0,r0,0,31,31
-	  bne-      .loc_0x318
-	  lfs       f1, 0x14(r31)
-	  lfs       f0, -0x3FE8(r2)
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x318
-	  lbz       r0, 0x10(r31)
-	  cmplwi    r0, 0x1
-	  bgt-      .loc_0x284
-	  bl        -0x1686AC
-	  xoris     r3, r3, 0x8000
-	  lis       r0, 0x4330
-	  stw       r3, 0xC(r1)
-	  lfd       f3, -0x3FE0(r2)
-	  stw       r0, 0x8(r1)
-	  lfs       f1, -0x3FF0(r2)
-	  lfd       f2, 0x8(r1)
-	  lfs       f0, -0x3FC4(r2)
-	  fsubs     f2, f2, f3
-	  fdivs     f1, f2, f1
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x284
-	  lbz       r0, 0x10(r31)
-	  cmpwi     r0, 0x1
-	  beq-      .loc_0x248
-	  bge-      .loc_0x2E0
-	  cmpwi     r0, 0
-	  bge-      .loc_0x20C
-	  b         .loc_0x2E0
+lbl_80231C10:
+	lwz      r3, sys@sda21(r13)
+	lfs      f1, 0x14(r31)
+	lfs      f0, 0x54(r3)
+	fsubs    f0, f1, f0
+	stfs     f0, 0x14(r31)
+	lbz      r0, 0x18(r31)
+	clrlwi.  r0, r0, 0x1f
+	bne      lbl_80231DA8
+	lfs      f1, 0x14(r31)
+	lfs      f0, lbl_8051A378@sda21(r2)
+	fcmpo    cr0, f1, f0
+	bge      lbl_80231DA8
+	lbz      r0, 0x10(r31)
+	cmplwi   r0, 1
+	bgt      lbl_80231D14
+	bl       rand
+	xoris    r3, r3, 0x8000
+	lis      r0, 0x4330
+	stw      r3, 0xc(r1)
+	lfd      f3, lbl_8051A380@sda21(r2)
+	stw      r0, 8(r1)
+	lfs      f1, lbl_8051A370@sda21(r2)
+	lfd      f2, 8(r1)
+	lfs      f0, lbl_8051A39C@sda21(r2)
+	fsubs    f2, f2, f3
+	fdivs    f1, f2, f1
+	fcmpo    cr0, f1, f0
+	ble      lbl_80231D14
+	lbz      r0, 0x10(r31)
+	cmpwi    r0, 1
+	beq      lbl_80231CD8
+	bge      lbl_80231D70
+	cmpwi    r0, 0
+	bge      lbl_80231C9C
+	b        lbl_80231D70
 
-	.loc_0x20C:
-	  cmplwi    r31, 0
-	  mr        r6, r31
-	  beq-      .loc_0x21C
-	  lwz       r6, 0xC(r31)
+lbl_80231C9C:
+	cmplwi   r31, 0
+	mr       r6, r31
+	beq      lbl_80231CAC
+	lwz      r6, 0xc(r31)
 
-	.loc_0x21C:
-	  lwz       r3, 0x4(r31)
-	  li        r4, 0x38
-	  li        r5, 0x38
-	  li        r7, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x208(r12)
-	  mtctr     r12
-	  bctrl
-	  li        r0, 0x1
-	  stb       r0, 0x10(r31)
-	  b         .loc_0x2E0
+lbl_80231CAC:
+	lwz      r3, 4(r31)
+	li       r4, 0x38
+	li       r5, 0x38
+	li       r7, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x208(r12)
+	mtctr    r12
+	bctrl
+	li       r0, 1
+	stb      r0, 0x10(r31)
+	b        lbl_80231D70
 
-	.loc_0x248:
-	  cmplwi    r31, 0
-	  mr        r6, r31
-	  beq-      .loc_0x258
-	  lwz       r6, 0xC(r31)
+lbl_80231CD8:
+	cmplwi   r31, 0
+	mr       r6, r31
+	beq      lbl_80231CE8
+	lwz      r6, 0xc(r31)
 
-	.loc_0x258:
-	  lwz       r3, 0x4(r31)
-	  li        r4, 0x39
-	  li        r5, 0x39
-	  li        r7, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x208(r12)
-	  mtctr     r12
-	  bctrl
-	  li        r0, 0x3
-	  stb       r0, 0x10(r31)
-	  b         .loc_0x2E0
+lbl_80231CE8:
+	lwz      r3, 4(r31)
+	li       r4, 0x39
+	li       r5, 0x39
+	li       r7, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x208(r12)
+	mtctr    r12
+	bctrl
+	li       r0, 3
+	stb      r0, 0x10(r31)
+	b        lbl_80231D70
 
-	.loc_0x284:
-	  lbz       r0, 0x10(r31)
-	  cmplwi    r0, 0x1
-	  blt-      .loc_0x2E0
-	  cmpwi     r0, 0x2
-	  beq-      .loc_0x2E0
-	  bge-      .loc_0x2A8
-	  cmpwi     r0, 0x1
-	  bge-      .loc_0x2B4
-	  b         .loc_0x2E0
+lbl_80231D14:
+	lbz      r0, 0x10(r31)
+	cmplwi   r0, 1
+	blt      lbl_80231D70
+	cmpwi    r0, 2
+	beq      lbl_80231D70
+	bge      lbl_80231D38
+	cmpwi    r0, 1
+	bge      lbl_80231D44
+	b        lbl_80231D70
 
-	.loc_0x2A8:
-	  cmpwi     r0, 0x4
-	  bge-      .loc_0x2E0
-	  b         .loc_0x2CC
+lbl_80231D38:
+	cmpwi    r0, 4
+	bge      lbl_80231D70
+	b        lbl_80231D5C
 
-	.loc_0x2B4:
-	  lwz       r3, 0x4(r31)
-	  bl        -0xF4C88
-	  lbz       r0, 0x18(r31)
-	  ori       r0, r0, 0x1
-	  stb       r0, 0x18(r31)
-	  b         .loc_0x2E0
+lbl_80231D44:
+	lwz      r3, 4(r31)
+	bl       finishMotion__Q24Game8FakePikiFv
+	lbz      r0, 0x18(r31)
+	ori      r0, r0, 1
+	stb      r0, 0x18(r31)
+	b        lbl_80231D70
 
-	.loc_0x2CC:
-	  lwz       r3, 0x4(r31)
-	  bl        -0xF4CA0
-	  lbz       r0, 0x18(r31)
-	  ori       r0, r0, 0x1
-	  stb       r0, 0x18(r31)
+lbl_80231D5C:
+	lwz      r3, 4(r31)
+	bl       finishMotion__Q24Game8FakePikiFv
+	lbz      r0, 0x18(r31)
+	ori      r0, r0, 1
+	stb      r0, 0x18(r31)
 
-	.loc_0x2E0:
-	  bl        -0x1687D0
-	  xoris     r3, r3, 0x8000
-	  lis       r0, 0x4330
-	  stw       r3, 0xC(r1)
-	  lfd       f3, -0x3FE0(r2)
-	  stw       r0, 0x8(r1)
-	  lfs       f2, -0x3FF0(r2)
-	  lfd       f0, 0x8(r1)
-	  lfs       f1, -0x3FEC(r2)
-	  fsubs     f3, f0, f3
-	  lfs       f0, -0x3FC0(r2)
-	  fdivs     f2, f3, f2
-	  fmadds    f0, f1, f2, f0
-	  stfs      f0, 0x14(r31)
+lbl_80231D70:
+	bl       rand
+	xoris    r3, r3, 0x8000
+	lis      r0, 0x4330
+	stw      r3, 0xc(r1)
+	lfd      f3, lbl_8051A380@sda21(r2)
+	stw      r0, 8(r1)
+	lfs      f2, lbl_8051A370@sda21(r2)
+	lfd      f0, 8(r1)
+	lfs      f1, lbl_8051A374@sda21(r2)
+	fsubs    f3, f0, f3
+	lfs      f0, lbl_8051A3A0@sda21(r2)
+	fdivs    f2, f3, f2
+	fmadds   f0, f1, f2, f0
+	stfs     f0, 0x14(r31)
 
-	.loc_0x318:
-	  li        r3, 0x1
+lbl_80231DA8:
+	li       r3, 1
 
-	.loc_0x31C:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80231DAC:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -948,160 +1098,159 @@ void PikiAI::ActRest::cleanup(void) { }
 void PikiAI::ActRest::onKeyEvent(SysShape::KeyEvent const&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  lwz       r0, 0x1C(r4)
-	  lis       r4, 0x8048
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r3
-	  cmpwi     r0, 0xC8
-	  stw       r30, 0x18(r1)
-	  addi      r30, r4, 0x3930
-	  stw       r29, 0x14(r1)
-	  beq-      .loc_0x4C
-	  bge-      .loc_0x40
-	  cmpwi     r0, 0x1
-	  beq-      .loc_0x1D8
-	  b         .loc_0x1D8
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	lwz      r0, 0x1c(r4)
+	lis      r4, lbl_80483930@ha
+	stw      r31, 0x1c(r1)
+	mr       r31, r3
+	cmpwi    r0, 0xc8
+	stw      r30, 0x18(r1)
+	addi     r30, r4, lbl_80483930@l
+	stw      r29, 0x14(r1)
+	beq      lbl_80231E10
+	bge      lbl_80231E04
+	cmpwi    r0, 1
+	beq      lbl_80231F9C
+	b        lbl_80231F9C
 
-	.loc_0x40:
-	  cmpwi     r0, 0x3E8
-	  beq-      .loc_0x124
-	  b         .loc_0x1D8
+lbl_80231E04:
+	cmpwi    r0, 0x3e8
+	beq      lbl_80231EE8
+	b        lbl_80231F9C
 
-	.loc_0x4C:
-	  lwz       r0, -0x6780(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x6C
-	  addi      r3, r30, 0x38
-	  addi      r5, r30, 0x2C
-	  li        r4, 0x1D3
-	  crclr     6, 0x6
-	  bl        -0x2077EC
+lbl_80231E10:
+	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_80231E30
+	addi     r3, r30, 0x38
+	addi     r5, r30, 0x2c
+	li       r4, 0x1d3
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x6C:
-	  lwz       r29, -0x6780(r13)
-	  cmplwi    r29, 0
-	  bne-      .loc_0x8C
-	  addi      r3, r30, 0x38
-	  addi      r5, r30, 0x2C
-	  li        r4, 0x1DC
-	  crclr     6, 0x6
-	  bl        -0x20780C
+lbl_80231E30:
+	lwz      r29, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r29, 0
+	bne      lbl_80231E50
+	addi     r3, r30, 0x38
+	addi     r5, r30, 0x2c
+	li       r4, 0x1dc
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x8C:
-	  lwz       r0, 0x4(r29)
-	  cmplwi    r0, 0
-	  bne-      .loc_0xAC
-	  addi      r3, r30, 0x44
-	  addi      r5, r30, 0x2C
-	  li        r4, 0xCF
-	  crclr     6, 0x6
-	  bl        -0x20782C
+lbl_80231E50:
+	lwz      r0, 4(r29)
+	cmplwi   r0, 0
+	bne      lbl_80231E70
+	addi     r3, r30, 0x44
+	addi     r5, r30, 0x2c
+	li       r4, 0xcf
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xAC:
-	  lwz       r3, 0x4(r29)
-	  lwz       r29, 0x4(r3)
-	  cmplwi    r29, 0
-	  bne-      .loc_0xD0
-	  addi      r3, r30, 0x44
-	  addi      r5, r30, 0x50
-	  li        r4, 0xD1
-	  crclr     6, 0x6
-	  bl        -0x207850
+lbl_80231E70:
+	lwz      r3, 4(r29)
+	lwz      r29, 4(r3)
+	cmplwi   r29, 0
+	bne      lbl_80231E94
+	addi     r3, r30, 0x44
+	addi     r5, r30, 0x50
+	li       r4, 0xd1
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xD0:
-	  mr        r3, r29
-	  lwz       r12, 0x0(r29)
-	  lwz       r12, 0x40(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xF0
-	  b         .loc_0xF4
+lbl_80231E94:
+	mr       r3, r29
+	lwz      r12, 0(r29)
+	lwz      r12, 0x40(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80231EB4
+	b        lbl_80231EB8
 
-	.loc_0xF0:
-	  li        r29, 0
+lbl_80231EB4:
+	li       r29, 0
 
-	.loc_0xF4:
-	  mr        r3, r29
-	  lwz       r12, 0x0(r29)
-	  lwz       r12, 0x68(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x1D8
-	  lwz       r3, 0x4(r31)
-	  li        r4, 0x283E
-	  li        r5, 0x1
-	  bl        -0xE9614
-	  b         .loc_0x1D8
+lbl_80231EB8:
+	mr       r3, r29
+	lwz      r12, 0(r29)
+	lwz      r12, 0x68(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80231F9C
+	lwz      r3, 4(r31)
+	li       r4, 0x283e
+	li       r5, 1
+	bl       startSound__Q24Game4PikiFUlb
+	b        lbl_80231F9C
 
-	.loc_0x124:
-	  lbz       r3, 0x18(r31)
-	  rlwinm.   r0,r3,0,31,31
-	  beq-      .loc_0x1D8
-	  lbz       r0, 0x10(r31)
-	  cmpwi     r0, 0x2
-	  beq-      .loc_0x1D8
-	  bge-      .loc_0x14C
-	  cmpwi     r0, 0x1
-	  bge-      .loc_0x158
-	  b         .loc_0x1D8
+lbl_80231EE8:
+	lbz      r3, 0x18(r31)
+	clrlwi.  r0, r3, 0x1f
+	beq      lbl_80231F9C
+	lbz      r0, 0x10(r31)
+	cmpwi    r0, 2
+	beq      lbl_80231F9C
+	bge      lbl_80231F10
+	cmpwi    r0, 1
+	bge      lbl_80231F1C
+	b        lbl_80231F9C
 
-	.loc_0x14C:
-	  cmpwi     r0, 0x4
-	  bge-      .loc_0x1D8
-	  b         .loc_0x178
+lbl_80231F10:
+	cmpwi    r0, 4
+	bge      lbl_80231F9C
+	b        lbl_80231F3C
 
-	.loc_0x158:
-	  rlwinm    r3,r3,0,24,30
-	  li        r0, 0
-	  stb       r3, 0x18(r31)
-	  stb       r0, 0x10(r31)
-	  lbz       r0, 0x18(r31)
-	  ori       r0, r0, 0x2
-	  stb       r0, 0x18(r31)
-	  b         .loc_0x1D8
+lbl_80231F1C:
+	rlwinm   r3, r3, 0, 0x18, 0x1e
+	li       r0, 0
+	stb      r3, 0x18(r31)
+	stb      r0, 0x10(r31)
+	lbz      r0, 0x18(r31)
+	ori      r0, r0, 2
+	stb      r0, 0x18(r31)
+	b        lbl_80231F9C
 
-	.loc_0x178:
-	  rlwinm    r0,r3,0,24,30
-	  cmplwi    r31, 0
-	  stb       r0, 0x18(r31)
-	  li        r0, 0x1
-	  mr        r6, r31
-	  stb       r0, 0x10(r31)
-	  beq-      .loc_0x198
-	  lwz       r6, 0xC(r31)
+lbl_80231F3C:
+	rlwinm   r0, r3, 0, 0x18, 0x1e
+	cmplwi   r31, 0
+	stb      r0, 0x18(r31)
+	li       r0, 1
+	mr       r6, r31
+	stb      r0, 0x10(r31)
+	beq      lbl_80231F5C
+	lwz      r6, 0xc(r31)
 
-	.loc_0x198:
-	  lwz       r3, 0x4(r31)
-	  li        r4, 0x38
-	  li        r5, 0x38
-	  li        r7, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x208(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x4(r31)
-	  li        r4, 0
-	  addi      r3, r3, 0x1AC
-	  bl        0x1F6E78
-	  lwz       r3, 0x4(r31)
-	  li        r4, 0
-	  addi      r3, r3, 0x1C8
-	  bl        0x1F6E68
+lbl_80231F5C:
+	lwz      r3, 4(r31)
+	li       r4, 0x38
+	li       r5, 0x38
+	li       r7, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x208(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 4(r31)
+	li       r4, 0
+	addi     r3, r3, 0x1ac
+	bl       setFrameByKeyType__Q28SysShape8AnimatorFUl
+	lwz      r3, 4(r31)
+	li       r4, 0
+	addi     r3, r3, 0x1c8
+	bl       setFrameByKeyType__Q28SysShape8AnimatorFUl
 
-	.loc_0x1D8:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80231F9C:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -1113,56 +1262,55 @@ void PikiAI::ActRest::onKeyEvent(SysShape::KeyEvent const&)
 PikiAI::ActOneshot::ActOneshot(Game::Piki*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  extsh.    r0, r4
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  beq-      .loc_0x30
-	  addi      r0, r31, 0x1C
-	  lis       r3, 0x804B
-	  stw       r0, 0xC(r31)
-	  subi      r0, r3, 0x5994
-	  stw       r0, 0x1C(r31)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	extsh.   r0, r4
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	beq      lbl_80231FE8
+	addi     r0, r31, 0x1c
+	lis      r3, __vt__Q28SysShape14MotionListener@ha
+	stw      r0, 0xc(r31)
+	addi     r0, r3, __vt__Q28SysShape14MotionListener@l
+	stw      r0, 0x1c(r31)
 
-	.loc_0x30:
-	  mr        r3, r31
-	  mr        r4, r5
-	  bl        -0x9B5D8
-	  lis       r4, 0x804C
-	  lis       r3, 0x804C
-	  addi      r5, r4, 0x12A8
-	  lis       r4, 0x804B
-	  stw       r5, 0x0(r31)
-	  addi      r8, r3, 0x1208
-	  lis       r3, 0x804C
-	  addi      r0, r5, 0x40
-	  lwz       r5, 0xC(r31)
-	  addi      r9, r8, 0x44
-	  addi      r7, r31, 0x1C
-	  addi      r6, r4, 0x530
-	  stw       r0, 0x0(r5)
-	  addi      r5, r3, 0x12F4
-	  li        r4, -0x1
-	  li        r0, 0
-	  stw       r8, 0x0(r31)
-	  mr        r3, r31
-	  lwz       r8, 0xC(r31)
-	  stw       r9, 0x0(r8)
-	  lwz       r8, 0xC(r31)
-	  sub       r7, r7, r8
-	  stw       r7, 0x4(r8)
-	  stw       r6, 0x10(r31)
-	  stw       r5, 0x10(r31)
-	  stw       r4, 0x14(r31)
-	  stb       r0, 0x18(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80231FE8:
+	mr       r3, r31
+	mr       r4, r5
+	bl       __ct__Q26PikiAI6ActionFPQ24Game4Piki
+	lis      r4, __vt__Q26PikiAI11ActBoreBase@ha
+	lis      r3, __vt__Q26PikiAI10ActOneshot@ha
+	addi     r5, r4, __vt__Q26PikiAI11ActBoreBase@l
+	lis      r4, __vt__Q26PikiAI9ActionArg@ha
+	stw      r5, 0(r31)
+	addi     r8, r3, __vt__Q26PikiAI10ActOneshot@l
+	lis      r3, __vt__Q26PikiAI13ActOneshotArg@ha
+	addi     r0, r5, 0x40
+	lwz      r5, 0xc(r31)
+	addi     r9, r8, 0x44
+	addi     r7, r31, 0x1c
+	addi     r6, r4, __vt__Q26PikiAI9ActionArg@l
+	stw      r0, 0(r5)
+	addi     r5, r3, __vt__Q26PikiAI13ActOneshotArg@l
+	li       r4, -1
+	li       r0, 0
+	stw      r8, 0(r31)
+	mr       r3, r31
+	lwz      r8, 0xc(r31)
+	stw      r9, 0(r8)
+	lwz      r8, 0xc(r31)
+	subf     r7, r8, r7
+	stw      r7, 4(r8)
+	stw      r6, 0x10(r31)
+	stw      r5, 0x10(r31)
+	stw      r4, 0x14(r31)
+	stb      r0, 0x18(r31)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1174,48 +1322,47 @@ PikiAI::ActOneshot::ActOneshot(Game::Piki*)
 void PikiAI::ActOneshot::init(PikiAI::ActionArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  bne-      .loc_0x3C
-	  lis       r3, 0x8048
-	  lis       r5, 0x8048
-	  addi      r3, r3, 0x3950
-	  li        r4, 0x10B
-	  addi      r5, r5, 0x395C
-	  crclr     6, 0x6
-	  bl        -0x207A6C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r4, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	bne      lbl_802320B0
+	lis      r3, lbl_80483950@ha
+	lis      r5, lbl_8048395C@ha
+	addi     r3, r3, lbl_80483950@l
+	li       r4, 0x10b
+	addi     r5, r5, lbl_8048395C@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x3C:
-	  lwz       r0, 0x4(r31)
-	  cmplwi    r30, 0
-	  mr        r6, r30
-	  stw       r0, 0x14(r30)
-	  beq-      .loc_0x54
-	  lwz       r6, 0xC(r30)
+lbl_802320B0:
+	lwz      r0, 4(r31)
+	cmplwi   r30, 0
+	mr       r6, r30
+	stw      r0, 0x14(r30)
+	beq      lbl_802320C8
+	lwz      r6, 0xc(r30)
 
-	.loc_0x54:
-	  lwz       r3, 0x4(r30)
-	  li        r7, 0
-	  lwz       r4, 0x14(r30)
-	  lwz       r12, 0x0(r3)
-	  mr        r5, r4
-	  lwz       r12, 0x208(r12)
-	  mtctr     r12
-	  bctrl
-	  li        r0, 0
-	  stb       r0, 0x18(r30)
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_802320C8:
+	lwz      r3, 4(r30)
+	li       r7, 0
+	lwz      r4, 0x14(r30)
+	lwz      r12, 0(r3)
+	mr       r5, r4
+	lwz      r12, 0x208(r12)
+	mtctr    r12
+	bctrl
+	li       r0, 0
+	stb      r0, 0x18(r30)
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1227,25 +1374,24 @@ void PikiAI::ActOneshot::init(PikiAI::ActionArg*)
 void PikiAI::ActOneshot::finish(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lfs       f0, -0x3FD4(r2)
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r3, 0x4(r3)
-	  stfs      f0, 0x234(r3)
-	  lwz       r3, 0x4(r31)
-	  bl        -0xF506C
-	  lbz       r0, 0x18(r31)
-	  ori       r0, r0, 0x2
-	  stb       r0, 0x18(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lfs      f0, lbl_8051A38C@sda21(r2)
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r3, 4(r3)
+	stfs     f0, 0x234(r3)
+	lwz      r3, 4(r31)
+	bl       finishMotion__Q24Game8FakePikiFv
+	lbz      r0, 0x18(r31)
+	ori      r0, r0, 2
+	stb      r0, 0x18(r31)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1257,45 +1403,44 @@ void PikiAI::ActOneshot::finish(void)
 void PikiAI::ActOneshot::exec(void)
 {
 	/*
-	.loc_0x0:
-	  lwz       r4, 0x4(r3)
-	  lfs       f0, -0x3FE8(r2)
-	  stfs      f0, 0x1E4(r4)
-	  stfs      f0, 0x1E8(r4)
-	  stfs      f0, 0x1EC(r4)
-	  lbz       r4, 0x18(r3)
-	  rlwinm.   r0,r4,0,30,30
-	  beq-      .loc_0x28
-	  li        r3, 0
-	  blr
+	lwz      r4, 4(r3)
+	lfs      f0, lbl_8051A378@sda21(r2)
+	stfs     f0, 0x1e4(r4)
+	stfs     f0, 0x1e8(r4)
+	stfs     f0, 0x1ec(r4)
+	lbz      r4, 0x18(r3)
+	rlwinm.  r0, r4, 0, 0x1e, 0x1e
+	beq      lbl_80232178
+	li       r3, 0
+	blr
 
-	.loc_0x28:
-	  rlwinm.   r0,r4,0,31,31
-	  beq-      .loc_0x38
-	  li        r3, 0
-	  blr
+lbl_80232178:
+	clrlwi.  r0, r4, 0x1f
+	beq      lbl_80232188
+	li       r3, 0
+	blr
 
-	.loc_0x38:
-	  lwz       r4, 0x4(r3)
-	  lwz       r4, 0x1B8(r4)
-	  cmplwi    r4, 0
-	  beq-      .loc_0x50
-	  lha       r4, 0x20(r4)
-	  b         .loc_0x54
+lbl_80232188:
+	lwz      r4, 4(r3)
+	lwz      r4, 0x1b8(r4)
+	cmplwi   r4, 0
+	beq      lbl_802321A0
+	lha      r4, 0x20(r4)
+	b        lbl_802321A4
 
-	.loc_0x50:
-	  li        r4, -0x1
+lbl_802321A0:
+	li       r4, -1
 
-	.loc_0x54:
-	  lwz       r0, 0x14(r3)
-	  cmpw      r0, r4
-	  beq-      .loc_0x68
-	  li        r3, 0x2
-	  blr
+lbl_802321A4:
+	lwz      r0, 0x14(r3)
+	cmpw     r0, r4
+	beq      lbl_802321B8
+	li       r3, 2
+	blr
 
-	.loc_0x68:
-	  li        r3, 0x1
-	  blr
+lbl_802321B8:
+	li       r3, 1
+	blr
 	*/
 }
 
@@ -1314,109 +1459,108 @@ void PikiAI::ActOneshot::cleanup(void) { }
 void PikiAI::ActOneshot::onKeyEvent(SysShape::KeyEvent const&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r5, 0x8048
-	  stw       r0, 0x24(r1)
-	  lwz       r0, 0x1C(r4)
-	  stw       r31, 0x1C(r1)
-	  addi      r31, r5, 0x3930
-	  cmplwi    r0, 0x3E8
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  bne-      .loc_0x3C
-	  lbz       r0, 0x18(r29)
-	  ori       r0, r0, 0x1
-	  stb       r0, 0x18(r29)
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lis      r5, lbl_80483930@ha
+	stw      r0, 0x24(r1)
+	lwz      r0, 0x1c(r4)
+	stw      r31, 0x1c(r1)
+	addi     r31, r5, lbl_80483930@l
+	cmplwi   r0, 0x3e8
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	bne      lbl_80232200
+	lbz      r0, 0x18(r29)
+	ori      r0, r0, 1
+	stb      r0, 0x18(r29)
 
-	.loc_0x3C:
-	  lwz       r0, 0x1C(r4)
-	  cmplwi    r0, 0xC8
-	  bne-      .loc_0x134
-	  lwz       r0, 0x14(r29)
-	  cmpwi     r0, 0
-	  beq-      .loc_0x58
-	  b         .loc_0x134
+lbl_80232200:
+	lwz      r0, 0x1c(r4)
+	cmplwi   r0, 0xc8
+	bne      lbl_802322F8
+	lwz      r0, 0x14(r29)
+	cmpwi    r0, 0
+	beq      lbl_8023221C
+	b        lbl_802322F8
 
-	.loc_0x58:
-	  lwz       r0, -0x6780(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x78
-	  addi      r3, r31, 0x38
-	  addi      r5, r31, 0x2C
-	  li        r4, 0x1D3
-	  crclr     6, 0x6
-	  bl        -0x207BF8
+lbl_8023221C:
+	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_8023223C
+	addi     r3, r31, 0x38
+	addi     r5, r31, 0x2c
+	li       r4, 0x1d3
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x78:
-	  lwz       r30, -0x6780(r13)
-	  cmplwi    r30, 0
-	  bne-      .loc_0x98
-	  addi      r3, r31, 0x38
-	  addi      r5, r31, 0x2C
-	  li        r4, 0x1DC
-	  crclr     6, 0x6
-	  bl        -0x207C18
+lbl_8023223C:
+	lwz      r30, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r30, 0
+	bne      lbl_8023225C
+	addi     r3, r31, 0x38
+	addi     r5, r31, 0x2c
+	li       r4, 0x1dc
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x98:
-	  lwz       r0, 0x4(r30)
-	  cmplwi    r0, 0
-	  bne-      .loc_0xB8
-	  addi      r3, r31, 0x44
-	  addi      r5, r31, 0x2C
-	  li        r4, 0xCF
-	  crclr     6, 0x6
-	  bl        -0x207C38
+lbl_8023225C:
+	lwz      r0, 4(r30)
+	cmplwi   r0, 0
+	bne      lbl_8023227C
+	addi     r3, r31, 0x44
+	addi     r5, r31, 0x2c
+	li       r4, 0xcf
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xB8:
-	  lwz       r3, 0x4(r30)
-	  lwz       r30, 0x4(r3)
-	  cmplwi    r30, 0
-	  bne-      .loc_0xDC
-	  addi      r3, r31, 0x44
-	  addi      r5, r31, 0x50
-	  li        r4, 0xD1
-	  crclr     6, 0x6
-	  bl        -0x207C5C
+lbl_8023227C:
+	lwz      r3, 4(r30)
+	lwz      r30, 4(r3)
+	cmplwi   r30, 0
+	bne      lbl_802322A0
+	addi     r3, r31, 0x44
+	addi     r5, r31, 0x50
+	li       r4, 0xd1
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xDC:
-	  mr        r3, r30
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x40(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xFC
-	  b         .loc_0x100
+lbl_802322A0:
+	mr       r3, r30
+	lwz      r12, 0(r30)
+	lwz      r12, 0x40(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802322C0
+	b        lbl_802322C4
 
-	.loc_0xFC:
-	  li        r30, 0
+lbl_802322C0:
+	li       r30, 0
 
-	.loc_0x100:
-	  mr        r3, r30
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x68(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x134
-	  lwz       r3, 0x4(r29)
-	  li        r4, 0x2834
-	  li        r5, 0x5A
-	  li        r6, 0
-	  lwz       r3, 0x250(r3)
-	  bl        0x23028C
+lbl_802322C4:
+	mr       r3, r30
+	lwz      r12, 0(r30)
+	lwz      r12, 0x68(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802322F8
+	lwz      r3, 4(r29)
+	li       r4, 0x2834
+	li       r5, 0x5a
+	li       r6, 0
+	lwz      r3, 0x250(r3)
+	bl       startFreePikiSound__Q23PSM4PikiFUlUlUl
 
-	.loc_0x134:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_802322F8:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -1428,12 +1572,11 @@ void PikiAI::ActOneshot::onKeyEvent(SysShape::KeyEvent const&)
 void @28 @4 @PikiAI::ActRest::onKeyEvent(SysShape::KeyEvent const&)
 {
 	/*
-	.loc_0x0:
-	  li        r11, 0x4
-	  lwzx      r11, r3, r11
-	  add       r3, r3, r11
-	  subi      r3, r3, 0x1C
-	  b         -0x560
+	li       r11, 4
+	lwzx     r11, r3, r11
+	add      r3, r3, r11
+	addi     r3, r3, -28
+	b        onKeyEvent__Q26PikiAI7ActRestFRCQ28SysShape8KeyEvent
 	*/
 }
 
@@ -1445,11 +1588,10 @@ void @28 @4 @PikiAI::ActRest::onKeyEvent(SysShape::KeyEvent const&)
 void @28 @4 @PikiAI::ActOneshot::onKeyEvent(SysShape::KeyEvent const&)
 {
 	/*
-	.loc_0x0:
-	  li        r11, 0x4
-	  lwzx      r11, r3, r11
-	  add       r3, r3, r11
-	  subi      r3, r3, 0x1C
-	  b         -0x174
+	li       r11, 4
+	lwzx     r11, r3, r11
+	add      r3, r3, r11
+	addi     r3, r3, -28
+	b        onKeyEvent__Q26PikiAI10ActOneshotFRCQ28SysShape8KeyEvent
 	*/
 }

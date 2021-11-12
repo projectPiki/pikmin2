@@ -1,6 +1,215 @@
 #include "types.h"
 
 /*
+    Generated from dpostproc
+
+    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
+        .4byte __sinit_particleMgr_cpp
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_80495BC8
+    lbl_80495BC8:
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x70617274
+        .4byte 0x69636C65
+        .4byte 0x4D677200
+    .global lbl_80495BE0
+    lbl_80495BE0:
+        .4byte 0x50617274
+        .4byte 0x69636C65
+        .4byte 0x4D677200
+    .global lbl_80495BEC
+    lbl_80495BEC:
+        .4byte 0x70617274
+        .4byte 0x69636C65
+        .4byte 0x4D67722E
+        .4byte 0x63707000
+    .global lbl_80495BFC
+    lbl_80495BFC:
+        .asciz "P2Assert"
+        .skip 3
+        .4byte 0x65666665
+        .4byte 0x63742068
+        .4byte 0x65617020
+        .4byte 0x6E6F7420
+        .4byte 0x616C6C6F
+        .4byte 0x63617465
+        .4byte 0x6420210A
+        .4byte 0x00000000
+        .4byte 0x50617274
+        .4byte 0x69636C65
+        .4byte 0x5265736F
+        .4byte 0x75726365
+        .4byte 0x20282573
+        .4byte 0x29206E6F
+        .4byte 0x7420666F
+        .4byte 0x756E640A
+        .4byte 0x00000000
+    .global lbl_80495C4C
+    lbl_80495C4C:
+        .4byte 0x4950325F
+        .4byte 0x64756D6D
+        .4byte 0x79000000
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global lbl_804E7688
+    lbl_804E7688:
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+    .global __vt__11ParticleMgr
+    __vt__11ParticleMgr:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__11ParticleMgrFv
+        .4byte getChildCount__5CNodeFv
+        .4byte update__11ParticleMgrFv
+        .4byte doAnimation__11ParticleMgrFv
+        .4byte doEntry__11ParticleMgrFv
+        .4byte doSetView__11ParticleMgrFi
+        .4byte doViewCalc__11ParticleMgrFv
+        .4byte draw__11ParticleMgrFP8ViewportUc
+    .global __vt__19ModelEffectDataRoot
+    __vt__19ModelEffectDataRoot:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__19ModelEffectDataRootFv
+        .4byte getChildCount__5CNodeFv
+        .4byte loadResources__19ModelEffectDataRootFv
+        .4byte getID__19ModelEffectDataRootFv
+        .4byte onCreate__19ModelEffectDataRootFP20ModelEffectCreateArg
+    .global "__vt__26TObjectNode<11ModelEffect>"
+    "__vt__26TObjectNode<11ModelEffect>":
+        .4byte 0
+        .4byte 0
+        .4byte "__dt__26TObjectNode<11ModelEffect>Fv"
+        .4byte getChildCount__5CNodeFv
+    .global "__vt__28NodeObjectMgr<11ModelEffect>"
+    "__vt__28NodeObjectMgr<11ModelEffect>":
+        .4byte 0
+        .4byte 0
+        .4byte "__dt__28NodeObjectMgr<11ModelEffect>Fv"
+        .4byte getChildCount__5CNodeFv
+        .4byte "getObject__24Container<11ModelEffect>FPv"
+        .4byte "getNext__28NodeObjectMgr<11ModelEffect>FPv"
+        .4byte "getStart__28NodeObjectMgr<11ModelEffect>Fv"
+        .4byte "getEnd__28NodeObjectMgr<11ModelEffect>Fv"
+        .4byte "get__28NodeObjectMgr<11ModelEffect>FPv"
+        .4byte "getAt__24Container<11ModelEffect>Fi"
+        .4byte "getTo__24Container<11ModelEffect>Fv"
+        .4byte 0
+        .4byte 0
+        .4byte "@28@doAnimation__24ObjectMgr<11ModelEffect>Fv"
+        .4byte "@28@doEntry__24ObjectMgr<11ModelEffect>Fv"
+        .4byte "@28@doSetView__24ObjectMgr<11ModelEffect>Fi"
+        .4byte "@28@doViewCalc__24ObjectMgr<11ModelEffect>Fv"
+        .4byte "@28@doSimulation__24ObjectMgr<11ModelEffect>Ff"
+        .4byte "@28@doDirectDraw__24ObjectMgr<11ModelEffect>FR8Graphics"
+        .4byte doSimpleDraw__16GenericObjectMgrFP8Viewport
+        .4byte loadResources__16GenericObjectMgrFv
+        .4byte "@28@resetMgr__28NodeObjectMgr<11ModelEffect>Fv"
+        .4byte pausable__16GenericObjectMgrFv
+        .4byte frozenable__16GenericObjectMgrFv
+        .4byte getMatrixLoadType__16GenericObjectMgrFv
+        .4byte "doAnimation__24ObjectMgr<11ModelEffect>Fv"
+        .4byte "doEntry__24ObjectMgr<11ModelEffect>Fv"
+        .4byte "doSetView__24ObjectMgr<11ModelEffect>Fi"
+        .4byte "doViewCalc__24ObjectMgr<11ModelEffect>Fv"
+        .4byte "doSimulation__24ObjectMgr<11ModelEffect>Ff"
+        .4byte "doDirectDraw__24ObjectMgr<11ModelEffect>FR8Graphics"
+        .4byte "resetMgr__28NodeObjectMgr<11ModelEffect>Fv"
+    .global "__vt__24ObjectMgr<11ModelEffect>"
+    "__vt__24ObjectMgr<11ModelEffect>":
+        .4byte 0
+        .4byte 0
+        .4byte "__dt__24ObjectMgr<11ModelEffect>Fv"
+        .4byte getChildCount__5CNodeFv
+        .4byte "getObject__24Container<11ModelEffect>FPv"
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte "getAt__24Container<11ModelEffect>Fi"
+        .4byte "getTo__24Container<11ModelEffect>Fv"
+        .4byte 0
+        .4byte 0
+        .4byte "@28@doAnimation__24ObjectMgr<11ModelEffect>Fv"
+        .4byte "@28@doEntry__24ObjectMgr<11ModelEffect>Fv"
+        .4byte "@28@doSetView__24ObjectMgr<11ModelEffect>Fi"
+        .4byte "@28@doViewCalc__24ObjectMgr<11ModelEffect>Fv"
+        .4byte "@28@doSimulation__24ObjectMgr<11ModelEffect>Ff"
+        .4byte "@28@doDirectDraw__24ObjectMgr<11ModelEffect>FR8Graphics"
+        .4byte doSimpleDraw__16GenericObjectMgrFP8Viewport
+        .4byte loadResources__16GenericObjectMgrFv
+        .4byte resetMgr__16GenericObjectMgrFv
+        .4byte pausable__16GenericObjectMgrFv
+        .4byte frozenable__16GenericObjectMgrFv
+        .4byte getMatrixLoadType__16GenericObjectMgrFv
+        .4byte "doAnimation__24ObjectMgr<11ModelEffect>Fv"
+        .4byte "doEntry__24ObjectMgr<11ModelEffect>Fv"
+        .4byte "doSetView__24ObjectMgr<11ModelEffect>Fi"
+        .4byte "doViewCalc__24ObjectMgr<11ModelEffect>Fv"
+        .4byte "doSimulation__24ObjectMgr<11ModelEffect>Ff"
+        .4byte "doDirectDraw__24ObjectMgr<11ModelEffect>FR8Graphics"
+    .global "__vt__24Container<11ModelEffect>"
+    "__vt__24Container<11ModelEffect>":
+        .4byte 0
+        .4byte 0
+        .4byte "__dt__24Container<11ModelEffect>Fv"
+        .4byte getChildCount__5CNodeFv
+        .4byte "getObject__24Container<11ModelEffect>FPv"
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte "getAt__24Container<11ModelEffect>Fi"
+        .4byte "getTo__24Container<11ModelEffect>Fv"
+    .global "__vt__23Iterator<11ModelEffect>"
+    "__vt__23Iterator<11ModelEffect>":
+        .4byte 0
+        .4byte 0
+        .4byte "first__23Iterator<11ModelEffect>Fv"
+        .4byte "next__23Iterator<11ModelEffect>Fv"
+        .4byte "isDone__23Iterator<11ModelEffect>Fv"
+        .4byte "__ml__23Iterator<11ModelEffect>Fv"
+
+    .section .sdata, "wa"  # 0x80514680 - 0x80514D80
+    .global mClipRadiusS__11ParticleMgr
+    mClipRadiusS__11ParticleMgr:
+        .float 10.0
+    .global mClipRadiusM__11ParticleMgr
+    mClipRadiusM__11ParticleMgr:
+        .float 30.0
+    .global mClipRadiusL__11ParticleMgr
+    mClipRadiusL__11ParticleMgr:
+        .float 100.0
+
+    .section .sbss # 0x80514D80 - 0x80516360
+    .global lbl_80516090
+    lbl_80516090:
+        .skip 0x4
+    .global lbl_80516094
+    lbl_80516094:
+        .skip 0x4
+    .global particleMgr
+    particleMgr:
+        .skip 0x4
+    .global disableCulling__11ParticleMgr
+    disableCulling__11ParticleMgr:
+        .skip 0x4
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_8051F6F0
+    lbl_8051F6F0:
+        .float 0.5
+    .global lbl_8051F6F4
+    lbl_8051F6F4:
+        .4byte 0xBF000000
+*/
+
+/*
  * --INFO--
  * Address:	803BAF70
  * Size:	000044
@@ -8,28 +217,27 @@
 void ParticleMgr::globalInstance()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r0, -0x65E8(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x34
-	  li        r3, 0xAC
-	  bl        -0x3970E8
-	  mr.       r0, r3
-	  beq-      .loc_0x30
-	  bl        0x64
-	  mr        r0, r3
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r0, particleMgr@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_803BAFA4
+	li       r3, 0xac
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_803BAFA0
+	bl       __ct__11ParticleMgrFv
+	mr       r0, r3
 
-	.loc_0x30:
-	  stw       r0, -0x65E8(r13)
+lbl_803BAFA0:
+	stw      r0, particleMgr@sda21(r13)
 
-	.loc_0x34:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803BAFA4:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -41,29 +249,28 @@ void ParticleMgr::globalInstance()
 void ParticleMgr::deleteInstance()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r3, -0x65E8(r13)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x38
-	  beq-      .loc_0x30
-	  lwz       r12, 0x0(r3)
-	  li        r4, 0x1
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r3, particleMgr@sda21(r13)
+	cmplwi   r3, 0
+	beq      lbl_803BAFEC
+	beq      lbl_803BAFE4
+	lwz      r12, 0(r3)
+	li       r4, 1
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x30:
-	  li        r0, 0
-	  stw       r0, -0x65E8(r13)
+lbl_803BAFE4:
+	li       r0, 0
+	stw      r0, particleMgr@sda21(r13)
 
-	.loc_0x38:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803BAFEC:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -75,76 +282,75 @@ void ParticleMgr::deleteInstance()
 ParticleMgr::ParticleMgr()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r3
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  bl        0x56378
-	  lis       r3, 0x804E
-	  addi      r30, r31, 0x1C
-	  addi      r0, r3, 0x7694
-	  stw       r0, 0x0(r31)
-	  mr        r3, r30
-	  bl        0x56360
-	  lis       r4, 0x804B
-	  lis       r3, 0x804E
-	  subi      r0, r4, 0x5324
-	  lis       r5, 0x804B
-	  stw       r0, 0x0(r30)
-	  addi      r0, r3, 0x77E4
-	  lis       r4, 0x804E
-	  lis       r3, 0x804E
-	  stw       r0, 0x0(r30)
-	  li        r0, 0
-	  addi      r6, r4, 0x7768
-	  addi      r4, r3, 0x76E8
-	  stb       r0, 0x18(r30)
-	  subi      r0, r5, 0x4A10
-	  addi      r29, r30, 0x20
-	  addi      r5, r6, 0x2C
-	  stw       r0, 0x1C(r30)
-	  addi      r0, r4, 0x2C
-	  mr        r3, r29
-	  stw       r6, 0x0(r30)
-	  stw       r5, 0x1C(r30)
-	  stw       r4, 0x0(r30)
-	  stw       r0, 0x1C(r30)
-	  bl        0x56300
-	  lis       r3, 0x804E
-	  addi      r30, r31, 0x60
-	  addi      r0, r3, 0x76D8
-	  stw       r0, 0x0(r29)
-	  mr        r3, r30
-	  bl        0x562E8
-	  lis       r3, 0x804B
-	  lis       r4, 0x804E
-	  addi      r0, r3, 0xCEC
-	  lis       r3, 0x8049
-	  stw       r0, 0x0(r30)
-	  addi      r0, r4, 0x76BC
-	  addi      r5, r3, 0x5BE0
-	  li        r4, 0
-	  stw       r0, 0x0(r30)
-	  li        r0, 0xC8
-	  mr        r3, r31
-	  stw       r5, 0x14(r31)
-	  stw       r4, 0xA0(r31)
-	  stw       r4, 0x98(r31)
-	  stw       r4, 0x9C(r31)
-	  stw       r4, 0x80(r31)
-	  stw       r0, 0xA8(r31)
-	  stw       r4, 0x18(r31)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r3
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	bl       __ct__5CNodeFv
+	lis      r3, __vt__11ParticleMgr@ha
+	addi     r30, r31, 0x1c
+	addi     r0, r3, __vt__11ParticleMgr@l
+	stw      r0, 0(r31)
+	mr       r3, r30
+	bl       __ct__5CNodeFv
+	lis      r4, __vt__16GenericContainer@ha
+	lis      r3, "__vt__24Container<11ModelEffect>"@ha
+	addi     r0, r4, __vt__16GenericContainer@l
+	lis      r5, __vt__16GenericObjectMgr@ha
+	stw      r0, 0(r30)
+	addi     r0, r3, "__vt__24Container<11ModelEffect>"@l
+	lis      r4, "__vt__24ObjectMgr<11ModelEffect>"@ha
+	lis      r3, "__vt__28NodeObjectMgr<11ModelEffect>"@ha
+	stw      r0, 0(r30)
+	li       r0, 0
+	addi     r6, r4, "__vt__24ObjectMgr<11ModelEffect>"@l
+	addi     r4, r3, "__vt__28NodeObjectMgr<11ModelEffect>"@l
+	stb      r0, 0x18(r30)
+	addi     r0, r5, __vt__16GenericObjectMgr@l
+	addi     r29, r30, 0x20
+	addi     r5, r6, 0x2c
+	stw      r0, 0x1c(r30)
+	addi     r0, r4, 0x2c
+	mr       r3, r29
+	stw      r6, 0(r30)
+	stw      r5, 0x1c(r30)
+	stw      r4, 0(r30)
+	stw      r0, 0x1c(r30)
+	bl       __ct__5CNodeFv
+	lis      r3, "__vt__26TObjectNode<11ModelEffect>"@ha
+	addi     r30, r31, 0x60
+	addi     r0, r3, "__vt__26TObjectNode<11ModelEffect>"@l
+	stw      r0, 0(r29)
+	mr       r3, r30
+	bl       __ct__5CNodeFv
+	lis      r3, __vt__15ModelEffectData@ha
+	lis      r4, __vt__19ModelEffectDataRoot@ha
+	addi     r0, r3, __vt__15ModelEffectData@l
+	lis      r3, lbl_80495BE0@ha
+	stw      r0, 0(r30)
+	addi     r0, r4, __vt__19ModelEffectDataRoot@l
+	addi     r5, r3, lbl_80495BE0@l
+	li       r4, 0
+	stw      r0, 0(r30)
+	li       r0, 0xc8
+	mr       r3, r31
+	stw      r5, 0x14(r31)
+	stw      r4, 0xa0(r31)
+	stw      r4, 0x98(r31)
+	stw      r4, 0x9c(r31)
+	stw      r4, 0x80(r31)
+	stw      r0, 0xa8(r31)
+	stw      r4, 0x18(r31)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -156,39 +362,38 @@ ParticleMgr::ParticleMgr()
 ModelEffectDataRoot::~ModelEffectDataRoot()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x54
-	  lis       r4, 0x804E
-	  addi      r0, r4, 0x76BC
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x44
-	  lis       r5, 0x804B
-	  li        r4, 0
-	  addi      r0, r5, 0xCEC
-	  stw       r0, 0x0(r30)
-	  bl        0x56438
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_803BB164
+	lis      r4, __vt__19ModelEffectDataRoot@ha
+	addi     r0, r4, __vt__19ModelEffectDataRoot@l
+	stw      r0, 0(r30)
+	beq      lbl_803BB154
+	lis      r5, __vt__15ModelEffectData@ha
+	li       r4, 0
+	addi     r0, r5, __vt__15ModelEffectData@l
+	stw      r0, 0(r30)
+	bl       __dt__5CNodeFv
 
-	.loc_0x44:
-	  extsh.    r0, r31
-	  ble-      .loc_0x54
-	  mr        r3, r30
-	  bl        -0x3970AC
+lbl_803BB154:
+	extsh.   r0, r31
+	ble      lbl_803BB164
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x54:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803BB164:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -200,63 +405,62 @@ ModelEffectDataRoot::~ModelEffectDataRoot()
 void NodeObjectMgr<ModelEffect>::~NodeObjectMgr()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0xAC
-	  lis       r3, 0x804E
-	  addic.    r0, r30, 0x20
-	  addi      r3, r3, 0x76E8
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x2C
-	  stw       r0, 0x1C(r30)
-	  beq-      .loc_0x54
-	  lis       r4, 0x804E
-	  addi      r3, r30, 0x20
-	  addi      r0, r4, 0x76D8
-	  li        r4, 0
-	  stw       r0, 0x20(r30)
-	  bl        0x563B8
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_803BB22C
+	lis      r3, "__vt__28NodeObjectMgr<11ModelEffect>"@ha
+	addic.   r0, r30, 0x20
+	addi     r3, r3, "__vt__28NodeObjectMgr<11ModelEffect>"@l
+	stw      r3, 0(r30)
+	addi     r0, r3, 0x2c
+	stw      r0, 0x1c(r30)
+	beq      lbl_803BB1D4
+	lis      r4, "__vt__26TObjectNode<11ModelEffect>"@ha
+	addi     r3, r30, 0x20
+	addi     r0, r4, "__vt__26TObjectNode<11ModelEffect>"@l
+	li       r4, 0
+	stw      r0, 0x20(r30)
+	bl       __dt__5CNodeFv
 
-	.loc_0x54:
-	  cmplwi    r30, 0
-	  beq-      .loc_0x9C
-	  lis       r3, 0x804E
-	  addi      r3, r3, 0x7768
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x2C
-	  stw       r0, 0x1C(r30)
-	  beq-      .loc_0x9C
-	  lis       r3, 0x804E
-	  addi      r0, r3, 0x77E4
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x9C
-	  lis       r4, 0x804B
-	  mr        r3, r30
-	  subi      r0, r4, 0x5324
-	  li        r4, 0
-	  stw       r0, 0x0(r30)
-	  bl        0x56370
+lbl_803BB1D4:
+	cmplwi   r30, 0
+	beq      lbl_803BB21C
+	lis      r3, "__vt__24ObjectMgr<11ModelEffect>"@ha
+	addi     r3, r3, "__vt__24ObjectMgr<11ModelEffect>"@l
+	stw      r3, 0(r30)
+	addi     r0, r3, 0x2c
+	stw      r0, 0x1c(r30)
+	beq      lbl_803BB21C
+	lis      r3, "__vt__24Container<11ModelEffect>"@ha
+	addi     r0, r3, "__vt__24Container<11ModelEffect>"@l
+	stw      r0, 0(r30)
+	beq      lbl_803BB21C
+	lis      r4, __vt__16GenericContainer@ha
+	mr       r3, r30
+	addi     r0, r4, __vt__16GenericContainer@l
+	li       r4, 0
+	stw      r0, 0(r30)
+	bl       __dt__5CNodeFv
 
-	.loc_0x9C:
-	  extsh.    r0, r31
-	  ble-      .loc_0xAC
-	  mr        r3, r30
-	  bl        -0x397174
+lbl_803BB21C:
+	extsh.   r0, r31
+	ble      lbl_803BB22C
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0xAC:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803BB22C:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -268,33 +472,32 @@ void NodeObjectMgr<ModelEffect>::~NodeObjectMgr()
 void TObjectNode<ModelEffect>::~TObjectNode()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x44
-	  lis       r5, 0x804E
-	  li        r4, 0
-	  addi      r0, r5, 0x76D8
-	  stw       r0, 0x0(r30)
-	  bl        0x56310
-	  extsh.    r0, r31
-	  ble-      .loc_0x44
-	  mr        r3, r30
-	  bl        -0x3971D4
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_803BB28C
+	lis      r5, "__vt__26TObjectNode<11ModelEffect>"@ha
+	li       r4, 0
+	addi     r0, r5, "__vt__26TObjectNode<11ModelEffect>"@l
+	stw      r0, 0(r30)
+	bl       __dt__5CNodeFv
+	extsh.   r0, r31
+	ble      lbl_803BB28C
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x44:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803BB28C:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -306,45 +509,44 @@ void TObjectNode<ModelEffect>::~TObjectNode()
 void ObjectMgr<ModelEffect>::~ObjectMgr()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x6C
-	  lis       r4, 0x804E
-	  addi      r4, r4, 0x7768
-	  stw       r4, 0x0(r30)
-	  addi      r0, r4, 0x2C
-	  stw       r0, 0x1C(r30)
-	  beq-      .loc_0x5C
-	  lis       r4, 0x804E
-	  addi      r0, r4, 0x77E4
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x5C
-	  lis       r5, 0x804B
-	  li        r4, 0
-	  subi      r0, r5, 0x5324
-	  stw       r0, 0x0(r30)
-	  bl        0x56288
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_803BB314
+	lis      r4, "__vt__24ObjectMgr<11ModelEffect>"@ha
+	addi     r4, r4, "__vt__24ObjectMgr<11ModelEffect>"@l
+	stw      r4, 0(r30)
+	addi     r0, r4, 0x2c
+	stw      r0, 0x1c(r30)
+	beq      lbl_803BB304
+	lis      r4, "__vt__24Container<11ModelEffect>"@ha
+	addi     r0, r4, "__vt__24Container<11ModelEffect>"@l
+	stw      r0, 0(r30)
+	beq      lbl_803BB304
+	lis      r5, __vt__16GenericContainer@ha
+	li       r4, 0
+	addi     r0, r5, __vt__16GenericContainer@l
+	stw      r0, 0(r30)
+	bl       __dt__5CNodeFv
 
-	.loc_0x5C:
-	  extsh.    r0, r31
-	  ble-      .loc_0x6C
-	  mr        r3, r30
-	  bl        -0x39725C
+lbl_803BB304:
+	extsh.   r0, r31
+	ble      lbl_803BB314
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x6C:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803BB314:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -356,39 +558,38 @@ void ObjectMgr<ModelEffect>::~ObjectMgr()
 void Container<ModelEffect>::~Container()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x54
-	  lis       r4, 0x804E
-	  addi      r0, r4, 0x77E4
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x44
-	  lis       r5, 0x804B
-	  li        r4, 0
-	  subi      r0, r5, 0x5324
-	  stw       r0, 0x0(r30)
-	  bl        0x56218
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_803BB384
+	lis      r4, "__vt__24Container<11ModelEffect>"@ha
+	addi     r0, r4, "__vt__24Container<11ModelEffect>"@l
+	stw      r0, 0(r30)
+	beq      lbl_803BB374
+	lis      r5, __vt__16GenericContainer@ha
+	li       r4, 0
+	addi     r0, r5, __vt__16GenericContainer@l
+	stw      r0, 0(r30)
+	bl       __dt__5CNodeFv
 
-	.loc_0x44:
-	  extsh.    r0, r31
-	  ble-      .loc_0x54
-	  mr        r3, r30
-	  bl        -0x3972CC
+lbl_803BB374:
+	extsh.   r0, r31
+	ble      lbl_803BB384
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x54:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803BB384:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -400,90 +601,89 @@ void Container<ModelEffect>::~Container()
 ParticleMgr::~ParticleMgr()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x110
-	  lis       r4, 0x804E
-	  li        r3, 0
-	  addi      r4, r4, 0x7694
-	  addic.    r0, r30, 0x60
-	  stw       r4, 0x0(r30)
-	  stw       r3, 0x18(r30)
-	  stw       r3, 0xA0(r30)
-	  beq-      .loc_0x6C
-	  lis       r3, 0x804E
-	  addic.    r0, r30, 0x60
-	  addi      r0, r3, 0x76BC
-	  stw       r0, 0x60(r30)
-	  beq-      .loc_0x6C
-	  lis       r4, 0x804B
-	  addi      r3, r30, 0x60
-	  addi      r0, r4, 0xCEC
-	  li        r4, 0
-	  stw       r0, 0x60(r30)
-	  bl        0x56180
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_803BB4B0
+	lis      r4, __vt__11ParticleMgr@ha
+	li       r3, 0
+	addi     r4, r4, __vt__11ParticleMgr@l
+	addic.   r0, r30, 0x60
+	stw      r4, 0(r30)
+	stw      r3, 0x18(r30)
+	stw      r3, 0xa0(r30)
+	beq      lbl_803BB40C
+	lis      r3, __vt__19ModelEffectDataRoot@ha
+	addic.   r0, r30, 0x60
+	addi     r0, r3, __vt__19ModelEffectDataRoot@l
+	stw      r0, 0x60(r30)
+	beq      lbl_803BB40C
+	lis      r4, __vt__15ModelEffectData@ha
+	addi     r3, r30, 0x60
+	addi     r0, r4, __vt__15ModelEffectData@l
+	li       r4, 0
+	stw      r0, 0x60(r30)
+	bl       __dt__5CNodeFv
 
-	.loc_0x6C:
-	  addic.    r0, r30, 0x1C
-	  beq-      .loc_0xF4
-	  lis       r4, 0x804E
-	  addic.    r3, r30, 0x3C
-	  addi      r4, r4, 0x76E8
-	  stw       r4, 0x1C(r30)
-	  addi      r0, r4, 0x2C
-	  stw       r0, 0x38(r30)
-	  beq-      .loc_0xA4
-	  lis       r4, 0x804E
-	  addi      r0, r4, 0x76D8
-	  stw       r0, 0x3C(r30)
-	  li        r4, 0
-	  bl        0x56148
+lbl_803BB40C:
+	addic.   r0, r30, 0x1c
+	beq      lbl_803BB494
+	lis      r4, "__vt__28NodeObjectMgr<11ModelEffect>"@ha
+	addic.   r3, r30, 0x3c
+	addi     r4, r4, "__vt__28NodeObjectMgr<11ModelEffect>"@l
+	stw      r4, 0x1c(r30)
+	addi     r0, r4, 0x2c
+	stw      r0, 0x38(r30)
+	beq      lbl_803BB444
+	lis      r4, "__vt__26TObjectNode<11ModelEffect>"@ha
+	addi     r0, r4, "__vt__26TObjectNode<11ModelEffect>"@l
+	stw      r0, 0x3c(r30)
+	li       r4, 0
+	bl       __dt__5CNodeFv
 
-	.loc_0xA4:
-	  addic.    r0, r30, 0x1C
-	  beq-      .loc_0xF4
-	  lis       r3, 0x804E
-	  addic.    r0, r30, 0x1C
-	  addi      r3, r3, 0x7768
-	  stw       r3, 0x1C(r30)
-	  addi      r0, r3, 0x2C
-	  stw       r0, 0x38(r30)
-	  beq-      .loc_0xF4
-	  lis       r3, 0x804E
-	  addic.    r0, r30, 0x1C
-	  addi      r0, r3, 0x77E4
-	  stw       r0, 0x1C(r30)
-	  beq-      .loc_0xF4
-	  lis       r4, 0x804B
-	  addi      r3, r30, 0x1C
-	  subi      r0, r4, 0x5324
-	  li        r4, 0
-	  stw       r0, 0x1C(r30)
-	  bl        0x560F8
+lbl_803BB444:
+	addic.   r0, r30, 0x1c
+	beq      lbl_803BB494
+	lis      r3, "__vt__24ObjectMgr<11ModelEffect>"@ha
+	addic.   r0, r30, 0x1c
+	addi     r3, r3, "__vt__24ObjectMgr<11ModelEffect>"@l
+	stw      r3, 0x1c(r30)
+	addi     r0, r3, 0x2c
+	stw      r0, 0x38(r30)
+	beq      lbl_803BB494
+	lis      r3, "__vt__24Container<11ModelEffect>"@ha
+	addic.   r0, r30, 0x1c
+	addi     r0, r3, "__vt__24Container<11ModelEffect>"@l
+	stw      r0, 0x1c(r30)
+	beq      lbl_803BB494
+	lis      r4, __vt__16GenericContainer@ha
+	addi     r3, r30, 0x1c
+	addi     r0, r4, __vt__16GenericContainer@l
+	li       r4, 0
+	stw      r0, 0x1c(r30)
+	bl       __dt__5CNodeFv
 
-	.loc_0xF4:
-	  mr        r3, r30
-	  li        r4, 0
-	  bl        0x560EC
-	  extsh.    r0, r31
-	  ble-      .loc_0x110
-	  mr        r3, r30
-	  bl        -0x3973F8
+lbl_803BB494:
+	mr       r3, r30
+	li       r4, 0
+	bl       __dt__5CNodeFv
+	extsh.   r0, r31
+	ble      lbl_803BB4B0
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x110:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803BB4B0:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -495,37 +695,36 @@ ParticleMgr::~ParticleMgr()
 void ParticleMgr::createHeap(unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lwz       r0, 0xA0(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x44
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  addi      r3, r3, 0x5BEC
-	  li        r4, 0xCA
-	  addi      r5, r5, 0x5BFC
-	  crclr     6, 0x6
-	  bl        -0x390ECC
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lwz      r0, 0xa0(r3)
+	cmplwi   r0, 0
+	beq      lbl_803BB510
+	lis      r3, lbl_80495BEC@ha
+	lis      r5, lbl_80495BFC@ha
+	addi     r3, r3, lbl_80495BEC@l
+	li       r4, 0xca
+	addi     r5, r5, lbl_80495BFC@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x44:
-	  lwz       r4, -0x77D4(r13)
-	  mr        r3, r31
-	  li        r5, 0x1
-	  bl        -0x3967AC
-	  stw       r3, 0xA0(r30)
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803BB510:
+	lwz      r4, sCurrentHeap__7JKRHeap@sda21(r13)
+	mr       r3, r31
+	li       r5, 1
+	bl       create__12JKRSolidHeapFUlP7JKRHeapb
+	stw      r3, 0xa0(r30)
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -537,98 +736,98 @@ void ParticleMgr::createHeap(unsigned long)
 void ParticleMgr::createMgr(char*, unsigned long, unsigned long, unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stmw      r25, 0x14(r1)
-	  mr        r31, r3
-	  lis       r3, 0x8049
-	  mr        r25, r4
-	  mr        r26, r5
-	  mr        r27, r6
-	  addi      r30, r3, 0x5BC8
-	  lwz       r0, 0xA0(r31)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x48
-	  addi      r3, r30, 0x24
-	  addi      r5, r30, 0x40
-	  li        r4, 0xD1
-	  crclr     6, 0x6
-	  bl        -0x390F40
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stmw     r25, 0x14(r1)
+	mr       r31, r3
+	lis      r3, lbl_80495BC8@ha
+	mr       r25, r4
+	mr       r26, r5
+	mr       r27, r6
+	addi     r30, r3, lbl_80495BC8@l
+	lwz      r0, 0xa0(r31)
+	cmplwi   r0, 0
+	bne      lbl_803BB584
+	addi     r3, r30, 0x24
+	addi     r5, r30, 0x40
+	li       r4, 0xd1
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x48:
-	  lwz       r3, -0x6514(r13)
-	  addi      r4, r30, 0xC
-	  lwz       r5, 0xA0(r31)
-	  bl        0x67DCC
-	  lwz       r29, -0x77D4(r13)
-	  lwz       r3, 0xA0(r31)
-	  bl        -0x397FF8
-	  li        r0, 0
-	  mr        r3, r25
-	  stw       r0, 0x8(r1)
-	  li        r4, 0
-	  li        r5, 0
-	  li        r6, 0
-	  li        r7, 0
-	  li        r8, 0x1
-	  li        r9, 0
-	  li        r10, 0
-	  bl        -0x39C440
-	  mr.       r28, r3
-	  bne-      .loc_0xB0
-	  mr        r6, r25
-	  addi      r3, r30, 0x24
-	  addi      r5, r30, 0x60
-	  li        r4, 0xDF
-	  crclr     6, 0x6
-	  bl        -0x390FA8
+lbl_803BB584:
+	lwz      r3, sys@sda21(r13)
+	addi     r4, r30, 0xc
+	lwz      r5, 0xa0(r31)
+	bl       heapStatusStart__6SystemFPcP7JKRHeap
+	lwz      r29, sCurrentHeap__7JKRHeap@sda21(r13)
+	lwz      r3, 0xa0(r31)
+	bl       becomeCurrentHeap__7JKRHeapFv
+	li       r0, 0
+	mr       r3, r25
+	stw      r0, 8(r1)
+	li       r4, 0
+	li       r5, 0
+	li       r6, 0
+	li       r7, 0
+	li       r8, 1
+	li       r9, 0
+	li       r10, 0
+	bl
+loadToMainRAM__12JKRDvdRipperFPCcPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl
+	or.      r28, r3, r3
+	bne      lbl_803BB5EC
+	mr       r6, r25
+	addi     r3, r30, 0x24
+	addi     r5, r30, 0x60
+	li       r4, 0xdf
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xB0:
-	  mr        r3, r29
-	  bl        -0x39804C
-	  lwz       r4, 0xA0(r31)
-	  li        r3, 0x14
-	  li        r5, 0
-	  bl        -0x3976C0
-	  mr.       r0, r3
-	  beq-      .loc_0xE0
-	  lwz       r5, 0xA0(r31)
-	  mr        r4, r28
-	  bl        -0x323144
-	  mr        r0, r3
+lbl_803BB5EC:
+	mr       r3, r29
+	bl       becomeCurrentHeap__7JKRHeapFv
+	lwz      r4, 0xa0(r31)
+	li       r3, 0x14
+	li       r5, 0
+	bl       __nw__FUlP7JKRHeapi
+	or.      r0, r3, r3
+	beq      lbl_803BB61C
+	lwz      r5, 0xa0(r31)
+	mr       r4, r28
+	bl       __ct__18JPAResourceManagerFPCvP7JKRHeap
+	mr       r0, r3
 
-	.loc_0xE0:
-	  stw       r0, 0x9C(r31)
-	  li        r3, 0x30
-	  li        r5, 0
-	  lwz       r4, 0xA0(r31)
-	  bl        -0x3976EC
-	  mr.       r0, r3
-	  beq-      .loc_0x118
-	  lwz       r6, 0xA0(r31)
-	  mr        r4, r26
-	  mr        r5, r27
-	  li        r7, 0x9
-	  li        r8, 0x8
-	  bl        -0x32B114
-	  mr        r0, r3
+lbl_803BB61C:
+	stw      r0, 0x9c(r31)
+	li       r3, 0x30
+	li       r5, 0
+	lwz      r4, 0xa0(r31)
+	bl       __nw__FUlP7JKRHeapi
+	or.      r0, r3, r3
+	beq      lbl_803BB654
+	lwz      r6, 0xa0(r31)
+	mr       r4, r26
+	mr       r5, r27
+	li       r7, 9
+	li       r8, 8
+	bl       __ct__17JPAEmitterManagerFUlUlP7JKRHeapUcUc
+	mr       r0, r3
 
-	.loc_0x118:
-	  stw       r0, 0x98(r31)
-	  li        r5, 0
-	  lwz       r3, 0x98(r31)
-	  lwz       r4, 0x9C(r31)
-	  bl        -0x32A8F8
-	  lwz       r3, -0x6514(r13)
-	  addi      r4, r30, 0xC
-	  bl        0x67CF4
-	  lmw       r25, 0x14(r1)
-	  lwz       r0, 0x34(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_803BB654:
+	stw      r0, 0x98(r31)
+	li       r5, 0
+	lwz      r3, 0x98(r31)
+	lwz      r4, 0x9c(r31)
+	bl       entryResourceManager__17JPAEmitterManagerFP18JPAResourceManagerUc
+	lwz      r3, sys@sda21(r13)
+	addi     r4, r30, 0xc
+	bl       heapStatusEnd__6SystemFPc
+	lmw      r25, 0x14(r1)
+	lwz      r0, 0x34(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -640,15 +839,14 @@ void ParticleMgr::createMgr(char*, unsigned long, unsigned long, unsigned long)
 void ParticleMgr::Instance_TPkEffectMgr()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  bl        0x9900
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	bl       globalInstance__Q23efx12TPkEffectMgrFv
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -660,15 +858,14 @@ void ParticleMgr::Instance_TPkEffectMgr()
 void ParticleMgr::deleteInstance_TPkEffectMgr()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  bl        0x9904
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	bl       deleteInstance__Q23efx12TPkEffectMgrFv
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -690,18 +887,17 @@ void ParticleMgr::destroyHeap()
 void ParticleMgr::beginEntryModelEffect()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r0, -0x77D4(r13)
-	  stw       r0, 0xA4(r3)
-	  lwz       r3, 0xA0(r3)
-	  bl        -0x39813C
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r0, sCurrentHeap__7JKRHeap@sda21(r13)
+	stw      r0, 0xa4(r3)
+	lwz      r3, 0xa0(r3)
+	bl       becomeCurrentHeap__7JKRHeapFv
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -713,16 +909,15 @@ void ParticleMgr::beginEntryModelEffect()
 void ParticleMgr::endEntryModelEffect()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0xA4(r3)
-	  bl        -0x398160
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r3, 0xa4(r3)
+	bl       becomeCurrentHeap__7JKRHeapFv
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -734,16 +929,15 @@ void ParticleMgr::endEntryModelEffect()
 void ParticleMgr::start()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r3, -0x65B0(r13)
-	  bl        0xAEF8
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r3, pkEffectMgr@sda21(r13)
+	bl       startMgr__Q23efx12TPkEffectMgrFv
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -755,31 +949,30 @@ void ParticleMgr::start()
 void ParticleMgr::reset()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r0, -0x65B0(r13)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x28
-	  mr        r3, r0
-	  bl        0xAF58
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r0, pkEffectMgr@sda21(r13)
+	cmplwi   r0, 0
+	beq      lbl_803BB764
+	mr       r3, r0
+	bl       exitMgr__Q23efx12TPkEffectMgrFv
 
-	.loc_0x28:
-	  addi      r3, r31, 0x1C
-	  lwz       r12, 0x1C(r31)
-	  lwz       r12, 0x7C(r12)
-	  mtctr     r12
-	  bctrl
-	  li        r0, 0
-	  stw       r0, 0x18(r31)
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803BB764:
+	addi     r3, r31, 0x1c
+	lwz      r12, 0x1c(r31)
+	lwz      r12, 0x7c(r12)
+	mtctr    r12
+	bctrl
+	li       r0, 0
+	stw      r0, 0x18(r31)
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -791,16 +984,15 @@ void ParticleMgr::reset()
 void ParticleMgr::killAll()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x98(r3)
-	  bl        -0x32AB5C
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r3, 0x98(r3)
+	bl       forceDeleteAllEmitter__17JPAEmitterManagerFv
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -812,18 +1004,17 @@ void ParticleMgr::killAll()
 void ParticleMgr::update()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x98(r3)
-	  bl        -0x32AE30
-	  lwz       r3, -0x65B0(r13)
-	  bl        0xAFBC
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r3, 0x98(r3)
+	bl       calc__17JPAEmitterManagerFv
+	lwz      r3, pkEffectMgr@sda21(r13)
+	bl       resetContextS__Q23efx12TPkEffectMgrFv
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -835,18 +1026,17 @@ void ParticleMgr::update()
 void ParticleMgr::setXfb(const ResTIMG*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r5, 0x8049
-	  stw       r0, 0x14(r1)
-	  addi      r5, r5, 0x5C4C
-	  lwz       r3, 0x9C(r3)
-	  bl        -0x323294
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lis      r5, lbl_80495C4C@ha
+	stw      r0, 0x14(r1)
+	addi     r5, r5, lbl_80495C4C@l
+	lwz      r3, 0x9c(r3)
+	bl       swapTexture__18JPAResourceManagerFPC7ResTIMGPCc
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -858,48 +1048,47 @@ void ParticleMgr::setXfb(const ResTIMG*)
 void ParticleMgr::draw(Viewport*, unsigned char)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x90(r1)
-	  mflr      r0
-	  stw       r0, 0x94(r1)
-	  stfd      f31, 0x80(r1)
-	  psq_st    f31,0x88(r1),0,0
-	  stfd      f30, 0x70(r1)
-	  psq_st    f30,0x78(r1),0,0
-	  stw       r31, 0x6C(r1)
-	  stw       r30, 0x68(r1)
-	  lwz       r6, 0x44(r4)
-	  mr        r30, r3
-	  mr        r3, r4
-	  mr        r31, r5
-	  lfs       f30, 0x2C(r6)
-	  li        r4, 0x1
-	  lfs       f31, 0x28(r6)
-	  bl        0x6990C
-	  addi      r4, r1, 0x8
-	  bl        -0x2D158C
-	  lfs       f3, 0x1390(r2)
-	  fmr       f1, f31
-	  fmr       f2, f30
-	  lfs       f4, 0x1394(r2)
-	  fmr       f5, f3
-	  addi      r3, r1, 0x38
-	  fmr       f6, f3
-	  bl        -0x2D0DF4
-	  lwz       r3, 0x98(r30)
-	  mr        r5, r31
-	  addi      r4, r1, 0x8
-	  bl        -0x32AE40
-	  psq_l     f31,0x88(r1),0,0
-	  lfd       f31, 0x80(r1)
-	  psq_l     f30,0x78(r1),0,0
-	  lfd       f30, 0x70(r1)
-	  lwz       r31, 0x6C(r1)
-	  lwz       r0, 0x94(r1)
-	  lwz       r30, 0x68(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x90
-	  blr
+	stwu     r1, -0x90(r1)
+	mflr     r0
+	stw      r0, 0x94(r1)
+	stfd     f31, 0x80(r1)
+	psq_st   f31, 136(r1), 0, qr0
+	stfd     f30, 0x70(r1)
+	psq_st   f30, 120(r1), 0, qr0
+	stw      r31, 0x6c(r1)
+	stw      r30, 0x68(r1)
+	lwz      r6, 0x44(r4)
+	mr       r30, r3
+	mr       r3, r4
+	mr       r31, r5
+	lfs      f30, 0x2c(r6)
+	li       r4, 1
+	lfs      f31, 0x28(r6)
+	bl       getMatrix__8ViewportFb
+	addi     r4, r1, 8
+	bl       PSMTXCopy
+	lfs      f3, lbl_8051F6F0@sda21(r2)
+	fmr      f1, f31
+	fmr      f2, f30
+	lfs      f4, lbl_8051F6F4@sda21(r2)
+	fmr      f5, f3
+	addi     r3, r1, 0x38
+	fmr      f6, f3
+	bl       C_MTXLightPerspective
+	lwz      r3, 0x98(r30)
+	mr       r5, r31
+	addi     r4, r1, 8
+	bl       draw__17JPAEmitterManagerFPC11JPADrawInfoUc
+	psq_l    f31, 136(r1), 0, qr0
+	lfd      f31, 0x80(r1)
+	psq_l    f30, 120(r1), 0, qr0
+	lfd      f30, 0x70(r1)
+	lwz      r31, 0x6c(r1)
+	lwz      r0, 0x94(r1)
+	lwz      r30, 0x68(r1)
+	mtlr     r0
+	addi     r1, r1, 0x90
+	blr
 	*/
 }
 
@@ -911,67 +1100,67 @@ void ParticleMgr::draw(Viewport*, unsigned char)
 void ParticleMgr::create(unsigned short, Vector3f&, unsigned char)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r6
-	  stw       r30, 0x18(r1)
-	  mr        r30, r5
-	  stw       r29, 0x14(r1)
-	  mr        r29, r4
-	  stw       r28, 0x10(r1)
-	  mr        r28, r3
-	  lwz       r3, 0x9C(r3)
-	  bl        -0x3232A0
-	  rlwinm.   r0,r3,0,29,29
-	  beq-      .loc_0x44
-	  li        r6, 0
-	  b         .loc_0x58
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r6
+	stw      r30, 0x18(r1)
+	mr       r30, r5
+	stw      r29, 0x14(r1)
+	mr       r29, r4
+	stw      r28, 0x10(r1)
+	mr       r28, r3
+	lwz      r3, 0x9c(r3)
+	bl       getResUserWork__18JPAResourceManagerCFUs
+	rlwinm.  r0, r3, 0, 0x1d, 0x1d
+	beq      lbl_803BB8F8
+	li       r6, 0
+	b        lbl_803BB90C
 
-	.loc_0x44:
-	  rlwinm.   r0,r3,0,31,31
-	  beq-      .loc_0x54
-	  li        r6, 0x1
-	  b         .loc_0x58
+lbl_803BB8F8:
+	clrlwi.  r0, r3, 0x1f
+	beq      lbl_803BB908
+	li       r6, 1
+	b        lbl_803BB90C
 
-	.loc_0x54:
-	  li        r6, 0x2
+lbl_803BB908:
+	li       r6, 2
 
-	.loc_0x58:
-	  rlwinm.   r0,r6,0,24,31
-	  bne-      .loc_0x74
-	  lwz       r0, 0x94(r28)
-	  cmpwi     r0, 0x2
-	  blt-      .loc_0x74
-	  li        r3, 0
-	  b         .loc_0xA8
+lbl_803BB90C:
+	clrlwi.  r0, r6, 0x18
+	bne      lbl_803BB928
+	lwz      r0, 0x94(r28)
+	cmpwi    r0, 2
+	blt      lbl_803BB928
+	li       r3, 0
+	b        lbl_803BB95C
 
-	.loc_0x74:
-	  lwz       r3, 0x98(r28)
-	  mr        r4, r30
-	  mr        r5, r29
-	  mr        r7, r31
-	  li        r8, 0
-	  li        r9, 0
-	  bl        -0x32B084
-	  mr        r0, r3
-	  mr        r3, r28
-	  mr        r31, r0
-	  mr        r4, r31
-	  bl        0x84
-	  mr        r3, r31
+lbl_803BB928:
+	lwz      r3, 0x98(r28)
+	mr       r4, r30
+	mr       r5, r29
+	mr       r7, r31
+	li       r8, 0
+	li       r9, 0
+	bl
+"createSimpleEmitterID__17JPAEmitterManagerFRCQ29JGeometry8TVec3<f>UsUcUcP18JPAEmitterCallBackP19JPAParticleCallBack"
+	mr       r0, r3
+	mr       r3, r28
+	mr       r31, r0
+	mr       r4, r31
+	bl       setGlobalColor__11ParticleMgrFP14JPABaseEmitter
+	mr       r3, r31
 
-	.loc_0xA8:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_803BB95C:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -1021,55 +1210,54 @@ void ParticleMgr::createDemo(unsigned short, Vector3f&, unsigned char,
 void ParticleMgr::setGlobalColor(JPABaseEmitter*)
 {
 	/*
-	.loc_0x0:
-	  cmplwi    r4, 0
-	  beqlr-
-	  lwz       r5, 0xE8(r4)
-	  lwz       r7, 0x18(r3)
-	  lwz       r3, 0x2C(r5)
-	  cmplwi    r7, 0
-	  lwz       r3, 0x0(r3)
-	  lwz       r0, 0xC(r3)
-	  beqlr-
-	  rlwinm.   r0,r0,0,30,30
-	  beqlr-
-	  lwz       r5, 0x50(r7)
-	  lbz       r0, 0x30(r7)
-	  lbz       r3, 0x34(r5)
-	  lbz       r6, 0x31(r7)
-	  add       r0, r3, r0
-	  lbz       r3, 0x32(r7)
-	  rlwinm    r7,r0,1,0,30
-	  lbz       r0, 0x35(r5)
-	  cmpwi     r7, 0xFF
-	  lbz       r5, 0x36(r5)
-	  ble-      .loc_0x5C
-	  li        r7, 0xFF
+	cmplwi   r4, 0
+	beqlr
+	lwz      r5, 0xe8(r4)
+	lwz      r7, 0x18(r3)
+	lwz      r3, 0x2c(r5)
+	cmplwi   r7, 0
+	lwz      r3, 0(r3)
+	lwz      r0, 0xc(r3)
+	beqlr
+	rlwinm.  r0, r0, 0, 0x1e, 0x1e
+	beqlr
+	lwz      r5, 0x50(r7)
+	lbz      r0, 0x30(r7)
+	lbz      r3, 0x34(r5)
+	lbz      r6, 0x31(r7)
+	add      r0, r3, r0
+	lbz      r3, 0x32(r7)
+	slwi     r7, r0, 1
+	lbz      r0, 0x35(r5)
+	cmpwi    r7, 0xff
+	lbz      r5, 0x36(r5)
+	ble      lbl_803BBA34
+	li       r7, 0xff
 
-	.loc_0x5C:
-	  add       r0, r0, r6
-	  rlwinm    r6,r7,0,24,31
-	  rlwinm    r7,r0,1,0,30
-	  cmpwi     r7, 0xFF
-	  ble-      .loc_0x74
-	  li        r7, 0xFF
+lbl_803BBA34:
+	add      r0, r0, r6
+	clrlwi   r6, r7, 0x18
+	slwi     r7, r0, 1
+	cmpwi    r7, 0xff
+	ble      lbl_803BBA4C
+	li       r7, 0xff
 
-	.loc_0x74:
-	  add       r0, r5, r3
-	  rlwinm    r3,r7,0,24,31
-	  rlwinm    r0,r0,1,0,30
-	  cmpwi     r0, 0xFF
-	  ble-      .loc_0x8C
-	  li        r0, 0xFF
+lbl_803BBA4C:
+	add      r0, r5, r3
+	clrlwi   r3, r7, 0x18
+	slwi     r0, r0, 1
+	cmpwi    r0, 0xff
+	ble      lbl_803BBA64
+	li       r0, 0xff
 
-	.loc_0x8C:
-	  stb       r6, 0xB8(r4)
-	  stb       r3, 0xB9(r4)
-	  stb       r0, 0xBA(r4)
-	  stb       r6, 0xBC(r4)
-	  stb       r3, 0xBD(r4)
-	  stb       r0, 0xBE(r4)
-	  blr
+lbl_803BBA64:
+	stb      r6, 0xb8(r4)
+	stb      r3, 0xb9(r4)
+	stb      r0, 0xba(r4)
+	stb      r6, 0xbc(r4)
+	stb      r3, 0xbd(r4)
+	stb      r0, 0xbe(r4)
+	blr
 	*/
 }
 
@@ -1081,20 +1269,19 @@ void ParticleMgr::setGlobalColor(JPABaseEmitter*)
 void ParticleMgr::forceKill(JPABaseEmitter*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  cmplwi    r4, 0
-	  stw       r0, 0x14(r1)
-	  beq-      .loc_0x1C
-	  lwz       r3, 0x98(r3)
-	  bl        -0x32AD98
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	cmplwi   r4, 0
+	stw      r0, 0x14(r1)
+	beq      lbl_803BBA9C
+	lwz      r3, 0x98(r3)
+	bl       forceDeleteEmitter__17JPAEmitterManagerFP14JPABaseEmitter
 
-	.loc_0x1C:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803BBA9C:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1106,18 +1293,17 @@ void ParticleMgr::forceKill(JPABaseEmitter*)
 void ParticleMgr::fade(JPABaseEmitter*)
 {
 	/*
-	.loc_0x0:
-	  cmplwi    r4, 0
-	  beqlr-
-	  lwz       r3, 0xF4(r4)
-	  li        r0, 0x1
-	  ori       r3, r3, 0x1
-	  stw       r3, 0xF4(r4)
-	  stw       r0, 0x24(r4)
-	  lwz       r0, 0xF4(r4)
-	  rlwinm    r0,r0,0,26,24
-	  stw       r0, 0xF4(r4)
-	  blr
+	cmplwi   r4, 0
+	beqlr
+	lwz      r3, 0xf4(r4)
+	li       r0, 1
+	ori      r3, r3, 1
+	stw      r3, 0xf4(r4)
+	stw      r0, 0x24(r4)
+	lwz      r0, 0xf4(r4)
+	rlwinm   r0, r0, 0, 0x1a, 0x18
+	stw      r0, 0xf4(r4)
+	blr
 	*/
 }
 
@@ -1129,17 +1315,16 @@ void ParticleMgr::fade(JPABaseEmitter*)
 void ParticleMgr::setDemoResourceManager(JPAResourceManager*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r5, 0x7
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x98(r3)
-	  bl        -0x32AD80
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	li       r5, 7
+	stw      r0, 0x14(r1)
+	lwz      r3, 0x98(r3)
+	bl       entryResourceManager__17JPAEmitterManagerFP18JPAResourceManagerUc
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1151,17 +1336,16 @@ void ParticleMgr::setDemoResourceManager(JPAResourceManager*)
 void ParticleMgr::clearDemoResourceManager()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r4, 0x7
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x98(r3)
-	  bl        -0x32AD98
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	li       r4, 7
+	stw      r0, 0x14(r1)
+	lwz      r3, 0x98(r3)
+	bl       clearResourceManager__17JPAEmitterManagerFUc
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1173,57 +1357,56 @@ void ParticleMgr::clearDemoResourceManager()
 void ParticleMgr::setViewport(Graphics&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  li        r0, 0
-	  stmw      r27, 0xC(r1)
-	  mr        r28, r4
-	  mr        r27, r3
-	  lwz       r31, 0x264(r4)
-	  cmpwi     r31, 0
-	  blt-      .loc_0x34
-	  cmpwi     r31, 0x4
-	  bge-      .loc_0x34
-	  li        r0, 0x1
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	li       r0, 0
+	stmw     r27, 0xc(r1)
+	mr       r28, r4
+	mr       r27, r3
+	lwz      r31, 0x264(r4)
+	cmpwi    r31, 0
+	blt      lbl_803BBB5C
+	cmpwi    r31, 4
+	bge      lbl_803BBB5C
+	li       r0, 1
 
-	.loc_0x34:
-	  rlwinm.   r0,r0,0,24,31
-	  bne-      .loc_0x58
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  addi      r3, r3, 0x5BEC
-	  li        r4, 0x1F8
-	  addi      r5, r5, 0x5BFC
-	  crclr     6, 0x6
-	  bl        -0x39153C
+lbl_803BBB5C:
+	clrlwi.  r0, r0, 0x18
+	bne      lbl_803BBB80
+	lis      r3, lbl_80495BEC@ha
+	lis      r5, lbl_80495BFC@ha
+	addi     r3, r3, lbl_80495BEC@l
+	li       r4, 0x1f8
+	addi     r5, r5, lbl_80495BFC@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x58:
-	  stw       r31, 0x80(r27)
-	  mr        r30, r27
-	  li        r29, 0
-	  b         .loc_0x80
+lbl_803BBB80:
+	stw      r31, 0x80(r27)
+	mr       r30, r27
+	li       r29, 0
+	b        lbl_803BBBA8
 
-	.loc_0x68:
-	  mr        r3, r28
-	  mr        r4, r29
-	  bl        0x69A58
-	  stw       r3, 0x84(r30)
-	  addi      r30, r30, 0x4
-	  addi      r29, r29, 0x1
+lbl_803BBB90:
+	mr       r3, r28
+	mr       r4, r29
+	bl       getViewport__8GraphicsFi
+	stw      r3, 0x84(r30)
+	addi     r30, r30, 4
+	addi     r29, r29, 1
 
-	.loc_0x80:
-	  cmpw      r29, r31
-	  blt+      .loc_0x68
-	  mr        r3, r28
-	  bl        0x69618
-	  stw       r3, 0x94(r27)
-	  lmw       r27, 0xC(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_803BBBA8:
+	cmpw     r29, r31
+	blt      lbl_803BBB90
+	mr       r3, r28
+	bl       getNumActiveViewports__8GraphicsFv
+	stw      r3, 0x94(r27)
+	lmw      r27, 0xc(r1)
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -1245,98 +1428,97 @@ void ParticleMgr::cull(Sys::Sphere&)
 void ParticleMgr::cullByResFlg(Vector3f&, unsigned short)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stmw      r27, 0x1C(r1)
-	  mr        r27, r3
-	  mr        r28, r4
-	  lbz       r0, -0x65E4(r13)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x2C
-	  li        r3, 0
-	  b         .loc_0x100
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stmw     r27, 0x1c(r1)
+	mr       r27, r3
+	mr       r28, r4
+	lbz      r0, disableCulling__11ParticleMgr@sda21(r13)
+	cmplwi   r0, 0
+	beq      lbl_803BBBFC
+	li       r3, 0
+	b        lbl_803BBCD0
 
-	.loc_0x2C:
-	  lwz       r3, 0x9C(r27)
-	  mr        r4, r5
-	  bl        -0x3235C0
-	  rlwinm.   r0,r3,0,26,26
-	  beq-      .loc_0x58
-	  rlwinm.   r0,r3,0,27,27
-	  beq-      .loc_0x50
-	  lfs       f1, -0x79A0(r13)
-	  b         .loc_0x70
+lbl_803BBBFC:
+	lwz      r3, 0x9c(r27)
+	mr       r4, r5
+	bl       getResUserWork__18JPAResourceManagerCFUs
+	rlwinm.  r0, r3, 0, 0x1a, 0x1a
+	beq      lbl_803BBC28
+	rlwinm.  r0, r3, 0, 0x1b, 0x1b
+	beq      lbl_803BBC20
+	lfs      f1, mClipRadiusL__11ParticleMgr@sda21(r13)
+	b        lbl_803BBC40
 
-	.loc_0x50:
-	  lfs       f1, -0x79A4(r13)
-	  b         .loc_0x70
+lbl_803BBC20:
+	lfs      f1, mClipRadiusM__11ParticleMgr@sda21(r13)
+	b        lbl_803BBC40
 
-	.loc_0x58:
-	  rlwinm.   r0,r3,0,27,27
-	  beq-      .loc_0x68
-	  lfs       f1, -0x79A8(r13)
-	  b         .loc_0x70
+lbl_803BBC28:
+	rlwinm.  r0, r3, 0, 0x1b, 0x1b
+	beq      lbl_803BBC38
+	lfs      f1, mClipRadiusS__11ParticleMgr@sda21(r13)
+	b        lbl_803BBC40
 
-	.loc_0x68:
-	  li        r3, 0
-	  b         .loc_0x100
+lbl_803BBC38:
+	li       r3, 0
+	b        lbl_803BBCD0
 
-	.loc_0x70:
-	  lfs       f0, 0x0(r28)
-	  lbz       r0, -0x65E4(r13)
-	  stfs      f0, 0x8(r1)
-	  cmplwi    r0, 0
-	  lfs       f0, 0x4(r28)
-	  stfs      f0, 0xC(r1)
-	  lfs       f0, 0x8(r28)
-	  stfs      f0, 0x10(r1)
-	  stfs      f1, 0x14(r1)
-	  beq-      .loc_0xA0
-	  li        r3, 0
-	  b         .loc_0x100
+lbl_803BBC40:
+	lfs      f0, 0(r28)
+	lbz      r0, disableCulling__11ParticleMgr@sda21(r13)
+	stfs     f0, 8(r1)
+	cmplwi   r0, 0
+	lfs      f0, 4(r28)
+	stfs     f0, 0xc(r1)
+	lfs      f0, 8(r28)
+	stfs     f0, 0x10(r1)
+	stfs     f1, 0x14(r1)
+	beq      lbl_803BBC70
+	li       r3, 0
+	b        lbl_803BBCD0
 
-	.loc_0xA0:
-	  li        r30, 0
-	  mr        r28, r27
-	  mr        r31, r30
-	  b         .loc_0xE8
+lbl_803BBC70:
+	li       r30, 0
+	mr       r28, r27
+	mr       r31, r30
+	b        lbl_803BBCB8
 
-	.loc_0xB0:
-	  lwz       r3, 0x84(r28)
-	  lwz       r29, 0x44(r3)
-	  bl        0x695B8
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xE0
-	  mr        r3, r29
-	  addi      r4, r1, 0x8
-	  bl        0x5E4F4
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xE0
-	  li        r30, 0x1
-	  b         .loc_0xF4
+lbl_803BBC80:
+	lwz      r3, 0x84(r28)
+	lwz      r29, 0x44(r3)
+	bl       viewable__8ViewportFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803BBCB0
+	mr       r3, r29
+	addi     r4, r1, 8
+	bl       isVisible__9CullPlaneFRQ23Sys6Sphere
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803BBCB0
+	li       r30, 1
+	b        lbl_803BBCC4
 
-	.loc_0xE0:
-	  addi      r28, r28, 0x4
-	  addi      r31, r31, 0x1
+lbl_803BBCB0:
+	addi     r28, r28, 4
+	addi     r31, r31, 1
 
-	.loc_0xE8:
-	  lwz       r0, 0x80(r27)
-	  cmpw      r31, r0
-	  blt+      .loc_0xB0
+lbl_803BBCB8:
+	lwz      r0, 0x80(r27)
+	cmpw     r31, r0
+	blt      lbl_803BBC80
 
-	.loc_0xF4:
-	  rlwinm    r0,r30,0,24,31
-	  cntlzw    r0, r0
-	  rlwinm    r3,r0,27,5,31
+lbl_803BBCC4:
+	clrlwi   r0, r30, 0x18
+	cntlzw   r0, r0
+	srwi     r3, r0, 5
 
-	.loc_0x100:
-	  lmw       r27, 0x1C(r1)
-	  lwz       r0, 0x34(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_803BBCD0:
+	lmw      r27, 0x1c(r1)
+	lwz      r0, 0x34(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -1348,129 +1530,128 @@ void ParticleMgr::cullByResFlg(Vector3f&, unsigned short)
 void ParticleMgr::cullByResFlg(JPABaseEmitter*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  stw       r0, 0x44(r1)
-	  stmw      r26, 0x28(r1)
-	  mr        r30, r3
-	  mr        r31, r4
-	  lbz       r0, -0x65E4(r13)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x2C
-	  li        r3, 0
-	  b         .loc_0x164
+	stwu     r1, -0x40(r1)
+	mflr     r0
+	stw      r0, 0x44(r1)
+	stmw     r26, 0x28(r1)
+	mr       r30, r3
+	mr       r31, r4
+	lbz      r0, disableCulling__11ParticleMgr@sda21(r13)
+	cmplwi   r0, 0
+	beq      lbl_803BBD10
+	li       r3, 0
+	b        lbl_803BBE48
 
-	.loc_0x2C:
-	  lwz       r3, 0xE8(r31)
-	  lwz       r3, 0x2C(r3)
-	  lwz       r3, 0x0(r3)
-	  lwz       r3, 0xC(r3)
-	  rlwinm.   r0,r3,0,26,26
-	  beq-      .loc_0x5C
-	  rlwinm.   r0,r3,0,27,27
-	  beq-      .loc_0x54
-	  lfs       f3, -0x79A0(r13)
-	  b         .loc_0x74
+lbl_803BBD10:
+	lwz      r3, 0xe8(r31)
+	lwz      r3, 0x2c(r3)
+	lwz      r3, 0(r3)
+	lwz      r3, 0xc(r3)
+	rlwinm.  r0, r3, 0, 0x1a, 0x1a
+	beq      lbl_803BBD40
+	rlwinm.  r0, r3, 0, 0x1b, 0x1b
+	beq      lbl_803BBD38
+	lfs      f3, mClipRadiusL__11ParticleMgr@sda21(r13)
+	b        lbl_803BBD58
 
-	.loc_0x54:
-	  lfs       f3, -0x79A4(r13)
-	  b         .loc_0x74
+lbl_803BBD38:
+	lfs      f3, mClipRadiusM__11ParticleMgr@sda21(r13)
+	b        lbl_803BBD58
 
-	.loc_0x5C:
-	  rlwinm.   r0,r3,0,27,27
-	  beq-      .loc_0x6C
-	  lfs       f3, -0x79A8(r13)
-	  b         .loc_0x74
+lbl_803BBD40:
+	rlwinm.  r0, r3, 0, 0x1b, 0x1b
+	beq      lbl_803BBD50
+	lfs      f3, mClipRadiusS__11ParticleMgr@sda21(r13)
+	b        lbl_803BBD58
 
-	.loc_0x6C:
-	  li        r3, 0
-	  b         .loc_0x164
+lbl_803BBD50:
+	li       r3, 0
+	b        lbl_803BBE48
 
-	.loc_0x74:
-	  lbz       r0, -0x65E4(r13)
-	  lfs       f2, 0xA4(r31)
-	  lfs       f1, 0xA8(r31)
-	  cmplwi    r0, 0
-	  lfs       f0, 0xAC(r31)
-	  stfs      f2, 0x18(r1)
-	  stfs      f1, 0x1C(r1)
-	  stfs      f0, 0x20(r1)
-	  stfs      f2, 0x8(r1)
-	  stfs      f1, 0xC(r1)
-	  stfs      f0, 0x10(r1)
-	  stfs      f3, 0x14(r1)
-	  beq-      .loc_0xB0
-	  li        r0, 0
-	  b         .loc_0x110
+lbl_803BBD58:
+	lbz      r0, disableCulling__11ParticleMgr@sda21(r13)
+	lfs      f2, 0xa4(r31)
+	lfs      f1, 0xa8(r31)
+	cmplwi   r0, 0
+	lfs      f0, 0xac(r31)
+	stfs     f2, 0x18(r1)
+	stfs     f1, 0x1c(r1)
+	stfs     f0, 0x20(r1)
+	stfs     f2, 8(r1)
+	stfs     f1, 0xc(r1)
+	stfs     f0, 0x10(r1)
+	stfs     f3, 0x14(r1)
+	beq      lbl_803BBD94
+	li       r0, 0
+	b        lbl_803BBDF4
 
-	.loc_0xB0:
-	  li        r28, 0
-	  mr        r26, r30
-	  mr        r29, r28
-	  b         .loc_0xF8
+lbl_803BBD94:
+	li       r28, 0
+	mr       r26, r30
+	mr       r29, r28
+	b        lbl_803BBDDC
 
-	.loc_0xC0:
-	  lwz       r3, 0x84(r26)
-	  lwz       r27, 0x44(r3)
-	  bl        0x69494
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xF0
-	  mr        r3, r27
-	  addi      r4, r1, 0x8
-	  bl        0x5E3D0
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xF0
-	  li        r28, 0x1
-	  b         .loc_0x104
+lbl_803BBDA4:
+	lwz      r3, 0x84(r26)
+	lwz      r27, 0x44(r3)
+	bl       viewable__8ViewportFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803BBDD4
+	mr       r3, r27
+	addi     r4, r1, 8
+	bl       isVisible__9CullPlaneFRQ23Sys6Sphere
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803BBDD4
+	li       r28, 1
+	b        lbl_803BBDE8
 
-	.loc_0xF0:
-	  addi      r26, r26, 0x4
-	  addi      r29, r29, 0x1
+lbl_803BBDD4:
+	addi     r26, r26, 4
+	addi     r29, r29, 1
 
-	.loc_0xF8:
-	  lwz       r0, 0x80(r30)
-	  cmpw      r29, r0
-	  blt+      .loc_0xC0
+lbl_803BBDDC:
+	lwz      r0, 0x80(r30)
+	cmpw     r29, r0
+	blt      lbl_803BBDA4
 
-	.loc_0x104:
-	  rlwinm    r0,r28,0,24,31
-	  cntlzw    r0, r0
-	  rlwinm    r0,r0,27,5,31
+lbl_803BBDE8:
+	clrlwi   r0, r28, 0x18
+	cntlzw   r0, r0
+	srwi     r0, r0, 5
 
-	.loc_0x110:
-	  rlwinm    r0,r0,0,24,31
-	  cntlzw    r3, r0
-	  rlwinm.   r0,r3,27,24,31
-	  rlwinm    r3,r3,27,5,31
-	  beq-      .loc_0x140
-	  lwz       r0, 0xF4(r31)
-	  rlwinm    r0,r0,0,30,28
-	  stw       r0, 0xF4(r31)
-	  lwz       r0, 0xF4(r31)
-	  rlwinm    r0,r0,0,0,30
-	  stw       r0, 0xF4(r31)
-	  b         .loc_0x158
+lbl_803BBDF4:
+	clrlwi   r0, r0, 0x18
+	cntlzw   r3, r0
+	rlwinm.  r0, r3, 0x1b, 0x18, 0x1f
+	srwi     r3, r3, 5
+	beq      lbl_803BBE24
+	lwz      r0, 0xf4(r31)
+	rlwinm   r0, r0, 0, 0x1e, 0x1c
+	stw      r0, 0xf4(r31)
+	lwz      r0, 0xf4(r31)
+	rlwinm   r0, r0, 0, 0, 0x1e
+	stw      r0, 0xf4(r31)
+	b        lbl_803BBE3C
 
-	.loc_0x140:
-	  lwz       r0, 0xF4(r31)
-	  ori       r0, r0, 0x4
-	  stw       r0, 0xF4(r31)
-	  lwz       r0, 0xF4(r31)
-	  ori       r0, r0, 0x1
-	  stw       r0, 0xF4(r31)
+lbl_803BBE24:
+	lwz      r0, 0xf4(r31)
+	ori      r0, r0, 4
+	stw      r0, 0xf4(r31)
+	lwz      r0, 0xf4(r31)
+	ori      r0, r0, 1
+	stw      r0, 0xf4(r31)
 
-	.loc_0x158:
-	  rlwinm    r0,r3,0,24,31
-	  cntlzw    r0, r0
-	  rlwinm    r3,r0,27,5,31
+lbl_803BBE3C:
+	clrlwi   r0, r3, 0x18
+	cntlzw   r0, r0
+	srwi     r3, r0, 5
 
-	.loc_0x164:
-	  lmw       r26, 0x28(r1)
-	  lwz       r0, 0x44(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
+lbl_803BBE48:
+	lmw      r26, 0x28(r1)
+	lwz      r0, 0x44(r1)
+	mtlr     r0
+	addi     r1, r1, 0x40
+	blr
 	*/
 }
 
@@ -1509,11 +1690,10 @@ void ModelEffectDataRoot::loadResources() { }
 void ModelEffectDataRoot::getID()
 {
 	/*
-	.loc_0x0:
-	  lis       r4, 0x524F
-	  li        r3, 0
-	  addi      r4, r4, 0x4F54
-	  blr
+	lis      r4, 0x524F4F54@ha
+	li       r3, 0
+	addi     r4, r4, 0x524F4F54@l
+	blr
 	*/
 }
 
@@ -1532,9 +1712,8 @@ u32 ModelEffectDataRoot::onCreate(ModelEffectCreateArg*) { return 0x0; }
 void NodeObjectMgr<ModelEffect>::get(void*)
 {
 	/*
-	.loc_0x0:
-	  lwz       r3, 0x18(r4)
-	  blr
+	lwz      r3, 0x18(r4)
+	blr
 	*/
 }
 
@@ -1546,9 +1725,8 @@ void NodeObjectMgr<ModelEffect>::get(void*)
 void NodeObjectMgr<ModelEffect>::getNext(void*)
 {
 	/*
-	.loc_0x0:
-	  lwz       r3, 0x4(r4)
-	  blr
+	lwz      r3, 4(r4)
+	blr
 	*/
 }
 
@@ -1560,9 +1738,8 @@ void NodeObjectMgr<ModelEffect>::getNext(void*)
 void NodeObjectMgr<ModelEffect>::getStart()
 {
 	/*
-	.loc_0x0:
-	  lwz       r3, 0x30(r3)
-	  blr
+	lwz      r3, 0x30(r3)
+	blr
 	*/
 }
 
@@ -1581,13 +1758,12 @@ u32 NodeObjectMgr<ModelEffect>::getEnd() { return 0x0; }
 void NodeObjectMgr<ModelEffect>::resetMgr()
 {
 	/*
-	.loc_0x0:
-	  li        r0, 0
-	  stw       r0, 0x30(r3)
-	  stw       r0, 0x2C(r3)
-	  stw       r0, 0x28(r3)
-	  stw       r0, 0x24(r3)
-	  blr
+	li       r0, 0
+	stw      r0, 0x30(r3)
+	stw      r0, 0x2c(r3)
+	stw      r0, 0x28(r3)
+	stw      r0, 0x24(r3)
+	blr
 	*/
 }
 
@@ -1599,18 +1775,17 @@ void NodeObjectMgr<ModelEffect>::resetMgr()
 void Container<ModelEffect>::getObject(void*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1636,148 +1811,147 @@ u32 Container<ModelEffect>::getTo() { return 0x0; }
 void ObjectMgr<ModelEffect>::doDirectDraw(Graphics&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r5, 0x804E
-	  stw       r0, 0x24(r1)
-	  li        r0, 0
-	  addi      r5, r5, 0x7810
-	  stw       r31, 0x1C(r1)
-	  cmplwi    r0, 0
-	  mr        r31, r4
-	  stw       r0, 0x14(r1)
-	  stw       r5, 0x8(r1)
-	  stw       r0, 0xC(r1)
-	  stw       r3, 0x10(r1)
-	  bne-      .loc_0x50
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0x1C0
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lis      r5, "__vt__23Iterator<11ModelEffect>"@ha
+	stw      r0, 0x24(r1)
+	li       r0, 0
+	addi     r5, r5, "__vt__23Iterator<11ModelEffect>"@l
+	stw      r31, 0x1c(r1)
+	cmplwi   r0, 0
+	mr       r31, r4
+	stw      r0, 0x14(r1)
+	stw      r5, 8(r1)
+	stw      r0, 0xc(r1)
+	stw      r3, 0x10(r1)
+	bne      lbl_803BBF3C
+	lwz      r12, 0(r3)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
+	b        lbl_803BC0AC
 
-	.loc_0x50:
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0xBC
+lbl_803BBF3C:
+	lwz      r12, 0(r3)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
+	b        lbl_803BBFA8
 
-	.loc_0x68:
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x1C0
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
+lbl_803BBF54:
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	lwz      r3, 0x14(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_803BC0AC
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
 
-	.loc_0xBC:
-	  lwz       r12, 0x8(r1)
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x68
-	  b         .loc_0x1C0
+lbl_803BBFA8:
+	lwz      r12, 8(r1)
+	addi     r3, r1, 8
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803BBF54
+	b        lbl_803BC0AC
 
-	.loc_0xDC:
-	  lwz       r3, 0x10(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r12, 0x0(r3)
-	  mr        r4, r31
-	  lwz       r12, 0x30(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x130
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0x1C0
+lbl_803BBFC8:
+	lwz      r3, 0x10(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	lwz      r12, 0(r3)
+	mr       r4, r31
+	lwz      r12, 0x30(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	cmplwi   r0, 0
+	bne      lbl_803BC01C
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
+	b        lbl_803BC0AC
 
-	.loc_0x130:
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0x1A4
+lbl_803BC01C:
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
+	b        lbl_803BC090
 
-	.loc_0x150:
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x1C0
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
+lbl_803BC03C:
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	lwz      r3, 0x14(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_803BC0AC
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
 
-	.loc_0x1A4:
-	  lwz       r12, 0x8(r1)
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x150
+lbl_803BC090:
+	lwz      r12, 8(r1)
+	addi     r3, r1, 8
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803BC03C
 
-	.loc_0x1C0:
-	  lwz       r3, 0x10(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r4, 0xC(r1)
-	  cmplw     r4, r3
-	  bne+      .loc_0xDC
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_803BC0AC:
+	lwz      r3, 0x10(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r4, 0xc(r1)
+	cmplw    r4, r3
+	bne      lbl_803BBFC8
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -1789,26 +1963,25 @@ void ObjectMgr<ModelEffect>::doDirectDraw(Graphics&)
 void Iterator<ModelEffect>::isDone()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r3, 0x8(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x4(r31)
-	  sub       r0, r3, r0
-	  cntlzw    r0, r0
-	  rlwinm    r3,r0,27,5,31
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r3, 8(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 4(r31)
+	subf     r0, r0, r3
+	cntlzw   r0, r0
+	srwi     r3, r0, 5
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1820,148 +1993,147 @@ void Iterator<ModelEffect>::isDone()
 void ObjectMgr<ModelEffect>::doSimulation(float)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r4, 0x804E
-	  stw       r0, 0x24(r1)
-	  li        r0, 0
-	  addi      r4, r4, 0x7810
-	  stfd      f31, 0x18(r1)
-	  fmr       f31, f1
-	  cmplwi    r0, 0
-	  stw       r4, 0x8(r1)
-	  stw       r0, 0x14(r1)
-	  stw       r0, 0xC(r1)
-	  stw       r3, 0x10(r1)
-	  bne-      .loc_0x50
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0x1C0
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lis      r4, "__vt__23Iterator<11ModelEffect>"@ha
+	stw      r0, 0x24(r1)
+	li       r0, 0
+	addi     r4, r4, "__vt__23Iterator<11ModelEffect>"@l
+	stfd     f31, 0x18(r1)
+	fmr      f31, f1
+	cmplwi   r0, 0
+	stw      r4, 8(r1)
+	stw      r0, 0x14(r1)
+	stw      r0, 0xc(r1)
+	stw      r3, 0x10(r1)
+	bne      lbl_803BC17C
+	lwz      r12, 0(r3)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
+	b        lbl_803BC2EC
 
-	.loc_0x50:
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0xBC
+lbl_803BC17C:
+	lwz      r12, 0(r3)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
+	b        lbl_803BC1E8
 
-	.loc_0x68:
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x1C0
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
+lbl_803BC194:
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	lwz      r3, 0x14(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_803BC2EC
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
 
-	.loc_0xBC:
-	  lwz       r12, 0x8(r1)
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x68
-	  b         .loc_0x1C0
+lbl_803BC1E8:
+	lwz      r12, 8(r1)
+	addi     r3, r1, 8
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803BC194
+	b        lbl_803BC2EC
 
-	.loc_0xDC:
-	  lwz       r3, 0x10(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r12, 0x0(r3)
-	  fmr       f1, f31
-	  lwz       r12, 0x2C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x130
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0x1C0
+lbl_803BC208:
+	lwz      r3, 0x10(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	lwz      r12, 0(r3)
+	fmr      f1, f31
+	lwz      r12, 0x2c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	cmplwi   r0, 0
+	bne      lbl_803BC25C
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
+	b        lbl_803BC2EC
 
-	.loc_0x130:
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0x1A4
+lbl_803BC25C:
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
+	b        lbl_803BC2D0
 
-	.loc_0x150:
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x1C0
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
+lbl_803BC27C:
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	lwz      r3, 0x14(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_803BC2EC
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
 
-	.loc_0x1A4:
-	  lwz       r12, 0x8(r1)
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x150
+lbl_803BC2D0:
+	lwz      r12, 8(r1)
+	addi     r3, r1, 8
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803BC27C
 
-	.loc_0x1C0:
-	  lwz       r3, 0x10(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r4, 0xC(r1)
-	  cmplw     r4, r3
-	  bne+      .loc_0xDC
-	  lwz       r0, 0x24(r1)
-	  lfd       f31, 0x18(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_803BC2EC:
+	lwz      r3, 0x10(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r4, 0xc(r1)
+	cmplw    r4, r3
+	bne      lbl_803BC208
+	lwz      r0, 0x24(r1)
+	lfd      f31, 0x18(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -1973,144 +2145,143 @@ void ObjectMgr<ModelEffect>::doSimulation(float)
 void ObjectMgr<ModelEffect>::doViewCalc()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r4, 0x804E
-	  stw       r0, 0x24(r1)
-	  li        r0, 0
-	  addi      r4, r4, 0x7810
-	  cmplwi    r0, 0
-	  stw       r0, 0x14(r1)
-	  stw       r4, 0x8(r1)
-	  stw       r0, 0xC(r1)
-	  stw       r3, 0x10(r1)
-	  bne-      .loc_0x48
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0x1B4
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lis      r4, "__vt__23Iterator<11ModelEffect>"@ha
+	stw      r0, 0x24(r1)
+	li       r0, 0
+	addi     r4, r4, "__vt__23Iterator<11ModelEffect>"@l
+	cmplwi   r0, 0
+	stw      r0, 0x14(r1)
+	stw      r4, 8(r1)
+	stw      r0, 0xc(r1)
+	stw      r3, 0x10(r1)
+	bne      lbl_803BC368
+	lwz      r12, 0(r3)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
+	b        lbl_803BC4D4
 
-	.loc_0x48:
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0xB4
+lbl_803BC368:
+	lwz      r12, 0(r3)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
+	b        lbl_803BC3D4
 
-	.loc_0x60:
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x1B4
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
+lbl_803BC380:
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	lwz      r3, 0x14(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_803BC4D4
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
 
-	.loc_0xB4:
-	  lwz       r12, 0x8(r1)
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x60
-	  b         .loc_0x1B4
+lbl_803BC3D4:
+	lwz      r12, 8(r1)
+	addi     r3, r1, 8
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803BC380
+	b        lbl_803BC4D4
 
-	.loc_0xD4:
-	  lwz       r3, 0x10(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x124
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0x1B4
+lbl_803BC3F4:
+	lwz      r3, 0x10(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	lwz      r12, 0(r3)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	cmplwi   r0, 0
+	bne      lbl_803BC444
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
+	b        lbl_803BC4D4
 
-	.loc_0x124:
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0x198
+lbl_803BC444:
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
+	b        lbl_803BC4B8
 
-	.loc_0x144:
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x1B4
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
+lbl_803BC464:
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	lwz      r3, 0x14(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_803BC4D4
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
 
-	.loc_0x198:
-	  lwz       r12, 0x8(r1)
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x144
+lbl_803BC4B8:
+	lwz      r12, 8(r1)
+	addi     r3, r1, 8
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803BC464
 
-	.loc_0x1B4:
-	  lwz       r3, 0x10(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r4, 0xC(r1)
-	  cmplw     r4, r3
-	  bne+      .loc_0xD4
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_803BC4D4:
+	lwz      r3, 0x10(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r4, 0xc(r1)
+	cmplw    r4, r3
+	bne      lbl_803BC3F4
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -2122,148 +2293,147 @@ void ObjectMgr<ModelEffect>::doViewCalc()
 void ObjectMgr<ModelEffect>::doSetView(int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r5, 0x804E
-	  stw       r0, 0x24(r1)
-	  li        r0, 0
-	  addi      r5, r5, 0x7810
-	  stw       r31, 0x1C(r1)
-	  cmplwi    r0, 0
-	  mr        r31, r4
-	  stw       r0, 0x14(r1)
-	  stw       r5, 0x8(r1)
-	  stw       r0, 0xC(r1)
-	  stw       r3, 0x10(r1)
-	  bne-      .loc_0x50
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0x1C0
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lis      r5, "__vt__23Iterator<11ModelEffect>"@ha
+	stw      r0, 0x24(r1)
+	li       r0, 0
+	addi     r5, r5, "__vt__23Iterator<11ModelEffect>"@l
+	stw      r31, 0x1c(r1)
+	cmplwi   r0, 0
+	mr       r31, r4
+	stw      r0, 0x14(r1)
+	stw      r5, 8(r1)
+	stw      r0, 0xc(r1)
+	stw      r3, 0x10(r1)
+	bne      lbl_803BC554
+	lwz      r12, 0(r3)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
+	b        lbl_803BC6C4
 
-	.loc_0x50:
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0xBC
+lbl_803BC554:
+	lwz      r12, 0(r3)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
+	b        lbl_803BC5C0
 
-	.loc_0x68:
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x1C0
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
+lbl_803BC56C:
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	lwz      r3, 0x14(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_803BC6C4
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
 
-	.loc_0xBC:
-	  lwz       r12, 0x8(r1)
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x68
-	  b         .loc_0x1C0
+lbl_803BC5C0:
+	lwz      r12, 8(r1)
+	addi     r3, r1, 8
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803BC56C
+	b        lbl_803BC6C4
 
-	.loc_0xDC:
-	  lwz       r3, 0x10(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r12, 0x0(r3)
-	  mr        r4, r31
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x130
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0x1C0
+lbl_803BC5E0:
+	lwz      r3, 0x10(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	lwz      r12, 0(r3)
+	mr       r4, r31
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	cmplwi   r0, 0
+	bne      lbl_803BC634
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
+	b        lbl_803BC6C4
 
-	.loc_0x130:
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0x1A4
+lbl_803BC634:
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
+	b        lbl_803BC6A8
 
-	.loc_0x150:
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x1C0
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
+lbl_803BC654:
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	lwz      r3, 0x14(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_803BC6C4
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
 
-	.loc_0x1A4:
-	  lwz       r12, 0x8(r1)
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x150
+lbl_803BC6A8:
+	lwz      r12, 8(r1)
+	addi     r3, r1, 8
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803BC654
 
-	.loc_0x1C0:
-	  lwz       r3, 0x10(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r4, 0xC(r1)
-	  cmplw     r4, r3
-	  bne+      .loc_0xDC
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_803BC6C4:
+	lwz      r3, 0x10(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r4, 0xc(r1)
+	cmplw    r4, r3
+	bne      lbl_803BC5E0
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -2275,144 +2445,143 @@ void ObjectMgr<ModelEffect>::doSetView(int)
 void ObjectMgr<ModelEffect>::doEntry()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r4, 0x804E
-	  stw       r0, 0x24(r1)
-	  li        r0, 0
-	  addi      r4, r4, 0x7810
-	  cmplwi    r0, 0
-	  stw       r0, 0x14(r1)
-	  stw       r4, 0x8(r1)
-	  stw       r0, 0xC(r1)
-	  stw       r3, 0x10(r1)
-	  bne-      .loc_0x48
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0x1B4
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lis      r4, "__vt__23Iterator<11ModelEffect>"@ha
+	stw      r0, 0x24(r1)
+	li       r0, 0
+	addi     r4, r4, "__vt__23Iterator<11ModelEffect>"@l
+	cmplwi   r0, 0
+	stw      r0, 0x14(r1)
+	stw      r4, 8(r1)
+	stw      r0, 0xc(r1)
+	stw      r3, 0x10(r1)
+	bne      lbl_803BC740
+	lwz      r12, 0(r3)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
+	b        lbl_803BC8AC
 
-	.loc_0x48:
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0xB4
+lbl_803BC740:
+	lwz      r12, 0(r3)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
+	b        lbl_803BC7AC
 
-	.loc_0x60:
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x1B4
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
+lbl_803BC758:
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	lwz      r3, 0x14(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_803BC8AC
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
 
-	.loc_0xB4:
-	  lwz       r12, 0x8(r1)
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x60
-	  b         .loc_0x1B4
+lbl_803BC7AC:
+	lwz      r12, 8(r1)
+	addi     r3, r1, 8
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803BC758
+	b        lbl_803BC8AC
 
-	.loc_0xD4:
-	  lwz       r3, 0x10(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x124
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0x1B4
+lbl_803BC7CC:
+	lwz      r3, 0x10(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	cmplwi   r0, 0
+	bne      lbl_803BC81C
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
+	b        lbl_803BC8AC
 
-	.loc_0x124:
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0x198
+lbl_803BC81C:
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
+	b        lbl_803BC890
 
-	.loc_0x144:
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x1B4
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
+lbl_803BC83C:
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	lwz      r3, 0x14(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_803BC8AC
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
 
-	.loc_0x198:
-	  lwz       r12, 0x8(r1)
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x144
+lbl_803BC890:
+	lwz      r12, 8(r1)
+	addi     r3, r1, 8
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803BC83C
 
-	.loc_0x1B4:
-	  lwz       r3, 0x10(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r4, 0xC(r1)
-	  cmplw     r4, r3
-	  bne+      .loc_0xD4
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_803BC8AC:
+	lwz      r3, 0x10(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r4, 0xc(r1)
+	cmplw    r4, r3
+	bne      lbl_803BC7CC
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -2424,144 +2593,143 @@ void ObjectMgr<ModelEffect>::doEntry()
 void ObjectMgr<ModelEffect>::doAnimation()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r4, 0x804E
-	  stw       r0, 0x24(r1)
-	  li        r0, 0
-	  addi      r4, r4, 0x7810
-	  cmplwi    r0, 0
-	  stw       r0, 0x14(r1)
-	  stw       r4, 0x8(r1)
-	  stw       r0, 0xC(r1)
-	  stw       r3, 0x10(r1)
-	  bne-      .loc_0x48
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0x1B4
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lis      r4, "__vt__23Iterator<11ModelEffect>"@ha
+	stw      r0, 0x24(r1)
+	li       r0, 0
+	addi     r4, r4, "__vt__23Iterator<11ModelEffect>"@l
+	cmplwi   r0, 0
+	stw      r0, 0x14(r1)
+	stw      r4, 8(r1)
+	stw      r0, 0xc(r1)
+	stw      r3, 0x10(r1)
+	bne      lbl_803BC924
+	lwz      r12, 0(r3)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
+	b        lbl_803BCA90
 
-	.loc_0x48:
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0xB4
+lbl_803BC924:
+	lwz      r12, 0(r3)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
+	b        lbl_803BC990
 
-	.loc_0x60:
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x1B4
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
+lbl_803BC93C:
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	lwz      r3, 0x14(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_803BCA90
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
 
-	.loc_0xB4:
-	  lwz       r12, 0x8(r1)
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x60
-	  b         .loc_0x1B4
+lbl_803BC990:
+	lwz      r12, 8(r1)
+	addi     r3, r1, 8
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803BC93C
+	b        lbl_803BCA90
 
-	.loc_0xD4:
-	  lwz       r3, 0x10(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x124
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0x1B4
+lbl_803BC9B0:
+	lwz      r3, 0x10(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	cmplwi   r0, 0
+	bne      lbl_803BCA00
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
+	b        lbl_803BCA90
 
-	.loc_0x124:
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0x198
+lbl_803BCA00:
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
+	b        lbl_803BCA74
 
-	.loc_0x144:
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x1B4
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
+lbl_803BCA20:
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	lwz      r3, 0x14(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_803BCA90
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
 
-	.loc_0x198:
-	  lwz       r12, 0x8(r1)
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x144
+lbl_803BCA74:
+	lwz      r12, 8(r1)
+	addi     r3, r1, 8
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803BCA20
 
-	.loc_0x1B4:
-	  lwz       r3, 0x10(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r4, 0xC(r1)
-	  cmplw     r4, r3
-	  bne+      .loc_0xD4
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_803BCA90:
+	lwz      r3, 0x10(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r4, 0xc(r1)
+	cmplw    r4, r3
+	bne      lbl_803BC9B0
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -2573,21 +2741,20 @@ void ObjectMgr<ModelEffect>::doAnimation()
 void Iterator<ModelEffect>::operator*()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r4, r3
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x8(r3)
-	  lwz       r4, 0x4(r4)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r4, r3
+	stw      r0, 0x14(r1)
+	lwz      r3, 8(r3)
+	lwz      r4, 4(r4)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2599,72 +2766,71 @@ void Iterator<ModelEffect>::operator*()
 void Iterator<ModelEffect>::next()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r0, 0xC(r3)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x40
-	  lwz       r3, 0x8(r31)
-	  lwz       r4, 0x4(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x4(r31)
-	  b         .loc_0xD0
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r0, 0xc(r3)
+	cmplwi   r0, 0
+	bne      lbl_803BCB38
+	lwz      r3, 8(r31)
+	lwz      r4, 4(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 4(r31)
+	b        lbl_803BCBC8
 
-	.loc_0x40:
-	  lwz       r3, 0x8(r31)
-	  lwz       r4, 0x4(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x4(r31)
-	  b         .loc_0xB4
+lbl_803BCB38:
+	lwz      r3, 8(r31)
+	lwz      r4, 4(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 4(r31)
+	b        lbl_803BCBAC
 
-	.loc_0x60:
-	  lwz       r3, 0x8(r31)
-	  lwz       r4, 0x4(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0xC(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0xD0
-	  lwz       r3, 0x8(r31)
-	  lwz       r4, 0x4(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x4(r31)
+lbl_803BCB58:
+	lwz      r3, 8(r31)
+	lwz      r4, 4(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	lwz      r3, 0xc(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_803BCBC8
+	lwz      r3, 8(r31)
+	lwz      r4, 4(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 4(r31)
 
-	.loc_0xB4:
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x60
+lbl_803BCBAC:
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803BCB58
 
-	.loc_0xD0:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803BCBC8:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2676,70 +2842,69 @@ void Iterator<ModelEffect>::next()
 void Iterator<ModelEffect>::first()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r0, 0xC(r3)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x3C
-	  lwz       r3, 0x8(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x4(r31)
-	  b         .loc_0xC8
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r0, 0xc(r3)
+	cmplwi   r0, 0
+	bne      lbl_803BCC18
+	lwz      r3, 8(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 4(r31)
+	b        lbl_803BCCA4
 
-	.loc_0x3C:
-	  lwz       r3, 0x8(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x4(r31)
-	  b         .loc_0xAC
+lbl_803BCC18:
+	lwz      r3, 8(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 4(r31)
+	b        lbl_803BCC88
 
-	.loc_0x58:
-	  lwz       r3, 0x8(r31)
-	  lwz       r4, 0x4(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0xC(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0xC8
-	  lwz       r3, 0x8(r31)
-	  lwz       r4, 0x4(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x4(r31)
+lbl_803BCC34:
+	lwz      r3, 8(r31)
+	lwz      r4, 4(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	lwz      r3, 0xc(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_803BCCA4
+	lwz      r3, 8(r31)
+	lwz      r4, 4(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 4(r31)
 
-	.loc_0xAC:
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x58
+lbl_803BCC88:
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803BCC34
 
-	.loc_0xC8:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803BCCA4:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2751,17 +2916,16 @@ void Iterator<ModelEffect>::first()
 void __sinit_particleMgr_cpp(void)
 {
 	/*
-	.loc_0x0:
-	  lis       r4, 0x8051
-	  li        r0, -0x1
-	  lfs       f0, 0x48B0(r4)
-	  lis       r3, 0x804E
-	  stw       r0, -0x65F0(r13)
-	  stfsu     f0, 0x7688(r3)
-	  stfs      f0, -0x65EC(r13)
-	  stfs      f0, 0x4(r3)
-	  stfs      f0, 0x8(r3)
-	  blr
+	lis      r4, __float_nan@ha
+	li       r0, -1
+	lfs      f0, __float_nan@l(r4)
+	lis      r3, lbl_804E7688@ha
+	stw      r0, lbl_80516090@sda21(r13)
+	stfsu    f0, lbl_804E7688@l(r3)
+	stfs     f0, lbl_80516094@sda21(r13)
+	stfs     f0, 4(r3)
+	stfs     f0, 8(r3)
+	blr
 	*/
 }
 
@@ -2773,9 +2937,8 @@ void __sinit_particleMgr_cpp(void)
 void NodeObjectMgr<ModelEffect>::@28 @resetMgr()
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x1C
-	  b         -0xE4C
+	addi     r3, r3, -28
+	b        "resetMgr__28NodeObjectMgr<11ModelEffect>Fv"
 	*/
 }
 
@@ -2787,9 +2950,8 @@ void NodeObjectMgr<ModelEffect>::@28 @resetMgr()
 void ObjectMgr<ModelEffect>::@28 @doDirectDraw(Graphics&)
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x1C
-	  b         -0xE00
+	addi     r3, r3, -28
+	b        "doDirectDraw__24ObjectMgr<11ModelEffect>FR8Graphics"
 	*/
 }
 
@@ -2801,9 +2963,8 @@ void ObjectMgr<ModelEffect>::@28 @doDirectDraw(Graphics&)
 void ObjectMgr<ModelEffect>::@28 @doSimulation(float)
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x1C
-	  b         -0xBC8
+	addi     r3, r3, -28
+	b        "doSimulation__24ObjectMgr<11ModelEffect>Ff"
 	*/
 }
 
@@ -2815,9 +2976,8 @@ void ObjectMgr<ModelEffect>::@28 @doSimulation(float)
 void ObjectMgr<ModelEffect>::@28 @doViewCalc()
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x1C
-	  b         -0x9DC
+	addi     r3, r3, -28
+	b        "doViewCalc__24ObjectMgr<11ModelEffect>Fv"
 	*/
 }
 
@@ -2829,9 +2989,8 @@ void ObjectMgr<ModelEffect>::@28 @doViewCalc()
 void ObjectMgr<ModelEffect>::@28 @doSetView(int)
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x1C
-	  b         -0x800
+	addi     r3, r3, -28
+	b        "doSetView__24ObjectMgr<11ModelEffect>Fi"
 	*/
 }
 
@@ -2843,9 +3002,8 @@ void ObjectMgr<ModelEffect>::@28 @doSetView(int)
 void ObjectMgr<ModelEffect>::@28 @doEntry()
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x1C
-	  b         -0x614
+	addi     r3, r3, -28
+	b        "doEntry__24ObjectMgr<11ModelEffect>Fv"
 	*/
 }
 
@@ -2857,8 +3015,7 @@ void ObjectMgr<ModelEffect>::@28 @doEntry()
 void ObjectMgr<ModelEffect>::@28 @doAnimation()
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x1C
-	  b         -0x438
+	addi     r3, r3, -28
+	b        "doAnimation__24ObjectMgr<11ModelEffect>Fv"
 	*/
 }

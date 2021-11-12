@@ -1,6 +1,123 @@
 #include "types.h"
 
 /*
+    Generated from dpostproc
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_804732E0
+    lbl_804732E0:
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__Q317JStudio_JParticle17TAdaptor_particle13TJPACallback_
+    __vt__Q317JStudio_JParticle17TAdaptor_particle13TJPACallback_:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q317JStudio_JParticle17TAdaptor_particle13TJPACallback_Fv
+        .4byte
+   execute__Q317JStudio_JParticle17TAdaptor_particle13TJPACallback_FP14JPABaseEmitter
+        .4byte executeAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
+        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+    .global __vt__Q217JStudio_JParticle17TAdaptor_particle
+    __vt__Q217JStudio_JParticle17TAdaptor_particle:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q217JStudio_JParticle17TAdaptor_particleFv
+        .4byte
+   adaptor_do_prepare__Q217JStudio_JParticle17TAdaptor_particleFPCQ27JStudio7TObject
+        .4byte adaptor_do_begin__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
+        .4byte
+   adaptor_do_end__Q217JStudio_JParticle17TAdaptor_particleFPCQ27JStudio7TObject
+        .4byte
+   adaptor_do_update__Q217JStudio_JParticle17TAdaptor_particleFPCQ27JStudio7TObjectUl
+        .4byte
+   adaptor_do_data__Q27JStudio8TAdaptorFPCQ27JStudio7TObjectPCvUlPCvUl .4byte
+   adaptor_do_PARTICLE__Q217JStudio_JParticle17TAdaptor_particleFQ37JStudio4data15TEOperationDataPCvUl
+        .4byte
+   adaptor_do_BEGIN__Q217JStudio_JParticle17TAdaptor_particleFQ37JStudio4data15TEOperationDataPCvUl
+        .4byte
+   adaptor_do_BEGIN_FADE_IN__Q217JStudio_JParticle17TAdaptor_particleFQ37JStudio4data15TEOperationDataPCvUl
+        .4byte
+   adaptor_do_END__Q217JStudio_JParticle17TAdaptor_particleFQ37JStudio4data15TEOperationDataPCvUl
+        .4byte
+   adaptor_do_END_FADE_OUT__Q217JStudio_JParticle17TAdaptor_particleFQ37JStudio4data15TEOperationDataPCvUl
+        .4byte
+   adaptor_do_PARENT__Q217JStudio_JParticle17TAdaptor_particleFQ37JStudio4data15TEOperationDataPCvUl
+        .4byte
+   adaptor_do_PARENT_NODE__Q217JStudio_JParticle17TAdaptor_particleFQ37JStudio4data15TEOperationDataPCvUl
+        .4byte
+   adaptor_do_PARENT_ENABLE__Q217JStudio_JParticle17TAdaptor_particleFQ37JStudio4data15TEOperationDataPCvUl
+    .global __vt__18JPAEmitterCallBack
+    __vt__18JPAEmitterCallBack:
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte execute__18JPAEmitterCallBackFP14JPABaseEmitter
+        .4byte executeAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
+        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+    .global __vt__Q27JStudio17TAdaptor_particle
+    __vt__Q27JStudio17TAdaptor_particle:
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte adaptor_do_prepare__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
+        .4byte adaptor_do_begin__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
+        .4byte adaptor_do_end__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
+        .4byte adaptor_do_update__Q27JStudio8TAdaptorFPCQ27JStudio7TObjectUl
+        .4byte
+   adaptor_do_data__Q27JStudio8TAdaptorFPCQ27JStudio7TObjectPCvUlPCvUl .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+
+    .section .sbss # 0x80514D80 - 0x80516360
+    .global init$1233
+    init$1233:
+        .skip 0x8
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_80516360
+    lbl_80516360:
+        .4byte 0x00000000
+    .global lbl_80516364
+    lbl_80516364:
+        .float 1.0
+    .global lbl_80516368
+    lbl_80516368:
+        .4byte 0x437F0000
+        .4byte 0x00000000
+    .global lbl_80516370
+    lbl_80516370:
+        .4byte 0x3FF00000
+        .4byte 0x00000000
+    .global lbl_80516378
+    lbl_80516378:
+        .4byte 0x40F00000
+        .4byte 0x00000000
+    .global lbl_80516380
+    lbl_80516380:
+        .4byte 0x40768000
+        .4byte 0x00000000
+    .global lbl_80516388
+    lbl_80516388:
+        .4byte 0x406FE000
+        .4byte 0x00000000
+    .global lbl_80516390
+    lbl_80516390:
+        .4byte 0x43300000
+        .4byte 0x00000000
+*/
+
+/*
  * --INFO--
  * Address:	800056C0
  * Size:	0000E8
@@ -79,33 +196,30 @@ JStudio_JParticle::TAdaptor_particle::TAdaptor_particle(JPAEmitterManager*,
 JStudio_JParticle::TAdaptor_particle::TJPACallback_::~TJPACallback_()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x44
-	  lis       r5, 0x804A
-	  li        r4, 0
-	  subi      r0, r5, 0x1DE0
-	  stw       r0, 0x0(r30)
-	  bl        0x8A4C4
-	  extsh.    r0, r31
-	  ble-      .loc_0x44
-	  mr        r3, r30
-	  bl        0x1E8CC
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_800057EC
+	lis      r5,
+__vt__Q317JStudio_JParticle17TAdaptor_particle13TJPACallback_@ha li       r4, 0
+	addi     r0, r5,
+__vt__Q317JStudio_JParticle17TAdaptor_particle13TJPACallback_@l stw      r0,
+0(r30) bl       __dt__18JPAEmitterCallBackFv extsh.   r0, r31 ble lbl_800057EC
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x44:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_800057EC:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -119,13 +233,12 @@ namespace JStudio {
 TVariableValue::TVariableValue()
 {
 	/*
-	.loc_0x0:
-	  li        r4, 0
-	  subi      r0, r13, 0x78F0
-	  stw       r4, 0x4(r3)
-	  stw       r4, 0x8(r3)
-	  stw       r0, 0x10(r3)
-	  blr
+	li       r4, 0
+	addi     r0, r13, soOutput_none___Q27JStudio14TVariableValue@sda21
+	stw      r4, 4(r3)
+	stw      r4, 8(r3)
+	stw      r0, 0x10(r3)
+	blr
 	*/
 }
 
@@ -139,51 +252,50 @@ TVariableValue::TVariableValue()
 JStudio_JParticle::TAdaptor_particle::~TAdaptor_particle()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x7C
-	  lis       r3, 0x804A
-	  subi      r0, r3, 0x1DC4
-	  stw       r0, 0x0(r30)
-	  lwz       r4, 0x178(r30)
-	  cmplwi    r4, 0
-	  beq-      .loc_0x40
-	  lwz       r3, 0x174(r30)
-	  bl        0x8B4A4
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_8000589C
+	lis      r3, __vt__Q217JStudio_JParticle17TAdaptor_particle@ha
+	addi     r0, r3, __vt__Q217JStudio_JParticle17TAdaptor_particle@l
+	stw      r0, 0(r30)
+	lwz      r4, 0x178(r30)
+	cmplwi   r4, 0
+	beq      lbl_80005860
+	lwz      r3, 0x174(r30)
+	bl       forceDeleteEmitter__17JPAEmitterManagerFP14JPABaseEmitter
 
-	.loc_0x40:
-	  addic.    r0, r30, 0x17C
-	  beq-      .loc_0x60
-	  lis       r4, 0x804A
-	  addi      r3, r30, 0x17C
-	  subi      r0, r4, 0x1DE0
-	  li        r4, 0
-	  stw       r0, 0x17C(r30)
-	  bl        0x8A420
+lbl_80005860:
+	addic.   r0, r30, 0x17c
+	beq      lbl_80005880
+	lis      r4,
+__vt__Q317JStudio_JParticle17TAdaptor_particle13TJPACallback_@ha addi     r3,
+r30, 0x17c addi     r0, r4,
+__vt__Q317JStudio_JParticle17TAdaptor_particle13TJPACallback_@l li       r4, 0
+	stw      r0, 0x17c(r30)
+	bl       __dt__18JPAEmitterCallBackFv
 
-	.loc_0x60:
-	  mr        r3, r30
-	  li        r4, 0
-	  bl        0x948C
-	  extsh.    r0, r31
-	  ble-      .loc_0x7C
-	  mr        r3, r30
-	  bl        0x1E81C
+lbl_80005880:
+	mr       r3, r30
+	li       r4, 0
+	bl       __dt__Q27JStudio17TAdaptor_particleFv
+	extsh.   r0, r31
+	ble      lbl_8000589C
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x7C:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8000589C:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -878,70 +990,70 @@ void JStudio_JParticle::TAdaptor_particle::TJPACallback_::execute(
 void JStudio_JParticle::TAdaptor_particle::beginParticle_fadeIn_(unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stw       r31, 0x2C(r1)
-	  mr        r31, r4
-	  stw       r30, 0x28(r1)
-	  mr        r30, r3
-	  lwz       r4, 0x178(r3)
-	  cmplwi    r4, 0
-	  beq-      .loc_0x30
-	  lwz       r3, 0x174(r30)
-	  bl        0x8ACC0
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stw      r31, 0x2c(r1)
+	mr       r31, r4
+	stw      r30, 0x28(r1)
+	mr       r30, r3
+	lwz      r4, 0x178(r3)
+	cmplwi   r4, 0
+	beq      lbl_80006044
+	lwz      r3, 0x174(r30)
+	bl       forceDeleteEmitter__17JPAEmitterManagerFP14JPABaseEmitter
 
-	.loc_0x30:
-	  lis       r3, 0x8047
-	  addi      r4, r1, 0x14
-	  addi      r6, r3, 0x32E0
-	  addi      r8, r30, 0x17C
-	  lwz       r5, 0x0(r6)
-	  li        r9, 0
-	  lwz       r3, 0x4(r6)
-	  lwz       r0, 0x8(r6)
-	  stw       r5, 0x8(r1)
-	  stw       r3, 0xC(r1)
-	  lfs       f2, 0x8(r1)
-	  stw       r0, 0x10(r1)
-	  lfs       f1, 0xC(r1)
-	  lfs       f0, 0x10(r1)
-	  stfs      f2, 0x14(r1)
-	  stfs      f1, 0x18(r1)
-	  stfs      f0, 0x1C(r1)
-	  lwz       r0, 0x188(r30)
-	  lwz       r3, 0x174(r30)
-	  rlwinm    r6,r0,8,24,31
-	  rlwinm    r5,r0,0,16,31
-	  rlwinm    r7,r0,16,24,31
-	  bl        0x8A820
-	  stw       r3, 0x178(r30)
-	  lwz       r4, 0x178(r30)
-	  cmplwi    r4, 0
-	  beq-      .loc_0xCC
-	  lwz       r3, 0xF4(r4)
-	  cmplwi    r31, 0
-	  li        r0, 0x1
-	  ori       r3, r3, 0x40
-	  stw       r3, 0xF4(r4)
-	  stw       r0, 0x18C(r30)
-	  bne-      .loc_0xC0
-	  li        r0, 0x2
-	  stw       r0, 0x18C(r30)
+lbl_80006044:
+	lis      r3, lbl_804732E0@ha
+	addi     r4, r1, 0x14
+	addi     r6, r3, lbl_804732E0@l
+	addi     r8, r30, 0x17c
+	lwz      r5, 0(r6)
+	li       r9, 0
+	lwz      r3, 4(r6)
+	lwz      r0, 8(r6)
+	stw      r5, 8(r1)
+	stw      r3, 0xc(r1)
+	lfs      f2, 8(r1)
+	stw      r0, 0x10(r1)
+	lfs      f1, 0xc(r1)
+	lfs      f0, 0x10(r1)
+	stfs     f2, 0x14(r1)
+	stfs     f1, 0x18(r1)
+	stfs     f0, 0x1c(r1)
+	lwz      r0, 0x188(r30)
+	lwz      r3, 0x174(r30)
+	srwi     r6, r0, 0x18
+	clrlwi   r5, r0, 0x10
+	rlwinm   r7, r0, 0x10, 0x18, 0x1f
+	bl
+"createSimpleEmitterID__17JPAEmitterManagerFRCQ29JGeometry8TVec3<f>UsUcUcP18JPAEmitterCallBackP19JPAParticleCallBack"
+	stw      r3, 0x178(r30)
+	lwz      r4, 0x178(r30)
+	cmplwi   r4, 0
+	beq      lbl_800060E0
+	lwz      r3, 0xf4(r4)
+	cmplwi   r31, 0
+	li       r0, 1
+	ori      r3, r3, 0x40
+	stw      r3, 0xf4(r4)
+	stw      r0, 0x18c(r30)
+	bne      lbl_800060D4
+	li       r0, 2
+	stw      r0, 0x18c(r30)
 
-	.loc_0xC0:
-	  stw       r31, 0x190(r30)
-	  li        r0, 0
-	  stw       r0, 0x194(r30)
+lbl_800060D4:
+	stw      r31, 0x190(r30)
+	li       r0, 0
+	stw      r0, 0x194(r30)
 
-	.loc_0xCC:
-	  lwz       r0, 0x34(r1)
-	  lwz       r31, 0x2C(r1)
-	  lwz       r30, 0x28(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_800060E0:
+	lwz      r0, 0x34(r1)
+	lwz      r31, 0x2c(r1)
+	lwz      r30, 0x28(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -953,91 +1065,90 @@ void JStudio_JParticle::TAdaptor_particle::beginParticle_fadeIn_(unsigned long)
 void JStudio_JParticle::TAdaptor_particle::endParticle_fadeOut_(unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stw       r31, 0x2C(r1)
-	  mr        r31, r4
-	  stw       r30, 0x28(r1)
-	  mr        r30, r3
-	  lwz       r4, 0x178(r3)
-	  cmplwi    r4, 0
-	  beq-      .loc_0x100
-	  cmplwi    r31, 0
-	  bne-      .loc_0x50
-	  lwz       r3, 0x174(r30)
-	  bl        0x8ABD4
-	  li        r0, 0
-	  stw       r0, 0x178(r30)
-	  stw       r0, 0x18C(r30)
-	  stw       r0, 0x190(r30)
-	  stw       r0, 0x194(r30)
-	  b         .loc_0x100
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stw      r31, 0x2c(r1)
+	mr       r31, r4
+	stw      r30, 0x28(r1)
+	mr       r30, r3
+	lwz      r4, 0x178(r3)
+	cmplwi   r4, 0
+	beq      lbl_800061F8
+	cmplwi   r31, 0
+	bne      lbl_80006148
+	lwz      r3, 0x174(r30)
+	bl       forceDeleteEmitter__17JPAEmitterManagerFP14JPABaseEmitter
+	li       r0, 0
+	stw      r0, 0x178(r30)
+	stw      r0, 0x18c(r30)
+	stw      r0, 0x190(r30)
+	stw      r0, 0x194(r30)
+	b        lbl_800061F8
 
-	.loc_0x50:
-	  lwz       r4, 0x18C(r30)
-	  li        r0, 0x3
-	  stw       r0, 0x18C(r30)
-	  lwz       r3, 0x194(r30)
-	  cmplwi    r3, 0
-	  bne-      .loc_0x70
-	  stw       r31, 0x190(r30)
-	  b         .loc_0x100
+lbl_80006148:
+	lwz      r4, 0x18c(r30)
+	li       r0, 3
+	stw      r0, 0x18c(r30)
+	lwz      r3, 0x194(r30)
+	cmplwi   r3, 0
+	bne      lbl_80006168
+	stw      r31, 0x190(r30)
+	b        lbl_800061F8
 
-	.loc_0x70:
-	  cmpwi     r4, 0x2
-	  li        r5, 0
-	  beq-      .loc_0xA8
-	  bge-      .loc_0x8C
-	  cmpwi     r4, 0x1
-	  bge-      .loc_0x98
-	  b         .loc_0xA8
+lbl_80006168:
+	cmpwi    r4, 2
+	li       r5, 0
+	beq      lbl_800061A0
+	bge      lbl_80006184
+	cmpwi    r4, 1
+	bge      lbl_80006190
+	b        lbl_800061A0
 
-	.loc_0x8C:
-	  cmpwi     r4, 0x4
-	  bge-      .loc_0xA8
-	  b         .loc_0xA0
+lbl_80006184:
+	cmpwi    r4, 4
+	bge      lbl_800061A0
+	b        lbl_80006198
 
-	.loc_0x98:
-	  mr        r5, r3
-	  b         .loc_0xA8
+lbl_80006190:
+	mr       r5, r3
+	b        lbl_800061A0
 
-	.loc_0xA0:
-	  lwz       r0, 0x190(r30)
-	  sub       r5, r0, r3
+lbl_80006198:
+	lwz      r0, 0x190(r30)
+	subf     r5, r3, r0
 
-	.loc_0xA8:
-	  lwz       r0, 0x190(r30)
-	  lis       r3, 0x4330
-	  stw       r31, 0xC(r1)
-	  lfd       f3, -0x7FD0(r2)
-	  stw       r3, 0x8(r1)
-	  lfd       f0, 0x8(r1)
-	  stw       r0, 0x14(r1)
-	  fsub      f2, f0, f3
-	  stw       r3, 0x10(r1)
-	  lfd       f0, 0x10(r1)
-	  stw       r5, 0x1C(r1)
-	  fsub      f1, f0, f3
-	  stw       r3, 0x18(r1)
-	  lfd       f0, 0x18(r1)
-	  fmul      f1, f2, f1
-	  fsub      f0, f0, f3
-	  fdiv      f1, f1, f0
-	  bl        0xBB968
-	  stw       r3, 0x190(r30)
-	  lwz       r0, 0x190(r30)
-	  sub       r0, r0, r31
-	  stw       r0, 0x194(r30)
+lbl_800061A0:
+	lwz      r0, 0x190(r30)
+	lis      r3, 0x4330
+	stw      r31, 0xc(r1)
+	lfd      f3, lbl_80516390@sda21(r2)
+	stw      r3, 8(r1)
+	lfd      f0, 8(r1)
+	stw      r0, 0x14(r1)
+	fsub     f2, f0, f3
+	stw      r3, 0x10(r1)
+	lfd      f0, 0x10(r1)
+	stw      r5, 0x1c(r1)
+	fsub     f1, f0, f3
+	stw      r3, 0x18(r1)
+	lfd      f0, 0x18(r1)
+	fmul     f1, f2, f1
+	fsub     f0, f0, f3
+	fdiv     f1, f1, f0
+	bl       __cvt_fp2unsigned
+	stw      r3, 0x190(r30)
+	lwz      r0, 0x190(r30)
+	subf     r0, r31, r0
+	stw      r0, 0x194(r30)
 
-	.loc_0x100:
-	  lwz       r0, 0x34(r1)
-	  lwz       r31, 0x2C(r1)
-	  lwz       r30, 0x28(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_800061F8:
+	lwz      r0, 0x34(r1)
+	lwz      r31, 0x2c(r1)
+	lwz      r30, 0x28(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 

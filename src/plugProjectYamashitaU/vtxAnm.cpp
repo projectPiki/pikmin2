@@ -1,5 +1,65 @@
 #include "types.h"
 
+/*
+    Generated from dpostproc
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_8047B420
+    lbl_8047B420:
+        .4byte 0x4669656C
+        .4byte 0x64567478
+        .4byte 0x436F6C6F
+        .4byte 0x724D6772
+        .4byte 0x00000000
+    .global lbl_8047B434
+    lbl_8047B434:
+        .4byte 0x00000000
+        .4byte 0x00000001
+        .4byte 0x00000001
+        .4byte 0x00000002
+        .4byte 0x00000000
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__Q24Game16FieldVtxColorMgr
+    __vt__Q24Game16FieldVtxColorMgr:
+        .4byte 0
+        .4byte 0
+        .4byte calc__Q24Game16FieldVtxColorMgrFP15J3DVertexBuffer
+        .4byte __dt__Q24Game16FieldVtxColorMgrFv
+        .4byte 0
+        .4byte 0
+        .4byte "@12@__dt__Q24Game16FieldVtxColorMgrFv"
+        .4byte getChildCount__5CNodeFv
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_80517CC0
+    lbl_80517CC0:
+        .4byte 0x41200000
+    .global lbl_80517CC4
+    lbl_80517CC4:
+        .4byte 0x00000000
+    .global lbl_80517CC8
+    lbl_80517CC8:
+        .float 1.0
+    .global lbl_80517CCC
+    lbl_80517CCC:
+        .4byte 0x3C23D70A
+    .global lbl_80517CD0
+    lbl_80517CD0:
+        .4byte 0x437F0000
+    .global lbl_80517CD4
+    lbl_80517CD4:
+        .float 0.5
+    .global lbl_80517CD8
+    lbl_80517CD8:
+        .4byte 0x401C0000
+        .4byte 0x00000000
+    .global lbl_80517CE0
+    lbl_80517CE0:
+        .4byte 0x43300000
+        .4byte 0x80000000
+*/
+
 namespace Game {
 
 /*
@@ -10,53 +70,50 @@ namespace Game {
 FieldVtxColorMgr::FieldVtxColorMgr(J3DModelData*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r7, 0x804F
-	  lis       r6, 0x8048
-	  stw       r0, 0x14(r1)
-	  lis       r5, 0x804A
-	  addi      r0, r5, 0x2FD0
-	  li        r8, 0
-	  stw       r31, 0xC(r1)
-	  lis       r5, 0x804B
-	  subi      r7, r7, 0x4AD8
-	  subi      r6, r6, 0x4BE0
-	  stw       r0, 0x0(r3)
-	  li        r0, 0x1
-	  subi      r5, r5, 0x3AE8
-	  lfs       f0, -0x6694(r2)
-	  stw       r0, 0x4(r3)
-	  addi      r0, r5, 0x10
-	  mr        r31, r3
-	  stw       r8, 0x8(r3)
-	  stw       r7, 0xC(r3)
-	  stw       r8, 0x1C(r3)
-	  stw       r8, 0x18(r3)
-	  stw       r8, 0x14(r3)
-	  stw       r8, 0x10(r3)
-	  stw       r6, 0x20(r3)
-	  stw       r5, 0x0(r3)
-	  stw       r0, 0xC(r3)
-	  stw       r8, 0x24(r3)
-	  stw       r8, 0x28(r3)
-	  stw       r8, 0x30(r3)
-	  stfs      f0, 0x34(r3)
-	  stb       r8, 0x38(r3)
-	  stb       r8, 0x39(r3)
-	  stb       r8, 0x3A(r3)
-	  stb       r8, 0x3B(r3)
-	  stw       r4, 0x24(r3)
-	  bl        .loc_0xB0
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-
-	.loc_0xB0:
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lis      r7, __vt__5CNode@ha
+	lis      r6, lbl_8047B420@ha
+	stw      r0, 0x14(r1)
+	lis      r5, __vt__15J3DVtxColorCalc@ha
+	addi     r0, r5, __vt__15J3DVtxColorCalc@l
+	li       r8, 0
+	stw      r31, 0xc(r1)
+	lis      r5, __vt__Q24Game16FieldVtxColorMgr@ha
+	addi     r7, r7, __vt__5CNode@l
+	addi     r6, r6, lbl_8047B420@l
+	stw      r0, 0(r3)
+	li       r0, 1
+	addi     r5, r5, __vt__Q24Game16FieldVtxColorMgr@l
+	lfs      f0, lbl_80517CCC@sda21(r2)
+	stw      r0, 4(r3)
+	addi     r0, r5, 0x10
+	mr       r31, r3
+	stw      r8, 8(r3)
+	stw      r7, 0xc(r3)
+	stw      r8, 0x1c(r3)
+	stw      r8, 0x18(r3)
+	stw      r8, 0x14(r3)
+	stw      r8, 0x10(r3)
+	stw      r6, 0x20(r3)
+	stw      r5, 0(r3)
+	stw      r0, 0xc(r3)
+	stw      r8, 0x24(r3)
+	stw      r8, 0x28(r3)
+	stw      r8, 0x30(r3)
+	stfs     f0, 0x34(r3)
+	stb      r8, 0x38(r3)
+	stb      r8, 0x39(r3)
+	stb      r8, 0x3a(r3)
+	stb      r8, 0x3b(r3)
+	stw      r4, 0x24(r3)
+	bl       createFieldVtxColorInfo__Q24Game16FieldVtxColorMgrFv
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -68,155 +125,154 @@ FieldVtxColorMgr::FieldVtxColorMgr(J3DModelData*)
 void FieldVtxColorMgr::createFieldVtxColorInfo()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  li        r4, -0x4
-	  stw       r0, 0x24(r1)
-	  li        r0, 0
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  mr        r30, r3
-	  stw       r29, 0x14(r1)
-	  stw       r28, 0x10(r1)
-	  lwz       r3, 0x24(r3)
-	  lwz       r31, 0xAC(r3)
-	  stw       r0, 0x2C(r30)
-	  lwz       r3, 0x24(r30)
-	  lwz       r29, 0x88(r3)
-	  mulli     r3, r29, 0x6
-	  addi      r3, r3, 0x10
-	  bl        -0xFE54C
-	  lis       r4, 0x8012
-	  mr        r7, r29
-	  addi      r4, r4, 0x26F8
-	  li        r5, 0
-	  li        r6, 0x6
-	  bl        -0x60B6C
-	  stw       r3, 0x28(r30)
-	  li        r5, 0
-	  b         .loc_0x84
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	li       r4, -4
+	stw      r0, 0x24(r1)
+	li       r0, 0
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	mr       r30, r3
+	stw      r29, 0x14(r1)
+	stw      r28, 0x10(r1)
+	lwz      r3, 0x24(r3)
+	lwz      r31, 0xac(r3)
+	stw      r0, 0x2c(r30)
+	lwz      r3, 0x24(r30)
+	lwz      r29, 0x88(r3)
+	mulli    r3, r29, 6
+	addi     r3, r3, 0x10
+	bl       __nwa__FUli
+	lis      r4, __ct__Q24Game17FieldVtxColorInfoFv@ha
+	mr       r7, r29
+	addi     r4, r4, __ct__Q24Game17FieldVtxColorInfoFv@l
+	li       r5, 0
+	li       r6, 6
+	bl       __construct_new_array
+	stw      r3, 0x28(r30)
+	li       r5, 0
+	b        lbl_80122584
 
-	.loc_0x6C:
-	  rlwinm    r0,r5,0,16,31
-	  lwz       r4, 0x28(r30)
-	  mulli     r3, r0, 0x6
-	  addi      r0, r3, 0x2
-	  sthx      r5, r4, r0
-	  addi      r5, r5, 0x1
+lbl_8012256C:
+	clrlwi   r0, r5, 0x10
+	lwz      r4, 0x28(r30)
+	mulli    r3, r0, 6
+	addi     r0, r3, 2
+	sthx     r5, r4, r0
+	addi     r5, r5, 1
 
-	.loc_0x84:
-	  lwz       r4, 0x24(r30)
-	  rlwinm    r0,r5,0,16,31
-	  lwz       r3, 0x88(r4)
-	  cmplw     r0, r3
-	  blt+      .loc_0x6C
-	  lhz       r29, 0x7C(r4)
-	  li        r28, 0
-	  b         .loc_0xC0
+lbl_80122584:
+	lwz      r4, 0x24(r30)
+	clrlwi   r0, r5, 0x10
+	lwz      r3, 0x88(r4)
+	cmplw    r0, r3
+	blt      lbl_8012256C
+	lhz      r29, 0x7c(r4)
+	li       r28, 0
+	b        lbl_801225C0
 
-	.loc_0xA4:
-	  lwz       r4, 0x24(r30)
-	  rlwinm    r0,r28,2,14,29
-	  mr        r3, r30
-	  lwz       r4, 0x80(r4)
-	  lwzx      r4, r4, r0
-	  bl        0x6FC
-	  addi      r28, r28, 0x1
+lbl_801225A4:
+	lwz      r4, 0x24(r30)
+	rlwinm   r0, r28, 2, 0xe, 0x1d
+	mr       r3, r30
+	lwz      r4, 0x80(r4)
+	lwzx     r4, r4, r0
+	bl       setupFieldVtxColorInfo__Q24Game16FieldVtxColorMgrFP8J3DShape
+	addi     r28, r28, 1
 
-	.loc_0xC0:
-	  rlwinm    r0,r28,0,16,31
-	  cmplw     r0, r29
-	  blt+      .loc_0xA4
-	  li        r6, 0
-	  li        r5, 0xFF
-	  b         .loc_0x118
+lbl_801225C0:
+	clrlwi   r0, r28, 0x10
+	cmplw    r0, r29
+	blt      lbl_801225A4
+	li       r6, 0
+	li       r5, 0xff
+	b        lbl_80122618
 
-	.loc_0xD8:
-	  rlwinm    r0,r6,0,16,31
-	  lwz       r3, 0x28(r30)
-	  mulli     r0, r0, 0x6
-	  lhzx      r0, r3, r0
-	  rlwinm    r0,r0,2,0,29
-	  add       r4, r31, r0
-	  lbz       r0, 0x3(r4)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x108
-	  lwz       r3, 0x2C(r30)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x2C(r30)
+lbl_801225D8:
+	clrlwi   r0, r6, 0x10
+	lwz      r3, 0x28(r30)
+	mulli    r0, r0, 6
+	lhzx     r0, r3, r0
+	slwi     r0, r0, 2
+	add      r4, r31, r0
+	lbz      r0, 3(r4)
+	cmplwi   r0, 0
+	beq      lbl_80122608
+	lwz      r3, 0x2c(r30)
+	addi     r0, r3, 1
+	stw      r0, 0x2c(r30)
 
-	.loc_0x108:
-	  stb       r5, 0x2(r4)
-	  addi      r6, r6, 0x1
-	  stb       r5, 0x1(r4)
-	  stb       r5, 0x0(r4)
+lbl_80122608:
+	stb      r5, 2(r4)
+	addi     r6, r6, 1
+	stb      r5, 1(r4)
+	stb      r5, 0(r4)
 
-	.loc_0x118:
-	  lwz       r3, 0x24(r30)
-	  rlwinm    r4,r6,0,16,31
-	  lwz       r0, 0x88(r3)
-	  cmplw     r4, r0
-	  blt+      .loc_0xD8
-	  lwz       r29, 0x2C(r30)
-	  mulli     r3, r29, 0x6
-	  addi      r3, r3, 0x10
-	  bl        -0xFE68C
-	  lis       r4, 0x8012
-	  mr        r7, r29
-	  addi      r4, r4, 0x26F8
-	  li        r5, 0
-	  li        r6, 0x6
-	  bl        -0x60C60
-	  mr        r29, r3
-	  li        r3, 0
-	  li        r7, 0
-	  b         .loc_0x1AC
+lbl_80122618:
+	lwz      r3, 0x24(r30)
+	clrlwi   r4, r6, 0x10
+	lwz      r0, 0x88(r3)
+	cmplw    r4, r0
+	blt      lbl_801225D8
+	lwz      r29, 0x2c(r30)
+	mulli    r3, r29, 6
+	addi     r3, r3, 0x10
+	bl       __nwa__FUl
+	lis      r4, __ct__Q24Game17FieldVtxColorInfoFv@ha
+	mr       r7, r29
+	addi     r4, r4, __ct__Q24Game17FieldVtxColorInfoFv@l
+	li       r5, 0
+	li       r6, 6
+	bl       __construct_new_array
+	mr       r29, r3
+	li       r3, 0
+	li       r7, 0
+	b        lbl_801226AC
 
-	.loc_0x164:
-	  rlwinm    r0,r7,0,16,31
-	  lwz       r4, 0x28(r30)
-	  mulli     r0, r0, 0x6
-	  add       r6, r4, r0
-	  lhz       r5, 0x0(r6)
-	  rlwinm    r4,r5,2,14,29
-	  addi      r0, r4, 0x3
-	  lbzx      r0, r31, r0
-	  cmplwi    r0, 0
-	  beq-      .loc_0x1A8
-	  add       r4, r29, r3
-	  addi      r3, r3, 0x6
-	  sth       r5, 0x0(r4)
-	  lhz       r0, 0x2(r6)
-	  sth       r0, 0x2(r4)
-	  lbz       r0, 0x4(r6)
-	  stb       r0, 0x4(r4)
+lbl_80122664:
+	clrlwi   r0, r7, 0x10
+	lwz      r4, 0x28(r30)
+	mulli    r0, r0, 6
+	add      r6, r4, r0
+	lhz      r5, 0(r6)
+	rlwinm   r4, r5, 2, 0xe, 0x1d
+	addi     r0, r4, 3
+	lbzx     r0, r31, r0
+	cmplwi   r0, 0
+	beq      lbl_801226A8
+	add      r4, r29, r3
+	addi     r3, r3, 6
+	sth      r5, 0(r4)
+	lhz      r0, 2(r6)
+	sth      r0, 2(r4)
+	lbz      r0, 4(r6)
+	stb      r0, 4(r4)
 
-	.loc_0x1A8:
-	  addi      r7, r7, 0x1
+lbl_801226A8:
+	addi     r7, r7, 1
 
-	.loc_0x1AC:
-	  lwz       r4, 0x24(r30)
-	  rlwinm    r5,r7,0,16,31
-	  lwz       r0, 0x88(r4)
-	  cmplw     r5, r0
-	  blt+      .loc_0x164
-	  lwz       r3, 0x28(r30)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x1D4
-	  subi      r3, r3, 0x10
-	  bl        -0xFE5F8
+lbl_801226AC:
+	lwz      r4, 0x24(r30)
+	clrlwi   r5, r7, 0x10
+	lwz      r0, 0x88(r4)
+	cmplw    r5, r0
+	blt      lbl_80122664
+	lwz      r3, 0x28(r30)
+	cmplwi   r3, 0
+	beq      lbl_801226D4
+	addi     r3, r3, -16
+	bl       __dla__FPv
 
-	.loc_0x1D4:
-	  stw       r29, 0x28(r30)
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_801226D4:
+	stw      r29, 0x28(r30)
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -228,14 +284,13 @@ void FieldVtxColorMgr::createFieldVtxColorInfo()
 FieldVtxColorInfo::FieldVtxColorInfo()
 {
 	/*
-	.loc_0x0:
-	  lis       r4, 0x1
-	  li        r0, 0
-	  subi      r4, r4, 0x1
-	  sth       r4, 0x0(r3)
-	  sth       r4, 0x2(r3)
-	  stb       r0, 0x4(r3)
-	  blr
+	lis      r4, 0x0000FFFF@ha
+	li       r0, 0
+	addi     r4, r4, 0x0000FFFF@l
+	sth      r4, 0(r3)
+	sth      r4, 2(r3)
+	stb      r0, 4(r3)
+	blr
 	*/
 }
 
@@ -247,153 +302,152 @@ FieldVtxColorInfo::FieldVtxColorInfo()
 void FieldVtxColorMgr::initVtxColor()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stfd      f31, 0x20(r1)
-	  psq_st    f31,0x28(r1),0,0
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r3
-	  li        r5, 0
-	  lfs       f31, 0x34(r3)
-	  mr        r4, r5
-	  lfs       f0, -0x6698(r2)
-	  li        r6, 0
-	  stfs      f0, 0x34(r3)
-	  b         .loc_0x4C
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stfd     f31, 0x20(r1)
+	psq_st   f31, 40(r1), 0, qr0
+	stw      r31, 0x1c(r1)
+	mr       r31, r3
+	li       r5, 0
+	lfs      f31, 0x34(r3)
+	mr       r4, r5
+	lfs      f0, lbl_80517CC8@sda21(r2)
+	li       r6, 0
+	stfs     f0, 0x34(r3)
+	b        lbl_80122760
 
-	.loc_0x38:
-	  lwz       r3, 0x28(r31)
-	  addi      r0, r5, 0x4
-	  addi      r5, r5, 0x6
-	  addi      r6, r6, 0x1
-	  stbx      r4, r3, r0
+lbl_8012274C:
+	lwz      r3, 0x28(r31)
+	addi     r0, r5, 4
+	addi     r5, r5, 6
+	addi     r6, r6, 1
+	stbx     r4, r3, r0
 
-	.loc_0x4C:
-	  lwz       r0, 0x2C(r31)
-	  cmpw      r6, r0
-	  blt+      .loc_0x38
-	  lwz       r8, 0x30(r31)
-	  lfs       f2, -0x6690(r2)
-	  lfs       f1, -0x669C(r2)
-	  b         .loc_0x138
+lbl_80122760:
+	lwz      r0, 0x2c(r31)
+	cmpw     r6, r0
+	blt      lbl_8012274C
+	lwz      r8, 0x30(r31)
+	lfs      f2, lbl_80517CD0@sda21(r2)
+	lfs      f1, lbl_80517CC4@sda21(r2)
+	b        lbl_8012284C
 
-	.loc_0x68:
-	  lfs       f4, 0x18(r8)
-	  lfs       f3, 0x14(r8)
-	  lfs       f5, 0x34(r31)
-	  fsubs     f0, f4, f3
-	  lwz       r7, 0x1C(r8)
-	  fabs      f0, f0
-	  frsp      f0, f0
-	  fcmpo     cr0, f0, f5
-	  bge-      .loc_0x94
-	  stfs      f3, 0x18(r8)
-	  b         .loc_0xB0
+lbl_8012277C:
+	lfs      f4, 0x18(r8)
+	lfs      f3, 0x14(r8)
+	lfs      f5, 0x34(r31)
+	fsubs    f0, f4, f3
+	lwz      r7, 0x1c(r8)
+	fabs     f0, f0
+	frsp     f0, f0
+	fcmpo    cr0, f0, f5
+	bge      lbl_801227A8
+	stfs     f3, 0x18(r8)
+	b        lbl_801227C4
 
-	.loc_0x94:
-	  fcmpo     cr0, f4, f3
-	  bge-      .loc_0xA0
-	  b         .loc_0xA4
+lbl_801227A8:
+	fcmpo    cr0, f4, f3
+	bge      lbl_801227B4
+	b        lbl_801227B8
 
-	.loc_0xA0:
-	  fneg      f5, f5
+lbl_801227B4:
+	fneg     f5, f5
 
-	.loc_0xA4:
-	  lfs       f0, 0x18(r8)
-	  fadds     f0, f0, f5
-	  stfs      f0, 0x18(r8)
+lbl_801227B8:
+	lfs      f0, 0x18(r8)
+	fadds    f0, f0, f5
+	stfs     f0, 0x18(r8)
 
-	.loc_0xB0:
-	  lfs       f0, 0x18(r8)
-	  fmuls     f3, f2, f0
-	  fcmpo     cr0, f3, f1
-	  cror      2, 0x1, 0x2
-	  bne-      .loc_0xD0
-	  lfs       f0, -0x668C(r2)
-	  fadds     f0, f0, f3
-	  b         .loc_0xD8
+lbl_801227C4:
+	lfs      f0, 0x18(r8)
+	fmuls    f3, f2, f0
+	fcmpo    cr0, f3, f1
+	cror     2, 1, 2
+	bne      lbl_801227E4
+	lfs      f0, lbl_80517CD4@sda21(r2)
+	fadds    f0, f0, f3
+	b        lbl_801227EC
 
-	.loc_0xD0:
-	  lfs       f0, -0x668C(r2)
-	  fsubs     f0, f3, f0
+lbl_801227E4:
+	lfs      f0, lbl_80517CD4@sda21(r2)
+	fsubs    f0, f3, f0
 
-	.loc_0xD8:
-	  fctiwz    f0, f0
-	  li        r4, 0xFF
-	  li        r0, 0
-	  stfd      f0, 0x10(r1)
-	  lwz       r3, 0x14(r1)
-	  rlwinm    r6,r3,0,24,31
-	  b         .loc_0x12C
+lbl_801227EC:
+	fctiwz   f0, f0
+	li       r4, 0xff
+	li       r0, 0
+	stfd     f0, 0x10(r1)
+	lwz      r3, 0x14(r1)
+	clrlwi   r6, r3, 0x18
+	b        lbl_80122840
 
-	.loc_0xF4:
-	  lbz       r3, 0x8(r7)
-	  lwz       r5, 0x4(r7)
-	  cmplw     r3, r6
-	  bgt-      .loc_0x118
-	  lbz       r3, 0x4(r5)
-	  cmplwi    r3, 0xFF
-	  bge-      .loc_0x128
-	  stb       r4, 0x4(r5)
-	  b         .loc_0x128
+lbl_80122808:
+	lbz      r3, 8(r7)
+	lwz      r5, 4(r7)
+	cmplw    r3, r6
+	bgt      lbl_8012282C
+	lbz      r3, 4(r5)
+	cmplwi   r3, 0xff
+	bge      lbl_8012283C
+	stb      r4, 4(r5)
+	b        lbl_8012283C
 
-	.loc_0x118:
-	  lbz       r3, 0x4(r5)
-	  cmplwi    r3, 0
-	  bge-      .loc_0x128
-	  stb       r0, 0x4(r5)
+lbl_8012282C:
+	lbz      r3, 4(r5)
+	cmplwi   r3, 0
+	bge      lbl_8012283C
+	stb      r0, 4(r5)
 
-	.loc_0x128:
-	  lwz       r7, 0x0(r7)
+lbl_8012283C:
+	lwz      r7, 0(r7)
 
-	.loc_0x12C:
-	  cmplwi    r7, 0
-	  bne+      .loc_0xF4
-	  lwz       r8, 0x0(r8)
+lbl_80122840:
+	cmplwi   r7, 0
+	bne      lbl_80122808
+	lwz      r8, 0(r8)
 
-	.loc_0x138:
-	  cmplwi    r8, 0
-	  bne+      .loc_0x68
-	  lwz       r3, 0x24(r31)
-	  li        r0, 0xFF
-	  stb       r0, 0xA(r1)
-	  li        r7, 0
-	  lwz       r3, 0xAC(r3)
-	  li        r6, 0
-	  stb       r0, 0x9(r1)
-	  stb       r0, 0x8(r1)
-	  b         .loc_0x18C
+lbl_8012284C:
+	cmplwi   r8, 0
+	bne      lbl_8012277C
+	lwz      r3, 0x24(r31)
+	li       r0, 0xff
+	stb      r0, 0xa(r1)
+	li       r7, 0
+	lwz      r3, 0xac(r3)
+	li       r6, 0
+	stb      r0, 9(r1)
+	stb      r0, 8(r1)
+	b        lbl_801228A0
 
-	.loc_0x164:
-	  lwz       r5, 0x28(r31)
-	  addi      r0, r6, 0x4
-	  addi      r7, r7, 0x1
-	  lbzx      r4, r5, r0
-	  lhzx      r0, r5, r6
-	  addi      r6, r6, 0x6
-	  stb       r4, 0xB(r1)
-	  rlwinm    r0,r0,2,0,29
-	  lwz       r4, 0x8(r1)
-	  stwx      r4, r3, r0
+lbl_80122878:
+	lwz      r5, 0x28(r31)
+	addi     r0, r6, 4
+	addi     r7, r7, 1
+	lbzx     r4, r5, r0
+	lhzx     r0, r5, r6
+	addi     r6, r6, 6
+	stb      r4, 0xb(r1)
+	slwi     r0, r0, 2
+	lwz      r4, 8(r1)
+	stwx     r4, r3, r0
 
-	.loc_0x18C:
-	  lwz       r0, 0x2C(r31)
-	  cmpw      r7, r0
-	  blt+      .loc_0x164
-	  lwz       r4, 0x24(r31)
-	  lwz       r0, 0x90(r4)
-	  rlwinm    r4,r0,2,0,29
-	  bl        -0x36170
-	  stfs      f31, 0x34(r31)
-	  psq_l     f31,0x28(r1),0,0
-	  lwz       r0, 0x34(r1)
-	  lfd       f31, 0x20(r1)
-	  lwz       r31, 0x1C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_801228A0:
+	lwz      r0, 0x2c(r31)
+	cmpw     r7, r0
+	blt      lbl_80122878
+	lwz      r4, 0x24(r31)
+	lwz      r0, 0x90(r4)
+	slwi     r4, r0, 2
+	bl       DCStoreRange
+	stfs     f31, 0x34(r31)
+	psq_l    f31, 40(r1), 0, qr0
+	lwz      r0, 0x34(r1)
+	lfd      f31, 0x20(r1)
+	lwz      r31, 0x1c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -405,217 +459,216 @@ void FieldVtxColorMgr::initVtxColor()
 void FieldVtxColorMgr::calc(J3DVertexBuffer*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r29, r4
-	  stw       r28, 0x10(r1)
-	  mr        r28, r3
-	  lwz       r0, 0x38(r3)
-	  rlwinm.   r0,r0,0,31,31
-	  beq-      .loc_0x22C
-	  li        r5, 0
-	  lwz       r31, 0x14(r29)
-	  mr        r4, r5
-	  li        r30, 0x1
-	  li        r6, 0
-	  b         .loc_0x5C
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	mr       r29, r4
+	stw      r28, 0x10(r1)
+	mr       r28, r3
+	lwz      r0, 0x38(r3)
+	clrlwi.  r0, r0, 0x1f
+	beq      lbl_80122B08
+	li       r5, 0
+	lwz      r31, 0x14(r29)
+	mr       r4, r5
+	li       r30, 1
+	li       r6, 0
+	b        lbl_80122938
 
-	.loc_0x48:
-	  lwz       r3, 0x28(r28)
-	  addi      r0, r5, 0x4
-	  addi      r5, r5, 0x6
-	  addi      r6, r6, 0x1
-	  stbx      r4, r3, r0
+lbl_80122924:
+	lwz      r3, 0x28(r28)
+	addi     r0, r5, 4
+	addi     r5, r5, 6
+	addi     r6, r6, 1
+	stbx     r4, r3, r0
 
-	.loc_0x5C:
-	  lwz       r0, 0x2C(r28)
-	  cmpw      r6, r0
-	  blt+      .loc_0x48
-	  lwz       r8, 0x30(r28)
-	  lfs       f2, -0x6690(r2)
-	  lfs       f1, -0x669C(r2)
-	  b         .loc_0x148
+lbl_80122938:
+	lwz      r0, 0x2c(r28)
+	cmpw     r6, r0
+	blt      lbl_80122924
+	lwz      r8, 0x30(r28)
+	lfs      f2, lbl_80517CD0@sda21(r2)
+	lfs      f1, lbl_80517CC4@sda21(r2)
+	b        lbl_80122A24
 
-	.loc_0x78:
-	  lfs       f4, 0x18(r8)
-	  lfs       f3, 0x14(r8)
-	  lfs       f5, 0x34(r28)
-	  fsubs     f0, f4, f3
-	  lwz       r7, 0x1C(r8)
-	  fabs      f0, f0
-	  frsp      f0, f0
-	  fcmpo     cr0, f0, f5
-	  bge-      .loc_0xA4
-	  stfs      f3, 0x18(r8)
-	  b         .loc_0xC0
+lbl_80122954:
+	lfs      f4, 0x18(r8)
+	lfs      f3, 0x14(r8)
+	lfs      f5, 0x34(r28)
+	fsubs    f0, f4, f3
+	lwz      r7, 0x1c(r8)
+	fabs     f0, f0
+	frsp     f0, f0
+	fcmpo    cr0, f0, f5
+	bge      lbl_80122980
+	stfs     f3, 0x18(r8)
+	b        lbl_8012299C
 
-	.loc_0xA4:
-	  fcmpo     cr0, f4, f3
-	  bge-      .loc_0xB0
-	  b         .loc_0xB4
+lbl_80122980:
+	fcmpo    cr0, f4, f3
+	bge      lbl_8012298C
+	b        lbl_80122990
 
-	.loc_0xB0:
-	  fneg      f5, f5
+lbl_8012298C:
+	fneg     f5, f5
 
-	.loc_0xB4:
-	  lfs       f0, 0x18(r8)
-	  fadds     f0, f0, f5
-	  stfs      f0, 0x18(r8)
+lbl_80122990:
+	lfs      f0, 0x18(r8)
+	fadds    f0, f0, f5
+	stfs     f0, 0x18(r8)
 
-	.loc_0xC0:
-	  lfs       f0, 0x18(r8)
-	  fmuls     f3, f2, f0
-	  fcmpo     cr0, f3, f1
-	  cror      2, 0x1, 0x2
-	  bne-      .loc_0xE0
-	  lfs       f0, -0x668C(r2)
-	  fadds     f0, f0, f3
-	  b         .loc_0xE8
+lbl_8012299C:
+	lfs      f0, 0x18(r8)
+	fmuls    f3, f2, f0
+	fcmpo    cr0, f3, f1
+	cror     2, 1, 2
+	bne      lbl_801229BC
+	lfs      f0, lbl_80517CD4@sda21(r2)
+	fadds    f0, f0, f3
+	b        lbl_801229C4
 
-	.loc_0xE0:
-	  lfs       f0, -0x668C(r2)
-	  fsubs     f0, f3, f0
+lbl_801229BC:
+	lfs      f0, lbl_80517CD4@sda21(r2)
+	fsubs    f0, f3, f0
 
-	.loc_0xE8:
-	  fctiwz    f0, f0
-	  li        r4, 0xFF
-	  li        r0, 0
-	  stfd      f0, 0x8(r1)
-	  lwz       r3, 0xC(r1)
-	  rlwinm    r6,r3,0,24,31
-	  b         .loc_0x13C
+lbl_801229C4:
+	fctiwz   f0, f0
+	li       r4, 0xff
+	li       r0, 0
+	stfd     f0, 8(r1)
+	lwz      r3, 0xc(r1)
+	clrlwi   r6, r3, 0x18
+	b        lbl_80122A18
 
-	.loc_0x104:
-	  lbz       r3, 0x8(r7)
-	  lwz       r5, 0x4(r7)
-	  cmplw     r3, r6
-	  bgt-      .loc_0x128
-	  lbz       r3, 0x4(r5)
-	  cmplwi    r3, 0xFF
-	  bge-      .loc_0x138
-	  stb       r4, 0x4(r5)
-	  b         .loc_0x138
+lbl_801229E0:
+	lbz      r3, 8(r7)
+	lwz      r5, 4(r7)
+	cmplw    r3, r6
+	bgt      lbl_80122A04
+	lbz      r3, 4(r5)
+	cmplwi   r3, 0xff
+	bge      lbl_80122A14
+	stb      r4, 4(r5)
+	b        lbl_80122A14
 
-	.loc_0x128:
-	  lbz       r3, 0x4(r5)
-	  cmplwi    r3, 0
-	  bge-      .loc_0x138
-	  stb       r0, 0x4(r5)
+lbl_80122A04:
+	lbz      r3, 4(r5)
+	cmplwi   r3, 0
+	bge      lbl_80122A14
+	stb      r0, 4(r5)
 
-	.loc_0x138:
-	  lwz       r7, 0x0(r7)
+lbl_80122A14:
+	lwz      r7, 0(r7)
 
-	.loc_0x13C:
-	  cmplwi    r7, 0
-	  bne+      .loc_0x104
-	  lwz       r8, 0x0(r8)
+lbl_80122A18:
+	cmplwi   r7, 0
+	bne      lbl_801229E0
+	lwz      r8, 0(r8)
 
-	.loc_0x148:
-	  cmplwi    r8, 0
-	  bne+      .loc_0x78
-	  li        r7, 0
-	  li        r5, 0
-	  b         .loc_0x1F0
+lbl_80122A24:
+	cmplwi   r8, 0
+	bne      lbl_80122954
+	li       r7, 0
+	li       r5, 0
+	b        lbl_80122ACC
 
-	.loc_0x15C:
-	  lwz       r4, 0x28(r28)
-	  add       r3, r4, r5
-	  lhz       r0, 0x0(r3)
-	  lbz       r3, 0x4(r3)
-	  rlwinm    r0,r0,2,14,29
-	  add       r8, r31, r0
-	  lbz       r6, 0x3(r8)
-	  cmplw     r6, r3
-	  beq-      .loc_0x1E8
-	  sub       r3, r6, r3
-	  lis       r0, 0x4330
-	  xoris     r3, r3, 0x8000
-	  stw       r0, 0x8(r1)
-	  lfd       f2, -0x6680(r2)
-	  stw       r3, 0xC(r1)
-	  lfd       f0, -0x6688(r2)
-	  lfd       f1, 0x8(r1)
-	  fsub      f1, f1, f2
-	  fabs      f1, f1
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x1C0
-	  addi      r0, r5, 0x4
-	  lbzx      r0, r4, r0
-	  stb       r0, 0x3(r8)
-	  b         .loc_0x1E4
+lbl_80122A38:
+	lwz      r4, 0x28(r28)
+	add      r3, r4, r5
+	lhz      r0, 0(r3)
+	lbz      r3, 4(r3)
+	rlwinm   r0, r0, 2, 0xe, 0x1d
+	add      r8, r31, r0
+	lbz      r6, 3(r8)
+	cmplw    r6, r3
+	beq      lbl_80122AC4
+	subf     r3, r3, r6
+	lis      r0, 0x4330
+	xoris    r3, r3, 0x8000
+	stw      r0, 8(r1)
+	lfd      f2, lbl_80517CE0@sda21(r2)
+	stw      r3, 0xc(r1)
+	lfd      f0, lbl_80517CD8@sda21(r2)
+	lfd      f1, 8(r1)
+	fsub     f1, f1, f2
+	fabs     f1, f1
+	fcmpo    cr0, f1, f0
+	bge      lbl_80122A9C
+	addi     r0, r5, 4
+	lbzx     r0, r4, r0
+	stb      r0, 3(r8)
+	b        lbl_80122AC0
 
-	.loc_0x1C0:
-	  addi      r0, r5, 0x4
-	  li        r3, -0x7
-	  lbzx      r0, r4, r0
-	  cmplw     r6, r0
-	  bge-      .loc_0x1D8
-	  li        r3, 0x7
+lbl_80122A9C:
+	addi     r0, r5, 4
+	li       r3, -7
+	lbzx     r0, r4, r0
+	cmplw    r6, r0
+	bge      lbl_80122AB4
+	li       r3, 7
 
-	.loc_0x1D8:
-	  lbz       r0, 0x3(r8)
-	  add       r0, r0, r3
-	  stb       r0, 0x3(r8)
+lbl_80122AB4:
+	lbz      r0, 3(r8)
+	add      r0, r0, r3
+	stb      r0, 3(r8)
 
-	.loc_0x1E4:
-	  li        r30, 0
+lbl_80122AC0:
+	li       r30, 0
 
-	.loc_0x1E8:
-	  addi      r5, r5, 0x6
-	  addi      r7, r7, 0x1
+lbl_80122AC4:
+	addi     r5, r5, 6
+	addi     r7, r7, 1
 
-	.loc_0x1F0:
-	  lwz       r0, 0x2C(r28)
-	  cmpw      r7, r0
-	  blt+      .loc_0x15C
-	  lwz       r4, 0x0(r29)
-	  mr        r3, r31
-	  lwz       r0, 0x8(r4)
-	  rlwinm    r4,r0,2,0,29
-	  bl        -0x363A0
-	  rlwinm.   r0,r30,0,24,31
-	  stw       r31, 0x34(r29)
-	  beq-      .loc_0x260
-	  lwz       r0, 0x38(r28)
-	  rlwinm    r0,r0,0,0,30
-	  stw       r0, 0x38(r28)
-	  b         .loc_0x260
+lbl_80122ACC:
+	lwz      r0, 0x2c(r28)
+	cmpw     r7, r0
+	blt      lbl_80122A38
+	lwz      r4, 0(r29)
+	mr       r3, r31
+	lwz      r0, 8(r4)
+	slwi     r4, r0, 2
+	bl       DCStoreRange
+	clrlwi.  r0, r30, 0x18
+	stw      r31, 0x34(r29)
+	beq      lbl_80122B3C
+	lwz      r0, 0x38(r28)
+	rlwinm   r0, r0, 0, 0, 0x1e
+	stw      r0, 0x38(r28)
+	b        lbl_80122B3C
 
-	.loc_0x22C:
-	  lwz       r3, 0x30(r28)
-	  b         .loc_0x258
+lbl_80122B08:
+	lwz      r3, 0x30(r28)
+	b        lbl_80122B34
 
-	.loc_0x234:
-	  lfs       f1, 0x14(r3)
-	  lfs       f0, 0x18(r3)
-	  fcmpu     cr0, f1, f0
-	  beq-      .loc_0x254
-	  lwz       r0, 0x38(r28)
-	  ori       r0, r0, 0x1
-	  stw       r0, 0x38(r28)
-	  b         .loc_0x260
+lbl_80122B10:
+	lfs      f1, 0x14(r3)
+	lfs      f0, 0x18(r3)
+	fcmpu    cr0, f1, f0
+	beq      lbl_80122B30
+	lwz      r0, 0x38(r28)
+	ori      r0, r0, 1
+	stw      r0, 0x38(r28)
+	b        lbl_80122B3C
 
-	.loc_0x254:
-	  lwz       r3, 0x0(r3)
+lbl_80122B30:
+	lwz      r3, 0(r3)
 
-	.loc_0x258:
-	  cmplwi    r3, 0
-	  bne+      .loc_0x234
+lbl_80122B34:
+	cmplwi   r3, 0
+	bne      lbl_80122B10
 
-	.loc_0x260:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80122B3C:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -754,179 +807,178 @@ void FieldVtxColorMgr::setupFieldVtxColorInfoFromStrip(void*, int, int, int,
 void FieldVtxColorMgr::setupFieldVtxColorInfo(J3DShape*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  lis       r5, 0x8048
-	  stw       r0, 0x44(r1)
-	  subi      r7, r5, 0x4BCC
-	  stmw      r22, 0x18(r1)
-	  mr        r22, r3
-	  mr        r23, r4
-	  addi      r3, r1, 0x8
-	  li        r30, -0x1
-	  li        r29, -0x1
-	  li        r28, 0
-	  lwz       r8, 0x30(r4)
-	  lwz       r6, 0x0(r7)
-	  lwz       r5, 0x4(r7)
-	  lwz       r4, 0x8(r7)
-	  lwz       r0, 0xC(r7)
-	  stw       r6, 0x8(r1)
-	  stw       r5, 0xC(r1)
-	  stw       r4, 0x10(r1)
-	  stw       r0, 0x14(r1)
-	  b         .loc_0xB4
+	stwu     r1, -0x40(r1)
+	mflr     r0
+	lis      r5, lbl_8047B434@ha
+	stw      r0, 0x44(r1)
+	addi     r7, r5, lbl_8047B434@l
+	stmw     r22, 0x18(r1)
+	mr       r22, r3
+	mr       r23, r4
+	addi     r3, r1, 8
+	li       r30, -1
+	li       r29, -1
+	li       r28, 0
+	lwz      r8, 0x30(r4)
+	lwz      r6, 0(r7)
+	lwz      r5, 4(r7)
+	lwz      r4, 8(r7)
+	lwz      r0, 0xc(r7)
+	stw      r6, 8(r1)
+	stw      r5, 0xc(r1)
+	stw      r4, 0x10(r1)
+	stw      r0, 0x14(r1)
+	b        lbl_80122D68
 
-	.loc_0x58:
-	  cmpwi     r0, 0xA
-	  beq-      .loc_0xA0
-	  bge-      .loc_0x70
-	  cmpwi     r0, 0x9
-	  bge-      .loc_0x7C
-	  b         .loc_0xA0
+lbl_80122D0C:
+	cmpwi    r0, 0xa
+	beq      lbl_80122D54
+	bge      lbl_80122D24
+	cmpwi    r0, 9
+	bge      lbl_80122D30
+	b        lbl_80122D54
 
-	.loc_0x70:
-	  cmpwi     r0, 0xC
-	  bge-      .loc_0xA0
-	  b         .loc_0x90
+lbl_80122D24:
+	cmpwi    r0, 0xc
+	bge      lbl_80122D54
+	b        lbl_80122D44
 
-	.loc_0x7C:
-	  lwz       r0, 0x4(r8)
-	  mr        r30, r28
-	  cmpwi     r0, 0x3
-	  beq-      .loc_0xA0
-	  b         .loc_0x1FC
+lbl_80122D30:
+	lwz      r0, 4(r8)
+	mr       r30, r28
+	cmpwi    r0, 3
+	beq      lbl_80122D54
+	b        lbl_80122EB0
 
-	.loc_0x90:
-	  lwz       r0, 0x4(r8)
-	  mr        r29, r28
-	  cmpwi     r0, 0x3
-	  bne-      .loc_0x1FC
+lbl_80122D44:
+	lwz      r0, 4(r8)
+	mr       r29, r28
+	cmpwi    r0, 3
+	bne      lbl_80122EB0
 
-	.loc_0xA0:
-	  lwz       r0, 0x4(r8)
-	  addi      r8, r8, 0x8
-	  rlwinm    r0,r0,2,0,29
-	  lwzx      r0, r3, r0
-	  add       r28, r28, r0
+lbl_80122D54:
+	lwz      r0, 4(r8)
+	addi     r8, r8, 8
+	slwi     r0, r0, 2
+	lwzx     r0, r3, r0
+	add      r28, r28, r0
 
-	.loc_0xB4:
-	  lwz       r0, 0x0(r8)
-	  cmpwi     r0, 0xFF
-	  bne+      .loc_0x58
-	  li        r27, 0
-	  b         .loc_0x1EC
+lbl_80122D68:
+	lwz      r0, 0(r8)
+	cmpwi    r0, 0xff
+	bne      lbl_80122D0C
+	li       r27, 0
+	b        lbl_80122EA0
 
-	.loc_0xC8:
-	  lwz       r3, 0x3C(r23)
-	  rlwinm    r31,r27,2,14,29
-	  lwzx      r3, r3, r31
-	  lwz       r26, 0x8(r3)
-	  mr        r25, r26
-	  b         .loc_0x1D0
+lbl_80122D7C:
+	lwz      r3, 0x3c(r23)
+	rlwinm   r31, r27, 2, 0xe, 0x1d
+	lwzx     r3, r3, r31
+	lwz      r26, 8(r3)
+	mr       r25, r26
+	b        lbl_80122E84
 
-	.loc_0xE0:
-	  lbz       r0, 0x0(r25)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x1FC
-	  cmplwi    r0, 0x98
-	  lhz       r24, 0x1(r25)
-	  bne-      .loc_0x118
-	  mr        r3, r22
-	  mr        r5, r28
-	  mr        r6, r30
-	  mr        r7, r29
-	  mr        r8, r24
-	  addi      r4, r25, 0x3
-	  bl        -0x268
-	  b         .loc_0x1C4
+lbl_80122D94:
+	lbz      r0, 0(r25)
+	cmplwi   r0, 0
+	beq      lbl_80122EB0
+	cmplwi   r0, 0x98
+	lhz      r24, 1(r25)
+	bne      lbl_80122DCC
+	mr       r3, r22
+	mr       r5, r28
+	mr       r6, r30
+	mr       r7, r29
+	mr       r8, r24
+	addi     r4, r25, 3
+	bl       setupFieldVtxColorInfoFromStrip__Q24Game16FieldVtxColorMgrFPviiii
+	b        lbl_80122E78
 
-	.loc_0x118:
-	  cmplwi    r0, 0xA0
-	  bne-      .loc_0x1FC
-	  addi      r5, r25, 0x3
-	  add       r4, r25, r28
-	  lhzx      r0, r5, r30
-	  addi      r4, r4, 0x3
-	  lhzx      r6, r4, r30
-	  mulli     r0, r0, 0x6
-	  lwz       r3, 0x28(r22)
-	  lhzx      r5, r5, r29
-	  lhzx      r4, r4, r29
-	  lhzx      r7, r3, r0
-	  cmplwi    r7, 0xFFFF
-	  beq-      .loc_0x154
-	  b         .loc_0x158
+lbl_80122DCC:
+	cmplwi   r0, 0xa0
+	bne      lbl_80122EB0
+	addi     r5, r25, 3
+	add      r4, r25, r28
+	lhzx     r0, r5, r30
+	addi     r4, r4, 3
+	lhzx     r6, r4, r30
+	mulli    r0, r0, 6
+	lwz      r3, 0x28(r22)
+	lhzx     r5, r5, r29
+	lhzx     r4, r4, r29
+	lhzx     r7, r3, r0
+	cmplwi   r7, 0xffff
+	beq      lbl_80122E08
+	b        lbl_80122E0C
 
-	.loc_0x154:
-	  sthx      r5, r3, r0
+lbl_80122E08:
+	sthx     r5, r3, r0
 
-	.loc_0x158:
-	  mulli     r0, r6, 0x6
-	  lwz       r3, 0x28(r22)
-	  lhzx      r5, r3, r0
-	  cmplwi    r5, 0xFFFF
-	  beq-      .loc_0x170
-	  b         .loc_0x174
+lbl_80122E0C:
+	mulli    r0, r6, 6
+	lwz      r3, 0x28(r22)
+	lhzx     r5, r3, r0
+	cmplwi   r5, 0xffff
+	beq      lbl_80122E24
+	b        lbl_80122E28
 
-	.loc_0x170:
-	  sthx      r4, r3, r0
+lbl_80122E24:
+	sthx     r4, r3, r0
 
-	.loc_0x174:
-	  subi      r0, r24, 0x2
-	  rlwinm    r5,r28,1,0,30
-	  mtctr     r0
-	  cmpwi     r24, 0x2
-	  ble-      .loc_0x1C4
+lbl_80122E28:
+	addi     r0, r24, -2
+	slwi     r5, r28, 1
+	mtctr    r0
+	cmpwi    r24, 2
+	ble      lbl_80122E78
 
-	.loc_0x188:
-	  add       r4, r25, r5
-	  lwz       r3, 0x28(r22)
-	  addi      r4, r4, 0x3
-	  lhzx      r0, r4, r30
-	  lhzx      r4, r4, r29
-	  mulli     r0, r0, 0x6
-	  lhzx      r6, r3, r0
-	  cmplwi    r6, 0xFFFF
-	  beq-      .loc_0x1B0
-	  b         .loc_0x1B4
+lbl_80122E3C:
+	add      r4, r25, r5
+	lwz      r3, 0x28(r22)
+	addi     r4, r4, 3
+	lhzx     r0, r4, r30
+	lhzx     r4, r4, r29
+	mulli    r0, r0, 6
+	lhzx     r6, r3, r0
+	cmplwi   r6, 0xffff
+	beq      lbl_80122E64
+	b        lbl_80122E68
 
-	.loc_0x1B0:
-	  sthx      r4, r3, r0
+lbl_80122E64:
+	sthx     r4, r3, r0
 
-	.loc_0x1B4:
-	  add       r5, r5, r28
-	  bdnz+     .loc_0x188
-	  b         .loc_0x1C4
-	  b         .loc_0x1FC
+lbl_80122E68:
+	add      r5, r5, r28
+	bdnz     lbl_80122E3C
+	b        lbl_80122E78
+	b        lbl_80122EB0
 
-	.loc_0x1C4:
-	  mullw     r0, r28, r24
-	  add       r25, r25, r0
-	  addi      r25, r25, 0x3
+lbl_80122E78:
+	mullw    r0, r28, r24
+	add      r25, r25, r0
+	addi     r25, r25, 3
 
-	.loc_0x1D0:
-	  lwz       r0, 0x3C(r23)
-	  sub       r4, r25, r26
-	  lwzx      r3, r31, r0
-	  lwz       r0, 0x4(r3)
-	  cmplw     r4, r0
-	  blt+      .loc_0xE0
-	  addi      r27, r27, 0x1
+lbl_80122E84:
+	lwz      r0, 0x3c(r23)
+	subf     r4, r26, r25
+	lwzx     r3, r31, r0
+	lwz      r0, 4(r3)
+	cmplw    r4, r0
+	blt      lbl_80122D94
+	addi     r27, r27, 1
 
-	.loc_0x1EC:
-	  lhz       r0, 0xA(r23)
-	  rlwinm    r3,r27,0,16,31
-	  cmplw     r3, r0
-	  blt+      .loc_0xC8
+lbl_80122EA0:
+	lhz      r0, 0xa(r23)
+	clrlwi   r3, r27, 0x10
+	cmplw    r3, r0
+	blt      lbl_80122D7C
 
-	.loc_0x1FC:
-	  lmw       r22, 0x18(r1)
-	  lwz       r0, 0x44(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
+lbl_80122EB0:
+	lmw      r22, 0x18(r1)
+	lwz      r0, 0x44(r1)
+	mtlr     r0
+	addi     r1, r1, 0x40
+	blr
 	*/
 }
 
@@ -938,95 +990,93 @@ void FieldVtxColorMgr::setupFieldVtxColorInfo(J3DShape*)
 void FieldVtxColorMgr::createNewControl(Vector3f&, float, float)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  stw       r0, 0x44(r1)
-	  stfd      f31, 0x30(r1)
-	  psq_st    f31,0x38(r1),0,0
-	  stfd      f30, 0x20(r1)
-	  psq_st    f30,0x28(r1),0,0
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  fmr       f30, f1
-	  mr        r29, r3
-	  fmr       f31, f2
-	  mr        r30, r4
-	  li        r3, 0x20
-	  bl        -0xFF05C
-	  mr.       r31, r3
-	  beq-      .loc_0x88
-	  li        r0, 0
-	  lis       r3, 0x8051
-	  stw       r0, 0x0(r31)
-	  lfs       f2, -0x66A0(r2)
-	  lfsu      f0, 0x41E4(r3)
-	  lfs       f1, -0x669C(r2)
-	  stfs      f0, 0x4(r31)
-	  lfs       f0, -0x6698(r2)
-	  lfs       f3, 0x4(r3)
-	  stfs      f3, 0x8(r31)
-	  lfs       f3, 0x8(r3)
-	  stfs      f3, 0xC(r31)
-	  stfs      f2, 0x10(r31)
-	  stfs      f1, 0x14(r31)
-	  stfs      f0, 0x18(r31)
-	  stw       r0, 0x1C(r31)
+	stwu     r1, -0x40(r1)
+	mflr     r0
+	stw      r0, 0x44(r1)
+	stfd     f31, 0x30(r1)
+	psq_st   f31, 56(r1), 0, qr0
+	stfd     f30, 0x20(r1)
+	psq_st   f30, 40(r1), 0, qr0
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	fmr      f30, f1
+	mr       r29, r3
+	fmr      f31, f2
+	mr       r30, r4
+	li       r3, 0x20
+	bl       __nw__FUl
+	or.      r31, r3, r3
+	beq      lbl_80122F4C
+	li       r0, 0
+	lis      r3, "zero__10Vector3<f>"@ha
+	stw      r0, 0(r31)
+	lfs      f2, lbl_80517CC0@sda21(r2)
+	lfsu     f0, "zero__10Vector3<f>"@l(r3)
+	lfs      f1, lbl_80517CC4@sda21(r2)
+	stfs     f0, 4(r31)
+	lfs      f0, lbl_80517CC8@sda21(r2)
+	lfs      f3, 4(r3)
+	stfs     f3, 8(r31)
+	lfs      f3, 8(r3)
+	stfs     f3, 0xc(r31)
+	stfs     f2, 0x10(r31)
+	stfs     f1, 0x14(r31)
+	stfs     f0, 0x18(r31)
+	stw      r0, 0x1c(r31)
 
-	.loc_0x88:
-	  cmplwi    r31, 0
-	  beq-      .loc_0xF8
-	  fmr       f1, f30
-	  mr        r3, r29
-	  fmr       f2, f31
-	  mr        r4, r31
-	  mr        r5, r30
-	  bl        .loc_0x128
-	  lwz       r3, 0x30(r29)
-	  cmplwi    r3, 0
-	  bne-      .loc_0xBC
-	  stw       r31, 0x30(r29)
-	  b         .loc_0xF8
+lbl_80122F4C:
+	cmplwi   r31, 0
+	beq      lbl_80122FBC
+	fmr      f1, f30
+	mr       r3, r29
+	fmr      f2, f31
+	mr       r4, r31
+	mr       r5, r30
+	bl
+"setupFieldVtxColorControl__Q24Game16FieldVtxColorMgrFPQ24Game20FieldVtxColorControlR10Vector3<f>ff"
+	lwz      r3, 0x30(r29)
+	cmplwi   r3, 0
+	bne      lbl_80122F80
+	stw      r31, 0x30(r29)
+	b        lbl_80122FBC
 
-	.loc_0xBC:
-	  li        r0, 0
-	  stw       r0, 0x0(r31)
-	  lwz       r4, 0x0(r3)
-	  cmplwi    r4, 0
-	  bne-      .loc_0xEC
-	  stw       r31, 0x0(r3)
-	  b         .loc_0xF8
-	  b         .loc_0xEC
+lbl_80122F80:
+	li       r0, 0
+	stw      r0, 0(r31)
+	lwz      r4, 0(r3)
+	cmplwi   r4, 0
+	bne      lbl_80122FB0
+	stw      r31, 0(r3)
+	b        lbl_80122FBC
+	b        lbl_80122FB0
 
-	.loc_0xDC:
-	  lwz       r0, 0x0(r4)
-	  cmplwi    r0, 0
-	  beq-      .loc_0xF4
-	  mr        r4, r0
+lbl_80122FA0:
+	lwz      r0, 0(r4)
+	cmplwi   r0, 0
+	beq      lbl_80122FB8
+	mr       r4, r0
 
-	.loc_0xEC:
-	  cmplwi    r4, 0
-	  bne+      .loc_0xDC
+lbl_80122FB0:
+	cmplwi   r4, 0
+	bne      lbl_80122FA0
 
-	.loc_0xF4:
-	  stw       r31, 0x0(r4)
+lbl_80122FB8:
+	stw      r31, 0(r4)
 
-	.loc_0xF8:
-	  mr        r3, r31
-	  psq_l     f31,0x38(r1),0,0
-	  lfd       f31, 0x30(r1)
-	  psq_l     f30,0x28(r1),0,0
-	  lfd       f30, 0x20(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r0, 0x44(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
-
-	.loc_0x128:
+lbl_80122FBC:
+	mr       r3, r31
+	psq_l    f31, 56(r1), 0, qr0
+	lfd      f31, 0x30(r1)
+	psq_l    f30, 40(r1), 0, qr0
+	lfd      f30, 0x20(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r0, 0x44(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x40
+	blr
 	*/
 }
 
@@ -1210,43 +1260,42 @@ void FieldVtxColorMgr::setupFieldVtxColorControl(Game::FieldVtxColorControl*,
 FieldVtxColorMgr::~FieldVtxColorMgr()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x64
-	  lis       r4, 0x804B
-	  addi      r3, r30, 0xC
-	  subi      r5, r4, 0x3AE8
-	  li        r4, 0
-	  stw       r5, 0x0(r30)
-	  addi      r0, r5, 0x10
-	  stw       r0, 0xC(r30)
-	  bl        0x2EE35C
-	  cmplwi    r30, 0
-	  beq-      .loc_0x54
-	  lis       r3, 0x804A
-	  addi      r0, r3, 0x2FD0
-	  stw       r0, 0x0(r30)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_80123254
+	lis      r4, __vt__Q24Game16FieldVtxColorMgr@ha
+	addi     r3, r30, 0xc
+	addi     r5, r4, __vt__Q24Game16FieldVtxColorMgr@l
+	li       r4, 0
+	stw      r5, 0(r30)
+	addi     r0, r5, 0x10
+	stw      r0, 0xc(r30)
+	bl       __dt__5CNodeFv
+	cmplwi   r30, 0
+	beq      lbl_80123244
+	lis      r3, __vt__15J3DVtxColorCalc@ha
+	addi     r0, r3, __vt__15J3DVtxColorCalc@l
+	stw      r0, 0(r30)
 
-	.loc_0x54:
-	  extsh.    r0, r31
-	  ble-      .loc_0x64
-	  mr        r3, r30
-	  bl        -0xFF19C
+lbl_80123244:
+	extsh.   r0, r31
+	ble      lbl_80123254
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x64:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80123254:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1258,9 +1307,8 @@ FieldVtxColorMgr::~FieldVtxColorMgr()
 FieldVtxColorMgr::@12 @~FieldVtxColorMgr()
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0xC
-	  b         -0x84
+	addi     r3, r3, -12
+	b        __dt__Q24Game16FieldVtxColorMgrFv
 	*/
 }
 } // namespace Game

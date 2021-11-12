@@ -1,5 +1,131 @@
 #include "types.h"
 
+/*
+    Generated from dpostproc
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global "saCompositeOperation___Q37JStudio3fvb17@unnamed@fvb_cpp@"
+    "saCompositeOperation___Q37JStudio3fvb17@unnamed@fvb_cpp@":
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte
+   "composite_raw__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer<PQ27JStudio14TFunctionValue>RCQ37JStudio24TFunctionValue_composite5TDatad"
+        .4byte "getCompositeData_raw___Q37JStudio3fvb17@unnamed@fvb_cpp@FPCv"
+        .4byte
+   "composite_index__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer<PQ27JStudio14TFunctionValue>RCQ37JStudio24TFunctionValue_composite5TDatad"
+        .4byte "getCompositeData_index___Q37JStudio3fvb17@unnamed@fvb_cpp@FPCv"
+        .4byte
+   "composite_parameter__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer<PQ27JStudio14TFunctionValue>RCQ37JStudio24TFunctionValue_composite5TDatad"
+        .4byte
+   "getCompositeData_parameter___Q37JStudio3fvb17@unnamed@fvb_cpp@FPCv" .4byte
+   "composite_add__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer<PQ27JStudio14TFunctionValue>RCQ37JStudio24TFunctionValue_composite5TDatad"
+        .4byte "getCompositeData_add___Q37JStudio3fvb17@unnamed@fvb_cpp@FPCv"
+        .4byte
+   "composite_subtract__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer<PQ27JStudio14TFunctionValue>RCQ37JStudio24TFunctionValue_composite5TDatad"
+        .4byte
+   "getCompositeData_subtract___Q37JStudio3fvb17@unnamed@fvb_cpp@FPCv" .4byte
+   "composite_multiply__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer<PQ27JStudio14TFunctionValue>RCQ37JStudio24TFunctionValue_composite5TDatad"
+        .4byte
+   "getCompositeData_multiply___Q37JStudio3fvb17@unnamed@fvb_cpp@FPCv" .4byte
+   "composite_divide__Q27JStudio24TFunctionValue_compositeFRCQ27JGadget44TVector_pointer<PQ27JStudio14TFunctionValue>RCQ37JStudio24TFunctionValue_composite5TDatad"
+        .4byte "getCompositeData_divide___Q37JStudio3fvb17@unnamed@fvb_cpp@FPCv"
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global lbl_8049E548
+    lbl_8049E548:
+        .4byte lbl_8000BD3C
+        .4byte lbl_8000BBE4
+        .4byte lbl_8000BD30
+        .4byte lbl_8000BD30
+        .4byte lbl_8000BD30
+        .4byte lbl_8000BD30
+        .4byte lbl_8000BD30
+        .4byte lbl_8000BD30
+        .4byte lbl_8000BD30
+        .4byte lbl_8000BD30
+        .4byte lbl_8000BD30
+        .4byte lbl_8000BD30
+        .4byte lbl_8000BD30
+        .4byte lbl_8000BD30
+        .4byte lbl_8000BD30
+        .4byte lbl_8000BD30
+        .4byte lbl_8000BC04
+        .4byte lbl_8000BC6C
+        .4byte lbl_8000BCC0
+        .4byte lbl_8000BCDC
+        .4byte lbl_8000BCF0
+        .4byte lbl_8000BD04
+        .4byte lbl_8000BD20
+    .global __vt__Q37JStudio3fvb6TParse
+    __vt__Q37JStudio3fvb6TParse:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q37JStudio3fvb6TParseFv
+        .4byte parseHeader_next__Q37JStudio3fvb6TParseFPPCvPUlUl
+        .4byte parseBlock_next__Q37JStudio3fvb6TParseFPPCvPUlUl
+    .global __vt__Q37JStudio3fvb8TFactory
+    __vt__Q37JStudio3fvb8TFactory:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q37JStudio3fvb8TFactoryFv
+        .4byte
+   create__Q37JStudio3fvb8TFactoryFRCQ47JStudio3fvb4data13TParse_TBlock .4byte
+   destroy__Q37JStudio3fvb8TFactoryFPQ37JStudio3fvb7TObject .global
+   __vt__Q37JStudio3fvb8TControl
+    __vt__Q37JStudio3fvb8TControl:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q37JStudio3fvb8TControlFv
+    .global __vt__Q37JStudio3fvb15TObject_hermite
+    __vt__Q37JStudio3fvb15TObject_hermite:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q37JStudio3fvb15TObject_hermiteFv
+        .4byte
+   prepare_data___Q37JStudio3fvb15TObject_hermiteFRCQ57JStudio3fvb4data17TParse_TParagraph5TDataPQ37JStudio3fvb8TControl
+    .global __vt__Q37JStudio3fvb22TObject_list_parameter
+    __vt__Q37JStudio3fvb22TObject_list_parameter:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q37JStudio3fvb22TObject_list_parameterFv
+        .4byte
+   prepare_data___Q37JStudio3fvb22TObject_list_parameterFRCQ57JStudio3fvb4data17TParse_TParagraph5TDataPQ37JStudio3fvb8TControl
+    .global __vt__Q37JStudio3fvb12TObject_list
+    __vt__Q37JStudio3fvb12TObject_list:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q37JStudio3fvb12TObject_listFv
+        .4byte
+   prepare_data___Q37JStudio3fvb12TObject_listFRCQ57JStudio3fvb4data17TParse_TParagraph5TDataPQ37JStudio3fvb8TControl
+    .global __vt__Q37JStudio3fvb18TObject_transition
+    __vt__Q37JStudio3fvb18TObject_transition:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q37JStudio3fvb18TObject_transitionFv
+        .4byte
+   prepare_data___Q37JStudio3fvb18TObject_transitionFRCQ57JStudio3fvb4data17TParse_TParagraph5TDataPQ37JStudio3fvb8TControl
+    .global __vt__Q37JStudio3fvb16TObject_constant
+    __vt__Q37JStudio3fvb16TObject_constant:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q37JStudio3fvb16TObject_constantFv
+        .4byte
+   prepare_data___Q37JStudio3fvb16TObject_constantFRCQ57JStudio3fvb4data17TParse_TParagraph5TDataPQ37JStudio3fvb8TControl
+    .global __vt__Q37JStudio3fvb17TObject_composite
+    __vt__Q37JStudio3fvb17TObject_composite:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q37JStudio3fvb17TObject_compositeFv
+        .4byte
+   prepare_data___Q37JStudio3fvb17TObject_compositeFRCQ57JStudio3fvb4data17TParse_TParagraph5TDataPQ37JStudio3fvb8TControl
+    .global __vt__Q37JStudio3fvb7TObject
+    __vt__Q37JStudio3fvb7TObject:
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+*/
+
 namespace JStudio {
 
 namespace fvb {
@@ -178,10 +304,9 @@ namespace fvb {
 	void @unnamed @fvb_cpp @ ::getCompositeData_raw_(const void*)
 	{
 		/*
-		.loc_0x0:
-		  lwz       r0, 0x0(r4)
-		  stw       r0, 0x0(r3)
-		  blr
+	lwz      r0, 0(r4)
+	stw      r0, 0(r3)
+	blr
 		*/
 	}
 
@@ -193,10 +318,9 @@ namespace fvb {
 	void @unnamed @fvb_cpp @ ::getCompositeData_index_(const void*)
 	{
 		/*
-		.loc_0x0:
-		  lwz       r0, 0x0(r4)
-		  stw       r0, 0x0(r3)
-		  blr
+	lwz      r0, 0(r4)
+	stw      r0, 0(r3)
+	blr
 		*/
 	}
 
@@ -224,10 +348,9 @@ namespace fvb {
 	void @unnamed @fvb_cpp @ ::getCompositeData_add_(const void*)
 	{
 		/*
-		.loc_0x0:
-		  lfs       f0, 0x0(r4)
-		  stfd      f0, 0x0(r3)
-		  blr
+	lfs      f0, 0(r4)
+	stfd     f0, 0(r3)
+	blr
 		*/
 	}
 
@@ -239,10 +362,9 @@ namespace fvb {
 	void @unnamed @fvb_cpp @ ::getCompositeData_subtract_(const void*)
 	{
 		/*
-		.loc_0x0:
-		  lfs       f0, 0x0(r4)
-		  stfd      f0, 0x0(r3)
-		  blr
+	lfs      f0, 0(r4)
+	stfd     f0, 0(r3)
+	blr
 		*/
 	}
 
@@ -254,10 +376,9 @@ namespace fvb {
 	void @unnamed @fvb_cpp @ ::getCompositeData_multiply_(const void*)
 	{
 		/*
-		.loc_0x0:
-		  lfs       f0, 0x0(r4)
-		  stfd      f0, 0x0(r3)
-		  blr
+	lfs      f0, 0(r4)
+	stfd     f0, 0(r3)
+	blr
 		*/
 	}
 
@@ -269,10 +390,9 @@ namespace fvb {
 	void @unnamed @fvb_cpp @ ::getCompositeData_divide_(const void*)
 	{
 		/*
-		.loc_0x0:
-		  lfs       f0, 0x0(r4)
-		  stfd      f0, 0x0(r3)
-		  blr
+	lfs      f0, 0(r4)
+	stfd     f0, 0(r3)
+	blr
 		*/
 	}
 
@@ -439,19 +559,18 @@ namespace fvb {
 	TControl::TControl()
 	{
 		/*
-		.loc_0x0:
-		  lis       r4, 0x804A
-		  subi      r0, r4, 0x1A34
-		  stw       r0, 0x0(r3)
-		  li        r4, 0
-		  addi      r0, r3, 0xC
-		  stw       r4, 0x4(r3)
-		  stw       r4, 0xC(r3)
-		  stw       r4, 0x10(r3)
-		  stw       r4, 0x8(r3)
-		  stw       r0, 0xC(r3)
-		  stw       r0, 0x10(r3)
-		  blr
+	lis      r4, __vt__Q37JStudio3fvb8TControl@ha
+	addi     r0, r4, __vt__Q37JStudio3fvb8TControl@l
+	stw      r0, 0(r3)
+	li       r4, 0
+	addi     r0, r3, 0xc
+	stw      r4, 4(r3)
+	stw      r4, 0xc(r3)
+	stw      r4, 0x10(r3)
+	stw      r4, 8(r3)
+	stw      r0, 0xc(r3)
+	stw      r0, 0x10(r3)
+	blr
 		*/
 	}
 
@@ -463,38 +582,37 @@ namespace fvb {
 	TControl::~TControl()
 	{
 		/*
-		.loc_0x0:
-		  stwu      r1, -0x10(r1)
-		  mflr      r0
-		  stw       r0, 0x14(r1)
-		  stw       r31, 0xC(r1)
-		  mr        r31, r4
-		  stw       r30, 0x8(r1)
-		  mr.       r30, r3
-		  beq-      .loc_0x50
-		  lis       r3, 0x804A
-		  addic.    r0, r30, 0x8
-		  subi      r0, r3, 0x1A34
-		  stw       r0, 0x0(r30)
-		  beq-      .loc_0x40
-		  addi      r3, r30, 0x8
-		  li        r4, 0
-		  bl        0x1B3A4
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_8000BF54
+	lis      r3, __vt__Q37JStudio3fvb8TControl@ha
+	addic.   r0, r30, 8
+	addi     r0, r3, __vt__Q37JStudio3fvb8TControl@l
+	stw      r0, 0(r30)
+	beq      lbl_8000BF44
+	addi     r3, r30, 8
+	li       r4, 0
+	bl       __dt__Q27JGadget13TNodeLinkListFv
 
-		.loc_0x40:
-		  extsh.    r0, r31
-		  ble-      .loc_0x50
-		  mr        r3, r30
-		  bl        0x18164
+lbl_8000BF44:
+	extsh.   r0, r31
+	ble      lbl_8000BF54
+	mr       r3, r30
+	bl       __dl__FPv
 
-		.loc_0x50:
-		  lwz       r0, 0x14(r1)
-		  mr        r3, r30
-		  lwz       r31, 0xC(r1)
-		  lwz       r30, 0x8(r1)
-		  mtlr      r0
-		  addi      r1, r1, 0x10
-		  blr
+lbl_8000BF54:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 		*/
 	}
 
@@ -506,46 +624,44 @@ namespace fvb {
 	void TControl::getObject(const void*, unsigned long)
 	{
 		/*
-		.loc_0x0:
-		  stwu      r1, -0x50(r1)
-		  mflr      r0
-		  stw       r0, 0x54(r1)
-		  addi      r0, r3, 0xC
-		  addi      r6, r1, 0x40
-		  lwz       r7, 0xC(r3)
-		  addi      r3, r1, 0x30
-		  stw       r0, 0x14(r1)
-		  stw       r4, 0x40(r1)
-		  addi      r4, r1, 0x2C
-		  stw       r5, 0x44(r1)
-		  addi      r5, r1, 0x28
-		  stw       r7, 0x1C(r1)
-		  stw       r7, 0x18(r1)
-		  stw       r7, 0x3C(r1)
-		  stw       r0, 0x10(r1)
-		  stw       r0, 0x38(r1)
-		  stw       r0, 0x28(r1)
-		  stw       r7, 0x2C(r1)
-		  bl        .loc_0x94
-		  lwz       r6, 0x30(r1)
-		  lwz       r5, 0x38(r1)
-		  stw       r6, 0x34(r1)
-		  subi      r0, r6, 0xC
-		  sub       r4, r6, r5
-		  sub       r3, r5, r6
-		  or        r3, r4, r3
-		  stw       r5, 0x24(r1)
-		  srawi     r3, r3, 0x1F
-		  stw       r6, 0x20(r1)
-		  and       r3, r0, r3
-		  stw       r5, 0xC(r1)
-		  stw       r6, 0x8(r1)
-		  lwz       r0, 0x54(r1)
-		  mtlr      r0
-		  addi      r1, r1, 0x50
-		  blr
-
-		.loc_0x94:
+	stwu     r1, -0x50(r1)
+	mflr     r0
+	stw      r0, 0x54(r1)
+	addi     r0, r3, 0xc
+	addi     r6, r1, 0x40
+	lwz      r7, 0xc(r3)
+	addi     r3, r1, 0x30
+	stw      r0, 0x14(r1)
+	stw      r4, 0x40(r1)
+	addi     r4, r1, 0x2c
+	stw      r5, 0x44(r1)
+	addi     r5, r1, 0x28
+	stw      r7, 0x1c(r1)
+	stw      r7, 0x18(r1)
+	stw      r7, 0x3c(r1)
+	stw      r0, 0x10(r1)
+	stw      r0, 0x38(r1)
+	stw      r0, 0x28(r1)
+	stw      r7, 0x2c(r1)
+	bl
+	"find_if<Q37JGadget37TLinkList<Q37JStudio3fvb7TObject,-12>8iterator,Q37JStudio6object18TPRObject_ID_equal>__3stdFQ37JGadget37TLinkList<Q37JStudio3fvb7TObject,-12>8iteratorQ37JGadget37TLinkList<Q37JStudio3fvb7TObject,-12>8iteratorQ37JStudio6object18TPRObject_ID_equal"
+	lwz      r6, 0x30(r1)
+	lwz      r5, 0x38(r1)
+	stw      r6, 0x34(r1)
+	addi     r0, r6, -12
+	subf     r4, r5, r6
+	subf     r3, r6, r5
+	or       r3, r4, r3
+	stw      r5, 0x24(r1)
+	srawi    r3, r3, 0x1f
+	stw      r6, 0x20(r1)
+	and      r3, r0, r3
+	stw      r5, 0xc(r1)
+	stw      r6, 8(r1)
+	lwz      r0, 0x54(r1)
+	mtlr     r0
+	addi     r1, r1, 0x50
+	blr
 		*/
 	}
 
@@ -618,50 +734,49 @@ namespace fvb {
 	void TControl::getObject_index(unsigned long)
 	{
 		/*
-		.loc_0x0:
-		  stwu      r1, -0x10(r1)
-		  lwz       r0, 0x8(r3)
-		  cmplw     r4, r0
-		  blt-      .loc_0x18
-		  li        r3, 0
-		  b         .loc_0x74
+	stwu     r1, -0x10(r1)
+	lwz      r0, 8(r3)
+	cmplw    r4, r0
+	blt      lbl_8000C0B8
+	li       r3, 0
+	b        lbl_8000C114
 
-		.loc_0x18:
-		  lwz       r3, 0xC(r3)
-		  cmplwi    r4, 0
-		  stw       r3, 0xC(r1)
-		  stw       r3, 0x8(r1)
-		  beq-      .loc_0x70
-		  rlwinm.   r0,r4,29,3,31
-		  mtctr     r0
-		  beq-      .loc_0x64
+lbl_8000C0B8:
+	lwz      r3, 0xc(r3)
+	cmplwi   r4, 0
+	stw      r3, 0xc(r1)
+	stw      r3, 8(r1)
+	beq      lbl_8000C110
+	rlwinm.  r0, r4, 0x1d, 3, 0x1f
+	mtctr    r0
+	beq      lbl_8000C104
 
-		.loc_0x38:
-		  lwz       r3, 0x0(r3)
-		  lwz       r3, 0x0(r3)
-		  lwz       r3, 0x0(r3)
-		  lwz       r3, 0x0(r3)
-		  lwz       r3, 0x0(r3)
-		  lwz       r3, 0x0(r3)
-		  lwz       r3, 0x0(r3)
-		  lwz       r3, 0x0(r3)
-		  bdnz+     .loc_0x38
-		  andi.     r4, r4, 0x7
-		  beq-      .loc_0x70
+lbl_8000C0D8:
+	lwz      r3, 0(r3)
+	lwz      r3, 0(r3)
+	lwz      r3, 0(r3)
+	lwz      r3, 0(r3)
+	lwz      r3, 0(r3)
+	lwz      r3, 0(r3)
+	lwz      r3, 0(r3)
+	lwz      r3, 0(r3)
+	bdnz     lbl_8000C0D8
+	andi.    r4, r4, 7
+	beq      lbl_8000C110
 
-		.loc_0x64:
-		  mtctr     r4
+lbl_8000C104:
+	mtctr    r4
 
-		.loc_0x68:
-		  lwz       r3, 0x0(r3)
-		  bdnz+     .loc_0x68
+lbl_8000C108:
+	lwz      r3, 0(r3)
+	bdnz     lbl_8000C108
 
-		.loc_0x70:
-		  subi      r3, r3, 0xC
+lbl_8000C110:
+	addi     r3, r3, -12
 
-		.loc_0x74:
-		  addi      r1, r1, 0x10
-		  blr
+lbl_8000C114:
+	addi     r1, r1, 0x10
+	blr
 		*/
 	}
 
@@ -673,27 +788,26 @@ namespace fvb {
 	TFactory::~TFactory()
 	{
 		/*
-		.loc_0x0:
-		  stwu      r1, -0x10(r1)
-		  mflr      r0
-		  stw       r0, 0x14(r1)
-		  stw       r31, 0xC(r1)
-		  mr.       r31, r3
-		  beq-      .loc_0x30
-		  lis       r5, 0x804A
-		  extsh.    r0, r4
-		  subi      r0, r5, 0x1A48
-		  stw       r0, 0x0(r31)
-		  ble-      .loc_0x30
-		  bl        0x17F6C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r3, r3
+	beq      lbl_8000C14C
+	lis      r5, __vt__Q37JStudio3fvb8TFactory@ha
+	extsh.   r0, r4
+	addi     r0, r5, __vt__Q37JStudio3fvb8TFactory@l
+	stw      r0, 0(r31)
+	ble      lbl_8000C14C
+	bl       __dl__FPv
 
-		.loc_0x30:
-		  lwz       r0, 0x14(r1)
-		  mr        r3, r31
-		  lwz       r31, 0xC(r1)
-		  mtlr      r0
-		  addi      r1, r1, 0x10
-		  blr
+lbl_8000C14C:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 		*/
 	}
 
@@ -705,243 +819,242 @@ namespace fvb {
 	void TFactory::create(const JStudio::fvb::data::TParse_TBlock&)
 	{
 		/*
-		.loc_0x0:
-		  stwu      r1, -0x10(r1)
-		  mflr      r0
-		  lwz       r3, 0x0(r4)
-		  stw       r0, 0x14(r1)
-		  stw       r31, 0xC(r1)
-		  mr        r31, r4
-		  lhz       r0, 0x4(r3)
-		  cmpwi     r0, 0x4
-		  beq-      .loc_0x1A0
-		  bge-      .loc_0x40
-		  cmpwi     r0, 0x2
-		  beq-      .loc_0xC0
-		  bge-      .loc_0x130
-		  cmpwi     r0, 0x1
-		  bge-      .loc_0x50
-		  b         .loc_0x2F0
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lwz      r3, 0(r4)
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	lhz      r0, 4(r3)
+	cmpwi    r0, 4
+	beq      lbl_8000C304
+	bge      lbl_8000C1A4
+	cmpwi    r0, 2
+	beq      lbl_8000C224
+	bge      lbl_8000C294
+	cmpwi    r0, 1
+	bge      lbl_8000C1B4
+	b        lbl_8000C454
 
-		.loc_0x40:
-		  cmpwi     r0, 0x6
-		  beq-      .loc_0x280
-		  bge-      .loc_0x2F0
-		  b         .loc_0x210
+lbl_8000C1A4:
+	cmpwi    r0, 6
+	beq      lbl_8000C3E4
+	bge      lbl_8000C454
+	b        lbl_8000C374
 
-		.loc_0x50:
-		  li        r3, 0x40
-		  bl        0x17CEC
-		  mr.       r7, r3
-		  beq-      .loc_0xB8
-		  lwz       r3, 0x0(r31)
-		  mr        r31, r7
-		  li        r0, 0
-		  lhz       r6, 0x6(r3)
-		  cmplwi    r6, 0
-		  beq-      .loc_0x7C
-		  addi      r0, r3, 0x8
+lbl_8000C1B4:
+	li       r3, 0x40
+	bl       __nw__FUl
+	or.      r7, r3, r3
+	beq      lbl_8000C21C
+	lwz      r3, 0(r31)
+	mr       r31, r7
+	li       r0, 0
+	lhz      r6, 6(r3)
+	cmplwi   r6, 0
+	beq      lbl_8000C1E0
+	addi     r0, r3, 8
 
-		.loc_0x7C:
-		  stw       r0, 0x0(r7)
-		  lis       r4, 0x804A
-		  lis       r5, 0x804A
-		  addi      r3, r31, 0x18
-		  stw       r6, 0x4(r7)
-		  subi      r6, r5, 0x19C8
-		  li        r5, 0
-		  subi      r0, r4, 0x19D8
-		  stw       r6, 0x8(r7)
-		  stw       r5, 0xC(r7)
-		  stw       r5, 0x10(r7)
-		  stw       r3, 0x14(r7)
-		  stw       r0, 0x8(r31)
-		  bl        -0x3624
-		  mr        r7, r31
+lbl_8000C1E0:
+	stw      r0, 0(r7)
+	lis      r4, __vt__Q37JStudio3fvb17TObject_composite@ha
+	lis      r5, __vt__Q37JStudio3fvb7TObject@ha
+	addi     r3, r31, 0x18
+	stw      r6, 4(r7)
+	addi     r6, r5, __vt__Q37JStudio3fvb7TObject@l
+	li       r5, 0
+	addi     r0, r4, __vt__Q37JStudio3fvb17TObject_composite@l
+	stw      r6, 8(r7)
+	stw      r5, 0xc(r7)
+	stw      r5, 0x10(r7)
+	stw      r3, 0x14(r7)
+	stw      r0, 8(r31)
+	bl       __ct__Q27JStudio24TFunctionValue_compositeFv
+	mr       r7, r31
 
-		.loc_0xB8:
-		  mr        r3, r7
-		  b         .loc_0x2F4
+lbl_8000C21C:
+	mr       r3, r7
+	b        lbl_8000C458
 
-		.loc_0xC0:
-		  li        r3, 0x28
-		  bl        0x17C7C
-		  mr.       r7, r3
-		  beq-      .loc_0x128
-		  lwz       r3, 0x0(r31)
-		  mr        r31, r7
-		  li        r0, 0
-		  lhz       r6, 0x6(r3)
-		  cmplwi    r6, 0
-		  beq-      .loc_0xEC
-		  addi      r0, r3, 0x8
+lbl_8000C224:
+	li       r3, 0x28
+	bl       __nw__FUl
+	or.      r7, r3, r3
+	beq      lbl_8000C28C
+	lwz      r3, 0(r31)
+	mr       r31, r7
+	li       r0, 0
+	lhz      r6, 6(r3)
+	cmplwi   r6, 0
+	beq      lbl_8000C250
+	addi     r0, r3, 8
 
-		.loc_0xEC:
-		  stw       r0, 0x0(r7)
-		  lis       r4, 0x804A
-		  lis       r5, 0x804A
-		  addi      r3, r31, 0x18
-		  stw       r6, 0x4(r7)
-		  subi      r6, r5, 0x19C8
-		  li        r5, 0
-		  subi      r0, r4, 0x19E8
-		  stw       r6, 0x8(r7)
-		  stw       r5, 0xC(r7)
-		  stw       r5, 0x10(r7)
-		  stw       r3, 0x14(r7)
-		  stw       r0, 0x8(r31)
-		  bl        -0x306C
-		  mr        r7, r31
+lbl_8000C250:
+	stw      r0, 0(r7)
+	lis      r4, __vt__Q37JStudio3fvb16TObject_constant@ha
+	lis      r5, __vt__Q37JStudio3fvb7TObject@ha
+	addi     r3, r31, 0x18
+	stw      r6, 4(r7)
+	addi     r6, r5, __vt__Q37JStudio3fvb7TObject@l
+	li       r5, 0
+	addi     r0, r4, __vt__Q37JStudio3fvb16TObject_constant@l
+	stw      r6, 8(r7)
+	stw      r5, 0xc(r7)
+	stw      r5, 0x10(r7)
+	stw      r3, 0x14(r7)
+	stw      r0, 8(r31)
+	bl       __ct__Q27JStudio23TFunctionValue_constantFv
+	mr       r7, r31
 
-		.loc_0x128:
-		  mr        r3, r7
-		  b         .loc_0x2F4
+lbl_8000C28C:
+	mr       r3, r7
+	b        lbl_8000C458
 
-		.loc_0x130:
-		  li        r3, 0x70
-		  bl        0x17C0C
-		  mr.       r7, r3
-		  beq-      .loc_0x198
-		  lwz       r3, 0x0(r31)
-		  mr        r31, r7
-		  li        r0, 0
-		  lhz       r6, 0x6(r3)
-		  cmplwi    r6, 0
-		  beq-      .loc_0x15C
-		  addi      r0, r3, 0x8
+lbl_8000C294:
+	li       r3, 0x70
+	bl       __nw__FUl
+	or.      r7, r3, r3
+	beq      lbl_8000C2FC
+	lwz      r3, 0(r31)
+	mr       r31, r7
+	li       r0, 0
+	lhz      r6, 6(r3)
+	cmplwi   r6, 0
+	beq      lbl_8000C2C0
+	addi     r0, r3, 8
 
-		.loc_0x15C:
-		  stw       r0, 0x0(r7)
-		  lis       r4, 0x804A
-		  lis       r5, 0x804A
-		  addi      r3, r31, 0x18
-		  stw       r6, 0x4(r7)
-		  subi      r6, r5, 0x19C8
-		  li        r5, 0
-		  subi      r0, r4, 0x19F8
-		  stw       r6, 0x8(r7)
-		  stw       r5, 0xC(r7)
-		  stw       r5, 0x10(r7)
-		  stw       r3, 0x14(r7)
-		  stw       r0, 0x8(r31)
-		  bl        -0x307C
-		  mr        r7, r31
+lbl_8000C2C0:
+	stw      r0, 0(r7)
+	lis      r4, __vt__Q37JStudio3fvb18TObject_transition@ha
+	lis      r5, __vt__Q37JStudio3fvb7TObject@ha
+	addi     r3, r31, 0x18
+	stw      r6, 4(r7)
+	addi     r6, r5, __vt__Q37JStudio3fvb7TObject@l
+	li       r5, 0
+	addi     r0, r4, __vt__Q37JStudio3fvb18TObject_transition@l
+	stw      r6, 8(r7)
+	stw      r5, 0xc(r7)
+	stw      r5, 0x10(r7)
+	stw      r3, 0x14(r7)
+	stw      r0, 8(r31)
+	bl       __ct__Q27JStudio25TFunctionValue_transitionFv
+	mr       r7, r31
 
-		.loc_0x198:
-		  mr        r3, r7
-		  b         .loc_0x2F4
+lbl_8000C2FC:
+	mr       r3, r7
+	b        lbl_8000C458
 
-		.loc_0x1A0:
-		  li        r3, 0x78
-		  bl        0x17B9C
-		  mr.       r7, r3
-		  beq-      .loc_0x208
-		  lwz       r3, 0x0(r31)
-		  mr        r31, r7
-		  li        r0, 0
-		  lhz       r6, 0x6(r3)
-		  cmplwi    r6, 0
-		  beq-      .loc_0x1CC
-		  addi      r0, r3, 0x8
+lbl_8000C304:
+	li       r3, 0x78
+	bl       __nw__FUl
+	or.      r7, r3, r3
+	beq      lbl_8000C36C
+	lwz      r3, 0(r31)
+	mr       r31, r7
+	li       r0, 0
+	lhz      r6, 6(r3)
+	cmplwi   r6, 0
+	beq      lbl_8000C330
+	addi     r0, r3, 8
 
-		.loc_0x1CC:
-		  stw       r0, 0x0(r7)
-		  lis       r4, 0x804A
-		  lis       r5, 0x804A
-		  addi      r3, r31, 0x18
-		  stw       r6, 0x4(r7)
-		  subi      r6, r5, 0x19C8
-		  li        r5, 0
-		  subi      r0, r4, 0x1A08
-		  stw       r6, 0x8(r7)
-		  stw       r5, 0xC(r7)
-		  stw       r5, 0x10(r7)
-		  stw       r3, 0x14(r7)
-		  stw       r0, 0x8(r31)
-		  bl        -0x2D00
-		  mr        r7, r31
+lbl_8000C330:
+	stw      r0, 0(r7)
+	lis      r4, __vt__Q37JStudio3fvb12TObject_list@ha
+	lis      r5, __vt__Q37JStudio3fvb7TObject@ha
+	addi     r3, r31, 0x18
+	stw      r6, 4(r7)
+	addi     r6, r5, __vt__Q37JStudio3fvb7TObject@l
+	li       r5, 0
+	addi     r0, r4, __vt__Q37JStudio3fvb12TObject_list@l
+	stw      r6, 8(r7)
+	stw      r5, 0xc(r7)
+	stw      r5, 0x10(r7)
+	stw      r3, 0x14(r7)
+	stw      r0, 8(r31)
+	bl       __ct__Q27JStudio19TFunctionValue_listFv
+	mr       r7, r31
 
-		.loc_0x208:
-		  mr        r3, r7
-		  b         .loc_0x2F4
+lbl_8000C36C:
+	mr       r3, r7
+	b        lbl_8000C458
 
-		.loc_0x210:
-		  li        r3, 0x78
-		  bl        0x17B2C
-		  mr.       r7, r3
-		  beq-      .loc_0x278
-		  lwz       r3, 0x0(r31)
-		  mr        r31, r7
-		  li        r0, 0
-		  lhz       r6, 0x6(r3)
-		  cmplwi    r6, 0
-		  beq-      .loc_0x23C
-		  addi      r0, r3, 0x8
+lbl_8000C374:
+	li       r3, 0x78
+	bl       __nw__FUl
+	or.      r7, r3, r3
+	beq      lbl_8000C3DC
+	lwz      r3, 0(r31)
+	mr       r31, r7
+	li       r0, 0
+	lhz      r6, 6(r3)
+	cmplwi   r6, 0
+	beq      lbl_8000C3A0
+	addi     r0, r3, 8
 
-		.loc_0x23C:
-		  stw       r0, 0x0(r7)
-		  lis       r4, 0x804A
-		  lis       r5, 0x804A
-		  addi      r3, r31, 0x18
-		  stw       r6, 0x4(r7)
-		  subi      r6, r5, 0x19C8
-		  li        r5, 0
-		  subi      r0, r4, 0x1A18
-		  stw       r6, 0x8(r7)
-		  stw       r5, 0xC(r7)
-		  stw       r5, 0x10(r7)
-		  stw       r3, 0x14(r7)
-		  stw       r0, 0x8(r31)
-		  bl        -0x24A8
-		  mr        r7, r31
+lbl_8000C3A0:
+	stw      r0, 0(r7)
+	lis      r4, __vt__Q37JStudio3fvb22TObject_list_parameter@ha
+	lis      r5, __vt__Q37JStudio3fvb7TObject@ha
+	addi     r3, r31, 0x18
+	stw      r6, 4(r7)
+	addi     r6, r5, __vt__Q37JStudio3fvb7TObject@l
+	li       r5, 0
+	addi     r0, r4, __vt__Q37JStudio3fvb22TObject_list_parameter@l
+	stw      r6, 8(r7)
+	stw      r5, 0xc(r7)
+	stw      r5, 0x10(r7)
+	stw      r3, 0x14(r7)
+	stw      r0, 8(r31)
+	bl       __ct__Q27JStudio29TFunctionValue_list_parameterFv
+	mr       r7, r31
 
-		.loc_0x278:
-		  mr        r3, r7
-		  b         .loc_0x2F4
+lbl_8000C3DC:
+	mr       r3, r7
+	b        lbl_8000C458
 
-		.loc_0x280:
-		  li        r3, 0x80
-		  bl        0x17ABC
-		  mr.       r7, r3
-		  beq-      .loc_0x2E8
-		  lwz       r3, 0x0(r31)
-		  mr        r31, r7
-		  li        r0, 0
-		  lhz       r6, 0x6(r3)
-		  cmplwi    r6, 0
-		  beq-      .loc_0x2AC
-		  addi      r0, r3, 0x8
+lbl_8000C3E4:
+	li       r3, 0x80
+	bl       __nw__FUl
+	or.      r7, r3, r3
+	beq      lbl_8000C44C
+	lwz      r3, 0(r31)
+	mr       r31, r7
+	li       r0, 0
+	lhz      r6, 6(r3)
+	cmplwi   r6, 0
+	beq      lbl_8000C410
+	addi     r0, r3, 8
 
-		.loc_0x2AC:
-		  stw       r0, 0x0(r7)
-		  lis       r4, 0x804A
-		  lis       r5, 0x804A
-		  addi      r3, r31, 0x18
-		  stw       r6, 0x4(r7)
-		  subi      r6, r5, 0x19C8
-		  li        r5, 0
-		  subi      r0, r4, 0x1A28
-		  stw       r6, 0x8(r7)
-		  stw       r5, 0xC(r7)
-		  stw       r5, 0x10(r7)
-		  stw       r3, 0x14(r7)
-		  stw       r0, 0x8(r31)
-		  bl        -0x17E4
-		  mr        r7, r31
+lbl_8000C410:
+	stw      r0, 0(r7)
+	lis      r4, __vt__Q37JStudio3fvb15TObject_hermite@ha
+	lis      r5, __vt__Q37JStudio3fvb7TObject@ha
+	addi     r3, r31, 0x18
+	stw      r6, 4(r7)
+	addi     r6, r5, __vt__Q37JStudio3fvb7TObject@l
+	li       r5, 0
+	addi     r0, r4, __vt__Q37JStudio3fvb15TObject_hermite@l
+	stw      r6, 8(r7)
+	stw      r5, 0xc(r7)
+	stw      r5, 0x10(r7)
+	stw      r3, 0x14(r7)
+	stw      r0, 8(r31)
+	bl       __ct__Q27JStudio22TFunctionValue_hermiteFv
+	mr       r7, r31
 
-		.loc_0x2E8:
-		  mr        r3, r7
-		  b         .loc_0x2F4
+lbl_8000C44C:
+	mr       r3, r7
+	b        lbl_8000C458
 
-		.loc_0x2F0:
-		  li        r3, 0
+lbl_8000C454:
+	li       r3, 0
 
-		.loc_0x2F4:
-		  lwz       r0, 0x14(r1)
-		  lwz       r31, 0xC(r1)
-		  mtlr      r0
-		  addi      r1, r1, 0x10
-		  blr
+lbl_8000C458:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 		*/
 	}
 
@@ -953,24 +1066,23 @@ namespace fvb {
 	void TFactory::destroy(JStudio::fvb::TObject*)
 	{
 		/*
-		.loc_0x0:
-		  stwu      r1, -0x10(r1)
-		  mflr      r0
-		  cmplwi    r4, 0
-		  stw       r0, 0x14(r1)
-		  beq-      .loc_0x2C
-		  mr        r3, r4
-		  li        r4, 0x1
-		  lwz       r12, 0x8(r3)
-		  lwz       r12, 0x8(r12)
-		  mtctr     r12
-		  bctrl
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	cmplwi   r4, 0
+	stw      r0, 0x14(r1)
+	beq      lbl_8000C498
+	mr       r3, r4
+	li       r4, 1
+	lwz      r12, 8(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
 
-		.loc_0x2C:
-		  lwz       r0, 0x14(r1)
-		  mtlr      r0
-		  addi      r1, r1, 0x10
-		  blr
+lbl_8000C498:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 		*/
 	}
 
@@ -982,15 +1094,14 @@ namespace fvb {
 	TParse::TParse(JStudio::fvb::TControl*)
 	{
 		/*
-		.loc_0x0:
-		  lis       r6, 0x804A
-		  lis       r5, 0x804A
-		  subi      r6, r6, 0x1CE0
-		  stw       r6, 0x0(r3)
-		  subi      r0, r5, 0x1A5C
-		  stw       r0, 0x0(r3)
-		  stw       r4, 0x4(r3)
-		  blr
+	lis      r6, __vt__Q37JGadget6binary19TParse_header_block@ha
+	lis      r5, __vt__Q37JStudio3fvb6TParse@ha
+	addi     r6, r6, __vt__Q37JGadget6binary19TParse_header_block@l
+	stw      r6, 0(r3)
+	addi     r0, r5, __vt__Q37JStudio3fvb6TParse@l
+	stw      r0, 0(r3)
+	stw      r4, 4(r3)
+	blr
 		*/
 	}
 
@@ -1002,33 +1113,32 @@ namespace fvb {
 	TParse::~TParse()
 	{
 		/*
-		.loc_0x0:
-		  stwu      r1, -0x10(r1)
-		  mflr      r0
-		  stw       r0, 0x14(r1)
-		  stw       r31, 0xC(r1)
-		  mr        r31, r4
-		  stw       r30, 0x8(r1)
-		  mr.       r30, r3
-		  beq-      .loc_0x44
-		  lis       r5, 0x804A
-		  li        r4, 0
-		  subi      r0, r5, 0x1A5C
-		  stw       r0, 0x0(r30)
-		  bl        0x1AC98
-		  extsh.    r0, r31
-		  ble-      .loc_0x44
-		  mr        r3, r30
-		  bl        0x17BAC
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_8000C50C
+	lis      r5, __vt__Q37JStudio3fvb6TParse@ha
+	li       r4, 0
+	addi     r0, r5, __vt__Q37JStudio3fvb6TParse@l
+	stw      r0, 0(r30)
+	bl       __dt__Q37JGadget6binary19TParse_header_blockFv
+	extsh.   r0, r31
+	ble      lbl_8000C50C
+	mr       r3, r30
+	bl       __dl__FPv
 
-		.loc_0x44:
-		  lwz       r0, 0x14(r1)
-		  mr        r3, r30
-		  lwz       r31, 0xC(r1)
-		  lwz       r30, 0x8(r1)
-		  mtlr      r0
-		  addi      r1, r1, 0x10
-		  blr
+lbl_8000C50C:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 		*/
 	}
 
@@ -1040,53 +1150,52 @@ namespace fvb {
 	void TParse::parseHeader_next(const void**, unsigned long*, unsigned long)
 	{
 		/*
-		.loc_0x0:
-		  stwu      r1, -0x10(r1)
-		  mflr      r0
-		  stw       r0, 0x14(r1)
-		  stw       r31, 0xC(r1)
-		  lwz       r31, 0x0(r4)
-		  addi      r0, r31, 0x10
-		  mr        r3, r31
-		  stw       r0, 0x0(r4)
-		  subi      r4, r2, 0x7F70
-		  lwz       r0, 0xC(r31)
-		  stw       r0, 0x0(r5)
-		  li        r5, 0x4
-		  bl        0xBAA90
-		  cmpwi     r3, 0
-		  beq-      .loc_0x44
-		  li        r3, 0
-		  b         .loc_0x84
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	lwz      r31, 0(r4)
+	addi     r0, r31, 0x10
+	mr       r3, r31
+	stw      r0, 0(r4)
+	addi     r4, r2, ga4cSignature__Q37JStudio3fvb4data@sda21
+	lwz      r0, 0xc(r31)
+	stw      r0, 0(r5)
+	li       r5, 4
+	bl       memcmp
+	cmpwi    r3, 0
+	beq      lbl_8000C56C
+	li       r3, 0
+	b        lbl_8000C5AC
 
-		.loc_0x44:
-		  lhz       r0, 0x4(r31)
-		  cmplwi    r0, 0xFEFF
-		  beq-      .loc_0x58
-		  li        r3, 0
-		  b         .loc_0x84
+lbl_8000C56C:
+	lhz      r0, 4(r31)
+	cmplwi   r0, 0xfeff
+	beq      lbl_8000C580
+	li       r3, 0
+	b        lbl_8000C5AC
 
-		.loc_0x58:
-		  lhz       r4, 0x6(r31)
-		  cmplwi    r4, 0x2
-		  bge-      .loc_0x6C
-		  li        r3, 0
-		  b         .loc_0x84
+lbl_8000C580:
+	lhz      r4, 6(r31)
+	cmplwi   r4, 2
+	bge      lbl_8000C594
+	li       r3, 0
+	b        lbl_8000C5AC
 
-		.loc_0x6C:
-		  subfic    r0, r4, 0x100
-		  li        r3, 0x100
-		  orc       r3, r3, r4
-		  rlwinm    r0,r0,31,1,31
-		  sub       r0, r3, r0
-		  rlwinm    r3,r0,1,31,31
+lbl_8000C594:
+	subfic   r0, r4, 0x100
+	li       r3, 0x100
+	orc      r3, r3, r4
+	srwi     r0, r0, 1
+	subf     r0, r0, r3
+	srwi     r3, r0, 0x1f
 
-		.loc_0x84:
-		  lwz       r0, 0x14(r1)
-		  lwz       r31, 0xC(r1)
-		  mtlr      r0
-		  addi      r1, r1, 0x10
-		  blr
+lbl_8000C5AC:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 		*/
 	}
 
@@ -1098,89 +1207,90 @@ namespace fvb {
 	void TParse::parseBlock_next(const void**, unsigned long*, unsigned long)
 	{
 		/*
-		.loc_0x0:
-		  stwu      r1, -0x40(r1)
-		  mflr      r0
-		  stw       r0, 0x44(r1)
-		  rlwinm.   r0,r6,0,27,27
-		  stw       r31, 0x3C(r1)
-		  stw       r30, 0x38(r1)
-		  stw       r29, 0x34(r1)
-		  mr        r29, r6
-		  lwz       r7, 0x0(r4)
-		  stw       r7, 0x20(r1)
-		  lwz       r0, 0x0(r7)
-		  add       r0, r7, r0
-		  stw       r0, 0x0(r4)
-		  lwz       r4, 0x20(r1)
-		  lwz       r0, 0x0(r4)
-		  stw       r0, 0x0(r5)
-		  lwz       r30, 0x4(r3)
-		  beq-      .loc_0x78
-		  lwz       r3, 0x20(r1)
-		  li        r4, 0
-		  lhz       r5, 0x6(r3)
-		  cmplwi    r5, 0
-		  beq-      .loc_0x60
-		  addi      r4, r3, 0x8
+	stwu     r1, -0x40(r1)
+	mflr     r0
+	stw      r0, 0x44(r1)
+	rlwinm.  r0, r6, 0, 0x1b, 0x1b
+	stw      r31, 0x3c(r1)
+	stw      r30, 0x38(r1)
+	stw      r29, 0x34(r1)
+	mr       r29, r6
+	lwz      r7, 0(r4)
+	stw      r7, 0x20(r1)
+	lwz      r0, 0(r7)
+	add      r0, r7, r0
+	stw      r0, 0(r4)
+	lwz      r4, 0x20(r1)
+	lwz      r0, 0(r4)
+	stw      r0, 0(r5)
+	lwz      r30, 4(r3)
+	beq      lbl_8000C638
+	lwz      r3, 0x20(r1)
+	li       r4, 0
+	lhz      r5, 6(r3)
+	cmplwi   r5, 0
+	beq      lbl_8000C620
+	addi     r4, r3, 8
 
-		.loc_0x60:
-		  mr        r3, r30
-		  bl        -0x6B4
-		  cmplwi    r3, 0
-		  beq-      .loc_0x78
-		  li        r3, 0x1
-		  b         .loc_0xFC
+lbl_8000C620:
+	mr       r3, r30
+	bl       getObject__Q37JStudio3fvb8TControlFPCvUl
+	cmplwi   r3, 0
+	beq      lbl_8000C638
+	li       r3, 1
+	b        lbl_8000C6BC
 
-		.loc_0x78:
-		  rlwinm.   r0,r29,0,26,26
-		  beq-      .loc_0x88
-		  li        r3, 0x1
-		  b         .loc_0xFC
+lbl_8000C638:
+	rlwinm.  r0, r29, 0, 0x1a, 0x1a
+	beq      lbl_8000C648
+	li       r3, 1
+	b        lbl_8000C6BC
 
-		.loc_0x88:
-		  lwz       r3, 0x4(r30)
-		  cmplwi    r3, 0
-		  bne-      .loc_0x9C
-		  li        r3, 0
-		  b         .loc_0xFC
+lbl_8000C648:
+	lwz      r3, 4(r30)
+	cmplwi   r3, 0
+	bne      lbl_8000C65C
+	li       r3, 0
+	b        lbl_8000C6BC
 
-		.loc_0x9C:
-		  lwz       r12, 0x0(r3)
-		  addi      r4, r1, 0x20
-		  lwz       r12, 0xC(r12)
-		  mtctr     r12
-		  bctrl
-		  mr.       r31, r3
-		  bne-      .loc_0xC0
-		  rlwinm    r3,r29,26,31,31
-		  b         .loc_0xFC
+lbl_8000C65C:
+	lwz      r12, 0(r3)
+	addi     r4, r1, 0x20
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	or.      r31, r3, r3
+	bne      lbl_8000C680
+	rlwinm   r3, r29, 0x1a, 0x1f, 0x1f
+	b        lbl_8000C6BC
 
-		.loc_0xC0:
-		  mr        r5, r30
-		  addi      r4, r1, 0x20
-		  bl        -0xB40
-		  addi      r0, r30, 0xC
-		  addi      r3, r1, 0x10
-		  stw       r0, 0xC(r1)
-		  addi      r4, r30, 0x8
-		  addi      r5, r1, 0x14
-		  addi      r6, r31, 0xC
-		  stw       r0, 0x8(r1)
-		  stw       r0, 0x1C(r1)
-		  stw       r0, 0x18(r1)
-		  stw       r0, 0x14(r1)
-		  bl        0x1AC6C
-		  li        r3, 0x1
+lbl_8000C680:
+	mr       r5, r30
+	addi     r4, r1, 0x20
+	bl
+prepare__Q37JStudio3fvb7TObjectFRCQ47JStudio3fvb4data13TParse_TBlockPQ37JStudio3fvb8TControl
+	addi     r0, r30, 0xc
+	addi     r3, r1, 0x10
+	stw      r0, 0xc(r1)
+	addi     r4, r30, 8
+	addi     r5, r1, 0x14
+	addi     r6, r31, 0xc
+	stw      r0, 8(r1)
+	stw      r0, 0x1c(r1)
+	stw      r0, 0x18(r1)
+	stw      r0, 0x14(r1)
+	bl
+Insert__Q27JGadget13TNodeLinkListFQ37JGadget13TNodeLinkList8iteratorPQ27JGadget13TLinkListNode
+	li       r3, 1
 
-		.loc_0xFC:
-		  lwz       r0, 0x44(r1)
-		  lwz       r31, 0x3C(r1)
-		  lwz       r30, 0x38(r1)
-		  lwz       r29, 0x34(r1)
-		  mtlr      r0
-		  addi      r1, r1, 0x40
-		  blr
+lbl_8000C6BC:
+	lwz      r0, 0x44(r1)
+	lwz      r31, 0x3c(r1)
+	lwz      r30, 0x38(r1)
+	lwz      r29, 0x34(r1)
+	mtlr     r0
+	addi     r1, r1, 0x40
+	blr
 		*/
 	}
 
@@ -1192,48 +1302,47 @@ namespace fvb {
 	TObject_hermite::~TObject_hermite()
 	{
 		/*
-		.loc_0x0:
-		  stwu      r1, -0x10(r1)
-		  mflr      r0
-		  stw       r0, 0x14(r1)
-		  stw       r31, 0xC(r1)
-		  mr        r31, r4
-		  stw       r30, 0x8(r1)
-		  mr.       r30, r3
-		  beq-      .loc_0x70
-		  lis       r3, 0x804A
-		  addic.    r0, r30, 0x18
-		  subi      r0, r3, 0x1A28
-		  stw       r0, 0x8(r30)
-		  beq-      .loc_0x4C
-		  lis       r4, 0x804A
-		  addi      r3, r30, 0x18
-		  subi      r0, r4, 0x1B98
-		  li        r4, 0
-		  stw       r0, 0x18(r30)
-		  bl        -0x3BEC
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_8000C748
+	lis      r3, __vt__Q37JStudio3fvb15TObject_hermite@ha
+	addic.   r0, r30, 0x18
+	addi     r0, r3, __vt__Q37JStudio3fvb15TObject_hermite@l
+	stw      r0, 8(r30)
+	beq      lbl_8000C724
+	lis      r4, __vt__Q27JStudio22TFunctionValue_hermite@ha
+	addi     r3, r30, 0x18
+	addi     r0, r4, __vt__Q27JStudio22TFunctionValue_hermite@l
+	li       r4, 0
+	stw      r0, 0x18(r30)
+	bl       __dt__Q27JStudio14TFunctionValueFv
 
-		.loc_0x4C:
-		  cmplwi    r30, 0
-		  beq-      .loc_0x60
-		  lis       r3, 0x804A
-		  subi      r0, r3, 0x19C8
-		  stw       r0, 0x8(r30)
+lbl_8000C724:
+	cmplwi   r30, 0
+	beq      lbl_8000C738
+	lis      r3, __vt__Q37JStudio3fvb7TObject@ha
+	addi     r0, r3, __vt__Q37JStudio3fvb7TObject@l
+	stw      r0, 8(r30)
 
-		.loc_0x60:
-		  extsh.    r0, r31
-		  ble-      .loc_0x70
-		  mr        r3, r30
-		  bl        0x17970
+lbl_8000C738:
+	extsh.   r0, r31
+	ble      lbl_8000C748
+	mr       r3, r30
+	bl       __dl__FPv
 
-		.loc_0x70:
-		  lwz       r0, 0x14(r1)
-		  mr        r3, r30
-		  lwz       r31, 0xC(r1)
-		  lwz       r30, 0x8(r1)
-		  mtlr      r0
-		  addi      r1, r1, 0x10
-		  blr
+lbl_8000C748:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 		*/
 	}
 
@@ -1245,48 +1354,47 @@ namespace fvb {
 	TObject_list_parameter::~TObject_list_parameter()
 	{
 		/*
-		.loc_0x0:
-		  stwu      r1, -0x10(r1)
-		  mflr      r0
-		  stw       r0, 0x14(r1)
-		  stw       r31, 0xC(r1)
-		  mr        r31, r4
-		  stw       r30, 0x8(r1)
-		  mr.       r30, r3
-		  beq-      .loc_0x70
-		  lis       r3, 0x804A
-		  addic.    r0, r30, 0x18
-		  subi      r0, r3, 0x1A18
-		  stw       r0, 0x8(r30)
-		  beq-      .loc_0x4C
-		  lis       r4, 0x804A
-		  addi      r3, r30, 0x18
-		  subi      r0, r4, 0x1B78
-		  li        r4, 0
-		  stw       r0, 0x18(r30)
-		  bl        -0x3C78
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_8000C7D4
+	lis      r3, __vt__Q37JStudio3fvb22TObject_list_parameter@ha
+	addic.   r0, r30, 0x18
+	addi     r0, r3, __vt__Q37JStudio3fvb22TObject_list_parameter@l
+	stw      r0, 8(r30)
+	beq      lbl_8000C7B0
+	lis      r4, __vt__Q27JStudio29TFunctionValue_list_parameter@ha
+	addi     r3, r30, 0x18
+	addi     r0, r4, __vt__Q27JStudio29TFunctionValue_list_parameter@l
+	li       r4, 0
+	stw      r0, 0x18(r30)
+	bl       __dt__Q27JStudio14TFunctionValueFv
 
-		.loc_0x4C:
-		  cmplwi    r30, 0
-		  beq-      .loc_0x60
-		  lis       r3, 0x804A
-		  subi      r0, r3, 0x19C8
-		  stw       r0, 0x8(r30)
+lbl_8000C7B0:
+	cmplwi   r30, 0
+	beq      lbl_8000C7C4
+	lis      r3, __vt__Q37JStudio3fvb7TObject@ha
+	addi     r0, r3, __vt__Q37JStudio3fvb7TObject@l
+	stw      r0, 8(r30)
 
-		.loc_0x60:
-		  extsh.    r0, r31
-		  ble-      .loc_0x70
-		  mr        r3, r30
-		  bl        0x178E4
+lbl_8000C7C4:
+	extsh.   r0, r31
+	ble      lbl_8000C7D4
+	mr       r3, r30
+	bl       __dl__FPv
 
-		.loc_0x70:
-		  lwz       r0, 0x14(r1)
-		  mr        r3, r30
-		  lwz       r31, 0xC(r1)
-		  lwz       r30, 0x8(r1)
-		  mtlr      r0
-		  addi      r1, r1, 0x10
-		  blr
+lbl_8000C7D4:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 		*/
 	}
 
@@ -1298,48 +1406,47 @@ namespace fvb {
 	TObject_list::~TObject_list()
 	{
 		/*
-		.loc_0x0:
-		  stwu      r1, -0x10(r1)
-		  mflr      r0
-		  stw       r0, 0x14(r1)
-		  stw       r31, 0xC(r1)
-		  mr        r31, r4
-		  stw       r30, 0x8(r1)
-		  mr.       r30, r3
-		  beq-      .loc_0x70
-		  lis       r3, 0x804A
-		  addic.    r0, r30, 0x18
-		  subi      r0, r3, 0x1A08
-		  stw       r0, 0x8(r30)
-		  beq-      .loc_0x4C
-		  lis       r4, 0x804A
-		  addi      r3, r30, 0x18
-		  subi      r0, r4, 0x1B58
-		  li        r4, 0
-		  stw       r0, 0x18(r30)
-		  bl        -0x3D04
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_8000C860
+	lis      r3, __vt__Q37JStudio3fvb12TObject_list@ha
+	addic.   r0, r30, 0x18
+	addi     r0, r3, __vt__Q37JStudio3fvb12TObject_list@l
+	stw      r0, 8(r30)
+	beq      lbl_8000C83C
+	lis      r4, __vt__Q27JStudio19TFunctionValue_list@ha
+	addi     r3, r30, 0x18
+	addi     r0, r4, __vt__Q27JStudio19TFunctionValue_list@l
+	li       r4, 0
+	stw      r0, 0x18(r30)
+	bl       __dt__Q27JStudio14TFunctionValueFv
 
-		.loc_0x4C:
-		  cmplwi    r30, 0
-		  beq-      .loc_0x60
-		  lis       r3, 0x804A
-		  subi      r0, r3, 0x19C8
-		  stw       r0, 0x8(r30)
+lbl_8000C83C:
+	cmplwi   r30, 0
+	beq      lbl_8000C850
+	lis      r3, __vt__Q37JStudio3fvb7TObject@ha
+	addi     r0, r3, __vt__Q37JStudio3fvb7TObject@l
+	stw      r0, 8(r30)
 
-		.loc_0x60:
-		  extsh.    r0, r31
-		  ble-      .loc_0x70
-		  mr        r3, r30
-		  bl        0x17858
+lbl_8000C850:
+	extsh.   r0, r31
+	ble      lbl_8000C860
+	mr       r3, r30
+	bl       __dl__FPv
 
-		.loc_0x70:
-		  lwz       r0, 0x14(r1)
-		  mr        r3, r30
-		  lwz       r31, 0xC(r1)
-		  lwz       r30, 0x8(r1)
-		  mtlr      r0
-		  addi      r1, r1, 0x10
-		  blr
+lbl_8000C860:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 		*/
 	}
 
@@ -1351,48 +1458,47 @@ namespace fvb {
 	TObject_transition::~TObject_transition()
 	{
 		/*
-		.loc_0x0:
-		  stwu      r1, -0x10(r1)
-		  mflr      r0
-		  stw       r0, 0x14(r1)
-		  stw       r31, 0xC(r1)
-		  mr        r31, r4
-		  stw       r30, 0x8(r1)
-		  mr.       r30, r3
-		  beq-      .loc_0x70
-		  lis       r3, 0x804A
-		  addic.    r0, r30, 0x18
-		  subi      r0, r3, 0x19F8
-		  stw       r0, 0x8(r30)
-		  beq-      .loc_0x4C
-		  lis       r4, 0x804A
-		  addi      r3, r30, 0x18
-		  subi      r0, r4, 0x1B38
-		  li        r4, 0
-		  stw       r0, 0x18(r30)
-		  bl        -0x3D90
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_8000C8EC
+	lis      r3, __vt__Q37JStudio3fvb18TObject_transition@ha
+	addic.   r0, r30, 0x18
+	addi     r0, r3, __vt__Q37JStudio3fvb18TObject_transition@l
+	stw      r0, 8(r30)
+	beq      lbl_8000C8C8
+	lis      r4, __vt__Q27JStudio25TFunctionValue_transition@ha
+	addi     r3, r30, 0x18
+	addi     r0, r4, __vt__Q27JStudio25TFunctionValue_transition@l
+	li       r4, 0
+	stw      r0, 0x18(r30)
+	bl       __dt__Q27JStudio14TFunctionValueFv
 
-		.loc_0x4C:
-		  cmplwi    r30, 0
-		  beq-      .loc_0x60
-		  lis       r3, 0x804A
-		  subi      r0, r3, 0x19C8
-		  stw       r0, 0x8(r30)
+lbl_8000C8C8:
+	cmplwi   r30, 0
+	beq      lbl_8000C8DC
+	lis      r3, __vt__Q37JStudio3fvb7TObject@ha
+	addi     r0, r3, __vt__Q37JStudio3fvb7TObject@l
+	stw      r0, 8(r30)
 
-		.loc_0x60:
-		  extsh.    r0, r31
-		  ble-      .loc_0x70
-		  mr        r3, r30
-		  bl        0x177CC
+lbl_8000C8DC:
+	extsh.   r0, r31
+	ble      lbl_8000C8EC
+	mr       r3, r30
+	bl       __dl__FPv
 
-		.loc_0x70:
-		  lwz       r0, 0x14(r1)
-		  mr        r3, r30
-		  lwz       r31, 0xC(r1)
-		  lwz       r30, 0x8(r1)
-		  mtlr      r0
-		  addi      r1, r1, 0x10
-		  blr
+lbl_8000C8EC:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 		*/
 	}
 
@@ -1404,48 +1510,47 @@ namespace fvb {
 	TObject_constant::~TObject_constant()
 	{
 		/*
-		.loc_0x0:
-		  stwu      r1, -0x10(r1)
-		  mflr      r0
-		  stw       r0, 0x14(r1)
-		  stw       r31, 0xC(r1)
-		  mr        r31, r4
-		  stw       r30, 0x8(r1)
-		  mr.       r30, r3
-		  beq-      .loc_0x70
-		  lis       r3, 0x804A
-		  addic.    r0, r30, 0x18
-		  subi      r0, r3, 0x19E8
-		  stw       r0, 0x8(r30)
-		  beq-      .loc_0x4C
-		  lis       r4, 0x804A
-		  addi      r3, r30, 0x18
-		  subi      r0, r4, 0x1B18
-		  li        r4, 0
-		  stw       r0, 0x18(r30)
-		  bl        -0x3E1C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_8000C978
+	lis      r3, __vt__Q37JStudio3fvb16TObject_constant@ha
+	addic.   r0, r30, 0x18
+	addi     r0, r3, __vt__Q37JStudio3fvb16TObject_constant@l
+	stw      r0, 8(r30)
+	beq      lbl_8000C954
+	lis      r4, __vt__Q27JStudio23TFunctionValue_constant@ha
+	addi     r3, r30, 0x18
+	addi     r0, r4, __vt__Q27JStudio23TFunctionValue_constant@l
+	li       r4, 0
+	stw      r0, 0x18(r30)
+	bl       __dt__Q27JStudio14TFunctionValueFv
 
-		.loc_0x4C:
-		  cmplwi    r30, 0
-		  beq-      .loc_0x60
-		  lis       r3, 0x804A
-		  subi      r0, r3, 0x19C8
-		  stw       r0, 0x8(r30)
+lbl_8000C954:
+	cmplwi   r30, 0
+	beq      lbl_8000C968
+	lis      r3, __vt__Q37JStudio3fvb7TObject@ha
+	addi     r0, r3, __vt__Q37JStudio3fvb7TObject@l
+	stw      r0, 8(r30)
 
-		.loc_0x60:
-		  extsh.    r0, r31
-		  ble-      .loc_0x70
-		  mr        r3, r30
-		  bl        0x17740
+lbl_8000C968:
+	extsh.   r0, r31
+	ble      lbl_8000C978
+	mr       r3, r30
+	bl       __dl__FPv
 
-		.loc_0x70:
-		  lwz       r0, 0x14(r1)
-		  mr        r3, r30
-		  lwz       r31, 0xC(r1)
-		  lwz       r30, 0x8(r1)
-		  mtlr      r0
-		  addi      r1, r1, 0x10
-		  blr
+lbl_8000C978:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 		*/
 	}
 
@@ -1457,57 +1562,56 @@ namespace fvb {
 	TObject_composite::~TObject_composite()
 	{
 		/*
-		.loc_0x0:
-		  stwu      r1, -0x10(r1)
-		  mflr      r0
-		  stw       r0, 0x14(r1)
-		  stw       r31, 0xC(r1)
-		  mr        r31, r4
-		  stw       r30, 0x8(r1)
-		  mr.       r30, r3
-		  beq-      .loc_0x8C
-		  lis       r3, 0x804A
-		  addic.    r0, r30, 0x18
-		  subi      r0, r3, 0x19D8
-		  stw       r0, 0x8(r30)
-		  beq-      .loc_0x68
-		  lis       r3, 0x804A
-		  addic.    r0, r30, 0x1C
-		  subi      r0, r3, 0x1AF8
-		  stw       r0, 0x18(r30)
-		  beq-      .loc_0x5C
-		  addic.    r0, r30, 0x1C
-		  beq-      .loc_0x5C
-		  addi      r3, r30, 0x1C
-		  li        r4, 0
-		  bl        0x1B19C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_8000CA20
+	lis      r3, __vt__Q37JStudio3fvb17TObject_composite@ha
+	addic.   r0, r30, 0x18
+	addi     r0, r3, __vt__Q37JStudio3fvb17TObject_composite@l
+	stw      r0, 8(r30)
+	beq      lbl_8000C9FC
+	lis      r3, __vt__Q27JStudio24TFunctionValue_composite@ha
+	addic.   r0, r30, 0x1c
+	addi     r0, r3, __vt__Q27JStudio24TFunctionValue_composite@l
+	stw      r0, 0x18(r30)
+	beq      lbl_8000C9F0
+	addic.   r0, r30, 0x1c
+	beq      lbl_8000C9F0
+	addi     r3, r30, 0x1c
+	li       r4, 0
+	bl       __dt__Q27JGadget20TVector_pointer_voidFv
 
-		.loc_0x5C:
-		  addi      r3, r30, 0x18
-		  li        r4, 0
-		  bl        -0x3EC4
+lbl_8000C9F0:
+	addi     r3, r30, 0x18
+	li       r4, 0
+	bl       __dt__Q27JStudio14TFunctionValueFv
 
-		.loc_0x68:
-		  cmplwi    r30, 0
-		  beq-      .loc_0x7C
-		  lis       r3, 0x804A
-		  subi      r0, r3, 0x19C8
-		  stw       r0, 0x8(r30)
+lbl_8000C9FC:
+	cmplwi   r30, 0
+	beq      lbl_8000CA10
+	lis      r3, __vt__Q37JStudio3fvb7TObject@ha
+	addi     r0, r3, __vt__Q37JStudio3fvb7TObject@l
+	stw      r0, 8(r30)
 
-		.loc_0x7C:
-		  extsh.    r0, r31
-		  ble-      .loc_0x8C
-		  mr        r3, r30
-		  bl        0x17698
+lbl_8000CA10:
+	extsh.   r0, r31
+	ble      lbl_8000CA20
+	mr       r3, r30
+	bl       __dl__FPv
 
-		.loc_0x8C:
-		  lwz       r0, 0x14(r1)
-		  mr        r3, r30
-		  lwz       r31, 0xC(r1)
-		  lwz       r30, 0x8(r1)
-		  mtlr      r0
-		  addi      r1, r1, 0x10
-		  blr
+lbl_8000CA20:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 		*/
 	}
 } // namespace fvb

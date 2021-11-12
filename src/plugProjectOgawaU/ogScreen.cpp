@@ -1,5 +1,221 @@
 #include "types.h"
 
+/*
+    Generated from dpostproc
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_8048DCC0
+    lbl_8048DCC0:
+        .asciz "ogScreen"
+        .skip 3
+    .global lbl_8048DCCC
+    lbl_8048DCCC:
+        .asciz "ogScreen.cpp"
+        .skip 3
+    .global lbl_8048DCDC
+    lbl_8048DCDC:
+        .asciz "picture pane overflow!!\n"
+        .skip 3
+    .global lbl_8048DCF8
+    lbl_8048DCF8:
+        .asciz "num is overflow!\n"
+        .skip 2
+    .global lbl_8048DD0C
+    lbl_8048DD0C:
+        .asciz "toumei_piki.bti"
+    .global lbl_8048DD1C
+    lbl_8048DD1C:
+        .asciz "bp_l64.bti"
+        .skip 1
+    .global lbl_8048DD28
+    lbl_8048DD28:
+        .asciz "bp_b64.bti"
+        .skip 1
+    .global lbl_8048DD34
+    lbl_8048DD34:
+        .asciz "bp_f64.bti"
+        .skip 1
+    .global lbl_8048DD40
+    lbl_8048DD40:
+        .asciz "rp_l64.bti"
+        .skip 1
+    .global lbl_8048DD4C
+    lbl_8048DD4C:
+        .asciz "rp_b64.bti"
+        .skip 1
+    .global lbl_8048DD58
+    lbl_8048DD58:
+        .asciz "rp_f64.bti"
+        .skip 1
+    .global lbl_8048DD64
+    lbl_8048DD64:
+        .asciz "yp_l64.bti"
+        .skip 1
+    .global lbl_8048DD70
+    lbl_8048DD70:
+        .asciz "yp_b64.bti"
+        .skip 1
+    .global lbl_8048DD7C
+    lbl_8048DD7C:
+        .asciz "yp_f64.bti"
+        .skip 1
+    .global lbl_8048DD88
+    lbl_8048DD88:
+        .asciz "blp_l64.bti"
+    .global lbl_8048DD94
+    lbl_8048DD94:
+        .asciz "blp_b64.bti"
+    .global lbl_8048DDA0
+    lbl_8048DDA0:
+        .asciz "blp_f64.bti"
+    .global lbl_8048DDAC
+    lbl_8048DDAC:
+        .asciz "wp_l64.bti"
+        .skip 1
+    .global lbl_8048DDB8
+    lbl_8048DDB8:
+        .asciz "wp_b64.bti"
+        .skip 1
+    .global lbl_8048DDC4
+    lbl_8048DDC4:
+        .asciz "wp_f64.bti"
+        .skip 1
+    .global lbl_8048DDD0
+    lbl_8048DDD0:
+        .asciz "cha_l.bti"
+        .skip 2
+    .global lbl_8048DDDC
+    lbl_8048DDDC:
+        .asciz "cha_b.bti"
+        .skip 2
+    .global lbl_8048DDE8
+    lbl_8048DDE8:
+        .asciz "cha_f.bti"
+        .skip 2
+        .asciz "MojiToNum ERR!(keta) [%s]\n"
+        .skip 1
+        .asciz "MojiToNum ERR! [%s]\n"
+        .skip 3
+    .global lbl_8048DE28
+    lbl_8048DE28:
+        .asciz "x%02x%02x"
+        .skip 2
+    .global lbl_8048DE34
+    lbl_8048DE34:
+        .asciz "tag[%s] is not exist!!\n"
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global PikiIconTextureName__Q22og6Screen
+    PikiIconTextureName__Q22og6Screen:
+        .4byte lbl_8048DD0C
+        .4byte lbl_8048DD1C
+        .4byte lbl_8048DD28
+        .4byte lbl_8048DD34
+        .4byte lbl_8048DD40
+        .4byte lbl_8048DD4C
+        .4byte lbl_8048DD58
+        .4byte lbl_8048DD64
+        .4byte lbl_8048DD70
+        .4byte lbl_8048DD7C
+        .4byte lbl_8048DD88
+        .4byte lbl_8048DD94
+        .4byte lbl_8048DDA0
+        .4byte lbl_8048DDAC
+        .4byte lbl_8048DDB8
+        .4byte lbl_8048DDC4
+        .4byte lbl_8048DDD0
+        .4byte lbl_8048DDDC
+        .4byte lbl_8048DDE8
+    .global __vt__Q29P2DScreen4Node
+    __vt__Q29P2DScreen4Node:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q29P2DScreen4NodeFv
+        .4byte getChildCount__5CNodeFv
+        .4byte update__Q29P2DScreen4NodeFv
+        .4byte draw__Q29P2DScreen4NodeFR8GraphicsR14J2DGrafContext
+        .4byte doInit__Q29P2DScreen4NodeFv
+
+    .section .bss  # 0x804EFC20 - 0x8051467C
+    .global PikiIconTextureResTIMG__Q22og6Screen
+    PikiIconTextureResTIMG__Q22og6Screen:
+        .skip 0x4C
+
+    .section .sbss # 0x80514D80 - 0x80516360
+    .global wkPtr$3542
+    wkPtr$3542:
+        .skip 0x4
+    .global init$3543
+    init$3543:
+        .skip 0x4
+    .global Max$3545
+    Max$3545:
+        .skip 0x4
+    .global init$3546
+    init$3546:
+        .skip 0x4
+    .global wkMax$3548
+    wkMax$3548:
+        .skip 0x4
+    .global init$3549
+    init$3549:
+        .skip 0x4
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_8051D508
+    lbl_8051D508:
+        .4byte 0x41F00000
+    .global lbl_8051D50C
+    lbl_8051D50C:
+        .4byte 0x40C90FDB
+    .global lbl_8051D510
+    lbl_8051D510:
+        .float 1.0
+    .global lbl_8051D514
+    lbl_8051D514:
+        .4byte 0xC3A2F983
+    .global lbl_8051D518
+    lbl_8051D518:
+        .4byte 0x43A2F983
+    .global lbl_8051D51C
+    lbl_8051D51C:
+        .4byte 0x00000000
+    .global lbl_8051D520
+    lbl_8051D520:
+        .float 0.5
+        .4byte 0x00000000
+    .global lbl_8051D528
+    lbl_8051D528:
+        .4byte 0x43300000
+        .4byte 0x00000000
+    .global lbl_8051D530
+    lbl_8051D530:
+        .4byte 0x3F4CCCCD
+        .4byte 0x00000000
+    .global lbl_8051D538
+    lbl_8051D538:
+        .4byte 0x3FF00000
+        .4byte 0x00000000
+    .global lbl_8051D540
+    lbl_8051D540:
+        .4byte 0x3FC90FDB
+    .global lbl_8051D544
+    lbl_8051D544:
+        .4byte 0x3E4CCCCC
+    .global lbl_8051D548
+    lbl_8051D548:
+        .4byte 0x40240000
+        .4byte 0x00000000
+    .global lbl_8051D550
+    lbl_8051D550:
+        .4byte 0x43300000
+        .4byte 0x80000000
+    .global lbl_8051D558
+    lbl_8051D558:
+        .4byte 0x437F0000
+        .4byte 0x00000000
+*/
+
 namespace og {
 
 namespace Screen {
@@ -12,9 +228,8 @@ namespace Screen {
 	void ArrowAlphaBlink::setSpeed(float)
 	{
 		/*
-		.loc_0x0:
-		  stfs      f1, 0x4(r3)
-		  blr
+	stfs     f1, 4(r3)
+	blr
 		*/
 	}
 
@@ -46,61 +261,60 @@ namespace Screen {
 	void ArrowAlphaBlink::calc(void)
 	{
 		/*
-		.loc_0x0:
-		  stwu      r1, -0x20(r1)
-		  lfs       f3, -0xE58(r2)
-		  lwz       r4, -0x6514(r13)
-		  lfs       f1, 0x4(r3)
-		  lfs       f0, 0x54(r4)
-		  fmuls     f2, f1, f0
-		  lfs       f1, 0x0(r3)
-		  lfs       f0, -0xE54(r2)
-		  fmadds    f1, f3, f2, f1
-		  stfs      f1, 0x0(r3)
-		  lfs       f1, 0x0(r3)
-		  fcmpo     cr0, f1, f0
-		  ble-      .loc_0x3C
-		  fsubs     f0, f1, f0
-		  stfs      f0, 0x0(r3)
+	stwu     r1, -0x20(r1)
+	lfs      f3, lbl_8051D508@sda21(r2)
+	lwz      r4, sys@sda21(r13)
+	lfs      f1, 4(r3)
+	lfs      f0, 0x54(r4)
+	fmuls    f2, f1, f0
+	lfs      f1, 0(r3)
+	lfs      f0, lbl_8051D50C@sda21(r2)
+	fmadds   f1, f3, f2, f1
+	stfs     f1, 0(r3)
+	lfs      f1, 0(r3)
+	fcmpo    cr0, f1, f0
+	ble      lbl_80301EFC
+	fsubs    f0, f1, f0
+	stfs     f0, 0(r3)
 
-		.loc_0x3C:
-		  lfs       f2, 0x0(r3)
-		  lfs       f0, -0xE44(r2)
-		  lfs       f3, 0x8(r3)
-		  fcmpo     cr0, f2, f0
-		  lfs       f1, -0xE50(r2)
-		  bge-      .loc_0x80
-		  lfs       f0, -0xE4C(r2)
-		  lis       r4, 0x8050
-		  addi      r4, r4, 0x71A0
-		  fmuls     f0, f2, f0
-		  fctiwz    f0, f0
-		  stfd      f0, 0x8(r1)
-		  lwz       r0, 0xC(r1)
-		  rlwinm    r0,r0,3,18,28
-		  lfsx      f0, r4, r0
-		  fneg      f0, f0
-		  b         .loc_0xA4
+lbl_80301EFC:
+	lfs      f2, 0(r3)
+	lfs      f0, lbl_8051D51C@sda21(r2)
+	lfs      f3, 8(r3)
+	fcmpo    cr0, f2, f0
+	lfs      f1, lbl_8051D510@sda21(r2)
+	bge      lbl_80301F40
+	lfs      f0, lbl_8051D514@sda21(r2)
+	lis      r4, sincosTable___5JMath@ha
+	addi     r4, r4, sincosTable___5JMath@l
+	fmuls    f0, f2, f0
+	fctiwz   f0, f0
+	stfd     f0, 8(r1)
+	lwz      r0, 0xc(r1)
+	rlwinm   r0, r0, 3, 0x12, 0x1c
+	lfsx     f0, r4, r0
+	fneg     f0, f0
+	b        lbl_80301F64
 
-		.loc_0x80:
-		  lfs       f0, -0xE48(r2)
-		  lis       r4, 0x8050
-		  addi      r4, r4, 0x71A0
-		  fmuls     f0, f2, f0
-		  fctiwz    f0, f0
-		  stfd      f0, 0x10(r1)
-		  lwz       r0, 0x14(r1)
-		  rlwinm    r0,r0,3,18,28
-		  lfsx      f0, r4, r0
+lbl_80301F40:
+	lfs      f0, lbl_8051D518@sda21(r2)
+	lis      r4, sincosTable___5JMath@ha
+	addi     r4, r4, sincosTable___5JMath@l
+	fmuls    f0, f2, f0
+	fctiwz   f0, f0
+	stfd     f0, 0x10(r1)
+	lwz      r0, 0x14(r1)
+	rlwinm   r0, r0, 3, 0x12, 0x1c
+	lfsx     f0, r4, r0
 
-		.loc_0xA4:
-		  fadds     f2, f1, f0
-		  lfs       f1, -0xE40(r2)
-		  lfs       f0, 0xC(r3)
-		  fmuls     f2, f3, f2
-		  fmadds    f1, f2, f1, f0
-		  addi      r1, r1, 0x20
-		  blr
+lbl_80301F64:
+	fadds    f2, f1, f0
+	lfs      f1, lbl_8051D520@sda21(r2)
+	lfs      f0, 0xc(r3)
+	fmuls    f2, f3, f2
+	fmadds   f1, f2, f1, f0
+	addi     r1, r1, 0x20
+	blr
 		*/
 	}
 
@@ -112,160 +326,159 @@ namespace Screen {
 	void capturePictureTreeColor(J2DPane*, int)
 	{
 		/*
-		.loc_0x0:
-		  stwu      r1, -0x30(r1)
-		  mflr      r0
-		  stw       r0, 0x34(r1)
-		  stw       r31, 0x2C(r1)
-		  stw       r30, 0x28(r1)
-		  mr        r30, r4
-		  stw       r29, 0x24(r1)
-		  mr        r29, r3
-		  lbz       r0, -0x686C(r13)
-		  extsb.    r0, r0
-		  bne-      .loc_0x3C
-		  li        r3, 0
-		  li        r0, 0x1
-		  stw       r3, -0x6870(r13)
-		  stb       r0, -0x686C(r13)
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stw      r31, 0x2c(r1)
+	stw      r30, 0x28(r1)
+	mr       r30, r4
+	stw      r29, 0x24(r1)
+	mr       r29, r3
+	lbz      r0, init$3543@sda21(r13)
+	extsb.   r0, r0
+	bne      lbl_80301FBC
+	li       r3, 0
+	li       r0, 1
+	stw      r3, wkPtr$3542@sda21(r13)
+	stb      r0, init$3543@sda21(r13)
 
-		.loc_0x3C:
-		  lbz       r0, -0x6864(r13)
-		  extsb.    r0, r0
-		  bne-      .loc_0x58
-		  li        r3, 0
-		  li        r0, 0x1
-		  stw       r3, -0x6868(r13)
-		  stb       r0, -0x6864(r13)
+lbl_80301FBC:
+	lbz      r0, init$3546@sda21(r13)
+	extsb.   r0, r0
+	bne      lbl_80301FD8
+	li       r3, 0
+	li       r0, 1
+	stw      r3, Max$3545@sda21(r13)
+	stb      r0, init$3546@sda21(r13)
 
-		.loc_0x58:
-		  lbz       r0, -0x685C(r13)
-		  extsb.    r0, r0
-		  bne-      .loc_0x74
-		  li        r3, 0
-		  li        r0, 0x1
-		  stw       r3, -0x6860(r13)
-		  stb       r0, -0x685C(r13)
+lbl_80301FD8:
+	lbz      r0, init$3549@sda21(r13)
+	extsb.   r0, r0
+	bne      lbl_80301FF4
+	li       r3, 0
+	li       r0, 1
+	stw      r3, wkMax$3548@sda21(r13)
+	stb      r0, init$3549@sda21(r13)
 
-		.loc_0x74:
-		  cmpwi     r30, 0
-		  li        r31, 0
-		  ble-      .loc_0xD0
-		  mulli     r3, r30, 0xC
-		  addi      r3, r3, 0x10
-		  bl        -0x2DE05C
-		  lis       r4, 0x8030
-		  mr        r7, r30
-		  addi      r4, r4, 0x219C
-		  li        r5, 0
-		  li        r6, 0xC
-		  bl        -0x240630
-		  stw       r3, -0x6870(r13)
-		  li        r3, 0x8
-		  stw       r30, -0x6868(r13)
-		  stw       r30, -0x6860(r13)
-		  bl        -0x2DE190
-		  cmplwi    r3, 0
-		  beq-      .loc_0xCC
-		  lwz       r0, -0x6870(r13)
-		  stw       r30, 0x0(r3)
-		  stw       r0, 0x4(r3)
+lbl_80301FF4:
+	cmpwi    r30, 0
+	li       r31, 0
+	ble      lbl_80302050
+	mulli    r3, r30, 0xc
+	addi     r3, r3, 0x10
+	bl       __nwa__FUl
+	lis      r4, __ct__Q32og6Screen20PictureTreeColorInfoFv@ha
+	mr       r7, r30
+	addi     r4, r4, __ct__Q32og6Screen20PictureTreeColorInfoFv@l
+	li       r5, 0
+	li       r6, 0xc
+	bl       __construct_new_array
+	stw      r3, wkPtr$3542@sda21(r13)
+	li       r3, 8
+	stw      r30, Max$3545@sda21(r13)
+	stw      r30, wkMax$3548@sda21(r13)
+	bl       __nw__FUl
+	cmplwi   r3, 0
+	beq      lbl_8030204C
+	lwz      r0, wkPtr$3542@sda21(r13)
+	stw      r30, 0(r3)
+	stw      r0, 4(r3)
 
-		.loc_0xCC:
-		  mr        r31, r3
+lbl_8030204C:
+	mr       r31, r3
 
-		.loc_0xD0:
-		  mr        r3, r29
-		  lwz       r12, 0x0(r29)
-		  lwz       r12, 0xC(r12)
-		  mtctr     r12
-		  bctrl
-		  rlwinm    r0,r3,0,16,31
-		  cmplwi    r0, 0x12
-		  bne-      .loc_0x1C4
-		  mr        r4, r29
-		  addi      r3, r1, 0xC
-		  lwz       r12, 0x0(r29)
-		  lwz       r12, 0x138(r12)
-		  mtctr     r12
-		  bctrl
-		  mr        r4, r29
-		  lwz       r0, 0xC(r1)
-		  lwz       r12, 0x0(r29)
-		  addi      r3, r1, 0x8
-		  stw       r0, 0x14(r1)
-		  lwz       r12, 0x134(r12)
-		  mtctr     r12
-		  bctrl
-		  lwz       r0, -0x6860(r13)
-		  lwz       r3, 0x8(r1)
-		  cmpwi     r0, 0
-		  stw       r3, 0x10(r1)
-		  ble-      .loc_0x1A8
-		  lwz       r3, -0x6870(r13)
-		  lbz       r0, 0x14(r1)
-		  stw       r29, 0x0(r3)
-		  lbz       r4, 0x15(r1)
-		  lwz       r6, -0x6870(r13)
-		  lbz       r3, 0x16(r1)
-		  stb       r0, 0x4(r6)
-		  lbz       r0, 0x17(r1)
-		  stb       r4, 0x5(r6)
-		  lbz       r5, 0x10(r1)
-		  stb       r3, 0x6(r6)
-		  lbz       r4, 0x11(r1)
-		  stb       r0, 0x7(r6)
-		  lbz       r3, 0x12(r1)
-		  lwz       r6, -0x6870(r13)
-		  lbz       r0, 0x13(r1)
-		  stb       r5, 0x8(r6)
-		  stb       r4, 0x9(r6)
-		  stb       r3, 0xA(r6)
-		  stb       r0, 0xB(r6)
-		  lwz       r4, -0x6870(r13)
-		  lwz       r3, -0x6860(r13)
-		  addi      r4, r4, 0xC
-		  subi      r0, r3, 0x1
-		  stw       r4, -0x6870(r13)
-		  stw       r0, -0x6860(r13)
-		  b         .loc_0x1C4
+lbl_80302050:
+	mr       r3, r29
+	lwz      r12, 0(r29)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	clrlwi   r0, r3, 0x10
+	cmplwi   r0, 0x12
+	bne      lbl_80302144
+	mr       r4, r29
+	addi     r3, r1, 0xc
+	lwz      r12, 0(r29)
+	lwz      r12, 0x138(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r29
+	lwz      r0, 0xc(r1)
+	lwz      r12, 0(r29)
+	addi     r3, r1, 8
+	stw      r0, 0x14(r1)
+	lwz      r12, 0x134(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, wkMax$3548@sda21(r13)
+	lwz      r3, 8(r1)
+	cmpwi    r0, 0
+	stw      r3, 0x10(r1)
+	ble      lbl_80302128
+	lwz      r3, wkPtr$3542@sda21(r13)
+	lbz      r0, 0x14(r1)
+	stw      r29, 0(r3)
+	lbz      r4, 0x15(r1)
+	lwz      r6, wkPtr$3542@sda21(r13)
+	lbz      r3, 0x16(r1)
+	stb      r0, 4(r6)
+	lbz      r0, 0x17(r1)
+	stb      r4, 5(r6)
+	lbz      r5, 0x10(r1)
+	stb      r3, 6(r6)
+	lbz      r4, 0x11(r1)
+	stb      r0, 7(r6)
+	lbz      r3, 0x12(r1)
+	lwz      r6, wkPtr$3542@sda21(r13)
+	lbz      r0, 0x13(r1)
+	stb      r5, 8(r6)
+	stb      r4, 9(r6)
+	stb      r3, 0xa(r6)
+	stb      r0, 0xb(r6)
+	lwz      r4, wkPtr$3542@sda21(r13)
+	lwz      r3, wkMax$3548@sda21(r13)
+	addi     r4, r4, 0xc
+	addi     r0, r3, -1
+	stw      r4, wkPtr$3542@sda21(r13)
+	stw      r0, wkMax$3548@sda21(r13)
+	b        lbl_80302144
 
-		.loc_0x1A8:
-		  lis       r3, 0x8049
-		  lis       r5, 0x8049
-		  subi      r3, r3, 0x2334
-		  li        r4, 0x9D
-		  subi      r5, r5, 0x2324
-		  crclr     6, 0x6
-		  bl        -0x2D7B00
+lbl_80302128:
+	lis      r3, lbl_8048DCCC@ha
+	lis      r5, lbl_8048DCDC@ha
+	addi     r3, r3, lbl_8048DCCC@l
+	li       r4, 0x9d
+	addi     r5, r5, lbl_8048DCDC@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-		.loc_0x1C4:
-		  lwz       r29, 0xDC(r29)
-		  cmplwi    r29, 0
-		  beq-      .loc_0x1F4
-		  subi      r29, r29, 0xC
-		  b         .loc_0x1F4
+lbl_80302144:
+	lwz      r29, 0xdc(r29)
+	cmplwi   r29, 0
+	beq      lbl_80302174
+	addi     r29, r29, -12
+	b        lbl_80302174
 
-		.loc_0x1D8:
-		  lwz       r3, 0xC(r29)
-		  li        r4, 0
-		  bl        .loc_0x0
-		  lwz       r29, 0x18(r29)
-		  cmplwi    r29, 0
-		  beq-      .loc_0x1F4
-		  subi      r29, r29, 0xC
+lbl_80302158:
+	lwz      r3, 0xc(r29)
+	li       r4, 0
+	bl       capturePictureTreeColor__Q22og6ScreenFP7J2DPanei
+	lwz      r29, 0x18(r29)
+	cmplwi   r29, 0
+	beq      lbl_80302174
+	addi     r29, r29, -12
 
-		.loc_0x1F4:
-		  cmplwi    r29, 0
-		  bne+      .loc_0x1D8
-		  lwz       r0, 0x34(r1)
-		  mr        r3, r31
-		  lwz       r31, 0x2C(r1)
-		  lwz       r30, 0x28(r1)
-		  lwz       r29, 0x24(r1)
-		  mtlr      r0
-		  addi      r1, r1, 0x30
-		  blr
+lbl_80302174:
+	cmplwi   r29, 0
+	bne      lbl_80302158
+	lwz      r0, 0x34(r1)
+	mr       r3, r31
+	lwz      r31, 0x2c(r1)
+	lwz      r30, 0x28(r1)
+	lwz      r29, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 		*/
 	}
 
@@ -277,22 +490,21 @@ namespace Screen {
 	PictureTreeColorInfo::PictureTreeColorInfo(void)
 	{
 		/*
-		.loc_0x0:
-		  li        r5, -0x1
-		  li        r4, 0
-		  stw       r5, 0x4(r3)
-		  li        r0, 0xFF
-		  stw       r5, 0x8(r3)
-		  stw       r4, 0x0(r3)
-		  stb       r0, 0x4(r3)
-		  stb       r0, 0x5(r3)
-		  stb       r0, 0x6(r3)
-		  stb       r0, 0x7(r3)
-		  stb       r4, 0x8(r3)
-		  stb       r4, 0x9(r3)
-		  stb       r4, 0xA(r3)
-		  stb       r4, 0xB(r3)
-		  blr
+	li       r5, -1
+	li       r4, 0
+	stw      r5, 4(r3)
+	li       r0, 0xff
+	stw      r5, 8(r3)
+	stw      r4, 0(r3)
+	stb      r0, 4(r3)
+	stb      r0, 5(r3)
+	stb      r0, 6(r3)
+	stb      r0, 7(r3)
+	stb      r4, 8(r3)
+	stb      r4, 9(r3)
+	stb      r4, 0xa(r3)
+	stb      r4, 0xb(r3)
+	blr
 		*/
 	}
 
@@ -674,69 +886,68 @@ namespace Screen {
 	void calcSmooth0to1(float, float)
 	{
 		/*
-		.loc_0x0:
-		  fdivs     f1, f1, f2
-		  lfs       f0, -0xE44(r2)
-		  stwu      r1, -0x20(r1)
-		  fcmpo     cr0, f1, f0
-		  bge-      .loc_0x18
-		  fmr       f1, f0
+	fdivs    f1, f1, f2
+	lfs      f0, lbl_8051D51C@sda21(r2)
+	stwu     r1, -0x20(r1)
+	fcmpo    cr0, f1, f0
+	bge      lbl_803026B4
+	fmr      f1, f0
 
-		.loc_0x18:
-		  lfs       f0, -0xE50(r2)
-		  fcmpo     cr0, f1, f0
-		  ble-      .loc_0x28
-		  fmr       f1, f0
+lbl_803026B4:
+	lfs      f0, lbl_8051D510@sda21(r2)
+	fcmpo    cr0, f1, f0
+	ble      lbl_803026C4
+	fmr      f1, f0
 
-		.loc_0x28:
-		  lfs       f0, -0xE30(r2)
-		  fcmpo     cr0, f1, f0
-		  bge-      .loc_0x38
-		  b         .loc_0xC0
+lbl_803026C4:
+	lfs      f0, lbl_8051D530@sda21(r2)
+	fcmpo    cr0, f1, f0
+	bge      lbl_803026D4
+	b        lbl_8030275C
 
-		.loc_0x38:
-		  lfd       f4, -0xE28(r2)
-		  fsubs     f1, f1, f0
-		  lfs       f2, -0xE20(r2)
-		  fsub      f3, f4, f0
-		  lfs       f0, -0xE44(r2)
-		  fmuls     f1, f2, f1
-		  lfs       f2, -0xE1C(r2)
-		  fdiv      f3, f4, f3
-		  fmul      f1, f3, f1
-		  frsp      f1, f1
-		  fcmpo     cr0, f1, f0
-		  bge-      .loc_0x94
-		  lfs       f0, -0xE4C(r2)
-		  lis       r3, 0x8050
-		  addi      r3, r3, 0x71A0
-		  fmuls     f0, f1, f0
-		  fctiwz    f0, f0
-		  stfd      f0, 0x8(r1)
-		  lwz       r0, 0xC(r1)
-		  rlwinm    r0,r0,3,18,28
-		  lfsx      f0, r3, r0
-		  fneg      f1, f0
-		  b         .loc_0xB8
+lbl_803026D4:
+	lfd      f4, lbl_8051D538@sda21(r2)
+	fsubs    f1, f1, f0
+	lfs      f2, lbl_8051D540@sda21(r2)
+	fsub     f3, f4, f0
+	lfs      f0, lbl_8051D51C@sda21(r2)
+	fmuls    f1, f2, f1
+	lfs      f2, lbl_8051D544@sda21(r2)
+	fdiv     f3, f4, f3
+	fmul     f1, f3, f1
+	frsp     f1, f1
+	fcmpo    cr0, f1, f0
+	bge      lbl_80302730
+	lfs      f0, lbl_8051D514@sda21(r2)
+	lis      r3, sincosTable___5JMath@ha
+	addi     r3, r3, sincosTable___5JMath@l
+	fmuls    f0, f1, f0
+	fctiwz   f0, f0
+	stfd     f0, 8(r1)
+	lwz      r0, 0xc(r1)
+	rlwinm   r0, r0, 3, 0x12, 0x1c
+	lfsx     f0, r3, r0
+	fneg     f1, f0
+	b        lbl_80302754
 
-		.loc_0x94:
-		  lfs       f0, -0xE48(r2)
-		  lis       r3, 0x8050
-		  addi      r3, r3, 0x71A0
-		  fmuls     f0, f1, f0
-		  fctiwz    f0, f0
-		  stfd      f0, 0x10(r1)
-		  lwz       r0, 0x14(r1)
-		  rlwinm    r0,r0,3,18,28
-		  lfsx      f1, r3, r0
+lbl_80302730:
+	lfs      f0, lbl_8051D518@sda21(r2)
+	lis      r3, sincosTable___5JMath@ha
+	addi     r3, r3, sincosTable___5JMath@l
+	fmuls    f0, f1, f0
+	fctiwz   f0, f0
+	stfd     f0, 0x10(r1)
+	lwz      r0, 0x14(r1)
+	rlwinm   r0, r0, 3, 0x12, 0x1c
+	lfsx     f1, r3, r0
 
-		.loc_0xB8:
-		  lfs       f0, -0xE30(r2)
-		  fmadds    f1, f2, f1, f0
+lbl_80302754:
+	lfs      f0, lbl_8051D530@sda21(r2)
+	fmadds   f1, f2, f1, f0
 
-		.loc_0xC0:
-		  addi      r1, r1, 0x20
-		  blr
+lbl_8030275C:
+	addi     r1, r1, 0x20
+	blr
 		*/
 	}
 
@@ -752,51 +963,50 @@ namespace Screen {
 void calcGlbCenter__Q22og6ScreenFP7J2DPaneP10Vector2<float>(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  li        r5, 0
-	  stw       r0, 0x44(r1)
-	  stw       r31, 0x3C(r1)
-	  mr        r31, r4
-	  stw       r30, 0x38(r1)
-	  mr        r30, r3
-	  addi      r3, r1, 0x14
-	  mr        r4, r30
-	  bl        -0x2C97F4
-	  lwz       r5, 0x14(r1)
-	  mr        r4, r30
-	  lwz       r6, 0x18(r1)
-	  addi      r3, r1, 0x8
-	  lwz       r0, 0x1C(r1)
-	  stw       r5, 0x2C(r1)
-	  li        r5, 0x3
-	  stw       r6, 0x30(r1)
-	  stw       r0, 0x34(r1)
-	  bl        -0x2C981C
-	  lwz       r0, 0x8(r1)
-	  lwz       r3, 0xC(r1)
-	  stw       r0, 0x20(r1)
-	  lwz       r0, 0x10(r1)
-	  stw       r3, 0x24(r1)
-	  lfs       f3, 0x2C(r1)
-	  lfs       f2, 0x20(r1)
-	  lfs       f1, 0x30(r1)
-	  lfs       f0, 0x24(r1)
-	  fadds     f3, f3, f2
-	  lfs       f2, -0xE40(r2)
-	  fadds     f0, f1, f0
-	  stw       r0, 0x28(r1)
-	  fmuls     f1, f3, f2
-	  fmuls     f0, f0, f2
-	  stfs      f1, 0x0(r31)
-	  stfs      f0, 0x4(r31)
-	  lwz       r31, 0x3C(r1)
-	  lwz       r30, 0x38(r1)
-	  lwz       r0, 0x44(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
+	stwu     r1, -0x40(r1)
+	mflr     r0
+	li       r5, 0
+	stw      r0, 0x44(r1)
+	stw      r31, 0x3c(r1)
+	mr       r31, r4
+	stw      r30, 0x38(r1)
+	mr       r30, r3
+	addi     r3, r1, 0x14
+	mr       r4, r30
+	bl       getGlbVtx__7J2DPaneCFUc
+	lwz      r5, 0x14(r1)
+	mr       r4, r30
+	lwz      r6, 0x18(r1)
+	addi     r3, r1, 8
+	lwz      r0, 0x1c(r1)
+	stw      r5, 0x2c(r1)
+	li       r5, 3
+	stw      r6, 0x30(r1)
+	stw      r0, 0x34(r1)
+	bl       getGlbVtx__7J2DPaneCFUc
+	lwz      r0, 8(r1)
+	lwz      r3, 0xc(r1)
+	stw      r0, 0x20(r1)
+	lwz      r0, 0x10(r1)
+	stw      r3, 0x24(r1)
+	lfs      f3, 0x2c(r1)
+	lfs      f2, 0x20(r1)
+	lfs      f1, 0x30(r1)
+	lfs      f0, 0x24(r1)
+	fadds    f3, f3, f2
+	lfs      f2, lbl_8051D520@sda21(r2)
+	fadds    f0, f1, f0
+	stw      r0, 0x28(r1)
+	fmuls    f1, f3, f2
+	fmuls    f0, f0, f2
+	stfs     f1, 0(r31)
+	stfs     f0, 4(r31)
+	lwz      r31, 0x3c(r1)
+	lwz      r30, 0x38(r1)
+	lwz      r0, 0x44(r1)
+	mtlr     r0
+	addi     r1, r1, 0x40
+	blr
 	*/
 }
 
@@ -832,76 +1042,75 @@ namespace Screen {
 	void maskTag2(unsigned long long, unsigned short)
 	{
 		/*
-		.loc_0x0:
-		  stwu      r1, -0x50(r1)
-		  mflr      r0
-		  stw       r0, 0x54(r1)
-		  rlwinm    r0,r5,0,16,31
-		  cmplwi    r0, 0x63
-		  stw       r31, 0x4C(r1)
-		  mr        r31, r3
-		  stw       r30, 0x48(r1)
-		  mr        r30, r5
-		  stw       r29, 0x44(r1)
-		  mr        r29, r4
-		  ble-      .loc_0x4C
-		  lis       r3, 0x8049
-		  lis       r5, 0x8049
-		  subi      r3, r3, 0x2334
-		  li        r4, 0x1C2
-		  subi      r5, r5, 0x2308
-		  crclr     6, 0x6
-		  bl        -0x2D821C
+	stwu     r1, -0x50(r1)
+	mflr     r0
+	stw      r0, 0x54(r1)
+	clrlwi   r0, r5, 0x10
+	cmplwi   r0, 0x63
+	stw      r31, 0x4c(r1)
+	mr       r31, r3
+	stw      r30, 0x48(r1)
+	mr       r30, r5
+	stw      r29, 0x44(r1)
+	mr       r29, r4
+	ble      lbl_80302860
+	lis      r3, lbl_8048DCCC@ha
+	lis      r5, lbl_8048DCF8@ha
+	addi     r3, r3, lbl_8048DCCC@l
+	li       r4, 0x1c2
+	addi     r5, r5, lbl_8048DCF8@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-		.loc_0x4C:
-		  lis       r4, 0x6666
-		  lis       r0, 0xFFFF
-		  rlwinm    r11,r30,0,16,31
-		  li        r3, -0x1
-		  addi      r10, r4, 0x6667
-		  and       r0, r29, r0
-		  mulhw     r4, r10, r11
-		  and       r3, r31, r3
-		  addi      r5, r1, 0x8
-		  mr        r31, r3
-		  srawi     r8, r4, 0x2
-		  srawi     r4, r4, 0x2
-		  rlwinm    r6,r4,1,31,31
-		  rlwinm    r9,r8,1,31,31
-		  add       r7, r4, r6
-		  mulhw     r4, r10, r7
-		  add       r8, r8, r9
-		  srawi     r4, r4, 0x2
-		  rlwinm    r6,r4,1,31,31
-		  add       r4, r4, r6
-		  mulli     r4, r4, 0xA
-		  mulli     r6, r8, 0xA
-		  sub       r4, r7, r4
-		  sub       r6, r11, r6
-		  rlwinm    r4,r4,8,0,23
-		  add       r4, r6, r4
-		  addi      r4, r4, 0x3030
-		  or        r30, r4, r0
-		  mr        r4, r30
-		  bl        0x2F8
-		  lis       r3, 0x1
-		  addi      r5, r1, 0x28
-		  subi      r4, r3, 0x1
-		  li        r3, 0
-		  bl        0x530
-		  addi      r5, r1, 0x14
-		  lis       r4, 0xFFFF
-		  li        r3, -0x1
-		  bl        0x520
-		  lwz       r0, 0x54(r1)
-		  mr        r3, r31
-		  mr        r4, r30
-		  lwz       r31, 0x4C(r1)
-		  lwz       r30, 0x48(r1)
-		  lwz       r29, 0x44(r1)
-		  mtlr      r0
-		  addi      r1, r1, 0x50
-		  blr
+lbl_80302860:
+	lis      r4, 0x66666667@ha
+	lis      r0, 0xffff
+	clrlwi   r11, r30, 0x10
+	li       r3, -1
+	addi     r10, r4, 0x66666667@l
+	and      r0, r29, r0
+	mulhw    r4, r10, r11
+	and      r3, r31, r3
+	addi     r5, r1, 8
+	mr       r31, r3
+	srawi    r8, r4, 2
+	srawi    r4, r4, 2
+	srwi     r6, r4, 0x1f
+	srwi     r9, r8, 0x1f
+	add      r7, r4, r6
+	mulhw    r4, r10, r7
+	add      r8, r8, r9
+	srawi    r4, r4, 2
+	srwi     r6, r4, 0x1f
+	add      r4, r4, r6
+	mulli    r4, r4, 0xa
+	mulli    r6, r8, 0xa
+	subf     r4, r4, r7
+	subf     r6, r6, r11
+	slwi     r4, r4, 8
+	add      r4, r6, r4
+	addi     r4, r4, 0x3030
+	or       r30, r4, r0
+	mr       r4, r30
+	bl       TagToName__Q22og6ScreenFUxPc
+	lis      r3, 0x0000FFFF@ha
+	addi     r5, r1, 0x28
+	addi     r4, r3, 0x0000FFFF@l
+	li       r3, 0
+	bl       TagToHex__Q22og6ScreenFUxPc
+	addi     r5, r1, 0x14
+	lis      r4, 0xffff
+	li       r3, -1
+	bl       TagToHex__Q22og6ScreenFUxPc
+	lwz      r0, 0x54(r1)
+	mr       r3, r31
+	mr       r4, r30
+	lwz      r31, 0x4c(r1)
+	lwz      r30, 0x48(r1)
+	lwz      r29, 0x44(r1)
+	mtlr     r0
+	addi     r1, r1, 0x50
+	blr
 		*/
 	}
 
@@ -913,55 +1122,54 @@ namespace Screen {
 	void maskTag(unsigned long long, unsigned short, unsigned short)
 	{
 		/*
-		.loc_0x0:
-		  stwu      r1, -0x20(r1)
-		  mflr      r0
-		  rlwinm    r5,r5,0,16,31
-		  stw       r0, 0x24(r1)
-		  cmplwi    r5, 0x8
-		  stmw      r27, 0xC(r1)
-		  mr        r28, r3
-		  mr        r27, r4
-		  mr        r29, r6
-		  blt-      .loc_0x34
-		  li        r4, 0
-		  li        r3, 0
-		  b         .loc_0x8C
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	clrlwi   r5, r5, 0x10
+	stw      r0, 0x24(r1)
+	cmplwi   r5, 8
+	stmw     r27, 0xc(r1)
+	mr       r28, r3
+	mr       r27, r4
+	mr       r29, r6
+	blt      lbl_80302954
+	li       r4, 0
+	li       r3, 0
+	b        lbl_803029AC
 
-		.loc_0x34:
-		  subi      r0, r5, 0x1
-		  li        r3, 0
-		  rlwinm    r31,r0,3,16,28
-		  li        r4, 0xFF
-		  mr        r5, r31
-		  bl        -0x24087C
-		  rlwinm    r5,r29,0,16,31
-		  not       r29, r4
-		  cmplwi    r5, 0x9
-		  not       r30, r3
-		  bgt-      .loc_0x6C
-		  addi      r4, r5, 0x30
-		  srawi     r3, r4, 0x1F
-		  b         .loc_0x74
+lbl_80302954:
+	addi     r0, r5, -1
+	li       r3, 0
+	rlwinm   r31, r0, 3, 0x10, 0x1c
+	li       r4, 0xff
+	mr       r5, r31
+	bl       __shl2i
+	clrlwi   r5, r29, 0x10
+	nor      r29, r4, r4
+	cmplwi   r5, 9
+	nor      r30, r3, r3
+	bgt      lbl_8030298C
+	addi     r4, r5, 0x30
+	srawi    r3, r4, 0x1f
+	b        lbl_80302994
 
-		.loc_0x6C:
-		  addi      r4, r5, 0x37
-		  srawi     r3, r4, 0x1F
+lbl_8030298C:
+	addi     r4, r5, 0x37
+	srawi    r3, r4, 0x1f
 
-		.loc_0x74:
-		  mr        r5, r31
-		  bl        -0x2408AC
-		  and       r5, r27, r29
-		  and       r0, r28, r30
-		  or        r4, r4, r5
-		  or        r3, r3, r0
+lbl_80302994:
+	mr       r5, r31
+	bl       __shl2i
+	and      r5, r27, r29
+	and      r0, r28, r30
+	or       r4, r4, r5
+	or       r3, r3, r0
 
-		.loc_0x8C:
-		  lmw       r27, 0xC(r1)
-		  lwz       r0, 0x24(r1)
-		  mtlr      r0
-		  addi      r1, r1, 0x20
-		  blr
+lbl_803029AC:
+	lmw      r27, 0xc(r1)
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 		*/
 	}
 
@@ -973,56 +1181,55 @@ namespace Screen {
 	void CalcKeta(unsigned long)
 	{
 		/*
-		.loc_0x0:
-		  stwu      r1, -0x40(r1)
-		  mflr      r0
-		  stw       r0, 0x44(r1)
-		  stfd      f31, 0x38(r1)
-		  lfd       f31, -0xE38(r2)
-		  stfd      f30, 0x30(r1)
-		  lfd       f30, -0xE10(r2)
-		  stw       r31, 0x2C(r1)
-		  lis       r31, 0x4330
-		  stw       r30, 0x28(r1)
-		  li        r30, 0x1
-		  stw       r29, 0x24(r1)
-		  li        r29, 0x1
-		  stw       r28, 0x20(r1)
-		  mr        r28, r3
+	stwu     r1, -0x40(r1)
+	mflr     r0
+	stw      r0, 0x44(r1)
+	stfd     f31, 0x38(r1)
+	lfd      f31, lbl_8051D528@sda21(r2)
+	stfd     f30, 0x30(r1)
+	lfd      f30, lbl_8051D550@sda21(r2)
+	stw      r31, 0x2c(r1)
+	lis      r31, 0x4330
+	stw      r30, 0x28(r1)
+	li       r30, 1
+	stw      r29, 0x24(r1)
+	li       r29, 1
+	stw      r28, 0x20(r1)
+	mr       r28, r3
 
-		.loc_0x3C:
-		  xoris     r0, r29, 0x8000
-		  stw       r31, 0x8(r1)
-		  lfd       f1, -0xE18(r2)
-		  stw       r0, 0xC(r1)
-		  lfd       f0, 0x8(r1)
-		  fsub      f2, f0, f30
-		  bl        -0x233008
-		  stw       r28, 0x14(r1)
-		  stw       r31, 0x10(r1)
-		  lfd       f0, 0x10(r1)
-		  fsub      f0, f0, f31
-		  fcmpo     cr0, f0, f1
-		  cror      2, 0x1, 0x2
-		  bne-      .loc_0x88
-		  addi      r0, r29, 0x1
-		  addi      r29, r29, 0x1
-		  cmpwi     r29, 0xA
-		  rlwinm    r30,r0,0,16,31
-		  blt+      .loc_0x3C
+lbl_803029FC:
+	xoris    r0, r29, 0x8000
+	stw      r31, 8(r1)
+	lfd      f1, lbl_8051D548@sda21(r2)
+	stw      r0, 0xc(r1)
+	lfd      f0, 8(r1)
+	fsub     f2, f0, f30
+	bl       pow
+	stw      r28, 0x14(r1)
+	stw      r31, 0x10(r1)
+	lfd      f0, 0x10(r1)
+	fsub     f0, f0, f31
+	fcmpo    cr0, f0, f1
+	cror     2, 1, 2
+	bne      lbl_80302A48
+	addi     r0, r29, 1
+	addi     r29, r29, 1
+	cmpwi    r29, 0xa
+	clrlwi   r30, r0, 0x10
+	blt      lbl_803029FC
 
-		.loc_0x88:
-		  lwz       r0, 0x44(r1)
-		  mr        r3, r30
-		  lfd       f31, 0x38(r1)
-		  lfd       f30, 0x30(r1)
-		  lwz       r31, 0x2C(r1)
-		  lwz       r30, 0x28(r1)
-		  lwz       r29, 0x24(r1)
-		  lwz       r28, 0x20(r1)
-		  mtlr      r0
-		  addi      r1, r1, 0x40
-		  blr
+lbl_80302A48:
+	lwz      r0, 0x44(r1)
+	mr       r3, r30
+	lfd      f31, 0x38(r1)
+	lfd      f30, 0x30(r1)
+	lwz      r31, 0x2c(r1)
+	lwz      r30, 0x28(r1)
+	lwz      r29, 0x24(r1)
+	lwz      r28, 0x20(r1)
+	mtlr     r0
+	addi     r1, r1, 0x40
+	blr
 		*/
 	}
 
@@ -1034,107 +1241,104 @@ namespace Screen {
 	void MojiToNum(unsigned long long, int)
 	{
 		/*
-		.loc_0x0:
-		  stwu      r1, -0x70(r1)
-		  mflr      r0
-		  stw       r0, 0x74(r1)
-		  stfd      f31, 0x68(r1)
-		  stfd      f30, 0x60(r1)
-		  stmw      r22, 0x38(r1)
-		  mr        r26, r5
-		  lis       r5, 0x8049
-		  mr        r25, r3
-		  cmpwi     r26, 0x1
-		  mr        r24, r4
-		  subi      r31, r5, 0x2340
-		  blt-      .loc_0x3C
-		  cmpwi     r26, 0x8
-		  ble-      .loc_0x64
+	stwu     r1, -0x70(r1)
+	mflr     r0
+	stw      r0, 0x74(r1)
+	stfd     f31, 0x68(r1)
+	stfd     f30, 0x60(r1)
+	stmw     r22, 0x38(r1)
+	mr       r26, r5
+	lis      r5, lbl_8048DCC0@ha
+	mr       r25, r3
+	cmpwi    r26, 1
+	mr       r24, r4
+	addi     r31, r5, lbl_8048DCC0@l
+	blt      lbl_80302AB0
+	cmpwi    r26, 8
+	ble      lbl_80302AD8
 
-		.loc_0x3C:
-		  mr        r4, r24
-		  mr        r3, r25
-		  addi      r5, r1, 0x14
-		  bl        .loc_0x158
-		  addi      r3, r31, 0xC
-		  addi      r5, r31, 0x134
-		  addi      r6, r1, 0x14
-		  li        r4, 0x237
-		  crclr     6, 0x6
-		  bl        -0x2D8494
+lbl_80302AB0:
+	mr       r4, r24
+	mr       r3, r25
+	addi     r5, r1, 0x14
+	bl       TagToName__Q22og6ScreenFUxPc
+	addi     r3, r31, 0xc
+	addi     r5, r31, 0x134
+	addi     r6, r1, 0x14
+	li       r4, 0x237
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-		.loc_0x64:
-		  lfd       f30, -0xE10(r2)
-		  li        r28, 0
-		  li        r29, 0
-		  li        r27, 0
-		  li        r30, 0
-		  lis       r23, 0x4330
-		  b         .loc_0x12C
+lbl_80302AD8:
+	lfd      f30, lbl_8051D550@sda21(r2)
+	li       r28, 0
+	li       r29, 0
+	li       r27, 0
+	li       r30, 0
+	lis      r23, 0x4330
+	b        lbl_80302BA0
 
-		.loc_0x80:
-		  mr        r3, r25
-		  mr        r4, r24
-		  mr        r5, r30
-		  bl        -0x2409F0
-		  li        r0, 0xFF
-		  and       r4, r4, r0
-		  li        r0, -0x30
-		  addc.     r22, r4, r0
-		  blt-      .loc_0xAC
-		  cmpwi     r22, 0x9
-		  ble-      .loc_0xD4
+lbl_80302AF4:
+	mr       r3, r25
+	mr       r4, r24
+	mr       r5, r30
+	bl       __shr2u
+	li       r0, 0xff
+	and      r4, r4, r0
+	li       r0, -48
+	addc.    r22, r4, r0
+	blt      lbl_80302B20
+	cmpwi    r22, 9
+	ble      lbl_80302B48
 
-		.loc_0xAC:
-		  mr        r4, r24
-		  mr        r3, r25
-		  addi      r5, r1, 0x8
-		  bl        .loc_0x158
-		  addi      r3, r31, 0xC
-		  addi      r5, r31, 0x150
-		  addi      r6, r1, 0x8
-		  li        r4, 0x240
-		  crclr     6, 0x6
-		  bl        -0x2D8504
+lbl_80302B20:
+	mr       r4, r24
+	mr       r3, r25
+	addi     r5, r1, 8
+	bl       TagToName__Q22og6ScreenFUxPc
+	addi     r3, r31, 0xc
+	addi     r5, r31, 0x150
+	addi     r6, r1, 8
+	li       r4, 0x240
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-		.loc_0xD4:
-		  xoris     r0, r27, 0x8000
-		  stw       r23, 0x20(r1)
-		  lfd       f1, -0xE18(r2)
-		  stw       r0, 0x24(r1)
-		  lfd       f0, 0x20(r1)
-		  fsub      f2, f0, f30
-		  bl        -0x233154
-		  fmr       f31, f1
-		  mr        r3, r29
-		  mr        r4, r28
-		  bl        -0x240A14
-		  xoris     r0, r22, 0x8000
-		  stw       r23, 0x28(r1)
-		  stw       r0, 0x2C(r1)
-		  lfd       f0, 0x28(r1)
-		  fsub      f0, f0, f30
-		  fmadd     f1, f0, f31, f1
-		  bl        -0x240994
-		  mr        r28, r4
-		  mr        r29, r3
-		  addi      r27, r27, 0x1
-		  addi      r30, r30, 0x8
+lbl_80302B48:
+	xoris    r0, r27, 0x8000
+	stw      r23, 0x20(r1)
+	lfd      f1, lbl_8051D548@sda21(r2)
+	stw      r0, 0x24(r1)
+	lfd      f0, 0x20(r1)
+	fsub     f2, f0, f30
+	bl       pow
+	fmr      f31, f1
+	mr       r3, r29
+	mr       r4, r28
+	bl       __cvt_ull_dbl
+	xoris    r0, r22, 0x8000
+	stw      r23, 0x28(r1)
+	stw      r0, 0x2c(r1)
+	lfd      f0, 0x28(r1)
+	fsub     f0, f0, f30
+	fmadd    f1, f0, f31, f1
+	bl       __cvt_dbl_usll
+	mr       r28, r4
+	mr       r29, r3
+	addi     r27, r27, 1
+	addi     r30, r30, 8
 
-		.loc_0x12C:
-		  cmpw      r27, r26
-		  blt+      .loc_0x80
-		  lfd       f31, 0x68(r1)
-		  mr        r4, r28
-		  mr        r3, r29
-		  lfd       f30, 0x60(r1)
-		  lmw       r22, 0x38(r1)
-		  lwz       r0, 0x74(r1)
-		  mtlr      r0
-		  addi      r1, r1, 0x70
-		  blr
-
-		.loc_0x158:
+lbl_80302BA0:
+	cmpw     r27, r26
+	blt      lbl_80302AF4
+	lfd      f31, 0x68(r1)
+	mr       r4, r28
+	mr       r3, r29
+	lfd      f30, 0x60(r1)
+	lmw      r22, 0x38(r1)
+	lwz      r0, 0x74(r1)
+	mtlr     r0
+	addi     r1, r1, 0x70
+	blr
 		*/
 	}
 
@@ -1146,123 +1350,122 @@ namespace Screen {
 	void TagToName(unsigned long long, char*)
 	{
 		/*
-		.loc_0x0:
-		  li        r8, 0xFF
-		  rlwinm    r0,r3,8,24,31
-		  and       r6, r0, r8
-		  li        r9, 0
-		  rlwinm    r0,r3,16,16,31
-		  stb       r6, 0x0(r5)
-		  and       r6, r0, r8
-		  rlwinm    r0,r3,24,8,31
-		  stb       r6, 0x1(r5)
-		  and       r7, r0, r8
-		  rlwinm    r6,r4,16,0,31
-		  stb       r7, 0x2(r5)
-		  and       r7, r3, r8
-		  rlwinm    r0,r4,8,0,31
-		  rlwimi    r6,r3,16,0,15
-		  rlwimi    r0,r3,8,0,23
-		  stb       r7, 0x3(r5)
-		  and       r7, r0, r8
-		  and       r6, r6, r8
-		  stb       r7, 0x4(r5)
-		  rlwinm    r0,r4,24,0,31
-		  rlwimi    r0,r3,24,0,7
-		  and       r3, r4, r8
-		  stb       r6, 0x5(r5)
-		  and       r0, r0, r8
-		  stb       r0, 0x6(r5)
-		  li        r0, 0x3F
-		  stb       r3, 0x7(r5)
-		  stb       r9, 0x8(r5)
-		  lbz       r3, 0x0(r5)
-		  extsb     r3, r3
-		  cmpwi     r3, 0x20
-		  blt-      .loc_0x8C
-		  cmpwi     r3, 0x7E
-		  ble-      .loc_0x90
+	li       r8, 0xff
+	srwi     r0, r3, 0x18
+	and      r6, r0, r8
+	li       r9, 0
+	srwi     r0, r3, 0x10
+	stb      r6, 0(r5)
+	and      r6, r0, r8
+	srwi     r0, r3, 8
+	stb      r6, 1(r5)
+	and      r7, r0, r8
+	rotlwi   r6, r4, 0x10
+	stb      r7, 2(r5)
+	and      r7, r3, r8
+	rotlwi   r0, r4, 8
+	rlwimi   r6, r3, 0x10, 0, 0xf
+	rlwimi   r0, r3, 8, 0, 0x17
+	stb      r7, 3(r5)
+	and      r7, r0, r8
+	and      r6, r6, r8
+	stb      r7, 4(r5)
+	rotlwi   r0, r4, 0x18
+	rlwimi   r0, r3, 0x18, 0, 7
+	and      r3, r4, r8
+	stb      r6, 5(r5)
+	and      r0, r0, r8
+	stb      r0, 6(r5)
+	li       r0, 0x3f
+	stb      r3, 7(r5)
+	stb      r9, 8(r5)
+	lbz      r3, 0(r5)
+	extsb    r3, r3
+	cmpwi    r3, 0x20
+	blt      lbl_80302C58
+	cmpwi    r3, 0x7e
+	ble      lbl_80302C5C
 
-		.loc_0x8C:
-		  stb       r0, 0x0(r5)
+lbl_80302C58:
+	stb      r0, 0(r5)
 
-		.loc_0x90:
-		  lbz       r3, 0x1(r5)
-		  extsb     r3, r3
-		  cmpwi     r3, 0x20
-		  blt-      .loc_0xA8
-		  cmpwi     r3, 0x7E
-		  ble-      .loc_0xAC
+lbl_80302C5C:
+	lbz      r3, 1(r5)
+	extsb    r3, r3
+	cmpwi    r3, 0x20
+	blt      lbl_80302C74
+	cmpwi    r3, 0x7e
+	ble      lbl_80302C78
 
-		.loc_0xA8:
-		  stb       r0, 0x1(r5)
+lbl_80302C74:
+	stb      r0, 1(r5)
 
-		.loc_0xAC:
-		  lbz       r3, 0x2(r5)
-		  extsb     r3, r3
-		  cmpwi     r3, 0x20
-		  blt-      .loc_0xC4
-		  cmpwi     r3, 0x7E
-		  ble-      .loc_0xC8
+lbl_80302C78:
+	lbz      r3, 2(r5)
+	extsb    r3, r3
+	cmpwi    r3, 0x20
+	blt      lbl_80302C90
+	cmpwi    r3, 0x7e
+	ble      lbl_80302C94
 
-		.loc_0xC4:
-		  stb       r0, 0x2(r5)
+lbl_80302C90:
+	stb      r0, 2(r5)
 
-		.loc_0xC8:
-		  lbz       r3, 0x3(r5)
-		  extsb     r3, r3
-		  cmpwi     r3, 0x20
-		  blt-      .loc_0xE0
-		  cmpwi     r3, 0x7E
-		  ble-      .loc_0xE4
+lbl_80302C94:
+	lbz      r3, 3(r5)
+	extsb    r3, r3
+	cmpwi    r3, 0x20
+	blt      lbl_80302CAC
+	cmpwi    r3, 0x7e
+	ble      lbl_80302CB0
 
-		.loc_0xE0:
-		  stb       r0, 0x3(r5)
+lbl_80302CAC:
+	stb      r0, 3(r5)
 
-		.loc_0xE4:
-		  lbz       r3, 0x4(r5)
-		  extsb     r3, r3
-		  cmpwi     r3, 0x20
-		  blt-      .loc_0xFC
-		  cmpwi     r3, 0x7E
-		  ble-      .loc_0x100
+lbl_80302CB0:
+	lbz      r3, 4(r5)
+	extsb    r3, r3
+	cmpwi    r3, 0x20
+	blt      lbl_80302CC8
+	cmpwi    r3, 0x7e
+	ble      lbl_80302CCC
 
-		.loc_0xFC:
-		  stb       r0, 0x4(r5)
+lbl_80302CC8:
+	stb      r0, 4(r5)
 
-		.loc_0x100:
-		  lbz       r3, 0x5(r5)
-		  extsb     r3, r3
-		  cmpwi     r3, 0x20
-		  blt-      .loc_0x118
-		  cmpwi     r3, 0x7E
-		  ble-      .loc_0x11C
+lbl_80302CCC:
+	lbz      r3, 5(r5)
+	extsb    r3, r3
+	cmpwi    r3, 0x20
+	blt      lbl_80302CE4
+	cmpwi    r3, 0x7e
+	ble      lbl_80302CE8
 
-		.loc_0x118:
-		  stb       r0, 0x5(r5)
+lbl_80302CE4:
+	stb      r0, 5(r5)
 
-		.loc_0x11C:
-		  lbz       r3, 0x6(r5)
-		  extsb     r3, r3
-		  cmpwi     r3, 0x20
-		  blt-      .loc_0x134
-		  cmpwi     r3, 0x7E
-		  ble-      .loc_0x138
+lbl_80302CE8:
+	lbz      r3, 6(r5)
+	extsb    r3, r3
+	cmpwi    r3, 0x20
+	blt      lbl_80302D00
+	cmpwi    r3, 0x7e
+	ble      lbl_80302D04
 
-		.loc_0x134:
-		  stb       r0, 0x6(r5)
+lbl_80302D00:
+	stb      r0, 6(r5)
 
-		.loc_0x138:
-		  lbz       r3, 0x7(r5)
-		  extsb     r3, r3
-		  cmpwi     r3, 0x20
-		  blt-      .loc_0x150
-		  cmpwi     r3, 0x7E
-		  blelr-
+lbl_80302D04:
+	lbz      r3, 7(r5)
+	extsb    r3, r3
+	cmpwi    r3, 0x20
+	blt      lbl_80302D1C
+	cmpwi    r3, 0x7e
+	blelr
 
-		.loc_0x150:
-		  stb       r0, 0x7(r5)
-		  blr
+lbl_80302D1C:
+	stb      r0, 7(r5)
+	blr
 		*/
 	}
 
@@ -1284,68 +1487,67 @@ namespace Screen {
 	void CharCodeToTag(char*)
 	{
 		/*
-		.loc_0x0:
-		  stwu      r1, -0x20(r1)
-		  mflr      r0
-		  lis       r4, 0x8049
-		  stw       r0, 0x24(r1)
-		  subi      r4, r4, 0x21D8
-		  stw       r31, 0x1C(r1)
-		  stw       r30, 0x18(r1)
-		  lbz       r5, 0x0(r3)
-		  lbz       r6, 0x1(r3)
-		  addi      r3, r1, 0x8
-		  crclr     6, 0x6
-		  bl        -0x23B918
-		  lbz       r0, 0x8(r1)
-		  li        r9, 0
-		  lbz       r3, 0x9(r1)
-		  li        r10, 0xFF
-		  extsb     r6, r0
-		  lbz       r0, 0xA(r1)
-		  srawi     r5, r6, 0x1F
-		  extsb     r4, r3
-		  extsb     r3, r0
-		  and       r30, r6, r10
-		  and       r0, r5, r9
-		  srawi     r7, r4, 0x1F
-		  rlwinm    r8,r0,8,0,23
-		  lbz       r0, 0xB(r1)
-		  and       r31, r4, r10
-		  srawi     r6, r3, 0x1F
-		  extsb     r4, r0
-		  lbz       r0, 0xC(r1)
-		  srawi     r5, r4, 0x1F
-		  rlwimi    r8,r30,8,24,31
-		  and       r11, r4, r10
-		  and       r4, r7, r9
-		  or        r4, r8, r4
-		  and       r12, r3, r10
-		  rlwimi    r31,r30,8,16,23
-		  extsb     r3, r0
-		  rlwinm    r7,r4,8,0,23
-		  and       r6, r6, r9
-		  rlwimi    r12,r31,8,8,23
-		  srawi     r0, r3, 0x1F
-		  rlwimi    r7,r31,8,24,31
-		  and       r4, r3, r10
-		  and       r3, r5, r9
-		  rlwimi    r11,r12,8,0,23
-		  or        r5, r7, r6
-		  lwz       r31, 0x1C(r1)
-		  rlwinm    r5,r5,8,0,23
-		  and       r0, r0, r9
-		  rlwimi    r5,r12,8,24,31
-		  rlwimi    r4,r11,8,0,23
-		  or        r3, r5, r3
-		  lwz       r30, 0x18(r1)
-		  rlwinm    r3,r3,8,0,23
-		  rlwimi    r3,r11,8,24,31
-		  or        r3, r3, r0
-		  lwz       r0, 0x24(r1)
-		  mtlr      r0
-		  addi      r1, r1, 0x20
-		  blr
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lis      r4, lbl_8048DE28@ha
+	stw      r0, 0x24(r1)
+	addi     r4, r4, lbl_8048DE28@l
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	lbz      r5, 0(r3)
+	lbz      r6, 1(r3)
+	addi     r3, r1, 8
+	crclr    6
+	bl       sprintf
+	lbz      r0, 8(r1)
+	li       r9, 0
+	lbz      r3, 9(r1)
+	li       r10, 0xff
+	extsb    r6, r0
+	lbz      r0, 0xa(r1)
+	srawi    r5, r6, 0x1f
+	extsb    r4, r3
+	extsb    r3, r0
+	and      r30, r6, r10
+	and      r0, r5, r9
+	srawi    r7, r4, 0x1f
+	slwi     r8, r0, 8
+	lbz      r0, 0xb(r1)
+	and      r31, r4, r10
+	srawi    r6, r3, 0x1f
+	extsb    r4, r0
+	lbz      r0, 0xc(r1)
+	srawi    r5, r4, 0x1f
+	rlwimi   r8, r30, 8, 0x18, 0x1f
+	and      r11, r4, r10
+	and      r4, r7, r9
+	or       r4, r8, r4
+	and      r12, r3, r10
+	rlwimi   r31, r30, 8, 0x10, 0x17
+	extsb    r3, r0
+	slwi     r7, r4, 8
+	and      r6, r6, r9
+	rlwimi   r12, r31, 8, 8, 0x17
+	srawi    r0, r3, 0x1f
+	rlwimi   r7, r31, 8, 0x18, 0x1f
+	and      r4, r3, r10
+	and      r3, r5, r9
+	rlwimi   r11, r12, 8, 0, 0x17
+	or       r5, r7, r6
+	lwz      r31, 0x1c(r1)
+	slwi     r5, r5, 8
+	and      r0, r0, r9
+	rlwimi   r5, r12, 8, 0x18, 0x1f
+	rlwimi   r4, r11, 8, 0, 0x17
+	or       r3, r5, r3
+	lwz      r30, 0x18(r1)
+	slwi     r3, r3, 8
+	rlwimi   r3, r11, 8, 0x18, 0x1f
+	or       r3, r3, r0
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 		*/
 	}
 
@@ -1357,48 +1559,47 @@ namespace Screen {
 	void TagToHex(unsigned long long, char*)
 	{
 		/*
-		.loc_0x0:
-		  stwu      r1, -0x30(r1)
-		  mflr      r0
-		  stw       r0, 0x34(r1)
-		  stmw      r24, 0x10(r1)
-		  mr        r26, r5
-		  li        r28, 0
-		  mr        r25, r3
-		  mr        r24, r4
-		  mr        r31, r26
-		  mr        r30, r28
-		  li        r27, 0
-		  li        r29, 0xF
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stmw     r24, 0x10(r1)
+	mr       r26, r5
+	li       r28, 0
+	mr       r25, r3
+	mr       r24, r4
+	mr       r31, r26
+	mr       r30, r28
+	li       r27, 0
+	li       r29, 0xf
 
-		.loc_0x30:
-		  subfic    r5, r28, 0x3C
-		  mr        r3, r25
-		  mr        r4, r24
-		  bl        -0x240D44
-		  and       r3, r4, r29
-		  rlwinm    r0,r3,0,16,31
-		  cmplwi    r0, 0x9
-		  addi      r0, r3, 0x57
-		  extsb     r0, r0
-		  bgt-      .loc_0x60
-		  addi      r0, r3, 0x30
-		  extsb     r0, r0
+lbl_80302E48:
+	subfic   r5, r28, 0x3c
+	mr       r3, r25
+	mr       r4, r24
+	bl       __shr2u
+	and      r3, r4, r29
+	clrlwi   r0, r3, 0x10
+	cmplwi   r0, 9
+	addi     r0, r3, 0x57
+	extsb    r0, r0
+	bgt      lbl_80302E78
+	addi     r0, r3, 0x30
+	extsb    r0, r0
 
-		.loc_0x60:
-		  addi      r27, r27, 0x1
-		  stb       r0, 0x0(r31)
-		  cmpwi     r27, 0x10
-		  addi      r28, r28, 0x4
-		  addi      r31, r31, 0x1
-		  blt+      .loc_0x30
-		  li        r0, 0
-		  stb       r0, 0x10(r26)
-		  lmw       r24, 0x10(r1)
-		  lwz       r0, 0x34(r1)
-		  mtlr      r0
-		  addi      r1, r1, 0x30
-		  blr
+lbl_80302E78:
+	addi     r27, r27, 1
+	stb      r0, 0(r31)
+	cmpwi    r27, 0x10
+	addi     r28, r28, 4
+	addi     r31, r31, 1
+	blt      lbl_80302E48
+	li       r0, 0
+	stb      r0, 0x10(r26)
+	lmw      r24, 0x10(r1)
+	lwz      r0, 0x34(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 		*/
 	}
 
@@ -1410,126 +1611,125 @@ namespace Screen {
 	void TagSearch(J2DScreen*, unsigned long long)
 	{
 		/*
-		.loc_0x0:
-		  stwu      r1, -0x430(r1)
-		  mflr      r0
-		  stw       r0, 0x434(r1)
-		  stw       r31, 0x42C(r1)
-		  stw       r30, 0x428(r1)
-		  mr        r30, r6
-		  stw       r29, 0x424(r1)
-		  stw       r28, 0x420(r1)
-		  mr        r28, r5
-		  lwz       r12, 0x0(r3)
-		  lwz       r12, 0x3C(r12)
-		  mtctr     r12
-		  bctrl
-		  mr.       r31, r3
-		  bne-      .loc_0x168
-		  li        r12, 0xFF
-		  rlwinm    r7,r28,8,24,31
-		  rlwinm    r6,r28,16,16,31
-		  rlwinm    r5,r28,24,8,31
-		  rlwinm    r4,r30,8,0,31
-		  rlwinm    r3,r30,16,0,31
-		  rlwinm    r0,r30,24,0,31
-		  li        r29, 0
-		  and       r11, r7, r12
-		  rlwimi    r4,r28,8,0,23
-		  and       r7, r4, r12
-		  and       r10, r6, r12
-		  rlwimi    r3,r28,16,0,15
-		  and       r9, r5, r12
-		  and       r6, r3, r12
-		  rlwimi    r0,r28,24,0,7
-		  and       r5, r0, r12
-		  and       r8, r28, r12
-		  and       r4, r30, r12
-		  stb       r9, 0xA(r1)
-		  li        r0, 0x2
-		  addi      r9, r1, 0x8
-		  stb       r11, 0x8(r1)
-		  li        r3, 0x3F
-		  stb       r10, 0x9(r1)
-		  stb       r8, 0xB(r1)
-		  stb       r7, 0xC(r1)
-		  stb       r6, 0xD(r1)
-		  stb       r5, 0xE(r1)
-		  stb       r4, 0xF(r1)
-		  stb       r29, 0x10(r1)
-		  mtctr     r0
+	stwu     r1, -0x430(r1)
+	mflr     r0
+	stw      r0, 0x434(r1)
+	stw      r31, 0x42c(r1)
+	stw      r30, 0x428(r1)
+	mr       r30, r6
+	stw      r29, 0x424(r1)
+	stw      r28, 0x420(r1)
+	mr       r28, r5
+	lwz      r12, 0(r3)
+	lwz      r12, 0x3c(r12)
+	mtctr    r12
+	bctrl
+	or.      r31, r3, r3
+	bne      lbl_80303014
+	li       r12, 0xff
+	srwi     r7, r28, 0x18
+	srwi     r6, r28, 0x10
+	srwi     r5, r28, 8
+	rotlwi   r4, r30, 8
+	rotlwi   r3, r30, 0x10
+	rotlwi   r0, r30, 0x18
+	li       r29, 0
+	and      r11, r7, r12
+	rlwimi   r4, r28, 8, 0, 0x17
+	and      r7, r4, r12
+	and      r10, r6, r12
+	rlwimi   r3, r28, 0x10, 0, 0xf
+	and      r9, r5, r12
+	and      r6, r3, r12
+	rlwimi   r0, r28, 0x18, 0, 7
+	and      r5, r0, r12
+	and      r8, r28, r12
+	and      r4, r30, r12
+	stb      r9, 0xa(r1)
+	li       r0, 2
+	addi     r9, r1, 8
+	stb      r11, 8(r1)
+	li       r3, 0x3f
+	stb      r10, 9(r1)
+	stb      r8, 0xb(r1)
+	stb      r7, 0xc(r1)
+	stb      r6, 0xd(r1)
+	stb      r5, 0xe(r1)
+	stb      r4, 0xf(r1)
+	stb      r29, 0x10(r1)
+	mtctr    r0
 
-		.loc_0xBC:
-		  lbz       r0, 0x0(r9)
-		  extsb     r0, r0
-		  cmpwi     r0, 0x20
-		  blt-      .loc_0xD4
-		  cmpwi     r0, 0x7E
-		  ble-      .loc_0xD8
+lbl_80302F68:
+	lbz      r0, 0(r9)
+	extsb    r0, r0
+	cmpwi    r0, 0x20
+	blt      lbl_80302F80
+	cmpwi    r0, 0x7e
+	ble      lbl_80302F84
 
-		.loc_0xD4:
-		  stb       r3, 0x0(r9)
+lbl_80302F80:
+	stb      r3, 0(r9)
 
-		.loc_0xD8:
-		  lbz       r0, 0x1(r9)
-		  extsb     r0, r0
-		  cmpwi     r0, 0x20
-		  blt-      .loc_0xF0
-		  cmpwi     r0, 0x7E
-		  ble-      .loc_0xF4
+lbl_80302F84:
+	lbz      r0, 1(r9)
+	extsb    r0, r0
+	cmpwi    r0, 0x20
+	blt      lbl_80302F9C
+	cmpwi    r0, 0x7e
+	ble      lbl_80302FA0
 
-		.loc_0xF0:
-		  stb       r3, 0x1(r9)
+lbl_80302F9C:
+	stb      r3, 1(r9)
 
-		.loc_0xF4:
-		  lbz       r0, 0x2(r9)
-		  extsb     r0, r0
-		  cmpwi     r0, 0x20
-		  blt-      .loc_0x10C
-		  cmpwi     r0, 0x7E
-		  ble-      .loc_0x110
+lbl_80302FA0:
+	lbz      r0, 2(r9)
+	extsb    r0, r0
+	cmpwi    r0, 0x20
+	blt      lbl_80302FB8
+	cmpwi    r0, 0x7e
+	ble      lbl_80302FBC
 
-		.loc_0x10C:
-		  stb       r3, 0x2(r9)
+lbl_80302FB8:
+	stb      r3, 2(r9)
 
-		.loc_0x110:
-		  lbz       r0, 0x3(r9)
-		  extsb     r0, r0
-		  cmpwi     r0, 0x20
-		  blt-      .loc_0x128
-		  cmpwi     r0, 0x7E
-		  ble-      .loc_0x12C
+lbl_80302FBC:
+	lbz      r0, 3(r9)
+	extsb    r0, r0
+	cmpwi    r0, 0x20
+	blt      lbl_80302FD4
+	cmpwi    r0, 0x7e
+	ble      lbl_80302FD8
 
-		.loc_0x128:
-		  stb       r3, 0x3(r9)
+lbl_80302FD4:
+	stb      r3, 3(r9)
 
-		.loc_0x12C:
-		  addi      r9, r9, 0x4
-		  addi      r29, r29, 0x3
-		  bdnz+     .loc_0xBC
-		  lis       r4, 0x8049
-		  addi      r3, r1, 0x14
-		  subi      r4, r4, 0x21CC
-		  addi      r5, r1, 0x8
-		  crclr     6, 0x6
-		  bl        -0x23BBC0
-		  lis       r3, 0x8049
-		  addi      r5, r1, 0x14
-		  subi      r3, r3, 0x2334
-		  li        r4, 0x2B0
-		  crclr     6, 0x6
-		  bl        -0x2D89D0
+lbl_80302FD8:
+	addi     r9, r9, 4
+	addi     r29, r29, 3
+	bdnz     lbl_80302F68
+	lis      r4, lbl_8048DE34@ha
+	addi     r3, r1, 0x14
+	addi     r4, r4, lbl_8048DE34@l
+	addi     r5, r1, 8
+	crclr    6
+	bl       sprintf
+	lis      r3, lbl_8048DCCC@ha
+	addi     r5, r1, 0x14
+	addi     r3, r3, lbl_8048DCCC@l
+	li       r4, 0x2b0
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-		.loc_0x168:
-		  lwz       r0, 0x434(r1)
-		  mr        r3, r31
-		  lwz       r31, 0x42C(r1)
-		  lwz       r30, 0x428(r1)
-		  lwz       r29, 0x424(r1)
-		  lwz       r28, 0x420(r1)
-		  mtlr      r0
-		  addi      r1, r1, 0x430
-		  blr
+lbl_80303014:
+	lwz      r0, 0x434(r1)
+	mr       r3, r31
+	lwz      r31, 0x42c(r1)
+	lwz      r30, 0x428(r1)
+	lwz      r29, 0x424(r1)
+	lwz      r28, 0x420(r1)
+	mtlr     r0
+	addi     r1, r1, 0x430
+	blr
 		*/
 	}
 
@@ -1541,17 +1741,16 @@ namespace Screen {
 	AlphaMgr::AlphaMgr(void)
 	{
 		/*
-		.loc_0x0:
-		  li        r0, 0
-		  lfs       f1, -0xE44(r2)
-		  stw       r0, 0x0(r3)
-		  lfs       f0, -0xE50(r2)
-		  stfs      f1, 0x4(r3)
-		  stfs      f1, 0x8(r3)
-		  stfs      f0, 0xC(r3)
-		  stfs      f1, 0x10(r3)
-		  stfs      f0, 0x14(r3)
-		  blr
+	li       r0, 0
+	lfs      f1, lbl_8051D51C@sda21(r2)
+	stw      r0, 0(r3)
+	lfs      f0, lbl_8051D510@sda21(r2)
+	stfs     f1, 4(r3)
+	stfs     f1, 8(r3)
+	stfs     f0, 0xc(r3)
+	stfs     f1, 0x10(r3)
+	stfs     f0, 0x14(r3)
+	blr
 		*/
 	}
 
@@ -1563,10 +1762,9 @@ namespace Screen {
 	void AlphaMgr::setBlinkArea(float, float)
 	{
 		/*
-		.loc_0x0:
-		  stfs      f1, 0x10(r3)
-		  stfs      f2, 0x14(r3)
-		  blr
+	stfs     f1, 0x10(r3)
+	stfs     f2, 0x14(r3)
+	blr
 		*/
 	}
 
@@ -1578,36 +1776,35 @@ namespace Screen {
 	void AlphaMgr::in(float)
 	{
 		/*
-		.loc_0x0:
-		  lfs       f3, -0xE50(r2)
-		  lfs       f0, 0x4(r3)
-		  fcmpu     cr0, f3, f0
-		  bne-      .loc_0x1C
-		  li        r0, 0
-		  stw       r0, 0x0(r3)
-		  blr
+	lfs      f3, lbl_8051D510@sda21(r2)
+	lfs      f0, 4(r3)
+	fcmpu    cr0, f3, f0
+	bne      lbl_80303088
+	li       r0, 0
+	stw      r0, 0(r3)
+	blr
 
-		.loc_0x1C:
-		  lfs       f0, -0xE44(r2)
-		  fcmpu     cr0, f0, f1
-		  bne-      .loc_0x38
-		  li        r0, 0
-		  stw       r0, 0x0(r3)
-		  stfs      f3, 0x4(r3)
-		  blr
+lbl_80303088:
+	lfs      f0, lbl_8051D51C@sda21(r2)
+	fcmpu    cr0, f0, f1
+	bne      lbl_803030A4
+	li       r0, 0
+	stw      r0, 0(r3)
+	stfs     f3, 4(r3)
+	blr
 
-		.loc_0x38:
-		  stfs      f0, 0x4(r3)
-		  li        r0, 0x1
-		  stw       r0, 0x0(r3)
-		  lwz       r4, -0x6514(r13)
-		  lfs       f2, 0x4(r3)
-		  lfs       f0, 0x54(r4)
-		  fsubs     f2, f3, f2
-		  fdivs     f0, f1, f0
-		  fdivs     f0, f2, f0
-		  stfs      f0, 0x8(r3)
-		  blr
+lbl_803030A4:
+	stfs     f0, 4(r3)
+	li       r0, 1
+	stw      r0, 0(r3)
+	lwz      r4, sys@sda21(r13)
+	lfs      f2, 4(r3)
+	lfs      f0, 0x54(r4)
+	fsubs    f2, f3, f2
+	fdivs    f0, f1, f0
+	fdivs    f0, f2, f0
+	stfs     f0, 8(r3)
+	blr
 		*/
 	}
 
@@ -1619,36 +1816,35 @@ namespace Screen {
 	void AlphaMgr::out(float)
 	{
 		/*
-		.loc_0x0:
-		  lfs       f0, -0xE50(r2)
-		  lfs       f2, -0xE44(r2)
-		  stfs      f0, 0x4(r3)
-		  lfs       f0, 0x4(r3)
-		  fcmpu     cr0, f2, f0
-		  bne-      .loc_0x24
-		  li        r0, 0
-		  stw       r0, 0x0(r3)
-		  blr
+	lfs      f0, lbl_8051D510@sda21(r2)
+	lfs      f2, lbl_8051D51C@sda21(r2)
+	stfs     f0, 4(r3)
+	lfs      f0, 4(r3)
+	fcmpu    cr0, f2, f0
+	bne      lbl_803030F4
+	li       r0, 0
+	stw      r0, 0(r3)
+	blr
 
-		.loc_0x24:
-		  fcmpu     cr0, f2, f1
-		  bne-      .loc_0x3C
-		  li        r0, 0
-		  stw       r0, 0x0(r3)
-		  stfs      f2, 0x4(r3)
-		  blr
+lbl_803030F4:
+	fcmpu    cr0, f2, f1
+	bne      lbl_8030310C
+	li       r0, 0
+	stw      r0, 0(r3)
+	stfs     f2, 4(r3)
+	blr
 
-		.loc_0x3C:
-		  li        r0, 0x2
-		  stw       r0, 0x0(r3)
-		  lwz       r4, -0x6514(r13)
-		  lfs       f2, 0x4(r3)
-		  lfs       f0, 0x54(r4)
-		  fneg      f2, f2
-		  fdivs     f0, f1, f0
-		  fdivs     f0, f2, f0
-		  stfs      f0, 0x8(r3)
-		  blr
+lbl_8030310C:
+	li       r0, 2
+	stw      r0, 0(r3)
+	lwz      r4, sys@sda21(r13)
+	lfs      f2, 4(r3)
+	lfs      f0, 0x54(r4)
+	fneg     f2, f2
+	fdivs    f0, f1, f0
+	fdivs    f0, f2, f0
+	stfs     f0, 8(r3)
+	blr
 		*/
 	}
 
@@ -1660,31 +1856,30 @@ namespace Screen {
 	void AlphaMgr::blink(float)
 	{
 		/*
-		.loc_0x0:
-		  lwz       r0, 0x0(r3)
-		  cmpwi     r0, 0
-		  beq-      .loc_0x14
-		  cmpwi     r0, 0x3
-		  bnelr-
+	lwz      r0, 0(r3)
+	cmpwi    r0, 0
+	beq      lbl_80303148
+	cmpwi    r0, 3
+	bnelr
 
-		.loc_0x14:
-		  li        r0, 0x3
-		  lfs       f0, -0xE44(r2)
-		  stw       r0, 0x0(r3)
-		  lfs       f2, 0x8(r3)
-		  lwz       r4, -0x6514(r13)
-		  fcmpo     cr0, f2, f0
-		  lfs       f0, 0x54(r4)
-		  ble-      .loc_0x40
-		  fdivs     f0, f0, f1
-		  stfs      f0, 0x8(r3)
-		  blr
+lbl_80303148:
+	li       r0, 3
+	lfs      f0, lbl_8051D51C@sda21(r2)
+	stw      r0, 0(r3)
+	lfs      f2, 8(r3)
+	lwz      r4, sys@sda21(r13)
+	fcmpo    cr0, f2, f0
+	lfs      f0, 0x54(r4)
+	ble      lbl_80303174
+	fdivs    f0, f0, f1
+	stfs     f0, 8(r3)
+	blr
 
-		.loc_0x40:
-		  fdivs     f0, f0, f1
-		  fneg      f0, f0
-		  stfs      f0, 0x8(r3)
-		  blr
+lbl_80303174:
+	fdivs    f0, f0, f1
+	fneg     f0, f0
+	stfs     f0, 8(r3)
+	blr
 		*/
 	}
 
@@ -1696,125 +1891,124 @@ namespace Screen {
 	void AlphaMgr::calc(void)
 	{
 		/*
-		.loc_0x0:
-		  stwu      r1, -0x10(r1)
-		  lwz       r0, 0x0(r3)
-		  cmpwi     r0, 0x2
-		  beq-      .loc_0xE4
-		  bge-      .loc_0x24
-		  cmpwi     r0, 0
-		  beq-      .loc_0x170
-		  bge-      .loc_0x34
-		  b         .loc_0x170
+	stwu     r1, -0x10(r1)
+	lwz      r0, 0(r3)
+	cmpwi    r0, 2
+	beq      lbl_80303268
+	bge      lbl_803031A8
+	cmpwi    r0, 0
+	beq      lbl_803032F4
+	bge      lbl_803031B8
+	b        lbl_803032F4
 
-		.loc_0x24:
-		  cmpwi     r0, 0x4
-		  beq-      .loc_0x68
-		  bge-      .loc_0x170
-		  b         .loc_0x118
+lbl_803031A8:
+	cmpwi    r0, 4
+	beq      lbl_803031EC
+	bge      lbl_803032F4
+	b        lbl_8030329C
 
-		.loc_0x34:
-		  lfs       f2, 0x4(r3)
-		  lfs       f1, 0x8(r3)
-		  lfs       f0, -0xE50(r2)
-		  fadds     f1, f2, f1
-		  stfs      f1, 0x4(r3)
-		  lfs       f1, 0x4(r3)
-		  fcmpo     cr0, f1, f0
-		  cror      2, 0x1, 0x2
-		  bne-      .loc_0x170
-		  stfs      f0, 0x4(r3)
-		  li        r0, 0
-		  stw       r0, 0x0(r3)
-		  b         .loc_0x170
+lbl_803031B8:
+	lfs      f2, 4(r3)
+	lfs      f1, 8(r3)
+	lfs      f0, lbl_8051D510@sda21(r2)
+	fadds    f1, f2, f1
+	stfs     f1, 4(r3)
+	lfs      f1, 4(r3)
+	fcmpo    cr0, f1, f0
+	cror     2, 1, 2
+	bne      lbl_803032F4
+	stfs     f0, 4(r3)
+	li       r0, 0
+	stw      r0, 0(r3)
+	b        lbl_803032F4
 
-		.loc_0x68:
-		  lfs       f2, 0x4(r3)
-		  lfs       f1, 0x8(r3)
-		  lfs       f0, -0xE50(r2)
-		  fadds     f1, f2, f1
-		  stfs      f1, 0x4(r3)
-		  lfs       f1, 0x4(r3)
-		  fcmpo     cr0, f1, f0
-		  cror      2, 0x1, 0x2
-		  bne-      .loc_0x170
-		  stfs      f0, 0x4(r3)
-		  lwz       r0, 0x0(r3)
-		  lfs       f2, 0xC(r3)
-		  cmpwi     r0, 0
-		  beq-      .loc_0xA8
-		  cmpwi     r0, 0x3
-		  bne-      .loc_0x170
+lbl_803031EC:
+	lfs      f2, 4(r3)
+	lfs      f1, 8(r3)
+	lfs      f0, lbl_8051D510@sda21(r2)
+	fadds    f1, f2, f1
+	stfs     f1, 4(r3)
+	lfs      f1, 4(r3)
+	fcmpo    cr0, f1, f0
+	cror     2, 1, 2
+	bne      lbl_803032F4
+	stfs     f0, 4(r3)
+	lwz      r0, 0(r3)
+	lfs      f2, 0xc(r3)
+	cmpwi    r0, 0
+	beq      lbl_8030322C
+	cmpwi    r0, 3
+	bne      lbl_803032F4
 
-		.loc_0xA8:
-		  li        r0, 0x3
-		  lfs       f0, -0xE44(r2)
-		  stw       r0, 0x0(r3)
-		  lfs       f1, 0x8(r3)
-		  lwz       r4, -0x6514(r13)
-		  fcmpo     cr0, f1, f0
-		  lfs       f0, 0x54(r4)
-		  ble-      .loc_0xD4
-		  fdivs     f0, f0, f2
-		  stfs      f0, 0x8(r3)
-		  b         .loc_0x170
+lbl_8030322C:
+	li       r0, 3
+	lfs      f0, lbl_8051D51C@sda21(r2)
+	stw      r0, 0(r3)
+	lfs      f1, 8(r3)
+	lwz      r4, sys@sda21(r13)
+	fcmpo    cr0, f1, f0
+	lfs      f0, 0x54(r4)
+	ble      lbl_80303258
+	fdivs    f0, f0, f2
+	stfs     f0, 8(r3)
+	b        lbl_803032F4
 
-		.loc_0xD4:
-		  fdivs     f0, f0, f2
-		  fneg      f0, f0
-		  stfs      f0, 0x8(r3)
-		  b         .loc_0x170
+lbl_80303258:
+	fdivs    f0, f0, f2
+	fneg     f0, f0
+	stfs     f0, 8(r3)
+	b        lbl_803032F4
 
-		.loc_0xE4:
-		  lfs       f2, 0x4(r3)
-		  lfs       f1, 0x8(r3)
-		  lfs       f0, -0xE44(r2)
-		  fadds     f1, f2, f1
-		  stfs      f1, 0x4(r3)
-		  lfs       f1, 0x4(r3)
-		  fcmpo     cr0, f1, f0
-		  cror      2, 0, 0x2
-		  bne-      .loc_0x170
-		  stfs      f0, 0x4(r3)
-		  li        r0, 0
-		  stw       r0, 0x0(r3)
-		  b         .loc_0x170
+lbl_80303268:
+	lfs      f2, 4(r3)
+	lfs      f1, 8(r3)
+	lfs      f0, lbl_8051D51C@sda21(r2)
+	fadds    f1, f2, f1
+	stfs     f1, 4(r3)
+	lfs      f1, 4(r3)
+	fcmpo    cr0, f1, f0
+	cror     2, 0, 2
+	bne      lbl_803032F4
+	stfs     f0, 4(r3)
+	li       r0, 0
+	stw      r0, 0(r3)
+	b        lbl_803032F4
 
-		.loc_0x118:
-		  lfs       f1, 0x4(r3)
-		  lfs       f0, 0x8(r3)
-		  fadds     f0, f1, f0
-		  stfs      f0, 0x4(r3)
-		  lfs       f1, 0x4(r3)
-		  lfs       f0, 0x14(r3)
-		  fcmpo     cr0, f1, f0
-		  cror      2, 0x1, 0x2
-		  bne-      .loc_0x150
-		  stfs      f0, 0x4(r3)
-		  lfs       f0, 0x8(r3)
-		  fneg      f0, f0
-		  stfs      f0, 0x8(r3)
-		  b         .loc_0x170
+lbl_8030329C:
+	lfs      f1, 4(r3)
+	lfs      f0, 8(r3)
+	fadds    f0, f1, f0
+	stfs     f0, 4(r3)
+	lfs      f1, 4(r3)
+	lfs      f0, 0x14(r3)
+	fcmpo    cr0, f1, f0
+	cror     2, 1, 2
+	bne      lbl_803032D4
+	stfs     f0, 4(r3)
+	lfs      f0, 8(r3)
+	fneg     f0, f0
+	stfs     f0, 8(r3)
+	b        lbl_803032F4
 
-		.loc_0x150:
-		  lfs       f0, 0x10(r3)
-		  fcmpo     cr0, f1, f0
-		  cror      2, 0, 0x2
-		  bne-      .loc_0x170
-		  stfs      f0, 0x4(r3)
-		  lfs       f0, 0x8(r3)
-		  fneg      f0, f0
-		  stfs      f0, 0x8(r3)
+lbl_803032D4:
+	lfs      f0, 0x10(r3)
+	fcmpo    cr0, f1, f0
+	cror     2, 0, 2
+	bne      lbl_803032F4
+	stfs     f0, 4(r3)
+	lfs      f0, 8(r3)
+	fneg     f0, f0
+	stfs     f0, 8(r3)
 
-		.loc_0x170:
-		  lfs       f1, -0xE08(r2)
-		  lfs       f0, 0x4(r3)
-		  fmuls     f0, f1, f0
-		  fctiwz    f0, f0
-		  stfd      f0, 0x8(r1)
-		  lwz       r3, 0xC(r1)
-		  addi      r1, r1, 0x10
-		  blr
+lbl_803032F4:
+	lfs      f1, lbl_8051D558@sda21(r2)
+	lfs      f0, 4(r3)
+	fmuls    f0, f1, f0
+	fctiwz   f0, f0
+	stfd     f0, 8(r1)
+	lwz      r3, 0xc(r1)
+	addi     r1, r1, 0x10
+	blr
 		*/
 	}
 
@@ -1826,152 +2020,149 @@ namespace Screen {
 	void setAlphaScreen(J2DPane*)
 	{
 		/*
-		.loc_0x0:
-		  stwu      r1, -0x30(r1)
-		  mflr      r0
-		  li        r4, 0x1
-		  li        r5, 0
-		  stw       r0, 0x34(r1)
-		  stmw      r25, 0x14(r1)
-		  mr        r25, r3
-		  bl        -0x2CA584
-		  lwz       r31, 0xDC(r25)
-		  cmplwi    r31, 0
-		  beq-      .loc_0x1B8
-		  subi      r31, r31, 0xC
-		  b         .loc_0x1B8
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	li       r4, 1
+	li       r5, 0
+	stw      r0, 0x34(r1)
+	stmw     r25, 0x14(r1)
+	mr       r25, r3
+	bl       setInfluencedAlpha__7J2DPaneFbb
+	lwz      r31, 0xdc(r25)
+	cmplwi   r31, 0
+	beq      lbl_803034CC
+	addi     r31, r31, -12
+	b        lbl_803034CC
 
-		.loc_0x34:
-		  lwz       r28, 0xC(r31)
-		  li        r4, 0x1
-		  li        r5, 0
-		  mr        r3, r28
-		  bl        -0x2CA5AC
-		  lwz       r30, 0xDC(r28)
-		  cmplwi    r30, 0
-		  beq-      .loc_0x1A0
-		  subi      r30, r30, 0xC
-		  b         .loc_0x1A0
+lbl_80303348:
+	lwz      r28, 0xc(r31)
+	li       r4, 1
+	li       r5, 0
+	mr       r3, r28
+	bl       setInfluencedAlpha__7J2DPaneFbb
+	lwz      r30, 0xdc(r28)
+	cmplwi   r30, 0
+	beq      lbl_803034B4
+	addi     r30, r30, -12
+	b        lbl_803034B4
 
-		.loc_0x5C:
-		  lwz       r28, 0xC(r30)
-		  li        r4, 0x1
-		  li        r5, 0
-		  mr        r3, r28
-		  bl        -0x2CA5D4
-		  lwz       r29, 0xDC(r28)
-		  cmplwi    r29, 0
-		  beq-      .loc_0x188
-		  subi      r29, r29, 0xC
-		  b         .loc_0x188
+lbl_80303370:
+	lwz      r28, 0xc(r30)
+	li       r4, 1
+	li       r5, 0
+	mr       r3, r28
+	bl       setInfluencedAlpha__7J2DPaneFbb
+	lwz      r29, 0xdc(r28)
+	cmplwi   r29, 0
+	beq      lbl_8030349C
+	addi     r29, r29, -12
+	b        lbl_8030349C
 
-		.loc_0x84:
-		  lwz       r28, 0xC(r29)
-		  li        r4, 0x1
-		  li        r5, 0
-		  mr        r3, r28
-		  bl        -0x2CA5FC
-		  addi      r3, r28, 0xDC
-		  bl        -0x2DF790
-		  cmplwi    r3, 0
-		  beq-      .loc_0xAC
-		  subi      r3, r3, 0xC
+lbl_80303398:
+	lwz      r28, 0xc(r29)
+	li       r4, 1
+	li       r5, 0
+	mr       r3, r28
+	bl       setInfluencedAlpha__7J2DPaneFbb
+	addi     r3, r28, 0xdc
+	bl       getFirstLink__10JSUPtrListCFv
+	cmplwi   r3, 0
+	beq      lbl_803033C0
+	addi     r3, r3, -12
 
-		.loc_0xAC:
-		  mr        r26, r3
-		  b         .loc_0x170
+lbl_803033C0:
+	mr       r26, r3
+	b        lbl_80303484
 
-		.loc_0xB4:
-		  lwz       r28, 0xC(r26)
-		  li        r4, 0x1
-		  li        r5, 0
-		  mr        r3, r28
-		  bl        -0x2CA62C
-		  addi      r27, r28, 0xDC
-		  mr        r3, r27
-		  bl        -0x2CAABC
-		  mr        r25, r3
-		  b         .loc_0x150
+lbl_803033C8:
+	lwz      r28, 0xc(r26)
+	li       r4, 1
+	li       r5, 0
+	mr       r3, r28
+	bl       setInfluencedAlpha__7J2DPaneFbb
+	addi     r27, r28, 0xdc
+	mr       r3, r27
+	bl       "getFirstChild__17JSUTree<7J2DPane>CFv"
+	mr       r25, r3
+	b        lbl_80303464
 
-		.loc_0xDC:
-		  mr        r3, r25
-		  bl        -0x2CAAB8
-		  li        r4, 0x1
-		  mr        r28, r3
-		  li        r5, 0
-		  bl        -0x2CA658
-		  mr        r3, r28
-		  bl        0xE8
-		  mr        r28, r3
-		  bl        -0x2CAAEC
-		  mr        r4, r3
-		  addi      r3, r1, 0x8
-		  bl        -0x2CAB0C
-		  b         .loc_0x128
+lbl_803033F0:
+	mr       r3, r25
+	bl       "getObject__17JSUTree<7J2DPane>CFv"
+	li       r4, 1
+	mr       r28, r3
+	li       r5, 0
+	bl       setInfluencedAlpha__7J2DPaneFbb
+	mr       r3, r28
+	bl       getPaneTree__7J2DPaneFv
+	mr       r28, r3
+	bl       "getFirstChild__17JSUTree<7J2DPane>CFv"
+	mr       r4, r3
+	addi     r3, r1, 8
+	bl       "__ct__25JSUTreeIterator<7J2DPane>FP17JSUTree<7J2DPane>"
+	b        lbl_8030343C
 
-		.loc_0x114:
-		  addi      r3, r1, 0x8
-		  bl        .loc_0x1D4
-		  bl        .loc_0x0
-		  addi      r3, r1, 0x8
-		  bl        -0x2CAB40
+lbl_80303428:
+	addi     r3, r1, 8
+	bl       "getObject__25JSUTreeIterator<7J2DPane>CFv"
+	bl       setAlphaScreen__Q22og6ScreenFP7J2DPane
+	addi     r3, r1, 8
+	bl       "__pp__25JSUTreeIterator<7J2DPane>Fv"
 
-		.loc_0x128:
-		  mr        r3, r28
-		  bl        -0x2CAB50
-		  mr        r4, r3
-		  addi      r3, r1, 0x8
-		  bl        -0x2CAB74
-		  rlwinm.   r0,r3,0,24,31
-		  bne+      .loc_0x114
-		  mr        r3, r25
-		  bl        -0x2CAB98
-		  mr        r25, r3
+lbl_8030343C:
+	mr       r3, r28
+	bl       "getEndChild__17JSUTree<7J2DPane>CFv"
+	mr       r4, r3
+	addi     r3, r1, 8
+	bl       "__ne__25JSUTreeIterator<7J2DPane>CFPC17JSUTree<7J2DPane>"
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_80303428
+	mr       r3, r25
+	bl       "getNextChild__17JSUTree<7J2DPane>CFv"
+	mr       r25, r3
 
-		.loc_0x150:
-		  mr        r3, r27
-		  bl        -0x2CAB78
-		  cmplw     r25, r3
-		  bne+      .loc_0xDC
-		  lwz       r26, 0x18(r26)
-		  cmplwi    r26, 0
-		  beq-      .loc_0x170
-		  subi      r26, r26, 0xC
+lbl_80303464:
+	mr       r3, r27
+	bl       "getEndChild__17JSUTree<7J2DPane>CFv"
+	cmplw    r25, r3
+	bne      lbl_803033F0
+	lwz      r26, 0x18(r26)
+	cmplwi   r26, 0
+	beq      lbl_80303484
+	addi     r26, r26, -12
 
-		.loc_0x170:
-		  cmplwi    r26, 0
-		  bne+      .loc_0xB4
-		  lwz       r29, 0x18(r29)
-		  cmplwi    r29, 0
-		  beq-      .loc_0x188
-		  subi      r29, r29, 0xC
+lbl_80303484:
+	cmplwi   r26, 0
+	bne      lbl_803033C8
+	lwz      r29, 0x18(r29)
+	cmplwi   r29, 0
+	beq      lbl_8030349C
+	addi     r29, r29, -12
 
-		.loc_0x188:
-		  cmplwi    r29, 0
-		  bne+      .loc_0x84
-		  lwz       r30, 0x18(r30)
-		  cmplwi    r30, 0
-		  beq-      .loc_0x1A0
-		  subi      r30, r30, 0xC
+lbl_8030349C:
+	cmplwi   r29, 0
+	bne      lbl_80303398
+	lwz      r30, 0x18(r30)
+	cmplwi   r30, 0
+	beq      lbl_803034B4
+	addi     r30, r30, -12
 
-		.loc_0x1A0:
-		  cmplwi    r30, 0
-		  bne+      .loc_0x5C
-		  lwz       r31, 0x18(r31)
-		  cmplwi    r31, 0
-		  beq-      .loc_0x1B8
-		  subi      r31, r31, 0xC
+lbl_803034B4:
+	cmplwi   r30, 0
+	bne      lbl_80303370
+	lwz      r31, 0x18(r31)
+	cmplwi   r31, 0
+	beq      lbl_803034CC
+	addi     r31, r31, -12
 
-		.loc_0x1B8:
-		  cmplwi    r31, 0
-		  bne+      .loc_0x34
-		  lmw       r25, 0x14(r1)
-		  lwz       r0, 0x34(r1)
-		  mtlr      r0
-		  addi      r1, r1, 0x30
-		  blr
-
-		.loc_0x1D4:
+lbl_803034CC:
+	cmplwi   r31, 0
+	bne      lbl_80303348
+	lmw      r25, 0x14(r1)
+	lwz      r0, 0x34(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 		*/
 	}
 
@@ -1987,10 +2178,9 @@ namespace Screen {
 void JSUTreeIterator<J2DPane>::getObject() const
 {
 	/*
-	.loc_0x0:
-	  lwz       r3, 0x0(r3)
-	  lwz       r3, 0xC(r3)
-	  blr
+	lwz      r3, 0(r3)
+	lwz      r3, 0xc(r3)
+	blr
 	*/
 }
 
@@ -2002,9 +2192,8 @@ void JSUTreeIterator<J2DPane>::getObject() const
 void J2DPane::getPaneTree()
 {
 	/*
-	.loc_0x0:
-	  addi      r3, r3, 0xDC
-	  blr
+	addi     r3, r3, 0xdc
+	blr
 	*/
 }
 
@@ -2046,11 +2235,10 @@ void J2DPane::getTranslateX() const
 void J2DPane::getTagName() const
 {
 	/*
-	.loc_0x0:
-	  mr        r4, r3
-	  lwz       r3, 0x10(r3)
-	  lwz       r4, 0x14(r4)
-	  blr
+	mr       r4, r3
+	lwz      r3, 0x10(r3)
+	lwz      r4, 0x14(r4)
+	blr
 	*/
 }
 
@@ -2076,50 +2264,49 @@ namespace Screen {
 	P2DScreen::Mgr_tuning::~Mgr_tuning(void)
 	{
 		/*
-		.loc_0x0:
-		  stwu      r1, -0x10(r1)
-		  mflr      r0
-		  stw       r0, 0x14(r1)
-		  stw       r31, 0xC(r1)
-		  mr        r31, r4
-		  stw       r30, 0x8(r1)
-		  mr.       r30, r3
-		  beq-      .loc_0x78
-		  lis       r3, 0x804F
-		  subi      r0, r3, 0x3B00
-		  stw       r0, 0x0(r30)
-		  beq-      .loc_0x68
-		  lis       r3, 0x804F
-		  addic.    r0, r30, 0x118
-		  subi      r0, r3, 0x3A60
-		  stw       r0, 0x0(r30)
-		  beq-      .loc_0x5C
-		  lis       r4, 0x804D
-		  addi      r3, r30, 0x118
-		  addi      r0, r4, 0x7B0C
-		  li        r4, 0
-		  stw       r0, 0x118(r30)
-		  bl        0x10E024
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_80303584
+	lis      r3, __vt__Q29P2DScreen10Mgr_tuning@ha
+	addi     r0, r3, __vt__Q29P2DScreen10Mgr_tuning@l
+	stw      r0, 0(r30)
+	beq      lbl_80303574
+	lis      r3, __vt__Q29P2DScreen3Mgr@ha
+	addic.   r0, r30, 0x118
+	addi     r0, r3, __vt__Q29P2DScreen3Mgr@l
+	stw      r0, 0(r30)
+	beq      lbl_80303568
+	lis      r4, __vt__Q29P2DScreen4Node@ha
+	addi     r3, r30, 0x118
+	addi     r0, r4, __vt__Q29P2DScreen4Node@l
+	li       r4, 0
+	stw      r0, 0x118(r30)
+	bl       __dt__5CNodeFv
 
-		.loc_0x5C:
-		  mr        r3, r30
-		  li        r4, 0
-		  bl        -0x2C4054
+lbl_80303568:
+	mr       r3, r30
+	li       r4, 0
+	bl       __dt__9J2DScreenFv
 
-		.loc_0x68:
-		  extsh.    r0, r31
-		  ble-      .loc_0x78
-		  mr        r3, r30
-		  bl        -0x2DF4CC
+lbl_80303574:
+	extsh.   r0, r31
+	ble      lbl_80303584
+	mr       r3, r30
+	bl       __dl__FPv
 
-		.loc_0x78:
-		  lwz       r0, 0x14(r1)
-		  mr        r3, r30
-		  lwz       r31, 0xC(r1)
-		  lwz       r30, 0x8(r1)
-		  mtlr      r0
-		  addi      r1, r1, 0x10
-		  blr
+lbl_80303584:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 		*/
 	}
 
@@ -2196,33 +2383,32 @@ void P2DScreen::Node::doInit(void) { }
 P2DScreen::Node::~Node(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x44
-	  lis       r5, 0x804D
-	  li        r4, 0
-	  addi      r0, r5, 0x7B0C
-	  stw       r0, 0x0(r30)
-	  bl        0x10DFAC
-	  extsh.    r0, r31
-	  ble-      .loc_0x44
-	  mr        r3, r30
-	  bl        -0x2DF538
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_803035F0
+	lis      r5, __vt__Q29P2DScreen4Node@ha
+	li       r4, 0
+	addi     r0, r5, __vt__Q29P2DScreen4Node@l
+	stw      r0, 0(r30)
+	bl       __dt__5CNodeFv
+	extsh.   r0, r31
+	ble      lbl_803035F0
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x44:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803035F0:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 

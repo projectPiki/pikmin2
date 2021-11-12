@@ -1,6 +1,34 @@
 #include "types.h"
 
 /*
+    Generated from dpostproc
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__10JKRArchive
+    __vt__10JKRArchive:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__10JKRArchiveFv
+        .4byte unmount__13JKRFileLoaderFv
+        .4byte becomeCurrent__10JKRArchiveFPCc
+        .4byte getResource__10JKRArchiveFPCc
+        .4byte getResource__10JKRArchiveFUlPCc
+        .4byte readResource__10JKRArchiveFPvUlPCc
+        .4byte readResource__10JKRArchiveFPvUlUlPCc
+        .4byte removeResourceAll__10JKRArchiveFv
+        .4byte removeResource__10JKRArchiveFPv
+        .4byte detachResource__10JKRArchiveFPv
+        .4byte getResSize__10JKRArchiveCFPCv
+        .4byte countFile__10JKRArchiveCFPCc
+        .4byte getFirstFile__10JKRArchiveCFPCc
+        .4byte getExpandedResSize__10JKRArchiveCFPCv
+        .4byte 0
+        .4byte 0
+        .4byte setExpandSize__10JKRArchiveFPQ210JKRArchive12SDIFileEntryUl
+        .4byte getExpandSize__10JKRArchiveCFPQ210JKRArchive12SDIFileEntry
+*/
+
+/*
  * --INFO--
  * Address:	8001B130
  * Size:	000064
@@ -50,79 +78,78 @@ void JKRArchive::mount(const char*, JKRArchive::EMountMode, JKRHeap*,
 void JKRArchive::mount(void*, JKRHeap*, JKRArchive::EMountDirection)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  cmplwi    r4, 0
-	  mr        r7, r4
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bne-      .loc_0x24
-	  lwz       r7, -0x77D4(r13)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	cmplwi   r4, 0
+	mr       r7, r4
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bne      lbl_8001B1B8
+	lwz      r7, sCurrentHeap__7JKRHeap@sda21(r13)
 
-	.loc_0x24:
-	  lis       r3, 0x8050
-	  lwz       r8, 0x6E24(r3)
-	  b         .loc_0x70
+lbl_8001B1B8:
+	lis      r3, sVolumeList__13JKRFileLoader@ha
+	lwz      r8, sVolumeList__13JKRFileLoader@l(r3)
+	b        lbl_8001B204
 
-	.loc_0x30:
-	  lwz       r3, 0x0(r8)
-	  lwz       r6, 0x2C(r3)
-	  subis     r0, r6, 0x5241
-	  cmplwi    r0, 0x5243
-	  bne-      .loc_0x6C
-	  lwz       r0, 0x40(r3)
-	  cmpw      r0, r31
-	  bne-      .loc_0x6C
-	  lwz       r0, 0x38(r3)
-	  cmplw     r0, r7
-	  bne-      .loc_0x6C
-	  lwz       r6, 0x34(r3)
-	  addi      r0, r6, 0x1
-	  stw       r0, 0x34(r3)
-	  b         .loc_0x7C
+lbl_8001B1C4:
+	lwz      r3, 0(r8)
+	lwz      r6, 0x2c(r3)
+	addis    r0, r6, 0xadbf
+	cmplwi   r0, 0x5243
+	bne      lbl_8001B200
+	lwz      r0, 0x40(r3)
+	cmpw     r0, r31
+	bne      lbl_8001B200
+	lwz      r0, 0x38(r3)
+	cmplw    r0, r7
+	bne      lbl_8001B200
+	lwz      r6, 0x34(r3)
+	addi     r0, r6, 1
+	stw      r0, 0x34(r3)
+	b        lbl_8001B210
 
-	.loc_0x6C:
-	  lwz       r8, 0xC(r8)
+lbl_8001B200:
+	lwz      r8, 0xc(r8)
 
-	.loc_0x70:
-	  cmplwi    r8, 0
-	  bne+      .loc_0x30
-	  li        r3, 0
+lbl_8001B204:
+	cmplwi   r8, 0
+	bne      lbl_8001B1C4
+	li       r3, 0
 
-	.loc_0x7C:
-	  cmplwi    r3, 0
-	  beq-      .loc_0x88
-	  b         .loc_0xC4
+lbl_8001B210:
+	cmplwi   r3, 0
+	beq      lbl_8001B21C
+	b        lbl_8001B258
 
-	.loc_0x88:
-	  cmpwi     r5, 0x1
-	  li        r3, 0x70
-	  li        r5, -0x4
-	  bne-      .loc_0x9C
-	  li        r5, 0x4
+lbl_8001B21C:
+	cmpwi    r5, 1
+	li       r3, 0x70
+	li       r5, -4
+	bne      lbl_8001B230
+	li       r5, 4
 
-	.loc_0x9C:
-	  bl        0x8D10
-	  mr.       r0, r3
-	  beq-      .loc_0xC0
-	  lis       r5, 0x1
-	  mr        r4, r31
-	  subi      r5, r5, 0x1
-	  li        r6, 0
-	  bl        0x94B4
-	  mr        r0, r3
+lbl_8001B230:
+	bl       __nw__FUlP7JKRHeapi
+	or.      r0, r3, r3
+	beq      lbl_8001B254
+	lis      r5, 0x0000FFFF@ha
+	mr       r4, r31
+	addi     r5, r5, 0x0000FFFF@l
+	li       r6, 0
+	bl       __ct__13JKRMemArchiveFPvUl15JKRMemBreakFlag
+	mr       r0, r3
 
-	.loc_0xC0:
-	  mr        r3, r0
+lbl_8001B254:
+	mr       r3, r0
 
-	.loc_0xC4:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8001B258:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -305,49 +332,48 @@ void JKRArchive::mount(long, JKRArchive::EMountMode, JKRHeap*,
 void JKRArchive::becomeCurrent(const char*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lbz       r0, 0x0(r4)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  cmpwi     r0, 0x2F
-	  bne-      .loc_0x40
-	  lbzu      r0, 0x1(r4)
-	  extsb.    r0, r0
-	  bne-      .loc_0x30
-	  li        r4, 0
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lbz      r0, 0(r4)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	cmpwi    r0, 0x2f
+	bne      lbl_8001B484
+	lbzu     r0, 1(r4)
+	extsb.   r0, r0
+	bne      lbl_8001B474
+	li       r4, 0
 
-	.loc_0x30:
-	  mr        r3, r31
-	  li        r5, 0
-	  bl        -0xE6C
-	  b         .loc_0x48
+lbl_8001B474:
+	mr       r3, r31
+	li       r5, 0
+	bl       findDirectory__10JKRArchiveCFPCcUl
+	b        lbl_8001B48C
 
-	.loc_0x40:
-	  lwz       r5, -0x7890(r13)
-	  bl        -0xE78
+lbl_8001B484:
+	lwz      r5, sCurrentDirID__10JKRArchive@sda21(r13)
+	bl       findDirectory__10JKRArchiveCFPCcUl
 
-	.loc_0x48:
-	  neg       r0, r3
-	  or        r0, r0, r3
-	  rlwinm.   r4,r0,1,31,31
-	  beq-      .loc_0x70
-	  stw       r31, -0x77E0(r13)
-	  lwz       r0, 0x48(r31)
-	  sub       r0, r3, r0
-	  srawi     r0, r0, 0x4
-	  addze     r0, r0
-	  stw       r0, -0x7890(r13)
+lbl_8001B48C:
+	neg      r0, r3
+	or       r0, r0, r3
+	rlwinm.  r4, r0, 1, 0x1f, 0x1f
+	beq      lbl_8001B4B4
+	stw      r31, sCurrentVolume__13JKRFileLoader@sda21(r13)
+	lwz      r0, 0x48(r31)
+	subf     r0, r0, r3
+	srawi    r0, r0, 4
+	addze    r0, r0
+	stw      r0, sCurrentDirID__10JKRArchive@sda21(r13)
 
-	.loc_0x70:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r4
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8001B4B4:
+	lwz      r0, 0x14(r1)
+	mr       r3, r4
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -359,41 +385,40 @@ void JKRArchive::becomeCurrent(const char*)
 void JKRArchive::getDirEntry(JKRArchive::SDirEntry*, unsigned long) const
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  mr        r4, r5
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  bl        -0x738
-	  cmplwi    r3, 0
-	  bne-      .loc_0x34
-	  li        r3, 0
-	  b         .loc_0x60
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	mr       r4, r5
+	stw      r30, 8(r1)
+	mr       r30, r3
+	bl       findIdxResource__10JKRArchiveCFUl
+	cmplwi   r3, 0
+	bne      lbl_8001B500
+	li       r3, 0
+	b        lbl_8001B52C
 
-	.loc_0x34:
-	  lwz       r0, 0x4(r3)
-	  lwz       r4, 0x54(r30)
-	  rlwinm    r0,r0,8,24,31
-	  stb       r0, 0x0(r31)
-	  lhz       r0, 0x0(r3)
-	  sth       r0, 0x2(r31)
-	  lwz       r0, 0x4(r3)
-	  li        r3, 0x1
-	  rlwinm    r0,r0,0,8,31
-	  add       r0, r4, r0
-	  stw       r0, 0x4(r31)
+lbl_8001B500:
+	lwz      r0, 4(r3)
+	lwz      r4, 0x54(r30)
+	srwi     r0, r0, 0x18
+	stb      r0, 0(r31)
+	lhz      r0, 0(r3)
+	sth      r0, 2(r31)
+	lwz      r0, 4(r3)
+	li       r3, 1
+	clrlwi   r0, r0, 8
+	add      r0, r4, r0
+	stw      r0, 4(r31)
 
-	.loc_0x60:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8001B52C:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -405,65 +430,64 @@ void JKRArchive::getDirEntry(JKRArchive::SDirEntry*, unsigned long) const
 void JKRArchive::getGlbResource(unsigned long, const char*, JKRArchive*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  cmplwi    r5, 0
-	  li        r6, 0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  mr        r30, r4
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  beq-      .loc_0x4C
-	  mr        r3, r5
-	  mr        r4, r29
-	  lwz       r12, 0x0(r5)
-	  mr        r5, r30
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x9C
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	cmplwi   r5, 0
+	li       r6, 0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	mr       r30, r4
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	beq      lbl_8001B590
+	mr       r3, r5
+	mr       r4, r29
+	lwz      r12, 0(r5)
+	mr       r5, r30
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_8001B5E0
 
-	.loc_0x4C:
-	  lis       r3, 0x8050
-	  lwz       r31, 0x6E24(r3)
-	  b         .loc_0x90
+lbl_8001B590:
+	lis      r3, sVolumeList__13JKRFileLoader@ha
+	lwz      r31, sVolumeList__13JKRFileLoader@l(r3)
+	b        lbl_8001B5D4
 
-	.loc_0x58:
-	  lwz       r3, 0x0(r31)
-	  lwz       r4, 0x2C(r3)
-	  subis     r0, r4, 0x5241
-	  cmplwi    r0, 0x5243
-	  bne-      .loc_0x8C
-	  lwz       r12, 0x0(r3)
-	  mr        r4, r29
-	  mr        r5, r30
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  mr.       r6, r3
-	  bne-      .loc_0x98
+lbl_8001B59C:
+	lwz      r3, 0(r31)
+	lwz      r4, 0x2c(r3)
+	addis    r0, r4, 0xadbf
+	cmplwi   r0, 0x5243
+	bne      lbl_8001B5D0
+	lwz      r12, 0(r3)
+	mr       r4, r29
+	mr       r5, r30
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	or.      r6, r3, r3
+	bne      lbl_8001B5DC
 
-	.loc_0x8C:
-	  lwz       r31, 0xC(r31)
+lbl_8001B5D0:
+	lwz      r31, 0xc(r31)
 
-	.loc_0x90:
-	  cmplwi    r31, 0
-	  bne+      .loc_0x58
+lbl_8001B5D4:
+	cmplwi   r31, 0
+	bne      lbl_8001B59C
 
-	.loc_0x98:
-	  mr        r3, r6
+lbl_8001B5DC:
+	mr       r3, r6
 
-	.loc_0x9C:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8001B5E0:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -475,46 +499,45 @@ void JKRArchive::getGlbResource(unsigned long, const char*, JKRArchive*)
 void JKRArchive::getResource(const char*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lbz       r0, 0x0(r4)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  cmpwi     r0, 0x2F
-	  bne-      .loc_0x34
-	  addi      r4, r4, 0x1
-	  li        r5, 0
-	  bl        -0xBB0
-	  mr        r4, r3
-	  b         .loc_0x40
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lbz      r0, 0(r4)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	cmpwi    r0, 0x2f
+	bne      lbl_8001B630
+	addi     r4, r4, 1
+	li       r5, 0
+	bl       findFsResource__10JKRArchiveCFPCcUl
+	mr       r4, r3
+	b        lbl_8001B63C
 
-	.loc_0x34:
-	  lwz       r5, -0x7890(r13)
-	  bl        -0xBC0
-	  mr        r4, r3
+lbl_8001B630:
+	lwz      r5, sCurrentDirID__10JKRArchive@sda21(r13)
+	bl       findFsResource__10JKRArchiveCFPCcUl
+	mr       r4, r3
 
-	.loc_0x40:
-	  cmplwi    r4, 0
-	  beq-      .loc_0x64
-	  lwz       r12, 0x0(r31)
-	  mr        r3, r31
-	  li        r5, 0
-	  lwz       r12, 0x40(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x68
+lbl_8001B63C:
+	cmplwi   r4, 0
+	beq      lbl_8001B660
+	lwz      r12, 0(r31)
+	mr       r3, r31
+	li       r5, 0
+	lwz      r12, 0x40(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_8001B664
 
-	.loc_0x64:
-	  li        r3, 0
+lbl_8001B660:
+	li       r3, 0
 
-	.loc_0x68:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8001B664:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -526,49 +549,48 @@ void JKRArchive::getResource(const char*)
 void JKRArchive::getResource(unsigned long, const char*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  cmplwi    r4, 0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  beq-      .loc_0x28
-	  subis     r0, r4, 0x3F3F
-	  cmplwi    r0, 0x3F3F
-	  bne-      .loc_0x3C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	cmplwi   r4, 0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	beq      lbl_8001B6A0
+	addis    r0, r4, 0xc0c1
+	cmplwi   r0, 0x3f3f
+	bne      lbl_8001B6B4
 
-	.loc_0x28:
-	  mr        r3, r31
-	  mr        r4, r5
-	  bl        -0x8CC
-	  mr        r4, r3
-	  b         .loc_0x44
+lbl_8001B6A0:
+	mr       r3, r31
+	mr       r4, r5
+	bl       findNameResource__10JKRArchiveCFPCc
+	mr       r4, r3
+	b        lbl_8001B6BC
 
-	.loc_0x3C:
-	  bl        -0xD34
-	  mr        r4, r3
+lbl_8001B6B4:
+	bl       findTypeResource__10JKRArchiveCFUlPCc
+	mr       r4, r3
 
-	.loc_0x44:
-	  cmplwi    r4, 0
-	  beq-      .loc_0x68
-	  lwz       r12, 0x0(r31)
-	  mr        r3, r31
-	  li        r5, 0
-	  lwz       r12, 0x40(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x6C
+lbl_8001B6BC:
+	cmplwi   r4, 0
+	beq      lbl_8001B6E0
+	lwz      r12, 0(r31)
+	mr       r3, r31
+	li       r5, 0
+	lwz      r12, 0x40(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_8001B6E4
 
-	.loc_0x68:
-	  li        r3, 0
+lbl_8001B6E0:
+	li       r3, 0
 
-	.loc_0x6C:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8001B6E4:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -580,32 +602,31 @@ void JKRArchive::getResource(unsigned long, const char*)
 void JKRArchive::getIdxResource(unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        -0x958
-	  mr.       r4, r3
-	  beq-      .loc_0x3C
-	  lwz       r12, 0x0(r31)
-	  mr        r3, r31
-	  li        r5, 0
-	  lwz       r12, 0x40(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x40
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       findIdxResource__10JKRArchiveCFUl
+	or.      r4, r3, r3
+	beq      lbl_8001B734
+	lwz      r12, 0(r31)
+	mr       r3, r31
+	li       r5, 0
+	lwz      r12, 0x40(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_8001B738
 
-	.loc_0x3C:
-	  li        r3, 0
+lbl_8001B734:
+	li       r3, 0
 
-	.loc_0x40:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8001B738:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -617,60 +638,59 @@ void JKRArchive::getIdxResource(unsigned long)
 void JKRArchive::readResource(void*, unsigned long, unsigned long, const char*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  cmplwi    r6, 0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r5
-	  stw       r30, 0x18(r1)
-	  mr        r30, r4
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  beq-      .loc_0x38
-	  subis     r0, r6, 0x3F3F
-	  cmplwi    r0, 0x3F3F
-	  bne-      .loc_0x4C
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	cmplwi   r6, 0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r5
+	stw      r30, 0x18(r1)
+	mr       r30, r4
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	beq      lbl_8001B784
+	addis    r0, r6, 0xc0c1
+	cmplwi   r0, 0x3f3f
+	bne      lbl_8001B798
 
-	.loc_0x38:
-	  mr        r3, r29
-	  mr        r4, r7
-	  bl        -0x9B0
-	  mr        r6, r3
-	  b         .loc_0x5C
+lbl_8001B784:
+	mr       r3, r29
+	mr       r4, r7
+	bl       findNameResource__10JKRArchiveCFPCc
+	mr       r6, r3
+	b        lbl_8001B7A8
 
-	.loc_0x4C:
-	  mr        r4, r6
-	  mr        r5, r7
-	  bl        -0xE20
-	  mr        r6, r3
+lbl_8001B798:
+	mr       r4, r6
+	mr       r5, r7
+	bl       findTypeResource__10JKRArchiveCFUlPCc
+	mr       r6, r3
 
-	.loc_0x5C:
-	  cmplwi    r6, 0
-	  beq-      .loc_0x8C
-	  lwz       r12, 0x0(r29)
-	  mr        r3, r29
-	  mr        r4, r30
-	  mr        r5, r31
-	  lwz       r12, 0x44(r12)
-	  addi      r7, r1, 0x8
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x8(r1)
-	  b         .loc_0x90
+lbl_8001B7A8:
+	cmplwi   r6, 0
+	beq      lbl_8001B7D8
+	lwz      r12, 0(r29)
+	mr       r3, r29
+	mr       r4, r30
+	mr       r5, r31
+	lwz      r12, 0x44(r12)
+	addi     r7, r1, 8
+	mtctr    r12
+	bctrl
+	lwz      r3, 8(r1)
+	b        lbl_8001B7DC
 
-	.loc_0x8C:
-	  li        r3, 0
+lbl_8001B7D8:
+	li       r3, 0
 
-	.loc_0x90:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8001B7DC:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -682,56 +702,55 @@ void JKRArchive::readResource(void*, unsigned long, unsigned long, const char*)
 void JKRArchive::readResource(void*, unsigned long, const char*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  lbz       r0, 0x0(r6)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r5
-	  cmpwi     r0, 0x2F
-	  stw       r30, 0x18(r1)
-	  mr        r30, r4
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  bne-      .loc_0x44
-	  addi      r4, r6, 0x1
-	  li        r5, 0
-	  bl        -0xDBC
-	  mr        r6, r3
-	  b         .loc_0x54
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	lbz      r0, 0(r6)
+	stw      r31, 0x1c(r1)
+	mr       r31, r5
+	cmpwi    r0, 0x2f
+	stw      r30, 0x18(r1)
+	mr       r30, r4
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	bne      lbl_8001B83C
+	addi     r4, r6, 1
+	li       r5, 0
+	bl       findFsResource__10JKRArchiveCFPCcUl
+	mr       r6, r3
+	b        lbl_8001B84C
 
-	.loc_0x44:
-	  lwz       r5, -0x7890(r13)
-	  mr        r4, r6
-	  bl        -0xDD0
-	  mr        r6, r3
+lbl_8001B83C:
+	lwz      r5, sCurrentDirID__10JKRArchive@sda21(r13)
+	mr       r4, r6
+	bl       findFsResource__10JKRArchiveCFPCcUl
+	mr       r6, r3
 
-	.loc_0x54:
-	  cmplwi    r6, 0
-	  beq-      .loc_0x84
-	  lwz       r12, 0x0(r29)
-	  mr        r3, r29
-	  mr        r4, r30
-	  mr        r5, r31
-	  lwz       r12, 0x44(r12)
-	  addi      r7, r1, 0x8
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x8(r1)
-	  b         .loc_0x88
+lbl_8001B84C:
+	cmplwi   r6, 0
+	beq      lbl_8001B87C
+	lwz      r12, 0(r29)
+	mr       r3, r29
+	mr       r4, r30
+	mr       r5, r31
+	lwz      r12, 0x44(r12)
+	addi     r7, r1, 8
+	mtctr    r12
+	bctrl
+	lwz      r3, 8(r1)
+	b        lbl_8001B880
 
-	.loc_0x84:
-	  li        r3, 0
+lbl_8001B87C:
+	li       r3, 0
 
-	.loc_0x88:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8001B880:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -743,42 +762,41 @@ void JKRArchive::readResource(void*, unsigned long, const char*)
 void JKRArchive::readResource(void*, unsigned long, unsigned short)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r5
-	  stw       r30, 0x18(r1)
-	  mr        r30, r4
-	  mr        r4, r6
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  bl        -0xA10
-	  mr.       r6, r3
-	  beq-      .loc_0x5C
-	  lwz       r12, 0x0(r29)
-	  mr        r3, r29
-	  mr        r4, r30
-	  mr        r5, r31
-	  lwz       r12, 0x44(r12)
-	  addi      r7, r1, 0x8
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x8(r1)
-	  b         .loc_0x60
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r5
+	stw      r30, 0x18(r1)
+	mr       r30, r4
+	mr       r4, r6
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	bl       findIdResource__10JKRArchiveCFUs
+	or.      r6, r3, r3
+	beq      lbl_8001B8F8
+	lwz      r12, 0(r29)
+	mr       r3, r29
+	mr       r4, r30
+	mr       r5, r31
+	lwz      r12, 0x44(r12)
+	addi     r7, r1, 8
+	mtctr    r12
+	bctrl
+	lwz      r3, 8(r1)
+	b        lbl_8001B8FC
 
-	.loc_0x5C:
-	  li        r3, 0
+lbl_8001B8F8:
+	li       r3, 0
 
-	.loc_0x60:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8001B8FC:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -790,53 +808,52 @@ void JKRArchive::readResource(void*, unsigned long, unsigned short)
 void JKRArchive::removeResourceAll()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  stw       r28, 0x10(r1)
-	  mr        r28, r3
-	  lwz       r0, 0x44(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x78
-	  lbz       r0, 0x3C(r28)
-	  cmplwi    r0, 0x1
-	  beq-      .loc_0x78
-	  lwz       r30, 0x4C(r28)
-	  li        r29, 0
-	  li        r31, 0
-	  b         .loc_0x68
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	stw      r28, 0x10(r1)
+	mr       r28, r3
+	lwz      r0, 0x44(r3)
+	cmplwi   r0, 0
+	beq      lbl_8001B990
+	lbz      r0, 0x3c(r28)
+	cmplwi   r0, 1
+	beq      lbl_8001B990
+	lwz      r30, 0x4c(r28)
+	li       r29, 0
+	li       r31, 0
+	b        lbl_8001B980
 
-	.loc_0x48:
-	  lwz       r3, 0x10(r30)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x60
-	  lwz       r4, 0x38(r28)
-	  bl        0x7CFC
-	  stw       r31, 0x10(r30)
+lbl_8001B960:
+	lwz      r3, 0x10(r30)
+	cmplwi   r3, 0
+	beq      lbl_8001B978
+	lwz      r4, 0x38(r28)
+	bl       free__7JKRHeapFPvP7JKRHeap
+	stw      r31, 0x10(r30)
 
-	.loc_0x60:
-	  addi      r30, r30, 0x14
-	  addi      r29, r29, 0x1
+lbl_8001B978:
+	addi     r30, r30, 0x14
+	addi     r29, r29, 1
 
-	.loc_0x68:
-	  lwz       r3, 0x44(r28)
-	  lwz       r0, 0x8(r3)
-	  cmplw     r29, r0
-	  blt+      .loc_0x48
+lbl_8001B980:
+	lwz      r3, 0x44(r28)
+	lwz      r0, 8(r3)
+	cmplw    r29, r0
+	blt      lbl_8001B960
 
-	.loc_0x78:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8001B990:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -848,35 +865,34 @@ void JKRArchive::removeResourceAll()
 void JKRArchive::removeResource(void*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  bl        -0xB4C
-	  cmplwi    r3, 0
-	  bne-      .loc_0x30
-	  li        r3, 0
-	  b         .loc_0x48
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	bl       findPtrResource__10JKRArchiveCFPCv
+	cmplwi   r3, 0
+	bne      lbl_8001B9E0
+	li       r3, 0
+	b        lbl_8001B9F8
 
-	.loc_0x30:
-	  li        r0, 0
-	  stw       r0, 0x10(r3)
-	  mr        r3, r31
-	  lwz       r4, 0x38(r30)
-	  bl        0x7C7C
-	  li        r3, 0x1
+lbl_8001B9E0:
+	li       r0, 0
+	stw      r0, 0x10(r3)
+	mr       r3, r31
+	lwz      r4, 0x38(r30)
+	bl       free__7JKRHeapFPvP7JKRHeap
+	li       r3, 1
 
-	.loc_0x48:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8001B9F8:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -888,26 +904,25 @@ void JKRArchive::removeResource(void*)
 void JKRArchive::detachResource(void*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  bl        -0xB9C
-	  cmplwi    r3, 0
-	  bne-      .loc_0x20
-	  li        r3, 0
-	  b         .loc_0x2C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	bl       findPtrResource__10JKRArchiveCFPCv
+	cmplwi   r3, 0
+	bne      lbl_8001BA30
+	li       r3, 0
+	b        lbl_8001BA3C
 
-	.loc_0x20:
-	  li        r0, 0
-	  stw       r0, 0x10(r3)
-	  li        r3, 0x1
+lbl_8001BA30:
+	li       r0, 0
+	stw      r0, 0x10(r3)
+	li       r3, 1
 
-	.loc_0x2C:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8001BA3C:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -919,24 +934,23 @@ void JKRArchive::detachResource(void*)
 void JKRArchive::getResSize(const void*) const
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  bl        -0xBD8
-	  cmplwi    r3, 0
-	  bne-      .loc_0x20
-	  li        r3, -0x1
-	  b         .loc_0x24
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	bl       findPtrResource__10JKRArchiveCFPCv
+	cmplwi   r3, 0
+	bne      lbl_8001BA6C
+	li       r3, -1
+	b        lbl_8001BA70
 
-	.loc_0x20:
-	  lwz       r3, 0xC(r3)
+lbl_8001BA6C:
+	lwz      r3, 0xc(r3)
 
-	.loc_0x24:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8001BA70:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -948,41 +962,40 @@ void JKRArchive::getResSize(const void*) const
 void JKRArchive::countFile(const char*) const
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lbz       r0, 0x0(r4)
-	  cmpwi     r0, 0x2F
-	  bne-      .loc_0x34
-	  lbzu      r0, 0x1(r4)
-	  extsb.    r0, r0
-	  bne-      .loc_0x28
-	  li        r4, 0
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lbz      r0, 0(r4)
+	cmpwi    r0, 0x2f
+	bne      lbl_8001BAB4
+	lbzu     r0, 1(r4)
+	extsb.   r0, r0
+	bne      lbl_8001BAA8
+	li       r4, 0
 
-	.loc_0x28:
-	  li        r5, 0
-	  bl        -0x149C
-	  b         .loc_0x3C
+lbl_8001BAA8:
+	li       r5, 0
+	bl       findDirectory__10JKRArchiveCFPCcUl
+	b        lbl_8001BABC
 
-	.loc_0x34:
-	  lwz       r5, -0x7890(r13)
-	  bl        -0x14A8
+lbl_8001BAB4:
+	lwz      r5, sCurrentDirID__10JKRArchive@sda21(r13)
+	bl       findDirectory__10JKRArchiveCFPCcUl
 
-	.loc_0x3C:
-	  cmplwi    r3, 0
-	  beq-      .loc_0x4C
-	  lhz       r3, 0xA(r3)
-	  b         .loc_0x50
+lbl_8001BABC:
+	cmplwi   r3, 0
+	beq      lbl_8001BACC
+	lhz      r3, 0xa(r3)
+	b        lbl_8001BAD0
 
-	.loc_0x4C:
-	  li        r3, 0
+lbl_8001BACC:
+	li       r3, 0
 
-	.loc_0x50:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8001BAD0:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -994,62 +1007,61 @@ void JKRArchive::countFile(const char*) const
 void JKRArchive::getFirstFile(const char*) const
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lbz       r0, 0x0(r4)
-	  stw       r31, 0xC(r1)
-	  cmpwi     r0, 0x2F
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  bne-      .loc_0x48
-	  lbzu      r0, 0x1(r4)
-	  extsb.    r0, r0
-	  bne-      .loc_0x34
-	  li        r4, 0
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lbz      r0, 0(r4)
+	stw      r31, 0xc(r1)
+	cmpwi    r0, 0x2f
+	stw      r30, 8(r1)
+	mr       r30, r3
+	bne      lbl_8001BB28
+	lbzu     r0, 1(r4)
+	extsb.   r0, r0
+	bne      lbl_8001BB14
+	li       r4, 0
 
-	.loc_0x34:
-	  mr        r3, r30
-	  li        r5, 0
-	  bl        -0x150C
-	  mr        r31, r3
-	  b         .loc_0x54
+lbl_8001BB14:
+	mr       r3, r30
+	li       r5, 0
+	bl       findDirectory__10JKRArchiveCFPCcUl
+	mr       r31, r3
+	b        lbl_8001BB34
 
-	.loc_0x48:
-	  lwz       r5, -0x7890(r13)
-	  bl        -0x151C
-	  mr        r31, r3
+lbl_8001BB28:
+	lwz      r5, sCurrentDirID__10JKRArchive@sda21(r13)
+	bl       findDirectory__10JKRArchiveCFPCcUl
+	mr       r31, r3
 
-	.loc_0x54:
-	  cmplwi    r31, 0
-	  beq-      .loc_0x90
-	  lwz       r4, -0x77D8(r13)
-	  li        r3, 0x24
-	  li        r5, 0
-	  bl        0x83F8
-	  mr.       r0, r3
-	  beq-      .loc_0x88
-	  lwz       r5, 0xC(r31)
-	  mr        r4, r30
-	  lhz       r6, 0xA(r31)
-	  bl        0x6F7C
-	  mr        r0, r3
+lbl_8001BB34:
+	cmplwi   r31, 0
+	beq      lbl_8001BB70
+	lwz      r4, sSystemHeap__7JKRHeap@sda21(r13)
+	li       r3, 0x24
+	li       r5, 0
+	bl       __nw__FUlP7JKRHeapi
+	or.      r0, r3, r3
+	beq      lbl_8001BB68
+	lwz      r5, 0xc(r31)
+	mr       r4, r30
+	lhz      r6, 0xa(r31)
+	bl       __ct__12JKRArcFinderFP10JKRArchivell
+	mr       r0, r3
 
-	.loc_0x88:
-	  mr        r3, r0
-	  b         .loc_0x94
+lbl_8001BB68:
+	mr       r3, r0
+	b        lbl_8001BB74
 
-	.loc_0x90:
-	  li        r3, 0
+lbl_8001BB70:
+	li       r3, 0
 
-	.loc_0x94:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8001BB74:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1061,17 +1073,16 @@ void JKRArchive::getFirstFile(const char*) const
 void JKRArchive::getExpandedResSize(const void*) const
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x30(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x30(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }

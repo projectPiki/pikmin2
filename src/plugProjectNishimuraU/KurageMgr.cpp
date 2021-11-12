@@ -1,5 +1,325 @@
 #include "types.h"
 
+/*
+    Generated from dpostproc
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_80489A38
+    lbl_80489A38:
+        .asciz "246-KurageMgr"
+        .skip 2
+    .global lbl_80489A48
+    lbl_80489A48:
+        .4byte 0x834E8389
+        .4byte 0x83518368
+        .4byte 0x8362834E
+        .4byte 0x838A837D
+        .4byte 0x836C815B
+        .4byte 0x83578383
+        .4byte 0x00000000
+        .4byte 0x456E656D
+        .4byte 0x79506172
+        .4byte 0x6D734261
+        .4byte 0x73650000
+        .4byte 0x94F28D73
+        .4byte 0x8D8282B3
+        .4byte 0x00000000
+        .4byte 0x8FE38FB8
+        .4byte 0x8C579094
+        .4byte 0x00000000
+        .4byte 0x926E8FE3
+        .4byte 0x83458346
+        .4byte 0x83438367
+        .4byte 0x8E9E8AD4
+        .4byte 0x00000000
+        .4byte 0x8B7A82A2
+        .4byte 0x8D9E82DD
+        .4byte 0x8E9E8AD4
+        .4byte 0x00000000
+        .4byte 0x8B7A82A2
+        .4byte 0x8D9E82DD
+        .4byte 0x8A6D97A6
+        .4byte 0x00000000
+        .4byte 0x905595A5
+        .4byte 0x978E89BA
+        .4byte 0x8E9E8AD4
+        .4byte 0x00000000
+        .4byte 0x978E89BA
+        .4byte 0x8DC592E1
+        .4byte 0x8373834C
+        .4byte 0x90940000
+        .4byte 0x8B7A82A2
+        .4byte 0x8D9E82DD
+        .4byte 0x8373834C
+        .4byte 0x90940000
+        .4byte 0x43726561
+        .4byte 0x74757265
+        .4byte 0x3A3A5072
+        .4byte 0x6F706572
+        .4byte 0x74790000
+        .4byte 0x66726963
+        .4byte 0x74696F6E
+        .4byte 0x286E6F74
+        .4byte 0x20757365
+        .4byte 0x64290000
+        .4byte 0x77616C6C
+        .4byte 0x5265666C
+        .4byte 0x65637469
+        .4byte 0x6F6E0000
+        .4byte 0x66616365
+        .4byte 0x44697241
+        .4byte 0x646A7573
+        .4byte 0x74000000
+        .4byte 0x626F756E
+        .4byte 0x63654661
+        .4byte 0x63746F72
+        .4byte 0x00000000
+        .4byte 0x83898343
+        .4byte 0x837482CC
+        .4byte 0x8D8282B3
+        .4byte 0x00000000
+        .4byte 0x83898343
+        .4byte 0x837489F1
+        .4byte 0x959C97A6
+        .4byte 0x00000000
+        .4byte 0x8C7889FA
+        .4byte 0x83898343
+        .4byte 0x83740000
+        .4byte 0x837D8362
+        .4byte 0x837682C6
+        .4byte 0x82CC9396
+        .4byte 0x82E80000
+        .4byte 0x837D8362
+        .4byte 0x837682C6
+        .4byte 0x82CC82A0
+        .4byte 0x82BD82E8
+        .4byte 0x837C838A
+        .4byte 0x83538393
+        .4byte 0x82CC9149
+        .4byte 0x92E80000
+        .4byte 0x8373834E
+        .4byte 0x837E8393
+        .4byte 0x82C682CC
+        .4byte 0x82A082BD
+        .4byte 0x82E80000
+        .4byte 0x835F8381
+        .4byte 0x815B8357
+        .4byte 0x83588350
+        .4byte 0x815B838B
+        .4byte 0x585A0000
+        .4byte 0x835F8381
+        .4byte 0x815B8357
+        .4byte 0x83588350
+        .4byte 0x815B838B
+        .4byte 0x59000000
+        .4byte 0x835F8381
+        .4byte 0x815B8357
+        .4byte 0x8374838C
+        .4byte 0x815B8380
+        .4byte 0x00000000
+        .4byte 0x89F1935D
+        .4byte 0x91AC9378
+        .4byte 0x97A60000
+        .4byte 0x89F1935D
+        .4byte 0x8DC591E5
+        .4byte 0x91AC9378
+        .4byte 0x00000000
+        .4byte 0x8365838A
+        .4byte 0x8367838A
+        .4byte 0x815B0000
+        .4byte 0x837A815B
+        .4byte 0x838094CD
+        .4byte 0x88CD0000
+        .4byte 0x83768389
+        .4byte 0x83438378
+        .4byte 0x815B8367
+        .4byte 0x8B9797A3
+        .4byte 0x00000000
+        .4byte 0x8E8B8A45
+        .4byte 0x8B9797A3
+        .4byte 0x00000000
+        .4byte 0x8E8B8A45
+        .4byte 0x8A709378
+        .4byte 0x00000000
+        .4byte 0x92548DF5
+        .4byte 0x8B9797A3
+        .4byte 0x00000000
+        .4byte 0x92548DF5
+        .4byte 0x8A709378
+        .4byte 0x00000000
+        .4byte 0x905582E8
+        .4byte 0x95A582A2
+        .4byte 0x97CD0000
+        .4byte 0x905582E8
+        .4byte 0x95A582A2
+        .4byte 0x835F8381
+        .4byte 0x815B8357
+        .4byte 0x00000000
+        .4byte 0x905582E8
+        .4byte 0x95A582A2
+        .4byte 0x94CD88CD
+        .4byte 0x00000000
+        .4byte 0x905582E8
+        .4byte 0x95A582A2
+        .4byte 0x97A60000
+        .4byte 0x8D558C82
+        .4byte 0x89C2945C
+        .4byte 0x94CD88CD
+        .4byte 0x00000000
+        .4byte 0x8D558C82
+        .4byte 0x89C2945C
+        .4byte 0x8A709378
+        .4byte 0x00000000
+        .4byte 0x8D558C82
+        .4byte 0x83718362
+        .4byte 0x836794CD
+        .4byte 0x88CD0000
+        .4byte 0x8D558C82
+        .4byte 0x83718362
+        .4byte 0x83678A70
+        .4byte 0x93780000
+        .4byte 0x8C7889FA
+        .4byte 0x8E9E8AD4
+        .4byte 0x00000000
+        .4byte 0x90CE89BB
+        .4byte 0x8E9E8AD4
+        .4byte 0x00000000
+        .4byte 0x83718362
+        .4byte 0x83768368
+        .4byte 0x838D8362
+        .4byte 0x8376835F
+        .4byte 0x8381815B
+        .4byte 0x83570000
+        .4byte 0x926E906B
+        .4byte 0x8B4390E2
+        .4byte 0x8A6D97A7
+        .4byte 0x00000000
+        .4byte 0x926E906B
+        .4byte 0x8B4390E2
+        .4byte 0x8E9E8AD4
+        .4byte 0x00000000
+        .4byte 0x905582E8
+        .4byte 0x95A582A2
+        .4byte 0x91C58C82
+        .4byte 0x82600000
+        .4byte 0x905582E8
+        .4byte 0x95A582A2
+        .4byte 0x92A39574
+        .4byte 0x82500000
+        .4byte 0x905582E8
+        .4byte 0x95A582A2
+        .4byte 0x91C58C82
+        .4byte 0x82610000
+        .4byte 0x905582E8
+        .4byte 0x95A582A2
+        .4byte 0x92A39574
+        .4byte 0x82510000
+        .4byte 0x905582E8
+        .4byte 0x95A582A2
+        .4byte 0x91C58C82
+        .4byte 0x82620000
+        .4byte 0x905582E8
+        .4byte 0x95A582A2
+        .4byte 0x92A39574
+        .4byte 0x82520000
+        .4byte 0x905582E8
+        .4byte 0x95A582A2
+        .4byte 0x91C58C82
+        .4byte 0x82630000
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__Q34Game6Kurage3Mgr
+    __vt__Q34Game6Kurage3Mgr:
+        .4byte 0
+        .4byte 0
+        .4byte doAnimation__Q24Game12EnemyMgrBaseFv
+        .4byte doEntry__Q24Game12EnemyMgrBaseFv
+        .4byte doSetView__Q24Game12EnemyMgrBaseFi
+        .4byte doViewCalc__Q24Game12EnemyMgrBaseFv
+        .4byte doSimulation__Q24Game12EnemyMgrBaseFf
+        .4byte doDirectDraw__Q24Game12EnemyMgrBaseFR8Graphics
+        .4byte doSimpleDraw__16GenericObjectMgrFP8Viewport
+        .4byte loadResources__16GenericObjectMgrFv
+        .4byte resetMgr__16GenericObjectMgrFv
+        .4byte pausable__16GenericObjectMgrFv
+        .4byte frozenable__16GenericObjectMgrFv
+        .4byte getMatrixLoadType__16GenericObjectMgrFv
+        .4byte 0
+        .4byte 0
+        .4byte "@4@__dt__Q34Game6Kurage3MgrFv"
+        .4byte getChildCount__5CNodeFv
+        .4byte "@4@getObject__Q24Game12EnemyMgrBaseFPv"
+        .4byte "@4@getNext__Q24Game12EnemyMgrBaseFPv"
+        .4byte "@4@getStart__Q24Game12EnemyMgrBaseFv"
+        .4byte "@4@getEnd__Q24Game12EnemyMgrBaseFv"
+        .4byte __dt__Q34Game6Kurage3MgrFv
+        .4byte getObject__Q24Game12EnemyMgrBaseFPv
+        .4byte getNext__Q24Game12EnemyMgrBaseFPv
+        .4byte getStart__Q24Game12EnemyMgrBaseFv
+        .4byte getEnd__Q24Game12EnemyMgrBaseFv
+        .4byte alloc__Q24Game12EnemyMgrBaseFv
+        .4byte birth__Q24Game12EnemyMgrBaseFRQ24Game13EnemyBirthArg
+        .4byte getJ3DModelData__Q24Game12EnemyMgrBaseCFv
+        .4byte getGenerator__Q24Game12EnemyMgrBaseCFv
+        .4byte killAll__Q24Game12EnemyMgrBaseFPQ24Game15CreatureKillArg
+        .4byte setupSoundViewerAndBas__Q24Game12EnemyMgrBaseFv
+        .4byte setDebugParm__Q24Game12EnemyMgrBaseFUl
+        .4byte resetDebugParm__Q24Game12EnemyMgrBaseFUl
+        .4byte getMaxObjects__Q24Game12EnemyMgrBaseCFv
+        .4byte startMovie__Q24Game12EnemyMgrBaseFv
+        .4byte endMovie__Q24Game12EnemyMgrBaseFv
+        .4byte get__Q24Game12EnemyMgrBaseFPv
+        .4byte isAlwaysMovieActor__Q24Game12EnemyMgrBaseFv
+        .4byte createObj__Q34Game6Kurage3MgrFi
+        .4byte getEnemy__Q34Game6Kurage3MgrFi
+        .4byte doAlloc__Q34Game6Kurage3MgrFv
+        .4byte getEnemyTypeID__Q34Game6Kurage3MgrFv
+        .4byte createModel__Q24Game12EnemyMgrBaseFv
+        .4byte initParms__Q24Game12EnemyMgrBaseFv
+        .4byte loadResource__Q24Game12EnemyMgrBaseFv
+        .4byte initObjects__Q24Game12EnemyMgrBaseFv
+        .4byte initStoneSetting__Q24Game12EnemyMgrBaseFv
+        .4byte loadModelData__Q24Game12EnemyMgrBaseFP10JKRArchive
+        .4byte loadModelData__Q34Game6Kurage3MgrFv
+        .4byte loadAnimData__Q24Game12EnemyMgrBaseFv
+        .4byte loadTexData__Q24Game12EnemyMgrBaseFv
+        .4byte doLoadBmd__Q34Game6Kurage3MgrFPv
+        .4byte doLoadBdl__Q24Game12EnemyMgrBaseFPv
+        .4byte initGenerator__Q24Game12EnemyMgrBaseFv
+    .global __vt__Q34Game6Kurage5Parms
+    __vt__Q34Game6Kurage5Parms:
+        .4byte 0
+        .4byte 0
+        .4byte read__Q34Game6Kurage5ParmsFR6Stream
+        .4byte 0
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_8051C0A0
+    lbl_8051C0A0:
+        .4byte 0x42B40000
+    .global lbl_8051C0A4
+    lbl_8051C0A4:
+        .4byte 0x00000000
+    .global lbl_8051C0A8
+    lbl_8051C0A8:
+        .4byte 0x43160000
+    .global lbl_8051C0AC
+    lbl_8051C0AC:
+        .float 1.0
+    .global lbl_8051C0B0
+    lbl_8051C0B0:
+        .4byte 0x41200000
+    .global lbl_8051C0B4
+    lbl_8051C0B4:
+        .4byte 0x40400000
+    .global lbl_8051C0B8
+    lbl_8051C0B8:
+        .4byte 0x40A00000
+    .global lbl_8051C0BC
+    lbl_8051C0BC:
+        .4byte 0x3CCCCCCD
+*/
+
 namespace Game {
 
 /*
@@ -10,27 +330,26 @@ namespace Game {
 Kurage::Mgr::Mgr(int, unsigned char)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        -0x17E484
-	  lis       r3, 0x804D
-	  lis       r4, 0x8049
-	  subi      r5, r3, 0x1EF8
-	  mr        r3, r31
-	  stw       r5, 0x0(r31)
-	  addi      r5, r5, 0x38
-	  subi      r0, r4, 0x65B8
-	  stw       r5, 0x4(r31)
-	  stw       r0, 0x18(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       __ct__Q24Game12EnemyMgrBaseFiUc
+	lis      r3, __vt__Q34Game6Kurage3Mgr@ha
+	lis      r4, lbl_80489A48@ha
+	addi     r5, r3, __vt__Q34Game6Kurage3Mgr@l
+	mr       r3, r31
+	stw      r5, 0(r31)
+	addi     r5, r5, 0x38
+	addi     r0, r4, lbl_80489A48@l
+	stw      r5, 4(r31)
+	stw      r0, 0x18(r31)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -42,29 +361,26 @@ Kurage::Mgr::Mgr(int, unsigned char)
 void Kurage::Mgr::doAlloc()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  li        r3, 0x948
-	  bl        -0x2892C8
-	  mr.       r4, r3
-	  beq-      .loc_0x2C
-	  bl        .loc_0x48
-	  mr        r4, r3
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	li       r3, 0x948
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_802AD180
+	bl       __ct__Q34Game6Kurage5ParmsFv
+	mr       r4, r3
 
-	.loc_0x2C:
-	  mr        r3, r31
-	  bl        -0x17D8E8
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-
-	.loc_0x48:
+lbl_802AD180:
+	mr       r3, r31
+	bl       init__Q24Game12EnemyMgrBaseFPQ24Game14EnemyParmsBase
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -76,27 +392,24 @@ void Kurage::Mgr::doAlloc()
 Kurage::Parms::Parms()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        -0x1A3A14
-	  lis       r4, 0x804D
-	  addi      r3, r31, 0x7F8
-	  subi      r0, r4, 0x1E18
-	  li        r4, 0x1
-	  stw       r0, 0xD8(r31)
-	  bl        .loc_0x48
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-
-	.loc_0x48:
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       __ct__Q24Game14EnemyParmsBaseFv
+	lis      r4, __vt__Q34Game6Kurage5Parms@ha
+	addi     r3, r31, 0x7f8
+	addi     r0, r4, __vt__Q34Game6Kurage5Parms@l
+	li       r4, 1
+	stw      r0, 0xd8(r31)
+	bl       __ct__Q44Game6Kurage5Parms11ProperParmsFv
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -108,152 +421,151 @@ Kurage::Parms::Parms()
 Kurage::Parms::ProperParms::ProperParms()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  extsh.    r0, r4
-	  lis       r4, 0x8049
-	  stw       r31, 0xC(r1)
-	  subi      r31, r4, 0x65C8
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  beq-      .loc_0x30
-	  addi      r0, r30, 0x14C
-	  stw       r0, 0x0(r30)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	extsh.   r0, r4
+	lis      r4, lbl_80489A38@ha
+	stw      r31, 0xc(r1)
+	addi     r31, r4, lbl_80489A38@l
+	stw      r30, 8(r1)
+	mr       r30, r3
+	beq      lbl_802AD214
+	addi     r0, r30, 0x14c
+	stw      r0, 0(r30)
 
-	.loc_0x30:
-	  li        r0, 0
-	  lis       r5, 0x6670
-	  stw       r0, 0x4(r30)
-	  addi      r0, r31, 0x2C
-	  mr        r4, r30
-	  addi      r3, r30, 0xC
-	  stw       r0, 0x8(r30)
-	  addi      r5, r5, 0x3031
-	  addi      r6, r31, 0x3C
-	  bl        0x166420
-	  lis       r3, 0x804B
-	  lis       r5, 0x6670
-	  subi      r0, r3, 0x5344
-	  lfs       f0, -0x22C0(r2)
-	  stw       r0, 0xC(r30)
-	  mr        r4, r30
-	  lfs       f1, -0x22BC(r2)
-	  addi      r3, r30, 0x34
-	  stfs      f0, 0x24(r30)
-	  addi      r5, r5, 0x3032
-	  lfs       f0, -0x22B8(r2)
-	  addi      r6, r31, 0x48
-	  stfs      f1, 0x2C(r30)
-	  stfs      f0, 0x30(r30)
-	  bl        0x1663E4
-	  lis       r3, 0x804B
-	  lis       r5, 0x6670
-	  subi      r0, r3, 0x5344
-	  lfs       f0, -0x22B4(r2)
-	  stw       r0, 0x34(r30)
-	  mr        r4, r30
-	  lfs       f1, -0x22BC(r2)
-	  addi      r3, r30, 0x5C
-	  stfs      f0, 0x4C(r30)
-	  addi      r5, r5, 0x3130
-	  lfs       f0, -0x22B0(r2)
-	  addi      r6, r31, 0x54
-	  stfs      f1, 0x54(r30)
-	  stfs      f0, 0x58(r30)
-	  bl        0x1663A8
-	  lis       r3, 0x804B
-	  lis       r5, 0x6670
-	  subi      r0, r3, 0x5344
-	  lfs       f0, -0x22AC(r2)
-	  stw       r0, 0x5C(r30)
-	  mr        r4, r30
-	  lfs       f1, -0x22BC(r2)
-	  addi      r3, r30, 0x84
-	  stfs      f0, 0x74(r30)
-	  addi      r5, r5, 0x3131
-	  lfs       f0, -0x22B0(r2)
-	  addi      r6, r31, 0x68
-	  stfs      f1, 0x7C(r30)
-	  stfs      f0, 0x80(r30)
-	  bl        0x16636C
-	  lis       r3, 0x804B
-	  lis       r5, 0x6670
-	  subi      r0, r3, 0x5344
-	  lfs       f0, -0x22A8(r2)
-	  stw       r0, 0x84(r30)
-	  mr        r4, r30
-	  lfs       f1, -0x22BC(r2)
-	  addi      r3, r30, 0xAC
-	  stfs      f0, 0x9C(r30)
-	  addi      r5, r5, 0x3132
-	  lfs       f0, -0x22B0(r2)
-	  addi      r6, r31, 0x78
-	  stfs      f1, 0xA4(r30)
-	  stfs      f0, 0xA8(r30)
-	  bl        0x166330
-	  lis       r3, 0x804B
-	  lis       r5, 0x6670
-	  subi      r0, r3, 0x5344
-	  lfs       f0, -0x22A4(r2)
-	  stw       r0, 0xAC(r30)
-	  mr        r4, r30
-	  lfs       f1, -0x22BC(r2)
-	  addi      r3, r30, 0xD4
-	  stfs      f0, 0xC4(r30)
-	  addi      r5, r5, 0x3034
-	  lfs       f0, -0x22B4(r2)
-	  addi      r6, r31, 0x88
-	  stfs      f1, 0xCC(r30)
-	  stfs      f0, 0xD0(r30)
-	  bl        0x1662F4
-	  lis       r3, 0x804B
-	  lis       r5, 0x6970
-	  subi      r0, r3, 0x5344
-	  lfs       f0, -0x22AC(r2)
-	  stw       r0, 0xD4(r30)
-	  mr        r4, r30
-	  lfs       f1, -0x22BC(r2)
-	  addi      r3, r30, 0xFC
-	  stfs      f0, 0xEC(r30)
-	  addi      r5, r5, 0x3031
-	  lfs       f0, -0x22B0(r2)
-	  addi      r6, r31, 0x98
-	  stfs      f1, 0xF4(r30)
-	  stfs      f0, 0xF8(r30)
-	  bl        0x1662B8
-	  lis       r3, 0x804B
-	  lis       r5, 0x6970
-	  subi      r0, r3, 0x5370
-	  li        r3, 0xA
-	  stw       r0, 0xFC(r30)
-	  li        r7, 0x1
-	  li        r0, 0x32
-	  mr        r4, r30
-	  stw       r3, 0x114(r30)
-	  addi      r3, r30, 0x124
-	  addi      r5, r5, 0x3131
-	  addi      r6, r31, 0xA8
-	  stw       r7, 0x11C(r30)
-	  stw       r0, 0x120(r30)
-	  bl        0x16627C
-	  lis       r3, 0x804B
-	  li        r5, 0xA
-	  subi      r0, r3, 0x5370
-	  li        r4, 0x1
-	  stw       r0, 0x124(r30)
-	  li        r0, 0x64
-	  mr        r3, r30
-	  stw       r5, 0x13C(r30)
-	  stw       r4, 0x144(r30)
-	  stw       r0, 0x148(r30)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_802AD214:
+	li       r0, 0
+	lis      r5, 0x66703031@ha
+	stw      r0, 4(r30)
+	addi     r0, r31, 0x2c
+	mr       r4, r30
+	addi     r3, r30, 0xc
+	stw      r0, 8(r30)
+	addi     r5, r5, 0x66703031@l
+	addi     r6, r31, 0x3c
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x66703032@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_8051C0A0@sda21(r2)
+	stw      r0, 0xc(r30)
+	mr       r4, r30
+	lfs      f1, lbl_8051C0A4@sda21(r2)
+	addi     r3, r30, 0x34
+	stfs     f0, 0x24(r30)
+	addi     r5, r5, 0x66703032@l
+	lfs      f0, lbl_8051C0A8@sda21(r2)
+	addi     r6, r31, 0x48
+	stfs     f1, 0x2c(r30)
+	stfs     f0, 0x30(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x66703130@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_8051C0AC@sda21(r2)
+	stw      r0, 0x34(r30)
+	mr       r4, r30
+	lfs      f1, lbl_8051C0A4@sda21(r2)
+	addi     r3, r30, 0x5c
+	stfs     f0, 0x4c(r30)
+	addi     r5, r5, 0x66703130@l
+	lfs      f0, lbl_8051C0B0@sda21(r2)
+	addi     r6, r31, 0x54
+	stfs     f1, 0x54(r30)
+	stfs     f0, 0x58(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x66703131@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_8051C0B4@sda21(r2)
+	stw      r0, 0x5c(r30)
+	mr       r4, r30
+	lfs      f1, lbl_8051C0A4@sda21(r2)
+	addi     r3, r30, 0x84
+	stfs     f0, 0x74(r30)
+	addi     r5, r5, 0x66703131@l
+	lfs      f0, lbl_8051C0B0@sda21(r2)
+	addi     r6, r31, 0x68
+	stfs     f1, 0x7c(r30)
+	stfs     f0, 0x80(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x66703132@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_8051C0B8@sda21(r2)
+	stw      r0, 0x84(r30)
+	mr       r4, r30
+	lfs      f1, lbl_8051C0A4@sda21(r2)
+	addi     r3, r30, 0xac
+	stfs     f0, 0x9c(r30)
+	addi     r5, r5, 0x66703132@l
+	lfs      f0, lbl_8051C0B0@sda21(r2)
+	addi     r6, r31, 0x78
+	stfs     f1, 0xa4(r30)
+	stfs     f0, 0xa8(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x66703034@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_8051C0BC@sda21(r2)
+	stw      r0, 0xac(r30)
+	mr       r4, r30
+	lfs      f1, lbl_8051C0A4@sda21(r2)
+	addi     r3, r30, 0xd4
+	stfs     f0, 0xc4(r30)
+	addi     r5, r5, 0x66703034@l
+	lfs      f0, lbl_8051C0AC@sda21(r2)
+	addi     r6, r31, 0x88
+	stfs     f1, 0xcc(r30)
+	stfs     f0, 0xd0(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x69703031@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_8051C0B4@sda21(r2)
+	stw      r0, 0xd4(r30)
+	mr       r4, r30
+	lfs      f1, lbl_8051C0A4@sda21(r2)
+	addi     r3, r30, 0xfc
+	stfs     f0, 0xec(r30)
+	addi     r5, r5, 0x69703031@l
+	lfs      f0, lbl_8051C0B0@sda21(r2)
+	addi     r6, r31, 0x98
+	stfs     f1, 0xf4(r30)
+	stfs     f0, 0xf8(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<i>"@ha
+	lis      r5, 0x69703131@ha
+	addi     r0, r3, "__vt__7Parm<i>"@l
+	li       r3, 0xa
+	stw      r0, 0xfc(r30)
+	li       r7, 1
+	li       r0, 0x32
+	mr       r4, r30
+	stw      r3, 0x114(r30)
+	addi     r3, r30, 0x124
+	addi     r5, r5, 0x69703131@l
+	addi     r6, r31, 0xa8
+	stw      r7, 0x11c(r30)
+	stw      r0, 0x120(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<i>"@ha
+	li       r5, 0xa
+	addi     r0, r3, "__vt__7Parm<i>"@l
+	li       r4, 1
+	stw      r0, 0x124(r30)
+	li       r0, 0x64
+	mr       r3, r30
+	stw      r5, 0x13c(r30)
+	stw      r4, 0x144(r30)
+	stw      r0, 0x148(r30)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -265,31 +577,30 @@ Kurage::Parms::ProperParms::ProperParms()
 void Kurage::Mgr::createObj(int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  mulli     r3, r31, 0x30C
-	  addi      r3, r3, 0x10
-	  bl        -0x289498
-	  lis       r4, 0x802B
-	  lis       r5, 0x802B
-	  subi      r4, r4, 0x2910
-	  mr        r7, r31
-	  subi      r5, r5, 0x2B80
-	  li        r6, 0x30C
-	  bl        -0x1EBA70
-	  stw       r3, 0x44(r30)
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	mulli    r3, r31, 0x30c
+	addi     r3, r3, 0x10
+	bl       __nwa__FUl
+	lis      r4, __ct__Q34Game6Kurage3ObjFv@ha
+	lis      r5, __dt__Q34Game6Kurage3ObjFv@ha
+	addi     r4, r4, __ct__Q34Game6Kurage3ObjFv@l
+	mr       r7, r31
+	addi     r5, r5, __dt__Q34Game6Kurage3ObjFv@l
+	li       r6, 0x30c
+	bl       __construct_new_array
+	stw      r3, 0x44(r30)
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -301,58 +612,57 @@ void Kurage::Mgr::createObj(int)
 Kurage::Obj::~Obj()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r3
-	  stw       r30, 0x8(r1)
-	  mr        r30, r4
-	  beq-      .loc_0xA0
-	  lis       r3, 0x804D
-	  addi      r0, r31, 0x2FC
-	  subi      r4, r3, 0x1CD8
-	  stw       r4, 0x0(r31)
-	  addi      r3, r4, 0x1B0
-	  addi      r4, r4, 0x2FC
-	  stw       r3, 0x178(r31)
-	  lwz       r3, 0x17C(r31)
-	  stw       r4, 0x0(r3)
-	  lwz       r3, 0x17C(r31)
-	  sub       r0, r0, r3
-	  stw       r0, 0xC(r3)
-	  beq-      .loc_0x90
-	  lis       r3, 0x804B
-	  addi      r0, r31, 0x2BC
-	  subi      r4, r3, 0x5CDC
-	  addi      r3, r31, 0x290
-	  stw       r4, 0x0(r31)
-	  addi      r5, r4, 0x1B0
-	  addi      r6, r4, 0x2F8
-	  li        r4, -0x1
-	  stw       r5, 0x178(r31)
-	  lwz       r5, 0x17C(r31)
-	  stw       r6, 0x0(r5)
-	  lwz       r5, 0x17C(r31)
-	  sub       r0, r0, r5
-	  stw       r0, 0xC(r5)
-	  bl        0x16407C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r3, r3
+	stw      r30, 8(r1)
+	mr       r30, r4
+	beq      lbl_802AD520
+	lis      r3, __vt__Q34Game6Kurage3Obj@ha
+	addi     r0, r31, 0x2fc
+	addi     r4, r3, __vt__Q34Game6Kurage3Obj@l
+	stw      r4, 0(r31)
+	addi     r3, r4, 0x1b0
+	addi     r4, r4, 0x2fc
+	stw      r3, 0x178(r31)
+	lwz      r3, 0x17c(r31)
+	stw      r4, 0(r3)
+	lwz      r3, 0x17c(r31)
+	subf     r0, r3, r0
+	stw      r0, 0xc(r3)
+	beq      lbl_802AD510
+	lis      r3, __vt__Q24Game9EnemyBase@ha
+	addi     r0, r31, 0x2bc
+	addi     r4, r3, __vt__Q24Game9EnemyBase@l
+	addi     r3, r31, 0x290
+	stw      r4, 0(r31)
+	addi     r5, r4, 0x1b0
+	addi     r6, r4, 0x2f8
+	li       r4, -1
+	stw      r5, 0x178(r31)
+	lwz      r5, 0x17c(r31)
+	stw      r6, 0(r5)
+	lwz      r5, 0x17c(r31)
+	subf     r0, r5, r0
+	stw      r0, 0xc(r5)
+	bl       __dt__5CNodeFv
 
-	.loc_0x90:
-	  extsh.    r0, r30
-	  ble-      .loc_0xA0
-	  mr        r3, r31
-	  bl        -0x289468
+lbl_802AD510:
+	extsh.   r0, r30
+	ble      lbl_802AD520
+	mr       r3, r31
+	bl       __dl__FPv
 
-	.loc_0xA0:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_802AD520:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -364,11 +674,10 @@ Kurage::Obj::~Obj()
 void Kurage::Mgr::getEnemy(int)
 {
 	/*
-	.loc_0x0:
-	  mulli     r0, r4, 0x30C
-	  lwz       r3, 0x44(r3)
-	  add       r3, r3, r0
-	  blr
+	mulli    r0, r4, 0x30c
+	lwz      r3, 0x44(r3)
+	add      r3, r3, r0
+	blr
 	*/
 }
 
@@ -380,37 +689,36 @@ void Kurage::Mgr::getEnemy(int)
 void Kurage::Mgr::loadModelData()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        -0x17D454
-	  li        r5, 0
-	  b         .loc_0x40
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       loadModelData__Q24Game12EnemyMgrBaseFv
+	li       r5, 0
+	b        lbl_802AD58C
 
-	.loc_0x20:
-	  lwz       r3, 0x80(r4)
-	  rlwinm    r0,r5,2,14,29
-	  addi      r5, r5, 0x1
-	  lwzx      r3, r3, r0
-	  lwz       r0, 0xC(r3)
-	  rlwinm    r0,r0,0,20,15
-	  ori       r0, r0, 0x2000
-	  stw       r0, 0xC(r3)
+lbl_802AD56C:
+	lwz      r3, 0x80(r4)
+	rlwinm   r0, r5, 2, 0xe, 0x1d
+	addi     r5, r5, 1
+	lwzx     r3, r3, r0
+	lwz      r0, 0xc(r3)
+	rlwinm   r0, r0, 0, 0x14, 0xf
+	ori      r0, r0, 0x2000
+	stw      r0, 0xc(r3)
 
-	.loc_0x40:
-	  lwz       r4, 0x1C(r31)
-	  rlwinm    r0,r5,0,16,31
-	  lhz       r3, 0x7C(r4)
-	  cmplw     r0, r3
-	  blt+      .loc_0x20
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_802AD58C:
+	lwz      r4, 0x1c(r31)
+	clrlwi   r0, r5, 0x10
+	lhz      r3, 0x7c(r4)
+	cmplw    r0, r3
+	blt      lbl_802AD56C
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -422,55 +730,54 @@ void Kurage::Mgr::loadModelData()
 Kurage::Mgr::~Mgr()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x94
-	  lis       r3, 0x804D
-	  subi      r3, r3, 0x1EF8
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x38
-	  stw       r0, 0x4(r30)
-	  beq-      .loc_0x84
-	  lis       r3, 0x804B
-	  subi      r3, r3, 0x760
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x38
-	  stw       r0, 0x4(r30)
-	  beq-      .loc_0x84
-	  lis       r3, 0x804B
-	  addic.    r0, r30, 0x4
-	  subi      r3, r3, 0x5304
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x38
-	  stw       r0, 0x4(r30)
-	  beq-      .loc_0x84
-	  lis       r4, 0x804B
-	  addi      r3, r30, 0x4
-	  subi      r0, r4, 0x5324
-	  li        r4, 0
-	  stw       r0, 0x4(r30)
-	  bl        0x163F54
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_802AD648
+	lis      r3, __vt__Q34Game6Kurage3Mgr@ha
+	addi     r3, r3, __vt__Q34Game6Kurage3Mgr@l
+	stw      r3, 0(r30)
+	addi     r0, r3, 0x38
+	stw      r0, 4(r30)
+	beq      lbl_802AD638
+	lis      r3, __vt__Q24Game12EnemyMgrBase@ha
+	addi     r3, r3, __vt__Q24Game12EnemyMgrBase@l
+	stw      r3, 0(r30)
+	addi     r0, r3, 0x38
+	stw      r0, 4(r30)
+	beq      lbl_802AD638
+	lis      r3, __vt__Q24Game13IEnemyMgrBase@ha
+	addic.   r0, r30, 4
+	addi     r3, r3, __vt__Q24Game13IEnemyMgrBase@l
+	stw      r3, 0(r30)
+	addi     r0, r3, 0x38
+	stw      r0, 4(r30)
+	beq      lbl_802AD638
+	lis      r4, __vt__16GenericContainer@ha
+	addi     r3, r30, 4
+	addi     r0, r4, __vt__16GenericContainer@l
+	li       r4, 0
+	stw      r0, 4(r30)
+	bl       __dt__5CNodeFv
 
-	.loc_0x84:
-	  extsh.    r0, r31
-	  ble-      .loc_0x94
-	  mr        r3, r30
-	  bl        -0x289590
+lbl_802AD638:
+	extsh.   r0, r31
+	ble      lbl_802AD648
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x94:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_802AD648:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -489,18 +796,17 @@ u32 Kurage::Mgr::getEnemyTypeID() { return 0x39; }
 void Kurage::Mgr::doLoadBmd(void*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r5, 0x2024
-	  mr        r3, r4
-	  stw       r0, 0x14(r1)
-	  addi      r4, r5, 0x30
-	  bl        -0x23DDF0
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lis      r5, 0x20240030@ha
+	mr       r3, r4
+	stw      r0, 0x14(r1)
+	addi     r4, r5, 0x20240030@l
+	bl       load__22J3DModelLoaderDataBaseFPCvUl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -512,27 +818,26 @@ void Kurage::Mgr::doLoadBmd(void*)
 void Kurage::Parms::read(Stream&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  bl        0x166140
-	  mr        r4, r31
-	  addi      r3, r30, 0xE0
-	  bl        0x166134
-	  mr        r4, r31
-	  addi      r3, r30, 0x7F8
-	  bl        0x166128
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	bl       read__10ParametersFR6Stream
+	mr       r4, r31
+	addi     r3, r30, 0xe0
+	bl       read__10ParametersFR6Stream
+	mr       r4, r31
+	addi     r3, r30, 0x7f8
+	bl       read__10ParametersFR6Stream
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -544,9 +849,8 @@ void Kurage::Parms::read(Stream&)
 Kurage::Mgr::@4 @~Mgr()
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x4
-	  b         -0x138
+	addi     r3, r3, -4
+	b        __dt__Q34Game6Kurage3MgrFv
 	*/
 }
 } // namespace Game

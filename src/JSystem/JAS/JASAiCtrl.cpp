@@ -1,6 +1,131 @@
 #include "types.h"
 
 /*
+    Generated from dpostproc
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global sMixFuncs__9JASDriver
+    sMixFuncs__9JASDriver:
+        .4byte mixMonoTrack__9JASDriverFPsUlPFl_Ps
+        .4byte mixMonoTrackWide__9JASDriverFPsUlPFl_Ps
+        .4byte mixExtraTrack__9JASDriverFPsUlPFl_Ps
+        .4byte mixInterleaveTrack__9JASDriverFPsUlPFl_Ps
+    .global lbl_804795F8
+    lbl_804795F8:
+        .4byte 0x5346522D
+        .4byte 0x55504441
+        .4byte 0x54450000
+    .global lbl_80479604
+    lbl_80479604:
+        .4byte 0x6B696C6C
+        .4byte 0x20445350
+        .4byte 0x20636861
+        .4byte 0x6E6E656C
+        .4byte 0x00000000
+        .4byte 0x4453502D
+        .4byte 0x4D41494E
+        .4byte 0x00000000
+    .global lbl_80479624
+    lbl_80479624:
+        .4byte 0x4D4F4E4F
+        .4byte 0x2D4D4958
+        .4byte 0x00000000
+    .global lbl_80479630
+    lbl_80479630:
+        .4byte 0x4D4F4E4F
+        .4byte 0x2857292D
+        .4byte 0x4D495800
+        .4byte 0x00000000
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global history$449
+    history$449:
+        .4byte 0x000F4240
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+
+    .section .sdata, "wa"  # 0x80514680 - 0x80514D80
+    .global sDspDacBufferCount__9JASDriver
+    sDspDacBufferCount__9JASDriver:
+        .4byte 0x03000000
+    .global sSubFrames__9JASDriver
+    sSubFrames__9JASDriver:
+        .4byte 0x00000007
+    .global sMixMode__9JASDriver
+    sMixMode__9JASDriver:
+        .4byte 0x00000002
+    .global sDacRate__9JASDriver
+    sDacRate__9JASDriver:
+        .float 32028.5
+
+    .section .sbss # 0x80514D80 - 0x80516360
+    .global sDspDacBuffer__9JASDriver
+    sDspDacBuffer__9JASDriver:
+        .skip 0x4
+    .global sDspDacWriteBuffer__9JASDriver
+    sDspDacWriteBuffer__9JASDriver:
+        .skip 0x4
+    .global sDspDacReadBuffer__9JASDriver
+    sDspDacReadBuffer__9JASDriver:
+        .skip 0x4
+    .global sDspStatus__9JASDriver
+    sDspStatus__9JASDriver:
+        .skip 0x4
+    .global sDspDacCallback__9JASDriver
+    sDspDacCallback__9JASDriver:
+        .skip 0x4
+    .global lastRspMadep__9JASDriver
+    lastRspMadep__9JASDriver:
+        .skip 0x4
+    .global dacCallbackFunc__9JASDriver
+    dacCallbackFunc__9JASDriver:
+        .skip 0x4
+    .global extMixCallback__9JASDriver
+    extMixCallback__9JASDriver:
+        .skip 0x4
+    .global sOutputRate__9JASDriver
+    sOutputRate__9JASDriver:
+        .skip 0x4
+    .global dacp$428
+    dacp$428:
+        .skip 0x4
+    .global init$429
+    init$429:
+        .skip 0x4
+    .global old_time$446
+    old_time$446:
+        .skip 0x4
+    .global init$447
+    init$447:
+        .skip 0x8
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_80516E80
+    lbl_80516E80:
+        .4byte 0x3F8CCCCD
+        .4byte 0x00000000
+    .global lbl_80516E88
+    lbl_80516E88:
+        .4byte 0x43300000
+        .4byte 0x00000000
+    .global lbl_80516E90
+    lbl_80516E90:
+        .4byte 0x4453504D
+        .4byte 0x49580000
+    .global lbl_80516E98
+    lbl_80516E98:
+        .4byte 0x4D495849
+        .4byte 0x4E470000
+*/
+
+/*
  * --INFO--
  * Address:	800A7968
  * Size:	00013C
@@ -8,92 +133,91 @@
 void JASDriver::initAI(void (*)())
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stmw      r27, 0xC(r1)
-	  mr        r31, r3
-	  bl        0x884
-	  lis       r4, 0x804F
-	  rlwinm    r28,r3,1,0,30
-	  addi      r30, r4, 0x768
-	  li        r27, 0
-	  mr        r29, r28
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stmw     r27, 0xc(r1)
+	mr       r31, r3
+	bl       getDacSize__9JASDriverFv
+	lis      r4, sDmaDacBuffer__9JASDriver@ha
+	slwi     r28, r3, 1
+	addi     r30, r4, sDmaDacBuffer__9JASDriver@l
+	li       r27, 0
+	mr       r29, r28
 
-	.loc_0x2C:
-	  lwz       r4, -0x7548(r13)
-	  mr        r3, r29
-	  li        r5, 0x20
-	  bl        -0x83958
-	  stw       r3, 0x0(r30)
-	  mr        r4, r28
-	  lwz       r3, 0x0(r30)
-	  bl        -0x174C
-	  lwz       r3, 0x0(r30)
-	  mr        r4, r28
-	  bl        0x44D8C
-	  addi      r27, r27, 0x1
-	  addi      r30, r30, 0x4
-	  cmpwi     r27, 0x3
-	  blt+      .loc_0x2C
-	  lbz       r0, -0x7ED8(r13)
-	  li        r5, 0
-	  lwz       r4, -0x7548(r13)
-	  rlwinm    r3,r0,2,0,29
-	  bl        -0x83998
-	  stw       r3, -0x7520(r13)
-	  li        r27, 0
-	  li        r29, 0
-	  b         .loc_0xD0
+lbl_800A7994:
+	lwz      r4, JASDram@sda21(r13)
+	mr       r3, r29
+	li       r5, 0x20
+	bl       __nwa__FUlP7JKRHeapi
+	stw      r3, 0(r30)
+	mr       r4, r28
+	lwz      r3, 0(r30)
+	bl       bzero__7JASCalcFPvUl
+	lwz      r3, 0(r30)
+	mr       r4, r28
+	bl       DCStoreRange
+	addi     r27, r27, 1
+	addi     r30, r30, 4
+	cmpwi    r27, 3
+	blt      lbl_800A7994
+	lbz      r0, sDspDacBufferCount__9JASDriver@sda21(r13)
+	li       r5, 0
+	lwz      r4, JASDram@sda21(r13)
+	slwi     r3, r0, 2
+	bl       __nwa__FUlP7JKRHeapi
+	stw      r3, sDspDacBuffer__9JASDriver@sda21(r13)
+	li       r27, 0
+	li       r29, 0
+	b        lbl_800A7A38
 
-	.loc_0x8C:
-	  bl        0x80C
-	  lwz       r4, -0x7548(r13)
-	  rlwinm    r3,r3,1,0,30
-	  li        r5, 0x20
-	  bl        -0x839BC
-	  lwz       r5, -0x7520(r13)
-	  mr        r4, r28
-	  stwx      r3, r5, r29
-	  lwz       r3, -0x7520(r13)
-	  lwzx      r3, r3, r29
-	  bl        -0x17B8
-	  lwz       r3, -0x7520(r13)
-	  mr        r4, r28
-	  lwzx      r3, r3, r29
-	  bl        0x44D1C
-	  addi      r29, r29, 0x4
-	  addi      r27, r27, 0x1
+lbl_800A79F4:
+	bl       getDacSize__9JASDriverFv
+	lwz      r4, JASDram@sda21(r13)
+	slwi     r3, r3, 1
+	li       r5, 0x20
+	bl       __nwa__FUlP7JKRHeapi
+	lwz      r5, sDspDacBuffer__9JASDriver@sda21(r13)
+	mr       r4, r28
+	stwx     r3, r5, r29
+	lwz      r3, sDspDacBuffer__9JASDriver@sda21(r13)
+	lwzx     r3, r3, r29
+	bl       bzero__7JASCalcFPvUl
+	lwz      r3, sDspDacBuffer__9JASDriver@sda21(r13)
+	mr       r4, r28
+	lwzx     r3, r3, r29
+	bl       DCStoreRange
+	addi     r29, r29, 4
+	addi     r27, r27, 1
 
-	.loc_0xD0:
-	  lbz       r3, -0x7ED8(r13)
-	  cmpw      r27, r3
-	  blt+      .loc_0x8C
-	  li        r0, 0
-	  subi      r3, r3, 0x1
-	  stw       r3, -0x751C(r13)
-	  li        r3, 0
-	  stw       r0, -0x7518(r13)
-	  stw       r0, -0x7514(r13)
-	  bl        0x4F21C
-	  lis       r3, 0x804F
-	  mr        r4, r28
-	  addi      r3, r3, 0x768
-	  lwz       r3, 0x8(r3)
-	  bl        0x4EE38
-	  lwz       r3, -0x7500(r13)
-	  neg       r0, r3
-	  or        r0, r0, r3
-	  rlwinm    r3,r0,1,31,31
-	  bl        0x4EFC4
-	  mr        r3, r31
-	  bl        0x4EDD8
-	  lmw       r27, 0xC(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_800A7A38:
+	lbz      r3, sDspDacBufferCount__9JASDriver@sda21(r13)
+	cmpw     r27, r3
+	blt      lbl_800A79F4
+	li       r0, 0
+	addi     r3, r3, -1
+	stw      r3, sDspDacWriteBuffer__9JASDriver@sda21(r13)
+	li       r3, 0
+	stw      r0, sDspDacReadBuffer__9JASDriver@sda21(r13)
+	stw      r0, sDspStatus__9JASDriver@sda21(r13)
+	bl       AIInit
+	lis      r3, sDmaDacBuffer__9JASDriver@ha
+	mr       r4, r28
+	addi     r3, r3, sDmaDacBuffer__9JASDriver@l
+	lwz      r3, 8(r3)
+	bl       AIInitDMA
+	lwz      r3, sOutputRate__9JASDriver@sda21(r13)
+	neg      r0, r3
+	or       r0, r0, r3
+	srwi     r3, r0, 0x1f
+	bl       AISetDSPSampleRate
+	mr       r3, r31
+	bl       AIRegisterDMACallback
+	lmw      r27, 0xc(r1)
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -105,15 +229,14 @@ void JASDriver::initAI(void (*)())
 void JASDriver::startDMA()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  bl        0x4EE80
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	bl       AIStartDMA
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -125,15 +248,14 @@ void JASDriver::startDMA()
 void JASDriver::stopDMA()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  bl        0x4EE78
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	bl       AIStopDMA
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -155,106 +277,105 @@ void JASDriver::setOutputRate(JASOutputRate)
 void JASDriver::updateDac()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  lbz       r0, -0x74F8(r13)
-	  extsb.    r0, r0
-	  bne-      .loc_0x2C
-	  li        r3, 0
-	  li        r0, 0x1
-	  stw       r3, -0x74FC(r13)
-	  stb       r0, -0x74F8(r13)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	lbz      r0, init$429@sda21(r13)
+	extsb.   r0, r0
+	bne      lbl_800A7B10
+	li       r3, 0
+	li       r0, 1
+	stw      r3, dacp$428@sda21(r13)
+	stb      r0, init$429@sda21(r13)
 
-	.loc_0x2C:
-	  lwz       r31, -0x750C(r13)
-	  li        r0, 0
-	  cmplwi    r31, 0
-	  stw       r0, -0x750C(r13)
-	  beq-      .loc_0x50
-	  bl        0x6DC
-	  rlwinm    r4,r3,1,0,30
-	  mr        r3, r31
-	  bl        0x4ED78
+lbl_800A7B10:
+	lwz      r31, lastRspMadep__9JASDriver@sda21(r13)
+	li       r0, 0
+	cmplwi   r31, 0
+	stw      r0, lastRspMadep__9JASDriver@sda21(r13)
+	beq      lbl_800A7B34
+	bl       getDacSize__9JASDriverFv
+	slwi     r4, r3, 1
+	mr       r3, r31
+	bl       AIInitDMA
 
-	.loc_0x50:
-	  bl        0x6D8
-	  lwz       r0, -0x74FC(r13)
-	  lis       r4, 0x804F
-	  addi      r4, r4, 0x768
-	  mr        r31, r3
-	  rlwinm    r0,r0,2,0,29
-	  lwzx      r3, r4, r0
-	  mr        r4, r31
-	  bl        0x1DC
-	  lwz       r0, -0x7514(r13)
-	  cmpwi     r0, 0
-	  bne-      .loc_0x84
-	  bl        0x4DC
+lbl_800A7B34:
+	bl       getFrameSamples__9JASDriverFv
+	lwz      r0, dacp$428@sda21(r13)
+	lis      r4, sDmaDacBuffer__9JASDriver@ha
+	addi     r4, r4, sDmaDacBuffer__9JASDriver@l
+	mr       r31, r3
+	slwi     r0, r0, 2
+	lwzx     r3, r4, r0
+	mr       r4, r31
+	bl       readDspBuffer__9JASDriverFPsUl
+	lwz      r0, sDspStatus__9JASDriver@sda21(r13)
+	cmpwi    r0, 0
+	bne      lbl_800A7B68
+	bl       finishDSPFrame__9JASDriverFv
 
-	.loc_0x84:
-	  lwz       r5, -0x7504(r13)
-	  cmplwi    r5, 0
-	  beq-      .loc_0xC4
-	  lwz       r0, -0x7ED0(r13)
-	  lis       r3, 0x8048
-	  lwz       r6, -0x74FC(r13)
-	  subi      r3, r3, 0x6A18
-	  rlwinm    r0,r0,2,0,29
-	  lis       r4, 0x804F
-	  lwzx      r12, r3, r0
-	  addi      r3, r4, 0x768
-	  rlwinm    r0,r6,2,0,29
-	  mr        r4, r31
-	  lwzx      r3, r3, r0
-	  mtctr     r12
-	  bctrl
+lbl_800A7B68:
+	lwz      r5, extMixCallback__9JASDriver@sda21(r13)
+	cmplwi   r5, 0
+	beq      lbl_800A7BA8
+	lwz      r0, sMixMode__9JASDriver@sda21(r13)
+	lis      r3, sMixFuncs__9JASDriver@ha
+	lwz      r6, dacp$428@sda21(r13)
+	addi     r3, r3, sMixFuncs__9JASDriver@l
+	slwi     r0, r0, 2
+	lis      r4, sDmaDacBuffer__9JASDriver@ha
+	lwzx     r12, r3, r0
+	addi     r3, r4, sDmaDacBuffer__9JASDriver@l
+	slwi     r0, r6, 2
+	mr       r4, r31
+	lwzx     r3, r3, r0
+	mtctr    r12
+	bctrl
 
-	.loc_0xC4:
-	  bl        0x47090
-	  mr        r31, r3
-	  bl        0x650
-	  lwz       r0, -0x74FC(r13)
-	  lis       r5, 0x804F
-	  rlwinm    r4,r3,1,0,30
-	  rlwinm    r0,r0,2,0,29
-	  addi      r3, r5, 0x768
-	  lwzx      r3, r3, r0
-	  bl        0x44B7C
-	  mr        r3, r31
-	  bl        0x4708C
-	  lwz       r5, -0x74FC(r13)
-	  lis       r3, 0x804F
-	  addi      r3, r3, 0x768
-	  rlwinm    r4,r5,2,0,29
-	  addi      r0, r5, 0x1
-	  lwzx      r3, r3, r4
-	  cmplwi    r0, 0x3
-	  stw       r0, -0x74FC(r13)
-	  stw       r3, -0x750C(r13)
-	  blt-      .loc_0x124
-	  li        r0, 0
-	  stw       r0, -0x74FC(r13)
+lbl_800A7BA8:
+	bl       OSDisableInterrupts
+	mr       r31, r3
+	bl       getDacSize__9JASDriverFv
+	lwz      r0, dacp$428@sda21(r13)
+	lis      r5, sDmaDacBuffer__9JASDriver@ha
+	slwi     r4, r3, 1
+	slwi     r0, r0, 2
+	addi     r3, r5, sDmaDacBuffer__9JASDriver@l
+	lwzx     r3, r3, r0
+	bl       DCStoreRange
+	mr       r3, r31
+	bl       OSRestoreInterrupts
+	lwz      r5, dacp$428@sda21(r13)
+	lis      r3, sDmaDacBuffer__9JASDriver@ha
+	addi     r3, r3, sDmaDacBuffer__9JASDriver@l
+	slwi     r4, r5, 2
+	addi     r0, r5, 1
+	lwzx     r3, r3, r4
+	cmplwi   r0, 3
+	stw      r0, dacp$428@sda21(r13)
+	stw      r3, lastRspMadep__9JASDriver@sda21(r13)
+	blt      lbl_800A7C08
+	li       r0, 0
+	stw      r0, dacp$428@sda21(r13)
 
-	.loc_0x124:
-	  lwz       r0, -0x7508(r13)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x148
-	  bl        0x5F8
-	  lwz       r12, -0x7508(r13)
-	  mr        r4, r3
-	  lwz       r3, -0x750C(r13)
-	  mtctr     r12
-	  bctrl
+lbl_800A7C08:
+	lwz      r0, dacCallbackFunc__9JASDriver@sda21(r13)
+	cmplwi   r0, 0
+	beq      lbl_800A7C2C
+	bl       getFrameSamples__9JASDriverFv
+	lwz      r12, dacCallbackFunc__9JASDriver@sda21(r13)
+	mr       r4, r3
+	lwz      r3, lastRspMadep__9JASDriver@sda21(r13)
+	mtctr    r12
+	bctrl
 
-	.loc_0x148:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_800A7C2C:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -266,71 +387,70 @@ void JASDriver::updateDac()
 void JASDriver::updateDSP()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r4, 0x8048
-	  li        r3, 0x3
-	  stw       r0, 0x24(r1)
-	  subi      r4, r4, 0x6A08
-	  stw       r31, 0x1C(r1)
-	  bl        -0x788
-	  bl        -0x2868
-	  bl        -0x14C0
-	  bl        -0x3200
-	  lbz       r0, -0x74F0(r13)
-	  extsb.    r0, r0
-	  bne-      .loc_0x48
-	  li        r3, 0
-	  li        r0, 0x1
-	  stw       r3, -0x74F4(r13)
-	  stb       r0, -0x74F0(r13)
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lis      r4, lbl_804795F8@ha
+	li       r3, 3
+	stw      r0, 0x24(r1)
+	addi     r4, r4, lbl_804795F8@l
+	stw      r31, 0x1c(r1)
+	bl       probeStart__9JASKernelFlPc
+	bl       invalChannelAll__6JASDspFv
+	bl       execAllCommand__10JASPortCmdFv
+	bl       DSPSyncCallback__9JASDriverFv
+	lbz      r0, init$447@sda21(r13)
+	extsb.   r0, r0
+	bne      lbl_800A7C88
+	li       r3, 0
+	li       r0, 1
+	stw      r3, old_time$446@sda21(r13)
+	stb      r0, init$447@sda21(r13)
 
-	.loc_0x48:
-	  bl        0x4AF20
-	  lwz       r0, -0x74F4(r13)
-	  stw       r3, -0x74F4(r13)
-	  sub       r31, r3, r0
-	  bl        0x560
-	  lwz       r5, -0x7558(r13)
-	  lis       r4, 0x804A
-	  addi      r4, r4, 0x4468
-	  sub       r0, r3, r5
-	  cmplw     r3, r5
-	  rlwinm    r0,r0,2,0,29
-	  stwx      r31, r4, r0
-	  beq-      .loc_0xCC
-	  lwz       r3, 0x0(r4)
-	  lis       r0, 0x4330
-	  stw       r0, 0x8(r1)
-	  lfd       f3, -0x74D8(r2)
-	  stw       r3, 0xC(r1)
-	  lfs       f0, -0x74E0(r2)
-	  lfd       f1, 0x8(r1)
-	  stw       r31, 0x14(r1)
-	  fsubs     f2, f1, f3
-	  stw       r0, 0x10(r1)
-	  lfd       f1, 0x10(r1)
-	  fsubs     f1, f1, f3
-	  fdivs     f1, f2, f1
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0xCC
-	  lis       r3, 0x8048
-	  subi      r3, r3, 0x69FC
-	  crclr     6, 0x6
-	  bl        -0x498
-	  bl        -0x2B68
+lbl_800A7C88:
+	bl       OSGetTick
+	lwz      r0, old_time$446@sda21(r13)
+	stw      r3, old_time$446@sda21(r13)
+	subf     r31, r0, r3
+	bl       getSubFrames__9JASDriverFv
+	lwz      r5, snIntCount__14JASAudioThread@sda21(r13)
+	lis      r4, history$449@ha
+	addi     r4, r4, history$449@l
+	subf     r0, r5, r3
+	cmplw    r3, r5
+	slwi     r0, r0, 2
+	stwx     r31, r4, r0
+	beq      lbl_800A7D0C
+	lwz      r3, 0(r4)
+	lis      r0, 0x4330
+	stw      r0, 8(r1)
+	lfd      f3, lbl_80516E88@sda21(r2)
+	stw      r3, 0xc(r1)
+	lfs      f0, lbl_80516E80@sda21(r2)
+	lfd      f1, 8(r1)
+	stw      r31, 0x14(r1)
+	fsubs    f2, f1, f3
+	stw      r0, 0x10(r1)
+	lfd      f1, 0x10(r1)
+	fsubs    f1, f1, f3
+	fdivs    f1, f2, f1
+	fcmpo    cr0, f1, f0
+	bge      lbl_800A7D0C
+	lis      r3, lbl_80479604@ha
+	addi     r3, r3, lbl_80479604@l
+	crclr    6
+	bl       JASReport__FPCce
+	bl       killActiveChannel__13JASDSPChannelFv
 
-	.loc_0xCC:
-	  bl        -0x2BE0
-	  bl        -0x32D0
-	  li        r3, 0x3
-	  bl        -0x7E4
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_800A7D0C:
+	bl       updateAll__13JASDSPChannelFv
+	bl       subframeCallback__9JASDriverFv
+	li       r3, 3
+	bl       probeFinish__9JASKernelFl
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -342,223 +462,222 @@ void JASDriver::updateDSP()
 void JASDriver::readDspBuffer(short*, unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stmw      r27, 0xC(r1)
-	  mr        r30, r3
-	  mr        r31, r4
-	  lwz       r5, -0x7518(r13)
-	  lbz       r3, -0x7ED8(r13)
-	  addi      r4, r5, 0x1
-	  cmpw      r4, r3
-	  bne-      .loc_0x30
-	  li        r4, 0
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stmw     r27, 0xc(r1)
+	mr       r30, r3
+	mr       r31, r4
+	lwz      r5, sDspDacReadBuffer__9JASDriver@sda21(r13)
+	lbz      r3, sDspDacBufferCount__9JASDriver@sda21(r13)
+	addi     r4, r5, 1
+	cmpw     r4, r3
+	bne      lbl_800A7D60
+	li       r4, 0
 
-	.loc_0x30:
-	  lwz       r0, -0x751C(r13)
-	  cmpw      r4, r0
-	  bne-      .loc_0x2C0
-	  cmplwi    r3, 0x3
-	  blt-      .loc_0x2C0
-	  lwz       r4, -0x7520(r13)
-	  rlwinm    r3,r5,2,0,29
-	  cmplwi    r31, 0
-	  rlwinm    r0,r31,0,0,30
-	  lwzx      r3, r4, r3
-	  rlwinm    r4,r31,1,0,30
-	  li        r6, 0
-	  subi      r3, r3, 0x2
-	  lhax      r0, r3, r0
-	  lhax      r5, r3, r4
-	  ble-      .loc_0x18C
-	  cmplwi    r31, 0x8
-	  subi      r8, r31, 0x8
-	  ble-      .loc_0x15C
-	  addi      r7, r8, 0x7
-	  li        r3, 0
-	  rlwinm    r7,r7,29,3,31
-	  mtctr     r7
-	  cmplwi    r8, 0
-	  ble-      .loc_0x15C
+lbl_800A7D60:
+	lwz      r0, sDspDacWriteBuffer__9JASDriver@sda21(r13)
+	cmpw     r4, r0
+	bne      lbl_800A7FF0
+	cmplwi   r3, 3
+	blt      lbl_800A7FF0
+	lwz      r4, sDspDacBuffer__9JASDriver@sda21(r13)
+	slwi     r3, r5, 2
+	cmplwi   r31, 0
+	rlwinm   r0, r31, 0, 0, 0x1e
+	lwzx     r3, r4, r3
+	slwi     r4, r31, 1
+	li       r6, 0
+	addi     r3, r3, -2
+	lhax     r0, r3, r0
+	lhax     r5, r3, r4
+	ble      lbl_800A7EBC
+	cmplwi   r31, 8
+	addi     r8, r31, -8
+	ble      lbl_800A7E8C
+	addi     r7, r8, 7
+	li       r3, 0
+	srwi     r7, r7, 3
+	mtctr    r7
+	cmplwi   r8, 0
+	ble      lbl_800A7E8C
 
-	.loc_0x94:
-	  lwz       r7, -0x7518(r13)
-	  addi      r28, r3, 0x2
-	  lwz       r8, -0x7520(r13)
-	  addi      r12, r3, 0x4
-	  rlwinm    r7,r7,2,0,29
-	  addi      r11, r3, 0x6
-	  lwzx      r7, r8, r7
-	  addi      r10, r3, 0x8
-	  addi      r9, r3, 0xA
-	  addi      r8, r3, 0xC
-	  sthx      r0, r7, r3
-	  addi      r7, r3, 0xE
-	  addi      r3, r3, 0x10
-	  addi      r6, r6, 0x8
-	  lwz       r29, -0x7518(r13)
-	  lwz       r27, -0x7520(r13)
-	  rlwinm    r29,r29,2,0,29
-	  lwzx      r29, r27, r29
-	  sthx      r0, r29, r28
-	  lwz       r28, -0x7518(r13)
-	  lwz       r29, -0x7520(r13)
-	  rlwinm    r28,r28,2,0,29
-	  lwzx      r28, r29, r28
-	  sthx      r0, r28, r12
-	  lwz       r12, -0x7518(r13)
-	  lwz       r28, -0x7520(r13)
-	  rlwinm    r12,r12,2,0,29
-	  lwzx      r12, r28, r12
-	  sthx      r0, r12, r11
-	  lwz       r11, -0x7518(r13)
-	  lwz       r12, -0x7520(r13)
-	  rlwinm    r11,r11,2,0,29
-	  lwzx      r11, r12, r11
-	  sthx      r0, r11, r10
-	  lwz       r10, -0x7518(r13)
-	  lwz       r11, -0x7520(r13)
-	  rlwinm    r10,r10,2,0,29
-	  lwzx      r10, r11, r10
-	  sthx      r0, r10, r9
-	  lwz       r9, -0x7518(r13)
-	  lwz       r10, -0x7520(r13)
-	  rlwinm    r9,r9,2,0,29
-	  lwzx      r9, r10, r9
-	  sthx      r0, r9, r8
-	  lwz       r8, -0x7518(r13)
-	  lwz       r9, -0x7520(r13)
-	  rlwinm    r8,r8,2,0,29
-	  lwzx      r8, r9, r8
-	  sthx      r0, r8, r7
-	  bdnz+     .loc_0x94
+lbl_800A7DC4:
+	lwz      r7, sDspDacReadBuffer__9JASDriver@sda21(r13)
+	addi     r28, r3, 2
+	lwz      r8, sDspDacBuffer__9JASDriver@sda21(r13)
+	addi     r12, r3, 4
+	slwi     r7, r7, 2
+	addi     r11, r3, 6
+	lwzx     r7, r8, r7
+	addi     r10, r3, 8
+	addi     r9, r3, 0xa
+	addi     r8, r3, 0xc
+	sthx     r0, r7, r3
+	addi     r7, r3, 0xe
+	addi     r3, r3, 0x10
+	addi     r6, r6, 8
+	lwz      r29, sDspDacReadBuffer__9JASDriver@sda21(r13)
+	lwz      r27, sDspDacBuffer__9JASDriver@sda21(r13)
+	slwi     r29, r29, 2
+	lwzx     r29, r27, r29
+	sthx     r0, r29, r28
+	lwz      r28, sDspDacReadBuffer__9JASDriver@sda21(r13)
+	lwz      r29, sDspDacBuffer__9JASDriver@sda21(r13)
+	slwi     r28, r28, 2
+	lwzx     r28, r29, r28
+	sthx     r0, r28, r12
+	lwz      r12, sDspDacReadBuffer__9JASDriver@sda21(r13)
+	lwz      r28, sDspDacBuffer__9JASDriver@sda21(r13)
+	slwi     r12, r12, 2
+	lwzx     r12, r28, r12
+	sthx     r0, r12, r11
+	lwz      r11, sDspDacReadBuffer__9JASDriver@sda21(r13)
+	lwz      r12, sDspDacBuffer__9JASDriver@sda21(r13)
+	slwi     r11, r11, 2
+	lwzx     r11, r12, r11
+	sthx     r0, r11, r10
+	lwz      r10, sDspDacReadBuffer__9JASDriver@sda21(r13)
+	lwz      r11, sDspDacBuffer__9JASDriver@sda21(r13)
+	slwi     r10, r10, 2
+	lwzx     r10, r11, r10
+	sthx     r0, r10, r9
+	lwz      r9, sDspDacReadBuffer__9JASDriver@sda21(r13)
+	lwz      r10, sDspDacBuffer__9JASDriver@sda21(r13)
+	slwi     r9, r9, 2
+	lwzx     r9, r10, r9
+	sthx     r0, r9, r8
+	lwz      r8, sDspDacReadBuffer__9JASDriver@sda21(r13)
+	lwz      r9, sDspDacBuffer__9JASDriver@sda21(r13)
+	slwi     r8, r8, 2
+	lwzx     r8, r9, r8
+	sthx     r0, r8, r7
+	bdnz     lbl_800A7DC4
 
-	.loc_0x15C:
-	  sub       r3, r31, r6
-	  rlwinm    r7,r6,1,0,30
-	  mtctr     r3
-	  cmplw     r6, r31
-	  bge-      .loc_0x18C
+lbl_800A7E8C:
+	subf     r3, r6, r31
+	slwi     r7, r6, 1
+	mtctr    r3
+	cmplw    r6, r31
+	bge      lbl_800A7EBC
 
-	.loc_0x170:
-	  lwz       r3, -0x7518(r13)
-	  lwz       r6, -0x7520(r13)
-	  rlwinm    r3,r3,2,0,29
-	  lwzx      r3, r6, r3
-	  sthx      r0, r3, r7
-	  addi      r7, r7, 0x2
-	  bdnz+     .loc_0x170
+lbl_800A7EA0:
+	lwz      r3, sDspDacReadBuffer__9JASDriver@sda21(r13)
+	lwz      r6, sDspDacBuffer__9JASDriver@sda21(r13)
+	slwi     r3, r3, 2
+	lwzx     r3, r6, r3
+	sthx     r0, r3, r7
+	addi     r7, r7, 2
+	bdnz     lbl_800A7EA0
 
-	.loc_0x18C:
-	  cmplw     r31, r4
-	  mr        r6, r31
-	  bge-      .loc_0x2D8
-	  sub       r0, r4, r31
-	  subi      r7, r4, 0x8
-	  cmplwi    r0, 0x8
-	  ble-      .loc_0x28C
-	  addi      r0, r7, 0x7
-	  mr        r3, r4
-	  sub       r0, r0, r31
-	  rlwinm    r0,r0,29,3,31
-	  mtctr     r0
-	  cmplw     r31, r7
-	  bge-      .loc_0x28C
+lbl_800A7EBC:
+	cmplw    r31, r4
+	mr       r6, r31
+	bge      lbl_800A8008
+	subf     r0, r31, r4
+	addi     r7, r4, -8
+	cmplwi   r0, 8
+	ble      lbl_800A7FBC
+	addi     r0, r7, 7
+	mr       r3, r4
+	subf     r0, r31, r0
+	srwi     r0, r0, 3
+	mtctr    r0
+	cmplw    r31, r7
+	bge      lbl_800A7FBC
 
-	.loc_0x1C4:
-	  lwz       r0, -0x7518(r13)
-	  addi      r12, r3, 0x2
-	  lwz       r7, -0x7520(r13)
-	  addi      r11, r3, 0x4
-	  rlwinm    r0,r0,2,0,29
-	  addi      r10, r3, 0x6
-	  lwzx      r28, r7, r0
-	  addi      r9, r3, 0x8
-	  addi      r8, r3, 0xA
-	  addi      r7, r3, 0xC
-	  sthx      r5, r28, r3
-	  addi      r0, r3, 0xE
-	  addi      r3, r3, 0x10
-	  addi      r6, r6, 0x8
-	  lwz       r29, -0x7518(r13)
-	  lwz       r28, -0x7520(r13)
-	  rlwinm    r29,r29,2,0,29
-	  lwzx      r29, r28, r29
-	  sthx      r5, r29, r12
-	  lwz       r12, -0x7518(r13)
-	  lwz       r29, -0x7520(r13)
-	  rlwinm    r12,r12,2,0,29
-	  lwzx      r12, r29, r12
-	  sthx      r5, r12, r11
-	  lwz       r11, -0x7518(r13)
-	  lwz       r12, -0x7520(r13)
-	  rlwinm    r11,r11,2,0,29
-	  lwzx      r11, r12, r11
-	  sthx      r5, r11, r10
-	  lwz       r10, -0x7518(r13)
-	  lwz       r11, -0x7520(r13)
-	  rlwinm    r10,r10,2,0,29
-	  lwzx      r10, r11, r10
-	  sthx      r5, r10, r9
-	  lwz       r9, -0x7518(r13)
-	  lwz       r10, -0x7520(r13)
-	  rlwinm    r9,r9,2,0,29
-	  lwzx      r9, r10, r9
-	  sthx      r5, r9, r8
-	  lwz       r8, -0x7518(r13)
-	  lwz       r9, -0x7520(r13)
-	  rlwinm    r8,r8,2,0,29
-	  lwzx      r8, r9, r8
-	  sthx      r5, r8, r7
-	  lwz       r7, -0x7518(r13)
-	  lwz       r8, -0x7520(r13)
-	  rlwinm    r7,r7,2,0,29
-	  lwzx      r7, r8, r7
-	  sthx      r5, r7, r0
-	  bdnz+     .loc_0x1C4
+lbl_800A7EF4:
+	lwz      r0, sDspDacReadBuffer__9JASDriver@sda21(r13)
+	addi     r12, r3, 2
+	lwz      r7, sDspDacBuffer__9JASDriver@sda21(r13)
+	addi     r11, r3, 4
+	slwi     r0, r0, 2
+	addi     r10, r3, 6
+	lwzx     r28, r7, r0
+	addi     r9, r3, 8
+	addi     r8, r3, 0xa
+	addi     r7, r3, 0xc
+	sthx     r5, r28, r3
+	addi     r0, r3, 0xe
+	addi     r3, r3, 0x10
+	addi     r6, r6, 8
+	lwz      r29, sDspDacReadBuffer__9JASDriver@sda21(r13)
+	lwz      r28, sDspDacBuffer__9JASDriver@sda21(r13)
+	slwi     r29, r29, 2
+	lwzx     r29, r28, r29
+	sthx     r5, r29, r12
+	lwz      r12, sDspDacReadBuffer__9JASDriver@sda21(r13)
+	lwz      r29, sDspDacBuffer__9JASDriver@sda21(r13)
+	slwi     r12, r12, 2
+	lwzx     r12, r29, r12
+	sthx     r5, r12, r11
+	lwz      r11, sDspDacReadBuffer__9JASDriver@sda21(r13)
+	lwz      r12, sDspDacBuffer__9JASDriver@sda21(r13)
+	slwi     r11, r11, 2
+	lwzx     r11, r12, r11
+	sthx     r5, r11, r10
+	lwz      r10, sDspDacReadBuffer__9JASDriver@sda21(r13)
+	lwz      r11, sDspDacBuffer__9JASDriver@sda21(r13)
+	slwi     r10, r10, 2
+	lwzx     r10, r11, r10
+	sthx     r5, r10, r9
+	lwz      r9, sDspDacReadBuffer__9JASDriver@sda21(r13)
+	lwz      r10, sDspDacBuffer__9JASDriver@sda21(r13)
+	slwi     r9, r9, 2
+	lwzx     r9, r10, r9
+	sthx     r5, r9, r8
+	lwz      r8, sDspDacReadBuffer__9JASDriver@sda21(r13)
+	lwz      r9, sDspDacBuffer__9JASDriver@sda21(r13)
+	slwi     r8, r8, 2
+	lwzx     r8, r9, r8
+	sthx     r5, r8, r7
+	lwz      r7, sDspDacReadBuffer__9JASDriver@sda21(r13)
+	lwz      r8, sDspDacBuffer__9JASDriver@sda21(r13)
+	slwi     r7, r7, 2
+	lwzx     r7, r8, r7
+	sthx     r5, r7, r0
+	bdnz     lbl_800A7EF4
 
-	.loc_0x28C:
-	  sub       r0, r4, r6
-	  rlwinm    r7,r6,1,0,30
-	  mtctr     r0
-	  cmplw     r6, r4
-	  bge-      .loc_0x2D8
+lbl_800A7FBC:
+	subf     r0, r6, r4
+	slwi     r7, r6, 1
+	mtctr    r0
+	cmplw    r6, r4
+	bge      lbl_800A8008
 
-	.loc_0x2A0:
-	  lwz       r0, -0x7518(r13)
-	  lwz       r3, -0x7520(r13)
-	  rlwinm    r0,r0,2,0,29
-	  lwzx      r3, r3, r0
-	  sthx      r5, r3, r7
-	  addi      r7, r7, 0x2
-	  bdnz+     .loc_0x2A0
-	  b         .loc_0x2D8
+lbl_800A7FD0:
+	lwz      r0, sDspDacReadBuffer__9JASDriver@sda21(r13)
+	lwz      r3, sDspDacBuffer__9JASDriver@sda21(r13)
+	slwi     r0, r0, 2
+	lwzx     r3, r3, r0
+	sthx     r5, r3, r7
+	addi     r7, r7, 2
+	bdnz     lbl_800A7FD0
+	b        lbl_800A8008
 
-	.loc_0x2C0:
-	  stw       r4, -0x7518(r13)
-	  rlwinm    r0,r4,2,0,29
-	  lwz       r3, -0x7520(r13)
-	  rlwinm    r4,r31,2,0,29
-	  lwzx      r3, r3, r0
-	  bl        0x446E8
+lbl_800A7FF0:
+	stw      r4, sDspDacReadBuffer__9JASDriver@sda21(r13)
+	slwi     r0, r4, 2
+	lwz      r3, sDspDacBuffer__9JASDriver@sda21(r13)
+	slwi     r4, r31, 2
+	lwzx     r3, r3, r0
+	bl       DCInvalidateRange
 
-	.loc_0x2D8:
-	  lwz       r3, -0x7518(r13)
-	  rlwinm    r0,r31,1,0,30
-	  lwz       r4, -0x7520(r13)
-	  mr        r5, r30
-	  rlwinm    r3,r3,2,0,29
-	  mr        r6, r31
-	  lwzx      r4, r4, r3
-	  add       r3, r4, r0
-	  bl        -0x216C
-	  lmw       r27, 0xC(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_800A8008:
+	lwz      r3, sDspDacReadBuffer__9JASDriver@sda21(r13)
+	slwi     r0, r31, 1
+	lwz      r4, sDspDacBuffer__9JASDriver@sda21(r13)
+	mr       r5, r30
+	slwi     r3, r3, 2
+	mr       r6, r31
+	lwzx     r4, r4, r3
+	add      r3, r4, r0
+	bl       imixcopy__7JASCalcFPCsPCsPsUl
+	lmw      r27, 0xc(r1)
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -570,122 +689,121 @@ void JASDriver::readDspBuffer(short*, unsigned long)
 void JASDriver::finishDSPFrame()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  lis       r4, 0x8048
-	  stw       r0, 0x34(r1)
-	  stw       r31, 0x2C(r1)
-	  subi      r31, r4, 0x6A18
-	  stw       r30, 0x28(r1)
-	  stw       r29, 0x24(r1)
-	  lwz       r3, -0x751C(r13)
-	  lbz       r0, -0x7ED8(r13)
-	  addi      r3, r3, 0x1
-	  cmpw      r3, r0
-	  bne-      .loc_0x38
-	  li        r3, 0
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	lis      r4, sMixFuncs__9JASDriver@ha
+	stw      r0, 0x34(r1)
+	stw      r31, 0x2c(r1)
+	addi     r31, r4, sMixFuncs__9JASDriver@l
+	stw      r30, 0x28(r1)
+	stw      r29, 0x24(r1)
+	lwz      r3, sDspDacWriteBuffer__9JASDriver@sda21(r13)
+	lbz      r0, sDspDacBufferCount__9JASDriver@sda21(r13)
+	addi     r3, r3, 1
+	cmpw     r3, r0
+	bne      lbl_800A8078
+	li       r3, 0
 
-	.loc_0x38:
-	  lwz       r0, -0x7518(r13)
-	  cmpw      r3, r0
-	  bne-      .loc_0x50
-	  li        r0, 0
-	  stw       r0, -0x7514(r13)
-	  b         .loc_0x188
+lbl_800A8078:
+	lwz      r0, sDspDacReadBuffer__9JASDriver@sda21(r13)
+	cmpw     r3, r0
+	bne      lbl_800A8090
+	li       r0, 0
+	stw      r0, sDspStatus__9JASDriver@sda21(r13)
+	b        lbl_800A81C8
 
-	.loc_0x50:
-	  stw       r3, -0x751C(r13)
-	  bl        0x164
-	  stw       r3, -0x7558(r13)
-	  addi      r4, r31, 0x30
-	  li        r3, 0x7
-	  bl        -0xBD0
-	  bl        0x164
-	  lwz       r0, -0x751C(r13)
-	  mr        r30, r3
-	  lwz       r4, -0x7520(r13)
-	  rlwinm    r0,r0,2,0,29
-	  lwzx      r29, r4, r0
-	  bl        0x138
-	  rlwinm    r0,r30,1,0,30
-	  mr        r4, r29
-	  add       r5, r29, r0
-	  bl        -0x2D34
-	  li        r0, 0x1
-	  addi      r4, r31, 0x10
-	  stw       r0, -0x7514(r13)
-	  li        r3, 0x3
-	  bl        -0xC10
-	  bl        -0x2CF0
-	  bl        -0x1948
-	  bl        -0x3688
-	  lbz       r0, -0x74F0(r13)
-	  extsb.    r0, r0
-	  bne-      .loc_0xD0
-	  li        r3, 0
-	  li        r0, 0x1
-	  stw       r3, -0x74F4(r13)
-	  stb       r0, -0x74F0(r13)
+lbl_800A8090:
+	stw      r3, sDspDacWriteBuffer__9JASDriver@sda21(r13)
+	bl       getSubFrames__9JASDriverFv
+	stw      r3, snIntCount__14JASAudioThread@sda21(r13)
+	addi     r4, r31, 0x30
+	li       r3, 7
+	bl       probeStart__9JASKernelFlPc
+	bl       getFrameSamples__9JASDriverFv
+	lwz      r0, sDspDacWriteBuffer__9JASDriver@sda21(r13)
+	mr       r30, r3
+	lwz      r4, sDspDacBuffer__9JASDriver@sda21(r13)
+	slwi     r0, r0, 2
+	lwzx     r29, r4, r0
+	bl       getSubFrames__9JASDriverFv
+	slwi     r0, r30, 1
+	mr       r4, r29
+	add      r5, r29, r0
+	bl       syncFrame__6JASDspFUlUlUl
+	li       r0, 1
+	addi     r4, r31, 0x10
+	stw      r0, sDspStatus__9JASDriver@sda21(r13)
+	li       r3, 3
+	bl       probeStart__9JASKernelFlPc
+	bl       invalChannelAll__6JASDspFv
+	bl       execAllCommand__10JASPortCmdFv
+	bl       DSPSyncCallback__9JASDriverFv
+	lbz      r0, init$447@sda21(r13)
+	extsb.   r0, r0
+	bne      lbl_800A8110
+	li       r3, 0
+	li       r0, 1
+	stw      r3, old_time$446@sda21(r13)
+	stb      r0, init$447@sda21(r13)
 
-	.loc_0xD0:
-	  bl        0x4AA98
-	  lwz       r0, -0x74F4(r13)
-	  stw       r3, -0x74F4(r13)
-	  sub       r29, r3, r0
-	  bl        0xD8
-	  lwz       r5, -0x7558(r13)
-	  lis       r4, 0x804A
-	  addi      r4, r4, 0x4468
-	  sub       r0, r3, r5
-	  cmplw     r3, r5
-	  rlwinm    r0,r0,2,0,29
-	  stwx      r29, r4, r0
-	  beq-      .loc_0x150
-	  lwz       r3, 0x0(r4)
-	  lis       r0, 0x4330
-	  stw       r0, 0x8(r1)
-	  lfd       f3, -0x74D8(r2)
-	  stw       r3, 0xC(r1)
-	  lfs       f0, -0x74E0(r2)
-	  lfd       f1, 0x8(r1)
-	  stw       r29, 0x14(r1)
-	  fsubs     f2, f1, f3
-	  stw       r0, 0x10(r1)
-	  lfd       f1, 0x10(r1)
-	  fsubs     f1, f1, f3
-	  fdivs     f1, f2, f1
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x150
-	  addi      r3, r31, 0x1C
-	  crclr     6, 0x6
-	  bl        -0x91C
-	  bl        -0x2FEC
+lbl_800A8110:
+	bl       OSGetTick
+	lwz      r0, old_time$446@sda21(r13)
+	stw      r3, old_time$446@sda21(r13)
+	subf     r29, r0, r3
+	bl       getSubFrames__9JASDriverFv
+	lwz      r5, snIntCount__14JASAudioThread@sda21(r13)
+	lis      r4, history$449@ha
+	addi     r4, r4, history$449@l
+	subf     r0, r5, r3
+	cmplw    r3, r5
+	slwi     r0, r0, 2
+	stwx     r29, r4, r0
+	beq      lbl_800A8190
+	lwz      r3, 0(r4)
+	lis      r0, 0x4330
+	stw      r0, 8(r1)
+	lfd      f3, lbl_80516E88@sda21(r2)
+	stw      r3, 0xc(r1)
+	lfs      f0, lbl_80516E80@sda21(r2)
+	lfd      f1, 8(r1)
+	stw      r29, 0x14(r1)
+	fsubs    f2, f1, f3
+	stw      r0, 0x10(r1)
+	lfd      f1, 0x10(r1)
+	fsubs    f1, f1, f3
+	fdivs    f1, f2, f1
+	fcmpo    cr0, f1, f0
+	bge      lbl_800A8190
+	addi     r3, r31, 0x1c
+	crclr    6
+	bl       JASReport__FPCce
+	bl       killActiveChannel__13JASDSPChannelFv
 
-	.loc_0x150:
-	  bl        -0x3064
-	  bl        -0x3754
-	  li        r3, 0x3
-	  bl        -0xC68
-	  lwz       r12, -0x7510(r13)
-	  cmplwi    r12, 0
-	  beq-      .loc_0x188
-	  lwz       r0, -0x751C(r13)
-	  mr        r4, r30
-	  lwz       r3, -0x7520(r13)
-	  rlwinm    r0,r0,2,0,29
-	  lwzx      r3, r3, r0
-	  mtctr     r12
-	  bctrl
+lbl_800A8190:
+	bl       updateAll__13JASDSPChannelFv
+	bl       subframeCallback__9JASDriverFv
+	li       r3, 3
+	bl       probeFinish__9JASKernelFl
+	lwz      r12, sDspDacCallback__9JASDriver@sda21(r13)
+	cmplwi   r12, 0
+	beq      lbl_800A81C8
+	lwz      r0, sDspDacWriteBuffer__9JASDriver@sda21(r13)
+	mr       r4, r30
+	lwz      r3, sDspDacBuffer__9JASDriver@sda21(r13)
+	slwi     r0, r0, 2
+	lwzx     r3, r3, r0
+	mtctr    r12
+	bctrl
 
-	.loc_0x188:
-	  lwz       r0, 0x34(r1)
-	  lwz       r31, 0x2C(r1)
-	  lwz       r30, 0x28(r1)
-	  lwz       r29, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_800A81C8:
+	lwz      r0, 0x34(r1)
+	lwz      r31, 0x2c(r1)
+	lwz      r30, 0x28(r1)
+	lwz      r29, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -717,10 +835,9 @@ void JASDriver::setNumDSPBuffer(unsigned char)
 void JASDriver::registerMixCallback(short* (*)(long), JASMixMode)
 {
 	/*
-	.loc_0x0:
-	  stw       r3, -0x7504(r13)
-	  stw       r4, -0x7ED0(r13)
-	  blr
+	stw      r3, extMixCallback__9JASDriver@sda21(r13)
+	stw      r4, sMixMode__9JASDriver@sda21(r13)
+	blr
 	*/
 }
 
@@ -752,9 +869,8 @@ void JASDriver::registDSPBufCallback(void (*)(short*, unsigned long))
 void JASDriver::getDacRate()
 {
 	/*
-	.loc_0x0:
-	  lfs       f1, -0x7ECC(r13)
-	  blr
+	lfs      f1, sDacRate__9JASDriver@sda21(r13)
+	blr
 	*/
 }
 
@@ -766,9 +882,8 @@ void JASDriver::getDacRate()
 void JASDriver::getSubFrames()
 {
 	/*
-	.loc_0x0:
-	  lwz       r3, -0x7ED4(r13)
-	  blr
+	lwz      r3, sSubFrames__9JASDriver@sda21(r13)
+	blr
 	*/
 }
 
@@ -780,10 +895,9 @@ void JASDriver::getSubFrames()
 void JASDriver::getDacSize()
 {
 	/*
-	.loc_0x0:
-	  lwz       r0, -0x7ED4(r13)
-	  mulli     r3, r0, 0xA0
-	  blr
+	lwz      r0, sSubFrames__9JASDriver@sda21(r13)
+	mulli    r3, r0, 0xa0
+	blr
 	*/
 }
 
@@ -795,10 +909,9 @@ void JASDriver::getDacSize()
 void JASDriver::getFrameSamples()
 {
 	/*
-	.loc_0x0:
-	  lwz       r0, -0x7ED4(r13)
-	  mulli     r3, r0, 0x50
-	  blr
+	lwz      r0, sSubFrames__9JASDriver@sda21(r13)
+	mulli    r3, r0, 0x50
+	blr
 	*/
 }
 
@@ -810,61 +923,60 @@ void JASDriver::getFrameSamples()
 void JASDriver::mixMonoTrack(short*, unsigned long, short* (*)(long))
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r6, 0x8048
-	  stw       r0, 0x24(r1)
-	  subi      r0, r6, 0x69DC
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  mr        r30, r3
-	  li        r3, 0x5
-	  stw       r29, 0x14(r1)
-	  mr        r29, r5
-	  stw       r28, 0x10(r1)
-	  mr        r28, r4
-	  mr        r4, r0
-	  bl        -0xD7C
-	  mr        r12, r29
-	  mr        r3, r28
-	  mtctr     r12
-	  bctrl
-	  mr.       r31, r3
-	  beq-      .loc_0xA0
-	  li        r3, 0x5
-	  bl        -0xD3C
-	  mr        r29, r28
-	  b         .loc_0x98
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lis      r6, lbl_80479624@ha
+	stw      r0, 0x24(r1)
+	addi     r0, r6, lbl_80479624@l
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	mr       r30, r3
+	li       r3, 5
+	stw      r29, 0x14(r1)
+	mr       r29, r5
+	stw      r28, 0x10(r1)
+	mr       r28, r4
+	mr       r4, r0
+	bl       probeStart__9JASKernelFlPc
+	mr       r12, r29
+	mr       r3, r28
+	mtctr    r12
+	bctrl
+	or.      r31, r3, r3
+	beq      lbl_800A82B8
+	li       r3, 5
+	bl       probeFinish__9JASKernelFl
+	mr       r29, r28
+	b        lbl_800A82B0
 
-	.loc_0x64:
-	  lha       r3, 0x0(r30)
-	  lha       r0, 0x0(r31)
-	  add       r3, r3, r0
-	  bl        -0x1DB0
-	  sth       r3, 0x0(r30)
-	  lha       r3, 0x2(r30)
-	  lha       r0, 0x0(r31)
-	  add       r3, r3, r0
-	  bl        -0x1DC4
-	  sth       r3, 0x2(r30)
-	  addi      r30, r30, 0x4
-	  addi      r31, r31, 0x2
-	  subi      r29, r29, 0x1
+lbl_800A827C:
+	lha      r3, 0(r30)
+	lha      r0, 0(r31)
+	add      r3, r3, r0
+	bl       "clamp<s,l>__7JASCalcFl"
+	sth      r3, 0(r30)
+	lha      r3, 2(r30)
+	lha      r0, 0(r31)
+	add      r3, r3, r0
+	bl       "clamp<s,l>__7JASCalcFl"
+	sth      r3, 2(r30)
+	addi     r30, r30, 4
+	addi     r31, r31, 2
+	addi     r29, r29, -1
 
-	.loc_0x98:
-	  cmplwi    r29, 0
-	  bne+      .loc_0x64
+lbl_800A82B0:
+	cmplwi   r29, 0
+	bne      lbl_800A827C
 
-	.loc_0xA0:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_800A82B8:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -876,61 +988,60 @@ void JASDriver::mixMonoTrack(short*, unsigned long, short* (*)(long))
 void JASDriver::mixMonoTrackWide(short*, unsigned long, short* (*)(long))
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r6, 0x8048
-	  stw       r0, 0x24(r1)
-	  subi      r0, r6, 0x69D0
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  mr        r30, r3
-	  li        r3, 0x5
-	  stw       r29, 0x14(r1)
-	  mr        r29, r5
-	  stw       r28, 0x10(r1)
-	  mr        r28, r4
-	  mr        r4, r0
-	  bl        -0xE3C
-	  mr        r12, r29
-	  mr        r3, r28
-	  mtctr     r12
-	  bctrl
-	  mr.       r31, r3
-	  beq-      .loc_0xA0
-	  li        r3, 0x5
-	  bl        -0xDFC
-	  mr        r29, r28
-	  b         .loc_0x98
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lis      r6, lbl_80479630@ha
+	stw      r0, 0x24(r1)
+	addi     r0, r6, lbl_80479630@l
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	mr       r30, r3
+	li       r3, 5
+	stw      r29, 0x14(r1)
+	mr       r29, r5
+	stw      r28, 0x10(r1)
+	mr       r28, r4
+	mr       r4, r0
+	bl       probeStart__9JASKernelFlPc
+	mr       r12, r29
+	mr       r3, r28
+	mtctr    r12
+	bctrl
+	or.      r31, r3, r3
+	beq      lbl_800A8378
+	li       r3, 5
+	bl       probeFinish__9JASKernelFl
+	mr       r29, r28
+	b        lbl_800A8370
 
-	.loc_0x64:
-	  lha       r3, 0x0(r30)
-	  lha       r0, 0x0(r31)
-	  add       r3, r3, r0
-	  bl        -0x1E70
-	  sth       r3, 0x0(r30)
-	  lha       r3, 0x2(r30)
-	  lha       r0, 0x0(r31)
-	  sub       r3, r3, r0
-	  bl        -0x1E84
-	  sth       r3, 0x2(r30)
-	  addi      r30, r30, 0x4
-	  addi      r31, r31, 0x2
-	  subi      r29, r29, 0x1
+lbl_800A833C:
+	lha      r3, 0(r30)
+	lha      r0, 0(r31)
+	add      r3, r3, r0
+	bl       "clamp<s,l>__7JASCalcFl"
+	sth      r3, 0(r30)
+	lha      r3, 2(r30)
+	lha      r0, 0(r31)
+	subf     r3, r0, r3
+	bl       "clamp<s,l>__7JASCalcFl"
+	sth      r3, 2(r30)
+	addi     r30, r30, 4
+	addi     r31, r31, 2
+	addi     r29, r29, -1
 
-	.loc_0x98:
-	  cmplwi    r29, 0
-	  bne+      .loc_0x64
+lbl_800A8370:
+	cmplwi   r29, 0
+	bne      lbl_800A833C
 
-	.loc_0xA0:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_800A8378:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -942,69 +1053,68 @@ void JASDriver::mixMonoTrackWide(short*, unsigned long, short* (*)(long))
 void JASDriver::mixExtraTrack(short*, unsigned long, short* (*)(long))
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  mr        r30, r3
-	  li        r3, 0x5
-	  stw       r29, 0x14(r1)
-	  mr        r29, r4
-	  subi      r4, r2, 0x74D0
-	  stw       r28, 0x10(r1)
-	  mr        r28, r5
-	  bl        -0xEF4
-	  mr        r12, r28
-	  mr        r3, r29
-	  mtctr     r12
-	  bctrl
-	  mr.       r31, r3
-	  beq-      .loc_0xC0
-	  li        r3, 0x5
-	  bl        -0xEB4
-	  li        r3, 0x6
-	  subi      r4, r2, 0x74C8
-	  bl        -0xF20
-	  lwz       r0, -0x7ED4(r13)
-	  mr        r28, r29
-	  mulli     r0, r0, 0x50
-	  rlwinm    r0,r0,1,0,30
-	  add       r29, r31, r0
-	  b         .loc_0xB0
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	mr       r30, r3
+	li       r3, 5
+	stw      r29, 0x14(r1)
+	mr       r29, r4
+	addi     r4, r2, lbl_80516E90@sda21
+	stw      r28, 0x10(r1)
+	mr       r28, r5
+	bl       probeStart__9JASKernelFlPc
+	mr       r12, r28
+	mr       r3, r29
+	mtctr    r12
+	bctrl
+	or.      r31, r3, r3
+	beq      lbl_800A8458
+	li       r3, 5
+	bl       probeFinish__9JASKernelFl
+	li       r3, 6
+	addi     r4, r2, lbl_80516E98@sda21
+	bl       probeStart__9JASKernelFlPc
+	lwz      r0, sSubFrames__9JASDriver@sda21(r13)
+	mr       r28, r29
+	mulli    r0, r0, 0x50
+	slwi     r0, r0, 1
+	add      r29, r31, r0
+	b        lbl_800A8448
 
-	.loc_0x78:
-	  lha       r3, 0x0(r30)
-	  lha       r0, 0x0(r29)
-	  add       r3, r3, r0
-	  bl        -0x1F44
-	  sth       r3, 0x0(r30)
-	  lha       r3, 0x2(r30)
-	  lha       r0, 0x0(r31)
-	  add       r3, r3, r0
-	  bl        -0x1F58
-	  sth       r3, 0x2(r30)
-	  addi      r30, r30, 0x4
-	  addi      r29, r29, 0x2
-	  addi      r31, r31, 0x2
-	  subi      r28, r28, 0x1
+lbl_800A8410:
+	lha      r3, 0(r30)
+	lha      r0, 0(r29)
+	add      r3, r3, r0
+	bl       "clamp<s,l>__7JASCalcFl"
+	sth      r3, 0(r30)
+	lha      r3, 2(r30)
+	lha      r0, 0(r31)
+	add      r3, r3, r0
+	bl       "clamp<s,l>__7JASCalcFl"
+	sth      r3, 2(r30)
+	addi     r30, r30, 4
+	addi     r29, r29, 2
+	addi     r31, r31, 2
+	addi     r28, r28, -1
 
-	.loc_0xB0:
-	  cmplwi    r28, 0
-	  bne+      .loc_0x78
-	  li        r3, 0x6
-	  bl        -0xF20
+lbl_800A8448:
+	cmplwi   r28, 0
+	bne      lbl_800A8410
+	li       r3, 6
+	bl       probeFinish__9JASKernelFl
 
-	.loc_0xC0:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_800A8458:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -1016,47 +1126,46 @@ void JASDriver::mixExtraTrack(short*, unsigned long, short* (*)(long))
 void JASDriver::mixInterleaveTrack(short*, unsigned long, short* (*)(long))
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  mr        r12, r5
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  mr        r30, r3
-	  stw       r29, 0x14(r1)
-	  mr        r29, r4
-	  mr        r3, r29
-	  mtctr     r12
-	  bctrl
-	  cmplwi    r3, 0
-	  beq-      .loc_0x70
-	  mr        r31, r30
-	  mr        r30, r3
-	  rlwinm    r29,r29,1,0,30
-	  b         .loc_0x68
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	mr       r12, r5
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	mr       r30, r3
+	stw      r29, 0x14(r1)
+	mr       r29, r4
+	mr       r3, r29
+	mtctr    r12
+	bctrl
+	cmplwi   r3, 0
+	beq      lbl_800A84E8
+	mr       r31, r30
+	mr       r30, r3
+	slwi     r29, r29, 1
+	b        lbl_800A84E0
 
-	.loc_0x48:
-	  lha       r3, 0x0(r31)
-	  lha       r0, 0x0(r30)
-	  add       r3, r3, r0
-	  bl        -0x1FF4
-	  sth       r3, 0x0(r31)
-	  addi      r31, r31, 0x2
-	  addi      r30, r30, 0x2
-	  subi      r29, r29, 0x1
+lbl_800A84C0:
+	lha      r3, 0(r31)
+	lha      r0, 0(r30)
+	add      r3, r3, r0
+	bl       "clamp<s,l>__7JASCalcFl"
+	sth      r3, 0(r31)
+	addi     r31, r31, 2
+	addi     r30, r30, 2
+	addi     r29, r29, -1
 
-	.loc_0x68:
-	  cmplwi    r29, 0
-	  bne+      .loc_0x48
+lbl_800A84E0:
+	cmplwi   r29, 0
+	bne      lbl_800A84C0
 
-	.loc_0x70:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_800A84E8:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }

@@ -1,5 +1,297 @@
 #include "types.h"
 
+/*
+    Generated from dpostproc
+
+    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
+    .4byte __sinit_BigTreasureState_cpp
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_8048C198
+    lbl_8048C198:
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x3234362D
+        .4byte 0x42696754
+        .4byte 0x72656173
+        .4byte 0x75726553
+        .4byte 0x74617465
+        .4byte 0x00000000
+        .4byte 0x6974656D
+        .4byte 0x77616974
+        .4byte 0x00000000
+        .4byte 0x70726561
+        .4byte 0x74746163
+        .4byte 0x6B000000
+        .4byte 0x64726F70
+        .4byte 0x6974656D
+        .4byte 0x00000000
+        .4byte 0x6974656D
+        .4byte 0x77616C6B
+        .4byte 0x00000000
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global lbl_804D2F90
+    lbl_804D2F90:
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+    .global __vt__Q34Game11BigTreasure13StateItemWalk
+    __vt__Q34Game11BigTreasure13StateItemWalk:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game11BigTreasure13StateItemWalkFPQ24Game9EnemyBasePQ24Game8StateArg
+        .4byte exec__Q34Game11BigTreasure13StateItemWalkFPQ24Game9EnemyBase
+        .4byte cleanup__Q34Game11BigTreasure13StateItemWalkFPQ24Game9EnemyBase
+        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game11BigTreasure9StateWalk
+    __vt__Q34Game11BigTreasure9StateWalk:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game11BigTreasure9StateWalkFPQ24Game9EnemyBasePQ24Game8StateArg
+        .4byte exec__Q34Game11BigTreasure9StateWalkFPQ24Game9EnemyBase
+        .4byte cleanup__Q34Game11BigTreasure9StateWalkFPQ24Game9EnemyBase
+        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game11BigTreasure13StateDropItem
+    __vt__Q34Game11BigTreasure13StateDropItem:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game11BigTreasure13StateDropItemFPQ24Game9EnemyBasePQ24Game8StateArg
+        .4byte exec__Q34Game11BigTreasure13StateDropItemFPQ24Game9EnemyBase
+        .4byte cleanup__Q34Game11BigTreasure13StateDropItemFPQ24Game9EnemyBase
+        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game11BigTreasure12StatePutItem
+    __vt__Q34Game11BigTreasure12StatePutItem:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game11BigTreasure12StatePutItemFPQ24Game9EnemyBasePQ24Game8StateArg
+        .4byte exec__Q34Game11BigTreasure12StatePutItemFPQ24Game9EnemyBase
+        .4byte cleanup__Q34Game11BigTreasure12StatePutItemFPQ24Game9EnemyBase
+        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game11BigTreasure11StateAttack
+    __vt__Q34Game11BigTreasure11StateAttack:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game11BigTreasure11StateAttackFPQ24Game9EnemyBasePQ24Game8StateArg
+        .4byte exec__Q34Game11BigTreasure11StateAttackFPQ24Game9EnemyBase
+        .4byte cleanup__Q34Game11BigTreasure11StateAttackFPQ24Game9EnemyBase
+        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game11BigTreasure14StatePreAttack
+    __vt__Q34Game11BigTreasure14StatePreAttack:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game11BigTreasure14StatePreAttackFPQ24Game9EnemyBasePQ24Game8StateArg
+        .4byte exec__Q34Game11BigTreasure14StatePreAttackFPQ24Game9EnemyBase
+        .4byte cleanup__Q34Game11BigTreasure14StatePreAttackFPQ24Game9EnemyBase
+        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game11BigTreasure10StateFlick
+    __vt__Q34Game11BigTreasure10StateFlick:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game11BigTreasure10StateFlickFPQ24Game9EnemyBasePQ24Game8StateArg
+        .4byte exec__Q34Game11BigTreasure10StateFlickFPQ24Game9EnemyBase
+        .4byte cleanup__Q34Game11BigTreasure10StateFlickFPQ24Game9EnemyBase
+        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game11BigTreasure13StateItemWait
+    __vt__Q34Game11BigTreasure13StateItemWait:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game11BigTreasure13StateItemWaitFPQ24Game9EnemyBasePQ24Game8StateArg
+        .4byte exec__Q34Game11BigTreasure13StateItemWaitFPQ24Game9EnemyBase
+        .4byte cleanup__Q34Game11BigTreasure13StateItemWaitFPQ24Game9EnemyBase
+        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game11BigTreasure9StateWait
+    __vt__Q34Game11BigTreasure9StateWait:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game11BigTreasure9StateWaitFPQ24Game9EnemyBasePQ24Game8StateArg
+        .4byte exec__Q34Game11BigTreasure9StateWaitFPQ24Game9EnemyBase
+        .4byte cleanup__Q34Game11BigTreasure9StateWaitFPQ24Game9EnemyBase
+        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game11BigTreasure9StateLand
+    __vt__Q34Game11BigTreasure9StateLand:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game11BigTreasure9StateLandFPQ24Game9EnemyBasePQ24Game8StateArg
+        .4byte exec__Q34Game11BigTreasure9StateLandFPQ24Game9EnemyBase
+        .4byte cleanup__Q34Game11BigTreasure9StateLandFPQ24Game9EnemyBase
+        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game11BigTreasure9StateStay
+    __vt__Q34Game11BigTreasure9StateStay:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game11BigTreasure9StateStayFPQ24Game9EnemyBasePQ24Game8StateArg
+        .4byte exec__Q34Game11BigTreasure9StateStayFPQ24Game9EnemyBase
+        .4byte cleanup__Q34Game11BigTreasure9StateStayFPQ24Game9EnemyBase
+        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game11BigTreasure9StateDead
+    __vt__Q34Game11BigTreasure9StateDead:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game11BigTreasure9StateDeadFPQ24Game9EnemyBasePQ24Game8StateArg
+        .4byte exec__Q34Game11BigTreasure9StateDeadFPQ24Game9EnemyBase
+        .4byte cleanup__Q34Game11BigTreasure9StateDeadFPQ24Game9EnemyBase
+        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game11BigTreasure5State
+    __vt__Q34Game11BigTreasure5State:
+        .4byte 0
+        .4byte 0
+        .4byte init__Q24Game13EnemyFSMStateFPQ24Game9EnemyBasePQ24Game8StateArg
+        .4byte exec__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte cleanup__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game11BigTreasure3FSM
+    __vt__Q34Game11BigTreasure3FSM:
+        .4byte 0
+        .4byte 0
+        .4byte init__Q34Game11BigTreasure3FSMFPQ24Game9EnemyBase
+        .4byte
+   start__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   exec__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase .4byte
+   transit__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseiPQ24Game8StateArg
+        .4byte
+   doDirectDraw__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseR8Graphics .4byte
+   getCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase .4byte
+   setCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBasePQ24Game13EnemyFSMState
+        .4byte 0
+
+    .section .sbss # 0x80514D80 - 0x80516360
+    .global lbl_80515DD8
+    lbl_80515DD8:
+        .skip 0x4
+    .global lbl_80515DDC
+    lbl_80515DDC:
+        .skip 0x4
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_8051CA40
+    lbl_8051CA40:
+        .4byte 0x64656164
+        .4byte 0x00000000
+    .global lbl_8051CA48
+    lbl_8051CA48:
+        .4byte 0x73746179
+        .4byte 0x00000000
+    .global lbl_8051CA50
+    lbl_8051CA50:
+        .4byte 0x6C616E64
+        .4byte 0x00000000
+    .global lbl_8051CA58
+    lbl_8051CA58:
+        .4byte 0x77616974
+        .4byte 0x00000000
+    .global lbl_8051CA60
+    lbl_8051CA60:
+        .4byte 0x666C6963
+        .4byte 0x6B000000
+    .global lbl_8051CA68
+    lbl_8051CA68:
+        .4byte 0x61747461
+        .4byte 0x636B0000
+    .global lbl_8051CA70
+    lbl_8051CA70:
+        .4byte 0x70757469
+        .4byte 0x74656D00
+    .global lbl_8051CA78
+    lbl_8051CA78:
+        .4byte 0x77616C6B
+        .4byte 0x00000000
+    .global lbl_8051CA80
+    lbl_8051CA80:
+        .4byte 0x00000000
+    .global lbl_8051CA84
+    lbl_8051CA84:
+        .4byte 0x438C0000
+    .global lbl_8051CA88
+    lbl_8051CA88:
+        .4byte 0x3C23D70A
+    .global lbl_8051CA8C
+    lbl_8051CA8C:
+        .4byte 0x40800000
+    .global lbl_8051CA90
+    lbl_8051CA90:
+        .4byte 0xC47A0000
+    .global lbl_8051CA94
+    lbl_8051CA94:
+        .4byte 0x40A00000
+    .global lbl_8051CA98
+    lbl_8051CA98:
+        .4byte 0x47000000
+        .4byte 0x00000000
+    .global lbl_8051CAA0
+    lbl_8051CAA0:
+        .4byte 0x43300000
+        .4byte 0x80000000
+    .global lbl_8051CAA8
+    lbl_8051CAA8:
+        .float 10.0
+*/
+
 namespace Game {
 
 /*
@@ -10,298 +302,297 @@ namespace Game {
 void BigTreasure::FSM::init(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r4, 0x8049
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  stw       r30, 0x8(r1)
-	  subi      r30, r4, 0x3E68
-	  li        r4, 0xC
-	  bl        -0x1A6A8C
-	  li        r3, 0x10
-	  bl        -0x2B3454
-	  mr.       r4, r3
-	  beq-      .loc_0x70
-	  lis       r3, 0x804B
-	  lis       r5, 0x804D
-	  subi      r0, r3, 0x65C
-	  lis       r3, 0x804D
-	  stw       r0, 0x0(r4)
-	  li        r7, 0
-	  addi      r6, r5, 0x314C
-	  subi      r5, r2, 0x1920
-	  stw       r7, 0x4(r4)
-	  addi      r0, r3, 0x3128
-	  stw       r7, 0x8(r4)
-	  stw       r6, 0x0(r4)
-	  stw       r5, 0xC(r4)
-	  stw       r0, 0x0(r4)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lis      r4, lbl_8048C198@ha
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	stw      r30, 8(r1)
+	addi     r30, r4, lbl_8048C198@l
+	li       r4, 0xc
+	bl       create__Q24Game17EnemyStateMachineFi
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_802D733C
+	lis      r3, __vt__Q24Game13EnemyFSMState@ha
+	lis      r5, __vt__Q34Game11BigTreasure5State@ha
+	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
+	lis      r3, __vt__Q34Game11BigTreasure9StateDead@ha
+	stw      r0, 0(r4)
+	li       r7, 0
+	addi     r6, r5, __vt__Q34Game11BigTreasure5State@l
+	addi     r5, r2, lbl_8051CA40@sda21
+	stw      r7, 4(r4)
+	addi     r0, r3, __vt__Q34Game11BigTreasure9StateDead@l
+	stw      r7, 8(r4)
+	stw      r6, 0(r4)
+	stw      r5, 0xc(r4)
+	stw      r0, 0(r4)
 
-	.loc_0x70:
-	  mr        r3, r31
-	  bl        -0x1A6A38
-	  li        r3, 0x10
-	  bl        -0x2B34A4
-	  mr.       r4, r3
-	  beq-      .loc_0xC4
-	  lis       r3, 0x804B
-	  lis       r5, 0x804D
-	  subi      r0, r3, 0x65C
-	  lis       r3, 0x804D
-	  stw       r0, 0x0(r4)
-	  li        r0, 0x1
-	  li        r7, 0
-	  addi      r6, r5, 0x314C
-	  stw       r0, 0x4(r4)
-	  subi      r5, r2, 0x1918
-	  addi      r0, r3, 0x3104
-	  stw       r7, 0x8(r4)
-	  stw       r6, 0x0(r4)
-	  stw       r5, 0xC(r4)
-	  stw       r0, 0x0(r4)
+lbl_802D733C:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_802D7390
+	lis      r3, __vt__Q24Game13EnemyFSMState@ha
+	lis      r5, __vt__Q34Game11BigTreasure5State@ha
+	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
+	lis      r3, __vt__Q34Game11BigTreasure9StateStay@ha
+	stw      r0, 0(r4)
+	li       r0, 1
+	li       r7, 0
+	addi     r6, r5, __vt__Q34Game11BigTreasure5State@l
+	stw      r0, 4(r4)
+	addi     r5, r2, lbl_8051CA48@sda21
+	addi     r0, r3, __vt__Q34Game11BigTreasure9StateStay@l
+	stw      r7, 8(r4)
+	stw      r6, 0(r4)
+	stw      r5, 0xc(r4)
+	stw      r0, 0(r4)
 
-	.loc_0xC4:
-	  mr        r3, r31
-	  bl        -0x1A6A8C
-	  li        r3, 0x10
-	  bl        -0x2B34F8
-	  mr.       r4, r3
-	  beq-      .loc_0x118
-	  lis       r3, 0x804B
-	  lis       r5, 0x804D
-	  subi      r0, r3, 0x65C
-	  lis       r3, 0x804D
-	  stw       r0, 0x0(r4)
-	  li        r0, 0x2
-	  li        r7, 0
-	  addi      r6, r5, 0x314C
-	  stw       r0, 0x4(r4)
-	  subi      r5, r2, 0x1910
-	  addi      r0, r3, 0x30E0
-	  stw       r7, 0x8(r4)
-	  stw       r6, 0x0(r4)
-	  stw       r5, 0xC(r4)
-	  stw       r0, 0x0(r4)
+lbl_802D7390:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_802D73E4
+	lis      r3, __vt__Q24Game13EnemyFSMState@ha
+	lis      r5, __vt__Q34Game11BigTreasure5State@ha
+	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
+	lis      r3, __vt__Q34Game11BigTreasure9StateLand@ha
+	stw      r0, 0(r4)
+	li       r0, 2
+	li       r7, 0
+	addi     r6, r5, __vt__Q34Game11BigTreasure5State@l
+	stw      r0, 4(r4)
+	addi     r5, r2, lbl_8051CA50@sda21
+	addi     r0, r3, __vt__Q34Game11BigTreasure9StateLand@l
+	stw      r7, 8(r4)
+	stw      r6, 0(r4)
+	stw      r5, 0xc(r4)
+	stw      r0, 0(r4)
 
-	.loc_0x118:
-	  mr        r3, r31
-	  bl        -0x1A6AE0
-	  li        r3, 0x10
-	  bl        -0x2B354C
-	  mr.       r4, r3
-	  beq-      .loc_0x16C
-	  lis       r3, 0x804B
-	  lis       r5, 0x804D
-	  subi      r0, r3, 0x65C
-	  lis       r3, 0x804D
-	  stw       r0, 0x0(r4)
-	  li        r0, 0x3
-	  li        r7, 0
-	  addi      r6, r5, 0x314C
-	  stw       r0, 0x4(r4)
-	  subi      r5, r2, 0x1908
-	  addi      r0, r3, 0x30BC
-	  stw       r7, 0x8(r4)
-	  stw       r6, 0x0(r4)
-	  stw       r5, 0xC(r4)
-	  stw       r0, 0x0(r4)
+lbl_802D73E4:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_802D7438
+	lis      r3, __vt__Q24Game13EnemyFSMState@ha
+	lis      r5, __vt__Q34Game11BigTreasure5State@ha
+	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
+	lis      r3, __vt__Q34Game11BigTreasure9StateWait@ha
+	stw      r0, 0(r4)
+	li       r0, 3
+	li       r7, 0
+	addi     r6, r5, __vt__Q34Game11BigTreasure5State@l
+	stw      r0, 4(r4)
+	addi     r5, r2, lbl_8051CA58@sda21
+	addi     r0, r3, __vt__Q34Game11BigTreasure9StateWait@l
+	stw      r7, 8(r4)
+	stw      r6, 0(r4)
+	stw      r5, 0xc(r4)
+	stw      r0, 0(r4)
 
-	.loc_0x16C:
-	  mr        r3, r31
-	  bl        -0x1A6B34
-	  li        r3, 0x10
-	  bl        -0x2B35A0
-	  mr.       r4, r3
-	  beq-      .loc_0x1C0
-	  lis       r3, 0x804B
-	  lis       r5, 0x804D
-	  subi      r0, r3, 0x65C
-	  lis       r3, 0x804D
-	  stw       r0, 0x0(r4)
-	  li        r0, 0x4
-	  li        r7, 0
-	  addi      r6, r5, 0x314C
-	  stw       r0, 0x4(r4)
-	  addi      r5, r30, 0x24
-	  addi      r0, r3, 0x3098
-	  stw       r7, 0x8(r4)
-	  stw       r6, 0x0(r4)
-	  stw       r5, 0xC(r4)
-	  stw       r0, 0x0(r4)
+lbl_802D7438:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_802D748C
+	lis      r3, __vt__Q24Game13EnemyFSMState@ha
+	lis      r5, __vt__Q34Game11BigTreasure5State@ha
+	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
+	lis      r3, __vt__Q34Game11BigTreasure13StateItemWait@ha
+	stw      r0, 0(r4)
+	li       r0, 4
+	li       r7, 0
+	addi     r6, r5, __vt__Q34Game11BigTreasure5State@l
+	stw      r0, 4(r4)
+	addi     r5, r30, 0x24
+	addi     r0, r3, __vt__Q34Game11BigTreasure13StateItemWait@l
+	stw      r7, 8(r4)
+	stw      r6, 0(r4)
+	stw      r5, 0xc(r4)
+	stw      r0, 0(r4)
 
-	.loc_0x1C0:
-	  mr        r3, r31
-	  bl        -0x1A6B88
-	  li        r3, 0x10
-	  bl        -0x2B35F4
-	  mr.       r4, r3
-	  beq-      .loc_0x214
-	  lis       r3, 0x804B
-	  lis       r5, 0x804D
-	  subi      r0, r3, 0x65C
-	  lis       r3, 0x804D
-	  stw       r0, 0x0(r4)
-	  li        r0, 0x5
-	  li        r7, 0
-	  addi      r6, r5, 0x314C
-	  stw       r0, 0x4(r4)
-	  subi      r5, r2, 0x1900
-	  addi      r0, r3, 0x3074
-	  stw       r7, 0x8(r4)
-	  stw       r6, 0x0(r4)
-	  stw       r5, 0xC(r4)
-	  stw       r0, 0x0(r4)
+lbl_802D748C:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_802D74E0
+	lis      r3, __vt__Q24Game13EnemyFSMState@ha
+	lis      r5, __vt__Q34Game11BigTreasure5State@ha
+	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
+	lis      r3, __vt__Q34Game11BigTreasure10StateFlick@ha
+	stw      r0, 0(r4)
+	li       r0, 5
+	li       r7, 0
+	addi     r6, r5, __vt__Q34Game11BigTreasure5State@l
+	stw      r0, 4(r4)
+	addi     r5, r2, lbl_8051CA60@sda21
+	addi     r0, r3, __vt__Q34Game11BigTreasure10StateFlick@l
+	stw      r7, 8(r4)
+	stw      r6, 0(r4)
+	stw      r5, 0xc(r4)
+	stw      r0, 0(r4)
 
-	.loc_0x214:
-	  mr        r3, r31
-	  bl        -0x1A6BDC
-	  li        r3, 0x10
-	  bl        -0x2B3648
-	  mr.       r4, r3
-	  beq-      .loc_0x268
-	  lis       r3, 0x804B
-	  lis       r5, 0x804D
-	  subi      r0, r3, 0x65C
-	  lis       r3, 0x804D
-	  stw       r0, 0x0(r4)
-	  li        r0, 0x6
-	  li        r7, 0
-	  addi      r6, r5, 0x314C
-	  stw       r0, 0x4(r4)
-	  addi      r5, r30, 0x30
-	  addi      r0, r3, 0x3050
-	  stw       r7, 0x8(r4)
-	  stw       r6, 0x0(r4)
-	  stw       r5, 0xC(r4)
-	  stw       r0, 0x0(r4)
+lbl_802D74E0:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_802D7534
+	lis      r3, __vt__Q24Game13EnemyFSMState@ha
+	lis      r5, __vt__Q34Game11BigTreasure5State@ha
+	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
+	lis      r3, __vt__Q34Game11BigTreasure14StatePreAttack@ha
+	stw      r0, 0(r4)
+	li       r0, 6
+	li       r7, 0
+	addi     r6, r5, __vt__Q34Game11BigTreasure5State@l
+	stw      r0, 4(r4)
+	addi     r5, r30, 0x30
+	addi     r0, r3, __vt__Q34Game11BigTreasure14StatePreAttack@l
+	stw      r7, 8(r4)
+	stw      r6, 0(r4)
+	stw      r5, 0xc(r4)
+	stw      r0, 0(r4)
 
-	.loc_0x268:
-	  mr        r3, r31
-	  bl        -0x1A6C30
-	  li        r3, 0x10
-	  bl        -0x2B369C
-	  mr.       r4, r3
-	  beq-      .loc_0x2BC
-	  lis       r3, 0x804B
-	  lis       r5, 0x804D
-	  subi      r0, r3, 0x65C
-	  lis       r3, 0x804D
-	  stw       r0, 0x0(r4)
-	  li        r0, 0x7
-	  li        r7, 0
-	  addi      r6, r5, 0x314C
-	  stw       r0, 0x4(r4)
-	  subi      r5, r2, 0x18F8
-	  addi      r0, r3, 0x302C
-	  stw       r7, 0x8(r4)
-	  stw       r6, 0x0(r4)
-	  stw       r5, 0xC(r4)
-	  stw       r0, 0x0(r4)
+lbl_802D7534:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_802D7588
+	lis      r3, __vt__Q24Game13EnemyFSMState@ha
+	lis      r5, __vt__Q34Game11BigTreasure5State@ha
+	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
+	lis      r3, __vt__Q34Game11BigTreasure11StateAttack@ha
+	stw      r0, 0(r4)
+	li       r0, 7
+	li       r7, 0
+	addi     r6, r5, __vt__Q34Game11BigTreasure5State@l
+	stw      r0, 4(r4)
+	addi     r5, r2, lbl_8051CA68@sda21
+	addi     r0, r3, __vt__Q34Game11BigTreasure11StateAttack@l
+	stw      r7, 8(r4)
+	stw      r6, 0(r4)
+	stw      r5, 0xc(r4)
+	stw      r0, 0(r4)
 
-	.loc_0x2BC:
-	  mr        r3, r31
-	  bl        -0x1A6C84
-	  li        r3, 0x10
-	  bl        -0x2B36F0
-	  mr.       r4, r3
-	  beq-      .loc_0x310
-	  lis       r3, 0x804B
-	  lis       r5, 0x804D
-	  subi      r0, r3, 0x65C
-	  lis       r3, 0x804D
-	  stw       r0, 0x0(r4)
-	  li        r0, 0x8
-	  li        r7, 0
-	  addi      r6, r5, 0x314C
-	  stw       r0, 0x4(r4)
-	  subi      r5, r2, 0x18F0
-	  addi      r0, r3, 0x3008
-	  stw       r7, 0x8(r4)
-	  stw       r6, 0x0(r4)
-	  stw       r5, 0xC(r4)
-	  stw       r0, 0x0(r4)
+lbl_802D7588:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_802D75DC
+	lis      r3, __vt__Q24Game13EnemyFSMState@ha
+	lis      r5, __vt__Q34Game11BigTreasure5State@ha
+	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
+	lis      r3, __vt__Q34Game11BigTreasure12StatePutItem@ha
+	stw      r0, 0(r4)
+	li       r0, 8
+	li       r7, 0
+	addi     r6, r5, __vt__Q34Game11BigTreasure5State@l
+	stw      r0, 4(r4)
+	addi     r5, r2, lbl_8051CA70@sda21
+	addi     r0, r3, __vt__Q34Game11BigTreasure12StatePutItem@l
+	stw      r7, 8(r4)
+	stw      r6, 0(r4)
+	stw      r5, 0xc(r4)
+	stw      r0, 0(r4)
 
-	.loc_0x310:
-	  mr        r3, r31
-	  bl        -0x1A6CD8
-	  li        r3, 0x10
-	  bl        -0x2B3744
-	  mr.       r4, r3
-	  beq-      .loc_0x364
-	  lis       r3, 0x804B
-	  lis       r5, 0x804D
-	  subi      r0, r3, 0x65C
-	  lis       r3, 0x804D
-	  stw       r0, 0x0(r4)
-	  li        r0, 0x9
-	  li        r7, 0
-	  addi      r6, r5, 0x314C
-	  stw       r0, 0x4(r4)
-	  addi      r5, r30, 0x3C
-	  addi      r0, r3, 0x2FE4
-	  stw       r7, 0x8(r4)
-	  stw       r6, 0x0(r4)
-	  stw       r5, 0xC(r4)
-	  stw       r0, 0x0(r4)
+lbl_802D75DC:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_802D7630
+	lis      r3, __vt__Q24Game13EnemyFSMState@ha
+	lis      r5, __vt__Q34Game11BigTreasure5State@ha
+	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
+	lis      r3, __vt__Q34Game11BigTreasure13StateDropItem@ha
+	stw      r0, 0(r4)
+	li       r0, 9
+	li       r7, 0
+	addi     r6, r5, __vt__Q34Game11BigTreasure5State@l
+	stw      r0, 4(r4)
+	addi     r5, r30, 0x3c
+	addi     r0, r3, __vt__Q34Game11BigTreasure13StateDropItem@l
+	stw      r7, 8(r4)
+	stw      r6, 0(r4)
+	stw      r5, 0xc(r4)
+	stw      r0, 0(r4)
 
-	.loc_0x364:
-	  mr        r3, r31
-	  bl        -0x1A6D2C
-	  li        r3, 0x10
-	  bl        -0x2B3798
-	  mr.       r4, r3
-	  beq-      .loc_0x3B8
-	  lis       r3, 0x804B
-	  lis       r5, 0x804D
-	  subi      r0, r3, 0x65C
-	  lis       r3, 0x804D
-	  stw       r0, 0x0(r4)
-	  li        r0, 0xA
-	  li        r7, 0
-	  addi      r6, r5, 0x314C
-	  stw       r0, 0x4(r4)
-	  subi      r5, r2, 0x18E8
-	  addi      r0, r3, 0x2FC0
-	  stw       r7, 0x8(r4)
-	  stw       r6, 0x0(r4)
-	  stw       r5, 0xC(r4)
-	  stw       r0, 0x0(r4)
+lbl_802D7630:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_802D7684
+	lis      r3, __vt__Q24Game13EnemyFSMState@ha
+	lis      r5, __vt__Q34Game11BigTreasure5State@ha
+	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
+	lis      r3, __vt__Q34Game11BigTreasure9StateWalk@ha
+	stw      r0, 0(r4)
+	li       r0, 0xa
+	li       r7, 0
+	addi     r6, r5, __vt__Q34Game11BigTreasure5State@l
+	stw      r0, 4(r4)
+	addi     r5, r2, lbl_8051CA78@sda21
+	addi     r0, r3, __vt__Q34Game11BigTreasure9StateWalk@l
+	stw      r7, 8(r4)
+	stw      r6, 0(r4)
+	stw      r5, 0xc(r4)
+	stw      r0, 0(r4)
 
-	.loc_0x3B8:
-	  mr        r3, r31
-	  bl        -0x1A6D80
-	  li        r3, 0x10
-	  bl        -0x2B37EC
-	  mr.       r4, r3
-	  beq-      .loc_0x40C
-	  lis       r3, 0x804B
-	  lis       r5, 0x804D
-	  subi      r0, r3, 0x65C
-	  lis       r3, 0x804D
-	  stw       r0, 0x0(r4)
-	  li        r0, 0xB
-	  li        r7, 0
-	  addi      r6, r5, 0x314C
-	  stw       r0, 0x4(r4)
-	  addi      r5, r30, 0x48
-	  addi      r0, r3, 0x2F9C
-	  stw       r7, 0x8(r4)
-	  stw       r6, 0x0(r4)
-	  stw       r5, 0xC(r4)
-	  stw       r0, 0x0(r4)
+lbl_802D7684:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_802D76D8
+	lis      r3, __vt__Q24Game13EnemyFSMState@ha
+	lis      r5, __vt__Q34Game11BigTreasure5State@ha
+	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
+	lis      r3, __vt__Q34Game11BigTreasure13StateItemWalk@ha
+	stw      r0, 0(r4)
+	li       r0, 0xb
+	li       r7, 0
+	addi     r6, r5, __vt__Q34Game11BigTreasure5State@l
+	stw      r0, 4(r4)
+	addi     r5, r30, 0x48
+	addi     r0, r3, __vt__Q34Game11BigTreasure13StateItemWalk@l
+	stw      r7, 8(r4)
+	stw      r6, 0(r4)
+	stw      r5, 0xc(r4)
+	stw      r0, 0(r4)
 
-	.loc_0x40C:
-	  mr        r3, r31
-	  bl        -0x1A6DD4
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_802D76D8:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -313,39 +604,38 @@ void BigTreasure::FSM::init(Game::EnemyBase*)
 void BigTreasure::StateDead::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  mr        r0, r4
-	  li        r4, 0
-	  stw       r31, 0xC(r1)
-	  mr        r31, r0
-	  mr        r3, r31
-	  bl        0x6EA8
-	  mr        r3, r31
-	  bl        0x5740
-	  mr        r3, r31
-	  bl        0x57C8
-	  mr        r3, r31
-	  bl        -0x1D2010
-	  lfs       f0, -0x18E0(r2)
-	  mr        r3, r31
-	  stfs      f0, 0x1D4(r31)
-	  stfs      f0, 0x1D8(r31)
-	  stfs      f0, 0x1DC(r31)
-	  bl        -0x1D5DCC
-	  mr        r3, r31
-	  li        r4, 0x1B
-	  li        r5, 0x1
-	  bl        0x77F8
-	  mr        r3, r31
-	  bl        0x9564
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	mr       r0, r4
+	li       r4, 0
+	stw      r31, 0xc(r1)
+	mr       r31, r0
+	mr       r3, r31
+	bl       setAttackMaterialColor__Q34Game11BigTreasure3ObjFb
+	mr       r3, r31
+	bl       forceFinishIKMotion__Q34Game11BigTreasure3ObjFv
+	mr       r3, r31
+	bl       checkJointScaleOn__Q34Game11BigTreasure3ObjFv
+	mr       r3, r31
+	bl       deathProcedure__Q24Game9EnemyBaseFv
+	lfs      f0, lbl_8051CA80@sda21(r2)
+	mr       r3, r31
+	stfs     f0, 0x1d4(r31)
+	stfs     f0, 0x1d8(r31)
+	stfs     f0, 0x1dc(r31)
+	bl       setEmotionCaution__Q24Game9EnemyBaseFv
+	mr       r3, r31
+	li       r4, 0x1b
+	li       r5, 1
+	bl       startBlendAnimation__Q34Game11BigTreasure3ObjFib
+	mr       r3, r31
+	bl       createDeadBombFootEffect__Q34Game11BigTreasure3ObjFv
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -357,175 +647,174 @@ void BigTreasure::StateDead::init(Game::EnemyBase*, Game::StateArg*)
 void BigTreasure::StateDead::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stw       r31, 0x2C(r1)
-	  mr        r31, r4
-	  mr        r3, r31
-	  bl        -0x1D2524
-	  lfs       f0, -0x18DC(r2)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x30
-	  mr        r3, r31
-	  bl        0x99C4
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stw      r31, 0x2c(r1)
+	mr       r31, r4
+	mr       r3, r31
+	bl       getMotionFrame__Q24Game9EnemyBaseFv
+	lfs      f0, lbl_8051CA84@sda21(r2)
+	fcmpo    cr0, f1, f0
+	ble      lbl_802D77A8
+	mr       r3, r31
+	bl       subShadowScale__Q34Game11BigTreasure3ObjFv
 
-	.loc_0x30:
-	  lwz       r3, 0x188(r31)
-	  lbz       r0, 0x24(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x21C
-	  lwz       r0, 0x1C(r3)
-	  cmplwi    r0, 0x7D0
-	  bne-      .loc_0x58
-	  mr        r3, r31
-	  bl        0x78A4
-	  b         .loc_0x21C
+lbl_802D77A8:
+	lwz      r3, 0x188(r31)
+	lbz      r0, 0x24(r3)
+	cmplwi   r0, 0
+	beq      lbl_802D7994
+	lwz      r0, 0x1c(r3)
+	cmplwi   r0, 0x7d0
+	bne      lbl_802D77D0
+	mr       r3, r31
+	bl       endBlendAnimation__Q34Game11BigTreasure3ObjFv
+	b        lbl_802D7994
 
-	.loc_0x58:
-	  cmplwi    r0, 0x2
-	  bne-      .loc_0x6C
-	  mr        r3, r31
-	  bl        0x93E4
-	  b         .loc_0x21C
+lbl_802D77D0:
+	cmplwi   r0, 2
+	bne      lbl_802D77E4
+	mr       r3, r31
+	bl       startDeadBubbleMouthEffect__Q34Game11BigTreasure3ObjFv
+	b        lbl_802D7994
 
-	.loc_0x6C:
-	  cmplwi    r0, 0x3
-	  bne-      .loc_0x80
-	  mr        r3, r31
-	  bl        0x936C
-	  b         .loc_0x21C
+lbl_802D77E4:
+	cmplwi   r0, 3
+	bne      lbl_802D77F8
+	mr       r3, r31
+	bl       startDeadBubbleBodyEffect__Q34Game11BigTreasure3ObjFv
+	b        lbl_802D7994
 
-	.loc_0x80:
-	  cmplwi    r0, 0x4
-	  bne-      .loc_0x98
-	  mr        r3, r31
-	  li        r4, 0
-	  bl        0x9298
-	  b         .loc_0x21C
+lbl_802D77F8:
+	cmplwi   r0, 4
+	bne      lbl_802D7810
+	mr       r3, r31
+	li       r4, 0
+	bl       startDeadBubbleLegEffect__Q34Game11BigTreasure3ObjFi
+	b        lbl_802D7994
 
-	.loc_0x98:
-	  cmplwi    r0, 0x5
-	  bne-      .loc_0xB0
-	  mr        r3, r31
-	  li        r4, 0x1
-	  bl        0x9280
-	  b         .loc_0x21C
+lbl_802D7810:
+	cmplwi   r0, 5
+	bne      lbl_802D7828
+	mr       r3, r31
+	li       r4, 1
+	bl       startDeadBubbleLegEffect__Q34Game11BigTreasure3ObjFi
+	b        lbl_802D7994
 
-	.loc_0xB0:
-	  cmplwi    r0, 0x6
-	  bne-      .loc_0xC8
-	  mr        r3, r31
-	  li        r4, 0x2
-	  bl        0x9268
-	  b         .loc_0x21C
+lbl_802D7828:
+	cmplwi   r0, 6
+	bne      lbl_802D7840
+	mr       r3, r31
+	li       r4, 2
+	bl       startDeadBubbleLegEffect__Q34Game11BigTreasure3ObjFi
+	b        lbl_802D7994
 
-	.loc_0xC8:
-	  cmplwi    r0, 0x7
-	  bne-      .loc_0xE0
-	  mr        r3, r31
-	  li        r4, 0x3
-	  bl        0x9250
-	  b         .loc_0x21C
+lbl_802D7840:
+	cmplwi   r0, 7
+	bne      lbl_802D7858
+	mr       r3, r31
+	li       r4, 3
+	bl       startDeadBubbleLegEffect__Q34Game11BigTreasure3ObjFi
+	b        lbl_802D7994
 
-	.loc_0xE0:
-	  cmplwi    r0, 0x8
-	  bne-      .loc_0x104
-	  mr        r3, r31
-	  li        r4, 0
-	  bl        0x8F8C
-	  mr        r3, r31
-	  li        r4, 0
-	  bl        0x928C
-	  b         .loc_0x21C
+lbl_802D7858:
+	cmplwi   r0, 8
+	bne      lbl_802D787C
+	mr       r3, r31
+	li       r4, 0
+	bl       createDeadBombLegEffect__Q34Game11BigTreasure3ObjFi
+	mr       r3, r31
+	li       r4, 0
+	bl       finishDeadBubbleLegEffect__Q34Game11BigTreasure3ObjFi
+	b        lbl_802D7994
 
-	.loc_0x104:
-	  cmplwi    r0, 0x9
-	  bne-      .loc_0x128
-	  mr        r3, r31
-	  li        r4, 0x1
-	  bl        0x8F68
-	  mr        r3, r31
-	  li        r4, 0x1
-	  bl        0x9268
-	  b         .loc_0x21C
+lbl_802D787C:
+	cmplwi   r0, 9
+	bne      lbl_802D78A0
+	mr       r3, r31
+	li       r4, 1
+	bl       createDeadBombLegEffect__Q34Game11BigTreasure3ObjFi
+	mr       r3, r31
+	li       r4, 1
+	bl       finishDeadBubbleLegEffect__Q34Game11BigTreasure3ObjFi
+	b        lbl_802D7994
 
-	.loc_0x128:
-	  cmplwi    r0, 0xA
-	  bne-      .loc_0x1AC
-	  mr        r3, r31
-	  li        r4, 0x2
-	  bl        0x8F44
-	  mr        r3, r31
-	  li        r4, 0x2
-	  bl        0x9244
-	  mr        r3, r31
-	  bl        0x9330
-	  mr        r4, r31
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f2, 0x8(r1)
-	  addi      r5, r1, 0x14
-	  lfs       f1, 0xC(r1)
-	  li        r4, 0x15
-	  lfs       f0, 0x10(r1)
-	  li        r6, 0x2
-	  stfs      f2, 0x14(r1)
-	  lwz       r3, -0x6960(r13)
-	  stfs      f1, 0x18(r1)
-	  stfs      f0, 0x1C(r1)
-	  bl        -0x856CC
-	  lwz       r3, -0x6958(r13)
-	  addi      r5, r1, 0x14
-	  li        r4, 0xC
-	  li        r6, 0x2
-	  bl        -0x8419C
-	  b         .loc_0x21C
+lbl_802D78A0:
+	cmplwi   r0, 0xa
+	bne      lbl_802D7924
+	mr       r3, r31
+	li       r4, 2
+	bl       createDeadBombLegEffect__Q34Game11BigTreasure3ObjFi
+	mr       r3, r31
+	li       r4, 2
+	bl       finishDeadBubbleLegEffect__Q34Game11BigTreasure3ObjFi
+	mr       r3, r31
+	bl       finishDeadBubbleMouthEffect__Q34Game11BigTreasure3ObjFv
+	mr       r4, r31
+	addi     r3, r1, 8
+	lwz      r12, 0(r31)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f2, 8(r1)
+	addi     r5, r1, 0x14
+	lfs      f1, 0xc(r1)
+	li       r4, 0x15
+	lfs      f0, 0x10(r1)
+	li       r6, 2
+	stfs     f2, 0x14(r1)
+	lwz      r3, cameraMgr__4Game@sda21(r13)
+	stfs     f1, 0x18(r1)
+	stfs     f0, 0x1c(r1)
+	bl       "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
+	lwz      r3, rumbleMgr__4Game@sda21(r13)
+	addi     r5, r1, 0x14
+	li       r4, 0xc
+	li       r6, 2
+	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
+	b        lbl_802D7994
 
-	.loc_0x1AC:
-	  cmplwi    r0, 0xB
-	  bne-      .loc_0x1D0
-	  mr        r3, r31
-	  li        r4, 0x3
-	  bl        0x8EC0
-	  mr        r3, r31
-	  li        r4, 0x3
-	  bl        0x91C0
-	  b         .loc_0x21C
+lbl_802D7924:
+	cmplwi   r0, 0xb
+	bne      lbl_802D7948
+	mr       r3, r31
+	li       r4, 3
+	bl       createDeadBombLegEffect__Q34Game11BigTreasure3ObjFi
+	mr       r3, r31
+	li       r4, 3
+	bl       finishDeadBubbleLegEffect__Q34Game11BigTreasure3ObjFi
+	b        lbl_802D7994
 
-	.loc_0x1D0:
-	  cmplwi    r0, 0x64
-	  bne-      .loc_0x208
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x264(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r3, r31
-	  bl        0x6258
-	  mr        r3, r31
-	  bl        0x90A0
-	  mr        r3, r31
-	  bl        0x9218
-	  b         .loc_0x21C
+lbl_802D7948:
+	cmplwi   r0, 0x64
+	bne      lbl_802D7980
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r12, 0x264(r12)
+	mtctr    r12
+	bctrl
+	mr       r3, r31
+	bl       releaseItemLoozy__Q34Game11BigTreasure3ObjFv
+	mr       r3, r31
+	bl       createDeadBombBodyEffect__Q34Game11BigTreasure3ObjFv
+	mr       r3, r31
+	bl       finishDeadBubbleBodyEffect__Q34Game11BigTreasure3ObjFv
+	b        lbl_802D7994
 
-	.loc_0x208:
-	  cmplwi    r0, 0x3E8
-	  bne-      .loc_0x21C
-	  mr        r3, r31
-	  li        r4, 0
-	  bl        -0x19C8A0
+lbl_802D7980:
+	cmplwi   r0, 0x3e8
+	bne      lbl_802D7994
+	mr       r3, r31
+	li       r4, 0
+	bl       kill__Q24Game8CreatureFPQ24Game15CreatureKillArg
 
-	.loc_0x21C:
-	  lwz       r0, 0x34(r1)
-	  lwz       r31, 0x2C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_802D7994:
+	lwz      r0, 0x34(r1)
+	lwz      r31, 0x2c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -544,39 +833,38 @@ void BigTreasure::StateDead::cleanup(Game::EnemyBase*) { }
 void BigTreasure::StateStay::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lfs       f0, -0x18E0(r2)
-	  stw       r0, 0x14(r1)
-	  li        r0, -0x1
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  mr        r3, r31
-	  stw       r0, 0x2C8(r4)
-	  li        r4, 0
-	  stfs      f0, 0x2C0(r31)
-	  bl        0x6BE8
-	  lwz       r4, 0x1E0(r31)
-	  li        r0, 0
-	  lfs       f0, -0x18E0(r2)
-	  mr        r3, r31
-	  oris      r5, r4, 0x40
-	  li        r4, 0
-	  stw       r5, 0x1E0(r31)
-	  li        r5, 0
-	  stfs      f0, 0x1D4(r31)
-	  stfs      f0, 0x1D8(r31)
-	  stfs      f0, 0x1DC(r31)
-	  stw       r0, 0x230(r31)
-	  bl        0x7544
-	  mr        r3, r31
-	  bl        -0x1D0734
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lfs      f0, lbl_8051CA80@sda21(r2)
+	stw      r0, 0x14(r1)
+	li       r0, -1
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	mr       r3, r31
+	stw      r0, 0x2c8(r4)
+	li       r4, 0
+	stfs     f0, 0x2c0(r31)
+	bl       setAttackMaterialColor__Q34Game11BigTreasure3ObjFb
+	lwz      r4, 0x1e0(r31)
+	li       r0, 0
+	lfs      f0, lbl_8051CA80@sda21(r2)
+	mr       r3, r31
+	oris     r5, r4, 0x40
+	li       r4, 0
+	stw      r5, 0x1e0(r31)
+	li       r5, 0
+	stfs     f0, 0x1d4(r31)
+	stfs     f0, 0x1d8(r31)
+	stfs     f0, 0x1dc(r31)
+	stw      r0, 0x230(r31)
+	bl       startBlendAnimation__Q34Game11BigTreasure3ObjFib
+	mr       r3, r31
+	bl       stopMotion__Q24Game9EnemyBaseFv
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -588,82 +876,83 @@ void BigTreasure::StateStay::init(Game::EnemyBase*, Game::StateArg*)
 void BigTreasure::StateStay::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stfd      f31, 0x10(r1)
-	  psq_st    f31,0x18(r1),0,0
-	  stw       r31, 0xC(r1)
-	  lfs       f0, -0x18D8(r2)
-	  mr        r31, r4
-	  lfs       f2, 0x2C0(r4)
-	  fcmpo     cr0, f2, f0
-	  bge-      .loc_0xA8
-	  lwz       r5, 0xC0(r31)
-	  mr        r3, r31
-	  li        r4, 0
-	  lfs       f31, 0x3AC(r5)
-	  fmr       f1, f31
-	  bl        -0x1C2FAC
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x54
-	  li        r0, 0x1
-	  b         .loc_0x78
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stfd     f31, 0x10(r1)
+	psq_st   f31, 24(r1), 0, qr0
+	stw      r31, 0xc(r1)
+	lfs      f0, lbl_8051CA88@sda21(r2)
+	mr       r31, r4
+	lfs      f2, 0x2c0(r4)
+	fcmpo    cr0, f2, f0
+	bge      lbl_802D7AD4
+	lwz      r5, 0xc0(r31)
+	mr       r3, r31
+	li       r4, 0
+	lfs      f31, 0x3ac(r5)
+	fmr      f1, f31
+	bl
+"isThereOlimar__Q24Game9EnemyFuncFPQ24Game8CreaturefP23Condition<Q24Game4Navi>"
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802D7A80
+	li       r0, 1
+	b        lbl_802D7AA4
 
-	.loc_0x54:
-	  fmr       f1, f31
-	  mr        r3, r31
-	  li        r4, 0
-	  bl        -0x1C3358
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x74
-	  li        r0, 0x1
-	  b         .loc_0x78
+lbl_802D7A80:
+	fmr      f1, f31
+	mr       r3, r31
+	li       r4, 0
+	bl
+"isTherePikmin__Q24Game9EnemyFuncFPQ24Game8CreaturefP23Condition<Q24Game4Piki>"
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802D7AA0
+	li       r0, 1
+	b        lbl_802D7AA4
 
-	.loc_0x74:
-	  li        r0, 0
+lbl_802D7AA0:
+	li       r0, 0
 
-	.loc_0x78:
-	  rlwinm.   r0,r0,0,24,31
-	  beq-      .loc_0xE0
-	  mr        r3, r31
-	  bl        0x96E4
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x9C
-	  lfs       f0, -0x18D8(r2)
-	  stfs      f0, 0x2C0(r31)
-	  b         .loc_0xE0
+lbl_802D7AA4:
+	clrlwi.  r0, r0, 0x18
+	beq      lbl_802D7B0C
+	mr       r3, r31
+	bl       startBigTreasureBootUpDemo__Q34Game11BigTreasure3ObjFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802D7AC8
+	lfs      f0, lbl_8051CA88@sda21(r2)
+	stfs     f0, 0x2c0(r31)
+	b        lbl_802D7B0C
 
-	.loc_0x9C:
-	  lfs       f0, -0x18D4(r2)
-	  stfs      f0, 0x2C0(r31)
-	  b         .loc_0xE0
+lbl_802D7AC8:
+	lfs      f0, lbl_8051CA8C@sda21(r2)
+	stfs     f0, 0x2c0(r31)
+	b        lbl_802D7B0C
 
-	.loc_0xA8:
-	  lwz       r5, -0x6514(r13)
-	  lfs       f0, -0x18D4(r2)
-	  lfs       f1, 0x54(r5)
-	  fadds     f1, f2, f1
-	  stfs      f1, 0x2C0(r31)
-	  lfs       f1, 0x2C0(r31)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0xE0
-	  lwz       r12, 0x0(r3)
-	  li        r5, 0x2
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_802D7AD4:
+	lwz      r5, sys@sda21(r13)
+	lfs      f0, lbl_8051CA8C@sda21(r2)
+	lfs      f1, 0x54(r5)
+	fadds    f1, f2, f1
+	stfs     f1, 0x2c0(r31)
+	lfs      f1, 0x2c0(r31)
+	fcmpo    cr0, f1, f0
+	ble      lbl_802D7B0C
+	lwz      r12, 0(r3)
+	li       r5, 2
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0xE0:
-	  psq_l     f31,0x18(r1),0,0
-	  lwz       r0, 0x24(r1)
-	  lfd       f31, 0x10(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_802D7B0C:
+	psq_l    f31, 24(r1), 0, qr0
+	lwz      r0, 0x24(r1)
+	lfd      f31, 0x10(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -682,50 +971,50 @@ void BigTreasure::StateStay::cleanup(Game::EnemyBase*) { }
 void BigTreasure::StateLand::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  li        r0, -0x1
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  li        r4, 0
-	  stw       r0, 0x2C8(r31)
-	  mr        r3, r31
-	  bl        0x6A70
-	  lfs       f0, -0x18E0(r2)
-	  li        r0, 0
-	  mr        r3, r31
-	  stfs      f0, 0x1D4(r31)
-	  stfs      f0, 0x1D8(r31)
-	  stfs      f0, 0x1DC(r31)
-	  stw       r0, 0x230(r31)
-	  bl        -0x1D61A4
-	  lwz       r3, -0x6980(r13)
-	  mr        r4, r31
-	  bl        -0x95D9C
-	  mr        r3, r31
-	  bl        -0x1D0980
-	  mr        r3, r31
-	  bl        0x8B18
-	  mr        r3, r31
-	  li        r4, 0x1
-	  bl        0x8BFC
-	  lwz       r5, 0xC0(r31)
-	  mr        r3, r31
-	  lfs       f4, -0x18D0(r2)
-	  li        r4, 0
-	  lfs       f1, 0x53C(r5)
-	  lfs       f2, 0x4C4(r5)
-	  lfs       f3, 0x4EC(r5)
-	  bl        -0x1C4A9C
-	  mr        r3, r31
-	  bl        0x7D14
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	li       r0, -1
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	li       r4, 0
+	stw      r0, 0x2c8(r31)
+	mr       r3, r31
+	bl       setAttackMaterialColor__Q34Game11BigTreasure3ObjFb
+	lfs      f0, lbl_8051CA80@sda21(r2)
+	li       r0, 0
+	mr       r3, r31
+	stfs     f0, 0x1d4(r31)
+	stfs     f0, 0x1d8(r31)
+	stfs     f0, 0x1dc(r31)
+	stw      r0, 0x230(r31)
+	bl       setEmotionExcitement__Q24Game9EnemyBaseFv
+	lwz      r3, shadowMgr__4Game@sda21(r13)
+	mr       r4, r31
+	bl       addJointShadow__Q24Game9ShadowMgrFPQ24Game8Creature
+	mr       r3, r31
+	bl       startMotion__Q24Game9EnemyBaseFv
+	mr       r3, r31
+	bl       createAppearBodyEffect__Q34Game11BigTreasure3ObjFv
+	mr       r3, r31
+	li       r4, 1
+	bl       createAppearLegEffect__Q34Game11BigTreasure3ObjFi
+	lwz      r5, 0xc0(r31)
+	mr       r3, r31
+	lfs      f4, lbl_8051CA90@sda21(r2)
+	li       r4, 0
+	lfs      f1, 0x53c(r5)
+	lfs      f2, 0x4c4(r5)
+	lfs      f3, 0x4ec(r5)
+	bl
+	"flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
+	mr       r3, r31
+	bl       setBossAppearBGM__Q34Game11BigTreasure3ObjFv
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -737,236 +1026,240 @@ void BigTreasure::StateLand::init(Game::EnemyBase*, Game::StateArg*)
 void BigTreasure::StateLand::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stw       r31, 0x2C(r1)
-	  mr        r31, r4
-	  stw       r30, 0x28(r1)
-	  mr        r30, r3
-	  lwz       r5, 0x188(r4)
-	  lbz       r0, 0x24(r5)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x30C
-	  lwz       r0, 0x1C(r5)
-	  cmplwi    r0, 0x2
-	  bne-      .loc_0x6C
-	  lwz       r5, 0x280(r31)
-	  mr        r3, r31
-	  li        r4, 0x1
-	  bl        0x86DC
-	  lwz       r5, 0xC0(r31)
-	  mr        r3, r31
-	  lfs       f4, -0x18D0(r2)
-	  li        r4, 0
-	  lfs       f1, 0x53C(r5)
-	  lfs       f2, 0x4C4(r5)
-	  lfs       f3, 0x4EC(r5)
-	  bl        -0x1C4B20
-	  b         .loc_0x30C
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stw      r31, 0x2c(r1)
+	mr       r31, r4
+	stw      r30, 0x28(r1)
+	mr       r30, r3
+	lwz      r5, 0x188(r4)
+	lbz      r0, 0x24(r5)
+	cmplwi   r0, 0
+	beq      lbl_802D7EE4
+	lwz      r0, 0x1c(r5)
+	cmplwi   r0, 2
+	bne      lbl_802D7C44
+	lwz      r5, 0x280(r31)
+	mr       r3, r31
+	li       r4, 1
+	bl       createOnGroundEffect__Q34Game11BigTreasure3ObjFiPQ24Game8WaterBox
+	lwz      r5, 0xc0(r31)
+	mr       r3, r31
+	lfs      f4, lbl_8051CA90@sda21(r2)
+	li       r4, 0
+	lfs      f1, 0x53c(r5)
+	lfs      f2, 0x4c4(r5)
+	lfs      f3, 0x4ec(r5)
+	bl
+"flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
+	b        lbl_802D7EE4
 
-	.loc_0x6C:
-	  cmplwi    r0, 0x3
-	  bne-      .loc_0x84
-	  mr        r3, r31
-	  li        r4, 0x2
-	  bl        0x8B40
-	  b         .loc_0x30C
+lbl_802D7C44:
+	cmplwi   r0, 3
+	bne      lbl_802D7C5C
+	mr       r3, r31
+	li       r4, 2
+	bl       createAppearLegEffect__Q34Game11BigTreasure3ObjFi
+	b        lbl_802D7EE4
 
-	.loc_0x84:
-	  cmplwi    r0, 0x4
-	  bne-      .loc_0xC0
-	  lwz       r5, 0x280(r31)
-	  mr        r3, r31
-	  li        r4, 0x2
-	  bl        0x8688
-	  lwz       r5, 0xC0(r31)
-	  mr        r3, r31
-	  lfs       f4, -0x18D0(r2)
-	  li        r4, 0
-	  lfs       f1, 0x53C(r5)
-	  lfs       f2, 0x4C4(r5)
-	  lfs       f3, 0x4EC(r5)
-	  bl        -0x1C4B74
-	  b         .loc_0x30C
+lbl_802D7C5C:
+	cmplwi   r0, 4
+	bne      lbl_802D7C98
+	lwz      r5, 0x280(r31)
+	mr       r3, r31
+	li       r4, 2
+	bl       createOnGroundEffect__Q34Game11BigTreasure3ObjFiPQ24Game8WaterBox
+	lwz      r5, 0xc0(r31)
+	mr       r3, r31
+	lfs      f4, lbl_8051CA90@sda21(r2)
+	li       r4, 0
+	lfs      f1, 0x53c(r5)
+	lfs      f2, 0x4c4(r5)
+	lfs      f3, 0x4ec(r5)
+	bl
+"flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
+	b        lbl_802D7EE4
 
-	.loc_0xC0:
-	  cmplwi    r0, 0x5
-	  bne-      .loc_0xD8
-	  mr        r3, r31
-	  li        r4, 0
-	  bl        0x8AEC
-	  b         .loc_0x30C
+lbl_802D7C98:
+	cmplwi   r0, 5
+	bne      lbl_802D7CB0
+	mr       r3, r31
+	li       r4, 0
+	bl       createAppearLegEffect__Q34Game11BigTreasure3ObjFi
+	b        lbl_802D7EE4
 
-	.loc_0xD8:
-	  cmplwi    r0, 0x6
-	  bne-      .loc_0x114
-	  lwz       r5, 0x280(r31)
-	  mr        r3, r31
-	  li        r4, 0
-	  bl        0x8634
-	  lwz       r5, 0xC0(r31)
-	  mr        r3, r31
-	  lfs       f4, -0x18D0(r2)
-	  li        r4, 0
-	  lfs       f1, 0x53C(r5)
-	  lfs       f2, 0x4C4(r5)
-	  lfs       f3, 0x4EC(r5)
-	  bl        -0x1C4BC8
-	  b         .loc_0x30C
+lbl_802D7CB0:
+	cmplwi   r0, 6
+	bne      lbl_802D7CEC
+	lwz      r5, 0x280(r31)
+	mr       r3, r31
+	li       r4, 0
+	bl       createOnGroundEffect__Q34Game11BigTreasure3ObjFiPQ24Game8WaterBox
+	lwz      r5, 0xc0(r31)
+	mr       r3, r31
+	lfs      f4, lbl_8051CA90@sda21(r2)
+	li       r4, 0
+	lfs      f1, 0x53c(r5)
+	lfs      f2, 0x4c4(r5)
+	lfs      f3, 0x4ec(r5)
+	bl
+"flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
+	b        lbl_802D7EE4
 
-	.loc_0x114:
-	  cmplwi    r0, 0x7
-	  bne-      .loc_0x12C
-	  mr        r3, r31
-	  li        r4, 0x3
-	  bl        0x8A98
-	  b         .loc_0x30C
+lbl_802D7CEC:
+	cmplwi   r0, 7
+	bne      lbl_802D7D04
+	mr       r3, r31
+	li       r4, 3
+	bl       createAppearLegEffect__Q34Game11BigTreasure3ObjFi
+	b        lbl_802D7EE4
 
-	.loc_0x12C:
-	  cmplwi    r0, 0x8
-	  bne-      .loc_0x168
-	  lwz       r5, 0x280(r31)
-	  mr        r3, r31
-	  li        r4, 0x3
-	  bl        0x85E0
-	  lwz       r5, 0xC0(r31)
-	  mr        r3, r31
-	  lfs       f4, -0x18D0(r2)
-	  li        r4, 0
-	  lfs       f1, 0x53C(r5)
-	  lfs       f2, 0x4C4(r5)
-	  lfs       f3, 0x4EC(r5)
-	  bl        -0x1C4C1C
-	  b         .loc_0x30C
+lbl_802D7D04:
+	cmplwi   r0, 8
+	bne      lbl_802D7D40
+	lwz      r5, 0x280(r31)
+	mr       r3, r31
+	li       r4, 3
+	bl       createOnGroundEffect__Q34Game11BigTreasure3ObjFiPQ24Game8WaterBox
+	lwz      r5, 0xc0(r31)
+	mr       r3, r31
+	lfs      f4, lbl_8051CA90@sda21(r2)
+	li       r4, 0
+	lfs      f1, 0x53c(r5)
+	lfs      f2, 0x4c4(r5)
+	lfs      f3, 0x4ec(r5)
+	bl
+"flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
+	b        lbl_802D7EE4
 
-	.loc_0x168:
-	  cmplwi    r0, 0x9
-	  bne-      .loc_0x1E8
-	  lwz       r12, 0x0(r4)
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f2, 0x8(r1)
-	  addi      r5, r1, 0x14
-	  lfs       f1, 0xC(r1)
-	  li        r4, 0x2
-	  lfs       f0, 0x10(r1)
-	  li        r6, 0x2
-	  stfs      f2, 0x14(r1)
-	  lwz       r3, -0x6960(r13)
-	  stfs      f1, 0x18(r1)
-	  stfs      f0, 0x1C(r1)
-	  bl        -0x85B48
-	  lwz       r3, -0x6958(r13)
-	  addi      r5, r1, 0x14
-	  li        r4, 0x5
-	  li        r6, 0x2
-	  bl        -0x84618
-	  lwz       r5, 0xC0(r31)
-	  mr        r3, r31
-	  lfs       f4, -0x18D0(r2)
-	  li        r4, 0
-	  lfs       f1, 0x53C(r5)
-	  lfs       f2, 0x4C4(r5)
-	  lfs       f3, 0x4EC(r5)
-	  bl        -0x1C4C9C
-	  b         .loc_0x30C
+lbl_802D7D40:
+	cmplwi   r0, 9
+	bne      lbl_802D7DC0
+	lwz      r12, 0(r4)
+	addi     r3, r1, 8
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f2, 8(r1)
+	addi     r5, r1, 0x14
+	lfs      f1, 0xc(r1)
+	li       r4, 2
+	lfs      f0, 0x10(r1)
+	li       r6, 2
+	stfs     f2, 0x14(r1)
+	lwz      r3, cameraMgr__4Game@sda21(r13)
+	stfs     f1, 0x18(r1)
+	stfs     f0, 0x1c(r1)
+	bl       "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
+	lwz      r3, rumbleMgr__4Game@sda21(r13)
+	addi     r5, r1, 0x14
+	li       r4, 5
+	li       r6, 2
+	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
+	lwz      r5, 0xc0(r31)
+	mr       r3, r31
+	lfs      f4, lbl_8051CA90@sda21(r2)
+	li       r4, 0
+	lfs      f1, 0x53c(r5)
+	lfs      f2, 0x4c4(r5)
+	lfs      f3, 0x4ec(r5)
+	bl
+"flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
+	b        lbl_802D7EE4
 
-	.loc_0x1E8:
-	  cmplwi    r0, 0xA
-	  bne-      .loc_0x214
-	  mr        r3, r31
-	  bl        0x5A0C
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x30C
-	  mr        r3, r31
-	  li        r4, 0x1
-	  li        r5, 0
-	  bl        -0x1D2DE0
-	  b         .loc_0x30C
+lbl_802D7DC0:
+	cmplwi   r0, 0xa
+	bne      lbl_802D7DEC
+	mr       r3, r31
+	bl       isCapturedTreasure__Q34Game11BigTreasure3ObjFv
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_802D7EE4
+	mr       r3, r31
+	li       r4, 1
+	li       r5, 0
+	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
+	b        lbl_802D7EE4
 
-	.loc_0x214:
-	  cmplwi    r0, 0x3E8
-	  bne-      .loc_0x30C
-	  lfs       f1, 0x200(r31)
-	  lfs       f0, -0x18E0(r2)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0, 0x2
-	  bne-      .loc_0x24C
-	  lwz       r12, 0x0(r3)
-	  li        r5, 0
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x30C
+lbl_802D7DEC:
+	cmplwi   r0, 0x3e8
+	bne      lbl_802D7EE4
+	lfs      f1, 0x200(r31)
+	lfs      f0, lbl_8051CA80@sda21(r2)
+	fcmpo    cr0, f1, f0
+	cror     2, 0, 2
+	bne      lbl_802D7E24
+	lwz      r12, 0(r3)
+	li       r5, 0
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802D7EE4
 
-	.loc_0x24C:
-	  mr        r3, r31
-	  li        r4, 0
-	  bl        -0x1C37D4
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x2B8
-	  mr        r3, r31
-	  bl        0x599C
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x294
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x6
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x30C
+lbl_802D7E24:
+	mr       r3, r31
+	li       r4, 0
+	bl       isStartFlick__Q24Game9EnemyFuncFPQ24Game9EnemyBaseb
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802D7E90
+	mr       r3, r31
+	bl       isCapturedTreasure__Q34Game11BigTreasure3ObjFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802D7E6C
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 6
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802D7EE4
 
-	.loc_0x294:
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x5
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x30C
+lbl_802D7E6C:
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 5
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802D7EE4
 
-	.loc_0x2B8:
-	  mr        r3, r31
-	  bl        0x5944
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x2EC
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0xB
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x30C
+lbl_802D7E90:
+	mr       r3, r31
+	bl       isCapturedTreasure__Q34Game11BigTreasure3ObjFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802D7EC4
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 0xb
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802D7EE4
 
-	.loc_0x2EC:
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0xA
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_802D7EC4:
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 0xa
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x30C:
-	  lwz       r0, 0x34(r1)
-	  lwz       r31, 0x2C(r1)
-	  lwz       r30, 0x28(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_802D7EE4:
+	lwz      r0, 0x34(r1)
+	lwz      r31, 0x2c(r1)
+	lwz      r30, 0x28(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -978,19 +1271,18 @@ void BigTreasure::StateLand::exec(Game::EnemyBase*)
 void BigTreasure::StateLand::cleanup(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r3, r4
-	  stw       r0, 0x14(r1)
-	  lwz       r0, 0x1E0(r4)
-	  rlwinm    r0,r0,0,10,8
-	  stw       r0, 0x1E0(r4)
-	  bl        0x4EDC
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r3, r4
+	stw      r0, 0x14(r1)
+	lwz      r0, 0x1e0(r4)
+	rlwinm   r0, r0, 0, 0xa, 8
+	stw      r0, 0x1e0(r4)
+	bl       startProgramedIK__Q34Game11BigTreasure3ObjFv
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1002,47 +1294,46 @@ void BigTreasure::StateLand::cleanup(Game::EnemyBase*)
 void BigTreasure::StateWait::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  li        r0, -0x1
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r4
-	  stw       r0, 0x2C8(r4)
-	  bl        -0x20E9A8
-	  xoris     r3, r3, 0x8000
-	  lis       r0, 0x4330
-	  stw       r3, 0xC(r1)
-	  mr        r3, r31
-	  lfd       f3, -0x18C0(r2)
-	  li        r4, 0
-	  stw       r0, 0x8(r1)
-	  lfs       f1, -0x18CC(r2)
-	  lfd       f2, 0x8(r1)
-	  lfs       f0, -0x18C8(r2)
-	  fsubs     f2, f2, f3
-	  fmuls     f1, f1, f2
-	  fdivs     f0, f1, f0
-	  stfs      f0, 0x2C0(r31)
-	  bl        0x663C
-	  li        r0, 0
-	  lfs       f0, -0x18E0(r2)
-	  stw       r0, 0x230(r31)
-	  mr        r3, r31
-	  li        r4, 0x19
-	  li        r5, 0x1
-	  stfs      f0, 0x1D4(r31)
-	  stfs      f0, 0x1D8(r31)
-	  stfs      f0, 0x1DC(r31)
-	  bl        0x6FA4
-	  mr        r3, r31
-	  bl        0x4EF4
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	li       r0, -1
+	stw      r31, 0x1c(r1)
+	mr       r31, r4
+	stw      r0, 0x2c8(r4)
+	bl       rand
+	xoris    r3, r3, 0x8000
+	lis      r0, 0x4330
+	stw      r3, 0xc(r1)
+	mr       r3, r31
+	lfd      f3, lbl_8051CAA0@sda21(r2)
+	li       r4, 0
+	stw      r0, 8(r1)
+	lfs      f1, lbl_8051CA94@sda21(r2)
+	lfd      f2, 8(r1)
+	lfs      f0, lbl_8051CA98@sda21(r2)
+	fsubs    f2, f2, f3
+	fmuls    f1, f1, f2
+	fdivs    f0, f1, f0
+	stfs     f0, 0x2c0(r31)
+	bl       setAttackMaterialColor__Q34Game11BigTreasure3ObjFb
+	li       r0, 0
+	lfs      f0, lbl_8051CA80@sda21(r2)
+	stw      r0, 0x230(r31)
+	mr       r3, r31
+	li       r4, 0x19
+	li       r5, 1
+	stfs     f0, 0x1d4(r31)
+	stfs     f0, 0x1d8(r31)
+	stfs     f0, 0x1dc(r31)
+	bl       startBlendAnimation__Q34Game11BigTreasure3ObjFib
+	mr       r3, r31
+	bl       startBlendMotion__Q34Game11BigTreasure3ObjFv
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -1054,99 +1345,98 @@ void BigTreasure::StateWait::init(Game::EnemyBase*, Game::StateArg*)
 void BigTreasure::StateWait::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lfs       f0, -0x18E0(r2)
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lwz       r5, -0x6514(r13)
-	  lfs       f2, 0x2C0(r4)
-	  lfs       f1, 0x54(r5)
-	  fadds     f1, f2, f1
-	  stfs      f1, 0x2C0(r4)
-	  lfs       f1, 0x200(r4)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0, 0x2
-	  bne-      .loc_0x58
-	  li        r0, 0
-	  mr        r3, r31
-	  stw       r0, 0x2C8(r31)
-	  bl        -0x1D2D7C
-	  b         .loc_0xA0
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lfs      f0, lbl_8051CA80@sda21(r2)
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lwz      r5, sys@sda21(r13)
+	lfs      f2, 0x2c0(r4)
+	lfs      f1, 0x54(r5)
+	fadds    f1, f2, f1
+	stfs     f1, 0x2c0(r4)
+	lfs      f1, 0x200(r4)
+	fcmpo    cr0, f1, f0
+	cror     2, 0, 2
+	bne      lbl_802D8024
+	li       r0, 0
+	mr       r3, r31
+	stw      r0, 0x2c8(r31)
+	bl       finishMotion__Q24Game9EnemyBaseFv
+	b        lbl_802D806C
 
-	.loc_0x58:
-	  mr        r3, r31
-	  li        r4, 0
-	  bl        -0x1C39D4
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x80
-	  li        r0, 0x5
-	  mr        r3, r31
-	  stw       r0, 0x2C8(r31)
-	  bl        -0x1D2DA4
-	  b         .loc_0xA0
+lbl_802D8024:
+	mr       r3, r31
+	li       r4, 0
+	bl       isStartFlick__Q24Game9EnemyFuncFPQ24Game9EnemyBaseb
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802D804C
+	li       r0, 5
+	mr       r3, r31
+	stw      r0, 0x2c8(r31)
+	bl       finishMotion__Q24Game9EnemyBaseFv
+	b        lbl_802D806C
 
-	.loc_0x80:
-	  lfs       f1, 0x2C0(r31)
-	  lfs       f0, -0x18CC(r2)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0xA0
-	  li        r0, 0xA
-	  mr        r3, r31
-	  stw       r0, 0x2C8(r31)
-	  bl        -0x1D2DC8
+lbl_802D804C:
+	lfs      f1, 0x2c0(r31)
+	lfs      f0, lbl_8051CA94@sda21(r2)
+	fcmpo    cr0, f1, f0
+	ble      lbl_802D806C
+	li       r0, 0xa
+	mr       r3, r31
+	stw      r0, 0x2c8(r31)
+	bl       finishMotion__Q24Game9EnemyBaseFv
 
-	.loc_0xA0:
-	  lwz       r3, 0x188(r31)
-	  lbz       r0, 0x24(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x128
-	  lwz       r0, 0x1C(r3)
-	  cmplwi    r0, 0x7D0
-	  bne-      .loc_0xC8
-	  mr        r3, r31
-	  bl        0x6FE0
-	  b         .loc_0x128
+lbl_802D806C:
+	lwz      r3, 0x188(r31)
+	lbz      r0, 0x24(r3)
+	cmplwi   r0, 0
+	beq      lbl_802D80F4
+	lwz      r0, 0x1c(r3)
+	cmplwi   r0, 0x7d0
+	bne      lbl_802D8094
+	mr       r3, r31
+	bl       endBlendAnimation__Q34Game11BigTreasure3ObjFv
+	b        lbl_802D80F4
 
-	.loc_0xC8:
-	  cmplwi    r0, 0
-	  bne-      .loc_0x100
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0xF4(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r12, 0x0(r3)
-	  li        r4, 0x594E
-	  li        r5, 0
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x128
+lbl_802D8094:
+	cmplwi   r0, 0
+	bne      lbl_802D80CC
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r12, 0xf4(r12)
+	mtctr    r12
+	bctrl
+	lwz      r12, 0(r3)
+	li       r4, 0x594e
+	li       r5, 0
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802D80F4
 
-	.loc_0x100:
-	  cmplwi    r0, 0x3E8
-	  bne-      .loc_0x128
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r6, 0
-	  lwz       r5, 0x2C8(r31)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_802D80CC:
+	cmplwi   r0, 0x3e8
+	bne      lbl_802D80F4
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r6, 0
+	lwz      r5, 0x2c8(r31)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x128:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_802D80F4:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1158,16 +1448,15 @@ void BigTreasure::StateWait::exec(Game::EnemyBase*)
 void BigTreasure::StateWait::cleanup(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r3, r4
-	  stw       r0, 0x14(r1)
-	  bl        0x4DB0
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r3, r4
+	stw      r0, 0x14(r1)
+	bl       finishBlendMotion__Q34Game11BigTreasure3ObjFv
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1179,47 +1468,46 @@ void BigTreasure::StateWait::cleanup(Game::EnemyBase*)
 void BigTreasure::StateItemWait::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  li        r0, -0x1
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r4
-	  stw       r0, 0x2C8(r4)
-	  bl        -0x20EBAC
-	  xoris     r3, r3, 0x8000
-	  lis       r0, 0x4330
-	  stw       r3, 0xC(r1)
-	  mr        r3, r31
-	  lfd       f3, -0x18C0(r2)
-	  li        r4, 0
-	  stw       r0, 0x8(r1)
-	  lfs       f1, -0x18CC(r2)
-	  lfd       f2, 0x8(r1)
-	  lfs       f0, -0x18C8(r2)
-	  fsubs     f2, f2, f3
-	  fmuls     f1, f1, f2
-	  fdivs     f0, f1, f0
-	  stfs      f0, 0x2C0(r31)
-	  bl        0x6438
-	  li        r0, 0
-	  lfs       f0, -0x18E0(r2)
-	  stw       r0, 0x230(r31)
-	  mr        r3, r31
-	  li        r4, 0x2
-	  li        r5, 0x1
-	  stfs      f0, 0x1D4(r31)
-	  stfs      f0, 0x1D8(r31)
-	  stfs      f0, 0x1DC(r31)
-	  bl        0x6DA0
-	  mr        r3, r31
-	  bl        0x4CF0
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	li       r0, -1
+	stw      r31, 0x1c(r1)
+	mr       r31, r4
+	stw      r0, 0x2c8(r4)
+	bl       rand
+	xoris    r3, r3, 0x8000
+	lis      r0, 0x4330
+	stw      r3, 0xc(r1)
+	mr       r3, r31
+	lfd      f3, lbl_8051CAA0@sda21(r2)
+	li       r4, 0
+	stw      r0, 8(r1)
+	lfs      f1, lbl_8051CA94@sda21(r2)
+	lfd      f2, 8(r1)
+	lfs      f0, lbl_8051CA98@sda21(r2)
+	fsubs    f2, f2, f3
+	fmuls    f1, f1, f2
+	fdivs    f0, f1, f0
+	stfs     f0, 0x2c0(r31)
+	bl       setAttackMaterialColor__Q34Game11BigTreasure3ObjFb
+	li       r0, 0
+	lfs      f0, lbl_8051CA80@sda21(r2)
+	stw      r0, 0x230(r31)
+	mr       r3, r31
+	li       r4, 2
+	li       r5, 1
+	stfs     f0, 0x1d4(r31)
+	stfs     f0, 0x1d8(r31)
+	stfs     f0, 0x1dc(r31)
+	bl       startBlendAnimation__Q34Game11BigTreasure3ObjFib
+	mr       r3, r31
+	bl       startBlendMotion__Q34Game11BigTreasure3ObjFv
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -1231,92 +1519,91 @@ void BigTreasure::StateItemWait::init(Game::EnemyBase*, Game::StateArg*)
 void BigTreasure::StateItemWait::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  mr        r3, r31
-	  bl        0x55E8
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x50
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x9
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x10C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	mr       r3, r31
+	bl       isCapturedTreasure__Q34Game11BigTreasure3ObjFv
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_802D8220
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 9
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802D82DC
 
-	.loc_0x50:
-	  mr        r3, r31
-	  li        r4, 0
-	  bl        -0x1C3BD0
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x74
-	  mr        r3, r31
-	  bl        0x4344
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x88
+lbl_802D8220:
+	mr       r3, r31
+	li       r4, 0
+	bl       isStartFlick__Q24Game9EnemyFuncFPQ24Game9EnemyBaseb
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_802D8244
+	mr       r3, r31
+	bl       isAttackLimitTime__Q34Game11BigTreasure3ObjFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802D8258
 
-	.loc_0x74:
-	  li        r0, 0x6
-	  mr        r3, r31
-	  stw       r0, 0x2C8(r31)
-	  bl        -0x1D2FB0
-	  b         .loc_0xA8
+lbl_802D8244:
+	li       r0, 6
+	mr       r3, r31
+	stw      r0, 0x2c8(r31)
+	bl       finishMotion__Q24Game9EnemyBaseFv
+	b        lbl_802D8278
 
-	.loc_0x88:
-	  lfs       f1, 0x2C0(r31)
-	  lfs       f0, -0x18CC(r2)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0xA8
-	  li        r0, 0xB
-	  mr        r3, r31
-	  stw       r0, 0x2C8(r31)
-	  bl        -0x1D2FD4
+lbl_802D8258:
+	lfs      f1, 0x2c0(r31)
+	lfs      f0, lbl_8051CA94@sda21(r2)
+	fcmpo    cr0, f1, f0
+	ble      lbl_802D8278
+	li       r0, 0xb
+	mr       r3, r31
+	stw      r0, 0x2c8(r31)
+	bl       finishMotion__Q24Game9EnemyBaseFv
 
-	.loc_0xA8:
-	  lwz       r3, -0x6514(r13)
-	  lfs       f1, 0x2C0(r31)
-	  lfs       f0, 0x54(r3)
-	  fadds     f0, f1, f0
-	  stfs      f0, 0x2C0(r31)
-	  lwz       r3, 0x188(r31)
-	  lbz       r0, 0x24(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x10C
-	  lwz       r0, 0x1C(r3)
-	  cmplwi    r0, 0x7D0
-	  bne-      .loc_0xE4
-	  mr        r3, r31
-	  bl        0x6DC0
-	  b         .loc_0x10C
+lbl_802D8278:
+	lwz      r3, sys@sda21(r13)
+	lfs      f1, 0x2c0(r31)
+	lfs      f0, 0x54(r3)
+	fadds    f0, f1, f0
+	stfs     f0, 0x2c0(r31)
+	lwz      r3, 0x188(r31)
+	lbz      r0, 0x24(r3)
+	cmplwi   r0, 0
+	beq      lbl_802D82DC
+	lwz      r0, 0x1c(r3)
+	cmplwi   r0, 0x7d0
+	bne      lbl_802D82B4
+	mr       r3, r31
+	bl       endBlendAnimation__Q34Game11BigTreasure3ObjFv
+	b        lbl_802D82DC
 
-	.loc_0xE4:
-	  cmplwi    r0, 0x3E8
-	  bne-      .loc_0x10C
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r6, 0
-	  lwz       r5, 0x2C8(r31)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_802D82B4:
+	cmplwi   r0, 0x3e8
+	bne      lbl_802D82DC
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r6, 0
+	lwz      r5, 0x2c8(r31)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x10C:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_802D82DC:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1328,16 +1615,15 @@ void BigTreasure::StateItemWait::exec(Game::EnemyBase*)
 void BigTreasure::StateItemWait::cleanup(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r3, r4
-	  stw       r0, 0x14(r1)
-	  bl        0x4BC8
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r3, r4
+	stw      r0, 0x14(r1)
+	bl       finishBlendMotion__Q34Game11BigTreasure3ObjFv
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1349,36 +1635,35 @@ void BigTreasure::StateItemWait::cleanup(Game::EnemyBase*)
 void BigTreasure::StateFlick::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lfs       f0, -0x18E0(r2)
-	  stw       r0, 0x14(r1)
-	  li        r0, -0x1
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  mr        r3, r31
-	  stw       r0, 0x2C8(r4)
-	  li        r4, 0
-	  stfs      f0, 0x2C0(r31)
-	  bl        0x627C
-	  li        r0, 0
-	  lfs       f0, -0x18E0(r2)
-	  stw       r0, 0x230(r31)
-	  mr        r3, r31
-	  li        r4, 0x1A
-	  li        r5, 0x1
-	  stfs      f0, 0x1D4(r31)
-	  stfs      f0, 0x1D8(r31)
-	  stfs      f0, 0x1DC(r31)
-	  bl        0x6BE4
-	  mr        r3, r31
-	  bl        0x4B34
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lfs      f0, lbl_8051CA80@sda21(r2)
+	stw      r0, 0x14(r1)
+	li       r0, -1
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	mr       r3, r31
+	stw      r0, 0x2c8(r4)
+	li       r4, 0
+	stfs     f0, 0x2c0(r31)
+	bl       setAttackMaterialColor__Q34Game11BigTreasure3ObjFb
+	li       r0, 0
+	lfs      f0, lbl_8051CA80@sda21(r2)
+	stw      r0, 0x230(r31)
+	mr       r3, r31
+	li       r4, 0x1a
+	li       r5, 1
+	stfs     f0, 0x1d4(r31)
+	stfs     f0, 0x1d8(r31)
+	stfs     f0, 0x1dc(r31)
+	bl       startBlendAnimation__Q34Game11BigTreasure3ObjFib
+	mr       r3, r31
+	bl       startBlendMotion__Q34Game11BigTreasure3ObjFv
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1390,70 +1675,70 @@ void BigTreasure::StateFlick::init(Game::EnemyBase*, Game::StateArg*)
 void BigTreasure::StateFlick::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  lwz       r5, 0x188(r4)
-	  lbz       r0, 0x24(r5)
-	  cmplwi    r0, 0
-	  beq-      .loc_0xC8
-	  lwz       r0, 0x1C(r5)
-	  cmplwi    r0, 0x7D0
-	  bne-      .loc_0x3C
-	  mr        r3, r31
-	  bl        0x6CAC
-	  b         .loc_0xC8
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	lwz      r5, 0x188(r4)
+	lbz      r0, 0x24(r5)
+	cmplwi   r0, 0
+	beq      lbl_802D8454
+	lwz      r0, 0x1c(r5)
+	cmplwi   r0, 0x7d0
+	bne      lbl_802D83C8
+	mr       r3, r31
+	bl       endBlendAnimation__Q34Game11BigTreasure3ObjFv
+	b        lbl_802D8454
 
-	.loc_0x3C:
-	  cmplwi    r0, 0x2
-	  bne-      .loc_0x78
-	  lwz       r5, 0xC0(r31)
-	  mr        r3, r31
-	  lfs       f4, -0x18D0(r2)
-	  li        r4, 0
-	  lfs       f1, 0x53C(r5)
-	  lfs       f2, 0x4C4(r5)
-	  lfs       f3, 0x4EC(r5)
-	  bl        -0x1C52D0
-	  lfs       f0, -0x18E0(r2)
-	  mr        r3, r31
-	  stfs      f0, 0x20C(r31)
-	  bl        0x70A8
-	  b         .loc_0xC8
+lbl_802D83C8:
+	cmplwi   r0, 2
+	bne      lbl_802D8404
+	lwz      r5, 0xc0(r31)
+	mr       r3, r31
+	lfs      f4, lbl_8051CA90@sda21(r2)
+	li       r4, 0
+	lfs      f1, 0x53c(r5)
+	lfs      f2, 0x4c4(r5)
+	lfs      f3, 0x4ec(r5)
+	bl
+"flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
+	lfs      f0, lbl_8051CA80@sda21(r2)
+	mr       r3, r31
+	stfs     f0, 0x20c(r31)
+	bl       startBossFlickBGM__Q34Game11BigTreasure3ObjFv
+	b        lbl_802D8454
 
-	.loc_0x78:
-	  cmplwi    r0, 0x3E8
-	  bne-      .loc_0xC8
-	  lfs       f1, 0x200(r31)
-	  lfs       f0, -0x18E0(r2)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0, 0x2
-	  bne-      .loc_0xB0
-	  lwz       r12, 0x0(r3)
-	  li        r5, 0
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0xC8
+lbl_802D8404:
+	cmplwi   r0, 0x3e8
+	bne      lbl_802D8454
+	lfs      f1, 0x200(r31)
+	lfs      f0, lbl_8051CA80@sda21(r2)
+	fcmpo    cr0, f1, f0
+	cror     2, 0, 2
+	bne      lbl_802D843C
+	lwz      r12, 0(r3)
+	li       r5, 0
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802D8454
 
-	.loc_0xB0:
-	  lwz       r12, 0x0(r3)
-	  li        r5, 0xA
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_802D843C:
+	lwz      r12, 0(r3)
+	li       r5, 0xa
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0xC8:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_802D8454:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1465,16 +1750,15 @@ void BigTreasure::StateFlick::exec(Game::EnemyBase*)
 void BigTreasure::StateFlick::cleanup(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r3, r4
-	  stw       r0, 0x14(r1)
-	  bl        0x4A54
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r3, r4
+	stw      r0, 0x14(r1)
+	bl       finishBlendMotion__Q34Game11BigTreasure3ObjFv
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1486,45 +1770,44 @@ void BigTreasure::StateFlick::cleanup(Game::EnemyBase*)
 void BigTreasure::StatePreAttack::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lfs       f0, -0x18E0(r2)
-	  stw       r0, 0x14(r1)
-	  li        r0, -0x1
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  mr        r3, r31
-	  stw       r0, 0x2C8(r4)
-	  stfs      f0, 0x2C0(r4)
-	  bl        0x406C
-	  mr        r3, r31
-	  li        r4, 0
-	  bl        0x6100
-	  li        r0, 0
-	  lfs       f0, -0x18E0(r2)
-	  stw       r0, 0x230(r31)
-	  mr        r3, r31
-	  stfs      f0, 0x1D4(r31)
-	  stfs      f0, 0x1D8(r31)
-	  stfs      f0, 0x1DC(r31)
-	  bl        0x5874
-	  mr        r3, r31
-	  bl        0x5A14
-	  mr        r0, r3
-	  mr        r3, r31
-	  mr        r4, r0
-	  li        r5, 0x1
-	  bl        0x6A54
-	  mr        r3, r31
-	  bl        0x49A4
-	  mr        r3, r31
-	  bl        0x6C44
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lfs      f0, lbl_8051CA80@sda21(r2)
+	stw      r0, 0x14(r1)
+	li       r0, -1
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	mr       r3, r31
+	stw      r0, 0x2c8(r4)
+	stfs     f0, 0x2c0(r4)
+	bl       resetAttackLimitTimer__Q34Game11BigTreasure3ObjFv
+	mr       r3, r31
+	li       r4, 0
+	bl       setAttackMaterialColor__Q34Game11BigTreasure3ObjFb
+	li       r0, 0
+	lfs      f0, lbl_8051CA80@sda21(r2)
+	stw      r0, 0x230(r31)
+	mr       r3, r31
+	stfs     f0, 0x1d4(r31)
+	stfs     f0, 0x1d8(r31)
+	stfs     f0, 0x1dc(r31)
+	bl       setTreasureAttack__Q34Game11BigTreasure3ObjFv
+	mr       r3, r31
+	bl       getPreAttackAnimIndex__Q34Game11BigTreasure3ObjFv
+	mr       r0, r3
+	mr       r3, r31
+	mr       r4, r0
+	li       r5, 1
+	bl       startBlendAnimation__Q34Game11BigTreasure3ObjFib
+	mr       r3, r31
+	bl       startBlendMotion__Q34Game11BigTreasure3ObjFv
+	mr       r3, r31
+	bl       startBossChargeBGM__Q34Game11BigTreasure3ObjFv
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1536,124 +1819,124 @@ void BigTreasure::StatePreAttack::init(Game::EnemyBase*, Game::StateArg*)
 void BigTreasure::StatePreAttack::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stfd      f31, 0x10(r1)
-	  psq_st    f31,0x18(r1),0,0
-	  stw       r31, 0xC(r1)
-	  stw       r30, 0x8(r1)
-	  mr        r31, r4
-	  mr        r30, r3
-	  mr        r3, r31
-	  bl        0x528C
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x58
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x9
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x17C
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stfd     f31, 0x10(r1)
+	psq_st   f31, 24(r1), 0, qr0
+	stw      r31, 0xc(r1)
+	stw      r30, 8(r1)
+	mr       r31, r4
+	mr       r30, r3
+	mr       r3, r31
+	bl       isCapturedTreasure__Q34Game11BigTreasure3ObjFv
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_802D857C
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 9
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802D86A0
 
-	.loc_0x58:
-	  lwz       r4, 0x408(r31)
-	  mr        r3, r31
-	  bl        0x52B0
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x90
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x6
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x17C
+lbl_802D857C:
+	lwz      r4, 0x408(r31)
+	mr       r3, r31
+	bl       isCapturedTreasure__Q34Game11BigTreasure3ObjFi
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_802D85B4
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 6
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802D86A0
 
-	.loc_0x90:
-	  lfs       f31, 0x2C0(r31)
-	  mr        r3, r31
-	  bl        0x5C2C
-	  fcmpo     cr0, f31, f1
-	  ble-      .loc_0xAC
-	  mr        r3, r31
-	  bl        -0x1D332C
+lbl_802D85B4:
+	lfs      f31, 0x2c0(r31)
+	mr       r3, r31
+	bl       getPreAttackTimeMax__Q34Game11BigTreasure3ObjFv
+	fcmpo    cr0, f31, f1
+	ble      lbl_802D85D0
+	mr       r3, r31
+	bl       finishMotion__Q24Game9EnemyBaseFv
 
-	.loc_0xAC:
-	  lwz       r3, -0x6514(r13)
-	  lfs       f1, 0x2C0(r31)
-	  lfs       f0, 0x54(r3)
-	  fadds     f0, f1, f0
-	  stfs      f0, 0x2C0(r31)
-	  lwz       r3, 0x188(r31)
-	  lbz       r0, 0x24(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x17C
-	  lwz       r0, 0x1C(r3)
-	  cmplwi    r0, 0x7D0
-	  bne-      .loc_0xE8
-	  mr        r3, r31
-	  bl        0x6A68
-	  b         .loc_0x17C
+lbl_802D85D0:
+	lwz      r3, sys@sda21(r13)
+	lfs      f1, 0x2c0(r31)
+	lfs      f0, 0x54(r3)
+	fadds    f0, f1, f0
+	stfs     f0, 0x2c0(r31)
+	lwz      r3, 0x188(r31)
+	lbz      r0, 0x24(r3)
+	cmplwi   r0, 0
+	beq      lbl_802D86A0
+	lwz      r0, 0x1c(r3)
+	cmplwi   r0, 0x7d0
+	bne      lbl_802D860C
+	mr       r3, r31
+	bl       endBlendAnimation__Q34Game11BigTreasure3ObjFv
+	b        lbl_802D86A0
 
-	.loc_0xE8:
-	  cmplwi    r0, 0x2
-	  bne-      .loc_0x128
-	  mr        r3, r31
-	  li        r4, 0x1
-	  bl        0x5FA4
-	  lwz       r5, 0xC0(r31)
-	  mr        r3, r31
-	  lfs       f4, -0x18D0(r2)
-	  li        r4, 0
-	  lfs       f1, 0x53C(r5)
-	  lfs       f2, 0x4C4(r5)
-	  lfs       f3, 0x4EC(r5)
-	  bl        -0x1C5520
-	  lfs       f0, -0x18E0(r2)
-	  stfs      f0, 0x20C(r31)
-	  b         .loc_0x17C
+lbl_802D860C:
+	cmplwi   r0, 2
+	bne      lbl_802D864C
+	mr       r3, r31
+	li       r4, 1
+	bl       setAttackMaterialColor__Q34Game11BigTreasure3ObjFb
+	lwz      r5, 0xc0(r31)
+	mr       r3, r31
+	lfs      f4, lbl_8051CA90@sda21(r2)
+	li       r4, 0
+	lfs      f1, 0x53c(r5)
+	lfs      f2, 0x4c4(r5)
+	lfs      f3, 0x4ec(r5)
+	bl
+"flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
+	lfs      f0, lbl_8051CA80@sda21(r2)
+	stfs     f0, 0x20c(r31)
+	b        lbl_802D86A0
 
-	.loc_0x128:
-	  cmplwi    r0, 0x3
-	  bne-      .loc_0x154
-	  mr        r3, r31
-	  bl        0x5A0C
-	  mr        r4, r3
-	  cmpwi     r4, 0x3
-	  beq-      .loc_0x17C
-	  mr        r3, r31
-	  li        r5, 0
-	  bl        -0x1D366C
-	  b         .loc_0x17C
+lbl_802D864C:
+	cmplwi   r0, 3
+	bne      lbl_802D8678
+	mr       r3, r31
+	bl       getFireAttackAnimIndex__Q34Game11BigTreasure3ObjFv
+	mr       r4, r3
+	cmpwi    r4, 3
+	beq      lbl_802D86A0
+	mr       r3, r31
+	li       r5, 0
+	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
+	b        lbl_802D86A0
 
-	.loc_0x154:
-	  cmplwi    r0, 0x3E8
-	  bne-      .loc_0x17C
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x7
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_802D8678:
+	cmplwi   r0, 0x3e8
+	bne      lbl_802D86A0
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 7
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x17C:
-	  psq_l     f31,0x18(r1),0,0
-	  lwz       r0, 0x24(r1)
-	  lfd       f31, 0x10(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_802D86A0:
+	psq_l    f31, 24(r1), 0, qr0
+	lwz      r0, 0x24(r1)
+	lfd      f31, 0x10(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -1665,16 +1948,15 @@ void BigTreasure::StatePreAttack::exec(Game::EnemyBase*)
 void BigTreasure::StatePreAttack::cleanup(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r3, r4
-	  stw       r0, 0x14(r1)
-	  bl        0x47FC
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r3, r4
+	stw      r0, 0x14(r1)
+	bl       finishBlendMotion__Q34Game11BigTreasure3ObjFv
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1686,37 +1968,36 @@ void BigTreasure::StatePreAttack::cleanup(Game::EnemyBase*)
 void BigTreasure::StateAttack::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lfs       f0, -0x18E0(r2)
-	  stw       r0, 0x14(r1)
-	  li        r0, -0x1
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  mr        r3, r31
-	  stw       r0, 0x2C8(r4)
-	  li        r0, 0
-	  stfs      f0, 0x2C0(r4)
-	  stw       r0, 0x230(r4)
-	  stfs      f0, 0x1D4(r4)
-	  stfs      f0, 0x1D8(r4)
-	  stfs      f0, 0x1DC(r4)
-	  bl        0x5824
-	  mr        r0, r3
-	  mr        r3, r31
-	  mr        r4, r0
-	  li        r5, 0x1
-	  bl        0x681C
-	  mr        r3, r31
-	  bl        0x476C
-	  mr        r3, r31
-	  bl        0x6AD4
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lfs      f0, lbl_8051CA80@sda21(r2)
+	stw      r0, 0x14(r1)
+	li       r0, -1
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	mr       r3, r31
+	stw      r0, 0x2c8(r4)
+	li       r0, 0
+	stfs     f0, 0x2c0(r4)
+	stw      r0, 0x230(r4)
+	stfs     f0, 0x1d4(r4)
+	stfs     f0, 0x1d8(r4)
+	stfs     f0, 0x1dc(r4)
+	bl       getAttackAnimIndex__Q34Game11BigTreasure3ObjFv
+	mr       r0, r3
+	mr       r3, r31
+	mr       r4, r0
+	li       r5, 1
+	bl       startBlendAnimation__Q34Game11BigTreasure3ObjFib
+	mr       r3, r31
+	bl       startBlendMotion__Q34Game11BigTreasure3ObjFv
+	mr       r3, r31
+	bl       startBossAttackBGM__Q34Game11BigTreasure3ObjFv
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1728,101 +2009,100 @@ void BigTreasure::StateAttack::init(Game::EnemyBase*, Game::StateArg*)
 void BigTreasure::StateAttack::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stfd      f31, 0x10(r1)
-	  psq_st    f31,0x18(r1),0,0
-	  stw       r31, 0xC(r1)
-	  stw       r30, 0x8(r1)
-	  mr        r31, r4
-	  mr        r30, r3
-	  mr        r3, r31
-	  bl        0x5054
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x58
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x9
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x128
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stfd     f31, 0x10(r1)
+	psq_st   f31, 24(r1), 0, qr0
+	stw      r31, 0xc(r1)
+	stw      r30, 8(r1)
+	mr       r31, r4
+	mr       r30, r3
+	mr       r3, r31
+	bl       isCapturedTreasure__Q34Game11BigTreasure3ObjFv
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_802D87B4
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 9
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802D8884
 
-	.loc_0x58:
-	  lwz       r4, 0x408(r31)
-	  mr        r3, r31
-	  bl        0x5078
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x90
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x6
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x128
+lbl_802D87B4:
+	lwz      r4, 0x408(r31)
+	mr       r3, r31
+	bl       isCapturedTreasure__Q34Game11BigTreasure3ObjFi
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_802D87EC
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 6
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802D8884
 
-	.loc_0x90:
-	  lfs       f31, 0x2C0(r31)
-	  mr        r3, r31
-	  bl        0x5A8C
-	  fcmpo     cr0, f31, f1
-	  ble-      .loc_0xAC
-	  mr        r3, r31
-	  bl        -0x1D3564
+lbl_802D87EC:
+	lfs      f31, 0x2c0(r31)
+	mr       r3, r31
+	bl       getAttackTimeMax__Q34Game11BigTreasure3ObjFv
+	fcmpo    cr0, f31, f1
+	ble      lbl_802D8808
+	mr       r3, r31
+	bl       finishMotion__Q24Game9EnemyBaseFv
 
-	.loc_0xAC:
-	  lwz       r3, -0x6514(r13)
-	  lfs       f1, 0x2C0(r31)
-	  lfs       f0, 0x54(r3)
-	  fadds     f0, f1, f0
-	  stfs      f0, 0x2C0(r31)
-	  lwz       r3, 0x188(r31)
-	  lbz       r0, 0x24(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x128
-	  lwz       r0, 0x1C(r3)
-	  cmplwi    r0, 0x7D0
-	  bne-      .loc_0xE4
-	  mr        r3, r31
-	  bl        0x6830
+lbl_802D8808:
+	lwz      r3, sys@sda21(r13)
+	lfs      f1, 0x2c0(r31)
+	lfs      f0, 0x54(r3)
+	fadds    f0, f1, f0
+	stfs     f0, 0x2c0(r31)
+	lwz      r3, 0x188(r31)
+	lbz      r0, 0x24(r3)
+	cmplwi   r0, 0
+	beq      lbl_802D8884
+	lwz      r0, 0x1c(r3)
+	cmplwi   r0, 0x7d0
+	bne      lbl_802D8840
+	mr       r3, r31
+	bl       endBlendAnimation__Q34Game11BigTreasure3ObjFv
 
-	.loc_0xE4:
-	  lwz       r3, 0x188(r31)
-	  lwz       r0, 0x1C(r3)
-	  cmplwi    r0, 0x2
-	  bne-      .loc_0x100
-	  mr        r3, r31
-	  bl        0x5468
-	  b         .loc_0x128
+lbl_802D8840:
+	lwz      r3, 0x188(r31)
+	lwz      r0, 0x1c(r3)
+	cmplwi   r0, 2
+	bne      lbl_802D885C
+	mr       r3, r31
+	bl       startAttack__Q34Game11BigTreasure3ObjFv
+	b        lbl_802D8884
 
-	.loc_0x100:
-	  cmplwi    r0, 0x3E8
-	  bne-      .loc_0x128
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x8
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_802D885C:
+	cmplwi   r0, 0x3e8
+	bne      lbl_802D8884
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 8
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x128:
-	  psq_l     f31,0x18(r1),0,0
-	  lwz       r0, 0x24(r1)
-	  lfd       f31, 0x10(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_802D8884:
+	psq_l    f31, 24(r1), 0, qr0
+	lwz      r0, 0x24(r1)
+	lfd      f31, 0x10(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -1834,23 +2114,22 @@ void BigTreasure::StateAttack::exec(Game::EnemyBase*)
 void BigTreasure::StateAttack::cleanup(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  mr        r3, r31
-	  bl        0x4610
-	  mr        r3, r31
-	  bl        0x546C
-	  mr        r3, r31
-	  bl        0x6A6C
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	mr       r3, r31
+	bl       finishBlendMotion__Q34Game11BigTreasure3ObjFv
+	mr       r3, r31
+	bl       finishAttack__Q34Game11BigTreasure3ObjFv
+	mr       r3, r31
+	bl       finishBossAttackBGM__Q34Game11BigTreasure3ObjFv
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1862,39 +2141,38 @@ void BigTreasure::StateAttack::cleanup(Game::EnemyBase*)
 void BigTreasure::StatePutItem::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lfs       f0, -0x18E0(r2)
-	  stw       r0, 0x14(r1)
-	  li        r0, -0x1
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  mr        r3, r31
-	  stw       r0, 0x2C8(r4)
-	  li        r4, 0
-	  stfs      f0, 0x2C0(r31)
-	  bl        0x5CB0
-	  li        r0, 0
-	  lfs       f0, -0x18E0(r2)
-	  stw       r0, 0x230(r31)
-	  mr        r3, r31
-	  stfs      f0, 0x1D4(r31)
-	  stfs      f0, 0x1D8(r31)
-	  stfs      f0, 0x1DC(r31)
-	  bl        0x56A4
-	  mr        r0, r3
-	  mr        r3, r31
-	  mr        r4, r0
-	  li        r5, 0x1
-	  bl        0x660C
-	  mr        r3, r31
-	  bl        0x455C
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lfs      f0, lbl_8051CA80@sda21(r2)
+	stw      r0, 0x14(r1)
+	li       r0, -1
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	mr       r3, r31
+	stw      r0, 0x2c8(r4)
+	li       r4, 0
+	stfs     f0, 0x2c0(r31)
+	bl       setAttackMaterialColor__Q34Game11BigTreasure3ObjFb
+	li       r0, 0
+	lfs      f0, lbl_8051CA80@sda21(r2)
+	stw      r0, 0x230(r31)
+	mr       r3, r31
+	stfs     f0, 0x1d4(r31)
+	stfs     f0, 0x1d8(r31)
+	stfs     f0, 0x1dc(r31)
+	bl       getPutItemAnimIndex__Q34Game11BigTreasure3ObjFv
+	mr       r0, r3
+	mr       r3, r31
+	mr       r4, r0
+	li       r5, 1
+	bl       startBlendAnimation__Q34Game11BigTreasure3ObjFib
+	mr       r3, r31
+	bl       startBlendMotion__Q34Game11BigTreasure3ObjFv
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1906,91 +2184,90 @@ void BigTreasure::StatePutItem::init(Game::EnemyBase*, Game::StateArg*)
 void BigTreasure::StatePutItem::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  mr        r3, r31
-	  bl        0x4E54
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x50
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x9
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x110
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	mr       r3, r31
+	bl       isCapturedTreasure__Q34Game11BigTreasure3ObjFv
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_802D89B4
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 9
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802D8A74
 
-	.loc_0x50:
-	  lwz       r4, 0x408(r31)
-	  mr        r3, r31
-	  bl        0x4E78
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x88
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x6
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x110
+lbl_802D89B4:
+	lwz      r4, 0x408(r31)
+	mr       r3, r31
+	bl       isCapturedTreasure__Q34Game11BigTreasure3ObjFi
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_802D89EC
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 6
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802D8A74
 
-	.loc_0x88:
-	  lwz       r3, 0x188(r31)
-	  lbz       r0, 0x24(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x110
-	  lwz       r0, 0x1C(r3)
-	  cmplwi    r0, 0x7D0
-	  bne-      .loc_0xB0
-	  mr        r3, r31
-	  bl        0x6660
-	  b         .loc_0x110
+lbl_802D89EC:
+	lwz      r3, 0x188(r31)
+	lbz      r0, 0x24(r3)
+	cmplwi   r0, 0
+	beq      lbl_802D8A74
+	lwz      r0, 0x1c(r3)
+	cmplwi   r0, 0x7d0
+	bne      lbl_802D8A14
+	mr       r3, r31
+	bl       endBlendAnimation__Q34Game11BigTreasure3ObjFv
+	b        lbl_802D8A74
 
-	.loc_0xB0:
-	  cmplwi    r0, 0x3E8
-	  bne-      .loc_0x110
-	  mr        r3, r31
-	  li        r4, 0
-	  bl        -0x1C43CC
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xF0
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x6
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x110
+lbl_802D8A14:
+	cmplwi   r0, 0x3e8
+	bne      lbl_802D8A74
+	mr       r3, r31
+	li       r4, 0
+	bl       isStartFlick__Q24Game9EnemyFuncFPQ24Game9EnemyBaseb
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802D8A54
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 6
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802D8A74
 
-	.loc_0xF0:
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0xB
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_802D8A54:
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 0xb
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x110:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_802D8A74:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2002,16 +2279,15 @@ void BigTreasure::StatePutItem::exec(Game::EnemyBase*)
 void BigTreasure::StatePutItem::cleanup(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r3, r4
-	  stw       r0, 0x14(r1)
-	  bl        0x4430
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r3, r4
+	stw      r0, 0x14(r1)
+	bl       finishBlendMotion__Q34Game11BigTreasure3ObjFv
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2023,36 +2299,35 @@ void BigTreasure::StatePutItem::cleanup(Game::EnemyBase*)
 void BigTreasure::StateDropItem::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lfs       f0, -0x18E0(r2)
-	  stw       r0, 0x14(r1)
-	  li        r0, -0x1
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  mr        r3, r31
-	  stw       r0, 0x2C8(r4)
-	  li        r4, 0
-	  stfs      f0, 0x2C0(r31)
-	  bl        0x5AE4
-	  li        r0, 0
-	  lfs       f0, -0x18E0(r2)
-	  stw       r0, 0x230(r31)
-	  mr        r3, r31
-	  li        r4, 0x18
-	  li        r5, 0x1
-	  stfs      f0, 0x1D4(r31)
-	  stfs      f0, 0x1D8(r31)
-	  stfs      f0, 0x1DC(r31)
-	  bl        0x644C
-	  mr        r3, r31
-	  bl        0x439C
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lfs      f0, lbl_8051CA80@sda21(r2)
+	stw      r0, 0x14(r1)
+	li       r0, -1
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	mr       r3, r31
+	stw      r0, 0x2c8(r4)
+	li       r4, 0
+	stfs     f0, 0x2c0(r31)
+	bl       setAttackMaterialColor__Q34Game11BigTreasure3ObjFb
+	li       r0, 0
+	lfs      f0, lbl_8051CA80@sda21(r2)
+	stw      r0, 0x230(r31)
+	mr       r3, r31
+	li       r4, 0x18
+	li       r5, 1
+	stfs     f0, 0x1d4(r31)
+	stfs     f0, 0x1d8(r31)
+	stfs     f0, 0x1dc(r31)
+	bl       startBlendAnimation__Q34Game11BigTreasure3ObjFib
+	mr       r3, r31
+	bl       startBlendMotion__Q34Game11BigTreasure3ObjFv
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2064,74 +2339,73 @@ void BigTreasure::StateDropItem::init(Game::EnemyBase*, Game::StateArg*)
 void BigTreasure::StateDropItem::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lwz       r5, 0x188(r4)
-	  lbz       r0, 0x24(r5)
-	  cmplwi    r0, 0
-	  beq-      .loc_0xD4
-	  lwz       r0, 0x1C(r5)
-	  cmplwi    r0, 0x7D0
-	  bne-      .loc_0x44
-	  mr        r3, r31
-	  bl        0x650C
-	  b         .loc_0xD4
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lwz      r5, 0x188(r4)
+	lbz      r0, 0x24(r5)
+	cmplwi   r0, 0
+	beq      lbl_802D8BF8
+	lwz      r0, 0x1c(r5)
+	cmplwi   r0, 0x7d0
+	bne      lbl_802D8B68
+	mr       r3, r31
+	bl       endBlendAnimation__Q34Game11BigTreasure3ObjFv
+	b        lbl_802D8BF8
 
-	.loc_0x44:
-	  cmplwi    r0, 0x3E8
-	  bne-      .loc_0xD4
-	  lfs       f1, 0x200(r31)
-	  lfs       f0, -0x18E0(r2)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0, 0x2
-	  bne-      .loc_0x7C
-	  lwz       r12, 0x0(r3)
-	  li        r5, 0
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0xD4
+lbl_802D8B68:
+	cmplwi   r0, 0x3e8
+	bne      lbl_802D8BF8
+	lfs      f1, 0x200(r31)
+	lfs      f0, lbl_8051CA80@sda21(r2)
+	fcmpo    cr0, f1, f0
+	cror     2, 0, 2
+	bne      lbl_802D8BA0
+	lwz      r12, 0(r3)
+	li       r5, 0
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802D8BF8
 
-	.loc_0x7C:
-	  mr        r3, r31
-	  li        r4, 0
-	  bl        -0x1C4550
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xB4
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x5
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0xD4
+lbl_802D8BA0:
+	mr       r3, r31
+	li       r4, 0
+	bl       isStartFlick__Q24Game9EnemyFuncFPQ24Game9EnemyBaseb
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802D8BD8
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 5
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802D8BF8
 
-	.loc_0xB4:
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0xA
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_802D8BD8:
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 0xa
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0xD4:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_802D8BF8:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2143,16 +2417,15 @@ void BigTreasure::StateDropItem::exec(Game::EnemyBase*)
 void BigTreasure::StateDropItem::cleanup(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r3, r4
-	  stw       r0, 0x14(r1)
-	  bl        0x42AC
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r3, r4
+	stw      r0, 0x14(r1)
+	bl       finishBlendMotion__Q34Game11BigTreasure3ObjFv
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2164,49 +2437,48 @@ void BigTreasure::StateDropItem::cleanup(Game::EnemyBase*)
 void BigTreasure::StateWalk::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  li        r0, -0x1
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r4
-	  stw       r0, 0x2C8(r4)
-	  bl        -0x20F6B0
-	  xoris     r3, r3, 0x8000
-	  lis       r0, 0x4330
-	  stw       r3, 0xC(r1)
-	  mr        r3, r31
-	  lfd       f3, -0x18C0(r2)
-	  li        r4, 0
-	  stw       r0, 0x8(r1)
-	  lfs       f1, -0x18B8(r2)
-	  lfd       f2, 0x8(r1)
-	  lfs       f0, -0x18C8(r2)
-	  fsubs     f2, f2, f3
-	  fmuls     f1, f1, f2
-	  fdivs     f0, f1, f0
-	  stfs      f0, 0x2C0(r31)
-	  bl        0x5934
-	  li        r0, 0
-	  lfs       f0, -0x18E0(r2)
-	  stw       r0, 0x230(r31)
-	  mr        r3, r31
-	  li        r4, 0x1D
-	  li        r5, 0x1
-	  stfs      f0, 0x1D4(r31)
-	  stfs      f0, 0x1D8(r31)
-	  stfs      f0, 0x1DC(r31)
-	  bl        0x629C
-	  mr        r3, r31
-	  bl        0x415C
-	  mr        r3, r31
-	  bl        0x3AE0
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	li       r0, -1
+	stw      r31, 0x1c(r1)
+	mr       r31, r4
+	stw      r0, 0x2c8(r4)
+	bl       rand
+	xoris    r3, r3, 0x8000
+	lis      r0, 0x4330
+	stw      r3, 0xc(r1)
+	mr       r3, r31
+	lfd      f3, lbl_8051CAA0@sda21(r2)
+	li       r4, 0
+	stw      r0, 8(r1)
+	lfs      f1, lbl_8051CAA8@sda21(r2)
+	lfd      f2, 8(r1)
+	lfs      f0, lbl_8051CA98@sda21(r2)
+	fsubs    f2, f2, f3
+	fmuls    f1, f1, f2
+	fdivs    f0, f1, f0
+	stfs     f0, 0x2c0(r31)
+	bl       setAttackMaterialColor__Q34Game11BigTreasure3ObjFb
+	li       r0, 0
+	lfs      f0, lbl_8051CA80@sda21(r2)
+	stw      r0, 0x230(r31)
+	mr       r3, r31
+	li       r4, 0x1d
+	li       r5, 1
+	stfs     f0, 0x1d4(r31)
+	stfs     f0, 0x1d8(r31)
+	stfs     f0, 0x1dc(r31)
+	bl       startBlendAnimation__Q34Game11BigTreasure3ObjFib
+	mr       r3, r31
+	bl       startIKMotion__Q34Game11BigTreasure3ObjFv
+	mr       r3, r31
+	bl       getTargetPosition__Q34Game11BigTreasure3ObjFv
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -2218,100 +2490,99 @@ void BigTreasure::StateWalk::init(Game::EnemyBase*, Game::StateArg*)
 void BigTreasure::StateWalk::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  mr        r3, r31
-	  bl        0x3AA8
-	  lfs       f1, 0x200(r31)
-	  lfs       f0, -0x18E0(r2)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0, 0x2
-	  bne-      .loc_0x5C
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x12C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	mr       r3, r31
+	bl       getTargetPosition__Q34Game11BigTreasure3ObjFv
+	lfs      f1, 0x200(r31)
+	lfs      f0, lbl_8051CA80@sda21(r2)
+	fcmpo    cr0, f1, f0
+	cror     2, 0, 2
+	bne      lbl_802D8D38
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 0
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802D8E08
 
-	.loc_0x5C:
-	  mr        r3, r31
-	  li        r4, 0
-	  bl        -0x1C46E8
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x84
-	  li        r0, 0x5
-	  mr        r3, r31
-	  stw       r0, 0x2C8(r31)
-	  bl        0x40E4
-	  b         .loc_0xA4
+lbl_802D8D38:
+	mr       r3, r31
+	li       r4, 0
+	bl       isStartFlick__Q24Game9EnemyFuncFPQ24Game9EnemyBaseb
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802D8D60
+	li       r0, 5
+	mr       r3, r31
+	stw      r0, 0x2c8(r31)
+	bl       finishIKMotion__Q34Game11BigTreasure3ObjFv
+	b        lbl_802D8D80
 
-	.loc_0x84:
-	  lfs       f1, 0x2C0(r31)
-	  lfs       f0, -0x18B8(r2)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0xA4
-	  li        r0, 0x3
-	  mr        r3, r31
-	  stw       r0, 0x2C8(r31)
-	  bl        0x40C0
+lbl_802D8D60:
+	lfs      f1, 0x2c0(r31)
+	lfs      f0, lbl_8051CAA8@sda21(r2)
+	fcmpo    cr0, f1, f0
+	ble      lbl_802D8D80
+	li       r0, 3
+	mr       r3, r31
+	stw      r0, 0x2c8(r31)
+	bl       finishIKMotion__Q34Game11BigTreasure3ObjFv
 
-	.loc_0xA4:
-	  lwz       r3, -0x6514(r13)
-	  lfs       f1, 0x2C0(r31)
-	  lfs       f0, 0x54(r3)
-	  fadds     f0, f1, f0
-	  stfs      f0, 0x2C0(r31)
-	  lwz       r3, 0x188(r31)
-	  lbz       r0, 0x24(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x12C
-	  lwz       r0, 0x1C(r3)
-	  cmplwi    r0, 0x7D0
-	  bne-      .loc_0xE0
-	  mr        r3, r31
-	  bl        0x62B8
-	  b         .loc_0x12C
+lbl_802D8D80:
+	lwz      r3, sys@sda21(r13)
+	lfs      f1, 0x2c0(r31)
+	lfs      f0, 0x54(r3)
+	fadds    f0, f1, f0
+	stfs     f0, 0x2c0(r31)
+	lwz      r3, 0x188(r31)
+	lbz      r0, 0x24(r3)
+	cmplwi   r0, 0
+	beq      lbl_802D8E08
+	lwz      r0, 0x1c(r3)
+	cmplwi   r0, 0x7d0
+	bne      lbl_802D8DBC
+	mr       r3, r31
+	bl       endBlendAnimation__Q34Game11BigTreasure3ObjFv
+	b        lbl_802D8E08
 
-	.loc_0xE0:
-	  cmplwi    r0, 0x3E8
-	  bne-      .loc_0x12C
-	  mr        r3, r31
-	  bl        0x40BC
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x11C
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r6, 0
-	  lwz       r5, 0x2C8(r31)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x12C
+lbl_802D8DBC:
+	cmplwi   r0, 0x3e8
+	bne      lbl_802D8E08
+	mr       r3, r31
+	bl       isFinishIKMotion__Q34Game11BigTreasure3ObjFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802D8DF8
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r6, 0
+	lwz      r5, 0x2c8(r31)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802D8E08
 
-	.loc_0x11C:
-	  mr        r3, r31
-	  li        r4, 0x1D
-	  li        r5, 0
-	  bl        0x614C
+lbl_802D8DF8:
+	mr       r3, r31
+	li       r4, 0x1d
+	li       r5, 0
+	bl       startBlendAnimation__Q34Game11BigTreasure3ObjFib
 
-	.loc_0x12C:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_802D8E08:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2330,49 +2601,48 @@ void BigTreasure::StateWalk::cleanup(Game::EnemyBase*) { }
 void BigTreasure::StateItemWalk::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  li        r0, -0x1
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r4
-	  stw       r0, 0x2C8(r4)
-	  bl        -0x20F8A0
-	  xoris     r3, r3, 0x8000
-	  lis       r0, 0x4330
-	  stw       r3, 0xC(r1)
-	  mr        r3, r31
-	  lfd       f3, -0x18C0(r2)
-	  li        r4, 0
-	  stw       r0, 0x8(r1)
-	  lfs       f1, -0x18B8(r2)
-	  lfd       f2, 0x8(r1)
-	  lfs       f0, -0x18C8(r2)
-	  fsubs     f2, f2, f3
-	  fmuls     f1, f1, f2
-	  fdivs     f0, f1, f0
-	  stfs      f0, 0x2C0(r31)
-	  bl        0x5744
-	  li        r0, 0
-	  lfs       f0, -0x18E0(r2)
-	  stw       r0, 0x230(r31)
-	  mr        r3, r31
-	  li        r4, 0x1C
-	  li        r5, 0x1
-	  stfs      f0, 0x1D4(r31)
-	  stfs      f0, 0x1D8(r31)
-	  stfs      f0, 0x1DC(r31)
-	  bl        0x60AC
-	  mr        r3, r31
-	  bl        0x3F6C
-	  mr        r3, r31
-	  bl        0x38F0
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	li       r0, -1
+	stw      r31, 0x1c(r1)
+	mr       r31, r4
+	stw      r0, 0x2c8(r4)
+	bl       rand
+	xoris    r3, r3, 0x8000
+	lis      r0, 0x4330
+	stw      r3, 0xc(r1)
+	mr       r3, r31
+	lfd      f3, lbl_8051CAA0@sda21(r2)
+	li       r4, 0
+	stw      r0, 8(r1)
+	lfs      f1, lbl_8051CAA8@sda21(r2)
+	lfd      f2, 8(r1)
+	lfs      f0, lbl_8051CA98@sda21(r2)
+	fsubs    f2, f2, f3
+	fmuls    f1, f1, f2
+	fdivs    f0, f1, f0
+	stfs     f0, 0x2c0(r31)
+	bl       setAttackMaterialColor__Q34Game11BigTreasure3ObjFb
+	li       r0, 0
+	lfs      f0, lbl_8051CA80@sda21(r2)
+	stw      r0, 0x230(r31)
+	mr       r3, r31
+	li       r4, 0x1c
+	li       r5, 1
+	stfs     f0, 0x1d4(r31)
+	stfs     f0, 0x1d8(r31)
+	stfs     f0, 0x1dc(r31)
+	bl       startBlendAnimation__Q34Game11BigTreasure3ObjFib
+	mr       r3, r31
+	bl       startIKMotion__Q34Game11BigTreasure3ObjFv
+	mr       r3, r31
+	bl       getTargetPosition__Q34Game11BigTreasure3ObjFv
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -2384,156 +2654,155 @@ void BigTreasure::StateItemWalk::init(Game::EnemyBase*, Game::StateArg*)
 void BigTreasure::StateItemWalk::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  mr        r3, r31
-	  bl        0x38B8
-	  lfs       f1, 0x200(r31)
-	  lfs       f0, -0x18E0(r2)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0, 0x2
-	  bne-      .loc_0x5C
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x1D4
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	mr       r3, r31
+	bl       getTargetPosition__Q34Game11BigTreasure3ObjFv
+	lfs      f1, 0x200(r31)
+	lfs      f0, lbl_8051CA80@sda21(r2)
+	fcmpo    cr0, f1, f0
+	cror     2, 0, 2
+	bne      lbl_802D8F28
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 0
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802D90A0
 
-	.loc_0x5C:
-	  mr        r3, r31
-	  bl        0x61D8
-	  cmpwi     r3, 0x1C
-	  bne-      .loc_0x9C
-	  mr        r3, r31
-	  bl        0x489C
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x9C
-	  mr        r3, r31
-	  li        r4, 0
-	  bl        0x5670
-	  mr        r3, r31
-	  li        r4, 0x18
-	  li        r5, 0x1
-	  bl        0x5FF0
-	  b         .loc_0x12C
+lbl_802D8F28:
+	mr       r3, r31
+	bl       getCurrAnimationIndex__Q34Game11BigTreasure3ObjFv
+	cmpwi    r3, 0x1c
+	bne      lbl_802D8F68
+	mr       r3, r31
+	bl       isCapturedTreasure__Q34Game11BigTreasure3ObjFv
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_802D8F68
+	mr       r3, r31
+	li       r4, 0
+	bl       setAttackMaterialColor__Q34Game11BigTreasure3ObjFb
+	mr       r3, r31
+	li       r4, 0x18
+	li       r5, 1
+	bl       startBlendAnimation__Q34Game11BigTreasure3ObjFib
+	b        lbl_802D8FF8
 
-	.loc_0x9C:
-	  mr        r3, r31
-	  li        r4, 0
-	  bl        -0x1C4918
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0xC0
-	  mr        r3, r31
-	  bl        0x35FC
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xF0
+lbl_802D8F68:
+	mr       r3, r31
+	li       r4, 0
+	bl       isStartFlick__Q24Game9EnemyFuncFPQ24Game9EnemyBaseb
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_802D8F8C
+	mr       r3, r31
+	bl       isAttackLimitTime__Q34Game11BigTreasure3ObjFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802D8FBC
 
-	.loc_0xC0:
-	  mr        r3, r31
-	  bl        0x4848
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xDC
-	  li        r0, 0x6
-	  stw       r0, 0x2C8(r31)
-	  b         .loc_0xE4
+lbl_802D8F8C:
+	mr       r3, r31
+	bl       isCapturedTreasure__Q34Game11BigTreasure3ObjFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802D8FA8
+	li       r0, 6
+	stw      r0, 0x2c8(r31)
+	b        lbl_802D8FB0
 
-	.loc_0xDC:
-	  li        r0, 0x5
-	  stw       r0, 0x2C8(r31)
+lbl_802D8FA8:
+	li       r0, 5
+	stw      r0, 0x2c8(r31)
 
-	.loc_0xE4:
-	  mr        r3, r31
-	  bl        0x3E88
-	  b         .loc_0x12C
+lbl_802D8FB0:
+	mr       r3, r31
+	bl       finishIKMotion__Q34Game11BigTreasure3ObjFv
+	b        lbl_802D8FF8
 
-	.loc_0xF0:
-	  lfs       f1, 0x2C0(r31)
-	  lfs       f0, -0x18B8(r2)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x12C
-	  mr        r3, r31
-	  bl        0x4808
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x11C
-	  li        r0, 0x4
-	  stw       r0, 0x2C8(r31)
-	  b         .loc_0x124
+lbl_802D8FBC:
+	lfs      f1, 0x2c0(r31)
+	lfs      f0, lbl_8051CAA8@sda21(r2)
+	fcmpo    cr0, f1, f0
+	ble      lbl_802D8FF8
+	mr       r3, r31
+	bl       isCapturedTreasure__Q34Game11BigTreasure3ObjFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802D8FE8
+	li       r0, 4
+	stw      r0, 0x2c8(r31)
+	b        lbl_802D8FF0
 
-	.loc_0x11C:
-	  li        r0, 0x3
-	  stw       r0, 0x2C8(r31)
+lbl_802D8FE8:
+	li       r0, 3
+	stw      r0, 0x2c8(r31)
 
-	.loc_0x124:
-	  mr        r3, r31
-	  bl        0x3E48
+lbl_802D8FF0:
+	mr       r3, r31
+	bl       finishIKMotion__Q34Game11BigTreasure3ObjFv
 
-	.loc_0x12C:
-	  lwz       r4, -0x6514(r13)
-	  mr        r3, r31
-	  lfs       f1, 0x2C0(r31)
-	  lfs       f0, 0x54(r4)
-	  fadds     f0, f1, f0
-	  stfs      f0, 0x2C0(r31)
-	  bl        0x3E74
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x170
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r6, 0
-	  lwz       r5, 0x2C8(r31)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_802D8FF8:
+	lwz      r4, sys@sda21(r13)
+	mr       r3, r31
+	lfs      f1, 0x2c0(r31)
+	lfs      f0, 0x54(r4)
+	fadds    f0, f1, f0
+	stfs     f0, 0x2c0(r31)
+	bl       isFinishIKMotion__Q34Game11BigTreasure3ObjFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802D903C
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r6, 0
+	lwz      r5, 0x2c8(r31)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x170:
-	  lwz       r3, 0x188(r31)
-	  lbz       r0, 0x24(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x1D4
-	  lwz       r0, 0x1C(r3)
-	  cmplwi    r0, 0x7D0
-	  bne-      .loc_0x198
-	  mr        r3, r31
-	  bl        0x6010
-	  b         .loc_0x1D4
+lbl_802D903C:
+	lwz      r3, 0x188(r31)
+	lbz      r0, 0x24(r3)
+	cmplwi   r0, 0
+	beq      lbl_802D90A0
+	lwz      r0, 0x1c(r3)
+	cmplwi   r0, 0x7d0
+	bne      lbl_802D9064
+	mr       r3, r31
+	bl       endBlendAnimation__Q34Game11BigTreasure3ObjFv
+	b        lbl_802D90A0
 
-	.loc_0x198:
-	  cmplwi    r0, 0x3E8
-	  bne-      .loc_0x1D4
-	  mr        r3, r31
-	  bl        0x4768
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x1C4
-	  mr        r3, r31
-	  li        r4, 0x1C
-	  li        r5, 0
-	  bl        0x5EC8
-	  b         .loc_0x1D4
+lbl_802D9064:
+	cmplwi   r0, 0x3e8
+	bne      lbl_802D90A0
+	mr       r3, r31
+	bl       isCapturedTreasure__Q34Game11BigTreasure3ObjFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802D9090
+	mr       r3, r31
+	li       r4, 0x1c
+	li       r5, 0
+	bl       startBlendAnimation__Q34Game11BigTreasure3ObjFib
+	b        lbl_802D90A0
 
-	.loc_0x1C4:
-	  mr        r3, r31
-	  li        r4, 0x19
-	  li        r5, 0
-	  bl        0x5EB4
+lbl_802D9090:
+	mr       r3, r31
+	li       r4, 0x19
+	li       r5, 0
+	bl       startBlendAnimation__Q34Game11BigTreasure3ObjFib
 
-	.loc_0x1D4:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_802D90A0:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2554,16 +2823,15 @@ void BigTreasure::StateItemWalk::cleanup(Game::EnemyBase*) { }
 void __sinit_BigTreasureState_cpp(void)
 {
 	/*
-	.loc_0x0:
-	  lis       r4, 0x8051
-	  li        r0, -0x1
-	  lfs       f0, 0x48B0(r4)
-	  lis       r3, 0x804D
-	  stw       r0, -0x68A8(r13)
-	  stfsu     f0, 0x2F90(r3)
-	  stfs      f0, -0x68A4(r13)
-	  stfs      f0, 0x4(r3)
-	  stfs      f0, 0x8(r3)
-	  blr
+	lis      r4, __float_nan@ha
+	li       r0, -1
+	lfs      f0, __float_nan@l(r4)
+	lis      r3, lbl_804D2F90@ha
+	stw      r0, lbl_80515DD8@sda21(r13)
+	stfsu    f0, lbl_804D2F90@l(r3)
+	stfs     f0, lbl_80515DDC@sda21(r13)
+	stfs     f0, 4(r3)
+	stfs     f0, 8(r3)
+	blr
 	*/
 }

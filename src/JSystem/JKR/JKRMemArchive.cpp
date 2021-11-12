@@ -1,6 +1,45 @@
 #include "types.h"
 
 /*
+    Generated from dpostproc
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_80473A78
+    lbl_80473A78:
+        .asciz "JKRMemArchive.cpp"
+        .skip 2
+    .global lbl_80473A8C
+    lbl_80473A8C:
+        .asciz ":::??? bad sequence\n"
+        .skip 3
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__13JKRMemArchive
+    __vt__13JKRMemArchive:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__13JKRMemArchiveFv
+        .4byte unmount__13JKRFileLoaderFv
+        .4byte becomeCurrent__10JKRArchiveFPCc
+        .4byte getResource__10JKRArchiveFPCc
+        .4byte getResource__10JKRArchiveFUlPCc
+        .4byte readResource__10JKRArchiveFPvUlPCc
+        .4byte readResource__10JKRArchiveFPvUlUlPCc
+        .4byte removeResourceAll__13JKRMemArchiveFv
+        .4byte removeResource__13JKRMemArchiveFPv
+        .4byte detachResource__10JKRArchiveFPv
+        .4byte getResSize__10JKRArchiveCFPCv
+        .4byte countFile__10JKRArchiveCFPCc
+        .4byte getFirstFile__10JKRArchiveCFPCc
+        .4byte getExpandedResSize__13JKRMemArchiveCFPCv
+        .4byte fetchResource__13JKRMemArchiveFPQ210JKRArchive12SDIFileEntryPUl
+        .4byte
+   fetchResource__13JKRMemArchiveFPvUlPQ210JKRArchive12SDIFileEntryPUl .4byte
+   setExpandSize__10JKRArchiveFPQ210JKRArchive12SDIFileEntryUl .4byte
+   getExpandSize__10JKRArchiveCFPQ210JKRArchive12SDIFileEntry
+*/
+
+/*
  * --INFO--
  * Address:	80024644
  * Size:	0000BC
@@ -8,58 +47,57 @@
 JKRMemArchive::JKRMemArchive(long, JKRArchive::EMountDirection)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r5
-	  li        r5, 0x1
-	  stw       r30, 0x18(r1)
-	  mr        r30, r4
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  bl        -0xA1B0
-	  lis       r3, 0x804A
-	  li        r0, 0
-	  subi      r4, r3, 0xA0
-	  mr        r3, r29
-	  stw       r4, 0x0(r29)
-	  mr        r4, r30
-	  stb       r0, 0x30(r29)
-	  stw       r31, 0x60(r29)
-	  lwz       r5, 0x60(r29)
-	  bl        0x1DC
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x64
-	  mr        r3, r29
-	  b         .loc_0xA0
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r5
+	li       r5, 1
+	stw      r30, 0x18(r1)
+	mr       r30, r4
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	bl       __ct__10JKRArchiveFlQ210JKRArchive10EMountMode
+	lis      r3, __vt__13JKRMemArchive@ha
+	li       r0, 0
+	addi     r4, r3, __vt__13JKRMemArchive@l
+	mr       r3, r29
+	stw      r4, 0(r29)
+	mr       r4, r30
+	stb      r0, 0x30(r29)
+	stw      r31, 0x60(r29)
+	lwz      r5, 0x60(r29)
+	bl       open__13JKRMemArchiveFlQ210JKRArchive15EMountDirection
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_800246A8
+	mr       r3, r29
+	b        lbl_800246E4
 
-	.loc_0x64:
-	  lis       r4, 0x5241
-	  lis       r3, 0x8050
-	  addi      r0, r4, 0x5243
-	  stw       r0, 0x2C(r29)
-	  addi      r4, r29, 0x18
-	  addi      r3, r3, 0x6E24
-	  lwz       r5, 0x48(r29)
-	  lwz       r6, 0x54(r29)
-	  lwz       r0, 0x4(r5)
-	  add       r0, r6, r0
-	  stw       r0, 0x28(r29)
-	  bl        0x22C8
-	  li        r0, 0x1
-	  mr        r3, r29
-	  stb       r0, 0x30(r29)
+lbl_800246A8:
+	lis      r4, 0x52415243@ha
+	lis      r3, sVolumeList__13JKRFileLoader@ha
+	addi     r0, r4, 0x52415243@l
+	stw      r0, 0x2c(r29)
+	addi     r4, r29, 0x18
+	addi     r3, r3, sVolumeList__13JKRFileLoader@l
+	lwz      r5, 0x48(r29)
+	lwz      r6, 0x54(r29)
+	lwz      r0, 4(r5)
+	add      r0, r6, r0
+	stw      r0, 0x28(r29)
+	bl       prepend__10JSUPtrListFP10JSUPtrLink
+	li       r0, 1
+	mr       r3, r29
+	stb      r0, 0x30(r29)
 
-	.loc_0xA0:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_800246E4:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -71,61 +109,60 @@ JKRMemArchive::JKRMemArchive(long, JKRArchive::EMountDirection)
 JKRMemArchive::JKRMemArchive(void*, unsigned long, JKRMemBreakFlag)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r6
-	  stw       r30, 0x18(r1)
-	  mr        r30, r5
-	  li        r5, 0x1
-	  stw       r29, 0x14(r1)
-	  mr        r29, r4
-	  stw       r28, 0x10(r1)
-	  mr        r28, r3
-	  bl        -0xA274
-	  lis       r3, 0x804A
-	  li        r0, 0
-	  subi      r4, r3, 0xA0
-	  mr        r3, r28
-	  stw       r4, 0x0(r28)
-	  mr        r4, r29
-	  mr        r5, r30
-	  mr        r6, r31
-	  stb       r0, 0x30(r28)
-	  bl        0x280
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x6C
-	  mr        r3, r28
-	  b         .loc_0xA8
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r6
+	stw      r30, 0x18(r1)
+	mr       r30, r5
+	li       r5, 1
+	stw      r29, 0x14(r1)
+	mr       r29, r4
+	stw      r28, 0x10(r1)
+	mr       r28, r3
+	bl       __ct__10JKRArchiveFlQ210JKRArchive10EMountMode
+	lis      r3, __vt__13JKRMemArchive@ha
+	li       r0, 0
+	addi     r4, r3, __vt__13JKRMemArchive@l
+	mr       r3, r28
+	stw      r4, 0(r28)
+	mr       r4, r29
+	mr       r5, r30
+	mr       r6, r31
+	stb      r0, 0x30(r28)
+	bl       open__13JKRMemArchiveFPvUl15JKRMemBreakFlag
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_8002476C
+	mr       r3, r28
+	b        lbl_800247A8
 
-	.loc_0x6C:
-	  lis       r4, 0x5241
-	  lis       r3, 0x8050
-	  addi      r0, r4, 0x5243
-	  stw       r0, 0x2C(r28)
-	  addi      r4, r28, 0x18
-	  addi      r3, r3, 0x6E24
-	  lwz       r5, 0x48(r28)
-	  lwz       r6, 0x54(r28)
-	  lwz       r0, 0x4(r5)
-	  add       r0, r6, r0
-	  stw       r0, 0x28(r28)
-	  bl        0x2204
-	  li        r0, 0x1
-	  mr        r3, r28
-	  stb       r0, 0x30(r28)
+lbl_8002476C:
+	lis      r4, 0x52415243@ha
+	lis      r3, sVolumeList__13JKRFileLoader@ha
+	addi     r0, r4, 0x52415243@l
+	stw      r0, 0x2c(r28)
+	addi     r4, r28, 0x18
+	addi     r3, r3, sVolumeList__13JKRFileLoader@l
+	lwz      r5, 0x48(r28)
+	lwz      r6, 0x54(r28)
+	lwz      r0, 4(r5)
+	add      r0, r6, r0
+	stw      r0, 0x28(r28)
+	bl       prepend__10JSUPtrListFP10JSUPtrLink
+	li       r0, 1
+	mr       r3, r28
+	stb      r0, 0x30(r28)
 
-	.loc_0xA8:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_800247A8:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -137,55 +174,54 @@ JKRMemArchive::JKRMemArchive(void*, unsigned long, JKRMemBreakFlag)
 JKRMemArchive::~JKRMemArchive()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x8C
-	  lis       r3, 0x804A
-	  subi      r0, r3, 0xA0
-	  stw       r0, 0x0(r30)
-	  lbz       r0, 0x30(r30)
-	  cmplwi    r0, 0x1
-	  bne-      .loc_0x70
-	  lbz       r0, 0x6C(r30)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x58
-	  lwz       r3, 0x64(r30)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x58
-	  lwz       r4, 0x38(r30)
-	  bl        -0x11B0
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_80024854
+	lis      r3, __vt__13JKRMemArchive@ha
+	addi     r0, r3, __vt__13JKRMemArchive@l
+	stw      r0, 0(r30)
+	lbz      r0, 0x30(r30)
+	cmplwi   r0, 1
+	bne      lbl_80024838
+	lbz      r0, 0x6c(r30)
+	cmplwi   r0, 0
+	beq      lbl_80024820
+	lwz      r3, 0x64(r30)
+	cmplwi   r3, 0
+	beq      lbl_80024820
+	lwz      r4, 0x38(r30)
+	bl       free__7JKRHeapFPvP7JKRHeap
 
-	.loc_0x58:
-	  lis       r3, 0x8050
-	  addi      r4, r30, 0x18
-	  addi      r3, r3, 0x6E24
-	  bl        0x23F8
-	  li        r0, 0
-	  stb       r0, 0x30(r30)
+lbl_80024820:
+	lis      r3, sVolumeList__13JKRFileLoader@ha
+	addi     r4, r30, 0x18
+	addi     r3, r3, sVolumeList__13JKRFileLoader@l
+	bl       remove__10JSUPtrListFP10JSUPtrLink
+	li       r0, 0
+	stb      r0, 0x30(r30)
 
-	.loc_0x70:
-	  mr        r3, r30
-	  li        r4, 0
-	  bl        -0xA2DC
-	  extsh.    r0, r31
-	  ble-      .loc_0x8C
-	  mr        r3, r30
-	  bl        -0x79C
+lbl_80024838:
+	mr       r3, r30
+	li       r4, 0
+	bl       __dt__10JKRArchiveFv
+	extsh.   r0, r31
+	ble      lbl_80024854
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x8C:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80024854:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -197,105 +233,106 @@ JKRMemArchive::~JKRMemArchive()
 void JKRMemArchive::open(long, JKRArchive::EMountDirection)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  li        r0, 0
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r3
-	  stw       r0, 0x64(r3)
-	  stw       r0, 0x44(r3)
-	  stw       r0, 0x68(r3)
-	  stw       r0, 0x48(r3)
-	  stw       r0, 0x4C(r3)
-	  stw       r0, 0x54(r3)
-	  stb       r0, 0x6C(r3)
-	  stw       r5, 0x60(r3)
-	  lwz       r0, 0x60(r3)
-	  cmpwi     r0, 0x1
-	  bne-      .loc_0x8C
-	  addi      r0, r1, 0x14
-	  mr        r3, r4
-	  stw       r0, 0x8(r1)
-	  addi      r10, r31, 0x5C
-	  li        r4, 0
-	  li        r5, 0x1
-	  lwz       r7, 0x38(r31)
-	  li        r6, 0
-	  li        r8, 0x1
-	  li        r9, 0
-	  bl        -0x56A0
-	  stw       r3, 0x64(r31)
-	  lwz       r3, 0x64(r31)
-	  cmplwi    r3, 0
-	  beq-      .loc_0xD0
-	  lwz       r4, 0x14(r1)
-	  bl        0xC7DF8
-	  b         .loc_0xD0
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	li       r0, 0
+	stw      r31, 0x1c(r1)
+	mr       r31, r3
+	stw      r0, 0x64(r3)
+	stw      r0, 0x44(r3)
+	stw      r0, 0x68(r3)
+	stw      r0, 0x48(r3)
+	stw      r0, 0x4c(r3)
+	stw      r0, 0x54(r3)
+	stb      r0, 0x6c(r3)
+	stw      r5, 0x60(r3)
+	lwz      r0, 0x60(r3)
+	cmpwi    r0, 1
+	bne      lbl_800248FC
+	addi     r0, r1, 0x14
+	mr       r3, r4
+	stw      r0, 8(r1)
+	addi     r10, r31, 0x5c
+	li       r4, 0
+	li       r5, 1
+	lwz      r7, 0x38(r31)
+	li       r6, 0
+	li       r8, 1
+	li       r9, 0
+	bl
+loadToMainRAM__12JKRDvdRipperFlPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl
+	stw      r3, 0x64(r31)
+	lwz      r3, 0x64(r31)
+	cmplwi   r3, 0
+	beq      lbl_80024940
+	lwz      r4, 0x14(r1)
+	bl       DCInvalidateRange
+	b        lbl_80024940
 
-	.loc_0x8C:
-	  addi      r0, r1, 0x10
-	  mr        r3, r4
-	  stw       r0, 0x8(r1)
-	  addi      r10, r31, 0x5C
-	  li        r4, 0
-	  li        r5, 0x1
-	  lwz       r7, 0x38(r31)
-	  li        r6, 0
-	  li        r8, 0x2
-	  li        r9, 0
-	  bl        -0x56E8
-	  stw       r3, 0x64(r31)
-	  lwz       r3, 0x64(r31)
-	  cmplwi    r3, 0
-	  beq-      .loc_0xD0
-	  lwz       r4, 0x10(r1)
-	  bl        0xC7DB0
+lbl_800248FC:
+	addi     r0, r1, 0x10
+	mr       r3, r4
+	stw      r0, 8(r1)
+	addi     r10, r31, 0x5c
+	li       r4, 0
+	li       r5, 1
+	lwz      r7, 0x38(r31)
+	li       r6, 0
+	li       r8, 2
+	li       r9, 0
+	bl
+loadToMainRAM__12JKRDvdRipperFlPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl
+	stw      r3, 0x64(r31)
+	lwz      r3, 0x64(r31)
+	cmplwi   r3, 0
+	beq      lbl_80024940
+	lwz      r4, 0x10(r1)
+	bl       DCInvalidateRange
 
-	.loc_0xD0:
-	  lwz       r4, 0x64(r31)
-	  cmplwi    r4, 0
-	  bne-      .loc_0xE8
-	  li        r0, 0
-	  stb       r0, 0x3C(r31)
-	  b         .loc_0x144
+lbl_80024940:
+	lwz      r4, 0x64(r31)
+	cmplwi   r4, 0
+	bne      lbl_80024958
+	li       r0, 0
+	stb      r0, 0x3c(r31)
+	b        lbl_800249B4
 
-	.loc_0xE8:
-	  lwz       r3, 0x8(r4)
-	  li        r0, 0x1
-	  add       r3, r4, r3
-	  stw       r3, 0x44(r31)
-	  lwz       r4, 0x44(r31)
-	  lwz       r3, 0x4(r4)
-	  add       r3, r4, r3
-	  stw       r3, 0x48(r31)
-	  lwz       r4, 0x44(r31)
-	  lwz       r3, 0xC(r4)
-	  add       r3, r4, r3
-	  stw       r3, 0x4C(r31)
-	  lwz       r4, 0x44(r31)
-	  lwz       r3, 0x14(r4)
-	  add       r3, r4, r3
-	  stw       r3, 0x54(r31)
-	  lwz       r5, 0x64(r31)
-	  lwz       r4, 0xC(r5)
-	  lwz       r3, 0x8(r5)
-	  add       r3, r3, r4
-	  add       r3, r5, r3
-	  stw       r3, 0x68(r31)
-	  stb       r0, 0x6C(r31)
+lbl_80024958:
+	lwz      r3, 8(r4)
+	li       r0, 1
+	add      r3, r4, r3
+	stw      r3, 0x44(r31)
+	lwz      r4, 0x44(r31)
+	lwz      r3, 4(r4)
+	add      r3, r4, r3
+	stw      r3, 0x48(r31)
+	lwz      r4, 0x44(r31)
+	lwz      r3, 0xc(r4)
+	add      r3, r4, r3
+	stw      r3, 0x4c(r31)
+	lwz      r4, 0x44(r31)
+	lwz      r3, 0x14(r4)
+	add      r3, r4, r3
+	stw      r3, 0x54(r31)
+	lwz      r5, 0x64(r31)
+	lwz      r4, 0xc(r5)
+	lwz      r3, 8(r5)
+	add      r3, r3, r4
+	add      r3, r5, r3
+	stw      r3, 0x68(r31)
+	stb      r0, 0x6c(r31)
 
-	.loc_0x144:
-	  lbz       r3, 0x3C(r31)
-	  neg       r0, r3
-	  or        r0, r0, r3
-	  rlwinm    r3,r0,1,31,31
-	  lwz       r31, 0x1C(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_800249B4:
+	lbz      r3, 0x3c(r31)
+	neg      r0, r3
+	or       r0, r0, r3
+	srwi     r3, r0, 0x1f
+	lwz      r31, 0x1c(r1)
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -307,50 +344,49 @@ void JKRMemArchive::open(long, JKRArchive::EMountDirection)
 void JKRMemArchive::open(void*, unsigned long, JKRMemBreakFlag)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  subfic    r0, r6, 0x1
-	  cntlzw    r0, r0
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  rlwinm    r0,r0,27,5,31
-	  stw       r4, 0x64(r3)
-	  mr        r3, r4
-	  lwz       r5, 0x64(r31)
-	  lwz       r4, 0x8(r5)
-	  add       r4, r5, r4
-	  stw       r4, 0x44(r31)
-	  lwz       r5, 0x44(r31)
-	  lwz       r4, 0x4(r5)
-	  add       r4, r5, r4
-	  stw       r4, 0x48(r31)
-	  lwz       r5, 0x44(r31)
-	  lwz       r4, 0xC(r5)
-	  add       r4, r5, r4
-	  stw       r4, 0x4C(r31)
-	  lwz       r5, 0x44(r31)
-	  lwz       r4, 0x14(r5)
-	  add       r4, r5, r4
-	  stw       r4, 0x54(r31)
-	  lwz       r6, 0x64(r31)
-	  lwz       r5, 0xC(r6)
-	  lwz       r4, 0x8(r6)
-	  add       r4, r4, r5
-	  add       r4, r6, r4
-	  stw       r4, 0x68(r31)
-	  stb       r0, 0x6C(r31)
-	  bl        -0x1168
-	  stw       r3, 0x38(r31)
-	  li        r0, 0
-	  li        r3, 0x1
-	  stw       r0, 0x5C(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	subfic   r0, r6, 1
+	cntlzw   r0, r0
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	srwi     r0, r0, 5
+	stw      r4, 0x64(r3)
+	mr       r3, r4
+	lwz      r5, 0x64(r31)
+	lwz      r4, 8(r5)
+	add      r4, r5, r4
+	stw      r4, 0x44(r31)
+	lwz      r5, 0x44(r31)
+	lwz      r4, 4(r5)
+	add      r4, r5, r4
+	stw      r4, 0x48(r31)
+	lwz      r5, 0x44(r31)
+	lwz      r4, 0xc(r5)
+	add      r4, r5, r4
+	stw      r4, 0x4c(r31)
+	lwz      r5, 0x44(r31)
+	lwz      r4, 0x14(r5)
+	add      r4, r5, r4
+	stw      r4, 0x54(r31)
+	lwz      r6, 0x64(r31)
+	lwz      r5, 0xc(r6)
+	lwz      r4, 8(r6)
+	add      r4, r4, r5
+	add      r4, r6, r4
+	stw      r4, 0x68(r31)
+	stb      r0, 0x6c(r31)
+	bl       findFromRoot__7JKRHeapFPv
+	stw      r3, 0x38(r31)
+	li       r0, 0
+	li       r3, 1
+	stw      r0, 0x5c(r31)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -362,24 +398,23 @@ void JKRMemArchive::open(void*, unsigned long, JKRMemBreakFlag)
 void JKRMemArchive::fetchResource(JKRArchive::SDIFileEntry*, unsigned long*)
 {
 	/*
-	.loc_0x0:
-	  lwz       r0, 0x10(r4)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x1C
-	  lwz       r3, 0x68(r3)
-	  lwz       r0, 0x8(r4)
-	  add       r0, r3, r0
-	  stw       r0, 0x10(r4)
+	lwz      r0, 0x10(r4)
+	cmplwi   r0, 0
+	bne      lbl_80024AA0
+	lwz      r3, 0x68(r3)
+	lwz      r0, 8(r4)
+	add      r0, r3, r0
+	stw      r0, 0x10(r4)
 
-	.loc_0x1C:
-	  cmplwi    r5, 0
-	  beq-      .loc_0x2C
-	  lwz       r0, 0xC(r4)
-	  stw       r0, 0x0(r5)
+lbl_80024AA0:
+	cmplwi   r5, 0
+	beq      lbl_80024AB0
+	lwz      r0, 0xc(r4)
+	stw      r0, 0(r5)
 
-	.loc_0x2C:
-	  lwz       r3, 0x10(r4)
-	  blr
+lbl_80024AB0:
+	lwz      r3, 0x10(r4)
+	blr
 	*/
 }
 
@@ -468,33 +503,32 @@ void JKRMemArchive::fetchResource(void*, unsigned long,
 void JKRMemArchive::removeResourceAll()
 {
 	/*
-	.loc_0x0:
-	  lwz       r0, 0x44(r3)
-	  cmplwi    r0, 0
-	  beqlr-
-	  lbz       r0, 0x3C(r3)
-	  cmplwi    r0, 0x1
-	  beqlr-
-	  lwz       r6, 0x4C(r3)
-	  li        r7, 0
-	  li        r5, 0
-	  b         .loc_0x3C
+	lwz      r0, 0x44(r3)
+	cmplwi   r0, 0
+	beqlr
+	lbz      r0, 0x3c(r3)
+	cmplwi   r0, 1
+	beqlr
+	lwz      r6, 0x4c(r3)
+	li       r7, 0
+	li       r5, 0
+	b        lbl_80024BBC
 
-	.loc_0x28:
-	  lwz       r0, 0x10(r6)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x38
-	  stw       r5, 0x10(r6)
+lbl_80024BA8:
+	lwz      r0, 0x10(r6)
+	cmplwi   r0, 0
+	beq      lbl_80024BB8
+	stw      r5, 0x10(r6)
 
-	.loc_0x38:
-	  addi      r7, r7, 0x1
+lbl_80024BB8:
+	addi     r7, r7, 1
 
-	.loc_0x3C:
-	  lwz       r4, 0x44(r3)
-	  lwz       r0, 0x8(r4)
-	  cmplw     r7, r0
-	  blt+      .loc_0x28
-	  blr
+lbl_80024BBC:
+	lwz      r4, 0x44(r3)
+	lwz      r0, 8(r4)
+	cmplw    r7, r0
+	blt      lbl_80024BA8
+	blr
 	*/
 }
 
@@ -506,26 +540,25 @@ void JKRMemArchive::removeResourceAll()
 void JKRMemArchive::removeResource(void*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  bl        -0x9D5C
-	  cmplwi    r3, 0
-	  bne-      .loc_0x20
-	  li        r3, 0
-	  b         .loc_0x2C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	bl       findPtrResource__10JKRArchiveCFPCv
+	cmplwi   r3, 0
+	bne      lbl_80024BF0
+	li       r3, 0
+	b        lbl_80024BFC
 
-	.loc_0x20:
-	  li        r0, 0
-	  stw       r0, 0x10(r3)
-	  li        r3, 0x1
+lbl_80024BF0:
+	li       r0, 0
+	stw      r0, 0x10(r3)
+	li       r3, 1
 
-	.loc_0x2C:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80024BFC:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -615,48 +648,47 @@ void JKRMemArchive::fetchResource_subroutine(unsigned char*, unsigned long,
 void JKRMemArchive::getExpandedResSize(const void*) const
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  bl        -0x9E7C
-	  cmplwi    r3, 0
-	  bne-      .loc_0x30
-	  li        r3, -0x1
-	  b         .loc_0x78
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	bl       findPtrResource__10JKRArchiveCFPCv
+	cmplwi   r3, 0
+	bne      lbl_80024D10
+	li       r3, -1
+	b        lbl_80024D58
 
-	.loc_0x30:
-	  lwz       r0, 0x4(r3)
-	  rlwinm.   r0,r0,8,29,29
-	  bne-      .loc_0x58
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x30(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x78
+lbl_80024D10:
+	lwz      r0, 4(r3)
+	rlwinm.  r0, r0, 8, 0x1d, 0x1d
+	bne      lbl_80024D38
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	lwz      r12, 0x30(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_80024D58
 
-	.loc_0x58:
-	  lbz       r0, 0x5(r31)
-	  lbz       r3, 0x4(r31)
-	  rlwinm    r0,r0,16,0,15
-	  lbz       r4, 0x6(r31)
-	  rlwimi    r0,r3,24,0,7
-	  lbz       r5, 0x7(r31)
-	  rlwimi    r0,r4,8,16,23
-	  or        r3, r5, r0
+lbl_80024D38:
+	lbz      r0, 5(r31)
+	lbz      r3, 4(r31)
+	slwi     r0, r0, 0x10
+	lbz      r4, 6(r31)
+	rlwimi   r0, r3, 0x18, 0, 7
+	lbz      r5, 7(r31)
+	rlwimi   r0, r4, 8, 0x10, 0x17
+	or       r3, r5, r0
 
-	.loc_0x78:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80024D58:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }

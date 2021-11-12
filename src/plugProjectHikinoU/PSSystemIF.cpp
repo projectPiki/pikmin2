@@ -1,5 +1,84 @@
 #include "types.h"
 
+/*
+    Generated from dpostproc
+
+    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
+    .4byte __sinit_PSSystemIF_cpp
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_8048FE28
+    lbl_8048FE28:
+        .4byte 0x50535379
+        .4byte 0x7374656D
+        .4byte 0x49462E63
+        .4byte 0x70700000
+    .global lbl_8048FE38
+    lbl_8048FE38:
+        .asciz "P2Assert"
+        .skip 3
+    .global lbl_8048FE44
+    lbl_8048FE44:
+        .4byte 0x50534761
+        .4byte 0x6D652E68
+        .4byte 0x00000000
+    .global lbl_8048FE50
+    lbl_8048FE50:
+        .4byte 0x50535363
+        .4byte 0x656E652E
+        .4byte 0x68000000
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__Q28PSSystem12TextDataBase
+    __vt__Q28PSSystem12TextDataBase:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q28PSSystem12TextDataBaseFv
+        .4byte 0
+    .global __vt__Q28PSSystem5SysIF
+    __vt__Q28PSSystem5SysIF:
+        .4byte 0
+        .4byte 0
+        .4byte makeSequence__Q28PSSystem5SysIFFv
+        .4byte makeSe__Q28PSSystem5SysIFFv
+        .4byte makeStream__Q28PSSystem5SysIFFv
+        .4byte getMapInfoFxline__8JAIBasicFUl
+        .4byte getMapInfoGround__8JAIBasicFUl
+        .4byte getMapInfoFxParameter__8JAIBasicFUl
+        .4byte setSeExtParameter__8JAIBasicFP8JAISound
+        .4byte setRegisterTrackCallback__8JAIBasicFv
+        .4byte initIF__Q28PSSystem5SysIFFRCQ28PSSystem8SetupArg
+        .4byte 0
+
+    .section .sdata, "wa"  # 0x80514680 - 0x80514D80
+    .global sDistanceParameterMoveTime__8PSSystem
+    sDistanceParameterMoveTime__8PSSystem:
+        .4byte 0x05000000
+
+    .section .sbss # 0x80514D80 - 0x80516360
+    .global spSysIF__8PSSystem
+    spSysIF__8PSSystem:
+        .skip 0x4
+    .global oRandom__8PSSystem
+    oRandom__8PSSystem:
+        .skip 0x4
+    .global sMakeJAISeCallback__Q28PSSystem5SysIF
+    sMakeJAISeCallback__Q28PSSystem5SysIF:
+        .skip 0x8
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_8051E150
+    lbl_8051E150:
+        .float 1.0
+    .global lbl_8051E154
+    lbl_8051E154:
+        .4byte 0x3F666666
+    .global lbl_8051E158
+    lbl_8051E158:
+        .4byte 0x4079999A
+        .4byte 0x00000000
+*/
+
 namespace PSSystem {
 
 /*
@@ -10,29 +89,26 @@ namespace PSSystem {
 void getObject(JASTrack*, unsigned char)
 {
 	/*
-	.loc_0x0:
-	  addi      r3, r31, 0x1C
-	  addi      r5, r31, 0x10
-	  li        r4, 0x1DC
-	  crclr     6, 0x6
-	  bl        -0x30DF68
-	  lwz       r30, 0x4(r30)
-	  cmplwi    r30, 0
-	  bne-      .loc_0x34
-	  addi      r3, r31, 0
-	  addi      r5, r31, 0x10
-	  li        r4, 0xB7
-	  crclr     6, 0x6
-	  bl        -0x30DF88
-
-	.loc_0x34:
-	  mr        r3, r30
-	  li        r4, 0x5
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x24(r12)
-	  mtctr     r12
-	  bctrl
-	  b         0x1C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	bl       readReg16__8JASTrackFUc
+	addi     r0, r31, 1
+	mr       r31, r3
+	mr       r3, r30
+	clrlwi   r4, r0, 0x18
+	bl       readReg16__8JASTrackFUc
+	lwz      r0, 0x14(r1)
+	rlwimi   r3, r31, 0x10, 0, 0xf
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -44,31 +120,30 @@ void getObject(JASTrack*, unsigned char)
 void setObject(JASTrack*, void*, unsigned char)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r5
-	  rlwinm    r5,r4,16,16,31
-	  stw       r30, 0x18(r1)
-	  mr        r30, r4
-	  mr        r4, r31
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  bl        -0x2969C4
-	  addi      r0, r31, 0x1
-	  rlwinm    r5,r30,0,16,31
-	  mr        r3, r29
-	  rlwinm    r4,r0,0,24,31
-	  bl        -0x2969D8
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r5
+	srwi     r5, r4, 0x10
+	stw      r30, 0x18(r1)
+	mr       r30, r4
+	mr       r4, r31
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	bl       writeRegDirect__8JASTrackFUcUs
+	addi     r0, r31, 1
+	clrlwi   r5, r30, 0x10
+	mr       r3, r29
+	clrlwi   r4, r0, 0x18
+	bl       writeRegDirect__8JASTrackFUcUs
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -80,88 +155,87 @@ void setObject(JASTrack*, void*, unsigned char)
 SysIF::SysIF(const PSSystem::SetupArg&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  bl        -0x28C2E0
-	  lis       r4, 0x804E
-	  addi      r3, r30, 0x28
-	  subi      r0, r4, 0x5558
-	  stw       r0, 0x0(r30)
-	  bl        -0x24891C
-	  li        r0, 0
-	  addi      r3, r30, 0x44
-	  stw       r0, 0x40(r30)
-	  bl        0x520
-	  lwz       r0, 0x0(r31)
-	  li        r3, 0
-	  stw       r3, 0x48(r30)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x74
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  subi      r3, r3, 0x1D8
-	  li        r4, 0x8D
-	  subi      r5, r5, 0x1C8
-	  crclr     6, 0x6
-	  bl        -0x30DE4C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	bl       __ct__8JAIBasicFv
+	lis      r4, __vt__Q28PSSystem5SysIF@ha
+	addi     r3, r30, 0x28
+	addi     r0, r4, __vt__Q28PSSystem5SysIF@l
+	stw      r0, 0(r30)
+	bl       OSInitMutex
+	li       r0, 0
+	addi     r3, r30, 0x44
+	stw      r0, 0x40(r30)
+	bl       __ct__Q28PSSystem5FxMgrFv
+	lwz      r0, 0(r31)
+	li       r3, 0
+	stw      r3, 0x48(r30)
+	cmplwi   r0, 0
+	bne      lbl_80338490
+	lis      r3, lbl_8048FE28@ha
+	lis      r5, lbl_8048FE38@ha
+	addi     r3, r3, lbl_8048FE28@l
+	li       r4, 0x8d
+	addi     r5, r5, lbl_8048FE38@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x74:
-	  lwz       r0, 0x4(r31)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x9C
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  subi      r3, r3, 0x1D8
-	  li        r4, 0x8E
-	  subi      r5, r5, 0x1C8
-	  crclr     6, 0x6
-	  bl        -0x30DE74
+lbl_80338490:
+	lwz      r0, 4(r31)
+	cmplwi   r0, 0
+	bne      lbl_803384B8
+	lis      r3, lbl_8048FE28@ha
+	lis      r5, lbl_8048FE38@ha
+	addi     r3, r3, lbl_8048FE28@l
+	li       r4, 0x8e
+	addi     r5, r5, lbl_8048FE38@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x9C:
-	  mr        r3, r30
-	  li        r4, 0x2
-	  bl        -0x28BE1C
-	  lwz       r3, 0x10(r31)
-	  bl        -0x28AB78
-	  li        r3, 0x1
-	  bl        -0x28AB1C
-	  lbz       r3, -0x7AD0(r13)
-	  bl        -0x28AAF0
-	  bl        0x525C
-	  bl        0x5314
-	  lis       r3, 0x8034
-	  subi      r3, r3, 0x74E8
-	  bl        -0x2881B4
-	  lwz       r4, 0x0(r31)
-	  mr        r3, r30
-	  lwz       r5, 0x4(r31)
-	  li        r6, 0x1
-	  bl        -0x28C32C
-	  mr        r3, r30
-	  li        r4, 0x1
-	  bl        -0x28C318
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x28(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f0, -0x210(r2)
-	  mr        r3, r30
-	  stfs      f0, 0x20(r30)
-	  stfs      f0, 0x24(r30)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803384B8:
+	mr       r3, r30
+	li       r4, 2
+	bl       setInitFileLoadSwitch__8JAIBasicFUc
+	lwz      r3, 0x10(r31)
+	bl       setParamInitDataPointer__18JAIGlobalParameterFPv
+	li       r3, 1
+	bl       setParamStreamInsideBufferCut__18JAIGlobalParameterFb
+	lbz      r3, sDistanceParameterMoveTime__8PSSystem@sda21(r13)
+	bl       setParamDistanceParameterMoveTime__18JAIGlobalParameterFUc
+	bl       createInstance__Q28PSSystem7BankMgrFv
+	bl       preInit__Q28PSSystem7BankMgrFv
+	lis      r3, start1stSeq__Q28PSSystem5SysIFFv@ha
+	addi     r3, r3, start1stSeq__Q28PSSystem5SysIFFv@l
+	bl       setSeSequenceStartCallback__Q27JAInter5SeMgrFPFv_v
+	lwz      r4, 0(r31)
+	mr       r3, r30
+	lwz      r5, 4(r31)
+	li       r6, 1
+	bl       initDriver__8JAIBasicFP12JKRSolidHeapUlUc
+	mr       r3, r30
+	li       r4, 1
+	bl       initInterface__8JAIBasicFUc
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	lwz      r12, 0x28(r12)
+	mtctr    r12
+	bctrl
+	lfs      f0, lbl_8051E150@sda21(r2)
+	mr       r3, r30
+	stfs     f0, 0x20(r30)
+	stfs     f0, 0x24(r30)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -173,73 +247,72 @@ SysIF::SysIF(const PSSystem::SetupArg&)
 void SysIF::stopSoundSystem()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r3, 0x8049
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  subi      r31, r3, 0x1D8
-	  stw       r30, 0x8(r1)
-	  lwz       r0, -0x6780(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x3C
-	  addi      r3, r31, 0x1C
-	  addi      r5, r31, 0x10
-	  li        r4, 0x1D3
-	  crclr     6, 0x6
-	  bl        -0x30DF48
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lis      r3, lbl_8048FE28@ha
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	addi     r31, r3, lbl_8048FE28@l
+	stw      r30, 8(r1)
+	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_8033858C
+	addi     r3, r31, 0x1c
+	addi     r5, r31, 0x10
+	li       r4, 0x1d3
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x3C:
-	  lwz       r30, -0x6780(r13)
-	  cmplwi    r30, 0
-	  bne-      .loc_0x5C
-	  addi      r3, r31, 0x1C
-	  addi      r5, r31, 0x10
-	  li        r4, 0x1DC
-	  crclr     6, 0x6
-	  bl        -0x30DF68
+lbl_8033858C:
+	lwz      r30, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r30, 0
+	bne      lbl_803385AC
+	addi     r3, r31, 0x1c
+	addi     r5, r31, 0x10
+	li       r4, 0x1dc
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x5C:
-	  lwz       r30, 0x4(r30)
-	  cmplwi    r30, 0
-	  bne-      .loc_0x7C
-	  addi      r3, r31, 0
-	  addi      r5, r31, 0x10
-	  li        r4, 0xB7
-	  crclr     6, 0x6
-	  bl        -0x30DF88
+lbl_803385AC:
+	lwz      r30, 4(r30)
+	cmplwi   r30, 0
+	bne      lbl_803385CC
+	addi     r3, r31, 0
+	addi     r5, r31, 0x10
+	li       r4, 0xb7
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x7C:
-	  mr        r3, r30
-	  li        r4, 0x5
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x24(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0xB0
+lbl_803385CC:
+	mr       r3, r30
+	li       r4, 5
+	lwz      r12, 0(r30)
+	lwz      r12, 0x24(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_80338600
 
-	.loc_0x98:
-	  lwz       r12, 0x0(r3)
-	  li        r4, 0x5
-	  lwz       r12, 0x24(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r30, 0x4(r30)
+lbl_803385E8:
+	lwz      r12, 0(r3)
+	li       r4, 5
+	lwz      r12, 0x24(r12)
+	mtctr    r12
+	bctrl
+	lwz      r30, 4(r30)
 
-	.loc_0xB0:
-	  lwz       r3, 0x4(r30)
-	  cmplwi    r3, 0
-	  bne+      .loc_0x98
-	  li        r3, 0xA
-	  li        r4, 0x1
-	  bl        -0x28B6C8
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80338600:
+	lwz      r3, 4(r30)
+	cmplwi   r3, 0
+	bne      lbl_803385E8
+	li       r3, 0xa
+	li       r4, 1
+	bl       stopAudio__8JAIBasicFUlb
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -251,23 +324,23 @@ void SysIF::stopSoundSystem()
 void SysIF::playSystemSe(unsigned long, unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r7, r5
-	  mr        r5, r4
-	  stw       r0, 0x14(r1)
-	  li        r0, 0
-	  addi      r4, r1, 0x8
-	  li        r6, 0
-	  stw       r0, 0x8(r1)
-	  li        r8, 0x4
-	  bl        0x65C
-	  lwz       r0, 0x14(r1)
-	  lwz       r3, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r7, r5
+	mr       r5, r4
+	stw      r0, 0x14(r1)
+	li       r0, 0
+	addi     r4, r1, 8
+	li       r6, 0
+	stw      r0, 8(r1)
+	li       r8, 4
+	bl
+	"startSoundActorReturnHandleT<5JAISe>__8JAIBasicFPP5JAISeUlPQ27JAInter5ActorUlUc"
+	lwz      r0, 0x14(r1)
+	lwz      r3, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -279,18 +352,18 @@ void SysIF::playSystemSe(unsigned long, unsigned long)
 void SysIF::playSystemSe(unsigned long, JAISound**, unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r7, r6
-	  li        r6, 0
-	  stw       r0, 0x14(r1)
-	  li        r8, 0x4
-	  bl        -0x322DBC
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r7, r6
+	li       r6, 0
+	stw      r0, 0x14(r1)
+	li       r8, 4
+	bl
+	"startSoundActorT<8JAISound>__8JAIBasicFUlPP8JAISoundPQ27JAInter5ActorUlUc"
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -302,41 +375,41 @@ void SysIF::playSystemSe(unsigned long, JAISound**, unsigned long)
 void SysIF::initIF(const PSSystem::SetupArg&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  bl        -0x28C3DC
-	  lis       r3, 0x8033
-	  addi      r3, r3, 0x123C
-	  bl        -0x287618
-	  lfs       f1, -0x20C(r2)
-	  lfs       f3, -0x208(r2)
-	  fmr       f2, f1
-	  bl        -0x293EC4
-	  lwz       r3, 0xC(r31)
-	  bl        -0x295F88
-	  lwz       r0, -0x6788(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x64
-	  li        r3, 0x10
-	  bl        -0x314844
-	  mr.       r0, r3
-	  beq-      .loc_0x60
-	  bl        0x639C
-	  mr        r0, r3
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	bl       initHeap__8JAIBasicFv
+	lis      r3, requestCallback__Q28PSSystem7SeqHeapFUlUsP11JAISequence@ha
+	addi     r3, r3, requestCallback__Q28PSSystem7SeqHeapFUlUsP11JAISequence@l
+	bl
+setCustomHeapCallback__Q27JAInter11SequenceMgrFPFUlUsP11JAISequence_Q37JAInter11SequenceMgr14CustomHeapInfo
+	lfs      f1, lbl_8051E154@sda21(r2)
+	lfs      f3, lbl_8051E158@sda21(r2)
+	fmr      f2, f1
+	bl       setLevel__9JASDriverFfff
+	lwz      r3, 0xc(r31)
+	bl       registerSeqCallback__8JASTrackFPFP8JASTrackUs_Us
+	lwz      r0, sInstance__Q28PSSystem11BankRandPrm@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_80338700
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_803386FC
+	bl       __ct__Q28PSSystem11BankRandPrmFv
+	mr       r0, r3
 
-	.loc_0x60:
-	  stw       r0, -0x6788(r13)
+lbl_803386FC:
+	stw      r0, sInstance__Q28PSSystem11BankRandPrm@sda21(r13)
 
-	.loc_0x64:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80338700:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -348,25 +421,24 @@ void SysIF::initIF(const PSSystem::SetupArg&)
 void SysIF::makeSe()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r12, -0x67A0(r13)
-	  cmplwi    r12, 0
-	  beq-      .loc_0x24
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x28
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r12, sMakeJAISeCallback__Q28PSSystem5SysIF@sda21(r13)
+	cmplwi   r12, 0
+	beq      lbl_80338738
+	mtctr    r12
+	bctrl
+	b        lbl_8033873C
 
-	.loc_0x24:
-	  bl        -0x28B8CC
+lbl_80338738:
+	bl       makeSe__8JAIBasicFv
 
-	.loc_0x28:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8033873C:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -378,72 +450,66 @@ void SysIF::makeSe()
 void SysIF::mainLoop()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  lwz       r0, 0x40(r3)
-	  cmpwi     r0, 0x1
-	  bne-      .loc_0xC0
-	  lwz       r0, -0x6780(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x50
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  subi      r3, r3, 0x1BC
-	  li        r4, 0x1D3
-	  subi      r5, r5, 0x1C8
-	  crclr     6, 0x6
-	  bl        -0x30E158
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	lwz      r0, 0x40(r3)
+	cmpwi    r0, 1
+	bne      lbl_8033880C
+	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_8033879C
+	lis      r3, lbl_8048FE44@ha
+	lis      r5, lbl_8048FE38@ha
+	addi     r3, r3, lbl_8048FE44@l
+	li       r4, 0x1d3
+	addi     r5, r5, lbl_8048FE38@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x50:
-	  lwz       r3, -0x6780(r13)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, -0x6E38(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x8C
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  subi      r3, r3, 0x1BC
-	  li        r4, 0x237
-	  subi      r5, r5, 0x1C8
-	  crclr     6, 0x6
-	  bl        -0x30E194
+lbl_8033879C:
+	lwz      r3, spSceneMgr__8PSSystem@sda21(r13)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0,
+"sInstance__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@sda21(r13) cmplwi   r0,
+0 bne      lbl_803387D8 lis      r3, lbl_8048FE44@ha lis      r5,
+lbl_8048FE38@ha addi     r3, r3, lbl_8048FE44@l li       r4, 0x237 addi     r5,
+r5, lbl_8048FE38@l crclr    6 bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x8C:
-	  lwz       r30, -0x6E38(r13)
-	  li        r31, 0
-	  b         .loc_0xAC
+lbl_803387D8:
+	lwz      r30,
+"sInstance__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@sda21(r13) li r31, 0 b
+lbl_803387F8
 
-	.loc_0x98:
-	  rlwinm    r3,r31,2,22,29
-	  addi      r0, r3, 0x4
-	  lwzx      r3, r30, r0
-	  bl        0x7090
-	  addi      r31, r31, 0x1
+lbl_803387E4:
+	rlwinm   r3, r31, 2, 0x16, 0x1d
+	addi     r0, r3, 4
+	lwzx     r3, r30, r0
+	bl       exec__Q26PSGame5SetSeFv
+	addi     r31, r31, 1
 
-	.loc_0xAC:
-	  rlwinm    r0,r31,0,24,31
-	  cmplwi    r0, 0x8
-	  blt+      .loc_0x98
-	  mr        r3, r29
-	  bl        -0x28C0F0
+lbl_803387F8:
+	clrlwi   r0, r31, 0x18
+	cmplwi   r0, 8
+	blt      lbl_803387E4
+	mr       r3, r29
+	bl       processFrameWork__8JAIBasicFv
 
-	.loc_0xC0:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8033880C:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -455,44 +521,43 @@ void SysIF::mainLoop()
 void SysIF::setConfigVol_Se(float)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stfd      f31, 0x8(r1)
-	  fmr       f31, f1
-	  stfs      f31, 0x20(r3)
-	  lwz       r3, -0x6780(r13)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x78
-	  lwz       r3, 0x4(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x78
-	  addi      r3, r3, 0x10
-	  bl        -0x4A00
-	  cmplwi    r3, 0
-	  beq-      .loc_0x78
-	  lwz       r12, 0x10(r3)
-	  lwz       r12, 0x3C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x0(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x78
-	  lwz       r12, 0x10(r3)
-	  fmr       f1, f31
-	  li        r4, 0x3
-	  li        r5, 0x8
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stfd     f31, 8(r1)
+	fmr      f31, f1
+	stfs     f31, 0x20(r3)
+	lwz      r3, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r3, 0
+	beq      lbl_803388A0
+	lwz      r3, 4(r3)
+	cmplwi   r3, 0
+	beq      lbl_803388A0
+	addi     r3, r3, 0x10
+	bl       getFirstSeq__Q28PSSystem6SeqMgrFv
+	cmplwi   r3, 0
+	beq      lbl_803388A0
+	lwz      r12, 0x10(r3)
+	lwz      r12, 0x3c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 0(r3)
+	cmplwi   r3, 0
+	beq      lbl_803388A0
+	lwz      r12, 0x10(r3)
+	fmr      f1, f31
+	li       r4, 3
+	li       r5, 8
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x78:
-	  lwz       r0, 0x14(r1)
-	  lfd       f31, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803388A0:
+	lwz      r0, 0x14(r1)
+	lfd      f31, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -504,67 +569,66 @@ void SysIF::setConfigVol_Se(float)
 void SysIF::setConfigVol_Bgm(float)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stfd      f31, 0x18(r1)
-	  fmr       f31, f1
-	  stw       r31, 0x14(r1)
-	  stfs      f31, 0x24(r3)
-	  lwz       r31, -0x6780(r13)
-	  cmplwi    r31, 0
-	  beq-      .loc_0xB0
-	  lwz       r0, 0x4(r31)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x50
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  subi      r3, r3, 0x1B0
-	  li        r4, 0xC7
-	  subi      r5, r5, 0x1C8
-	  crclr     6, 0x6
-	  bl        -0x30E2C0
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stfd     f31, 0x18(r1)
+	fmr      f31, f1
+	stw      r31, 0x14(r1)
+	stfs     f31, 0x24(r3)
+	lwz      r31, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r31, 0
+	beq      lbl_80338964
+	lwz      r0, 4(r31)
+	cmplwi   r0, 0
+	bne      lbl_80338904
+	lis      r3, lbl_8048FE50@ha
+	lis      r5, lbl_8048FE38@ha
+	addi     r3, r3, lbl_8048FE50@l
+	li       r4, 0xc7
+	addi     r5, r5, lbl_8048FE38@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x50:
-	  lwz       r3, 0x4(r31)
-	  lwz       r3, 0x4(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0xB0
-	  lwz       r31, 0x10(r3)
-	  b         .loc_0xA8
+lbl_80338904:
+	lwz      r3, 4(r31)
+	lwz      r3, 4(r3)
+	cmplwi   r3, 0
+	beq      lbl_80338964
+	lwz      r31, 0x10(r3)
+	b        lbl_8033895C
 
-	.loc_0x68:
-	  lwz       r3, 0x0(r31)
-	  lwz       r12, 0x10(r3)
-	  lwz       r12, 0x3C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x0(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0xA4
-	  lwz       r12, 0x10(r3)
-	  fmr       f1, f31
-	  li        r4, 0x3
-	  li        r5, 0x8
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_8033891C:
+	lwz      r3, 0(r31)
+	lwz      r12, 0x10(r3)
+	lwz      r12, 0x3c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 0(r3)
+	cmplwi   r3, 0
+	beq      lbl_80338958
+	lwz      r12, 0x10(r3)
+	fmr      f1, f31
+	li       r4, 3
+	li       r5, 8
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0xA4:
-	  lwz       r31, 0xC(r31)
+lbl_80338958:
+	lwz      r31, 0xc(r31)
 
-	.loc_0xA8:
-	  cmplwi    r31, 0
-	  bne+      .loc_0x68
+lbl_8033895C:
+	cmplwi   r31, 0
+	bne      lbl_8033891C
 
-	.loc_0xB0:
-	  lwz       r0, 0x24(r1)
-	  lfd       f31, 0x18(r1)
-	  lwz       r31, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80338964:
+	lwz      r0, 0x24(r1)
+	lfd      f31, 0x18(r1)
+	lwz      r31, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -583,24 +647,23 @@ FxMgr::FxMgr() { }
 TextDataBase::TextDataBase()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        -0x31B9C8
-	  lis       r3, 0x804E
-	  li        r0, 0
-	  subi      r4, r3, 0x5568
-	  mr        r3, r31
-	  stw       r4, 0x0(r31)
-	  stw       r0, 0x18(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       __ct__11JKRDisposerFv
+	lis      r3, __vt__Q28PSSystem12TextDataBase@ha
+	li       r0, 0
+	addi     r4, r3, __vt__Q28PSSystem12TextDataBase@l
+	mr       r3, r31
+	stw      r4, 0(r31)
+	stw      r0, 0x18(r31)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -612,37 +675,36 @@ TextDataBase::TextDataBase()
 TextDataBase::~TextDataBase()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x54
-	  lis       r3, 0x804E
-	  li        r4, 0
-	  subi      r0, r3, 0x5568
-	  stw       r0, 0x0(r30)
-	  lwz       r3, 0x18(r30)
-	  bl        -0x31538C
-	  mr        r3, r30
-	  li        r4, 0
-	  bl        -0x31B9D0
-	  extsh.    r0, r31
-	  ble-      .loc_0x54
-	  mr        r3, r30
-	  bl        -0x314960
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_80338A18
+	lis      r3, __vt__Q28PSSystem12TextDataBase@ha
+	li       r4, 0
+	addi     r0, r3, __vt__Q28PSSystem12TextDataBase@l
+	stw      r0, 0(r30)
+	lwz      r3, 0x18(r30)
+	bl       free__7JKRHeapFPvP7JKRHeap
+	mr       r3, r30
+	li       r4, 0
+	bl       __dt__11JKRDisposerFv
+	extsh.   r0, r31
+	ble      lbl_80338A18
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x54:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80338A18:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -654,46 +716,43 @@ TextDataBase::~TextDataBase()
 void TextDataBase::load(const char*, JKRDvdRipper::EAllocDirection)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x430(r1)
-	  mflr      r0
-	  stw       r0, 0x434(r1)
-	  stw       r31, 0x42C(r1)
-	  mr        r31, r3
-	  bl        .loc_0x7C
-	  lwz       r4, 0x18(r31)
-	  cmplwi    r4, 0
-	  beq-      .loc_0x64
-	  addi      r3, r1, 0x8
-	  li        r5, -0x1
-	  bl        0xDCE98
-	  li        r0, 0x1
-	  cmpwi     r0, 0x1
-	  stw       r0, 0x14(r1)
-	  bne-      .loc_0x48
-	  li        r0, 0
-	  stw       r0, 0x41C(r1)
+	stwu     r1, -0x430(r1)
+	mflr     r0
+	stw      r0, 0x434(r1)
+	stw      r31, 0x42c(r1)
+	mr       r31, r3
+	bl onlyLoad__Q28PSSystem12TextDataBaseFPCcQ212JKRDvdRipper15EAllocDirection
+	lwz      r4, 0x18(r31)
+	cmplwi   r4, 0
+	beq      lbl_80338A98
+	addi     r3, r1, 8
+	li       r5, -1
+	bl       __ct__9RamStreamFPvi
+	li       r0, 1
+	cmpwi    r0, 1
+	stw      r0, 0x14(r1)
+	bne      lbl_80338A7C
+	li       r0, 0
+	stw      r0, 0x41c(r1)
 
-	.loc_0x48:
-	  mr        r3, r31
-	  addi      r4, r1, 0x8
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x68
+lbl_80338A7C:
+	mr       r3, r31
+	addi     r4, r1, 8
+	lwz      r12, 0(r31)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_80338A9C
 
-	.loc_0x64:
-	  li        r3, 0
+lbl_80338A98:
+	li       r3, 0
 
-	.loc_0x68:
-	  lwz       r0, 0x434(r1)
-	  lwz       r31, 0x42C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x430
-	  blr
-
-	.loc_0x7C:
+lbl_80338A9C:
+	lwz      r0, 0x434(r1)
+	lwz      r31, 0x42c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x430
+	blr
 	*/
 }
 
@@ -705,33 +764,33 @@ void TextDataBase::load(const char*, JKRDvdRipper::EAllocDirection)
 void TextDataBase::onlyLoad(const char*, JKRDvdRipper::EAllocDirection)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  mr        r8, r5
-	  li        r5, 0
-	  stw       r0, 0x24(r1)
-	  li        r0, 0
-	  li        r6, 0
-	  li        r7, 0
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r3
-	  mr        r3, r4
-	  li        r4, 0
-	  stw       r0, 0x8(r1)
-	  li        r9, 0
-	  li        r10, 0
-	  bl        -0x319964
-	  stw       r3, 0x18(r31)
-	  lwz       r3, 0x18(r31)
-	  lwz       r31, 0x1C(r1)
-	  neg       r0, r3
-	  or        r0, r0, r3
-	  rlwinm    r3,r0,1,31,31
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	mr       r8, r5
+	li       r5, 0
+	stw      r0, 0x24(r1)
+	li       r0, 0
+	li       r6, 0
+	li       r7, 0
+	stw      r31, 0x1c(r1)
+	mr       r31, r3
+	mr       r3, r4
+	li       r4, 0
+	stw      r0, 8(r1)
+	li       r9, 0
+	li       r10, 0
+	bl
+	loadToMainRAM__12JKRDvdRipperFPCcPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl
+	stw      r3, 0x18(r31)
+	lwz      r3, 0x18(r31)
+	lwz      r31, 0x1c(r1)
+	neg      r0, r3
+	or       r0, r0, r3
+	srwi     r3, r0, 0x1f
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -743,10 +802,9 @@ void TextDataBase::onlyLoad(const char*, JKRDvdRipper::EAllocDirection)
 void SysIF::start1stSeq()
 {
 	/*
-	.loc_0x0:
-	  li        r0, 0
-	  stw       r0, -0x7420(r13)
-	  blr
+	li       r0, 0
+	stw      r0, seHandle__Q27JAInter5SeMgr@sda21(r13)
+	blr
 	*/
 }
 
@@ -758,45 +816,42 @@ void SysIF::start1stSeq()
 void SysIF::makeSequence()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r4, 0x8(r3)
-	  cmplwi    r4, 0
-	  beq-      .loc_0x3C
-	  li        r3, 0x6A8
-	  li        r5, 0
-	  bl        -0x314C04
-	  mr.       r0, r3
-	  beq-      .loc_0x34
-	  bl        .loc_0x70
-	  mr        r0, r3
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r4, 8(r3)
+	cmplwi   r4, 0
+	beq      lbl_80338B60
+	li       r3, 0x6a8
+	li       r5, 0
+	bl       __nw__FUlP7JKRHeapi
+	or.      r0, r3, r3
+	beq      lbl_80338B58
+	bl       __ct__Q28PSSystem8SeqSoundFv
+	mr       r0, r3
 
-	.loc_0x34:
-	  mr        r3, r0
-	  b         .loc_0x60
+lbl_80338B58:
+	mr       r3, r0
+	b        lbl_80338B84
 
-	.loc_0x3C:
-	  lwz       r4, -0x7548(r13)
-	  li        r3, 0x6A8
-	  li        r5, 0
-	  bl        -0x314C2C
-	  mr.       r0, r3
-	  beq-      .loc_0x5C
-	  bl        .loc_0x70
-	  mr        r0, r3
+lbl_80338B60:
+	lwz      r4, JASDram@sda21(r13)
+	li       r3, 0x6a8
+	li       r5, 0
+	bl       __nw__FUlP7JKRHeapi
+	or.      r0, r3, r3
+	beq      lbl_80338B80
+	bl       __ct__Q28PSSystem8SeqSoundFv
+	mr       r0, r3
 
-	.loc_0x5C:
-	  mr        r3, r0
+lbl_80338B80:
+	mr       r3, r0
 
-	.loc_0x60:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-
-	.loc_0x70:
+lbl_80338B84:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -808,29 +863,28 @@ void SysIF::makeSequence()
 SeqSound::SeqSound()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        -0x285370
-	  lis       r4, 0x804E
-	  lis       r3, 0x804E
-	  subi      r0, r4, 0x5744
-	  li        r5, 0
-	  stw       r0, 0x6A0(r31)
-	  subi      r4, r3, 0x582C
-	  addi      r0, r4, 0xD4
-	  mr        r3, r31
-	  stw       r5, 0x6A4(r31)
-	  stw       r4, 0x10(r31)
-	  stw       r0, 0x6A0(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       __ct__11JAISequenceFv
+	lis      r4, __vt__Q28PSSystem12SeqSoundBase@ha
+	lis      r3, __vt__Q28PSSystem8SeqSound@ha
+	addi     r0, r4, __vt__Q28PSSystem12SeqSoundBase@l
+	li       r5, 0
+	stw      r0, 0x6a0(r31)
+	addi     r4, r3, __vt__Q28PSSystem8SeqSound@l
+	addi     r0, r4, 0xd4
+	mr       r3, r31
+	stw      r5, 0x6a4(r31)
+	stw      r4, 0x10(r31)
+	stw      r0, 0x6a0(r31)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -842,45 +896,42 @@ SeqSound::SeqSound()
 void SysIF::makeStream()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r4, 0x8(r3)
-	  cmplwi    r4, 0
-	  beq-      .loc_0x3C
-	  li        r3, 0x1E0
-	  li        r5, 0
-	  bl        -0x314CCC
-	  mr.       r0, r3
-	  beq-      .loc_0x34
-	  bl        .loc_0x70
-	  mr        r0, r3
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r4, 8(r3)
+	cmplwi   r4, 0
+	beq      lbl_80338C28
+	li       r3, 0x1e0
+	li       r5, 0
+	bl       __nw__FUlP7JKRHeapi
+	or.      r0, r3, r3
+	beq      lbl_80338C20
+	bl       __ct__Q28PSSystem11StreamSoundFv
+	mr       r0, r3
 
-	.loc_0x34:
-	  mr        r3, r0
-	  b         .loc_0x60
+lbl_80338C20:
+	mr       r3, r0
+	b        lbl_80338C4C
 
-	.loc_0x3C:
-	  lwz       r4, -0x7548(r13)
-	  li        r3, 0x1E0
-	  li        r5, 0
-	  bl        -0x314CF4
-	  mr.       r0, r3
-	  beq-      .loc_0x5C
-	  bl        .loc_0x70
-	  mr        r0, r3
+lbl_80338C28:
+	lwz      r4, JASDram@sda21(r13)
+	li       r3, 0x1e0
+	li       r5, 0
+	bl       __nw__FUlP7JKRHeapi
+	or.      r0, r3, r3
+	beq      lbl_80338C48
+	bl       __ct__Q28PSSystem11StreamSoundFv
+	mr       r0, r3
 
-	.loc_0x5C:
-	  mr        r3, r0
+lbl_80338C48:
+	mr       r3, r0
 
-	.loc_0x60:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-
-	.loc_0x70:
+lbl_80338C4C:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -892,29 +943,28 @@ void SysIF::makeStream()
 StreamSound::StreamSound()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        -0x2851F8
-	  lis       r4, 0x804E
-	  lis       r3, 0x804E
-	  subi      r0, r4, 0x5744
-	  li        r5, 0
-	  stw       r0, 0x1D8(r31)
-	  subi      r4, r3, 0x5914
-	  addi      r0, r4, 0xD4
-	  mr        r3, r31
-	  stw       r5, 0x1DC(r31)
-	  stw       r4, 0x10(r31)
-	  stw       r0, 0x1D8(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       __ct__9JAIStreamFv
+	lis      r4, __vt__Q28PSSystem12SeqSoundBase@ha
+	lis      r3, __vt__Q28PSSystem11StreamSound@ha
+	addi     r0, r4, __vt__Q28PSSystem12SeqSoundBase@l
+	li       r5, 0
+	stw      r0, 0x1d8(r31)
+	addi     r4, r3, __vt__Q28PSSystem11StreamSound@l
+	addi     r0, r4, 0xd4
+	mr       r3, r31
+	stw      r5, 0x1dc(r31)
+	stw      r4, 0x10(r31)
+	stw      r0, 0x1d8(r31)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1017,16 +1067,15 @@ void JAIBasic::startSoundActorT<JAISe>(unsigned long, JAISe**, JAInter::Actor*,
 void __sinit_PSSystemIF_cpp(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  subi      r3, r13, 0x67A4
-	  li        r4, 0
-	  stw       r0, 0x14(r1)
-	  bl        -0x303CA0
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	addi     r3, r13, oRandom__8PSSystem@sda21
+	li       r4, 0
+	stw      r0, 0x14(r1)
+	bl       __ct__Q25JMath13TRandom_fast_FUl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }

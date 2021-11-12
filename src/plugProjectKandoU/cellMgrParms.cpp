@@ -3,6 +3,55 @@
 
 #include "CellMgrParms.h"
 
+/*
+    Generated from dpostproc
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_804837E8
+    lbl_804837E8:
+        .4byte 0x43656C6C
+        .4byte 0x4D677250
+        .4byte 0x61726D73
+        .4byte 0x00000000
+        .4byte 0x836F8362
+        .4byte 0x83748340
+        .4byte 0x82F08E67
+        .4byte 0x82A40000
+        .4byte 0x837D8357
+        .4byte 0x8362834E
+        .4byte 0x83698393
+        .4byte 0x836F815B
+        .4byte 0x00000000
+        .4byte 0x55706461
+        .4byte 0x74654D67
+        .4byte 0x72000000
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__12CellMgrParms
+    __vt__12CellMgrParms:
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte "@12@__dt__12CellMgrParmsFv"
+        .4byte __dt__12CellMgrParmsFv
+
+    .section .sbss # 0x80514D80 - 0x80516360
+    .global mInstance__12CellMgrParms
+    mInstance__12CellMgrParms:
+        .skip 0x8
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_8051A2F0
+    lbl_8051A2F0:
+        .4byte 0x43656C6C
+        .4byte 0x4D677200
+    .global lbl_8051A2F8
+    lbl_8051A2F8:
+        .4byte 0x472D4861
+        .4byte 0x6C660000
+*/
+
 #pragma text_encoding "SHIFT_JIS"
 
 CellMgrParms* CellMgrParms::mInstance;
@@ -19,9 +68,9 @@ CellMgrParms* CellMgrParms::mInstance;
 void _Print(char* name, ...) { OSReport("CellMgrParms"); }
 
 inline _CellParms::_CellParms(Parameters* p)
-    : m_p000(p, 0x70303030, "?¿½o?¿½b?¿½t?¿½@?¿½?¿½?¿½g?¿½?¿½", false, false,
+    : m_p000(p, 0x70303030, "?ï¿½ï¿½o?ï¿½ï¿½b?ï¿½ï¿½t?ï¿½ï¿½@?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½g?ï¿½ï¿½?ï¿½ï¿½", false, false,
              true)
-    , m_p001(p, 0x70303031, "?¿½}?¿½W?¿½b?¿½N?¿½i?¿½?¿½?¿½o?¿½[", true, false,
+    , m_p001(p, 0x70303031, "?ï¿½ï¿½}?ï¿½ï¿½W?ï¿½ï¿½b?ï¿½ï¿½N?ï¿½ï¿½i?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½o?ï¿½ï¿½[", true, false,
              true)
     , m_p002(p, 0x70303032, "G-Half", false, false, true)
     , m_p003(p, 0x70303033, "UpdateMgr", false, false, true)
@@ -42,9 +91,9 @@ inline CellMgrParms::CellMgrParms()
     , JKRDisposer()
     , _CellParms(this)
 // , _CellParms {
-// 	.m_p000 = Parm<bool>(this, 0x70303030, "?¿½o?¿½b?¿½t?¿½@?¿½?¿½?¿½g?¿½?¿½",
+// 	.m_p000 = Parm<bool>(this, 0x70303030, "?ï¿½ï¿½o?ï¿½ï¿½b?ï¿½ï¿½t?ï¿½ï¿½@?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½g?ï¿½ï¿½?ï¿½ï¿½",
 // false, false, true), 	.m_p001 = Parm<bool>(this, 0x70303031,
-// "?¿½}?¿½W?¿½b?¿½N?¿½i?¿½?¿½?¿½o?¿½[", true, false, true), 	.m_p002 =
+// "?ï¿½ï¿½}?ï¿½ï¿½W?ï¿½ï¿½b?ï¿½ï¿½N?ï¿½ï¿½i?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½o?ï¿½ï¿½[", true, false, true), 	.m_p002 =
 // Parm<bool>(this, 0x70303032, "G-Half", false, false, true), 	.m_p003 =
 // Parm<bool>(this, 0x70303033, "UpdateMgr", false, false, true)
 // }
@@ -57,9 +106,9 @@ inline CellMgrParms::CellMgrParms()
 //     &m_end, nullptr, "CellMgr"
 // 	}
 // 	, JKRDisposer()
-//     , Parm<bool>(this, 0x70303030, "?¿½o?¿½b?¿½t?¿½@?¿½?¿½?¿½g?¿½?¿½", false,
+//     , Parm<bool>(this, 0x70303030, "?ï¿½ï¿½o?ï¿½ï¿½b?ï¿½ï¿½t?ï¿½ï¿½@?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½g?ï¿½ï¿½?ï¿½ï¿½", false,
 //     false, true) , Parm<bool>(this, 0x70303031,
-//     "?¿½}?¿½W?¿½b?¿½N?¿½i?¿½?¿½?¿½o?¿½[", true, false, true) ,
+//     "?ï¿½ï¿½}?ï¿½ï¿½W?ï¿½ï¿½b?ï¿½ï¿½N?ï¿½ï¿½i?ï¿½ï¿½?ï¿½ï¿½?ï¿½ï¿½o?ï¿½ï¿½[", true, false, true) ,
 //     Parm<bool>(this, 0x70303032, "G-Half", false, false, true) ,
 //     Parm<bool>(this, 0x70303033, "UpdateMgr", false, false, true)
 // }

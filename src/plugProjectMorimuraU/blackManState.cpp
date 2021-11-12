@@ -1,5 +1,251 @@
 #include "types.h"
 
+/*
+    Generated from dpostproc
+
+    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
+    .4byte __sinit_blackManState_cpp
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_80495230
+    lbl_80495230:
+        .4byte 0x50534D61
+        .4byte 0x696E5369
+        .4byte 0x64655F4F
+        .4byte 0x626A536F
+        .4byte 0x756E642E
+        .4byte 0x68000000
+    .global lbl_80495248
+    lbl_80495248:
+        .asciz "P2Assert"
+        .skip 3
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global lbl_804E5A50
+    lbl_804E5A50:
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+    .global __vt__Q34Game8BlackMan10StateTired
+    __vt__Q34Game8BlackMan10StateTired:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game8BlackMan10StateTiredFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
+   exec__Q34Game8BlackMan10StateTiredFPQ24Game9EnemyBase .4byte
+   cleanup__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
+   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
+   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game8BlackMan10StateFlick
+    __vt__Q34Game8BlackMan10StateFlick:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game8BlackMan10StateFlickFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
+   exec__Q34Game8BlackMan10StateFlickFPQ24Game9EnemyBase .4byte
+   cleanup__Q34Game8BlackMan10StateFlickFPQ24Game9EnemyBase .4byte
+   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
+   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game8BlackMan12StateRecover
+    __vt__Q34Game8BlackMan12StateRecover:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game8BlackMan12StateRecoverFPQ24Game9EnemyBasePQ24Game8StateArg
+        .4byte exec__Q34Game8BlackMan12StateRecoverFPQ24Game9EnemyBase
+        .4byte cleanup__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game8BlackMan9StateFall
+    __vt__Q34Game8BlackMan9StateFall:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game8BlackMan9StateFallFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
+   exec__Q34Game8BlackMan9StateFallFPQ24Game9EnemyBase .4byte
+   cleanup__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
+   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
+   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game8BlackMan11StateEscape
+    __vt__Q34Game8BlackMan11StateEscape:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game8BlackMan11StateEscapeFPQ24Game9EnemyBasePQ24Game8StateArg
+        .4byte exec__Q34Game8BlackMan11StateEscapeFPQ24Game9EnemyBase
+        .4byte cleanup__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game8BlackMan9StateBend
+    __vt__Q34Game8BlackMan9StateBend:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game8BlackMan9StateBendFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
+   exec__Q34Game8BlackMan9StateBendFPQ24Game9EnemyBase .4byte
+   cleanup__Q34Game8BlackMan9StateBendFPQ24Game9EnemyBase .4byte
+   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
+   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game8BlackMan11StateFreeze
+    __vt__Q34Game8BlackMan11StateFreeze:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game8BlackMan11StateFreezeFPQ24Game9EnemyBasePQ24Game8StateArg
+        .4byte exec__Q34Game8BlackMan11StateFreezeFPQ24Game9EnemyBase
+        .4byte cleanup__Q34Game8BlackMan11StateFreezeFPQ24Game9EnemyBase
+        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game8BlackMan9StateDead
+    __vt__Q34Game8BlackMan9StateDead:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game8BlackMan9StateDeadFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
+   exec__Q34Game8BlackMan9StateDeadFPQ24Game9EnemyBase .4byte
+   cleanup__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
+   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
+   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game8BlackMan9StateWalk
+    __vt__Q34Game8BlackMan9StateWalk:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game8BlackMan9StateWalkFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
+   exec__Q34Game8BlackMan9StateWalkFPQ24Game9EnemyBase .4byte
+   cleanup__Q34Game8BlackMan9StateWalkFPQ24Game9EnemyBase .4byte
+   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
+   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game8BlackMan5State
+    __vt__Q34Game8BlackMan5State:
+        .4byte 0
+        .4byte 0
+        .4byte init__Q24Game13EnemyFSMStateFPQ24Game9EnemyBasePQ24Game8StateArg
+        .4byte exec__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte cleanup__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game8BlackMan3FSM
+    __vt__Q34Game8BlackMan3FSM:
+        .4byte 0
+        .4byte 0
+        .4byte init__Q34Game8BlackMan3FSMFPQ24Game9EnemyBase
+        .4byte
+   start__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   exec__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase .4byte
+   transit__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseiPQ24Game8StateArg
+        .4byte
+   doDirectDraw__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseR8Graphics .4byte
+   getCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase .4byte
+   setCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBasePQ24Game13EnemyFSMState
+
+    .section .sbss # 0x80514D80 - 0x80516360
+    .global lbl_80516050
+    lbl_80516050:
+        .skip 0x4
+    .global lbl_80516054
+    lbl_80516054:
+        .skip 0x4
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_8051F370
+    lbl_8051F370:
+        .4byte 0x77616C6B
+        .4byte 0x00000000
+    .global lbl_8051F378
+    lbl_8051F378:
+        .4byte 0x00000000
+    .global lbl_8051F37C
+    lbl_8051F37C:
+        .4byte 0x64656164
+        .4byte 0x00000000
+    .global lbl_8051F384
+    lbl_8051F384:
+        .4byte 0x66726565
+        .4byte 0x7A650000
+    .global lbl_8051F38C
+    lbl_8051F38C:
+        .4byte 0x40400000
+    .global lbl_8051F390
+    lbl_8051F390:
+        .4byte 0xC3A2F983
+    .global lbl_8051F394
+    lbl_8051F394:
+        .4byte 0x43A2F983
+    .global lbl_8051F398
+    lbl_8051F398:
+        .4byte 0x42000000
+    .global lbl_8051F39C
+    lbl_8051F39C:
+        .4byte 0x40800000
+    .global lbl_8051F3A0
+    lbl_8051F3A0:
+        .4byte 0x3ED70A3D
+    .global lbl_8051F3A4
+    lbl_8051F3A4:
+        .4byte 0x62656E64
+        .4byte 0x00000000
+    .global lbl_8051F3AC
+    lbl_8051F3AC:
+        .4byte 0x40A00000
+    .global lbl_8051F3B0
+    lbl_8051F3B0:
+        .4byte 0x65736361
+        .4byte 0x70650000
+    .global lbl_8051F3B8
+    lbl_8051F3B8:
+        .4byte 0xC1B00000
+    .global lbl_8051F3BC
+    lbl_8051F3BC:
+        .4byte 0x41F00000
+    .global lbl_8051F3C0
+    lbl_8051F3C0:
+        .4byte 0x3F59999A
+    .global lbl_8051F3C4
+    lbl_8051F3C4:
+        .4byte 0x66616C6C
+        .4byte 0x00000000
+    .global lbl_8051F3CC
+    lbl_8051F3CC:
+        .4byte 0x41A00000
+    .global lbl_8051F3D0
+    lbl_8051F3D0:
+        .4byte 0x7265636F
+        .4byte 0x76657200
+    .global lbl_8051F3D8
+    lbl_8051F3D8:
+        .4byte 0x666C6963
+        .4byte 0x6B000000
+    .global lbl_8051F3E0
+    lbl_8051F3E0:
+        .4byte 0x74697265
+        .4byte 0x64000000
+*/
+
 namespace Game {
 
 /*
@@ -10,120 +256,117 @@ namespace Game {
 void BlackMan::FSM::init(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r4, 0x9
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        -0x2732A4
-	  li        r3, 0x10
-	  bl        -0x37FC6C
-	  mr.       r4, r3
-	  beq-      .loc_0x38
-	  li        r4, 0
-	  bl        .loc_0x174
-	  mr        r4, r3
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	li       r4, 9
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       create__Q24Game17EnemyStateMachineFi
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_803A3B28
+	li       r4, 0
+	bl       __ct__Q34Game8BlackMan9StateWalkFi
+	mr       r4, r3
 
-	.loc_0x38:
-	  mr        r3, r31
-	  bl        -0x273224
-	  li        r3, 0x14
-	  bl        -0x37FC90
-	  mr.       r4, r3
-	  beq-      .loc_0x5C
-	  li        r4, 0x1
-	  bl        0x3D4
-	  mr        r4, r3
+lbl_803A3B28:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	li       r3, 0x14
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_803A3B4C
+	li       r4, 1
+	bl       __ct__Q34Game8BlackMan9StateDeadFi
+	mr       r4, r3
 
-	.loc_0x5C:
-	  mr        r3, r31
-	  bl        -0x273248
-	  li        r3, 0x10
-	  bl        -0x37FCB4
-	  mr.       r4, r3
-	  beq-      .loc_0x80
-	  li        r4, 0x2
-	  bl        0x54C
-	  mr        r4, r3
+lbl_803A3B4C:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_803A3B70
+	li       r4, 2
+	bl       __ct__Q34Game8BlackMan11StateFreezeFi
+	mr       r4, r3
 
-	.loc_0x80:
-	  mr        r3, r31
-	  bl        -0x27326C
-	  li        r3, 0x10
-	  bl        -0x37FCD8
-	  mr.       r4, r3
-	  beq-      .loc_0xA4
-	  li        r4, 0x3
-	  bl        0x90C
-	  mr        r4, r3
+lbl_803A3B70:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_803A3B94
+	li       r4, 3
+	bl       __ct__Q34Game8BlackMan9StateBendFi
+	mr       r4, r3
 
-	.loc_0xA4:
-	  mr        r3, r31
-	  bl        -0x273290
-	  li        r3, 0x10
-	  bl        -0x37FCFC
-	  mr.       r4, r3
-	  beq-      .loc_0xC8
-	  li        r4, 0x4
-	  bl        0xBA4
-	  mr        r4, r3
+lbl_803A3B94:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_803A3BB8
+	li       r4, 4
+	bl       __ct__Q34Game8BlackMan11StateEscapeFi
+	mr       r4, r3
 
-	.loc_0xC8:
-	  mr        r3, r31
-	  bl        -0x2732B4
-	  li        r3, 0x10
-	  bl        -0x37FD20
-	  mr.       r4, r3
-	  beq-      .loc_0xEC
-	  li        r4, 0x5
-	  bl        0xF20
-	  mr        r4, r3
+lbl_803A3BB8:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_803A3BDC
+	li       r4, 5
+	bl       __ct__Q34Game8BlackMan9StateFallFi
+	mr       r4, r3
 
-	.loc_0xEC:
-	  mr        r3, r31
-	  bl        -0x2732D8
-	  li        r3, 0x10
-	  bl        -0x37FD44
-	  mr.       r4, r3
-	  beq-      .loc_0x110
-	  li        r4, 0x7
-	  bl        0x10FC
-	  mr        r4, r3
+lbl_803A3BDC:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_803A3C00
+	li       r4, 7
+	bl       __ct__Q34Game8BlackMan12StateRecoverFi
+	mr       r4, r3
 
-	.loc_0x110:
-	  mr        r3, r31
-	  bl        -0x2732FC
-	  li        r3, 0x10
-	  bl        -0x37FD68
-	  mr.       r4, r3
-	  beq-      .loc_0x134
-	  li        r4, 0x6
-	  bl        0x1348
-	  mr        r4, r3
+lbl_803A3C00:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_803A3C24
+	li       r4, 6
+	bl       __ct__Q34Game8BlackMan10StateFlickFi
+	mr       r4, r3
 
-	.loc_0x134:
-	  mr        r3, r31
-	  bl        -0x273320
-	  li        r3, 0x14
-	  bl        -0x37FD8C
-	  mr.       r4, r3
-	  beq-      .loc_0x158
-	  li        r4, 0x8
-	  bl        0x1594
-	  mr        r4, r3
+lbl_803A3C24:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	li       r3, 0x14
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_803A3C48
+	li       r4, 8
+	bl       __ct__Q34Game8BlackMan10StateTiredFi
+	mr       r4, r3
 
-	.loc_0x158:
-	  mr        r3, r31
-	  bl        -0x273344
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-
-	.loc_0x174:
+lbl_803A3C48:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -135,22 +378,21 @@ void BlackMan::FSM::init(Game::EnemyBase*)
 BlackMan::StateWalk::StateWalk(int)
 {
 	/*
-	.loc_0x0:
-	  lis       r5, 0x804B
-	  lis       r6, 0x804E
-	  subi      r0, r5, 0x65C
-	  lis       r5, 0x804E
-	  stw       r0, 0x0(r3)
-	  li        r7, 0
-	  addi      r6, r6, 0x5BA0
-	  addi      r5, r5, 0x5B7C
-	  stw       r4, 0x4(r3)
-	  addi      r0, r2, 0x1010
-	  stw       r7, 0x8(r3)
-	  stw       r6, 0x0(r3)
-	  stw       r5, 0x0(r3)
-	  stw       r0, 0xC(r3)
-	  blr
+	lis      r5, __vt__Q24Game13EnemyFSMState@ha
+	lis      r6, __vt__Q34Game8BlackMan5State@ha
+	addi     r0, r5, __vt__Q24Game13EnemyFSMState@l
+	lis      r5, __vt__Q34Game8BlackMan9StateWalk@ha
+	stw      r0, 0(r3)
+	li       r7, 0
+	addi     r6, r6, __vt__Q34Game8BlackMan5State@l
+	addi     r5, r5, __vt__Q34Game8BlackMan9StateWalk@l
+	stw      r4, 4(r3)
+	addi     r0, r2, lbl_8051F370@sda21
+	stw      r7, 8(r3)
+	stw      r6, 0(r3)
+	stw      r5, 0(r3)
+	stw      r0, 0xc(r3)
+	blr
 	*/
 }
 
@@ -162,49 +404,48 @@ BlackMan::StateWalk::StateWalk(int)
 void BlackMan::StateWalk::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  lwz       r0, 0x364(r4)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x2C
-	  lwz       r0, 0x2E0(r31)
-	  cmpwi     r0, 0x2
-	  bne-      .loc_0x34
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	lwz      r0, 0x364(r4)
+	cmplwi   r0, 0
+	beq      lbl_803A3CCC
+	lwz      r0, 0x2e0(r31)
+	cmpwi    r0, 2
+	bne      lbl_803A3CD4
 
-	.loc_0x2C:
-	  li        r0, 0
-	  b         .loc_0x38
+lbl_803A3CCC:
+	li       r0, 0
+	b        lbl_803A3CD8
 
-	.loc_0x34:
-	  li        r0, 0x1
+lbl_803A3CD4:
+	li       r0, 1
 
-	.loc_0x38:
-	  rlwinm.   r0,r0,0,24,31
-	  beq-      .loc_0x54
-	  mr        r3, r31
-	  li        r4, 0x6
-	  li        r5, 0
-	  bl        -0x29ECE8
-	  b         .loc_0x64
+lbl_803A3CD8:
+	clrlwi.  r0, r0, 0x18
+	beq      lbl_803A3CF4
+	mr       r3, r31
+	li       r4, 6
+	li       r5, 0
+	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
+	b        lbl_803A3D04
 
-	.loc_0x54:
-	  mr        r3, r31
-	  li        r4, 0x8
-	  li        r5, 0
-	  bl        -0x29ECFC
+lbl_803A3CF4:
+	mr       r3, r31
+	li       r4, 8
+	li       r5, 0
+	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
 
-	.loc_0x64:
-	  mr        r3, r31
-	  bl        0x7320
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803A3D04:
+	mr       r3, r31
+	bl       createTraceEffect__Q34Game8BlackMan3ObjFv
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -216,138 +457,137 @@ void BlackMan::StateWalk::init(Game::EnemyBase*, Game::StateArg*)
 void BlackMan::StateWalk::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stw       r31, 0x2C(r1)
-	  mr        r31, r4
-	  stw       r30, 0x28(r1)
-	  mr        r30, r3
-	  mr        r3, r31
-	  bl        0x45F4
-	  lfs       f1, 0x200(r31)
-	  lfs       f0, 0x1018(r2)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0, 0x2
-	  bne-      .loc_0x5C
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x1
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x1BC
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stw      r31, 0x2c(r1)
+	mr       r31, r4
+	stw      r30, 0x28(r1)
+	mr       r30, r3
+	mr       r3, r31
+	bl       walkFunc__Q34Game8BlackMan3ObjFv
+	lfs      f1, 0x200(r31)
+	lfs      f0, lbl_8051F378@sda21(r2)
+	fcmpo    cr0, f1, f0
+	cror     2, 0, 2
+	bne      lbl_803A3D7C
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 1
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_803A3EDC
 
-	.loc_0x5C:
-	  mr        r3, r31
-	  bl        0x695C
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x90
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x4
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x1BC
+lbl_803A3D7C:
+	mr       r3, r31
+	bl       isTyreDead__Q34Game8BlackMan3ObjFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803A3DB0
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 4
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_803A3EDC
 
-	.loc_0x90:
-	  mr        r3, r31
-	  li        r4, 0
-	  bl        -0x28F760
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xD0
-	  li        r0, 0
-	  mr        r3, r30
-	  stw       r0, 0x2DC(r31)
-	  mr        r4, r31
-	  li        r5, 0x6
-	  li        r6, 0
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x1BC
+lbl_803A3DB0:
+	mr       r3, r31
+	li       r4, 0
+	bl       isStartFlick__Q24Game9EnemyFuncFPQ24Game9EnemyBaseb
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803A3DF0
+	li       r0, 0
+	mr       r3, r30
+	stw      r0, 0x2dc(r31)
+	mr       r4, r31
+	li       r5, 6
+	li       r6, 0
+	lwz      r12, 0(r30)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_803A3EDC
 
-	.loc_0xD0:
-	  lwz       r4, 0xC0(r31)
-	  mr        r3, r31
-	  lfs       f1, 0xA1C(r4)
-	  bl        0x4D80
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xF4
-	  mr        r3, r31
-	  bl        0x4DA4
-	  b         .loc_0x1BC
+lbl_803A3DF0:
+	lwz      r4, 0xc0(r31)
+	mr       r3, r31
+	lfs      f1, 0xa1c(r4)
+	bl       isReachToGoal__Q34Game8BlackMan3ObjFf
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803A3E14
+	mr       r3, r31
+	bl       findNextRoutePoint__Q34Game8BlackMan3ObjFv
+	b        lbl_803A3EDC
 
-	.loc_0xF4:
-	  lwz       r3, 0x188(r31)
-	  lbz       r0, 0x24(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x1BC
-	  lwz       r0, 0x1C(r3)
-	  cmpwi     r0, 0x4
-	  bge-      .loc_0x1BC
-	  cmpwi     r0, 0x2
-	  bge-      .loc_0x11C
-	  b         .loc_0x1BC
+lbl_803A3E14:
+	lwz      r3, 0x188(r31)
+	lbz      r0, 0x24(r3)
+	cmplwi   r0, 0
+	beq      lbl_803A3EDC
+	lwz      r0, 0x1c(r3)
+	cmpwi    r0, 4
+	bge      lbl_803A3EDC
+	cmpwi    r0, 2
+	bge      lbl_803A3E3C
+	b        lbl_803A3EDC
 
-	.loc_0x11C:
-	  mr        r4, r31
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f2, 0x8(r1)
-	  mr        r3, r31
-	  lfs       f1, 0xC(r1)
-	  lfs       f0, 0x10(r1)
-	  stfs      f2, 0x14(r1)
-	  stfs      f1, 0x18(r1)
-	  stfs      f0, 0x1C(r1)
-	  bl        -0x29CB28
-	  cmpwi     r3, 0xB
-	  bne-      .loc_0x184
-	  lwz       r3, -0x6960(r13)
-	  addi      r5, r1, 0x14
-	  li        r4, 0x3
-	  li        r6, 0x2
-	  bl        -0x151C50
-	  lwz       r3, -0x6958(r13)
-	  addi      r5, r1, 0x14
-	  li        r4, 0x8
-	  li        r6, 0x2
-	  bl        -0x150720
+lbl_803A3E3C:
+	mr       r4, r31
+	addi     r3, r1, 8
+	lwz      r12, 0(r31)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f2, 8(r1)
+	mr       r3, r31
+	lfs      f1, 0xc(r1)
+	lfs      f0, 0x10(r1)
+	stfs     f2, 0x14(r1)
+	stfs     f1, 0x18(r1)
+	stfs     f0, 0x1c(r1)
+	bl       getCurrAnimIndex__Q24Game9EnemyBaseFv
+	cmpwi    r3, 0xb
+	bne      lbl_803A3EA4
+	lwz      r3, cameraMgr__4Game@sda21(r13)
+	addi     r5, r1, 0x14
+	li       r4, 3
+	li       r6, 2
+	bl       "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
+	lwz      r3, rumbleMgr__4Game@sda21(r13)
+	addi     r5, r1, 0x14
+	li       r4, 8
+	li       r6, 2
+	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
 
-	.loc_0x184:
-	  mr        r3, r31
-	  bl        -0x29CB60
-	  cmpwi     r3, 0x8
-	  bne-      .loc_0x1BC
-	  lwz       r3, -0x6960(r13)
-	  addi      r5, r1, 0x14
-	  li        r4, 0x6
-	  li        r6, 0x2
-	  bl        -0x151C88
-	  lwz       r3, -0x6958(r13)
-	  addi      r5, r1, 0x14
-	  li        r4, 0x8
-	  li        r6, 0x2
-	  bl        -0x150758
+lbl_803A3EA4:
+	mr       r3, r31
+	bl       getCurrAnimIndex__Q24Game9EnemyBaseFv
+	cmpwi    r3, 8
+	bne      lbl_803A3EDC
+	lwz      r3, cameraMgr__4Game@sda21(r13)
+	addi     r5, r1, 0x14
+	li       r4, 6
+	li       r6, 2
+	bl       "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
+	lwz      r3, rumbleMgr__4Game@sda21(r13)
+	addi     r5, r1, 0x14
+	li       r4, 8
+	li       r6, 2
+	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
 
-	.loc_0x1BC:
-	  lwz       r0, 0x34(r1)
-	  lwz       r31, 0x2C(r1)
-	  lwz       r30, 0x28(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_803A3EDC:
+	lwz      r0, 0x34(r1)
+	lwz      r31, 0x2c(r1)
+	lwz      r30, 0x28(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -359,16 +599,15 @@ void BlackMan::StateWalk::exec(Game::EnemyBase*)
 void BlackMan::StateWalk::cleanup(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r3, r4
-	  stw       r0, 0x14(r1)
-	  bl        0x7180
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r3, r4
+	stw      r0, 0x14(r1)
+	bl       fadeTraceEffect__Q34Game8BlackMan3ObjFv
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -380,22 +619,21 @@ void BlackMan::StateWalk::cleanup(Game::EnemyBase*)
 BlackMan::StateDead::StateDead(int)
 {
 	/*
-	.loc_0x0:
-	  lis       r5, 0x804B
-	  lis       r6, 0x804E
-	  subi      r0, r5, 0x65C
-	  lis       r5, 0x804E
-	  stw       r0, 0x0(r3)
-	  li        r7, 0
-	  addi      r6, r6, 0x5BA0
-	  addi      r5, r5, 0x5B58
-	  stw       r4, 0x4(r3)
-	  addi      r0, r2, 0x101C
-	  stw       r7, 0x8(r3)
-	  stw       r6, 0x0(r3)
-	  stw       r5, 0x0(r3)
-	  stw       r0, 0xC(r3)
-	  blr
+	lis      r5, __vt__Q24Game13EnemyFSMState@ha
+	lis      r6, __vt__Q34Game8BlackMan5State@ha
+	addi     r0, r5, __vt__Q24Game13EnemyFSMState@l
+	lis      r5, __vt__Q34Game8BlackMan9StateDead@ha
+	stw      r0, 0(r3)
+	li       r7, 0
+	addi     r6, r6, __vt__Q34Game8BlackMan5State@l
+	addi     r5, r5, __vt__Q34Game8BlackMan9StateDead@l
+	stw      r4, 4(r3)
+	addi     r0, r2, lbl_8051F37C@sda21
+	stw      r7, 8(r3)
+	stw      r6, 0(r3)
+	stw      r5, 0(r3)
+	stw      r0, 0xc(r3)
+	blr
 	*/
 }
 
@@ -407,32 +645,31 @@ BlackMan::StateDead::StateDead(int)
 void BlackMan::StateDead::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lfs       f0, 0x1018(r2)
-	  li        r5, 0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  mr        r3, r31
-	  li        r4, 0x2
-	  stfs      f0, 0x1C8(r31)
-	  stfs      f0, 0x1CC(r31)
-	  stfs      f0, 0x1D0(r31)
-	  stfs      f0, 0x1D4(r31)
-	  stfs      f0, 0x1D8(r31)
-	  stfs      f0, 0x1DC(r31)
-	  bl        -0x29EF8C
-	  mr        r3, r31
-	  bl        0x6F04
-	  mr        r3, r31
-	  bl        -0x29E880
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lfs      f0, lbl_8051F378@sda21(r2)
+	li       r5, 0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	mr       r3, r31
+	li       r4, 2
+	stfs     f0, 0x1c8(r31)
+	stfs     f0, 0x1cc(r31)
+	stfs     f0, 0x1d0(r31)
+	stfs     f0, 0x1d4(r31)
+	stfs     f0, 0x1d8(r31)
+	stfs     f0, 0x1dc(r31)
+	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
+	mr       r3, r31
+	bl       deadTraceEffect__Q34Game8BlackMan3ObjFv
+	mr       r3, r31
+	bl       deathProcedure__Q24Game9EnemyBaseFv
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -444,80 +681,79 @@ void BlackMan::StateDead::init(Game::EnemyBase*, Game::StateArg*)
 void BlackMan::StateDead::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stw       r31, 0x2C(r1)
-	  mr        r31, r4
-	  lwz       r3, 0x188(r4)
-	  lbz       r0, 0x24(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0xE8
-	  lwz       r12, 0x0(r4)
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f2, 0x8(r1)
-	  lfs       f1, 0xC(r1)
-	  lfs       f0, 0x10(r1)
-	  stfs      f2, 0x14(r1)
-	  stfs      f1, 0x18(r1)
-	  stfs      f0, 0x1C(r1)
-	  lwz       r3, 0x188(r31)
-	  lwz       r0, 0x1C(r3)
-	  cmpwi     r0, 0x5
-	  beq-      .loc_0xA8
-	  bge-      .loc_0x70
-	  cmpwi     r0, 0x2
-	  bge-      .loc_0x7C
-	  b         .loc_0xE8
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stw      r31, 0x2c(r1)
+	mr       r31, r4
+	lwz      r3, 0x188(r4)
+	lbz      r0, 0x24(r3)
+	cmplwi   r0, 0
+	beq      lbl_803A40A0
+	lwz      r12, 0(r4)
+	addi     r3, r1, 8
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f2, 8(r1)
+	lfs      f1, 0xc(r1)
+	lfs      f0, 0x10(r1)
+	stfs     f2, 0x14(r1)
+	stfs     f1, 0x18(r1)
+	stfs     f0, 0x1c(r1)
+	lwz      r3, 0x188(r31)
+	lwz      r0, 0x1c(r3)
+	cmpwi    r0, 5
+	beq      lbl_803A4060
+	bge      lbl_803A4028
+	cmpwi    r0, 2
+	bge      lbl_803A4034
+	b        lbl_803A40A0
 
-	.loc_0x70:
-	  cmpwi     r0, 0x3E8
-	  beq-      .loc_0xB4
-	  b         .loc_0xE8
+lbl_803A4028:
+	cmpwi    r0, 0x3e8
+	beq      lbl_803A406C
+	b        lbl_803A40A0
 
-	.loc_0x7C:
-	  lwz       r3, -0x6960(r13)
-	  addi      r5, r1, 0x14
-	  li        r4, 0xC
-	  li        r6, 0x2
-	  bl        -0x151E08
-	  lwz       r3, -0x6958(r13)
-	  addi      r5, r1, 0x14
-	  li        r4, 0xE
-	  li        r6, 0x2
-	  bl        -0x1508D8
-	  b         .loc_0xE8
+lbl_803A4034:
+	lwz      r3, cameraMgr__4Game@sda21(r13)
+	addi     r5, r1, 0x14
+	li       r4, 0xc
+	li       r6, 2
+	bl       "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
+	lwz      r3, rumbleMgr__4Game@sda21(r13)
+	addi     r5, r1, 0x14
+	li       r4, 0xe
+	li       r6, 2
+	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
+	b        lbl_803A40A0
 
-	.loc_0xA8:
-	  mr        r3, r31
-	  bl        0x6D68
-	  b         .loc_0xE8
+lbl_803A4060:
+	mr       r3, r31
+	bl       deadEffect__Q34Game8BlackMan3ObjFv
+	b        lbl_803A40A0
 
-	.loc_0xB4:
-	  lwz       r3, -0x6960(r13)
-	  addi      r5, r1, 0x14
-	  li        r4, 0x11
-	  li        r6, 0x2
-	  bl        -0x151E40
-	  lwz       r3, -0x6958(r13)
-	  addi      r5, r1, 0x14
-	  li        r4, 0xF
-	  li        r6, 0x2
-	  bl        -0x150910
-	  mr        r3, r31
-	  li        r4, 0
-	  bl        -0x268FAC
+lbl_803A406C:
+	lwz      r3, cameraMgr__4Game@sda21(r13)
+	addi     r5, r1, 0x14
+	li       r4, 0x11
+	li       r6, 2
+	bl       "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
+	lwz      r3, rumbleMgr__4Game@sda21(r13)
+	addi     r5, r1, 0x14
+	li       r4, 0xf
+	li       r6, 2
+	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
+	mr       r3, r31
+	li       r4, 0
+	bl       kill__Q24Game8CreatureFPQ24Game15CreatureKillArg
 
-	.loc_0xE8:
-	  lwz       r0, 0x34(r1)
-	  lwz       r31, 0x2C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_803A40A0:
+	lwz      r0, 0x34(r1)
+	lwz      r31, 0x2c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -529,22 +765,21 @@ void BlackMan::StateDead::exec(Game::EnemyBase*)
 BlackMan::StateFreeze::StateFreeze(int)
 {
 	/*
-	.loc_0x0:
-	  lis       r5, 0x804B
-	  lis       r6, 0x804E
-	  subi      r0, r5, 0x65C
-	  lis       r5, 0x804E
-	  stw       r0, 0x0(r3)
-	  li        r7, 0
-	  addi      r6, r6, 0x5BA0
-	  addi      r5, r5, 0x5B34
-	  stw       r4, 0x4(r3)
-	  addi      r0, r2, 0x1024
-	  stw       r7, 0x8(r3)
-	  stw       r6, 0x0(r3)
-	  stw       r5, 0x0(r3)
-	  stw       r0, 0xC(r3)
-	  blr
+	lis      r5, __vt__Q24Game13EnemyFSMState@ha
+	lis      r6, __vt__Q34Game8BlackMan5State@ha
+	addi     r0, r5, __vt__Q24Game13EnemyFSMState@l
+	lis      r5, __vt__Q34Game8BlackMan11StateFreeze@ha
+	stw      r0, 0(r3)
+	li       r7, 0
+	addi     r6, r6, __vt__Q34Game8BlackMan5State@l
+	addi     r5, r5, __vt__Q34Game8BlackMan11StateFreeze@l
+	stw      r4, 4(r3)
+	addi     r0, r2, lbl_8051F384@sda21
+	stw      r7, 8(r3)
+	stw      r6, 0(r3)
+	stw      r5, 0(r3)
+	stw      r0, 0xc(r3)
+	blr
 	*/
 }
 
@@ -556,47 +791,46 @@ BlackMan::StateFreeze::StateFreeze(int)
 void BlackMan::StateFreeze::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  stw       r30, 0x8(r1)
-	  mr        r30, r4
-	  mr        r3, r30
-	  bl        0x68C8
-	  mr        r3, r30
-	  li        r31, 0
-	  bl        -0x29CDD0
-	  cmpwi     r3, 0x4
-	  bne-      .loc_0x38
-	  li        r31, 0x1
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	stw      r30, 8(r1)
+	mr       r30, r4
+	mr       r3, r30
+	bl       collisionStOn__Q34Game8BlackMan3ObjFv
+	mr       r3, r30
+	li       r31, 0
+	bl       getCurrAnimIndex__Q24Game9EnemyBaseFv
+	cmpwi    r3, 4
+	bne      lbl_803A4128
+	li       r31, 1
 
-	.loc_0x38:
-	  mr        r3, r30
-	  li        r4, 0x1
-	  li        r5, 0
-	  bl        -0x29F130
-	  rlwinm.   r0,r31,0,24,31
-	  beq-      .loc_0x5C
-	  lfs       f1, 0x102C(r2)
-	  mr        r3, r30
-	  bl        -0x29EF20
+lbl_803A4128:
+	mr       r3, r30
+	li       r4, 1
+	li       r5, 0
+	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
+	clrlwi.  r0, r31, 0x18
+	beq      lbl_803A414C
+	lfs      f1, lbl_8051F38C@sda21(r2)
+	mr       r3, r30
+	bl       setMotionFrame__Q24Game9EnemyBaseFf
 
-	.loc_0x5C:
-	  lfs       f0, 0x1018(r2)
-	  stfs      f0, 0x1C8(r30)
-	  stfs      f0, 0x1CC(r30)
-	  stfs      f0, 0x1D0(r30)
-	  stfs      f0, 0x1D4(r30)
-	  stfs      f0, 0x1D8(r30)
-	  stfs      f0, 0x1DC(r30)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803A414C:
+	lfs      f0, lbl_8051F378@sda21(r2)
+	stfs     f0, 0x1c8(r30)
+	stfs     f0, 0x1cc(r30)
+	stfs     f0, 0x1d0(r30)
+	stfs     f0, 0x1d4(r30)
+	stfs     f0, 0x1d8(r30)
+	stfs     f0, 0x1dc(r30)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -608,218 +842,217 @@ void BlackMan::StateFreeze::init(Game::EnemyBase*, Game::StateArg*)
 void BlackMan::StateFreeze::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x60(r1)
-	  mflr      r0
-	  lfs       f0, 0x1018(r2)
-	  stw       r0, 0x64(r1)
-	  stw       r31, 0x5C(r1)
-	  mr        r31, r4
-	  stw       r30, 0x58(r1)
-	  mr        r30, r3
-	  lwz       r5, 0x2CC(r4)
-	  addi      r0, r5, 0x1
-	  stw       r0, 0x2CC(r4)
-	  lfs       f1, 0x200(r4)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0, 0x2
-	  bne-      .loc_0x58
-	  lwz       r12, 0x0(r3)
-	  li        r5, 0x1
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x2DC
+	stwu     r1, -0x60(r1)
+	mflr     r0
+	lfs      f0, lbl_8051F378@sda21(r2)
+	stw      r0, 0x64(r1)
+	stw      r31, 0x5c(r1)
+	mr       r31, r4
+	stw      r30, 0x58(r1)
+	mr       r30, r3
+	lwz      r5, 0x2cc(r4)
+	addi     r0, r5, 1
+	stw      r0, 0x2cc(r4)
+	lfs      f1, 0x200(r4)
+	fcmpo    cr0, f1, f0
+	cror     2, 0, 2
+	bne      lbl_803A41D8
+	lwz      r12, 0(r3)
+	li       r5, 1
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_803A445C
 
-	.loc_0x58:
-	  mr        r3, r31
-	  li        r4, 0
-	  bl        -0x28FB88
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x98
-	  li        r0, 0x2
-	  mr        r3, r30
-	  stw       r0, 0x2DC(r31)
-	  mr        r4, r31
-	  li        r5, 0x6
-	  li        r6, 0
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x2DC
+lbl_803A41D8:
+	mr       r3, r31
+	li       r4, 0
+	bl       isStartFlick__Q24Game9EnemyFuncFPQ24Game9EnemyBaseb
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803A4218
+	li       r0, 2
+	mr       r3, r30
+	stw      r0, 0x2dc(r31)
+	mr       r4, r31
+	li       r5, 6
+	li       r6, 0
+	lwz      r12, 0(r30)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_803A445C
 
-	.loc_0x98:
-	  lwz       r3, 0x188(r31)
-	  lbz       r0, 0x24(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x2C0
-	  lwz       r0, 0x1C(r3)
-	  cmplwi    r0, 0x2
-	  bne-      .loc_0x28C
-	  mr        r4, r31
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f2, 0x8(r1)
-	  addi      r5, r1, 0x14
-	  lfs       f1, 0xC(r1)
-	  li        r4, 0xC
-	  lfs       f0, 0x10(r1)
-	  li        r6, 0x2
-	  stfs      f2, 0x14(r1)
-	  lwz       r3, -0x6960(r13)
-	  stfs      f1, 0x18(r1)
-	  stfs      f0, 0x1C(r1)
-	  bl        -0x152038
-	  lwz       r3, -0x6958(r13)
-	  addi      r5, r1, 0x14
-	  li        r4, 0xE
-	  li        r6, 0x2
-	  bl        -0x150B08
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x64(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f0, 0x1018(r2)
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x158
-	  lfs       f0, 0x1030(r2)
-	  lis       r3, 0x8050
-	  addi      r3, r3, 0x71A0
-	  fmuls     f0, f1, f0
-	  fctiwz    f0, f0
-	  stfd      f0, 0x20(r1)
-	  lwz       r0, 0x24(r1)
-	  rlwinm    r0,r0,3,18,28
-	  lfsx      f0, r3, r0
-	  fneg      f5, f0
-	  b         .loc_0x17C
+lbl_803A4218:
+	lwz      r3, 0x188(r31)
+	lbz      r0, 0x24(r3)
+	cmplwi   r0, 0
+	beq      lbl_803A4440
+	lwz      r0, 0x1c(r3)
+	cmplwi   r0, 2
+	bne      lbl_803A440C
+	mr       r4, r31
+	addi     r3, r1, 8
+	lwz      r12, 0(r31)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f2, 8(r1)
+	addi     r5, r1, 0x14
+	lfs      f1, 0xc(r1)
+	li       r4, 0xc
+	lfs      f0, 0x10(r1)
+	li       r6, 2
+	stfs     f2, 0x14(r1)
+	lwz      r3, cameraMgr__4Game@sda21(r13)
+	stfs     f1, 0x18(r1)
+	stfs     f0, 0x1c(r1)
+	bl       "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
+	lwz      r3, rumbleMgr__4Game@sda21(r13)
+	addi     r5, r1, 0x14
+	li       r4, 0xe
+	li       r6, 2
+	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r12, 0x64(r12)
+	mtctr    r12
+	bctrl
+	lfs      f0, lbl_8051F378@sda21(r2)
+	fcmpo    cr0, f1, f0
+	bge      lbl_803A42D8
+	lfs      f0, lbl_8051F390@sda21(r2)
+	lis      r3, sincosTable___5JMath@ha
+	addi     r3, r3, sincosTable___5JMath@l
+	fmuls    f0, f1, f0
+	fctiwz   f0, f0
+	stfd     f0, 0x20(r1)
+	lwz      r0, 0x24(r1)
+	rlwinm   r0, r0, 3, 0x12, 0x1c
+	lfsx     f0, r3, r0
+	fneg     f5, f0
+	b        lbl_803A42FC
 
-	.loc_0x158:
-	  lfs       f0, 0x1034(r2)
-	  lis       r3, 0x8050
-	  addi      r3, r3, 0x71A0
-	  fmuls     f0, f1, f0
-	  fctiwz    f0, f0
-	  stfd      f0, 0x28(r1)
-	  lwz       r0, 0x2C(r1)
-	  rlwinm    r0,r0,3,18,28
-	  lfsx      f5, r3, r0
+lbl_803A42D8:
+	lfs      f0, lbl_8051F394@sda21(r2)
+	lis      r3, sincosTable___5JMath@ha
+	addi     r3, r3, sincosTable___5JMath@l
+	fmuls    f0, f1, f0
+	fctiwz   f0, f0
+	stfd     f0, 0x28(r1)
+	lwz      r0, 0x2c(r1)
+	rlwinm   r0, r0, 3, 0x12, 0x1c
+	lfsx     f5, r3, r0
 
-	.loc_0x17C:
-	  lfs       f0, 0x1018(r2)
-	  fmr       f3, f1
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x190
-	  fneg      f3, f1
+lbl_803A42FC:
+	lfs      f0, lbl_8051F378@sda21(r2)
+	fmr      f3, f1
+	fcmpo    cr0, f1, f0
+	bge      lbl_803A4310
+	fneg     f3, f1
 
-	.loc_0x190:
-	  lfs       f2, 0x1034(r2)
-	  lis       r3, 0x8050
-	  lfs       f0, 0x1018(r2)
-	  addi      r3, r3, 0x71A0
-	  fmuls     f4, f3, f2
-	  addi      r3, r3, 0x4
-	  fcmpo     cr0, f1, f0
-	  lfs       f2, 0x103C(r2)
-	  lfs       f3, 0x1038(r2)
-	  fmr       f7, f1
-	  fctiwz    f0, f4
-	  lfs       f4, 0x14(r1)
-	  stfd      f0, 0x30(r1)
-	  lwz       r0, 0x34(r1)
-	  rlwinm    r0,r0,3,18,28
-	  lfsx      f0, r3, r0
-	  fmuls     f0, f2, f0
-	  fmsubs    f0, f3, f5, f0
-	  fadds     f0, f4, f0
-	  stfs      f0, 0x14(r1)
-	  bge-      .loc_0x1E8
-	  fneg      f7, f1
+lbl_803A4310:
+	lfs      f2, lbl_8051F394@sda21(r2)
+	lis      r3, sincosTable___5JMath@ha
+	lfs      f0, lbl_8051F378@sda21(r2)
+	addi     r3, r3, sincosTable___5JMath@l
+	fmuls    f4, f3, f2
+	addi     r3, r3, 4
+	fcmpo    cr0, f1, f0
+	lfs      f2, lbl_8051F39C@sda21(r2)
+	lfs      f3, lbl_8051F398@sda21(r2)
+	fmr      f7, f1
+	fctiwz   f0, f4
+	lfs      f4, 0x14(r1)
+	stfd     f0, 0x30(r1)
+	lwz      r0, 0x34(r1)
+	rlwinm   r0, r0, 3, 0x12, 0x1c
+	lfsx     f0, r3, r0
+	fmuls    f0, f2, f0
+	fmsubs   f0, f3, f5, f0
+	fadds    f0, f4, f0
+	stfs     f0, 0x14(r1)
+	bge      lbl_803A4368
+	fneg     f7, f1
 
-	.loc_0x1E8:
-	  lfs       f6, 0x1034(r2)
-	  lfs       f0, 0x1018(r2)
-	  fmuls     f5, f7, f6
-	  lfs       f4, 0x1C(r1)
-	  fcmpo     cr0, f1, f0
-	  lfs       f3, 0x1038(r2)
-	  lfs       f2, 0x103C(r2)
-	  fctiwz    f0, f5
-	  stfd      f0, 0x38(r1)
-	  lwz       r0, 0x3C(r1)
-	  rlwinm    r0,r0,3,18,28
-	  lfsx      f5, r3, r0
-	  bge-      .loc_0x248
-	  lfs       f0, 0x1030(r2)
-	  lis       r3, 0x8050
-	  addi      r3, r3, 0x71A0
-	  fmuls     f0, f1, f0
-	  fctiwz    f0, f0
-	  stfd      f0, 0x40(r1)
-	  lwz       r0, 0x44(r1)
-	  rlwinm    r0,r0,3,18,28
-	  lfsx      f0, r3, r0
-	  fneg      f0, f0
-	  b         .loc_0x268
+lbl_803A4368:
+	lfs      f6, lbl_8051F394@sda21(r2)
+	lfs      f0, lbl_8051F378@sda21(r2)
+	fmuls    f5, f7, f6
+	lfs      f4, 0x1c(r1)
+	fcmpo    cr0, f1, f0
+	lfs      f3, lbl_8051F398@sda21(r2)
+	lfs      f2, lbl_8051F39C@sda21(r2)
+	fctiwz   f0, f5
+	stfd     f0, 0x38(r1)
+	lwz      r0, 0x3c(r1)
+	rlwinm   r0, r0, 3, 0x12, 0x1c
+	lfsx     f5, r3, r0
+	bge      lbl_803A43C8
+	lfs      f0, lbl_8051F390@sda21(r2)
+	lis      r3, sincosTable___5JMath@ha
+	addi     r3, r3, sincosTable___5JMath@l
+	fmuls    f0, f1, f0
+	fctiwz   f0, f0
+	stfd     f0, 0x40(r1)
+	lwz      r0, 0x44(r1)
+	rlwinm   r0, r0, 3, 0x12, 0x1c
+	lfsx     f0, r3, r0
+	fneg     f0, f0
+	b        lbl_803A43E8
 
-	.loc_0x248:
-	  fmuls     f0, f1, f6
-	  lis       r3, 0x8050
-	  addi      r3, r3, 0x71A0
-	  fctiwz    f0, f0
-	  stfd      f0, 0x48(r1)
-	  lwz       r0, 0x4C(r1)
-	  rlwinm    r0,r0,3,18,28
-	  lfsx      f0, r3, r0
+lbl_803A43C8:
+	fmuls    f0, f1, f6
+	lis      r3, sincosTable___5JMath@ha
+	addi     r3, r3, sincosTable___5JMath@l
+	fctiwz   f0, f0
+	stfd     f0, 0x48(r1)
+	lwz      r0, 0x4c(r1)
+	rlwinm   r0, r0, 3, 0x12, 0x1c
+	lfsx     f0, r3, r0
 
-	.loc_0x268:
-	  fmuls     f0, f2, f0
-	  lfs       f1, 0x1040(r2)
-	  mr        r3, r31
-	  addi      r4, r1, 0x14
-	  fmsubs    f0, f3, f5, f0
-	  fadds     f0, f4, f0
-	  stfs      f0, 0x1C(r1)
-	  bl        -0x2A08B4
-	  b         .loc_0x2DC
+lbl_803A43E8:
+	fmuls    f0, f2, f0
+	lfs      f1, lbl_8051F3A0@sda21(r2)
+	mr       r3, r31
+	addi     r4, r1, 0x14
+	fmsubs   f0, f3, f5, f0
+	fadds    f0, f4, f0
+	stfs     f0, 0x1c(r1)
+	bl       "createBounceEffect__Q24Game9EnemyBaseFRC10Vector3<f>f"
+	b        lbl_803A445C
 
-	.loc_0x28C:
-	  cmplwi    r0, 0x3E8
-	  bne-      .loc_0x2DC
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r3, r31
-	  bl        0x663C
-	  b         .loc_0x2DC
+lbl_803A440C:
+	cmplwi   r0, 0x3e8
+	bne      lbl_803A445C
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 0
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	mr       r3, r31
+	bl       collisionStOff__Q34Game8BlackMan3ObjFv
+	b        lbl_803A445C
 
-	.loc_0x2C0:
-	  lwz       r3, 0xC0(r31)
-	  lwz       r4, 0x2CC(r31)
-	  lwz       r0, 0x9AC(r3)
-	  cmpw      r4, r0
-	  ble-      .loc_0x2DC
-	  mr        r3, r31
-	  bl        -0x29F1B8
+lbl_803A4440:
+	lwz      r3, 0xc0(r31)
+	lwz      r4, 0x2cc(r31)
+	lwz      r0, 0x9ac(r3)
+	cmpw     r4, r0
+	ble      lbl_803A445C
+	mr       r3, r31
+	bl       finishMotion__Q24Game9EnemyBaseFv
 
-	.loc_0x2DC:
-	  lwz       r0, 0x64(r1)
-	  lwz       r31, 0x5C(r1)
-	  lwz       r30, 0x58(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x60
-	  blr
+lbl_803A445C:
+	lwz      r0, 0x64(r1)
+	lwz      r31, 0x5c(r1)
+	lwz      r30, 0x58(r1)
+	mtlr     r0
+	addi     r1, r1, 0x60
+	blr
 	*/
 }
 
@@ -831,16 +1064,15 @@ void BlackMan::StateFreeze::exec(Game::EnemyBase*)
 void BlackMan::StateFreeze::cleanup(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r3, r4
-	  stw       r0, 0x14(r1)
-	  bl        0x65F0
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r3, r4
+	stw      r0, 0x14(r1)
+	bl       collisionStOff__Q34Game8BlackMan3ObjFv
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -852,22 +1084,21 @@ void BlackMan::StateFreeze::cleanup(Game::EnemyBase*)
 BlackMan::StateBend::StateBend(int)
 {
 	/*
-	.loc_0x0:
-	  lis       r5, 0x804B
-	  lis       r6, 0x804E
-	  subi      r0, r5, 0x65C
-	  lis       r5, 0x804E
-	  stw       r0, 0x0(r3)
-	  li        r7, 0
-	  addi      r6, r6, 0x5BA0
-	  addi      r5, r5, 0x5B10
-	  stw       r4, 0x4(r3)
-	  addi      r0, r2, 0x1044
-	  stw       r7, 0x8(r3)
-	  stw       r6, 0x0(r3)
-	  stw       r5, 0x0(r3)
-	  stw       r0, 0xC(r3)
-	  blr
+	lis      r5, __vt__Q24Game13EnemyFSMState@ha
+	lis      r6, __vt__Q34Game8BlackMan5State@ha
+	addi     r0, r5, __vt__Q24Game13EnemyFSMState@l
+	lis      r5, __vt__Q34Game8BlackMan9StateBend@ha
+	stw      r0, 0(r3)
+	li       r7, 0
+	addi     r6, r6, __vt__Q34Game8BlackMan5State@l
+	addi     r5, r5, __vt__Q34Game8BlackMan9StateBend@l
+	stw      r4, 4(r3)
+	addi     r0, r2, lbl_8051F3A4@sda21
+	stw      r7, 8(r3)
+	stw      r6, 0(r3)
+	stw      r5, 0(r3)
+	stw      r0, 0xc(r3)
+	blr
 	*/
 }
 
@@ -879,40 +1110,39 @@ BlackMan::StateBend::StateBend(int)
 void BlackMan::StateBend::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  stw       r30, 0x8(r1)
-	  mr        r30, r4
-	  mr        r3, r30
-	  bl        0x64E4
-	  mr        r3, r30
-	  li        r31, 0
-	  bl        -0x29D1B4
-	  cmpwi     r3, 0x3
-	  bne-      .loc_0x38
-	  li        r31, 0x1
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	stw      r30, 8(r1)
+	mr       r30, r4
+	mr       r3, r30
+	bl       collisionStOn__Q34Game8BlackMan3ObjFv
+	mr       r3, r30
+	li       r31, 0
+	bl       getCurrAnimIndex__Q24Game9EnemyBaseFv
+	cmpwi    r3, 3
+	bne      lbl_803A450C
+	li       r31, 1
 
-	.loc_0x38:
-	  mr        r3, r30
-	  li        r4, 0
-	  li        r5, 0
-	  bl        -0x29F514
-	  rlwinm.   r0,r31,0,24,31
-	  beq-      .loc_0x5C
-	  lfs       f1, 0x104C(r2)
-	  mr        r3, r30
-	  bl        -0x29F304
+lbl_803A450C:
+	mr       r3, r30
+	li       r4, 0
+	li       r5, 0
+	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
+	clrlwi.  r0, r31, 0x18
+	beq      lbl_803A4530
+	lfs      f1, lbl_8051F3AC@sda21(r2)
+	mr       r3, r30
+	bl       setMotionFrame__Q24Game9EnemyBaseFf
 
-	.loc_0x5C:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803A4530:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -924,143 +1154,142 @@ void BlackMan::StateBend::init(Game::EnemyBase*, Game::StateArg*)
 void BlackMan::StateBend::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  lfs       f0, 0x1018(r2)
-	  stw       r0, 0x34(r1)
-	  stw       r31, 0x2C(r1)
-	  mr        r31, r4
-	  stw       r30, 0x28(r1)
-	  mr        r30, r3
-	  lfs       f1, 0x200(r4)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0, 0x2
-	  bne-      .loc_0x4C
-	  lwz       r12, 0x0(r3)
-	  li        r5, 0x1
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x1D0
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	lfs      f0, lbl_8051F378@sda21(r2)
+	stw      r0, 0x34(r1)
+	stw      r31, 0x2c(r1)
+	mr       r31, r4
+	stw      r30, 0x28(r1)
+	mr       r30, r3
+	lfs      f1, 0x200(r4)
+	fcmpo    cr0, f1, f0
+	cror     2, 0, 2
+	bne      lbl_803A4594
+	lwz      r12, 0(r3)
+	li       r5, 1
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_803A4718
 
-	.loc_0x4C:
-	  mr        r3, r31
-	  bl        0x6144
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x80
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x4
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x1D0
+lbl_803A4594:
+	mr       r3, r31
+	bl       isTyreDead__Q34Game8BlackMan3ObjFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803A45C8
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 4
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_803A4718
 
-	.loc_0x80:
-	  mr        r3, r31
-	  li        r4, 0
-	  bl        -0x28FF78
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xC0
-	  li        r0, 0x3
-	  mr        r3, r30
-	  stw       r0, 0x2DC(r31)
-	  mr        r4, r31
-	  li        r5, 0x6
-	  li        r6, 0
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x1D0
+lbl_803A45C8:
+	mr       r3, r31
+	li       r4, 0
+	bl       isStartFlick__Q24Game9EnemyFuncFPQ24Game9EnemyBaseb
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803A4608
+	li       r0, 3
+	mr       r3, r30
+	stw      r0, 0x2dc(r31)
+	mr       r4, r31
+	li       r5, 6
+	li       r6, 0
+	lwz      r12, 0(r30)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_803A4718
 
-	.loc_0xC0:
-	  lwz       r3, 0x188(r31)
-	  lbz       r0, 0x24(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x1A8
-	  lwz       r0, 0x1C(r3)
-	  cmplwi    r0, 0x2
-	  bne-      .loc_0x140
-	  mr        r3, r31
-	  bl        0x696C
-	  mr        r4, r31
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f2, 0x8(r1)
-	  addi      r5, r1, 0x14
-	  lfs       f1, 0xC(r1)
-	  li        r4, 0xC
-	  lfs       f0, 0x10(r1)
-	  li        r6, 0x2
-	  stfs      f2, 0x14(r1)
-	  lwz       r3, -0x6960(r13)
-	  stfs      f1, 0x18(r1)
-	  stfs      f0, 0x1C(r1)
-	  bl        -0x152430
-	  lwz       r3, -0x6958(r13)
-	  addi      r5, r1, 0x14
-	  li        r4, 0xE
-	  li        r6, 0x2
-	  bl        -0x150F00
-	  b         .loc_0x1D0
+lbl_803A4608:
+	lwz      r3, 0x188(r31)
+	lbz      r0, 0x24(r3)
+	cmplwi   r0, 0
+	beq      lbl_803A46F0
+	lwz      r0, 0x1c(r3)
+	cmplwi   r0, 2
+	bne      lbl_803A4688
+	mr       r3, r31
+	bl       bendEffect__Q34Game8BlackMan3ObjFv
+	mr       r4, r31
+	addi     r3, r1, 8
+	lwz      r12, 0(r31)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f2, 8(r1)
+	addi     r5, r1, 0x14
+	lfs      f1, 0xc(r1)
+	li       r4, 0xc
+	lfs      f0, 0x10(r1)
+	li       r6, 2
+	stfs     f2, 0x14(r1)
+	lwz      r3, cameraMgr__4Game@sda21(r13)
+	stfs     f1, 0x18(r1)
+	stfs     f0, 0x1c(r1)
+	bl       "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
+	lwz      r3, rumbleMgr__4Game@sda21(r13)
+	addi     r5, r1, 0x14
+	li       r4, 0xe
+	li       r6, 2
+	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
+	b        lbl_803A4718
 
-	.loc_0x140:
-	  cmplwi    r0, 0x3E8
-	  bne-      .loc_0x1D0
-	  mr        r3, r31
-	  bl        0x63E0
-	  mr        r3, r31
-	  bl        0x6040
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x184
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x4
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x1D0
+lbl_803A4688:
+	cmplwi   r0, 0x3e8
+	bne      lbl_803A4718
+	mr       r3, r31
+	bl       collisionStOff__Q34Game8BlackMan3ObjFv
+	mr       r3, r31
+	bl       isTyreDead__Q34Game8BlackMan3ObjFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803A46CC
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 4
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_803A4718
 
-	.loc_0x184:
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x7
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x1D0
+lbl_803A46CC:
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 7
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_803A4718
 
-	.loc_0x1A8:
-	  lwz       r3, 0x2CC(r31)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x2CC(r31)
-	  lwz       r3, 0xC0(r31)
-	  lwz       r4, 0x2CC(r31)
-	  lwz       r0, 0x984(r3)
-	  cmpw      r4, r0
-	  ble-      .loc_0x1D0
-	  mr        r3, r31
-	  bl        -0x29F474
+lbl_803A46F0:
+	lwz      r3, 0x2cc(r31)
+	addi     r0, r3, 1
+	stw      r0, 0x2cc(r31)
+	lwz      r3, 0xc0(r31)
+	lwz      r4, 0x2cc(r31)
+	lwz      r0, 0x984(r3)
+	cmpw     r4, r0
+	ble      lbl_803A4718
+	mr       r3, r31
+	bl       finishMotion__Q24Game9EnemyBaseFv
 
-	.loc_0x1D0:
-	  lwz       r0, 0x34(r1)
-	  lwz       r31, 0x2C(r1)
-	  lwz       r30, 0x28(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_803A4718:
+	lwz      r0, 0x34(r1)
+	lwz      r31, 0x2c(r1)
+	lwz      r30, 0x28(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -1072,16 +1301,15 @@ void BlackMan::StateBend::exec(Game::EnemyBase*)
 void BlackMan::StateBend::cleanup(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r3, r4
-	  stw       r0, 0x14(r1)
-	  bl        0x6334
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r3, r4
+	stw      r0, 0x14(r1)
+	bl       collisionStOff__Q34Game8BlackMan3ObjFv
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1093,22 +1321,21 @@ void BlackMan::StateBend::cleanup(Game::EnemyBase*)
 BlackMan::StateEscape::StateEscape(int)
 {
 	/*
-	.loc_0x0:
-	  lis       r5, 0x804B
-	  lis       r6, 0x804E
-	  subi      r0, r5, 0x65C
-	  lis       r5, 0x804E
-	  stw       r0, 0x0(r3)
-	  li        r7, 0
-	  addi      r6, r6, 0x5BA0
-	  addi      r5, r5, 0x5AEC
-	  stw       r4, 0x4(r3)
-	  addi      r0, r2, 0x1050
-	  stw       r7, 0x8(r3)
-	  stw       r6, 0x0(r3)
-	  stw       r5, 0x0(r3)
-	  stw       r0, 0xC(r3)
-	  blr
+	lis      r5, __vt__Q24Game13EnemyFSMState@ha
+	lis      r6, __vt__Q34Game8BlackMan5State@ha
+	addi     r0, r5, __vt__Q24Game13EnemyFSMState@l
+	lis      r5, __vt__Q34Game8BlackMan11StateEscape@ha
+	stw      r0, 0(r3)
+	li       r7, 0
+	addi     r6, r6, __vt__Q34Game8BlackMan5State@l
+	addi     r5, r5, __vt__Q34Game8BlackMan11StateEscape@l
+	stw      r4, 4(r3)
+	addi     r0, r2, lbl_8051F3B0@sda21
+	stw      r7, 8(r3)
+	stw      r6, 0(r3)
+	stw      r5, 0(r3)
+	stw      r0, 0xc(r3)
+	blr
 	*/
 }
 
@@ -1120,55 +1347,54 @@ BlackMan::StateEscape::StateEscape(int)
 void BlackMan::StateEscape::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r5, 0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  li        r4, 0x5
-	  mr        r3, r31
-	  bl        -0x29F7AC
-	  mr        r3, r31
-	  bl        0x6208
-	  mr        r3, r31
-	  bl        0x62B4
-	  lwz       r31, 0x28C(r31)
-	  mr        r3, r31
-	  lwz       r12, 0x28(r31)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  cmpwi     r3, 0x6
-	  beq-      .loc_0x70
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  addi      r3, r3, 0x5230
-	  li        r4, 0x45A
-	  addi      r5, r5, 0x5248
-	  crclr     6, 0x6
-	  bl        -0x37A1BC
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	li       r5, 0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	li       r4, 5
+	mr       r3, r31
+	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
+	mr       r3, r31
+	bl       escape__Q34Game8BlackMan3ObjFv
+	mr       r3, r31
+	bl       collisionStOff__Q34Game8BlackMan3ObjFv
+	lwz      r31, 0x28c(r31)
+	mr       r3, r31
+	lwz      r12, 0x28(r31)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	cmpwi    r3, 6
+	beq      lbl_803A4800
+	lis      r3, lbl_80495230@ha
+	lis      r5, lbl_80495248@ha
+	addi     r3, r3, lbl_80495230@l
+	li       r4, 0x45a
+	addi     r5, r5, lbl_80495248@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x70:
-	  cmplwi    r31, 0
-	  beq-      .loc_0x9C
-	  lbz       r0, 0xFC(r31)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x9C
-	  mr        r3, r31
-	  li        r4, 0xB
-	  lwz       r12, 0x28(r31)
-	  lwz       r12, 0xD4(r12)
-	  mtctr     r12
-	  bctrl
+lbl_803A4800:
+	cmplwi   r31, 0
+	beq      lbl_803A482C
+	lbz      r0, 0xfc(r31)
+	cmplwi   r0, 0
+	beq      lbl_803A482C
+	mr       r3, r31
+	li       r4, 0xb
+	lwz      r12, 0x28(r31)
+	lwz      r12, 0xd4(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x9C:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803A482C:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1180,204 +1406,203 @@ void BlackMan::StateEscape::init(Game::EnemyBase*, Game::StateArg*)
 void BlackMan::StateEscape::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x70(r1)
-	  mflr      r0
-	  stw       r0, 0x74(r1)
-	  stw       r31, 0x6C(r1)
-	  mr        r31, r4
-	  lwz       r5, 0x188(r4)
-	  lbz       r0, 0x24(r5)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x2A0
-	  lwz       r0, 0x1C(r5)
-	  cmpwi     r0, 0x5
-	  beq-      .loc_0x230
-	  bge-      .loc_0x44
-	  cmpwi     r0, 0x2
-	  beq-      .loc_0x50
-	  bge-      .loc_0x5C
-	  b         .loc_0x2A0
+	stwu     r1, -0x70(r1)
+	mflr     r0
+	stw      r0, 0x74(r1)
+	stw      r31, 0x6c(r1)
+	mr       r31, r4
+	lwz      r5, 0x188(r4)
+	lbz      r0, 0x24(r5)
+	cmplwi   r0, 0
+	beq      lbl_803A4AE0
+	lwz      r0, 0x1c(r5)
+	cmpwi    r0, 5
+	beq      lbl_803A4A70
+	bge      lbl_803A4884
+	cmpwi    r0, 2
+	beq      lbl_803A4890
+	bge      lbl_803A489C
+	b        lbl_803A4AE0
 
-	.loc_0x44:
-	  cmpwi     r0, 0x3E8
-	  beq-      .loc_0x288
-	  b         .loc_0x2A0
+lbl_803A4884:
+	cmpwi    r0, 0x3e8
+	beq      lbl_803A4AC8
+	b        lbl_803A4AE0
 
-	.loc_0x50:
-	  mr        r3, r31
-	  bl        0x6278
-	  b         .loc_0x2A0
+lbl_803A4890:
+	mr       r3, r31
+	bl       flick__Q34Game8BlackMan3ObjFv
+	b        lbl_803A4AE0
 
-	.loc_0x5C:
-	  lwz       r12, 0x0(r4)
-	  addi      r3, r1, 0x14
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f2, 0x14(r1)
-	  addi      r5, r1, 0x20
-	  lfs       f1, 0x18(r1)
-	  li        r4, 0x11
-	  lfs       f0, 0x1C(r1)
-	  li        r6, 0x2
-	  stfs      f2, 0x20(r1)
-	  lwz       r3, -0x6960(r13)
-	  stfs      f1, 0x24(r1)
-	  stfs      f0, 0x28(r1)
-	  bl        -0x15269C
-	  lwz       r3, -0x6958(r13)
-	  addi      r5, r1, 0x20
-	  li        r4, 0x10
-	  li        r6, 0x2
-	  bl        -0x15116C
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x64(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f0, 0x1018(r2)
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0xFC
-	  lfs       f0, 0x1030(r2)
-	  lis       r3, 0x8050
-	  addi      r3, r3, 0x71A0
-	  fmuls     f0, f1, f0
-	  fctiwz    f0, f0
-	  stfd      f0, 0x30(r1)
-	  lwz       r0, 0x34(r1)
-	  rlwinm    r0,r0,3,18,28
-	  lfsx      f0, r3, r0
-	  fneg      f5, f0
-	  b         .loc_0x120
+lbl_803A489C:
+	lwz      r12, 0(r4)
+	addi     r3, r1, 0x14
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f2, 0x14(r1)
+	addi     r5, r1, 0x20
+	lfs      f1, 0x18(r1)
+	li       r4, 0x11
+	lfs      f0, 0x1c(r1)
+	li       r6, 2
+	stfs     f2, 0x20(r1)
+	lwz      r3, cameraMgr__4Game@sda21(r13)
+	stfs     f1, 0x24(r1)
+	stfs     f0, 0x28(r1)
+	bl       "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
+	lwz      r3, rumbleMgr__4Game@sda21(r13)
+	addi     r5, r1, 0x20
+	li       r4, 0x10
+	li       r6, 2
+	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r12, 0x64(r12)
+	mtctr    r12
+	bctrl
+	lfs      f0, lbl_8051F378@sda21(r2)
+	fcmpo    cr0, f1, f0
+	bge      lbl_803A493C
+	lfs      f0, lbl_8051F390@sda21(r2)
+	lis      r3, sincosTable___5JMath@ha
+	addi     r3, r3, sincosTable___5JMath@l
+	fmuls    f0, f1, f0
+	fctiwz   f0, f0
+	stfd     f0, 0x30(r1)
+	lwz      r0, 0x34(r1)
+	rlwinm   r0, r0, 3, 0x12, 0x1c
+	lfsx     f0, r3, r0
+	fneg     f5, f0
+	b        lbl_803A4960
 
-	.loc_0xFC:
-	  lfs       f0, 0x1034(r2)
-	  lis       r3, 0x8050
-	  addi      r3, r3, 0x71A0
-	  fmuls     f0, f1, f0
-	  fctiwz    f0, f0
-	  stfd      f0, 0x38(r1)
-	  lwz       r0, 0x3C(r1)
-	  rlwinm    r0,r0,3,18,28
-	  lfsx      f5, r3, r0
+lbl_803A493C:
+	lfs      f0, lbl_8051F394@sda21(r2)
+	lis      r3, sincosTable___5JMath@ha
+	addi     r3, r3, sincosTable___5JMath@l
+	fmuls    f0, f1, f0
+	fctiwz   f0, f0
+	stfd     f0, 0x38(r1)
+	lwz      r0, 0x3c(r1)
+	rlwinm   r0, r0, 3, 0x12, 0x1c
+	lfsx     f5, r3, r0
 
-	.loc_0x120:
-	  lfs       f0, 0x1018(r2)
-	  fmr       f3, f1
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x134
-	  fneg      f3, f1
+lbl_803A4960:
+	lfs      f0, lbl_8051F378@sda21(r2)
+	fmr      f3, f1
+	fcmpo    cr0, f1, f0
+	bge      lbl_803A4974
+	fneg     f3, f1
 
-	.loc_0x134:
-	  lfs       f2, 0x1034(r2)
-	  lis       r3, 0x8050
-	  lfs       f0, 0x1018(r2)
-	  addi      r3, r3, 0x71A0
-	  fmuls     f4, f3, f2
-	  addi      r3, r3, 0x4
-	  fcmpo     cr0, f1, f0
-	  lfs       f2, 0x105C(r2)
-	  lfs       f3, 0x1058(r2)
-	  fmr       f7, f1
-	  fctiwz    f0, f4
-	  lfs       f4, 0x20(r1)
-	  stfd      f0, 0x40(r1)
-	  lwz       r0, 0x44(r1)
-	  rlwinm    r0,r0,3,18,28
-	  lfsx      f0, r3, r0
-	  fmuls     f0, f2, f0
-	  fmsubs    f0, f3, f5, f0
-	  fadds     f0, f4, f0
-	  stfs      f0, 0x20(r1)
-	  bge-      .loc_0x18C
-	  fneg      f7, f1
+lbl_803A4974:
+	lfs      f2, lbl_8051F394@sda21(r2)
+	lis      r3, sincosTable___5JMath@ha
+	lfs      f0, lbl_8051F378@sda21(r2)
+	addi     r3, r3, sincosTable___5JMath@l
+	fmuls    f4, f3, f2
+	addi     r3, r3, 4
+	fcmpo    cr0, f1, f0
+	lfs      f2, lbl_8051F3BC@sda21(r2)
+	lfs      f3, lbl_8051F3B8@sda21(r2)
+	fmr      f7, f1
+	fctiwz   f0, f4
+	lfs      f4, 0x20(r1)
+	stfd     f0, 0x40(r1)
+	lwz      r0, 0x44(r1)
+	rlwinm   r0, r0, 3, 0x12, 0x1c
+	lfsx     f0, r3, r0
+	fmuls    f0, f2, f0
+	fmsubs   f0, f3, f5, f0
+	fadds    f0, f4, f0
+	stfs     f0, 0x20(r1)
+	bge      lbl_803A49CC
+	fneg     f7, f1
 
-	.loc_0x18C:
-	  lfs       f6, 0x1034(r2)
-	  lfs       f0, 0x1018(r2)
-	  fmuls     f5, f7, f6
-	  lfs       f4, 0x28(r1)
-	  fcmpo     cr0, f1, f0
-	  lfs       f3, 0x1058(r2)
-	  lfs       f2, 0x105C(r2)
-	  fctiwz    f0, f5
-	  stfd      f0, 0x48(r1)
-	  lwz       r0, 0x4C(r1)
-	  rlwinm    r0,r0,3,18,28
-	  lfsx      f5, r3, r0
-	  bge-      .loc_0x1EC
-	  lfs       f0, 0x1030(r2)
-	  lis       r3, 0x8050
-	  addi      r3, r3, 0x71A0
-	  fmuls     f0, f1, f0
-	  fctiwz    f0, f0
-	  stfd      f0, 0x50(r1)
-	  lwz       r0, 0x54(r1)
-	  rlwinm    r0,r0,3,18,28
-	  lfsx      f0, r3, r0
-	  fneg      f0, f0
-	  b         .loc_0x20C
+lbl_803A49CC:
+	lfs      f6, lbl_8051F394@sda21(r2)
+	lfs      f0, lbl_8051F378@sda21(r2)
+	fmuls    f5, f7, f6
+	lfs      f4, 0x28(r1)
+	fcmpo    cr0, f1, f0
+	lfs      f3, lbl_8051F3B8@sda21(r2)
+	lfs      f2, lbl_8051F3BC@sda21(r2)
+	fctiwz   f0, f5
+	stfd     f0, 0x48(r1)
+	lwz      r0, 0x4c(r1)
+	rlwinm   r0, r0, 3, 0x12, 0x1c
+	lfsx     f5, r3, r0
+	bge      lbl_803A4A2C
+	lfs      f0, lbl_8051F390@sda21(r2)
+	lis      r3, sincosTable___5JMath@ha
+	addi     r3, r3, sincosTable___5JMath@l
+	fmuls    f0, f1, f0
+	fctiwz   f0, f0
+	stfd     f0, 0x50(r1)
+	lwz      r0, 0x54(r1)
+	rlwinm   r0, r0, 3, 0x12, 0x1c
+	lfsx     f0, r3, r0
+	fneg     f0, f0
+	b        lbl_803A4A4C
 
-	.loc_0x1EC:
-	  fmuls     f0, f1, f6
-	  lis       r3, 0x8050
-	  addi      r3, r3, 0x71A0
-	  fctiwz    f0, f0
-	  stfd      f0, 0x58(r1)
-	  lwz       r0, 0x5C(r1)
-	  rlwinm    r0,r0,3,18,28
-	  lfsx      f0, r3, r0
+lbl_803A4A2C:
+	fmuls    f0, f1, f6
+	lis      r3, sincosTable___5JMath@ha
+	addi     r3, r3, sincosTable___5JMath@l
+	fctiwz   f0, f0
+	stfd     f0, 0x58(r1)
+	lwz      r0, 0x5c(r1)
+	rlwinm   r0, r0, 3, 0x12, 0x1c
+	lfsx     f0, r3, r0
 
-	.loc_0x20C:
-	  fmuls     f0, f2, f0
-	  lfs       f1, 0x1060(r2)
-	  mr        r3, r31
-	  addi      r4, r1, 0x20
-	  fmsubs    f0, f3, f5, f0
-	  fadds     f0, f4, f0
-	  stfs      f0, 0x28(r1)
-	  bl        -0x2A0F18
-	  b         .loc_0x2A0
+lbl_803A4A4C:
+	fmuls    f0, f2, f0
+	lfs      f1, lbl_8051F3C0@sda21(r2)
+	mr       r3, r31
+	addi     r4, r1, 0x20
+	fmsubs   f0, f3, f5, f0
+	fadds    f0, f4, f0
+	stfs     f0, 0x28(r1)
+	bl       "createBounceEffect__Q24Game9EnemyBaseFRC10Vector3<f>f"
+	b        lbl_803A4AE0
 
-	.loc_0x230:
-	  lwz       r12, 0x0(r4)
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f2, 0x8(r1)
-	  addi      r5, r1, 0x20
-	  lfs       f1, 0xC(r1)
-	  li        r4, 0x11
-	  lfs       f0, 0x10(r1)
-	  li        r6, 0x2
-	  stfs      f2, 0x20(r1)
-	  lwz       r3, -0x6960(r13)
-	  stfs      f1, 0x24(r1)
-	  stfs      f0, 0x28(r1)
-	  bl        -0x152870
-	  lwz       r3, -0x6958(r13)
-	  addi      r5, r1, 0x20
-	  li        r4, 0x10
-	  li        r6, 0x2
-	  bl        -0x151340
-	  b         .loc_0x2A0
+lbl_803A4A70:
+	lwz      r12, 0(r4)
+	addi     r3, r1, 8
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f2, 8(r1)
+	addi     r5, r1, 0x20
+	lfs      f1, 0xc(r1)
+	li       r4, 0x11
+	lfs      f0, 0x10(r1)
+	li       r6, 2
+	stfs     f2, 0x20(r1)
+	lwz      r3, cameraMgr__4Game@sda21(r13)
+	stfs     f1, 0x24(r1)
+	stfs     f0, 0x28(r1)
+	bl       "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
+	lwz      r3, rumbleMgr__4Game@sda21(r13)
+	addi     r5, r1, 0x20
+	li       r4, 0x10
+	li       r6, 2
+	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
+	b        lbl_803A4AE0
 
-	.loc_0x288:
-	  lwz       r12, 0x0(r3)
-	  li        r5, 0
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_803A4AC8:
+	lwz      r12, 0(r3)
+	li       r5, 0
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x2A0:
-	  lwz       r0, 0x74(r1)
-	  lwz       r31, 0x6C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x70
-	  blr
+lbl_803A4AE0:
+	lwz      r0, 0x74(r1)
+	lwz      r31, 0x6c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x70
+	blr
 	*/
 }
 
@@ -1389,22 +1614,21 @@ void BlackMan::StateEscape::exec(Game::EnemyBase*)
 BlackMan::StateFall::StateFall(int)
 {
 	/*
-	.loc_0x0:
-	  lis       r5, 0x804B
-	  lis       r6, 0x804E
-	  subi      r0, r5, 0x65C
-	  lis       r5, 0x804E
-	  stw       r0, 0x0(r3)
-	  li        r7, 0
-	  addi      r6, r6, 0x5BA0
-	  addi      r5, r5, 0x5AC8
-	  stw       r4, 0x4(r3)
-	  addi      r0, r2, 0x1064
-	  stw       r7, 0x8(r3)
-	  stw       r6, 0x0(r3)
-	  stw       r5, 0x0(r3)
-	  stw       r0, 0xC(r3)
-	  blr
+	lis      r5, __vt__Q24Game13EnemyFSMState@ha
+	lis      r6, __vt__Q34Game8BlackMan5State@ha
+	addi     r0, r5, __vt__Q24Game13EnemyFSMState@l
+	lis      r5, __vt__Q34Game8BlackMan9StateFall@ha
+	stw      r0, 0(r3)
+	li       r7, 0
+	addi     r6, r6, __vt__Q34Game8BlackMan5State@l
+	addi     r5, r5, __vt__Q34Game8BlackMan9StateFall@l
+	stw      r4, 4(r3)
+	addi     r0, r2, lbl_8051F3C4@sda21
+	stw      r7, 8(r3)
+	stw      r6, 0(r3)
+	stw      r5, 0(r3)
+	stw      r0, 0xc(r3)
+	blr
 	*/
 }
 
@@ -1416,26 +1640,25 @@ BlackMan::StateFall::StateFall(int)
 void BlackMan::StateFall::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r5, 0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  li        r4, 0xD
-	  mr        r3, r31
-	  bl        -0x29FB4C
-	  mr        r3, r31
-	  bl        -0x29D3DC
-	  lwz       r0, 0x1E0(r31)
-	  oris      r0, r0, 0x20
-	  stw       r0, 0x1E0(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	li       r5, 0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	li       r4, 0xd
+	mr       r3, r31
+	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
+	mr       r3, r31
+	bl       hardConstraintOn__Q24Game9EnemyBaseFv
+	lwz      r0, 0x1e0(r31)
+	oris     r0, r0, 0x20
+	stw      r0, 0x1e0(r31)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1447,107 +1670,106 @@ void BlackMan::StateFall::init(Game::EnemyBase*, Game::StateArg*)
 void BlackMan::StateFall::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x50(r1)
-	  mflr      r0
-	  stw       r0, 0x54(r1)
-	  stfd      f31, 0x40(r1)
-	  psq_st    f31,0x48(r1),0,0
-	  stw       r31, 0x3C(r1)
-	  stw       r30, 0x38(r1)
-	  mr        r31, r4
-	  mr        r30, r3
-	  lwz       r3, 0x188(r4)
-	  lbz       r0, 0x24(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0xE8
-	  lwz       r0, 0x1C(r3)
-	  cmplwi    r0, 0x2
-	  bne-      .loc_0xA4
-	  mr        r3, r31
-	  bl        0x6680
-	  mr        r4, r31
-	  addi      r3, r1, 0x14
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f2, 0x14(r1)
-	  addi      r5, r1, 0x2C
-	  lfs       f1, 0x18(r1)
-	  li        r4, 0x11
-	  lfs       f0, 0x1C(r1)
-	  li        r6, 0x2
-	  stfs      f2, 0x2C(r1)
-	  lwz       r3, -0x6960(r13)
-	  stfs      f1, 0x30(r1)
-	  stfs      f0, 0x34(r1)
-	  bl        -0x1529C8
-	  lwz       r3, -0x6958(r13)
-	  addi      r5, r1, 0x2C
-	  li        r4, 0xE
-	  li        r6, 0x2
-	  bl        -0x151498
-	  b         .loc_0xE8
+	stwu     r1, -0x50(r1)
+	mflr     r0
+	stw      r0, 0x54(r1)
+	stfd     f31, 0x40(r1)
+	psq_st   f31, 72(r1), 0, qr0
+	stw      r31, 0x3c(r1)
+	stw      r30, 0x38(r1)
+	mr       r31, r4
+	mr       r30, r3
+	lwz      r3, 0x188(r4)
+	lbz      r0, 0x24(r3)
+	cmplwi   r0, 0
+	beq      lbl_803A4C64
+	lwz      r0, 0x1c(r3)
+	cmplwi   r0, 2
+	bne      lbl_803A4C20
+	mr       r3, r31
+	bl       appearFanfare__Q34Game8BlackMan3ObjFv
+	mr       r4, r31
+	addi     r3, r1, 0x14
+	lwz      r12, 0(r31)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f2, 0x14(r1)
+	addi     r5, r1, 0x2c
+	lfs      f1, 0x18(r1)
+	li       r4, 0x11
+	lfs      f0, 0x1c(r1)
+	li       r6, 2
+	stfs     f2, 0x2c(r1)
+	lwz      r3, cameraMgr__4Game@sda21(r13)
+	stfs     f1, 0x30(r1)
+	stfs     f0, 0x34(r1)
+	bl       "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
+	lwz      r3, rumbleMgr__4Game@sda21(r13)
+	addi     r5, r1, 0x2c
+	li       r4, 0xe
+	li       r6, 2
+	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
+	b        lbl_803A4C64
 
-	.loc_0xA4:
-	  cmplwi    r0, 0x3E8
-	  bne-      .loc_0xE8
-	  mr        r3, r31
-	  bl        0x5B4C
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xE8
-	  lwz       r0, 0x1E0(r31)
-	  mr        r3, r30
-	  mr        r4, r31
-	  li        r5, 0x7
-	  rlwinm    r0,r0,0,11,9
-	  li        r6, 0
-	  stw       r0, 0x1E0(r31)
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_803A4C20:
+	cmplwi   r0, 0x3e8
+	bne      lbl_803A4C64
+	mr       r3, r31
+	bl       isFallEnd__Q34Game8BlackMan3ObjFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803A4C64
+	lwz      r0, 0x1e0(r31)
+	mr       r3, r30
+	mr       r4, r31
+	li       r5, 7
+	rlwinm   r0, r0, 0, 0xb, 9
+	li       r6, 0
+	stw      r0, 0x1e0(r31)
+	lwz      r12, 0(r30)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0xE8:
-	  mr        r4, r31
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f31, 0xC(r1)
-	  addi      r4, r1, 0x20
-	  lfs       f0, 0x106C(r2)
-	  lfs       f2, 0x8(r1)
-	  lfs       f1, 0x10(r1)
-	  fadds     f0, f31, f0
-	  stfs      f31, 0x24(r1)
-	  lwz       r3, -0x6CF8(r13)
-	  stfs      f2, 0x20(r1)
-	  stfs      f1, 0x28(r1)
-	  stfs      f0, 0x24(r1)
-	  lwz       r12, 0x4(r3)
-	  lwz       r12, 0x28(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0xC0(r31)
-	  lfs       f0, 0xA48(r3)
-	  fadds     f0, f0, f1
-	  fcmpo     cr0, f31, f0
-	  bge-      .loc_0x158
-	  mr        r3, r31
-	  bl        -0x29FA30
+lbl_803A4C64:
+	mr       r4, r31
+	addi     r3, r1, 8
+	lwz      r12, 0(r31)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f31, 0xc(r1)
+	addi     r4, r1, 0x20
+	lfs      f0, lbl_8051F3CC@sda21(r2)
+	lfs      f2, 8(r1)
+	lfs      f1, 0x10(r1)
+	fadds    f0, f31, f0
+	stfs     f31, 0x24(r1)
+	lwz      r3, mapMgr__4Game@sda21(r13)
+	stfs     f2, 0x20(r1)
+	stfs     f1, 0x28(r1)
+	stfs     f0, 0x24(r1)
+	lwz      r12, 4(r3)
+	lwz      r12, 0x28(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 0xc0(r31)
+	lfs      f0, 0xa48(r3)
+	fadds    f0, f0, f1
+	fcmpo    cr0, f31, f0
+	bge      lbl_803A4CD4
+	mr       r3, r31
+	bl       finishMotion__Q24Game9EnemyBaseFv
 
-	.loc_0x158:
-	  psq_l     f31,0x48(r1),0,0
-	  lwz       r0, 0x54(r1)
-	  lfd       f31, 0x40(r1)
-	  lwz       r31, 0x3C(r1)
-	  lwz       r30, 0x38(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x50
-	  blr
+lbl_803A4CD4:
+	psq_l    f31, 72(r1), 0, qr0
+	lwz      r0, 0x54(r1)
+	lfd      f31, 0x40(r1)
+	lwz      r31, 0x3c(r1)
+	lwz      r30, 0x38(r1)
+	mtlr     r0
+	addi     r1, r1, 0x50
+	blr
 	*/
 }
 
@@ -1559,22 +1781,21 @@ void BlackMan::StateFall::exec(Game::EnemyBase*)
 BlackMan::StateRecover::StateRecover(int)
 {
 	/*
-	.loc_0x0:
-	  lis       r5, 0x804B
-	  lis       r6, 0x804E
-	  subi      r0, r5, 0x65C
-	  lis       r5, 0x804E
-	  stw       r0, 0x0(r3)
-	  li        r7, 0
-	  addi      r6, r6, 0x5BA0
-	  addi      r5, r5, 0x5AA4
-	  stw       r4, 0x4(r3)
-	  addi      r0, r2, 0x1070
-	  stw       r7, 0x8(r3)
-	  stw       r6, 0x0(r3)
-	  stw       r5, 0x0(r3)
-	  stw       r0, 0xC(r3)
-	  blr
+	lis      r5, __vt__Q24Game13EnemyFSMState@ha
+	lis      r6, __vt__Q34Game8BlackMan5State@ha
+	addi     r0, r5, __vt__Q24Game13EnemyFSMState@l
+	lis      r5, __vt__Q34Game8BlackMan12StateRecover@ha
+	stw      r0, 0(r3)
+	li       r7, 0
+	addi     r6, r6, __vt__Q34Game8BlackMan5State@l
+	addi     r5, r5, __vt__Q34Game8BlackMan12StateRecover@l
+	stw      r4, 4(r3)
+	addi     r0, r2, lbl_8051F3D0@sda21
+	stw      r7, 8(r3)
+	stw      r6, 0(r3)
+	stw      r5, 0(r3)
+	stw      r0, 0xc(r3)
+	blr
 	*/
 }
 
@@ -1586,61 +1807,60 @@ BlackMan::StateRecover::StateRecover(int)
 void BlackMan::StateRecover::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  stw       r30, 0x8(r1)
-	  mr        r30, r4
-	  mr        r3, r30
-	  bl        -0x29DA04
-	  cmpwi     r3, 0xD
-	  beq-      .loc_0x90
-	  lwz       r31, 0x28C(r30)
-	  mr        r3, r31
-	  lwz       r12, 0x28(r31)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  cmpwi     r3, 0x6
-	  beq-      .loc_0x64
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  addi      r3, r3, 0x5230
-	  li        r4, 0x45A
-	  addi      r5, r5, 0x5248
-	  crclr     6, 0x6
-	  bl        -0x37A750
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	stw      r30, 8(r1)
+	mr       r30, r4
+	mr       r3, r30
+	bl       getCurrAnimIndex__Q24Game9EnemyBaseFv
+	cmpwi    r3, 0xd
+	beq      lbl_803A4DC0
+	lwz      r31, 0x28c(r30)
+	mr       r3, r31
+	lwz      r12, 0x28(r31)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	cmpwi    r3, 6
+	beq      lbl_803A4D94
+	lis      r3, lbl_80495230@ha
+	lis      r5, lbl_80495248@ha
+	addi     r3, r3, lbl_80495230@l
+	li       r4, 0x45a
+	addi     r5, r5, lbl_80495248@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x64:
-	  cmplwi    r31, 0
-	  beq-      .loc_0x90
-	  lbz       r0, 0xFC(r31)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x90
-	  mr        r3, r31
-	  li        r4, 0x3
-	  lwz       r12, 0x28(r31)
-	  lwz       r12, 0xD4(r12)
-	  mtctr     r12
-	  bctrl
+lbl_803A4D94:
+	cmplwi   r31, 0
+	beq      lbl_803A4DC0
+	lbz      r0, 0xfc(r31)
+	cmplwi   r0, 0
+	beq      lbl_803A4DC0
+	mr       r3, r31
+	li       r4, 3
+	lwz      r12, 0x28(r31)
+	lwz      r12, 0xd4(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x90:
-	  mr        r3, r30
-	  li        r4, 0x7
-	  li        r5, 0
-	  bl        -0x29FDC8
-	  mr        r3, r30
-	  bl        0x5ED4
-	  mr        r3, r30
-	  bl        0x60F4
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803A4DC0:
+	mr       r3, r30
+	li       r4, 7
+	li       r5, 0
+	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
+	mr       r3, r30
+	bl       recoverFlick__Q34Game8BlackMan3ObjFv
+	mr       r3, r30
+	bl       tyreUpEffect__Q34Game8BlackMan3ObjFv
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1652,116 +1872,115 @@ void BlackMan::StateRecover::init(Game::EnemyBase*, Game::StateArg*)
 void BlackMan::StateRecover::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  mr        r3, r31
-	  bl        0x5D40
-	  mr        r3, r31
-	  bl        0x58BC
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x58
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x4
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x154
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	mr       r3, r31
+	bl       recover__Q34Game8BlackMan3ObjFv
+	mr       r3, r31
+	bl       isTyreDead__Q34Game8BlackMan3ObjFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803A4E50
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 4
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_803A4F4C
 
-	.loc_0x58:
-	  lwz       r3, 0x188(r31)
-	  lbz       r0, 0x24(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x154
-	  lwz       r0, 0x1C(r3)
-	  cmpwi     r0, 0x5
-	  beq-      .loc_0xC8
-	  bge-      .loc_0x90
-	  cmpwi     r0, 0x3
-	  beq-      .loc_0xA8
-	  bge-      .loc_0xBC
-	  cmpwi     r0, 0x2
-	  bge-      .loc_0x9C
-	  b         .loc_0x154
+lbl_803A4E50:
+	lwz      r3, 0x188(r31)
+	lbz      r0, 0x24(r3)
+	cmplwi   r0, 0
+	beq      lbl_803A4F4C
+	lwz      r0, 0x1c(r3)
+	cmpwi    r0, 5
+	beq      lbl_803A4EC0
+	bge      lbl_803A4E88
+	cmpwi    r0, 3
+	beq      lbl_803A4EA0
+	bge      lbl_803A4EB4
+	cmpwi    r0, 2
+	bge      lbl_803A4E94
+	b        lbl_803A4F4C
 
-	.loc_0x90:
-	  cmpwi     r0, 0x3E8
-	  beq-      .loc_0x12C
-	  b         .loc_0x154
+lbl_803A4E88:
+	cmpwi    r0, 0x3e8
+	beq      lbl_803A4F24
+	b        lbl_803A4F4C
 
-	.loc_0x9C:
-	  mr        r3, r31
-	  bl        0x5C74
-	  b         .loc_0x154
+lbl_803A4E94:
+	mr       r3, r31
+	bl       flick__Q34Game8BlackMan3ObjFv
+	b        lbl_803A4F4C
 
-	.loc_0xA8:
-	  mr        r3, r31
-	  bl        0x5C68
-	  mr        r3, r31
-	  bl        0x5EF4
-	  b         .loc_0x154
+lbl_803A4EA0:
+	mr       r3, r31
+	bl       flick__Q34Game8BlackMan3ObjFv
+	mr       r3, r31
+	bl       tyreFlick__Q34Game8BlackMan3ObjFv
+	b        lbl_803A4F4C
 
-	.loc_0xBC:
-	  mr        r3, r31
-	  bl        0x608C
-	  b         .loc_0x154
+lbl_803A4EB4:
+	mr       r3, r31
+	bl       tyreDownEffect__Q34Game8BlackMan3ObjFv
+	b        lbl_803A4F4C
 
-	.loc_0xC8:
-	  mr        r3, r31
-	  bl        0x62B8
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x154
-	  lwz       r31, 0x28C(r31)
-	  mr        r3, r31
-	  lwz       r12, 0x28(r31)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  cmpwi     r3, 0x6
-	  beq-      .loc_0x114
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  addi      r3, r3, 0x5230
-	  li        r4, 0x45A
-	  addi      r5, r5, 0x5248
-	  crclr     6, 0x6
-	  bl        -0x37A8C8
+lbl_803A4EC0:
+	mr       r3, r31
+	bl       isFinalFloor__Q34Game8BlackMan3ObjFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803A4F4C
+	lwz      r31, 0x28c(r31)
+	mr       r3, r31
+	lwz      r12, 0x28(r31)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	cmpwi    r3, 6
+	beq      lbl_803A4F0C
+	lis      r3, lbl_80495230@ha
+	lis      r5, lbl_80495248@ha
+	addi     r3, r3, lbl_80495230@l
+	li       r4, 0x45a
+	addi     r5, r5, lbl_80495248@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x114:
-	  cmplwi    r31, 0
-	  beq-      .loc_0x154
-	  mr        r3, r31
-	  li        r4, 0x1
-	  bl        0xBAAD4
-	  b         .loc_0x154
+lbl_803A4F0C:
+	cmplwi   r31, 0
+	beq      lbl_803A4F4C
+	mr       r3, r31
+	li       r4, 1
+	bl       setAppearFlag__Q23PSM9EnemyBossFb
+	b        lbl_803A4F4C
 
-	.loc_0x12C:
-	  mr        r3, r31
-	  bl        0x58C4
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_803A4F24:
+	mr       r3, r31
+	bl       moveRestart__Q34Game8BlackMan3ObjFv
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 0
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x154:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803A4F4C:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1773,22 +1992,21 @@ void BlackMan::StateRecover::exec(Game::EnemyBase*)
 BlackMan::StateFlick::StateFlick(int)
 {
 	/*
-	.loc_0x0:
-	  lis       r5, 0x804B
-	  lis       r6, 0x804E
-	  subi      r0, r5, 0x65C
-	  lis       r5, 0x804E
-	  stw       r0, 0x0(r3)
-	  li        r7, 0
-	  addi      r6, r6, 0x5BA0
-	  addi      r5, r5, 0x5A80
-	  stw       r4, 0x4(r3)
-	  addi      r0, r2, 0x1078
-	  stw       r7, 0x8(r3)
-	  stw       r6, 0x0(r3)
-	  stw       r5, 0x0(r3)
-	  stw       r0, 0xC(r3)
-	  blr
+	lis      r5, __vt__Q24Game13EnemyFSMState@ha
+	lis      r6, __vt__Q34Game8BlackMan5State@ha
+	addi     r0, r5, __vt__Q24Game13EnemyFSMState@l
+	lis      r5, __vt__Q34Game8BlackMan10StateFlick@ha
+	stw      r0, 0(r3)
+	li       r7, 0
+	addi     r6, r6, __vt__Q34Game8BlackMan5State@l
+	addi     r5, r5, __vt__Q34Game8BlackMan10StateFlick@l
+	stw      r4, 4(r3)
+	addi     r0, r2, lbl_8051F3D8@sda21
+	stw      r7, 8(r3)
+	stw      r6, 0(r3)
+	stw      r5, 0(r3)
+	stw      r0, 0xc(r3)
+	blr
 	*/
 }
 
@@ -1800,107 +2018,106 @@ BlackMan::StateFlick::StateFlick(int)
 void BlackMan::StateFlick::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  stw       r30, 0x8(r1)
-	  mr        r30, r4
-	  lwz       r0, 0x364(r4)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x30
-	  lwz       r0, 0x2E0(r30)
-	  cmpwi     r0, 0x2
-	  bne-      .loc_0x38
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	stw      r30, 8(r1)
+	mr       r30, r4
+	lwz      r0, 0x364(r4)
+	cmplwi   r0, 0
+	beq      lbl_803A4FD0
+	lwz      r0, 0x2e0(r30)
+	cmpwi    r0, 2
+	bne      lbl_803A4FD8
 
-	.loc_0x30:
-	  li        r0, 0
-	  b         .loc_0x3C
+lbl_803A4FD0:
+	li       r0, 0
+	b        lbl_803A4FDC
 
-	.loc_0x38:
-	  li        r0, 0x1
+lbl_803A4FD8:
+	li       r0, 1
 
-	.loc_0x3C:
-	  rlwinm.   r0,r0,0,24,31
-	  beq-      .loc_0xC0
-	  mr        r3, r30
-	  li        r4, 0x3
-	  li        r5, 0
-	  bl        -0x29FFEC
-	  lwz       r31, 0x28C(r30)
-	  mr        r3, r31
-	  lwz       r12, 0x28(r31)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  cmpwi     r3, 0x6
-	  beq-      .loc_0x90
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  addi      r3, r3, 0x5230
-	  li        r4, 0x45A
-	  addi      r5, r5, 0x5248
-	  crclr     6, 0x6
-	  bl        -0x37A9EC
+lbl_803A4FDC:
+	clrlwi.  r0, r0, 0x18
+	beq      lbl_803A5060
+	mr       r3, r30
+	li       r4, 3
+	li       r5, 0
+	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
+	lwz      r31, 0x28c(r30)
+	mr       r3, r31
+	lwz      r12, 0x28(r31)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	cmpwi    r3, 6
+	beq      lbl_803A5030
+	lis      r3, lbl_80495230@ha
+	lis      r5, lbl_80495248@ha
+	addi     r3, r3, lbl_80495230@l
+	li       r4, 0x45a
+	addi     r5, r5, lbl_80495248@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x90:
-	  cmplwi    r31, 0
-	  beq-      .loc_0x138
-	  lbz       r0, 0xFC(r31)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x138
-	  mr        r3, r31
-	  li        r4, 0x4
-	  lwz       r12, 0x28(r31)
-	  lwz       r12, 0xD4(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x138
+lbl_803A5030:
+	cmplwi   r31, 0
+	beq      lbl_803A50D8
+	lbz      r0, 0xfc(r31)
+	cmplwi   r0, 0
+	beq      lbl_803A50D8
+	mr       r3, r31
+	li       r4, 4
+	lwz      r12, 0x28(r31)
+	lwz      r12, 0xd4(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_803A50D8
 
-	.loc_0xC0:
-	  mr        r3, r30
-	  li        r4, 0x4
-	  li        r5, 0
-	  bl        -0x2A0068
-	  lwz       r31, 0x28C(r30)
-	  mr        r3, r31
-	  lwz       r12, 0x28(r31)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  cmpwi     r3, 0x6
-	  beq-      .loc_0x10C
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  addi      r3, r3, 0x5230
-	  li        r4, 0x45A
-	  addi      r5, r5, 0x5248
-	  crclr     6, 0x6
-	  bl        -0x37AA68
+lbl_803A5060:
+	mr       r3, r30
+	li       r4, 4
+	li       r5, 0
+	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
+	lwz      r31, 0x28c(r30)
+	mr       r3, r31
+	lwz      r12, 0x28(r31)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	cmpwi    r3, 6
+	beq      lbl_803A50AC
+	lis      r3, lbl_80495230@ha
+	lis      r5, lbl_80495248@ha
+	addi     r3, r3, lbl_80495230@l
+	li       r4, 0x45a
+	addi     r5, r5, lbl_80495248@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x10C:
-	  cmplwi    r31, 0
-	  beq-      .loc_0x138
-	  lbz       r0, 0xFC(r31)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x138
-	  mr        r3, r31
-	  li        r4, 0xC
-	  lwz       r12, 0x28(r31)
-	  lwz       r12, 0xD4(r12)
-	  mtctr     r12
-	  bctrl
+lbl_803A50AC:
+	cmplwi   r31, 0
+	beq      lbl_803A50D8
+	lbz      r0, 0xfc(r31)
+	cmplwi   r0, 0
+	beq      lbl_803A50D8
+	mr       r3, r31
+	li       r4, 0xc
+	lwz      r12, 0x28(r31)
+	lwz      r12, 0xd4(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x138:
-	  mr        r3, r30
-	  bl        0x5FF8
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803A50D8:
+	mr       r3, r30
+	bl       createFlickEffect__Q34Game8BlackMan3ObjFv
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1912,59 +2129,58 @@ void BlackMan::StateFlick::init(Game::EnemyBase*, Game::StateArg*)
 void BlackMan::StateFlick::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  mr        r3, r31
-	  bl        0x55C4
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x50
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x4
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0xA0
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	mr       r3, r31
+	bl       isTyreDead__Q34Game8BlackMan3ObjFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803A5148
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 4
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_803A5198
 
-	.loc_0x50:
-	  lwz       r3, 0x188(r31)
-	  lbz       r0, 0x24(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0xA0
-	  lwz       r0, 0x1C(r3)
-	  cmplwi    r0, 0x2
-	  bne-      .loc_0x78
-	  mr        r3, r31
-	  bl        0x59A4
-	  b         .loc_0xA0
+lbl_803A5148:
+	lwz      r3, 0x188(r31)
+	lbz      r0, 0x24(r3)
+	cmplwi   r0, 0
+	beq      lbl_803A5198
+	lwz      r0, 0x1c(r3)
+	cmplwi   r0, 2
+	bne      lbl_803A5170
+	mr       r3, r31
+	bl       flick__Q34Game8BlackMan3ObjFv
+	b        lbl_803A5198
 
-	.loc_0x78:
-	  cmplwi    r0, 0x3E8
-	  bne-      .loc_0xA0
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r6, 0
-	  lwz       r5, 0x2DC(r31)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_803A5170:
+	cmplwi   r0, 0x3e8
+	bne      lbl_803A5198
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r6, 0
+	lwz      r5, 0x2dc(r31)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0xA0:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803A5198:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1976,16 +2192,15 @@ void BlackMan::StateFlick::exec(Game::EnemyBase*)
 void BlackMan::StateFlick::cleanup(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r3, r4
-	  stw       r0, 0x14(r1)
-	  bl        0x5F6C
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r3, r4
+	stw      r0, 0x14(r1)
+	bl       fadeFlickEffect__Q34Game8BlackMan3ObjFv
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1997,22 +2212,21 @@ void BlackMan::StateFlick::cleanup(Game::EnemyBase*)
 BlackMan::StateTired::StateTired(int)
 {
 	/*
-	.loc_0x0:
-	  lis       r5, 0x804B
-	  lis       r6, 0x804E
-	  subi      r0, r5, 0x65C
-	  lis       r5, 0x804E
-	  stw       r0, 0x0(r3)
-	  li        r7, 0
-	  addi      r6, r6, 0x5BA0
-	  addi      r5, r5, 0x5A5C
-	  stw       r4, 0x4(r3)
-	  addi      r0, r2, 0x1080
-	  stw       r7, 0x8(r3)
-	  stw       r6, 0x0(r3)
-	  stw       r5, 0x0(r3)
-	  stw       r0, 0xC(r3)
-	  blr
+	lis      r5, __vt__Q24Game13EnemyFSMState@ha
+	lis      r6, __vt__Q34Game8BlackMan5State@ha
+	addi     r0, r5, __vt__Q24Game13EnemyFSMState@l
+	lis      r5, __vt__Q34Game8BlackMan10StateTired@ha
+	stw      r0, 0(r3)
+	li       r7, 0
+	addi     r6, r6, __vt__Q34Game8BlackMan5State@l
+	addi     r5, r5, __vt__Q34Game8BlackMan10StateTired@l
+	stw      r4, 4(r3)
+	addi     r0, r2, lbl_8051F3E0@sda21
+	stw      r7, 8(r3)
+	stw      r6, 0(r3)
+	stw      r5, 0(r3)
+	stw      r0, 0xc(r3)
+	blr
 	*/
 }
 
@@ -2024,30 +2238,29 @@ BlackMan::StateTired::StateTired(int)
 void BlackMan::StateTired::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r5, 0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  li        r4, 0xA
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  mr        r3, r31
-	  bl        -0x2A0234
-	  lfs       f0, 0x1018(r2)
-	  li        r0, 0
-	  stfs      f0, 0x1D4(r31)
-	  stfs      f0, 0x1D8(r31)
-	  stfs      f0, 0x1DC(r31)
-	  stw       r0, 0x10(r30)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	li       r5, 0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	li       r4, 0xa
+	stw      r30, 8(r1)
+	mr       r30, r3
+	mr       r3, r31
+	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
+	lfs      f0, lbl_8051F378@sda21(r2)
+	li       r0, 0
+	stfs     f0, 0x1d4(r31)
+	stfs     f0, 0x1d8(r31)
+	stfs     f0, 0x1dc(r31)
+	stw      r0, 0x10(r30)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2059,59 +2272,58 @@ void BlackMan::StateTired::init(Game::EnemyBase*, Game::StateArg*)
 void BlackMan::StateTired::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lfs       f0, 0x1018(r2)
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  stfs      f0, 0x1D4(r4)
-	  stfs      f0, 0x1D8(r4)
-	  stfs      f0, 0x1DC(r4)
-	  stfs      f0, 0x1C8(r4)
-	  stfs      f0, 0x1CC(r4)
-	  stfs      f0, 0x1D0(r4)
-	  lwz       r3, 0x188(r4)
-	  lbz       r0, 0x24(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x80
-	  lwz       r0, 0x1C(r3)
-	  cmplwi    r0, 0x3E8
-	  bne-      .loc_0xA8
-	  mr        r3, r31
-	  bl        0x5848
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0xA8
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lfs      f0, lbl_8051F378@sda21(r2)
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	stfs     f0, 0x1d4(r4)
+	stfs     f0, 0x1d8(r4)
+	stfs     f0, 0x1dc(r4)
+	stfs     f0, 0x1c8(r4)
+	stfs     f0, 0x1cc(r4)
+	stfs     f0, 0x1d0(r4)
+	lwz      r3, 0x188(r4)
+	lbz      r0, 0x24(r3)
+	cmplwi   r0, 0
+	beq      lbl_803A52EC
+	lwz      r0, 0x1c(r3)
+	cmplwi   r0, 0x3e8
+	bne      lbl_803A5314
+	mr       r3, r31
+	bl       flick__Q34Game8BlackMan3ObjFv
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 0
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_803A5314
 
-	.loc_0x80:
-	  lwz       r3, 0x10(r30)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x10(r30)
-	  lwz       r3, 0xC0(r31)
-	  lwz       r4, 0x10(r30)
-	  lwz       r0, 0x9FC(r3)
-	  cmpw      r4, r0
-	  ble-      .loc_0xA8
-	  mr        r3, r31
-	  bl        -0x2A0070
+lbl_803A52EC:
+	lwz      r3, 0x10(r30)
+	addi     r0, r3, 1
+	stw      r0, 0x10(r30)
+	lwz      r3, 0xc0(r31)
+	lwz      r4, 0x10(r30)
+	lwz      r0, 0x9fc(r3)
+	cmpw     r4, r0
+	ble      lbl_803A5314
+	mr       r3, r31
+	bl       finishMotion__Q24Game9EnemyBaseFv
 
-	.loc_0xA8:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803A5314:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2125,16 +2337,15 @@ void BlackMan::StateTired::exec(Game::EnemyBase*)
 void __sinit_blackManState_cpp(void)
 {
 	/*
-	.loc_0x0:
-	  lis       r4, 0x8051
-	  li        r0, -0x1
-	  lfs       f0, 0x48B0(r4)
-	  lis       r3, 0x804E
-	  stw       r0, -0x6630(r13)
-	  stfsu     f0, 0x5A50(r3)
-	  stfs      f0, -0x662C(r13)
-	  stfs      f0, 0x4(r3)
-	  stfs      f0, 0x8(r3)
-	  blr
+	lis      r4, __float_nan@ha
+	li       r0, -1
+	lfs      f0, __float_nan@l(r4)
+	lis      r3, lbl_804E5A50@ha
+	stw      r0, lbl_80516050@sda21(r13)
+	stfsu    f0, lbl_804E5A50@l(r3)
+	stfs     f0, lbl_80516054@sda21(r13)
+	stfs     f0, 4(r3)
+	stfs     f0, 8(r3)
+	blr
 	*/
 }

@@ -1,6 +1,82 @@
 #include "types.h"
 
 /*
+    Generated from dpostproc
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__Q28JMessage19TRenderingProcessor
+    __vt__Q28JMessage19TRenderingProcessor:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q28JMessage19TRenderingProcessorFv
+        .4byte do_reset__Q28JMessage10TProcessorFv
+        .4byte do_character__Q28JMessage10TProcessorFi
+        .4byte do_tag__Q28JMessage10TProcessorFUlPCvUl
+        .4byte do_systemTagCode__Q28JMessage10TProcessorFUsPCvUl
+        .4byte do_select_begin__Q28JMessage10TProcessorFUl
+        .4byte do_select_end__Q28JMessage10TProcessorFv
+        .4byte do_select_separate__Q28JMessage10TProcessorFv
+        .4byte do_reset___Q28JMessage19TRenderingProcessorFPCc
+        .4byte do_setBegin_isReady___Q28JMessage10TProcessorCFv
+        .4byte do_begin___Q28JMessage19TRenderingProcessorFPCvPCc
+        .4byte do_end___Q28JMessage19TRenderingProcessorFv
+        .4byte do_tag___Q28JMessage19TRenderingProcessorFUlPCvUl
+        .4byte do_systemTagCode___Q28JMessage19TRenderingProcessorFUsPCvUl
+        .4byte do_begin__Q28JMessage19TRenderingProcessorFPCvPCc
+        .4byte do_end__Q28JMessage19TRenderingProcessorFv
+    .global __vt__Q28JMessage18TSequenceProcessor
+    __vt__Q28JMessage18TSequenceProcessor:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q28JMessage18TSequenceProcessorFv
+        .4byte do_reset__Q28JMessage10TProcessorFv
+        .4byte do_character__Q28JMessage10TProcessorFi
+        .4byte do_tag__Q28JMessage10TProcessorFUlPCvUl
+        .4byte do_systemTagCode__Q28JMessage10TProcessorFUsPCvUl
+        .4byte do_select_begin__Q28JMessage10TProcessorFUl
+        .4byte do_select_end__Q28JMessage10TProcessorFv
+        .4byte do_select_separate__Q28JMessage10TProcessorFv
+        .4byte do_reset___Q28JMessage18TSequenceProcessorFPCc
+        .4byte do_setBegin_isReady___Q28JMessage18TSequenceProcessorCFv
+        .4byte do_begin___Q28JMessage18TSequenceProcessorFPCvPCc
+        .4byte do_end___Q28JMessage18TSequenceProcessorFv
+        .4byte do_tag___Q28JMessage18TSequenceProcessorFUlPCvUl
+        .4byte do_systemTagCode___Q28JMessage18TSequenceProcessorFUsPCvUl
+        .4byte do_begin__Q28JMessage18TSequenceProcessorFPCvPCc
+        .4byte do_end__Q28JMessage18TSequenceProcessorFv
+        .4byte do_isReady__Q28JMessage18TSequenceProcessorFv
+        .4byte do_jump_isReady__Q28JMessage18TSequenceProcessorFv
+        .4byte do_jump__Q28JMessage18TSequenceProcessorFPCvPCc
+        .4byte do_branch_query__Q28JMessage18TSequenceProcessorFUs
+        .4byte do_branch_queryResult__Q28JMessage18TSequenceProcessorFv
+        .4byte do_branch__Q28JMessage18TSequenceProcessorFPCvPCc
+    .global __vt__Q28JMessage10TProcessor
+    __vt__Q28JMessage10TProcessor:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q28JMessage10TProcessorFv
+        .4byte do_reset__Q28JMessage10TProcessorFv
+        .4byte do_character__Q28JMessage10TProcessorFi
+        .4byte do_tag__Q28JMessage10TProcessorFUlPCvUl
+        .4byte do_systemTagCode__Q28JMessage10TProcessorFUsPCvUl
+        .4byte do_select_begin__Q28JMessage10TProcessorFUl
+        .4byte do_select_end__Q28JMessage10TProcessorFv
+        .4byte do_select_separate__Q28JMessage10TProcessorFv
+        .4byte 0
+        .4byte do_setBegin_isReady___Q28JMessage10TProcessorCFv
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+    .global __vt__Q28JMessage10TReference
+    __vt__Q28JMessage10TReference:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q28JMessage10TReferenceFv
+        .4byte do_word__Q28JMessage10TReferenceCFUl
+*/
+
+/*
  * --INFO--
  * Address:	80006D0C
  * Size:	000048
@@ -8,27 +84,26 @@
 JMessage::TReference::~TReference()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r3
-	  beq-      .loc_0x30
-	  lis       r5, 0x804A
-	  extsh.    r0, r4
-	  subi      r0, r5, 0x1BB8
-	  stw       r0, 0x0(r31)
-	  ble-      .loc_0x30
-	  bl        0x1D37C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r3, r3
+	beq      lbl_80006D3C
+	lis      r5, __vt__Q28JMessage10TReference@ha
+	extsh.   r0, r4
+	addi     r0, r5, __vt__Q28JMessage10TReference@l
+	stw      r0, 0(r31)
+	ble      lbl_80006D3C
+	bl       __dl__FPv
 
-	.loc_0x30:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80006D3C:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -47,27 +122,26 @@ u32 JMessage::TReference::do_word(unsigned long) const { return 0x0; }
 JMessage::TProcessor::~TProcessor()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r3
-	  beq-      .loc_0x30
-	  lis       r5, 0x804A
-	  extsh.    r0, r4
-	  subi      r0, r5, 0x1BF8
-	  stw       r0, 0x0(r31)
-	  ble-      .loc_0x30
-	  bl        0x1D32C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r3, r3
+	beq      lbl_80006D8C
+	lis      r5, __vt__Q28JMessage10TProcessor@ha
+	extsh.   r0, r4
+	addi     r0, r5, __vt__Q28JMessage10TProcessor@l
+	stw      r0, 0(r31)
+	ble      lbl_80006D8C
+	bl       __dl__FPv
 
-	.loc_0x30:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80006D8C:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -79,62 +153,61 @@ JMessage::TProcessor::~TProcessor()
 void JMessage::TProcessor::setBegin_messageCode(unsigned short, unsigned short)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  mr        r30, r5
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  bl        0x1A0
-	  cmplwi    r3, 0
-	  bne-      .loc_0x34
-	  li        r31, 0
-	  b         .loc_0x60
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	mr       r30, r5
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	bl       getResource_groupID__Q28JMessage10TProcessorCFUs
+	cmplwi   r3, 0
+	bne      lbl_80006DD8
+	li       r31, 0
+	b        lbl_80006E04
 
-	.loc_0x34:
-	  lwz       r3, 0xC(r3)
-	  rlwinm    r4,r30,0,16,31
-	  lhz       r0, 0x8(r3)
-	  cmplw     r4, r0
-	  bge-      .loc_0x5C
-	  lhz       r0, 0xA(r3)
-	  mullw     r0, r4, r0
-	  add       r31, r3, r0
-	  addi      r31, r31, 0x10
-	  b         .loc_0x60
+lbl_80006DD8:
+	lwz      r3, 0xc(r3)
+	clrlwi   r4, r30, 0x10
+	lhz      r0, 8(r3)
+	cmplw    r4, r0
+	bge      lbl_80006E00
+	lhz      r0, 0xa(r3)
+	mullw    r0, r4, r0
+	add      r31, r3, r0
+	addi     r31, r31, 0x10
+	b        lbl_80006E04
 
-	.loc_0x5C:
-	  li        r31, 0
+lbl_80006E00:
+	li       r31, 0
 
-	.loc_0x60:
-	  cmplwi    r31, 0
-	  beq-      .loc_0xA0
-	  lwz       r5, 0x8(r29)
-	  mr        r3, r29
-	  lwz       r0, 0x0(r31)
-	  lwz       r4, 0x10(r5)
-	  add       r30, r4, r0
-	  mr        r4, r30
-	  bl        0x334
-	  mr        r3, r29
-	  mr        r4, r31
-	  lwz       r12, 0x0(r29)
-	  mr        r5, r30
-	  lwz       r12, 0x30(r12)
-	  mtctr     r12
-	  bctrl
+lbl_80006E04:
+	cmplwi   r31, 0
+	beq      lbl_80006E44
+	lwz      r5, 8(r29)
+	mr       r3, r29
+	lwz      r0, 0(r31)
+	lwz      r4, 0x10(r5)
+	add      r30, r4, r0
+	mr       r4, r30
+	bl       reset___Q28JMessage10TProcessorFPCc
+	mr       r3, r29
+	mr       r4, r31
+	lwz      r12, 0(r29)
+	mr       r5, r30
+	lwz      r12, 0x30(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0xA0:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80006E44:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -180,65 +253,62 @@ void JMessage::TProcessor::setBegin_messageID(unsigned long, unsigned long,
 void JMessage::TProcessor::setBegin_messageCode(unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  mr        r30, r4
-	  rlwinm    r4,r4,16,16,31
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  bl        .loc_0xC0
-	  cmplwi    r3, 0
-	  bne-      .loc_0x38
-	  li        r30, 0
-	  b         .loc_0x64
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	mr       r30, r4
+	srwi     r4, r4, 0x10
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	bl       getResource_groupID__Q28JMessage10TProcessorCFUs
+	cmplwi   r3, 0
+	bne      lbl_80006EDC
+	li       r30, 0
+	b        lbl_80006F08
 
-	.loc_0x38:
-	  lwz       r4, 0xC(r3)
-	  rlwinm    r3,r30,0,16,31
-	  lhz       r0, 0x8(r4)
-	  cmplw     r3, r0
-	  bge-      .loc_0x60
-	  lhz       r0, 0xA(r4)
-	  mullw     r0, r3, r0
-	  add       r30, r4, r0
-	  addi      r30, r30, 0x10
-	  b         .loc_0x64
+lbl_80006EDC:
+	lwz      r4, 0xc(r3)
+	clrlwi   r3, r30, 0x10
+	lhz      r0, 8(r4)
+	cmplw    r3, r0
+	bge      lbl_80006F04
+	lhz      r0, 0xa(r4)
+	mullw    r0, r3, r0
+	add      r30, r4, r0
+	addi     r30, r30, 0x10
+	b        lbl_80006F08
 
-	.loc_0x60:
-	  li        r30, 0
+lbl_80006F04:
+	li       r30, 0
 
-	.loc_0x64:
-	  cmplwi    r30, 0
-	  beq-      .loc_0xA4
-	  lwz       r5, 0x8(r29)
-	  mr        r3, r29
-	  lwz       r0, 0x0(r30)
-	  lwz       r4, 0x10(r5)
-	  add       r31, r4, r0
-	  mr        r4, r31
-	  bl        0x230
-	  mr        r3, r29
-	  mr        r4, r30
-	  lwz       r12, 0x0(r29)
-	  mr        r5, r31
-	  lwz       r12, 0x30(r12)
-	  mtctr     r12
-	  bctrl
+lbl_80006F08:
+	cmplwi   r30, 0
+	beq      lbl_80006F48
+	lwz      r5, 8(r29)
+	mr       r3, r29
+	lwz      r0, 0(r30)
+	lwz      r4, 0x10(r5)
+	add      r31, r4, r0
+	mr       r4, r31
+	bl       reset___Q28JMessage10TProcessorFPCc
+	mr       r3, r29
+	mr       r4, r30
+	lwz      r12, 0(r29)
+	mr       r5, r31
+	lwz      r12, 0x30(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0xA4:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-
-	.loc_0xC0:
+lbl_80006F48:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -250,49 +320,48 @@ void JMessage::TProcessor::setBegin_messageCode(unsigned long)
 void JMessage::TProcessor::getResource_groupID(unsigned short) const
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r7, 0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r3, 0x8(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x3C
-	  lwz       r5, 0xC(r3)
-	  rlwinm    r6,r4,0,16,31
-	  lhz       r0, 0xC(r5)
-	  cmplw     r6, r0
-	  bne-      .loc_0x3C
-	  li        r7, 0x1
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	li       r7, 0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r3, 8(r3)
+	cmplwi   r3, 0
+	beq      lbl_80006FA0
+	lwz      r5, 0xc(r3)
+	clrlwi   r6, r4, 0x10
+	lhz      r0, 0xc(r5)
+	cmplw    r6, r0
+	bne      lbl_80006FA0
+	li       r7, 1
 
-	.loc_0x3C:
-	  rlwinm.   r0,r7,0,24,31
-	  beq-      .loc_0x48
-	  b         .loc_0x6C
+lbl_80006FA0:
+	clrlwi.  r0, r7, 0x18
+	beq      lbl_80006FAC
+	b        lbl_80006FD0
 
-	.loc_0x48:
-	  lwz       r3, 0x4(r31)
-	  lwz       r3, 0x4(r3)
-	  cmplwi    r3, 0
-	  bne-      .loc_0x60
-	  li        r3, 0
-	  b         .loc_0x68
+lbl_80006FAC:
+	lwz      r3, 4(r31)
+	lwz      r3, 4(r3)
+	cmplwi   r3, 0
+	bne      lbl_80006FC4
+	li       r3, 0
+	b        lbl_80006FCC
 
-	.loc_0x60:
-	  addi      r3, r3, 0x8
-	  bl        -0x9AC
+lbl_80006FC4:
+	addi     r3, r3, 8
+	bl       Get_groupID__Q38JMessage18TResourceContainer10TCResourceFUs
 
-	.loc_0x68:
-	  stw       r3, 0x8(r31)
+lbl_80006FCC:
+	stw      r3, 8(r31)
 
-	.loc_0x6C:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80006FD0:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -471,32 +540,33 @@ void JMessage::TProcessor::do_select_separate() { }
 void JMessage::TProcessor::reset_(const char*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r6, 0
-	  lis       r5, 0x8000
-	  stw       r0, 0x14(r1)
-	  addi      r0, r5, 0x7650
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  stw       r4, 0xC(r3)
-	  stw       r6, 0x10(r3)
-	  stw       r0, 0x24(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x28(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	li       r6, 0
+	lis      r5,
+	process_onCharacterEnd_normal___Q28JMessage10TProcessorFPQ28JMessage10TProcessor@ha
+	stw      r0, 0x14(r1)
+	addi     r0, r5,
+	process_onCharacterEnd_normal___Q28JMessage10TProcessorFPQ28JMessage10TProcessor@l
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	stw      r4, 0xc(r3)
+	stw      r6, 0x10(r3)
+	stw      r0, 0x24(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x28(r12)
+	mtctr    r12
+	bctrl
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -515,179 +585,182 @@ u32 JMessage::TProcessor::do_setBegin_isReady_() const { return 0x1; }
 void JMessage::TProcessor::do_tag_(unsigned long, const void*, unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  rlwinm    r0,r4,16,24,31
-	  cmpwi     r0, 0xFD
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r5
-	  stw       r30, 0x18(r1)
-	  mr        r30, r3
-	  stw       r29, 0x14(r1)
-	  rlwinm    r29,r4,0,16,31
-	  stw       r28, 0x10(r1)
-	  mr        r28, r6
-	  beq-      .loc_0xF4
-	  bge-      .loc_0x54
-	  cmpwi     r0, 0xF6
-	  beq-      .loc_0x134
-	  bge-      .loc_0x240
-	  cmpwi     r0, 0xF5
-	  bge-      .loc_0x1BC
-	  b         .loc_0x240
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	rlwinm   r0, r4, 0x10, 0x18, 0x1f
+	cmpwi    r0, 0xfd
+	stw      r31, 0x1c(r1)
+	mr       r31, r5
+	stw      r30, 0x18(r1)
+	mr       r30, r3
+	stw      r29, 0x14(r1)
+	clrlwi   r29, r4, 0x10
+	stw      r28, 0x10(r1)
+	mr       r28, r6
+	beq      lbl_800072B8
+	bge      lbl_80007218
+	cmpwi    r0, 0xf6
+	beq      lbl_800072F8
+	bge      lbl_80007404
+	cmpwi    r0, 0xf5
+	bge      lbl_80007380
+	b        lbl_80007404
 
-	.loc_0x54:
-	  cmpwi     r0, 0xFF
-	  beq-      .loc_0x64
-	  bge-      .loc_0x240
-	  b         .loc_0xA4
+lbl_80007218:
+	cmpwi    r0, 0xff
+	beq      lbl_80007228
+	bge      lbl_80007404
+	b        lbl_80007268
 
-	.loc_0x64:
-	  lwz       r12, 0x0(r3)
-	  mr        r4, r29
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x240
-	  mr        r3, r30
-	  mr        r4, r29
-	  lwz       r12, 0x0(r30)
-	  mr        r5, r31
-	  mr        r6, r28
-	  lwz       r12, 0x3C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x240
+lbl_80007228:
+	lwz      r12, 0(r3)
+	mr       r4, r29
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_80007404
+	mr       r3, r30
+	mr       r4, r29
+	lwz      r12, 0(r30)
+	mr       r5, r31
+	mr       r6, r28
+	lwz      r12, 0x3c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_80007404
 
-	.loc_0xA4:
-	  lwz       r3, 0x4(r30)
-	  mr        r4, r29
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  cmplwi    r3, 0
-	  beq-      .loc_0x240
-	  lwz       r0, 0x10(r30)
-	  cmplwi    r0, 0x4
-	  bge-      .loc_0x240
-	  rlwinm    r0,r0,2,0,29
-	  lwz       r5, 0xC(r30)
-	  add       r4, r30, r0
-	  stw       r5, 0x14(r4)
-	  lwz       r4, 0x10(r30)
-	  addi      r0, r4, 0x1
-	  stw       r0, 0x10(r30)
-	  stw       r3, 0xC(r30)
-	  b         .loc_0x240
+lbl_80007268:
+	lwz      r3, 4(r30)
+	mr       r4, r29
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	cmplwi   r3, 0
+	beq      lbl_80007404
+	lwz      r0, 0x10(r30)
+	cmplwi   r0, 4
+	bge      lbl_80007404
+	slwi     r0, r0, 2
+	lwz      r5, 0xc(r30)
+	add      r4, r30, r0
+	stw      r5, 0x14(r4)
+	lwz      r4, 0x10(r30)
+	addi     r0, r4, 1
+	stw      r0, 0x10(r30)
+	stw      r3, 0xc(r30)
+	b        lbl_80007404
 
-	.loc_0xF4:
-	  mr        r4, r29
-	  bl        .loc_0x260
-	  cmplwi    r3, 0
-	  beq-      .loc_0x240
-	  lwz       r0, 0x10(r30)
-	  cmplwi    r0, 0x4
-	  bge-      .loc_0x240
-	  rlwinm    r0,r0,2,0,29
-	  lwz       r5, 0xC(r30)
-	  add       r4, r30, r0
-	  stw       r5, 0x14(r4)
-	  lwz       r4, 0x10(r30)
-	  addi      r0, r4, 0x1
-	  stw       r0, 0x10(r30)
-	  stw       r3, 0xC(r30)
-	  b         .loc_0x240
+lbl_800072B8:
+	mr       r4, r29
+	bl       on_message_limited__Q28JMessage10TProcessorCFUs
+	cmplwi   r3, 0
+	beq      lbl_80007404
+	lwz      r0, 0x10(r30)
+	cmplwi   r0, 4
+	bge      lbl_80007404
+	slwi     r0, r0, 2
+	lwz      r5, 0xc(r30)
+	add      r4, r30, r0
+	stw      r5, 0x14(r4)
+	lwz      r4, 0x10(r30)
+	addi     r0, r4, 1
+	stw      r0, 0x10(r30)
+	stw      r3, 0xc(r30)
+	b        lbl_80007404
 
-	.loc_0x134:
-	  lwz       r0, 0x10(r30)
-	  cmplwi    r0, 0x4
-	  bge-      .loc_0x240
-	  lis       r5, 0x8000
-	  lis       r4, 0x8000
-	  addi      r5, r5, 0x76B0
-	  add       r0, r31, r28
-	  stw       r5, 0x24(r30)
-	  addi      r4, r4, 0x77AC
-	  stw       r4, 0x28(r30)
-	  stw       r0, 0x2C(r30)
-	  stw       r31, 0x30(r30)
-	  stw       r29, 0x34(r30)
-	  bl        0x480
-	  cmplwi    r3, 0
-	  beq-      .loc_0x1A0
-	  lwz       r0, 0x10(r30)
-	  cmplwi    r0, 0x4
-	  bge-      .loc_0x1A0
-	  rlwinm    r0,r0,2,0,29
-	  lwz       r5, 0xC(r30)
-	  add       r4, r30, r0
-	  stw       r5, 0x14(r4)
-	  lwz       r4, 0x10(r30)
-	  addi      r0, r4, 0x1
-	  stw       r0, 0x10(r30)
-	  stw       r3, 0xC(r30)
+lbl_800072F8:
+	lwz      r0, 0x10(r30)
+	cmplwi   r0, 4
+	bge      lbl_80007404
+	lis      r5,
+process_onCharacterEnd_select___Q28JMessage10TProcessorFPQ28JMessage10TProcessor@ha
+	lis      r4,
+process_onSelect_limited___Q28JMessage10TProcessorFPQ28JMessage10TProcessor@ha
+	addi     r5, r5,
+process_onCharacterEnd_select___Q28JMessage10TProcessorFPQ28JMessage10TProcessor@l
+	add      r0, r31, r28
+	stw      r5, 0x24(r30)
+	addi     r4, r4,
+process_onSelect_limited___Q28JMessage10TProcessorFPQ28JMessage10TProcessor@l
+	stw      r4, 0x28(r30)
+	stw      r0, 0x2c(r30)
+	stw      r31, 0x30(r30)
+	stw      r29, 0x34(r30)
+	bl
+process_onSelect_limited___Q28JMessage10TProcessorFPQ28JMessage10TProcessor
+	cmplwi   r3, 0
+	beq      lbl_80007364
+	lwz      r0, 0x10(r30)
+	cmplwi   r0, 4
+	bge      lbl_80007364
+	slwi     r0, r0, 2
+	lwz      r5, 0xc(r30)
+	add      r4, r30, r0
+	stw      r5, 0x14(r4)
+	lwz      r4, 0x10(r30)
+	addi     r0, r4, 1
+	stw      r0, 0x10(r30)
+	stw      r3, 0xc(r30)
 
-	.loc_0x1A0:
-	  mr        r3, r30
-	  mr        r4, r29
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x240
+lbl_80007364:
+	mr       r3, r30
+	mr       r4, r29
+	lwz      r12, 0(r30)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_80007404
 
-	.loc_0x1BC:
-	  lwz       r0, 0x10(r30)
-	  cmplwi    r0, 0x4
-	  bge-      .loc_0x240
-	  lis       r5, 0x8000
-	  lis       r4, 0x8000
-	  addi      r5, r5, 0x76B0
-	  add       r0, r31, r28
-	  stw       r5, 0x24(r30)
-	  addi      r4, r4, 0x77C8
-	  stw       r4, 0x28(r30)
-	  stw       r0, 0x2C(r30)
-	  stw       r31, 0x30(r30)
-	  stw       r29, 0x34(r30)
-	  bl        0x414
-	  cmplwi    r3, 0
-	  beq-      .loc_0x228
-	  lwz       r0, 0x10(r30)
-	  cmplwi    r0, 0x4
-	  bge-      .loc_0x228
-	  rlwinm    r0,r0,2,0,29
-	  lwz       r5, 0xC(r30)
-	  add       r4, r30, r0
-	  stw       r5, 0x14(r4)
-	  lwz       r4, 0x10(r30)
-	  addi      r0, r4, 0x1
-	  stw       r0, 0x10(r30)
-	  stw       r3, 0xC(r30)
+lbl_80007380:
+	lwz      r0, 0x10(r30)
+	cmplwi   r0, 4
+	bge      lbl_80007404
+	lis      r5,
+process_onCharacterEnd_select___Q28JMessage10TProcessorFPQ28JMessage10TProcessor@ha
+	lis      r4,
+process_onSelect___Q28JMessage10TProcessorFPQ28JMessage10TProcessor@ha addi r5,
+r5,
+process_onCharacterEnd_select___Q28JMessage10TProcessorFPQ28JMessage10TProcessor@l
+	add      r0, r31, r28
+	stw      r5, 0x24(r30)
+	addi     r4, r4,
+process_onSelect___Q28JMessage10TProcessorFPQ28JMessage10TProcessor@l stw r4,
+0x28(r30) stw      r0, 0x2c(r30) stw      r31, 0x30(r30) stw      r29, 0x34(r30)
+	bl       process_onSelect___Q28JMessage10TProcessorFPQ28JMessage10TProcessor
+	cmplwi   r3, 0
+	beq      lbl_800073EC
+	lwz      r0, 0x10(r30)
+	cmplwi   r0, 4
+	bge      lbl_800073EC
+	slwi     r0, r0, 2
+	lwz      r5, 0xc(r30)
+	add      r4, r30, r0
+	stw      r5, 0x14(r4)
+	lwz      r4, 0x10(r30)
+	addi     r0, r4, 1
+	stw      r0, 0x10(r30)
+	stw      r3, 0xc(r30)
 
-	.loc_0x228:
-	  mr        r3, r30
-	  mr        r4, r29
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_800073EC:
+	mr       r3, r30
+	mr       r4, r29
+	lwz      r12, 0(r30)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x240:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-
-	.loc_0x260:
+lbl_80007404:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -699,33 +772,32 @@ void JMessage::TProcessor::do_tag_(unsigned long, const void*, unsigned long)
 void JMessage::TProcessor::on_message_limited(unsigned short) const
 {
 	/*
-	.loc_0x0:
-	  lwz       r3, 0x8(r3)
-	  rlwinm    r5,r4,0,16,31
-	  lwz       r4, 0xC(r3)
-	  lhz       r0, 0x8(r4)
-	  cmplw     r5, r0
-	  bge-      .loc_0x2C
-	  lhz       r0, 0xA(r4)
-	  mullw     r0, r5, r0
-	  add       r4, r4, r0
-	  addi      r4, r4, 0x10
-	  b         .loc_0x30
+	lwz      r3, 8(r3)
+	clrlwi   r5, r4, 0x10
+	lwz      r4, 0xc(r3)
+	lhz      r0, 8(r4)
+	cmplw    r5, r0
+	bge      lbl_80007450
+	lhz      r0, 0xa(r4)
+	mullw    r0, r5, r0
+	add      r4, r4, r0
+	addi     r4, r4, 0x10
+	b        lbl_80007454
 
-	.loc_0x2C:
-	  li        r4, 0
+lbl_80007450:
+	li       r4, 0
 
-	.loc_0x30:
-	  cmplwi    r4, 0
-	  bne-      .loc_0x40
-	  li        r3, 0
-	  blr
+lbl_80007454:
+	cmplwi   r4, 0
+	bne      lbl_80007464
+	li       r3, 0
+	blr
 
-	.loc_0x40:
-	  lwz       r3, 0x10(r3)
-	  lwz       r0, 0x0(r4)
-	  add       r3, r3, r0
-	  blr
+lbl_80007464:
+	lwz      r3, 0x10(r3)
+	lwz      r0, 0(r4)
+	add      r3, r3, r0
+	blr
 	*/
 }
 
@@ -810,17 +882,14 @@ void JMessage::TProcessor::do_systemTagCode_(unsigned short, const void*,
 void JMessage::TProcessor::on_message(unsigned long) const
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  bl        .loc_0x20
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-
-	.loc_0x20:
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	bl       getMessageText_messageCode__Q28JMessage10TProcessorCFUl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -832,86 +901,85 @@ void JMessage::TProcessor::on_message(unsigned long) const
 void JMessage::TProcessor::getMessageText_messageCode(unsigned long) const
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r6, 0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r3, 0x8(r3)
-	  stw       r30, 0x8(r1)
-	  mr        r30, r4
-	  cmplwi    r3, 0
-	  beq-      .loc_0x44
-	  lwz       r4, 0xC(r3)
-	  rlwinm    r5,r30,16,16,31
-	  lhz       r0, 0xC(r4)
-	  cmplw     r5, r0
-	  bne-      .loc_0x44
-	  li        r6, 0x1
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	li       r6, 0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r3, 8(r3)
+	stw      r30, 8(r1)
+	mr       r30, r4
+	cmplwi   r3, 0
+	beq      lbl_800075A8
+	lwz      r4, 0xc(r3)
+	srwi     r5, r30, 0x10
+	lhz      r0, 0xc(r4)
+	cmplw    r5, r0
+	bne      lbl_800075A8
+	li       r6, 1
 
-	.loc_0x44:
-	  rlwinm.   r0,r6,0,24,31
-	  beq-      .loc_0x50
-	  b         .loc_0x78
+lbl_800075A8:
+	clrlwi.  r0, r6, 0x18
+	beq      lbl_800075B4
+	b        lbl_800075DC
 
-	.loc_0x50:
-	  lwz       r3, 0x4(r31)
-	  lwz       r3, 0x4(r3)
-	  cmplwi    r3, 0
-	  bne-      .loc_0x68
-	  li        r3, 0
-	  b         .loc_0x74
+lbl_800075B4:
+	lwz      r3, 4(r31)
+	lwz      r3, 4(r3)
+	cmplwi   r3, 0
+	bne      lbl_800075CC
+	li       r3, 0
+	b        lbl_800075D8
 
-	.loc_0x68:
-	  rlwinm    r4,r30,16,16,31
-	  addi      r3, r3, 0x8
-	  bl        -0xFB8
+lbl_800075CC:
+	srwi     r4, r30, 0x10
+	addi     r3, r3, 8
+	bl       Get_groupID__Q38JMessage18TResourceContainer10TCResourceFUs
 
-	.loc_0x74:
-	  stw       r3, 0x8(r31)
+lbl_800075D8:
+	stw      r3, 8(r31)
 
-	.loc_0x78:
-	  cmplwi    r3, 0
-	  bne-      .loc_0x88
-	  li        r4, 0
-	  b         .loc_0xB4
+lbl_800075DC:
+	cmplwi   r3, 0
+	bne      lbl_800075EC
+	li       r4, 0
+	b        lbl_80007618
 
-	.loc_0x88:
-	  lwz       r4, 0xC(r3)
-	  rlwinm    r3,r30,0,16,31
-	  lhz       r0, 0x8(r4)
-	  cmplw     r3, r0
-	  bge-      .loc_0xB0
-	  lhz       r0, 0xA(r4)
-	  mullw     r0, r3, r0
-	  add       r4, r4, r0
-	  addi      r4, r4, 0x10
-	  b         .loc_0xB4
+lbl_800075EC:
+	lwz      r4, 0xc(r3)
+	clrlwi   r3, r30, 0x10
+	lhz      r0, 8(r4)
+	cmplw    r3, r0
+	bge      lbl_80007614
+	lhz      r0, 0xa(r4)
+	mullw    r0, r3, r0
+	add      r4, r4, r0
+	addi     r4, r4, 0x10
+	b        lbl_80007618
 
-	.loc_0xB0:
-	  li        r4, 0
+lbl_80007614:
+	li       r4, 0
 
-	.loc_0xB4:
-	  cmplwi    r4, 0
-	  bne-      .loc_0xC4
-	  li        r3, 0
-	  b         .loc_0xD4
+lbl_80007618:
+	cmplwi   r4, 0
+	bne      lbl_80007628
+	li       r3, 0
+	b        lbl_80007638
 
-	.loc_0xC4:
-	  lwz       r3, 0x8(r31)
-	  lwz       r0, 0x0(r4)
-	  lwz       r3, 0x10(r3)
-	  add       r3, r3, r0
+lbl_80007628:
+	lwz      r3, 8(r31)
+	lwz      r0, 0(r4)
+	lwz      r3, 0x10(r3)
+	add      r3, r3, r0
 
-	.loc_0xD4:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80007638:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -923,35 +991,34 @@ void JMessage::TProcessor::getMessageText_messageCode(unsigned long) const
 void JMessage::TProcessor::process_onCharacterEnd_normal_(JMessage::TProcessor*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r0, 0x10(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x3C
-	  rlwinm    r0,r0,2,0,29
-	  add       r4, r3, r0
-	  lwz       r0, 0x10(r4)
-	  stw       r0, 0xC(r3)
-	  lwz       r4, 0x10(r3)
-	  subi      r0, r4, 0x1
-	  stw       r0, 0x10(r3)
-	  li        r3, 0x1
-	  b         .loc_0x50
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r0, 0x10(r3)
+	cmplwi   r0, 0
+	beq      lbl_8000768C
+	slwi     r0, r0, 2
+	add      r4, r3, r0
+	lwz      r0, 0x10(r4)
+	stw      r0, 0xc(r3)
+	lwz      r4, 0x10(r3)
+	addi     r0, r4, -1
+	stw      r0, 0x10(r3)
+	li       r3, 1
+	b        lbl_800076A0
 
-	.loc_0x3C:
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x34(r12)
-	  mtctr     r12
-	  bctrl
-	  li        r3, 0
+lbl_8000768C:
+	lwz      r12, 0(r3)
+	lwz      r12, 0x34(r12)
+	mtctr    r12
+	bctrl
+	li       r3, 0
 
-	.loc_0x50:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_800076A0:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -963,76 +1030,77 @@ void JMessage::TProcessor::process_onCharacterEnd_normal_(JMessage::TProcessor*)
 void JMessage::TProcessor::process_onCharacterEnd_select_(JMessage::TProcessor*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r4, 0x34(r3)
-	  subi      r0, r4, 0x1
-	  stw       r0, 0x34(r3)
-	  lwz       r0, 0x34(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0xA8
-	  lwz       r0, 0x10(r31)
-	  rlwinm    r0,r0,2,0,29
-	  add       r4, r31, r0
-	  lwz       r0, 0x10(r4)
-	  stw       r0, 0xC(r31)
-	  lwz       r4, 0x10(r31)
-	  subi      r0, r4, 0x1
-	  stw       r0, 0x10(r31)
-	  lwz       r12, 0x28(r31)
-	  mtctr     r12
-	  bctrl
-	  cmplwi    r3, 0
-	  beq-      .loc_0x8C
-	  lwz       r0, 0x10(r31)
-	  cmplwi    r0, 0x4
-	  bge-      .loc_0x8C
-	  rlwinm    r0,r0,2,0,29
-	  lwz       r5, 0xC(r31)
-	  add       r4, r31, r0
-	  stw       r5, 0x14(r4)
-	  lwz       r4, 0x10(r31)
-	  addi      r0, r4, 0x1
-	  stw       r0, 0x10(r31)
-	  stw       r3, 0xC(r31)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r4, 0x34(r3)
+	addi     r0, r4, -1
+	stw      r0, 0x34(r3)
+	lwz      r0, 0x34(r3)
+	cmplwi   r0, 0
+	beq      lbl_80007758
+	lwz      r0, 0x10(r31)
+	slwi     r0, r0, 2
+	add      r4, r31, r0
+	lwz      r0, 0x10(r4)
+	stw      r0, 0xc(r31)
+	lwz      r4, 0x10(r31)
+	addi     r0, r4, -1
+	stw      r0, 0x10(r31)
+	lwz      r12, 0x28(r31)
+	mtctr    r12
+	bctrl
+	cmplwi   r3, 0
+	beq      lbl_8000773C
+	lwz      r0, 0x10(r31)
+	cmplwi   r0, 4
+	bge      lbl_8000773C
+	slwi     r0, r0, 2
+	lwz      r5, 0xc(r31)
+	add      r4, r31, r0
+	stw      r5, 0x14(r4)
+	lwz      r4, 0x10(r31)
+	addi     r0, r4, 1
+	stw      r0, 0x10(r31)
+	stw      r3, 0xc(r31)
 
-	.loc_0x8C:
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x24(r12)
-	  mtctr     r12
-	  bctrl
-	  li        r3, 0x1
-	  b         .loc_0xE8
+lbl_8000773C:
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r12, 0x24(r12)
+	mtctr    r12
+	bctrl
+	li       r3, 1
+	b        lbl_80007798
 
-	.loc_0xA8:
-	  lis       r4, 0x8000
-	  addi      r0, r4, 0x7650
-	  stw       r0, 0x24(r31)
-	  lwz       r0, 0x10(r31)
-	  rlwinm    r0,r0,2,0,29
-	  add       r4, r31, r0
-	  lwz       r0, 0x10(r4)
-	  stw       r0, 0xC(r31)
-	  lwz       r4, 0x10(r31)
-	  subi      r0, r4, 0x1
-	  stw       r0, 0x10(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  li        r3, 0x1
+lbl_80007758:
+	lis      r4,
+process_onCharacterEnd_normal___Q28JMessage10TProcessorFPQ28JMessage10TProcessor@ha
+	addi     r0, r4,
+process_onCharacterEnd_normal___Q28JMessage10TProcessorFPQ28JMessage10TProcessor@l
+	stw      r0, 0x24(r31)
+	lwz      r0, 0x10(r31)
+	slwi     r0, r0, 2
+	add      r4, r31, r0
+	lwz      r0, 0x10(r4)
+	stw      r0, 0xc(r31)
+	lwz      r4, 0x10(r31)
+	addi     r0, r4, -1
+	stw      r0, 0x10(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	li       r3, 1
 
-	.loc_0xE8:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80007798:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1044,14 +1112,13 @@ void JMessage::TProcessor::process_onCharacterEnd_select_(JMessage::TProcessor*)
 void JMessage::TProcessor::process_onSelect_limited_(JMessage::TProcessor*)
 {
 	/*
-	.loc_0x0:
-	  lwz       r5, 0x30(r3)
-	  lhz       r4, 0x0(r5)
-	  addi      r0, r5, 0x2
-	  stw       r0, 0x30(r3)
-	  lwz       r0, 0x2C(r3)
-	  add       r3, r0, r4
-	  blr
+	lwz      r5, 0x30(r3)
+	lhz      r4, 0(r5)
+	addi     r0, r5, 2
+	stw      r0, 0x30(r3)
+	lwz      r0, 0x2c(r3)
+	add      r3, r0, r4
+	blr
 	*/
 }
 
@@ -1063,14 +1130,13 @@ void JMessage::TProcessor::process_onSelect_limited_(JMessage::TProcessor*)
 void JMessage::TProcessor::process_onSelect_(JMessage::TProcessor*)
 {
 	/*
-	.loc_0x0:
-	  lwz       r5, 0x30(r3)
-	  lwz       r4, 0x0(r5)
-	  addi      r0, r5, 0x4
-	  stw       r0, 0x30(r3)
-	  lwz       r0, 0x2C(r3)
-	  add       r3, r0, r4
-	  blr
+	lwz      r5, 0x30(r3)
+	lwz      r4, 0(r5)
+	addi     r0, r5, 4
+	stw      r0, 0x30(r3)
+	lwz      r0, 0x2c(r3)
+	add      r3, r0, r4
+	blr
 	*/
 }
 
@@ -1112,34 +1178,33 @@ JMessage::TSequenceProcessor::TSequenceProcessor(const JMessage::TReference*,
 JMessage::TSequenceProcessor::~TSequenceProcessor()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r3
-	  beq-      .loc_0x44
-	  lis       r3, 0x804A
-	  subi      r0, r3, 0x1C58
-	  stw       r0, 0x0(r31)
-	  beq-      .loc_0x34
-	  lis       r3, 0x804A
-	  subi      r0, r3, 0x1BF8
-	  stw       r0, 0x0(r31)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r3, r3
+	beq      lbl_8000786C
+	lis      r3, __vt__Q28JMessage18TSequenceProcessor@ha
+	addi     r0, r3, __vt__Q28JMessage18TSequenceProcessor@l
+	stw      r0, 0(r31)
+	beq      lbl_8000785C
+	lis      r3, __vt__Q28JMessage10TProcessor@ha
+	addi     r0, r3, __vt__Q28JMessage10TProcessor@l
+	stw      r0, 0(r31)
 
-	.loc_0x34:
-	  extsh.    r0, r4
-	  ble-      .loc_0x44
-	  mr        r3, r31
-	  bl        0x1C84C
+lbl_8000785C:
+	extsh.   r0, r4
+	ble      lbl_8000786C
+	mr       r3, r31
+	bl       __dl__FPv
 
-	.loc_0x44:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8000786C:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1151,203 +1216,200 @@ JMessage::TSequenceProcessor::~TSequenceProcessor()
 void JMessage::TSequenceProcessor::process(const char*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stmw      r27, 0xC(r1)
-	  mr        r30, r3
-	  mr        r31, r4
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stmw     r27, 0xc(r1)
+	mr       r30, r3
+	mr       r31, r4
 
-	.loc_0x18:
-	  lwz       r0, 0x3C(r30)
-	  cmpwi     r0, 0x3
-	  beq-      .loc_0x38
-	  bge-      .loc_0x2C
-	  b         .loc_0x100
+lbl_8000789C:
+	lwz      r0, 0x3c(r30)
+	cmpwi    r0, 3
+	beq      lbl_800078BC
+	bge      lbl_800078B0
+	b        lbl_80007984
 
-	.loc_0x2C:
-	  cmpwi     r0, 0x5
-	  bge-      .loc_0x100
-	  b         .loc_0x84
+lbl_800078B0:
+	cmpwi    r0, 5
+	bge      lbl_80007984
+	b        lbl_80007908
 
-	.loc_0x38:
-	  mr        r3, r30
-	  bl        0x268
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x50
-	  lwz       r3, 0xC(r30)
-	  b         .loc_0x264
+lbl_800078BC:
+	mr       r3, r30
+	bl       on_jump_isReady__Q28JMessage18TSequenceProcessorFv
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_800078D4
+	lwz      r3, 0xc(r30)
+	b        lbl_80007AE8
 
-	.loc_0x50:
-	  li        r0, 0x2
-	  mr        r3, r30
-	  stw       r0, 0x3C(r30)
-	  lwz       r12, 0x40(r30)
-	  mtctr     r12
-	  bctrl
-	  mr.       r4, r3
-	  beq-      .loc_0x100
-	  lwz       r5, 0x38(r30)
-	  mr        r3, r30
-	  lwz       r5, 0x18(r5)
-	  bl        0x254
-	  b         .loc_0x100
+lbl_800078D4:
+	li       r0, 2
+	mr       r3, r30
+	stw      r0, 0x3c(r30)
+	lwz      r12, 0x40(r30)
+	mtctr    r12
+	bctrl
+	or.      r4, r3, r3
+	beq      lbl_80007984
+	lwz      r5, 0x38(r30)
+	mr       r3, r30
+	lwz      r5, 0x18(r5)
+	bl       on_jump__Q28JMessage18TSequenceProcessorFPCvPCc
+	b        lbl_80007984
 
-	.loc_0x84:
-	  mr        r3, r30
-	  bl        0x2E4
-	  mr        r4, r3
-	  cmplwi    r4, 0xFFFF
-	  ble-      .loc_0xC4
-	  cmpwi     r4, -0x1
-	  beq-      .loc_0xB0
-	  bge-      .loc_0x100
-	  cmpwi     r4, -0x2
-	  bge-      .loc_0xB8
-	  b         .loc_0x100
+lbl_80007908:
+	mr       r3, r30
+	bl       on_branch_queryResult__Q28JMessage18TSequenceProcessorFv
+	mr       r4, r3
+	cmplwi   r4, 0xffff
+	ble      lbl_80007948
+	cmpwi    r4, -1
+	beq      lbl_80007934
+	bge      lbl_80007984
+	cmpwi    r4, -2
+	bge      lbl_8000793C
+	b        lbl_80007984
 
-	.loc_0xB0:
-	  lwz       r3, 0xC(r30)
-	  b         .loc_0x264
+lbl_80007934:
+	lwz      r3, 0xc(r30)
+	b        lbl_80007AE8
 
-	.loc_0xB8:
-	  li        r0, 0x2
-	  stw       r0, 0x3C(r30)
-	  b         .loc_0x100
+lbl_8000793C:
+	li       r0, 2
+	stw      r0, 0x3c(r30)
+	b        lbl_80007984
 
-	.loc_0xC4:
-	  li        r0, 0x2
-	  stw       r0, 0x3C(r30)
-	  lwz       r0, 0x48(r30)
-	  cmplw     r4, r0
-	  bge-      .loc_0x100
-	  lwz       r12, 0x40(r30)
-	  mr        r3, r30
-	  mtctr     r12
-	  bctrl
-	  mr.       r4, r3
-	  beq-      .loc_0x100
-	  lwz       r5, 0x38(r30)
-	  mr        r3, r30
-	  lwz       r5, 0x18(r5)
-	  bl        0x29C
+lbl_80007948:
+	li       r0, 2
+	stw      r0, 0x3c(r30)
+	lwz      r0, 0x48(r30)
+	cmplw    r4, r0
+	bge      lbl_80007984
+	lwz      r12, 0x40(r30)
+	mr       r3, r30
+	mtctr    r12
+	bctrl
+	or.      r4, r3, r3
+	beq      lbl_80007984
+	lwz      r5, 0x38(r30)
+	mr       r3, r30
+	lwz      r5, 0x18(r5)
+	bl       on_branch__Q28JMessage18TSequenceProcessorFPCvPCc
 
-	.loc_0x100:
-	  lwz       r0, 0xC(r30)
-	  cmplw     r0, r31
-	  bne-      .loc_0x128
-	  mr        r3, r30
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x34(r12)
-	  mtctr     r12
-	  bctrl
-	  li        r3, 0
-	  b         .loc_0x264
+lbl_80007984:
+	lwz      r0, 0xc(r30)
+	cmplw    r0, r31
+	bne      lbl_800079AC
+	mr       r3, r30
+	lwz      r12, 0(r30)
+	lwz      r12, 0x34(r12)
+	mtctr    r12
+	bctrl
+	li       r3, 0
+	b        lbl_80007AE8
 
-	.loc_0x128:
-	  mr        r3, r30
-	  bl        .loc_0x278
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x140
-	  lwz       r3, 0xC(r30)
-	  b         .loc_0x264
+lbl_800079AC:
+	mr       r3, r30
+	bl       on_isReady__Q28JMessage18TSequenceProcessorFv
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_800079C4
+	lwz      r3, 0xc(r30)
+	b        lbl_80007AE8
 
-	.loc_0x140:
-	  lwz       r7, 0xC(r30)
-	  lbz       r29, 0x0(r7)
-	  cmpwi     r29, 0x1A
-	  beq-      .loc_0x180
-	  bge-      .loc_0x1F4
-	  cmpwi     r29, 0
-	  beq-      .loc_0x160
-	  b         .loc_0x1F4
+lbl_800079C4:
+	lwz      r7, 0xc(r30)
+	lbz      r29, 0(r7)
+	cmpwi    r29, 0x1a
+	beq      lbl_80007A04
+	bge      lbl_80007A78
+	cmpwi    r29, 0
+	beq      lbl_800079E4
+	b        lbl_80007A78
 
-	.loc_0x160:
-	  lwz       r12, 0x24(r30)
-	  mr        r3, r30
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x254
-	  li        r0, 0
-	  b         .loc_0x258
+lbl_800079E4:
+	lwz      r12, 0x24(r30)
+	mr       r3, r30
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_80007AD8
+	li       r0, 0
+	b        lbl_80007ADC
 
-	.loc_0x180:
-	  lbz       r29, 0x1(r7)
-	  addi      r27, r7, 0x5
-	  mr        r3, r30
-	  add       r0, r7, r29
-	  mr        r5, r27
-	  stw       r0, 0xC(r30)
-	  subi      r6, r29, 0x5
-	  lbz       r0, 0x3(r7)
-	  lwz       r12, 0x0(r30)
-	  rlwinm    r28,r0,8,16,23
-	  lbz       r4, 0x2(r7)
-	  lbz       r0, 0x4(r7)
-	  rlwimi    r28,r4,16,8,15
-	  lwz       r12, 0x14(r12)
-	  or        r28, r28, r0
-	  mr        r4, r28
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x254
-	  mr        r3, r30
-	  mr        r4, r28
-	  lwz       r12, 0x0(r30)
-	  mr        r5, r27
-	  subi      r6, r29, 0x5
-	  lwz       r12, 0x38(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x254
+lbl_80007A04:
+	lbz      r29, 1(r7)
+	addi     r27, r7, 5
+	mr       r3, r30
+	add      r0, r7, r29
+	mr       r5, r27
+	stw      r0, 0xc(r30)
+	addi     r6, r29, -5
+	lbz      r0, 3(r7)
+	lwz      r12, 0(r30)
+	rlwinm   r28, r0, 8, 0x10, 0x17
+	lbz      r4, 2(r7)
+	lbz      r0, 4(r7)
+	rlwimi   r28, r4, 0x10, 8, 0xf
+	lwz      r12, 0x14(r12)
+	or       r28, r28, r0
+	mr       r4, r28
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_80007AD8
+	mr       r3, r30
+	mr       r4, r28
+	lwz      r12, 0(r30)
+	mr       r5, r27
+	addi     r6, r29, -5
+	lwz      r12, 0x38(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_80007AD8
 
-	.loc_0x1F4:
-	  lwz       r4, 0x4(r30)
-	  mr        r3, r29
-	  lwz       r4, 0x4(r4)
-	  lwz       r12, 0x4(r4)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x230
-	  lwz       r3, 0xC(r30)
-	  rlwinm    r29,r29,8,0,23
-	  addi      r0, r3, 0x1
-	  stw       r0, 0xC(r30)
-	  lwz       r3, 0xC(r30)
-	  lbz       r0, 0x0(r3)
-	  or        r29, r29, r0
+lbl_80007A78:
+	lwz      r4, 4(r30)
+	mr       r3, r29
+	lwz      r4, 4(r4)
+	lwz      r12, 4(r4)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80007AB4
+	lwz      r3, 0xc(r30)
+	slwi     r29, r29, 8
+	addi     r0, r3, 1
+	stw      r0, 0xc(r30)
+	lwz      r3, 0xc(r30)
+	lbz      r0, 0(r3)
+	or       r29, r29, r0
 
-	.loc_0x230:
-	  lwz       r5, 0xC(r30)
-	  mr        r3, r30
-	  mr        r4, r29
-	  addi      r0, r5, 0x1
-	  stw       r0, 0xC(r30)
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
+lbl_80007AB4:
+	lwz      r5, 0xc(r30)
+	mr       r3, r30
+	mr       r4, r29
+	addi     r0, r5, 1
+	stw      r0, 0xc(r30)
+	lwz      r12, 0(r30)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x254:
-	  li        r0, 0x1
+lbl_80007AD8:
+	li       r0, 1
 
-	.loc_0x258:
-	  rlwinm.   r0,r0,0,24,31
-	  bne+      .loc_0x18
-	  li        r3, 0
+lbl_80007ADC:
+	clrlwi.  r0, r0, 0x18
+	bne      lbl_8000789C
+	li       r3, 0
 
-	.loc_0x264:
-	  lmw       r27, 0xC(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-
-	.loc_0x278:
+lbl_80007AE8:
+	lmw      r27, 0xc(r1)
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -1359,18 +1421,17 @@ void JMessage::TSequenceProcessor::process(const char*)
 void JMessage::TSequenceProcessor::on_isReady()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x48(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x48(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1382,18 +1443,17 @@ void JMessage::TSequenceProcessor::on_isReady()
 void JMessage::TSequenceProcessor::on_jump_isReady()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x4C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x4c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1405,46 +1465,47 @@ void JMessage::TSequenceProcessor::on_jump_isReady()
 void JMessage::TSequenceProcessor::on_jump(const void*, const char*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  li        r0, 0
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r5
-	  lis       r5, 0x8000
-	  stw       r30, 0x18(r1)
-	  mr        r30, r4
-	  mr        r4, r31
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  stw       r31, 0xC(r3)
-	  stw       r0, 0x10(r3)
-	  addi      r0, r5, 0x7650
-	  stw       r0, 0x24(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x28(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r3, r29
-	  lwz       r12, 0x0(r29)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r3, r29
-	  mr        r4, r30
-	  lwz       r12, 0x0(r29)
-	  mr        r5, r31
-	  lwz       r12, 0x50(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	li       r0, 0
+	stw      r31, 0x1c(r1)
+	mr       r31, r5
+	lis      r5,
+	process_onCharacterEnd_normal___Q28JMessage10TProcessorFPQ28JMessage10TProcessor@ha
+	stw      r30, 0x18(r1)
+	mr       r30, r4
+	mr       r4, r31
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	stw      r31, 0xc(r3)
+	stw      r0, 0x10(r3)
+	addi     r0, r5,
+	process_onCharacterEnd_normal___Q28JMessage10TProcessorFPQ28JMessage10TProcessor@l
+	stw      r0, 0x24(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x28(r12)
+	mtctr    r12
+	bctrl
+	mr       r3, r29
+	lwz      r12, 0(r29)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	mr       r3, r29
+	mr       r4, r30
+	lwz      r12, 0(r29)
+	mr       r5, r31
+	lwz      r12, 0x50(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -1456,18 +1517,17 @@ void JMessage::TSequenceProcessor::on_jump(const void*, const char*)
 void JMessage::TSequenceProcessor::on_branch_queryResult()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x58(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x58(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1479,46 +1539,47 @@ void JMessage::TSequenceProcessor::on_branch_queryResult()
 void JMessage::TSequenceProcessor::on_branch(const void*, const char*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  li        r0, 0
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r5
-	  lis       r5, 0x8000
-	  stw       r30, 0x18(r1)
-	  mr        r30, r4
-	  mr        r4, r31
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  stw       r31, 0xC(r3)
-	  stw       r0, 0x10(r3)
-	  addi      r0, r5, 0x7650
-	  stw       r0, 0x24(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x28(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r3, r29
-	  lwz       r12, 0x0(r29)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r3, r29
-	  mr        r4, r30
-	  lwz       r12, 0x0(r29)
-	  mr        r5, r31
-	  lwz       r12, 0x5C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	li       r0, 0
+	stw      r31, 0x1c(r1)
+	mr       r31, r5
+	lis      r5,
+	process_onCharacterEnd_normal___Q28JMessage10TProcessorFPQ28JMessage10TProcessor@ha
+	stw      r30, 0x18(r1)
+	mr       r30, r4
+	mr       r4, r31
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	stw      r31, 0xc(r3)
+	stw      r0, 0x10(r3)
+	addi     r0, r5,
+	process_onCharacterEnd_normal___Q28JMessage10TProcessorFPQ28JMessage10TProcessor@l
+	stw      r0, 0x24(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x28(r12)
+	mtctr    r12
+	bctrl
+	mr       r3, r29
+	lwz      r12, 0(r29)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	mr       r3, r29
+	mr       r4, r30
+	lwz      r12, 0(r29)
+	mr       r5, r31
+	lwz      r12, 0x5c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -1586,14 +1647,13 @@ void JMessage::TSequenceProcessor::do_branch(const void*, const char*) { }
 void JMessage::TSequenceProcessor::do_reset_(const char*)
 {
 	/*
-	.loc_0x0:
-	  li        r0, 0
-	  cmplwi    r4, 0
-	  stw       r0, 0x3C(r3)
-	  beqlr-
-	  li        r0, 0x2
-	  stw       r0, 0x3C(r3)
-	  blr
+	li       r0, 0
+	cmplwi   r4, 0
+	stw      r0, 0x3c(r3)
+	beqlr
+	li       r0, 2
+	stw      r0, 0x3c(r3)
+	blr
 	*/
 }
 
@@ -1605,11 +1665,10 @@ void JMessage::TSequenceProcessor::do_reset_(const char*)
 void JMessage::TSequenceProcessor::do_setBegin_isReady_() const
 {
 	/*
-	.loc_0x0:
-	  lwz       r0, 0x3C(r3)
-	  cntlzw    r0, r0
-	  rlwinm    r3,r0,27,5,31
-	  blr
+	lwz      r0, 0x3c(r3)
+	cntlzw   r0, r0
+	srwi     r3, r0, 5
+	blr
 	*/
 }
 
@@ -1621,18 +1680,17 @@ void JMessage::TSequenceProcessor::do_setBegin_isReady_() const
 void JMessage::TSequenceProcessor::do_begin_(const void*, const char*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x40(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x40(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1644,20 +1702,19 @@ void JMessage::TSequenceProcessor::do_begin_(const void*, const char*)
 void JMessage::TSequenceProcessor::do_end_()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  li        r0, 0x1
-	  stw       r0, 0x3C(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x44(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	li       r0, 1
+	stw      r0, 0x3c(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x44(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2007,22 +2064,23 @@ void JMessage::TSequenceProcessor::process_onBranch_(
 JMessage::TRenderingProcessor::TRenderingProcessor(const JMessage::TReference*)
 {
 	/*
-	.loc_0x0:
-	  lis       r7, 0x804A
-	  lis       r6, 0x8000
-	  subi      r0, r7, 0x1BF8
-	  lis       r5, 0x804A
-	  stw       r0, 0x0(r3)
-	  li        r7, 0
-	  addi      r6, r6, 0x7650
-	  subi      r0, r5, 0x1CA0
-	  stw       r4, 0x4(r3)
-	  stw       r7, 0x8(r3)
-	  stw       r7, 0xC(r3)
-	  stw       r7, 0x10(r3)
-	  stw       r6, 0x24(r3)
-	  stw       r0, 0x0(r3)
-	  blr
+	lis      r7, __vt__Q28JMessage10TProcessor@ha
+	lis      r6,
+	process_onCharacterEnd_normal___Q28JMessage10TProcessorFPQ28JMessage10TProcessor@ha
+	addi     r0, r7, __vt__Q28JMessage10TProcessor@l
+	lis      r5, __vt__Q28JMessage19TRenderingProcessor@ha
+	stw      r0, 0(r3)
+	li       r7, 0
+	addi     r6, r6,
+	process_onCharacterEnd_normal___Q28JMessage10TProcessorFPQ28JMessage10TProcessor@l
+	addi     r0, r5, __vt__Q28JMessage19TRenderingProcessor@l
+	stw      r4, 4(r3)
+	stw      r7, 8(r3)
+	stw      r7, 0xc(r3)
+	stw      r7, 0x10(r3)
+	stw      r6, 0x24(r3)
+	stw      r0, 0(r3)
+	blr
 	*/
 }
 
@@ -2034,34 +2092,33 @@ JMessage::TRenderingProcessor::TRenderingProcessor(const JMessage::TReference*)
 JMessage::TRenderingProcessor::~TRenderingProcessor()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r3
-	  beq-      .loc_0x44
-	  lis       r3, 0x804A
-	  subi      r0, r3, 0x1CA0
-	  stw       r0, 0x0(r31)
-	  beq-      .loc_0x34
-	  lis       r3, 0x804A
-	  subi      r0, r3, 0x1BF8
-	  stw       r0, 0x0(r31)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r3, r3
+	beq      lbl_80008140
+	lis      r3, __vt__Q28JMessage19TRenderingProcessor@ha
+	addi     r0, r3, __vt__Q28JMessage19TRenderingProcessor@l
+	stw      r0, 0(r31)
+	beq      lbl_80008130
+	lis      r3, __vt__Q28JMessage10TProcessor@ha
+	addi     r0, r3, __vt__Q28JMessage10TProcessor@l
+	stw      r0, 0(r31)
 
-	.loc_0x34:
-	  extsh.    r0, r4
-	  ble-      .loc_0x44
-	  mr        r3, r31
-	  bl        0x1BF78
+lbl_80008130:
+	extsh.   r0, r4
+	ble      lbl_80008140
+	mr       r3, r31
+	bl       __dl__FPv
 
-	.loc_0x44:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80008140:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2073,118 +2130,117 @@ JMessage::TRenderingProcessor::~TRenderingProcessor()
 void JMessage::TRenderingProcessor::process(const char*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stmw      r27, 0xC(r1)
-	  mr        r30, r3
-	  mr        r31, r4
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stmw     r27, 0xc(r1)
+	mr       r30, r3
+	mr       r31, r4
 
-	.loc_0x18:
-	  lwz       r7, 0xC(r30)
-	  cmplw     r7, r31
-	  bne-      .loc_0x40
-	  mr        r3, r30
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x34(r12)
-	  mtctr     r12
-	  bctrl
-	  li        r3, 0
-	  b         .loc_0x160
+lbl_80008170:
+	lwz      r7, 0xc(r30)
+	cmplw    r7, r31
+	bne      lbl_80008198
+	mr       r3, r30
+	lwz      r12, 0(r30)
+	lwz      r12, 0x34(r12)
+	mtctr    r12
+	bctrl
+	li       r3, 0
+	b        lbl_800082B8
 
-	.loc_0x40:
-	  lbz       r29, 0x0(r7)
-	  cmpwi     r29, 0x1A
-	  beq-      .loc_0x7C
-	  bge-      .loc_0xF0
-	  cmpwi     r29, 0
-	  beq-      .loc_0x5C
-	  b         .loc_0xF0
+lbl_80008198:
+	lbz      r29, 0(r7)
+	cmpwi    r29, 0x1a
+	beq      lbl_800081D4
+	bge      lbl_80008248
+	cmpwi    r29, 0
+	beq      lbl_800081B4
+	b        lbl_80008248
 
-	.loc_0x5C:
-	  lwz       r12, 0x24(r30)
-	  mr        r3, r30
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x150
-	  li        r0, 0
-	  b         .loc_0x154
+lbl_800081B4:
+	lwz      r12, 0x24(r30)
+	mr       r3, r30
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_800082A8
+	li       r0, 0
+	b        lbl_800082AC
 
-	.loc_0x7C:
-	  lbz       r29, 0x1(r7)
-	  addi      r27, r7, 0x5
-	  mr        r3, r30
-	  add       r0, r7, r29
-	  mr        r5, r27
-	  stw       r0, 0xC(r30)
-	  subi      r6, r29, 0x5
-	  lbz       r0, 0x3(r7)
-	  lwz       r12, 0x0(r30)
-	  rlwinm    r28,r0,8,16,23
-	  lbz       r4, 0x2(r7)
-	  lbz       r0, 0x4(r7)
-	  rlwimi    r28,r4,16,8,15
-	  lwz       r12, 0x14(r12)
-	  or        r28, r28, r0
-	  mr        r4, r28
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x150
-	  mr        r3, r30
-	  mr        r4, r28
-	  lwz       r12, 0x0(r30)
-	  mr        r5, r27
-	  subi      r6, r29, 0x5
-	  lwz       r12, 0x38(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x150
+lbl_800081D4:
+	lbz      r29, 1(r7)
+	addi     r27, r7, 5
+	mr       r3, r30
+	add      r0, r7, r29
+	mr       r5, r27
+	stw      r0, 0xc(r30)
+	addi     r6, r29, -5
+	lbz      r0, 3(r7)
+	lwz      r12, 0(r30)
+	rlwinm   r28, r0, 8, 0x10, 0x17
+	lbz      r4, 2(r7)
+	lbz      r0, 4(r7)
+	rlwimi   r28, r4, 0x10, 8, 0xf
+	lwz      r12, 0x14(r12)
+	or       r28, r28, r0
+	mr       r4, r28
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_800082A8
+	mr       r3, r30
+	mr       r4, r28
+	lwz      r12, 0(r30)
+	mr       r5, r27
+	addi     r6, r29, -5
+	lwz      r12, 0x38(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_800082A8
 
-	.loc_0xF0:
-	  lwz       r4, 0x4(r30)
-	  mr        r3, r29
-	  lwz       r4, 0x4(r4)
-	  lwz       r12, 0x4(r4)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x12C
-	  lwz       r3, 0xC(r30)
-	  rlwinm    r29,r29,8,0,23
-	  addi      r0, r3, 0x1
-	  stw       r0, 0xC(r30)
-	  lwz       r3, 0xC(r30)
-	  lbz       r0, 0x0(r3)
-	  or        r29, r29, r0
+lbl_80008248:
+	lwz      r4, 4(r30)
+	mr       r3, r29
+	lwz      r4, 4(r4)
+	lwz      r12, 4(r4)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80008284
+	lwz      r3, 0xc(r30)
+	slwi     r29, r29, 8
+	addi     r0, r3, 1
+	stw      r0, 0xc(r30)
+	lwz      r3, 0xc(r30)
+	lbz      r0, 0(r3)
+	or       r29, r29, r0
 
-	.loc_0x12C:
-	  lwz       r5, 0xC(r30)
-	  mr        r3, r30
-	  mr        r4, r29
-	  addi      r0, r5, 0x1
-	  stw       r0, 0xC(r30)
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
+lbl_80008284:
+	lwz      r5, 0xc(r30)
+	mr       r3, r30
+	mr       r4, r29
+	addi     r0, r5, 1
+	stw      r0, 0xc(r30)
+	lwz      r12, 0(r30)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x150:
-	  li        r0, 0x1
+lbl_800082A8:
+	li       r0, 1
 
-	.loc_0x154:
-	  rlwinm.   r0,r0,0,24,31
-	  bne+      .loc_0x18
-	  li        r3, 0
+lbl_800082AC:
+	clrlwi.  r0, r0, 0x18
+	bne      lbl_80008170
+	li       r3, 0
 
-	.loc_0x160:
-	  lmw       r27, 0xC(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_800082B8:
+	lmw      r27, 0xc(r1)
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -2217,18 +2273,17 @@ void JMessage::TRenderingProcessor::do_reset_(const char*) { }
 void JMessage::TRenderingProcessor::do_begin_(const void*, const char*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x40(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x40(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2240,18 +2295,17 @@ void JMessage::TRenderingProcessor::do_begin_(const void*, const char*)
 void JMessage::TRenderingProcessor::do_end_()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x44(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x44(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 

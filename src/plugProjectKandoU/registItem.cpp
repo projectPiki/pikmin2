@@ -1,5 +1,102 @@
 #include "types.h"
 
+/*
+    Generated from dpostproc
+
+    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
+    .4byte __sinit_registItem_cpp
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_80480DB0
+    lbl_80480DB0:
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x72656769
+        .4byte 0x73744974
+        .4byte 0x656D0000
+        .4byte 0x2D426172
+        .4byte 0x72656C2D
+        .4byte 0x00000000
+        .4byte 0x2D556A61
+        .4byte 0x6D757368
+        .4byte 0x692D0000
+        .4byte 0x2D446F77
+        .4byte 0x6E466C6F
+        .4byte 0x6F722D00
+        .4byte 0x2D547265
+        .4byte 0x61737572
+        .4byte 0x652D0000
+        .4byte 0x2D50696B
+        .4byte 0x69486561
+        .4byte 0x642D0000
+        .4byte 0x2D426967
+        .4byte 0x466F756E
+        .4byte 0x7461696E
+        .4byte 0x2D000000
+        .4byte 0x2D427269
+        .4byte 0x6467652D
+        .4byte 0x00000000
+        .4byte 0x2D44656E
+        .4byte 0x67656B69
+        .4byte 0x47617465
+        .4byte 0x2D000000
+        .4byte 0x43726561
+        .4byte 0x74757265
+        .4byte 0x4B696C6C
+        .4byte 0x41726700
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global lbl_804BA360
+    lbl_804BA360:
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+
+    .section .sbss # 0x80514D80 - 0x80516360
+    .global lbl_80515B08
+    lbl_80515B08:
+        .skip 0x4
+    .global lbl_80515B0C
+    lbl_80515B0C:
+        .skip 0x4
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_80519990
+    lbl_80519990:
+        .4byte 0x2D576565
+        .4byte 0x642D0000
+    .global lbl_80519998
+    lbl_80519998:
+        .4byte 0x2D506C61
+        .4byte 0x6E742D00
+    .global lbl_805199A0
+    lbl_805199A0:
+        .4byte 0x2D526F63
+        .4byte 0x6B2D0000
+    .global lbl_805199A8
+    lbl_805199A8:
+        .4byte 0x2D486F6E
+        .4byte 0x65792D00
+    .global lbl_805199B0
+    lbl_805199B0:
+        .4byte 0x2D4F6E79
+        .4byte 0x6F6E2D00
+    .global lbl_805199B8
+    lbl_805199B8:
+        .4byte 0x2D486F6C
+        .4byte 0x652D0000
+    .global lbl_805199C0
+    lbl_805199C0:
+        .4byte 0x2D436176
+        .4byte 0x652D0000
+    .global lbl_805199C8
+    lbl_805199C8:
+        .4byte 0x2D476174
+        .4byte 0x652D0000
+*/
+
 namespace Game {
 
 /*
@@ -10,480 +107,479 @@ namespace Game {
 void ItemMgr::createManagers(unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r5, 0x8048
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  addi      r31, r5, 0xDB0
-	  li        r5, 0
-	  stw       r30, 0x18(r1)
-	  rlwinm    r30,r4,31,31,31
-	  stw       r29, 0x14(r1)
-	  rlwinm    r29,r4,0,31,31
-	  addi      r4, r31, 0x18
-	  lwz       r3, -0x6514(r13)
-	  bl        0x23E790
-	  li        r3, 0x90
-	  bl        -0x1C0D30
-	  mr.       r0, r3
-	  beq-      .loc_0x54
-	  li        r4, 0x1
-	  bl        0x13A04
-	  mr        r0, r3
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lis      r5, lbl_80480DB0@ha
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	addi     r31, r5, lbl_80480DB0@l
+	li       r5, 0
+	stw      r30, 0x18(r1)
+	rlwinm   r30, r4, 0x1f, 0x1f, 0x1f
+	stw      r29, 0x14(r1)
+	clrlwi   r29, r4, 0x1f
+	addi     r4, r31, 0x18
+	lwz      r3, sys@sda21(r13)
+	bl       heapStatusStart__6SystemFPcP7JKRHeap
+	li       r3, 0x90
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_801E4BEC
+	li       r4, 1
+	bl       __ct__Q34Game10ItemBarrel3MgrFv
+	mr       r0, r3
 
-	.loc_0x54:
-	  stw       r0, -0x6B10(r13)
-	  mr        r3, r0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x24(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, -0x6BC8(r13)
-	  lwz       r4, -0x6B10(r13)
-	  bl        -0x16F24
-	  lwz       r3, -0x6514(r13)
-	  addi      r4, r31, 0x18
-	  bl        0x23E74C
-	  lwz       r3, -0x6514(r13)
-	  addi      r4, r31, 0x24
-	  li        r5, 0
-	  bl        0x23E734
-	  li        r3, 0x65C
-	  bl        -0x1C0D8C
-	  mr.       r0, r3
-	  beq-      .loc_0xB0
-	  li        r4, 0x1
-	  bl        0x24AB8
-	  mr        r0, r3
+lbl_801E4BEC:
+	stw      r0, mgr__Q24Game10ItemBarrel@sda21(r13)
+	mr       r3, r0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x24(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, itemMgr__4Game@sda21(r13)
+	lwz      r4, mgr__Q24Game10ItemBarrel@sda21(r13)
+	bl       addMgr__Q24Game7ItemMgrFPQ24Game11BaseItemMgr
+	lwz      r3, sys@sda21(r13)
+	addi     r4, r31, 0x18
+	bl       heapStatusEnd__6SystemFPc
+	lwz      r3, sys@sda21(r13)
+	addi     r4, r31, 0x24
+	li       r5, 0
+	bl       heapStatusStart__6SystemFPcP7JKRHeap
+	li       r3, 0x65c
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_801E4C48
+	li       r4, 1
+	bl       __ct__Q34Game12ItemUjamushi3MgrFv
+	mr       r0, r3
 
-	.loc_0xB0:
-	  stw       r0, -0x6AC0(r13)
-	  mr        r3, r0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x24(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, -0x6BC8(r13)
-	  lwz       r4, -0x6AC0(r13)
-	  bl        -0x16F80
-	  lwz       r3, -0x6514(r13)
-	  addi      r4, r31, 0x24
-	  bl        0x23E6F0
-	  lwz       r3, -0x6514(r13)
-	  subi      r4, r2, 0x49D0
-	  li        r5, 0
-	  bl        0x23E6D8
-	  cmplwi    r30, 0
-	  beq-      .loc_0x13C
-	  li        r3, 0x8C
-	  bl        -0x1C0DF0
-	  mr.       r0, r3
-	  beq-      .loc_0x114
-	  li        r4, 0x1
-	  bl        0x2B210
-	  mr        r0, r3
+lbl_801E4C48:
+	stw      r0, mgr__Q24Game12ItemUjamushi@sda21(r13)
+	mr       r3, r0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x24(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, itemMgr__4Game@sda21(r13)
+	lwz      r4, mgr__Q24Game12ItemUjamushi@sda21(r13)
+	bl       addMgr__Q24Game7ItemMgrFPQ24Game11BaseItemMgr
+	lwz      r3, sys@sda21(r13)
+	addi     r4, r31, 0x24
+	bl       heapStatusEnd__6SystemFPc
+	lwz      r3, sys@sda21(r13)
+	addi     r4, r2, lbl_80519990@sda21
+	li       r5, 0
+	bl       heapStatusStart__6SystemFPcP7JKRHeap
+	cmplwi   r30, 0
+	beq      lbl_801E4CD4
+	li       r3, 0x8c
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_801E4CAC
+	li       r4, 1
+	bl       __ct__Q34Game8ItemWeed3MgrFv
+	mr       r0, r3
 
-	.loc_0x114:
-	  stw       r0, -0x6AA0(r13)
-	  mr        r3, r0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x24(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, -0x6BC8(r13)
-	  lwz       r4, -0x6AA0(r13)
-	  bl        -0x16FE4
-	  b         .loc_0x144
+lbl_801E4CAC:
+	stw      r0, mgr__Q24Game8ItemWeed@sda21(r13)
+	mr       r3, r0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x24(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, itemMgr__4Game@sda21(r13)
+	lwz      r4, mgr__Q24Game8ItemWeed@sda21(r13)
+	bl       addMgr__Q24Game7ItemMgrFPQ24Game11BaseItemMgr
+	b        lbl_801E4CDC
 
-	.loc_0x13C:
-	  li        r0, 0
-	  stw       r0, -0x6AA0(r13)
+lbl_801E4CD4:
+	li       r0, 0
+	stw      r0, mgr__Q24Game8ItemWeed@sda21(r13)
 
-	.loc_0x144:
-	  lwz       r3, -0x6514(r13)
-	  subi      r4, r2, 0x49D0
-	  bl        0x23E680
-	  lwz       r3, -0x6514(r13)
-	  addi      r4, r31, 0x30
-	  li        r5, 0
-	  bl        0x23E668
-	  li        r3, 0x90
-	  bl        -0x1C0E58
-	  mr.       r0, r3
-	  beq-      .loc_0x17C
-	  li        r4, 0x1
-	  bl        0x1159C
-	  mr        r0, r3
+lbl_801E4CDC:
+	lwz      r3, sys@sda21(r13)
+	addi     r4, r2, lbl_80519990@sda21
+	bl       heapStatusEnd__6SystemFPc
+	lwz      r3, sys@sda21(r13)
+	addi     r4, r31, 0x30
+	li       r5, 0
+	bl       heapStatusStart__6SystemFPcP7JKRHeap
+	li       r3, 0x90
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_801E4D14
+	li       r4, 1
+	bl       __ct__Q34Game13ItemDownFloor3MgrFv
+	mr       r0, r3
 
-	.loc_0x17C:
-	  stw       r0, -0x6B20(r13)
-	  mr        r3, r0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x24(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, -0x6BC8(r13)
-	  lwz       r4, -0x6B20(r13)
-	  bl        -0x1704C
-	  lwz       r3, -0x6514(r13)
-	  addi      r4, r31, 0x30
-	  bl        0x23E624
-	  lwz       r3, -0x6514(r13)
-	  addi      r4, r31, 0x3C
-	  li        r5, 0
-	  bl        0x23E60C
-	  li        r3, 0x90
-	  bl        -0x1C0EB4
-	  mr.       r0, r3
-	  beq-      .loc_0x1D8
-	  li        r4, 0x1
-	  bl        0xF400
-	  mr        r0, r3
+lbl_801E4D14:
+	stw      r0, mgr__Q24Game13ItemDownFloor@sda21(r13)
+	mr       r3, r0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x24(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, itemMgr__4Game@sda21(r13)
+	lwz      r4, mgr__Q24Game13ItemDownFloor@sda21(r13)
+	bl       addMgr__Q24Game7ItemMgrFPQ24Game11BaseItemMgr
+	lwz      r3, sys@sda21(r13)
+	addi     r4, r31, 0x30
+	bl       heapStatusEnd__6SystemFPc
+	lwz      r3, sys@sda21(r13)
+	addi     r4, r31, 0x3c
+	li       r5, 0
+	bl       heapStatusStart__6SystemFPcP7JKRHeap
+	li       r3, 0x90
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_801E4D70
+	li       r4, 1
+	bl       __ct__Q34Game12ItemTreasure3MgrFv
+	mr       r0, r3
 
-	.loc_0x1D8:
-	  stw       r0, -0x6B30(r13)
-	  mr        r3, r0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x24(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, -0x6BC8(r13)
-	  lwz       r4, -0x6B30(r13)
-	  bl        -0x170A8
-	  lwz       r3, -0x6514(r13)
-	  addi      r4, r31, 0x3C
-	  bl        0x23E5C8
-	  lwz       r3, -0x6514(r13)
-	  addi      r4, r31, 0x48
-	  li        r5, 0
-	  bl        0x23E5B0
-	  li        r3, 0x84
-	  bl        -0x1C0F10
-	  mr.       r0, r3
-	  beq-      .loc_0x234
-	  li        r4, 0x1
-	  bl        -0xA75C
-	  mr        r0, r3
+lbl_801E4D70:
+	stw      r0, mgr__Q24Game12ItemTreasure@sda21(r13)
+	mr       r3, r0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x24(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, itemMgr__4Game@sda21(r13)
+	lwz      r4, mgr__Q24Game12ItemTreasure@sda21(r13)
+	bl       addMgr__Q24Game7ItemMgrFPQ24Game11BaseItemMgr
+	lwz      r3, sys@sda21(r13)
+	addi     r4, r31, 0x3c
+	bl       heapStatusEnd__6SystemFPc
+	lwz      r3, sys@sda21(r13)
+	addi     r4, r31, 0x48
+	li       r5, 0
+	bl       heapStatusStart__6SystemFPcP7JKRHeap
+	li       r3, 0x84
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_801E4DCC
+	li       r4, 1
+	bl       __ct__Q34Game12ItemPikihead3MgrFv
+	mr       r0, r3
 
-	.loc_0x234:
-	  stw       r0, -0x6B90(r13)
-	  mr        r3, r0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x24(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, -0x6BC8(r13)
-	  lwz       r4, -0x6B90(r13)
-	  bl        -0x17104
-	  lwz       r3, -0x6514(r13)
-	  addi      r4, r31, 0x48
-	  bl        0x23E56C
-	  lwz       r3, -0x6514(r13)
-	  subi      r4, r2, 0x49C8
-	  li        r5, 0
-	  bl        0x23E554
-	  cmplwi    r30, 0
-	  beq-      .loc_0x2C0
-	  li        r3, 0x94
-	  bl        -0x1C0F74
-	  mr.       r0, r3
-	  beq-      .loc_0x298
-	  li        r4, 0x1
-	  bl        -0x5528
-	  mr        r0, r3
+lbl_801E4DCC:
+	stw      r0, mgr__Q24Game12ItemPikihead@sda21(r13)
+	mr       r3, r0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x24(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, itemMgr__4Game@sda21(r13)
+	lwz      r4, mgr__Q24Game12ItemPikihead@sda21(r13)
+	bl       addMgr__Q24Game7ItemMgrFPQ24Game11BaseItemMgr
+	lwz      r3, sys@sda21(r13)
+	addi     r4, r31, 0x48
+	bl       heapStatusEnd__6SystemFPc
+	lwz      r3, sys@sda21(r13)
+	addi     r4, r2, lbl_80519998@sda21
+	li       r5, 0
+	bl       heapStatusStart__6SystemFPcP7JKRHeap
+	cmplwi   r30, 0
+	beq      lbl_801E4E58
+	li       r3, 0x94
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_801E4E30
+	li       r4, 1
+	bl       __ct__Q34Game9ItemPlant3MgrFv
+	mr       r0, r3
 
-	.loc_0x298:
-	  stw       r0, -0x6B88(r13)
-	  mr        r3, r0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x24(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, -0x6BC8(r13)
-	  lwz       r4, -0x6B88(r13)
-	  bl        -0x17168
-	  b         .loc_0x2C8
+lbl_801E4E30:
+	stw      r0, mgr__Q24Game9ItemPlant@sda21(r13)
+	mr       r3, r0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x24(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, itemMgr__4Game@sda21(r13)
+	lwz      r4, mgr__Q24Game9ItemPlant@sda21(r13)
+	bl       addMgr__Q24Game7ItemMgrFPQ24Game11BaseItemMgr
+	b        lbl_801E4E60
 
-	.loc_0x2C0:
-	  li        r0, 0
-	  stw       r0, -0x6B88(r13)
+lbl_801E4E58:
+	li       r0, 0
+	stw      r0, mgr__Q24Game9ItemPlant@sda21(r13)
 
-	.loc_0x2C8:
-	  lwz       r3, -0x6514(r13)
-	  subi      r4, r2, 0x49C8
-	  bl        0x23E4FC
-	  lwz       r3, -0x6514(r13)
-	  subi      r4, r2, 0x49C0
-	  li        r5, 0
-	  bl        0x23E4E4
-	  cmplwi    r30, 0
-	  beq-      .loc_0x330
-	  li        r3, 0x90
-	  bl        -0x1C0FE4
-	  mr.       r0, r3
-	  beq-      .loc_0x308
-	  li        r4, 0x1
-	  bl        -0x2578
-	  mr        r0, r3
+lbl_801E4E60:
+	lwz      r3, sys@sda21(r13)
+	addi     r4, r2, lbl_80519998@sda21
+	bl       heapStatusEnd__6SystemFPc
+	lwz      r3, sys@sda21(r13)
+	addi     r4, r2, lbl_805199A0@sda21
+	li       r5, 0
+	bl       heapStatusStart__6SystemFPcP7JKRHeap
+	cmplwi   r30, 0
+	beq      lbl_801E4EC8
+	li       r3, 0x90
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_801E4EA0
+	li       r4, 1
+	bl       __ct__Q34Game8ItemRock3MgrFv
+	mr       r0, r3
 
-	.loc_0x308:
-	  stw       r0, -0x6B80(r13)
-	  mr        r3, r0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x24(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, -0x6BC8(r13)
-	  lwz       r4, -0x6B80(r13)
-	  bl        -0x171D8
-	  b         .loc_0x338
+lbl_801E4EA0:
+	stw      r0, mgr__Q24Game8ItemRock@sda21(r13)
+	mr       r3, r0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x24(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, itemMgr__4Game@sda21(r13)
+	lwz      r4, mgr__Q24Game8ItemRock@sda21(r13)
+	bl       addMgr__Q24Game7ItemMgrFPQ24Game11BaseItemMgr
+	b        lbl_801E4ED0
 
-	.loc_0x330:
-	  li        r0, 0
-	  stw       r0, -0x6B80(r13)
+lbl_801E4EC8:
+	li       r0, 0
+	stw      r0, mgr__Q24Game8ItemRock@sda21(r13)
 
-	.loc_0x338:
-	  lwz       r3, -0x6514(r13)
-	  subi      r4, r2, 0x49C0
-	  bl        0x23E48C
-	  lwz       r3, -0x6514(r13)
-	  subi      r4, r2, 0x49B8
-	  li        r5, 0
-	  bl        0x23E474
-	  li        r3, 0x84
-	  bl        -0x1C104C
-	  mr.       r0, r3
-	  beq-      .loc_0x370
-	  li        r4, 0x1
-	  bl        -0x11138
-	  mr        r0, r3
+lbl_801E4ED0:
+	lwz      r3, sys@sda21(r13)
+	addi     r4, r2, lbl_805199A0@sda21
+	bl       heapStatusEnd__6SystemFPc
+	lwz      r3, sys@sda21(r13)
+	addi     r4, r2, lbl_805199A8@sda21
+	li       r5, 0
+	bl       heapStatusStart__6SystemFPcP7JKRHeap
+	li       r3, 0x84
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_801E4F08
+	li       r4, 1
+	bl       __ct__Q34Game9ItemHoney3MgrFv
+	mr       r0, r3
 
-	.loc_0x370:
-	  stw       r0, -0x6BB0(r13)
-	  mr        r3, r0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x24(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, -0x6BC8(r13)
-	  lwz       r4, -0x6BB0(r13)
-	  bl        -0x17240
-	  lwz       r3, -0x6514(r13)
-	  subi      r4, r2, 0x49B8
-	  bl        0x23E430
-	  lwz       r3, -0x6514(r13)
-	  subi      r4, r2, 0x49B0
-	  li        r5, 0
-	  bl        0x23E418
-	  li        r3, 0x11C
-	  bl        -0x1C10A8
-	  mr.       r4, r3
-	  beq-      .loc_0x3CC
-	  li        r4, 0x1
-	  bl        -0x6A798
-	  mr        r4, r3
+lbl_801E4F08:
+	stw      r0, mgr__Q24Game9ItemHoney@sda21(r13)
+	mr       r3, r0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x24(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, itemMgr__4Game@sda21(r13)
+	lwz      r4, mgr__Q24Game9ItemHoney@sda21(r13)
+	bl       addMgr__Q24Game7ItemMgrFPQ24Game11BaseItemMgr
+	lwz      r3, sys@sda21(r13)
+	addi     r4, r2, lbl_805199A8@sda21
+	bl       heapStatusEnd__6SystemFPc
+	lwz      r3, sys@sda21(r13)
+	addi     r4, r2, lbl_805199B0@sda21
+	li       r5, 0
+	bl       heapStatusStart__6SystemFPcP7JKRHeap
+	li       r3, 0x11c
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_801E4F64
+	li       r4, 1
+	bl       __ct__Q34Game9ItemOnyon3MgrFv
+	mr       r4, r3
 
-	.loc_0x3CC:
-	  stw       r4, -0x6CD0(r13)
-	  lwz       r3, -0x6BC8(r13)
-	  bl        -0x17284
-	  lwz       r3, -0x6CD0(r13)
-	  bl        -0x69478
-	  lwz       r3, -0x6514(r13)
-	  subi      r4, r2, 0x49B0
-	  bl        0x23E3E4
-	  lwz       r3, -0x6514(r13)
-	  subi      r4, r2, 0x49A8
-	  li        r5, 0
-	  bl        0x23E3CC
-	  cmplwi    r29, 0
-	  beq-      .loc_0x448
-	  li        r3, 0x94
-	  bl        -0x1C10FC
-	  mr.       r0, r3
-	  beq-      .loc_0x420
-	  li        r4, 0x1
-	  bl        -0x1286C
-	  mr        r0, r3
+lbl_801E4F64:
+	stw      r4, mgr__Q24Game9ItemOnyon@sda21(r13)
+	lwz      r3, itemMgr__4Game@sda21(r13)
+	bl       addMgr__Q24Game7ItemMgrFPQ24Game11BaseItemMgr
+	lwz      r3, mgr__Q24Game9ItemOnyon@sda21(r13)
+	bl       init__Q34Game9ItemOnyon3MgrFv
+	lwz      r3, sys@sda21(r13)
+	addi     r4, r2, lbl_805199B0@sda21
+	bl       heapStatusEnd__6SystemFPc
+	lwz      r3, sys@sda21(r13)
+	addi     r4, r2, lbl_805199B8@sda21
+	li       r5, 0
+	bl       heapStatusStart__6SystemFPcP7JKRHeap
+	cmplwi   r29, 0
+	beq      lbl_801E4FE0
+	li       r3, 0x94
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_801E4FB8
+	li       r4, 1
+	bl       __ct__Q34Game8ItemHole3MgrFv
+	mr       r0, r3
 
-	.loc_0x420:
-	  stw       r0, -0x6BB8(r13)
-	  mr        r3, r0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x24(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, -0x6BC8(r13)
-	  lwz       r4, -0x6BB8(r13)
-	  bl        -0x172F0
-	  b         .loc_0x450
+lbl_801E4FB8:
+	stw      r0, mgr__Q24Game8ItemHole@sda21(r13)
+	mr       r3, r0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x24(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, itemMgr__4Game@sda21(r13)
+	lwz      r4, mgr__Q24Game8ItemHole@sda21(r13)
+	bl       addMgr__Q24Game7ItemMgrFPQ24Game11BaseItemMgr
+	b        lbl_801E4FE8
 
-	.loc_0x448:
-	  li        r0, 0
-	  stw       r0, -0x6BB8(r13)
+lbl_801E4FE0:
+	li       r0, 0
+	stw      r0, mgr__Q24Game8ItemHole@sda21(r13)
 
-	.loc_0x450:
-	  lwz       r3, -0x6514(r13)
-	  subi      r4, r2, 0x49A8
-	  bl        0x23E374
-	  lwz       r3, -0x6514(r13)
-	  subi      r4, r2, 0x49A0
-	  li        r5, 0
-	  bl        0x23E35C
-	  cmplwi    r30, 0
-	  beq-      .loc_0x4B8
-	  li        r3, 0x94
-	  bl        -0x1C116C
-	  mr.       r0, r3
-	  beq-      .loc_0x490
-	  li        r4, 0x1
-	  bl        0x6248
-	  mr        r0, r3
+lbl_801E4FE8:
+	lwz      r3, sys@sda21(r13)
+	addi     r4, r2, lbl_805199B8@sda21
+	bl       heapStatusEnd__6SystemFPc
+	lwz      r3, sys@sda21(r13)
+	addi     r4, r2, lbl_805199C0@sda21
+	li       r5, 0
+	bl       heapStatusStart__6SystemFPcP7JKRHeap
+	cmplwi   r30, 0
+	beq      lbl_801E5050
+	li       r3, 0x94
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_801E5028
+	li       r4, 1
+	bl       __ct__Q34Game8ItemCave3MgrFv
+	mr       r0, r3
 
-	.loc_0x490:
-	  stw       r0, -0x6B60(r13)
-	  mr        r3, r0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x24(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, -0x6BC8(r13)
-	  lwz       r4, -0x6B60(r13)
-	  bl        -0x17360
-	  b         .loc_0x4C0
+lbl_801E5028:
+	stw      r0, mgr__Q24Game8ItemCave@sda21(r13)
+	mr       r3, r0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x24(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, itemMgr__4Game@sda21(r13)
+	lwz      r4, mgr__Q24Game8ItemCave@sda21(r13)
+	bl       addMgr__Q24Game7ItemMgrFPQ24Game11BaseItemMgr
+	b        lbl_801E5058
 
-	.loc_0x4B8:
-	  li        r0, 0
-	  stw       r0, -0x6B60(r13)
+lbl_801E5050:
+	li       r0, 0
+	stw      r0, mgr__Q24Game8ItemCave@sda21(r13)
 
-	.loc_0x4C0:
-	  lwz       r3, -0x6514(r13)
-	  subi      r4, r2, 0x49A0
-	  bl        0x23E304
-	  lwz       r3, -0x6514(r13)
-	  addi      r4, r31, 0x54
-	  li        r5, 0
-	  bl        0x23E2EC
-	  cmplwi    r29, 0
-	  beq-      .loc_0x528
-	  li        r3, 0x94
-	  bl        -0x1C11DC
-	  mr.       r0, r3
-	  beq-      .loc_0x500
-	  li        r4, 0x1
-	  bl        0x8498
-	  mr        r0, r3
+lbl_801E5058:
+	lwz      r3, sys@sda21(r13)
+	addi     r4, r2, lbl_805199C0@sda21
+	bl       heapStatusEnd__6SystemFPc
+	lwz      r3, sys@sda21(r13)
+	addi     r4, r31, 0x54
+	li       r5, 0
+	bl       heapStatusStart__6SystemFPcP7JKRHeap
+	cmplwi   r29, 0
+	beq      lbl_801E50C0
+	li       r3, 0x94
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_801E5098
+	li       r4, 1
+	bl       __ct__Q34Game15ItemBigFountain3MgrFv
+	mr       r0, r3
 
-	.loc_0x500:
-	  stw       r0, -0x6B50(r13)
-	  mr        r3, r0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x24(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, -0x6BC8(r13)
-	  lwz       r4, -0x6B50(r13)
-	  bl        -0x173D0
-	  b         .loc_0x530
+lbl_801E5098:
+	stw      r0, mgr__Q24Game15ItemBigFountain@sda21(r13)
+	mr       r3, r0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x24(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, itemMgr__4Game@sda21(r13)
+	lwz      r4, mgr__Q24Game15ItemBigFountain@sda21(r13)
+	bl       addMgr__Q24Game7ItemMgrFPQ24Game11BaseItemMgr
+	b        lbl_801E50C8
 
-	.loc_0x528:
-	  li        r0, 0
-	  stw       r0, -0x6B50(r13)
+lbl_801E50C0:
+	li       r0, 0
+	stw      r0, mgr__Q24Game15ItemBigFountain@sda21(r13)
 
-	.loc_0x530:
-	  lwz       r3, -0x6514(r13)
-	  addi      r4, r31, 0x54
-	  bl        0x23E294
-	  lwz       r3, -0x6514(r13)
-	  addi      r4, r31, 0x64
-	  li        r5, 0
-	  bl        0x23E27C
-	  cmplwi    r30, 0
-	  beq-      .loc_0x598
-	  li        r3, 0x98
-	  bl        -0x1C124C
-	  mr.       r0, r3
-	  beq-      .loc_0x570
-	  li        r4, 0x1
-	  bl        0xAFC8
-	  mr        r0, r3
+lbl_801E50C8:
+	lwz      r3, sys@sda21(r13)
+	addi     r4, r31, 0x54
+	bl       heapStatusEnd__6SystemFPc
+	lwz      r3, sys@sda21(r13)
+	addi     r4, r31, 0x64
+	li       r5, 0
+	bl       heapStatusStart__6SystemFPcP7JKRHeap
+	cmplwi   r30, 0
+	beq      lbl_801E5130
+	li       r3, 0x98
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_801E5108
+	li       r4, 1
+	bl       __ct__Q34Game10ItemBridge3MgrFv
+	mr       r0, r3
 
-	.loc_0x570:
-	  stw       r0, -0x6B48(r13)
-	  mr        r3, r0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x24(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, -0x6BC8(r13)
-	  lwz       r4, -0x6B48(r13)
-	  bl        -0x17440
-	  b         .loc_0x5A0
+lbl_801E5108:
+	stw      r0, mgr__Q24Game10ItemBridge@sda21(r13)
+	mr       r3, r0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x24(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, itemMgr__4Game@sda21(r13)
+	lwz      r4, mgr__Q24Game10ItemBridge@sda21(r13)
+	bl       addMgr__Q24Game7ItemMgrFPQ24Game11BaseItemMgr
+	b        lbl_801E5138
 
-	.loc_0x598:
-	  li        r0, 0
-	  stw       r0, -0x6B48(r13)
+lbl_801E5130:
+	li       r0, 0
+	stw      r0, mgr__Q24Game10ItemBridge@sda21(r13)
 
-	.loc_0x5A0:
-	  lwz       r3, -0x6514(r13)
-	  addi      r4, r31, 0x64
-	  bl        0x23E224
-	  lwz       r3, -0x6514(r13)
-	  subi      r4, r2, 0x4998
-	  li        r5, 0
-	  bl        0x23E20C
-	  li        r3, 0x8C
-	  bl        -0x1C12B4
-	  mr.       r4, r3
-	  beq-      .loc_0x5D8
-	  li        r4, 0x1
-	  bl        -0x1C7F0
-	  mr        r4, r3
+lbl_801E5138:
+	lwz      r3, sys@sda21(r13)
+	addi     r4, r31, 0x64
+	bl       heapStatusEnd__6SystemFPc
+	lwz      r3, sys@sda21(r13)
+	addi     r4, r2, lbl_805199C8@sda21
+	li       r5, 0
+	bl       heapStatusStart__6SystemFPcP7JKRHeap
+	li       r3, 0x8c
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_801E5170
+	li       r4, 1
+	bl       __ct__Q24Game11ItemGateMgrFv
+	mr       r4, r3
 
-	.loc_0x5D8:
-	  stw       r4, -0x6BD0(r13)
-	  lwz       r3, -0x6BC8(r13)
-	  bl        -0x17490
-	  lwz       r3, -0x6514(r13)
-	  subi      r4, r2, 0x4998
-	  bl        0x23E1E0
-	  lwz       r3, -0x6514(r13)
-	  addi      r4, r31, 0x70
-	  li        r5, 0
-	  bl        0x23E1C8
-	  cmplwi    r30, 0
-	  beq-      .loc_0x634
-	  li        r3, 0xA4
-	  bl        -0x1C1300
-	  mr.       r4, r3
-	  beq-      .loc_0x624
-	  li        r4, 0x1
-	  bl        -0x1B4D0
-	  mr        r4, r3
+lbl_801E5170:
+	stw      r4, itemGateMgr__4Game@sda21(r13)
+	lwz      r3, itemMgr__4Game@sda21(r13)
+	bl       addMgr__Q24Game7ItemMgrFPQ24Game11BaseItemMgr
+	lwz      r3, sys@sda21(r13)
+	addi     r4, r2, lbl_805199C8@sda21
+	bl       heapStatusEnd__6SystemFPc
+	lwz      r3, sys@sda21(r13)
+	addi     r4, r31, 0x70
+	li       r5, 0
+	bl       heapStatusStart__6SystemFPcP7JKRHeap
+	cmplwi   r30, 0
+	beq      lbl_801E51CC
+	li       r3, 0xa4
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_801E51BC
+	li       r4, 1
+	bl       __ct__Q34Game15ItemDengekiGate3MgrFv
+	mr       r4, r3
 
-	.loc_0x624:
-	  stw       r4, -0x6BCC(r13)
-	  lwz       r3, -0x6BC8(r13)
-	  bl        -0x174DC
-	  b         .loc_0x63C
+lbl_801E51BC:
+	stw      r4, mgr__Q24Game15ItemDengekiGate@sda21(r13)
+	lwz      r3, itemMgr__4Game@sda21(r13)
+	bl       addMgr__Q24Game7ItemMgrFPQ24Game11BaseItemMgr
+	b        lbl_801E51D4
 
-	.loc_0x634:
-	  li        r0, 0
-	  stw       r0, -0x6BCC(r13)
+lbl_801E51CC:
+	li       r0, 0
+	stw      r0, mgr__Q24Game15ItemDengekiGate@sda21(r13)
 
-	.loc_0x63C:
-	  lwz       r3, -0x6514(r13)
-	  addi      r4, r31, 0x70
-	  bl        0x23E188
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_801E51D4:
+	lwz      r3, sys@sda21(r13)
+	addi     r4, r31, 0x70
+	bl       heapStatusEnd__6SystemFPc
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -495,25 +591,24 @@ void ItemMgr::createManagers(unsigned long)
 void ItemMgr::clearGlobalPointers()
 {
 	/*
-	.loc_0x0:
-	  li        r0, 0
-	  stw       r0, -0x6B10(r13)
-	  stw       r0, -0x6AC0(r13)
-	  stw       r0, -0x6AA0(r13)
-	  stw       r0, -0x6B20(r13)
-	  stw       r0, -0x6B30(r13)
-	  stw       r0, -0x6B90(r13)
-	  stw       r0, -0x6B88(r13)
-	  stw       r0, -0x6B80(r13)
-	  stw       r0, -0x6BB0(r13)
-	  stw       r0, -0x6CD0(r13)
-	  stw       r0, -0x6BB8(r13)
-	  stw       r0, -0x6B60(r13)
-	  stw       r0, -0x6B50(r13)
-	  stw       r0, -0x6B48(r13)
-	  stw       r0, -0x6BD0(r13)
-	  stw       r0, -0x6BCC(r13)
-	  blr
+	li       r0, 0
+	stw      r0, mgr__Q24Game10ItemBarrel@sda21(r13)
+	stw      r0, mgr__Q24Game12ItemUjamushi@sda21(r13)
+	stw      r0, mgr__Q24Game8ItemWeed@sda21(r13)
+	stw      r0, mgr__Q24Game13ItemDownFloor@sda21(r13)
+	stw      r0, mgr__Q24Game12ItemTreasure@sda21(r13)
+	stw      r0, mgr__Q24Game12ItemPikihead@sda21(r13)
+	stw      r0, mgr__Q24Game9ItemPlant@sda21(r13)
+	stw      r0, mgr__Q24Game8ItemRock@sda21(r13)
+	stw      r0, mgr__Q24Game9ItemHoney@sda21(r13)
+	stw      r0, mgr__Q24Game9ItemOnyon@sda21(r13)
+	stw      r0, mgr__Q24Game8ItemHole@sda21(r13)
+	stw      r0, mgr__Q24Game8ItemCave@sda21(r13)
+	stw      r0, mgr__Q24Game15ItemBigFountain@sda21(r13)
+	stw      r0, mgr__Q24Game10ItemBridge@sda21(r13)
+	stw      r0, itemGateMgr__4Game@sda21(r13)
+	stw      r0, mgr__Q24Game15ItemDengekiGate@sda21(r13)
+	blr
 	*/
 }
 
@@ -525,77 +620,76 @@ void ItemMgr::clearGlobalPointers()
 void ItemMgr::killAllExceptOnyonMgr()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r3, -0x6B88(r13)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x50
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x3C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, -0x6C18(r13)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x48
-	  lwz       r4, -0x6B88(r13)
-	  bl        -0x2F2C8
-	  lwz       r3, -0x6BC8(r13)
-	  lwz       r4, -0x6B88(r13)
-	  bl        -0x2F07C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r3, mgr__Q24Game9ItemPlant@sda21(r13)
+	cmplwi   r3, 0
+	beq      lbl_801E5294
+	lwz      r12, 0(r3)
+	lwz      r12, 0x3c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, gameSystem__4Game@sda21(r13)
+	cmplwi   r3, 0
+	beq      lbl_801E528C
+	lwz      r4, mgr__Q24Game9ItemPlant@sda21(r13)
+	bl       detachObjectMgr__Q24Game10GameSystemFP16GenericObjectMgr
+	lwz      r3, itemMgr__4Game@sda21(r13)
+	lwz      r4, mgr__Q24Game9ItemPlant@sda21(r13)
+	bl       "delNode__33NodeObjectMgr<16GenericObjectMgr>FP16GenericObjectMgr"
 
-	.loc_0x48:
-	  li        r0, 0
-	  stw       r0, -0x6B88(r13)
+lbl_801E528C:
+	li       r0, 0
+	stw      r0, mgr__Q24Game9ItemPlant@sda21(r13)
 
-	.loc_0x50:
-	  lwz       r3, -0x6B80(r13)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x94
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x3C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, -0x6C18(r13)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x8C
-	  lwz       r4, -0x6B80(r13)
-	  bl        -0x2F30C
-	  lwz       r3, -0x6BC8(r13)
-	  lwz       r4, -0x6B80(r13)
-	  bl        -0x2F0C0
+lbl_801E5294:
+	lwz      r3, mgr__Q24Game8ItemRock@sda21(r13)
+	cmplwi   r3, 0
+	beq      lbl_801E52D8
+	lwz      r12, 0(r3)
+	lwz      r12, 0x3c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, gameSystem__4Game@sda21(r13)
+	cmplwi   r3, 0
+	beq      lbl_801E52D0
+	lwz      r4, mgr__Q24Game8ItemRock@sda21(r13)
+	bl       detachObjectMgr__Q24Game10GameSystemFP16GenericObjectMgr
+	lwz      r3, itemMgr__4Game@sda21(r13)
+	lwz      r4, mgr__Q24Game8ItemRock@sda21(r13)
+	bl       "delNode__33NodeObjectMgr<16GenericObjectMgr>FP16GenericObjectMgr"
 
-	.loc_0x8C:
-	  li        r0, 0
-	  stw       r0, -0x6B80(r13)
+lbl_801E52D0:
+	li       r0, 0
+	stw      r0, mgr__Q24Game8ItemRock@sda21(r13)
 
-	.loc_0x94:
-	  lwz       r3, -0x6BB0(r13)
-	  cmplwi    r3, 0
-	  beq-      .loc_0xD8
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x3C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, -0x6C18(r13)
-	  cmplwi    r3, 0
-	  beq-      .loc_0xD0
-	  lwz       r4, -0x6BB0(r13)
-	  bl        -0x2F350
-	  lwz       r3, -0x6BC8(r13)
-	  lwz       r4, -0x6BB0(r13)
-	  bl        -0x2F104
+lbl_801E52D8:
+	lwz      r3, mgr__Q24Game9ItemHoney@sda21(r13)
+	cmplwi   r3, 0
+	beq      lbl_801E531C
+	lwz      r12, 0(r3)
+	lwz      r12, 0x3c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, gameSystem__4Game@sda21(r13)
+	cmplwi   r3, 0
+	beq      lbl_801E5314
+	lwz      r4, mgr__Q24Game9ItemHoney@sda21(r13)
+	bl       detachObjectMgr__Q24Game10GameSystemFP16GenericObjectMgr
+	lwz      r3, itemMgr__4Game@sda21(r13)
+	lwz      r4, mgr__Q24Game9ItemHoney@sda21(r13)
+	bl       "delNode__33NodeObjectMgr<16GenericObjectMgr>FP16GenericObjectMgr"
 
-	.loc_0xD0:
-	  li        r0, 0
-	  stw       r0, -0x6BB0(r13)
+lbl_801E5314:
+	li       r0, 0
+	stw      r0, mgr__Q24Game9ItemHoney@sda21(r13)
 
-	.loc_0xD8:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_801E531C:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -609,16 +703,15 @@ void ItemMgr::killAllExceptOnyonMgr()
 void __sinit_registItem_cpp(void)
 {
 	/*
-	.loc_0x0:
-	  lis       r4, 0x8051
-	  li        r0, -0x1
-	  lfs       f0, 0x48B0(r4)
-	  lis       r3, 0x804C
-	  stw       r0, -0x6B78(r13)
-	  stfsu     f0, -0x5CA0(r3)
-	  stfs      f0, -0x6B74(r13)
-	  stfs      f0, 0x4(r3)
-	  stfs      f0, 0x8(r3)
-	  blr
+	lis      r4, __float_nan@ha
+	li       r0, -1
+	lfs      f0, __float_nan@l(r4)
+	lis      r3, lbl_804BA360@ha
+	stw      r0, lbl_80515B08@sda21(r13)
+	stfsu    f0, lbl_804BA360@l(r3)
+	stfs     f0, lbl_80515B0C@sda21(r13)
+	stfs     f0, 4(r3)
+	stfs     f0, 8(r3)
+	blr
 	*/
 }

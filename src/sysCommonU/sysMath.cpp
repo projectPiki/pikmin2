@@ -3,6 +3,103 @@
 #include "sysMath.h"
 #include "Vector3.h"
 
+/*
+    Generated from dpostproc
+
+    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
+        .4byte __sinit_sysMath_cpp
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_80499648
+    lbl_80499648:
+        .asciz "sysMath.cpp"
+    .global lbl_80499654
+    lbl_80499654:
+        .asciz "acosf %f\n"
+        .skip 0x2
+
+    .section .bss  # 0x804EFC20 - 0x8051467C
+    .global "zero__10Vector3<f>"
+    "zero__10Vector3<f>":
+        .skip 0xC
+
+    .section .sbss # 0x80514D80 - 0x80516360
+    .global "__init__zero__10Vector3<f>"
+    "__init__zero__10Vector3<f>":
+        .skip 0x8
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_80520268
+    lbl_80520268:
+        .float -325.9493
+    .global lbl_8052026C
+    lbl_8052026C:
+        .float 325.9493
+    .global lbl_80520270
+    lbl_80520270:
+        .float 0.0
+    .global lbl_80520274
+    lbl_80520274:
+        .float -1.0
+    .global lbl_80520278
+    lbl_80520278:
+        .float 1.0
+    .global lbl_8052027C
+    lbl_8052027C:
+        .float 3.1415927
+    .global lbl_80520280
+    lbl_80520280:
+        .float 1023.5
+    .global lbl_80520284
+    lbl_80520284:
+        .float 1.5707964
+    .global lbl_80520288
+    lbl_80520288:
+        .float 0.5
+    .global lbl_8052028C
+    lbl_8052028C:
+        .float 1.5
+    .global lbl_80520290
+    lbl_80520290:
+        .float -1.5
+    .global lbl_80520294
+    lbl_80520294:
+        .float 2.0
+    .global lbl_80520298
+    lbl_80520298:
+        .float 4.5
+    .global lbl_8052029C
+    lbl_8052029C:
+        .float 5.0
+    .global lbl_805202A0
+    lbl_805202A0:
+        .float -4.5
+    .global lbl_805202A4
+    lbl_805202A4:
+        .float 4.0
+    .global lbl_805202A8
+    lbl_805202A8:
+        .float 6.2831855
+    .global lbl_805202AC
+    lbl_805202AC:
+        .float 0.01
+    .global lbl_805202B0
+    lbl_805202B0:
+        .double 0.0
+    .global lbl_805202B8
+    lbl_805202B8:
+        .4byte 0x3727C5AC
+    .global lbl_805202BC
+    lbl_805202BC:
+        .float 0.25
+    .global lbl_805202C0
+    lbl_805202C0:
+        .float 32768.0
+    .global lbl_805202C4
+    lbl_805202C4:
+        .float -32768.0
+*/
+
 extern const float lbl_80520268;  //-325.9493
 extern const float lbl_8052026C;  // 325.9493
 extern const float lbl_80520270;  // 0.0

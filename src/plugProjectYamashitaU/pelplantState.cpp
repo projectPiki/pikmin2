@@ -1,5 +1,224 @@
 #include "types.h"
 
+/*
+    Generated from dpostproc
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_8047AA20
+    lbl_8047AA20:
+        .asciz "wither_big"
+        .skip 1
+        .asciz "wither_Middle"
+        .skip 2
+        .asciz "wither_Small"
+        .skip 3
+        .asciz "wait_small"
+        .skip 1
+        .asciz "wait_middle"
+        .asciz "wait_big"
+        .skip 3
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global lbl_804AB100
+    lbl_804AB100:
+        .4byte lbl_8010B68C
+        .4byte lbl_8010B520
+        .4byte lbl_8010B68C
+        .4byte lbl_8010B68C
+        .4byte lbl_8010B68C
+        .4byte lbl_8010B57C
+        .4byte lbl_8010B68C
+        .4byte lbl_8010B68C
+        .4byte lbl_8010B68C
+        .4byte lbl_8010B68C
+        .4byte lbl_8010B5D8
+        .4byte lbl_8010B68C
+        .4byte lbl_8010B68C
+        .4byte lbl_8010B68C
+        .4byte lbl_8010B68C
+        .4byte lbl_8010B68C
+        .4byte lbl_8010B68C
+        .4byte lbl_8010B68C
+        .4byte lbl_8010B68C
+        .4byte lbl_8010B68C
+        .4byte lbl_8010B634
+    .global __vt__Q34Game8Pelplant9StateDead
+    __vt__Q34Game8Pelplant9StateDead:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game8Pelplant9StateDeadFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
+   exec__Q34Game8Pelplant9StateDeadFPQ24Game9EnemyBase .4byte
+   cleanup__Q34Game8Pelplant9StateDeadFPQ24Game9EnemyBase .4byte
+   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
+   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game8Pelplant11StateDamage
+    __vt__Q34Game8Pelplant11StateDamage:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game8Pelplant11StateDamageFPQ24Game9EnemyBasePQ24Game8StateArg
+        .4byte exec__Q34Game8Pelplant11StateDamageFPQ24Game9EnemyBase
+        .4byte cleanup__Q34Game8Pelplant11StateDamageFPQ24Game9EnemyBase
+        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q23efx11TPpl20Grow2
+    __vt__Q23efx11TPpl20Grow2:
+        .4byte 0
+        .4byte 0
+        .4byte create__Q23efx8TSimple3FPQ23efx3Arg
+        .4byte forceKill__Q23efx8TSimple3Fv
+        .4byte fade__Q23efx8TSimple3Fv
+    .global __vt__Q23efx11TPpl10Grow2
+    __vt__Q23efx11TPpl10Grow2:
+        .4byte 0
+        .4byte 0
+        .4byte create__Q23efx8TSimple3FPQ23efx3Arg
+        .4byte forceKill__Q23efx8TSimple3Fv
+        .4byte fade__Q23efx8TSimple3Fv
+    .global __vt__Q23efx10TPpl5Grow2
+    __vt__Q23efx10TPpl5Grow2:
+        .4byte 0
+        .4byte 0
+        .4byte create__Q23efx8TSimple3FPQ23efx3Arg
+        .4byte forceKill__Q23efx8TSimple3Fv
+        .4byte fade__Q23efx8TSimple3Fv
+    .global __vt__Q23efx9TPplGrow2
+    __vt__Q23efx9TPplGrow2:
+        .4byte 0
+        .4byte 0
+        .4byte create__Q23efx8TSimple3FPQ23efx3Arg
+        .4byte forceKill__Q23efx8TSimple3Fv
+        .4byte fade__Q23efx8TSimple3Fv
+    .global __vt__Q23efx9TPplGrow1
+    __vt__Q23efx9TPplGrow1:
+        .4byte 0
+        .4byte 0
+        .4byte create__Q23efx8TSimple2FPQ23efx3Arg
+        .4byte forceKill__Q23efx8TSimple2Fv
+        .4byte fade__Q23efx8TSimple2Fv
+    .global __vt__Q34Game8Pelplant9StateGrow
+    __vt__Q34Game8Pelplant9StateGrow:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game8Pelplant9StateGrowFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
+   exec__Q34Game8Pelplant9StateGrowFPQ24Game9EnemyBase .4byte
+   cleanup__Q34Game8Pelplant9StateGrowFPQ24Game9EnemyBase .4byte
+   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
+   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game8Pelplant9StateWait
+    __vt__Q34Game8Pelplant9StateWait:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game8Pelplant9StateWaitFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
+   exec__Q34Game8Pelplant9StateWaitFPQ24Game9EnemyBase .4byte
+   cleanup__Q34Game8Pelplant9StateWaitFPQ24Game9EnemyBase .4byte
+   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
+   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game8Pelplant11StateWither
+    __vt__Q34Game8Pelplant11StateWither:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game8Pelplant11StateWitherFPQ24Game9EnemyBasePQ24Game8StateArg
+        .4byte exec__Q34Game8Pelplant11StateWitherFPQ24Game9EnemyBase
+        .4byte cleanup__Q34Game8Pelplant11StateWitherFPQ24Game9EnemyBase
+        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game8Pelplant14StateBlendAnim
+    __vt__Q34Game8Pelplant14StateBlendAnim:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game8Pelplant14StateBlendAnimFPQ24Game9EnemyBasePQ24Game8StateArg
+        .4byte exec__Q34Game8Pelplant14StateBlendAnimFPQ24Game9EnemyBase
+        .4byte cleanup__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game8Pelplant5State
+    __vt__Q34Game8Pelplant5State:
+        .4byte 0
+        .4byte 0
+        .4byte init__Q24Game13EnemyFSMStateFPQ24Game9EnemyBasePQ24Game8StateArg
+        .4byte exec__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte cleanup__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game8Pelplant3FSM
+    __vt__Q34Game8Pelplant3FSM:
+        .4byte 0
+        .4byte 0
+        .4byte init__Q34Game8Pelplant3FSMFPQ24Game9EnemyBase
+        .4byte
+   start__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   exec__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase .4byte
+   transit__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseiPQ24Game8StateArg
+        .4byte
+   doDirectDraw__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseR8Graphics .4byte
+   getCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase .4byte
+   setCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBasePQ24Game13EnemyFSMState
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_80517960
+    lbl_80517960:
+        .4byte 0x41F00000
+    .global lbl_80517964
+    lbl_80517964:
+        .float 1.0
+    .global lbl_80517968
+    lbl_80517968:
+        .4byte 0x41200000
+    .global lbl_8051796C
+    lbl_8051796C:
+        .4byte 0x00000000
+    .global lbl_80517970
+    lbl_80517970:
+        .4byte 0xC47A0000
+    .global lbl_80517974
+    lbl_80517974:
+        .4byte 0x47000000
+    .global lbl_80517978
+    lbl_80517978:
+        .4byte 0x40A00000
+        .4byte 0x00000000
+    .global lbl_80517980
+    lbl_80517980:
+        .4byte 0x43300000
+        .4byte 0x80000000
+    .global lbl_80517988
+    lbl_80517988:
+        .4byte 0x67726F77
+        .4byte 0x00000000
+    .global lbl_80517990
+    lbl_80517990:
+        .4byte 0x64616D61
+        .4byte 0x67650000
+    .global lbl_80517998
+    lbl_80517998:
+        .4byte 0x64656164
+        .4byte 0x00000000
+*/
+
 namespace Game {
 
 /*
@@ -10,147 +229,146 @@ namespace Game {
 void Pelplant::FSM::init(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r4, 0xA
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        0x25D14
-	  li        r3, 0x14
-	  bl        -0xE6CB4
-	  mr.       r4, r3
-	  beq-      .loc_0x3C
-	  li        r4, 0
-	  li        r5, 0
-	  bl        0x410
-	  mr        r4, r3
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	li       r4, 0xa
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       create__Q24Game17EnemyStateMachineFi
+	li       r3, 0x14
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_8010AB74
+	li       r4, 0
+	li       r5, 0
+	bl       __ct__Q34Game8Pelplant9StateWaitFii
+	mr       r4, r3
 
-	.loc_0x3C:
-	  mr        r3, r31
-	  bl        0x25D90
-	  li        r3, 0x14
-	  bl        -0xE6CDC
-	  mr.       r4, r3
-	  beq-      .loc_0x64
-	  li        r4, 0x1
-	  li        r5, 0x1
-	  bl        0x3E8
-	  mr        r4, r3
+lbl_8010AB74:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	li       r3, 0x14
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_8010AB9C
+	li       r4, 1
+	li       r5, 1
+	bl       __ct__Q34Game8Pelplant9StateWaitFii
+	mr       r4, r3
 
-	.loc_0x64:
-	  mr        r3, r31
-	  bl        0x25D68
-	  li        r3, 0x14
-	  bl        -0xE6D04
-	  mr.       r4, r3
-	  beq-      .loc_0x8C
-	  li        r4, 0x2
-	  li        r5, 0x2
-	  bl        0x3C0
-	  mr        r4, r3
+lbl_8010AB9C:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	li       r3, 0x14
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_8010ABC4
+	li       r4, 2
+	li       r5, 2
+	bl       __ct__Q34Game8Pelplant9StateWaitFii
+	mr       r4, r3
 
-	.loc_0x8C:
-	  mr        r3, r31
-	  bl        0x25D40
-	  li        r3, 0x18
-	  bl        -0xE6D2C
-	  mr.       r4, r3
-	  beq-      .loc_0xB8
-	  li        r4, 0x3
-	  li        r5, 0x2
-	  li        r6, 0x1
-	  bl        0x7DC
-	  mr        r4, r3
+lbl_8010ABC4:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	li       r3, 0x18
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_8010ABF0
+	li       r4, 3
+	li       r5, 2
+	li       r6, 1
+	bl       __ct__Q34Game8Pelplant9StateGrowFiii
+	mr       r4, r3
 
-	.loc_0xB8:
-	  mr        r3, r31
-	  bl        0x25D14
-	  li        r3, 0x18
-	  bl        -0xE6D58
-	  mr.       r4, r3
-	  beq-      .loc_0xE4
-	  li        r4, 0x4
-	  li        r5, 0x3
-	  li        r6, 0x2
-	  bl        0x7B0
-	  mr        r4, r3
+lbl_8010ABF0:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	li       r3, 0x18
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_8010AC1C
+	li       r4, 4
+	li       r5, 3
+	li       r6, 2
+	bl       __ct__Q34Game8Pelplant9StateGrowFiii
+	mr       r4, r3
 
-	.loc_0xE4:
-	  mr        r3, r31
-	  bl        0x25CE8
-	  li        r3, 0x14
-	  bl        -0xE6D84
-	  mr.       r4, r3
-	  beq-      .loc_0x10C
-	  li        r4, 0x5
-	  li        r5, 0
-	  bl        0xB10
-	  mr        r4, r3
+lbl_8010AC1C:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	li       r3, 0x14
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_8010AC44
+	li       r4, 5
+	li       r5, 0
+	bl       __ct__Q34Game8Pelplant11StateDamageFii
+	mr       r4, r3
 
-	.loc_0x10C:
-	  mr        r3, r31
-	  bl        0x25CC0
-	  li        r3, 0x14
-	  bl        -0xE6DAC
-	  mr.       r4, r3
-	  beq-      .loc_0x134
-	  li        r4, 0x6
-	  li        r5, 0x1
-	  bl        0xC2C
-	  mr        r4, r3
+lbl_8010AC44:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	li       r3, 0x14
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_8010AC6C
+	li       r4, 6
+	li       r5, 1
+	bl       __ct__Q34Game8Pelplant9StateDeadFii
+	mr       r4, r3
 
-	.loc_0x134:
-	  mr        r3, r31
-	  bl        0x25C98
-	  li        r3, 0x1C
-	  bl        -0xE6DD4
-	  mr.       r4, r3
-	  beq-      .loc_0x164
-	  li        r4, 0x7
-	  li        r5, 0
-	  li        r6, 0x6
-	  li        r7, 0x4
-	  bl        0x13C
-	  mr        r4, r3
+lbl_8010AC6C:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	li       r3, 0x1c
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_8010AC9C
+	li       r4, 7
+	li       r5, 0
+	li       r6, 6
+	li       r7, 4
+	bl       __ct__Q34Game8Pelplant11StateWitherFiiii
+	mr       r4, r3
 
-	.loc_0x164:
-	  mr        r3, r31
-	  bl        0x25C68
-	  li        r3, 0x1C
-	  bl        -0xE6E04
-	  mr.       r4, r3
-	  beq-      .loc_0x194
-	  li        r4, 0x8
-	  li        r5, 0
-	  li        r6, 0x5
-	  li        r7, 0x4
-	  bl        0x10C
-	  mr        r4, r3
+lbl_8010AC9C:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	li       r3, 0x1c
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_8010ACCC
+	li       r4, 8
+	li       r5, 0
+	li       r6, 5
+	li       r7, 4
+	bl       __ct__Q34Game8Pelplant11StateWitherFiiii
+	mr       r4, r3
 
-	.loc_0x194:
-	  mr        r3, r31
-	  bl        0x25C38
-	  li        r3, 0x1C
-	  bl        -0xE6E34
-	  mr.       r4, r3
-	  beq-      .loc_0x1C4
-	  li        r4, 0x9
-	  li        r5, 0
-	  li        r6, 0x4
-	  li        r7, 0x4
-	  bl        0xDC
-	  mr        r4, r3
+lbl_8010ACCC:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	li       r3, 0x1c
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_8010ACFC
+	li       r4, 9
+	li       r5, 0
+	li       r6, 4
+	li       r7, 4
+	bl       __ct__Q34Game8Pelplant11StateWitherFiiii
+	mr       r4, r3
 
-	.loc_0x1C4:
-	  mr        r3, r31
-	  bl        0x25C08
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8010ACFC:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -162,22 +380,22 @@ void Pelplant::FSM::init(Game::EnemyBase*)
 void Pelplant::StateBlendAnim::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r5, r3
-	  mr        r3, r4
-	  stw       r0, 0x14(r1)
-	  subi      r6, r13, 0x6DBC
-	  lfs       f1, -0x6A00(r2)
-	  li        r7, 0
-	  lwz       r4, 0x14(r5)
-	  lwz       r5, 0x18(r5)
-	  bl        -0x5F88
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r5, r3
+	mr       r3, r4
+	stw      r0, 0x14(r1)
+	addi     r6, r13, sBlendQuadraticFun__Q24Game22EnemyBlendAnimatorBase@sda21
+	lfs      f1, lbl_80517960@sda21(r2)
+	li       r7, 0
+	lwz      r4, 0x14(r5)
+	lwz      r5, 0x18(r5)
+	bl
+	startBlend__Q24Game9EnemyBaseFiiPQ28SysShape13BlendFunctionfPQ28SysShape14MotionListener
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -189,42 +407,41 @@ void Pelplant::StateBlendAnim::init(Game::EnemyBase*, Game::StateArg*)
 void Pelplant::StateBlendAnim::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lwz       r3, 0x188(r4)
-	  lbz       r0, 0x24(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x64
-	  lwz       r0, 0x1C(r3)
-	  cmpwi     r0, 0x7D0
-	  beq-      .loc_0x3C
-	  b         .loc_0x64
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lwz      r3, 0x188(r4)
+	lbz      r0, 0x24(r3)
+	cmplwi   r0, 0
+	beq      lbl_8010ADB8
+	lwz      r0, 0x1c(r3)
+	cmpwi    r0, 0x7d0
+	beq      lbl_8010AD90
+	b        lbl_8010ADB8
 
-	.loc_0x3C:
-	  mr        r3, r31
-	  bl        -0x5DEC
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r6, 0
-	  lwz       r5, 0x10(r30)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_8010AD90:
+	mr       r3, r31
+	bl       endBlend__Q24Game9EnemyBaseFv
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r6, 0
+	lwz      r5, 0x10(r30)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x64:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8010ADB8:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -236,53 +453,52 @@ void Pelplant::StateBlendAnim::exec(Game::EnemyBase*)
 Pelplant::StateWither::StateWither(int, int, int, int)
 {
 	/*
-	.loc_0x0:
-	  lis       r8, 0x804B
-	  lis       r10, 0x804B
-	  subi      r0, r8, 0x65C
-	  lis       r9, 0x804B
-	  stw       r0, 0x0(r3)
-	  lis       r8, 0x804B
-	  li        r11, 0
-	  subi      r10, r10, 0x4D70
-	  stw       r4, 0x4(r3)
-	  subi      r9, r9, 0x4D94
-	  cmpwi     r4, 0x8
-	  subi      r0, r8, 0x4DB8
-	  stw       r11, 0x8(r3)
-	  lis       r12, 0x8048
-	  subi      r8, r12, 0x55E0
-	  stw       r10, 0x0(r3)
-	  stw       r9, 0x0(r3)
-	  stw       r5, 0x10(r3)
-	  stw       r6, 0x14(r3)
-	  stw       r7, 0x18(r3)
-	  stw       r0, 0x0(r3)
-	  beq-      .loc_0x80
-	  bge-      .loc_0x68
-	  cmpwi     r4, 0x7
-	  bge-      .loc_0x74
-	  blr
+	lis      r8, __vt__Q24Game13EnemyFSMState@ha
+	lis      r10, __vt__Q34Game8Pelplant5State@ha
+	addi     r0, r8, __vt__Q24Game13EnemyFSMState@l
+	lis      r9, __vt__Q34Game8Pelplant14StateBlendAnim@ha
+	stw      r0, 0(r3)
+	lis      r8, __vt__Q34Game8Pelplant11StateWither@ha
+	li       r11, 0
+	addi     r10, r10, __vt__Q34Game8Pelplant5State@l
+	stw      r4, 4(r3)
+	addi     r9, r9, __vt__Q34Game8Pelplant14StateBlendAnim@l
+	cmpwi    r4, 8
+	addi     r0, r8, __vt__Q34Game8Pelplant11StateWither@l
+	stw      r11, 8(r3)
+	lis      r12, lbl_8047AA20@ha
+	addi     r8, r12, lbl_8047AA20@l
+	stw      r10, 0(r3)
+	stw      r9, 0(r3)
+	stw      r5, 0x10(r3)
+	stw      r6, 0x14(r3)
+	stw      r7, 0x18(r3)
+	stw      r0, 0(r3)
+	beq      lbl_8010AE50
+	bge      lbl_8010AE38
+	cmpwi    r4, 7
+	bge      lbl_8010AE44
+	blr
 
-	.loc_0x68:
-	  cmpwi     r4, 0xA
-	  bgelr-
-	  b         .loc_0x8C
+lbl_8010AE38:
+	cmpwi    r4, 0xa
+	bgelr
+	b        lbl_8010AE5C
 
-	.loc_0x74:
-	  addi      r0, r8, 0
-	  stw       r0, 0xC(r3)
-	  blr
+lbl_8010AE44:
+	addi     r0, r8, 0
+	stw      r0, 0xc(r3)
+	blr
 
-	.loc_0x80:
-	  addi      r0, r8, 0xC
-	  stw       r0, 0xC(r3)
-	  blr
+lbl_8010AE50:
+	addi     r0, r8, 0xc
+	stw      r0, 0xc(r3)
+	blr
 
-	.loc_0x8C:
-	  addi      r0, r8, 0x1C
-	  stw       r0, 0xC(r3)
-	  blr
+lbl_8010AE5C:
+	addi     r0, r8, 0x1c
+	stw      r0, 0xc(r3)
+	blr
 	*/
 }
 
@@ -294,35 +510,36 @@ Pelplant::StateWither::StateWither(int, int, int, int)
 void Pelplant::StateWither::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r5, r3
-	  lfs       f1, -0x6A00(r2)
-	  stw       r0, 0x14(r1)
-	  subi      r6, r13, 0x6DBC
-	  li        r7, 0
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  lwz       r4, 0x14(r3)
-	  mr        r3, r31
-	  lwz       r5, 0x18(r5)
-	  bl        -0x60E0
-	  lwz       r0, 0x1E0(r31)
-	  mr        r3, r31
-	  lfs       f1, -0x69FC(r2)
-	  li        r4, 0
-	  ori       r0, r0, 0x1
-	  lfs       f2, -0x69F8(r2)
-	  stw       r0, 0x1E0(r31)
-	  lfs       f3, -0x69F4(r2)
-	  lfs       f4, -0x69F0(r2)
-	  bl        0x825C
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r5, r3
+	lfs      f1, lbl_80517960@sda21(r2)
+	stw      r0, 0x14(r1)
+	addi     r6, r13, sBlendQuadraticFun__Q24Game22EnemyBlendAnimatorBase@sda21
+	li       r7, 0
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	lwz      r4, 0x14(r3)
+	mr       r3, r31
+	lwz      r5, 0x18(r5)
+	bl
+	startBlend__Q24Game9EnemyBaseFiiPQ28SysShape13BlendFunctionfPQ28SysShape14MotionListener
+	lwz      r0, 0x1e0(r31)
+	mr       r3, r31
+	lfs      f1, lbl_80517964@sda21(r2)
+	li       r4, 0
+	ori      r0, r0, 1
+	lfs      f2, lbl_80517968@sda21(r2)
+	stw      r0, 0x1e0(r31)
+	lfs      f3, lbl_8051796C@sda21(r2)
+	lfs      f4, lbl_80517970@sda21(r2)
+	bl
+	"flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -334,42 +551,41 @@ void Pelplant::StateWither::init(Game::EnemyBase*, Game::StateArg*)
 void Pelplant::StateWither::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lwz       r3, 0x188(r4)
-	  lbz       r0, 0x24(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x64
-	  lwz       r0, 0x1C(r3)
-	  cmpwi     r0, 0x7D0
-	  beq-      .loc_0x3C
-	  b         .loc_0x64
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lwz      r3, 0x188(r4)
+	lbz      r0, 0x24(r3)
+	cmplwi   r0, 0
+	beq      lbl_8010AF3C
+	lwz      r0, 0x1c(r3)
+	cmpwi    r0, 0x7d0
+	beq      lbl_8010AF14
+	b        lbl_8010AF3C
 
-	.loc_0x3C:
-	  mr        r3, r31
-	  bl        -0x5F70
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r6, 0
-	  lwz       r5, 0x10(r30)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_8010AF14:
+	mr       r3, r31
+	bl       endBlend__Q24Game9EnemyBaseFv
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r6, 0
+	lwz      r5, 0x10(r30)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x64:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8010AF3C:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -381,17 +597,16 @@ void Pelplant::StateWither::exec(Game::EnemyBase*)
 void Pelplant::StateWither::cleanup(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r3, r4
-	  li        r4, 0
-	  stw       r0, 0x14(r1)
-	  bl        -0x2670
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r3, r4
+	li       r4, 0
+	stw      r0, 0x14(r1)
+	bl       updateLODSphereRadius__Q34Game8Pelplant3ObjFi
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -403,49 +618,48 @@ void Pelplant::StateWither::cleanup(Game::EnemyBase*)
 Pelplant::StateWait::StateWait(int, int)
 {
 	/*
-	.loc_0x0:
-	  lis       r8, 0x804B
-	  lis       r7, 0x804B
-	  subi      r0, r8, 0x65C
-	  lis       r6, 0x804B
-	  stw       r0, 0x0(r3)
-	  li        r8, 0
-	  subi      r7, r7, 0x4D70
-	  subi      r0, r6, 0x4DDC
-	  stw       r4, 0x4(r3)
-	  lis       r9, 0x8048
-	  subi      r4, r9, 0x55E0
-	  stw       r8, 0x8(r3)
-	  stw       r7, 0x0(r3)
-	  stw       r0, 0x0(r3)
-	  stw       r5, 0x10(r3)
-	  lwz       r0, 0x10(r3)
-	  cmpwi     r0, 0x1
-	  beq-      .loc_0x70
-	  bge-      .loc_0x58
-	  cmpwi     r0, 0
-	  bge-      .loc_0x64
-	  blr
+	lis      r8, __vt__Q24Game13EnemyFSMState@ha
+	lis      r7, __vt__Q34Game8Pelplant5State@ha
+	addi     r0, r8, __vt__Q24Game13EnemyFSMState@l
+	lis      r6, __vt__Q34Game8Pelplant9StateWait@ha
+	stw      r0, 0(r3)
+	li       r8, 0
+	addi     r7, r7, __vt__Q34Game8Pelplant5State@l
+	addi     r0, r6, __vt__Q34Game8Pelplant9StateWait@l
+	stw      r4, 4(r3)
+	lis      r9, lbl_8047AA20@ha
+	addi     r4, r9, lbl_8047AA20@l
+	stw      r8, 8(r3)
+	stw      r7, 0(r3)
+	stw      r0, 0(r3)
+	stw      r5, 0x10(r3)
+	lwz      r0, 0x10(r3)
+	cmpwi    r0, 1
+	beq      lbl_8010AFEC
+	bge      lbl_8010AFD4
+	cmpwi    r0, 0
+	bge      lbl_8010AFE0
+	blr
 
-	.loc_0x58:
-	  cmpwi     r0, 0x3
-	  bgelr-
-	  b         .loc_0x7C
+lbl_8010AFD4:
+	cmpwi    r0, 3
+	bgelr
+	b        lbl_8010AFF8
 
-	.loc_0x64:
-	  addi      r0, r4, 0x2C
-	  stw       r0, 0xC(r3)
-	  blr
+lbl_8010AFE0:
+	addi     r0, r4, 0x2c
+	stw      r0, 0xc(r3)
+	blr
 
-	.loc_0x70:
-	  addi      r0, r4, 0x38
-	  stw       r0, 0xC(r3)
-	  blr
+lbl_8010AFEC:
+	addi     r0, r4, 0x38
+	stw      r0, 0xc(r3)
+	blr
 
-	.loc_0x7C:
-	  addi      r0, r4, 0x44
-	  stw       r0, 0xC(r3)
-	  blr
+lbl_8010AFF8:
+	addi     r0, r4, 0x44
+	stw      r0, 0xc(r3)
+	blr
 	*/
 }
 
@@ -457,98 +671,97 @@ Pelplant::StateWait::StateWait(int, int)
 void Pelplant::StateWait::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stw       r31, 0x2C(r1)
-	  mr        r31, r4
-	  lwz       r0, 0x1E0(r4)
-	  rlwinm    r0,r0,0,26,24
-	  stw       r0, 0x1E0(r4)
-	  lbz       r0, 0x2C8(r4)
-	  rlwinm    r0,r0,0,31,29
-	  stb       r0, 0x2C8(r4)
-	  lwz       r0, 0x1E0(r4)
-	  ori       r0, r0, 0x1
-	  stw       r0, 0x1E0(r4)
-	  lwz       r0, 0x10(r3)
-	  cmpwi     r0, 0x1
-	  beq-      .loc_0x74
-	  bge-      .loc_0x54
-	  cmpwi     r0, 0
-	  bge-      .loc_0x60
-	  b         .loc_0xC8
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stw      r31, 0x2c(r1)
+	mr       r31, r4
+	lwz      r0, 0x1e0(r4)
+	rlwinm   r0, r0, 0, 0x1a, 0x18
+	stw      r0, 0x1e0(r4)
+	lbz      r0, 0x2c8(r4)
+	rlwinm   r0, r0, 0, 0x1f, 0x1d
+	stb      r0, 0x2c8(r4)
+	lwz      r0, 0x1e0(r4)
+	ori      r0, r0, 1
+	stw      r0, 0x1e0(r4)
+	lwz      r0, 0x10(r3)
+	cmpwi    r0, 1
+	beq      lbl_8010B078
+	bge      lbl_8010B058
+	cmpwi    r0, 0
+	bge      lbl_8010B064
+	b        lbl_8010B0CC
 
-	.loc_0x54:
-	  cmpwi     r0, 0x3
-	  bge-      .loc_0xC8
-	  b         .loc_0x88
+lbl_8010B058:
+	cmpwi    r0, 3
+	bge      lbl_8010B0CC
+	b        lbl_8010B08C
 
-	.loc_0x60:
-	  mr        r3, r31
-	  li        r4, 0x4
-	  li        r5, 0
-	  bl        -0x606C
-	  b         .loc_0xC8
+lbl_8010B064:
+	mr       r3, r31
+	li       r4, 4
+	li       r5, 0
+	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
+	b        lbl_8010B0CC
 
-	.loc_0x74:
-	  mr        r3, r31
-	  li        r4, 0x5
-	  li        r5, 0
-	  bl        -0x6080
-	  b         .loc_0xC8
+lbl_8010B078:
+	mr       r3, r31
+	li       r4, 5
+	li       r5, 0
+	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
+	b        lbl_8010B0CC
 
-	.loc_0x88:
-	  lbz       r0, 0x2C8(r31)
-	  mr        r3, r31
-	  li        r4, 0x6
-	  li        r5, 0
-	  ori       r0, r0, 0x2
-	  stb       r0, 0x2C8(r31)
-	  lwz       r0, 0x1E0(r31)
-	  rlwinm    r0,r0,0,0,30
-	  stw       r0, 0x1E0(r31)
-	  bl        -0x60AC
-	  mr        r3, r31
-	  li        r4, 0x2
-	  bl        -0x27C4
-	  lwz       r0, 0x1E0(r31)
-	  ori       r0, r0, 0x40
-	  stw       r0, 0x1E0(r31)
+lbl_8010B08C:
+	lbz      r0, 0x2c8(r31)
+	mr       r3, r31
+	li       r4, 6
+	li       r5, 0
+	ori      r0, r0, 2
+	stb      r0, 0x2c8(r31)
+	lwz      r0, 0x1e0(r31)
+	rlwinm   r0, r0, 0, 0, 0x1e
+	stw      r0, 0x1e0(r31)
+	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
+	mr       r3, r31
+	li       r4, 2
+	bl       updateLODSphereRadius__Q34Game8Pelplant3ObjFi
+	lwz      r0, 0x1e0(r31)
+	ori      r0, r0, 0x40
+	stw      r0, 0x1e0(r31)
 
-	.loc_0xC8:
-	  mr        r4, r31
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f2, 0x8(r1)
-	  addi      r4, r1, 0x14
-	  lfs       f1, 0xC(r1)
-	  lfs       f0, 0x10(r1)
-	  stfs      f2, 0x14(r1)
-	  lwz       r3, -0x6CF8(r13)
-	  stfs      f1, 0x18(r1)
-	  stfs      f0, 0x1C(r1)
-	  lwz       r12, 0x4(r3)
-	  lwz       r12, 0x28(r12)
-	  mtctr     r12
-	  bctrl
-	  stfs      f1, 0x18(r1)
-	  mr        r3, r31
-	  addi      r4, r1, 0x14
-	  li        r5, 0
-	  stw       r31, -0x6E24(r13)
-	  bl        0x30080
-	  li        r0, 0
-	  stw       r0, -0x6E24(r13)
-	  lwz       r0, 0x34(r1)
-	  lwz       r31, 0x2C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_8010B0CC:
+	mr       r4, r31
+	addi     r3, r1, 8
+	lwz      r12, 0(r31)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f2, 8(r1)
+	addi     r4, r1, 0x14
+	lfs      f1, 0xc(r1)
+	lfs      f0, 0x10(r1)
+	stfs     f2, 0x14(r1)
+	lwz      r3, mapMgr__4Game@sda21(r13)
+	stfs     f1, 0x18(r1)
+	stfs     f0, 0x1c(r1)
+	lwz      r12, 4(r3)
+	lwz      r12, 0x28(r12)
+	mtctr    r12
+	bctrl
+	stfs     f1, 0x18(r1)
+	mr       r3, r31
+	addi     r4, r1, 0x14
+	li       r5, 0
+	stw      r31, sCurrentObj__Q34Game8Pelplant3Obj@sda21(r13)
+	bl       "setPosition__Q24Game8CreatureFR10Vector3<f>b"
+	li       r0, 0
+	stw      r0, sCurrentObj__Q34Game8Pelplant3Obj@sda21(r13)
+	lwz      r0, 0x34(r1)
+	lwz      r31, 0x2c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -560,199 +773,198 @@ void Pelplant::StateWait::init(Game::EnemyBase*, Game::StateArg*)
 void Pelplant::StateWait::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r4
-	  stw       r30, 0x18(r1)
-	  mr        r30, r3
-	  lbz       r0, 0x2C8(r31)
-	  lwz       r4, -0x6514(r13)
-	  rlwinm.   r0,r0,0,31,31
-	  lfs       f1, 0x54(r4)
-	  beq-      .loc_0x3C
-	  lfs       f0, 0x2C0(r31)
-	  fadds     f0, f0, f1
-	  stfs      f0, 0x2C0(r31)
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r4
+	stw      r30, 0x18(r1)
+	mr       r30, r3
+	lbz      r0, 0x2c8(r31)
+	lwz      r4, sys@sda21(r13)
+	clrlwi.  r0, r0, 0x1f
+	lfs      f1, 0x54(r4)
+	beq      lbl_8010B184
+	lfs      f0, 0x2c0(r31)
+	fadds    f0, f0, f1
+	stfs     f0, 0x2c0(r31)
 
-	.loc_0x3C:
-	  lwz       r3, 0x188(r31)
-	  lbz       r0, 0x24(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x1C4
-	  lwz       r0, 0x1C(r3)
-	  cmpwi     r0, 0x3E8
-	  beq-      .loc_0x68
-	  bge-      .loc_0x260
-	  cmpwi     r0, 0x1
-	  beq-      .loc_0x68
-	  b         .loc_0x260
+lbl_8010B184:
+	lwz      r3, 0x188(r31)
+	lbz      r0, 0x24(r3)
+	cmplwi   r0, 0
+	beq      lbl_8010B30C
+	lwz      r0, 0x1c(r3)
+	cmpwi    r0, 0x3e8
+	beq      lbl_8010B1B0
+	bge      lbl_8010B3A8
+	cmpwi    r0, 1
+	beq      lbl_8010B1B0
+	b        lbl_8010B3A8
 
-	.loc_0x68:
-	  lwz       r3, -0x6C18(r13)
-	  lwz       r0, 0x44(r3)
-	  cmpwi     r0, 0x4
-	  bne-      .loc_0xAC
-	  bl        -0x41C20
-	  xoris     r3, r3, 0x8000
-	  lis       r0, 0x4330
-	  stw       r3, 0xC(r1)
-	  lfd       f3, -0x69E0(r2)
-	  stw       r0, 0x8(r1)
-	  lfs       f1, -0x69EC(r2)
-	  lfd       f2, 0x8(r1)
-	  lfs       f0, -0x69E8(r2)
-	  fsubs     f2, f2, f3
-	  fdivs     f1, f2, f1
-	  fmuls     f1, f0, f1
-	  b         .loc_0xCC
+lbl_8010B1B0:
+	lwz      r3, gameSystem__4Game@sda21(r13)
+	lwz      r0, 0x44(r3)
+	cmpwi    r0, 4
+	bne      lbl_8010B1F4
+	bl       rand
+	xoris    r3, r3, 0x8000
+	lis      r0, 0x4330
+	stw      r3, 0xc(r1)
+	lfd      f3, lbl_80517980@sda21(r2)
+	stw      r0, 8(r1)
+	lfs      f1, lbl_80517974@sda21(r2)
+	lfd      f2, 8(r1)
+	lfs      f0, lbl_80517978@sda21(r2)
+	fsubs    f2, f2, f3
+	fdivs    f1, f2, f1
+	fmuls    f1, f0, f1
+	b        lbl_8010B214
 
-	.loc_0xAC:
-	  lwz       r0, 0x10(r30)
-	  cmpwi     r0, 0
-	  bne-      .loc_0xC4
-	  lwz       r3, 0xC0(r31)
-	  lfs       f1, 0x81C(r3)
-	  b         .loc_0xCC
+lbl_8010B1F4:
+	lwz      r0, 0x10(r30)
+	cmpwi    r0, 0
+	bne      lbl_8010B20C
+	lwz      r3, 0xc0(r31)
+	lfs      f1, 0x81c(r3)
+	b        lbl_8010B214
 
-	.loc_0xC4:
-	  lwz       r3, 0xC0(r31)
-	  lfs       f1, 0x844(r3)
+lbl_8010B20C:
+	lwz      r3, 0xc0(r31)
+	lfs      f1, 0x844(r3)
 
-	.loc_0xCC:
-	  lfs       f0, 0x2C0(r31)
-	  fcmpo     cr0, f0, f1
-	  bgt-      .loc_0xE4
-	  lbz       r3, 0x2D6(r31)
-	  extsb.    r0, r3
-	  ble-      .loc_0x154
+lbl_8010B214:
+	lfs      f0, 0x2c0(r31)
+	fcmpo    cr0, f0, f1
+	bgt      lbl_8010B22C
+	lbz      r3, 0x2d6(r31)
+	extsb.   r0, r3
+	ble      lbl_8010B29C
 
-	.loc_0xE4:
-	  lfs       f0, -0x69F4(r2)
-	  stfs      f0, 0x2C0(r31)
-	  lwz       r0, 0x10(r30)
-	  cmpwi     r0, 0x1
-	  beq-      .loc_0x130
-	  bge-      .loc_0x260
-	  cmpwi     r0, 0
-	  bge-      .loc_0x10C
-	  b         .loc_0x260
-	  b         .loc_0x260
+lbl_8010B22C:
+	lfs      f0, lbl_8051796C@sda21(r2)
+	stfs     f0, 0x2c0(r31)
+	lwz      r0, 0x10(r30)
+	cmpwi    r0, 1
+	beq      lbl_8010B278
+	bge      lbl_8010B3A8
+	cmpwi    r0, 0
+	bge      lbl_8010B254
+	b        lbl_8010B3A8
+	b        lbl_8010B3A8
 
-	.loc_0x10C:
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x3
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x260
+lbl_8010B254:
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 3
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_8010B3A8
 
-	.loc_0x130:
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x4
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x260
+lbl_8010B278:
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 4
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_8010B3A8
 
-	.loc_0x154:
-	  extsb.    r0, r3
-	  bge-      .loc_0x260
-	  lwz       r0, 0x10(r30)
-	  cmpwi     r0, 0x1
-	  beq-      .loc_0x17C
-	  bge-      .loc_0x170
-	  b         .loc_0x260
+lbl_8010B29C:
+	extsb.   r0, r3
+	bge      lbl_8010B3A8
+	lwz      r0, 0x10(r30)
+	cmpwi    r0, 1
+	beq      lbl_8010B2C4
+	bge      lbl_8010B2B8
+	b        lbl_8010B3A8
 
-	.loc_0x170:
-	  cmpwi     r0, 0x3
-	  bge-      .loc_0x260
-	  b         .loc_0x1A0
+lbl_8010B2B8:
+	cmpwi    r0, 3
+	bge      lbl_8010B3A8
+	b        lbl_8010B2E8
 
-	.loc_0x17C:
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x8
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x260
+lbl_8010B2C4:
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 8
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_8010B3A8
 
-	.loc_0x1A0:
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x7
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x260
+lbl_8010B2E8:
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 7
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_8010B3A8
 
-	.loc_0x1C4:
-	  mr        r3, r31
-	  bl        -0x23CC
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x23C(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x260
-	  lfs       f1, 0x200(r31)
-	  lfs       f0, -0x69F4(r2)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0, 0x2
-	  bne-      .loc_0x230
-	  lwz       r0, 0x10(r30)
-	  cmpwi     r0, 0x2
-	  beq-      .loc_0x20C
-	  b         .loc_0x260
+lbl_8010B30C:
+	mr       r3, r31
+	bl       changePelletColor__Q34Game8Pelplant3ObjFv
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r12, 0x23c(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_8010B3A8
+	lfs      f1, 0x200(r31)
+	lfs      f0, lbl_8051796C@sda21(r2)
+	fcmpo    cr0, f1, f0
+	cror     2, 0, 2
+	bne      lbl_8010B378
+	lwz      r0, 0x10(r30)
+	cmpwi    r0, 2
+	beq      lbl_8010B354
+	b        lbl_8010B3A8
 
-	.loc_0x20C:
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x6
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x260
+lbl_8010B354:
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 6
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_8010B3A8
 
-	.loc_0x230:
-	  lwz       r0, 0x10(r30)
-	  cmpwi     r0, 0x2
-	  beq-      .loc_0x240
-	  b         .loc_0x260
+lbl_8010B378:
+	lwz      r0, 0x10(r30)
+	cmpwi    r0, 2
+	beq      lbl_8010B388
+	b        lbl_8010B3A8
 
-	.loc_0x240:
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x5
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_8010B388:
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 5
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x260:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8010B3A8:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -771,24 +983,23 @@ void Pelplant::StateWait::cleanup(Game::EnemyBase*) { }
 Pelplant::StateGrow::StateGrow(int, int, int)
 {
 	/*
-	.loc_0x0:
-	  lis       r7, 0x804B
-	  lis       r8, 0x804B
-	  subi      r0, r7, 0x65C
-	  lis       r7, 0x804B
-	  stw       r0, 0x0(r3)
-	  li        r9, 0
-	  subi      r8, r8, 0x4D70
-	  subi      r7, r7, 0x4E00
-	  stw       r4, 0x4(r3)
-	  subi      r0, r2, 0x69D8
-	  stw       r9, 0x8(r3)
-	  stw       r8, 0x0(r3)
-	  stw       r7, 0x0(r3)
-	  stw       r5, 0x10(r3)
-	  stw       r6, 0x14(r3)
-	  stw       r0, 0xC(r3)
-	  blr
+	lis      r7, __vt__Q24Game13EnemyFSMState@ha
+	lis      r8, __vt__Q34Game8Pelplant5State@ha
+	addi     r0, r7, __vt__Q24Game13EnemyFSMState@l
+	lis      r7, __vt__Q34Game8Pelplant9StateGrow@ha
+	stw      r0, 0(r3)
+	li       r9, 0
+	addi     r8, r8, __vt__Q34Game8Pelplant5State@l
+	addi     r7, r7, __vt__Q34Game8Pelplant9StateGrow@l
+	stw      r4, 4(r3)
+	addi     r0, r2, lbl_80517988@sda21
+	stw      r9, 8(r3)
+	stw      r8, 0(r3)
+	stw      r7, 0(r3)
+	stw      r5, 0x10(r3)
+	stw      r6, 0x14(r3)
+	stw      r0, 0xc(r3)
+	blr
 	*/
 }
 
@@ -800,205 +1011,217 @@ Pelplant::StateGrow::StateGrow(int, int, int)
 void Pelplant::StateGrow::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0xA0(r1)
-	  mflr      r0
-	  stw       r0, 0xA4(r1)
-	  stw       r31, 0x9C(r1)
-	  mr        r31, r4
-	  stw       r30, 0x98(r1)
-	  mr        r30, r3
-	  lwz       r0, 0x1E0(r4)
-	  ori       r0, r0, 0x1
-	  stw       r0, 0x1E0(r4)
-	  lwz       r0, 0x10(r3)
-	  cmpwi     r0, 0x3
-	  bne-      .loc_0x3C
-	  mr        r3, r31
-	  bl        -0x236C
+	stwu     r1, -0xa0(r1)
+	mflr     r0
+	stw      r0, 0xa4(r1)
+	stw      r31, 0x9c(r1)
+	mr       r31, r4
+	stw      r30, 0x98(r1)
+	mr       r30, r3
+	lwz      r0, 0x1e0(r4)
+	ori      r0, r0, 1
+	stw      r0, 0x1e0(r4)
+	lwz      r0, 0x10(r3)
+	cmpwi    r0, 3
+	bne      lbl_8010B444
+	mr       r3, r31
+	bl       attachPellet__Q34Game8Pelplant3ObjFv
 
-	.loc_0x3C:
-	  mr        r4, r31
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f2, 0x8(r1)
-	  lis       r3, 0x804B
-	  lfs       f1, 0xC(r1)
-	  subi      r0, r3, 0x5814
-	  lfs       f0, 0x10(r1)
-	  stw       r0, 0x24(r1)
-	  stfs      f2, 0x28(r1)
-	  stfs      f1, 0x2C(r1)
-	  stfs      f0, 0x30(r1)
-	  lwz       r0, 0x14(r30)
-	  cmpwi     r0, 0x2
-	  beq-      .loc_0xF4
-	  bge-      .loc_0x2C8
-	  cmpwi     r0, 0x1
-	  bge-      .loc_0x94
-	  b         .loc_0x2C8
+lbl_8010B444:
+	mr       r4, r31
+	addi     r3, r1, 8
+	lwz      r12, 0(r31)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f2, 8(r1)
+	lis      r3, __vt__Q23efx3Arg@ha
+	lfs      f1, 0xc(r1)
+	addi     r0, r3, __vt__Q23efx3Arg@l
+	lfs      f0, 0x10(r1)
+	stw      r0, 0x24(r1)
+	stfs     f2, 0x28(r1)
+	stfs     f1, 0x2c(r1)
+	stfs     f0, 0x30(r1)
+	lwz      r0, 0x14(r30)
+	cmpwi    r0, 2
+	beq      lbl_8010B4FC
+	bge      lbl_8010B6D0
+	cmpwi    r0, 1
+	bge      lbl_8010B49C
+	b        lbl_8010B6D0
 
-	.loc_0x94:
-	  lis       r3, 0x804B
-	  li        r5, 0
-	  subi      r0, r3, 0x5808
-	  lis       r3, 0x804E
-	  stw       r0, 0x14(r1)
-	  addi      r0, r3, 0x6A64
-	  lis       r3, 0x804B
-	  li        r4, 0x187
-	  stw       r0, 0x14(r1)
-	  subi      r0, r3, 0x4E14
-	  li        r6, 0x188
-	  addi      r3, r1, 0x14
-	  sth       r4, 0x18(r1)
-	  addi      r4, r1, 0x24
-	  sth       r6, 0x1A(r1)
-	  stw       r5, 0x1C(r1)
-	  stw       r5, 0x20(r1)
-	  stw       r0, 0x14(r1)
-	  bl        0x2A3B30
-	  lwz       r4, 0x10(r30)
-	  mr        r3, r31
-	  li        r5, 0
-	  bl        -0x64F0
-	  b         .loc_0x2C8
+lbl_8010B49C:
+	lis      r3, __vt__Q23efx5TBase@ha
+	li       r5, 0
+	addi     r0, r3, __vt__Q23efx5TBase@l
+	lis      r3, __vt__Q23efx8TSimple2@ha
+	stw      r0, 0x14(r1)
+	addi     r0, r3, __vt__Q23efx8TSimple2@l
+	lis      r3, __vt__Q23efx9TPplGrow1@ha
+	li       r4, 0x187
+	stw      r0, 0x14(r1)
+	addi     r0, r3, __vt__Q23efx9TPplGrow1@l
+	li       r6, 0x188
+	addi     r3, r1, 0x14
+	sth      r4, 0x18(r1)
+	addi     r4, r1, 0x24
+	sth      r6, 0x1a(r1)
+	stw      r5, 0x1c(r1)
+	stw      r5, 0x20(r1)
+	stw      r0, 0x14(r1)
+	bl       create__Q23efx8TSimple2FPQ23efx3Arg
+	lwz      r4, 0x10(r30)
+	mr       r3, r31
+	li       r5, 0
+	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
+	b        lbl_8010B6D0
 
-	.loc_0xF4:
-	  lbz       r0, 0x2D5(r31)
-	  cmplwi    r0, 0x14
-	  bgt-      .loc_0x284
-	  lis       r3, 0x804B
-	  rlwinm    r0,r0,2,0,29
-	  subi      r3, r3, 0x4F00
-	  lwzx      r0, r3, r0
-	  mtctr     r0
-	  bctr
-	  lis       r3, 0x804B
-	  li        r5, 0
-	  subi      r0, r3, 0x5808
-	  lis       r3, 0x804E
-	  stw       r0, 0x7C(r1)
-	  addi      r0, r3, 0x6A50
-	  lis       r3, 0x804B
-	  li        r4, 0x189
-	  stw       r0, 0x7C(r1)
-	  subi      r0, r3, 0x4E28
-	  li        r7, 0x18A
-	  li        r6, 0x18B
-	  sth       r4, 0x80(r1)
-	  addi      r3, r1, 0x7C
-	  addi      r4, r1, 0x24
-	  sth       r7, 0x82(r1)
-	  sth       r6, 0x84(r1)
-	  stw       r5, 0x88(r1)
-	  stw       r5, 0x8C(r1)
-	  stw       r5, 0x90(r1)
-	  stw       r0, 0x7C(r1)
-	  bl        0x2A3B48
-	  b         .loc_0x284
-	  lis       r3, 0x804B
-	  li        r5, 0
-	  subi      r0, r3, 0x5808
-	  lis       r3, 0x804E
-	  stw       r0, 0x64(r1)
-	  addi      r0, r3, 0x6A50
-	  lis       r3, 0x804B
-	  li        r4, 0x189
-	  stw       r0, 0x64(r1)
-	  subi      r0, r3, 0x4E3C
-	  li        r7, 0x18A
-	  li        r6, 0x25D
-	  sth       r4, 0x68(r1)
-	  addi      r3, r1, 0x64
-	  addi      r4, r1, 0x24
-	  sth       r7, 0x6A(r1)
-	  sth       r6, 0x6C(r1)
-	  stw       r5, 0x70(r1)
-	  stw       r5, 0x74(r1)
-	  stw       r5, 0x78(r1)
-	  stw       r0, 0x64(r1)
-	  bl        0x2A3AEC
-	  b         .loc_0x284
-	  lis       r3, 0x804B
-	  li        r5, 0
-	  subi      r0, r3, 0x5808
-	  lis       r3, 0x804E
-	  stw       r0, 0x4C(r1)
-	  addi      r0, r3, 0x6A50
-	  lis       r3, 0x804B
-	  li        r4, 0x189
-	  stw       r0, 0x4C(r1)
-	  subi      r0, r3, 0x4E50
-	  li        r7, 0x18A
-	  li        r6, 0x25B
-	  sth       r4, 0x50(r1)
-	  addi      r3, r1, 0x4C
-	  addi      r4, r1, 0x24
-	  sth       r7, 0x52(r1)
-	  sth       r6, 0x54(r1)
-	  stw       r5, 0x58(r1)
-	  stw       r5, 0x5C(r1)
-	  stw       r5, 0x60(r1)
-	  stw       r0, 0x4C(r1)
-	  bl        0x2A3A90
-	  b         .loc_0x284
-	  lis       r3, 0x804B
-	  li        r5, 0
-	  subi      r0, r3, 0x5808
-	  lis       r3, 0x804E
-	  stw       r0, 0x34(r1)
-	  addi      r0, r3, 0x6A50
-	  lis       r3, 0x804B
-	  li        r4, 0x189
-	  stw       r0, 0x34(r1)
-	  subi      r0, r3, 0x4E64
-	  li        r7, 0x18A
-	  li        r6, 0x25C
-	  sth       r4, 0x38(r1)
-	  addi      r3, r1, 0x34
-	  addi      r4, r1, 0x24
-	  sth       r7, 0x3A(r1)
-	  sth       r6, 0x3C(r1)
-	  stw       r5, 0x40(r1)
-	  stw       r5, 0x44(r1)
-	  stw       r5, 0x48(r1)
-	  stw       r0, 0x34(r1)
-	  bl        0x2A3A34
+lbl_8010B4FC:
+	lbz      r0, 0x2d5(r31)
+	cmplwi   r0, 0x14
+	bgt      lbl_8010B68C
+	lis      r3, lbl_804AB100@ha
+	slwi     r0, r0, 2
+	addi     r3, r3, lbl_804AB100@l
+	lwzx     r0, r3, r0
+	mtctr    r0
+	bctr
+	.global  lbl_8010B520
 
-	.loc_0x284:
-	  mr        r3, r31
-	  li        r4, 0x2
-	  bl        -0x2D9C
-	  lbz       r0, 0x2D5(r31)
-	  cmplwi    r0, 0xA
-	  beq-      .loc_0x2A4
-	  cmplwi    r0, 0x14
-	  bne-      .loc_0x2B8
+lbl_8010B520:
+	lis      r3, __vt__Q23efx5TBase@ha
+	li       r5, 0
+	addi     r0, r3, __vt__Q23efx5TBase@l
+	lis      r3, __vt__Q23efx8TSimple3@ha
+	stw      r0, 0x7c(r1)
+	addi     r0, r3, __vt__Q23efx8TSimple3@l
+	lis      r3, __vt__Q23efx9TPplGrow2@ha
+	li       r4, 0x189
+	stw      r0, 0x7c(r1)
+	addi     r0, r3, __vt__Q23efx9TPplGrow2@l
+	li       r7, 0x18a
+	li       r6, 0x18b
+	sth      r4, 0x80(r1)
+	addi     r3, r1, 0x7c
+	addi     r4, r1, 0x24
+	sth      r7, 0x82(r1)
+	sth      r6, 0x84(r1)
+	stw      r5, 0x88(r1)
+	stw      r5, 0x8c(r1)
+	stw      r5, 0x90(r1)
+	stw      r0, 0x7c(r1)
+	bl       create__Q23efx8TSimple3FPQ23efx3Arg
+	b        lbl_8010B68C
+	.global  lbl_8010B57C
 
-	.loc_0x2A4:
-	  mr        r3, r31
-	  li        r4, 0x7
-	  li        r5, 0
-	  bl        -0x66B4
-	  b         .loc_0x2C8
+lbl_8010B57C:
+	lis      r3, __vt__Q23efx5TBase@ha
+	li       r5, 0
+	addi     r0, r3, __vt__Q23efx5TBase@l
+	lis      r3, __vt__Q23efx8TSimple3@ha
+	stw      r0, 0x64(r1)
+	addi     r0, r3, __vt__Q23efx8TSimple3@l
+	lis      r3, __vt__Q23efx10TPpl5Grow2@ha
+	li       r4, 0x189
+	stw      r0, 0x64(r1)
+	addi     r0, r3, __vt__Q23efx10TPpl5Grow2@l
+	li       r7, 0x18a
+	li       r6, 0x25d
+	sth      r4, 0x68(r1)
+	addi     r3, r1, 0x64
+	addi     r4, r1, 0x24
+	sth      r7, 0x6a(r1)
+	sth      r6, 0x6c(r1)
+	stw      r5, 0x70(r1)
+	stw      r5, 0x74(r1)
+	stw      r5, 0x78(r1)
+	stw      r0, 0x64(r1)
+	bl       create__Q23efx8TSimple3FPQ23efx3Arg
+	b        lbl_8010B68C
+	.global  lbl_8010B5D8
 
-	.loc_0x2B8:
-	  lwz       r4, 0x10(r30)
-	  mr        r3, r31
-	  li        r5, 0
-	  bl        -0x66C8
+lbl_8010B5D8:
+	lis      r3, __vt__Q23efx5TBase@ha
+	li       r5, 0
+	addi     r0, r3, __vt__Q23efx5TBase@l
+	lis      r3, __vt__Q23efx8TSimple3@ha
+	stw      r0, 0x4c(r1)
+	addi     r0, r3, __vt__Q23efx8TSimple3@l
+	lis      r3, __vt__Q23efx11TPpl10Grow2@ha
+	li       r4, 0x189
+	stw      r0, 0x4c(r1)
+	addi     r0, r3, __vt__Q23efx11TPpl10Grow2@l
+	li       r7, 0x18a
+	li       r6, 0x25b
+	sth      r4, 0x50(r1)
+	addi     r3, r1, 0x4c
+	addi     r4, r1, 0x24
+	sth      r7, 0x52(r1)
+	sth      r6, 0x54(r1)
+	stw      r5, 0x58(r1)
+	stw      r5, 0x5c(r1)
+	stw      r5, 0x60(r1)
+	stw      r0, 0x4c(r1)
+	bl       create__Q23efx8TSimple3FPQ23efx3Arg
+	b        lbl_8010B68C
+	.global  lbl_8010B634
 
-	.loc_0x2C8:
-	  lwz       r0, 0xA4(r1)
-	  lwz       r31, 0x9C(r1)
-	  lwz       r30, 0x98(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0xA0
-	  blr
+lbl_8010B634:
+	lis      r3, __vt__Q23efx5TBase@ha
+	li       r5, 0
+	addi     r0, r3, __vt__Q23efx5TBase@l
+	lis      r3, __vt__Q23efx8TSimple3@ha
+	stw      r0, 0x34(r1)
+	addi     r0, r3, __vt__Q23efx8TSimple3@l
+	lis      r3, __vt__Q23efx11TPpl20Grow2@ha
+	li       r4, 0x189
+	stw      r0, 0x34(r1)
+	addi     r0, r3, __vt__Q23efx11TPpl20Grow2@l
+	li       r7, 0x18a
+	li       r6, 0x25c
+	sth      r4, 0x38(r1)
+	addi     r3, r1, 0x34
+	addi     r4, r1, 0x24
+	sth      r7, 0x3a(r1)
+	sth      r6, 0x3c(r1)
+	stw      r5, 0x40(r1)
+	stw      r5, 0x44(r1)
+	stw      r5, 0x48(r1)
+	stw      r0, 0x34(r1)
+	bl       create__Q23efx8TSimple3FPQ23efx3Arg
+	.global  lbl_8010B68C
+
+lbl_8010B68C:
+	mr       r3, r31
+	li       r4, 2
+	bl       updateLODSphereRadius__Q34Game8Pelplant3ObjFi
+	lbz      r0, 0x2d5(r31)
+	cmplwi   r0, 0xa
+	beq      lbl_8010B6AC
+	cmplwi   r0, 0x14
+	bne      lbl_8010B6C0
+
+lbl_8010B6AC:
+	mr       r3, r31
+	li       r4, 7
+	li       r5, 0
+	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
+	b        lbl_8010B6D0
+
+lbl_8010B6C0:
+	lwz      r4, 0x10(r30)
+	mr       r3, r31
+	li       r5, 0
+	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
+
+lbl_8010B6D0:
+	lwz      r0, 0xa4(r1)
+	lwz      r31, 0x9c(r1)
+	lwz      r30, 0x98(r1)
+	mtlr     r0
+	addi     r1, r1, 0xa0
+	blr
 	*/
 }
 
@@ -1010,35 +1233,34 @@ void Pelplant::StateGrow::init(Game::EnemyBase*, Game::StateArg*)
 void Pelplant::StateGrow::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r5, 0x188(r4)
-	  lbz       r0, 0x24(r5)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x50
-	  lwz       r0, 0x1C(r5)
-	  cmpwi     r0, 0x3E8
-	  beq-      .loc_0x38
-	  bge-      .loc_0x50
-	  cmpwi     r0, 0x1
-	  beq-      .loc_0x38
-	  b         .loc_0x50
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r5, 0x188(r4)
+	lbz      r0, 0x24(r5)
+	cmplwi   r0, 0
+	beq      lbl_8010B738
+	lwz      r0, 0x1c(r5)
+	cmpwi    r0, 0x3e8
+	beq      lbl_8010B720
+	bge      lbl_8010B738
+	cmpwi    r0, 1
+	beq      lbl_8010B720
+	b        lbl_8010B738
 
-	.loc_0x38:
-	  lwz       r12, 0x0(r3)
-	  li        r6, 0
-	  lwz       r5, 0x14(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_8010B720:
+	lwz      r12, 0(r3)
+	li       r6, 0
+	lwz      r5, 0x14(r3)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x50:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8010B738:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1057,23 +1279,22 @@ void Pelplant::StateGrow::cleanup(Game::EnemyBase*) { }
 Pelplant::StateDamage::StateDamage(int, int)
 {
 	/*
-	.loc_0x0:
-	  lis       r6, 0x804B
-	  lis       r7, 0x804B
-	  subi      r0, r6, 0x65C
-	  lis       r6, 0x804B
-	  stw       r0, 0x0(r3)
-	  li        r8, 0
-	  subi      r7, r7, 0x4D70
-	  subi      r6, r6, 0x4E88
-	  stw       r4, 0x4(r3)
-	  subi      r0, r2, 0x69D0
-	  stw       r8, 0x8(r3)
-	  stw       r7, 0x0(r3)
-	  stw       r6, 0x0(r3)
-	  stw       r0, 0xC(r3)
-	  stw       r5, 0x10(r3)
-	  blr
+	lis      r6, __vt__Q24Game13EnemyFSMState@ha
+	lis      r7, __vt__Q34Game8Pelplant5State@ha
+	addi     r0, r6, __vt__Q24Game13EnemyFSMState@l
+	lis      r6, __vt__Q34Game8Pelplant11StateDamage@ha
+	stw      r0, 0(r3)
+	li       r8, 0
+	addi     r7, r7, __vt__Q34Game8Pelplant5State@l
+	addi     r6, r6, __vt__Q34Game8Pelplant11StateDamage@l
+	stw      r4, 4(r3)
+	addi     r0, r2, lbl_80517990@sda21
+	stw      r8, 8(r3)
+	stw      r7, 0(r3)
+	stw      r6, 0(r3)
+	stw      r0, 0xc(r3)
+	stw      r5, 0x10(r3)
+	blr
 	*/
 }
 
@@ -1085,50 +1306,49 @@ Pelplant::StateDamage::StateDamage(int, int)
 void Pelplant::StateDamage::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  lwz       r0, 0x10(r3)
-	  cmpwi     r0, 0x5
-	  beq-      .loc_0x34
-	  mr        r3, r31
-	  mr        r4, r0
-	  li        r5, 0
-	  bl        -0x67B4
-	  b         .loc_0x6C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	lwz      r0, 0x10(r3)
+	cmpwi    r0, 5
+	beq      lbl_8010B7C0
+	mr       r3, r31
+	mr       r4, r0
+	li       r5, 0
+	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
+	b        lbl_8010B7F8
 
-	.loc_0x34:
-	  lbz       r3, 0x2D5(r31)
-	  cmplwi    r3, 0xA
-	  beq-      .loc_0x48
-	  cmplwi    r3, 0x14
-	  bne-      .loc_0x5C
+lbl_8010B7C0:
+	lbz      r3, 0x2d5(r31)
+	cmplwi   r3, 0xa
+	beq      lbl_8010B7D4
+	cmplwi   r3, 0x14
+	bne      lbl_8010B7E8
 
-	.loc_0x48:
-	  mr        r3, r31
-	  li        r4, 0x8
-	  li        r5, 0
-	  bl        -0x67DC
-	  b         .loc_0x6C
+lbl_8010B7D4:
+	mr       r3, r31
+	li       r4, 8
+	li       r5, 0
+	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
+	b        lbl_8010B7F8
 
-	.loc_0x5C:
-	  mr        r3, r31
-	  mr        r4, r0
-	  li        r5, 0
-	  bl        -0x67F0
+lbl_8010B7E8:
+	mr       r3, r31
+	mr       r4, r0
+	li       r5, 0
+	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
 
-	.loc_0x6C:
-	  lwz       r0, 0x1E0(r31)
-	  rlwinm    r0,r0,0,0,30
-	  stw       r0, 0x1E0(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8010B7F8:
+	lwz      r0, 0x1e0(r31)
+	rlwinm   r0, r0, 0, 0, 0x1e
+	stw      r0, 0x1e0(r31)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1140,35 +1360,34 @@ void Pelplant::StateDamage::init(Game::EnemyBase*, Game::StateArg*)
 void Pelplant::StateDamage::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  lwz       r5, 0x188(r4)
-	  lbz       r0, 0x24(r5)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x4C
-	  lwz       r0, 0x1C(r5)
-	  cmplwi    r0, 0x3E8
-	  bne-      .loc_0x4C
-	  lwz       r12, 0x0(r3)
-	  li        r6, 0
-	  lwz       r5, 0x8(r3)
-	  lwz       r12, 0x1C(r12)
-	  lwz       r5, 0x18(r5)
-	  mtctr     r12
-	  bctrl
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	lwz      r5, 0x188(r4)
+	lbz      r0, 0x24(r5)
+	cmplwi   r0, 0
+	beq      lbl_8010B864
+	lwz      r0, 0x1c(r5)
+	cmplwi   r0, 0x3e8
+	bne      lbl_8010B864
+	lwz      r12, 0(r3)
+	li       r6, 0
+	lwz      r5, 8(r3)
+	lwz      r12, 0x1c(r12)
+	lwz      r5, 0x18(r5)
+	mtctr    r12
+	bctrl
 
-	.loc_0x4C:
-	  mr        r3, r31
-	  bl        -0x2924
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8010B864:
+	mr       r3, r31
+	bl       changePelletColor__Q34Game8Pelplant3ObjFv
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1180,11 +1399,10 @@ void Pelplant::StateDamage::exec(Game::EnemyBase*)
 void Pelplant::StateDamage::cleanup(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  lwz       r0, 0x1E0(r4)
-	  ori       r0, r0, 0x1
-	  stw       r0, 0x1E0(r4)
-	  blr
+	lwz      r0, 0x1e0(r4)
+	ori      r0, r0, 1
+	stw      r0, 0x1e0(r4)
+	blr
 	*/
 }
 
@@ -1196,23 +1414,22 @@ void Pelplant::StateDamage::cleanup(Game::EnemyBase*)
 Pelplant::StateDead::StateDead(int, int)
 {
 	/*
-	.loc_0x0:
-	  lis       r6, 0x804B
-	  lis       r7, 0x804B
-	  subi      r0, r6, 0x65C
-	  lis       r6, 0x804B
-	  stw       r0, 0x0(r3)
-	  li        r8, 0
-	  subi      r7, r7, 0x4D70
-	  subi      r6, r6, 0x4EAC
-	  stw       r4, 0x4(r3)
-	  subi      r0, r2, 0x69C8
-	  stw       r8, 0x8(r3)
-	  stw       r7, 0x0(r3)
-	  stw       r6, 0x0(r3)
-	  stw       r0, 0xC(r3)
-	  stw       r5, 0x10(r3)
-	  blr
+	lis      r6, __vt__Q24Game13EnemyFSMState@ha
+	lis      r7, __vt__Q34Game8Pelplant5State@ha
+	addi     r0, r6, __vt__Q24Game13EnemyFSMState@l
+	lis      r6, __vt__Q34Game8Pelplant9StateDead@ha
+	stw      r0, 0(r3)
+	li       r8, 0
+	addi     r7, r7, __vt__Q34Game8Pelplant5State@l
+	addi     r6, r6, __vt__Q34Game8Pelplant9StateDead@l
+	stw      r4, 4(r3)
+	addi     r0, r2, lbl_80517998@sda21
+	stw      r8, 8(r3)
+	stw      r7, 0(r3)
+	stw      r6, 0(r3)
+	stw      r0, 0xc(r3)
+	stw      r5, 0x10(r3)
+	blr
 	*/
 }
 
@@ -1224,62 +1441,61 @@ Pelplant::StateDead::StateDead(int, int)
 void Pelplant::StateDead::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lwz       r4, 0x10(r3)
-	  cmpwi     r4, 0x1
-	  beq-      .loc_0x38
-	  mr        r3, r31
-	  li        r5, 0
-	  bl        -0x68FC
-	  b         .loc_0x6C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lwz      r4, 0x10(r3)
+	cmpwi    r4, 1
+	beq      lbl_8010B908
+	mr       r3, r31
+	li       r5, 0
+	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
+	b        lbl_8010B93C
 
-	.loc_0x38:
-	  lbz       r0, 0x2D5(r31)
-	  cmplwi    r0, 0xA
-	  beq-      .loc_0x4C
-	  cmplwi    r0, 0x14
-	  bne-      .loc_0x60
+lbl_8010B908:
+	lbz      r0, 0x2d5(r31)
+	cmplwi   r0, 0xa
+	beq      lbl_8010B91C
+	cmplwi   r0, 0x14
+	bne      lbl_8010B930
 
-	.loc_0x4C:
-	  mr        r3, r31
-	  li        r4, 0x9
-	  li        r5, 0
-	  bl        -0x6924
-	  b         .loc_0x6C
+lbl_8010B91C:
+	mr       r3, r31
+	li       r4, 9
+	li       r5, 0
+	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
+	b        lbl_8010B93C
 
-	.loc_0x60:
-	  mr        r3, r31
-	  li        r5, 0
-	  bl        -0x6934
+lbl_8010B930:
+	mr       r3, r31
+	li       r5, 0
+	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
 
-	.loc_0x6C:
-	  mr        r3, r31
-	  bl        -0x6220
-	  lwz       r0, 0x10(r30)
-	  cmpwi     r0, 0x1
-	  beq-      .loc_0x9C
-	  lwz       r3, 0x2CC(r31)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x9C
-	  li        r4, 0
-	  bl        0x2F790
-	  li        r0, 0
-	  stw       r0, 0x2CC(r31)
+lbl_8010B93C:
+	mr       r3, r31
+	bl       deathProcedure__Q24Game9EnemyBaseFv
+	lwz      r0, 0x10(r30)
+	cmpwi    r0, 1
+	beq      lbl_8010B96C
+	lwz      r3, 0x2cc(r31)
+	cmplwi   r3, 0
+	beq      lbl_8010B96C
+	li       r4, 0
+	bl       kill__Q24Game8CreatureFPQ24Game15CreatureKillArg
+	li       r0, 0
+	stw      r0, 0x2cc(r31)
 
-	.loc_0x9C:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8010B96C:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1291,37 +1507,36 @@ void Pelplant::StateDead::init(Game::EnemyBase*, Game::StateArg*)
 void Pelplant::StateDead::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  lwz       r3, 0x188(r4)
-	  lbz       r0, 0x24(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x54
-	  lwz       r0, 0x1C(r3)
-	  cmplwi    r0, 0x3E8
-	  bne-      .loc_0x54
-	  lwz       r3, 0x2CC(r31)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x48
-	  bl        0x941DC
-	  li        r0, 0
-	  stw       r0, 0x2CC(r31)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	lwz      r3, 0x188(r4)
+	lbz      r0, 0x24(r3)
+	cmplwi   r0, 0
+	beq      lbl_8010B9D8
+	lwz      r0, 0x1c(r3)
+	cmplwi   r0, 0x3e8
+	bne      lbl_8010B9D8
+	lwz      r3, 0x2cc(r31)
+	cmplwi   r3, 0
+	beq      lbl_8010B9CC
+	bl       endCapture__Q24Game8CreatureFv
+	li       r0, 0
+	stw      r0, 0x2cc(r31)
 
-	.loc_0x48:
-	  mr        r3, r31
-	  li        r4, 0
-	  bl        0x2F71C
+lbl_8010B9CC:
+	mr       r3, r31
+	li       r4, 0
+	bl       kill__Q24Game8CreatureFPQ24Game15CreatureKillArg
 
-	.loc_0x54:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8010B9D8:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 

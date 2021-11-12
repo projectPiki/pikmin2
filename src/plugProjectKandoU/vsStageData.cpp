@@ -1,5 +1,100 @@
 #include "types.h"
 
+/*
+    Generated from dpostproc
+
+    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
+    .4byte __sinit_vsStageData_cpp
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_80483788
+    lbl_80483788:
+        .4byte 0x63617665
+        .4byte 0x696E666F
+        .4byte 0x2E747874
+        .4byte 0x00000000
+    .global lbl_80483798
+    lbl_80483798:
+        .4byte 0x83608383
+        .4byte 0x838C8393
+        .4byte 0x83578358
+        .4byte 0x8365815B
+        .4byte 0x83570000
+    .global lbl_804837AC
+    lbl_804837AC:
+        .4byte 0x76735374
+        .4byte 0x61676544
+        .4byte 0x6174612E
+        .4byte 0x63707000
+    .global lbl_804837BC
+    lbl_804837BC:
+        .4byte 0x696C6C65
+        .4byte 0x67616C20
+        .4byte 0x73746167
+        .4byte 0x6520696E
+        .4byte 0x64657820
+        .4byte 0x25640A00
+    .global lbl_804837D4
+    lbl_804837D4:
+        .4byte 0x91CE90ED
+        .4byte 0x97708358
+        .4byte 0x8365815B
+        .4byte 0x83570000
+        .4byte 0x00000000
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global lbl_804C10F0
+    lbl_804C10F0:
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+    .global __vt__Q34Game6VsGame9StageList
+    __vt__Q34Game6VsGame9StageList:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q34Game6VsGame9StageListFv
+        .4byte getChildCount__5CNodeFv
+    .global __vt__Q34Game6VsGame9StageData
+    __vt__Q34Game6VsGame9StageData:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q34Game6VsGame9StageDataFv
+        .4byte getChildCount__5CNodeFv
+    .global __vt__Q34Game13ChallengeGame9StageList
+    __vt__Q34Game13ChallengeGame9StageList:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q34Game13ChallengeGame9StageListFv
+        .4byte getChildCount__5CNodeFv
+    .global __vt__Q34Game13ChallengeGame9StageData
+    __vt__Q34Game13ChallengeGame9StageData:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q34Game13ChallengeGame9StageDataFv
+        .4byte getChildCount__5CNodeFv
+        .4byte 0
+
+    .section .sbss # 0x80514D80 - 0x80516360
+    .global lbl_80515C80
+    lbl_80515C80:
+        .skip 0x4
+    .global lbl_80515C84
+    lbl_80515C84:
+        .skip 0x4
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_8051A2E0
+    lbl_8051A2E0:
+        .4byte 0x43480000
+    .global lbl_8051A2E4
+    lbl_8051A2E4:
+        .4byte 0x42C80000
+    .global lbl_8051A2E8
+    lbl_8051A2E8:
+        .4byte 0x72616E64
+        .4byte 0x6F6D0000
+*/
+
 namespace Game {
 
 /*
@@ -20,171 +115,170 @@ ChallengeGame::StageData::StageData(void)
 void ChallengeGame::StageData::read(Stream&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r3
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  stw       r28, 0x10(r1)
-	  mr        r28, r4
-	  mr        r3, r28
-	  bl        0x1E73DC
-	  mr        r30, r3
-	  mr        r3, r28
-	  li        r4, 0
-	  li        r5, 0
-	  bl        0x1E7A0C
-	  li        r0, 0x8
-	  li        r5, 0
-	  mtctr     r0
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r3
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	stw      r28, 0x10(r1)
+	mr       r28, r4
+	mr       r3, r28
+	bl       readInt__6StreamFv
+	mr       r30, r3
+	mr       r3, r28
+	li       r4, 0
+	li       r5, 0
+	bl       readString__6StreamFPci
+	li       r0, 8
+	li       r5, 0
+	mtctr    r0
 
-	.loc_0x4C:
-	  lbz       r4, 0x0(r3)
-	  addi      r0, r5, 0x20
-	  stbx      r4, r31, r0
-	  lbz       r0, 0x0(r3)
-	  extsb.    r0, r0
-	  beq-      .loc_0x118
-	  lbz       r4, 0x1(r3)
-	  addi      r0, r5, 0x21
-	  stbx      r4, r31, r0
-	  lbz       r0, 0x1(r3)
-	  extsb.    r0, r0
-	  beq-      .loc_0x118
-	  lbz       r4, 0x2(r3)
-	  addi      r0, r5, 0x22
-	  stbx      r4, r31, r0
-	  lbz       r0, 0x2(r3)
-	  extsb.    r0, r0
-	  beq-      .loc_0x118
-	  lbz       r4, 0x3(r3)
-	  addi      r0, r5, 0x23
-	  stbx      r4, r31, r0
-	  lbz       r0, 0x3(r3)
-	  extsb.    r0, r0
-	  beq-      .loc_0x118
-	  lbz       r4, 0x4(r3)
-	  addi      r0, r5, 0x24
-	  stbx      r4, r31, r0
-	  lbz       r0, 0x4(r3)
-	  extsb.    r0, r0
-	  beq-      .loc_0x118
-	  lbz       r4, 0x5(r3)
-	  addi      r0, r5, 0x25
-	  stbx      r4, r31, r0
-	  lbz       r0, 0x5(r3)
-	  extsb.    r0, r0
-	  beq-      .loc_0x118
-	  lbz       r4, 0x6(r3)
-	  addi      r0, r5, 0x26
-	  stbx      r4, r31, r0
-	  lbz       r0, 0x6(r3)
-	  extsb.    r0, r0
-	  beq-      .loc_0x118
-	  lbz       r4, 0x7(r3)
-	  addi      r0, r5, 0x27
-	  stbx      r4, r31, r0
-	  lbz       r0, 0x7(r3)
-	  extsb.    r0, r0
-	  beq-      .loc_0x118
-	  addi      r5, r5, 0x8
-	  addi      r3, r3, 0x8
-	  bdnz+     .loc_0x4C
+lbl_8022D6D8:
+	lbz      r4, 0(r3)
+	addi     r0, r5, 0x20
+	stbx     r4, r31, r0
+	lbz      r0, 0(r3)
+	extsb.   r0, r0
+	beq      lbl_8022D7A4
+	lbz      r4, 1(r3)
+	addi     r0, r5, 0x21
+	stbx     r4, r31, r0
+	lbz      r0, 1(r3)
+	extsb.   r0, r0
+	beq      lbl_8022D7A4
+	lbz      r4, 2(r3)
+	addi     r0, r5, 0x22
+	stbx     r4, r31, r0
+	lbz      r0, 2(r3)
+	extsb.   r0, r0
+	beq      lbl_8022D7A4
+	lbz      r4, 3(r3)
+	addi     r0, r5, 0x23
+	stbx     r4, r31, r0
+	lbz      r0, 3(r3)
+	extsb.   r0, r0
+	beq      lbl_8022D7A4
+	lbz      r4, 4(r3)
+	addi     r0, r5, 0x24
+	stbx     r4, r31, r0
+	lbz      r0, 4(r3)
+	extsb.   r0, r0
+	beq      lbl_8022D7A4
+	lbz      r4, 5(r3)
+	addi     r0, r5, 0x25
+	stbx     r4, r31, r0
+	lbz      r0, 5(r3)
+	extsb.   r0, r0
+	beq      lbl_8022D7A4
+	lbz      r4, 6(r3)
+	addi     r0, r5, 0x26
+	stbx     r4, r31, r0
+	lbz      r0, 6(r3)
+	extsb.   r0, r0
+	beq      lbl_8022D7A4
+	lbz      r4, 7(r3)
+	addi     r0, r5, 0x27
+	stbx     r4, r31, r0
+	lbz      r0, 7(r3)
+	extsb.   r0, r0
+	beq      lbl_8022D7A4
+	addi     r5, r5, 8
+	addi     r3, r3, 8
+	bdnz     lbl_8022D6D8
 
-	.loc_0x118:
-	  addi      r3, r31, 0x18
-	  mr        r4, r28
-	  lwz       r12, 0x18(r31)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  cmplwi    r30, 0x1
-	  blt-      .loc_0x15C
-	  mr        r3, r28
-	  bl        0x1E75E4
-	  stfs      f1, 0x60(r31)
-	  mr        r3, r28
-	  bl        0x1E72BC
-	  stw       r3, 0x64(r31)
-	  mr        r3, r28
-	  bl        0x1E72B0
-	  stw       r3, 0x68(r31)
+lbl_8022D7A4:
+	addi     r3, r31, 0x18
+	mr       r4, r28
+	lwz      r12, 0x18(r31)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	cmplwi   r30, 1
+	blt      lbl_8022D7E8
+	mr       r3, r28
+	bl       readFloat__6StreamFv
+	stfs     f1, 0x60(r31)
+	mr       r3, r28
+	bl       readInt__6StreamFv
+	stw      r3, 0x64(r31)
+	mr       r3, r28
+	bl       readInt__6StreamFv
+	stw      r3, 0x68(r31)
 
-	.loc_0x15C:
-	  cmplwi    r30, 0x2
-	  blt-      .loc_0x17C
-	  mr        r3, r28
-	  bl        0x1E729C
-	  stw       r3, 0x6C(r31)
-	  mr        r3, r28
-	  bl        0x1E7290
-	  stw       r3, 0x70(r31)
+lbl_8022D7E8:
+	cmplwi   r30, 2
+	blt      lbl_8022D808
+	mr       r3, r28
+	bl       readInt__6StreamFv
+	stw      r3, 0x6c(r31)
+	mr       r3, r28
+	bl       readInt__6StreamFv
+	stw      r3, 0x70(r31)
 
-	.loc_0x17C:
-	  cmplwi    r30, 0x3
-	  blt-      .loc_0x190
-	  mr        r3, r28
-	  bl        0x1E727C
-	  stw       r3, 0x74(r31)
+lbl_8022D808:
+	cmplwi   r30, 3
+	blt      lbl_8022D81C
+	mr       r3, r28
+	bl       readInt__6StreamFv
+	stw      r3, 0x74(r31)
 
-	.loc_0x190:
-	  cmplwi    r30, 0x4
-	  blt-      .loc_0x1DC
-	  lwz       r0, 0x6C(r31)
-	  rlwinm    r3,r0,2,0,29
-	  bl        -0x209880
-	  stw       r3, 0x78(r31)
-	  li        r29, 0
-	  li        r30, 0
-	  b         .loc_0x1CC
+lbl_8022D81C:
+	cmplwi   r30, 4
+	blt      lbl_8022D868
+	lwz      r0, 0x6c(r31)
+	slwi     r3, r0, 2
+	bl       __nwa__FUl
+	stw      r3, 0x78(r31)
+	li       r29, 0
+	li       r30, 0
+	b        lbl_8022D858
 
-	.loc_0x1B4:
-	  mr        r3, r28
-	  bl        0x1E7568
-	  lwz       r3, 0x78(r31)
-	  addi      r29, r29, 0x1
-	  stfsx     f1, r3, r30
-	  addi      r30, r30, 0x4
+lbl_8022D840:
+	mr       r3, r28
+	bl       readFloat__6StreamFv
+	lwz      r3, 0x78(r31)
+	addi     r29, r29, 1
+	stfsx    f1, r3, r30
+	addi     r30, r30, 4
 
-	.loc_0x1CC:
-	  lwz       r0, 0x6C(r31)
-	  cmpw      r29, r0
-	  blt+      .loc_0x1B4
-	  b         .loc_0x218
+lbl_8022D858:
+	lwz      r0, 0x6c(r31)
+	cmpw     r29, r0
+	blt      lbl_8022D840
+	b        lbl_8022D8A4
 
-	.loc_0x1DC:
-	  lwz       r0, 0x6C(r31)
-	  rlwinm    r3,r0,2,0,29
-	  bl        -0x2098C4
-	  stw       r3, 0x78(r31)
-	  li        r5, 0
-	  lfs       f0, -0x407C(r2)
-	  li        r4, 0
-	  b         .loc_0x20C
+lbl_8022D868:
+	lwz      r0, 0x6c(r31)
+	slwi     r3, r0, 2
+	bl       __nwa__FUl
+	stw      r3, 0x78(r31)
+	li       r5, 0
+	lfs      f0, lbl_8051A2E4@sda21(r2)
+	li       r4, 0
+	b        lbl_8022D898
 
-	.loc_0x1FC:
-	  lwz       r3, 0x78(r31)
-	  addi      r5, r5, 0x1
-	  stfsx     f0, r3, r4
-	  addi      r4, r4, 0x4
+lbl_8022D888:
+	lwz      r3, 0x78(r31)
+	addi     r5, r5, 1
+	stfsx    f0, r3, r4
+	addi     r4, r4, 4
 
-	.loc_0x20C:
-	  lwz       r0, 0x6C(r31)
-	  cmpw      r5, r0
-	  blt+      .loc_0x1FC
+lbl_8022D898:
+	lwz      r0, 0x6c(r31)
+	cmpw     r5, r0
+	blt      lbl_8022D888
 
-	.loc_0x218:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8022D8A4:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -206,52 +300,51 @@ void ChallengeGame::StageData::write(Stream&)
 ChallengeGame::StageList::StageList(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  stw       r30, 0x8(r1)
-	  bl        0x1E3AB4
-	  lis       r3, 0x804C
-	  addi      r30, r31, 0x18
-	  addi      r0, r3, 0x111C
-	  stw       r0, 0x0(r31)
-	  mr        r3, r30
-	  bl        0x1E3A9C
-	  lis       r4, 0x804C
-	  addi      r3, r30, 0x18
-	  addi      r0, r4, 0x112C
-	  stw       r0, 0x0(r30)
-	  bl        -0x3C6C8
-	  addi      r3, r30, 0x18
-	  bl        -0x3C684
-	  lis       r4, 0x8048
-	  addi      r3, r30, 0x20
-	  addi      r4, r4, 0x3788
-	  crclr     6, 0x6
-	  bl        -0x1664EC
-	  lfs       f0, -0x4080(r2)
-	  lis       r3, 0x8048
-	  li        r5, 0
-	  li        r4, 0x1
-	  stfs      f0, 0x60(r30)
-	  addi      r0, r3, 0x3798
-	  mr        r3, r31
-	  stw       r5, 0x68(r30)
-	  stw       r5, 0x64(r30)
-	  stw       r4, 0x6C(r30)
-	  stw       r5, 0x70(r30)
-	  stw       r5, 0x74(r30)
-	  stw       r5, 0x78(r30)
-	  stw       r0, 0x14(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	stw      r30, 8(r1)
+	bl       __ct__5CNodeFv
+	lis      r3, __vt__Q34Game13ChallengeGame9StageList@ha
+	addi     r30, r31, 0x18
+	addi     r0, r3, __vt__Q34Game13ChallengeGame9StageList@l
+	stw      r0, 0(r31)
+	mr       r3, r30
+	bl       __ct__5CNodeFv
+	lis      r4, __vt__Q34Game13ChallengeGame9StageData@ha
+	addi     r3, r30, 0x18
+	addi     r0, r4, __vt__Q34Game13ChallengeGame9StageData@l
+	stw      r0, 0(r30)
+	bl       __ct__Q24Game13PikiContainerFv
+	addi     r3, r30, 0x18
+	bl       clear__Q24Game13PikiContainerFv
+	lis      r4, lbl_80483788@ha
+	addi     r3, r30, 0x20
+	addi     r4, r4, lbl_80483788@l
+	crclr    6
+	bl       sprintf
+	lfs      f0, lbl_8051A2E0@sda21(r2)
+	lis      r3, lbl_80483798@ha
+	li       r5, 0
+	li       r4, 1
+	stfs     f0, 0x60(r30)
+	addi     r0, r3, lbl_80483798@l
+	mr       r3, r31
+	stw      r5, 0x68(r30)
+	stw      r5, 0x64(r30)
+	stw      r4, 0x6c(r30)
+	stw      r5, 0x70(r30)
+	stw      r5, 0x74(r30)
+	stw      r5, 0x78(r30)
+	stw      r0, 0x14(r31)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -263,33 +356,32 @@ ChallengeGame::StageList::StageList(void)
 ChallengeGame::StageData::~StageData(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x44
-	  lis       r5, 0x804C
-	  li        r4, 0
-	  addi      r0, r5, 0x112C
-	  stw       r0, 0x0(r30)
-	  bl        0x1E3BE0
-	  extsh.    r0, r31
-	  ble-      .loc_0x44
-	  mr        r3, r30
-	  bl        -0x209904
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_8022D9BC
+	lis      r5, __vt__Q34Game13ChallengeGame9StageData@ha
+	li       r4, 0
+	addi     r0, r5, __vt__Q34Game13ChallengeGame9StageData@l
+	stw      r0, 0(r30)
+	bl       __dt__5CNodeFv
+	extsh.   r0, r31
+	ble      lbl_8022D9BC
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x44:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8022D9BC:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -301,86 +393,85 @@ ChallengeGame::StageData::~StageData(void)
 void ChallengeGame::StageList::read(Stream&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stmw      r26, 0x8(r1)
-	  mr        r26, r3
-	  mr        r27, r4
-	  lwz       r5, -0x6C18(r13)
-	  cmplwi    r5, 0
-	  beq-      .loc_0x34
-	  lwz       r3, 0x58(r5)
-	  bl        -0xDD2F8
-	  mr        r30, r3
-	  b         .loc_0x38
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stmw     r26, 8(r1)
+	mr       r26, r3
+	mr       r27, r4
+	lwz      r5, gameSystem__4Game@sda21(r13)
+	cmplwi   r5, 0
+	beq      lbl_8022DA0C
+	lwz      r3, 0x58(r5)
+	bl       disableAllocHalt__Q24Game15BaseGameSectionFv
+	mr       r30, r3
+	b        lbl_8022DA10
 
-	.loc_0x34:
-	  li        r30, 0x1
+lbl_8022DA0C:
+	li       r30, 1
 
-	.loc_0x38:
-	  mr        r3, r27
-	  bl        0x1E707C
-	  mr        r31, r3
-	  li        r28, 0
-	  b         .loc_0xD4
+lbl_8022DA10:
+	mr       r3, r27
+	bl       readInt__6StreamFv
+	mr       r31, r3
+	li       r28, 0
+	b        lbl_8022DAAC
 
-	.loc_0x4C:
-	  li        r3, 0x7C
-	  bl        -0x209B84
-	  mr.       r29, r3
-	  beq-      .loc_0xB8
-	  bl        0x1E395C
-	  lis       r4, 0x804C
-	  addi      r3, r29, 0x18
-	  addi      r0, r4, 0x112C
-	  stw       r0, 0x0(r29)
-	  bl        -0x3C808
-	  addi      r3, r29, 0x18
-	  bl        -0x3C7C4
-	  lis       r4, 0x8048
-	  addi      r3, r29, 0x20
-	  addi      r4, r4, 0x3788
-	  crclr     6, 0x6
-	  bl        -0x16662C
-	  lfs       f0, -0x4080(r2)
-	  li        r3, 0
-	  li        r0, 0x1
-	  stfs      f0, 0x60(r29)
-	  stw       r3, 0x68(r29)
-	  stw       r3, 0x64(r29)
-	  stw       r0, 0x6C(r29)
-	  stw       r3, 0x70(r29)
-	  stw       r3, 0x74(r29)
-	  stw       r3, 0x78(r29)
+lbl_8022DA24:
+	li       r3, 0x7c
+	bl       __nw__FUl
+	or.      r29, r3, r3
+	beq      lbl_8022DA90
+	bl       __ct__5CNodeFv
+	lis      r4, __vt__Q34Game13ChallengeGame9StageData@ha
+	addi     r3, r29, 0x18
+	addi     r0, r4, __vt__Q34Game13ChallengeGame9StageData@l
+	stw      r0, 0(r29)
+	bl       __ct__Q24Game13PikiContainerFv
+	addi     r3, r29, 0x18
+	bl       clear__Q24Game13PikiContainerFv
+	lis      r4, lbl_80483788@ha
+	addi     r3, r29, 0x20
+	addi     r4, r4, lbl_80483788@l
+	crclr    6
+	bl       sprintf
+	lfs      f0, lbl_8051A2E0@sda21(r2)
+	li       r3, 0
+	li       r0, 1
+	stfs     f0, 0x60(r29)
+	stw      r3, 0x68(r29)
+	stw      r3, 0x64(r29)
+	stw      r0, 0x6c(r29)
+	stw      r3, 0x70(r29)
+	stw      r3, 0x74(r29)
+	stw      r3, 0x78(r29)
 
-	.loc_0xB8:
-	  mr        r3, r29
-	  mr        r4, r27
-	  bl        -0x40C
-	  mr        r4, r29
-	  addi      r3, r26, 0x18
-	  bl        0x1E3964
-	  addi      r28, r28, 0x1
+lbl_8022DA90:
+	mr       r3, r29
+	mr       r4, r27
+	bl       read__Q34Game13ChallengeGame9StageDataFR6Stream
+	mr       r4, r29
+	addi     r3, r26, 0x18
+	bl       add__5CNodeFP5CNode
+	addi     r28, r28, 1
 
-	.loc_0xD4:
-	  cmpw      r28, r31
-	  blt+      .loc_0x4C
-	  lwz       r3, -0x6C18(r13)
-	  cmplwi    r3, 0
-	  beq-      .loc_0xF8
-	  rlwinm.   r0,r30,0,24,31
-	  beq-      .loc_0xF8
-	  lwz       r3, 0x58(r3)
-	  bl        -0xDD3CC
+lbl_8022DAAC:
+	cmpw     r28, r31
+	blt      lbl_8022DA24
+	lwz      r3, gameSystem__4Game@sda21(r13)
+	cmplwi   r3, 0
+	beq      lbl_8022DAD0
+	clrlwi.  r0, r30, 0x18
+	beq      lbl_8022DAD0
+	lwz      r3, 0x58(r3)
+	bl       enableAllocHalt__Q24Game15BaseGameSectionFv
 
-	.loc_0xF8:
-	  lmw       r26, 0x8(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8022DAD0:
+	lmw      r26, 8(r1)
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -402,44 +493,43 @@ void ChallengeGame::StageList::write(Stream&)
 void ChallengeGame::StageList::getStageData(int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  addi      r3, r30, 0x18
-	  lwz       r12, 0x18(r30)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  cmpwi     r31, 0
-	  blt-      .loc_0x40
-	  cmpw      r31, r3
-	  blt-      .loc_0x60
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	addi     r3, r30, 0x18
+	lwz      r12, 0x18(r30)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	cmpwi    r31, 0
+	blt      lbl_8022DB24
+	cmpw     r31, r3
+	blt      lbl_8022DB44
 
-	.loc_0x40:
-	  lis       r3, 0x8048
-	  lis       r4, 0x8048
-	  addi      r5, r4, 0x37BC
-	  mr        r6, r31
-	  addi      r3, r3, 0x37AC
-	  li        r4, 0xD5
-	  crclr     6, 0x6
-	  bl        -0x203500
+lbl_8022DB24:
+	lis      r3, lbl_804837AC@ha
+	lis      r4, lbl_804837BC@ha
+	addi     r5, r4, lbl_804837BC@l
+	mr       r6, r31
+	addi     r3, r3, lbl_804837AC@l
+	li       r4, 0xd5
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x60:
-	  mr        r4, r31
-	  addi      r3, r30, 0x18
-	  bl        0x1E3B50
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8022DB44:
+	mr       r4, r31
+	addi     r3, r30, 0x18
+	bl       getChildAt__5CNodeFi
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -481,54 +571,53 @@ void VsGame::StageData::write(Stream&)
 VsGame::StageList::StageList(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  stw       r30, 0x8(r1)
-	  bl        0x1E3810
-	  lis       r3, 0x804C
-	  addi      r30, r31, 0x18
-	  addi      r0, r3, 0x10FC
-	  stw       r0, 0x0(r31)
-	  mr        r3, r30
-	  bl        0x1E37F8
-	  lis       r4, 0x804C
-	  addi      r3, r30, 0x18
-	  addi      r0, r4, 0x110C
-	  stw       r0, 0x0(r30)
-	  bl        -0x3C96C
-	  addi      r3, r30, 0x18
-	  bl        -0x3C928
-	  lis       r4, 0x8048
-	  addi      r3, r30, 0x20
-	  addi      r4, r4, 0x3788
-	  crclr     6, 0x6
-	  bl        -0x166790
-	  lfs       f0, -0x4080(r2)
-	  li        r0, 0
-	  addi      r3, r30, 0x70
-	  subi      r4, r2, 0x4078
-	  stfs      f0, 0x60(r30)
-	  stw       r0, 0x68(r30)
-	  stw       r0, 0x64(r30)
-	  stw       r0, 0x6C(r30)
-	  crclr     6, 0x6
-	  bl        -0x1667B8
-	  li        r0, 0x7
-	  lis       r3, 0x8048
-	  stw       r0, 0xB0(r30)
-	  addi      r0, r3, 0x37D4
-	  mr        r3, r31
-	  stw       r0, 0x14(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	stw      r30, 8(r1)
+	bl       __ct__5CNodeFv
+	lis      r3, __vt__Q34Game6VsGame9StageList@ha
+	addi     r30, r31, 0x18
+	addi     r0, r3, __vt__Q34Game6VsGame9StageList@l
+	stw      r0, 0(r31)
+	mr       r3, r30
+	bl       __ct__5CNodeFv
+	lis      r4, __vt__Q34Game6VsGame9StageData@ha
+	addi     r3, r30, 0x18
+	addi     r0, r4, __vt__Q34Game6VsGame9StageData@l
+	stw      r0, 0(r30)
+	bl       __ct__Q24Game13PikiContainerFv
+	addi     r3, r30, 0x18
+	bl       clear__Q24Game13PikiContainerFv
+	lis      r4, lbl_80483788@ha
+	addi     r3, r30, 0x20
+	addi     r4, r4, lbl_80483788@l
+	crclr    6
+	bl       sprintf
+	lfs      f0, lbl_8051A2E0@sda21(r2)
+	li       r0, 0
+	addi     r3, r30, 0x70
+	addi     r4, r2, lbl_8051A2E8@sda21
+	stfs     f0, 0x60(r30)
+	stw      r0, 0x68(r30)
+	stw      r0, 0x64(r30)
+	stw      r0, 0x6c(r30)
+	crclr    6
+	bl       sprintf
+	li       r0, 7
+	lis      r3, lbl_804837D4@ha
+	stw      r0, 0xb0(r30)
+	addi     r0, r3, lbl_804837D4@l
+	mr       r3, r31
+	stw      r0, 0x14(r31)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -540,33 +629,32 @@ VsGame::StageList::StageList(void)
 VsGame::StageData::~StageData(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x44
-	  lis       r5, 0x804C
-	  li        r4, 0
-	  addi      r0, r5, 0x110C
-	  stw       r0, 0x0(r30)
-	  bl        0x1E3934
-	  extsh.    r0, r31
-	  ble-      .loc_0x44
-	  mr        r3, r30
-	  bl        -0x209BB0
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_8022DC68
+	lis      r5, __vt__Q34Game6VsGame9StageData@ha
+	li       r4, 0
+	addi     r0, r5, __vt__Q34Game6VsGame9StageData@l
+	stw      r0, 0(r30)
+	bl       __dt__5CNodeFv
+	extsh.   r0, r31
+	ble      lbl_8022DC68
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x44:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8022DC68:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -578,243 +666,242 @@ VsGame::StageData::~StageData(void)
 void VsGame::StageList::read(Stream&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stmw      r25, 0x14(r1)
-	  mr        r25, r3
-	  mr        r26, r4
-	  lwz       r5, -0x6C18(r13)
-	  cmplwi    r5, 0
-	  beq-      .loc_0x34
-	  lwz       r3, 0x58(r5)
-	  bl        -0xDD5A4
-	  mr        r29, r3
-	  b         .loc_0x38
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stmw     r25, 0x14(r1)
+	mr       r25, r3
+	mr       r26, r4
+	lwz      r5, gameSystem__4Game@sda21(r13)
+	cmplwi   r5, 0
+	beq      lbl_8022DCB8
+	lwz      r3, 0x58(r5)
+	bl       disableAllocHalt__Q24Game15BaseGameSectionFv
+	mr       r29, r3
+	b        lbl_8022DCBC
 
-	.loc_0x34:
-	  li        r29, 0x1
+lbl_8022DCB8:
+	li       r29, 1
 
-	.loc_0x38:
-	  mr        r3, r26
-	  bl        0x1E6DD0
-	  mr        r30, r3
-	  li        r27, 0
-	  b         .loc_0x318
+lbl_8022DCBC:
+	mr       r3, r26
+	bl       readInt__6StreamFv
+	mr       r30, r3
+	li       r27, 0
+	b        lbl_8022DF9C
 
-	.loc_0x4C:
-	  li        r3, 0xB4
-	  bl        -0x209E30
-	  mr.       r28, r3
-	  beq-      .loc_0xC0
-	  bl        0x1E36B0
-	  lis       r4, 0x804C
-	  addi      r3, r28, 0x18
-	  addi      r0, r4, 0x110C
-	  stw       r0, 0x0(r28)
-	  bl        -0x3CAB4
-	  addi      r3, r28, 0x18
-	  bl        -0x3CA70
-	  lis       r4, 0x8048
-	  addi      r3, r28, 0x20
-	  addi      r4, r4, 0x3788
-	  crclr     6, 0x6
-	  bl        -0x1668D8
-	  lfs       f0, -0x4080(r2)
-	  li        r0, 0
-	  addi      r3, r28, 0x70
-	  subi      r4, r2, 0x4078
-	  stfs      f0, 0x60(r28)
-	  stw       r0, 0x68(r28)
-	  stw       r0, 0x64(r28)
-	  stw       r0, 0x6C(r28)
-	  crclr     6, 0x6
-	  bl        -0x166900
-	  li        r0, 0x7
-	  stw       r0, 0xB0(r28)
+lbl_8022DCD0:
+	li       r3, 0xb4
+	bl       __nw__FUl
+	or.      r28, r3, r3
+	beq      lbl_8022DD44
+	bl       __ct__5CNodeFv
+	lis      r4, __vt__Q34Game6VsGame9StageData@ha
+	addi     r3, r28, 0x18
+	addi     r0, r4, __vt__Q34Game6VsGame9StageData@l
+	stw      r0, 0(r28)
+	bl       __ct__Q24Game13PikiContainerFv
+	addi     r3, r28, 0x18
+	bl       clear__Q24Game13PikiContainerFv
+	lis      r4, lbl_80483788@ha
+	addi     r3, r28, 0x20
+	addi     r4, r4, lbl_80483788@l
+	crclr    6
+	bl       sprintf
+	lfs      f0, lbl_8051A2E0@sda21(r2)
+	li       r0, 0
+	addi     r3, r28, 0x70
+	addi     r4, r2, lbl_8051A2E8@sda21
+	stfs     f0, 0x60(r28)
+	stw      r0, 0x68(r28)
+	stw      r0, 0x64(r28)
+	stw      r0, 0x6c(r28)
+	crclr    6
+	bl       sprintf
+	li       r0, 7
+	stw      r0, 0xb0(r28)
 
-	.loc_0xC0:
-	  mr        r3, r26
-	  bl        0x1E6D48
-	  mr        r31, r3
-	  mr        r3, r26
-	  li        r4, 0
-	  li        r5, 0
-	  bl        0x1E7378
-	  li        r0, 0x8
-	  li        r5, 0
-	  mtctr     r0
+lbl_8022DD44:
+	mr       r3, r26
+	bl       readInt__6StreamFv
+	mr       r31, r3
+	mr       r3, r26
+	li       r4, 0
+	li       r5, 0
+	bl       readString__6StreamFPci
+	li       r0, 8
+	li       r5, 0
+	mtctr    r0
 
-	.loc_0xE8:
-	  lbz       r4, 0x0(r3)
-	  addi      r0, r5, 0x20
-	  stbx      r4, r28, r0
-	  lbz       r0, 0x0(r3)
-	  extsb.    r0, r0
-	  beq-      .loc_0x1B4
-	  lbz       r4, 0x1(r3)
-	  addi      r0, r5, 0x21
-	  stbx      r4, r28, r0
-	  lbz       r0, 0x1(r3)
-	  extsb.    r0, r0
-	  beq-      .loc_0x1B4
-	  lbz       r4, 0x2(r3)
-	  addi      r0, r5, 0x22
-	  stbx      r4, r28, r0
-	  lbz       r0, 0x2(r3)
-	  extsb.    r0, r0
-	  beq-      .loc_0x1B4
-	  lbz       r4, 0x3(r3)
-	  addi      r0, r5, 0x23
-	  stbx      r4, r28, r0
-	  lbz       r0, 0x3(r3)
-	  extsb.    r0, r0
-	  beq-      .loc_0x1B4
-	  lbz       r4, 0x4(r3)
-	  addi      r0, r5, 0x24
-	  stbx      r4, r28, r0
-	  lbz       r0, 0x4(r3)
-	  extsb.    r0, r0
-	  beq-      .loc_0x1B4
-	  lbz       r4, 0x5(r3)
-	  addi      r0, r5, 0x25
-	  stbx      r4, r28, r0
-	  lbz       r0, 0x5(r3)
-	  extsb.    r0, r0
-	  beq-      .loc_0x1B4
-	  lbz       r4, 0x6(r3)
-	  addi      r0, r5, 0x26
-	  stbx      r4, r28, r0
-	  lbz       r0, 0x6(r3)
-	  extsb.    r0, r0
-	  beq-      .loc_0x1B4
-	  lbz       r4, 0x7(r3)
-	  addi      r0, r5, 0x27
-	  stbx      r4, r28, r0
-	  lbz       r0, 0x7(r3)
-	  extsb.    r0, r0
-	  beq-      .loc_0x1B4
-	  addi      r5, r5, 0x8
-	  addi      r3, r3, 0x8
-	  bdnz+     .loc_0xE8
+lbl_8022DD6C:
+	lbz      r4, 0(r3)
+	addi     r0, r5, 0x20
+	stbx     r4, r28, r0
+	lbz      r0, 0(r3)
+	extsb.   r0, r0
+	beq      lbl_8022DE38
+	lbz      r4, 1(r3)
+	addi     r0, r5, 0x21
+	stbx     r4, r28, r0
+	lbz      r0, 1(r3)
+	extsb.   r0, r0
+	beq      lbl_8022DE38
+	lbz      r4, 2(r3)
+	addi     r0, r5, 0x22
+	stbx     r4, r28, r0
+	lbz      r0, 2(r3)
+	extsb.   r0, r0
+	beq      lbl_8022DE38
+	lbz      r4, 3(r3)
+	addi     r0, r5, 0x23
+	stbx     r4, r28, r0
+	lbz      r0, 3(r3)
+	extsb.   r0, r0
+	beq      lbl_8022DE38
+	lbz      r4, 4(r3)
+	addi     r0, r5, 0x24
+	stbx     r4, r28, r0
+	lbz      r0, 4(r3)
+	extsb.   r0, r0
+	beq      lbl_8022DE38
+	lbz      r4, 5(r3)
+	addi     r0, r5, 0x25
+	stbx     r4, r28, r0
+	lbz      r0, 5(r3)
+	extsb.   r0, r0
+	beq      lbl_8022DE38
+	lbz      r4, 6(r3)
+	addi     r0, r5, 0x26
+	stbx     r4, r28, r0
+	lbz      r0, 6(r3)
+	extsb.   r0, r0
+	beq      lbl_8022DE38
+	lbz      r4, 7(r3)
+	addi     r0, r5, 0x27
+	stbx     r4, r28, r0
+	lbz      r0, 7(r3)
+	extsb.   r0, r0
+	beq      lbl_8022DE38
+	addi     r5, r5, 8
+	addi     r3, r3, 8
+	bdnz     lbl_8022DD6C
 
-	.loc_0x1B4:
-	  addi      r3, r28, 0x18
-	  mr        r4, r26
-	  lwz       r12, 0x18(r28)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r3, r26
-	  bl        0x1E6F58
-	  stfs      f1, 0x60(r28)
-	  mr        r3, r26
-	  bl        0x1E6C30
-	  stw       r3, 0x64(r28)
-	  mr        r3, r26
-	  bl        0x1E6C24
-	  cmplwi    r31, 0x2
-	  stw       r3, 0x68(r28)
-	  blt-      .loc_0x204
-	  mr        r3, r26
-	  bl        0x1E6C10
-	  stw       r3, 0x6C(r28)
+lbl_8022DE38:
+	addi     r3, r28, 0x18
+	mr       r4, r26
+	lwz      r12, 0x18(r28)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	mr       r3, r26
+	bl       readFloat__6StreamFv
+	stfs     f1, 0x60(r28)
+	mr       r3, r26
+	bl       readInt__6StreamFv
+	stw      r3, 0x64(r28)
+	mr       r3, r26
+	bl       readInt__6StreamFv
+	cmplwi   r31, 2
+	stw      r3, 0x68(r28)
+	blt      lbl_8022DE88
+	mr       r3, r26
+	bl       readInt__6StreamFv
+	stw      r3, 0x6c(r28)
 
-	.loc_0x204:
-	  cmplwi    r31, 0x3
-	  blt-      .loc_0x2F4
-	  mr        r3, r26
-	  li        r4, 0
-	  li        r5, 0
-	  bl        0x1E7238
-	  li        r0, 0x8
-	  li        r5, 0
-	  mtctr     r0
+lbl_8022DE88:
+	cmplwi   r31, 3
+	blt      lbl_8022DF78
+	mr       r3, r26
+	li       r4, 0
+	li       r5, 0
+	bl       readString__6StreamFPci
+	li       r0, 8
+	li       r5, 0
+	mtctr    r0
 
-	.loc_0x228:
-	  lbz       r4, 0x0(r3)
-	  addi      r0, r5, 0x70
-	  stbx      r4, r28, r0
-	  lbz       r0, 0x0(r3)
-	  extsb.    r0, r0
-	  beq-      .loc_0x2F4
-	  lbz       r4, 0x1(r3)
-	  addi      r0, r5, 0x71
-	  stbx      r4, r28, r0
-	  lbz       r0, 0x1(r3)
-	  extsb.    r0, r0
-	  beq-      .loc_0x2F4
-	  lbz       r4, 0x2(r3)
-	  addi      r0, r5, 0x72
-	  stbx      r4, r28, r0
-	  lbz       r0, 0x2(r3)
-	  extsb.    r0, r0
-	  beq-      .loc_0x2F4
-	  lbz       r4, 0x3(r3)
-	  addi      r0, r5, 0x73
-	  stbx      r4, r28, r0
-	  lbz       r0, 0x3(r3)
-	  extsb.    r0, r0
-	  beq-      .loc_0x2F4
-	  lbz       r4, 0x4(r3)
-	  addi      r0, r5, 0x74
-	  stbx      r4, r28, r0
-	  lbz       r0, 0x4(r3)
-	  extsb.    r0, r0
-	  beq-      .loc_0x2F4
-	  lbz       r4, 0x5(r3)
-	  addi      r0, r5, 0x75
-	  stbx      r4, r28, r0
-	  lbz       r0, 0x5(r3)
-	  extsb.    r0, r0
-	  beq-      .loc_0x2F4
-	  lbz       r4, 0x6(r3)
-	  addi      r0, r5, 0x76
-	  stbx      r4, r28, r0
-	  lbz       r0, 0x6(r3)
-	  extsb.    r0, r0
-	  beq-      .loc_0x2F4
-	  lbz       r4, 0x7(r3)
-	  addi      r0, r5, 0x77
-	  stbx      r4, r28, r0
-	  lbz       r0, 0x7(r3)
-	  extsb.    r0, r0
-	  beq-      .loc_0x2F4
-	  addi      r5, r5, 0x8
-	  addi      r3, r3, 0x8
-	  bdnz+     .loc_0x228
+lbl_8022DEAC:
+	lbz      r4, 0(r3)
+	addi     r0, r5, 0x70
+	stbx     r4, r28, r0
+	lbz      r0, 0(r3)
+	extsb.   r0, r0
+	beq      lbl_8022DF78
+	lbz      r4, 1(r3)
+	addi     r0, r5, 0x71
+	stbx     r4, r28, r0
+	lbz      r0, 1(r3)
+	extsb.   r0, r0
+	beq      lbl_8022DF78
+	lbz      r4, 2(r3)
+	addi     r0, r5, 0x72
+	stbx     r4, r28, r0
+	lbz      r0, 2(r3)
+	extsb.   r0, r0
+	beq      lbl_8022DF78
+	lbz      r4, 3(r3)
+	addi     r0, r5, 0x73
+	stbx     r4, r28, r0
+	lbz      r0, 3(r3)
+	extsb.   r0, r0
+	beq      lbl_8022DF78
+	lbz      r4, 4(r3)
+	addi     r0, r5, 0x74
+	stbx     r4, r28, r0
+	lbz      r0, 4(r3)
+	extsb.   r0, r0
+	beq      lbl_8022DF78
+	lbz      r4, 5(r3)
+	addi     r0, r5, 0x75
+	stbx     r4, r28, r0
+	lbz      r0, 5(r3)
+	extsb.   r0, r0
+	beq      lbl_8022DF78
+	lbz      r4, 6(r3)
+	addi     r0, r5, 0x76
+	stbx     r4, r28, r0
+	lbz      r0, 6(r3)
+	extsb.   r0, r0
+	beq      lbl_8022DF78
+	lbz      r4, 7(r3)
+	addi     r0, r5, 0x77
+	stbx     r4, r28, r0
+	lbz      r0, 7(r3)
+	extsb.   r0, r0
+	beq      lbl_8022DF78
+	addi     r5, r5, 8
+	addi     r3, r3, 8
+	bdnz     lbl_8022DEAC
 
-	.loc_0x2F4:
-	  cmplwi    r31, 0x4
-	  blt-      .loc_0x308
-	  mr        r3, r26
-	  bl        0x1E6B0C
-	  stw       r3, 0xB0(r28)
+lbl_8022DF78:
+	cmplwi   r31, 4
+	blt      lbl_8022DF8C
+	mr       r3, r26
+	bl       readInt__6StreamFv
+	stw      r3, 0xb0(r28)
 
-	.loc_0x308:
-	  mr        r4, r28
-	  addi      r3, r25, 0x18
-	  bl        0x1E3474
-	  addi      r27, r27, 0x1
+lbl_8022DF8C:
+	mr       r4, r28
+	addi     r3, r25, 0x18
+	bl       add__5CNodeFP5CNode
+	addi     r27, r27, 1
 
-	.loc_0x318:
-	  cmpw      r27, r30
-	  blt+      .loc_0x4C
-	  lwz       r3, -0x6C18(r13)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x33C
-	  rlwinm.   r0,r29,0,24,31
-	  beq-      .loc_0x33C
-	  lwz       r3, 0x58(r3)
-	  bl        -0xDD8BC
+lbl_8022DF9C:
+	cmpw     r27, r30
+	blt      lbl_8022DCD0
+	lwz      r3, gameSystem__4Game@sda21(r13)
+	cmplwi   r3, 0
+	beq      lbl_8022DFC0
+	clrlwi.  r0, r29, 0x18
+	beq      lbl_8022DFC0
+	lwz      r3, 0x58(r3)
+	bl       enableAllocHalt__Q24Game15BaseGameSectionFv
 
-	.loc_0x33C:
-	  lmw       r25, 0x14(r1)
-	  lwz       r0, 0x34(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_8022DFC0:
+	lmw      r25, 0x14(r1)
+	lwz      r0, 0x34(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -836,44 +923,43 @@ void VsGame::StageList::write(Stream&)
 void VsGame::StageList::getStageData(int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  addi      r3, r30, 0x18
-	  lwz       r12, 0x18(r30)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  cmpwi     r31, 0
-	  blt-      .loc_0x40
-	  cmpw      r31, r3
-	  blt-      .loc_0x60
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	addi     r3, r30, 0x18
+	lwz      r12, 0x18(r30)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	cmpwi    r31, 0
+	blt      lbl_8022E014
+	cmpw     r31, r3
+	blt      lbl_8022E034
 
-	.loc_0x40:
-	  lis       r3, 0x8048
-	  lis       r4, 0x8048
-	  addi      r5, r4, 0x37BC
-	  mr        r6, r31
-	  addi      r3, r3, 0x37AC
-	  li        r4, 0x1AB
-	  crclr     6, 0x6
-	  bl        -0x2039F0
+lbl_8022E014:
+	lis      r3, lbl_804837AC@ha
+	lis      r4, lbl_804837BC@ha
+	addi     r5, r4, lbl_804837BC@l
+	mr       r6, r31
+	addi     r3, r3, lbl_804837AC@l
+	li       r4, 0x1ab
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x60:
-	  mr        r4, r31
-	  addi      r3, r30, 0x18
-	  bl        0x1E3660
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8022E034:
+	mr       r4, r31
+	addi     r3, r30, 0x18
+	bl       getChildAt__5CNodeFi
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -885,44 +971,43 @@ void VsGame::StageList::getStageData(int)
 VsGame::StageList::~StageList(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x68
-	  lis       r3, 0x804C
-	  addic.    r0, r30, 0x18
-	  addi      r0, r3, 0x10FC
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x4C
-	  lis       r4, 0x804C
-	  addi      r3, r30, 0x18
-	  addi      r0, r4, 0x110C
-	  li        r4, 0
-	  stw       r0, 0x18(r30)
-	  bl        0x1E34E8
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_8022E0C0
+	lis      r3, __vt__Q34Game6VsGame9StageList@ha
+	addic.   r0, r30, 0x18
+	addi     r0, r3, __vt__Q34Game6VsGame9StageList@l
+	stw      r0, 0(r30)
+	beq      lbl_8022E0A4
+	lis      r4, __vt__Q34Game6VsGame9StageData@ha
+	addi     r3, r30, 0x18
+	addi     r0, r4, __vt__Q34Game6VsGame9StageData@l
+	li       r4, 0
+	stw      r0, 0x18(r30)
+	bl       __dt__5CNodeFv
 
-	.loc_0x4C:
-	  mr        r3, r30
-	  li        r4, 0
-	  bl        0x1E34DC
-	  extsh.    r0, r31
-	  ble-      .loc_0x68
-	  mr        r3, r30
-	  bl        -0x20A008
+lbl_8022E0A4:
+	mr       r3, r30
+	li       r4, 0
+	bl       __dt__5CNodeFv
+	extsh.   r0, r31
+	ble      lbl_8022E0C0
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x68:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8022E0C0:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -934,44 +1019,43 @@ VsGame::StageList::~StageList(void)
 ChallengeGame::StageList::~StageList(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x68
-	  lis       r3, 0x804C
-	  addic.    r0, r30, 0x18
-	  addi      r0, r3, 0x111C
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x4C
-	  lis       r4, 0x804C
-	  addi      r3, r30, 0x18
-	  addi      r0, r4, 0x112C
-	  li        r4, 0
-	  stw       r0, 0x18(r30)
-	  bl        0x1E3464
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_8022E144
+	lis      r3, __vt__Q34Game13ChallengeGame9StageList@ha
+	addic.   r0, r30, 0x18
+	addi     r0, r3, __vt__Q34Game13ChallengeGame9StageList@l
+	stw      r0, 0(r30)
+	beq      lbl_8022E128
+	lis      r4, __vt__Q34Game13ChallengeGame9StageData@ha
+	addi     r3, r30, 0x18
+	addi     r0, r4, __vt__Q34Game13ChallengeGame9StageData@l
+	li       r4, 0
+	stw      r0, 0x18(r30)
+	bl       __dt__5CNodeFv
 
-	.loc_0x4C:
-	  mr        r3, r30
-	  li        r4, 0
-	  bl        0x1E3458
-	  extsh.    r0, r31
-	  ble-      .loc_0x68
-	  mr        r3, r30
-	  bl        -0x20A08C
+lbl_8022E128:
+	mr       r3, r30
+	li       r4, 0
+	bl       __dt__5CNodeFv
+	extsh.   r0, r31
+	ble      lbl_8022E144
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x68:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8022E144:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -985,16 +1069,15 @@ ChallengeGame::StageList::~StageList(void)
 void __sinit_vsStageData_cpp(void)
 {
 	/*
-	.loc_0x0:
-	  lis       r4, 0x8051
-	  li        r0, -0x1
-	  lfs       f0, 0x48B0(r4)
-	  lis       r3, 0x804C
-	  stw       r0, -0x6A00(r13)
-	  stfsu     f0, 0x10F0(r3)
-	  stfs      f0, -0x69FC(r13)
-	  stfs      f0, 0x4(r3)
-	  stfs      f0, 0x8(r3)
-	  blr
+	lis      r4, __float_nan@ha
+	li       r0, -1
+	lfs      f0, __float_nan@l(r4)
+	lis      r3, lbl_804C10F0@ha
+	stw      r0, lbl_80515C80@sda21(r13)
+	stfsu    f0, lbl_804C10F0@l(r3)
+	stfs     f0, lbl_80515C84@sda21(r13)
+	stfs     f0, 4(r3)
+	stfs     f0, 8(r3)
+	blr
 	*/
 }

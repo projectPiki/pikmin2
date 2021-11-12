@@ -1,6 +1,137 @@
 #include "types.h"
 
 /*
+    Generated from dpostproc
+
+    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
+    .4byte __sinit_J3DSys_cpp
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_80478700
+    lbl_80478700:
+        .4byte 0x00008000
+        .4byte 0x00020000
+        .4byte 0x00080000
+        .4byte 0x00000000
+        .4byte 0x00000008
+        .4byte 0x00000004
+        .4byte 0x00000001
+        .4byte 0x00000000
+        .float 0.5
+        .float 0.0
+        .float 0.0
+        .float 0.0
+        .float 0.5
+        .float 0.0
+    .global lbl_80478738
+    lbl_80478738:
+        .asciz "Success\n"
+        .skip 3
+    .global lbl_80478744
+    lbl_80478744:
+        .asciz "J3DErrType : Material has No Material Animation\n"
+        .skip 3
+    .global lbl_80478778
+    lbl_80478778:
+        .asciz "J3DErrType : Model Data is Locked\n"
+        .skip 1
+    .global lbl_8047879C
+    lbl_8047879C:
+        .asciz "J3DErrType : Binary Resource is Null\n"
+        .skip 2
+    .global lbl_804787C4
+    lbl_804787C4:
+        .asciz "J3DErrType : Out Of Memory\n"
+    .global lbl_804787E0
+    lbl_804787E0:
+        .asciz "J3DErrType : Argument is Invalid\n"
+        .skip 2
+    .global lbl_80478804
+    lbl_80478804:
+        .asciz "J3DErrType : Data is Invalid\n"
+        .skip 2
+        .4byte lbl_80478738
+        .4byte lbl_80478744
+        .4byte lbl_80478778
+        .4byte lbl_8047879C
+        .4byte lbl_804787C4
+        .4byte lbl_804787E0
+        .4byte lbl_80478804
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global NullTexData
+    NullTexData:
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+    .global j3dIdentityMtx
+    j3dIdentityMtx:
+        .float 1.0
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .float 1.0
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .float 1.0
+        .4byte 0x00000000
+    .global IndMtx
+    IndMtx:
+        .float 0.5
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .float 0.5
+        .4byte 0x00000000
+
+    .section .bss  # 0x804EFC20 - 0x8051467C
+    .global j3dSys
+    j3dSys:
+        .skip 0x1A4
+    .global mCurrentMtx__6J3DSys
+    mCurrentMtx__6J3DSys:
+        .skip 0x30
+    .global mCurrentS__6J3DSys
+    mCurrentS__6J3DSys:
+        .skip 0xC
+    .global mParentS__6J3DSys
+    mParentS__6J3DSys:
+        .skip 0xC
+    .global sTexCoordScaleTable__6J3DSys
+    sTexCoordScaleTable__6J3DSys:
+        .skip 0x40
+
+    .section .sdata, "wa"  # 0x80514680 - 0x80514D80
+    .global ColorBlack
+    ColorBlack:
+        .4byte 0
+    .global ColorWhite
+    ColorWhite:
+        .4byte 0xffffffff
+
+    .section .sbss # 0x80514D80 - 0x80516360
+    .global j3dDefaultViewNo
+    j3dDefaultViewNo:
+        .skip 0x8
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_80516988
+    lbl_80516988:
+        .4byte 0x00000000
+    .global lbl_8051698C
+    lbl_8051698C:
+        .float 1.0
+    .global lbl_80516990
+    lbl_80516990:
+        .float 0.1
+        .4byte 0x00000000
+*/
+
+/*
  * --INFO--
  * Address:	8005DAAC
  * Size:	000114
@@ -8,76 +139,75 @@
 J3DSys::J3DSys()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        0x7AD8
-	  bl        0x7E9C
-	  bl        0x7C30
-	  bl        0x7D5C
-	  li        r0, 0
-	  mr        r3, r31
-	  stw       r0, 0x34(r31)
-	  bl        0x8C7C4
-	  li        r5, 0x1
-	  lis       r3, 0x8051
-	  stw       r5, 0x50(r31)
-	  li        r0, 0
-	  subi      r4, r3, 0xBE4
-	  mr        r3, r31
-	  stw       r0, 0x54(r31)
-	  stw       r0, 0x38(r31)
-	  stw       r0, 0x44(r31)
-	  stw       r0, 0x48(r31)
-	  stw       r0, 0x4C(r31)
-	  stw       r0, 0x58(r31)
-	  stw       r0, 0x3C(r31)
-	  stw       r0, 0x40(r31)
-	  stw       r0, 0x104(r31)
-	  stw       r0, 0x108(r31)
-	  stw       r0, 0x10C(r31)
-	  stw       r0, 0x110(r31)
-	  stw       r0, 0x114(r31)
-	  sth       r5, 0x0(r4)
-	  sth       r5, 0x2(r4)
-	  sth       r0, 0x4(r4)
-	  sth       r0, 0x6(r4)
-	  sth       r5, 0x8(r4)
-	  sth       r5, 0xA(r4)
-	  sth       r0, 0xC(r4)
-	  sth       r0, 0xE(r4)
-	  sth       r5, 0x10(r4)
-	  sth       r5, 0x12(r4)
-	  sth       r0, 0x14(r4)
-	  sth       r0, 0x16(r4)
-	  sth       r5, 0x18(r4)
-	  sth       r5, 0x1A(r4)
-	  sth       r0, 0x1C(r4)
-	  sth       r0, 0x1E(r4)
-	  sth       r5, 0x20(r4)
-	  sth       r5, 0x22(r4)
-	  sth       r0, 0x24(r4)
-	  sth       r0, 0x26(r4)
-	  sth       r5, 0x28(r4)
-	  sth       r5, 0x2A(r4)
-	  sth       r0, 0x2C(r4)
-	  sth       r0, 0x2E(r4)
-	  sth       r5, 0x30(r4)
-	  sth       r5, 0x32(r4)
-	  sth       r0, 0x34(r4)
-	  sth       r0, 0x36(r4)
-	  sth       r5, 0x38(r4)
-	  sth       r5, 0x3A(r4)
-	  sth       r0, 0x3C(r4)
-	  sth       r0, 0x3E(r4)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       makeTexCoordTable__Fv
+	bl       makeTevSwapTable__Fv
+	bl       makeAlphaCmpTable__Fv
+	bl       makeZModeTable__Fv
+	li       r0, 0
+	mr       r3, r31
+	stw      r0, 0x34(r31)
+	bl       PSMTXIdentity
+	li       r5, 1
+	lis      r3, sTexCoordScaleTable__6J3DSys@ha
+	stw      r5, 0x50(r31)
+	li       r0, 0
+	addi     r4, r3, sTexCoordScaleTable__6J3DSys@l
+	mr       r3, r31
+	stw      r0, 0x54(r31)
+	stw      r0, 0x38(r31)
+	stw      r0, 0x44(r31)
+	stw      r0, 0x48(r31)
+	stw      r0, 0x4c(r31)
+	stw      r0, 0x58(r31)
+	stw      r0, 0x3c(r31)
+	stw      r0, 0x40(r31)
+	stw      r0, 0x104(r31)
+	stw      r0, 0x108(r31)
+	stw      r0, 0x10c(r31)
+	stw      r0, 0x110(r31)
+	stw      r0, 0x114(r31)
+	sth      r5, 0(r4)
+	sth      r5, 2(r4)
+	sth      r0, 4(r4)
+	sth      r0, 6(r4)
+	sth      r5, 8(r4)
+	sth      r5, 0xa(r4)
+	sth      r0, 0xc(r4)
+	sth      r0, 0xe(r4)
+	sth      r5, 0x10(r4)
+	sth      r5, 0x12(r4)
+	sth      r0, 0x14(r4)
+	sth      r0, 0x16(r4)
+	sth      r5, 0x18(r4)
+	sth      r5, 0x1a(r4)
+	sth      r0, 0x1c(r4)
+	sth      r0, 0x1e(r4)
+	sth      r5, 0x20(r4)
+	sth      r5, 0x22(r4)
+	sth      r0, 0x24(r4)
+	sth      r0, 0x26(r4)
+	sth      r5, 0x28(r4)
+	sth      r5, 0x2a(r4)
+	sth      r0, 0x2c(r4)
+	sth      r0, 0x2e(r4)
+	sth      r5, 0x30(r4)
+	sth      r5, 0x32(r4)
+	sth      r0, 0x34(r4)
+	sth      r0, 0x36(r4)
+	sth      r5, 0x38(r4)
+	sth      r5, 0x3a(r4)
+	sth      r0, 0x3c(r4)
+	sth      r0, 0x3e(r4)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -89,16 +219,15 @@ J3DSys::J3DSys()
 void J3DSys::loadPosMtxIndx(int, unsigned short) const
 {
 	/*
-	.loc_0x0:
-	  mulli     r0, r4, 0xC
-	  li        r4, 0x20
-	  lis       r3, 0xCC01
-	  stb       r4, -0x8000(r3)
-	  rlwinm    r0,r0,0,16,31
-	  sth       r5, -0x8000(r3)
-	  ori       r0, r0, 0xB000
-	  sth       r0, -0x8000(r3)
-	  blr
+	mulli    r0, r4, 0xc
+	li       r4, 0x20
+	lis      r3, 0xCC008000@ha
+	stb      r4, 0xCC008000@l(r3)
+	clrlwi   r0, r0, 0x10
+	sth      r5, -0x8000(r3)
+	ori      r0, r0, 0xb000
+	sth      r0, -0x8000(r3)
+	blr
 	*/
 }
 
@@ -110,17 +239,16 @@ void J3DSys::loadPosMtxIndx(int, unsigned short) const
 void J3DSys::loadNrmMtxIndx(int, unsigned short) const
 {
 	/*
-	.loc_0x0:
-	  mulli     r3, r4, 0x9
-	  li        r0, 0x28
-	  lis       r4, 0xCC01
-	  stb       r0, -0x8000(r4)
-	  addi      r0, r3, 0x400
-	  rlwinm    r0,r0,0,16,31
-	  sth       r5, -0x8000(r4)
-	  ori       r0, r0, 0x8000
-	  sth       r0, -0x8000(r4)
-	  blr
+	mulli    r3, r4, 9
+	li       r0, 0x28
+	lis      r4, 0xCC008000@ha
+	stb      r0, 0xCC008000@l(r4)
+	addi     r0, r3, 0x400
+	clrlwi   r0, r0, 0x10
+	sth      r5, -0x8000(r4)
+	ori      r0, r0, 0x8000
+	sth      r0, -0x8000(r4)
+	blr
 	*/
 }
 
@@ -132,551 +260,551 @@ void J3DSys::loadNrmMtxIndx(int, unsigned short) const
 void J3DSys::drawInit()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x80(r1)
-	  mflr      r0
-	  lis       r4, 0x8048
-	  stw       r0, 0x84(r1)
-	  stmw      r27, 0x6C(r1)
-	  mr        r30, r3
-	  subi      r31, r4, 0x7900
-	  bl        0x870E4
-	  li        r3, 0
-	  bl        0x8B9E8
-	  li        r3, 0x2
-	  bl        0x87F70
-	  li        r3, 0
-	  bl        0x87FAC
-	  li        r3, 0
-	  bl        0x8BC90
-	  li        r3, 0x1
-	  bl        0x8B4DC
-	  li        r3, 0x1
-	  bl        0x8B668
-	  li        r3, 0x1
-	  li        r4, 0x4
-	  li        r5, 0x5
-	  li        r6, 0x5
-	  bl        0x8B46C
-	  li        r3, 0x7
-	  li        r4, 0
-	  li        r5, 0
-	  li        r6, 0x7
-	  li        r7, 0
-	  bl        0x8ACC8
-	  li        r3, 0x1
-	  li        r4, 0x3
-	  li        r5, 0x1
-	  bl        0x8B4F0
-	  li        r3, 0x1
-	  bl        0x8B51C
-	  li        r3, 0
-	  li        r4, 0x9
-	  li        r5, 0x1
-	  li        r6, 0x4
-	  li        r7, 0
-	  bl        0x86A54
-	  li        r3, 0
-	  li        r4, 0xA
-	  li        r5, 0
-	  li        r6, 0x4
-	  li        r7, 0
-	  bl        0x86A3C
-	  li        r3, 0
-	  li        r4, 0xB
-	  li        r5, 0x1
-	  li        r6, 0x5
-	  li        r7, 0
-	  bl        0x86A24
-	  li        r3, 0
-	  li        r4, 0xC
-	  li        r5, 0x1
-	  li        r6, 0x5
-	  li        r7, 0
-	  bl        0x86A0C
-	  li        r3, 0
-	  li        r4, 0xD
-	  li        r5, 0x1
-	  li        r6, 0x3
-	  li        r7, 0x7
-	  bl        0x869F4
-	  li        r3, 0
-	  li        r4, 0xE
-	  li        r5, 0x1
-	  li        r6, 0x3
-	  li        r7, 0x7
-	  bl        0x869DC
-	  li        r3, 0
-	  li        r4, 0xF
-	  li        r5, 0x1
-	  li        r6, 0x3
-	  li        r7, 0x7
-	  bl        0x869C4
-	  li        r3, 0
-	  li        r4, 0x10
-	  li        r5, 0x1
-	  li        r6, 0x3
-	  li        r7, 0x7
-	  bl        0x869AC
-	  li        r3, 0
-	  li        r4, 0x11
-	  li        r5, 0x1
-	  li        r6, 0x3
-	  li        r7, 0x7
-	  bl        0x86994
-	  li        r3, 0
-	  li        r4, 0x12
-	  li        r5, 0x1
-	  li        r6, 0x3
-	  li        r7, 0x7
-	  bl        0x8697C
-	  li        r3, 0
-	  li        r4, 0x13
-	  li        r5, 0x1
-	  li        r6, 0x3
-	  li        r7, 0x7
-	  bl        0x86964
-	  li        r3, 0
-	  li        r4, 0x14
-	  li        r5, 0x1
-	  li        r6, 0x3
-	  li        r7, 0x7
-	  bl        0x8694C
-	  li        r3, 0
-	  bl        0x8A590
-	  mr        r3, r30
-	  bl        0x850
-	  li        r3, 0
-	  li        r4, 0xFF
-	  li        r5, 0xFF
-	  li        r6, 0xFF
-	  bl        0x8AC3C
-	  li        r3, 0x1
-	  li        r4, 0xFF
-	  li        r5, 0xFF
-	  li        r6, 0xFF
-	  bl        0x8AC28
-	  li        r3, 0x2
-	  li        r4, 0xFF
-	  li        r5, 0xFF
-	  li        r6, 0xFF
-	  bl        0x8AC14
-	  li        r3, 0x3
-	  li        r4, 0xFF
-	  li        r5, 0xFF
-	  li        r6, 0xFF
-	  bl        0x8AC00
-	  li        r3, 0x4
-	  li        r4, 0xFF
-	  li        r5, 0xFF
-	  li        r6, 0xFF
-	  bl        0x8ABEC
-	  li        r3, 0x5
-	  li        r4, 0xFF
-	  li        r5, 0xFF
-	  li        r6, 0xFF
-	  bl        0x8ABD8
-	  li        r3, 0x6
-	  li        r4, 0xFF
-	  li        r5, 0xFF
-	  li        r6, 0xFF
-	  bl        0x8ABC4
-	  li        r3, 0x7
-	  li        r4, 0xFF
-	  li        r5, 0xFF
-	  li        r6, 0xFF
-	  bl        0x8ABB0
-	  li        r3, 0x8
-	  li        r4, 0xFF
-	  li        r5, 0xFF
-	  li        r6, 0xFF
-	  bl        0x8AB9C
-	  li        r3, 0x9
-	  li        r4, 0xFF
-	  li        r5, 0xFF
-	  li        r6, 0xFF
-	  bl        0x8AB88
-	  li        r3, 0xA
-	  li        r4, 0xFF
-	  li        r5, 0xFF
-	  li        r6, 0xFF
-	  bl        0x8AB74
-	  li        r3, 0xB
-	  li        r4, 0xFF
-	  li        r5, 0xFF
-	  li        r6, 0xFF
-	  bl        0x8AB60
-	  li        r3, 0xC
-	  li        r4, 0xFF
-	  li        r5, 0xFF
-	  li        r6, 0xFF
-	  bl        0x8AB4C
-	  li        r3, 0xD
-	  li        r4, 0xFF
-	  li        r5, 0xFF
-	  li        r6, 0xFF
-	  bl        0x8AB38
-	  li        r3, 0xE
-	  li        r4, 0xFF
-	  li        r5, 0xFF
-	  li        r6, 0xFF
-	  bl        0x8AB24
-	  li        r3, 0xF
-	  li        r4, 0xFF
-	  li        r5, 0xFF
-	  li        r6, 0xFF
-	  bl        0x8AB10
-	  lis       r4, 0x804A
-	  li        r27, 0
-	  addi      r28, r4, 0x1490
-	  li        r29, 0x1E
+	stwu     r1, -0x80(r1)
+	mflr     r0
+	lis      r4, lbl_80478700@ha
+	stw      r0, 0x84(r1)
+	stmw     r27, 0x6c(r1)
+	mr       r30, r3
+	addi     r31, r4, lbl_80478700@l
+	bl       GXInvalidateVtxCache
+	li       r3, 0
+	bl       GXSetCurrentMtx
+	li       r3, 2
+	bl       GXSetCullMode
+	li       r3, 0
+	bl       GXSetCoPlanar
+	li       r3, 0
+	bl       GXSetClipMode
+	li       r3, 1
+	bl       GXSetColorUpdate
+	li       r3, 1
+	bl       GXSetDither
+	li       r3, 1
+	li       r4, 4
+	li       r5, 5
+	li       r6, 5
+	bl       GXSetBlendMode
+	li       r3, 7
+	li       r4, 0
+	li       r5, 0
+	li       r6, 7
+	li       r7, 0
+	bl       GXSetAlphaCompare
+	li       r3, 1
+	li       r4, 3
+	li       r5, 1
+	bl       GXSetZMode
+	li       r3, 1
+	bl       GXSetZCompLoc
+	li       r3, 0
+	li       r4, 9
+	li       r5, 1
+	li       r6, 4
+	li       r7, 0
+	bl       GXSetVtxAttrFmt
+	li       r3, 0
+	li       r4, 0xa
+	li       r5, 0
+	li       r6, 4
+	li       r7, 0
+	bl       GXSetVtxAttrFmt
+	li       r3, 0
+	li       r4, 0xb
+	li       r5, 1
+	li       r6, 5
+	li       r7, 0
+	bl       GXSetVtxAttrFmt
+	li       r3, 0
+	li       r4, 0xc
+	li       r5, 1
+	li       r6, 5
+	li       r7, 0
+	bl       GXSetVtxAttrFmt
+	li       r3, 0
+	li       r4, 0xd
+	li       r5, 1
+	li       r6, 3
+	li       r7, 7
+	bl       GXSetVtxAttrFmt
+	li       r3, 0
+	li       r4, 0xe
+	li       r5, 1
+	li       r6, 3
+	li       r7, 7
+	bl       GXSetVtxAttrFmt
+	li       r3, 0
+	li       r4, 0xf
+	li       r5, 1
+	li       r6, 3
+	li       r7, 7
+	bl       GXSetVtxAttrFmt
+	li       r3, 0
+	li       r4, 0x10
+	li       r5, 1
+	li       r6, 3
+	li       r7, 7
+	bl       GXSetVtxAttrFmt
+	li       r3, 0
+	li       r4, 0x11
+	li       r5, 1
+	li       r6, 3
+	li       r7, 7
+	bl       GXSetVtxAttrFmt
+	li       r3, 0
+	li       r4, 0x12
+	li       r5, 1
+	li       r6, 3
+	li       r7, 7
+	bl       GXSetVtxAttrFmt
+	li       r3, 0
+	li       r4, 0x13
+	li       r5, 1
+	li       r6, 3
+	li       r7, 7
+	bl       GXSetVtxAttrFmt
+	li       r3, 0
+	li       r4, 0x14
+	li       r5, 1
+	li       r6, 3
+	li       r7, 7
+	bl       GXSetVtxAttrFmt
+	li       r3, 0
+	bl       GXSetNumIndStages
+	mr       r3, r30
+	bl       reinitTexture__6J3DSysFv
+	li       r3, 0
+	li       r4, 0xff
+	li       r5, 0xff
+	li       r6, 0xff
+	bl       GXSetTevOrder
+	li       r3, 1
+	li       r4, 0xff
+	li       r5, 0xff
+	li       r6, 0xff
+	bl       GXSetTevOrder
+	li       r3, 2
+	li       r4, 0xff
+	li       r5, 0xff
+	li       r6, 0xff
+	bl       GXSetTevOrder
+	li       r3, 3
+	li       r4, 0xff
+	li       r5, 0xff
+	li       r6, 0xff
+	bl       GXSetTevOrder
+	li       r3, 4
+	li       r4, 0xff
+	li       r5, 0xff
+	li       r6, 0xff
+	bl       GXSetTevOrder
+	li       r3, 5
+	li       r4, 0xff
+	li       r5, 0xff
+	li       r6, 0xff
+	bl       GXSetTevOrder
+	li       r3, 6
+	li       r4, 0xff
+	li       r5, 0xff
+	li       r6, 0xff
+	bl       GXSetTevOrder
+	li       r3, 7
+	li       r4, 0xff
+	li       r5, 0xff
+	li       r6, 0xff
+	bl       GXSetTevOrder
+	li       r3, 8
+	li       r4, 0xff
+	li       r5, 0xff
+	li       r6, 0xff
+	bl       GXSetTevOrder
+	li       r3, 9
+	li       r4, 0xff
+	li       r5, 0xff
+	li       r6, 0xff
+	bl       GXSetTevOrder
+	li       r3, 0xa
+	li       r4, 0xff
+	li       r5, 0xff
+	li       r6, 0xff
+	bl       GXSetTevOrder
+	li       r3, 0xb
+	li       r4, 0xff
+	li       r5, 0xff
+	li       r6, 0xff
+	bl       GXSetTevOrder
+	li       r3, 0xc
+	li       r4, 0xff
+	li       r5, 0xff
+	li       r6, 0xff
+	bl       GXSetTevOrder
+	li       r3, 0xd
+	li       r4, 0xff
+	li       r5, 0xff
+	li       r6, 0xff
+	bl       GXSetTevOrder
+	li       r3, 0xe
+	li       r4, 0xff
+	li       r5, 0xff
+	li       r6, 0xff
+	bl       GXSetTevOrder
+	li       r3, 0xf
+	li       r4, 0xff
+	li       r5, 0xff
+	li       r6, 0xff
+	bl       GXSetTevOrder
+	lis      r4, j3dIdentityMtx@ha
+	li       r27, 0
+	addi     r28, r4, j3dIdentityMtx@l
+	li       r29, 0x1e
 
-	.loc_0x314:
-	  mr        r3, r28
-	  mr        r4, r29
-	  li        r5, 0
-	  bl        0x8B720
-	  addi      r27, r27, 0x1
-	  addi      r29, r29, 0x3
-	  cmplwi    r27, 0xA
-	  blt+      .loc_0x314
-	  lwz       r8, 0x20(r31)
-	  li        r27, 0
-	  lwz       r7, 0x24(r31)
-	  lwz       r6, 0x28(r31)
-	  lwz       r5, 0x2C(r31)
-	  lwz       r4, 0x30(r31)
-	  lwz       r0, 0x34(r31)
-	  stw       r8, 0x44(r1)
-	  stw       r7, 0x48(r1)
-	  stw       r6, 0x4C(r1)
-	  stw       r5, 0x50(r1)
-	  stw       r4, 0x54(r1)
-	  stw       r0, 0x58(r1)
-	  b         .loc_0x384
+lbl_8005DF20:
+	mr       r3, r28
+	mr       r4, r29
+	li       r5, 0
+	bl       GXLoadTexMtxImm
+	addi     r27, r27, 1
+	addi     r29, r29, 3
+	cmplwi   r27, 0xa
+	blt      lbl_8005DF20
+	lwz      r8, 0x20(r31)
+	li       r27, 0
+	lwz      r7, 0x24(r31)
+	lwz      r6, 0x28(r31)
+	lwz      r5, 0x2c(r31)
+	lwz      r4, 0x30(r31)
+	lwz      r0, 0x34(r31)
+	stw      r8, 0x44(r1)
+	stw      r7, 0x48(r1)
+	stw      r6, 0x4c(r1)
+	stw      r5, 0x50(r1)
+	stw      r4, 0x54(r1)
+	stw      r0, 0x58(r1)
+	b        lbl_8005DF90
 
-	.loc_0x36C:
-	  rlwinm    r5,r27,0,24,31
-	  addi      r4, r1, 0x44
-	  addi      r3, r5, 0x1
-	  li        r5, 0x1
-	  bl        0x8A024
-	  addi      r27, r27, 0x1
+lbl_8005DF78:
+	clrlwi   r5, r27, 0x18
+	addi     r4, r1, 0x44
+	addi     r3, r5, 1
+	li       r5, 1
+	bl       GXSetIndTexMtx
+	addi     r27, r27, 1
 
-	.loc_0x384:
-	  rlwinm    r0,r27,0,24,31
-	  cmplwi    r0, 0x3
-	  blt+      .loc_0x36C
-	  lwz       r0, -0x79A0(r2)
-	  addi      r4, r1, 0x18
-	  li        r3, 0x4
-	  stw       r0, 0x18(r1)
-	  bl        0x88DC8
-	  lwz       r0, -0x79A0(r2)
-	  addi      r4, r1, 0x14
-	  li        r3, 0x5
-	  stw       r0, 0x14(r1)
-	  bl        0x88DB4
-	  lbz       r3, -0x7998(r2)
-	  bl        0x88E9C
-	  li        r3, 0x1
-	  bl        0x86FCC
-	  li        r3, 0x1
-	  bl        0x8ABE0
-	  li        r3, 0x4
-	  li        r4, 0
-	  li        r5, 0
-	  li        r6, 0
-	  li        r7, 0
-	  li        r8, 0x2
-	  li        r9, 0x2
-	  bl        0x88EA8
-	  li        r3, 0x5
-	  li        r4, 0
-	  li        r5, 0
-	  li        r6, 0
-	  li        r7, 0
-	  li        r8, 0x2
-	  li        r9, 0x2
-	  bl        0x88E88
-	  lis       r4, 0x8048
-	  li        r27, 0
-	  subi      r28, r4, 0x7758
-	  b         .loc_0x448
+lbl_8005DF90:
+	clrlwi   r0, r27, 0x18
+	cmplwi   r0, 3
+	blt      lbl_8005DF78
+	lwz      r0, j3dDefaultColInfo@sda21(r2)
+	addi     r4, r1, 0x18
+	li       r3, 4
+	stw      r0, 0x18(r1)
+	bl       GXSetChanMatColor
+	lwz      r0, j3dDefaultColInfo@sda21(r2)
+	addi     r4, r1, 0x14
+	li       r3, 5
+	stw      r0, 0x14(r1)
+	bl       GXSetChanMatColor
+	lbz      r3, j3dDefaultColorChanNum@sda21(r2)
+	bl       GXSetNumChans
+	li       r3, 1
+	bl       GXSetNumTexGens
+	li       r3, 1
+	bl       GXSetNumTevStages
+	li       r3, 4
+	li       r4, 0
+	li       r5, 0
+	li       r6, 0
+	li       r7, 0
+	li       r8, 2
+	li       r9, 2
+	bl       GXSetChanCtrl
+	li       r3, 5
+	li       r4, 0
+	li       r5, 0
+	li       r6, 0
+	li       r7, 0
+	li       r8, 2
+	li       r9, 2
+	bl       GXSetChanCtrl
+	lis      r4, j3dDefaultTexCoordInfo@ha
+	li       r27, 0
+	addi     r28, r4, j3dDefaultTexCoordInfo@l
+	b        lbl_8005E054
 
-	.loc_0x420:
-	  rlwinm    r0,r27,2,22,29
-	  rlwinm    r3,r27,0,24,31
-	  add       r6, r28, r0
-	  li        r7, 0
-	  lbz       r4, 0x0(r6)
-	  li        r8, 0x7D
-	  lbz       r5, 0x1(r6)
-	  lbz       r6, 0x2(r6)
-	  bl        0x86CD0
-	  addi      r27, r27, 0x1
+lbl_8005E02C:
+	rlwinm   r0, r27, 2, 0x16, 0x1d
+	clrlwi   r3, r27, 0x18
+	add      r6, r28, r0
+	li       r7, 0
+	lbz      r4, 0(r6)
+	li       r8, 0x7d
+	lbz      r5, 1(r6)
+	lbz      r6, 2(r6)
+	bl       GXSetTexCoordGen2
+	addi     r27, r27, 1
 
-	.loc_0x448:
-	  rlwinm    r0,r27,0,24,31
-	  cmplwi    r0, 0x8
-	  blt+      .loc_0x420
-	  li        r27, 0
-	  b         .loc_0x470
+lbl_8005E054:
+	clrlwi   r0, r27, 0x18
+	cmplwi   r0, 8
+	blt      lbl_8005E02C
+	li       r27, 0
+	b        lbl_8005E07C
 
-	.loc_0x45C:
-	  rlwinm    r3,r27,0,24,31
-	  li        r4, 0
-	  li        r5, 0
-	  bl        0x8A0B0
-	  addi      r27, r27, 0x1
+lbl_8005E068:
+	clrlwi   r3, r27, 0x18
+	li       r4, 0
+	li       r5, 0
+	bl       GXSetIndTexCoordScale
+	addi     r27, r27, 1
 
-	.loc_0x470:
-	  rlwinm    r0,r27,0,24,31
-	  cmplwi    r0, 0x4
-	  blt+      .loc_0x45C
-	  lwz       r28, -0x7980(r2)
-	  li        r27, 0
-	  b         .loc_0x49C
+lbl_8005E07C:
+	clrlwi   r0, r27, 0x18
+	cmplwi   r0, 4
+	blt      lbl_8005E068
+	lwz      r28, j3dDefaultTevKColor@sda21(r2)
+	li       r27, 0
+	b        lbl_8005E0A8
 
-	.loc_0x488:
-	  stw       r28, 0x10(r1)
-	  rlwinm    r3,r27,0,24,31
-	  addi      r4, r1, 0x10
-	  bl        0x8A6B8
-	  addi      r27, r27, 0x1
+lbl_8005E094:
+	stw      r28, 0x10(r1)
+	clrlwi   r3, r27, 0x18
+	addi     r4, r1, 0x10
+	bl       GXSetTevKColor
+	addi     r27, r27, 1
 
-	.loc_0x49C:
-	  rlwinm    r0,r27,0,24,31
-	  cmplwi    r0, 0x4
-	  blt+      .loc_0x488
-	  lwz       r29, -0x798C(r2)
-	  li        r27, 0
-	  lwz       r28, -0x7988(r2)
-	  b         .loc_0x4D0
+lbl_8005E0A8:
+	clrlwi   r0, r27, 0x18
+	cmplwi   r0, 4
+	blt      lbl_8005E094
+	lwz      r29, j3dDefaultTevColor@sda21(r2)
+	li       r27, 0
+	lwz      r28, lbl_805169D8@sda21(r2)
+	b        lbl_8005E0DC
 
-	.loc_0x4B8:
-	  stw       r29, 0x1C(r1)
-	  rlwinm    r3,r27,0,24,31
-	  addi      r4, r1, 0x1C
-	  stw       r28, 0x20(r1)
-	  bl        0x8A608
-	  addi      r27, r27, 0x1
+lbl_8005E0C4:
+	stw      r29, 0x1c(r1)
+	clrlwi   r3, r27, 0x18
+	addi     r4, r1, 0x1c
+	stw      r28, 0x20(r1)
+	bl       GXSetTevColorS10
+	addi     r27, r27, 1
 
-	.loc_0x4D0:
-	  rlwinm    r0,r27,0,24,31
-	  cmplwi    r0, 0x4
-	  blt+      .loc_0x4B8
-	  li        r28, 0
-	  b         .loc_0x554
+lbl_8005E0DC:
+	clrlwi   r0, r27, 0x18
+	cmplwi   r0, 4
+	blt      lbl_8005E0C4
+	li       r28, 0
+	b        lbl_8005E160
 
-	.loc_0x4E4:
-	  rlwinm    r27,r28,0,24,31
-	  li        r4, 0xA
-	  mr        r3, r27
-	  li        r5, 0xF
-	  li        r6, 0xF
-	  li        r7, 0xF
-	  bl        0x8A400
-	  mr        r3, r27
-	  li        r4, 0
-	  li        r5, 0
-	  li        r6, 0
-	  li        r7, 0x1
-	  li        r8, 0
-	  bl        0x8A46C
-	  mr        r3, r27
-	  li        r4, 0x5
-	  li        r5, 0x7
-	  li        r6, 0x7
-	  li        r7, 0x7
-	  bl        0x8A410
-	  mr        r3, r27
-	  li        r4, 0
-	  li        r5, 0
-	  li        r6, 0
-	  li        r7, 0x1
-	  li        r8, 0
-	  bl        0x8A4A0
-	  addi      r28, r28, 0x1
+lbl_8005E0F0:
+	clrlwi   r27, r28, 0x18
+	li       r4, 0xa
+	mr       r3, r27
+	li       r5, 0xf
+	li       r6, 0xf
+	li       r7, 0xf
+	bl       GXSetTevColorIn
+	mr       r3, r27
+	li       r4, 0
+	li       r5, 0
+	li       r6, 0
+	li       r7, 1
+	li       r8, 0
+	bl       GXSetTevColorOp
+	mr       r3, r27
+	li       r4, 5
+	li       r5, 7
+	li       r6, 7
+	li       r7, 7
+	bl       GXSetTevAlphaIn
+	mr       r3, r27
+	li       r4, 0
+	li       r5, 0
+	li       r6, 0
+	li       r7, 1
+	li       r8, 0
+	bl       GXSetTevAlphaOp
+	addi     r28, r28, 1
 
-	.loc_0x554:
-	  rlwinm    r0,r28,0,24,31
-	  cmplwi    r0, 0x10
-	  blt+      .loc_0x4E4
-	  li        r27, 0
-	  b         .loc_0x57C
+lbl_8005E160:
+	clrlwi   r0, r28, 0x18
+	cmplwi   r0, 0x10
+	blt      lbl_8005E0F0
+	li       r27, 0
+	b        lbl_8005E188
 
-	.loc_0x568:
-	  rlwinm    r3,r27,0,24,31
-	  li        r4, 0
-	  li        r5, 0
-	  bl        0x8A704
-	  addi      r27, r27, 0x1
+lbl_8005E174:
+	clrlwi   r3, r27, 0x18
+	li       r4, 0
+	li       r5, 0
+	bl       GXSetTevSwapMode
+	addi     r27, r27, 1
 
-	.loc_0x57C:
-	  rlwinm    r0,r27,0,24,31
-	  cmplwi    r0, 0x10
-	  blt+      .loc_0x568
-	  li        r3, 0
-	  li        r4, 0
-	  li        r5, 0x1
-	  li        r6, 0x2
-	  li        r7, 0x3
-	  bl        0x8A724
-	  li        r3, 0x1
-	  li        r4, 0
-	  li        r5, 0
-	  li        r6, 0
-	  li        r7, 0x3
-	  bl        0x8A70C
-	  li        r3, 0x2
-	  li        r4, 0x1
-	  li        r5, 0x1
-	  li        r6, 0x1
-	  li        r7, 0x3
-	  bl        0x8A6F4
-	  li        r3, 0x3
-	  li        r4, 0x2
-	  li        r5, 0x2
-	  li        r6, 0x2
-	  li        r7, 0x3
-	  bl        0x8A6DC
-	  li        r27, 0
-	  mr        r29, r27
-	  mr        r28, r27
-	  b         .loc_0x628
+lbl_8005E188:
+	clrlwi   r0, r27, 0x18
+	cmplwi   r0, 0x10
+	blt      lbl_8005E174
+	li       r3, 0
+	li       r4, 0
+	li       r5, 1
+	li       r6, 2
+	li       r7, 3
+	bl       GXSetTevSwapModeTable
+	li       r3, 1
+	li       r4, 0
+	li       r5, 0
+	li       r6, 0
+	li       r7, 3
+	bl       GXSetTevSwapModeTable
+	li       r3, 2
+	li       r4, 1
+	li       r5, 1
+	li       r6, 1
+	li       r7, 3
+	bl       GXSetTevSwapModeTable
+	li       r3, 3
+	li       r4, 2
+	li       r5, 2
+	li       r6, 2
+	li       r7, 3
+	bl       GXSetTevSwapModeTable
+	li       r27, 0
+	mr       r29, r27
+	mr       r28, r27
+	b        lbl_8005E234
 
-	.loc_0x5F8:
-	  stw       r29, 0x8(r1)
-	  rlwinm    r3,r27,0,24,31
-	  li        r4, 0
-	  li        r5, 0
-	  stw       r28, 0xC(r1)
-	  li        r6, 0
-	  li        r7, 0
-	  li        r8, 0
-	  li        r9, 0
-	  li        r10, 0
-	  bl        0x89D14
-	  addi      r27, r27, 0x1
+lbl_8005E204:
+	stw      r29, 8(r1)
+	clrlwi   r3, r27, 0x18
+	li       r4, 0
+	li       r5, 0
+	stw      r28, 0xc(r1)
+	li       r6, 0
+	li       r7, 0
+	li       r8, 0
+	li       r9, 0
+	li       r10, 0
+	bl       GXSetTevIndirect
+	addi     r27, r27, 1
 
-	.loc_0x628:
-	  rlwinm    r0,r27,0,24,31
-	  cmplwi    r0, 0x10
-	  blt+      .loc_0x5F8
-	  li        r3, 0x4
-	  oris      r3, r3, 0x4
-	  mtspr     914, r3
-	  li        r3, 0x5
-	  oris      r3, r3, 0x5
-	  mtspr     915, r3
-	  li        r3, 0x6
-	  oris      r3, r3, 0x6
-	  mtspr     916, r3
-	  li        r3, 0x7
-	  oris      r3, r3, 0x7
-	  mtspr     917, r3
-	  lwz       r28, 0x0(r31)
-	  lwz       r9, 0x4(r31)
-	  lwz       r8, 0x8(r31)
-	  lwz       r7, 0xC(r31)
-	  lwz       r29, 0x10(r31)
-	  lwz       r6, 0x14(r31)
-	  lwz       r5, 0x18(r31)
-	  lwz       r4, 0x1C(r31)
-	  stw       r28, 0x24(r1)
-	  stw       r29, 0x60(r30)
-	  lwz       r0, 0x34(r30)
-	  stw       r9, 0x28(r1)
-	  rlwinm.   r0,r0,0,0,0
-	  stw       r8, 0x2C(r1)
-	  stw       r7, 0x30(r1)
-	  stw       r29, 0x34(r1)
-	  stw       r6, 0x38(r1)
-	  stw       r5, 0x3C(r1)
-	  stw       r4, 0x40(r1)
-	  beq-      .loc_0x750
-	  li        r31, 0
-	  mr        r27, r30
-	  mr        r30, r31
-	  b         .loc_0x744
+lbl_8005E234:
+	clrlwi   r0, r27, 0x18
+	cmplwi   r0, 0x10
+	blt      lbl_8005E204
+	li       r3, 4
+	oris     r3, r3, 4
+	mtspr    0x392, r3
+	li       r3, 5
+	oris     r3, r3, 5
+	mtspr    0x393, r3
+	li       r3, 6
+	oris     r3, r3, 6
+	mtspr    0x394, r3
+	li       r3, 7
+	oris     r3, r3, 7
+	mtspr    0x395, r3
+	lwz      r28, 0(r31)
+	lwz      r9, 4(r31)
+	lwz      r8, 8(r31)
+	lwz      r7, 0xc(r31)
+	lwz      r29, 0x10(r31)
+	lwz      r6, 0x14(r31)
+	lwz      r5, 0x18(r31)
+	lwz      r4, 0x1c(r31)
+	stw      r28, 0x24(r1)
+	stw      r29, 0x60(r30)
+	lwz      r0, 0x34(r30)
+	stw      r9, 0x28(r1)
+	rlwinm.  r0, r0, 0, 0, 0
+	stw      r8, 0x2c(r1)
+	stw      r7, 0x30(r1)
+	stw      r29, 0x34(r1)
+	stw      r6, 0x38(r1)
+	stw      r5, 0x3c(r1)
+	stw      r4, 0x40(r1)
+	beq      lbl_8005E35C
+	li       r31, 0
+	mr       r27, r30
+	mr       r30, r31
+	b        lbl_8005E350
 
-	.loc_0x6C4:
-	  rlwinm.   r0,r31,0,31,31
-	  beq-      .loc_0x704
-	  mr        r7, r30
-	  addi      r3, r27, 0x64
-	  addis     r5, r30, 0x8
-	  li        r4, 0
-	  li        r6, 0
-	  li        r8, 0
-	  bl        0x89544
-	  mr        r3, r31
-	  mr        r6, r30
-	  addis     r4, r30, 0x8
-	  li        r5, 0
-	  li        r7, 0
-	  bl        0x18E38
-	  b         .loc_0x738
+lbl_8005E2D0:
+	clrlwi.  r0, r31, 0x1f
+	beq      lbl_8005E310
+	mr       r7, r30
+	addi     r3, r27, 0x64
+	addis    r5, r30, 8
+	li       r4, 0
+	li       r6, 0
+	li       r8, 0
+	bl       GXInitTexCacheRegion
+	mr       r3, r31
+	mr       r6, r30
+	addis    r4, r30, 8
+	li       r5, 0
+	li       r7, 0
+	bl
+J3DFifoLoadTexCached__F11_GXTexMapIDUl15_GXTexCacheSizeUl15_GXTexCacheSize b
+lbl_8005E344
 
-	.loc_0x704:
-	  mr        r5, r30
-	  addi      r3, r27, 0x64
-	  addis     r7, r30, 0x8
-	  li        r4, 0
-	  li        r6, 0
-	  li        r8, 0
-	  bl        0x8950C
-	  mr        r3, r31
-	  mr        r4, r30
-	  addis     r6, r30, 0x8
-	  li        r5, 0
-	  li        r7, 0
-	  bl        0x18E00
+lbl_8005E310:
+	mr       r5, r30
+	addi     r3, r27, 0x64
+	addis    r7, r30, 8
+	li       r4, 0
+	li       r6, 0
+	li       r8, 0
+	bl       GXInitTexCacheRegion
+	mr       r3, r31
+	mr       r4, r30
+	addis    r6, r30, 8
+	li       r5, 0
+	li       r7, 0
+	bl
+J3DFifoLoadTexCached__F11_GXTexMapIDUl15_GXTexCacheSizeUl15_GXTexCacheSize
 
-	.loc_0x738:
-	  add       r30, r30, r28
-	  addi      r27, r27, 0x10
-	  addi      r31, r31, 0x1
+lbl_8005E344:
+	add      r30, r30, r28
+	addi     r27, r27, 0x10
+	addi     r31, r31, 1
 
-	.loc_0x744:
-	  cmplw     r31, r29
-	  blt+      .loc_0x6C4
-	  b         .loc_0x7A4
+lbl_8005E350:
+	cmplw    r31, r29
+	blt      lbl_8005E2D0
+	b        lbl_8005E3B0
 
-	.loc_0x750:
-	  li        r31, 0
-	  mr        r27, r31
-	  b         .loc_0x79C
+lbl_8005E35C:
+	li       r31, 0
+	mr       r27, r31
+	b        lbl_8005E3A8
 
-	.loc_0x75C:
-	  mr        r5, r27
-	  addi      r3, r30, 0x64
-	  addis     r7, r27, 0x8
-	  li        r4, 0
-	  li        r6, 0
-	  li        r8, 0
-	  bl        0x894B4
-	  mr        r3, r31
-	  mr        r4, r27
-	  addis     r6, r27, 0x8
-	  li        r5, 0
-	  li        r7, 0
-	  bl        0x18DA8
-	  add       r27, r27, r28
-	  addi      r30, r30, 0x10
-	  addi      r31, r31, 0x1
+lbl_8005E368:
+	mr       r5, r27
+	addi     r3, r30, 0x64
+	addis    r7, r27, 8
+	li       r4, 0
+	li       r6, 0
+	li       r8, 0
+	bl       GXInitTexCacheRegion
+	mr       r3, r31
+	mr       r4, r27
+	addis    r6, r27, 8
+	li       r5, 0
+	li       r7, 0
+	bl
+J3DFifoLoadTexCached__F11_GXTexMapIDUl15_GXTexCacheSizeUl15_GXTexCacheSize add
+r27, r27, r28 addi     r30, r30, 0x10 addi     r31, r31, 1
 
-	.loc_0x79C:
-	  cmplw     r31, r29
-	  blt+      .loc_0x75C
+lbl_8005E3A8:
+	cmplw    r31, r29
+	blt      lbl_8005E368
 
-	.loc_0x7A4:
-	  lmw       r27, 0x6C(r1)
-	  lwz       r0, 0x84(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x80
-	  blr
+lbl_8005E3B0:
+	lmw      r27, 0x6c(r1)
+	lwz      r0, 0x84(r1)
+	mtlr     r0
+	addi     r1, r1, 0x80
+	blr
 	*/
 }
 
@@ -688,32 +816,29 @@ void J3DSys::drawInit()
 void J3DSys::reinitGX()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        .loc_0x5C
-	  mr        r3, r31
-	  bl        0x8C
-	  mr        r3, r31
-	  bl        0x130
-	  mr        r3, r31
-	  bl        0x22C
-	  mr        r3, r31
-	  bl        0x2C8
-	  mr        r3, r31
-	  bl        0x5C8
-	  mr        r3, r31
-	  bl        0x6B8
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-
-	.loc_0x5C:
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       reinitGenMode__6J3DSysFv
+	mr       r3, r31
+	bl       reinitLighting__6J3DSysFv
+	mr       r3, r31
+	bl       reinitTransform__6J3DSysFv
+	mr       r3, r31
+	bl       reinitTexture__6J3DSysFv
+	mr       r3, r31
+	bl       reinitTevStages__6J3DSysFv
+	mr       r3, r31
+	bl       reinitIndStages__6J3DSysFv
+	mr       r3, r31
+	bl       reinitPixelProc__6J3DSysFv
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -725,26 +850,25 @@ void J3DSys::reinitGX()
 void J3DSys::reinitGenMode()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r3, 0
-	  stw       r0, 0x14(r1)
-	  bl        0x88A34
-	  li        r3, 0x1
-	  bl        0x86B64
-	  li        r3, 0x1
-	  bl        0x8A778
-	  li        r3, 0
-	  bl        0x89F0C
-	  li        r3, 0x2
-	  bl        0x87758
-	  li        r3, 0
-	  bl        0x87794
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	li       r3, 0
+	stw      r0, 0x14(r1)
+	bl       GXSetNumChans
+	li       r3, 1
+	bl       GXSetNumTexGens
+	li       r3, 1
+	bl       GXSetNumTevStages
+	li       r3, 0
+	bl       GXSetNumIndStages
+	li       r3, 2
+	bl       GXSetCullMode
+	li       r3, 0
+	bl       GXSetCoPlanar
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -756,50 +880,49 @@ void J3DSys::reinitGenMode()
 void J3DSys::reinitLighting()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  li        r3, 0x4
-	  li        r4, 0
-	  stw       r0, 0x24(r1)
-	  li        r5, 0
-	  li        r6, 0x1
-	  li        r7, 0
-	  li        r8, 0
-	  li        r9, 0x2
-	  bl        0x88A0C
-	  li        r3, 0x5
-	  li        r4, 0
-	  li        r5, 0
-	  li        r6, 0x1
-	  li        r7, 0
-	  li        r8, 0
-	  li        r9, 0x2
-	  bl        0x889EC
-	  lwz       r0, -0x7FA8(r13)
-	  addi      r4, r1, 0x14
-	  li        r3, 0x4
-	  stw       r0, 0x14(r1)
-	  bl        0x887BC
-	  lwz       r0, -0x7FA8(r13)
-	  addi      r4, r1, 0x10
-	  li        r3, 0x5
-	  stw       r0, 0x10(r1)
-	  bl        0x887A8
-	  lwz       r0, -0x7FA4(r13)
-	  addi      r4, r1, 0xC
-	  li        r3, 0x4
-	  stw       r0, 0xC(r1)
-	  bl        0x88884
-	  lwz       r0, -0x7FA4(r13)
-	  addi      r4, r1, 0x8
-	  li        r3, 0x5
-	  stw       r0, 0x8(r1)
-	  bl        0x88870
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	li       r3, 4
+	li       r4, 0
+	stw      r0, 0x24(r1)
+	li       r5, 0
+	li       r6, 1
+	li       r7, 0
+	li       r8, 0
+	li       r9, 2
+	bl       GXSetChanCtrl
+	li       r3, 5
+	li       r4, 0
+	li       r5, 0
+	li       r6, 1
+	li       r7, 0
+	li       r8, 0
+	li       r9, 2
+	bl       GXSetChanCtrl
+	lwz      r0, ColorBlack@sda21(r13)
+	addi     r4, r1, 0x14
+	li       r3, 4
+	stw      r0, 0x14(r1)
+	bl       GXSetChanAmbColor
+	lwz      r0, ColorBlack@sda21(r13)
+	addi     r4, r1, 0x10
+	li       r3, 5
+	stw      r0, 0x10(r1)
+	bl       GXSetChanAmbColor
+	lwz      r0, ColorWhite@sda21(r13)
+	addi     r4, r1, 0xc
+	li       r3, 4
+	stw      r0, 0xc(r1)
+	bl       GXSetChanMatColor
+	lwz      r0, ColorWhite@sda21(r13)
+	addi     r4, r1, 8
+	li       r3, 5
+	stw      r0, 8(r1)
+	bl       GXSetChanMatColor
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -811,72 +934,71 @@ void J3DSys::reinitLighting()
 void J3DSys::reinitTransform()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r3, 0
-	  stw       r0, 0x14(r1)
-	  bl        0x8B0F0
-	  li        r3, 0
-	  li        r4, 0x1
-	  li        r5, 0x4
-	  li        r6, 0x3C
-	  li        r7, 0
-	  li        r8, 0x7D
-	  bl        0x867D8
-	  li        r3, 0x1
-	  li        r4, 0x1
-	  li        r5, 0x5
-	  li        r6, 0x3C
-	  li        r7, 0
-	  li        r8, 0x7D
-	  bl        0x867BC
-	  li        r3, 0x2
-	  li        r4, 0x1
-	  li        r5, 0x6
-	  li        r6, 0x3C
-	  li        r7, 0
-	  li        r8, 0x7D
-	  bl        0x867A0
-	  li        r3, 0x3
-	  li        r4, 0x1
-	  li        r5, 0x7
-	  li        r6, 0x3C
-	  li        r7, 0
-	  li        r8, 0x7D
-	  bl        0x86784
-	  li        r3, 0x4
-	  li        r4, 0x1
-	  li        r5, 0x8
-	  li        r6, 0x3C
-	  li        r7, 0
-	  li        r8, 0x7D
-	  bl        0x86768
-	  li        r3, 0x5
-	  li        r4, 0x1
-	  li        r5, 0x9
-	  li        r6, 0x3C
-	  li        r7, 0
-	  li        r8, 0x7D
-	  bl        0x8674C
-	  li        r3, 0x6
-	  li        r4, 0x1
-	  li        r5, 0xA
-	  li        r6, 0x3C
-	  li        r7, 0
-	  li        r8, 0x7D
-	  bl        0x86730
-	  li        r3, 0x7
-	  li        r4, 0x1
-	  li        r5, 0xB
-	  li        r6, 0x3C
-	  li        r7, 0
-	  li        r8, 0x7D
-	  bl        0x86714
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	li       r3, 0
+	stw      r0, 0x14(r1)
+	bl       GXSetCurrentMtx
+	li       r3, 0
+	li       r4, 1
+	li       r5, 4
+	li       r6, 0x3c
+	li       r7, 0
+	li       r8, 0x7d
+	bl       GXSetTexCoordGen2
+	li       r3, 1
+	li       r4, 1
+	li       r5, 5
+	li       r6, 0x3c
+	li       r7, 0
+	li       r8, 0x7d
+	bl       GXSetTexCoordGen2
+	li       r3, 2
+	li       r4, 1
+	li       r5, 6
+	li       r6, 0x3c
+	li       r7, 0
+	li       r8, 0x7d
+	bl       GXSetTexCoordGen2
+	li       r3, 3
+	li       r4, 1
+	li       r5, 7
+	li       r6, 0x3c
+	li       r7, 0
+	li       r8, 0x7d
+	bl       GXSetTexCoordGen2
+	li       r3, 4
+	li       r4, 1
+	li       r5, 8
+	li       r6, 0x3c
+	li       r7, 0
+	li       r8, 0x7d
+	bl       GXSetTexCoordGen2
+	li       r3, 5
+	li       r4, 1
+	li       r5, 9
+	li       r6, 0x3c
+	li       r7, 0
+	li       r8, 0x7d
+	bl       GXSetTexCoordGen2
+	li       r3, 6
+	li       r4, 1
+	li       r5, 0xa
+	li       r6, 0x3c
+	li       r7, 0
+	li       r8, 0x7d
+	bl       GXSetTexCoordGen2
+	li       r3, 7
+	li       r4, 1
+	li       r5, 0xb
+	li       r6, 0x3c
+	li       r7, 0
+	li       r8, 0x7d
+	bl       GXSetTexCoordGen2
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -888,48 +1010,47 @@ void J3DSys::reinitTransform()
 void J3DSys::reinitTexture()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  lis       r4, 0x804A
-	  li        r5, 0x4
-	  stw       r0, 0x34(r1)
-	  addi      r3, r1, 0x8
-	  addi      r4, r4, 0x1480
-	  li        r6, 0x4
-	  li        r7, 0x3
-	  li        r8, 0
-	  li        r9, 0
-	  li        r10, 0
-	  bl        0x88B30
-	  addi      r3, r1, 0x8
-	  li        r4, 0
-	  bl        0x890B8
-	  addi      r3, r1, 0x8
-	  li        r4, 0x1
-	  bl        0x890AC
-	  addi      r3, r1, 0x8
-	  li        r4, 0x2
-	  bl        0x890A0
-	  addi      r3, r1, 0x8
-	  li        r4, 0x3
-	  bl        0x89094
-	  addi      r3, r1, 0x8
-	  li        r4, 0x4
-	  bl        0x89088
-	  addi      r3, r1, 0x8
-	  li        r4, 0x5
-	  bl        0x8907C
-	  addi      r3, r1, 0x8
-	  li        r4, 0x6
-	  bl        0x89070
-	  addi      r3, r1, 0x8
-	  li        r4, 0x7
-	  bl        0x89064
-	  lwz       r0, 0x34(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	lis      r4, NullTexData@ha
+	li       r5, 4
+	stw      r0, 0x34(r1)
+	addi     r3, r1, 8
+	addi     r4, r4, NullTexData@l
+	li       r6, 4
+	li       r7, 3
+	li       r8, 0
+	li       r9, 0
+	li       r10, 0
+	bl       GXInitTexObj
+	addi     r3, r1, 8
+	li       r4, 0
+	bl       GXLoadTexObj
+	addi     r3, r1, 8
+	li       r4, 1
+	bl       GXLoadTexObj
+	addi     r3, r1, 8
+	li       r4, 2
+	bl       GXLoadTexObj
+	addi     r3, r1, 8
+	li       r4, 3
+	bl       GXLoadTexObj
+	addi     r3, r1, 8
+	li       r4, 4
+	bl       GXLoadTexObj
+	addi     r3, r1, 8
+	li       r4, 5
+	bl       GXLoadTexObj
+	addi     r3, r1, 8
+	li       r4, 6
+	bl       GXLoadTexObj
+	addi     r3, r1, 8
+	li       r4, 7
+	bl       GXLoadTexObj
+	lwz      r0, 0x34(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -941,203 +1062,202 @@ void J3DSys::reinitTexture()
 void J3DSys::reinitTevStages()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  li        r3, 0
-	  li        r4, 0xFF
-	  stw       r0, 0x34(r1)
-	  li        r5, 0xFF
-	  li        r6, 0xFF
-	  stw       r31, 0x2C(r1)
-	  bl        0x8A33C
-	  li        r3, 0x1
-	  li        r4, 0xFF
-	  li        r5, 0xFF
-	  li        r6, 0xFF
-	  bl        0x8A328
-	  li        r3, 0x2
-	  li        r4, 0xFF
-	  li        r5, 0xFF
-	  li        r6, 0xFF
-	  bl        0x8A314
-	  li        r3, 0x3
-	  li        r4, 0xFF
-	  li        r5, 0xFF
-	  li        r6, 0xFF
-	  bl        0x8A300
-	  li        r3, 0x4
-	  li        r4, 0xFF
-	  li        r5, 0xFF
-	  li        r6, 0xFF
-	  bl        0x8A2EC
-	  li        r3, 0x5
-	  li        r4, 0xFF
-	  li        r5, 0xFF
-	  li        r6, 0xFF
-	  bl        0x8A2D8
-	  li        r3, 0x6
-	  li        r4, 0xFF
-	  li        r5, 0xFF
-	  li        r6, 0xFF
-	  bl        0x8A2C4
-	  li        r3, 0x7
-	  li        r4, 0xFF
-	  li        r5, 0xFF
-	  li        r6, 0xFF
-	  bl        0x8A2B0
-	  li        r3, 0x8
-	  li        r4, 0xFF
-	  li        r5, 0xFF
-	  li        r6, 0xFF
-	  bl        0x8A29C
-	  li        r3, 0x9
-	  li        r4, 0xFF
-	  li        r5, 0xFF
-	  li        r6, 0xFF
-	  bl        0x8A288
-	  li        r3, 0xA
-	  li        r4, 0xFF
-	  li        r5, 0xFF
-	  li        r6, 0xFF
-	  bl        0x8A274
-	  li        r3, 0xB
-	  li        r4, 0xFF
-	  li        r5, 0xFF
-	  li        r6, 0xFF
-	  bl        0x8A260
-	  li        r3, 0xC
-	  li        r4, 0xFF
-	  li        r5, 0xFF
-	  li        r6, 0xFF
-	  bl        0x8A24C
-	  li        r3, 0xD
-	  li        r4, 0xFF
-	  li        r5, 0xFF
-	  li        r6, 0xFF
-	  bl        0x8A238
-	  li        r3, 0xE
-	  li        r4, 0xFF
-	  li        r5, 0xFF
-	  li        r6, 0xFF
-	  bl        0x8A224
-	  li        r3, 0xF
-	  li        r4, 0xFF
-	  li        r5, 0xFF
-	  li        r6, 0xFF
-	  bl        0x8A210
-	  lwz       r0, -0x7FA4(r13)
-	  addi      r4, r1, 0x20
-	  li        r3, 0x1
-	  stw       r0, 0x20(r1)
-	  bl        0x89E40
-	  lwz       r0, -0x7FA4(r13)
-	  addi      r4, r1, 0x1C
-	  li        r3, 0x2
-	  stw       r0, 0x1C(r1)
-	  bl        0x89E2C
-	  lwz       r0, -0x7FA4(r13)
-	  addi      r4, r1, 0x18
-	  li        r3, 0x3
-	  stw       r0, 0x18(r1)
-	  bl        0x89E18
-	  lwz       r0, -0x7FA4(r13)
-	  addi      r4, r1, 0x14
-	  li        r3, 0
-	  stw       r0, 0x14(r1)
-	  bl        0x89EFC
-	  lwz       r0, -0x7FA4(r13)
-	  addi      r4, r1, 0x10
-	  li        r3, 0x1
-	  stw       r0, 0x10(r1)
-	  bl        0x89EE8
-	  lwz       r0, -0x7FA4(r13)
-	  addi      r4, r1, 0xC
-	  li        r3, 0x2
-	  stw       r0, 0xC(r1)
-	  bl        0x89ED4
-	  lwz       r0, -0x7FA4(r13)
-	  addi      r4, r1, 0x8
-	  li        r3, 0x3
-	  stw       r0, 0x8(r1)
-	  bl        0x89EC0
-	  li        r31, 0
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	li       r3, 0
+	li       r4, 0xff
+	stw      r0, 0x34(r1)
+	li       r5, 0xff
+	li       r6, 0xff
+	stw      r31, 0x2c(r1)
+	bl       GXSetTevOrder
+	li       r3, 1
+	li       r4, 0xff
+	li       r5, 0xff
+	li       r6, 0xff
+	bl       GXSetTevOrder
+	li       r3, 2
+	li       r4, 0xff
+	li       r5, 0xff
+	li       r6, 0xff
+	bl       GXSetTevOrder
+	li       r3, 3
+	li       r4, 0xff
+	li       r5, 0xff
+	li       r6, 0xff
+	bl       GXSetTevOrder
+	li       r3, 4
+	li       r4, 0xff
+	li       r5, 0xff
+	li       r6, 0xff
+	bl       GXSetTevOrder
+	li       r3, 5
+	li       r4, 0xff
+	li       r5, 0xff
+	li       r6, 0xff
+	bl       GXSetTevOrder
+	li       r3, 6
+	li       r4, 0xff
+	li       r5, 0xff
+	li       r6, 0xff
+	bl       GXSetTevOrder
+	li       r3, 7
+	li       r4, 0xff
+	li       r5, 0xff
+	li       r6, 0xff
+	bl       GXSetTevOrder
+	li       r3, 8
+	li       r4, 0xff
+	li       r5, 0xff
+	li       r6, 0xff
+	bl       GXSetTevOrder
+	li       r3, 9
+	li       r4, 0xff
+	li       r5, 0xff
+	li       r6, 0xff
+	bl       GXSetTevOrder
+	li       r3, 0xa
+	li       r4, 0xff
+	li       r5, 0xff
+	li       r6, 0xff
+	bl       GXSetTevOrder
+	li       r3, 0xb
+	li       r4, 0xff
+	li       r5, 0xff
+	li       r6, 0xff
+	bl       GXSetTevOrder
+	li       r3, 0xc
+	li       r4, 0xff
+	li       r5, 0xff
+	li       r6, 0xff
+	bl       GXSetTevOrder
+	li       r3, 0xd
+	li       r4, 0xff
+	li       r5, 0xff
+	li       r6, 0xff
+	bl       GXSetTevOrder
+	li       r3, 0xe
+	li       r4, 0xff
+	li       r5, 0xff
+	li       r6, 0xff
+	bl       GXSetTevOrder
+	li       r3, 0xf
+	li       r4, 0xff
+	li       r5, 0xff
+	li       r6, 0xff
+	bl       GXSetTevOrder
+	lwz      r0, ColorWhite@sda21(r13)
+	addi     r4, r1, 0x20
+	li       r3, 1
+	stw      r0, 0x20(r1)
+	bl       GXSetTevColor
+	lwz      r0, ColorWhite@sda21(r13)
+	addi     r4, r1, 0x1c
+	li       r3, 2
+	stw      r0, 0x1c(r1)
+	bl       GXSetTevColor
+	lwz      r0, ColorWhite@sda21(r13)
+	addi     r4, r1, 0x18
+	li       r3, 3
+	stw      r0, 0x18(r1)
+	bl       GXSetTevColor
+	lwz      r0, ColorWhite@sda21(r13)
+	addi     r4, r1, 0x14
+	li       r3, 0
+	stw      r0, 0x14(r1)
+	bl       GXSetTevKColor
+	lwz      r0, ColorWhite@sda21(r13)
+	addi     r4, r1, 0x10
+	li       r3, 1
+	stw      r0, 0x10(r1)
+	bl       GXSetTevKColor
+	lwz      r0, ColorWhite@sda21(r13)
+	addi     r4, r1, 0xc
+	li       r3, 2
+	stw      r0, 0xc(r1)
+	bl       GXSetTevKColor
+	lwz      r0, ColorWhite@sda21(r13)
+	addi     r4, r1, 8
+	li       r3, 3
+	stw      r0, 8(r1)
+	bl       GXSetTevKColor
+	li       r31, 0
 
-	.loc_0x1E0:
-	  mr        r3, r31
-	  li        r4, 0xA
-	  li        r5, 0xF
-	  li        r6, 0xF
-	  li        r7, 0xF
-	  bl        0x89C54
-	  mr        r3, r31
-	  li        r4, 0
-	  li        r5, 0
-	  li        r6, 0
-	  li        r7, 0x1
-	  li        r8, 0
-	  bl        0x89CC0
-	  mr        r3, r31
-	  li        r4, 0x5
-	  li        r5, 0x7
-	  li        r6, 0x7
-	  li        r7, 0x7
-	  bl        0x89C64
-	  mr        r3, r31
-	  li        r4, 0
-	  li        r5, 0
-	  li        r6, 0
-	  li        r7, 0x1
-	  li        r8, 0
-	  bl        0x89CF4
-	  mr        r3, r31
-	  li        r4, 0x6
-	  bl        0x89EBC
-	  mr        r3, r31
-	  li        r4, 0
-	  bl        0x89F0C
-	  mr        r3, r31
-	  li        r4, 0
-	  li        r5, 0
-	  bl        0x89F58
-	  addi      r31, r31, 0x1
-	  cmplwi    r31, 0x10
-	  blt+      .loc_0x1E0
-	  li        r3, 0
-	  li        r4, 0
-	  li        r5, 0x1
-	  li        r6, 0x2
-	  li        r7, 0x3
-	  bl        0x89F7C
-	  li        r3, 0x1
-	  li        r4, 0
-	  li        r5, 0
-	  li        r6, 0
-	  li        r7, 0x3
-	  bl        0x89F64
-	  li        r3, 0x2
-	  li        r4, 0x1
-	  li        r5, 0x1
-	  li        r6, 0x1
-	  li        r7, 0x3
-	  bl        0x89F4C
-	  li        r3, 0x3
-	  li        r4, 0x2
-	  li        r5, 0x2
-	  li        r6, 0x2
-	  li        r7, 0x3
-	  bl        0x89F34
-	  li        r3, 0x7
-	  li        r4, 0
-	  li        r5, 0
-	  li        r6, 0x7
-	  li        r7, 0
-	  bl        0x89F9C
-	  lwz       r0, 0x34(r1)
-	  lwz       r31, 0x2C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_8005E8A0:
+	mr       r3, r31
+	li       r4, 0xa
+	li       r5, 0xf
+	li       r6, 0xf
+	li       r7, 0xf
+	bl       GXSetTevColorIn
+	mr       r3, r31
+	li       r4, 0
+	li       r5, 0
+	li       r6, 0
+	li       r7, 1
+	li       r8, 0
+	bl       GXSetTevColorOp
+	mr       r3, r31
+	li       r4, 5
+	li       r5, 7
+	li       r6, 7
+	li       r7, 7
+	bl       GXSetTevAlphaIn
+	mr       r3, r31
+	li       r4, 0
+	li       r5, 0
+	li       r6, 0
+	li       r7, 1
+	li       r8, 0
+	bl       GXSetTevAlphaOp
+	mr       r3, r31
+	li       r4, 6
+	bl       GXSetTevKColorSel
+	mr       r3, r31
+	li       r4, 0
+	bl       GXSetTevKAlphaSel
+	mr       r3, r31
+	li       r4, 0
+	li       r5, 0
+	bl       GXSetTevSwapMode
+	addi     r31, r31, 1
+	cmplwi   r31, 0x10
+	blt      lbl_8005E8A0
+	li       r3, 0
+	li       r4, 0
+	li       r5, 1
+	li       r6, 2
+	li       r7, 3
+	bl       GXSetTevSwapModeTable
+	li       r3, 1
+	li       r4, 0
+	li       r5, 0
+	li       r6, 0
+	li       r7, 3
+	bl       GXSetTevSwapModeTable
+	li       r3, 2
+	li       r4, 1
+	li       r5, 1
+	li       r6, 1
+	li       r7, 3
+	bl       GXSetTevSwapModeTable
+	li       r3, 3
+	li       r4, 2
+	li       r5, 2
+	li       r6, 2
+	li       r7, 3
+	bl       GXSetTevSwapModeTable
+	li       r3, 7
+	li       r4, 0
+	li       r5, 0
+	li       r6, 7
+	li       r7, 0
+	bl       GXSetAlphaCompare
+	lwz      r0, 0x34(r1)
+	lwz      r31, 0x2c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -1149,71 +1269,70 @@ void J3DSys::reinitTevStages()
 void J3DSys::reinitIndStages()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  li        r31, 0
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	li       r31, 0
 
-	.loc_0x14:
-	  mr        r3, r31
-	  bl        0x89998
-	  addi      r31, r31, 0x1
-	  cmplwi    r31, 0x10
-	  blt+      .loc_0x14
-	  li        r3, 0
-	  li        r4, 0
-	  li        r5, 0
-	  bl        0x8986C
-	  li        r3, 0x1
-	  li        r4, 0x1
-	  li        r5, 0x1
-	  bl        0x8985C
-	  li        r3, 0x2
-	  li        r4, 0x2
-	  li        r5, 0x2
-	  bl        0x8984C
-	  li        r3, 0x3
-	  li        r4, 0x3
-	  li        r5, 0x3
-	  bl        0x8983C
-	  li        r3, 0
-	  li        r4, 0
-	  li        r5, 0
-	  bl        0x896E8
-	  li        r3, 0x1
-	  li        r4, 0
-	  li        r5, 0
-	  bl        0x896D8
-	  li        r3, 0x2
-	  li        r4, 0
-	  li        r5, 0
-	  bl        0x896C8
-	  li        r3, 0x3
-	  li        r4, 0
-	  li        r5, 0
-	  bl        0x896B8
-	  lis       r4, 0x804A
-	  li        r3, 0x1
-	  addi      r4, r4, 0x14C0
-	  li        r5, 0x1
-	  bl        0x8952C
-	  lis       r4, 0x804A
-	  li        r3, 0x2
-	  addi      r4, r4, 0x14C0
-	  li        r5, 0x1
-	  bl        0x89518
-	  lis       r4, 0x804A
-	  li        r3, 0x3
-	  addi      r4, r4, 0x14C0
-	  li        r5, 0x1
-	  bl        0x89504
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8005E9DC:
+	mr       r3, r31
+	bl       GXSetTevDirect
+	addi     r31, r31, 1
+	cmplwi   r31, 0x10
+	blt      lbl_8005E9DC
+	li       r3, 0
+	li       r4, 0
+	li       r5, 0
+	bl       GXSetIndTexOrder
+	li       r3, 1
+	li       r4, 1
+	li       r5, 1
+	bl       GXSetIndTexOrder
+	li       r3, 2
+	li       r4, 2
+	li       r5, 2
+	bl       GXSetIndTexOrder
+	li       r3, 3
+	li       r4, 3
+	li       r5, 3
+	bl       GXSetIndTexOrder
+	li       r3, 0
+	li       r4, 0
+	li       r5, 0
+	bl       GXSetIndTexCoordScale
+	li       r3, 1
+	li       r4, 0
+	li       r5, 0
+	bl       GXSetIndTexCoordScale
+	li       r3, 2
+	li       r4, 0
+	li       r5, 0
+	bl       GXSetIndTexCoordScale
+	li       r3, 3
+	li       r4, 0
+	li       r5, 0
+	bl       GXSetIndTexCoordScale
+	lis      r4, IndMtx@ha
+	li       r3, 1
+	addi     r4, r4, IndMtx@l
+	li       r5, 1
+	bl       GXSetIndTexMtx
+	lis      r4, IndMtx@ha
+	li       r3, 2
+	addi     r4, r4, IndMtx@l
+	li       r5, 1
+	bl       GXSetIndTexMtx
+	lis      r4, IndMtx@ha
+	li       r3, 3
+	addi     r4, r4, IndMtx@l
+	li       r5, 1
+	bl       GXSetIndTexMtx
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1225,44 +1344,43 @@ void J3DSys::reinitIndStages()
 void J3DSys::reinitPixelProc()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r3, 0
-	  li        r4, 0x4
-	  stw       r0, 0x14(r1)
-	  li        r5, 0x5
-	  li        r6, 0
-	  bl        0x8A5FC
-	  li        r3, 0x1
-	  bl        0x8A648
-	  li        r3, 0x1
-	  bl        0x8A66C
-	  li        r3, 0x1
-	  bl        0x8A7CC
-	  lfs       f2, -0x79D4(r2)
-	  addi      r4, r1, 0x8
-	  lwz       r0, -0x7FA8(r13)
-	  li        r3, 0
-	  fmr       f4, f2
-	  lfs       f1, -0x79D8(r2)
-	  stw       r0, 0x8(r1)
-	  lfs       f3, -0x79D0(r2)
-	  bl        0x8A0C8
-	  li        r3, 0
-	  li        r4, 0
-	  li        r5, 0
-	  bl        0x8A48C
-	  li        r3, 0x1
-	  li        r4, 0x3
-	  li        r5, 0x1
-	  bl        0x8A64C
-	  li        r3, 0x1
-	  bl        0x8A678
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	li       r3, 0
+	li       r4, 4
+	stw      r0, 0x14(r1)
+	li       r5, 5
+	li       r6, 0
+	bl       GXSetBlendMode
+	li       r3, 1
+	bl       GXSetColorUpdate
+	li       r3, 1
+	bl       GXSetAlphaUpdate
+	li       r3, 1
+	bl       GXSetDither
+	lfs      f2, lbl_8051698C@sda21(r2)
+	addi     r4, r1, 8
+	lwz      r0, ColorBlack@sda21(r13)
+	li       r3, 0
+	fmr      f4, f2
+	lfs      f1, lbl_80516988@sda21(r2)
+	stw      r0, 8(r1)
+	lfs      f3, lbl_80516990@sda21(r2)
+	bl       GXSetFog
+	li       r3, 0
+	li       r4, 0
+	li       r5, 0
+	bl       GXSetFogRangeAdj
+	li       r3, 1
+	li       r4, 3
+	li       r5, 1
+	bl       GXSetZMode
+	li       r3, 1
+	bl       GXSetZCompLoc
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1281,16 +1399,15 @@ void J3DSys::ErrorReport(J3DErrType) const { }
 void __sinit_J3DSys_cpp(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r3, 0x8051
-	  stw       r0, 0x14(r1)
-	  subi      r3, r3, 0xDD0
-	  bl        -0x10C0
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lis      r3, j3dSys@ha
+	stw      r0, 0x14(r1)
+	addi     r3, r3, j3dSys@l
+	bl       __ct__6J3DSysFv
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }

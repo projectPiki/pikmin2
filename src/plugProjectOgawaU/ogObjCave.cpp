@@ -1,5 +1,167 @@
 #include "types.h"
 
+/*
+    Generated from dpostproc
+
+    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
+    .4byte __sinit_ogObjCave_cpp
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_8048ED18
+    lbl_8048ED18:
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x6F674F62
+        .4byte 0x6A436176
+        .4byte 0x652E6370
+        .4byte 0x70000000
+        .4byte 0x45525221
+        .4byte 0x20696E20
+        .4byte 0x4F626A43
+        .4byte 0x61766520
+        .4byte 0x43726561
+        .4byte 0x74658EB8
+        .4byte 0x94738149
+        .4byte 0x0A000000
+        .4byte 0x646F7069
+        .4byte 0x6E672E62
+        .4byte 0x6C6F0000
+        .4byte 0x6F72696D
+        .4byte 0x612E626C
+        .4byte 0x6F000000
+        .4byte 0x63617665
+        .4byte 0x5F70696B
+        .4byte 0x6D696E2E
+        .4byte 0x626C6F00
+        .4byte 0x6772616E
+        .4byte 0x645F6361
+        .4byte 0x76655F70
+        .4byte 0x6F6B6F2E
+        .4byte 0x626C6F00
+        .4byte 0x73656E73
+        .4byte 0x6F722E62
+        .4byte 0x6C6F0000
+        .4byte 0x73637265
+        .4byte 0x656E4F62
+        .4byte 0x6A2E6800
+        .asciz "P2Assert"
+        .skip 3
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global lbl_804D8EC8
+    lbl_804D8EC8:
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+    .global __vt__Q32og9newScreen7ObjCave
+    __vt__Q32og9newScreen7ObjCave:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q32og9newScreen7ObjCaveFv
+        .4byte getChildCount__5CNodeFv
+        .4byte 0
+        .4byte 0
+        .4byte "@24@__dt__Q32og9newScreen7ObjCaveFv"
+        .4byte update__Q26Screen7ObjBaseFv
+        .4byte draw__Q26Screen7ObjBaseFR8Graphics
+        .4byte start__Q26Screen7ObjBaseFPCQ26Screen13StartSceneArg
+        .4byte end__Q26Screen7ObjBaseFPCQ26Screen11EndSceneArg
+        .4byte setOwner__Q26Screen7ObjBaseFPQ26Screen9SceneBase
+        .4byte getOwner__Q26Screen7ObjBaseCFv
+        .4byte create__Q26Screen7ObjBaseFP10JKRArchive
+        .4byte confirmSetScene__Q26Screen7ObjBaseFRQ26Screen11SetSceneArg
+        .4byte confirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
+        .4byte confirmEndScene__Q26Screen7ObjBaseFPQ26Screen11EndSceneArg
+        .4byte doStart__Q32og9newScreen7ObjCaveFPCQ26Screen13StartSceneArg
+        .4byte doEnd__Q32og9newScreen7ObjCaveFPCQ26Screen11EndSceneArg
+        .4byte doCreate__Q32og9newScreen7ObjCaveFP10JKRArchive
+        .4byte doUpdateFadein__Q32og9newScreen7ObjCaveFv
+        .4byte doUpdateFadeinFinish__Q32og9newScreen7ObjCaveFv
+        .4byte doUpdate__Q32og9newScreen7ObjCaveFv
+        .4byte doUpdateFinish__Q32og9newScreen7ObjCaveFv
+        .4byte doUpdateFadeout__Q32og9newScreen7ObjCaveFv
+        .4byte doUpdateFadeoutFinish__Q32og9newScreen7ObjCaveFv
+        .4byte doDraw__Q32og9newScreen7ObjCaveFR8Graphics
+        .4byte doConfirmSetScene__Q26Screen7ObjBaseFRQ26Screen11SetSceneArg
+        .4byte doConfirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
+        .4byte doConfirmEndScene__Q26Screen7ObjBaseFRPQ26Screen11EndSceneArg
+        .4byte 0
+
+    .section .bss  # 0x804EFC20 - 0x8051467C
+    .global msVal__Q32og9newScreen7ObjCave
+    msVal__Q32og9newScreen7ObjCave:
+        .skip 0x4C
+
+    .section .sbss # 0x80514D80 - 0x80516360
+    .global lbl_80515E78
+    lbl_80515E78:
+        .skip 0x4
+    .global lbl_80515E7C
+    lbl_80515E7C:
+        .skip 0x4
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_8051DBC0
+    lbl_8051DBC0:
+        .4byte 0x00000000
+    .global lbl_8051DBC4
+    lbl_8051DBC4:
+        .float 1.0
+    .global lbl_8051DBC8
+    lbl_8051DBC8:
+        .4byte 0x44610000
+    .global lbl_8051DBCC
+    lbl_8051DBCC:
+        .4byte 0x40000000
+    .global lbl_8051DBD0
+    lbl_8051DBD0:
+        .float 0.5
+    .global lbl_8051DBD4
+    lbl_8051DBD4:
+        .4byte 0x40490FDB
+    .global lbl_8051DBD8
+    lbl_8051DBD8:
+        .4byte 0x3ECCCCCD
+    .global lbl_8051DBDC
+    lbl_8051DBDC:
+        .4byte 0x43A2F983
+    .global lbl_8051DBE0
+    lbl_8051DBE0:
+        .4byte 0x43300000
+        .4byte 0x00000000
+    .global lbl_8051DBE8
+    lbl_8051DBE8:
+        .float 0.3
+    .global lbl_8051DBEC
+    lbl_8051DBEC:
+        .float 0.1
+    .global lbl_8051DBF0
+    lbl_8051DBF0:
+        .4byte 0xC2480000
+    .global lbl_8051DBF4
+    lbl_8051DBF4:
+        .4byte 0x3F666666
+    .global lbl_8051DBF8
+    lbl_8051DBF8:
+        .4byte 0xC1F00000
+    .global lbl_8051DBFC
+    lbl_8051DBFC:
+        .4byte 0x3E4CCCCD
+    .global lbl_8051DC00
+    lbl_8051DC00:
+        .float 0.25
+    .global lbl_8051DC04
+    lbl_8051DC04:
+        .4byte 0xC1700000
+    .global lbl_8051DC08
+    lbl_8051DC08:
+        .4byte 0xC2000000
+    .global lbl_8051DC0C
+    lbl_8051DC0C:
+        .4byte 0x40A00000
+*/
+
 namespace og {
 
 /*
@@ -10,46 +172,45 @@ namespace og {
 newScreen::ObjCave::ObjCave(char const*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  bl        0x137AC4
-	  lis       r3, 0x804E
-	  lfs       f0, -0x7A0(r2)
-	  subi      r3, r3, 0x712C
-	  li        r0, 0
-	  stw       r3, 0x0(r30)
-	  addi      r4, r3, 0x10
-	  mr        r3, r30
-	  stw       r4, 0x18(r30)
-	  stfs      f0, 0x5C(r30)
-	  stfs      f0, 0x60(r30)
-	  stw       r31, 0x14(r30)
-	  stw       r0, 0x38(r30)
-	  stw       r0, 0x3C(r30)
-	  stw       r0, 0x40(r30)
-	  stw       r0, 0x44(r30)
-	  stw       r0, 0x48(r30)
-	  stw       r0, 0x4C(r30)
-	  stw       r0, 0x50(r30)
-	  stw       r0, 0x54(r30)
-	  stw       r0, 0x58(r30)
-	  stb       r0, 0x64(r30)
-	  stw       r0, 0x68(r30)
-	  stfs      f0, 0x6C(r30)
-	  stw       r0, 0x70(r30)
-	  stw       r0, 0x74(r30)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	bl       __ct__Q26Screen7ObjBaseFv
+	lis      r3, __vt__Q32og9newScreen7ObjCave@ha
+	lfs      f0, lbl_8051DBC0@sda21(r2)
+	addi     r3, r3, __vt__Q32og9newScreen7ObjCave@l
+	li       r0, 0
+	stw      r3, 0(r30)
+	addi     r4, r3, 0x10
+	mr       r3, r30
+	stw      r4, 0x18(r30)
+	stfs     f0, 0x5c(r30)
+	stfs     f0, 0x60(r30)
+	stw      r31, 0x14(r30)
+	stw      r0, 0x38(r30)
+	stw      r0, 0x3c(r30)
+	stw      r0, 0x40(r30)
+	stw      r0, 0x44(r30)
+	stw      r0, 0x48(r30)
+	stw      r0, 0x4c(r30)
+	stw      r0, 0x50(r30)
+	stw      r0, 0x54(r30)
+	stw      r0, 0x58(r30)
+	stb      r0, 0x64(r30)
+	stw      r0, 0x68(r30)
+	stfs     f0, 0x6c(r30)
+	stw      r0, 0x70(r30)
+	stw      r0, 0x74(r30)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -61,54 +222,53 @@ newScreen::ObjCave::ObjCave(char const*)
 newScreen::ObjCave::~ObjCave(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x90
-	  lis       r4, 0x804E
-	  subi      r4, r4, 0x712C
-	  stw       r4, 0x0(r30)
-	  addi      r0, r4, 0x10
-	  stw       r0, 0x18(r30)
-	  beq-      .loc_0x80
-	  lis       r4, 0x804F
-	  subi      r4, r4, 0x28A8
-	  stw       r4, 0x0(r30)
-	  addi      r0, r4, 0x10
-	  stw       r0, 0x18(r30)
-	  beq-      .loc_0x80
-	  lis       r4, 0x804E
-	  subi      r4, r4, 0x7DC0
-	  stw       r4, 0x0(r30)
-	  addi      r0, r4, 0x10
-	  stw       r0, 0x18(r30)
-	  bl        0xF54C8
-	  addi      r3, r30, 0x18
-	  li        r4, 0
-	  bl        -0x2FF0E0
-	  mr        r3, r30
-	  li        r4, 0
-	  bl        0xF5468
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_8031C134
+	lis      r4, __vt__Q32og9newScreen7ObjCave@ha
+	addi     r4, r4, __vt__Q32og9newScreen7ObjCave@l
+	stw      r4, 0(r30)
+	addi     r0, r4, 0x10
+	stw      r0, 0x18(r30)
+	beq      lbl_8031C124
+	lis      r4, __vt__Q26Screen7ObjBase@ha
+	addi     r4, r4, __vt__Q26Screen7ObjBase@l
+	stw      r4, 0(r30)
+	addi     r0, r4, 0x10
+	stw      r0, 0x18(r30)
+	beq      lbl_8031C124
+	lis      r4, __vt__Q26Screen8IObjBase@ha
+	addi     r4, r4, __vt__Q26Screen8IObjBase@l
+	stw      r4, 0(r30)
+	addi     r0, r4, 0x10
+	stw      r0, 0x18(r30)
+	bl       del__5CNodeFv
+	addi     r3, r30, 0x18
+	li       r4, 0
+	bl       __dt__11JKRDisposerFv
+	mr       r3, r30
+	li       r4, 0
+	bl       __dt__5CNodeFv
 
-	.loc_0x80:
-	  extsh.    r0, r31
-	  ble-      .loc_0x90
-	  mr        r3, r30
-	  bl        -0x2F807C
+lbl_8031C124:
+	extsh.   r0, r31
+	ble      lbl_8031C134
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x90:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8031C134:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -120,365 +280,367 @@ newScreen::ObjCave::~ObjCave(void)
 void newScreen::ObjCave::doCreate(JKRArchive*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r5, 0x8049
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  subi      r31, r5, 0x12E8
-	  stw       r30, 0x18(r1)
-	  mr        r30, r4
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  stw       r28, 0x10(r1)
-	  bl        0x137E2C
-	  lis       r4, 0x4F
-	  lis       r6, 0x4341
-	  li        r5, 0
-	  mr        r28, r3
-	  addi      r4, r4, 0x4741
-	  addi      r6, r6, 0x5645
-	  bl        -0xCE7C
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x5C
-	  stw       r28, 0x38(r29)
-	  b         .loc_0x164
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lis      r5, lbl_8048ED18@ha
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	addi     r31, r5, lbl_8048ED18@l
+	stw      r30, 0x18(r1)
+	mr       r30, r4
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	stw      r28, 0x10(r1)
+	bl       getDispMember__Q26Screen7ObjBaseFv
+	lis      r4, 0x004F4741@ha
+	lis      r6, 0x43415645@ha
+	li       r5, 0
+	mr       r28, r3
+	addi     r4, r4, 0x004F4741@l
+	addi     r6, r6, 0x43415645@l
+	bl       isID__Q32og6Screen14DispMemberBaseFUlUx
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_8031C1AC
+	stw      r28, 0x38(r29)
+	b        lbl_8031C2B4
 
-	.loc_0x5C:
-	  lis       r4, 0x4F
-	  lis       r6, 0x554D
-	  mr        r3, r28
-	  li        r5, 0x44
-	  addi      r4, r4, 0x4741
-	  addi      r6, r6, 0x4D59
-	  bl        -0xCEA8
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x150
-	  li        r3, 0x64
-	  bl        -0x2F8330
-	  cmplwi    r3, 0
-	  beq-      .loc_0x148
-	  lis       r5, 0x804B
-	  lis       r4, 0x804B
-	  addi      r0, r5, 0x1148
-	  li        r8, 0
-	  stw       r0, 0x0(r3)
-	  addi      r0, r4, 0x1094
-	  lfs       f2, -0x7A0(r2)
-	  li        r7, 0x4D2
-	  stw       r8, 0x4(r3)
-	  li        r6, 0x32
-	  lfs       f1, -0x79C(r2)
-	  li        r5, 0x1
-	  stw       r0, 0x0(r3)
-	  li        r4, 0x2
-	  li        r0, 0xA
-	  lfs       f0, -0x798(r2)
-	  stfs      f2, 0x8(r3)
-	  stw       r8, 0xC(r3)
-	  stw       r8, 0x14(r3)
-	  stw       r7, 0x10(r3)
-	  stw       r6, 0x18(r3)
-	  stb       r8, 0x1C(r3)
-	  stw       r8, 0x20(r3)
-	  stfs      f1, 0x24(r3)
-	  stw       r5, 0x28(r3)
-	  stw       r4, 0x2C(r3)
-	  stw       r0, 0x30(r3)
-	  stw       r0, 0x34(r3)
-	  stb       r5, 0x38(r3)
-	  stfs      f1, 0x3C(r3)
-	  stw       r5, 0x40(r3)
-	  stw       r4, 0x44(r3)
-	  stw       r0, 0x48(r3)
-	  stw       r0, 0x4C(r3)
-	  stb       r5, 0x50(r3)
-	  stb       r5, 0x1C(r3)
-	  stb       r8, 0x5D(r3)
-	  stb       r8, 0x5E(r3)
-	  stfs      f0, 0x54(r3)
-	  stb       r8, 0x5C(r3)
-	  stw       r5, 0x58(r3)
-	  stb       r8, 0x5F(r3)
-	  stb       r8, 0x62(r3)
-	  stb       r8, 0x63(r3)
-	  stb       r8, 0x60(r3)
-	  stb       r8, 0x61(r3)
+lbl_8031C1AC:
+	lis      r4, 0x004F4741@ha
+	lis      r6, 0x554D4D59@ha
+	mr       r3, r28
+	li       r5, 0x44
+	addi     r4, r4, 0x004F4741@l
+	addi     r6, r6, 0x554D4D59@l
+	bl       isID__Q32og6Screen14DispMemberBaseFUlUx
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_8031C2A0
+	li       r3, 0x64
+	bl       __nw__FUl
+	cmplwi   r3, 0
+	beq      lbl_8031C298
+	lis      r5, __vt__Q32og6Screen14DispMemberBase@ha
+	lis      r4, __vt__Q32og6Screen14DispMemberCave@ha
+	addi     r0, r5, __vt__Q32og6Screen14DispMemberBase@l
+	li       r8, 0
+	stw      r0, 0(r3)
+	addi     r0, r4, __vt__Q32og6Screen14DispMemberCave@l
+	lfs      f2, lbl_8051DBC0@sda21(r2)
+	li       r7, 0x4d2
+	stw      r8, 4(r3)
+	li       r6, 0x32
+	lfs      f1, lbl_8051DBC4@sda21(r2)
+	li       r5, 1
+	stw      r0, 0(r3)
+	li       r4, 2
+	li       r0, 0xa
+	lfs      f0, lbl_8051DBC8@sda21(r2)
+	stfs     f2, 8(r3)
+	stw      r8, 0xc(r3)
+	stw      r8, 0x14(r3)
+	stw      r7, 0x10(r3)
+	stw      r6, 0x18(r3)
+	stb      r8, 0x1c(r3)
+	stw      r8, 0x20(r3)
+	stfs     f1, 0x24(r3)
+	stw      r5, 0x28(r3)
+	stw      r4, 0x2c(r3)
+	stw      r0, 0x30(r3)
+	stw      r0, 0x34(r3)
+	stb      r5, 0x38(r3)
+	stfs     f1, 0x3c(r3)
+	stw      r5, 0x40(r3)
+	stw      r4, 0x44(r3)
+	stw      r0, 0x48(r3)
+	stw      r0, 0x4c(r3)
+	stb      r5, 0x50(r3)
+	stb      r5, 0x1c(r3)
+	stb      r8, 0x5d(r3)
+	stb      r8, 0x5e(r3)
+	stfs     f0, 0x54(r3)
+	stb      r8, 0x5c(r3)
+	stw      r5, 0x58(r3)
+	stb      r8, 0x5f(r3)
+	stb      r8, 0x62(r3)
+	stb      r8, 0x63(r3)
+	stb      r8, 0x60(r3)
+	stb      r8, 0x61(r3)
 
-	.loc_0x148:
-	  stw       r3, 0x38(r29)
-	  b         .loc_0x164
+lbl_8031C298:
+	stw      r3, 0x38(r29)
+	b        lbl_8031C2B4
 
-	.loc_0x150:
-	  addi      r3, r31, 0xC
-	  addi      r5, r31, 0x1C
-	  li        r4, 0xBD
-	  crclr     6, 0x6
-	  bl        -0x2F1C70
+lbl_8031C2A0:
+	addi     r3, r31, 0xc
+	addi     r5, r31, 0x1c
+	li       r4, 0xbd
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x164:
-	  li        r3, 0x198
-	  bl        -0x2F8414
-	  mr.       r0, r3
-	  beq-      .loc_0x17C
-	  bl        -0x18CB8
-	  mr        r0, r3
+lbl_8031C2B4:
+	li       r3, 0x198
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_8031C2CC
+	bl       __ct__Q32og6Screen12DopingScreenFv
+	mr       r0, r3
 
-	.loc_0x17C:
-	  stw       r0, 0x44(r29)
-	  li        r3, 0x158
-	  bl        -0x2F8430
-	  mr.       r28, r3
-	  beq-      .loc_0x1B0
-	  bl        0x118ACC
-	  lis       r3, 0x804D
-	  li        r0, 0
-	  addi      r3, r3, 0x7E70
-	  stw       r3, 0x0(r28)
-	  stw       r0, 0x148(r28)
-	  stw       r0, 0x14C(r28)
-	  stw       r0, 0x150(r28)
+lbl_8031C2CC:
+	stw      r0, 0x44(r29)
+	li       r3, 0x158
+	bl       __nw__FUl
+	or.      r28, r3, r3
+	beq      lbl_8031C300
+	bl       __ct__Q29P2DScreen10Mgr_tuningFv
+	lis      r3, __vt__Q32og6Screen13NaviLifeGauge@ha
+	li       r0, 0
+	addi     r3, r3, __vt__Q32og6Screen13NaviLifeGauge@l
+	stw      r3, 0(r28)
+	stw      r0, 0x148(r28)
+	stw      r0, 0x14c(r28)
+	stw      r0, 0x150(r28)
 
-	.loc_0x1B0:
-	  stw       r28, 0x48(r29)
-	  li        r3, 0x158
-	  bl        -0x2F8464
-	  mr.       r28, r3
-	  beq-      .loc_0x1E4
-	  bl        0x118A98
-	  lis       r3, 0x804D
-	  li        r0, 0
-	  addi      r3, r3, 0x7E70
-	  stw       r3, 0x0(r28)
-	  stw       r0, 0x148(r28)
-	  stw       r0, 0x14C(r28)
-	  stw       r0, 0x150(r28)
+lbl_8031C300:
+	stw      r28, 0x48(r29)
+	li       r3, 0x158
+	bl       __nw__FUl
+	or.      r28, r3, r3
+	beq      lbl_8031C334
+	bl       __ct__Q29P2DScreen10Mgr_tuningFv
+	lis      r3, __vt__Q32og6Screen13NaviLifeGauge@ha
+	li       r0, 0
+	addi     r3, r3, __vt__Q32og6Screen13NaviLifeGauge@l
+	stw      r3, 0(r28)
+	stw      r0, 0x148(r28)
+	stw      r0, 0x14c(r28)
+	stw      r0, 0x150(r28)
 
-	.loc_0x1E4:
-	  stw       r28, 0x4C(r29)
-	  li        r3, 0x1A8
-	  bl        -0x2F8498
-	  mr.       r28, r3
-	  beq-      .loc_0x208
-	  bl        -0x1812C
-	  lis       r3, 0x804D
-	  addi      r0, r3, 0x7C9C
-	  stw       r0, 0x0(r28)
+lbl_8031C334:
+	stw      r28, 0x4c(r29)
+	li       r3, 0x1a8
+	bl       __nw__FUl
+	or.      r28, r3, r3
+	beq      lbl_8031C358
+	bl       __ct__Q32og6Screen13PikminCounterFv
+	lis      r3, __vt__Q32og6Screen17PikminCounterCave@ha
+	addi     r0, r3, __vt__Q32og6Screen17PikminCounterCave@l
+	stw      r0, 0(r28)
 
-	.loc_0x208:
-	  stw       r28, 0x50(r29)
-	  li        r3, 0x180
-	  bl        -0x2F84BC
-	  mr.       r0, r3
-	  beq-      .loc_0x224
-	  bl        0x10040
-	  mr        r0, r3
+lbl_8031C358:
+	stw      r28, 0x50(r29)
+	li       r3, 0x180
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_8031C374
+	bl       __ct__Q32og6Screen15TotalPokoScreenFv
+	mr       r0, r3
 
-	.loc_0x224:
-	  stw       r0, 0x54(r29)
-	  li        r3, 0x148
-	  bl        -0x2F84D8
-	  mr.       r0, r3
-	  beq-      .loc_0x240
-	  bl        0x118A24
-	  mr        r0, r3
+lbl_8031C374:
+	stw      r0, 0x54(r29)
+	li       r3, 0x148
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_8031C390
+	bl       __ct__Q29P2DScreen10Mgr_tuningFv
+	mr       r0, r3
 
-	.loc_0x240:
-	  stw       r0, 0x58(r29)
-	  li        r3, 0xC
-	  bl        -0x2F84F4
-	  mr.       r0, r3
-	  beq-      .loc_0x260
-	  li        r4, 0x6
-	  bl        -0xD420
-	  mr        r0, r3
+lbl_8031C390:
+	stw      r0, 0x58(r29)
+	li       r3, 0xc
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_8031C3B0
+	li       r4, 6
+	bl       __ct__Q32og6Screen8BloGroupFUs
+	mr       r0, r3
 
-	.loc_0x260:
-	  stw       r0, 0x40(r29)
-	  mr        r7, r30
-	  addi      r4, r31, 0x3C
-	  lis       r6, 0x104
-	  lwz       r3, 0x40(r29)
-	  lwz       r5, 0x44(r29)
-	  bl        -0xD3A8
-	  lwz       r3, 0x40(r29)
-	  mr        r7, r30
-	  lwz       r5, 0x48(r29)
-	  addi      r4, r31, 0x48
-	  lis       r6, 0x104
-	  bl        -0xD3C0
-	  lwz       r3, 0x40(r29)
-	  mr        r7, r30
-	  lwz       r5, 0x4C(r29)
-	  addi      r4, r31, 0x48
-	  lis       r6, 0x104
-	  bl        -0xD3D8
-	  lwz       r3, 0x40(r29)
-	  mr        r7, r30
-	  lwz       r5, 0x50(r29)
-	  addi      r4, r31, 0x54
-	  lis       r6, 0x104
-	  bl        -0xD3F0
-	  lwz       r3, 0x40(r29)
-	  mr        r7, r30
-	  lwz       r5, 0x54(r29)
-	  addi      r4, r31, 0x64
-	  lis       r6, 0x104
-	  bl        -0xD408
-	  lwz       r3, 0x40(r29)
-	  mr        r7, r30
-	  lwz       r5, 0x58(r29)
-	  addi      r4, r31, 0x78
-	  lis       r6, 0x104
-	  bl        -0xD420
-	  lwz       r3, 0x44(r29)
-	  mr        r4, r30
-	  bl        -0x18D4C
-	  lwz       r4, 0x38(r29)
-	  li        r5, 0
-	  lwz       r3, 0x48(r29)
-	  addi      r4, r4, 0x24
-	  bl        -0x154B8
-	  lwz       r4, 0x38(r29)
-	  lbz       r0, 0x5D(r4)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x338
-	  lwz       r3, 0x4C(r29)
-	  addi      r4, r4, 0x3C
-	  li        r5, 0x2
-	  bl        -0x154D8
-	  b         .loc_0x348
+lbl_8031C3B0:
+	stw      r0, 0x40(r29)
+	mr       r7, r30
+	addi     r4, r31, 0x3c
+	lis      r6, 0x104
+	lwz      r3, 0x40(r29)
+	lwz      r5, 0x44(r29)
+	bl addBlo__Q32og6Screen8BloGroupFPcPQ29P2DScreen10Mgr_tuningUlP10JKRArchive
+	lwz      r3, 0x40(r29)
+	mr       r7, r30
+	lwz      r5, 0x48(r29)
+	addi     r4, r31, 0x48
+	lis      r6, 0x104
+	bl addBlo__Q32og6Screen8BloGroupFPcPQ29P2DScreen10Mgr_tuningUlP10JKRArchive
+	lwz      r3, 0x40(r29)
+	mr       r7, r30
+	lwz      r5, 0x4c(r29)
+	addi     r4, r31, 0x48
+	lis      r6, 0x104
+	bl addBlo__Q32og6Screen8BloGroupFPcPQ29P2DScreen10Mgr_tuningUlP10JKRArchive
+	lwz      r3, 0x40(r29)
+	mr       r7, r30
+	lwz      r5, 0x50(r29)
+	addi     r4, r31, 0x54
+	lis      r6, 0x104
+	bl addBlo__Q32og6Screen8BloGroupFPcPQ29P2DScreen10Mgr_tuningUlP10JKRArchive
+	lwz      r3, 0x40(r29)
+	mr       r7, r30
+	lwz      r5, 0x54(r29)
+	addi     r4, r31, 0x64
+	lis      r6, 0x104
+	bl addBlo__Q32og6Screen8BloGroupFPcPQ29P2DScreen10Mgr_tuningUlP10JKRArchive
+	lwz      r3, 0x40(r29)
+	mr       r7, r30
+	lwz      r5, 0x58(r29)
+	addi     r4, r31, 0x78
+	lis      r6, 0x104
+	bl addBlo__Q32og6Screen8BloGroupFPcPQ29P2DScreen10Mgr_tuningUlP10JKRArchive
+	lwz      r3, 0x44(r29)
+	mr       r4, r30
+	bl       setCallBack__Q32og6Screen12DopingScreenFP10JKRArchive
+	lwz      r4, 0x38(r29)
+	li       r5, 0
+	lwz      r3, 0x48(r29)
+	addi     r4, r4, 0x24
+	bl
+setCallBack__Q32og6Screen13NaviLifeGaugeFPQ32og6Screen8DataNaviQ42og6Screen18CallBack_LifeGauge13LifeGaugeType
+	lwz      r4, 0x38(r29)
+	lbz      r0, 0x5d(r4)
+	cmplwi   r0, 0
+	beq      lbl_8031C488
+	lwz      r3, 0x4c(r29)
+	addi     r4, r4, 0x3c
+	li       r5, 2
+	bl
+setCallBack__Q32og6Screen13NaviLifeGaugeFPQ32og6Screen8DataNaviQ42og6Screen18CallBack_LifeGauge13LifeGaugeType
+	b        lbl_8031C498
 
-	.loc_0x338:
-	  lwz       r3, 0x4C(r29)
-	  addi      r4, r4, 0x3C
-	  li        r5, 0x1
-	  bl        -0x154EC
+lbl_8031C488:
+	lwz      r3, 0x4c(r29)
+	addi     r4, r4, 0x3c
+	li       r5, 1
+	bl
+setCallBack__Q32og6Screen13NaviLifeGaugeFPQ32og6Screen8DataNaviQ42og6Screen18CallBack_LifeGauge13LifeGaugeType
 
-	.loc_0x348:
-	  lwz       r3, 0x50(r29)
-	  mr        r4, r30
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xA0(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x54(r29)
-	  lis       r4, 0x8051
-	  addi      r5, r4, 0x3DDC
-	  mr        r4, r30
-	  lwz       r12, 0x0(r3)
-	  lfs       f1, 0x8(r5)
-	  lwz       r12, 0xA0(r12)
-	  lfs       f2, 0xC(r5)
-	  lfs       f3, 0x10(r5)
-	  lfs       f4, 0x14(r5)
-	  mtctr     r12
-	  bctrl
-	  lis       r4, 0x6869
-	  lwz       r3, 0x50(r29)
-	  addi      r6, r4, 0x6B61
-	  li        r5, 0x5063
-	  bl        -0x19644
-	  stw       r3, 0x70(r29)
-	  lis       r5, 0x6E61
-	  lis       r4, 0x4E
-	  lwz       r3, 0x50(r29)
-	  addi      r6, r5, 0x6C66
-	  addi      r5, r4, 0x6669
-	  bl        -0x19660
-	  stw       r3, 0x74(r29)
-	  lwz       r3, 0x38(r29)
-	  lbz       r0, 0x5E(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x3F0
-	  lwz       r3, 0x70(r29)
-	  li        r4, 0
-	  li        r0, 0x1
-	  stb       r4, 0xB0(r3)
-	  lwz       r3, 0x74(r29)
-	  stb       r0, 0xB0(r3)
-	  b         .loc_0x408
+lbl_8031C498:
+	lwz      r3, 0x50(r29)
+	mr       r4, r30
+	lwz      r12, 0(r3)
+	lwz      r12, 0xa0(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 0x54(r29)
+	lis      r4, msVal__Q32og9newScreen7ObjCave@ha
+	addi     r5, r4, msVal__Q32og9newScreen7ObjCave@l
+	mr       r4, r30
+	lwz      r12, 0(r3)
+	lfs      f1, 8(r5)
+	lwz      r12, 0xa0(r12)
+	lfs      f2, 0xc(r5)
+	lfs      f3, 0x10(r5)
+	lfs      f4, 0x14(r5)
+	mtctr    r12
+	bctrl
+	lis      r4, 0x68696B61@ha
+	lwz      r3, 0x50(r29)
+	addi     r6, r4, 0x68696B61@l
+	li       r5, 0x5063
+	bl       TagSearch__Q22og6ScreenFP9J2DScreenUx
+	stw      r3, 0x70(r29)
+	lis      r5, 0x6E616C66@ha
+	lis      r4, 0x004E6669@ha
+	lwz      r3, 0x50(r29)
+	addi     r6, r5, 0x6E616C66@l
+	addi     r5, r4, 0x004E6669@l
+	bl       TagSearch__Q22og6ScreenFP9J2DScreenUx
+	stw      r3, 0x74(r29)
+	lwz      r3, 0x38(r29)
+	lbz      r0, 0x5e(r3)
+	cmplwi   r0, 0
+	beq      lbl_8031C540
+	lwz      r3, 0x70(r29)
+	li       r4, 0
+	li       r0, 1
+	stb      r4, 0xb0(r3)
+	lwz      r3, 0x74(r29)
+	stb      r0, 0xb0(r3)
+	b        lbl_8031C558
 
-	.loc_0x3F0:
-	  lwz       r3, 0x70(r29)
-	  li        r4, 0x1
-	  li        r0, 0
-	  stb       r4, 0xB0(r3)
-	  lwz       r3, 0x74(r29)
-	  stb       r0, 0xB0(r3)
+lbl_8031C540:
+	lwz      r3, 0x70(r29)
+	li       r4, 1
+	li       r0, 0
+	stb      r4, 0xb0(r3)
+	lwz      r3, 0x74(r29)
+	stb      r0, 0xb0(r3)
 
-	.loc_0x408:
-	  lwz       r3, 0x38(r29)
-	  lwz       r0, 0x20(r3)
-	  stw       r0, 0x68(r29)
-	  lwz       r3, 0x54(r29)
-	  lwz       r4, 0x68(r29)
-	  bl        0xFF50
-	  lfs       f0, -0x7A0(r2)
-	  li        r0, 0
-	  stfs      f0, 0x6C(r29)
-	  lwz       r3, 0x50(r29)
-	  stb       r0, 0x18C(r3)
-	  lwz       r3, 0x54(r29)
-	  bl        0xFFA4
-	  lwz       r3, 0x54(r29)
-	  bl        0xFFE0
-	  li        r3, 0x94
-	  bl        -0x2F86F4
-	  mr.       r0, r3
-	  beq-      .loc_0x45C
-	  bl        0x11344
-	  mr        r0, r3
+lbl_8031C558:
+	lwz      r3, 0x38(r29)
+	lwz      r0, 0x20(r3)
+	stw      r0, 0x68(r29)
+	lwz      r3, 0x54(r29)
+	lwz      r4, 0x68(r29)
+	bl       setTotalPoko__Q32og6Screen15TotalPokoScreenFUl
+	lfs      f0, lbl_8051DBC0@sda21(r2)
+	li       r0, 0
+	stfs     f0, 0x6c(r29)
+	lwz      r3, 0x50(r29)
+	stb      r0, 0x18c(r3)
+	lwz      r3, 0x54(r29)
+	bl       closeTotalPoko__Q32og6Screen15TotalPokoScreenFv
+	lwz      r3, 0x54(r29)
+	bl       hideTotalPoko__Q32og6Screen15TotalPokoScreenFv
+	li       r3, 0x94
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_8031C5AC
+	bl       __ct__Q32og6Screen13OtakaraSensorFv
+	mr       r0, r3
 
-	.loc_0x45C:
-	  stw       r0, 0x3C(r29)
-	  lis       r5, 0x6E73
-	  lis       r4, 0x4E
-	  lwz       r3, 0x58(r29)
-	  addi      r6, r5, 0x6F72
-	  addi      r5, r4, 0x7365
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x3C(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r30, r3
-	  lwz       r3, 0x58(r29)
-	  lis       r4, 0x6861
-	  li        r5, 0x4E
-	  lwz       r12, 0x0(r3)
-	  addi      r6, r4, 0x7269
-	  lwz       r12, 0x3C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r5, 0x38(r29)
-	  mr        r4, r3
-	  lwz       r3, 0x3C(r29)
-	  lwz       r6, 0x58(r5)
-	  mr        r5, r30
-	  bl        0x1141C
-	  li        r0, 0x1
-	  lis       r3, 0x8051
-	  stb       r0, 0x78(r29)
-	  addi      r3, r3, 0x3DDC
-	  lfs       f1, 0x30(r3)
-	  lwz       r4, 0x3C(r29)
-	  lfs       f0, 0x2C(r3)
-	  stfs      f0, 0x4C(r4)
-	  stfs      f1, 0x50(r4)
-	  lwz       r5, 0x38(r29)
-	  lwz       r3, 0x44(r29)
-	  lbz       r4, 0x62(r5)
-	  lbz       r5, 0x63(r5)
-	  bl        -0x189B0
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8031C5AC:
+	stw      r0, 0x3c(r29)
+	lis      r5, 0x6E736F72@ha
+	lis      r4, 0x004E7365@ha
+	lwz      r3, 0x58(r29)
+	addi     r6, r5, 0x6E736F72@l
+	addi     r5, r4, 0x004E7365@l
+	lwz      r12, 0(r3)
+	lwz      r12, 0x3c(r12)
+	mtctr    r12
+	bctrl
+	mr       r30, r3
+	lwz      r3, 0x58(r29)
+	lis      r4, 0x68617269@ha
+	li       r5, 0x4e
+	lwz      r12, 0(r3)
+	addi     r6, r4, 0x68617269@l
+	lwz      r12, 0x3c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r5, 0x38(r29)
+	mr       r4, r3
+	lwz      r3, 0x3c(r29)
+	lwz      r6, 0x58(r5)
+	mr       r5, r30
+	bl       init__Q32og6Screen13OtakaraSensorFP7J2DPaneP7J2DPanei
+	li       r0, 1
+	lis      r3, msVal__Q32og9newScreen7ObjCave@ha
+	stb      r0, 0x78(r29)
+	addi     r3, r3, msVal__Q32og9newScreen7ObjCave@l
+	lfs      f1, 0x30(r3)
+	lwz      r4, 0x3c(r29)
+	lfs      f0, 0x2c(r3)
+	stfs     f0, 0x4c(r4)
+	stfs     f1, 0x50(r4)
+	lwz      r5, 0x38(r29)
+	lwz      r3, 0x44(r29)
+	lbz      r4, 0x62(r5)
+	lbz      r5, 0x63(r5)
+	bl       setDopingEnable__Q32og6Screen12DopingScreenFbb
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -490,270 +652,273 @@ void newScreen::ObjCave::doCreate(JKRArchive*)
 void newScreen::ObjCave::commonUpdate(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stw       r31, 0x2C(r1)
-	  mr        r31, r3
-	  stw       r30, 0x28(r1)
-	  lwz       r3, 0x38(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x1B0
-	  lbz       r0, 0x5E(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x4C
-	  lwz       r3, 0x70(r31)
-	  li        r4, 0
-	  li        r0, 0x1
-	  stb       r4, 0xB0(r3)
-	  lwz       r3, 0x74(r31)
-	  stb       r0, 0xB0(r3)
-	  b         .loc_0x64
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stw      r31, 0x2c(r1)
+	mr       r31, r3
+	stw      r30, 0x28(r1)
+	lwz      r3, 0x38(r3)
+	cmplwi   r3, 0
+	beq      lbl_8031C818
+	lbz      r0, 0x5e(r3)
+	cmplwi   r0, 0
+	beq      lbl_8031C6B4
+	lwz      r3, 0x70(r31)
+	li       r4, 0
+	li       r0, 1
+	stb      r4, 0xb0(r3)
+	lwz      r3, 0x74(r31)
+	stb      r0, 0xb0(r3)
+	b        lbl_8031C6CC
 
-	.loc_0x4C:
-	  lwz       r3, 0x70(r31)
-	  li        r4, 0x1
-	  li        r0, 0
-	  stb       r4, 0xB0(r3)
-	  lwz       r3, 0x74(r31)
-	  stb       r0, 0xB0(r3)
+lbl_8031C6B4:
+	lwz      r3, 0x70(r31)
+	li       r4, 1
+	li       r0, 0
+	stb      r4, 0xb0(r3)
+	lwz      r3, 0x74(r31)
+	stb      r0, 0xb0(r3)
 
-	.loc_0x64:
-	  lwz       r4, 0x38(r31)
-	  lwz       r3, 0x44(r31)
-	  addi      r4, r4, 0x24
-	  bl        -0x18D0C
-	  lwz       r5, 0x38(r31)
-	  lbz       r0, 0x38(r5)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x98
-	  lwz       r3, 0x50(r31)
-	  addi      r4, r5, 0x8
-	  addi      r5, r5, 0x24
-	  bl        -0x18420
-	  b         .loc_0xA8
+lbl_8031C6CC:
+	lwz      r4, 0x38(r31)
+	lwz      r3, 0x44(r31)
+	addi     r4, r4, 0x24
+	bl       setParam__Q32og6Screen12DopingScreenFRQ32og6Screen8DataNavi
+	lwz      r5, 0x38(r31)
+	lbz      r0, 0x38(r5)
+	cmplwi   r0, 0
+	beq      lbl_8031C700
+	lwz      r3, 0x50(r31)
+	addi     r4, r5, 8
+	addi     r5, r5, 0x24
+	bl
+setParam__Q32og6Screen13PikminCounterFRQ32og6Screen8DataGameRQ32og6Screen8DataNavi
+	b        lbl_8031C710
 
-	.loc_0x98:
-	  lwz       r3, 0x50(r31)
-	  addi      r4, r5, 0x8
-	  addi      r5, r5, 0x3C
-	  bl        -0x18434
+lbl_8031C700:
+	lwz      r3, 0x50(r31)
+	addi     r4, r5, 8
+	addi     r5, r5, 0x3c
+	bl
+setParam__Q32og6Screen13PikminCounterFRQ32og6Screen8DataGameRQ32og6Screen8DataNavi
 
-	.loc_0xA8:
-	  lbz       r0, 0x64(r31)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x110
-	  lwz       r3, -0x6514(r13)
-	  lfs       f2, 0x6C(r31)
-	  lfs       f1, 0x54(r3)
-	  lfs       f0, -0x794(r2)
-	  fadds     f1, f2, f1
-	  stfs      f1, 0x6C(r31)
-	  lfs       f1, 0x6C(r31)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0xE0
-	  li        r0, 0
-	  stb       r0, 0x64(r31)
+lbl_8031C710:
+	lbz      r0, 0x64(r31)
+	cmplwi   r0, 0
+	beq      lbl_8031C778
+	lwz      r3, sys@sda21(r13)
+	lfs      f2, 0x6c(r31)
+	lfs      f1, 0x54(r3)
+	lfs      f0, lbl_8051DBCC@sda21(r2)
+	fadds    f1, f2, f1
+	stfs     f1, 0x6c(r31)
+	lfs      f1, 0x6c(r31)
+	fcmpo    cr0, f1, f0
+	ble      lbl_8031C748
+	li       r0, 0
+	stb      r0, 0x64(r31)
 
-	.loc_0xE0:
-	  lwz       r3, 0x38(r31)
-	  lwz       r0, 0x68(r31)
-	  lwz       r3, 0x20(r3)
-	  cmplw     r3, r0
-	  beq-      .loc_0x14C
-	  stw       r3, 0x68(r31)
-	  lwz       r3, 0x54(r31)
-	  lwz       r4, 0x68(r31)
-	  bl        0xFD54
-	  lfs       f0, -0x7A0(r2)
-	  stfs      f0, 0x6C(r31)
-	  b         .loc_0x14C
+lbl_8031C748:
+	lwz      r3, 0x38(r31)
+	lwz      r0, 0x68(r31)
+	lwz      r3, 0x20(r3)
+	cmplw    r3, r0
+	beq      lbl_8031C7B4
+	stw      r3, 0x68(r31)
+	lwz      r3, 0x54(r31)
+	lwz      r4, 0x68(r31)
+	bl       setTotalPoko__Q32og6Screen15TotalPokoScreenFUl
+	lfs      f0, lbl_8051DBC0@sda21(r2)
+	stfs     f0, 0x6c(r31)
+	b        lbl_8031C7B4
 
-	.loc_0x110:
-	  lwz       r3, 0x38(r31)
-	  lwz       r0, 0x68(r31)
-	  lwz       r3, 0x20(r3)
-	  cmplw     r3, r0
-	  beq-      .loc_0x14C
-	  li        r0, 0x1
-	  stb       r0, 0x64(r31)
-	  lwz       r3, 0x38(r31)
-	  lwz       r0, 0x20(r3)
-	  stw       r0, 0x68(r31)
-	  lwz       r3, 0x54(r31)
-	  lwz       r4, 0x68(r31)
-	  bl        0xFD14
-	  lfs       f0, -0x7A0(r2)
-	  stfs      f0, 0x6C(r31)
+lbl_8031C778:
+	lwz      r3, 0x38(r31)
+	lwz      r0, 0x68(r31)
+	lwz      r3, 0x20(r3)
+	cmplw    r3, r0
+	beq      lbl_8031C7B4
+	li       r0, 1
+	stb      r0, 0x64(r31)
+	lwz      r3, 0x38(r31)
+	lwz      r0, 0x20(r3)
+	stw      r0, 0x68(r31)
+	lwz      r3, 0x54(r31)
+	lwz      r4, 0x68(r31)
+	bl       setTotalPoko__Q32og6Screen15TotalPokoScreenFUl
+	lfs      f0, lbl_8051DBC0@sda21(r2)
+	stfs     f0, 0x6c(r31)
 
-	.loc_0x14C:
-	  lbz       r0, 0x64(r31)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x170
-	  lwz       r3, 0x50(r31)
-	  li        r0, 0x1
-	  stb       r0, 0x18C(r3)
-	  lwz       r3, 0x54(r31)
-	  bl        0xFC7C
-	  b         .loc_0x184
+lbl_8031C7B4:
+	lbz      r0, 0x64(r31)
+	cmplwi   r0, 0
+	beq      lbl_8031C7D8
+	lwz      r3, 0x50(r31)
+	li       r0, 1
+	stb      r0, 0x18c(r3)
+	lwz      r3, 0x54(r31)
+	bl       showTotalPoko__Q32og6Screen15TotalPokoScreenFv
+	b        lbl_8031C7EC
 
-	.loc_0x170:
-	  lwz       r3, 0x50(r31)
-	  li        r0, 0
-	  stb       r0, 0x18C(r3)
-	  lwz       r3, 0x54(r31)
-	  bl        0xFD44
+lbl_8031C7D8:
+	lwz      r3, 0x50(r31)
+	li       r0, 0
+	stb      r0, 0x18c(r3)
+	lwz      r3, 0x54(r31)
+	bl       closeTotalPoko__Q32og6Screen15TotalPokoScreenFv
 
-	.loc_0x184:
-	  lwz       r3, 0x38(r31)
-	  lbz       r0, 0x5D(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x1A4
-	  lwz       r3, 0x4C(r31)
-	  li        r4, 0x2
-	  bl        -0x15744
-	  b         .loc_0x1B0
+lbl_8031C7EC:
+	lwz      r3, 0x38(r31)
+	lbz      r0, 0x5d(r3)
+	cmplwi   r0, 0
+	beq      lbl_8031C80C
+	lwz      r3, 0x4c(r31)
+	li       r4, 2
+	bl
+setType__Q32og6Screen13NaviLifeGaugeFQ42og6Screen18CallBack_LifeGauge13LifeGaugeType
+	b        lbl_8031C818
 
-	.loc_0x1A4:
-	  lwz       r3, 0x4C(r31)
-	  li        r4, 0x1
-	  bl        -0x15754
+lbl_8031C80C:
+	lwz      r3, 0x4c(r31)
+	li       r4, 1
+	bl
+setType__Q32og6Screen13NaviLifeGaugeFQ42og6Screen18CallBack_LifeGauge13LifeGaugeType
 
-	.loc_0x1B0:
-	  bl        0x106A0C
-	  lhz       r30, 0x4(r3)
-	  bl        0x106A04
-	  lhz       r3, 0x6(r3)
-	  lis       r0, 0x4330
-	  stw       r30, 0xC(r1)
-	  li        r4, 0x7A
-	  lfd       f4, -0x780(r2)
-	  stw       r0, 0x8(r1)
-	  lfs       f2, -0x790(r2)
-	  lfd       f0, 0x8(r1)
-	  stw       r3, 0x14(r1)
-	  fsubs     f1, f0, f4
-	  lwz       r3, 0x40(r31)
-	  stw       r0, 0x10(r1)
-	  lfs       f3, -0x7A0(r2)
-	  lfd       f0, 0x10(r1)
-	  fmuls     f1, f1, f2
-	  fsubs     f0, f0, f4
-	  fmuls     f2, f0, f2
-	  bl        -0xD764
-	  lfs       f1, -0x79C(r2)
-	  lfs       f0, 0x60(r31)
-	  lfs       f3, -0x78C(r2)
-	  fadds     f2, f1, f0
-	  lfs       f1, -0x790(r2)
-	  lfs       f0, -0x7A0(r2)
-	  fmuls     f2, f3, f2
-	  fmuls     f2, f2, f1
-	  fcmpo     cr0, f2, f0
-	  bge-      .loc_0x230
-	  fneg      f2, f2
+lbl_8031C818:
+	bl       getRenderModeObj__6SystemFv
+	lhz      r30, 4(r3)
+	bl       getRenderModeObj__6SystemFv
+	lhz      r3, 6(r3)
+	lis      r0, 0x4330
+	stw      r30, 0xc(r1)
+	li       r4, 0x7a
+	lfd      f4, lbl_8051DBE0@sda21(r2)
+	stw      r0, 8(r1)
+	lfs      f2, lbl_8051DBD0@sda21(r2)
+	lfd      f0, 8(r1)
+	stw      r3, 0x14(r1)
+	fsubs    f1, f0, f4
+	lwz      r3, 0x40(r31)
+	stw      r0, 0x10(r1)
+	lfs      f3, lbl_8051DBC0@sda21(r2)
+	lfd      f0, 0x10(r1)
+	fmuls    f1, f1, f2
+	fsubs    f0, f0, f4
+	fmuls    f2, f0, f2
+	bl       rotate__Q32og6Screen8BloGroupFff13J2DRotateAxisf
+	lfs      f1, lbl_8051DBC4@sda21(r2)
+	lfs      f0, 0x60(r31)
+	lfs      f3, lbl_8051DBD4@sda21(r2)
+	fadds    f2, f1, f0
+	lfs      f1, lbl_8051DBD0@sda21(r2)
+	lfs      f0, lbl_8051DBC0@sda21(r2)
+	fmuls    f2, f3, f2
+	fmuls    f2, f2, f1
+	fcmpo    cr0, f2, f0
+	bge      lbl_8031C898
+	fneg     f2, f2
 
-	.loc_0x230:
-	  lfs       f0, -0x784(r2)
-	  lis       r3, 0x8050
-	  addi      r4, r3, 0x71A0
-	  lfs       f1, -0x79C(r2)
-	  fmuls     f0, f2, f0
-	  lfs       f2, -0x788(r2)
-	  lwz       r3, 0x40(r31)
-	  fctiwz    f0, f0
-	  stfd      f0, 0x18(r1)
-	  lwz       r0, 0x1C(r1)
-	  rlwinm    r0,r0,3,18,28
-	  add       r4, r4, r0
-	  lfs       f0, 0x4(r4)
-	  fneg      f0, f0
-	  fsubs     f0, f1, f0
-	  fmadds    f1, f2, f0, f1
-	  bl        -0xD818
-	  lwz       r3, 0x40(r31)
-	  bl        -0xD738
-	  lwz       r3, 0x38(r31)
-	  lbz       r0, 0x5C(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x2B4
-	  lbz       r0, 0x78(r31)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x2B4
-	  lbz       r0, 0x5F(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x2B4
-	  lwz       r3, 0x3C(r31)
-	  bl        0x1138C
-	  li        r0, 0
-	  stb       r0, 0x78(r31)
+lbl_8031C898:
+	lfs      f0, lbl_8051DBDC@sda21(r2)
+	lis      r3, sincosTable___5JMath@ha
+	addi     r4, r3, sincosTable___5JMath@l
+	lfs      f1, lbl_8051DBC4@sda21(r2)
+	fmuls    f0, f2, f0
+	lfs      f2, lbl_8051DBD8@sda21(r2)
+	lwz      r3, 0x40(r31)
+	fctiwz   f0, f0
+	stfd     f0, 0x18(r1)
+	lwz      r0, 0x1c(r1)
+	rlwinm   r0, r0, 3, 0x12, 0x1c
+	add      r4, r4, r0
+	lfs      f0, 4(r4)
+	fneg     f0, f0
+	fsubs    f0, f1, f0
+	fmadds   f1, f2, f0, f1
+	bl       scale__Q32og6Screen8BloGroupFf
+	lwz      r3, 0x40(r31)
+	bl       update__Q32og6Screen8BloGroupFv
+	lwz      r3, 0x38(r31)
+	lbz      r0, 0x5c(r3)
+	cmplwi   r0, 0
+	beq      lbl_8031C91C
+	lbz      r0, 0x78(r31)
+	cmplwi   r0, 0
+	beq      lbl_8031C91C
+	lbz      r0, 0x5f(r3)
+	cmplwi   r0, 0
+	beq      lbl_8031C91C
+	lwz      r3, 0x3c(r31)
+	bl       startSensorEff__Q32og6Screen13OtakaraSensorFv
+	li       r0, 0
+	stb      r0, 0x78(r31)
 
-	.loc_0x2B4:
-	  lwz       r6, 0x38(r31)
-	  lwz       r3, 0x3C(r31)
-	  lfs       f1, 0x54(r6)
-	  lwz       r4, 0x58(r6)
-	  lbz       r5, 0x60(r6)
-	  lbz       r6, 0x61(r6)
-	  bl        0x1119C
-	  lwz       r3, 0x3C(r31)
-	  bl        0x114DC
-	  lwz       r3, 0x38(r31)
-	  lbz       r0, 0x5C(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x358
-	  lwz       r3, 0x3C(r31)
-	  bl        0x11328
-	  lwz       r3, 0x3C(r31)
-	  bl        0x11434
-	  lis       r4, 0x8051
-	  lwz       r3, 0x3C(r31)
-	  addi      r4, r4, 0x3DDC
-	  lfs       f1, 0x18(r4)
-	  lfs       f2, 0x1C(r4)
-	  bl        0x1133C
-	  lis       r4, 0x8051
-	  lwz       r3, 0x3C(r31)
-	  addi      r4, r4, 0x3DDC
-	  lfs       f1, 0x20(r4)
-	  bl        0x11400
-	  lis       r3, 0x8051
-	  lwz       r4, 0x3C(r31)
-	  addi      r3, r3, 0x3DDC
-	  lfs       f1, 0x38(r3)
-	  lfs       f0, 0x34(r3)
-	  stfs      f0, 0x5C(r4)
-	  stfs      f1, 0x60(r4)
-	  lfs       f1, 0x40(r3)
-	  lwz       r4, 0x3C(r31)
-	  lfs       f0, 0x3C(r3)
-	  stfs      f0, 0x64(r4)
-	  stfs      f1, 0x68(r4)
-	  b         .loc_0x360
+lbl_8031C91C:
+	lwz      r6, 0x38(r31)
+	lwz      r3, 0x3c(r31)
+	lfs      f1, 0x54(r6)
+	lwz      r4, 0x58(r6)
+	lbz      r5, 0x60(r6)
+	lbz      r6, 0x61(r6)
+	bl       setParam__Q32og6Screen13OtakaraSensorFfibb
+	lwz      r3, 0x3c(r31)
+	bl       updateInit__Q32og6Screen13OtakaraSensorFv
+	lwz      r3, 0x38(r31)
+	lbz      r0, 0x5c(r3)
+	cmplwi   r0, 0
+	beq      lbl_8031C9C0
+	lwz      r3, 0x3c(r31)
+	bl       show__Q32og6Screen13OtakaraSensorFv
+	lwz      r3, 0x3c(r31)
+	bl       update__Q32og6Screen13OtakaraSensorFv
+	lis      r4, msVal__Q32og9newScreen7ObjCave@ha
+	lwz      r3, 0x3c(r31)
+	addi     r4, r4, msVal__Q32og9newScreen7ObjCave@l
+	lfs      f1, 0x18(r4)
+	lfs      f2, 0x1c(r4)
+	bl       adjPos__Q32og6Screen13OtakaraSensorFff
+	lis      r4, msVal__Q32og9newScreen7ObjCave@ha
+	lwz      r3, 0x3c(r31)
+	addi     r4, r4, msVal__Q32og9newScreen7ObjCave@l
+	lfs      f1, 0x20(r4)
+	bl       adjScale__Q32og6Screen13OtakaraSensorFf
+	lis      r3, msVal__Q32og9newScreen7ObjCave@ha
+	lwz      r4, 0x3c(r31)
+	addi     r3, r3, msVal__Q32og9newScreen7ObjCave@l
+	lfs      f1, 0x38(r3)
+	lfs      f0, 0x34(r3)
+	stfs     f0, 0x5c(r4)
+	stfs     f1, 0x60(r4)
+	lfs      f1, 0x40(r3)
+	lwz      r4, 0x3c(r31)
+	lfs      f0, 0x3c(r3)
+	stfs     f0, 0x64(r4)
+	stfs     f1, 0x68(r4)
+	b        lbl_8031C9C8
 
-	.loc_0x358:
-	  lwz       r3, 0x3C(r31)
-	  bl        0x112C8
+lbl_8031C9C0:
+	lwz      r3, 0x3c(r31)
+	bl       hide__Q32og6Screen13OtakaraSensorFv
 
-	.loc_0x360:
-	  lwz       r5, 0x38(r31)
-	  lwz       r3, 0x44(r31)
-	  lbz       r4, 0x62(r5)
-	  lbz       r5, 0x63(r5)
-	  bl        -0x18D44
-	  lis       r4, 0x8051
-	  lwz       r3, 0x44(r31)
-	  addi      r4, r4, 0x3DDC
-	  lfs       f1, 0x24(r4)
-	  lfs       f2, 0x28(r4)
-	  bl        -0x18D68
-	  lwz       r0, 0x34(r1)
-	  lwz       r31, 0x2C(r1)
-	  lwz       r30, 0x28(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_8031C9C8:
+	lwz      r5, 0x38(r31)
+	lwz      r3, 0x44(r31)
+	lbz      r4, 0x62(r5)
+	lbz      r5, 0x63(r5)
+	bl       setDopingEnable__Q32og6Screen12DopingScreenFbb
+	lis      r4, msVal__Q32og9newScreen7ObjCave@ha
+	lwz      r3, 0x44(r31)
+	addi     r4, r4, msVal__Q32og9newScreen7ObjCave@l
+	lfs      f1, 0x24(r4)
+	lfs      f2, 0x28(r4)
+	bl       adjPos__Q32og6Screen12DopingScreenFff
+	lwz      r0, 0x34(r1)
+	lwz      r31, 0x2c(r1)
+	lwz      r30, 0x28(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -765,16 +930,15 @@ void newScreen::ObjCave::commonUpdate(void)
 void newScreen::ObjCave::doUpdate(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  bl        -0x3B0
-	  lwz       r0, 0x14(r1)
-	  li        r3, 0
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	bl       commonUpdate__Q32og9newScreen7ObjCaveFv
+	lwz      r0, 0x14(r1)
+	li       r3, 0
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -786,36 +950,35 @@ void newScreen::ObjCave::doUpdate(void)
 void newScreen::ObjCave::doDraw(Graphics&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lwz       r3, 0x40(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x30
-	  addi      r4, r31, 0x190
-	  bl        -0xD844
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lwz      r3, 0x40(r3)
+	cmplwi   r3, 0
+	beq      lbl_8031CA60
+	addi     r4, r31, 0x190
+	bl       draw__Q32og6Screen8BloGroupFP13J2DPerspGraph
 
-	.loc_0x30:
-	  lwz       r3, 0x38(r30)
-	  lbz       r0, 0x5C(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x4C
-	  lwz       r3, 0x3C(r30)
-	  addi      r4, r31, 0x190
-	  bl        0x11FD4
+lbl_8031CA60:
+	lwz      r3, 0x38(r30)
+	lbz      r0, 0x5c(r3)
+	cmplwi   r0, 0
+	beq      lbl_8031CA7C
+	lwz      r3, 0x3c(r30)
+	addi     r4, r31, 0x190
+	bl       draw__Q32og6Screen13OtakaraSensorFR14J2DGrafContext
 
-	.loc_0x4C:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8031CA7C:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -827,12 +990,11 @@ void newScreen::ObjCave::doDraw(Graphics&)
 void newScreen::ObjCave::doStart(Screen::StartSceneArg const*)
 {
 	/*
-	.loc_0x0:
-	  lfs       f0, -0x7A0(r2)
-	  stfs      f0, 0x5C(r3)
-	  stfs      f0, 0x60(r3)
-	  li        r3, 0x1
-	  blr
+	lfs      f0, lbl_8051DBC0@sda21(r2)
+	stfs     f0, 0x5c(r3)
+	stfs     f0, 0x60(r3)
+	li       r3, 1
+	blr
 	*/
 }
 
@@ -844,11 +1006,10 @@ void newScreen::ObjCave::doStart(Screen::StartSceneArg const*)
 void newScreen::ObjCave::doEnd(Screen::EndSceneArg const*)
 {
 	/*
-	.loc_0x0:
-	  lfs       f0, -0x7A0(r2)
-	  stfs      f0, 0x5C(r3)
-	  li        r3, 0x1
-	  blr
+	lfs      f0, lbl_8051DBC0@sda21(r2)
+	stfs     f0, 0x5c(r3)
+	li       r3, 1
+	blr
 	*/
 }
 
@@ -860,38 +1021,37 @@ void newScreen::ObjCave::doEnd(Screen::EndSceneArg const*)
 void newScreen::ObjCave::doUpdateFadein(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r4, 0x8051
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  li        r31, 0
-	  lwz       r5, -0x6514(r13)
-	  lfs       f1, 0x5C(r3)
-	  lfs       f0, 0x54(r5)
-	  fadds     f0, f1, f0
-	  stfs      f0, 0x5C(r3)
-	  lfs       f0, 0x5C(r3)
-	  lfs       f1, 0x3DDC(r4)
-	  fcmpo     cr0, f0, f1
-	  ble-      .loc_0x44
-	  stfs      f1, 0x5C(r3)
-	  li        r31, 0x1
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lis      r4, msVal__Q32og9newScreen7ObjCave@ha
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	li       r31, 0
+	lwz      r5, sys@sda21(r13)
+	lfs      f1, 0x5c(r3)
+	lfs      f0, 0x54(r5)
+	fadds    f0, f1, f0
+	stfs     f0, 0x5c(r3)
+	lfs      f0, 0x5c(r3)
+	lfs      f1, msVal__Q32og9newScreen7ObjCave@l(r4)
+	fcmpo    cr0, f0, f1
+	ble      lbl_8031CAFC
+	stfs     f1, 0x5c(r3)
+	li       r31, 1
 
-	.loc_0x44:
-	  lis       r4, 0x8051
-	  lfs       f1, 0x5C(r3)
-	  lfs       f0, 0x3DDC(r4)
-	  fdivs     f0, f1, f0
-	  stfs      f0, 0x60(r3)
-	  bl        -0x4A8
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8031CAFC:
+	lis      r4, msVal__Q32og9newScreen7ObjCave@ha
+	lfs      f1, 0x5c(r3)
+	lfs      f0, msVal__Q32og9newScreen7ObjCave@l(r4)
+	fdivs    f0, f1, f0
+	stfs     f0, 0x60(r3)
+	bl       commonUpdate__Q32og9newScreen7ObjCaveFv
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -910,10 +1070,9 @@ void newScreen::ObjCave::doUpdateFadeinFinish(void) { }
 void newScreen::ObjCave::doUpdateFinish(void)
 {
 	/*
-	.loc_0x0:
-	  lfs       f0, -0x7A0(r2)
-	  stfs      f0, 0x5C(r3)
-	  blr
+	lfs      f0, lbl_8051DBC0@sda21(r2)
+	stfs     f0, 0x5c(r3)
+	blr
 	*/
 }
 
@@ -925,40 +1084,39 @@ void newScreen::ObjCave::doUpdateFinish(void)
 void newScreen::ObjCave::doUpdateFadeout(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r4, 0x8051
-	  stw       r0, 0x14(r1)
-	  addi      r4, r4, 0x3DDC
-	  stw       r31, 0xC(r1)
-	  li        r31, 0
-	  lwz       r5, -0x6514(r13)
-	  lfs       f1, 0x5C(r3)
-	  lfs       f0, 0x54(r5)
-	  fadds     f0, f1, f0
-	  stfs      f0, 0x5C(r3)
-	  lfs       f0, 0x5C(r3)
-	  lfs       f1, 0x4(r4)
-	  fcmpo     cr0, f0, f1
-	  ble-      .loc_0x48
-	  stfs      f1, 0x5C(r3)
-	  li        r31, 0x1
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lis      r4, msVal__Q32og9newScreen7ObjCave@ha
+	stw      r0, 0x14(r1)
+	addi     r4, r4, msVal__Q32og9newScreen7ObjCave@l
+	stw      r31, 0xc(r1)
+	li       r31, 0
+	lwz      r5, sys@sda21(r13)
+	lfs      f1, 0x5c(r3)
+	lfs      f0, 0x54(r5)
+	fadds    f0, f1, f0
+	stfs     f0, 0x5c(r3)
+	lfs      f0, 0x5c(r3)
+	lfs      f1, 4(r4)
+	fcmpo    cr0, f0, f1
+	ble      lbl_8031CB84
+	stfs     f1, 0x5c(r3)
+	li       r31, 1
 
-	.loc_0x48:
-	  lfs       f1, 0x5C(r3)
-	  lfs       f0, 0x4(r4)
-	  lfs       f2, -0x79C(r2)
-	  fdivs     f0, f1, f0
-	  fsubs     f0, f2, f0
-	  stfs      f0, 0x60(r3)
-	  bl        -0x534
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8031CB84:
+	lfs      f1, 0x5c(r3)
+	lfs      f0, 4(r4)
+	lfs      f2, lbl_8051DBC4@sda21(r2)
+	fdivs    f0, f1, f0
+	fsubs    f0, f2, f0
+	stfs     f0, 0x60(r3)
+	bl       commonUpdate__Q32og9newScreen7ObjCaveFv
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -979,58 +1137,57 @@ void newScreen::ObjCave::doUpdateFadeoutFinish(void) { }
 void __sinit_ogObjCave_cpp(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  stfd      f31, 0x10(r1)
-	  psq_st    f31,0x18(r1),0,0
-	  lis       r3, 0x8051
-	  li        r0, -0x1
-	  addi      r5, r3, 0x48B0
-	  lfs       f13, -0x778(r2)
-	  lfs       f31, 0x0(r5)
-	  lis       r4, 0x804E
-	  lis       r3, 0x8051
-	  lfs       f10, -0x7A0(r2)
-	  stfsu     f13, 0x3DDC(r3)
-	  lfs       f9, -0x79C(r2)
-	  stfsu     f31, -0x7138(r4)
-	  lfs       f12, -0x774(r2)
-	  lfs       f11, -0x770(r2)
-	  lfs       f8, -0x794(r2)
-	  lfs       f7, -0x76C(r2)
-	  lfs       f6, -0x768(r2)
-	  lfs       f5, -0x764(r2)
-	  lfs       f4, -0x760(r2)
-	  lfs       f3, -0x75C(r2)
-	  lfs       f2, -0x758(r2)
-	  lfs       f1, -0x754(r2)
-	  lfs       f0, -0x788(r2)
-	  stw       r0, -0x6808(r13)
-	  stfs      f31, -0x6804(r13)
-	  stfs      f31, 0x4(r4)
-	  stfs      f31, 0x8(r4)
-	  stfs      f12, 0x4(r3)
-	  stfs      f11, 0x8(r3)
-	  stfs      f10, 0xC(r3)
-	  stfs      f9, 0x10(r3)
-	  stfs      f9, 0x14(r3)
-	  stfs      f10, 0x18(r3)
-	  stfs      f8, 0x1C(r3)
-	  stfs      f7, 0x20(r3)
-	  stfs      f10, 0x24(r3)
-	  stfs      f6, 0x28(r3)
-	  stfs      f5, 0x2C(r3)
-	  stfs      f4, 0x30(r3)
-	  stfs      f10, 0x34(r3)
-	  stfs      f3, 0x38(r3)
-	  stfs      f10, 0x3C(r3)
-	  stfs      f2, 0x40(r3)
-	  stfs      f1, 0x44(r3)
-	  stfs      f0, 0x48(r3)
-	  psq_l     f31,0x18(r1),0,0
-	  lfd       f31, 0x10(r1)
-	  addi      r1, r1, 0x20
-	  blr
+	stwu     r1, -0x20(r1)
+	stfd     f31, 0x10(r1)
+	psq_st   f31, 24(r1), 0, qr0
+	lis      r3, __float_nan@ha
+	li       r0, -1
+	addi     r5, r3, __float_nan@l
+	lfs      f13, lbl_8051DBE8@sda21(r2)
+	lfs      f31, 0(r5)
+	lis      r4, lbl_804D8EC8@ha
+	lis      r3, msVal__Q32og9newScreen7ObjCave@ha
+	lfs      f10, lbl_8051DBC0@sda21(r2)
+	stfsu    f13, msVal__Q32og9newScreen7ObjCave@l(r3)
+	lfs      f9, lbl_8051DBC4@sda21(r2)
+	stfsu    f31, lbl_804D8EC8@l(r4)
+	lfs      f12, lbl_8051DBEC@sda21(r2)
+	lfs      f11, lbl_8051DBF0@sda21(r2)
+	lfs      f8, lbl_8051DBCC@sda21(r2)
+	lfs      f7, lbl_8051DBF4@sda21(r2)
+	lfs      f6, lbl_8051DBF8@sda21(r2)
+	lfs      f5, lbl_8051DBFC@sda21(r2)
+	lfs      f4, lbl_8051DC00@sda21(r2)
+	lfs      f3, lbl_8051DC04@sda21(r2)
+	lfs      f2, lbl_8051DC08@sda21(r2)
+	lfs      f1, lbl_8051DC0C@sda21(r2)
+	lfs      f0, lbl_8051DBD8@sda21(r2)
+	stw      r0, lbl_80515E78@sda21(r13)
+	stfs     f31, lbl_80515E7C@sda21(r13)
+	stfs     f31, 4(r4)
+	stfs     f31, 8(r4)
+	stfs     f12, 4(r3)
+	stfs     f11, 8(r3)
+	stfs     f10, 0xc(r3)
+	stfs     f9, 0x10(r3)
+	stfs     f9, 0x14(r3)
+	stfs     f10, 0x18(r3)
+	stfs     f8, 0x1c(r3)
+	stfs     f7, 0x20(r3)
+	stfs     f10, 0x24(r3)
+	stfs     f6, 0x28(r3)
+	stfs     f5, 0x2c(r3)
+	stfs     f4, 0x30(r3)
+	stfs     f10, 0x34(r3)
+	stfs     f3, 0x38(r3)
+	stfs     f10, 0x3c(r3)
+	stfs     f2, 0x40(r3)
+	stfs     f1, 0x44(r3)
+	stfs     f0, 0x48(r3)
+	psq_l    f31, 24(r1), 0, qr0
+	lfd      f31, 0x10(r1)
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -1042,8 +1199,7 @@ void __sinit_ogObjCave_cpp(void)
 @24 @og::newScreen::ObjCave::~ObjCave(void)
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x18
-	  b         -0xBE8
+	addi     r3, r3, -24
+	b        __dt__Q32og9newScreen7ObjCaveFv
 	*/
 }

@@ -1,5 +1,60 @@
 #include "types.h"
 
+/*
+    Generated from dpostproc
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_8048F4D0
+    lbl_8048F4D0:
+        .4byte 0x6368616C
+        .4byte 0x6C656E67
+        .4byte 0x65315020
+        .4byte 0x73637265
+        .4byte 0x656E0000
+    .global lbl_8048F4E4
+    lbl_8048F4E4:
+        .4byte 0x6368616C
+        .4byte 0x6C656E67
+        .4byte 0x65456E64
+        .4byte 0x436F756E
+        .4byte 0x74000000
+    .global lbl_8048F4F8
+    lbl_8048F4F8:
+        .4byte 0x7265735F
+        .4byte 0x6368616C
+        .4byte 0x6C656E67
+        .4byte 0x655F3170
+        .4byte 0x2E737A73
+        .4byte 0x00000000
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__Q32og9newScreen11Challenge1P
+    __vt__Q32og9newScreen11Challenge1P:
+        .4byte 0
+        .4byte 0
+        .4byte getSceneType__Q32og9newScreen11Challenge1PFv
+        .4byte getOwnerID__Q32og9newScreen11Challenge1PFv
+        .4byte getMemberID__Q32og9newScreen11Challenge1PFv
+        .4byte isUseBackupSceneInfo__Q26Screen9SceneBaseFv
+        .4byte isDrawInDemo__Q32og9newScreen11Challenge1PCFv
+        .4byte getResName__Q32og9newScreen11Challenge1PCFv
+        .4byte doCreateObj__Q32og9newScreen11Challenge1PFP10JKRArchive
+        .4byte
+   doUserCallBackFunc__Q32og9newScreen11Challenge1PFPQ28Resource10MgrCommand
+        .4byte setPort__Q26Screen9SceneBaseFR8Graphics
+        .4byte doUpdateActive__Q32og9newScreen11Challenge1PFv
+        .4byte doConfirmSetScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg
+        .4byte
+   doConfirmStartScene__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg .4byte
+   doConfirmEndScene__Q26Screen9SceneBaseFRPQ26Screen11EndSceneArg .4byte
+   doStart__Q32og9newScreen11Challenge1PFPQ26Screen13StartSceneArg .4byte
+   doEnd__Q26Screen9SceneBaseFPQ26Screen11EndSceneArg .4byte
+   setDefaultDispMember__Q26Screen9SceneBaseFv .4byte
+   doSetBackupScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg .4byte
+   doGetFinishState__Q26Screen9SceneBaseFv .4byte
+   startCountDown__Q32og9newScreen11Challenge1PFv .4byte 0
+*/
+
 namespace og {
 
 /*
@@ -10,22 +65,21 @@ namespace og {
 newScreen::Challenge1P::Challenge1P(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        0x40EC
-	  lis       r4, 0x804E
-	  mr        r3, r31
-	  subi      r0, r4, 0x6470
-	  stw       r0, 0x0(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       __ct__Q32og9newScreen13ChallengeBaseFv
+	lis      r4, __vt__Q32og9newScreen11Challenge1P@ha
+	mr       r3, r31
+	addi     r0, r4, __vt__Q32og9newScreen11Challenge1P@l
+	stw      r0, 0(r31)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -54,50 +108,49 @@ void newScreen::Challenge1P::doUserCallBackFunc(Resource::MgrCommand*) { }
 void newScreen::Challenge1P::doCreateObj(JKRArchive*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  li        r3, 0x7C
-	  bl        -0x304DEC
-	  mr.       r4, r3
-	  beq-      .loc_0x3C
-	  lis       r4, 0x8049
-	  subi      r4, r4, 0xB30
-	  bl        -0xF5C
-	  mr        r4, r3
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	li       r3, 0x7c
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_80328CAC
+	lis      r4, lbl_8048F4D0@ha
+	addi     r4, r4, lbl_8048F4D0@l
+	bl       __ct__Q32og9newScreen14ObjChallenge1PFPCc
+	mr       r4, r3
 
-	.loc_0x3C:
-	  mr        r3, r30
-	  mr        r5, r31
-	  bl        0x1290C0
-	  li        r3, 0xD4
-	  bl        -0x304E18
-	  mr.       r4, r3
-	  beq-      .loc_0x60
-	  bl        0x1C74C
-	  mr        r4, r3
+lbl_80328CAC:
+	mr       r3, r30
+	mr       r5, r31
+	bl       registObj__Q26Screen9SceneBaseFPQ26Screen7ObjBaseP10JKRArchive
+	li       r3, 0xd4
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_80328CD0
+	bl       __ct__Q28Morimura18TChallengeEndCountFv
+	mr       r4, r3
 
-	.loc_0x60:
-	  mr        r3, r30
-	  mr        r5, r31
-	  bl        0x12909C
-	  mr        r3, r30
-	  li        r4, 0
-	  li        r5, 0
-	  li        r6, 0
-	  li        r7, 0
-	  bl        0x129594
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80328CD0:
+	mr       r3, r30
+	mr       r5, r31
+	bl       registObj__Q26Screen9SceneBaseFPQ26Screen7ObjBaseP10JKRArchive
+	mr       r3, r30
+	li       r4, 0
+	li       r5, 0
+	li       r6, 0
+	li       r7, 0
+	bl       setColorBG__Q26Screen9SceneBaseFUcUcUcUc
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -109,26 +162,25 @@ void newScreen::Challenge1P::doCreateObj(JKRArchive*)
 void newScreen::Challenge1P::doStart(Screen::StartSceneArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r5, 0x8049
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  subi      r4, r5, 0xB30
-	  bl        0x128B9C
-	  lwz       r12, 0x0(r3)
-	  mr        r4, r31
-	  lwz       r12, 0x24(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  li        r3, 0x1
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lis      r5, lbl_8048F4D0@ha
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	addi     r4, r5, lbl_8048F4D0@l
+	bl       searchObj__Q26Screen9SceneBaseFPc
+	lwz      r12, 0(r3)
+	mr       r4, r31
+	lwz      r12, 0x24(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	li       r3, 1
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -140,23 +192,23 @@ void newScreen::Challenge1P::doStart(Screen::StartSceneArg*)
 void newScreen::Challenge1P::doUpdateActive(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r0, -0x6C18(r13)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x28
-	  lwz       r4, 0x21C(r3)
-	  lfs       f1, 0x5C(r4)
-	  addi      r4, r4, 0x68
-	  bl        0x3FF8
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r0, gameSystem__4Game@sda21(r13)
+	cmplwi   r0, 0
+	beq      lbl_80328D80
+	lwz      r4, 0x21c(r3)
+	lfs      f1, 0x5c(r4)
+	addi     r4, r4, 0x68
+	bl
+updateCountDown__Q32og9newScreen13ChallengeBaseFfPQ32og6Screen21DispMemberDayEndCount
 
-	.loc_0x28:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80328D80:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -168,22 +220,21 @@ void newScreen::Challenge1P::doUpdateActive(void)
 void newScreen::Challenge1P::startCountDown(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r4, 0x8049
-	  stw       r0, 0x14(r1)
-	  subi      r4, r4, 0xB1C
-	  bl        0x128B20
-	  lwz       r12, 0x0(r3)
-	  li        r4, 0
-	  lwz       r12, 0x24(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lis      r4, lbl_8048F4E4@ha
+	stw      r0, 0x14(r1)
+	addi     r4, r4, lbl_8048F4E4@l
+	bl       searchObj__Q26Screen9SceneBaseFPc
+	lwz      r12, 0(r3)
+	li       r4, 0
+	lwz      r12, 0x24(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -195,10 +246,9 @@ void newScreen::Challenge1P::startCountDown(void)
 void newScreen::Challenge1P::getResName() const
 {
 	/*
-	.loc_0x0:
-	  lis       r3, 0x8049
-	  subi      r3, r3, 0xB08
-	  blr
+	lis      r3, lbl_8048F4F8@ha
+	addi     r3, r3, lbl_8048F4F8@l
+	blr
 	*/
 }
 
@@ -217,10 +267,9 @@ u32 newScreen::Challenge1P::getSceneType(void) { return 0x2727; }
 void newScreen::Challenge1P::getOwnerID(void)
 {
 	/*
-	.loc_0x0:
-	  lis       r3, 0x4F
-	  addi      r3, r3, 0x4741
-	  blr
+	lis      r3, 0x004F4741@ha
+	addi     r3, r3, 0x004F4741@l
+	blr
 	*/
 }
 
@@ -232,11 +281,10 @@ void newScreen::Challenge1P::getOwnerID(void)
 void newScreen::Challenge1P::getMemberID(void)
 {
 	/*
-	.loc_0x0:
-	  lis       r4, 0x414C
-	  li        r3, 0x4348
-	  addi      r4, r4, 0x3150
-	  blr
+	lis      r4, 0x414C3150@ha
+	li       r3, 0x4348
+	addi     r4, r4, 0x414C3150@l
+	blr
 	*/
 }
 

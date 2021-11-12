@@ -1,6 +1,111 @@
 #include "types.h"
 
 /*
+    Generated from dpostproc
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global j2dDefaultTexCoordInfo
+    j2dDefaultTexCoordInfo:
+        .4byte 0x01043C00
+        .4byte 0x01053C00
+        .4byte 0x01063C00
+        .4byte 0x01073C00
+        .4byte 0x01083C00
+        .4byte 0x01093C00
+        .4byte 0x010A3C00
+        .4byte 0x010B3C00
+    .global j2dDefaultTexMtxInfo
+    j2dDefaultTexMtxInfo:
+        .4byte 0x0101FFFF
+        .float 0.5
+        .float 0.5
+        .4byte 0x00000000
+        .float 1.0
+        .float 1.0
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+    .global j2dDefaultIndTexMtxInfo
+    j2dDefaultIndTexMtxInfo:
+        .float 0.5
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .float 0.5
+        .4byte 0x00000000
+        .4byte 0x01000000
+    .global j2dDefaultTevStageInfo
+    j2dDefaultTevStageInfo:
+        .4byte 0x040A0F0F
+        .4byte 0x00000000
+        .4byte 0x01000507
+        .4byte 0x07000000
+        .4byte 0x00010000
+    .global j2dDefaultIndTevStageInfo
+    j2dDefaultIndTevStageInfo:
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_805168F8
+    lbl_805168F8:
+        .4byte 0x40490FDB
+    .global lbl_805168FC
+    lbl_805168FC:
+        .4byte 0x43340000
+    .global lbl_80516900
+    lbl_80516900:
+        .4byte 0x00000000
+    .global lbl_80516904
+    lbl_80516904:
+        .float 1.0
+    .global lbl_80516908
+    lbl_80516908:
+        .float 0.5
+    .global j2dDefaultColInfo
+    j2dDefaultColInfo:
+        .4byte 0xFFFFFFFF
+    .global j2dDefaultTevOrderInfoNull
+    j2dDefaultTevOrderInfoNull:
+        .4byte 0xFFFFFF00
+    .global j2dDefaultIndTexOrderNull
+    j2dDefaultIndTexOrderNull:
+        .4byte 0xFFFF0000
+    .global j2dDefaultTevColor
+    j2dDefaultTevColor:
+        .4byte 0x00FF00FF
+        .4byte 0x00FF00FF
+    .global j2dDefaultIndTexCoordScaleInfo
+    j2dDefaultIndTexCoordScaleInfo:
+        .4byte 0x00000000
+    .global j2dDefaultTevKColor
+    j2dDefaultTevKColor:
+        .4byte 0xFFFFFFFF
+    .global j2dDefaultTevSwapMode
+    j2dDefaultTevSwapMode:
+        .4byte 0x00000000
+    .global j2dDefaultTevSwapModeTable
+    j2dDefaultTevSwapModeTable:
+        .4byte 0x00010203
+    .global j2dDefaultBlendInfo
+    j2dDefaultBlendInfo:
+        .4byte 0x01040505
+    .global j2dDefaultDither
+    j2dDefaultDither:
+        .4byte 0x00000000
+    .global j2dDefaultColorChanInfo
+    j2dDefaultColorChanInfo:
+        .4byte 0x00030000
+    .global j2dDefaultTevSwapTable
+    j2dDefaultTevSwapTable:
+        .2byte 0x1B00
+    .global j2dDefaultAlphaCmp
+    j2dDefaultAlphaCmp:
+        .2byte 0x00E7
+*/
+
+/*
  * --INFO--
  * Address:	8005921C
  * Size:	000030
@@ -8,19 +113,18 @@
 void J2DTexMtx::load(unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mulli     r4, r4, 0x3
-	  stw       r0, 0x14(r1)
-	  lbz       r5, 0x0(r3)
-	  addi      r3, r3, 0x24
-	  addi      r4, r4, 0x1E
-	  bl        0x90414
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mulli    r4, r4, 3
+	stw      r0, 0x14(r1)
+	lbz      r5, 0(r3)
+	addi     r3, r3, 0x24
+	addi     r4, r4, 0x1e
+	bl       GXLoadTexMtxImm
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -32,39 +136,36 @@ void J2DTexMtx::load(unsigned long)
 void J2DTexMtx::calc()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  lbz       r0, 0x1(r3)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x44
-	  lwz       r7, 0x4(r3)
-	  addi      r4, r3, 0x10
-	  lwz       r0, 0x8(r3)
-	  addi      r5, r1, 0x8
-	  addi      r6, r3, 0x24
-	  stw       r7, 0x8(r1)
-	  stw       r0, 0xC(r1)
-	  lwz       r0, 0xC(r3)
-	  stw       r0, 0x10(r1)
-	  bl        .loc_0x68
-	  b         .loc_0x58
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	lbz      r0, 1(r3)
+	cmplwi   r0, 0
+	bne      lbl_80059290
+	lwz      r7, 4(r3)
+	addi     r4, r3, 0x10
+	lwz      r0, 8(r3)
+	addi     r5, r1, 8
+	addi     r6, r3, 0x24
+	stw      r7, 8(r1)
+	stw      r0, 0xc(r1)
+	lwz      r0, 0xc(r3)
+	stw      r0, 0x10(r1)
+	bl       getTextureMtx__9J2DTexMtxFRC17J2DTextureSRTInfo3VecPA4_f
+	b        lbl_800592A4
 
-	.loc_0x44:
-	  cmplwi    r0, 0x1
-	  bne-      .loc_0x58
-	  addi      r4, r3, 0x10
-	  addi      r5, r3, 0x24
-	  bl        0x1A4
+lbl_80059290:
+	cmplwi   r0, 1
+	bne      lbl_800592A4
+	addi     r4, r3, 0x10
+	addi     r5, r3, 0x24
+	bl       getTextureMtxMaya__9J2DTexMtxFRC17J2DTextureSRTInfoPA4_f
 
-	.loc_0x58:
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-
-	.loc_0x68:
+lbl_800592A4:
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -76,107 +177,106 @@ void J2DTexMtx::calc()
 void J2DTexMtx::getTextureMtx(const J2DTextureSRTInfo&, Vec, float (*)[4])
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  stw       r0, 0x44(r1)
-	  stfd      f31, 0x30(r1)
-	  psq_st    f31,0x38(r1),0,0
-	  stfd      f30, 0x20(r1)
-	  psq_st    f30,0x28(r1),0,0
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r29, r4
-	  lfs       f2, -0x7A68(r2)
-	  lfs       f1, 0x8(r4)
-	  mr        r30, r5
-	  lfs       f0, -0x7A64(r2)
-	  mr        r31, r6
-	  fmuls     f1, f2, f1
-	  fdivs     f31, f1, f0
-	  fmr       f1, f31
-	  bl        0x75FB4
-	  frsp      f2, f1
-	  lfs       f0, 0x0(r29)
-	  fmr       f1, f31
-	  fmuls     f0, f0, f2
-	  stfs      f0, 0x0(r31)
-	  bl        0x76504
-	  lfs       f2, 0x0(r29)
-	  frsp      f3, f1
-	  lfs       f0, -0x7A60(r2)
-	  fmr       f1, f31
-	  fneg      f2, f2
-	  fmuls     f2, f2, f3
-	  stfs      f2, 0x4(r31)
-	  stfs      f0, 0x8(r31)
-	  bl        0x764E0
-	  frsp      f30, f1
-	  fmr       f1, f31
-	  bl        0x75F6C
-	  lfs       f0, 0x0(r29)
-	  frsp      f5, f1
-	  lfs       f2, 0x4(r30)
-	  fmr       f1, f31
-	  fneg      f3, f0
-	  lfs       f6, 0x0(r30)
-	  fmuls     f0, f0, f30
-	  lfs       f4, 0xC(r29)
-	  fmuls     f3, f3, f5
-	  fmuls     f0, f2, f0
-	  fmadds    f0, f6, f3, f0
-	  fadds     f0, f6, f0
-	  fadds     f0, f4, f0
-	  stfs      f0, 0xC(r31)
-	  bl        0x76498
-	  frsp      f2, f1
-	  lfs       f0, 0x4(r29)
-	  fmr       f1, f31
-	  fmuls     f0, f0, f2
-	  stfs      f0, 0x10(r31)
-	  bl        0x75F18
-	  frsp      f3, f1
-	  lfs       f2, 0x4(r29)
-	  lfs       f0, -0x7A60(r2)
-	  fmr       f1, f31
-	  fmuls     f2, f2, f3
-	  stfs      f2, 0x14(r31)
-	  stfs      f0, 0x18(r31)
-	  bl        0x75EF8
-	  frsp      f30, f1
-	  fmr       f1, f31
-	  bl        0x76454
-	  lfs       f0, 0x4(r29)
-	  frsp      f3, f1
-	  lfs       f6, 0x4(r30)
-	  fneg      f2, f0
-	  lfs       f4, 0x0(r30)
-	  fmuls     f0, f0, f30
-	  lfs       f5, 0x10(r29)
-	  lfs       f1, -0x7A60(r2)
-	  fmuls     f3, f2, f3
-	  fmuls     f2, f6, f0
-	  lfs       f0, -0x7A5C(r2)
-	  fmsubs    f2, f4, f3, f2
-	  fadds     f2, f6, f2
-	  fadds     f2, f5, f2
-	  stfs      f2, 0x1C(r31)
-	  stfs      f1, 0x20(r31)
-	  stfs      f1, 0x24(r31)
-	  stfs      f0, 0x28(r31)
-	  stfs      f1, 0x2C(r31)
-	  psq_l     f31,0x38(r1),0,0
-	  lfd       f31, 0x30(r1)
-	  psq_l     f30,0x28(r1),0,0
-	  lfd       f30, 0x20(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r0, 0x44(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
+	stwu     r1, -0x40(r1)
+	mflr     r0
+	stw      r0, 0x44(r1)
+	stfd     f31, 0x30(r1)
+	psq_st   f31, 56(r1), 0, qr0
+	stfd     f30, 0x20(r1)
+	psq_st   f30, 40(r1), 0, qr0
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	mr       r29, r4
+	lfs      f2, lbl_805168F8@sda21(r2)
+	lfs      f1, 8(r4)
+	mr       r30, r5
+	lfs      f0, lbl_805168FC@sda21(r2)
+	mr       r31, r6
+	fmuls    f1, f2, f1
+	fdivs    f31, f1, f0
+	fmr      f1, f31
+	bl       cos
+	frsp     f2, f1
+	lfs      f0, 0(r29)
+	fmr      f1, f31
+	fmuls    f0, f0, f2
+	stfs     f0, 0(r31)
+	bl       sin
+	lfs      f2, 0(r29)
+	frsp     f3, f1
+	lfs      f0, lbl_80516900@sda21(r2)
+	fmr      f1, f31
+	fneg     f2, f2
+	fmuls    f2, f2, f3
+	stfs     f2, 4(r31)
+	stfs     f0, 8(r31)
+	bl       sin
+	frsp     f30, f1
+	fmr      f1, f31
+	bl       cos
+	lfs      f0, 0(r29)
+	frsp     f5, f1
+	lfs      f2, 4(r30)
+	fmr      f1, f31
+	fneg     f3, f0
+	lfs      f6, 0(r30)
+	fmuls    f0, f0, f30
+	lfs      f4, 0xc(r29)
+	fmuls    f3, f3, f5
+	fmuls    f0, f2, f0
+	fmadds   f0, f6, f3, f0
+	fadds    f0, f6, f0
+	fadds    f0, f4, f0
+	stfs     f0, 0xc(r31)
+	bl       sin
+	frsp     f2, f1
+	lfs      f0, 4(r29)
+	fmr      f1, f31
+	fmuls    f0, f0, f2
+	stfs     f0, 0x10(r31)
+	bl       cos
+	frsp     f3, f1
+	lfs      f2, 4(r29)
+	lfs      f0, lbl_80516900@sda21(r2)
+	fmr      f1, f31
+	fmuls    f2, f2, f3
+	stfs     f2, 0x14(r31)
+	stfs     f0, 0x18(r31)
+	bl       cos
+	frsp     f30, f1
+	fmr      f1, f31
+	bl       sin
+	lfs      f0, 4(r29)
+	frsp     f3, f1
+	lfs      f6, 4(r30)
+	fneg     f2, f0
+	lfs      f4, 0(r30)
+	fmuls    f0, f0, f30
+	lfs      f5, 0x10(r29)
+	lfs      f1, lbl_80516900@sda21(r2)
+	fmuls    f3, f2, f3
+	fmuls    f2, f6, f0
+	lfs      f0, lbl_80516904@sda21(r2)
+	fmsubs   f2, f4, f3, f2
+	fadds    f2, f6, f2
+	fadds    f2, f5, f2
+	stfs     f2, 0x1c(r31)
+	stfs     f1, 0x20(r31)
+	stfs     f1, 0x24(r31)
+	stfs     f0, 0x28(r31)
+	stfs     f1, 0x2c(r31)
+	psq_l    f31, 56(r1), 0, qr0
+	lfd      f31, 0x30(r1)
+	psq_l    f30, 40(r1), 0, qr0
+	lfd      f30, 0x20(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r0, 0x44(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x40
+	blr
 	*/
 }
 
@@ -188,103 +288,102 @@ void J2DTexMtx::getTextureMtx(const J2DTextureSRTInfo&, Vec, float (*)[4])
 void J2DTexMtx::getTextureMtxMaya(const J2DTextureSRTInfo&, float (*)[4])
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stfd      f31, 0x20(r1)
-	  psq_st    f31,0x28(r1),0,0
-	  stfd      f30, 0x10(r1)
-	  psq_st    f30,0x18(r1),0,0
-	  stw       r31, 0xC(r1)
-	  stw       r30, 0x8(r1)
-	  mr        r30, r4
-	  lfs       f2, -0x7A68(r2)
-	  lfs       f1, 0x8(r4)
-	  mr        r31, r5
-	  lfs       f0, -0x7A64(r2)
-	  fmuls     f1, f2, f1
-	  fdivs     f31, f1, f0
-	  fmr       f1, f31
-	  bl        0x75E2C
-	  frsp      f2, f1
-	  lfs       f0, 0x0(r30)
-	  fmr       f1, f31
-	  fmuls     f0, f0, f2
-	  stfs      f0, 0x0(r31)
-	  bl        0x7637C
-	  frsp      f3, f1
-	  lfs       f2, 0x4(r30)
-	  lfs       f0, -0x7A60(r2)
-	  fmr       f1, f31
-	  fmuls     f2, f2, f3
-	  stfs      f2, 0x4(r31)
-	  stfs      f0, 0x8(r31)
-	  bl        0x7635C
-	  frsp      f30, f1
-	  fmr       f1, f31
-	  bl        0x75DE8
-	  lfs       f4, -0x7A58(r2)
-	  frsp      f5, f1
-	  lfs       f0, 0x10(r30)
-	  fmr       f1, f31
-	  lfs       f3, 0xC(r30)
-	  fsubs     f2, f0, f4
-	  lfs       f0, 0x4(r30)
-	  fsubs     f3, f3, f4
-	  fadds     f0, f2, f0
-	  fmuls     f0, f0, f30
-	  fmsubs    f0, f3, f5, f0
-	  fadds     f0, f4, f0
-	  stfs      f0, 0xC(r31)
-	  bl        0x76318
-	  lfs       f0, 0x0(r30)
-	  frsp      f2, f1
-	  fmr       f1, f31
-	  fneg      f0, f0
-	  fmuls     f0, f0, f2
-	  stfs      f0, 0x10(r31)
-	  bl        0x75D94
-	  frsp      f3, f1
-	  lfs       f2, 0x4(r30)
-	  lfs       f0, -0x7A60(r2)
-	  fmr       f1, f31
-	  fmuls     f2, f2, f3
-	  stfs      f2, 0x14(r31)
-	  stfs      f0, 0x18(r31)
-	  bl        0x75D74
-	  frsp      f30, f1
-	  fmr       f1, f31
-	  bl        0x762D0
-	  lfs       f5, -0x7A58(r2)
-	  frsp      f6, f1
-	  lfs       f0, 0x10(r30)
-	  lfs       f1, 0xC(r30)
-	  fsubs     f3, f0, f5
-	  lfs       f2, 0x4(r30)
-	  fsubs     f4, f1, f5
-	  lfs       f1, -0x7A60(r2)
-	  lfs       f0, -0x7A5C(r2)
-	  fadds     f2, f3, f2
-	  fneg      f3, f4
-	  fmuls     f2, f2, f30
-	  fmsubs    f2, f3, f6, f2
-	  fadds     f2, f5, f2
-	  stfs      f2, 0x1C(r31)
-	  stfs      f1, 0x20(r31)
-	  stfs      f1, 0x24(r31)
-	  stfs      f0, 0x28(r31)
-	  stfs      f1, 0x2C(r31)
-	  psq_l     f31,0x28(r1),0,0
-	  lfd       f31, 0x20(r1)
-	  psq_l     f30,0x18(r1),0,0
-	  lfd       f30, 0x10(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x34(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stfd     f31, 0x20(r1)
+	psq_st   f31, 40(r1), 0, qr0
+	stfd     f30, 0x10(r1)
+	psq_st   f30, 24(r1), 0, qr0
+	stw      r31, 0xc(r1)
+	stw      r30, 8(r1)
+	mr       r30, r4
+	lfs      f2, lbl_805168F8@sda21(r2)
+	lfs      f1, 8(r4)
+	mr       r31, r5
+	lfs      f0, lbl_805168FC@sda21(r2)
+	fmuls    f1, f2, f1
+	fdivs    f31, f1, f0
+	fmr      f1, f31
+	bl       cos
+	frsp     f2, f1
+	lfs      f0, 0(r30)
+	fmr      f1, f31
+	fmuls    f0, f0, f2
+	stfs     f0, 0(r31)
+	bl       sin
+	frsp     f3, f1
+	lfs      f2, 4(r30)
+	lfs      f0, lbl_80516900@sda21(r2)
+	fmr      f1, f31
+	fmuls    f2, f2, f3
+	stfs     f2, 4(r31)
+	stfs     f0, 8(r31)
+	bl       sin
+	frsp     f30, f1
+	fmr      f1, f31
+	bl       cos
+	lfs      f4, lbl_80516908@sda21(r2)
+	frsp     f5, f1
+	lfs      f0, 0x10(r30)
+	fmr      f1, f31
+	lfs      f3, 0xc(r30)
+	fsubs    f2, f0, f4
+	lfs      f0, 4(r30)
+	fsubs    f3, f3, f4
+	fadds    f0, f2, f0
+	fmuls    f0, f0, f30
+	fmsubs   f0, f3, f5, f0
+	fadds    f0, f4, f0
+	stfs     f0, 0xc(r31)
+	bl       sin
+	lfs      f0, 0(r30)
+	frsp     f2, f1
+	fmr      f1, f31
+	fneg     f0, f0
+	fmuls    f0, f0, f2
+	stfs     f0, 0x10(r31)
+	bl       cos
+	frsp     f3, f1
+	lfs      f2, 4(r30)
+	lfs      f0, lbl_80516900@sda21(r2)
+	fmr      f1, f31
+	fmuls    f2, f2, f3
+	stfs     f2, 0x14(r31)
+	stfs     f0, 0x18(r31)
+	bl       cos
+	frsp     f30, f1
+	fmr      f1, f31
+	bl       sin
+	lfs      f5, lbl_80516908@sda21(r2)
+	frsp     f6, f1
+	lfs      f0, 0x10(r30)
+	lfs      f1, 0xc(r30)
+	fsubs    f3, f0, f5
+	lfs      f2, 4(r30)
+	fsubs    f4, f1, f5
+	lfs      f1, lbl_80516900@sda21(r2)
+	lfs      f0, lbl_80516904@sda21(r2)
+	fadds    f2, f3, f2
+	fneg     f3, f4
+	fmuls    f2, f2, f30
+	fmsubs   f2, f3, f6, f2
+	fadds    f2, f5, f2
+	stfs     f2, 0x1c(r31)
+	stfs     f1, 0x20(r31)
+	stfs     f1, 0x24(r31)
+	stfs     f0, 0x28(r31)
+	stfs     f1, 0x2c(r31)
+	psq_l    f31, 40(r1), 0, qr0
+	lfd      f31, 0x20(r1)
+	psq_l    f30, 24(r1), 0, qr0
+	lfd      f30, 0x10(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x34(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -296,28 +395,27 @@ void J2DTexMtx::getTextureMtxMaya(const J2DTextureSRTInfo&, float (*)[4])
 void J2DIndTevStage::load(unsigned char)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r10, 0x0(r3)
-	  rlwinm    r3,r4,0,24,31
-	  rlwinm    r0,r10,11,31,31
-	  rlwinm    r4,r10,0,30,31
-	  stw       r0, 0x8(r1)
-	  rlwinm    r0,r10,10,30,31
-	  rlwinm    r5,r10,30,30,31
-	  rlwinm    r6,r10,28,29,31
-	  stw       r0, 0xC(r1)
-	  rlwinm    r7,r10,16,28,31
-	  rlwinm    r8,r10,24,29,31
-	  rlwinm    r9,r10,21,29,31
-	  rlwinm    r10,r10,12,31,31
-	  bl        0x8E93C
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r10, 0(r3)
+	clrlwi   r3, r4, 0x18
+	rlwinm   r0, r10, 0xb, 0x1f, 0x1f
+	clrlwi   r4, r10, 0x1e
+	stw      r0, 8(r1)
+	rlwinm   r0, r10, 0xa, 0x1e, 0x1f
+	rlwinm   r5, r10, 0x1e, 0x1e, 0x1f
+	rlwinm   r6, r10, 0x1c, 0x1d, 0x1f
+	stw      r0, 0xc(r1)
+	rlwinm   r7, r10, 0x10, 0x1c, 0x1f
+	rlwinm   r8, r10, 0x18, 0x1d, 0x1f
+	rlwinm   r9, r10, 0x15, 0x1d, 0x1f
+	rlwinm   r10, r10, 0xc, 0x1f, 0x1f
+	bl       GXSetTevIndirect
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -329,19 +427,18 @@ void J2DIndTevStage::load(unsigned char)
 void J2DIndTexMtx::load(unsigned char)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  rlwinm    r6,r4,0,24,31
-	  mr        r4, r3
-	  stw       r0, 0x14(r1)
-	  lbz       r5, 0x18(r3)
-	  addi      r3, r6, 0x1
-	  bl        0x8E978
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	clrlwi   r6, r4, 0x18
+	mr       r4, r3
+	stw      r0, 0x14(r1)
+	lbz      r5, 0x18(r3)
+	addi     r3, r6, 1
+	bl       GXSetIndTexMtx
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -353,19 +450,18 @@ void J2DIndTexMtx::load(unsigned char)
 void J2DIndTexCoordScale::load(unsigned char)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r5, r3
-	  rlwinm    r3,r4,0,24,31
-	  stw       r0, 0x14(r1)
-	  lbz       r4, 0x0(r5)
-	  lbz       r5, 0x1(r5)
-	  bl        0x8EAC0
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r5, r3
+	clrlwi   r3, r4, 0x18
+	stw      r0, 0x14(r1)
+	lbz      r4, 0(r5)
+	lbz      r5, 1(r5)
+	bl       GXSetIndTexCoordScale
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -377,18 +473,17 @@ void J2DIndTexCoordScale::load(unsigned char)
 void J2DIndTexOrder::load(unsigned char)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r5, r3
-	  rlwinm    r3,r4,0,24,31
-	  stw       r0, 0x14(r1)
-	  lbz       r4, 0x0(r5)
-	  lbz       r5, 0x1(r5)
-	  bl        0x8EBD4
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r5, r3
+	clrlwi   r3, r4, 0x18
+	stw      r0, 0x14(r1)
+	lbz      r4, 0(r5)
+	lbz      r5, 1(r5)
+	bl       GXSetIndTexOrder
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }

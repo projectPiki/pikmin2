@@ -1,6 +1,10 @@
 #include "types.h"
 
 /*
+    Generated from dpostproc
+*/
+
+/*
  * --INFO--
  * Address:	........
  * Size:	000054
@@ -86,27 +90,26 @@ void JGadget::binary::parseVariableUInt_16_32_following(
 JGadget::binary::TParse_header_block::~TParse_header_block(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r3
-	  beq-      .loc_0x30
-	  lis       r5, 0x804A
-	  extsh.    r0, r4
-	  subi      r0, r5, 0x1CE0
-	  stw       r0, 0x0(r31)
-	  ble-      .loc_0x30
-	  bl        -0x3108
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r3, r3
+	beq      lbl_800271C0
+	lis      r5, __vt__Q37JGadget6binary19TParse_header_block@ha
+	extsh.   r0, r4
+	addi     r0, r5, __vt__Q37JGadget6binary19TParse_header_block@l
+	stw      r0, 0(r31)
+	ble      lbl_800271C0
+	bl       __dl__FPv
 
-	.loc_0x30:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_800271C0:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 

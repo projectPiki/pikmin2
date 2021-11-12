@@ -1,6 +1,34 @@
 #include "types.h"
 
 /*
+    Generated from dpostproc
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_80499C18
+    lbl_80499C18:
+        .asciz "dvdThread.cpp"
+        .skip 2
+    .global lbl_80499C28
+    lbl_80499C28:
+        .asciz "P2Assert"
+        .skip 7
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__9DvdThread
+    __vt__9DvdThread:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__9DvdThreadFv
+        .4byte run__9DvdThreadFv
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_805204B0
+    lbl_805204B0:
+        .4byte 0x61726300
+        .4byte 0x00000000
+*/
+
+/*
  * --INFO--
  * Address:	80424818
  * Size:	000080
@@ -8,39 +36,38 @@
 DvdThreadCommand::DvdThreadCommand()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  mr        r4, r31
-	  addi      r3, r4, 0x5C
-	  bl        -0x3FE07C
-	  li        r5, 0
-	  li        r4, 0x1
-	  stw       r5, 0x0(r31)
-	  li        r0, 0x20
-	  addi      r3, r31, 0x1C
-	  stw       r4, 0x4(r31)
-	  stw       r5, 0x8(r31)
-	  stw       r5, 0xC(r31)
-	  stw       r0, 0x10(r31)
-	  stw       r4, 0x14(r31)
-	  stw       r5, 0x18(r31)
-	  bl        -0x334D34
-	  li        r0, 0
-	  addi      r3, r31, 0x38
-	  stw       r0, 0x34(r31)
-	  addi      r4, r31, 0x58
-	  li        r5, 0x1
-	  bl        -0x3353C0
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	mr       r4, r31
+	addi     r3, r4, 0x5c
+	bl       __ct__10JSUPtrLinkFPv
+	li       r5, 0
+	li       r4, 1
+	stw      r5, 0(r31)
+	li       r0, 0x20
+	addi     r3, r31, 0x1c
+	stw      r4, 4(r31)
+	stw      r5, 8(r31)
+	stw      r5, 0xc(r31)
+	stw      r0, 0x10(r31)
+	stw      r4, 0x14(r31)
+	stw      r5, 0x18(r31)
+	bl       OSInitMutex
+	li       r0, 0
+	addi     r3, r31, 0x38
+	stw      r0, 0x34(r31)
+	addi     r4, r31, 0x58
+	li       r5, 1
+	bl       OSInitMessageQueue
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -62,15 +89,14 @@ void JSULink<DvdThreadCommand>::~JSULink()
 void DvdThreadCommand::loadUseCallBack(IDelegate*)
 {
 	/*
-	.loc_0x0:
-	  stw       r4, 0x0(r3)
-	  li        r4, 0x2
-	  li        r0, 0
-	  stw       r4, 0x4(r3)
-	  stw       r0, 0x8(r3)
-	  stw       r0, 0xC(r3)
-	  stw       r0, 0x18(r3)
-	  blr
+	stw      r4, 0(r3)
+	li       r4, 2
+	li       r0, 0
+	stw      r4, 4(r3)
+	stw      r0, 8(r3)
+	stw      r0, 0xc(r3)
+	stw      r0, 0x18(r3)
+	blr
 	*/
 }
 
@@ -164,26 +190,25 @@ void DvdThreadCommand::checkExp(const char*) const
 DvdThread::DvdThread(unsigned long, int, int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        0x54C
-	  lis       r4, 0x804F
-	  addi      r3, r31, 0x7C
-	  subi      r0, r4, 0x4278
-	  stw       r0, 0x0(r31)
-	  bl        -0x3FE010
-	  lwz       r3, 0x2C(r31)
-	  bl        -0x3323F4
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       __ct__9AppThreadFUlii
+	lis      r4, __vt__9DvdThread@ha
+	addi     r3, r31, 0x7c
+	addi     r0, r4, __vt__9DvdThread@l
+	stw      r0, 0(r31)
+	bl       initiate__10JSUPtrListFv
+	lwz      r3, 0x2c(r31)
+	bl       OSResumeThread
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -205,136 +230,133 @@ void JSUList<DvdThreadCommand>::~JSUList()
 void DvdThread::run()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  mr        r30, r3
-	  stw       r29, 0x14(r1)
-	  lis       r29, 0x4454
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	mr       r30, r3
+	stw      r29, 0x14(r1)
+	lis      r29, 0x4454
 
-	.loc_0x20:
-	  addi      r3, r30, 0x30
-	  addi      r4, r1, 0xC
-	  li        r5, 0x1
-	  bl        -0x33534C
-	  lwz       r31, 0xC(r1)
-	  addi      r3, r31, 0x1C
-	  bl        -0x334DD4
-	  li        r0, 0x1
-	  stw       r0, 0x18(r31)
-	  lwz       r0, 0x4(r31)
-	  cmpwi     r0, 0x1
-	  bne-      .loc_0xE4
-	  lwz       r3, 0x8(r31)
-	  bl        -0x35A048
-	  lwz       r0, 0x8(r31)
-	  subi      r5, r3, 0x1
-	  add       r4, r0, r5
+lbl_80424924:
+	addi     r3, r30, 0x30
+	addi     r4, r1, 0xc
+	li       r5, 1
+	bl       OSReceiveMessage
+	lwz      r31, 0xc(r1)
+	addi     r3, r31, 0x1c
+	bl       OSLockMutex
+	li       r0, 1
+	stw      r0, 0x18(r31)
+	lwz      r0, 4(r31)
+	cmpwi    r0, 1
+	bne      lbl_804249E8
+	lwz      r3, 8(r31)
+	bl       strlen
+	lwz      r0, 8(r31)
+	addi     r5, r3, -1
+	add      r4, r0, r5
 
-	.loc_0x64:
-	  lbz       r0, 0x0(r4)
-	  cmpwi     r0, 0x2E
-	  beq-      .loc_0x7C
-	  subi      r4, r4, 0x1
-	  subi      r5, r5, 0x1
-	  b         .loc_0x64
+lbl_80424968:
+	lbz      r0, 0(r4)
+	cmpwi    r0, 0x2e
+	beq      lbl_80424980
+	addi     r4, r4, -1
+	addi     r5, r5, -1
+	b        lbl_80424968
 
-	.loc_0x7C:
-	  subi      r0, r3, 0x1
-	  sub       r0, r0, r5
-	  cmplwi    r0, 0x4
-	  bge-      .loc_0xD0
-	  addi      r7, r1, 0x8
-	  li        r6, 0
-	  b         .loc_0xB4
+lbl_80424980:
+	addi     r0, r3, -1
+	subf     r0, r5, r0
+	cmplwi   r0, 4
+	bge      lbl_804249D4
+	addi     r7, r1, 8
+	li       r6, 0
+	b        lbl_804249B8
 
-	.loc_0x98:
-	  lwz       r0, 0x8(r31)
-	  add       r4, r0, r6
-	  addi      r6, r6, 0x1
-	  addi      r0, r4, 0x1
-	  lbzx      r0, r5, r0
-	  stb       r0, 0x0(r7)
-	  addi      r7, r7, 0x1
+lbl_8042499C:
+	lwz      r0, 8(r31)
+	add      r4, r0, r6
+	addi     r6, r6, 1
+	addi     r0, r4, 1
+	lbzx     r0, r5, r0
+	stb      r0, 0(r7)
+	addi     r7, r7, 1
 
-	.loc_0xB4:
-	  add       r0, r5, r6
-	  cmplw     r3, r0
-	  bgt+      .loc_0x98
-	  addi      r3, r1, 0x8
-	  li        r0, 0
-	  stbx      r0, r3, r6
-	  b         .loc_0xD8
+lbl_804249B8:
+	add      r0, r5, r6
+	cmplw    r3, r0
+	bgt      lbl_8042499C
+	addi     r3, r1, 8
+	li       r0, 0
+	stbx     r0, r3, r6
+	b        lbl_804249DC
 
-	.loc_0xD0:
-	  li        r0, 0
-	  stb       r0, 0x8(r1)
+lbl_804249D4:
+	li       r0, 0
+	stb      r0, 8(r1)
 
-	.loc_0xD8:
-	  addi      r4, r1, 0x8
-	  addi      r3, r2, 0x2150
-	  bl        -0x35A324
+lbl_804249DC:
+	addi     r4, r1, 8
+	addi     r3, r2, lbl_805204B0@sda21
+	bl       strcmp
 
-	.loc_0xE4:
-	  lwz       r0, 0x4(r31)
-	  cmpwi     r0, 0x1
-	  beq-      .loc_0x148
-	  bge-      .loc_0x100
-	  cmpwi     r0, 0
-	  bge-      .loc_0x158
-	  b         .loc_0x164
+lbl_804249E8:
+	lwz      r0, 4(r31)
+	cmpwi    r0, 1
+	beq      lbl_80424A4C
+	bge      lbl_80424A04
+	cmpwi    r0, 0
+	bge      lbl_80424A5C
+	b        lbl_80424A68
 
-	.loc_0x100:
-	  cmpwi     r0, 0x3
-	  bge-      .loc_0x164
-	  lwz       r0, 0x0(r31)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x130
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x63E8
-	  li        r4, 0x84
-	  subi      r5, r5, 0x63D8
-	  crclr     6, 0x6
-	  bl        -0x3FA3F0
+lbl_80424A04:
+	cmpwi    r0, 3
+	bge      lbl_80424A68
+	lwz      r0, 0(r31)
+	cmplwi   r0, 0
+	bne      lbl_80424A34
+	lis      r3, lbl_80499C18@ha
+	lis      r5, lbl_80499C28@ha
+	addi     r3, r3, lbl_80499C18@l
+	li       r4, 0x84
+	addi     r5, r5, lbl_80499C28@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x130:
-	  lwz       r3, 0x0(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x164
+lbl_80424A34:
+	lwz      r3, 0(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_80424A68
 
-	.loc_0x148:
-	  mr        r3, r30
-	  mr        r4, r31
-	  bl        .loc_0x194
-	  b         .loc_0x164
+lbl_80424A4C:
+	mr       r3, r30
+	mr       r4, r31
+	bl       loadArchive__9DvdThreadFP16DvdThreadCommand
+	b        lbl_80424A68
 
-	.loc_0x158:
-	  mr        r3, r30
-	  mr        r4, r31
-	  bl        0xD0
+lbl_80424A5C:
+	mr       r3, r30
+	mr       r4, r31
+	bl       loadFile__9DvdThreadFP16DvdThreadCommand
 
-	.loc_0x164:
-	  li        r0, 0x2
-	  addi      r3, r31, 0x38
-	  stw       r0, 0x18(r31)
-	  addi      r4, r29, 0x4C46
-	  li        r5, 0
-	  bl        -0x335560
-	  addi      r3, r30, 0x7C
-	  addi      r4, r31, 0x5C
-	  bl        -0x3FDE64
-	  addi      r3, r31, 0x1C
-	  bl        -0x334E4C
-	  b         .loc_0x20
-
-	.loc_0x194:
+lbl_80424A68:
+	li       r0, 2
+	addi     r3, r31, 0x38
+	stw      r0, 0x18(r31)
+	addi     r4, r29, 0x4c46
+	li       r5, 0
+	bl       OSSendMessage
+	addi     r3, r30, 0x7c
+	addi     r4, r31, 0x5c
+	bl       remove__10JSUPtrListFP10JSUPtrLink
+	addi     r3, r31, 0x1c
+	bl       OSUnlockMutex
+	b        lbl_80424924
 	*/
 }
 
@@ -346,50 +368,50 @@ void DvdThread::run()
 void DvdThread::loadArchive(DvdThreadCommand*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r29, r4
-	  lwz       r3, 0x34(r4)
-	  bl        -0x401514
-	  lwz       r0, 0x14(r29)
-	  mr        r4, r3
-	  lwz       r3, 0x8(r29)
-	  mr        r30, r4
-	  cmpwi     r0, 0x1
-	  lwz       r5, 0x34(r29)
-	  li        r4, 0x1
-	  li        r6, 0x2
-	  bne-      .loc_0x4C
-	  li        r6, 0x1
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	mr       r29, r4
+	lwz      r3, 0x34(r4)
+	bl       becomeCurrentHeap__7JKRHeapFv
+	lwz      r0, 0x14(r29)
+	mr       r4, r3
+	lwz      r3, 8(r29)
+	mr       r30, r4
+	cmpwi    r0, 1
+	lwz      r5, 0x34(r29)
+	li       r4, 1
+	li       r6, 2
+	bne      lbl_80424AE4
+	li       r6, 1
 
-	.loc_0x4C:
-	  bl        -0x4099B4
-	  mr.       r31, r3
-	  bne-      .loc_0x74
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x63E8
-	  li        r4, 0x113
-	  subi      r5, r5, 0x63D8
-	  crclr     6, 0x6
-	  bl        -0x3FA4C8
+lbl_80424AE4:
+	bl
+mount__10JKRArchiveFPCcQ210JKRArchive10EMountModeP7JKRHeapQ210JKRArchive15EMountDirection
+	or.      r31, r3, r3
+	bne      lbl_80424B0C
+	lis      r3, lbl_80499C18@ha
+	lis      r5, lbl_80499C28@ha
+	addi     r3, r3, lbl_80499C18@l
+	li       r4, 0x113
+	addi     r5, r5, lbl_80499C28@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x74:
-	  stw       r31, 0xC(r29)
-	  mr        r3, r30
-	  bl        -0x401570
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80424B0C:
+	stw      r31, 0xc(r29)
+	mr       r3, r30
+	bl       becomeCurrentHeap__7JKRHeapFv
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -401,81 +423,80 @@ void DvdThread::loadArchive(DvdThreadCommand*)
 void DvdThread::loadFile(DvdThreadCommand*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stmw      r27, 0xC(r1)
-	  mr        r27, r4
-	  li        r31, -0x20
-	  lwz       r0, 0x14(r4)
-	  cmpwi     r0, 0x1
-	  bne-      .loc_0x28
-	  li        r31, 0x20
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stmw     r27, 0xc(r1)
+	mr       r27, r4
+	li       r31, -32
+	lwz      r0, 0x14(r4)
+	cmpwi    r0, 1
+	bne      lbl_80424B5C
+	li       r31, 0x20
 
-	.loc_0x28:
-	  lwz       r3, 0x34(r27)
-	  bl        -0x4015BC
-	  lwz       r30, 0x8(r27)
-	  mr        r28, r3
-	  lwz       r4, -0x77D8(r13)
-	  li        r3, 0xF8
-	  li        r5, 0
-	  bl        -0x400C38
-	  mr.       r29, r3
-	  beq-      .loc_0x5C
-	  mr        r4, r30
-	  bl        -0x407A5C
-	  mr        r29, r3
+lbl_80424B5C:
+	lwz      r3, 0x34(r27)
+	bl       becomeCurrentHeap__7JKRHeapFv
+	lwz      r30, 8(r27)
+	mr       r28, r3
+	lwz      r4, sSystemHeap__7JKRHeap@sda21(r13)
+	li       r3, 0xf8
+	li       r5, 0
+	bl       __nw__FUlP7JKRHeapi
+	or.      r29, r3, r3
+	beq      lbl_80424B90
+	mr       r4, r30
+	bl       __ct__10JKRDvdFileFPCc
+	mr       r29, r3
 
-	.loc_0x5C:
-	  cmplwi    r29, 0
-	  bne-      .loc_0x80
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x63E8
-	  li        r4, 0x15A
-	  subi      r5, r5, 0x63D8
-	  crclr     6, 0x6
-	  bl        -0x3FA570
+lbl_80424B90:
+	cmplwi   r29, 0
+	bne      lbl_80424BB4
+	lis      r3, lbl_80499C18@ha
+	lis      r5, lbl_80499C28@ha
+	addi     r3, r3, lbl_80499C18@l
+	li       r4, 0x15a
+	addi     r5, r5, lbl_80499C28@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x80:
-	  mr        r3, r29
-	  lwz       r12, 0x0(r29)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r31
-	  mr        r30, r3
-	  bl        -0x400BD8
-	  mr        r0, r3
-	  mr        r3, r29
-	  lwz       r12, 0x0(r29)
-	  mr        r31, r0
-	  mr        r4, r31
-	  mr        r5, r30
-	  lwz       r12, 0x14(r12)
-	  li        r6, 0
-	  mtctr     r12
-	  bctrl
-	  cmplwi    r29, 0
-	  beq-      .loc_0xE8
-	  mr        r3, r29
-	  li        r4, 0x1
-	  lwz       r12, 0x0(r29)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
+lbl_80424BB4:
+	mr       r3, r29
+	lwz      r12, 0(r29)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r31
+	mr       r30, r3
+	bl       __nwa__FUli
+	mr       r0, r3
+	mr       r3, r29
+	lwz      r12, 0(r29)
+	mr       r31, r0
+	mr       r4, r31
+	mr       r5, r30
+	lwz      r12, 0x14(r12)
+	li       r6, 0
+	mtctr    r12
+	bctrl
+	cmplwi   r29, 0
+	beq      lbl_80424C1C
+	mr       r3, r29
+	li       r4, 1
+	lwz      r12, 0(r29)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0xE8:
-	  stw       r31, 0xC(r27)
-	  mr        r3, r28
-	  bl        -0x401680
-	  lmw       r27, 0xC(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80424C1C:
+	stw      r31, 0xc(r27)
+	mr       r3, r28
+	bl       becomeCurrentHeap__7JKRHeapFv
+	lmw      r27, 0xc(r1)
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -487,33 +508,32 @@ void DvdThread::loadFile(DvdThreadCommand*)
 void DvdThread::sendCommand(DvdThreadCommand*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  li        r0, 0
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  addi      r3, r30, 0x7C
-	  stw       r0, 0x18(r4)
-	  addi      r4, r31, 0x5C
-	  bl        -0x3FE384
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	li       r0, 0
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	addi     r3, r30, 0x7c
+	stw      r0, 0x18(r4)
+	addi     r4, r31, 0x5c
+	bl       append__10JSUPtrListFP10JSUPtrLink
 
-	.loc_0x30:
-	  mr        r4, r31
-	  addi      r3, r30, 0x30
-	  li        r5, 0
-	  bl        -0x33575C
-	  cmpwi     r3, 0
-	  beq+      .loc_0x30
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80424C6C:
+	mr       r4, r31
+	addi     r3, r30, 0x30
+	li       r5, 0
+	bl       OSSendMessage
+	cmpwi    r3, 0
+	beq      lbl_80424C6C
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -525,59 +545,58 @@ void DvdThread::sendCommand(DvdThreadCommand*)
 void DvdThread::sync(DvdThreadCommand*, DvdThread::ESyncBlockFlag)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  cmpwi     r5, 0
-	  li        r3, 0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r29, r4
-	  bne-      .loc_0x84
-	  lis       r4, 0x804A
-	  lis       r3, 0x804A
-	  subi      r30, r4, 0x63E8
-	  subi      r31, r3, 0x63D8
-	  b         .loc_0x70
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	cmpwi    r5, 0
+	li       r3, 0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	mr       r29, r4
+	bne      lbl_80424D20
+	lis      r4, lbl_80499C18@ha
+	lis      r3, lbl_80499C28@ha
+	addi     r30, r4, lbl_80499C18@l
+	addi     r31, r3, lbl_80499C28@l
+	b        lbl_80424D0C
 
-	.loc_0x3C:
-	  addi      r3, r29, 0x38
-	  addi      r4, r1, 0x8
-	  li        r5, 0x1
-	  bl        -0x335700
-	  lwz       r3, 0x8(r1)
-	  subis     r0, r3, 0x4454
-	  cmplwi    r0, 0x4C46
-	  beq-      .loc_0x70
-	  mr        r3, r30
-	  mr        r5, r31
-	  li        r4, 0x18C
-	  crclr     6, 0x6
-	  bl        -0x3FA6C8
+lbl_80424CD8:
+	addi     r3, r29, 0x38
+	addi     r4, r1, 8
+	li       r5, 1
+	bl       OSReceiveMessage
+	lwz      r3, 8(r1)
+	addis    r0, r3, 0xbbac
+	cmplwi   r0, 0x4c46
+	beq      lbl_80424D0C
+	mr       r3, r30
+	mr       r5, r31
+	li       r4, 0x18c
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x70:
-	  lwz       r0, 0x18(r29)
-	  cmpwi     r0, 0x2
-	  bne+      .loc_0x3C
-	  li        r3, 0x1
-	  b         .loc_0x94
+lbl_80424D0C:
+	lwz      r0, 0x18(r29)
+	cmpwi    r0, 2
+	bne      lbl_80424CD8
+	li       r3, 1
+	b        lbl_80424D30
 
-	.loc_0x84:
-	  lwz       r0, 0x18(r29)
-	  cmpwi     r0, 0x2
-	  bne-      .loc_0x94
-	  li        r3, 0x1
+lbl_80424D20:
+	lwz      r0, 0x18(r29)
+	cmpwi    r0, 2
+	bne      lbl_80424D30
+	li       r3, 1
 
-	.loc_0x94:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80424D30:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -589,71 +608,70 @@ void DvdThread::sync(DvdThreadCommand*, DvdThread::ESyncBlockFlag)
 void DvdThread::syncAll(DvdThread::ESyncBlockFlag)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stmw      r26, 0x18(r1)
-	  mr        r26, r4
-	  li        r27, 0
-	  lwz       r28, 0x7C(r3)
-	  b         .loc_0xAC
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stmw     r26, 0x18(r1)
+	mr       r26, r4
+	li       r27, 0
+	lwz      r28, 0x7c(r3)
+	b        lbl_80424DF8
 
-	.loc_0x20:
-	  cmpwi     r26, 0
-	  lwz       r29, 0x0(r28)
-	  li        r3, 0
-	  bne-      .loc_0x8C
-	  lis       r4, 0x804A
-	  lis       r3, 0x804A
-	  subi      r30, r4, 0x63E8
-	  subi      r31, r3, 0x63D8
-	  b         .loc_0x78
+lbl_80424D6C:
+	cmpwi    r26, 0
+	lwz      r29, 0(r28)
+	li       r3, 0
+	bne      lbl_80424DD8
+	lis      r4, lbl_80499C18@ha
+	lis      r3, lbl_80499C28@ha
+	addi     r30, r4, lbl_80499C18@l
+	addi     r31, r3, lbl_80499C28@l
+	b        lbl_80424DC4
 
-	.loc_0x44:
-	  addi      r3, r29, 0x38
-	  addi      r4, r1, 0x8
-	  li        r5, 0x1
-	  bl        -0x3357B8
-	  lwz       r3, 0x8(r1)
-	  subis     r0, r3, 0x4454
-	  cmplwi    r0, 0x4C46
-	  beq-      .loc_0x78
-	  mr        r3, r30
-	  mr        r5, r31
-	  li        r4, 0x18C
-	  crclr     6, 0x6
-	  bl        -0x3FA780
+lbl_80424D90:
+	addi     r3, r29, 0x38
+	addi     r4, r1, 8
+	li       r5, 1
+	bl       OSReceiveMessage
+	lwz      r3, 8(r1)
+	addis    r0, r3, 0xbbac
+	cmplwi   r0, 0x4c46
+	beq      lbl_80424DC4
+	mr       r3, r30
+	mr       r5, r31
+	li       r4, 0x18c
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x78:
-	  lwz       r0, 0x18(r29)
-	  cmpwi     r0, 0x2
-	  bne+      .loc_0x44
-	  li        r3, 0x1
-	  b         .loc_0x9C
+lbl_80424DC4:
+	lwz      r0, 0x18(r29)
+	cmpwi    r0, 2
+	bne      lbl_80424D90
+	li       r3, 1
+	b        lbl_80424DE8
 
-	.loc_0x8C:
-	  lwz       r0, 0x18(r29)
-	  cmpwi     r0, 0x2
-	  bne-      .loc_0x9C
-	  li        r3, 0x1
+lbl_80424DD8:
+	lwz      r0, 0x18(r29)
+	cmpwi    r0, 2
+	bne      lbl_80424DE8
+	li       r3, 1
 
-	.loc_0x9C:
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0xA8
-	  addi      r27, r27, 0x1
+lbl_80424DE8:
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_80424DF4
+	addi     r27, r27, 1
 
-	.loc_0xA8:
-	  lwz       r28, 0xC(r28)
+lbl_80424DF4:
+	lwz      r28, 0xc(r28)
 
-	.loc_0xAC:
-	  cmplwi    r28, 0
-	  bne+      .loc_0x20
-	  mr        r3, r27
-	  lmw       r26, 0x18(r1)
-	  lwz       r0, 0x34(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_80424DF8:
+	cmplwi   r28, 0
+	bne      lbl_80424D6C
+	mr       r3, r27
+	lmw      r26, 0x18(r1)
+	lwz      r0, 0x34(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }

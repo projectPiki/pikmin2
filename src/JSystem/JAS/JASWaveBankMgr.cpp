@@ -1,6 +1,18 @@
 #include "types.h"
 
 /*
+    Generated from dpostproc
+
+    .section .sbss # 0x80514D80 - 0x80516360
+    .global sTableSize__14JASWaveBankMgr
+    sTableSize__14JASWaveBankMgr:
+        .skip 0x4
+    .global sWaveBank__14JASWaveBankMgr
+    sWaveBank__14JASWaveBankMgr:
+        .skip 0x4
+*/
+
+/*
  * --INFO--
  * Address:	8009C044
  * Size:	000054
@@ -8,28 +20,27 @@
 void JASWaveBankMgr::init(int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r5, 0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  rlwinm    r31,r3,2,0,29
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  mr        r3, r31
-	  lwz       r4, -0x7548(r13)
-	  bl        -0x78024
-	  stw       r3, -0x75AC(r13)
-	  mr        r4, r31
-	  bl        0xA1EC
-	  stw       r30, -0x75B0(r13)
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	li       r5, 0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	slwi     r31, r3, 2
+	stw      r30, 8(r1)
+	mr       r30, r3
+	mr       r3, r31
+	lwz      r4, JASDram@sda21(r13)
+	bl       __nwa__FUlP7JKRHeapi
+	stw      r3, sWaveBank__14JASWaveBankMgr@sda21(r13)
+	mr       r4, r31
+	bl       bzero__7JASCalcFPvUl
+	stw      r30, sTableSize__14JASWaveBankMgr@sda21(r13)
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -41,24 +52,23 @@ void JASWaveBankMgr::init(int)
 void JASWaveBankMgr::getWaveBank(int)
 {
 	/*
-	.loc_0x0:
-	  cmpwi     r3, 0
-	  bge-      .loc_0x10
-	  li        r3, 0
-	  blr
+	cmpwi    r3, 0
+	bge      lbl_8009C0A8
+	li       r3, 0
+	blr
 
-	.loc_0x10:
-	  lwz       r0, -0x75B0(r13)
-	  cmpw      r3, r0
-	  blt-      .loc_0x24
-	  li        r3, 0
-	  blr
+lbl_8009C0A8:
+	lwz      r0, sTableSize__14JASWaveBankMgr@sda21(r13)
+	cmpw     r3, r0
+	blt      lbl_8009C0BC
+	li       r3, 0
+	blr
 
-	.loc_0x24:
-	  lwz       r4, -0x75AC(r13)
-	  rlwinm    r0,r3,2,0,29
-	  lwzx      r3, r4, r0
-	  blr
+lbl_8009C0BC:
+	lwz      r4, sWaveBank__14JASWaveBankMgr@sda21(r13)
+	slwi     r0, r3, 2
+	lwzx     r3, r4, r0
+	blr
 	*/
 }
 
@@ -80,47 +90,46 @@ void JASWaveBankMgr::registWaveBank(int, JASWaveBank*)
 void JASWaveBankMgr::registWaveBankWS(int, void*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  mr        r3, r31
-	  bl        -0x3684
-	  cmplwi    r3, 0x1
-	  bne-      .loc_0x3C
-	  mr        r3, r31
-	  bl        -0x3468
-	  mr        r5, r3
-	  b         .loc_0x48
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	mr       r3, r31
+	bl       getGroupCount__11JASWSParserFPv
+	cmplwi   r3, 1
+	bne      lbl_8009C108
+	mr       r3, r31
+	bl       createSimpleWaveBank__11JASWSParserFPv
+	mr       r5, r3
+	b        lbl_8009C114
 
-	.loc_0x3C:
-	  mr        r3, r31
-	  bl        -0x367C
-	  mr        r5, r3
+lbl_8009C108:
+	mr       r3, r31
+	bl       createBasicWaveBank__11JASWSParserFPv
+	mr       r5, r3
 
-	.loc_0x48:
-	  cmplwi    r5, 0
-	  bne-      .loc_0x58
-	  li        r3, 0
-	  b         .loc_0x68
+lbl_8009C114:
+	cmplwi   r5, 0
+	bne      lbl_8009C124
+	li       r3, 0
+	b        lbl_8009C134
 
-	.loc_0x58:
-	  lwz       r4, -0x75AC(r13)
-	  rlwinm    r0,r30,2,0,29
-	  li        r3, 0x1
-	  stwx      r5, r4, r0
+lbl_8009C124:
+	lwz      r4, sWaveBank__14JASWaveBankMgr@sda21(r13)
+	slwi     r0, r30, 2
+	li       r3, 1
+	stwx     r5, r4, r0
 
-	.loc_0x68:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8009C134:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -142,57 +151,56 @@ void JASWaveBankMgr::getWaveArc(int, int)
 void JASWaveBankMgr::loadWave(int, int, JASHeap*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  cmpwi     r3, 0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r5
-	  bge-      .loc_0x24
-	  li        r3, 0
-	  b         .loc_0x44
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	cmpwi    r3, 0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r5
+	bge      lbl_8009C170
+	li       r3, 0
+	b        lbl_8009C190
 
-	.loc_0x24:
-	  lwz       r0, -0x75B0(r13)
-	  cmpw      r3, r0
-	  blt-      .loc_0x38
-	  li        r3, 0
-	  b         .loc_0x44
+lbl_8009C170:
+	lwz      r0, sTableSize__14JASWaveBankMgr@sda21(r13)
+	cmpw     r3, r0
+	blt      lbl_8009C184
+	li       r3, 0
+	b        lbl_8009C190
 
-	.loc_0x38:
-	  lwz       r5, -0x75AC(r13)
-	  rlwinm    r0,r3,2,0,29
-	  lwzx      r3, r5, r0
+lbl_8009C184:
+	lwz      r5, sWaveBank__14JASWaveBankMgr@sda21(r13)
+	slwi     r0, r3, 2
+	lwzx     r3, r5, r0
 
-	.loc_0x44:
-	  cmplwi    r3, 0
-	  bne-      .loc_0x54
-	  li        r3, 0
-	  b         .loc_0x64
+lbl_8009C190:
+	cmplwi   r3, 0
+	bne      lbl_8009C1A0
+	li       r3, 0
+	b        lbl_8009C1B0
 
-	.loc_0x54:
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
+lbl_8009C1A0:
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x64:
-	  cmplwi    r3, 0
-	  bne-      .loc_0x74
-	  li        r3, 0
-	  b         .loc_0x7C
+lbl_8009C1B0:
+	cmplwi   r3, 0
+	bne      lbl_8009C1C0
+	li       r3, 0
+	b        lbl_8009C1C8
 
-	.loc_0x74:
-	  mr        r4, r31
-	  bl        -0x584
+lbl_8009C1C0:
+	mr       r4, r31
+	bl       load__10JASWaveArcFP7JASHeap
 
-	.loc_0x7C:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8009C1C8:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -204,57 +212,56 @@ void JASWaveBankMgr::loadWave(int, int, JASHeap*)
 void JASWaveBankMgr::loadWaveTail(int, int, JASHeap*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  cmpwi     r3, 0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r5
-	  bge-      .loc_0x24
-	  li        r3, 0
-	  b         .loc_0x44
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	cmpwi    r3, 0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r5
+	bge      lbl_8009C200
+	li       r3, 0
+	b        lbl_8009C220
 
-	.loc_0x24:
-	  lwz       r0, -0x75B0(r13)
-	  cmpw      r3, r0
-	  blt-      .loc_0x38
-	  li        r3, 0
-	  b         .loc_0x44
+lbl_8009C200:
+	lwz      r0, sTableSize__14JASWaveBankMgr@sda21(r13)
+	cmpw     r3, r0
+	blt      lbl_8009C214
+	li       r3, 0
+	b        lbl_8009C220
 
-	.loc_0x38:
-	  lwz       r5, -0x75AC(r13)
-	  rlwinm    r0,r3,2,0,29
-	  lwzx      r3, r5, r0
+lbl_8009C214:
+	lwz      r5, sWaveBank__14JASWaveBankMgr@sda21(r13)
+	slwi     r0, r3, 2
+	lwzx     r3, r5, r0
 
-	.loc_0x44:
-	  cmplwi    r3, 0
-	  bne-      .loc_0x54
-	  li        r3, 0
-	  b         .loc_0x64
+lbl_8009C220:
+	cmplwi   r3, 0
+	bne      lbl_8009C230
+	li       r3, 0
+	b        lbl_8009C240
 
-	.loc_0x54:
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
+lbl_8009C230:
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x64:
-	  cmplwi    r3, 0
-	  bne-      .loc_0x74
-	  li        r3, 0
-	  b         .loc_0x7C
+lbl_8009C240:
+	cmplwi   r3, 0
+	bne      lbl_8009C250
+	li       r3, 0
+	b        lbl_8009C258
 
-	.loc_0x74:
-	  mr        r4, r31
-	  bl        -0x4EC
+lbl_8009C250:
+	mr       r4, r31
+	bl       loadTail__10JASWaveArcFP7JASHeap
 
-	.loc_0x7C:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8009C258:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -286,57 +293,56 @@ void JASWaveBankMgr::loadWaveBlockTail(int, int, JASHeap*)
 void JASWaveBankMgr::eraseWave(int, int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  cmpwi     r3, 0
-	  stw       r0, 0x14(r1)
-	  bge-      .loc_0x1C
-	  li        r3, 0
-	  b         .loc_0x3C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	cmpwi    r3, 0
+	stw      r0, 0x14(r1)
+	bge      lbl_8009C288
+	li       r3, 0
+	b        lbl_8009C2A8
 
-	.loc_0x1C:
-	  lwz       r0, -0x75B0(r13)
-	  cmpw      r3, r0
-	  blt-      .loc_0x30
-	  li        r3, 0
-	  b         .loc_0x3C
+lbl_8009C288:
+	lwz      r0, sTableSize__14JASWaveBankMgr@sda21(r13)
+	cmpw     r3, r0
+	blt      lbl_8009C29C
+	li       r3, 0
+	b        lbl_8009C2A8
 
-	.loc_0x30:
-	  lwz       r5, -0x75AC(r13)
-	  rlwinm    r0,r3,2,0,29
-	  lwzx      r3, r5, r0
+lbl_8009C29C:
+	lwz      r5, sWaveBank__14JASWaveBankMgr@sda21(r13)
+	slwi     r0, r3, 2
+	lwzx     r3, r5, r0
 
-	.loc_0x3C:
-	  cmplwi    r3, 0
-	  bne-      .loc_0x4C
-	  li        r3, 0
-	  b         .loc_0x5C
+lbl_8009C2A8:
+	cmplwi   r3, 0
+	bne      lbl_8009C2B8
+	li       r3, 0
+	b        lbl_8009C2C8
 
-	.loc_0x4C:
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
+lbl_8009C2B8:
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x5C:
-	  cmplwi    r3, 0
-	  bne-      .loc_0x6C
-	  li        r3, 0
-	  b         .loc_0x80
+lbl_8009C2C8:
+	cmplwi   r3, 0
+	bne      lbl_8009C2D8
+	li       r3, 0
+	b        lbl_8009C2EC
 
-	.loc_0x6C:
-	  bl        -0x448
-	  rlwinm    r3,r3,0,24,31
-	  neg       r0, r3
-	  or        r0, r0, r3
-	  rlwinm    r3,r0,1,31,31
+lbl_8009C2D8:
+	bl       erase__10JASWaveArcFv
+	clrlwi   r3, r3, 0x18
+	neg      r0, r3
+	or       r0, r0, r3
+	srwi     r3, r0, 0x1f
 
-	.loc_0x80:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8009C2EC:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 

@@ -1,5 +1,137 @@
 #include "types.h"
 
+/*
+    Generated from dpostproc
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global
+   "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"
+    "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@":
+        .4byte extrapolateParameter_raw__Q27JStudio13functionvalueFdd
+        .4byte extrapolateParameter_repeat__Q27JStudio13functionvalueFdd
+        .4byte extrapolateParameter_turn__Q27JStudio13functionvalueFdd
+        .4byte extrapolateParameter_clamp__Q27JStudio13functionvalueFdd
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__Q27JStudio22TFunctionValue_hermite
+    __vt__Q27JStudio22TFunctionValue_hermite:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q27JStudio22TFunctionValue_hermiteFv
+        .4byte getType__Q27JStudio22TFunctionValue_hermiteCFv
+        .4byte getAttributeSet__Q27JStudio22TFunctionValue_hermiteFv
+        .4byte initialize__Q27JStudio22TFunctionValue_hermiteFv
+        .4byte prepare__Q27JStudio22TFunctionValue_hermiteFv
+        .4byte getValue__Q27JStudio22TFunctionValue_hermiteFd
+    .global __vt__Q27JStudio29TFunctionValue_list_parameter
+    __vt__Q27JStudio29TFunctionValue_list_parameter:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q27JStudio29TFunctionValue_list_parameterFv
+        .4byte getType__Q27JStudio29TFunctionValue_list_parameterCFv
+        .4byte getAttributeSet__Q27JStudio29TFunctionValue_list_parameterFv
+        .4byte initialize__Q27JStudio29TFunctionValue_list_parameterFv
+        .4byte prepare__Q27JStudio29TFunctionValue_list_parameterFv
+        .4byte getValue__Q27JStudio29TFunctionValue_list_parameterFd
+    .global __vt__Q27JStudio19TFunctionValue_list
+    __vt__Q27JStudio19TFunctionValue_list:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q27JStudio19TFunctionValue_listFv
+        .4byte getType__Q27JStudio19TFunctionValue_listCFv
+        .4byte getAttributeSet__Q27JStudio19TFunctionValue_listFv
+        .4byte initialize__Q27JStudio19TFunctionValue_listFv
+        .4byte prepare__Q27JStudio19TFunctionValue_listFv
+        .4byte getValue__Q27JStudio19TFunctionValue_listFd
+    .global __vt__Q27JStudio25TFunctionValue_transition
+    __vt__Q27JStudio25TFunctionValue_transition:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q27JStudio25TFunctionValue_transitionFv
+        .4byte getType__Q27JStudio25TFunctionValue_transitionCFv
+        .4byte getAttributeSet__Q27JStudio25TFunctionValue_transitionFv
+        .4byte initialize__Q27JStudio25TFunctionValue_transitionFv
+        .4byte prepare__Q27JStudio25TFunctionValue_transitionFv
+        .4byte getValue__Q27JStudio25TFunctionValue_transitionFd
+    .global __vt__Q27JStudio23TFunctionValue_constant
+    __vt__Q27JStudio23TFunctionValue_constant:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q27JStudio23TFunctionValue_constantFv
+        .4byte getType__Q27JStudio23TFunctionValue_constantCFv
+        .4byte getAttributeSet__Q27JStudio23TFunctionValue_constantFv
+        .4byte initialize__Q27JStudio23TFunctionValue_constantFv
+        .4byte prepare__Q27JStudio23TFunctionValue_constantFv
+        .4byte getValue__Q27JStudio23TFunctionValue_constantFd
+    .global __vt__Q27JStudio24TFunctionValue_composite
+    __vt__Q27JStudio24TFunctionValue_composite:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q27JStudio24TFunctionValue_compositeFv
+        .4byte getType__Q27JStudio24TFunctionValue_compositeCFv
+        .4byte getAttributeSet__Q27JStudio24TFunctionValue_compositeFv
+        .4byte initialize__Q27JStudio24TFunctionValue_compositeFv
+        .4byte prepare__Q27JStudio24TFunctionValue_compositeFv
+        .4byte getValue__Q27JStudio24TFunctionValue_compositeFd
+    .global __vt__Q27JStudio14TFunctionValue
+    __vt__Q27JStudio14TFunctionValue:
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+
+    .section .sbss # 0x80514D80 - 0x80516360
+    .global lbl_80514D88
+    lbl_80514D88:
+        .skip 0x8
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_805163A0
+    lbl_805163A0:
+        .4byte 0x00000000
+        .4byte 0x00000000
+    .global lbl_805163A8
+    lbl_805163A8:
+        .4byte 0x3FF00000
+        .4byte 0x00000000
+    .global lbl_805163B0
+    lbl_805163B0:
+        .4byte 0x40080000
+        .4byte 0x00000000
+    .global lbl_805163B8
+    lbl_805163B8:
+        .4byte 0xC0000000
+        .4byte 0x00000000
+    .global lbl_805163C0
+    lbl_805163C0:
+        .4byte 0x3FC55555
+        .4byte 0x55555555
+    .global lbl_805163C8
+    lbl_805163C8:
+        .4byte 0x3FE00000
+        .4byte 0x00000000
+    .global lbl_805163D0
+    lbl_805163D0:
+        .4byte 0x3FE55555
+        .4byte 0x55555555
+    .global lbl_805163D8
+    lbl_805163D8:
+        .4byte 0x40000000
+        .4byte 0x00000000
+    .global lbl_805163E0
+    lbl_805163E0:
+        .4byte 0xBFF00000
+        .4byte 0x00000000
+    .global lbl_805163E8
+    lbl_805163E8:
+        .4byte 0x43300000
+        .4byte 0x00000000
+*/
+
 namespace JStudio {
 
 /*
@@ -17,24 +149,23 @@ void functionvalue::extrapolateParameter_raw(double, double) { }
 void functionvalue::extrapolateParameter_repeat(double, double)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stfd      f31, 0x8(r1)
-	  fmr       f31, f2
-	  bl        0xC6F34
-	  lfd       f0, -0x7FC0(r2)
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x28
-	  fadd      f1, f1, f31
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stfd     f31, 8(r1)
+	fmr      f31, f2
+	bl       fmod
+	lfd      f0, lbl_805163A0@sda21(r2)
+	fcmpo    cr0, f1, f0
+	bge      lbl_80008AAC
+	fadd     f1, f1, f31
 
-	.loc_0x28:
-	  lwz       r0, 0x14(r1)
-	  lfd       f31, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80008AAC:
+	lwz      r0, 0x14(r1)
+	lfd      f31, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -46,20 +177,19 @@ void functionvalue::extrapolateParameter_repeat(double, double)
 void functionvalue::extrapolateParameter_clamp(double, double)
 {
 	/*
-	.loc_0x0:
-	  lfd       f0, -0x7FC0(r2)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0, 0x2
-	  bne-      .loc_0x18
-	  fmr       f1, f0
-	  blr
+	lfd      f0, lbl_805163A0@sda21(r2)
+	fcmpo    cr0, f1, f0
+	cror     2, 0, 2
+	bne      lbl_80008AD8
+	fmr      f1, f0
+	blr
 
-	.loc_0x18:
-	  fcmpo     cr0, f2, f1
-	  cror      2, 0, 0x2
-	  bnelr-
-	  fmr       f1, f2
-	  blr
+lbl_80008AD8:
+	fcmpo    cr0, f2, f1
+	cror     2, 0, 2
+	bnelr
+	fmr      f1, f2
+	blr
 	*/
 }
 
@@ -71,29 +201,27 @@ void functionvalue::extrapolateParameter_clamp(double, double)
 void TFunctionValue::toFunction_outside(int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  li        r0, 0
-	  cmplwi    r3, 0x4
-	  lis       r4, 0x8047
-	  stw       r0, 0x8(r1)
-	  rlwinm    r3,r3,2,0,29
-	  addi      r0, r4, 0x32F0
-	  add       r3, r0, r3
-	  blt-      .loc_0x28
-	  addi      r3, r1, 0x8
+	stwu     r1, -0x10(r1)
+	li       r0, 0
+	cmplwi   r3, 4
+	lis      r4,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha stw r0,
+8(r1) slwi     r3, r3, 2 addi     r0, r4,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l add r3,
+r0, r3 blt      lbl_80008B14 addi     r3, r1, 8
 
-	.loc_0x28:
-	  lwz       r3, 0x0(r3)
-	  cmplwi    r3, 0
-	  bne-      .loc_0x40
-	  lis       r3, 0x8047
-	  addi      r3, r3, 0x32F0
-	  lwz       r3, 0x0(r3)
+lbl_80008B14:
+	lwz      r3, 0(r3)
+	cmplwi   r3, 0
+	bne      lbl_80008B2C
+	lis      r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha addi
+r3, r3, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l
+	lwz      r3, 0(r3)
 
-	.loc_0x40:
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80008B2C:
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -105,27 +233,26 @@ void TFunctionValue::toFunction_outside(int)
 TFunctionValue::~TFunctionValue()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r3
-	  beq-      .loc_0x30
-	  lis       r5, 0x804A
-	  extsh.    r0, r4
-	  subi      r0, r5, 0x1AD8
-	  stw       r0, 0x0(r31)
-	  ble-      .loc_0x30
-	  bl        0x1B554
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r3, r3
+	beq      lbl_80008B64
+	lis      r5, __vt__Q27JStudio14TFunctionValue@ha
+	extsh.   r0, r4
+	addi     r0, r5, __vt__Q27JStudio14TFunctionValue@l
+	stw      r0, 0(r31)
+	ble      lbl_80008B64
+	bl       __dl__FPv
 
-	.loc_0x30:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80008B64:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -137,35 +264,34 @@ TFunctionValue::~TFunctionValue()
 void functionvalue::extrapolateParameter_turn(double, double)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lfd       f0, -0x7F88(r2)
-	  stw       r0, 0x24(r1)
-	  stfd      f31, 0x18(r1)
-	  stfd      f30, 0x10(r1)
-	  fmr       f30, f2
-	  fmul      f31, f0, f30
-	  fmr       f2, f31
-	  bl        0xC6E2C
-	  lfd       f0, -0x7FC0(r2)
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x38
-	  fadd      f1, f1, f31
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lfd      f0, lbl_805163D8@sda21(r2)
+	stw      r0, 0x24(r1)
+	stfd     f31, 0x18(r1)
+	stfd     f30, 0x10(r1)
+	fmr      f30, f2
+	fmul     f31, f0, f30
+	fmr      f2, f31
+	bl       fmod
+	lfd      f0, lbl_805163A0@sda21(r2)
+	fcmpo    cr0, f1, f0
+	bge      lbl_80008BB4
+	fadd     f1, f1, f31
 
-	.loc_0x38:
-	  fcmpo     cr0, f1, f30
-	  cror      2, 0x1, 0x2
-	  bne-      .loc_0x48
-	  fsub      f1, f31, f1
+lbl_80008BB4:
+	fcmpo    cr0, f1, f30
+	cror     2, 1, 2
+	bne      lbl_80008BC4
+	fsub     f1, f31, f1
 
-	.loc_0x48:
-	  lwz       r0, 0x24(r1)
-	  lfd       f31, 0x18(r1)
-	  lfd       f30, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80008BC4:
+	lwz      r0, 0x24(r1)
+	lfd      f31, 0x18(r1)
+	lfd      f30, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -177,12 +303,11 @@ void functionvalue::extrapolateParameter_turn(double, double)
 void TFunctionValueAttribute_range::range_set(double, double)
 {
 	/*
-	.loc_0x0:
-	  stfd      f1, 0x0(r3)
-	  fsub      f0, f2, f1
-	  stfd      f2, 0x8(r3)
-	  stfd      f0, 0x10(r3)
-	  blr
+	stfd     f1, 0(r3)
+	fsub     f0, f2, f1
+	stfd     f2, 8(r3)
+	stfd     f0, 0x10(r3)
+	blr
 	*/
 }
 
@@ -194,32 +319,26 @@ void TFunctionValueAttribute_range::range_set(double, double)
 TFunctionValue_composite::TFunctionValue_composite()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r4, 0x804A
-	  stw       r0, 0x24(r1)
-	  subi      r0, r4, 0x1AD8
-	  addi      r4, r1, 0x8
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r3
-	  stw       r0, 0x0(r3)
-	  addi      r3, r31, 0x4
-	  lbz       r0, -0x78F8(r13)
-	  stb       r0, 0x8(r1)
-	  bl        0x1EA54
-	  lis       r3, 0x804A
-	  li        r0, 0
-	  subi      r4, r3, 0x1AF8
-	  mr        r3, r31
-	  stw       r4, 0x0(r31)
-	  stw       r0, 0x18(r31)
-	  stw       r0, 0x20(r31)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lis      r4, __vt__Q27JStudio14TFunctionValue@ha
+	stw      r0, 0x24(r1)
+	addi     r0, r4, __vt__Q27JStudio14TFunctionValue@l
+	addi     r4, r1, 8
+	stw      r31, 0x1c(r1)
+	mr       r31, r3
+	stw      r0, 0(r3)
+	addi     r3, r31, 4
+	lbz      r0, lbl_80514D88@sda21(r13)
+	stb      r0, 8(r1)
+	bl "__ct__Q27JGadget20TVector_pointer_voidFRCQ27JGadget14TAllocator<Pv>" lis
+	r3, __vt__Q27JStudio24TFunctionValue_composite@ha li       r0, 0 addi r4,
+	r3, __vt__Q27JStudio24TFunctionValue_composite@l mr       r3, r31 stw r4,
+	0(r31) stw      r0, 0x18(r31) stw      r0, 0x20(r31) lwz      r31, 0x1c(r1)
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -238,17 +357,16 @@ u32 TFunctionValue_composite::getType() const { return 0x1; }
 void TFunctionValue_composite::getAttributeSet()
 {
 	/*
-	.loc_0x0:
-	  cmplwi    r4, 0
-	  beq-      .loc_0xC
-	  addi      r4, r4, 0x4
+	cmplwi   r4, 0
+	beq      lbl_80008C68
+	addi     r4, r4, 4
 
-	.loc_0xC:
-	  stw       r4, 0x0(r3)
-	  li        r0, 0
-	  stw       r0, 0x4(r3)
-	  stw       r0, 0x8(r3)
-	  blr
+lbl_80008C68:
+	stw      r4, 0(r3)
+	li       r0, 0
+	stw      r0, 4(r3)
+	stw      r0, 8(r3)
+	blr
 	*/
 }
 
@@ -260,26 +378,25 @@ void TFunctionValue_composite::getAttributeSet()
 void TFunctionValue_composite::initialize()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r3
-	  lwz       r4, 0x8(r3)
-	  addi      r3, r31, 0x4
-	  lwz       r5, 0xC(r31)
-	  bl        0x1F06C
-	  li        r0, 0
-	  stw       r0, 0x8(r1)
-	  stw       r0, 0x18(r31)
-	  lfd       f0, 0x8(r1)
-	  stfd      f0, 0x20(r31)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r3
+	lwz      r4, 8(r3)
+	addi     r3, r31, 4
+	lwz      r5, 0xc(r31)
+	bl       erase__Q27JGadget20TVector_pointer_voidFPPvPPv
+	li       r0, 0
+	stw      r0, 8(r1)
+	stw      r0, 0x18(r31)
+	lfd      f0, 8(r1)
+	stfd     f0, 0x20(r31)
+	lwz      r31, 0x1c(r1)
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -298,20 +415,19 @@ void TFunctionValue_composite::prepare() { }
 void TFunctionValue_composite::getValue(double)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r4, r3
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0x18(r3)
-	  addi      r3, r4, 0x4
-	  addi      r4, r4, 0x20
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r4, r3
+	stw      r0, 0x14(r1)
+	lwz      r12, 0x18(r3)
+	addi     r3, r4, 4
+	addi     r4, r4, 0x20
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -813,17 +929,16 @@ void TFunctionValue_composite::composite_divide(
 TFunctionValue_constant::TFunctionValue_constant()
 {
 	/*
-	.loc_0x0:
-	  lis       r6, 0x804A
-	  lis       r5, 0x804A
-	  subi      r6, r6, 0x1AD8
-	  lis       r4, 0x8051
-	  stw       r6, 0x0(r3)
-	  subi      r0, r5, 0x1B18
-	  stw       r0, 0x0(r3)
-	  lfs       f0, 0x48B0(r4)
-	  stfd      f0, 0x8(r3)
-	  blr
+	lis      r6, __vt__Q27JStudio14TFunctionValue@ha
+	lis      r5, __vt__Q27JStudio23TFunctionValue_constant@ha
+	addi     r6, r6, __vt__Q27JStudio14TFunctionValue@l
+	lis      r4, __float_nan@ha
+	stw      r6, 0(r3)
+	addi     r0, r5, __vt__Q27JStudio23TFunctionValue_constant@l
+	stw      r0, 0(r3)
+	lfs      f0, __float_nan@l(r4)
+	stfd     f0, 8(r3)
+	blr
 	*/
 }
 
@@ -842,12 +957,11 @@ u32 TFunctionValue_constant::getType() const { return 0x2; }
 void TFunctionValue_constant::getAttributeSet()
 {
 	/*
-	.loc_0x0:
-	  li        r0, 0
-	  stw       r0, 0x0(r3)
-	  stw       r0, 0x4(r3)
-	  stw       r0, 0x8(r3)
-	  blr
+	li       r0, 0
+	stw      r0, 0(r3)
+	stw      r0, 4(r3)
+	stw      r0, 8(r3)
+	blr
 	*/
 }
 
@@ -859,11 +973,10 @@ void TFunctionValue_constant::getAttributeSet()
 void TFunctionValue_constant::initialize()
 {
 	/*
-	.loc_0x0:
-	  lis       r4, 0x8051
-	  lfs       f0, 0x48B0(r4)
-	  stfd      f0, 0x8(r3)
-	  blr
+	lis      r4, __float_nan@ha
+	lfs      f0, __float_nan@l(r4)
+	stfd     f0, 8(r3)
+	blr
 	*/
 }
 
@@ -882,9 +995,8 @@ void TFunctionValue_constant::prepare() { }
 void TFunctionValue_constant::getValue(double)
 {
 	/*
-	.loc_0x0:
-	  lfd       f1, 0x8(r3)
-	  blr
+	lfd      f1, 8(r3)
+	blr
 	*/
 }
 
@@ -896,36 +1008,35 @@ void TFunctionValue_constant::getValue(double)
 TFunctionValue_transition::TFunctionValue_transition()
 {
 	/*
-	.loc_0x0:
-	  lis       r6, 0x804A
-	  lis       r5, 0x8051
-	  subi      r0, r6, 0x1AD8
-	  lis       r4, 0x804A
-	  stw       r0, 0x0(r3)
-	  addi      r6, r5, 0x48B0
-	  li        r5, 0
-	  subi      r0, r4, 0x1B38
-	  lfs       f0, 0x0(r6)
-	  stfd      f0, 0x8(r3)
-	  lfd       f0, 0x8(r3)
-	  stfd      f0, 0x10(r3)
-	  lfd       f0, 0x8(r3)
-	  stfd      f0, 0x18(r3)
-	  stb       r5, 0x20(r3)
-	  stb       r5, 0x21(r3)
-	  lfd       f0, 0x8(r3)
-	  stfd      f0, 0x28(r3)
-	  lfd       f0, 0x8(r3)
-	  stfd      f0, 0x30(r3)
-	  stw       r5, 0x38(r3)
-	  stw       r5, 0x3C(r3)
-	  stw       r5, 0x40(r3)
-	  stw       r0, 0x0(r3)
-	  lfs       f0, 0x0(r6)
-	  stfd      f0, 0x48(r3)
-	  lfd       f0, 0x48(r3)
-	  stfd      f0, 0x50(r3)
-	  blr
+	lis      r6, __vt__Q27JStudio14TFunctionValue@ha
+	lis      r5, __float_nan@ha
+	addi     r0, r6, __vt__Q27JStudio14TFunctionValue@l
+	lis      r4, __vt__Q27JStudio25TFunctionValue_transition@ha
+	stw      r0, 0(r3)
+	addi     r6, r5, __float_nan@l
+	li       r5, 0
+	addi     r0, r4, __vt__Q27JStudio25TFunctionValue_transition@l
+	lfs      f0, 0(r6)
+	stfd     f0, 8(r3)
+	lfd      f0, 8(r3)
+	stfd     f0, 0x10(r3)
+	lfd      f0, 8(r3)
+	stfd     f0, 0x18(r3)
+	stb      r5, 0x20(r3)
+	stb      r5, 0x21(r3)
+	lfd      f0, 8(r3)
+	stfd     f0, 0x28(r3)
+	lfd      f0, 8(r3)
+	stfd     f0, 0x30(r3)
+	stw      r5, 0x38(r3)
+	stw      r5, 0x3c(r3)
+	stw      r5, 0x40(r3)
+	stw      r0, 0(r3)
+	lfs      f0, 0(r6)
+	stfd     f0, 0x48(r3)
+	lfd      f0, 0x48(r3)
+	stfd     f0, 0x50(r3)
+	blr
 	*/
 }
 
@@ -944,23 +1055,22 @@ u32 TFunctionValue_transition::getType() const { return 0x3; }
 void TFunctionValue_transition::getAttributeSet()
 {
 	/*
-	.loc_0x0:
-	  cmplwi    r4, 0
-	  mr        r5, r4
-	  beq-      .loc_0x10
-	  addi      r5, r5, 0x40
+	cmplwi   r4, 0
+	mr       r5, r4
+	beq      lbl_80009304
+	addi     r5, r5, 0x40
 
-	.loc_0x10:
-	  cmplwi    r4, 0
-	  beq-      .loc_0x1C
-	  addi      r4, r4, 0x8
+lbl_80009304:
+	cmplwi   r4, 0
+	beq      lbl_80009310
+	addi     r4, r4, 8
 
-	.loc_0x1C:
-	  li        r0, 0
-	  stw       r0, 0x0(r3)
-	  stw       r4, 0x4(r3)
-	  stw       r5, 0x8(r3)
-	  blr
+lbl_80009310:
+	li       r0, 0
+	stw      r0, 0(r3)
+	stw      r4, 4(r3)
+	stw      r5, 8(r3)
+	blr
 	*/
 }
 
@@ -972,25 +1082,24 @@ void TFunctionValue_transition::getAttributeSet()
 void TFunctionValue_transition::initialize()
 {
 	/*
-	.loc_0x0:
-	  lis       r4, 0x8051
-	  lfsu      f0, 0x48B0(r4)
-	  li        r0, 0
-	  stfd      f0, 0x8(r3)
-	  lfd       f0, 0x8(r3)
-	  stfd      f0, 0x10(r3)
-	  lfd       f0, 0x8(r3)
-	  stfd      f0, 0x18(r3)
-	  stb       r0, 0x20(r3)
-	  stb       r0, 0x21(r3)
-	  stw       r0, 0x38(r3)
-	  stw       r0, 0x3C(r3)
-	  stw       r0, 0x40(r3)
-	  lfs       f0, 0x0(r4)
-	  stfd      f0, 0x48(r3)
-	  lfd       f0, 0x48(r3)
-	  stfd      f0, 0x50(r3)
-	  blr
+	lis      r4, __float_nan@ha
+	lfsu     f0, __float_nan@l(r4)
+	li       r0, 0
+	stfd     f0, 8(r3)
+	lfd      f0, 8(r3)
+	stfd     f0, 0x10(r3)
+	lfd      f0, 8(r3)
+	stfd     f0, 0x18(r3)
+	stb      r0, 0x20(r3)
+	stb      r0, 0x21(r3)
+	stw      r0, 0x38(r3)
+	stw      r0, 0x3c(r3)
+	stw      r0, 0x40(r3)
+	lfs      f0, 0(r4)
+	stfd     f0, 0x48(r3)
+	lfd      f0, 0x48(r3)
+	stfd     f0, 0x50(r3)
+	blr
 	*/
 }
 
@@ -1002,61 +1111,60 @@ void TFunctionValue_transition::initialize()
 void TFunctionValue_transition::prepare()
 {
 	/*
-	.loc_0x0:
-	  lbz       r0, 0x20(r3)
-	  extsb     r0, r0
-	  cmpwi     r0, 0x2
-	  beq-      .loc_0x5C
-	  bge-      .loc_0x24
-	  cmpwi     r0, 0
-	  beq-      .loc_0x34
-	  bge-      .loc_0x48
-	  b         .loc_0x34
+	lbz      r0, 0x20(r3)
+	extsb    r0, r0
+	cmpwi    r0, 2
+	beq      lbl_800093C8
+	bge      lbl_80009390
+	cmpwi    r0, 0
+	beq      lbl_800093A0
+	bge      lbl_800093B4
+	b        lbl_800093A0
 
-	.loc_0x24:
-	  cmpwi     r0, 0x4
-	  beq-      .loc_0x84
-	  bge-      .loc_0x34
-	  b         .loc_0x70
+lbl_80009390:
+	cmpwi    r0, 4
+	beq      lbl_800093F0
+	bge      lbl_800093A0
+	b        lbl_800093DC
 
-	.loc_0x34:
-	  lfd       f1, -0x7FC0(r2)
-	  lfd       f0, -0x7FB8(r2)
-	  stfd      f1, 0x28(r3)
-	  stfd      f0, 0x30(r3)
-	  blr
+lbl_800093A0:
+	lfd      f1, lbl_805163A0@sda21(r2)
+	lfd      f0, lbl_805163A8@sda21(r2)
+	stfd     f1, 0x28(r3)
+	stfd     f0, 0x30(r3)
+	blr
 
-	.loc_0x48:
-	  lfd       f1, -0x7FC0(r2)
-	  lfd       f0, -0x7F80(r2)
-	  stfd      f1, 0x28(r3)
-	  stfd      f0, 0x30(r3)
-	  blr
+lbl_800093B4:
+	lfd      f1, lbl_805163A0@sda21(r2)
+	lfd      f0, lbl_805163E0@sda21(r2)
+	stfd     f1, 0x28(r3)
+	stfd     f0, 0x30(r3)
+	blr
 
-	.loc_0x5C:
-	  lfd       f1, 0x8(r3)
-	  lfd       f0, -0x7F80(r2)
-	  stfd      f1, 0x28(r3)
-	  stfd      f0, 0x30(r3)
-	  blr
+lbl_800093C8:
+	lfd      f1, 8(r3)
+	lfd      f0, lbl_805163E0@sda21(r2)
+	stfd     f1, 0x28(r3)
+	stfd     f0, 0x30(r3)
+	blr
 
-	.loc_0x70:
-	  lfd       f1, 0x10(r3)
-	  lfd       f0, -0x7F80(r2)
-	  stfd      f1, 0x28(r3)
-	  stfd      f0, 0x30(r3)
-	  blr
+lbl_800093DC:
+	lfd      f1, 0x10(r3)
+	lfd      f0, lbl_805163E0@sda21(r2)
+	stfd     f1, 0x28(r3)
+	stfd     f0, 0x30(r3)
+	blr
 
-	.loc_0x84:
-	  lfd       f1, 0x8(r3)
-	  lfd       f0, 0x10(r3)
-	  lfd       f2, -0x7F98(r2)
-	  fadd      f1, f1, f0
-	  lfd       f0, -0x7F80(r2)
-	  fmul      f1, f2, f1
-	  stfd      f1, 0x28(r3)
-	  stfd      f0, 0x30(r3)
-	  blr
+lbl_800093F0:
+	lfd      f1, 8(r3)
+	lfd      f0, 0x10(r3)
+	lfd      f2, lbl_805163C8@sda21(r2)
+	fadd     f1, f1, f0
+	lfd      f0, lbl_805163E0@sda21(r2)
+	fmul     f1, f2, f1
+	stfd     f1, 0x28(r3)
+	stfd     f0, 0x30(r3)
+	blr
 	*/
 }
 
@@ -1068,195 +1176,190 @@ void TFunctionValue_transition::prepare()
 void TFunctionValue_transition::getValue(double)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lfd       f0, -0x7FC0(r2)
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r3
-	  lfd       f4, 0x28(r3)
-	  lfd       f3, 0x30(r3)
-	  fsub      f2, f1, f4
-	  lfd       f1, 0x8(r3)
-	  fmadd     f2, f3, f2, f4
-	  fsub      f1, f2, f1
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x84
-	  lwz       r4, 0x38(r31)
-	  li        r0, 0
-	  lis       r3, 0x8047
-	  cmplwi    r4, 0x4
-	  stw       r0, 0xC(r1)
-	  rlwinm    r4,r4,2,0,29
-	  addi      r0, r3, 0x32F0
-	  add       r3, r0, r4
-	  blt-      .loc_0x60
-	  addi      r3, r1, 0xC
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lfd      f0, lbl_805163A0@sda21(r2)
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r3
+	lfd      f4, 0x28(r3)
+	lfd      f3, 0x30(r3)
+	fsub     f2, f1, f4
+	lfd      f1, 8(r3)
+	fmadd    f2, f3, f2, f4
+	fsub     f1, f2, f1
+	fcmpo    cr0, f1, f0
+	bge      lbl_80009498
+	lwz      r4, 0x38(r31)
+	li       r0, 0
+	lis      r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha cmplwi
+r4, 4 stw      r0, 0xc(r1) slwi     r4, r4, 2 addi     r0, r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l add r3,
+r0, r4 blt      lbl_80009474 addi     r3, r1, 0xc
 
-	.loc_0x60:
-	  lwz       r12, 0x0(r3)
-	  cmplwi    r12, 0
-	  bne-      .loc_0x74
-	  lis       r3, 0x8047
-	  lwz       r12, 0x32F0(r3)
+lbl_80009474:
+	lwz      r12, 0(r3)
+	cmplwi   r12, 0
+	bne      lbl_80009488
+	lis      r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha lwz
+r12, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l(r3)
 
-	.loc_0x74:
-	  lfd       f2, 0x18(r31)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0xDC
+lbl_80009488:
+	lfd      f2, 0x18(r31)
+	mtctr    r12
+	bctrl
+	b        lbl_800094F0
 
-	.loc_0x84:
-	  lfd       f0, 0x18(r31)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0x1, 0x2
-	  bne-      .loc_0xDC
-	  lwz       r4, 0x3C(r31)
-	  li        r0, 0
-	  lis       r3, 0x8047
-	  cmplwi    r4, 0x4
-	  stw       r0, 0x8(r1)
-	  rlwinm    r4,r4,2,0,29
-	  addi      r0, r3, 0x32F0
-	  add       r3, r0, r4
-	  blt-      .loc_0xBC
-	  addi      r3, r1, 0x8
+lbl_80009498:
+	lfd      f0, 0x18(r31)
+	fcmpo    cr0, f1, f0
+	cror     2, 1, 2
+	bne      lbl_800094F0
+	lwz      r4, 0x3c(r31)
+	li       r0, 0
+	lis      r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha cmplwi
+r4, 4 stw      r0, 8(r1) slwi     r4, r4, 2 addi     r0, r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l add r3,
+r0, r4 blt      lbl_800094D0 addi     r3, r1, 8
 
-	.loc_0xBC:
-	  lwz       r12, 0x0(r3)
-	  cmplwi    r12, 0
-	  bne-      .loc_0xD0
-	  lis       r3, 0x8047
-	  lwz       r12, 0x32F0(r3)
+lbl_800094D0:
+	lwz      r12, 0(r3)
+	cmplwi   r12, 0
+	bne      lbl_800094E4
+	lis      r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha lwz
+r12, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l(r3)
 
-	.loc_0xD0:
-	  lfd       f2, 0x18(r31)
-	  mtctr     r12
-	  bctrl
+lbl_800094E4:
+	lfd      f2, 0x18(r31)
+	mtctr    r12
+	bctrl
 
-	.loc_0xDC:
-	  lbz       r0, 0x21(r31)
-	  lfd       f3, 0x8(r31)
-	  extsb     r0, r0
-	  cmpwi     r0, 0x3
-	  fadd      f1, f1, f3
-	  beq-      .loc_0x144
-	  bge-      .loc_0x104
-	  cmpwi     r0, 0x2
-	  bge-      .loc_0x128
-	  b         .loc_0x110
+lbl_800094F0:
+	lbz      r0, 0x21(r31)
+	lfd      f3, 8(r31)
+	extsb    r0, r0
+	cmpwi    r0, 3
+	fadd     f1, f1, f3
+	beq      lbl_80009558
+	bge      lbl_80009518
+	cmpwi    r0, 2
+	bge      lbl_8000953C
+	b        lbl_80009524
 
-	.loc_0x104:
-	  cmpwi     r0, 0x5
-	  bge-      .loc_0x110
-	  b         .loc_0x16C
+lbl_80009518:
+	cmpwi    r0, 5
+	bge      lbl_80009524
+	b        lbl_80009580
 
-	.loc_0x110:
-	  fcmpo     cr0, f1, f3
-	  bge-      .loc_0x120
-	  lfd       f1, 0x48(r31)
-	  b         .loc_0x23C
+lbl_80009524:
+	fcmpo    cr0, f1, f3
+	bge      lbl_80009534
+	lfd      f1, 0x48(r31)
+	b        lbl_80009650
 
-	.loc_0x120:
-	  lfd       f1, 0x50(r31)
-	  b         .loc_0x23C
+lbl_80009534:
+	lfd      f1, 0x50(r31)
+	b        lbl_80009650
 
-	.loc_0x128:
-	  lfd       f0, 0x10(r31)
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x13C
-	  lfd       f1, 0x48(r31)
-	  b         .loc_0x23C
+lbl_8000953C:
+	lfd      f0, 0x10(r31)
+	fcmpo    cr0, f1, f0
+	bge      lbl_80009550
+	lfd      f1, 0x48(r31)
+	b        lbl_80009650
 
-	.loc_0x13C:
-	  lfd       f1, 0x50(r31)
-	  b         .loc_0x23C
+lbl_80009550:
+	lfd      f1, 0x50(r31)
+	b        lbl_80009650
 
-	.loc_0x144:
-	  lfd       f0, 0x10(r31)
-	  lfd       f2, -0x7F98(r2)
-	  fadd      f0, f3, f0
-	  fmul      f0, f2, f0
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x164
-	  lfd       f1, 0x48(r31)
-	  b         .loc_0x23C
+lbl_80009558:
+	lfd      f0, 0x10(r31)
+	lfd      f2, lbl_805163C8@sda21(r2)
+	fadd     f0, f3, f0
+	fmul     f0, f2, f0
+	fcmpo    cr0, f1, f0
+	bge      lbl_80009578
+	lfd      f1, 0x48(r31)
+	b        lbl_80009650
 
-	.loc_0x164:
-	  lfd       f1, 0x50(r31)
-	  b         .loc_0x23C
+lbl_80009578:
+	lfd      f1, 0x50(r31)
+	b        lbl_80009650
 
-	.loc_0x16C:
-	  fcmpo     cr0, f1, f3
-	  bge-      .loc_0x17C
-	  lfd       f1, 0x48(r31)
-	  b         .loc_0x23C
+lbl_80009580:
+	fcmpo    cr0, f1, f3
+	bge      lbl_80009590
+	lfd      f1, 0x48(r31)
+	b        lbl_80009650
 
-	.loc_0x17C:
-	  lfd       f0, 0x10(r31)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0x1, 0x2
-	  bne-      .loc_0x194
-	  lfd       f1, 0x50(r31)
-	  b         .loc_0x23C
+lbl_80009590:
+	lfd      f0, 0x10(r31)
+	fcmpo    cr0, f1, f0
+	cror     2, 1, 2
+	bne      lbl_800095A8
+	lfd      f1, 0x50(r31)
+	b        lbl_80009650
 
-	.loc_0x194:
-	  lwz       r0, 0x40(r31)
-	  cmpwi     r0, 0x2
-	  beq-      .loc_0x1E0
-	  bge-      .loc_0x1B4
-	  cmpwi     r0, 0
-	  beq+      .loc_0x144
-	  bge-      .loc_0x1BC
-	  b         .loc_0x144
+lbl_800095A8:
+	lwz      r0, 0x40(r31)
+	cmpwi    r0, 2
+	beq      lbl_800095F4
+	bge      lbl_800095C8
+	cmpwi    r0, 0
+	beq      lbl_80009558
+	bge      lbl_800095D0
+	b        lbl_80009558
 
-	.loc_0x1B4:
-	  cmpwi     r0, 0x4
-	  bge+      .loc_0x144
+lbl_800095C8:
+	cmpwi    r0, 4
+	bge      lbl_80009558
 
-	.loc_0x1BC:
-	  lfd       f4, 0x48(r31)
-	  fsub      f2, f1, f3
-	  lfd       f1, 0x50(r31)
-	  lfd       f0, 0x18(r31)
-	  fsub      f1, f1, f4
-	  fmul      f1, f2, f1
-	  fdiv      f0, f1, f0
-	  fadd      f1, f4, f0
-	  b         .loc_0x23C
+lbl_800095D0:
+	lfd      f4, 0x48(r31)
+	fsub     f2, f1, f3
+	lfd      f1, 0x50(r31)
+	lfd      f0, 0x18(r31)
+	fsub     f1, f1, f4
+	fmul     f1, f2, f1
+	fdiv     f0, f1, f0
+	fadd     f1, f4, f0
+	b        lbl_80009650
 
-	.loc_0x1E0:
-	  fsub      f0, f0, f3
-	  lfd       f6, -0x7FB8(r2)
-	  fsub      f8, f1, f3
-	  lfd       f3, -0x7FA8(r2)
-	  lfd       f2, -0x7FB0(r2)
-	  fdiv      f5, f6, f0
-	  lfd       f0, 0x50(r31)
-	  lfd       f1, 0x48(r31)
-	  lfd       f4, -0x7FC0(r2)
-	  fmul      f7, f8, f5
-	  fmadd     f3, f3, f7, f2
-	  fmul      f2, f7, f7
-	  fsub      f5, f7, f6
-	  fmul      f2, f3, f2
-	  fmul      f3, f5, f5
-	  fmul      f0, f2, f0
-	  fsub      f2, f6, f2
-	  fmul      f5, f5, f8
-	  fmul      f3, f8, f3
-	  fmadd     f0, f2, f1, f0
-	  fmul      f1, f7, f5
-	  fmadd     f0, f3, f4, f0
-	  fmadd     f1, f1, f4, f0
+lbl_800095F4:
+	fsub     f0, f0, f3
+	lfd      f6, lbl_805163A8@sda21(r2)
+	fsub     f8, f1, f3
+	lfd      f3, lbl_805163B8@sda21(r2)
+	lfd      f2, lbl_805163B0@sda21(r2)
+	fdiv     f5, f6, f0
+	lfd      f0, 0x50(r31)
+	lfd      f1, 0x48(r31)
+	lfd      f4, lbl_805163A0@sda21(r2)
+	fmul     f7, f8, f5
+	fmadd    f3, f3, f7, f2
+	fmul     f2, f7, f7
+	fsub     f5, f7, f6
+	fmul     f2, f3, f2
+	fmul     f3, f5, f5
+	fmul     f0, f2, f0
+	fsub     f2, f6, f2
+	fmul     f5, f5, f8
+	fmul     f3, f8, f3
+	fmadd    f0, f2, f1, f0
+	fmul     f1, f7, f5
+	fmadd    f0, f3, f4, f0
+	fmadd    f1, f1, f4, f0
 
-	.loc_0x23C:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80009650:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -1268,37 +1371,36 @@ void TFunctionValue_transition::getValue(double)
 TFunctionValue_list::TFunctionValue_list()
 {
 	/*
-	.loc_0x0:
-	  lis       r6, 0x804A
-	  lis       r5, 0x8051
-	  subi      r0, r6, 0x1AD8
-	  lis       r4, 0x804A
-	  stw       r0, 0x0(r3)
-	  addi      r6, r5, 0x48B0
-	  li        r5, 0
-	  subi      r0, r4, 0x1B58
-	  lfs       f0, 0x0(r6)
-	  stfd      f0, 0x8(r3)
-	  lfd       f0, 0x8(r3)
-	  stfd      f0, 0x10(r3)
-	  lfd       f0, 0x8(r3)
-	  stfd      f0, 0x18(r3)
-	  stb       r5, 0x20(r3)
-	  stb       r5, 0x21(r3)
-	  lfd       f0, 0x8(r3)
-	  stfd      f0, 0x28(r3)
-	  lfd       f0, 0x8(r3)
-	  stfd      f0, 0x30(r3)
-	  stw       r5, 0x38(r3)
-	  stw       r5, 0x3C(r3)
-	  stw       r5, 0x40(r3)
-	  stw       r0, 0x0(r3)
-	  stw       r5, 0x44(r3)
-	  stw       r5, 0x48(r3)
-	  lfs       f0, 0x0(r6)
-	  stfd      f0, 0x50(r3)
-	  stw       r5, 0x58(r3)
-	  blr
+	lis      r6, __vt__Q27JStudio14TFunctionValue@ha
+	lis      r5, __float_nan@ha
+	addi     r0, r6, __vt__Q27JStudio14TFunctionValue@l
+	lis      r4, __vt__Q27JStudio19TFunctionValue_list@ha
+	stw      r0, 0(r3)
+	addi     r6, r5, __float_nan@l
+	li       r5, 0
+	addi     r0, r4, __vt__Q27JStudio19TFunctionValue_list@l
+	lfs      f0, 0(r6)
+	stfd     f0, 8(r3)
+	lfd      f0, 8(r3)
+	stfd     f0, 0x10(r3)
+	lfd      f0, 8(r3)
+	stfd     f0, 0x18(r3)
+	stb      r5, 0x20(r3)
+	stb      r5, 0x21(r3)
+	lfd      f0, 8(r3)
+	stfd     f0, 0x28(r3)
+	lfd      f0, 8(r3)
+	stfd     f0, 0x30(r3)
+	stw      r5, 0x38(r3)
+	stw      r5, 0x3c(r3)
+	stw      r5, 0x40(r3)
+	stw      r0, 0(r3)
+	stw      r5, 0x44(r3)
+	stw      r5, 0x48(r3)
+	lfs      f0, 0(r6)
+	stfd     f0, 0x50(r3)
+	stw      r5, 0x58(r3)
+	blr
 	*/
 }
 
@@ -1317,23 +1419,22 @@ u32 TFunctionValue_list::getType() const { return 0x4; }
 void TFunctionValue_list::getAttributeSet()
 {
 	/*
-	.loc_0x0:
-	  cmplwi    r4, 0
-	  mr        r5, r4
-	  beq-      .loc_0x10
-	  addi      r5, r5, 0x40
+	cmplwi   r4, 0
+	mr       r5, r4
+	beq      lbl_800096F4
+	addi     r5, r5, 0x40
 
-	.loc_0x10:
-	  cmplwi    r4, 0
-	  beq-      .loc_0x1C
-	  addi      r4, r4, 0x8
+lbl_800096F4:
+	cmplwi   r4, 0
+	beq      lbl_80009700
+	addi     r4, r4, 8
 
-	.loc_0x1C:
-	  li        r0, 0
-	  stw       r0, 0x0(r3)
-	  stw       r4, 0x4(r3)
-	  stw       r5, 0x8(r3)
-	  blr
+lbl_80009700:
+	li       r0, 0
+	stw      r0, 0(r3)
+	stw      r4, 4(r3)
+	stw      r5, 8(r3)
+	blr
 	*/
 }
 
@@ -1345,26 +1446,25 @@ void TFunctionValue_list::getAttributeSet()
 void TFunctionValue_list::initialize()
 {
 	/*
-	.loc_0x0:
-	  lis       r4, 0x8051
-	  lfsu      f0, 0x48B0(r4)
-	  li        r0, 0
-	  stfd      f0, 0x8(r3)
-	  lfd       f0, 0x8(r3)
-	  stfd      f0, 0x10(r3)
-	  lfd       f0, 0x8(r3)
-	  stfd      f0, 0x18(r3)
-	  stb       r0, 0x20(r3)
-	  stb       r0, 0x21(r3)
-	  stw       r0, 0x38(r3)
-	  stw       r0, 0x3C(r3)
-	  stw       r0, 0x40(r3)
-	  stw       r0, 0x44(r3)
-	  stw       r0, 0x48(r3)
-	  lfs       f0, 0x0(r4)
-	  stfd      f0, 0x50(r3)
-	  stw       r0, 0x58(r3)
-	  blr
+	lis      r4, __float_nan@ha
+	lfsu     f0, __float_nan@l(r4)
+	li       r0, 0
+	stfd     f0, 8(r3)
+	lfd      f0, 8(r3)
+	stfd     f0, 0x10(r3)
+	lfd      f0, 8(r3)
+	stfd     f0, 0x18(r3)
+	stb      r0, 0x20(r3)
+	stb      r0, 0x21(r3)
+	stw      r0, 0x38(r3)
+	stw      r0, 0x3c(r3)
+	stw      r0, 0x40(r3)
+	stw      r0, 0x44(r3)
+	stw      r0, 0x48(r3)
+	lfs      f0, 0(r4)
+	stfd     f0, 0x50(r3)
+	stw      r0, 0x58(r3)
+	blr
 	*/
 }
 
@@ -1376,105 +1476,114 @@ void TFunctionValue_list::initialize()
 void TFunctionValue_list::prepare()
 {
 	/*
-	.loc_0x0:
-	  lbz       r0, 0x20(r3)
-	  extsb     r0, r0
-	  cmpwi     r0, 0x2
-	  beq-      .loc_0x5C
-	  bge-      .loc_0x24
-	  cmpwi     r0, 0
-	  beq-      .loc_0x34
-	  bge-      .loc_0x48
-	  b         .loc_0x34
+	lbz      r0, 0x20(r3)
+	extsb    r0, r0
+	cmpwi    r0, 2
+	beq      lbl_800097BC
+	bge      lbl_80009784
+	cmpwi    r0, 0
+	beq      lbl_80009794
+	bge      lbl_800097A8
+	b        lbl_80009794
 
-	.loc_0x24:
-	  cmpwi     r0, 0x4
-	  beq-      .loc_0x84
-	  bge-      .loc_0x34
-	  b         .loc_0x70
+lbl_80009784:
+	cmpwi    r0, 4
+	beq      lbl_800097E4
+	bge      lbl_80009794
+	b        lbl_800097D0
 
-	.loc_0x34:
-	  lfd       f1, -0x7FC0(r2)
-	  lfd       f0, -0x7FB8(r2)
-	  stfd      f1, 0x28(r3)
-	  stfd      f0, 0x30(r3)
-	  b         .loc_0xA4
+lbl_80009794:
+	lfd      f1, lbl_805163A0@sda21(r2)
+	lfd      f0, lbl_805163A8@sda21(r2)
+	stfd     f1, 0x28(r3)
+	stfd     f0, 0x30(r3)
+	b        lbl_80009804
 
-	.loc_0x48:
-	  lfd       f1, -0x7FC0(r2)
-	  lfd       f0, -0x7F80(r2)
-	  stfd      f1, 0x28(r3)
-	  stfd      f0, 0x30(r3)
-	  b         .loc_0xA4
+lbl_800097A8:
+	lfd      f1, lbl_805163A0@sda21(r2)
+	lfd      f0, lbl_805163E0@sda21(r2)
+	stfd     f1, 0x28(r3)
+	stfd     f0, 0x30(r3)
+	b        lbl_80009804
 
-	.loc_0x5C:
-	  lfd       f1, 0x8(r3)
-	  lfd       f0, -0x7F80(r2)
-	  stfd      f1, 0x28(r3)
-	  stfd      f0, 0x30(r3)
-	  b         .loc_0xA4
+lbl_800097BC:
+	lfd      f1, 8(r3)
+	lfd      f0, lbl_805163E0@sda21(r2)
+	stfd     f1, 0x28(r3)
+	stfd     f0, 0x30(r3)
+	b        lbl_80009804
 
-	.loc_0x70:
-	  lfd       f1, 0x10(r3)
-	  lfd       f0, -0x7F80(r2)
-	  stfd      f1, 0x28(r3)
-	  stfd      f0, 0x30(r3)
-	  b         .loc_0xA4
+lbl_800097D0:
+	lfd      f1, 0x10(r3)
+	lfd      f0, lbl_805163E0@sda21(r2)
+	stfd     f1, 0x28(r3)
+	stfd     f0, 0x30(r3)
+	b        lbl_80009804
 
-	.loc_0x84:
-	  lfd       f1, 0x8(r3)
-	  lfd       f0, 0x10(r3)
-	  lfd       f2, -0x7F98(r2)
-	  fadd      f1, f1, f0
-	  lfd       f0, -0x7F80(r2)
-	  fmul      f1, f2, f1
-	  stfd      f1, 0x28(r3)
-	  stfd      f0, 0x30(r3)
+lbl_800097E4:
+	lfd      f1, 8(r3)
+	lfd      f0, 0x10(r3)
+	lfd      f2, lbl_805163C8@sda21(r2)
+	fadd     f1, f1, f0
+	lfd      f0, lbl_805163E0@sda21(r2)
+	fmul     f1, f2, f1
+	stfd     f1, 0x28(r3)
+	stfd     f0, 0x30(r3)
 
-	.loc_0xA4:
-	  lwz       r0, 0x40(r3)
-	  cmpwi     r0, 0x2
-	  beq-      .loc_0xF0
-	  bge-      .loc_0xC4
-	  cmpwi     r0, 0
-	  beq-      .loc_0xD0
-	  bge-      .loc_0xE0
-	  b         .loc_0xD0
+lbl_80009804:
+	lwz      r0, 0x40(r3)
+	cmpwi    r0, 2
+	beq      lbl_80009850
+	bge      lbl_80009824
+	cmpwi    r0, 0
+	beq      lbl_80009830
+	bge      lbl_80009840
+	b        lbl_80009830
 
-	.loc_0xC4:
-	  cmpwi     r0, 0x4
-	  bge-      .loc_0xD0
-	  b         .loc_0x100
+lbl_80009824:
+	cmpwi    r0, 4
+	bge      lbl_80009830
+	b        lbl_80009860
 
-	.loc_0xD0:
-	  lis       r4, 0x8001
-	  subi      r0, r4, 0x6248
-	  stw       r0, 0x58(r3)
-	  blr
+lbl_80009830:
+	lis      r4,
+update_INTERPOLATE_NONE___Q27JStudio19TFunctionValue_listFRCQ27JStudio19TFunctionValue_listRCQ37JStudio19TFunctionValue_list11TIndexData_@ha
+	addi     r0, r4,
+update_INTERPOLATE_NONE___Q27JStudio19TFunctionValue_listFRCQ27JStudio19TFunctionValue_listRCQ37JStudio19TFunctionValue_list11TIndexData_@l
+	stw      r0, 0x58(r3)
+	blr
 
-	.loc_0xE0:
-	  lis       r4, 0x8001
-	  subi      r0, r4, 0x6234
-	  stw       r0, 0x58(r3)
-	  blr
+lbl_80009840:
+	lis      r4,
+update_INTERPOLATE_LINEAR___Q27JStudio19TFunctionValue_listFRCQ27JStudio19TFunctionValue_listRCQ37JStudio19TFunctionValue_list11TIndexData_@ha
+	addi     r0, r4,
+update_INTERPOLATE_LINEAR___Q27JStudio19TFunctionValue_listFRCQ27JStudio19TFunctionValue_listRCQ37JStudio19TFunctionValue_list11TIndexData_@l
+	stw      r0, 0x58(r3)
+	blr
 
-	.loc_0xF0:
-	  lis       r4, 0x8001
-	  subi      r0, r4, 0x6204
-	  stw       r0, 0x58(r3)
-	  blr
+lbl_80009850:
+	lis      r4,
+update_INTERPOLATE_PLATEAU___Q27JStudio19TFunctionValue_listFRCQ27JStudio19TFunctionValue_listRCQ37JStudio19TFunctionValue_list11TIndexData_@ha
+	addi     r0, r4,
+update_INTERPOLATE_PLATEAU___Q27JStudio19TFunctionValue_listFRCQ27JStudio19TFunctionValue_listRCQ37JStudio19TFunctionValue_list11TIndexData_@l
+	stw      r0, 0x58(r3)
+	blr
 
-	.loc_0x100:
-	  lis       r4, 0x8001
-	  subi      r0, r4, 0x6188
-	  stw       r0, 0x58(r3)
-	  lwz       r0, 0x48(r3)
-	  cmplwi    r0, 0x2
-	  bnelr-
-	  lis       r4, 0x8001
-	  subi      r0, r4, 0x6234
-	  stw       r0, 0x58(r3)
-	  blr
+lbl_80009860:
+	lis      r4,
+update_INTERPOLATE_BSPLINE_dataMore3___Q27JStudio19TFunctionValue_listFRCQ27JStudio19TFunctionValue_listRCQ37JStudio19TFunctionValue_list11TIndexData_@ha
+	addi     r0, r4,
+update_INTERPOLATE_BSPLINE_dataMore3___Q27JStudio19TFunctionValue_listFRCQ27JStudio19TFunctionValue_listRCQ37JStudio19TFunctionValue_list11TIndexData_@l
+	stw      r0, 0x58(r3)
+	lwz      r0, 0x48(r3)
+	cmplwi   r0, 2
+	bnelr
+	lis      r4,
+update_INTERPOLATE_LINEAR___Q27JStudio19TFunctionValue_listFRCQ27JStudio19TFunctionValue_listRCQ37JStudio19TFunctionValue_list11TIndexData_@ha
+	addi     r0, r4,
+update_INTERPOLATE_LINEAR___Q27JStudio19TFunctionValue_listFRCQ27JStudio19TFunctionValue_listRCQ37JStudio19TFunctionValue_list11TIndexData_@l
+	stw      r0, 0x58(r3)
+	blr
 	*/
 }
 
@@ -1486,419 +1595,398 @@ void TFunctionValue_list::prepare()
 void TFunctionValue_list::getValue(double)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x70(r1)
-	  mflr      r0
-	  stw       r0, 0x74(r1)
-	  stfd      f31, 0x60(r1)
-	  psq_st    f31,0x68(r1),0,0
-	  stw       r31, 0x5C(r1)
-	  stw       r30, 0x58(r1)
-	  mr        r31, r3
-	  lis       r0, 0x4330
-	  lwz       r3, 0x48(r3)
-	  lfd       f4, 0x28(r31)
-	  subi      r30, r3, 0x1
-	  lbz       r3, 0x21(r31)
-	  stw       r30, 0x4C(r1)
-	  fsub      f2, f1, f4
-	  lfd       f3, 0x30(r31)
-	  extsb     r3, r3
-	  stw       r0, 0x48(r1)
-	  cmpwi     r3, 0x2
-	  lfd       f1, -0x7F78(r2)
-	  lfd       f0, 0x48(r1)
-	  fmadd     f3, f3, f2, f4
-	  fsub      f31, f0, f1
-	  beq-      .loc_0x228
-	  bge-      .loc_0x74
-	  cmpwi     r3, 0
-	  beq-      .loc_0x84
-	  bge-      .loc_0x154
-	  b         .loc_0x84
+	stwu     r1, -0x70(r1)
+	mflr     r0
+	stw      r0, 0x74(r1)
+	stfd     f31, 0x60(r1)
+	psq_st   f31, 104(r1), 0, qr0
+	stw      r31, 0x5c(r1)
+	stw      r30, 0x58(r1)
+	mr       r31, r3
+	lis      r0, 0x4330
+	lwz      r3, 0x48(r3)
+	lfd      f4, 0x28(r31)
+	addi     r30, r3, -1
+	lbz      r3, 0x21(r31)
+	stw      r30, 0x4c(r1)
+	fsub     f2, f1, f4
+	lfd      f3, 0x30(r31)
+	extsb    r3, r3
+	stw      r0, 0x48(r1)
+	cmpwi    r3, 2
+	lfd      f1, lbl_805163E8@sda21(r2)
+	lfd      f0, 0x48(r1)
+	fmadd    f3, f3, f2, f4
+	fsub     f31, f0, f1
+	beq      lbl_80009AB0
+	bge      lbl_800098FC
+	cmpwi    r3, 0
+	beq      lbl_8000990C
+	bge      lbl_800099DC
+	b        lbl_8000990C
 
-	.loc_0x74:
-	  cmpwi     r3, 0x4
-	  beq-      .loc_0x3E0
-	  bge-      .loc_0x84
-	  b         .loc_0x300
+lbl_800098FC:
+	cmpwi    r3, 4
+	beq      lbl_80009C68
+	bge      lbl_8000990C
+	b        lbl_80009B88
 
-	.loc_0x84:
-	  lfd       f1, 0x8(r31)
-	  lfd       f0, -0x7FC0(r2)
-	  fsub      f1, f3, f1
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0xE4
-	  lwz       r4, 0x38(r31)
-	  li        r0, 0
-	  lis       r3, 0x8047
-	  cmplwi    r4, 0x4
-	  stw       r0, 0x2C(r1)
-	  rlwinm    r4,r4,2,0,29
-	  addi      r0, r3, 0x32F0
-	  add       r3, r0, r4
-	  blt-      .loc_0xC0
-	  addi      r3, r1, 0x2C
+lbl_8000990C:
+	lfd      f1, 8(r31)
+	lfd      f0, lbl_805163A0@sda21(r2)
+	fsub     f1, f3, f1
+	fcmpo    cr0, f1, f0
+	bge      lbl_8000996C
+	lwz      r4, 0x38(r31)
+	li       r0, 0
+	lis      r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha cmplwi
+r4, 4 stw      r0, 0x2c(r1) slwi     r4, r4, 2 addi     r0, r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l add r3,
+r0, r4 blt      lbl_80009948 addi     r3, r1, 0x2c
 
-	.loc_0xC0:
-	  lwz       r12, 0x0(r3)
-	  cmplwi    r12, 0
-	  bne-      .loc_0xD4
-	  lis       r3, 0x8047
-	  lwz       r12, 0x32F0(r3)
+lbl_80009948:
+	lwz      r12, 0(r3)
+	cmplwi   r12, 0
+	bne      lbl_8000995C
+	lis      r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha lwz
+r12, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l(r3)
 
-	.loc_0xD4:
-	  lfd       f2, 0x18(r31)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x13C
+lbl_8000995C:
+	lfd      f2, 0x18(r31)
+	mtctr    r12
+	bctrl
+	b        lbl_800099C4
 
-	.loc_0xE4:
-	  lfd       f0, 0x18(r31)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0x1, 0x2
-	  bne-      .loc_0x13C
-	  lwz       r4, 0x3C(r31)
-	  li        r0, 0
-	  lis       r3, 0x8047
-	  cmplwi    r4, 0x4
-	  stw       r0, 0x28(r1)
-	  rlwinm    r4,r4,2,0,29
-	  addi      r0, r3, 0x32F0
-	  add       r3, r0, r4
-	  blt-      .loc_0x11C
-	  addi      r3, r1, 0x28
+lbl_8000996C:
+	lfd      f0, 0x18(r31)
+	fcmpo    cr0, f1, f0
+	cror     2, 1, 2
+	bne      lbl_800099C4
+	lwz      r4, 0x3c(r31)
+	li       r0, 0
+	lis      r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha cmplwi
+r4, 4 stw      r0, 0x28(r1) slwi     r4, r4, 2 addi     r0, r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l add r3,
+r0, r4 blt      lbl_800099A4 addi     r3, r1, 0x28
 
-	.loc_0x11C:
-	  lwz       r12, 0x0(r3)
-	  cmplwi    r12, 0
-	  bne-      .loc_0x130
-	  lis       r3, 0x8047
-	  lwz       r12, 0x32F0(r3)
+lbl_800099A4:
+	lwz      r12, 0(r3)
+	cmplwi   r12, 0
+	bne      lbl_800099B8
+	lis      r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha lwz
+r12, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l(r3)
 
-	.loc_0x130:
-	  lfd       f2, 0x18(r31)
-	  mtctr     r12
-	  bctrl
+lbl_800099B8:
+	lfd      f2, 0x18(r31)
+	mtctr    r12
+	bctrl
 
-	.loc_0x13C:
-	  lfd       f2, 0x8(r31)
-	  lfd       f0, 0x50(r31)
-	  fadd      f1, f1, f2
-	  fdiv      f0, f1, f0
-	  stfd      f0, 0x30(r1)
-	  b         .loc_0x4B4
+lbl_800099C4:
+	lfd      f2, 8(r31)
+	lfd      f0, 0x50(r31)
+	fadd     f1, f1, f2
+	fdiv     f0, f1, f0
+	stfd     f0, 0x30(r1)
+	b        lbl_80009D3C
 
-	.loc_0x154:
-	  lfd       f2, 0x8(r31)
-	  lfd       f0, -0x7FC0(r2)
-	  fadd      f1, f3, f2
-	  fsub      f1, f1, f2
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x1B8
-	  lwz       r4, 0x38(r31)
-	  li        r0, 0
-	  lis       r3, 0x8047
-	  cmplwi    r4, 0x4
-	  stw       r0, 0x24(r1)
-	  rlwinm    r4,r4,2,0,29
-	  addi      r0, r3, 0x32F0
-	  add       r3, r0, r4
-	  blt-      .loc_0x194
-	  addi      r3, r1, 0x24
+lbl_800099DC:
+	lfd      f2, 8(r31)
+	lfd      f0, lbl_805163A0@sda21(r2)
+	fadd     f1, f3, f2
+	fsub     f1, f1, f2
+	fcmpo    cr0, f1, f0
+	bge      lbl_80009A40
+	lwz      r4, 0x38(r31)
+	li       r0, 0
+	lis      r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha cmplwi
+r4, 4 stw      r0, 0x24(r1) slwi     r4, r4, 2 addi     r0, r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l add r3,
+r0, r4 blt      lbl_80009A1C addi     r3, r1, 0x24
 
-	.loc_0x194:
-	  lwz       r12, 0x0(r3)
-	  cmplwi    r12, 0
-	  bne-      .loc_0x1A8
-	  lis       r3, 0x8047
-	  lwz       r12, 0x32F0(r3)
+lbl_80009A1C:
+	lwz      r12, 0(r3)
+	cmplwi   r12, 0
+	bne      lbl_80009A30
+	lis      r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha lwz
+r12, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l(r3)
 
-	.loc_0x1A8:
-	  lfd       f2, 0x18(r31)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x210
+lbl_80009A30:
+	lfd      f2, 0x18(r31)
+	mtctr    r12
+	bctrl
+	b        lbl_80009A98
 
-	.loc_0x1B8:
-	  lfd       f0, 0x18(r31)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0x1, 0x2
-	  bne-      .loc_0x210
-	  lwz       r4, 0x3C(r31)
-	  li        r0, 0
-	  lis       r3, 0x8047
-	  cmplwi    r4, 0x4
-	  stw       r0, 0x20(r1)
-	  rlwinm    r4,r4,2,0,29
-	  addi      r0, r3, 0x32F0
-	  add       r3, r0, r4
-	  blt-      .loc_0x1F0
-	  addi      r3, r1, 0x20
+lbl_80009A40:
+	lfd      f0, 0x18(r31)
+	fcmpo    cr0, f1, f0
+	cror     2, 1, 2
+	bne      lbl_80009A98
+	lwz      r4, 0x3c(r31)
+	li       r0, 0
+	lis      r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha cmplwi
+r4, 4 stw      r0, 0x20(r1) slwi     r4, r4, 2 addi     r0, r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l add r3,
+r0, r4 blt      lbl_80009A78 addi     r3, r1, 0x20
 
-	.loc_0x1F0:
-	  lwz       r12, 0x0(r3)
-	  cmplwi    r12, 0
-	  bne-      .loc_0x204
-	  lis       r3, 0x8047
-	  lwz       r12, 0x32F0(r3)
+lbl_80009A78:
+	lwz      r12, 0(r3)
+	cmplwi   r12, 0
+	bne      lbl_80009A8C
+	lis      r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha lwz
+r12, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l(r3)
 
-	.loc_0x204:
-	  lfd       f2, 0x18(r31)
-	  mtctr     r12
-	  bctrl
+lbl_80009A8C:
+	lfd      f2, 0x18(r31)
+	mtctr    r12
+	bctrl
 
-	.loc_0x210:
-	  lfd       f2, 0x8(r31)
-	  lfd       f0, 0x50(r31)
-	  fadd      f1, f1, f2
-	  fdiv      f0, f1, f0
-	  stfd      f0, 0x30(r1)
-	  b         .loc_0x4B4
+lbl_80009A98:
+	lfd      f2, 8(r31)
+	lfd      f0, 0x50(r31)
+	fadd     f1, f1, f2
+	fdiv     f0, f1, f0
+	stfd     f0, 0x30(r1)
+	b        lbl_80009D3C
 
-	.loc_0x228:
-	  lfd       f0, 0x10(r31)
-	  lfd       f2, 0x8(r31)
-	  fadd      f1, f3, f0
-	  lfd       f0, -0x7FC0(r2)
-	  fsub      f1, f1, f2
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x290
-	  lwz       r4, 0x38(r31)
-	  li        r0, 0
-	  lis       r3, 0x8047
-	  cmplwi    r4, 0x4
-	  stw       r0, 0x1C(r1)
-	  rlwinm    r4,r4,2,0,29
-	  addi      r0, r3, 0x32F0
-	  add       r3, r0, r4
-	  blt-      .loc_0x26C
-	  addi      r3, r1, 0x1C
+lbl_80009AB0:
+	lfd      f0, 0x10(r31)
+	lfd      f2, 8(r31)
+	fadd     f1, f3, f0
+	lfd      f0, lbl_805163A0@sda21(r2)
+	fsub     f1, f1, f2
+	fcmpo    cr0, f1, f0
+	bge      lbl_80009B18
+	lwz      r4, 0x38(r31)
+	li       r0, 0
+	lis      r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha cmplwi
+r4, 4 stw      r0, 0x1c(r1) slwi     r4, r4, 2 addi     r0, r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l add r3,
+r0, r4 blt      lbl_80009AF4 addi     r3, r1, 0x1c
 
-	.loc_0x26C:
-	  lwz       r12, 0x0(r3)
-	  cmplwi    r12, 0
-	  bne-      .loc_0x280
-	  lis       r3, 0x8047
-	  lwz       r12, 0x32F0(r3)
+lbl_80009AF4:
+	lwz      r12, 0(r3)
+	cmplwi   r12, 0
+	bne      lbl_80009B08
+	lis      r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha lwz
+r12, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l(r3)
 
-	.loc_0x280:
-	  lfd       f2, 0x18(r31)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x2E8
+lbl_80009B08:
+	lfd      f2, 0x18(r31)
+	mtctr    r12
+	bctrl
+	b        lbl_80009B70
 
-	.loc_0x290:
-	  lfd       f0, 0x18(r31)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0x1, 0x2
-	  bne-      .loc_0x2E8
-	  lwz       r4, 0x3C(r31)
-	  li        r0, 0
-	  lis       r3, 0x8047
-	  cmplwi    r4, 0x4
-	  stw       r0, 0x18(r1)
-	  rlwinm    r4,r4,2,0,29
-	  addi      r0, r3, 0x32F0
-	  add       r3, r0, r4
-	  blt-      .loc_0x2C8
-	  addi      r3, r1, 0x18
+lbl_80009B18:
+	lfd      f0, 0x18(r31)
+	fcmpo    cr0, f1, f0
+	cror     2, 1, 2
+	bne      lbl_80009B70
+	lwz      r4, 0x3c(r31)
+	li       r0, 0
+	lis      r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha cmplwi
+r4, 4 stw      r0, 0x18(r1) slwi     r4, r4, 2 addi     r0, r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l add r3,
+r0, r4 blt      lbl_80009B50 addi     r3, r1, 0x18
 
-	.loc_0x2C8:
-	  lwz       r12, 0x0(r3)
-	  cmplwi    r12, 0
-	  bne-      .loc_0x2DC
-	  lis       r3, 0x8047
-	  lwz       r12, 0x32F0(r3)
+lbl_80009B50:
+	lwz      r12, 0(r3)
+	cmplwi   r12, 0
+	bne      lbl_80009B64
+	lis      r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha lwz
+r12, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l(r3)
 
-	.loc_0x2DC:
-	  lfd       f2, 0x18(r31)
-	  mtctr     r12
-	  bctrl
+lbl_80009B64:
+	lfd      f2, 0x18(r31)
+	mtctr    r12
+	bctrl
 
-	.loc_0x2E8:
-	  lfd       f2, 0x8(r31)
-	  lfd       f0, 0x50(r31)
-	  fadd      f1, f1, f2
-	  fdiv      f0, f1, f0
-	  stfd      f0, 0x30(r1)
-	  b         .loc_0x4B4
+lbl_80009B70:
+	lfd      f2, 8(r31)
+	lfd      f0, 0x50(r31)
+	fadd     f1, f1, f2
+	fdiv     f0, f1, f0
+	stfd     f0, 0x30(r1)
+	b        lbl_80009D3C
 
-	.loc_0x300:
-	  lfd       f4, 0x8(r31)
-	  lfd       f0, 0x10(r31)
-	  lfd       f2, -0x7F98(r2)
-	  fadd      f1, f4, f0
-	  lfd       f0, -0x7FC0(r2)
-	  fmadd     f1, f2, f1, f3
-	  fsub      f1, f1, f4
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x370
-	  lwz       r4, 0x38(r31)
-	  li        r0, 0
-	  lis       r3, 0x8047
-	  cmplwi    r4, 0x4
-	  stw       r0, 0x14(r1)
-	  rlwinm    r4,r4,2,0,29
-	  addi      r0, r3, 0x32F0
-	  add       r3, r0, r4
-	  blt-      .loc_0x34C
-	  addi      r3, r1, 0x14
+lbl_80009B88:
+	lfd      f4, 8(r31)
+	lfd      f0, 0x10(r31)
+	lfd      f2, lbl_805163C8@sda21(r2)
+	fadd     f1, f4, f0
+	lfd      f0, lbl_805163A0@sda21(r2)
+	fmadd    f1, f2, f1, f3
+	fsub     f1, f1, f4
+	fcmpo    cr0, f1, f0
+	bge      lbl_80009BF8
+	lwz      r4, 0x38(r31)
+	li       r0, 0
+	lis      r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha cmplwi
+r4, 4 stw      r0, 0x14(r1) slwi     r4, r4, 2 addi     r0, r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l add r3,
+r0, r4 blt      lbl_80009BD4 addi     r3, r1, 0x14
 
-	.loc_0x34C:
-	  lwz       r12, 0x0(r3)
-	  cmplwi    r12, 0
-	  bne-      .loc_0x360
-	  lis       r3, 0x8047
-	  lwz       r12, 0x32F0(r3)
+lbl_80009BD4:
+	lwz      r12, 0(r3)
+	cmplwi   r12, 0
+	bne      lbl_80009BE8
+	lis      r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha lwz
+r12, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l(r3)
 
-	.loc_0x360:
-	  lfd       f2, 0x18(r31)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x3C8
+lbl_80009BE8:
+	lfd      f2, 0x18(r31)
+	mtctr    r12
+	bctrl
+	b        lbl_80009C50
 
-	.loc_0x370:
-	  lfd       f0, 0x18(r31)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0x1, 0x2
-	  bne-      .loc_0x3C8
-	  lwz       r4, 0x3C(r31)
-	  li        r0, 0
-	  lis       r3, 0x8047
-	  cmplwi    r4, 0x4
-	  stw       r0, 0x10(r1)
-	  rlwinm    r4,r4,2,0,29
-	  addi      r0, r3, 0x32F0
-	  add       r3, r0, r4
-	  blt-      .loc_0x3A8
-	  addi      r3, r1, 0x10
+lbl_80009BF8:
+	lfd      f0, 0x18(r31)
+	fcmpo    cr0, f1, f0
+	cror     2, 1, 2
+	bne      lbl_80009C50
+	lwz      r4, 0x3c(r31)
+	li       r0, 0
+	lis      r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha cmplwi
+r4, 4 stw      r0, 0x10(r1) slwi     r4, r4, 2 addi     r0, r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l add r3,
+r0, r4 blt      lbl_80009C30 addi     r3, r1, 0x10
 
-	.loc_0x3A8:
-	  lwz       r12, 0x0(r3)
-	  cmplwi    r12, 0
-	  bne-      .loc_0x3BC
-	  lis       r3, 0x8047
-	  lwz       r12, 0x32F0(r3)
+lbl_80009C30:
+	lwz      r12, 0(r3)
+	cmplwi   r12, 0
+	bne      lbl_80009C44
+	lis      r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha lwz
+r12, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l(r3)
 
-	.loc_0x3BC:
-	  lfd       f2, 0x18(r31)
-	  mtctr     r12
-	  bctrl
+lbl_80009C44:
+	lfd      f2, 0x18(r31)
+	mtctr    r12
+	bctrl
 
-	.loc_0x3C8:
-	  lfd       f2, 0x8(r31)
-	  lfd       f0, 0x50(r31)
-	  fadd      f1, f1, f2
-	  fdiv      f0, f1, f0
-	  stfd      f0, 0x30(r1)
-	  b         .loc_0x4B4
+lbl_80009C50:
+	lfd      f2, 8(r31)
+	lfd      f0, 0x50(r31)
+	fadd     f1, f1, f2
+	fdiv     f0, f1, f0
+	stfd     f0, 0x30(r1)
+	b        lbl_80009D3C
 
-	.loc_0x3E0:
-	  lfd       f1, 0x8(r31)
-	  lfd       f0, -0x7FC0(r2)
-	  fsub      f1, f3, f1
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x440
-	  lwz       r4, 0x38(r31)
-	  li        r0, 0
-	  lis       r3, 0x8047
-	  cmplwi    r4, 0x4
-	  stw       r0, 0xC(r1)
-	  rlwinm    r4,r4,2,0,29
-	  addi      r0, r3, 0x32F0
-	  add       r3, r0, r4
-	  blt-      .loc_0x41C
-	  addi      r3, r1, 0xC
+lbl_80009C68:
+	lfd      f1, 8(r31)
+	lfd      f0, lbl_805163A0@sda21(r2)
+	fsub     f1, f3, f1
+	fcmpo    cr0, f1, f0
+	bge      lbl_80009CC8
+	lwz      r4, 0x38(r31)
+	li       r0, 0
+	lis      r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha cmplwi
+r4, 4 stw      r0, 0xc(r1) slwi     r4, r4, 2 addi     r0, r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l add r3,
+r0, r4 blt      lbl_80009CA4 addi     r3, r1, 0xc
 
-	.loc_0x41C:
-	  lwz       r12, 0x0(r3)
-	  cmplwi    r12, 0
-	  bne-      .loc_0x430
-	  lis       r3, 0x8047
-	  lwz       r12, 0x32F0(r3)
+lbl_80009CA4:
+	lwz      r12, 0(r3)
+	cmplwi   r12, 0
+	bne      lbl_80009CB8
+	lis      r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha lwz
+r12, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l(r3)
 
-	.loc_0x430:
-	  lfd       f2, 0x18(r31)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x498
+lbl_80009CB8:
+	lfd      f2, 0x18(r31)
+	mtctr    r12
+	bctrl
+	b        lbl_80009D20
 
-	.loc_0x440:
-	  lfd       f0, 0x18(r31)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0x1, 0x2
-	  bne-      .loc_0x498
-	  lwz       r4, 0x3C(r31)
-	  li        r0, 0
-	  lis       r3, 0x8047
-	  cmplwi    r4, 0x4
-	  stw       r0, 0x8(r1)
-	  rlwinm    r4,r4,2,0,29
-	  addi      r0, r3, 0x32F0
-	  add       r3, r0, r4
-	  blt-      .loc_0x478
-	  addi      r3, r1, 0x8
+lbl_80009CC8:
+	lfd      f0, 0x18(r31)
+	fcmpo    cr0, f1, f0
+	cror     2, 1, 2
+	bne      lbl_80009D20
+	lwz      r4, 0x3c(r31)
+	li       r0, 0
+	lis      r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha cmplwi
+r4, 4 stw      r0, 8(r1) slwi     r4, r4, 2 addi     r0, r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l add r3,
+r0, r4 blt      lbl_80009D00 addi     r3, r1, 8
 
-	.loc_0x478:
-	  lwz       r12, 0x0(r3)
-	  cmplwi    r12, 0
-	  bne-      .loc_0x48C
-	  lis       r3, 0x8047
-	  lwz       r12, 0x32F0(r3)
+lbl_80009D00:
+	lwz      r12, 0(r3)
+	cmplwi   r12, 0
+	bne      lbl_80009D14
+	lis      r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha lwz
+r12, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l(r3)
 
-	.loc_0x48C:
-	  lfd       f2, 0x18(r31)
-	  mtctr     r12
-	  bctrl
+lbl_80009D14:
+	lfd      f2, 0x18(r31)
+	mtctr    r12
+	bctrl
 
-	.loc_0x498:
-	  lfd       f2, 0x8(r31)
-	  lfd       f0, 0x18(r31)
-	  fadd      f1, f1, f2
-	  fsub      f1, f1, f2
-	  fmul      f1, f31, f1
-	  fdiv      f0, f1, f0
-	  stfd      f0, 0x30(r1)
+lbl_80009D20:
+	lfd      f2, 8(r31)
+	lfd      f0, 0x18(r31)
+	fadd     f1, f1, f2
+	fsub     f1, f1, f2
+	fmul     f1, f31, f1
+	fdiv     f0, f1, f0
+	stfd     f0, 0x30(r1)
 
-	.loc_0x4B4:
-	  lfd       f1, 0x30(r1)
-	  lfd       f0, -0x7FC0(r2)
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x4D0
-	  lwz       r3, 0x44(r31)
-	  lfs       f1, 0x0(r3)
-	  b         .loc_0x510
+lbl_80009D3C:
+	lfd      f1, 0x30(r1)
+	lfd      f0, lbl_805163A0@sda21(r2)
+	fcmpo    cr0, f1, f0
+	bge      lbl_80009D58
+	lwz      r3, 0x44(r31)
+	lfs      f1, 0(r3)
+	b        lbl_80009D98
 
-	.loc_0x4D0:
-	  fcmpo     cr0, f1, f31
-	  cror      2, 0x1, 0x2
-	  bne-      .loc_0x4EC
-	  lwz       r3, 0x44(r31)
-	  rlwinm    r0,r30,2,0,29
-	  lfsx      f1, r3, r0
-	  b         .loc_0x510
+lbl_80009D58:
+	fcmpo    cr0, f1, f31
+	cror     2, 1, 2
+	bne      lbl_80009D74
+	lwz      r3, 0x44(r31)
+	slwi     r0, r30, 2
+	lfsx     f1, r3, r0
+	b        lbl_80009D98
 
-	.loc_0x4EC:
-	  bl        0xC5614
-	  stfd      f1, 0x38(r1)
-	  bl        0xB7DD0
-	  stw       r3, 0x40(r1)
-	  mr        r3, r31
-	  addi      r4, r1, 0x30
-	  lwz       r12, 0x58(r31)
-	  mtctr     r12
-	  bctrl
+lbl_80009D74:
+	bl       floor
+	stfd     f1, 0x38(r1)
+	bl       __cvt_fp2unsigned
+	stw      r3, 0x40(r1)
+	mr       r3, r31
+	addi     r4, r1, 0x30
+	lwz      r12, 0x58(r31)
+	mtctr    r12
+	bctrl
 
-	.loc_0x510:
-	  psq_l     f31,0x68(r1),0,0
-	  lwz       r0, 0x74(r1)
-	  lfd       f31, 0x60(r1)
-	  lwz       r31, 0x5C(r1)
-	  lwz       r30, 0x58(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x70
-	  blr
+lbl_80009D98:
+	psq_l    f31, 104(r1), 0, qr0
+	lwz      r0, 0x74(r1)
+	lfd      f31, 0x60(r1)
+	lwz      r31, 0x5c(r1)
+	lwz      r30, 0x58(r1)
+	mtlr     r0
+	addi     r1, r1, 0x70
+	blr
 	*/
 }
 
@@ -2065,40 +2153,39 @@ void TFunctionValue_list::update_INTERPOLATE_BSPLINE_dataMore3_(
 TFunctionValue_list_parameter::TFunctionValue_list_parameter()
 {
 	/*
-	.loc_0x0:
-	  lis       r6, 0x804A
-	  lis       r5, 0x8051
-	  subi      r0, r6, 0x1AD8
-	  lis       r4, 0x804A
-	  stw       r0, 0x0(r3)
-	  addi      r6, r5, 0x48B0
-	  li        r5, 0
-	  subi      r0, r4, 0x1B78
-	  lfs       f0, 0x0(r6)
-	  stfd      f0, 0x8(r3)
-	  lfd       f0, 0x8(r3)
-	  stfd      f0, 0x10(r3)
-	  lfd       f0, 0x8(r3)
-	  stfd      f0, 0x18(r3)
-	  stb       r5, 0x20(r3)
-	  stb       r5, 0x21(r3)
-	  lfd       f0, 0x8(r3)
-	  stfd      f0, 0x28(r3)
-	  lfd       f0, 0x8(r3)
-	  stfd      f0, 0x30(r3)
-	  stw       r5, 0x38(r3)
-	  stw       r5, 0x3C(r3)
-	  stw       r5, 0x40(r3)
-	  stw       r0, 0x0(r3)
-	  stw       r5, 0x44(r3)
-	  stw       r5, 0x48(r3)
-	  stw       r5, 0x4C(r3)
-	  lwz       r0, 0x4C(r3)
-	  stw       r0, 0x50(r3)
-	  lwz       r0, 0x4C(r3)
-	  stw       r0, 0x54(r3)
-	  stw       r5, 0x58(r3)
-	  blr
+	lis      r6, __vt__Q27JStudio14TFunctionValue@ha
+	lis      r5, __float_nan@ha
+	addi     r0, r6, __vt__Q27JStudio14TFunctionValue@l
+	lis      r4, __vt__Q27JStudio29TFunctionValue_list_parameter@ha
+	stw      r0, 0(r3)
+	addi     r6, r5, __float_nan@l
+	li       r5, 0
+	addi     r0, r4, __vt__Q27JStudio29TFunctionValue_list_parameter@l
+	lfs      f0, 0(r6)
+	stfd     f0, 8(r3)
+	lfd      f0, 8(r3)
+	stfd     f0, 0x10(r3)
+	lfd      f0, 8(r3)
+	stfd     f0, 0x18(r3)
+	stb      r5, 0x20(r3)
+	stb      r5, 0x21(r3)
+	lfd      f0, 8(r3)
+	stfd     f0, 0x28(r3)
+	lfd      f0, 8(r3)
+	stfd     f0, 0x30(r3)
+	stw      r5, 0x38(r3)
+	stw      r5, 0x3c(r3)
+	stw      r5, 0x40(r3)
+	stw      r0, 0(r3)
+	stw      r5, 0x44(r3)
+	stw      r5, 0x48(r3)
+	stw      r5, 0x4c(r3)
+	lwz      r0, 0x4c(r3)
+	stw      r0, 0x50(r3)
+	lwz      r0, 0x4c(r3)
+	stw      r0, 0x54(r3)
+	stw      r5, 0x58(r3)
+	blr
 	*/
 }
 
@@ -2117,23 +2204,22 @@ u32 TFunctionValue_list_parameter::getType() const { return 0x5; }
 void TFunctionValue_list_parameter::getAttributeSet()
 {
 	/*
-	.loc_0x0:
-	  cmplwi    r4, 0
-	  mr        r5, r4
-	  beq-      .loc_0x10
-	  addi      r5, r5, 0x40
+	cmplwi   r4, 0
+	mr       r5, r4
+	beq      lbl_80009FC8
+	addi     r5, r5, 0x40
 
-	.loc_0x10:
-	  cmplwi    r4, 0
-	  beq-      .loc_0x1C
-	  addi      r4, r4, 0x8
+lbl_80009FC8:
+	cmplwi   r4, 0
+	beq      lbl_80009FD4
+	addi     r4, r4, 8
 
-	.loc_0x1C:
-	  li        r0, 0
-	  stw       r0, 0x0(r3)
-	  stw       r4, 0x4(r3)
-	  stw       r5, 0x8(r3)
-	  blr
+lbl_80009FD4:
+	li       r0, 0
+	stw      r0, 0(r3)
+	stw      r4, 4(r3)
+	stw      r5, 8(r3)
+	blr
 	*/
 }
 
@@ -2145,19 +2231,18 @@ void TFunctionValue_list_parameter::getAttributeSet()
 void TFunctionValue_list_parameter::data_set(const float*, unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stw       r4, 0x44(r3)
-	  stw       r5, 0x48(r3)
-	  lwz       r0, 0x44(r3)
-	  stw       r0, 0x4C(r3)
-	  lwz       r0, 0x48(r3)
-	  lwz       r4, 0x44(r3)
-	  rlwinm    r0,r0,3,0,28
-	  add       r0, r4, r0
-	  stw       r0, 0x50(r3)
-	  lwz       r0, 0x4C(r3)
-	  stw       r0, 0x54(r3)
-	  blr
+	stw      r4, 0x44(r3)
+	stw      r5, 0x48(r3)
+	lwz      r0, 0x44(r3)
+	stw      r0, 0x4c(r3)
+	lwz      r0, 0x48(r3)
+	lwz      r4, 0x44(r3)
+	slwi     r0, r0, 3
+	add      r0, r4, r0
+	stw      r0, 0x50(r3)
+	lwz      r0, 0x4c(r3)
+	stw      r0, 0x54(r3)
+	blr
 	*/
 }
 
@@ -2169,29 +2254,28 @@ void TFunctionValue_list_parameter::data_set(const float*, unsigned long)
 void TFunctionValue_list_parameter::initialize()
 {
 	/*
-	.loc_0x0:
-	  lis       r5, 0x8051
-	  li        r4, 0
-	  lfs       f0, 0x48B0(r5)
-	  stfd      f0, 0x8(r3)
-	  lfd       f0, 0x8(r3)
-	  stfd      f0, 0x10(r3)
-	  lfd       f0, 0x8(r3)
-	  stfd      f0, 0x18(r3)
-	  stb       r4, 0x20(r3)
-	  stb       r4, 0x21(r3)
-	  stw       r4, 0x38(r3)
-	  stw       r4, 0x3C(r3)
-	  stw       r4, 0x40(r3)
-	  stw       r4, 0x44(r3)
-	  stw       r4, 0x48(r3)
-	  stw       r4, 0x4C(r3)
-	  lwz       r0, 0x4C(r3)
-	  stw       r0, 0x50(r3)
-	  lwz       r0, 0x4C(r3)
-	  stw       r0, 0x54(r3)
-	  stw       r4, 0x58(r3)
-	  blr
+	lis      r5, __float_nan@ha
+	li       r4, 0
+	lfs      f0, __float_nan@l(r5)
+	stfd     f0, 8(r3)
+	lfd      f0, 8(r3)
+	stfd     f0, 0x10(r3)
+	lfd      f0, 8(r3)
+	stfd     f0, 0x18(r3)
+	stb      r4, 0x20(r3)
+	stb      r4, 0x21(r3)
+	stw      r4, 0x38(r3)
+	stw      r4, 0x3c(r3)
+	stw      r4, 0x40(r3)
+	stw      r4, 0x44(r3)
+	stw      r4, 0x48(r3)
+	stw      r4, 0x4c(r3)
+	lwz      r0, 0x4c(r3)
+	stw      r0, 0x50(r3)
+	lwz      r0, 0x4c(r3)
+	stw      r0, 0x54(r3)
+	stw      r4, 0x58(r3)
+	blr
 	*/
 }
 
@@ -2203,105 +2287,114 @@ void TFunctionValue_list_parameter::initialize()
 void TFunctionValue_list_parameter::prepare()
 {
 	/*
-	.loc_0x0:
-	  lbz       r0, 0x20(r3)
-	  extsb     r0, r0
-	  cmpwi     r0, 0x2
-	  beq-      .loc_0x5C
-	  bge-      .loc_0x24
-	  cmpwi     r0, 0
-	  beq-      .loc_0x34
-	  bge-      .loc_0x48
-	  b         .loc_0x34
+	lbz      r0, 0x20(r3)
+	extsb    r0, r0
+	cmpwi    r0, 2
+	beq      lbl_8000A0CC
+	bge      lbl_8000A094
+	cmpwi    r0, 0
+	beq      lbl_8000A0A4
+	bge      lbl_8000A0B8
+	b        lbl_8000A0A4
 
-	.loc_0x24:
-	  cmpwi     r0, 0x4
-	  beq-      .loc_0x84
-	  bge-      .loc_0x34
-	  b         .loc_0x70
+lbl_8000A094:
+	cmpwi    r0, 4
+	beq      lbl_8000A0F4
+	bge      lbl_8000A0A4
+	b        lbl_8000A0E0
 
-	.loc_0x34:
-	  lfd       f1, -0x7FC0(r2)
-	  lfd       f0, -0x7FB8(r2)
-	  stfd      f1, 0x28(r3)
-	  stfd      f0, 0x30(r3)
-	  b         .loc_0xA4
+lbl_8000A0A4:
+	lfd      f1, lbl_805163A0@sda21(r2)
+	lfd      f0, lbl_805163A8@sda21(r2)
+	stfd     f1, 0x28(r3)
+	stfd     f0, 0x30(r3)
+	b        lbl_8000A114
 
-	.loc_0x48:
-	  lfd       f1, -0x7FC0(r2)
-	  lfd       f0, -0x7F80(r2)
-	  stfd      f1, 0x28(r3)
-	  stfd      f0, 0x30(r3)
-	  b         .loc_0xA4
+lbl_8000A0B8:
+	lfd      f1, lbl_805163A0@sda21(r2)
+	lfd      f0, lbl_805163E0@sda21(r2)
+	stfd     f1, 0x28(r3)
+	stfd     f0, 0x30(r3)
+	b        lbl_8000A114
 
-	.loc_0x5C:
-	  lfd       f1, 0x8(r3)
-	  lfd       f0, -0x7F80(r2)
-	  stfd      f1, 0x28(r3)
-	  stfd      f0, 0x30(r3)
-	  b         .loc_0xA4
+lbl_8000A0CC:
+	lfd      f1, 8(r3)
+	lfd      f0, lbl_805163E0@sda21(r2)
+	stfd     f1, 0x28(r3)
+	stfd     f0, 0x30(r3)
+	b        lbl_8000A114
 
-	.loc_0x70:
-	  lfd       f1, 0x10(r3)
-	  lfd       f0, -0x7F80(r2)
-	  stfd      f1, 0x28(r3)
-	  stfd      f0, 0x30(r3)
-	  b         .loc_0xA4
+lbl_8000A0E0:
+	lfd      f1, 0x10(r3)
+	lfd      f0, lbl_805163E0@sda21(r2)
+	stfd     f1, 0x28(r3)
+	stfd     f0, 0x30(r3)
+	b        lbl_8000A114
 
-	.loc_0x84:
-	  lfd       f1, 0x8(r3)
-	  lfd       f0, 0x10(r3)
-	  lfd       f2, -0x7F98(r2)
-	  fadd      f1, f1, f0
-	  lfd       f0, -0x7F80(r2)
-	  fmul      f1, f2, f1
-	  stfd      f1, 0x28(r3)
-	  stfd      f0, 0x30(r3)
+lbl_8000A0F4:
+	lfd      f1, 8(r3)
+	lfd      f0, 0x10(r3)
+	lfd      f2, lbl_805163C8@sda21(r2)
+	fadd     f1, f1, f0
+	lfd      f0, lbl_805163E0@sda21(r2)
+	fmul     f1, f2, f1
+	stfd     f1, 0x28(r3)
+	stfd     f0, 0x30(r3)
 
-	.loc_0xA4:
-	  lwz       r0, 0x40(r3)
-	  cmpwi     r0, 0x2
-	  beq-      .loc_0xF0
-	  bge-      .loc_0xC4
-	  cmpwi     r0, 0
-	  beq-      .loc_0xD0
-	  bge-      .loc_0xE0
-	  b         .loc_0xD0
+lbl_8000A114:
+	lwz      r0, 0x40(r3)
+	cmpwi    r0, 2
+	beq      lbl_8000A160
+	bge      lbl_8000A134
+	cmpwi    r0, 0
+	beq      lbl_8000A140
+	bge      lbl_8000A150
+	b        lbl_8000A140
 
-	.loc_0xC4:
-	  cmpwi     r0, 0x4
-	  bge-      .loc_0xD0
-	  b         .loc_0x100
+lbl_8000A134:
+	cmpwi    r0, 4
+	bge      lbl_8000A140
+	b        lbl_8000A170
 
-	.loc_0xD0:
-	  lis       r4, 0x8001
-	  subi      r0, r4, 0x56A8
-	  stw       r0, 0x58(r3)
-	  blr
+lbl_8000A140:
+	lis      r4,
+update_INTERPOLATE_NONE___Q27JStudio29TFunctionValue_list_parameterFRCQ27JStudio29TFunctionValue_list_parameterd@ha
+	addi     r0, r4,
+update_INTERPOLATE_NONE___Q27JStudio29TFunctionValue_list_parameterFRCQ27JStudio29TFunctionValue_list_parameterd@l
+	stw      r0, 0x58(r3)
+	blr
 
-	.loc_0xE0:
-	  lis       r4, 0x8001
-	  subi      r0, r4, 0x569C
-	  stw       r0, 0x58(r3)
-	  blr
+lbl_8000A150:
+	lis      r4,
+update_INTERPOLATE_LINEAR___Q27JStudio29TFunctionValue_list_parameterFRCQ27JStudio29TFunctionValue_list_parameterd@ha
+	addi     r0, r4,
+update_INTERPOLATE_LINEAR___Q27JStudio29TFunctionValue_list_parameterFRCQ27JStudio29TFunctionValue_list_parameterd@l
+	stw      r0, 0x58(r3)
+	blr
 
-	.loc_0xF0:
-	  lis       r4, 0x8001
-	  subi      r0, r4, 0x566C
-	  stw       r0, 0x58(r3)
-	  blr
+lbl_8000A160:
+	lis      r4,
+update_INTERPOLATE_PLATEAU___Q27JStudio29TFunctionValue_list_parameterFRCQ27JStudio29TFunctionValue_list_parameterd@ha
+	addi     r0, r4,
+update_INTERPOLATE_PLATEAU___Q27JStudio29TFunctionValue_list_parameterFRCQ27JStudio29TFunctionValue_list_parameterd@l
+	stw      r0, 0x58(r3)
+	blr
 
-	.loc_0x100:
-	  lis       r4, 0x8001
-	  subi      r0, r4, 0x5600
-	  stw       r0, 0x58(r3)
-	  lwz       r0, 0x48(r3)
-	  cmplwi    r0, 0x2
-	  bnelr-
-	  lis       r4, 0x8001
-	  subi      r0, r4, 0x569C
-	  stw       r0, 0x58(r3)
-	  blr
+lbl_8000A170:
+	lis      r4,
+update_INTERPOLATE_BSPLINE_dataMore3___Q27JStudio29TFunctionValue_list_parameterFRCQ27JStudio29TFunctionValue_list_parameterd@ha
+	addi     r0, r4,
+update_INTERPOLATE_BSPLINE_dataMore3___Q27JStudio29TFunctionValue_list_parameterFRCQ27JStudio29TFunctionValue_list_parameterd@l
+	stw      r0, 0x58(r3)
+	lwz      r0, 0x48(r3)
+	cmplwi   r0, 2
+	bnelr
+	lis      r4,
+update_INTERPOLATE_LINEAR___Q27JStudio29TFunctionValue_list_parameterFRCQ27JStudio29TFunctionValue_list_parameterd@ha
+	addi     r0, r4,
+update_INTERPOLATE_LINEAR___Q27JStudio29TFunctionValue_list_parameterFRCQ27JStudio29TFunctionValue_list_parameterd@l
+	stw      r0, 0x58(r3)
+	blr
 	*/
 }
 
@@ -2313,423 +2406,401 @@ void TFunctionValue_list_parameter::prepare()
 void TFunctionValue_list_parameter::getValue(double)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x70(r1)
-	  mflr      r0
-	  stw       r0, 0x74(r1)
-	  stfd      f31, 0x60(r1)
-	  psq_st    f31,0x68(r1),0,0
-	  stfd      f30, 0x50(r1)
-	  psq_st    f30,0x58(r1),0,0
-	  stw       r31, 0x4C(r1)
-	  stfd      f1, 0x8(r1)
-	  mr        r31, r3
-	  lfd       f2, 0x28(r3)
-	  lwz       r3, 0x48(r3)
-	  fsub      f0, f1, f2
-	  lfd       f1, 0x30(r31)
-	  lbz       r4, 0x21(r31)
-	  subi      r0, r3, 0x1
-	  lwz       r3, 0x44(r31)
-	  rlwinm    r0,r0,3,0,28
-	  extsb     r4, r4
-	  fmadd     f3, f1, f0, f2
-	  cmpwi     r4, 0x2
-	  lfs       f31, 0x0(r3)
-	  lfsx      f30, r3, r0
-	  beq-      .loc_0x210
-	  bge-      .loc_0x74
-	  cmpwi     r4, 0
-	  beq-      .loc_0x84
-	  bge-      .loc_0x148
-	  b         .loc_0x84
+	stwu     r1, -0x70(r1)
+	mflr     r0
+	stw      r0, 0x74(r1)
+	stfd     f31, 0x60(r1)
+	psq_st   f31, 104(r1), 0, qr0
+	stfd     f30, 0x50(r1)
+	psq_st   f30, 88(r1), 0, qr0
+	stw      r31, 0x4c(r1)
+	stfd     f1, 8(r1)
+	mr       r31, r3
+	lfd      f2, 0x28(r3)
+	lwz      r3, 0x48(r3)
+	fsub     f0, f1, f2
+	lfd      f1, 0x30(r31)
+	lbz      r4, 0x21(r31)
+	addi     r0, r3, -1
+	lwz      r3, 0x44(r31)
+	slwi     r0, r0, 3
+	extsb    r4, r4
+	fmadd    f3, f1, f0, f2
+	cmpwi    r4, 2
+	lfs      f31, 0(r3)
+	lfsx     f30, r3, r0
+	beq      lbl_8000A3A8
+	bge      lbl_8000A20C
+	cmpwi    r4, 0
+	beq      lbl_8000A21C
+	bge      lbl_8000A2E0
+	b        lbl_8000A21C
 
-	.loc_0x74:
-	  cmpwi     r4, 0x4
-	  beq-      .loc_0x3B0
-	  bge-      .loc_0x84
-	  b         .loc_0x2DC
+lbl_8000A20C:
+	cmpwi    r4, 4
+	beq      lbl_8000A548
+	bge      lbl_8000A21C
+	b        lbl_8000A474
 
-	.loc_0x84:
-	  lfd       f1, 0x8(r31)
-	  lfd       f0, -0x7FC0(r2)
-	  fsub      f1, f3, f1
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0xE4
-	  lwz       r4, 0x38(r31)
-	  li        r0, 0
-	  lis       r3, 0x8047
-	  cmplwi    r4, 0x4
-	  stw       r0, 0x34(r1)
-	  rlwinm    r4,r4,2,0,29
-	  addi      r0, r3, 0x32F0
-	  add       r3, r0, r4
-	  blt-      .loc_0xC0
-	  addi      r3, r1, 0x34
+lbl_8000A21C:
+	lfd      f1, 8(r31)
+	lfd      f0, lbl_805163A0@sda21(r2)
+	fsub     f1, f3, f1
+	fcmpo    cr0, f1, f0
+	bge      lbl_8000A27C
+	lwz      r4, 0x38(r31)
+	li       r0, 0
+	lis      r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha cmplwi
+r4, 4 stw      r0, 0x34(r1) slwi     r4, r4, 2 addi     r0, r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l add r3,
+r0, r4 blt      lbl_8000A258 addi     r3, r1, 0x34
 
-	.loc_0xC0:
-	  lwz       r12, 0x0(r3)
-	  cmplwi    r12, 0
-	  bne-      .loc_0xD4
-	  lis       r3, 0x8047
-	  lwz       r12, 0x32F0(r3)
+lbl_8000A258:
+	lwz      r12, 0(r3)
+	cmplwi   r12, 0
+	bne      lbl_8000A26C
+	lis      r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha lwz
+r12, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l(r3)
 
-	.loc_0xD4:
-	  lfd       f2, 0x18(r31)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x13C
+lbl_8000A26C:
+	lfd      f2, 0x18(r31)
+	mtctr    r12
+	bctrl
+	b        lbl_8000A2D4
 
-	.loc_0xE4:
-	  lfd       f0, 0x18(r31)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0x1, 0x2
-	  bne-      .loc_0x13C
-	  lwz       r4, 0x3C(r31)
-	  li        r0, 0
-	  lis       r3, 0x8047
-	  cmplwi    r4, 0x4
-	  stw       r0, 0x30(r1)
-	  rlwinm    r4,r4,2,0,29
-	  addi      r0, r3, 0x32F0
-	  add       r3, r0, r4
-	  blt-      .loc_0x11C
-	  addi      r3, r1, 0x30
+lbl_8000A27C:
+	lfd      f0, 0x18(r31)
+	fcmpo    cr0, f1, f0
+	cror     2, 1, 2
+	bne      lbl_8000A2D4
+	lwz      r4, 0x3c(r31)
+	li       r0, 0
+	lis      r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha cmplwi
+r4, 4 stw      r0, 0x30(r1) slwi     r4, r4, 2 addi     r0, r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l add r3,
+r0, r4 blt      lbl_8000A2B4 addi     r3, r1, 0x30
 
-	.loc_0x11C:
-	  lwz       r12, 0x0(r3)
-	  cmplwi    r12, 0
-	  bne-      .loc_0x130
-	  lis       r3, 0x8047
-	  lwz       r12, 0x32F0(r3)
+lbl_8000A2B4:
+	lwz      r12, 0(r3)
+	cmplwi   r12, 0
+	bne      lbl_8000A2C8
+	lis      r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha lwz
+r12, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l(r3)
 
-	.loc_0x130:
-	  lfd       f2, 0x18(r31)
-	  mtctr     r12
-	  bctrl
+lbl_8000A2C8:
+	lfd      f2, 0x18(r31)
+	mtctr    r12
+	bctrl
 
-	.loc_0x13C:
-	  lfd       f0, 0x8(r31)
-	  fadd      f1, f1, f0
-	  b         .loc_0x488
+lbl_8000A2D4:
+	lfd      f0, 8(r31)
+	fadd     f1, f1, f0
+	b        lbl_8000A620
 
-	.loc_0x148:
-	  lfd       f2, 0x8(r31)
-	  lfd       f0, -0x7FC0(r2)
-	  fadd      f1, f3, f2
-	  fsub      f1, f1, f2
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x1AC
-	  lwz       r4, 0x38(r31)
-	  li        r0, 0
-	  lis       r3, 0x8047
-	  cmplwi    r4, 0x4
-	  stw       r0, 0x2C(r1)
-	  rlwinm    r4,r4,2,0,29
-	  addi      r0, r3, 0x32F0
-	  add       r3, r0, r4
-	  blt-      .loc_0x188
-	  addi      r3, r1, 0x2C
+lbl_8000A2E0:
+	lfd      f2, 8(r31)
+	lfd      f0, lbl_805163A0@sda21(r2)
+	fadd     f1, f3, f2
+	fsub     f1, f1, f2
+	fcmpo    cr0, f1, f0
+	bge      lbl_8000A344
+	lwz      r4, 0x38(r31)
+	li       r0, 0
+	lis      r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha cmplwi
+r4, 4 stw      r0, 0x2c(r1) slwi     r4, r4, 2 addi     r0, r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l add r3,
+r0, r4 blt      lbl_8000A320 addi     r3, r1, 0x2c
 
-	.loc_0x188:
-	  lwz       r12, 0x0(r3)
-	  cmplwi    r12, 0
-	  bne-      .loc_0x19C
-	  lis       r3, 0x8047
-	  lwz       r12, 0x32F0(r3)
+lbl_8000A320:
+	lwz      r12, 0(r3)
+	cmplwi   r12, 0
+	bne      lbl_8000A334
+	lis      r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha lwz
+r12, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l(r3)
 
-	.loc_0x19C:
-	  lfd       f2, 0x18(r31)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x204
+lbl_8000A334:
+	lfd      f2, 0x18(r31)
+	mtctr    r12
+	bctrl
+	b        lbl_8000A39C
 
-	.loc_0x1AC:
-	  lfd       f0, 0x18(r31)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0x1, 0x2
-	  bne-      .loc_0x204
-	  lwz       r4, 0x3C(r31)
-	  li        r0, 0
-	  lis       r3, 0x8047
-	  cmplwi    r4, 0x4
-	  stw       r0, 0x28(r1)
-	  rlwinm    r4,r4,2,0,29
-	  addi      r0, r3, 0x32F0
-	  add       r3, r0, r4
-	  blt-      .loc_0x1E4
-	  addi      r3, r1, 0x28
+lbl_8000A344:
+	lfd      f0, 0x18(r31)
+	fcmpo    cr0, f1, f0
+	cror     2, 1, 2
+	bne      lbl_8000A39C
+	lwz      r4, 0x3c(r31)
+	li       r0, 0
+	lis      r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha cmplwi
+r4, 4 stw      r0, 0x28(r1) slwi     r4, r4, 2 addi     r0, r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l add r3,
+r0, r4 blt      lbl_8000A37C addi     r3, r1, 0x28
 
-	.loc_0x1E4:
-	  lwz       r12, 0x0(r3)
-	  cmplwi    r12, 0
-	  bne-      .loc_0x1F8
-	  lis       r3, 0x8047
-	  lwz       r12, 0x32F0(r3)
+lbl_8000A37C:
+	lwz      r12, 0(r3)
+	cmplwi   r12, 0
+	bne      lbl_8000A390
+	lis      r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha lwz
+r12, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l(r3)
 
-	.loc_0x1F8:
-	  lfd       f2, 0x18(r31)
-	  mtctr     r12
-	  bctrl
+lbl_8000A390:
+	lfd      f2, 0x18(r31)
+	mtctr    r12
+	bctrl
 
-	.loc_0x204:
-	  lfd       f0, 0x8(r31)
-	  fadd      f1, f1, f0
-	  b         .loc_0x488
+lbl_8000A39C:
+	lfd      f0, 8(r31)
+	fadd     f1, f1, f0
+	b        lbl_8000A620
 
-	.loc_0x210:
-	  lfd       f0, 0x10(r31)
-	  lfd       f2, 0x8(r31)
-	  fadd      f1, f3, f0
-	  lfd       f0, -0x7FC0(r2)
-	  fsub      f1, f1, f2
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x278
-	  lwz       r4, 0x38(r31)
-	  li        r0, 0
-	  lis       r3, 0x8047
-	  cmplwi    r4, 0x4
-	  stw       r0, 0x24(r1)
-	  rlwinm    r4,r4,2,0,29
-	  addi      r0, r3, 0x32F0
-	  add       r3, r0, r4
-	  blt-      .loc_0x254
-	  addi      r3, r1, 0x24
+lbl_8000A3A8:
+	lfd      f0, 0x10(r31)
+	lfd      f2, 8(r31)
+	fadd     f1, f3, f0
+	lfd      f0, lbl_805163A0@sda21(r2)
+	fsub     f1, f1, f2
+	fcmpo    cr0, f1, f0
+	bge      lbl_8000A410
+	lwz      r4, 0x38(r31)
+	li       r0, 0
+	lis      r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha cmplwi
+r4, 4 stw      r0, 0x24(r1) slwi     r4, r4, 2 addi     r0, r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l add r3,
+r0, r4 blt      lbl_8000A3EC addi     r3, r1, 0x24
 
-	.loc_0x254:
-	  lwz       r12, 0x0(r3)
-	  cmplwi    r12, 0
-	  bne-      .loc_0x268
-	  lis       r3, 0x8047
-	  lwz       r12, 0x32F0(r3)
+lbl_8000A3EC:
+	lwz      r12, 0(r3)
+	cmplwi   r12, 0
+	bne      lbl_8000A400
+	lis      r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha lwz
+r12, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l(r3)
 
-	.loc_0x268:
-	  lfd       f2, 0x18(r31)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x2D0
+lbl_8000A400:
+	lfd      f2, 0x18(r31)
+	mtctr    r12
+	bctrl
+	b        lbl_8000A468
 
-	.loc_0x278:
-	  lfd       f0, 0x18(r31)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0x1, 0x2
-	  bne-      .loc_0x2D0
-	  lwz       r4, 0x3C(r31)
-	  li        r0, 0
-	  lis       r3, 0x8047
-	  cmplwi    r4, 0x4
-	  stw       r0, 0x20(r1)
-	  rlwinm    r4,r4,2,0,29
-	  addi      r0, r3, 0x32F0
-	  add       r3, r0, r4
-	  blt-      .loc_0x2B0
-	  addi      r3, r1, 0x20
+lbl_8000A410:
+	lfd      f0, 0x18(r31)
+	fcmpo    cr0, f1, f0
+	cror     2, 1, 2
+	bne      lbl_8000A468
+	lwz      r4, 0x3c(r31)
+	li       r0, 0
+	lis      r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha cmplwi
+r4, 4 stw      r0, 0x20(r1) slwi     r4, r4, 2 addi     r0, r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l add r3,
+r0, r4 blt      lbl_8000A448 addi     r3, r1, 0x20
 
-	.loc_0x2B0:
-	  lwz       r12, 0x0(r3)
-	  cmplwi    r12, 0
-	  bne-      .loc_0x2C4
-	  lis       r3, 0x8047
-	  lwz       r12, 0x32F0(r3)
+lbl_8000A448:
+	lwz      r12, 0(r3)
+	cmplwi   r12, 0
+	bne      lbl_8000A45C
+	lis      r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha lwz
+r12, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l(r3)
 
-	.loc_0x2C4:
-	  lfd       f2, 0x18(r31)
-	  mtctr     r12
-	  bctrl
+lbl_8000A45C:
+	lfd      f2, 0x18(r31)
+	mtctr    r12
+	bctrl
 
-	.loc_0x2D0:
-	  lfd       f0, 0x8(r31)
-	  fadd      f1, f1, f0
-	  b         .loc_0x488
+lbl_8000A468:
+	lfd      f0, 8(r31)
+	fadd     f1, f1, f0
+	b        lbl_8000A620
 
-	.loc_0x2DC:
-	  lfd       f4, 0x8(r31)
-	  lfd       f0, 0x10(r31)
-	  lfd       f2, -0x7F98(r2)
-	  fadd      f1, f4, f0
-	  lfd       f0, -0x7FC0(r2)
-	  fmadd     f1, f2, f1, f3
-	  fsub      f1, f1, f4
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x34C
-	  lwz       r4, 0x38(r31)
-	  li        r0, 0
-	  lis       r3, 0x8047
-	  cmplwi    r4, 0x4
-	  stw       r0, 0x1C(r1)
-	  rlwinm    r4,r4,2,0,29
-	  addi      r0, r3, 0x32F0
-	  add       r3, r0, r4
-	  blt-      .loc_0x328
-	  addi      r3, r1, 0x1C
+lbl_8000A474:
+	lfd      f4, 8(r31)
+	lfd      f0, 0x10(r31)
+	lfd      f2, lbl_805163C8@sda21(r2)
+	fadd     f1, f4, f0
+	lfd      f0, lbl_805163A0@sda21(r2)
+	fmadd    f1, f2, f1, f3
+	fsub     f1, f1, f4
+	fcmpo    cr0, f1, f0
+	bge      lbl_8000A4E4
+	lwz      r4, 0x38(r31)
+	li       r0, 0
+	lis      r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha cmplwi
+r4, 4 stw      r0, 0x1c(r1) slwi     r4, r4, 2 addi     r0, r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l add r3,
+r0, r4 blt      lbl_8000A4C0 addi     r3, r1, 0x1c
 
-	.loc_0x328:
-	  lwz       r12, 0x0(r3)
-	  cmplwi    r12, 0
-	  bne-      .loc_0x33C
-	  lis       r3, 0x8047
-	  lwz       r12, 0x32F0(r3)
+lbl_8000A4C0:
+	lwz      r12, 0(r3)
+	cmplwi   r12, 0
+	bne      lbl_8000A4D4
+	lis      r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha lwz
+r12, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l(r3)
 
-	.loc_0x33C:
-	  lfd       f2, 0x18(r31)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x3A4
+lbl_8000A4D4:
+	lfd      f2, 0x18(r31)
+	mtctr    r12
+	bctrl
+	b        lbl_8000A53C
 
-	.loc_0x34C:
-	  lfd       f0, 0x18(r31)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0x1, 0x2
-	  bne-      .loc_0x3A4
-	  lwz       r4, 0x3C(r31)
-	  li        r0, 0
-	  lis       r3, 0x8047
-	  cmplwi    r4, 0x4
-	  stw       r0, 0x18(r1)
-	  rlwinm    r4,r4,2,0,29
-	  addi      r0, r3, 0x32F0
-	  add       r3, r0, r4
-	  blt-      .loc_0x384
-	  addi      r3, r1, 0x18
+lbl_8000A4E4:
+	lfd      f0, 0x18(r31)
+	fcmpo    cr0, f1, f0
+	cror     2, 1, 2
+	bne      lbl_8000A53C
+	lwz      r4, 0x3c(r31)
+	li       r0, 0
+	lis      r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha cmplwi
+r4, 4 stw      r0, 0x18(r1) slwi     r4, r4, 2 addi     r0, r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l add r3,
+r0, r4 blt      lbl_8000A51C addi     r3, r1, 0x18
 
-	.loc_0x384:
-	  lwz       r12, 0x0(r3)
-	  cmplwi    r12, 0
-	  bne-      .loc_0x398
-	  lis       r3, 0x8047
-	  lwz       r12, 0x32F0(r3)
+lbl_8000A51C:
+	lwz      r12, 0(r3)
+	cmplwi   r12, 0
+	bne      lbl_8000A530
+	lis      r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha lwz
+r12, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l(r3)
 
-	.loc_0x398:
-	  lfd       f2, 0x18(r31)
-	  mtctr     r12
-	  bctrl
+lbl_8000A530:
+	lfd      f2, 0x18(r31)
+	mtctr    r12
+	bctrl
 
-	.loc_0x3A4:
-	  lfd       f0, 0x8(r31)
-	  fadd      f1, f1, f0
-	  b         .loc_0x488
+lbl_8000A53C:
+	lfd      f0, 8(r31)
+	fadd     f1, f1, f0
+	b        lbl_8000A620
 
-	.loc_0x3B0:
-	  lfd       f1, 0x8(r31)
-	  lfd       f0, -0x7FC0(r2)
-	  fsub      f1, f3, f1
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x410
-	  lwz       r4, 0x38(r31)
-	  li        r0, 0
-	  lis       r3, 0x8047
-	  cmplwi    r4, 0x4
-	  stw       r0, 0x14(r1)
-	  rlwinm    r4,r4,2,0,29
-	  addi      r0, r3, 0x32F0
-	  add       r3, r0, r4
-	  blt-      .loc_0x3EC
-	  addi      r3, r1, 0x14
+lbl_8000A548:
+	lfd      f1, 8(r31)
+	lfd      f0, lbl_805163A0@sda21(r2)
+	fsub     f1, f3, f1
+	fcmpo    cr0, f1, f0
+	bge      lbl_8000A5A8
+	lwz      r4, 0x38(r31)
+	li       r0, 0
+	lis      r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha cmplwi
+r4, 4 stw      r0, 0x14(r1) slwi     r4, r4, 2 addi     r0, r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l add r3,
+r0, r4 blt      lbl_8000A584 addi     r3, r1, 0x14
 
-	.loc_0x3EC:
-	  lwz       r12, 0x0(r3)
-	  cmplwi    r12, 0
-	  bne-      .loc_0x400
-	  lis       r3, 0x8047
-	  lwz       r12, 0x32F0(r3)
+lbl_8000A584:
+	lwz      r12, 0(r3)
+	cmplwi   r12, 0
+	bne      lbl_8000A598
+	lis      r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha lwz
+r12, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l(r3)
 
-	.loc_0x400:
-	  lfd       f2, 0x18(r31)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x468
+lbl_8000A598:
+	lfd      f2, 0x18(r31)
+	mtctr    r12
+	bctrl
+	b        lbl_8000A600
 
-	.loc_0x410:
-	  lfd       f0, 0x18(r31)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0x1, 0x2
-	  bne-      .loc_0x468
-	  lwz       r4, 0x3C(r31)
-	  li        r0, 0
-	  lis       r3, 0x8047
-	  cmplwi    r4, 0x4
-	  stw       r0, 0x10(r1)
-	  rlwinm    r4,r4,2,0,29
-	  addi      r0, r3, 0x32F0
-	  add       r3, r0, r4
-	  blt-      .loc_0x448
-	  addi      r3, r1, 0x10
+lbl_8000A5A8:
+	lfd      f0, 0x18(r31)
+	fcmpo    cr0, f1, f0
+	cror     2, 1, 2
+	bne      lbl_8000A600
+	lwz      r4, 0x3c(r31)
+	li       r0, 0
+	lis      r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha cmplwi
+r4, 4 stw      r0, 0x10(r1) slwi     r4, r4, 2 addi     r0, r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l add r3,
+r0, r4 blt      lbl_8000A5E0 addi     r3, r1, 0x10
 
-	.loc_0x448:
-	  lwz       r12, 0x0(r3)
-	  cmplwi    r12, 0
-	  bne-      .loc_0x45C
-	  lis       r3, 0x8047
-	  lwz       r12, 0x32F0(r3)
+lbl_8000A5E0:
+	lwz      r12, 0(r3)
+	cmplwi   r12, 0
+	bne      lbl_8000A5F4
+	lis      r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha lwz
+r12, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l(r3)
 
-	.loc_0x45C:
-	  lfd       f2, 0x18(r31)
-	  mtctr     r12
-	  bctrl
+lbl_8000A5F4:
+	lfd      f2, 0x18(r31)
+	mtctr    r12
+	bctrl
 
-	.loc_0x468:
-	  lfd       f3, 0x8(r31)
-	  fsub      f2, f30, f31
-	  lfd       f0, 0x18(r31)
-	  fadd      f1, f1, f3
-	  fsub      f1, f1, f3
-	  fmul      f1, f1, f2
-	  fdiv      f0, f1, f0
-	  fadd      f1, f31, f0
+lbl_8000A600:
+	lfd      f3, 8(r31)
+	fsub     f2, f30, f31
+	lfd      f0, 0x18(r31)
+	fadd     f1, f1, f3
+	fsub     f1, f1, f3
+	fmul     f1, f1, f2
+	fdiv     f0, f1, f0
+	fadd     f1, f31, f0
 
-	.loc_0x488:
-	  stfd      f1, 0x8(r1)
-	  addi      r3, r1, 0x44
-	  addi      r4, r1, 0x40
-	  addi      r5, r1, 0x3C
-	  lwz       r0, 0x54(r31)
-	  addi      r6, r1, 0x38
-	  addi      r7, r1, 0x8
-	  stw       r0, 0x38(r1)
-	  lwz       r0, 0x50(r31)
-	  stw       r0, 0x3C(r1)
-	  lwz       r0, 0x4C(r31)
-	  stw       r0, 0x40(r1)
-	  bl        .loc_0x538
-	  lwz       r0, 0x44(r1)
-	  stw       r0, 0x54(r31)
-	  lwz       r3, 0x54(r31)
-	  lwz       r0, 0x4C(r31)
-	  cmplw     r3, r0
-	  bne-      .loc_0x4DC
-	  lfs       f1, 0x4(r3)
-	  b         .loc_0x514
+lbl_8000A620:
+	stfd     f1, 8(r1)
+	addi     r3, r1, 0x44
+	addi     r4, r1, 0x40
+	addi     r5, r1, 0x3c
+	lwz      r0, 0x54(r31)
+	addi     r6, r1, 0x38
+	addi     r7, r1, 8
+	stw      r0, 0x38(r1)
+	lwz      r0, 0x50(r31)
+	stw      r0, 0x3c(r1)
+	lwz      r0, 0x4c(r31)
+	stw      r0, 0x40(r1)
+	bl
+"findUpperBound_binary_current<Q37JStudio29TFunctionValue_list_parameter15TIterator_data_,d>__7JGadgetFQ37JStudio29TFunctionValue_list_parameter15TIterator_data_Q37JStudio29TFunctionValue_list_parameter15TIterator_data_Q37JStudio29TFunctionValue_list_parameter15TIterator_data_RCd"
+	lwz      r0, 0x44(r1)
+	stw      r0, 0x54(r31)
+	lwz      r3, 0x54(r31)
+	lwz      r0, 0x4c(r31)
+	cmplw    r3, r0
+	bne      lbl_8000A674
+	lfs      f1, 4(r3)
+	b        lbl_8000A6AC
 
-	.loc_0x4DC:
-	  lwz       r0, 0x50(r31)
-	  cmplw     r3, r0
-	  bne-      .loc_0x500
-	  lwz       r3, 0x54(r31)
-	  subi      r0, r3, 0x8
-	  stw       r0, 0x54(r31)
-	  lwz       r3, 0x54(r31)
-	  lfs       f1, 0x4(r3)
-	  b         .loc_0x514
+lbl_8000A674:
+	lwz      r0, 0x50(r31)
+	cmplw    r3, r0
+	bne      lbl_8000A698
+	lwz      r3, 0x54(r31)
+	addi     r0, r3, -8
+	stw      r0, 0x54(r31)
+	lwz      r3, 0x54(r31)
+	lfs      f1, 4(r3)
+	b        lbl_8000A6AC
 
-	.loc_0x500:
-	  lwz       r12, 0x58(r31)
-	  mr        r3, r31
-	  lfd       f1, 0x8(r1)
-	  mtctr     r12
-	  bctrl
+lbl_8000A698:
+	lwz      r12, 0x58(r31)
+	mr       r3, r31
+	lfd      f1, 8(r1)
+	mtctr    r12
+	bctrl
 
-	.loc_0x514:
-	  psq_l     f31,0x68(r1),0,0
-	  lfd       f31, 0x60(r1)
-	  psq_l     f30,0x58(r1),0,0
-	  lfd       f30, 0x50(r1)
-	  lwz       r0, 0x74(r1)
-	  lwz       r31, 0x4C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x70
-	  blr
-
-	.loc_0x538:
+lbl_8000A6AC:
+	psq_l    f31, 104(r1), 0, qr0
+	lfd      f31, 0x60(r1)
+	psq_l    f30, 88(r1), 0, qr0
+	lfd      f30, 0x50(r1)
+	lwz      r0, 0x74(r1)
+	lwz      r31, 0x4c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x70
+	blr
 	*/
 }
 
@@ -3243,45 +3314,44 @@ void JStudio::TFunctionValue_list_parameter::
 TFunctionValue_hermite::TFunctionValue_hermite()
 {
 	/*
-	.loc_0x0:
-	  lis       r6, 0x804A
-	  lis       r5, 0x8051
-	  subi      r0, r6, 0x1AD8
-	  lis       r4, 0x804A
-	  stw       r0, 0x0(r3)
-	  addi      r6, r5, 0x48B0
-	  li        r5, 0
-	  subi      r0, r4, 0x1B98
-	  lfs       f0, 0x0(r6)
-	  stfd      f0, 0x8(r3)
-	  lfd       f0, 0x8(r3)
-	  stfd      f0, 0x10(r3)
-	  lfd       f0, 0x8(r3)
-	  stfd      f0, 0x18(r3)
-	  stb       r5, 0x20(r3)
-	  stb       r5, 0x21(r3)
-	  lfd       f0, 0x8(r3)
-	  stfd      f0, 0x28(r3)
-	  lfd       f0, 0x8(r3)
-	  stfd      f0, 0x30(r3)
-	  stw       r5, 0x38(r3)
-	  stw       r5, 0x3C(r3)
-	  stw       r0, 0x0(r3)
-	  stw       r5, 0x40(r3)
-	  stw       r5, 0x44(r3)
-	  stw       r5, 0x48(r3)
-	  stw       r5, 0x4C(r3)
-	  lwz       r0, 0x48(r3)
-	  stw       r0, 0x50(r3)
-	  lwz       r0, 0x4C(r3)
-	  stw       r0, 0x54(r3)
-	  lwz       r0, 0x50(r3)
-	  stw       r0, 0x58(r3)
-	  lwz       r0, 0x4C(r3)
-	  stw       r0, 0x5C(r3)
-	  lwz       r0, 0x50(r3)
-	  stw       r0, 0x60(r3)
-	  blr
+	lis      r6, __vt__Q27JStudio14TFunctionValue@ha
+	lis      r5, __float_nan@ha
+	addi     r0, r6, __vt__Q27JStudio14TFunctionValue@l
+	lis      r4, __vt__Q27JStudio22TFunctionValue_hermite@ha
+	stw      r0, 0(r3)
+	addi     r6, r5, __float_nan@l
+	li       r5, 0
+	addi     r0, r4, __vt__Q27JStudio22TFunctionValue_hermite@l
+	lfs      f0, 0(r6)
+	stfd     f0, 8(r3)
+	lfd      f0, 8(r3)
+	stfd     f0, 0x10(r3)
+	lfd      f0, 8(r3)
+	stfd     f0, 0x18(r3)
+	stb      r5, 0x20(r3)
+	stb      r5, 0x21(r3)
+	lfd      f0, 8(r3)
+	stfd     f0, 0x28(r3)
+	lfd      f0, 8(r3)
+	stfd     f0, 0x30(r3)
+	stw      r5, 0x38(r3)
+	stw      r5, 0x3c(r3)
+	stw      r0, 0(r3)
+	stw      r5, 0x40(r3)
+	stw      r5, 0x44(r3)
+	stw      r5, 0x48(r3)
+	stw      r5, 0x4c(r3)
+	lwz      r0, 0x48(r3)
+	stw      r0, 0x50(r3)
+	lwz      r0, 0x4c(r3)
+	stw      r0, 0x54(r3)
+	lwz      r0, 0x50(r3)
+	stw      r0, 0x58(r3)
+	lwz      r0, 0x4c(r3)
+	stw      r0, 0x5c(r3)
+	lwz      r0, 0x50(r3)
+	stw      r0, 0x60(r3)
+	blr
 	*/
 }
 
@@ -3300,17 +3370,16 @@ u32 TFunctionValue_hermite::getType() const { return 0x6; }
 void TFunctionValue_hermite::getAttributeSet()
 {
 	/*
-	.loc_0x0:
-	  cmplwi    r4, 0
-	  beq-      .loc_0xC
-	  addi      r4, r4, 0x8
+	cmplwi   r4, 0
+	beq      lbl_8000AD0C
+	addi     r4, r4, 8
 
-	.loc_0xC:
-	  li        r0, 0
-	  stw       r0, 0x0(r3)
-	  stw       r4, 0x4(r3)
-	  stw       r0, 0x8(r3)
-	  blr
+lbl_8000AD0C:
+	li       r0, 0
+	stw      r0, 0(r3)
+	stw      r4, 4(r3)
+	stw      r0, 8(r3)
+	blr
 	*/
 }
 
@@ -3355,34 +3424,33 @@ void TFunctionValue_hermite::data_set(const float*, unsigned long,
 void TFunctionValue_hermite::initialize()
 {
 	/*
-	.loc_0x0:
-	  lis       r4, 0x8051
-	  li        r0, 0
-	  lfs       f0, 0x48B0(r4)
-	  stfd      f0, 0x8(r3)
-	  lfd       f0, 0x8(r3)
-	  stfd      f0, 0x10(r3)
-	  lfd       f0, 0x8(r3)
-	  stfd      f0, 0x18(r3)
-	  stb       r0, 0x20(r3)
-	  stb       r0, 0x21(r3)
-	  stw       r0, 0x38(r3)
-	  stw       r0, 0x3C(r3)
-	  stw       r0, 0x40(r3)
-	  stw       r0, 0x44(r3)
-	  stw       r0, 0x48(r3)
-	  lwz       r4, 0x48(r3)
-	  stw       r0, 0x4C(r3)
-	  stw       r4, 0x50(r3)
-	  lwz       r0, 0x4C(r3)
-	  stw       r0, 0x54(r3)
-	  lwz       r0, 0x50(r3)
-	  stw       r0, 0x58(r3)
-	  lwz       r0, 0x4C(r3)
-	  stw       r0, 0x5C(r3)
-	  lwz       r0, 0x50(r3)
-	  stw       r0, 0x60(r3)
-	  blr
+	lis      r4, __float_nan@ha
+	li       r0, 0
+	lfs      f0, __float_nan@l(r4)
+	stfd     f0, 8(r3)
+	lfd      f0, 8(r3)
+	stfd     f0, 0x10(r3)
+	lfd      f0, 8(r3)
+	stfd     f0, 0x18(r3)
+	stb      r0, 0x20(r3)
+	stb      r0, 0x21(r3)
+	stw      r0, 0x38(r3)
+	stw      r0, 0x3c(r3)
+	stw      r0, 0x40(r3)
+	stw      r0, 0x44(r3)
+	stw      r0, 0x48(r3)
+	lwz      r4, 0x48(r3)
+	stw      r0, 0x4c(r3)
+	stw      r4, 0x50(r3)
+	lwz      r0, 0x4c(r3)
+	stw      r0, 0x54(r3)
+	lwz      r0, 0x50(r3)
+	stw      r0, 0x58(r3)
+	lwz      r0, 0x4c(r3)
+	stw      r0, 0x5c(r3)
+	lwz      r0, 0x50(r3)
+	stw      r0, 0x60(r3)
+	blr
 	*/
 }
 
@@ -3394,61 +3462,60 @@ void TFunctionValue_hermite::initialize()
 void TFunctionValue_hermite::prepare()
 {
 	/*
-	.loc_0x0:
-	  lbz       r0, 0x20(r3)
-	  extsb     r0, r0
-	  cmpwi     r0, 0x2
-	  beq-      .loc_0x5C
-	  bge-      .loc_0x24
-	  cmpwi     r0, 0
-	  beq-      .loc_0x34
-	  bge-      .loc_0x48
-	  b         .loc_0x34
+	lbz      r0, 0x20(r3)
+	extsb    r0, r0
+	cmpwi    r0, 2
+	beq      lbl_8000AE38
+	bge      lbl_8000AE00
+	cmpwi    r0, 0
+	beq      lbl_8000AE10
+	bge      lbl_8000AE24
+	b        lbl_8000AE10
 
-	.loc_0x24:
-	  cmpwi     r0, 0x4
-	  beq-      .loc_0x84
-	  bge-      .loc_0x34
-	  b         .loc_0x70
+lbl_8000AE00:
+	cmpwi    r0, 4
+	beq      lbl_8000AE60
+	bge      lbl_8000AE10
+	b        lbl_8000AE4C
 
-	.loc_0x34:
-	  lfd       f1, -0x7FC0(r2)
-	  lfd       f0, -0x7FB8(r2)
-	  stfd      f1, 0x28(r3)
-	  stfd      f0, 0x30(r3)
-	  blr
+lbl_8000AE10:
+	lfd      f1, lbl_805163A0@sda21(r2)
+	lfd      f0, lbl_805163A8@sda21(r2)
+	stfd     f1, 0x28(r3)
+	stfd     f0, 0x30(r3)
+	blr
 
-	.loc_0x48:
-	  lfd       f1, -0x7FC0(r2)
-	  lfd       f0, -0x7F80(r2)
-	  stfd      f1, 0x28(r3)
-	  stfd      f0, 0x30(r3)
-	  blr
+lbl_8000AE24:
+	lfd      f1, lbl_805163A0@sda21(r2)
+	lfd      f0, lbl_805163E0@sda21(r2)
+	stfd     f1, 0x28(r3)
+	stfd     f0, 0x30(r3)
+	blr
 
-	.loc_0x5C:
-	  lfd       f1, 0x8(r3)
-	  lfd       f0, -0x7F80(r2)
-	  stfd      f1, 0x28(r3)
-	  stfd      f0, 0x30(r3)
-	  blr
+lbl_8000AE38:
+	lfd      f1, 8(r3)
+	lfd      f0, lbl_805163E0@sda21(r2)
+	stfd     f1, 0x28(r3)
+	stfd     f0, 0x30(r3)
+	blr
 
-	.loc_0x70:
-	  lfd       f1, 0x10(r3)
-	  lfd       f0, -0x7F80(r2)
-	  stfd      f1, 0x28(r3)
-	  stfd      f0, 0x30(r3)
-	  blr
+lbl_8000AE4C:
+	lfd      f1, 0x10(r3)
+	lfd      f0, lbl_805163E0@sda21(r2)
+	stfd     f1, 0x28(r3)
+	stfd     f0, 0x30(r3)
+	blr
 
-	.loc_0x84:
-	  lfd       f1, 0x8(r3)
-	  lfd       f0, 0x10(r3)
-	  lfd       f2, -0x7F98(r2)
-	  fadd      f1, f1, f0
-	  lfd       f0, -0x7F80(r2)
-	  fmul      f1, f2, f1
-	  stfd      f1, 0x28(r3)
-	  stfd      f0, 0x30(r3)
-	  blr
+lbl_8000AE60:
+	lfd      f1, 8(r3)
+	lfd      f0, 0x10(r3)
+	lfd      f2, lbl_805163C8@sda21(r2)
+	fadd     f1, f1, f0
+	lfd      f0, lbl_805163E0@sda21(r2)
+	fmul     f1, f2, f1
+	stfd     f1, 0x28(r3)
+	stfd     f0, 0x30(r3)
+	blr
 	*/
 }
 
@@ -3460,461 +3527,439 @@ void TFunctionValue_hermite::prepare()
 void TFunctionValue_hermite::getValue(double)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x80(r1)
-	  mflr      r0
-	  stw       r0, 0x84(r1)
-	  stfd      f31, 0x70(r1)
-	  psq_st    f31,0x78(r1),0,0
-	  stfd      f30, 0x60(r1)
-	  psq_st    f30,0x68(r1),0,0
-	  stw       r31, 0x5C(r1)
-	  stfd      f1, 0x8(r1)
-	  mr        r31, r3
-	  lwz       r3, 0x44(r3)
-	  lwz       r0, 0x48(r31)
-	  subi      r3, r3, 0x1
-	  lfd       f2, 0x28(r31)
-	  mullw     r0, r3, r0
-	  lbz       r3, 0x21(r31)
-	  fsub      f0, f1, f2
-	  lfd       f1, 0x30(r31)
-	  extsb     r3, r3
-	  lwz       r4, 0x40(r31)
-	  rlwinm    r0,r0,2,0,29
-	  fmadd     f3, f1, f0, f2
-	  cmpwi     r3, 0x2
-	  lfs       f31, 0x0(r4)
-	  lfsx      f30, r4, r0
-	  beq-      .loc_0x218
-	  bge-      .loc_0x7C
-	  cmpwi     r3, 0
-	  beq-      .loc_0x8C
-	  bge-      .loc_0x150
-	  b         .loc_0x8C
+	stwu     r1, -0x80(r1)
+	mflr     r0
+	stw      r0, 0x84(r1)
+	stfd     f31, 0x70(r1)
+	psq_st   f31, 120(r1), 0, qr0
+	stfd     f30, 0x60(r1)
+	psq_st   f30, 104(r1), 0, qr0
+	stw      r31, 0x5c(r1)
+	stfd     f1, 8(r1)
+	mr       r31, r3
+	lwz      r3, 0x44(r3)
+	lwz      r0, 0x48(r31)
+	addi     r3, r3, -1
+	lfd      f2, 0x28(r31)
+	mullw    r0, r3, r0
+	lbz      r3, 0x21(r31)
+	fsub     f0, f1, f2
+	lfd      f1, 0x30(r31)
+	extsb    r3, r3
+	lwz      r4, 0x40(r31)
+	slwi     r0, r0, 2
+	fmadd    f3, f1, f0, f2
+	cmpwi    r3, 2
+	lfs      f31, 0(r4)
+	lfsx     f30, r4, r0
+	beq      lbl_8000B09C
+	bge      lbl_8000AF00
+	cmpwi    r3, 0
+	beq      lbl_8000AF10
+	bge      lbl_8000AFD4
+	b        lbl_8000AF10
 
-	.loc_0x7C:
-	  cmpwi     r3, 0x4
-	  beq-      .loc_0x3B8
-	  bge-      .loc_0x8C
-	  b         .loc_0x2E4
+lbl_8000AF00:
+	cmpwi    r3, 4
+	beq      lbl_8000B23C
+	bge      lbl_8000AF10
+	b        lbl_8000B168
 
-	.loc_0x8C:
-	  lfd       f1, 0x8(r31)
-	  lfd       f0, -0x7FC0(r2)
-	  fsub      f1, f3, f1
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0xEC
-	  lwz       r4, 0x38(r31)
-	  li        r0, 0
-	  lis       r3, 0x8047
-	  cmplwi    r4, 0x4
-	  stw       r0, 0x34(r1)
-	  rlwinm    r4,r4,2,0,29
-	  addi      r0, r3, 0x32F0
-	  add       r3, r0, r4
-	  blt-      .loc_0xC8
-	  addi      r3, r1, 0x34
+lbl_8000AF10:
+	lfd      f1, 8(r31)
+	lfd      f0, lbl_805163A0@sda21(r2)
+	fsub     f1, f3, f1
+	fcmpo    cr0, f1, f0
+	bge      lbl_8000AF70
+	lwz      r4, 0x38(r31)
+	li       r0, 0
+	lis      r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha cmplwi
+r4, 4 stw      r0, 0x34(r1) slwi     r4, r4, 2 addi     r0, r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l add r3,
+r0, r4 blt      lbl_8000AF4C addi     r3, r1, 0x34
 
-	.loc_0xC8:
-	  lwz       r12, 0x0(r3)
-	  cmplwi    r12, 0
-	  bne-      .loc_0xDC
-	  lis       r3, 0x8047
-	  lwz       r12, 0x32F0(r3)
+lbl_8000AF4C:
+	lwz      r12, 0(r3)
+	cmplwi   r12, 0
+	bne      lbl_8000AF60
+	lis      r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha lwz
+r12, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l(r3)
 
-	.loc_0xDC:
-	  lfd       f2, 0x18(r31)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x144
+lbl_8000AF60:
+	lfd      f2, 0x18(r31)
+	mtctr    r12
+	bctrl
+	b        lbl_8000AFC8
 
-	.loc_0xEC:
-	  lfd       f0, 0x18(r31)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0x1, 0x2
-	  bne-      .loc_0x144
-	  lwz       r4, 0x3C(r31)
-	  li        r0, 0
-	  lis       r3, 0x8047
-	  cmplwi    r4, 0x4
-	  stw       r0, 0x30(r1)
-	  rlwinm    r4,r4,2,0,29
-	  addi      r0, r3, 0x32F0
-	  add       r3, r0, r4
-	  blt-      .loc_0x124
-	  addi      r3, r1, 0x30
+lbl_8000AF70:
+	lfd      f0, 0x18(r31)
+	fcmpo    cr0, f1, f0
+	cror     2, 1, 2
+	bne      lbl_8000AFC8
+	lwz      r4, 0x3c(r31)
+	li       r0, 0
+	lis      r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha cmplwi
+r4, 4 stw      r0, 0x30(r1) slwi     r4, r4, 2 addi     r0, r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l add r3,
+r0, r4 blt      lbl_8000AFA8 addi     r3, r1, 0x30
 
-	.loc_0x124:
-	  lwz       r12, 0x0(r3)
-	  cmplwi    r12, 0
-	  bne-      .loc_0x138
-	  lis       r3, 0x8047
-	  lwz       r12, 0x32F0(r3)
+lbl_8000AFA8:
+	lwz      r12, 0(r3)
+	cmplwi   r12, 0
+	bne      lbl_8000AFBC
+	lis      r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha lwz
+r12, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l(r3)
 
-	.loc_0x138:
-	  lfd       f2, 0x18(r31)
-	  mtctr     r12
-	  bctrl
+lbl_8000AFBC:
+	lfd      f2, 0x18(r31)
+	mtctr    r12
+	bctrl
 
-	.loc_0x144:
-	  lfd       f0, 0x8(r31)
-	  fadd      f1, f1, f0
-	  b         .loc_0x490
+lbl_8000AFC8:
+	lfd      f0, 8(r31)
+	fadd     f1, f1, f0
+	b        lbl_8000B314
 
-	.loc_0x150:
-	  lfd       f2, 0x8(r31)
-	  lfd       f0, -0x7FC0(r2)
-	  fadd      f1, f3, f2
-	  fsub      f1, f1, f2
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x1B4
-	  lwz       r4, 0x38(r31)
-	  li        r0, 0
-	  lis       r3, 0x8047
-	  cmplwi    r4, 0x4
-	  stw       r0, 0x2C(r1)
-	  rlwinm    r4,r4,2,0,29
-	  addi      r0, r3, 0x32F0
-	  add       r3, r0, r4
-	  blt-      .loc_0x190
-	  addi      r3, r1, 0x2C
+lbl_8000AFD4:
+	lfd      f2, 8(r31)
+	lfd      f0, lbl_805163A0@sda21(r2)
+	fadd     f1, f3, f2
+	fsub     f1, f1, f2
+	fcmpo    cr0, f1, f0
+	bge      lbl_8000B038
+	lwz      r4, 0x38(r31)
+	li       r0, 0
+	lis      r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha cmplwi
+r4, 4 stw      r0, 0x2c(r1) slwi     r4, r4, 2 addi     r0, r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l add r3,
+r0, r4 blt      lbl_8000B014 addi     r3, r1, 0x2c
 
-	.loc_0x190:
-	  lwz       r12, 0x0(r3)
-	  cmplwi    r12, 0
-	  bne-      .loc_0x1A4
-	  lis       r3, 0x8047
-	  lwz       r12, 0x32F0(r3)
+lbl_8000B014:
+	lwz      r12, 0(r3)
+	cmplwi   r12, 0
+	bne      lbl_8000B028
+	lis      r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha lwz
+r12, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l(r3)
 
-	.loc_0x1A4:
-	  lfd       f2, 0x18(r31)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x20C
+lbl_8000B028:
+	lfd      f2, 0x18(r31)
+	mtctr    r12
+	bctrl
+	b        lbl_8000B090
 
-	.loc_0x1B4:
-	  lfd       f0, 0x18(r31)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0x1, 0x2
-	  bne-      .loc_0x20C
-	  lwz       r4, 0x3C(r31)
-	  li        r0, 0
-	  lis       r3, 0x8047
-	  cmplwi    r4, 0x4
-	  stw       r0, 0x28(r1)
-	  rlwinm    r4,r4,2,0,29
-	  addi      r0, r3, 0x32F0
-	  add       r3, r0, r4
-	  blt-      .loc_0x1EC
-	  addi      r3, r1, 0x28
+lbl_8000B038:
+	lfd      f0, 0x18(r31)
+	fcmpo    cr0, f1, f0
+	cror     2, 1, 2
+	bne      lbl_8000B090
+	lwz      r4, 0x3c(r31)
+	li       r0, 0
+	lis      r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha cmplwi
+r4, 4 stw      r0, 0x28(r1) slwi     r4, r4, 2 addi     r0, r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l add r3,
+r0, r4 blt      lbl_8000B070 addi     r3, r1, 0x28
 
-	.loc_0x1EC:
-	  lwz       r12, 0x0(r3)
-	  cmplwi    r12, 0
-	  bne-      .loc_0x200
-	  lis       r3, 0x8047
-	  lwz       r12, 0x32F0(r3)
+lbl_8000B070:
+	lwz      r12, 0(r3)
+	cmplwi   r12, 0
+	bne      lbl_8000B084
+	lis      r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha lwz
+r12, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l(r3)
 
-	.loc_0x200:
-	  lfd       f2, 0x18(r31)
-	  mtctr     r12
-	  bctrl
+lbl_8000B084:
+	lfd      f2, 0x18(r31)
+	mtctr    r12
+	bctrl
 
-	.loc_0x20C:
-	  lfd       f0, 0x8(r31)
-	  fadd      f1, f1, f0
-	  b         .loc_0x490
+lbl_8000B090:
+	lfd      f0, 8(r31)
+	fadd     f1, f1, f0
+	b        lbl_8000B314
 
-	.loc_0x218:
-	  lfd       f0, 0x10(r31)
-	  lfd       f2, 0x8(r31)
-	  fadd      f1, f3, f0
-	  lfd       f0, -0x7FC0(r2)
-	  fsub      f1, f1, f2
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x280
-	  lwz       r4, 0x38(r31)
-	  li        r0, 0
-	  lis       r3, 0x8047
-	  cmplwi    r4, 0x4
-	  stw       r0, 0x24(r1)
-	  rlwinm    r4,r4,2,0,29
-	  addi      r0, r3, 0x32F0
-	  add       r3, r0, r4
-	  blt-      .loc_0x25C
-	  addi      r3, r1, 0x24
+lbl_8000B09C:
+	lfd      f0, 0x10(r31)
+	lfd      f2, 8(r31)
+	fadd     f1, f3, f0
+	lfd      f0, lbl_805163A0@sda21(r2)
+	fsub     f1, f1, f2
+	fcmpo    cr0, f1, f0
+	bge      lbl_8000B104
+	lwz      r4, 0x38(r31)
+	li       r0, 0
+	lis      r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha cmplwi
+r4, 4 stw      r0, 0x24(r1) slwi     r4, r4, 2 addi     r0, r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l add r3,
+r0, r4 blt      lbl_8000B0E0 addi     r3, r1, 0x24
 
-	.loc_0x25C:
-	  lwz       r12, 0x0(r3)
-	  cmplwi    r12, 0
-	  bne-      .loc_0x270
-	  lis       r3, 0x8047
-	  lwz       r12, 0x32F0(r3)
+lbl_8000B0E0:
+	lwz      r12, 0(r3)
+	cmplwi   r12, 0
+	bne      lbl_8000B0F4
+	lis      r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha lwz
+r12, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l(r3)
 
-	.loc_0x270:
-	  lfd       f2, 0x18(r31)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x2D8
+lbl_8000B0F4:
+	lfd      f2, 0x18(r31)
+	mtctr    r12
+	bctrl
+	b        lbl_8000B15C
 
-	.loc_0x280:
-	  lfd       f0, 0x18(r31)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0x1, 0x2
-	  bne-      .loc_0x2D8
-	  lwz       r4, 0x3C(r31)
-	  li        r0, 0
-	  lis       r3, 0x8047
-	  cmplwi    r4, 0x4
-	  stw       r0, 0x20(r1)
-	  rlwinm    r4,r4,2,0,29
-	  addi      r0, r3, 0x32F0
-	  add       r3, r0, r4
-	  blt-      .loc_0x2B8
-	  addi      r3, r1, 0x20
+lbl_8000B104:
+	lfd      f0, 0x18(r31)
+	fcmpo    cr0, f1, f0
+	cror     2, 1, 2
+	bne      lbl_8000B15C
+	lwz      r4, 0x3c(r31)
+	li       r0, 0
+	lis      r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha cmplwi
+r4, 4 stw      r0, 0x20(r1) slwi     r4, r4, 2 addi     r0, r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l add r3,
+r0, r4 blt      lbl_8000B13C addi     r3, r1, 0x20
 
-	.loc_0x2B8:
-	  lwz       r12, 0x0(r3)
-	  cmplwi    r12, 0
-	  bne-      .loc_0x2CC
-	  lis       r3, 0x8047
-	  lwz       r12, 0x32F0(r3)
+lbl_8000B13C:
+	lwz      r12, 0(r3)
+	cmplwi   r12, 0
+	bne      lbl_8000B150
+	lis      r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha lwz
+r12, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l(r3)
 
-	.loc_0x2CC:
-	  lfd       f2, 0x18(r31)
-	  mtctr     r12
-	  bctrl
+lbl_8000B150:
+	lfd      f2, 0x18(r31)
+	mtctr    r12
+	bctrl
 
-	.loc_0x2D8:
-	  lfd       f0, 0x8(r31)
-	  fadd      f1, f1, f0
-	  b         .loc_0x490
+lbl_8000B15C:
+	lfd      f0, 8(r31)
+	fadd     f1, f1, f0
+	b        lbl_8000B314
 
-	.loc_0x2E4:
-	  lfd       f4, 0x8(r31)
-	  lfd       f0, 0x10(r31)
-	  lfd       f2, -0x7F98(r2)
-	  fadd      f1, f4, f0
-	  lfd       f0, -0x7FC0(r2)
-	  fmadd     f1, f2, f1, f3
-	  fsub      f1, f1, f4
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x354
-	  lwz       r4, 0x38(r31)
-	  li        r0, 0
-	  lis       r3, 0x8047
-	  cmplwi    r4, 0x4
-	  stw       r0, 0x1C(r1)
-	  rlwinm    r4,r4,2,0,29
-	  addi      r0, r3, 0x32F0
-	  add       r3, r0, r4
-	  blt-      .loc_0x330
-	  addi      r3, r1, 0x1C
+lbl_8000B168:
+	lfd      f4, 8(r31)
+	lfd      f0, 0x10(r31)
+	lfd      f2, lbl_805163C8@sda21(r2)
+	fadd     f1, f4, f0
+	lfd      f0, lbl_805163A0@sda21(r2)
+	fmadd    f1, f2, f1, f3
+	fsub     f1, f1, f4
+	fcmpo    cr0, f1, f0
+	bge      lbl_8000B1D8
+	lwz      r4, 0x38(r31)
+	li       r0, 0
+	lis      r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha cmplwi
+r4, 4 stw      r0, 0x1c(r1) slwi     r4, r4, 2 addi     r0, r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l add r3,
+r0, r4 blt      lbl_8000B1B4 addi     r3, r1, 0x1c
 
-	.loc_0x330:
-	  lwz       r12, 0x0(r3)
-	  cmplwi    r12, 0
-	  bne-      .loc_0x344
-	  lis       r3, 0x8047
-	  lwz       r12, 0x32F0(r3)
+lbl_8000B1B4:
+	lwz      r12, 0(r3)
+	cmplwi   r12, 0
+	bne      lbl_8000B1C8
+	lis      r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha lwz
+r12, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l(r3)
 
-	.loc_0x344:
-	  lfd       f2, 0x18(r31)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x3AC
+lbl_8000B1C8:
+	lfd      f2, 0x18(r31)
+	mtctr    r12
+	bctrl
+	b        lbl_8000B230
 
-	.loc_0x354:
-	  lfd       f0, 0x18(r31)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0x1, 0x2
-	  bne-      .loc_0x3AC
-	  lwz       r4, 0x3C(r31)
-	  li        r0, 0
-	  lis       r3, 0x8047
-	  cmplwi    r4, 0x4
-	  stw       r0, 0x18(r1)
-	  rlwinm    r4,r4,2,0,29
-	  addi      r0, r3, 0x32F0
-	  add       r3, r0, r4
-	  blt-      .loc_0x38C
-	  addi      r3, r1, 0x18
+lbl_8000B1D8:
+	lfd      f0, 0x18(r31)
+	fcmpo    cr0, f1, f0
+	cror     2, 1, 2
+	bne      lbl_8000B230
+	lwz      r4, 0x3c(r31)
+	li       r0, 0
+	lis      r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha cmplwi
+r4, 4 stw      r0, 0x18(r1) slwi     r4, r4, 2 addi     r0, r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l add r3,
+r0, r4 blt      lbl_8000B210 addi     r3, r1, 0x18
 
-	.loc_0x38C:
-	  lwz       r12, 0x0(r3)
-	  cmplwi    r12, 0
-	  bne-      .loc_0x3A0
-	  lis       r3, 0x8047
-	  lwz       r12, 0x32F0(r3)
+lbl_8000B210:
+	lwz      r12, 0(r3)
+	cmplwi   r12, 0
+	bne      lbl_8000B224
+	lis      r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha lwz
+r12, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l(r3)
 
-	.loc_0x3A0:
-	  lfd       f2, 0x18(r31)
-	  mtctr     r12
-	  bctrl
+lbl_8000B224:
+	lfd      f2, 0x18(r31)
+	mtctr    r12
+	bctrl
 
-	.loc_0x3AC:
-	  lfd       f0, 0x8(r31)
-	  fadd      f1, f1, f0
-	  b         .loc_0x490
+lbl_8000B230:
+	lfd      f0, 8(r31)
+	fadd     f1, f1, f0
+	b        lbl_8000B314
 
-	.loc_0x3B8:
-	  lfd       f1, 0x8(r31)
-	  lfd       f0, -0x7FC0(r2)
-	  fsub      f1, f3, f1
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x418
-	  lwz       r4, 0x38(r31)
-	  li        r0, 0
-	  lis       r3, 0x8047
-	  cmplwi    r4, 0x4
-	  stw       r0, 0x14(r1)
-	  rlwinm    r4,r4,2,0,29
-	  addi      r0, r3, 0x32F0
-	  add       r3, r0, r4
-	  blt-      .loc_0x3F4
-	  addi      r3, r1, 0x14
+lbl_8000B23C:
+	lfd      f1, 8(r31)
+	lfd      f0, lbl_805163A0@sda21(r2)
+	fsub     f1, f3, f1
+	fcmpo    cr0, f1, f0
+	bge      lbl_8000B29C
+	lwz      r4, 0x38(r31)
+	li       r0, 0
+	lis      r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha cmplwi
+r4, 4 stw      r0, 0x14(r1) slwi     r4, r4, 2 addi     r0, r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l add r3,
+r0, r4 blt      lbl_8000B278 addi     r3, r1, 0x14
 
-	.loc_0x3F4:
-	  lwz       r12, 0x0(r3)
-	  cmplwi    r12, 0
-	  bne-      .loc_0x408
-	  lis       r3, 0x8047
-	  lwz       r12, 0x32F0(r3)
+lbl_8000B278:
+	lwz      r12, 0(r3)
+	cmplwi   r12, 0
+	bne      lbl_8000B28C
+	lis      r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha lwz
+r12, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l(r3)
 
-	.loc_0x408:
-	  lfd       f2, 0x18(r31)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x470
+lbl_8000B28C:
+	lfd      f2, 0x18(r31)
+	mtctr    r12
+	bctrl
+	b        lbl_8000B2F4
 
-	.loc_0x418:
-	  lfd       f0, 0x18(r31)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0x1, 0x2
-	  bne-      .loc_0x470
-	  lwz       r4, 0x3C(r31)
-	  li        r0, 0
-	  lis       r3, 0x8047
-	  cmplwi    r4, 0x4
-	  stw       r0, 0x10(r1)
-	  rlwinm    r4,r4,2,0,29
-	  addi      r0, r3, 0x32F0
-	  add       r3, r0, r4
-	  blt-      .loc_0x450
-	  addi      r3, r1, 0x10
+lbl_8000B29C:
+	lfd      f0, 0x18(r31)
+	fcmpo    cr0, f1, f0
+	cror     2, 1, 2
+	bne      lbl_8000B2F4
+	lwz      r4, 0x3c(r31)
+	li       r0, 0
+	lis      r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha cmplwi
+r4, 4 stw      r0, 0x10(r1) slwi     r4, r4, 2 addi     r0, r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l add r3,
+r0, r4 blt      lbl_8000B2D4 addi     r3, r1, 0x10
 
-	.loc_0x450:
-	  lwz       r12, 0x0(r3)
-	  cmplwi    r12, 0
-	  bne-      .loc_0x464
-	  lis       r3, 0x8047
-	  lwz       r12, 0x32F0(r3)
+lbl_8000B2D4:
+	lwz      r12, 0(r3)
+	cmplwi   r12, 0
+	bne      lbl_8000B2E8
+	lis      r3,
+"gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@ha lwz
+r12, "gapfnExtrapolateParameter___Q27JStudio27@unnamed@functionvalue_cpp@"@l(r3)
 
-	.loc_0x464:
-	  lfd       f2, 0x18(r31)
-	  mtctr     r12
-	  bctrl
+lbl_8000B2E8:
+	lfd      f2, 0x18(r31)
+	mtctr    r12
+	bctrl
 
-	.loc_0x470:
-	  lfd       f3, 0x8(r31)
-	  fsub      f2, f30, f31
-	  lfd       f0, 0x18(r31)
-	  fadd      f1, f1, f3
-	  fsub      f1, f1, f3
-	  fmul      f1, f1, f2
-	  fdiv      f0, f1, f0
-	  fadd      f1, f31, f0
+lbl_8000B2F4:
+	lfd      f3, 8(r31)
+	fsub     f2, f30, f31
+	lfd      f0, 0x18(r31)
+	fadd     f1, f1, f3
+	fsub     f1, f1, f3
+	fmul     f1, f1, f2
+	fdiv     f0, f1, f0
+	fadd     f1, f31, f0
 
-	.loc_0x490:
-	  stfd      f1, 0x8(r1)
-	  addi      r3, r1, 0x50
-	  addi      r4, r1, 0x48
-	  addi      r5, r1, 0x40
-	  lwz       r8, 0x5C(r31)
-	  addi      r6, r1, 0x38
-	  lwz       r0, 0x60(r31)
-	  addi      r7, r1, 0x8
-	  stw       r8, 0x38(r1)
-	  stw       r0, 0x3C(r1)
-	  lwz       r8, 0x54(r31)
-	  lwz       r0, 0x58(r31)
-	  stw       r8, 0x40(r1)
-	  stw       r0, 0x44(r1)
-	  lwz       r8, 0x4C(r31)
-	  lwz       r0, 0x50(r31)
-	  stw       r8, 0x48(r1)
-	  stw       r0, 0x4C(r1)
-	  bl        .loc_0x5D0
-	  lwz       r0, 0x50(r1)
-	  stw       r0, 0x5C(r31)
-	  lwz       r0, 0x54(r1)
-	  stw       r0, 0x60(r31)
-	  lwz       r4, 0x5C(r31)
-	  lwz       r0, 0x4C(r31)
-	  cmplw     r4, r0
-	  bne-      .loc_0x504
-	  lfs       f1, 0x4(r4)
-	  b         .loc_0x5AC
+lbl_8000B314:
+	stfd     f1, 8(r1)
+	addi     r3, r1, 0x50
+	addi     r4, r1, 0x48
+	addi     r5, r1, 0x40
+	lwz      r8, 0x5c(r31)
+	addi     r6, r1, 0x38
+	lwz      r0, 0x60(r31)
+	addi     r7, r1, 8
+	stw      r8, 0x38(r1)
+	stw      r0, 0x3c(r1)
+	lwz      r8, 0x54(r31)
+	lwz      r0, 0x58(r31)
+	stw      r8, 0x40(r1)
+	stw      r0, 0x44(r1)
+	lwz      r8, 0x4c(r31)
+	lwz      r0, 0x50(r31)
+	stw      r8, 0x48(r1)
+	stw      r0, 0x4c(r1)
+	bl
+"findUpperBound_binary_current<Q37JStudio22TFunctionValue_hermite15TIterator_data_,d>__7JGadgetFQ37JStudio22TFunctionValue_hermite15TIterator_data_Q37JStudio22TFunctionValue_hermite15TIterator_data_Q37JStudio22TFunctionValue_hermite15TIterator_data_RCd"
+	lwz      r0, 0x50(r1)
+	stw      r0, 0x5c(r31)
+	lwz      r0, 0x54(r1)
+	stw      r0, 0x60(r31)
+	lwz      r4, 0x5c(r31)
+	lwz      r0, 0x4c(r31)
+	cmplw    r4, r0
+	bne      lbl_8000B388
+	lfs      f1, 4(r4)
+	b        lbl_8000B430
 
-	.loc_0x504:
-	  lwz       r0, 0x54(r31)
-	  cmplw     r4, r0
-	  bne-      .loc_0x530
-	  lwz       r3, 0x60(r31)
-	  lwz       r0, 0x5C(r31)
-	  rlwinm    r3,r3,2,0,29
-	  sub       r0, r0, r3
-	  stw       r0, 0x5C(r31)
-	  lwz       r3, 0x5C(r31)
-	  lfs       f1, 0x4(r3)
-	  b         .loc_0x5AC
+lbl_8000B388:
+	lwz      r0, 0x54(r31)
+	cmplw    r4, r0
+	bne      lbl_8000B3B4
+	lwz      r3, 0x60(r31)
+	lwz      r0, 0x5c(r31)
+	slwi     r3, r3, 2
+	subf     r0, r3, r0
+	stw      r0, 0x5c(r31)
+	lwz      r3, 0x5c(r31)
+	lfs      f1, 4(r3)
+	b        lbl_8000B430
 
-	.loc_0x530:
-	  lwz       r0, 0x48(r31)
-	  lfs       f0, 0x0(r4)
-	  rlwinm    r0,r0,2,0,29
-	  lfd       f7, -0x7FB8(r2)
-	  sub       r5, r4, r0
-	  lfd       f1, 0x8(r1)
-	  lfs       f5, 0x0(r5)
-	  add       r3, r5, r0
-	  lfd       f4, -0x7FA8(r2)
-	  fsub      f3, f0, f5
-	  lfd       f2, -0x7FB0(r2)
-	  fsub      f9, f1, f5
-	  lfs       f0, 0x4(r4)
-	  lfs       f1, 0x4(r5)
-	  fdiv      f6, f7, f3
-	  lfs       f3, -0x4(r3)
-	  lfs       f5, 0x8(r4)
-	  fmul      f8, f9, f6
-	  fmadd     f4, f4, f8, f2
-	  fmul      f2, f8, f8
-	  fsub      f6, f8, f7
-	  fmul      f2, f4, f2
-	  fmul      f4, f6, f6
-	  fmul      f0, f2, f0
-	  fsub      f2, f7, f2
-	  fmul      f6, f6, f9
-	  fmul      f4, f9, f4
-	  fmadd     f0, f2, f1, f0
-	  fmul      f1, f8, f6
-	  fmadd     f0, f4, f3, f0
-	  fmadd     f1, f1, f5, f0
+lbl_8000B3B4:
+	lwz      r0, 0x48(r31)
+	lfs      f0, 0(r4)
+	slwi     r0, r0, 2
+	lfd      f7, lbl_805163A8@sda21(r2)
+	subf     r5, r0, r4
+	lfd      f1, 8(r1)
+	lfs      f5, 0(r5)
+	add      r3, r5, r0
+	lfd      f4, lbl_805163B8@sda21(r2)
+	fsub     f3, f0, f5
+	lfd      f2, lbl_805163B0@sda21(r2)
+	fsub     f9, f1, f5
+	lfs      f0, 4(r4)
+	lfs      f1, 4(r5)
+	fdiv     f6, f7, f3
+	lfs      f3, -4(r3)
+	lfs      f5, 8(r4)
+	fmul     f8, f9, f6
+	fmadd    f4, f4, f8, f2
+	fmul     f2, f8, f8
+	fsub     f6, f8, f7
+	fmul     f2, f4, f2
+	fmul     f4, f6, f6
+	fmul     f0, f2, f0
+	fsub     f2, f7, f2
+	fmul     f6, f6, f9
+	fmul     f4, f9, f4
+	fmadd    f0, f2, f1, f0
+	fmul     f1, f8, f6
+	fmadd    f0, f4, f3, f0
+	fmadd    f1, f1, f5, f0
 
-	.loc_0x5AC:
-	  psq_l     f31,0x78(r1),0,0
-	  lfd       f31, 0x70(r1)
-	  psq_l     f30,0x68(r1),0,0
-	  lfd       f30, 0x60(r1)
-	  lwz       r0, 0x84(r1)
-	  lwz       r31, 0x5C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x80
-	  blr
-
-	.loc_0x5D0:
+lbl_8000B430:
+	psq_l    f31, 120(r1), 0, qr0
+	lfd      f31, 0x70(r1)
+	psq_l    f30, 104(r1), 0, qr0
+	lfd      f30, 0x60(r1)
+	lwz      r0, 0x84(r1)
+	lwz      r31, 0x5c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x80
+	blr
 	*/
 }
 
@@ -4205,34 +4250,33 @@ void JGadget::findUpperBound_binary_current<
 TFunctionValue_hermite::~TFunctionValue_hermite()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r3
-	  beq-      .loc_0x44
-	  lis       r3, 0x804A
-	  subi      r0, r3, 0x1B98
-	  stw       r0, 0x0(r31)
-	  beq-      .loc_0x34
-	  lis       r3, 0x804A
-	  subi      r0, r3, 0x1AD8
-	  stw       r0, 0x0(r31)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r3, r3
+	beq      lbl_8000B800
+	lis      r3, __vt__Q27JStudio22TFunctionValue_hermite@ha
+	addi     r0, r3, __vt__Q27JStudio22TFunctionValue_hermite@l
+	stw      r0, 0(r31)
+	beq      lbl_8000B7F0
+	lis      r3, __vt__Q27JStudio14TFunctionValue@ha
+	addi     r0, r3, __vt__Q27JStudio14TFunctionValue@l
+	stw      r0, 0(r31)
 
-	.loc_0x34:
-	  extsh.    r0, r4
-	  ble-      .loc_0x44
-	  mr        r3, r31
-	  bl        0x188B8
+lbl_8000B7F0:
+	extsh.   r0, r4
+	ble      lbl_8000B800
+	mr       r3, r31
+	bl       __dl__FPv
 
-	.loc_0x44:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8000B800:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -4244,34 +4288,33 @@ TFunctionValue_hermite::~TFunctionValue_hermite()
 TFunctionValue_list_parameter::~TFunctionValue_list_parameter()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r3
-	  beq-      .loc_0x44
-	  lis       r3, 0x804A
-	  subi      r0, r3, 0x1B78
-	  stw       r0, 0x0(r31)
-	  beq-      .loc_0x34
-	  lis       r3, 0x804A
-	  subi      r0, r3, 0x1AD8
-	  stw       r0, 0x0(r31)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r3, r3
+	beq      lbl_8000B85C
+	lis      r3, __vt__Q27JStudio29TFunctionValue_list_parameter@ha
+	addi     r0, r3, __vt__Q27JStudio29TFunctionValue_list_parameter@l
+	stw      r0, 0(r31)
+	beq      lbl_8000B84C
+	lis      r3, __vt__Q27JStudio14TFunctionValue@ha
+	addi     r0, r3, __vt__Q27JStudio14TFunctionValue@l
+	stw      r0, 0(r31)
 
-	.loc_0x34:
-	  extsh.    r0, r4
-	  ble-      .loc_0x44
-	  mr        r3, r31
-	  bl        0x1885C
+lbl_8000B84C:
+	extsh.   r0, r4
+	ble      lbl_8000B85C
+	mr       r3, r31
+	bl       __dl__FPv
 
-	.loc_0x44:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8000B85C:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -4283,34 +4326,33 @@ TFunctionValue_list_parameter::~TFunctionValue_list_parameter()
 TFunctionValue_list::~TFunctionValue_list()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r3
-	  beq-      .loc_0x44
-	  lis       r3, 0x804A
-	  subi      r0, r3, 0x1B58
-	  stw       r0, 0x0(r31)
-	  beq-      .loc_0x34
-	  lis       r3, 0x804A
-	  subi      r0, r3, 0x1AD8
-	  stw       r0, 0x0(r31)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r3, r3
+	beq      lbl_8000B8B8
+	lis      r3, __vt__Q27JStudio19TFunctionValue_list@ha
+	addi     r0, r3, __vt__Q27JStudio19TFunctionValue_list@l
+	stw      r0, 0(r31)
+	beq      lbl_8000B8A8
+	lis      r3, __vt__Q27JStudio14TFunctionValue@ha
+	addi     r0, r3, __vt__Q27JStudio14TFunctionValue@l
+	stw      r0, 0(r31)
 
-	.loc_0x34:
-	  extsh.    r0, r4
-	  ble-      .loc_0x44
-	  mr        r3, r31
-	  bl        0x18800
+lbl_8000B8A8:
+	extsh.   r0, r4
+	ble      lbl_8000B8B8
+	mr       r3, r31
+	bl       __dl__FPv
 
-	.loc_0x44:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8000B8B8:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -4322,34 +4364,33 @@ TFunctionValue_list::~TFunctionValue_list()
 TFunctionValue_transition::~TFunctionValue_transition()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r3
-	  beq-      .loc_0x44
-	  lis       r3, 0x804A
-	  subi      r0, r3, 0x1B38
-	  stw       r0, 0x0(r31)
-	  beq-      .loc_0x34
-	  lis       r3, 0x804A
-	  subi      r0, r3, 0x1AD8
-	  stw       r0, 0x0(r31)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r3, r3
+	beq      lbl_8000B914
+	lis      r3, __vt__Q27JStudio25TFunctionValue_transition@ha
+	addi     r0, r3, __vt__Q27JStudio25TFunctionValue_transition@l
+	stw      r0, 0(r31)
+	beq      lbl_8000B904
+	lis      r3, __vt__Q27JStudio14TFunctionValue@ha
+	addi     r0, r3, __vt__Q27JStudio14TFunctionValue@l
+	stw      r0, 0(r31)
 
-	.loc_0x34:
-	  extsh.    r0, r4
-	  ble-      .loc_0x44
-	  mr        r3, r31
-	  bl        0x187A4
+lbl_8000B904:
+	extsh.   r0, r4
+	ble      lbl_8000B914
+	mr       r3, r31
+	bl       __dl__FPv
 
-	.loc_0x44:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8000B914:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -4361,34 +4402,33 @@ TFunctionValue_transition::~TFunctionValue_transition()
 TFunctionValue_constant::~TFunctionValue_constant()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r3
-	  beq-      .loc_0x44
-	  lis       r3, 0x804A
-	  subi      r0, r3, 0x1B18
-	  stw       r0, 0x0(r31)
-	  beq-      .loc_0x34
-	  lis       r3, 0x804A
-	  subi      r0, r3, 0x1AD8
-	  stw       r0, 0x0(r31)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r3, r3
+	beq      lbl_8000B970
+	lis      r3, __vt__Q27JStudio23TFunctionValue_constant@ha
+	addi     r0, r3, __vt__Q27JStudio23TFunctionValue_constant@l
+	stw      r0, 0(r31)
+	beq      lbl_8000B960
+	lis      r3, __vt__Q27JStudio14TFunctionValue@ha
+	addi     r0, r3, __vt__Q27JStudio14TFunctionValue@l
+	stw      r0, 0(r31)
 
-	.loc_0x34:
-	  extsh.    r0, r4
-	  ble-      .loc_0x44
-	  mr        r3, r31
-	  bl        0x18748
+lbl_8000B960:
+	extsh.   r0, r4
+	ble      lbl_8000B970
+	mr       r3, r31
+	bl       __dl__FPv
 
-	.loc_0x44:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8000B970:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -4400,47 +4440,46 @@ TFunctionValue_constant::~TFunctionValue_constant()
 TFunctionValue_composite::~TFunctionValue_composite()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x6C
-	  lis       r3, 0x804A
-	  addic.    r0, r30, 0x4
-	  subi      r0, r3, 0x1AF8
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x48
-	  addic.    r0, r30, 0x4
-	  beq-      .loc_0x48
-	  addi      r3, r30, 0x4
-	  li        r4, 0
-	  bl        0x1C1BC
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_8000B9F4
+	lis      r3, __vt__Q27JStudio24TFunctionValue_composite@ha
+	addic.   r0, r30, 4
+	addi     r0, r3, __vt__Q27JStudio24TFunctionValue_composite@l
+	stw      r0, 0(r30)
+	beq      lbl_8000B9D0
+	addic.   r0, r30, 4
+	beq      lbl_8000B9D0
+	addi     r3, r30, 4
+	li       r4, 0
+	bl       __dt__Q27JGadget20TVector_pointer_voidFv
 
-	.loc_0x48:
-	  cmplwi    r30, 0
-	  beq-      .loc_0x5C
-	  lis       r3, 0x804A
-	  subi      r0, r3, 0x1AD8
-	  stw       r0, 0x0(r30)
+lbl_8000B9D0:
+	cmplwi   r30, 0
+	beq      lbl_8000B9E4
+	lis      r3, __vt__Q27JStudio14TFunctionValue@ha
+	addi     r0, r3, __vt__Q27JStudio14TFunctionValue@l
+	stw      r0, 0(r30)
 
-	.loc_0x5C:
-	  extsh.    r0, r31
-	  ble-      .loc_0x6C
-	  mr        r3, r30
-	  bl        0x186C4
+lbl_8000B9E4:
+	extsh.   r0, r31
+	ble      lbl_8000B9F4
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x6C:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8000B9F4:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 

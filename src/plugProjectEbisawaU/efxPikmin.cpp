@@ -1,5 +1,226 @@
 #include "types.h"
 
+/*
+    Generated from dpostproc
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_80495A28
+    lbl_80495A28:
+        .4byte 0x65667850
+        .4byte 0x696B6D69
+        .4byte 0x6E2E6370
+        .4byte 0x70000000
+    .global lbl_80495A38
+    lbl_80495A38:
+        .asciz "P2Assert"
+        .skip 3
+        .4byte 0x41726744
+        .4byte 0x6F70696E
+        .4byte 0x67536D6F
+        .4byte 0x6B650000
+        .4byte 0x41726743
+        .4byte 0x7572736F
+        .4byte 0x72000000
+        .4byte 0x41726753
+        .4byte 0x63616C65
+        .4byte 0x00000000
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__Q23efx12TStoneAttack
+    __vt__Q23efx12TStoneAttack:
+        .4byte 0
+        .4byte 0
+        .4byte create__Q23efx8TSimple1FPQ23efx3Arg
+        .4byte forceKill__Q23efx8TSimple1Fv
+        .4byte fade__Q23efx8TSimple1Fv
+    .global __vt__Q23efx13TBridgeAttack
+    __vt__Q23efx13TBridgeAttack:
+        .4byte 0
+        .4byte 0
+        .4byte create__Q23efx8TSimple1FPQ23efx3Arg
+        .4byte forceKill__Q23efx8TSimple1Fv
+        .4byte fade__Q23efx8TSimple1Fv
+    .global __vt__Q23efx12TGate2Attack
+    __vt__Q23efx12TGate2Attack:
+        .4byte 0
+        .4byte 0
+        .4byte create__Q23efx8TSimple2FPQ23efx3Arg
+        .4byte forceKill__Q23efx8TSimple2Fv
+        .4byte fade__Q23efx8TSimple2Fv
+    .global __vt__Q23efx10TPkInstick
+    __vt__Q23efx10TPkInstick:
+        .4byte 0
+        .4byte 0
+        .4byte create__Q23efx8TSimple1FPQ23efx3Arg
+        .4byte forceKill__Q23efx8TSimple1Fv
+        .4byte fade__Q23efx8TSimple1Fv
+    .global __vt__Q23efx12TGate1Attack
+    __vt__Q23efx12TGate1Attack:
+        .4byte 0
+        .4byte 0
+        .4byte create__Q23efx8TSimple2FPQ23efx3Arg
+        .4byte forceKill__Q23efx8TSimple2Fv
+        .4byte fade__Q23efx8TSimple2Fv
+    .global __vt__Q23efx12TPkBlackDrop
+    __vt__Q23efx12TPkBlackDrop:
+        .4byte 0
+        .4byte 0
+        .4byte create__Q23efx8TSimple3FPQ23efx3Arg
+        .4byte forceKill__Q23efx8TSimple3Fv
+        .4byte fade__Q23efx8TSimple3Fv
+    .global __vt__Q23efx15TFueactBiriBase
+    __vt__Q23efx15TFueactBiriBase:
+        .4byte 0
+        .4byte 0
+        .4byte create__Q23efx5TSyncFPQ23efx3Arg
+        .4byte forceKill__Q23efx5TSyncFv
+        .4byte fade__Q23efx5TSyncFv
+        .4byte 0
+        .4byte 0
+        .4byte "@4@__dt__Q23efx15TFueactBiriBaseFv"
+        .4byte "@4@execute__Q23efx5TSyncFP14JPABaseEmitter"
+        .4byte "@4@executeAfter__Q23efx5TSyncFP14JPABaseEmitter"
+        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
+        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+        .4byte execute__Q23efx5TSyncFP14JPABaseEmitter
+        .4byte executeAfter__Q23efx5TSyncFP14JPABaseEmitter
+        .4byte
+   doExecuteEmitterOperation__Q23efx15TFueactBiriBaseFP14JPABaseEmitter .4byte
+   doExecuteAfter__Q23efx5TSyncFP14JPABaseEmitter .4byte
+   startDemoDrawOff__Q23efx5TSyncFv .4byte endDemoDrawOn__Q23efx5TSyncFv .4byte
+   __dt__Q23efx15TFueactBiriBaseFv .global __vt__Q23efx13TFueactCircle
+    __vt__Q23efx13TFueactCircle:
+        .4byte 0
+        .4byte 0
+        .4byte create__Q23efx13TFueactCircleFPQ23efx3Arg
+        .4byte forceKill__Q23efx13TFueactCircleFv
+        .4byte fade__Q23efx13TFueactCircleFv
+        .4byte 0
+        .4byte 0
+        .4byte "@4@__dt__Q23efx13TFueactCircleFv"
+        .4byte "@4@execute__Q23efx13TFueactCircleFP14JPABaseEmitter"
+        .4byte "@4@executeAfter__Q23efx13TFueactCircleFP14JPABaseEmitter"
+        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
+        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+        .4byte 0
+        .4byte 0
+        .4byte "@8@__dt__Q23efx13TFueactCircleFv"
+        .4byte
+   "@8@execute__Q23efx13TFueactCircleFP14JPABaseEmitterP15JPABaseParticle"
+        .4byte draw__19JPAParticleCallBackFP14JPABaseEmitterP15JPABaseParticle
+        .4byte execute__Q23efx13TFueactCircleFP14JPABaseEmitter
+        .4byte
+   execute__Q23efx13TFueactCircleFP14JPABaseEmitterP15JPABaseParticle .4byte
+   executeAfter__Q23efx13TFueactCircleFP14JPABaseEmitter .4byte
+   __dt__Q23efx13TFueactCircleFv .global __vt__Q23efx7TCursor
+    __vt__Q23efx7TCursor:
+        .4byte 0
+        .4byte 0
+        .4byte create__Q23efx7TCursorFPQ23efx3Arg
+        .4byte forceKill__Q23efx7TCursorFv
+        .4byte fade__Q23efx7TCursorFv
+    .global __vt__Q23efx14TOrimaLightAct
+    __vt__Q23efx14TOrimaLightAct:
+        .4byte 0
+        .4byte 0
+        .4byte create__Q23efx14TOrimaLightActFPQ23efx3Arg
+        .4byte "forceKill__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
+        .4byte "fade__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
+        .4byte "startDemoDrawOff__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
+        .4byte "endDemoDrawOn__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
+    .global __vt__Q23efx11TOrimaLight
+    __vt__Q23efx11TOrimaLight:
+        .4byte 0
+        .4byte 0
+        .4byte create__Q23efx11TOrimaLightFPQ23efx3Arg
+        .4byte "forceKill__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
+        .4byte "fade__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
+        .4byte "startDemoDrawOff__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
+        .4byte "endDemoDrawOn__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
+    .global __vt__Q23efx12TDopingSmoke
+    __vt__Q23efx12TDopingSmoke:
+        .4byte 0
+        .4byte 0
+        .4byte create__Q23efx12TDopingSmokeFPQ23efx3Arg
+        .4byte forceKill__Q23efx8TSimple1Fv
+        .4byte fade__Q23efx8TSimple1Fv
+    .global __vt__Q23efx11TPkNageBlur
+    __vt__Q23efx11TPkNageBlur:
+        .4byte 0
+        .4byte 0
+        .4byte create__Q23efx11TPkNageBlurFPQ23efx3Arg
+        .4byte forceKill__Q23efx5TSyncFv
+        .4byte fade__Q23efx5TSyncFv
+        .4byte 0
+        .4byte 0
+        .4byte "@4@__dt__Q23efx11TPkNageBlurFv"
+        .4byte "@4@execute__Q23efx5TSyncFP14JPABaseEmitter"
+        .4byte "@4@executeAfter__Q23efx5TSyncFP14JPABaseEmitter"
+        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
+        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+        .4byte execute__Q23efx5TSyncFP14JPABaseEmitter
+        .4byte executeAfter__Q23efx5TSyncFP14JPABaseEmitter
+        .4byte doExecuteEmitterOperation__Q23efx9TChaseMtxFP14JPABaseEmitter
+        .4byte doExecuteAfter__Q23efx5TSyncFP14JPABaseEmitter
+        .4byte startDemoDrawOff__Q23efx5TSyncFv
+        .4byte endDemoDrawOn__Q23efx5TSyncFv
+        .4byte __dt__Q23efx11TPkNageBlurFv
+        .4byte 0
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_8051F670
+    lbl_8051F670:
+        .4byte 0x00000000
+    .global lbl_8051F674
+    lbl_8051F674:
+        .4byte 0x41726754
+        .4byte 0x79706500
+    .global lbl_8051F67C
+    lbl_8051F67C:
+        .float 1.0
+    .global lbl_8051F680
+    lbl_8051F680:
+        .4byte 0x40C90FDB
+    .global lbl_8051F684
+    lbl_8051F684:
+        .4byte 0x40490FDB
+    .global lbl_8051F688
+    lbl_8051F688:
+        .4byte 0x40000000
+    .global lbl_8051F68C
+    lbl_8051F68C:
+        .4byte 0x43A2F983
+    .global lbl_8051F690
+    lbl_8051F690:
+        .4byte 0xC3A2F983
+        .4byte 0x00000000
+    .global lbl_8051F698
+    lbl_8051F698:
+        .4byte 0x43300000
+        .4byte 0x80000000
+    .global lbl_8051F6A0
+    lbl_8051F6A0:
+        .4byte 0x42000000
+    .global lbl_8051F6A4
+    lbl_8051F6A4:
+        .float 0.5
+    .global lbl_8051F6A8
+    lbl_8051F6A8:
+        .4byte 0x40400000
+    .global lbl_8051F6AC
+    lbl_8051F6AC:
+        .4byte 0x432F0000
+    .global lbl_8051F6B0
+    lbl_8051F6B0:
+        .4byte 0x42C80000
+    .global lbl_8051F6B4
+    lbl_8051F6B4:
+        .4byte 0x41400000
+    .global lbl_8051F6B8
+    lbl_8051F6B8:
+        .4byte 0x41B00000
+*/
+
 namespace efx {
 
 /*
@@ -40,83 +261,82 @@ void TTestYodareGen::create(efx::Arg*)
 void TPkNageBlur::create(efx::Arg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  addi      r3, r2, 0x1314
-	  bl        -0x2EC028
-	  cntlzw    r0, r3
-	  rlwinm.   r0,r0,27,24,31
-	  bne-      .loc_0x64
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  addi      r3, r3, 0x5A28
-	  li        r4, 0x13F
-	  addi      r5, r5, 0x5A38
-	  crclr     6, 0x6
-	  bl        -0x38C0D0
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	addi     r3, r2, lbl_8051F674@sda21
+	bl       strcmp
+	cntlzw   r0, r3
+	rlwinm.  r0, r0, 0x1b, 0x18, 0x1f
+	bne      lbl_803B6714
+	lis      r3, lbl_80495A28@ha
+	lis      r5, lbl_80495A38@ha
+	addi     r3, r3, lbl_80495A28@l
+	li       r4, 0x13f
+	addi     r5, r5, lbl_80495A38@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x64:
-	  lhz       r0, 0x10(r31)
-	  cmpwi     r0, 0x2
-	  beq-      .loc_0xAC
-	  bge-      .loc_0x84
-	  cmpwi     r0, 0
-	  beq-      .loc_0x94
-	  bge-      .loc_0xA0
-	  b         .loc_0xCC
+lbl_803B6714:
+	lhz      r0, 0x10(r31)
+	cmpwi    r0, 2
+	beq      lbl_803B675C
+	bge      lbl_803B6734
+	cmpwi    r0, 0
+	beq      lbl_803B6744
+	bge      lbl_803B6750
+	b        lbl_803B677C
 
-	.loc_0x84:
-	  cmpwi     r0, 0x4
-	  beq-      .loc_0xC4
-	  bge-      .loc_0xCC
-	  b         .loc_0xB8
+lbl_803B6734:
+	cmpwi    r0, 4
+	beq      lbl_803B6774
+	bge      lbl_803B677C
+	b        lbl_803B6768
 
-	.loc_0x94:
-	  li        r0, 0x173
-	  sth       r0, 0xC(r30)
-	  b         .loc_0xCC
+lbl_803B6744:
+	li       r0, 0x173
+	sth      r0, 0xc(r30)
+	b        lbl_803B677C
 
-	.loc_0xA0:
-	  li        r0, 0x174
-	  sth       r0, 0xC(r30)
-	  b         .loc_0xCC
+lbl_803B6750:
+	li       r0, 0x174
+	sth      r0, 0xc(r30)
+	b        lbl_803B677C
 
-	.loc_0xAC:
-	  li        r0, 0x176
-	  sth       r0, 0xC(r30)
-	  b         .loc_0xCC
+lbl_803B675C:
+	li       r0, 0x176
+	sth      r0, 0xc(r30)
+	b        lbl_803B677C
 
-	.loc_0xB8:
-	  li        r0, 0x172
-	  sth       r0, 0xC(r30)
-	  b         .loc_0xCC
+lbl_803B6768:
+	li       r0, 0x172
+	sth      r0, 0xc(r30)
+	b        lbl_803B677C
 
-	.loc_0xC4:
-	  li        r0, 0x175
-	  sth       r0, 0xC(r30)
+lbl_803B6774:
+	li       r0, 0x175
+	sth      r0, 0xc(r30)
 
-	.loc_0xCC:
-	  mr        r3, r30
-	  mr        r4, r31
-	  bl        -0x7098
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803B677C:
+	mr       r3, r30
+	mr       r4, r31
+	bl       create__Q23efx5TSyncFPQ23efx3Arg
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -128,151 +348,150 @@ void TPkNageBlur::create(efx::Arg*)
 void TDopingSmoke::create(efx::Arg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stw       r31, 0x2C(r1)
-	  stw       r30, 0x28(r1)
-	  mr        r30, r4
-	  lis       r4, 0x8049
-	  stw       r29, 0x24(r1)
-	  mr        r29, r3
-	  mr        r3, r30
-	  addi      r31, r4, 0x5A28
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  addi      r3, r31, 0x1C
-	  bl        -0x2EC124
-	  cntlzw    r0, r3
-	  rlwinm.   r0,r0,27,24,31
-	  bne-      .loc_0x68
-	  addi      r3, r31, 0
-	  addi      r5, r31, 0x10
-	  li        r4, 0x15D
-	  crclr     6, 0x6
-	  bl        -0x38C1C4
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stw      r31, 0x2c(r1)
+	stw      r30, 0x28(r1)
+	mr       r30, r4
+	lis      r4, lbl_80495A28@ha
+	stw      r29, 0x24(r1)
+	mr       r29, r3
+	mr       r3, r30
+	addi     r31, r4, lbl_80495A28@l
+	lwz      r12, 0(r30)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	addi     r3, r31, 0x1c
+	bl       strcmp
+	cntlzw   r0, r3
+	rlwinm.  r0, r0, 0x1b, 0x18, 0x1f
+	bne      lbl_803B6808
+	addi     r3, r31, 0
+	addi     r5, r31, 0x10
+	li       r4, 0x15d
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x68:
-	  lhz       r0, 0x1C(r30)
-	  cmpwi     r0, 0x1
-	  beq-      .loc_0x90
-	  bge-      .loc_0x9C
-	  cmpwi     r0, 0
-	  bge-      .loc_0x84
-	  b         .loc_0x9C
+lbl_803B6808:
+	lhz      r0, 0x1c(r30)
+	cmpwi    r0, 1
+	beq      lbl_803B6830
+	bge      lbl_803B683C
+	cmpwi    r0, 0
+	bge      lbl_803B6824
+	b        lbl_803B683C
 
-	.loc_0x84:
-	  li        r0, 0x45
-	  sth       r0, 0x4(r29)
-	  b         .loc_0xA4
+lbl_803B6824:
+	li       r0, 0x45
+	sth      r0, 4(r29)
+	b        lbl_803B6844
 
-	.loc_0x90:
-	  li        r0, 0x43
-	  sth       r0, 0x4(r29)
-	  b         .loc_0xA4
+lbl_803B6830:
+	li       r0, 0x43
+	sth      r0, 4(r29)
+	b        lbl_803B6844
 
-	.loc_0x9C:
-	  li        r0, 0x2B2
-	  sth       r0, 0x4(r29)
+lbl_803B683C:
+	li       r0, 0x2b2
+	sth      r0, 4(r29)
 
-	.loc_0xA4:
-	  mr        r3, r29
-	  mr        r4, r30
-	  bl        -0x78C8
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x1C0
-	  lfs       f4, 0x10(r30)
-	  lfs       f3, 0x14(r30)
-	  fmuls     f0, f4, f4
-	  lfs       f2, 0x18(r30)
-	  fmuls     f5, f3, f3
-	  lfs       f1, 0x1310(r2)
-	  fmuls     f6, f2, f2
-	  stfs      f4, 0x8(r1)
-	  fadds     f0, f0, f5
-	  stfs      f3, 0xC(r1)
-	  stfs      f2, 0x10(r1)
-	  fadds     f0, f6, f0
-	  fcmpo     cr0, f0, f1
-	  ble-      .loc_0x10C
-	  fmadds    f0, f4, f4, f5
-	  fadds     f3, f6, f0
-	  fcmpo     cr0, f3, f1
-	  ble-      .loc_0x110
-	  fsqrte    f0, f3
-	  fmuls     f3, f0, f3
-	  b         .loc_0x110
+lbl_803B6844:
+	mr       r3, r29
+	mr       r4, r30
+	bl       create__Q23efx8TSimple1FPQ23efx3Arg
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803B6960
+	lfs      f4, 0x10(r30)
+	lfs      f3, 0x14(r30)
+	fmuls    f0, f4, f4
+	lfs      f2, 0x18(r30)
+	fmuls    f5, f3, f3
+	lfs      f1, lbl_8051F670@sda21(r2)
+	fmuls    f6, f2, f2
+	stfs     f4, 8(r1)
+	fadds    f0, f0, f5
+	stfs     f3, 0xc(r1)
+	stfs     f2, 0x10(r1)
+	fadds    f0, f6, f0
+	fcmpo    cr0, f0, f1
+	ble      lbl_803B68AC
+	fmadds   f0, f4, f4, f5
+	fadds    f3, f6, f0
+	fcmpo    cr0, f3, f1
+	ble      lbl_803B68B0
+	frsqrte  f0, f3
+	fmuls    f3, f0, f3
+	b        lbl_803B68B0
 
-	.loc_0x10C:
-	  fmr       f3, f1
+lbl_803B68AC:
+	fmr      f3, f1
 
-	.loc_0x110:
-	  lfs       f0, 0x1310(r2)
-	  fcmpo     cr0, f3, f0
-	  ble-      .loc_0x148
-	  lfs       f0, 0x131C(r2)
-	  lfs       f2, 0x8(r1)
-	  fdivs     f3, f0, f3
-	  lfs       f1, 0xC(r1)
-	  lfs       f0, 0x10(r1)
-	  fmuls     f2, f2, f3
-	  fmuls     f1, f1, f3
-	  fmuls     f0, f0, f3
-	  stfs      f2, 0x8(r1)
-	  stfs      f1, 0xC(r1)
-	  stfs      f0, 0x10(r1)
+lbl_803B68B0:
+	lfs      f0, lbl_8051F670@sda21(r2)
+	fcmpo    cr0, f3, f0
+	ble      lbl_803B68E8
+	lfs      f0, lbl_8051F67C@sda21(r2)
+	lfs      f2, 8(r1)
+	fdivs    f3, f0, f3
+	lfs      f1, 0xc(r1)
+	lfs      f0, 0x10(r1)
+	fmuls    f2, f2, f3
+	fmuls    f1, f1, f3
+	fmuls    f0, f0, f3
+	stfs     f2, 8(r1)
+	stfs     f1, 0xc(r1)
+	stfs     f0, 0x10(r1)
 
-	.loc_0x148:
-	  lwz       r3, 0x8(r29)
-	  lfs       f0, 0x8(r1)
-	  lfs       f1, 0xC(r1)
-	  stfs      f0, 0x18(r3)
-	  lfs       f0, 0x10(r1)
-	  stfs      f1, 0x1C(r3)
-	  stfs      f0, 0x20(r3)
-	  lhz       r0, 0x1C(r30)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x1B8
-	  lwz       r3, -0x65E8(r13)
-	  addi      r5, r30, 0x4
-	  li        r4, 0x44
-	  li        r6, 0
-	  bl        0x4F94
-	  cmplwi    r3, 0
-	  beq-      .loc_0x1B0
-	  subi      r0, r13, 0x6608
-	  lfs       f0, 0x8(r1)
-	  stw       r0, 0xEC(r3)
-	  lfs       f1, 0xC(r1)
-	  stfs      f0, 0x18(r3)
-	  lfs       f0, 0x10(r1)
-	  stfs      f1, 0x1C(r3)
-	  stfs      f0, 0x20(r3)
-	  b         .loc_0x1B8
+lbl_803B68E8:
+	lwz      r3, 8(r29)
+	lfs      f0, 8(r1)
+	lfs      f1, 0xc(r1)
+	stfs     f0, 0x18(r3)
+	lfs      f0, 0x10(r1)
+	stfs     f1, 0x1c(r3)
+	stfs     f0, 0x20(r3)
+	lhz      r0, 0x1c(r30)
+	cmplwi   r0, 0
+	bne      lbl_803B6958
+	lwz      r3, particleMgr@sda21(r13)
+	addi     r5, r30, 4
+	li       r4, 0x44
+	li       r6, 0
+	bl       "create__11ParticleMgrFUsR10Vector3<f>Uc"
+	cmplwi   r3, 0
+	beq      lbl_803B6950
+	addi     r0, r13, mCallBack_StaticClipping__Q23efx5TBase@sda21
+	lfs      f0, 8(r1)
+	stw      r0, 0xec(r3)
+	lfs      f1, 0xc(r1)
+	stfs     f0, 0x18(r3)
+	lfs      f0, 0x10(r1)
+	stfs     f1, 0x1c(r3)
+	stfs     f0, 0x20(r3)
+	b        lbl_803B6958
 
-	.loc_0x1B0:
-	  li        r3, 0
-	  b         .loc_0x1C4
+lbl_803B6950:
+	li       r3, 0
+	b        lbl_803B6964
 
-	.loc_0x1B8:
-	  li        r3, 0x1
-	  b         .loc_0x1C4
+lbl_803B6958:
+	li       r3, 1
+	b        lbl_803B6964
 
-	.loc_0x1C0:
-	  li        r3, 0
+lbl_803B6960:
+	li       r3, 0
 
-	.loc_0x1C4:
-	  lwz       r0, 0x34(r1)
-	  lwz       r31, 0x2C(r1)
-	  lwz       r30, 0x28(r1)
-	  lwz       r29, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_803B6964:
+	lwz      r0, 0x34(r1)
+	lwz      r31, 0x2c(r1)
+	lwz      r30, 0x28(r1)
+	lwz      r29, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -284,37 +503,36 @@ void TDopingSmoke::create(efx::Arg*)
 void TOrimaLight::create(efx::Arg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r0, 0x2C(r3)
-	  cmpwi     r0, 0x1
-	  beq-      .loc_0x3C
-	  bge-      .loc_0x4C
-	  cmpwi     r0, 0
-	  bge-      .loc_0x28
-	  b         .loc_0x4C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r0, 0x2c(r3)
+	cmpwi    r0, 1
+	beq      lbl_803B69BC
+	bge      lbl_803B69CC
+	cmpwi    r0, 0
+	bge      lbl_803B69A8
+	b        lbl_803B69CC
 
-	.loc_0x28:
-	  li        r5, 0x123
-	  li        r0, 0x126
-	  sth       r5, 0x10(r3)
-	  sth       r0, 0x24(r3)
-	  b         .loc_0x4C
+lbl_803B69A8:
+	li       r5, 0x123
+	li       r0, 0x126
+	sth      r5, 0x10(r3)
+	sth      r0, 0x24(r3)
+	b        lbl_803B69CC
 
-	.loc_0x3C:
-	  li        r5, 0xDE
-	  li        r0, 0xE1
-	  sth       r5, 0x10(r3)
-	  sth       r0, 0x24(r3)
+lbl_803B69BC:
+	li       r5, 0xde
+	li       r0, 0xe1
+	sth      r5, 0x10(r3)
+	sth      r0, 0x24(r3)
 
-	.loc_0x4C:
-	  bl        -0x4290
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803B69CC:
+	bl       "create__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>FPQ23efx3Arg"
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -326,37 +544,36 @@ void TOrimaLight::create(efx::Arg*)
 void TOrimaLightAct::create(efx::Arg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r0, 0x2C(r3)
-	  cmpwi     r0, 0x1
-	  beq-      .loc_0x3C
-	  bge-      .loc_0x4C
-	  cmpwi     r0, 0
-	  bge-      .loc_0x28
-	  b         .loc_0x4C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r0, 0x2c(r3)
+	cmpwi    r0, 1
+	beq      lbl_803B6A1C
+	bge      lbl_803B6A2C
+	cmpwi    r0, 0
+	bge      lbl_803B6A08
+	b        lbl_803B6A2C
 
-	.loc_0x28:
-	  li        r5, 0x124
-	  li        r0, 0x125
-	  sth       r5, 0x10(r3)
-	  sth       r0, 0x24(r3)
-	  b         .loc_0x4C
+lbl_803B6A08:
+	li       r5, 0x124
+	li       r0, 0x125
+	sth      r5, 0x10(r3)
+	sth      r0, 0x24(r3)
+	b        lbl_803B6A2C
 
-	.loc_0x3C:
-	  li        r5, 0xDF
-	  li        r0, 0xE0
-	  sth       r5, 0x10(r3)
-	  sth       r0, 0x24(r3)
+lbl_803B6A1C:
+	li       r5, 0xdf
+	li       r0, 0xe0
+	sth      r5, 0x10(r3)
+	sth      r0, 0x24(r3)
 
-	.loc_0x4C:
-	  bl        -0x42F0
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803B6A2C:
+	bl       "create__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>FPQ23efx3Arg"
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -368,51 +585,50 @@ void TOrimaLightAct::create(efx::Arg*)
 void TCursor::init(long, long)
 {
 	/*
-	.loc_0x0:
-	  cmpwi     r5, 0
-	  ble-      .loc_0x10
-	  cmpwi     r5, 0x10
-	  ble-      .loc_0x14
+	cmpwi    r5, 0
+	ble      lbl_803B6A50
+	cmpwi    r5, 0x10
+	ble      lbl_803B6A54
 
-	.loc_0x10:
-	  li        r5, 0x10
+lbl_803B6A50:
+	li       r5, 0x10
 
-	.loc_0x14:
-	  stw       r5, 0x38(r3)
-	  cmpwi     r4, 0x2
-	  lfs       f0, -0x7BF8(r13)
-	  stfs      f0, 0x28C(r3)
-	  beq-      .loc_0x60
-	  bge-      .loc_0x3C
-	  cmpwi     r4, 0
-	  beq-      .loc_0x48
-	  bge-      .loc_0x54
-	  blr
+lbl_803B6A54:
+	stw      r5, 0x38(r3)
+	cmpwi    r4, 2
+	lfs      f0, kAngleSpeed__Q23efx7TCursor@sda21(r13)
+	stfs     f0, 0x28c(r3)
+	beq      lbl_803B6AA0
+	bge      lbl_803B6A7C
+	cmpwi    r4, 0
+	beq      lbl_803B6A88
+	bge      lbl_803B6A94
+	blr
 
-	.loc_0x3C:
-	  cmpwi     r4, 0x4
-	  bgelr-
-	  b         .loc_0x6C
+lbl_803B6A7C:
+	cmpwi    r4, 4
+	bgelr
+	b        lbl_803B6AAC
 
-	.loc_0x48:
-	  li        r0, 0x19
-	  sth       r0, 0x10(r3)
-	  blr
+lbl_803B6A88:
+	li       r0, 0x19
+	sth      r0, 0x10(r3)
+	blr
 
-	.loc_0x54:
-	  li        r0, 0x1B
-	  sth       r0, 0x10(r3)
-	  blr
+lbl_803B6A94:
+	li       r0, 0x1b
+	sth      r0, 0x10(r3)
+	blr
 
-	.loc_0x60:
-	  li        r0, 0x1A
-	  sth       r0, 0x10(r3)
-	  blr
+lbl_803B6AA0:
+	li       r0, 0x1a
+	sth      r0, 0x10(r3)
+	blr
 
-	.loc_0x6C:
-	  li        r0, 0x6A
-	  sth       r0, 0x10(r3)
-	  blr
+lbl_803B6AAC:
+	li       r0, 0x6a
+	sth      r0, 0x10(r3)
+	blr
 	*/
 }
 
@@ -424,102 +640,101 @@ void TCursor::init(long, long)
 void TCursor::create(efx::Arg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  stw       r0, 0x44(r1)
-	  stfd      f31, 0x30(r1)
-	  psq_st    f31,0x38(r1),0,0
-	  stw       r31, 0x2C(r1)
-	  stw       r30, 0x28(r1)
-	  stw       r29, 0x24(r1)
-	  stw       r28, 0x20(r1)
-	  lfs       f0, 0x1310(r2)
-	  mr        r28, r3
-	  mr        r29, r4
-	  lis       r4, 0x8049
-	  stfs      f0, 0x288(r3)
-	  mr        r3, r29
-	  addi      r31, r4, 0x5A28
-	  lwz       r12, 0x0(r29)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  addi      r3, r31, 0x2C
-	  bl        -0x2EC450
-	  cntlzw    r0, r3
-	  rlwinm.   r0,r0,27,24,31
-	  bne-      .loc_0x7C
-	  addi      r3, r31, 0
-	  addi      r5, r31, 0x10
-	  li        r4, 0x1CB
-	  crclr     6, 0x6
-	  bl        -0x38C4F0
+	stwu     r1, -0x40(r1)
+	mflr     r0
+	stw      r0, 0x44(r1)
+	stfd     f31, 0x30(r1)
+	psq_st   f31, 56(r1), 0, qr0
+	stw      r31, 0x2c(r1)
+	stw      r30, 0x28(r1)
+	stw      r29, 0x24(r1)
+	stw      r28, 0x20(r1)
+	lfs      f0, lbl_8051F670@sda21(r2)
+	mr       r28, r3
+	mr       r29, r4
+	lis      r4, lbl_80495A28@ha
+	stfs     f0, 0x288(r3)
+	mr       r3, r29
+	addi     r31, r4, lbl_80495A28@l
+	lwz      r12, 0(r29)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	addi     r3, r31, 0x2c
+	bl       strcmp
+	cntlzw   r0, r3
+	rlwinm.  r0, r0, 0x1b, 0x18, 0x1f
+	bne      lbl_803B6B34
+	addi     r3, r31, 0
+	addi     r5, r31, 0x10
+	li       r4, 0x1cb
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x7C:
-	  lfs       f0, 0x4(r29)
-	  mr        r31, r28
-	  li        r30, 0
-	  stfs      f0, 0x27C(r28)
-	  lfs       f0, 0x8(r29)
-	  stfs      f0, 0x280(r28)
-	  lfs       f0, 0xC(r29)
-	  stfs      f0, 0x284(r28)
-	  lfs       f31, 0x10(r29)
-	  b         .loc_0xD8
+lbl_803B6B34:
+	lfs      f0, 4(r29)
+	mr       r31, r28
+	li       r30, 0
+	stfs     f0, 0x27c(r28)
+	lfs      f0, 8(r29)
+	stfs     f0, 0x280(r28)
+	lfs      f0, 0xc(r29)
+	stfs     f0, 0x284(r28)
+	lfs      f31, 0x10(r29)
+	b        lbl_803B6B90
 
-	.loc_0xA4:
-	  fmr       f1, f31
-	  mr        r3, r28
-	  mr        r5, r30
-	  addi      r4, r1, 0x8
-	  bl        0x1A0
-	  lfs       f0, 0x8(r1)
-	  addi      r30, r30, 0x1
-	  stfs      f0, 0x54(r31)
-	  lfs       f0, 0xC(r1)
-	  stfs      f0, 0x58(r31)
-	  lfs       f0, 0x10(r1)
-	  stfs      f0, 0x5C(r31)
-	  addi      r31, r31, 0x24
+lbl_803B6B5C:
+	fmr      f1, f31
+	mr       r3, r28
+	mr       r5, r30
+	addi     r4, r1, 8
+	bl       "calcPos___Q23efx7TCursorFP10Vector3<f>fl"
+	lfs      f0, 8(r1)
+	addi     r30, r30, 1
+	stfs     f0, 0x54(r31)
+	lfs      f0, 0xc(r1)
+	stfs     f0, 0x58(r31)
+	lfs      f0, 0x10(r1)
+	stfs     f0, 0x5c(r31)
+	addi     r31, r31, 0x24
 
-	.loc_0xD8:
-	  lwz       r0, 0x38(r28)
-	  cmpw      r30, r0
-	  blt+      .loc_0xA4
-	  mr        r31, r28
-	  li        r30, 0
-	  b         .loc_0x104
+lbl_803B6B90:
+	lwz      r0, 0x38(r28)
+	cmpw     r30, r0
+	blt      lbl_803B6B5C
+	mr       r31, r28
+	li       r30, 0
+	b        lbl_803B6BBC
 
-	.loc_0xF0:
-	  addi      r3, r28, 0x4
-	  addi      r4, r31, 0x3C
-	  bl        -0x82C4
-	  addi      r31, r31, 0x24
-	  addi      r30, r30, 0x1
+lbl_803B6BA8:
+	addi     r3, r28, 4
+	addi     r4, r31, 0x3c
+	bl       add__Q23efx11TOneEmitterFPQ23efx7Context
+	addi     r31, r31, 0x24
+	addi     r30, r30, 1
 
-	.loc_0x104:
-	  lwz       r0, 0x38(r28)
-	  cmpw      r30, r0
-	  blt+      .loc_0xF0
-	  addi      r3, r28, 0x4
-	  mr        r4, r29
-	  lwz       r12, 0x4(r28)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  li        r3, 0x1
-	  psq_l     f31,0x38(r1),0,0
-	  lwz       r0, 0x44(r1)
-	  lfd       f31, 0x30(r1)
-	  lwz       r31, 0x2C(r1)
-	  lwz       r30, 0x28(r1)
-	  lwz       r29, 0x24(r1)
-	  lwz       r28, 0x20(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
+lbl_803B6BBC:
+	lwz      r0, 0x38(r28)
+	cmpw     r30, r0
+	blt      lbl_803B6BA8
+	addi     r3, r28, 4
+	mr       r4, r29
+	lwz      r12, 4(r28)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	li       r3, 1
+	psq_l    f31, 56(r1), 0, qr0
+	lwz      r0, 0x44(r1)
+	lfd      f31, 0x30(r1)
+	lwz      r31, 0x2c(r1)
+	lwz      r30, 0x28(r1)
+	lwz      r29, 0x24(r1)
+	lwz      r28, 0x20(r1)
+	mtlr     r0
+	addi     r1, r1, 0x40
+	blr
 	*/
 }
 
@@ -531,81 +746,78 @@ void TCursor::create(efx::Arg*)
 void TCursor::update(efx::Arg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  stw       r0, 0x44(r1)
-	  stfd      f31, 0x30(r1)
-	  psq_st    f31,0x38(r1),0,0
-	  stw       r31, 0x2C(r1)
-	  stw       r30, 0x28(r1)
-	  stw       r29, 0x24(r1)
-	  mr.       r30, r4
-	  mr        r29, r3
-	  bne-      .loc_0x48
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  addi      r3, r3, 0x5A28
-	  li        r4, 0x1E0
-	  addi      r5, r5, 0x5A38
-	  crclr     6, 0x6
-	  bl        -0x38C610
+	stwu     r1, -0x40(r1)
+	mflr     r0
+	stw      r0, 0x44(r1)
+	stfd     f31, 0x30(r1)
+	psq_st   f31, 56(r1), 0, qr0
+	stw      r31, 0x2c(r1)
+	stw      r30, 0x28(r1)
+	stw      r29, 0x24(r1)
+	or.      r30, r4, r4
+	mr       r29, r3
+	bne      lbl_803B6C54
+	lis      r3, lbl_80495A28@ha
+	lis      r5, lbl_80495A38@ha
+	addi     r3, r3, lbl_80495A28@l
+	li       r4, 0x1e0
+	addi     r5, r5, lbl_80495A38@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x48:
-	  lfs       f31, 0x10(r30)
-	  lfs       f1, 0x4(r30)
-	  lfs       f0, 0x1310(r2)
-	  stfs      f1, 0x27C(r29)
-	  lfs       f1, 0x8(r30)
-	  stfs      f1, 0x280(r29)
-	  lfs       f1, 0xC(r30)
-	  stfs      f1, 0x284(r29)
-	  lfs       f2, 0x288(r29)
-	  lfs       f1, 0x28C(r29)
-	  fsubs     f1, f2, f1
-	  stfs      f1, 0x288(r29)
-	  lfs       f1, 0x288(r29)
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x90
-	  lfs       f0, 0x1320(r2)
-	  fadds     f0, f1, f0
-	  stfs      f0, 0x288(r29)
+lbl_803B6C54:
+	lfs      f31, 0x10(r30)
+	lfs      f1, 4(r30)
+	lfs      f0, lbl_8051F670@sda21(r2)
+	stfs     f1, 0x27c(r29)
+	lfs      f1, 8(r30)
+	stfs     f1, 0x280(r29)
+	lfs      f1, 0xc(r30)
+	stfs     f1, 0x284(r29)
+	lfs      f2, 0x288(r29)
+	lfs      f1, 0x28c(r29)
+	fsubs    f1, f2, f1
+	stfs     f1, 0x288(r29)
+	lfs      f1, 0x288(r29)
+	fcmpo    cr0, f1, f0
+	bge      lbl_803B6C9C
+	lfs      f0, lbl_8051F680@sda21(r2)
+	fadds    f0, f1, f0
+	stfs     f0, 0x288(r29)
 
-	.loc_0x90:
-	  mr        r31, r29
-	  li        r30, 0
-	  b         .loc_0xD0
+lbl_803B6C9C:
+	mr       r31, r29
+	li       r30, 0
+	b        lbl_803B6CDC
 
-	.loc_0x9C:
-	  fmr       f1, f31
-	  mr        r3, r29
-	  mr        r5, r30
-	  addi      r4, r1, 0x8
-	  bl        .loc_0x100
-	  lfs       f0, 0x8(r1)
-	  addi      r30, r30, 0x1
-	  stfs      f0, 0x54(r31)
-	  lfs       f0, 0xC(r1)
-	  stfs      f0, 0x58(r31)
-	  lfs       f0, 0x10(r1)
-	  stfs      f0, 0x5C(r31)
-	  addi      r31, r31, 0x24
+lbl_803B6CA8:
+	fmr      f1, f31
+	mr       r3, r29
+	mr       r5, r30
+	addi     r4, r1, 8
+	bl       "calcPos___Q23efx7TCursorFP10Vector3<f>fl"
+	lfs      f0, 8(r1)
+	addi     r30, r30, 1
+	stfs     f0, 0x54(r31)
+	lfs      f0, 0xc(r1)
+	stfs     f0, 0x58(r31)
+	lfs      f0, 0x10(r1)
+	stfs     f0, 0x5c(r31)
+	addi     r31, r31, 0x24
 
-	.loc_0xD0:
-	  lwz       r0, 0x38(r29)
-	  cmpw      r30, r0
-	  blt+      .loc_0x9C
-	  psq_l     f31,0x38(r1),0,0
-	  lwz       r0, 0x44(r1)
-	  lfd       f31, 0x30(r1)
-	  lwz       r31, 0x2C(r1)
-	  lwz       r30, 0x28(r1)
-	  lwz       r29, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
-
-	.loc_0x100:
+lbl_803B6CDC:
+	lwz      r0, 0x38(r29)
+	cmpw     r30, r0
+	blt      lbl_803B6CA8
+	psq_l    f31, 56(r1), 0, qr0
+	lwz      r0, 0x44(r1)
+	lfd      f31, 0x30(r1)
+	lwz      r31, 0x2c(r1)
+	lwz      r30, 0x28(r1)
+	lwz      r29, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x40
+	blr
 	*/
 }
 
@@ -619,99 +831,98 @@ void TCursor::update(efx::Arg*)
 void calcPos___Q23efx7TCursorFP10Vector3f fl(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  lis       r6, 0x4330
-	  lfd       f4, 0x1338(r2)
-	  stw       r0, 0x44(r1)
-	  xoris     r0, r5, 0x8000
-	  lfs       f2, 0x1328(r2)
-	  stw       r31, 0x3C(r1)
-	  mr        r31, r4
-	  lfs       f5, 0x1324(r2)
-	  stw       r0, 0xC(r1)
-	  lwz       r0, 0x38(r3)
-	  stw       r6, 0x8(r1)
-	  xoris     r0, r0, 0x8000
-	  lfs       f6, 0x288(r3)
-	  lfd       f0, 0x8(r1)
-	  stw       r0, 0x14(r1)
-	  fsubs     f0, f0, f4
-	  stw       r6, 0x10(r1)
-	  fmuls     f3, f2, f0
-	  lfd       f2, 0x10(r1)
-	  lfs       f0, 0x1310(r2)
-	  fsubs     f2, f2, f4
-	  fmuls     f3, f5, f3
-	  fdivs     f2, f3, f2
-	  fadds     f5, f6, f2
-	  fmr       f2, f5
-	  fcmpo     cr0, f5, f0
-	  bge-      .loc_0x78
-	  fneg      f2, f5
+	stwu     r1, -0x40(r1)
+	mflr     r0
+	lis      r6, 0x4330
+	lfd      f4, lbl_8051F698@sda21(r2)
+	stw      r0, 0x44(r1)
+	xoris    r0, r5, 0x8000
+	lfs      f2, lbl_8051F688@sda21(r2)
+	stw      r31, 0x3c(r1)
+	mr       r31, r4
+	lfs      f5, lbl_8051F684@sda21(r2)
+	stw      r0, 0xc(r1)
+	lwz      r0, 0x38(r3)
+	stw      r6, 8(r1)
+	xoris    r0, r0, 0x8000
+	lfs      f6, 0x288(r3)
+	lfd      f0, 8(r1)
+	stw      r0, 0x14(r1)
+	fsubs    f0, f0, f4
+	stw      r6, 0x10(r1)
+	fmuls    f3, f2, f0
+	lfd      f2, 0x10(r1)
+	lfs      f0, lbl_8051F670@sda21(r2)
+	fsubs    f2, f2, f4
+	fmuls    f3, f5, f3
+	fdivs    f2, f3, f2
+	fadds    f5, f6, f2
+	fmr      f2, f5
+	fcmpo    cr0, f5, f0
+	bge      lbl_803B6D84
+	fneg     f2, f5
 
-	.loc_0x78:
-	  lfs       f4, 0x132C(r2)
-	  lis       r4, 0x8050
-	  lfs       f0, 0x1310(r2)
-	  addi      r5, r4, 0x71A0
-	  fmuls     f3, f2, f4
-	  lfs       f2, 0x27C(r3)
-	  fcmpo     cr0, f5, f0
-	  fctiwz    f0, f3
-	  stfd      f0, 0x18(r1)
-	  lwz       r0, 0x1C(r1)
-	  rlwinm    r0,r0,3,18,28
-	  add       r4, r5, r0
-	  lfs       f0, 0x4(r4)
-	  fmadds    f0, f1, f0, f2
-	  stfs      f0, 0x0(r31)
-	  bge-      .loc_0xDC
-	  lfs       f0, 0x1330(r2)
-	  fmuls     f0, f5, f0
-	  fctiwz    f0, f0
-	  stfd      f0, 0x20(r1)
-	  lwz       r0, 0x24(r1)
-	  rlwinm    r0,r0,3,18,28
-	  lfsx      f0, r5, r0
-	  fneg      f2, f0
-	  b         .loc_0xF4
+lbl_803B6D84:
+	lfs      f4, lbl_8051F68C@sda21(r2)
+	lis      r4, sincosTable___5JMath@ha
+	lfs      f0, lbl_8051F670@sda21(r2)
+	addi     r5, r4, sincosTable___5JMath@l
+	fmuls    f3, f2, f4
+	lfs      f2, 0x27c(r3)
+	fcmpo    cr0, f5, f0
+	fctiwz   f0, f3
+	stfd     f0, 0x18(r1)
+	lwz      r0, 0x1c(r1)
+	rlwinm   r0, r0, 3, 0x12, 0x1c
+	add      r4, r5, r0
+	lfs      f0, 4(r4)
+	fmadds   f0, f1, f0, f2
+	stfs     f0, 0(r31)
+	bge      lbl_803B6DE8
+	lfs      f0, lbl_8051F690@sda21(r2)
+	fmuls    f0, f5, f0
+	fctiwz   f0, f0
+	stfd     f0, 0x20(r1)
+	lwz      r0, 0x24(r1)
+	rlwinm   r0, r0, 3, 0x12, 0x1c
+	lfsx     f0, r5, r0
+	fneg     f2, f0
+	b        lbl_803B6E00
 
-	.loc_0xDC:
-	  fmuls     f0, f5, f4
-	  fctiwz    f0, f0
-	  stfd      f0, 0x28(r1)
-	  lwz       r0, 0x2C(r1)
-	  rlwinm    r0,r0,3,18,28
-	  lfsx      f2, r5, r0
+lbl_803B6DE8:
+	fmuls    f0, f5, f4
+	fctiwz   f0, f0
+	stfd     f0, 0x28(r1)
+	lwz      r0, 0x2c(r1)
+	rlwinm   r0, r0, 3, 0x12, 0x1c
+	lfsx     f2, r5, r0
 
-	.loc_0xF4:
-	  lfs       f0, 0x284(r3)
-	  fmadds    f0, f1, f2, f0
-	  stfs      f0, 0x8(r31)
-	  lwz       r0, -0x6CF8(r13)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x12C
-	  mr        r3, r0
-	  mr        r4, r31
-	  lwz       r12, 0x4(r3)
-	  lwz       r12, 0x28(r12)
-	  mtctr     r12
-	  bctrl
-	  stfs      f1, 0x4(r31)
-	  b         .loc_0x134
+lbl_803B6E00:
+	lfs      f0, 0x284(r3)
+	fmadds   f0, f1, f2, f0
+	stfs     f0, 8(r31)
+	lwz      r0, mapMgr__4Game@sda21(r13)
+	cmplwi   r0, 0
+	beq      lbl_803B6E38
+	mr       r3, r0
+	mr       r4, r31
+	lwz      r12, 4(r3)
+	lwz      r12, 0x28(r12)
+	mtctr    r12
+	bctrl
+	stfs     f1, 4(r31)
+	b        lbl_803B6E40
 
-	.loc_0x12C:
-	  lfs       f0, 0x280(r3)
-	  stfs      f0, 0x4(r31)
+lbl_803B6E38:
+	lfs      f0, 0x280(r3)
+	stfs     f0, 4(r31)
 
-	.loc_0x134:
-	  lwz       r0, 0x44(r1)
-	  lwz       r31, 0x3C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
+lbl_803B6E40:
+	lwz      r0, 0x44(r1)
+	lwz      r31, 0x3c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x40
+	blr
 	*/
 }
 
@@ -725,60 +936,59 @@ namespace efx {
 void TFueactCircle::create(efx::Arg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r0, 0x14(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x28
-	  li        r3, 0
-	  b         .loc_0x98
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r0, 0x14(r3)
+	cmplwi   r0, 0
+	beq      lbl_803B6E7C
+	li       r3, 0
+	b        lbl_803B6EEC
 
-	.loc_0x28:
-	  lis       r4, 0x8051
-	  lwz       r3, -0x65E8(r13)
-	  addi      r5, r4, 0x41E4
-	  li        r6, 0
-	  li        r4, 0x69
-	  bl        0x4A24
-	  stw       r3, 0x14(r31)
-	  lwz       r3, 0x14(r31)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x94
-	  cmplwi    r31, 0
-	  mr        r0, r31
-	  beq-      .loc_0x60
-	  addi      r0, r31, 0x4
+lbl_803B6E7C:
+	lis      r4, "zero__10Vector3<f>"@ha
+	lwz      r3, particleMgr@sda21(r13)
+	addi     r5, r4, "zero__10Vector3<f>"@l
+	li       r6, 0
+	li       r4, 0x69
+	bl       "create__11ParticleMgrFUsR10Vector3<f>Uc"
+	stw      r3, 0x14(r31)
+	lwz      r3, 0x14(r31)
+	cmplwi   r3, 0
+	beq      lbl_803B6EE8
+	cmplwi   r31, 0
+	mr       r0, r31
+	beq      lbl_803B6EB4
+	addi     r0, r31, 4
 
-	.loc_0x60:
-	  cmplwi    r31, 0
-	  stw       r0, 0xEC(r3)
-	  mr        r0, r31
-	  beq-      .loc_0x74
-	  addi      r0, r31, 0x8
+lbl_803B6EB4:
+	cmplwi   r31, 0
+	stw      r0, 0xec(r3)
+	mr       r0, r31
+	beq      lbl_803B6EC8
+	addi     r0, r31, 8
 
-	.loc_0x74:
-	  lwz       r4, 0x14(r31)
-	  li        r3, 0x1
-	  stw       r0, 0xF0(r4)
-	  lwz       r4, 0x14(r31)
-	  lwz       r0, 0xF4(r4)
-	  ori       r0, r0, 0x40
-	  stw       r0, 0xF4(r4)
-	  b         .loc_0x98
+lbl_803B6EC8:
+	lwz      r4, 0x14(r31)
+	li       r3, 1
+	stw      r0, 0xf0(r4)
+	lwz      r4, 0x14(r31)
+	lwz      r0, 0xf4(r4)
+	ori      r0, r0, 0x40
+	stw      r0, 0xf4(r4)
+	b        lbl_803B6EEC
 
-	.loc_0x94:
-	  li        r3, 0
+lbl_803B6EE8:
+	li       r3, 0
 
-	.loc_0x98:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803B6EEC:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -790,90 +1000,89 @@ void TFueactCircle::create(efx::Arg*)
 void TFueactCircle::execute(JPABaseEmitter*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lwz       r0, 0xC(r3)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x44
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  addi      r3, r3, 0x5A28
-	  li        r4, 0x212
-	  addi      r5, r5, 0x5A38
-	  crclr     6, 0x6
-	  bl        -0x38C900
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lwz      r0, 0xc(r3)
+	cmplwi   r0, 0
+	bne      lbl_803B6F44
+	lis      r3, lbl_80495A28@ha
+	lis      r5, lbl_80495A38@ha
+	addi     r3, r3, lbl_80495A28@l
+	li       r4, 0x212
+	addi     r5, r5, lbl_80495A38@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x44:
-	  lwz       r0, 0x10(r30)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x6C
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  addi      r3, r3, 0x5A28
-	  li        r4, 0x213
-	  addi      r5, r5, 0x5A38
-	  crclr     6, 0x6
-	  bl        -0x38C928
+lbl_803B6F44:
+	lwz      r0, 0x10(r30)
+	cmplwi   r0, 0
+	bne      lbl_803B6F6C
+	lis      r3, lbl_80495A28@ha
+	lis      r5, lbl_80495A38@ha
+	addi     r3, r3, lbl_80495A28@l
+	li       r4, 0x213
+	addi     r5, r5, lbl_80495A38@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x6C:
-	  lwz       r5, 0x10(r30)
-	  lis       r3, 0x8051
-	  lwz       r4, 0xC(r30)
-	  lfs       f1, 0x4(r5)
-	  lfs       f0, 0x1C(r4)
-	  lfs       f2, 0x0(r5)
-	  fsubs     f5, f1, f0
-	  lfs       f0, 0xC(r4)
-	  lfs       f1, 0x8(r5)
-	  fsubs     f4, f2, f0
-	  lfs       f0, 0x2C(r4)
-	  fmuls     f2, f5, f5
-	  fsubs     f6, f1, f0
-	  lfs       f1, 0x1340(r2)
-	  lfs       f0, 0x48DC(r3)
-	  fmadds    f2, f4, f4, f2
-	  fmuls     f0, f1, f0
-	  fmadds    f7, f6, f6, f2
-	  fcmpo     cr0, f7, f0
-	  cror      2, 0, 0x2
-	  beq-      .loc_0x100
-	  lfs       f0, 0x1310(r2)
-	  fcmpo     cr0, f7, f0
-	  cror      2, 0, 0x2
-	  bne-      .loc_0xD4
-	  b         .loc_0xF4
+lbl_803B6F6C:
+	lwz      r5, 0x10(r30)
+	lis      r3, __float_epsilon@ha
+	lwz      r4, 0xc(r30)
+	lfs      f1, 4(r5)
+	lfs      f0, 0x1c(r4)
+	lfs      f2, 0(r5)
+	fsubs    f5, f1, f0
+	lfs      f0, 0xc(r4)
+	lfs      f1, 8(r5)
+	fsubs    f4, f2, f0
+	lfs      f0, 0x2c(r4)
+	fmuls    f2, f5, f5
+	fsubs    f6, f1, f0
+	lfs      f1, lbl_8051F6A0@sda21(r2)
+	lfs      f0, __float_epsilon@l(r3)
+	fmadds   f2, f4, f4, f2
+	fmuls    f0, f1, f0
+	fmadds   f7, f6, f6, f2
+	fcmpo    cr0, f7, f0
+	cror     2, 0, 2
+	beq      lbl_803B7000
+	lfs      f0, lbl_8051F670@sda21(r2)
+	fcmpo    cr0, f7, f0
+	cror     2, 0, 2
+	bne      lbl_803B6FD4
+	b        lbl_803B6FF4
 
-	.loc_0xD4:
-	  fsqrte    f3, f7
-	  lfs       f2, 0x1344(r2)
-	  lfs       f0, 0x1348(r2)
-	  frsp      f3, f3
-	  fmuls     f1, f3, f3
-	  fmuls     f2, f2, f3
-	  fnmsubs   f0, f7, f1, f0
-	  fmuls     f7, f2, f0
+lbl_803B6FD4:
+	frsqrte  f3, f7
+	lfs      f2, lbl_8051F6A4@sda21(r2)
+	lfs      f0, lbl_8051F6A8@sda21(r2)
+	frsp     f3, f3
+	fmuls    f1, f3, f3
+	fmuls    f2, f2, f3
+	fnmsubs  f0, f7, f1, f0
+	fmuls    f7, f2, f0
 
-	.loc_0xF4:
-	  fmuls     f4, f4, f7
-	  fmuls     f5, f5, f7
-	  fmuls     f6, f6, f7
+lbl_803B6FF4:
+	fmuls    f4, f4, f7
+	fmuls    f5, f5, f7
+	fmuls    f6, f6, f7
 
-	.loc_0x100:
-	  stfs      f4, 0x18(r31)
-	  stfs      f5, 0x1C(r31)
-	  stfs      f6, 0x20(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803B7000:
+	stfs     f4, 0x18(r31)
+	stfs     f5, 0x1c(r31)
+	stfs     f6, 0x20(r31)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -885,204 +1094,203 @@ void TFueactCircle::execute(JPABaseEmitter*)
 void TFueactCircle::execute(JPABaseEmitter*, JPABaseParticle*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x60(r1)
-	  mflr      r0
-	  stw       r0, 0x64(r1)
-	  stw       r31, 0x5C(r1)
-	  mr        r31, r5
-	  stw       r30, 0x58(r1)
-	  mr        r30, r3
-	  lwz       r0, 0xC(r3)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x44
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  addi      r3, r3, 0x5A28
-	  li        r4, 0x223
-	  addi      r5, r5, 0x5A38
-	  crclr     6, 0x6
-	  bl        -0x38CA24
+	stwu     r1, -0x60(r1)
+	mflr     r0
+	stw      r0, 0x64(r1)
+	stw      r31, 0x5c(r1)
+	mr       r31, r5
+	stw      r30, 0x58(r1)
+	mr       r30, r3
+	lwz      r0, 0xc(r3)
+	cmplwi   r0, 0
+	bne      lbl_803B7068
+	lis      r3, lbl_80495A28@ha
+	lis      r5, lbl_80495A38@ha
+	addi     r3, r3, lbl_80495A28@l
+	li       r4, 0x223
+	addi     r5, r5, lbl_80495A38@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x44:
-	  lwz       r0, 0x10(r30)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x6C
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  addi      r3, r3, 0x5A28
-	  li        r4, 0x224
-	  addi      r5, r5, 0x5A38
-	  crclr     6, 0x6
-	  bl        -0x38CA4C
+lbl_803B7068:
+	lwz      r0, 0x10(r30)
+	cmplwi   r0, 0
+	bne      lbl_803B7090
+	lis      r3, lbl_80495A28@ha
+	lis      r5, lbl_80495A38@ha
+	addi     r3, r3, lbl_80495A28@l
+	li       r4, 0x224
+	addi     r5, r5, lbl_80495A38@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x6C:
-	  lwz       r3, 0x10(r30)
-	  lwz       r4, 0xC(r30)
-	  lfs       f0, 0x0(r3)
-	  lfs       f1, 0x4(r3)
-	  stfs      f0, 0x38(r1)
-	  lfs       f0, 0x8(r3)
-	  stfs      f1, 0x3C(r1)
-	  lwz       r0, 0x38(r1)
-	  lwz       r3, 0x3C(r1)
-	  stfs      f0, 0x40(r1)
-	  lfs       f5, 0xC(r4)
-	  stw       r0, 0x14(r1)
-	  lwz       r0, 0x40(r1)
-	  stw       r3, 0x18(r1)
-	  lfs       f1, 0x1C(r4)
-	  lfs       f2, 0x14(r1)
-	  lfs       f0, 0x18(r1)
-	  stw       r0, 0x1C(r1)
-	  fsubs     f3, f2, f5
-	  fsubs     f4, f0, f1
-	  lfs       f0, 0x2C(r4)
-	  lfs       f2, 0x1C(r1)
-	  stfs      f3, 0x14(r1)
-	  fsubs     f3, f2, f0
-	  lfs       f2, 0x1310(r2)
-	  stfs      f4, 0x18(r1)
-	  lwz       r0, 0x14(r1)
-	  lwz       r3, 0x18(r1)
-	  stfs      f3, 0x1C(r1)
-	  stw       r0, 0x2C(r1)
-	  lwz       r0, 0x1C(r1)
-	  stw       r3, 0x30(r1)
-	  lfs       f4, 0x2C(r1)
-	  lfs       f3, 0x30(r1)
-	  stw       r0, 0x34(r1)
-	  fmuls     f4, f4, f4
-	  fmuls     f3, f3, f3
-	  lfs       f6, 0x34(r1)
-	  stfs      f5, 0x44(r1)
-	  fmuls     f5, f6, f6
-	  fadds     f3, f4, f3
-	  stfs      f1, 0x48(r1)
-	  stfs      f0, 0x4C(r1)
-	  fadds     f6, f5, f3
-	  fcmpo     cr0, f6, f2
-	  cror      2, 0, 0x2
-	  bne-      .loc_0x130
-	  fmr       f3, f6
-	  b         .loc_0x154
+lbl_803B7090:
+	lwz      r3, 0x10(r30)
+	lwz      r4, 0xc(r30)
+	lfs      f0, 0(r3)
+	lfs      f1, 4(r3)
+	stfs     f0, 0x38(r1)
+	lfs      f0, 8(r3)
+	stfs     f1, 0x3c(r1)
+	lwz      r0, 0x38(r1)
+	lwz      r3, 0x3c(r1)
+	stfs     f0, 0x40(r1)
+	lfs      f5, 0xc(r4)
+	stw      r0, 0x14(r1)
+	lwz      r0, 0x40(r1)
+	stw      r3, 0x18(r1)
+	lfs      f1, 0x1c(r4)
+	lfs      f2, 0x14(r1)
+	lfs      f0, 0x18(r1)
+	stw      r0, 0x1c(r1)
+	fsubs    f3, f2, f5
+	fsubs    f4, f0, f1
+	lfs      f0, 0x2c(r4)
+	lfs      f2, 0x1c(r1)
+	stfs     f3, 0x14(r1)
+	fsubs    f3, f2, f0
+	lfs      f2, lbl_8051F670@sda21(r2)
+	stfs     f4, 0x18(r1)
+	lwz      r0, 0x14(r1)
+	lwz      r3, 0x18(r1)
+	stfs     f3, 0x1c(r1)
+	stw      r0, 0x2c(r1)
+	lwz      r0, 0x1c(r1)
+	stw      r3, 0x30(r1)
+	lfs      f4, 0x2c(r1)
+	lfs      f3, 0x30(r1)
+	stw      r0, 0x34(r1)
+	fmuls    f4, f4, f4
+	fmuls    f3, f3, f3
+	lfs      f6, 0x34(r1)
+	stfs     f5, 0x44(r1)
+	fmuls    f5, f6, f6
+	fadds    f3, f4, f3
+	stfs     f1, 0x48(r1)
+	stfs     f0, 0x4c(r1)
+	fadds    f6, f5, f3
+	fcmpo    cr0, f6, f2
+	cror     2, 0, 2
+	bne      lbl_803B7154
+	fmr      f3, f6
+	b        lbl_803B7178
 
-	.loc_0x130:
-	  fsqrte    f5, f6
-	  lfs       f4, 0x1344(r2)
-	  lfs       f2, 0x1348(r2)
-	  frsp      f5, f5
-	  fmuls     f3, f5, f5
-	  fmuls     f4, f4, f5
-	  fnmsubs   f2, f6, f3, f2
-	  fmuls     f2, f4, f2
-	  fmuls     f3, f6, f2
+lbl_803B7154:
+	frsqrte  f5, f6
+	lfs      f4, lbl_8051F6A4@sda21(r2)
+	lfs      f2, lbl_8051F6A8@sda21(r2)
+	frsp     f5, f5
+	fmuls    f3, f5, f5
+	fmuls    f4, f4, f5
+	fnmsubs  f2, f6, f3, f2
+	fmuls    f2, f4, f2
+	fmuls    f3, f6, f2
 
-	.loc_0x154:
-	  lfs       f2, 0x134C(r2)
-	  fcmpo     cr0, f3, f2
-	  ble-      .loc_0x268
-	  lis       r3, 0x8051
-	  lfs       f3, 0x1340(r2)
-	  lfs       f2, 0x48DC(r3)
-	  fmuls     f2, f3, f2
-	  fcmpo     cr0, f6, f2
-	  cror      2, 0, 0x2
-	  beq-      .loc_0x1D4
-	  lfs       f2, 0x1310(r2)
-	  fcmpo     cr0, f6, f2
-	  cror      2, 0, 0x2
-	  bne-      .loc_0x190
-	  b         .loc_0x1B0
+lbl_803B7178:
+	lfs      f2, lbl_8051F6AC@sda21(r2)
+	fcmpo    cr0, f3, f2
+	ble      lbl_803B728C
+	lis      r3, __float_epsilon@ha
+	lfs      f3, lbl_8051F6A0@sda21(r2)
+	lfs      f2, __float_epsilon@l(r3)
+	fmuls    f2, f3, f2
+	fcmpo    cr0, f6, f2
+	cror     2, 0, 2
+	beq      lbl_803B71F8
+	lfs      f2, lbl_8051F670@sda21(r2)
+	fcmpo    cr0, f6, f2
+	cror     2, 0, 2
+	bne      lbl_803B71B4
+	b        lbl_803B71D4
 
-	.loc_0x190:
-	  fsqrte    f5, f6
-	  lfs       f4, 0x1344(r2)
-	  lfs       f2, 0x1348(r2)
-	  frsp      f5, f5
-	  fmuls     f3, f5, f5
-	  fmuls     f4, f4, f5
-	  fnmsubs   f2, f6, f3, f2
-	  fmuls     f6, f4, f2
+lbl_803B71B4:
+	frsqrte  f5, f6
+	lfs      f4, lbl_8051F6A4@sda21(r2)
+	lfs      f2, lbl_8051F6A8@sda21(r2)
+	frsp     f5, f5
+	fmuls    f3, f5, f5
+	fmuls    f4, f4, f5
+	fnmsubs  f2, f6, f3, f2
+	fmuls    f6, f4, f2
 
-	.loc_0x1B0:
-	  lfs       f4, 0x2C(r1)
-	  lfs       f3, 0x30(r1)
-	  lfs       f2, 0x34(r1)
-	  fmuls     f4, f4, f6
-	  fmuls     f3, f3, f6
-	  fmuls     f2, f2, f6
-	  stfs      f4, 0x2C(r1)
-	  stfs      f3, 0x30(r1)
-	  stfs      f2, 0x34(r1)
+lbl_803B71D4:
+	lfs      f4, 0x2c(r1)
+	lfs      f3, 0x30(r1)
+	lfs      f2, 0x34(r1)
+	fmuls    f4, f4, f6
+	fmuls    f3, f3, f6
+	fmuls    f2, f2, f6
+	stfs     f4, 0x2c(r1)
+	stfs     f3, 0x30(r1)
+	stfs     f2, 0x34(r1)
 
-	.loc_0x1D4:
-	  lwz       r4, 0x44(r1)
-	  lwz       r3, 0x48(r1)
-	  lwz       r0, 0x4C(r1)
-	  stw       r4, 0x8(r1)
-	  lfs       f5, 0x2C(r1)
-	  lfs       f4, 0x134C(r2)
-	  lfs       f3, 0x30(r1)
-	  lfs       f2, 0x34(r1)
-	  fmuls     f7, f5, f4
-	  stw       r3, 0xC(r1)
-	  fmuls     f6, f3, f4
-	  fmuls     f5, f2, f4
-	  lfs       f2, 0x8(r1)
-	  stw       r0, 0x10(r1)
-	  lfs       f3, 0xC(r1)
-	  fadds     f4, f2, f7
-	  lfs       f2, 0x10(r1)
-	  fadds     f3, f3, f6
-	  stfs      f7, 0x2C(r1)
-	  fadds     f2, f2, f5
-	  stfs      f4, 0x8(r1)
-	  stfs      f3, 0xC(r1)
-	  lwz       r4, 0x8(r1)
-	  stfs      f2, 0x10(r1)
-	  lwz       r3, 0xC(r1)
-	  lwz       r0, 0x10(r1)
-	  stw       r4, 0x20(r1)
-	  stw       r3, 0x24(r1)
-	  lfs       f4, 0x20(r1)
-	  stw       r0, 0x28(r1)
-	  lfs       f3, 0x24(r1)
-	  lfs       f2, 0x28(r1)
-	  stfs      f6, 0x30(r1)
-	  stfs      f5, 0x34(r1)
-	  stfs      f4, 0x38(r1)
-	  stfs      f3, 0x3C(r1)
-	  stfs      f2, 0x40(r1)
+lbl_803B71F8:
+	lwz      r4, 0x44(r1)
+	lwz      r3, 0x48(r1)
+	lwz      r0, 0x4c(r1)
+	stw      r4, 8(r1)
+	lfs      f5, 0x2c(r1)
+	lfs      f4, lbl_8051F6AC@sda21(r2)
+	lfs      f3, 0x30(r1)
+	lfs      f2, 0x34(r1)
+	fmuls    f7, f5, f4
+	stw      r3, 0xc(r1)
+	fmuls    f6, f3, f4
+	fmuls    f5, f2, f4
+	lfs      f2, 8(r1)
+	stw      r0, 0x10(r1)
+	lfs      f3, 0xc(r1)
+	fadds    f4, f2, f7
+	lfs      f2, 0x10(r1)
+	fadds    f3, f3, f6
+	stfs     f7, 0x2c(r1)
+	fadds    f2, f2, f5
+	stfs     f4, 8(r1)
+	stfs     f3, 0xc(r1)
+	lwz      r4, 8(r1)
+	stfs     f2, 0x10(r1)
+	lwz      r3, 0xc(r1)
+	lwz      r0, 0x10(r1)
+	stw      r4, 0x20(r1)
+	stw      r3, 0x24(r1)
+	lfs      f4, 0x20(r1)
+	stw      r0, 0x28(r1)
+	lfs      f3, 0x24(r1)
+	lfs      f2, 0x28(r1)
+	stfs     f6, 0x30(r1)
+	stfs     f5, 0x34(r1)
+	stfs     f4, 0x38(r1)
+	stfs     f3, 0x3c(r1)
+	stfs     f2, 0x40(r1)
 
-	.loc_0x268:
-	  lwz       r0, 0x7C(r31)
-	  rlwinm.   r0,r0,0,29,29
-	  bne-      .loc_0x2B4
-	  lfs       f6, 0x84(r31)
-	  lfs       f2, 0x131C(r2)
-	  lfs       f4, 0x38(r1)
-	  lfs       f3, 0x3C(r1)
-	  fsubs     f7, f2, f6
-	  lfs       f2, 0x40(r1)
-	  fmuls     f4, f4, f6
-	  lfs       f5, 0x44(r1)
-	  fmuls     f3, f3, f6
-	  fmuls     f2, f2, f6
-	  fmadds    f4, f5, f7, f4
-	  fmadds    f1, f1, f7, f3
-	  fmadds    f0, f0, f7, f2
-	  stfs      f4, 0x18(r31)
-	  stfs      f1, 0x1C(r31)
-	  stfs      f0, 0x20(r31)
+lbl_803B728C:
+	lwz      r0, 0x7c(r31)
+	rlwinm.  r0, r0, 0, 0x1d, 0x1d
+	bne      lbl_803B72D8
+	lfs      f6, 0x84(r31)
+	lfs      f2, lbl_8051F67C@sda21(r2)
+	lfs      f4, 0x38(r1)
+	lfs      f3, 0x3c(r1)
+	fsubs    f7, f2, f6
+	lfs      f2, 0x40(r1)
+	fmuls    f4, f4, f6
+	lfs      f5, 0x44(r1)
+	fmuls    f3, f3, f6
+	fmuls    f2, f2, f6
+	fmadds   f4, f5, f7, f4
+	fmadds   f1, f1, f7, f3
+	fmadds   f0, f0, f7, f2
+	stfs     f4, 0x18(r31)
+	stfs     f1, 0x1c(r31)
+	stfs     f0, 0x20(r31)
 
-	.loc_0x2B4:
-	  lwz       r0, 0x64(r1)
-	  lwz       r31, 0x5C(r1)
-	  lwz       r30, 0x58(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x60
-	  blr
+lbl_803B72D8:
+	lwz      r0, 0x64(r1)
+	lwz      r31, 0x5c(r1)
+	lwz      r30, 0x58(r1)
+	mtlr     r0
+	addi     r1, r1, 0x60
+	blr
 	*/
 }
 
@@ -1094,140 +1302,139 @@ void TFueactCircle::execute(JPABaseEmitter*, JPABaseParticle*)
 void TFueactBiriBase::doExecuteEmitterOperation(JPABaseEmitter*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x50(r1)
-	  mflr      r0
-	  stw       r0, 0x54(r1)
-	  stfd      f31, 0x40(r1)
-	  psq_st    f31,0x48(r1),0,0
-	  stw       r31, 0x3C(r1)
-	  stw       r30, 0x38(r1)
-	  mr        r30, r3
-	  mr        r31, r4
-	  lwz       r0, 0x10(r3)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x4C
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  addi      r3, r3, 0x5A28
-	  li        r4, 0x243
-	  addi      r5, r5, 0x5A38
-	  crclr     6, 0x6
-	  bl        -0x38CCF8
+	stwu     r1, -0x50(r1)
+	mflr     r0
+	stw      r0, 0x54(r1)
+	stfd     f31, 0x40(r1)
+	psq_st   f31, 72(r1), 0, qr0
+	stw      r31, 0x3c(r1)
+	stw      r30, 0x38(r1)
+	mr       r30, r3
+	mr       r31, r4
+	lwz      r0, 0x10(r3)
+	cmplwi   r0, 0
+	bne      lbl_803B733C
+	lis      r3, lbl_80495A28@ha
+	lis      r5, lbl_80495A38@ha
+	addi     r3, r3, lbl_80495A28@l
+	li       r4, 0x243
+	addi     r5, r5, lbl_80495A38@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x4C:
-	  lwz       r0, 0x14(r30)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x74
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  addi      r3, r3, 0x5A28
-	  li        r4, 0x244
-	  addi      r5, r5, 0x5A38
-	  crclr     6, 0x6
-	  bl        -0x38CD20
+lbl_803B733C:
+	lwz      r0, 0x14(r30)
+	cmplwi   r0, 0
+	bne      lbl_803B7364
+	lis      r3, lbl_80495A28@ha
+	lis      r5, lbl_80495A38@ha
+	addi     r3, r3, lbl_80495A28@l
+	li       r4, 0x244
+	addi     r5, r5, lbl_80495A38@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x74:
-	  lwz       r4, 0x14(r30)
-	  lwz       r3, 0x10(r30)
-	  lfs       f0, 0x4(r4)
-	  lfs       f3, 0x1C(r3)
-	  lfs       f1, 0x8(r4)
-	  fsubs     f0, f0, f3
-	  lfs       f2, 0x2C(r3)
-	  lfs       f4, 0x0(r4)
-	  lfs       f10, 0xC(r3)
-	  fsubs     f1, f1, f2
-	  fmuls     f6, f0, f0
-	  fsubs     f8, f4, f10
-	  lfs       f31, 0x1310(r2)
-	  fmuls     f7, f1, f1
-	  fmadds    f4, f8, f8, f6
-	  fadds     f9, f7, f4
-	  fcmpo     cr0, f9, f31
-	  ble-      .loc_0xD0
-	  ble-      .loc_0xCC
-	  fsqrte    f4, f9
-	  fmuls     f31, f4, f9
-	  b         .loc_0xD0
+lbl_803B7364:
+	lwz      r4, 0x14(r30)
+	lwz      r3, 0x10(r30)
+	lfs      f0, 4(r4)
+	lfs      f3, 0x1c(r3)
+	lfs      f1, 8(r4)
+	fsubs    f0, f0, f3
+	lfs      f2, 0x2c(r3)
+	lfs      f4, 0(r4)
+	lfs      f10, 0xc(r3)
+	fsubs    f1, f1, f2
+	fmuls    f6, f0, f0
+	fsubs    f8, f4, f10
+	lfs      f31, lbl_8051F670@sda21(r2)
+	fmuls    f7, f1, f1
+	fmadds   f4, f8, f8, f6
+	fadds    f9, f7, f4
+	fcmpo    cr0, f9, f31
+	ble      lbl_803B73C0
+	ble      lbl_803B73BC
+	frsqrte  f4, f9
+	fmuls    f31, f4, f9
+	b        lbl_803B73C0
 
-	.loc_0xCC:
-	  fmr       f31, f9
+lbl_803B73BC:
+	fmr      f31, f9
 
-	.loc_0xD0:
-	  lfs       f5, 0x1310(r2)
-	  fcmpo     cr0, f9, f5
-	  ble-      .loc_0xF8
-	  fmadds    f4, f8, f8, f6
-	  fadds     f6, f7, f4
-	  fcmpo     cr0, f6, f5
-	  ble-      .loc_0xFC
-	  fsqrte    f4, f6
-	  fmuls     f6, f4, f6
-	  b         .loc_0xFC
+lbl_803B73C0:
+	lfs      f5, lbl_8051F670@sda21(r2)
+	fcmpo    cr0, f9, f5
+	ble      lbl_803B73E8
+	fmadds   f4, f8, f8, f6
+	fadds    f6, f7, f4
+	fcmpo    cr0, f6, f5
+	ble      lbl_803B73EC
+	frsqrte  f4, f6
+	fmuls    f6, f4, f6
+	b        lbl_803B73EC
 
-	.loc_0xF8:
-	  fmr       f6, f5
+lbl_803B73E8:
+	fmr      f6, f5
 
-	.loc_0xFC:
-	  lfs       f4, 0x1310(r2)
-	  fcmpo     cr0, f6, f4
-	  ble-      .loc_0x11C
-	  lfs       f4, 0x131C(r2)
-	  fdivs     f4, f4, f6
-	  fmuls     f8, f8, f4
-	  fmuls     f0, f0, f4
-	  fmuls     f1, f1, f4
+lbl_803B73EC:
+	lfs      f4, lbl_8051F670@sda21(r2)
+	fcmpo    cr0, f6, f4
+	ble      lbl_803B740C
+	lfs      f4, lbl_8051F67C@sda21(r2)
+	fdivs    f4, f4, f6
+	fmuls    f8, f8, f4
+	fmuls    f0, f0, f4
+	fmuls    f1, f1, f4
 
-	.loc_0x11C:
-	  lfs       f5, 0x1310(r2)
-	  addi      r3, r1, 0x8
-	  lfs       f6, 0x131C(r2)
-	  addi      r4, r31, 0x68
-	  fmuls     f9, f5, f0
-	  stfs      f8, 0x10(r1)
-	  fmuls     f4, f5, f1
-	  addi      r5, r31, 0xA4
-	  stfs      f10, 0x14(r1)
-	  fnmsubs   f7, f6, f8, f9
-	  fmsubs    f6, f6, f1, f9
-	  stfs      f0, 0x20(r1)
-	  fmsubs    f9, f5, f8, f4
-	  fmuls     f4, f8, f7
-	  stfs      f3, 0x24(r1)
-	  fmuls     f3, f0, f6
-	  fmuls     f5, f1, f9
-	  stfs      f6, 0x8(r1)
-	  fmsubs    f4, f1, f6, f4
-	  fmsubs    f3, f8, f9, f3
-	  stfs      f9, 0x18(r1)
-	  fmsubs    f0, f0, f7, f5
-	  stfs      f4, 0x1C(r1)
-	  stfs      f0, 0xC(r1)
-	  stfs      f7, 0x28(r1)
-	  stfs      f3, 0x2C(r1)
-	  stfs      f1, 0x30(r1)
-	  stfs      f2, 0x34(r1)
-	  bl        -0x323760
-	  lfs       f0, 0x134C(r2)
-	  fcmpo     cr0, f31, f0
-	  ble-      .loc_0x1A0
-	  fmr       f31, f0
+lbl_803B740C:
+	lfs      f5, lbl_8051F670@sda21(r2)
+	addi     r3, r1, 8
+	lfs      f6, lbl_8051F67C@sda21(r2)
+	addi     r4, r31, 0x68
+	fmuls    f9, f5, f0
+	stfs     f8, 0x10(r1)
+	fmuls    f4, f5, f1
+	addi     r5, r31, 0xa4
+	stfs     f10, 0x14(r1)
+	fnmsubs  f7, f6, f8, f9
+	fmsubs   f6, f6, f1, f9
+	stfs     f0, 0x20(r1)
+	fmsubs   f9, f5, f8, f4
+	fmuls    f4, f8, f7
+	stfs     f3, 0x24(r1)
+	fmuls    f3, f0, f6
+	fmuls    f5, f1, f9
+	stfs     f6, 8(r1)
+	fmsubs   f4, f1, f6, f4
+	fmsubs   f3, f8, f9, f3
+	stfs     f9, 0x18(r1)
+	fmsubs   f0, f0, f7, f5
+	stfs     f4, 0x1c(r1)
+	stfs     f0, 0xc(r1)
+	stfs     f7, 0x28(r1)
+	stfs     f3, 0x2c(r1)
+	stfs     f1, 0x30(r1)
+	stfs     f2, 0x34(r1)
+	bl       "JPASetRMtxTVecfromMtx__FPA4_CfPA4_fPQ29JGeometry8TVec3<f>"
+	lfs      f0, lbl_8051F6AC@sda21(r2)
+	fcmpo    cr0, f31, f0
+	ble      lbl_803B7490
+	fmr      f31, f0
 
-	.loc_0x1A0:
-	  lfs       f0, 0x1350(r2)
-	  fdivs     f0, f31, f0
-	  stfs      f0, 0x98(r31)
-	  stfs      f0, 0x9C(r31)
-	  stfs      f0, 0xA0(r31)
-	  psq_l     f31,0x48(r1),0,0
-	  lwz       r0, 0x54(r1)
-	  lfd       f31, 0x40(r1)
-	  lwz       r31, 0x3C(r1)
-	  lwz       r30, 0x38(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x50
-	  blr
+lbl_803B7490:
+	lfs      f0, lbl_8051F6B0@sda21(r2)
+	fdivs    f0, f31, f0
+	stfs     f0, 0x98(r31)
+	stfs     f0, 0x9c(r31)
+	stfs     f0, 0xa0(r31)
+	psq_l    f31, 72(r1), 0, qr0
+	lwz      r0, 0x54(r1)
+	lfd      f31, 0x40(r1)
+	lwz      r31, 0x3c(r1)
+	lwz      r30, 0x38(r1)
+	mtlr     r0
+	addi     r1, r1, 0x50
+	blr
 	*/
 }
 
@@ -1239,82 +1446,81 @@ void TFueactBiriBase::doExecuteEmitterOperation(JPABaseEmitter*)
 void createSimpleDead(Vector3f&, long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  stw       r0, 0x44(r1)
-	  stw       r31, 0x3C(r1)
-	  mr        r31, r3
-	  stw       r30, 0x38(r1)
-	  mr        r30, r4
-	  lwz       r0, -0x65B0(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x44
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  addi      r3, r3, 0x5A28
-	  li        r4, 0x26A
-	  addi      r5, r5, 0x5A38
-	  crclr     6, 0x6
-	  bl        -0x38CEC4
+	stwu     r1, -0x40(r1)
+	mflr     r0
+	stw      r0, 0x44(r1)
+	stw      r31, 0x3c(r1)
+	mr       r31, r3
+	stw      r30, 0x38(r1)
+	mr       r30, r4
+	lwz      r0, pkEffectMgr@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_803B7508
+	lis      r3, lbl_80495A28@ha
+	lis      r5, lbl_80495A38@ha
+	addi     r3, r3, lbl_80495A28@l
+	li       r4, 0x26a
+	addi     r5, r5, lbl_80495A38@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x44:
-	  cmpwi     r30, 0x5
-	  beq-      .loc_0x50
-	  b         .loc_0xE4
+lbl_803B7508:
+	cmpwi    r30, 5
+	beq      lbl_803B7514
+	b        lbl_803B75A8
 
-	.loc_0x50:
-	  lis       r3, 0x804B
-	  lis       r4, 0x804E
-	  subi      r0, r3, 0x5808
-	  lis       r3, 0x804F
-	  stw       r0, 0x14(r1)
-	  addi      r4, r4, 0x6A78
-	  li        r0, 0x52
-	  li        r7, 0
-	  stw       r4, 0x14(r1)
-	  subi      r6, r3, 0x798C
-	  lis       r4, 0x804B
-	  lis       r3, 0x804B
-	  sth       r0, 0x18(r1)
-	  subi      r5, r4, 0x5814
-	  lfs       f0, 0x1344(r2)
-	  subi      r0, r3, 0x5D24
-	  stw       r7, 0x1C(r1)
-	  addi      r3, r1, 0x14
-	  addi      r4, r1, 0x20
-	  stw       r6, 0x14(r1)
-	  lwz       r8, 0x0(r31)
-	  lwz       r7, 0x4(r31)
-	  lwz       r6, 0x8(r31)
-	  stw       r8, 0x8(r1)
-	  stw       r7, 0xC(r1)
-	  lfs       f3, 0x8(r1)
-	  stw       r6, 0x10(r1)
-	  lfs       f2, 0xC(r1)
-	  stw       r5, 0x20(r1)
-	  lfs       f1, 0x10(r1)
-	  stfs      f3, 0x24(r1)
-	  stfs      f2, 0x28(r1)
-	  stfs      f1, 0x2C(r1)
-	  stw       r0, 0x20(r1)
-	  stfs      f0, 0x30(r1)
-	  bl        0x10A30
-	  b         .loc_0xF4
+lbl_803B7514:
+	lis      r3, __vt__Q23efx5TBase@ha
+	lis      r4, __vt__Q23efx8TSimple1@ha
+	addi     r0, r3, __vt__Q23efx5TBase@l
+	lis      r3, __vt__Q23efx19TEnemyDead_ArgScale@ha
+	stw      r0, 0x14(r1)
+	addi     r4, r4, __vt__Q23efx8TSimple1@l
+	li       r0, 0x52
+	li       r7, 0
+	stw      r4, 0x14(r1)
+	addi     r6, r3, __vt__Q23efx19TEnemyDead_ArgScale@l
+	lis      r4, __vt__Q23efx3Arg@ha
+	lis      r3, __vt__Q23efx8ArgScale@ha
+	sth      r0, 0x18(r1)
+	addi     r5, r4, __vt__Q23efx3Arg@l
+	lfs      f0, lbl_8051F6A4@sda21(r2)
+	addi     r0, r3, __vt__Q23efx8ArgScale@l
+	stw      r7, 0x1c(r1)
+	addi     r3, r1, 0x14
+	addi     r4, r1, 0x20
+	stw      r6, 0x14(r1)
+	lwz      r8, 0(r31)
+	lwz      r7, 4(r31)
+	lwz      r6, 8(r31)
+	stw      r8, 8(r1)
+	stw      r7, 0xc(r1)
+	lfs      f3, 8(r1)
+	stw      r6, 0x10(r1)
+	lfs      f2, 0xc(r1)
+	stw      r5, 0x20(r1)
+	lfs      f1, 0x10(r1)
+	stfs     f3, 0x24(r1)
+	stfs     f2, 0x28(r1)
+	stfs     f1, 0x2c(r1)
+	stw      r0, 0x20(r1)
+	stfs     f0, 0x30(r1)
+	bl       create__Q23efx19TEnemyDead_ArgScaleFPQ23efx3Arg
+	b        lbl_803B75B8
 
-	.loc_0xE4:
-	  lwz       r3, -0x65B0(r13)
-	  mr        r4, r31
-	  mr        r5, r30
-	  bl        0xF1E4
+lbl_803B75A8:
+	lwz      r3, pkEffectMgr@sda21(r13)
+	mr       r4, r31
+	mr       r5, r30
+	bl       "createS_Dead__Q23efx12TPkEffectMgrFR10Vector3<f>l"
 
-	.loc_0xF4:
-	  lwz       r0, 0x44(r1)
-	  lwz       r31, 0x3C(r1)
-	  lwz       r30, 0x38(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
+lbl_803B75B8:
+	lwz      r0, 0x44(r1)
+	lwz      r31, 0x3c(r1)
+	lwz      r30, 0x38(r1)
+	mtlr     r0
+	addi     r1, r1, 0x40
+	blr
 	*/
 }
 
@@ -1356,32 +1562,31 @@ void createSimpleKanden(Vector3f&)
 void createSimpleChinka(Vector3f&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r0, -0x65B0(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x3C
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  addi      r3, r3, 0x5A28
-	  li        r4, 0x290
-	  addi      r5, r5, 0x5A38
-	  crclr     6, 0x6
-	  bl        -0x38CFC8
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r0, pkEffectMgr@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_803B760C
+	lis      r3, lbl_80495A28@ha
+	lis      r5, lbl_80495A38@ha
+	addi     r3, r3, lbl_80495A28@l
+	li       r4, 0x290
+	addi     r5, r5, lbl_80495A38@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x3C:
-	  lwz       r3, -0x65B0(r13)
-	  mr        r4, r31
-	  bl        0xF3A0
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803B760C:
+	lwz      r3, pkEffectMgr@sda21(r13)
+	mr       r4, r31
+	bl       "createS_Chinka__Q23efx12TPkEffectMgrFR10Vector3<f>"
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1393,32 +1598,31 @@ void createSimpleChinka(Vector3f&)
 void createSimpleGedoku(Vector3f&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r0, -0x65B0(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x3C
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  addi      r3, r3, 0x5A28
-	  li        r4, 0x296
-	  addi      r5, r5, 0x5A38
-	  crclr     6, 0x6
-	  bl        -0x38D024
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r0, pkEffectMgr@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_803B7668
+	lis      r3, lbl_80495A28@ha
+	lis      r5, lbl_80495A38@ha
+	addi     r3, r3, lbl_80495A28@l
+	li       r4, 0x296
+	addi     r5, r5, lbl_80495A38@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x3C:
-	  lwz       r3, -0x65B0(r13)
-	  mr        r4, r31
-	  bl        0xF40C
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803B7668:
+	lwz      r3, pkEffectMgr@sda21(r13)
+	mr       r4, r31
+	bl       "createS_Gedoku__Q23efx12TPkEffectMgrFR10Vector3<f>"
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1430,45 +1634,44 @@ void createSimpleGedoku(Vector3f&)
 void createSimpleBlackDrop(Vector3f&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  lis       r6, 0x804B
-	  lis       r5, 0x804E
-	  stw       r0, 0x34(r1)
-	  lis       r4, 0x804B
-	  subi      r0, r4, 0x5814
-	  subi      r10, r6, 0x5808
-	  stw       r0, 0x8(r1)
-	  addi      r9, r5, 0x6A50
-	  lis       r4, 0x804E
-	  li        r8, 0x14B
-	  lfs       f0, 0x0(r3)
-	  addi      r0, r4, 0x7204
-	  li        r7, 0x14C
-	  li        r6, 0x14D
-	  stfs      f0, 0xC(r1)
-	  li        r5, 0
-	  addi      r4, r1, 0x8
-	  lfs       f0, 0x4(r3)
-	  stfs      f0, 0x10(r1)
-	  lfs       f0, 0x8(r3)
-	  addi      r3, r1, 0x18
-	  stw       r10, 0x18(r1)
-	  stw       r9, 0x18(r1)
-	  stfs      f0, 0x14(r1)
-	  sth       r8, 0x1C(r1)
-	  sth       r7, 0x1E(r1)
-	  sth       r6, 0x20(r1)
-	  stw       r5, 0x24(r1)
-	  stw       r5, 0x28(r1)
-	  stw       r5, 0x2C(r1)
-	  stw       r0, 0x18(r1)
-	  bl        -0x8650
-	  lwz       r0, 0x34(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	lis      r6, __vt__Q23efx5TBase@ha
+	lis      r5, __vt__Q23efx8TSimple3@ha
+	stw      r0, 0x34(r1)
+	lis      r4, __vt__Q23efx3Arg@ha
+	addi     r0, r4, __vt__Q23efx3Arg@l
+	addi     r10, r6, __vt__Q23efx5TBase@l
+	stw      r0, 8(r1)
+	addi     r9, r5, __vt__Q23efx8TSimple3@l
+	lis      r4, __vt__Q23efx12TPkBlackDrop@ha
+	li       r8, 0x14b
+	lfs      f0, 0(r3)
+	addi     r0, r4, __vt__Q23efx12TPkBlackDrop@l
+	li       r7, 0x14c
+	li       r6, 0x14d
+	stfs     f0, 0xc(r1)
+	li       r5, 0
+	addi     r4, r1, 8
+	lfs      f0, 4(r3)
+	stfs     f0, 0x10(r1)
+	lfs      f0, 8(r3)
+	addi     r3, r1, 0x18
+	stw      r10, 0x18(r1)
+	stw      r9, 0x18(r1)
+	stfs     f0, 0x14(r1)
+	sth      r8, 0x1c(r1)
+	sth      r7, 0x1e(r1)
+	sth      r6, 0x20(r1)
+	stw      r5, 0x24(r1)
+	stw      r5, 0x28(r1)
+	stw      r5, 0x2c(r1)
+	stw      r0, 0x18(r1)
+	bl       create__Q23efx8TSimple3FPQ23efx3Arg
+	lwz      r0, 0x34(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -1480,42 +1683,41 @@ void createSimpleBlackDrop(Vector3f&)
 void createSimpleGate1Attack(Vector3f&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  lis       r6, 0x804B
-	  lis       r5, 0x804E
-	  stw       r0, 0x34(r1)
-	  lis       r4, 0x804B
-	  subi      r0, r4, 0x5814
-	  subi      r9, r6, 0x5808
-	  stw       r0, 0x18(r1)
-	  addi      r8, r5, 0x6A64
-	  lis       r4, 0x804E
-	  li        r7, 0x76
-	  lfs       f0, 0x0(r3)
-	  addi      r0, r4, 0x71F0
-	  li        r6, 0x77
-	  li        r5, 0
-	  stfs      f0, 0x1C(r1)
-	  addi      r4, r1, 0x18
-	  lfs       f0, 0x4(r3)
-	  stfs      f0, 0x20(r1)
-	  lfs       f0, 0x8(r3)
-	  addi      r3, r1, 0x8
-	  stw       r9, 0x8(r1)
-	  stw       r8, 0x8(r1)
-	  stfs      f0, 0x24(r1)
-	  sth       r7, 0xC(r1)
-	  sth       r6, 0xE(r1)
-	  stw       r5, 0x10(r1)
-	  stw       r5, 0x14(r1)
-	  stw       r0, 0x8(r1)
-	  bl        -0x8784
-	  lwz       r0, 0x34(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	lis      r6, __vt__Q23efx5TBase@ha
+	lis      r5, __vt__Q23efx8TSimple2@ha
+	stw      r0, 0x34(r1)
+	lis      r4, __vt__Q23efx3Arg@ha
+	addi     r0, r4, __vt__Q23efx3Arg@l
+	addi     r9, r6, __vt__Q23efx5TBase@l
+	stw      r0, 0x18(r1)
+	addi     r8, r5, __vt__Q23efx8TSimple2@l
+	lis      r4, __vt__Q23efx12TGate1Attack@ha
+	li       r7, 0x76
+	lfs      f0, 0(r3)
+	addi     r0, r4, __vt__Q23efx12TGate1Attack@l
+	li       r6, 0x77
+	li       r5, 0
+	stfs     f0, 0x1c(r1)
+	addi     r4, r1, 0x18
+	lfs      f0, 4(r3)
+	stfs     f0, 0x20(r1)
+	lfs      f0, 8(r3)
+	addi     r3, r1, 8
+	stw      r9, 8(r1)
+	stw      r8, 8(r1)
+	stfs     f0, 0x24(r1)
+	sth      r7, 0xc(r1)
+	sth      r6, 0xe(r1)
+	stw      r5, 0x10(r1)
+	stw      r5, 0x14(r1)
+	stw      r0, 8(r1)
+	bl       create__Q23efx8TSimple2FPQ23efx3Arg
+	lwz      r0, 0x34(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -1527,42 +1729,41 @@ void createSimpleGate1Attack(Vector3f&)
 void createSimplePkAp(Vector3f&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  lis       r6, 0x804B
-	  lis       r5, 0x804E
-	  stw       r0, 0x34(r1)
-	  lis       r4, 0x804B
-	  subi      r0, r4, 0x5814
-	  subi      r9, r6, 0x5808
-	  stw       r0, 0x18(r1)
-	  addi      r8, r5, 0x6A64
-	  lis       r4, 0x804B
-	  li        r7, 0x146
-	  lfs       f0, 0x0(r3)
-	  addi      r0, r4, 0x458C
-	  li        r6, 0x147
-	  li        r5, 0
-	  stfs      f0, 0x1C(r1)
-	  addi      r4, r1, 0x18
-	  lfs       f0, 0x4(r3)
-	  stfs      f0, 0x20(r1)
-	  lfs       f0, 0x8(r3)
-	  addi      r3, r1, 0x8
-	  stw       r9, 0x8(r1)
-	  stw       r8, 0x8(r1)
-	  stfs      f0, 0x24(r1)
-	  sth       r7, 0xC(r1)
-	  sth       r6, 0xE(r1)
-	  stw       r5, 0x10(r1)
-	  stw       r5, 0x14(r1)
-	  stw       r0, 0x8(r1)
-	  bl        -0x8810
-	  lwz       r0, 0x34(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	lis      r6, __vt__Q23efx5TBase@ha
+	lis      r5, __vt__Q23efx8TSimple2@ha
+	stw      r0, 0x34(r1)
+	lis      r4, __vt__Q23efx3Arg@ha
+	addi     r0, r4, __vt__Q23efx3Arg@l
+	addi     r9, r6, __vt__Q23efx5TBase@l
+	stw      r0, 0x18(r1)
+	addi     r8, r5, __vt__Q23efx8TSimple2@l
+	lis      r4, __vt__Q23efx5TPkAp@ha
+	li       r7, 0x146
+	lfs      f0, 0(r3)
+	addi     r0, r4, __vt__Q23efx5TPkAp@l
+	li       r6, 0x147
+	li       r5, 0
+	stfs     f0, 0x1c(r1)
+	addi     r4, r1, 0x18
+	lfs      f0, 4(r3)
+	stfs     f0, 0x20(r1)
+	lfs      f0, 8(r3)
+	addi     r3, r1, 8
+	stw      r9, 8(r1)
+	stw      r8, 8(r1)
+	stfs     f0, 0x24(r1)
+	sth      r7, 0xc(r1)
+	sth      r6, 0xe(r1)
+	stw      r5, 0x10(r1)
+	stw      r5, 0x14(r1)
+	stw      r0, 8(r1)
+	bl       create__Q23efx8TSimple2FPQ23efx3Arg
+	lwz      r0, 0x34(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -1574,32 +1775,31 @@ void createSimplePkAp(Vector3f&)
 void createSimpleWaterOff(Vector3f&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r0, -0x65B0(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x3C
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  addi      r3, r3, 0x5A28
-	  li        r4, 0x2B1
-	  addi      r5, r5, 0x5A38
-	  crclr     6, 0x6
-	  bl        -0x38D230
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r0, pkEffectMgr@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_803B7874
+	lis      r3, lbl_80495A28@ha
+	lis      r5, lbl_80495A38@ha
+	addi     r3, r3, lbl_80495A28@l
+	li       r4, 0x2b1
+	addi     r5, r5, lbl_80495A38@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x3C:
-	  lwz       r3, -0x65B0(r13)
-	  mr        r4, r31
-	  bl        0xF2C8
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803B7874:
+	lwz      r3, pkEffectMgr@sda21(r13)
+	mr       r4, r31
+	bl       "createS_WaterOff__Q23efx12TPkEffectMgrFR10Vector3<f>"
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1611,32 +1811,31 @@ void createSimpleWaterOff(Vector3f&)
 void createSimpleDive(Vector3f&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r0, -0x65B0(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x3C
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  addi      r3, r3, 0x5A28
-	  li        r4, 0x2B7
-	  addi      r5, r5, 0x5A38
-	  crclr     6, 0x6
-	  bl        -0x38D28C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r0, pkEffectMgr@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_803B78D0
+	lis      r3, lbl_80495A28@ha
+	lis      r5, lbl_80495A38@ha
+	addi     r3, r3, lbl_80495A28@l
+	li       r4, 0x2b7
+	addi     r5, r5, lbl_80495A38@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x3C:
-	  lwz       r3, -0x65B0(r13)
-	  mr        r4, r31
-	  bl        0xF334
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803B78D0:
+	lwz      r3, pkEffectMgr@sda21(r13)
+	mr       r4, r31
+	bl       "createS_Dive__Q23efx12TPkEffectMgrFR10Vector3<f>"
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1648,55 +1847,54 @@ void createSimpleDive(Vector3f&)
 void createSimpleChiru(Vector3f&, long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lwz       r0, -0x65B0(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x44
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  addi      r3, r3, 0x5A28
-	  li        r4, 0x2BD
-	  addi      r5, r5, 0x5A38
-	  crclr     6, 0x6
-	  bl        -0x38D2F0
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lwz      r0, pkEffectMgr@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_803B7934
+	lis      r3, lbl_80495A28@ha
+	lis      r5, lbl_80495A38@ha
+	addi     r3, r3, lbl_80495A28@l
+	li       r4, 0x2bd
+	addi     r5, r5, lbl_80495A38@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x44:
-	  cmpwi     r31, 0x3
-	  bge-      .loc_0x58
-	  cmpwi     r31, 0
-	  bge-      .loc_0x64
-	  b         .loc_0x80
+lbl_803B7934:
+	cmpwi    r31, 3
+	bge      lbl_803B7948
+	cmpwi    r31, 0
+	bge      lbl_803B7954
+	b        lbl_803B7970
 
-	.loc_0x58:
-	  cmpwi     r31, 0x5
-	  bge-      .loc_0x80
-	  b         .loc_0x74
+lbl_803B7948:
+	cmpwi    r31, 5
+	bge      lbl_803B7970
+	b        lbl_803B7964
 
-	.loc_0x64:
-	  lwz       r3, -0x65B0(r13)
-	  mr        r4, r30
-	  bl        0xF378
-	  b         .loc_0x80
+lbl_803B7954:
+	lwz      r3, pkEffectMgr@sda21(r13)
+	mr       r4, r30
+	bl       "createS_Chiru__Q23efx12TPkEffectMgrFR10Vector3<f>"
+	b        lbl_803B7970
 
-	.loc_0x74:
-	  lwz       r3, -0x65B0(r13)
-	  mr        r4, r30
-	  bl        0xF538
+lbl_803B7964:
+	lwz      r3, pkEffectMgr@sda21(r13)
+	mr       r4, r30
+	bl       "createS_ChiruRed__Q23efx12TPkEffectMgrFR10Vector3<f>"
 
-	.loc_0x80:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803B7970:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1708,32 +1906,31 @@ void createSimpleChiru(Vector3f&, long)
 void createSimpleInattack(Vector3f&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r0, -0x65B0(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x3C
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  addi      r3, r3, 0x5A28
-	  li        r4, 0x2CD
-	  addi      r5, r5, 0x5A38
-	  crclr     6, 0x6
-	  bl        -0x38D380
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r0, pkEffectMgr@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_803B79C4
+	lis      r3, lbl_80495A28@ha
+	lis      r5, lbl_80495A38@ha
+	addi     r3, r3, lbl_80495A28@l
+	li       r4, 0x2cd
+	addi     r5, r5, lbl_80495A38@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x3C:
-	  lwz       r3, -0x65B0(r13)
-	  mr        r4, r31
-	  bl        0xF37C
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803B79C4:
+	lwz      r3, pkEffectMgr@sda21(r13)
+	mr       r4, r31
+	bl       "createS_Inattack__Q23efx12TPkEffectMgrFR10Vector3<f>"
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1745,39 +1942,38 @@ void createSimpleInattack(Vector3f&)
 void createSimpleInstick(Vector3f&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  lis       r6, 0x804B
-	  lis       r5, 0x804E
-	  stw       r0, 0x34(r1)
-	  lis       r4, 0x804B
-	  subi      r0, r4, 0x5814
-	  subi      r8, r6, 0x5808
-	  stw       r0, 0x14(r1)
-	  addi      r7, r5, 0x6A78
-	  lis       r4, 0x804E
-	  li        r6, 0x164
-	  lfs       f0, 0x0(r3)
-	  addi      r0, r4, 0x71DC
-	  li        r5, 0
-	  addi      r4, r1, 0x14
-	  stfs      f0, 0x18(r1)
-	  lfs       f0, 0x4(r3)
-	  stfs      f0, 0x1C(r1)
-	  lfs       f0, 0x8(r3)
-	  addi      r3, r1, 0x8
-	  stw       r8, 0x8(r1)
-	  stw       r7, 0x8(r1)
-	  stfs      f0, 0x20(r1)
-	  sth       r6, 0xC(r1)
-	  stw       r5, 0x10(r1)
-	  stw       r0, 0x8(r1)
-	  bl        -0x8ACC
-	  lwz       r0, 0x34(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	lis      r6, __vt__Q23efx5TBase@ha
+	lis      r5, __vt__Q23efx8TSimple1@ha
+	stw      r0, 0x34(r1)
+	lis      r4, __vt__Q23efx3Arg@ha
+	addi     r0, r4, __vt__Q23efx3Arg@l
+	addi     r8, r6, __vt__Q23efx5TBase@l
+	stw      r0, 0x14(r1)
+	addi     r7, r5, __vt__Q23efx8TSimple1@l
+	lis      r4, __vt__Q23efx10TPkInstick@ha
+	li       r6, 0x164
+	lfs      f0, 0(r3)
+	addi     r0, r4, __vt__Q23efx10TPkInstick@l
+	li       r5, 0
+	addi     r4, r1, 0x14
+	stfs     f0, 0x18(r1)
+	lfs      f0, 4(r3)
+	stfs     f0, 0x1c(r1)
+	lfs      f0, 8(r3)
+	addi     r3, r1, 8
+	stw      r8, 8(r1)
+	stw      r7, 8(r1)
+	stfs     f0, 0x20(r1)
+	sth      r6, 0xc(r1)
+	stw      r5, 0x10(r1)
+	stw      r0, 8(r1)
+	bl       create__Q23efx8TSimple1FPQ23efx3Arg
+	lwz      r0, 0x34(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -1789,42 +1985,41 @@ void createSimpleInstick(Vector3f&)
 void createSimpleGate2Attack(Vector3f&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  lis       r6, 0x804B
-	  lis       r5, 0x804E
-	  stw       r0, 0x34(r1)
-	  lis       r4, 0x804B
-	  subi      r0, r4, 0x5814
-	  subi      r9, r6, 0x5808
-	  stw       r0, 0x18(r1)
-	  addi      r8, r5, 0x6A64
-	  lis       r4, 0x804E
-	  li        r7, 0x7A
-	  lfs       f0, 0x0(r3)
-	  addi      r0, r4, 0x71C8
-	  li        r6, 0x7B
-	  li        r5, 0
-	  stfs      f0, 0x1C(r1)
-	  addi      r4, r1, 0x18
-	  lfs       f0, 0x4(r3)
-	  stfs      f0, 0x20(r1)
-	  lfs       f0, 0x8(r3)
-	  addi      r3, r1, 0x8
-	  stw       r9, 0x8(r1)
-	  stw       r8, 0x8(r1)
-	  stfs      f0, 0x24(r1)
-	  sth       r7, 0xC(r1)
-	  sth       r6, 0xE(r1)
-	  stw       r5, 0x10(r1)
-	  stw       r5, 0x14(r1)
-	  stw       r0, 0x8(r1)
-	  bl        -0x8AC8
-	  lwz       r0, 0x34(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	lis      r6, __vt__Q23efx5TBase@ha
+	lis      r5, __vt__Q23efx8TSimple2@ha
+	stw      r0, 0x34(r1)
+	lis      r4, __vt__Q23efx3Arg@ha
+	addi     r0, r4, __vt__Q23efx3Arg@l
+	addi     r9, r6, __vt__Q23efx5TBase@l
+	stw      r0, 0x18(r1)
+	addi     r8, r5, __vt__Q23efx8TSimple2@l
+	lis      r4, __vt__Q23efx12TGate2Attack@ha
+	li       r7, 0x7a
+	lfs      f0, 0(r3)
+	addi     r0, r4, __vt__Q23efx12TGate2Attack@l
+	li       r6, 0x7b
+	li       r5, 0
+	stfs     f0, 0x1c(r1)
+	addi     r4, r1, 0x18
+	lfs      f0, 4(r3)
+	stfs     f0, 0x20(r1)
+	lfs      f0, 8(r3)
+	addi     r3, r1, 8
+	stw      r9, 8(r1)
+	stw      r8, 8(r1)
+	stfs     f0, 0x24(r1)
+	sth      r7, 0xc(r1)
+	sth      r6, 0xe(r1)
+	stw      r5, 0x10(r1)
+	stw      r5, 0x14(r1)
+	stw      r0, 8(r1)
+	bl       create__Q23efx8TSimple2FPQ23efx3Arg
+	lwz      r0, 0x34(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -1836,39 +2031,38 @@ void createSimpleGate2Attack(Vector3f&)
 void createSimpleBridgeAttack(Vector3f&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  lis       r6, 0x804B
-	  lis       r5, 0x804E
-	  stw       r0, 0x34(r1)
-	  lis       r4, 0x804B
-	  subi      r0, r4, 0x5814
-	  subi      r8, r6, 0x5808
-	  stw       r0, 0x14(r1)
-	  addi      r7, r5, 0x6A78
-	  lis       r4, 0x804E
-	  li        r6, 0x10
-	  lfs       f0, 0x0(r3)
-	  addi      r0, r4, 0x71B4
-	  li        r5, 0
-	  addi      r4, r1, 0x14
-	  stfs      f0, 0x18(r1)
-	  lfs       f0, 0x4(r3)
-	  stfs      f0, 0x1C(r1)
-	  lfs       f0, 0x8(r3)
-	  addi      r3, r1, 0x8
-	  stw       r8, 0x8(r1)
-	  stw       r7, 0x8(r1)
-	  stfs      f0, 0x20(r1)
-	  sth       r6, 0xC(r1)
-	  stw       r5, 0x10(r1)
-	  stw       r0, 0x8(r1)
-	  bl        -0x8BD8
-	  lwz       r0, 0x34(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	lis      r6, __vt__Q23efx5TBase@ha
+	lis      r5, __vt__Q23efx8TSimple1@ha
+	stw      r0, 0x34(r1)
+	lis      r4, __vt__Q23efx3Arg@ha
+	addi     r0, r4, __vt__Q23efx3Arg@l
+	addi     r8, r6, __vt__Q23efx5TBase@l
+	stw      r0, 0x14(r1)
+	addi     r7, r5, __vt__Q23efx8TSimple1@l
+	lis      r4, __vt__Q23efx13TBridgeAttack@ha
+	li       r6, 0x10
+	lfs      f0, 0(r3)
+	addi     r0, r4, __vt__Q23efx13TBridgeAttack@l
+	li       r5, 0
+	addi     r4, r1, 0x14
+	stfs     f0, 0x18(r1)
+	lfs      f0, 4(r3)
+	stfs     f0, 0x1c(r1)
+	lfs      f0, 8(r3)
+	addi     r3, r1, 8
+	stw      r8, 8(r1)
+	stw      r7, 8(r1)
+	stfs     f0, 0x20(r1)
+	sth      r6, 0xc(r1)
+	stw      r5, 0x10(r1)
+	stw      r0, 8(r1)
+	bl       create__Q23efx8TSimple1FPQ23efx3Arg
+	lwz      r0, 0x34(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -1880,32 +2074,31 @@ void createSimpleBridgeAttack(Vector3f&)
 void createSimpleWalksmoke(Vector3f&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r0, -0x65B0(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x3C
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  addi      r3, r3, 0x5A28
-	  li        r4, 0x2E8
-	  addi      r5, r5, 0x5A38
-	  crclr     6, 0x6
-	  bl        -0x38D568
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r0, pkEffectMgr@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_803B7BAC
+	lis      r3, lbl_80495A28@ha
+	lis      r5, lbl_80495A38@ha
+	addi     r3, r3, lbl_80495A28@l
+	li       r4, 0x2e8
+	addi     r5, r5, lbl_80495A38@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x3C:
-	  lwz       r3, -0x65B0(r13)
-	  mr        r4, r31
-	  bl        0xF208
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803B7BAC:
+	lwz      r3, pkEffectMgr@sda21(r13)
+	mr       r4, r31
+	bl       "createS_Walksmoke__Q23efx12TPkEffectMgrFR10Vector3<f>"
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1917,42 +2110,41 @@ void createSimpleWalksmoke(Vector3f&)
 void createSimpleGlow2(Vector3f&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  lis       r5, 0x804C
-	  lis       r4, 0x804B
-	  stw       r0, 0x34(r1)
-	  subi      r0, r4, 0x5808
-	  li        r6, 0
-	  li        r7, 0x160
-	  lis       r4, 0x804E
-	  stw       r0, 0x18(r1)
-	  addi      r0, r4, 0x6A64
-	  addi      r5, r5, 0x1520
-	  stw       r0, 0x18(r1)
-	  lis       r4, 0x804B
-	  subi      r0, r4, 0x5814
-	  li        r4, 0x15F
-	  sth       r7, 0x1E(r1)
-	  sth       r4, 0x1C(r1)
-	  addi      r4, r1, 0x8
-	  stw       r6, 0x20(r1)
-	  stw       r6, 0x24(r1)
-	  stw       r5, 0x18(r1)
-	  stw       r0, 0x8(r1)
-	  lfs       f0, 0x0(r3)
-	  stfs      f0, 0xC(r1)
-	  lfs       f0, 0x4(r3)
-	  stfs      f0, 0x10(r1)
-	  lfs       f0, 0x8(r3)
-	  addi      r3, r1, 0x18
-	  stfs      f0, 0x14(r1)
-	  bl        -0x8C30
-	  lwz       r0, 0x34(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	lis      r5, __vt__Q23efx8TPkGlow2@ha
+	lis      r4, __vt__Q23efx5TBase@ha
+	stw      r0, 0x34(r1)
+	addi     r0, r4, __vt__Q23efx5TBase@l
+	li       r6, 0
+	li       r7, 0x160
+	lis      r4, __vt__Q23efx8TSimple2@ha
+	stw      r0, 0x18(r1)
+	addi     r0, r4, __vt__Q23efx8TSimple2@l
+	addi     r5, r5, __vt__Q23efx8TPkGlow2@l
+	stw      r0, 0x18(r1)
+	lis      r4, __vt__Q23efx3Arg@ha
+	addi     r0, r4, __vt__Q23efx3Arg@l
+	li       r4, 0x15f
+	sth      r7, 0x1e(r1)
+	sth      r4, 0x1c(r1)
+	addi     r4, r1, 8
+	stw      r6, 0x20(r1)
+	stw      r6, 0x24(r1)
+	stw      r5, 0x18(r1)
+	stw      r0, 8(r1)
+	lfs      f0, 0(r3)
+	stfs     f0, 0xc(r1)
+	lfs      f0, 4(r3)
+	stfs     f0, 0x10(r1)
+	lfs      f0, 8(r3)
+	addi     r3, r1, 0x18
+	stfs     f0, 0x14(r1)
+	bl       create__Q23efx8TSimple2FPQ23efx3Arg
+	lwz      r0, 0x34(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -1964,39 +2156,38 @@ void createSimpleGlow2(Vector3f&)
 void createSimpleStoneAttack(Vector3f&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  lis       r5, 0x804B
-	  lis       r4, 0x804E
-	  stw       r0, 0x34(r1)
-	  subi      r0, r5, 0x5808
-	  lis       r5, 0x804E
-	  li        r7, 0x1AF
-	  stw       r0, 0x18(r1)
-	  addi      r0, r4, 0x6A78
-	  li        r6, 0
-	  lis       r4, 0x804B
-	  stw       r0, 0x18(r1)
-	  subi      r0, r4, 0x5814
-	  addi      r5, r5, 0x71A0
-	  addi      r4, r1, 0x8
-	  sth       r7, 0x1C(r1)
-	  stw       r6, 0x20(r1)
-	  stw       r5, 0x18(r1)
-	  stw       r0, 0x8(r1)
-	  lfs       f0, 0x0(r3)
-	  stfs      f0, 0xC(r1)
-	  lfs       f0, 0x4(r3)
-	  stfs      f0, 0x10(r1)
-	  lfs       f0, 0x8(r3)
-	  addi      r3, r1, 0x18
-	  stfs      f0, 0x14(r1)
-	  bl        -0x8D40
-	  lwz       r0, 0x34(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	lis      r5, __vt__Q23efx5TBase@ha
+	lis      r4, __vt__Q23efx8TSimple1@ha
+	stw      r0, 0x34(r1)
+	addi     r0, r5, __vt__Q23efx5TBase@l
+	lis      r5, __vt__Q23efx12TStoneAttack@ha
+	li       r7, 0x1af
+	stw      r0, 0x18(r1)
+	addi     r0, r4, __vt__Q23efx8TSimple1@l
+	li       r6, 0
+	lis      r4, __vt__Q23efx3Arg@ha
+	stw      r0, 0x18(r1)
+	addi     r0, r4, __vt__Q23efx3Arg@l
+	addi     r5, r5, __vt__Q23efx12TStoneAttack@l
+	addi     r4, r1, 8
+	sth      r7, 0x1c(r1)
+	stw      r6, 0x20(r1)
+	stw      r5, 0x18(r1)
+	stw      r0, 8(r1)
+	lfs      f0, 0(r3)
+	stfs     f0, 0xc(r1)
+	lfs      f0, 4(r3)
+	stfs     f0, 0x10(r1)
+	lfs      f0, 8(r3)
+	addi     r3, r1, 0x18
+	stfs     f0, 0x14(r1)
+	bl       create__Q23efx8TSimple1FPQ23efx3Arg
+	lwz      r0, 0x34(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -2008,32 +2199,31 @@ void createSimpleStoneAttack(Vector3f&)
 void createSimpleDig(Vector3f&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r0, -0x65B0(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x3C
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  addi      r3, r3, 0x5A28
-	  li        r4, 0x2FC
-	  addi      r5, r5, 0x5A38
-	  crclr     6, 0x6
-	  bl        -0x38D6D0
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r0, pkEffectMgr@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_803B7D14
+	lis      r3, lbl_80495A28@ha
+	lis      r5, lbl_80495A38@ha
+	addi     r3, r3, lbl_80495A28@l
+	li       r4, 0x2fc
+	addi     r5, r5, lbl_80495A38@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x3C:
-	  lwz       r3, -0x65B0(r13)
-	  mr        r4, r31
-	  bl        0xF114
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803B7D14:
+	lwz      r3, pkEffectMgr@sda21(r13)
+	mr       r4, r31
+	bl       "createS_Dig__Q23efx12TPkEffectMgrFR10Vector3<f>"
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2045,32 +2235,31 @@ void createSimpleDig(Vector3f&)
 void createSimpleGate3Attack(Vector3f&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r0, -0x65B0(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x3C
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  addi      r3, r3, 0x5A28
-	  li        r4, 0x302
-	  addi      r5, r5, 0x5A38
-	  crclr     6, 0x6
-	  bl        -0x38D72C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r0, pkEffectMgr@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_803B7D70
+	lis      r3, lbl_80495A28@ha
+	lis      r5, lbl_80495A38@ha
+	addi     r3, r3, lbl_80495A28@l
+	li       r4, 0x302
+	addi     r5, r5, lbl_80495A38@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x3C:
-	  lwz       r3, -0x65B0(r13)
-	  mr        r4, r31
-	  bl        0xF1A0
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803B7D70:
+	lwz      r3, pkEffectMgr@sda21(r13)
+	mr       r4, r31
+	bl       "createS_Gate3Attack__Q23efx12TPkEffectMgrFR10Vector3<f>"
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2082,32 +2271,31 @@ void createSimpleGate3Attack(Vector3f&)
 void createSimpleWalkwater(Vector3f&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r0, -0x65B0(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x3C
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  addi      r3, r3, 0x5A28
-	  li        r4, 0x308
-	  addi      r5, r5, 0x5A38
-	  crclr     6, 0x6
-	  bl        -0x38D788
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r0, pkEffectMgr@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_803B7DCC
+	lis      r3, lbl_80495A28@ha
+	lis      r5, lbl_80495A38@ha
+	addi     r3, r3, lbl_80495A28@l
+	li       r4, 0x308
+	addi     r5, r5, lbl_80495A38@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x3C:
-	  lwz       r3, -0x65B0(r13)
-	  mr        r4, r31
-	  bl        0xF1B8
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803B7DCC:
+	lwz      r3, pkEffectMgr@sda21(r13)
+	mr       r4, r31
+	bl       "createS_Walkwater__Q23efx12TPkEffectMgrFR10Vector3<f>"
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2148,71 +2336,70 @@ Q33efx11TNaviEffect12enumNaviType(void)
 void TNaviEffect::setNaviType(efx::TNaviEffect::enumNaviType)
 {
 	/*
-	.loc_0x0:
-	  cmpwi     r4, 0x2
-	  beq-      .loc_0x80
-	  bge-      .loc_0x1C
-	  cmpwi     r4, 0
-	  beq-      .loc_0x28
-	  bge-      .loc_0x54
-	  blr
+	cmpwi    r4, 2
+	beq      lbl_803B7EA4
+	bge      lbl_803B7E40
+	cmpwi    r4, 0
+	beq      lbl_803B7E4C
+	bge      lbl_803B7E78
+	blr
 
-	.loc_0x1C:
-	  cmpwi     r4, 0x4
-	  bgelr-
-	  b         .loc_0xAC
+lbl_803B7E40:
+	cmpwi    r4, 4
+	bgelr
+	b        lbl_803B7ED0
 
-	.loc_0x28:
-	  li        r0, 0x10
-	  cmpwi     r0, 0
-	  stw       r0, 0xE4(r3)
-	  li        r4, 0x19
-	  li        r0, 0
-	  lfs       f0, -0x7BF8(r13)
-	  stfs      f0, 0x338(r3)
-	  sth       r4, 0xBC(r3)
-	  stw       r0, 0x368(r3)
-	  stw       r0, 0x398(r3)
-	  blr
+lbl_803B7E4C:
+	li       r0, 0x10
+	cmpwi    r0, 0
+	stw      r0, 0xe4(r3)
+	li       r4, 0x19
+	li       r0, 0
+	lfs      f0, kAngleSpeed__Q23efx7TCursor@sda21(r13)
+	stfs     f0, 0x338(r3)
+	sth      r4, 0xbc(r3)
+	stw      r0, 0x368(r3)
+	stw      r0, 0x398(r3)
+	blr
 
-	.loc_0x54:
-	  li        r0, 0x10
-	  cmpwi     r0, 0
-	  stw       r0, 0xE4(r3)
-	  li        r4, 0x19
-	  li        r0, 0x1
-	  lfs       f0, -0x7BF8(r13)
-	  stfs      f0, 0x338(r3)
-	  sth       r4, 0xBC(r3)
-	  stw       r0, 0x368(r3)
-	  stw       r0, 0x398(r3)
-	  blr
+lbl_803B7E78:
+	li       r0, 0x10
+	cmpwi    r0, 0
+	stw      r0, 0xe4(r3)
+	li       r4, 0x19
+	li       r0, 1
+	lfs      f0, kAngleSpeed__Q23efx7TCursor@sda21(r13)
+	stfs     f0, 0x338(r3)
+	sth      r4, 0xbc(r3)
+	stw      r0, 0x368(r3)
+	stw      r0, 0x398(r3)
+	blr
 
-	.loc_0x80:
-	  li        r0, 0x10
-	  cmpwi     r0, 0
-	  stw       r0, 0xE4(r3)
-	  li        r4, 0x1B
-	  li        r0, 0
-	  lfs       f0, -0x7BF8(r13)
-	  stfs      f0, 0x338(r3)
-	  sth       r4, 0xBC(r3)
-	  stw       r0, 0x368(r3)
-	  stw       r0, 0x398(r3)
-	  blr
+lbl_803B7EA4:
+	li       r0, 0x10
+	cmpwi    r0, 0
+	stw      r0, 0xe4(r3)
+	li       r4, 0x1b
+	li       r0, 0
+	lfs      f0, kAngleSpeed__Q23efx7TCursor@sda21(r13)
+	stfs     f0, 0x338(r3)
+	sth      r4, 0xbc(r3)
+	stw      r0, 0x368(r3)
+	stw      r0, 0x398(r3)
+	blr
 
-	.loc_0xAC:
-	  li        r0, 0x10
-	  cmpwi     r0, 0
-	  stw       r0, 0xE4(r3)
-	  li        r4, 0x1A
-	  li        r0, 0x1
-	  lfs       f0, -0x7BF8(r13)
-	  stfs      f0, 0x338(r3)
-	  sth       r4, 0xBC(r3)
-	  stw       r0, 0x368(r3)
-	  stw       r0, 0x398(r3)
-	  blr
+lbl_803B7ED0:
+	li       r0, 0x10
+	cmpwi    r0, 0
+	stw      r0, 0xe4(r3)
+	li       r4, 0x1a
+	li       r0, 1
+	lfs      f0, kAngleSpeed__Q23efx7TCursor@sda21(r13)
+	stfs     f0, 0x338(r3)
+	sth      r4, 0xbc(r3)
+	stw      r0, 0x368(r3)
+	stw      r0, 0x398(r3)
+	blr
 	*/
 }
 
@@ -2224,17 +2411,14 @@ void TNaviEffect::setNaviType(efx::TNaviEffect::enumNaviType)
 void TNaviEffect::update(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  bl        .loc_0x20
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-
-	.loc_0x20:
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	bl       updateHamon___Q23efx11TNaviEffectFv
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2246,73 +2430,70 @@ void TNaviEffect::update(void)
 void TNaviEffect::updateHamon_(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stfd      f31, 0x10(r1)
-	  psq_st    f31,0x18(r1),0,0
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r0, 0x18(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0xBC
-	  lwz       r4, 0x8(r31)
-	  cmplwi    r4, 0
-	  beq-      .loc_0xBC
-	  lwz       r0, 0x0(r31)
-	  rlwinm.   r0,r0,0,31,31
-	  beq-      .loc_0xBC
-	  lfs       f0, 0x0(r4)
-	  stfs      f0, 0x1C(r31)
-	  lwz       r4, 0x18(r31)
-	  lfs       f0, 0x0(r4)
-	  stfs      f0, 0x20(r31)
-	  lwz       r4, 0x8(r31)
-	  lfs       f0, 0x8(r4)
-	  stfs      f0, 0x24(r31)
-	  b         .loc_0x68
-	  b         .loc_0xBC
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stfd     f31, 0x10(r1)
+	psq_st   f31, 24(r1), 0, qr0
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r0, 0x18(r3)
+	cmplwi   r0, 0
+	beq      lbl_803B7FD8
+	lwz      r4, 8(r31)
+	cmplwi   r4, 0
+	beq      lbl_803B7FD8
+	lwz      r0, 0(r31)
+	clrlwi.  r0, r0, 0x1f
+	beq      lbl_803B7FD8
+	lfs      f0, 0(r4)
+	stfs     f0, 0x1c(r31)
+	lwz      r4, 0x18(r31)
+	lfs      f0, 0(r4)
+	stfs     f0, 0x20(r31)
+	lwz      r4, 8(r31)
+	lfs      f0, 8(r4)
+	stfs     f0, 0x24(r31)
+	b        lbl_803B7F84
+	b        lbl_803B7FD8
 
-	.loc_0x68:
-	  lwz       r5, 0x18(r31)
-	  lwz       r4, 0x8(r31)
-	  lfs       f2, 0x0(r5)
-	  lfs       f1, 0x4(r4)
-	  lfs       f0, 0x1354(r2)
-	  fsubs     f31, f2, f1
-	  fcmpo     cr0, f31, f0
-	  bge-      .loc_0x94
-	  addi      r4, r31, 0x1C
-	  bl        .loc_0xD8
-	  b         .loc_0x98
+lbl_803B7F84:
+	lwz      r5, 0x18(r31)
+	lwz      r4, 8(r31)
+	lfs      f2, 0(r5)
+	lfs      f1, 4(r4)
+	lfs      f0, lbl_8051F6B4@sda21(r2)
+	fsubs    f31, f2, f1
+	fcmpo    cr0, f31, f0
+	bge      lbl_803B7FB0
+	addi     r4, r31, 0x1c
+	bl       "createHamonA___Q23efx11TNaviEffectFP10Vector3<f>"
+	b        lbl_803B7FB4
 
-	.loc_0x94:
-	  bl        0xA4
+lbl_803B7FB0:
+	bl       killHamonA___Q23efx11TNaviEffectFv
 
-	.loc_0x98:
-	  lfs       f0, 0x1358(r2)
-	  fcmpo     cr0, f31, f0
-	  bge-      .loc_0xB4
-	  mr        r3, r31
-	  addi      r4, r31, 0x1C
-	  bl        0xB0
-	  b         .loc_0xBC
+lbl_803B7FB4:
+	lfs      f0, lbl_8051F6B8@sda21(r2)
+	fcmpo    cr0, f31, f0
+	bge      lbl_803B7FD0
+	mr       r3, r31
+	addi     r4, r31, 0x1c
+	bl       "createHamonB___Q23efx11TNaviEffectFP10Vector3<f>"
+	b        lbl_803B7FD8
 
-	.loc_0xB4:
-	  mr        r3, r31
-	  bl        0x104
+lbl_803B7FD0:
+	mr       r3, r31
+	bl       killHamonB___Q23efx11TNaviEffectFv
 
-	.loc_0xBC:
-	  psq_l     f31,0x18(r1),0,0
-	  lwz       r0, 0x24(r1)
-	  lfd       f31, 0x10(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-
-	.loc_0xD8:
+lbl_803B7FD8:
+	psq_l    f31, 24(r1), 0, qr0
+	lwz      r0, 0x24(r1)
+	lfd      f31, 0x10(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -2326,33 +2507,32 @@ void TNaviEffect::updateHamon_(void)
 void createHamonA___Q23efx11TNaviEffectFP10Vector3f(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  bne-      .loc_0x3C
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  addi      r3, r3, 0x5A28
-	  li        r4, 0x35F
-	  addi      r5, r5, 0x5A38
-	  crclr     6, 0x6
-	  bl        -0x38D9EC
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r4, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	bne      lbl_803B8030
+	lis      r3, lbl_80495A28@ha
+	lis      r5, lbl_80495A38@ha
+	addi     r3, r3, lbl_80495A28@l
+	li       r4, 0x35f
+	addi     r5, r5, lbl_80495A38@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x3C:
-	  mr        r4, r31
-	  addi      r3, r30, 0x28
-	  bl        0xF540
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803B8030:
+	mr       r4, r31
+	addi     r3, r30, 0x28
+	bl       "create__Q23efx9ToeHamonAFP10Vector3<f>"
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2366,16 +2546,15 @@ namespace efx {
 void TNaviEffect::killHamonA_(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  addi      r3, r3, 0x28
-	  stw       r0, 0x14(r1)
-	  bl        0xF588
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	addi     r3, r3, 0x28
+	stw      r0, 0x14(r1)
+	bl       kill__Q23efx9ToeHamonAFv
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2389,33 +2568,32 @@ void TNaviEffect::killHamonA_(void)
 void createHamonB___Q23efx11TNaviEffectFP10Vector3f(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  bne-      .loc_0x3C
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  addi      r3, r3, 0x5A28
-	  li        r4, 0x36A
-	  addi      r5, r5, 0x5A38
-	  crclr     6, 0x6
-	  bl        -0x38DA70
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r4, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	bne      lbl_803B80B4
+	lis      r3, lbl_80495A28@ha
+	lis      r5, lbl_80495A38@ha
+	addi     r3, r3, lbl_80495A28@l
+	li       r4, 0x36a
+	addi     r5, r5, lbl_80495A38@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x3C:
-	  mr        r4, r31
-	  addi      r3, r30, 0x44
-	  bl        0xF55C
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803B80B4:
+	mr       r4, r31
+	addi     r3, r30, 0x44
+	bl       "create__Q23efx9ToeHamonBFP10Vector3<f>"
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2429,16 +2607,15 @@ namespace efx {
 void TNaviEffect::killHamonB_(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  addi      r3, r3, 0x44
-	  stw       r0, 0x14(r1)
-	  bl        0xF5A4
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	addi     r3, r3, 0x44
+	stw      r0, 0x14(r1)
+	bl       kill__Q23efx9ToeHamonBFv
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2450,39 +2627,38 @@ void TNaviEffect::killHamonB_(void)
 void TNaviEffect::createLight_(float (*)[4])
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  bne-      .loc_0x3C
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  addi      r3, r3, 0x5A28
-	  li        r4, 0x376
-	  addi      r5, r5, 0x5A38
-	  crclr     6, 0x6
-	  bl        -0x38DAF4
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r4, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	bne      lbl_803B8138
+	lis      r3, lbl_80495A28@ha
+	lis      r5, lbl_80495A38@ha
+	addi     r3, r3, lbl_80495A28@l
+	li       r4, 0x376
+	addi     r5, r5, lbl_80495A38@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x3C:
-	  mr        r4, r31
-	  addi      r3, r30, 0x33C
-	  bl        -0x7BA0
-	  addi      r3, r30, 0x33C
-	  li        r4, 0
-	  lwz       r12, 0x33C(r30)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803B8138:
+	mr       r4, r31
+	addi     r3, r30, 0x33c
+	bl       setMtxptr__Q23efx10TChaseMtx2FPA4_f
+	addi     r3, r30, 0x33c
+	li       r4, 0
+	lwz      r12, 0x33c(r30)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2494,18 +2670,17 @@ void TNaviEffect::createLight_(float (*)[4])
 void TNaviEffect::killLight_(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwzu      r12, 0x33C(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwzu     r12, 0x33c(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2517,39 +2692,38 @@ void TNaviEffect::killLight_(void)
 void TNaviEffect::createLightAct_(float (*)[4])
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  bne-      .loc_0x3C
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  addi      r3, r3, 0x5A28
-	  li        r4, 0x383
-	  addi      r5, r5, 0x5A38
-	  crclr     6, 0x6
-	  bl        -0x38DB98
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r4, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	bne      lbl_803B81DC
+	lis      r3, lbl_80495A28@ha
+	lis      r5, lbl_80495A38@ha
+	addi     r3, r3, lbl_80495A28@l
+	li       r4, 0x383
+	addi     r5, r5, lbl_80495A38@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x3C:
-	  mr        r4, r31
-	  addi      r3, r30, 0x36C
-	  bl        -0x7C44
-	  addi      r3, r30, 0x36C
-	  li        r4, 0
-	  lwz       r12, 0x36C(r30)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803B81DC:
+	mr       r4, r31
+	addi     r3, r30, 0x36c
+	bl       setMtxptr__Q23efx10TChaseMtx2FPA4_f
+	addi     r3, r30, 0x36c
+	li       r4, 0
+	lwz      r12, 0x36c(r30)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2561,18 +2735,17 @@ void TNaviEffect::createLightAct_(float (*)[4])
 void TNaviEffect::killLightAct_(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwzu      r12, 0x36C(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwzu     r12, 0x36c(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2586,32 +2759,31 @@ void TNaviEffect::killLightAct_(void)
 void createCursor___Q23efx11TNaviEffectF10Vector3f f(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r5, 0x804B
-	  lfs       f3, 0x0(r4)
-	  stw       r0, 0x24(r1)
-	  subi      r0, r5, 0x5814
-	  lfs       f2, 0x4(r4)
-	  lfs       f0, 0x8(r4)
-	  lis       r4, 0x804D
-	  stw       r0, 0x8(r1)
-	  subi      r0, r4, 0x3D80
-	  addi      r4, r1, 0x8
-	  stfs      f3, 0xC(r1)
-	  stfs      f2, 0x10(r1)
-	  stfs      f0, 0x14(r1)
-	  stw       r0, 0x8(r1)
-	  stfs      f1, 0x18(r1)
-	  lwzu      r12, 0xAC(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lis      r5, __vt__Q23efx3Arg@ha
+	lfs      f3, 0(r4)
+	stw      r0, 0x24(r1)
+	addi     r0, r5, __vt__Q23efx3Arg@l
+	lfs      f2, 4(r4)
+	lfs      f0, 8(r4)
+	lis      r4, __vt__Q23efx9ArgCursor@ha
+	stw      r0, 8(r1)
+	addi     r0, r4, __vt__Q23efx9ArgCursor@l
+	addi     r4, r1, 8
+	stfs     f3, 0xc(r1)
+	stfs     f2, 0x10(r1)
+	stfs     f0, 0x14(r1)
+	stw      r0, 8(r1)
+	stfs     f1, 0x18(r1)
+	lwzu     r12, 0xac(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -2625,18 +2797,17 @@ namespace efx {
 void TNaviEffect::killCursor_(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwzu      r12, 0xAC(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwzu     r12, 0xac(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2650,186 +2821,185 @@ void TNaviEffect::killCursor_(void)
 void updateCursor___Q23efx11TNaviEffectF10Vector3f f(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0xD0(r1)
-	  mflr      r0
-	  stw       r0, 0xD4(r1)
-	  stfd      f31, 0xC0(r1)
-	  psq_st    f31,0xC8(r1),0,0
-	  stfd      f30, 0xB0(r1)
-	  psq_st    f30,0xB8(r1),0,0
-	  stfd      f29, 0xA0(r1)
-	  psq_st    f29,0xA8(r1),0,0
-	  stfd      f28, 0x90(r1)
-	  psq_st    f28,0x98(r1),0,0
-	  stfd      f27, 0x80(r1)
-	  psq_st    f27,0x88(r1),0,0
-	  stfd      f26, 0x70(r1)
-	  psq_st    f26,0x78(r1),0,0
-	  stmw      r27, 0x5C(r1)
-	  lis       r5, 0x804B
-	  lfs       f3, 0x0(r4)
-	  subi      r0, r5, 0x5814
-	  lfs       f2, 0x4(r4)
-	  lfs       f0, 0x8(r4)
-	  lis       r4, 0x804D
-	  stw       r0, 0x14(r1)
-	  subi      r4, r4, 0x3D80
-	  addic.    r0, r1, 0x14
-	  mr        r28, r3
-	  stfs      f3, 0x18(r1)
-	  stfs      f2, 0x1C(r1)
-	  stfs      f0, 0x20(r1)
-	  stw       r4, 0x14(r1)
-	  stfs      f1, 0x24(r1)
-	  bne-      .loc_0x9C
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  addi      r3, r3, 0x5A28
-	  li        r4, 0x1E0
-	  addi      r5, r5, 0x5A38
-	  crclr     6, 0x6
-	  bl        -0x38DD2C
+	stwu     r1, -0xd0(r1)
+	mflr     r0
+	stw      r0, 0xd4(r1)
+	stfd     f31, 0xc0(r1)
+	psq_st   f31, 200(r1), 0, qr0
+	stfd     f30, 0xb0(r1)
+	psq_st   f30, 184(r1), 0, qr0
+	stfd     f29, 0xa0(r1)
+	psq_st   f29, 168(r1), 0, qr0
+	stfd     f28, 0x90(r1)
+	psq_st   f28, 152(r1), 0, qr0
+	stfd     f27, 0x80(r1)
+	psq_st   f27, 136(r1), 0, qr0
+	stfd     f26, 0x70(r1)
+	psq_st   f26, 120(r1), 0, qr0
+	stmw     r27, 0x5c(r1)
+	lis      r5, __vt__Q23efx3Arg@ha
+	lfs      f3, 0(r4)
+	addi     r0, r5, __vt__Q23efx3Arg@l
+	lfs      f2, 4(r4)
+	lfs      f0, 8(r4)
+	lis      r4, __vt__Q23efx9ArgCursor@ha
+	stw      r0, 0x14(r1)
+	addi     r4, r4, __vt__Q23efx9ArgCursor@l
+	addic.   r0, r1, 0x14
+	mr       r28, r3
+	stfs     f3, 0x18(r1)
+	stfs     f2, 0x1c(r1)
+	stfs     f0, 0x20(r1)
+	stw      r4, 0x14(r1)
+	stfs     f1, 0x24(r1)
+	bne      lbl_803B8370
+	lis      r3, lbl_80495A28@ha
+	lis      r5, lbl_80495A38@ha
+	addi     r3, r3, lbl_80495A28@l
+	li       r4, 0x1e0
+	addi     r5, r5, lbl_80495A38@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x9C:
-	  lfs       f1, 0x18(r1)
-	  lfs       f0, 0x1C(r1)
-	  stfs      f1, 0x328(r28)
-	  lfs       f1, 0x20(r1)
-	  stfs      f0, 0x32C(r28)
-	  lfs       f0, 0x1310(r2)
-	  stfs      f1, 0x330(r28)
-	  lfs       f26, 0x24(r1)
-	  lfs       f2, 0x334(r28)
-	  lfs       f1, 0x338(r28)
-	  fsubs     f1, f2, f1
-	  stfs      f1, 0x334(r28)
-	  lfs       f1, 0x334(r28)
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0xE4
-	  lfs       f0, 0x1320(r2)
-	  fadds     f0, f1, f0
-	  stfs      f0, 0x334(r28)
+lbl_803B8370:
+	lfs      f1, 0x18(r1)
+	lfs      f0, 0x1c(r1)
+	stfs     f1, 0x328(r28)
+	lfs      f1, 0x20(r1)
+	stfs     f0, 0x32c(r28)
+	lfs      f0, lbl_8051F670@sda21(r2)
+	stfs     f1, 0x330(r28)
+	lfs      f26, 0x24(r1)
+	lfs      f2, 0x334(r28)
+	lfs      f1, 0x338(r28)
+	fsubs    f1, f2, f1
+	stfs     f1, 0x334(r28)
+	lfs      f1, 0x334(r28)
+	fcmpo    cr0, f1, f0
+	bge      lbl_803B83B8
+	lfs      f0, lbl_8051F680@sda21(r2)
+	fadds    f0, f1, f0
+	stfs     f0, 0x334(r28)
 
-	.loc_0xE4:
-	  lis       r3, 0x8050
-	  lfs       f27, 0x1324(r2)
-	  lfs       f28, 0x1328(r2)
-	  addi      r29, r28, 0xAC
-	  lfd       f29, 0x1338(r2)
-	  addi      r27, r3, 0x71A0
-	  lfs       f30, 0x1310(r2)
-	  li        r30, 0
-	  lfs       f31, 0x132C(r2)
-	  lis       r31, 0x4330
-	  b         .loc_0x234
+lbl_803B83B8:
+	lis      r3, sincosTable___5JMath@ha
+	lfs      f27, lbl_8051F684@sda21(r2)
+	lfs      f28, lbl_8051F688@sda21(r2)
+	addi     r29, r28, 0xac
+	lfd      f29, lbl_8051F698@sda21(r2)
+	addi     r27, r3, sincosTable___5JMath@l
+	lfs      f30, lbl_8051F670@sda21(r2)
+	li       r30, 0
+	lfs      f31, lbl_8051F68C@sda21(r2)
+	lis      r31, 0x4330
+	b        lbl_803B8508
 
-	.loc_0x110:
-	  xoris     r3, r30, 0x8000
-	  xoris     r0, r0, 0x8000
-	  stw       r3, 0x2C(r1)
-	  lfs       f2, 0x334(r28)
-	  stw       r31, 0x28(r1)
-	  lfd       f0, 0x28(r1)
-	  stw       r0, 0x34(r1)
-	  fsubs     f0, f0, f29
-	  stw       r31, 0x30(r1)
-	  fmuls     f1, f28, f0
-	  lfd       f0, 0x30(r1)
-	  fsubs     f0, f0, f29
-	  fmuls     f1, f27, f1
-	  fdivs     f0, f1, f0
-	  fadds     f2, f2, f0
-	  fmr       f0, f2
-	  fcmpo     cr0, f2, f30
-	  bge-      .loc_0x15C
-	  fneg      f0, f2
+lbl_803B83E4:
+	xoris    r3, r30, 0x8000
+	xoris    r0, r0, 0x8000
+	stw      r3, 0x2c(r1)
+	lfs      f2, 0x334(r28)
+	stw      r31, 0x28(r1)
+	lfd      f0, 0x28(r1)
+	stw      r0, 0x34(r1)
+	fsubs    f0, f0, f29
+	stw      r31, 0x30(r1)
+	fmuls    f1, f28, f0
+	lfd      f0, 0x30(r1)
+	fsubs    f0, f0, f29
+	fmuls    f1, f27, f1
+	fdivs    f0, f1, f0
+	fadds    f2, f2, f0
+	fmr      f0, f2
+	fcmpo    cr0, f2, f30
+	bge      lbl_803B8430
+	fneg     f0, f2
 
-	.loc_0x15C:
-	  fmuls     f1, f0, f31
-	  lfs       f0, 0x328(r28)
-	  fcmpo     cr0, f2, f30
-	  fctiwz    f1, f1
-	  stfd      f1, 0x38(r1)
-	  lwz       r0, 0x3C(r1)
-	  rlwinm    r0,r0,3,18,28
-	  add       r3, r27, r0
-	  lfs       f1, 0x4(r3)
-	  fmadds    f0, f26, f1, f0
-	  stfs      f0, 0x8(r1)
-	  bge-      .loc_0x1B8
-	  lfs       f0, 0x1330(r2)
-	  lis       r3, 0x8050
-	  addi      r3, r3, 0x71A0
-	  fmuls     f0, f2, f0
-	  fctiwz    f0, f0
-	  stfd      f0, 0x40(r1)
-	  lwz       r0, 0x44(r1)
-	  rlwinm    r0,r0,3,18,28
-	  lfsx      f0, r3, r0
-	  fneg      f1, f0
-	  b         .loc_0x1D8
+lbl_803B8430:
+	fmuls    f1, f0, f31
+	lfs      f0, 0x328(r28)
+	fcmpo    cr0, f2, f30
+	fctiwz   f1, f1
+	stfd     f1, 0x38(r1)
+	lwz      r0, 0x3c(r1)
+	rlwinm   r0, r0, 3, 0x12, 0x1c
+	add      r3, r27, r0
+	lfs      f1, 4(r3)
+	fmadds   f0, f26, f1, f0
+	stfs     f0, 8(r1)
+	bge      lbl_803B848C
+	lfs      f0, lbl_8051F690@sda21(r2)
+	lis      r3, sincosTable___5JMath@ha
+	addi     r3, r3, sincosTable___5JMath@l
+	fmuls    f0, f2, f0
+	fctiwz   f0, f0
+	stfd     f0, 0x40(r1)
+	lwz      r0, 0x44(r1)
+	rlwinm   r0, r0, 3, 0x12, 0x1c
+	lfsx     f0, r3, r0
+	fneg     f1, f0
+	b        lbl_803B84AC
 
-	.loc_0x1B8:
-	  fmuls     f0, f2, f31
-	  lis       r3, 0x8050
-	  addi      r3, r3, 0x71A0
-	  fctiwz    f0, f0
-	  stfd      f0, 0x48(r1)
-	  lwz       r0, 0x4C(r1)
-	  rlwinm    r0,r0,3,18,28
-	  lfsx      f1, r3, r0
+lbl_803B848C:
+	fmuls    f0, f2, f31
+	lis      r3, sincosTable___5JMath@ha
+	addi     r3, r3, sincosTable___5JMath@l
+	fctiwz   f0, f0
+	stfd     f0, 0x48(r1)
+	lwz      r0, 0x4c(r1)
+	rlwinm   r0, r0, 3, 0x12, 0x1c
+	lfsx     f1, r3, r0
 
-	.loc_0x1D8:
-	  lfs       f0, 0x330(r28)
-	  lwz       r3, -0x6CF8(r13)
-	  fmadds    f0, f26, f1, f0
-	  cmplwi    r3, 0
-	  stfs      f0, 0x10(r1)
-	  beq-      .loc_0x20C
-	  lwz       r12, 0x4(r3)
-	  addi      r4, r1, 0x8
-	  lwz       r12, 0x28(r12)
-	  mtctr     r12
-	  bctrl
-	  stfs      f1, 0xC(r1)
-	  b         .loc_0x214
+lbl_803B84AC:
+	lfs      f0, 0x330(r28)
+	lwz      r3, mapMgr__4Game@sda21(r13)
+	fmadds   f0, f26, f1, f0
+	cmplwi   r3, 0
+	stfs     f0, 0x10(r1)
+	beq      lbl_803B84E0
+	lwz      r12, 4(r3)
+	addi     r4, r1, 8
+	lwz      r12, 0x28(r12)
+	mtctr    r12
+	bctrl
+	stfs     f1, 0xc(r1)
+	b        lbl_803B84E8
 
-	.loc_0x20C:
-	  lfs       f0, 0x32C(r28)
-	  stfs      f0, 0xC(r1)
+lbl_803B84E0:
+	lfs      f0, 0x32c(r28)
+	stfs     f0, 0xc(r1)
 
-	.loc_0x214:
-	  lfs       f0, 0x8(r1)
-	  addi      r30, r30, 0x1
-	  stfs      f0, 0x54(r29)
-	  lfs       f0, 0xC(r1)
-	  stfs      f0, 0x58(r29)
-	  lfs       f0, 0x10(r1)
-	  stfs      f0, 0x5C(r29)
-	  addi      r29, r29, 0x24
+lbl_803B84E8:
+	lfs      f0, 8(r1)
+	addi     r30, r30, 1
+	stfs     f0, 0x54(r29)
+	lfs      f0, 0xc(r1)
+	stfs     f0, 0x58(r29)
+	lfs      f0, 0x10(r1)
+	stfs     f0, 0x5c(r29)
+	addi     r29, r29, 0x24
 
-	.loc_0x234:
-	  lwz       r0, 0xE4(r28)
-	  cmpw      r30, r0
-	  blt+      .loc_0x110
-	  psq_l     f31,0xC8(r1),0,0
-	  lfd       f31, 0xC0(r1)
-	  psq_l     f30,0xB8(r1),0,0
-	  lfd       f30, 0xB0(r1)
-	  psq_l     f29,0xA8(r1),0,0
-	  lfd       f29, 0xA0(r1)
-	  psq_l     f28,0x98(r1),0,0
-	  lfd       f28, 0x90(r1)
-	  psq_l     f27,0x88(r1),0,0
-	  lfd       f27, 0x80(r1)
-	  psq_l     f26,0x78(r1),0,0
-	  lfd       f26, 0x70(r1)
-	  lmw       r27, 0x5C(r1)
-	  lwz       r0, 0xD4(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0xD0
-	  blr
+lbl_803B8508:
+	lwz      r0, 0xe4(r28)
+	cmpw     r30, r0
+	blt      lbl_803B83E4
+	psq_l    f31, 200(r1), 0, qr0
+	lfd      f31, 0xc0(r1)
+	psq_l    f30, 184(r1), 0, qr0
+	lfd      f30, 0xb0(r1)
+	psq_l    f29, 168(r1), 0, qr0
+	lfd      f29, 0xa0(r1)
+	psq_l    f28, 152(r1), 0, qr0
+	lfd      f28, 0x90(r1)
+	psq_l    f27, 136(r1), 0, qr0
+	lfd      f27, 0x80(r1)
+	psq_l    f26, 120(r1), 0, qr0
+	lfd      f26, 0x70(r1)
+	lmw      r27, 0x5c(r1)
+	lwz      r0, 0xd4(r1)
+	mtlr     r0
+	addi     r1, r1, 0xd0
+	blr
 	*/
 }
 
@@ -2841,56 +3011,55 @@ void updateCursor___Q23efx11TNaviEffectF10Vector3f f(void)
 void createFueact___Q23efx11TNaviEffectFPA4_fP10Vector3f(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r5
-	  stw       r30, 0x18(r1)
-	  mr.       r30, r4
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  bne-      .loc_0x44
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  addi      r3, r3, 0x5A28
-	  li        r4, 0x3A2
-	  addi      r5, r5, 0x5A38
-	  crclr     6, 0x6
-	  bl        -0x38DF58
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r5
+	stw      r30, 0x18(r1)
+	or.      r30, r4, r4
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	bne      lbl_803B859C
+	lis      r3, lbl_80495A28@ha
+	lis      r5, lbl_80495A38@ha
+	addi     r3, r3, lbl_80495A28@l
+	li       r4, 0x3a2
+	addi     r5, r5, lbl_80495A38@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x44:
-	  cmplwi    r31, 0
-	  bne-      .loc_0x68
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  addi      r3, r3, 0x5A28
-	  li        r4, 0x3A3
-	  addi      r5, r5, 0x5A38
-	  crclr     6, 0x6
-	  bl        -0x38DF7C
+lbl_803B859C:
+	cmplwi   r31, 0
+	bne      lbl_803B85C0
+	lis      r3, lbl_80495A28@ha
+	lis      r5, lbl_80495A38@ha
+	addi     r3, r3, lbl_80495A28@l
+	li       r4, 0x3a3
+	addi     r5, r5, lbl_80495A38@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x68:
-	  stw       r30, 0x70(r29)
-	  addi      r3, r29, 0x60
-	  li        r4, 0
-	  stw       r31, 0x74(r29)
-	  stw       r30, 0x8C(r29)
-	  stw       r31, 0x90(r29)
-	  stw       r30, 0xA4(r29)
-	  stw       r31, 0xA8(r29)
-	  lwz       r12, 0x60(r29)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_803B85C0:
+	stw      r30, 0x70(r29)
+	addi     r3, r29, 0x60
+	li       r4, 0
+	stw      r31, 0x74(r29)
+	stw      r30, 0x8c(r29)
+	stw      r31, 0x90(r29)
+	stw      r30, 0xa4(r29)
+	stw      r31, 0xa8(r29)
+	lwz      r12, 0x60(r29)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -2904,18 +3073,17 @@ namespace efx {
 void TNaviEffect::killFueact_(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwzu      r12, 0x60(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwzu     r12, 0x60(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2927,39 +3095,38 @@ void TNaviEffect::killFueact_(void)
 void TNaviEffect::createOrimadamage_(float (*)[4])
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  bne-      .loc_0x3C
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  addi      r3, r3, 0x5A28
-	  li        r4, 0x3B1
-	  addi      r5, r5, 0x5A38
-	  crclr     6, 0x6
-	  bl        -0x38E030
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r4, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	bne      lbl_803B8674
+	lis      r3, lbl_80495A28@ha
+	lis      r5, lbl_80495A38@ha
+	addi     r3, r3, lbl_80495A28@l
+	li       r4, 0x3b1
+	addi     r5, r5, lbl_80495A38@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x3C:
-	  mr        r4, r31
-	  addi      r3, r30, 0x39C
-	  bl        -0x7D7C
-	  addi      r3, r30, 0x39C
-	  li        r4, 0
-	  lwz       r12, 0x39C(r30)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803B8674:
+	mr       r4, r31
+	addi     r3, r30, 0x39c
+	bl       setMtxptr__Q23efx11TChaseMtxT2FPA4_f
+	addi     r3, r30, 0x39c
+	li       r4, 0
+	lwz      r12, 0x39c(r30)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2981,22 +3148,21 @@ void TNaviEffect::killOrimadamage_(void)
 void TPkEffect::init(void)
 {
 	/*
-	.loc_0x0:
-	  li        r4, -0x1
-	  li        r0, 0
-	  stw       r4, 0x8(r3)
-	  stw       r0, 0xC(r3)
-	  stw       r0, 0x10(r3)
-	  stw       r0, 0x14(r3)
-	  stw       r0, 0x18(r3)
-	  stw       r0, 0x1C(r3)
-	  stw       r0, 0x20(r3)
-	  stw       r0, 0x24(r3)
-	  stb       r0, 0x0(r3)
-	  stb       r0, 0x1(r3)
-	  stb       r0, 0x2(r3)
-	  stb       r0, 0x3(r3)
-	  blr
+	li       r4, -1
+	li       r0, 0
+	stw      r4, 8(r3)
+	stw      r0, 0xc(r3)
+	stw      r0, 0x10(r3)
+	stw      r0, 0x14(r3)
+	stw      r0, 0x18(r3)
+	stw      r0, 0x1c(r3)
+	stw      r0, 0x20(r3)
+	stw      r0, 0x24(r3)
+	stb      r0, 0(r3)
+	stb      r0, 1(r3)
+	stb      r0, 2(r3)
+	stb      r0, 3(r3)
+	blr
 	*/
 }
 
@@ -3008,22 +3174,19 @@ void TPkEffect::init(void)
 void TPkEffect::update(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        .loc_0x34
-	  mr        r3, r31
-	  bl        0x50
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-
-	.loc_0x34:
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       updateMoeSmoke___Q23efx9TPkEffectFv
+	mr       r3, r31
+	bl       updateHamon___Q23efx9TPkEffectFv
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -3035,25 +3198,24 @@ void TPkEffect::update(void)
 void TPkEffect::updateMoeSmoke_(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r4, 0x24(r3)
-	  cmpwi     r4, 0
-	  bne-      .loc_0x20
-	  bl        0x4DC
-	  b         .loc_0x28
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r4, 0x24(r3)
+	cmpwi    r4, 0
+	bne      lbl_803B8740
+	bl       killMoeSmoke___Q23efx9TPkEffectFv
+	b        lbl_803B8748
 
-	.loc_0x20:
-	  subi      r0, r4, 0x1
-	  stw       r0, 0x24(r3)
+lbl_803B8740:
+	addi     r0, r4, -1
+	stw      r0, 0x24(r3)
 
-	.loc_0x28:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803B8748:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -3065,69 +3227,68 @@ void TPkEffect::updateMoeSmoke_(void)
 void TPkEffect::updateHamon_(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stfd      f31, 0x10(r1)
-	  psq_st    f31,0x18(r1),0,0
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r5, 0x20(r3)
-	  cmplwi    r5, 0
-	  beq-      .loc_0xB4
-	  lwz       r4, 0x10(r31)
-	  cmplwi    r4, 0
-	  beq-      .loc_0xB4
-	  lwz       r0, 0x0(r31)
-	  rlwinm.   r0,r0,0,26,26
-	  beq-      .loc_0xB4
-	  lfs       f2, 0x8(r4)
-	  lfs       f1, 0x0(r5)
-	  lfs       f0, 0x0(r4)
-	  stfs      f0, 0x28(r31)
-	  stfs      f1, 0x2C(r31)
-	  stfs      f2, 0x30(r31)
-	  b         .loc_0x60
-	  b         .loc_0xB4
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stfd     f31, 0x10(r1)
+	psq_st   f31, 24(r1), 0, qr0
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r5, 0x20(r3)
+	cmplwi   r5, 0
+	beq      lbl_803B880C
+	lwz      r4, 0x10(r31)
+	cmplwi   r4, 0
+	beq      lbl_803B880C
+	lwz      r0, 0(r31)
+	rlwinm.  r0, r0, 0, 0x1a, 0x1a
+	beq      lbl_803B880C
+	lfs      f2, 8(r4)
+	lfs      f1, 0(r5)
+	lfs      f0, 0(r4)
+	stfs     f0, 0x28(r31)
+	stfs     f1, 0x2c(r31)
+	stfs     f2, 0x30(r31)
+	b        lbl_803B87B8
+	b        lbl_803B880C
 
-	.loc_0x60:
-	  lwz       r5, 0x20(r31)
-	  lwz       r4, 0x10(r31)
-	  lfs       f2, 0x0(r5)
-	  lfs       f1, 0x4(r4)
-	  lfs       f0, 0x1354(r2)
-	  fsubs     f31, f2, f1
-	  fcmpo     cr0, f31, f0
-	  bge-      .loc_0x8C
-	  addi      r4, r31, 0x28
-	  bl        0x57C
-	  b         .loc_0x90
+lbl_803B87B8:
+	lwz      r5, 0x20(r31)
+	lwz      r4, 0x10(r31)
+	lfs      f2, 0(r5)
+	lfs      f1, 4(r4)
+	lfs      f0, lbl_8051F6B4@sda21(r2)
+	fsubs    f31, f2, f1
+	fcmpo    cr0, f31, f0
+	bge      lbl_803B87E4
+	addi     r4, r31, 0x28
+	bl       "createHamonA___Q23efx9TPkEffectFP10Vector3<f>"
+	b        lbl_803B87E8
 
-	.loc_0x8C:
-	  bl        0x5D4
+lbl_803B87E4:
+	bl       killHamonA___Q23efx9TPkEffectFv
 
-	.loc_0x90:
-	  lfs       f0, 0x1358(r2)
-	  fcmpo     cr0, f31, f0
-	  bge-      .loc_0xAC
-	  mr        r3, r31
-	  addi      r4, r31, 0x28
-	  bl        0x5E0
-	  b         .loc_0xB4
+lbl_803B87E8:
+	lfs      f0, lbl_8051F6B8@sda21(r2)
+	fcmpo    cr0, f31, f0
+	bge      lbl_803B8804
+	mr       r3, r31
+	addi     r4, r31, 0x28
+	bl       "createHamonB___Q23efx9TPkEffectFP10Vector3<f>"
+	b        lbl_803B880C
 
-	.loc_0xAC:
-	  mr        r3, r31
-	  bl        0x634
+lbl_803B8804:
+	mr       r3, r31
+	bl       killHamonB___Q23efx9TPkEffectFv
 
-	.loc_0xB4:
-	  psq_l     f31,0x18(r1),0,0
-	  lwz       r0, 0x24(r1)
-	  lfd       f31, 0x10(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_803B880C:
+	psq_l    f31, 24(r1), 0, qr0
+	lwz      r0, 0x24(r1)
+	lfd      f31, 0x10(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -3141,34 +3302,33 @@ void TPkEffect::updateHamon_(void)
 void createKourin___Q23efx9TPkEffectFP10Vector3f(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  bne-      .loc_0x3C
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  addi      r3, r3, 0x5A28
-	  li        r4, 0x3FB
-	  addi      r5, r5, 0x5A38
-	  crclr     6, 0x6
-	  bl        -0x38E220
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r4, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	bne      lbl_803B8864
+	lis      r3, lbl_80495A28@ha
+	lis      r5, lbl_80495A38@ha
+	addi     r3, r3, lbl_80495A28@l
+	li       r4, 0x3fb
+	addi     r5, r5, lbl_80495A38@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x3C:
-	  lwz       r5, 0x8(r30)
-	  mr        r4, r31
-	  addi      r3, r30, 0x70
-	  bl        0xE7E4
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803B8864:
+	lwz      r5, 8(r30)
+	mr       r4, r31
+	addi     r3, r30, 0x70
+	bl       "create__Q23efx9ToeKourinFP10Vector3<f>l"
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -3182,16 +3342,15 @@ namespace efx {
 void TPkEffect::killKourin_(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  addi      r3, r3, 0x70
-	  stw       r0, 0x14(r1)
-	  bl        0xE8E0
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	addi     r3, r3, 0x70
+	stw      r0, 0x14(r1)
+	bl       kill__Q23efx9ToeKourinFv
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -3205,33 +3364,32 @@ void TPkEffect::killKourin_(void)
 void createDoping___Q23efx9TPkEffectFP10Vector3f(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  bne-      .loc_0x3C
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  addi      r3, r3, 0x5A28
-	  li        r4, 0x409
-	  addi      r5, r5, 0x5A38
-	  crclr     6, 0x6
-	  bl        -0x38E2A8
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r4, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	bne      lbl_803B88EC
+	lis      r3, lbl_80495A28@ha
+	lis      r5, lbl_80495A38@ha
+	addi     r3, r3, lbl_80495A28@l
+	li       r4, 0x409
+	addi     r5, r5, lbl_80495A38@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x3C:
-	  mr        r4, r31
-	  addi      r3, r30, 0x90
-	  bl        0xE940
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803B88EC:
+	mr       r4, r31
+	addi     r3, r30, 0x90
+	bl       "create__Q23efx9ToeDopingFP10Vector3<f>"
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -3245,16 +3403,15 @@ namespace efx {
 void TPkEffect::killDoping_(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  addi      r3, r3, 0x90
-	  stw       r0, 0x14(r1)
-	  bl        0xE97C
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	addi     r3, r3, 0x90
+	stw      r0, 0x14(r1)
+	bl       kill__Q23efx9ToeDopingFv
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -3268,73 +3425,72 @@ void TPkEffect::killDoping_(void)
 void createNage___Q23efx9TPkEffectFP10Vector3f PA4_f(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stw       r31, 0x2C(r1)
-	  mr        r31, r3
-	  stw       r30, 0x28(r1)
-	  mr        r30, r5
-	  stw       r29, 0x24(r1)
-	  mr.       r29, r4
-	  bne-      .loc_0x44
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  addi      r3, r3, 0x5A28
-	  li        r4, 0x416
-	  addi      r5, r5, 0x5A38
-	  crclr     6, 0x6
-	  bl        -0x38E334
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stw      r31, 0x2c(r1)
+	mr       r31, r3
+	stw      r30, 0x28(r1)
+	mr       r30, r5
+	stw      r29, 0x24(r1)
+	or.      r29, r4, r4
+	bne      lbl_803B8978
+	lis      r3, lbl_80495A28@ha
+	lis      r5, lbl_80495A38@ha
+	addi     r3, r3, lbl_80495A28@l
+	li       r4, 0x416
+	addi     r5, r5, lbl_80495A38@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x44:
-	  mr        r4, r29
-	  addi      r3, r31, 0xAC
-	  bl        0xE948
-	  cmplwi    r30, 0
-	  bne-      .loc_0x74
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  addi      r3, r3, 0x5A28
-	  li        r4, 0x419
-	  addi      r5, r5, 0x5A38
-	  crclr     6, 0x6
-	  bl        -0x38E364
+lbl_803B8978:
+	mr       r4, r29
+	addi     r3, r31, 0xac
+	bl       "create__Q23efx11ToeNagekiraFP10Vector3<f>"
+	cmplwi   r30, 0
+	bne      lbl_803B89A8
+	lis      r3, lbl_80495A28@ha
+	lis      r5, lbl_80495A38@ha
+	addi     r3, r3, lbl_80495A28@l
+	li       r4, 0x419
+	addi     r5, r5, lbl_80495A38@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x74:
-	  lis       r3, 0x8051
-	  lwz       r6, 0x8(r31)
-	  addi      r4, r3, 0x41E4
-	  lis       r3, 0x804B
-	  lfs       f0, 0x0(r4)
-	  subi      r5, r3, 0x5814
-	  lfs       f1, 0x4(r4)
-	  lfs       f2, 0x8(r4)
-	  lis       r3, 0x804B
-	  stfs      f0, 0xC(r1)
-	  addi      r0, r3, 0x2680
-	  addi      r3, r31, 0x34
-	  addi      r4, r1, 0x8
-	  stw       r5, 0x8(r1)
-	  stfs      f1, 0x10(r1)
-	  stfs      f2, 0x14(r1)
-	  stw       r0, 0x8(r1)
-	  sth       r6, 0x18(r1)
-	  stfs      f0, 0xC(r1)
-	  stfs      f1, 0x10(r1)
-	  stfs      f2, 0x14(r1)
-	  stw       r30, 0x44(r31)
-	  lwz       r12, 0x34(r31)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x34(r1)
-	  lwz       r31, 0x2C(r1)
-	  lwz       r30, 0x28(r1)
-	  lwz       r29, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_803B89A8:
+	lis      r3, "zero__10Vector3<f>"@ha
+	lwz      r6, 8(r31)
+	addi     r4, r3, "zero__10Vector3<f>"@l
+	lis      r3, __vt__Q23efx3Arg@ha
+	lfs      f0, 0(r4)
+	addi     r5, r3, __vt__Q23efx3Arg@l
+	lfs      f1, 4(r4)
+	lfs      f2, 8(r4)
+	lis      r3, __vt__Q23efx7ArgType@ha
+	stfs     f0, 0xc(r1)
+	addi     r0, r3, __vt__Q23efx7ArgType@l
+	addi     r3, r31, 0x34
+	addi     r4, r1, 8
+	stw      r5, 8(r1)
+	stfs     f1, 0x10(r1)
+	stfs     f2, 0x14(r1)
+	stw      r0, 8(r1)
+	sth      r6, 0x18(r1)
+	stfs     f0, 0xc(r1)
+	stfs     f1, 0x10(r1)
+	stfs     f2, 0x14(r1)
+	stw      r30, 0x44(r31)
+	lwz      r12, 0x34(r31)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x34(r1)
+	lwz      r31, 0x2c(r1)
+	lwz      r30, 0x28(r1)
+	lwz      r29, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -3348,24 +3504,23 @@ namespace efx {
 void TPkEffect::killNage_(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  addi      r3, r31, 0xAC
-	  bl        0xE8EC
-	  addi      r3, r31, 0x34
-	  lwz       r12, 0x34(r31)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	addi     r3, r31, 0xac
+	bl       kill__Q23efx11ToeNagekiraFv
+	addi     r3, r31, 0x34
+	lwz      r12, 0x34(r31)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -3379,40 +3534,39 @@ void TPkEffect::killNage_(void)
 void createMoe___Q23efx9TPkEffectFP10Vector3f(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  bne-      .loc_0x3C
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  addi      r3, r3, 0x5A28
-	  li        r4, 0x42A
-	  addi      r5, r5, 0x5A38
-	  crclr     6, 0x6
-	  bl        -0x38E468
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r4, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	bne      lbl_803B8AAC
+	lis      r3, lbl_80495A28@ha
+	lis      r5, lbl_80495A38@ha
+	addi     r3, r3, lbl_80495A28@l
+	li       r4, 0x42a
+	addi     r5, r5, lbl_80495A38@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x3C:
-	  mr        r4, r31
-	  addi      r3, r30, 0xC8
-	  bl        0xE8A8
-	  stw       r31, 0x58(r30)
-	  addi      r3, r30, 0x48
-	  li        r4, 0
-	  lwz       r12, 0x48(r30)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803B8AAC:
+	mr       r4, r31
+	addi     r3, r30, 0xc8
+	bl       "create__Q23efx8ToeMoeBCFP10Vector3<f>"
+	stw      r31, 0x58(r30)
+	addi     r3, r30, 0x48
+	li       r4, 0
+	lwz      r12, 0x48(r30)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -3426,24 +3580,23 @@ namespace efx {
 void TPkEffect::killMoe_(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  addi      r3, r31, 0xC8
-	  bl        0xE8D4
-	  addi      r3, r31, 0x48
-	  lwz       r12, 0x48(r31)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	addi     r3, r31, 0xc8
+	bl       kill__Q23efx8ToeMoeBCFv
+	addi     r3, r31, 0x48
+	lwz      r12, 0x48(r31)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -3457,33 +3610,32 @@ void TPkEffect::killMoe_(void)
 void createChudoku___Q23efx9TPkEffectFP10Vector3f(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  bne-      .loc_0x3C
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  addi      r3, r3, 0x5A28
-	  li        r4, 0x43B
-	  addi      r5, r5, 0x5A38
-	  crclr     6, 0x6
-	  bl        -0x38E528
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r4, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	bne      lbl_803B8B6C
+	lis      r3, lbl_80495A28@ha
+	lis      r5, lbl_80495A38@ha
+	addi     r3, r3, lbl_80495A28@l
+	li       r4, 0x43b
+	addi     r5, r5, lbl_80495A38@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x3C:
-	  mr        r4, r31
-	  addi      r3, r30, 0x100
-	  bl        0xE8AC
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803B8B6C:
+	mr       r4, r31
+	addi     r3, r30, 0x100
+	bl       "create__Q23efx10ToeChudokuFP10Vector3<f>"
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -3497,16 +3649,15 @@ namespace efx {
 void TPkEffect::killChudoku_(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  addi      r3, r3, 0x100
-	  stw       r0, 0x14(r1)
-	  bl        0xE8E8
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	addi     r3, r3, 0x100
+	stw      r0, 0x14(r1)
+	bl       kill__Q23efx10ToeChudokuFv
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -3520,33 +3671,32 @@ void TPkEffect::killChudoku_(void)
 void createMoeSmoke___Q23efx9TPkEffectFP10Vector3f(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  bne-      .loc_0x3C
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  addi      r3, r3, 0x5A28
-	  li        r4, 0x449
-	  addi      r5, r5, 0x5A38
-	  crclr     6, 0x6
-	  bl        -0x38E5AC
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r4, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	bne      lbl_803B8BF0
+	lis      r3, lbl_80495A28@ha
+	lis      r5, lbl_80495A38@ha
+	addi     r3, r3, lbl_80495A28@l
+	li       r4, 0x449
+	addi     r5, r5, lbl_80495A38@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x3C:
-	  mr        r4, r31
-	  addi      r3, r30, 0x18C
-	  bl        0xEAC0
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803B8BF0:
+	mr       r4, r31
+	addi     r3, r30, 0x18c
+	bl       "create__Q23efx11ToeMoeSmokeFP10Vector3<f>"
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -3560,16 +3710,15 @@ namespace efx {
 void TPkEffect::killMoeSmoke_(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  addi      r3, r3, 0x18C
-	  stw       r0, 0x14(r1)
-	  bl        0xEAFC
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	addi     r3, r3, 0x18c
+	stw      r0, 0x14(r1)
+	bl       kill__Q23efx11ToeMoeSmokeFv
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -3583,37 +3732,36 @@ void TPkEffect::killMoeSmoke_(void)
 void createBlackDown___Q23efx9TPkEffectFP10Vector3f(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  bne-      .loc_0x3C
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  addi      r3, r3, 0x5A28
-	  li        r4, 0x457
-	  addi      r5, r5, 0x5A38
-	  crclr     6, 0x6
-	  bl        -0x38E630
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r4, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	bne      lbl_803B8C74
+	lis      r3, lbl_80495A28@ha
+	lis      r5, lbl_80495A38@ha
+	addi     r3, r3, lbl_80495A28@l
+	li       r4, 0x457
+	addi     r5, r5, lbl_80495A38@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x3C:
-	  stw       r31, 0x6C(r30)
-	  addi      r3, r30, 0x5C
-	  li        r4, 0
-	  lwz       r12, 0x5C(r30)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803B8C74:
+	stw      r31, 0x6c(r30)
+	addi     r3, r30, 0x5c
+	li       r4, 0
+	lwz      r12, 0x5c(r30)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -3627,18 +3775,17 @@ namespace efx {
 void TPkEffect::killBlackDown_(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwzu      r12, 0x5C(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwzu     r12, 0x5c(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -3652,33 +3799,32 @@ void TPkEffect::killBlackDown_(void)
 void createWater___Q23efx9TPkEffectFP10Vector3f(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  bne-      .loc_0x3C
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  addi      r3, r3, 0x5A28
-	  li        r4, 0x465
-	  addi      r5, r5, 0x5A38
-	  crclr     6, 0x6
-	  bl        -0x38E6CC
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r4, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	bne      lbl_803B8D10
+	lis      r3, lbl_80495A28@ha
+	lis      r5, lbl_80495A38@ha
+	addi     r3, r3, lbl_80495A28@l
+	li       r4, 0x465
+	addi     r5, r5, lbl_80495A38@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x3C:
-	  mr        r4, r31
-	  addi      r3, r30, 0x11C
-	  bl        0xE79C
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803B8D10:
+	mr       r4, r31
+	addi     r3, r30, 0x11c
+	bl       "create__Q23efx8ToeWaterFP10Vector3<f>"
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -3692,16 +3838,15 @@ namespace efx {
 void TPkEffect::killWater_(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  addi      r3, r3, 0x11C
-	  stw       r0, 0x14(r1)
-	  bl        0xE7EC
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	addi     r3, r3, 0x11c
+	stw      r0, 0x14(r1)
+	bl       kill__Q23efx8ToeWaterFv
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -3715,33 +3860,32 @@ void TPkEffect::killWater_(void)
 void createHamonA___Q23efx9TPkEffectFP10Vector3f(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  bne-      .loc_0x3C
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  addi      r3, r3, 0x5A28
-	  li        r4, 0x471
-	  addi      r5, r5, 0x5A38
-	  crclr     6, 0x6
-	  bl        -0x38E750
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r4, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	bne      lbl_803B8D94
+	lis      r3, lbl_80495A28@ha
+	lis      r5, lbl_80495A38@ha
+	addi     r3, r3, lbl_80495A28@l
+	li       r4, 0x471
+	addi     r5, r5, lbl_80495A38@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x3C:
-	  mr        r4, r31
-	  addi      r3, r30, 0x154
-	  bl        0xE7DC
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803B8D94:
+	mr       r4, r31
+	addi     r3, r30, 0x154
+	bl       "create__Q23efx9ToeHamonAFP10Vector3<f>"
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -3755,16 +3899,15 @@ namespace efx {
 void TPkEffect::killHamonA_(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  addi      r3, r3, 0x154
-	  stw       r0, 0x14(r1)
-	  bl        0xE824
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	addi     r3, r3, 0x154
+	stw      r0, 0x14(r1)
+	bl       kill__Q23efx9ToeHamonAFv
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -3778,33 +3921,32 @@ void TPkEffect::killHamonA_(void)
 void createHamonB___Q23efx9TPkEffectFP10Vector3f(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  bne-      .loc_0x3C
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  addi      r3, r3, 0x5A28
-	  li        r4, 0x47C
-	  addi      r5, r5, 0x5A38
-	  crclr     6, 0x6
-	  bl        -0x38E7D4
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r4, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	bne      lbl_803B8E18
+	lis      r3, lbl_80495A28@ha
+	lis      r5, lbl_80495A38@ha
+	addi     r3, r3, lbl_80495A28@l
+	li       r4, 0x47c
+	addi     r5, r5, lbl_80495A38@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x3C:
-	  mr        r4, r31
-	  addi      r3, r30, 0x170
-	  bl        0xE7F8
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803B8E18:
+	mr       r4, r31
+	addi     r3, r30, 0x170
+	bl       "create__Q23efx9ToeHamonBFP10Vector3<f>"
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -3818,16 +3960,15 @@ namespace efx {
 void TPkEffect::killHamonB_(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  addi      r3, r3, 0x170
-	  stw       r0, 0x14(r1)
-	  bl        0xE840
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	addi     r3, r3, 0x170
+	stw      r0, 0x14(r1)
+	bl       kill__Q23efx9ToeHamonBFv
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -3839,15 +3980,14 @@ void TPkEffect::killHamonB_(void)
 void TPkEffectTane::init(void)
 {
 	/*
-	.loc_0x0:
-	  li        r4, -0x1
-	  li        r0, 0
-	  stw       r4, 0x0(r3)
-	  stw       r0, 0x4(r3)
-	  stw       r0, 0xC(r3)
-	  stw       r0, 0x8(r3)
-	  stw       r0, 0x10(r3)
-	  blr
+	li       r4, -1
+	li       r0, 0
+	stw      r4, 0(r3)
+	stw      r0, 4(r3)
+	stw      r0, 0xc(r3)
+	stw      r0, 8(r3)
+	stw      r0, 0x10(r3)
+	blr
 	*/
 }
 
@@ -3861,33 +4001,32 @@ void TPkEffectTane::init(void)
 void createTanekira___Q23efx13TPkEffectTaneFP10Vector3f(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  bne-      .loc_0x3C
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  addi      r3, r3, 0x5A28
-	  li        r4, 0x496
-	  addi      r5, r5, 0x5A38
-	  crclr     6, 0x6
-	  bl        -0x38E878
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r4, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	bne      lbl_803B8EBC
+	lis      r3, lbl_80495A28@ha
+	lis      r5, lbl_80495A38@ha
+	addi     r3, r3, lbl_80495A28@l
+	li       r4, 0x496
+	addi     r5, r5, lbl_80495A38@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x3C:
-	  mr        r4, r31
-	  addi      r3, r30, 0x28
-	  bl        0xE888
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803B8EBC:
+	mr       r4, r31
+	addi     r3, r30, 0x28
+	bl       "create__Q23efx11ToeTanekiraFP10Vector3<f>"
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -3901,16 +4040,15 @@ namespace efx {
 void TPkEffectTane::killTanekira_(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  addi      r3, r3, 0x28
-	  stw       r0, 0x14(r1)
-	  bl        0xE8C4
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	addi     r3, r3, 0x28
+	stw      r0, 0x14(r1)
+	bl       kill__Q23efx11ToeTanekiraFv
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -3924,34 +4062,33 @@ void TPkEffectTane::killTanekira_(void)
 void createKourin___Q23efx13TPkEffectTaneFP10Vector3f(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  bne-      .loc_0x3C
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  addi      r3, r3, 0x5A28
-	  li        r4, 0x4A5
-	  addi      r5, r5, 0x5A38
-	  crclr     6, 0x6
-	  bl        -0x38E8FC
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r4, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	bne      lbl_803B8F40
+	lis      r3, lbl_80495A28@ha
+	lis      r5, lbl_80495A38@ha
+	addi     r3, r3, lbl_80495A28@l
+	li       r4, 0x4a5
+	addi     r5, r5, lbl_80495A38@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x3C:
-	  lwz       r5, 0x0(r30)
-	  mr        r4, r31
-	  addi      r3, r30, 0x44
-	  bl        0xE108
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803B8F40:
+	lwz      r5, 0(r30)
+	mr       r4, r31
+	addi     r3, r30, 0x44
+	bl       "create__Q23efx9ToeKourinFP10Vector3<f>l"
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -3965,16 +4102,15 @@ namespace efx {
 void TPkEffectTane::killKourin_(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  addi      r3, r3, 0x44
-	  stw       r0, 0x14(r1)
-	  bl        0xE204
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	addi     r3, r3, 0x44
+	stw      r0, 0x14(r1)
+	bl       kill__Q23efx9ToeKourinFv
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -3988,37 +4124,36 @@ void TPkEffectTane::killKourin_(void)
 void createGlow1___Q23efx13TPkEffectTaneFP10Vector3f(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  bne-      .loc_0x3C
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  addi      r3, r3, 0x5A28
-	  li        r4, 0x4B2
-	  addi      r5, r5, 0x5A38
-	  crclr     6, 0x6
-	  bl        -0x38E984
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r4, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	bne      lbl_803B8FC8
+	lis      r3, lbl_80495A28@ha
+	lis      r5, lbl_80495A38@ha
+	addi     r3, r3, lbl_80495A28@l
+	li       r4, 0x4b2
+	addi     r5, r5, lbl_80495A38@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x3C:
-	  stw       r31, 0x24(r30)
-	  addi      r3, r30, 0x14
-	  li        r4, 0
-	  lwz       r12, 0x14(r30)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803B8FC8:
+	stw      r31, 0x24(r30)
+	addi     r3, r30, 0x14
+	li       r4, 0
+	lwz      r12, 0x14(r30)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -4049,18 +4184,17 @@ void TFueactCircle::executeAfter(JPABaseEmitter*) { }
 void TCursor::forceKill(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwzu      r12, 0x4(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwzu     r12, 4(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -4142,9 +4276,8 @@ TParticleCallBack_Yodare::~TParticleCallBack_Yodare(void)
 @4 @efx::TPkNageBlur::~TPkNageBlur(void)
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x4
-	  b         -0x2713BC
+	addi     r3, r3, -4
+	b        __dt__Q23efx11TPkNageBlurFv
 	*/
 }
 
@@ -4158,9 +4291,8 @@ TParticleCallBack_Yodare::~TParticleCallBack_Yodare(void)
 void @4 @efx::TFueactCircle::executeAfter(JPABaseEmitter*)
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x4
-	  b         -0x3C
+	addi     r3, r3, -4
+	b        executeAfter__Q23efx13TFueactCircleFP14JPABaseEmitter
 	*/
 }
 
@@ -4172,9 +4304,8 @@ void @4 @efx::TFueactCircle::executeAfter(JPABaseEmitter*)
 void @4 @efx::TFueactCircle::execute(JPABaseEmitter*)
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x4
-	  b         -0x2140
+	addi     r3, r3, -4
+	b        execute__Q23efx13TFueactCircleFP14JPABaseEmitter
 	*/
 }
 
@@ -4186,9 +4317,8 @@ void @4 @efx::TFueactCircle::execute(JPABaseEmitter*)
 @4 @efx::TFueactCircle::~TFueactCircle(void)
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x4
-	  b         -0x2790CC
+	addi     r3, r3, -4
+	b        __dt__Q23efx13TFueactCircleFv
 	*/
 }
 
@@ -4200,9 +4330,8 @@ void @4 @efx::TFueactCircle::execute(JPABaseEmitter*)
 void @8 @efx::TFueactCircle::execute(JPABaseEmitter*, JPABaseParticle*)
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x8
-	  b         -0x202C
+	addi     r3, r3, -8
+	b        execute__Q23efx13TFueactCircleFP14JPABaseEmitterP15JPABaseParticle
 	*/
 }
 
@@ -4214,9 +4343,8 @@ void @8 @efx::TFueactCircle::execute(JPABaseEmitter*, JPABaseParticle*)
 @8 @efx::TFueactCircle::~TFueactCircle(void)
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x8
-	  b         -0x2790DC
+	addi     r3, r3, -8
+	b        __dt__Q23efx13TFueactCircleFv
 	*/
 }
 
@@ -4228,8 +4356,7 @@ void @8 @efx::TFueactCircle::execute(JPABaseEmitter*, JPABaseParticle*)
 @4 @efx::TFueactBiriBase::~TFueactBiriBase(void)
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x4
-	  b         -0x279168
+	addi     r3, r3, -4
+	b        __dt__Q23efx15TFueactBiriBaseFv
 	*/
 }

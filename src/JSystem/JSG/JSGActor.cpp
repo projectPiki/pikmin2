@@ -1,6 +1,56 @@
 #include "types.h"
 
 /*
+    Generated from dpostproc
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__Q26JStage6TActor
+    __vt__Q26JStage6TActor:
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte JSGFGetType__Q26JStage6TActorCFv
+        .4byte JSGGetName__Q26JStage7TObjectCFv
+        .4byte JSGUpdate__Q26JStage7TObjectFv
+        .4byte JSGGetFlag__Q26JStage7TObjectCFv
+        .4byte JSGSetFlag__Q26JStage7TObjectFUl
+        .4byte JSGGetData__Q26JStage7TObjectCFUlPvUl
+        .4byte JSGSetData__Q26JStage7TObjectFUlPCvUl
+        .4byte JSGGetParent__Q26JStage7TObjectCFPPQ26JStage7TObjectPUl
+        .4byte JSGSetParent__Q26JStage7TObjectFPQ26JStage7TObjectUl
+        .4byte JSGSetRelation__Q26JStage7TObjectFbPQ26JStage7TObjectUl
+        .4byte JSGFindNodeID__Q26JStage7TObjectCFPCc
+        .4byte JSGGetNodeTransformation__Q26JStage7TObjectCFUlPA4_f
+        .4byte JSGGetTranslation__Q26JStage6TActorCFP3Vec
+        .4byte JSGSetTranslation__Q26JStage6TActorFRC3Vec
+        .4byte JSGGetScaling__Q26JStage6TActorCFP3Vec
+        .4byte JSGSetScaling__Q26JStage6TActorFRC3Vec
+        .4byte JSGGetRotation__Q26JStage6TActorCFP3Vec
+        .4byte JSGSetRotation__Q26JStage6TActorFRC3Vec
+        .4byte JSGGetShape__Q26JStage6TActorCFv
+        .4byte JSGSetShape__Q26JStage6TActorFUl
+        .4byte JSGGetAnimation__Q26JStage6TActorCFv
+        .4byte JSGSetAnimation__Q26JStage6TActorFUl
+        .4byte JSGGetAnimationFrame__Q26JStage6TActorCFv
+        .4byte JSGSetAnimationFrame__Q26JStage6TActorFf
+        .4byte JSGGetAnimationFrameMax__Q26JStage6TActorCFv
+        .4byte JSGGetAnimationTransition__Q26JStage6TActorCFv
+        .4byte JSGSetAnimationTransition__Q26JStage6TActorFf
+        .4byte JSGGetTextureAnimation__Q26JStage6TActorCFv
+        .4byte JSGSetTextureAnimation__Q26JStage6TActorFUl
+        .4byte JSGGetTextureAnimationFrame__Q26JStage6TActorCFv
+        .4byte JSGSetTextureAnimationFrame__Q26JStage6TActorFf
+        .4byte JSGGetTextureAnimationFrameMax__Q26JStage6TActorCFv
+        .4byte 0
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_80516C80
+    lbl_80516C80:
+        .4byte 0x00000000
+        .4byte 0x00000000
+*/
+
+/*
  * --INFO--
  * Address:	80098990
  * Size:	000060
@@ -8,33 +58,32 @@
 JStage::TActor::~TActor(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x44
-	  lis       r5, 0x804A
-	  li        r4, 0
-	  addi      r0, r5, 0x36C0
-	  stw       r0, 0x0(r30)
-	  bl        -0xEC
-	  extsh.    r0, r31
-	  ble-      .loc_0x44
-	  mr        r3, r30
-	  bl        -0x7491C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_800989D4
+	lis      r5, __vt__Q26JStage6TActor@ha
+	li       r4, 0
+	addi     r0, r5, __vt__Q26JStage6TActor@l
+	stw      r0, 0(r30)
+	bl       __dt__Q26JStage7TObjectFv
+	extsh.   r0, r31
+	ble      lbl_800989D4
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x44:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_800989D4:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -123,9 +172,8 @@ void JStage::TActor::JSGSetAnimation(unsigned long) { }
 void JStage::TActor::JSGGetAnimationFrame() const
 {
 	/*
-	.loc_0x0:
-	  lfs       f1, -0x76E0(r2)
-	  blr
+	lfs      f1, lbl_80516C80@sda21(r2)
+	blr
 	*/
 }
 
@@ -144,9 +192,8 @@ void JStage::TActor::JSGSetAnimationFrame(float) { }
 void JStage::TActor::JSGGetAnimationFrameMax() const
 {
 	/*
-	.loc_0x0:
-	  lfs       f1, -0x76E0(r2)
-	  blr
+	lfs      f1, lbl_80516C80@sda21(r2)
+	blr
 	*/
 }
 
@@ -158,9 +205,8 @@ void JStage::TActor::JSGGetAnimationFrameMax() const
 void JStage::TActor::JSGGetAnimationTransition() const
 {
 	/*
-	.loc_0x0:
-	  lfs       f1, -0x76E0(r2)
-	  blr
+	lfs      f1, lbl_80516C80@sda21(r2)
+	blr
 	*/
 }
 
@@ -193,9 +239,8 @@ void JStage::TActor::JSGSetTextureAnimation(unsigned long) { }
 void JStage::TActor::JSGGetTextureAnimationFrame() const
 {
 	/*
-	.loc_0x0:
-	  lfs       f1, -0x76E0(r2)
-	  blr
+	lfs      f1, lbl_80516C80@sda21(r2)
+	blr
 	*/
 }
 
@@ -214,8 +259,7 @@ void JStage::TActor::JSGSetTextureAnimationFrame(float) { }
 void JStage::TActor::JSGGetTextureAnimationFrameMax() const
 {
 	/*
-	.loc_0x0:
-	  lfs       f1, -0x76E0(r2)
-	  blr
+	lfs      f1, lbl_80516C80@sda21(r2)
+	blr
 	*/
 }

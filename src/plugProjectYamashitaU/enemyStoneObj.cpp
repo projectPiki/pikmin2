@@ -1,5 +1,56 @@
 #include "types.h"
 
+/*
+    Generated from dpostproc
+
+    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
+    .4byte __sinit_enemyStoneObj_cpp
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_8047BF18
+    lbl_8047BF18:
+        .4byte 0x6731425F
+        .4byte 0x626C6163
+        .4byte 0x6B5F646F
+        .4byte 0x70696E67
+        .4byte 0x00000000
+        .4byte 0x00000000
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global lbl_804ADDF8
+    lbl_804ADDF8:
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+    .global __vt__Q34Game10EnemyStone3Obj
+    __vt__Q34Game10EnemyStone3Obj:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q34Game10EnemyStone3ObjFv
+        .4byte getChildCount__5CNodeFv
+        .4byte 0
+
+    .section .sbss # 0x80514D80 - 0x80516360
+    .global lbl_805158B8
+    lbl_805158B8:
+        .skip 0x4
+    .global lbl_805158BC
+    lbl_805158BC:
+        .skip 0x4
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_80518038
+    lbl_80518038:
+        .4byte 0x00000000
+    .global lbl_8051803C
+    lbl_8051803C:
+        .float 1.0
+    .global lbl_80518040
+    lbl_80518040:
+        .4byte 0x43300000
+        .4byte 0x00000000
+*/
+
 namespace Game {
 
 /*
@@ -10,49 +61,48 @@ namespace Game {
 EnemyStone::Obj::Obj(Game::EnemyBase*, Game::EnemyStone::Info*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r5
-	  stw       r30, 0x18(r1)
-	  mr        r30, r4
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  bl        0x2E783C
-	  lis       r3, 0x804B
-	  lis       r4, 0x8041
-	  subi      r0, r3, 0x21FC
-	  li        r6, 0x18
-	  stw       r0, 0x0(r29)
-	  lis       r3, 0x8041
-	  addi      r5, r3, 0x1588
-	  addi      r4, r4, 0x1390
-	  stw       r31, 0x18(r29)
-	  addi      r3, r29, 0x1C
-	  li        r7, 0x2
-	  bl        -0x68348
-	  stw       r30, 0x4C(r29)
-	  li        r0, 0
-	  mr        r3, r29
-	  stb       r0, 0x50(r29)
-	  stb       r0, 0x50(r29)
-	  stw       r0, 0x2C(r29)
-	  stw       r0, 0x28(r29)
-	  stw       r0, 0x24(r29)
-	  stw       r0, 0x20(r29)
-	  stw       r0, 0x44(r29)
-	  stw       r0, 0x40(r29)
-	  stw       r0, 0x3C(r29)
-	  stw       r0, 0x38(r29)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r5
+	stw      r30, 0x18(r1)
+	mr       r30, r4
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	bl       __ct__5CNodeFv
+	lis      r3, __vt__Q34Game10EnemyStone3Obj@ha
+	lis      r4, __ct__5CNodeFv@ha
+	addi     r0, r3, __vt__Q34Game10EnemyStone3Obj@l
+	li       r6, 0x18
+	stw      r0, 0(r29)
+	lis      r3, __dt__5CNodeFv@ha
+	addi     r5, r3, __dt__5CNodeFv@l
+	addi     r4, r4, __ct__5CNodeFv@l
+	stw      r31, 0x18(r29)
+	addi     r3, r29, 0x1c
+	li       r7, 2
+	bl       __construct_array
+	stw      r30, 0x4c(r29)
+	li       r0, 0
+	mr       r3, r29
+	stb      r0, 0x50(r29)
+	stb      r0, 0x50(r29)
+	stw      r0, 0x2c(r29)
+	stw      r0, 0x28(r29)
+	stw      r0, 0x24(r29)
+	stw      r0, 0x20(r29)
+	stw      r0, 0x44(r29)
+	stw      r0, 0x40(r29)
+	stw      r0, 0x3c(r29)
+	stw      r0, 0x38(r29)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -64,80 +114,79 @@ EnemyStone::Obj::Obj(Game::EnemyBase*, Game::EnemyStone::Info*)
 void EnemyStone::Obj::start()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  stw       r0, 0x44(r1)
-	  stfd      f31, 0x30(r1)
-	  psq_st    f31,0x38(r1),0,0
-	  stfd      f30, 0x20(r1)
-	  psq_st    f30,0x28(r1),0,0
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  stw       r28, 0x10(r1)
-	  mr        r28, r3
-	  li        r0, 0
-	  stb       r0, 0x50(r3)
-	  mr        r4, r28
-	  li        r31, 0
-	  lwz       r3, -0x6E20(r13)
-	  addi      r3, r3, 0x58
-	  bl        -0x1E00
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xD0
-	  lbz       r3, 0x50(r28)
-	  lis       r0, 0x4330
-	  stw       r0, 0x8(r1)
-	  mr        r31, r28
-	  ori       r0, r3, 0x20
-	  lfd       f1, -0x6320(r2)
-	  stb       r0, 0x50(r28)
-	  li        r30, 0
-	  lfs       f2, -0x6324(r2)
-	  lwz       r3, 0x18(r28)
-	  lfs       f31, -0x6328(r2)
-	  lbz       r0, 0x0(r3)
-	  stw       r0, 0xC(r1)
-	  lfd       f0, 0x8(r1)
-	  fsubs     f0, f0, f1
-	  fdivs     f30, f2, f0
+	stwu     r1, -0x40(r1)
+	mflr     r0
+	stw      r0, 0x44(r1)
+	stfd     f31, 0x30(r1)
+	psq_st   f31, 56(r1), 0, qr0
+	stfd     f30, 0x20(r1)
+	psq_st   f30, 40(r1), 0, qr0
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	stw      r28, 0x10(r1)
+	mr       r28, r3
+	li       r0, 0
+	stb      r0, 0x50(r3)
+	mr       r4, r28
+	li       r31, 0
+	lwz      r3, generalEnemyMgr__4Game@sda21(r13)
+	addi     r3, r3, 0x58
+	bl       regist__Q34Game10EnemyStone3MgrFPQ34Game10EnemyStone3Obj
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80129CA8
+	lbz      r3, 0x50(r28)
+	lis      r0, 0x4330
+	stw      r0, 8(r1)
+	mr       r31, r28
+	ori      r0, r3, 0x20
+	lfd      f1, lbl_80518040@sda21(r2)
+	stb      r0, 0x50(r28)
+	li       r30, 0
+	lfs      f2, lbl_8051803C@sda21(r2)
+	lwz      r3, 0x18(r28)
+	lfs      f31, lbl_80518038@sda21(r2)
+	lbz      r0, 0(r3)
+	stw      r0, 0xc(r1)
+	lfd      f0, 8(r1)
+	fsubs    f0, f0, f1
+	fdivs    f30, f2, f0
 
-	.loc_0x94:
-	  lwz       r3, 0x2C(r31)
-	  b         .loc_0xB4
+lbl_80129C6C:
+	lwz      r3, 0x2c(r31)
+	b        lbl_80129C8C
 
-	.loc_0x9C:
-	  fmr       f1, f31
-	  lwz       r29, 0x4(r3)
-	  lwz       r4, 0x4C(r28)
-	  bl        -0x4A0
-	  fsubs     f31, f31, f30
-	  mr        r3, r29
+lbl_80129C74:
+	fmr      f1, f31
+	lwz      r29, 4(r3)
+	lwz      r4, 0x4c(r28)
+	bl       appear__Q34Game10EnemyStone8DrawInfoFPQ24Game9EnemyBasef
+	fsubs    f31, f31, f30
+	mr       r3, r29
 
-	.loc_0xB4:
-	  cmplwi    r3, 0
-	  bne+      .loc_0x9C
-	  addi      r30, r30, 0x1
-	  addi      r31, r31, 0x18
-	  cmpwi     r30, 0x2
-	  blt+      .loc_0x94
-	  li        r31, 0x1
+lbl_80129C8C:
+	cmplwi   r3, 0
+	bne      lbl_80129C74
+	addi     r30, r30, 1
+	addi     r31, r31, 0x18
+	cmpwi    r30, 2
+	blt      lbl_80129C6C
+	li       r31, 1
 
-	.loc_0xD0:
-	  mr        r3, r31
-	  psq_l     f31,0x38(r1),0,0
-	  lfd       f31, 0x30(r1)
-	  psq_l     f30,0x28(r1),0,0
-	  lfd       f30, 0x20(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r0, 0x44(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
+lbl_80129CA8:
+	mr       r3, r31
+	psq_l    f31, 56(r1), 0, qr0
+	lfd      f31, 0x30(r1)
+	psq_l    f30, 40(r1), 0, qr0
+	lfd      f30, 0x20(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r0, 0x44(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x40
+	blr
 	*/
 }
 
@@ -149,71 +198,70 @@ void EnemyStone::Obj::start()
 void EnemyStone::Obj::shake()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  stw       r0, 0x44(r1)
-	  stfd      f31, 0x30(r1)
-	  psq_st    f31,0x38(r1),0,0
-	  stfd      f30, 0x20(r1)
-	  psq_st    f30,0x28(r1),0,0
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  stw       r28, 0x10(r1)
-	  mr        r28, r3
-	  lbz       r3, 0x50(r3)
-	  rlwinm.   r0,r3,0,28,28
-	  bne-      .loc_0xB0
-	  ori       r3, r3, 0x8
-	  lis       r0, 0x4330
-	  stb       r3, 0x50(r28)
-	  mr        r31, r28
-	  lfd       f1, -0x6320(r2)
-	  li        r30, 0
-	  lwz       r3, 0x18(r28)
-	  stw       r0, 0x8(r1)
-	  lbz       r0, 0x0(r3)
-	  lfs       f2, -0x6324(r2)
-	  stw       r0, 0xC(r1)
-	  lfs       f31, -0x6328(r2)
-	  lfd       f0, 0x8(r1)
-	  fsubs     f0, f0, f1
-	  fdivs     f30, f2, f0
+	stwu     r1, -0x40(r1)
+	mflr     r0
+	stw      r0, 0x44(r1)
+	stfd     f31, 0x30(r1)
+	psq_st   f31, 56(r1), 0, qr0
+	stfd     f30, 0x20(r1)
+	psq_st   f30, 40(r1), 0, qr0
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	stw      r28, 0x10(r1)
+	mr       r28, r3
+	lbz      r3, 0x50(r3)
+	rlwinm.  r0, r3, 0, 0x1c, 0x1c
+	bne      lbl_80129D8C
+	ori      r3, r3, 8
+	lis      r0, 0x4330
+	stb      r3, 0x50(r28)
+	mr       r31, r28
+	lfd      f1, lbl_80518040@sda21(r2)
+	li       r30, 0
+	lwz      r3, 0x18(r28)
+	stw      r0, 8(r1)
+	lbz      r0, 0(r3)
+	lfs      f2, lbl_8051803C@sda21(r2)
+	stw      r0, 0xc(r1)
+	lfs      f31, lbl_80518038@sda21(r2)
+	lfd      f0, 8(r1)
+	fsubs    f0, f0, f1
+	fdivs    f30, f2, f0
 
-	.loc_0x78:
-	  lwz       r3, 0x2C(r31)
-	  b         .loc_0x98
+lbl_80129D54:
+	lwz      r3, 0x2c(r31)
+	b        lbl_80129D74
 
-	.loc_0x80:
-	  fmr       f1, f31
-	  lwz       r29, 0x4(r3)
-	  lwz       r4, 0x4C(r28)
-	  bl        -0x4F0
-	  fsubs     f31, f31, f30
-	  mr        r3, r29
+lbl_80129D5C:
+	fmr      f1, f31
+	lwz      r29, 4(r3)
+	lwz      r4, 0x4c(r28)
+	bl       shake__Q34Game10EnemyStone8DrawInfoFPQ24Game9EnemyBasef
+	fsubs    f31, f31, f30
+	mr       r3, r29
 
-	.loc_0x98:
-	  cmplwi    r3, 0
-	  bne+      .loc_0x80
-	  addi      r30, r30, 0x1
-	  addi      r31, r31, 0x18
-	  cmpwi     r30, 0x2
-	  blt+      .loc_0x78
+lbl_80129D74:
+	cmplwi   r3, 0
+	bne      lbl_80129D5C
+	addi     r30, r30, 1
+	addi     r31, r31, 0x18
+	cmpwi    r30, 2
+	blt      lbl_80129D54
 
-	.loc_0xB0:
-	  psq_l     f31,0x38(r1),0,0
-	  lfd       f31, 0x30(r1)
-	  psq_l     f30,0x28(r1),0,0
-	  lfd       f30, 0x20(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r0, 0x44(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
+lbl_80129D8C:
+	psq_l    f31, 56(r1), 0, qr0
+	lfd      f31, 0x30(r1)
+	psq_l    f30, 40(r1), 0, qr0
+	lfd      f30, 0x20(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r0, 0x44(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x40
+	blr
 	*/
 }
 
@@ -225,203 +273,200 @@ void EnemyStone::Obj::shake()
 void EnemyStone::Obj::update()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x60(r1)
-	  mflr      r0
-	  stw       r0, 0x64(r1)
-	  stw       r31, 0x5C(r1)
-	  mr        r31, r3
-	  stw       r30, 0x58(r1)
-	  stw       r29, 0x54(r1)
-	  li        r29, 0
-	  stw       r28, 0x50(r1)
-	  mr        r28, r31
+	stwu     r1, -0x60(r1)
+	mflr     r0
+	stw      r0, 0x64(r1)
+	stw      r31, 0x5c(r1)
+	mr       r31, r3
+	stw      r30, 0x58(r1)
+	stw      r29, 0x54(r1)
+	li       r29, 0
+	stw      r28, 0x50(r1)
+	mr       r28, r31
 
-	.loc_0x28:
-	  lwz       r3, 0x2C(r28)
-	  b         .loc_0x40
+lbl_80129DE4:
+	lwz      r3, 0x2c(r28)
+	b        lbl_80129DFC
 
-	.loc_0x30:
-	  lwz       r30, 0x4(r3)
-	  lwz       r4, 0x4C(r31)
-	  bl        -0x820
-	  mr        r3, r30
+lbl_80129DEC:
+	lwz      r30, 4(r3)
+	lwz      r4, 0x4c(r31)
+	bl       update__Q34Game10EnemyStone8DrawInfoFPQ24Game9EnemyBase
+	mr       r3, r30
 
-	.loc_0x40:
-	  cmplwi    r3, 0
-	  bne+      .loc_0x30
-	  addi      r29, r29, 0x1
-	  addi      r28, r28, 0x18
-	  cmpwi     r29, 0x2
-	  blt+      .loc_0x28
-	  lbz       r3, 0x50(r31)
-	  rlwinm.   r0,r3,0,30,30
-	  bne-      .loc_0xE0
-	  lwz       r3, 0x4C(r31)
-	  li        r4, 0x50B0
-	  li        r5, 0
-	  lwz       r3, 0x28C(r3)
-	  lwz       r12, 0x28(r3)
-	  lwz       r12, 0x88(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r3, r31
-	  li        r4, 0x2
-	  bl        .loc_0x2A8
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x288
-	  lbz       r0, 0x50(r31)
-	  mr        r28, r31
-	  li        r30, 0
-	  ori       r0, r0, 0x2
-	  stb       r0, 0x50(r31)
+lbl_80129DFC:
+	cmplwi   r3, 0
+	bne      lbl_80129DEC
+	addi     r29, r29, 1
+	addi     r28, r28, 0x18
+	cmpwi    r29, 2
+	blt      lbl_80129DE4
+	lbz      r3, 0x50(r31)
+	rlwinm.  r0, r3, 0, 0x1e, 0x1e
+	bne      lbl_80129E9C
+	lwz      r3, 0x4c(r31)
+	li       r4, 0x50b0
+	li       r5, 0
+	lwz      r3, 0x28c(r3)
+	lwz      r12, 0x28(r3)
+	lwz      r12, 0x88(r12)
+	mtctr    r12
+	bctrl
+	mr       r3, r31
+	li       r4, 2
+	bl       checkDrawInfoState__Q34Game10EnemyStone3ObjFi
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_8012A044
+	lbz      r0, 0x50(r31)
+	mr       r28, r31
+	li       r30, 0
+	ori      r0, r0, 2
+	stb      r0, 0x50(r31)
 
-	.loc_0xAC:
-	  lwz       r3, 0x2C(r28)
-	  b         .loc_0xC4
+lbl_80129E68:
+	lwz      r3, 0x2c(r28)
+	b        lbl_80129E80
 
-	.loc_0xB4:
-	  lwz       r29, 0x4(r3)
-	  lwz       r4, 0x4C(r31)
-	  bl        -0x64C
-	  mr        r3, r29
+lbl_80129E70:
+	lwz      r29, 4(r3)
+	lwz      r4, 0x4c(r31)
+	bl       fit__Q34Game10EnemyStone8DrawInfoFPQ24Game9EnemyBase
+	mr       r3, r29
 
-	.loc_0xC4:
-	  cmplwi    r3, 0
-	  bne+      .loc_0xB4
-	  addi      r30, r30, 0x1
-	  addi      r28, r28, 0x18
-	  cmpwi     r30, 0x2
-	  blt+      .loc_0xAC
-	  b         .loc_0x288
+lbl_80129E80:
+	cmplwi   r3, 0
+	bne      lbl_80129E70
+	addi     r30, r30, 1
+	addi     r28, r28, 0x18
+	cmpwi    r30, 2
+	blt      lbl_80129E68
+	b        lbl_8012A044
 
-	.loc_0xE0:
-	  rlwinm.   r0,r3,0,29,29
-	  bne-      .loc_0x1F8
-	  mr        r3, r31
-	  li        r4, 0x4
-	  bl        .loc_0x2A8
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x288
-	  lbz       r0, 0x50(r31)
-	  ori       r0, r0, 0x4
-	  stb       r0, 0x50(r31)
-	  lwz       r3, -0x6C18(r13)
-	  lwz       r0, 0x44(r3)
-	  cmpwi     r0, 0
-	  bne-      .loc_0x288
-	  lbz       r0, 0x3C(r3)
-	  rlwinm.   r0,r0,0,26,26
-	  beq-      .loc_0x288
-	  lwz       r3, -0x6B70(r13)
-	  li        r4, 0xB
-	  bl        0xBD4F8
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x288
-	  lwz       r0, -0x64AC(r13)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x288
-	  lfs       f0, -0x6328(r2)
-	  lis       r4, 0x8048
-	  li        r0, 0
-	  addi      r3, r1, 0x8
-	  subi      r4, r4, 0x40E8
-	  stw       r0, 0x18(r1)
-	  stw       r4, 0x14(r1)
-	  stw       r0, 0x20(r1)
-	  stfs      f0, 0x2C(r1)
-	  stfs      f0, 0x30(r1)
-	  stfs      f0, 0x34(r1)
-	  stfs      f0, 0x38(r1)
-	  stw       r0, 0x3C(r1)
-	  stw       r0, 0x24(r1)
-	  stw       r0, 0x1C(r1)
-	  stw       r0, 0x40(r1)
-	  stw       r0, 0x28(r1)
-	  stw       r0, 0x44(r1)
-	  lwz       r4, 0x4C(r31)
-	  lwz       r12, 0x0(r4)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f2, 0x8(r1)
-	  lfs       f1, 0xC(r1)
-	  lfs       f0, 0x10(r1)
-	  stfs      f2, 0x2C(r1)
-	  stfs      f1, 0x30(r1)
-	  stfs      f0, 0x34(r1)
-	  lwz       r3, 0x4C(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x64(r12)
-	  mtctr     r12
-	  bctrl
-	  stfs      f1, 0x38(r1)
-	  addi      r4, r1, 0x14
-	  lwz       r3, -0x64AC(r13)
-	  lwz       r0, 0x4C(r31)
-	  stw       r0, 0x194(r3)
-	  lwz       r3, -0x64AC(r13)
-	  bl        0x302A30
-	  lwz       r3, -0x6B70(r13)
-	  li        r4, 0xB
-	  bl        0xBD3F8
-	  b         .loc_0x288
+lbl_80129E9C:
+	rlwinm.  r0, r3, 0, 0x1d, 0x1d
+	bne      lbl_80129FB4
+	mr       r3, r31
+	li       r4, 4
+	bl       checkDrawInfoState__Q34Game10EnemyStone3ObjFi
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_8012A044
+	lbz      r0, 0x50(r31)
+	ori      r0, r0, 4
+	stb      r0, 0x50(r31)
+	lwz      r3, gameSystem__4Game@sda21(r13)
+	lwz      r0, 0x44(r3)
+	cmpwi    r0, 0
+	bne      lbl_8012A044
+	lbz      r0, 0x3c(r3)
+	rlwinm.  r0, r0, 0, 0x1a, 0x1a
+	beq      lbl_8012A044
+	lwz      r3, playData__4Game@sda21(r13)
+	li       r4, 0xb
+	bl       isDemoFlag__Q24Game8PlayDataFi
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_8012A044
+	lwz      r0, moviePlayer__4Game@sda21(r13)
+	cmplwi   r0, 0
+	beq      lbl_8012A044
+	lfs      f0, lbl_80518038@sda21(r2)
+	lis      r4, lbl_8047BF18@ha
+	li       r0, 0
+	addi     r3, r1, 8
+	addi     r4, r4, lbl_8047BF18@l
+	stw      r0, 0x18(r1)
+	stw      r4, 0x14(r1)
+	stw      r0, 0x20(r1)
+	stfs     f0, 0x2c(r1)
+	stfs     f0, 0x30(r1)
+	stfs     f0, 0x34(r1)
+	stfs     f0, 0x38(r1)
+	stw      r0, 0x3c(r1)
+	stw      r0, 0x24(r1)
+	stw      r0, 0x1c(r1)
+	stw      r0, 0x40(r1)
+	stw      r0, 0x28(r1)
+	stw      r0, 0x44(r1)
+	lwz      r4, 0x4c(r31)
+	lwz      r12, 0(r4)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f2, 8(r1)
+	lfs      f1, 0xc(r1)
+	lfs      f0, 0x10(r1)
+	stfs     f2, 0x2c(r1)
+	stfs     f1, 0x30(r1)
+	stfs     f0, 0x34(r1)
+	lwz      r3, 0x4c(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x64(r12)
+	mtctr    r12
+	bctrl
+	stfs     f1, 0x38(r1)
+	addi     r4, r1, 0x14
+	lwz      r3, moviePlayer__4Game@sda21(r13)
+	lwz      r0, 0x4c(r31)
+	stw      r0, 0x194(r3)
+	lwz      r3, moviePlayer__4Game@sda21(r13)
+	bl       play__Q24Game11MoviePlayerFRQ24Game12MoviePlayArg
+	lwz      r3, playData__4Game@sda21(r13)
+	li       r4, 0xb
+	bl       setDemoFlag__Q24Game8PlayDataFi
+	b        lbl_8012A044
 
-	.loc_0x1F8:
-	  rlwinm.   r0,r3,0,28,28
-	  beq-      .loc_0x288
-	  mr        r3, r31
-	  li        r4, 0x6
-	  bl        .loc_0x2A8
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x288
-	  li        r30, 0
-	  mr        r28, r31
+lbl_80129FB4:
+	rlwinm.  r0, r3, 0, 0x1c, 0x1c
+	beq      lbl_8012A044
+	mr       r3, r31
+	li       r4, 6
+	bl       checkDrawInfoState__Q34Game10EnemyStone3ObjFi
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_8012A044
+	li       r30, 0
+	mr       r28, r31
 
-	.loc_0x21C:
-	  lwz       r3, 0x2C(r28)
-	  b         .loc_0x234
+lbl_80129FD8:
+	lwz      r3, 0x2c(r28)
+	b        lbl_80129FF0
 
-	.loc_0x224:
-	  lwz       r29, 0x4(r3)
-	  lwz       r4, 0x4C(r31)
-	  bl        -0x724
-	  mr        r3, r29
+lbl_80129FE0:
+	lwz      r29, 4(r3)
+	lwz      r4, 0x4c(r31)
+	bl       disappear__Q34Game10EnemyStone8DrawInfoFPQ24Game9EnemyBase
+	mr       r3, r29
 
-	.loc_0x234:
-	  cmplwi    r3, 0
-	  bne+      .loc_0x224
-	  addi      r30, r30, 0x1
-	  addi      r28, r28, 0x18
-	  cmpwi     r30, 0x2
-	  blt+      .loc_0x21C
-	  lwz       r3, 0x4C(r31)
-	  li        r4, 0x58B3
-	  li        r5, 0
-	  lwz       r3, 0x28C(r3)
-	  lwz       r12, 0x28(r3)
-	  lwz       r12, 0x88(r12)
-	  mtctr     r12
-	  bctrl
-	  lbz       r0, 0x50(r31)
-	  mr        r4, r31
-	  ori       r0, r0, 0x10
-	  stb       r0, 0x50(r31)
-	  lwz       r3, -0x6E20(r13)
-	  addi      r3, r3, 0x58
-	  bl        -0x2128
+lbl_80129FF0:
+	cmplwi   r3, 0
+	bne      lbl_80129FE0
+	addi     r30, r30, 1
+	addi     r28, r28, 0x18
+	cmpwi    r30, 2
+	blt      lbl_80129FD8
+	lwz      r3, 0x4c(r31)
+	li       r4, 0x58b3
+	li       r5, 0
+	lwz      r3, 0x28c(r3)
+	lwz      r12, 0x28(r3)
+	lwz      r12, 0x88(r12)
+	mtctr    r12
+	bctrl
+	lbz      r0, 0x50(r31)
+	mr       r4, r31
+	ori      r0, r0, 0x10
+	stb      r0, 0x50(r31)
+	lwz      r3, generalEnemyMgr__4Game@sda21(r13)
+	addi     r3, r3, 0x58
+	bl       release__Q34Game10EnemyStone3MgrFPQ34Game10EnemyStone3Obj
 
-	.loc_0x288:
-	  lwz       r0, 0x64(r1)
-	  lwz       r31, 0x5C(r1)
-	  lwz       r30, 0x58(r1)
-	  lwz       r29, 0x54(r1)
-	  lwz       r28, 0x50(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x60
-	  blr
-
-	.loc_0x2A8:
+lbl_8012A044:
+	lwz      r0, 0x64(r1)
+	lwz      r31, 0x5c(r1)
+	lwz      r30, 0x58(r1)
+	lwz      r29, 0x54(r1)
+	lwz      r28, 0x50(r1)
+	mtlr     r0
+	addi     r1, r1, 0x60
+	blr
 	*/
 }
 
@@ -433,51 +478,50 @@ void EnemyStone::Obj::update()
 void EnemyStone::Obj::checkDrawInfoState(int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r3
-	  stw       r30, 0x18(r1)
-	  li        r30, 0
-	  stw       r29, 0x14(r1)
-	  stw       r28, 0x10(r1)
-	  mr        r28, r4
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r3
+	stw      r30, 0x18(r1)
+	li       r30, 0
+	stw      r29, 0x14(r1)
+	stw      r28, 0x10(r1)
+	mr       r28, r4
 
-	.loc_0x28:
-	  lwz       r3, 0x2C(r31)
-	  b         .loc_0x4C
+lbl_8012A08C:
+	lwz      r3, 0x2c(r31)
+	b        lbl_8012A0B0
 
-	.loc_0x30:
-	  lwz       r29, 0x4(r3)
-	  bl        -0x9D8
-	  cmpw      r28, r3
-	  beq-      .loc_0x48
-	  li        r3, 0
-	  b         .loc_0x68
+lbl_8012A094:
+	lwz      r29, 4(r3)
+	bl       getStateID__Q34Game10EnemyStone8DrawInfoFv
+	cmpw     r28, r3
+	beq      lbl_8012A0AC
+	li       r3, 0
+	b        lbl_8012A0CC
 
-	.loc_0x48:
-	  mr        r3, r29
+lbl_8012A0AC:
+	mr       r3, r29
 
-	.loc_0x4C:
-	  cmplwi    r3, 0
-	  bne+      .loc_0x30
-	  addi      r30, r30, 0x1
-	  addi      r31, r31, 0x18
-	  cmpwi     r30, 0x2
-	  blt+      .loc_0x28
-	  li        r3, 0x1
+lbl_8012A0B0:
+	cmplwi   r3, 0
+	bne      lbl_8012A094
+	addi     r30, r30, 1
+	addi     r31, r31, 0x18
+	cmpwi    r30, 2
+	blt      lbl_8012A08C
+	li       r3, 1
 
-	.loc_0x68:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8012A0CC:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -489,58 +533,57 @@ void EnemyStone::Obj::checkDrawInfoState(int)
 void EnemyStone::Obj::dead()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  li        r30, 0
-	  stw       r29, 0x14(r1)
-	  stw       r28, 0x10(r1)
-	  mr        r28, r3
-	  mr        r31, r28
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	li       r30, 0
+	stw      r29, 0x14(r1)
+	stw      r28, 0x10(r1)
+	mr       r28, r3
+	mr       r31, r28
 
-	.loc_0x28:
-	  lwz       r3, 0x2C(r31)
-	  b         .loc_0x40
+lbl_8012A114:
+	lwz      r3, 0x2c(r31)
+	b        lbl_8012A12C
 
-	.loc_0x30:
-	  lwz       r29, 0x4(r3)
-	  lwz       r4, 0x4C(r28)
-	  bl        -0x814
-	  mr        r3, r29
+lbl_8012A11C:
+	lwz      r29, 4(r3)
+	lwz      r4, 0x4c(r28)
+	bl       dead__Q34Game10EnemyStone8DrawInfoFPQ24Game9EnemyBase
+	mr       r3, r29
 
-	.loc_0x40:
-	  cmplwi    r3, 0
-	  bne+      .loc_0x30
-	  addi      r30, r30, 0x1
-	  addi      r31, r31, 0x18
-	  cmpwi     r30, 0x2
-	  blt+      .loc_0x28
-	  lwz       r3, 0x4C(r28)
-	  li        r4, 0x58B3
-	  li        r5, 0
-	  lwz       r3, 0x28C(r3)
-	  lwz       r12, 0x28(r3)
-	  lwz       r12, 0x88(r12)
-	  mtctr     r12
-	  bctrl
-	  lbz       r0, 0x50(r28)
-	  mr        r4, r28
-	  ori       r0, r0, 0x10
-	  stb       r0, 0x50(r28)
-	  lwz       r3, -0x6E20(r13)
-	  addi      r3, r3, 0x58
-	  bl        -0x2264
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8012A12C:
+	cmplwi   r3, 0
+	bne      lbl_8012A11C
+	addi     r30, r30, 1
+	addi     r31, r31, 0x18
+	cmpwi    r30, 2
+	blt      lbl_8012A114
+	lwz      r3, 0x4c(r28)
+	li       r4, 0x58b3
+	li       r5, 0
+	lwz      r3, 0x28c(r3)
+	lwz      r12, 0x28(r3)
+	lwz      r12, 0x88(r12)
+	mtctr    r12
+	bctrl
+	lbz      r0, 0x50(r28)
+	mr       r4, r28
+	ori      r0, r0, 0x10
+	stb      r0, 0x50(r28)
+	lwz      r3, generalEnemyMgr__4Game@sda21(r13)
+	addi     r3, r3, 0x58
+	bl       release__Q34Game10EnemyStone3MgrFPQ34Game10EnemyStone3Obj
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -552,40 +595,39 @@ void EnemyStone::Obj::dead()
 EnemyStone::Obj::~Obj()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x60
-	  lis       r3, 0x804B
-	  lis       r4, 0x8041
-	  subi      r0, r3, 0x21FC
-	  li        r5, 0x18
-	  stw       r0, 0x0(r30)
-	  addi      r3, r30, 0x1C
-	  addi      r4, r4, 0x1588
-	  li        r6, 0x2
-	  bl        -0x68A1C
-	  mr        r3, r30
-	  li        r4, 0
-	  bl        0x2E739C
-	  extsh.    r0, r31
-	  ble-      .loc_0x60
-	  mr        r3, r30
-	  bl        -0x106148
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_8012A200
+	lis      r3, __vt__Q34Game10EnemyStone3Obj@ha
+	lis      r4, __dt__5CNodeFv@ha
+	addi     r0, r3, __vt__Q34Game10EnemyStone3Obj@l
+	li       r5, 0x18
+	stw      r0, 0(r30)
+	addi     r3, r30, 0x1c
+	addi     r4, r4, __dt__5CNodeFv@l
+	li       r6, 2
+	bl       __destroy_arr
+	mr       r3, r30
+	li       r4, 0
+	bl       __dt__5CNodeFv
+	extsh.   r0, r31
+	ble      lbl_8012A200
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x60:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8012A200:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -599,16 +641,15 @@ EnemyStone::Obj::~Obj()
 void __sinit_enemyStoneObj_cpp(void)
 {
 	/*
-	.loc_0x0:
-	  lis       r4, 0x8051
-	  li        r0, -0x1
-	  lfs       f0, 0x48B0(r4)
-	  lis       r3, 0x804B
-	  stw       r0, -0x6DC8(r13)
-	  stfsu     f0, -0x2208(r3)
-	  stfs      f0, -0x6DC4(r13)
-	  stfs      f0, 0x4(r3)
-	  stfs      f0, 0x8(r3)
-	  blr
+	lis      r4, __float_nan@ha
+	li       r0, -1
+	lfs      f0, __float_nan@l(r4)
+	lis      r3, lbl_804ADDF8@ha
+	stw      r0, lbl_805158B8@sda21(r13)
+	stfsu    f0, lbl_804ADDF8@l(r3)
+	stfs     f0, lbl_805158BC@sda21(r13)
+	stfs     f0, 4(r3)
+	stfs     f0, 8(r3)
+	blr
 	*/
 }

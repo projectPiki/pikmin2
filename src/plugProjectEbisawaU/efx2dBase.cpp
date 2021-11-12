@@ -1,6 +1,112 @@
 #include "types.h"
 
 /*
+    Generated from dpostproc
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_80495B48
+    lbl_80495B48:
+        .4byte 0x65667832
+        .4byte 0x64426173
+        .4byte 0x652E6370
+        .4byte 0x70000000
+    .global lbl_80495B58
+    lbl_80495B58:
+        .asciz "P2Assert"
+        .skip 3
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__Q25efx2d12TChasePosDir
+    __vt__Q25efx2d12TChasePosDir:
+        .4byte 0
+        .4byte 0
+        .4byte create__Q25efx2d12TChasePosDirFPQ25efx2d3Arg
+        .4byte kill__Q25efx2d8TForeverFv
+        .4byte fade__Q25efx2d8TForeverFv
+        .4byte setGroup__Q25efx2d5TBaseFUc
+        .4byte 0
+        .4byte 0
+        .4byte "@8@__dt__Q25efx2d12TChasePosDirFv"
+        .4byte "@8@execute__Q25efx2d12TChasePosDirFP14JPABaseEmitter"
+        .4byte executeAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
+        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+        .4byte __dt__Q25efx2d12TChasePosDirFv
+        .4byte execute__Q25efx2d12TChasePosDirFP14JPABaseEmitter
+    .global __vt__Q25efx2d9TChasePos
+    __vt__Q25efx2d9TChasePos:
+        .4byte 0
+        .4byte 0
+        .4byte create__Q25efx2d9TChasePosFPQ25efx2d3Arg
+        .4byte kill__Q25efx2d8TForeverFv
+        .4byte fade__Q25efx2d8TForeverFv
+        .4byte setGroup__Q25efx2d5TBaseFUc
+        .4byte 0
+        .4byte 0
+        .4byte "@8@__dt__Q25efx2d9TChasePosFv"
+        .4byte "@8@execute__Q25efx2d9TChasePosFP14JPABaseEmitter"
+        .4byte executeAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
+        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+        .4byte __dt__Q25efx2d9TChasePosFv
+        .4byte execute__Q25efx2d9TChasePosFP14JPABaseEmitter
+    .global __vt__Q25efx2d9TForeverN
+    __vt__Q25efx2d9TForeverN:
+        .4byte 0
+        .4byte 0
+        .4byte create__Q25efx2d9TForeverNFPQ25efx2d3Arg
+        .4byte kill__Q25efx2d9TForeverNFv
+        .4byte fade__Q25efx2d9TForeverNFv
+        .4byte setGroup__Q25efx2d9TForeverNFUc
+    .global __vt__Q25efx2d8TForever
+    __vt__Q25efx2d8TForever:
+        .4byte 0
+        .4byte 0
+        .4byte create__Q25efx2d8TForeverFPQ25efx2d3Arg
+        .4byte kill__Q25efx2d8TForeverFv
+        .4byte fade__Q25efx2d8TForeverFv
+        .4byte setGroup__Q25efx2d5TBaseFUc
+        .4byte 0
+        .4byte 0
+        .4byte "@8@__dt__Q25efx2d8TForeverFv"
+        .4byte execute__18JPAEmitterCallBackFP14JPABaseEmitter
+        .4byte executeAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
+        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+        .4byte __dt__Q25efx2d8TForeverFv
+    .global __vt__Q25efx2d8TSimple3
+    __vt__Q25efx2d8TSimple3:
+        .4byte 0
+        .4byte 0
+        .4byte create__Q25efx2d8TSimple3FPQ25efx2d3Arg
+        .4byte kill__Q25efx2d8TSimple3Fv
+        .4byte fade__Q25efx2d8TSimple3Fv
+        .4byte setGroup__Q25efx2d5TBaseFUc
+    .global __vt__Q25efx2d8TSimple2
+    __vt__Q25efx2d8TSimple2:
+        .4byte 0
+        .4byte 0
+        .4byte create__Q25efx2d8TSimple2FPQ25efx2d3Arg
+        .4byte kill__Q25efx2d8TSimple2Fv
+        .4byte fade__Q25efx2d8TSimple2Fv
+        .4byte setGroup__Q25efx2d5TBaseFUc
+    .global __vt__Q25efx2d8TSimple1
+    __vt__Q25efx2d8TSimple1:
+        .4byte 0
+        .4byte 0
+        .4byte create__Q25efx2d8TSimple1FPQ25efx2d3Arg
+        .4byte kill__Q25efx2d8TSimple1Fv
+        .4byte fade__Q25efx2d8TSimple1Fv
+        .4byte setGroup__Q25efx2d5TBaseFUc
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_8051F6D8
+    lbl_8051F6D8:
+        .4byte 0x00000000
+        .4byte 0x00000000
+*/
+
+/*
  * --INFO--
  * Address:	803B9830
  * Size:	000098
@@ -8,51 +114,50 @@
 void efx2d::TSimple1::create(efx2d::Arg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr.       r31, r4
-	  stw       r30, 0x18(r1)
-	  mr        r30, r3
-	  bne-      .loc_0x3C
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  addi      r3, r3, 0x5B48
-	  li        r4, 0xA
-	  addi      r5, r5, 0x5B58
-	  crclr     6, 0x6
-	  bl        -0x38F228
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	or.      r31, r4, r4
+	stw      r30, 0x18(r1)
+	mr       r30, r3
+	bne      lbl_803B986C
+	lis      r3, lbl_80495B48@ha
+	lis      r5, lbl_80495B58@ha
+	addi     r3, r3, lbl_80495B48@l
+	li       r4, 0xa
+	addi     r5, r5, lbl_80495B58@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x3C:
-	  lfs       f0, 0x0(r31)
-	  addi      r5, r1, 0x8
-	  lwz       r3, -0x65F8(r13)
-	  stfs      f0, 0x8(r1)
-	  lfs       f0, 0x4(r31)
-	  stfs      f0, 0xC(r1)
-	  lhz       r4, 0x8(r30)
-	  lbz       r6, 0x5(r30)
-	  lbz       r7, 0x4(r30)
-	  bl        -0x174
-	  stw       r3, 0xC(r30)
-	  lwz       r0, 0xC(r30)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x7C
-	  li        r3, 0
-	  b         .loc_0x80
+lbl_803B986C:
+	lfs      f0, 0(r31)
+	addi     r5, r1, 8
+	lwz      r3, particle2dMgr@sda21(r13)
+	stfs     f0, 8(r1)
+	lfs      f0, 4(r31)
+	stfs     f0, 0xc(r1)
+	lhz      r4, 8(r30)
+	lbz      r6, 5(r30)
+	lbz      r7, 4(r30)
+	bl       "create__14TParticle2dMgrFUsR10Vector2<f>UcUc"
+	stw      r3, 0xc(r30)
+	lwz      r0, 0xc(r30)
+	cmplwi   r0, 0
+	bne      lbl_803B98AC
+	li       r3, 0
+	b        lbl_803B98B0
 
-	.loc_0x7C:
-	  li        r3, 0x1
+lbl_803B98AC:
+	li       r3, 1
 
-	.loc_0x80:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_803B98B0:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -64,59 +169,58 @@ void efx2d::TSimple1::create(efx2d::Arg*)
 void efx2d::TSimple2::create(efx2d::Arg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stmw      r27, 0x1C(r1)
-	  mr.       r28, r4
-	  mr        r27, r3
-	  bne-      .loc_0x38
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  addi      r3, r3, 0x5B48
-	  li        r4, 0x19
-	  addi      r5, r5, 0x5B58
-	  crclr     6, 0x6
-	  bl        -0x38F2BC
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stmw     r27, 0x1c(r1)
+	or.      r28, r4, r4
+	mr       r27, r3
+	bne      lbl_803B9900
+	lis      r3, lbl_80495B48@ha
+	lis      r5, lbl_80495B58@ha
+	addi     r3, r3, lbl_80495B48@l
+	li       r4, 0x19
+	addi     r5, r5, lbl_80495B58@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x38:
-	  lfs       f0, 0x0(r28)
-	  mr        r31, r27
-	  mr        r30, r27
-	  li        r29, 0
-	  stfs      f0, 0x8(r1)
-	  lfs       f0, 0x4(r28)
-	  stfs      f0, 0xC(r1)
+lbl_803B9900:
+	lfs      f0, 0(r28)
+	mr       r31, r27
+	mr       r30, r27
+	li       r29, 0
+	stfs     f0, 8(r1)
+	lfs      f0, 4(r28)
+	stfs     f0, 0xc(r1)
 
-	.loc_0x54:
-	  lwz       r3, -0x65F8(r13)
-	  addi      r5, r1, 0x8
-	  lhz       r4, 0x8(r31)
-	  lbz       r6, 0x5(r27)
-	  lbz       r7, 0x4(r27)
-	  bl        -0x214
-	  stw       r3, 0xC(r30)
-	  lwz       r0, 0xC(r30)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x84
-	  li        r3, 0
-	  b         .loc_0x9C
+lbl_803B991C:
+	lwz      r3, particle2dMgr@sda21(r13)
+	addi     r5, r1, 8
+	lhz      r4, 8(r31)
+	lbz      r6, 5(r27)
+	lbz      r7, 4(r27)
+	bl       "create__14TParticle2dMgrFUsR10Vector2<f>UcUc"
+	stw      r3, 0xc(r30)
+	lwz      r0, 0xc(r30)
+	cmplwi   r0, 0
+	bne      lbl_803B994C
+	li       r3, 0
+	b        lbl_803B9964
 
-	.loc_0x84:
-	  addi      r29, r29, 0x1
-	  addi      r30, r30, 0x4
-	  cmpwi     r29, 0x2
-	  addi      r31, r31, 0x2
-	  blt+      .loc_0x54
-	  li        r3, 0x1
+lbl_803B994C:
+	addi     r29, r29, 1
+	addi     r30, r30, 4
+	cmpwi    r29, 2
+	addi     r31, r31, 2
+	blt      lbl_803B991C
+	li       r3, 1
 
-	.loc_0x9C:
-	  lmw       r27, 0x1C(r1)
-	  lwz       r0, 0x34(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_803B9964:
+	lmw      r27, 0x1c(r1)
+	lwz      r0, 0x34(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -128,59 +232,58 @@ void efx2d::TSimple2::create(efx2d::Arg*)
 void efx2d::TSimple3::create(efx2d::Arg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stmw      r27, 0x1C(r1)
-	  mr.       r28, r4
-	  mr        r27, r3
-	  bne-      .loc_0x38
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  addi      r3, r3, 0x5B48
-	  li        r4, 0x28
-	  addi      r5, r5, 0x5B58
-	  crclr     6, 0x6
-	  bl        -0x38F36C
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stmw     r27, 0x1c(r1)
+	or.      r28, r4, r4
+	mr       r27, r3
+	bne      lbl_803B99B0
+	lis      r3, lbl_80495B48@ha
+	lis      r5, lbl_80495B58@ha
+	addi     r3, r3, lbl_80495B48@l
+	li       r4, 0x28
+	addi     r5, r5, lbl_80495B58@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x38:
-	  lfs       f0, 0x0(r28)
-	  mr        r31, r27
-	  mr        r30, r27
-	  li        r29, 0
-	  stfs      f0, 0x8(r1)
-	  lfs       f0, 0x4(r28)
-	  stfs      f0, 0xC(r1)
+lbl_803B99B0:
+	lfs      f0, 0(r28)
+	mr       r31, r27
+	mr       r30, r27
+	li       r29, 0
+	stfs     f0, 8(r1)
+	lfs      f0, 4(r28)
+	stfs     f0, 0xc(r1)
 
-	.loc_0x54:
-	  lwz       r3, -0x65F8(r13)
-	  addi      r5, r1, 0x8
-	  lhz       r4, 0x8(r31)
-	  lbz       r6, 0x5(r27)
-	  lbz       r7, 0x4(r27)
-	  bl        -0x2C4
-	  stw       r3, 0x10(r30)
-	  lwz       r0, 0x10(r30)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x84
-	  li        r3, 0
-	  b         .loc_0x9C
+lbl_803B99CC:
+	lwz      r3, particle2dMgr@sda21(r13)
+	addi     r5, r1, 8
+	lhz      r4, 8(r31)
+	lbz      r6, 5(r27)
+	lbz      r7, 4(r27)
+	bl       "create__14TParticle2dMgrFUsR10Vector2<f>UcUc"
+	stw      r3, 0x10(r30)
+	lwz      r0, 0x10(r30)
+	cmplwi   r0, 0
+	bne      lbl_803B99FC
+	li       r3, 0
+	b        lbl_803B9A14
 
-	.loc_0x84:
-	  addi      r29, r29, 0x1
-	  addi      r30, r30, 0x4
-	  cmpwi     r29, 0x3
-	  addi      r31, r31, 0x2
-	  blt+      .loc_0x54
-	  li        r3, 0x1
+lbl_803B99FC:
+	addi     r29, r29, 1
+	addi     r30, r30, 4
+	cmpwi    r29, 3
+	addi     r31, r31, 2
+	blt      lbl_803B99CC
+	li       r3, 1
 
-	.loc_0x9C:
-	  lmw       r27, 0x1C(r1)
-	  lwz       r0, 0x34(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_803B9A14:
+	lmw      r27, 0x1c(r1)
+	lwz      r0, 0x34(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -192,54 +295,53 @@ void efx2d::TSimple3::create(efx2d::Arg*)
 void efx2d::TForever::create(efx2d::Arg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr.       r31, r4
-	  stw       r30, 0x18(r1)
-	  mr        r30, r3
-	  bne-      .loc_0x3C
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  addi      r3, r3, 0x5B48
-	  li        r4, 0x36
-	  addi      r5, r5, 0x5B58
-	  crclr     6, 0x6
-	  bl        -0x38F420
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	or.      r31, r4, r4
+	stw      r30, 0x18(r1)
+	mr       r30, r3
+	bne      lbl_803B9A64
+	lis      r3, lbl_80495B48@ha
+	lis      r5, lbl_80495B58@ha
+	addi     r3, r3, lbl_80495B48@l
+	li       r4, 0x36
+	addi     r5, r5, lbl_80495B58@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x3C:
-	  lfs       f0, 0x0(r31)
-	  stfs      f0, 0x8(r1)
-	  lfs       f0, 0x4(r31)
-	  stfs      f0, 0xC(r1)
-	  lwz       r0, 0x10(r30)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x60
-	  li        r3, 0
-	  b         .loc_0x8C
+lbl_803B9A64:
+	lfs      f0, 0(r31)
+	stfs     f0, 8(r1)
+	lfs      f0, 4(r31)
+	stfs     f0, 0xc(r1)
+	lwz      r0, 0x10(r30)
+	cmplwi   r0, 0
+	beq      lbl_803B9A88
+	li       r3, 0
+	b        lbl_803B9AB4
 
-	.loc_0x60:
-	  lwz       r3, -0x65F8(r13)
-	  addi      r5, r1, 0x8
-	  lhz       r4, 0xC(r30)
-	  lbz       r6, 0x5(r30)
-	  lbz       r7, 0x4(r30)
-	  bl        -0x380
-	  stw       r3, 0x10(r30)
-	  lwz       r3, 0x10(r30)
-	  neg       r0, r3
-	  or        r0, r0, r3
-	  rlwinm    r3,r0,1,31,31
+lbl_803B9A88:
+	lwz      r3, particle2dMgr@sda21(r13)
+	addi     r5, r1, 8
+	lhz      r4, 0xc(r30)
+	lbz      r6, 5(r30)
+	lbz      r7, 4(r30)
+	bl       "create__14TParticle2dMgrFUsR10Vector2<f>UcUc"
+	stw      r3, 0x10(r30)
+	lwz      r3, 0x10(r30)
+	neg      r0, r3
+	or       r0, r0, r3
+	srwi     r3, r0, 0x1f
 
-	.loc_0x8C:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_803B9AB4:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -251,22 +353,21 @@ void efx2d::TForever::create(efx2d::Arg*)
 void efx2d::TForever::kill(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r3, -0x65F8(r13)
-	  lwz       r4, 0x10(r31)
-	  bl        -0x380
-	  li        r0, 0
-	  stw       r0, 0x10(r31)
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r3, particle2dMgr@sda21(r13)
+	lwz      r4, 0x10(r31)
+	bl       kill__14TParticle2dMgrFP14JPABaseEmitter
+	li       r0, 0
+	stw      r0, 0x10(r31)
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -278,22 +379,21 @@ void efx2d::TForever::kill(void)
 void efx2d::TForever::fade(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r3, -0x65F8(r13)
-	  lwz       r4, 0x10(r31)
-	  bl        -0x390
-	  li        r0, 0
-	  stw       r0, 0x10(r31)
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r3, particle2dMgr@sda21(r13)
+	lwz      r4, 0x10(r31)
+	bl       fade__14TParticle2dMgrFP14JPABaseEmitter
+	li       r0, 0
+	stw      r0, 0x10(r31)
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -305,16 +405,15 @@ void efx2d::TForever::fade(void)
 void efx2d::TForever::setGlobalScale(float)
 {
 	/*
-	.loc_0x0:
-	  lwz       r3, 0x10(r3)
-	  cmplwi    r3, 0
-	  beqlr-
-	  stfs      f1, 0x98(r3)
-	  stfs      f1, 0x9C(r3)
-	  stfs      f1, 0xA0(r3)
-	  stfs      f1, 0xB0(r3)
-	  stfs      f1, 0xB4(r3)
-	  blr
+	lwz      r3, 0x10(r3)
+	cmplwi   r3, 0
+	beqlr
+	stfs     f1, 0x98(r3)
+	stfs     f1, 0x9c(r3)
+	stfs     f1, 0xa0(r3)
+	stfs     f1, 0xb0(r3)
+	stfs     f1, 0xb4(r3)
+	blr
 	*/
 }
 
@@ -336,17 +435,16 @@ void setGlobalTranslation__Q25efx2d8TForeverFR10Vector2<float>(void)
 void efx2d::TForever::setGlobalEnvColor(JUtility::TColor&)
 {
 	/*
-	.loc_0x0:
-	  lwz       r6, 0x10(r3)
-	  cmplwi    r6, 0
-	  beqlr-
-	  lbz       r5, 0x2(r4)
-	  lbz       r3, 0x1(r4)
-	  lbz       r0, 0x0(r4)
-	  stb       r0, 0xBC(r6)
-	  stb       r3, 0xBD(r6)
-	  stb       r5, 0xBE(r6)
-	  blr
+	lwz      r6, 0x10(r3)
+	cmplwi   r6, 0
+	beqlr
+	lbz      r5, 2(r4)
+	lbz      r3, 1(r4)
+	lbz      r0, 0(r4)
+	stb      r0, 0xbc(r6)
+	stb      r3, 0xbd(r6)
+	stb      r5, 0xbe(r6)
+	blr
 	*/
 }
 
@@ -358,12 +456,11 @@ void efx2d::TForever::setGlobalEnvColor(JUtility::TColor&)
 void efx2d::TForever::setGlobalAlpha(unsigned char)
 {
 	/*
-	.loc_0x0:
-	  lwz       r3, 0x10(r3)
-	  cmplwi    r3, 0
-	  beqlr-
-	  stb       r4, 0xBB(r3)
-	  blr
+	lwz      r3, 0x10(r3)
+	cmplwi   r3, 0
+	beqlr
+	stb      r4, 0xbb(r3)
+	blr
 	*/
 }
 
@@ -375,39 +472,38 @@ void efx2d::TForever::setGlobalAlpha(unsigned char)
 efx2d::TForeverN::TForeverN(unsigned char)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r6, 0x804C
-	  lis       r5, 0x804E
-	  stw       r0, 0x14(r1)
-	  addi      r0, r5, 0x7408
-	  stw       r31, 0xC(r1)
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  addi      r3, r6, 0x14F0
-	  stw       r3, 0x0(r30)
-	  stw       r0, 0x0(r30)
-	  stb       r4, 0x4(r30)
-	  lbz       r31, 0x4(r30)
-	  mulli     r3, r31, 0x14
-	  addi      r3, r3, 0x10
-	  bl        -0x395C38
-	  lis       r4, 0x803C
-	  lis       r5, 0x8031
-	  subi      r4, r4, 0x63DC
-	  mr        r7, r31
-	  subi      r5, r5, 0x5F6C
-	  li        r6, 0x14
-	  bl        -0x2F8210
-	  stw       r3, 0x8(r30)
-	  mr        r3, r30
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lis      r6, __vt__Q25efx2d7TBaseIF@ha
+	lis      r5, __vt__Q25efx2d9TForeverN@ha
+	stw      r0, 0x14(r1)
+	addi     r0, r5, __vt__Q25efx2d9TForeverN@l
+	stw      r31, 0xc(r1)
+	stw      r30, 8(r1)
+	mr       r30, r3
+	addi     r3, r6, __vt__Q25efx2d7TBaseIF@l
+	stw      r3, 0(r30)
+	stw      r0, 0(r30)
+	stb      r4, 4(r30)
+	lbz      r31, 4(r30)
+	mulli    r3, r31, 0x14
+	addi     r3, r3, 0x10
+	bl       __nwa__FUl
+	lis      r4, __ct__Q25efx2d8TForeverFv@ha
+	lis      r5, __dt__Q25efx2d8TForeverFv@ha
+	addi     r4, r4, __ct__Q25efx2d8TForeverFv@l
+	mr       r7, r31
+	addi     r5, r5, __dt__Q25efx2d8TForeverFv@l
+	li       r6, 0x14
+	bl       __construct_new_array
+	stw      r3, 8(r30)
+	mr       r3, r30
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -419,27 +515,26 @@ efx2d::TForeverN::TForeverN(unsigned char)
 efx2d::TForever::TForever(void)
 {
 	/*
-	.loc_0x0:
-	  lis       r4, 0x804C
-	  lis       r5, 0x804A
-	  addi      r0, r4, 0x14F0
-	  lis       r6, 0x804C
-	  stw       r0, 0x0(r3)
-	  addi      r0, r6, 0x14D8
-	  lis       r4, 0x804E
-	  li        r6, 0
-	  stw       r0, 0x0(r3)
-	  addi      r4, r4, 0x7420
-	  subi      r5, r5, 0x1D84
-	  stb       r6, 0x4(r3)
-	  addi      r0, r4, 0x18
-	  stb       r6, 0x5(r3)
-	  stw       r5, 0x8(r3)
-	  stw       r4, 0x0(r3)
-	  stw       r0, 0x8(r3)
-	  sth       r6, 0xC(r3)
-	  stw       r6, 0x10(r3)
-	  blr
+	lis      r4, __vt__Q25efx2d7TBaseIF@ha
+	lis      r5, __vt__18JPAEmitterCallBack@ha
+	addi     r0, r4, __vt__Q25efx2d7TBaseIF@l
+	lis      r6, __vt__Q25efx2d5TBase@ha
+	stw      r0, 0(r3)
+	addi     r0, r6, __vt__Q25efx2d5TBase@l
+	lis      r4, __vt__Q25efx2d8TForever@ha
+	li       r6, 0
+	stw      r0, 0(r3)
+	addi     r4, r4, __vt__Q25efx2d8TForever@l
+	addi     r5, r5, __vt__18JPAEmitterCallBack@l
+	stb      r6, 4(r3)
+	addi     r0, r4, 0x18
+	stb      r6, 5(r3)
+	stw      r5, 8(r3)
+	stw      r4, 0(r3)
+	stw      r0, 8(r3)
+	sth      r6, 0xc(r3)
+	stw      r6, 0x10(r3)
+	blr
 	*/
 }
 
@@ -451,51 +546,50 @@ efx2d::TForever::TForever(void)
 void efx2d::TForeverN::create(efx2d::Arg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  li        r31, 0x1
-	  stw       r30, 0x18(r1)
-	  li        r30, 0
-	  stw       r29, 0x14(r1)
-	  mr        r29, r4
-	  stw       r28, 0x10(r1)
-	  mr        r28, r3
-	  b         .loc_0x64
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	li       r31, 1
+	stw      r30, 0x18(r1)
+	li       r30, 0
+	stw      r29, 0x14(r1)
+	mr       r29, r4
+	stw      r28, 0x10(r1)
+	mr       r28, r3
+	b        lbl_803B9CD8
 
-	.loc_0x30:
-	  rlwinm    r0,r30,0,24,31
-	  lwz       r3, 0x8(r28)
-	  mulli     r0, r0, 0x14
-	  mr        r4, r29
-	  add       r3, r3, r0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x60
-	  li        r31, 0
+lbl_803B9CA4:
+	clrlwi   r0, r30, 0x18
+	lwz      r3, 8(r28)
+	mulli    r0, r0, 0x14
+	mr       r4, r29
+	add      r3, r3, r0
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_803B9CD4
+	li       r31, 0
 
-	.loc_0x60:
-	  addi      r30, r30, 0x1
+lbl_803B9CD4:
+	addi     r30, r30, 1
 
-	.loc_0x64:
-	  lbz       r0, 0x4(r28)
-	  rlwinm    r3,r30,0,24,31
-	  cmplw     r3, r0
-	  blt+      .loc_0x30
-	  lwz       r0, 0x24(r1)
-	  mr        r3, r31
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_803B9CD8:
+	lbz      r0, 4(r28)
+	clrlwi   r3, r30, 0x18
+	cmplw    r3, r0
+	blt      lbl_803B9CA4
+	lwz      r0, 0x24(r1)
+	mr       r3, r31
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -507,38 +601,37 @@ void efx2d::TForeverN::create(efx2d::Arg*)
 void efx2d::TForeverN::kill(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  li        r31, 0
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  b         .loc_0x44
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	li       r31, 0
+	stw      r30, 8(r1)
+	mr       r30, r3
+	b        lbl_803B9D50
 
-	.loc_0x20:
-	  rlwinm    r0,r31,0,24,31
-	  lwz       r3, 0x8(r30)
-	  mulli     r0, r0, 0x14
-	  add       r3, r3, r0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  addi      r31, r31, 0x1
+lbl_803B9D2C:
+	clrlwi   r0, r31, 0x18
+	lwz      r3, 8(r30)
+	mulli    r0, r0, 0x14
+	add      r3, r3, r0
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	addi     r31, r31, 1
 
-	.loc_0x44:
-	  lbz       r0, 0x4(r30)
-	  rlwinm    r3,r31,0,24,31
-	  cmplw     r3, r0
-	  blt+      .loc_0x20
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803B9D50:
+	lbz      r0, 4(r30)
+	clrlwi   r3, r31, 0x18
+	cmplw    r3, r0
+	blt      lbl_803B9D2C
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -550,38 +643,37 @@ void efx2d::TForeverN::kill(void)
 void efx2d::TForeverN::fade(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  li        r31, 0
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  b         .loc_0x44
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	li       r31, 0
+	stw      r30, 8(r1)
+	mr       r30, r3
+	b        lbl_803B9DBC
 
-	.loc_0x20:
-	  rlwinm    r0,r31,0,24,31
-	  lwz       r3, 0x8(r30)
-	  mulli     r0, r0, 0x14
-	  add       r3, r3, r0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  addi      r31, r31, 0x1
+lbl_803B9D98:
+	clrlwi   r0, r31, 0x18
+	lwz      r3, 8(r30)
+	mulli    r0, r0, 0x14
+	add      r3, r3, r0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	addi     r31, r31, 1
 
-	.loc_0x44:
-	  lbz       r0, 0x4(r30)
-	  rlwinm    r3,r31,0,24,31
-	  cmplw     r3, r0
-	  blt+      .loc_0x20
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803B9DBC:
+	lbz      r0, 4(r30)
+	clrlwi   r3, r31, 0x18
+	cmplw    r3, r0
+	blt      lbl_803B9D98
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -593,42 +685,41 @@ void efx2d::TForeverN::fade(void)
 void efx2d::TForeverN::setGroup(unsigned char)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  li        r31, 0
-	  stw       r30, 0x18(r1)
-	  mr        r30, r4
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  b         .loc_0x50
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	li       r31, 0
+	stw      r30, 0x18(r1)
+	mr       r30, r4
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	b        lbl_803B9E34
 
-	.loc_0x28:
-	  rlwinm    r0,r31,0,24,31
-	  lwz       r3, 0x8(r29)
-	  mulli     r0, r0, 0x14
-	  mr        r4, r30
-	  add       r3, r3, r0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  addi      r31, r31, 0x1
+lbl_803B9E0C:
+	clrlwi   r0, r31, 0x18
+	lwz      r3, 8(r29)
+	mulli    r0, r0, 0x14
+	mr       r4, r30
+	add      r3, r3, r0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	addi     r31, r31, 1
 
-	.loc_0x50:
-	  lbz       r0, 0x4(r29)
-	  rlwinm    r3,r31,0,24,31
-	  cmplw     r3, r0
-	  blt+      .loc_0x28
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_803B9E34:
+	lbz      r0, 4(r29)
+	clrlwi   r3, r31, 0x18
+	cmplw    r3, r0
+	blt      lbl_803B9E0C
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -670,29 +761,28 @@ void efx2d::TForeverN::setGlobalEnvColor(JUtility::TColor&)
 void efx2d::TForeverN::setGlobalAlpha(unsigned char)
 {
 	/*
-	.loc_0x0:
-	  li        r7, 0
-	  b         .loc_0x2C
+	li       r7, 0
+	b        lbl_803B9E8C
 
-	.loc_0x8:
-	  rlwinm    r0,r7,0,24,31
-	  lwz       r6, 0x8(r3)
-	  mulli     r5, r0, 0x14
-	  addi      r0, r5, 0x10
-	  lwzx      r5, r6, r0
-	  cmplwi    r5, 0
-	  beq-      .loc_0x28
-	  stb       r4, 0xBB(r5)
+lbl_803B9E68:
+	clrlwi   r0, r7, 0x18
+	lwz      r6, 8(r3)
+	mulli    r5, r0, 0x14
+	addi     r0, r5, 0x10
+	lwzx     r5, r6, r0
+	cmplwi   r5, 0
+	beq      lbl_803B9E88
+	stb      r4, 0xbb(r5)
 
-	.loc_0x28:
-	  addi      r7, r7, 0x1
+lbl_803B9E88:
+	addi     r7, r7, 1
 
-	.loc_0x2C:
-	  lbz       r0, 0x4(r3)
-	  rlwinm    r5,r7,0,24,31
-	  cmplw     r5, r0
-	  blt+      .loc_0x8
-	  blr
+lbl_803B9E8C:
+	lbz      r0, 4(r3)
+	clrlwi   r5, r7, 0x18
+	cmplw    r5, r0
+	blt      lbl_803B9E68
+	blr
 	*/
 }
 
@@ -704,51 +794,50 @@ void efx2d::TForeverN::setGlobalAlpha(unsigned char)
 void efx2d::TChasePos::create(efx2d::Arg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r0, 0x10(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x28
-	  li        r3, 0
-	  b         .loc_0x74
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r0, 0x10(r3)
+	cmplwi   r0, 0
+	beq      lbl_803B9EC8
+	li       r3, 0
+	b        lbl_803B9F14
 
-	.loc_0x28:
-	  lwz       r3, -0x65F8(r13)
-	  lhz       r4, 0xC(r31)
-	  lwz       r5, 0x14(r31)
-	  lbz       r6, 0x5(r31)
-	  lbz       r7, 0x4(r31)
-	  bl        -0x7C0
-	  stw       r3, 0x10(r31)
-	  lwz       r3, 0x10(r31)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x68
-	  cmplwi    r31, 0
-	  mr        r0, r31
-	  beq-      .loc_0x60
-	  addi      r0, r31, 0x8
+lbl_803B9EC8:
+	lwz      r3, particle2dMgr@sda21(r13)
+	lhz      r4, 0xc(r31)
+	lwz      r5, 0x14(r31)
+	lbz      r6, 5(r31)
+	lbz      r7, 4(r31)
+	bl       "create__14TParticle2dMgrFUsR10Vector2<f>UcUc"
+	stw      r3, 0x10(r31)
+	lwz      r3, 0x10(r31)
+	cmplwi   r3, 0
+	beq      lbl_803B9F08
+	cmplwi   r31, 0
+	mr       r0, r31
+	beq      lbl_803B9F00
+	addi     r0, r31, 8
 
-	.loc_0x60:
-	  stw       r0, 0xEC(r3)
-	  b         .loc_0x70
+lbl_803B9F00:
+	stw      r0, 0xec(r3)
+	b        lbl_803B9F10
 
-	.loc_0x68:
-	  li        r3, 0
-	  b         .loc_0x74
+lbl_803B9F08:
+	li       r3, 0
+	b        lbl_803B9F14
 
-	.loc_0x70:
-	  li        r3, 0x1
+lbl_803B9F10:
+	li       r3, 1
 
-	.loc_0x74:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803B9F14:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -760,39 +849,38 @@ void efx2d::TChasePos::create(efx2d::Arg*)
 void efx2d::TChasePos::execute(JPABaseEmitter*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lwz       r0, 0x14(r3)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x44
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  addi      r3, r3, 0x5B48
-	  li        r4, 0xD6
-	  addi      r5, r5, 0x5B58
-	  crclr     6, 0x6
-	  bl        -0x38F928
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lwz      r0, 0x14(r3)
+	cmplwi   r0, 0
+	bne      lbl_803B9F6C
+	lis      r3, lbl_80495B48@ha
+	lis      r5, lbl_80495B58@ha
+	addi     r3, r3, lbl_80495B48@l
+	li       r4, 0xd6
+	addi     r5, r5, lbl_80495B58@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x44:
-	  lwz       r3, 0x14(r30)
-	  lfs       f0, 0x1378(r2)
-	  lfs       f2, 0x4(r3)
-	  lfs       f1, 0x0(r3)
-	  stfs      f1, 0xA4(r31)
-	  stfs      f2, 0xA8(r31)
-	  stfs      f0, 0xAC(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803B9F6C:
+	lwz      r3, 0x14(r30)
+	lfs      f0, lbl_8051F6D8@sda21(r2)
+	lfs      f2, 4(r3)
+	lfs      f1, 0(r3)
+	stfs     f1, 0xa4(r31)
+	stfs     f2, 0xa8(r31)
+	stfs     f0, 0xac(r31)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -804,51 +892,50 @@ void efx2d::TChasePos::execute(JPABaseEmitter*)
 void efx2d::TChasePosDir::create(efx2d::Arg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r0, 0x10(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x28
-	  li        r3, 0
-	  b         .loc_0x74
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r0, 0x10(r3)
+	cmplwi   r0, 0
+	beq      lbl_803B9FC8
+	li       r3, 0
+	b        lbl_803BA014
 
-	.loc_0x28:
-	  lwz       r3, -0x65F8(r13)
-	  lhz       r4, 0xC(r31)
-	  lwz       r5, 0x14(r31)
-	  lbz       r6, 0x5(r31)
-	  lbz       r7, 0x4(r31)
-	  bl        -0x8C0
-	  stw       r3, 0x10(r31)
-	  lwz       r3, 0x10(r31)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x68
-	  cmplwi    r31, 0
-	  mr        r0, r31
-	  beq-      .loc_0x60
-	  addi      r0, r31, 0x8
+lbl_803B9FC8:
+	lwz      r3, particle2dMgr@sda21(r13)
+	lhz      r4, 0xc(r31)
+	lwz      r5, 0x14(r31)
+	lbz      r6, 5(r31)
+	lbz      r7, 4(r31)
+	bl       "create__14TParticle2dMgrFUsR10Vector2<f>UcUc"
+	stw      r3, 0x10(r31)
+	lwz      r3, 0x10(r31)
+	cmplwi   r3, 0
+	beq      lbl_803BA008
+	cmplwi   r31, 0
+	mr       r0, r31
+	beq      lbl_803BA000
+	addi     r0, r31, 8
 
-	.loc_0x60:
-	  stw       r0, 0xEC(r3)
-	  b         .loc_0x70
+lbl_803BA000:
+	stw      r0, 0xec(r3)
+	b        lbl_803BA010
 
-	.loc_0x68:
-	  li        r3, 0
-	  b         .loc_0x74
+lbl_803BA008:
+	li       r3, 0
+	b        lbl_803BA014
 
-	.loc_0x70:
-	  li        r3, 0x1
+lbl_803BA010:
+	li       r3, 1
 
-	.loc_0x74:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803BA014:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -860,57 +947,56 @@ void efx2d::TChasePosDir::create(efx2d::Arg*)
 void efx2d::TChasePosDir::execute(JPABaseEmitter*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lwz       r0, 0x14(r3)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x44
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  addi      r3, r3, 0x5B48
-	  li        r4, 0xF4
-	  addi      r5, r5, 0x5B58
-	  crclr     6, 0x6
-	  bl        -0x38FA28
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lwz      r0, 0x14(r3)
+	cmplwi   r0, 0
+	bne      lbl_803BA06C
+	lis      r3, lbl_80495B48@ha
+	lis      r5, lbl_80495B58@ha
+	addi     r3, r3, lbl_80495B48@l
+	li       r4, 0xf4
+	addi     r5, r5, lbl_80495B58@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x44:
-	  lwz       r0, 0x18(r30)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x6C
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  addi      r3, r3, 0x5B48
-	  li        r4, 0xF5
-	  addi      r5, r5, 0x5B58
-	  crclr     6, 0x6
-	  bl        -0x38FA50
+lbl_803BA06C:
+	lwz      r0, 0x18(r30)
+	cmplwi   r0, 0
+	bne      lbl_803BA094
+	lis      r3, lbl_80495B48@ha
+	lis      r5, lbl_80495B58@ha
+	addi     r3, r3, lbl_80495B48@l
+	li       r4, 0xf5
+	addi     r5, r5, lbl_80495B58@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x6C:
-	  lwz       r4, 0x14(r30)
-	  lwz       r3, 0x18(r30)
-	  lfs       f2, 0x4(r4)
-	  lfs       f3, 0x0(r3)
-	  lfs       f4, 0x4(r3)
-	  lfs       f1, 0x0(r4)
-	  lfs       f0, 0x1378(r2)
-	  stfs      f1, 0xA4(r31)
-	  stfs      f2, 0xA8(r31)
-	  stfs      f0, 0xAC(r31)
-	  stfs      f3, 0x18(r31)
-	  stfs      f4, 0x1C(r31)
-	  stfs      f0, 0x20(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803BA094:
+	lwz      r4, 0x14(r30)
+	lwz      r3, 0x18(r30)
+	lfs      f2, 4(r4)
+	lfs      f3, 0(r3)
+	lfs      f4, 4(r3)
+	lfs      f1, 0(r4)
+	lfs      f0, lbl_8051F6D8@sda21(r2)
+	stfs     f1, 0xa4(r31)
+	stfs     f2, 0xa8(r31)
+	stfs     f0, 0xac(r31)
+	stfs     f3, 0x18(r31)
+	stfs     f4, 0x1c(r31)
+	stfs     f0, 0x20(r31)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -922,44 +1008,43 @@ void efx2d::TChasePosDir::execute(JPABaseEmitter*)
 efx2d::TChasePosDir::~TChasePosDir(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x68
-	  lis       r3, 0x804E
-	  addi      r3, r3, 0x7390
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x18
-	  stw       r0, 0x8(r30)
-	  beq-      .loc_0x58
-	  lis       r4, 0x804E
-	  addi      r3, r30, 0x8
-	  addi      r5, r4, 0x7420
-	  li        r4, 0
-	  stw       r5, 0x0(r30)
-	  addi      r0, r5, 0x18
-	  stw       r0, 0x8(r30)
-	  bl        -0x32A498
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_803BA148
+	lis      r3, __vt__Q25efx2d12TChasePosDir@ha
+	addi     r3, r3, __vt__Q25efx2d12TChasePosDir@l
+	stw      r3, 0(r30)
+	addi     r0, r3, 0x18
+	stw      r0, 8(r30)
+	beq      lbl_803BA138
+	lis      r4, __vt__Q25efx2d8TForever@ha
+	addi     r3, r30, 8
+	addi     r5, r4, __vt__Q25efx2d8TForever@l
+	li       r4, 0
+	stw      r5, 0(r30)
+	addi     r0, r5, 0x18
+	stw      r0, 8(r30)
+	bl       __dt__18JPAEmitterCallBackFv
 
-	.loc_0x58:
-	  extsh.    r0, r31
-	  ble-      .loc_0x68
-	  mr        r3, r30
-	  bl        -0x396090
+lbl_803BA138:
+	extsh.   r0, r31
+	ble      lbl_803BA148
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x68:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803BA148:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -971,9 +1056,8 @@ efx2d::TChasePosDir::~TChasePosDir(void)
 @8 @efx2d::TForever::~TForever(void)
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x8
-	  b         -0xB00D4
+	addi     r3, r3, -8
+	b        __dt__Q25efx2d8TForeverFv
 	*/
 }
 
@@ -985,9 +1069,8 @@ efx2d::TChasePosDir::~TChasePosDir(void)
 void @8 @efx2d::TChasePos::execute(JPABaseEmitter*)
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x8
-	  b         -0x248
+	addi     r3, r3, -8
+	b        execute__Q25efx2d9TChasePosFP14JPABaseEmitter
 	*/
 }
 
@@ -999,9 +1082,8 @@ void @8 @efx2d::TChasePos::execute(JPABaseEmitter*)
 @8 @efx2d::TChasePos::~TChasePos(void)
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x8
-	  b         -0xB0168
+	addi     r3, r3, -8
+	b        __dt__Q25efx2d9TChasePosFv
 	*/
 }
 
@@ -1013,9 +1095,8 @@ void @8 @efx2d::TChasePos::execute(JPABaseEmitter*)
 void @8 @efx2d::TChasePosDir::execute(JPABaseEmitter*)
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x8
-	  b         -0x158
+	addi     r3, r3, -8
+	b        execute__Q25efx2d12TChasePosDirFP14JPABaseEmitter
 	*/
 }
 
@@ -1027,8 +1108,7 @@ void @8 @efx2d::TChasePosDir::execute(JPABaseEmitter*)
 @8 @efx2d::TChasePosDir::~TChasePosDir(void)
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x8
-	  b         -0xA8
+	addi     r3, r3, -8
+	b        __dt__Q25efx2d12TChasePosDirFv
 	*/
 }

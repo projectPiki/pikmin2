@@ -2,6 +2,63 @@
 
 #include "Vector2.h"
 
+/*
+    Generated from dpostproc
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_80497138
+    lbl_80497138:
+        .4byte 0x54436F6F
+        .4byte 0x72644D67
+        .4byte 0x72000000
+    .global lbl_80497144
+    lbl_80497144:
+        .4byte 0x54546761
+        .4byte 0x4C6F6164
+        .4byte 0x50617261
+        .4byte 0x6D657465
+        .4byte 0x72730000
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_8051FC20
+    lbl_8051FC20:
+        .4byte 0x4F666673
+        .4byte 0x65745800
+    .global lbl_8051FC28
+    lbl_8051FC28:
+        .4byte 0xC3A00000
+    .global lbl_8051FC2C
+    lbl_8051FC2C:
+        .4byte 0xC3FA0000
+    .global lbl_8051FC30
+    lbl_8051FC30:
+        .4byte 0x43FA0000
+    .global lbl_8051FC34
+    lbl_8051FC34:
+        .4byte 0x4F666673
+        .4byte 0x65745900
+    .global lbl_8051FC3C
+    lbl_8051FC3C:
+        .4byte 0xC3700000
+    .global lbl_8051FC40
+    lbl_8051FC40:
+        .4byte 0x588AD48A
+        .4byte 0x75000000
+    .global lbl_8051FC48
+    lbl_8051FC48:
+        .float 1.0
+    .global lbl_8051FC4C
+    lbl_8051FC4C:
+        .4byte 0x00000000
+    .global lbl_8051FC50
+    lbl_8051FC50:
+        .4byte 0x42C80000
+    .global lbl_8051FC54
+    lbl_8051FC54:
+        .4byte 0x598AD48A
+        .4byte 0x75000000
+*/
+
 namespace ebi {
 namespace title {
 
@@ -17,112 +74,111 @@ namespace title {
 			void TCoordMgr::TCoordMgr(void)
 			{
 				/*
-				.loc_0x0:
-				  stwu      r1, -0x10(r1)
-				  mflr      r0
-				  lis       r6, 0x8049
-				  lis       r4, 0x804F
-				  stw       r0, 0x14(r1)
-				  addi      r8, r6, 0x7138
-				  subi      r0, r4, 0x4AD8
-				  li        r9, 0
-				  stw       r31, 0xC(r1)
-				  mr        r31, r3
-				  lis       r5, 0x804E
-				  li        r6, 0x8
-				  stw       r0, 0x0(r3)
-				  addi      r0, r5, 0x78AC
-				  lis       r3, 0x8038
-				  li        r5, 0
-				  stw       r9, 0x10(r31)
-				  subi      r4, r3, 0x2F48
-				  addi      r3, r31, 0x2C
-				  li        r7, 0x1F4
-				  stw       r9, 0xC(r31)
-				  stw       r9, 0x8(r31)
-				  stw       r9, 0x4(r31)
-				  stw       r8, 0x14(r31)
-				  stw       r0, 0x0(r31)
-				  bl        -0x322194
-				  addi      r0, r31, 0x1078
-				  lis       r5, 0x7467
-				  stw       r0, 0xFCC(r31)
-				  li        r0, 0
-				  lis       r3, 0x8049
-				  addi      r4, r31, 0xFCC
-				  stw       r0, 0xFD0(r31)
-				  addi      r0, r3, 0x7144
-				  addi      r3, r4, 0xC
-				  addi      r5, r5, 0x6130
-				  stw       r0, 0xFD4(r31)
-				  addi      r6, r2, 0x18C0
-				  bl        0x2FC54
-				  lis       r3, 0x804B
-				  lis       r5, 0x7467
-				  subi      r0, r3, 0x5344
-				  addi      r4, r31, 0xFCC
-				  stw       r0, 0xFD8(r31)
-				  addi      r3, r4, 0x34
-				  lfs       f0, 0x18C8(r2)
-				  addi      r5, r5, 0x6131
-				  lfs       f1, 0x18CC(r2)
-				  addi      r6, r2, 0x18D4
-				  stfs      f0, 0xFF0(r31)
-				  lfs       f0, 0x18D0(r2)
-				  stfs      f1, 0xFF8(r31)
-				  stfs      f0, 0xFFC(r31)
-				  bl        0x2FC18
-				  lis       r3, 0x804B
-				  lis       r5, 0x7467
-				  subi      r0, r3, 0x5344
-				  addi      r4, r31, 0xFCC
-				  stw       r0, 0x1000(r31)
-				  addi      r3, r4, 0x5C
-				  lfs       f0, 0x18DC(r2)
-				  addi      r5, r5, 0x6132
-				  lfs       f1, 0x18CC(r2)
-				  addi      r6, r2, 0x18E0
-				  stfs      f0, 0x1018(r31)
-				  lfs       f0, 0x18D0(r2)
-				  stfs      f1, 0x1020(r31)
-				  stfs      f0, 0x1024(r31)
-				  bl        0x2FBDC
-				  lis       r3, 0x804B
-				  lis       r5, 0x7467
-				  subi      r0, r3, 0x5344
-				  addi      r4, r31, 0xFCC
-				  stw       r0, 0x1028(r31)
-				  addi      r3, r4, 0x84
-				  lfs       f0, 0x18E8(r2)
-				  addi      r5, r5, 0x6133
-				  lfs       f1, 0x18EC(r2)
-				  addi      r6, r2, 0x18F4
-				  stfs      f0, 0x1040(r31)
-				  lfs       f0, 0x18F0(r2)
-				  stfs      f1, 0x1048(r31)
-				  stfs      f0, 0x104C(r31)
-				  bl        0x2FBA0
-				  lis       r3, 0x804B
-				  lfs       f2, 0x18E8(r2)
-				  subi      r0, r3, 0x5344
-				  lfs       f1, 0x18EC(r2)
-				  stw       r0, 0x1050(r31)
-				  li        r0, 0
-				  lfs       f0, 0x18F0(r2)
-				  mr        r3, r31
-				  stfs      f2, 0x1068(r31)
-				  stfs      f1, 0x1070(r31)
-				  stfs      f0, 0x1074(r31)
-				  stw       r0, 0x18(r31)
-				  stw       r0, 0x1C(r31)
-				  stw       r0, 0x20(r31)
-				  stw       r0, 0x24(r31)
-				  stw       r0, 0x28(r31)
-				  lwz       r31, 0xC(r1)
-				  lwz       r0, 0x14(r1)
-				  mtlr      r0
-				  addi      r1, r1, 0x10
-				  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lis      r6, lbl_80497138@ha
+	lis      r4, __vt__5CNode@ha
+	stw      r0, 0x14(r1)
+	addi     r8, r6, lbl_80497138@l
+	addi     r0, r4, __vt__5CNode@l
+	li       r9, 0
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lis      r5, __vt__Q33ebi5title9TCoordMgr@ha
+	li       r6, 8
+	stw      r0, 0(r3)
+	addi     r0, r5, __vt__Q33ebi5title9TCoordMgr@l
+	lis      r3, "__ct__10Vector2<f>Fv"@ha
+	li       r5, 0
+	stw      r9, 0x10(r31)
+	addi     r4, r3, "__ct__10Vector2<f>Fv"@l
+	addi     r3, r31, 0x2c
+	li       r7, 0x1f4
+	stw      r9, 0xc(r31)
+	stw      r9, 8(r31)
+	stw      r9, 4(r31)
+	stw      r8, 0x14(r31)
+	stw      r0, 0(r31)
+	bl       __construct_array
+	addi     r0, r31, 0x1078
+	lis      r5, 0x74676130@ha
+	stw      r0, 0xfcc(r31)
+	li       r0, 0
+	lis      r3, lbl_80497144@ha
+	addi     r4, r31, 0xfcc
+	stw      r0, 0xfd0(r31)
+	addi     r0, r3, lbl_80497144@l
+	addi     r3, r4, 0xc
+	addi     r5, r5, 0x74676130@l
+	stw      r0, 0xfd4(r31)
+	addi     r6, r2, lbl_8051FC20@sda21
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x74676131@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	addi     r4, r31, 0xfcc
+	stw      r0, 0xfd8(r31)
+	addi     r3, r4, 0x34
+	lfs      f0, lbl_8051FC28@sda21(r2)
+	addi     r5, r5, 0x74676131@l
+	lfs      f1, lbl_8051FC2C@sda21(r2)
+	addi     r6, r2, lbl_8051FC34@sda21
+	stfs     f0, 0xff0(r31)
+	lfs      f0, lbl_8051FC30@sda21(r2)
+	stfs     f1, 0xff8(r31)
+	stfs     f0, 0xffc(r31)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x74676132@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	addi     r4, r31, 0xfcc
+	stw      r0, 0x1000(r31)
+	addi     r3, r4, 0x5c
+	lfs      f0, lbl_8051FC3C@sda21(r2)
+	addi     r5, r5, 0x74676132@l
+	lfs      f1, lbl_8051FC2C@sda21(r2)
+	addi     r6, r2, lbl_8051FC40@sda21
+	stfs     f0, 0x1018(r31)
+	lfs      f0, lbl_8051FC30@sda21(r2)
+	stfs     f1, 0x1020(r31)
+	stfs     f0, 0x1024(r31)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x74676133@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	addi     r4, r31, 0xfcc
+	stw      r0, 0x1028(r31)
+	addi     r3, r4, 0x84
+	lfs      f0, lbl_8051FC48@sda21(r2)
+	addi     r5, r5, 0x74676133@l
+	lfs      f1, lbl_8051FC4C@sda21(r2)
+	addi     r6, r2, lbl_8051FC54@sda21
+	stfs     f0, 0x1040(r31)
+	lfs      f0, lbl_8051FC50@sda21(r2)
+	stfs     f1, 0x1048(r31)
+	stfs     f0, 0x104c(r31)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lfs      f2, lbl_8051FC48@sda21(r2)
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f1, lbl_8051FC4C@sda21(r2)
+	stw      r0, 0x1050(r31)
+	li       r0, 0
+	lfs      f0, lbl_8051FC50@sda21(r2)
+	mr       r3, r31
+	stfs     f2, 0x1068(r31)
+	stfs     f1, 0x1070(r31)
+	stfs     f0, 0x1074(r31)
+	stw      r0, 0x18(r31)
+	stw      r0, 0x1c(r31)
+	stw      r0, 0x20(r31)
+	stw      r0, 0x24(r31)
+	stw      r0, 0x28(r31)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 				*/
 			}
 
@@ -144,97 +200,96 @@ namespace title {
 			void TCoordMgr::copyCoordinate(Vector2<float>*)
 			{
 				/*
-				.loc_0x0:
-				  mr        r5, r3
-				  li        r7, 0
-				  mr        r6, r4
-				  b         .loc_0x2C
+	mr       r5, r3
+	li       r7, 0
+	mr       r6, r4
+	b        lbl_803E3B3C
 
-				.loc_0x10:
-				  lfs       f0, 0x34C(r5)
-				  addi      r7, r7, 0x1
-				  stfs      f0, 0x320(r6)
-				  lfs       f0, 0x350(r5)
-				  addi      r5, r5, 0x8
-				  stfs      f0, 0x324(r6)
-				  addi      r6, r6, 0x8
+lbl_803E3B20:
+	lfs      f0, 0x34c(r5)
+	addi     r7, r7, 1
+	stfs     f0, 0x320(r6)
+	lfs      f0, 0x350(r5)
+	addi     r5, r5, 8
+	stfs     f0, 0x324(r6)
+	addi     r6, r6, 8
 
-				.loc_0x2C:
-				  lwz       r0, 0x1C(r3)
-				  cmpw      r7, r0
-				  blt+      .loc_0x10
-				  mr        r5, r3
-				  mr        r6, r4
-				  li        r7, 0
-				  b         .loc_0x64
+lbl_803E3B3C:
+	lwz      r0, 0x1c(r3)
+	cmpw     r7, r0
+	blt      lbl_803E3B20
+	mr       r5, r3
+	mr       r6, r4
+	li       r7, 0
+	b        lbl_803E3B74
 
-				.loc_0x48:
-				  lfs       f0, 0x66C(r5)
-				  addi      r7, r7, 0x1
-				  stfs      f0, 0x640(r6)
-				  lfs       f0, 0x670(r5)
-				  addi      r5, r5, 0x8
-				  stfs      f0, 0x644(r6)
-				  addi      r6, r6, 0x8
+lbl_803E3B58:
+	lfs      f0, 0x66c(r5)
+	addi     r7, r7, 1
+	stfs     f0, 0x640(r6)
+	lfs      f0, 0x670(r5)
+	addi     r5, r5, 8
+	stfs     f0, 0x644(r6)
+	addi     r6, r6, 8
 
-				.loc_0x64:
-				  lwz       r0, 0x20(r3)
-				  cmpw      r7, r0
-				  blt+      .loc_0x48
-				  mr        r5, r3
-				  mr        r6, r4
-				  li        r7, 0
-				  b         .loc_0x9C
+lbl_803E3B74:
+	lwz      r0, 0x20(r3)
+	cmpw     r7, r0
+	blt      lbl_803E3B58
+	mr       r5, r3
+	mr       r6, r4
+	li       r7, 0
+	b        lbl_803E3BAC
 
-				.loc_0x80:
-				  lfs       f0, 0x2C(r5)
-				  addi      r7, r7, 0x1
-				  stfs      f0, 0x0(r6)
-				  lfs       f0, 0x30(r5)
-				  addi      r5, r5, 0x8
-				  stfs      f0, 0x4(r6)
-				  addi      r6, r6, 0x8
+lbl_803E3B90:
+	lfs      f0, 0x2c(r5)
+	addi     r7, r7, 1
+	stfs     f0, 0(r6)
+	lfs      f0, 0x30(r5)
+	addi     r5, r5, 8
+	stfs     f0, 4(r6)
+	addi     r6, r6, 8
 
-				.loc_0x9C:
-				  lwz       r0, 0x18(r3)
-				  cmpw      r7, r0
-				  blt+      .loc_0x80
-				  mr        r5, r3
-				  mr        r6, r4
-				  li        r7, 0
-				  b         .loc_0xD4
+lbl_803E3BAC:
+	lwz      r0, 0x18(r3)
+	cmpw     r7, r0
+	blt      lbl_803E3B90
+	mr       r5, r3
+	mr       r6, r4
+	li       r7, 0
+	b        lbl_803E3BE4
 
-				.loc_0xB8:
-				  lfs       f0, 0x98C(r5)
-				  addi      r7, r7, 0x1
-				  stfs      f0, 0x960(r6)
-				  lfs       f0, 0x990(r5)
-				  addi      r5, r5, 0x8
-				  stfs      f0, 0x964(r6)
-				  addi      r6, r6, 0x8
+lbl_803E3BC8:
+	lfs      f0, 0x98c(r5)
+	addi     r7, r7, 1
+	stfs     f0, 0x960(r6)
+	lfs      f0, 0x990(r5)
+	addi     r5, r5, 8
+	stfs     f0, 0x964(r6)
+	addi     r6, r6, 8
 
-				.loc_0xD4:
-				  lwz       r0, 0x24(r3)
-				  cmpw      r7, r0
-				  blt+      .loc_0xB8
-				  mr        r5, r3
-				  li        r6, 0
-				  b         .loc_0x108
+lbl_803E3BE4:
+	lwz      r0, 0x24(r3)
+	cmpw     r7, r0
+	blt      lbl_803E3BC8
+	mr       r5, r3
+	li       r6, 0
+	b        lbl_803E3C18
 
-				.loc_0xEC:
-				  lfs       f0, 0xCAC(r5)
-				  addi      r6, r6, 0x1
-				  stfs      f0, 0xC80(r4)
-				  lfs       f0, 0xCB0(r5)
-				  addi      r5, r5, 0x8
-				  stfs      f0, 0xC84(r4)
-				  addi      r4, r4, 0x8
+lbl_803E3BFC:
+	lfs      f0, 0xcac(r5)
+	addi     r6, r6, 1
+	stfs     f0, 0xc80(r4)
+	lfs      f0, 0xcb0(r5)
+	addi     r5, r5, 8
+	stfs     f0, 0xc84(r4)
+	addi     r4, r4, 8
 
-				.loc_0x108:
-				  lwz       r0, 0x28(r3)
-				  cmpw      r6, r0
-				  blt+      .loc_0xEC
-				  blr
+lbl_803E3C18:
+	lwz      r0, 0x28(r3)
+	cmpw     r6, r0
+	blt      lbl_803E3BFC
+	blr
 				*/
 			}
 
@@ -246,44 +301,41 @@ namespace title {
 			void TCoordMgr::readCoordinate(JKRArchive*, char*)
 			{
 				/*
-				.loc_0x0:
-				  stwu      r1, -0x430(r1)
-				  mflr      r0
-				  stw       r0, 0x434(r1)
-				  stw       r31, 0x42C(r1)
-				  mr        r31, r3
-				  mr        r3, r4
-				  lwz       r12, 0x0(r4)
-				  mr        r4, r5
-				  lwz       r12, 0x14(r12)
-				  mtctr     r12
-				  bctrl
-				  cmplwi    r3, 0
-				  beq-      .loc_0x68
-				  mr        r4, r3
-				  addi      r3, r1, 0x8
-				  li        r5, -0x1
-				  bl        0x31C90
-				  li        r0, 0x1
-				  cmpwi     r0, 0x1
-				  stw       r0, 0x14(r1)
-				  bne-      .loc_0x5C
-				  li        r0, 0
-				  stw       r0, 0x41C(r1)
+	stwu     r1, -0x430(r1)
+	mflr     r0
+	stw      r0, 0x434(r1)
+	stw      r31, 0x42c(r1)
+	mr       r31, r3
+	mr       r3, r4
+	lwz      r12, 0(r4)
+	mr       r4, r5
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	cmplwi   r3, 0
+	beq      lbl_803E3C90
+	mr       r4, r3
+	addi     r3, r1, 8
+	li       r5, -1
+	bl       __ct__9RamStreamFPvi
+	li       r0, 1
+	cmpwi    r0, 1
+	stw      r0, 0x14(r1)
+	bne      lbl_803E3C84
+	li       r0, 0
+	stw      r0, 0x41c(r1)
 
-				.loc_0x5C:
-				  mr        r3, r31
-				  addi      r4, r1, 0x8
-				  bl        .loc_0x7C
+lbl_803E3C84:
+	mr       r3, r31
+	addi     r4, r1, 8
+	bl       readCoordinate__Q33ebi5title9TCoordMgrFR6Stream
 
-				.loc_0x68:
-				  lwz       r0, 0x434(r1)
-				  lwz       r31, 0x42C(r1)
-				  mtlr      r0
-				  addi      r1, r1, 0x430
-				  blr
-
-				.loc_0x7C:
+lbl_803E3C90:
+	lwz      r0, 0x434(r1)
+	lwz      r31, 0x42c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x430
+	blr
 				*/
 			}
 
@@ -295,108 +347,107 @@ namespace title {
 			void TCoordMgr::readCoordinate(Stream&)
 			{
 				/*
-				.loc_0x0:
-				  stwu      r1, -0x30(r1)
-				  mflr      r0
-				  stw       r0, 0x34(r1)
-				  stmw      r25, 0x14(r1)
-				  mr        r28, r3
-				  mr        r29, r4
-				  li        r31, 0
-				  mr        r27, r28
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stmw     r25, 0x14(r1)
+	mr       r28, r3
+	mr       r29, r4
+	li       r31, 0
+	mr       r27, r28
 
-				.loc_0x20:
-				  mr        r3, r29
-				  bl        0x30DC8
-				  cmpwi     r31, 0x2
-				  stw       r3, 0x18(r27)
-				  li        r30, 0
-				  beq-      .loc_0x94
-				  bge-      .loc_0x4C
-				  cmpwi     r31, 0
-				  beq-      .loc_0x78
-				  bge-      .loc_0x5C
-				  b         .loc_0xE4
+lbl_803E3CC4:
+	mr       r3, r29
+	bl       readInt__6StreamFv
+	cmpwi    r31, 2
+	stw      r3, 0x18(r27)
+	li       r30, 0
+	beq      lbl_803E3D38
+	bge      lbl_803E3CF0
+	cmpwi    r31, 0
+	beq      lbl_803E3D1C
+	bge      lbl_803E3D00
+	b        lbl_803E3D88
 
-				.loc_0x4C:
-				  cmpwi     r31, 0x4
-				  beq-      .loc_0xCC
-				  bge-      .loc_0xE4
-				  b         .loc_0xB0
+lbl_803E3CF0:
+	cmpwi    r31, 4
+	beq      lbl_803E3D70
+	bge      lbl_803E3D88
+	b        lbl_803E3D54
 
-				.loc_0x5C:
-				  lwz       r0, 0x18(r27)
-				  li        r30, 0x64
-				  cmpwi     r0, 0x64
-				  ble-      .loc_0xE4
-				  li        r0, 0x64
-				  stw       r0, 0x18(r27)
-				  b         .loc_0xE4
+lbl_803E3D00:
+	lwz      r0, 0x18(r27)
+	li       r30, 0x64
+	cmpwi    r0, 0x64
+	ble      lbl_803E3D88
+	li       r0, 0x64
+	stw      r0, 0x18(r27)
+	b        lbl_803E3D88
 
-				.loc_0x78:
-				  lwz       r0, 0x18(r27)
-				  li        r30, 0
-				  cmpwi     r0, 0x64
-				  ble-      .loc_0xE4
-				  li        r0, 0x64
-				  stw       r0, 0x18(r27)
-				  b         .loc_0xE4
+lbl_803E3D1C:
+	lwz      r0, 0x18(r27)
+	li       r30, 0
+	cmpwi    r0, 0x64
+	ble      lbl_803E3D88
+	li       r0, 0x64
+	stw      r0, 0x18(r27)
+	b        lbl_803E3D88
 
-				.loc_0x94:
-				  lwz       r0, 0x18(r27)
-				  li        r30, 0xC8
-				  cmpwi     r0, 0x64
-				  ble-      .loc_0xE4
-				  li        r0, 0x64
-				  stw       r0, 0x18(r27)
-				  b         .loc_0xE4
+lbl_803E3D38:
+	lwz      r0, 0x18(r27)
+	li       r30, 0xc8
+	cmpwi    r0, 0x64
+	ble      lbl_803E3D88
+	li       r0, 0x64
+	stw      r0, 0x18(r27)
+	b        lbl_803E3D88
 
-				.loc_0xB0:
-				  lwz       r0, 0x18(r27)
-				  li        r30, 0x12C
-				  cmpwi     r0, 0x64
-				  ble-      .loc_0xE4
-				  li        r0, 0x64
-				  stw       r0, 0x18(r27)
-				  b         .loc_0xE4
+lbl_803E3D54:
+	lwz      r0, 0x18(r27)
+	li       r30, 0x12c
+	cmpwi    r0, 0x64
+	ble      lbl_803E3D88
+	li       r0, 0x64
+	stw      r0, 0x18(r27)
+	b        lbl_803E3D88
 
-				.loc_0xCC:
-				  lwz       r0, 0x18(r27)
-				  li        r30, 0x190
-				  cmpwi     r0, 0x64
-				  ble-      .loc_0xE4
-				  li        r0, 0x64
-				  stw       r0, 0x18(r27)
+lbl_803E3D70:
+	lwz      r0, 0x18(r27)
+	li       r30, 0x190
+	cmpwi    r0, 0x64
+	ble      lbl_803E3D88
+	li       r0, 0x64
+	stw      r0, 0x18(r27)
 
-				.loc_0xE4:
-				  li        r25, 0
-				  b         .loc_0x114
+lbl_803E3D88:
+	li       r25, 0
+	b        lbl_803E3DB8
 
-				.loc_0xEC:
-				  mr        r3, r29
-				  bl        0x31018
-				  add       r0, r25, r30
-				  mr        r3, r29
-				  rlwinm    r0,r0,3,0,28
-				  add       r26, r28, r0
-				  stfs      f1, 0x2C(r26)
-				  bl        0x31000
-				  stfs      f1, 0x30(r26)
-				  addi      r25, r25, 0x1
+lbl_803E3D90:
+	mr       r3, r29
+	bl       readFloat__6StreamFv
+	add      r0, r25, r30
+	mr       r3, r29
+	slwi     r0, r0, 3
+	add      r26, r28, r0
+	stfs     f1, 0x2c(r26)
+	bl       readFloat__6StreamFv
+	stfs     f1, 0x30(r26)
+	addi     r25, r25, 1
 
-				.loc_0x114:
-				  lwz       r0, 0x18(r27)
-				  cmpw      r25, r0
-				  blt+      .loc_0xEC
-				  addi      r31, r31, 0x1
-				  addi      r27, r27, 0x4
-				  cmpwi     r31, 0x5
-				  blt+      .loc_0x20
-				  lmw       r25, 0x14(r1)
-				  lwz       r0, 0x34(r1)
-				  mtlr      r0
-				  addi      r1, r1, 0x30
-				  blr
+lbl_803E3DB8:
+	lwz      r0, 0x18(r27)
+	cmpw     r25, r0
+	blt      lbl_803E3D90
+	addi     r31, r31, 1
+	addi     r27, r27, 4
+	cmpwi    r31, 5
+	blt      lbl_803E3CC4
+	lmw      r25, 0x14(r1)
+	lwz      r0, 0x34(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 				*/
 			}
 		} // namespace title

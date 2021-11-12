@@ -1,6 +1,10 @@
 #include "types.h"
 
 /*
+    Generated from dpostproc
+*/
+
+/*
  * --INFO--
  * Address:	80011DCC
  * Size:	000098

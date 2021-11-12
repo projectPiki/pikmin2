@@ -1,6 +1,46 @@
 #include "types.h"
 
 /*
+    Generated from dpostproc
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_80516A48
+    lbl_80516A48:
+        .float 1.0
+    .global lbl_80516A4C
+    lbl_80516A4C:
+        .float 1.0
+    .global lbl_80516A50
+    lbl_80516A50:
+        .float -1.0
+    .global lbl_80516A54
+    lbl_80516A54:
+        .4byte 0x00000000
+    .global lbl_80516A58
+    lbl_80516A58:
+        .float -1.0
+    .global lbl_80516A5C
+    lbl_80516A5C:
+        .4byte 0x40490FDB
+    .global lbl_80516A60
+    lbl_80516A60:
+        .4byte 0x447FE000
+    .global lbl_80516A64
+    lbl_80516A64:
+        .4byte 0x3FC90FDB
+    .global lbl_80516A68
+    lbl_80516A68:
+        .4byte 0x42652EE0
+    .global lbl_80516A6C
+    lbl_80516A6C:
+        .4byte 0x43340000
+    .global lbl_80516A70
+    lbl_80516A70:
+        .4byte 0x43300000
+        .4byte 0x00000000
+*/
+
+/*
  * --INFO--
  * Address:	8006A59C
  * Size:	000024
@@ -8,18 +48,15 @@
 void J3DDeformData::deform(J3DModel*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  addi      r4, r4, 0x88
-	  stw       r0, 0x14(r1)
-	  bl        .loc_0x24
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-
-	.loc_0x24:
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	addi     r4, r4, 0x88
+	stw      r0, 0x14(r1)
+	bl       deform__13J3DDeformDataFP15J3DVertexBuffer
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -31,66 +68,63 @@ void J3DDeformData::deform(J3DModel*)
 void J3DDeformData::deform(J3DVertexBuffer*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  li        r31, 0
-	  stw       r30, 0x18(r1)
-	  mr        r30, r4
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  lwz       r3, 0x4(r4)
-	  lwz       r0, 0x8(r4)
-	  stw       r0, 0x4(r4)
-	  stw       r3, 0x8(r4)
-	  lwz       r3, 0xC(r4)
-	  lwz       r0, 0x10(r4)
-	  stw       r0, 0xC(r4)
-	  stw       r3, 0x10(r4)
-	  b         .loc_0x6C
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	li       r31, 0
+	stw      r30, 0x18(r1)
+	mr       r30, r4
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	lwz      r3, 4(r4)
+	lwz      r0, 8(r4)
+	stw      r0, 4(r4)
+	stw      r3, 8(r4)
+	lwz      r3, 0xc(r4)
+	lwz      r0, 0x10(r4)
+	stw      r0, 0xc(r4)
+	stw      r3, 0x10(r4)
+	b        lbl_8006A62C
 
-	.loc_0x48:
-	  rlwinm    r0,r31,0,16,31
-	  lwz       r6, 0x8(r29)
-	  mulli     r3, r0, 0x24
-	  mr        r4, r30
-	  mr        r5, r31
-	  addi      r0, r3, 0x20
-	  lwzx      r3, r6, r0
-	  bl        .loc_0xD4
-	  addi      r31, r31, 0x1
+lbl_8006A608:
+	clrlwi   r0, r31, 0x10
+	lwz      r6, 8(r29)
+	mulli    r3, r0, 0x24
+	mr       r4, r30
+	mr       r5, r31
+	addi     r0, r3, 0x20
+	lwzx     r3, r6, r0
+	bl       deform__11J3DDeformerFP15J3DVertexBufferUs
+	addi     r31, r31, 1
 
-	.loc_0x6C:
-	  lhz       r0, 0x0(r29)
-	  rlwinm    r3,r31,0,16,31
-	  cmplw     r3, r0
-	  blt+      .loc_0x48
-	  lwz       r4, 0x0(r30)
-	  lwz       r3, 0x4(r30)
-	  lwz       r0, 0x0(r4)
-	  mulli     r4, r0, 0xC
-	  bl        0x82158
-	  lwz       r4, 0x0(r30)
-	  lwz       r3, 0xC(r30)
-	  lwz       r0, 0x4(r4)
-	  mulli     r4, r0, 0xC
-	  bl        0x82144
-	  bl        0x69F2C
-	  lwz       r0, 0x4(r30)
-	  stw       r0, 0x2C(r30)
-	  lwz       r0, 0xC(r30)
-	  stw       r0, 0x30(r30)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-
-	.loc_0xD4:
+lbl_8006A62C:
+	lhz      r0, 0(r29)
+	clrlwi   r3, r31, 0x10
+	cmplw    r3, r0
+	blt      lbl_8006A608
+	lwz      r4, 0(r30)
+	lwz      r3, 4(r30)
+	lwz      r0, 0(r4)
+	mulli    r4, r0, 0xc
+	bl       DCStoreRangeNoSync
+	lwz      r4, 0(r30)
+	lwz      r3, 0xc(r30)
+	lwz      r0, 4(r4)
+	mulli    r4, r0, 0xc
+	bl       DCStoreRangeNoSync
+	bl       PPCSync
+	lwz      r0, 4(r30)
+	stw      r0, 0x2c(r30)
+	lwz      r0, 0xc(r30)
+	stw      r0, 0x30(r30)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -102,115 +136,114 @@ void J3DDeformData::deform(J3DVertexBuffer*)
 void J3DDeformer::deform(J3DVertexBuffer*, unsigned short)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stmw      r26, 0x8(r1)
-	  mr        r28, r3
-	  mr        r29, r4
-	  mr        r30, r5
-	  li        r31, 0
-	  lwz       r0, 0x4(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x154
-	  rlwinm    r0,r30,0,16,31
-	  li        r3, 0
-	  cmplwi    r0, 0
-	  ble-      .loc_0xE8
-	  cmplwi    r0, 0x8
-	  subi      r0, r30, 0x8
-	  ble-      .loc_0xB4
-	  rlwinm    r0,r0,0,16,31
-	  b         .loc_0xA8
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stmw     r26, 8(r1)
+	mr       r28, r3
+	mr       r29, r4
+	mr       r30, r5
+	li       r31, 0
+	lwz      r0, 4(r3)
+	cmplwi   r0, 0
+	beq      lbl_8006A7E8
+	clrlwi   r0, r30, 0x10
+	li       r3, 0
+	cmplwi   r0, 0
+	ble      lbl_8006A77C
+	cmplwi   r0, 8
+	addi     r0, r30, -8
+	ble      lbl_8006A748
+	clrlwi   r0, r0, 0x10
+	b        lbl_8006A73C
 
-	.loc_0x50:
-	  rlwinm    r4,r3,0,16,31
-	  lwz       r5, 0x0(r28)
-	  mulli     r4, r4, 0x24
-	  addi      r3, r3, 0x8
-	  lwz       r5, 0x8(r5)
-	  add       r6, r5, r4
-	  lhz       r5, 0x10(r6)
-	  lhz       r4, 0x34(r6)
-	  add       r31, r31, r5
-	  lhz       r5, 0x58(r6)
-	  add       r31, r31, r4
-	  lhz       r4, 0x7C(r6)
-	  add       r31, r31, r5
-	  lhz       r5, 0xA0(r6)
-	  add       r31, r31, r4
-	  lhz       r4, 0xC4(r6)
-	  add       r31, r31, r5
-	  lhz       r5, 0xE8(r6)
-	  add       r31, r31, r4
-	  lhz       r4, 0x10C(r6)
-	  add       r31, r31, r5
-	  add       r31, r31, r4
+lbl_8006A6E4:
+	clrlwi   r4, r3, 0x10
+	lwz      r5, 0(r28)
+	mulli    r4, r4, 0x24
+	addi     r3, r3, 8
+	lwz      r5, 8(r5)
+	add      r6, r5, r4
+	lhz      r5, 0x10(r6)
+	lhz      r4, 0x34(r6)
+	add      r31, r31, r5
+	lhz      r5, 0x58(r6)
+	add      r31, r31, r4
+	lhz      r4, 0x7c(r6)
+	add      r31, r31, r5
+	lhz      r5, 0xa0(r6)
+	add      r31, r31, r4
+	lhz      r4, 0xc4(r6)
+	add      r31, r31, r5
+	lhz      r5, 0xe8(r6)
+	add      r31, r31, r4
+	lhz      r4, 0x10c(r6)
+	add      r31, r31, r5
+	add      r31, r31, r4
 
-	.loc_0xA8:
-	  rlwinm    r4,r3,0,16,31
-	  cmplw     r4, r0
-	  blt+      .loc_0x50
+lbl_8006A73C:
+	clrlwi   r4, r3, 0x10
+	cmplw    r4, r0
+	blt      lbl_8006A6E4
 
-	.loc_0xB4:
-	  rlwinm    r0,r30,0,16,31
-	  b         .loc_0xDC
+lbl_8006A748:
+	clrlwi   r0, r30, 0x10
+	b        lbl_8006A770
 
-	.loc_0xBC:
-	  rlwinm    r4,r3,0,16,31
-	  lwz       r5, 0x0(r28)
-	  mulli     r4, r4, 0x24
-	  addi      r3, r3, 0x1
-	  lwz       r5, 0x8(r5)
-	  addi      r4, r4, 0x10
-	  lhzx      r4, r5, r4
-	  add       r31, r31, r4
+lbl_8006A750:
+	clrlwi   r4, r3, 0x10
+	lwz      r5, 0(r28)
+	mulli    r4, r4, 0x24
+	addi     r3, r3, 1
+	lwz      r5, 8(r5)
+	addi     r4, r4, 0x10
+	lhzx     r4, r5, r4
+	add      r31, r31, r4
 
-	.loc_0xDC:
-	  rlwinm    r4,r3,0,16,31
-	  cmplw     r4, r0
-	  blt+      .loc_0xBC
+lbl_8006A770:
+	clrlwi   r4, r3, 0x10
+	cmplw    r4, r0
+	blt      lbl_8006A750
 
-	.loc_0xE8:
-	  rlwinm    r0,r30,0,16,31
-	  lwz       r4, 0x0(r28)
-	  mulli     r3, r0, 0x24
-	  li        r26, 0
-	  lwz       r4, 0x8(r4)
-	  addi      r0, r3, 0x10
-	  lhzx      r27, r4, r0
-	  b         .loc_0x134
+lbl_8006A77C:
+	clrlwi   r0, r30, 0x10
+	lwz      r4, 0(r28)
+	mulli    r3, r0, 0x24
+	li       r26, 0
+	lwz      r4, 8(r4)
+	addi     r0, r3, 0x10
+	lhzx     r27, r4, r0
+	b        lbl_8006A7C8
 
-	.loc_0x108:
-	  lwz       r3, 0x4(r28)
-	  mr        r4, r31
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  addi      r31, r31, 0x1
-	  bctrl
-	  lwz       r3, 0x8(r28)
-	  rlwinm    r0,r26,2,14,29
-	  addi      r26, r26, 0x1
-	  stfsx     f1, r3, r0
+lbl_8006A79C:
+	lwz      r3, 4(r28)
+	mr       r4, r31
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	addi     r31, r31, 1
+	bctrl
+	lwz      r3, 8(r28)
+	rlwinm   r0, r26, 2, 0xe, 0x1d
+	addi     r26, r26, 1
+	stfsx    f1, r3, r0
 
-	.loc_0x134:
-	  rlwinm    r0,r26,0,16,31
-	  cmplw     r0, r27
-	  blt+      .loc_0x108
-	  lwz       r6, 0x8(r28)
-	  mr        r3, r28
-	  mr        r4, r29
-	  mr        r5, r30
-	  bl        0x6F4
+lbl_8006A7C8:
+	clrlwi   r0, r26, 0x10
+	cmplw    r0, r27
+	blt      lbl_8006A79C
+	lwz      r6, 8(r28)
+	mr       r3, r28
+	mr       r4, r29
+	mr       r5, r30
+	bl       deform__11J3DDeformerFP15J3DVertexBufferUsPf
 
-	.loc_0x154:
-	  lmw       r26, 0x8(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8006A7E8:
+	lmw      r26, 8(r1)
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -755,138 +788,137 @@ void J3DDeformer::deform_VtxNrmF32(J3DVertexBuffer*, J3DCluster*,
 void J3DDeformer::deform(J3DVertexBuffer*, unsigned short, float*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stmw      r26, 0x8(r1)
-	  mr        r28, r3
-	  mr        r29, r4
-	  mr        r30, r6
-	  lwz       r0, 0x10(r3)
-	  rlwinm.   r0,r0,0,30,30
-	  beq-      .loc_0x1B8
-	  lwz       r3, 0x0(r29)
-	  lwz       r0, 0x50(r3)
-	  cmpwi     r0, 0x4
-	  bne-      .loc_0x1B8
-	  rlwinm    r8,r5,0,16,31
-	  lwz       r4, 0x0(r28)
-	  mulli     r7, r8, 0x24
-	  li        r0, 0
-	  lwz       r3, 0x8(r4)
-	  cmplwi    r8, 0
-	  li        r6, 0
-	  add       r31, r3, r7
-	  ble-      .loc_0x140
-	  cmplwi    r8, 0x8
-	  subi      r7, r5, 0x8
-	  ble-      .loc_0x10C
-	  rlwinm    r7,r7,0,16,31
-	  b         .loc_0x100
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stmw     r26, 8(r1)
+	mr       r28, r3
+	mr       r29, r4
+	mr       r30, r6
+	lwz      r0, 0x10(r3)
+	rlwinm.  r0, r0, 0, 0x1e, 0x1e
+	beq      lbl_8006B090
+	lwz      r3, 0(r29)
+	lwz      r0, 0x50(r3)
+	cmpwi    r0, 4
+	bne      lbl_8006B090
+	clrlwi   r8, r5, 0x10
+	lwz      r4, 0(r28)
+	mulli    r7, r8, 0x24
+	li       r0, 0
+	lwz      r3, 8(r4)
+	cmplwi   r8, 0
+	li       r6, 0
+	add      r31, r3, r7
+	ble      lbl_8006B018
+	cmplwi   r8, 8
+	addi     r7, r5, -8
+	ble      lbl_8006AFE4
+	clrlwi   r7, r7, 0x10
+	b        lbl_8006AFD8
 
-	.loc_0x70:
-	  rlwinm    r8,r6,0,16,31
-	  addi      r6, r6, 0x8
-	  mulli     r8, r8, 0x24
-	  add       r26, r3, r8
-	  lhz       r9, 0x10(r26)
-	  lhz       r8, 0x34(r26)
-	  add       r9, r9, r0
-	  lhz       r27, 0x58(r26)
-	  addi      r0, r9, 0x1
-	  lhz       r12, 0x7C(r26)
-	  rlwinm    r0,r0,0,16,31
-	  lhz       r11, 0xA0(r26)
-	  add       r8, r8, r0
-	  lhz       r10, 0xC4(r26)
-	  addi      r0, r8, 0x1
-	  lhz       r9, 0xE8(r26)
-	  rlwinm    r0,r0,0,16,31
-	  lhz       r8, 0x10C(r26)
-	  add       r27, r27, r0
-	  addi      r0, r27, 0x1
-	  rlwinm    r0,r0,0,16,31
-	  add       r12, r12, r0
-	  addi      r0, r12, 0x1
-	  rlwinm    r0,r0,0,16,31
-	  add       r11, r11, r0
-	  addi      r0, r11, 0x1
-	  rlwinm    r0,r0,0,16,31
-	  add       r10, r10, r0
-	  addi      r0, r10, 0x1
-	  rlwinm    r0,r0,0,16,31
-	  add       r9, r9, r0
-	  addi      r0, r9, 0x1
-	  rlwinm    r0,r0,0,16,31
-	  add       r8, r8, r0
-	  addi      r0, r8, 0x1
-	  rlwinm    r0,r0,0,16,31
+lbl_8006AF48:
+	clrlwi   r8, r6, 0x10
+	addi     r6, r6, 8
+	mulli    r8, r8, 0x24
+	add      r26, r3, r8
+	lhz      r9, 0x10(r26)
+	lhz      r8, 0x34(r26)
+	add      r9, r9, r0
+	lhz      r27, 0x58(r26)
+	addi     r0, r9, 1
+	lhz      r12, 0x7c(r26)
+	clrlwi   r0, r0, 0x10
+	lhz      r11, 0xa0(r26)
+	add      r8, r8, r0
+	lhz      r10, 0xc4(r26)
+	addi     r0, r8, 1
+	lhz      r9, 0xe8(r26)
+	clrlwi   r0, r0, 0x10
+	lhz      r8, 0x10c(r26)
+	add      r27, r27, r0
+	addi     r0, r27, 1
+	clrlwi   r0, r0, 0x10
+	add      r12, r12, r0
+	addi     r0, r12, 1
+	clrlwi   r0, r0, 0x10
+	add      r11, r11, r0
+	addi     r0, r11, 1
+	clrlwi   r0, r0, 0x10
+	add      r10, r10, r0
+	addi     r0, r10, 1
+	clrlwi   r0, r0, 0x10
+	add      r9, r9, r0
+	addi     r0, r9, 1
+	clrlwi   r0, r0, 0x10
+	add      r8, r8, r0
+	addi     r0, r8, 1
+	clrlwi   r0, r0, 0x10
 
-	.loc_0x100:
-	  rlwinm    r8,r6,0,16,31
-	  cmplw     r8, r7
-	  blt+      .loc_0x70
+lbl_8006AFD8:
+	clrlwi   r8, r6, 0x10
+	cmplw    r8, r7
+	blt      lbl_8006AF48
 
-	.loc_0x10C:
-	  rlwinm    r5,r5,0,16,31
-	  b         .loc_0x134
+lbl_8006AFE4:
+	clrlwi   r5, r5, 0x10
+	b        lbl_8006B00C
 
-	.loc_0x114:
-	  rlwinm    r7,r6,0,16,31
-	  addi      r6, r6, 0x1
-	  mulli     r7, r7, 0x24
-	  addi      r7, r7, 0x10
-	  lhzx      r7, r3, r7
-	  add       r7, r7, r0
-	  addi      r0, r7, 0x1
-	  rlwinm    r0,r0,0,16,31
+lbl_8006AFEC:
+	clrlwi   r7, r6, 0x10
+	addi     r6, r6, 1
+	mulli    r7, r7, 0x24
+	addi     r7, r7, 0x10
+	lhzx     r7, r3, r7
+	add      r7, r7, r0
+	addi     r0, r7, 1
+	clrlwi   r0, r0, 0x10
 
-	.loc_0x134:
-	  rlwinm    r7,r6,0,16,31
-	  cmplw     r7, r5
-	  blt+      .loc_0x114
+lbl_8006B00C:
+	clrlwi   r7, r6, 0x10
+	cmplw    r7, r5
+	blt      lbl_8006AFEC
 
-	.loc_0x140:
-	  rlwinm    r0,r0,0,16,31
-	  lwz       r6, 0xC(r4)
-	  mulli     r0, r0, 0xC
-	  lhz       r4, 0x10(r31)
-	  mr        r3, r28
-	  mr        r5, r30
-	  add       r27, r6, r0
-	  bl        .loc_0x1CC
-	  mr        r3, r28
-	  mr        r4, r29
-	  mr        r5, r31
-	  mr        r6, r27
-	  mr        r7, r30
-	  bl        -0x850
-	  lwz       r0, 0x10(r28)
-	  rlwinm.   r0,r0,0,31,31
-	  beq-      .loc_0x1B8
-	  lbz       r0, 0xC(r31)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x1B8
-	  lwz       r3, 0x0(r29)
-	  lwz       r0, 0x58(r3)
-	  cmpwi     r0, 0x4
-	  bne-      .loc_0x1B8
-	  mr        r3, r28
-	  mr        r4, r29
-	  mr        r5, r31
-	  mr        r6, r27
-	  mr        r7, r30
-	  bl        -0x624
+lbl_8006B018:
+	clrlwi   r0, r0, 0x10
+	lwz      r6, 0xc(r4)
+	mulli    r0, r0, 0xc
+	lhz      r4, 0x10(r31)
+	mr       r3, r28
+	mr       r5, r30
+	add      r27, r6, r0
+	bl       normalizeWeight__11J3DDeformerFiPf
+	mr       r3, r28
+	mr       r4, r29
+	mr       r5, r31
+	mr       r6, r27
+	mr       r7, r30
+	bl
+deform_VtxPosF32__11J3DDeformerFP15J3DVertexBufferP10J3DClusterP13J3DClusterKeyPf
+	lwz      r0, 0x10(r28)
+	clrlwi.  r0, r0, 0x1f
+	beq      lbl_8006B090
+	lbz      r0, 0xc(r31)
+	cmplwi   r0, 0
+	beq      lbl_8006B090
+	lwz      r3, 0(r29)
+	lwz      r0, 0x58(r3)
+	cmpwi    r0, 4
+	bne      lbl_8006B090
+	mr       r3, r28
+	mr       r4, r29
+	mr       r5, r31
+	mr       r6, r27
+	mr       r7, r30
+	bl
+deform_VtxNrmF32__11J3DDeformerFP15J3DVertexBufferP10J3DClusterP13J3DClusterKeyPf
 
-	.loc_0x1B8:
-	  lmw       r26, 0x8(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-
-	.loc_0x1CC:
+lbl_8006B090:
+	lmw      r26, 8(r1)
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -898,111 +930,110 @@ void J3DDeformer::deform(J3DVertexBuffer*, unsigned short, float*)
 void J3DDeformer::normalizeWeight(int, float*)
 {
 	/*
-	.loc_0x0:
-	  cmpwi     r4, 0
-	  lfs       f6, -0x790C(r2)
-	  li        r7, 0
-	  ble-      .loc_0x98
-	  cmpwi     r4, 0x8
-	  subi      r3, r4, 0x8
-	  ble-      .loc_0x8C
-	  b         .loc_0x6C
+	cmpwi    r4, 0
+	lfs      f6, lbl_80516A54@sda21(r2)
+	li       r7, 0
+	ble      lbl_8006B13C
+	cmpwi    r4, 8
+	addi     r3, r4, -8
+	ble      lbl_8006B130
+	b        lbl_8006B110
 
-	.loc_0x20:
-	  rlwinm    r0,r7,2,14,29
-	  addi      r7, r7, 0x8
-	  add       r6, r5, r0
-	  lfs       f1, 0x0(r6)
-	  lfs       f0, 0x4(r6)
-	  fadds     f6, f6, f1
-	  lfs       f5, 0x8(r6)
-	  lfs       f4, 0xC(r6)
-	  lfs       f3, 0x10(r6)
-	  fadds     f6, f6, f0
-	  lfs       f2, 0x14(r6)
-	  lfs       f1, 0x18(r6)
-	  lfs       f0, 0x1C(r6)
-	  fadds     f6, f6, f5
-	  fadds     f6, f6, f4
-	  fadds     f6, f6, f3
-	  fadds     f6, f6, f2
-	  fadds     f6, f6, f1
-	  fadds     f6, f6, f0
+lbl_8006B0C4:
+	rlwinm   r0, r7, 2, 0xe, 0x1d
+	addi     r7, r7, 8
+	add      r6, r5, r0
+	lfs      f1, 0(r6)
+	lfs      f0, 4(r6)
+	fadds    f6, f6, f1
+	lfs      f5, 8(r6)
+	lfs      f4, 0xc(r6)
+	lfs      f3, 0x10(r6)
+	fadds    f6, f6, f0
+	lfs      f2, 0x14(r6)
+	lfs      f1, 0x18(r6)
+	lfs      f0, 0x1c(r6)
+	fadds    f6, f6, f5
+	fadds    f6, f6, f4
+	fadds    f6, f6, f3
+	fadds    f6, f6, f2
+	fadds    f6, f6, f1
+	fadds    f6, f6, f0
 
-	.loc_0x6C:
-	  rlwinm    r0,r7,0,16,31
-	  cmpw      r0, r3
-	  blt+      .loc_0x20
-	  b         .loc_0x8C
+lbl_8006B110:
+	clrlwi   r0, r7, 0x10
+	cmpw     r0, r3
+	blt      lbl_8006B0C4
+	b        lbl_8006B130
 
-	.loc_0x7C:
-	  rlwinm    r0,r7,2,14,29
-	  addi      r7, r7, 0x1
-	  lfsx      f0, r5, r0
-	  fadds     f6, f6, f0
+lbl_8006B120:
+	rlwinm   r0, r7, 2, 0xe, 0x1d
+	addi     r7, r7, 1
+	lfsx     f0, r5, r0
+	fadds    f6, f6, f0
 
-	.loc_0x8C:
-	  rlwinm    r0,r7,0,16,31
-	  cmpw      r0, r4
-	  blt+      .loc_0x7C
+lbl_8006B130:
+	clrlwi   r0, r7, 0x10
+	cmpw     r0, r4
+	blt      lbl_8006B120
 
-	.loc_0x98:
-	  lfs       f0, -0x7918(r2)
-	  cmpwi     r4, 0
-	  li        r7, 0
-	  fdivs     f1, f0, f6
-	  blelr-
-	  cmpwi     r4, 0x8
-	  subi      r3, r4, 0x8
-	  ble-      .loc_0x14C
-	  b         .loc_0x128
+lbl_8006B13C:
+	lfs      f0, lbl_80516A48@sda21(r2)
+	cmpwi    r4, 0
+	li       r7, 0
+	fdivs    f1, f0, f6
+	blelr
+	cmpwi    r4, 8
+	addi     r3, r4, -8
+	ble      lbl_8006B1F0
+	b        lbl_8006B1CC
 
-	.loc_0xBC:
-	  rlwinm    r0,r7,2,14,29
-	  addi      r7, r7, 0x8
-	  add       r6, r5, r0
-	  lfs       f0, 0x0(r6)
-	  fmuls     f0, f0, f1
-	  stfs      f0, 0x0(r6)
-	  lfs       f0, 0x4(r6)
-	  fmuls     f0, f0, f1
-	  stfs      f0, 0x4(r6)
-	  lfs       f0, 0x8(r6)
-	  fmuls     f0, f0, f1
-	  stfs      f0, 0x8(r6)
-	  lfs       f0, 0xC(r6)
-	  fmuls     f0, f0, f1
-	  stfs      f0, 0xC(r6)
-	  lfs       f0, 0x10(r6)
-	  fmuls     f0, f0, f1
-	  stfs      f0, 0x10(r6)
-	  lfs       f0, 0x14(r6)
-	  fmuls     f0, f0, f1
-	  stfs      f0, 0x14(r6)
-	  lfs       f0, 0x18(r6)
-	  fmuls     f0, f0, f1
-	  stfs      f0, 0x18(r6)
-	  lfs       f0, 0x1C(r6)
-	  fmuls     f0, f0, f1
-	  stfs      f0, 0x1C(r6)
+lbl_8006B160:
+	rlwinm   r0, r7, 2, 0xe, 0x1d
+	addi     r7, r7, 8
+	add      r6, r5, r0
+	lfs      f0, 0(r6)
+	fmuls    f0, f0, f1
+	stfs     f0, 0(r6)
+	lfs      f0, 4(r6)
+	fmuls    f0, f0, f1
+	stfs     f0, 4(r6)
+	lfs      f0, 8(r6)
+	fmuls    f0, f0, f1
+	stfs     f0, 8(r6)
+	lfs      f0, 0xc(r6)
+	fmuls    f0, f0, f1
+	stfs     f0, 0xc(r6)
+	lfs      f0, 0x10(r6)
+	fmuls    f0, f0, f1
+	stfs     f0, 0x10(r6)
+	lfs      f0, 0x14(r6)
+	fmuls    f0, f0, f1
+	stfs     f0, 0x14(r6)
+	lfs      f0, 0x18(r6)
+	fmuls    f0, f0, f1
+	stfs     f0, 0x18(r6)
+	lfs      f0, 0x1c(r6)
+	fmuls    f0, f0, f1
+	stfs     f0, 0x1c(r6)
 
-	.loc_0x128:
-	  rlwinm    r0,r7,0,16,31
-	  cmpw      r0, r3
-	  blt+      .loc_0xBC
-	  b         .loc_0x14C
+lbl_8006B1CC:
+	clrlwi   r0, r7, 0x10
+	cmpw     r0, r3
+	blt      lbl_8006B160
+	b        lbl_8006B1F0
 
-	.loc_0x138:
-	  rlwinm    r0,r7,2,14,29
-	  addi      r7, r7, 0x1
-	  lfsx      f0, r5, r0
-	  fmuls     f0, f0, f1
-	  stfsx     f0, r5, r0
+lbl_8006B1DC:
+	rlwinm   r0, r7, 2, 0xe, 0x1d
+	addi     r7, r7, 1
+	lfsx     f0, r5, r0
+	fmuls    f0, f0, f1
+	stfsx    f0, r5, r0
 
-	.loc_0x14C:
-	  rlwinm    r0,r7,0,16,31
-	  cmpw      r0, r4
-	  blt+      .loc_0x138
-	  blr
+lbl_8006B1F0:
+	clrlwi   r0, r7, 0x10
+	cmpw     r0, r4
+	blt      lbl_8006B1DC
+	blr
 	*/
 }

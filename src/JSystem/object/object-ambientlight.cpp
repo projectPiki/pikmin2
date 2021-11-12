@@ -1,6 +1,27 @@
 #include "types.h"
 
 /*
+    Generated from dpostproc
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__Q214JStudio_JStage21TAdaptor_ambientLight
+    __vt__Q214JStudio_JStage21TAdaptor_ambientLight:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q214JStudio_JStage21TAdaptor_ambientLightFv
+        .4byte
+   adaptor_do_prepare__Q214JStudio_JStage21TAdaptor_ambientLightFPCQ27JStudio7TObject
+        .4byte
+   adaptor_do_begin__Q214JStudio_JStage21TAdaptor_ambientLightFPCQ27JStudio7TObject
+        .4byte
+   adaptor_do_end__Q214JStudio_JStage21TAdaptor_ambientLightFPCQ27JStudio7TObject
+        .4byte
+   adaptor_do_update__Q214JStudio_JStage21TAdaptor_ambientLightFPCQ27JStudio7TObjectUl
+        .4byte
+   adaptor_do_data__Q214JStudio_JStage21TAdaptor_ambientLightFPCQ27JStudio7TObjectPCvUlPCvUl
+*/
+
+/*
  * --INFO--
  * Address:	8001318C
  * Size:	0000A0
@@ -61,39 +82,38 @@ JStudio_JStage::TAdaptor_ambientLight::TAdaptor_ambientLight(
 JStudio_JStage::TAdaptor_ambientLight::~TAdaptor_ambientLight()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x5C
-	  lis       r5, 0x804A
-	  li        r4, 0
-	  subi      r0, r5, 0x8F8
-	  stw       r0, 0x0(r30)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r3, r30
-	  li        r4, 0
-	  bl        -0x54A0
-	  extsh.    r0, r31
-	  ble-      .loc_0x5C
-	  mr        r3, r30
-	  bl        0x10E30
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_80013288
+	lis      r5, __vt__Q214JStudio_JStage21TAdaptor_ambientLight@ha
+	li       r4, 0
+	addi     r0, r5, __vt__Q214JStudio_JStage21TAdaptor_ambientLight@l
+	stw      r0, 0(r30)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	mr       r3, r30
+	li       r4, 0
+	bl       __dt__Q27JStudio21TAdaptor_ambientLightFv
+	extsh.   r0, r31
+	ble      lbl_80013288
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x5C:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80013288:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 

@@ -2,6 +2,10 @@
 #include "JSystem/JGadget/binary.h"
 #include "JSystem/fvb/TParse.h"
 
+/*
+    Generated from dpostproc
+*/
+
 namespace JStudio {
 namespace fvb {
 	namespace data {

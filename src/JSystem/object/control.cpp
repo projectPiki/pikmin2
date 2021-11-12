@@ -1,6 +1,29 @@
 #include "types.h"
 
 /*
+    Generated from dpostproc
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__Q216JStudio_JMessage13TCreateObject
+    __vt__Q216JStudio_JMessage13TCreateObject:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q216JStudio_JMessage13TCreateObjectFv
+        .4byte
+   create__Q216JStudio_JMessage18TCreateObject_baseFPPQ27JStudio7TObjectRCQ47JStudio3stb4data20TParse_TBlock_object
+        .4byte
+   find__Q216JStudio_JMessage13TCreateObjectFRCQ47JStudio3stb4data20TParse_TBlock_object
+    .global __vt__Q216JStudio_JMessage18TCreateObject_base
+    __vt__Q216JStudio_JMessage18TCreateObject_base:
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte
+   create__Q216JStudio_JMessage18TCreateObject_baseFPPQ27JStudio7TObjectRCQ47JStudio3stb4data20TParse_TBlock_object
+        .4byte 0
+*/
+
+/*
  * --INFO--
  * Address:	80014DF8
  * Size:	0000BC
@@ -156,39 +179,38 @@ void JStudio_JMessage::TCreateObject_base::create(
 JStudio_JMessage::TCreateObject::~TCreateObject(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x54
-	  lis       r4, 0x804A
-	  subi      r0, r4, 0x718
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x44
-	  lis       r5, 0x804A
-	  li        r4, 0
-	  subi      r0, r5, 0x704
-	  stw       r0, 0x0(r30)
-	  bl        -0x82E8
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_80014FB4
+	lis      r4, __vt__Q216JStudio_JMessage13TCreateObject@ha
+	addi     r0, r4, __vt__Q216JStudio_JMessage13TCreateObject@l
+	stw      r0, 0(r30)
+	beq      lbl_80014FA4
+	lis      r5, __vt__Q216JStudio_JMessage18TCreateObject_base@ha
+	li       r4, 0
+	addi     r0, r5, __vt__Q216JStudio_JMessage18TCreateObject_base@l
+	stw      r0, 0(r30)
+	bl       __dt__Q27JStudio13TCreateObjectFv
 
-	.loc_0x44:
-	  extsh.    r0, r31
-	  ble-      .loc_0x54
-	  mr        r3, r30
-	  bl        0xF104
+lbl_80014FA4:
+	extsh.   r0, r31
+	ble      lbl_80014FB4
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x54:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80014FB4:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 

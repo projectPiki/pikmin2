@@ -1,5 +1,154 @@
 #include "types.h"
 
+/*
+    Generated from dpostproc
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__Q23efx11THdamaShoot
+    __vt__Q23efx11THdamaShoot:
+        .4byte 0
+        .4byte 0
+        .4byte create__Q23efx11TSimpleMtx3FPQ23efx3Arg
+        .4byte forceKill__Q23efx8TSimple3Fv
+        .4byte fade__Q23efx8TSimple3Fv
+    .global __vt__Q23efx11THdamaSight
+    __vt__Q23efx11THdamaSight:
+        .4byte 0
+        .4byte 0
+        .4byte create__Q23efx5TSyncFPQ23efx3Arg
+        .4byte forceKill__Q23efx5TSyncFv
+        .4byte fade__Q23efx5TSyncFv
+        .4byte 0
+        .4byte 0
+        .4byte "@4@__dt__Q23efx11THdamaSightFv"
+        .4byte "@4@execute__Q23efx5TSyncFP14JPABaseEmitter"
+        .4byte "@4@executeAfter__Q23efx5TSyncFP14JPABaseEmitter"
+        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
+        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+        .4byte execute__Q23efx5TSyncFP14JPABaseEmitter
+        .4byte executeAfter__Q23efx5TSyncFP14JPABaseEmitter
+        .4byte doExecuteEmitterOperation__Q23efx8TForeverFP14JPABaseEmitter
+        .4byte doExecuteAfter__Q23efx5TSyncFP14JPABaseEmitter
+        .4byte startDemoDrawOff__Q23efx5TSyncFv
+        .4byte endDemoDrawOn__Q23efx5TSyncFv
+        .4byte __dt__Q23efx11THdamaSightFv
+    .global __vt__Q23efx10THdamaHit1
+    __vt__Q23efx10THdamaHit1:
+        .4byte 0
+        .4byte 0
+        .4byte create__Q23efx8TSimple5FPQ23efx3Arg
+        .4byte forceKill__Q23efx8TSimple5Fv
+        .4byte fade__Q23efx8TSimple5Fv
+    .global __vt__Q23efx10THdamaHit2
+    __vt__Q23efx10THdamaHit2:
+        .4byte 0
+        .4byte 0
+        .4byte create__Q23efx8TSimple4FPQ23efx3Arg
+        .4byte forceKill__Q23efx8TSimple4Fv
+        .4byte fade__Q23efx8TSimple4Fv
+    .global __vt__Q23efx10THdamaHit3
+    __vt__Q23efx10THdamaHit3:
+        .4byte 0
+        .4byte 0
+        .4byte create__Q23efx8TSimple4FPQ23efx3Arg
+        .4byte forceKill__Q23efx8TSimple4Fv
+        .4byte fade__Q23efx8TSimple4Fv
+    .global __vt__Q23efx6ArgDir
+    __vt__Q23efx6ArgDir:
+        .4byte 0
+        .4byte 0
+        .4byte getName__Q23efx6ArgDirFv
+    .global __vt__Q34Game6Houdai17HoudaiShotGunNode
+    __vt__Q34Game6Houdai17HoudaiShotGunNode:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q34Game6Houdai17HoudaiShotGunNodeFv
+        .4byte getChildCount__5CNodeFv
+
+    .section .sbss # 0x80514D80 - 0x80516360
+    .global sHoudaiShotGunMgr__Q24Game6Houdai
+    sHoudaiShotGunMgr__Q24Game6Houdai:
+        .skip 0x8
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_8051C588
+    lbl_8051C588:
+        .4byte 0x00000000
+    .global lbl_8051C58C
+    lbl_8051C58C:
+        .float 1.0
+    .global lbl_8051C590
+    lbl_8051C590:
+        .4byte 0x41200000
+    .global lbl_8051C594
+    lbl_8051C594:
+        .4byte 0x3F19999A
+    .global lbl_8051C598
+    lbl_8051C598:
+        .4byte 0x41A00000
+    .global lbl_8051C59C
+    lbl_8051C59C:
+        .4byte 0x44BB8000
+    .global lbl_8051C5A0
+    lbl_8051C5A0:
+        .4byte 0x447A0000
+    .global lbl_8051C5A4
+    lbl_8051C5A4:
+        .float 0.5
+    .global lbl_8051C5A8
+    lbl_8051C5A8:
+        .4byte 0x42C80000
+    .global lbl_8051C5AC
+    lbl_8051C5AC:
+        .4byte 0x43FA0000
+    .global lbl_8051C5B0
+    lbl_8051C5B0:
+        .4byte 0x74616D61
+        .4byte 0x6A6E7400
+    .global lbl_8051C5B8
+    lbl_8051C5B8:
+        .4byte 0x67756E00
+    .global lbl_8051C5BC
+    lbl_8051C5BC:
+        .4byte 0x40000000
+    .global lbl_8051C5C0
+    lbl_8051C5C0:
+        .4byte 0x47000000
+    .global lbl_8051C5C4
+    lbl_8051C5C4:
+        .4byte 0x42340000
+    .global lbl_8051C5C8
+    lbl_8051C5C8:
+        .4byte 0x44160000
+        .4byte 0x00000000
+    .global lbl_8051C5D0
+    lbl_8051C5D0:
+        .4byte 0x43300000
+        .4byte 0x80000000
+    .global lbl_8051C5D8
+    lbl_8051C5D8:
+        .float 0.05
+    .global lbl_8051C5DC
+    lbl_8051C5DC:
+        .4byte 0x40C90FDB
+    .global lbl_8051C5E0
+    lbl_8051C5E0:
+        .4byte 0x40490FDB
+    .global lbl_8051C5E4
+    lbl_8051C5E4:
+        .4byte 0x3CCCCCCD
+    .global lbl_8051C5E8
+    lbl_8051C5E8:
+        .4byte 0x3C23D70A
+    .global lbl_8051C5EC
+    lbl_8051C5EC:
+        .4byte 0x42480000
+    .global lbl_8051C5F0
+    lbl_8051C5F0:
+        .4byte 0x41726744
+        .4byte 0x69720000
+*/
+
 namespace Game {
 
 /*
@@ -10,24 +159,23 @@ namespace Game {
 void Houdai::levelRotationCallBack(J3DJoint*, int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  cmpwi     r4, 0
-	  mr        r4, r3
-	  stw       r0, 0x14(r1)
-	  bne-      .loc_0x28
-	  lwz       r3, -0x68E0(r13)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x28
-	  bl        0x17C4
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	cmpwi    r4, 0
+	mr       r4, r3
+	stw      r0, 0x14(r1)
+	bne      lbl_802C3974
+	lwz      r3, sHoudaiShotGunMgr__Q24Game6Houdai@sda21(r13)
+	cmplwi   r3, 0
+	beq      lbl_802C3974
+	bl       rotateLevel__Q34Game6Houdai16HoudaiShotGunMgrFP8J3DJoint
 
-	.loc_0x28:
-	  lwz       r0, 0x14(r1)
-	  li        r3, 0
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_802C3974:
+	lwz      r0, 0x14(r1)
+	li       r3, 0
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -39,24 +187,23 @@ void Houdai::levelRotationCallBack(J3DJoint*, int)
 void Houdai::verticalRotationCallBack(J3DJoint*, int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  cmpwi     r4, 0
-	  mr        r4, r3
-	  stw       r0, 0x14(r1)
-	  bne-      .loc_0x28
-	  lwz       r3, -0x68E0(r13)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x28
-	  bl        0x17F0
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	cmpwi    r4, 0
+	mr       r4, r3
+	stw      r0, 0x14(r1)
+	bne      lbl_802C39B0
+	lwz      r3, sHoudaiShotGunMgr__Q24Game6Houdai@sda21(r13)
+	cmplwi   r3, 0
+	beq      lbl_802C39B0
+	bl       rotateVertical__Q34Game6Houdai16HoudaiShotGunMgrFP8J3DJoint
 
-	.loc_0x28:
-	  lwz       r0, 0x14(r1)
-	  li        r3, 0
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_802C39B0:
+	lwz      r0, 0x14(r1)
+	li       r3, 0
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -68,799 +215,798 @@ void Houdai::verticalRotationCallBack(J3DJoint*, int)
 void Houdai::HoudaiShotGunNode::update()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x380(r1)
-	  mflr      r0
-	  stw       r0, 0x384(r1)
-	  stfd      f31, 0x370(r1)
-	  psq_st    f31,0x378(r1),0,0
-	  stfd      f30, 0x360(r1)
-	  psq_st    f30,0x368(r1),0,0
-	  stfd      f29, 0x350(r1)
-	  psq_st    f29,0x358(r1),0,0
-	  stfd      f28, 0x340(r1)
-	  psq_st    f28,0x348(r1),0,0
-	  stfd      f27, 0x330(r1)
-	  psq_st    f27,0x338(r1),0,0
-	  stfd      f26, 0x320(r1)
-	  psq_st    f26,0x328(r1),0,0
-	  stfd      f25, 0x310(r1)
-	  psq_st    f25,0x318(r1),0,0
-	  stfd      f24, 0x300(r1)
-	  psq_st    f24,0x308(r1),0,0
-	  stfd      f23, 0x2F0(r1)
-	  psq_st    f23,0x2F8(r1),0,0
-	  stfd      f22, 0x2E0(r1)
-	  psq_st    f22,0x2E8(r1),0,0
-	  stfd      f21, 0x2D0(r1)
-	  psq_st    f21,0x2D8(r1),0,0
-	  stfd      f20, 0x2C0(r1)
-	  psq_st    f20,0x2C8(r1),0,0
-	  stfd      f19, 0x2B0(r1)
-	  psq_st    f19,0x2B8(r1),0,0
-	  stfd      f18, 0x2A0(r1)
-	  psq_st    f18,0x2A8(r1),0,0
-	  stfd      f17, 0x290(r1)
-	  psq_st    f17,0x298(r1),0,0
-	  stfd      f16, 0x280(r1)
-	  psq_st    f16,0x288(r1),0,0
-	  stfd      f15, 0x270(r1)
-	  psq_st    f15,0x278(r1),0,0
-	  stfd      f14, 0x260(r1)
-	  psq_st    f14,0x268(r1),0,0
-	  stw       r31, 0x25C(r1)
-	  stw       r30, 0x258(r1)
-	  stw       r29, 0x254(r1)
-	  stw       r28, 0x250(r1)
-	  lis       r4, 0x8050
-	  mr        r28, r3
-	  addi      r3, r4, 0x71A0
-	  lfs       f16, 0x20(r28)
-	  lfs       f24, 0x24(r28)
-	  addi      r8, r1, 0x78
-	  lfs       f15, 0x28(r28)
-	  li        r6, 0
-	  lfs       f2, -0x1DD8(r2)
-	  addi      r7, r28, 0x2C
-	  lfs       f3, -0x1DD0(r2)
-	  li        r0, -0x1
-	  lfs       f1, 0x800(r3)
-	  addi      r29, r1, 0x240
-	  lfs       f0, -0x1DCC(r2)
-	  addi      r4, r1, 0x1B0
-	  stfs      f16, 0x78(r1)
-	  li        r30, 0
-	  lwz       r3, -0x6CF8(r13)
-	  stfs      f24, 0x7C(r1)
-	  lwz       r5, -0x6514(r13)
-	  stfs      f15, 0x80(r1)
-	  stfs      f3, 0x84(r1)
-	  stw       r8, 0x1B0(r1)
-	  stw       r7, 0x1B4(r1)
-	  stfs      f2, 0x1B8(r1)
-	  stfs      f2, 0x1BC(r1)
-	  stw       r6, 0x1C0(r1)
-	  stw       r6, 0x1F4(r1)
-	  stb       r6, 0x224(r1)
-	  stb       r6, 0x1C9(r1)
-	  stb       r6, 0x1C8(r1)
-	  stw       r6, 0x1F8(r1)
-	  stw       r6, 0x1C4(r1)
-	  stb       r6, 0x240(r1)
-	  stw       r6, 0x244(r1)
-	  stfs      f1, 0x1DC(r1)
-	  stfs      f0, 0x1E0(r1)
-	  stw       r0, 0x248(r1)
-	  stw       r6, 0x1FC(r1)
-	  stb       r6, 0x1CA(r1)
-	  lwz       r0, 0x18(r28)
-	  stw       r0, 0x1C4(r1)
-	  lwz       r12, 0x4(r3)
-	  lfs       f1, 0x54(r5)
-	  lwz       r12, 0x24(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f0, 0x78(r1)
-	  stfs      f0, 0x20(r28)
-	  lfs       f0, 0x7C(r1)
-	  stfs      f0, 0x24(r28)
-	  lfs       f0, 0x80(r1)
-	  stfs      f0, 0x28(r28)
-	  lwz       r0, 0x1F4(r1)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x19C
-	  lwz       r0, 0x1F8(r1)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x50C
+	stwu     r1, -0x380(r1)
+	mflr     r0
+	stw      r0, 0x384(r1)
+	stfd     f31, 0x370(r1)
+	psq_st   f31, 888(r1), 0, qr0
+	stfd     f30, 0x360(r1)
+	psq_st   f30, 872(r1), 0, qr0
+	stfd     f29, 0x350(r1)
+	psq_st   f29, 856(r1), 0, qr0
+	stfd     f28, 0x340(r1)
+	psq_st   f28, 840(r1), 0, qr0
+	stfd     f27, 0x330(r1)
+	psq_st   f27, 824(r1), 0, qr0
+	stfd     f26, 0x320(r1)
+	psq_st   f26, 808(r1), 0, qr0
+	stfd     f25, 0x310(r1)
+	psq_st   f25, 792(r1), 0, qr0
+	stfd     f24, 0x300(r1)
+	psq_st   f24, 776(r1), 0, qr0
+	stfd     f23, 0x2f0(r1)
+	psq_st   f23, 760(r1), 0, qr0
+	stfd     f22, 0x2e0(r1)
+	psq_st   f22, 744(r1), 0, qr0
+	stfd     f21, 0x2d0(r1)
+	psq_st   f21, 728(r1), 0, qr0
+	stfd     f20, 0x2c0(r1)
+	psq_st   f20, 712(r1), 0, qr0
+	stfd     f19, 0x2b0(r1)
+	psq_st   f19, 696(r1), 0, qr0
+	stfd     f18, 0x2a0(r1)
+	psq_st   f18, 680(r1), 0, qr0
+	stfd     f17, 0x290(r1)
+	psq_st   f17, 664(r1), 0, qr0
+	stfd     f16, 0x280(r1)
+	psq_st   f16, 648(r1), 0, qr0
+	stfd     f15, 0x270(r1)
+	psq_st   f15, 632(r1), 0, qr0
+	stfd     f14, 0x260(r1)
+	psq_st   f14, 616(r1), 0, qr0
+	stw      r31, 0x25c(r1)
+	stw      r30, 0x258(r1)
+	stw      r29, 0x254(r1)
+	stw      r28, 0x250(r1)
+	lis      r4, sincosTable___5JMath@ha
+	mr       r28, r3
+	addi     r3, r4, sincosTable___5JMath@l
+	lfs      f16, 0x20(r28)
+	lfs      f24, 0x24(r28)
+	addi     r8, r1, 0x78
+	lfs      f15, 0x28(r28)
+	li       r6, 0
+	lfs      f2, lbl_8051C588@sda21(r2)
+	addi     r7, r28, 0x2c
+	lfs      f3, lbl_8051C590@sda21(r2)
+	li       r0, -1
+	lfs      f1, 0x800(r3)
+	addi     r29, r1, 0x240
+	lfs      f0, lbl_8051C594@sda21(r2)
+	addi     r4, r1, 0x1b0
+	stfs     f16, 0x78(r1)
+	li       r30, 0
+	lwz      r3, mapMgr__4Game@sda21(r13)
+	stfs     f24, 0x7c(r1)
+	lwz      r5, sys@sda21(r13)
+	stfs     f15, 0x80(r1)
+	stfs     f3, 0x84(r1)
+	stw      r8, 0x1b0(r1)
+	stw      r7, 0x1b4(r1)
+	stfs     f2, 0x1b8(r1)
+	stfs     f2, 0x1bc(r1)
+	stw      r6, 0x1c0(r1)
+	stw      r6, 0x1f4(r1)
+	stb      r6, 0x224(r1)
+	stb      r6, 0x1c9(r1)
+	stb      r6, 0x1c8(r1)
+	stw      r6, 0x1f8(r1)
+	stw      r6, 0x1c4(r1)
+	stb      r6, 0x240(r1)
+	stw      r6, 0x244(r1)
+	stfs     f1, 0x1dc(r1)
+	stfs     f0, 0x1e0(r1)
+	stw      r0, 0x248(r1)
+	stw      r6, 0x1fc(r1)
+	stb      r6, 0x1ca(r1)
+	lwz      r0, 0x18(r28)
+	stw      r0, 0x1c4(r1)
+	lwz      r12, 4(r3)
+	lfs      f1, 0x54(r5)
+	lwz      r12, 0x24(r12)
+	mtctr    r12
+	bctrl
+	lfs      f0, 0x78(r1)
+	stfs     f0, 0x20(r28)
+	lfs      f0, 0x7c(r1)
+	stfs     f0, 0x24(r28)
+	lfs      f0, 0x80(r1)
+	stfs     f0, 0x28(r28)
+	lwz      r0, 0x1f4(r1)
+	cmplwi   r0, 0
+	bne      lbl_802C3B60
+	lwz      r0, 0x1f8(r1)
+	cmplwi   r0, 0
+	beq      lbl_802C3ED0
 
-	.loc_0x19C:
-	  lfs       f0, 0x20(r28)
-	  addi      r4, r1, 0x6C
-	  lwz       r3, -0x6CF8(r13)
-	  stfs      f0, 0x6C(r1)
-	  lfs       f0, 0x24(r28)
-	  stfs      f0, 0x70(r1)
-	  lfs       f0, 0x28(r28)
-	  stfs      f0, 0x74(r1)
-	  lwz       r12, 0x4(r3)
-	  lwz       r12, 0x28(r12)
-	  mtctr     r12
-	  bctrl
-	  stfs      f1, 0x70(r1)
-	  frsp      f2, f1
-	  lfs       f0, -0x1DC8(r2)
-	  lfs       f1, 0x24(r28)
-	  fsubs     f1, f1, f2
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x1F4
-	  lfs       f0, -0x1DD0(r2)
-	  fadds     f0, f0, f2
-	  stfs      f0, 0x24(r28)
+lbl_802C3B60:
+	lfs      f0, 0x20(r28)
+	addi     r4, r1, 0x6c
+	lwz      r3, mapMgr__4Game@sda21(r13)
+	stfs     f0, 0x6c(r1)
+	lfs      f0, 0x24(r28)
+	stfs     f0, 0x70(r1)
+	lfs      f0, 0x28(r28)
+	stfs     f0, 0x74(r1)
+	lwz      r12, 4(r3)
+	lwz      r12, 0x28(r12)
+	mtctr    r12
+	bctrl
+	stfs     f1, 0x70(r1)
+	frsp     f2, f1
+	lfs      f0, lbl_8051C598@sda21(r2)
+	lfs      f1, 0x24(r28)
+	fsubs    f1, f1, f2
+	fcmpo    cr0, f1, f0
+	bge      lbl_802C3BB8
+	lfs      f0, lbl_8051C590@sda21(r2)
+	fadds    f0, f0, f2
+	stfs     f0, 0x24(r28)
 
-	.loc_0x1F4:
-	  lfs       f1, 0x20(r28)
-	  addi      r4, r1, 0x78
-	  lfs       f0, -0x1DD0(r2)
-	  stfs      f1, 0x60(r1)
-	  lwz       r3, -0x6CF8(r13)
-	  lfs       f1, 0x24(r28)
-	  stfs      f1, 0x64(r1)
-	  fsubs     f0, f1, f0
-	  lfs       f1, 0x28(r28)
-	  stfs      f1, 0x68(r1)
-	  stfs      f0, 0x64(r1)
-	  bl        -0x1602BC
-	  mr.       r31, r3
-	  beq-      .loc_0x2CC
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f2, 0x0(r3)
-	  lis       r3, 0x804B
-	  subi      r0, r3, 0x5808
-	  li        r5, 0
-	  lis       r3, 0x804E
-	  stw       r0, 0x128(r1)
-	  addi      r0, r3, 0x6A3C
-	  lfs       f1, 0x60(r1)
-	  lfs       f0, 0x68(r1)
-	  lis       r4, 0x804B
-	  lis       r3, 0x804D
-	  li        r9, 0x97
-	  subi      r10, r4, 0x5814
-	  li        r8, 0x98
-	  li        r7, 0x99
-	  li        r6, 0x9A
-	  stw       r0, 0x128(r1)
-	  addi      r0, r3, 0x1528
-	  addi      r3, r1, 0x128
-	  addi      r4, r1, 0x50
-	  stfs      f2, 0x64(r1)
-	  stw       r10, 0x50(r1)
-	  stfs      f1, 0x54(r1)
-	  stfs      f2, 0x58(r1)
-	  stfs      f0, 0x5C(r1)
-	  sth       r9, 0x12C(r1)
-	  sth       r8, 0x12E(r1)
-	  sth       r7, 0x130(r1)
-	  sth       r6, 0x132(r1)
-	  stw       r5, 0x134(r1)
-	  stw       r5, 0x138(r1)
-	  stw       r5, 0x13C(r1)
-	  stw       r5, 0x140(r1)
-	  stw       r0, 0x128(r1)
-	  bl        0xEB4DC
-	  b         .loc_0x4B8
+lbl_802C3BB8:
+	lfs      f1, 0x20(r28)
+	addi     r4, r1, 0x78
+	lfs      f0, lbl_8051C590@sda21(r2)
+	stfs     f1, 0x60(r1)
+	lwz      r3, mapMgr__4Game@sda21(r13)
+	lfs      f1, 0x24(r28)
+	stfs     f1, 0x64(r1)
+	fsubs    f0, f1, f0
+	lfs      f1, 0x28(r28)
+	stfs     f1, 0x68(r1)
+	stfs     f0, 0x64(r1)
+	bl       findWater__Q24Game6MapMgrFRQ23Sys6Sphere
+	or.      r31, r3, r3
+	beq      lbl_802C3C90
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	lfs      f2, 0(r3)
+	lis      r3, __vt__Q23efx5TBase@ha
+	addi     r0, r3, __vt__Q23efx5TBase@l
+	li       r5, 0
+	lis      r3, __vt__Q23efx8TSimple4@ha
+	stw      r0, 0x128(r1)
+	addi     r0, r3, __vt__Q23efx8TSimple4@l
+	lfs      f1, 0x60(r1)
+	lfs      f0, 0x68(r1)
+	lis      r4, __vt__Q23efx3Arg@ha
+	lis      r3, __vt__Q23efx10THdamaHit3@ha
+	li       r9, 0x97
+	addi     r10, r4, __vt__Q23efx3Arg@l
+	li       r8, 0x98
+	li       r7, 0x99
+	li       r6, 0x9a
+	stw      r0, 0x128(r1)
+	addi     r0, r3, __vt__Q23efx10THdamaHit3@l
+	addi     r3, r1, 0x128
+	addi     r4, r1, 0x50
+	stfs     f2, 0x64(r1)
+	stw      r10, 0x50(r1)
+	stfs     f1, 0x54(r1)
+	stfs     f2, 0x58(r1)
+	stfs     f0, 0x5c(r1)
+	sth      r9, 0x12c(r1)
+	sth      r8, 0x12e(r1)
+	sth      r7, 0x130(r1)
+	sth      r6, 0x132(r1)
+	stw      r5, 0x134(r1)
+	stw      r5, 0x138(r1)
+	stw      r5, 0x13c(r1)
+	stw      r5, 0x140(r1)
+	stw      r0, 0x128(r1)
+	bl       create__Q23efx8TSimple4FPQ23efx3Arg
+	b        lbl_802C3E7C
 
-	.loc_0x2CC:
-	  lwz       r0, 0x1F4(r1)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x40C
-	  mr        r3, r29
-	  bl        0x158794
-	  cmpwi     r3, 0x6
-	  bne-      .loc_0x374
-	  lis       r3, 0x804B
-	  li        r5, 0
-	  subi      r0, r3, 0x5808
-	  lis       r3, 0x804E
-	  stw       r0, 0x10C(r1)
-	  addi      r0, r3, 0x6A3C
-	  lfs       f2, 0x60(r1)
-	  lis       r4, 0x804B
-	  lfs       f1, 0x64(r1)
-	  lis       r3, 0x804D
-	  lfs       f0, 0x68(r1)
-	  subi      r10, r4, 0x5814
-	  li        r9, 0x94
-	  li        r8, 0x95
-	  li        r7, 0x96
-	  li        r6, 0x9C
-	  stw       r0, 0x10C(r1)
-	  addi      r0, r3, 0x1514
-	  addi      r3, r1, 0x10C
-	  addi      r4, r1, 0x40
-	  stw       r10, 0x40(r1)
-	  stfs      f2, 0x44(r1)
-	  stfs      f1, 0x48(r1)
-	  stfs      f0, 0x4C(r1)
-	  sth       r9, 0x110(r1)
-	  sth       r8, 0x112(r1)
-	  sth       r7, 0x114(r1)
-	  sth       r6, 0x116(r1)
-	  stw       r5, 0x118(r1)
-	  stw       r5, 0x11C(r1)
-	  stw       r5, 0x120(r1)
-	  stw       r5, 0x124(r1)
-	  stw       r0, 0x10C(r1)
-	  bl        0xEB434
-	  b         .loc_0x4B8
+lbl_802C3C90:
+	lwz      r0, 0x1f4(r1)
+	cmplwi   r0, 0
+	beq      lbl_802C3DD0
+	mr       r3, r29
+	bl       getAttribute__Q27MapCode4CodeFv
+	cmpwi    r3, 6
+	bne      lbl_802C3D38
+	lis      r3, __vt__Q23efx5TBase@ha
+	li       r5, 0
+	addi     r0, r3, __vt__Q23efx5TBase@l
+	lis      r3, __vt__Q23efx8TSimple4@ha
+	stw      r0, 0x10c(r1)
+	addi     r0, r3, __vt__Q23efx8TSimple4@l
+	lfs      f2, 0x60(r1)
+	lis      r4, __vt__Q23efx3Arg@ha
+	lfs      f1, 0x64(r1)
+	lis      r3, __vt__Q23efx10THdamaHit2@ha
+	lfs      f0, 0x68(r1)
+	addi     r10, r4, __vt__Q23efx3Arg@l
+	li       r9, 0x94
+	li       r8, 0x95
+	li       r7, 0x96
+	li       r6, 0x9c
+	stw      r0, 0x10c(r1)
+	addi     r0, r3, __vt__Q23efx10THdamaHit2@l
+	addi     r3, r1, 0x10c
+	addi     r4, r1, 0x40
+	stw      r10, 0x40(r1)
+	stfs     f2, 0x44(r1)
+	stfs     f1, 0x48(r1)
+	stfs     f0, 0x4c(r1)
+	sth      r9, 0x110(r1)
+	sth      r8, 0x112(r1)
+	sth      r7, 0x114(r1)
+	sth      r6, 0x116(r1)
+	stw      r5, 0x118(r1)
+	stw      r5, 0x11c(r1)
+	stw      r5, 0x120(r1)
+	stw      r5, 0x124(r1)
+	stw      r0, 0x10c(r1)
+	bl       create__Q23efx8TSimple4FPQ23efx3Arg
+	b        lbl_802C3E7C
 
-	.loc_0x374:
-	  lis       r3, 0x804B
-	  li        r5, 0
-	  subi      r0, r3, 0x5808
-	  lis       r3, 0x804E
-	  stw       r0, 0x144(r1)
-	  addi      r0, r3, 0x6A28
-	  lfs       f2, 0x60(r1)
-	  lis       r4, 0x804B
-	  lfs       f1, 0x64(r1)
-	  lis       r3, 0x804D
-	  lfs       f0, 0x68(r1)
-	  subi      r4, r4, 0x5814
-	  li        r10, 0x8D
-	  li        r9, 0x8E
-	  li        r8, 0x8F
-	  li        r7, 0x90
-	  li        r6, 0x9C
-	  stw       r0, 0x144(r1)
-	  addi      r0, r3, 0x1500
-	  addi      r3, r1, 0x144
-	  stw       r4, 0x30(r1)
-	  addi      r4, r1, 0x30
-	  stfs      f2, 0x34(r1)
-	  stfs      f1, 0x38(r1)
-	  stfs      f0, 0x3C(r1)
-	  sth       r10, 0x148(r1)
-	  sth       r9, 0x14A(r1)
-	  sth       r8, 0x14C(r1)
-	  sth       r7, 0x14E(r1)
-	  sth       r6, 0x150(r1)
-	  stw       r5, 0x154(r1)
-	  stw       r5, 0x158(r1)
-	  stw       r5, 0x15C(r1)
-	  stw       r5, 0x160(r1)
-	  stw       r5, 0x164(r1)
-	  stw       r0, 0x144(r1)
-	  bl        0xEB444
-	  b         .loc_0x4B8
+lbl_802C3D38:
+	lis      r3, __vt__Q23efx5TBase@ha
+	li       r5, 0
+	addi     r0, r3, __vt__Q23efx5TBase@l
+	lis      r3, __vt__Q23efx8TSimple5@ha
+	stw      r0, 0x144(r1)
+	addi     r0, r3, __vt__Q23efx8TSimple5@l
+	lfs      f2, 0x60(r1)
+	lis      r4, __vt__Q23efx3Arg@ha
+	lfs      f1, 0x64(r1)
+	lis      r3, __vt__Q23efx10THdamaHit1@ha
+	lfs      f0, 0x68(r1)
+	addi     r4, r4, __vt__Q23efx3Arg@l
+	li       r10, 0x8d
+	li       r9, 0x8e
+	li       r8, 0x8f
+	li       r7, 0x90
+	li       r6, 0x9c
+	stw      r0, 0x144(r1)
+	addi     r0, r3, __vt__Q23efx10THdamaHit1@l
+	addi     r3, r1, 0x144
+	stw      r4, 0x30(r1)
+	addi     r4, r1, 0x30
+	stfs     f2, 0x34(r1)
+	stfs     f1, 0x38(r1)
+	stfs     f0, 0x3c(r1)
+	sth      r10, 0x148(r1)
+	sth      r9, 0x14a(r1)
+	sth      r8, 0x14c(r1)
+	sth      r7, 0x14e(r1)
+	sth      r6, 0x150(r1)
+	stw      r5, 0x154(r1)
+	stw      r5, 0x158(r1)
+	stw      r5, 0x15c(r1)
+	stw      r5, 0x160(r1)
+	stw      r5, 0x164(r1)
+	stw      r0, 0x144(r1)
+	bl       create__Q23efx8TSimple5FPQ23efx3Arg
+	b        lbl_802C3E7C
 
-	.loc_0x40C:
-	  lwz       r0, 0x1F8(r1)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x4B8
-	  lis       r3, 0x804B
-	  li        r5, 0
-	  subi      r0, r3, 0x5808
-	  lis       r4, 0x804B
-	  lis       r3, 0x804E
-	  stw       r0, 0xD8(r1)
-	  subi      r0, r4, 0x5814
-	  lfs       f5, 0x60(r1)
-	  addi      r4, r3, 0x6A50
-	  lfs       f4, 0x64(r1)
-	  lfs       f3, 0x68(r1)
-	  lis       r9, 0x804D
-	  lfs       f2, 0x20C(r1)
-	  lis       r3, 0x804F
-	  lfs       f1, 0x210(r1)
-	  li        r8, 0x91
-	  lfs       f0, 0x214(r1)
-	  li        r7, 0x92
-	  li        r6, 0x93
-	  stw       r0, 0xF0(r1)
-	  addi      r9, r9, 0x153C
-	  subi      r0, r3, 0x600C
-	  stw       r4, 0xD8(r1)
-	  addi      r3, r1, 0xD8
-	  addi      r4, r1, 0xF0
-	  stfs      f5, 0xF4(r1)
-	  stfs      f4, 0xF8(r1)
-	  stfs      f3, 0xFC(r1)
-	  stw       r9, 0xF0(r1)
-	  stfs      f2, 0x100(r1)
-	  stfs      f1, 0x104(r1)
-	  stfs      f0, 0x108(r1)
-	  sth       r8, 0xDC(r1)
-	  sth       r7, 0xDE(r1)
-	  sth       r6, 0xE0(r1)
-	  stw       r5, 0xE4(r1)
-	  stw       r5, 0xE8(r1)
-	  stw       r5, 0xEC(r1)
-	  stw       r0, 0xD8(r1)
-	  bl        0x128730
+lbl_802C3DD0:
+	lwz      r0, 0x1f8(r1)
+	cmplwi   r0, 0
+	beq      lbl_802C3E7C
+	lis      r3, __vt__Q23efx5TBase@ha
+	li       r5, 0
+	addi     r0, r3, __vt__Q23efx5TBase@l
+	lis      r4, __vt__Q23efx3Arg@ha
+	lis      r3, __vt__Q23efx8TSimple3@ha
+	stw      r0, 0xd8(r1)
+	addi     r0, r4, __vt__Q23efx3Arg@l
+	lfs      f5, 0x60(r1)
+	addi     r4, r3, __vt__Q23efx8TSimple3@l
+	lfs      f4, 0x64(r1)
+	lfs      f3, 0x68(r1)
+	lis      r9, __vt__Q23efx6ArgDir@ha
+	lfs      f2, 0x20c(r1)
+	lis      r3, __vt__Q23efx11THdamaHit2W@ha
+	lfs      f1, 0x210(r1)
+	li       r8, 0x91
+	lfs      f0, 0x214(r1)
+	li       r7, 0x92
+	li       r6, 0x93
+	stw      r0, 0xf0(r1)
+	addi     r9, r9, __vt__Q23efx6ArgDir@l
+	addi     r0, r3, __vt__Q23efx11THdamaHit2W@l
+	stw      r4, 0xd8(r1)
+	addi     r3, r1, 0xd8
+	addi     r4, r1, 0xf0
+	stfs     f5, 0xf4(r1)
+	stfs     f4, 0xf8(r1)
+	stfs     f3, 0xfc(r1)
+	stw      r9, 0xf0(r1)
+	stfs     f2, 0x100(r1)
+	stfs     f1, 0x104(r1)
+	stfs     f0, 0x108(r1)
+	sth      r8, 0xdc(r1)
+	sth      r7, 0xde(r1)
+	sth      r6, 0xe0(r1)
+	stw      r5, 0xe4(r1)
+	stw      r5, 0xe8(r1)
+	stw      r5, 0xec(r1)
+	stw      r0, 0xd8(r1)
+	bl       create__Q23efx11THdamaHit2WFPQ23efx3Arg
 
-	.loc_0x4B8:
-	  lwz       r3, 0x1C(r28)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  cmplwi    r31, 0
-	  li        r30, 0x1
-	  beq-      .loc_0x4E8
-	  addi      r4, r28, 0x20
-	  li        r3, 0x5805
-	  bl        0x1AA210
-	  b         .loc_0x4F4
+lbl_802C3E7C:
+	lwz      r3, 0x1c(r28)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	cmplwi   r31, 0
+	li       r30, 1
+	beq      lbl_802C3EAC
+	addi     r4, r28, 0x20
+	li       r3, 0x5805
+	bl       PSStartSoundVec__FUlP3Vec
+	b        lbl_802C3EB8
 
-	.loc_0x4E8:
-	  addi      r4, r28, 0x20
-	  li        r3, 0x5935
-	  bl        0x1AA200
+lbl_802C3EAC:
+	addi     r4, r28, 0x20
+	li       r3, 0x5935
+	bl       PSStartSoundVec__FUlP3Vec
 
-	.loc_0x4F4:
-	  lwz       r3, -0x6958(r13)
-	  addi      r5, r1, 0x60
-	  li        r4, 0xB
-	  li        r6, 0x2
-	  bl        -0x70748
-	  b         .loc_0x5C0
+lbl_802C3EB8:
+	lwz      r3, rumbleMgr__4Game@sda21(r13)
+	addi     r5, r1, 0x60
+	li       r4, 0xb
+	li       r6, 2
+	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
+	b        lbl_802C3F84
 
-	.loc_0x50C:
-	  lwz       r4, 0x18(r28)
-	  addi      r3, r1, 0x14
-	  lwz       r12, 0x0(r4)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f2, 0x14(r1)
-	  lfs       f1, 0x20(r28)
-	  lfs       f0, -0x1DD8(r2)
-	  fsubs     f1, f2, f1
-	  lfs       f2, 0x18(r1)
-	  lfs       f3, 0x1C(r1)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x548
-	  b         .loc_0x54C
+lbl_802C3ED0:
+	lwz      r4, 0x18(r28)
+	addi     r3, r1, 0x14
+	lwz      r12, 0(r4)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f2, 0x14(r1)
+	lfs      f1, 0x20(r28)
+	lfs      f0, lbl_8051C588@sda21(r2)
+	fsubs    f1, f2, f1
+	lfs      f2, 0x18(r1)
+	lfs      f3, 0x1c(r1)
+	fcmpo    cr0, f1, f0
+	ble      lbl_802C3F0C
+	b        lbl_802C3F10
 
-	.loc_0x548:
-	  fneg      f1, f1
+lbl_802C3F0C:
+	fneg     f1, f1
 
-	.loc_0x54C:
-	  lfs       f0, -0x1DC4(r2)
-	  fcmpo     cr0, f1, f0
-	  bgt-      .loc_0x5A8
-	  lfs       f1, 0x24(r28)
-	  lfs       f0, -0x1DD8(r2)
-	  fsubs     f1, f2, f1
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x570
-	  b         .loc_0x574
+lbl_802C3F10:
+	lfs      f0, lbl_8051C59C@sda21(r2)
+	fcmpo    cr0, f1, f0
+	bgt      lbl_802C3F6C
+	lfs      f1, 0x24(r28)
+	lfs      f0, lbl_8051C588@sda21(r2)
+	fsubs    f1, f2, f1
+	fcmpo    cr0, f1, f0
+	ble      lbl_802C3F34
+	b        lbl_802C3F38
 
-	.loc_0x570:
-	  fneg      f1, f1
+lbl_802C3F34:
+	fneg     f1, f1
 
-	.loc_0x574:
-	  lfs       f0, -0x1DC0(r2)
-	  fcmpo     cr0, f1, f0
-	  bgt-      .loc_0x5A8
-	  lfs       f1, 0x28(r28)
-	  lfs       f0, -0x1DD8(r2)
-	  fsubs     f1, f3, f1
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x598
-	  b         .loc_0x59C
+lbl_802C3F38:
+	lfs      f0, lbl_8051C5A0@sda21(r2)
+	fcmpo    cr0, f1, f0
+	bgt      lbl_802C3F6C
+	lfs      f1, 0x28(r28)
+	lfs      f0, lbl_8051C588@sda21(r2)
+	fsubs    f1, f3, f1
+	fcmpo    cr0, f1, f0
+	ble      lbl_802C3F5C
+	b        lbl_802C3F60
 
-	.loc_0x598:
-	  fneg      f1, f1
+lbl_802C3F5C:
+	fneg     f1, f1
 
-	.loc_0x59C:
-	  lfs       f0, -0x1DC4(r2)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x5C0
+lbl_802C3F60:
+	lfs      f0, lbl_8051C59C@sda21(r2)
+	fcmpo    cr0, f1, f0
+	ble      lbl_802C3F84
 
-	.loc_0x5A8:
-	  lwz       r3, 0x1C(r28)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  li        r30, 0x1
+lbl_802C3F6C:
+	lwz      r3, 0x1c(r28)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	li       r30, 1
 
-	.loc_0x5C0:
-	  lfs       f0, -0x1DD0(r2)
-	  lfs       f8, 0x24(r28)
-	  fsubs     f24, f24, f0
-	  lfs       f7, 0x20(r28)
-	  fsubs     f8, f8, f0
-	  lfs       f9, 0x28(r28)
-	  fsubs     f3, f16, f7
-	  lfs       f0, -0x1DD8(r2)
-	  fsubs     f2, f24, f8
-	  fsubs     f1, f15, f9
-	  fmuls     f2, f2, f2
-	  fmuls     f4, f1, f1
-	  fmadds    f1, f3, f3, f2
-	  fadds     f6, f4, f1
-	  fcmpo     cr0, f6, f0
-	  ble-      .loc_0x610
-	  ble-      .loc_0x614
-	  fsqrte    f0, f6
-	  fmuls     f6, f0, f6
-	  b         .loc_0x614
+lbl_802C3F84:
+	lfs      f0, lbl_8051C590@sda21(r2)
+	lfs      f8, 0x24(r28)
+	fsubs    f24, f24, f0
+	lfs      f7, 0x20(r28)
+	fsubs    f8, f8, f0
+	lfs      f9, 0x28(r28)
+	fsubs    f3, f16, f7
+	lfs      f0, lbl_8051C588@sda21(r2)
+	fsubs    f2, f24, f8
+	fsubs    f1, f15, f9
+	fmuls    f2, f2, f2
+	fmuls    f4, f1, f1
+	fmadds   f1, f3, f3, f2
+	fadds    f6, f4, f1
+	fcmpo    cr0, f6, f0
+	ble      lbl_802C3FD4
+	ble      lbl_802C3FD8
+	frsqrte  f0, f6
+	fmuls    f6, f0, f6
+	b        lbl_802C3FD8
 
-	.loc_0x610:
-	  fmr       f6, f0
+lbl_802C3FD4:
+	fmr      f6, f0
 
-	.loc_0x614:
-	  lwz       r3, 0x18(r28)
-	  lfs       f5, -0x1DD8(r2)
-	  lwz       r3, 0xC0(r3)
-	  fcmpo     cr0, f6, f5
-	  lfs       f31, 0x5B4(r3)
-	  ble-      .loc_0xA5C
-	  fsubs     f28, f8, f24
-	  lfs       f4, -0x1DBC(r2)
-	  fadds     f1, f24, f8
-	  fsubs     f30, f9, f15
-	  fsubs     f29, f7, f16
-	  fmuls     f0, f28, f28
-	  fadds     f2, f15, f9
-	  fmuls     f8, f30, f30
-	  fmadds    f0, f29, f29, f0
-	  fadds     f3, f16, f7
-	  fmuls     f2, f4, f2
-	  fadds     f7, f8, f0
-	  fmuls     f1, f4, f1
-	  fmuls     f0, f4, f3
-	  fcmpo     cr0, f7, f5
-	  fadds     f14, f6, f31
-	  ble-      .loc_0x680
-	  ble-      .loc_0x684
-	  fsqrte    f3, f7
-	  fmuls     f7, f3, f7
-	  b         .loc_0x684
+lbl_802C3FD8:
+	lwz      r3, 0x18(r28)
+	lfs      f5, lbl_8051C588@sda21(r2)
+	lwz      r3, 0xc0(r3)
+	fcmpo    cr0, f6, f5
+	lfs      f31, 0x5b4(r3)
+	ble      lbl_802C4420
+	fsubs    f28, f8, f24
+	lfs      f4, lbl_8051C5A4@sda21(r2)
+	fadds    f1, f24, f8
+	fsubs    f30, f9, f15
+	fsubs    f29, f7, f16
+	fmuls    f0, f28, f28
+	fadds    f2, f15, f9
+	fmuls    f8, f30, f30
+	fmadds   f0, f29, f29, f0
+	fadds    f3, f16, f7
+	fmuls    f2, f4, f2
+	fadds    f7, f8, f0
+	fmuls    f1, f4, f1
+	fmuls    f0, f4, f3
+	fcmpo    cr0, f7, f5
+	fadds    f14, f6, f31
+	ble      lbl_802C4044
+	ble      lbl_802C4048
+	frsqrte  f3, f7
+	fmuls    f7, f3, f7
+	b        lbl_802C4048
 
-	.loc_0x680:
-	  fmr       f7, f5
+lbl_802C4044:
+	fmr      f7, f5
 
-	.loc_0x684:
-	  lfs       f3, -0x1DD8(r2)
-	  fcmpo     cr0, f7, f3
-	  ble-      .loc_0x6A4
-	  lfs       f3, -0x1DD4(r2)
-	  fdivs     f3, f3, f7
-	  fmuls     f29, f29, f3
-	  fmuls     f28, f28, f3
-	  fmuls     f30, f30, f3
+lbl_802C4048:
+	lfs      f3, lbl_8051C588@sda21(r2)
+	fcmpo    cr0, f7, f3
+	ble      lbl_802C4068
+	lfs      f3, lbl_8051C58C@sda21(r2)
+	fdivs    f3, f3, f7
+	fmuls    f29, f29, f3
+	fmuls    f28, f28, f3
+	fmuls    f30, f30, f3
 
-	.loc_0x6A4:
-	  lfs       f4, -0x1DD8(r2)
-	  lfs       f5, -0x1DD4(r2)
-	  fmuls     f3, f4, f30
-	  fmuls     f6, f4, f28
-	  fmsubs    f26, f4, f29, f3
-	  fnmsubs   f25, f5, f29, f6
-	  fmsubs    f27, f5, f30, f6
-	  fmuls     f3, f26, f26
-	  fmuls     f5, f25, f25
-	  fmadds    f3, f27, f27, f3
-	  fadds     f5, f5, f3
-	  fcmpo     cr0, f5, f4
-	  ble-      .loc_0x6E8
-	  ble-      .loc_0x6EC
-	  fsqrte    f3, f5
-	  fmuls     f5, f3, f5
-	  b         .loc_0x6EC
+lbl_802C4068:
+	lfs      f4, lbl_8051C588@sda21(r2)
+	lfs      f5, lbl_8051C58C@sda21(r2)
+	fmuls    f3, f4, f30
+	fmuls    f6, f4, f28
+	fmsubs   f26, f4, f29, f3
+	fnmsubs  f25, f5, f29, f6
+	fmsubs   f27, f5, f30, f6
+	fmuls    f3, f26, f26
+	fmuls    f5, f25, f25
+	fmadds   f3, f27, f27, f3
+	fadds    f5, f5, f3
+	fcmpo    cr0, f5, f4
+	ble      lbl_802C40AC
+	ble      lbl_802C40B0
+	frsqrte  f3, f5
+	fmuls    f5, f3, f5
+	b        lbl_802C40B0
 
-	.loc_0x6E8:
-	  fmr       f5, f4
+lbl_802C40AC:
+	fmr      f5, f4
 
-	.loc_0x6EC:
-	  lfs       f3, -0x1DD8(r2)
-	  fcmpo     cr0, f5, f3
-	  ble-      .loc_0x70C
-	  lfs       f3, -0x1DD4(r2)
-	  fdivs     f3, f3, f5
-	  fmuls     f27, f27, f3
-	  fmuls     f26, f26, f3
-	  fmuls     f25, f25, f3
+lbl_802C40B0:
+	lfs      f3, lbl_8051C588@sda21(r2)
+	fcmpo    cr0, f5, f3
+	ble      lbl_802C40D0
+	lfs      f3, lbl_8051C58C@sda21(r2)
+	fdivs    f3, f3, f5
+	fmuls    f27, f27, f3
+	fmuls    f26, f26, f3
+	fmuls    f25, f25, f3
 
-	.loc_0x70C:
-	  fmuls     f5, f29, f25
-	  lfs       f3, -0x1DD8(r2)
-	  fmuls     f6, f30, f26
-	  fmuls     f4, f28, f27
-	  fmsubs    f22, f30, f27, f5
-	  fmsubs    f23, f28, f25, f6
-	  fmsubs    f21, f29, f26, f4
-	  fmuls     f4, f22, f22
-	  fmuls     f5, f21, f21
-	  fmadds    f4, f23, f23, f4
-	  fadds     f4, f5, f4
-	  fcmpo     cr0, f4, f3
-	  ble-      .loc_0x750
-	  ble-      .loc_0x754
-	  fsqrte    f3, f4
-	  fmuls     f4, f3, f4
-	  b         .loc_0x754
+lbl_802C40D0:
+	fmuls    f5, f29, f25
+	lfs      f3, lbl_8051C588@sda21(r2)
+	fmuls    f6, f30, f26
+	fmuls    f4, f28, f27
+	fmsubs   f22, f30, f27, f5
+	fmsubs   f23, f28, f25, f6
+	fmsubs   f21, f29, f26, f4
+	fmuls    f4, f22, f22
+	fmuls    f5, f21, f21
+	fmadds   f4, f23, f23, f4
+	fadds    f4, f5, f4
+	fcmpo    cr0, f4, f3
+	ble      lbl_802C4114
+	ble      lbl_802C4118
+	frsqrte  f3, f4
+	fmuls    f4, f3, f4
+	b        lbl_802C4118
 
-	.loc_0x750:
-	  fmr       f4, f3
+lbl_802C4114:
+	fmr      f4, f3
 
-	.loc_0x754:
-	  lfs       f3, -0x1DD8(r2)
-	  fcmpo     cr0, f4, f3
-	  ble-      .loc_0x774
-	  lfs       f3, -0x1DD4(r2)
-	  fdivs     f3, f3, f4
-	  fmuls     f23, f23, f3
-	  fmuls     f22, f22, f3
-	  fmuls     f21, f21, f3
+lbl_802C4118:
+	lfs      f3, lbl_8051C588@sda21(r2)
+	fcmpo    cr0, f4, f3
+	ble      lbl_802C4138
+	lfs      f3, lbl_8051C58C@sda21(r2)
+	fdivs    f3, f3, f4
+	fmuls    f23, f23, f3
+	fmuls    f22, f22, f3
+	fmuls    f21, f21, f3
 
-	.loc_0x774:
-	  stfs      f0, 0x20(r1)
-	  addi      r3, r1, 0xB8
-	  addi      r4, r1, 0x20
-	  stfs      f1, 0x24(r1)
-	  stfs      f2, 0x28(r1)
-	  stfs      f14, 0x2C(r1)
-	  bl        -0x95DB0
-	  li        r0, 0x1
-	  addi      r3, r1, 0x168
-	  stb       r0, 0xD4(r1)
-	  addi      r4, r1, 0xB8
-	  bl        -0x95D84
-	  addi      r3, r1, 0x168
-	  bl        -0x95D10
-	  fneg      f20, f31
-	  lis       r3, 0x8051
-	  addi      r31, r3, 0x41E4
-	  b         .loc_0xA4C
+lbl_802C4138:
+	stfs     f0, 0x20(r1)
+	addi     r3, r1, 0xb8
+	addi     r4, r1, 0x20
+	stfs     f1, 0x24(r1)
+	stfs     f2, 0x28(r1)
+	stfs     f14, 0x2c(r1)
+	bl       __ct__Q24Game15CellIteratorArgFRQ23Sys6Sphere
+	li       r0, 1
+	addi     r3, r1, 0x168
+	stb      r0, 0xd4(r1)
+	addi     r4, r1, 0xb8
+	bl       __ct__Q24Game12CellIteratorFRQ24Game15CellIteratorArg
+	addi     r3, r1, 0x168
+	bl       first__Q24Game12CellIteratorFv
+	fneg     f20, f31
+	lis      r3, "zero__10Vector3<f>"@ha
+	addi     r31, r3, "zero__10Vector3<f>"@l
+	b        lbl_802C4410
 
-	.loc_0x7BC:
-	  addi      r3, r1, 0x168
-	  bl        -0x95C40
-	  lwz       r12, 0x0(r3)
-	  mr        r29, r3
-	  lwz       r12, 0xA8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xA44
-	  mr        r4, r29
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x0(r29)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f1, 0xC(r1)
-	  lfs       f0, 0x8(r1)
-	  fsubs     f3, f1, f24
-	  lfs       f1, 0x10(r1)
-	  fsubs     f2, f0, f16
-	  lfs       f0, -0x1DD8(r2)
-	  fsubs     f4, f1, f15
-	  fmuls     f1, f26, f3
-	  fmadds    f1, f27, f2, f1
-	  fmadds    f19, f25, f4, f1
-	  fcmpo     cr0, f19, f0
-	  ble-      .loc_0x830
-	  fmr       f0, f19
-	  b         .loc_0x834
+lbl_802C4180:
+	addi     r3, r1, 0x168
+	bl       __ml__Q24Game12CellIteratorFv
+	lwz      r12, 0(r3)
+	mr       r29, r3
+	lwz      r12, 0xa8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802C4408
+	mr       r4, r29
+	addi     r3, r1, 8
+	lwz      r12, 0(r29)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f1, 0xc(r1)
+	lfs      f0, 8(r1)
+	fsubs    f3, f1, f24
+	lfs      f1, 0x10(r1)
+	fsubs    f2, f0, f16
+	lfs      f0, lbl_8051C588@sda21(r2)
+	fsubs    f4, f1, f15
+	fmuls    f1, f26, f3
+	fmadds   f1, f27, f2, f1
+	fmadds   f19, f25, f4, f1
+	fcmpo    cr0, f19, f0
+	ble      lbl_802C41F4
+	fmr      f0, f19
+	b        lbl_802C41F8
 
-	.loc_0x830:
-	  fneg      f0, f19
+lbl_802C41F4:
+	fneg     f0, f19
 
-	.loc_0x834:
-	  fcmpo     cr0, f0, f31
-	  bge-      .loc_0xA44
-	  fmuls     f1, f22, f3
-	  lfs       f0, -0x1DD8(r2)
-	  fmadds    f1, f23, f2, f1
-	  fmadds    f1, f21, f4, f1
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x858
-	  b         .loc_0x85C
+lbl_802C41F8:
+	fcmpo    cr0, f0, f31
+	bge      lbl_802C4408
+	fmuls    f1, f22, f3
+	lfs      f0, lbl_8051C588@sda21(r2)
+	fmadds   f1, f23, f2, f1
+	fmadds   f1, f21, f4, f1
+	fcmpo    cr0, f1, f0
+	ble      lbl_802C421C
+	b        lbl_802C4220
 
-	.loc_0x858:
-	  fneg      f1, f1
+lbl_802C421C:
+	fneg     f1, f1
 
-	.loc_0x85C:
-	  fcmpo     cr0, f1, f31
-	  bge-      .loc_0xA44
-	  fmuls     f0, f28, f3
-	  fmadds    f0, f29, f2, f0
-	  fmadds    f0, f30, f4, f0
-	  fcmpo     cr0, f0, f20
-	  ble-      .loc_0xA44
-	  fcmpo     cr0, f0, f14
-	  bge-      .loc_0xA44
-	  mr        r3, r29
-	  lwz       r12, 0x0(r29)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x8D4
-	  mr        r3, r29
-	  lwz       r12, 0x0(r29)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x9B8
-	  mr        r3, r29
-	  lwz       r12, 0x0(r29)
-	  lwz       r12, 0x1C0(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x9B8
+lbl_802C4220:
+	fcmpo    cr0, f1, f31
+	bge      lbl_802C4408
+	fmuls    f0, f28, f3
+	fmadds   f0, f29, f2, f0
+	fmadds   f0, f30, f4, f0
+	fcmpo    cr0, f0, f20
+	ble      lbl_802C4408
+	fcmpo    cr0, f0, f14
+	bge      lbl_802C4408
+	mr       r3, r29
+	lwz      r12, 0(r29)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_802C4298
+	mr       r3, r29
+	lwz      r12, 0(r29)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802C437C
+	mr       r3, r29
+	lwz      r12, 0(r29)
+	lwz      r12, 0x1c0(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802C437C
 
-	.loc_0x8D4:
-	  fmuls     f17, f19, f25
-	  lfs       f18, -0x1DD8(r2)
-	  fmuls     f19, f19, f27
-	  fmuls     f1, f17, f17
-	  fmadds    f0, f19, f19, f18
-	  fadds     f1, f1, f0
-	  fcmpo     cr0, f1, f18
-	  ble-      .loc_0x904
-	  ble-      .loc_0x908
-	  fsqrte    f0, f1
-	  fmuls     f1, f0, f1
-	  b         .loc_0x908
+lbl_802C4298:
+	fmuls    f17, f19, f25
+	lfs      f18, lbl_8051C588@sda21(r2)
+	fmuls    f19, f19, f27
+	fmuls    f1, f17, f17
+	fmadds   f0, f19, f19, f18
+	fadds    f1, f1, f0
+	fcmpo    cr0, f1, f18
+	ble      lbl_802C42C8
+	ble      lbl_802C42CC
+	frsqrte  f0, f1
+	fmuls    f1, f0, f1
+	b        lbl_802C42CC
 
-	.loc_0x904:
-	  fmr       f1, f18
+lbl_802C42C8:
+	fmr      f1, f18
 
-	.loc_0x908:
-	  lfs       f0, -0x1DD8(r2)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x928
-	  lfs       f0, -0x1DD4(r2)
-	  fdivs     f0, f0, f1
-	  fmuls     f19, f19, f0
-	  fmuls     f18, f18, f0
-	  fmuls     f17, f17, f0
+lbl_802C42CC:
+	lfs      f0, lbl_8051C588@sda21(r2)
+	fcmpo    cr0, f1, f0
+	ble      lbl_802C42EC
+	lfs      f0, lbl_8051C58C@sda21(r2)
+	fdivs    f0, f0, f1
+	fmuls    f19, f19, f0
+	fmuls    f18, f18, f0
+	fmuls    f17, f17, f0
 
-	.loc_0x928:
-	  mr        r3, r29
-	  lfs       f0, -0x1DB8(r2)
-	  lwz       r12, 0x0(r29)
-	  fmuls     f19, f19, f0
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x950
-	  lfs       f18, -0x1DB8(r2)
+lbl_802C42EC:
+	mr       r3, r29
+	lfs      f0, lbl_8051C5A8@sda21(r2)
+	lwz      r12, 0(r29)
+	fmuls    f19, f19, f0
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802C4314
+	lfs      f18, lbl_8051C5A8@sda21(r2)
 
-	.loc_0x950:
-	  lwz       r8, 0x18(r28)
-	  lis       r5, 0x804B
-	  lfs       f0, -0x1DB8(r2)
-	  lis       r4, 0x804B
-	  lwz       r7, 0xC0(r8)
-	  lis       r3, 0x804B
-	  subi      r6, r5, 0x5D00
-	  fmuls     f17, f17, f0
-	  lfs       f0, 0x604(r7)
-	  addi      r5, r4, 0x4974
-	  addi      r0, r3, 0x492C
-	  mr        r3, r29
-	  stw       r6, 0xA0(r1)
-	  addi      r4, r1, 0xA0
-	  stw       r5, 0xA0(r1)
-	  stw       r8, 0xA4(r1)
-	  stfs      f0, 0xA8(r1)
-	  stfs      f19, 0xAC(r1)
-	  stfs      f18, 0xB0(r1)
-	  stfs      f17, 0xB4(r1)
-	  stw       r0, 0xA0(r1)
-	  lwz       r12, 0x0(r29)
-	  lwz       r12, 0x1A4(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0xA44
+lbl_802C4314:
+	lwz      r8, 0x18(r28)
+	lis      r5, __vt__Q24Game11Interaction@ha
+	lfs      f0, lbl_8051C5A8@sda21(r2)
+	lis      r4, __vt__Q24Game12InteractWind@ha
+	lwz      r7, 0xc0(r8)
+	lis      r3, __vt__Q24Game12InteractBomb@ha
+	addi     r6, r5, __vt__Q24Game11Interaction@l
+	fmuls    f17, f17, f0
+	lfs      f0, 0x604(r7)
+	addi     r5, r4, __vt__Q24Game12InteractWind@l
+	addi     r0, r3, __vt__Q24Game12InteractBomb@l
+	mr       r3, r29
+	stw      r6, 0xa0(r1)
+	addi     r4, r1, 0xa0
+	stw      r5, 0xa0(r1)
+	stw      r8, 0xa4(r1)
+	stfs     f0, 0xa8(r1)
+	stfs     f19, 0xac(r1)
+	stfs     f18, 0xb0(r1)
+	stfs     f17, 0xb4(r1)
+	stw      r0, 0xa0(r1)
+	lwz      r12, 0(r29)
+	lwz      r12, 0x1a4(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802C4408
 
-	.loc_0x9B8:
-	  mr        r3, r29
-	  lwz       r12, 0x0(r29)
-	  lwz       r12, 0x7C(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xA44
-	  lwz       r5, 0x18(r28)
-	  cmplw     r29, r5
-	  beq-      .loc_0xA44
-	  lis       r3, 0x804B
-	  lis       r4, 0x804B
-	  subi      r0, r3, 0x5D00
-	  lfs       f3, -0x1DB4(r2)
-	  stw       r0, 0x88(r1)
-	  lis       r3, 0x8051
-	  addi      r4, r4, 0x4974
-	  lfs       f2, 0x41E4(r3)
-	  lis       r3, 0x804B
-	  lfs       f1, 0x4(r31)
-	  stw       r4, 0x88(r1)
-	  addi      r0, r3, 0x492C
-	  lfs       f0, 0x8(r31)
-	  mr        r3, r29
-	  stw       r5, 0x8C(r1)
-	  addi      r4, r1, 0x88
-	  stfs      f3, 0x90(r1)
-	  stfs      f2, 0x94(r1)
-	  stfs      f1, 0x98(r1)
-	  stfs      f0, 0x9C(r1)
-	  stw       r0, 0x88(r1)
-	  lwz       r12, 0x0(r29)
-	  lwz       r12, 0x1A4(r12)
-	  mtctr     r12
-	  bctrl
+lbl_802C437C:
+	mr       r3, r29
+	lwz      r12, 0(r29)
+	lwz      r12, 0x7c(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802C4408
+	lwz      r5, 0x18(r28)
+	cmplw    r29, r5
+	beq      lbl_802C4408
+	lis      r3, __vt__Q24Game11Interaction@ha
+	lis      r4, __vt__Q24Game12InteractWind@ha
+	addi     r0, r3, __vt__Q24Game11Interaction@l
+	lfs      f3, lbl_8051C5AC@sda21(r2)
+	stw      r0, 0x88(r1)
+	lis      r3, "zero__10Vector3<f>"@ha
+	addi     r4, r4, __vt__Q24Game12InteractWind@l
+	lfs      f2, "zero__10Vector3<f>"@l(r3)
+	lis      r3, __vt__Q24Game12InteractBomb@ha
+	lfs      f1, 4(r31)
+	stw      r4, 0x88(r1)
+	addi     r0, r3, __vt__Q24Game12InteractBomb@l
+	lfs      f0, 8(r31)
+	mr       r3, r29
+	stw      r5, 0x8c(r1)
+	addi     r4, r1, 0x88
+	stfs     f3, 0x90(r1)
+	stfs     f2, 0x94(r1)
+	stfs     f1, 0x98(r1)
+	stfs     f0, 0x9c(r1)
+	stw      r0, 0x88(r1)
+	lwz      r12, 0(r29)
+	lwz      r12, 0x1a4(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0xA44:
-	  addi      r3, r1, 0x168
-	  bl        -0x95F0C
+lbl_802C4408:
+	addi     r3, r1, 0x168
+	bl       next__Q24Game12CellIteratorFv
 
-	.loc_0xA4C:
-	  addi      r3, r1, 0x168
-	  bl        -0x95EE0
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x7BC
+lbl_802C4410:
+	addi     r3, r1, 0x168
+	bl       isDone__Q24Game12CellIteratorFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802C4180
 
-	.loc_0xA5C:
-	  mr        r3, r30
-	  psq_l     f31,0x378(r1),0,0
-	  lfd       f31, 0x370(r1)
-	  psq_l     f30,0x368(r1),0,0
-	  lfd       f30, 0x360(r1)
-	  psq_l     f29,0x358(r1),0,0
-	  lfd       f29, 0x350(r1)
-	  psq_l     f28,0x348(r1),0,0
-	  lfd       f28, 0x340(r1)
-	  psq_l     f27,0x338(r1),0,0
-	  lfd       f27, 0x330(r1)
-	  psq_l     f26,0x328(r1),0,0
-	  lfd       f26, 0x320(r1)
-	  psq_l     f25,0x318(r1),0,0
-	  lfd       f25, 0x310(r1)
-	  psq_l     f24,0x308(r1),0,0
-	  lfd       f24, 0x300(r1)
-	  psq_l     f23,0x2F8(r1),0,0
-	  lfd       f23, 0x2F0(r1)
-	  psq_l     f22,0x2E8(r1),0,0
-	  lfd       f22, 0x2E0(r1)
-	  psq_l     f21,0x2D8(r1),0,0
-	  lfd       f21, 0x2D0(r1)
-	  psq_l     f20,0x2C8(r1),0,0
-	  lfd       f20, 0x2C0(r1)
-	  psq_l     f19,0x2B8(r1),0,0
-	  lfd       f19, 0x2B0(r1)
-	  psq_l     f18,0x2A8(r1),0,0
-	  lfd       f18, 0x2A0(r1)
-	  psq_l     f17,0x298(r1),0,0
-	  lfd       f17, 0x290(r1)
-	  psq_l     f16,0x288(r1),0,0
-	  lfd       f16, 0x280(r1)
-	  psq_l     f15,0x278(r1),0,0
-	  lfd       f15, 0x270(r1)
-	  psq_l     f14,0x268(r1),0,0
-	  lfd       f14, 0x260(r1)
-	  lwz       r31, 0x25C(r1)
-	  lwz       r30, 0x258(r1)
-	  lwz       r29, 0x254(r1)
-	  lwz       r0, 0x384(r1)
-	  lwz       r28, 0x250(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x380
-	  blr
+lbl_802C4420:
+	mr       r3, r30
+	psq_l    f31, 888(r1), 0, qr0
+	lfd      f31, 0x370(r1)
+	psq_l    f30, 872(r1), 0, qr0
+	lfd      f30, 0x360(r1)
+	psq_l    f29, 856(r1), 0, qr0
+	lfd      f29, 0x350(r1)
+	psq_l    f28, 840(r1), 0, qr0
+	lfd      f28, 0x340(r1)
+	psq_l    f27, 824(r1), 0, qr0
+	lfd      f27, 0x330(r1)
+	psq_l    f26, 808(r1), 0, qr0
+	lfd      f26, 0x320(r1)
+	psq_l    f25, 792(r1), 0, qr0
+	lfd      f25, 0x310(r1)
+	psq_l    f24, 776(r1), 0, qr0
+	lfd      f24, 0x300(r1)
+	psq_l    f23, 760(r1), 0, qr0
+	lfd      f23, 0x2f0(r1)
+	psq_l    f22, 744(r1), 0, qr0
+	lfd      f22, 0x2e0(r1)
+	psq_l    f21, 728(r1), 0, qr0
+	lfd      f21, 0x2d0(r1)
+	psq_l    f20, 712(r1), 0, qr0
+	lfd      f20, 0x2c0(r1)
+	psq_l    f19, 696(r1), 0, qr0
+	lfd      f19, 0x2b0(r1)
+	psq_l    f18, 680(r1), 0, qr0
+	lfd      f18, 0x2a0(r1)
+	psq_l    f17, 664(r1), 0, qr0
+	lfd      f17, 0x290(r1)
+	psq_l    f16, 648(r1), 0, qr0
+	lfd      f16, 0x280(r1)
+	psq_l    f15, 632(r1), 0, qr0
+	lfd      f15, 0x270(r1)
+	psq_l    f14, 616(r1), 0, qr0
+	lfd      f14, 0x260(r1)
+	lwz      r31, 0x25c(r1)
+	lwz      r30, 0x258(r1)
+	lwz      r29, 0x254(r1)
+	lwz      r0, 0x384(r1)
+	lwz      r28, 0x250(r1)
+	mtlr     r0
+	addi     r1, r1, 0x380
+	blr
 	*/
 }
 
@@ -872,163 +1018,162 @@ void Houdai::HoudaiShotGunNode::update()
 Houdai::HoudaiShotGunMgr::HoudaiShotGunMgr(Game::Houdai::Obj*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  lfs       f0, -0x1DD8(r2)
-	  stw       r0, 0x34(r1)
-	  li        r0, 0
-	  stmw      r24, 0x10(r1)
-	  mr        r25, r3
-	  stw       r4, 0x0(r3)
-	  li        r3, 0x38
-	  stb       r0, 0x4(r25)
-	  stb       r0, 0x5(r25)
-	  stb       r0, 0x6(r25)
-	  stfs      f0, 0xC(r25)
-	  stfs      f0, 0x8(r25)
-	  bl        -0x2A0668
-	  mr.       r26, r3
-	  beq-      .loc_0x5C
-	  lwz       r27, 0x0(r25)
-	  bl        0x14CE74
-	  lis       r3, 0x804D
-	  addi      r0, r3, 0x1548
-	  stw       r0, 0x0(r26)
-	  stw       r27, 0x18(r26)
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	lfs      f0, lbl_8051C588@sda21(r2)
+	stw      r0, 0x34(r1)
+	li       r0, 0
+	stmw     r24, 0x10(r1)
+	mr       r25, r3
+	stw      r4, 0(r3)
+	li       r3, 0x38
+	stb      r0, 4(r25)
+	stb      r0, 5(r25)
+	stb      r0, 6(r25)
+	stfs     f0, 0xc(r25)
+	stfs     f0, 8(r25)
+	bl       __nw__FUl
+	or.      r26, r3, r3
+	beq      lbl_802C4530
+	lwz      r27, 0(r25)
+	bl       __ct__5CNodeFv
+	lis      r3, __vt__Q34Game6Houdai17HoudaiShotGunNode@ha
+	addi     r0, r3, __vt__Q34Game6Houdai17HoudaiShotGunNode@l
+	stw      r0, 0(r26)
+	stw      r27, 0x18(r26)
 
-	.loc_0x5C:
-	  stw       r26, 0x34(r25)
-	  li        r3, 0x38
-	  bl        -0x2A0694
-	  mr.       r26, r3
-	  beq-      .loc_0x88
-	  lwz       r27, 0x0(r25)
-	  bl        0x14CE48
-	  lis       r3, 0x804D
-	  addi      r0, r3, 0x1548
-	  stw       r0, 0x0(r26)
-	  stw       r27, 0x18(r26)
+lbl_802C4530:
+	stw      r26, 0x34(r25)
+	li       r3, 0x38
+	bl       __nw__FUl
+	or.      r26, r3, r3
+	beq      lbl_802C455C
+	lwz      r27, 0(r25)
+	bl       __ct__5CNodeFv
+	lis      r3, __vt__Q34Game6Houdai17HoudaiShotGunNode@ha
+	addi     r0, r3, __vt__Q34Game6Houdai17HoudaiShotGunNode@l
+	stw      r0, 0(r26)
+	stw      r27, 0x18(r26)
 
-	.loc_0x88:
-	  lis       r6, 0x804E
-	  lis       r5, 0x804E
-	  lis       r4, 0x804F
-	  lis       r3, 0x8051
-	  addi      r6, r6, 0x698C
-	  addi      r5, r5, 0x6940
-	  subi      r4, r4, 0x5FF8
-	  stw       r26, 0x38(r25)
-	  addi      r27, r6, 0x14
-	  addi      r29, r5, 0x14
-	  addi      r28, r4, 0x14
-	  addi      r31, r3, 0x41E4
-	  li        r26, 0
+lbl_802C455C:
+	lis      r6, __vt__Q23efx5TSync@ha
+	lis      r5, __vt__Q23efx9TChasePos@ha
+	lis      r4, __vt__Q23efx11THdamaShell@ha
+	lis      r3, "zero__10Vector3<f>"@ha
+	addi     r6, r6, __vt__Q23efx5TSync@l
+	addi     r5, r5, __vt__Q23efx9TChasePos@l
+	addi     r4, r4, __vt__Q23efx11THdamaShell@l
+	stw      r26, 0x38(r25)
+	addi     r27, r6, 0x14
+	addi     r29, r5, 0x14
+	addi     r28, r4, 0x14
+	addi     r31, r3, "zero__10Vector3<f>"@l
+	li       r26, 0
 
-	.loc_0xBC:
-	  li        r3, 0x38
-	  bl        -0x2A06F0
-	  mr.       r30, r3
-	  beq-      .loc_0xE4
-	  lwz       r24, 0x0(r25)
-	  bl        0x14CDEC
-	  lis       r3, 0x804D
-	  addi      r0, r3, 0x1548
-	  stw       r0, 0x0(r30)
-	  stw       r24, 0x18(r30)
+lbl_802C4590:
+	li       r3, 0x38
+	bl       __nw__FUl
+	or.      r30, r3, r3
+	beq      lbl_802C45B8
+	lwz      r24, 0(r25)
+	bl       __ct__5CNodeFv
+	lis      r3, __vt__Q34Game6Houdai17HoudaiShotGunNode@ha
+	addi     r0, r3, __vt__Q34Game6Houdai17HoudaiShotGunNode@l
+	stw      r0, 0(r30)
+	stw      r24, 0x18(r30)
 
-	.loc_0xE4:
-	  li        r3, 0x14
-	  bl        -0x2A0718
-	  cmplwi    r3, 0
-	  beq-      .loc_0x15C
-	  lis       r5, 0x804B
-	  lis       r4, 0x804A
-	  subi      r0, r5, 0x5808
-	  lis       r6, 0x804E
-	  stw       r0, 0x0(r3)
-	  subi      r0, r4, 0x1D84
-	  lis       r5, 0x804E
-	  lis       r4, 0x804F
-	  stw       r0, 0x4(r3)
-	  addi      r0, r6, 0x698C
-	  li        r8, 0
-	  li        r7, 0x2B2
-	  stw       r0, 0x0(r3)
-	  addi      r6, r5, 0x6940
-	  li        r5, 0x9B
-	  subi      r0, r4, 0x5FF8
-	  stw       r27, 0x4(r3)
-	  stw       r8, 0x8(r3)
-	  sth       r7, 0xC(r3)
-	  stb       r8, 0xE(r3)
-	  stw       r6, 0x0(r3)
-	  stw       r29, 0x4(r3)
-	  stw       r8, 0x10(r3)
-	  sth       r5, 0xC(r3)
-	  stw       r0, 0x0(r3)
-	  stw       r28, 0x4(r3)
+lbl_802C45B8:
+	li       r3, 0x14
+	bl       __nw__FUl
+	cmplwi   r3, 0
+	beq      lbl_802C4630
+	lis      r5, __vt__Q23efx5TBase@ha
+	lis      r4, __vt__18JPAEmitterCallBack@ha
+	addi     r0, r5, __vt__Q23efx5TBase@l
+	lis      r6, __vt__Q23efx5TSync@ha
+	stw      r0, 0(r3)
+	addi     r0, r4, __vt__18JPAEmitterCallBack@l
+	lis      r5, __vt__Q23efx9TChasePos@ha
+	lis      r4, __vt__Q23efx11THdamaShell@ha
+	stw      r0, 4(r3)
+	addi     r0, r6, __vt__Q23efx5TSync@l
+	li       r8, 0
+	li       r7, 0x2b2
+	stw      r0, 0(r3)
+	addi     r6, r5, __vt__Q23efx9TChasePos@l
+	li       r5, 0x9b
+	addi     r0, r4, __vt__Q23efx11THdamaShell@l
+	stw      r27, 4(r3)
+	stw      r8, 8(r3)
+	sth      r7, 0xc(r3)
+	stb      r8, 0xe(r3)
+	stw      r6, 0(r3)
+	stw      r29, 4(r3)
+	stw      r8, 0x10(r3)
+	sth      r5, 0xc(r3)
+	stw      r0, 0(r3)
+	stw      r28, 4(r3)
 
-	.loc_0x15C:
-	  stw       r3, 0x1C(r30)
-	  mr        r4, r30
-	  lfs       f0, 0x0(r31)
-	  stfs      f0, 0x20(r30)
-	  lfs       f0, 0x4(r31)
-	  stfs      f0, 0x24(r30)
-	  lfs       f0, 0x8(r31)
-	  stfs      f0, 0x28(r30)
-	  lfs       f0, 0x0(r31)
-	  stfs      f0, 0x2C(r30)
-	  lfs       f0, 0x4(r31)
-	  stfs      f0, 0x30(r30)
-	  lfs       f0, 0x8(r31)
-	  stfs      f0, 0x34(r30)
-	  lwz       r3, 0x38(r25)
-	  bl        0x14CD9C
-	  addi      r26, r26, 0x1
-	  cmpwi     r26, 0xA
-	  blt+      .loc_0xBC
-	  li        r3, 0x10
-	  bl        -0x2A07DC
-	  cmplwi    r3, 0
-	  beq-      .loc_0x21C
-	  lis       r5, 0x804B
-	  lis       r4, 0x804A
-	  subi      r0, r5, 0x5808
-	  lis       r6, 0x804E
-	  stw       r0, 0x0(r3)
-	  subi      r0, r4, 0x1D84
-	  lis       r5, 0x804B
-	  lis       r4, 0x804D
-	  stw       r0, 0x4(r3)
-	  addi      r0, r6, 0x698C
-	  addi      r6, r5, 0x2C24
-	  addi      r4, r4, 0x14B4
-	  stw       r0, 0x0(r3)
-	  li        r8, 0
-	  li        r7, 0x9F
-	  addi      r5, r6, 0x14
-	  stw       r27, 0x4(r3)
-	  addi      r0, r4, 0x14
-	  stw       r8, 0x8(r3)
-	  sth       r7, 0xC(r3)
-	  stb       r8, 0xE(r3)
-	  stw       r6, 0x0(r3)
-	  stw       r5, 0x4(r3)
-	  stw       r4, 0x0(r3)
-	  stw       r0, 0x4(r3)
+lbl_802C4630:
+	stw      r3, 0x1c(r30)
+	mr       r4, r30
+	lfs      f0, 0(r31)
+	stfs     f0, 0x20(r30)
+	lfs      f0, 4(r31)
+	stfs     f0, 0x24(r30)
+	lfs      f0, 8(r31)
+	stfs     f0, 0x28(r30)
+	lfs      f0, 0(r31)
+	stfs     f0, 0x2c(r30)
+	lfs      f0, 4(r31)
+	stfs     f0, 0x30(r30)
+	lfs      f0, 8(r31)
+	stfs     f0, 0x34(r30)
+	lwz      r3, 0x38(r25)
+	bl       add__5CNodeFP5CNode
+	addi     r26, r26, 1
+	cmpwi    r26, 0xa
+	blt      lbl_802C4590
+	li       r3, 0x10
+	bl       __nw__FUl
+	cmplwi   r3, 0
+	beq      lbl_802C46F0
+	lis      r5, __vt__Q23efx5TBase@ha
+	lis      r4, __vt__18JPAEmitterCallBack@ha
+	addi     r0, r5, __vt__Q23efx5TBase@l
+	lis      r6, __vt__Q23efx5TSync@ha
+	stw      r0, 0(r3)
+	addi     r0, r4, __vt__18JPAEmitterCallBack@l
+	lis      r5, __vt__Q23efx8TForever@ha
+	lis      r4, __vt__Q23efx11THdamaSight@ha
+	stw      r0, 4(r3)
+	addi     r0, r6, __vt__Q23efx5TSync@l
+	addi     r6, r5, __vt__Q23efx8TForever@l
+	addi     r4, r4, __vt__Q23efx11THdamaSight@l
+	stw      r0, 0(r3)
+	li       r8, 0
+	li       r7, 0x9f
+	addi     r5, r6, 0x14
+	stw      r27, 4(r3)
+	addi     r0, r4, 0x14
+	stw      r8, 8(r3)
+	sth      r7, 0xc(r3)
+	stb      r8, 0xe(r3)
+	stw      r6, 0(r3)
+	stw      r5, 4(r3)
+	stw      r4, 0(r3)
+	stw      r0, 4(r3)
 
-	.loc_0x21C:
-	  stw       r3, 0x30(r25)
-	  li        r0, 0
-	  mr        r3, r25
-	  stw       r0, -0x68E0(r13)
-	  lmw       r24, 0x10(r1)
-	  lwz       r0, 0x34(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_802C46F0:
+	stw      r3, 0x30(r25)
+	li       r0, 0
+	mr       r3, r25
+	stw      r0, sHoudaiShotGunMgr__Q24Game6Houdai@sda21(r13)
+	lmw      r24, 0x10(r1)
+	lwz      r0, 0x34(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -1040,52 +1185,51 @@ Houdai::HoudaiShotGunMgr::HoudaiShotGunMgr(Game::Houdai::Obj*)
 void Houdai::HoudaiShotGunMgr::setupShotGun()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lfs       f0, -0x1DD8(r2)
-	  subi      r4, r2, 0x1DB0
-	  stw       r0, 0x24(r1)
-	  li        r0, 0
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  stb       r0, 0x4(r3)
-	  stb       r0, 0x5(r3)
-	  stb       r0, 0x6(r3)
-	  stfs      f0, 0xC(r3)
-	  stfs      f0, 0x8(r3)
-	  lwz       r3, 0x0(r3)
-	  lwz       r3, 0x174(r3)
-	  bl        0x17A88C
-	  lwz       r5, 0x0(r29)
-	  mr        r31, r3
-	  subi      r4, r2, 0x1DA8
-	  lwz       r3, 0x174(r5)
-	  bl        0x17A878
-	  lis       r5, 0x802C
-	  lwz       r4, 0x18(r31)
-	  addi      r0, r5, 0x394C
-	  mr        r30, r3
-	  stw       r0, 0x4(r4)
-	  lis       r5, 0x802C
-	  addi      r0, r5, 0x3988
-	  mr        r3, r31
-	  lwz       r4, 0x18(r30)
-	  stw       r0, 0x4(r4)
-	  bl        0x165108
-	  stw       r3, 0x10(r29)
-	  mr        r3, r30
-	  bl        0x1650FC
-	  stw       r3, 0x14(r29)
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lfs      f0, lbl_8051C588@sda21(r2)
+	addi     r4, r2, lbl_8051C5B0@sda21
+	stw      r0, 0x24(r1)
+	li       r0, 0
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	stb      r0, 4(r3)
+	stb      r0, 5(r3)
+	stb      r0, 6(r3)
+	stfs     f0, 0xc(r3)
+	stfs     f0, 8(r3)
+	lwz      r3, 0(r3)
+	lwz      r3, 0x174(r3)
+	bl       getJoint__Q28SysShape5ModelFPc
+	lwz      r5, 0(r29)
+	mr       r31, r3
+	addi     r4, r2, lbl_8051C5B8@sda21
+	lwz      r3, 0x174(r5)
+	bl       getJoint__Q28SysShape5ModelFPc
+	lis      r5, levelRotationCallBack__Q24Game6HoudaiFP8J3DJointi@ha
+	lwz      r4, 0x18(r31)
+	addi     r0, r5, levelRotationCallBack__Q24Game6HoudaiFP8J3DJointi@l
+	mr       r30, r3
+	stw      r0, 4(r4)
+	lis      r5, verticalRotationCallBack__Q24Game6HoudaiFP8J3DJointi@ha
+	addi     r0, r5, verticalRotationCallBack__Q24Game6HoudaiFP8J3DJointi@l
+	mr       r3, r31
+	lwz      r4, 0x18(r30)
+	stw      r0, 4(r4)
+	bl       getWorldMatrix__Q28SysShape5JointFv
+	stw      r3, 0x10(r29)
+	mr       r3, r30
+	bl       getWorldMatrix__Q28SysShape5JointFv
+	stw      r3, 0x14(r29)
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -1097,10 +1241,9 @@ void Houdai::HoudaiShotGunMgr::setupShotGun()
 void Houdai::HoudaiShotGunMgr::resetCallBack()
 {
 	/*
-	.loc_0x0:
-	  li        r0, 0
-	  stw       r0, -0x68E0(r13)
-	  blr
+	li       r0, 0
+	stw      r0, sHoudaiShotGunMgr__Q24Game6Houdai@sda21(r13)
+	blr
 	*/
 }
 
@@ -1112,9 +1255,8 @@ void Houdai::HoudaiShotGunMgr::resetCallBack()
 void Houdai::HoudaiShotGunMgr::setCallBack()
 {
 	/*
-	.loc_0x0:
-	  stw       r3, -0x68E0(r13)
-	  blr
+	stw      r3, sHoudaiShotGunMgr__Q24Game6Houdai@sda21(r13)
+	blr
 	*/
 }
 
@@ -1126,16 +1268,15 @@ void Houdai::HoudaiShotGunMgr::setCallBack()
 void Houdai::HoudaiShotGunMgr::startRotation()
 {
 	/*
-	.loc_0x0:
-	  li        r4, 0x1
-	  li        r0, 0
-	  stb       r4, 0x4(r3)
-	  lfs       f0, -0x1DD8(r2)
-	  stb       r0, 0x5(r3)
-	  stb       r0, 0x6(r3)
-	  stfs      f0, 0xC(r3)
-	  stfs      f0, 0x8(r3)
-	  blr
+	li       r4, 1
+	li       r0, 0
+	stb      r4, 4(r3)
+	lfs      f0, lbl_8051C588@sda21(r2)
+	stb      r0, 5(r3)
+	stb      r0, 6(r3)
+	stfs     f0, 0xc(r3)
+	stfs     f0, 8(r3)
+	blr
 	*/
 }
 
@@ -1147,12 +1288,11 @@ void Houdai::HoudaiShotGunMgr::startRotation()
 void Houdai::HoudaiShotGunMgr::finishRotation()
 {
 	/*
-	.loc_0x0:
-	  li        r4, 0
-	  li        r0, 0x1
-	  stb       r4, 0x5(r3)
-	  stb       r0, 0x6(r3)
-	  blr
+	li       r4, 0
+	li       r0, 1
+	stb      r4, 5(r3)
+	stb      r0, 6(r3)
+	blr
 	*/
 }
 
@@ -1164,9 +1304,8 @@ void Houdai::HoudaiShotGunMgr::finishRotation()
 void Houdai::HoudaiShotGunMgr::isShotGunRotation()
 {
 	/*
-	.loc_0x0:
-	  lbz       r3, 0x4(r3)
-	  blr
+	lbz      r3, 4(r3)
+	blr
 	*/
 }
 
@@ -1178,9 +1317,8 @@ void Houdai::HoudaiShotGunMgr::isShotGunRotation()
 void Houdai::HoudaiShotGunMgr::isShotGunLockOn()
 {
 	/*
-	.loc_0x0:
-	  lbz       r3, 0x5(r3)
-	  blr
+	lbz      r3, 5(r3)
+	blr
 	*/
 }
 
@@ -1192,9 +1330,8 @@ void Houdai::HoudaiShotGunMgr::isShotGunLockOn()
 void Houdai::HoudaiShotGunMgr::isFinishShotGun()
 {
 	/*
-	.loc_0x0:
-	  lbz       r3, 0x6(r3)
-	  blr
+	lbz      r3, 6(r3)
+	blr
 	*/
 }
 
@@ -1206,14 +1343,13 @@ void Houdai::HoudaiShotGunMgr::isFinishShotGun()
 void Houdai::HoudaiShotGunMgr::setShotGunTarget(Vector3f&)
 {
 	/*
-	.loc_0x0:
-	  lfs       f0, 0x0(r4)
-	  stfs      f0, 0x18(r3)
-	  lfs       f0, 0x4(r4)
-	  stfs      f0, 0x1C(r3)
-	  lfs       f0, 0x8(r4)
-	  stfs      f0, 0x20(r3)
-	  blr
+	lfs      f0, 0(r4)
+	stfs     f0, 0x18(r3)
+	lfs      f0, 4(r4)
+	stfs     f0, 0x1c(r3)
+	lfs      f0, 8(r4)
+	stfs     f0, 0x20(r3)
+	blr
 	*/
 }
 
@@ -1225,267 +1361,266 @@ void Houdai::HoudaiShotGunMgr::setShotGunTarget(Vector3f&)
 void Houdai::HoudaiShotGunMgr::emitShotGun()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0xE0(r1)
-	  mflr      r0
-	  stw       r0, 0xE4(r1)
-	  stfd      f31, 0xD0(r1)
-	  psq_st    f31,0xD8(r1),0,0
-	  stfd      f30, 0xC0(r1)
-	  psq_st    f30,0xC8(r1),0,0
-	  stfd      f29, 0xB0(r1)
-	  psq_st    f29,0xB8(r1),0,0
-	  stfd      f28, 0xA0(r1)
-	  psq_st    f28,0xA8(r1),0,0
-	  stfd      f27, 0x90(r1)
-	  psq_st    f27,0x98(r1),0,0
-	  stfd      f26, 0x80(r1)
-	  psq_st    f26,0x88(r1),0,0
-	  stfd      f25, 0x70(r1)
-	  psq_st    f25,0x78(r1),0,0
-	  stw       r31, 0x6C(r1)
-	  stw       r30, 0x68(r1)
-	  stw       r29, 0x64(r1)
-	  mr        r31, r3
-	  lwz       r3, 0x38(r3)
-	  lwz       r29, 0x10(r3)
-	  cmplwi    r29, 0
-	  beq-      .loc_0x36C
-	  lwz       r3, 0x14(r31)
-	  lfs       f0, -0x1DD8(r2)
-	  lfs       f30, 0x10(r3)
-	  lfs       f29, 0x20(r3)
-	  fmuls     f1, f30, f30
-	  lfs       f31, 0x0(r3)
-	  fmuls     f2, f29, f29
-	  lfs       f28, 0xC(r3)
-	  lfs       f27, 0x1C(r3)
-	  fmadds    f1, f31, f31, f1
-	  lfs       f26, 0x2C(r3)
-	  fadds     f1, f2, f1
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0xAC
-	  ble-      .loc_0xB0
-	  fsqrte    f0, f1
-	  fmuls     f1, f0, f1
-	  b         .loc_0xB0
+	stwu     r1, -0xe0(r1)
+	mflr     r0
+	stw      r0, 0xe4(r1)
+	stfd     f31, 0xd0(r1)
+	psq_st   f31, 216(r1), 0, qr0
+	stfd     f30, 0xc0(r1)
+	psq_st   f30, 200(r1), 0, qr0
+	stfd     f29, 0xb0(r1)
+	psq_st   f29, 184(r1), 0, qr0
+	stfd     f28, 0xa0(r1)
+	psq_st   f28, 168(r1), 0, qr0
+	stfd     f27, 0x90(r1)
+	psq_st   f27, 152(r1), 0, qr0
+	stfd     f26, 0x80(r1)
+	psq_st   f26, 136(r1), 0, qr0
+	stfd     f25, 0x70(r1)
+	psq_st   f25, 120(r1), 0, qr0
+	stw      r31, 0x6c(r1)
+	stw      r30, 0x68(r1)
+	stw      r29, 0x64(r1)
+	mr       r31, r3
+	lwz      r3, 0x38(r3)
+	lwz      r29, 0x10(r3)
+	cmplwi   r29, 0
+	beq      lbl_802C4BB4
+	lwz      r3, 0x14(r31)
+	lfs      f0, lbl_8051C588@sda21(r2)
+	lfs      f30, 0x10(r3)
+	lfs      f29, 0x20(r3)
+	fmuls    f1, f30, f30
+	lfs      f31, 0(r3)
+	fmuls    f2, f29, f29
+	lfs      f28, 0xc(r3)
+	lfs      f27, 0x1c(r3)
+	fmadds   f1, f31, f31, f1
+	lfs      f26, 0x2c(r3)
+	fadds    f1, f2, f1
+	fcmpo    cr0, f1, f0
+	ble      lbl_802C48F4
+	ble      lbl_802C48F8
+	frsqrte  f0, f1
+	fmuls    f1, f0, f1
+	b        lbl_802C48F8
 
-	.loc_0xAC:
-	  fmr       f1, f0
+lbl_802C48F4:
+	fmr      f1, f0
 
-	.loc_0xB0:
-	  lfs       f0, -0x1DD8(r2)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0xD0
-	  lfs       f0, -0x1DD4(r2)
-	  fdivs     f0, f0, f1
-	  fmuls     f31, f31, f0
-	  fmuls     f30, f30, f0
-	  fmuls     f29, f29, f0
+lbl_802C48F8:
+	lfs      f0, lbl_8051C588@sda21(r2)
+	fcmpo    cr0, f1, f0
+	ble      lbl_802C4918
+	lfs      f0, lbl_8051C58C@sda21(r2)
+	fdivs    f0, f0, f1
+	fmuls    f31, f31, f0
+	fmuls    f30, f30, f0
+	fmuls    f29, f29, f0
 
-	.loc_0xD0:
-	  lwz       r3, 0x0(r31)
-	  lfs       f1, -0x1DA4(r2)
-	  lwz       r30, 0xC0(r3)
-	  lfs       f0, 0x5DC(r30)
-	  fmuls     f25, f1, f0
-	  bl        -0x1FB38C
-	  xoris     r3, r3, 0x8000
-	  lis       r0, 0x4330
-	  stw       r3, 0x44(r1)
-	  lwz       r3, 0x0(r31)
-	  stw       r0, 0x40(r1)
-	  lfd       f2, -0x1D90(r2)
-	  lfd       f0, 0x40(r1)
-	  lfs       f1, -0x1DA0(r2)
-	  fsubs     f2, f0, f2
-	  lfs       f0, 0x5DC(r30)
-	  lwz       r30, 0xC0(r3)
-	  fmuls     f2, f25, f2
-	  fdivs     f1, f2, f1
-	  fsubs     f0, f1, f0
-	  fadds     f31, f31, f0
-	  bl        -0x1FB3CC
-	  xoris     r3, r3, 0x8000
-	  lis       r0, 0x4330
-	  stw       r3, 0x4C(r1)
-	  lwz       r3, 0x0(r31)
-	  stw       r0, 0x48(r1)
-	  lfd       f2, -0x1D90(r2)
-	  lfd       f0, 0x48(r1)
-	  lfs       f1, -0x1DA0(r2)
-	  fsubs     f2, f0, f2
-	  lfs       f0, 0x5DC(r30)
-	  lwz       r30, 0xC0(r3)
-	  fmuls     f2, f25, f2
-	  fdivs     f1, f2, f1
-	  fsubs     f0, f1, f0
-	  fadds     f30, f30, f0
-	  bl        -0x1FB40C
-	  xoris     r3, r3, 0x8000
-	  lis       r0, 0x4330
-	  stw       r3, 0x54(r1)
-	  fmuls     f0, f30, f30
-	  lfd       f4, -0x1D90(r2)
-	  stw       r0, 0x50(r1)
-	  lfs       f3, -0x1DA0(r2)
-	  fmadds    f1, f31, f31, f0
-	  lfd       f0, 0x50(r1)
-	  lfs       f2, 0x5DC(r30)
-	  fsubs     f4, f0, f4
-	  lfs       f0, -0x1DD8(r2)
-	  fmuls     f4, f25, f4
-	  fdivs     f3, f4, f3
-	  fsubs     f2, f3, f2
-	  fadds     f29, f29, f2
-	  fmuls     f2, f29, f29
-	  fadds     f1, f2, f1
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x1C8
-	  ble-      .loc_0x1CC
-	  fsqrte    f0, f1
-	  fmuls     f1, f0, f1
-	  b         .loc_0x1CC
+lbl_802C4918:
+	lwz      r3, 0(r31)
+	lfs      f1, lbl_8051C5BC@sda21(r2)
+	lwz      r30, 0xc0(r3)
+	lfs      f0, 0x5dc(r30)
+	fmuls    f25, f1, f0
+	bl       rand
+	xoris    r3, r3, 0x8000
+	lis      r0, 0x4330
+	stw      r3, 0x44(r1)
+	lwz      r3, 0(r31)
+	stw      r0, 0x40(r1)
+	lfd      f2, lbl_8051C5D0@sda21(r2)
+	lfd      f0, 0x40(r1)
+	lfs      f1, lbl_8051C5C0@sda21(r2)
+	fsubs    f2, f0, f2
+	lfs      f0, 0x5dc(r30)
+	lwz      r30, 0xc0(r3)
+	fmuls    f2, f25, f2
+	fdivs    f1, f2, f1
+	fsubs    f0, f1, f0
+	fadds    f31, f31, f0
+	bl       rand
+	xoris    r3, r3, 0x8000
+	lis      r0, 0x4330
+	stw      r3, 0x4c(r1)
+	lwz      r3, 0(r31)
+	stw      r0, 0x48(r1)
+	lfd      f2, lbl_8051C5D0@sda21(r2)
+	lfd      f0, 0x48(r1)
+	lfs      f1, lbl_8051C5C0@sda21(r2)
+	fsubs    f2, f0, f2
+	lfs      f0, 0x5dc(r30)
+	lwz      r30, 0xc0(r3)
+	fmuls    f2, f25, f2
+	fdivs    f1, f2, f1
+	fsubs    f0, f1, f0
+	fadds    f30, f30, f0
+	bl       rand
+	xoris    r3, r3, 0x8000
+	lis      r0, 0x4330
+	stw      r3, 0x54(r1)
+	fmuls    f0, f30, f30
+	lfd      f4, lbl_8051C5D0@sda21(r2)
+	stw      r0, 0x50(r1)
+	lfs      f3, lbl_8051C5C0@sda21(r2)
+	fmadds   f1, f31, f31, f0
+	lfd      f0, 0x50(r1)
+	lfs      f2, 0x5dc(r30)
+	fsubs    f4, f0, f4
+	lfs      f0, lbl_8051C588@sda21(r2)
+	fmuls    f4, f25, f4
+	fdivs    f3, f4, f3
+	fsubs    f2, f3, f2
+	fadds    f29, f29, f2
+	fmuls    f2, f29, f29
+	fadds    f1, f2, f1
+	fcmpo    cr0, f1, f0
+	ble      lbl_802C4A10
+	ble      lbl_802C4A14
+	frsqrte  f0, f1
+	fmuls    f1, f0, f1
+	b        lbl_802C4A14
 
-	.loc_0x1C8:
-	  fmr       f1, f0
+lbl_802C4A10:
+	fmr      f1, f0
 
-	.loc_0x1CC:
-	  lfs       f0, -0x1DD8(r2)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x1EC
-	  lfs       f0, -0x1DD4(r2)
-	  fdivs     f0, f0, f1
-	  fmuls     f31, f31, f0
-	  fmuls     f30, f30, f0
-	  fmuls     f29, f29, f0
+lbl_802C4A14:
+	lfs      f0, lbl_8051C588@sda21(r2)
+	fcmpo    cr0, f1, f0
+	ble      lbl_802C4A34
+	lfs      f0, lbl_8051C58C@sda21(r2)
+	fdivs    f0, f0, f1
+	fmuls    f31, f31, f0
+	fmuls    f30, f30, f0
+	fmuls    f29, f29, f0
 
-	.loc_0x1EC:
-	  lfs       f2, -0x1D9C(r2)
-	  lfs       f1, -0x1D98(r2)
-	  fmuls     f3, f31, f2
-	  lfs       f0, -0x1DD8(r2)
-	  fmuls     f4, f30, f2
-	  fmuls     f2, f29, f2
-	  fadds     f28, f28, f3
-	  fadds     f27, f27, f4
-	  fadds     f26, f26, f2
-	  stfs      f28, 0x20(r29)
-	  fmuls     f31, f31, f1
-	  fmuls     f30, f30, f1
-	  stfs      f27, 0x24(r29)
-	  fmuls     f29, f29, f1
-	  stfs      f26, 0x28(r29)
-	  stfs      f31, 0x2C(r29)
-	  stfs      f30, 0x30(r29)
-	  stfs      f29, 0x34(r29)
-	  lfs       f3, 0x30(r29)
-	  lfs       f4, 0x34(r29)
-	  fmuls     f1, f3, f3
-	  lfs       f2, 0x2C(r29)
-	  fmuls     f5, f4, f4
-	  fmadds    f1, f2, f2, f1
-	  fadds     f1, f5, f1
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x268
-	  ble-      .loc_0x26C
-	  fsqrte    f0, f1
-	  fmuls     f1, f0, f1
-	  b         .loc_0x26C
+lbl_802C4A34:
+	lfs      f2, lbl_8051C5C4@sda21(r2)
+	lfs      f1, lbl_8051C5C8@sda21(r2)
+	fmuls    f3, f31, f2
+	lfs      f0, lbl_8051C588@sda21(r2)
+	fmuls    f4, f30, f2
+	fmuls    f2, f29, f2
+	fadds    f28, f28, f3
+	fadds    f27, f27, f4
+	fadds    f26, f26, f2
+	stfs     f28, 0x20(r29)
+	fmuls    f31, f31, f1
+	fmuls    f30, f30, f1
+	stfs     f27, 0x24(r29)
+	fmuls    f29, f29, f1
+	stfs     f26, 0x28(r29)
+	stfs     f31, 0x2c(r29)
+	stfs     f30, 0x30(r29)
+	stfs     f29, 0x34(r29)
+	lfs      f3, 0x30(r29)
+	lfs      f4, 0x34(r29)
+	fmuls    f1, f3, f3
+	lfs      f2, 0x2c(r29)
+	fmuls    f5, f4, f4
+	fmadds   f1, f2, f2, f1
+	fadds    f1, f5, f1
+	fcmpo    cr0, f1, f0
+	ble      lbl_802C4AB0
+	ble      lbl_802C4AB4
+	frsqrte  f0, f1
+	fmuls    f1, f0, f1
+	b        lbl_802C4AB4
 
-	.loc_0x268:
-	  fmr       f1, f0
+lbl_802C4AB0:
+	fmr      f1, f0
 
-	.loc_0x26C:
-	  lfs       f0, -0x1DD8(r2)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x28C
-	  lfs       f0, -0x1DD4(r2)
-	  fdivs     f0, f0, f1
-	  fmuls     f2, f2, f0
-	  fmuls     f3, f3, f0
-	  fmuls     f4, f4, f0
+lbl_802C4AB4:
+	lfs      f0, lbl_8051C588@sda21(r2)
+	fcmpo    cr0, f1, f0
+	ble      lbl_802C4AD4
+	lfs      f0, lbl_8051C58C@sda21(r2)
+	fdivs    f0, f0, f1
+	fmuls    f2, f2, f0
+	fmuls    f3, f3, f0
+	fmuls    f4, f4, f0
 
-	.loc_0x28C:
-	  lis       r4, 0x804B
-	  lis       r3, 0x804D
-	  subi      r4, r4, 0x5814
-	  addi      r0, r29, 0x20
-	  stw       r4, 0x8(r1)
-	  addi      r3, r3, 0x153C
-	  addi      r4, r1, 0x8
-	  lfs       f0, 0x20(r29)
-	  stfs      f0, 0xC(r1)
-	  lfs       f0, 0x24(r29)
-	  stfs      f0, 0x10(r1)
-	  lfs       f0, 0x28(r29)
-	  stfs      f0, 0x14(r1)
-	  stw       r3, 0x8(r1)
-	  stfs      f2, 0x18(r1)
-	  stfs      f3, 0x1C(r1)
-	  stfs      f4, 0x20(r1)
-	  lwz       r3, 0x1C(r29)
-	  stw       r0, 0x10(r3)
-	  lwz       r3, 0x1C(r29)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r3, r29
-	  bl        0x14CA98
-	  lwz       r3, 0x34(r31)
-	  mr        r4, r29
-	  bl        0x14C8C4
-	  lwz       r8, 0x14(r31)
-	  lis       r3, 0x804B
-	  subi      r0, r3, 0x5808
-	  li        r5, 0
-	  lis       r3, 0x804E
-	  stw       r0, 0x24(r1)
-	  addi      r0, r3, 0x6A50
-	  lis       r3, 0x804E
-	  stw       r0, 0x24(r1)
-	  addi      r0, r3, 0x69EC
-	  lis       r3, 0x804D
-	  li        r4, 0x9D
-	  stw       r0, 0x24(r1)
-	  addi      r0, r3, 0x14A0
-	  li        r7, 0x9E
-	  li        r6, 0x247
-	  sth       r4, 0x28(r1)
-	  addi      r3, r1, 0x24
-	  li        r4, 0
-	  sth       r7, 0x2A(r1)
-	  sth       r6, 0x2C(r1)
-	  stw       r5, 0x30(r1)
-	  stw       r5, 0x34(r1)
-	  stw       r5, 0x38(r1)
-	  stw       r8, 0x3C(r1)
-	  stw       r0, 0x24(r1)
-	  bl        0xEA904
+lbl_802C4AD4:
+	lis      r4, __vt__Q23efx3Arg@ha
+	lis      r3, __vt__Q23efx6ArgDir@ha
+	addi     r4, r4, __vt__Q23efx3Arg@l
+	addi     r0, r29, 0x20
+	stw      r4, 8(r1)
+	addi     r3, r3, __vt__Q23efx6ArgDir@l
+	addi     r4, r1, 8
+	lfs      f0, 0x20(r29)
+	stfs     f0, 0xc(r1)
+	lfs      f0, 0x24(r29)
+	stfs     f0, 0x10(r1)
+	lfs      f0, 0x28(r29)
+	stfs     f0, 0x14(r1)
+	stw      r3, 8(r1)
+	stfs     f2, 0x18(r1)
+	stfs     f3, 0x1c(r1)
+	stfs     f4, 0x20(r1)
+	lwz      r3, 0x1c(r29)
+	stw      r0, 0x10(r3)
+	lwz      r3, 0x1c(r29)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	mr       r3, r29
+	bl       del__5CNodeFv
+	lwz      r3, 0x34(r31)
+	mr       r4, r29
+	bl       add__5CNodeFP5CNode
+	lwz      r8, 0x14(r31)
+	lis      r3, __vt__Q23efx5TBase@ha
+	addi     r0, r3, __vt__Q23efx5TBase@l
+	li       r5, 0
+	lis      r3, __vt__Q23efx8TSimple3@ha
+	stw      r0, 0x24(r1)
+	addi     r0, r3, __vt__Q23efx8TSimple3@l
+	lis      r3, __vt__Q23efx11TSimpleMtx3@ha
+	stw      r0, 0x24(r1)
+	addi     r0, r3, __vt__Q23efx11TSimpleMtx3@l
+	lis      r3, __vt__Q23efx11THdamaShoot@ha
+	li       r4, 0x9d
+	stw      r0, 0x24(r1)
+	addi     r0, r3, __vt__Q23efx11THdamaShoot@l
+	li       r7, 0x9e
+	li       r6, 0x247
+	sth      r4, 0x28(r1)
+	addi     r3, r1, 0x24
+	li       r4, 0
+	sth      r7, 0x2a(r1)
+	sth      r6, 0x2c(r1)
+	stw      r5, 0x30(r1)
+	stw      r5, 0x34(r1)
+	stw      r5, 0x38(r1)
+	stw      r8, 0x3c(r1)
+	stw      r0, 0x24(r1)
+	bl       create__Q23efx11TSimpleMtx3FPQ23efx3Arg
 
-	.loc_0x36C:
-	  psq_l     f31,0xD8(r1),0,0
-	  lfd       f31, 0xD0(r1)
-	  psq_l     f30,0xC8(r1),0,0
-	  lfd       f30, 0xC0(r1)
-	  psq_l     f29,0xB8(r1),0,0
-	  lfd       f29, 0xB0(r1)
-	  psq_l     f28,0xA8(r1),0,0
-	  lfd       f28, 0xA0(r1)
-	  psq_l     f27,0x98(r1),0,0
-	  lfd       f27, 0x90(r1)
-	  psq_l     f26,0x88(r1),0,0
-	  lfd       f26, 0x80(r1)
-	  psq_l     f25,0x78(r1),0,0
-	  lfd       f25, 0x70(r1)
-	  lwz       r31, 0x6C(r1)
-	  lwz       r30, 0x68(r1)
-	  lwz       r0, 0xE4(r1)
-	  lwz       r29, 0x64(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0xE0
-	  blr
+lbl_802C4BB4:
+	psq_l    f31, 216(r1), 0, qr0
+	lfd      f31, 0xd0(r1)
+	psq_l    f30, 200(r1), 0, qr0
+	lfd      f30, 0xc0(r1)
+	psq_l    f29, 184(r1), 0, qr0
+	lfd      f29, 0xb0(r1)
+	psq_l    f28, 168(r1), 0, qr0
+	lfd      f28, 0xa0(r1)
+	psq_l    f27, 152(r1), 0, qr0
+	lfd      f27, 0x90(r1)
+	psq_l    f26, 136(r1), 0, qr0
+	lfd      f26, 0x80(r1)
+	psq_l    f25, 120(r1), 0, qr0
+	lfd      f25, 0x70(r1)
+	lwz      r31, 0x6c(r1)
+	lwz      r30, 0x68(r1)
+	lwz      r0, 0xe4(r1)
+	lwz      r29, 0x64(r1)
+	mtlr     r0
+	addi     r1, r1, 0xe0
+	blr
 	*/
 }
 
@@ -1497,48 +1632,47 @@ void Houdai::HoudaiShotGunMgr::emitShotGun()
 void Houdai::HoudaiShotGunMgr::doUpdate()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lbz       r0, 0x4(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x70
-	  lbz       r0, 0x6(r31)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x54
-	  bl        0x388
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x48
-	  li        r3, 0
-	  li        r0, 0x1
-	  stb       r3, 0x4(r31)
-	  stb       r0, 0x5(r31)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lbz      r0, 4(r3)
+	cmplwi   r0, 0
+	beq      lbl_802C4C78
+	lbz      r0, 6(r31)
+	cmplwi   r0, 0
+	beq      lbl_802C4C5C
+	bl       returnShotGunRotation__Q34Game6Houdai16HoudaiShotGunMgrFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802C4C50
+	li       r3, 0
+	li       r0, 1
+	stb      r3, 4(r31)
+	stb      r0, 5(r31)
 
-	.loc_0x48:
-	  mr        r3, r31
-	  bl        0x7A0
-	  b         .loc_0x70
+lbl_802C4C50:
+	mr       r3, r31
+	bl       finishLockOnEffect__Q34Game6Houdai16HoudaiShotGunMgrFv
+	b        lbl_802C4C78
 
-	.loc_0x54:
-	  bl        0x12C
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x68
-	  li        r0, 0x1
-	  stb       r0, 0x5(r31)
+lbl_802C4C5C:
+	bl       searchShotGunRotation__Q34Game6Houdai16HoudaiShotGunMgrFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802C4C70
+	li       r0, 1
+	stb      r0, 5(r31)
 
-	.loc_0x68:
-	  mr        r3, r31
-	  bl        0x7B0
+lbl_802C4C70:
+	mr       r3, r31
+	bl       setShotGunLockOnPosition__Q34Game6Houdai16HoudaiShotGunMgrFv
 
-	.loc_0x70:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_802C4C78:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1550,43 +1684,42 @@ void Houdai::HoudaiShotGunMgr::doUpdate()
 void Houdai::HoudaiShotGunMgr::doUpdateCommon()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  lwz       r3, 0x34(r3)
-	  lwz       r30, 0x10(r3)
-	  b         .loc_0x54
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	lwz      r3, 0x34(r3)
+	lwz      r30, 0x10(r3)
+	b        lbl_802C4CE0
 
-	.loc_0x28:
-	  lwz       r31, 0x4(r30)
-	  mr        r3, r30
-	  bl        -0x12F8
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x50
-	  mr        r3, r30
-	  bl        0x14C904
-	  lwz       r3, 0x38(r29)
-	  mr        r4, r30
-	  bl        0x14C730
+lbl_802C4CB4:
+	lwz      r31, 4(r30)
+	mr       r3, r30
+	bl       update__Q34Game6Houdai17HoudaiShotGunNodeFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802C4CDC
+	mr       r3, r30
+	bl       del__5CNodeFv
+	lwz      r3, 0x38(r29)
+	mr       r4, r30
+	bl       add__5CNodeFP5CNode
 
-	.loc_0x50:
-	  mr        r30, r31
+lbl_802C4CDC:
+	mr       r30, r31
 
-	.loc_0x54:
-	  cmplwi    r30, 0
-	  bne+      .loc_0x28
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_802C4CE0:
+	cmplwi   r30, 0
+	bne      lbl_802C4CB4
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -1598,44 +1731,43 @@ void Houdai::HoudaiShotGunMgr::doUpdateCommon()
 void Houdai::HoudaiShotGunMgr::forceFinishShotGun()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  lwz       r3, 0x34(r3)
-	  lwz       r30, 0x10(r3)
-	  b         .loc_0x58
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	lwz      r3, 0x34(r3)
+	lwz      r30, 0x10(r3)
+	b        lbl_802C4D5C
 
-	.loc_0x28:
-	  lwz       r3, 0x1C(r30)
-	  lwz       r31, 0x4(r30)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r3, r30
-	  bl        0x14C888
-	  lwz       r3, 0x38(r29)
-	  mr        r4, r30
-	  bl        0x14C6B4
-	  mr        r30, r31
+lbl_802C4D2C:
+	lwz      r3, 0x1c(r30)
+	lwz      r31, 4(r30)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	mr       r3, r30
+	bl       del__5CNodeFv
+	lwz      r3, 0x38(r29)
+	mr       r4, r30
+	bl       add__5CNodeFP5CNode
+	mr       r30, r31
 
-	.loc_0x58:
-	  cmplwi    r30, 0
-	  bne+      .loc_0x28
-	  mr        r3, r29
-	  bl        0x68C
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_802C4D5C:
+	cmplwi   r30, 0
+	bne      lbl_802C4D2C
+	mr       r3, r29
+	bl       finishLockOnEffect__Q34Game6Houdai16HoudaiShotGunMgrFv
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -1647,180 +1779,179 @@ void Houdai::HoudaiShotGunMgr::forceFinishShotGun()
 void Houdai::HoudaiShotGunMgr::searchShotGunRotation()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x50(r1)
-	  mflr      r0
-	  stw       r0, 0x54(r1)
-	  stfd      f31, 0x40(r1)
-	  psq_st    f31,0x48(r1),0,0
-	  stfd      f30, 0x30(r1)
-	  psq_st    f30,0x38(r1),0,0
-	  stfd      f29, 0x20(r1)
-	  psq_st    f29,0x28(r1),0,0
-	  stfd      f28, 0x10(r1)
-	  psq_st    f28,0x18(r1),0,0
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lis       r3, 0x8051
-	  lwz       r5, 0x14(r31)
-	  subi      r3, r3, 0x2E20
-	  lfs       f2, 0x20(r31)
-	  lfs       f0, 0x2C(r5)
-	  lfs       f3, 0x1C(r31)
-	  fsubs     f29, f2, f0
-	  lfs       f1, 0x1C(r5)
-	  lfs       f2, 0x18(r31)
-	  lfs       f0, 0xC(r5)
-	  fsubs     f30, f3, f1
-	  lwz       r4, 0x10(r31)
-	  fsubs     f31, f2, f0
-	  lfs       f1, 0x4(r4)
-	  lfs       f2, 0x24(r4)
-	  bl        -0x28FCF0
-	  fmr       f28, f1
-	  lis       r3, 0x8051
-	  fneg      f1, f31
-	  subi      r3, r3, 0x2E20
-	  fneg      f2, f29
-	  bl        -0x28FD08
-	  fmr       f2, f1
-	  fmr       f1, f28
-	  bl        0x14CDE0
-	  lfs       f0, -0x1DD8(r2)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0xAC
-	  fmr       f0, f1
-	  b         .loc_0xB0
+	stwu     r1, -0x50(r1)
+	mflr     r0
+	stw      r0, 0x54(r1)
+	stfd     f31, 0x40(r1)
+	psq_st   f31, 72(r1), 0, qr0
+	stfd     f30, 0x30(r1)
+	psq_st   f30, 56(r1), 0, qr0
+	stfd     f29, 0x20(r1)
+	psq_st   f29, 40(r1), 0, qr0
+	stfd     f28, 0x10(r1)
+	psq_st   f28, 24(r1), 0, qr0
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lis      r3, atanTable___5JMath@ha
+	lwz      r5, 0x14(r31)
+	addi     r3, r3, atanTable___5JMath@l
+	lfs      f2, 0x20(r31)
+	lfs      f0, 0x2c(r5)
+	lfs      f3, 0x1c(r31)
+	fsubs    f29, f2, f0
+	lfs      f1, 0x1c(r5)
+	lfs      f2, 0x18(r31)
+	lfs      f0, 0xc(r5)
+	fsubs    f30, f3, f1
+	lwz      r4, 0x10(r31)
+	fsubs    f31, f2, f0
+	lfs      f1, 4(r4)
+	lfs      f2, 0x24(r4)
+	bl       "atan2___Q25JMath18TAtanTable<1024,f>CFff"
+	fmr      f28, f1
+	lis      r3, atanTable___5JMath@ha
+	fneg     f1, f31
+	addi     r3, r3, atanTable___5JMath@l
+	fneg     f2, f29
+	bl       "atan2___Q25JMath18TAtanTable<1024,f>CFff"
+	fmr      f2, f1
+	fmr      f1, f28
+	bl       angDist__Fff
+	lfs      f0, lbl_8051C588@sda21(r2)
+	fcmpo    cr0, f1, f0
+	ble      lbl_802C4E34
+	fmr      f0, f1
+	b        lbl_802C4E38
 
-	.loc_0xAC:
-	  fneg      f0, f1
+lbl_802C4E34:
+	fneg     f0, f1
 
-	.loc_0xB0:
-	  lfs       f2, -0x1D88(r2)
-	  fcmpo     cr0, f0, f2
-	  ble-      .loc_0xD0
-	  fdivs     f1, f1, f0
-	  lfs       f0, 0x8(r31)
-	  fnmsubs   f0, f2, f1, f0
-	  stfs      f0, 0x8(r31)
-	  b         .loc_0xDC
+lbl_802C4E38:
+	lfs      f2, lbl_8051C5D8@sda21(r2)
+	fcmpo    cr0, f0, f2
+	ble      lbl_802C4E58
+	fdivs    f1, f1, f0
+	lfs      f0, 8(r31)
+	fnmsubs  f0, f2, f1, f0
+	stfs     f0, 8(r31)
+	b        lbl_802C4E64
 
-	.loc_0xD0:
-	  lfs       f0, 0x8(r31)
-	  fsubs     f0, f0, f1
-	  stfs      f0, 0x8(r31)
+lbl_802C4E58:
+	lfs      f0, 8(r31)
+	fsubs    f0, f0, f1
+	stfs     f0, 8(r31)
 
-	.loc_0xDC:
-	  lfs       f1, 0x8(r31)
-	  lfs       f0, -0x1DD8(r2)
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0xF8
-	  lfs       f0, -0x1D84(r2)
-	  fadds     f1, f0, f1
-	  b         .loc_0x10C
+lbl_802C4E64:
+	lfs      f1, 8(r31)
+	lfs      f0, lbl_8051C588@sda21(r2)
+	fcmpo    cr0, f1, f0
+	bge      lbl_802C4E80
+	lfs      f0, lbl_8051C5DC@sda21(r2)
+	fadds    f1, f0, f1
+	b        lbl_802C4E94
 
-	.loc_0xF8:
-	  lfs       f0, -0x1D84(r2)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0x1, 0x2
-	  bne-      .loc_0x10C
-	  fsubs     f1, f1, f0
+lbl_802C4E80:
+	lfs      f0, lbl_8051C5DC@sda21(r2)
+	fcmpo    cr0, f1, f0
+	cror     2, 1, 2
+	bne      lbl_802C4E94
+	fsubs    f1, f1, f0
 
-	.loc_0x10C:
-	  fmuls     f2, f29, f29
-	  lfs       f0, -0x1DD8(r2)
-	  stfs      f1, 0x8(r31)
-	  fmadds    f1, f31, f31, f2
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x134
-	  ble-      .loc_0x138
-	  fsqrte    f0, f1
-	  fmuls     f1, f0, f1
-	  b         .loc_0x138
+lbl_802C4E94:
+	fmuls    f2, f29, f29
+	lfs      f0, lbl_8051C588@sda21(r2)
+	stfs     f1, 8(r31)
+	fmadds   f1, f31, f31, f2
+	fcmpo    cr0, f1, f0
+	ble      lbl_802C4EBC
+	ble      lbl_802C4EC0
+	frsqrte  f0, f1
+	fmuls    f1, f0, f1
+	b        lbl_802C4EC0
 
-	.loc_0x134:
-	  fmr       f1, f0
+lbl_802C4EBC:
+	fmr      f1, f0
 
-	.loc_0x138:
-	  fmr       f2, f30
-	  lis       r3, 0x8051
-	  subi      r3, r3, 0x2E20
-	  bl        -0x28FDC4
-	  lfs       f2, -0x1D80(r2)
-	  lfs       f0, -0x1DD8(r2)
-	  fadds     f2, f2, f1
-	  fcmpo     cr0, f2, f0
-	  bge-      .loc_0x168
-	  lfs       f0, -0x1D84(r2)
-	  fadds     f2, f0, f2
-	  b         .loc_0x17C
+lbl_802C4EC0:
+	fmr      f2, f30
+	lis      r3, atanTable___5JMath@ha
+	addi     r3, r3, atanTable___5JMath@l
+	bl       "atan2___Q25JMath18TAtanTable<1024,f>CFff"
+	lfs      f2, lbl_8051C5E0@sda21(r2)
+	lfs      f0, lbl_8051C588@sda21(r2)
+	fadds    f2, f2, f1
+	fcmpo    cr0, f2, f0
+	bge      lbl_802C4EF0
+	lfs      f0, lbl_8051C5DC@sda21(r2)
+	fadds    f2, f0, f2
+	b        lbl_802C4F04
 
-	.loc_0x168:
-	  lfs       f0, -0x1D84(r2)
-	  fcmpo     cr0, f2, f0
-	  cror      2, 0x1, 0x2
-	  bne-      .loc_0x17C
-	  fsubs     f2, f2, f0
+lbl_802C4EF0:
+	lfs      f0, lbl_8051C5DC@sda21(r2)
+	fcmpo    cr0, f2, f0
+	cror     2, 1, 2
+	bne      lbl_802C4F04
+	fsubs    f2, f2, f0
 
-	.loc_0x17C:
-	  lfs       f1, 0xC(r31)
-	  bl        0x14CCF4
-	  lfs       f0, -0x1DD8(r2)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x198
-	  fmr       f0, f1
-	  b         .loc_0x19C
+lbl_802C4F04:
+	lfs      f1, 0xc(r31)
+	bl       angDist__Fff
+	lfs      f0, lbl_8051C588@sda21(r2)
+	fcmpo    cr0, f1, f0
+	ble      lbl_802C4F20
+	fmr      f0, f1
+	b        lbl_802C4F24
 
-	.loc_0x198:
-	  fneg      f0, f1
+lbl_802C4F20:
+	fneg     f0, f1
 
-	.loc_0x19C:
-	  lfs       f2, -0x1D88(r2)
-	  fcmpo     cr0, f0, f2
-	  ble-      .loc_0x1BC
-	  fdivs     f1, f1, f0
-	  lfs       f0, 0xC(r31)
-	  fnmsubs   f0, f2, f1, f0
-	  stfs      f0, 0xC(r31)
-	  b         .loc_0x1C8
+lbl_802C4F24:
+	lfs      f2, lbl_8051C5D8@sda21(r2)
+	fcmpo    cr0, f0, f2
+	ble      lbl_802C4F44
+	fdivs    f1, f1, f0
+	lfs      f0, 0xc(r31)
+	fnmsubs  f0, f2, f1, f0
+	stfs     f0, 0xc(r31)
+	b        lbl_802C4F50
 
-	.loc_0x1BC:
-	  lfs       f0, 0xC(r31)
-	  fsubs     f0, f0, f1
-	  stfs      f0, 0xC(r31)
+lbl_802C4F44:
+	lfs      f0, 0xc(r31)
+	fsubs    f0, f0, f1
+	stfs     f0, 0xc(r31)
 
-	.loc_0x1C8:
-	  lfs       f1, 0xC(r31)
-	  lfs       f0, -0x1DD8(r2)
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x1E4
-	  lfs       f0, -0x1D84(r2)
-	  fadds     f1, f0, f1
-	  b         .loc_0x1F8
+lbl_802C4F50:
+	lfs      f1, 0xc(r31)
+	lfs      f0, lbl_8051C588@sda21(r2)
+	fcmpo    cr0, f1, f0
+	bge      lbl_802C4F6C
+	lfs      f0, lbl_8051C5DC@sda21(r2)
+	fadds    f1, f0, f1
+	b        lbl_802C4F80
 
-	.loc_0x1E4:
-	  lfs       f0, -0x1D84(r2)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0x1, 0x2
-	  bne-      .loc_0x1F8
-	  fsubs     f1, f1, f0
+lbl_802C4F6C:
+	lfs      f0, lbl_8051C5DC@sda21(r2)
+	fcmpo    cr0, f1, f0
+	cror     2, 1, 2
+	bne      lbl_802C4F80
+	fsubs    f1, f1, f0
 
-	.loc_0x1F8:
-	  stfs      f1, 0xC(r31)
-	  li        r3, 0x1
-	  psq_l     f31,0x48(r1),0,0
-	  lfd       f31, 0x40(r1)
-	  psq_l     f30,0x38(r1),0,0
-	  lfd       f30, 0x30(r1)
-	  psq_l     f29,0x28(r1),0,0
-	  lfd       f29, 0x20(r1)
-	  psq_l     f28,0x18(r1),0,0
-	  lfd       f28, 0x10(r1)
-	  lwz       r0, 0x54(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x50
-	  blr
+lbl_802C4F80:
+	stfs     f1, 0xc(r31)
+	li       r3, 1
+	psq_l    f31, 72(r1), 0, qr0
+	lfd      f31, 0x40(r1)
+	psq_l    f30, 56(r1), 0, qr0
+	lfd      f30, 0x30(r1)
+	psq_l    f29, 40(r1), 0, qr0
+	lfd      f29, 0x20(r1)
+	psq_l    f28, 24(r1), 0, qr0
+	lfd      f28, 0x10(r1)
+	lwz      r0, 0x54(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x50
+	blr
 	*/
 }
 
@@ -1832,139 +1963,138 @@ void Houdai::HoudaiShotGunMgr::searchShotGunRotation()
 void Houdai::HoudaiShotGunMgr::returnShotGunRotation()
 {
 	/*
-	.loc_0x0:
-	  lfs       f3, -0x1DD8(r2)
-	  lfs       f4, 0x8(r3)
-	  fcmpo     cr0, f3, f4
-	  cror      2, 0x1, 0x2
-	  bne-      .loc_0x30
-	  fsubs     f2, f3, f4
-	  lfs       f1, -0x1D84(r2)
-	  fsubs     f0, f1, f2
-	  fcmpo     cr0, f0, f2
-	  bge-      .loc_0x48
-	  fsubs     f3, f3, f1
-	  b         .loc_0x48
+	lfs      f3, lbl_8051C588@sda21(r2)
+	lfs      f4, 8(r3)
+	fcmpo    cr0, f3, f4
+	cror     2, 1, 2
+	bne      lbl_802C4FEC
+	fsubs    f2, f3, f4
+	lfs      f1, lbl_8051C5DC@sda21(r2)
+	fsubs    f0, f1, f2
+	fcmpo    cr0, f0, f2
+	bge      lbl_802C5004
+	fsubs    f3, f3, f1
+	b        lbl_802C5004
 
-	.loc_0x30:
-	  fsubs     f2, f4, f3
-	  lfs       f1, -0x1D84(r2)
-	  fsubs     f0, f1, f2
-	  fcmpo     cr0, f0, f2
-	  bge-      .loc_0x48
-	  fadds     f3, f3, f1
+lbl_802C4FEC:
+	fsubs    f2, f4, f3
+	lfs      f1, lbl_8051C5DC@sda21(r2)
+	fsubs    f0, f1, f2
+	fcmpo    cr0, f0, f2
+	bge      lbl_802C5004
+	fadds    f3, f3, f1
 
-	.loc_0x48:
-	  fsubs     f1, f4, f3
-	  lfs       f0, -0x1DD8(r2)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x5C
-	  b         .loc_0x60
+lbl_802C5004:
+	fsubs    f1, f4, f3
+	lfs      f0, lbl_8051C588@sda21(r2)
+	fcmpo    cr0, f1, f0
+	ble      lbl_802C5018
+	b        lbl_802C501C
 
-	.loc_0x5C:
-	  fneg      f1, f1
+lbl_802C5018:
+	fneg     f1, f1
 
-	.loc_0x60:
-	  lfs       f0, -0x1D7C(r2)
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x74
-	  fmr       f0, f3
-	  b         .loc_0x88
+lbl_802C501C:
+	lfs      f0, lbl_8051C5E4@sda21(r2)
+	fcmpo    cr0, f1, f0
+	bge      lbl_802C5030
+	fmr      f0, f3
+	b        lbl_802C5044
 
-	.loc_0x74:
-	  fcmpo     cr0, f4, f3
-	  bge-      .loc_0x84
-	  fadds     f0, f4, f0
-	  b         .loc_0x88
+lbl_802C5030:
+	fcmpo    cr0, f4, f3
+	bge      lbl_802C5040
+	fadds    f0, f4, f0
+	b        lbl_802C5044
 
-	.loc_0x84:
-	  fsubs     f0, f4, f0
+lbl_802C5040:
+	fsubs    f0, f4, f0
 
-	.loc_0x88:
-	  stfs      f0, 0x8(r3)
-	  lfs       f4, -0x1DD8(r2)
-	  lfs       f5, 0xC(r3)
-	  fcmpo     cr0, f4, f5
-	  cror      2, 0x1, 0x2
-	  bne-      .loc_0xBC
-	  fsubs     f2, f4, f5
-	  lfs       f1, -0x1D84(r2)
-	  fsubs     f0, f1, f2
-	  fcmpo     cr0, f0, f2
-	  bge-      .loc_0xD4
-	  fsubs     f4, f4, f1
-	  b         .loc_0xD4
+lbl_802C5044:
+	stfs     f0, 8(r3)
+	lfs      f4, lbl_8051C588@sda21(r2)
+	lfs      f5, 0xc(r3)
+	fcmpo    cr0, f4, f5
+	cror     2, 1, 2
+	bne      lbl_802C5078
+	fsubs    f2, f4, f5
+	lfs      f1, lbl_8051C5DC@sda21(r2)
+	fsubs    f0, f1, f2
+	fcmpo    cr0, f0, f2
+	bge      lbl_802C5090
+	fsubs    f4, f4, f1
+	b        lbl_802C5090
 
-	.loc_0xBC:
-	  fsubs     f2, f5, f4
-	  lfs       f1, -0x1D84(r2)
-	  fsubs     f0, f1, f2
-	  fcmpo     cr0, f0, f2
-	  bge-      .loc_0xD4
-	  fadds     f4, f4, f1
+lbl_802C5078:
+	fsubs    f2, f5, f4
+	lfs      f1, lbl_8051C5DC@sda21(r2)
+	fsubs    f0, f1, f2
+	fcmpo    cr0, f0, f2
+	bge      lbl_802C5090
+	fadds    f4, f4, f1
 
-	.loc_0xD4:
-	  fsubs     f1, f5, f4
-	  lfs       f0, -0x1DD8(r2)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0xE8
-	  b         .loc_0xEC
+lbl_802C5090:
+	fsubs    f1, f5, f4
+	lfs      f0, lbl_8051C588@sda21(r2)
+	fcmpo    cr0, f1, f0
+	ble      lbl_802C50A4
+	b        lbl_802C50A8
 
-	.loc_0xE8:
-	  fneg      f1, f1
+lbl_802C50A4:
+	fneg     f1, f1
 
-	.loc_0xEC:
-	  lfs       f0, -0x1D7C(r2)
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x100
-	  fmr       f0, f4
-	  b         .loc_0x114
+lbl_802C50A8:
+	lfs      f0, lbl_8051C5E4@sda21(r2)
+	fcmpo    cr0, f1, f0
+	bge      lbl_802C50BC
+	fmr      f0, f4
+	b        lbl_802C50D0
 
-	.loc_0x100:
-	  fcmpo     cr0, f5, f4
-	  bge-      .loc_0x110
-	  fadds     f0, f5, f0
-	  b         .loc_0x114
+lbl_802C50BC:
+	fcmpo    cr0, f5, f4
+	bge      lbl_802C50CC
+	fadds    f0, f5, f0
+	b        lbl_802C50D0
 
-	.loc_0x110:
-	  fsubs     f0, f5, f0
+lbl_802C50CC:
+	fsubs    f0, f5, f0
 
-	.loc_0x114:
-	  stfs      f0, 0xC(r3)
-	  lfs       f0, -0x1DD8(r2)
-	  lfs       f1, 0x8(r3)
-	  fsubs     f1, f1, f3
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x130
-	  b         .loc_0x134
+lbl_802C50D0:
+	stfs     f0, 0xc(r3)
+	lfs      f0, lbl_8051C588@sda21(r2)
+	lfs      f1, 8(r3)
+	fsubs    f1, f1, f3
+	fcmpo    cr0, f1, f0
+	ble      lbl_802C50EC
+	b        lbl_802C50F0
 
-	.loc_0x130:
-	  fneg      f1, f1
+lbl_802C50EC:
+	fneg     f1, f1
 
-	.loc_0x134:
-	  lfs       f0, -0x1D78(r2)
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x170
-	  lfs       f1, 0xC(r3)
-	  lfs       f0, -0x1DD8(r2)
-	  fsubs     f1, f1, f4
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x158
-	  b         .loc_0x15C
+lbl_802C50F0:
+	lfs      f0, lbl_8051C5E8@sda21(r2)
+	fcmpo    cr0, f1, f0
+	bge      lbl_802C512C
+	lfs      f1, 0xc(r3)
+	lfs      f0, lbl_8051C588@sda21(r2)
+	fsubs    f1, f1, f4
+	fcmpo    cr0, f1, f0
+	ble      lbl_802C5114
+	b        lbl_802C5118
 
-	.loc_0x158:
-	  fneg      f1, f1
+lbl_802C5114:
+	fneg     f1, f1
 
-	.loc_0x15C:
-	  lfs       f0, -0x1D78(r2)
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x170
-	  li        r3, 0x1
-	  blr
+lbl_802C5118:
+	lfs      f0, lbl_8051C5E8@sda21(r2)
+	fcmpo    cr0, f1, f0
+	bge      lbl_802C512C
+	li       r3, 1
+	blr
 
-	.loc_0x170:
-	  li        r3, 0
-	  blr
+lbl_802C512C:
+	li       r3, 0
+	blr
 	*/
 }
 
@@ -1976,35 +2106,34 @@ void Houdai::HoudaiShotGunMgr::returnShotGunRotation()
 void Houdai::HoudaiShotGunMgr::rotateLevel(J3DJoint*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  stw       r0, 0x44(r1)
-	  stw       r31, 0x3C(r1)
-	  mr        r31, r3
-	  lbz       r0, 0x4(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x54
-	  lfs       f0, 0x8(r31)
-	  addi      r3, r1, 0x8
-	  li        r4, 0x58
-	  fneg      f1, f0
-	  bl        -0x1DAC50
-	  lwz       r3, 0x10(r31)
-	  addi      r4, r1, 0x8
-	  mr        r5, r3
-	  bl        -0x1DAE74
-	  lis       r4, 0x8051
-	  lwz       r3, 0x10(r31)
-	  subi      r4, r4, 0xC2C
-	  bl        -0x1DAEB8
+	stwu     r1, -0x40(r1)
+	mflr     r0
+	stw      r0, 0x44(r1)
+	stw      r31, 0x3c(r1)
+	mr       r31, r3
+	lbz      r0, 4(r3)
+	cmplwi   r0, 0
+	beq      lbl_802C5188
+	lfs      f0, 8(r31)
+	addi     r3, r1, 8
+	li       r4, 0x58
+	fneg     f1, f0
+	bl       PSMTXRotRad
+	lwz      r3, 0x10(r31)
+	addi     r4, r1, 8
+	mr       r5, r3
+	bl       PSMTXConcat
+	lis      r4, mCurrentMtx__6J3DSys@ha
+	lwz      r3, 0x10(r31)
+	addi     r4, r4, mCurrentMtx__6J3DSys@l
+	bl       PSMTXCopy
 
-	.loc_0x54:
-	  lwz       r0, 0x44(r1)
-	  lwz       r31, 0x3C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
+lbl_802C5188:
+	lwz      r0, 0x44(r1)
+	lwz      r31, 0x3c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x40
+	blr
 	*/
 }
 
@@ -2016,183 +2145,182 @@ void Houdai::HoudaiShotGunMgr::rotateLevel(J3DJoint*)
 void Houdai::HoudaiShotGunMgr::rotateVertical(J3DJoint*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x70(r1)
-	  mflr      r0
-	  stw       r0, 0x74(r1)
-	  stfd      f31, 0x60(r1)
-	  psq_st    f31,0x68(r1),0,0
-	  stfd      f30, 0x50(r1)
-	  psq_st    f30,0x58(r1),0,0
-	  stfd      f29, 0x40(r1)
-	  psq_st    f29,0x48(r1),0,0
-	  stw       r31, 0x3C(r1)
-	  mr        r31, r3
-	  lbz       r0, 0x4(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x22C
-	  lwz       r5, 0x14(r31)
-	  lfs       f9, -0x1DD8(r2)
-	  lfs       f1, 0x10(r5)
-	  lfs       f2, 0x20(r5)
-	  fmuls     f5, f1, f1
-	  lfs       f0, 0x0(r5)
-	  fmuls     f8, f2, f2
-	  lfs       f3, 0x4(r5)
-	  lfs       f4, 0x14(r5)
-	  fmadds    f7, f0, f0, f5
-	  lfs       f5, 0x24(r5)
-	  lfs       f6, 0x8(r5)
-	  fadds     f31, f8, f7
-	  lfs       f7, 0x18(r5)
-	  lfs       f8, 0x28(r5)
-	  fcmpo     cr0, f31, f9
-	  ble-      .loc_0x8C
-	  ble-      .loc_0x90
-	  fsqrte    f9, f31
-	  fmuls     f31, f9, f31
-	  b         .loc_0x90
+	stwu     r1, -0x70(r1)
+	mflr     r0
+	stw      r0, 0x74(r1)
+	stfd     f31, 0x60(r1)
+	psq_st   f31, 104(r1), 0, qr0
+	stfd     f30, 0x50(r1)
+	psq_st   f30, 88(r1), 0, qr0
+	stfd     f29, 0x40(r1)
+	psq_st   f29, 72(r1), 0, qr0
+	stw      r31, 0x3c(r1)
+	mr       r31, r3
+	lbz      r0, 4(r3)
+	cmplwi   r0, 0
+	beq      lbl_802C53C8
+	lwz      r5, 0x14(r31)
+	lfs      f9, lbl_8051C588@sda21(r2)
+	lfs      f1, 0x10(r5)
+	lfs      f2, 0x20(r5)
+	fmuls    f5, f1, f1
+	lfs      f0, 0(r5)
+	fmuls    f8, f2, f2
+	lfs      f3, 4(r5)
+	lfs      f4, 0x14(r5)
+	fmadds   f7, f0, f0, f5
+	lfs      f5, 0x24(r5)
+	lfs      f6, 8(r5)
+	fadds    f31, f8, f7
+	lfs      f7, 0x18(r5)
+	lfs      f8, 0x28(r5)
+	fcmpo    cr0, f31, f9
+	ble      lbl_802C5228
+	ble      lbl_802C522C
+	frsqrte  f9, f31
+	fmuls    f31, f9, f31
+	b        lbl_802C522C
 
-	.loc_0x8C:
-	  fmr       f31, f9
+lbl_802C5228:
+	fmr      f31, f9
 
-	.loc_0x90:
-	  lfs       f9, -0x1DD8(r2)
-	  fcmpo     cr0, f31, f9
-	  ble-      .loc_0xB4
-	  lfs       f9, -0x1DD4(r2)
-	  fdivs     f9, f9, f31
-	  fmuls     f0, f0, f9
-	  fmuls     f1, f1, f9
-	  fmuls     f2, f2, f9
-	  b         .loc_0xB8
+lbl_802C522C:
+	lfs      f9, lbl_8051C588@sda21(r2)
+	fcmpo    cr0, f31, f9
+	ble      lbl_802C5250
+	lfs      f9, lbl_8051C58C@sda21(r2)
+	fdivs    f9, f9, f31
+	fmuls    f0, f0, f9
+	fmuls    f1, f1, f9
+	fmuls    f2, f2, f9
+	b        lbl_802C5254
 
-	.loc_0xB4:
-	  fmr       f31, f9
+lbl_802C5250:
+	fmr      f31, f9
 
-	.loc_0xB8:
-	  fmuls     f10, f4, f4
-	  lfs       f9, -0x1DD8(r2)
-	  fmuls     f11, f5, f5
-	  fmadds    f10, f3, f3, f10
-	  fadds     f30, f11, f10
-	  fcmpo     cr0, f30, f9
-	  ble-      .loc_0xE4
-	  ble-      .loc_0xE8
-	  fsqrte    f9, f30
-	  fmuls     f30, f9, f30
-	  b         .loc_0xE8
+lbl_802C5254:
+	fmuls    f10, f4, f4
+	lfs      f9, lbl_8051C588@sda21(r2)
+	fmuls    f11, f5, f5
+	fmadds   f10, f3, f3, f10
+	fadds    f30, f11, f10
+	fcmpo    cr0, f30, f9
+	ble      lbl_802C5280
+	ble      lbl_802C5284
+	frsqrte  f9, f30
+	fmuls    f30, f9, f30
+	b        lbl_802C5284
 
-	.loc_0xE4:
-	  fmr       f30, f9
+lbl_802C5280:
+	fmr      f30, f9
 
-	.loc_0xE8:
-	  lfs       f9, -0x1DD8(r2)
-	  fcmpo     cr0, f30, f9
-	  ble-      .loc_0x10C
-	  lfs       f9, -0x1DD4(r2)
-	  fdivs     f9, f9, f30
-	  fmuls     f3, f3, f9
-	  fmuls     f4, f4, f9
-	  fmuls     f5, f5, f9
-	  b         .loc_0x110
+lbl_802C5284:
+	lfs      f9, lbl_8051C588@sda21(r2)
+	fcmpo    cr0, f30, f9
+	ble      lbl_802C52A8
+	lfs      f9, lbl_8051C58C@sda21(r2)
+	fdivs    f9, f9, f30
+	fmuls    f3, f3, f9
+	fmuls    f4, f4, f9
+	fmuls    f5, f5, f9
+	b        lbl_802C52AC
 
-	.loc_0x10C:
-	  fmr       f30, f9
+lbl_802C52A8:
+	fmr      f30, f9
 
-	.loc_0x110:
-	  fmuls     f10, f7, f7
-	  lfs       f9, -0x1DD8(r2)
-	  fmuls     f11, f8, f8
-	  fmadds    f10, f6, f6, f10
-	  fadds     f29, f11, f10
-	  fcmpo     cr0, f29, f9
-	  ble-      .loc_0x13C
-	  ble-      .loc_0x140
-	  fsqrte    f9, f29
-	  fmuls     f29, f9, f29
-	  b         .loc_0x140
+lbl_802C52AC:
+	fmuls    f10, f7, f7
+	lfs      f9, lbl_8051C588@sda21(r2)
+	fmuls    f11, f8, f8
+	fmadds   f10, f6, f6, f10
+	fadds    f29, f11, f10
+	fcmpo    cr0, f29, f9
+	ble      lbl_802C52D8
+	ble      lbl_802C52DC
+	frsqrte  f9, f29
+	fmuls    f29, f9, f29
+	b        lbl_802C52DC
 
-	.loc_0x13C:
-	  fmr       f29, f9
+lbl_802C52D8:
+	fmr      f29, f9
 
-	.loc_0x140:
-	  lfs       f9, -0x1DD8(r2)
-	  fcmpo     cr0, f29, f9
-	  ble-      .loc_0x164
-	  lfs       f9, -0x1DD4(r2)
-	  fdivs     f9, f9, f29
-	  fmuls     f6, f6, f9
-	  fmuls     f7, f7, f9
-	  fmuls     f8, f8, f9
-	  b         .loc_0x168
+lbl_802C52DC:
+	lfs      f9, lbl_8051C588@sda21(r2)
+	fcmpo    cr0, f29, f9
+	ble      lbl_802C5300
+	lfs      f9, lbl_8051C58C@sda21(r2)
+	fdivs    f9, f9, f29
+	fmuls    f6, f6, f9
+	fmuls    f7, f7, f9
+	fmuls    f8, f8, f9
+	b        lbl_802C5304
 
-	.loc_0x164:
-	  fmr       f29, f9
+lbl_802C5300:
+	fmr      f29, f9
 
-	.loc_0x168:
-	  stfs      f0, 0x0(r5)
-	  addi      r3, r1, 0x8
-	  li        r4, 0x5A
-	  stfs      f1, 0x10(r5)
-	  stfs      f2, 0x20(r5)
-	  stfs      f3, 0x4(r5)
-	  stfs      f4, 0x14(r5)
-	  stfs      f5, 0x24(r5)
-	  stfs      f6, 0x8(r5)
-	  stfs      f7, 0x18(r5)
-	  stfs      f8, 0x28(r5)
-	  lfs       f1, 0xC(r31)
-	  bl        -0x1DAE20
-	  lwz       r3, 0x14(r31)
-	  addi      r4, r1, 0x8
-	  mr        r5, r3
-	  bl        -0x1DB044
-	  lwz       r5, 0x14(r31)
-	  lis       r3, 0x8051
-	  subi      r4, r3, 0xC2C
-	  lfs       f0, 0x0(r5)
-	  lfs       f1, 0x10(r5)
-	  fmuls     f0, f0, f31
-	  lfs       f2, 0x20(r5)
-	  lfs       f3, 0x4(r5)
-	  fmuls     f1, f1, f31
-	  lfs       f4, 0x14(r5)
-	  fmuls     f2, f2, f31
-	  lfs       f5, 0x24(r5)
-	  fmuls     f3, f3, f30
-	  lfs       f6, 0x8(r5)
-	  fmuls     f4, f4, f30
-	  lfs       f7, 0x18(r5)
-	  fmuls     f5, f5, f30
-	  lfs       f8, 0x28(r5)
-	  fmuls     f6, f6, f29
-	  stfs      f0, 0x0(r5)
-	  fmuls     f7, f7, f29
-	  fmuls     f8, f8, f29
-	  stfs      f1, 0x10(r5)
-	  stfs      f2, 0x20(r5)
-	  stfs      f3, 0x4(r5)
-	  stfs      f4, 0x14(r5)
-	  stfs      f5, 0x24(r5)
-	  stfs      f6, 0x8(r5)
-	  stfs      f7, 0x18(r5)
-	  stfs      f8, 0x28(r5)
-	  lwz       r3, 0x14(r31)
-	  bl        -0x1DB0F8
+lbl_802C5304:
+	stfs     f0, 0(r5)
+	addi     r3, r1, 8
+	li       r4, 0x5a
+	stfs     f1, 0x10(r5)
+	stfs     f2, 0x20(r5)
+	stfs     f3, 4(r5)
+	stfs     f4, 0x14(r5)
+	stfs     f5, 0x24(r5)
+	stfs     f6, 8(r5)
+	stfs     f7, 0x18(r5)
+	stfs     f8, 0x28(r5)
+	lfs      f1, 0xc(r31)
+	bl       PSMTXRotRad
+	lwz      r3, 0x14(r31)
+	addi     r4, r1, 8
+	mr       r5, r3
+	bl       PSMTXConcat
+	lwz      r5, 0x14(r31)
+	lis      r3, mCurrentMtx__6J3DSys@ha
+	addi     r4, r3, mCurrentMtx__6J3DSys@l
+	lfs      f0, 0(r5)
+	lfs      f1, 0x10(r5)
+	fmuls    f0, f0, f31
+	lfs      f2, 0x20(r5)
+	lfs      f3, 4(r5)
+	fmuls    f1, f1, f31
+	lfs      f4, 0x14(r5)
+	fmuls    f2, f2, f31
+	lfs      f5, 0x24(r5)
+	fmuls    f3, f3, f30
+	lfs      f6, 8(r5)
+	fmuls    f4, f4, f30
+	lfs      f7, 0x18(r5)
+	fmuls    f5, f5, f30
+	lfs      f8, 0x28(r5)
+	fmuls    f6, f6, f29
+	stfs     f0, 0(r5)
+	fmuls    f7, f7, f29
+	fmuls    f8, f8, f29
+	stfs     f1, 0x10(r5)
+	stfs     f2, 0x20(r5)
+	stfs     f3, 4(r5)
+	stfs     f4, 0x14(r5)
+	stfs     f5, 0x24(r5)
+	stfs     f6, 8(r5)
+	stfs     f7, 0x18(r5)
+	stfs     f8, 0x28(r5)
+	lwz      r3, 0x14(r31)
+	bl       PSMTXCopy
 
-	.loc_0x22C:
-	  psq_l     f31,0x68(r1),0,0
-	  lfd       f31, 0x60(r1)
-	  psq_l     f30,0x58(r1),0,0
-	  lfd       f30, 0x50(r1)
-	  psq_l     f29,0x48(r1),0,0
-	  lfd       f29, 0x40(r1)
-	  lwz       r0, 0x74(r1)
-	  lwz       r31, 0x3C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x70
-	  blr
+lbl_802C53C8:
+	psq_l    f31, 104(r1), 0, qr0
+	lfd      f31, 0x60(r1)
+	psq_l    f30, 88(r1), 0, qr0
+	lfd      f30, 0x50(r1)
+	psq_l    f29, 72(r1), 0, qr0
+	lfd      f29, 0x40(r1)
+	lwz      r0, 0x74(r1)
+	lwz      r31, 0x3c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x70
+	blr
 	*/
 }
 
@@ -2204,19 +2332,18 @@ void Houdai::HoudaiShotGunMgr::rotateVertical(J3DJoint*)
 void Houdai::HoudaiShotGunMgr::finishLockOnEffect()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x30(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r3, 0x30(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2228,171 +2355,170 @@ void Houdai::HoudaiShotGunMgr::finishLockOnEffect()
 void Houdai::HoudaiShotGunMgr::setShotGunLockOnPosition()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x70(r1)
-	  mflr      r0
-	  stw       r0, 0x74(r1)
-	  stfd      f31, 0x60(r1)
-	  psq_st    f31,0x68(r1),0,0
-	  stfd      f30, 0x50(r1)
-	  psq_st    f30,0x58(r1),0,0
-	  stfd      f29, 0x40(r1)
-	  psq_st    f29,0x48(r1),0,0
-	  stw       r31, 0x3C(r1)
-	  stw       r30, 0x38(r1)
-	  stw       r29, 0x34(r1)
-	  mr        r29, r3
-	  lfs       f0, -0x1DD8(r2)
-	  lwz       r3, 0x14(r3)
-	  li        r31, 0
-	  lfs       f30, 0x10(r3)
-	  lfs       f29, 0x20(r3)
-	  fmuls     f1, f30, f30
-	  lfs       f31, 0x0(r3)
-	  fmuls     f5, f29, f29
-	  lfs       f2, 0xC(r3)
-	  lfs       f3, 0x1C(r3)
-	  fmadds    f1, f31, f31, f1
-	  lfs       f4, 0x2C(r3)
-	  fadds     f1, f5, f1
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x80
-	  ble-      .loc_0x84
-	  fsqrte    f0, f1
-	  fmuls     f1, f0, f1
-	  b         .loc_0x84
+	stwu     r1, -0x70(r1)
+	mflr     r0
+	stw      r0, 0x74(r1)
+	stfd     f31, 0x60(r1)
+	psq_st   f31, 104(r1), 0, qr0
+	stfd     f30, 0x50(r1)
+	psq_st   f30, 88(r1), 0, qr0
+	stfd     f29, 0x40(r1)
+	psq_st   f29, 72(r1), 0, qr0
+	stw      r31, 0x3c(r1)
+	stw      r30, 0x38(r1)
+	stw      r29, 0x34(r1)
+	mr       r29, r3
+	lfs      f0, lbl_8051C588@sda21(r2)
+	lwz      r3, 0x14(r3)
+	li       r31, 0
+	lfs      f30, 0x10(r3)
+	lfs      f29, 0x20(r3)
+	fmuls    f1, f30, f30
+	lfs      f31, 0(r3)
+	fmuls    f5, f29, f29
+	lfs      f2, 0xc(r3)
+	lfs      f3, 0x1c(r3)
+	fmadds   f1, f31, f31, f1
+	lfs      f4, 0x2c(r3)
+	fadds    f1, f5, f1
+	fcmpo    cr0, f1, f0
+	ble      lbl_802C54A4
+	ble      lbl_802C54A8
+	frsqrte  f0, f1
+	fmuls    f1, f0, f1
+	b        lbl_802C54A8
 
-	.loc_0x80:
-	  fmr       f1, f0
+lbl_802C54A4:
+	fmr      f1, f0
 
-	.loc_0x84:
-	  lfs       f0, -0x1DD8(r2)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0xA4
-	  lfs       f0, -0x1DD4(r2)
-	  fdivs     f0, f0, f1
-	  fmuls     f31, f31, f0
-	  fmuls     f30, f30, f0
-	  fmuls     f29, f29, f0
+lbl_802C54A8:
+	lfs      f0, lbl_8051C588@sda21(r2)
+	fcmpo    cr0, f1, f0
+	ble      lbl_802C54C8
+	lfs      f0, lbl_8051C58C@sda21(r2)
+	fdivs    f0, f0, f1
+	fmuls    f31, f31, f0
+	fmuls    f30, f30, f0
+	fmuls    f29, f29, f0
 
-	.loc_0xA4:
-	  stfs      f31, 0x24(r29)
-	  li        r30, 0
-	  lfs       f0, -0x1DD0(r2)
-	  stfs      f30, 0x28(r29)
-	  lfs       f1, -0x1D74(r2)
-	  fmuls     f31, f31, f0
-	  stfs      f29, 0x2C(r29)
-	  fmuls     f30, f30, f0
-	  fmuls     f29, f29, f0
-	  lfs       f0, 0x24(r29)
-	  fmuls     f0, f0, f1
-	  stfs      f0, 0x24(r29)
-	  lfs       f0, 0x28(r29)
-	  fmuls     f0, f0, f1
-	  stfs      f0, 0x28(r29)
-	  lfs       f0, 0x2C(r29)
-	  fmuls     f0, f0, f1
-	  stfs      f0, 0x2C(r29)
-	  lfs       f0, 0x24(r29)
-	  fadds     f0, f0, f2
-	  stfs      f0, 0x24(r29)
-	  lfs       f0, 0x28(r29)
-	  fadds     f0, f0, f3
-	  stfs      f0, 0x28(r29)
-	  lfs       f0, 0x2C(r29)
-	  fadds     f0, f0, f4
-	  stfs      f0, 0x2C(r29)
+lbl_802C54C8:
+	stfs     f31, 0x24(r29)
+	li       r30, 0
+	lfs      f0, lbl_8051C590@sda21(r2)
+	stfs     f30, 0x28(r29)
+	lfs      f1, lbl_8051C5EC@sda21(r2)
+	fmuls    f31, f31, f0
+	stfs     f29, 0x2c(r29)
+	fmuls    f30, f30, f0
+	fmuls    f29, f29, f0
+	lfs      f0, 0x24(r29)
+	fmuls    f0, f0, f1
+	stfs     f0, 0x24(r29)
+	lfs      f0, 0x28(r29)
+	fmuls    f0, f0, f1
+	stfs     f0, 0x28(r29)
+	lfs      f0, 0x2c(r29)
+	fmuls    f0, f0, f1
+	stfs     f0, 0x2c(r29)
+	lfs      f0, 0x24(r29)
+	fadds    f0, f0, f2
+	stfs     f0, 0x24(r29)
+	lfs      f0, 0x28(r29)
+	fadds    f0, f0, f3
+	stfs     f0, 0x28(r29)
+	lfs      f0, 0x2c(r29)
+	fadds    f0, f0, f4
+	stfs     f0, 0x2c(r29)
 
-	.loc_0x110:
-	  lfs       f0, 0x24(r29)
-	  addi      r4, r29, 0x24
-	  fadds     f0, f0, f31
-	  stfs      f0, 0x24(r29)
-	  lfs       f0, 0x28(r29)
-	  fadds     f0, f0, f30
-	  stfs      f0, 0x28(r29)
-	  lfs       f0, 0x2C(r29)
-	  fadds     f0, f0, f29
-	  stfs      f0, 0x2C(r29)
-	  lwz       r3, -0x6CF8(r13)
-	  lwz       r12, 0x4(r3)
-	  lwz       r12, 0x28(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f0, 0x28(r29)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x164
-	  stfs      f1, 0x28(r29)
-	  li        r31, 0x1
-	  b         .loc_0x170
+lbl_802C5534:
+	lfs      f0, 0x24(r29)
+	addi     r4, r29, 0x24
+	fadds    f0, f0, f31
+	stfs     f0, 0x24(r29)
+	lfs      f0, 0x28(r29)
+	fadds    f0, f0, f30
+	stfs     f0, 0x28(r29)
+	lfs      f0, 0x2c(r29)
+	fadds    f0, f0, f29
+	stfs     f0, 0x2c(r29)
+	lwz      r3, mapMgr__4Game@sda21(r13)
+	lwz      r12, 4(r3)
+	lwz      r12, 0x28(r12)
+	mtctr    r12
+	bctrl
+	lfs      f0, 0x28(r29)
+	fcmpo    cr0, f1, f0
+	ble      lbl_802C5588
+	stfs     f1, 0x28(r29)
+	li       r31, 1
+	b        lbl_802C5594
 
-	.loc_0x164:
-	  addi      r30, r30, 0x1
-	  cmpwi     r30, 0x3C
-	  blt+      .loc_0x110
+lbl_802C5588:
+	addi     r30, r30, 1
+	cmpwi    r30, 0x3c
+	blt      lbl_802C5534
 
-	.loc_0x170:
-	  rlwinm.   r0,r31,0,24,31
-	  beq-      .loc_0x1FC
-	  lis       r3, 0x804B
-	  addi      r4, r1, 0x8
-	  subi      r0, r3, 0x5814
-	  stw       r0, 0x8(r1)
-	  lfs       f0, 0x24(r29)
-	  stfs      f0, 0xC(r1)
-	  lfs       f0, 0x28(r29)
-	  stfs      f0, 0x10(r1)
-	  lfs       f0, 0x2C(r29)
-	  stfs      f0, 0x14(r1)
-	  lwz       r3, 0x30(r29)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x14(r29)
-	  addi      r4, r29, 0x24
-	  addi      r5, r1, 0x18
-	  lfs       f0, 0x0(r3)
-	  stfs      f0, 0x18(r1)
-	  fneg      f2, f0
-	  lfs       f0, 0x10(r3)
-	  stfs      f0, 0x1C(r1)
-	  fneg      f1, f0
-	  lfs       f3, 0x20(r3)
-	  fneg      f0, f3
-	  stfs      f3, 0x20(r1)
-	  stfs      f2, 0x18(r1)
-	  stfs      f1, 0x1C(r1)
-	  stfs      f0, 0x20(r1)
-	  lwz       r3, 0x30(r29)
-	  bl        0x126DB8
-	  b         .loc_0x210
+lbl_802C5594:
+	clrlwi.  r0, r31, 0x18
+	beq      lbl_802C5620
+	lis      r3, __vt__Q23efx3Arg@ha
+	addi     r4, r1, 8
+	addi     r0, r3, __vt__Q23efx3Arg@l
+	stw      r0, 8(r1)
+	lfs      f0, 0x24(r29)
+	stfs     f0, 0xc(r1)
+	lfs      f0, 0x28(r29)
+	stfs     f0, 0x10(r1)
+	lfs      f0, 0x2c(r29)
+	stfs     f0, 0x14(r1)
+	lwz      r3, 0x30(r29)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 0x14(r29)
+	addi     r4, r29, 0x24
+	addi     r5, r1, 0x18
+	lfs      f0, 0(r3)
+	stfs     f0, 0x18(r1)
+	fneg     f2, f0
+	lfs      f0, 0x10(r3)
+	stfs     f0, 0x1c(r1)
+	fneg     f1, f0
+	lfs      f3, 0x20(r3)
+	fneg     f0, f3
+	stfs     f3, 0x20(r1)
+	stfs     f2, 0x18(r1)
+	stfs     f1, 0x1c(r1)
+	stfs     f0, 0x20(r1)
+	lwz      r3, 0x30(r29)
+	bl       "setPosNrm__Q23efx11THdamaSightFR10Vector3<f>R10Vector3<f>"
+	b        lbl_802C5634
 
-	.loc_0x1FC:
-	  lwz       r3, 0x30(r29)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
+lbl_802C5620:
+	lwz      r3, 0x30(r29)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x210:
-	  addi      r4, r29, 0x24
-	  li        r3, 0x3055
-	  bl        0x1A8A78
-	  psq_l     f31,0x68(r1),0,0
-	  lfd       f31, 0x60(r1)
-	  psq_l     f30,0x58(r1),0,0
-	  lfd       f30, 0x50(r1)
-	  psq_l     f29,0x48(r1),0,0
-	  lfd       f29, 0x40(r1)
-	  lwz       r31, 0x3C(r1)
-	  lwz       r30, 0x38(r1)
-	  lwz       r0, 0x74(r1)
-	  lwz       r29, 0x34(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x70
-	  blr
+lbl_802C5634:
+	addi     r4, r29, 0x24
+	li       r3, 0x3055
+	bl       PSStartSoundVec__FUlP3Vec
+	psq_l    f31, 104(r1), 0, qr0
+	lfd      f31, 0x60(r1)
+	psq_l    f30, 88(r1), 0, qr0
+	lfd      f30, 0x50(r1)
+	psq_l    f29, 72(r1), 0, qr0
+	lfd      f29, 0x40(r1)
+	lwz      r31, 0x3c(r1)
+	lwz      r30, 0x38(r1)
+	lwz      r0, 0x74(r1)
+	lwz      r29, 0x34(r1)
+	mtlr     r0
+	addi     r1, r1, 0x70
+	blr
 	*/
 }
 
@@ -2404,54 +2530,53 @@ void Houdai::HoudaiShotGunMgr::setShotGunLockOnPosition()
 void Houdai::HoudaiShotGunMgr::effectDrawOn()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lwz       r3, 0x34(r3)
-	  lwz       r31, 0x10(r3)
-	  b         .loc_0x3C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lwz      r3, 0x34(r3)
+	lwz      r31, 0x10(r3)
+	b        lbl_802C56B0
 
-	.loc_0x24:
-	  lwz       r3, 0x1C(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x44(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r31, 0x4(r31)
+lbl_802C5698:
+	lwz      r3, 0x1c(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x44(r12)
+	mtctr    r12
+	bctrl
+	lwz      r31, 4(r31)
 
-	.loc_0x3C:
-	  cmplwi    r31, 0
-	  bne+      .loc_0x24
-	  lwz       r3, 0x38(r30)
-	  lwz       r31, 0x10(r3)
-	  b         .loc_0x68
+lbl_802C56B0:
+	cmplwi   r31, 0
+	bne      lbl_802C5698
+	lwz      r3, 0x38(r30)
+	lwz      r31, 0x10(r3)
+	b        lbl_802C56DC
 
-	.loc_0x50:
-	  lwz       r3, 0x1C(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x44(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r31, 0x4(r31)
+lbl_802C56C4:
+	lwz      r3, 0x1c(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x44(r12)
+	mtctr    r12
+	bctrl
+	lwz      r31, 4(r31)
 
-	.loc_0x68:
-	  cmplwi    r31, 0
-	  bne+      .loc_0x50
-	  lwz       r3, 0x30(r30)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x44(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_802C56DC:
+	cmplwi   r31, 0
+	bne      lbl_802C56C4
+	lwz      r3, 0x30(r30)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x44(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2463,54 +2588,53 @@ void Houdai::HoudaiShotGunMgr::effectDrawOn()
 void Houdai::HoudaiShotGunMgr::effectDrawOff()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lwz       r3, 0x34(r3)
-	  lwz       r31, 0x10(r3)
-	  b         .loc_0x3C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lwz      r3, 0x34(r3)
+	lwz      r31, 0x10(r3)
+	b        lbl_802C574C
 
-	.loc_0x24:
-	  lwz       r3, 0x1C(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x40(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r31, 0x4(r31)
+lbl_802C5734:
+	lwz      r3, 0x1c(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x40(r12)
+	mtctr    r12
+	bctrl
+	lwz      r31, 4(r31)
 
-	.loc_0x3C:
-	  cmplwi    r31, 0
-	  bne+      .loc_0x24
-	  lwz       r3, 0x38(r30)
-	  lwz       r31, 0x10(r3)
-	  b         .loc_0x68
+lbl_802C574C:
+	cmplwi   r31, 0
+	bne      lbl_802C5734
+	lwz      r3, 0x38(r30)
+	lwz      r31, 0x10(r3)
+	b        lbl_802C5778
 
-	.loc_0x50:
-	  lwz       r3, 0x1C(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x40(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r31, 0x4(r31)
+lbl_802C5760:
+	lwz      r3, 0x1c(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x40(r12)
+	mtctr    r12
+	bctrl
+	lwz      r31, 4(r31)
 
-	.loc_0x68:
-	  cmplwi    r31, 0
-	  bne+      .loc_0x50
-	  lwz       r3, 0x30(r30)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x40(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_802C5778:
+	cmplwi   r31, 0
+	bne      lbl_802C5760
+	lwz      r3, 0x30(r30)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x40(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2522,19 +2646,18 @@ void Houdai::HoudaiShotGunMgr::effectDrawOff()
 void Houdai::HoudaiShotGunMgr::startStoneStateEffectOff()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x30(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x40(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r3, 0x30(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x40(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2546,19 +2669,18 @@ void Houdai::HoudaiShotGunMgr::startStoneStateEffectOff()
 void Houdai::HoudaiShotGunMgr::finishStoneStateEffectOn()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x30(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x44(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r3, 0x30(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x44(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2574,50 +2696,49 @@ namespace efx {
 THdamaSight::~THdamaSight()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x80
-	  lis       r3, 0x804D
-	  addi      r3, r3, 0x14B4
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x14
-	  stw       r0, 0x4(r30)
-	  beq-      .loc_0x70
-	  lis       r3, 0x804B
-	  addi      r3, r3, 0x2C24
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x14
-	  stw       r0, 0x4(r30)
-	  beq-      .loc_0x70
-	  lis       r4, 0x804E
-	  addi      r3, r30, 0x4
-	  addi      r5, r4, 0x698C
-	  li        r4, 0
-	  stw       r5, 0x0(r30)
-	  addi      r0, r5, 0x14
-	  stw       r0, 0x4(r30)
-	  bl        -0x235BDC
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_802C588C
+	lis      r3, __vt__Q23efx11THdamaSight@ha
+	addi     r3, r3, __vt__Q23efx11THdamaSight@l
+	stw      r3, 0(r30)
+	addi     r0, r3, 0x14
+	stw      r0, 4(r30)
+	beq      lbl_802C587C
+	lis      r3, __vt__Q23efx8TForever@ha
+	addi     r3, r3, __vt__Q23efx8TForever@l
+	stw      r3, 0(r30)
+	addi     r0, r3, 0x14
+	stw      r0, 4(r30)
+	beq      lbl_802C587C
+	lis      r4, __vt__Q23efx5TSync@ha
+	addi     r3, r30, 4
+	addi     r5, r4, __vt__Q23efx5TSync@l
+	li       r4, 0
+	stw      r5, 0(r30)
+	addi     r0, r5, 0x14
+	stw      r0, 4(r30)
+	bl       __dt__18JPAEmitterCallBackFv
 
-	.loc_0x70:
-	  extsh.    r0, r31
-	  ble-      .loc_0x80
-	  mr        r3, r30
-	  bl        -0x2A17D4
+lbl_802C587C:
+	extsh.   r0, r31
+	ble      lbl_802C588C
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x80:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_802C588C:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2629,9 +2750,8 @@ THdamaSight::~THdamaSight()
 void ArgDir::getName()
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r2, 0x1D70
-	  blr
+	addi     r3, r2, lbl_8051C5F0@sda21
+	blr
 	*/
 }
 
@@ -2647,33 +2767,32 @@ namespace Game {
 Houdai::HoudaiShotGunNode::~HoudaiShotGunNode()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x44
-	  lis       r5, 0x804D
-	  li        r4, 0
-	  addi      r0, r5, 0x1548
-	  stw       r0, 0x0(r30)
-	  bl        0x14BCA8
-	  extsh.    r0, r31
-	  ble-      .loc_0x44
-	  mr        r3, r30
-	  bl        -0x2A183C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_802C58F4
+	lis      r5, __vt__Q34Game6Houdai17HoudaiShotGunNode@ha
+	li       r4, 0
+	addi     r0, r5, __vt__Q34Game6Houdai17HoudaiShotGunNode@l
+	stw      r0, 0(r30)
+	bl       __dt__5CNodeFv
+	extsh.   r0, r31
+	ble      lbl_802C58F4
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x44:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_802C58F4:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2687,9 +2806,8 @@ namespace efx {
 	THdamaSight::@4 @~THdamaSight()
 	{
 		/*
-		.loc_0x0:
-		  subi      r3, r3, 0x4
-		  b         -0x108
+	addi     r3, r3, -4
+	b        __dt__Q23efx11THdamaSightFv
 		*/
 	}
 } // namespace efx

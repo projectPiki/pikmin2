@@ -3,6 +3,34 @@
 #include "Dolphin/gx.h"
 #include "System.h"
 
+/*
+    Generated from dpostproc
+
+    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
+        .4byte __sinit_ebiP2TitleFog_cpp
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global lbl_804E9FA8
+    lbl_804E9FA8:
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+
+    .section .sbss # 0x80514D80 - 0x80516360
+    .global lbl_80516110
+    lbl_80516110:
+        .skip 0x4
+    .global lbl_80516114
+    lbl_80516114:
+        .skip 0x4
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_8051FE30
+    lbl_8051FE30:
+        .float 0.0
+*/
+
 namespace ebi {
 
 namespace title {
@@ -80,42 +108,41 @@ namespace title {
 	void TTitleFogMgr::loadSettingFile(JKRArchive*, char*)
 	{
 		/*
-		.loc_0x0:
-		  stwu      r1, -0x430(r1)
-		  mflr      r0
-		  stw       r0, 0x434(r1)
-		  stw       r31, 0x42C(r1)
-		  mr        r31, r3
-		  mr        r3, r4
-		  lwz       r12, 0x0(r4)
-		  mr        r4, r5
-		  lwz       r12, 0x14(r12)
-		  mtctr     r12
-		  bctrl
-		  cmplwi    r3, 0
-		  beq-      .loc_0x68
-		  mr        r4, r3
-		  addi      r3, r1, 0x8
-		  li        r5, -0x1
-		  bl        0x2A5FC
-		  li        r0, 0x1
-		  cmpwi     r0, 0x1
-		  stw       r0, 0x14(r1)
-		  bne-      .loc_0x5C
-		  li        r0, 0
-		  stw       r0, 0x41C(r1)
+	stwu     r1, -0x430(r1)
+	mflr     r0
+	stw      r0, 0x434(r1)
+	stw      r31, 0x42c(r1)
+	mr       r31, r3
+	mr       r3, r4
+	lwz      r12, 0(r4)
+	mr       r4, r5
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	cmplwi   r3, 0
+	beq      lbl_803EB324
+	mr       r4, r3
+	addi     r3, r1, 8
+	li       r5, -1
+	bl       __ct__9RamStreamFPvi
+	li       r0, 1
+	cmpwi    r0, 1
+	stw      r0, 0x14(r1)
+	bne      lbl_803EB318
+	li       r0, 0
+	stw      r0, 0x41c(r1)
 
-		.loc_0x5C:
-		  addi      r3, r31, 0x28
-		  addi      r4, r1, 0x8
-		  bl        0x284D4
+lbl_803EB318:
+	addi     r3, r31, 0x28
+	addi     r4, r1, 8
+	bl       read__10ParametersFR6Stream
 
-		.loc_0x68:
-		  lwz       r0, 0x434(r1)
-		  lwz       r31, 0x42C(r1)
-		  mtlr      r0
-		  addi      r1, r1, 0x430
-		  blr
+lbl_803EB324:
+	lwz      r0, 0x434(r1)
+	lwz      r31, 0x42c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x430
+	blr
 		*/
 	}
 
@@ -131,16 +158,15 @@ namespace title {
 void __sinit_ebiP2TitleFog_cpp(void)
 {
 	/*
-	.loc_0x0:
-	  lis       r4, 0x8051
-	  li        r0, -0x1
-	  lfs       f0, 0x48B0(r4)
-	  lis       r3, 0x804F
-	  stw       r0, -0x6570(r13)
-	  stfsu     f0, -0x6058(r3)
-	  stfs      f0, -0x656C(r13)
-	  stfs      f0, 0x4(r3)
-	  stfs      f0, 0x8(r3)
-	  blr
+	lis      r4, __float_nan@ha
+	li       r0, -1
+	lfs      f0, __float_nan@l(r4)
+	lis      r3, lbl_804E9FA8@ha
+	stw      r0, lbl_80516110@sda21(r13)
+	stfsu    f0, lbl_804E9FA8@l(r3)
+	stfs     f0, lbl_80516114@sda21(r13)
+	stfs     f0, 4(r3)
+	stfs     f0, 8(r3)
+	blr
 	*/
 }

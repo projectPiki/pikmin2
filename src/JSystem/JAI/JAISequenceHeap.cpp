@@ -1,6 +1,24 @@
 #include "types.h"
 
 /*
+    Generated from dpostproc
+
+    .section .sbss # 0x80514D80 - 0x80516360
+    .global sAutoHeap__Q27JAInter7HeapMgr
+    sAutoHeap__Q27JAInter7HeapMgr:
+        .skip 0x4
+    .global sStayHeap__Q27JAInter7HeapMgr
+    sStayHeap__Q27JAInter7HeapMgr:
+        .skip 0x4
+    .global sAutoHeapCount__Q27JAInter7HeapMgr
+    sAutoHeapCount__Q27JAInter7HeapMgr:
+        .skip 0x4
+    .global sStayHeapCount__Q27JAInter7HeapMgr
+    sStayHeapCount__Q27JAInter7HeapMgr:
+        .skip 0x4
+*/
+
+/*
  * --INFO--
  * Address:	800B0340
  * Size:	000254
@@ -182,9 +200,8 @@ void JAInter::HeapMgr::init(unsigned char, unsigned long, unsigned char,
 void JAInter::HeapMgr::getAutoHeapPointer(void)
 {
 	/*
-	.loc_0x0:
-	  lwz       r3, -0x7408(r13)
-	  blr
+	lwz      r3, sAutoHeap__Q27JAInter7HeapMgr@sda21(r13)
+	blr
 	*/
 }
 
@@ -226,91 +243,90 @@ void JAInter::HeapMgr::getStayHeapCount(void)
 void JAInter::HeapMgr::checkOnMemory(unsigned long, unsigned char*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  li        r31, 0
-	  stw       r30, 0x18(r1)
-	  mr        r30, r4
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  b         .loc_0x78
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	li       r31, 0
+	stw      r30, 0x18(r1)
+	mr       r30, r4
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	b        lbl_800B0614
 
-	.loc_0x28:
-	  rlwinm    r0,r31,0,24,31
-	  lwz       r3, -0x7408(r13)
-	  mulli     r4, r0, 0x14
-	  add       r3, r3, r4
-	  lwz       r0, 0x8(r3)
-	  cmplw     r29, r0
-	  bne-      .loc_0x74
-	  lbz       r0, 0x0(r3)
-	  cmplwi    r0, 0x1
-	  bne-      .loc_0x58
-	  li        r3, -0x1
-	  b         .loc_0xE4
+lbl_800B05C4:
+	clrlwi   r0, r31, 0x18
+	lwz      r3, sAutoHeap__Q27JAInter7HeapMgr@sda21(r13)
+	mulli    r4, r0, 0x14
+	add      r3, r3, r4
+	lwz      r0, 8(r3)
+	cmplw    r29, r0
+	bne      lbl_800B0610
+	lbz      r0, 0(r3)
+	cmplwi   r0, 1
+	bne      lbl_800B05F4
+	li       r3, -1
+	b        lbl_800B0680
 
-	.loc_0x58:
-	  cmplwi    r30, 0
-	  beq-      .loc_0x64
-	  stb       r31, 0x0(r30)
+lbl_800B05F4:
+	cmplwi   r30, 0
+	beq      lbl_800B0600
+	stb      r31, 0(r30)
 
-	.loc_0x64:
-	  lwz       r3, -0x7408(r13)
-	  addi      r0, r4, 0x4
-	  lwzx      r3, r3, r0
-	  b         .loc_0xE4
+lbl_800B0600:
+	lwz      r3, sAutoHeap__Q27JAInter7HeapMgr@sda21(r13)
+	addi     r0, r4, 4
+	lwzx     r3, r3, r0
+	b        lbl_800B0680
 
-	.loc_0x74:
-	  addi      r31, r31, 0x1
+lbl_800B0610:
+	addi     r31, r31, 1
 
-	.loc_0x78:
-	  bl        -0x2B58
-	  rlwinm    r0,r31,0,24,31
-	  cmplw     r0, r3
-	  blt+      .loc_0x28
-	  lwz       r3, -0x7404(r13)
-	  li        r6, 0
-	  lwz       r4, -0x73FC(r13)
-	  b         .loc_0xD4
+lbl_800B0614:
+	bl       getParamAutoHeapMax__18JAIGlobalParameterFv
+	clrlwi   r0, r31, 0x18
+	cmplw    r0, r3
+	blt      lbl_800B05C4
+	lwz      r3, sStayHeap__Q27JAInter7HeapMgr@sda21(r13)
+	li       r6, 0
+	lwz      r4, sStayHeapCount__Q27JAInter7HeapMgr@sda21(r13)
+	b        lbl_800B0670
 
-	.loc_0x98:
-	  rlwinm    r0,r6,0,24,31
-	  mulli     r5, r0, 0x14
-	  addi      r0, r5, 0x8
-	  lwzx      r0, r3, r0
-	  cmplw     r29, r0
-	  bne-      .loc_0xD0
-	  cmplwi    r30, 0
-	  beq-      .loc_0xC0
-	  li        r0, 0xFF
-	  stb       r0, 0x0(r30)
+lbl_800B0634:
+	clrlwi   r0, r6, 0x18
+	mulli    r5, r0, 0x14
+	addi     r0, r5, 8
+	lwzx     r0, r3, r0
+	cmplw    r29, r0
+	bne      lbl_800B066C
+	cmplwi   r30, 0
+	beq      lbl_800B065C
+	li       r0, 0xff
+	stb      r0, 0(r30)
 
-	.loc_0xC0:
-	  lwz       r3, -0x7404(r13)
-	  addi      r0, r5, 0x4
-	  lwzx      r3, r3, r0
-	  b         .loc_0xE4
+lbl_800B065C:
+	lwz      r3, sStayHeap__Q27JAInter7HeapMgr@sda21(r13)
+	addi     r0, r5, 4
+	lwzx     r3, r3, r0
+	b        lbl_800B0680
 
-	.loc_0xD0:
-	  addi      r6, r6, 0x1
+lbl_800B066C:
+	addi     r6, r6, 1
 
-	.loc_0xD4:
-	  rlwinm    r0,r6,0,24,31
-	  cmplw     r0, r4
-	  blt+      .loc_0x98
-	  li        r3, 0
+lbl_800B0670:
+	clrlwi   r0, r6, 0x18
+	cmplw    r0, r4
+	blt      lbl_800B0634
+	li       r3, 0
 
-	.loc_0xE4:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_800B0680:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -322,16 +338,15 @@ void JAInter::HeapMgr::checkOnMemory(unsigned long, unsigned char*)
 void JAInter::HeapMgr::releaseAutoHeapPointer(unsigned char)
 {
 	/*
-	.loc_0x0:
-	  rlwinm    r0,r3,0,24,31
-	  cmplwi    r0, 0xFF
-	  beqlr-
-	  mulli     r3, r0, 0x14
-	  lwz       r4, -0x7408(r13)
-	  li        r5, -0x1
-	  addi      r0, r3, 0x10
-	  stwx      r5, r4, r0
-	  blr
+	clrlwi   r0, r3, 0x18
+	cmplwi   r0, 0xff
+	beqlr
+	mulli    r3, r0, 0x14
+	lwz      r4, sAutoHeap__Q27JAInter7HeapMgr@sda21(r13)
+	li       r5, -1
+	addi     r0, r3, 0x10
+	stwx     r5, r4, r0
+	blr
 	*/
 }
 
@@ -353,79 +368,78 @@ void JAInter::HeapMgr::changeAutoHeapPointerToPosition(unsigned char*)
 void JAInter::HeapMgr::checkUsefulAutoHeapPosition(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  li        r31, 0
-	  stw       r30, 0x18(r1)
-	  li        r30, 0
-	  stw       r29, 0x14(r1)
-	  li        r29, -0x1
-	  stw       r28, 0x10(r1)
-	  li        r28, 0
-	  b         .loc_0x50
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	li       r31, 0
+	stw      r30, 0x18(r1)
+	li       r30, 0
+	stw      r29, 0x14(r1)
+	li       r29, -1
+	stw      r28, 0x10(r1)
+	li       r28, 0
+	b        lbl_800B0710
 
-	.loc_0x30:
-	  lwz       r3, -0x7408(r13)
-	  addi      r0, r31, 0x8
-	  lwzx      r3, r3, r0
-	  addis     r0, r3, 0x1
-	  cmplwi    r0, 0xFFFF
-	  beq-      .loc_0x5C
-	  addi      r31, r31, 0x14
-	  addi      r30, r30, 0x1
+lbl_800B06F0:
+	lwz      r3, sAutoHeap__Q27JAInter7HeapMgr@sda21(r13)
+	addi     r0, r31, 8
+	lwzx     r3, r3, r0
+	addis    r0, r3, 1
+	cmplwi   r0, 0xffff
+	beq      lbl_800B071C
+	addi     r31, r31, 0x14
+	addi     r30, r30, 1
 
-	.loc_0x50:
-	  bl        -0x2C54
-	  cmplw     r30, r3
-	  blt+      .loc_0x30
+lbl_800B0710:
+	bl       getParamAutoHeapMax__18JAIGlobalParameterFv
+	cmplw    r30, r3
+	blt      lbl_800B06F0
 
-	.loc_0x5C:
-	  bl        -0x2C60
-	  cmplw     r30, r3
-	  bne-      .loc_0xC4
-	  li        r30, 0
-	  li        r31, 0
-	  b         .loc_0xA8
+lbl_800B071C:
+	bl       getParamAutoHeapMax__18JAIGlobalParameterFv
+	cmplw    r30, r3
+	bne      lbl_800B0784
+	li       r30, 0
+	li       r31, 0
+	b        lbl_800B0768
 
-	.loc_0x74:
-	  lwz       r0, -0x7408(r13)
-	  add       r3, r0, r31
-	  lwz       r4, 0xC(r3)
-	  cmplw     r29, r4
-	  ble-      .loc_0xA0
-	  lwz       r3, 0x10(r3)
-	  addis     r0, r3, 0x1
-	  cmplwi    r0, 0xFFFF
-	  bne-      .loc_0xA0
-	  mr        r28, r30
-	  mr        r29, r4
+lbl_800B0734:
+	lwz      r0, sAutoHeap__Q27JAInter7HeapMgr@sda21(r13)
+	add      r3, r0, r31
+	lwz      r4, 0xc(r3)
+	cmplw    r29, r4
+	ble      lbl_800B0760
+	lwz      r3, 0x10(r3)
+	addis    r0, r3, 1
+	cmplwi   r0, 0xffff
+	bne      lbl_800B0760
+	mr       r28, r30
+	mr       r29, r4
 
-	.loc_0xA0:
-	  addi      r31, r31, 0x14
-	  addi      r30, r30, 0x1
+lbl_800B0760:
+	addi     r31, r31, 0x14
+	addi     r30, r30, 1
 
-	.loc_0xA8:
-	  bl        -0x2CAC
-	  cmplw     r30, r3
-	  blt+      .loc_0x74
-	  addis     r0, r29, 0x1
-	  cmplwi    r0, 0xFFFF
-	  beq-      .loc_0xC4
-	  mr        r30, r28
+lbl_800B0768:
+	bl       getParamAutoHeapMax__18JAIGlobalParameterFv
+	cmplw    r30, r3
+	blt      lbl_800B0734
+	addis    r0, r29, 1
+	cmplwi   r0, 0xffff
+	beq      lbl_800B0784
+	mr       r30, r28
 
-	.loc_0xC4:
-	  lwz       r0, 0x24(r1)
-	  rlwinm    r3,r30,0,24,31
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_800B0784:
+	lwz      r0, 0x24(r1)
+	clrlwi   r3, r30, 0x18
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -437,25 +451,24 @@ void JAInter::HeapMgr::checkUsefulAutoHeapPosition(void)
 void JAInter::HeapMgr::getFreeAutoHeapPointer(unsigned char, unsigned long)
 {
 	/*
-	.loc_0x0:
-	  rlwinm    r0,r3,0,24,31
-	  lwz       r3, -0x7408(r13)
-	  mulli     r5, r0, 0x14
-	  addi      r0, r5, 0x8
-	  stwx      r4, r3, r0
-	  addi      r0, r5, 0xC
-	  lwz       r3, -0x7408(r13)
-	  lwz       r4, -0x7400(r13)
-	  add       r5, r3, r5
-	  lwz       r3, 0x4(r5)
-	  stw       r4, 0x10(r5)
-	  lwz       r5, -0x7400(r13)
-	  lwz       r4, -0x7408(r13)
-	  stwx      r5, r4, r0
-	  lwz       r4, -0x7400(r13)
-	  addi      r0, r4, 0x1
-	  stw       r0, -0x7400(r13)
-	  blr
+	clrlwi   r0, r3, 0x18
+	lwz      r3, sAutoHeap__Q27JAInter7HeapMgr@sda21(r13)
+	mulli    r5, r0, 0x14
+	addi     r0, r5, 8
+	stwx     r4, r3, r0
+	addi     r0, r5, 0xc
+	lwz      r3, sAutoHeap__Q27JAInter7HeapMgr@sda21(r13)
+	lwz      r4, sAutoHeapCount__Q27JAInter7HeapMgr@sda21(r13)
+	add      r5, r3, r5
+	lwz      r3, 4(r5)
+	stw      r4, 0x10(r5)
+	lwz      r5, sAutoHeapCount__Q27JAInter7HeapMgr@sda21(r13)
+	lwz      r4, sAutoHeap__Q27JAInter7HeapMgr@sda21(r13)
+	stwx     r5, r4, r0
+	lwz      r4, sAutoHeapCount__Q27JAInter7HeapMgr@sda21(r13)
+	addi     r0, r4, 1
+	stw      r0, sAutoHeapCount__Q27JAInter7HeapMgr@sda21(r13)
+	blr
 	*/
 }
 
@@ -467,10 +480,9 @@ void JAInter::HeapMgr::getFreeAutoHeapPointer(unsigned char, unsigned long)
 void JAInter::HeapMgr::checkUsefulStayHeapPosition(void)
 {
 	/*
-	.loc_0x0:
-	  lwz       r0, -0x73FC(r13)
-	  rlwinm    r3,r0,0,24,31
-	  blr
+	lwz      r0, sStayHeapCount__Q27JAInter7HeapMgr@sda21(r13)
+	clrlwi   r3, r0, 0x18
+	blr
 	*/
 }
 
@@ -482,83 +494,82 @@ void JAInter::HeapMgr::checkUsefulStayHeapPosition(void)
 void JAInter::HeapMgr::getFreeStayHeapPointer(unsigned long, unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r29, r4
-	  stw       r28, 0x10(r1)
-	  mr        r28, r3
-	  bl        -0x2D5C
-	  lwz       r0, -0x73FC(r13)
-	  cmplw     r0, r3
-	  blt-      .loc_0x3C
-	  li        r3, 0
-	  b         .loc_0xE8
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	mr       r29, r4
+	stw      r28, 0x10(r1)
+	mr       r28, r3
+	bl       getParamStayHeapMax__18JAIGlobalParameterFv
+	lwz      r0, sStayHeapCount__Q27JAInter7HeapMgr@sda21(r13)
+	cmplw    r0, r3
+	blt      lbl_800B0838
+	li       r3, 0
+	b        lbl_800B08E4
 
-	.loc_0x3C:
-	  mulli     r3, r0, 0x14
-	  lwz       r4, -0x7404(r13)
-	  lwz       r31, 0x4(r4)
-	  addi      r0, r3, 0x4
-	  lwzx      r30, r4, r0
-	  bl        -0x2D38
-	  add       r3, r31, r3
-	  add       r0, r28, r30
-	  cmplw     r0, r3
-	  bge-      .loc_0xE0
-	  bl        -0x2D9C
-	  lwz       r0, -0x73FC(r13)
-	  cmplw     r0, r3
-	  bge-      .loc_0xE0
-	  mulli     r3, r0, 0x14
-	  lwz       r4, -0x7404(r13)
-	  rlwinm.   r0,r28,0,27,31
-	  rlwinm    r5,r28,0,0,26
-	  add       r3, r4, r3
-	  lwz       r30, 0x4(r3)
-	  stw       r29, 0x8(r3)
-	  lwz       r0, -0x73FC(r13)
-	  lwz       r4, -0x7404(r13)
-	  mulli     r3, r0, 0x14
-	  addi      r0, r3, 0x4
-	  lwzx      r0, r4, r0
-	  add       r31, r5, r0
-	  beq-      .loc_0xB0
-	  addi      r31, r31, 0x20
+lbl_800B0838:
+	mulli    r3, r0, 0x14
+	lwz      r4, sStayHeap__Q27JAInter7HeapMgr@sda21(r13)
+	lwz      r31, 4(r4)
+	addi     r0, r3, 4
+	lwzx     r30, r4, r0
+	bl       getParamStayHeapSize__18JAIGlobalParameterFv
+	add      r3, r31, r3
+	add      r0, r28, r30
+	cmplw    r0, r3
+	bge      lbl_800B08DC
+	bl       getParamStayHeapMax__18JAIGlobalParameterFv
+	lwz      r0, sStayHeapCount__Q27JAInter7HeapMgr@sda21(r13)
+	cmplw    r0, r3
+	bge      lbl_800B08DC
+	mulli    r3, r0, 0x14
+	lwz      r4, sStayHeap__Q27JAInter7HeapMgr@sda21(r13)
+	clrlwi.  r0, r28, 0x1b
+	rlwinm   r5, r28, 0, 0, 0x1a
+	add      r3, r4, r3
+	lwz      r30, 4(r3)
+	stw      r29, 8(r3)
+	lwz      r0, sStayHeapCount__Q27JAInter7HeapMgr@sda21(r13)
+	lwz      r4, sStayHeap__Q27JAInter7HeapMgr@sda21(r13)
+	mulli    r3, r0, 0x14
+	addi     r0, r3, 4
+	lwzx     r0, r4, r0
+	add      r31, r5, r0
+	beq      lbl_800B08AC
+	addi     r31, r31, 0x20
 
-	.loc_0xB0:
-	  lwz       r3, -0x73FC(r13)
-	  addi      r0, r3, 0x1
-	  stw       r0, -0x73FC(r13)
-	  bl        -0x2DF4
-	  lwz       r0, -0x73FC(r13)
-	  cmplw     r0, r3
-	  bge-      .loc_0xE4
-	  mulli     r3, r0, 0x14
-	  lwz       r4, -0x7404(r13)
-	  addi      r0, r3, 0x4
-	  stwx      r31, r4, r0
-	  b         .loc_0xE4
+lbl_800B08AC:
+	lwz      r3, sStayHeapCount__Q27JAInter7HeapMgr@sda21(r13)
+	addi     r0, r3, 1
+	stw      r0, sStayHeapCount__Q27JAInter7HeapMgr@sda21(r13)
+	bl       getParamStayHeapMax__18JAIGlobalParameterFv
+	lwz      r0, sStayHeapCount__Q27JAInter7HeapMgr@sda21(r13)
+	cmplw    r0, r3
+	bge      lbl_800B08E0
+	mulli    r3, r0, 0x14
+	lwz      r4, sStayHeap__Q27JAInter7HeapMgr@sda21(r13)
+	addi     r0, r3, 4
+	stwx     r31, r4, r0
+	b        lbl_800B08E0
 
-	.loc_0xE0:
-	  li        r30, 0
+lbl_800B08DC:
+	li       r30, 0
 
-	.loc_0xE4:
-	  mr        r3, r30
+lbl_800B08E0:
+	mr       r3, r30
 
-	.loc_0xE8:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_800B08E4:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -610,12 +621,11 @@ void JAInter::HeapMgr::getAutoHeapPointer(unsigned long)
 void JAInter::HeapMgr::setAutoHeapLoadedFlag(unsigned char, unsigned char)
 {
 	/*
-	.loc_0x0:
-	  rlwinm    r0,r3,0,24,31
-	  lwz       r3, -0x7408(r13)
-	  mulli     r0, r0, 0x14
-	  stbx      r4, r3, r0
-	  blr
+	clrlwi   r0, r3, 0x18
+	lwz      r3, sAutoHeap__Q27JAInter7HeapMgr@sda21(r13)
+	mulli    r0, r0, 0x14
+	stbx     r4, r3, r0
+	blr
 	*/
 }
 
@@ -627,12 +637,11 @@ void JAInter::HeapMgr::setAutoHeapLoadedFlag(unsigned char, unsigned char)
 void JAInter::HeapMgr::setStayHeapLoadedFlag(unsigned char, unsigned char)
 {
 	/*
-	.loc_0x0:
-	  rlwinm    r0,r3,0,24,31
-	  lwz       r3, -0x7404(r13)
-	  mulli     r0, r0, 0x14
-	  stbx      r4, r3, r0
-	  blr
+	clrlwi   r0, r3, 0x18
+	lwz      r3, sStayHeap__Q27JAInter7HeapMgr@sda21(r13)
+	mulli    r0, r0, 0x14
+	stbx     r4, r3, r0
+	blr
 	*/
 }
 
@@ -644,12 +653,11 @@ void JAInter::HeapMgr::setStayHeapLoadedFlag(unsigned char, unsigned char)
 JAInter::HeapBlock::HeapBlock(void)
 {
 	/*
-	.loc_0x0:
-	  li        r4, 0
-	  li        r0, -0x1
-	  stw       r4, 0xC(r3)
-	  stw       r0, 0x8(r3)
-	  stw       r0, 0x10(r3)
-	  blr
+	li       r4, 0
+	li       r0, -1
+	stw      r4, 0xc(r3)
+	stw      r0, 8(r3)
+	stw      r0, 0x10(r3)
+	blr
 	*/
 }

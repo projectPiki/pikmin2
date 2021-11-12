@@ -2,6 +2,29 @@
 
 #include "ebi/title/TTitleCameraMgr.h"
 
+/*
+    Generated from dpostproc
+
+    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
+        .4byte __sinit_ebiP2TitleCamera_cpp
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global lbl_804E79C8
+    lbl_804E79C8:
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+
+    .section .sbss # 0x80514D80 - 0x80516360
+    .global lbl_805160C0
+    lbl_805160C0:
+        .skip 0x4
+    .global lbl_805160C4
+    lbl_805160C4:
+        .skip 0x4
+*/
+
 namespace ebi {
 namespace title {
 	/*

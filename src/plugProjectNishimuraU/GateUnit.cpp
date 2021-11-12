@@ -1,5 +1,37 @@
 #include "types.h"
 
+/*
+    Generated from dpostproc
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__Q34Game4Cave8GateNode
+    __vt__Q34Game4Cave8GateNode:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q34Game4Cave8GateNodeFv
+        .4byte getChildCount__5CNodeFv
+        .4byte getObjectId__Q34Game4Cave8GateNodeFv
+        .4byte getObjectType__Q34Game4Cave8GateNodeFv
+        .4byte getBirthCount__Q34Game4Cave8GateNodeFv
+        .4byte getDirection__Q34Game4Cave8GateNodeFv
+        .4byte getBirthDoorIndex__Q34Game4Cave8GateNodeFv
+        .4byte getBirthPosition__Q24Game16ObjectLayoutNodeFRfRf
+        .4byte getExtraCode__Q24Game16ObjectLayoutNodeFv
+        .4byte isFixedBattery__Q24Game16ObjectLayoutNodeFv
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_8051A868
+    lbl_8051A868:
+        .4byte 0x00000000
+    .global lbl_8051A86C
+    lbl_8051A86C:
+        .4byte 0xBFC90FDB
+    .global lbl_8051A870
+    lbl_8051A870:
+        .4byte 0x43300000
+        .4byte 0x80000000
+*/
+
 namespace Game {
 
 /*
@@ -10,30 +42,29 @@ namespace Game {
 Cave::GateNode::GateNode()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        0x1C16B4
-	  lis       r4, 0x804C
-	  lis       r3, 0x804C
-	  addi      r4, r4, 0x1AA8
-	  li        r0, 0
-	  stw       r4, 0x0(r31)
-	  addi      r4, r3, 0x1B78
-	  lfs       f0, -0x3AF8(r2)
-	  mr        r3, r31
-	  stw       r4, 0x0(r31)
-	  stw       r0, 0x18(r31)
-	  stw       r0, 0x20(r31)
-	  stfs      f0, 0x1C(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       __ct__5CNodeFv
+	lis      r4, __vt__Q24Game16ObjectLayoutNode@ha
+	lis      r3, __vt__Q34Game4Cave8GateNode@ha
+	addi     r4, r4, __vt__Q24Game16ObjectLayoutNode@l
+	li       r0, 0
+	stw      r4, 0(r31)
+	addi     r4, r3, __vt__Q34Game4Cave8GateNode@l
+	lfs      f0, lbl_8051A868@sda21(r2)
+	mr       r3, r31
+	stw      r4, 0(r31)
+	stw      r0, 0x18(r31)
+	stw      r0, 0x20(r31)
+	stfs     f0, 0x1c(r31)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -45,46 +76,45 @@ Cave::GateNode::GateNode()
 Cave::GateNode::GateNode(Game::Cave::GateUnit*, int, int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r6
-	  stw       r30, 0x18(r1)
-	  mr        r30, r5
-	  stw       r29, 0x14(r1)
-	  mr        r29, r4
-	  stw       r28, 0x10(r1)
-	  mr        r28, r3
-	  bl        0x1C1640
-	  xoris     r3, r31, 0x8000
-	  lis       r0, 0x4330
-	  lis       r4, 0x804C
-	  stw       r3, 0xC(r1)
-	  addi      r4, r4, 0x1AA8
-	  lis       r3, 0x804C
-	  stw       r0, 0x8(r1)
-	  addi      r0, r3, 0x1B78
-	  lfd       f1, -0x3AF0(r2)
-	  mr        r3, r28
-	  stw       r4, 0x0(r28)
-	  lfd       f0, 0x8(r1)
-	  stw       r0, 0x0(r28)
-	  fsubs     f0, f0, f1
-	  lfs       f1, -0x3AF4(r2)
-	  stw       r29, 0x18(r28)
-	  fmuls     f0, f1, f0
-	  stw       r30, 0x20(r28)
-	  stfs      f0, 0x1C(r28)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r6
+	stw      r30, 0x18(r1)
+	mr       r30, r5
+	stw      r29, 0x14(r1)
+	mr       r29, r4
+	stw      r28, 0x10(r1)
+	mr       r28, r3
+	bl       __ct__5CNodeFv
+	xoris    r3, r31, 0x8000
+	lis      r0, 0x4330
+	lis      r4, __vt__Q24Game16ObjectLayoutNode@ha
+	stw      r3, 0xc(r1)
+	addi     r4, r4, __vt__Q24Game16ObjectLayoutNode@l
+	lis      r3, __vt__Q34Game4Cave8GateNode@ha
+	stw      r0, 8(r1)
+	addi     r0, r3, __vt__Q34Game4Cave8GateNode@l
+	lfd      f1, lbl_8051A870@sda21(r2)
+	mr       r3, r28
+	stw      r4, 0(r28)
+	lfd      f0, 8(r1)
+	stw      r0, 0(r28)
+	fsubs    f0, f0, f1
+	lfs      f1, lbl_8051A86C@sda21(r2)
+	stw      r29, 0x18(r28)
+	fmuls    f0, f1, f0
+	stw      r30, 0x20(r28)
+	stfs     f0, 0x1c(r28)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -96,17 +126,16 @@ Cave::GateNode::GateNode(Game::Cave::GateUnit*, int, int)
 void Cave::GateNode::getObjectId()
 {
 	/*
-	.loc_0x0:
-	  lwz       r3, 0x18(r3)
-	  lwz       r3, 0x0(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x18
-	  lwz       r3, 0x18(r3)
-	  blr
+	lwz      r3, 0x18(r3)
+	lwz      r3, 0(r3)
+	cmplwi   r3, 0
+	beq      lbl_8024FDD8
+	lwz      r3, 0x18(r3)
+	blr
 
-	.loc_0x18:
-	  li        r3, -0x1
-	  blr
+lbl_8024FDD8:
+	li       r3, -1
+	blr
 	*/
 }
 
@@ -132,9 +161,8 @@ u32 Cave::GateNode::getBirthCount() { return 0x1; }
 void Cave::GateNode::getDirection()
 {
 	/*
-	.loc_0x0:
-	  lfs       f1, 0x1C(r3)
-	  blr
+	lfs      f1, 0x1c(r3)
+	blr
 	*/
 }
 
@@ -146,9 +174,8 @@ void Cave::GateNode::getDirection()
 void Cave::GateNode::getBirthDoorIndex()
 {
 	/*
-	.loc_0x0:
-	  lwz       r3, 0x20(r3)
-	  blr
+	lwz      r3, 0x20(r3)
+	blr
 	*/
 }
 
@@ -160,39 +187,38 @@ void Cave::GateNode::getBirthDoorIndex()
 Cave::GateNode::~GateNode()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x54
-	  lis       r4, 0x804C
-	  addi      r0, r4, 0x1B78
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x44
-	  lis       r5, 0x804C
-	  li        r4, 0
-	  addi      r0, r5, 0x1AA8
-	  stw       r0, 0x0(r30)
-	  bl        0x1C1748
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_8024FE54
+	lis      r4, __vt__Q34Game4Cave8GateNode@ha
+	addi     r0, r4, __vt__Q34Game4Cave8GateNode@l
+	stw      r0, 0(r30)
+	beq      lbl_8024FE44
+	lis      r5, __vt__Q24Game16ObjectLayoutNode@ha
+	li       r4, 0
+	addi     r0, r5, __vt__Q24Game16ObjectLayoutNode@l
+	stw      r0, 0(r30)
+	bl       __dt__5CNodeFv
 
-	.loc_0x44:
-	  extsh.    r0, r31
-	  ble-      .loc_0x54
-	  mr        r3, r30
-	  bl        -0x22BD9C
+lbl_8024FE44:
+	extsh.   r0, r31
+	ble      lbl_8024FE54
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x54:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8024FE54:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 } // namespace Game

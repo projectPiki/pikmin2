@@ -1,6 +1,266 @@
 #include "types.h"
 
 /*
+    Generated from dpostproc
+
+    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
+    .4byte __sinit_J3DShapeMtx_cpp
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global lbl_804A2C98
+    lbl_804A2C98:
+        .4byte 0x00000000
+        .4byte 0xFFFFFFFF
+        .4byte loadMtxIndx_PNGP__11J3DShapeMtxCFiUs
+        .4byte 0x00000000
+        .4byte 0xFFFFFFFF
+        .4byte loadMtxIndx_PCPU__11J3DShapeMtxCFiUs
+        .4byte 0x00000000
+        .4byte 0xFFFFFFFF
+        .4byte loadMtxIndx_NCPU__11J3DShapeMtxCFiUs
+        .4byte 0x00000000
+        .4byte 0xFFFFFFFF
+        .4byte loadMtxIndx_PNCPU__11J3DShapeMtxCFiUs
+    .global sMtxLoadPipeline__11J3DShapeMtx
+    sMtxLoadPipeline__11J3DShapeMtx:
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0xFFFFFFFF
+        .4byte loadMtxConcatView_PNGP__21J3DShapeMtxConcatViewCFiUs
+        .4byte 0x00000000
+        .4byte 0xFFFFFFFF
+        .4byte loadMtxConcatView_PCPU__21J3DShapeMtxConcatViewCFiUs
+        .4byte 0x00000000
+        .4byte 0xFFFFFFFF
+        .4byte loadMtxConcatView_NCPU__21J3DShapeMtxConcatViewCFiUs
+        .4byte 0x00000000
+        .4byte 0xFFFFFFFF
+        .4byte loadMtxConcatView_PNCPU__21J3DShapeMtxConcatViewCFiUs
+    .global sMtxLoadPipeline__21J3DShapeMtxConcatView
+    sMtxLoadPipeline__21J3DShapeMtxConcatView:
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0xFFFFFFFF
+        .4byte loadMtxConcatView_PNGP_LOD__21J3DShapeMtxConcatViewCFiUs
+        .4byte 0x00000000
+        .4byte 0xFFFFFFFF
+        .4byte loadMtxConcatView_PCPU__21J3DShapeMtxConcatViewCFiUs
+        .4byte 0x00000000
+        .4byte 0xFFFFFFFF
+        .4byte loadMtxConcatView_NCPU__21J3DShapeMtxConcatViewCFiUs
+        .4byte 0x00000000
+        .4byte 0xFFFFFFFF
+        .4byte loadMtxConcatView_PNCPU__21J3DShapeMtxConcatViewCFiUs
+    .global sMtxLoadLODPipeline__21J3DShapeMtxConcatView
+    sMtxLoadLODPipeline__21J3DShapeMtxConcatView:
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+    .global qMtx$1532
+    qMtx$1532:
+        .float 0.5
+        .4byte 0x00000000
+        .float 0.5
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0xBF000000
+        .float 0.5
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .float 1.0
+        .4byte 0x00000000
+    .global qMtx2$1533
+    qMtx2$1533:
+        .float 0.5
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .float 0.5
+        .4byte 0x00000000
+        .4byte 0xBF000000
+        .4byte 0x00000000
+        .float 0.5
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .float 1.0
+        .4byte 0x00000000
+    .global lbl_804A2E18
+    lbl_804A2E18:
+        .4byte lbl_800867CC
+        .4byte lbl_800865A8
+        .4byte lbl_800865E4
+        .4byte lbl_80086588
+        .4byte lbl_800867CC
+        .4byte lbl_800865F4
+        .4byte lbl_800865A8
+        .4byte lbl_800865A8
+        .4byte lbl_800865E4
+        .4byte lbl_80086588
+        .4byte lbl_80086728
+        .4byte lbl_80086684
+    .global lbl_804A2E48
+    lbl_804A2E48:
+        .4byte lbl_80086504
+        .4byte lbl_8008631C
+        .4byte lbl_8008632C
+        .4byte lbl_8008630C
+        .4byte lbl_80086504
+        .4byte lbl_8008635C
+        .4byte lbl_8008631C
+        .4byte lbl_8008631C
+        .4byte lbl_8008632C
+        .4byte lbl_8008630C
+        .4byte lbl_80086470
+        .4byte lbl_800863DC
+    .global mtxCache$1887
+    mtxCache$1887:
+        .4byte 0xFFFFFFFF
+        .4byte 0xFFFFFFFF
+        .4byte 0xFFFFFFFF
+        .4byte 0xFFFFFFFF
+        .4byte 0xFFFFFFFF
+    .global __vt__28J3DShapeMtxYBBoardConcatView
+    __vt__28J3DShapeMtxYBBoardConcatView:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__28J3DShapeMtxYBBoardConcatViewFv
+        .4byte getType__28J3DShapeMtxYBBoardConcatViewCFv
+        .4byte getUseMtxNum__11J3DShapeMtxCFv
+        .4byte getUseMtxIndex__11J3DShapeMtxCFUs
+        .4byte load__28J3DShapeMtxYBBoardConcatViewCFv
+        .4byte calcNBTScale__11J3DShapeMtxFRC3VecPA3_A3_fPA3_A3_f
+        .4byte loadNrmMtx__21J3DShapeMtxConcatViewCFiUs
+        .4byte loadNrmMtx__21J3DShapeMtxConcatViewCFiUsPA4_f
+    .global __vt__27J3DShapeMtxBBoardConcatView
+    __vt__27J3DShapeMtxBBoardConcatView:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__27J3DShapeMtxBBoardConcatViewFv
+        .4byte getType__27J3DShapeMtxBBoardConcatViewCFv
+        .4byte getUseMtxNum__11J3DShapeMtxCFv
+        .4byte getUseMtxIndex__11J3DShapeMtxCFUs
+        .4byte load__27J3DShapeMtxBBoardConcatViewCFv
+        .4byte calcNBTScale__11J3DShapeMtxFRC3VecPA3_A3_fPA3_A3_f
+        .4byte loadNrmMtx__21J3DShapeMtxConcatViewCFiUs
+        .4byte loadNrmMtx__21J3DShapeMtxConcatViewCFiUsPA4_f
+    .global __vt__26J3DShapeMtxMultiConcatView
+    __vt__26J3DShapeMtxMultiConcatView:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__26J3DShapeMtxMultiConcatViewFv
+        .4byte getType__26J3DShapeMtxMultiConcatViewCFv
+        .4byte getUseMtxNum__26J3DShapeMtxMultiConcatViewCFv
+        .4byte getUseMtxIndex__26J3DShapeMtxMultiConcatViewCFUs
+        .4byte load__26J3DShapeMtxMultiConcatViewCFv
+        .4byte calcNBTScale__11J3DShapeMtxFRC3VecPA3_A3_fPA3_A3_f
+        .4byte loadNrmMtx__26J3DShapeMtxMultiConcatViewCFiUs
+        .4byte loadNrmMtx__26J3DShapeMtxMultiConcatViewCFiUsPA4_f
+    .global __vt__16J3DShapeMtxMulti
+    __vt__16J3DShapeMtxMulti:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__16J3DShapeMtxMultiFv
+        .4byte getType__16J3DShapeMtxMultiCFv
+        .4byte getUseMtxNum__16J3DShapeMtxMultiCFv
+        .4byte getUseMtxIndex__16J3DShapeMtxMultiCFUs
+        .4byte load__16J3DShapeMtxMultiCFv
+        .4byte calcNBTScale__16J3DShapeMtxMultiFRC3VecPA3_A3_fPA3_A3_f
+    .global __vt__21J3DShapeMtxConcatView
+    __vt__21J3DShapeMtxConcatView:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__21J3DShapeMtxConcatViewFv
+        .4byte getType__21J3DShapeMtxConcatViewCFv
+        .4byte getUseMtxNum__11J3DShapeMtxCFv
+        .4byte getUseMtxIndex__11J3DShapeMtxCFUs
+        .4byte load__21J3DShapeMtxConcatViewCFv
+        .4byte calcNBTScale__11J3DShapeMtxFRC3VecPA3_A3_fPA3_A3_f
+        .4byte loadNrmMtx__21J3DShapeMtxConcatViewCFiUs
+        .4byte loadNrmMtx__21J3DShapeMtxConcatViewCFiUsPA4_f
+    .global __vt__11J3DShapeMtx
+    __vt__11J3DShapeMtx:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__11J3DShapeMtxFv
+        .4byte getType__11J3DShapeMtxCFv
+        .4byte getUseMtxNum__11J3DShapeMtxCFv
+        .4byte getUseMtxIndex__11J3DShapeMtxCFUs
+        .4byte load__11J3DShapeMtxCFv
+        .4byte calcNBTScale__11J3DShapeMtxFRC3VecPA3_A3_fPA3_A3_f
+        .4byte 0
+
+    .section .bss  # 0x804EFC20 - 0x8051467C
+    .global sMtxLoadCache__11J3DShapeMtx
+    sMtxLoadCache__11J3DShapeMtx:
+        .skip 0x14
+
+    .section .sbss # 0x80514D80 - 0x80516360
+    .global sCurrentPipeline__11J3DShapeMtx
+    sCurrentPipeline__11J3DShapeMtx:
+        .skip 0x4
+    .global sCurrentScaleFlag__11J3DShapeMtx
+    sCurrentScaleFlag__11J3DShapeMtx:
+        .skip 0x4
+    .global sNBTFlag__11J3DShapeMtx
+    sNBTFlag__11J3DShapeMtx:
+        .skip 0x1
+    .global sLODFlag__11J3DShapeMtx
+    sLODFlag__11J3DShapeMtx:
+        .skip 0x3
+    .global sTexMtxLoadType__11J3DShapeMtx
+    sTexMtxLoadType__11J3DShapeMtx:
+        .skip 0x4
+    .global sMtxPtrTbl__21J3DShapeMtxConcatView
+    sMtxPtrTbl__21J3DShapeMtxConcatView:
+        .skip 0x8
+    .global sTexGenBlock__17J3DDifferedTexMtx
+    sTexGenBlock__17J3DDifferedTexMtx:
+        .skip 0x4
+    .global sTexMtxObj__17J3DDifferedTexMtx
+    sTexMtxObj__17J3DDifferedTexMtx:
+        .skip 0x4
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_80516AE8
+    lbl_80516AE8:
+        .4byte 0x00000000
+    .global lbl_80516AEC
+    lbl_80516AEC:
+        .float 1.0
+*/
+
+/*
  * --INFO--
  * Address:	80086104
  * Size:	00003C
@@ -8,22 +268,21 @@
 void J3DShapeMtx::resetMtxLoadCache()
 {
 	/*
-	.loc_0x0:
-	  lis       r4, 0x1
-	  lis       r3, 0x8051
-	  subi      r0, r4, 0x1
-	  addi      r3, r3, 0x20F4
-	  sth       r0, 0x12(r3)
-	  sth       r0, 0x10(r3)
-	  sth       r0, 0xE(r3)
-	  sth       r0, 0xC(r3)
-	  sth       r0, 0xA(r3)
-	  sth       r0, 0x8(r3)
-	  sth       r0, 0x6(r3)
-	  sth       r0, 0x4(r3)
-	  sth       r0, 0x2(r3)
-	  sth       r0, 0x0(r3)
-	  blr
+	lis      r4, 0x0000FFFF@ha
+	lis      r3, sMtxLoadCache__11J3DShapeMtx@ha
+	addi     r0, r4, 0x0000FFFF@l
+	addi     r3, r3, sMtxLoadCache__11J3DShapeMtx@l
+	sth      r0, 0x12(r3)
+	sth      r0, 0x10(r3)
+	sth      r0, 0xe(r3)
+	sth      r0, 0xc(r3)
+	sth      r0, 0xa(r3)
+	sth      r0, 8(r3)
+	sth      r0, 6(r3)
+	sth      r0, 4(r3)
+	sth      r0, 2(r3)
+	sth      r0, 0(r3)
+	blr
 	*/
 }
 
@@ -35,24 +294,23 @@ void J3DShapeMtx::resetMtxLoadCache()
 void J3DShapeMtx::loadMtxIndx_PNGP(int, unsigned short) const
 {
 	/*
-	.loc_0x0:
-	  mulli     r3, r4, 0xC
-	  li        r0, 0x20
-	  lis       r7, 0xCC01
-	  stb       r0, -0x8000(r7)
-	  li        r0, 0x28
-	  rlwinm    r3,r3,0,16,31
-	  ori       r6, r3, 0xB000
-	  sth       r5, -0x8000(r7)
-	  mulli     r3, r4, 0x9
-	  sth       r6, -0x8000(r7)
-	  stb       r0, -0x8000(r7)
-	  addi      r0, r3, 0x400
-	  rlwinm    r0,r0,0,16,31
-	  sth       r5, -0x8000(r7)
-	  ori       r0, r0, 0x8000
-	  sth       r0, -0x8000(r7)
-	  blr
+	mulli    r3, r4, 0xc
+	li       r0, 0x20
+	lis      r7, 0xCC008000@ha
+	stb      r0, 0xCC008000@l(r7)
+	li       r0, 0x28
+	clrlwi   r3, r3, 0x10
+	ori      r6, r3, 0xb000
+	sth      r5, -0x8000(r7)
+	mulli    r3, r4, 9
+	sth      r6, -0x8000(r7)
+	stb      r0, -0x8000(r7)
+	addi     r0, r3, 0x400
+	clrlwi   r0, r0, 0x10
+	sth      r5, -0x8000(r7)
+	ori      r0, r0, 0x8000
+	sth      r0, -0x8000(r7)
+	blr
 	*/
 }
 
@@ -64,31 +322,30 @@ void J3DShapeMtx::loadMtxIndx_PNGP(int, unsigned short) const
 void J3DShapeMtx::loadMtxIndx_PCPU(int, unsigned short) const
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r3, 0x8051
-	  stw       r0, 0x14(r1)
-	  subi      r3, r3, 0xDD0
-	  stw       r31, 0xC(r1)
-	  mr        r31, r5
-	  stw       r30, 0x8(r1)
-	  mr        r30, r4
-	  mulli     r4, r30, 0x3
-	  lwz       r3, 0x40(r3)
-	  lwz       r3, 0x30(r3)
-	  bl        -0xF2FC
-	  lis       r3, 0x8051
-	  mr        r4, r30
-	  subi      r3, r3, 0xDD0
-	  mr        r5, r31
-	  bl        -0x285E4
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lis      r3, j3dSys@ha
+	stw      r0, 0x14(r1)
+	addi     r3, r3, j3dSys@l
+	stw      r31, 0xc(r1)
+	mr       r31, r5
+	stw      r30, 8(r1)
+	mr       r30, r4
+	mulli    r4, r30, 3
+	lwz      r3, 0x40(r3)
+	lwz      r3, 0x30(r3)
+	bl       J3DFifoLoadPosMtxImm__FPA4_fUl
+	lis      r3, j3dSys@ha
+	mr       r4, r30
+	addi     r3, r3, j3dSys@l
+	mr       r5, r31
+	bl       loadNrmMtxIndx__6J3DSysCFiUs
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -100,26 +357,25 @@ void J3DShapeMtx::loadMtxIndx_PCPU(int, unsigned short) const
 void J3DShapeMtx::loadMtxIndx_NCPU(int, unsigned short) const
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r3, 0x8051
-	  stw       r0, 0x14(r1)
-	  subi      r3, r3, 0xDD0
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  bl        -0x28640
-	  lis       r3, 0x8051
-	  subi      r3, r3, 0xDD0
-	  lwz       r3, 0x40(r3)
-	  mulli     r4, r31, 0x3
-	  lwz       r3, 0x30(r3)
-	  bl        -0xF2E0
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lis      r3, j3dSys@ha
+	stw      r0, 0x14(r1)
+	addi     r3, r3, j3dSys@l
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	bl       loadPosMtxIndx__6J3DSysCFiUs
+	lis      r3, j3dSys@ha
+	addi     r3, r3, j3dSys@l
+	lwz      r3, 0x40(r3)
+	mulli    r4, r31, 3
+	lwz      r3, 0x30(r3)
+	bl       J3DFifoLoadNrmMtxImm__FPA4_fUl
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -131,29 +387,28 @@ void J3DShapeMtx::loadMtxIndx_NCPU(int, unsigned short) const
 void J3DShapeMtx::loadMtxIndx_PNCPU(int, unsigned short) const
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r3, 0x8051
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  subi      r31, r3, 0xDD0
-	  stw       r30, 0x8(r1)
-	  mulli     r30, r4, 0x3
-	  lwz       r3, 0x40(r31)
-	  mr        r4, r30
-	  lwz       r3, 0x30(r3)
-	  bl        -0xF3A4
-	  lwz       r3, 0x40(r31)
-	  mr        r4, r30
-	  lwz       r3, 0x30(r3)
-	  bl        -0xF334
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lis      r3, j3dSys@ha
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	addi     r31, r3, j3dSys@l
+	stw      r30, 8(r1)
+	mulli    r30, r4, 3
+	lwz      r3, 0x40(r31)
+	mr       r4, r30
+	lwz      r3, 0x30(r3)
+	bl       J3DFifoLoadPosMtxImm__FPA4_fUl
+	lwz      r3, 0x40(r31)
+	mr       r4, r30
+	lwz      r3, 0x30(r3)
+	bl       J3DFifoLoadNrmMtxImm__FPA4_fUl
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -165,405 +420,442 @@ void J3DShapeMtx::loadMtxIndx_PNCPU(int, unsigned short) const
 void J3DDifferedTexMtx::loadExecute(const float (*)[4])
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0xE0(r1)
-	  mflr      r0
-	  lis       r4, 0x8051
-	  stw       r0, 0xE4(r1)
-	  subi      r4, r4, 0xDD0
-	  stmw      r25, 0xC4(r1)
-	  mr        r25, r3
-	  lwz       r0, 0x34(r4)
-	  lwz       r28, -0x763C(r13)
-	  rlwinm.   r0,r0,0,1,1
-	  lwz       r31, -0x7640(r13)
-	  lhz       r29, 0x8(r28)
-	  beq-      .loc_0x2B0
-	  li        r27, 0
-	  b         .loc_0x2A0
+	stwu     r1, -0xe0(r1)
+	mflr     r0
+	lis      r4, j3dSys@ha
+	stw      r0, 0xe4(r1)
+	addi     r4, r4, j3dSys@l
+	stmw     r25, 0xc4(r1)
+	mr       r25, r3
+	lwz      r0, 0x34(r4)
+	lwz      r28, sTexMtxObj__17J3DDifferedTexMtx@sda21(r13)
+	rlwinm.  r0, r0, 0, 1, 1
+	lwz      r31, sTexGenBlock__17J3DDifferedTexMtx@sda21(r13)
+	lhz      r29, 8(r28)
+	beq      lbl_80086538
+	li       r27, 0
+	b        lbl_80086528
 
-	.loc_0x3C:
-	  mr        r3, r31
-	  rlwinm    r30,r27,0,16,31
-	  lwz       r12, 0x0(r31)
-	  mr        r4, r30
-	  lwz       r12, 0x50(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lbz       r5, 0x1(r3)
-	  rlwinm    r0,r5,0,26,31
-	  cmplwi    r0, 0xB
-	  bgt-      .loc_0x27C
-	  lis       r3, 0x804A
-	  rlwinm    r0,r0,2,0,29
-	  addi      r3, r3, 0x2E48
-	  lwzx      r0, r3, r0
-	  mtctr     r0
-	  bctr
-	  mulli     r0, r30, 0x30
-	  lwz       r3, 0x0(r28)
-	  add       r3, r3, r0
-	  b         .loc_0x288
-	  mulli     r0, r30, 0x30
-	  lwz       r3, 0x0(r28)
-	  add       r3, r3, r0
-	  b         .loc_0x288
-	  lis       r3, 0x8051
-	  addi      r4, r1, 0x88
-	  subi      r3, r3, 0xDD0
-	  bl        0x640E4
-	  mulli     r0, r30, 0x30
-	  lwz       r3, 0x0(r28)
-	  addi      r4, r1, 0x88
-	  mr        r5, r4
-	  add       r3, r3, r0
-	  bl        0x63FB0
-	  addi      r3, r1, 0x88
-	  b         .loc_0x288
-	  rlwinm.   r0,r5,25,31,31
-	  bne-      .loc_0xF0
-	  addi      r3, r4, 0x10
-	  addi      r4, r4, 0x4
-	  addi      r5, r1, 0x8
-	  bl        -0x26FF8
-	  b         .loc_0x104
+lbl_800862C4:
+	mr       r3, r31
+	clrlwi   r30, r27, 0x10
+	lwz      r12, 0(r31)
+	mr       r4, r30
+	lwz      r12, 0x50(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	lbz      r5, 1(r3)
+	clrlwi   r0, r5, 0x1a
+	cmplwi   r0, 0xb
+	bgt      lbl_80086504
+	lis      r3, lbl_804A2E48@ha
+	slwi     r0, r0, 2
+	addi     r3, r3, lbl_804A2E48@l
+	lwzx     r0, r3, r0
+	mtctr    r0
+	bctr
+	.global  lbl_8008630C
 
-	.loc_0xF0:
-	  cmplwi    r0, 0x1
-	  bne-      .loc_0x104
-	  addi      r3, r4, 0x10
-	  addi      r4, r1, 0x8
-	  bl        -0x26EBC
+lbl_8008630C:
+	mulli    r0, r30, 0x30
+	lwz      r3, 0(r28)
+	add      r3, r3, r0
+	b        lbl_80086510
+	.global  lbl_8008631C
 
-	.loc_0x104:
-	  lwz       r4, 0x4(r28)
-	  rlwinm    r0,r30,6,0,25
-	  addi      r3, r1, 0x8
-	  addi      r5, r1, 0x88
-	  add       r4, r4, r0
-	  bl        -0x26D74
-	  lis       r3, 0x8051
-	  addi      r4, r1, 0x48
-	  subi      r3, r3, 0xDD0
-	  bl        0x6406C
-	  addi      r3, r1, 0x88
-	  addi      r4, r1, 0x48
-	  mr        r5, r3
-	  bl        0x63F40
-	  lfs       f0, -0x7878(r2)
-	  addi      r3, r1, 0x88
-	  stfs      f0, 0xB4(r1)
-	  stfs      f0, 0xA4(r1)
-	  stfs      f0, 0x94(r1)
-	  b         .loc_0x288
-	  rlwinm.   r0,r5,25,31,31
-	  bne-      .loc_0x170
-	  addi      r3, r4, 0x10
-	  addi      r4, r4, 0x4
-	  addi      r5, r1, 0x8
-	  bl        -0x27124
-	  b         .loc_0x184
+lbl_8008631C:
+	mulli    r0, r30, 0x30
+	lwz      r3, 0(r28)
+	add      r3, r3, r0
+	b        lbl_80086510
+	.global  lbl_8008632C
 
-	.loc_0x170:
-	  cmplwi    r0, 0x1
-	  bne-      .loc_0x184
-	  addi      r3, r4, 0x10
-	  addi      r4, r1, 0x8
-	  bl        -0x26FE4
+lbl_8008632C:
+	lis      r3, j3dSys@ha
+	addi     r4, r1, 0x88
+	addi     r3, r3, j3dSys@l
+	bl       PSMTXInverse
+	mulli    r0, r30, 0x30
+	lwz      r3, 0(r28)
+	addi     r4, r1, 0x88
+	mr       r5, r4
+	add      r3, r3, r0
+	bl       PSMTXConcat
+	addi     r3, r1, 0x88
+	b        lbl_80086510
+	.global  lbl_8008635C
 
-	.loc_0x184:
-	  lis       r4, 0x804A
-	  addi      r3, r1, 0x8
-	  addi      r4, r4, 0x2DB8
-	  mr        r5, r3
-	  bl        0x63EE4
-	  lwz       r4, 0x4(r28)
-	  rlwinm    r0,r30,6,0,25
-	  addi      r3, r1, 0x8
-	  addi      r5, r1, 0x88
-	  add       r4, r4, r0
-	  bl        -0x26E08
-	  lis       r3, 0x8051
-	  addi      r4, r1, 0x48
-	  subi      r3, r3, 0xDD0
-	  bl        0x63FD8
-	  addi      r3, r1, 0x88
-	  addi      r4, r1, 0x48
-	  mr        r5, r3
-	  bl        0x63EAC
-	  lfs       f0, -0x7878(r2)
-	  addi      r3, r1, 0x88
-	  stfs      f0, 0xB4(r1)
-	  stfs      f0, 0xA4(r1)
-	  stfs      f0, 0x94(r1)
-	  b         .loc_0x288
-	  rlwinm.   r0,r5,25,31,31
-	  bne-      .loc_0x204
-	  addi      r3, r4, 0x10
-	  addi      r4, r4, 0x4
-	  addi      r5, r1, 0x8
-	  bl        -0x271B8
-	  b         .loc_0x218
+lbl_8008635C:
+	rlwinm.  r0, r5, 0x19, 0x1f, 0x1f
+	bne      lbl_80086378
+	addi     r3, r4, 0x10
+	addi     r4, r4, 4
+	addi     r5, r1, 8
+	bl       J3DGetTextureMtxOld__FRC17J3DTextureSRTInfoRC3VecPA4_f
+	b        lbl_8008638C
 
-	.loc_0x204:
-	  cmplwi    r0, 0x1
-	  bne-      .loc_0x218
-	  addi      r3, r4, 0x10
-	  addi      r4, r1, 0x8
-	  bl        -0x27078
+lbl_80086378:
+	cmplwi   r0, 1
+	bne      lbl_8008638C
+	addi     r3, r4, 0x10
+	addi     r4, r1, 8
+	bl       J3DGetTextureMtxMayaOld__FRC17J3DTextureSRTInfoPA4_f
 
-	.loc_0x218:
-	  lis       r4, 0x804A
-	  addi      r3, r1, 0x8
-	  addi      r4, r4, 0x2DE8
-	  mr        r5, r3
-	  bl        0x63E50
-	  lwz       r4, 0x4(r28)
-	  rlwinm    r0,r30,6,0,25
-	  addi      r3, r1, 0x8
-	  addi      r5, r1, 0x88
-	  add       r4, r4, r0
-	  bl        -0x26E9C
-	  lis       r3, 0x8051
-	  addi      r4, r1, 0x48
-	  subi      r3, r3, 0xDD0
-	  bl        0x63F44
-	  addi      r3, r1, 0x88
-	  addi      r4, r1, 0x48
-	  mr        r5, r3
-	  bl        0x63E18
-	  lfs       f0, -0x7878(r2)
-	  addi      r3, r1, 0x88
-	  stfs      f0, 0xB4(r1)
-	  stfs      f0, 0xA4(r1)
-	  stfs      f0, 0x94(r1)
-	  b         .loc_0x288
+lbl_8008638C:
+	lwz      r4, 4(r28)
+	slwi     r0, r30, 6
+	addi     r3, r1, 8
+	addi     r5, r1, 0x88
+	add      r4, r4, r0
+	bl       J3DMtxProjConcat__FPA4_fPA4_fPA4_f
+	lis      r3, j3dSys@ha
+	addi     r4, r1, 0x48
+	addi     r3, r3, j3dSys@l
+	bl       PSMTXInverse
+	addi     r3, r1, 0x88
+	addi     r4, r1, 0x48
+	mr       r5, r3
+	bl       PSMTXConcat
+	lfs      f0, lbl_80516AE8@sda21(r2)
+	addi     r3, r1, 0x88
+	stfs     f0, 0xb4(r1)
+	stfs     f0, 0xa4(r1)
+	stfs     f0, 0x94(r1)
+	b        lbl_80086510
+	.global  lbl_800863DC
 
-	.loc_0x27C:
-	  mulli     r0, r30, 0x30
-	  lwz       r3, 0x0(r28)
-	  add       r3, r3, r0
+lbl_800863DC:
+	rlwinm.  r0, r5, 0x19, 0x1f, 0x1f
+	bne      lbl_800863F8
+	addi     r3, r4, 0x10
+	addi     r4, r4, 4
+	addi     r5, r1, 8
+	bl       J3DGetTextureMtx__FRC17J3DTextureSRTInfoRC3VecPA4_f
+	b        lbl_8008640C
 
-	.loc_0x288:
-	  rlwinm    r0,r27,0,16,31
-	  li        r5, 0
-	  mulli     r4, r0, 0x3
-	  addi      r4, r4, 0x40
-	  bl        0x6312C
-	  addi      r27, r27, 0x1
+lbl_800863F8:
+	cmplwi   r0, 1
+	bne      lbl_8008640C
+	addi     r3, r4, 0x10
+	addi     r4, r1, 8
+	bl       J3DGetTextureMtxMaya__FRC17J3DTextureSRTInfoPA4_f
 
-	.loc_0x2A0:
-	  rlwinm    r0,r27,0,16,31
-	  cmplw     r0, r29
-	  blt+      .loc_0x3C
-	  b         .loc_0x574
+lbl_8008640C:
+	lis      r4, qMtx$1532@ha
+	addi     r3, r1, 8
+	addi     r4, r4, qMtx$1532@l
+	mr       r5, r3
+	bl       PSMTXConcat
+	lwz      r4, 4(r28)
+	slwi     r0, r30, 6
+	addi     r3, r1, 8
+	addi     r5, r1, 0x88
+	add      r4, r4, r0
+	bl       J3DMtxProjConcat__FPA4_fPA4_fPA4_f
+	lis      r3, j3dSys@ha
+	addi     r4, r1, 0x48
+	addi     r3, r3, j3dSys@l
+	bl       PSMTXInverse
+	addi     r3, r1, 0x88
+	addi     r4, r1, 0x48
+	mr       r5, r3
+	bl       PSMTXConcat
+	lfs      f0, lbl_80516AE8@sda21(r2)
+	addi     r3, r1, 0x88
+	stfs     f0, 0xb4(r1)
+	stfs     f0, 0xa4(r1)
+	stfs     f0, 0x94(r1)
+	b        lbl_80086510
+	.global  lbl_80086470
 
-	.loc_0x2B0:
-	  li        r26, 0
-	  b         .loc_0x568
+lbl_80086470:
+	rlwinm.  r0, r5, 0x19, 0x1f, 0x1f
+	bne      lbl_8008648C
+	addi     r3, r4, 0x10
+	addi     r4, r4, 4
+	addi     r5, r1, 8
+	bl       J3DGetTextureMtx__FRC17J3DTextureSRTInfoRC3VecPA4_f
+	b        lbl_800864A0
 
-	.loc_0x2B8:
-	  mr        r3, r31
-	  rlwinm    r27,r26,0,16,31
-	  lwz       r12, 0x0(r31)
-	  mr        r4, r27
-	  lwz       r12, 0x50(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r30, r3
-	  lbz       r4, 0x1(r3)
-	  rlwinm    r0,r4,0,26,31
-	  cmplwi    r0, 0xB
-	  bgt-      .loc_0x544
-	  lis       r3, 0x804A
-	  rlwinm    r0,r0,2,0,29
-	  addi      r3, r3, 0x2E18
-	  lwzx      r0, r3, r0
-	  mtctr     r0
-	  bctr
-	  mulli     r0, r27, 0x30
-	  lwz       r3, 0x0(r28)
-	  mr        r4, r25
-	  addi      r5, r1, 0x88
-	  add       r3, r3, r0
-	  bl        0x63D64
-	  addi      r3, r1, 0x88
-	  b         .loc_0x550
-	  mr        r3, r25
-	  addi      r4, r1, 0x48
-	  bl        0x63D1C
-	  lfs       f0, -0x7878(r2)
-	  mulli     r0, r27, 0x30
-	  addi      r4, r1, 0x48
-	  stfs      f0, 0x74(r1)
-	  addi      r5, r1, 0x88
-	  stfs      f0, 0x64(r1)
-	  stfs      f0, 0x54(r1)
-	  lwz       r3, 0x0(r28)
-	  add       r3, r3, r0
-	  bl        0x63D28
-	  addi      r3, r1, 0x88
-	  b         .loc_0x550
-	  mulli     r0, r27, 0x30
-	  lwz       r3, 0x0(r28)
-	  add       r3, r3, r0
-	  b         .loc_0x550
-	  rlwinm.   r0,r4,25,31,31
-	  bne-      .loc_0x388
-	  addi      r3, r30, 0x10
-	  addi      r4, r30, 0x4
-	  addi      r5, r1, 0x8
-	  bl        -0x27290
-	  b         .loc_0x39C
+lbl_8008648C:
+	cmplwi   r0, 1
+	bne      lbl_800864A0
+	addi     r3, r4, 0x10
+	addi     r4, r1, 8
+	bl       J3DGetTextureMtxMaya__FRC17J3DTextureSRTInfoPA4_f
 
-	.loc_0x388:
-	  cmplwi    r0, 0x1
-	  bne-      .loc_0x39C
-	  addi      r3, r30, 0x10
-	  addi      r4, r1, 0x8
-	  bl        -0x27154
+lbl_800864A0:
+	lis      r4, qMtx2$1533@ha
+	addi     r3, r1, 8
+	addi     r4, r4, qMtx2$1533@l
+	mr       r5, r3
+	bl       PSMTXConcat
+	lwz      r4, 4(r28)
+	slwi     r0, r30, 6
+	addi     r3, r1, 8
+	addi     r5, r1, 0x88
+	add      r4, r4, r0
+	bl       J3DMtxProjConcat__FPA4_fPA4_fPA4_f
+	lis      r3, j3dSys@ha
+	addi     r4, r1, 0x48
+	addi     r3, r3, j3dSys@l
+	bl       PSMTXInverse
+	addi     r3, r1, 0x88
+	addi     r4, r1, 0x48
+	mr       r5, r3
+	bl       PSMTXConcat
+	lfs      f0, lbl_80516AE8@sda21(r2)
+	addi     r3, r1, 0x88
+	stfs     f0, 0xb4(r1)
+	stfs     f0, 0xa4(r1)
+	stfs     f0, 0x94(r1)
+	b        lbl_80086510
+	.global  lbl_80086504
 
-	.loc_0x39C:
-	  lwz       r4, 0x4(r28)
-	  rlwinm    r0,r27,6,0,25
-	  addi      r3, r1, 0x8
-	  addi      r5, r1, 0x88
-	  add       r4, r4, r0
-	  bl        -0x2700C
-	  lis       r3, 0x8051
-	  addi      r4, r1, 0x48
-	  subi      r3, r3, 0xDD0
-	  bl        0x63DD4
-	  addi      r3, r1, 0x88
-	  addi      r4, r1, 0x48
-	  mr        r5, r3
-	  bl        0x63CA8
-	  addi      r3, r1, 0x88
-	  mr        r4, r25
-	  mr        r5, r3
-	  bl        0x63C98
-	  lfs       f0, -0x7878(r2)
-	  addi      r3, r1, 0x88
-	  stfs      f0, 0xB4(r1)
-	  stfs      f0, 0xA4(r1)
-	  stfs      f0, 0x94(r1)
-	  b         .loc_0x550
-	  rlwinm.   r0,r4,25,31,31
-	  bne-      .loc_0x418
-	  addi      r3, r30, 0x10
-	  addi      r4, r30, 0x4
-	  addi      r5, r1, 0x8
-	  bl        -0x273CC
-	  b         .loc_0x42C
+lbl_80086504:
+	mulli    r0, r30, 0x30
+	lwz      r3, 0(r28)
+	add      r3, r3, r0
 
-	.loc_0x418:
-	  cmplwi    r0, 0x1
-	  bne-      .loc_0x42C
-	  addi      r3, r30, 0x10
-	  addi      r4, r1, 0x8
-	  bl        -0x2728C
+lbl_80086510:
+	clrlwi   r0, r27, 0x10
+	li       r5, 0
+	mulli    r4, r0, 3
+	addi     r4, r4, 0x40
+	bl       GXLoadTexMtxImm
+	addi     r27, r27, 1
 
-	.loc_0x42C:
-	  lis       r4, 0x804A
-	  addi      r3, r1, 0x8
-	  addi      r4, r4, 0x2DB8
-	  mr        r5, r3
-	  bl        0x63C3C
-	  lwz       r4, 0x4(r28)
-	  rlwinm    r0,r27,6,0,25
-	  addi      r3, r1, 0x8
-	  addi      r5, r1, 0x88
-	  add       r4, r4, r0
-	  bl        -0x270B0
-	  lis       r3, 0x8051
-	  addi      r4, r1, 0x48
-	  subi      r3, r3, 0xDD0
-	  bl        0x63D30
-	  addi      r3, r1, 0x88
-	  addi      r4, r1, 0x48
-	  mr        r5, r3
-	  bl        0x63C04
-	  addi      r3, r1, 0x88
-	  mr        r4, r25
-	  mr        r5, r3
-	  bl        0x63BF4
-	  lfs       f0, -0x7878(r2)
-	  addi      r3, r1, 0x88
-	  stfs      f0, 0xB4(r1)
-	  stfs      f0, 0xA4(r1)
-	  stfs      f0, 0x94(r1)
-	  b         .loc_0x550
-	  rlwinm.   r0,r4,25,31,31
-	  bne-      .loc_0x4BC
-	  addi      r3, r30, 0x10
-	  addi      r4, r30, 0x4
-	  addi      r5, r1, 0x8
-	  bl        -0x27470
-	  b         .loc_0x4D0
+lbl_80086528:
+	clrlwi   r0, r27, 0x10
+	cmplw    r0, r29
+	blt      lbl_800862C4
+	b        lbl_800867FC
 
-	.loc_0x4BC:
-	  cmplwi    r0, 0x1
-	  bne-      .loc_0x4D0
-	  addi      r3, r30, 0x10
-	  addi      r4, r1, 0x8
-	  bl        -0x27330
+lbl_80086538:
+	li       r26, 0
+	b        lbl_800867F0
 
-	.loc_0x4D0:
-	  lis       r4, 0x804A
-	  addi      r3, r1, 0x8
-	  addi      r4, r4, 0x2DE8
-	  mr        r5, r3
-	  bl        0x63B98
-	  lwz       r4, 0x4(r28)
-	  rlwinm    r0,r27,6,0,25
-	  addi      r3, r1, 0x8
-	  addi      r5, r1, 0x88
-	  add       r4, r4, r0
-	  bl        -0x27154
-	  lis       r3, 0x8051
-	  addi      r4, r1, 0x48
-	  subi      r3, r3, 0xDD0
-	  bl        0x63C8C
-	  addi      r3, r1, 0x88
-	  addi      r4, r1, 0x48
-	  mr        r5, r3
-	  bl        0x63B60
-	  addi      r3, r1, 0x88
-	  mr        r4, r25
-	  mr        r5, r3
-	  bl        0x63B50
-	  lfs       f0, -0x7878(r2)
-	  addi      r3, r1, 0x88
-	  stfs      f0, 0xB4(r1)
-	  stfs      f0, 0xA4(r1)
-	  stfs      f0, 0x94(r1)
-	  b         .loc_0x550
+lbl_80086540:
+	mr       r3, r31
+	clrlwi   r27, r26, 0x10
+	lwz      r12, 0(r31)
+	mr       r4, r27
+	lwz      r12, 0x50(r12)
+	mtctr    r12
+	bctrl
+	mr       r30, r3
+	lbz      r4, 1(r3)
+	clrlwi   r0, r4, 0x1a
+	cmplwi   r0, 0xb
+	bgt      lbl_800867CC
+	lis      r3, lbl_804A2E18@ha
+	slwi     r0, r0, 2
+	addi     r3, r3, lbl_804A2E18@l
+	lwzx     r0, r3, r0
+	mtctr    r0
+	bctr
+	.global  lbl_80086588
 
-	.loc_0x544:
-	  mulli     r0, r27, 0x30
-	  lwz       r3, 0x0(r28)
-	  add       r3, r3, r0
+lbl_80086588:
+	mulli    r0, r27, 0x30
+	lwz      r3, 0(r28)
+	mr       r4, r25
+	addi     r5, r1, 0x88
+	add      r3, r3, r0
+	bl       PSMTXConcat
+	addi     r3, r1, 0x88
+	b        lbl_800867D8
+	.global  lbl_800865A8
 
-	.loc_0x550:
-	  rlwinm    r0,r26,0,16,31
-	  lbz       r5, 0x0(r30)
-	  mulli     r4, r0, 0x3
-	  addi      r4, r4, 0x1E
-	  bl        0x62E64
-	  addi      r26, r26, 0x1
+lbl_800865A8:
+	mr       r3, r25
+	addi     r4, r1, 0x48
+	bl       PSMTXCopy
+	lfs      f0, lbl_80516AE8@sda21(r2)
+	mulli    r0, r27, 0x30
+	addi     r4, r1, 0x48
+	stfs     f0, 0x74(r1)
+	addi     r5, r1, 0x88
+	stfs     f0, 0x64(r1)
+	stfs     f0, 0x54(r1)
+	lwz      r3, 0(r28)
+	add      r3, r3, r0
+	bl       PSMTXConcat
+	addi     r3, r1, 0x88
+	b        lbl_800867D8
+	.global  lbl_800865E4
 
-	.loc_0x568:
-	  rlwinm    r0,r26,0,16,31
-	  cmplw     r0, r29
-	  blt+      .loc_0x2B8
+lbl_800865E4:
+	mulli    r0, r27, 0x30
+	lwz      r3, 0(r28)
+	add      r3, r3, r0
+	b        lbl_800867D8
+	.global  lbl_800865F4
 
-	.loc_0x574:
-	  lmw       r25, 0xC4(r1)
-	  lwz       r0, 0xE4(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0xE0
-	  blr
+lbl_800865F4:
+	rlwinm.  r0, r4, 0x19, 0x1f, 0x1f
+	bne      lbl_80086610
+	addi     r3, r30, 0x10
+	addi     r4, r30, 4
+	addi     r5, r1, 8
+	bl       J3DGetTextureMtxOld__FRC17J3DTextureSRTInfoRC3VecPA4_f
+	b        lbl_80086624
+
+lbl_80086610:
+	cmplwi   r0, 1
+	bne      lbl_80086624
+	addi     r3, r30, 0x10
+	addi     r4, r1, 8
+	bl       J3DGetTextureMtxMayaOld__FRC17J3DTextureSRTInfoPA4_f
+
+lbl_80086624:
+	lwz      r4, 4(r28)
+	slwi     r0, r27, 6
+	addi     r3, r1, 8
+	addi     r5, r1, 0x88
+	add      r4, r4, r0
+	bl       J3DMtxProjConcat__FPA4_fPA4_fPA4_f
+	lis      r3, j3dSys@ha
+	addi     r4, r1, 0x48
+	addi     r3, r3, j3dSys@l
+	bl       PSMTXInverse
+	addi     r3, r1, 0x88
+	addi     r4, r1, 0x48
+	mr       r5, r3
+	bl       PSMTXConcat
+	addi     r3, r1, 0x88
+	mr       r4, r25
+	mr       r5, r3
+	bl       PSMTXConcat
+	lfs      f0, lbl_80516AE8@sda21(r2)
+	addi     r3, r1, 0x88
+	stfs     f0, 0xb4(r1)
+	stfs     f0, 0xa4(r1)
+	stfs     f0, 0x94(r1)
+	b        lbl_800867D8
+	.global  lbl_80086684
+
+lbl_80086684:
+	rlwinm.  r0, r4, 0x19, 0x1f, 0x1f
+	bne      lbl_800866A0
+	addi     r3, r30, 0x10
+	addi     r4, r30, 4
+	addi     r5, r1, 8
+	bl       J3DGetTextureMtx__FRC17J3DTextureSRTInfoRC3VecPA4_f
+	b        lbl_800866B4
+
+lbl_800866A0:
+	cmplwi   r0, 1
+	bne      lbl_800866B4
+	addi     r3, r30, 0x10
+	addi     r4, r1, 8
+	bl       J3DGetTextureMtxMaya__FRC17J3DTextureSRTInfoPA4_f
+
+lbl_800866B4:
+	lis      r4, qMtx$1532@ha
+	addi     r3, r1, 8
+	addi     r4, r4, qMtx$1532@l
+	mr       r5, r3
+	bl       PSMTXConcat
+	lwz      r4, 4(r28)
+	slwi     r0, r27, 6
+	addi     r3, r1, 8
+	addi     r5, r1, 0x88
+	add      r4, r4, r0
+	bl       J3DMtxProjConcat__FPA4_fPA4_fPA4_f
+	lis      r3, j3dSys@ha
+	addi     r4, r1, 0x48
+	addi     r3, r3, j3dSys@l
+	bl       PSMTXInverse
+	addi     r3, r1, 0x88
+	addi     r4, r1, 0x48
+	mr       r5, r3
+	bl       PSMTXConcat
+	addi     r3, r1, 0x88
+	mr       r4, r25
+	mr       r5, r3
+	bl       PSMTXConcat
+	lfs      f0, lbl_80516AE8@sda21(r2)
+	addi     r3, r1, 0x88
+	stfs     f0, 0xb4(r1)
+	stfs     f0, 0xa4(r1)
+	stfs     f0, 0x94(r1)
+	b        lbl_800867D8
+	.global  lbl_80086728
+
+lbl_80086728:
+	rlwinm.  r0, r4, 0x19, 0x1f, 0x1f
+	bne      lbl_80086744
+	addi     r3, r30, 0x10
+	addi     r4, r30, 4
+	addi     r5, r1, 8
+	bl       J3DGetTextureMtx__FRC17J3DTextureSRTInfoRC3VecPA4_f
+	b        lbl_80086758
+
+lbl_80086744:
+	cmplwi   r0, 1
+	bne      lbl_80086758
+	addi     r3, r30, 0x10
+	addi     r4, r1, 8
+	bl       J3DGetTextureMtxMaya__FRC17J3DTextureSRTInfoPA4_f
+
+lbl_80086758:
+	lis      r4, qMtx2$1533@ha
+	addi     r3, r1, 8
+	addi     r4, r4, qMtx2$1533@l
+	mr       r5, r3
+	bl       PSMTXConcat
+	lwz      r4, 4(r28)
+	slwi     r0, r27, 6
+	addi     r3, r1, 8
+	addi     r5, r1, 0x88
+	add      r4, r4, r0
+	bl       J3DMtxProjConcat__FPA4_fPA4_fPA4_f
+	lis      r3, j3dSys@ha
+	addi     r4, r1, 0x48
+	addi     r3, r3, j3dSys@l
+	bl       PSMTXInverse
+	addi     r3, r1, 0x88
+	addi     r4, r1, 0x48
+	mr       r5, r3
+	bl       PSMTXConcat
+	addi     r3, r1, 0x88
+	mr       r4, r25
+	mr       r5, r3
+	bl       PSMTXConcat
+	lfs      f0, lbl_80516AE8@sda21(r2)
+	addi     r3, r1, 0x88
+	stfs     f0, 0xb4(r1)
+	stfs     f0, 0xa4(r1)
+	stfs     f0, 0x94(r1)
+	b        lbl_800867D8
+	.global  lbl_800867CC
+
+lbl_800867CC:
+	mulli    r0, r27, 0x30
+	lwz      r3, 0(r28)
+	add      r3, r3, r0
+
+lbl_800867D8:
+	clrlwi   r0, r26, 0x10
+	lbz      r5, 0(r30)
+	mulli    r4, r0, 3
+	addi     r4, r4, 0x1e
+	bl       GXLoadTexMtxImm
+	addi     r26, r26, 1
+
+lbl_800867F0:
+	clrlwi   r0, r26, 0x10
+	cmplw    r0, r29
+	blt      lbl_80086540
+
+lbl_800867FC:
+	lmw      r25, 0xc4(r1)
+	lwz      r0, 0xe4(r1)
+	mtlr     r0
+	addi     r1, r1, 0xe0
+	blr
 	*/
 }
 
@@ -575,51 +867,50 @@ void J3DDifferedTexMtx::loadExecute(const float (*)[4])
 void J3DShapeMtxConcatView::loadMtxConcatView_PNGP(int, unsigned short) const
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x50(r1)
-	  mflr      r0
-	  stw       r0, 0x54(r1)
-	  stw       r31, 0x4C(r1)
-	  mr        r31, r5
-	  lis       r5, 0x8051
-	  stw       r30, 0x48(r1)
-	  rlwinm    r0,r31,0,16,31
-	  subi      r5, r5, 0xDD0
-	  mr        r30, r4
-	  stw       r29, 0x44(r1)
-	  mr        r29, r3
-	  mulli     r0, r0, 0x30
-	  lwz       r3, 0x40(r5)
-	  lwz       r6, 0x104(r5)
-	  addi      r5, r1, 0x8
-	  lwz       r3, 0x30(r3)
-	  add       r4, r6, r0
-	  bl        0x63AA8
-	  lwz       r0, -0x7640(r13)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x60
-	  addi      r3, r1, 0x8
-	  bl        -0x5E4
+	stwu     r1, -0x50(r1)
+	mflr     r0
+	stw      r0, 0x54(r1)
+	stw      r31, 0x4c(r1)
+	mr       r31, r5
+	lis      r5, j3dSys@ha
+	stw      r30, 0x48(r1)
+	clrlwi   r0, r31, 0x10
+	addi     r5, r5, j3dSys@l
+	mr       r30, r4
+	stw      r29, 0x44(r1)
+	mr       r29, r3
+	mulli    r0, r0, 0x30
+	lwz      r3, 0x40(r5)
+	lwz      r6, 0x104(r5)
+	addi     r5, r1, 8
+	lwz      r3, 0x30(r3)
+	add      r4, r6, r0
+	bl       PSMTXConcat
+	lwz      r0, sTexGenBlock__17J3DDifferedTexMtx@sda21(r13)
+	cmplwi   r0, 0
+	beq      lbl_80086870
+	addi     r3, r1, 8
+	bl       loadExecute__17J3DDifferedTexMtxFPA4_Cf
 
-	.loc_0x60:
-	  mulli     r4, r30, 0x3
-	  addi      r3, r1, 0x8
-	  bl        -0xF9C0
-	  mr        r3, r29
-	  mr        r4, r30
-	  lwz       r12, 0x0(r29)
-	  mr        r5, r31
-	  addi      r6, r1, 0x8
-	  lwz       r12, 0x24(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x54(r1)
-	  lwz       r31, 0x4C(r1)
-	  lwz       r30, 0x48(r1)
-	  lwz       r29, 0x44(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x50
-	  blr
+lbl_80086870:
+	mulli    r4, r30, 3
+	addi     r3, r1, 8
+	bl       J3DFifoLoadPosMtxImm__FPA4_fUl
+	mr       r3, r29
+	mr       r4, r30
+	lwz      r12, 0(r29)
+	mr       r5, r31
+	addi     r6, r1, 8
+	lwz      r12, 0x24(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x54(r1)
+	lwz      r31, 0x4c(r1)
+	lwz      r30, 0x48(r1)
+	lwz      r29, 0x44(r1)
+	mtlr     r0
+	addi     r1, r1, 0x50
+	blr
 	*/
 }
 
@@ -631,54 +922,53 @@ void J3DShapeMtxConcatView::loadMtxConcatView_PNGP(int, unsigned short) const
 void J3DShapeMtxConcatView::loadMtxConcatView_PCPU(int, unsigned short) const
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x50(r1)
-	  mflr      r0
-	  stw       r0, 0x54(r1)
-	  stw       r31, 0x4C(r1)
-	  stw       r30, 0x48(r1)
-	  mr        r30, r5
-	  lis       r5, 0x8051
-	  stw       r29, 0x44(r1)
-	  subi      r31, r5, 0xDD0
-	  rlwinm    r0,r30,0,16,31
-	  mr        r29, r4
-	  stw       r28, 0x40(r1)
-	  mr        r28, r3
-	  mulli     r0, r0, 0x30
-	  addi      r5, r1, 0x8
-	  lwz       r3, 0x40(r31)
-	  lwz       r6, 0x104(r31)
-	  lwz       r3, 0x30(r3)
-	  add       r4, r6, r0
-	  bl        0x639FC
-	  lwz       r0, -0x7640(r13)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x64
-	  addi      r3, r1, 0x8
-	  bl        -0x690
+	stwu     r1, -0x50(r1)
+	mflr     r0
+	stw      r0, 0x54(r1)
+	stw      r31, 0x4c(r1)
+	stw      r30, 0x48(r1)
+	mr       r30, r5
+	lis      r5, j3dSys@ha
+	stw      r29, 0x44(r1)
+	addi     r31, r5, j3dSys@l
+	clrlwi   r0, r30, 0x10
+	mr       r29, r4
+	stw      r28, 0x40(r1)
+	mr       r28, r3
+	mulli    r0, r0, 0x30
+	addi     r5, r1, 8
+	lwz      r3, 0x40(r31)
+	lwz      r6, 0x104(r31)
+	lwz      r3, 0x30(r3)
+	add      r4, r6, r0
+	bl       PSMTXConcat
+	lwz      r0, sTexGenBlock__17J3DDifferedTexMtx@sda21(r13)
+	cmplwi   r0, 0
+	beq      lbl_8008691C
+	addi     r3, r1, 8
+	bl       loadExecute__17J3DDifferedTexMtxFPA4_Cf
 
-	.loc_0x64:
-	  lwz       r3, 0x40(r31)
-	  mulli     r4, r29, 0x3
-	  lwz       r3, 0x30(r3)
-	  bl        -0xFA70
-	  mr        r3, r28
-	  mr        r4, r29
-	  lwz       r12, 0x0(r28)
-	  mr        r5, r30
-	  addi      r6, r1, 0x8
-	  lwz       r12, 0x24(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x54(r1)
-	  lwz       r31, 0x4C(r1)
-	  lwz       r30, 0x48(r1)
-	  lwz       r29, 0x44(r1)
-	  lwz       r28, 0x40(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x50
-	  blr
+lbl_8008691C:
+	lwz      r3, 0x40(r31)
+	mulli    r4, r29, 3
+	lwz      r3, 0x30(r3)
+	bl       J3DFifoLoadPosMtxImm__FPA4_fUl
+	mr       r3, r28
+	mr       r4, r29
+	lwz      r12, 0(r28)
+	mr       r5, r30
+	addi     r6, r1, 8
+	lwz      r12, 0x24(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x54(r1)
+	lwz      r31, 0x4c(r1)
+	lwz      r30, 0x48(r1)
+	lwz      r29, 0x44(r1)
+	lwz      r28, 0x40(r1)
+	mtlr     r0
+	addi     r1, r1, 0x50
+	blr
 	*/
 }
 
@@ -690,53 +980,52 @@ void J3DShapeMtxConcatView::loadMtxConcatView_PCPU(int, unsigned short) const
 void J3DShapeMtxConcatView::loadMtxConcatView_NCPU(int, unsigned short) const
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  lis       r3, 0x8051
-	  stw       r0, 0x44(r1)
-	  rlwinm    r0,r5,0,16,31
-	  mulli     r0, r0, 0x30
-	  addi      r5, r1, 0x8
-	  stw       r31, 0x3C(r1)
-	  subi      r31, r3, 0xDD0
-	  stw       r30, 0x38(r1)
-	  mr        r30, r4
-	  lwz       r3, 0x40(r31)
-	  lwz       r4, 0x104(r31)
-	  lwz       r3, 0x30(r3)
-	  add       r4, r4, r0
-	  bl        0x63958
-	  lwz       r0, -0x7640(r13)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x54
-	  addi      r3, r1, 0x8
-	  bl        -0x734
+	stwu     r1, -0x40(r1)
+	mflr     r0
+	lis      r3, j3dSys@ha
+	stw      r0, 0x44(r1)
+	clrlwi   r0, r5, 0x10
+	mulli    r0, r0, 0x30
+	addi     r5, r1, 8
+	stw      r31, 0x3c(r1)
+	addi     r31, r3, j3dSys@l
+	stw      r30, 0x38(r1)
+	mr       r30, r4
+	lwz      r3, 0x40(r31)
+	lwz      r4, 0x104(r31)
+	lwz      r3, 0x30(r3)
+	add      r4, r4, r0
+	bl       PSMTXConcat
+	lwz      r0, sTexGenBlock__17J3DDifferedTexMtx@sda21(r13)
+	cmplwi   r0, 0
+	beq      lbl_800869C0
+	addi     r3, r1, 8
+	bl       loadExecute__17J3DDifferedTexMtxFPA4_Cf
 
-	.loc_0x54:
-	  mulli     r30, r30, 0x3
-	  addi      r3, r1, 0x8
-	  mr        r4, r30
-	  bl        -0xFB14
-	  lwz       r3, 0x40(r31)
-	  mr        r4, r30
-	  lwz       r3, 0x30(r3)
-	  bl        -0xFAA4
-	  lwz       r0, -0x764C(r13)
-	  cmplwi    r0, 0x2000
-	  bne-      .loc_0x90
-	  lwz       r3, 0x40(r31)
-	  addi      r4, r30, 0x1E
-	  lwz       r3, 0x30(r3)
-	  bl        -0xF9E8
+lbl_800869C0:
+	mulli    r30, r30, 3
+	addi     r3, r1, 8
+	mr       r4, r30
+	bl       J3DFifoLoadPosMtxImm__FPA4_fUl
+	lwz      r3, 0x40(r31)
+	mr       r4, r30
+	lwz      r3, 0x30(r3)
+	bl       J3DFifoLoadNrmMtxImm__FPA4_fUl
+	lwz      r0, sTexMtxLoadType__11J3DShapeMtx@sda21(r13)
+	cmplwi   r0, 0x2000
+	bne      lbl_800869FC
+	lwz      r3, 0x40(r31)
+	addi     r4, r30, 0x1e
+	lwz      r3, 0x30(r3)
+	bl       J3DFifoLoadNrmMtxToTexMtx__FPA4_fUl
 
-	.loc_0x90:
-	  lwz       r0, 0x44(r1)
-	  lwz       r31, 0x3C(r1)
-	  lwz       r30, 0x38(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
+lbl_800869FC:
+	lwz      r0, 0x44(r1)
+	lwz      r31, 0x3c(r1)
+	lwz      r30, 0x38(r1)
+	mtlr     r0
+	addi     r1, r1, 0x40
+	blr
 	*/
 }
 
@@ -748,56 +1037,55 @@ void J3DShapeMtxConcatView::loadMtxConcatView_NCPU(int, unsigned short) const
 void J3DShapeMtxConcatView::loadMtxConcatView_PNCPU(int, unsigned short) const
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  stw       r0, 0x44(r1)
-	  stw       r31, 0x3C(r1)
-	  stw       r30, 0x38(r1)
-	  mr        r30, r4
-	  lwz       r0, -0x7640(r13)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x54
-	  lis       r3, 0x8051
-	  rlwinm    r0,r5,0,16,31
-	  subi      r4, r3, 0xDD0
-	  addi      r5, r1, 0x8
-	  lwz       r3, 0x40(r4)
-	  mulli     r0, r0, 0x30
-	  lwz       r4, 0x104(r4)
-	  lwz       r3, 0x30(r3)
-	  add       r4, r4, r0
-	  bl        0x638A4
-	  addi      r3, r1, 0x8
-	  bl        -0x7DC
+	stwu     r1, -0x40(r1)
+	mflr     r0
+	stw      r0, 0x44(r1)
+	stw      r31, 0x3c(r1)
+	stw      r30, 0x38(r1)
+	mr       r30, r4
+	lwz      r0, sTexGenBlock__17J3DDifferedTexMtx@sda21(r13)
+	cmplwi   r0, 0
+	beq      lbl_80086A68
+	lis      r3, j3dSys@ha
+	clrlwi   r0, r5, 0x10
+	addi     r4, r3, j3dSys@l
+	addi     r5, r1, 8
+	lwz      r3, 0x40(r4)
+	mulli    r0, r0, 0x30
+	lwz      r4, 0x104(r4)
+	lwz      r3, 0x30(r3)
+	add      r4, r4, r0
+	bl       PSMTXConcat
+	addi     r3, r1, 8
+	bl       loadExecute__17J3DDifferedTexMtxFPA4_Cf
 
-	.loc_0x54:
-	  lis       r3, 0x8051
-	  subi      r31, r3, 0xDD0
-	  mulli     r30, r30, 0x3
-	  lwz       r3, 0x40(r31)
-	  lwz       r3, 0x30(r3)
-	  mr        r4, r30
-	  bl        -0xFBC8
-	  lwz       r3, 0x40(r31)
-	  mr        r4, r30
-	  lwz       r3, 0x30(r3)
-	  bl        -0xFB58
-	  lwz       r0, -0x764C(r13)
-	  cmplwi    r0, 0x2000
-	  bne-      .loc_0x9C
-	  lwz       r3, 0x40(r31)
-	  addi      r4, r30, 0x1E
-	  lwz       r3, 0x30(r3)
-	  bl        -0xFA9C
+lbl_80086A68:
+	lis      r3, j3dSys@ha
+	addi     r31, r3, j3dSys@l
+	mulli    r30, r30, 3
+	lwz      r3, 0x40(r31)
+	lwz      r3, 0x30(r3)
+	mr       r4, r30
+	bl       J3DFifoLoadPosMtxImm__FPA4_fUl
+	lwz      r3, 0x40(r31)
+	mr       r4, r30
+	lwz      r3, 0x30(r3)
+	bl       J3DFifoLoadNrmMtxImm__FPA4_fUl
+	lwz      r0, sTexMtxLoadType__11J3DShapeMtx@sda21(r13)
+	cmplwi   r0, 0x2000
+	bne      lbl_80086AB0
+	lwz      r3, 0x40(r31)
+	addi     r4, r30, 0x1e
+	lwz      r3, 0x30(r3)
+	bl       J3DFifoLoadNrmMtxToTexMtx__FPA4_fUl
 
-	.loc_0x9C:
-	  lwz       r0, 0x44(r1)
-	  lwz       r31, 0x3C(r1)
-	  lwz       r30, 0x38(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
+lbl_80086AB0:
+	lwz      r0, 0x44(r1)
+	lwz      r31, 0x3c(r1)
+	lwz      r30, 0x38(r1)
+	mtlr     r0
+	addi     r1, r1, 0x40
+	blr
 	*/
 }
 
@@ -877,30 +1165,29 @@ void J3DShapeMtxConcatView::loadMtxConcatView_PNGP_LOD(int,
 void J3DShapeMtx::load() const
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r4, 0x804A
-	  lhz       r5, 0x4(r3)
-	  stw       r0, 0x24(r1)
-	  addi      r0, r4, 0x2CC8
-	  addi      r12, r1, 0x8
-	  li        r4, 0
-	  lwz       r6, -0x7658(r13)
-	  mulli     r6, r6, 0xC
-	  add       r8, r0, r6
-	  lwz       r7, 0x0(r8)
-	  lwz       r6, 0x4(r8)
-	  lwz       r0, 0x8(r8)
-	  stw       r7, 0x8(r1)
-	  stw       r6, 0xC(r1)
-	  stw       r0, 0x10(r1)
-	  bl        0x3AF44
-	  nop
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lis      r4, sMtxLoadPipeline__11J3DShapeMtx@ha
+	lhz      r5, 4(r3)
+	stw      r0, 0x24(r1)
+	addi     r0, r4, sMtxLoadPipeline__11J3DShapeMtx@l
+	addi     r12, r1, 8
+	li       r4, 0
+	lwz      r6, sCurrentPipeline__11J3DShapeMtx@sda21(r13)
+	mulli    r6, r6, 0xc
+	add      r8, r0, r6
+	lwz      r7, 0(r8)
+	lwz      r6, 4(r8)
+	lwz      r0, 8(r8)
+	stw      r7, 8(r1)
+	stw      r6, 0xc(r1)
+	stw      r0, 0x10(r1)
+	bl       __ptmf_scall
+	nop
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -912,32 +1199,31 @@ void J3DShapeMtx::load() const
 void J3DShapeMtx::calcNBTScale(const Vec&, float (*)[3][3], float (*)[3][3])
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lhz       r0, 0x4(r3)
-	  mulli     r0, r0, 0x24
-	  add       r5, r5, r0
-	  psq_l     f4,0x0(r5),0,0
-	  add       r7, r6, r0
-	  psq_l     f3,0x8(r5),0,0
-	  psq_l     f2,0x10(r5),0,0
-	  psq_l     f1,0x18(r5),0,0
-	  lfs       f0, 0x20(r5)
-	  psq_st    f4,0x0(r7),0,0
-	  psq_st    f3,0x8(r7),0,0
-	  psq_st    f2,0x10(r7),0,0
-	  psq_st    f1,0x18(r7),0,0
-	  stfs      f0, 0x20(r7)
-	  lhz       r0, 0x4(r3)
-	  mulli     r0, r0, 0x24
-	  add       r3, r6, r0
-	  bl        -0x27670
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lhz      r0, 4(r3)
+	mulli    r0, r0, 0x24
+	add      r5, r5, r0
+	psq_l    f4, 0(r5), 0, qr0
+	add      r7, r6, r0
+	psq_l    f3, 8(r5), 0, qr0
+	psq_l    f2, 16(r5), 0, qr0
+	psq_l    f1, 24(r5), 0, qr0
+	lfs      f0, 0x20(r5)
+	psq_st   f4, 0(r7), 0, qr0
+	psq_st   f3, 8(r7), 0, qr0
+	psq_st   f2, 16(r7), 0, qr0
+	psq_st   f1, 24(r7), 0, qr0
+	stfs     f0, 0x20(r7)
+	lhz      r0, 4(r3)
+	mulli    r0, r0, 0x24
+	add      r3, r6, r0
+	bl       J3DScaleNrmMtx33__FPA3_fRC3Vec
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -949,60 +1235,59 @@ void J3DShapeMtx::calcNBTScale(const Vec&, float (*)[3][3], float (*)[3][3])
 void J3DShapeMtxConcatView::load() const
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r4, 0x8051
-	  subi      r8, r13, 0x7648
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  subi      r31, r4, 0xDD0
-	  stw       r30, 0x18(r1)
-	  mr        r30, r3
-	  lis       r3, 0x804A
-	  lwz       r10, 0x38(r31)
-	  addi      r4, r3, 0x2D28
-	  lwz       r0, -0x7658(r13)
-	  li        r3, 0x15
-	  lwz       r9, 0x84(r10)
-	  mulli     r5, r0, 0xC
-	  lhz       r0, 0x4(r30)
-	  lwz       r6, 0xC(r9)
-	  stw       r6, -0x7648(r13)
-	  add       r4, r4, r5
-	  lwz       r7, 0x0(r4)
-	  li        r5, 0x30
-	  lwz       r9, 0x10(r9)
-	  lwz       r6, 0x4(r4)
-	  lwz       r4, 0x8(r4)
-	  stw       r9, 0x4(r8)
-	  stw       r7, 0x8(r1)
-	  stw       r6, 0xC(r1)
-	  stw       r4, 0x10(r1)
-	  lwz       r4, 0x4(r10)
-	  lwz       r4, 0x48(r4)
-	  lbzx      r0, r4, r0
-	  rlwinm    r0,r0,2,0,29
-	  lwzx      r4, r8, r0
-	  stw       r4, 0x104(r31)
-	  bl        0x5DF98
-	  lwz       r4, 0x38(r31)
-	  mr        r3, r30
-	  lhz       r0, 0x4(r30)
-	  addi      r12, r1, 0x8
-	  lwz       r5, 0x4(r4)
-	  li        r4, 0
-	  rlwinm    r0,r0,1,0,30
-	  lwz       r5, 0x4C(r5)
-	  lhzx      r5, r5, r0
-	  bl        0x3AE14
-	  nop
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lis      r4, j3dSys@ha
+	addi     r8, r13, sMtxPtrTbl__21J3DShapeMtxConcatView@sda21
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	addi     r31, r4, j3dSys@l
+	stw      r30, 0x18(r1)
+	mr       r30, r3
+	lis      r3, sMtxLoadPipeline__21J3DShapeMtxConcatView@ha
+	lwz      r10, 0x38(r31)
+	addi     r4, r3, sMtxLoadPipeline__21J3DShapeMtxConcatView@l
+	lwz      r0, sCurrentPipeline__11J3DShapeMtx@sda21(r13)
+	li       r3, 0x15
+	lwz      r9, 0x84(r10)
+	mulli    r5, r0, 0xc
+	lhz      r0, 4(r30)
+	lwz      r6, 0xc(r9)
+	stw      r6, sMtxPtrTbl__21J3DShapeMtxConcatView@sda21(r13)
+	add      r4, r4, r5
+	lwz      r7, 0(r4)
+	li       r5, 0x30
+	lwz      r9, 0x10(r9)
+	lwz      r6, 4(r4)
+	lwz      r4, 8(r4)
+	stw      r9, 4(r8)
+	stw      r7, 8(r1)
+	stw      r6, 0xc(r1)
+	stw      r4, 0x10(r1)
+	lwz      r4, 4(r10)
+	lwz      r4, 0x48(r4)
+	lbzx     r0, r4, r0
+	slwi     r0, r0, 2
+	lwzx     r4, r8, r0
+	stw      r4, 0x104(r31)
+	bl       GXSetArray
+	lwz      r4, 0x38(r31)
+	mr       r3, r30
+	lhz      r0, 4(r30)
+	addi     r12, r1, 8
+	lwz      r5, 4(r4)
+	li       r4, 0
+	slwi     r0, r0, 1
+	lwz      r5, 0x4c(r5)
+	lhzx     r5, r5, r0
+	bl       __ptmf_scall
+	nop
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -1014,92 +1299,91 @@ void J3DShapeMtxConcatView::load() const
 void J3DShapeMtxConcatView::loadNrmMtx(int, unsigned short, float (*)[4]) const
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x60(r1)
-	  mflr      r0
-	  stw       r0, 0x64(r1)
-	  rlwinm    r0,r5,0,16,31
-	  stw       r31, 0x5C(r1)
-	  mr        r31, r6
-	  lwz       r3, -0x7654(r13)
-	  lbzx      r0, r3, r0
-	  cmplwi    r0, 0x1
-	  bne-      .loc_0xB0
-	  lwz       r0, -0x764C(r13)
-	  cmplwi    r0, 0x2000
-	  bne-      .loc_0x40
-	  mr        r3, r31
-	  li        r4, 0x1E
-	  bl        -0xFD5C
+	stwu     r1, -0x60(r1)
+	mflr     r0
+	stw      r0, 0x64(r1)
+	clrlwi   r0, r5, 0x10
+	stw      r31, 0x5c(r1)
+	mr       r31, r6
+	lwz      r3, sCurrentScaleFlag__11J3DShapeMtx@sda21(r13)
+	lbzx     r0, r3, r0
+	cmplwi   r0, 1
+	bne      lbl_80086DE0
+	lwz      r0, sTexMtxLoadType__11J3DShapeMtx@sda21(r13)
+	cmplwi   r0, 0x2000
+	bne      lbl_80086D70
+	mr       r3, r31
+	li       r4, 0x1e
+	bl       J3DFifoLoadNrmMtxToTexMtx__FPA4_fUl
 
-	.loc_0x40:
-	  lbz       r0, -0x7650(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x5C
-	  mr        r3, r31
-	  li        r4, 0
-	  bl        -0xFE4C
-	  b         .loc_0x110
+lbl_80086D70:
+	lbz      r0, sNBTFlag__11J3DShapeMtx@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_80086D8C
+	mr       r3, r31
+	li       r4, 0
+	bl       J3DFifoLoadNrmMtxImm__FPA4_fUl
+	b        lbl_80086E40
 
-	.loc_0x5C:
-	  lis       r4, 0x8051
-	  psq_l     f5,0x0(r31),0,0
-	  subi      r4, r4, 0xDD0
-	  lfs       f4, 0x8(r31)
-	  psq_l     f3,0x10(r31),0,0
-	  addi      r3, r1, 0x2C
-	  lfs       f2, 0x18(r31)
-	  psq_l     f1,0x20(r31),0,0
-	  lfs       f0, 0x28(r31)
-	  lwz       r4, 0x118(r4)
-	  psq_st    f5,0x0(r3),0,0
-	  stfs      f4, 0x34(r1)
-	  psq_st    f3,0xC(r3),0,0
-	  stfs      f2, 0x40(r1)
-	  psq_st    f1,0x18(r3),0,0
-	  stfs      f0, 0x4C(r1)
-	  bl        -0x277F4
-	  addi      r3, r1, 0x2C
-	  li        r4, 0
-	  bl        -0xFE34
-	  b         .loc_0x110
+lbl_80086D8C:
+	lis      r4, j3dSys@ha
+	psq_l    f5, 0(r31), 0, qr0
+	addi     r4, r4, j3dSys@l
+	lfs      f4, 8(r31)
+	psq_l    f3, 16(r31), 0, qr0
+	addi     r3, r1, 0x2c
+	lfs      f2, 0x18(r31)
+	psq_l    f1, 32(r31), 0, qr0
+	lfs      f0, 0x28(r31)
+	lwz      r4, 0x118(r4)
+	psq_st   f5, 0(r3), 0, qr0
+	stfs     f4, 0x34(r1)
+	psq_st   f3, 12(r3), 0, qr0
+	stfs     f2, 0x40(r1)
+	psq_st   f1, 24(r3), 0, qr0
+	stfs     f0, 0x4c(r1)
+	bl       J3DScaleNrmMtx33__FPA3_fRC3Vec
+	addi     r3, r1, 0x2c
+	li       r4, 0
+	bl       J3DFifoLoadNrmMtxImm3x3__FPA3_fUl
+	b        lbl_80086E40
 
-	.loc_0xB0:
-	  mr        r3, r31
-	  addi      r4, r1, 0x8
-	  bl        -0x27D44
-	  lwz       r0, -0x764C(r13)
-	  cmplwi    r0, 0x2000
-	  bne-      .loc_0xD4
-	  addi      r3, r1, 0x8
-	  li        r4, 0x1E
-	  bl        -0xFD58
+lbl_80086DE0:
+	mr       r3, r31
+	addi     r4, r1, 8
+	bl       J3DPSCalcInverseTranspose__FPA4_fPA3_f
+	lwz      r0, sTexMtxLoadType__11J3DShapeMtx@sda21(r13)
+	cmplwi   r0, 0x2000
+	bne      lbl_80086E04
+	addi     r3, r1, 8
+	li       r4, 0x1e
+	bl       J3DFifoLoadNrmMtxToTexMtx3x3__FPA3_fUl
 
-	.loc_0xD4:
-	  lbz       r0, -0x7650(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0xF0
-	  addi      r3, r1, 0x8
-	  li        r4, 0
-	  bl        -0xFE74
-	  b         .loc_0x110
+lbl_80086E04:
+	lbz      r0, sNBTFlag__11J3DShapeMtx@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_80086E20
+	addi     r3, r1, 8
+	li       r4, 0
+	bl       J3DFifoLoadNrmMtxImm3x3__FPA3_fUl
+	b        lbl_80086E40
 
-	.loc_0xF0:
-	  lis       r4, 0x8051
-	  addi      r3, r1, 0x8
-	  subi      r4, r4, 0xDD0
-	  lwz       r4, 0x118(r4)
-	  bl        -0x27858
-	  addi      r3, r1, 0x8
-	  li        r4, 0
-	  bl        -0xFE98
+lbl_80086E20:
+	lis      r4, j3dSys@ha
+	addi     r3, r1, 8
+	addi     r4, r4, j3dSys@l
+	lwz      r4, 0x118(r4)
+	bl       J3DScaleNrmMtx33__FPA3_fRC3Vec
+	addi     r3, r1, 8
+	li       r4, 0
+	bl       J3DFifoLoadNrmMtxImm3x3__FPA3_fUl
 
-	.loc_0x110:
-	  lwz       r0, 0x64(r1)
-	  lwz       r31, 0x5C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x60
-	  blr
+lbl_80086E40:
+	lwz      r0, 0x64(r1)
+	lwz      r31, 0x5c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x60
+	blr
 	*/
 }
 
@@ -1111,56 +1395,55 @@ void J3DShapeMtxConcatView::loadNrmMtx(int, unsigned short, float (*)[4]) const
 void J3DShapeMtxMulti::load() const
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stw       r31, 0x2C(r1)
-	  stw       r30, 0x28(r1)
-	  stw       r29, 0x24(r1)
-	  li        r29, 0
-	  stw       r28, 0x20(r1)
-	  mr        r28, r3
-	  lis       r3, 0x804A
-	  lwz       r31, 0xC(r28)
-	  lwz       r0, -0x7658(r13)
-	  lhz       r30, 0x8(r28)
-	  mulli     r4, r0, 0xC
-	  addi      r0, r3, 0x2CC8
-	  add       r5, r0, r4
-	  lwz       r4, 0x0(r5)
-	  lwz       r3, 0x4(r5)
-	  lwz       r0, 0x8(r5)
-	  stw       r4, 0x8(r1)
-	  stw       r3, 0xC(r1)
-	  stw       r0, 0x10(r1)
-	  b         .loc_0x84
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stw      r31, 0x2c(r1)
+	stw      r30, 0x28(r1)
+	stw      r29, 0x24(r1)
+	li       r29, 0
+	stw      r28, 0x20(r1)
+	mr       r28, r3
+	lis      r3, sMtxLoadPipeline__11J3DShapeMtx@ha
+	lwz      r31, 0xc(r28)
+	lwz      r0, sCurrentPipeline__11J3DShapeMtx@sda21(r13)
+	lhz      r30, 8(r28)
+	mulli    r4, r0, 0xc
+	addi     r0, r3, sMtxLoadPipeline__11J3DShapeMtx@l
+	add      r5, r0, r4
+	lwz      r4, 0(r5)
+	lwz      r3, 4(r5)
+	lwz      r0, 8(r5)
+	stw      r4, 8(r1)
+	stw      r3, 0xc(r1)
+	stw      r0, 0x10(r1)
+	b        lbl_80086ED8
 
-	.loc_0x5C:
-	  lhz       r5, 0x0(r31)
-	  cmplwi    r5, 0xFFFF
-	  beq-      .loc_0x7C
-	  mr        r3, r28
-	  mr        r4, r29
-	  addi      r12, r1, 0x8
-	  bl        0x3AC5C
-	  nop
+lbl_80086EB0:
+	lhz      r5, 0(r31)
+	cmplwi   r5, 0xffff
+	beq      lbl_80086ED0
+	mr       r3, r28
+	mr       r4, r29
+	addi     r12, r1, 8
+	bl       __ptmf_scall
+	nop
 
-	.loc_0x7C:
-	  addi      r31, r31, 0x2
-	  addi      r29, r29, 0x1
+lbl_80086ED0:
+	addi     r31, r31, 2
+	addi     r29, r29, 1
 
-	.loc_0x84:
-	  cmpw      r29, r30
-	  blt+      .loc_0x5C
-	  lwz       r0, 0x34(r1)
-	  lwz       r31, 0x2C(r1)
-	  lwz       r30, 0x28(r1)
-	  lwz       r29, 0x24(r1)
-	  lwz       r28, 0x20(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_80086ED8:
+	cmpw     r29, r30
+	blt      lbl_80086EB0
+	lwz      r0, 0x34(r1)
+	lwz      r31, 0x2c(r1)
+	lwz      r30, 0x28(r1)
+	lwz      r29, 0x24(r1)
+	lwz      r28, 0x20(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -1235,148 +1518,147 @@ void J3DShapeMtxMulti::calcNBTScale(const Vec&, float (*)[3][3],
 void J3DShapeMtxMultiConcatView::load() const
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x50(r1)
-	  mflr      r0
-	  lis       r4, 0x8051
-	  subi      r5, r13, 0x7648
-	  stw       r0, 0x54(r1)
-	  stmw      r23, 0x2C(r1)
-	  subi      r30, r4, 0xDD0
-	  mr        r24, r3
-	  lwz       r6, 0x38(r30)
-	  lbz       r0, -0x764F(r13)
-	  lwz       r3, 0x84(r6)
-	  cmplwi    r0, 0
-	  lwz       r4, 0xC(r3)
-	  stw       r4, -0x7648(r13)
-	  lwz       r0, 0x10(r3)
-	  stw       r0, 0x4(r5)
-	  bne-      .loc_0xF0
-	  lwz       r4, -0x7658(r13)
-	  lis       r3, 0x804A
-	  addi      r0, r3, 0x2D28
-	  lwz       r23, 0xC(r24)
-	  mulli     r3, r4, 0xC
-	  lhz       r28, 0x8(r24)
-	  li        r29, 0
-	  add       r5, r0, r3
-	  lwz       r4, 0x0(r5)
-	  lwz       r3, 0x4(r5)
-	  lwz       r0, 0x8(r5)
-	  stw       r4, 0x14(r1)
-	  stw       r3, 0x18(r1)
-	  stw       r0, 0x1C(r1)
-	  b         .loc_0xE4
+	stwu     r1, -0x50(r1)
+	mflr     r0
+	lis      r4, j3dSys@ha
+	addi     r5, r13, sMtxPtrTbl__21J3DShapeMtxConcatView@sda21
+	stw      r0, 0x54(r1)
+	stmw     r23, 0x2c(r1)
+	addi     r30, r4, j3dSys@l
+	mr       r24, r3
+	lwz      r6, 0x38(r30)
+	lbz      r0, sLODFlag__11J3DShapeMtx@sda21(r13)
+	lwz      r3, 0x84(r6)
+	cmplwi   r0, 0
+	lwz      r4, 0xc(r3)
+	stw      r4, sMtxPtrTbl__21J3DShapeMtxConcatView@sda21(r13)
+	lwz      r0, 0x10(r3)
+	stw      r0, 4(r5)
+	bne      lbl_800870A0
+	lwz      r4, sCurrentPipeline__11J3DShapeMtx@sda21(r13)
+	lis      r3, sMtxLoadPipeline__21J3DShapeMtxConcatView@ha
+	addi     r0, r3, sMtxLoadPipeline__21J3DShapeMtxConcatView@l
+	lwz      r23, 0xc(r24)
+	mulli    r3, r4, 0xc
+	lhz      r28, 8(r24)
+	li       r29, 0
+	add      r5, r0, r3
+	lwz      r4, 0(r5)
+	lwz      r3, 4(r5)
+	lwz      r0, 8(r5)
+	stw      r4, 0x14(r1)
+	stw      r3, 0x18(r1)
+	stw      r0, 0x1c(r1)
+	b        lbl_80087094
 
-	.loc_0x80:
-	  lhz       r0, 0x0(r23)
-	  cmplwi    r0, 0xFFFF
-	  beq-      .loc_0xDC
-	  lwz       r5, 0x38(r30)
-	  rlwinm    r7,r0,1,15,30
-	  subi      r4, r13, 0x7648
-	  li        r3, 0x15
-	  lwz       r8, 0x4(r5)
-	  li        r5, 0x30
-	  lwz       r6, 0x48(r8)
-	  lwz       r8, 0x4C(r8)
-	  lbzx      r0, r6, r0
-	  lhzx      r25, r8, r7
-	  rlwinm    r0,r0,2,0,29
-	  lwzx      r4, r4, r0
-	  stw       r4, 0x104(r30)
-	  bl        0x5DC10
-	  mr        r3, r24
-	  mr        r4, r29
-	  mr        r5, r25
-	  addi      r12, r1, 0x14
-	  bl        0x3AAA0
-	  nop
+lbl_80087030:
+	lhz      r0, 0(r23)
+	cmplwi   r0, 0xffff
+	beq      lbl_8008708C
+	lwz      r5, 0x38(r30)
+	rlwinm   r7, r0, 1, 0xf, 0x1e
+	addi     r4, r13, sMtxPtrTbl__21J3DShapeMtxConcatView@sda21
+	li       r3, 0x15
+	lwz      r8, 4(r5)
+	li       r5, 0x30
+	lwz      r6, 0x48(r8)
+	lwz      r8, 0x4c(r8)
+	lbzx     r0, r6, r0
+	lhzx     r25, r8, r7
+	slwi     r0, r0, 2
+	lwzx     r4, r4, r0
+	stw      r4, 0x104(r30)
+	bl       GXSetArray
+	mr       r3, r24
+	mr       r4, r29
+	mr       r5, r25
+	addi     r12, r1, 0x14
+	bl       __ptmf_scall
+	nop
 
-	.loc_0xDC:
-	  addi      r23, r23, 0x2
-	  addi      r29, r29, 0x1
+lbl_8008708C:
+	addi     r23, r23, 2
+	addi     r29, r29, 1
 
-	.loc_0xE4:
-	  cmpw      r29, r28
-	  blt+      .loc_0x80
-	  b         .loc_0x1D8
+lbl_80087094:
+	cmpw     r29, r28
+	blt      lbl_80087030
+	b        lbl_80087188
 
-	.loc_0xF0:
-	  lwz       r6, 0x4(r6)
-	  li        r3, 0x15
-	  li        r5, 0x30
-	  lwz       r29, 0x40(r6)
-	  stw       r4, 0x104(r30)
-	  bl        0x5DBCC
-	  lis       r3, 0x8051
-	  lwz       r23, 0xC(r24)
-	  addi      r28, r3, 0x20F4
-	  lhz       r27, 0x8(r24)
-	  lis       r3, 0x804A
-	  li        r26, 0
-	  addi      r31, r3, 0x2D88
-	  b         .loc_0x1D0
+lbl_800870A0:
+	lwz      r6, 4(r6)
+	li       r3, 0x15
+	li       r5, 0x30
+	lwz      r29, 0x40(r6)
+	stw      r4, 0x104(r30)
+	bl       GXSetArray
+	lis      r3, sMtxLoadCache__11J3DShapeMtx@ha
+	lwz      r23, 0xc(r24)
+	addi     r28, r3, sMtxLoadCache__11J3DShapeMtx@l
+	lhz      r27, 8(r24)
+	lis      r3, sMtxLoadLODPipeline__21J3DShapeMtxConcatView@ha
+	li       r26, 0
+	addi     r31, r3, sMtxLoadLODPipeline__21J3DShapeMtxConcatView@l
+	b        lbl_80087180
 
-	.loc_0x128:
-	  lwz       r0, -0x7658(r13)
-	  mulli     r6, r0, 0xC
-	  add       r5, r31, r6
-	  lwz       r4, 0x0(r5)
-	  lwz       r3, 0x4(r5)
-	  lwz       r0, 0x8(r5)
-	  stw       r4, 0x8(r1)
-	  stw       r3, 0xC(r1)
-	  stw       r0, 0x10(r1)
-	  lhz       r4, 0x0(r23)
-	  cmplwi    r4, 0xFFFF
-	  beq-      .loc_0x1C4
-	  rlwinm    r3,r4,1,15,30
-	  lhz       r0, 0x0(r28)
-	  lhzx      r25, r29, r3
-	  cmplw     r25, r0
-	  beq-      .loc_0x1C4
-	  lwz       r3, 0x38(r30)
-	  lwz       r3, 0x4(r3)
-	  lwz       r3, 0x48(r3)
-	  lbzx      r0, r3, r4
-	  cmplwi    r0, 0
-	  bne-      .loc_0x1A8
-	  lis       r3, 0x804A
-	  addi      r0, r3, 0x2D28
-	  add       r5, r0, r6
-	  lwz       r4, 0x0(r5)
-	  lwz       r3, 0x4(r5)
-	  lwz       r0, 0x8(r5)
-	  stw       r4, 0x8(r1)
-	  stw       r3, 0xC(r1)
-	  stw       r0, 0x10(r1)
+lbl_800870D8:
+	lwz      r0, sCurrentPipeline__11J3DShapeMtx@sda21(r13)
+	mulli    r6, r0, 0xc
+	add      r5, r31, r6
+	lwz      r4, 0(r5)
+	lwz      r3, 4(r5)
+	lwz      r0, 8(r5)
+	stw      r4, 8(r1)
+	stw      r3, 0xc(r1)
+	stw      r0, 0x10(r1)
+	lhz      r4, 0(r23)
+	cmplwi   r4, 0xffff
+	beq      lbl_80087174
+	rlwinm   r3, r4, 1, 0xf, 0x1e
+	lhz      r0, 0(r28)
+	lhzx     r25, r29, r3
+	cmplw    r25, r0
+	beq      lbl_80087174
+	lwz      r3, 0x38(r30)
+	lwz      r3, 4(r3)
+	lwz      r3, 0x48(r3)
+	lbzx     r0, r3, r4
+	cmplwi   r0, 0
+	bne      lbl_80087158
+	lis      r3, sMtxLoadPipeline__21J3DShapeMtxConcatView@ha
+	addi     r0, r3, sMtxLoadPipeline__21J3DShapeMtxConcatView@l
+	add      r5, r0, r6
+	lwz      r4, 0(r5)
+	lwz      r3, 4(r5)
+	lwz      r0, 8(r5)
+	stw      r4, 8(r1)
+	stw      r3, 0xc(r1)
+	stw      r0, 0x10(r1)
 
-	.loc_0x1A8:
-	  mr        r3, r24
-	  mr        r4, r26
-	  mr        r5, r25
-	  addi      r12, r1, 0x8
-	  bl        0x3A9BC
-	  nop
-	  sth       r25, 0x0(r28)
+lbl_80087158:
+	mr       r3, r24
+	mr       r4, r26
+	mr       r5, r25
+	addi     r12, r1, 8
+	bl       __ptmf_scall
+	nop
+	sth      r25, 0(r28)
 
-	.loc_0x1C4:
-	  addi      r23, r23, 0x2
-	  addi      r28, r28, 0x2
-	  addi      r26, r26, 0x1
+lbl_80087174:
+	addi     r23, r23, 2
+	addi     r28, r28, 2
+	addi     r26, r26, 1
 
-	.loc_0x1D0:
-	  cmpw      r26, r27
-	  blt+      .loc_0x128
+lbl_80087180:
+	cmpw     r26, r27
+	blt      lbl_800870D8
 
-	.loc_0x1D8:
-	  lmw       r23, 0x2C(r1)
-	  lwz       r0, 0x54(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x50
-	  blr
+lbl_80087188:
+	lmw      r23, 0x2c(r1)
+	lwz      r0, 0x54(r1)
+	mtlr     r0
+	addi     r1, r1, 0x50
+	blr
 	*/
 }
 
@@ -1491,98 +1773,97 @@ void J3DShapeMtxMultiConcatView::loadNrmMtx(int, unsigned short,
 void J3DShapeMtxBBoardConcatView::load() const
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  lis       r4, 0x8051
-	  stw       r0, 0x44(r1)
-	  lhz       r0, 0x4(r3)
-	  subi      r3, r4, 0xDD0
-	  lwz       r7, 0x38(r3)
-	  rlwinm    r5,r0,1,0,30
-	  lwz       r6, 0x4(r7)
-	  lwz       r4, 0x48(r6)
-	  lwz       r6, 0x4C(r6)
-	  lbzx      r0, r4, r0
-	  lhzx      r5, r6, r5
-	  cmplwi    r0, 0
-	  bne-      .loc_0x58
-	  lwz       r4, 0x84(r7)
-	  mulli     r0, r5, 0x30
-	  addi      r5, r1, 0x8
-	  lwz       r4, 0xC(r4)
-	  add       r4, r4, r0
-	  bl        0x62FDC
-	  b         .loc_0x70
+	stwu     r1, -0x40(r1)
+	mflr     r0
+	lis      r4, j3dSys@ha
+	stw      r0, 0x44(r1)
+	lhz      r0, 4(r3)
+	addi     r3, r4, j3dSys@l
+	lwz      r7, 0x38(r3)
+	slwi     r5, r0, 1
+	lwz      r6, 4(r7)
+	lwz      r4, 0x48(r6)
+	lwz      r6, 0x4c(r6)
+	lbzx     r0, r4, r0
+	lhzx     r5, r6, r5
+	cmplwi   r0, 0
+	bne      lbl_8008732C
+	lwz      r4, 0x84(r7)
+	mulli    r0, r5, 0x30
+	addi     r5, r1, 8
+	lwz      r4, 0xc(r4)
+	add      r4, r4, r0
+	bl       PSMTXConcat
+	b        lbl_80087344
 
-	.loc_0x58:
-	  lwz       r4, 0x84(r7)
-	  mulli     r0, r5, 0x30
-	  addi      r5, r1, 0x8
-	  lwz       r4, 0x10(r4)
-	  add       r4, r4, r0
-	  bl        0x62FC0
+lbl_8008732C:
+	lwz      r4, 0x84(r7)
+	mulli    r0, r5, 0x30
+	addi     r5, r1, 8
+	lwz      r4, 0x10(r4)
+	add      r4, r4, r0
+	bl       PSMTXConcat
 
-	.loc_0x70:
-	  addi      r3, r1, 0x8
-	  bl        -0x284D0
-	  addi      r3, r1, 0x8
-	  li        r4, 0
-	  bl        -0x1049C
-	  lfs       f0, -0x7878(r2)
-	  lfs       f1, 0x8(r1)
-	  fcmpu     cr0, f0, f1
-	  beq-      .loc_0xA0
-	  lfs       f0, -0x7874(r2)
-	  fdivs     f0, f0, f1
-	  stfs      f0, 0x8(r1)
+lbl_80087344:
+	addi     r3, r1, 8
+	bl       J3DCalcBBoardMtx__FPA4_f
+	addi     r3, r1, 8
+	li       r4, 0
+	bl       J3DFifoLoadPosMtxImm__FPA4_fUl
+	lfs      f0, lbl_80516AE8@sda21(r2)
+	lfs      f1, 8(r1)
+	fcmpu    cr0, f0, f1
+	beq      lbl_80087374
+	lfs      f0, lbl_80516AEC@sda21(r2)
+	fdivs    f0, f0, f1
+	stfs     f0, 8(r1)
 
-	.loc_0xA0:
-	  lfs       f0, -0x7878(r2)
-	  lfs       f1, 0x1C(r1)
-	  fcmpu     cr0, f0, f1
-	  beq-      .loc_0xBC
-	  lfs       f0, -0x7874(r2)
-	  fdivs     f0, f0, f1
-	  stfs      f0, 0x1C(r1)
+lbl_80087374:
+	lfs      f0, lbl_80516AE8@sda21(r2)
+	lfs      f1, 0x1c(r1)
+	fcmpu    cr0, f0, f1
+	beq      lbl_80087390
+	lfs      f0, lbl_80516AEC@sda21(r2)
+	fdivs    f0, f0, f1
+	stfs     f0, 0x1c(r1)
 
-	.loc_0xBC:
-	  lfs       f0, -0x7878(r2)
-	  lfs       f1, 0x30(r1)
-	  fcmpu     cr0, f0, f1
-	  beq-      .loc_0xD8
-	  lfs       f0, -0x7874(r2)
-	  fdivs     f0, f0, f1
-	  stfs      f0, 0x30(r1)
+lbl_80087390:
+	lfs      f0, lbl_80516AE8@sda21(r2)
+	lfs      f1, 0x30(r1)
+	fcmpu    cr0, f0, f1
+	beq      lbl_800873AC
+	lfs      f0, lbl_80516AEC@sda21(r2)
+	fdivs    f0, f0, f1
+	stfs     f0, 0x30(r1)
 
-	.loc_0xD8:
-	  lbz       r0, -0x7650(r13)
-	  lfs       f0, -0x7878(r2)
-	  cmplwi    r0, 0
-	  stfs      f0, 0x14(r1)
-	  stfs      f0, 0x24(r1)
-	  stfs      f0, 0x34(r1)
-	  bne-      .loc_0x104
-	  addi      r3, r1, 0x8
-	  li        r4, 0
-	  bl        -0x10498
-	  b         .loc_0x124
+lbl_800873AC:
+	lbz      r0, sNBTFlag__11J3DShapeMtx@sda21(r13)
+	lfs      f0, lbl_80516AE8@sda21(r2)
+	cmplwi   r0, 0
+	stfs     f0, 0x14(r1)
+	stfs     f0, 0x24(r1)
+	stfs     f0, 0x34(r1)
+	bne      lbl_800873D8
+	addi     r3, r1, 8
+	li       r4, 0
+	bl       J3DFifoLoadNrmMtxImm__FPA4_fUl
+	b        lbl_800873F8
 
-	.loc_0x104:
-	  lis       r4, 0x8051
-	  addi      r3, r1, 0x8
-	  subi      r4, r4, 0xDD0
-	  lwz       r4, 0x118(r4)
-	  bl        -0x27E74
-	  addi      r3, r1, 0x8
-	  li        r4, 0
-	  bl        -0x104BC
+lbl_800873D8:
+	lis      r4, j3dSys@ha
+	addi     r3, r1, 8
+	addi     r4, r4, j3dSys@l
+	lwz      r4, 0x118(r4)
+	bl       J3DScaleNrmMtx__FPA4_fRC3Vec
+	addi     r3, r1, 8
+	li       r4, 0
+	bl       J3DFifoLoadNrmMtxImm__FPA4_fUl
 
-	.loc_0x124:
-	  lwz       r0, 0x44(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
+lbl_800873F8:
+	lwz      r0, 0x44(r1)
+	mtlr     r0
+	addi     r1, r1, 0x40
+	blr
 	*/
 }
 
@@ -1594,98 +1875,97 @@ void J3DShapeMtxBBoardConcatView::load() const
 void J3DShapeMtxYBBoardConcatView::load() const
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x70(r1)
-	  mflr      r0
-	  lis       r4, 0x8051
-	  stw       r0, 0x74(r1)
-	  stw       r31, 0x6C(r1)
-	  mr        r31, r3
-	  subi      r3, r4, 0xDD0
-	  lhz       r0, 0x4(r31)
-	  lwz       r7, 0x38(r3)
-	  rlwinm    r5,r0,1,0,30
-	  lwz       r6, 0x4(r7)
-	  lwz       r4, 0x48(r6)
-	  lwz       r6, 0x4C(r6)
-	  lbzx      r0, r4, r0
-	  lhzx      r5, r6, r5
-	  cmplwi    r0, 0
-	  bne-      .loc_0x60
-	  lwz       r4, 0x84(r7)
-	  mulli     r0, r5, 0x30
-	  addi      r5, r1, 0x2C
-	  lwz       r4, 0xC(r4)
-	  add       r4, r4, r0
-	  bl        0x62EA0
-	  b         .loc_0x78
+	stwu     r1, -0x70(r1)
+	mflr     r0
+	lis      r4, j3dSys@ha
+	stw      r0, 0x74(r1)
+	stw      r31, 0x6c(r1)
+	mr       r31, r3
+	addi     r3, r4, j3dSys@l
+	lhz      r0, 4(r31)
+	lwz      r7, 0x38(r3)
+	slwi     r5, r0, 1
+	lwz      r6, 4(r7)
+	lwz      r4, 0x48(r6)
+	lwz      r6, 0x4c(r6)
+	lbzx     r0, r4, r0
+	lhzx     r5, r6, r5
+	cmplwi   r0, 0
+	bne      lbl_80087468
+	lwz      r4, 0x84(r7)
+	mulli    r0, r5, 0x30
+	addi     r5, r1, 0x2c
+	lwz      r4, 0xc(r4)
+	add      r4, r4, r0
+	bl       PSMTXConcat
+	b        lbl_80087480
 
-	.loc_0x60:
-	  lwz       r4, 0x84(r7)
-	  mulli     r0, r5, 0x30
-	  addi      r5, r1, 0x2C
-	  lwz       r4, 0x10(r4)
-	  add       r4, r4, r0
-	  bl        0x62E84
+lbl_80087468:
+	lwz      r4, 0x84(r7)
+	mulli    r0, r5, 0x30
+	addi     r5, r1, 0x2c
+	lwz      r4, 0x10(r4)
+	add      r4, r4, r0
+	bl       PSMTXConcat
 
-	.loc_0x78:
-	  addi      r3, r1, 0x2C
-	  bl        -0x2851C
-	  addi      r3, r1, 0x2C
-	  li        r4, 0
-	  bl        -0x105D8
-	  lwz       r3, -0x7654(r13)
-	  lhz       r0, 0x4(r31)
-	  lbzx      r0, r3, r0
-	  cmplwi    r0, 0x1
-	  bne-      .loc_0xE0
-	  lbz       r0, -0x7650(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0xBC
-	  addi      r3, r1, 0x2C
-	  li        r4, 0
-	  bl        -0x10584
-	  b         .loc_0x128
+lbl_80087480:
+	addi     r3, r1, 0x2c
+	bl       J3DCalcYBBoardMtx__FPA4_f
+	addi     r3, r1, 0x2c
+	li       r4, 0
+	bl       J3DFifoLoadPosMtxImm__FPA4_fUl
+	lwz      r3, sCurrentScaleFlag__11J3DShapeMtx@sda21(r13)
+	lhz      r0, 4(r31)
+	lbzx     r0, r3, r0
+	cmplwi   r0, 1
+	bne      lbl_800874E8
+	lbz      r0, sNBTFlag__11J3DShapeMtx@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_800874C4
+	addi     r3, r1, 0x2c
+	li       r4, 0
+	bl       J3DFifoLoadNrmMtxImm__FPA4_fUl
+	b        lbl_80087530
 
-	.loc_0xBC:
-	  lis       r4, 0x8051
-	  addi      r3, r1, 0x2C
-	  subi      r4, r4, 0xDD0
-	  lwz       r4, 0x118(r4)
-	  bl        -0x27F60
-	  addi      r3, r1, 0x2C
-	  li        r4, 0
-	  bl        -0x105A8
-	  b         .loc_0x128
+lbl_800874C4:
+	lis      r4, j3dSys@ha
+	addi     r3, r1, 0x2c
+	addi     r4, r4, j3dSys@l
+	lwz      r4, 0x118(r4)
+	bl       J3DScaleNrmMtx__FPA4_fRC3Vec
+	addi     r3, r1, 0x2c
+	li       r4, 0
+	bl       J3DFifoLoadNrmMtxImm__FPA4_fUl
+	b        lbl_80087530
 
-	.loc_0xE0:
-	  addi      r3, r1, 0x2C
-	  addi      r4, r1, 0x8
-	  bl        -0x2844C
-	  lbz       r0, -0x7650(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x108
-	  addi      r3, r1, 0x8
-	  li        r4, 0
-	  bl        -0x10564
-	  b         .loc_0x128
+lbl_800874E8:
+	addi     r3, r1, 0x2c
+	addi     r4, r1, 8
+	bl       J3DPSCalcInverseTranspose__FPA4_fPA3_f
+	lbz      r0, sNBTFlag__11J3DShapeMtx@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_80087510
+	addi     r3, r1, 8
+	li       r4, 0
+	bl       J3DFifoLoadNrmMtxImm3x3__FPA3_fUl
+	b        lbl_80087530
 
-	.loc_0x108:
-	  lis       r4, 0x8051
-	  addi      r3, r1, 0x8
-	  subi      r4, r4, 0xDD0
-	  lwz       r4, 0x118(r4)
-	  bl        -0x27F48
-	  addi      r3, r1, 0x8
-	  li        r4, 0
-	  bl        -0x10588
+lbl_80087510:
+	lis      r4, j3dSys@ha
+	addi     r3, r1, 8
+	addi     r4, r4, j3dSys@l
+	lwz      r4, 0x118(r4)
+	bl       J3DScaleNrmMtx33__FPA3_fRC3Vec
+	addi     r3, r1, 8
+	li       r4, 0
+	bl       J3DFifoLoadNrmMtxImm3x3__FPA3_fUl
 
-	.loc_0x128:
-	  lwz       r0, 0x74(r1)
-	  lwz       r31, 0x6C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x70
-	  blr
+lbl_80087530:
+	lwz      r0, 0x74(r1)
+	lwz      r31, 0x6c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x70
+	blr
 	*/
 }
 
@@ -1697,38 +1977,37 @@ void J3DShapeMtxYBBoardConcatView::load() const
 J3DShapeMtxYBBoardConcatView::~J3DShapeMtxYBBoardConcatView()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r3
-	  beq-      .loc_0x54
-	  lis       r3, 0x804A
-	  addi      r0, r3, 0x2E8C
-	  stw       r0, 0x0(r31)
-	  beq-      .loc_0x44
-	  lis       r3, 0x804A
-	  addi      r0, r3, 0x2F24
-	  stw       r0, 0x0(r31)
-	  beq-      .loc_0x44
-	  lis       r3, 0x804A
-	  addi      r0, r3, 0x2F4C
-	  stw       r0, 0x0(r31)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r3, r3
+	beq      lbl_80087598
+	lis      r3, __vt__28J3DShapeMtxYBBoardConcatView@ha
+	addi     r0, r3, __vt__28J3DShapeMtxYBBoardConcatView@l
+	stw      r0, 0(r31)
+	beq      lbl_80087588
+	lis      r3, __vt__21J3DShapeMtxConcatView@ha
+	addi     r0, r3, __vt__21J3DShapeMtxConcatView@l
+	stw      r0, 0(r31)
+	beq      lbl_80087588
+	lis      r3, __vt__11J3DShapeMtx@ha
+	addi     r0, r3, __vt__11J3DShapeMtx@l
+	stw      r0, 0(r31)
 
-	.loc_0x44:
-	  extsh.    r0, r4
-	  ble-      .loc_0x54
-	  mr        r3, r31
-	  bl        -0x634E0
+lbl_80087588:
+	extsh.   r0, r4
+	ble      lbl_80087598
+	mr       r3, r31
+	bl       __dl__FPv
 
-	.loc_0x54:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80087598:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1740,10 +2019,9 @@ J3DShapeMtxYBBoardConcatView::~J3DShapeMtxYBBoardConcatView()
 void J3DShapeMtxYBBoardConcatView::getType() const
 {
 	/*
-	.loc_0x0:
-	  lis       r3, 0x534D
-	  addi      r3, r3, 0x5942
-	  blr
+	lis      r3, 0x534D5942@ha
+	addi     r3, r3, 0x534D5942@l
+	blr
 	*/
 }
 
@@ -1762,38 +2040,37 @@ void J3DShapeMtxConcatView::loadNrmMtx(int, unsigned short) const { }
 J3DShapeMtxBBoardConcatView::~J3DShapeMtxBBoardConcatView()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r3
-	  beq-      .loc_0x54
-	  lis       r3, 0x804A
-	  addi      r0, r3, 0x2EB4
-	  stw       r0, 0x0(r31)
-	  beq-      .loc_0x44
-	  lis       r3, 0x804A
-	  addi      r0, r3, 0x2F24
-	  stw       r0, 0x0(r31)
-	  beq-      .loc_0x44
-	  lis       r3, 0x804A
-	  addi      r0, r3, 0x2F4C
-	  stw       r0, 0x0(r31)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r3, r3
+	beq      lbl_80087614
+	lis      r3, __vt__27J3DShapeMtxBBoardConcatView@ha
+	addi     r0, r3, __vt__27J3DShapeMtxBBoardConcatView@l
+	stw      r0, 0(r31)
+	beq      lbl_80087604
+	lis      r3, __vt__21J3DShapeMtxConcatView@ha
+	addi     r0, r3, __vt__21J3DShapeMtxConcatView@l
+	stw      r0, 0(r31)
+	beq      lbl_80087604
+	lis      r3, __vt__11J3DShapeMtx@ha
+	addi     r0, r3, __vt__11J3DShapeMtx@l
+	stw      r0, 0(r31)
 
-	.loc_0x44:
-	  extsh.    r0, r4
-	  ble-      .loc_0x54
-	  mr        r3, r31
-	  bl        -0x6355C
+lbl_80087604:
+	extsh.   r0, r4
+	ble      lbl_80087614
+	mr       r3, r31
+	bl       __dl__FPv
 
-	.loc_0x54:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80087614:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1805,10 +2082,9 @@ J3DShapeMtxBBoardConcatView::~J3DShapeMtxBBoardConcatView()
 void J3DShapeMtxBBoardConcatView::getType() const
 {
 	/*
-	.loc_0x0:
-	  lis       r3, 0x534D
-	  addi      r3, r3, 0x4242
-	  blr
+	lis      r3, 0x534D4242@ha
+	addi     r3, r3, 0x534D4242@l
+	blr
 	*/
 }
 
@@ -1820,38 +2096,37 @@ void J3DShapeMtxBBoardConcatView::getType() const
 J3DShapeMtxMultiConcatView::~J3DShapeMtxMultiConcatView()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r3
-	  beq-      .loc_0x54
-	  lis       r3, 0x804A
-	  addi      r0, r3, 0x2EDC
-	  stw       r0, 0x0(r31)
-	  beq-      .loc_0x44
-	  lis       r3, 0x804A
-	  addi      r0, r3, 0x2F24
-	  stw       r0, 0x0(r31)
-	  beq-      .loc_0x44
-	  lis       r3, 0x804A
-	  addi      r0, r3, 0x2F4C
-	  stw       r0, 0x0(r31)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r3, r3
+	beq      lbl_8008768C
+	lis      r3, __vt__26J3DShapeMtxMultiConcatView@ha
+	addi     r0, r3, __vt__26J3DShapeMtxMultiConcatView@l
+	stw      r0, 0(r31)
+	beq      lbl_8008767C
+	lis      r3, __vt__21J3DShapeMtxConcatView@ha
+	addi     r0, r3, __vt__21J3DShapeMtxConcatView@l
+	stw      r0, 0(r31)
+	beq      lbl_8008767C
+	lis      r3, __vt__11J3DShapeMtx@ha
+	addi     r0, r3, __vt__11J3DShapeMtx@l
+	stw      r0, 0(r31)
 
-	.loc_0x44:
-	  extsh.    r0, r4
-	  ble-      .loc_0x54
-	  mr        r3, r31
-	  bl        -0x635D4
+lbl_8008767C:
+	extsh.   r0, r4
+	ble      lbl_8008768C
+	mr       r3, r31
+	bl       __dl__FPv
 
-	.loc_0x54:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8008768C:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1863,10 +2138,9 @@ J3DShapeMtxMultiConcatView::~J3DShapeMtxMultiConcatView()
 void J3DShapeMtxMultiConcatView::getType() const
 {
 	/*
-	.loc_0x0:
-	  lis       r3, 0x534D
-	  addi      r3, r3, 0x4D43
-	  blr
+	lis      r3, 0x534D4D43@ha
+	addi     r3, r3, 0x534D4D43@l
+	blr
 	*/
 }
 
@@ -1878,9 +2152,8 @@ void J3DShapeMtxMultiConcatView::getType() const
 void J3DShapeMtxMultiConcatView::getUseMtxNum() const
 {
 	/*
-	.loc_0x0:
-	  lhz       r3, 0x8(r3)
-	  blr
+	lhz      r3, 8(r3)
+	blr
 	*/
 }
 
@@ -1892,11 +2165,10 @@ void J3DShapeMtxMultiConcatView::getUseMtxNum() const
 void J3DShapeMtxMultiConcatView::getUseMtxIndex(unsigned short) const
 {
 	/*
-	.loc_0x0:
-	  lwz       r3, 0xC(r3)
-	  rlwinm    r0,r4,1,15,30
-	  lhzx      r3, r3, r0
-	  blr
+	lwz      r3, 0xc(r3)
+	rlwinm   r0, r4, 1, 0xf, 0x1e
+	lhzx     r3, r3, r0
+	blr
 	*/
 }
 
@@ -1915,34 +2187,33 @@ void J3DShapeMtxMultiConcatView::loadNrmMtx(int, unsigned short) const { }
 J3DShapeMtxMulti::~J3DShapeMtxMulti()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r3
-	  beq-      .loc_0x44
-	  lis       r3, 0x804A
-	  addi      r0, r3, 0x2F04
-	  stw       r0, 0x0(r31)
-	  beq-      .loc_0x34
-	  lis       r3, 0x804A
-	  addi      r0, r3, 0x2F4C
-	  stw       r0, 0x0(r31)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r3, r3
+	beq      lbl_80087710
+	lis      r3, __vt__16J3DShapeMtxMulti@ha
+	addi     r0, r3, __vt__16J3DShapeMtxMulti@l
+	stw      r0, 0(r31)
+	beq      lbl_80087700
+	lis      r3, __vt__11J3DShapeMtx@ha
+	addi     r0, r3, __vt__11J3DShapeMtx@l
+	stw      r0, 0(r31)
 
-	.loc_0x34:
-	  extsh.    r0, r4
-	  ble-      .loc_0x44
-	  mr        r3, r31
-	  bl        -0x63658
+lbl_80087700:
+	extsh.   r0, r4
+	ble      lbl_80087710
+	mr       r3, r31
+	bl       __dl__FPv
 
-	.loc_0x44:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80087710:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1954,10 +2225,9 @@ J3DShapeMtxMulti::~J3DShapeMtxMulti()
 void J3DShapeMtxMulti::getType() const
 {
 	/*
-	.loc_0x0:
-	  lis       r3, 0x534D
-	  addi      r3, r3, 0x4D4C
-	  blr
+	lis      r3, 0x534D4D4C@ha
+	addi     r3, r3, 0x534D4D4C@l
+	blr
 	*/
 }
 
@@ -1969,9 +2239,8 @@ void J3DShapeMtxMulti::getType() const
 void J3DShapeMtxMulti::getUseMtxNum() const
 {
 	/*
-	.loc_0x0:
-	  lhz       r3, 0x8(r3)
-	  blr
+	lhz      r3, 8(r3)
+	blr
 	*/
 }
 
@@ -1983,11 +2252,10 @@ void J3DShapeMtxMulti::getUseMtxNum() const
 void J3DShapeMtxMulti::getUseMtxIndex(unsigned short) const
 {
 	/*
-	.loc_0x0:
-	  lwz       r3, 0xC(r3)
-	  rlwinm    r0,r4,1,15,30
-	  lhzx      r3, r3, r0
-	  blr
+	lwz      r3, 0xc(r3)
+	rlwinm   r0, r4, 1, 0xf, 0x1e
+	lhzx     r3, r3, r0
+	blr
 	*/
 }
 
@@ -1999,10 +2267,9 @@ void J3DShapeMtxMulti::getUseMtxIndex(unsigned short) const
 void J3DShapeMtxConcatView::getType() const
 {
 	/*
-	.loc_0x0:
-	  lis       r3, 0x534D
-	  addi      r3, r3, 0x4356
-	  blr
+	lis      r3, 0x534D4356@ha
+	addi     r3, r3, 0x534D4356@l
+	blr
 	*/
 }
 
@@ -2014,112 +2281,111 @@ void J3DShapeMtxConcatView::getType() const
 void __sinit_J3DShapeMtx_cpp(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x80(r1)
-	  stmw      r14, 0x38(r1)
-	  lis       r3, 0x804A
-	  addi      r16, r3, 0x2C98
-	  lwz       r15, 0xC0(r16)
-	  addi      r11, r16, 0x90
-	  lwz       r0, 0x88(r16)
-	  addi      r3, r16, 0xF0
-	  stw       r15, 0x34(r1)
-	  addi      r20, r16, 0x30
-	  lwz       r15, 0xC4(r16)
-	  stw       r0, 0x28(r11)
-	  lwz       r0, 0x34(r1)
-	  stw       r15, 0x8(r1)
-	  lwz       r15, 0xC8(r16)
-	  stw       r0, 0xF0(r16)
-	  lwz       r0, 0x8(r1)
-	  stw       r15, 0xC(r1)
-	  lwz       r15, 0xCC(r16)
-	  stw       r0, 0xF4(r16)
-	  lwz       r0, 0xC(r1)
-	  stw       r15, 0x10(r1)
-	  lwz       r15, 0xD0(r16)
-	  stw       r0, 0xF8(r16)
-	  lwz       r0, 0x10(r1)
-	  stw       r15, 0x14(r1)
-	  lwz       r15, 0xD4(r16)
-	  stw       r0, 0xC(r3)
-	  lwz       r0, 0x14(r1)
-	  stw       r15, 0x18(r1)
-	  lwz       r15, 0xD8(r16)
-	  stw       r0, 0x10(r3)
-	  lwz       r0, 0x18(r1)
-	  stw       r15, 0x1C(r1)
-	  lwz       r15, 0xDC(r16)
-	  stw       r0, 0x14(r3)
-	  lwz       r0, 0x1C(r1)
-	  stw       r15, 0x20(r1)
-	  lwz       r15, 0xE0(r16)
-	  stw       r0, 0x18(r3)
-	  lwz       r0, 0x20(r1)
-	  stw       r15, 0x24(r1)
-	  lwz       r15, 0xE4(r16)
-	  stw       r0, 0x1C(r3)
-	  lwz       r0, 0x24(r1)
-	  stw       r15, 0x28(r1)
-	  lwz       r15, 0xE8(r16)
-	  stw       r0, 0x20(r3)
-	  lwz       r0, 0x28(r1)
-	  stw       r15, 0x2C(r1)
-	  lwz       r15, 0xEC(r16)
-	  stw       r0, 0x24(r3)
-	  lwz       r0, 0x2C(r1)
-	  lwz       r17, 0x0(r16)
-	  lwz       r18, 0x4(r16)
-	  lwz       r19, 0x8(r16)
-	  lwz       r21, 0xC(r16)
-	  lwz       r22, 0x10(r16)
-	  lwz       r23, 0x14(r16)
-	  lwz       r24, 0x18(r16)
-	  lwz       r25, 0x1C(r16)
-	  lwz       r26, 0x20(r16)
-	  lwz       r27, 0x24(r16)
-	  lwz       r28, 0x28(r16)
-	  lwz       r29, 0x2C(r16)
-	  lwz       r30, 0x60(r16)
-	  lwz       r31, 0x64(r16)
-	  lwz       r12, 0x68(r16)
-	  lwz       r10, 0x6C(r16)
-	  lwz       r9, 0x70(r16)
-	  lwz       r8, 0x74(r16)
-	  lwz       r7, 0x78(r16)
-	  lwz       r6, 0x7C(r16)
-	  lwz       r5, 0x80(r16)
-	  lwz       r4, 0x84(r16)
-	  lwz       r14, 0x8C(r16)
-	  stw       r0, 0x28(r3)
-	  mr        r0, r15
-	  stw       r15, 0x30(r1)
-	  stw       r17, 0x30(r16)
-	  stw       r18, 0x34(r16)
-	  stw       r19, 0x38(r16)
-	  stw       r21, 0xC(r20)
-	  stw       r22, 0x10(r20)
-	  stw       r23, 0x14(r20)
-	  stw       r24, 0x18(r20)
-	  stw       r25, 0x1C(r20)
-	  stw       r26, 0x20(r20)
-	  stw       r27, 0x24(r20)
-	  stw       r28, 0x28(r20)
-	  stw       r29, 0x2C(r20)
-	  stw       r30, 0x90(r16)
-	  stw       r31, 0x94(r16)
-	  stw       r12, 0x98(r16)
-	  stw       r10, 0xC(r11)
-	  stw       r9, 0x10(r11)
-	  stw       r8, 0x14(r11)
-	  stw       r7, 0x18(r11)
-	  stw       r6, 0x1C(r11)
-	  stw       r5, 0x20(r11)
-	  stw       r4, 0x24(r11)
-	  stw       r14, 0x2C(r11)
-	  stw       r0, 0x2C(r3)
-	  lmw       r14, 0x38(r1)
-	  addi      r1, r1, 0x80
-	  blr
+	stwu     r1, -0x80(r1)
+	stmw     r14, 0x38(r1)
+	lis      r3, lbl_804A2C98@ha
+	addi     r16, r3, lbl_804A2C98@l
+	lwz      r15, 0xc0(r16)
+	addi     r11, r16, 0x90
+	lwz      r0, 0x88(r16)
+	addi     r3, r16, 0xf0
+	stw      r15, 0x34(r1)
+	addi     r20, r16, 0x30
+	lwz      r15, 0xc4(r16)
+	stw      r0, 0x28(r11)
+	lwz      r0, 0x34(r1)
+	stw      r15, 8(r1)
+	lwz      r15, 0xc8(r16)
+	stw      r0, 0xf0(r16)
+	lwz      r0, 8(r1)
+	stw      r15, 0xc(r1)
+	lwz      r15, 0xcc(r16)
+	stw      r0, 0xf4(r16)
+	lwz      r0, 0xc(r1)
+	stw      r15, 0x10(r1)
+	lwz      r15, 0xd0(r16)
+	stw      r0, 0xf8(r16)
+	lwz      r0, 0x10(r1)
+	stw      r15, 0x14(r1)
+	lwz      r15, 0xd4(r16)
+	stw      r0, 0xc(r3)
+	lwz      r0, 0x14(r1)
+	stw      r15, 0x18(r1)
+	lwz      r15, 0xd8(r16)
+	stw      r0, 0x10(r3)
+	lwz      r0, 0x18(r1)
+	stw      r15, 0x1c(r1)
+	lwz      r15, 0xdc(r16)
+	stw      r0, 0x14(r3)
+	lwz      r0, 0x1c(r1)
+	stw      r15, 0x20(r1)
+	lwz      r15, 0xe0(r16)
+	stw      r0, 0x18(r3)
+	lwz      r0, 0x20(r1)
+	stw      r15, 0x24(r1)
+	lwz      r15, 0xe4(r16)
+	stw      r0, 0x1c(r3)
+	lwz      r0, 0x24(r1)
+	stw      r15, 0x28(r1)
+	lwz      r15, 0xe8(r16)
+	stw      r0, 0x20(r3)
+	lwz      r0, 0x28(r1)
+	stw      r15, 0x2c(r1)
+	lwz      r15, 0xec(r16)
+	stw      r0, 0x24(r3)
+	lwz      r0, 0x2c(r1)
+	lwz      r17, 0(r16)
+	lwz      r18, 4(r16)
+	lwz      r19, 8(r16)
+	lwz      r21, 0xc(r16)
+	lwz      r22, 0x10(r16)
+	lwz      r23, 0x14(r16)
+	lwz      r24, 0x18(r16)
+	lwz      r25, 0x1c(r16)
+	lwz      r26, 0x20(r16)
+	lwz      r27, 0x24(r16)
+	lwz      r28, 0x28(r16)
+	lwz      r29, 0x2c(r16)
+	lwz      r30, 0x60(r16)
+	lwz      r31, 0x64(r16)
+	lwz      r12, 0x68(r16)
+	lwz      r10, 0x6c(r16)
+	lwz      r9, 0x70(r16)
+	lwz      r8, 0x74(r16)
+	lwz      r7, 0x78(r16)
+	lwz      r6, 0x7c(r16)
+	lwz      r5, 0x80(r16)
+	lwz      r4, 0x84(r16)
+	lwz      r14, 0x8c(r16)
+	stw      r0, 0x28(r3)
+	mr       r0, r15
+	stw      r15, 0x30(r1)
+	stw      r17, 0x30(r16)
+	stw      r18, 0x34(r16)
+	stw      r19, 0x38(r16)
+	stw      r21, 0xc(r20)
+	stw      r22, 0x10(r20)
+	stw      r23, 0x14(r20)
+	stw      r24, 0x18(r20)
+	stw      r25, 0x1c(r20)
+	stw      r26, 0x20(r20)
+	stw      r27, 0x24(r20)
+	stw      r28, 0x28(r20)
+	stw      r29, 0x2c(r20)
+	stw      r30, 0x90(r16)
+	stw      r31, 0x94(r16)
+	stw      r12, 0x98(r16)
+	stw      r10, 0xc(r11)
+	stw      r9, 0x10(r11)
+	stw      r8, 0x14(r11)
+	stw      r7, 0x18(r11)
+	stw      r6, 0x1c(r11)
+	stw      r5, 0x20(r11)
+	stw      r4, 0x24(r11)
+	stw      r14, 0x2c(r11)
+	stw      r0, 0x2c(r3)
+	lmw      r14, 0x38(r1)
+	addi     r1, r1, 0x80
+	blr
 	*/
 }

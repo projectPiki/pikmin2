@@ -1,5 +1,25 @@
 #include "types.h"
 
+/*
+    Generated from dpostproc
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_8048FF20
+    lbl_8048FF20:
+        .4byte 0x50535461
+        .4byte 0x736B4261
+        .4byte 0x73652E63
+        .4byte 0x70700000
+    .global lbl_8048FF30
+    lbl_8048FF30:
+        .asciz "P2Assert"
+        .skip 3
+        .4byte 0x50535461
+        .4byte 0x736B4261
+        .4byte 0x73652E68
+        .4byte 0x00000000
+*/
+
 namespace PSSystem {
 
 /*
@@ -10,28 +30,27 @@ namespace PSSystem {
 TaskBase::TaskBase()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r4, 0x804E
-	  stw       r0, 0x14(r1)
-	  subi      r0, r4, 0x5AE0
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  mr        r4, r31
-	  stw       r0, 0x0(r3)
-	  addi      r3, r31, 0x4
-	  bl        -0x317A68
-	  li        r0, 0
-	  mr        r3, r31
-	  stb       r0, 0x14(r31)
-	  stb       r0, 0x15(r31)
-	  stw       r0, 0x18(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lis      r4, __vt__Q28PSSystem8TaskBase@ha
+	stw      r0, 0x14(r1)
+	addi     r0, r4, __vt__Q28PSSystem8TaskBase@l
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	mr       r4, r31
+	stw      r0, 0(r3)
+	addi     r3, r31, 4
+	bl       __ct__10JSUPtrLinkFPv
+	li       r0, 0
+	mr       r3, r31
+	stb      r0, 0x14(r31)
+	stb      r0, 0x15(r31)
+	stw      r0, 0x18(r31)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -43,16 +62,16 @@ TaskBase::TaskBase()
 void TaskEntry::append(PSSystem::TaskBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  addi      r4, r4, 0x4
-	  stw       r0, 0x14(r1)
-	  bl        0x3A8
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	addi     r4, r4, 4
+	stw      r0, 0x14(r1)
+	bl
+	"append_Lock__Q28PSSystem31MutexList<Q28PSSystem8TaskBase>FP29JSULink<Q28PSSystem8TaskBase>"
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -64,26 +83,25 @@ void TaskEntry::append(PSSystem::TaskBase*)
 void TaskEntryMgr::isUnderTask_byDirector(PSSystem::DirectorBase*)
 {
 	/*
-	.loc_0x0:
-	  lwz       r5, 0x0(r3)
-	  b         .loc_0x24
+	lwz      r5, 0(r3)
+	b        lbl_8033E294
 
-	.loc_0x8:
-	  lwz       r3, 0x0(r5)
-	  lwz       r0, 0x24(r3)
-	  cmplw     r0, r4
-	  bne-      .loc_0x20
-	  li        r3, 0x1
-	  blr
+lbl_8033E278:
+	lwz      r3, 0(r5)
+	lwz      r0, 0x24(r3)
+	cmplw    r0, r4
+	bne      lbl_8033E290
+	li       r3, 1
+	blr
 
-	.loc_0x20:
-	  lwz       r5, 0xC(r5)
+lbl_8033E290:
+	lwz      r5, 0xc(r5)
 
-	.loc_0x24:
-	  cmplwi    r5, 0
-	  bne+      .loc_0x8
-	  li        r3, 0
-	  blr
+lbl_8033E294:
+	cmplwi   r5, 0
+	bne      lbl_8033E278
+	li       r3, 0
+	blr
 	*/
 }
 
@@ -95,109 +113,108 @@ void TaskEntryMgr::isUnderTask_byDirector(PSSystem::DirectorBase*)
 void TaskEntryMgr::update()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stmw      r26, 0x8(r1)
-	  mr        r31, r3
-	  lwz       r0, 0x24(r3)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x3C
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  subi      r3, r3, 0xE0
-	  li        r4, 0xC5
-	  subi      r5, r5, 0xD0
-	  crclr     6, 0x6
-	  bl        -0x313C9C
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stmw     r26, 8(r1)
+	mr       r31, r3
+	lwz      r0, 0x24(r3)
+	cmplwi   r0, 0
+	bne      lbl_8033E2E0
+	lis      r3, lbl_8048FF20@ha
+	lis      r5, lbl_8048FF30@ha
+	addi     r3, r3, lbl_8048FF20@l
+	li       r4, 0xc5
+	addi     r5, r5, lbl_8048FF30@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x3C:
-	  addi      r3, r31, 0xC
-	  bl        -0x24E77C
-	  lwz       r28, 0x0(r31)
-	  cmplwi    r28, 0
-	  beq-      .loc_0x134
-	  lwz       r30, 0x0(r28)
-	  lwz       r29, 0x24(r31)
-	  addi      r3, r30, 0xC
-	  bl        -0x24E798
-	  lwz       r27, 0x0(r30)
-	  cmplwi    r27, 0
-	  bne-      .loc_0x10C
-	  addi      r3, r30, 0xC
-	  bl        -0x24E6D0
-	  li        r0, 0
-	  stw       r0, 0x24(r30)
-	  b         .loc_0x120
-	  b         .loc_0x10C
+lbl_8033E2E0:
+	addi     r3, r31, 0xc
+	bl       OSLockMutex
+	lwz      r28, 0(r31)
+	cmplwi   r28, 0
+	beq      lbl_8033E3D8
+	lwz      r30, 0(r28)
+	lwz      r29, 0x24(r31)
+	addi     r3, r30, 0xc
+	bl       OSLockMutex
+	lwz      r27, 0(r30)
+	cmplwi   r27, 0
+	bne      lbl_8033E3B0
+	addi     r3, r30, 0xc
+	bl       OSUnlockMutex
+	li       r0, 0
+	stw      r0, 0x24(r30)
+	b        lbl_8033E3C4
+	b        lbl_8033E3B0
 
-	.loc_0x84:
-	  lwz       r26, 0x0(r27)
-	  li        r3, -0x10
-	  lwz       r4, 0x18(r26)
-	  cmplwi    r4, 0
-	  beq-      .loc_0xA8
-	  lwz       r0, 0x4(r4)
-	  cmplwi    r0, 0
-	  bne-      .loc_0xA8
-	  li        r3, -0x1
+lbl_8033E328:
+	lwz      r26, 0(r27)
+	li       r3, -16
+	lwz      r4, 0x18(r26)
+	cmplwi   r4, 0
+	beq      lbl_8033E34C
+	lwz      r0, 4(r4)
+	cmplwi   r0, 0
+	bne      lbl_8033E34C
+	li       r3, -1
 
-	.loc_0xA8:
-	  addis     r0, r3, 0x1
-	  cmplwi    r0, 0xFFFF
-	  beq-      .loc_0xCC
-	  mr        r3, r26
-	  mr        r4, r29
-	  lwz       r12, 0x0(r26)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
+lbl_8033E34C:
+	addis    r0, r3, 1
+	cmplwi   r0, 0xffff
+	beq      lbl_8033E370
+	mr       r3, r26
+	mr       r4, r29
+	lwz      r12, 0(r26)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0xCC:
-	  addis     r0, r3, 0x1
-	  cmplwi    r0, 0xFFFF
-	  bne-      .loc_0xF4
-	  mr        r3, r30
-	  mr        r4, r27
-	  bl        -0x317760
-	  li        r0, 0
-	  stb       r0, 0x14(r26)
-	  stb       r0, 0x15(r26)
-	  stw       r0, 0x18(r26)
+lbl_8033E370:
+	addis    r0, r3, 1
+	cmplwi   r0, 0xffff
+	bne      lbl_8033E398
+	mr       r3, r30
+	mr       r4, r27
+	bl       remove__10JSUPtrListFP10JSUPtrLink
+	li       r0, 0
+	stb      r0, 0x14(r26)
+	stb      r0, 0x15(r26)
+	stw      r0, 0x18(r26)
 
-	.loc_0xF4:
-	  lbz       r0, 0x15(r26)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x108
-	  lwz       r27, 0xC(r27)
-	  b         .loc_0x10C
+lbl_8033E398:
+	lbz      r0, 0x15(r26)
+	cmplwi   r0, 0
+	beq      lbl_8033E3AC
+	lwz      r27, 0xc(r27)
+	b        lbl_8033E3B0
 
-	.loc_0x108:
-	  li        r27, 0
+lbl_8033E3AC:
+	li       r27, 0
 
-	.loc_0x10C:
-	  cmplwi    r27, 0
-	  bne+      .loc_0x84
-	  addi      r3, r30, 0xC
-	  bl        -0x24E778
-	  li        r0, 0x1
+lbl_8033E3B0:
+	cmplwi   r27, 0
+	bne      lbl_8033E328
+	addi     r3, r30, 0xc
+	bl       OSUnlockMutex
+	li       r0, 1
 
-	.loc_0x120:
-	  rlwinm.   r0,r0,0,24,31
-	  bne-      .loc_0x134
-	  mr        r3, r31
-	  mr        r4, r28
-	  bl        -0x3177B0
+lbl_8033E3C4:
+	clrlwi.  r0, r0, 0x18
+	bne      lbl_8033E3D8
+	mr       r3, r31
+	mr       r4, r28
+	bl       remove__10JSUPtrListFP10JSUPtrLink
 
-	.loc_0x134:
-	  addi      r3, r31, 0xC
-	  bl        -0x24E798
-	  lmw       r26, 0x8(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8033E3D8:
+	addi     r3, r31, 0xc
+	bl       OSUnlockMutex
+	lmw      r26, 8(r1)
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -209,53 +226,53 @@ void TaskEntryMgr::update()
 void TaskEntryMgr::appendEntry(PSSystem::TaskEntry*, PSSystem::DirectorBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  mr        r30, r5
-	  stw       r29, 0x14(r1)
-	  mr.       r29, r4
-	  lis       r4, 0x8049
-	  stw       r28, 0x10(r1)
-	  mr        r28, r3
-	  subi      r31, r4, 0xE0
-	  bne-      .loc_0x48
-	  addi      r3, r31, 0
-	  addi      r5, r31, 0x10
-	  li        r4, 0xDC
-	  crclr     6, 0x6
-	  bl        -0x313DF8
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	mr       r30, r5
+	stw      r29, 0x14(r1)
+	or.      r29, r4, r4
+	lis      r4, lbl_8048FF20@ha
+	stw      r28, 0x10(r1)
+	mr       r28, r3
+	addi     r31, r4, lbl_8048FF20@l
+	bne      lbl_8033E43C
+	addi     r3, r31, 0
+	addi     r5, r31, 0x10
+	li       r4, 0xdc
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x48:
-	  li        r0, 0
-	  cmplwi    r30, 0
-	  stw       r0, 0x24(r29)
-	  beq-      .loc_0x74
-	  bne-      .loc_0x70
-	  addi      r3, r31, 0x1C
-	  addi      r5, r31, 0x10
-	  li        r4, 0x50
-	  crclr     6, 0x6
-	  bl        -0x313E20
+lbl_8033E43C:
+	li       r0, 0
+	cmplwi   r30, 0
+	stw      r0, 0x24(r29)
+	beq      lbl_8033E468
+	bne      lbl_8033E464
+	addi     r3, r31, 0x1c
+	addi     r5, r31, 0x10
+	li       r4, 0x50
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x70:
-	  stw       r30, 0x24(r29)
+lbl_8033E464:
+	stw      r30, 0x24(r29)
 
-	.loc_0x74:
-	  mr        r3, r28
-	  addi      r4, r29, 0x28
-	  bl        0x1EC
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8033E468:
+	mr       r3, r28
+	addi     r4, r29, 0x28
+	bl
+"append_Lock__Q28PSSystem32MutexList<Q28PSSystem9TaskEntry>FP30JSULink<Q28PSSystem9TaskEntry>"
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -267,42 +284,42 @@ void TaskEntryMgr::appendEntry(PSSystem::TaskEntry*, PSSystem::DirectorBase*)
 void TaskEntryMgr::removeEntry(PSSystem::TaskEntry*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r4
-	  beq-      .loc_0x5C
-	  addi      r4, r30, 0x28
-	  bl        0xF8
-	  addi      r3, r30, 0xC
-	  bl        -0x24E954
-	  lwz       r4, 0x0(r30)
-	  b         .loc_0x44
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	stw      r30, 8(r1)
+	or.      r30, r4, r4
+	beq      lbl_8033E4F0
+	addi     r4, r30, 0x28
+	bl
+"remove_Lock__Q28PSSystem32MutexList<Q28PSSystem9TaskEntry>FP30JSULink<Q28PSSystem9TaskEntry>"
+	addi     r3, r30, 0xc
+	bl       OSLockMutex
+	lwz      r4, 0(r30)
+	b        lbl_8033E4D8
 
-	.loc_0x34:
-	  lwz       r31, 0xC(r4)
-	  mr        r3, r30
-	  bl        -0x3178AC
-	  mr        r4, r31
+lbl_8033E4C8:
+	lwz      r31, 0xc(r4)
+	mr       r3, r30
+	bl       remove__10JSUPtrListFP10JSUPtrLink
+	mr       r4, r31
 
-	.loc_0x44:
-	  cmplwi    r4, 0
-	  bne+      .loc_0x34
-	  addi      r3, r30, 0xC
-	  bl        -0x24E8A0
-	  li        r0, 0
-	  stw       r0, 0x24(r30)
+lbl_8033E4D8:
+	cmplwi   r4, 0
+	bne      lbl_8033E4C8
+	addi     r3, r30, 0xc
+	bl       OSUnlockMutex
+	li       r0, 0
+	stw      r0, 0x24(r30)
 
-	.loc_0x5C:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8033E4F0:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -314,56 +331,54 @@ void TaskEntryMgr::removeEntry(PSSystem::TaskEntry*)
 void TaskEntryMgr::removeAllEntry()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  addi      r3, r29, 0xC
-	  bl        -0x24E9C0
-	  lwz       r3, 0x0(r29)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x80
-	  lwz       r31, 0x0(r3)
-	  cmplwi    r31, 0
-	  beq-      .loc_0x80
-	  mr        r3, r29
-	  addi      r4, r31, 0x28
-	  bl        .loc_0xA4
-	  addi      r3, r31, 0xC
-	  bl        -0x24E9EC
-	  lwz       r4, 0x0(r31)
-	  b         .loc_0x68
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	addi     r3, r29, 0xc
+	bl       OSLockMutex
+	lwz      r3, 0(r29)
+	cmplwi   r3, 0
+	beq      lbl_8033E588
+	lwz      r31, 0(r3)
+	cmplwi   r31, 0
+	beq      lbl_8033E588
+	mr       r3, r29
+	addi     r4, r31, 0x28
+	bl
+"remove_Lock__Q28PSSystem32MutexList<Q28PSSystem9TaskEntry>FP30JSULink<Q28PSSystem9TaskEntry>"
+	addi     r3, r31, 0xc
+	bl       OSLockMutex
+	lwz      r4, 0(r31)
+	b        lbl_8033E570
 
-	.loc_0x58:
-	  lwz       r30, 0xC(r4)
-	  mr        r3, r31
-	  bl        -0x317944
-	  mr        r4, r30
+lbl_8033E560:
+	lwz      r30, 0xc(r4)
+	mr       r3, r31
+	bl       remove__10JSUPtrListFP10JSUPtrLink
+	mr       r4, r30
 
-	.loc_0x68:
-	  cmplwi    r4, 0
-	  bne+      .loc_0x58
-	  addi      r3, r31, 0xC
-	  bl        -0x24E938
-	  li        r0, 0
-	  stw       r0, 0x24(r31)
+lbl_8033E570:
+	cmplwi   r4, 0
+	bne      lbl_8033E560
+	addi     r3, r31, 0xc
+	bl       OSUnlockMutex
+	li       r0, 0
+	stw      r0, 0x24(r31)
 
-	.loc_0x80:
-	  addi      r3, r29, 0xC
-	  bl        -0x24E948
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-
-	.loc_0xA4:
+lbl_8033E588:
+	addi     r3, r29, 0xc
+	bl       OSUnlockMutex
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -375,29 +390,28 @@ void TaskEntryMgr::removeAllEntry()
 void MutexList<PSSystem::TaskEntry>::remove_Lock(JSULink<PSSystem::TaskEntry>*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  addi      r3, r30, 0xC
-	  bl        -0x24EA64
-	  mr        r3, r30
-	  mr        r4, r31
-	  bl        -0x3179B4
-	  mr        r31, r3
-	  addi      r3, r30, 0xC
-	  bl        -0x24E9A0
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	addi     r3, r30, 0xc
+	bl       OSLockMutex
+	mr       r3, r30
+	mr       r4, r31
+	bl       remove__10JSUPtrListFP10JSUPtrLink
+	mr       r31, r3
+	addi     r3, r30, 0xc
+	bl       OSUnlockMutex
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -409,29 +423,28 @@ void MutexList<PSSystem::TaskEntry>::remove_Lock(JSULink<PSSystem::TaskEntry>*)
 void MutexList<PSSystem::TaskBase>::append_Lock(JSULink<PSSystem::TaskBase>*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  addi      r3, r30, 0xC
-	  bl        -0x24EABC
-	  mr        r3, r30
-	  mr        r4, r31
-	  bl        -0x317D4C
-	  mr        r31, r3
-	  addi      r3, r30, 0xC
-	  bl        -0x24E9F8
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	addi     r3, r30, 0xc
+	bl       OSLockMutex
+	mr       r3, r30
+	mr       r4, r31
+	bl       append__10JSUPtrListFP10JSUPtrLink
+	mr       r31, r3
+	addi     r3, r30, 0xc
+	bl       OSUnlockMutex
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -443,29 +456,28 @@ void MutexList<PSSystem::TaskBase>::append_Lock(JSULink<PSSystem::TaskBase>*)
 void MutexList<PSSystem::TaskEntry>::append_Lock(JSULink<PSSystem::TaskEntry>*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  addi      r3, r30, 0xC
-	  bl        -0x24EB14
-	  mr        r3, r30
-	  mr        r4, r31
-	  bl        -0x317DA4
-	  mr        r31, r3
-	  addi      r3, r30, 0xC
-	  bl        -0x24EA50
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	addi     r3, r30, 0xc
+	bl       OSLockMutex
+	mr       r3, r30
+	mr       r4, r31
+	bl       append__10JSUPtrListFP10JSUPtrLink
+	mr       r31, r3
+	addi     r3, r30, 0xc
+	bl       OSUnlockMutex
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 } // namespace PSSystem

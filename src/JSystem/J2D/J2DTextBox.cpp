@@ -1,6 +1,82 @@
 #include "types.h"
 
 /*
+    Generated from dpostproc
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__10J2DTextBox
+    __vt__10J2DTextBox:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__10J2DTextBoxFv
+        .4byte getTypeID__10J2DTextBoxCFv
+        .4byte move__7J2DPaneFff
+        .4byte add__7J2DPaneFff
+        .4byte resize__10J2DTextBoxFff
+        .4byte setCullBack__7J2DPaneFb
+        .4byte setCullBack__7J2DPaneF11_GXCullMode
+        .4byte setAlpha__7J2DPaneFUc
+        .4byte setConnectParent__10J2DTextBoxFb
+        .4byte calcMtx__7J2DPaneFv
+        .4byte update__7J2DPaneFv
+        .4byte drawSelf__10J2DTextBoxFff
+        .4byte drawSelf__10J2DTextBoxFffPA3_A4_f
+        .4byte search__7J2DPaneFUx
+        .4byte searchUserInfo__7J2DPaneFUx
+        .4byte makeMatrix__7J2DPaneFff
+        .4byte makeMatrix__7J2DPaneFffff
+        .4byte isUsed__10J2DTextBoxFPC7ResTIMG
+        .4byte isUsed__10J2DTextBoxFPC7ResFONT
+        .4byte clearAnmTransform__7J2DPaneFv
+        .4byte rewriteAlpha__10J2DTextBoxFv
+        .4byte setAnimation__7J2DPaneFP10J2DAnmBase
+        .4byte setAnimation__7J2DPaneFP15J2DAnmTransform
+        .4byte setAnimation__7J2DPaneFP11J2DAnmColor
+        .4byte setAnimation__7J2DPaneFP16J2DAnmTexPattern
+        .4byte setAnimation__7J2DPaneFP19J2DAnmTextureSRTKey
+        .4byte setAnimation__7J2DPaneFP15J2DAnmTevRegKey
+        .4byte setAnimation__7J2DPaneFP20J2DAnmVisibilityFull
+        .4byte setAnimation__7J2DPaneFP14J2DAnmVtxColor
+        .4byte animationTransform__7J2DPaneFPC15J2DAnmTransform
+        .4byte setVisibileAnimation__7J2DPaneFP20J2DAnmVisibilityFull
+        .4byte setAnimationVF__7J2DPaneFP20J2DAnmVisibilityFull
+        .4byte setVtxColorAnimation__7J2DPaneFP14J2DAnmVtxColor
+        .4byte setAnimationVC__7J2DPaneFP14J2DAnmVtxColor
+        .4byte animationPane__7J2DPaneFPC15J2DAnmTransform
+        .4byte draw__10J2DTextBoxFff
+        .4byte draw__10J2DTextBoxFfff18J2DTextBoxHBinding
+        .4byte setFont__10J2DTextBoxFP7JUTFont
+        .4byte getFont__10J2DTextBoxCFv
+        .4byte setBlack__10J2DTextBoxFQ28JUtility6TColor
+        .4byte setWhite__10J2DTextBoxFQ28JUtility6TColor
+        .4byte setBlackWhite__10J2DTextBoxFQ28JUtility6TColorQ28JUtility6TColor
+        .4byte getBlack__10J2DTextBoxCFv
+        .4byte getWhite__10J2DTextBoxCFv
+        .4byte getMaterial__10J2DTextBoxCFv
+        .4byte 0
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_80516860
+    lbl_80516860:
+        .4byte 0x00000000
+        .4byte 0x00000000
+    .global lbl_80516868
+    lbl_80516868:
+        .4byte 0x43300000
+        .4byte 0x80000000
+    .global lbl_80516870
+    lbl_80516870:
+        .4byte 0x43300000
+        .4byte 0x00000000
+    .global lbl_80516878
+    lbl_80516878:
+        .4byte 0x25730000
+    .global lbl_8051687C
+    lbl_8051687C:
+        .4byte 0x38D1B717
+*/
+
+/*
  * --INFO--
  * Address:	80040F74
  * Size:	000078
@@ -8,37 +84,37 @@
 J2DTextBox::J2DTextBox()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        -0xA498
-	  lis       r3, 0x804A
-	  li        r9, 0
-	  addi      r3, r3, 0x990
-	  li        r0, -0x1
-	  stw       r3, 0x0(r31)
-	  mr        r3, r31
-	  li        r4, 0
-	  li        r5, 0
-	  stw       r9, 0x100(r31)
-	  li        r6, 0
-	  li        r7, 0x2
-	  li        r8, 0x2
-	  stw       r0, 0x104(r31)
-	  stw       r0, 0x108(r31)
-	  stw       r9, 0x124(r31)
-	  stw       r0, 0x128(r31)
-	  stw       r0, 0x12C(r31)
-	  bl        0x5A8
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       __ct__7J2DPaneFv
+	lis      r3, __vt__10J2DTextBox@ha
+	li       r9, 0
+	addi     r3, r3, __vt__10J2DTextBox@l
+	li       r0, -1
+	stw      r3, 0(r31)
+	mr       r3, r31
+	li       r4, 0
+	li       r5, 0
+	stw      r9, 0x100(r31)
+	li       r6, 0
+	li       r7, 2
+	li       r8, 2
+	stw      r0, 0x104(r31)
+	stw      r0, 0x108(r31)
+	stw      r9, 0x124(r31)
+	stw      r0, 0x128(r31)
+	stw      r0, 0x12c(r31)
+	bl
+	initiate__10J2DTextBoxFPC7ResFONTPCcs18J2DTextBoxHBinding18J2DTextBoxVBinding
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -50,44 +126,44 @@ J2DTextBox::J2DTextBox()
 J2DTextBox::J2DTextBox(J2DPane*, JSURandomInputStream*, JKRArchive*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r6
-	  stw       r30, 0x18(r1)
-	  mr        r30, r5
-	  stw       r29, 0x14(r1)
-	  mr        r29, r4
-	  stw       r28, 0x10(r1)
-	  mr        r28, r3
-	  bl        -0xA528
-	  lis       r3, 0x804A
-	  li        r7, 0
-	  addi      r3, r3, 0x990
-	  li        r0, -0x1
-	  stw       r3, 0x0(r28)
-	  mr        r3, r28
-	  mr        r4, r29
-	  mr        r5, r30
-	  stw       r7, 0x100(r28)
-	  mr        r6, r31
-	  stw       r0, 0x104(r28)
-	  stw       r0, 0x108(r28)
-	  stw       r7, 0x124(r28)
-	  stw       r0, 0x128(r28)
-	  stw       r0, 0x12C(r28)
-	  bl        0x748
-	  lwz       r0, 0x24(r1)
-	  mr        r3, r28
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r6
+	stw      r30, 0x18(r1)
+	mr       r30, r5
+	stw      r29, 0x14(r1)
+	mr       r29, r4
+	stw      r28, 0x10(r1)
+	mr       r28, r3
+	bl       __ct__7J2DPaneFv
+	lis      r3, __vt__10J2DTextBox@ha
+	li       r7, 0
+	addi     r3, r3, __vt__10J2DTextBox@l
+	li       r0, -1
+	stw      r3, 0(r28)
+	mr       r3, r28
+	mr       r4, r29
+	mr       r5, r30
+	stw      r7, 0x100(r28)
+	mr       r6, r31
+	stw      r0, 0x104(r28)
+	stw      r0, 0x108(r28)
+	stw      r7, 0x124(r28)
+	stw      r0, 0x128(r28)
+	stw      r0, 0x12c(r28)
+	bl
+	private_readStream__10J2DTextBoxFP7J2DPaneP20JSURandomInputStreamP10JKRArchive
+	lwz      r0, 0x24(r1)
+	mr       r3, r28
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -877,49 +953,48 @@ void J2DTextBox::private_readStream(J2DPane*, JSURandomInputStream*,
 J2DTextBox::~J2DTextBox()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x7C
-	  lis       r3, 0x804A
-	  addi      r0, r3, 0x990
-	  stw       r0, 0x0(r30)
-	  lbz       r0, 0x131(r30)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x58
-	  lwz       r3, 0x100(r30)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x58
-	  lwz       r12, 0x0(r3)
-	  li        r4, 0x1
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_80041B6C
+	lis      r3, __vt__10J2DTextBox@ha
+	addi     r0, r3, __vt__10J2DTextBox@l
+	stw      r0, 0(r30)
+	lbz      r0, 0x131(r30)
+	cmplwi   r0, 0
+	beq      lbl_80041B48
+	lwz      r3, 0x100(r30)
+	cmplwi   r3, 0
+	beq      lbl_80041B48
+	lwz      r12, 0(r3)
+	li       r4, 1
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x58:
-	  lwz       r3, 0x124(r30)
-	  bl        -0x1DA74
-	  mr        r3, r30
-	  li        r4, 0
-	  bl        -0xA574
-	  extsh.    r0, r31
-	  ble-      .loc_0x7C
-	  mr        r3, r30
-	  bl        -0x1DAB4
+lbl_80041B48:
+	lwz      r3, 0x124(r30)
+	bl       __dla__FPv
+	mr       r3, r30
+	li       r4, 0
+	bl       __dt__7J2DPaneFv
+	extsh.   r0, r31
+	ble      lbl_80041B6C
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x7C:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80041B6C:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -931,9 +1006,8 @@ J2DTextBox::~J2DTextBox()
 void J2DTextBox::getFont() const
 {
 	/*
-	.loc_0x0:
-	  lwz       r3, 0x100(r3)
-	  blr
+	lwz      r3, 0x100(r3)
+	blr
 	*/
 }
 
@@ -945,39 +1019,38 @@ void J2DTextBox::getFont() const
 void J2DTextBox::setFont(JUTFont*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  beq-      .loc_0x58
-	  lbz       r0, 0x131(r30)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x4C
-	  lwz       r3, 0x100(r30)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x4C
-	  lwz       r12, 0x0(r3)
-	  li        r4, 0x1
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r4, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	beq      lbl_80041BE8
+	lbz      r0, 0x131(r30)
+	cmplwi   r0, 0
+	beq      lbl_80041BDC
+	lwz      r3, 0x100(r30)
+	cmplwi   r3, 0
+	beq      lbl_80041BDC
+	lwz      r12, 0(r3)
+	li       r4, 1
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x4C:
-	  stw       r31, 0x100(r30)
-	  li        r0, 0
-	  stb       r0, 0x131(r30)
+lbl_80041BDC:
+	stw      r31, 0x100(r30)
+	li       r0, 0
+	stb      r0, 0x131(r30)
 
-	.loc_0x58:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80041BE8:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -989,126 +1062,126 @@ void J2DTextBox::setFont(JUTFont*)
 void J2DTextBox::draw(float, float)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0xD0(r1)
-	  mflr      r0
-	  stw       r0, 0xD4(r1)
-	  stfd      f31, 0xC0(r1)
-	  psq_st    f31,0xC8(r1),0,0
-	  stfd      f30, 0xB0(r1)
-	  psq_st    f30,0xB8(r1),0,0
-	  stw       r31, 0xAC(r1)
-	  stw       r30, 0xA8(r1)
-	  mr        r30, r3
-	  fmr       f30, f1
-	  lbz       r0, 0xB0(r3)
-	  fmr       f31, f2
-	  cmplwi    r0, 0
-	  beq-      .loc_0x17C
-	  lwz       r0, 0x128(r30)
-	  addi      r3, r1, 0x48
-	  addi      r5, r1, 0x14
-	  addi      r6, r1, 0x10
-	  stw       r0, 0x8(r1)
-	  addi      r7, r1, 0xC
-	  addi      r8, r1, 0x8
-	  lwz       r0, 0x12C(r30)
-	  stw       r0, 0xC(r1)
-	  lwz       r0, 0x108(r30)
-	  stw       r0, 0x10(r1)
-	  lwz       r0, 0x104(r30)
-	  stw       r0, 0x14(r1)
-	  lwz       r4, 0x100(r30)
-	  lfs       f1, 0x114(r30)
-	  lfs       f2, 0x118(r30)
-	  bl        -0x4400
-	  lfs       f1, 0x11C(r30)
-	  lfs       f0, -0x7B00(r2)
-	  lfs       f2, 0x120(r30)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x98
-	  b         .loc_0x9C
+	stwu     r1, -0xd0(r1)
+	mflr     r0
+	stw      r0, 0xd4(r1)
+	stfd     f31, 0xc0(r1)
+	psq_st   f31, 200(r1), 0, qr0
+	stfd     f30, 0xb0(r1)
+	psq_st   f30, 184(r1), 0, qr0
+	stw      r31, 0xac(r1)
+	stw      r30, 0xa8(r1)
+	mr       r30, r3
+	fmr      f30, f1
+	lbz      r0, 0xb0(r3)
+	fmr      f31, f2
+	cmplwi   r0, 0
+	beq      lbl_80041D7C
+	lwz      r0, 0x128(r30)
+	addi     r3, r1, 0x48
+	addi     r5, r1, 0x14
+	addi     r6, r1, 0x10
+	stw      r0, 8(r1)
+	addi     r7, r1, 0xc
+	addi     r8, r1, 8
+	lwz      r0, 0x12c(r30)
+	stw      r0, 0xc(r1)
+	lwz      r0, 0x108(r30)
+	stw      r0, 0x10(r1)
+	lwz      r0, 0x104(r30)
+	stw      r0, 0x14(r1)
+	lwz      r4, 0x100(r30)
+	lfs      f1, 0x114(r30)
+	lfs      f2, 0x118(r30)
+	bl
+__ct__8J2DPrintFP7JUTFontffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColor
+	lfs      f1, 0x11c(r30)
+	lfs      f0, lbl_80516860@sda21(r2)
+	lfs      f2, 0x120(r30)
+	fcmpo    cr0, f1, f0
+	ble      lbl_80041C98
+	b        lbl_80041C9C
 
-	.loc_0x98:
-	  fmr       f1, f0
+lbl_80041C98:
+	fmr      f1, f0
 
-	.loc_0x9C:
-	  lfs       f0, -0x7B00(r2)
-	  stfs      f1, 0x98(r1)
-	  fcmpo     cr0, f2, f0
-	  ble-      .loc_0xB0
-	  b         .loc_0xB4
+lbl_80041C9C:
+	lfs      f0, lbl_80516860@sda21(r2)
+	stfs     f1, 0x98(r1)
+	fcmpo    cr0, f2, f0
+	ble      lbl_80041CB0
+	b        lbl_80041CB4
 
-	.loc_0xB0:
-	  fmr       f2, f0
+lbl_80041CB0:
+	fmr      f2, f0
 
-	.loc_0xB4:
-	  stfs      f2, 0x9C(r1)
-	  mr        r3, r30
-	  lfs       f3, -0x7B00(r2)
-	  fmr       f1, f30
-	  lwz       r12, 0x0(r30)
-	  fmr       f2, f31
-	  fmr       f4, f3
-	  lwz       r12, 0x48(r12)
-	  mtctr     r12
-	  bctrl
-	  addi      r3, r30, 0x50
-	  li        r4, 0
-	  bl        0xA7894
-	  li        r3, 0
-	  bl        0xA792C
-	  li        r3, 0
-	  bl        0xA6660
-	  li        r31, 0
+lbl_80041CB4:
+	stfs     f2, 0x9c(r1)
+	mr       r3, r30
+	lfs      f3, lbl_80516860@sda21(r2)
+	fmr      f1, f30
+	lwz      r12, 0(r30)
+	fmr      f2, f31
+	fmr      f4, f3
+	lwz      r12, 0x48(r12)
+	mtctr    r12
+	bctrl
+	addi     r3, r30, 0x50
+	li       r4, 0
+	bl       GXLoadPosMtxImm
+	li       r3, 0
+	bl       GXSetCurrentMtx
+	li       r3, 0
+	bl       GXSetNumIndStages
+	li       r31, 0
 
-	.loc_0xFC:
-	  mr        r3, r31
-	  bl        0xA6678
-	  addi      r31, r31, 0x1
-	  cmpwi     r31, 0x10
-	  blt+      .loc_0xFC
-	  li        r3, 0x1
-	  bl        0xA3288
-	  li        r3, 0
-	  li        r4, 0x1
-	  li        r5, 0x4
-	  li        r6, 0x3C
-	  li        r7, 0
-	  li        r8, 0x7D
-	  bl        0xA2FEC
-	  lwz       r6, 0x124(r30)
-	  cmplwi    r6, 0
-	  beq-      .loc_0x15C
-	  lfs       f1, -0x7B00(r2)
-	  addi      r3, r1, 0x48
-	  lbz       r4, 0xB2(r30)
-	  subi      r5, r2, 0x7AE8
-	  fmr       f2, f1
-	  crset     6, 0x6
-	  bl        -0x3F4C
+lbl_80041CFC:
+	mr       r3, r31
+	bl       GXSetTevDirect
+	addi     r31, r31, 1
+	cmpwi    r31, 0x10
+	blt      lbl_80041CFC
+	li       r3, 1
+	bl       GXSetNumTexGens
+	li       r3, 0
+	li       r4, 1
+	li       r5, 4
+	li       r6, 0x3c
+	li       r7, 0
+	li       r8, 0x7d
+	bl       GXSetTexCoordGen2
+	lwz      r6, 0x124(r30)
+	cmplwi   r6, 0
+	beq      lbl_80041D5C
+	lfs      f1, lbl_80516860@sda21(r2)
+	addi     r3, r1, 0x48
+	lbz      r4, 0xb2(r30)
+	addi     r5, r2, lbl_80516878@sda21
+	fmr      f2, f1
+	crset    6
+	bl       print__8J2DPrintFffUcPCce
 
-	.loc_0x15C:
-	  addi      r3, r1, 0x18
-	  bl        0xA8540
-	  addi      r3, r1, 0x18
-	  li        r4, 0
-	  bl        0xA780C
-	  addi      r3, r1, 0x48
-	  li        r4, -0x1
-	  bl        -0x4468
+lbl_80041D5C:
+	addi     r3, r1, 0x18
+	bl       PSMTXIdentity
+	addi     r3, r1, 0x18
+	li       r4, 0
+	bl       GXLoadPosMtxImm
+	addi     r3, r1, 0x48
+	li       r4, -1
+	bl       __dt__8J2DPrintFv
 
-	.loc_0x17C:
-	  psq_l     f31,0xC8(r1),0,0
-	  lfd       f31, 0xC0(r1)
-	  psq_l     f30,0xB8(r1),0,0
-	  lfd       f30, 0xB0(r1)
-	  lwz       r31, 0xAC(r1)
-	  lwz       r0, 0xD4(r1)
-	  lwz       r30, 0xA8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0xD0
-	  blr
+lbl_80041D7C:
+	psq_l    f31, 200(r1), 0, qr0
+	lfd      f31, 0xc0(r1)
+	psq_l    f30, 184(r1), 0, qr0
+	lfd      f30, 0xb0(r1)
+	lwz      r31, 0xac(r1)
+	lwz      r0, 0xd4(r1)
+	lwz      r30, 0xa8(r1)
+	mtlr     r0
+	addi     r1, r1, 0xd0
+	blr
 	*/
 }
 
@@ -1120,137 +1193,137 @@ void J2DTextBox::draw(float, float)
 void J2DTextBox::draw(float, float, float, J2DTextBoxHBinding)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0xF0(r1)
-	  mflr      r0
-	  stw       r0, 0xF4(r1)
-	  stfd      f31, 0xE0(r1)
-	  psq_st    f31,0xE8(r1),0,0
-	  stfd      f30, 0xD0(r1)
-	  psq_st    f30,0xD8(r1),0,0
-	  stfd      f29, 0xC0(r1)
-	  psq_st    f29,0xC8(r1),0,0
-	  stw       r31, 0xBC(r1)
-	  stw       r30, 0xB8(r1)
-	  stw       r29, 0xB4(r1)
-	  mr        r29, r3
-	  fmr       f29, f1
-	  lbz       r0, 0xB0(r3)
-	  fmr       f30, f2
-	  fmr       f31, f3
-	  mr        r30, r4
-	  cmplwi    r0, 0
-	  beq-      .loc_0x19C
-	  lwz       r0, 0x128(r29)
-	  addi      r3, r1, 0x48
-	  addi      r5, r1, 0x14
-	  addi      r6, r1, 0x10
-	  stw       r0, 0x8(r1)
-	  addi      r7, r1, 0xC
-	  addi      r8, r1, 0x8
-	  lwz       r0, 0x12C(r29)
-	  stw       r0, 0xC(r1)
-	  lwz       r0, 0x108(r29)
-	  stw       r0, 0x10(r1)
-	  lwz       r0, 0x104(r29)
-	  stw       r0, 0x14(r1)
-	  lwz       r4, 0x100(r29)
-	  lfs       f1, 0x114(r29)
-	  lfs       f2, 0x118(r29)
-	  bl        -0x45B8
-	  lfs       f1, 0x11C(r29)
-	  lfs       f0, -0x7B00(r2)
-	  lfs       f2, 0x120(r29)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0xAC
-	  b         .loc_0xB0
+	stwu     r1, -0xf0(r1)
+	mflr     r0
+	stw      r0, 0xf4(r1)
+	stfd     f31, 0xe0(r1)
+	psq_st   f31, 232(r1), 0, qr0
+	stfd     f30, 0xd0(r1)
+	psq_st   f30, 216(r1), 0, qr0
+	stfd     f29, 0xc0(r1)
+	psq_st   f29, 200(r1), 0, qr0
+	stw      r31, 0xbc(r1)
+	stw      r30, 0xb8(r1)
+	stw      r29, 0xb4(r1)
+	mr       r29, r3
+	fmr      f29, f1
+	lbz      r0, 0xb0(r3)
+	fmr      f30, f2
+	fmr      f31, f3
+	mr       r30, r4
+	cmplwi   r0, 0
+	beq      lbl_80041F40
+	lwz      r0, 0x128(r29)
+	addi     r3, r1, 0x48
+	addi     r5, r1, 0x14
+	addi     r6, r1, 0x10
+	stw      r0, 8(r1)
+	addi     r7, r1, 0xc
+	addi     r8, r1, 8
+	lwz      r0, 0x12c(r29)
+	stw      r0, 0xc(r1)
+	lwz      r0, 0x108(r29)
+	stw      r0, 0x10(r1)
+	lwz      r0, 0x104(r29)
+	stw      r0, 0x14(r1)
+	lwz      r4, 0x100(r29)
+	lfs      f1, 0x114(r29)
+	lfs      f2, 0x118(r29)
+	bl
+__ct__8J2DPrintFP7JUTFontffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColor
+	lfs      f1, 0x11c(r29)
+	lfs      f0, lbl_80516860@sda21(r2)
+	lfs      f2, 0x120(r29)
+	fcmpo    cr0, f1, f0
+	ble      lbl_80041E50
+	b        lbl_80041E54
 
-	.loc_0xAC:
-	  fmr       f1, f0
+lbl_80041E50:
+	fmr      f1, f0
 
-	.loc_0xB0:
-	  lfs       f0, -0x7B00(r2)
-	  stfs      f1, 0x98(r1)
-	  fcmpo     cr0, f2, f0
-	  ble-      .loc_0xC4
-	  b         .loc_0xC8
+lbl_80041E54:
+	lfs      f0, lbl_80516860@sda21(r2)
+	stfs     f1, 0x98(r1)
+	fcmpo    cr0, f2, f0
+	ble      lbl_80041E68
+	b        lbl_80041E6C
 
-	.loc_0xC4:
-	  fmr       f2, f0
+lbl_80041E68:
+	fmr      f2, f0
 
-	.loc_0xC8:
-	  stfs      f2, 0x9C(r1)
-	  mr        r3, r29
-	  lfs       f3, -0x7B00(r2)
-	  fmr       f1, f29
-	  lwz       r12, 0x0(r29)
-	  fmr       f2, f30
-	  fmr       f4, f3
-	  lwz       r12, 0x48(r12)
-	  mtctr     r12
-	  bctrl
-	  addi      r3, r29, 0x50
-	  li        r4, 0
-	  bl        0xA76DC
-	  li        r3, 0
-	  bl        0xA7774
-	  li        r3, 0
-	  bl        0xA64A8
-	  li        r31, 0
+lbl_80041E6C:
+	stfs     f2, 0x9c(r1)
+	mr       r3, r29
+	lfs      f3, lbl_80516860@sda21(r2)
+	fmr      f1, f29
+	lwz      r12, 0(r29)
+	fmr      f2, f30
+	fmr      f4, f3
+	lwz      r12, 0x48(r12)
+	mtctr    r12
+	bctrl
+	addi     r3, r29, 0x50
+	li       r4, 0
+	bl       GXLoadPosMtxImm
+	li       r3, 0
+	bl       GXSetCurrentMtx
+	li       r3, 0
+	bl       GXSetNumIndStages
+	li       r31, 0
 
-	.loc_0x110:
-	  mr        r3, r31
-	  bl        0xA64C0
-	  addi      r31, r31, 0x1
-	  cmpwi     r31, 0x10
-	  blt+      .loc_0x110
-	  li        r3, 0x1
-	  bl        0xA30D0
-	  li        r3, 0
-	  li        r4, 0x1
-	  li        r5, 0x4
-	  li        r6, 0x3C
-	  li        r7, 0
-	  li        r8, 0x7D
-	  bl        0xA2E34
-	  lwz       r4, 0x124(r29)
-	  cmplwi    r4, 0
-	  beq-      .loc_0x17C
-	  lfs       f2, -0x7B00(r2)
-	  fmr       f1, f31
-	  lfs       f0, 0x120(r29)
-	  mr        r5, r30
-	  fmr       f3, f2
-	  lbz       r7, 0xB2(r29)
-	  fneg      f4, f0
-	  addi      r3, r1, 0x48
-	  li        r6, 0x2
-	  bl        -0x3F04
+lbl_80041EB4:
+	mr       r3, r31
+	bl       GXSetTevDirect
+	addi     r31, r31, 1
+	cmpwi    r31, 0x10
+	blt      lbl_80041EB4
+	li       r3, 1
+	bl       GXSetNumTexGens
+	li       r3, 0
+	li       r4, 1
+	li       r5, 4
+	li       r6, 0x3c
+	li       r7, 0
+	li       r8, 0x7d
+	bl       GXSetTexCoordGen2
+	lwz      r4, 0x124(r29)
+	cmplwi   r4, 0
+	beq      lbl_80041F20
+	lfs      f2, lbl_80516860@sda21(r2)
+	fmr      f1, f31
+	lfs      f0, 0x120(r29)
+	mr       r5, r30
+	fmr      f3, f2
+	lbz      r7, 0xb2(r29)
+	fneg     f4, f0
+	addi     r3, r1, 0x48
+	li       r6, 2
+	bl printReturn__8J2DPrintFPCcff18J2DTextBoxHBinding18J2DTextBoxVBindingffUc
 
-	.loc_0x17C:
-	  addi      r3, r1, 0x18
-	  bl        0xA837C
-	  addi      r3, r1, 0x18
-	  li        r4, 0
-	  bl        0xA7648
-	  addi      r3, r1, 0x48
-	  li        r4, -0x1
-	  bl        -0x462C
+lbl_80041F20:
+	addi     r3, r1, 0x18
+	bl       PSMTXIdentity
+	addi     r3, r1, 0x18
+	li       r4, 0
+	bl       GXLoadPosMtxImm
+	addi     r3, r1, 0x48
+	li       r4, -1
+	bl       __dt__8J2DPrintFv
 
-	.loc_0x19C:
-	  psq_l     f31,0xE8(r1),0,0
-	  lfd       f31, 0xE0(r1)
-	  psq_l     f30,0xD8(r1),0,0
-	  lfd       f30, 0xD0(r1)
-	  psq_l     f29,0xC8(r1),0,0
-	  lfd       f29, 0xC0(r1)
-	  lwz       r31, 0xBC(r1)
-	  lwz       r30, 0xB8(r1)
-	  lwz       r0, 0xF4(r1)
-	  lwz       r29, 0xB4(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0xF0
-	  blr
+lbl_80041F40:
+	psq_l    f31, 232(r1), 0, qr0
+	lfd      f31, 0xe0(r1)
+	psq_l    f30, 216(r1), 0, qr0
+	lfd      f30, 0xd0(r1)
+	psq_l    f29, 200(r1), 0, qr0
+	lfd      f29, 0xc0(r1)
+	lwz      r31, 0xbc(r1)
+	lwz      r30, 0xb8(r1)
+	lwz      r0, 0xf4(r1)
+	lwz      r29, 0xb4(r1)
+	mtlr     r0
+	addi     r1, r1, 0xf0
+	blr
 	*/
 }
 
@@ -1262,74 +1335,73 @@ void J2DTextBox::draw(float, float, float, J2DTextBoxHBinding)
 void J2DTextBox::setString(const char*, ...)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x90(r1)
-	  mflr      r0
-	  stw       r0, 0x94(r1)
-	  stw       r31, 0x8C(r1)
-	  stw       r30, 0x88(r1)
-	  mr        r30, r4
-	  stw       r29, 0x84(r1)
-	  mr        r29, r3
-	  bne-      cr1, .loc_0x44
-	  stfd      f1, 0x28(r1)
-	  stfd      f2, 0x30(r1)
-	  stfd      f3, 0x38(r1)
-	  stfd      f4, 0x40(r1)
-	  stfd      f5, 0x48(r1)
-	  stfd      f6, 0x50(r1)
-	  stfd      f7, 0x58(r1)
-	  stfd      f8, 0x60(r1)
+	stwu     r1, -0x90(r1)
+	mflr     r0
+	stw      r0, 0x94(r1)
+	stw      r31, 0x8c(r1)
+	stw      r30, 0x88(r1)
+	mr       r30, r4
+	stw      r29, 0x84(r1)
+	mr       r29, r3
+	bne      cr1, lbl_80041FB8
+	stfd     f1, 0x28(r1)
+	stfd     f2, 0x30(r1)
+	stfd     f3, 0x38(r1)
+	stfd     f4, 0x40(r1)
+	stfd     f5, 0x48(r1)
+	stfd     f6, 0x50(r1)
+	stfd     f7, 0x58(r1)
+	stfd     f8, 0x60(r1)
 
-	.loc_0x44:
-	  stw       r3, 0x8(r1)
-	  addi      r11, r1, 0x98
-	  addi      r0, r1, 0x8
-	  lis       r3, 0x200
-	  stw       r4, 0xC(r1)
-	  stw       r5, 0x10(r1)
-	  stw       r6, 0x14(r1)
-	  stw       r7, 0x18(r1)
-	  stw       r8, 0x1C(r1)
-	  stw       r9, 0x20(r1)
-	  stw       r10, 0x24(r1)
-	  stw       r3, 0x68(r1)
-	  lwz       r3, 0x124(r29)
-	  stw       r11, 0x6C(r1)
-	  stw       r0, 0x70(r1)
-	  bl        -0x1DF1C
-	  mr        r3, r30
-	  bl        0x88914
-	  mr        r31, r3
-	  cmplwi    r31, 0xFFFF
-	  blt-      .loc_0xA0
-	  lis       r3, 0x1
-	  subi      r31, r3, 0x2
+lbl_80041FB8:
+	stw      r3, 8(r1)
+	addi     r11, r1, 0x98
+	addi     r0, r1, 8
+	lis      r3, 0x200
+	stw      r4, 0xc(r1)
+	stw      r5, 0x10(r1)
+	stw      r6, 0x14(r1)
+	stw      r7, 0x18(r1)
+	stw      r8, 0x1c(r1)
+	stw      r9, 0x20(r1)
+	stw      r10, 0x24(r1)
+	stw      r3, 0x68(r1)
+	lwz      r3, 0x124(r29)
+	stw      r11, 0x6c(r1)
+	stw      r0, 0x70(r1)
+	bl       __dla__FPv
+	mr       r3, r30
+	bl       strlen
+	mr       r31, r3
+	cmplwi   r31, 0xffff
+	blt      lbl_80042014
+	lis      r3, 0x0000FFFE@ha
+	addi     r31, r3, 0x0000FFFE@l
 
-	.loc_0xA0:
-	  li        r0, 0
-	  addi      r3, r31, 0x1
-	  sth       r0, 0x132(r29)
-	  bl        -0x1E074
-	  stw       r3, 0x124(r29)
-	  lwz       r0, 0x124(r29)
-	  cmplwi    r0, 0
-	  beq-      .loc_0xD4
-	  addi      r0, r31, 0x1
-	  mr        r4, r30
-	  sth       r0, 0x132(r29)
-	  lwz       r3, 0x124(r29)
-	  bl        0x88814
+lbl_80042014:
+	li       r0, 0
+	addi     r3, r31, 1
+	sth      r0, 0x132(r29)
+	bl       __nwa__FUl
+	stw      r3, 0x124(r29)
+	lwz      r0, 0x124(r29)
+	cmplwi   r0, 0
+	beq      lbl_80042048
+	addi     r0, r31, 1
+	mr       r4, r30
+	sth      r0, 0x132(r29)
+	lwz      r3, 0x124(r29)
+	bl       strcpy
 
-	.loc_0xD4:
-	  lwz       r0, 0x94(r1)
-	  mr        r3, r31
-	  lwz       r31, 0x8C(r1)
-	  lwz       r30, 0x88(r1)
-	  lwz       r29, 0x84(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x90
-	  blr
+lbl_80042048:
+	lwz      r0, 0x94(r1)
+	mr       r3, r31
+	lwz      r31, 0x8c(r1)
+	lwz      r30, 0x88(r1)
+	lwz      r29, 0x84(r1)
+	mtlr     r0
+	addi     r1, r1, 0x90
+	blr
 	*/
 }
 
@@ -1341,43 +1413,42 @@ void J2DTextBox::setString(const char*, ...)
 void J2DTextBox::setConnectParent(bool)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lwz       r3, 0xEC(r3)
-	  cmplwi    r3, 0
-	  bne-      .loc_0x30
-	  li        r3, 0
-	  b         .loc_0x60
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lwz      r3, 0xec(r3)
+	cmplwi   r3, 0
+	bne      lbl_80042098
+	li       r3, 0
+	b        lbl_800420C8
 
-	.loc_0x30:
-	  lwz       r3, 0xC(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm    r0,r3,0,16,31
-	  cmplwi    r0, 0x11
-	  beq-      .loc_0x58
-	  li        r3, 0
-	  b         .loc_0x60
+lbl_80042098:
+	lwz      r3, 0xc(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	clrlwi   r0, r3, 0x10
+	cmplwi   r0, 0x11
+	beq      lbl_800420C0
+	li       r3, 0
+	b        lbl_800420C8
 
-	.loc_0x58:
-	  stb       r31, 0xB5(r30)
-	  mr        r3, r31
+lbl_800420C0:
+	stb      r31, 0xb5(r30)
+	mr       r3, r31
 
-	.loc_0x60:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_800420C8:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1389,33 +1460,32 @@ void J2DTextBox::setConnectParent(bool)
 void J2DTextBox::drawSelf(float, float)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x50(r1)
-	  mflr      r0
-	  stw       r0, 0x54(r1)
-	  stfd      f31, 0x48(r1)
-	  fmr       f31, f2
-	  stfd      f30, 0x40(r1)
-	  fmr       f30, f1
-	  stw       r31, 0x3C(r1)
-	  mr        r31, r3
-	  addi      r3, r1, 0x8
-	  bl        0xA8198
-	  mr        r3, r31
-	  fmr       f1, f30
-	  lwz       r12, 0x0(r31)
-	  fmr       f2, f31
-	  addi      r4, r1, 0x8
-	  lwz       r12, 0x38(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x54(r1)
-	  lfd       f31, 0x48(r1)
-	  lfd       f30, 0x40(r1)
-	  lwz       r31, 0x3C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x50
-	  blr
+	stwu     r1, -0x50(r1)
+	mflr     r0
+	stw      r0, 0x54(r1)
+	stfd     f31, 0x48(r1)
+	fmr      f31, f2
+	stfd     f30, 0x40(r1)
+	fmr      f30, f1
+	stw      r31, 0x3c(r1)
+	mr       r31, r3
+	addi     r3, r1, 8
+	bl       PSMTXIdentity
+	mr       r3, r31
+	fmr      f1, f30
+	lwz      r12, 0(r31)
+	fmr      f2, f31
+	addi     r4, r1, 8
+	lwz      r12, 0x38(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x54(r1)
+	lfd      f31, 0x48(r1)
+	lfd      f30, 0x40(r1)
+	lwz      r31, 0x3c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x50
+	blr
 	*/
 }
 
@@ -1427,125 +1497,125 @@ void J2DTextBox::drawSelf(float, float)
 void J2DTextBox::drawSelf(float, float, float (*)[3][4])
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0xD0(r1)
-	  mflr      r0
-	  stw       r0, 0xD4(r1)
-	  stfd      f31, 0xC0(r1)
-	  psq_st    f31,0xC8(r1),0,0
-	  stfd      f30, 0xB0(r1)
-	  psq_st    f30,0xB8(r1),0,0
-	  stw       r31, 0xAC(r1)
-	  stw       r30, 0xA8(r1)
-	  mr        r30, r3
-	  fmr       f30, f1
-	  lwz       r0, 0x128(r3)
-	  fmr       f31, f2
-	  mr        r31, r4
-	  addi      r3, r1, 0x48
-	  stw       r0, 0x8(r1)
-	  addi      r5, r1, 0x14
-	  addi      r6, r1, 0x10
-	  lwz       r0, 0x12C(r30)
-	  addi      r7, r1, 0xC
-	  addi      r8, r1, 0x8
-	  stw       r0, 0xC(r1)
-	  lwz       r0, 0x108(r30)
-	  stw       r0, 0x10(r1)
-	  lwz       r0, 0x104(r30)
-	  stw       r0, 0x14(r1)
-	  lwz       r4, 0x100(r30)
-	  lfs       f1, 0x114(r30)
-	  lfs       f2, 0x118(r30)
-	  bl        -0x4940
-	  lfs       f1, 0x11C(r30)
-	  lfs       f0, -0x7B00(r2)
-	  lfs       f2, 0x120(r30)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x90
-	  b         .loc_0x94
+	stwu     r1, -0xd0(r1)
+	mflr     r0
+	stw      r0, 0xd4(r1)
+	stfd     f31, 0xc0(r1)
+	psq_st   f31, 200(r1), 0, qr0
+	stfd     f30, 0xb0(r1)
+	psq_st   f30, 184(r1), 0, qr0
+	stw      r31, 0xac(r1)
+	stw      r30, 0xa8(r1)
+	mr       r30, r3
+	fmr      f30, f1
+	lwz      r0, 0x128(r3)
+	fmr      f31, f2
+	mr       r31, r4
+	addi     r3, r1, 0x48
+	stw      r0, 8(r1)
+	addi     r5, r1, 0x14
+	addi     r6, r1, 0x10
+	lwz      r0, 0x12c(r30)
+	addi     r7, r1, 0xc
+	addi     r8, r1, 8
+	stw      r0, 0xc(r1)
+	lwz      r0, 0x108(r30)
+	stw      r0, 0x10(r1)
+	lwz      r0, 0x104(r30)
+	stw      r0, 0x14(r1)
+	lwz      r4, 0x100(r30)
+	lfs      f1, 0x114(r30)
+	lfs      f2, 0x118(r30)
+	bl
+__ct__8J2DPrintFP7JUTFontffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColor
+	lfs      f1, 0x11c(r30)
+	lfs      f0, lbl_80516860@sda21(r2)
+	lfs      f2, 0x120(r30)
+	fcmpo    cr0, f1, f0
+	ble      lbl_800421D8
+	b        lbl_800421DC
 
-	.loc_0x90:
-	  fmr       f1, f0
+lbl_800421D8:
+	fmr      f1, f0
 
-	.loc_0x94:
-	  lfs       f0, -0x7B00(r2)
-	  stfs      f1, 0x98(r1)
-	  fcmpo     cr0, f2, f0
-	  ble-      .loc_0xA8
-	  b         .loc_0xAC
+lbl_800421DC:
+	lfs      f0, lbl_80516860@sda21(r2)
+	stfs     f1, 0x98(r1)
+	fcmpo    cr0, f2, f0
+	ble      lbl_800421F0
+	b        lbl_800421F4
 
-	.loc_0xA8:
-	  fmr       f2, f0
+lbl_800421F0:
+	fmr      f2, f0
 
-	.loc_0xAC:
-	  stfs      f2, 0x9C(r1)
-	  mr        r3, r31
-	  addi      r4, r30, 0x80
-	  addi      r5, r1, 0x18
-	  bl        0xA80FC
-	  addi      r3, r1, 0x18
-	  li        r4, 0
-	  bl        0xA7368
-	  li        r3, 0
-	  bl        0xA613C
-	  li        r31, 0
+lbl_800421F4:
+	stfs     f2, 0x9c(r1)
+	mr       r3, r31
+	addi     r4, r30, 0x80
+	addi     r5, r1, 0x18
+	bl       PSMTXConcat
+	addi     r3, r1, 0x18
+	li       r4, 0
+	bl       GXLoadPosMtxImm
+	li       r3, 0
+	bl       GXSetNumIndStages
+	li       r31, 0
 
-	.loc_0xD8:
-	  mr        r3, r31
-	  bl        0xA6154
-	  addi      r31, r31, 0x1
-	  cmpwi     r31, 0x10
-	  blt+      .loc_0xD8
-	  li        r3, 0x1
-	  bl        0xA2D64
-	  li        r3, 0
-	  li        r4, 0x1
-	  li        r5, 0x4
-	  li        r6, 0x3C
-	  li        r7, 0
-	  li        r8, 0x7D
-	  bl        0xA2AC8
-	  lfs       f1, 0x20(r30)
-	  addi      r3, r1, 0x48
-	  lfs       f0, 0x24(r30)
-	  fadds     f1, f30, f1
-	  fadds     f2, f31, f0
-	  bl        -0x4590
-	  lwz       r4, 0x124(r30)
-	  cmplwi    r4, 0
-	  beq-      .loc_0x174
-	  lfs       f1, 0x28(r30)
-	  addi      r3, r1, 0x48
-	  lfs       f0, 0x20(r30)
-	  lbz       r0, 0x130(r30)
-	  fsubs     f1, f1, f0
-	  lfs       f3, -0x7AE4(r2)
-	  lfs       f2, 0x2C(r30)
-	  rlwinm    r5,r0,30,30,31
-	  lfs       f0, 0x24(r30)
-	  rlwinm    r6,r0,0,30,31
-	  fadds     f1, f3, f1
-	  lfs       f3, 0x10C(r30)
-	  fsubs     f2, f2, f0
-	  lfs       f4, 0x110(r30)
-	  lbz       r7, 0xB3(r30)
-	  bl        -0x42A0
+lbl_80042220:
+	mr       r3, r31
+	bl       GXSetTevDirect
+	addi     r31, r31, 1
+	cmpwi    r31, 0x10
+	blt      lbl_80042220
+	li       r3, 1
+	bl       GXSetNumTexGens
+	li       r3, 0
+	li       r4, 1
+	li       r5, 4
+	li       r6, 0x3c
+	li       r7, 0
+	li       r8, 0x7d
+	bl       GXSetTexCoordGen2
+	lfs      f1, 0x20(r30)
+	addi     r3, r1, 0x48
+	lfs      f0, 0x24(r30)
+	fadds    f1, f30, f1
+	fadds    f2, f31, f0
+	bl       locate__8J2DPrintFff
+	lwz      r4, 0x124(r30)
+	cmplwi   r4, 0
+	beq      lbl_800422BC
+	lfs      f1, 0x28(r30)
+	addi     r3, r1, 0x48
+	lfs      f0, 0x20(r30)
+	lbz      r0, 0x130(r30)
+	fsubs    f1, f1, f0
+	lfs      f3, lbl_8051687C@sda21(r2)
+	lfs      f2, 0x2c(r30)
+	rlwinm   r5, r0, 0x1e, 0x1e, 0x1f
+	lfs      f0, 0x24(r30)
+	clrlwi   r6, r0, 0x1e
+	fadds    f1, f3, f1
+	lfs      f3, 0x10c(r30)
+	fsubs    f2, f2, f0
+	lfs      f4, 0x110(r30)
+	lbz      r7, 0xb3(r30)
+	bl printReturn__8J2DPrintFPCcff18J2DTextBoxHBinding18J2DTextBoxVBindingffUc
 
-	.loc_0x174:
-	  addi      r3, r1, 0x48
-	  li        r4, -0x1
-	  bl        -0x49B4
-	  psq_l     f31,0xC8(r1),0,0
-	  lfd       f31, 0xC0(r1)
-	  psq_l     f30,0xB8(r1),0,0
-	  lfd       f30, 0xB0(r1)
-	  lwz       r31, 0xAC(r1)
-	  lwz       r0, 0xD4(r1)
-	  lwz       r30, 0xA8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0xD0
-	  blr
+lbl_800422BC:
+	addi     r3, r1, 0x48
+	li       r4, -1
+	bl       __dt__8J2DPrintFv
+	psq_l    f31, 200(r1), 0, qr0
+	lfd      f31, 0xc0(r1)
+	psq_l    f30, 184(r1), 0, qr0
+	lfd      f30, 0xb0(r1)
+	lwz      r31, 0xac(r1)
+	lwz      r0, 0xd4(r1)
+	lwz      r30, 0xa8(r1)
+	mtlr     r0
+	addi     r1, r1, 0xd0
+	blr
 	*/
 }
 
@@ -1557,76 +1627,75 @@ void J2DTextBox::drawSelf(float, float, float (*)[3][4])
 void J2DTextBox::resize(float, float)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stfd      f31, 0x20(r1)
-	  psq_st    f31,0x28(r1),0,0
-	  stfd      f30, 0x10(r1)
-	  psq_st    f30,0x18(r1),0,0
-	  stw       r31, 0xC(r1)
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  fmr       f30, f1
-	  lbz       r0, 0xB5(r3)
-	  fmr       f31, f2
-	  cmplwi    r0, 0
-	  beq-      .loc_0xCC
-	  addic.    r0, r30, 0xDC
-	  beq-      .loc_0xCC
-	  lwz       r3, 0xEC(r30)
-	  cmplwi    r3, 0
-	  beq-      .loc_0xCC
-	  lwz       r31, 0xC(r3)
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm    r0,r3,0,16,31
-	  cmplwi    r0, 0x11
-	  bne-      .loc_0xCC
-	  lfs       f3, 0x28(r30)
-	  mr        r3, r31
-	  lfs       f2, 0x20(r30)
-	  lfs       f1, 0x2C(r30)
-	  lfs       f0, 0x24(r30)
-	  fsubs     f2, f3, f2
-	  lfs       f4, 0x28(r31)
-	  fsubs     f0, f1, f0
-	  lfs       f3, 0x20(r31)
-	  lwz       r12, 0x0(r31)
-	  fsubs     f1, f30, f2
-	  fsubs     f4, f4, f3
-	  lfs       f3, 0x2C(r31)
-	  lfs       f2, 0x24(r31)
-	  fsubs     f0, f31, f0
-	  lwz       r12, 0x18(r12)
-	  fadds     f1, f4, f1
-	  fsubs     f2, f3, f2
-	  fadds     f2, f2, f0
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0xDC
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stfd     f31, 0x20(r1)
+	psq_st   f31, 40(r1), 0, qr0
+	stfd     f30, 0x10(r1)
+	psq_st   f30, 24(r1), 0, qr0
+	stw      r31, 0xc(r1)
+	stw      r30, 8(r1)
+	mr       r30, r3
+	fmr      f30, f1
+	lbz      r0, 0xb5(r3)
+	fmr      f31, f2
+	cmplwi   r0, 0
+	beq      lbl_800423BC
+	addic.   r0, r30, 0xdc
+	beq      lbl_800423BC
+	lwz      r3, 0xec(r30)
+	cmplwi   r3, 0
+	beq      lbl_800423BC
+	lwz      r31, 0xc(r3)
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	clrlwi   r0, r3, 0x10
+	cmplwi   r0, 0x11
+	bne      lbl_800423BC
+	lfs      f3, 0x28(r30)
+	mr       r3, r31
+	lfs      f2, 0x20(r30)
+	lfs      f1, 0x2c(r30)
+	lfs      f0, 0x24(r30)
+	fsubs    f2, f3, f2
+	lfs      f4, 0x28(r31)
+	fsubs    f0, f1, f0
+	lfs      f3, 0x20(r31)
+	lwz      r12, 0(r31)
+	fsubs    f1, f30, f2
+	fsubs    f4, f4, f3
+	lfs      f3, 0x2c(r31)
+	lfs      f2, 0x24(r31)
+	fsubs    f0, f31, f0
+	lwz      r12, 0x18(r12)
+	fadds    f1, f4, f1
+	fsubs    f2, f3, f2
+	fadds    f2, f2, f0
+	mtctr    r12
+	bctrl
+	b        lbl_800423CC
 
-	.loc_0xCC:
-	  fmr       f1, f30
-	  mr        r3, r30
-	  fmr       f2, f31
-	  bl        -0xA1B0
+lbl_800423BC:
+	fmr      f1, f30
+	mr       r3, r30
+	fmr      f2, f31
+	bl       resize__7J2DPaneFff
 
-	.loc_0xDC:
-	  psq_l     f31,0x28(r1),0,0
-	  lfd       f31, 0x20(r1)
-	  psq_l     f30,0x18(r1),0,0
-	  lfd       f30, 0x10(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x34(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_800423CC:
+	psq_l    f31, 40(r1), 0, qr0
+	lfd      f31, 0x20(r1)
+	psq_l    f30, 24(r1), 0, qr0
+	lfd      f30, 0x10(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x34(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -1638,38 +1707,37 @@ void J2DTextBox::resize(float, float)
 void J2DTextBox::isUsed(const ResFONT*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lwz       r3, 0x100(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x48
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x3C(r12)
-	  mtctr     r12
-	  bctrl
-	  cmplw     r3, r31
-	  bne-      .loc_0x48
-	  li        r3, 0x1
-	  b         .loc_0x54
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lwz      r3, 0x100(r3)
+	cmplwi   r3, 0
+	beq      lbl_8004243C
+	lwz      r12, 0(r3)
+	lwz      r12, 0x3c(r12)
+	mtctr    r12
+	bctrl
+	cmplw    r3, r31
+	bne      lbl_8004243C
+	li       r3, 1
+	b        lbl_80042448
 
-	.loc_0x48:
-	  mr        r3, r30
-	  mr        r4, r31
-	  bl        -0x99C8
+lbl_8004243C:
+	mr       r3, r30
+	mr       r4, r31
+	bl       isUsed__7J2DPaneFPC7ResFONT
 
-	.loc_0x54:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80042448:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1688,17 +1756,16 @@ u32 J2DTextBox::getTypeID() const { return 0x13; }
 void J2DTextBox::setBlack(JUtility::TColor)
 {
 	/*
-	.loc_0x0:
-	  lbz       r5, 0x0(r4)
-	  lbz       r0, 0x1(r4)
-	  stb       r5, 0x12C(r3)
-	  lbz       r5, 0x2(r4)
-	  stb       r0, 0x12D(r3)
-	  lbz       r0, 0x3(r4)
-	  stb       r5, 0x12E(r3)
-	  stb       r0, 0x12F(r3)
-	  li        r3, 0x1
-	  blr
+	lbz      r5, 0(r4)
+	lbz      r0, 1(r4)
+	stb      r5, 0x12c(r3)
+	lbz      r5, 2(r4)
+	stb      r0, 0x12d(r3)
+	lbz      r0, 3(r4)
+	stb      r5, 0x12e(r3)
+	stb      r0, 0x12f(r3)
+	li       r3, 1
+	blr
 	*/
 }
 
@@ -1710,17 +1777,16 @@ void J2DTextBox::setBlack(JUtility::TColor)
 void J2DTextBox::setWhite(JUtility::TColor)
 {
 	/*
-	.loc_0x0:
-	  lbz       r5, 0x0(r4)
-	  lbz       r0, 0x1(r4)
-	  stb       r5, 0x128(r3)
-	  lbz       r5, 0x2(r4)
-	  stb       r0, 0x129(r3)
-	  lbz       r0, 0x3(r4)
-	  stb       r5, 0x12A(r3)
-	  stb       r0, 0x12B(r3)
-	  li        r3, 0x1
-	  blr
+	lbz      r5, 0(r4)
+	lbz      r0, 1(r4)
+	stb      r5, 0x128(r3)
+	lbz      r5, 2(r4)
+	stb      r0, 0x129(r3)
+	lbz      r0, 3(r4)
+	stb      r5, 0x12a(r3)
+	stb      r0, 0x12b(r3)
+	li       r3, 1
+	blr
 	*/
 }
 
@@ -1732,25 +1798,24 @@ void J2DTextBox::setWhite(JUtility::TColor)
 void J2DTextBox::setBlackWhite(JUtility::TColor, JUtility::TColor)
 {
 	/*
-	.loc_0x0:
-	  lbz       r6, 0x0(r4)
-	  lbz       r0, 0x1(r4)
-	  stb       r6, 0x12C(r3)
-	  lbz       r6, 0x2(r4)
-	  stb       r0, 0x12D(r3)
-	  lbz       r0, 0x3(r4)
-	  stb       r6, 0x12E(r3)
-	  lbz       r4, 0x0(r5)
-	  stb       r0, 0x12F(r3)
-	  lbz       r0, 0x1(r5)
-	  stb       r4, 0x128(r3)
-	  lbz       r4, 0x2(r5)
-	  stb       r0, 0x129(r3)
-	  lbz       r0, 0x3(r5)
-	  stb       r4, 0x12A(r3)
-	  stb       r0, 0x12B(r3)
-	  li        r3, 0x1
-	  blr
+	lbz      r6, 0(r4)
+	lbz      r0, 1(r4)
+	stb      r6, 0x12c(r3)
+	lbz      r6, 2(r4)
+	stb      r0, 0x12d(r3)
+	lbz      r0, 3(r4)
+	stb      r6, 0x12e(r3)
+	lbz      r4, 0(r5)
+	stb      r0, 0x12f(r3)
+	lbz      r0, 1(r5)
+	stb      r4, 0x128(r3)
+	lbz      r4, 2(r5)
+	stb      r0, 0x129(r3)
+	lbz      r0, 3(r5)
+	stb      r4, 0x12a(r3)
+	stb      r0, 0x12b(r3)
+	li       r3, 1
+	blr
 	*/
 }
 
@@ -1762,10 +1827,9 @@ void J2DTextBox::setBlackWhite(JUtility::TColor, JUtility::TColor)
 void J2DTextBox::getBlack() const
 {
 	/*
-	.loc_0x0:
-	  lwz       r0, 0x12C(r4)
-	  stw       r0, 0x0(r3)
-	  blr
+	lwz      r0, 0x12c(r4)
+	stw      r0, 0(r3)
+	blr
 	*/
 }
 
@@ -1777,10 +1841,9 @@ void J2DTextBox::getBlack() const
 void J2DTextBox::getWhite() const
 {
 	/*
-	.loc_0x0:
-	  lwz       r0, 0x128(r4)
-	  stw       r0, 0x0(r3)
-	  blr
+	lwz      r0, 0x128(r4)
+	stw      r0, 0(r3)
+	blr
 	*/
 }
 
@@ -1799,15 +1862,14 @@ u32 J2DTextBox::getMaterial() const { return 0x0; }
 void J2DTextBox::isUsed(const ResTIMG*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  bl        -0x9B38
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	bl       isUsed__7J2DPaneFPC7ResTIMG
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 

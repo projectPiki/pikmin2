@@ -1,6 +1,10 @@
 #include "types.h"
 
 /*
+    Generated from dpostproc
+*/
+
+/*
  * --INFO--
  * Address:	80027484
  * Size:	000020
@@ -8,15 +12,14 @@
 void __ct__Q27JGadget18TList_pointer_voidFRCQ27JGadget14TAllocator<void*>(void)
 {
 	/*
-	.loc_0x0:
-	  lbz       r0, 0x0(r4)
-	  li        r4, 0
-	  stb       r0, 0x0(r3)
-	  addi      r0, r3, 0x8
-	  stw       r4, 0x4(r3)
-	  stw       r0, 0x8(r3)
-	  stw       r0, 0xC(r3)
-	  blr
+	lbz      r0, 0(r4)
+	li       r4, 0
+	stb      r0, 0(r3)
+	addi     r0, r3, 8
+	stw      r4, 4(r3)
+	stw      r0, 8(r3)
+	stw      r0, 0xc(r3)
+	blr
 	*/
 }
 
@@ -49,63 +52,62 @@ void __ct__Q27JGadget18TList_pointer_voidFUlRCPvRCQ27JGadget14TAllocator<void*>(
 JGadget::TList_pointer_void::~TList_pointer_void(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  stw       r0, 0x44(r1)
-	  stw       r31, 0x3C(r1)
-	  stw       r30, 0x38(r1)
-	  stw       r29, 0x34(r1)
-	  mr        r29, r4
-	  stw       r28, 0x30(r1)
-	  mr.       r28, r3
-	  beq-      .loc_0x9C
-	  beq-      .loc_0x8C
-	  lwz       r0, 0x8(r28)
-	  addi      r31, r28, 0x8
-	  stw       r31, 0x20(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r0, 0x18(r1)
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  b         .loc_0x7C
+	stwu     r1, -0x40(r1)
+	mflr     r0
+	stw      r0, 0x44(r1)
+	stw      r31, 0x3c(r1)
+	stw      r30, 0x38(r1)
+	stw      r29, 0x34(r1)
+	mr       r29, r4
+	stw      r28, 0x30(r1)
+	or.      r28, r3, r3
+	beq      lbl_80027540
+	beq      lbl_80027530
+	lwz      r0, 8(r28)
+	addi     r31, r28, 8
+	stw      r31, 0x20(r1)
+	stw      r31, 0x1c(r1)
+	stw      r0, 0x18(r1)
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	b        lbl_80027520
 
-	.loc_0x4C:
-	  lwz       r3, 0x14(r1)
-	  lwz       r30, 0x0(r3)
-	  lwz       r4, 0x4(r3)
-	  stw       r3, 0x10(r1)
-	  stw       r30, 0x0(r4)
-	  lwz       r0, 0x4(r3)
-	  stw       r0, 0x4(r30)
-	  bl        -0x3458
-	  lwz       r3, 0x4(r28)
-	  stw       r30, 0x14(r1)
-	  subi      r0, r3, 0x1
-	  stw       r0, 0x4(r28)
+lbl_800274F0:
+	lwz      r3, 0x14(r1)
+	lwz      r30, 0(r3)
+	lwz      r4, 4(r3)
+	stw      r3, 0x10(r1)
+	stw      r30, 0(r4)
+	lwz      r0, 4(r3)
+	stw      r0, 4(r30)
+	bl       __dl__FPv
+	lwz      r3, 4(r28)
+	stw      r30, 0x14(r1)
+	addi     r0, r3, -1
+	stw      r0, 4(r28)
 
-	.loc_0x7C:
-	  lwz       r0, 0x14(r1)
-	  cmplw     r0, r31
-	  stw       r0, 0x8(r1)
-	  bne+      .loc_0x4C
+lbl_80027520:
+	lwz      r0, 0x14(r1)
+	cmplw    r0, r31
+	stw      r0, 8(r1)
+	bne      lbl_800274F0
 
-	.loc_0x8C:
-	  extsh.    r0, r29
-	  ble-      .loc_0x9C
-	  mr        r3, r28
-	  bl        -0x3488
+lbl_80027530:
+	extsh.   r0, r29
+	ble      lbl_80027540
+	mr       r3, r28
+	bl       __dl__FPv
 
-	.loc_0x9C:
-	  lwz       r0, 0x44(r1)
-	  mr        r3, r28
-	  lwz       r31, 0x3C(r1)
-	  lwz       r30, 0x38(r1)
-	  lwz       r29, 0x34(r1)
-	  lwz       r28, 0x30(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
+lbl_80027540:
+	lwz      r0, 0x44(r1)
+	mr       r3, r28
+	lwz      r31, 0x3c(r1)
+	lwz      r30, 0x38(r1)
+	lwz      r29, 0x34(r1)
+	lwz      r28, 0x30(r1)
+	mtlr     r0
+	addi     r1, r1, 0x40
+	blr
 	*/
 }
 

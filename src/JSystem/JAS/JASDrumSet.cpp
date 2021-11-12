@@ -1,6 +1,44 @@
 #include "types.h"
 
 /*
+    Generated from dpostproc
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__10JASDrumSet
+    __vt__10JASDrumSet:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__10JASDrumSetFv
+        .4byte getParam__10JASDrumSetCFiiP12JASInstParam
+        .4byte getType__10JASDrumSetCFv
+        .4byte 0
+
+    .section .sbss # 0x80514D80 - 0x80516360
+    .global oscp$640
+    oscp$640:
+        .skip 0x4
+    .global init$641
+    init$641:
+        .skip 0x4
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_80516CD8
+    lbl_80516CD8:
+        .float 1.0
+    .global lbl_80516CDC
+    lbl_80516CDC:
+        .4byte 0x00000000
+    .global lbl_80516CE0
+    lbl_80516CE0:
+        .4byte 0x3FE00000
+        .4byte 0x00000000
+    .global lbl_80516CE8
+    lbl_80516CE8:
+        .float 0.5
+        .4byte 0x00000000
+*/
+
+/*
  * --INFO--
  * Address:	8009B0B8
  * Size:	0001FC
@@ -8,164 +46,163 @@
 void JASDrumSet::getParam(int, int, JASInstParam*) const
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stmw      r25, 0x14(r1)
-	  mr        r28, r4
-	  cmplwi    r28, 0x80
-	  mr        r29, r5
-	  mr        r30, r6
-	  blt-      .loc_0x2C
-	  li        r3, 0
-	  b         .loc_0x1E8
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stmw     r25, 0x14(r1)
+	mr       r28, r4
+	cmplwi   r28, 0x80
+	mr       r29, r5
+	mr       r30, r6
+	blt      lbl_8009B0E4
+	li       r3, 0
+	b        lbl_8009B2A0
 
-	.loc_0x2C:
-	  rlwinm    r4,r28,5,0,26
-	  li        r5, 0
-	  addi      r31, r4, 0x4
-	  stb       r5, 0x0(r30)
-	  add       r31, r3, r31
-	  li        r4, 0x1
-	  stb       r4, 0x24(r30)
-	  lis       r3, 0x804F
-	  lfs       f0, 0x0(r31)
-	  lfs       f1, 0x4(r31)
-	  stfs      f0, 0x10(r30)
-	  lfs       f0, 0x8(r31)
-	  stfs      f1, 0x14(r30)
-	  lhz       r0, 0xC(r31)
-	  stfs      f0, 0x18(r30)
-	  lfs       f1, -0x7688(r2)
-	  sth       r0, 0x26(r30)
-	  lfs       f0, -0x7684(r2)
-	  stwu      r5, 0x550(r3)
-	  lbz       r0, -0x75CC(r13)
-	  stfs      f1, 0x4(r3)
-	  extsb.    r0, r0
-	  stw       r5, 0x8(r3)
-	  stw       r5, 0xC(r3)
-	  stfs      f1, 0x10(r3)
-	  stfs      f0, 0x14(r3)
-	  bne-      .loc_0xA0
-	  stw       r3, -0x75D0(r13)
-	  stb       r4, -0x75CC(r13)
+lbl_8009B0E4:
+	slwi     r4, r28, 5
+	li       r5, 0
+	addi     r31, r4, 4
+	stb      r5, 0(r30)
+	add      r31, r3, r31
+	li       r4, 1
+	stb      r4, 0x24(r30)
+	lis      r3, osc$639@ha
+	lfs      f0, 0(r31)
+	lfs      f1, 4(r31)
+	stfs     f0, 0x10(r30)
+	lfs      f0, 8(r31)
+	stfs     f1, 0x14(r30)
+	lhz      r0, 0xc(r31)
+	stfs     f0, 0x18(r30)
+	lfs      f1, lbl_80516CD8@sda21(r2)
+	sth      r0, 0x26(r30)
+	lfs      f0, lbl_80516CDC@sda21(r2)
+	stwu     r5, osc$639@l(r3)
+	lbz      r0, init$641@sda21(r13)
+	stfs     f1, 4(r3)
+	extsb.   r0, r0
+	stw      r5, 8(r3)
+	stw      r5, 0xc(r3)
+	stfs     f1, 0x10(r3)
+	stfs     f0, 0x14(r3)
+	bne      lbl_8009B158
+	stw      r3, oscp$640@sda21(r13)
+	stb      r4, init$641@sda21(r13)
 
-	.loc_0xA0:
-	  subi      r3, r13, 0x75D0
-	  li        r0, 0x1
-	  stw       r3, 0x8(r30)
-	  li        r26, 0
-	  li        r27, 0
-	  stw       r0, 0xC(r30)
-	  b         .loc_0x178
+lbl_8009B158:
+	addi     r3, r13, oscp$640@sda21
+	li       r0, 1
+	stw      r3, 8(r30)
+	li       r26, 0
+	li       r27, 0
+	stw      r0, 0xc(r30)
+	b        lbl_8009B230
 
-	.loc_0xBC:
-	  lwz       r3, 0x10(r31)
-	  lwzx      r25, r3, r27
-	  cmplwi    r25, 0
-	  beq-      .loc_0x170
-	  mr        r3, r25
-	  mr        r4, r28
-	  lwz       r12, 0x0(r25)
-	  mr        r5, r29
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lbz       r0, 0x4(r25)
-	  cmpwi     r0, 0x2
-	  beq-      .loc_0x138
-	  bge-      .loc_0x108
-	  cmpwi     r0, 0
-	  beq-      .loc_0x118
-	  bge-      .loc_0x128
-	  b         .loc_0x170
+lbl_8009B174:
+	lwz      r3, 0x10(r31)
+	lwzx     r25, r3, r27
+	cmplwi   r25, 0
+	beq      lbl_8009B228
+	mr       r3, r25
+	mr       r4, r28
+	lwz      r12, 0(r25)
+	mr       r5, r29
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lbz      r0, 4(r25)
+	cmpwi    r0, 2
+	beq      lbl_8009B1F0
+	bge      lbl_8009B1C0
+	cmpwi    r0, 0
+	beq      lbl_8009B1D0
+	bge      lbl_8009B1E0
+	b        lbl_8009B228
 
-	.loc_0x108:
-	  cmpwi     r0, 0x4
-	  beq-      .loc_0x164
-	  bge-      .loc_0x170
-	  b         .loc_0x154
+lbl_8009B1C0:
+	cmpwi    r0, 4
+	beq      lbl_8009B21C
+	bge      lbl_8009B228
+	b        lbl_8009B20C
 
-	.loc_0x118:
-	  lfs       f0, 0x10(r30)
-	  fmuls     f0, f0, f1
-	  stfs      f0, 0x10(r30)
-	  b         .loc_0x170
+lbl_8009B1D0:
+	lfs      f0, 0x10(r30)
+	fmuls    f0, f0, f1
+	stfs     f0, 0x10(r30)
+	b        lbl_8009B228
 
-	.loc_0x128:
-	  lfs       f0, 0x14(r30)
-	  fmuls     f0, f0, f1
-	  stfs      f0, 0x14(r30)
-	  b         .loc_0x170
+lbl_8009B1E0:
+	lfs      f0, 0x14(r30)
+	fmuls    f0, f0, f1
+	stfs     f0, 0x14(r30)
+	b        lbl_8009B228
 
-	.loc_0x138:
-	  lfd       f0, -0x7680(r2)
-	  lfs       f2, 0x18(r30)
-	  fsub      f0, f1, f0
-	  fadd      f0, f2, f0
-	  frsp      f0, f0
-	  stfs      f0, 0x18(r30)
-	  b         .loc_0x170
+lbl_8009B1F0:
+	lfd      f0, lbl_80516CE0@sda21(r2)
+	lfs      f2, 0x18(r30)
+	fsub     f0, f1, f0
+	fadd     f0, f2, f0
+	frsp     f0, f0
+	stfs     f0, 0x18(r30)
+	b        lbl_8009B228
 
-	.loc_0x154:
-	  lfs       f0, 0x1C(r30)
-	  fadds     f0, f0, f1
-	  stfs      f0, 0x1C(r30)
-	  b         .loc_0x170
+lbl_8009B20C:
+	lfs      f0, 0x1c(r30)
+	fadds    f0, f0, f1
+	stfs     f0, 0x1c(r30)
+	b        lbl_8009B228
 
-	.loc_0x164:
-	  lfs       f0, 0x20(r30)
-	  fadds     f0, f0, f1
-	  stfs      f0, 0x20(r30)
+lbl_8009B21C:
+	lfs      f0, 0x20(r30)
+	fadds    f0, f0, f1
+	stfs     f0, 0x20(r30)
 
-	.loc_0x170:
-	  addi      r27, r27, 0x4
-	  addi      r26, r26, 0x1
+lbl_8009B228:
+	addi     r27, r27, 4
+	addi     r26, r26, 1
 
-	.loc_0x178:
-	  lwz       r0, 0x14(r31)
-	  cmplw     r26, r0
-	  blt+      .loc_0xBC
-	  lwz       r0, 0x18(r31)
-	  li        r3, 0
-	  mtctr     r0
-	  cmplwi    r0, 0
-	  ble-      .loc_0x1E4
+lbl_8009B230:
+	lwz      r0, 0x14(r31)
+	cmplw    r26, r0
+	blt      lbl_8009B174
+	lwz      r0, 0x18(r31)
+	li       r3, 0
+	mtctr    r0
+	cmplwi   r0, 0
+	ble      lbl_8009B29C
 
-	.loc_0x198:
-	  lwz       r0, 0x1C(r31)
-	  add       r4, r0, r3
-	  lwz       r0, 0x0(r4)
-	  cmpw      r29, r0
-	  bgt-      .loc_0x1DC
-	  lfs       f1, 0x10(r30)
-	  li        r3, 0x1
-	  lfs       f0, 0x8(r4)
-	  fmuls     f0, f1, f0
-	  stfs      f0, 0x10(r30)
-	  lfs       f1, 0x14(r30)
-	  lfs       f0, 0xC(r4)
-	  fmuls     f0, f1, f0
-	  stfs      f0, 0x14(r30)
-	  lwz       r0, 0x4(r4)
-	  stw       r0, 0x4(r30)
-	  b         .loc_0x1E8
+lbl_8009B250:
+	lwz      r0, 0x1c(r31)
+	add      r4, r0, r3
+	lwz      r0, 0(r4)
+	cmpw     r29, r0
+	bgt      lbl_8009B294
+	lfs      f1, 0x10(r30)
+	li       r3, 1
+	lfs      f0, 8(r4)
+	fmuls    f0, f1, f0
+	stfs     f0, 0x10(r30)
+	lfs      f1, 0x14(r30)
+	lfs      f0, 0xc(r4)
+	fmuls    f0, f1, f0
+	stfs     f0, 0x14(r30)
+	lwz      r0, 4(r4)
+	stw      r0, 4(r30)
+	b        lbl_8009B2A0
 
-	.loc_0x1DC:
-	  addi      r3, r3, 0x10
-	  bdnz+     .loc_0x198
+lbl_8009B294:
+	addi     r3, r3, 0x10
+	bdnz     lbl_8009B250
 
-	.loc_0x1E4:
-	  li        r3, 0
+lbl_8009B29C:
+	li       r3, 0
 
-	.loc_0x1E8:
-	  lmw       r25, 0x14(r1)
-	  lwz       r0, 0x34(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_8009B2A0:
+	lmw      r25, 0x14(r1)
+	lwz      r0, 0x34(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -177,12 +214,11 @@ void JASDrumSet::getParam(int, int, JASInstParam*) const
 void JASDrumSet::getPerc(int)
 {
 	/*
-	.loc_0x0:
-	  rlwinm    r4,r4,5,0,26
-	  mr        r0, r3
-	  addi      r3, r4, 0x4
-	  add       r3, r0, r3
-	  blr
+	slwi     r4, r4, 5
+	mr       r0, r3
+	addi     r3, r4, 4
+	add      r3, r0, r3
+	blr
 	*/
 }
 
@@ -204,20 +240,19 @@ void JASDrumSet::getPerc(int) const
 JASDrumSet::TPerc::TPerc(void)
 {
 	/*
-	.loc_0x0:
-	  lfs       f1, -0x7688(r2)
-	  li        r4, 0x3E8
-	  lfs       f0, -0x7678(r2)
-	  li        r0, 0
-	  stfs      f1, 0x0(r3)
-	  stfs      f1, 0x4(r3)
-	  stfs      f0, 0x8(r3)
-	  sth       r4, 0xC(r3)
-	  stw       r0, 0x10(r3)
-	  stw       r0, 0x14(r3)
-	  stw       r0, 0x18(r3)
-	  stw       r0, 0x1C(r3)
-	  blr
+	lfs      f1, lbl_80516CD8@sda21(r2)
+	li       r4, 0x3e8
+	lfs      f0, lbl_80516CE8@sda21(r2)
+	li       r0, 0
+	stfs     f1, 0(r3)
+	stfs     f1, 4(r3)
+	stfs     f0, 8(r3)
+	sth      r4, 0xc(r3)
+	stw      r0, 0x10(r3)
+	stw      r0, 0x14(r3)
+	stw      r0, 0x18(r3)
+	stw      r0, 0x1c(r3)
+	blr
 	*/
 }
 
@@ -229,32 +264,31 @@ JASDrumSet::TPerc::TPerc(void)
 JASDrumSet::TPerc::~TPerc(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x40
-	  lwz       r3, 0x10(r30)
-	  bl        -0x77248
-	  lwz       r3, 0x1C(r30)
-	  bl        -0x77250
-	  extsh.    r0, r31
-	  ble-      .loc_0x40
-	  mr        r3, r30
-	  bl        -0x77284
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_8009B33C
+	lwz      r3, 0x10(r30)
+	bl       __dla__FPv
+	lwz      r3, 0x1c(r30)
+	bl       __dla__FPv
+	extsh.   r0, r31
+	ble      lbl_8009B33C
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x40:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8009B33C:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -266,41 +300,40 @@ JASDrumSet::TPerc::~TPerc(void)
 void JASDrumSet::TPerc::setEffectCount(unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lwz       r3, 0x10(r3)
-	  bl        -0x772A0
-	  cmplwi    r31, 0
-	  stw       r31, 0x14(r30)
-	  bne-      .loc_0x3C
-	  li        r0, 0
-	  stw       r0, 0x10(r30)
-	  b         .loc_0x60
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lwz      r3, 0x10(r3)
+	bl       __dla__FPv
+	cmplwi   r31, 0
+	stw      r31, 0x14(r30)
+	bne      lbl_8009B394
+	li       r0, 0
+	stw      r0, 0x10(r30)
+	b        lbl_8009B3B8
 
-	.loc_0x3C:
-	  bl        0xF68
-	  mr        r4, r3
-	  rlwinm    r3,r31,2,0,29
-	  li        r5, 0
-	  bl        -0x7735C
-	  stw       r3, 0x10(r30)
-	  rlwinm    r4,r31,2,0,29
-	  lwz       r3, 0x10(r30)
-	  bl        0xAEB0
+lbl_8009B394:
+	bl       getCurrentHeap__7JASBankFv
+	mr       r4, r3
+	slwi     r3, r31, 2
+	li       r5, 0
+	bl       __nwa__FUlP7JKRHeapi
+	stw      r3, 0x10(r30)
+	slwi     r4, r31, 2
+	lwz      r3, 0x10(r30)
+	bl       bzero__7JASCalcFPvUl
 
-	.loc_0x60:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8009B3B8:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -312,29 +345,28 @@ void JASDrumSet::TPerc::setEffectCount(unsigned long)
 void JASDrumSet::TPerc::setVeloRegionCount(unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lwz       r3, 0x1C(r3)
-	  bl        -0x77318
-	  bl        0xF08
-	  mr        r4, r3
-	  rlwinm    r3,r31,4,0,27
-	  li        r5, 0
-	  bl        -0x773BC
-	  stw       r3, 0x1C(r30)
-	  stw       r31, 0x18(r30)
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lwz      r3, 0x1c(r3)
+	bl       __dla__FPv
+	bl       getCurrentHeap__7JASBankFv
+	mr       r4, r3
+	slwi     r3, r31, 4
+	li       r5, 0
+	bl       __nwa__FUlP7JKRHeapi
+	stw      r3, 0x1c(r30)
+	stw      r31, 0x18(r30)
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -346,11 +378,10 @@ void JASDrumSet::TPerc::setVeloRegionCount(unsigned long)
 void JASDrumSet::TPerc::getVeloRegion(int)
 {
 	/*
-	.loc_0x0:
-	  lwz       r3, 0x1C(r3)
-	  rlwinm    r0,r4,4,0,27
-	  add       r3, r3, r0
-	  blr
+	lwz      r3, 0x1c(r3)
+	slwi     r0, r4, 4
+	add      r3, r3, r0
+	blr
 	*/
 }
 
@@ -372,11 +403,10 @@ void JASDrumSet::TPerc::getVeloRegion(const(int))
 void JASDrumSet::TPerc::setEffect(int, JASInstEffect*)
 {
 	/*
-	.loc_0x0:
-	  lwz       r3, 0x10(r3)
-	  rlwinm    r0,r4,2,0,29
-	  stwx      r5, r3, r0
-	  blr
+	lwz      r3, 0x10(r3)
+	slwi     r0, r4, 2
+	stwx     r5, r3, r0
+	blr
 	*/
 }
 
@@ -409,44 +439,43 @@ void JASDrumSet::TPerc::setRelease(unsigned long a1)
 JASDrumSet::~JASDrumSet()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x68
-	  lis       r3, 0x804A
-	  lis       r4, 0x800A
-	  addi      r0, r3, 0x3820
-	  li        r5, 0x20
-	  stw       r0, 0x0(r30)
-	  addi      r3, r30, 0x4
-	  subi      r4, r4, 0x4D04
-	  li        r6, 0x80
-	  bl        0x26334
-	  cmplwi    r30, 0
-	  beq-      .loc_0x58
-	  lis       r3, 0x804A
-	  addi      r0, r3, 0x3790
-	  stw       r0, 0x0(r30)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_8009B4B8
+	lis      r3, __vt__10JASDrumSet@ha
+	lis      r4, __dt__Q210JASDrumSet5TPercFv@ha
+	addi     r0, r3, __vt__10JASDrumSet@l
+	li       r5, 0x20
+	stw      r0, 0(r30)
+	addi     r3, r30, 4
+	addi     r4, r4, __dt__Q210JASDrumSet5TPercFv@l
+	li       r6, 0x80
+	bl       __destroy_arr
+	cmplwi   r30, 0
+	beq      lbl_8009B4A8
+	lis      r3, __vt__7JASInst@ha
+	addi     r0, r3, __vt__7JASInst@l
+	stw      r0, 0(r30)
 
-	.loc_0x58:
-	  extsh.    r0, r31
-	  ble-      .loc_0x68
-	  mr        r3, r30
-	  bl        -0x77400
+lbl_8009B4A8:
+	extsh.   r0, r31
+	ble      lbl_8009B4B8
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x68:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8009B4B8:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -458,9 +487,8 @@ JASDrumSet::~JASDrumSet()
 void JASDrumSet::getType() const
 {
 	/*
-	.loc_0x0:
-	  lis       r3, 0x5045
-	  addi      r3, r3, 0x5243
-	  blr
+	lis      r3, 0x50455243@ha
+	addi     r3, r3, 0x50455243@l
+	blr
 	*/
 }

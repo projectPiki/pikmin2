@@ -1,6 +1,10 @@
 #include "types.h"
 
 /*
+    Generated from dpostproc
+*/
+
+/*
  * --INFO--
  * Address:	800272E4
  * Size:	00003C
@@ -8,24 +12,23 @@
 JGadget::TNodeLinkList::~TNodeLinkList(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r3
-	  beq-      .loc_0x24
-	  extsh.    r0, r4
-	  ble-      .loc_0x24
-	  bl        -0x3250
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r3, r3
+	beq      lbl_80027308
+	extsh.   r0, r4
+	ble      lbl_80027308
+	bl       __dl__FPv
 
-	.loc_0x24:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80027308:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -158,16 +161,15 @@ void JGadget::TNodeLinkList::Insert(JGadget::TNodeLinkList::iterator,
 void JGadget::TNodeLinkList::Erase(JGadget::TLinkListNode*)
 {
 	/*
-	.loc_0x0:
-	  lwz       r6, 0x0(r5)
-	  lwz       r5, 0x4(r5)
-	  stw       r5, 0x4(r6)
-	  stw       r6, 0x0(r5)
-	  lwz       r5, 0x0(r4)
-	  subi      r0, r5, 0x1
-	  stw       r0, 0x0(r4)
-	  stw       r6, 0x0(r3)
-	  blr
+	lwz      r6, 0(r5)
+	lwz      r5, 4(r5)
+	stw      r5, 4(r6)
+	stw      r6, 0(r5)
+	lwz      r5, 0(r4)
+	addi     r0, r5, -1
+	stw      r0, 0(r4)
+	stw      r6, 0(r3)
+	blr
 	*/
 }
 
@@ -179,20 +181,18 @@ void JGadget::TNodeLinkList::Erase(JGadget::TLinkListNode*)
 void JGadget::TNodeLinkList::Remove(JGadget::TLinkListNode*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r4, 0x8(r1)
-	  stw       r4, 0xC(r1)
-	  addi      r4, r1, 0xC
-	  bl        .loc_0x2C
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-
-	.loc_0x2C:
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r4, 8(r1)
+	stw      r4, 0xc(r1)
+	addi     r4, r1, 0xc
+	bl
+	"remove_if<Q37JGadget22@unnamed@linklist_cpp@46TPRIsEqual_pointer_<Q27JGadget13TLinkListNode>>__Q27JGadget13TNodeLinkListFQ37JGadget22@unnamed@linklist_cpp@46TPRIsEqual_pointer_<Q27JGadget13TLinkListNode>"
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 

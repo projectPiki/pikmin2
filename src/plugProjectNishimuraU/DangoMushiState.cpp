@@ -1,5 +1,245 @@
 #include "types.h"
 
+/*
+    Generated from dpostproc
+
+    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
+    .4byte __sinit_DangoMushiState_cpp
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global lbl_804D5E60
+    lbl_804D5E60:
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+    .global __vt__Q34Game10DangoMushi10StateFlick
+    __vt__Q34Game10DangoMushi10StateFlick:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game10DangoMushi10StateFlickFPQ24Game9EnemyBasePQ24Game8StateArg
+        .4byte exec__Q34Game10DangoMushi10StateFlickFPQ24Game9EnemyBase
+        .4byte cleanup__Q34Game10DangoMushi10StateFlickFPQ24Game9EnemyBase
+        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game10DangoMushi12StateRecover
+    __vt__Q34Game10DangoMushi12StateRecover:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game10DangoMushi12StateRecoverFPQ24Game9EnemyBasePQ24Game8StateArg
+        .4byte exec__Q34Game10DangoMushi12StateRecoverFPQ24Game9EnemyBase
+        .4byte cleanup__Q34Game10DangoMushi12StateRecoverFPQ24Game9EnemyBase
+        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game10DangoMushi9StateTurn
+    __vt__Q34Game10DangoMushi9StateTurn:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game10DangoMushi9StateTurnFPQ24Game9EnemyBasePQ24Game8StateArg
+        .4byte exec__Q34Game10DangoMushi9StateTurnFPQ24Game9EnemyBase
+        .4byte cleanup__Q34Game10DangoMushi9StateTurnFPQ24Game9EnemyBase
+        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game10DangoMushi11StateAttack
+    __vt__Q34Game10DangoMushi11StateAttack:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game10DangoMushi11StateAttackFPQ24Game9EnemyBasePQ24Game8StateArg
+        .4byte exec__Q34Game10DangoMushi11StateAttackFPQ24Game9EnemyBase
+        .4byte cleanup__Q34Game10DangoMushi11StateAttackFPQ24Game9EnemyBase
+        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game10DangoMushi9StateMove
+    __vt__Q34Game10DangoMushi9StateMove:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game10DangoMushi9StateMoveFPQ24Game9EnemyBasePQ24Game8StateArg
+        .4byte exec__Q34Game10DangoMushi9StateMoveFPQ24Game9EnemyBase
+        .4byte cleanup__Q34Game10DangoMushi9StateMoveFPQ24Game9EnemyBase
+        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game10DangoMushi9StateWait
+    __vt__Q34Game10DangoMushi9StateWait:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game10DangoMushi9StateWaitFPQ24Game9EnemyBasePQ24Game8StateArg
+        .4byte exec__Q34Game10DangoMushi9StateWaitFPQ24Game9EnemyBase
+        .4byte cleanup__Q34Game10DangoMushi9StateWaitFPQ24Game9EnemyBase
+        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game10DangoMushi11StateAppear
+    __vt__Q34Game10DangoMushi11StateAppear:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game10DangoMushi11StateAppearFPQ24Game9EnemyBasePQ24Game8StateArg
+        .4byte exec__Q34Game10DangoMushi11StateAppearFPQ24Game9EnemyBase
+        .4byte cleanup__Q34Game10DangoMushi11StateAppearFPQ24Game9EnemyBase
+        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game10DangoMushi9StateStay
+    __vt__Q34Game10DangoMushi9StateStay:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game10DangoMushi9StateStayFPQ24Game9EnemyBasePQ24Game8StateArg
+        .4byte exec__Q34Game10DangoMushi9StateStayFPQ24Game9EnemyBase
+        .4byte cleanup__Q34Game10DangoMushi9StateStayFPQ24Game9EnemyBase
+        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game10DangoMushi9StateDead
+    __vt__Q34Game10DangoMushi9StateDead:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game10DangoMushi9StateDeadFPQ24Game9EnemyBasePQ24Game8StateArg
+        .4byte exec__Q34Game10DangoMushi9StateDeadFPQ24Game9EnemyBase
+        .4byte cleanup__Q34Game10DangoMushi9StateDeadFPQ24Game9EnemyBase
+        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game10DangoMushi5State
+    __vt__Q34Game10DangoMushi5State:
+        .4byte 0
+        .4byte 0
+        .4byte init__Q24Game13EnemyFSMStateFPQ24Game9EnemyBasePQ24Game8StateArg
+        .4byte exec__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte cleanup__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game10DangoMushi3FSM
+    __vt__Q34Game10DangoMushi3FSM:
+        .4byte 0
+        .4byte 0
+        .4byte init__Q34Game10DangoMushi3FSMFPQ24Game9EnemyBase
+        .4byte
+   start__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   exec__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase .4byte
+   transit__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseiPQ24Game8StateArg
+        .4byte
+   doDirectDraw__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseR8Graphics .4byte
+   getCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase .4byte
+   setCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBasePQ24Game13EnemyFSMState
+
+    .section .sbss # 0x80514D80 - 0x80516360
+    .global lbl_80515E08
+    lbl_80515E08:
+        .skip 0x4
+    .global lbl_80515E0C
+    lbl_80515E0C:
+        .skip 0x4
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_8051D2F8
+    lbl_8051D2F8:
+        .4byte 0x64656164
+        .4byte 0x00000000
+    .global lbl_8051D300
+    lbl_8051D300:
+        .4byte 0x73746179
+        .4byte 0x00000000
+    .global lbl_8051D308
+    lbl_8051D308:
+        .4byte 0x61707065
+        .4byte 0x61720000
+    .global lbl_8051D310
+    lbl_8051D310:
+        .4byte 0x77616974
+        .4byte 0x00000000
+    .global lbl_8051D318
+    lbl_8051D318:
+        .4byte 0x6D6F7665
+        .4byte 0x00000000
+    .global lbl_8051D320
+    lbl_8051D320:
+        .4byte 0x61747461
+        .4byte 0x636B0000
+    .global lbl_8051D328
+    lbl_8051D328:
+        .4byte 0x7475726E
+        .4byte 0x00000000
+    .global lbl_8051D330
+    lbl_8051D330:
+        .4byte 0x7265636F
+        .4byte 0x76657200
+    .global lbl_8051D338
+    lbl_8051D338:
+        .4byte 0x666C6963
+        .4byte 0x6B000000
+    .global lbl_8051D340
+    lbl_8051D340:
+        .4byte 0x00000000
+    .global lbl_8051D344
+    lbl_8051D344:
+        .4byte 0x42480000
+    .global lbl_8051D348
+    lbl_8051D348:
+        .4byte 0x40490FDB
+    .global lbl_8051D34C
+    lbl_8051D34C:
+        .4byte 0x3BB60B61
+    .global lbl_8051D350
+    lbl_8051D350:
+        .4byte 0x626C656E
+        .4byte 0x64000000
+    .global lbl_8051D358
+    lbl_8051D358:
+        .4byte 0x40400000
+    .global lbl_8051D35C
+    lbl_8051D35C:
+        .4byte 0x41200000
+    .global lbl_8051D360
+    lbl_8051D360:
+        .4byte 0x3F060A92
+    .global lbl_8051D364
+    lbl_8051D364:
+        .4byte 0x41700000
+    .global lbl_8051D368
+    lbl_8051D368:
+        .float 1.0
+    .global lbl_8051D36C
+    lbl_8051D36C:
+        .4byte 0xC47A0000
+    .global lbl_8051D370
+    lbl_8051D370:
+        .4byte 0x41F00000
+        .4byte 0x00000000
+*/
+
 namespace Game {
 
 /*
@@ -10,225 +250,224 @@ namespace Game {
 void DangoMushi::FSM::init(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r4, 0x9
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        -0x1C9240
-	  li        r3, 0x10
-	  bl        -0x2D5C08
-	  mr.       r4, r3
-	  beq-      .loc_0x64
-	  lis       r3, 0x804B
-	  lis       r5, 0x804D
-	  subi      r0, r3, 0x65C
-	  lis       r3, 0x804D
-	  stw       r0, 0x0(r4)
-	  li        r7, 0
-	  addi      r6, r5, 0x5FB0
-	  subi      r5, r2, 0x1068
-	  stw       r7, 0x4(r4)
-	  addi      r0, r3, 0x5F8C
-	  stw       r7, 0x8(r4)
-	  stw       r6, 0x0(r4)
-	  stw       r5, 0xC(r4)
-	  stw       r0, 0x0(r4)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	li       r4, 9
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       create__Q24Game17EnemyStateMachineFi
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_802F9AF0
+	lis      r3, __vt__Q24Game13EnemyFSMState@ha
+	lis      r5, __vt__Q34Game10DangoMushi5State@ha
+	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
+	lis      r3, __vt__Q34Game10DangoMushi9StateDead@ha
+	stw      r0, 0(r4)
+	li       r7, 0
+	addi     r6, r5, __vt__Q34Game10DangoMushi5State@l
+	addi     r5, r2, lbl_8051D2F8@sda21
+	stw      r7, 4(r4)
+	addi     r0, r3, __vt__Q34Game10DangoMushi9StateDead@l
+	stw      r7, 8(r4)
+	stw      r6, 0(r4)
+	stw      r5, 0xc(r4)
+	stw      r0, 0(r4)
 
-	.loc_0x64:
-	  mr        r3, r31
-	  bl        -0x1C91EC
-	  li        r3, 0x10
-	  bl        -0x2D5C58
-	  mr.       r4, r3
-	  beq-      .loc_0xB8
-	  lis       r3, 0x804B
-	  lis       r5, 0x804D
-	  subi      r0, r3, 0x65C
-	  lis       r3, 0x804D
-	  stw       r0, 0x0(r4)
-	  li        r0, 0x1
-	  li        r7, 0
-	  addi      r6, r5, 0x5FB0
-	  stw       r0, 0x4(r4)
-	  subi      r5, r2, 0x1060
-	  addi      r0, r3, 0x5F68
-	  stw       r7, 0x8(r4)
-	  stw       r6, 0x0(r4)
-	  stw       r5, 0xC(r4)
-	  stw       r0, 0x0(r4)
+lbl_802F9AF0:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_802F9B44
+	lis      r3, __vt__Q24Game13EnemyFSMState@ha
+	lis      r5, __vt__Q34Game10DangoMushi5State@ha
+	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
+	lis      r3, __vt__Q34Game10DangoMushi9StateStay@ha
+	stw      r0, 0(r4)
+	li       r0, 1
+	li       r7, 0
+	addi     r6, r5, __vt__Q34Game10DangoMushi5State@l
+	stw      r0, 4(r4)
+	addi     r5, r2, lbl_8051D300@sda21
+	addi     r0, r3, __vt__Q34Game10DangoMushi9StateStay@l
+	stw      r7, 8(r4)
+	stw      r6, 0(r4)
+	stw      r5, 0xc(r4)
+	stw      r0, 0(r4)
 
-	.loc_0xB8:
-	  mr        r3, r31
-	  bl        -0x1C9240
-	  li        r3, 0x10
-	  bl        -0x2D5CAC
-	  mr.       r4, r3
-	  beq-      .loc_0x10C
-	  lis       r3, 0x804B
-	  lis       r5, 0x804D
-	  subi      r0, r3, 0x65C
-	  lis       r3, 0x804D
-	  stw       r0, 0x0(r4)
-	  li        r0, 0x2
-	  li        r7, 0
-	  addi      r6, r5, 0x5FB0
-	  stw       r0, 0x4(r4)
-	  subi      r5, r2, 0x1058
-	  addi      r0, r3, 0x5F44
-	  stw       r7, 0x8(r4)
-	  stw       r6, 0x0(r4)
-	  stw       r5, 0xC(r4)
-	  stw       r0, 0x0(r4)
+lbl_802F9B44:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_802F9B98
+	lis      r3, __vt__Q24Game13EnemyFSMState@ha
+	lis      r5, __vt__Q34Game10DangoMushi5State@ha
+	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
+	lis      r3, __vt__Q34Game10DangoMushi11StateAppear@ha
+	stw      r0, 0(r4)
+	li       r0, 2
+	li       r7, 0
+	addi     r6, r5, __vt__Q34Game10DangoMushi5State@l
+	stw      r0, 4(r4)
+	addi     r5, r2, lbl_8051D308@sda21
+	addi     r0, r3, __vt__Q34Game10DangoMushi11StateAppear@l
+	stw      r7, 8(r4)
+	stw      r6, 0(r4)
+	stw      r5, 0xc(r4)
+	stw      r0, 0(r4)
 
-	.loc_0x10C:
-	  mr        r3, r31
-	  bl        -0x1C9294
-	  li        r3, 0x10
-	  bl        -0x2D5D00
-	  mr.       r4, r3
-	  beq-      .loc_0x160
-	  lis       r3, 0x804B
-	  lis       r5, 0x804D
-	  subi      r0, r3, 0x65C
-	  lis       r3, 0x804D
-	  stw       r0, 0x0(r4)
-	  li        r0, 0x3
-	  li        r7, 0
-	  addi      r6, r5, 0x5FB0
-	  stw       r0, 0x4(r4)
-	  subi      r5, r2, 0x1050
-	  addi      r0, r3, 0x5F20
-	  stw       r7, 0x8(r4)
-	  stw       r6, 0x0(r4)
-	  stw       r5, 0xC(r4)
-	  stw       r0, 0x0(r4)
+lbl_802F9B98:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_802F9BEC
+	lis      r3, __vt__Q24Game13EnemyFSMState@ha
+	lis      r5, __vt__Q34Game10DangoMushi5State@ha
+	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
+	lis      r3, __vt__Q34Game10DangoMushi9StateWait@ha
+	stw      r0, 0(r4)
+	li       r0, 3
+	li       r7, 0
+	addi     r6, r5, __vt__Q34Game10DangoMushi5State@l
+	stw      r0, 4(r4)
+	addi     r5, r2, lbl_8051D310@sda21
+	addi     r0, r3, __vt__Q34Game10DangoMushi9StateWait@l
+	stw      r7, 8(r4)
+	stw      r6, 0(r4)
+	stw      r5, 0xc(r4)
+	stw      r0, 0(r4)
 
-	.loc_0x160:
-	  mr        r3, r31
-	  bl        -0x1C92E8
-	  li        r3, 0x10
-	  bl        -0x2D5D54
-	  mr.       r4, r3
-	  beq-      .loc_0x1B4
-	  lis       r3, 0x804B
-	  lis       r5, 0x804D
-	  subi      r0, r3, 0x65C
-	  lis       r3, 0x804D
-	  stw       r0, 0x0(r4)
-	  li        r0, 0x4
-	  li        r7, 0
-	  addi      r6, r5, 0x5FB0
-	  stw       r0, 0x4(r4)
-	  subi      r5, r2, 0x1048
-	  addi      r0, r3, 0x5EFC
-	  stw       r7, 0x8(r4)
-	  stw       r6, 0x0(r4)
-	  stw       r5, 0xC(r4)
-	  stw       r0, 0x0(r4)
+lbl_802F9BEC:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_802F9C40
+	lis      r3, __vt__Q24Game13EnemyFSMState@ha
+	lis      r5, __vt__Q34Game10DangoMushi5State@ha
+	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
+	lis      r3, __vt__Q34Game10DangoMushi9StateMove@ha
+	stw      r0, 0(r4)
+	li       r0, 4
+	li       r7, 0
+	addi     r6, r5, __vt__Q34Game10DangoMushi5State@l
+	stw      r0, 4(r4)
+	addi     r5, r2, lbl_8051D318@sda21
+	addi     r0, r3, __vt__Q34Game10DangoMushi9StateMove@l
+	stw      r7, 8(r4)
+	stw      r6, 0(r4)
+	stw      r5, 0xc(r4)
+	stw      r0, 0(r4)
 
-	.loc_0x1B4:
-	  mr        r3, r31
-	  bl        -0x1C933C
-	  li        r3, 0x10
-	  bl        -0x2D5DA8
-	  mr.       r4, r3
-	  beq-      .loc_0x208
-	  lis       r3, 0x804B
-	  lis       r5, 0x804D
-	  subi      r0, r3, 0x65C
-	  lis       r3, 0x804D
-	  stw       r0, 0x0(r4)
-	  li        r0, 0x5
-	  li        r7, 0
-	  addi      r6, r5, 0x5FB0
-	  stw       r0, 0x4(r4)
-	  subi      r5, r2, 0x1040
-	  addi      r0, r3, 0x5ED8
-	  stw       r7, 0x8(r4)
-	  stw       r6, 0x0(r4)
-	  stw       r5, 0xC(r4)
-	  stw       r0, 0x0(r4)
+lbl_802F9C40:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_802F9C94
+	lis      r3, __vt__Q24Game13EnemyFSMState@ha
+	lis      r5, __vt__Q34Game10DangoMushi5State@ha
+	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
+	lis      r3, __vt__Q34Game10DangoMushi11StateAttack@ha
+	stw      r0, 0(r4)
+	li       r0, 5
+	li       r7, 0
+	addi     r6, r5, __vt__Q34Game10DangoMushi5State@l
+	stw      r0, 4(r4)
+	addi     r5, r2, lbl_8051D320@sda21
+	addi     r0, r3, __vt__Q34Game10DangoMushi11StateAttack@l
+	stw      r7, 8(r4)
+	stw      r6, 0(r4)
+	stw      r5, 0xc(r4)
+	stw      r0, 0(r4)
 
-	.loc_0x208:
-	  mr        r3, r31
-	  bl        -0x1C9390
-	  li        r3, 0x10
-	  bl        -0x2D5DFC
-	  mr.       r4, r3
-	  beq-      .loc_0x25C
-	  lis       r3, 0x804B
-	  lis       r5, 0x804D
-	  subi      r0, r3, 0x65C
-	  lis       r3, 0x804D
-	  stw       r0, 0x0(r4)
-	  li        r0, 0x6
-	  li        r7, 0
-	  addi      r6, r5, 0x5FB0
-	  stw       r0, 0x4(r4)
-	  subi      r5, r2, 0x1038
-	  addi      r0, r3, 0x5EB4
-	  stw       r7, 0x8(r4)
-	  stw       r6, 0x0(r4)
-	  stw       r5, 0xC(r4)
-	  stw       r0, 0x0(r4)
+lbl_802F9C94:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_802F9CE8
+	lis      r3, __vt__Q24Game13EnemyFSMState@ha
+	lis      r5, __vt__Q34Game10DangoMushi5State@ha
+	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
+	lis      r3, __vt__Q34Game10DangoMushi9StateTurn@ha
+	stw      r0, 0(r4)
+	li       r0, 6
+	li       r7, 0
+	addi     r6, r5, __vt__Q34Game10DangoMushi5State@l
+	stw      r0, 4(r4)
+	addi     r5, r2, lbl_8051D328@sda21
+	addi     r0, r3, __vt__Q34Game10DangoMushi9StateTurn@l
+	stw      r7, 8(r4)
+	stw      r6, 0(r4)
+	stw      r5, 0xc(r4)
+	stw      r0, 0(r4)
 
-	.loc_0x25C:
-	  mr        r3, r31
-	  bl        -0x1C93E4
-	  li        r3, 0x10
-	  bl        -0x2D5E50
-	  mr.       r4, r3
-	  beq-      .loc_0x2B0
-	  lis       r3, 0x804B
-	  lis       r5, 0x804D
-	  subi      r0, r3, 0x65C
-	  lis       r3, 0x804D
-	  stw       r0, 0x0(r4)
-	  li        r0, 0x7
-	  li        r7, 0
-	  addi      r6, r5, 0x5FB0
-	  stw       r0, 0x4(r4)
-	  subi      r5, r2, 0x1030
-	  addi      r0, r3, 0x5E90
-	  stw       r7, 0x8(r4)
-	  stw       r6, 0x0(r4)
-	  stw       r5, 0xC(r4)
-	  stw       r0, 0x0(r4)
+lbl_802F9CE8:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_802F9D3C
+	lis      r3, __vt__Q24Game13EnemyFSMState@ha
+	lis      r5, __vt__Q34Game10DangoMushi5State@ha
+	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
+	lis      r3, __vt__Q34Game10DangoMushi12StateRecover@ha
+	stw      r0, 0(r4)
+	li       r0, 7
+	li       r7, 0
+	addi     r6, r5, __vt__Q34Game10DangoMushi5State@l
+	stw      r0, 4(r4)
+	addi     r5, r2, lbl_8051D330@sda21
+	addi     r0, r3, __vt__Q34Game10DangoMushi12StateRecover@l
+	stw      r7, 8(r4)
+	stw      r6, 0(r4)
+	stw      r5, 0xc(r4)
+	stw      r0, 0(r4)
 
-	.loc_0x2B0:
-	  mr        r3, r31
-	  bl        -0x1C9438
-	  li        r3, 0x10
-	  bl        -0x2D5EA4
-	  mr.       r4, r3
-	  beq-      .loc_0x304
-	  lis       r3, 0x804B
-	  lis       r5, 0x804D
-	  subi      r0, r3, 0x65C
-	  lis       r3, 0x804D
-	  stw       r0, 0x0(r4)
-	  li        r0, 0x8
-	  li        r7, 0
-	  addi      r6, r5, 0x5FB0
-	  stw       r0, 0x4(r4)
-	  subi      r5, r2, 0x1028
-	  addi      r0, r3, 0x5E6C
-	  stw       r7, 0x8(r4)
-	  stw       r6, 0x0(r4)
-	  stw       r5, 0xC(r4)
-	  stw       r0, 0x0(r4)
+lbl_802F9D3C:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_802F9D90
+	lis      r3, __vt__Q24Game13EnemyFSMState@ha
+	lis      r5, __vt__Q34Game10DangoMushi5State@ha
+	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
+	lis      r3, __vt__Q34Game10DangoMushi10StateFlick@ha
+	stw      r0, 0(r4)
+	li       r0, 8
+	li       r7, 0
+	addi     r6, r5, __vt__Q34Game10DangoMushi5State@l
+	stw      r0, 4(r4)
+	addi     r5, r2, lbl_8051D338@sda21
+	addi     r0, r3, __vt__Q34Game10DangoMushi10StateFlick@l
+	stw      r7, 8(r4)
+	stw      r6, 0(r4)
+	stw      r5, 0xc(r4)
+	stw      r0, 0(r4)
 
-	.loc_0x304:
-	  mr        r3, r31
-	  bl        -0x1C948C
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_802F9D90:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -240,45 +479,44 @@ void DangoMushi::FSM::init(Game::EnemyBase*)
 void DangoMushi::StateDead::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  li        r0, 0
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  mr        r3, r31
-	  stw       r30, 0x8(r1)
-	  mr        r30, r5
-	  stb       r0, 0x2C2(r4)
-	  bl        -0x1F46B4
-	  lfs       f0, -0x1020(r2)
-	  mr        r3, r31
-	  stfs      f0, 0x1D4(r31)
-	  stfs      f0, 0x1D8(r31)
-	  stfs      f0, 0x1DC(r31)
-	  bl        -0x1F8470
-	  cmplwi    r30, 0
-	  beq-      .loc_0x60
-	  mr        r3, r31
-	  li        r4, 0x7
-	  li        r5, 0x1
-	  bl        0x4844
-	  b         .loc_0x70
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	li       r0, 0
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	mr       r3, r31
+	stw      r30, 8(r1)
+	mr       r30, r5
+	stb      r0, 0x2c2(r4)
+	bl       deathProcedure__Q24Game9EnemyBaseFv
+	lfs      f0, lbl_8051D340@sda21(r2)
+	mr       r3, r31
+	stfs     f0, 0x1d4(r31)
+	stfs     f0, 0x1d8(r31)
+	stfs     f0, 0x1dc(r31)
+	bl       setEmotionCaution__Q24Game9EnemyBaseFv
+	cmplwi   r30, 0
+	beq      lbl_802F9E0C
+	mr       r3, r31
+	li       r4, 7
+	li       r5, 1
+	bl       startBlendAnimation__Q34Game10DangoMushi3ObjFib
+	b        lbl_802F9E1C
 
-	.loc_0x60:
-	  mr        r3, r31
-	  li        r4, 0x7
-	  li        r5, 0
-	  bl        0x4830
+lbl_802F9E0C:
+	mr       r3, r31
+	li       r4, 7
+	li       r5, 0
+	bl       startBlendAnimation__Q34Game10DangoMushi3ObjFib
 
-	.loc_0x70:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_802F9E1C:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -290,96 +528,95 @@ void DangoMushi::StateDead::init(Game::EnemyBase*, Game::StateArg*)
 void DangoMushi::StateDead::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  stw       r0, 0x44(r1)
-	  stw       r31, 0x3C(r1)
-	  mr        r31, r4
-	  mr        r3, r31
-	  bl        -0x1F4BE0
-	  lfs       f0, -0x101C(r2)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x6C
-	  mr        r4, r31
-	  addi      r3, r1, 0x14
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f2, 0x14(r1)
-	  addi      r5, r1, 0x2C
-	  lfs       f1, 0x18(r1)
-	  li        r4, 0x6
-	  lfs       f0, 0x1C(r1)
-	  li        r6, 0x2
-	  stfs      f2, 0x2C(r1)
-	  lwz       r3, -0x6960(r13)
-	  stfs      f1, 0x30(r1)
-	  stfs      f0, 0x34(r1)
-	  bl        -0xA7C60
+	stwu     r1, -0x40(r1)
+	mflr     r0
+	stw      r0, 0x44(r1)
+	stw      r31, 0x3c(r1)
+	mr       r31, r4
+	mr       r3, r31
+	bl       getMotionFrame__Q24Game9EnemyBaseFv
+	lfs      f0, lbl_8051D344@sda21(r2)
+	fcmpo    cr0, f1, f0
+	ble      lbl_802F9EA0
+	mr       r4, r31
+	addi     r3, r1, 0x14
+	lwz      r12, 0(r31)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f2, 0x14(r1)
+	addi     r5, r1, 0x2c
+	lfs      f1, 0x18(r1)
+	li       r4, 6
+	lfs      f0, 0x1c(r1)
+	li       r6, 2
+	stfs     f2, 0x2c(r1)
+	lwz      r3, cameraMgr__4Game@sda21(r13)
+	stfs     f1, 0x30(r1)
+	stfs     f0, 0x34(r1)
+	bl       "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
 
-	.loc_0x6C:
-	  lwz       r3, 0x188(r31)
-	  lbz       r0, 0x24(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x128
-	  lwz       r0, 0x1C(r3)
-	  cmplwi    r0, 0x7D0
-	  bne-      .loc_0x94
-	  mr        r3, r31
-	  bl        0x48A4
-	  b         .loc_0x128
+lbl_802F9EA0:
+	lwz      r3, 0x188(r31)
+	lbz      r0, 0x24(r3)
+	cmplwi   r0, 0
+	beq      lbl_802F9F5C
+	lwz      r0, 0x1c(r3)
+	cmplwi   r0, 0x7d0
+	bne      lbl_802F9EC8
+	mr       r3, r31
+	bl       endBlendAnimation__Q34Game10DangoMushi3ObjFv
+	b        lbl_802F9F5C
 
-	.loc_0x94:
-	  cmplwi    r0, 0x2
-	  bne-      .loc_0xA8
-	  mr        r3, r31
-	  bl        0x4FC8
-	  b         .loc_0x128
+lbl_802F9EC8:
+	cmplwi   r0, 2
+	bne      lbl_802F9EDC
+	mr       r3, r31
+	bl       createDeadSmokeEffect__Q34Game10DangoMushi3ObjFv
+	b        lbl_802F9F5C
 
-	.loc_0xA8:
-	  cmplwi    r0, 0x3
-	  bne-      .loc_0x114
-	  mr        r3, r31
-	  bl        0x5030
-	  mr        r4, r31
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f2, 0x8(r1)
-	  addi      r5, r1, 0x20
-	  lfs       f1, 0xC(r1)
-	  li        r4, 0x1A
-	  lfs       f0, 0x10(r1)
-	  li        r6, 0x2
-	  stfs      f2, 0x20(r1)
-	  lwz       r3, -0x6960(r13)
-	  stfs      f1, 0x24(r1)
-	  stfs      f0, 0x28(r1)
-	  bl        -0xA7CF0
-	  lwz       r3, -0x6958(r13)
-	  addi      r5, r1, 0x20
-	  li        r4, 0xE
-	  li        r6, 0x2
-	  bl        -0xA67C0
-	  b         .loc_0x128
+lbl_802F9EDC:
+	cmplwi   r0, 3
+	bne      lbl_802F9F48
+	mr       r3, r31
+	bl       createDeadBombEffect__Q34Game10DangoMushi3ObjFv
+	mr       r4, r31
+	addi     r3, r1, 8
+	lwz      r12, 0(r31)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f2, 8(r1)
+	addi     r5, r1, 0x20
+	lfs      f1, 0xc(r1)
+	li       r4, 0x1a
+	lfs      f0, 0x10(r1)
+	li       r6, 2
+	stfs     f2, 0x20(r1)
+	lwz      r3, cameraMgr__4Game@sda21(r13)
+	stfs     f1, 0x24(r1)
+	stfs     f0, 0x28(r1)
+	bl       "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
+	lwz      r3, rumbleMgr__4Game@sda21(r13)
+	addi     r5, r1, 0x20
+	li       r4, 0xe
+	li       r6, 2
+	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
+	b        lbl_802F9F5C
 
-	.loc_0x114:
-	  cmplwi    r0, 0x3E8
-	  bne-      .loc_0x128
-	  mr        r3, r31
-	  li        r4, 0
-	  bl        -0x1BEE68
+lbl_802F9F48:
+	cmplwi   r0, 0x3e8
+	bne      lbl_802F9F5C
+	mr       r3, r31
+	li       r4, 0
+	bl       kill__Q24Game8CreatureFPQ24Game15CreatureKillArg
 
-	.loc_0x128:
-	  lwz       r0, 0x44(r1)
-	  lwz       r31, 0x3C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
+lbl_802F9F5C:
+	lwz      r0, 0x44(r1)
+	lwz      r31, 0x3c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x40
+	blr
 	*/
 }
 
@@ -398,44 +635,43 @@ void DangoMushi::StateDead::cleanup(Game::EnemyBase*) { }
 void DangoMushi::StateStay::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lfs       f0, -0x1020(r2)
-	  stw       r0, 0x14(r1)
-	  li        r0, -0x1
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  mr        r3, r31
-	  stw       r0, 0x2CC(r4)
-	  li        r0, 0
-	  stfs      f0, 0x2C4(r4)
-	  stb       r0, 0x2C2(r4)
-	  lwz       r0, 0x1E0(r4)
-	  ori       r0, r0, 0x1
-	  stw       r0, 0x1E0(r4)
-	  lwz       r0, 0x1E0(r4)
-	  oris      r0, r0, 0x40
-	  stw       r0, 0x1E0(r4)
-	  bl        -0x1F2840
-	  lwz       r0, 0x1E0(r31)
-	  mr        r3, r31
-	  lfs       f0, -0x1020(r2)
-	  li        r4, 0
-	  oris      r0, r0, 0x4000
-	  li        r5, 0
-	  stw       r0, 0x1E0(r31)
-	  stfs      f0, 0x1D4(r31)
-	  stfs      f0, 0x1D8(r31)
-	  stfs      f0, 0x1DC(r31)
-	  bl        0x4660
-	  mr        r3, r31
-	  bl        -0x1F2D10
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lfs      f0, lbl_8051D340@sda21(r2)
+	stw      r0, 0x14(r1)
+	li       r0, -1
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	mr       r3, r31
+	stw      r0, 0x2cc(r4)
+	li       r0, 0
+	stfs     f0, 0x2c4(r4)
+	stb      r0, 0x2c2(r4)
+	lwz      r0, 0x1e0(r4)
+	ori      r0, r0, 1
+	stw      r0, 0x1e0(r4)
+	lwz      r0, 0x1e0(r4)
+	oris     r0, r0, 0x40
+	stw      r0, 0x1e0(r4)
+	bl       hardConstraintOn__Q24Game9EnemyBaseFv
+	lwz      r0, 0x1e0(r31)
+	mr       r3, r31
+	lfs      f0, lbl_8051D340@sda21(r2)
+	li       r4, 0
+	oris     r0, r0, 0x4000
+	li       r5, 0
+	stw      r0, 0x1e0(r31)
+	stfs     f0, 0x1d4(r31)
+	stfs     f0, 0x1d8(r31)
+	stfs     f0, 0x1dc(r31)
+	bl       startBlendAnimation__Q34Game10DangoMushi3ObjFib
+	mr       r3, r31
+	bl       stopMotion__Q24Game9EnemyBaseFv
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -447,98 +683,99 @@ void DangoMushi::StateStay::init(Game::EnemyBase*, Game::StateArg*)
 void DangoMushi::StateStay::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stfd      f31, 0x10(r1)
-	  psq_st    f31,0x18(r1),0,0
-	  stw       r31, 0xC(r1)
-	  stw       r30, 0x8(r1)
-	  lfs       f0, -0x1020(r2)
-	  mr        r31, r4
-	  lfs       f1, 0x2C8(r4)
-	  mr        r30, r3
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x68
-	  mr        r3, r31
-	  bl        0x2E3C
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x124
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x2
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x124
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stfd     f31, 0x10(r1)
+	psq_st   f31, 24(r1), 0, qr0
+	stw      r31, 0xc(r1)
+	stw      r30, 8(r1)
+	lfs      f0, lbl_8051D340@sda21(r2)
+	mr       r31, r4
+	lfs      f1, 0x2c8(r4)
+	mr       r30, r3
+	fcmpo    cr0, f1, f0
+	ble      lbl_802FA070
+	mr       r3, r31
+	bl       addShadowScale__Q34Game10DangoMushi3ObjFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802FA12C
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 2
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802FA12C
 
-	.loc_0x68:
-	  lwz       r5, 0xC0(r31)
-	  mr        r3, r31
-	  li        r4, 0
-	  lfs       f31, 0x3AC(r5)
-	  fmr       f1, f31
-	  bl        -0x1E55C4
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x90
-	  li        r0, 0x1
-	  b         .loc_0xB4
+lbl_802FA070:
+	lwz      r5, 0xc0(r31)
+	mr       r3, r31
+	li       r4, 0
+	lfs      f31, 0x3ac(r5)
+	fmr      f1, f31
+	bl
+"isThereOlimar__Q24Game9EnemyFuncFPQ24Game8CreaturefP23Condition<Q24Game4Navi>"
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802FA098
+	li       r0, 1
+	b        lbl_802FA0BC
 
-	.loc_0x90:
-	  fmr       f1, f31
-	  mr        r3, r31
-	  li        r4, 0
-	  bl        -0x1E5970
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xB0
-	  li        r0, 0x1
-	  b         .loc_0xB4
+lbl_802FA098:
+	fmr      f1, f31
+	mr       r3, r31
+	li       r4, 0
+	bl
+"isTherePikmin__Q24Game9EnemyFuncFPQ24Game8CreaturefP23Condition<Q24Game4Piki>"
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802FA0B8
+	li       r0, 1
+	b        lbl_802FA0BC
 
-	.loc_0xB0:
-	  li        r0, 0
+lbl_802FA0B8:
+	li       r0, 0
 
-	.loc_0xB4:
-	  rlwinm.   r0,r0,0,24,31
-	  beq-      .loc_0x124
-	  lwz       r3, -0x6980(r13)
-	  mr        r4, r31
-	  bl        -0xB8420
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0xF4(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r12, 0x0(r3)
-	  li        r4, 0x597D
-	  li        r5, 0
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r3, r31
-	  bl        0x2D7C
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x124
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x2
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_802FA0BC:
+	clrlwi.  r0, r0, 0x18
+	beq      lbl_802FA12C
+	lwz      r3, shadowMgr__4Game@sda21(r13)
+	mr       r4, r31
+	bl       addShadow__Q24Game9ShadowMgrFPQ24Game8Creature
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r12, 0xf4(r12)
+	mtctr    r12
+	bctrl
+	lwz      r12, 0(r3)
+	li       r4, 0x597d
+	li       r5, 0
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	mr       r3, r31
+	bl       addShadowScale__Q34Game10DangoMushi3ObjFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802FA12C
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 2
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x124:
-	  psq_l     f31,0x18(r1),0,0
-	  lwz       r0, 0x24(r1)
-	  lfd       f31, 0x10(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_802FA12C:
+	psq_l    f31, 24(r1), 0, qr0
+	lwz      r0, 0x24(r1)
+	lfd      f31, 0x10(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -557,42 +794,41 @@ void DangoMushi::StateStay::cleanup(Game::EnemyBase*) { }
 void DangoMushi::StateAppear::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lfs       f0, -0x1020(r2)
-	  stw       r0, 0x14(r1)
-	  li        r0, -0x1
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  mr        r3, r31
-	  stw       r0, 0x2CC(r4)
-	  li        r0, 0
-	  stfs      f0, 0x2C4(r4)
-	  stb       r0, 0x2C2(r4)
-	  lwz       r0, 0x1E0(r4)
-	  ori       r0, r0, 0x1
-	  stw       r0, 0x1E0(r4)
-	  lwz       r0, 0x1E0(r4)
-	  oris      r0, r0, 0x40
-	  stw       r0, 0x1E0(r4)
-	  bl        -0x1F2A1C
-	  lwz       r0, 0x1E0(r31)
-	  mr        r3, r31
-	  lfs       f0, -0x1020(r2)
-	  li        r4, 0
-	  rlwinm    r0,r0,0,2,0
-	  li        r5, 0
-	  stw       r0, 0x1E0(r31)
-	  stfs      f0, 0x1D4(r31)
-	  stfs      f0, 0x1D8(r31)
-	  stfs      f0, 0x1DC(r31)
-	  bl        0x4484
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lfs      f0, lbl_8051D340@sda21(r2)
+	stw      r0, 0x14(r1)
+	li       r0, -1
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	mr       r3, r31
+	stw      r0, 0x2cc(r4)
+	li       r0, 0
+	stfs     f0, 0x2c4(r4)
+	stb      r0, 0x2c2(r4)
+	lwz      r0, 0x1e0(r4)
+	ori      r0, r0, 1
+	stw      r0, 0x1e0(r4)
+	lwz      r0, 0x1e0(r4)
+	oris     r0, r0, 0x40
+	stw      r0, 0x1e0(r4)
+	bl       hardConstraintOn__Q24Game9EnemyBaseFv
+	lwz      r0, 0x1e0(r31)
+	mr       r3, r31
+	lfs      f0, lbl_8051D340@sda21(r2)
+	li       r4, 0
+	rlwinm   r0, r0, 0, 2, 0
+	li       r5, 0
+	stw      r0, 0x1e0(r31)
+	stfs     f0, 0x1d4(r31)
+	stfs     f0, 0x1d8(r31)
+	stfs     f0, 0x1dc(r31)
+	bl       startBlendAnimation__Q34Game10DangoMushi3ObjFib
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -604,279 +840,278 @@ void DangoMushi::StateAppear::init(Game::EnemyBase*, Game::StateArg*)
 void DangoMushi::StateAppear::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x120(r1)
-	  mflr      r0
-	  stw       r0, 0x124(r1)
-	  stfd      f31, 0x110(r1)
-	  psq_st    f31,0x118(r1),0,0
-	  stfd      f30, 0x100(r1)
-	  psq_st    f30,0x108(r1),0,0
-	  stfd      f29, 0xF0(r1)
-	  psq_st    f29,0xF8(r1),0,0
-	  stfd      f28, 0xE0(r1)
-	  psq_st    f28,0xE8(r1),0,0
-	  stfd      f27, 0xD0(r1)
-	  psq_st    f27,0xD8(r1),0,0
-	  stfd      f26, 0xC0(r1)
-	  psq_st    f26,0xC8(r1),0,0
-	  stw       r31, 0xBC(r1)
-	  stw       r30, 0xB8(r1)
-	  stw       r29, 0xB4(r1)
-	  stw       r28, 0xB0(r1)
-	  mr        r28, r3
-	  lwz       r3, 0x188(r4)
-	  mr        r30, r4
-	  lbz       r0, 0x24(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x3B0
-	  lwz       r0, 0x1C(r3)
-	  cmplwi    r0, 0x7D0
-	  bne-      .loc_0x7C
-	  mr        r3, r30
-	  bl        0x4514
-	  b         .loc_0x3B0
+	stwu     r1, -0x120(r1)
+	mflr     r0
+	stw      r0, 0x124(r1)
+	stfd     f31, 0x110(r1)
+	psq_st   f31, 280(r1), 0, qr0
+	stfd     f30, 0x100(r1)
+	psq_st   f30, 264(r1), 0, qr0
+	stfd     f29, 0xf0(r1)
+	psq_st   f29, 248(r1), 0, qr0
+	stfd     f28, 0xe0(r1)
+	psq_st   f28, 232(r1), 0, qr0
+	stfd     f27, 0xd0(r1)
+	psq_st   f27, 216(r1), 0, qr0
+	stfd     f26, 0xc0(r1)
+	psq_st   f26, 200(r1), 0, qr0
+	stw      r31, 0xbc(r1)
+	stw      r30, 0xb8(r1)
+	stw      r29, 0xb4(r1)
+	stw      r28, 0xb0(r1)
+	mr       r28, r3
+	lwz      r3, 0x188(r4)
+	mr       r30, r4
+	lbz      r0, 0x24(r3)
+	cmplwi   r0, 0
+	beq      lbl_802FA58C
+	lwz      r0, 0x1c(r3)
+	cmplwi   r0, 0x7d0
+	bne      lbl_802FA258
+	mr       r3, r30
+	bl       endBlendAnimation__Q34Game10DangoMushi3ObjFv
+	b        lbl_802FA58C
 
-	.loc_0x7C:
-	  cmplwi    r0, 0x2
-	  bne-      .loc_0xE8
-	  mr        r3, r30
-	  bl        0x5244
-	  mr        r4, r30
-	  addi      r3, r1, 0x8C
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f2, 0x8C(r1)
-	  addi      r5, r1, 0xA4
-	  lfs       f1, 0x90(r1)
-	  li        r4, 0x1B
-	  lfs       f0, 0x94(r1)
-	  li        r6, 0x2
-	  stfs      f2, 0xA4(r1)
-	  lwz       r3, -0x6960(r13)
-	  stfs      f1, 0xA8(r1)
-	  stfs      f0, 0xAC(r1)
-	  bl        -0xA806C
-	  lwz       r3, -0x6958(r13)
-	  addi      r5, r1, 0xA4
-	  li        r4, 0xF
-	  li        r6, 0x2
-	  bl        -0xA6B3C
-	  b         .loc_0x3B0
+lbl_802FA258:
+	cmplwi   r0, 2
+	bne      lbl_802FA2C4
+	mr       r3, r30
+	bl       createAppearSmokeEffect__Q34Game10DangoMushi3ObjFv
+	mr       r4, r30
+	addi     r3, r1, 0x8c
+	lwz      r12, 0(r30)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f2, 0x8c(r1)
+	addi     r5, r1, 0xa4
+	lfs      f1, 0x90(r1)
+	li       r4, 0x1b
+	lfs      f0, 0x94(r1)
+	li       r6, 2
+	stfs     f2, 0xa4(r1)
+	lwz      r3, cameraMgr__4Game@sda21(r13)
+	stfs     f1, 0xa8(r1)
+	stfs     f0, 0xac(r1)
+	bl       "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
+	lwz      r3, rumbleMgr__4Game@sda21(r13)
+	addi     r5, r1, 0xa4
+	li       r4, 0xf
+	li       r6, 2
+	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
+	b        lbl_802FA58C
 
-	.loc_0xE8:
-	  cmplwi    r0, 0x3
-	  bne-      .loc_0xFC
-	  mr        r3, r30
-	  bl        0x493C
-	  b         .loc_0x3B0
+lbl_802FA2C4:
+	cmplwi   r0, 3
+	bne      lbl_802FA2D8
+	mr       r3, r30
+	bl       setBossAppearBGM__Q34Game10DangoMushi3ObjFv
+	b        lbl_802FA58C
 
-	.loc_0xFC:
-	  cmplwi    r0, 0x4
-	  bne-      .loc_0x15C
-	  lwz       r12, 0x0(r4)
-	  addi      r3, r1, 0x80
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f2, 0x80(r1)
-	  addi      r5, r1, 0x98
-	  lfs       f1, 0x84(r1)
-	  li        r4, 0xF
-	  lfs       f0, 0x88(r1)
-	  li        r6, 0x2
-	  stfs      f2, 0x98(r1)
-	  lwz       r3, -0x6960(r13)
-	  stfs      f1, 0x9C(r1)
-	  stfs      f0, 0xA0(r1)
-	  bl        -0xA80E0
-	  lwz       r3, -0x6958(r13)
-	  addi      r5, r1, 0x98
-	  li        r4, 0xB
-	  li        r6, 0x2
-	  bl        -0xA6BB0
-	  b         .loc_0x3B0
+lbl_802FA2D8:
+	cmplwi   r0, 4
+	bne      lbl_802FA338
+	lwz      r12, 0(r4)
+	addi     r3, r1, 0x80
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f2, 0x80(r1)
+	addi     r5, r1, 0x98
+	lfs      f1, 0x84(r1)
+	li       r4, 0xf
+	lfs      f0, 0x88(r1)
+	li       r6, 2
+	stfs     f2, 0x98(r1)
+	lwz      r3, cameraMgr__4Game@sda21(r13)
+	stfs     f1, 0x9c(r1)
+	stfs     f0, 0xa0(r1)
+	bl       "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
+	lwz      r3, rumbleMgr__4Game@sda21(r13)
+	addi     r5, r1, 0x98
+	li       r4, 0xb
+	li       r6, 2
+	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
+	b        lbl_802FA58C
 
-	.loc_0x15C:
-	  cmplwi    r0, 0x3E8
-	  bne-      .loc_0x3B0
-	  mr        r3, r30
-	  bl        0x2D54
-	  mr.       r29, r3
-	  beq-      .loc_0x390
-	  lwz       r3, -0x6C18(r13)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x390
-	  lwz       r0, 0x44(r3)
-	  cmpwi     r0, 0x4
-	  beq-      .loc_0x390
-	  mr        r4, r29
-	  lwz       r5, 0xC0(r30)
-	  lwz       r12, 0x0(r29)
-	  addi      r3, r1, 0x68
-	  lfs       f30, 0x58C(r5)
-	  lwz       r12, 0x8(r12)
-	  lfs       f31, 0x564(r5)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r30
-	  lfs       f2, 0x68(r1)
-	  lwz       r12, 0x0(r30)
-	  addi      r3, r1, 0x74
-	  lfs       f1, 0x6C(r1)
-	  lfs       f0, 0x70(r1)
-	  lwz       r12, 0x8(r12)
-	  stfs      f2, 0x50(r1)
-	  stfs      f1, 0x54(r1)
-	  stfs      f0, 0x58(r1)
-	  mtctr     r12
-	  bctrl
-	  lfs       f5, 0x74(r1)
-	  lis       r3, 0x8051
-	  lfs       f3, 0x7C(r1)
-	  subi      r3, r3, 0x2E20
-	  lfs       f1, 0x50(r1)
-	  lfs       f0, 0x58(r1)
-	  lfs       f4, 0x78(r1)
-	  fsubs     f1, f1, f5
-	  fsubs     f2, f0, f3
-	  stfs      f5, 0x5C(r1)
-	  stfs      f4, 0x60(r1)
-	  stfs      f3, 0x64(r1)
-	  bl        -0x2C52E4
-	  bl        0x1177E0
-	  lwz       r12, 0x0(r30)
-	  fmr       f26, f1
-	  mr        r3, r30
-	  lwz       r12, 0x64(r12)
-	  mtctr     r12
-	  bctrl
-	  fmr       f2, f1
-	  fmr       f1, f26
-	  bl        0x1177E8
-	  mr        r4, r30
-	  fmr       f28, f1
-	  lwz       r12, 0x0(r30)
-	  addi      r3, r1, 0x14
-	  li        r31, 0
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r29
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x0(r29)
-	  lfs       f29, 0x14(r1)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r30
-	  lfs       f0, 0x8(r1)
-	  lwz       r12, 0x0(r30)
-	  addi      r3, r1, 0x2C
-	  fsubs     f26, f0, f29
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r29
-	  addi      r3, r1, 0x20
-	  lwz       r12, 0x0(r29)
-	  lfs       f29, 0x30(r1)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r30
-	  lfs       f0, 0x24(r1)
-	  lwz       r12, 0x0(r30)
-	  addi      r3, r1, 0x44
-	  fsubs     f27, f0, f29
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r29
-	  addi      r3, r1, 0x38
-	  lwz       r12, 0x0(r29)
-	  lfs       f29, 0x4C(r1)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  fmuls     f1, f27, f27
-	  lfs       f2, 0x40(r1)
-	  fmuls     f0, f31, f31
-	  fsubs     f2, f2, f29
-	  fmadds    f1, f26, f26, f1
-	  fmadds    f1, f2, f2, f1
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x338
-	  lfs       f0, -0x1014(r2)
-	  fabs      f2, f28
-	  lfs       f1, -0x1018(r2)
-	  fmuls     f0, f0, f30
-	  frsp      f2, f2
-	  fmuls     f0, f1, f0
-	  fcmpo     cr0, f2, f0
-	  cror      2, 0, 0x2
-	  bne-      .loc_0x338
-	  li        r31, 0x1
+lbl_802FA338:
+	cmplwi   r0, 0x3e8
+	bne      lbl_802FA58C
+	mr       r3, r30
+	bl       getSearchedTarget__Q34Game10DangoMushi3ObjFv
+	or.      r29, r3, r3
+	beq      lbl_802FA56C
+	lwz      r3, gameSystem__4Game@sda21(r13)
+	cmplwi   r3, 0
+	beq      lbl_802FA56C
+	lwz      r0, 0x44(r3)
+	cmpwi    r0, 4
+	beq      lbl_802FA56C
+	mr       r4, r29
+	lwz      r5, 0xc0(r30)
+	lwz      r12, 0(r29)
+	addi     r3, r1, 0x68
+	lfs      f30, 0x58c(r5)
+	lwz      r12, 8(r12)
+	lfs      f31, 0x564(r5)
+	mtctr    r12
+	bctrl
+	mr       r4, r30
+	lfs      f2, 0x68(r1)
+	lwz      r12, 0(r30)
+	addi     r3, r1, 0x74
+	lfs      f1, 0x6c(r1)
+	lfs      f0, 0x70(r1)
+	lwz      r12, 8(r12)
+	stfs     f2, 0x50(r1)
+	stfs     f1, 0x54(r1)
+	stfs     f0, 0x58(r1)
+	mtctr    r12
+	bctrl
+	lfs      f5, 0x74(r1)
+	lis      r3, atanTable___5JMath@ha
+	lfs      f3, 0x7c(r1)
+	addi     r3, r3, atanTable___5JMath@l
+	lfs      f1, 0x50(r1)
+	lfs      f0, 0x58(r1)
+	lfs      f4, 0x78(r1)
+	fsubs    f1, f1, f5
+	fsubs    f2, f0, f3
+	stfs     f5, 0x5c(r1)
+	stfs     f4, 0x60(r1)
+	stfs     f3, 0x64(r1)
+	bl       "atan2___Q25JMath18TAtanTable<1024,f>CFff"
+	bl       roundAng__Ff
+	lwz      r12, 0(r30)
+	fmr      f26, f1
+	mr       r3, r30
+	lwz      r12, 0x64(r12)
+	mtctr    r12
+	bctrl
+	fmr      f2, f1
+	fmr      f1, f26
+	bl       angDist__Fff
+	mr       r4, r30
+	fmr      f28, f1
+	lwz      r12, 0(r30)
+	addi     r3, r1, 0x14
+	li       r31, 0
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r29
+	addi     r3, r1, 8
+	lwz      r12, 0(r29)
+	lfs      f29, 0x14(r1)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r30
+	lfs      f0, 8(r1)
+	lwz      r12, 0(r30)
+	addi     r3, r1, 0x2c
+	fsubs    f26, f0, f29
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r29
+	addi     r3, r1, 0x20
+	lwz      r12, 0(r29)
+	lfs      f29, 0x30(r1)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r30
+	lfs      f0, 0x24(r1)
+	lwz      r12, 0(r30)
+	addi     r3, r1, 0x44
+	fsubs    f27, f0, f29
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r29
+	addi     r3, r1, 0x38
+	lwz      r12, 0(r29)
+	lfs      f29, 0x4c(r1)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	fmuls    f1, f27, f27
+	lfs      f2, 0x40(r1)
+	fmuls    f0, f31, f31
+	fsubs    f2, f2, f29
+	fmadds   f1, f26, f26, f1
+	fmadds   f1, f2, f2, f1
+	fcmpo    cr0, f1, f0
+	bge      lbl_802FA514
+	lfs      f0, lbl_8051D34C@sda21(r2)
+	fabs     f2, f28
+	lfs      f1, lbl_8051D348@sda21(r2)
+	fmuls    f0, f0, f30
+	frsp     f2, f2
+	fmuls    f0, f1, f0
+	fcmpo    cr0, f2, f0
+	cror     2, 0, 2
+	bne      lbl_802FA514
+	li       r31, 1
 
-	.loc_0x338:
-	  rlwinm.   r0,r31,0,24,31
-	  beq-      .loc_0x364
-	  mr        r3, r28
-	  mr        r4, r30
-	  lwz       r12, 0x0(r28)
-	  li        r5, 0x5
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x3B0
+lbl_802FA514:
+	clrlwi.  r0, r31, 0x18
+	beq      lbl_802FA540
+	mr       r3, r28
+	mr       r4, r30
+	lwz      r12, 0(r28)
+	li       r5, 5
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802FA58C
 
-	.loc_0x364:
-	  mr        r3, r30
-	  bl        0x2988
-	  mr        r3, r28
-	  mr        r4, r30
-	  lwz       r12, 0x0(r28)
-	  li        r5, 0x4
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x3B0
+lbl_802FA540:
+	mr       r3, r30
+	bl       setRandTarget__Q34Game10DangoMushi3ObjFv
+	mr       r3, r28
+	mr       r4, r30
+	lwz      r12, 0(r28)
+	li       r5, 4
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802FA58C
 
-	.loc_0x390:
-	  mr        r3, r28
-	  mr        r4, r30
-	  lwz       r12, 0x0(r28)
-	  li        r5, 0x3
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_802FA56C:
+	mr       r3, r28
+	mr       r4, r30
+	lwz      r12, 0(r28)
+	li       r5, 3
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x3B0:
-	  psq_l     f31,0x118(r1),0,0
-	  lfd       f31, 0x110(r1)
-	  psq_l     f30,0x108(r1),0,0
-	  lfd       f30, 0x100(r1)
-	  psq_l     f29,0xF8(r1),0,0
-	  lfd       f29, 0xF0(r1)
-	  psq_l     f28,0xE8(r1),0,0
-	  lfd       f28, 0xE0(r1)
-	  psq_l     f27,0xD8(r1),0,0
-	  lfd       f27, 0xD0(r1)
-	  psq_l     f26,0xC8(r1),0,0
-	  lfd       f26, 0xC0(r1)
-	  lwz       r31, 0xBC(r1)
-	  lwz       r30, 0xB8(r1)
-	  lwz       r29, 0xB4(r1)
-	  lwz       r0, 0x124(r1)
-	  lwz       r28, 0xB0(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x120
-	  blr
+lbl_802FA58C:
+	psq_l    f31, 280(r1), 0, qr0
+	lfd      f31, 0x110(r1)
+	psq_l    f30, 264(r1), 0, qr0
+	lfd      f30, 0x100(r1)
+	psq_l    f29, 248(r1), 0, qr0
+	lfd      f29, 0xf0(r1)
+	psq_l    f28, 232(r1), 0, qr0
+	lfd      f28, 0xe0(r1)
+	psq_l    f27, 216(r1), 0, qr0
+	lfd      f27, 0xd0(r1)
+	psq_l    f26, 200(r1), 0, qr0
+	lfd      f26, 0xc0(r1)
+	lwz      r31, 0xbc(r1)
+	lwz      r30, 0xb8(r1)
+	lwz      r29, 0xb4(r1)
+	lwz      r0, 0x124(r1)
+	lwz      r28, 0xb0(r1)
+	mtlr     r0
+	addi     r1, r1, 0x120
+	blr
 	*/
 }
 
@@ -888,19 +1123,18 @@ void DangoMushi::StateAppear::exec(Game::EnemyBase*)
 void DangoMushi::StateAppear::cleanup(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r3, r4
-	  stw       r0, 0x14(r1)
-	  lwz       r0, 0x1E0(r4)
-	  rlwinm    r0,r0,0,10,8
-	  stw       r0, 0x1E0(r4)
-	  bl        -0x1F2E64
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r3, r4
+	stw      r0, 0x14(r1)
+	lwz      r0, 0x1e0(r4)
+	rlwinm   r0, r0, 0, 0xa, 8
+	stw      r0, 0x1e0(r4)
+	bl       hardConstraintOff__Q24Game9EnemyBaseFv
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -912,50 +1146,49 @@ void DangoMushi::StateAppear::cleanup(Game::EnemyBase*)
 void DangoMushi::StateWait::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lfs       f0, -0x1020(r2)
-	  stw       r0, 0x14(r1)
-	  li        r0, -0x1
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  mr        r3, r31
-	  stw       r30, 0x8(r1)
-	  mr        r30, r5
-	  stw       r0, 0x2CC(r4)
-	  stfs      f0, 0x2C4(r4)
-	  bl        0x2890
-	  li        r0, 0
-	  lfs       f0, -0x1020(r2)
-	  stb       r0, 0x2C2(r31)
-	  cmplwi    r30, 0
-	  lwz       r0, 0x1E0(r31)
-	  ori       r0, r0, 0x1
-	  stw       r0, 0x1E0(r31)
-	  stfs      f0, 0x1D4(r31)
-	  stfs      f0, 0x1D8(r31)
-	  stfs      f0, 0x1DC(r31)
-	  beq-      .loc_0x74
-	  mr        r3, r31
-	  li        r4, 0x1
-	  li        r5, 0x1
-	  bl        0x3FD0
-	  b         .loc_0x84
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lfs      f0, lbl_8051D340@sda21(r2)
+	stw      r0, 0x14(r1)
+	li       r0, -1
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	mr       r3, r31
+	stw      r30, 8(r1)
+	mr       r30, r5
+	stw      r0, 0x2cc(r4)
+	stfs     f0, 0x2c4(r4)
+	bl       setRandTarget__Q34Game10DangoMushi3ObjFv
+	li       r0, 0
+	lfs      f0, lbl_8051D340@sda21(r2)
+	stb      r0, 0x2c2(r31)
+	cmplwi   r30, 0
+	lwz      r0, 0x1e0(r31)
+	ori      r0, r0, 1
+	stw      r0, 0x1e0(r31)
+	stfs     f0, 0x1d4(r31)
+	stfs     f0, 0x1d8(r31)
+	stfs     f0, 0x1dc(r31)
+	beq      lbl_802FA680
+	mr       r3, r31
+	li       r4, 1
+	li       r5, 1
+	bl       startBlendAnimation__Q34Game10DangoMushi3ObjFib
+	b        lbl_802FA690
 
-	.loc_0x74:
-	  mr        r3, r31
-	  li        r4, 0x1
-	  li        r5, 0
-	  bl        0x3FBC
+lbl_802FA680:
+	mr       r3, r31
+	li       r4, 1
+	li       r5, 0
+	bl       startBlendAnimation__Q34Game10DangoMushi3ObjFib
 
-	.loc_0x84:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_802FA690:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -967,238 +1200,237 @@ void DangoMushi::StateWait::init(Game::EnemyBase*, Game::StateArg*)
 void DangoMushi::StateWait::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0xF0(r1)
-	  mflr      r0
-	  stw       r0, 0xF4(r1)
-	  stfd      f31, 0xE0(r1)
-	  psq_st    f31,0xE8(r1),0,0
-	  stfd      f30, 0xD0(r1)
-	  psq_st    f30,0xD8(r1),0,0
-	  stfd      f29, 0xC0(r1)
-	  psq_st    f29,0xC8(r1),0,0
-	  stfd      f28, 0xB0(r1)
-	  psq_st    f28,0xB8(r1),0,0
-	  stfd      f27, 0xA0(r1)
-	  psq_st    f27,0xA8(r1),0,0
-	  stfd      f26, 0x90(r1)
-	  psq_st    f26,0x98(r1),0,0
-	  stw       r31, 0x8C(r1)
-	  stw       r30, 0x88(r1)
-	  stw       r29, 0x84(r1)
-	  stw       r28, 0x80(r1)
-	  lfs       f0, -0x1020(r2)
-	  mr        r31, r4
-	  lfs       f1, 0x200(r4)
-	  mr        r30, r3
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0, 0x2
-	  bne-      .loc_0x8C
-	  li        r0, 0
-	  li        r5, 0
-	  stw       r0, 0x2CC(r31)
-	  subi      r6, r2, 0x1010
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x314
+	stwu     r1, -0xf0(r1)
+	mflr     r0
+	stw      r0, 0xf4(r1)
+	stfd     f31, 0xe0(r1)
+	psq_st   f31, 232(r1), 0, qr0
+	stfd     f30, 0xd0(r1)
+	psq_st   f30, 216(r1), 0, qr0
+	stfd     f29, 0xc0(r1)
+	psq_st   f29, 200(r1), 0, qr0
+	stfd     f28, 0xb0(r1)
+	psq_st   f28, 184(r1), 0, qr0
+	stfd     f27, 0xa0(r1)
+	psq_st   f27, 168(r1), 0, qr0
+	stfd     f26, 0x90(r1)
+	psq_st   f26, 152(r1), 0, qr0
+	stw      r31, 0x8c(r1)
+	stw      r30, 0x88(r1)
+	stw      r29, 0x84(r1)
+	stw      r28, 0x80(r1)
+	lfs      f0, lbl_8051D340@sda21(r2)
+	mr       r31, r4
+	lfs      f1, 0x200(r4)
+	mr       r30, r3
+	fcmpo    cr0, f1, f0
+	cror     2, 0, 2
+	bne      lbl_802FA734
+	li       r0, 0
+	li       r5, 0
+	stw      r0, 0x2cc(r31)
+	addi     r6, r2, lbl_8051D350@sda21
+	lwz      r12, 0(r3)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802FA9BC
 
-	.loc_0x8C:
-	  mr        r3, r31
-	  bl        0x2960
-	  mr.       r28, r3
-	  beq-      .loc_0x290
-	  lwz       r3, -0x6C18(r13)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x290
-	  lwz       r0, 0x44(r3)
-	  cmpwi     r0, 0x4
-	  beq-      .loc_0x290
-	  mr        r4, r28
-	  lwz       r5, 0xC0(r31)
-	  lwz       r12, 0x0(r28)
-	  addi      r3, r1, 0x68
-	  lfs       f30, 0x58C(r5)
-	  lwz       r12, 0x8(r12)
-	  lfs       f31, 0x564(r5)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r31
-	  lfs       f2, 0x68(r1)
-	  lwz       r12, 0x0(r31)
-	  addi      r3, r1, 0x74
-	  lfs       f1, 0x6C(r1)
-	  lfs       f0, 0x70(r1)
-	  lwz       r12, 0x8(r12)
-	  stfs      f2, 0x50(r1)
-	  stfs      f1, 0x54(r1)
-	  stfs      f0, 0x58(r1)
-	  mtctr     r12
-	  bctrl
-	  lfs       f5, 0x74(r1)
-	  lis       r3, 0x8051
-	  lfs       f3, 0x7C(r1)
-	  subi      r3, r3, 0x2E20
-	  lfs       f1, 0x50(r1)
-	  lfs       f0, 0x58(r1)
-	  lfs       f4, 0x78(r1)
-	  fsubs     f1, f1, f5
-	  fsubs     f2, f0, f3
-	  stfs      f5, 0x5C(r1)
-	  stfs      f4, 0x60(r1)
-	  stfs      f3, 0x64(r1)
-	  bl        -0x2C56D8
-	  bl        0x1173EC
-	  lwz       r12, 0x0(r31)
-	  fmr       f26, f1
-	  mr        r3, r31
-	  lwz       r12, 0x64(r12)
-	  mtctr     r12
-	  bctrl
-	  fmr       f2, f1
-	  fmr       f1, f26
-	  bl        0x1173F4
-	  mr        r4, r31
-	  fmr       f28, f1
-	  lwz       r12, 0x0(r31)
-	  addi      r3, r1, 0x14
-	  li        r29, 0
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r28
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x0(r28)
-	  lfs       f29, 0x14(r1)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r31
-	  lfs       f0, 0x8(r1)
-	  lwz       r12, 0x0(r31)
-	  addi      r3, r1, 0x2C
-	  fsubs     f26, f0, f29
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r28
-	  addi      r3, r1, 0x20
-	  lwz       r12, 0x0(r28)
-	  lfs       f29, 0x30(r1)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r31
-	  lfs       f0, 0x24(r1)
-	  lwz       r12, 0x0(r31)
-	  addi      r3, r1, 0x44
-	  fsubs     f27, f0, f29
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r28
-	  addi      r3, r1, 0x38
-	  lwz       r12, 0x0(r28)
-	  lfs       f29, 0x4C(r1)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  fmuls     f1, f27, f27
-	  lfs       f2, 0x40(r1)
-	  fmuls     f0, f31, f31
-	  fsubs     f2, f2, f29
-	  fmadds    f1, f26, f26, f1
-	  fmadds    f1, f2, f2, f1
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x260
-	  lfs       f0, -0x1014(r2)
-	  fabs      f2, f28
-	  lfs       f1, -0x1018(r2)
-	  fmuls     f0, f0, f30
-	  frsp      f2, f2
-	  fmuls     f0, f1, f0
-	  fcmpo     cr0, f2, f0
-	  cror      2, 0, 0x2
-	  bne-      .loc_0x260
-	  li        r29, 0x1
+lbl_802FA734:
+	mr       r3, r31
+	bl       getSearchedTarget__Q34Game10DangoMushi3ObjFv
+	or.      r28, r3, r3
+	beq      lbl_802FA938
+	lwz      r3, gameSystem__4Game@sda21(r13)
+	cmplwi   r3, 0
+	beq      lbl_802FA938
+	lwz      r0, 0x44(r3)
+	cmpwi    r0, 4
+	beq      lbl_802FA938
+	mr       r4, r28
+	lwz      r5, 0xc0(r31)
+	lwz      r12, 0(r28)
+	addi     r3, r1, 0x68
+	lfs      f30, 0x58c(r5)
+	lwz      r12, 8(r12)
+	lfs      f31, 0x564(r5)
+	mtctr    r12
+	bctrl
+	mr       r4, r31
+	lfs      f2, 0x68(r1)
+	lwz      r12, 0(r31)
+	addi     r3, r1, 0x74
+	lfs      f1, 0x6c(r1)
+	lfs      f0, 0x70(r1)
+	lwz      r12, 8(r12)
+	stfs     f2, 0x50(r1)
+	stfs     f1, 0x54(r1)
+	stfs     f0, 0x58(r1)
+	mtctr    r12
+	bctrl
+	lfs      f5, 0x74(r1)
+	lis      r3, atanTable___5JMath@ha
+	lfs      f3, 0x7c(r1)
+	addi     r3, r3, atanTable___5JMath@l
+	lfs      f1, 0x50(r1)
+	lfs      f0, 0x58(r1)
+	lfs      f4, 0x78(r1)
+	fsubs    f1, f1, f5
+	fsubs    f2, f0, f3
+	stfs     f5, 0x5c(r1)
+	stfs     f4, 0x60(r1)
+	stfs     f3, 0x64(r1)
+	bl       "atan2___Q25JMath18TAtanTable<1024,f>CFff"
+	bl       roundAng__Ff
+	lwz      r12, 0(r31)
+	fmr      f26, f1
+	mr       r3, r31
+	lwz      r12, 0x64(r12)
+	mtctr    r12
+	bctrl
+	fmr      f2, f1
+	fmr      f1, f26
+	bl       angDist__Fff
+	mr       r4, r31
+	fmr      f28, f1
+	lwz      r12, 0(r31)
+	addi     r3, r1, 0x14
+	li       r29, 0
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r28
+	addi     r3, r1, 8
+	lwz      r12, 0(r28)
+	lfs      f29, 0x14(r1)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r31
+	lfs      f0, 8(r1)
+	lwz      r12, 0(r31)
+	addi     r3, r1, 0x2c
+	fsubs    f26, f0, f29
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r28
+	addi     r3, r1, 0x20
+	lwz      r12, 0(r28)
+	lfs      f29, 0x30(r1)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r31
+	lfs      f0, 0x24(r1)
+	lwz      r12, 0(r31)
+	addi     r3, r1, 0x44
+	fsubs    f27, f0, f29
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r28
+	addi     r3, r1, 0x38
+	lwz      r12, 0(r28)
+	lfs      f29, 0x4c(r1)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	fmuls    f1, f27, f27
+	lfs      f2, 0x40(r1)
+	fmuls    f0, f31, f31
+	fsubs    f2, f2, f29
+	fmadds   f1, f26, f26, f1
+	fmadds   f1, f2, f2, f1
+	fcmpo    cr0, f1, f0
+	bge      lbl_802FA908
+	lfs      f0, lbl_8051D34C@sda21(r2)
+	fabs     f2, f28
+	lfs      f1, lbl_8051D348@sda21(r2)
+	fmuls    f0, f0, f30
+	frsp     f2, f2
+	fmuls    f0, f1, f0
+	fcmpo    cr0, f2, f0
+	cror     2, 0, 2
+	bne      lbl_802FA908
+	li       r29, 1
 
-	.loc_0x260:
-	  rlwinm.   r0,r29,0,24,31
-	  beq-      .loc_0x27C
-	  li        r0, 0x5
-	  mr        r3, r31
-	  stw       r0, 0x2CC(r31)
-	  bl        -0x1F567C
-	  b         .loc_0x2B0
+lbl_802FA908:
+	clrlwi.  r0, r29, 0x18
+	beq      lbl_802FA924
+	li       r0, 5
+	mr       r3, r31
+	stw      r0, 0x2cc(r31)
+	bl       finishMotion__Q24Game9EnemyBaseFv
+	b        lbl_802FA958
 
-	.loc_0x27C:
-	  li        r0, 0x4
-	  mr        r3, r31
-	  stw       r0, 0x2CC(r31)
-	  bl        -0x1F5690
-	  b         .loc_0x2B0
+lbl_802FA924:
+	li       r0, 4
+	mr       r3, r31
+	stw      r0, 0x2cc(r31)
+	bl       finishMotion__Q24Game9EnemyBaseFv
+	b        lbl_802FA958
 
-	.loc_0x290:
-	  lfs       f1, 0x2C4(r31)
-	  lfs       f0, -0x1008(r2)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x2B0
-	  li        r0, 0x4
-	  mr        r3, r31
-	  stw       r0, 0x2CC(r31)
-	  bl        -0x1F56B4
+lbl_802FA938:
+	lfs      f1, 0x2c4(r31)
+	lfs      f0, lbl_8051D358@sda21(r2)
+	fcmpo    cr0, f1, f0
+	ble      lbl_802FA958
+	li       r0, 4
+	mr       r3, r31
+	stw      r0, 0x2cc(r31)
+	bl       finishMotion__Q24Game9EnemyBaseFv
 
-	.loc_0x2B0:
-	  lwz       r3, -0x6514(r13)
-	  lfs       f1, 0x2C4(r31)
-	  lfs       f0, 0x54(r3)
-	  fadds     f0, f1, f0
-	  stfs      f0, 0x2C4(r31)
-	  lwz       r3, 0x188(r31)
-	  lbz       r0, 0x24(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x314
-	  lwz       r0, 0x1C(r3)
-	  cmplwi    r0, 0x7D0
-	  bne-      .loc_0x2EC
-	  mr        r3, r31
-	  bl        0x3DD8
-	  b         .loc_0x314
+lbl_802FA958:
+	lwz      r3, sys@sda21(r13)
+	lfs      f1, 0x2c4(r31)
+	lfs      f0, 0x54(r3)
+	fadds    f0, f1, f0
+	stfs     f0, 0x2c4(r31)
+	lwz      r3, 0x188(r31)
+	lbz      r0, 0x24(r3)
+	cmplwi   r0, 0
+	beq      lbl_802FA9BC
+	lwz      r0, 0x1c(r3)
+	cmplwi   r0, 0x7d0
+	bne      lbl_802FA994
+	mr       r3, r31
+	bl       endBlendAnimation__Q34Game10DangoMushi3ObjFv
+	b        lbl_802FA9BC
 
-	.loc_0x2EC:
-	  cmplwi    r0, 0x3E8
-	  bne-      .loc_0x314
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r6, 0
-	  lwz       r5, 0x2CC(r31)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_802FA994:
+	cmplwi   r0, 0x3e8
+	bne      lbl_802FA9BC
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r6, 0
+	lwz      r5, 0x2cc(r31)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x314:
-	  psq_l     f31,0xE8(r1),0,0
-	  lfd       f31, 0xE0(r1)
-	  psq_l     f30,0xD8(r1),0,0
-	  lfd       f30, 0xD0(r1)
-	  psq_l     f29,0xC8(r1),0,0
-	  lfd       f29, 0xC0(r1)
-	  psq_l     f28,0xB8(r1),0,0
-	  lfd       f28, 0xB0(r1)
-	  psq_l     f27,0xA8(r1),0,0
-	  lfd       f27, 0xA0(r1)
-	  psq_l     f26,0x98(r1),0,0
-	  lfd       f26, 0x90(r1)
-	  lwz       r31, 0x8C(r1)
-	  lwz       r30, 0x88(r1)
-	  lwz       r29, 0x84(r1)
-	  lwz       r0, 0xF4(r1)
-	  lwz       r28, 0x80(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0xF0
-	  blr
+lbl_802FA9BC:
+	psq_l    f31, 232(r1), 0, qr0
+	lfd      f31, 0xe0(r1)
+	psq_l    f30, 216(r1), 0, qr0
+	lfd      f30, 0xd0(r1)
+	psq_l    f29, 200(r1), 0, qr0
+	lfd      f29, 0xc0(r1)
+	psq_l    f28, 184(r1), 0, qr0
+	lfd      f28, 0xb0(r1)
+	psq_l    f27, 168(r1), 0, qr0
+	lfd      f27, 0xa0(r1)
+	psq_l    f26, 152(r1), 0, qr0
+	lfd      f26, 0x90(r1)
+	lwz      r31, 0x8c(r1)
+	lwz      r30, 0x88(r1)
+	lwz      r29, 0x84(r1)
+	lwz      r0, 0xf4(r1)
+	lwz      r28, 0x80(r1)
+	mtlr     r0
+	addi     r1, r1, 0xf0
+	blr
 	*/
 }
 
@@ -1217,30 +1449,29 @@ void DangoMushi::StateWait::cleanup(Game::EnemyBase*) { }
 void DangoMushi::StateMove::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lfs       f0, -0x1020(r2)
-	  mr        r3, r4
-	  stw       r0, 0x14(r1)
-	  li        r5, -0x1
-	  li        r0, 0
-	  stfs      f0, 0x2C4(r4)
-	  li        r4, 0x2
-	  stw       r5, 0x2CC(r3)
-	  li        r5, 0
-	  stb       r0, 0x2C2(r3)
-	  lwz       r0, 0x1E0(r3)
-	  ori       r0, r0, 0x1
-	  stw       r0, 0x1E0(r3)
-	  stfs      f0, 0x1D4(r3)
-	  stfs      f0, 0x1D8(r3)
-	  stfs      f0, 0x1DC(r3)
-	  bl        0x3BF0
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lfs      f0, lbl_8051D340@sda21(r2)
+	mr       r3, r4
+	stw      r0, 0x14(r1)
+	li       r5, -1
+	li       r0, 0
+	stfs     f0, 0x2c4(r4)
+	li       r4, 2
+	stw      r5, 0x2cc(r3)
+	li       r5, 0
+	stb      r0, 0x2c2(r3)
+	lwz      r0, 0x1e0(r3)
+	ori      r0, r0, 1
+	stw      r0, 0x1e0(r3)
+	stfs     f0, 0x1d4(r3)
+	stfs     f0, 0x1d8(r3)
+	stfs     f0, 0x1dc(r3)
+	bl       startBlendAnimation__Q34Game10DangoMushi3ObjFib
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1252,531 +1483,530 @@ void DangoMushi::StateMove::init(Game::EnemyBase*, Game::StateArg*)
 void DangoMushi::StateMove::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x180(r1)
-	  mflr      r0
-	  stw       r0, 0x184(r1)
-	  stfd      f31, 0x170(r1)
-	  psq_st    f31,0x178(r1),0,0
-	  stfd      f30, 0x160(r1)
-	  psq_st    f30,0x168(r1),0,0
-	  stfd      f29, 0x150(r1)
-	  psq_st    f29,0x158(r1),0,0
-	  stfd      f28, 0x140(r1)
-	  psq_st    f28,0x148(r1),0,0
-	  stfd      f27, 0x130(r1)
-	  psq_st    f27,0x138(r1),0,0
-	  stfd      f26, 0x120(r1)
-	  psq_st    f26,0x128(r1),0,0
-	  stw       r31, 0x11C(r1)
-	  stw       r30, 0x118(r1)
-	  stw       r29, 0x114(r1)
-	  stw       r28, 0x110(r1)
-	  lfs       f0, -0x1020(r2)
-	  mr        r31, r4
-	  lfs       f1, 0x200(r4)
-	  mr        r30, r3
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0, 0x2
-	  bne-      .loc_0x8C
-	  li        r0, 0
-	  li        r5, 0
-	  stw       r0, 0x2CC(r31)
-	  subi      r6, r2, 0x1010
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x758
+	stwu     r1, -0x180(r1)
+	mflr     r0
+	stw      r0, 0x184(r1)
+	stfd     f31, 0x170(r1)
+	psq_st   f31, 376(r1), 0, qr0
+	stfd     f30, 0x160(r1)
+	psq_st   f30, 360(r1), 0, qr0
+	stfd     f29, 0x150(r1)
+	psq_st   f29, 344(r1), 0, qr0
+	stfd     f28, 0x140(r1)
+	psq_st   f28, 328(r1), 0, qr0
+	stfd     f27, 0x130(r1)
+	psq_st   f27, 312(r1), 0, qr0
+	stfd     f26, 0x120(r1)
+	psq_st   f26, 296(r1), 0, qr0
+	stw      r31, 0x11c(r1)
+	stw      r30, 0x118(r1)
+	stw      r29, 0x114(r1)
+	stw      r28, 0x110(r1)
+	lfs      f0, lbl_8051D340@sda21(r2)
+	mr       r31, r4
+	lfs      f1, 0x200(r4)
+	mr       r30, r3
+	fcmpo    cr0, f1, f0
+	cror     2, 0, 2
+	bne      lbl_802FAAF8
+	li       r0, 0
+	li       r5, 0
+	stw      r0, 0x2cc(r31)
+	addi     r6, r2, lbl_8051D350@sda21
+	lwz      r12, 0(r3)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802FB1C4
 
-	.loc_0x8C:
-	  mr        r3, r31
-	  bl        0x259C
-	  mr.       r28, r3
-	  beq-      .loc_0x43C
-	  lwz       r3, -0x6C18(r13)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x43C
-	  lwz       r0, 0x44(r3)
-	  cmpwi     r0, 0x4
-	  beq-      .loc_0x43C
-	  mr        r4, r28
-	  addi      r3, r1, 0xE0
-	  lwz       r12, 0x0(r28)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r31
-	  lfs       f2, 0xE0(r1)
-	  lwz       r12, 0x0(r31)
-	  addi      r3, r1, 0xEC
-	  lfs       f1, 0xE4(r1)
-	  lfs       f0, 0xE8(r1)
-	  lwz       r12, 0x8(r12)
-	  stfs      f2, 0xC8(r1)
-	  stfs      f1, 0xCC(r1)
-	  stfs      f0, 0xD0(r1)
-	  mtctr     r12
-	  bctrl
-	  lfs       f5, 0xEC(r1)
-	  lis       r3, 0x8051
-	  lfs       f3, 0xF4(r1)
-	  subi      r3, r3, 0x2E20
-	  lfs       f1, 0xC8(r1)
-	  lfs       f0, 0xD0(r1)
-	  lfs       f4, 0xF0(r1)
-	  fsubs     f1, f1, f5
-	  fsubs     f2, f0, f3
-	  stfs      f5, 0xD4(r1)
-	  stfs      f4, 0xD8(r1)
-	  stfs      f3, 0xDC(r1)
-	  bl        -0x2C5A90
-	  bl        0x117034
-	  lwz       r12, 0x0(r31)
-	  fmr       f26, f1
-	  mr        r3, r31
-	  lwz       r12, 0x64(r12)
-	  mtctr     r12
-	  bctrl
-	  fmr       f2, f1
-	  fmr       f1, f26
-	  bl        0x11703C
-	  mr        r4, r31
-	  lwz       r5, 0xC0(r31)
-	  lwz       r12, 0x0(r31)
-	  fmr       f31, f1
-	  addi      r3, r1, 0x5C
-	  lfs       f28, 0x58C(r5)
-	  lwz       r12, 0x8(r12)
-	  li        r29, 0
-	  lfs       f29, 0x564(r5)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r28
-	  addi      r3, r1, 0x50
-	  lwz       r12, 0x0(r28)
-	  lfs       f30, 0x5C(r1)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r31
-	  lfs       f0, 0x50(r1)
-	  lwz       r12, 0x0(r31)
-	  addi      r3, r1, 0x74
-	  fsubs     f26, f0, f30
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r28
-	  addi      r3, r1, 0x68
-	  lwz       r12, 0x0(r28)
-	  lfs       f30, 0x78(r1)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r31
-	  lfs       f0, 0x6C(r1)
-	  lwz       r12, 0x0(r31)
-	  addi      r3, r1, 0x8C
-	  fsubs     f27, f0, f30
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r28
-	  addi      r3, r1, 0x80
-	  lwz       r12, 0x0(r28)
-	  lfs       f30, 0x94(r1)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  fmuls     f1, f27, f27
-	  lfs       f2, 0x88(r1)
-	  fmuls     f0, f29, f29
-	  fsubs     f2, f2, f30
-	  fmadds    f1, f26, f26, f1
-	  fmadds    f1, f2, f2, f1
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x260
-	  lfs       f0, -0x1014(r2)
-	  fabs      f2, f31
-	  lfs       f1, -0x1018(r2)
-	  fmuls     f0, f0, f28
-	  frsp      f2, f2
-	  fmuls     f0, f1, f0
-	  fcmpo     cr0, f2, f0
-	  cror      2, 0, 0x2
-	  bne-      .loc_0x260
-	  li        r29, 0x1
+lbl_802FAAF8:
+	mr       r3, r31
+	bl       getSearchedTarget__Q34Game10DangoMushi3ObjFv
+	or.      r28, r3, r3
+	beq      lbl_802FAEA8
+	lwz      r3, gameSystem__4Game@sda21(r13)
+	cmplwi   r3, 0
+	beq      lbl_802FAEA8
+	lwz      r0, 0x44(r3)
+	cmpwi    r0, 4
+	beq      lbl_802FAEA8
+	mr       r4, r28
+	addi     r3, r1, 0xe0
+	lwz      r12, 0(r28)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r31
+	lfs      f2, 0xe0(r1)
+	lwz      r12, 0(r31)
+	addi     r3, r1, 0xec
+	lfs      f1, 0xe4(r1)
+	lfs      f0, 0xe8(r1)
+	lwz      r12, 8(r12)
+	stfs     f2, 0xc8(r1)
+	stfs     f1, 0xcc(r1)
+	stfs     f0, 0xd0(r1)
+	mtctr    r12
+	bctrl
+	lfs      f5, 0xec(r1)
+	lis      r3, atanTable___5JMath@ha
+	lfs      f3, 0xf4(r1)
+	addi     r3, r3, atanTable___5JMath@l
+	lfs      f1, 0xc8(r1)
+	lfs      f0, 0xd0(r1)
+	lfs      f4, 0xf0(r1)
+	fsubs    f1, f1, f5
+	fsubs    f2, f0, f3
+	stfs     f5, 0xd4(r1)
+	stfs     f4, 0xd8(r1)
+	stfs     f3, 0xdc(r1)
+	bl       "atan2___Q25JMath18TAtanTable<1024,f>CFff"
+	bl       roundAng__Ff
+	lwz      r12, 0(r31)
+	fmr      f26, f1
+	mr       r3, r31
+	lwz      r12, 0x64(r12)
+	mtctr    r12
+	bctrl
+	fmr      f2, f1
+	fmr      f1, f26
+	bl       angDist__Fff
+	mr       r4, r31
+	lwz      r5, 0xc0(r31)
+	lwz      r12, 0(r31)
+	fmr      f31, f1
+	addi     r3, r1, 0x5c
+	lfs      f28, 0x58c(r5)
+	lwz      r12, 8(r12)
+	li       r29, 0
+	lfs      f29, 0x564(r5)
+	mtctr    r12
+	bctrl
+	mr       r4, r28
+	addi     r3, r1, 0x50
+	lwz      r12, 0(r28)
+	lfs      f30, 0x5c(r1)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r31
+	lfs      f0, 0x50(r1)
+	lwz      r12, 0(r31)
+	addi     r3, r1, 0x74
+	fsubs    f26, f0, f30
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r28
+	addi     r3, r1, 0x68
+	lwz      r12, 0(r28)
+	lfs      f30, 0x78(r1)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r31
+	lfs      f0, 0x6c(r1)
+	lwz      r12, 0(r31)
+	addi     r3, r1, 0x8c
+	fsubs    f27, f0, f30
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r28
+	addi     r3, r1, 0x80
+	lwz      r12, 0(r28)
+	lfs      f30, 0x94(r1)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	fmuls    f1, f27, f27
+	lfs      f2, 0x88(r1)
+	fmuls    f0, f29, f29
+	fsubs    f2, f2, f30
+	fmadds   f1, f26, f26, f1
+	fmadds   f1, f2, f2, f1
+	fcmpo    cr0, f1, f0
+	bge      lbl_802FACCC
+	lfs      f0, lbl_8051D34C@sda21(r2)
+	fabs     f2, f31
+	lfs      f1, lbl_8051D348@sda21(r2)
+	fmuls    f0, f0, f28
+	frsp     f2, f2
+	fmuls    f0, f1, f0
+	fcmpo    cr0, f2, f0
+	cror     2, 0, 2
+	bne      lbl_802FACCC
+	li       r29, 1
 
-	.loc_0x260:
-	  rlwinm.   r0,r29,0,24,31
-	  beq-      .loc_0x27C
-	  li        r0, 0x5
-	  mr        r3, r31
-	  stw       r0, 0x2CC(r31)
-	  bl        -0x1F5A40
-	  b         .loc_0x670
+lbl_802FACCC:
+	clrlwi.  r0, r29, 0x18
+	beq      lbl_802FACE8
+	li       r0, 5
+	mr       r3, r31
+	stw      r0, 0x2cc(r31)
+	bl       finishMotion__Q24Game9EnemyBaseFv
+	b        lbl_802FB0DC
 
-	.loc_0x27C:
-	  mr        r4, r28
-	  lwz       r5, 0xC0(r31)
-	  lwz       r12, 0x0(r28)
-	  addi      r3, r1, 0x38
-	  lfs       f29, 0x334(r5)
-	  lwz       r12, 0x8(r12)
-	  lfs       f28, 0x30C(r5)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r31
-	  lfs       f2, 0x38(r1)
-	  lwz       r12, 0x0(r31)
-	  addi      r3, r1, 0x44
-	  lfs       f1, 0x3C(r1)
-	  lfs       f0, 0x40(r1)
-	  lwz       r12, 0x8(r12)
-	  stfs      f2, 0x20(r1)
-	  stfs      f1, 0x24(r1)
-	  stfs      f0, 0x28(r1)
-	  mtctr     r12
-	  bctrl
-	  lfs       f5, 0x44(r1)
-	  lis       r3, 0x8051
-	  lfs       f3, 0x4C(r1)
-	  subi      r3, r3, 0x2E20
-	  lfs       f1, 0x20(r1)
-	  lfs       f0, 0x28(r1)
-	  lfs       f4, 0x48(r1)
-	  fsubs     f1, f1, f5
-	  fsubs     f2, f0, f3
-	  stfs      f5, 0x2C(r1)
-	  stfs      f4, 0x30(r1)
-	  stfs      f3, 0x34(r1)
-	  bl        -0x2C5C64
-	  bl        0x116E60
-	  lwz       r12, 0x0(r31)
-	  fmr       f26, f1
-	  mr        r3, r31
-	  lwz       r12, 0x64(r12)
-	  mtctr     r12
-	  bctrl
-	  fmr       f2, f1
-	  fmr       f1, f26
-	  bl        0x116E68
-	  fmuls     f26, f1, f28
-	  lfs       f0, -0x1014(r2)
-	  lfs       f1, -0x1018(r2)
-	  fmuls     f0, f0, f29
-	  fabs      f2, f26
-	  fmuls     f1, f1, f0
-	  frsp      f0, f2
-	  fcmpo     cr0, f0, f1
-	  ble-      .loc_0x368
-	  lfs       f0, -0x1020(r2)
-	  fcmpo     cr0, f26, f0
-	  ble-      .loc_0x364
-	  fmr       f26, f1
-	  b         .loc_0x368
+lbl_802FACE8:
+	mr       r4, r28
+	lwz      r5, 0xc0(r31)
+	lwz      r12, 0(r28)
+	addi     r3, r1, 0x38
+	lfs      f29, 0x334(r5)
+	lwz      r12, 8(r12)
+	lfs      f28, 0x30c(r5)
+	mtctr    r12
+	bctrl
+	mr       r4, r31
+	lfs      f2, 0x38(r1)
+	lwz      r12, 0(r31)
+	addi     r3, r1, 0x44
+	lfs      f1, 0x3c(r1)
+	lfs      f0, 0x40(r1)
+	lwz      r12, 8(r12)
+	stfs     f2, 0x20(r1)
+	stfs     f1, 0x24(r1)
+	stfs     f0, 0x28(r1)
+	mtctr    r12
+	bctrl
+	lfs      f5, 0x44(r1)
+	lis      r3, atanTable___5JMath@ha
+	lfs      f3, 0x4c(r1)
+	addi     r3, r3, atanTable___5JMath@l
+	lfs      f1, 0x20(r1)
+	lfs      f0, 0x28(r1)
+	lfs      f4, 0x48(r1)
+	fsubs    f1, f1, f5
+	fsubs    f2, f0, f3
+	stfs     f5, 0x2c(r1)
+	stfs     f4, 0x30(r1)
+	stfs     f3, 0x34(r1)
+	bl       "atan2___Q25JMath18TAtanTable<1024,f>CFff"
+	bl       roundAng__Ff
+	lwz      r12, 0(r31)
+	fmr      f26, f1
+	mr       r3, r31
+	lwz      r12, 0x64(r12)
+	mtctr    r12
+	bctrl
+	fmr      f2, f1
+	fmr      f1, f26
+	bl       angDist__Fff
+	fmuls    f26, f1, f28
+	lfs      f0, lbl_8051D34C@sda21(r2)
+	lfs      f1, lbl_8051D348@sda21(r2)
+	fmuls    f0, f0, f29
+	fabs     f2, f26
+	fmuls    f1, f1, f0
+	frsp     f0, f2
+	fcmpo    cr0, f0, f1
+	ble      lbl_802FADD4
+	lfs      f0, lbl_8051D340@sda21(r2)
+	fcmpo    cr0, f26, f0
+	ble      lbl_802FADD0
+	fmr      f26, f1
+	b        lbl_802FADD4
 
-	.loc_0x364:
-	  fneg      f26, f1
+lbl_802FADD0:
+	fneg     f26, f1
 
-	.loc_0x368:
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x64(r12)
-	  mtctr     r12
-	  bctrl
-	  fadds     f1, f26, f1
-	  bl        0x116DE4
-	  stfs      f1, 0x1FC(r31)
-	  fabs      f2, f31
-	  lfs       f0, -0x1014(r2)
-	  lfs       f3, 0x1FC(r31)
-	  lfs       f1, -0x1018(r2)
-	  frsp      f2, f2
-	  stfs      f3, 0x1A8(r31)
-	  lwz       r4, 0xC0(r31)
-	  lfs       f3, 0x58C(r4)
-	  fmuls     f0, f0, f3
-	  fmuls     f0, f1, f0
-	  fcmpo     cr0, f2, f0
-	  cror      2, 0, 0x2
-	  bne-      .loc_0x428
-	  mr        r3, r31
-	  lfs       f28, 0x2E4(r4)
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x64(r12)
-	  mtctr     r12
-	  bctrl
-	  bl        -0x22B624
-	  mr        r3, r31
-	  lfs       f2, 0x1D4(r31)
-	  lwz       r12, 0x0(r31)
-	  frsp      f26, f1
-	  lfs       f31, 0x1D8(r31)
-	  lfs       f0, 0x1DC(r31)
-	  lwz       r12, 0x64(r12)
-	  stfs      f2, 0xBC(r1)
-	  stfs      f31, 0xC0(r1)
-	  stfs      f0, 0xC4(r1)
-	  mtctr     r12
-	  bctrl
-	  bl        -0x22BBC0
-	  fmuls     f0, f28, f26
-	  frsp      f1, f1
-	  stfs      f0, 0x1D4(r31)
-	  fmuls     f0, f28, f1
-	  stfs      f31, 0x1D8(r31)
-	  stfs      f0, 0x1DC(r31)
-	  b         .loc_0x670
+lbl_802FADD4:
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r12, 0x64(r12)
+	mtctr    r12
+	bctrl
+	fadds    f1, f26, f1
+	bl       roundAng__Ff
+	stfs     f1, 0x1fc(r31)
+	fabs     f2, f31
+	lfs      f0, lbl_8051D34C@sda21(r2)
+	lfs      f3, 0x1fc(r31)
+	lfs      f1, lbl_8051D348@sda21(r2)
+	frsp     f2, f2
+	stfs     f3, 0x1a8(r31)
+	lwz      r4, 0xc0(r31)
+	lfs      f3, 0x58c(r4)
+	fmuls    f0, f0, f3
+	fmuls    f0, f1, f0
+	fcmpo    cr0, f2, f0
+	cror     2, 0, 2
+	bne      lbl_802FAE94
+	mr       r3, r31
+	lfs      f28, 0x2e4(r4)
+	lwz      r12, 0(r31)
+	lwz      r12, 0x64(r12)
+	mtctr    r12
+	bctrl
+	bl       sin
+	mr       r3, r31
+	lfs      f2, 0x1d4(r31)
+	lwz      r12, 0(r31)
+	frsp     f26, f1
+	lfs      f31, 0x1d8(r31)
+	lfs      f0, 0x1dc(r31)
+	lwz      r12, 0x64(r12)
+	stfs     f2, 0xbc(r1)
+	stfs     f31, 0xc0(r1)
+	stfs     f0, 0xc4(r1)
+	mtctr    r12
+	bctrl
+	bl       cos
+	fmuls    f0, f28, f26
+	frsp     f1, f1
+	stfs     f0, 0x1d4(r31)
+	fmuls    f0, f28, f1
+	stfs     f31, 0x1d8(r31)
+	stfs     f0, 0x1dc(r31)
+	b        lbl_802FB0DC
 
-	.loc_0x428:
-	  lfs       f0, -0x1020(r2)
-	  stfs      f0, 0x1D4(r31)
-	  stfs      f0, 0x1D8(r31)
-	  stfs      f0, 0x1DC(r31)
-	  b         .loc_0x670
+lbl_802FAE94:
+	lfs      f0, lbl_8051D340@sda21(r2)
+	stfs     f0, 0x1d4(r31)
+	stfs     f0, 0x1d8(r31)
+	stfs     f0, 0x1dc(r31)
+	b        lbl_802FB0DC
 
-	.loc_0x43C:
-	  mr        r3, r31
-	  bl        0x21B8
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x460
-	  li        r0, 0x3
-	  mr        r3, r31
-	  stw       r0, 0x2CC(r31)
-	  bl        -0x1F5C24
-	  b         .loc_0x670
+lbl_802FAEA8:
+	mr       r3, r31
+	bl       isReachedTarget__Q34Game10DangoMushi3ObjFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802FAECC
+	li       r0, 3
+	mr       r3, r31
+	stw      r0, 0x2cc(r31)
+	bl       finishMotion__Q24Game9EnemyBaseFv
+	b        lbl_802FB0DC
 
-	.loc_0x460:
-	  lfs       f1, 0x2C4(r31)
-	  lfs       f0, -0x1004(r2)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x484
-	  li        r0, 0x3
-	  mr        r3, r31
-	  stw       r0, 0x2CC(r31)
-	  bl        -0x1F5C48
-	  b         .loc_0x670
+lbl_802FAECC:
+	lfs      f1, 0x2c4(r31)
+	lfs      f0, lbl_8051D35C@sda21(r2)
+	fcmpo    cr0, f1, f0
+	ble      lbl_802FAEF0
+	li       r0, 3
+	mr       r3, r31
+	stw      r0, 0x2cc(r31)
+	bl       finishMotion__Q24Game9EnemyBaseFv
+	b        lbl_802FB0DC
 
-	.loc_0x484:
-	  mr        r4, r31
-	  addi      r3, r1, 0xB0
-	  lwz       r12, 0x0(r31)
-	  lfs       f27, 0x2D0(r31)
-	  lwz       r12, 0x8(r12)
-	  lfs       f30, 0x2D8(r31)
-	  mtctr     r12
-	  bctrl
-	  lfs       f4, 0xB0(r1)
-	  lis       r3, 0x8051
-	  lfs       f0, 0xB8(r1)
-	  subi      r3, r3, 0x2E20
-	  lfs       f3, 0xB4(r1)
-	  fsubs     f1, f27, f4
-	  fsubs     f2, f30, f0
-	  stfs      f4, 0xA4(r1)
-	  stfs      f3, 0xA8(r1)
-	  stfs      f0, 0xAC(r1)
-	  bl        -0x2C5E30
-	  bl        0x116C94
-	  lwz       r12, 0x0(r31)
-	  fmr       f26, f1
-	  mr        r3, r31
-	  lwz       r12, 0x64(r12)
-	  mtctr     r12
-	  bctrl
-	  fmr       f2, f1
-	  fmr       f1, f26
-	  bl        0x116C9C
-	  mr        r4, r31
-	  lwz       r5, 0xC0(r31)
-	  lwz       r12, 0x0(r31)
-	  fmr       f31, f1
-	  addi      r3, r1, 0x14
-	  lfs       f29, 0x334(r5)
-	  lwz       r12, 0x8(r12)
-	  lfs       f28, 0x30C(r5)
-	  mtctr     r12
-	  bctrl
-	  lfs       f4, 0x14(r1)
-	  lis       r3, 0x8051
-	  lfs       f0, 0x1C(r1)
-	  subi      r3, r3, 0x2E20
-	  lfs       f3, 0x18(r1)
-	  fsubs     f1, f27, f4
-	  fsubs     f2, f30, f0
-	  stfs      f4, 0x8(r1)
-	  stfs      f3, 0xC(r1)
-	  stfs      f0, 0x10(r1)
-	  bl        -0x2C5EAC
-	  bl        0x116C18
-	  lwz       r12, 0x0(r31)
-	  fmr       f26, f1
-	  mr        r3, r31
-	  lwz       r12, 0x64(r12)
-	  mtctr     r12
-	  bctrl
-	  fmr       f2, f1
-	  fmr       f1, f26
-	  bl        0x116C20
-	  fmuls     f26, f1, f28
-	  lfs       f0, -0x1014(r2)
-	  lfs       f1, -0x1018(r2)
-	  fmuls     f0, f0, f29
-	  fabs      f2, f26
-	  fmuls     f1, f1, f0
-	  frsp      f0, f2
-	  fcmpo     cr0, f0, f1
-	  ble-      .loc_0x5B0
-	  lfs       f0, -0x1020(r2)
-	  fcmpo     cr0, f26, f0
-	  ble-      .loc_0x5AC
-	  fmr       f26, f1
-	  b         .loc_0x5B0
+lbl_802FAEF0:
+	mr       r4, r31
+	addi     r3, r1, 0xb0
+	lwz      r12, 0(r31)
+	lfs      f27, 0x2d0(r31)
+	lwz      r12, 8(r12)
+	lfs      f30, 0x2d8(r31)
+	mtctr    r12
+	bctrl
+	lfs      f4, 0xb0(r1)
+	lis      r3, atanTable___5JMath@ha
+	lfs      f0, 0xb8(r1)
+	addi     r3, r3, atanTable___5JMath@l
+	lfs      f3, 0xb4(r1)
+	fsubs    f1, f27, f4
+	fsubs    f2, f30, f0
+	stfs     f4, 0xa4(r1)
+	stfs     f3, 0xa8(r1)
+	stfs     f0, 0xac(r1)
+	bl       "atan2___Q25JMath18TAtanTable<1024,f>CFff"
+	bl       roundAng__Ff
+	lwz      r12, 0(r31)
+	fmr      f26, f1
+	mr       r3, r31
+	lwz      r12, 0x64(r12)
+	mtctr    r12
+	bctrl
+	fmr      f2, f1
+	fmr      f1, f26
+	bl       angDist__Fff
+	mr       r4, r31
+	lwz      r5, 0xc0(r31)
+	lwz      r12, 0(r31)
+	fmr      f31, f1
+	addi     r3, r1, 0x14
+	lfs      f29, 0x334(r5)
+	lwz      r12, 8(r12)
+	lfs      f28, 0x30c(r5)
+	mtctr    r12
+	bctrl
+	lfs      f4, 0x14(r1)
+	lis      r3, atanTable___5JMath@ha
+	lfs      f0, 0x1c(r1)
+	addi     r3, r3, atanTable___5JMath@l
+	lfs      f3, 0x18(r1)
+	fsubs    f1, f27, f4
+	fsubs    f2, f30, f0
+	stfs     f4, 8(r1)
+	stfs     f3, 0xc(r1)
+	stfs     f0, 0x10(r1)
+	bl       "atan2___Q25JMath18TAtanTable<1024,f>CFff"
+	bl       roundAng__Ff
+	lwz      r12, 0(r31)
+	fmr      f26, f1
+	mr       r3, r31
+	lwz      r12, 0x64(r12)
+	mtctr    r12
+	bctrl
+	fmr      f2, f1
+	fmr      f1, f26
+	bl       angDist__Fff
+	fmuls    f26, f1, f28
+	lfs      f0, lbl_8051D34C@sda21(r2)
+	lfs      f1, lbl_8051D348@sda21(r2)
+	fmuls    f0, f0, f29
+	fabs     f2, f26
+	fmuls    f1, f1, f0
+	frsp     f0, f2
+	fcmpo    cr0, f0, f1
+	ble      lbl_802FB01C
+	lfs      f0, lbl_8051D340@sda21(r2)
+	fcmpo    cr0, f26, f0
+	ble      lbl_802FB018
+	fmr      f26, f1
+	b        lbl_802FB01C
 
-	.loc_0x5AC:
-	  fneg      f26, f1
+lbl_802FB018:
+	fneg     f26, f1
 
-	.loc_0x5B0:
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x64(r12)
-	  mtctr     r12
-	  bctrl
-	  fadds     f1, f26, f1
-	  bl        0x116B9C
-	  fabs      f3, f31
-	  stfs      f1, 0x1FC(r31)
-	  lfs       f0, -0x1000(r2)
-	  lfs       f2, 0x1FC(r31)
-	  frsp      f1, f3
-	  stfs      f2, 0x1A8(r31)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0, 0x2
-	  bne-      .loc_0x660
-	  mr        r3, r31
-	  lwz       r4, 0xC0(r31)
-	  lwz       r12, 0x0(r31)
-	  lfs       f28, 0x2E4(r4)
-	  lwz       r12, 0x64(r12)
-	  mtctr     r12
-	  bctrl
-	  bl        -0x22B85C
-	  mr        r3, r31
-	  lfs       f2, 0x1D4(r31)
-	  lwz       r12, 0x0(r31)
-	  frsp      f26, f1
-	  lfs       f31, 0x1D8(r31)
-	  lfs       f0, 0x1DC(r31)
-	  lwz       r12, 0x64(r12)
-	  stfs      f2, 0x98(r1)
-	  stfs      f31, 0x9C(r1)
-	  stfs      f0, 0xA0(r1)
-	  mtctr     r12
-	  bctrl
-	  bl        -0x22BDF8
-	  fmuls     f0, f28, f26
-	  frsp      f1, f1
-	  stfs      f0, 0x1D4(r31)
-	  fmuls     f0, f28, f1
-	  stfs      f31, 0x1D8(r31)
-	  stfs      f0, 0x1DC(r31)
-	  b         .loc_0x670
+lbl_802FB01C:
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r12, 0x64(r12)
+	mtctr    r12
+	bctrl
+	fadds    f1, f26, f1
+	bl       roundAng__Ff
+	fabs     f3, f31
+	stfs     f1, 0x1fc(r31)
+	lfs      f0, lbl_8051D360@sda21(r2)
+	lfs      f2, 0x1fc(r31)
+	frsp     f1, f3
+	stfs     f2, 0x1a8(r31)
+	fcmpo    cr0, f1, f0
+	cror     2, 0, 2
+	bne      lbl_802FB0CC
+	mr       r3, r31
+	lwz      r4, 0xc0(r31)
+	lwz      r12, 0(r31)
+	lfs      f28, 0x2e4(r4)
+	lwz      r12, 0x64(r12)
+	mtctr    r12
+	bctrl
+	bl       sin
+	mr       r3, r31
+	lfs      f2, 0x1d4(r31)
+	lwz      r12, 0(r31)
+	frsp     f26, f1
+	lfs      f31, 0x1d8(r31)
+	lfs      f0, 0x1dc(r31)
+	lwz      r12, 0x64(r12)
+	stfs     f2, 0x98(r1)
+	stfs     f31, 0x9c(r1)
+	stfs     f0, 0xa0(r1)
+	mtctr    r12
+	bctrl
+	bl       cos
+	fmuls    f0, f28, f26
+	frsp     f1, f1
+	stfs     f0, 0x1d4(r31)
+	fmuls    f0, f28, f1
+	stfs     f31, 0x1d8(r31)
+	stfs     f0, 0x1dc(r31)
+	b        lbl_802FB0DC
 
-	.loc_0x660:
-	  lfs       f0, -0x1020(r2)
-	  stfs      f0, 0x1D4(r31)
-	  stfs      f0, 0x1D8(r31)
-	  stfs      f0, 0x1DC(r31)
+lbl_802FB0CC:
+	lfs      f0, lbl_8051D340@sda21(r2)
+	stfs     f0, 0x1d4(r31)
+	stfs     f0, 0x1d8(r31)
+	stfs     f0, 0x1dc(r31)
 
-	.loc_0x670:
-	  mr        r3, r31
-	  bl        -0x1F3DE0
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x690
-	  lfs       f0, -0x1020(r2)
-	  stfs      f0, 0x1D4(r31)
-	  stfs      f0, 0x1D8(r31)
-	  stfs      f0, 0x1DC(r31)
+lbl_802FB0DC:
+	mr       r3, r31
+	bl       isFinishMotion__Q24Game9EnemyBaseFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802FB0FC
+	lfs      f0, lbl_8051D340@sda21(r2)
+	stfs     f0, 0x1d4(r31)
+	stfs     f0, 0x1d8(r31)
+	stfs     f0, 0x1dc(r31)
 
-	.loc_0x690:
-	  lwz       r3, -0x6514(r13)
-	  lfs       f1, 0x2C4(r31)
-	  lfs       f0, 0x54(r3)
-	  fadds     f0, f1, f0
-	  stfs      f0, 0x2C4(r31)
-	  lwz       r3, 0x188(r31)
-	  lbz       r0, 0x24(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x758
-	  lwz       r0, 0x1C(r3)
-	  cmplwi    r0, 0x7D0
-	  bne-      .loc_0x6CC
-	  mr        r3, r31
-	  bl        0x3634
-	  b         .loc_0x758
+lbl_802FB0FC:
+	lwz      r3, sys@sda21(r13)
+	lfs      f1, 0x2c4(r31)
+	lfs      f0, 0x54(r3)
+	fadds    f0, f1, f0
+	stfs     f0, 0x2c4(r31)
+	lwz      r3, 0x188(r31)
+	lbz      r0, 0x24(r3)
+	cmplwi   r0, 0
+	beq      lbl_802FB1C4
+	lwz      r0, 0x1c(r3)
+	cmplwi   r0, 0x7d0
+	bne      lbl_802FB138
+	mr       r3, r31
+	bl       endBlendAnimation__Q34Game10DangoMushi3ObjFv
+	b        lbl_802FB1C4
 
-	.loc_0x6CC:
-	  cmplwi    r0, 0x2
-	  bne-      .loc_0x730
-	  mr        r4, r31
-	  addi      r3, r1, 0xF8
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f2, 0xF8(r1)
-	  addi      r5, r1, 0x104
-	  lfs       f1, 0xFC(r1)
-	  li        r4, 0x3
-	  lfs       f0, 0x100(r1)
-	  li        r6, 0x2
-	  stfs      f2, 0x104(r1)
-	  lwz       r3, -0x6960(r13)
-	  stfs      f1, 0x108(r1)
-	  stfs      f0, 0x10C(r1)
-	  bl        -0xA8F44
-	  lwz       r3, -0x6958(r13)
-	  addi      r5, r1, 0x104
-	  li        r4, 0xB
-	  li        r6, 0x2
-	  bl        -0xA7A14
-	  b         .loc_0x758
+lbl_802FB138:
+	cmplwi   r0, 2
+	bne      lbl_802FB19C
+	mr       r4, r31
+	addi     r3, r1, 0xf8
+	lwz      r12, 0(r31)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f2, 0xf8(r1)
+	addi     r5, r1, 0x104
+	lfs      f1, 0xfc(r1)
+	li       r4, 3
+	lfs      f0, 0x100(r1)
+	li       r6, 2
+	stfs     f2, 0x104(r1)
+	lwz      r3, cameraMgr__4Game@sda21(r13)
+	stfs     f1, 0x108(r1)
+	stfs     f0, 0x10c(r1)
+	bl       "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
+	lwz      r3, rumbleMgr__4Game@sda21(r13)
+	addi     r5, r1, 0x104
+	li       r4, 0xb
+	li       r6, 2
+	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
+	b        lbl_802FB1C4
 
-	.loc_0x730:
-	  cmplwi    r0, 0x3E8
-	  bne-      .loc_0x758
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r6, 0
-	  lwz       r5, 0x2CC(r31)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_802FB19C:
+	cmplwi   r0, 0x3e8
+	bne      lbl_802FB1C4
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r6, 0
+	lwz      r5, 0x2cc(r31)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x758:
-	  psq_l     f31,0x178(r1),0,0
-	  lfd       f31, 0x170(r1)
-	  psq_l     f30,0x168(r1),0,0
-	  lfd       f30, 0x160(r1)
-	  psq_l     f29,0x158(r1),0,0
-	  lfd       f29, 0x150(r1)
-	  psq_l     f28,0x148(r1),0,0
-	  lfd       f28, 0x140(r1)
-	  psq_l     f27,0x138(r1),0,0
-	  lfd       f27, 0x130(r1)
-	  psq_l     f26,0x128(r1),0,0
-	  lfd       f26, 0x120(r1)
-	  lwz       r31, 0x11C(r1)
-	  lwz       r30, 0x118(r1)
-	  lwz       r29, 0x114(r1)
-	  lwz       r0, 0x184(r1)
-	  lwz       r28, 0x110(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x180
-	  blr
+lbl_802FB1C4:
+	psq_l    f31, 376(r1), 0, qr0
+	lfd      f31, 0x170(r1)
+	psq_l    f30, 360(r1), 0, qr0
+	lfd      f30, 0x160(r1)
+	psq_l    f29, 344(r1), 0, qr0
+	lfd      f29, 0x150(r1)
+	psq_l    f28, 328(r1), 0, qr0
+	lfd      f28, 0x140(r1)
+	psq_l    f27, 312(r1), 0, qr0
+	lfd      f27, 0x130(r1)
+	psq_l    f26, 296(r1), 0, qr0
+	lfd      f26, 0x120(r1)
+	lwz      r31, 0x11c(r1)
+	lwz      r30, 0x118(r1)
+	lwz      r29, 0x114(r1)
+	lwz      r0, 0x184(r1)
+	lwz      r28, 0x110(r1)
+	mtlr     r0
+	addi     r1, r1, 0x180
+	blr
 	*/
 }
 
@@ -1795,41 +2025,40 @@ void DangoMushi::StateMove::cleanup(Game::EnemyBase*) { }
 void DangoMushi::StateAttack::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lfs       f0, -0x1020(r2)
-	  stw       r0, 0x14(r1)
-	  li        r0, -0x1
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  mr        r3, r31
-	  stw       r0, 0x2CC(r4)
-	  li        r4, 0
-	  li        r0, 0x1
-	  stfs      f0, 0x2C4(r31)
-	  stb       r4, 0x2C0(r31)
-	  stb       r0, 0x2C2(r31)
-	  lwz       r0, 0x1E0(r31)
-	  ori       r0, r0, 0x1
-	  stw       r0, 0x1E0(r31)
-	  lwz       r0, 0x1E0(r31)
-	  oris      r0, r0, 0x40
-	  stw       r0, 0x1E0(r31)
-	  bl        -0x1F989C
-	  lfs       f0, -0x1020(r2)
-	  mr        r3, r31
-	  li        r4, 0x3
-	  li        r5, 0
-	  stfs      f0, 0x1D4(r31)
-	  stfs      f0, 0x1D8(r31)
-	  stfs      f0, 0x1DC(r31)
-	  bl        0x33C0
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lfs      f0, lbl_8051D340@sda21(r2)
+	stw      r0, 0x14(r1)
+	li       r0, -1
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	mr       r3, r31
+	stw      r0, 0x2cc(r4)
+	li       r4, 0
+	li       r0, 1
+	stfs     f0, 0x2c4(r31)
+	stb      r4, 0x2c0(r31)
+	stb      r0, 0x2c2(r31)
+	lwz      r0, 0x1e0(r31)
+	ori      r0, r0, 1
+	stw      r0, 0x1e0(r31)
+	lwz      r0, 0x1e0(r31)
+	oris     r0, r0, 0x40
+	stw      r0, 0x1e0(r31)
+	bl       setEmotionExcitement__Q24Game9EnemyBaseFv
+	lfs      f0, lbl_8051D340@sda21(r2)
+	mr       r3, r31
+	li       r4, 3
+	li       r5, 0
+	stfs     f0, 0x1d4(r31)
+	stfs     f0, 0x1d8(r31)
+	stfs     f0, 0x1dc(r31)
+	bl       startBlendAnimation__Q34Game10DangoMushi3ObjFib
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1841,189 +2070,188 @@ void DangoMushi::StateAttack::init(Game::EnemyBase*, Game::StateArg*)
 void DangoMushi::StateAttack::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x60(r1)
-	  mflr      r0
-	  lfs       f0, -0xFFC(r2)
-	  stw       r0, 0x64(r1)
-	  stw       r31, 0x5C(r1)
-	  mr        r31, r4
-	  stw       r30, 0x58(r1)
-	  mr        r30, r3
-	  lfs       f1, 0x2C4(r4)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x3C
-	  li        r0, 0x3
-	  mr        r3, r31
-	  stw       r0, 0x2CC(r31)
-	  bl        -0x1F6038
+	stwu     r1, -0x60(r1)
+	mflr     r0
+	lfs      f0, lbl_8051D364@sda21(r2)
+	stw      r0, 0x64(r1)
+	stw      r31, 0x5c(r1)
+	mr       r31, r4
+	stw      r30, 0x58(r1)
+	mr       r30, r3
+	lfs      f1, 0x2c4(r4)
+	fcmpo    cr0, f1, f0
+	ble      lbl_802FB2DC
+	li       r0, 3
+	mr       r3, r31
+	stw      r0, 0x2cc(r31)
+	bl       finishMotion__Q24Game9EnemyBaseFv
 
-	.loc_0x3C:
-	  lbz       r0, 0x2C0(r31)
-	  cmplwi    r0, 0
-	  beq-      .loc_0xC4
-	  mr        r3, r31
-	  bl        0x1DE4
-	  mr        r4, r31
-	  addi      r3, r1, 0x20
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f2, 0x20(r1)
-	  addi      r5, r1, 0x44
-	  lfs       f1, 0x24(r1)
-	  li        r4, 0x19
-	  lfs       f0, 0x28(r1)
-	  li        r6, 0x2
-	  stfs      f2, 0x44(r1)
-	  lwz       r3, -0x6960(r13)
-	  stfs      f1, 0x48(r1)
-	  stfs      f0, 0x4C(r1)
-	  bl        -0xA90F4
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0xF4(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r12, 0x0(r3)
-	  li        r4, 0x5180
-	  li        r5, 0
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0xD4
+lbl_802FB2DC:
+	lbz      r0, 0x2c0(r31)
+	cmplwi   r0, 0
+	beq      lbl_802FB364
+	mr       r3, r31
+	bl       rollingMove__Q34Game10DangoMushi3ObjFv
+	mr       r4, r31
+	addi     r3, r1, 0x20
+	lwz      r12, 0(r31)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f2, 0x20(r1)
+	addi     r5, r1, 0x44
+	lfs      f1, 0x24(r1)
+	li       r4, 0x19
+	lfs      f0, 0x28(r1)
+	li       r6, 2
+	stfs     f2, 0x44(r1)
+	lwz      r3, cameraMgr__4Game@sda21(r13)
+	stfs     f1, 0x48(r1)
+	stfs     f0, 0x4c(r1)
+	bl       "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r12, 0xf4(r12)
+	mtctr    r12
+	bctrl
+	lwz      r12, 0(r3)
+	li       r4, 0x5180
+	li       r5, 0
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802FB374
 
-	.loc_0xC4:
-	  lfs       f0, -0x1020(r2)
-	  stfs      f0, 0x1D4(r31)
-	  stfs      f0, 0x1D8(r31)
-	  stfs      f0, 0x1DC(r31)
+lbl_802FB364:
+	lfs      f0, lbl_8051D340@sda21(r2)
+	stfs     f0, 0x1d4(r31)
+	stfs     f0, 0x1d8(r31)
+	stfs     f0, 0x1dc(r31)
 
-	.loc_0xD4:
-	  lwz       r3, 0x188(r31)
-	  lbz       r0, 0x24(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x270
-	  lwz       r0, 0x1C(r3)
-	  cmplwi    r0, 0x7D0
-	  bne-      .loc_0xFC
-	  mr        r3, r31
-	  bl        0x33D0
-	  b         .loc_0x270
+lbl_802FB374:
+	lwz      r3, 0x188(r31)
+	lbz      r0, 0x24(r3)
+	cmplwi   r0, 0
+	beq      lbl_802FB510
+	lwz      r0, 0x1c(r3)
+	cmplwi   r0, 0x7d0
+	bne      lbl_802FB39C
+	mr       r3, r31
+	bl       endBlendAnimation__Q34Game10DangoMushi3ObjFv
+	b        lbl_802FB510
 
-	.loc_0xFC:
-	  cmplwi    r0, 0x2
-	  bne-      .loc_0x110
-	  mr        r3, r31
-	  bl        0x3ECC
-	  b         .loc_0x270
+lbl_802FB39C:
+	cmplwi   r0, 2
+	bne      lbl_802FB3B0
+	mr       r3, r31
+	bl       createEnemyBounceEffect__Q34Game10DangoMushi3ObjFv
+	b        lbl_802FB510
 
-	.loc_0x110:
-	  cmplwi    r0, 0x3
-	  bne-      .loc_0x184
-	  mr        r3, r31
-	  bl        0x3508
-	  mr        r3, r31
-	  bl        0x3EB0
-	  mr        r4, r31
-	  addi      r3, r1, 0x14
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f2, 0x14(r1)
-	  addi      r5, r1, 0x38
-	  lfs       f1, 0x18(r1)
-	  li        r4, 0xF
-	  lfs       f0, 0x1C(r1)
-	  li        r6, 0x2
-	  stfs      f2, 0x38(r1)
-	  lwz       r3, -0x6960(r13)
-	  stfs      f1, 0x3C(r1)
-	  stfs      f0, 0x40(r1)
-	  bl        -0xA91CC
-	  lwz       r3, -0x6958(r13)
-	  addi      r5, r1, 0x38
-	  li        r4, 0xE
-	  li        r6, 0x2
-	  bl        -0xA7C9C
-	  b         .loc_0x270
+lbl_802FB3B0:
+	cmplwi   r0, 3
+	bne      lbl_802FB424
+	mr       r3, r31
+	bl       startBossAttackLoopBGM__Q34Game10DangoMushi3ObjFv
+	mr       r3, r31
+	bl       createEnemyBounceEffect__Q34Game10DangoMushi3ObjFv
+	mr       r4, r31
+	addi     r3, r1, 0x14
+	lwz      r12, 0(r31)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f2, 0x14(r1)
+	addi     r5, r1, 0x38
+	lfs      f1, 0x18(r1)
+	li       r4, 0xf
+	lfs      f0, 0x1c(r1)
+	li       r6, 2
+	stfs     f2, 0x38(r1)
+	lwz      r3, cameraMgr__4Game@sda21(r13)
+	stfs     f1, 0x3c(r1)
+	stfs     f0, 0x40(r1)
+	bl       "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
+	lwz      r3, rumbleMgr__4Game@sda21(r13)
+	addi     r5, r1, 0x38
+	li       r4, 0xe
+	li       r6, 2
+	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
+	b        lbl_802FB510
 
-	.loc_0x184:
-	  cmplwi    r0, 0x4
-	  bne-      .loc_0x1AC
-	  lbz       r0, 0x2C0(r31)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x270
-	  li        r0, 0x1
-	  mr        r3, r31
-	  stb       r0, 0x2C0(r31)
-	  bl        0x3DCC
-	  b         .loc_0x270
+lbl_802FB424:
+	cmplwi   r0, 4
+	bne      lbl_802FB44C
+	lbz      r0, 0x2c0(r31)
+	cmplwi   r0, 0
+	bne      lbl_802FB510
+	li       r0, 1
+	mr       r3, r31
+	stb      r0, 0x2c0(r31)
+	bl       startRollingMoveEffect__Q34Game10DangoMushi3ObjFv
+	b        lbl_802FB510
 
-	.loc_0x1AC:
-	  cmplwi    r0, 0x1
-	  bne-      .loc_0x1DC
-	  mr        r3, r31
-	  bl        -0x1F4158
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x270
-	  li        r0, 0
-	  mr        r3, r31
-	  stb       r0, 0x2C0(r31)
-	  stb       r0, 0x2C2(r31)
-	  bl        0x3DD0
-	  b         .loc_0x270
+lbl_802FB44C:
+	cmplwi   r0, 1
+	bne      lbl_802FB47C
+	mr       r3, r31
+	bl       isFinishMotion__Q24Game9EnemyBaseFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802FB510
+	li       r0, 0
+	mr       r3, r31
+	stb      r0, 0x2c0(r31)
+	stb      r0, 0x2c2(r31)
+	bl       finishRollingMoveEffect__Q34Game10DangoMushi3ObjFv
+	b        lbl_802FB510
 
-	.loc_0x1DC:
-	  cmplwi    r0, 0x5
-	  bne-      .loc_0x248
-	  mr        r3, r31
-	  bl        0x3DEC
-	  mr        r4, r31
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f2, 0x8(r1)
-	  addi      r5, r1, 0x2C
-	  lfs       f1, 0xC(r1)
-	  li        r4, 0x19
-	  lfs       f0, 0x10(r1)
-	  li        r6, 0x2
-	  stfs      f2, 0x2C(r1)
-	  lwz       r3, -0x6960(r13)
-	  stfs      f1, 0x30(r1)
-	  stfs      f0, 0x34(r1)
-	  bl        -0xA9290
-	  lwz       r3, -0x6958(r13)
-	  addi      r5, r1, 0x2C
-	  li        r4, 0xE
-	  li        r6, 0x2
-	  bl        -0xA7D60
-	  b         .loc_0x270
+lbl_802FB47C:
+	cmplwi   r0, 5
+	bne      lbl_802FB4E8
+	mr       r3, r31
+	bl       createEnemyBounceEffect__Q34Game10DangoMushi3ObjFv
+	mr       r4, r31
+	addi     r3, r1, 8
+	lwz      r12, 0(r31)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f2, 8(r1)
+	addi     r5, r1, 0x2c
+	lfs      f1, 0xc(r1)
+	li       r4, 0x19
+	lfs      f0, 0x10(r1)
+	li       r6, 2
+	stfs     f2, 0x2c(r1)
+	lwz      r3, cameraMgr__4Game@sda21(r13)
+	stfs     f1, 0x30(r1)
+	stfs     f0, 0x34(r1)
+	bl       "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
+	lwz      r3, rumbleMgr__4Game@sda21(r13)
+	addi     r5, r1, 0x2c
+	li       r4, 0xe
+	li       r6, 2
+	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
+	b        lbl_802FB510
 
-	.loc_0x248:
-	  cmplwi    r0, 0x3E8
-	  bne-      .loc_0x270
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r6, 0
-	  lwz       r5, 0x2CC(r31)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_802FB4E8:
+	cmplwi   r0, 0x3e8
+	bne      lbl_802FB510
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r6, 0
+	lwz      r5, 0x2cc(r31)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x270:
-	  lwz       r0, 0x64(r1)
-	  lwz       r31, 0x5C(r1)
-	  lwz       r30, 0x58(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x60
-	  blr
+lbl_802FB510:
+	lwz      r0, 0x64(r1)
+	lwz      r31, 0x5c(r1)
+	lwz      r30, 0x58(r1)
+	mtlr     r0
+	addi     r1, r1, 0x60
+	blr
 	*/
 }
 
@@ -2035,29 +2263,28 @@ void DangoMushi::StateAttack::exec(Game::EnemyBase*)
 void DangoMushi::StateAttack::cleanup(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  mr        r3, r31
-	  lwz       r0, 0x1E0(r4)
-	  rlwinm    r0,r0,0,10,8
-	  stw       r0, 0x1E0(r4)
-	  bl        -0x1F9BD0
-	  li        r0, 0
-	  mr        r3, r31
-	  stb       r0, 0x2C0(r31)
-	  stb       r0, 0x2C2(r31)
-	  bl        0x3CE4
-	  mr        r3, r31
-	  bl        0x3424
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	mr       r3, r31
+	lwz      r0, 0x1e0(r4)
+	rlwinm   r0, r0, 0, 0xa, 8
+	stw      r0, 0x1e0(r4)
+	bl       setEmotionCaution__Q24Game9EnemyBaseFv
+	li       r0, 0
+	mr       r3, r31
+	stb      r0, 0x2c0(r31)
+	stb      r0, 0x2c2(r31)
+	bl       finishRollingMoveEffect__Q34Game10DangoMushi3ObjFv
+	mr       r3, r31
+	bl       finishBossAttackLoopBGM__Q34Game10DangoMushi3ObjFv
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2069,60 +2296,59 @@ void DangoMushi::StateAttack::cleanup(Game::EnemyBase*)
 void DangoMushi::StateTurn::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  lfs       f0, -0x1020(r2)
-	  li        r5, 0
-	  stw       r0, 0x34(r1)
-	  li        r0, -0x1
-	  stw       r31, 0x2C(r1)
-	  mr        r31, r4
-	  mr        r3, r31
-	  stw       r0, 0x2CC(r4)
-	  li        r0, 0
-	  li        r4, 0x5
-	  stfs      f0, 0x2C4(r31)
-	  stb       r0, 0x2C2(r31)
-	  lwz       r0, 0x1E0(r31)
-	  oris      r0, r0, 0x20
-	  stw       r0, 0x1E0(r31)
-	  lwz       r0, 0x1E0(r31)
-	  ori       r0, r0, 0x1
-	  stw       r0, 0x1E0(r31)
-	  stfs      f0, 0x1D4(r31)
-	  stfs      f0, 0x1D8(r31)
-	  stfs      f0, 0x1DC(r31)
-	  bl        0x306C
-	  mr        r3, r31
-	  bl        0x1DA8
-	  mr        r4, r31
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f2, 0x8(r1)
-	  addi      r5, r1, 0x14
-	  lfs       f1, 0xC(r1)
-	  li        r4, 0x1B
-	  lfs       f0, 0x10(r1)
-	  li        r6, 0x2
-	  stfs      f2, 0x14(r1)
-	  lwz       r3, -0x6960(r13)
-	  stfs      f1, 0x18(r1)
-	  stfs      f0, 0x1C(r1)
-	  bl        -0xA93EC
-	  lwz       r3, -0x6958(r13)
-	  addi      r5, r1, 0x14
-	  li        r4, 0xF
-	  li        r6, 0x2
-	  bl        -0xA7EBC
-	  lwz       r0, 0x34(r1)
-	  lwz       r31, 0x2C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	lfs      f0, lbl_8051D340@sda21(r2)
+	li       r5, 0
+	stw      r0, 0x34(r1)
+	li       r0, -1
+	stw      r31, 0x2c(r1)
+	mr       r31, r4
+	mr       r3, r31
+	stw      r0, 0x2cc(r4)
+	li       r0, 0
+	li       r4, 5
+	stfs     f0, 0x2c4(r31)
+	stb      r0, 0x2c2(r31)
+	lwz      r0, 0x1e0(r31)
+	oris     r0, r0, 0x20
+	stw      r0, 0x1e0(r31)
+	lwz      r0, 0x1e0(r31)
+	ori      r0, r0, 1
+	stw      r0, 0x1e0(r31)
+	stfs     f0, 0x1d4(r31)
+	stfs     f0, 0x1d8(r31)
+	stfs     f0, 0x1dc(r31)
+	bl       startBlendAnimation__Q34Game10DangoMushi3ObjFib
+	mr       r3, r31
+	bl       createCrashEnemy__Q34Game10DangoMushi3ObjFv
+	mr       r4, r31
+	addi     r3, r1, 8
+	lwz      r12, 0(r31)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f2, 8(r1)
+	addi     r5, r1, 0x14
+	lfs      f1, 0xc(r1)
+	li       r4, 0x1b
+	lfs      f0, 0x10(r1)
+	li       r6, 2
+	stfs     f2, 0x14(r1)
+	lwz      r3, cameraMgr__4Game@sda21(r13)
+	stfs     f1, 0x18(r1)
+	stfs     f0, 0x1c(r1)
+	bl       "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
+	lwz      r3, rumbleMgr__4Game@sda21(r13)
+	addi     r5, r1, 0x14
+	li       r4, 0xf
+	li       r6, 2
+	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
+	lwz      r0, 0x34(r1)
+	lwz      r31, 0x2c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -2134,179 +2360,178 @@ void DangoMushi::StateTurn::init(Game::EnemyBase*, Game::StateArg*)
 void DangoMushi::StateTurn::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x60(r1)
-	  mflr      r0
-	  lfs       f0, -0x1020(r2)
-	  stw       r0, 0x64(r1)
-	  stw       r31, 0x5C(r1)
-	  mr        r31, r4
-	  stw       r30, 0x58(r1)
-	  mr        r30, r3
-	  lfs       f1, 0x200(r4)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0, 0x2
-	  bne-      .loc_0x44
-	  li        r0, 0
-	  mr        r3, r31
-	  stw       r0, 0x2CC(r31)
-	  bl        -0x1F63F0
-	  b         .loc_0x68
+	stwu     r1, -0x60(r1)
+	mflr     r0
+	lfs      f0, lbl_8051D340@sda21(r2)
+	stw      r0, 0x64(r1)
+	stw      r31, 0x5c(r1)
+	mr       r31, r4
+	stw      r30, 0x58(r1)
+	mr       r30, r3
+	lfs      f1, 0x200(r4)
+	fcmpo    cr0, f1, f0
+	cror     2, 0, 2
+	bne      lbl_802FB698
+	li       r0, 0
+	mr       r3, r31
+	stw      r0, 0x2cc(r31)
+	bl       finishMotion__Q24Game9EnemyBaseFv
+	b        lbl_802FB6BC
 
-	.loc_0x44:
-	  lwz       r3, 0xC0(r31)
-	  lfs       f1, 0x2C4(r31)
-	  lfs       f0, 0x894(r3)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x68
-	  li        r0, 0x7
-	  mr        r3, r31
-	  stw       r0, 0x2CC(r31)
-	  bl        -0x1F6418
+lbl_802FB698:
+	lwz      r3, 0xc0(r31)
+	lfs      f1, 0x2c4(r31)
+	lfs      f0, 0x894(r3)
+	fcmpo    cr0, f1, f0
+	ble      lbl_802FB6BC
+	li       r0, 7
+	mr       r3, r31
+	stw      r0, 0x2cc(r31)
+	bl       finishMotion__Q24Game9EnemyBaseFv
 
-	.loc_0x68:
-	  lwz       r3, -0x6514(r13)
-	  lfs       f1, 0x2C4(r31)
-	  lfs       f0, 0x54(r3)
-	  fadds     f0, f1, f0
-	  stfs      f0, 0x2C4(r31)
-	  lwz       r3, 0x188(r31)
-	  lbz       r0, 0x24(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x258
-	  lwz       r0, 0x1C(r3)
-	  cmplwi    r0, 0x7D0
-	  bne-      .loc_0xA4
-	  mr        r3, r31
-	  bl        0x3074
-	  b         .loc_0x258
+lbl_802FB6BC:
+	lwz      r3, sys@sda21(r13)
+	lfs      f1, 0x2c4(r31)
+	lfs      f0, 0x54(r3)
+	fadds    f0, f1, f0
+	stfs     f0, 0x2c4(r31)
+	lwz      r3, 0x188(r31)
+	lbz      r0, 0x24(r3)
+	cmplwi   r0, 0
+	beq      lbl_802FB8AC
+	lwz      r0, 0x1c(r3)
+	cmplwi   r0, 0x7d0
+	bne      lbl_802FB6F8
+	mr       r3, r31
+	bl       endBlendAnimation__Q34Game10DangoMushi3ObjFv
+	b        lbl_802FB8AC
 
-	.loc_0xA4:
-	  cmplwi    r0, 0x2
-	  bne-      .loc_0x110
-	  mr        r3, r31
-	  bl        0x3B70
-	  mr        r4, r31
-	  addi      r3, r1, 0x20
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f2, 0x20(r1)
-	  addi      r5, r1, 0x44
-	  lfs       f1, 0x24(r1)
-	  li        r4, 0x15
-	  lfs       f0, 0x28(r1)
-	  li        r6, 0x2
-	  stfs      f2, 0x44(r1)
-	  lwz       r3, -0x6960(r13)
-	  stfs      f1, 0x48(r1)
-	  stfs      f0, 0x4C(r1)
-	  bl        -0xA950C
-	  lwz       r3, -0x6958(r13)
-	  addi      r5, r1, 0x44
-	  li        r4, 0xE
-	  li        r6, 0x2
-	  bl        -0xA7FDC
-	  b         .loc_0x258
+lbl_802FB6F8:
+	cmplwi   r0, 2
+	bne      lbl_802FB764
+	mr       r3, r31
+	bl       createEnemyBounceEffect__Q34Game10DangoMushi3ObjFv
+	mr       r4, r31
+	addi     r3, r1, 0x20
+	lwz      r12, 0(r31)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f2, 0x20(r1)
+	addi     r5, r1, 0x44
+	lfs      f1, 0x24(r1)
+	li       r4, 0x15
+	lfs      f0, 0x28(r1)
+	li       r6, 2
+	stfs     f2, 0x44(r1)
+	lwz      r3, cameraMgr__4Game@sda21(r13)
+	stfs     f1, 0x48(r1)
+	stfs     f0, 0x4c(r1)
+	bl       "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
+	lwz      r3, rumbleMgr__4Game@sda21(r13)
+	addi     r5, r1, 0x44
+	li       r4, 0xe
+	li       r6, 2
+	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
+	b        lbl_802FB8AC
 
-	.loc_0x110:
-	  cmplwi    r0, 0
-	  bne-      .loc_0x148
-	  lwz       r3, 0x1E0(r31)
-	  rlwinm.   r0,r3,0,31,31
-	  beq-      .loc_0x258
-	  rlwinm    r0,r3,0,11,9
-	  mr        r3, r31
-	  stw       r0, 0x1E0(r31)
-	  li        r4, 0
-	  lwz       r0, 0x1E0(r31)
-	  rlwinm    r0,r0,0,0,30
-	  stw       r0, 0x1E0(r31)
-	  bl        0x2308
-	  b         .loc_0x258
+lbl_802FB764:
+	cmplwi   r0, 0
+	bne      lbl_802FB79C
+	lwz      r3, 0x1e0(r31)
+	clrlwi.  r0, r3, 0x1f
+	beq      lbl_802FB8AC
+	rlwinm   r0, r3, 0, 0xb, 9
+	mr       r3, r31
+	stw      r0, 0x1e0(r31)
+	li       r4, 0
+	lwz      r0, 0x1e0(r31)
+	rlwinm   r0, r0, 0, 0, 0x1e
+	stw      r0, 0x1e0(r31)
+	bl       setBodyCollision__Q34Game10DangoMushi3ObjFb
+	b        lbl_802FB8AC
 
-	.loc_0x148:
-	  cmplwi    r0, 0x3
-	  bne-      .loc_0x1C4
-	  lwz       r0, 0x1E0(r31)
-	  mr        r3, r31
-	  li        r4, 0x1
-	  ori       r0, r0, 0x1
-	  stw       r0, 0x1E0(r31)
-	  bl        0x22E4
-	  mr        r4, r31
-	  addi      r3, r1, 0x14
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f2, 0x14(r1)
-	  addi      r5, r1, 0x38
-	  lfs       f1, 0x18(r1)
-	  li        r4, 0xF
-	  lfs       f0, 0x1C(r1)
-	  li        r6, 0x2
-	  stfs      f2, 0x38(r1)
-	  lwz       r3, -0x6960(r13)
-	  stfs      f1, 0x3C(r1)
-	  stfs      f0, 0x40(r1)
-	  bl        -0xA95C0
-	  lwz       r3, -0x6958(r13)
-	  addi      r5, r1, 0x38
-	  li        r4, 0xB
-	  li        r6, 0x2
-	  bl        -0xA8090
-	  b         .loc_0x258
+lbl_802FB79C:
+	cmplwi   r0, 3
+	bne      lbl_802FB818
+	lwz      r0, 0x1e0(r31)
+	mr       r3, r31
+	li       r4, 1
+	ori      r0, r0, 1
+	stw      r0, 0x1e0(r31)
+	bl       setBodyCollision__Q34Game10DangoMushi3ObjFb
+	mr       r4, r31
+	addi     r3, r1, 0x14
+	lwz      r12, 0(r31)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f2, 0x14(r1)
+	addi     r5, r1, 0x38
+	lfs      f1, 0x18(r1)
+	li       r4, 0xf
+	lfs      f0, 0x1c(r1)
+	li       r6, 2
+	stfs     f2, 0x38(r1)
+	lwz      r3, cameraMgr__4Game@sda21(r13)
+	stfs     f1, 0x3c(r1)
+	stfs     f0, 0x40(r1)
+	bl       "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
+	lwz      r3, rumbleMgr__4Game@sda21(r13)
+	addi     r5, r1, 0x38
+	li       r4, 0xb
+	li       r6, 2
+	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
+	b        lbl_802FB8AC
 
-	.loc_0x1C4:
-	  cmplwi    r0, 0x4
-	  bne-      .loc_0x230
-	  mr        r3, r31
-	  bl        0x377C
-	  mr        r4, r31
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f2, 0x8(r1)
-	  addi      r5, r1, 0x2C
-	  lfs       f1, 0xC(r1)
-	  li        r4, 0x19
-	  lfs       f0, 0x10(r1)
-	  li        r6, 0x2
-	  stfs      f2, 0x2C(r1)
-	  lwz       r3, -0x6960(r13)
-	  stfs      f1, 0x30(r1)
-	  stfs      f0, 0x34(r1)
-	  bl        -0xA962C
-	  lwz       r3, -0x6958(r13)
-	  addi      r5, r1, 0x2C
-	  li        r4, 0xE
-	  li        r6, 0x2
-	  bl        -0xA80FC
-	  b         .loc_0x258
+lbl_802FB818:
+	cmplwi   r0, 4
+	bne      lbl_802FB884
+	mr       r3, r31
+	bl       createBodyTurnEffect__Q34Game10DangoMushi3ObjFv
+	mr       r4, r31
+	addi     r3, r1, 8
+	lwz      r12, 0(r31)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f2, 8(r1)
+	addi     r5, r1, 0x2c
+	lfs      f1, 0xc(r1)
+	li       r4, 0x19
+	lfs      f0, 0x10(r1)
+	li       r6, 2
+	stfs     f2, 0x2c(r1)
+	lwz      r3, cameraMgr__4Game@sda21(r13)
+	stfs     f1, 0x30(r1)
+	stfs     f0, 0x34(r1)
+	bl       "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
+	lwz      r3, rumbleMgr__4Game@sda21(r13)
+	addi     r5, r1, 0x2c
+	li       r4, 0xe
+	li       r6, 2
+	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
+	b        lbl_802FB8AC
 
-	.loc_0x230:
-	  cmplwi    r0, 0x3E8
-	  bne-      .loc_0x258
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r6, 0
-	  lwz       r5, 0x2CC(r31)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_802FB884:
+	cmplwi   r0, 0x3e8
+	bne      lbl_802FB8AC
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r6, 0
+	lwz      r5, 0x2cc(r31)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x258:
-	  lwz       r0, 0x64(r1)
-	  lwz       r31, 0x5C(r1)
-	  lwz       r30, 0x58(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x60
-	  blr
+lbl_802FB8AC:
+	lwz      r0, 0x64(r1)
+	lwz      r31, 0x5c(r1)
+	lwz      r30, 0x58(r1)
+	mtlr     r0
+	addi     r1, r1, 0x60
+	blr
 	*/
 }
 
@@ -2318,33 +2543,33 @@ void DangoMushi::StateTurn::exec(Game::EnemyBase*)
 void DangoMushi::StateTurn::cleanup(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lfs       f1, -0xFF8(r2)
-	  stw       r0, 0x14(r1)
-	  lfs       f2, -0x1004(r2)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  lfs       f3, -0x1020(r2)
-	  mr        r3, r31
-	  lfs       f4, -0xFF4(r2)
-	  li        r4, 0
-	  bl        -0x1E87D4
-	  lwz       r0, 0x1E0(r31)
-	  mr        r3, r31
-	  li        r4, 0x1
-	  ori       r0, r0, 0x1
-	  stw       r0, 0x1E0(r31)
-	  lwz       r0, 0x1E0(r31)
-	  rlwinm    r0,r0,0,11,9
-	  stw       r0, 0x1E0(r31)
-	  bl        0x2188
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lfs      f1, lbl_8051D368@sda21(r2)
+	stw      r0, 0x14(r1)
+	lfs      f2, lbl_8051D35C@sda21(r2)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	lfs      f3, lbl_8051D340@sda21(r2)
+	mr       r3, r31
+	lfs      f4, lbl_8051D36C@sda21(r2)
+	li       r4, 0
+	bl
+	"flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
+	lwz      r0, 0x1e0(r31)
+	mr       r3, r31
+	li       r4, 1
+	ori      r0, r0, 1
+	stw      r0, 0x1e0(r31)
+	lwz      r0, 0x1e0(r31)
+	rlwinm   r0, r0, 0, 0xb, 9
+	stw      r0, 0x1e0(r31)
+	bl       setBodyCollision__Q34Game10DangoMushi3ObjFb
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2356,27 +2581,26 @@ void DangoMushi::StateTurn::cleanup(Game::EnemyBase*)
 void DangoMushi::StateRecover::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lfs       f0, -0x1020(r2)
-	  mr        r3, r4
-	  stw       r0, 0x14(r1)
-	  li        r0, -0x1
-	  li        r5, 0
-	  stw       r0, 0x2CC(r4)
-	  li        r0, 0
-	  li        r4, 0x6
-	  stfs      f0, 0x2C4(r3)
-	  stb       r0, 0x2C2(r3)
-	  stfs      f0, 0x1D4(r3)
-	  stfs      f0, 0x1D8(r3)
-	  stfs      f0, 0x1DC(r3)
-	  bl        0x2CE0
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lfs      f0, lbl_8051D340@sda21(r2)
+	mr       r3, r4
+	stw      r0, 0x14(r1)
+	li       r0, -1
+	li       r5, 0
+	stw      r0, 0x2cc(r4)
+	li       r0, 0
+	li       r4, 6
+	stfs     f0, 0x2c4(r3)
+	stb      r0, 0x2c2(r3)
+	stfs     f0, 0x1d4(r3)
+	stfs     f0, 0x1d8(r3)
+	stfs     f0, 0x1dc(r3)
+	bl       startBlendAnimation__Q34Game10DangoMushi3ObjFib
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2388,76 +2612,75 @@ void DangoMushi::StateRecover::init(Game::EnemyBase*, Game::StateArg*)
 void DangoMushi::StateRecover::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stw       r31, 0x2C(r1)
-	  mr        r31, r4
-	  lwz       r5, 0x188(r4)
-	  lbz       r0, 0x24(r5)
-	  cmplwi    r0, 0
-	  beq-      .loc_0xE8
-	  lwz       r0, 0x1C(r5)
-	  cmplwi    r0, 0x7D0
-	  bne-      .loc_0x3C
-	  mr        r3, r31
-	  bl        0x2DB4
-	  b         .loc_0xE8
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stw      r31, 0x2c(r1)
+	mr       r31, r4
+	lwz      r5, 0x188(r4)
+	lbz      r0, 0x24(r5)
+	cmplwi   r0, 0
+	beq      lbl_802FBA64
+	lwz      r0, 0x1c(r5)
+	cmplwi   r0, 0x7d0
+	bne      lbl_802FB9B8
+	mr       r3, r31
+	bl       endBlendAnimation__Q34Game10DangoMushi3ObjFv
+	b        lbl_802FBA64
 
-	.loc_0x3C:
-	  cmplwi    r0, 0x2
-	  bne-      .loc_0xB0
-	  mr        r3, r31
-	  bl        0x38B0
-	  mr        r4, r31
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f2, 0x8(r1)
-	  addi      r5, r1, 0x14
-	  lfs       f1, 0xC(r1)
-	  li        r4, 0xF
-	  lfs       f0, 0x10(r1)
-	  li        r6, 0x2
-	  stfs      f2, 0x14(r1)
-	  lwz       r3, -0x6960(r13)
-	  stfs      f1, 0x18(r1)
-	  stfs      f0, 0x1C(r1)
-	  bl        -0xA97CC
-	  lwz       r3, -0x6958(r13)
-	  addi      r5, r1, 0x14
-	  li        r4, 0xB
-	  li        r6, 0x2
-	  bl        -0xA829C
-	  mr        r3, r31
-	  bl        0x2DD8
-	  b         .loc_0xE8
+lbl_802FB9B8:
+	cmplwi   r0, 2
+	bne      lbl_802FBA2C
+	mr       r3, r31
+	bl       createEnemyBounceEffect__Q34Game10DangoMushi3ObjFv
+	mr       r4, r31
+	addi     r3, r1, 8
+	lwz      r12, 0(r31)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f2, 8(r1)
+	addi     r5, r1, 0x14
+	lfs      f1, 0xc(r1)
+	li       r4, 0xf
+	lfs      f0, 0x10(r1)
+	li       r6, 2
+	stfs     f2, 0x14(r1)
+	lwz      r3, cameraMgr__4Game@sda21(r13)
+	stfs     f1, 0x18(r1)
+	stfs     f0, 0x1c(r1)
+	bl       "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
+	lwz      r3, rumbleMgr__4Game@sda21(r13)
+	addi     r5, r1, 0x14
+	li       r4, 0xb
+	li       r6, 2
+	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
+	mr       r3, r31
+	bl       startBossFlickBGM__Q34Game10DangoMushi3ObjFv
+	b        lbl_802FBA64
 
-	.loc_0xB0:
-	  cmplwi    r0, 0x3E8
-	  bne-      .loc_0xE8
-	  lfs       f1, 0x1FC(r31)
-	  li        r5, 0x8
-	  lfs       f0, -0x1018(r2)
-	  li        r6, 0
-	  fadds     f0, f1, f0
-	  stfs      f0, 0x1FC(r31)
-	  lfs       f0, 0x1FC(r31)
-	  stfs      f0, 0x1A8(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_802FBA2C:
+	cmplwi   r0, 0x3e8
+	bne      lbl_802FBA64
+	lfs      f1, 0x1fc(r31)
+	li       r5, 8
+	lfs      f0, lbl_8051D348@sda21(r2)
+	li       r6, 0
+	fadds    f0, f1, f0
+	stfs     f0, 0x1fc(r31)
+	lfs      f0, 0x1fc(r31)
+	stfs     f0, 0x1a8(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0xE8:
-	  lwz       r0, 0x34(r1)
-	  lwz       r31, 0x2C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_802FBA64:
+	lwz      r0, 0x34(r1)
+	lwz      r31, 0x2c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -2476,34 +2699,33 @@ void DangoMushi::StateRecover::cleanup(Game::EnemyBase*) { }
 void DangoMushi::StateFlick::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lfs       f0, -0x1020(r2)
-	  stw       r0, 0x14(r1)
-	  li        r0, -0x1
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  mr        r3, r31
-	  stw       r0, 0x2CC(r4)
-	  li        r0, 0
-	  stfs      f0, 0x2C4(r4)
-	  stb       r0, 0x2C1(r4)
-	  stb       r0, 0x2C2(r4)
-	  bl        -0x1FA0E4
-	  lfs       f0, -0x1020(r2)
-	  mr        r3, r31
-	  li        r4, 0x4
-	  li        r5, 0
-	  stfs      f0, 0x1D4(r31)
-	  stfs      f0, 0x1D8(r31)
-	  stfs      f0, 0x1DC(r31)
-	  bl        0x2B78
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lfs      f0, lbl_8051D340@sda21(r2)
+	stw      r0, 0x14(r1)
+	li       r0, -1
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	mr       r3, r31
+	stw      r0, 0x2cc(r4)
+	li       r0, 0
+	stfs     f0, 0x2c4(r4)
+	stb      r0, 0x2c1(r4)
+	stb      r0, 0x2c2(r4)
+	bl       setEmotionExcitement__Q24Game9EnemyBaseFv
+	lfs      f0, lbl_8051D340@sda21(r2)
+	mr       r3, r31
+	li       r4, 4
+	li       r5, 0
+	stfs     f0, 0x1d4(r31)
+	stfs     f0, 0x1d8(r31)
+	stfs     f0, 0x1dc(r31)
+	bl       startBlendAnimation__Q34Game10DangoMushi3ObjFib
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2515,137 +2737,136 @@ void DangoMushi::StateFlick::init(Game::EnemyBase*, Game::StateArg*)
 void DangoMushi::StateFlick::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  stw       r0, 0x44(r1)
-	  stw       r31, 0x3C(r1)
-	  mr        r31, r4
-	  stw       r30, 0x38(r1)
-	  mr        r30, r3
-	  mr        r3, r31
-	  bl        0x2794
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xDC
-	  mr        r3, r31
-	  bl        0x3528
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0xF4(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r12, 0x0(r3)
-	  li        r4, 0x5982
-	  li        r5, 0
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r31
-	  addi      r3, r1, 0x14
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f2, 0x14(r1)
-	  addi      r5, r1, 0x2C
-	  lfs       f1, 0x18(r1)
-	  li        r4, 0x19
-	  lfs       f0, 0x1C(r1)
-	  li        r6, 0x2
-	  stfs      f2, 0x2C(r1)
-	  lwz       r3, -0x6960(r13)
-	  stfs      f1, 0x30(r1)
-	  stfs      f0, 0x34(r1)
-	  bl        -0xA994C
-	  lwz       r3, -0x6958(r13)
-	  addi      r5, r1, 0x2C
-	  li        r4, 0xE
-	  li        r6, 0x2
-	  bl        -0xA841C
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x3
-	  subi      r6, r2, 0x1010
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x1C8
+	stwu     r1, -0x40(r1)
+	mflr     r0
+	stw      r0, 0x44(r1)
+	stw      r31, 0x3c(r1)
+	mr       r31, r4
+	stw      r30, 0x38(r1)
+	mr       r30, r3
+	mr       r3, r31
+	bl       flickHandCollision__Q34Game10DangoMushi3ObjFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802FBBC4
+	mr       r3, r31
+	bl       createWallBreakEffect__Q34Game10DangoMushi3ObjFv
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r12, 0xf4(r12)
+	mtctr    r12
+	bctrl
+	lwz      r12, 0(r3)
+	li       r4, 0x5982
+	li       r5, 0
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r31
+	addi     r3, r1, 0x14
+	lwz      r12, 0(r31)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f2, 0x14(r1)
+	addi     r5, r1, 0x2c
+	lfs      f1, 0x18(r1)
+	li       r4, 0x19
+	lfs      f0, 0x1c(r1)
+	li       r6, 2
+	stfs     f2, 0x2c(r1)
+	lwz      r3, cameraMgr__4Game@sda21(r13)
+	stfs     f1, 0x30(r1)
+	stfs     f0, 0x34(r1)
+	bl       "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
+	lwz      r3, rumbleMgr__4Game@sda21(r13)
+	addi     r5, r1, 0x2c
+	li       r4, 0xe
+	li       r6, 2
+	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 3
+	addi     r6, r2, lbl_8051D350@sda21
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802FBCB0
 
-	.loc_0xDC:
-	  lwz       r3, 0x188(r31)
-	  lbz       r0, 0x24(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x1C8
-	  lwz       r0, 0x1C(r3)
-	  cmplwi    r0, 0x7D0
-	  bne-      .loc_0x104
-	  mr        r3, r31
-	  bl        0x2B80
-	  b         .loc_0x1C8
+lbl_802FBBC4:
+	lwz      r3, 0x188(r31)
+	lbz      r0, 0x24(r3)
+	cmplwi   r0, 0
+	beq      lbl_802FBCB0
+	lwz      r0, 0x1c(r3)
+	cmplwi   r0, 0x7d0
+	bne      lbl_802FBBEC
+	mr       r3, r31
+	bl       endBlendAnimation__Q34Game10DangoMushi3ObjFv
+	b        lbl_802FBCB0
 
-	.loc_0x104:
-	  cmplwi    r0, 0x2
-	  bne-      .loc_0x134
-	  li        r0, 0x1
-	  mr        r3, r31
-	  stb       r0, 0x2C1(r31)
-	  bl        -0x1F6994
-	  lfs       f0, -0xFF0(r2)
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x1C8
-	  mr        r3, r31
-	  bl        0x3480
-	  b         .loc_0x1C8
+lbl_802FBBEC:
+	cmplwi   r0, 2
+	bne      lbl_802FBC1C
+	li       r0, 1
+	mr       r3, r31
+	stb      r0, 0x2c1(r31)
+	bl       getMotionFrame__Q24Game9EnemyBaseFv
+	lfs      f0, lbl_8051D370@sda21(r2)
+	fcmpo    cr0, f1, f0
+	bge      lbl_802FBCB0
+	mr       r3, r31
+	bl       createFlickAttackEffect__Q34Game10DangoMushi3ObjFv
+	b        lbl_802FBCB0
 
-	.loc_0x134:
-	  cmplwi    r0, 0x3
-	  bne-      .loc_0x1A0
-	  li        r0, 0
-	  mr        r4, r31
-	  stb       r0, 0x2C1(r31)
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f2, 0x8(r1)
-	  addi      r5, r1, 0x20
-	  lfs       f1, 0xC(r1)
-	  li        r4, 0xF
-	  lfs       f0, 0x10(r1)
-	  li        r6, 0x2
-	  stfs      f2, 0x20(r1)
-	  lwz       r3, -0x6960(r13)
-	  stfs      f1, 0x24(r1)
-	  stfs      f0, 0x28(r1)
-	  bl        -0xA9A30
-	  lwz       r3, -0x6958(r13)
-	  addi      r5, r1, 0x20
-	  li        r4, 0xB
-	  li        r6, 0x2
-	  bl        -0xA8500
-	  b         .loc_0x1C8
+lbl_802FBC1C:
+	cmplwi   r0, 3
+	bne      lbl_802FBC88
+	li       r0, 0
+	mr       r4, r31
+	stb      r0, 0x2c1(r31)
+	addi     r3, r1, 8
+	lwz      r12, 0(r31)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f2, 8(r1)
+	addi     r5, r1, 0x20
+	lfs      f1, 0xc(r1)
+	li       r4, 0xf
+	lfs      f0, 0x10(r1)
+	li       r6, 2
+	stfs     f2, 0x20(r1)
+	lwz      r3, cameraMgr__4Game@sda21(r13)
+	stfs     f1, 0x24(r1)
+	stfs     f0, 0x28(r1)
+	bl       "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
+	lwz      r3, rumbleMgr__4Game@sda21(r13)
+	addi     r5, r1, 0x20
+	li       r4, 0xb
+	li       r6, 2
+	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
+	b        lbl_802FBCB0
 
-	.loc_0x1A0:
-	  cmplwi    r0, 0x3E8
-	  bne-      .loc_0x1C8
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x3
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_802FBC88:
+	cmplwi   r0, 0x3e8
+	bne      lbl_802FBCB0
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 3
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x1C8:
-	  lwz       r0, 0x44(r1)
-	  lwz       r31, 0x3C(r1)
-	  lwz       r30, 0x38(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
+lbl_802FBCB0:
+	lwz      r0, 0x44(r1)
+	lwz      r31, 0x3c(r1)
+	lwz      r30, 0x38(r1)
+	mtlr     r0
+	addi     r1, r1, 0x40
+	blr
 	*/
 }
 
@@ -2657,18 +2878,17 @@ void DangoMushi::StateFlick::exec(Game::EnemyBase*)
 void DangoMushi::StateFlick::cleanup(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r3, r4
-	  stw       r0, 0x14(r1)
-	  li        r0, 0
-	  stb       r0, 0x2C1(r4)
-	  bl        -0x1FA364
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r3, r4
+	stw      r0, 0x14(r1)
+	li       r0, 0
+	stb      r0, 0x2c1(r4)
+	bl       setEmotionCaution__Q24Game9EnemyBaseFv
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2682,16 +2902,15 @@ void DangoMushi::StateFlick::cleanup(Game::EnemyBase*)
 void __sinit_DangoMushiState_cpp(void)
 {
 	/*
-	.loc_0x0:
-	  lis       r4, 0x8051
-	  li        r0, -0x1
-	  lfs       f0, 0x48B0(r4)
-	  lis       r3, 0x804D
-	  stw       r0, -0x6878(r13)
-	  stfsu     f0, 0x5E60(r3)
-	  stfs      f0, -0x6874(r13)
-	  stfs      f0, 0x4(r3)
-	  stfs      f0, 0x8(r3)
-	  blr
+	lis      r4, __float_nan@ha
+	li       r0, -1
+	lfs      f0, __float_nan@l(r4)
+	lis      r3, lbl_804D5E60@ha
+	stw      r0, lbl_80515E08@sda21(r13)
+	stfsu    f0, lbl_804D5E60@l(r3)
+	stfs     f0, lbl_80515E0C@sda21(r13)
+	stfs     f0, 4(r3)
+	stfs     f0, 8(r3)
+	blr
 	*/
 }

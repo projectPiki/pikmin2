@@ -1,6 +1,84 @@
 #include "types.h"
 
 /*
+    Generated from dpostproc
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global lbl_804A0880
+    lbl_804A0880:
+        .4byte lbl_8003EB18
+        .4byte lbl_8003EB34
+        .4byte lbl_8003EB8C
+        .4byte lbl_8003EC10
+        .4byte lbl_8003EC10
+        .4byte lbl_8003EBB0
+        .4byte lbl_8003EC10
+        .4byte lbl_8003EC10
+        .4byte lbl_8003EC10
+        .4byte lbl_8003EC10
+        .4byte lbl_8003EC10
+        .4byte lbl_8003EC10
+        .4byte lbl_8003EC10
+        .4byte lbl_8003EC10
+        .4byte lbl_8003EC10
+        .4byte lbl_8003EC10
+        .4byte lbl_8003EC10
+        .4byte lbl_8003EC10
+        .4byte lbl_8003EC10
+        .4byte lbl_8003EC10
+        .4byte lbl_8003EBC4
+        .4byte lbl_8003EBD8
+        .4byte lbl_8003EBEC
+        .4byte lbl_8003EC00
+    .global __vt__8J2DPrint
+    __vt__8J2DPrint:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__8J2DPrintFv
+        .4byte 0
+
+    .section .sbss # 0x80514D80 - 0x80516360
+    .global mStrBuff__8J2DPrint
+    mStrBuff__8J2DPrint:
+        .skip 0x4
+    .global mHeapFlag__8J2DPrint
+    mHeapFlag__8J2DPrint:
+        .skip 0x4
+    .global mStrBuffSize__8J2DPrint
+    mStrBuffSize__8J2DPrint:
+        .skip 0x4
+    .global mBufferNotEnough__8J2DPrint
+    mBufferNotEnough__8J2DPrint:
+        .skip 0x4
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_80516818
+    lbl_80516818:
+        .4byte 0x00000000
+    .global lbl_8051681C
+    lbl_8051681C:
+        .4byte 0x42000000
+    .global lbl_80516820
+    lbl_80516820:
+        .4byte 0x43300000
+        .4byte 0x80000000
+    .global lbl_80516828
+    lbl_80516828:
+        .float 0.5
+        .4byte 0x00000000
+    .global lbl_80516830
+    lbl_80516830:
+        .4byte 0x43300000
+        .4byte 0x00000000
+    .global lbl_80516838
+    lbl_80516838:
+        .4byte 0x461C4000
+    .global lbl_8051683C
+    lbl_8051683C:
+        .float 1.0
+*/
+
+/*
  * --INFO--
  * Address:	8003D750
  * Size:	000094
@@ -8,44 +86,44 @@
 J2DPrint::J2DPrint(JUTFont*, float)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  li        r10, -0x1
-	  lis       r5, 0x804A
-	  stw       r0, 0x34(r1)
-	  addi      r6, r5, 0x8E0
-	  li        r0, 0
-	  lfs       f2, -0x7B48(r2)
-	  stw       r31, 0x2C(r1)
-	  mr        r31, r3
-	  addi      r5, r1, 0x24
-	  addi      r7, r1, 0x14
-	  stw       r6, 0x0(r3)
-	  addi      r6, r1, 0x1C
-	  addi      r8, r1, 0xC
-	  li        r9, 0x1
-	  stw       r10, 0x8(r3)
-	  stw       r10, 0xC(r3)
-	  stw       r10, 0x38(r3)
-	  stw       r10, 0x3C(r3)
-	  stw       r10, 0x40(r3)
-	  stw       r10, 0x44(r3)
-	  stw       r10, 0x8(r1)
-	  stw       r10, 0xC(r1)
-	  stw       r0, 0x10(r1)
-	  stw       r0, 0x14(r1)
-	  stw       r10, 0x18(r1)
-	  stw       r10, 0x1C(r1)
-	  stw       r10, 0x20(r1)
-	  stw       r10, 0x24(r1)
-	  bl        0x1E4
-	  lwz       r0, 0x34(r1)
-	  mr        r3, r31
-	  lwz       r31, 0x2C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	li       r10, -1
+	lis      r5, __vt__8J2DPrint@ha
+	stw      r0, 0x34(r1)
+	addi     r6, r5, __vt__8J2DPrint@l
+	li       r0, 0
+	lfs      f2, lbl_80516818@sda21(r2)
+	stw      r31, 0x2c(r1)
+	mr       r31, r3
+	addi     r5, r1, 0x24
+	addi     r7, r1, 0x14
+	stw      r6, 0(r3)
+	addi     r6, r1, 0x1c
+	addi     r8, r1, 0xc
+	li       r9, 1
+	stw      r10, 8(r3)
+	stw      r10, 0xc(r3)
+	stw      r10, 0x38(r3)
+	stw      r10, 0x3c(r3)
+	stw      r10, 0x40(r3)
+	stw      r10, 0x44(r3)
+	stw      r10, 8(r1)
+	stw      r10, 0xc(r1)
+	stw      r0, 0x10(r1)
+	stw      r0, 0x14(r1)
+	stw      r10, 0x18(r1)
+	stw      r10, 0x1c(r1)
+	stw      r10, 0x20(r1)
+	stw      r10, 0x24(r1)
+	bl
+	private_initiate__8J2DPrintFP7JUTFontffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorb
+	lwz      r0, 0x34(r1)
+	mr       r3, r31
+	lwz      r31, 0x2c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -57,45 +135,45 @@ J2DPrint::J2DPrint(JUTFont*, float)
 J2DPrint::J2DPrint(JUTFont*, JUtility::TColor, JUtility::TColor)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  li        r12, -0x1
-	  lfs       f1, -0x7B48(r2)
-	  stw       r0, 0x34(r1)
-	  lis       r7, 0x804A
-	  addi      r0, r7, 0x8E0
-	  lwz       r10, 0x0(r6)
-	  stw       r31, 0x2C(r1)
-	  li        r11, 0
-	  fmr       f2, f1
-	  mr        r31, r3
-	  stw       r0, 0x0(r3)
-	  addi      r6, r1, 0x18
-	  lwz       r0, 0x0(r5)
-	  addi      r5, r1, 0x1C
-	  stw       r12, 0x8(r3)
-	  addi      r7, r1, 0x14
-	  addi      r8, r1, 0xC
-	  li        r9, 0x1
-	  stw       r12, 0xC(r3)
-	  stw       r12, 0x38(r3)
-	  stw       r12, 0x3C(r3)
-	  stw       r12, 0x40(r3)
-	  stw       r12, 0x44(r3)
-	  stw       r12, 0x8(r1)
-	  stw       r12, 0xC(r1)
-	  stw       r11, 0x10(r1)
-	  stw       r11, 0x14(r1)
-	  stw       r10, 0x18(r1)
-	  stw       r0, 0x1C(r1)
-	  bl        0x14C
-	  lwz       r0, 0x34(r1)
-	  mr        r3, r31
-	  lwz       r31, 0x2C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	li       r12, -1
+	lfs      f1, lbl_80516818@sda21(r2)
+	stw      r0, 0x34(r1)
+	lis      r7, __vt__8J2DPrint@ha
+	addi     r0, r7, __vt__8J2DPrint@l
+	lwz      r10, 0(r6)
+	stw      r31, 0x2c(r1)
+	li       r11, 0
+	fmr      f2, f1
+	mr       r31, r3
+	stw      r0, 0(r3)
+	addi     r6, r1, 0x18
+	lwz      r0, 0(r5)
+	addi     r5, r1, 0x1c
+	stw      r12, 8(r3)
+	addi     r7, r1, 0x14
+	addi     r8, r1, 0xc
+	li       r9, 1
+	stw      r12, 0xc(r3)
+	stw      r12, 0x38(r3)
+	stw      r12, 0x3c(r3)
+	stw      r12, 0x40(r3)
+	stw      r12, 0x44(r3)
+	stw      r12, 8(r1)
+	stw      r12, 0xc(r1)
+	stw      r11, 0x10(r1)
+	stw      r11, 0x14(r1)
+	stw      r10, 0x18(r1)
+	stw      r0, 0x1c(r1)
+	bl
+	private_initiate__8J2DPrintFP7JUTFontffQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorb
+	lwz      r0, 0x34(r1)
+	mr       r3, r31
+	lwz      r31, 0x2c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -157,27 +235,26 @@ J2DPrint::J2DPrint(JUTFont*, float, float, JUtility::TColor, JUtility::TColor,
 J2DPrint::~J2DPrint()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r3
-	  beq-      .loc_0x30
-	  lis       r5, 0x804A
-	  extsh.    r0, r4
-	  addi      r0, r5, 0x8E0
-	  stw       r0, 0x0(r31)
-	  ble-      .loc_0x30
-	  bl        -0x19888
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r3, r3
+	beq      lbl_8003D940
+	lis      r5, __vt__8J2DPrint@ha
+	extsh.   r0, r4
+	addi     r0, r5, __vt__8J2DPrint@l
+	stw      r0, 0(r31)
+	ble      lbl_8003D940
+	bl       __dl__FPv
 
-	.loc_0x30:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8003D940:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -189,30 +266,29 @@ J2DPrint::~J2DPrint()
 void J2DPrint::initiate()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r0, 0x4(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x44
-	  lwz       r0, 0x3C(r3)
-	  addi      r4, r1, 0xC
-	  addi      r5, r1, 0x8
-	  stw       r0, 0x8(r1)
-	  lwz       r0, 0x38(r3)
-	  stw       r0, 0xC(r1)
-	  lwz       r3, 0x4(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r0, 4(r3)
+	cmplwi   r0, 0
+	beq      lbl_8003D99C
+	lwz      r0, 0x3c(r3)
+	addi     r4, r1, 0xc
+	addi     r5, r1, 8
+	stw      r0, 8(r1)
+	lwz      r0, 0x38(r3)
+	stw      r0, 0xc(r1)
+	lwz      r3, 4(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x44:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8003D99C:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -374,28 +450,27 @@ void J2DPrint::private_initiate(JUTFont*, float, float, JUtility::TColor,
 void J2DPrint::setFont(JUTFont*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  cmplwi    r4, 0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  lwz       r31, 0x4(r3)
-	  beq-      .loc_0x20
-	  stw       r4, 0x4(r3)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	cmplwi   r4, 0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	lwz      r31, 4(r3)
+	beq      lbl_8003DBB4
+	stw      r4, 4(r3)
 
-	.loc_0x20:
-	  cmplwi    r31, 0
-	  bne-      .loc_0x2C
-	  bl        0x88
+lbl_8003DBB4:
+	cmplwi   r31, 0
+	bne      lbl_8003DBC0
+	bl       setFontSize__8J2DPrintFv
 
-	.loc_0x2C:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8003DBC0:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -407,36 +482,35 @@ void J2DPrint::setFont(JUTFont*)
 void J2DPrint::setBuffer(unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lbz       r0, -0x76BC(r13)
-	  lwz       r3, -0x76C0(r13)
-	  cmplwi    r0, 0
-	  mr        r31, r3
-	  beq-      .loc_0x30
-	  bl        -0x19B50
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lbz      r0, mHeapFlag__8J2DPrint@sda21(r13)
+	lwz      r3, mStrBuff__8J2DPrint@sda21(r13)
+	cmplwi   r0, 0
+	mr       r31, r3
+	beq      lbl_8003DC08
+	bl       __dl__FPv
 
-	.loc_0x30:
-	  lwz       r4, -0x77D8(r13)
-	  mr        r3, r30
-	  li        r5, 0
-	  bl        -0x19BCC
-	  li        r0, 0x1
-	  stw       r3, -0x76C0(r13)
-	  mr        r3, r31
-	  stw       r30, -0x76B8(r13)
-	  stb       r0, -0x76BC(r13)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8003DC08:
+	lwz      r4, sSystemHeap__7JKRHeap@sda21(r13)
+	mr       r3, r30
+	li       r5, 0
+	bl       __nwa__FUlP7JKRHeapi
+	li       r0, 1
+	stw      r3, mStrBuff__8J2DPrint@sda21(r13)
+	mr       r3, r31
+	stw      r30, mStrBuffSize__8J2DPrint@sda21(r13)
+	stb      r0, mHeapFlag__8J2DPrint@sda21(r13)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -448,47 +522,46 @@ void J2DPrint::setBuffer(unsigned long)
 void J2DPrint::setFontSize()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r3
-	  lwz       r3, 0x4(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x84
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x30(r12)
-	  mtctr     r12
-	  bctrl
-	  xoris     r3, r3, 0x8000
-	  lis       r0, 0x4330
-	  stw       r3, 0xC(r1)
-	  lfd       f1, -0x7B40(r2)
-	  stw       r0, 0x8(r1)
-	  lfd       f0, 0x8(r1)
-	  fsubs     f0, f0, f1
-	  stfs      f0, 0x50(r31)
-	  lwz       r3, 0x4(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x34(r12)
-	  mtctr     r12
-	  bctrl
-	  xoris     r3, r3, 0x8000
-	  lis       r0, 0x4330
-	  stw       r3, 0x14(r1)
-	  lfd       f1, -0x7B40(r2)
-	  stw       r0, 0x10(r1)
-	  lfd       f0, 0x10(r1)
-	  fsubs     f0, f0, f1
-	  stfs      f0, 0x54(r31)
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r3
+	lwz      r3, 4(r3)
+	cmplwi   r3, 0
+	beq      lbl_8003DCC8
+	lwz      r12, 0(r3)
+	lwz      r12, 0x30(r12)
+	mtctr    r12
+	bctrl
+	xoris    r3, r3, 0x8000
+	lis      r0, 0x4330
+	stw      r3, 0xc(r1)
+	lfd      f1, lbl_80516820@sda21(r2)
+	stw      r0, 8(r1)
+	lfd      f0, 8(r1)
+	fsubs    f0, f0, f1
+	stfs     f0, 0x50(r31)
+	lwz      r3, 4(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x34(r12)
+	mtctr    r12
+	bctrl
+	xoris    r3, r3, 0x8000
+	lis      r0, 0x4330
+	stw      r3, 0x14(r1)
+	lfd      f1, lbl_80516820@sda21(r2)
+	stw      r0, 0x10(r1)
+	lfd      f0, 0x10(r1)
+	fsubs    f0, f0, f1
+	stfs     f0, 0x54(r31)
 
-	.loc_0x84:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8003DCC8:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -500,14 +573,13 @@ void J2DPrint::setFontSize()
 void J2DPrint::locate(float, float)
 {
 	/*
-	.loc_0x0:
-	  stfs      f1, 0x24(r3)
-	  lfs       f0, -0x7B48(r2)
-	  stfs      f2, 0x28(r3)
-	  stfs      f1, 0x2C(r3)
-	  stfs      f2, 0x30(r3)
-	  stfs      f0, 0x34(r3)
-	  blr
+	stfs     f1, 0x24(r3)
+	lfs      f0, lbl_80516818@sda21(r2)
+	stfs     f2, 0x28(r3)
+	stfs     f1, 0x2c(r3)
+	stfs     f2, 0x30(r3)
+	stfs     f0, 0x34(r3)
+	blr
 	*/
 }
 
@@ -519,84 +591,83 @@ void J2DPrint::locate(float, float)
 void J2DPrint::print(float, float, const char*, ...)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x90(r1)
-	  mflr      r0
-	  stw       r0, 0x94(r1)
-	  stw       r31, 0x8C(r1)
-	  mr        r31, r4
-	  stw       r30, 0x88(r1)
-	  mr        r30, r3
-	  bne-      cr1, .loc_0x40
-	  stfd      f1, 0x28(r1)
-	  stfd      f2, 0x30(r1)
-	  stfd      f3, 0x38(r1)
-	  stfd      f4, 0x40(r1)
-	  stfd      f5, 0x48(r1)
-	  stfd      f6, 0x50(r1)
-	  stfd      f7, 0x58(r1)
-	  stfd      f8, 0x60(r1)
+	stwu     r1, -0x90(r1)
+	mflr     r0
+	stw      r0, 0x94(r1)
+	stw      r31, 0x8c(r1)
+	mr       r31, r4
+	stw      r30, 0x88(r1)
+	mr       r30, r3
+	bne      cr1, lbl_8003DD38
+	stfd     f1, 0x28(r1)
+	stfd     f2, 0x30(r1)
+	stfd     f3, 0x38(r1)
+	stfd     f4, 0x40(r1)
+	stfd     f5, 0x48(r1)
+	stfd     f6, 0x50(r1)
+	stfd     f7, 0x58(r1)
+	stfd     f8, 0x60(r1)
 
-	.loc_0x40:
-	  stw       r3, 0x8(r1)
-	  addi      r11, r1, 0x98
-	  lfs       f0, -0x7B48(r2)
-	  addi      r0, r1, 0x8
-	  stw       r4, 0xC(r1)
-	  lis       r4, 0x202
-	  mr        r3, r30
-	  stw       r5, 0x10(r1)
-	  stw       r6, 0x14(r1)
-	  stw       r7, 0x18(r1)
-	  stw       r8, 0x1C(r1)
-	  stw       r9, 0x20(r1)
-	  stw       r10, 0x24(r1)
-	  stfs      f1, 0x24(r30)
-	  stfs      f2, 0x28(r30)
-	  stfs      f1, 0x2C(r30)
-	  stfs      f2, 0x30(r30)
-	  stfs      f0, 0x34(r30)
-	  stw       r4, 0x70(r1)
-	  stw       r11, 0x74(r1)
-	  stw       r0, 0x78(r1)
-	  bl        0x142C
-	  lwz       r3, -0x76C0(r13)
-	  mr        r5, r31
-	  lwz       r4, -0x76B8(r13)
-	  addi      r6, r1, 0x70
-	  bl        0x898C4
-	  mr.       r5, r3
-	  bge-      .loc_0xBC
-	  lfs       f1, -0x7B48(r2)
-	  b         .loc_0xFC
+lbl_8003DD38:
+	stw      r3, 8(r1)
+	addi     r11, r1, 0x98
+	lfs      f0, lbl_80516818@sda21(r2)
+	addi     r0, r1, 8
+	stw      r4, 0xc(r1)
+	lis      r4, 0x202
+	mr       r3, r30
+	stw      r5, 0x10(r1)
+	stw      r6, 0x14(r1)
+	stw      r7, 0x18(r1)
+	stw      r8, 0x1c(r1)
+	stw      r9, 0x20(r1)
+	stw      r10, 0x24(r1)
+	stfs     f1, 0x24(r30)
+	stfs     f2, 0x28(r30)
+	stfs     f1, 0x2c(r30)
+	stfs     f2, 0x30(r30)
+	stfs     f0, 0x34(r30)
+	stw      r4, 0x70(r1)
+	stw      r11, 0x74(r1)
+	stw      r0, 0x78(r1)
+	bl       initchar__8J2DPrintFv
+	lwz      r3, mStrBuff__8J2DPrint@sda21(r13)
+	mr       r5, r31
+	lwz      r4, mStrBuffSize__8J2DPrint@sda21(r13)
+	addi     r6, r1, 0x70
+	bl       vsnprintf
+	or.      r5, r3, r3
+	bge      lbl_8003DDB4
+	lfs      f1, lbl_80516818@sda21(r2)
+	b        lbl_8003DDF4
 
-	.loc_0xBC:
-	  lwz       r3, -0x76B8(r13)
-	  cmplw     r5, r3
-	  blt-      .loc_0xD4
-	  li        r0, 0x1
-	  subi      r5, r3, 0x1
-	  stb       r0, -0x76B4(r13)
+lbl_8003DDB4:
+	lwz      r3, mStrBuffSize__8J2DPrint@sda21(r13)
+	cmplw    r5, r3
+	blt      lbl_8003DDCC
+	li       r0, 1
+	addi     r5, r3, -1
+	stb      r0, mBufferNotEnough__8J2DPrint@sda21(r13)
 
-	.loc_0xD4:
-	  lis       r6, 0x8000
-	  lwz       r4, -0x76C0(r13)
-	  mr        r3, r30
-	  addi      r8, r1, 0x68
-	  subi      r6, r6, 0x1
-	  li        r7, 0
-	  li        r9, 0xFF
-	  li        r10, 0x1
-	  bl        0x548
-	  lfs       f1, 0x68(r1)
+lbl_8003DDCC:
+	lis      r6, 0x7FFFFFFF@ha
+	lwz      r4, mStrBuff__8J2DPrint@sda21(r13)
+	mr       r3, r30
+	addi     r8, r1, 0x68
+	addi     r6, r6, 0x7FFFFFFF@l
+	li       r7, 0
+	li       r9, 0xff
+	li       r10, 1
+	bl       parse__8J2DPrintFPCUciiPUsRQ28J2DPrint5TSizeUcb
+	lfs      f1, 0x68(r1)
 
-	.loc_0xFC:
-	  lwz       r0, 0x94(r1)
-	  lwz       r31, 0x8C(r1)
-	  lwz       r30, 0x88(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x90
-	  blr
+lbl_8003DDF4:
+	lwz      r0, 0x94(r1)
+	lwz      r31, 0x8c(r1)
+	lwz      r30, 0x88(r1)
+	mtlr     r0
+	addi     r1, r1, 0x90
+	blr
 	*/
 }
 
@@ -608,87 +679,86 @@ void J2DPrint::print(float, float, const char*, ...)
 void J2DPrint::print(float, float, unsigned char, const char*, ...)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x90(r1)
-	  mflr      r0
-	  stw       r0, 0x94(r1)
-	  stw       r31, 0x8C(r1)
-	  mr        r31, r5
-	  stw       r30, 0x88(r1)
-	  mr        r30, r4
-	  stw       r29, 0x84(r1)
-	  mr        r29, r3
-	  bne-      cr1, .loc_0x48
-	  stfd      f1, 0x28(r1)
-	  stfd      f2, 0x30(r1)
-	  stfd      f3, 0x38(r1)
-	  stfd      f4, 0x40(r1)
-	  stfd      f5, 0x48(r1)
-	  stfd      f6, 0x50(r1)
-	  stfd      f7, 0x58(r1)
-	  stfd      f8, 0x60(r1)
+	stwu     r1, -0x90(r1)
+	mflr     r0
+	stw      r0, 0x94(r1)
+	stw      r31, 0x8c(r1)
+	mr       r31, r5
+	stw      r30, 0x88(r1)
+	mr       r30, r4
+	stw      r29, 0x84(r1)
+	mr       r29, r3
+	bne      cr1, lbl_8003DE54
+	stfd     f1, 0x28(r1)
+	stfd     f2, 0x30(r1)
+	stfd     f3, 0x38(r1)
+	stfd     f4, 0x40(r1)
+	stfd     f5, 0x48(r1)
+	stfd     f6, 0x50(r1)
+	stfd     f7, 0x58(r1)
+	stfd     f8, 0x60(r1)
 
-	.loc_0x48:
-	  stw       r3, 0x8(r1)
-	  addi      r11, r1, 0x98
-	  lfs       f0, -0x7B48(r2)
-	  addi      r0, r1, 0x8
-	  stw       r4, 0xC(r1)
-	  lis       r4, 0x302
-	  mr        r3, r29
-	  stw       r5, 0x10(r1)
-	  stw       r6, 0x14(r1)
-	  stw       r7, 0x18(r1)
-	  stw       r8, 0x1C(r1)
-	  stw       r9, 0x20(r1)
-	  stw       r10, 0x24(r1)
-	  stfs      f1, 0x24(r29)
-	  stfs      f2, 0x28(r29)
-	  stfs      f1, 0x2C(r29)
-	  stfs      f2, 0x30(r29)
-	  stfs      f0, 0x34(r29)
-	  stw       r4, 0x70(r1)
-	  stw       r11, 0x74(r1)
-	  stw       r0, 0x78(r1)
-	  bl        0x1310
-	  lwz       r3, -0x76C0(r13)
-	  mr        r5, r31
-	  lwz       r4, -0x76B8(r13)
-	  addi      r6, r1, 0x70
-	  bl        0x897A8
-	  mr.       r5, r3
-	  bge-      .loc_0xC4
-	  lfs       f1, -0x7B48(r2)
-	  b         .loc_0x104
+lbl_8003DE54:
+	stw      r3, 8(r1)
+	addi     r11, r1, 0x98
+	lfs      f0, lbl_80516818@sda21(r2)
+	addi     r0, r1, 8
+	stw      r4, 0xc(r1)
+	lis      r4, 0x302
+	mr       r3, r29
+	stw      r5, 0x10(r1)
+	stw      r6, 0x14(r1)
+	stw      r7, 0x18(r1)
+	stw      r8, 0x1c(r1)
+	stw      r9, 0x20(r1)
+	stw      r10, 0x24(r1)
+	stfs     f1, 0x24(r29)
+	stfs     f2, 0x28(r29)
+	stfs     f1, 0x2c(r29)
+	stfs     f2, 0x30(r29)
+	stfs     f0, 0x34(r29)
+	stw      r4, 0x70(r1)
+	stw      r11, 0x74(r1)
+	stw      r0, 0x78(r1)
+	bl       initchar__8J2DPrintFv
+	lwz      r3, mStrBuff__8J2DPrint@sda21(r13)
+	mr       r5, r31
+	lwz      r4, mStrBuffSize__8J2DPrint@sda21(r13)
+	addi     r6, r1, 0x70
+	bl       vsnprintf
+	or.      r5, r3, r3
+	bge      lbl_8003DED0
+	lfs      f1, lbl_80516818@sda21(r2)
+	b        lbl_8003DF10
 
-	.loc_0xC4:
-	  lwz       r3, -0x76B8(r13)
-	  cmplw     r5, r3
-	  blt-      .loc_0xDC
-	  li        r0, 0x1
-	  subi      r5, r3, 0x1
-	  stb       r0, -0x76B4(r13)
+lbl_8003DED0:
+	lwz      r3, mStrBuffSize__8J2DPrint@sda21(r13)
+	cmplw    r5, r3
+	blt      lbl_8003DEE8
+	li       r0, 1
+	addi     r5, r3, -1
+	stb      r0, mBufferNotEnough__8J2DPrint@sda21(r13)
 
-	.loc_0xDC:
-	  lis       r6, 0x8000
-	  lwz       r4, -0x76C0(r13)
-	  mr        r3, r29
-	  mr        r9, r30
-	  subi      r6, r6, 0x1
-	  addi      r8, r1, 0x68
-	  li        r7, 0
-	  li        r10, 0x1
-	  bl        0x42C
-	  lfs       f1, 0x68(r1)
+lbl_8003DEE8:
+	lis      r6, 0x7FFFFFFF@ha
+	lwz      r4, mStrBuff__8J2DPrint@sda21(r13)
+	mr       r3, r29
+	mr       r9, r30
+	addi     r6, r6, 0x7FFFFFFF@l
+	addi     r8, r1, 0x68
+	li       r7, 0
+	li       r10, 1
+	bl       parse__8J2DPrintFPCUciiPUsRQ28J2DPrint5TSizeUcb
+	lfs      f1, 0x68(r1)
 
-	.loc_0x104:
-	  lwz       r0, 0x94(r1)
-	  lwz       r31, 0x8C(r1)
-	  lwz       r30, 0x88(r1)
-	  lwz       r29, 0x84(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x90
-	  blr
+lbl_8003DF10:
+	lwz      r0, 0x94(r1)
+	lwz      r31, 0x8c(r1)
+	lwz      r30, 0x88(r1)
+	lwz      r29, 0x84(r1)
+	mtlr     r0
+	addi     r1, r1, 0x90
+	blr
 	*/
 }
 
@@ -700,72 +770,71 @@ void J2DPrint::print(float, float, unsigned char, const char*, ...)
 void J2DPrint::getWidth(const char*, ...)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x90(r1)
-	  mflr      r0
-	  stw       r0, 0x94(r1)
-	  stw       r31, 0x8C(r1)
-	  mr        r31, r4
-	  stw       r30, 0x88(r1)
-	  mr        r30, r3
-	  bne-      cr1, .loc_0x40
-	  stfd      f1, 0x28(r1)
-	  stfd      f2, 0x30(r1)
-	  stfd      f3, 0x38(r1)
-	  stfd      f4, 0x40(r1)
-	  stfd      f5, 0x48(r1)
-	  stfd      f6, 0x50(r1)
-	  stfd      f7, 0x58(r1)
-	  stfd      f8, 0x60(r1)
+	stwu     r1, -0x90(r1)
+	mflr     r0
+	stw      r0, 0x94(r1)
+	stw      r31, 0x8c(r1)
+	mr       r31, r4
+	stw      r30, 0x88(r1)
+	mr       r30, r3
+	bne      cr1, lbl_8003DF6C
+	stfd     f1, 0x28(r1)
+	stfd     f2, 0x30(r1)
+	stfd     f3, 0x38(r1)
+	stfd     f4, 0x40(r1)
+	stfd     f5, 0x48(r1)
+	stfd     f6, 0x50(r1)
+	stfd     f7, 0x58(r1)
+	stfd     f8, 0x60(r1)
 
-	.loc_0x40:
-	  stw       r3, 0x8(r1)
-	  mr        r3, r30
-	  stw       r4, 0xC(r1)
-	  stw       r5, 0x10(r1)
-	  stw       r6, 0x14(r1)
-	  stw       r7, 0x18(r1)
-	  stw       r8, 0x1C(r1)
-	  stw       r9, 0x20(r1)
-	  stw       r10, 0x24(r1)
-	  bl        0x1228
-	  addi      r4, r1, 0x98
-	  addi      r0, r1, 0x8
-	  lis       r3, 0x200
-	  stw       r4, 0x74(r1)
-	  lwz       r4, -0x76B8(r13)
-	  addi      r6, r1, 0x70
-	  stw       r3, 0x70(r1)
-	  mr        r5, r31
-	  lwz       r3, -0x76C0(r13)
-	  stw       r0, 0x78(r1)
-	  bl        0x896A8
-	  mr.       r5, r3
-	  blt-      .loc_0xA8
-	  lwz       r0, -0x76B8(r13)
-	  cmplw     r5, r0
-	  ble-      .loc_0xAC
+lbl_8003DF6C:
+	stw      r3, 8(r1)
+	mr       r3, r30
+	stw      r4, 0xc(r1)
+	stw      r5, 0x10(r1)
+	stw      r6, 0x14(r1)
+	stw      r7, 0x18(r1)
+	stw      r8, 0x1c(r1)
+	stw      r9, 0x20(r1)
+	stw      r10, 0x24(r1)
+	bl       initchar__8J2DPrintFv
+	addi     r4, r1, 0x98
+	addi     r0, r1, 8
+	lis      r3, 0x200
+	stw      r4, 0x74(r1)
+	lwz      r4, mStrBuffSize__8J2DPrint@sda21(r13)
+	addi     r6, r1, 0x70
+	stw      r3, 0x70(r1)
+	mr       r5, r31
+	lwz      r3, mStrBuff__8J2DPrint@sda21(r13)
+	stw      r0, 0x78(r1)
+	bl       vsnprintf
+	or.      r5, r3, r3
+	blt      lbl_8003DFD4
+	lwz      r0, mStrBuffSize__8J2DPrint@sda21(r13)
+	cmplw    r5, r0
+	ble      lbl_8003DFD8
 
-	.loc_0xA8:
-	  lwz       r5, -0x76B8(r13)
+lbl_8003DFD4:
+	lwz      r5, mStrBuffSize__8J2DPrint@sda21(r13)
 
-	.loc_0xAC:
-	  lis       r6, 0x8000
-	  lwz       r4, -0x76C0(r13)
-	  mr        r3, r30
-	  addi      r8, r1, 0x68
-	  subi      r6, r6, 0x1
-	  li        r7, 0
-	  li        r9, 0xFF
-	  li        r10, 0
-	  bl        0x33C
-	  lwz       r0, 0x94(r1)
-	  lwz       r31, 0x8C(r1)
-	  lfs       f1, 0x68(r1)
-	  lwz       r30, 0x88(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x90
-	  blr
+lbl_8003DFD8:
+	lis      r6, 0x7FFFFFFF@ha
+	lwz      r4, mStrBuff__8J2DPrint@sda21(r13)
+	mr       r3, r30
+	addi     r8, r1, 0x68
+	addi     r6, r6, 0x7FFFFFFF@l
+	li       r7, 0
+	li       r9, 0xff
+	li       r10, 0
+	bl       parse__8J2DPrintFPCUciiPUsRQ28J2DPrint5TSizeUcb
+	lwz      r0, 0x94(r1)
+	lwz      r31, 0x8c(r1)
+	lfs      f1, 0x68(r1)
+	lwz      r30, 0x88(r1)
+	mtlr     r0
+	addi     r1, r1, 0x90
+	blr
 	*/
 }
 
@@ -1587,83 +1656,107 @@ void J2DPrint::parse(const unsigned char*, int, int, unsigned short*,
 void J2DPrint::doCtrlCode(int)
 {
 	/*
-	.loc_0x0:
-	  subi      r0, r4, 0x8
-	  stwu      r1, -0x20(r1)
-	  cmplwi    r0, 0x17
-	  bgt-      .loc_0x120
-	  lis       r4, 0x804A
-	  rlwinm    r0,r0,2,0,29
-	  addi      r4, r4, 0x880
-	  lwzx      r0, r4, r0
-	  mtctr     r0
-	  bctr
-	  lfs       f2, 0x2C(r3)
-	  lfs       f1, 0x34(r3)
-	  lfs       f0, -0x7B48(r2)
-	  fsubs     f1, f2, f1
-	  stfs      f1, 0x2C(r3)
-	  stfs      f0, 0x34(r3)
-	  b         .loc_0x120
-	  lha       r4, 0x20(r3)
-	  extsh.    r0, r4
-	  ble-      .loc_0x120
-	  lfs       f2, 0x2C(r3)
-	  lis       r0, 0x4330
-	  stw       r0, 0x10(r1)
-	  fctiwz    f0, f2
-	  lfd       f1, -0x7B40(r2)
-	  stfd      f0, 0x8(r1)
-	  lwz       r0, 0xC(r1)
-	  divw      r0, r0, r4
-	  mullw     r0, r4, r0
-	  add       r0, r4, r0
-	  xoris     r0, r0, 0x8000
-	  stw       r0, 0x14(r1)
-	  lfd       f0, 0x10(r1)
-	  fsubs     f0, f0, f1
-	  stfs      f0, 0x2C(r3)
-	  lfs       f0, 0x2C(r3)
-	  fsubs     f0, f0, f2
-	  stfs      f0, 0x34(r3)
-	  b         .loc_0x120
-	  lfs       f0, -0x7B48(r2)
-	  stfs      f0, 0x34(r3)
-	  lfs       f0, 0x24(r3)
-	  stfs      f0, 0x2C(r3)
-	  lfs       f1, 0x30(r3)
-	  lfs       f0, 0x14(r3)
-	  fadds     f0, f1, f0
-	  stfs      f0, 0x30(r3)
-	  b         .loc_0x120
-	  lfs       f0, -0x7B48(r2)
-	  stfs      f0, 0x34(r3)
-	  lfs       f0, 0x24(r3)
-	  stfs      f0, 0x2C(r3)
-	  b         .loc_0x120
-	  lfs       f1, 0x2C(r3)
-	  lfs       f0, -0x7B24(r2)
-	  fadds     f0, f1, f0
-	  stfs      f0, 0x2C(r3)
-	  b         .loc_0x120
-	  lfs       f1, 0x2C(r3)
-	  lfs       f0, -0x7B24(r2)
-	  fsubs     f0, f1, f0
-	  stfs      f0, 0x2C(r3)
-	  b         .loc_0x120
-	  lfs       f1, 0x30(r3)
-	  lfs       f0, -0x7B24(r2)
-	  fsubs     f0, f1, f0
-	  stfs      f0, 0x30(r3)
-	  b         .loc_0x120
-	  lfs       f1, 0x30(r3)
-	  lfs       f0, -0x7B24(r2)
-	  fadds     f0, f1, f0
-	  stfs      f0, 0x30(r3)
+	addi     r0, r4, -8
+	stwu     r1, -0x20(r1)
+	cmplwi   r0, 0x17
+	bgt      lbl_8003EC10
+	lis      r4, lbl_804A0880@ha
+	slwi     r0, r0, 2
+	addi     r4, r4, lbl_804A0880@l
+	lwzx     r0, r4, r0
+	mtctr    r0
+	bctr
+	.global  lbl_8003EB18
 
-	.loc_0x120:
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8003EB18:
+	lfs      f2, 0x2c(r3)
+	lfs      f1, 0x34(r3)
+	lfs      f0, lbl_80516818@sda21(r2)
+	fsubs    f1, f2, f1
+	stfs     f1, 0x2c(r3)
+	stfs     f0, 0x34(r3)
+	b        lbl_8003EC10
+	.global  lbl_8003EB34
+
+lbl_8003EB34:
+	lha      r4, 0x20(r3)
+	extsh.   r0, r4
+	ble      lbl_8003EC10
+	lfs      f2, 0x2c(r3)
+	lis      r0, 0x4330
+	stw      r0, 0x10(r1)
+	fctiwz   f0, f2
+	lfd      f1, lbl_80516820@sda21(r2)
+	stfd     f0, 8(r1)
+	lwz      r0, 0xc(r1)
+	divw     r0, r0, r4
+	mullw    r0, r4, r0
+	add      r0, r4, r0
+	xoris    r0, r0, 0x8000
+	stw      r0, 0x14(r1)
+	lfd      f0, 0x10(r1)
+	fsubs    f0, f0, f1
+	stfs     f0, 0x2c(r3)
+	lfs      f0, 0x2c(r3)
+	fsubs    f0, f0, f2
+	stfs     f0, 0x34(r3)
+	b        lbl_8003EC10
+	.global  lbl_8003EB8C
+
+lbl_8003EB8C:
+	lfs      f0, lbl_80516818@sda21(r2)
+	stfs     f0, 0x34(r3)
+	lfs      f0, 0x24(r3)
+	stfs     f0, 0x2c(r3)
+	lfs      f1, 0x30(r3)
+	lfs      f0, 0x14(r3)
+	fadds    f0, f1, f0
+	stfs     f0, 0x30(r3)
+	b        lbl_8003EC10
+	.global  lbl_8003EBB0
+
+lbl_8003EBB0:
+	lfs      f0, lbl_80516818@sda21(r2)
+	stfs     f0, 0x34(r3)
+	lfs      f0, 0x24(r3)
+	stfs     f0, 0x2c(r3)
+	b        lbl_8003EC10
+	.global  lbl_8003EBC4
+
+lbl_8003EBC4:
+	lfs      f1, 0x2c(r3)
+	lfs      f0, lbl_8051683C@sda21(r2)
+	fadds    f0, f1, f0
+	stfs     f0, 0x2c(r3)
+	b        lbl_8003EC10
+	.global  lbl_8003EBD8
+
+lbl_8003EBD8:
+	lfs      f1, 0x2c(r3)
+	lfs      f0, lbl_8051683C@sda21(r2)
+	fsubs    f0, f1, f0
+	stfs     f0, 0x2c(r3)
+	b        lbl_8003EC10
+	.global  lbl_8003EBEC
+
+lbl_8003EBEC:
+	lfs      f1, 0x30(r3)
+	lfs      f0, lbl_8051683C@sda21(r2)
+	fsubs    f0, f1, f0
+	stfs     f0, 0x30(r3)
+	b        lbl_8003EC10
+	.global  lbl_8003EC00
+
+lbl_8003EC00:
+	lfs      f1, 0x30(r3)
+	lfs      f0, lbl_8051683C@sda21(r2)
+	fadds    f0, f1, f0
+	stfs     f0, 0x30(r3)
+	.global  lbl_8003EC10
+
+lbl_8003EC10:
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -1675,431 +1768,430 @@ void J2DPrint::doCtrlCode(int)
 void J2DPrint::doEscapeCode(const unsigned char**, unsigned char)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x50(r1)
-	  mflr      r0
-	  stw       r0, 0x54(r1)
-	  stmw      r26, 0x38(r1)
-	  mr        r27, r4
-	  mr        r26, r3
-	  mr        r28, r5
-	  li        r30, 0
-	  li        r29, 0
-	  lwz       r31, 0x0(r4)
+	stwu     r1, -0x50(r1)
+	mflr     r0
+	stw      r0, 0x54(r1)
+	stmw     r26, 0x38(r1)
+	mr       r27, r4
+	mr       r26, r3
+	mr       r28, r5
+	li       r30, 0
+	li       r29, 0
+	lwz      r31, 0(r4)
 
-	.loc_0x28:
-	  lwz       r3, 0x4(r26)
-	  lwz       r4, 0x0(r27)
-	  lwz       r12, 0x0(r3)
-	  lbz       r4, 0x0(r4)
-	  lwz       r12, 0x40(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x6C
-	  lwz       r3, 0x0(r27)
-	  lbz       r4, 0x0(r3)
-	  addi      r0, r3, 0x2
-	  lbz       r3, 0x1(r3)
-	  rlwimi    r3,r4,8,16,23
-	  stw       r0, 0x0(r27)
-	  rlwinm    r4,r3,0,16,31
-	  b         .loc_0x7C
+lbl_8003EC40:
+	lwz      r3, 4(r26)
+	lwz      r4, 0(r27)
+	lwz      r12, 0(r3)
+	lbz      r4, 0(r4)
+	lwz      r12, 0x40(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_8003EC84
+	lwz      r3, 0(r27)
+	lbz      r4, 0(r3)
+	addi     r0, r3, 2
+	lbz      r3, 1(r3)
+	rlwimi   r3, r4, 8, 0x10, 0x17
+	stw      r0, 0(r27)
+	clrlwi   r4, r3, 0x10
+	b        lbl_8003EC94
 
-	.loc_0x6C:
-	  lwz       r3, 0x0(r27)
-	  lbz       r4, 0x0(r3)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x0(r27)
+lbl_8003EC84:
+	lwz      r3, 0(r27)
+	lbz      r4, 0(r3)
+	addi     r0, r3, 1
+	stw      r0, 0(r27)
 
-	.loc_0x7C:
-	  rlwinm    r0,r4,0,16,31
-	  cmplwi    r0, 0x80
-	  bge-      .loc_0x90
-	  cmplwi    r0, 0x20
-	  bge-      .loc_0x9C
+lbl_8003EC94:
+	clrlwi   r0, r4, 0x10
+	cmplwi   r0, 0x80
+	bge      lbl_8003ECA8
+	cmplwi   r0, 0x20
+	bge      lbl_8003ECB4
 
-	.loc_0x90:
-	  stw       r31, 0x0(r27)
-	  li        r3, 0
-	  b         .loc_0x58C
+lbl_8003ECA8:
+	stw      r31, 0(r27)
+	li       r3, 0
+	b        lbl_8003F1A4
 
-	.loc_0x9C:
-	  addi      r29, r29, 0x1
-	  rlwinm    r0,r30,8,8,23
-	  cmpwi     r29, 0x2
-	  or        r0, r0, r4
-	  rlwinm    r30,r0,0,16,31
-	  blt+      .loc_0x28
-	  lwz       r0, 0x8(r26)
-	  cmpwi     r30, 0x474D
-	  stw       r0, 0x2C(r1)
-	  lwz       r0, 0xC(r26)
-	  stw       r0, 0x28(r1)
-	  beq-      .loc_0x4CC
-	  bge-      .loc_0x130
-	  cmpwi     r30, 0x4355
-	  beq-      .loc_0x184
-	  bge-      .loc_0x10C
-	  cmpwi     r30, 0x434C
-	  beq-      .loc_0x1D4
-	  bge-      .loc_0x100
-	  cmpwi     r30, 0x4344
-	  beq-      .loc_0x1AC
-	  bge-      .loc_0x580
-	  cmpwi     r30, 0x4343
-	  bge-      .loc_0x274
-	  b         .loc_0x580
+lbl_8003ECB4:
+	addi     r29, r29, 1
+	rlwinm   r0, r30, 8, 8, 0x17
+	cmpwi    r29, 2
+	or       r0, r0, r4
+	clrlwi   r30, r0, 0x10
+	blt      lbl_8003EC40
+	lwz      r0, 8(r26)
+	cmpwi    r30, 0x474d
+	stw      r0, 0x2c(r1)
+	lwz      r0, 0xc(r26)
+	stw      r0, 0x28(r1)
+	beq      lbl_8003F0E4
+	bge      lbl_8003ED48
+	cmpwi    r30, 0x4355
+	beq      lbl_8003ED9C
+	bge      lbl_8003ED24
+	cmpwi    r30, 0x434c
+	beq      lbl_8003EDEC
+	bge      lbl_8003ED18
+	cmpwi    r30, 0x4344
+	beq      lbl_8003EDC4
+	bge      lbl_8003F198
+	cmpwi    r30, 0x4343
+	bge      lbl_8003EE8C
+	b        lbl_8003F198
 
-	.loc_0x100:
-	  cmpwi     r30, 0x4352
-	  beq-      .loc_0x1FC
-	  b         .loc_0x580
+lbl_8003ED18:
+	cmpwi    r30, 0x4352
+	beq      lbl_8003EE14
+	b        lbl_8003F198
 
-	.loc_0x10C:
-	  cmpwi     r30, 0x4659
-	  beq-      .loc_0x45C
-	  bge-      .loc_0x124
-	  cmpwi     r30, 0x4658
-	  bge-      .loc_0x42C
-	  b         .loc_0x580
+lbl_8003ED24:
+	cmpwi    r30, 0x4659
+	beq      lbl_8003F074
+	bge      lbl_8003ED3C
+	cmpwi    r30, 0x4658
+	bge      lbl_8003F044
+	b        lbl_8003F198
 
-	.loc_0x124:
-	  cmpwi     r30, 0x4743
-	  beq-      .loc_0x350
-	  b         .loc_0x580
+lbl_8003ED3C:
+	cmpwi    r30, 0x4743
+	beq      lbl_8003EF68
+	b        lbl_8003F198
 
-	.loc_0x130:
-	  cmpwi     r30, 0x5348
-	  beq-      .loc_0x48C
-	  bge-      .loc_0x160
-	  cmpwi     r30, 0x4C44
-	  beq-      .loc_0x238
-	  bge-      .loc_0x154
-	  cmpwi     r30, 0x484D
-	  beq-      .loc_0x588
-	  b         .loc_0x580
+lbl_8003ED48:
+	cmpwi    r30, 0x5348
+	beq      lbl_8003F0A4
+	bge      lbl_8003ED78
+	cmpwi    r30, 0x4c44
+	beq      lbl_8003EE50
+	bge      lbl_8003ED6C
+	cmpwi    r30, 0x484d
+	beq      lbl_8003F1A0
+	b        lbl_8003F198
 
-	.loc_0x154:
-	  cmpwi     r30, 0x4C55
-	  beq-      .loc_0x224
-	  b         .loc_0x580
+lbl_8003ED6C:
+	cmpwi    r30, 0x4c55
+	beq      lbl_8003EE3C
+	b        lbl_8003F198
 
-	.loc_0x160:
-	  cmpwi     r30, 0x5355
-	  beq-      .loc_0x580
-	  bge-      .loc_0x178
-	  cmpwi     r30, 0x5354
-	  bge-      .loc_0x24C
-	  b         .loc_0x580
+lbl_8003ED78:
+	cmpwi    r30, 0x5355
+	beq      lbl_8003F198
+	bge      lbl_8003ED90
+	cmpwi    r30, 0x5354
+	bge      lbl_8003EE64
+	b        lbl_8003F198
 
-	.loc_0x178:
-	  cmpwi     r30, 0x5357
-	  bge-      .loc_0x580
-	  b         .loc_0x4AC
+lbl_8003ED90:
+	cmpwi    r30, 0x5357
+	bge      lbl_8003F198
+	b        lbl_8003F0C4
 
-	.loc_0x184:
-	  lfs       f1, -0x7B24(r2)
-	  mr        r3, r26
-	  lfs       f2, -0x7B48(r2)
-	  mr        r4, r27
-	  li        r5, 0xA
-	  bl        0x590
-	  lfs       f0, 0x30(r26)
-	  fsubs     f0, f0, f1
-	  stfs      f0, 0x30(r26)
-	  b         .loc_0x588
+lbl_8003ED9C:
+	lfs      f1, lbl_8051683C@sda21(r2)
+	mr       r3, r26
+	lfs      f2, lbl_80516818@sda21(r2)
+	mr       r4, r27
+	li       r5, 0xa
+	bl       getNumberF32__8J2DPrintFPPCUcffi
+	lfs      f0, 0x30(r26)
+	fsubs    f0, f0, f1
+	stfs     f0, 0x30(r26)
+	b        lbl_8003F1A0
 
-	.loc_0x1AC:
-	  lfs       f1, -0x7B24(r2)
-	  mr        r3, r26
-	  lfs       f2, -0x7B48(r2)
-	  mr        r4, r27
-	  li        r5, 0xA
-	  bl        0x568
-	  lfs       f0, 0x30(r26)
-	  fadds     f0, f0, f1
-	  stfs      f0, 0x30(r26)
-	  b         .loc_0x588
+lbl_8003EDC4:
+	lfs      f1, lbl_8051683C@sda21(r2)
+	mr       r3, r26
+	lfs      f2, lbl_80516818@sda21(r2)
+	mr       r4, r27
+	li       r5, 0xa
+	bl       getNumberF32__8J2DPrintFPPCUcffi
+	lfs      f0, 0x30(r26)
+	fadds    f0, f0, f1
+	stfs     f0, 0x30(r26)
+	b        lbl_8003F1A0
 
-	.loc_0x1D4:
-	  lfs       f1, -0x7B24(r2)
-	  mr        r3, r26
-	  lfs       f2, -0x7B48(r2)
-	  mr        r4, r27
-	  li        r5, 0xA
-	  bl        0x540
-	  lfs       f0, 0x2C(r26)
-	  fsubs     f0, f0, f1
-	  stfs      f0, 0x2C(r26)
-	  b         .loc_0x588
+lbl_8003EDEC:
+	lfs      f1, lbl_8051683C@sda21(r2)
+	mr       r3, r26
+	lfs      f2, lbl_80516818@sda21(r2)
+	mr       r4, r27
+	li       r5, 0xa
+	bl       getNumberF32__8J2DPrintFPPCUcffi
+	lfs      f0, 0x2c(r26)
+	fsubs    f0, f0, f1
+	stfs     f0, 0x2c(r26)
+	b        lbl_8003F1A0
 
-	.loc_0x1FC:
-	  lfs       f1, -0x7B24(r2)
-	  mr        r3, r26
-	  lfs       f2, -0x7B48(r2)
-	  mr        r4, r27
-	  li        r5, 0xA
-	  bl        0x518
-	  lfs       f0, 0x2C(r26)
-	  fadds     f0, f0, f1
-	  stfs      f0, 0x2C(r26)
-	  b         .loc_0x588
+lbl_8003EE14:
+	lfs      f1, lbl_8051683C@sda21(r2)
+	mr       r3, r26
+	lfs      f2, lbl_80516818@sda21(r2)
+	mr       r4, r27
+	li       r5, 0xa
+	bl       getNumberF32__8J2DPrintFPPCUcffi
+	lfs      f0, 0x2c(r26)
+	fadds    f0, f0, f1
+	stfs     f0, 0x2c(r26)
+	b        lbl_8003F1A0
 
-	.loc_0x224:
-	  lfs       f1, 0x30(r26)
-	  lfs       f0, 0x14(r26)
-	  fsubs     f0, f1, f0
-	  stfs      f0, 0x30(r26)
-	  b         .loc_0x588
+lbl_8003EE3C:
+	lfs      f1, 0x30(r26)
+	lfs      f0, 0x14(r26)
+	fsubs    f0, f1, f0
+	stfs     f0, 0x30(r26)
+	b        lbl_8003F1A0
 
-	.loc_0x238:
-	  lfs       f1, 0x30(r26)
-	  lfs       f0, 0x14(r26)
-	  fadds     f0, f1, f0
-	  stfs      f0, 0x30(r26)
-	  b         .loc_0x588
+lbl_8003EE50:
+	lfs      f1, 0x30(r26)
+	lfs      f0, 0x14(r26)
+	fadds    f0, f1, f0
+	stfs     f0, 0x30(r26)
+	b        lbl_8003F1A0
 
-	.loc_0x24C:
-	  lha       r5, 0x20(r26)
-	  mr        r3, r26
-	  mr        r4, r27
-	  li        r7, 0xA
-	  mr        r6, r5
-	  bl        0x3B4
-	  cmpwi     r3, 0
-	  ble-      .loc_0x588
-	  sth       r3, 0x20(r26)
-	  b         .loc_0x588
+lbl_8003EE64:
+	lha      r5, 0x20(r26)
+	mr       r3, r26
+	mr       r4, r27
+	li       r7, 0xa
+	mr       r6, r5
+	bl       getNumberS32__8J2DPrintFPPCUclli
+	cmpwi    r3, 0
+	ble      lbl_8003F1A0
+	sth      r3, 0x20(r26)
+	b        lbl_8003F1A0
 
-	.loc_0x274:
-	  lwz       r5, 0x40(r26)
-	  mr        r3, r26
-	  lwz       r6, 0x8(r26)
-	  mr        r4, r27
-	  li        r7, 0x10
-	  bl        0x38C
-	  stw       r3, 0x24(r1)
-	  lis       r4, 0x8081
-	  subi      r5, r4, 0x7F7F
-	  rlwinm    r7,r28,0,24,31
-	  lbz       r6, 0x24(r1)
-	  addi      r3, r1, 0x2C
-	  lbz       r0, 0x25(r1)
-	  stb       r6, 0x8(r26)
-	  lbz       r4, 0x26(r1)
-	  stb       r0, 0x9(r26)
-	  lbz       r0, 0x27(r1)
-	  stb       r4, 0xA(r26)
-	  stb       r0, 0xB(r26)
-	  lbz       r4, 0x8(r26)
-	  lbz       r0, 0x2B(r1)
-	  stb       r4, 0x2C(r1)
-	  mullw     r0, r0, r7
-	  lbz       r4, 0x9(r26)
-	  stb       r4, 0x2D(r1)
-	  lbz       r6, 0xA(r26)
-	  mulhw     r4, r5, r0
-	  stb       r6, 0x2E(r1)
-	  lbz       r6, 0xB(r26)
-	  add       r0, r4, r0
-	  mullw     r4, r6, r7
-	  stb       r6, 0x2F(r1)
-	  mulhw     r5, r5, r4
-	  add       r4, r5, r4
-	  srawi     r4, r4, 0x7
-	  rlwinm    r5,r4,1,31,31
-	  srawi     r0, r0, 0x7
-	  add       r5, r4, r5
-	  rlwinm    r4,r0,1,31,31
-	  stb       r5, 0x2F(r1)
-	  add       r0, r0, r4
-	  stb       r0, 0x2B(r1)
-	  lbz       r0, 0x22(r26)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x32C
-	  addi      r3, r1, 0x28
+lbl_8003EE8C:
+	lwz      r5, 0x40(r26)
+	mr       r3, r26
+	lwz      r6, 8(r26)
+	mr       r4, r27
+	li       r7, 0x10
+	bl       getNumberS32__8J2DPrintFPPCUclli
+	stw      r3, 0x24(r1)
+	lis      r4, 0x80808081@ha
+	addi     r5, r4, 0x80808081@l
+	clrlwi   r7, r28, 0x18
+	lbz      r6, 0x24(r1)
+	addi     r3, r1, 0x2c
+	lbz      r0, 0x25(r1)
+	stb      r6, 8(r26)
+	lbz      r4, 0x26(r1)
+	stb      r0, 9(r26)
+	lbz      r0, 0x27(r1)
+	stb      r4, 0xa(r26)
+	stb      r0, 0xb(r26)
+	lbz      r4, 8(r26)
+	lbz      r0, 0x2b(r1)
+	stb      r4, 0x2c(r1)
+	mullw    r0, r0, r7
+	lbz      r4, 9(r26)
+	stb      r4, 0x2d(r1)
+	lbz      r6, 0xa(r26)
+	mulhw    r4, r5, r0
+	stb      r6, 0x2e(r1)
+	lbz      r6, 0xb(r26)
+	add      r0, r4, r0
+	mullw    r4, r6, r7
+	stb      r6, 0x2f(r1)
+	mulhw    r5, r5, r4
+	add      r4, r5, r4
+	srawi    r4, r4, 7
+	srwi     r5, r4, 0x1f
+	srawi    r0, r0, 7
+	add      r5, r4, r5
+	srwi     r4, r0, 0x1f
+	stb      r5, 0x2f(r1)
+	add      r0, r0, r4
+	stb      r0, 0x2b(r1)
+	lbz      r0, 0x22(r26)
+	cmplwi   r0, 0
+	beq      lbl_8003EF44
+	addi     r3, r1, 0x28
 
-	.loc_0x32C:
-	  lwz       r3, 0x0(r3)
-	  addi      r4, r1, 0x20
-	  lwz       r0, 0x2C(r1)
-	  addi      r5, r1, 0x1C
-	  stw       r3, 0x1C(r1)
-	  stw       r0, 0x20(r1)
-	  lwz       r3, 0x4(r26)
-	  bl        -0x11D50
-	  b         .loc_0x588
+lbl_8003EF44:
+	lwz      r3, 0(r3)
+	addi     r4, r1, 0x20
+	lwz      r0, 0x2c(r1)
+	addi     r5, r1, 0x1c
+	stw      r3, 0x1c(r1)
+	stw      r0, 0x20(r1)
+	lwz      r3, 4(r26)
+	bl       setGradColor__7JUTFontFQ28JUtility6TColorQ28JUtility6TColor
+	b        lbl_8003F1A0
 
-	.loc_0x350:
-	  lwz       r5, 0x44(r26)
-	  mr        r3, r26
-	  lwz       r6, 0xC(r26)
-	  mr        r4, r27
-	  li        r7, 0x10
-	  bl        0x2B0
-	  stw       r3, 0x18(r1)
-	  lis       r4, 0x8081
-	  subi      r7, r4, 0x7F7F
-	  rlwinm    r6,r28,0,24,31
-	  lbz       r5, 0x18(r1)
-	  addi      r3, r1, 0x2C
-	  lbz       r0, 0x19(r1)
-	  stb       r5, 0xC(r26)
-	  lbz       r4, 0x1A(r1)
-	  stb       r0, 0xD(r26)
-	  lbz       r0, 0x1B(r1)
-	  stb       r4, 0xE(r26)
-	  stb       r0, 0xF(r26)
-	  lbz       r4, 0xC(r26)
-	  lbz       r0, 0x2F(r1)
-	  stb       r4, 0x28(r1)
-	  mullw     r0, r0, r6
-	  lbz       r4, 0xD(r26)
-	  stb       r4, 0x29(r1)
-	  lbz       r5, 0xE(r26)
-	  mulhw     r4, r7, r0
-	  stb       r5, 0x2A(r1)
-	  lbz       r5, 0xF(r26)
-	  add       r4, r4, r0
-	  mullw     r0, r5, r6
-	  stb       r5, 0x2B(r1)
-	  srawi     r5, r4, 0x7
-	  rlwinm    r6,r5,1,31,31
-	  mulhw     r4, r7, r0
-	  add       r5, r5, r6
-	  stb       r5, 0x2F(r1)
-	  add       r0, r4, r0
-	  srawi     r0, r0, 0x7
-	  rlwinm    r4,r0,1,31,31
-	  add       r0, r0, r4
-	  stb       r0, 0x2B(r1)
-	  lbz       r0, 0x22(r26)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x408
-	  addi      r3, r1, 0x28
+lbl_8003EF68:
+	lwz      r5, 0x44(r26)
+	mr       r3, r26
+	lwz      r6, 0xc(r26)
+	mr       r4, r27
+	li       r7, 0x10
+	bl       getNumberS32__8J2DPrintFPPCUclli
+	stw      r3, 0x18(r1)
+	lis      r4, 0x80808081@ha
+	addi     r7, r4, 0x80808081@l
+	clrlwi   r6, r28, 0x18
+	lbz      r5, 0x18(r1)
+	addi     r3, r1, 0x2c
+	lbz      r0, 0x19(r1)
+	stb      r5, 0xc(r26)
+	lbz      r4, 0x1a(r1)
+	stb      r0, 0xd(r26)
+	lbz      r0, 0x1b(r1)
+	stb      r4, 0xe(r26)
+	stb      r0, 0xf(r26)
+	lbz      r4, 0xc(r26)
+	lbz      r0, 0x2f(r1)
+	stb      r4, 0x28(r1)
+	mullw    r0, r0, r6
+	lbz      r4, 0xd(r26)
+	stb      r4, 0x29(r1)
+	lbz      r5, 0xe(r26)
+	mulhw    r4, r7, r0
+	stb      r5, 0x2a(r1)
+	lbz      r5, 0xf(r26)
+	add      r4, r4, r0
+	mullw    r0, r5, r6
+	stb      r5, 0x2b(r1)
+	srawi    r5, r4, 7
+	srwi     r6, r5, 0x1f
+	mulhw    r4, r7, r0
+	add      r5, r5, r6
+	stb      r5, 0x2f(r1)
+	add      r0, r4, r0
+	srawi    r0, r0, 7
+	srwi     r4, r0, 0x1f
+	add      r0, r0, r4
+	stb      r0, 0x2b(r1)
+	lbz      r0, 0x22(r26)
+	cmplwi   r0, 0
+	beq      lbl_8003F020
+	addi     r3, r1, 0x28
 
-	.loc_0x408:
-	  lwz       r3, 0x0(r3)
-	  addi      r4, r1, 0x14
-	  lwz       r0, 0x2C(r1)
-	  addi      r5, r1, 0x10
-	  stw       r3, 0x10(r1)
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x4(r26)
-	  bl        -0x11E2C
-	  b         .loc_0x588
+lbl_8003F020:
+	lwz      r3, 0(r3)
+	addi     r4, r1, 0x14
+	lwz      r0, 0x2c(r1)
+	addi     r5, r1, 0x10
+	stw      r3, 0x10(r1)
+	stw      r0, 0x14(r1)
+	lwz      r3, 4(r26)
+	bl       setGradColor__7JUTFontFQ28JUtility6TColorQ28JUtility6TColor
+	b        lbl_8003F1A0
 
-	.loc_0x42C:
-	  lfs       f1, 0x50(r26)
-	  mr        r3, r26
-	  lfs       f2, 0x18(r26)
-	  mr        r4, r27
-	  li        r5, 0xA
-	  bl        0x2E8
-	  lfs       f0, -0x7B48(r2)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0x1, 0x2
-	  bne-      .loc_0x588
-	  stfs      f1, 0x18(r26)
-	  b         .loc_0x588
+lbl_8003F044:
+	lfs      f1, 0x50(r26)
+	mr       r3, r26
+	lfs      f2, 0x18(r26)
+	mr       r4, r27
+	li       r5, 0xa
+	bl       getNumberF32__8J2DPrintFPPCUcffi
+	lfs      f0, lbl_80516818@sda21(r2)
+	fcmpo    cr0, f1, f0
+	cror     2, 1, 2
+	bne      lbl_8003F1A0
+	stfs     f1, 0x18(r26)
+	b        lbl_8003F1A0
 
-	.loc_0x45C:
-	  lfs       f1, 0x54(r26)
-	  mr        r3, r26
-	  lfs       f2, 0x1C(r26)
-	  mr        r4, r27
-	  li        r5, 0xA
-	  bl        0x2B8
-	  lfs       f0, -0x7B48(r2)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0x1, 0x2
-	  bne-      .loc_0x588
-	  stfs      f1, 0x1C(r26)
-	  b         .loc_0x588
+lbl_8003F074:
+	lfs      f1, 0x54(r26)
+	mr       r3, r26
+	lfs      f2, 0x1c(r26)
+	mr       r4, r27
+	li       r5, 0xa
+	bl       getNumberF32__8J2DPrintFPPCUcffi
+	lfs      f0, lbl_80516818@sda21(r2)
+	fcmpo    cr0, f1, f0
+	cror     2, 1, 2
+	bne      lbl_8003F1A0
+	stfs     f1, 0x1c(r26)
+	b        lbl_8003F1A0
 
-	.loc_0x48C:
-	  lfs       f1, 0x48(r26)
-	  mr        r3, r26
-	  lfs       f2, 0x10(r26)
-	  mr        r4, r27
-	  li        r5, 0xA
-	  bl        0x288
-	  stfs      f1, 0x10(r26)
-	  b         .loc_0x588
+lbl_8003F0A4:
+	lfs      f1, 0x48(r26)
+	mr       r3, r26
+	lfs      f2, 0x10(r26)
+	mr       r4, r27
+	li       r5, 0xa
+	bl       getNumberF32__8J2DPrintFPPCUcffi
+	stfs     f1, 0x10(r26)
+	b        lbl_8003F1A0
 
-	.loc_0x4AC:
-	  lfs       f1, 0x4C(r26)
-	  mr        r3, r26
-	  lfs       f2, 0x14(r26)
-	  mr        r4, r27
-	  li        r5, 0xA
-	  bl        0x268
-	  stfs      f1, 0x14(r26)
-	  b         .loc_0x588
+lbl_8003F0C4:
+	lfs      f1, 0x4c(r26)
+	mr       r3, r26
+	lfs      f2, 0x14(r26)
+	mr       r4, r27
+	li       r5, 0xa
+	bl       getNumberF32__8J2DPrintFPPCUcffi
+	stfs     f1, 0x14(r26)
+	b        lbl_8003F1A0
 
-	.loc_0x4CC:
-	  lbz       r6, 0x22(r26)
-	  mr        r3, r26
-	  mr        r4, r27
-	  li        r7, 0xA
-	  cntlzw    r0, r6
-	  rlwinm    r5,r0,27,24,31
-	  bl        0x130
-	  cntlzw    r0, r3
-	  lis       r3, 0x8081
-	  rlwinm    r0,r0,27,24,31
-	  rlwinm    r7,r28,0,24,31
-	  cntlzw    r0, r0
-	  subi      r6, r3, 0x7F7F
-	  rlwinm    r0,r0,27,5,31
-	  addi      r3, r1, 0x2C
-	  stb       r0, 0x22(r26)
-	  lbz       r4, 0x2F(r1)
-	  lbz       r0, 0x2B(r1)
-	  mullw     r5, r4, r7
-	  mullw     r0, r0, r7
-	  mulhw     r7, r6, r5
-	  mulhw     r4, r6, r0
-	  add       r5, r7, r5
-	  srawi     r5, r5, 0x7
-	  add       r0, r4, r0
-	  rlwinm    r4,r5,1,31,31
-	  add       r4, r5, r4
-	  srawi     r0, r0, 0x7
-	  stb       r4, 0x2F(r1)
-	  rlwinm    r4,r0,1,31,31
-	  add       r0, r0, r4
-	  stb       r0, 0x2B(r1)
-	  lbz       r0, 0x22(r26)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x55C
-	  addi      r3, r1, 0x28
+lbl_8003F0E4:
+	lbz      r6, 0x22(r26)
+	mr       r3, r26
+	mr       r4, r27
+	li       r7, 0xa
+	cntlzw   r0, r6
+	rlwinm   r5, r0, 0x1b, 0x18, 0x1f
+	bl       getNumberS32__8J2DPrintFPPCUclli
+	cntlzw   r0, r3
+	lis      r3, 0x80808081@ha
+	rlwinm   r0, r0, 0x1b, 0x18, 0x1f
+	clrlwi   r7, r28, 0x18
+	cntlzw   r0, r0
+	addi     r6, r3, 0x80808081@l
+	srwi     r0, r0, 5
+	addi     r3, r1, 0x2c
+	stb      r0, 0x22(r26)
+	lbz      r4, 0x2f(r1)
+	lbz      r0, 0x2b(r1)
+	mullw    r5, r4, r7
+	mullw    r0, r0, r7
+	mulhw    r7, r6, r5
+	mulhw    r4, r6, r0
+	add      r5, r7, r5
+	srawi    r5, r5, 7
+	add      r0, r4, r0
+	srwi     r4, r5, 0x1f
+	add      r4, r5, r4
+	srawi    r0, r0, 7
+	stb      r4, 0x2f(r1)
+	srwi     r4, r0, 0x1f
+	add      r0, r0, r4
+	stb      r0, 0x2b(r1)
+	lbz      r0, 0x22(r26)
+	cmplwi   r0, 0
+	beq      lbl_8003F174
+	addi     r3, r1, 0x28
 
-	.loc_0x55C:
-	  lwz       r3, 0x0(r3)
-	  addi      r4, r1, 0xC
-	  lwz       r0, 0x2C(r1)
-	  addi      r5, r1, 0x8
-	  stw       r3, 0x8(r1)
-	  stw       r0, 0xC(r1)
-	  lwz       r3, 0x4(r26)
-	  bl        -0x11F80
-	  b         .loc_0x588
+lbl_8003F174:
+	lwz      r3, 0(r3)
+	addi     r4, r1, 0xc
+	lwz      r0, 0x2c(r1)
+	addi     r5, r1, 8
+	stw      r3, 8(r1)
+	stw      r0, 0xc(r1)
+	lwz      r3, 4(r26)
+	bl       setGradColor__7JUTFontFQ28JUtility6TColorQ28JUtility6TColor
+	b        lbl_8003F1A0
 
-	.loc_0x580:
-	  stw       r31, 0x0(r27)
-	  li        r30, 0
+lbl_8003F198:
+	stw      r31, 0(r27)
+	li       r30, 0
 
-	.loc_0x588:
-	  mr        r3, r30
+lbl_8003F1A0:
+	mr       r3, r30
 
-	.loc_0x58C:
-	  lmw       r26, 0x38(r1)
-	  lwz       r0, 0x54(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x50
-	  blr
+lbl_8003F1A4:
+	lmw      r26, 0x38(r1)
+	lwz      r0, 0x54(r1)
+	mtlr     r0
+	addi     r1, r1, 0x50
+	blr
 	*/
 }
 
@@ -2111,36 +2203,35 @@ void J2DPrint::doEscapeCode(const unsigned char**, unsigned char)
 void J2DPrint::initchar()
 {
 	/*
-	.loc_0x0:
-	  lbz       r0, 0x40(r3)
-	  stb       r0, 0x8(r3)
-	  lbz       r0, 0x41(r3)
-	  stb       r0, 0x9(r3)
-	  lbz       r0, 0x42(r3)
-	  stb       r0, 0xA(r3)
-	  lbz       r0, 0x43(r3)
-	  stb       r0, 0xB(r3)
-	  lbz       r0, 0x44(r3)
-	  stb       r0, 0xC(r3)
-	  lbz       r0, 0x45(r3)
-	  stb       r0, 0xD(r3)
-	  lbz       r0, 0x46(r3)
-	  stb       r0, 0xE(r3)
-	  lbz       r0, 0x47(r3)
-	  stb       r0, 0xF(r3)
-	  lfs       f0, 0x48(r3)
-	  stfs      f0, 0x10(r3)
-	  lfs       f0, 0x4C(r3)
-	  stfs      f0, 0x14(r3)
-	  lbz       r0, 0x5A(r3)
-	  stb       r0, 0x22(r3)
-	  lha       r0, 0x58(r3)
-	  sth       r0, 0x20(r3)
-	  lfs       f0, 0x50(r3)
-	  stfs      f0, 0x18(r3)
-	  lfs       f0, 0x54(r3)
-	  stfs      f0, 0x1C(r3)
-	  blr
+	lbz      r0, 0x40(r3)
+	stb      r0, 8(r3)
+	lbz      r0, 0x41(r3)
+	stb      r0, 9(r3)
+	lbz      r0, 0x42(r3)
+	stb      r0, 0xa(r3)
+	lbz      r0, 0x43(r3)
+	stb      r0, 0xb(r3)
+	lbz      r0, 0x44(r3)
+	stb      r0, 0xc(r3)
+	lbz      r0, 0x45(r3)
+	stb      r0, 0xd(r3)
+	lbz      r0, 0x46(r3)
+	stb      r0, 0xe(r3)
+	lbz      r0, 0x47(r3)
+	stb      r0, 0xf(r3)
+	lfs      f0, 0x48(r3)
+	stfs     f0, 0x10(r3)
+	lfs      f0, 0x4c(r3)
+	stfs     f0, 0x14(r3)
+	lbz      r0, 0x5a(r3)
+	stb      r0, 0x22(r3)
+	lha      r0, 0x58(r3)
+	sth      r0, 0x20(r3)
+	lfs      f0, 0x50(r3)
+	stfs     f0, 0x18(r3)
+	lfs      f0, 0x54(r3)
+	stfs     f0, 0x1c(r3)
+	blr
 	*/
 }
 
@@ -2152,90 +2243,89 @@ void J2DPrint::initchar()
 void J2DPrint::getNumberS32(const unsigned char**, long, long, int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r5
-	  stw       r30, 0x18(r1)
-	  mr        r30, r4
-	  stw       r29, 0x14(r1)
-	  stw       r28, 0x10(r1)
-	  mr        r28, r6
-	  lwz       r29, 0x0(r4)
-	  lbz       r0, 0x0(r29)
-	  cmpwi     r0, 0x5B
-	  beq-      .loc_0x40
-	  mr        r3, r31
-	  b         .loc_0xF4
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r5
+	stw      r30, 0x18(r1)
+	mr       r30, r4
+	stw      r29, 0x14(r1)
+	stw      r28, 0x10(r1)
+	mr       r28, r6
+	lwz      r29, 0(r4)
+	lbz      r0, 0(r29)
+	cmpwi    r0, 0x5b
+	beq      lbl_8003F26C
+	mr       r3, r31
+	b        lbl_8003F320
 
-	.loc_0x40:
-	  addi      r0, r29, 0x1
-	  cmpwi     r7, 0xA
-	  stw       r0, 0x0(r30)
-	  li        r3, 0
-	  bne-      .loc_0x68
-	  lwz       r3, 0x0(r30)
-	  mr        r5, r7
-	  addi      r4, r1, 0x8
-	  bl        0x8C6AC
-	  b         .loc_0xB4
+lbl_8003F26C:
+	addi     r0, r29, 1
+	cmpwi    r7, 0xa
+	stw      r0, 0(r30)
+	li       r3, 0
+	bne      lbl_8003F294
+	lwz      r3, 0(r30)
+	mr       r5, r7
+	addi     r4, r1, 8
+	bl       strtol
+	b        lbl_8003F2E0
 
-	.loc_0x68:
-	  cmpwi     r7, 0x10
-	  bne-      .loc_0xB4
-	  lwz       r3, 0x0(r30)
-	  mr        r5, r7
-	  addi      r4, r1, 0x8
-	  bl        0x8C780
-	  lwz       r4, 0x0(r30)
-	  lwz       r0, 0x8(r1)
-	  sub       r0, r0, r4
-	  cmplwi    r0, 0x8
-	  beq-      .loc_0xB4
-	  cmplwi    r0, 0x6
-	  bne-      .loc_0xA8
-	  rlwinm    r0,r3,8,0,23
-	  ori       r3, r0, 0xFF
-	  b         .loc_0xB4
+lbl_8003F294:
+	cmpwi    r7, 0x10
+	bne      lbl_8003F2E0
+	lwz      r3, 0(r30)
+	mr       r5, r7
+	addi     r4, r1, 8
+	bl       strtoul
+	lwz      r4, 0(r30)
+	lwz      r0, 8(r1)
+	subf     r0, r4, r0
+	cmplwi   r0, 8
+	beq      lbl_8003F2E0
+	cmplwi   r0, 6
+	bne      lbl_8003F2D4
+	slwi     r0, r3, 8
+	ori      r3, r0, 0xff
+	b        lbl_8003F2E0
 
-	.loc_0xA8:
-	  stw       r29, 0x0(r30)
-	  mr        r3, r28
-	  b         .loc_0xF4
+lbl_8003F2D4:
+	stw      r29, 0(r30)
+	mr       r3, r28
+	b        lbl_8003F320
 
-	.loc_0xB4:
-	  lwz       r4, 0x8(r1)
-	  lbz       r0, 0x0(r4)
-	  cmpwi     r0, 0x5D
-	  beq-      .loc_0xD0
-	  stw       r29, 0x0(r30)
-	  mr        r3, r28
-	  b         .loc_0xF4
+lbl_8003F2E0:
+	lwz      r4, 8(r1)
+	lbz      r0, 0(r4)
+	cmpwi    r0, 0x5d
+	beq      lbl_8003F2FC
+	stw      r29, 0(r30)
+	mr       r3, r28
+	b        lbl_8003F320
 
-	.loc_0xD0:
-	  lwz       r0, 0x0(r30)
-	  cmplw     r0, r4
-	  bne-      .loc_0xEC
-	  addi      r0, r4, 0x1
-	  mr        r3, r31
-	  stw       r0, 0x0(r30)
-	  b         .loc_0xF4
+lbl_8003F2FC:
+	lwz      r0, 0(r30)
+	cmplw    r0, r4
+	bne      lbl_8003F318
+	addi     r0, r4, 1
+	mr       r3, r31
+	stw      r0, 0(r30)
+	b        lbl_8003F320
 
-	.loc_0xEC:
-	  addi      r0, r4, 0x1
-	  stw       r0, 0x0(r30)
+lbl_8003F318:
+	addi     r0, r4, 1
+	stw      r0, 0(r30)
 
-	.loc_0xF4:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8003F320:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -2247,97 +2337,96 @@ void J2DPrint::getNumberS32(const unsigned char**, long, long, int)
 void J2DPrint::getNumberF32(const unsigned char**, float, float, int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  stw       r0, 0x44(r1)
-	  stfd      f31, 0x30(r1)
-	  psq_st    f31,0x38(r1),0,0
-	  stfd      f30, 0x20(r1)
-	  psq_st    f30,0x28(r1),0,0
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  mr        r31, r4
-	  fmr       f30, f1
-	  lwz       r30, 0x0(r4)
-	  fmr       f31, f2
-	  lbz       r0, 0x0(r30)
-	  cmpwi     r0, 0x5B
-	  beq-      .loc_0x44
-	  b         .loc_0x10C
+	stwu     r1, -0x40(r1)
+	mflr     r0
+	stw      r0, 0x44(r1)
+	stfd     f31, 0x30(r1)
+	psq_st   f31, 56(r1), 0, qr0
+	stfd     f30, 0x20(r1)
+	psq_st   f30, 40(r1), 0, qr0
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	mr       r31, r4
+	fmr      f30, f1
+	lwz      r30, 0(r4)
+	fmr      f31, f2
+	lbz      r0, 0(r30)
+	cmpwi    r0, 0x5b
+	beq      lbl_8003F384
+	b        lbl_8003F44C
 
-	.loc_0x44:
-	  addi      r0, r30, 0x1
-	  cmpwi     r5, 0xA
-	  stw       r0, 0x0(r31)
-	  li        r3, 0
-	  bne-      .loc_0x68
-	  lwz       r3, 0x0(r31)
-	  addi      r4, r1, 0x8
-	  bl        0x8C598
-	  b         .loc_0xB0
+lbl_8003F384:
+	addi     r0, r30, 1
+	cmpwi    r5, 0xa
+	stw      r0, 0(r31)
+	li       r3, 0
+	bne      lbl_8003F3A8
+	lwz      r3, 0(r31)
+	addi     r4, r1, 8
+	bl       strtol
+	b        lbl_8003F3F0
 
-	.loc_0x68:
-	  cmpwi     r5, 0x10
-	  bne-      .loc_0xB0
-	  lwz       r3, 0x0(r31)
-	  addi      r4, r1, 0x8
-	  bl        0x8C670
-	  lwz       r4, 0x0(r31)
-	  lwz       r0, 0x8(r1)
-	  sub       r0, r0, r4
-	  cmplwi    r0, 0x8
-	  beq-      .loc_0xB0
-	  cmplwi    r0, 0x6
-	  bne-      .loc_0xA4
-	  rlwinm    r0,r3,8,0,23
-	  ori       r3, r0, 0xFF
-	  b         .loc_0xB0
+lbl_8003F3A8:
+	cmpwi    r5, 0x10
+	bne      lbl_8003F3F0
+	lwz      r3, 0(r31)
+	addi     r4, r1, 8
+	bl       strtoul
+	lwz      r4, 0(r31)
+	lwz      r0, 8(r1)
+	subf     r0, r4, r0
+	cmplwi   r0, 8
+	beq      lbl_8003F3F0
+	cmplwi   r0, 6
+	bne      lbl_8003F3E4
+	slwi     r0, r3, 8
+	ori      r3, r0, 0xff
+	b        lbl_8003F3F0
 
-	.loc_0xA4:
-	  fmr       f1, f31
-	  stw       r30, 0x0(r31)
-	  b         .loc_0x10C
+lbl_8003F3E4:
+	fmr      f1, f31
+	stw      r30, 0(r31)
+	b        lbl_8003F44C
 
-	.loc_0xB0:
-	  lwz       r4, 0x8(r1)
-	  lbz       r0, 0x0(r4)
-	  cmpwi     r0, 0x5D
-	  beq-      .loc_0xCC
-	  fmr       f1, f31
-	  stw       r30, 0x0(r31)
-	  b         .loc_0x10C
+lbl_8003F3F0:
+	lwz      r4, 8(r1)
+	lbz      r0, 0(r4)
+	cmpwi    r0, 0x5d
+	beq      lbl_8003F40C
+	fmr      f1, f31
+	stw      r30, 0(r31)
+	b        lbl_8003F44C
 
-	.loc_0xCC:
-	  lwz       r0, 0x0(r31)
-	  cmplw     r0, r4
-	  bne-      .loc_0xE8
-	  addi      r0, r4, 0x1
-	  fmr       f1, f30
-	  stw       r0, 0x0(r31)
-	  b         .loc_0x10C
+lbl_8003F40C:
+	lwz      r0, 0(r31)
+	cmplw    r0, r4
+	bne      lbl_8003F428
+	addi     r0, r4, 1
+	fmr      f1, f30
+	stw      r0, 0(r31)
+	b        lbl_8003F44C
 
-	.loc_0xE8:
-	  xoris     r3, r3, 0x8000
-	  lis       r0, 0x4330
-	  stw       r3, 0x14(r1)
-	  addi      r3, r4, 0x1
-	  lfd       f1, -0x7B40(r2)
-	  stw       r0, 0x10(r1)
-	  lfd       f0, 0x10(r1)
-	  stw       r3, 0x0(r31)
-	  fsubs     f1, f0, f1
+lbl_8003F428:
+	xoris    r3, r3, 0x8000
+	lis      r0, 0x4330
+	stw      r3, 0x14(r1)
+	addi     r3, r4, 1
+	lfd      f1, lbl_80516820@sda21(r2)
+	stw      r0, 0x10(r1)
+	lfd      f0, 0x10(r1)
+	stw      r3, 0(r31)
+	fsubs    f1, f0, f1
 
-	.loc_0x10C:
-	  psq_l     f31,0x38(r1),0,0
-	  lfd       f31, 0x30(r1)
-	  psq_l     f30,0x28(r1),0,0
-	  lfd       f30, 0x20(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r0, 0x44(r1)
-	  lwz       r30, 0x18(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
+lbl_8003F44C:
+	psq_l    f31, 56(r1), 0, qr0
+	lfd      f31, 0x30(r1)
+	psq_l    f30, 40(r1), 0, qr0
+	lfd      f30, 0x20(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r0, 0x44(r1)
+	lwz      r30, 0x18(r1)
+	mtlr     r0
+	addi     r1, r1, 0x40
+	blr
 	*/
 }

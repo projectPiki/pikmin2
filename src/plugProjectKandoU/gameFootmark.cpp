@@ -1,3 +1,19 @@
+
+/*
+    Generated from dpostproc
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_80519418
+    lbl_80519418:
+        .4byte 0x00000000
+    .global lbl_8051941C
+    lbl_8051941C:
+        .4byte 0x41A00000
+    .global lbl_80519420
+    lbl_80519420:
+        .4byte 0x499C4000
+        .4byte 0x00000000
+*/
 #ifndef _GAME_FOOTMARK_H
 #define _GAME_FOOTMARK_H
 
@@ -220,30 +236,29 @@ void Footmarks::add(Game::Footmark&)
 void Footmarks::get(int)
 {
 	/*
-	.loc_0x0:
-	  cmpwi     r4, 0
-	  blt-      .loc_0x14
-	  lwz       r0, 0x8(r3)
-	  cmpw      r4, r0
-	  blt-      .loc_0x1C
+	cmpwi    r4, 0
+	blt      lbl_801B4980
+	lwz      r0, 8(r3)
+	cmpw     r4, r0
+	blt      lbl_801B4988
 
-	.loc_0x14:
-	  li        r3, 0
-	  blr
+lbl_801B4980:
+	li       r3, 0
+	blr
 
-	.loc_0x1C:
-	  lwz       r6, 0xC(r3)
-	  addi      r4, r4, 0x1
-	  lwz       r0, 0x4(r3)
-	  lwz       r5, 0x0(r3)
-	  add       r0, r6, r0
-	  sub       r3, r0, r4
-	  divw      r0, r3, r6
-	  mullw     r0, r0, r6
-	  sub       r0, r3, r0
-	  rlwinm    r0,r0,4,0,27
-	  add       r3, r5, r0
-	  blr
+lbl_801B4988:
+	lwz      r6, 0xc(r3)
+	addi     r4, r4, 1
+	lwz      r0, 4(r3)
+	lwz      r5, 0(r3)
+	add      r0, r6, r0
+	subf     r3, r4, r0
+	divw     r0, r3, r6
+	mullw    r0, r0, r6
+	subf     r0, r0, r3
+	slwi     r0, r0, 4
+	add      r3, r5, r0
+	blr
 	*/
 }
 
@@ -267,67 +282,66 @@ void findNearest__Q24Game9FootmarksFR10Vector3f i(void)
 void findNearest2__Q24Game9FootmarksFR10Vector3f i(void)
 {
 	/*
-	.loc_0x0:
-	  lwz       r6, 0x8(r3)
-	  li        r8, -0x1
-	  lfs       f5, -0x4F40(r2)
-	  li        r9, 0
-	  subic.    r0, r6, 0x1
-	  mtctr     r0
-	  ble-      .loc_0xA8
+	lwz      r6, 8(r3)
+	li       r8, -1
+	lfs      f5, lbl_80519420@sda21(r2)
+	li       r9, 0
+	addic.   r0, r6, -1
+	mtctr    r0
+	ble      lbl_801B4A60
 
-	.loc_0x1C:
-	  lwz       r0, 0x4(r3)
-	  cmpwi     r5, -0x1
-	  lwz       r6, 0xC(r3)
-	  add       r7, r0, r9
-	  divw      r0, r7, r6
-	  mullw     r0, r0, r6
-	  sub       r10, r7, r0
-	  beq-      .loc_0x54
-	  rlwinm    r6,r10,4,0,27
-	  lwz       r7, 0x0(r3)
-	  addi      r0, r6, 0xC
-	  lwzx      r0, r7, r0
-	  cmpw      r0, r5
-	  ble-      .loc_0xA0
+lbl_801B49D4:
+	lwz      r0, 4(r3)
+	cmpwi    r5, -1
+	lwz      r6, 0xc(r3)
+	add      r7, r0, r9
+	divw     r0, r7, r6
+	mullw    r0, r0, r6
+	subf     r10, r0, r7
+	beq      lbl_801B4A0C
+	slwi     r6, r10, 4
+	lwz      r7, 0(r3)
+	addi     r0, r6, 0xc
+	lwzx     r0, r7, r0
+	cmpw     r0, r5
+	ble      lbl_801B4A58
 
-	.loc_0x54:
-	  lwz       r6, 0x0(r3)
-	  rlwinm    r0,r10,4,0,27
-	  lfs       f3, 0x4(r4)
-	  add       r6, r6, r0
-	  lfs       f1, 0x0(r4)
-	  lfs       f2, 0x4(r6)
-	  lfs       f0, 0x0(r6)
-	  fsubs     f4, f3, f2
-	  lfs       f3, 0x8(r4)
-	  lfs       f2, 0x8(r6)
-	  fsubs     f1, f1, f0
-	  fmuls     f0, f4, f4
-	  fsubs     f2, f3, f2
-	  fmadds    f0, f1, f1, f0
-	  fmadds    f0, f2, f2, f0
-	  fcmpo     cr0, f0, f5
-	  bge-      .loc_0xA0
-	  fmr       f5, f0
-	  mr        r8, r10
+lbl_801B4A0C:
+	lwz      r6, 0(r3)
+	slwi     r0, r10, 4
+	lfs      f3, 4(r4)
+	add      r6, r6, r0
+	lfs      f1, 0(r4)
+	lfs      f2, 4(r6)
+	lfs      f0, 0(r6)
+	fsubs    f4, f3, f2
+	lfs      f3, 8(r4)
+	lfs      f2, 8(r6)
+	fsubs    f1, f1, f0
+	fmuls    f0, f4, f4
+	fsubs    f2, f3, f2
+	fmadds   f0, f1, f1, f0
+	fmadds   f0, f2, f2, f0
+	fcmpo    cr0, f0, f5
+	bge      lbl_801B4A58
+	fmr      f5, f0
+	mr       r8, r10
 
-	.loc_0xA0:
-	  addi      r9, r9, 0x1
-	  bdnz+     .loc_0x1C
+lbl_801B4A58:
+	addi     r9, r9, 1
+	bdnz     lbl_801B49D4
 
-	.loc_0xA8:
-	  cmpwi     r8, -0x1
-	  beq-      .loc_0xC0
-	  lwz       r3, 0x0(r3)
-	  rlwinm    r0,r8,4,0,27
-	  add       r3, r3, r0
-	  blr
+lbl_801B4A60:
+	cmpwi    r8, -1
+	beq      lbl_801B4A78
+	lwz      r3, 0(r3)
+	slwi     r0, r8, 4
+	add      r3, r3, r0
+	blr
 
-	.loc_0xC0:
-	  li        r3, 0
-	  blr
+lbl_801B4A78:
+	li       r3, 0
+	blr
 	*/
 }
 

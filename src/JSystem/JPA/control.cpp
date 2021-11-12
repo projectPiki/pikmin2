@@ -1,6 +1,19 @@
 #include "types.h"
 
 /*
+    Generated from dpostproc
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__Q217JStudio_JParticle13TCreateObject
+    __vt__Q217JStudio_JParticle13TCreateObject:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q217JStudio_JParticle13TCreateObjectFv
+        .4byte
+   create__Q217JStudio_JParticle13TCreateObjectFPPQ27JStudio7TObjectRCQ47JStudio3stb4data20TParse_TBlock_object
+*/
+
+/*
  * --INFO--
  * Address:	80006220
  * Size:	0000CC
@@ -85,33 +98,32 @@ void createObject_PARTICLE_JPA___Q217JStudio_JParticle21 @unnamed @control_cpp
 JStudio_JParticle::TCreateObject::~TCreateObject(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x44
-	  lis       r5, 0x804A
-	  li        r4, 0
-	  subi      r0, r5, 0x1D28
-	  stw       r0, 0x0(r30)
-	  bl        0x699C
-	  extsh.    r0, r31
-	  ble-      .loc_0x44
-	  mr        r3, r30
-	  bl        0x1DD88
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_80006330
+	lis      r5, __vt__Q217JStudio_JParticle13TCreateObject@ha
+	li       r4, 0
+	addi     r0, r5, __vt__Q217JStudio_JParticle13TCreateObject@l
+	stw      r0, 0(r30)
+	bl       __dt__Q27JStudio13TCreateObjectFv
+	extsh.   r0, r31
+	ble      lbl_80006330
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x44:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80006330:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 

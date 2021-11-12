@@ -1,5 +1,70 @@
 #include "types.h"
 
+/*
+    Generated from dpostproc
+
+    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
+    .4byte __sinit_ogCounterRV_cpp
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__Q32og6Screen18CallBack_CounterRV
+    __vt__Q32og6Screen18CallBack_CounterRV:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q32og6Screen18CallBack_CounterRVFv
+        .4byte getChildCount__5CNodeFv
+        .4byte update__Q32og6Screen18CallBack_CounterRVFv
+        .4byte
+   draw__Q32og6Screen18CallBack_CounterRVFR8GraphicsR14J2DGrafContext .4byte
+   doInit__Q29P2DScreen4NodeFv .4byte
+   init__Q32og6Screen18CallBack_CounterRVFP9J2DScreenUxUxUxPUlb .4byte
+   show__Q32og6Screen18CallBack_CounterRVFv .4byte
+   hide__Q32og6Screen18CallBack_CounterRVFv .4byte
+   setValue__Q32og6Screen18CallBack_CounterRVFbb .4byte
+   setValue__Q32og6Screen18CallBack_CounterRVFv
+
+    .section .bss  # 0x804EFC20 - 0x8051467C
+    .global msVal__Q32og6Screen18CallBack_CounterRV
+    msVal__Q32og6Screen18CallBack_CounterRV:
+        .skip 0xC
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_8051D6A0
+    lbl_8051D6A0:
+        .4byte 0x00000000
+    .global lbl_8051D6A4
+    lbl_8051D6A4:
+        .4byte 0x3CCCCCCD
+    .global lbl_8051D6A8
+    lbl_8051D6A8:
+        .4byte 0x43300000
+        .4byte 0x80000000
+    .global lbl_8051D6B0
+    lbl_8051D6B0:
+        .float 1.0
+        .4byte 0x00000000
+    .global lbl_8051D6B8
+    lbl_8051D6B8:
+        .4byte 0x40240000
+        .4byte 0x00000000
+    .global lbl_8051D6C0
+    lbl_8051D6C0:
+        .4byte 0x47000000
+    .global lbl_8051D6C4
+    lbl_8051D6C4:
+        .4byte 0x41100000
+    .global lbl_8051D6C8
+    lbl_8051D6C8:
+        .float 0.5
+    .global lbl_8051D6CC
+    lbl_8051D6CC:
+        .4byte 0x41F00000
+    .global lbl_8051D6D0
+    lbl_8051D6D0:
+        .4byte 0x3F4CCCCD
+        .4byte 0x00000000
+*/
+
 namespace og {
 
 namespace Screen {
@@ -157,25 +222,24 @@ namespace Screen {
 	void CallBack_CounterRV::show(void)
 	{
 		/*
-		.loc_0x0:
-		  stwu      r1, -0x10(r1)
-		  mflr      r0
-		  stw       r0, 0x14(r1)
-		  lbz       r0, 0x87(r3)
-		  cmplwi    r0, 0
-		  beq-      .loc_0x30
-		  li        r0, 0
-		  stb       r0, 0x87(r3)
-		  lwz       r12, 0x0(r3)
-		  lwz       r12, 0x2C(r12)
-		  mtctr     r12
-		  bctrl
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lbz      r0, 0x87(r3)
+	cmplwi   r0, 0
+	beq      lbl_8030B734
+	li       r0, 0
+	stb      r0, 0x87(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x2c(r12)
+	mtctr    r12
+	bctrl
 
-		.loc_0x30:
-		  lwz       r0, 0x14(r1)
-		  mtlr      r0
-		  addi      r1, r1, 0x10
-		  blr
+lbl_8030B734:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 		*/
 	}
 
@@ -187,20 +251,19 @@ namespace Screen {
 	void CallBack_CounterRV::setValue(void)
 	{
 		/*
-		.loc_0x0:
-		  stwu      r1, -0x10(r1)
-		  mflr      r0
-		  li        r4, 0
-		  li        r5, 0
-		  stw       r0, 0x14(r1)
-		  lwz       r12, 0x0(r3)
-		  lwz       r12, 0x28(r12)
-		  mtctr     r12
-		  bctrl
-		  lwz       r0, 0x14(r1)
-		  mtlr      r0
-		  addi      r1, r1, 0x10
-		  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	li       r4, 0
+	li       r5, 0
+	stw      r0, 0x14(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x28(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 		*/
 	}
 
@@ -212,31 +275,30 @@ namespace Screen {
 	void CallBack_CounterRV::hide(void)
 	{
 		/*
-		.loc_0x0:
-		  li        r0, 0x1
-		  li        r6, 0
-		  stb       r0, 0x87(r3)
-		  mr        r5, r6
-		  li        r7, 0
-		  b         .loc_0x38
+	li       r0, 1
+	li       r6, 0
+	stb      r0, 0x87(r3)
+	mr       r5, r6
+	li       r7, 0
+	b        lbl_8030B7B0
 
-		.loc_0x18:
-		  lwz       r4, 0x7C(r3)
-		  lwzx      r4, r4, r6
-		  cmplwi    r4, 0
-		  beq-      .loc_0x30
-		  lwz       r4, 0x0(r4)
-		  stb       r5, 0xB0(r4)
+lbl_8030B790:
+	lwz      r4, 0x7c(r3)
+	lwzx     r4, r4, r6
+	cmplwi   r4, 0
+	beq      lbl_8030B7A8
+	lwz      r4, 0(r4)
+	stb      r5, 0xb0(r4)
 
-		.loc_0x30:
-		  addi      r6, r6, 0x4
-		  addi      r7, r7, 0x1
+lbl_8030B7A8:
+	addi     r6, r6, 4
+	addi     r7, r7, 1
 
-		.loc_0x38:
-		  lhz       r0, 0x2E(r3)
-		  cmpw      r7, r0
-		  blt+      .loc_0x18
-		  blr
+lbl_8030B7B0:
+	lhz      r0, 0x2e(r3)
+	cmpw     r7, r0
+	blt      lbl_8030B790
+	blr
 		*/
 	}
 
@@ -248,13 +310,12 @@ namespace Screen {
 	void CallBack_CounterRV::getMotherPane(void)
 	{
 		/*
-		.loc_0x0:
-		  lbz       r0, 0x88(r3)
-		  lwz       r3, 0x78(r3)
-		  cmplwi    r0, 0
-		  bnelr-
-		  li        r3, 0
-		  blr
+	lbz      r0, 0x88(r3)
+	lwz      r3, 0x78(r3)
+	cmplwi   r0, 0
+	bnelr
+	li       r3, 0
+	blr
 		*/
 	}
 
@@ -330,70 +391,69 @@ namespace Screen {
 	void CallBack_CounterRV::startPuyoUp(float)
 	{
 		/*
-		.loc_0x0:
-		  stwu      r1, -0x60(r1)
-		  mflr      r0
-		  stw       r0, 0x64(r1)
-		  stfd      f31, 0x50(r1)
-		  psq_st    f31,0x58(r1),0,0
-		  stfd      f30, 0x40(r1)
-		  psq_st    f30,0x48(r1),0,0
-		  stfd      f29, 0x30(r1)
-		  psq_st    f29,0x38(r1),0,0
-		  stmw      r26, 0x18(r1)
-		  mr        r26, r3
-		  li        r0, 0x1
-		  stb       r0, 0x84(r3)
-		  fmr       f29, f1
-		  lhz       r4, 0x2C(r3)
-		  lhz       r0, 0x2E(r3)
-		  cmplw     r4, r0
-		  blt-      .loc_0x4C
-		  mr        r4, r0
+	stwu     r1, -0x60(r1)
+	mflr     r0
+	stw      r0, 0x64(r1)
+	stfd     f31, 0x50(r1)
+	psq_st   f31, 88(r1), 0, qr0
+	stfd     f30, 0x40(r1)
+	psq_st   f30, 72(r1), 0, qr0
+	stfd     f29, 0x30(r1)
+	psq_st   f29, 56(r1), 0, qr0
+	stmw     r26, 0x18(r1)
+	mr       r26, r3
+	li       r0, 1
+	stb      r0, 0x84(r3)
+	fmr      f29, f1
+	lhz      r4, 0x2c(r3)
+	lhz      r0, 0x2e(r3)
+	cmplw    r4, r0
+	blt      lbl_8030B844
+	mr       r4, r0
 
-		.loc_0x4C:
-		  lis       r3, 0x8051
-		  lfs       f30, -0xCBC(r2)
-		  lfd       f31, -0xCB8(r2)
-		  addi      r30, r3, 0x3C0C
-		  rlwinm    r28,r4,0,16,31
-		  li        r27, 0
-		  li        r29, 0
-		  lis       r31, 0x4330
-		  b         .loc_0xB0
+lbl_8030B844:
+	lis      r3, msVal__Q32og6Screen18CallBack_CounterRV@ha
+	lfs      f30, lbl_8051D6A4@sda21(r2)
+	lfd      f31, lbl_8051D6A8@sda21(r2)
+	addi     r30, r3, msVal__Q32og6Screen18CallBack_CounterRV@l
+	clrlwi   r28, r4, 0x10
+	li       r27, 0
+	li       r29, 0
+	lis      r31, 0x4330
+	b        lbl_8030B8A8
 
-		.loc_0x70:
-		  xoris     r0, r27, 0x8000
-		  lwz       r3, 0x7C(r26)
-		  stw       r0, 0xC(r1)
-		  lwzx      r3, r3, r29
-		  stw       r31, 0x8(r1)
-		  lwz       r3, 0x8(r3)
-		  lfd       f0, 0x8(r1)
-		  lfs       f1, 0x0(r30)
-		  fsubs     f0, f0, f31
-		  lfs       f2, 0x4(r30)
-		  lfs       f3, 0x8(r30)
-		  fmuls     f0, f30, f0
-		  fmuls     f4, f0, f29
-		  bl        0x1D63C
-		  addi      r29, r29, 0x4
-		  addi      r27, r27, 0x1
+lbl_8030B868:
+	xoris    r0, r27, 0x8000
+	lwz      r3, 0x7c(r26)
+	stw      r0, 0xc(r1)
+	lwzx     r3, r3, r29
+	stw      r31, 8(r1)
+	lwz      r3, 8(r3)
+	lfd      f0, 8(r1)
+	lfs      f1, 0(r30)
+	fsubs    f0, f0, f31
+	lfs      f2, 4(r30)
+	lfs      f3, 8(r30)
+	fmuls    f0, f30, f0
+	fmuls    f4, f0, f29
+	bl       up__Q32og6Screen8ScaleMgrFffff
+	addi     r29, r29, 4
+	addi     r27, r27, 1
 
-		.loc_0xB0:
-		  cmpw      r27, r28
-		  blt+      .loc_0x70
-		  psq_l     f31,0x58(r1),0,0
-		  lfd       f31, 0x50(r1)
-		  psq_l     f30,0x48(r1),0,0
-		  lfd       f30, 0x40(r1)
-		  psq_l     f29,0x38(r1),0,0
-		  lfd       f29, 0x30(r1)
-		  lmw       r26, 0x18(r1)
-		  lwz       r0, 0x64(r1)
-		  mtlr      r0
-		  addi      r1, r1, 0x60
-		  blr
+lbl_8030B8A8:
+	cmpw     r27, r28
+	blt      lbl_8030B868
+	psq_l    f31, 88(r1), 0, qr0
+	lfd      f31, 0x50(r1)
+	psq_l    f30, 72(r1), 0, qr0
+	lfd      f30, 0x40(r1)
+	psq_l    f29, 56(r1), 0, qr0
+	lfd      f29, 0x30(r1)
+	lmw      r26, 0x18(r1)
+	lwz      r0, 0x64(r1)
+	mtlr     r0
+	addi     r1, r1, 0x60
+	blr
 		*/
 	}
 
@@ -780,165 +840,162 @@ namespace Screen {
 	void CallBack_CounterRV::setKetaSub(int, bool, bool)
 	{
 		/*
-		.loc_0x0:
-		  stwu      r1, -0x50(r1)
-		  mflr      r0
-		  stw       r0, 0x54(r1)
-		  stfd      f31, 0x40(r1)
-		  psq_st    f31,0x48(r1),0,0
-		  stmw      r24, 0x20(r1)
-		  lis       r7, 0xCCCD
-		  lfd       f31, -0xCB8(r2)
-		  mr        r24, r3
-		  mr        r25, r4
-		  mr        r26, r5
-		  mr        r27, r6
-		  subi      r31, r7, 0x3333
-		  li        r28, 0
-		  li        r29, 0
-		  lis       r30, 0x4330
-		  b         .loc_0x1F8
+	stwu     r1, -0x50(r1)
+	mflr     r0
+	stw      r0, 0x54(r1)
+	stfd     f31, 0x40(r1)
+	psq_st   f31, 72(r1), 0, qr0
+	stmw     r24, 0x20(r1)
+	lis      r7, 0xCCCCCCCD@ha
+	lfd      f31, lbl_8051D6A8@sda21(r2)
+	mr       r24, r3
+	mr       r25, r4
+	mr       r26, r5
+	mr       r27, r6
+	addi     r31, r7, 0xCCCCCCCD@l
+	li       r28, 0
+	li       r29, 0
+	lis      r30, 0x4330
+	b        lbl_8030BFAC
 
-		.loc_0x44:
-		  xoris     r0, r28, 0x8000
-		  stw       r30, 0x8(r1)
-		  lfd       f1, -0xCA8(r2)
-		  stw       r0, 0xC(r1)
-		  lfd       f0, 0x8(r1)
-		  fsub      f2, f0, f31
-		  bl        -0x23C404
-		  bl        -0x24A2C8
-		  lwz       r4, 0x24(r24)
-		  lbz       r0, 0x86(r24)
-		  divwu     r3, r4, r3
-		  cmplwi    r0, 0
-		  mulhwu    r0, r31, r3
-		  rlwinm    r0,r0,29,3,31
-		  mulli     r0, r0, 0xA
-		  sub       r0, r3, r0
-		  rlwinm    r5,r0,0,16,31
-		  beq-      .loc_0xA4
-		  lwz       r3, 0x7C(r24)
-		  li        r5, 0xA
-		  lwz       r4, 0x80(r24)
-		  lwzx      r3, r3, r29
-		  bl        -0x5EF0
-		  b         .loc_0x114
+lbl_8030BDF8:
+	xoris    r0, r28, 0x8000
+	stw      r30, 8(r1)
+	lfd      f1, lbl_8051D6B8@sda21(r2)
+	stw      r0, 0xc(r1)
+	lfd      f0, 8(r1)
+	fsub     f2, f0, f31
+	bl       pow
+	bl       __cvt_fp2unsigned
+	lwz      r4, 0x24(r24)
+	lbz      r0, 0x86(r24)
+	divwu    r3, r4, r3
+	cmplwi   r0, 0
+	mulhwu   r0, r31, r3
+	srwi     r0, r0, 3
+	mulli    r0, r0, 0xa
+	subf     r0, r0, r3
+	clrlwi   r5, r0, 0x10
+	beq      lbl_8030BE58
+	lwz      r3, 0x7c(r24)
+	li       r5, 0xa
+	lwz      r4, 0x80(r24)
+	lwzx     r3, r3, r29
+	bl       setSuji__Q32og6Screen11CounterKetaFPP7ResTIMGUl
+	b        lbl_8030BEC8
 
-		.loc_0xA4:
-		  lbz       r0, 0x89(r24)
-		  cmplwi    r0, 0
-		  beq-      .loc_0x104
-		  bl        -0x2428C4
-		  xoris     r3, r3, 0x8000
-		  lis       r0, 0x4330
-		  stw       r3, 0xC(r1)
-		  lwz       r3, 0x7C(r24)
-		  stw       r0, 0x8(r1)
-		  lfd       f2, -0xCB8(r2)
-		  lfd       f0, 0x8(r1)
-		  lfs       f1, -0xCA0(r2)
-		  fsubs     f2, f0, f2
-		  lfs       f0, -0xC9C(r2)
-		  lwzx      r3, r3, r29
-		  lwz       r4, 0x80(r24)
-		  fdivs     f1, f2, f1
-		  fmuls     f0, f0, f1
-		  fctiwz    f0, f0
-		  stfd      f0, 0x10(r1)
-		  lwz       r0, 0x14(r1)
-		  rlwinm    r5,r0,0,16,31
-		  bl        -0x5F50
-		  b         .loc_0x114
+lbl_8030BE58:
+	lbz      r0, 0x89(r24)
+	cmplwi   r0, 0
+	beq      lbl_8030BEB8
+	bl       rand
+	xoris    r3, r3, 0x8000
+	lis      r0, 0x4330
+	stw      r3, 0xc(r1)
+	lwz      r3, 0x7c(r24)
+	stw      r0, 8(r1)
+	lfd      f2, lbl_8051D6A8@sda21(r2)
+	lfd      f0, 8(r1)
+	lfs      f1, lbl_8051D6C0@sda21(r2)
+	fsubs    f2, f0, f2
+	lfs      f0, lbl_8051D6C4@sda21(r2)
+	lwzx     r3, r3, r29
+	lwz      r4, 0x80(r24)
+	fdivs    f1, f2, f1
+	fmuls    f0, f0, f1
+	fctiwz   f0, f0
+	stfd     f0, 0x10(r1)
+	lwz      r0, 0x14(r1)
+	clrlwi   r5, r0, 0x10
+	bl       setSuji__Q32og6Screen11CounterKetaFPP7ResTIMGUl
+	b        lbl_8030BEC8
 
-		.loc_0x104:
-		  lwz       r3, 0x7C(r24)
-		  lwz       r4, 0x80(r24)
-		  lwzx      r3, r3, r29
-		  bl        -0x5F64
+lbl_8030BEB8:
+	lwz      r3, 0x7c(r24)
+	lwz      r4, 0x80(r24)
+	lwzx     r3, r3, r29
+	bl       setSuji__Q32og6Screen11CounterKetaFPP7ResTIMGUl
 
-		.loc_0x114:
-		  cmpw      r28, r25
-		  bge-      .loc_0x1D4
-		  lwz       r4, 0x7C(r24)
-		  li        r0, 0x1
-		  addi      r3, r28, 0x1
-		  lwzx      r4, r4, r29
-		  lwz       r4, 0x0(r4)
-		  stb       r0, 0xB0(r4)
-		  lhz       r0, 0x2C(r24)
-		  lbz       r4, 0x64(r24)
-		  cmpw      r3, r0
-		  ble-      .loc_0x154
-		  lbz       r0, 0x86(r24)
-		  cmplwi    r0, 0
-		  bne-      .loc_0x154
-		  lbz       r4, 0x90(r24)
+lbl_8030BEC8:
+	cmpw     r28, r25
+	bge      lbl_8030BF88
+	lwz      r4, 0x7c(r24)
+	li       r0, 1
+	addi     r3, r28, 1
+	lwzx     r4, r4, r29
+	lwz      r4, 0(r4)
+	stb      r0, 0xb0(r4)
+	lhz      r0, 0x2c(r24)
+	lbz      r4, 0x64(r24)
+	cmpw     r3, r0
+	ble      lbl_8030BF08
+	lbz      r0, 0x86(r24)
+	cmplwi   r0, 0
+	bne      lbl_8030BF08
+	lbz      r4, 0x90(r24)
 
-		.loc_0x154:
-		  lwz       r3, 0x7C(r24)
-		  lwzx      r3, r3, r29
-		  lwz       r3, 0x0(r3)
-		  lwz       r12, 0x0(r3)
-		  lwz       r12, 0x24(r12)
-		  mtctr     r12
-		  bctrl
-		  lhz       r0, 0x2C(r24)
-		  addi      r3, r28, 0x1
-		  cmpw      r3, r0
-		  bgt-      .loc_0x198
-		  mr        r3, r24
-		  mr        r4, r28
-		  mr        r5, r26
-		  mr        r6, r27
-		  bl        .loc_0x220
-		  b         .loc_0x1C4
+lbl_8030BF08:
+	lwz      r3, 0x7c(r24)
+	lwzx     r3, r3, r29
+	lwz      r3, 0(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x24(r12)
+	mtctr    r12
+	bctrl
+	lhz      r0, 0x2c(r24)
+	addi     r3, r28, 1
+	cmpw     r3, r0
+	bgt      lbl_8030BF4C
+	mr       r3, r24
+	mr       r4, r28
+	mr       r5, r26
+	mr       r6, r27
+	bl       setCounterUpDown__Q32og6Screen18CallBack_CounterRVFibb
+	b        lbl_8030BF78
 
-		.loc_0x198:
-		  lbz       r0, 0x86(r24)
-		  cmplwi    r0, 0
-		  bne-      .loc_0x1C4
-		  lbz       r0, 0x85(r24)
-		  cmplwi    r0, 0
-		  beq-      .loc_0x1C4
-		  mr        r3, r24
-		  mr        r4, r28
-		  mr        r5, r26
-		  mr        r6, r27
-		  bl        .loc_0x220
+lbl_8030BF4C:
+	lbz      r0, 0x86(r24)
+	cmplwi   r0, 0
+	bne      lbl_8030BF78
+	lbz      r0, 0x85(r24)
+	cmplwi   r0, 0
+	beq      lbl_8030BF78
+	mr       r3, r24
+	mr       r4, r28
+	mr       r5, r26
+	mr       r6, r27
+	bl       setCounterUpDown__Q32og6Screen18CallBack_CounterRVFibb
 
-		.loc_0x1C4:
-		  lwz       r3, 0x7C(r24)
-		  lwzx      r3, r3, r29
-		  bl        -0x5FD0
-		  b         .loc_0x1F0
+lbl_8030BF78:
+	lwz      r3, 0x7c(r24)
+	lwzx     r3, r3, r29
+	bl       calcScale__Q32og6Screen11CounterKetaFv
+	b        lbl_8030BFA4
 
-		.loc_0x1D4:
-		  lwz       r3, 0x7C(r24)
-		  lwzx      r3, r3, r29
-		  lwz       r3, 0x0(r3)
-		  cmplwi    r3, 0
-		  beq-      .loc_0x1F0
-		  li        r0, 0
-		  stb       r0, 0xB0(r3)
+lbl_8030BF88:
+	lwz      r3, 0x7c(r24)
+	lwzx     r3, r3, r29
+	lwz      r3, 0(r3)
+	cmplwi   r3, 0
+	beq      lbl_8030BFA4
+	li       r0, 0
+	stb      r0, 0xb0(r3)
 
-		.loc_0x1F0:
-		  addi      r29, r29, 0x4
-		  addi      r28, r28, 0x1
+lbl_8030BFA4:
+	addi     r29, r29, 4
+	addi     r28, r28, 1
 
-		.loc_0x1F8:
-		  lhz       r0, 0x2E(r24)
-		  cmpw      r28, r0
-		  blt+      .loc_0x44
-		  psq_l     f31,0x48(r1),0,0
-		  lfd       f31, 0x40(r1)
-		  lmw       r24, 0x20(r1)
-		  lwz       r0, 0x54(r1)
-		  mtlr      r0
-		  addi      r1, r1, 0x50
-		  blr
-
-		.loc_0x220:
+lbl_8030BFAC:
+	lhz      r0, 0x2e(r24)
+	cmpw     r28, r0
+	blt      lbl_8030BDF8
+	psq_l    f31, 72(r1), 0, qr0
+	lfd      f31, 0x40(r1)
+	lmw      r24, 0x20(r1)
+	lwz      r0, 0x54(r1)
+	mtlr     r0
+	addi     r1, r1, 0x50
+	blr
 		*/
 	}
 
@@ -950,55 +1007,54 @@ namespace Screen {
 	void CallBack_CounterRV::setCounterUpDown(int, bool, bool)
 	{
 		/*
-		.loc_0x0:
-		  stwu      r1, -0x20(r1)
-		  mflr      r0
-		  stw       r0, 0x24(r1)
-		  rlwinm.   r0,r5,0,24,31
-		  stw       r31, 0x1C(r1)
-		  mr        r31, r3
-		  lwz       r5, 0x7C(r3)
-		  rlwinm    r3,r4,2,0,29
-		  lwzx      r3, r5, r3
-		  lwz       r3, 0x8(r3)
-		  beq-      .loc_0x7C
-		  xoris     r4, r4, 0x8000
-		  lis       r0, 0x4330
-		  stw       r4, 0xC(r1)
-		  lis       r4, 0x8051
-		  lfsu      f1, 0x3C0C(r4)
-		  stw       r0, 0x8(r1)
-		  lfd       f2, -0xCB8(r2)
-		  lfd       f0, 0x8(r1)
-		  lfs       f4, -0xCBC(r2)
-		  fsubs     f0, f0, f2
-		  lfs       f2, 0x4(r4)
-		  lfs       f3, 0x8(r4)
-		  fmuls     f4, f4, f0
-		  bl        0x1CEA4
-		  lwz       r4, 0x94(r31)
-		  cmplwi    r4, 0
-		  beq-      .loc_0x9C
-		  lwz       r3, -0x6858(r13)
-		  bl        0x968
-		  b         .loc_0x9C
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	clrlwi.  r0, r5, 0x18
+	stw      r31, 0x1c(r1)
+	mr       r31, r3
+	lwz      r5, 0x7c(r3)
+	slwi     r3, r4, 2
+	lwzx     r3, r5, r3
+	lwz      r3, 8(r3)
+	beq      lbl_8030C050
+	xoris    r4, r4, 0x8000
+	lis      r0, 0x4330
+	stw      r4, 0xc(r1)
+	lis      r4, msVal__Q32og6Screen18CallBack_CounterRV@ha
+	lfsu     f1, msVal__Q32og6Screen18CallBack_CounterRV@l(r4)
+	stw      r0, 8(r1)
+	lfd      f2, lbl_8051D6A8@sda21(r2)
+	lfd      f0, 8(r1)
+	lfs      f4, lbl_8051D6A4@sda21(r2)
+	fsubs    f0, f0, f2
+	lfs      f2, 4(r4)
+	lfs      f3, 8(r4)
+	fmuls    f4, f4, f0
+	bl       up__Q32og6Screen8ScaleMgrFffff
+	lwz      r4, 0x94(r31)
+	cmplwi   r4, 0
+	beq      lbl_8030C070
+	lwz      r3, ogSound__2og@sda21(r13)
+	bl       setSE__Q22og5SoundFUl
+	b        lbl_8030C070
 
-		.loc_0x7C:
-		  rlwinm.   r0,r6,0,24,31
-		  beq-      .loc_0x9C
-		  bl        0x1CE38
-		  lwz       r4, 0x98(r31)
-		  cmplwi    r4, 0
-		  beq-      .loc_0x9C
-		  lwz       r3, -0x6858(r13)
-		  bl        0x944
+lbl_8030C050:
+	clrlwi.  r0, r6, 0x18
+	beq      lbl_8030C070
+	bl       down__Q32og6Screen8ScaleMgrFv
+	lwz      r4, 0x98(r31)
+	cmplwi   r4, 0
+	beq      lbl_8030C070
+	lwz      r3, ogSound__2og@sda21(r13)
+	bl       setSE__Q22og5SoundFUl
 
-		.loc_0x9C:
-		  lwz       r0, 0x24(r1)
-		  lwz       r31, 0x1C(r1)
-		  mtlr      r0
-		  addi      r1, r1, 0x20
-		  blr
+lbl_8030C070:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 		*/
 	}
 
@@ -1010,289 +1066,288 @@ namespace Screen {
 	void CallBack_CounterRV::setValue(bool, bool)
 	{
 		/*
-		.loc_0x0:
-		  stwu      r1, -0x80(r1)
-		  mflr      r0
-		  stw       r0, 0x84(r1)
-		  stfd      f31, 0x70(r1)
-		  psq_st    f31,0x78(r1),0,0
-		  stfd      f30, 0x60(r1)
-		  psq_st    f30,0x68(r1),0,0
-		  stfd      f29, 0x50(r1)
-		  psq_st    f29,0x58(r1),0,0
-		  stw       r31, 0x4C(r1)
-		  stw       r30, 0x48(r1)
-		  stw       r29, 0x44(r1)
-		  stw       r28, 0x40(r1)
-		  mr        r31, r3
-		  mr        r30, r4
-		  lbz       r0, 0x87(r3)
-		  mr        r28, r5
-		  cmplwi    r0, 0
-		  bne-      .loc_0x3C0
-		  lbz       r0, 0x86(r31)
-		  cmplwi    r0, 0
-		  beq-      .loc_0x64
-		  li        r0, 0
-		  stw       r0, 0x24(r31)
-		  stw       r0, 0x28(r31)
+	stwu     r1, -0x80(r1)
+	mflr     r0
+	stw      r0, 0x84(r1)
+	stfd     f31, 0x70(r1)
+	psq_st   f31, 120(r1), 0, qr0
+	stfd     f30, 0x60(r1)
+	psq_st   f30, 104(r1), 0, qr0
+	stfd     f29, 0x50(r1)
+	psq_st   f29, 88(r1), 0, qr0
+	stw      r31, 0x4c(r1)
+	stw      r30, 0x48(r1)
+	stw      r29, 0x44(r1)
+	stw      r28, 0x40(r1)
+	mr       r31, r3
+	mr       r30, r4
+	lbz      r0, 0x87(r3)
+	mr       r28, r5
+	cmplwi   r0, 0
+	bne      lbl_8030C444
+	lbz      r0, 0x86(r31)
+	cmplwi   r0, 0
+	beq      lbl_8030C0E8
+	li       r0, 0
+	stw      r0, 0x24(r31)
+	stw      r0, 0x28(r31)
 
-		.loc_0x64:
-		  lwz       r3, 0x24(r31)
-		  bl        -0x972C
-		  sth       r3, 0x2C(r31)
-		  lhz       r29, 0x2C(r31)
-		  lhz       r0, 0x30(r31)
-		  cmpw      r29, r0
-		  bge-      .loc_0x84
-		  mr        r29, r0
+lbl_8030C0E8:
+	lwz      r3, 0x24(r31)
+	bl       CalcKeta__Q22og6ScreenFUl
+	sth      r3, 0x2c(r31)
+	lhz      r29, 0x2c(r31)
+	lhz      r0, 0x30(r31)
+	cmpw     r29, r0
+	bge      lbl_8030C108
+	mr       r29, r0
 
-		.loc_0x84:
-		  mr        r3, r31
-		  mr        r4, r29
-		  mr        r5, r30
-		  mr        r6, r28
-		  bl        -0x364
-		  lhz       r0, 0x2E(r31)
-		  rlwinm    r3,r29,0,16,31
-		  cmplw     r3, r0
-		  ble-      .loc_0xAC
-		  mr        r3, r0
+lbl_8030C108:
+	mr       r3, r31
+	mr       r4, r29
+	mr       r5, r30
+	mr       r6, r28
+	bl       setKetaSub__Q32og6Screen18CallBack_CounterRVFibb
+	lhz      r0, 0x2e(r31)
+	clrlwi   r3, r29, 0x10
+	cmplw    r3, r0
+	ble      lbl_8030C130
+	mr       r3, r0
 
-		.loc_0xAC:
-		  lfs       f0, -0xCC0(r2)
-		  rlwinm    r3,r3,0,16,31
-		  lfs       f4, -0xCB0(r2)
-		  cmplwi    r3, 0x2
-		  stfs      f0, 0xA4(r31)
-		  stfs      f4, 0x3C(r31)
-		  blt-      .loc_0x124
-		  subi      r3, r3, 0x1
-		  lis       r0, 0x4330
-		  xoris     r3, r3, 0x8000
-		  stw       r0, 0x30(r1)
-		  lfd       f2, -0xCB8(r2)
-		  stw       r3, 0x34(r1)
-		  lfs       f3, 0x34(r31)
-		  lfd       f1, 0x30(r1)
-		  lfs       f0, 0x48(r31)
-		  fsubs     f1, f1, f2
-		  lfs       f2, 0x38(r31)
-		  fmadds    f0, f3, f1, f0
-		  fcmpo     cr0, f0, f2
-		  ble-      .loc_0x124
-		  fdivs     f0, f2, f0
-		  lfs       f1, -0xC98(r2)
-		  stfs      f0, 0x3C(r31)
-		  lfs       f2, 0x48(r31)
-		  lfs       f0, 0x3C(r31)
-		  fmuls     f1, f2, f1
-		  fsubs     f0, f4, f0
-		  fmuls     f0, f1, f0
-		  stfs      f0, 0xA4(r31)
+lbl_8030C130:
+	lfs      f0, lbl_8051D6A0@sda21(r2)
+	clrlwi   r3, r3, 0x10
+	lfs      f4, lbl_8051D6B0@sda21(r2)
+	cmplwi   r3, 2
+	stfs     f0, 0xa4(r31)
+	stfs     f4, 0x3c(r31)
+	blt      lbl_8030C1A8
+	addi     r3, r3, -1
+	lis      r0, 0x4330
+	xoris    r3, r3, 0x8000
+	stw      r0, 0x30(r1)
+	lfd      f2, lbl_8051D6A8@sda21(r2)
+	stw      r3, 0x34(r1)
+	lfs      f3, 0x34(r31)
+	lfd      f1, 0x30(r1)
+	lfs      f0, 0x48(r31)
+	fsubs    f1, f1, f2
+	lfs      f2, 0x38(r31)
+	fmadds   f0, f3, f1, f0
+	fcmpo    cr0, f0, f2
+	ble      lbl_8030C1A8
+	fdivs    f0, f2, f0
+	lfs      f1, lbl_8051D6C8@sda21(r2)
+	stfs     f0, 0x3c(r31)
+	lfs      f2, 0x48(r31)
+	lfs      f0, 0x3c(r31)
+	fmuls    f1, f2, f1
+	fsubs    f0, f4, f0
+	fmuls    f0, f1, f0
+	stfs     f0, 0xa4(r31)
 
-		.loc_0x124:
-		  lwz       r4, 0x6C(r31)
-		  addi      r3, r1, 0x14
-		  lwz       r12, 0x0(r4)
-		  lfs       f31, 0xB8(r4)
-		  lwz       r12, 0x138(r12)
-		  lfs       f30, 0xBC(r4)
-		  lfs       f29, 0xC0(r4)
-		  mtctr     r12
-		  bctrl
-		  lwz       r4, 0x6C(r31)
-		  addi      r3, r1, 0x10
-		  lwz       r0, 0x14(r1)
-		  lwz       r12, 0x0(r4)
-		  stw       r0, 0x1C(r1)
-		  lwz       r12, 0x134(r12)
-		  mtctr     r12
-		  bctrl
-		  lwz       r0, 0x10(r1)
-		  lwz       r3, 0x6C(r31)
-		  stw       r0, 0x18(r1)
-		  bl        -0x2D3ED8
-		  lfs       f1, 0x0(r3)
-		  lfs       f0, -0xCC0(r2)
-		  stfs      f1, 0x58(r31)
-		  lfs       f1, 0x4(r3)
-		  stfs      f1, 0x5C(r31)
-		  stfs      f0, 0xA0(r31)
-		  lwz       r0, 0x8C(r31)
-		  cmpwi     r0, 0x1
-		  bne-      .loc_0x1F8
-		  lhz       r0, 0x2C(r31)
-		  lhz       r3, 0x30(r31)
-		  cmplw     r0, r3
-		  bge-      .loc_0x1EC
-		  sub       r3, r3, r0
-		  lis       r0, 0x4330
-		  xoris     r3, r3, 0x8000
-		  stw       r0, 0x30(r1)
-		  lfd       f1, -0xCB8(r2)
-		  stw       r3, 0x34(r1)
-		  lfs       f2, 0x34(r31)
-		  lfd       f0, 0x30(r1)
-		  lfs       f3, 0x3C(r31)
-		  fsubs     f1, f0, f1
-		  lfs       f0, -0xC98(r2)
-		  fmuls     f1, f2, f1
-		  fmuls     f1, f3, f1
-		  fneg      f1, f1
-		  fmuls     f0, f1, f0
-		  stfs      f0, 0xA0(r31)
+lbl_8030C1A8:
+	lwz      r4, 0x6c(r31)
+	addi     r3, r1, 0x14
+	lwz      r12, 0(r4)
+	lfs      f31, 0xb8(r4)
+	lwz      r12, 0x138(r12)
+	lfs      f30, 0xbc(r4)
+	lfs      f29, 0xc0(r4)
+	mtctr    r12
+	bctrl
+	lwz      r4, 0x6c(r31)
+	addi     r3, r1, 0x10
+	lwz      r0, 0x14(r1)
+	lwz      r12, 0(r4)
+	stw      r0, 0x1c(r1)
+	lwz      r12, 0x134(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x10(r1)
+	lwz      r3, 0x6c(r31)
+	stw      r0, 0x18(r1)
+	bl       getBounds__7J2DPaneFv
+	lfs      f1, 0(r3)
+	lfs      f0, lbl_8051D6A0@sda21(r2)
+	stfs     f1, 0x58(r31)
+	lfs      f1, 4(r3)
+	stfs     f1, 0x5c(r31)
+	stfs     f0, 0xa0(r31)
+	lwz      r0, 0x8c(r31)
+	cmpwi    r0, 1
+	bne      lbl_8030C27C
+	lhz      r0, 0x2c(r31)
+	lhz      r3, 0x30(r31)
+	cmplw    r0, r3
+	bge      lbl_8030C270
+	subf     r3, r0, r3
+	lis      r0, 0x4330
+	xoris    r3, r3, 0x8000
+	stw      r0, 0x30(r1)
+	lfd      f1, lbl_8051D6A8@sda21(r2)
+	stw      r3, 0x34(r1)
+	lfs      f2, 0x34(r31)
+	lfd      f0, 0x30(r1)
+	lfs      f3, 0x3c(r31)
+	fsubs    f1, f0, f1
+	lfs      f0, lbl_8051D6C8@sda21(r2)
+	fmuls    f1, f2, f1
+	fmuls    f1, f3, f1
+	fneg     f1, f1
+	fmuls    f0, f1, f0
+	stfs     f0, 0xa0(r31)
 
-		.loc_0x1EC:
-		  li        r0, 0
-		  stb       r0, 0x90(r31)
-		  b         .loc_0x250
+lbl_8030C270:
+	li       r0, 0
+	stb      r0, 0x90(r31)
+	b        lbl_8030C2D4
 
-		.loc_0x1F8:
-		  cmpwi     r0, 0x2
-		  bne-      .loc_0x250
-		  lhz       r0, 0x2C(r31)
-		  lhz       r3, 0x30(r31)
-		  cmplw     r0, r3
-		  bge-      .loc_0x248
-		  sub       r3, r3, r0
-		  lis       r0, 0x4330
-		  neg       r3, r3
-		  stw       r0, 0x30(r1)
-		  xoris     r0, r3, 0x8000
-		  lfd       f1, -0xCB8(r2)
-		  stw       r0, 0x34(r1)
-		  lfs       f2, 0x34(r31)
-		  lfd       f0, 0x30(r1)
-		  lfs       f3, 0x3C(r31)
-		  fsubs     f0, f0, f1
-		  fmuls     f0, f2, f0
-		  fmuls     f0, f3, f0
-		  stfs      f0, 0xA0(r31)
+lbl_8030C27C:
+	cmpwi    r0, 2
+	bne      lbl_8030C2D4
+	lhz      r0, 0x2c(r31)
+	lhz      r3, 0x30(r31)
+	cmplw    r0, r3
+	bge      lbl_8030C2CC
+	subf     r3, r0, r3
+	lis      r0, 0x4330
+	neg      r3, r3
+	stw      r0, 0x30(r1)
+	xoris    r0, r3, 0x8000
+	lfd      f1, lbl_8051D6A8@sda21(r2)
+	stw      r0, 0x34(r1)
+	lfs      f2, 0x34(r31)
+	lfd      f0, 0x30(r1)
+	lfs      f3, 0x3c(r31)
+	fsubs    f0, f0, f1
+	fmuls    f0, f2, f0
+	fmuls    f0, f3, f0
+	stfs     f0, 0xa0(r31)
 
-		.loc_0x248:
-		  li        r0, 0
-		  stb       r0, 0x90(r31)
+lbl_8030C2CC:
+	li       r0, 0
+	stb      r0, 0x90(r31)
 
-		.loc_0x250:
-		  li        r28, 0
-		  li        r29, 0
-		  b         .loc_0x3B4
+lbl_8030C2D4:
+	li       r28, 0
+	li       r29, 0
+	b        lbl_8030C438
 
-		.loc_0x25C:
-		  lwz       r3, 0x7C(r31)
-		  lwzx      r3, r3, r29
-		  lwz       r30, 0x0(r3)
-		  cmplwi    r30, 0
-		  beq-      .loc_0x3AC
-		  xoris     r3, r28, 0x8000
-		  lfs       f0, 0x34(r31)
-		  lis       r0, 0x4330
-		  stw       r3, 0x34(r1)
-		  fneg      f1, f0
-		  lfs       f0, 0x3C(r31)
-		  stw       r0, 0x30(r1)
-		  mr        r3, r30
-		  lfd       f4, -0xCB8(r2)
-		  addi      r4, r1, 0x20
-		  lfd       f3, 0x30(r1)
-		  fmuls     f2, f1, f0
-		  lfs       f1, 0xA0(r31)
-		  fsubs     f3, f3, f4
-		  lfs       f4, 0xA4(r31)
-		  lfs       f5, 0x58(r31)
-		  lfs       f0, 0x48(r31)
-		  fmadds    f2, f3, f2, f1
-		  lfs       f3, 0x5C(r31)
-		  lfs       f1, 0x4C(r31)
-		  fadds     f0, f5, f0
-		  fadds     f4, f4, f2
-		  stfs      f3, 0x24(r1)
-		  fadds     f2, f3, f1
-		  fadds     f1, f4, f0
-		  fadds     f0, f5, f4
-		  stfs      f2, 0x2C(r1)
-		  stfs      f1, 0x28(r1)
-		  stfs      f0, 0x20(r1)
-		  bl        -0x2D4430
-		  lbz       r0, 0x84(r31)
-		  cmplwi    r0, 0
-		  beq-      .loc_0x31C
-		  mr        r3, r30
-		  li        r4, 0x4
-		  bl        -0x2D36C4
-		  lwz       r3, 0x7C(r31)
-		  lfs       f1, 0x44(r31)
-		  lwzx      r3, r3, r29
-		  lfs       f0, 0x3C(r31)
-		  stfs      f0, 0xC(r3)
-		  stfs      f1, 0x10(r3)
-		  b         .loc_0x34C
+lbl_8030C2E0:
+	lwz      r3, 0x7c(r31)
+	lwzx     r3, r3, r29
+	lwz      r30, 0(r3)
+	cmplwi   r30, 0
+	beq      lbl_8030C430
+	xoris    r3, r28, 0x8000
+	lfs      f0, 0x34(r31)
+	lis      r0, 0x4330
+	stw      r3, 0x34(r1)
+	fneg     f1, f0
+	lfs      f0, 0x3c(r31)
+	stw      r0, 0x30(r1)
+	mr       r3, r30
+	lfd      f4, lbl_8051D6A8@sda21(r2)
+	addi     r4, r1, 0x20
+	lfd      f3, 0x30(r1)
+	fmuls    f2, f1, f0
+	lfs      f1, 0xa0(r31)
+	fsubs    f3, f3, f4
+	lfs      f4, 0xa4(r31)
+	lfs      f5, 0x58(r31)
+	lfs      f0, 0x48(r31)
+	fmadds   f2, f3, f2, f1
+	lfs      f3, 0x5c(r31)
+	lfs      f1, 0x4c(r31)
+	fadds    f0, f5, f0
+	fadds    f4, f4, f2
+	stfs     f3, 0x24(r1)
+	fadds    f2, f3, f1
+	fadds    f1, f4, f0
+	fadds    f0, f5, f4
+	stfs     f2, 0x2c(r1)
+	stfs     f1, 0x28(r1)
+	stfs     f0, 0x20(r1)
+	bl       "place__7J2DPaneFRCQ29JGeometry8TBox2<f>"
+	lbz      r0, 0x84(r31)
+	cmplwi   r0, 0
+	beq      lbl_8030C3A0
+	mr       r3, r30
+	li       r4, 4
+	bl       setBasePosition__7J2DPaneF15J2DBasePosition
+	lwz      r3, 0x7c(r31)
+	lfs      f1, 0x44(r31)
+	lwzx     r3, r3, r29
+	lfs      f0, 0x3c(r31)
+	stfs     f0, 0xc(r3)
+	stfs     f1, 0x10(r3)
+	b        lbl_8030C3D0
 
-		.loc_0x31C:
-		  lwz       r4, 0x60(r31)
-		  mr        r3, r30
-		  bl        -0x2D36EC
-		  lfs       f1, 0x44(r31)
-		  mr        r3, r30
-		  lfs       f0, 0x3C(r31)
-		  stfs      f0, 0xCC(r30)
-		  stfs      f1, 0xD0(r30)
-		  lwz       r12, 0x0(r30)
-		  lwz       r12, 0x2C(r12)
-		  mtctr     r12
-		  bctrl
+lbl_8030C3A0:
+	lwz      r4, 0x60(r31)
+	mr       r3, r30
+	bl       setBasePosition__7J2DPaneF15J2DBasePosition
+	lfs      f1, 0x44(r31)
+	mr       r3, r30
+	lfs      f0, 0x3c(r31)
+	stfs     f0, 0xcc(r30)
+	stfs     f1, 0xd0(r30)
+	lwz      r12, 0(r30)
+	lwz      r12, 0x2c(r12)
+	mtctr    r12
+	bctrl
 
-		.loc_0x34C:
-		  stfs      f31, 0xB8(r30)
-		  mr        r3, r30
-		  stfs      f30, 0xBC(r30)
-		  stfs      f29, 0xC0(r30)
-		  lwz       r12, 0x0(r30)
-		  lwz       r12, 0x2C(r12)
-		  mtctr     r12
-		  bctrl
-		  lwz       r0, 0x1C(r1)
-		  mr        r3, r30
-		  addi      r4, r1, 0xC
-		  stw       r0, 0xC(r1)
-		  lwz       r12, 0x0(r30)
-		  lwz       r12, 0x12C(r12)
-		  mtctr     r12
-		  bctrl
-		  lwz       r0, 0x18(r1)
-		  mr        r3, r30
-		  addi      r4, r1, 0x8
-		  stw       r0, 0x8(r1)
-		  lwz       r12, 0x0(r30)
-		  lwz       r12, 0x128(r12)
-		  mtctr     r12
-		  bctrl
+lbl_8030C3D0:
+	stfs     f31, 0xb8(r30)
+	mr       r3, r30
+	stfs     f30, 0xbc(r30)
+	stfs     f29, 0xc0(r30)
+	lwz      r12, 0(r30)
+	lwz      r12, 0x2c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x1c(r1)
+	mr       r3, r30
+	addi     r4, r1, 0xc
+	stw      r0, 0xc(r1)
+	lwz      r12, 0(r30)
+	lwz      r12, 0x12c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x18(r1)
+	mr       r3, r30
+	addi     r4, r1, 8
+	stw      r0, 8(r1)
+	lwz      r12, 0(r30)
+	lwz      r12, 0x128(r12)
+	mtctr    r12
+	bctrl
 
-		.loc_0x3AC:
-		  addi      r29, r29, 0x4
-		  addi      r28, r28, 0x1
+lbl_8030C430:
+	addi     r29, r29, 4
+	addi     r28, r28, 1
 
-		.loc_0x3B4:
-		  lhz       r0, 0x2E(r31)
-		  cmpw      r28, r0
-		  blt+      .loc_0x25C
+lbl_8030C438:
+	lhz      r0, 0x2e(r31)
+	cmpw     r28, r0
+	blt      lbl_8030C2E0
 
-		.loc_0x3C0:
-		  psq_l     f31,0x78(r1),0,0
-		  lfd       f31, 0x70(r1)
-		  psq_l     f30,0x68(r1),0,0
-		  lfd       f30, 0x60(r1)
-		  psq_l     f29,0x58(r1),0,0
-		  lfd       f29, 0x50(r1)
-		  lwz       r31, 0x4C(r1)
-		  lwz       r30, 0x48(r1)
-		  lwz       r29, 0x44(r1)
-		  lwz       r0, 0x84(r1)
-		  lwz       r28, 0x40(r1)
-		  mtlr      r0
-		  addi      r1, r1, 0x80
-		  blr
+lbl_8030C444:
+	psq_l    f31, 120(r1), 0, qr0
+	lfd      f31, 0x70(r1)
+	psq_l    f30, 104(r1), 0, qr0
+	lfd      f30, 0x60(r1)
+	psq_l    f29, 88(r1), 0, qr0
+	lfd      f29, 0x50(r1)
+	lwz      r31, 0x4c(r1)
+	lwz      r30, 0x48(r1)
+	lwz      r29, 0x44(r1)
+	lwz      r0, 0x84(r1)
+	lwz      r28, 0x40(r1)
+	mtlr     r0
+	addi     r1, r1, 0x80
+	blr
 		*/
 	}
 
@@ -1304,59 +1359,58 @@ namespace Screen {
 	void CallBack_CounterRV::update(void)
 	{
 		/*
-		.loc_0x0:
-		  stwu      r1, -0x10(r1)
-		  mflr      r0
-		  li        r4, 0
-		  li        r5, 0
-		  stw       r0, 0x14(r1)
-		  lbz       r0, 0x9C(r3)
-		  cmplwi    r0, 0
-		  beq-      .loc_0x40
-		  li        r0, 0
-		  stb       r0, 0x9C(r3)
-		  lwz       r6, 0x20(r3)
-		  lwz       r0, 0x0(r6)
-		  stw       r0, 0x24(r3)
-		  lwz       r0, 0x24(r3)
-		  stw       r0, 0x28(r3)
-		  b         .loc_0x90
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	li       r4, 0
+	li       r5, 0
+	stw      r0, 0x14(r1)
+	lbz      r0, 0x9c(r3)
+	cmplwi   r0, 0
+	beq      lbl_8030C4BC
+	li       r0, 0
+	stb      r0, 0x9c(r3)
+	lwz      r6, 0x20(r3)
+	lwz      r0, 0(r6)
+	stw      r0, 0x24(r3)
+	lwz      r0, 0x24(r3)
+	stw      r0, 0x28(r3)
+	b        lbl_8030C50C
 
-		.loc_0x40:
-		  lbz       r0, 0x86(r3)
-		  cmplwi    r0, 0
-		  beq-      .loc_0x5C
-		  li        r0, 0
-		  stw       r0, 0x24(r3)
-		  stw       r0, 0x28(r3)
-		  b         .loc_0x90
+lbl_8030C4BC:
+	lbz      r0, 0x86(r3)
+	cmplwi   r0, 0
+	beq      lbl_8030C4D8
+	li       r0, 0
+	stw      r0, 0x24(r3)
+	stw      r0, 0x28(r3)
+	b        lbl_8030C50C
 
-		.loc_0x5C:
-		  lwz       r0, 0x24(r3)
-		  stw       r0, 0x28(r3)
-		  lwz       r6, 0x20(r3)
-		  lwz       r0, 0x0(r6)
-		  stw       r0, 0x24(r3)
-		  lwz       r6, 0x24(r3)
-		  lwz       r0, 0x28(r3)
-		  cmplw     r6, r0
-		  ble-      .loc_0x88
-		  li        r4, 0x1
-		  b         .loc_0x90
+lbl_8030C4D8:
+	lwz      r0, 0x24(r3)
+	stw      r0, 0x28(r3)
+	lwz      r6, 0x20(r3)
+	lwz      r0, 0(r6)
+	stw      r0, 0x24(r3)
+	lwz      r6, 0x24(r3)
+	lwz      r0, 0x28(r3)
+	cmplw    r6, r0
+	ble      lbl_8030C504
+	li       r4, 1
+	b        lbl_8030C50C
 
-		.loc_0x88:
-		  bge-      .loc_0x90
-		  li        r5, 0x1
+lbl_8030C504:
+	bge      lbl_8030C50C
+	li       r5, 1
 
-		.loc_0x90:
-		  lwz       r12, 0x0(r3)
-		  lwz       r12, 0x28(r12)
-		  mtctr     r12
-		  bctrl
-		  lwz       r0, 0x14(r1)
-		  mtlr      r0
-		  addi      r1, r1, 0x10
-		  blr
+lbl_8030C50C:
+	lwz      r12, 0(r3)
+	lwz      r12, 0x28(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 		*/
 	}
 
@@ -1698,43 +1752,42 @@ namespace Screen {
 	CallBack_CounterRV::~CallBack_CounterRV(void)
 	{
 		/*
-		.loc_0x0:
-		  stwu      r1, -0x10(r1)
-		  mflr      r0
-		  stw       r0, 0x14(r1)
-		  stw       r31, 0xC(r1)
-		  mr        r31, r4
-		  stw       r30, 0x8(r1)
-		  mr.       r30, r3
-		  beq-      .loc_0x64
-		  lis       r4, 0x804E
-		  subi      r0, r4, 0x7E38
-		  stw       r0, 0x0(r30)
-		  beq-      .loc_0x54
-		  lis       r4, 0x804D
-		  addi      r0, r4, 0x7F2C
-		  stw       r0, 0x0(r30)
-		  beq-      .loc_0x54
-		  lis       r5, 0x804D
-		  li        r4, 0
-		  addi      r0, r5, 0x7B0C
-		  stw       r0, 0x0(r30)
-		  bl        0x104C28
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_8030C974
+	lis      r4, __vt__Q32og6Screen18CallBack_CounterRV@ha
+	addi     r0, r4, __vt__Q32og6Screen18CallBack_CounterRV@l
+	stw      r0, 0(r30)
+	beq      lbl_8030C964
+	lis      r4, __vt__Q29P2DScreen12CallBackNode@ha
+	addi     r0, r4, __vt__Q29P2DScreen12CallBackNode@l
+	stw      r0, 0(r30)
+	beq      lbl_8030C964
+	lis      r5, __vt__Q29P2DScreen4Node@ha
+	li       r4, 0
+	addi     r0, r5, __vt__Q29P2DScreen4Node@l
+	stw      r0, 0(r30)
+	bl       __dt__5CNodeFv
 
-		.loc_0x54:
-		  extsh.    r0, r31
-		  ble-      .loc_0x64
-		  mr        r3, r30
-		  bl        -0x2E88BC
+lbl_8030C964:
+	extsh.   r0, r31
+	ble      lbl_8030C974
+	mr       r3, r30
+	bl       __dl__FPv
 
-		.loc_0x64:
-		  lwz       r0, 0x14(r1)
-		  mr        r3, r30
-		  lwz       r31, 0xC(r1)
-		  lwz       r30, 0x8(r1)
-		  mtlr      r0
-		  addi      r1, r1, 0x10
-		  blr
+lbl_8030C974:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 		*/
 	}
 
@@ -1750,14 +1803,13 @@ namespace Screen {
 void __sinit_ogCounterRV_cpp(void)
 {
 	/*
-	.loc_0x0:
-	  lfs       f2, -0xC98(r2)
-	  lis       r3, 0x8051
-	  lfs       f1, -0xC94(r2)
-	  stfsu     f2, 0x3C0C(r3)
-	  lfs       f0, -0xC90(r2)
-	  stfs      f1, 0x4(r3)
-	  stfs      f0, 0x8(r3)
-	  blr
+	lfs      f2, lbl_8051D6C8@sda21(r2)
+	lis      r3, msVal__Q32og6Screen18CallBack_CounterRV@ha
+	lfs      f1, lbl_8051D6CC@sda21(r2)
+	stfsu    f2, msVal__Q32og6Screen18CallBack_CounterRV@l(r3)
+	lfs      f0, lbl_8051D6D0@sda21(r2)
+	stfs     f1, 4(r3)
+	stfs     f0, 8(r3)
+	blr
 	*/
 }

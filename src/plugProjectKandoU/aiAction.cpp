@@ -1,6 +1,62 @@
 #include "types.h"
 
 /*
+    Generated from dpostproc
+
+    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
+    .4byte __sinit_aiAction_cpp
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global lbl_804B4A60
+    lbl_804B4A60:
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+    .global __vt__Q26PikiAI6Action
+    __vt__Q26PikiAI6Action:
+        .4byte 0
+        .4byte 0
+        .4byte init__Q26PikiAI6ActionFPQ26PikiAI9ActionArg
+        .4byte exec__Q26PikiAI6ActionFv
+        .4byte cleanup__Q26PikiAI6ActionFv
+        .4byte emotion_success__Q26PikiAI6ActionFv
+        .4byte emotion_fail__Q26PikiAI6ActionFv
+        .4byte applicable__Q26PikiAI6ActionFv
+        .4byte getNextAIType__Q26PikiAI6ActionFv
+        .4byte bounceCallback__Q26PikiAI6ActionFPQ24Game4PikiPQ23Sys8Triangle
+        .4byte
+   collisionCallback__Q26PikiAI6ActionFPQ24Game4PikiRQ24Game9CollEvent .4byte
+   platCallback__Q26PikiAI6ActionFPQ24Game4PikiRQ24Game9PlatEvent .4byte
+   doDirectDraw__Q26PikiAI6ActionFR8Graphics .4byte
+   "wallCallback__Q26PikiAI6ActionFR10Vector3<f>" .4byte
+   getInfo__Q26PikiAI6ActionFPc
+
+    .section .sbss # 0x80514D80 - 0x80516360
+    .global lbl_805159D8
+    lbl_805159D8:
+        .skip 0x4
+    .global lbl_805159DC
+    lbl_805159DC:
+        .skip 0x4
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_80518F48
+    lbl_80518F48:
+        .4byte 0x41637469
+        .4byte 0x6F6E0000
+    .global lbl_80518F50
+    lbl_80518F50:
+        .4byte 0x25730000
+    .global lbl_80518F54
+    lbl_80518F54:
+        .4byte 0x43960000
+    .global lbl_80518F58
+    lbl_80518F58:
+        .4byte 0x00000000
+        .4byte 0x00000000
+*/
+
+/*
  * --INFO--
  * Address:	80196A18
  * Size:	00001C
@@ -55,197 +111,194 @@ void PikiAI::Action::getInfo(char* dest)
 PikiAI::Brain::Brain(Game::Piki*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  li        r0, 0
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  stw       r30, 0x8(r1)
-	  mr        r30, r4
-	  stw       r0, 0x4(r3)
-	  li        r3, 0x38
-	  bl        -0x172AE0
-	  stw       r3, 0x0(r31)
-	  li        r3, 0x74
-	  bl        -0x172BF4
-	  mr.       r4, r3
-	  beq-      .loc_0x50
-	  mr        r5, r30
-	  li        r4, 0x1
-	  bl        0x62C4
-	  mr        r4, r3
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	li       r0, 0
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	stw      r30, 8(r1)
+	mr       r30, r4
+	stw      r0, 4(r3)
+	li       r3, 0x38
+	bl       __nwa__FUl
+	stw      r3, 0(r31)
+	li       r3, 0x74
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_80196AB4
+	mr       r5, r30
+	li       r4, 1
+	bl       __ct__Q26PikiAI12ActFormationFPQ24Game4Piki
+	mr       r4, r3
 
-	.loc_0x50:
-	  mr        r3, r31
-	  bl        .loc_0x280
-	  li        r3, 0x28
-	  bl        -0x172C1C
-	  mr.       r4, r3
-	  beq-      .loc_0x78
-	  mr        r5, r30
-	  li        r4, 0x1
-	  bl        0x9464
-	  mr        r4, r3
+lbl_80196AB4:
+	mr       r3, r31
+	bl       addAction__Q26PikiAI5BrainFPQ26PikiAI6Action
+	li       r3, 0x28
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_80196ADC
+	mr       r5, r30
+	li       r4, 1
+	bl       __ct__Q26PikiAI7ActFreeFPQ24Game4Piki
+	mr       r4, r3
 
-	.loc_0x78:
-	  mr        r3, r31
-	  bl        .loc_0x280
-	  li        r3, 0x68
-	  bl        -0x172C44
-	  mr.       r4, r3
-	  beq-      .loc_0xA0
-	  mr        r5, r30
-	  li        r4, 0x1
-	  bl        0xBC24
-	  mr        r4, r3
+lbl_80196ADC:
+	mr       r3, r31
+	bl       addAction__Q26PikiAI5BrainFPQ26PikiAI6Action
+	li       r3, 0x68
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_80196B04
+	mr       r5, r30
+	li       r4, 1
+	bl       __ct__Q26PikiAI8ActEnterFPQ24Game4Piki
+	mr       r4, r3
 
-	.loc_0xA0:
-	  mr        r3, r31
-	  bl        .loc_0x280
-	  li        r3, 0x1C
-	  bl        -0x172C6C
-	  mr.       r4, r3
-	  beq-      .loc_0xC4
-	  mr        r4, r30
-	  bl        0xC6BC
-	  mr        r4, r3
+lbl_80196B04:
+	mr       r3, r31
+	bl       addAction__Q26PikiAI5BrainFPQ26PikiAI6Action
+	li       r3, 0x1c
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_80196B28
+	mr       r4, r30
+	bl       __ct__Q26PikiAI7ActExitFPQ24Game4Piki
+	mr       r4, r3
 
-	.loc_0xC4:
-	  mr        r3, r31
-	  bl        .loc_0x280
-	  li        r3, 0x44
-	  bl        -0x172C90
-	  mr.       r4, r3
-	  beq-      .loc_0xEC
-	  mr        r5, r30
-	  li        r4, 0x1
-	  bl        0xAE30
-	  mr        r4, r3
+lbl_80196B28:
+	mr       r3, r31
+	bl       addAction__Q26PikiAI5BrainFPQ26PikiAI6Action
+	li       r3, 0x44
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_80196B50
+	mr       r5, r30
+	li       r4, 1
+	bl       __ct__Q26PikiAI12ActTransportFPQ24Game4Piki
+	mr       r4, r3
 
-	.loc_0xEC:
-	  mr        r3, r31
-	  bl        .loc_0x280
-	  li        r3, 0x40
-	  bl        -0x172CB8
-	  mr.       r4, r3
-	  beq-      .loc_0x114
-	  mr        r5, r30
-	  li        r4, 0x1
-	  bl        0x9A10
-	  mr        r4, r3
+lbl_80196B50:
+	mr       r3, r31
+	bl       addAction__Q26PikiAI5BrainFPQ26PikiAI6Action
+	li       r3, 0x40
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_80196B78
+	mr       r5, r30
+	li       r4, 1
+	bl       __ct__Q26PikiAI9ActAttackFPQ24Game4Piki
+	mr       r4, r3
 
-	.loc_0x114:
-	  mr        r3, r31
-	  bl        .loc_0x280
-	  li        r3, 0x3C
-	  bl        -0x172CE0
-	  mr.       r4, r3
-	  beq-      .loc_0x13C
-	  mr        r5, r30
-	  li        r4, 0x1
-	  bl        0x39950
-	  mr        r4, r3
+lbl_80196B78:
+	mr       r3, r31
+	bl       addAction__Q26PikiAI5BrainFPQ26PikiAI6Action
+	li       r3, 0x3c
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_80196BA0
+	mr       r5, r30
+	li       r4, 1
+	bl       __ct__Q26PikiAI12ActBreakGateFPQ24Game4Piki
+	mr       r4, r3
 
-	.loc_0x13C:
-	  mr        r3, r31
-	  bl        .loc_0x280
-	  li        r3, 0x38
-	  bl        -0x172D08
-	  mr.       r4, r3
-	  beq-      .loc_0x164
-	  mr        r5, r30
-	  li        r4, 0x1
-	  bl        0x4CAE0
-	  mr        r4, r3
+lbl_80196BA0:
+	mr       r3, r31
+	bl       addAction__Q26PikiAI5BrainFPQ26PikiAI6Action
+	li       r3, 0x38
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_80196BC8
+	mr       r5, r30
+	li       r4, 1
+	bl       __ct__Q26PikiAI12ActBreakRockFPQ24Game4Piki
+	mr       r4, r3
 
-	.loc_0x164:
-	  mr        r3, r31
-	  bl        .loc_0x280
-	  li        r3, 0x48
-	  bl        -0x172D30
-	  mr.       r4, r3
-	  beq-      .loc_0x18C
-	  mr        r5, r30
-	  li        r4, 0x1
-	  bl        0x4D268
-	  mr        r4, r3
+lbl_80196BC8:
+	mr       r3, r31
+	bl       addAction__Q26PikiAI5BrainFPQ26PikiAI6Action
+	li       r3, 0x48
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_80196BF0
+	mr       r5, r30
+	li       r4, 1
+	bl       __ct__Q26PikiAI7ActCropFPQ24Game4Piki
+	mr       r4, r3
 
-	.loc_0x18C:
-	  mr        r3, r31
-	  bl        .loc_0x280
-	  li        r3, 0x34
-	  bl        -0x172D58
-	  mr.       r4, r3
-	  beq-      .loc_0x1B0
-	  mr        r4, r30
-	  bl        0x76BC4
-	  mr        r4, r3
+lbl_80196BF0:
+	mr       r3, r31
+	bl       addAction__Q26PikiAI5BrainFPQ26PikiAI6Action
+	li       r3, 0x34
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_80196C14
+	mr       r4, r30
+	bl       __ct__Q26PikiAI7ActWeedFPQ24Game4Piki
+	mr       r4, r3
 
-	.loc_0x1B0:
-	  mr        r3, r31
-	  bl        .loc_0x280
-	  li        r3, 0x3C
-	  bl        -0x172D7C
-	  mr.       r4, r3
-	  beq-      .loc_0x1D8
-	  mr        r5, r30
-	  li        r4, 0x1
-	  bl        0x7B654
-	  mr        r4, r3
+lbl_80196C14:
+	mr       r3, r31
+	bl       addAction__Q26PikiAI5BrainFPQ26PikiAI6Action
+	li       r3, 0x3c
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_80196C3C
+	mr       r5, r30
+	li       r4, 1
+	bl       __ct__Q26PikiAI9ActBridgeFPQ24Game4Piki
+	mr       r4, r3
 
-	.loc_0x1D8:
-	  mr        r3, r31
-	  bl        .loc_0x280
-	  li        r3, 0x50
-	  bl        -0x172DA4
-	  mr.       r4, r3
-	  beq-      .loc_0x200
-	  mr        r5, r30
-	  li        r4, 0x1
-	  bl        0x7BD00
-	  mr        r4, r3
+lbl_80196C3C:
+	mr       r3, r31
+	bl       addAction__Q26PikiAI5BrainFPQ26PikiAI6Action
+	li       r3, 0x50
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_80196C64
+	mr       r5, r30
+	li       r4, 1
+	bl       __ct__Q26PikiAI7ActTekiFPQ24Game4Piki
+	mr       r4, r3
 
-	.loc_0x200:
-	  mr        r3, r31
-	  bl        .loc_0x280
-	  li        r3, 0x30
-	  bl        -0x172DCC
-	  mr.       r4, r3
-	  beq-      .loc_0x228
-	  mr        r5, r30
-	  li        r4, 0x1
-	  bl        0xA222C
-	  mr        r4, r3
+lbl_80196C64:
+	mr       r3, r31
+	bl       addAction__Q26PikiAI5BrainFPQ26PikiAI6Action
+	li       r3, 0x30
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_80196C8C
+	mr       r5, r30
+	li       r4, 1
+	bl       __ct__Q26PikiAI9ActRescueFPQ24Game4Piki
+	mr       r4, r3
 
-	.loc_0x228:
-	  mr        r3, r31
-	  bl        .loc_0x280
-	  li        r3, 0x28
-	  bl        -0x172DF4
-	  mr.       r4, r3
-	  beq-      .loc_0x250
-	  mr        r5, r30
-	  li        r4, 0x1
-	  bl        0x98008
-	  mr        r4, r3
+lbl_80196C8C:
+	mr       r3, r31
+	bl       addAction__Q26PikiAI5BrainFPQ26PikiAI6Action
+	li       r3, 0x28
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_80196CB4
+	mr       r5, r30
+	li       r4, 1
+	bl       __ct__Q26PikiAI9ActBattleFPQ24Game4Piki
+	mr       r4, r3
 
-	.loc_0x250:
-	  mr        r3, r31
-	  bl        .loc_0x280
-	  li        r0, -0x1
-	  mr        r3, r31
-	  stw       r0, 0x8(r31)
-	  stw       r30, 0xC(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-
-	.loc_0x280:
+lbl_80196CB4:
+	mr       r3, r31
+	bl       addAction__Q26PikiAI5BrainFPQ26PikiAI6Action
+	li       r0, -1
+	mr       r3, r31
+	stw      r0, 8(r31)
+	stw      r30, 0xc(r31)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -257,14 +310,13 @@ PikiAI::Brain::Brain(Game::Piki*)
 void PikiAI::Brain::addAction(PikiAI::Action*)
 {
 	/*
-	.loc_0x0:
-	  lwz       r6, 0x4(r3)
-	  lwz       r7, 0x0(r3)
-	  addi      r5, r6, 0x1
-	  rlwinm    r0,r6,2,0,29
-	  stw       r5, 0x4(r3)
-	  stwx      r4, r7, r0
-	  blr
+	lwz      r6, 4(r3)
+	lwz      r7, 0(r3)
+	addi     r5, r6, 1
+	slwi     r0, r6, 2
+	stw      r5, 4(r3)
+	stwx     r4, r7, r0
+	blr
 	*/
 }
 
@@ -276,18 +328,17 @@ void PikiAI::Brain::addAction(PikiAI::Action*)
 void PikiAI::Brain::getCurrAction(void)
 {
 	/*
-	.loc_0x0:
-	  lwz       r0, 0x8(r3)
-	  cmpwi     r0, -0x1
-	  beq-      .loc_0x1C
-	  lwz       r3, 0x0(r3)
-	  rlwinm    r0,r0,2,0,29
-	  lwzx      r3, r3, r0
-	  blr
+	lwz      r0, 8(r3)
+	cmpwi    r0, -1
+	beq      lbl_80196D1C
+	lwz      r3, 0(r3)
+	slwi     r0, r0, 2
+	lwzx     r3, r3, r0
+	blr
 
-	.loc_0x1C:
-	  li        r3, 0
-	  blr
+lbl_80196D1C:
+	li       r3, 0
+	blr
 	*/
 }
 
@@ -309,181 +360,180 @@ void PikiAI::Brain::init(void)
 void PikiAI::Brain::exec(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stw       r31, 0x2C(r1)
-	  stw       r30, 0x28(r1)
-	  mr        r30, r3
-	  lwz       r0, 0x8(r3)
-	  cmpwi     r0, -0x1
-	  beq-      .loc_0x34
-	  lwz       r3, 0x0(r30)
-	  rlwinm    r0,r0,2,0,29
-	  lwzx      r31, r3, r0
-	  b         .loc_0x38
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stw      r31, 0x2c(r1)
+	stw      r30, 0x28(r1)
+	mr       r30, r3
+	lwz      r0, 8(r3)
+	cmpwi    r0, -1
+	beq      lbl_80196D58
+	lwz      r3, 0(r30)
+	slwi     r0, r0, 2
+	lwzx     r31, r3, r0
+	b        lbl_80196D5C
 
-	.loc_0x34:
-	  li        r31, 0
+lbl_80196D58:
+	li       r31, 0
 
-	.loc_0x38:
-	  cmplwi    r31, 0
-	  beq-      .loc_0x240
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  cmpwi     r3, 0
-	  bne-      .loc_0x14C
-	  li        r3, 0
-	  li        r0, 0x1
-	  stb       r3, 0xC(r1)
-	  addi      r4, r1, 0xC
-	  stb       r3, 0xD(r1)
-	  stb       r0, 0xC(r1)
-	  lwz       r3, 0xC(r30)
-	  bl        0x1CAAC
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x134
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  cmpwi     r3, 0x1
-	  beq-      .loc_0x124
-	  bge-      .loc_0x134
-	  cmpwi     r3, 0
-	  bge-      .loc_0xB0
-	  b         .loc_0x134
+lbl_80196D5C:
+	cmplwi   r31, 0
+	beq      lbl_80196F64
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	cmpwi    r3, 0
+	bne      lbl_80196E70
+	li       r3, 0
+	li       r0, 1
+	stb      r3, 0xc(r1)
+	addi     r4, r1, 0xc
+	stb      r3, 0xd(r1)
+	stb      r0, 0xc(r1)
+	lwz      r3, 0xc(r30)
+	bl       invokeAIFree__Q24Game4PikiFRQ34Game4Piki15InvokeAIFreeArg
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_80196E58
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	cmpwi    r3, 1
+	beq      lbl_80196E48
+	bge      lbl_80196E58
+	cmpwi    r3, 0
+	bge      lbl_80196DD4
+	b        lbl_80196E58
 
-	.loc_0xB0:
-	  mr        r3, r30
-	  bl        0x2C8
-	  cmplwi    r3, 0
-	  beq-      .loc_0x110
-	  lwz       r7, 0xC(r30)
-	  lis       r6, 0x804B
-	  lis       r5, 0x804B
-	  lis       r4, 0x804B
-	  stw       r3, 0x2C4(r7)
-	  li        r0, 0
-	  addi      r6, r6, 0x530
-	  addi      r7, r5, 0x524
-	  stw       r6, 0x1C(r1)
-	  addi      r6, r4, 0xD44
-	  addi      r5, r1, 0x1C
-	  li        r4, 0
-	  stw       r7, 0x1C(r1)
-	  stw       r3, 0x20(r1)
-	  mr        r3, r30
-	  stw       r6, 0x1C(r1)
-	  stb       r0, 0x24(r1)
-	  stb       r0, 0x25(r1)
-	  bl        0x168
-	  b         .loc_0x134
+lbl_80196DD4:
+	mr       r3, r30
+	bl       searchOrima__Q26PikiAI5BrainFv
+	cmplwi   r3, 0
+	beq      lbl_80196E34
+	lwz      r7, 0xc(r30)
+	lis      r6, __vt__Q26PikiAI9ActionArg@ha
+	lis      r5, __vt__Q26PikiAI17CreatureActionArg@ha
+	lis      r4, __vt__Q26PikiAI19ActFormationInitArg@ha
+	stw      r3, 0x2c4(r7)
+	li       r0, 0
+	addi     r6, r6, __vt__Q26PikiAI9ActionArg@l
+	addi     r7, r5, __vt__Q26PikiAI17CreatureActionArg@l
+	stw      r6, 0x1c(r1)
+	addi     r6, r4, __vt__Q26PikiAI19ActFormationInitArg@l
+	addi     r5, r1, 0x1c
+	li       r4, 0
+	stw      r7, 0x1c(r1)
+	stw      r3, 0x20(r1)
+	mr       r3, r30
+	stw      r6, 0x1c(r1)
+	stb      r0, 0x24(r1)
+	stb      r0, 0x25(r1)
+	bl       start__Q26PikiAI5BrainFiPQ26PikiAI9ActionArg
+	b        lbl_80196E58
 
-	.loc_0x110:
-	  mr        r3, r30
-	  li        r4, 0x1
-	  li        r5, 0
-	  bl        0x154
-	  b         .loc_0x134
+lbl_80196E34:
+	mr       r3, r30
+	li       r4, 1
+	li       r5, 0
+	bl       start__Q26PikiAI5BrainFiPQ26PikiAI9ActionArg
+	b        lbl_80196E58
 
-	.loc_0x124:
-	  mr        r3, r30
-	  li        r4, 0x1
-	  li        r5, 0
-	  bl        0x140
+lbl_80196E48:
+	mr       r3, r30
+	li       r4, 1
+	li       r5, 0
+	bl       start__Q26PikiAI5BrainFiPQ26PikiAI9ActionArg
 
-	.loc_0x134:
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x240
+lbl_80196E58:
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_80196F64
 
-	.loc_0x14C:
-	  cmpwi     r3, 0x2
-	  bne-      .loc_0x240
-	  li        r3, 0
-	  li        r0, 0x1
-	  stb       r3, 0x8(r1)
-	  addi      r4, r1, 0x8
-	  stb       r3, 0x9(r1)
-	  stb       r0, 0x8(r1)
-	  lwz       r3, 0xC(r30)
-	  bl        0x1C9B4
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x22C
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  cmpwi     r3, 0x1
-	  beq-      .loc_0x21C
-	  bge-      .loc_0x22C
-	  cmpwi     r3, 0
-	  bge-      .loc_0x1A8
-	  b         .loc_0x22C
+lbl_80196E70:
+	cmpwi    r3, 2
+	bne      lbl_80196F64
+	li       r3, 0
+	li       r0, 1
+	stb      r3, 8(r1)
+	addi     r4, r1, 8
+	stb      r3, 9(r1)
+	stb      r0, 8(r1)
+	lwz      r3, 0xc(r30)
+	bl       invokeAIFree__Q24Game4PikiFRQ34Game4Piki15InvokeAIFreeArg
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_80196F50
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	cmpwi    r3, 1
+	beq      lbl_80196F40
+	bge      lbl_80196F50
+	cmpwi    r3, 0
+	bge      lbl_80196ECC
+	b        lbl_80196F50
 
-	.loc_0x1A8:
-	  mr        r3, r30
-	  bl        0x1D0
-	  cmplwi    r3, 0
-	  beq-      .loc_0x208
-	  lwz       r7, 0xC(r30)
-	  lis       r6, 0x804B
-	  lis       r5, 0x804B
-	  lis       r4, 0x804B
-	  stw       r3, 0x2C4(r7)
-	  li        r0, 0
-	  addi      r6, r6, 0x530
-	  addi      r7, r5, 0x524
-	  stw       r6, 0x10(r1)
-	  addi      r6, r4, 0xD44
-	  addi      r5, r1, 0x10
-	  li        r4, 0
-	  stw       r7, 0x10(r1)
-	  stw       r3, 0x14(r1)
-	  mr        r3, r30
-	  stw       r6, 0x10(r1)
-	  stb       r0, 0x18(r1)
-	  stb       r0, 0x19(r1)
-	  bl        0x70
-	  b         .loc_0x22C
+lbl_80196ECC:
+	mr       r3, r30
+	bl       searchOrima__Q26PikiAI5BrainFv
+	cmplwi   r3, 0
+	beq      lbl_80196F2C
+	lwz      r7, 0xc(r30)
+	lis      r6, __vt__Q26PikiAI9ActionArg@ha
+	lis      r5, __vt__Q26PikiAI17CreatureActionArg@ha
+	lis      r4, __vt__Q26PikiAI19ActFormationInitArg@ha
+	stw      r3, 0x2c4(r7)
+	li       r0, 0
+	addi     r6, r6, __vt__Q26PikiAI9ActionArg@l
+	addi     r7, r5, __vt__Q26PikiAI17CreatureActionArg@l
+	stw      r6, 0x10(r1)
+	addi     r6, r4, __vt__Q26PikiAI19ActFormationInitArg@l
+	addi     r5, r1, 0x10
+	li       r4, 0
+	stw      r7, 0x10(r1)
+	stw      r3, 0x14(r1)
+	mr       r3, r30
+	stw      r6, 0x10(r1)
+	stb      r0, 0x18(r1)
+	stb      r0, 0x19(r1)
+	bl       start__Q26PikiAI5BrainFiPQ26PikiAI9ActionArg
+	b        lbl_80196F50
 
-	.loc_0x208:
-	  mr        r3, r30
-	  li        r4, 0x1
-	  li        r5, 0
-	  bl        0x5C
-	  b         .loc_0x22C
+lbl_80196F2C:
+	mr       r3, r30
+	li       r4, 1
+	li       r5, 0
+	bl       start__Q26PikiAI5BrainFiPQ26PikiAI9ActionArg
+	b        lbl_80196F50
 
-	.loc_0x21C:
-	  mr        r3, r30
-	  li        r4, 0x1
-	  li        r5, 0
-	  bl        0x48
+lbl_80196F40:
+	mr       r3, r30
+	li       r4, 1
+	li       r5, 0
+	bl       start__Q26PikiAI5BrainFiPQ26PikiAI9ActionArg
 
-	.loc_0x22C:
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
+lbl_80196F50:
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x240:
-	  lwz       r0, 0x34(r1)
-	  lwz       r31, 0x2C(r1)
-	  lwz       r30, 0x28(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_80196F64:
+	lwz      r0, 0x34(r1)
+	lwz      r31, 0x2c(r1)
+	lwz      r30, 0x28(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -523,89 +573,88 @@ u32 PikiAI::Action::exec(void) { return 0x1; }
 void PikiAI::Brain::start(int, PikiAI::ActionArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r4
-	  stw       r30, 0x18(r1)
-	  mr        r30, r5
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  lwz       r4, 0xC(r3)
-	  lwz       r0, 0xBC(r4)
-	  rlwinm.   r0,r0,0,30,30
-	  bne-      .loc_0x40
-	  li        r0, -0x1
-	  stw       r0, 0x8(r29)
-	  b         .loc_0xE4
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r4
+	stw      r30, 0x18(r1)
+	mr       r30, r5
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	lwz      r4, 0xc(r3)
+	lwz      r0, 0xbc(r4)
+	rlwinm.  r0, r0, 0, 0x1e, 0x1e
+	bne      lbl_80196FD4
+	li       r0, -1
+	stw      r0, 8(r29)
+	b        lbl_80197078
 
-	.loc_0x40:
-	  lwz       r0, 0x8(r29)
-	  cmpwi     r0, -0x1
-	  beq-      .loc_0x5C
-	  lwz       r3, 0x0(r29)
-	  rlwinm    r0,r0,2,0,29
-	  lwzx      r3, r3, r0
-	  b         .loc_0x60
+lbl_80196FD4:
+	lwz      r0, 8(r29)
+	cmpwi    r0, -1
+	beq      lbl_80196FF0
+	lwz      r3, 0(r29)
+	slwi     r0, r0, 2
+	lwzx     r3, r3, r0
+	b        lbl_80196FF4
 
-	.loc_0x5C:
-	  li        r3, 0
+lbl_80196FF0:
+	li       r3, 0
 
-	.loc_0x60:
-	  cmplwi    r3, 0
-	  beq-      .loc_0x78
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
+lbl_80196FF4:
+	cmplwi   r3, 0
+	beq      lbl_8019700C
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x78:
-	  stw       r31, 0x8(r29)
-	  lwz       r0, 0x8(r29)
-	  cmpwi     r0, -0x1
-	  beq-      .loc_0x98
-	  lwz       r3, 0x0(r29)
-	  rlwinm    r0,r0,2,0,29
-	  lwzx      r31, r3, r0
-	  b         .loc_0x9C
+lbl_8019700C:
+	stw      r31, 8(r29)
+	lwz      r0, 8(r29)
+	cmpwi    r0, -1
+	beq      lbl_8019702C
+	lwz      r3, 0(r29)
+	slwi     r0, r0, 2
+	lwzx     r31, r3, r0
+	b        lbl_80197030
 
-	.loc_0x98:
-	  li        r31, 0
+lbl_8019702C:
+	li       r31, 0
 
-	.loc_0x9C:
-	  cmplwi    r31, 0
-	  beq-      .loc_0xBC
-	  mr        r3, r31
-	  mr        r4, r30
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
+lbl_80197030:
+	cmplwi   r31, 0
+	beq      lbl_80197050
+	mr       r3, r31
+	mr       r4, r30
+	lwz      r12, 0(r31)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0xBC:
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0xE0
-	  li        r3, 0
-	  b         .loc_0xE4
+lbl_80197050:
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_80197074
+	li       r3, 0
+	b        lbl_80197078
 
-	.loc_0xE0:
-	  li        r3, 0x1
+lbl_80197074:
+	li       r3, 1
 
-	.loc_0xE4:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80197078:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -631,157 +680,156 @@ void PikiAI::Action::init(PikiAI::ActionArg*) { }
 void PikiAI::Brain::searchOrima(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0xB0(r1)
-	  mflr      r0
-	  stw       r0, 0xB4(r1)
-	  stfd      f31, 0xA0(r1)
-	  psq_st    f31,0xA8(r1),0,0
-	  stw       r31, 0x9C(r1)
-	  stw       r30, 0x98(r1)
-	  stw       r29, 0x94(r1)
-	  mr        r30, r3
-	  addi      r3, r1, 0x20
-	  bl        0x972A4
-	  lwz       r4, 0xC(r30)
-	  addi      r3, r1, 0x14
-	  lwz       r12, 0x0(r4)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f3, 0x14(r1)
-	  addi      r3, r1, 0x40
-	  lfs       f2, 0x18(r1)
-	  addi      r4, r1, 0x20
-	  lfs       f1, 0x1C(r1)
-	  lfs       f0, -0x540C(r2)
-	  stfs      f3, 0x20(r1)
-	  stfs      f2, 0x24(r1)
-	  stfs      f1, 0x28(r1)
-	  stfs      f0, 0x2C(r1)
-	  bl        0x972D4
-	  lfs       f31, -0x540C(r2)
-	  addi      r3, r1, 0x40
-	  li        r31, 0
-	  bl        0x97340
-	  b         .loc_0x1D8
+	stwu     r1, -0xb0(r1)
+	mflr     r0
+	stw      r0, 0xb4(r1)
+	stfd     f31, 0xa0(r1)
+	psq_st   f31, 168(r1), 0, qr0
+	stw      r31, 0x9c(r1)
+	stw      r30, 0x98(r1)
+	stw      r29, 0x94(r1)
+	mr       r30, r3
+	addi     r3, r1, 0x20
+	bl       __ct__Q24Game15CellIteratorArgFv
+	lwz      r4, 0xc(r30)
+	addi     r3, r1, 0x14
+	lwz      r12, 0(r4)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f3, 0x14(r1)
+	addi     r3, r1, 0x40
+	lfs      f2, 0x18(r1)
+	addi     r4, r1, 0x20
+	lfs      f1, 0x1c(r1)
+	lfs      f0, lbl_80518F54@sda21(r2)
+	stfs     f3, 0x20(r1)
+	stfs     f2, 0x24(r1)
+	stfs     f1, 0x28(r1)
+	stfs     f0, 0x2c(r1)
+	bl       __ct__Q24Game12CellIteratorFRQ24Game15CellIteratorArg
+	lfs      f31, lbl_80518F54@sda21(r2)
+	addi     r3, r1, 0x40
+	li       r31, 0
+	bl       first__Q24Game12CellIteratorFv
+	b        lbl_80197278
 
-	.loc_0x84:
-	  addi      r3, r1, 0x40
-	  bl        0x9741C
-	  lwz       r12, 0x0(r3)
-	  mr        r29, r3
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x1D0
-	  mr        r3, r29
-	  lwz       r12, 0x0(r29)
-	  lwz       r12, 0xA8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x1D0
-	  mr        r4, r29
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x0(r29)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f1, 0x24(r1)
-	  lfs       f0, 0xC(r1)
-	  lfs       f3, 0x20(r1)
-	  fsubs     f4, f1, f0
-	  lfs       f2, 0x8(r1)
-	  lfs       f1, 0x28(r1)
-	  lfs       f0, 0x10(r1)
-	  fsubs     f3, f3, f2
-	  fmuls     f4, f4, f4
-	  fsubs     f2, f1, f0
-	  lfs       f0, -0x5408(r2)
-	  fmadds    f1, f3, f3, f4
-	  fmuls     f2, f2, f2
-	  fadds     f1, f2, f1
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x12C
-	  ble-      .loc_0x130
-	  fsqrte    f0, f1
-	  fmuls     f1, f0, f1
-	  b         .loc_0x130
+lbl_80197124:
+	addi     r3, r1, 0x40
+	bl       __ml__Q24Game12CellIteratorFv
+	lwz      r12, 0(r3)
+	mr       r29, r3
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80197270
+	mr       r3, r29
+	lwz      r12, 0(r29)
+	lwz      r12, 0xa8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80197270
+	mr       r4, r29
+	addi     r3, r1, 8
+	lwz      r12, 0(r29)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f1, 0x24(r1)
+	lfs      f0, 0xc(r1)
+	lfs      f3, 0x20(r1)
+	fsubs    f4, f1, f0
+	lfs      f2, 8(r1)
+	lfs      f1, 0x28(r1)
+	lfs      f0, 0x10(r1)
+	fsubs    f3, f3, f2
+	fmuls    f4, f4, f4
+	fsubs    f2, f1, f0
+	lfs      f0, lbl_80518F58@sda21(r2)
+	fmadds   f1, f3, f3, f4
+	fmuls    f2, f2, f2
+	fadds    f1, f2, f1
+	fcmpo    cr0, f1, f0
+	ble      lbl_801971CC
+	ble      lbl_801971D0
+	frsqrte  f0, f1
+	fmuls    f1, f0, f1
+	b        lbl_801971D0
 
-	.loc_0x12C:
-	  fmr       f1, f0
+lbl_801971CC:
+	fmr      f1, f0
 
-	.loc_0x130:
-	  fcmpo     cr0, f1, f31
-	  bge-      .loc_0x1D0
-	  lwz       r4, -0x6C18(r13)
-	  mr        r5, r29
-	  lwz       r0, 0x44(r4)
-	  cmpwi     r0, 0x1
-	  bne-      .loc_0x17C
-	  lhz       r0, 0x2DC(r29)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x16C
-	  lwz       r3, 0xC(r30)
-	  lbz       r0, 0x2B8(r3)
-	  cmpwi     r0, 0x1
-	  bne-      .loc_0x1D0
-	  b         .loc_0x17C
+lbl_801971D0:
+	fcmpo    cr0, f1, f31
+	bge      lbl_80197270
+	lwz      r4, gameSystem__4Game@sda21(r13)
+	mr       r5, r29
+	lwz      r0, 0x44(r4)
+	cmpwi    r0, 1
+	bne      lbl_8019721C
+	lhz      r0, 0x2dc(r29)
+	cmplwi   r0, 0
+	bne      lbl_8019720C
+	lwz      r3, 0xc(r30)
+	lbz      r0, 0x2b8(r3)
+	cmpwi    r0, 1
+	bne      lbl_80197270
+	b        lbl_8019721C
 
-	.loc_0x16C:
-	  lwz       r3, 0xC(r30)
-	  lbz       r0, 0x2B8(r3)
-	  cmpwi     r0, 0
-	  bne-      .loc_0x1D0
+lbl_8019720C:
+	lwz      r3, 0xc(r30)
+	lbz      r0, 0x2b8(r3)
+	cmpwi    r0, 0
+	bne      lbl_80197270
 
-	.loc_0x17C:
-	  lwz       r0, 0x278(r5)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x194
-	  fmr       f31, f1
-	  mr        r31, r5
-	  b         .loc_0x1D0
+lbl_8019721C:
+	lwz      r0, 0x278(r5)
+	cmplwi   r0, 0
+	beq      lbl_80197234
+	fmr      f31, f1
+	mr       r31, r5
+	b        lbl_80197270
 
-	.loc_0x194:
-	  lwz       r3, 0x58(r4)
-	  lwz       r0, 0xE4(r3)
-	  cmpwi     r0, 0
-	  bne-      .loc_0x1BC
-	  lhz       r0, 0x2DC(r5)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x1D0
-	  fmr       f31, f1
-	  mr        r31, r5
-	  b         .loc_0x1D0
+lbl_80197234:
+	lwz      r3, 0x58(r4)
+	lwz      r0, 0xe4(r3)
+	cmpwi    r0, 0
+	bne      lbl_8019725C
+	lhz      r0, 0x2dc(r5)
+	cmplwi   r0, 0
+	bne      lbl_80197270
+	fmr      f31, f1
+	mr       r31, r5
+	b        lbl_80197270
 
-	.loc_0x1BC:
-	  lhz       r0, 0x2DC(r5)
-	  cmplwi    r0, 0x1
-	  bne-      .loc_0x1D0
-	  fmr       f31, f1
-	  mr        r31, r5
+lbl_8019725C:
+	lhz      r0, 0x2dc(r5)
+	cmplwi   r0, 1
+	bne      lbl_80197270
+	fmr      f31, f1
+	mr       r31, r5
 
-	.loc_0x1D0:
-	  addi      r3, r1, 0x40
-	  bl        0x9728C
+lbl_80197270:
+	addi     r3, r1, 0x40
+	bl       next__Q24Game12CellIteratorFv
 
-	.loc_0x1D8:
-	  addi      r3, r1, 0x40
-	  bl        0x972B8
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x84
-	  mr        r3, r31
-	  psq_l     f31,0xA8(r1),0,0
-	  lwz       r0, 0xB4(r1)
-	  lfd       f31, 0xA0(r1)
-	  lwz       r31, 0x9C(r1)
-	  lwz       r30, 0x98(r1)
-	  lwz       r29, 0x94(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0xB0
-	  blr
+lbl_80197278:
+	addi     r3, r1, 0x40
+	bl       isDone__Q24Game12CellIteratorFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80197124
+	mr       r3, r31
+	psq_l    f31, 168(r1), 0, qr0
+	lwz      r0, 0xb4(r1)
+	lfd      f31, 0xa0(r1)
+	lwz      r31, 0x9c(r1)
+	lwz      r30, 0x98(r1)
+	lwz      r29, 0x94(r1)
+	mtlr     r0
+	addi     r1, r1, 0xb0
+	blr
 	*/
 }
 
@@ -800,16 +848,15 @@ void PikiAI::Action::doDirectDraw(Graphics&) { }
 void __sinit_aiAction_cpp(void)
 {
 	/*
-	.loc_0x0:
-	  lis       r4, 0x8051
-	  li        r0, -0x1
-	  lfs       f0, 0x48B0(r4)
-	  lis       r3, 0x804B
-	  stw       r0, -0x6CA8(r13)
-	  stfsu     f0, 0x4A60(r3)
-	  stfs      f0, -0x6CA4(r13)
-	  stfs      f0, 0x4(r3)
-	  stfs      f0, 0x8(r3)
-	  blr
+	lis      r4, __float_nan@ha
+	li       r0, -1
+	lfs      f0, __float_nan@l(r4)
+	lis      r3, lbl_804B4A60@ha
+	stw      r0, lbl_805159D8@sda21(r13)
+	stfsu    f0, lbl_804B4A60@l(r3)
+	stfs     f0, lbl_805159DC@sda21(r13)
+	stfs     f0, 4(r3)
+	stfs     f0, 8(r3)
+	blr
 	*/
 }

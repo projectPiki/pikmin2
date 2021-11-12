@@ -2,6 +2,199 @@
 
 #include "Game/PlatInstance.h"
 
+/*
+    Generated from dpostproc
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_80480168
+    lbl_80480168:
+        .4byte 0x706C6174
+        .4byte 0x2D6F6262
+        .4byte 0x00000000
+    .global lbl_80480174
+    lbl_80480174:
+        .4byte 0x706C6174
+        .4byte 0x696E7374
+        .4byte 0x616E6365
+        .4byte 0x00000000
+        .4byte 0x00000000
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__Q24Game7PlatMgr
+    __vt__Q24Game7PlatMgr:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q24Game7PlatMgrFv
+        .4byte getChildCount__5CNodeFv
+        .4byte "getObject__32Container<Q24Game12PlatInstance>FPv"
+        .4byte "getNext__36NodeObjectMgr<Q24Game12PlatInstance>FPv"
+        .4byte "getStart__36NodeObjectMgr<Q24Game12PlatInstance>Fv"
+        .4byte "getEnd__36NodeObjectMgr<Q24Game12PlatInstance>Fv"
+        .4byte "get__36NodeObjectMgr<Q24Game12PlatInstance>FPv"
+        .4byte "getAt__32Container<Q24Game12PlatInstance>Fi"
+        .4byte "getTo__32Container<Q24Game12PlatInstance>Fv"
+        .4byte 0
+        .4byte 0
+        .4byte "@28@doAnimation__32ObjectMgr<Q24Game12PlatInstance>Fv"
+        .4byte "@28@doEntry__32ObjectMgr<Q24Game12PlatInstance>Fv"
+        .4byte "@28@doSetView__32ObjectMgr<Q24Game12PlatInstance>Fi"
+        .4byte "@28@doViewCalc__32ObjectMgr<Q24Game12PlatInstance>Fv"
+        .4byte "@28@doSimulation__32ObjectMgr<Q24Game12PlatInstance>Ff"
+        .4byte "@28@doDirectDraw__Q24Game7PlatMgrFR8Graphics"
+        .4byte doSimpleDraw__16GenericObjectMgrFP8Viewport
+        .4byte loadResources__16GenericObjectMgrFv
+        .4byte "@28@resetMgr__36NodeObjectMgr<Q24Game12PlatInstance>Fv"
+        .4byte pausable__16GenericObjectMgrFv
+        .4byte frozenable__16GenericObjectMgrFv
+        .4byte getMatrixLoadType__16GenericObjectMgrFv
+        .4byte "doAnimation__32ObjectMgr<Q24Game12PlatInstance>Fv"
+        .4byte "doEntry__32ObjectMgr<Q24Game12PlatInstance>Fv"
+        .4byte "doSetView__32ObjectMgr<Q24Game12PlatInstance>Fi"
+        .4byte "doViewCalc__32ObjectMgr<Q24Game12PlatInstance>Fv"
+        .4byte "doSimulation__32ObjectMgr<Q24Game12PlatInstance>Ff"
+        .4byte doDirectDraw__Q24Game7PlatMgrFR8Graphics
+        .4byte "resetMgr__36NodeObjectMgr<Q24Game12PlatInstance>Fv"
+        .4byte findRayIntersection__Q24Game7PlatMgrFRQ23Sys16RayIntersectInfo
+    .global "__vt__31Iterator<Q24Game12PlatInstance>"
+    "__vt__31Iterator<Q24Game12PlatInstance>":
+        .4byte 0
+        .4byte 0
+        .4byte "first__31Iterator<Q24Game12PlatInstance>Fv"
+        .4byte "next__31Iterator<Q24Game12PlatInstance>Fv"
+        .4byte "isDone__31Iterator<Q24Game12PlatInstance>Fv"
+        .4byte "__ml__31Iterator<Q24Game12PlatInstance>Fv"
+    .global "__vt__34TObjectNode<Q24Game12PlatInstance>"
+    "__vt__34TObjectNode<Q24Game12PlatInstance>":
+        .4byte 0
+        .4byte 0
+        .4byte "__dt__34TObjectNode<Q24Game12PlatInstance>Fv"
+        .4byte getChildCount__5CNodeFv
+    .global "__vt__36NodeObjectMgr<Q24Game12PlatInstance>"
+    "__vt__36NodeObjectMgr<Q24Game12PlatInstance>":
+        .4byte 0
+        .4byte 0
+        .4byte "__dt__36NodeObjectMgr<Q24Game12PlatInstance>Fv"
+        .4byte getChildCount__5CNodeFv
+        .4byte "getObject__32Container<Q24Game12PlatInstance>FPv"
+        .4byte "getNext__36NodeObjectMgr<Q24Game12PlatInstance>FPv"
+        .4byte "getStart__36NodeObjectMgr<Q24Game12PlatInstance>Fv"
+        .4byte "getEnd__36NodeObjectMgr<Q24Game12PlatInstance>Fv"
+        .4byte "get__36NodeObjectMgr<Q24Game12PlatInstance>FPv"
+        .4byte "getAt__32Container<Q24Game12PlatInstance>Fi"
+        .4byte "getTo__32Container<Q24Game12PlatInstance>Fv"
+        .4byte 0
+        .4byte 0
+        .4byte "@28@doAnimation__32ObjectMgr<Q24Game12PlatInstance>Fv"
+        .4byte "@28@doEntry__32ObjectMgr<Q24Game12PlatInstance>Fv"
+        .4byte "@28@doSetView__32ObjectMgr<Q24Game12PlatInstance>Fi"
+        .4byte "@28@doViewCalc__32ObjectMgr<Q24Game12PlatInstance>Fv"
+        .4byte "@28@doSimulation__32ObjectMgr<Q24Game12PlatInstance>Ff"
+        .4byte "@28@doDirectDraw__32ObjectMgr<Q24Game12PlatInstance>FR8Graphics"
+        .4byte doSimpleDraw__16GenericObjectMgrFP8Viewport
+        .4byte loadResources__16GenericObjectMgrFv
+        .4byte "@28@resetMgr__36NodeObjectMgr<Q24Game12PlatInstance>Fv"
+        .4byte pausable__16GenericObjectMgrFv
+        .4byte frozenable__16GenericObjectMgrFv
+        .4byte getMatrixLoadType__16GenericObjectMgrFv
+        .4byte "doAnimation__32ObjectMgr<Q24Game12PlatInstance>Fv"
+        .4byte "doEntry__32ObjectMgr<Q24Game12PlatInstance>Fv"
+        .4byte "doSetView__32ObjectMgr<Q24Game12PlatInstance>Fi"
+        .4byte "doViewCalc__32ObjectMgr<Q24Game12PlatInstance>Fv"
+        .4byte "doSimulation__32ObjectMgr<Q24Game12PlatInstance>Ff"
+        .4byte "doDirectDraw__32ObjectMgr<Q24Game12PlatInstance>FR8Graphics"
+        .4byte "resetMgr__36NodeObjectMgr<Q24Game12PlatInstance>Fv"
+    .global "__vt__32ObjectMgr<Q24Game12PlatInstance>"
+    "__vt__32ObjectMgr<Q24Game12PlatInstance>":
+        .4byte 0
+        .4byte 0
+        .4byte "__dt__32ObjectMgr<Q24Game12PlatInstance>Fv"
+        .4byte getChildCount__5CNodeFv
+        .4byte "getObject__32Container<Q24Game12PlatInstance>FPv"
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte "getAt__32Container<Q24Game12PlatInstance>Fi"
+        .4byte "getTo__32Container<Q24Game12PlatInstance>Fv"
+        .4byte 0
+        .4byte 0
+        .4byte "@28@doAnimation__32ObjectMgr<Q24Game12PlatInstance>Fv"
+        .4byte "@28@doEntry__32ObjectMgr<Q24Game12PlatInstance>Fv"
+        .4byte "@28@doSetView__32ObjectMgr<Q24Game12PlatInstance>Fi"
+        .4byte "@28@doViewCalc__32ObjectMgr<Q24Game12PlatInstance>Fv"
+        .4byte "@28@doSimulation__32ObjectMgr<Q24Game12PlatInstance>Ff"
+        .4byte "@28@doDirectDraw__32ObjectMgr<Q24Game12PlatInstance>FR8Graphics"
+        .4byte doSimpleDraw__16GenericObjectMgrFP8Viewport
+        .4byte loadResources__16GenericObjectMgrFv
+        .4byte resetMgr__16GenericObjectMgrFv
+        .4byte pausable__16GenericObjectMgrFv
+        .4byte frozenable__16GenericObjectMgrFv
+        .4byte getMatrixLoadType__16GenericObjectMgrFv
+        .4byte "doAnimation__32ObjectMgr<Q24Game12PlatInstance>Fv"
+        .4byte "doEntry__32ObjectMgr<Q24Game12PlatInstance>Fv"
+        .4byte "doSetView__32ObjectMgr<Q24Game12PlatInstance>Fi"
+        .4byte "doViewCalc__32ObjectMgr<Q24Game12PlatInstance>Fv"
+        .4byte "doSimulation__32ObjectMgr<Q24Game12PlatInstance>Ff"
+        .4byte "doDirectDraw__32ObjectMgr<Q24Game12PlatInstance>FR8Graphics"
+    .global "__vt__32Container<Q24Game12PlatInstance>"
+    "__vt__32Container<Q24Game12PlatInstance>":
+        .4byte 0
+        .4byte 0
+        .4byte "__dt__32Container<Q24Game12PlatInstance>Fv"
+        .4byte getChildCount__5CNodeFv
+        .4byte "getObject__32Container<Q24Game12PlatInstance>FPv"
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte "getAt__32Container<Q24Game12PlatInstance>Fi"
+        .4byte "getTo__32Container<Q24Game12PlatInstance>Fv"
+    .global __vt__Q24Game12PlatInstance
+    __vt__Q24Game12PlatInstance:
+        .4byte 0
+        .4byte 0
+        .4byte getPosition__Q24Game12PlatInstanceFv
+        .4byte checkCollision__Q24Game12PlatInstanceFPQ24Game10CellObject
+        .4byte getBoundingSphere__Q24Game12PlatInstanceFRQ23Sys6Sphere
+        .4byte collisionUpdatable__Q24Game12PlatInstanceFv
+        .4byte isPiki__Q24Game10CellObjectFv
+        .4byte isNavi__Q24Game10CellObjectFv
+        .4byte deferPikiCollision__Q24Game10CellObjectFv
+        .4byte getTypeName__Q24Game12PlatInstanceFv
+        .4byte getObjType__Q24Game12PlatInstanceFv
+        .4byte constructor__Q24Game12PlatInstanceFv
+        .4byte doAnimation__Q24Game12PlatInstanceFv
+        .4byte doEntry__Q24Game12PlatInstanceFv
+        .4byte doSetView__Q24Game12PlatInstanceFi
+        .4byte doViewCalc__Q24Game12PlatInstanceFv
+        .4byte doSimulation__Q24Game12PlatInstanceFf
+        .4byte doDirectDraw__Q24Game12PlatInstanceFR8Graphics
+        .4byte 0
+
+    .section .sdata, "wa"  # 0x80514680 - 0x80514D80
+    .global useFixCollision__Q24Game12PlatInstance
+    useFixCollision__Q24Game12PlatInstance:
+        .byte 0x1
+    .global mUseCellMgr__Q24Game7PlatMgr
+    mUseCellMgr__Q24Game7PlatMgr:
+        .byte 0x1
+        .byte 0x0
+        .byte 0x0
+
+    .section .sbss # 0x80514D80 - 0x80516360
+    .global platMgr__4Game
+    platMgr__4Game:
+        .skip 0x8
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_80519588
+    lbl_80519588:
+        .4byte 0x00000000
+    .global lbl_8051958C
+    lbl_8051958C:
+        .4byte 0x4B435000
+*/
+
 namespace Game {
 /*
  * --INFO--

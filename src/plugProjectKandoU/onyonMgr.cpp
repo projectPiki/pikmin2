@@ -1,5 +1,1089 @@
 #include "types.h"
 
+/*
+    Generated from dpostproc
+
+    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
+    .4byte __sinit_onyonMgr_cpp
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_8047E620
+    lbl_8047E620:
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x6F6E796F
+        .4byte 0x6E4D6772
+        .4byte 0x00000000
+    .global lbl_8047E638
+    lbl_8047E638:
+        .asciz "onyonMgr.cpp"
+        .skip 3
+        .asciz "BIKKURI no boot!\n"
+        .skip 2
+        .asciz "onyon supply failure!\n"
+        .skip 1
+    .global lbl_8047E674
+    lbl_8047E674:
+        .asciz "pmotion3"
+        .skip 3
+    .global lbl_8047E680
+    lbl_8047E680:
+        .asciz "P2Assert"
+        .skip 3
+        .asciz "damedayo !: arrive  ufoSuckState=%d\n"
+        .skip 3
+    .global lbl_8047E6B4
+    lbl_8047E6B4:
+        .4byte 0x00000001
+        .4byte 0x00000000
+        .4byte 0x00000002
+        .4byte 0x50534761
+        .4byte 0x6D652E68
+        .4byte 0x00000000
+        .4byte 0x50535363
+        .4byte 0x656E652E
+        .4byte 0x68000000
+        .4byte 0x67657420
+        .4byte 0x736F756E
+        .4byte 0x64207363
+        .4byte 0x656E6520
+        .4byte 0x61740A69
+        .4byte 0x6E76616C
+        .4byte 0x69642074
+        .4byte 0x696D6D69
+        .4byte 0x6E670A00
+        .4byte 0x62696B6B
+        .4byte 0x75726921
+        .4byte 0x0A000000
+        .4byte 0x4927616D
+        .4byte 0x2062696B
+        .4byte 0x6B757269
+        .4byte 0x2D65640A
+        .4byte 0x00000000
+    .global lbl_8047E71C
+    lbl_8047E71C:
+        .4byte 0x6731365F
+        .4byte 0x39355F70
+        .4byte 0x696B6D69
+        .4byte 0x6E000000
+    .global lbl_8047E72C
+    lbl_8047E72C:
+        .4byte 0x6731365F
+        .4byte 0x3130305F
+        .4byte 0x70696B6D
+        .4byte 0x696E0000
+    .global lbl_8047E73C
+    lbl_8047E73C:
+        .4byte 0x7831385F
+        .4byte 0x6578705F
+        .4byte 0x70656C6C
+        .4byte 0x65740000
+        .4byte 0x6C656731
+        .4byte 0x6C656732
+        .4byte 0x6C656733
+        .4byte 0x666F7431
+        .4byte 0x666F7432
+        .4byte 0x666F7433
+        .asciz "oh! no!\n"
+        .skip 3
+    .global lbl_8047E770
+    lbl_8047E770:
+        .asciz "kasi1jnt1"
+        .skip 2
+    .global lbl_8047E77C
+    lbl_8047E77C:
+        .asciz "kass2jnt1"
+        .skip 2
+    .global lbl_8047E788
+    lbl_8047E788:
+        .asciz "kasi3jnt1"
+        .skip 2
+    .global lbl_8047E794
+    lbl_8047E794:
+        .4byte lbl_8047E770
+        .4byte lbl_8047E77C
+        .4byte lbl_8047E788
+        .asciz "exitWhite/Black zero (UFO)\n"
+    .global lbl_8047E7BC
+    lbl_8047E7BC:
+        .asciz "not ufo\n"
+        .skip 3
+    .global lbl_8047E7C8
+    lbl_8047E7C8:
+        .4byte 0x82BE82DF
+        .4byte 0x82C582B7
+        .4byte 0x00000000
+    .global lbl_8047E7D4
+    lbl_8047E7D4:
+        .asciz "pmotion1"
+        .skip 3
+    .global lbl_8047E7E0
+    lbl_8047E7E0:
+        .asciz "pmotion2"
+        .skip 3
+        .4byte lbl_8047E7D4
+        .4byte lbl_8047E7E0
+        .4byte lbl_8047E674
+        .asciz "no joint (%s)\n"
+        .skip 1
+    .global lbl_8047E808
+    lbl_8047E808:
+        .asciz "\t# onyon index\r\n"
+        .skip 3
+    .global lbl_8047E81C
+    lbl_8047E81C:
+        .asciz "\t# after boot? true==1\r\n"
+        .skip 3
+    .global lbl_8047E838
+    lbl_8047E838:
+        .asciz "illegal onyon index %d\n"
+        .asciz "onyon-arc"
+        .skip 2
+        .asciz "user/Kando/onyon/arc.szs"
+        .skip 3
+        .asciz "goal.bmd"
+        .skip 3
+        .asciz "goal.bmd not found !!\n"
+        .skip 1
+        .asciz "user/Kando/pod_gold/arc.szs"
+        .asciz "user/Kando/pod/arc.szs"
+        .skip 1
+        .asciz "pot.bmd not found !!\n"
+        .skip 2
+        .asciz "kidou_blue.brk"
+        .skip 1
+        .asciz "kidou_red.brk"
+        .skip 2
+        .asciz "kidou_yellow.brk"
+        .skip 3
+        .asciz "user/Kando/onyon"
+        .skip 3
+        .4byte 0x74657874
+        .4byte 0x732E737A
+        .4byte 0x73000000
+        .4byte 0x6F6E796F
+        .4byte 0x6E416E69
+        .4byte 0x6D4D6772
+        .4byte 0x2E747874
+        .4byte 0x00000000
+        .4byte 0x6F6E796F
+        .4byte 0x6E436F6C
+        .4byte 0x6C2E7478
+        .4byte 0x74000000
+        .4byte 0x75736572
+        .4byte 0x2F4B616E
+        .4byte 0x646F2F70
+        .4byte 0x6F645F67
+        .4byte 0x6F6C6400
+        .4byte 0x75736572
+        .4byte 0x2F4B616E
+        .4byte 0x646F2F70
+        .4byte 0x6F640000
+        .4byte 0x616E696D
+        .4byte 0x4D67722E
+        .4byte 0x74787400
+        .4byte 0x636F6C6C
+        .4byte 0x2E747874
+        .4byte 0x00000000
+        .4byte 0x75736572
+        .4byte 0x2F4B616E
+        .4byte 0x646F2F75
+        .4byte 0x666F5F67
+        .4byte 0x6F6C642F
+        .4byte 0x6172632E
+        .4byte 0x737A7300
+        .4byte 0x75736572
+        .4byte 0x2F4B616E
+        .4byte 0x646F2F75
+        .4byte 0x666F2F61
+        .4byte 0x72632E73
+        .4byte 0x7A730000
+        .4byte 0x75666F2E
+        .4byte 0x626D6420
+        .4byte 0x6E6F7420
+        .4byte 0x666F756E
+        .4byte 0x64210A00
+        .4byte 0x75666F5F
+        .4byte 0x322E6272
+        .4byte 0x6B000000
+        .4byte 0x75736572
+        .4byte 0x2F4B616E
+        .4byte 0x646F2F75
+        .4byte 0x666F5F67
+        .4byte 0x6F6C6400
+        .4byte 0x75736572
+        .4byte 0x2F4B616E
+        .4byte 0x646F2F75
+        .4byte 0x666F0000
+        .4byte 0x616E696D
+        .4byte 0x6D67722E
+        .4byte 0x74787400
+        .4byte 0x43726561
+        .4byte 0x74757265
+        .4byte 0x41637469
+        .4byte 0x6F6E4172
+        .4byte 0x67000000
+        .4byte 0x41637469
+        .4byte 0x6F6E4172
+        .4byte 0x67000000
+        .4byte 0x50696B69
+        .4byte 0x4B696C6C
+        .4byte 0x41726700
+        .4byte 0x43726561
+        .4byte 0x74757265
+        .4byte 0x4B696C6C
+        .4byte 0x41726700
+    .global lbl_8047EA5C
+    lbl_8047EA5C:
+        .asciz "ItemPikiHead::InitArg"
+        .skip 2
+    .global lbl_8047EA74
+    lbl_8047EA74:
+        .asciz "ItemInitArg"
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global lbl_804B2420
+    lbl_804B2420:
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+    .global __vt__Q34Game9ItemOnyon3Mgr
+    __vt__Q34Game9ItemOnyon3Mgr:
+        .4byte 0
+        .4byte 0
+        .4byte doAnimation__Q34Game9ItemOnyon3MgrFv
+        .4byte doEntry__Q34Game9ItemOnyon3MgrFv
+        .4byte doSetView__Q34Game9ItemOnyon3MgrFi
+        .4byte doViewCalc__Q34Game9ItemOnyon3MgrFv
+        .4byte doSimulation__Q34Game9ItemOnyon3MgrFf
+        .4byte doDirectDraw__Q34Game9ItemOnyon3MgrFR8Graphics
+        .4byte doSimpleDraw__16GenericObjectMgrFP8Viewport
+        .4byte loadResources__Q24Game11BaseItemMgrFv
+        .4byte resetMgr__16GenericObjectMgrFv
+        .4byte pausable__16GenericObjectMgrFv
+        .4byte frozenable__16GenericObjectMgrFv
+        .4byte getMatrixLoadType__16GenericObjectMgrFv
+        .4byte initDependency__Q34Game9ItemOnyon3MgrFv
+        .4byte killAll__Q24Game11BaseItemMgrFv
+        .4byte setup__Q24Game11BaseItemMgrFPQ24Game8BaseItem
+        .4byte setupSoundViewerAndBas__Q34Game9ItemOnyon3MgrFv
+        .4byte onLoadResources__Q24Game11BaseItemMgrFv
+        .4byte loadEverytime__Q24Game11BaseItemMgrFv
+        .4byte updateUseList__Q24Game11BaseItemMgrFPQ24Game11GenItemParmi
+        .4byte onUpdateUseList__Q24Game11BaseItemMgrFPQ24Game11GenItemParmi
+        .4byte generatorGetID__Q34Game9ItemOnyon3MgrFv
+        .4byte
+   "generatorBirth__Q34Game9ItemOnyon3MgrFR10Vector3<f>R10Vector3<f>PQ24Game11GenItemParm"
+        .4byte
+   generatorWrite__Q34Game9ItemOnyon3MgrFR6StreamPQ24Game11GenItemParm .4byte
+   generatorRead__Q34Game9ItemOnyon3MgrFR6StreamPQ24Game11GenItemParmUl .4byte
+   generatorLocalVersion__Q34Game9ItemOnyon3MgrFv .4byte
+   generatorGetShape__Q34Game9ItemOnyon3MgrFPQ24Game11GenItemParm .4byte
+   generatorNewItemParm__Q34Game9ItemOnyon3MgrFv .4byte 0 .4byte 0 .4byte
+   "@48@__dt__Q34Game9ItemOnyon3MgrFv" .4byte getChildCount__5CNodeFv .4byte
+   "getObject__24Container<Q24Game5Onyon>FPv" .4byte
+   "@48@getNext__Q34Game9ItemOnyon3MgrFPv" .4byte
+   "@48@getStart__Q34Game9ItemOnyon3MgrFv" .4byte
+   "@48@getEnd__Q34Game9ItemOnyon3MgrFv" .4byte
+   "@48@get__Q34Game9ItemOnyon3MgrFPv" .4byte
+   "getAt__24Container<Q24Game5Onyon>Fi" .4byte
+   "getTo__24Container<Q24Game5Onyon>Fv" .4byte __dt__Q34Game9ItemOnyon3MgrFv
+        .4byte get__Q34Game9ItemOnyon3MgrFPv
+        .4byte getNext__Q34Game9ItemOnyon3MgrFPv
+        .4byte getStart__Q34Game9ItemOnyon3MgrFv
+        .4byte getEnd__Q34Game9ItemOnyon3MgrFv
+    .global "__vt__26TObjectNode<Q24Game5Onyon>"
+    "__vt__26TObjectNode<Q24Game5Onyon>":
+        .4byte 0
+        .4byte 0
+        .4byte "__dt__26TObjectNode<Q24Game5Onyon>Fv"
+        .4byte getChildCount__5CNodeFv
+    .global "__vt__28NodeObjectMgr<Q24Game5Onyon>"
+    "__vt__28NodeObjectMgr<Q24Game5Onyon>":
+        .4byte 0
+        .4byte 0
+        .4byte "__dt__28NodeObjectMgr<Q24Game5Onyon>Fv"
+        .4byte getChildCount__5CNodeFv
+        .4byte "getObject__24Container<Q24Game5Onyon>FPv"
+        .4byte "getNext__28NodeObjectMgr<Q24Game5Onyon>FPv"
+        .4byte "getStart__28NodeObjectMgr<Q24Game5Onyon>Fv"
+        .4byte "getEnd__28NodeObjectMgr<Q24Game5Onyon>Fv"
+        .4byte "get__28NodeObjectMgr<Q24Game5Onyon>FPv"
+        .4byte "getAt__24Container<Q24Game5Onyon>Fi"
+        .4byte "getTo__24Container<Q24Game5Onyon>Fv"
+        .4byte 0
+        .4byte 0
+        .4byte "@28@doAnimation__24ObjectMgr<Q24Game5Onyon>Fv"
+        .4byte "@28@doEntry__24ObjectMgr<Q24Game5Onyon>Fv"
+        .4byte "@28@doSetView__24ObjectMgr<Q24Game5Onyon>Fi"
+        .4byte "@28@doViewCalc__24ObjectMgr<Q24Game5Onyon>Fv"
+        .4byte "@28@doSimulation__24ObjectMgr<Q24Game5Onyon>Ff"
+        .4byte "@28@doDirectDraw__24ObjectMgr<Q24Game5Onyon>FR8Graphics"
+        .4byte doSimpleDraw__16GenericObjectMgrFP8Viewport
+        .4byte loadResources__16GenericObjectMgrFv
+        .4byte "@28@resetMgr__28NodeObjectMgr<Q24Game5Onyon>Fv"
+        .4byte pausable__16GenericObjectMgrFv
+        .4byte frozenable__16GenericObjectMgrFv
+        .4byte getMatrixLoadType__16GenericObjectMgrFv
+        .4byte "doAnimation__24ObjectMgr<Q24Game5Onyon>Fv"
+        .4byte "doEntry__24ObjectMgr<Q24Game5Onyon>Fv"
+        .4byte "doSetView__24ObjectMgr<Q24Game5Onyon>Fi"
+        .4byte "doViewCalc__24ObjectMgr<Q24Game5Onyon>Fv"
+        .4byte "doSimulation__24ObjectMgr<Q24Game5Onyon>Ff"
+        .4byte "doDirectDraw__24ObjectMgr<Q24Game5Onyon>FR8Graphics"
+        .4byte "resetMgr__28NodeObjectMgr<Q24Game5Onyon>Fv"
+    .global "__vt__24ObjectMgr<Q24Game5Onyon>"
+    "__vt__24ObjectMgr<Q24Game5Onyon>":
+        .4byte 0
+        .4byte 0
+        .4byte "__dt__24ObjectMgr<Q24Game5Onyon>Fv"
+        .4byte getChildCount__5CNodeFv
+        .4byte "getObject__24Container<Q24Game5Onyon>FPv"
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte "getAt__24Container<Q24Game5Onyon>Fi"
+        .4byte "getTo__24Container<Q24Game5Onyon>Fv"
+        .4byte 0
+        .4byte 0
+        .4byte "@28@doAnimation__24ObjectMgr<Q24Game5Onyon>Fv"
+        .4byte "@28@doEntry__24ObjectMgr<Q24Game5Onyon>Fv"
+        .4byte "@28@doSetView__24ObjectMgr<Q24Game5Onyon>Fi"
+        .4byte "@28@doViewCalc__24ObjectMgr<Q24Game5Onyon>Fv"
+        .4byte "@28@doSimulation__24ObjectMgr<Q24Game5Onyon>Ff"
+        .4byte "@28@doDirectDraw__24ObjectMgr<Q24Game5Onyon>FR8Graphics"
+        .4byte doSimpleDraw__16GenericObjectMgrFP8Viewport
+        .4byte loadResources__16GenericObjectMgrFv
+        .4byte resetMgr__16GenericObjectMgrFv
+        .4byte pausable__16GenericObjectMgrFv
+        .4byte frozenable__16GenericObjectMgrFv
+        .4byte getMatrixLoadType__16GenericObjectMgrFv
+        .4byte "doAnimation__24ObjectMgr<Q24Game5Onyon>Fv"
+        .4byte "doEntry__24ObjectMgr<Q24Game5Onyon>Fv"
+        .4byte "doSetView__24ObjectMgr<Q24Game5Onyon>Fi"
+        .4byte "doViewCalc__24ObjectMgr<Q24Game5Onyon>Fv"
+        .4byte "doSimulation__24ObjectMgr<Q24Game5Onyon>Ff"
+        .4byte "doDirectDraw__24ObjectMgr<Q24Game5Onyon>FR8Graphics"
+    .global "__vt__24Container<Q24Game5Onyon>"
+    "__vt__24Container<Q24Game5Onyon>":
+        .4byte 0
+        .4byte 0
+        .4byte "__dt__24Container<Q24Game5Onyon>Fv"
+        .4byte getChildCount__5CNodeFv
+        .4byte "getObject__24Container<Q24Game5Onyon>FPv"
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte "getAt__24Container<Q24Game5Onyon>Fi"
+        .4byte "getTo__24Container<Q24Game5Onyon>Fv"
+    .global __vt__12GenOnyonParm
+    __vt__12GenOnyonParm:
+        .4byte 0
+        .4byte 0
+        .4byte getShapeID__Q24Game11GenItemParmFv
+    .global __vt__Q24Game11GenItemParm
+    __vt__Q24Game11GenItemParm:
+        .4byte 0
+        .4byte 0
+        .4byte getShapeID__Q24Game11GenItemParmFv
+    .global __vt__Q23efx14TOnyonPuffKira
+    __vt__Q23efx14TOnyonPuffKira:
+        .4byte 0
+        .4byte 0
+        .4byte create__Q23efx8TSimple1FPQ23efx3Arg
+        .4byte forceKill__Q23efx8TSimple1Fv
+        .4byte fade__Q23efx8TSimple1Fv
+    .global __vt__Q23efx14TOnyonPuffPuff
+    __vt__Q23efx14TOnyonPuffPuff:
+        .4byte 0
+        .4byte 0
+        .4byte create__Q23efx11TSimpleMtx1FPQ23efx3Arg
+        .4byte forceKill__Q23efx8TSimple1Fv
+        .4byte fade__Q23efx8TSimple1Fv
+    .global __vt__Q23efx8TPodSuck
+    __vt__Q23efx8TPodSuck:
+        .4byte 0
+        .4byte 0
+        .4byte create__Q23efx8TSimple2FPQ23efx3Arg
+        .4byte forceKill__Q23efx8TSimple2Fv
+        .4byte fade__Q23efx8TSimple2Fv
+    .global __vt__Q23efx10TOnyonEatC
+    __vt__Q23efx10TOnyonEatC:
+        .4byte 0
+        .4byte 0
+        .4byte create__Q23efx11TSimpleMtx1FPQ23efx3Arg
+        .4byte forceKill__Q23efx8TSimple1Fv
+        .4byte fade__Q23efx8TSimple1Fv
+    .global __vt__Q23efx7ArgType
+    __vt__Q23efx7ArgType:
+        .4byte 0
+        .4byte 0
+        .4byte getName__Q23efx7ArgTypeFv
+    .global __vt__Q23efx9TOnyonLay
+    __vt__Q23efx9TOnyonLay:
+        .4byte 0
+        .4byte 0
+        .4byte create__Q23efx8TSimple2FPQ23efx3Arg
+        .4byte forceKill__Q23efx8TSimple2Fv
+        .4byte fade__Q23efx8TSimple2Fv
+    .global __vt__Q23efx12OnyonSpotArg
+    __vt__Q23efx12OnyonSpotArg:
+        .4byte 0
+        .4byte 0
+        .4byte getID__Q23efx12OnyonSpotArgFv
+    .global __vt__20ModelEffectCreateArg
+    __vt__20ModelEffectCreateArg:
+        .4byte 0
+        .4byte 0
+        .4byte 0
+    .global __vt__Q24Game5Onyon
+    __vt__Q24Game5Onyon:
+        .4byte 0
+        .4byte 0
+        .4byte getPosition__Q24Game8BaseItemFv
+        .4byte checkCollision__Q24Game8CreatureFPQ24Game10CellObject
+        .4byte getBoundingSphere__Q24Game8BaseItemFRQ23Sys6Sphere
+        .4byte collisionUpdatable__Q24Game8CreatureFv
+        .4byte isPiki__Q24Game8CreatureFv
+        .4byte isNavi__Q24Game8CreatureFv
+        .4byte deferPikiCollision__Q24Game10CellObjectFv
+        .4byte getTypeName__Q24Game8CreatureFv
+        .4byte getObjType__Q24Game8CreatureFv
+        .4byte constructor__Q24Game8BaseItemFv
+        .4byte onInit__Q24Game5OnyonFPQ24Game15CreatureInitArg
+        .4byte onKill__Q24Game5OnyonFPQ24Game15CreatureKillArg
+        .4byte onInitPost__Q24Game8CreatureFPQ24Game15CreatureInitArg
+        .4byte doAnimation__Q24Game8BaseItemFv
+        .4byte doEntry__Q24Game8BaseItemFv
+        .4byte doSetView__Q24Game8CreatureFi
+        .4byte doViewCalc__Q24Game8CreatureFv
+        .4byte doSimulation__Q24Game8BaseItemFf
+        .4byte doDirectDraw__Q24Game5OnyonFR8Graphics
+        .4byte getBodyRadius__Q24Game8CreatureFv
+        .4byte getCellRadius__Q24Game8CreatureFv
+        .4byte "initPosition__Q24Game8CreatureFR10Vector3<f>"
+        .4byte "onInitPosition__Q24Game8CreatureFR10Vector3<f>"
+        .4byte getFaceDir__Q24Game5OnyonFv
+        .4byte "setVelocity__Q24Game8BaseItemFR10Vector3<f>"
+        .4byte getVelocity__Q24Game8BaseItemFv
+        .4byte "onSetPosition__Q24Game8BaseItemFR10Vector3<f>"
+        .4byte "onSetPositionPost__Q24Game8CreatureFR10Vector3<f>"
+        .4byte updateTrMatrix__Q24Game8BaseItemFv
+        .4byte isTeki__Q24Game8CreatureFv
+        .4byte isPellet__Q24Game8CreatureFv
+        .4byte inWaterCallback__Q24Game8CreatureFPQ24Game8WaterBox
+        .4byte outWaterCallback__Q24Game8CreatureFv
+        .4byte inWater__Q24Game8CreatureFv
+        .4byte getFlockMgr__Q24Game8CreatureFv
+        .4byte onStartCapture__Q24Game8CreatureFv
+        .4byte onUpdateCapture__Q24Game8CreatureFR7Matrixf
+        .4byte onEndCapture__Q24Game8CreatureFv
+        .4byte isAtari__Q24Game8CreatureFv
+        .4byte setAtari__Q24Game8CreatureFb
+        .4byte isAlive__Q24Game8CreatureFv
+        .4byte setAlive__Q24Game8CreatureFb
+        .4byte isCollisionFlick__Q24Game8CreatureFv
+        .4byte setCollisionFlick__Q24Game8CreatureFb
+        .4byte isMovieActor__Q24Game8CreatureFv
+        .4byte isMovieExtra__Q24Game8CreatureFv
+        .4byte isMovieMotion__Q24Game8CreatureFv
+        .4byte setMovieMotion__Q24Game8CreatureFb
+        .4byte isBuried__Q24Game8CreatureFv
+        .4byte isFlying__Q24Game8CreatureFv
+        .4byte isUnderground__Q24Game8CreatureFv
+        .4byte isLivingThing__Q24Game8CreatureFv
+        .4byte isDebugCollision__Q24Game8CreatureFv
+        .4byte setDebugCollision__Q24Game8CreatureFb
+        .4byte doSave__Q24Game8CreatureFR6Stream
+        .4byte doLoad__Q24Game8CreatureFR6Stream
+        .4byte bounceCallback__Q24Game8BaseItemFPQ23Sys8Triangle
+        .4byte collisionCallback__Q24Game8BaseItemFRQ24Game9CollEvent
+        .4byte platCallback__Q24Game8BaseItemFRQ24Game9PlatEvent
+        .4byte getJAIObject__Q24Game8BaseItemFv
+        .4byte getPSCreature__Q24Game8BaseItemFv
+        .4byte getSound_AILOD__Q24Game8CreatureFv
+        .4byte getSound_PosPtr__Q24Game8BaseItemFv
+        .4byte sound_culling__Q24Game5OnyonFv
+        .4byte getSound_CurrAnimFrame__Q24Game8CreatureFv
+        .4byte getSound_CurrAnimSpeed__Q24Game8CreatureFv
+        .4byte on_movie_begin__Q24Game8CreatureFb
+        .4byte on_movie_end__Q24Game5OnyonFb
+        .4byte movieStartAnimation__Q24Game8BaseItemFUl
+        .4byte movieStartDemoAnimation__Q24Game8BaseItemFPQ28SysShape8AnimInfo
+        .4byte movieSetAnimationLastFrame__Q24Game8BaseItemFv
+        .4byte "movieSetTranslation__Q24Game8BaseItemFR10Vector3<f>f"
+        .4byte movieSetFaceDir__Q24Game8CreatureFf
+        .4byte "movieGotoPosition__Q24Game8CreatureFR10Vector3<f>"
+        .4byte movieUserCommand__Q24Game5OnyonFUlPQ24Game11MoviePlayer
+        .4byte getShadowParam__Q24Game5OnyonFRQ24Game11ShadowParam
+        .4byte needShadow__Q24Game5OnyonFv
+        .4byte getLifeGaugeParam__Q24Game8CreatureFRQ24Game14LifeGaugeParam
+        .4byte getLODSphere__Q24Game8CreatureFRQ23Sys6Sphere
+        .4byte getLODCylinder__Q24Game5OnyonFRQ23Sys8Cylinder
+        .4byte startPick__Q24Game8CreatureFv
+        .4byte endPick__Q24Game8CreatureFb
+        .4byte getMabiki__Q24Game8CreatureFv
+        .4byte getFootmarks__Q24Game8CreatureFv
+        .4byte onStickStart__Q24Game8CreatureFPQ24Game8Creature
+        .4byte onStickEnd__Q24Game8CreatureFPQ24Game8Creature
+        .4byte onStickStartSelf__Q24Game8CreatureFPQ24Game8Creature
+        .4byte onStickEndSelf__Q24Game8CreatureFPQ24Game8Creature
+        .4byte isSlotFree__Q24Game8CreatureFs
+        .4byte getFreeStickSlot__Q24Game8CreatureFv
+        .4byte "getNearFreeStickSlot__Q24Game8CreatureFR10Vector3<f>"
+        .4byte getRandomFreeStickSlot__Q24Game8CreatureFv
+        .4byte onSlotStickStart__Q24Game8CreatureFPQ24Game8Creatures
+        .4byte onSlotStickEnd__Q24Game8CreatureFPQ24Game8Creatures
+        .4byte "calcStickSlotGlobal__Q24Game8CreatureFsR10Vector3<f>"
+        .4byte "getVelocityAt__Q24Game8BaseItemFR10Vector3<f>R10Vector3<f>"
+        .4byte "getAngularEffect__Q24Game8CreatureFR10Vector3<f>R10Vector3<f>"
+        .4byte "applyImpulse__Q24Game8CreatureFR10Vector3<f>R10Vector3<f>"
+        .4byte ignoreAtari__Q24Game8CreatureFPQ24Game8Creature
+        .4byte getSuckPos__Q24Game5OnyonFv
+        .4byte getGoalPos__Q24Game5OnyonFv
+        .4byte isSuckReady__Q24Game5OnyonFv
+        .4byte isSuckArriveWait__Q24Game5OnyonFv
+        .4byte stimulate__Q24Game5OnyonFRQ24Game11Interaction
+        .4byte getCreatureName__Q24Game5OnyonFv
+        .4byte getCreatureID__Q24Game8BaseItemFv
+        .4byte 0
+        .4byte 0
+        .4byte "@376@onKeyEvent__Q24Game5OnyonFRCQ28SysShape8KeyEvent"
+        .4byte initDependency__Q24Game8BaseItemFv
+        .4byte startSound__Q24Game8BaseItemFUl
+        .4byte makeTrMatrix__Q24Game5OnyonFv
+        .4byte doAI__Q24Game5OnyonFv
+        .4byte move__Q24Game8BaseItemFf
+        .4byte changeMaterial__Q24Game5OnyonFv
+        .4byte do_updateLOD__Q24Game5OnyonFv
+        .4byte do_setLODParm__Q24Game8BaseItemFRQ24Game9AILODParm
+        .4byte getMapCollisionRadius__Q24Game8BaseItemFv
+        .4byte interactAttack__Q24Game8BaseItemFRQ24Game14InteractAttack
+        .4byte
+   interactBreakBridge__Q24Game8BaseItemFRQ24Game19InteractBreakBridge .4byte
+   interactEat__Q24Game8BaseItemFRQ24Game11InteractEat .4byte
+   interactFlockAttack__Q24Game8BaseItemFRQ24Game19InteractFlockAttack .4byte
+   interactAbsorb__Q24Game8BaseItemFRQ24Game14InteractAbsorb .4byte
+   interactFue__Q24Game8BaseItemFRQ24Game11InteractFue .4byte
+   interactFarmKarero__Q24Game8BaseItemFRQ24Game18InteractFarmKarero .4byte
+   interactFarmHaero__Q24Game8BaseItemFRQ24Game17InteractFarmHaero .4byte
+   interactGotKey__Q24Game8BaseItemFRQ24Game14InteractGotKey .4byte
+   "getVectorField__Q24Game8BaseItemFRQ23Sys6SphereR10Vector3<f>" .4byte
+   getWorkDistance__Q24Game8BaseItemFRQ23Sys6Sphere .4byte
+   do_doAnimation__Q24Game5OnyonFv .4byte updateBoundSphere__Q24Game8BaseItemFv
+        .4byte update__Q24Game8BaseItemFv
+        .4byte entryShape__Q24Game8BaseItemFv
+        .4byte onSetPosition__Q24Game5OnyonFv
+        .4byte onKeyEvent__Q24Game5OnyonFRCQ28SysShape8KeyEvent
+        .4byte onKeyEvent_UFO__Q24Game5OnyonFRCQ28SysShape8KeyEvent
+        .4byte onKeyEvent_Onyon__Q24Game5OnyonFRCQ28SysShape8KeyEvent
+    .global __vt__Q23efx11TOnyonEatAB
+    __vt__Q23efx11TOnyonEatAB:
+        .4byte 0
+        .4byte 0
+        .4byte create__Q23efx11TSimpleMtx2FPQ23efx3Arg
+        .4byte forceKill__Q23efx8TSimple2Fv
+        .4byte fade__Q23efx8TSimple2Fv
+    .global __vt__Q23efx11TUfoPodGepu
+    __vt__Q23efx11TUfoPodGepu:
+        .4byte 0
+        .4byte 0
+        .4byte create__Q23efx11TSimpleMtx2FPQ23efx3Arg
+        .4byte forceKill__Q23efx8TSimple2Fv
+        .4byte fade__Q23efx8TSimple2Fv
+    .global __vt__Q23efx8TPodGepu
+    __vt__Q23efx8TPodGepu:
+        .4byte 0
+        .4byte 0
+        .4byte create__Q23efx8TSimple2FPQ23efx3Arg
+        .4byte forceKill__Q23efx8TSimple2Fv
+        .4byte fade__Q23efx8TSimple2Fv
+    .global __vt__Q24Game16InteractSuckDone
+    __vt__Q24Game16InteractSuckDone:
+        .4byte 0
+        .4byte 0
+        .4byte actCommon__Q24Game11InteractionFPQ24Game8Creature
+        .4byte actPiki__Q24Game11InteractionFPQ24Game4Piki
+        .4byte actNavi__Q24Game11InteractionFPQ24Game4Navi
+        .4byte actEnemy__Q24Game11InteractionFPQ24Game9EnemyBase
+        .4byte actPellet__Q24Game11InteractionFPQ24Game6Pellet
+        .4byte actOnyon__Q24Game16InteractSuckDoneFPQ24Game5Onyon
+        .4byte actItem__Q24Game11InteractionFPQ24Game8BaseItem
+    .global __vt__Q23efx11TUfoPodSuck
+    __vt__Q23efx11TUfoPodSuck:
+        .4byte 0
+        .4byte 0
+        .4byte create__Q23efx11TSimpleMtx1FPQ23efx3Arg
+        .4byte forceKill__Q23efx8TSimple1Fv
+        .4byte fade__Q23efx8TSimple1Fv
+    .global __vt__Q24Game18InteractSuckArrive
+    __vt__Q24Game18InteractSuckArrive:
+        .4byte 0
+        .4byte 0
+        .4byte actCommon__Q24Game11InteractionFPQ24Game8Creature
+        .4byte actPiki__Q24Game11InteractionFPQ24Game4Piki
+        .4byte actNavi__Q24Game11InteractionFPQ24Game4Navi
+        .4byte actEnemy__Q24Game11InteractionFPQ24Game9EnemyBase
+        .4byte actPellet__Q24Game11InteractionFPQ24Game6Pellet
+        .4byte actOnyon__Q24Game18InteractSuckArriveFPQ24Game5Onyon
+        .4byte actItem__Q24Game11InteractionFPQ24Game8BaseItem
+    .global "__vt__Q23efx28TSyncGroup2<Q23efx8TForever>"
+    "__vt__Q23efx28TSyncGroup2<Q23efx8TForever>":
+        .4byte 0
+        .4byte 0
+        .4byte "create__Q23efx28TSyncGroup2<Q23efx8TForever>FPQ23efx3Arg"
+        .4byte "forceKill__Q23efx28TSyncGroup2<Q23efx8TForever>Fv"
+        .4byte "fade__Q23efx28TSyncGroup2<Q23efx8TForever>Fv"
+        .4byte "startDemoDrawOff__Q23efx28TSyncGroup2<Q23efx8TForever>Fv"
+        .4byte "endDemoDrawOn__Q23efx28TSyncGroup2<Q23efx8TForever>Fv"
+    .global __vt__Q23efx9TForever2
+    __vt__Q23efx9TForever2:
+        .4byte 0
+        .4byte 0
+        .4byte "create__Q23efx28TSyncGroup2<Q23efx8TForever>FPQ23efx3Arg"
+        .4byte "forceKill__Q23efx28TSyncGroup2<Q23efx8TForever>Fv"
+        .4byte "fade__Q23efx28TSyncGroup2<Q23efx8TForever>Fv"
+        .4byte "startDemoDrawOff__Q23efx28TSyncGroup2<Q23efx8TForever>Fv"
+        .4byte "endDemoDrawOn__Q23efx28TSyncGroup2<Q23efx8TForever>Fv"
+    .global "__vt__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>"
+    "__vt__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>":
+        .4byte 0
+        .4byte 0
+        .4byte "create__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>FPQ23efx3Arg"
+        .4byte "forceKill__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>Fv"
+        .4byte "fade__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>Fv"
+        .4byte "startDemoDrawOff__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>Fv"
+        .4byte "endDemoDrawOn__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>Fv"
+    .global __vt__Q23efx14TChasePosYRot2
+    __vt__Q23efx14TChasePosYRot2:
+        .4byte 0
+        .4byte 0
+        .4byte "create__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>FPQ23efx3Arg"
+        .4byte "forceKill__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>Fv"
+        .4byte "fade__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>Fv"
+        .4byte "startDemoDrawOff__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>Fv"
+        .4byte "endDemoDrawOn__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>Fv"
+    .global __vt__Q23efx8TPodKira
+    __vt__Q23efx8TPodKira:
+        .4byte 0
+        .4byte 0
+        .4byte create__Q23efx5TSyncFPQ23efx3Arg
+        .4byte forceKill__Q23efx5TSyncFv
+        .4byte fade__Q23efx5TSyncFv
+        .4byte 0
+        .4byte 0
+        .4byte "@4@__dt__Q23efx8TPodKiraFv"
+        .4byte "@4@execute__Q23efx5TSyncFP14JPABaseEmitter"
+        .4byte "@4@executeAfter__Q23efx5TSyncFP14JPABaseEmitter"
+        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
+        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+        .4byte execute__Q23efx5TSyncFP14JPABaseEmitter
+        .4byte executeAfter__Q23efx5TSyncFP14JPABaseEmitter
+        .4byte doExecuteEmitterOperation__Q23efx9TChaseMtxFP14JPABaseEmitter
+        .4byte doExecuteAfter__Q23efx5TSyncFP14JPABaseEmitter
+        .4byte startDemoDrawOff__Q23efx5TSyncFv
+        .4byte endDemoDrawOn__Q23efx5TSyncFv
+        .4byte __dt__Q23efx8TPodKiraFv
+    .global __vt__Q23efx8TPodSpot
+    __vt__Q23efx8TPodSpot:
+        .4byte 0
+        .4byte 0
+        .4byte "create__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>FPQ23efx3Arg"
+        .4byte "forceKill__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>Fv"
+        .4byte "fade__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>Fv"
+        .4byte "startDemoDrawOff__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>Fv"
+        .4byte "endDemoDrawOn__Q23efx34TSyncGroup2<Q23efx13TChasePosYRot>Fv"
+    .global __vt__Q23efx9TPodOpenB
+    __vt__Q23efx9TPodOpenB:
+        .4byte 0
+        .4byte 0
+        .4byte create__Q23efx5TSyncFPQ23efx3Arg
+        .4byte forceKill__Q23efx5TSyncFv
+        .4byte fade__Q23efx5TSyncFv
+        .4byte 0
+        .4byte 0
+        .4byte "@4@__dt__Q23efx9TPodOpenBFv"
+        .4byte "@4@execute__Q23efx5TSyncFP14JPABaseEmitter"
+        .4byte "@4@executeAfter__Q23efx5TSyncFP14JPABaseEmitter"
+        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
+        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+        .4byte execute__Q23efx5TSyncFP14JPABaseEmitter
+        .4byte executeAfter__Q23efx5TSyncFP14JPABaseEmitter
+        .4byte doExecuteEmitterOperation__Q23efx9TChaseMtxFP14JPABaseEmitter
+        .4byte doExecuteAfter__Q23efx5TSyncFP14JPABaseEmitter
+        .4byte startDemoDrawOff__Q23efx5TSyncFv
+        .4byte endDemoDrawOn__Q23efx5TSyncFv
+        .4byte __dt__Q23efx9TPodOpenBFv
+    .global __vt__Q23efx9TPodOpenA
+    __vt__Q23efx9TPodOpenA:
+        .4byte 0
+        .4byte 0
+        .4byte create__Q23efx5TSyncFPQ23efx3Arg
+        .4byte forceKill__Q23efx5TSyncFv
+        .4byte fade__Q23efx5TSyncFv
+        .4byte 0
+        .4byte 0
+        .4byte "@4@__dt__Q23efx9TPodOpenAFv"
+        .4byte "@4@execute__Q23efx5TSyncFP14JPABaseEmitter"
+        .4byte "@4@executeAfter__Q23efx5TSyncFP14JPABaseEmitter"
+        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
+        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+        .4byte execute__Q23efx5TSyncFP14JPABaseEmitter
+        .4byte executeAfter__Q23efx5TSyncFP14JPABaseEmitter
+        .4byte doExecuteEmitterOperation__Q23efx8TForeverFP14JPABaseEmitter
+        .4byte doExecuteAfter__Q23efx5TSyncFP14JPABaseEmitter
+        .4byte startDemoDrawOff__Q23efx5TSyncFv
+        .4byte endDemoDrawOn__Q23efx5TSyncFv
+        .4byte __dt__Q23efx9TPodOpenAFv
+    .global __vt__Q23efx10TUfoGasOut
+    __vt__Q23efx10TUfoGasOut:
+        .4byte 0
+        .4byte 0
+        .4byte create__Q23efx5TSyncFPQ23efx3Arg
+        .4byte forceKill__Q23efx5TSyncFv
+        .4byte fade__Q23efx5TSyncFv
+        .4byte 0
+        .4byte 0
+        .4byte "@4@__dt__Q23efx10TUfoGasOutFv"
+        .4byte "@4@execute__Q23efx5TSyncFP14JPABaseEmitter"
+        .4byte "@4@executeAfter__Q23efx5TSyncFP14JPABaseEmitter"
+        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
+        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+        .4byte execute__Q23efx5TSyncFP14JPABaseEmitter
+        .4byte executeAfter__Q23efx5TSyncFP14JPABaseEmitter
+        .4byte doExecuteEmitterOperation__Q23efx9TChaseMtxFP14JPABaseEmitter
+        .4byte doExecuteAfter__Q23efx5TSyncFP14JPABaseEmitter
+        .4byte startDemoDrawOff__Q23efx5TSyncFv
+        .4byte endDemoDrawOn__Q23efx5TSyncFv
+        .4byte __dt__Q23efx10TUfoGasOutFv
+    .global __vt__Q23efx9TUfoGasIn
+    __vt__Q23efx9TUfoGasIn:
+        .4byte 0
+        .4byte 0
+        .4byte create__Q23efx5TSyncFPQ23efx3Arg
+        .4byte forceKill__Q23efx5TSyncFv
+        .4byte fade__Q23efx5TSyncFv
+        .4byte 0
+        .4byte 0
+        .4byte "@4@__dt__Q23efx9TUfoGasInFv"
+        .4byte "@4@execute__Q23efx5TSyncFP14JPABaseEmitter"
+        .4byte "@4@executeAfter__Q23efx5TSyncFP14JPABaseEmitter"
+        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
+        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+        .4byte execute__Q23efx5TSyncFP14JPABaseEmitter
+        .4byte executeAfter__Q23efx5TSyncFP14JPABaseEmitter
+        .4byte doExecuteEmitterOperation__Q23efx9TChaseMtxFP14JPABaseEmitter
+        .4byte doExecuteAfter__Q23efx5TSyncFP14JPABaseEmitter
+        .4byte startDemoDrawOff__Q23efx5TSyncFv
+        .4byte endDemoDrawOn__Q23efx5TSyncFv
+        .4byte __dt__Q23efx9TUfoGasInFv
+    .global __vt__Q23efx11TUfoPodOpen
+    __vt__Q23efx11TUfoPodOpen:
+        .4byte 0
+        .4byte 0
+        .4byte "create__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>FPQ23efx3Arg"
+        .4byte "forceKill__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
+        .4byte "fade__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
+        .4byte "startDemoDrawOff__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
+        .4byte "endDemoDrawOn__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
+    .global __vt__Q23efx17TUfoSpotact_ver01
+    __vt__Q23efx17TUfoSpotact_ver01:
+        .4byte 0
+        .4byte 0
+        .4byte "create__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>FPQ23efx3Arg"
+        .4byte "forceKill__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
+        .4byte "fade__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
+        .4byte "startDemoDrawOff__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
+        .4byte "endDemoDrawOn__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
+    .global __vt__Q23efx15TUfoPodOpenSuck
+    __vt__Q23efx15TUfoPodOpenSuck:
+        .4byte 0
+        .4byte 0
+        .4byte create__Q23efx5TSyncFPQ23efx3Arg
+        .4byte forceKill__Q23efx5TSyncFv
+        .4byte fade__Q23efx5TSyncFv
+        .4byte 0
+        .4byte 0
+        .4byte "@4@__dt__Q23efx15TUfoPodOpenSuckFv"
+        .4byte "@4@execute__Q23efx5TSyncFP14JPABaseEmitter"
+        .4byte "@4@executeAfter__Q23efx5TSyncFP14JPABaseEmitter"
+        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
+        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+        .4byte execute__Q23efx5TSyncFP14JPABaseEmitter
+        .4byte executeAfter__Q23efx5TSyncFP14JPABaseEmitter
+        .4byte doExecuteEmitterOperation__Q23efx9TChaseMtxFP14JPABaseEmitter
+        .4byte doExecuteAfter__Q23efx5TSyncFP14JPABaseEmitter
+        .4byte startDemoDrawOff__Q23efx5TSyncFv
+        .4byte endDemoDrawOn__Q23efx5TSyncFv
+        .4byte __dt__Q23efx15TUfoPodOpenSuckFv
+    .global __vt__Q23efx8TUfoSpot
+    __vt__Q23efx8TUfoSpot:
+        .4byte 0
+        .4byte 0
+        .4byte "create__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>FPQ23efx3Arg"
+        .4byte "forceKill__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
+        .4byte "fade__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
+        .4byte "startDemoDrawOff__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
+        .4byte "endDemoDrawOn__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
+    .global __vt__Q23efx8TForever
+    __vt__Q23efx8TForever:
+        .4byte 0
+        .4byte 0
+        .4byte create__Q23efx5TSyncFPQ23efx3Arg
+        .4byte forceKill__Q23efx5TSyncFv
+        .4byte fade__Q23efx5TSyncFv
+        .4byte 0
+        .4byte 0
+        .4byte "@4@__dt__Q23efx8TForeverFv"
+        .4byte "@4@execute__Q23efx5TSyncFP14JPABaseEmitter"
+        .4byte "@4@executeAfter__Q23efx5TSyncFP14JPABaseEmitter"
+        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
+        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+        .4byte execute__Q23efx5TSyncFP14JPABaseEmitter
+        .4byte executeAfter__Q23efx5TSyncFP14JPABaseEmitter
+        .4byte doExecuteEmitterOperation__Q23efx8TForeverFP14JPABaseEmitter
+        .4byte doExecuteAfter__Q23efx5TSyncFP14JPABaseEmitter
+        .4byte startDemoDrawOff__Q23efx5TSyncFv
+        .4byte endDemoDrawOn__Q23efx5TSyncFv
+        .4byte __dt__Q23efx8TForeverFv
+    .global __vt__Q34Game12ItemPikihead7InitArg
+    __vt__Q34Game12ItemPikihead7InitArg:
+        .4byte 0
+        .4byte 0
+        .4byte getName__Q34Game12ItemPikihead7InitArgFv
+    .global __vt__Q24Game11ItemInitArg
+    __vt__Q24Game11ItemInitArg:
+        .4byte 0
+        .4byte 0
+        .4byte getName__Q24Game11ItemInitArgFv
+
+    .section .sbss # 0x80514D80 - 0x80516360
+    .global lbl_805159A8
+    lbl_805159A8:
+        .skip 0x4
+    .global lbl_805159AC
+    lbl_805159AC:
+        .skip 0x4
+    .global mgr__Q24Game9ItemOnyon
+    mgr__Q24Game9ItemOnyon:
+        .skip 0x4
+    .global sVolveFlag
+    sVolveFlag:
+        .skip 0x4
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_80518A28
+    lbl_80518A28:
+        .float -1.0
+    .global lbl_80518A2C
+    lbl_80518A2C:
+        .4byte 0x00000000
+    .global lbl_80518A30
+    lbl_80518A30:
+        .4byte 0x41F00000
+    .global lbl_80518A34
+    lbl_80518A34:
+        .4byte 0x73746172
+        .4byte 0x74310000
+    .global lbl_80518A3C
+    lbl_80518A3C:
+        .4byte 0x696E3100
+    .global lbl_80518A40
+    lbl_80518A40:
+        .4byte 0x6F757400
+    .global lbl_80518A44
+    lbl_80518A44:
+        .4byte 0x706F745F
+        .4byte 0x63747200
+    .global lbl_80518A4C
+    lbl_80518A4C:
+        .4byte 0x42A00000
+    .global lbl_80518A50
+    lbl_80518A50:
+        .4byte 0x42C80000
+    .global lbl_80518A54
+    lbl_80518A54:
+        .4byte 0x41D80000
+    .global lbl_80518A58
+    lbl_80518A58:
+        .float 1.0
+    .global lbl_80518A5C
+    lbl_80518A5C:
+        .4byte 0x41A00000
+    .global lbl_80518A60
+    lbl_80518A60:
+        .4byte 0x43A2F983
+    .global lbl_80518A64
+    lbl_80518A64:
+        .4byte 0xC3A2F983
+    .global lbl_80518A68
+    lbl_80518A68:
+        .4byte 0x42EA0000
+    .global lbl_80518A6C
+    lbl_80518A6C:
+        .4byte 0x626F6479
+        .4byte 0x5F310000
+    .global lbl_80518A74
+    lbl_80518A74:
+        .4byte 0x6B657900
+    .global lbl_80518A78
+    lbl_80518A78:
+        .4byte 0x40000000
+    .global lbl_80518A7C
+    lbl_80518A7C:
+        .float 0.5
+    .global lbl_80518A80
+    lbl_80518A80:
+        .4byte 0x43C80000
+    .global lbl_80518A84
+    lbl_80518A84:
+        .4byte 0x79657300
+    .global lbl_80518A88
+    lbl_80518A88:
+        .4byte 0xC1A00000
+    .global lbl_80518A8C
+    lbl_80518A8C:
+        .4byte 0x40A00000
+    .global lbl_80518A90
+    lbl_80518A90:
+        .4byte 0x42200000
+    .global lbl_80518A94
+    lbl_80518A94:
+        .4byte 0x41200000
+    .global lbl_80518A98
+    lbl_80518A98:
+        .float 0.7
+    .global lbl_80518A9C
+    lbl_80518A9C:
+        .4byte 0x676F616C
+        .4byte 0x00000000
+    .global lbl_80518AA4
+    lbl_80518AA4:
+        .4byte 0x42BE0000
+    .global lbl_80518AA8
+    lbl_80518AA8:
+        .4byte 0x43070000
+    .global lbl_80518AAC
+    lbl_80518AAC:
+        .4byte 0x43480000
+    .global lbl_80518AB0
+    lbl_80518AB0:
+        .4byte 0x3E4CCCCD
+    .global lbl_80518AB4
+    lbl_80518AB4:
+        .4byte 0x40400000
+    .global lbl_80518AB8
+    lbl_80518AB8:
+        .4byte 0x3ECCCCCD
+    .global lbl_80518ABC
+    lbl_80518ABC:
+        .4byte 0x41000000
+    .global lbl_80518AC0
+    lbl_80518AC0:
+        .4byte 0x437A0000
+    .global lbl_80518AC4
+    lbl_80518AC4:
+        .4byte 0x43FA0000
+    .global lbl_80518AC8
+    lbl_80518AC8:
+        .4byte 0x43960000
+    .global lbl_80518ACC
+    lbl_80518ACC:
+        .4byte 0x447A0000
+    .global lbl_80518AD0
+    lbl_80518AD0:
+        .4byte 0x43C30000
+    .global lbl_80518AD4
+    lbl_80518AD4:
+        .float 0.25
+    .global lbl_80518AD8
+    lbl_80518AD8:
+        .float 0.3
+        .4byte 0x00000000
+    .global lbl_80518AE0
+    lbl_80518AE0:
+        .4byte 0x43300000
+        .4byte 0x00000000
+    .global lbl_80518AE8
+    lbl_80518AE8:
+        .float 110.0
+    .global lbl_80518AEC
+    lbl_80518AEC:
+        .float 32768.0
+    .global lbl_80518AF0
+    lbl_80518AF0:
+        .float 1.5707964
+    .global lbl_80518AF4
+    lbl_80518AF4:
+        .float 0.7853982
+    .global lbl_80518AF8
+    lbl_80518AF8:
+        .float 6.2831855
+    .global lbl_80518AFC
+    lbl_80518AFC:
+        .float 130.0
+    .global lbl_80518B00
+    lbl_80518B00:
+        .float 700.0
+        .skip 0x4
+    .global lbl_80518B08
+    lbl_80518B08:
+        .4byte 0x43300000
+        .4byte 0x80000000
+    .global lbl_80518B10
+    lbl_80518B10:
+        .float 0.05
+    .global lbl_80518B14
+    lbl_80518B14:
+        .float 0.1
+    .global lbl_80518B18
+    lbl_80518B18:
+        .float 0.8
+    .global lbl_80518B1C
+    lbl_80518B1C:
+        .asciz "flow"
+        .skip 0x3
+    .global lbl_80518B24
+    lbl_80518B24:
+        .float 900.0
+    .global lbl_80518B28
+    lbl_80518B28:
+        .float 7.0
+    .global lbl_80518B2C
+    lbl_80518B2C:
+        .float 90.0
+    .global lbl_80518B30
+    lbl_80518B30:
+        .asciz "Onyon"
+        .skip 0x2
+    .global lbl_80518B38
+    lbl_80518B38:
+        .asciz "pot.bmd"
+    .global lbl_80518B40
+    lbl_80518B40:
+        .asciz "ufo.bmd"
+    .global lbl_80518B48
+    lbl_80518B48:
+        .asciz "ufo.brk"
+    .global lbl_80518B50
+    lbl_80518B50:
+        .asciz "ArgType"
+    .global lbl_80518B58
+    lbl_80518B58:
+        .float 128000.0
+
+    .section .sbss2, "", @nobits # 0x80520e40 - 0x80520ED8
+    .global lbl_80520E60
+    lbl_80520E60:
+        .skip 0x4
+    .global lbl_80520E64
+    lbl_80520E64:
+        .skip 0x4
+*/
+
 namespace Game {
 
 /*
@@ -10,598 +1094,597 @@ namespace Game {
 void Onyon::movieUserCommand(unsigned long, Game::MoviePlayer*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0xA0(r1)
-	  mflr      r0
-	  stw       r0, 0xA4(r1)
-	  stfd      f31, 0x90(r1)
-	  psq_st    f31,0x98(r1),0,0
-	  stw       r31, 0x8C(r1)
-	  stw       r30, 0x88(r1)
-	  stw       r29, 0x84(r1)
-	  stw       r28, 0x80(r1)
-	  mr        r28, r4
-	  lis       r4, 0x8048
-	  cmpwi     r28, 0x67
-	  mr        r31, r3
-	  subi      r30, r4, 0x19E0
-	  beq-      .loc_0x7C0
-	  bge-      .loc_0x58
-	  cmpwi     r28, 0x65
-	  beq-      .loc_0x718
-	  bge-      .loc_0x76C
-	  cmpwi     r28, 0x64
-	  bge-      .loc_0x68
-	  b         .loc_0x7E4
+	stwu     r1, -0xa0(r1)
+	mflr     r0
+	stw      r0, 0xa4(r1)
+	stfd     f31, 0x90(r1)
+	psq_st   f31, 152(r1), 0, qr0
+	stw      r31, 0x8c(r1)
+	stw      r30, 0x88(r1)
+	stw      r29, 0x84(r1)
+	stw      r28, 0x80(r1)
+	mr       r28, r4
+	lis      r4, lbl_8047E620@ha
+	cmpwi    r28, 0x67
+	mr       r31, r3
+	addi     r30, r4, lbl_8047E620@l
+	beq      lbl_80175460
+	bge      lbl_80174CF8
+	cmpwi    r28, 0x65
+	beq      lbl_801753B8
+	bge      lbl_8017540C
+	cmpwi    r28, 0x64
+	bge      lbl_80174D08
+	b        lbl_80175484
 
-	.loc_0x58:
-	  cmpwi     r28, 0x69
-	  beq-      .loc_0x68
-	  bge-      .loc_0x7E4
-	  b         .loc_0x7D4
+lbl_80174CF8:
+	cmpwi    r28, 0x69
+	beq      lbl_80174D08
+	bge      lbl_80175484
+	b        lbl_80175474
 
-	.loc_0x68:
-	  lwz       r3, -0x6B70(r13)
-	  lhz       r4, 0x22E(r31)
-	  bl        0x723C8
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x90
-	  addi      r3, r30, 0x18
-	  addi      r5, r30, 0x28
-	  li        r4, 0x216
-	  crclr     6, 0x6
-	  bl        -0x14A6EC
+lbl_80174D08:
+	lwz      r3, playData__4Game@sda21(r13)
+	lhz      r4, 0x22e(r31)
+	bl       hasBootContainer__Q24Game8PlayDataFi
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_80174D30
+	addi     r3, r30, 0x18
+	addi     r5, r30, 0x28
+	li       r4, 0x216
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x90:
-	  lhz       r3, 0x22E(r31)
-	  bl        0x5C208
-	  cmplwi    r28, 0x69
-	  beq-      .loc_0xC4
-	  lhz       r3, 0x22E(r31)
-	  lis       r4, 0x8051
-	  addi      r4, r4, 0x262C
-	  rlwinm    r0,r3,2,0,29
-	  add       r4, r4, r0
-	  lwz       r29, 0x4(r4)
-	  bl        0x5C1E4
-	  sub.      r0, r3, r29
-	  bgt-      .loc_0x7E4
+lbl_80174D30:
+	lhz      r3, 0x22e(r31)
+	bl       getAllPikmins__Q24Game8GameStatFi
+	cmplwi   r28, 0x69
+	beq      lbl_80174D64
+	lhz      r3, 0x22e(r31)
+	lis      r4, zikatuPikis__Q24Game8GameStat@ha
+	addi     r4, r4, zikatuPikis__Q24Game8GameStat@l
+	slwi     r0, r3, 2
+	add      r4, r4, r0
+	lwz      r29, 4(r4)
+	bl       getAllPikmins__Q24Game8GameStatFi
+	subf.    r0, r29, r3
+	bgt      lbl_80175484
 
-	.loc_0xC4:
-	  lwz       r3, -0x6B70(r13)
-	  lhz       r4, 0x22E(r31)
-	  bl        0x72410
-	  lwz       r3, -0x6B90(r13)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xA4(r12)
-	  mtctr     r12
-	  bctrl
-	  mr.       r28, r3
-	  beq-      .loc_0x178
-	  lhz       r7, 0x22E(r31)
-	  lis       r4, 0x804B
-	  subi      r6, r4, 0x5D0C
-	  li        r0, 0
-	  lis       r4, 0x8051
-	  lfsu      f3, 0x41E4(r4)
-	  lis       r5, 0x804B
-	  stw       r6, 0x58(r1)
-	  addi      r6, r5, 0x2C7C
-	  lfs       f2, 0x4(r4)
-	  lfs       f1, 0x8(r4)
-	  lis       r5, 0x804B
-	  lfs       f0, -0x5938(r2)
-	  addi      r5, r5, 0x2C70
-	  stw       r6, 0x58(r1)
-	  addi      r4, r1, 0x58
-	  stw       r5, 0x58(r1)
-	  stw       r7, 0x5C(r1)
-	  stfs      f3, 0x60(r1)
-	  stfs      f2, 0x64(r1)
-	  stfs      f1, 0x68(r1)
-	  stb       r0, 0x6C(r1)
-	  stw       r0, 0x70(r1)
-	  stfs      f0, 0x74(r1)
-	  bl        -0x39E24
-	  lhz       r3, 0x1F4(r28)
-	  bl        0xBAC70
-	  mr        r3, r28
-	  li        r4, 0
-	  bl        -0x393B0
-	  mr        r3, r31
-	  mr        r4, r28
-	  li        r5, 0x1
-	  bl        0x3A70
-	  b         .loc_0x7E4
+lbl_80174D64:
+	lwz      r3, playData__4Game@sda21(r13)
+	lhz      r4, 0x22e(r31)
+	bl       setContainer__Q24Game8PlayDataFi
+	lwz      r3, mgr__Q24Game12ItemPikihead@sda21(r13)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xa4(r12)
+	mtctr    r12
+	bctrl
+	or.      r28, r3, r3
+	beq      lbl_80174E18
+	lhz      r7, 0x22e(r31)
+	lis      r4, __vt__Q24Game15CreatureInitArg@ha
+	addi     r6, r4, __vt__Q24Game15CreatureInitArg@l
+	li       r0, 0
+	lis      r4, "zero__10Vector3<f>"@ha
+	lfsu     f3, "zero__10Vector3<f>"@l(r4)
+	lis      r5, __vt__Q24Game11ItemInitArg@ha
+	stw      r6, 0x58(r1)
+	addi     r6, r5, __vt__Q24Game11ItemInitArg@l
+	lfs      f2, 4(r4)
+	lfs      f1, 8(r4)
+	lis      r5, __vt__Q34Game12ItemPikihead7InitArg@ha
+	lfs      f0, lbl_80518A28@sda21(r2)
+	addi     r5, r5, __vt__Q34Game12ItemPikihead7InitArg@l
+	stw      r6, 0x58(r1)
+	addi     r4, r1, 0x58
+	stw      r5, 0x58(r1)
+	stw      r7, 0x5c(r1)
+	stfs     f3, 0x60(r1)
+	stfs     f2, 0x64(r1)
+	stfs     f1, 0x68(r1)
+	stb      r0, 0x6c(r1)
+	stw      r0, 0x70(r1)
+	stfs     f0, 0x74(r1)
+	bl       init__Q24Game8CreatureFPQ24Game15CreatureInitArg
+	lhz      r3, 0x1f4(r28)
+	bl       inc__Q24Game8BirthMgrFi
+	mr       r3, r28
+	li       r4, 0
+	bl       movie_begin__Q24Game8CreatureFb
+	mr       r3, r31
+	mr       r4, r28
+	li       r5, 1
+	bl       doEmit__Q24Game5OnyonFPQ24Game8Creatureb
+	b        lbl_80175484
 
-	.loc_0x178:
-	  lwz       r3, -0x6C18(r13)
-	  lwz       r3, 0x58(r3)
-	  lwz       r3, 0x12C(r3)
-	  bl        0x2E0D2C
-	  lwz       r3, -0x6C18(r13)
-	  lwz       r3, 0x58(r3)
-	  lwz       r3, 0x130(r3)
-	  bl        0x2E0D1C
-	  lwz       r3, -0x6B90(r13)
-	  li        r29, 0
-	  lfs       f31, -0x5934(r2)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x1B0
-	  addi      r3, r3, 0x30
+lbl_80174E18:
+	lwz      r3, gameSystem__4Game@sda21(r13)
+	lwz      r3, 0x58(r3)
+	lwz      r3, 0x12c(r3)
+	bl       frameInitAll__Q23Sys11DrawBuffersFv
+	lwz      r3, gameSystem__4Game@sda21(r13)
+	lwz      r3, 0x58(r3)
+	lwz      r3, 0x130(r3)
+	bl       frameInitAll__Q23Sys11DrawBuffersFv
+	lwz      r3, mgr__Q24Game12ItemPikihead@sda21(r13)
+	li       r29, 0
+	lfs      f31, lbl_80518A2C@sda21(r2)
+	cmplwi   r3, 0
+	beq      lbl_80174E50
+	addi     r3, r3, 0x30
 
-	.loc_0x1B0:
-	  li        r0, 0
-	  lis       r4, 0x804B
-	  addi      r4, r4, 0x5A4
-	  stw       r0, 0x34(r1)
-	  cmplwi    r0, 0
-	  stw       r4, 0x28(r1)
-	  stw       r0, 0x2C(r1)
-	  stw       r3, 0x30(r1)
-	  bne-      .loc_0x1EC
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x2C(r1)
-	  b         .loc_0x380
+lbl_80174E50:
+	li       r0, 0
+	lis      r4, "__vt__36Iterator<Q34Game12ItemPikihead4Item>"@ha
+	addi     r4, r4, "__vt__36Iterator<Q34Game12ItemPikihead4Item>"@l
+	stw      r0, 0x34(r1)
+	cmplwi   r0, 0
+	stw      r4, 0x28(r1)
+	stw      r0, 0x2c(r1)
+	stw      r3, 0x30(r1)
+	bne      lbl_80174E8C
+	lwz      r12, 0(r3)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x2c(r1)
+	b        lbl_80175020
 
-	.loc_0x1EC:
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x2C(r1)
-	  b         .loc_0x258
+lbl_80174E8C:
+	lwz      r12, 0(r3)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x2c(r1)
+	b        lbl_80174EF8
 
-	.loc_0x204:
-	  lwz       r3, 0x30(r1)
-	  lwz       r4, 0x2C(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x34(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x380
-	  lwz       r3, 0x30(r1)
-	  lwz       r4, 0x2C(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x2C(r1)
+lbl_80174EA4:
+	lwz      r3, 0x30(r1)
+	lwz      r4, 0x2c(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	lwz      r3, 0x34(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_80175020
+	lwz      r3, 0x30(r1)
+	lwz      r4, 0x2c(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x2c(r1)
 
-	.loc_0x258:
-	  lwz       r12, 0x28(r1)
-	  addi      r3, r1, 0x28
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x204
-	  b         .loc_0x380
+lbl_80174EF8:
+	lwz      r12, 0x28(r1)
+	addi     r3, r1, 0x28
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80174EA4
+	b        lbl_80175020
 
-	.loc_0x278:
-	  lwz       r3, 0x30(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r12, 0x0(r3)
-	  mr        r28, r3
-	  lwz       r12, 0xA8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x2C4
-	  mr        r3, r28
-	  mr        r4, r31
-	  bl        -0x39868
-	  fcmpo     cr0, f1, f31
-	  ble-      .loc_0x2C4
-	  fmr       f31, f1
-	  mr        r29, r28
+lbl_80174F18:
+	lwz      r3, 0x30(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	lwz      r12, 0(r3)
+	mr       r28, r3
+	lwz      r12, 0xa8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80174F64
+	mr       r3, r28
+	mr       r4, r31
+	bl       calcSphereDistance__Q24Game8CreatureFPQ24Game8Creature
+	fcmpo    cr0, f1, f31
+	ble      lbl_80174F64
+	fmr      f31, f1
+	mr       r29, r28
 
-	.loc_0x2C4:
-	  lwz       r0, 0x34(r1)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x2F0
-	  lwz       r3, 0x30(r1)
-	  lwz       r4, 0x2C(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x2C(r1)
-	  b         .loc_0x380
+lbl_80174F64:
+	lwz      r0, 0x34(r1)
+	cmplwi   r0, 0
+	bne      lbl_80174F90
+	lwz      r3, 0x30(r1)
+	lwz      r4, 0x2c(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x2c(r1)
+	b        lbl_80175020
 
-	.loc_0x2F0:
-	  lwz       r3, 0x30(r1)
-	  lwz       r4, 0x2C(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x2C(r1)
-	  b         .loc_0x364
+lbl_80174F90:
+	lwz      r3, 0x30(r1)
+	lwz      r4, 0x2c(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x2c(r1)
+	b        lbl_80175004
 
-	.loc_0x310:
-	  lwz       r3, 0x30(r1)
-	  lwz       r4, 0x2C(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x34(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x380
-	  lwz       r3, 0x30(r1)
-	  lwz       r4, 0x2C(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x2C(r1)
+lbl_80174FB0:
+	lwz      r3, 0x30(r1)
+	lwz      r4, 0x2c(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	lwz      r3, 0x34(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_80175020
+	lwz      r3, 0x30(r1)
+	lwz      r4, 0x2c(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x2c(r1)
 
-	.loc_0x364:
-	  lwz       r12, 0x28(r1)
-	  addi      r3, r1, 0x28
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x310
+lbl_80175004:
+	lwz      r12, 0x28(r1)
+	addi     r3, r1, 0x28
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80174FB0
 
-	.loc_0x380:
-	  lwz       r3, 0x30(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r4, 0x2C(r1)
-	  cmplw     r4, r3
-	  bne+      .loc_0x278
-	  cmplwi    r29, 0
-	  beq-      .loc_0x3FC
-	  lis       r3, 0x8051
-	  lhz       r4, 0x1F4(r29)
-	  addi      r3, r3, 0x260C
-	  bl        0x5C1C8
-	  lwz       r3, -0x6B70(r13)
-	  lhz       r4, 0x1F4(r29)
-	  lhz       r5, 0x1F6(r29)
-	  addi      r3, r3, 0xA8
-	  bl        0x7C3B4
-	  lwz       r6, 0x0(r3)
-	  lis       r4, 0x804B
-	  subi      r5, r4, 0x5D30
-	  li        r0, 0x1
-	  addi      r6, r6, 0x1
-	  addi      r4, r1, 0x10
-	  stw       r6, 0x0(r3)
-	  mr        r3, r29
-	  stw       r5, 0x10(r1)
-	  stw       r0, 0x14(r1)
-	  bl        -0x39FA4
-	  b         .loc_0x658
+lbl_80175020:
+	lwz      r3, 0x30(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r4, 0x2c(r1)
+	cmplw    r4, r3
+	bne      lbl_80174F18
+	cmplwi   r29, 0
+	beq      lbl_8017509C
+	lis      r3, mePikis__Q24Game8GameStat@ha
+	lhz      r4, 0x1f4(r29)
+	addi     r3, r3, mePikis__Q24Game8GameStat@l
+	bl       dec__Q34Game8GameStat11PikiCounterFi
+	lwz      r3, playData__4Game@sda21(r13)
+	lhz      r4, 0x1f4(r29)
+	lhz      r5, 0x1f6(r29)
+	addi     r3, r3, 0xa8
+	bl       getCount__Q24Game13PikiContainerFii
+	lwz      r6, 0(r3)
+	lis      r4, __vt__Q24Game15CreatureKillArg@ha
+	addi     r5, r4, __vt__Q24Game15CreatureKillArg@l
+	li       r0, 1
+	addi     r6, r6, 1
+	addi     r4, r1, 0x10
+	stw      r6, 0(r3)
+	mr       r3, r29
+	stw      r5, 0x10(r1)
+	stw      r0, 0x14(r1)
+	bl       kill__Q24Game8CreatureFPQ24Game15CreatureKillArg
+	b        lbl_801752F8
 
-	.loc_0x3FC:
-	  li        r0, 0
-	  lwz       r3, -0x6D0C(r13)
-	  lis       r4, 0x804B
-	  stw       r0, 0x24(r1)
-	  subi      r4, r4, 0x4364
-	  cmplwi    r0, 0
-	  stw       r4, 0x18(r1)
-	  li        r29, 0
-	  stw       r0, 0x1C(r1)
-	  stw       r3, 0x20(r1)
-	  bne-      .loc_0x440
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x1C(r1)
-	  b         .loc_0x5F0
+lbl_8017509C:
+	li       r0, 0
+	lwz      r3, pikiMgr__4Game@sda21(r13)
+	lis      r4, "__vt__22Iterator<Q24Game4Piki>"@ha
+	stw      r0, 0x24(r1)
+	addi     r4, r4, "__vt__22Iterator<Q24Game4Piki>"@l
+	cmplwi   r0, 0
+	stw      r4, 0x18(r1)
+	li       r29, 0
+	stw      r0, 0x1c(r1)
+	stw      r3, 0x20(r1)
+	bne      lbl_801750E0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x1c(r1)
+	b        lbl_80175290
 
-	.loc_0x440:
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x1C(r1)
-	  b         .loc_0x4AC
+lbl_801750E0:
+	lwz      r12, 0(r3)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x1c(r1)
+	b        lbl_8017514C
 
-	.loc_0x458:
-	  lwz       r3, 0x20(r1)
-	  lwz       r4, 0x1C(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x24(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x5F0
-	  lwz       r3, 0x20(r1)
-	  lwz       r4, 0x1C(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x1C(r1)
+lbl_801750F8:
+	lwz      r3, 0x20(r1)
+	lwz      r4, 0x1c(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	lwz      r3, 0x24(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_80175290
+	lwz      r3, 0x20(r1)
+	lwz      r4, 0x1c(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x1c(r1)
 
-	.loc_0x4AC:
-	  lwz       r12, 0x18(r1)
-	  addi      r3, r1, 0x18
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x458
-	  b         .loc_0x5F0
+lbl_8017514C:
+	lwz      r12, 0x18(r1)
+	addi     r3, r1, 0x18
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_801750F8
+	b        lbl_80175290
 
-	.loc_0x4CC:
-	  lwz       r3, 0x20(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r12, 0x0(r3)
-	  mr        r28, r3
-	  lwz       r12, 0xA8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x534
-	  mr        r3, r28
-	  lwz       r12, 0x0(r28)
-	  lwz       r12, 0x1F4(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x534
-	  mr        r3, r28
-	  mr        r4, r31
-	  bl        -0x39AD8
-	  fcmpo     cr0, f1, f31
-	  ble-      .loc_0x534
-	  fmr       f31, f1
-	  mr        r29, r28
+lbl_8017516C:
+	lwz      r3, 0x20(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	lwz      r12, 0(r3)
+	mr       r28, r3
+	lwz      r12, 0xa8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_801751D4
+	mr       r3, r28
+	lwz      r12, 0(r28)
+	lwz      r12, 0x1f4(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_801751D4
+	mr       r3, r28
+	mr       r4, r31
+	bl       calcSphereDistance__Q24Game8CreatureFPQ24Game8Creature
+	fcmpo    cr0, f1, f31
+	ble      lbl_801751D4
+	fmr      f31, f1
+	mr       r29, r28
 
-	.loc_0x534:
-	  lwz       r0, 0x24(r1)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x560
-	  lwz       r3, 0x20(r1)
-	  lwz       r4, 0x1C(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x1C(r1)
-	  b         .loc_0x5F0
+lbl_801751D4:
+	lwz      r0, 0x24(r1)
+	cmplwi   r0, 0
+	bne      lbl_80175200
+	lwz      r3, 0x20(r1)
+	lwz      r4, 0x1c(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x1c(r1)
+	b        lbl_80175290
 
-	.loc_0x560:
-	  lwz       r3, 0x20(r1)
-	  lwz       r4, 0x1C(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x1C(r1)
-	  b         .loc_0x5D4
+lbl_80175200:
+	lwz      r3, 0x20(r1)
+	lwz      r4, 0x1c(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x1c(r1)
+	b        lbl_80175274
 
-	.loc_0x580:
-	  lwz       r3, 0x20(r1)
-	  lwz       r4, 0x1C(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x24(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x5F0
-	  lwz       r3, 0x20(r1)
-	  lwz       r4, 0x1C(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x1C(r1)
+lbl_80175220:
+	lwz      r3, 0x20(r1)
+	lwz      r4, 0x1c(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	lwz      r3, 0x24(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_80175290
+	lwz      r3, 0x20(r1)
+	lwz      r4, 0x1c(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x1c(r1)
 
-	.loc_0x5D4:
-	  lwz       r12, 0x18(r1)
-	  addi      r3, r1, 0x18
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x580
+lbl_80175274:
+	lwz      r12, 0x18(r1)
+	addi     r3, r1, 0x18
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80175220
 
-	.loc_0x5F0:
-	  lwz       r3, 0x20(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r4, 0x1C(r1)
-	  cmplw     r4, r3
-	  bne+      .loc_0x4CC
-	  cmplwi    r29, 0
-	  beq-      .loc_0x658
-	  lwz       r3, -0x6B70(r13)
-	  lbz       r4, 0x2B8(r29)
-	  lbz       r5, 0x2B9(r29)
-	  addi      r3, r3, 0xA8
-	  bl        0x7C154
-	  lwz       r6, 0x0(r3)
-	  lis       r4, 0x804B
-	  subi      r5, r4, 0x5D30
-	  li        r0, 0x1
-	  addi      r6, r6, 0x1
-	  addi      r4, r1, 0x8
-	  stw       r6, 0x0(r3)
-	  mr        r3, r29
-	  stw       r5, 0x8(r1)
-	  stw       r0, 0xC(r1)
-	  bl        -0x3A204
+lbl_80175290:
+	lwz      r3, 0x20(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r4, 0x1c(r1)
+	cmplw    r4, r3
+	bne      lbl_8017516C
+	cmplwi   r29, 0
+	beq      lbl_801752F8
+	lwz      r3, playData__4Game@sda21(r13)
+	lbz      r4, 0x2b8(r29)
+	lbz      r5, 0x2b9(r29)
+	addi     r3, r3, 0xa8
+	bl       getCount__Q24Game13PikiContainerFii
+	lwz      r6, 0(r3)
+	lis      r4, __vt__Q24Game15CreatureKillArg@ha
+	addi     r5, r4, __vt__Q24Game15CreatureKillArg@l
+	li       r0, 1
+	addi     r6, r6, 1
+	addi     r4, r1, 8
+	stw      r6, 0(r3)
+	mr       r3, r29
+	stw      r5, 8(r1)
+	stw      r0, 0xc(r1)
+	bl       kill__Q24Game8CreatureFPQ24Game15CreatureKillArg
 
-	.loc_0x658:
-	  lwz       r3, -0x6B90(r13)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xA4(r12)
-	  mtctr     r12
-	  bctrl
-	  mr.       r28, r3
-	  beq-      .loc_0x700
-	  lhz       r7, 0x22E(r31)
-	  lis       r4, 0x804B
-	  subi      r6, r4, 0x5D0C
-	  li        r0, 0
-	  lis       r4, 0x8051
-	  lfsu      f3, 0x41E4(r4)
-	  lis       r5, 0x804B
-	  stw       r6, 0x38(r1)
-	  addi      r6, r5, 0x2C7C
-	  lfs       f2, 0x4(r4)
-	  lfs       f1, 0x8(r4)
-	  lis       r5, 0x804B
-	  lfs       f0, -0x5938(r2)
-	  addi      r5, r5, 0x2C70
-	  stw       r6, 0x38(r1)
-	  addi      r4, r1, 0x38
-	  stw       r5, 0x38(r1)
-	  stw       r7, 0x3C(r1)
-	  stfs      f3, 0x40(r1)
-	  stfs      f2, 0x44(r1)
-	  stfs      f1, 0x48(r1)
-	  stb       r0, 0x4C(r1)
-	  stw       r0, 0x50(r1)
-	  stfs      f0, 0x54(r1)
-	  bl        -0x3A3AC
-	  lhz       r3, 0x1F4(r28)
-	  bl        0xBA6E8
-	  mr        r3, r28
-	  li        r4, 0
-	  bl        -0x39938
-	  mr        r3, r31
-	  mr        r4, r28
-	  li        r5, 0x1
-	  bl        0x34E8
-	  b         .loc_0x7E4
+lbl_801752F8:
+	lwz      r3, mgr__Q24Game12ItemPikihead@sda21(r13)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xa4(r12)
+	mtctr    r12
+	bctrl
+	or.      r28, r3, r3
+	beq      lbl_801753A0
+	lhz      r7, 0x22e(r31)
+	lis      r4, __vt__Q24Game15CreatureInitArg@ha
+	addi     r6, r4, __vt__Q24Game15CreatureInitArg@l
+	li       r0, 0
+	lis      r4, "zero__10Vector3<f>"@ha
+	lfsu     f3, "zero__10Vector3<f>"@l(r4)
+	lis      r5, __vt__Q24Game11ItemInitArg@ha
+	stw      r6, 0x38(r1)
+	addi     r6, r5, __vt__Q24Game11ItemInitArg@l
+	lfs      f2, 4(r4)
+	lfs      f1, 8(r4)
+	lis      r5, __vt__Q34Game12ItemPikihead7InitArg@ha
+	lfs      f0, lbl_80518A28@sda21(r2)
+	addi     r5, r5, __vt__Q34Game12ItemPikihead7InitArg@l
+	stw      r6, 0x38(r1)
+	addi     r4, r1, 0x38
+	stw      r5, 0x38(r1)
+	stw      r7, 0x3c(r1)
+	stfs     f3, 0x40(r1)
+	stfs     f2, 0x44(r1)
+	stfs     f1, 0x48(r1)
+	stb      r0, 0x4c(r1)
+	stw      r0, 0x50(r1)
+	stfs     f0, 0x54(r1)
+	bl       init__Q24Game8CreatureFPQ24Game15CreatureInitArg
+	lhz      r3, 0x1f4(r28)
+	bl       inc__Q24Game8BirthMgrFi
+	mr       r3, r28
+	li       r4, 0
+	bl       movie_begin__Q24Game8CreatureFb
+	mr       r3, r31
+	mr       r4, r28
+	li       r5, 1
+	bl       doEmit__Q24Game5OnyonFPQ24Game8Creatureb
+	b        lbl_80175484
 
-	.loc_0x700:
-	  addi      r3, r30, 0x18
-	  addi      r5, r30, 0x3C
-	  li        r4, 0x281
-	  crclr     6, 0x6
-	  bl        -0x14AD70
-	  b         .loc_0x7E4
+lbl_801753A0:
+	addi     r3, r30, 0x18
+	addi     r5, r30, 0x3c
+	li       r4, 0x281
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
+	b        lbl_80175484
 
-	.loc_0x718:
-	  lhz       r0, 0x22E(r31)
-	  cmplwi    r0, 0x2
-	  bgt-      .loc_0x74C
-	  lwz       r4, -0x64AC(r13)
-	  lwz       r0, 0x1F0(r4)
-	  rlwinm.   r0,r0,0,30,30
-	  beq-      .loc_0x740
-	  li        r4, 0x3
-	  bl        0x1EA4
-	  b         .loc_0x7E4
+lbl_801753B8:
+	lhz      r0, 0x22e(r31)
+	cmplwi   r0, 2
+	bgt      lbl_801753EC
+	lwz      r4, moviePlayer__4Game@sda21(r13)
+	lwz      r0, 0x1f0(r4)
+	rlwinm.  r0, r0, 0, 0x1e, 0x1e
+	beq      lbl_801753E0
+	li       r4, 3
+	bl       setSpotState__Q24Game5OnyonFQ34Game5Onyon10cSpotState
+	b        lbl_80175484
 
-	.loc_0x740:
-	  li        r4, 0x1
-	  bl        0x1E98
-	  b         .loc_0x7E4
+lbl_801753E0:
+	li       r4, 1
+	bl       setSpotState__Q24Game5OnyonFQ34Game5Onyon10cSpotState
+	b        lbl_80175484
 
-	.loc_0x74C:
-	  cmplwi    r0, 0x4
-	  beq-      .loc_0x75C
-	  cmplwi    r0, 0x3
-	  bne-      .loc_0x7E4
+lbl_801753EC:
+	cmplwi   r0, 4
+	beq      lbl_801753FC
+	cmplwi   r0, 3
+	bne      lbl_80175484
 
-	.loc_0x75C:
-	  mr        r3, r31
-	  li        r4, 0x1
-	  bl        0x3AD8
-	  b         .loc_0x7E4
+lbl_801753FC:
+	mr       r3, r31
+	li       r4, 1
+	bl       setSpotEffect__Q24Game5OnyonFb
+	b        lbl_80175484
 
-	.loc_0x76C:
-	  lhz       r0, 0x22E(r31)
-	  cmplwi    r0, 0x2
-	  bgt-      .loc_0x7A0
-	  lwz       r4, -0x64AC(r13)
-	  lwz       r0, 0x1F0(r4)
-	  rlwinm.   r0,r0,0,30,30
-	  beq-      .loc_0x794
-	  li        r4, 0
-	  bl        0x1E50
-	  b         .loc_0x7E4
+lbl_8017540C:
+	lhz      r0, 0x22e(r31)
+	cmplwi   r0, 2
+	bgt      lbl_80175440
+	lwz      r4, moviePlayer__4Game@sda21(r13)
+	lwz      r0, 0x1f0(r4)
+	rlwinm.  r0, r0, 0, 0x1e, 0x1e
+	beq      lbl_80175434
+	li       r4, 0
+	bl       setSpotState__Q24Game5OnyonFQ34Game5Onyon10cSpotState
+	b        lbl_80175484
 
-	.loc_0x794:
-	  li        r4, 0x2
-	  bl        0x1E44
-	  b         .loc_0x7E4
+lbl_80175434:
+	li       r4, 2
+	bl       setSpotState__Q24Game5OnyonFQ34Game5Onyon10cSpotState
+	b        lbl_80175484
 
-	.loc_0x7A0:
-	  cmplwi    r0, 0x4
-	  beq-      .loc_0x7B0
-	  cmplwi    r0, 0x3
-	  bne-      .loc_0x7E4
+lbl_80175440:
+	cmplwi   r0, 4
+	beq      lbl_80175450
+	cmplwi   r0, 3
+	bne      lbl_80175484
 
-	.loc_0x7B0:
-	  mr        r3, r31
-	  li        r4, 0
-	  bl        0x3A84
-	  b         .loc_0x7E4
+lbl_80175450:
+	mr       r3, r31
+	li       r4, 0
+	bl       setSpotEffect__Q24Game5OnyonFb
+	b        lbl_80175484
 
-	.loc_0x7C0:
-	  lhz       r0, 0x22E(r31)
-	  cmplwi    r0, 0x4
-	  bne-      .loc_0x7E4
-	  bl        0x1A18
-	  b         .loc_0x7E4
+lbl_80175460:
+	lhz      r0, 0x22e(r31)
+	cmplwi   r0, 4
+	bne      lbl_80175484
+	bl       startPropera__Q24Game5OnyonFv
+	b        lbl_80175484
 
-	.loc_0x7D4:
-	  lhz       r0, 0x22E(r31)
-	  cmplwi    r0, 0x4
-	  bne-      .loc_0x7E4
-	  bl        0x1A10
+lbl_80175474:
+	lhz      r0, 0x22e(r31)
+	cmplwi   r0, 4
+	bne      lbl_80175484
+	bl       stopPropera__Q24Game5OnyonFv
 
-	.loc_0x7E4:
-	  psq_l     f31,0x98(r1),0,0
-	  lwz       r0, 0xA4(r1)
-	  lfd       f31, 0x90(r1)
-	  lwz       r31, 0x8C(r1)
-	  lwz       r30, 0x88(r1)
-	  lwz       r29, 0x84(r1)
-	  lwz       r28, 0x80(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0xA0
-	  blr
+lbl_80175484:
+	psq_l    f31, 152(r1), 0, qr0
+	lwz      r0, 0xa4(r1)
+	lfd      f31, 0x90(r1)
+	lwz      r31, 0x8c(r1)
+	lwz      r30, 0x88(r1)
+	lwz      r29, 0x84(r1)
+	lwz      r28, 0x80(r1)
+	mtlr     r0
+	addi     r1, r1, 0xa0
+	blr
 	*/
 }
 
@@ -633,78 +1716,77 @@ void Onyon::closeUFO(void)
 void Onyon::isSuckReady(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lhz       r0, 0x22E(r3)
-	  cmplwi    r0, 0x4
-	  bne-      .loc_0xCC
-	  lbz       r0, 0x240(r31)
-	  cmplwi    r0, 0x1
-	  beq-      .loc_0x3C
-	  cmplwi    r0, 0x2
-	  beq-      .loc_0x3C
-	  cmplwi    r0, 0x3
-	  bne-      .loc_0x44
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lhz      r0, 0x22e(r3)
+	cmplwi   r0, 4
+	bne      lbl_80175578
+	lbz      r0, 0x240(r31)
+	cmplwi   r0, 1
+	beq      lbl_801754E8
+	cmplwi   r0, 2
+	beq      lbl_801754E8
+	cmplwi   r0, 3
+	bne      lbl_801754F0
 
-	.loc_0x3C:
-	  li        r3, 0x1
-	  b         .loc_0xD0
+lbl_801754E8:
+	li       r3, 1
+	b        lbl_8017557C
 
-	.loc_0x44:
-	  cmplwi    r0, 0x5
-	  bne-      .loc_0xC4
-	  cmplwi    r31, 0
-	  mr        r5, r31
-	  beq-      .loc_0x5C
-	  addi      r5, r5, 0x178
+lbl_801754F0:
+	cmplwi   r0, 5
+	bne      lbl_80175570
+	cmplwi   r31, 0
+	mr       r5, r31
+	beq      lbl_80175508
+	addi     r5, r5, 0x178
 
-	.loc_0x5C:
-	  addi      r3, r31, 0x1A8
-	  li        r4, 0
-	  bl        0x2B3778
-	  lwz       r3, -0x6B70(r13)
-	  li        r4, 0x3836
-	  lbz       r0, 0x2F(r3)
-	  rlwinm.   r0,r0,0,31,31
-	  beq-      .loc_0x80
-	  li        r4, 0x382F
+lbl_80175508:
+	addi     r3, r31, 0x1a8
+	li       r4, 0
+	bl       startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
+	lwz      r3, playData__4Game@sda21(r13)
+	li       r4, 0x3836
+	lbz      r0, 0x2f(r3)
+	clrlwi.  r0, r0, 0x1f
+	beq      lbl_8017552C
+	li       r4, 0x382f
 
-	.loc_0x80:
-	  lwz       r12, 0x0(r31)
-	  mr        r3, r31
-	  lwz       r12, 0x1C0(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f0, -0x5930(r2)
-	  li        r0, 0
-	  li        r4, 0
-	  stfs      f0, 0x1D4(r31)
-	  stb       r0, 0x240(r31)
-	  lwz       r3, 0x210(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f0, -0x5934(r2)
-	  stfs      f0, 0x244(r31)
+lbl_8017552C:
+	lwz      r12, 0(r31)
+	mr       r3, r31
+	lwz      r12, 0x1c0(r12)
+	mtctr    r12
+	bctrl
+	lfs      f0, lbl_80518A30@sda21(r2)
+	li       r0, 0
+	li       r4, 0
+	stfs     f0, 0x1d4(r31)
+	stb      r0, 0x240(r31)
+	lwz      r3, 0x210(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f0, lbl_80518A2C@sda21(r2)
+	stfs     f0, 0x244(r31)
 
-	.loc_0xC4:
-	  li        r3, 0
-	  b         .loc_0xD0
+lbl_80175570:
+	li       r3, 0
+	b        lbl_8017557C
 
-	.loc_0xCC:
-	  li        r3, 0x1
+lbl_80175578:
+	li       r3, 1
 
-	.loc_0xD0:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8017557C:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -716,19 +1798,18 @@ void Onyon::isSuckReady(void)
 void Onyon::isSuckArriveWait(void)
 {
 	/*
-	.loc_0x0:
-	  lhz       r0, 0x22E(r3)
-	  cmplwi    r0, 0x4
-	  bne-      .loc_0x20
-	  lbz       r0, 0x240(r3)
-	  subfic    r0, r0, 0x4
-	  cntlzw    r0, r0
-	  rlwinm    r3,r0,27,24,31
-	  blr
+	lhz      r0, 0x22e(r3)
+	cmplwi   r0, 4
+	bne      lbl_801755B0
+	lbz      r0, 0x240(r3)
+	subfic   r0, r0, 4
+	cntlzw   r0, r0
+	rlwinm   r3, r0, 0x1b, 0x18, 0x1f
+	blr
 
-	.loc_0x20:
-	  li        r3, 0
-	  blr
+lbl_801755B0:
+	li       r3, 0
+	blr
 	*/
 }
 
@@ -740,462 +1821,461 @@ void Onyon::isSuckArriveWait(void)
 void Onyon::setType(int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  lis       r5, 0x8048
-	  stw       r0, 0x34(r1)
-	  stw       r31, 0x2C(r1)
-	  mr        r31, r3
-	  stw       r30, 0x28(r1)
-	  stw       r29, 0x24(r1)
-	  subi      r29, r5, 0x19E0
-	  stw       r28, 0x20(r1)
-	  sth       r4, 0x22E(r3)
-	  lhz       r4, 0x22E(r3)
-	  bl        0x764
-	  li        r0, 0
-	  stw       r0, 0x1EC(r31)
-	  stw       r0, 0x1F0(r31)
-	  stw       r0, 0x208(r31)
-	  stw       r0, 0x20C(r31)
-	  stw       r0, 0x210(r31)
-	  lhz       r0, 0x22E(r31)
-	  cmplwi    r0, 0x2
-	  bgt-      .loc_0x104
-	  li        r3, 0x10
-	  bl        -0x151770
-	  cmplwi    r3, 0
-	  beq-      .loc_0xD0
-	  lis       r4, 0x804B
-	  lis       r5, 0x804A
-	  subi      r0, r4, 0x5808
-	  lis       r4, 0x804E
-	  stw       r0, 0x0(r3)
-	  subi      r0, r5, 0x1D84
-	  addi      r5, r4, 0x698C
-	  lis       r4, 0x804B
-	  stw       r0, 0x4(r3)
-	  addi      r6, r4, 0x2C24
-	  lis       r4, 0x804E
-	  addi      r0, r5, 0x14
-	  stw       r5, 0x0(r3)
-	  addi      r4, r4, 0x7074
-	  li        r8, 0
-	  li        r7, 0x105
-	  stw       r0, 0x4(r3)
-	  addi      r5, r6, 0x14
-	  addi      r0, r4, 0x14
-	  stw       r8, 0x8(r3)
-	  sth       r7, 0xC(r3)
-	  stb       r8, 0xE(r3)
-	  stw       r6, 0x0(r3)
-	  stw       r5, 0x4(r3)
-	  stw       r4, 0x0(r3)
-	  stw       r0, 0x4(r3)
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	lis      r5, lbl_8047E620@ha
+	stw      r0, 0x34(r1)
+	stw      r31, 0x2c(r1)
+	mr       r31, r3
+	stw      r30, 0x28(r1)
+	stw      r29, 0x24(r1)
+	addi     r29, r5, lbl_8047E620@l
+	stw      r28, 0x20(r1)
+	sth      r4, 0x22e(r3)
+	lhz      r4, 0x22e(r3)
+	bl       setupTevRegAnim__Q24Game5OnyonFi
+	li       r0, 0
+	stw      r0, 0x1ec(r31)
+	stw      r0, 0x1f0(r31)
+	stw      r0, 0x208(r31)
+	stw      r0, 0x20c(r31)
+	stw      r0, 0x210(r31)
+	lhz      r0, 0x22e(r31)
+	cmplwi   r0, 2
+	bgt      lbl_801756BC
+	li       r3, 0x10
+	bl       __nw__FUl
+	cmplwi   r3, 0
+	beq      lbl_80175688
+	lis      r4, __vt__Q23efx5TBase@ha
+	lis      r5, __vt__18JPAEmitterCallBack@ha
+	addi     r0, r4, __vt__Q23efx5TBase@l
+	lis      r4, __vt__Q23efx5TSync@ha
+	stw      r0, 0(r3)
+	addi     r0, r5, __vt__18JPAEmitterCallBack@l
+	addi     r5, r4, __vt__Q23efx5TSync@l
+	lis      r4, __vt__Q23efx8TForever@ha
+	stw      r0, 4(r3)
+	addi     r6, r4, __vt__Q23efx8TForever@l
+	lis      r4, __vt__Q23efx9Container@ha
+	addi     r0, r5, 0x14
+	stw      r5, 0(r3)
+	addi     r4, r4, __vt__Q23efx9Container@l
+	li       r8, 0
+	li       r7, 0x105
+	stw      r0, 4(r3)
+	addi     r5, r6, 0x14
+	addi     r0, r4, 0x14
+	stw      r8, 8(r3)
+	sth      r7, 0xc(r3)
+	stb      r8, 0xe(r3)
+	stw      r6, 0(r3)
+	stw      r5, 4(r3)
+	stw      r4, 0(r3)
+	stw      r0, 4(r3)
 
-	.loc_0xD0:
-	  stw       r3, 0x1EC(r31)
-	  li        r3, 0x24
-	  bl        -0x1517EC
-	  mr.       r28, r3
-	  beq-      .loc_0xFC
-	  li        r4, 0xF8
-	  li        r5, 0xF9
-	  bl        0x23A96C
-	  lis       r3, 0x804E
-	  addi      r0, r3, 0x7058
-	  stw       r0, 0x0(r28)
+lbl_80175688:
+	stw      r3, 0x1ec(r31)
+	li       r3, 0x24
+	bl       __nw__FUl
+	or.      r28, r3, r3
+	beq      lbl_801756B4
+	li       r4, 0xf8
+	li       r5, 0xf9
+	bl       __ct__Q23efx9TForever2FUsUs
+	lis      r3, __vt__Q23efx12ContainerAct@ha
+	addi     r0, r3, __vt__Q23efx12ContainerAct@l
+	stw      r0, 0(r28)
 
-	.loc_0xFC:
-	  stw       r28, 0x1F0(r31)
-	  b         .loc_0x66C
+lbl_801756B4:
+	stw      r28, 0x1f0(r31)
+	b        lbl_80175C24
 
-	.loc_0x104:
-	  cmplwi    r0, 0x4
-	  bne-      .loc_0x3E8
-	  lwz       r3, 0x174(r31)
-	  subi      r4, r2, 0x592C
-	  bl        0x2C9918
-	  mr        r0, r3
-	  li        r3, 0x2C
-	  mr        r28, r0
-	  bl        -0x151838
-	  mr.       r30, r3
-	  beq-      .loc_0x158
-	  mr        r3, r28
-	  bl        0x2B41B4
-	  mr        r4, r3
-	  mr        r3, r30
-	  li        r5, 0x1CC
-	  li        r6, 0x1CD
-	  bl        0x23AD9C
-	  lis       r3, 0x804B
-	  addi      r0, r3, 0x2C08
-	  stw       r0, 0x0(r30)
+lbl_801756BC:
+	cmplwi   r0, 4
+	bne      lbl_801759A0
+	lwz      r3, 0x174(r31)
+	addi     r4, r2, lbl_80518A34@sda21
+	bl       getJoint__Q28SysShape5ModelFPc
+	mr       r0, r3
+	li       r3, 0x2c
+	mr       r28, r0
+	bl       __nw__FUl
+	or.      r30, r3, r3
+	beq      lbl_80175710
+	mr       r3, r28
+	bl       getWorldMatrix__Q28SysShape5JointFv
+	mr       r4, r3
+	mr       r3, r30
+	li       r5, 0x1cc
+	li       r6, 0x1cd
+	bl       __ct__Q23efx10TChaseMtx2FPA4_fUsUs
+	lis      r3, __vt__Q23efx8TUfoSpot@ha
+	addi     r0, r3, __vt__Q23efx8TUfoSpot@l
+	stw      r0, 0(r30)
 
-	.loc_0x158:
-	  stw       r30, 0x208(r31)
-	  li        r3, 0x14
-	  bl        -0x151874
-	  mr.       r30, r3
-	  beq-      .loc_0x1E8
-	  mr        r3, r28
-	  bl        0x2B4178
-	  lis       r4, 0x804B
-	  lis       r5, 0x804A
-	  subi      r0, r4, 0x5808
-	  lis       r4, 0x804E
-	  stw       r0, 0x0(r30)
-	  subi      r0, r5, 0x1D84
-	  addi      r5, r4, 0x698C
-	  lis       r4, 0x804E
-	  stw       r0, 0x4(r30)
-	  addi      r7, r4, 0x68A8
-	  lis       r4, 0x804B
-	  addi      r0, r5, 0x14
-	  stw       r5, 0x0(r30)
-	  addi      r4, r4, 0x2BBC
-	  li        r9, 0
-	  li        r8, 0x2B2
-	  stw       r0, 0x4(r30)
-	  addi      r6, r7, 0x14
-	  li        r5, 0x1C8
-	  addi      r0, r4, 0x14
-	  stw       r9, 0x8(r30)
-	  sth       r8, 0xC(r30)
-	  stb       r9, 0xE(r30)
-	  stw       r7, 0x0(r30)
-	  stw       r6, 0x4(r30)
-	  stw       r3, 0x10(r30)
-	  sth       r5, 0xC(r30)
-	  stw       r4, 0x0(r30)
-	  stw       r0, 0x4(r30)
+lbl_80175710:
+	stw      r30, 0x208(r31)
+	li       r3, 0x14
+	bl       __nw__FUl
+	or.      r30, r3, r3
+	beq      lbl_801757A0
+	mr       r3, r28
+	bl       getWorldMatrix__Q28SysShape5JointFv
+	lis      r4, __vt__Q23efx5TBase@ha
+	lis      r5, __vt__18JPAEmitterCallBack@ha
+	addi     r0, r4, __vt__Q23efx5TBase@l
+	lis      r4, __vt__Q23efx5TSync@ha
+	stw      r0, 0(r30)
+	addi     r0, r5, __vt__18JPAEmitterCallBack@l
+	addi     r5, r4, __vt__Q23efx5TSync@l
+	lis      r4, __vt__Q23efx9TChaseMtx@ha
+	stw      r0, 4(r30)
+	addi     r7, r4, __vt__Q23efx9TChaseMtx@l
+	lis      r4, __vt__Q23efx15TUfoPodOpenSuck@ha
+	addi     r0, r5, 0x14
+	stw      r5, 0(r30)
+	addi     r4, r4, __vt__Q23efx15TUfoPodOpenSuck@l
+	li       r9, 0
+	li       r8, 0x2b2
+	stw      r0, 4(r30)
+	addi     r6, r7, 0x14
+	li       r5, 0x1c8
+	addi     r0, r4, 0x14
+	stw      r9, 8(r30)
+	sth      r8, 0xc(r30)
+	stb      r9, 0xe(r30)
+	stw      r7, 0(r30)
+	stw      r6, 4(r30)
+	stw      r3, 0x10(r30)
+	sth      r5, 0xc(r30)
+	stw      r4, 0(r30)
+	stw      r0, 4(r30)
 
-	.loc_0x1E8:
-	  stw       r30, 0x214(r31)
-	  li        r3, 0x2C
-	  bl        -0x151904
-	  mr.       r30, r3
-	  beq-      .loc_0x224
-	  mr        r3, r28
-	  bl        0x2B40E8
-	  mr        r4, r3
-	  mr        r3, r30
-	  li        r5, 0x1CA
-	  li        r6, 0x1CB
-	  bl        0x23ACD0
-	  lis       r3, 0x804B
-	  addi      r0, r3, 0x2BA0
-	  stw       r0, 0x0(r30)
+lbl_801757A0:
+	stw      r30, 0x214(r31)
+	li       r3, 0x2c
+	bl       __nw__FUl
+	or.      r30, r3, r3
+	beq      lbl_801757DC
+	mr       r3, r28
+	bl       getWorldMatrix__Q28SysShape5JointFv
+	mr       r4, r3
+	mr       r3, r30
+	li       r5, 0x1ca
+	li       r6, 0x1cb
+	bl       __ct__Q23efx10TChaseMtx2FPA4_fUsUs
+	lis      r3, __vt__Q23efx17TUfoSpotact_ver01@ha
+	addi     r0, r3, __vt__Q23efx17TUfoSpotact_ver01@l
+	stw      r0, 0(r30)
 
-	.loc_0x224:
-	  stw       r30, 0x20C(r31)
-	  addi      r4, r29, 0x54
-	  lwz       r3, 0x174(r31)
-	  bl        0x2C97FC
-	  mr        r30, r3
-	  li        r3, 0x2C
-	  bl        -0x151950
-	  mr.       r28, r3
-	  beq-      .loc_0x270
-	  mr        r3, r30
-	  bl        0x2B409C
-	  mr        r4, r3
-	  mr        r3, r28
-	  li        r5, 0x1C6
-	  li        r6, 0x1C7
-	  bl        0x23AC84
-	  lis       r3, 0x804B
-	  addi      r0, r3, 0x2B84
-	  stw       r0, 0x0(r28)
+lbl_801757DC:
+	stw      r30, 0x20c(r31)
+	addi     r4, r29, 0x54
+	lwz      r3, 0x174(r31)
+	bl       getJoint__Q28SysShape5ModelFPc
+	mr       r30, r3
+	li       r3, 0x2c
+	bl       __nw__FUl
+	or.      r28, r3, r3
+	beq      lbl_80175828
+	mr       r3, r30
+	bl       getWorldMatrix__Q28SysShape5JointFv
+	mr       r4, r3
+	mr       r3, r28
+	li       r5, 0x1c6
+	li       r6, 0x1c7
+	bl       __ct__Q23efx10TChaseMtx2FPA4_fUsUs
+	lis      r3, __vt__Q23efx11TUfoPodOpen@ha
+	addi     r0, r3, __vt__Q23efx11TUfoPodOpen@l
+	stw      r0, 0(r28)
 
-	.loc_0x270:
-	  stw       r28, 0x210(r31)
-	  subi      r4, r2, 0x5924
-	  lwz       r3, 0x174(r31)
-	  bl        0x2C97B0
-	  mr.       r28, r3
-	  bne-      .loc_0x29C
-	  addi      r3, r29, 0x18
-	  addi      r5, r29, 0x60
-	  li        r4, 0x30E
-	  crclr     6, 0x6
-	  bl        -0x14B210
+lbl_80175828:
+	stw      r28, 0x210(r31)
+	addi     r4, r2, lbl_80518A3C@sda21
+	lwz      r3, 0x174(r31)
+	bl       getJoint__Q28SysShape5ModelFPc
+	or.      r28, r3, r3
+	bne      lbl_80175854
+	addi     r3, r29, 0x18
+	addi     r5, r29, 0x60
+	li       r4, 0x30e
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x29C:
-	  li        r3, 0x14
-	  bl        -0x1519B4
-	  mr.       r30, r3
-	  beq-      .loc_0x328
-	  mr        r3, r28
-	  bl        0x2B4038
-	  lis       r4, 0x804B
-	  lis       r5, 0x804A
-	  subi      r0, r4, 0x5808
-	  lis       r4, 0x804E
-	  stw       r0, 0x0(r30)
-	  subi      r0, r5, 0x1D84
-	  addi      r5, r4, 0x698C
-	  lis       r4, 0x804E
-	  stw       r0, 0x4(r30)
-	  addi      r7, r4, 0x68A8
-	  lis       r4, 0x804B
-	  addi      r0, r5, 0x14
-	  stw       r5, 0x0(r30)
-	  addi      r4, r4, 0x2B38
-	  li        r9, 0
-	  li        r8, 0x2B2
-	  stw       r0, 0x4(r30)
-	  addi      r6, r7, 0x14
-	  li        r5, 0x1C2
-	  addi      r0, r4, 0x14
-	  stw       r9, 0x8(r30)
-	  sth       r8, 0xC(r30)
-	  stb       r9, 0xE(r30)
-	  stw       r7, 0x0(r30)
-	  stw       r6, 0x4(r30)
-	  stw       r3, 0x10(r30)
-	  sth       r5, 0xC(r30)
-	  stw       r4, 0x0(r30)
-	  stw       r0, 0x4(r30)
+lbl_80175854:
+	li       r3, 0x14
+	bl       __nw__FUl
+	or.      r30, r3, r3
+	beq      lbl_801758E0
+	mr       r3, r28
+	bl       getWorldMatrix__Q28SysShape5JointFv
+	lis      r4, __vt__Q23efx5TBase@ha
+	lis      r5, __vt__18JPAEmitterCallBack@ha
+	addi     r0, r4, __vt__Q23efx5TBase@l
+	lis      r4, __vt__Q23efx5TSync@ha
+	stw      r0, 0(r30)
+	addi     r0, r5, __vt__18JPAEmitterCallBack@l
+	addi     r5, r4, __vt__Q23efx5TSync@l
+	lis      r4, __vt__Q23efx9TChaseMtx@ha
+	stw      r0, 4(r30)
+	addi     r7, r4, __vt__Q23efx9TChaseMtx@l
+	lis      r4, __vt__Q23efx9TUfoGasIn@ha
+	addi     r0, r5, 0x14
+	stw      r5, 0(r30)
+	addi     r4, r4, __vt__Q23efx9TUfoGasIn@l
+	li       r9, 0
+	li       r8, 0x2b2
+	stw      r0, 4(r30)
+	addi     r6, r7, 0x14
+	li       r5, 0x1c2
+	addi     r0, r4, 0x14
+	stw      r9, 8(r30)
+	sth      r8, 0xc(r30)
+	stb      r9, 0xe(r30)
+	stw      r7, 0(r30)
+	stw      r6, 4(r30)
+	stw      r3, 0x10(r30)
+	sth      r5, 0xc(r30)
+	stw      r4, 0(r30)
+	stw      r0, 4(r30)
 
-	.loc_0x328:
-	  stw       r30, 0x218(r31)
-	  subi      r4, r2, 0x5920
-	  lwz       r3, 0x174(r31)
-	  bl        0x2C96F8
-	  mr.       r30, r3
-	  bne-      .loc_0x354
-	  addi      r3, r29, 0x18
-	  addi      r5, r29, 0x60
-	  li        r4, 0x310
-	  crclr     6, 0x6
-	  bl        -0x14B2C8
+lbl_801758E0:
+	stw      r30, 0x218(r31)
+	addi     r4, r2, lbl_80518A40@sda21
+	lwz      r3, 0x174(r31)
+	bl       getJoint__Q28SysShape5ModelFPc
+	or.      r30, r3, r3
+	bne      lbl_8017590C
+	addi     r3, r29, 0x18
+	addi     r5, r29, 0x60
+	li       r4, 0x310
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x354:
-	  li        r3, 0x14
-	  bl        -0x151A6C
-	  mr.       r28, r3
-	  beq-      .loc_0x3E0
-	  mr        r3, r30
-	  bl        0x2B3F80
-	  lis       r4, 0x804B
-	  lis       r5, 0x804A
-	  subi      r0, r4, 0x5808
-	  lis       r4, 0x804E
-	  stw       r0, 0x0(r28)
-	  subi      r0, r5, 0x1D84
-	  addi      r5, r4, 0x698C
-	  lis       r4, 0x804E
-	  stw       r0, 0x4(r28)
-	  addi      r7, r4, 0x68A8
-	  lis       r4, 0x804B
-	  addi      r0, r5, 0x14
-	  stw       r5, 0x0(r28)
-	  addi      r4, r4, 0x2AEC
-	  li        r9, 0
-	  li        r8, 0x2B2
-	  stw       r0, 0x4(r28)
-	  addi      r6, r7, 0x14
-	  li        r5, 0x1C3
-	  addi      r0, r4, 0x14
-	  stw       r9, 0x8(r28)
-	  sth       r8, 0xC(r28)
-	  stb       r9, 0xE(r28)
-	  stw       r7, 0x0(r28)
-	  stw       r6, 0x4(r28)
-	  stw       r3, 0x10(r28)
-	  sth       r5, 0xC(r28)
-	  stw       r4, 0x0(r28)
-	  stw       r0, 0x4(r28)
+lbl_8017590C:
+	li       r3, 0x14
+	bl       __nw__FUl
+	or.      r28, r3, r3
+	beq      lbl_80175998
+	mr       r3, r30
+	bl       getWorldMatrix__Q28SysShape5JointFv
+	lis      r4, __vt__Q23efx5TBase@ha
+	lis      r5, __vt__18JPAEmitterCallBack@ha
+	addi     r0, r4, __vt__Q23efx5TBase@l
+	lis      r4, __vt__Q23efx5TSync@ha
+	stw      r0, 0(r28)
+	addi     r0, r5, __vt__18JPAEmitterCallBack@l
+	addi     r5, r4, __vt__Q23efx5TSync@l
+	lis      r4, __vt__Q23efx9TChaseMtx@ha
+	stw      r0, 4(r28)
+	addi     r7, r4, __vt__Q23efx9TChaseMtx@l
+	lis      r4, __vt__Q23efx10TUfoGasOut@ha
+	addi     r0, r5, 0x14
+	stw      r5, 0(r28)
+	addi     r4, r4, __vt__Q23efx10TUfoGasOut@l
+	li       r9, 0
+	li       r8, 0x2b2
+	stw      r0, 4(r28)
+	addi     r6, r7, 0x14
+	li       r5, 0x1c3
+	addi     r0, r4, 0x14
+	stw      r9, 8(r28)
+	sth      r8, 0xc(r28)
+	stb      r9, 0xe(r28)
+	stw      r7, 0(r28)
+	stw      r6, 4(r28)
+	stw      r3, 0x10(r28)
+	sth      r5, 0xc(r28)
+	stw      r4, 0(r28)
+	stw      r0, 4(r28)
 
-	.loc_0x3E0:
-	  stw       r28, 0x21C(r31)
-	  b         .loc_0x66C
+lbl_80175998:
+	stw      r28, 0x21c(r31)
+	b        lbl_80175C24
 
-	.loc_0x3E8:
-	  cmplwi    r0, 0x3
-	  bne-      .loc_0x66C
-	  lwz       r3, 0x174(r31)
-	  subi      r4, r2, 0x591C
-	  bl        0x2C9634
-	  mr.       r28, r3
-	  bne-      .loc_0x418
-	  addi      r3, r29, 0x18
-	  addi      r5, r29, 0x60
-	  li        r4, 0x314
-	  crclr     6, 0x6
-	  bl        -0x14B38C
+lbl_801759A0:
+	cmplwi   r0, 3
+	bne      lbl_80175C24
+	lwz      r3, 0x174(r31)
+	addi     r4, r2, lbl_80518A44@sda21
+	bl       getJoint__Q28SysShape5ModelFPc
+	or.      r28, r3, r3
+	bne      lbl_801759D0
+	addi     r3, r29, 0x18
+	addi     r5, r29, 0x60
+	li       r4, 0x314
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x418:
-	  li        r3, 0x10
-	  bl        -0x151B30
-	  cmplwi    r3, 0
-	  beq-      .loc_0x490
-	  lis       r4, 0x804B
-	  lis       r5, 0x804A
-	  subi      r0, r4, 0x5808
-	  lis       r4, 0x804E
-	  stw       r0, 0x0(r3)
-	  subi      r0, r5, 0x1D84
-	  addi      r5, r4, 0x698C
-	  lis       r4, 0x804B
-	  stw       r0, 0x4(r3)
-	  addi      r6, r4, 0x2C24
-	  lis       r4, 0x804B
-	  addi      r0, r5, 0x14
-	  stw       r5, 0x0(r3)
-	  addi      r4, r4, 0x2AA0
-	  li        r8, 0
-	  li        r7, 0x181
-	  stw       r0, 0x4(r3)
-	  addi      r5, r6, 0x14
-	  addi      r0, r4, 0x14
-	  stw       r8, 0x8(r3)
-	  sth       r7, 0xC(r3)
-	  stb       r8, 0xE(r3)
-	  stw       r6, 0x0(r3)
-	  stw       r5, 0x4(r3)
-	  stw       r4, 0x0(r3)
-	  stw       r0, 0x4(r3)
+lbl_801759D0:
+	li       r3, 0x10
+	bl       __nw__FUl
+	cmplwi   r3, 0
+	beq      lbl_80175A48
+	lis      r4, __vt__Q23efx5TBase@ha
+	lis      r5, __vt__18JPAEmitterCallBack@ha
+	addi     r0, r4, __vt__Q23efx5TBase@l
+	lis      r4, __vt__Q23efx5TSync@ha
+	stw      r0, 0(r3)
+	addi     r0, r5, __vt__18JPAEmitterCallBack@l
+	addi     r5, r4, __vt__Q23efx5TSync@l
+	lis      r4, __vt__Q23efx8TForever@ha
+	stw      r0, 4(r3)
+	addi     r6, r4, __vt__Q23efx8TForever@l
+	lis      r4, __vt__Q23efx9TPodOpenA@ha
+	addi     r0, r5, 0x14
+	stw      r5, 0(r3)
+	addi     r4, r4, __vt__Q23efx9TPodOpenA@l
+	li       r8, 0
+	li       r7, 0x181
+	stw      r0, 4(r3)
+	addi     r5, r6, 0x14
+	addi     r0, r4, 0x14
+	stw      r8, 8(r3)
+	sth      r7, 0xc(r3)
+	stb      r8, 0xe(r3)
+	stw      r6, 0(r3)
+	stw      r5, 4(r3)
+	stw      r4, 0(r3)
+	stw      r0, 4(r3)
 
-	.loc_0x490:
-	  stw       r3, 0x1F8(r31)
-	  li        r3, 0x14
-	  bl        -0x151BAC
-	  mr.       r30, r3
-	  beq-      .loc_0x520
-	  mr        r3, r28
-	  bl        0x2B3E40
-	  lis       r4, 0x804B
-	  lis       r5, 0x804A
-	  subi      r0, r4, 0x5808
-	  lis       r4, 0x804E
-	  stw       r0, 0x0(r30)
-	  subi      r0, r5, 0x1D84
-	  addi      r5, r4, 0x698C
-	  lis       r4, 0x804E
-	  stw       r0, 0x4(r30)
-	  addi      r7, r4, 0x68A8
-	  lis       r4, 0x804B
-	  addi      r0, r5, 0x14
-	  stw       r5, 0x0(r30)
-	  addi      r4, r4, 0x2A54
-	  li        r9, 0
-	  li        r8, 0x2B2
-	  stw       r0, 0x4(r30)
-	  addi      r6, r7, 0x14
-	  li        r5, 0x182
-	  addi      r0, r4, 0x14
-	  stw       r9, 0x8(r30)
-	  sth       r8, 0xC(r30)
-	  stb       r9, 0xE(r30)
-	  stw       r7, 0x0(r30)
-	  stw       r6, 0x4(r30)
-	  stw       r3, 0x10(r30)
-	  sth       r5, 0xC(r30)
-	  stw       r4, 0x0(r30)
-	  stw       r0, 0x4(r30)
+lbl_80175A48:
+	stw      r3, 0x1f8(r31)
+	li       r3, 0x14
+	bl       __nw__FUl
+	or.      r30, r3, r3
+	beq      lbl_80175AD8
+	mr       r3, r28
+	bl       getWorldMatrix__Q28SysShape5JointFv
+	lis      r4, __vt__Q23efx5TBase@ha
+	lis      r5, __vt__18JPAEmitterCallBack@ha
+	addi     r0, r4, __vt__Q23efx5TBase@l
+	lis      r4, __vt__Q23efx5TSync@ha
+	stw      r0, 0(r30)
+	addi     r0, r5, __vt__18JPAEmitterCallBack@l
+	addi     r5, r4, __vt__Q23efx5TSync@l
+	lis      r4, __vt__Q23efx9TChaseMtx@ha
+	stw      r0, 4(r30)
+	addi     r7, r4, __vt__Q23efx9TChaseMtx@l
+	lis      r4, __vt__Q23efx9TPodOpenB@ha
+	addi     r0, r5, 0x14
+	stw      r5, 0(r30)
+	addi     r4, r4, __vt__Q23efx9TPodOpenB@l
+	li       r9, 0
+	li       r8, 0x2b2
+	stw      r0, 4(r30)
+	addi     r6, r7, 0x14
+	li       r5, 0x182
+	addi     r0, r4, 0x14
+	stw      r9, 8(r30)
+	sth      r8, 0xc(r30)
+	stb      r9, 0xe(r30)
+	stw      r7, 0(r30)
+	stw      r6, 4(r30)
+	stw      r3, 0x10(r30)
+	sth      r5, 0xc(r30)
+	stw      r4, 0(r30)
+	stw      r0, 4(r30)
 
-	.loc_0x520:
-	  stw       r30, 0x1FC(r31)
-	  li        r3, 0x34
-	  bl        -0x151C3C
-	  mr.       r29, r3
-	  beq-      .loc_0x554
-	  addi      r4, r31, 0x19C
-	  addi      r5, r31, 0x228
-	  li        r6, 0x183
-	  li        r7, 0x184
-	  bl        0x23AED0
-	  lis       r3, 0x804B
-	  addi      r0, r3, 0x2A38
-	  stw       r0, 0x0(r29)
+lbl_80175AD8:
+	stw      r30, 0x1fc(r31)
+	li       r3, 0x34
+	bl       __nw__FUl
+	or.      r29, r3, r3
+	beq      lbl_80175B0C
+	addi     r4, r31, 0x19c
+	addi     r5, r31, 0x228
+	li       r6, 0x183
+	li       r7, 0x184
+	bl       "__ct__Q23efx14TChasePosYRot2FP10Vector3<f>PfUsUs"
+	lis      r3, __vt__Q23efx8TPodSpot@ha
+	addi     r0, r3, __vt__Q23efx8TPodSpot@l
+	stw      r0, 0(r29)
 
-	.loc_0x554:
-	  stw       r29, 0x200(r31)
-	  li        r3, 0x14
-	  bl        -0x151C70
-	  mr.       r30, r3
-	  beq-      .loc_0x5E4
-	  mr        r3, r28
-	  bl        0x2B3D7C
-	  lis       r4, 0x804B
-	  lis       r5, 0x804A
-	  subi      r0, r4, 0x5808
-	  lis       r4, 0x804E
-	  stw       r0, 0x0(r30)
-	  subi      r0, r5, 0x1D84
-	  addi      r5, r4, 0x698C
-	  lis       r4, 0x804E
-	  stw       r0, 0x4(r30)
-	  addi      r7, r4, 0x68A8
-	  lis       r4, 0x804B
-	  addi      r0, r5, 0x14
-	  stw       r5, 0x0(r30)
-	  addi      r4, r4, 0x29EC
-	  li        r9, 0
-	  li        r8, 0x2B2
-	  stw       r0, 0x4(r30)
-	  addi      r6, r7, 0x14
-	  li        r5, 0x180
-	  addi      r0, r4, 0x14
-	  stw       r9, 0x8(r30)
-	  sth       r8, 0xC(r30)
-	  stb       r9, 0xE(r30)
-	  stw       r7, 0x0(r30)
-	  stw       r6, 0x4(r30)
-	  stw       r3, 0x10(r30)
-	  sth       r5, 0xC(r30)
-	  stw       r4, 0x0(r30)
-	  stw       r0, 0x4(r30)
+lbl_80175B0C:
+	stw      r29, 0x200(r31)
+	li       r3, 0x14
+	bl       __nw__FUl
+	or.      r30, r3, r3
+	beq      lbl_80175B9C
+	mr       r3, r28
+	bl       getWorldMatrix__Q28SysShape5JointFv
+	lis      r4, __vt__Q23efx5TBase@ha
+	lis      r5, __vt__18JPAEmitterCallBack@ha
+	addi     r0, r4, __vt__Q23efx5TBase@l
+	lis      r4, __vt__Q23efx5TSync@ha
+	stw      r0, 0(r30)
+	addi     r0, r5, __vt__18JPAEmitterCallBack@l
+	addi     r5, r4, __vt__Q23efx5TSync@l
+	lis      r4, __vt__Q23efx9TChaseMtx@ha
+	stw      r0, 4(r30)
+	addi     r7, r4, __vt__Q23efx9TChaseMtx@l
+	lis      r4, __vt__Q23efx8TPodKira@ha
+	addi     r0, r5, 0x14
+	stw      r5, 0(r30)
+	addi     r4, r4, __vt__Q23efx8TPodKira@l
+	li       r9, 0
+	li       r8, 0x2b2
+	stw      r0, 4(r30)
+	addi     r6, r7, 0x14
+	li       r5, 0x180
+	addi     r0, r4, 0x14
+	stw      r9, 8(r30)
+	sth      r8, 0xc(r30)
+	stb      r9, 0xe(r30)
+	stw      r7, 0(r30)
+	stw      r6, 4(r30)
+	stw      r3, 0x10(r30)
+	sth      r5, 0xc(r30)
+	stw      r4, 0(r30)
+	stw      r0, 4(r30)
 
-	.loc_0x5E4:
-	  stw       r30, 0x204(r31)
-	  li        r4, 0
-	  lwz       r3, 0x204(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x1FC(r31)
-	  li        r4, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x200(r31)
-	  li        r4, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lis       r3, 0x804B
-	  addi      r4, r1, 0x8
-	  subi      r0, r3, 0x5814
-	  stw       r0, 0x8(r1)
-	  lfs       f0, 0x19C(r31)
-	  stfs      f0, 0xC(r1)
-	  lfs       f0, 0x1A0(r31)
-	  stfs      f0, 0x10(r1)
-	  lfs       f0, 0x1A4(r31)
-	  stfs      f0, 0x14(r1)
-	  lwz       r3, 0x1F8(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
+lbl_80175B9C:
+	stw      r30, 0x204(r31)
+	li       r4, 0
+	lwz      r3, 0x204(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 0x1fc(r31)
+	li       r4, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 0x200(r31)
+	li       r4, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lis      r3, __vt__Q23efx3Arg@ha
+	addi     r4, r1, 8
+	addi     r0, r3, __vt__Q23efx3Arg@l
+	stw      r0, 8(r1)
+	lfs      f0, 0x19c(r31)
+	stfs     f0, 0xc(r1)
+	lfs      f0, 0x1a0(r31)
+	stfs     f0, 0x10(r1)
+	lfs      f0, 0x1a4(r31)
+	stfs     f0, 0x14(r1)
+	lwz      r3, 0x1f8(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x66C:
-	  lwz       r0, 0x34(r1)
-	  lwz       r31, 0x2C(r1)
-	  lwz       r30, 0x28(r1)
-	  lwz       r29, 0x24(r1)
-	  lwz       r28, 0x20(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_80175C24:
+	lwz      r0, 0x34(r1)
+	lwz      r31, 0x2c(r1)
+	lwz      r30, 0x28(r1)
+	lwz      r29, 0x24(r1)
+	lwz      r28, 0x20(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -1219,44 +2299,43 @@ namespace efx {
 	TChasePosYRot::~TChasePosYRot(void)
 	{
 		/*
-		.loc_0x0:
-		  stwu      r1, -0x10(r1)
-		  mflr      r0
-		  stw       r0, 0x14(r1)
-		  stw       r31, 0xC(r1)
-		  mr        r31, r4
-		  stw       r30, 0x8(r1)
-		  mr.       r30, r3
-		  beq-      .loc_0x68
-		  lis       r3, 0x804E
-		  addi      r3, r3, 0x68F4
-		  stw       r3, 0x0(r30)
-		  addi      r0, r3, 0x14
-		  stw       r0, 0x4(r30)
-		  beq-      .loc_0x58
-		  lis       r4, 0x804E
-		  addi      r3, r30, 0x4
-		  addi      r5, r4, 0x698C
-		  li        r4, 0
-		  stw       r5, 0x0(r30)
-		  addi      r0, r5, 0x14
-		  stw       r0, 0x4(r30)
-		  bl        -0xE5FFC
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_80175CAC
+	lis      r3, __vt__Q23efx13TChasePosYRot@ha
+	addi     r3, r3, __vt__Q23efx13TChasePosYRot@l
+	stw      r3, 0(r30)
+	addi     r0, r3, 0x14
+	stw      r0, 4(r30)
+	beq      lbl_80175C9C
+	lis      r4, __vt__Q23efx5TSync@ha
+	addi     r3, r30, 4
+	addi     r5, r4, __vt__Q23efx5TSync@l
+	li       r4, 0
+	stw      r5, 0(r30)
+	addi     r0, r5, 0x14
+	stw      r0, 4(r30)
+	bl       __dt__18JPAEmitterCallBackFv
 
-		.loc_0x58:
-		  extsh.    r0, r31
-		  ble-      .loc_0x68
-		  mr        r3, r30
-		  bl        -0x151BF4
+lbl_80175C9C:
+	extsh.   r0, r31
+	ble      lbl_80175CAC
+	mr       r3, r30
+	bl       __dl__FPv
 
-		.loc_0x68:
-		  lwz       r0, 0x14(r1)
-		  mr        r3, r30
-		  lwz       r31, 0xC(r1)
-		  lwz       r30, 0x8(r1)
-		  mtlr      r0
-		  addi      r1, r1, 0x10
-		  blr
+lbl_80175CAC:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 		*/
 	}
 
@@ -1278,44 +2357,43 @@ namespace efx {
 	TForever::~TForever(void)
 	{
 		/*
-		.loc_0x0:
-		  stwu      r1, -0x10(r1)
-		  mflr      r0
-		  stw       r0, 0x14(r1)
-		  stw       r31, 0xC(r1)
-		  mr        r31, r4
-		  stw       r30, 0x8(r1)
-		  mr.       r30, r3
-		  beq-      .loc_0x68
-		  lis       r3, 0x804B
-		  addi      r3, r3, 0x2C24
-		  stw       r3, 0x0(r30)
-		  addi      r0, r3, 0x14
-		  stw       r0, 0x4(r30)
-		  beq-      .loc_0x58
-		  lis       r4, 0x804E
-		  addi      r3, r30, 0x4
-		  addi      r5, r4, 0x698C
-		  li        r4, 0
-		  stw       r5, 0x0(r30)
-		  addi      r0, r5, 0x14
-		  stw       r0, 0x4(r30)
-		  bl        -0xE6080
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_80175D30
+	lis      r3, __vt__Q23efx8TForever@ha
+	addi     r3, r3, __vt__Q23efx8TForever@l
+	stw      r3, 0(r30)
+	addi     r0, r3, 0x14
+	stw      r0, 4(r30)
+	beq      lbl_80175D20
+	lis      r4, __vt__Q23efx5TSync@ha
+	addi     r3, r30, 4
+	addi     r5, r4, __vt__Q23efx5TSync@l
+	li       r4, 0
+	stw      r5, 0(r30)
+	addi     r0, r5, 0x14
+	stw      r0, 4(r30)
+	bl       __dt__18JPAEmitterCallBackFv
 
-		.loc_0x58:
-		  extsh.    r0, r31
-		  ble-      .loc_0x68
-		  mr        r3, r30
-		  bl        -0x151C78
+lbl_80175D20:
+	extsh.   r0, r31
+	ble      lbl_80175D30
+	mr       r3, r30
+	bl       __dl__FPv
 
-		.loc_0x68:
-		  lwz       r0, 0x14(r1)
-		  mr        r3, r30
-		  lwz       r31, 0xC(r1)
-		  lwz       r30, 0x8(r1)
-		  mtlr      r0
-		  addi      r1, r1, 0x10
-		  blr
+lbl_80175D30:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 		*/
 	}
 
@@ -1329,65 +2407,64 @@ namespace efx {
 void Onyon::setupTevRegAnim(int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lhz       r0, 0x22E(r3)
-	  cmplwi    r0, 0x2
-	  bgt-      .loc_0x54
-	  lwz       r3, 0x234(r30)
-	  mulli     r4, r31, 0x14
-	  lwz       r0, -0x6CD0(r13)
-	  lwz       r12, 0x0(r3)
-	  addi      r4, r4, 0xB4
-	  lwz       r12, 0x8(r12)
-	  add       r4, r0, r4
-	  mtctr     r12
-	  bctrl
-	  sth       r31, 0x22E(r30)
-	  b         .loc_0xB8
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lhz      r0, 0x22e(r3)
+	cmplwi   r0, 2
+	bgt      lbl_80175DA0
+	lwz      r3, 0x234(r30)
+	mulli    r4, r31, 0x14
+	lwz      r0, mgr__Q24Game9ItemOnyon@sda21(r13)
+	lwz      r12, 0(r3)
+	addi     r4, r4, 0xb4
+	lwz      r12, 8(r12)
+	add      r4, r0, r4
+	mtctr    r12
+	bctrl
+	sth      r31, 0x22e(r30)
+	b        lbl_80175E04
 
-	.loc_0x54:
-	  cmplwi    r0, 0x4
-	  bne-      .loc_0xB8
-	  lwz       r3, 0x234(r30)
-	  lwz       r4, -0x6CD0(r13)
-	  lwz       r12, 0x0(r3)
-	  addi      r4, r4, 0xF0
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  li        r3, 0xC
-	  bl        -0x151F24
-	  mr.       r31, r3
-	  beq-      .loc_0x98
-	  bl        0x2BE580
-	  lis       r3, 0x804F
-	  subi      r0, r3, 0x3B74
-	  stw       r0, 0x0(r31)
+lbl_80175DA0:
+	cmplwi   r0, 4
+	bne      lbl_80175E04
+	lwz      r3, 0x234(r30)
+	lwz      r4, mgr__Q24Game9ItemOnyon@sda21(r13)
+	lwz      r12, 0(r3)
+	addi     r4, r4, 0xf0
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	li       r3, 0xc
+	bl       __nw__FUl
+	or.      r31, r3, r3
+	beq      lbl_80175DE4
+	bl       __ct__Q23Sys15MatBaseAnimatorFv
+	lis      r3, __vt__Q23Sys15MatLoopAnimator@ha
+	addi     r0, r3, __vt__Q23Sys15MatLoopAnimator@l
+	stw      r0, 0(r31)
 
-	.loc_0x98:
-	  stw       r31, 0x238(r30)
-	  lwz       r3, 0x238(r30)
-	  lwz       r4, -0x6CD0(r13)
-	  lwz       r12, 0x0(r3)
-	  addi      r4, r4, 0x104
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
+lbl_80175DE4:
+	stw      r31, 0x238(r30)
+	lwz      r3, 0x238(r30)
+	lwz      r4, mgr__Q24Game9ItemOnyon@sda21(r13)
+	lwz      r12, 0(r3)
+	addi     r4, r4, 0x104
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0xB8:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80175E04:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1399,40 +2476,39 @@ void Onyon::setupTevRegAnim(int)
 void Onyon::stimulate(Game::Interaction&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  mr        r4, r30
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x58
-	  mr        r3, r31
-	  mr        r4, r30
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x5C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	mr       r4, r30
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80175E74
+	mr       r3, r31
+	mr       r4, r30
+	lwz      r12, 0(r31)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_80175E78
 
-	.loc_0x58:
-	  li        r3, 0
+lbl_80175E74:
+	li       r3, 0
 
-	.loc_0x5C:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80175E78:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1444,105 +2520,104 @@ void Onyon::stimulate(Game::Interaction&)
 void InteractSuckArrive::actOnyon(Game::Onyon*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r3, 0x8048
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r4
-	  stw       r30, 0x18(r1)
-	  subi      r30, r3, 0x19E0
-	  lhz       r0, 0x22E(r4)
-	  cmplwi    r0, 0x4
-	  bne-      .loc_0x13C
-	  lwz       r3, 0x174(r31)
-	  addi      r4, r30, 0x54
-	  bl        0x2C9120
-	  cmplwi    r3, 0
-	  beq-      .loc_0x94
-	  bl        0x2B39D0
-	  lis       r5, 0x804B
-	  lis       r4, 0x804E
-	  subi      r0, r5, 0x5808
-	  lis       r5, 0x804E
-	  stw       r0, 0x8(r1)
-	  addi      r0, r4, 0x6A78
-	  lis       r4, 0x804B
-	  li        r7, 0x1C9
-	  stw       r0, 0x8(r1)
-	  addi      r5, r5, 0x6A14
-	  li        r6, 0
-	  addi      r0, r4, 0x2944
-	  stw       r5, 0x8(r1)
-	  li        r4, 0
-	  stw       r3, 0x14(r1)
-	  addi      r3, r1, 0x8
-	  sth       r7, 0xC(r1)
-	  stw       r6, 0x10(r1)
-	  stw       r0, 0x8(r1)
-	  bl        0x239394
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lis      r3, lbl_8047E620@ha
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r4
+	stw      r30, 0x18(r1)
+	addi     r30, r3, lbl_8047E620@l
+	lhz      r0, 0x22e(r4)
+	cmplwi   r0, 4
+	bne      lbl_80175FCC
+	lwz      r3, 0x174(r31)
+	addi     r4, r30, 0x54
+	bl       getJoint__Q28SysShape5ModelFPc
+	cmplwi   r3, 0
+	beq      lbl_80175F24
+	bl       getWorldMatrix__Q28SysShape5JointFv
+	lis      r5, __vt__Q23efx5TBase@ha
+	lis      r4, __vt__Q23efx8TSimple1@ha
+	addi     r0, r5, __vt__Q23efx5TBase@l
+	lis      r5, __vt__Q23efx11TSimpleMtx1@ha
+	stw      r0, 8(r1)
+	addi     r0, r4, __vt__Q23efx8TSimple1@l
+	lis      r4, __vt__Q23efx11TUfoPodSuck@ha
+	li       r7, 0x1c9
+	stw      r0, 8(r1)
+	addi     r5, r5, __vt__Q23efx11TSimpleMtx1@l
+	li       r6, 0
+	addi     r0, r4, __vt__Q23efx11TUfoPodSuck@l
+	stw      r5, 8(r1)
+	li       r4, 0
+	stw      r3, 0x14(r1)
+	addi     r3, r1, 8
+	sth      r7, 0xc(r1)
+	stw      r6, 0x10(r1)
+	stw      r0, 8(r1)
+	bl       create__Q23efx11TSimpleMtx1FPQ23efx3Arg
 
-	.loc_0x94:
-	  lfs       f0, -0x5934(r2)
-	  stfs      f0, 0x244(r31)
-	  lbz       r6, 0x240(r31)
-	  cmplwi    r6, 0x5
-	  bne-      .loc_0x120
-	  cmplwi    r31, 0
-	  mr        r5, r31
-	  beq-      .loc_0xB8
-	  addi      r5, r31, 0x178
+lbl_80175F24:
+	lfs      f0, lbl_80518A2C@sda21(r2)
+	stfs     f0, 0x244(r31)
+	lbz      r6, 0x240(r31)
+	cmplwi   r6, 5
+	bne      lbl_80175FB0
+	cmplwi   r31, 0
+	mr       r5, r31
+	beq      lbl_80175F48
+	addi     r5, r31, 0x178
 
-	.loc_0xB8:
-	  addi      r3, r31, 0x1A8
-	  li        r4, 0
-	  bl        0x2B2D38
-	  lwz       r3, -0x6B70(r13)
-	  li        r4, 0x3836
-	  lbz       r0, 0x2F(r3)
-	  rlwinm.   r0,r0,0,31,31
-	  beq-      .loc_0xDC
-	  li        r4, 0x382F
+lbl_80175F48:
+	addi     r3, r31, 0x1a8
+	li       r4, 0
+	bl       startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
+	lwz      r3, playData__4Game@sda21(r13)
+	li       r4, 0x3836
+	lbz      r0, 0x2f(r3)
+	clrlwi.  r0, r0, 0x1f
+	beq      lbl_80175F6C
+	li       r4, 0x382f
 
-	.loc_0xDC:
-	  lwz       r12, 0x0(r31)
-	  mr        r3, r31
-	  lwz       r12, 0x1C0(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f0, -0x5930(r2)
-	  li        r0, 0
-	  li        r4, 0
-	  stfs      f0, 0x1D4(r31)
-	  stb       r0, 0x240(r31)
-	  lwz       r3, 0x210(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  li        r3, 0x1
-	  b         .loc_0x140
+lbl_80175F6C:
+	lwz      r12, 0(r31)
+	mr       r3, r31
+	lwz      r12, 0x1c0(r12)
+	mtctr    r12
+	bctrl
+	lfs      f0, lbl_80518A30@sda21(r2)
+	li       r0, 0
+	li       r4, 0
+	stfs     f0, 0x1d4(r31)
+	stb      r0, 0x240(r31)
+	lwz      r3, 0x210(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	li       r3, 1
+	b        lbl_80175FD0
 
-	.loc_0x120:
-	  cmplwi    r6, 0x4
-	  bne-      .loc_0x13C
-	  addi      r3, r30, 0x18
-	  addi      r5, r30, 0x6C
-	  li        r4, 0x35B
-	  crclr     6, 0x6
-	  bl        -0x14B988
+lbl_80175FB0:
+	cmplwi   r6, 4
+	bne      lbl_80175FCC
+	addi     r3, r30, 0x18
+	addi     r5, r30, 0x6c
+	li       r4, 0x35b
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x13C:
-	  li        r3, 0
+lbl_80175FCC:
+	li       r3, 0
 
-	.loc_0x140:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80175FD0:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -1561,50 +2636,49 @@ u32 Onyon::needShadow(void) { return 0x0; }
 void Onyon::getShadowParam(Game::ShadowParam&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r4
-	  stw       r30, 0x18(r1)
-	  mr        r30, r3
-	  mr        r4, r30
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f0, 0x8(r1)
-	  stfs      f0, 0x0(r31)
-	  lfs       f0, 0xC(r1)
-	  stfs      f0, 0x4(r31)
-	  lfs       f0, 0x10(r1)
-	  stfs      f0, 0x8(r31)
-	  lhz       r0, 0x22E(r30)
-	  cmplwi    r0, 0x3
-	  bne-      .loc_0x78
-	  lfs       f2, 0x4(r31)
-	  lfs       f0, -0x5914(r2)
-	  lfs       f1, -0x5910(r2)
-	  fadds     f2, f2, f0
-	  lfs       f0, -0x590C(r2)
-	  stfs      f2, 0x4(r31)
-	  stfs      f1, 0x18(r31)
-	  stfs      f0, 0x1C(r31)
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r4
+	stw      r30, 0x18(r1)
+	mr       r30, r3
+	mr       r4, r30
+	addi     r3, r1, 8
+	lwz      r12, 0(r30)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f0, 8(r1)
+	stfs     f0, 0(r31)
+	lfs      f0, 0xc(r1)
+	stfs     f0, 4(r31)
+	lfs      f0, 0x10(r1)
+	stfs     f0, 8(r31)
+	lhz      r0, 0x22e(r30)
+	cmplwi   r0, 3
+	bne      lbl_80176068
+	lfs      f2, 4(r31)
+	lfs      f0, lbl_80518A4C@sda21(r2)
+	lfs      f1, lbl_80518A50@sda21(r2)
+	fadds    f2, f2, f0
+	lfs      f0, lbl_80518A54@sda21(r2)
+	stfs     f2, 4(r31)
+	stfs     f1, 0x18(r31)
+	stfs     f0, 0x1c(r31)
 
-	.loc_0x78:
-	  lfs       f1, -0x5934(r2)
-	  lfs       f0, -0x5908(r2)
-	  stfs      f1, 0xC(r31)
-	  stfs      f0, 0x10(r31)
-	  stfs      f1, 0x14(r31)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80176068:
+	lfs      f1, lbl_80518A2C@sda21(r2)
+	lfs      f0, lbl_80518A58@sda21(r2)
+	stfs     f1, 0xc(r31)
+	stfs     f0, 0x10(r31)
+	stfs     f1, 0x14(r31)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -1616,24 +2690,23 @@ void Onyon::getShadowParam(Game::ShadowParam&)
 void Onyon::sound_culling(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lhz       r0, 0x22E(r3)
-	  cmplwi    r0, 0x2
-	  bgt-      .loc_0x20
-	  bl        -0x3A67C
-	  b         .loc_0x24
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lhz      r0, 0x22e(r3)
+	cmplwi   r0, 2
+	bgt      lbl_801760B4
+	bl       sound_culling__Q24Game8CreatureFv
+	b        lbl_801760B8
 
-	.loc_0x20:
-	  li        r3, 0
+lbl_801760B4:
+	li       r3, 0
 
-	.loc_0x24:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_801760B8:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1645,992 +2718,991 @@ void Onyon::sound_culling(void)
 void InteractSuckDone::actOnyon(Game::Onyon*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x140(r1)
-	  mflr      r0
-	  stw       r0, 0x144(r1)
-	  stmw      r27, 0x12C(r1)
-	  mr        r30, r4
-	  lis       r4, 0x8048
-	  mr        r29, r3
-	  mr        r3, r30
-	  subi      r28, r4, 0x19E0
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0xB8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x60
-	  mr        r3, r30
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0xBC(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x60
-	  li        r3, 0
-	  b         .loc_0xDA8
+	stwu     r1, -0x140(r1)
+	mflr     r0
+	stw      r0, 0x144(r1)
+	stmw     r27, 0x12c(r1)
+	mr       r30, r4
+	lis      r4, lbl_8047E620@ha
+	mr       r29, r3
+	mr       r3, r30
+	addi     r28, r4, lbl_8047E620@l
+	lwz      r12, 0(r30)
+	lwz      r12, 0xb8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80176128
+	mr       r3, r30
+	lwz      r12, 0(r30)
+	lwz      r12, 0xbc(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_80176128
+	li       r3, 0
+	b        lbl_80176E70
 
-	.loc_0x60:
-	  lwz       r3, 0x4(r29)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x80(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x90
-	  addi      r3, r28, 0x18
-	  addi      r5, r28, 0x60
-	  li        r4, 0x383
-	  crclr     6, 0x6
-	  bl        -0x14BB14
+lbl_80176128:
+	lwz      r3, 4(r29)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x80(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_80176158
+	addi     r3, r28, 0x18
+	addi     r5, r28, 0x60
+	li       r4, 0x383
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x90:
-	  lhz       r0, 0x22E(r30)
-	  lwz       r31, 0x4(r29)
-	  cmplwi    r0, 0x2
-	  bgt-      .loc_0xD8
-	  cmplwi    r30, 0
-	  mr        r5, r30
-	  beq-      .loc_0xB0
-	  addi      r5, r30, 0x178
+lbl_80176158:
+	lhz      r0, 0x22e(r30)
+	lwz      r31, 4(r29)
+	cmplwi   r0, 2
+	bgt      lbl_801761A0
+	cmplwi   r30, 0
+	mr       r5, r30
+	beq      lbl_80176178
+	addi     r5, r30, 0x178
 
-	.loc_0xB0:
-	  addi      r3, r30, 0x1A8
-	  li        r4, 0x3
-	  bl        0x2B2B08
-	  mr        r3, r30
-	  li        r4, 0x3805
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x1C0(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x488
+lbl_80176178:
+	addi     r3, r30, 0x1a8
+	li       r4, 3
+	bl       startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
+	mr       r3, r30
+	li       r4, 0x3805
+	lwz      r12, 0(r30)
+	lwz      r12, 0x1c0(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_80176550
 
-	.loc_0xD8:
-	  cmplwi    r0, 0x3
-	  bne-      .loc_0x294
-	  cmplwi    r30, 0
-	  mr        r5, r30
-	  beq-      .loc_0xF0
-	  addi      r5, r30, 0x178
+lbl_801761A0:
+	cmplwi   r0, 3
+	bne      lbl_8017635C
+	cmplwi   r30, 0
+	mr       r5, r30
+	beq      lbl_801761B8
+	addi     r5, r30, 0x178
 
-	.loc_0xF0:
-	  addi      r3, r30, 0x1A8
-	  li        r4, 0x2
-	  bl        0x2B2AC8
-	  mr        r3, r30
-	  li        r4, 0x3805
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x1C0(r12)
-	  mtctr     r12
-	  bctrl
-	  lis       r3, 0x804B
-	  li        r5, 0
-	  subi      r0, r3, 0x5808
-	  lis       r3, 0x804E
-	  stw       r0, 0xD4(r1)
-	  addi      r0, r3, 0x6A64
-	  lis       r3, 0x804B
-	  li        r7, 0x17E
-	  stw       r0, 0xD4(r1)
-	  addi      r0, r3, 0x290C
-	  li        r6, 0x17F
-	  mr        r4, r30
-	  sth       r7, 0xD8(r1)
-	  addi      r3, r1, 0x5C
-	  sth       r6, 0xDA(r1)
-	  stw       r5, 0xDC(r1)
-	  stw       r5, 0xE0(r1)
-	  stw       r0, 0xD4(r1)
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f2, 0x5C(r1)
-	  lis       r3, 0x804B
-	  lfs       f1, 0x60(r1)
-	  subi      r0, r3, 0x5814
-	  lfs       f0, 0x64(r1)
-	  addi      r3, r1, 0xD4
-	  stw       r0, 0xC4(r1)
-	  addi      r4, r1, 0xC4
-	  stfs      f2, 0xC8(r1)
-	  stfs      f1, 0xCC(r1)
-	  stfs      f0, 0xD0(r1)
-	  bl        0x238DB4
-	  lwz       r3, -0x64AC(r13)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x488
-	  lwz       r0, 0x18(r3)
-	  cmpwi     r0, 0
-	  bne-      .loc_0x488
-	  mr        r4, r30
-	  addi      r3, r1, 0x50
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f2, 0x50(r1)
-	  lfs       f1, 0x54(r1)
-	  lfs       f0, 0x58(r1)
-	  stfs      f2, 0xB8(r1)
-	  stfs      f1, 0xBC(r1)
-	  stfs      f0, 0xC0(r1)
-	  lwz       r3, 0x35C(r31)
-	  lwz       r28, 0x170(r3)
-	  cmpwi     r28, 0
-	  ble-      .loc_0x488
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x1F4(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm    r0,r3,0,24,31
-	  cmplwi    r0, 0x1
-	  beq-      .loc_0x254
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x1F4(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm    r0,r3,0,24,31
-	  cmplwi    r0, 0x3
-	  beq-      .loc_0x254
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x1F4(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm    r0,r3,0,24,31
-	  cmplwi    r0, 0x4
-	  bne-      .loc_0x488
+lbl_801761B8:
+	addi     r3, r30, 0x1a8
+	li       r4, 2
+	bl       startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
+	mr       r3, r30
+	li       r4, 0x3805
+	lwz      r12, 0(r30)
+	lwz      r12, 0x1c0(r12)
+	mtctr    r12
+	bctrl
+	lis      r3, __vt__Q23efx5TBase@ha
+	li       r5, 0
+	addi     r0, r3, __vt__Q23efx5TBase@l
+	lis      r3, __vt__Q23efx8TSimple2@ha
+	stw      r0, 0xd4(r1)
+	addi     r0, r3, __vt__Q23efx8TSimple2@l
+	lis      r3, __vt__Q23efx8TPodGepu@ha
+	li       r7, 0x17e
+	stw      r0, 0xd4(r1)
+	addi     r0, r3, __vt__Q23efx8TPodGepu@l
+	li       r6, 0x17f
+	mr       r4, r30
+	sth      r7, 0xd8(r1)
+	addi     r3, r1, 0x5c
+	sth      r6, 0xda(r1)
+	stw      r5, 0xdc(r1)
+	stw      r5, 0xe0(r1)
+	stw      r0, 0xd4(r1)
+	lwz      r12, 0(r30)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f2, 0x5c(r1)
+	lis      r3, __vt__Q23efx3Arg@ha
+	lfs      f1, 0x60(r1)
+	addi     r0, r3, __vt__Q23efx3Arg@l
+	lfs      f0, 0x64(r1)
+	addi     r3, r1, 0xd4
+	stw      r0, 0xc4(r1)
+	addi     r4, r1, 0xc4
+	stfs     f2, 0xc8(r1)
+	stfs     f1, 0xcc(r1)
+	stfs     f0, 0xd0(r1)
+	bl       create__Q23efx8TSimple2FPQ23efx3Arg
+	lwz      r3, moviePlayer__4Game@sda21(r13)
+	cmplwi   r3, 0
+	beq      lbl_80176550
+	lwz      r0, 0x18(r3)
+	cmpwi    r0, 0
+	bne      lbl_80176550
+	mr       r4, r30
+	addi     r3, r1, 0x50
+	lwz      r12, 0(r30)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f2, 0x50(r1)
+	lfs      f1, 0x54(r1)
+	lfs      f0, 0x58(r1)
+	stfs     f2, 0xb8(r1)
+	stfs     f1, 0xbc(r1)
+	stfs     f0, 0xc0(r1)
+	lwz      r3, 0x35c(r31)
+	lwz      r28, 0x170(r3)
+	cmpwi    r28, 0
+	ble      lbl_80176550
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r12, 0x1f4(r12)
+	mtctr    r12
+	bctrl
+	clrlwi   r0, r3, 0x18
+	cmplwi   r0, 1
+	beq      lbl_8017631C
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r12, 0x1f4(r12)
+	mtctr    r12
+	bctrl
+	clrlwi   r0, r3, 0x18
+	cmplwi   r0, 3
+	beq      lbl_8017631C
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r12, 0x1f4(r12)
+	mtctr    r12
+	bctrl
+	clrlwi   r0, r3, 0x18
+	cmplwi   r0, 4
+	bne      lbl_80176550
 
-	.loc_0x254:
-	  lfs       f1, 0xB8(r1)
-	  mr        r5, r28
-	  lfs       f4, -0x5934(r2)
-	  addi      r4, r1, 0xB8
-	  lfs       f0, 0xC0(r1)
-	  fadds     f3, f1, f4
-	  lfs       f2, 0xBC(r1)
-	  lfs       f1, -0x5914(r2)
-	  fadds     f0, f0, f4
-	  lwz       r3, -0x6DE8(r13)
-	  fadds     f1, f2, f1
-	  stfs      f3, 0xB8(r1)
-	  stfs      f1, 0xBC(r1)
-	  stfs      f0, 0xC0(r1)
-	  bl        -0x5A25C
-	  b         .loc_0x488
+lbl_8017631C:
+	lfs      f1, 0xb8(r1)
+	mr       r5, r28
+	lfs      f4, lbl_80518A2C@sda21(r2)
+	addi     r4, r1, 0xb8
+	lfs      f0, 0xc0(r1)
+	fadds    f3, f1, f4
+	lfs      f2, 0xbc(r1)
+	lfs      f1, lbl_80518A4C@sda21(r2)
+	fadds    f0, f0, f4
+	lwz      r3, carryInfoMgr@sda21(r13)
+	fadds    f1, f2, f1
+	stfs     f3, 0xb8(r1)
+	stfs     f1, 0xbc(r1)
+	stfs     f0, 0xc0(r1)
+	bl       "appearPoko__12CarryInfoMgrFRC10Vector3<f>i"
+	b        lbl_80176550
 
-	.loc_0x294:
-	  cmplwi    r30, 0
-	  mr        r5, r30
-	  beq-      .loc_0x2A4
-	  addi      r5, r30, 0x178
+lbl_8017635C:
+	cmplwi   r30, 0
+	mr       r5, r30
+	beq      lbl_8017636C
+	addi     r5, r30, 0x178
 
-	.loc_0x2A4:
-	  addi      r3, r30, 0x1A8
-	  li        r4, 0
-	  bl        0x2B2914
-	  addi      r3, r30, 0x1A8
-	  li        r4, 0
-	  bl        0x2B2A80
-	  li        r0, 0x2
-	  lfs       f0, -0x5930(r2)
-	  stb       r0, 0x240(r30)
-	  mr        r3, r30
-	  li        r4, 0x3805
-	  stfs      f0, 0x1D4(r30)
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x1C0(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f0, -0x5934(r2)
-	  addi      r4, r28, 0x54
-	  stfs      f0, 0x244(r30)
-	  lwz       r3, 0x174(r30)
-	  bl        0x2C8C28
-	  bl        0x2B34E0
-	  lis       r4, 0x804B
-	  li        r6, 0
-	  subi      r0, r4, 0x5808
-	  lis       r4, 0x804E
-	  stw       r0, 0xF8(r1)
-	  addi      r0, r4, 0x6A64
-	  lis       r5, 0x804E
-	  lis       r4, 0x804B
-	  stw       r0, 0xF8(r1)
-	  addi      r0, r5, 0x6A00
-	  li        r7, 0x1C4
-	  li        r5, 0x1C5
-	  stw       r0, 0xF8(r1)
-	  addi      r0, r4, 0x28F8
-	  li        r4, 0
-	  stw       r3, 0x108(r1)
-	  addi      r3, r1, 0xF8
-	  sth       r7, 0xFC(r1)
-	  sth       r5, 0xFE(r1)
-	  stw       r6, 0x100(r1)
-	  stw       r6, 0x104(r1)
-	  stw       r0, 0xF8(r1)
-	  bl        0x238F7C
-	  lwz       r3, -0x64AC(r13)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x488
-	  lwz       r0, 0x18(r3)
-	  cmpwi     r0, 0
-	  bne-      .loc_0x488
-	  mr        r4, r30
-	  addi      r3, r1, 0x44
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f2, 0x44(r1)
-	  mr        r3, r30
-	  lfs       f1, 0x48(r1)
-	  lfs       f0, 0x4C(r1)
-	  stfs      f2, 0xAC(r1)
-	  stfs      f1, 0xB0(r1)
-	  stfs      f0, 0xB4(r1)
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x64(r12)
-	  mtctr     r12
-	  bctrl
-	  fmr       f2, f1
-	  lfs       f0, -0x5934(r2)
-	  fcmpo     cr0, f2, f0
-	  bge-      .loc_0x3C8
-	  fneg      f2, f2
+lbl_8017636C:
+	addi     r3, r30, 0x1a8
+	li       r4, 0
+	bl       startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
+	addi     r3, r30, 0x1a8
+	li       r4, 0
+	bl       setFrameByKeyType__Q28SysShape8AnimatorFUl
+	li       r0, 2
+	lfs      f0, lbl_80518A30@sda21(r2)
+	stb      r0, 0x240(r30)
+	mr       r3, r30
+	li       r4, 0x3805
+	stfs     f0, 0x1d4(r30)
+	lwz      r12, 0(r30)
+	lwz      r12, 0x1c0(r12)
+	mtctr    r12
+	bctrl
+	lfs      f0, lbl_80518A2C@sda21(r2)
+	addi     r4, r28, 0x54
+	stfs     f0, 0x244(r30)
+	lwz      r3, 0x174(r30)
+	bl       getJoint__Q28SysShape5ModelFPc
+	bl       getWorldMatrix__Q28SysShape5JointFv
+	lis      r4, __vt__Q23efx5TBase@ha
+	li       r6, 0
+	addi     r0, r4, __vt__Q23efx5TBase@l
+	lis      r4, __vt__Q23efx8TSimple2@ha
+	stw      r0, 0xf8(r1)
+	addi     r0, r4, __vt__Q23efx8TSimple2@l
+	lis      r5, __vt__Q23efx11TSimpleMtx2@ha
+	lis      r4, __vt__Q23efx11TUfoPodGepu@ha
+	stw      r0, 0xf8(r1)
+	addi     r0, r5, __vt__Q23efx11TSimpleMtx2@l
+	li       r7, 0x1c4
+	li       r5, 0x1c5
+	stw      r0, 0xf8(r1)
+	addi     r0, r4, __vt__Q23efx11TUfoPodGepu@l
+	li       r4, 0
+	stw      r3, 0x108(r1)
+	addi     r3, r1, 0xf8
+	sth      r7, 0xfc(r1)
+	sth      r5, 0xfe(r1)
+	stw      r6, 0x100(r1)
+	stw      r6, 0x104(r1)
+	stw      r0, 0xf8(r1)
+	bl       create__Q23efx11TSimpleMtx2FPQ23efx3Arg
+	lwz      r3, moviePlayer__4Game@sda21(r13)
+	cmplwi   r3, 0
+	beq      lbl_80176550
+	lwz      r0, 0x18(r3)
+	cmpwi    r0, 0
+	bne      lbl_80176550
+	mr       r4, r30
+	addi     r3, r1, 0x44
+	lwz      r12, 0(r30)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f2, 0x44(r1)
+	mr       r3, r30
+	lfs      f1, 0x48(r1)
+	lfs      f0, 0x4c(r1)
+	stfs     f2, 0xac(r1)
+	stfs     f1, 0xb0(r1)
+	stfs     f0, 0xb4(r1)
+	lwz      r12, 0(r30)
+	lwz      r12, 0x64(r12)
+	mtctr    r12
+	bctrl
+	fmr      f2, f1
+	lfs      f0, lbl_80518A2C@sda21(r2)
+	fcmpo    cr0, f2, f0
+	bge      lbl_80176490
+	fneg     f2, f2
 
-	.loc_0x3C8:
-	  lfs       f3, -0x5900(r2)
-	  lis       r3, 0x8050
-	  lfs       f0, -0x5934(r2)
-	  addi      r4, r3, 0x71A0
-	  fmuls     f2, f2, f3
-	  lfs       f5, -0x5904(r2)
-	  fcmpo     cr0, f1, f0
-	  lfs       f4, 0xAC(r1)
-	  fctiwz    f0, f2
-	  stfd      f0, 0x110(r1)
-	  lwz       r0, 0x114(r1)
-	  rlwinm    r0,r0,3,18,28
-	  add       r3, r4, r0
-	  lfs       f0, 0x4(r3)
-	  fmuls     f6, f5, f0
-	  bge-      .loc_0x42C
-	  lfs       f0, -0x58FC(r2)
-	  fmuls     f0, f1, f0
-	  fctiwz    f0, f0
-	  stfd      f0, 0x118(r1)
-	  lwz       r0, 0x11C(r1)
-	  rlwinm    r0,r0,3,18,28
-	  lfsx      f0, r4, r0
-	  fneg      f0, f0
-	  b         .loc_0x444
+lbl_80176490:
+	lfs      f3, lbl_80518A60@sda21(r2)
+	lis      r3, sincosTable___5JMath@ha
+	lfs      f0, lbl_80518A2C@sda21(r2)
+	addi     r4, r3, sincosTable___5JMath@l
+	fmuls    f2, f2, f3
+	lfs      f5, lbl_80518A5C@sda21(r2)
+	fcmpo    cr0, f1, f0
+	lfs      f4, 0xac(r1)
+	fctiwz   f0, f2
+	stfd     f0, 0x110(r1)
+	lwz      r0, 0x114(r1)
+	rlwinm   r0, r0, 3, 0x12, 0x1c
+	add      r3, r4, r0
+	lfs      f0, 4(r3)
+	fmuls    f6, f5, f0
+	bge      lbl_801764F4
+	lfs      f0, lbl_80518A64@sda21(r2)
+	fmuls    f0, f1, f0
+	fctiwz   f0, f0
+	stfd     f0, 0x118(r1)
+	lwz      r0, 0x11c(r1)
+	rlwinm   r0, r0, 3, 0x12, 0x1c
+	lfsx     f0, r4, r0
+	fneg     f0, f0
+	b        lbl_8017650C
 
-	.loc_0x42C:
-	  fmuls     f0, f1, f3
-	  fctiwz    f0, f0
-	  stfd      f0, 0x120(r1)
-	  lwz       r0, 0x124(r1)
-	  rlwinm    r0,r0,3,18,28
-	  lfsx      f0, r4, r0
+lbl_801764F4:
+	fmuls    f0, f1, f3
+	fctiwz   f0, f0
+	stfd     f0, 0x120(r1)
+	lwz      r0, 0x124(r1)
+	rlwinm   r0, r0, 3, 0x12, 0x1c
+	lfsx     f0, r4, r0
 
-	.loc_0x444:
-	  fmuls     f3, f5, f0
-	  lfs       f0, 0xB4(r1)
-	  lfs       f2, 0xB0(r1)
-	  lfs       f1, -0x58F8(r2)
-	  fadds     f0, f0, f6
-	  fadds     f3, f4, f3
-	  fadds     f1, f2, f1
-	  stfs      f0, 0xB4(r1)
-	  stfs      f3, 0xAC(r1)
-	  stfs      f1, 0xB0(r1)
-	  lwz       r3, 0x35C(r31)
-	  lwz       r5, 0x170(r3)
-	  cmpwi     r5, 0
-	  ble-      .loc_0x488
-	  lwz       r3, -0x6DE8(r13)
-	  addi      r4, r1, 0xAC
-	  bl        -0x5A454
+lbl_8017650C:
+	fmuls    f3, f5, f0
+	lfs      f0, 0xb4(r1)
+	lfs      f2, 0xb0(r1)
+	lfs      f1, lbl_80518A68@sda21(r2)
+	fadds    f0, f0, f6
+	fadds    f3, f4, f3
+	fadds    f1, f2, f1
+	stfs     f0, 0xb4(r1)
+	stfs     f3, 0xac(r1)
+	stfs     f1, 0xb0(r1)
+	lwz      r3, 0x35c(r31)
+	lwz      r5, 0x170(r3)
+	cmpwi    r5, 0
+	ble      lbl_80176550
+	lwz      r3, carryInfoMgr@sda21(r13)
+	addi     r4, r1, 0xac
+	bl       "appearPoko__12CarryInfoMgrFRC10Vector3<f>i"
 
-	.loc_0x488:
-	  lhz       r0, 0x22E(r30)
-	  sth       r0, 0x230(r30)
-	  lhz       r0, 0x22E(r30)
-	  cmplwi    r0, 0x2
-	  bgt-      .loc_0x510
-	  lwz       r3, 0x174(r30)
-	  subi      r4, r2, 0x58F4
-	  bl        0x2C8A78
-	  cmplwi    r3, 0
-	  beq-      .loc_0x510
-	  bl        0x2B3328
-	  lis       r4, 0x804B
-	  li        r6, 0
-	  subi      r0, r4, 0x5808
-	  lis       r4, 0x804E
-	  stw       r0, 0xE4(r1)
-	  addi      r0, r4, 0x6A64
-	  lis       r5, 0x804E
-	  lis       r4, 0x804B
-	  stw       r0, 0xE4(r1)
-	  addi      r0, r5, 0x6A00
-	  li        r7, 0xFE
-	  li        r5, 0xFF
-	  stw       r0, 0xE4(r1)
-	  addi      r0, r4, 0x28E4
-	  li        r4, 0
-	  stw       r3, 0xF4(r1)
-	  addi      r3, r1, 0xE4
-	  sth       r7, 0xE8(r1)
-	  sth       r5, 0xEA(r1)
-	  stw       r6, 0xEC(r1)
-	  stw       r6, 0xF0(r1)
-	  stw       r0, 0xE4(r1)
-	  bl        0x238DC4
+lbl_80176550:
+	lhz      r0, 0x22e(r30)
+	sth      r0, 0x230(r30)
+	lhz      r0, 0x22e(r30)
+	cmplwi   r0, 2
+	bgt      lbl_801765D8
+	lwz      r3, 0x174(r30)
+	addi     r4, r2, lbl_80518A6C@sda21
+	bl       getJoint__Q28SysShape5ModelFPc
+	cmplwi   r3, 0
+	beq      lbl_801765D8
+	bl       getWorldMatrix__Q28SysShape5JointFv
+	lis      r4, __vt__Q23efx5TBase@ha
+	li       r6, 0
+	addi     r0, r4, __vt__Q23efx5TBase@l
+	lis      r4, __vt__Q23efx8TSimple2@ha
+	stw      r0, 0xe4(r1)
+	addi     r0, r4, __vt__Q23efx8TSimple2@l
+	lis      r5, __vt__Q23efx11TSimpleMtx2@ha
+	lis      r4, __vt__Q23efx11TOnyonEatAB@ha
+	stw      r0, 0xe4(r1)
+	addi     r0, r5, __vt__Q23efx11TSimpleMtx2@l
+	li       r7, 0xfe
+	li       r5, 0xff
+	stw      r0, 0xe4(r1)
+	addi     r0, r4, __vt__Q23efx11TOnyonEatAB@l
+	li       r4, 0
+	stw      r3, 0xf4(r1)
+	addi     r3, r1, 0xe4
+	sth      r7, 0xe8(r1)
+	sth      r5, 0xea(r1)
+	stw      r6, 0xec(r1)
+	stw      r6, 0xf0(r1)
+	stw      r0, 0xe4(r1)
+	bl       create__Q23efx11TSimpleMtx2FPQ23efx3Arg
 
-	.loc_0x510:
-	  lwz       r4, -0x6C18(r13)
-	  li        r3, 0
-	  lwz       r0, 0x44(r4)
-	  cmpwi     r0, 0x2
-	  beq-      .loc_0x52C
-	  cmpwi     r0, 0x3
-	  bne-      .loc_0x530
+lbl_801765D8:
+	lwz      r4, gameSystem__4Game@sda21(r13)
+	li       r3, 0
+	lwz      r0, 0x44(r4)
+	cmpwi    r0, 2
+	beq      lbl_801765F4
+	cmpwi    r0, 3
+	bne      lbl_801765F8
 
-	.loc_0x52C:
-	  li        r3, 0x1
+lbl_801765F4:
+	li       r3, 1
 
-	.loc_0x530:
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x924
-	  lwz       r3, 0x35C(r31)
-	  subi      r4, r2, 0x58EC
-	  lwz       r3, 0x40(r3)
-	  bl        -0xABF4C
-	  cmpwi     r3, 0
-	  bne-      .loc_0x924
-	  lis       r4, 0x804B
-	  lwz       r3, -0x6B50(r13)
-	  subi      r0, r4, 0x5D00
-	  stw       r30, 0x34(r1)
-	  lis       r4, 0x804B
-	  cmplwi    r3, 0
-	  stw       r0, 0x30(r1)
-	  addi      r0, r4, 0x7478
-	  stw       r0, 0x30(r1)
-	  beq-      .loc_0x57C
-	  addi      r3, r3, 0x30
+lbl_801765F8:
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_801769EC
+	lwz      r3, 0x35c(r31)
+	addi     r4, r2, lbl_80518A74@sda21
+	lwz      r3, 0x40(r3)
+	bl       strcmp
+	cmpwi    r3, 0
+	bne      lbl_801769EC
+	lis      r4, __vt__Q24Game11Interaction@ha
+	lwz      r3, mgr__Q24Game15ItemBigFountain@sda21(r13)
+	addi     r0, r4, __vt__Q24Game11Interaction@l
+	stw      r30, 0x34(r1)
+	lis      r4, __vt__Q24Game14InteractGotKey@ha
+	cmplwi   r3, 0
+	stw      r0, 0x30(r1)
+	addi     r0, r4, __vt__Q24Game14InteractGotKey@l
+	stw      r0, 0x30(r1)
+	beq      lbl_80176644
+	addi     r3, r3, 0x30
 
-	.loc_0x57C:
-	  li        r0, 0
-	  lis       r4, 0x804B
-	  addi      r4, r4, 0x560
-	  stw       r0, 0xA8(r1)
-	  cmplwi    r0, 0
-	  stw       r4, 0x9C(r1)
-	  stw       r0, 0xA0(r1)
-	  stw       r3, 0xA4(r1)
-	  bne-      .loc_0x5B8
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xA0(r1)
-	  b         .loc_0x728
+lbl_80176644:
+	li       r0, 0
+	lis      r4, "__vt__26Iterator<Q24Game8BaseItem>"@ha
+	addi     r4, r4, "__vt__26Iterator<Q24Game8BaseItem>"@l
+	stw      r0, 0xa8(r1)
+	cmplwi   r0, 0
+	stw      r4, 0x9c(r1)
+	stw      r0, 0xa0(r1)
+	stw      r3, 0xa4(r1)
+	bne      lbl_80176680
+	lwz      r12, 0(r3)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xa0(r1)
+	b        lbl_801767F0
 
-	.loc_0x5B8:
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xA0(r1)
-	  b         .loc_0x624
+lbl_80176680:
+	lwz      r12, 0(r3)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xa0(r1)
+	b        lbl_801766EC
 
-	.loc_0x5D0:
-	  lwz       r3, 0xA4(r1)
-	  lwz       r4, 0xA0(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0xA8(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x728
-	  lwz       r3, 0xA4(r1)
-	  lwz       r4, 0xA0(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xA0(r1)
+lbl_80176698:
+	lwz      r3, 0xa4(r1)
+	lwz      r4, 0xa0(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	lwz      r3, 0xa8(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_801767F0
+	lwz      r3, 0xa4(r1)
+	lwz      r4, 0xa0(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xa0(r1)
 
-	.loc_0x624:
-	  lwz       r12, 0x9C(r1)
-	  addi      r3, r1, 0x9C
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x5D0
-	  b         .loc_0x728
+lbl_801766EC:
+	lwz      r12, 0x9c(r1)
+	addi     r3, r1, 0x9c
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80176698
+	b        lbl_801767F0
 
-	.loc_0x644:
-	  lwz       r3, 0xA4(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r12, 0x0(r3)
-	  addi      r4, r1, 0x30
-	  lwz       r12, 0x1A4(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0xA8(r1)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x698
-	  lwz       r3, 0xA4(r1)
-	  lwz       r4, 0xA0(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xA0(r1)
-	  b         .loc_0x728
+lbl_8017670C:
+	lwz      r3, 0xa4(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	lwz      r12, 0(r3)
+	addi     r4, r1, 0x30
+	lwz      r12, 0x1a4(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0xa8(r1)
+	cmplwi   r0, 0
+	bne      lbl_80176760
+	lwz      r3, 0xa4(r1)
+	lwz      r4, 0xa0(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xa0(r1)
+	b        lbl_801767F0
 
-	.loc_0x698:
-	  lwz       r3, 0xA4(r1)
-	  lwz       r4, 0xA0(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xA0(r1)
-	  b         .loc_0x70C
+lbl_80176760:
+	lwz      r3, 0xa4(r1)
+	lwz      r4, 0xa0(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xa0(r1)
+	b        lbl_801767D4
 
-	.loc_0x6B8:
-	  lwz       r3, 0xA4(r1)
-	  lwz       r4, 0xA0(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0xA8(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x728
-	  lwz       r3, 0xA4(r1)
-	  lwz       r4, 0xA0(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xA0(r1)
+lbl_80176780:
+	lwz      r3, 0xa4(r1)
+	lwz      r4, 0xa0(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	lwz      r3, 0xa8(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_801767F0
+	lwz      r3, 0xa4(r1)
+	lwz      r4, 0xa0(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xa0(r1)
 
-	.loc_0x70C:
-	  lwz       r12, 0x9C(r1)
-	  addi      r3, r1, 0x9C
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x6B8
+lbl_801767D4:
+	lwz      r12, 0x9c(r1)
+	addi     r3, r1, 0x9c
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80176780
 
-	.loc_0x728:
-	  lwz       r3, 0xA4(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r4, 0xA0(r1)
-	  cmplw     r4, r3
-	  bne+      .loc_0x644
-	  lwz       r3, -0x6BB8(r13)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x758
-	  addi      r3, r3, 0x30
+lbl_801767F0:
+	lwz      r3, 0xa4(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r4, 0xa0(r1)
+	cmplw    r4, r3
+	bne      lbl_8017670C
+	lwz      r3, mgr__Q24Game8ItemHole@sda21(r13)
+	cmplwi   r3, 0
+	beq      lbl_80176820
+	addi     r3, r3, 0x30
 
-	.loc_0x758:
-	  li        r0, 0
-	  lis       r4, 0x804B
-	  addi      r4, r4, 0x560
-	  stw       r0, 0x98(r1)
-	  cmplwi    r0, 0
-	  stw       r4, 0x8C(r1)
-	  stw       r0, 0x90(r1)
-	  stw       r3, 0x94(r1)
-	  bne-      .loc_0x794
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x90(r1)
-	  b         .loc_0x904
+lbl_80176820:
+	li       r0, 0
+	lis      r4, "__vt__26Iterator<Q24Game8BaseItem>"@ha
+	addi     r4, r4, "__vt__26Iterator<Q24Game8BaseItem>"@l
+	stw      r0, 0x98(r1)
+	cmplwi   r0, 0
+	stw      r4, 0x8c(r1)
+	stw      r0, 0x90(r1)
+	stw      r3, 0x94(r1)
+	bne      lbl_8017685C
+	lwz      r12, 0(r3)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x90(r1)
+	b        lbl_801769CC
 
-	.loc_0x794:
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x90(r1)
-	  b         .loc_0x800
+lbl_8017685C:
+	lwz      r12, 0(r3)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x90(r1)
+	b        lbl_801768C8
 
-	.loc_0x7AC:
-	  lwz       r3, 0x94(r1)
-	  lwz       r4, 0x90(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x98(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x904
-	  lwz       r3, 0x94(r1)
-	  lwz       r4, 0x90(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x90(r1)
+lbl_80176874:
+	lwz      r3, 0x94(r1)
+	lwz      r4, 0x90(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	lwz      r3, 0x98(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_801769CC
+	lwz      r3, 0x94(r1)
+	lwz      r4, 0x90(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x90(r1)
 
-	.loc_0x800:
-	  lwz       r12, 0x8C(r1)
-	  addi      r3, r1, 0x8C
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x7AC
-	  b         .loc_0x904
+lbl_801768C8:
+	lwz      r12, 0x8c(r1)
+	addi     r3, r1, 0x8c
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80176874
+	b        lbl_801769CC
 
-	.loc_0x820:
-	  lwz       r3, 0x94(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r12, 0x0(r3)
-	  addi      r4, r1, 0x30
-	  lwz       r12, 0x1A4(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x98(r1)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x874
-	  lwz       r3, 0x94(r1)
-	  lwz       r4, 0x90(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x90(r1)
-	  b         .loc_0x904
+lbl_801768E8:
+	lwz      r3, 0x94(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	lwz      r12, 0(r3)
+	addi     r4, r1, 0x30
+	lwz      r12, 0x1a4(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x98(r1)
+	cmplwi   r0, 0
+	bne      lbl_8017693C
+	lwz      r3, 0x94(r1)
+	lwz      r4, 0x90(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x90(r1)
+	b        lbl_801769CC
 
-	.loc_0x874:
-	  lwz       r3, 0x94(r1)
-	  lwz       r4, 0x90(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x90(r1)
-	  b         .loc_0x8E8
+lbl_8017693C:
+	lwz      r3, 0x94(r1)
+	lwz      r4, 0x90(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x90(r1)
+	b        lbl_801769B0
 
-	.loc_0x894:
-	  lwz       r3, 0x94(r1)
-	  lwz       r4, 0x90(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x98(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x904
-	  lwz       r3, 0x94(r1)
-	  lwz       r4, 0x90(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x90(r1)
+lbl_8017695C:
+	lwz      r3, 0x94(r1)
+	lwz      r4, 0x90(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	lwz      r3, 0x98(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_801769CC
+	lwz      r3, 0x94(r1)
+	lwz      r4, 0x90(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x90(r1)
 
-	.loc_0x8E8:
-	  lwz       r12, 0x8C(r1)
-	  addi      r3, r1, 0x8C
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x894
+lbl_801769B0:
+	lwz      r12, 0x8c(r1)
+	addi     r3, r1, 0x8c
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_8017695C
 
-	.loc_0x904:
-	  lwz       r3, 0x94(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r4, 0x90(r1)
-	  cmplw     r4, r3
-	  bne+      .loc_0x820
+lbl_801769CC:
+	lwz      r3, 0x94(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r4, 0x90(r1)
+	cmplw    r4, r3
+	bne      lbl_801768E8
 
-	.loc_0x924:
-	  lwz       r3, -0x6C18(r13)
-	  lwz       r0, 0x44(r3)
-	  cmpwi     r0, 0x1
-	  bne-      .loc_0xB50
-	  lwz       r3, 0x2B00(r2)
-	  addi      r28, r1, 0x28
-	  lwz       r0, 0x2B04(r2)
-	  li        r27, 0
-	  stw       r3, 0x28(r1)
-	  lwz       r3, -0x7B80(r13)
-	  stw       r0, 0x2C(r1)
-	  lwz       r0, -0x7B84(r13)
-	  stw       r3, 0x28(r1)
-	  stw       r0, 0x2C(r1)
+lbl_801769EC:
+	lwz      r3, gameSystem__4Game@sda21(r13)
+	lwz      r0, 0x44(r3)
+	cmpwi    r0, 1
+	bne      lbl_80176C18
+	lwz      r3, lbl_80520E60@sda21(r2)
+	addi     r28, r1, 0x28
+	lwz      r0, lbl_80520E64@sda21(r2)
+	li       r27, 0
+	stw      r3, 0x28(r1)
+	lwz      r3, cBedamaRed__13VsOtakaraName@sda21(r13)
+	stw      r0, 0x2c(r1)
+	lwz      r0, cBedamaBlue__13VsOtakaraName@sda21(r13)
+	stw      r3, 0x28(r1)
+	stw      r0, 0x2c(r1)
 
-	.loc_0x95C:
-	  lwz       r4, 0x35C(r31)
-	  lwz       r3, 0x0(r28)
-	  lwz       r4, 0x40(r4)
-	  bl        -0xAC370
-	  cmpwi     r3, 0
-	  bne-      .loc_0xA94
-	  lhz       r0, 0x22E(r30)
-	  subfic    r0, r0, 0x1
-	  cmpw      r27, r0
-	  bne-      .loc_0xA50
-	  li        r0, 0x1
-	  mr        r4, r30
-	  stb       r0, 0x8(r29)
-	  addi      r3, r1, 0x38
-	  bl        0x15A8
-	  lfs       f2, 0x38(r1)
-	  mr        r3, r31
-	  lfs       f1, 0x3C(r1)
-	  lfs       f0, 0x40(r1)
-	  stfs      f2, 0x80(r1)
-	  stfs      f1, 0x84(r1)
-	  stfs      f0, 0x88(r1)
-	  bl        -0x100A8
-	  lfs       f3, -0x58E4(r2)
-	  mr        r3, r31
-	  lfs       f2, -0x58E8(r2)
-	  addi      r4, r1, 0x80
-	  lfs       f0, 0x84(r1)
-	  li        r5, 0
-	  fmadds    f1, f3, f1, f2
-	  fadds     f0, f0, f1
-	  stfs      f0, 0x84(r1)
-	  bl        -0x3B8FC
-	  lfs       f1, -0x5934(r2)
-	  mr        r3, r31
-	  lfs       f0, -0x58E0(r2)
-	  addi      r4, r1, 0x74
-	  stfs      f1, 0x74(r1)
-	  stfs      f0, 0x78(r1)
-	  stfs      f1, 0x7C(r1)
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x68(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r3, r31
-	  li        r4, 0x1
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0xAC(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r3, r31
-	  bl        -0xC7E4
-	  lwz       r3, 0x3C8(r31)
-	  mr        r4, r31
-	  li        r5, 0x5
-	  li        r6, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0xA94
+lbl_80176A24:
+	lwz      r4, 0x35c(r31)
+	lwz      r3, 0(r28)
+	lwz      r4, 0x40(r4)
+	bl       strcmp
+	cmpwi    r3, 0
+	bne      lbl_80176B5C
+	lhz      r0, 0x22e(r30)
+	subfic   r0, r0, 1
+	cmpw     r27, r0
+	bne      lbl_80176B18
+	li       r0, 1
+	mr       r4, r30
+	stb      r0, 8(r29)
+	addi     r3, r1, 0x38
+	bl       getFlagSetPos__Q24Game5OnyonFv
+	lfs      f2, 0x38(r1)
+	mr       r3, r31
+	lfs      f1, 0x3c(r1)
+	lfs      f0, 0x40(r1)
+	stfs     f2, 0x80(r1)
+	stfs     f1, 0x84(r1)
+	stfs     f0, 0x88(r1)
+	bl       getCylinderHeight__Q24Game6PelletFv
+	lfs      f3, lbl_80518A7C@sda21(r2)
+	mr       r3, r31
+	lfs      f2, lbl_80518A78@sda21(r2)
+	addi     r4, r1, 0x80
+	lfs      f0, 0x84(r1)
+	li       r5, 0
+	fmadds   f1, f3, f1, f2
+	fadds    f0, f0, f1
+	stfs     f0, 0x84(r1)
+	bl       "setPosition__Q24Game8CreatureFR10Vector3<f>b"
+	lfs      f1, lbl_80518A2C@sda21(r2)
+	mr       r3, r31
+	lfs      f0, lbl_80518A80@sda21(r2)
+	addi     r4, r1, 0x74
+	stfs     f1, 0x74(r1)
+	stfs     f0, 0x78(r1)
+	stfs     f1, 0x7c(r1)
+	lwz      r12, 0(r31)
+	lwz      r12, 0x68(r12)
+	mtctr    r12
+	bctrl
+	mr       r3, r31
+	li       r4, 1
+	lwz      r12, 0(r31)
+	lwz      r12, 0xac(r12)
+	mtctr    r12
+	bctrl
+	mr       r3, r31
+	bl       finish_carrymotion__Q24Game6PelletFv
+	lwz      r3, 0x3c8(r31)
+	mr       r4, r31
+	li       r5, 5
+	li       r6, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_80176B5C
 
-	.loc_0xA50:
-	  lis       r4, 0x804B
-	  lis       r3, 0x804B
-	  addi      r4, r4, 0x590
-	  subfic    r0, r27, 0x1
-	  stw       r4, 0x20(r1)
-	  addi      r5, r3, 0x61A8
-	  lwz       r3, -0x6C18(r13)
-	  addi      r4, r1, 0x20
-	  stw       r5, 0x20(r1)
-	  stw       r0, 0x24(r1)
-	  lwz       r3, 0x58(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x50(r12)
-	  mtctr     r12
-	  bctrl
-	  li        r3, 0x1
-	  b         .loc_0xDA8
+lbl_80176B18:
+	lis      r4, __vt__Q24Game11GameMessage@ha
+	lis      r3, __vt__Q24Game27GameMessageVsBattleFinished@ha
+	addi     r4, r4, __vt__Q24Game11GameMessage@l
+	subfic   r0, r27, 1
+	stw      r4, 0x20(r1)
+	addi     r5, r3, __vt__Q24Game27GameMessageVsBattleFinished@l
+	lwz      r3, gameSystem__4Game@sda21(r13)
+	addi     r4, r1, 0x20
+	stw      r5, 0x20(r1)
+	stw      r0, 0x24(r1)
+	lwz      r3, 0x58(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x50(r12)
+	mtctr    r12
+	bctrl
+	li       r3, 1
+	b        lbl_80176E70
 
-	.loc_0xA94:
-	  addi      r27, r27, 0x1
-	  addi      r28, r28, 0x4
-	  cmpwi     r27, 0x2
-	  blt+      .loc_0x95C
-	  lbz       r0, 0x32C(r31)
-	  cmplwi    r0, 0x6
-	  bne-      .loc_0xB00
-	  lhz       r4, 0x22E(r30)
-	  lis       r3, 0x804B
-	  addi      r0, r3, 0x590
-	  lis       r3, 0x804B
-	  stw       r0, 0x68(r1)
-	  subfic    r5, r4, 0x1
-	  addi      r3, r3, 0x6180
-	  li        r0, 0x1
-	  stw       r3, 0x68(r1)
-	  addi      r4, r1, 0x68
-	  lwz       r3, -0x6C18(r13)
-	  stw       r5, 0x6C(r1)
-	  stw       r0, 0x70(r1)
-	  lwz       r3, 0x58(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x50(r12)
-	  mtctr     r12
-	  bctrl
-	  li        r3, 0x1
-	  b         .loc_0xDA8
+lbl_80176B5C:
+	addi     r27, r27, 1
+	addi     r28, r28, 4
+	cmpwi    r27, 2
+	blt      lbl_80176A24
+	lbz      r0, 0x32c(r31)
+	cmplwi   r0, 6
+	bne      lbl_80176BC8
+	lhz      r4, 0x22e(r30)
+	lis      r3, __vt__Q24Game11GameMessage@ha
+	addi     r0, r3, __vt__Q24Game11GameMessage@l
+	lis      r3, __vt__Q24Game23GameMessageVsGetOtakara@ha
+	stw      r0, 0x68(r1)
+	subfic   r5, r4, 1
+	addi     r3, r3, __vt__Q24Game23GameMessageVsGetOtakara@l
+	li       r0, 1
+	stw      r3, 0x68(r1)
+	addi     r4, r1, 0x68
+	lwz      r3, gameSystem__4Game@sda21(r13)
+	stw      r5, 0x6c(r1)
+	stw      r0, 0x70(r1)
+	lwz      r3, 0x58(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x50(r12)
+	mtctr    r12
+	bctrl
+	li       r3, 1
+	b        lbl_80176E70
 
-	.loc_0xB00:
-	  cmplwi    r0, 0x3
-	  bne-      .loc_0xB50
-	  lhz       r4, 0x22E(r30)
-	  lis       r3, 0x804B
-	  addi      r0, r3, 0x590
-	  lis       r3, 0x804B
-	  stw       r0, 0x18(r1)
-	  subfic    r5, r4, 0x1
-	  addi      r0, r3, 0x6108
-	  lwz       r3, -0x6C18(r13)
-	  stw       r0, 0x18(r1)
-	  addi      r4, r1, 0x18
-	  stw       r5, 0x1C(r1)
-	  lwz       r3, 0x58(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x50(r12)
-	  mtctr     r12
-	  bctrl
-	  li        r3, 0x1
-	  b         .loc_0xDA8
+lbl_80176BC8:
+	cmplwi   r0, 3
+	bne      lbl_80176C18
+	lhz      r4, 0x22e(r30)
+	lis      r3, __vt__Q24Game11GameMessage@ha
+	addi     r0, r3, __vt__Q24Game11GameMessage@l
+	lis      r3, __vt__Q24Game20GameMessageVsGotCard@ha
+	stw      r0, 0x18(r1)
+	subfic   r5, r4, 1
+	addi     r0, r3, __vt__Q24Game20GameMessageVsGotCard@l
+	lwz      r3, gameSystem__4Game@sda21(r13)
+	stw      r0, 0x18(r1)
+	addi     r4, r1, 0x18
+	stw      r5, 0x1c(r1)
+	lwz      r3, 0x58(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x50(r12)
+	mtctr    r12
+	bctrl
+	li       r3, 1
+	b        lbl_80176E70
 
-	.loc_0xB50:
-	  lwz       r5, -0x6C18(r13)
-	  lwz       r0, 0x44(r5)
-	  cmpwi     r0, 0x1
-	  beq-      .loc_0xB98
-	  lbz       r0, 0x48(r5)
-	  lwz       r3, 0x35C(r31)
-	  cmplwi    r0, 0
-	  lwz       r4, 0x170(r3)
-	  beq-      .loc_0xB88
-	  lwz       r3, -0x6B70(r13)
-	  lwz       r0, 0xEC(r3)
-	  add       r0, r0, r4
-	  stw       r0, 0xEC(r3)
-	  b         .loc_0xB98
+lbl_80176C18:
+	lwz      r5, gameSystem__4Game@sda21(r13)
+	lwz      r0, 0x44(r5)
+	cmpwi    r0, 1
+	beq      lbl_80176C60
+	lbz      r0, 0x48(r5)
+	lwz      r3, 0x35c(r31)
+	cmplwi   r0, 0
+	lwz      r4, 0x170(r3)
+	beq      lbl_80176C50
+	lwz      r3, playData__4Game@sda21(r13)
+	lwz      r0, 0xec(r3)
+	add      r0, r0, r4
+	stw      r0, 0xec(r3)
+	b        lbl_80176C60
 
-	.loc_0xB88:
-	  lwz       r3, 0x58(r5)
-	  lwz       r0, 0x48(r3)
-	  add       r0, r0, r4
-	  stw       r0, 0x48(r3)
+lbl_80176C50:
+	lwz      r3, 0x58(r5)
+	lwz      r0, 0x48(r3)
+	add      r0, r0, r4
+	stw      r0, 0x48(r3)
 
-	.loc_0xB98:
-	  lwz       r4, -0x6C18(r13)
-	  li        r3, 0
-	  lwz       r0, 0x44(r4)
-	  cmpwi     r0, 0x2
-	  beq-      .loc_0xBB4
-	  cmpwi     r0, 0x3
-	  bne-      .loc_0xBB8
+lbl_80176C60:
+	lwz      r4, gameSystem__4Game@sda21(r13)
+	li       r3, 0
+	lwz      r0, 0x44(r4)
+	cmpwi    r0, 2
+	beq      lbl_80176C7C
+	cmpwi    r0, 3
+	bne      lbl_80176C80
 
-	.loc_0xBB4:
-	  li        r3, 0x1
+lbl_80176C7C:
+	li       r3, 1
 
-	.loc_0xBB8:
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xBE4
-	  lwz       r3, 0x58(r4)
-	  lwz       r4, 0x35C(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r4, 0x170(r4)
-	  lwz       r12, 0x60(r12)
-	  mtctr     r12
-	  bctrl
-	  li        r3, 0x1
-	  b         .loc_0xDA8
+lbl_80176C80:
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80176CAC
+	lwz      r3, 0x58(r4)
+	lwz      r4, 0x35c(r31)
+	lwz      r12, 0(r3)
+	lwz      r4, 0x170(r4)
+	lwz      r12, 0x60(r12)
+	mtctr    r12
+	bctrl
+	li       r3, 1
+	b        lbl_80176E70
 
-	.loc_0xBE4:
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x1F4(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0xC54
-	  lhz       r29, 0x43E(r31)
-	  mr        r3, r31
-	  addi      r4, r1, 0x14
-	  addi      r5, r1, 0x10
-	  bl        -0xD320
-	  lhz       r3, 0x22E(r30)
-	  cmplwi    r3, 0x3
-	  beq-      .loc_0xC2C
-	  rlwinm    r0,r29,0,16,31
-	  cmplw     r0, r3
-	  bne-      .loc_0xC40
+lbl_80176CAC:
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r12, 0x1f4(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_80176D1C
+	lhz      r29, 0x43e(r31)
+	mr       r3, r31
+	addi     r4, r1, 0x14
+	addi     r5, r1, 0x10
+	bl       getPikiBirthCount__Q24Game6PelletFRiRi
+	lhz      r3, 0x22e(r30)
+	cmplwi   r3, 3
+	beq      lbl_80176CF4
+	clrlwi   r0, r29, 0x10
+	cmplw    r0, r3
+	bne      lbl_80176D08
 
-	.loc_0xC2C:
-	  lhz       r3, 0x22C(r30)
-	  lwz       r0, 0x10(r1)
-	  add       r0, r3, r0
-	  sth       r0, 0x22C(r30)
-	  b         .loc_0xDA4
+lbl_80176CF4:
+	lhz      r3, 0x22c(r30)
+	lwz      r0, 0x10(r1)
+	add      r0, r3, r0
+	sth      r0, 0x22c(r30)
+	b        lbl_80176E6C
 
-	.loc_0xC40:
-	  lhz       r3, 0x22C(r30)
-	  lwz       r0, 0x14(r1)
-	  add       r0, r3, r0
-	  sth       r0, 0x22C(r30)
-	  b         .loc_0xDA4
+lbl_80176D08:
+	lhz      r3, 0x22c(r30)
+	lwz      r0, 0x14(r1)
+	add      r0, r3, r0
+	sth      r0, 0x22c(r30)
+	b        lbl_80176E6C
 
-	.loc_0xC54:
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x1F4(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm    r0,r3,0,24,31
-	  cmplwi    r0, 0x3
-	  beq-      .loc_0xCB4
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x1F4(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm    r0,r3,0,24,31
-	  cmplwi    r0, 0x4
-	  beq-      .loc_0xCB4
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x1F4(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm    r0,r3,0,24,31
-	  cmplwi    r0, 0x1
-	  bne-      .loc_0xD90
+lbl_80176D1C:
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r12, 0x1f4(r12)
+	mtctr    r12
+	bctrl
+	clrlwi   r0, r3, 0x18
+	cmplwi   r0, 3
+	beq      lbl_80176D7C
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r12, 0x1f4(r12)
+	mtctr    r12
+	bctrl
+	clrlwi   r0, r3, 0x18
+	cmplwi   r0, 4
+	beq      lbl_80176D7C
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r12, 0x1f4(r12)
+	mtctr    r12
+	bctrl
+	clrlwi   r0, r3, 0x18
+	cmplwi   r0, 1
+	bne      lbl_80176E58
 
-	.loc_0xCB4:
-	  lhz       r0, 0x22E(r30)
-	  cmplwi    r0, 0x3
-	  bne-      .loc_0xCE0
-	  lwz       r3, 0x35C(r31)
-	  lwz       r0, 0x170(r3)
-	  cmpwi     r0, 0
-	  ble-      .loc_0xDA4
-	  lwz       r3, -0x6B70(r13)
-	  mr        r4, r31
-	  bl        0x70B74
-	  b         .loc_0xDA4
+lbl_80176D7C:
+	lhz      r0, 0x22e(r30)
+	cmplwi   r0, 3
+	bne      lbl_80176DA8
+	lwz      r3, 0x35c(r31)
+	lwz      r0, 0x170(r3)
+	cmpwi    r0, 0
+	ble      lbl_80176E6C
+	lwz      r3, playData__4Game@sda21(r13)
+	mr       r4, r31
+	bl       obtainPellet_Cave__Q24Game8PlayDataFPQ24Game6Pellet
+	b        lbl_80176E6C
 
-	.loc_0xCE0:
-	  cmplwi    r0, 0x4
-	  bne-      .loc_0xD4C
-	  lwz       r3, 0x35C(r31)
-	  lwz       r0, 0x170(r3)
-	  cmpwi     r0, 0
-	  ble-      .loc_0xDA4
-	  lwz       r3, -0x6B70(r13)
-	  mr        r4, r31
-	  bl        0x7082C
-	  lwz       r4, 0x35C(r31)
-	  subi      r3, r2, 0x58DC
-	  lwz       r4, 0x180(r4)
-	  bl        -0xAC718
-	  cmpwi     r3, 0
-	  bne-      .loc_0xDA4
-	  lwz       r3, -0x6C18(r13)
-	  lwz       r3, 0x58(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x7C(r12)
-	  mtctr     r12
-	  bctrl
-	  mr.       r4, r3
-	  beq-      .loc_0xDA4
-	  lwz       r3, -0x6B70(r13)
-	  lwz       r4, 0x48(r4)
-	  bl        0x71548
-	  b         .loc_0xDA4
+lbl_80176DA8:
+	cmplwi   r0, 4
+	bne      lbl_80176E14
+	lwz      r3, 0x35c(r31)
+	lwz      r0, 0x170(r3)
+	cmpwi    r0, 0
+	ble      lbl_80176E6C
+	lwz      r3, playData__4Game@sda21(r13)
+	mr       r4, r31
+	bl       obtainPellet_Main__Q24Game8PlayDataFPQ24Game6Pellet
+	lwz      r4, 0x35c(r31)
+	addi     r3, r2, lbl_80518A84@sda21
+	lwz      r4, 0x180(r4)
+	bl       strcmp
+	cmpwi    r3, 0
+	bne      lbl_80176E6C
+	lwz      r3, gameSystem__4Game@sda21(r13)
+	lwz      r3, 0x58(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x7c(r12)
+	mtctr    r12
+	bctrl
+	or.      r4, r3, r3
+	beq      lbl_80176E6C
+	lwz      r3, playData__4Game@sda21(r13)
+	lwz      r4, 0x48(r4)
+	bl       incGroundOtakara__Q24Game8PlayDataFi
+	b        lbl_80176E6C
 
-	.loc_0xD4C:
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x1F4(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm    r0,r3,0,24,31
-	  cmplwi    r0, 0x1
-	  bne-      .loc_0xDA4
-	  mr        r3, r31
-	  addi      r4, r1, 0xC
-	  addi      r5, r1, 0x8
-	  bl        -0xD488
-	  lhz       r3, 0x22C(r30)
-	  lwz       r0, 0x8(r1)
-	  add       r0, r3, r0
-	  sth       r0, 0x22C(r30)
-	  b         .loc_0xDA4
+lbl_80176E14:
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r12, 0x1f4(r12)
+	mtctr    r12
+	bctrl
+	clrlwi   r0, r3, 0x18
+	cmplwi   r0, 1
+	bne      lbl_80176E6C
+	mr       r3, r31
+	addi     r4, r1, 0xc
+	addi     r5, r1, 8
+	bl       getPikiBirthCount__Q24Game6PelletFRiRi
+	lhz      r3, 0x22c(r30)
+	lwz      r0, 8(r1)
+	add      r0, r3, r0
+	sth      r0, 0x22c(r30)
+	b        lbl_80176E6C
 
-	.loc_0xD90:
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x1F4(r12)
-	  mtctr     r12
-	  bctrl
+lbl_80176E58:
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r12, 0x1f4(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0xDA4:
-	  li        r3, 0x1
+lbl_80176E6C:
+	li       r3, 1
 
-	.loc_0xDA8:
-	  lmw       r27, 0x12C(r1)
-	  lwz       r0, 0x144(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x140
-	  blr
+lbl_80176E70:
+	lmw      r27, 0x12c(r1)
+	lwz      r0, 0x144(r1)
+	mtlr     r0
+	addi     r1, r1, 0x140
+	blr
 	*/
 }
 
@@ -2642,10 +3714,9 @@ void InteractSuckDone::actOnyon(Game::Onyon*)
 void Onyon::startPropera(void)
 {
 	/*
-	.loc_0x0:
-	  lfs       f0, -0x5904(r2)
-	  stfs      f0, 0x25C(r3)
-	  blr
+	lfs      f0, lbl_80518A5C@sda21(r2)
+	stfs     f0, 0x25c(r3)
+	blr
 	*/
 }
 
@@ -2657,10 +3728,9 @@ void Onyon::startPropera(void)
 void Onyon::stopPropera(void)
 {
 	/*
-	.loc_0x0:
-	  lfs       f0, -0x58D8(r2)
-	  stfs      f0, 0x25C(r3)
-	  blr
+	lfs      f0, lbl_80518A88@sda21(r2)
+	stfs     f0, 0x25c(r3)
+	blr
 	*/
 }
 
@@ -2672,100 +3742,99 @@ void Onyon::stopPropera(void)
 void Onyon::doDirectDraw(Graphics&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  stw       r0, 0x44(r1)
-	  stw       r31, 0x3C(r1)
-	  mr        r31, r4
-	  stw       r30, 0x38(r1)
-	  mr        r30, r3
-	  lhz       r0, 0x22E(r3)
-	  cmplwi    r0, 0x4
-	  bne-      .loc_0x124
-	  mr        r3, r31
-	  li        r4, 0
-	  bl        0x2AE950
-	  mr        r4, r30
-	  addi      r3, r1, 0x14
-	  bl        0x306C
-	  lfs       f1, 0x14(r1)
-	  li        r5, 0
-	  lfs       f2, 0x18(r1)
-	  li        r0, 0xFF
-	  lfs       f0, 0x1C(r1)
-	  mr        r3, r31
-	  stfs      f1, 0x2C(r1)
-	  addi      r4, r1, 0x2C
-	  lfs       f1, -0x58D4(r2)
-	  stfs      f2, 0x30(r1)
-	  stfs      f0, 0x34(r1)
-	  stb       r5, 0x84(r31)
-	  stb       r0, 0x85(r31)
-	  stb       r5, 0x86(r31)
-	  stb       r0, 0x87(r31)
-	  bl        0x2AEB94
-	  mr        r4, r30
-	  addi      r3, r1, 0x8
-	  bl        0x3188
-	  lfs       f1, 0x8(r1)
-	  li        r6, 0x64
-	  lfs       f2, 0xC(r1)
-	  li        r5, 0xFF
-	  lfs       f0, 0x10(r1)
-	  li        r0, 0
-	  stfs      f1, 0x2C(r1)
-	  mr        r3, r31
-	  lfs       f1, -0x58D4(r2)
-	  addi      r4, r1, 0x2C
-	  stfs      f2, 0x30(r1)
-	  stfs      f0, 0x34(r1)
-	  stb       r6, 0x84(r31)
-	  stb       r5, 0x85(r31)
-	  stb       r0, 0x86(r31)
-	  stb       r5, 0x87(r31)
-	  bl        0x2AEB44
-	  lwz       r3, 0x174(r30)
-	  subi      r4, r2, 0x592C
-	  bl        0x2C8070
-	  bl        0x2B2928
-	  lfs       f0, 0xC(r3)
-	  li        r6, 0x64
-	  li        r5, 0xFF
-	  li        r0, 0
-	  stfs      f0, 0x2C(r1)
-	  addi      r4, r1, 0x2C
-	  lfs       f1, -0x5904(r2)
-	  lfs       f0, 0x1C(r3)
-	  stfs      f0, 0x30(r1)
-	  lfs       f0, 0x2C(r3)
-	  mr        r3, r31
-	  stfs      f0, 0x34(r1)
-	  stb       r6, 0x84(r31)
-	  stb       r5, 0x85(r31)
-	  stb       r0, 0x86(r31)
-	  stb       r5, 0x87(r31)
-	  bl        0x2AEAF0
+	stwu     r1, -0x40(r1)
+	mflr     r0
+	stw      r0, 0x44(r1)
+	stw      r31, 0x3c(r1)
+	mr       r31, r4
+	stw      r30, 0x38(r1)
+	mr       r30, r3
+	lhz      r0, 0x22e(r3)
+	cmplwi   r0, 4
+	bne      lbl_80176FC0
+	mr       r3, r31
+	li       r4, 0
+	bl       initPrimDraw__8GraphicsFP7Matrixf
+	mr       r4, r30
+	addi     r3, r1, 0x14
+	bl       getInStart_UFO__Q24Game5OnyonFv
+	lfs      f1, 0x14(r1)
+	li       r5, 0
+	lfs      f2, 0x18(r1)
+	li       r0, 0xff
+	lfs      f0, 0x1c(r1)
+	mr       r3, r31
+	stfs     f1, 0x2c(r1)
+	addi     r4, r1, 0x2c
+	lfs      f1, lbl_80518A8C@sda21(r2)
+	stfs     f2, 0x30(r1)
+	stfs     f0, 0x34(r1)
+	stb      r5, 0x84(r31)
+	stb      r0, 0x85(r31)
+	stb      r5, 0x86(r31)
+	stb      r0, 0x87(r31)
+	bl       "drawSphere__8GraphicsFR10Vector3<f>f"
+	mr       r4, r30
+	addi     r3, r1, 8
+	bl       getOutStart_UFO__Q24Game5OnyonFv
+	lfs      f1, 8(r1)
+	li       r6, 0x64
+	lfs      f2, 0xc(r1)
+	li       r5, 0xff
+	lfs      f0, 0x10(r1)
+	li       r0, 0
+	stfs     f1, 0x2c(r1)
+	mr       r3, r31
+	lfs      f1, lbl_80518A8C@sda21(r2)
+	addi     r4, r1, 0x2c
+	stfs     f2, 0x30(r1)
+	stfs     f0, 0x34(r1)
+	stb      r6, 0x84(r31)
+	stb      r5, 0x85(r31)
+	stb      r0, 0x86(r31)
+	stb      r5, 0x87(r31)
+	bl       "drawSphere__8GraphicsFR10Vector3<f>f"
+	lwz      r3, 0x174(r30)
+	addi     r4, r2, lbl_80518A34@sda21
+	bl       getJoint__Q28SysShape5ModelFPc
+	bl       getWorldMatrix__Q28SysShape5JointFv
+	lfs      f0, 0xc(r3)
+	li       r6, 0x64
+	li       r5, 0xff
+	li       r0, 0
+	stfs     f0, 0x2c(r1)
+	addi     r4, r1, 0x2c
+	lfs      f1, lbl_80518A5C@sda21(r2)
+	lfs      f0, 0x1c(r3)
+	stfs     f0, 0x30(r1)
+	lfs      f0, 0x2c(r3)
+	mr       r3, r31
+	stfs     f0, 0x34(r1)
+	stb      r6, 0x84(r31)
+	stb      r5, 0x85(r31)
+	stb      r0, 0x86(r31)
+	stb      r5, 0x87(r31)
+	bl       "drawSphere__8GraphicsFR10Vector3<f>f"
 
-	.loc_0x124:
-	  lfs       f2, -0x58D0(r2)
-	  mr        r3, r30
-	  lfs       f1, 0x1A0(r30)
-	  mr        r4, r31
-	  lfs       f3, 0x1A4(r30)
-	  addi      r5, r1, 0x20
-	  lfs       f0, 0x19C(r30)
-	  fadds     f1, f2, f1
-	  stfs      f0, 0x20(r1)
-	  stfs      f1, 0x24(r1)
-	  stfs      f3, 0x28(r1)
-	  bl        0x60BF8
-	  lwz       r0, 0x44(r1)
-	  lwz       r31, 0x3C(r1)
-	  lwz       r30, 0x38(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
+lbl_80176FC0:
+	lfs      f2, lbl_80518A90@sda21(r2)
+	mr       r3, r30
+	lfs      f1, 0x1a0(r30)
+	mr       r4, r31
+	lfs      f3, 0x1a4(r30)
+	addi     r5, r1, 0x20
+	lfs      f0, 0x19c(r30)
+	fadds    f1, f2, f1
+	stfs     f0, 0x20(r1)
+	stfs     f1, 0x24(r1)
+	stfs     f3, 0x28(r1)
+	bl       "drawLODInfo__Q24Game8CreatureFR8GraphicsR10Vector3<f>"
+	lwz      r0, 0x44(r1)
+	lwz      r31, 0x3c(r1)
+	lwz      r30, 0x38(r1)
+	mtlr     r0
+	addi     r1, r1, 0x40
+	blr
 	*/
 }
 
@@ -2787,20 +3856,19 @@ Onyon::Onyon(void)
 void Onyon::onInit(Game::CreatureInitArg*)
 {
 	/*
-	.loc_0x0:
-	  li        r4, 0
-	  lfs       f0, -0x5934(r2)
-	  sth       r4, 0x22C(r3)
-	  li        r0, 0x5
-	  stw       r4, 0x1D8(r3)
-	  stb       r4, 0x1E0(r3)
-	  stfs      f0, 0x1DC(r3)
-	  stw       r4, 0x1E8(r3)
-	  stw       r4, 0x1E4(r3)
-	  stw       r4, 0x24C(r3)
-	  stw       r4, 0x248(r3)
-	  stb       r0, 0x240(r3)
-	  blr
+	li       r4, 0
+	lfs      f0, lbl_80518A2C@sda21(r2)
+	sth      r4, 0x22c(r3)
+	li       r0, 5
+	stw      r4, 0x1d8(r3)
+	stb      r4, 0x1e0(r3)
+	stfs     f0, 0x1dc(r3)
+	stw      r4, 0x1e8(r3)
+	stw      r4, 0x1e4(r3)
+	stw      r4, 0x24c(r3)
+	stw      r4, 0x248(r3)
+	stb      r0, 0x240(r3)
+	blr
 	*/
 }
 
@@ -2819,178 +3887,175 @@ void Onyon::onKill(Game::CreatureKillArg*) { }
 void Onyon::onSetPosition(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x50(r1)
-	  mflr      r0
-	  stw       r0, 0x54(r1)
-	  stw       r31, 0x4C(r1)
-	  mr        r31, r3
-	  lwz       r0, -0x6CF8(r13)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x3C
-	  mr        r3, r0
-	  addi      r4, r31, 0x19C
-	  lwz       r12, 0x4(r3)
-	  lwz       r12, 0x28(r12)
-	  mtctr     r12
-	  bctrl
-	  stfs      f1, 0x1A0(r31)
+	stwu     r1, -0x50(r1)
+	mflr     r0
+	stw      r0, 0x54(r1)
+	stw      r31, 0x4c(r1)
+	mr       r31, r3
+	lwz      r0, mapMgr__4Game@sda21(r13)
+	cmplwi   r0, 0
+	beq      lbl_8017707C
+	mr       r3, r0
+	addi     r4, r31, 0x19c
+	lwz      r12, 4(r3)
+	lwz      r12, 0x28(r12)
+	mtctr    r12
+	bctrl
+	stfs     f1, 0x1a0(r31)
 
-	.loc_0x3C:
-	  lfs       f0, 0x19C(r31)
-	  li        r0, 0
-	  lwz       r3, -0x6CF8(r13)
-	  stfs      f0, 0x28(r1)
-	  lfs       f0, -0x58CC(r2)
-	  cmplwi    r3, 0
-	  lfs       f1, 0x1A0(r31)
-	  stfs      f1, 0x2C(r1)
-	  lfs       f1, 0x1A4(r31)
-	  stfs      f1, 0x30(r1)
-	  stw       r0, 0x34(r1)
-	  stb       r0, 0x38(r1)
-	  stfs      f0, 0x3C(r1)
-	  beq-      .loc_0x90
-	  lwz       r3, 0x8(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x90
-	  addi      r4, r1, 0x28
-	  bl        -0x4100
-	  stw       r3, 0x23C(r31)
-	  b         .loc_0x98
+lbl_8017707C:
+	lfs      f0, 0x19c(r31)
+	li       r0, 0
+	lwz      r3, mapMgr__4Game@sda21(r13)
+	stfs     f0, 0x28(r1)
+	lfs      f0, lbl_80518A94@sda21(r2)
+	cmplwi   r3, 0
+	lfs      f1, 0x1a0(r31)
+	stfs     f1, 0x2c(r1)
+	lfs      f1, 0x1a4(r31)
+	stfs     f1, 0x30(r1)
+	stw      r0, 0x34(r1)
+	stb      r0, 0x38(r1)
+	stfs     f0, 0x3c(r1)
+	beq      lbl_801770D0
+	lwz      r3, 8(r3)
+	cmplwi   r3, 0
+	beq      lbl_801770D0
+	addi     r4, r1, 0x28
+	bl       getNearestWayPoint__Q24Game8RouteMgrFRQ24Game11WPSearchArg
+	stw      r3, 0x23c(r31)
+	b        lbl_801770D8
 
-	.loc_0x90:
-	  li        r0, 0
-	  stw       r0, 0x23C(r31)
+lbl_801770D0:
+	li       r0, 0
+	stw      r0, 0x23c(r31)
 
-	.loc_0x98:
-	  lwz       r3, -0x6C18(r13)
-	  lwz       r0, 0x44(r3)
-	  cmpwi     r0, 0x1
-	  bne-      .loc_0xB8
-	  mr        r3, r31
-	  li        r4, 0x1
-	  bl        0x1DEC
-	  b         .loc_0xC4
+lbl_801770D8:
+	lwz      r3, gameSystem__4Game@sda21(r13)
+	lwz      r0, 0x44(r3)
+	cmpwi    r0, 1
+	bne      lbl_801770F8
+	mr       r3, r31
+	li       r4, 1
+	bl       setSpotEffect__Q24Game5OnyonFb
+	b        lbl_80177104
 
-	.loc_0xB8:
-	  mr        r3, r31
-	  li        r4, 0
-	  bl        0x1DDC
+lbl_801770F8:
+	mr       r3, r31
+	li       r4, 0
+	bl       setSpotEffect__Q24Game5OnyonFb
 
-	.loc_0xC4:
-	  lhz       r0, 0x22E(r31)
-	  cmplwi    r0, 0x2
-	  bgt-      .loc_0x178
-	  lis       r4, 0x804B
-	  lis       r3, 0x804B
-	  addi      r4, r4, 0x26AC
-	  stw       r0, 0x24(r1)
-	  addi      r0, r3, 0x26A0
-	  lwz       r3, -0x65E8(r13)
-	  stw       r4, 0x14(r1)
-	  addi      r4, r1, 0x14
-	  stw       r0, 0x14(r1)
-	  lfs       f0, 0x19C(r31)
-	  stfs      f0, 0x18(r1)
-	  lfs       f0, 0x1A0(r31)
-	  stfs      f0, 0x1C(r1)
-	  lfs       f0, 0x1A4(r31)
-	  stfs      f0, 0x20(r1)
-	  bl        0x2C64EC
-	  stw       r3, 0x1F4(r31)
-	  mr        r3, r31
-	  li        r4, 0
-	  bl        .loc_0x23C
-	  lwz       r3, -0x6C18(r13)
-	  lwz       r0, 0x44(r3)
-	  cmpwi     r0, 0
-	  bne-      .loc_0x16C
-	  lwz       r3, -0x6B70(r13)
-	  lhz       r4, 0x22E(r31)
-	  bl        0x6FF60
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x15C
-	  mr        r3, r31
-	  li        r4, 0x3
-	  bl        .loc_0x23C
-	  mr        r3, r31
-	  bl        0xC60
-	  b         .loc_0x178
+lbl_80177104:
+	lhz      r0, 0x22e(r31)
+	cmplwi   r0, 2
+	bgt      lbl_801771B8
+	lis      r4, __vt__20ModelEffectCreateArg@ha
+	lis      r3, __vt__Q23efx12OnyonSpotArg@ha
+	addi     r4, r4, __vt__20ModelEffectCreateArg@l
+	stw      r0, 0x24(r1)
+	addi     r0, r3, __vt__Q23efx12OnyonSpotArg@l
+	lwz      r3, particleMgr@sda21(r13)
+	stw      r4, 0x14(r1)
+	addi     r4, r1, 0x14
+	stw      r0, 0x14(r1)
+	lfs      f0, 0x19c(r31)
+	stfs     f0, 0x18(r1)
+	lfs      f0, 0x1a0(r31)
+	stfs     f0, 0x1c(r1)
+	lfs      f0, 0x1a4(r31)
+	stfs     f0, 0x20(r1)
+	bl       createModelEffect__11ParticleMgrFP20ModelEffectCreateArg
+	stw      r3, 0x1f4(r31)
+	mr       r3, r31
+	li       r4, 0
+	bl       setSpotState__Q24Game5OnyonFQ34Game5Onyon10cSpotState
+	lwz      r3, gameSystem__4Game@sda21(r13)
+	lwz      r0, 0x44(r3)
+	cmpwi    r0, 0
+	bne      lbl_801771AC
+	lwz      r3, playData__4Game@sda21(r13)
+	lhz      r4, 0x22e(r31)
+	bl       hasBootContainer__Q24Game8PlayDataFi
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_8017719C
+	mr       r3, r31
+	li       r4, 3
+	bl       setSpotState__Q24Game5OnyonFQ34Game5Onyon10cSpotState
+	mr       r3, r31
+	bl       startWaitMotion__Q24Game5OnyonFv
+	b        lbl_801771B8
 
-	.loc_0x15C:
-	  mr        r3, r31
-	  li        r4, 0
-	  bl        .loc_0x23C
-	  b         .loc_0x178
+lbl_8017719C:
+	mr       r3, r31
+	li       r4, 0
+	bl       setSpotState__Q24Game5OnyonFQ34Game5Onyon10cSpotState
+	b        lbl_801771B8
 
-	.loc_0x16C:
-	  mr        r3, r31
-	  li        r4, 0x3
-	  bl        .loc_0x23C
+lbl_801771AC:
+	mr       r3, r31
+	li       r4, 3
+	bl       setSpotState__Q24Game5OnyonFQ34Game5Onyon10cSpotState
 
-	.loc_0x178:
-	  lhz       r0, 0x22E(r31)
-	  cmplwi    r0, 0x4
-	  bne-      .loc_0x1A8
-	  lwz       r3, 0x174(r31)
-	  subi      r4, r2, 0x5924
-	  bl        0x2C7E18
-	  stw       r3, 0x248(r31)
-	  subi      r4, r2, 0x5920
-	  lwz       r3, 0x174(r31)
-	  bl        0x2C7E08
-	  stw       r3, 0x24C(r31)
-	  b         .loc_0x1B4
+lbl_801771B8:
+	lhz      r0, 0x22e(r31)
+	cmplwi   r0, 4
+	bne      lbl_801771E8
+	lwz      r3, 0x174(r31)
+	addi     r4, r2, lbl_80518A3C@sda21
+	bl       getJoint__Q28SysShape5ModelFPc
+	stw      r3, 0x248(r31)
+	addi     r4, r2, lbl_80518A40@sda21
+	lwz      r3, 0x174(r31)
+	bl       getJoint__Q28SysShape5ModelFPc
+	stw      r3, 0x24c(r31)
+	b        lbl_801771F4
 
-	.loc_0x1A8:
-	  li        r0, 0
-	  stw       r0, 0x24C(r31)
-	  stw       r0, 0x248(r31)
+lbl_801771E8:
+	li       r0, 0
+	stw      r0, 0x24c(r31)
+	stw      r0, 0x248(r31)
 
-	.loc_0x1B4:
-	  lhz       r0, 0x22E(r31)
-	  cmplwi    r0, 0x2
-	  bgt-      .loc_0x1FC
-	  lis       r3, 0x8048
-	  rlwinm    r0,r0,2,14,29
-	  subi      r6, r3, 0x194C
-	  addi      r4, r1, 0x8
-	  lwz       r8, 0x0(r6)
-	  mr        r3, r31
-	  lwz       r7, 0x4(r6)
-	  li        r5, 0
-	  lwz       r6, 0x8(r6)
-	  stw       r8, 0x8(r1)
-	  stw       r7, 0xC(r1)
-	  stw       r6, 0x10(r1)
-	  lwzx      r4, r4, r0
-	  bl        0xA7350
-	  b         .loc_0x228
+lbl_801771F4:
+	lhz      r0, 0x22e(r31)
+	cmplwi   r0, 2
+	bgt      lbl_8017723C
+	lis      r3, lbl_8047E6B4@ha
+	rlwinm   r0, r0, 2, 0xe, 0x1d
+	addi     r6, r3, lbl_8047E6B4@l
+	addi     r4, r1, 8
+	lwz      r8, 0(r6)
+	mr       r3, r31
+	lwz      r7, 4(r6)
+	li       r5, 0
+	lwz      r6, 8(r6)
+	stw      r8, 8(r1)
+	stw      r7, 0xc(r1)
+	stw      r6, 0x10(r1)
+	lwzx     r4, r4, r0
+	bl       entry__Q25Radar3MgrFPQ24Game15TPositionObjectQ25Radar10cRadarTypeUl
+	b        lbl_80177268
 
-	.loc_0x1FC:
-	  cmplwi    r0, 0x3
-	  bne-      .loc_0x218
-	  mr        r3, r31
-	  li        r4, 0xC
-	  li        r5, 0
-	  bl        0xA7334
-	  b         .loc_0x228
+lbl_8017723C:
+	cmplwi   r0, 3
+	bne      lbl_80177258
+	mr       r3, r31
+	li       r4, 0xc
+	li       r5, 0
+	bl       entry__Q25Radar3MgrFPQ24Game15TPositionObjectQ25Radar10cRadarTypeUl
+	b        lbl_80177268
 
-	.loc_0x218:
-	  mr        r3, r31
-	  li        r4, 0xF
-	  li        r5, 0
-	  bl        0xA7320
+lbl_80177258:
+	mr       r3, r31
+	li       r4, 0xf
+	li       r5, 0
+	bl       entry__Q25Radar3MgrFPQ24Game15TPositionObjectQ25Radar10cRadarTypeUl
 
-	.loc_0x228:
-	  lwz       r0, 0x54(r1)
-	  lwz       r31, 0x4C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x50
-	  blr
-
-	.loc_0x23C:
+lbl_80177268:
+	lwz      r0, 0x54(r1)
+	lwz      r31, 0x4c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x50
+	blr
 	*/
 }
 
@@ -3002,91 +4067,90 @@ void Onyon::onSetPosition(void)
 void Onyon::setSpotState(Game::Onyon::cSpotState)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x50(r1)
-	  mflr      r0
-	  stw       r0, 0x54(r1)
-	  stw       r31, 0x4C(r1)
-	  mr        r31, r3
-	  lhz       r0, 0x22E(r3)
-	  cmplwi    r0, 0x2
-	  bgt-      .loc_0xFC
-	  stb       r4, 0x224(r31)
-	  lwz       r3, 0x1F4(r31)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x38
-	  li        r0, 0
-	  stb       r0, 0x3A(r3)
+	stwu     r1, -0x50(r1)
+	mflr     r0
+	stw      r0, 0x54(r1)
+	stw      r31, 0x4c(r1)
+	mr       r31, r3
+	lhz      r0, 0x22e(r3)
+	cmplwi   r0, 2
+	bgt      lbl_80177378
+	stb      r4, 0x224(r31)
+	lwz      r3, 0x1f4(r31)
+	cmplwi   r3, 0
+	beq      lbl_801772B4
+	li       r0, 0
+	stb      r0, 0x3a(r3)
 
-	.loc_0x38:
-	  lbz       r0, 0x224(r31)
-	  cmpwi     r0, 0x2
-	  beq-      .loc_0xAC
-	  bge-      .loc_0x58
-	  cmpwi     r0, 0
-	  beq-      .loc_0x64
-	  bge-      .loc_0x94
-	  b         .loc_0xC0
+lbl_801772B4:
+	lbz      r0, 0x224(r31)
+	cmpwi    r0, 2
+	beq      lbl_80177328
+	bge      lbl_801772D4
+	cmpwi    r0, 0
+	beq      lbl_801772E0
+	bge      lbl_80177310
+	b        lbl_8017733C
 
-	.loc_0x58:
-	  cmpwi     r0, 0x4
-	  bge-      .loc_0xC0
-	  b         .loc_0x7C
+lbl_801772D4:
+	cmpwi    r0, 4
+	bge      lbl_8017733C
+	b        lbl_801772F8
 
-	.loc_0x64:
-	  lfs       f0, -0x5934(r2)
-	  mr        r3, r31
-	  li        r4, 0
-	  stfs      f0, 0x220(r31)
-	  bl        0x1BEC
-	  b         .loc_0xC0
+lbl_801772E0:
+	lfs      f0, lbl_80518A2C@sda21(r2)
+	mr       r3, r31
+	li       r4, 0
+	stfs     f0, 0x220(r31)
+	bl       setSpotEffect__Q24Game5OnyonFb
+	b        lbl_8017733C
 
-	.loc_0x7C:
-	  lfs       f0, -0x5908(r2)
-	  mr        r3, r31
-	  li        r4, 0x1
-	  stfs      f0, 0x220(r31)
-	  bl        0x1BD4
-	  b         .loc_0xC0
+lbl_801772F8:
+	lfs      f0, lbl_80518A58@sda21(r2)
+	mr       r3, r31
+	li       r4, 1
+	stfs     f0, 0x220(r31)
+	bl       setSpotEffect__Q24Game5OnyonFb
+	b        lbl_8017733C
 
-	.loc_0x94:
-	  lfs       f0, -0x5934(r2)
-	  mr        r3, r31
-	  li        r4, 0
-	  stfs      f0, 0x220(r31)
-	  bl        0x1BBC
-	  b         .loc_0xC0
+lbl_80177310:
+	lfs      f0, lbl_80518A2C@sda21(r2)
+	mr       r3, r31
+	li       r4, 0
+	stfs     f0, 0x220(r31)
+	bl       setSpotEffect__Q24Game5OnyonFb
+	b        lbl_8017733C
 
-	.loc_0xAC:
-	  lfs       f0, -0x5908(r2)
-	  mr        r3, r31
-	  li        r4, 0x1
-	  stfs      f0, 0x220(r31)
-	  bl        0x1BA4
+lbl_80177328:
+	lfs      f0, lbl_80518A58@sda21(r2)
+	mr       r3, r31
+	li       r4, 1
+	stfs     f0, 0x220(r31)
+	bl       setSpotEffect__Q24Game5OnyonFb
 
-	.loc_0xC0:
-	  lfs       f1, 0x220(r31)
-	  lis       r3, 0x8051
-	  lfs       f0, -0x5908(r2)
-	  addi      r5, r3, 0x41E4
-	  stfs      f1, 0x8(r1)
-	  addi      r3, r1, 0x14
-	  addi      r4, r1, 0x8
-	  addi      r6, r31, 0x19C
-	  stfs      f0, 0xC(r1)
-	  stfs      f1, 0x10(r1)
-	  bl        0x2B0F74
-	  lwz       r4, 0x1F4(r31)
-	  addi      r3, r1, 0x14
-	  addi      r4, r4, 0x8
-	  bl        -0x8D0A8
+lbl_8017733C:
+	lfs      f1, 0x220(r31)
+	lis      r3, "zero__10Vector3<f>"@ha
+	lfs      f0, lbl_80518A58@sda21(r2)
+	addi     r5, r3, "zero__10Vector3<f>"@l
+	stfs     f1, 8(r1)
+	addi     r3, r1, 0x14
+	addi     r4, r1, 8
+	addi     r6, r31, 0x19c
+	stfs     f0, 0xc(r1)
+	stfs     f1, 0x10(r1)
+	bl       "makeSRT__7MatrixfFR10Vector3<f>R10Vector3<f>R10Vector3<f>"
+	lwz      r4, 0x1f4(r31)
+	addi     r3, r1, 0x14
+	addi     r4, r4, 8
+	bl       PSMTXCopy
 
-	.loc_0xFC:
-	  lwz       r0, 0x54(r1)
-	  lwz       r31, 0x4C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x50
-	  blr
+lbl_80177378:
+	lwz      r0, 0x54(r1)
+	lwz      r31, 0x4c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x50
+	blr
 	*/
 }
 
@@ -3108,54 +4172,53 @@ void Onyon::updateSpot(void)
 void Onyon::getSuckPos(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  stw       r0, 0x44(r1)
-	  stfd      f31, 0x30(r1)
-	  psq_st    f31,0x38(r1),0,0
-	  stfd      f30, 0x20(r1)
-	  psq_st    f30,0x28(r1),0,0
-	  stfd      f29, 0x10(r1)
-	  psq_st    f29,0x18(r1),0,0
-	  stw       r31, 0xC(r1)
-	  lhz       r0, 0x128(r4)
-	  mr        r31, r3
-	  lfs       f31, 0x19C(r4)
-	  cmplwi    r0, 0x403
-	  lfs       f30, 0x1A0(r4)
-	  lfs       f29, 0x1A4(r4)
-	  bne-      .loc_0x6C
-	  lwz       r3, 0x174(r4)
-	  subi      r4, r2, 0x58C4
-	  bl        0x2C7C0C
-	  cmplwi    r3, 0
-	  beq-      .loc_0x74
-	  bl        0x2B24BC
-	  lfs       f31, 0xC(r3)
-	  lfs       f30, 0x1C(r3)
-	  lfs       f29, 0x2C(r3)
-	  b         .loc_0x74
+	stwu     r1, -0x40(r1)
+	mflr     r0
+	stw      r0, 0x44(r1)
+	stfd     f31, 0x30(r1)
+	psq_st   f31, 56(r1), 0, qr0
+	stfd     f30, 0x20(r1)
+	psq_st   f30, 40(r1), 0, qr0
+	stfd     f29, 0x10(r1)
+	psq_st   f29, 24(r1), 0, qr0
+	stw      r31, 0xc(r1)
+	lhz      r0, 0x128(r4)
+	mr       r31, r3
+	lfs      f31, 0x19c(r4)
+	cmplwi   r0, 0x403
+	lfs      f30, 0x1a0(r4)
+	lfs      f29, 0x1a4(r4)
+	bne      lbl_801773F8
+	lwz      r3, 0x174(r4)
+	addi     r4, r2, lbl_80518A9C@sda21
+	bl       getJoint__Q28SysShape5ModelFPc
+	cmplwi   r3, 0
+	beq      lbl_80177400
+	bl       getWorldMatrix__Q28SysShape5JointFv
+	lfs      f31, 0xc(r3)
+	lfs      f30, 0x1c(r3)
+	lfs      f29, 0x2c(r3)
+	b        lbl_80177400
 
-	.loc_0x6C:
-	  lfs       f0, -0x58BC(r2)
-	  fadds     f30, f30, f0
+lbl_801773F8:
+	lfs      f0, lbl_80518AA4@sda21(r2)
+	fadds    f30, f30, f0
 
-	.loc_0x74:
-	  stfs      f31, 0x0(r31)
-	  stfs      f30, 0x4(r31)
-	  stfs      f29, 0x8(r31)
-	  psq_l     f31,0x38(r1),0,0
-	  lfd       f31, 0x30(r1)
-	  psq_l     f30,0x28(r1),0,0
-	  lfd       f30, 0x20(r1)
-	  psq_l     f29,0x18(r1),0,0
-	  lfd       f29, 0x10(r1)
-	  lwz       r0, 0x44(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
+lbl_80177400:
+	stfs     f31, 0(r31)
+	stfs     f30, 4(r31)
+	stfs     f29, 8(r31)
+	psq_l    f31, 56(r1), 0, qr0
+	lfd      f31, 0x30(r1)
+	psq_l    f30, 40(r1), 0, qr0
+	lfd      f30, 0x20(r1)
+	psq_l    f29, 24(r1), 0, qr0
+	lfd      f29, 0x10(r1)
+	lwz      r0, 0x44(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x40
+	blr
 	*/
 }
 
@@ -3167,69 +4230,68 @@ void Onyon::getSuckPos(void)
 void Onyon::getGoalPos(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  lhz       r0, 0x128(r4)
-	  lfs       f3, 0x19C(r4)
-	  cmplwi    r0, 0x403
-	  lfs       f4, 0x1A0(r4)
-	  lfs       f5, 0x1A4(r4)
-	  bne-      .loc_0xC4
-	  lfs       f6, 0x228(r4)
-	  lfs       f0, -0x5934(r2)
-	  lfs       f2, -0x58B8(r2)
-	  fcmpo     cr0, f6, f0
-	  bge-      .loc_0x5C
-	  lfs       f0, -0x58FC(r2)
-	  lis       r4, 0x8050
-	  addi      r4, r4, 0x71A0
-	  fmuls     f0, f6, f0
-	  fctiwz    f0, f0
-	  stfd      f0, 0x8(r1)
-	  lwz       r0, 0xC(r1)
-	  rlwinm    r0,r0,3,18,28
-	  lfsx      f0, r4, r0
-	  fneg      f1, f0
-	  b         .loc_0x80
+	stwu     r1, -0x20(r1)
+	lhz      r0, 0x128(r4)
+	lfs      f3, 0x19c(r4)
+	cmplwi   r0, 0x403
+	lfs      f4, 0x1a0(r4)
+	lfs      f5, 0x1a4(r4)
+	bne      lbl_801774FC
+	lfs      f6, 0x228(r4)
+	lfs      f0, lbl_80518A2C@sda21(r2)
+	lfs      f2, lbl_80518AA8@sda21(r2)
+	fcmpo    cr0, f6, f0
+	bge      lbl_80177494
+	lfs      f0, lbl_80518A64@sda21(r2)
+	lis      r4, sincosTable___5JMath@ha
+	addi     r4, r4, sincosTable___5JMath@l
+	fmuls    f0, f6, f0
+	fctiwz   f0, f0
+	stfd     f0, 8(r1)
+	lwz      r0, 0xc(r1)
+	rlwinm   r0, r0, 3, 0x12, 0x1c
+	lfsx     f0, r4, r0
+	fneg     f1, f0
+	b        lbl_801774B8
 
-	.loc_0x5C:
-	  lfs       f0, -0x5900(r2)
-	  lis       r4, 0x8050
-	  addi      r4, r4, 0x71A0
-	  fmuls     f0, f6, f0
-	  fctiwz    f0, f0
-	  stfd      f0, 0x10(r1)
-	  lwz       r0, 0x14(r1)
-	  rlwinm    r0,r0,3,18,28
-	  lfsx      f1, r4, r0
+lbl_80177494:
+	lfs      f0, lbl_80518A60@sda21(r2)
+	lis      r4, sincosTable___5JMath@ha
+	addi     r4, r4, sincosTable___5JMath@l
+	fmuls    f0, f6, f0
+	fctiwz   f0, f0
+	stfd     f0, 0x10(r1)
+	lwz      r0, 0x14(r1)
+	rlwinm   r0, r0, 3, 0x12, 0x1c
+	lfsx     f1, r4, r0
 
-	.loc_0x80:
-	  lfs       f0, -0x5934(r2)
-	  fmadds    f3, f2, f1, f3
-	  fcmpo     cr0, f6, f0
-	  bge-      .loc_0x94
-	  fneg      f6, f6
+lbl_801774B8:
+	lfs      f0, lbl_80518A2C@sda21(r2)
+	fmadds   f3, f2, f1, f3
+	fcmpo    cr0, f6, f0
+	bge      lbl_801774CC
+	fneg     f6, f6
 
-	.loc_0x94:
-	  lfs       f0, -0x5900(r2)
-	  lis       r4, 0x8050
-	  addi      r4, r4, 0x71A0
-	  lfs       f1, -0x58B8(r2)
-	  fmuls     f0, f6, f0
-	  fctiwz    f0, f0
-	  stfd      f0, 0x18(r1)
-	  lwz       r0, 0x1C(r1)
-	  rlwinm    r0,r0,3,18,28
-	  add       r4, r4, r0
-	  lfs       f0, 0x4(r4)
-	  fmadds    f5, f1, f0, f5
+lbl_801774CC:
+	lfs      f0, lbl_80518A60@sda21(r2)
+	lis      r4, sincosTable___5JMath@ha
+	addi     r4, r4, sincosTable___5JMath@l
+	lfs      f1, lbl_80518AA8@sda21(r2)
+	fmuls    f0, f6, f0
+	fctiwz   f0, f0
+	stfd     f0, 0x18(r1)
+	lwz      r0, 0x1c(r1)
+	rlwinm   r0, r0, 3, 0x12, 0x1c
+	add      r4, r4, r0
+	lfs      f0, 4(r4)
+	fmadds   f5, f1, f0, f5
 
-	.loc_0xC4:
-	  stfs      f3, 0x0(r3)
-	  stfs      f4, 0x4(r3)
-	  stfs      f5, 0x8(r3)
-	  addi      r1, r1, 0x20
-	  blr
+lbl_801774FC:
+	stfs     f3, 0(r3)
+	stfs     f4, 4(r3)
+	stfs     f5, 8(r3)
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -3241,231 +4303,230 @@ void Onyon::getGoalPos(void)
 void Onyon::doAI(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0xA0(r1)
-	  mflr      r0
-	  stw       r0, 0xA4(r1)
-	  stw       r31, 0x9C(r1)
-	  mr        r31, r3
-	  stw       r30, 0x98(r1)
-	  lwz       r3, 0x1B4(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x2C
-	  lha       r0, 0x20(r3)
-	  b         .loc_0x30
+	stwu     r1, -0xa0(r1)
+	mflr     r0
+	stw      r0, 0xa4(r1)
+	stw      r31, 0x9c(r1)
+	mr       r31, r3
+	stw      r30, 0x98(r1)
+	lwz      r3, 0x1b4(r3)
+	cmplwi   r3, 0
+	beq      lbl_8017753C
+	lha      r0, 0x20(r3)
+	b        lbl_80177540
 
-	.loc_0x2C:
-	  li        r0, -0x1
+lbl_8017753C:
+	li       r0, -1
 
-	.loc_0x30:
-	  cmpwi     r0, 0x2
-	  bne-      .loc_0xB8
-	  lhz       r0, 0x22E(r31)
-	  cmplwi    r0, 0x2
-	  bgt-      .loc_0xB8
-	  lwz       r3, 0x17C(r31)
-	  li        r4, 0x2014
-	  li        r5, 0
-	  lwz       r12, 0x28(r3)
-	  lwz       r12, 0x7C(r12)
-	  mtctr     r12
-	  bctrl
-	  mr.       r30, r3
-	  beq-      .loc_0xB0
-	  lfs       f5, -0x5934(r2)
-	  li        r0, 0
-	  lfs       f1, -0x5908(r2)
-	  addi      r3, r1, 0x20
-	  stfs      f5, 0x24(r1)
-	  lfs       f2, -0x58B4(r2)
-	  stfs      f1, 0x20(r1)
-	  lfs       f3, -0x58B0(r2)
-	  stfs      f5, 0x28(r1)
-	  lfs       f4, -0x58E0(r2)
-	  stfs      f5, 0x2C(r1)
-	  stfs      f5, 0x30(r1)
-	  stb       r0, 0x34(r1)
-	  stb       r0, 0x35(r1)
-	  bl        0x1BD59C
-	  mr        r3, r30
-	  addi      r4, r1, 0x20
-	  bl        0x2F9E9C
+lbl_80177540:
+	cmpwi    r0, 2
+	bne      lbl_801775C8
+	lhz      r0, 0x22e(r31)
+	cmplwi   r0, 2
+	bgt      lbl_801775C8
+	lwz      r3, 0x17c(r31)
+	li       r4, 0x2014
+	li       r5, 0
+	lwz      r12, 0x28(r3)
+	lwz      r12, 0x7c(r12)
+	mtctr    r12
+	bctrl
+	or.      r30, r3, r3
+	beq      lbl_801775C0
+	lfs      f5, lbl_80518A2C@sda21(r2)
+	li       r0, 0
+	lfs      f1, lbl_80518A58@sda21(r2)
+	addi     r3, r1, 0x20
+	stfs     f5, 0x24(r1)
+	lfs      f2, lbl_80518AAC@sda21(r2)
+	stfs     f1, 0x20(r1)
+	lfs      f3, lbl_80518AB0@sda21(r2)
+	stfs     f5, 0x28(r1)
+	lfs      f4, lbl_80518A80@sda21(r2)
+	stfs     f5, 0x2c(r1)
+	stfs     f5, 0x30(r1)
+	stb      r0, 0x34(r1)
+	stb      r0, 0x35(r1)
+	bl       set__Q36PSGame10SoundTable11SePerspInfoFfffff
+	mr       r3, r30
+	addi     r4, r1, 0x20
+	bl specializePerspCalc__Q23PSM7SeSoundFRCQ36PSGame10SoundTable11SePerspInfo
 
-	.loc_0xB0:
-	  mr        r3, r31
-	  bl        0x1D88
+lbl_801775C0:
+	mr       r3, r31
+	bl       efxPafuPafu__Q24Game5OnyonFv
 
-	.loc_0xB8:
-	  lhz       r0, 0x22E(r31)
-	  cmplwi    r0, 0x2
-	  bgt-      .loc_0x1EC
-	  lbz       r0, 0x224(r31)
-	  cmpwi     r0, 0x2
-	  beq-      .loc_0x16C
-	  bge-      .loc_0x1EC
-	  cmpwi     r0, 0
-	  beq-      .loc_0x1EC
-	  bge-      .loc_0xE8
-	  b         .loc_0x1EC
-	  b         .loc_0x1EC
+lbl_801775C8:
+	lhz      r0, 0x22e(r31)
+	cmplwi   r0, 2
+	bgt      lbl_801776FC
+	lbz      r0, 0x224(r31)
+	cmpwi    r0, 2
+	beq      lbl_8017767C
+	bge      lbl_801776FC
+	cmpwi    r0, 0
+	beq      lbl_801776FC
+	bge      lbl_801775F8
+	b        lbl_801776FC
+	b        lbl_801776FC
 
-	.loc_0xE8:
-	  lwz       r3, -0x6514(r13)
-	  lfs       f3, -0x58C8(r2)
-	  lfs       f2, 0x54(r3)
-	  lfs       f1, 0x220(r31)
-	  lfs       f0, -0x5908(r2)
-	  fmadds    f1, f3, f2, f1
-	  stfs      f1, 0x220(r31)
-	  lfs       f1, 0x220(r31)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0x1, 0x2
-	  bne-      .loc_0x12C
-	  stfs      f0, 0x220(r31)
-	  li        r0, 0x3
-	  mr        r3, r31
-	  li        r4, 0x1
-	  stb       r0, 0x224(r31)
-	  bl        0x18A4
+lbl_801775F8:
+	lwz      r3, sys@sda21(r13)
+	lfs      f3, lbl_80518A98@sda21(r2)
+	lfs      f2, 0x54(r3)
+	lfs      f1, 0x220(r31)
+	lfs      f0, lbl_80518A58@sda21(r2)
+	fmadds   f1, f3, f2, f1
+	stfs     f1, 0x220(r31)
+	lfs      f1, 0x220(r31)
+	fcmpo    cr0, f1, f0
+	cror     2, 1, 2
+	bne      lbl_8017763C
+	stfs     f0, 0x220(r31)
+	li       r0, 3
+	mr       r3, r31
+	li       r4, 1
+	stb      r0, 0x224(r31)
+	bl       setSpotEffect__Q24Game5OnyonFb
 
-	.loc_0x12C:
-	  lfs       f1, 0x220(r31)
-	  lis       r3, 0x8051
-	  lfs       f0, -0x5908(r2)
-	  addi      r5, r3, 0x41E4
-	  stfs      f1, 0x8(r1)
-	  addi      r3, r1, 0x38
-	  addi      r4, r1, 0x8
-	  addi      r6, r31, 0x19C
-	  stfs      f0, 0xC(r1)
-	  stfs      f1, 0x10(r1)
-	  bl        0x2B0C74
-	  lwz       r4, 0x1F4(r31)
-	  addi      r3, r1, 0x38
-	  addi      r4, r4, 0x8
-	  bl        -0x8D3A8
-	  b         .loc_0x1EC
+lbl_8017763C:
+	lfs      f1, 0x220(r31)
+	lis      r3, "zero__10Vector3<f>"@ha
+	lfs      f0, lbl_80518A58@sda21(r2)
+	addi     r5, r3, "zero__10Vector3<f>"@l
+	stfs     f1, 8(r1)
+	addi     r3, r1, 0x38
+	addi     r4, r1, 8
+	addi     r6, r31, 0x19c
+	stfs     f0, 0xc(r1)
+	stfs     f1, 0x10(r1)
+	bl       "makeSRT__7MatrixfFR10Vector3<f>R10Vector3<f>R10Vector3<f>"
+	lwz      r4, 0x1f4(r31)
+	addi     r3, r1, 0x38
+	addi     r4, r4, 8
+	bl       PSMTXCopy
+	b        lbl_801776FC
 
-	.loc_0x16C:
-	  lwz       r3, -0x6514(r13)
-	  lfs       f3, -0x58C8(r2)
-	  lfs       f2, 0x54(r3)
-	  lfs       f1, 0x220(r31)
-	  lfs       f0, -0x5934(r2)
-	  fnmsubs   f1, f3, f2, f1
-	  stfs      f1, 0x220(r31)
-	  lfs       f1, 0x220(r31)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0, 0x2
-	  bne-      .loc_0x1B0
-	  stfs      f0, 0x220(r31)
-	  li        r0, 0
-	  mr        r3, r31
-	  li        r4, 0
-	  stb       r0, 0x224(r31)
-	  bl        0x1820
+lbl_8017767C:
+	lwz      r3, sys@sda21(r13)
+	lfs      f3, lbl_80518A98@sda21(r2)
+	lfs      f2, 0x54(r3)
+	lfs      f1, 0x220(r31)
+	lfs      f0, lbl_80518A2C@sda21(r2)
+	fnmsubs  f1, f3, f2, f1
+	stfs     f1, 0x220(r31)
+	lfs      f1, 0x220(r31)
+	fcmpo    cr0, f1, f0
+	cror     2, 0, 2
+	bne      lbl_801776C0
+	stfs     f0, 0x220(r31)
+	li       r0, 0
+	mr       r3, r31
+	li       r4, 0
+	stb      r0, 0x224(r31)
+	bl       setSpotEffect__Q24Game5OnyonFb
 
-	.loc_0x1B0:
-	  lfs       f1, 0x220(r31)
-	  lis       r3, 0x8051
-	  lfs       f0, -0x5908(r2)
-	  addi      r5, r3, 0x41E4
-	  stfs      f1, 0x14(r1)
-	  addi      r3, r1, 0x68
-	  addi      r4, r1, 0x14
-	  addi      r6, r31, 0x19C
-	  stfs      f0, 0x18(r1)
-	  stfs      f1, 0x1C(r1)
-	  bl        0x2B0BF0
-	  lwz       r4, 0x1F4(r31)
-	  addi      r3, r1, 0x68
-	  addi      r4, r4, 0x8
-	  bl        -0x8D42C
+lbl_801776C0:
+	lfs      f1, 0x220(r31)
+	lis      r3, "zero__10Vector3<f>"@ha
+	lfs      f0, lbl_80518A58@sda21(r2)
+	addi     r5, r3, "zero__10Vector3<f>"@l
+	stfs     f1, 0x14(r1)
+	addi     r3, r1, 0x68
+	addi     r4, r1, 0x14
+	addi     r6, r31, 0x19c
+	stfs     f0, 0x18(r1)
+	stfs     f1, 0x1c(r1)
+	bl       "makeSRT__7MatrixfFR10Vector3<f>R10Vector3<f>R10Vector3<f>"
+	lwz      r4, 0x1f4(r31)
+	addi     r3, r1, 0x68
+	addi     r4, r4, 8
+	bl       PSMTXCopy
 
-	.loc_0x1EC:
-	  lhz       r0, 0x22E(r31)
-	  cmplwi    r0, 0x4
-	  bne-      .loc_0x300
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0xB8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x230
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0xBC(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x300
+lbl_801776FC:
+	lhz      r0, 0x22e(r31)
+	cmplwi   r0, 4
+	bne      lbl_80177810
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r12, 0xb8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80177740
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r12, 0xbc(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80177810
 
-	.loc_0x230:
-	  lbz       r0, 0x240(r31)
-	  cmplwi    r0, 0x4
-	  bne-      .loc_0x254
-	  lfs       f1, 0x1D4(r31)
-	  lfs       f0, -0x5908(r2)
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x254
-	  lfs       f0, -0x5930(r2)
-	  stfs      f0, 0x1D4(r31)
+lbl_80177740:
+	lbz      r0, 0x240(r31)
+	cmplwi   r0, 4
+	bne      lbl_80177764
+	lfs      f1, 0x1d4(r31)
+	lfs      f0, lbl_80518A58@sda21(r2)
+	fcmpo    cr0, f1, f0
+	bge      lbl_80177764
+	lfs      f0, lbl_80518A30@sda21(r2)
+	stfs     f0, 0x1d4(r31)
 
-	.loc_0x254:
-	  lbz       r0, 0x240(r31)
-	  cmplwi    r0, 0x3
-	  bne-      .loc_0x300
-	  lwz       r3, -0x6514(r13)
-	  lfs       f2, 0x244(r31)
-	  lfs       f1, 0x54(r3)
-	  lfs       f0, -0x58AC(r2)
-	  fadds     f1, f2, f1
-	  stfs      f1, 0x244(r31)
-	  lfs       f1, 0x244(r31)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x300
-	  addi      r3, r31, 0x1A8
-	  li        r4, 0x1
-	  bl        0x2B1664
-	  lbz       r0, 0x1C0(r31)
-	  lfs       f0, -0x5930(r2)
-	  ori       r0, r0, 0x2
-	  stb       r0, 0x1C0(r31)
-	  stfs      f0, 0x1D4(r31)
-	  lwz       r3, 0x214(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  li        r0, 0x4
-	  li        r4, 0x3835
-	  stb       r0, 0x240(r31)
-	  lwz       r3, -0x6B70(r13)
-	  lbz       r0, 0x2F(r3)
-	  rlwinm.   r0,r0,0,31,31
-	  beq-      .loc_0x2D8
-	  li        r4, 0x382E
+lbl_80177764:
+	lbz      r0, 0x240(r31)
+	cmplwi   r0, 3
+	bne      lbl_80177810
+	lwz      r3, sys@sda21(r13)
+	lfs      f2, 0x244(r31)
+	lfs      f1, 0x54(r3)
+	lfs      f0, lbl_80518AB4@sda21(r2)
+	fadds    f1, f2, f1
+	stfs     f1, 0x244(r31)
+	lfs      f1, 0x244(r31)
+	fcmpo    cr0, f1, f0
+	ble      lbl_80177810
+	addi     r3, r31, 0x1a8
+	li       r4, 1
+	bl       setFrameByKeyType__Q28SysShape8AnimatorFUl
+	lbz      r0, 0x1c0(r31)
+	lfs      f0, lbl_80518A30@sda21(r2)
+	ori      r0, r0, 2
+	stb      r0, 0x1c0(r31)
+	stfs     f0, 0x1d4(r31)
+	lwz      r3, 0x214(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	li       r0, 4
+	li       r4, 0x3835
+	stb      r0, 0x240(r31)
+	lwz      r3, playData__4Game@sda21(r13)
+	lbz      r0, 0x2f(r3)
+	clrlwi.  r0, r0, 0x1f
+	beq      lbl_801777E8
+	li       r4, 0x382e
 
-	.loc_0x2D8:
-	  lwz       r12, 0x0(r31)
-	  mr        r3, r31
-	  lwz       r12, 0x1C0(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x210(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
+lbl_801777E8:
+	lwz      r12, 0(r31)
+	mr       r3, r31
+	lwz      r12, 0x1c0(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 0x210(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x300:
-	  lwz       r0, 0xA4(r1)
-	  lwz       r31, 0x9C(r1)
-	  lwz       r30, 0x98(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0xA0
-	  blr
+lbl_80177810:
+	lwz      r0, 0xa4(r1)
+	lwz      r31, 0x9c(r1)
+	lwz      r30, 0x98(r1)
+	mtlr     r0
+	addi     r1, r1, 0xa0
+	blr
 	*/
 }
 
@@ -3477,39 +4538,38 @@ void Onyon::doAI(void)
 void Onyon::forceClose(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lhz       r0, 0x22E(r3)
-	  cmplwi    r0, 0x4
-	  bne-      .loc_0x64
-	  addi      r3, r31, 0x1A8
-	  li        r4, 0x3E8
-	  bl        0x2B15B0
-	  lfs       f0, -0x5934(r2)
-	  stfs      f0, 0x1D4(r31)
-	  lwz       r3, 0x214(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  li        r0, 0x5
-	  stb       r0, 0x240(r31)
-	  lwz       r3, 0x210(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lhz      r0, 0x22e(r3)
+	cmplwi   r0, 4
+	bne      lbl_8017788C
+	addi     r3, r31, 0x1a8
+	li       r4, 0x3e8
+	bl       setFrameByKeyType__Q28SysShape8AnimatorFUl
+	lfs      f0, lbl_80518A2C@sda21(r2)
+	stfs     f0, 0x1d4(r31)
+	lwz      r3, 0x214(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	li       r0, 5
+	stb      r0, 0x240(r31)
+	lwz      r3, 0x210(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x64:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8017788C:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -3521,41 +4581,40 @@ void Onyon::forceClose(void)
 void Onyon::do_updateLOD(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r3
-	  addi      r3, r1, 0x8
-	  bl        0x5FF50
-	  lhz       r0, 0x22E(r31)
-	  cmplwi    r0, 0x3
-	  bne-      .loc_0x30
-	  li        r0, 0x1
-	  stb       r0, 0x10(r1)
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r3
+	addi     r3, r1, 8
+	bl       __ct__Q24Game9AILODParmFv
+	lhz      r0, 0x22e(r31)
+	cmplwi   r0, 3
+	bne      lbl_801778D0
+	li       r0, 1
+	stb      r0, 0x10(r1)
 
-	.loc_0x30:
-	  mr        r3, r31
-	  addi      r4, r1, 0x8
-	  bl        0x5FF64
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0xB8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x64
-	  lbz       r0, 0xD8(r31)
-	  ori       r0, r0, 0x34
-	  stb       r0, 0xD8(r31)
+lbl_801778D0:
+	mr       r3, r31
+	addi     r4, r1, 8
+	bl       updateLOD__Q24Game8CreatureFRQ24Game9AILODParm
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r12, 0xb8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80177904
+	lbz      r0, 0xd8(r31)
+	ori      r0, r0, 0x34
+	stb      r0, 0xd8(r31)
 
-	.loc_0x64:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80177904:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -3567,32 +4626,31 @@ void Onyon::do_updateLOD(void)
 void Onyon::getLODCylinder(Sys::Cylinder&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lfs       f0, -0x5910(r2)
-	  stw       r0, 0x24(r1)
-	  mr        r0, r4
-	  lfs       f1, -0x58D0(r2)
-	  addi      r4, r1, 0x14
-	  lfs       f4, 0x19C(r3)
-	  addi      r5, r1, 0x8
-	  stfs      f4, 0x14(r1)
-	  lfs       f3, 0x1A0(r3)
-	  stfs      f3, 0x18(r1)
-	  fadds     f0, f3, f0
-	  lfs       f2, 0x1A4(r3)
-	  mr        r3, r0
-	  stfs      f2, 0x1C(r1)
-	  stfs      f0, 0x18(r1)
-	  stfs      f4, 0x8(r1)
-	  stfs      f3, 0xC(r1)
-	  stfs      f2, 0x10(r1)
-	  bl        0x2A9CFC
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lfs      f0, lbl_80518A50@sda21(r2)
+	stw      r0, 0x24(r1)
+	mr       r0, r4
+	lfs      f1, lbl_80518A90@sda21(r2)
+	addi     r4, r1, 0x14
+	lfs      f4, 0x19c(r3)
+	addi     r5, r1, 8
+	stfs     f4, 0x14(r1)
+	lfs      f3, 0x1a0(r3)
+	stfs     f3, 0x18(r1)
+	fadds    f0, f3, f0
+	lfs      f2, 0x1a4(r3)
+	mr       r3, r0
+	stfs     f2, 0x1c(r1)
+	stfs     f0, 0x18(r1)
+	stfs     f4, 8(r1)
+	stfs     f3, 0xc(r1)
+	stfs     f2, 0x10(r1)
+	bl       "set__Q23Sys8CylinderFRC10Vector3<f>RC10Vector3<f>f"
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -3604,325 +4662,324 @@ void Onyon::getLODCylinder(Sys::Cylinder&)
 void Onyon::do_doAnimation(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x90(r1)
-	  mflr      r0
-	  stw       r0, 0x94(r1)
-	  stfd      f31, 0x80(r1)
-	  psq_st    f31,0x88(r1),0,0
-	  stw       r31, 0x7C(r1)
-	  stw       r30, 0x78(r1)
-	  stw       r29, 0x74(r1)
-	  mr        r30, r3
-	  lis       r4, 0x8048
-	  lhz       r0, 0x22E(r3)
-	  subi      r31, r4, 0x19E0
-	  cmplwi    r0, 0x4
-	  bne-      .loc_0x1F0
-	  lfs       f1, -0x5934(r2)
-	  lfs       f0, 0x25C(r30)
-	  fcmpu     cr0, f1, f0
-	  beq-      .loc_0x98
-	  li        r4, 0x2
-	  bl        0x27DC
-	  lwz       r4, -0x6514(r13)
-	  lfs       f3, 0x25C(r30)
-	  lfs       f2, 0x54(r4)
-	  lfs       f1, 0x0(r3)
-	  lfs       f0, -0x5930(r2)
-	  fmadds    f1, f3, f2, f1
-	  stfs      f1, 0x0(r3)
-	  lfs       f1, 0x0(r3)
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x88
-	  stfs      f0, 0x0(r3)
-	  lfs       f0, -0x5934(r2)
-	  stfs      f0, 0x25C(r30)
-	  b         .loc_0x98
+	stwu     r1, -0x90(r1)
+	mflr     r0
+	stw      r0, 0x94(r1)
+	stfd     f31, 0x80(r1)
+	psq_st   f31, 136(r1), 0, qr0
+	stw      r31, 0x7c(r1)
+	stw      r30, 0x78(r1)
+	stw      r29, 0x74(r1)
+	mr       r30, r3
+	lis      r4, lbl_8047E620@ha
+	lhz      r0, 0x22e(r3)
+	addi     r31, r4, lbl_8047E620@l
+	cmplwi   r0, 4
+	bne      lbl_80177B6C
+	lfs      f1, lbl_80518A2C@sda21(r2)
+	lfs      f0, 0x25c(r30)
+	fcmpu    cr0, f1, f0
+	beq      lbl_80177A14
+	li       r4, 2
+	bl       getPMotionSpeed__Q24Game5OnyonFi
+	lwz      r4, sys@sda21(r13)
+	lfs      f3, 0x25c(r30)
+	lfs      f2, 0x54(r4)
+	lfs      f1, 0(r3)
+	lfs      f0, lbl_80518A30@sda21(r2)
+	fmadds   f1, f3, f2, f1
+	stfs     f1, 0(r3)
+	lfs      f1, 0(r3)
+	fcmpo    cr0, f1, f0
+	bge      lbl_80177A04
+	stfs     f0, 0(r3)
+	lfs      f0, lbl_80518A2C@sda21(r2)
+	stfs     f0, 0x25c(r30)
+	b        lbl_80177A14
 
-	.loc_0x88:
-	  ble-      .loc_0x98
-	  stfs      f0, 0x0(r3)
-	  lfs       f0, -0x5934(r2)
-	  stfs      f0, 0x25C(r30)
+lbl_80177A04:
+	ble      lbl_80177A14
+	stfs     f0, 0(r3)
+	lfs      f0, lbl_80518A2C@sda21(r2)
+	stfs     f0, 0x25c(r30)
 
-	.loc_0x98:
-	  mr        r3, r30
-	  li        r4, 0x1
-	  bl        0x2788
-	  lfs       f1, 0x0(r3)
-	  lfs       f0, -0x5934(r2)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x1F0
-	  mr        r3, r30
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x100(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  li        r3, 0x2020
-	  bl        0x2F6668
-	  mr.       r29, r3
-	  beq-      .loc_0x124
-	  lfs       f5, -0x5934(r2)
-	  li        r0, 0
-	  lfs       f1, -0x5908(r2)
-	  addi      r3, r1, 0x50
-	  stfs      f5, 0x54(r1)
-	  lfs       f2, -0x58B4(r2)
-	  stfs      f1, 0x50(r1)
-	  lfs       f3, -0x58A8(r2)
-	  stfs      f5, 0x58(r1)
-	  lfs       f4, -0x58E0(r2)
-	  stfs      f5, 0x5C(r1)
-	  stfs      f5, 0x60(r1)
-	  stb       r0, 0x64(r1)
-	  stb       r0, 0x65(r1)
-	  bl        0x1BD0BC
-	  mr        r3, r29
-	  addi      r4, r1, 0x50
-	  bl        0x2F99BC
+lbl_80177A14:
+	mr       r3, r30
+	li       r4, 1
+	bl       getPMotionSpeed__Q24Game5OnyonFi
+	lfs      f1, 0(r3)
+	lfs      f0, lbl_80518A2C@sda21(r2)
+	fcmpo    cr0, f1, f0
+	ble      lbl_80177B6C
+	mr       r3, r30
+	lwz      r12, 0(r30)
+	lwz      r12, 0x100(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	li       r3, 0x2020
+	bl       PSStartSoundVec__FUlP3Vec
+	or.      r29, r3, r3
+	beq      lbl_80177AA0
+	lfs      f5, lbl_80518A2C@sda21(r2)
+	li       r0, 0
+	lfs      f1, lbl_80518A58@sda21(r2)
+	addi     r3, r1, 0x50
+	stfs     f5, 0x54(r1)
+	lfs      f2, lbl_80518AAC@sda21(r2)
+	stfs     f1, 0x50(r1)
+	lfs      f3, lbl_80518AB8@sda21(r2)
+	stfs     f5, 0x58(r1)
+	lfs      f4, lbl_80518A80@sda21(r2)
+	stfs     f5, 0x5c(r1)
+	stfs     f5, 0x60(r1)
+	stb      r0, 0x64(r1)
+	stb      r0, 0x65(r1)
+	bl       set__Q36PSGame10SoundTable11SePerspInfoFfffff
+	mr       r3, r29
+	addi     r4, r1, 0x50
+	bl specializePerspCalc__Q23PSM7SeSoundFRCQ36PSGame10SoundTable11SePerspInfo
 
-	.loc_0x124:
-	  mr        r3, r30
-	  li        r4, 0x1
-	  bl        0x2778
-	  lfs       f31, 0x8(r3)
-	  mr        r3, r30
-	  li        r4, 0x1
-	  bl        0x2768
-	  lfs       f0, -0x58D4(r2)
-	  fcmpo     cr0, f31, f0
-	  ble-      .loc_0x1DC
-	  lfs       f0, -0x58A4(r2)
-	  fcmpo     cr0, f31, f0
-	  bge-      .loc_0x1DC
-	  lbz       r0, -0x6CCC(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x1DC
-	  lwz       r3, 0x17C(r30)
-	  li        r4, 0x3807
-	  li        r5, 0
-	  lwz       r12, 0x28(r3)
-	  lwz       r12, 0x7C(r12)
-	  mtctr     r12
-	  bctrl
-	  mr.       r29, r3
-	  beq-      .loc_0x1D0
-	  lfs       f5, -0x5934(r2)
-	  li        r0, 0
-	  lfs       f1, -0x5908(r2)
-	  addi      r3, r1, 0x38
-	  stfs      f5, 0x3C(r1)
-	  lfs       f2, -0x58A0(r2)
-	  stfs      f1, 0x38(r1)
-	  lfs       f3, -0x58E4(r2)
-	  stfs      f5, 0x40(r1)
-	  lfs       f4, -0x589C(r2)
-	  stfs      f5, 0x44(r1)
-	  stfs      f5, 0x48(r1)
-	  stb       r0, 0x4C(r1)
-	  stb       r0, 0x4D(r1)
-	  bl        0x1BD010
-	  mr        r3, r29
-	  addi      r4, r1, 0x38
-	  bl        0x2F9910
+lbl_80177AA0:
+	mr       r3, r30
+	li       r4, 1
+	bl       getPAnimator__Q24Game5OnyonFi
+	lfs      f31, 8(r3)
+	mr       r3, r30
+	li       r4, 1
+	bl       getPAnimator__Q24Game5OnyonFi
+	lfs      f0, lbl_80518A8C@sda21(r2)
+	fcmpo    cr0, f31, f0
+	ble      lbl_80177B58
+	lfs      f0, lbl_80518ABC@sda21(r2)
+	fcmpo    cr0, f31, f0
+	bge      lbl_80177B58
+	lbz      r0, sVolveFlag@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_80177B58
+	lwz      r3, 0x17c(r30)
+	li       r4, 0x3807
+	li       r5, 0
+	lwz      r12, 0x28(r3)
+	lwz      r12, 0x7c(r12)
+	mtctr    r12
+	bctrl
+	or.      r29, r3, r3
+	beq      lbl_80177B4C
+	lfs      f5, lbl_80518A2C@sda21(r2)
+	li       r0, 0
+	lfs      f1, lbl_80518A58@sda21(r2)
+	addi     r3, r1, 0x38
+	stfs     f5, 0x3c(r1)
+	lfs      f2, lbl_80518AC0@sda21(r2)
+	stfs     f1, 0x38(r1)
+	lfs      f3, lbl_80518A7C@sda21(r2)
+	stfs     f5, 0x40(r1)
+	lfs      f4, lbl_80518AC4@sda21(r2)
+	stfs     f5, 0x44(r1)
+	stfs     f5, 0x48(r1)
+	stb      r0, 0x4c(r1)
+	stb      r0, 0x4d(r1)
+	bl       set__Q36PSGame10SoundTable11SePerspInfoFfffff
+	mr       r3, r29
+	addi     r4, r1, 0x38
+	bl specializePerspCalc__Q23PSM7SeSoundFRCQ36PSGame10SoundTable11SePerspInfo
 
-	.loc_0x1D0:
-	  li        r0, 0x1
-	  stb       r0, -0x6CCC(r13)
-	  b         .loc_0x1F0
+lbl_80177B4C:
+	li       r0, 1
+	stb      r0, sVolveFlag@sda21(r13)
+	b        lbl_80177B6C
 
-	.loc_0x1DC:
-	  lfs       f0, -0x58CC(r2)
-	  fcmpo     cr0, f31, f0
-	  ble-      .loc_0x1F0
-	  li        r0, 0
-	  stb       r0, -0x6CCC(r13)
+lbl_80177B58:
+	lfs      f0, lbl_80518A94@sda21(r2)
+	fcmpo    cr0, f31, f0
+	ble      lbl_80177B6C
+	li       r0, 0
+	stb      r0, sVolveFlag@sda21(r13)
 
-	.loc_0x1F0:
-	  mr        r3, r30
-	  bl        0x272C
-	  lwz       r3, -0x6C18(r13)
-	  lhz       r4, 0x22E(r30)
-	  lbz       r0, 0x3C(r3)
-	  rlwinm.   r0,r0,0,30,30
-	  beq-      .loc_0x44C
-	  cmplwi    r4, 0x4
-	  bne-      .loc_0x3C4
-	  lwz       r3, -0x6B70(r13)
-	  li        r4, 0x3043
-	  lbz       r0, 0x2F(r3)
-	  rlwinm.   r0,r0,0,31,31
-	  beq-      .loc_0x22C
-	  li        r4, 0x3028
+lbl_80177B6C:
+	mr       r3, r30
+	bl       update_pmotions__Q24Game5OnyonFv
+	lwz      r3, gameSystem__4Game@sda21(r13)
+	lhz      r4, 0x22e(r30)
+	lbz      r0, 0x3c(r3)
+	rlwinm.  r0, r0, 0, 0x1e, 0x1e
+	beq      lbl_80177DC8
+	cmplwi   r4, 4
+	bne      lbl_80177D40
+	lwz      r3, playData__4Game@sda21(r13)
+	li       r4, 0x3043
+	lbz      r0, 0x2f(r3)
+	clrlwi.  r0, r0, 0x1f
+	beq      lbl_80177BA8
+	li       r4, 0x3028
 
-	.loc_0x22C:
-	  lwz       r3, 0x17C(r30)
-	  li        r5, 0
-	  lwz       r12, 0x28(r3)
-	  lwz       r12, 0x7C(r12)
-	  mtctr     r12
-	  bctrl
-	  mr.       r29, r3
-	  beq-      .loc_0x44C
-	  lfs       f5, -0x5934(r2)
-	  li        r0, 0
-	  lfs       f1, -0x5908(r2)
-	  addi      r3, r1, 0x20
-	  stfs      f5, 0x24(r1)
-	  lfs       f2, -0x5898(r2)
-	  stfs      f1, 0x20(r1)
-	  lfs       f3, -0x58E4(r2)
-	  stfs      f5, 0x28(r1)
-	  lfs       f4, -0x5894(r2)
-	  stfs      f5, 0x2C(r1)
-	  stfs      f5, 0x30(r1)
-	  stb       r0, 0x34(r1)
-	  stb       r0, 0x35(r1)
-	  bl        0x1BCF4C
-	  mr        r3, r29
-	  addi      r4, r1, 0x20
-	  bl        0x2F984C
-	  lwz       r0, -0x6780(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x2B4
-	  addi      r3, r31, 0xA0
-	  addi      r5, r31, 0x60
-	  li        r4, 0x1D3
-	  crclr     6, 0x6
-	  bl        -0x14D5EC
+lbl_80177BA8:
+	lwz      r3, 0x17c(r30)
+	li       r5, 0
+	lwz      r12, 0x28(r3)
+	lwz      r12, 0x7c(r12)
+	mtctr    r12
+	bctrl
+	or.      r29, r3, r3
+	beq      lbl_80177DC8
+	lfs      f5, lbl_80518A2C@sda21(r2)
+	li       r0, 0
+	lfs      f1, lbl_80518A58@sda21(r2)
+	addi     r3, r1, 0x20
+	stfs     f5, 0x24(r1)
+	lfs      f2, lbl_80518AC8@sda21(r2)
+	stfs     f1, 0x20(r1)
+	lfs      f3, lbl_80518A7C@sda21(r2)
+	stfs     f5, 0x28(r1)
+	lfs      f4, lbl_80518ACC@sda21(r2)
+	stfs     f5, 0x2c(r1)
+	stfs     f5, 0x30(r1)
+	stb      r0, 0x34(r1)
+	stb      r0, 0x35(r1)
+	bl       set__Q36PSGame10SoundTable11SePerspInfoFfffff
+	mr       r3, r29
+	addi     r4, r1, 0x20
+	bl specializePerspCalc__Q23PSM7SeSoundFRCQ36PSGame10SoundTable11SePerspInfo
+	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_80177C30
+	addi     r3, r31, 0xa0
+	addi     r5, r31, 0x60
+	li       r4, 0x1d3
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x2B4:
-	  lwz       r30, -0x6780(r13)
-	  cmplwi    r30, 0
-	  bne-      .loc_0x2D4
-	  addi      r3, r31, 0xA0
-	  addi      r5, r31, 0x60
-	  li        r4, 0x1DC
-	  crclr     6, 0x6
-	  bl        -0x14D60C
+lbl_80177C30:
+	lwz      r30, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r30, 0
+	bne      lbl_80177C50
+	addi     r3, r31, 0xa0
+	addi     r5, r31, 0x60
+	li       r4, 0x1dc
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x2D4:
-	  lwz       r0, 0x4(r30)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x2F4
-	  addi      r3, r31, 0xAC
-	  addi      r5, r31, 0x60
-	  li        r4, 0xCF
-	  crclr     6, 0x6
-	  bl        -0x14D62C
+lbl_80177C50:
+	lwz      r0, 4(r30)
+	cmplwi   r0, 0
+	bne      lbl_80177C70
+	addi     r3, r31, 0xac
+	addi     r5, r31, 0x60
+	li       r4, 0xcf
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x2F4:
-	  lwz       r3, 0x4(r30)
-	  lwz       r30, 0x4(r3)
-	  cmplwi    r30, 0
-	  bne-      .loc_0x318
-	  addi      r3, r31, 0xAC
-	  addi      r5, r31, 0xB8
-	  li        r4, 0xD1
-	  crclr     6, 0x6
-	  bl        -0x14D650
+lbl_80177C70:
+	lwz      r3, 4(r30)
+	lwz      r30, 4(r3)
+	cmplwi   r30, 0
+	bne      lbl_80177C94
+	addi     r3, r31, 0xac
+	addi     r5, r31, 0xb8
+	li       r4, 0xd1
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x318:
-	  mr        r3, r30
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x40(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x338
-	  b         .loc_0x33C
+lbl_80177C94:
+	mr       r3, r30
+	lwz      r12, 0(r30)
+	lwz      r12, 0x40(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80177CB4
+	b        lbl_80177CB8
 
-	.loc_0x338:
-	  li        r30, 0
+lbl_80177CB4:
+	li       r30, 0
 
-	.loc_0x33C:
-	  cmplwi    r30, 0
-	  beq-      .loc_0x44C
-	  lwz       r3, 0x4C(r30)
-	  cmplwi    r3, 0x186
-	  bge-      .loc_0x3A0
-	  lis       r0, 0x4330
-	  stw       r3, 0x6C(r1)
-	  lfd       f1, -0x5880(r2)
-	  li        r3, 0x1
-	  stw       r0, 0x68(r1)
-	  lfs       f2, -0x5934(r2)
-	  lfd       f0, 0x68(r1)
-	  lfs       f3, -0x5890(r2)
-	  fsubs     f1, f0, f1
-	  lfs       f4, -0x588C(r2)
-	  lfs       f5, -0x5908(r2)
-	  bl        -0xBDAB4
-	  mr        r3, r29
-	  li        r4, 0
-	  lwz       r12, 0x10(r29)
-	  li        r5, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x44C
+lbl_80177CB8:
+	cmplwi   r30, 0
+	beq      lbl_80177DC8
+	lwz      r3, 0x4c(r30)
+	cmplwi   r3, 0x186
+	bge      lbl_80177D1C
+	lis      r0, 0x4330
+	stw      r3, 0x6c(r1)
+	lfd      f1, lbl_80518AE0@sda21(r2)
+	li       r3, 1
+	stw      r0, 0x68(r1)
+	lfs      f2, lbl_80518A2C@sda21(r2)
+	lfd      f0, 0x68(r1)
+	lfs      f3, lbl_80518AD0@sda21(r2)
+	fsubs    f1, f0, f1
+	lfs      f4, lbl_80518AD4@sda21(r2)
+	lfs      f5, lbl_80518A58@sda21(r2)
+	bl       linearTransform__7JALCalcFfffffb
+	mr       r3, r29
+	li       r4, 0
+	lwz      r12, 0x10(r29)
+	li       r5, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_80177DC8
 
-	.loc_0x3A0:
-	  mr        r3, r29
-	  lfs       f1, -0x5908(r2)
-	  lwz       r12, 0x10(r29)
-	  li        r4, 0
-	  li        r5, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x44C
+lbl_80177D1C:
+	mr       r3, r29
+	lfs      f1, lbl_80518A58@sda21(r2)
+	lwz      r12, 0x10(r29)
+	li       r4, 0
+	li       r5, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_80177DC8
 
-	.loc_0x3C4:
-	  cmplwi    r4, 0x3
-	  bne-      .loc_0x44C
-	  lwz       r3, -0x6B70(r13)
-	  li        r4, 0x3044
-	  lbz       r0, 0x2F(r3)
-	  rlwinm.   r0,r0,0,31,31
-	  beq-      .loc_0x3E4
-	  li        r4, 0x302B
+lbl_80177D40:
+	cmplwi   r4, 3
+	bne      lbl_80177DC8
+	lwz      r3, playData__4Game@sda21(r13)
+	li       r4, 0x3044
+	lbz      r0, 0x2f(r3)
+	clrlwi.  r0, r0, 0x1f
+	beq      lbl_80177D60
+	li       r4, 0x302b
 
-	.loc_0x3E4:
-	  lwz       r3, 0x17C(r30)
-	  li        r5, 0
-	  lwz       r12, 0x28(r3)
-	  lwz       r12, 0x7C(r12)
-	  mtctr     r12
-	  bctrl
-	  mr.       r29, r3
-	  beq-      .loc_0x44C
-	  lfs       f5, -0x5934(r2)
-	  li        r0, 0
-	  lfs       f1, -0x5908(r2)
-	  addi      r3, r1, 0x8
-	  stfs      f5, 0xC(r1)
-	  lfs       f2, -0x58E0(r2)
-	  stfs      f1, 0x8(r1)
-	  lfs       f3, -0x5888(r2)
-	  stfs      f5, 0x10(r1)
-	  lfs       f4, -0x5894(r2)
-	  stfs      f5, 0x14(r1)
-	  stfs      f5, 0x18(r1)
-	  stb       r0, 0x1C(r1)
-	  stb       r0, 0x1D(r1)
-	  bl        0x1BCD94
-	  mr        r3, r29
-	  addi      r4, r1, 0x8
-	  bl        0x2F9694
+lbl_80177D60:
+	lwz      r3, 0x17c(r30)
+	li       r5, 0
+	lwz      r12, 0x28(r3)
+	lwz      r12, 0x7c(r12)
+	mtctr    r12
+	bctrl
+	or.      r29, r3, r3
+	beq      lbl_80177DC8
+	lfs      f5, lbl_80518A2C@sda21(r2)
+	li       r0, 0
+	lfs      f1, lbl_80518A58@sda21(r2)
+	addi     r3, r1, 8
+	stfs     f5, 0xc(r1)
+	lfs      f2, lbl_80518A80@sda21(r2)
+	stfs     f1, 8(r1)
+	lfs      f3, lbl_80518AD8@sda21(r2)
+	stfs     f5, 0x10(r1)
+	lfs      f4, lbl_80518ACC@sda21(r2)
+	stfs     f5, 0x14(r1)
+	stfs     f5, 0x18(r1)
+	stb      r0, 0x1c(r1)
+	stb      r0, 0x1d(r1)
+	bl       set__Q36PSGame10SoundTable11SePerspInfoFfffff
+	mr       r3, r29
+	addi     r4, r1, 8
+	bl specializePerspCalc__Q23PSM7SeSoundFRCQ36PSGame10SoundTable11SePerspInfo
 
-	.loc_0x44C:
-	  psq_l     f31,0x88(r1),0,0
-	  lwz       r0, 0x94(r1)
-	  lfd       f31, 0x80(r1)
-	  lwz       r31, 0x7C(r1)
-	  lwz       r30, 0x78(r1)
-	  lwz       r29, 0x74(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x90
-	  blr
+lbl_80177DC8:
+	psq_l    f31, 136(r1), 0, qr0
+	lwz      r0, 0x94(r1)
+	lfd      f31, 0x80(r1)
+	lwz      r31, 0x7c(r1)
+	lwz      r30, 0x78(r1)
+	lwz      r29, 0x74(r1)
+	mtlr     r0
+	addi     r1, r1, 0x90
+	blr
 	*/
 }
 
@@ -3934,9 +4991,8 @@ void Onyon::do_doAnimation(void)
 void BaseItem::getSound_PosPtr(void)
 {
 	/*
-	.loc_0x0:
-	  addi      r3, r3, 0x19C
-	  blr
+	addi     r3, r3, 0x19c
+	blr
 	*/
 }
 
@@ -3958,129 +5014,128 @@ void Onyon::initTube(void)
 void Onyon::startWaitMotion(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stfd      f31, 0x10(r1)
-	  psq_st    f31,0x18(r1),0,0
-	  stw       r31, 0xC(r1)
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lhz       r0, 0x22E(r3)
-	  cmplwi    r0, 0x4
-	  bne-      .loc_0xE0
-	  lwz       r3, -0x6B70(r13)
-	  li        r4, 0x4
-	  addi      r3, r3, 0xA8
-	  bl        0x79784
-	  lwz       r5, -0x6B70(r13)
-	  mr        r31, r3
-	  li        r4, 0x3
-	  addi      r3, r5, 0xA8
-	  bl        0x79770
-	  add.      r0, r31, r3
-	  ble-      .loc_0xA0
-	  lfs       f31, -0x5930(r2)
-	  mr        r3, r30
-	  li        r4, 0x1
-	  bl        0x234C
-	  stfs      f31, 0x0(r3)
-	  li        r4, 0
-	  lwz       r3, 0x218(r30)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x21C(r30)
-	  li        r4, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x178
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stfd     f31, 0x10(r1)
+	psq_st   f31, 24(r1), 0, qr0
+	stw      r31, 0xc(r1)
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lhz      r0, 0x22e(r3)
+	cmplwi   r0, 4
+	bne      lbl_80177ED4
+	lwz      r3, playData__4Game@sda21(r13)
+	li       r4, 4
+	addi     r3, r3, 0xa8
+	bl       getColorSum__Q24Game13PikiContainerFi
+	lwz      r5, playData__4Game@sda21(r13)
+	mr       r31, r3
+	li       r4, 3
+	addi     r3, r5, 0xa8
+	bl       getColorSum__Q24Game13PikiContainerFi
+	add.     r0, r31, r3
+	ble      lbl_80177E94
+	lfs      f31, lbl_80518A30@sda21(r2)
+	mr       r3, r30
+	li       r4, 1
+	bl       getPMotionSpeed__Q24Game5OnyonFi
+	stfs     f31, 0(r3)
+	li       r4, 0
+	lwz      r3, 0x218(r30)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 0x21c(r30)
+	li       r4, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_80177F6C
 
-	.loc_0xA0:
-	  lwz       r3, 0x218(r30)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x21C(r30)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f31, -0x5934(r2)
-	  mr        r3, r30
-	  li        r4, 0x1
-	  bl        0x22DC
-	  stfs      f31, 0x0(r3)
-	  b         .loc_0x178
+lbl_80177E94:
+	lwz      r3, 0x218(r30)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 0x21c(r30)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	lfs      f31, lbl_80518A2C@sda21(r2)
+	mr       r3, r30
+	li       r4, 1
+	bl       getPMotionSpeed__Q24Game5OnyonFi
+	stfs     f31, 0(r3)
+	b        lbl_80177F6C
 
-	.loc_0xE0:
-	  lfs       f0, -0x5930(r2)
-	  stfs      f0, 0x1D4(r30)
-	  lhz       r0, 0x22E(r30)
-	  cmplwi    r0, 0x3
-	  bne-      .loc_0x108
-	  addi      r3, r30, 0x1A8
-	  li        r4, 0
-	  li        r5, 0
-	  bl        0x2B0D94
-	  b         .loc_0x178
+lbl_80177ED4:
+	lfs      f0, lbl_80518A30@sda21(r2)
+	stfs     f0, 0x1d4(r30)
+	lhz      r0, 0x22e(r30)
+	cmplwi   r0, 3
+	bne      lbl_80177EFC
+	addi     r3, r30, 0x1a8
+	li       r4, 0
+	li       r5, 0
+	bl       startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
+	b        lbl_80177F6C
 
-	.loc_0x108:
-	  bl        0x16A0
-	  cmpwi     r3, 0
-	  ble-      .loc_0x15C
-	  lwz       r3, 0x1B4(r30)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x128
-	  lha       r0, 0x20(r3)
-	  b         .loc_0x12C
+lbl_80177EFC:
+	bl       getStoreCount__Q24Game5OnyonFv
+	cmpwi    r3, 0
+	ble      lbl_80177F50
+	lwz      r3, 0x1b4(r30)
+	cmplwi   r3, 0
+	beq      lbl_80177F1C
+	lha      r0, 0x20(r3)
+	b        lbl_80177F20
 
-	.loc_0x128:
-	  li        r0, -0x1
+lbl_80177F1C:
+	li       r0, -1
 
-	.loc_0x12C:
-	  cmplwi    r0, 0x1
-	  ble-      .loc_0x13C
-	  cmpwi     r0, 0x3
-	  bne-      .loc_0x178
+lbl_80177F20:
+	cmplwi   r0, 1
+	ble      lbl_80177F30
+	cmpwi    r0, 3
+	bne      lbl_80177F6C
 
-	.loc_0x13C:
-	  cmplwi    r30, 0
-	  mr        r5, r30
-	  beq-      .loc_0x14C
-	  addi      r5, r30, 0x178
+lbl_80177F30:
+	cmplwi   r30, 0
+	mr       r5, r30
+	beq      lbl_80177F40
+	addi     r5, r30, 0x178
 
-	.loc_0x14C:
-	  addi      r3, r30, 0x1A8
-	  li        r4, 0x2
-	  bl        0x2B0D40
-	  b         .loc_0x178
+lbl_80177F40:
+	addi     r3, r30, 0x1a8
+	li       r4, 2
+	bl       startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
+	b        lbl_80177F6C
 
-	.loc_0x15C:
-	  cmplwi    r30, 0
-	  mr        r5, r30
-	  beq-      .loc_0x16C
-	  addi      r5, r30, 0x178
+lbl_80177F50:
+	cmplwi   r30, 0
+	mr       r5, r30
+	beq      lbl_80177F60
+	addi     r5, r30, 0x178
 
-	.loc_0x16C:
-	  addi      r3, r30, 0x1A8
-	  li        r4, 0
-	  bl        0x2B0D20
+lbl_80177F60:
+	addi     r3, r30, 0x1a8
+	li       r4, 0
+	bl       startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
 
-	.loc_0x178:
-	  psq_l     f31,0x18(r1),0,0
-	  lwz       r0, 0x24(r1)
-	  lfd       f31, 0x10(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80177F6C:
+	psq_l    f31, 24(r1), 0, qr0
+	lwz      r0, 0x24(r1)
+	lfd      f31, 0x10(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -4092,45 +5147,44 @@ void Onyon::startWaitMotion(void)
 void Onyon::onKeyEvent_UFO(SysShape::KeyEvent const&)
 {
 	/*
-	.loc_0x0:
-	  lwz       r0, 0x1C(r4)
-	  cmpwi     r0, 0x1
-	  beq-      .loc_0x48
-	  bge-      .loc_0x1C
-	  cmpwi     r0, 0
-	  bge-      .loc_0x28
-	  blr
+	lwz      r0, 0x1c(r4)
+	cmpwi    r0, 1
+	beq      lbl_80177FD4
+	bge      lbl_80177FA8
+	cmpwi    r0, 0
+	bge      lbl_80177FB4
+	blr
 
-	.loc_0x1C:
-	  cmpwi     r0, 0x3E8
-	  beq-      .loc_0x6C
-	  blr
+lbl_80177FA8:
+	cmpwi    r0, 0x3e8
+	beq      lbl_80177FF8
+	blr
 
-	.loc_0x28:
-	  lbz       r0, 0x240(r3)
-	  cmplwi    r0, 0
-	  bnelr-
-	  lfs       f0, -0x5934(r2)
-	  li        r0, 0x1
-	  stfs      f0, 0x1D4(r3)
-	  stb       r0, 0x240(r3)
-	  blr
+lbl_80177FB4:
+	lbz      r0, 0x240(r3)
+	cmplwi   r0, 0
+	bnelr
+	lfs      f0, lbl_80518A2C@sda21(r2)
+	li       r0, 1
+	stfs     f0, 0x1d4(r3)
+	stb      r0, 0x240(r3)
+	blr
 
-	.loc_0x48:
-	  lbz       r0, 0x240(r3)
-	  cmplwi    r0, 0x2
-	  bnelr-
-	  li        r0, 0x3
-	  lfs       f0, -0x5934(r2)
-	  stb       r0, 0x240(r3)
-	  stfs      f0, 0x244(r3)
-	  stfs      f0, 0x1D4(r3)
-	  blr
+lbl_80177FD4:
+	lbz      r0, 0x240(r3)
+	cmplwi   r0, 2
+	bnelr
+	li       r0, 3
+	lfs      f0, lbl_80518A2C@sda21(r2)
+	stb      r0, 0x240(r3)
+	stfs     f0, 0x244(r3)
+	stfs     f0, 0x1d4(r3)
+	blr
 
-	.loc_0x6C:
-	  li        r0, 0x5
-	  stb       r0, 0x240(r3)
-	  blr
+lbl_80177FF8:
+	li       r0, 5
+	stb      r0, 0x240(r3)
+	blr
 	*/
 }
 
@@ -4142,92 +5196,91 @@ void Onyon::onKeyEvent_UFO(SysShape::KeyEvent const&)
 void Onyon::getFlagSetPos(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x60(r1)
-	  mflr      r0
-	  stw       r0, 0x64(r1)
-	  stfd      f31, 0x50(r1)
-	  psq_st    f31,0x58(r1),0,0
-	  stfd      f30, 0x40(r1)
-	  psq_st    f30,0x48(r1),0,0
-	  stw       r31, 0x3C(r1)
-	  stw       r30, 0x38(r1)
-	  mr        r31, r4
-	  mr        r30, r3
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x64(r12)
-	  mtctr     r12
-	  bctrl
-	  fmr       f2, f1
-	  lfs       f0, -0x5934(r2)
-	  fcmpo     cr0, f2, f0
-	  bge-      .loc_0x54
-	  fneg      f2, f2
+	stwu     r1, -0x60(r1)
+	mflr     r0
+	stw      r0, 0x64(r1)
+	stfd     f31, 0x50(r1)
+	psq_st   f31, 88(r1), 0, qr0
+	stfd     f30, 0x40(r1)
+	psq_st   f30, 72(r1), 0, qr0
+	stw      r31, 0x3c(r1)
+	stw      r30, 0x38(r1)
+	mr       r31, r4
+	mr       r30, r3
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r12, 0x64(r12)
+	mtctr    r12
+	bctrl
+	fmr      f2, f1
+	lfs      f0, lbl_80518A2C@sda21(r2)
+	fcmpo    cr0, f2, f0
+	bge      lbl_80178058
+	fneg     f2, f2
 
-	.loc_0x54:
-	  lfs       f3, -0x5900(r2)
-	  lis       r3, 0x8050
-	  lfs       f0, -0x5934(r2)
-	  addi      r4, r3, 0x71A0
-	  fmuls     f2, f2, f3
-	  lfs       f4, -0x5910(r2)
-	  fcmpo     cr0, f1, f0
-	  fctiwz    f0, f2
-	  stfd      f0, 0x18(r1)
-	  lwz       r0, 0x1C(r1)
-	  rlwinm    r0,r0,3,18,28
-	  add       r3, r4, r0
-	  lfs       f0, 0x4(r3)
-	  fmuls     f31, f4, f0
-	  bge-      .loc_0xB4
-	  lfs       f0, -0x58FC(r2)
-	  fmuls     f0, f1, f0
-	  fctiwz    f0, f0
-	  stfd      f0, 0x20(r1)
-	  lwz       r0, 0x24(r1)
-	  rlwinm    r0,r0,3,18,28
-	  lfsx      f0, r4, r0
-	  fneg      f30, f0
-	  b         .loc_0xCC
+lbl_80178058:
+	lfs      f3, lbl_80518A60@sda21(r2)
+	lis      r3, sincosTable___5JMath@ha
+	lfs      f0, lbl_80518A2C@sda21(r2)
+	addi     r4, r3, sincosTable___5JMath@l
+	fmuls    f2, f2, f3
+	lfs      f4, lbl_80518A50@sda21(r2)
+	fcmpo    cr0, f1, f0
+	fctiwz   f0, f2
+	stfd     f0, 0x18(r1)
+	lwz      r0, 0x1c(r1)
+	rlwinm   r0, r0, 3, 0x12, 0x1c
+	add      r3, r4, r0
+	lfs      f0, 4(r3)
+	fmuls    f31, f4, f0
+	bge      lbl_801780B8
+	lfs      f0, lbl_80518A64@sda21(r2)
+	fmuls    f0, f1, f0
+	fctiwz   f0, f0
+	stfd     f0, 0x20(r1)
+	lwz      r0, 0x24(r1)
+	rlwinm   r0, r0, 3, 0x12, 0x1c
+	lfsx     f0, r4, r0
+	fneg     f30, f0
+	b        lbl_801780D0
 
-	.loc_0xB4:
-	  fmuls     f0, f1, f3
-	  fctiwz    f0, f0
-	  stfd      f0, 0x28(r1)
-	  lwz       r0, 0x2C(r1)
-	  rlwinm    r0,r0,3,18,28
-	  lfsx      f30, r4, r0
+lbl_801780B8:
+	fmuls    f0, f1, f3
+	fctiwz   f0, f0
+	stfd     f0, 0x28(r1)
+	lwz      r0, 0x2c(r1)
+	rlwinm   r0, r0, 3, 0x12, 0x1c
+	lfsx     f30, r4, r0
 
-	.loc_0xCC:
-	  mr        r4, r31
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f0, -0x5910(r2)
-	  lfs       f4, 0x10(r1)
-	  fmuls     f1, f0, f30
-	  lfs       f2, 0x8(r1)
-	  lfs       f3, 0xC(r1)
-	  fadds     f4, f4, f31
-	  lfs       f0, -0x5934(r2)
-	  fadds     f2, f2, f1
-	  fadds     f3, f3, f0
-	  stfs      f2, 0x0(r30)
-	  stfs      f3, 0x4(r30)
-	  stfs      f4, 0x8(r30)
-	  psq_l     f31,0x58(r1),0,0
-	  lfd       f31, 0x50(r1)
-	  psq_l     f30,0x48(r1),0,0
-	  lfd       f30, 0x40(r1)
-	  lwz       r31, 0x3C(r1)
-	  lwz       r0, 0x64(r1)
-	  lwz       r30, 0x38(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x60
-	  blr
+lbl_801780D0:
+	mr       r4, r31
+	addi     r3, r1, 8
+	lwz      r12, 0(r31)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f0, lbl_80518A50@sda21(r2)
+	lfs      f4, 0x10(r1)
+	fmuls    f1, f0, f30
+	lfs      f2, 8(r1)
+	lfs      f3, 0xc(r1)
+	fadds    f4, f4, f31
+	lfs      f0, lbl_80518A2C@sda21(r2)
+	fadds    f2, f2, f1
+	fadds    f3, f3, f0
+	stfs     f2, 0(r30)
+	stfs     f3, 4(r30)
+	stfs     f4, 8(r30)
+	psq_l    f31, 88(r1), 0, qr0
+	lfd      f31, 0x50(r1)
+	psq_l    f30, 72(r1), 0, qr0
+	lfd      f30, 0x40(r1)
+	lwz      r31, 0x3c(r1)
+	lwz      r0, 0x64(r1)
+	lwz      r30, 0x38(r1)
+	mtlr     r0
+	addi     r1, r1, 0x60
+	blr
 	*/
 }
 
@@ -4239,30 +5292,29 @@ void Onyon::getFlagSetPos(void)
 void Onyon::onKeyEvent(SysShape::KeyEvent const&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lhz       r0, 0x22E(r3)
-	  cmplwi    r0, 0x4
-	  bne-      .loc_0x2C
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x224(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x3C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lhz      r0, 0x22e(r3)
+	cmplwi   r0, 4
+	bne      lbl_8017816C
+	lwz      r12, 0(r3)
+	lwz      r12, 0x224(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_8017817C
 
-	.loc_0x2C:
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x228(r12)
-	  mtctr     r12
-	  bctrl
+lbl_8017816C:
+	lwz      r12, 0(r3)
+	lwz      r12, 0x228(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x3C:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8017817C:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -4274,62 +5326,61 @@ void Onyon::onKeyEvent(SysShape::KeyEvent const&)
 void Onyon::vsChargePikmin(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r4, -0x6C18(r13)
-	  lwz       r0, 0x44(r4)
-	  cmpwi     r0, 0x1
-	  beq-      .loc_0x40
-	  lis       r3, 0x8048
-	  lis       r5, 0x8048
-	  subi      r3, r3, 0x19C8
-	  li        r4, 0x6FF
-	  subi      r5, r5, 0x1980
-	  crclr     6, 0x6
-	  bl        -0x14DB88
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r4, gameSystem__4Game@sda21(r13)
+	lwz      r0, 0x44(r4)
+	cmpwi    r0, 1
+	beq      lbl_801781CC
+	lis      r3, lbl_8047E638@ha
+	lis      r5, lbl_8047E680@ha
+	addi     r3, r3, lbl_8047E638@l
+	li       r4, 0x6ff
+	addi     r5, r5, lbl_8047E680@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x40:
-	  lhz       r0, 0x22E(r31)
-	  sth       r0, 0x230(r31)
-	  lhz       r3, 0x22C(r31)
-	  addi      r0, r3, 0x1
-	  sth       r0, 0x22C(r31)
-	  lwz       r3, 0x1B4(r31)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x68
-	  lha       r0, 0x20(r3)
-	  b         .loc_0x6C
+lbl_801781CC:
+	lhz      r0, 0x22e(r31)
+	sth      r0, 0x230(r31)
+	lhz      r3, 0x22c(r31)
+	addi     r0, r3, 1
+	sth      r0, 0x22c(r31)
+	lwz      r3, 0x1b4(r31)
+	cmplwi   r3, 0
+	beq      lbl_801781F4
+	lha      r0, 0x20(r3)
+	b        lbl_801781F8
 
-	.loc_0x68:
-	  li        r0, -0x1
+lbl_801781F4:
+	li       r0, -1
 
-	.loc_0x6C:
-	  cmpwi     r0, 0
-	  beq-      .loc_0x7C
-	  cmpwi     r0, 0x2
-	  bne-      .loc_0x98
+lbl_801781F8:
+	cmpwi    r0, 0
+	beq      lbl_80178208
+	cmpwi    r0, 2
+	bne      lbl_80178224
 
-	.loc_0x7C:
-	  cmplwi    r31, 0
-	  mr        r5, r31
-	  beq-      .loc_0x8C
-	  addi      r5, r31, 0x178
+lbl_80178208:
+	cmplwi   r31, 0
+	mr       r5, r31
+	beq      lbl_80178218
+	addi     r5, r31, 0x178
 
-	.loc_0x8C:
-	  addi      r3, r31, 0x1A8
-	  li        r4, 0x1
-	  bl        0x2B0A68
+lbl_80178218:
+	addi     r3, r31, 0x1a8
+	li       r4, 1
+	bl       startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
 
-	.loc_0x98:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80178224:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -4341,489 +5392,486 @@ void Onyon::vsChargePikmin(void)
 void Onyon::onKeyEvent_Onyon(SysShape::KeyEvent const&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x90(r1)
-	  mflr      r0
-	  stw       r0, 0x94(r1)
-	  stfd      f31, 0x80(r1)
-	  psq_st    f31,0x88(r1),0,0
-	  stmw      r27, 0x6C(r1)
-	  mr        r27, r3
-	  lwz       r3, 0x1B4(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x30
-	  lha       r3, 0x20(r3)
-	  b         .loc_0x34
+	stwu     r1, -0x90(r1)
+	mflr     r0
+	stw      r0, 0x94(r1)
+	stfd     f31, 0x80(r1)
+	psq_st   f31, 136(r1), 0, qr0
+	stmw     r27, 0x6c(r1)
+	mr       r27, r3
+	lwz      r3, 0x1b4(r3)
+	cmplwi   r3, 0
+	beq      lbl_80178268
+	lha      r3, 0x20(r3)
+	b        lbl_8017826C
 
-	.loc_0x30:
-	  li        r3, -0x1
+lbl_80178268:
+	li       r3, -1
 
-	.loc_0x34:
-	  lwz       r0, 0x1C(r4)
-	  cmpwi     r0, 0x64
-	  beq-      .loc_0x1F4
-	  bge-      .loc_0x50
-	  cmpwi     r0, 0x1
-	  beq-      .loc_0x208
-	  b         .loc_0x62C
+lbl_8017826C:
+	lwz      r0, 0x1c(r4)
+	cmpwi    r0, 0x64
+	beq      lbl_8017842C
+	bge      lbl_80178288
+	cmpwi    r0, 1
+	beq      lbl_80178440
+	b        lbl_80178864
 
-	.loc_0x50:
-	  cmpwi     r0, 0x3E8
-	  beq-      .loc_0x5C
-	  b         .loc_0x62C
+lbl_80178288:
+	cmpwi    r0, 0x3e8
+	beq      lbl_80178294
+	b        lbl_80178864
 
-	.loc_0x5C:
-	  lhz       r0, 0x22C(r27)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x94
-	  lhz       r0, 0x22E(r27)
-	  cmplwi    r0, 0x2
-	  bgt-      .loc_0x62C
-	  cmplwi    r27, 0
-	  mr        r5, r27
-	  beq-      .loc_0x84
-	  addi      r5, r27, 0x178
+lbl_80178294:
+	lhz      r0, 0x22c(r27)
+	cmplwi   r0, 0
+	beq      lbl_801782CC
+	lhz      r0, 0x22e(r27)
+	cmplwi   r0, 2
+	bgt      lbl_80178864
+	cmplwi   r27, 0
+	mr       r5, r27
+	beq      lbl_801782BC
+	addi     r5, r27, 0x178
 
-	.loc_0x84:
-	  addi      r3, r27, 0x1A8
-	  li        r4, 0x1
-	  bl        0x2B09C4
-	  b         .loc_0x62C
+lbl_801782BC:
+	addi     r3, r27, 0x1a8
+	li       r4, 1
+	bl       startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
+	b        lbl_80178864
 
-	.loc_0x94:
-	  lhz       r0, 0x22E(r27)
-	  cmplwi    r0, 0x4
-	  bne-      .loc_0x154
-	  lwz       r3, -0x6B70(r13)
-	  li        r4, 0x4
-	  addi      r3, r3, 0xA8
-	  bl        0x792CC
-	  lwz       r5, -0x6B70(r13)
-	  mr        r28, r3
-	  li        r4, 0x3
-	  addi      r3, r5, 0xA8
-	  bl        0x792B8
-	  add.      r0, r28, r3
-	  ble-      .loc_0x114
-	  lfs       f31, -0x5930(r2)
-	  mr        r3, r27
-	  li        r4, 0x1
-	  bl        0x1E94
-	  stfs      f31, 0x0(r3)
-	  li        r4, 0
-	  lwz       r3, 0x218(r27)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x21C(r27)
-	  li        r4, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x62C
+lbl_801782CC:
+	lhz      r0, 0x22e(r27)
+	cmplwi   r0, 4
+	bne      lbl_8017838C
+	lwz      r3, playData__4Game@sda21(r13)
+	li       r4, 4
+	addi     r3, r3, 0xa8
+	bl       getColorSum__Q24Game13PikiContainerFi
+	lwz      r5, playData__4Game@sda21(r13)
+	mr       r28, r3
+	li       r4, 3
+	addi     r3, r5, 0xa8
+	bl       getColorSum__Q24Game13PikiContainerFi
+	add.     r0, r28, r3
+	ble      lbl_8017834C
+	lfs      f31, lbl_80518A30@sda21(r2)
+	mr       r3, r27
+	li       r4, 1
+	bl       getPMotionSpeed__Q24Game5OnyonFi
+	stfs     f31, 0(r3)
+	li       r4, 0
+	lwz      r3, 0x218(r27)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 0x21c(r27)
+	li       r4, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_80178864
 
-	.loc_0x114:
-	  lwz       r3, 0x218(r27)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x21C(r27)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f31, -0x5934(r2)
-	  mr        r3, r27
-	  li        r4, 0x1
-	  bl        0x1E24
-	  stfs      f31, 0x0(r3)
-	  b         .loc_0x62C
+lbl_8017834C:
+	lwz      r3, 0x218(r27)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 0x21c(r27)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	lfs      f31, lbl_80518A2C@sda21(r2)
+	mr       r3, r27
+	li       r4, 1
+	bl       getPMotionSpeed__Q24Game5OnyonFi
+	stfs     f31, 0(r3)
+	b        lbl_80178864
 
-	.loc_0x154:
-	  lfs       f0, -0x5930(r2)
-	  stfs      f0, 0x1D4(r27)
-	  lhz       r0, 0x22E(r27)
-	  cmplwi    r0, 0x3
-	  bne-      .loc_0x17C
-	  addi      r3, r27, 0x1A8
-	  li        r4, 0
-	  li        r5, 0
-	  bl        0x2B08DC
-	  b         .loc_0x62C
+lbl_8017838C:
+	lfs      f0, lbl_80518A30@sda21(r2)
+	stfs     f0, 0x1d4(r27)
+	lhz      r0, 0x22e(r27)
+	cmplwi   r0, 3
+	bne      lbl_801783B4
+	addi     r3, r27, 0x1a8
+	li       r4, 0
+	li       r5, 0
+	bl       startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
+	b        lbl_80178864
 
-	.loc_0x17C:
-	  mr        r3, r27
-	  bl        0x11E4
-	  cmpwi     r3, 0
-	  ble-      .loc_0x1D4
-	  lwz       r3, 0x1B4(r27)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x1A0
-	  lha       r0, 0x20(r3)
-	  b         .loc_0x1A4
+lbl_801783B4:
+	mr       r3, r27
+	bl       getStoreCount__Q24Game5OnyonFv
+	cmpwi    r3, 0
+	ble      lbl_8017840C
+	lwz      r3, 0x1b4(r27)
+	cmplwi   r3, 0
+	beq      lbl_801783D8
+	lha      r0, 0x20(r3)
+	b        lbl_801783DC
 
-	.loc_0x1A0:
-	  li        r0, -0x1
+lbl_801783D8:
+	li       r0, -1
 
-	.loc_0x1A4:
-	  cmplwi    r0, 0x1
-	  ble-      .loc_0x1B4
-	  cmpwi     r0, 0x3
-	  bne-      .loc_0x62C
+lbl_801783DC:
+	cmplwi   r0, 1
+	ble      lbl_801783EC
+	cmpwi    r0, 3
+	bne      lbl_80178864
 
-	.loc_0x1B4:
-	  cmplwi    r27, 0
-	  mr        r5, r27
-	  beq-      .loc_0x1C4
-	  addi      r5, r27, 0x178
+lbl_801783EC:
+	cmplwi   r27, 0
+	mr       r5, r27
+	beq      lbl_801783FC
+	addi     r5, r27, 0x178
 
-	.loc_0x1C4:
-	  addi      r3, r27, 0x1A8
-	  li        r4, 0x2
-	  bl        0x2B0884
-	  b         .loc_0x62C
+lbl_801783FC:
+	addi     r3, r27, 0x1a8
+	li       r4, 2
+	bl       startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
+	b        lbl_80178864
 
-	.loc_0x1D4:
-	  cmplwi    r27, 0
-	  mr        r5, r27
-	  beq-      .loc_0x1E4
-	  addi      r5, r27, 0x178
+lbl_8017840C:
+	cmplwi   r27, 0
+	mr       r5, r27
+	beq      lbl_8017841C
+	addi     r5, r27, 0x178
 
-	.loc_0x1E4:
-	  addi      r3, r27, 0x1A8
-	  li        r4, 0
-	  bl        0x2B0864
-	  b         .loc_0x62C
+lbl_8017841C:
+	addi     r3, r27, 0x1a8
+	li       r4, 0
+	bl       startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
+	b        lbl_80178864
 
-	.loc_0x1F4:
-	  cmpwi     r3, 0x2
-	  bne-      .loc_0x62C
-	  mr        r3, r27
-	  bl        0x10B4
-	  b         .loc_0x62C
+lbl_8017842C:
+	cmpwi    r3, 2
+	bne      lbl_80178864
+	mr       r3, r27
+	bl       efxPafuKira__Q24Game5OnyonFv
+	b        lbl_80178864
 
-	.loc_0x208:
-	  lhz       r0, 0x22E(r27)
-	  cmplwi    r0, 0x2
-	  bgt-      .loc_0x62C
-	  cmpwi     r3, 0x2
-	  beq-      .loc_0x4D4
-	  bge-      .loc_0x62C
-	  cmpwi     r3, 0x1
-	  bge-      .loc_0x22C
-	  b         .loc_0x62C
+lbl_80178440:
+	lhz      r0, 0x22e(r27)
+	cmplwi   r0, 2
+	bgt      lbl_80178864
+	cmpwi    r3, 2
+	beq      lbl_8017870C
+	bge      lbl_80178864
+	cmpwi    r3, 1
+	bge      lbl_80178464
+	b        lbl_80178864
 
-	.loc_0x22C:
-	  lhz       r0, 0x22C(r27)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x4C4
-	  rlwinm.   r30,r0,31,17,31
-	  bgt-      .loc_0x244
-	  li        r30, 0x1
+lbl_80178464:
+	lhz      r0, 0x22c(r27)
+	cmplwi   r0, 0
+	beq      lbl_801786FC
+	rlwinm.  r30, r0, 0x1f, 0x11, 0x1f
+	bgt      lbl_8017847C
+	li       r30, 1
 
-	.loc_0x244:
-	  lis       r3, 0x8051
-	  li        r29, 0
-	  addi      r31, r3, 0x41E4
-	  b         .loc_0x4B8
+lbl_8017847C:
+	lis      r3, "zero__10Vector3<f>"@ha
+	li       r29, 0
+	addi     r31, r3, "zero__10Vector3<f>"@l
+	b        lbl_801786F0
 
-	.loc_0x254:
-	  lwz       r3, -0x6C18(r13)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x2C4
-	  lwz       r0, 0x44(r3)
-	  cmpwi     r0, 0x1
-	  bne-      .loc_0x2C4
-	  li        r3, 0x1
-	  bl        0x589B8
-	  mr        r28, r3
-	  li        r3, 0
-	  bl        0x589AC
-	  lhz       r0, 0x22E(r27)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x2A4
-	  cmpwi     r3, 0x32
-	  blt-      .loc_0x2A4
-	  lhz       r3, 0x22C(r27)
-	  subi      r0, r3, 0x1
-	  sth       r0, 0x22C(r27)
-	  b         .loc_0x4B4
+lbl_8017848C:
+	lwz      r3, gameSystem__4Game@sda21(r13)
+	cmplwi   r3, 0
+	beq      lbl_801784FC
+	lwz      r0, 0x44(r3)
+	cmpwi    r0, 1
+	bne      lbl_801784FC
+	li       r3, 1
+	bl       getMapPikmins__Q24Game8GameStatFi
+	mr       r28, r3
+	li       r3, 0
+	bl       getMapPikmins__Q24Game8GameStatFi
+	lhz      r0, 0x22e(r27)
+	cmplwi   r0, 0
+	bne      lbl_801784DC
+	cmpwi    r3, 0x32
+	blt      lbl_801784DC
+	lhz      r3, 0x22c(r27)
+	addi     r0, r3, -1
+	sth      r0, 0x22c(r27)
+	b        lbl_801786EC
 
-	.loc_0x2A4:
-	  cmplwi    r0, 0x1
-	  bne-      .loc_0x2C4
-	  cmpwi     r28, 0x32
-	  blt-      .loc_0x2C4
-	  lhz       r3, 0x22C(r27)
-	  subi      r0, r3, 0x1
-	  sth       r0, 0x22C(r27)
-	  b         .loc_0x4B4
+lbl_801784DC:
+	cmplwi   r0, 1
+	bne      lbl_801784FC
+	cmpwi    r28, 0x32
+	blt      lbl_801784FC
+	lhz      r3, 0x22c(r27)
+	addi     r0, r3, -1
+	sth      r0, 0x22c(r27)
+	b        lbl_801786EC
 
-	.loc_0x2C4:
-	  lwz       r3, -0x6B90(r13)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xA4(r12)
-	  mtctr     r12
-	  bctrl
-	  mr.       r28, r3
-	  beq-      .loc_0x374
-	  lhz       r0, 0x22E(r27)
-	  lis       r7, 0x804B
-	  lis       r6, 0x804B
-	  lis       r5, 0x804B
-	  sth       r0, 0x230(r27)
-	  lis       r4, 0x8051
-	  subi      r7, r7, 0x5D0C
-	  addi      r6, r6, 0x2C7C
-	  lhz       r8, 0x230(r27)
-	  li        r0, 0
-	  lfs       f3, 0x41E4(r4)
-	  addi      r5, r5, 0x2C70
-	  stw       r7, 0x14(r1)
-	  addi      r4, r1, 0x14
-	  lfs       f2, 0x4(r31)
-	  stw       r6, 0x14(r1)
-	  lfs       f1, 0x8(r31)
-	  lfs       f0, -0x5938(r2)
-	  stw       r5, 0x14(r1)
-	  stw       r8, 0x18(r1)
-	  stfs      f3, 0x1C(r1)
-	  stfs      f2, 0x20(r1)
-	  stfs      f1, 0x24(r1)
-	  stb       r0, 0x28(r1)
-	  stw       r0, 0x2C(r1)
-	  stfs      f0, 0x30(r1)
-	  bl        -0x3D5B8
-	  lhz       r3, 0x22C(r27)
-	  subi      r0, r3, 0x1
-	  sth       r0, 0x22C(r27)
-	  lhz       r3, 0x1F4(r28)
-	  bl        0xB74D0
-	  mr        r3, r27
-	  mr        r4, r28
-	  li        r5, 0
-	  bl        .loc_0x648
-	  b         .loc_0x4B4
+lbl_801784FC:
+	lwz      r3, mgr__Q24Game12ItemPikihead@sda21(r13)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xa4(r12)
+	mtctr    r12
+	bctrl
+	or.      r28, r3, r3
+	beq      lbl_801785AC
+	lhz      r0, 0x22e(r27)
+	lis      r7, __vt__Q24Game15CreatureInitArg@ha
+	lis      r6, __vt__Q24Game11ItemInitArg@ha
+	lis      r5, __vt__Q34Game12ItemPikihead7InitArg@ha
+	sth      r0, 0x230(r27)
+	lis      r4, "zero__10Vector3<f>"@ha
+	addi     r7, r7, __vt__Q24Game15CreatureInitArg@l
+	addi     r6, r6, __vt__Q24Game11ItemInitArg@l
+	lhz      r8, 0x230(r27)
+	li       r0, 0
+	lfs      f3, "zero__10Vector3<f>"@l(r4)
+	addi     r5, r5, __vt__Q34Game12ItemPikihead7InitArg@l
+	stw      r7, 0x14(r1)
+	addi     r4, r1, 0x14
+	lfs      f2, 4(r31)
+	stw      r6, 0x14(r1)
+	lfs      f1, 8(r31)
+	lfs      f0, lbl_80518A28@sda21(r2)
+	stw      r5, 0x14(r1)
+	stw      r8, 0x18(r1)
+	stfs     f3, 0x1c(r1)
+	stfs     f2, 0x20(r1)
+	stfs     f1, 0x24(r1)
+	stb      r0, 0x28(r1)
+	stw      r0, 0x2c(r1)
+	stfs     f0, 0x30(r1)
+	bl       init__Q24Game8CreatureFPQ24Game15CreatureInitArg
+	lhz      r3, 0x22c(r27)
+	addi     r0, r3, -1
+	sth      r0, 0x22c(r27)
+	lhz      r3, 0x1f4(r28)
+	bl       inc__Q24Game8BirthMgrFi
+	mr       r3, r27
+	mr       r4, r28
+	li       r5, 0
+	bl       doEmit__Q24Game5OnyonFPQ24Game8Creatureb
+	b        lbl_801786EC
 
-	.loc_0x374:
-	  lwz       r3, -0x6C18(r13)
-	  lbz       r0, 0x3C(r3)
-	  rlwinm.   r0,r0,0,26,26
-	  beq-      .loc_0x478
-	  lwz       r3, -0x6B70(r13)
-	  li        r4, 0x7
-	  bl        0x6EE1C
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x478
-	  lwz       r3, -0x6B70(r13)
-	  li        r4, 0x7
-	  bl        0x6EDCC
-	  lis       r3, 0x8051
-	  lwzu      r12, 0x262C(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  cmpwi     r3, 0
-	  lis       r4, 0x8048
-	  subi      r6, r4, 0x18D4
-	  ble-      .loc_0x3D0
-	  lis       r3, 0x8048
-	  subi      r6, r3, 0x18E4
+lbl_801785AC:
+	lwz      r3, gameSystem__4Game@sda21(r13)
+	lbz      r0, 0x3c(r3)
+	rlwinm.  r0, r0, 0, 0x1a, 0x1a
+	beq      lbl_801786B0
+	lwz      r3, playData__4Game@sda21(r13)
+	li       r4, 7
+	bl       isDemoFlag__Q24Game8PlayDataFi
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_801786B0
+	lwz      r3, playData__4Game@sda21(r13)
+	li       r4, 7
+	bl       setDemoFlag__Q24Game8PlayDataFi
+	lis      r3, 0x8051
+	lwzu     r12, 0x262c(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	cmpwi    r3, 0
+	lis      r4, lbl_8047E72C@ha
+	addi     r6, r4, lbl_8047E72C@l
+	ble      lbl_80178608
+	lis      r3, lbl_8047E71C@ha
+	addi     r6, r3, lbl_8047E71C@l
 
-	.loc_0x3D0:
-	  lwz       r3, -0x6C18(r13)
-	  li        r0, 0
-	  lfs       f0, -0x5934(r2)
-	  mr        r4, r27
-	  lwz       r5, 0x58(r3)
-	  addi      r3, r1, 0x8
-	  lwz       r5, 0xC8(r5)
-	  stw       r6, 0x34(r1)
-	  stw       r0, 0x38(r1)
-	  stw       r5, 0x40(r1)
-	  stfs      f0, 0x4C(r1)
-	  stfs      f0, 0x50(r1)
-	  stfs      f0, 0x54(r1)
-	  stfs      f0, 0x58(r1)
-	  stw       r0, 0x5C(r1)
-	  stw       r0, 0x44(r1)
-	  stw       r0, 0x3C(r1)
-	  stw       r0, 0x60(r1)
-	  stw       r0, 0x48(r1)
-	  stw       r0, 0x64(r1)
-	  lwz       r12, 0x0(r27)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f2, 0x8(r1)
-	  mr        r3, r27
-	  lfs       f1, 0xC(r1)
-	  lfs       f0, 0x10(r1)
-	  stfs      f2, 0x4C(r1)
-	  stfs      f1, 0x50(r1)
-	  stfs      f0, 0x54(r1)
-	  lwz       r12, 0x0(r27)
-	  lwz       r12, 0x64(r12)
-	  mtctr     r12
-	  bctrl
-	  stfs      f1, 0x58(r1)
-	  mr        r3, r27
-	  li        r4, 0
-	  bl        -0x3CC50
-	  lwz       r3, -0x64AC(r13)
-	  addi      r4, r1, 0x34
-	  bl        0x2B4324
+lbl_80178608:
+	lwz      r3, gameSystem__4Game@sda21(r13)
+	li       r0, 0
+	lfs      f0, lbl_80518A2C@sda21(r2)
+	mr       r4, r27
+	lwz      r5, 0x58(r3)
+	addi     r3, r1, 8
+	lwz      r5, 0xc8(r5)
+	stw      r6, 0x34(r1)
+	stw      r0, 0x38(r1)
+	stw      r5, 0x40(r1)
+	stfs     f0, 0x4c(r1)
+	stfs     f0, 0x50(r1)
+	stfs     f0, 0x54(r1)
+	stfs     f0, 0x58(r1)
+	stw      r0, 0x5c(r1)
+	stw      r0, 0x44(r1)
+	stw      r0, 0x3c(r1)
+	stw      r0, 0x60(r1)
+	stw      r0, 0x48(r1)
+	stw      r0, 0x64(r1)
+	lwz      r12, 0(r27)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f2, 8(r1)
+	mr       r3, r27
+	lfs      f1, 0xc(r1)
+	lfs      f0, 0x10(r1)
+	stfs     f2, 0x4c(r1)
+	stfs     f1, 0x50(r1)
+	stfs     f0, 0x54(r1)
+	lwz      r12, 0(r27)
+	lwz      r12, 0x64(r12)
+	mtctr    r12
+	bctrl
+	stfs     f1, 0x58(r1)
+	mr       r3, r27
+	li       r4, 0
+	bl       movie_begin__Q24Game8CreatureFb
+	lwz      r3, moviePlayer__4Game@sda21(r13)
+	addi     r4, r1, 0x34
+	bl       play__Q24Game11MoviePlayerFRQ24Game12MoviePlayArg
 
-	.loc_0x478:
-	  lhz       r0, 0x22E(r27)
-	  li        r5, 0
-	  sth       r0, 0x230(r27)
-	  lwz       r3, -0x6B70(r13)
-	  lhz       r4, 0x230(r27)
-	  addi      r3, r3, 0xA8
-	  bl        0x78D54
-	  lwz       r4, 0x0(r3)
-	  addi      r0, r4, 0x1
-	  stw       r0, 0x0(r3)
-	  lhz       r3, 0x22E(r27)
-	  bl        0xB7388
-	  lhz       r3, 0x22C(r27)
-	  subi      r0, r3, 0x1
-	  sth       r0, 0x22C(r27)
+lbl_801786B0:
+	lhz      r0, 0x22e(r27)
+	li       r5, 0
+	sth      r0, 0x230(r27)
+	lwz      r3, playData__4Game@sda21(r13)
+	lhz      r4, 0x230(r27)
+	addi     r3, r3, 0xa8
+	bl       getCount__Q24Game13PikiContainerFii
+	lwz      r4, 0(r3)
+	addi     r0, r4, 1
+	stw      r0, 0(r3)
+	lhz      r3, 0x22e(r27)
+	bl       inc__Q24Game8BirthMgrFi
+	lhz      r3, 0x22c(r27)
+	addi     r0, r3, -1
+	sth      r0, 0x22c(r27)
 
-	.loc_0x4B4:
-	  addi      r29, r29, 0x1
+lbl_801786EC:
+	addi     r29, r29, 1
 
-	.loc_0x4B8:
-	  cmpw      r29, r30
-	  blt+      .loc_0x254
-	  b         .loc_0x62C
+lbl_801786F0:
+	cmpw     r29, r30
+	blt      lbl_8017848C
+	b        lbl_80178864
 
-	.loc_0x4C4:
-	  lbz       r0, 0x1C0(r27)
-	  ori       r0, r0, 0x2
-	  stb       r0, 0x1C0(r27)
-	  b         .loc_0x62C
+lbl_801786FC:
+	lbz      r0, 0x1c0(r27)
+	ori      r0, r0, 2
+	stb      r0, 0x1c0(r27)
+	b        lbl_80178864
 
-	.loc_0x4D4:
-	  cmplwi    r0, 0x4
-	  bne-      .loc_0x590
-	  lwz       r3, -0x6B70(r13)
-	  li        r4, 0x4
-	  addi      r3, r3, 0xA8
-	  bl        0x78E90
-	  lwz       r5, -0x6B70(r13)
-	  mr        r28, r3
-	  li        r4, 0x3
-	  addi      r3, r5, 0xA8
-	  bl        0x78E7C
-	  add.      r0, r28, r3
-	  ble-      .loc_0x550
-	  lfs       f31, -0x5930(r2)
-	  mr        r3, r27
-	  li        r4, 0x1
-	  bl        0x1A58
-	  stfs      f31, 0x0(r3)
-	  li        r4, 0
-	  lwz       r3, 0x218(r27)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x21C(r27)
-	  li        r4, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x62C
+lbl_8017870C:
+	cmplwi   r0, 4
+	bne      lbl_801787C8
+	lwz      r3, playData__4Game@sda21(r13)
+	li       r4, 4
+	addi     r3, r3, 0xa8
+	bl       getColorSum__Q24Game13PikiContainerFi
+	lwz      r5, playData__4Game@sda21(r13)
+	mr       r28, r3
+	li       r4, 3
+	addi     r3, r5, 0xa8
+	bl       getColorSum__Q24Game13PikiContainerFi
+	add.     r0, r28, r3
+	ble      lbl_80178788
+	lfs      f31, lbl_80518A30@sda21(r2)
+	mr       r3, r27
+	li       r4, 1
+	bl       getPMotionSpeed__Q24Game5OnyonFi
+	stfs     f31, 0(r3)
+	li       r4, 0
+	lwz      r3, 0x218(r27)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 0x21c(r27)
+	li       r4, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_80178864
 
-	.loc_0x550:
-	  lwz       r3, 0x218(r27)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x21C(r27)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f31, -0x5934(r2)
-	  mr        r3, r27
-	  li        r4, 0x1
-	  bl        0x19E8
-	  stfs      f31, 0x0(r3)
-	  b         .loc_0x62C
+lbl_80178788:
+	lwz      r3, 0x218(r27)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 0x21c(r27)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	lfs      f31, lbl_80518A2C@sda21(r2)
+	mr       r3, r27
+	li       r4, 1
+	bl       getPMotionSpeed__Q24Game5OnyonFi
+	stfs     f31, 0(r3)
+	b        lbl_80178864
 
-	.loc_0x590:
-	  lfs       f0, -0x5930(r2)
-	  stfs      f0, 0x1D4(r27)
-	  lhz       r0, 0x22E(r27)
-	  cmplwi    r0, 0x3
-	  bne-      .loc_0x5B8
-	  addi      r3, r27, 0x1A8
-	  li        r4, 0
-	  li        r5, 0
-	  bl        0x2B04A0
-	  b         .loc_0x62C
+lbl_801787C8:
+	lfs      f0, lbl_80518A30@sda21(r2)
+	stfs     f0, 0x1d4(r27)
+	lhz      r0, 0x22e(r27)
+	cmplwi   r0, 3
+	bne      lbl_801787F0
+	addi     r3, r27, 0x1a8
+	li       r4, 0
+	li       r5, 0
+	bl       startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
+	b        lbl_80178864
 
-	.loc_0x5B8:
-	  mr        r3, r27
-	  bl        0xDA8
-	  cmpwi     r3, 0
-	  ble-      .loc_0x610
-	  lwz       r3, 0x1B4(r27)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x5DC
-	  lha       r0, 0x20(r3)
-	  b         .loc_0x5E0
+lbl_801787F0:
+	mr       r3, r27
+	bl       getStoreCount__Q24Game5OnyonFv
+	cmpwi    r3, 0
+	ble      lbl_80178848
+	lwz      r3, 0x1b4(r27)
+	cmplwi   r3, 0
+	beq      lbl_80178814
+	lha      r0, 0x20(r3)
+	b        lbl_80178818
 
-	.loc_0x5DC:
-	  li        r0, -0x1
+lbl_80178814:
+	li       r0, -1
 
-	.loc_0x5E0:
-	  cmplwi    r0, 0x1
-	  ble-      .loc_0x5F0
-	  cmpwi     r0, 0x3
-	  bne-      .loc_0x62C
+lbl_80178818:
+	cmplwi   r0, 1
+	ble      lbl_80178828
+	cmpwi    r0, 3
+	bne      lbl_80178864
 
-	.loc_0x5F0:
-	  cmplwi    r27, 0
-	  mr        r5, r27
-	  beq-      .loc_0x600
-	  addi      r5, r27, 0x178
+lbl_80178828:
+	cmplwi   r27, 0
+	mr       r5, r27
+	beq      lbl_80178838
+	addi     r5, r27, 0x178
 
-	.loc_0x600:
-	  addi      r3, r27, 0x1A8
-	  li        r4, 0x2
-	  bl        0x2B0448
-	  b         .loc_0x62C
+lbl_80178838:
+	addi     r3, r27, 0x1a8
+	li       r4, 2
+	bl       startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
+	b        lbl_80178864
 
-	.loc_0x610:
-	  cmplwi    r27, 0
-	  mr        r5, r27
-	  beq-      .loc_0x620
-	  addi      r5, r27, 0x178
+lbl_80178848:
+	cmplwi   r27, 0
+	mr       r5, r27
+	beq      lbl_80178858
+	addi     r5, r27, 0x178
 
-	.loc_0x620:
-	  addi      r3, r27, 0x1A8
-	  li        r4, 0
-	  bl        0x2B0428
+lbl_80178858:
+	addi     r3, r27, 0x1a8
+	li       r4, 0
+	bl       startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
 
-	.loc_0x62C:
-	  psq_l     f31,0x88(r1),0,0
-	  lfd       f31, 0x80(r1)
-	  lmw       r27, 0x6C(r1)
-	  lwz       r0, 0x94(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x90
-	  blr
-
-	.loc_0x648:
+lbl_80178864:
+	psq_l    f31, 136(r1), 0, qr0
+	lfd      f31, 0x80(r1)
+	lmw      r27, 0x6c(r1)
+	lwz      r0, 0x94(r1)
+	mtlr     r0
+	addi     r1, r1, 0x90
+	blr
 	*/
 }
 
@@ -4835,187 +5883,186 @@ void Onyon::onKeyEvent_Onyon(SysShape::KeyEvent const&)
 void Onyon::doEmit(Game::Creature*, bool)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x80(r1)
-	  mflr      r0
-	  stw       r0, 0x84(r1)
-	  stfd      f31, 0x70(r1)
-	  psq_st    f31,0x78(r1),0,0
-	  stw       r31, 0x6C(r1)
-	  stw       r30, 0x68(r1)
-	  stw       r29, 0x64(r1)
-	  lwz       r12, 0x0(r3)
-	  mr        r30, r4
-	  mr        r29, r3
-	  mr        r31, r5
-	  lwz       r12, 0x1C0(r12)
-	  li        r4, 0x2816
-	  mtctr     r12
-	  bctrl
-	  lfs       f3, 0x19C(r29)
-	  lis       r6, 0x804B
-	  lis       r5, 0x804E
-	  lis       r4, 0x804B
-	  stfs      f3, 0x34(r1)
-	  lis       r3, 0x804B
-	  subi      r10, r6, 0x5808
-	  lfs       f0, -0x5878(r2)
-	  lfs       f2, 0x1A0(r29)
-	  addi      r9, r5, 0x6A64
-	  addi      r5, r4, 0x268C
-	  subi      r0, r3, 0x5814
-	  stfs      f2, 0x38(r1)
-	  fadds     f0, f2, f0
-	  li        r8, 0x101
-	  li        r7, 0x102
-	  lfs       f1, 0x1A4(r29)
-	  li        r6, 0
-	  addi      r3, r1, 0x24
-	  stw       r10, 0x24(r1)
-	  addi      r4, r1, 0x14
-	  stw       r9, 0x24(r1)
-	  stfs      f1, 0x3C(r1)
-	  stfs      f0, 0x38(r1)
-	  sth       r8, 0x28(r1)
-	  sth       r7, 0x2A(r1)
-	  stw       r6, 0x2C(r1)
-	  stw       r6, 0x30(r1)
-	  stw       r5, 0x24(r1)
-	  stw       r0, 0x14(r1)
-	  stfs      f3, 0x18(r1)
-	  stfs      f2, 0x1C(r1)
-	  stfs      f1, 0x20(r1)
-	  bl        0x2366D0
-	  mr        r3, r30
-	  addi      r4, r1, 0x34
-	  li        r5, 0
-	  bl        -0x3D7AC
-	  lwz       r3, -0x6C18(r13)
-	  lwz       r0, 0x44(r3)
-	  cmpwi     r0, 0
-	  bne-      .loc_0x118
-	  lwz       r3, -0x64AC(r13)
-	  lwz       r0, 0x1F0(r3)
-	  rlwinm.   r0,r0,0,31,31
-	  beq-      .loc_0x118
-	  lis       r4, 0x8048
-	  subi      r4, r4, 0x18C4
-	  bl        0x2B5C38
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x118
-	  mr        r3, r30
-	  li        r4, 0
-	  bl        -0x3CF44
+	stwu     r1, -0x80(r1)
+	mflr     r0
+	stw      r0, 0x84(r1)
+	stfd     f31, 0x70(r1)
+	psq_st   f31, 120(r1), 0, qr0
+	stw      r31, 0x6c(r1)
+	stw      r30, 0x68(r1)
+	stw      r29, 0x64(r1)
+	lwz      r12, 0(r3)
+	mr       r30, r4
+	mr       r29, r3
+	mr       r31, r5
+	lwz      r12, 0x1c0(r12)
+	li       r4, 0x2816
+	mtctr    r12
+	bctrl
+	lfs      f3, 0x19c(r29)
+	lis      r6, __vt__Q23efx5TBase@ha
+	lis      r5, __vt__Q23efx8TSimple2@ha
+	lis      r4, __vt__Q23efx9TOnyonLay@ha
+	stfs     f3, 0x34(r1)
+	lis      r3, __vt__Q23efx3Arg@ha
+	addi     r10, r6, __vt__Q23efx5TBase@l
+	lfs      f0, lbl_80518AE8@sda21(r2)
+	lfs      f2, 0x1a0(r29)
+	addi     r9, r5, __vt__Q23efx8TSimple2@l
+	addi     r5, r4, __vt__Q23efx9TOnyonLay@l
+	addi     r0, r3, __vt__Q23efx3Arg@l
+	stfs     f2, 0x38(r1)
+	fadds    f0, f2, f0
+	li       r8, 0x101
+	li       r7, 0x102
+	lfs      f1, 0x1a4(r29)
+	li       r6, 0
+	addi     r3, r1, 0x24
+	stw      r10, 0x24(r1)
+	addi     r4, r1, 0x14
+	stw      r9, 0x24(r1)
+	stfs     f1, 0x3c(r1)
+	stfs     f0, 0x38(r1)
+	sth      r8, 0x28(r1)
+	sth      r7, 0x2a(r1)
+	stw      r6, 0x2c(r1)
+	stw      r6, 0x30(r1)
+	stw      r5, 0x24(r1)
+	stw      r0, 0x14(r1)
+	stfs     f3, 0x18(r1)
+	stfs     f2, 0x1c(r1)
+	stfs     f1, 0x20(r1)
+	bl       create__Q23efx8TSimple2FPQ23efx3Arg
+	mr       r3, r30
+	addi     r4, r1, 0x34
+	li       r5, 0
+	bl       "setPosition__Q24Game8CreatureFR10Vector3<f>b"
+	lwz      r3, gameSystem__4Game@sda21(r13)
+	lwz      r0, 0x44(r3)
+	cmpwi    r0, 0
+	bne      lbl_80178998
+	lwz      r3, moviePlayer__4Game@sda21(r13)
+	lwz      r0, 0x1f0(r3)
+	clrlwi.  r0, r0, 0x1f
+	beq      lbl_80178998
+	lis      r4, lbl_8047E73C@ha
+	addi     r4, r4, lbl_8047E73C@l
+	bl       isPlaying__Q24Game11MoviePlayerFPc
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80178998
+	mr       r3, r30
+	li       r4, 0
+	bl       movie_begin__Q24Game8CreatureFb
 
-	.loc_0x118:
-	  lwz       r3, -0x6C18(r13)
-	  lwz       r0, 0x44(r3)
-	  cmpwi     r0, 0x1
-	  bne-      .loc_0x17C
-	  bl        -0xAF408
-	  xoris     r3, r3, 0x8000
-	  lis       r0, 0x4330
-	  stw       r3, 0x44(r1)
-	  mr        r3, r29
-	  lwz       r12, 0x0(r29)
-	  stw       r0, 0x40(r1)
-	  lfd       f2, -0x5858(r2)
-	  lfd       f1, 0x40(r1)
-	  lfs       f0, -0x5874(r2)
-	  fsubs     f1, f1, f2
-	  lwz       r12, 0x64(r12)
-	  fdivs     f31, f1, f0
-	  mtctr     r12
-	  bctrl
-	  lfs       f2, -0x5870(r2)
-	  lfs       f0, -0x586C(r2)
-	  fmsubs    f0, f2, f31, f0
-	  fadds     f1, f0, f1
-	  bl        0x2991DC
-	  b         .loc_0x1BC
+lbl_80178998:
+	lwz      r3, gameSystem__4Game@sda21(r13)
+	lwz      r0, 0x44(r3)
+	cmpwi    r0, 1
+	bne      lbl_801789FC
+	bl       rand
+	xoris    r3, r3, 0x8000
+	lis      r0, 0x4330
+	stw      r3, 0x44(r1)
+	mr       r3, r29
+	lwz      r12, 0(r29)
+	stw      r0, 0x40(r1)
+	lfd      f2, lbl_80518B08@sda21(r2)
+	lfd      f1, 0x40(r1)
+	lfs      f0, lbl_80518AEC@sda21(r2)
+	fsubs    f1, f1, f2
+	lwz      r12, 0x64(r12)
+	fdivs    f31, f1, f0
+	mtctr    r12
+	bctrl
+	lfs      f2, lbl_80518AF0@sda21(r2)
+	lfs      f0, lbl_80518AF4@sda21(r2)
+	fmsubs   f0, f2, f31, f0
+	fadds    f1, f0, f1
+	bl       roundAng__Ff
+	b        lbl_80178A3C
 
-	.loc_0x17C:
-	  rlwinm.   r0,r31,0,24,31
-	  beq-      .loc_0x18C
-	  lfs       f1, -0x5934(r2)
-	  b         .loc_0x1BC
+lbl_801789FC:
+	clrlwi.  r0, r31, 0x18
+	beq      lbl_80178A0C
+	lfs      f1, lbl_80518A2C@sda21(r2)
+	b        lbl_80178A3C
 
-	.loc_0x18C:
-	  bl        -0xAF46C
-	  xoris     r3, r3, 0x8000
-	  lis       r0, 0x4330
-	  stw       r3, 0x44(r1)
-	  lfd       f3, -0x5858(r2)
-	  stw       r0, 0x40(r1)
-	  lfs       f1, -0x5874(r2)
-	  lfd       f2, 0x40(r1)
-	  lfs       f0, -0x5868(r2)
-	  fsubs     f2, f2, f3
-	  fdivs     f1, f2, f1
-	  fmuls     f1, f0, f1
+lbl_80178A0C:
+	bl       rand
+	xoris    r3, r3, 0x8000
+	lis      r0, 0x4330
+	stw      r3, 0x44(r1)
+	lfd      f3, lbl_80518B08@sda21(r2)
+	stw      r0, 0x40(r1)
+	lfs      f1, lbl_80518AEC@sda21(r2)
+	lfd      f2, 0x40(r1)
+	lfs      f0, lbl_80518AF8@sda21(r2)
+	fsubs    f2, f2, f3
+	fdivs    f1, f2, f1
+	fmuls    f1, f0, f1
 
-	.loc_0x1BC:
-	  lfs       f0, -0x5934(r2)
-	  fmr       f2, f1
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x1D0
-	  fneg      f2, f1
+lbl_80178A3C:
+	lfs      f0, lbl_80518A2C@sda21(r2)
+	fmr      f2, f1
+	fcmpo    cr0, f1, f0
+	bge      lbl_80178A50
+	fneg     f2, f1
 
-	.loc_0x1D0:
-	  lfs       f3, -0x5900(r2)
-	  lis       r3, 0x8050
-	  lfs       f0, -0x5934(r2)
-	  addi      r4, r3, 0x71A0
-	  fmuls     f2, f2, f3
-	  lfs       f4, -0x5864(r2)
-	  fcmpo     cr0, f1, f0
-	  fctiwz    f0, f2
-	  stfd      f0, 0x40(r1)
-	  lwz       r0, 0x44(r1)
-	  rlwinm    r0,r0,3,18,28
-	  add       r3, r4, r0
-	  lfs       f0, 0x4(r3)
-	  fmuls     f2, f4, f0
-	  bge-      .loc_0x230
-	  lfs       f0, -0x58FC(r2)
-	  fmuls     f0, f1, f0
-	  fctiwz    f0, f0
-	  stfd      f0, 0x48(r1)
-	  lwz       r0, 0x4C(r1)
-	  rlwinm    r0,r0,3,18,28
-	  lfsx      f0, r4, r0
-	  fneg      f0, f0
-	  b         .loc_0x248
+lbl_80178A50:
+	lfs      f3, lbl_80518A60@sda21(r2)
+	lis      r3, sincosTable___5JMath@ha
+	lfs      f0, lbl_80518A2C@sda21(r2)
+	addi     r4, r3, sincosTable___5JMath@l
+	fmuls    f2, f2, f3
+	lfs      f4, lbl_80518AFC@sda21(r2)
+	fcmpo    cr0, f1, f0
+	fctiwz   f0, f2
+	stfd     f0, 0x40(r1)
+	lwz      r0, 0x44(r1)
+	rlwinm   r0, r0, 3, 0x12, 0x1c
+	add      r3, r4, r0
+	lfs      f0, 4(r3)
+	fmuls    f2, f4, f0
+	bge      lbl_80178AB0
+	lfs      f0, lbl_80518A64@sda21(r2)
+	fmuls    f0, f1, f0
+	fctiwz   f0, f0
+	stfd     f0, 0x48(r1)
+	lwz      r0, 0x4c(r1)
+	rlwinm   r0, r0, 3, 0x12, 0x1c
+	lfsx     f0, r4, r0
+	fneg     f0, f0
+	b        lbl_80178AC8
 
-	.loc_0x230:
-	  fmuls     f0, f1, f3
-	  fctiwz    f0, f0
-	  stfd      f0, 0x50(r1)
-	  lwz       r0, 0x54(r1)
-	  rlwinm    r0,r0,3,18,28
-	  lfsx      f0, r4, r0
+lbl_80178AB0:
+	fmuls    f0, f1, f3
+	fctiwz   f0, f0
+	stfd     f0, 0x50(r1)
+	lwz      r0, 0x54(r1)
+	rlwinm   r0, r0, 3, 0x12, 0x1c
+	lfsx     f0, r4, r0
 
-	.loc_0x248:
-	  fmuls     f1, f4, f0
-	  lfs       f0, -0x5860(r2)
-	  stfs      f2, 0x10(r1)
-	  mr        r3, r30
-	  addi      r4, r1, 0x8
-	  stfs      f1, 0x8(r1)
-	  stfs      f0, 0xC(r1)
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x68(r12)
-	  mtctr     r12
-	  bctrl
-	  psq_l     f31,0x78(r1),0,0
-	  lwz       r0, 0x84(r1)
-	  lfd       f31, 0x70(r1)
-	  lwz       r31, 0x6C(r1)
-	  lwz       r30, 0x68(r1)
-	  lwz       r29, 0x64(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x80
-	  blr
+lbl_80178AC8:
+	fmuls    f1, f4, f0
+	lfs      f0, lbl_80518B00@sda21(r2)
+	stfs     f2, 0x10(r1)
+	mr       r3, r30
+	addi     r4, r1, 8
+	stfs     f1, 8(r1)
+	stfs     f0, 0xc(r1)
+	lwz      r12, 0(r30)
+	lwz      r12, 0x68(r12)
+	mtctr    r12
+	bctrl
+	psq_l    f31, 120(r1), 0, qr0
+	lwz      r0, 0x84(r1)
+	lfd      f31, 0x70(r1)
+	lwz      r31, 0x6c(r1)
+	lwz      r30, 0x68(r1)
+	lwz      r29, 0x64(r1)
+	mtlr     r0
+	addi     r1, r1, 0x80
+	blr
 	*/
 }
 
@@ -5027,51 +6074,50 @@ void Onyon::doEmit(Game::Creature*, bool)
 void Onyon::getLegPart(int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  li        r0, 0
-	  stw       r31, 0x2C(r1)
-	  stw       r30, 0x28(r1)
-	  mr.       r30, r4
-	  lis       r4, 0x8048
-	  stw       r29, 0x24(r1)
-	  mr        r29, r3
-	  subi      r31, r4, 0x19E0
-	  blt-      .loc_0x3C
-	  cmpwi     r30, 0x2
-	  bgt-      .loc_0x3C
-	  li        r0, 0x1
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	li       r0, 0
+	stw      r31, 0x2c(r1)
+	stw      r30, 0x28(r1)
+	or.      r30, r4, r4
+	lis      r4, lbl_8047E620@ha
+	stw      r29, 0x24(r1)
+	mr       r29, r3
+	addi     r31, r4, lbl_8047E620@l
+	blt      lbl_80178B54
+	cmpwi    r30, 2
+	bgt      lbl_80178B54
+	li       r0, 1
 
-	.loc_0x3C:
-	  rlwinm.   r0,r0,0,24,31
-	  bne-      .loc_0x58
-	  addi      r3, r31, 0x18
-	  addi      r5, r31, 0x60
-	  li        r4, 0x7D5
-	  crclr     6, 0x6
-	  bl        -0x14E52C
+lbl_80178B54:
+	clrlwi.  r0, r0, 0x18
+	bne      lbl_80178B70
+	addi     r3, r31, 0x18
+	addi     r5, r31, 0x60
+	li       r4, 0x7d5
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x58:
-	  lwz       r3, 0x12C(r31)
-	  rlwinm    r0,r30,2,0,29
-	  lwz       r6, 0x130(r31)
-	  addi      r4, r1, 0x8
-	  lwz       r5, 0x134(r31)
-	  stw       r3, 0x8(r1)
-	  lwz       r3, 0x114(r29)
-	  stw       r6, 0xC(r1)
-	  stw       r5, 0x10(r1)
-	  lwzx      r4, r4, r0
-	  bl        -0x42D54
-	  lwz       r0, 0x34(r1)
-	  lwz       r31, 0x2C(r1)
-	  lwz       r30, 0x28(r1)
-	  lwz       r29, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_80178B70:
+	lwz      r3, 0x12c(r31)
+	slwi     r0, r30, 2
+	lwz      r6, 0x130(r31)
+	addi     r4, r1, 8
+	lwz      r5, 0x134(r31)
+	stw      r3, 8(r1)
+	lwz      r3, 0x114(r29)
+	stw      r6, 0xc(r1)
+	stw      r5, 0x10(r1)
+	lwzx     r4, r4, r0
+	bl       getCollPart__8CollTreeFUl
+	lwz      r0, 0x34(r1)
+	lwz      r31, 0x2c(r1)
+	lwz      r30, 0x28(r1)
+	lwz      r29, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -5083,61 +6129,60 @@ void Onyon::getLegPart(int)
 void Onyon::getFootPart(int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  li        r0, 0
-	  stw       r31, 0x2C(r1)
-	  stw       r30, 0x28(r1)
-	  mr.       r30, r4
-	  lis       r4, 0x8048
-	  stw       r29, 0x24(r1)
-	  mr        r29, r3
-	  subi      r31, r4, 0x19E0
-	  blt-      .loc_0x3C
-	  cmpwi     r30, 0x2
-	  bgt-      .loc_0x3C
-	  li        r0, 0x1
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	li       r0, 0
+	stw      r31, 0x2c(r1)
+	stw      r30, 0x28(r1)
+	or.      r30, r4, r4
+	lis      r4, lbl_8047E620@ha
+	stw      r29, 0x24(r1)
+	mr       r29, r3
+	addi     r31, r4, lbl_8047E620@l
+	blt      lbl_80178BF4
+	cmpwi    r30, 2
+	bgt      lbl_80178BF4
+	li       r0, 1
 
-	.loc_0x3C:
-	  rlwinm.   r0,r0,0,24,31
-	  bne-      .loc_0x58
-	  addi      r3, r31, 0x18
-	  addi      r5, r31, 0x60
-	  li        r4, 0x7DE
-	  crclr     6, 0x6
-	  bl        -0x14E5CC
+lbl_80178BF4:
+	clrlwi.  r0, r0, 0x18
+	bne      lbl_80178C10
+	addi     r3, r31, 0x18
+	addi     r5, r31, 0x60
+	li       r4, 0x7de
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x58:
-	  lwz       r3, 0x138(r31)
-	  rlwinm    r0,r30,2,0,29
-	  lwz       r6, 0x13C(r31)
-	  addi      r4, r1, 0x8
-	  lwz       r5, 0x140(r31)
-	  stw       r3, 0x8(r1)
-	  lwz       r3, 0x114(r29)
-	  stw       r6, 0xC(r1)
-	  stw       r5, 0x10(r1)
-	  lwzx      r4, r4, r0
-	  bl        -0x42DF4
-	  mr.       r30, r3
-	  bne-      .loc_0xA0
-	  addi      r3, r31, 0x18
-	  addi      r5, r31, 0x144
-	  li        r4, 0x7E4
-	  crclr     6, 0x6
-	  bl        -0x14E614
+lbl_80178C10:
+	lwz      r3, 0x138(r31)
+	slwi     r0, r30, 2
+	lwz      r6, 0x13c(r31)
+	addi     r4, r1, 8
+	lwz      r5, 0x140(r31)
+	stw      r3, 8(r1)
+	lwz      r3, 0x114(r29)
+	stw      r6, 0xc(r1)
+	stw      r5, 0x10(r1)
+	lwzx     r4, r4, r0
+	bl       getCollPart__8CollTreeFUl
+	or.      r30, r3, r3
+	bne      lbl_80178C58
+	addi     r3, r31, 0x18
+	addi     r5, r31, 0x144
+	li       r4, 0x7e4
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xA0:
-	  lwz       r0, 0x34(r1)
-	  mr        r3, r30
-	  lwz       r31, 0x2C(r1)
-	  lwz       r30, 0x28(r1)
-	  lwz       r29, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_80178C58:
+	lwz      r0, 0x34(r1)
+	mr       r3, r30
+	lwz      r31, 0x2c(r1)
+	lwz      r30, 0x28(r1)
+	lwz      r29, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -5149,92 +6194,91 @@ void Onyon::getFootPart(int)
 void Onyon::makeTrMatrix(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  lfs       f0, -0x5934(r2)
-	  stw       r0, 0x34(r1)
-	  addi      r5, r1, 0x8
-	  stw       r31, 0x2C(r1)
-	  mr        r31, r3
-	  addi      r4, r31, 0x19C
-	  lfs       f1, 0x228(r3)
-	  addi      r3, r31, 0x138
-	  stfs      f0, 0x8(r1)
-	  stfs      f1, 0xC(r1)
-	  stfs      f0, 0x10(r1)
-	  bl        0x2AFBDC
-	  mr        r3, r31
-	  bl        0x53958
-	  lwz       r3, -0x6C18(r13)
-	  bl        0x3C30C
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x118
-	  lwz       r3, -0x64AC(r13)
-	  lwz       r0, 0x18(r3)
-	  cmpwi     r0, 0
-	  beq-      .loc_0x64
-	  b         .loc_0x118
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	lfs      f0, lbl_80518A2C@sda21(r2)
+	stw      r0, 0x34(r1)
+	addi     r5, r1, 8
+	stw      r31, 0x2c(r1)
+	mr       r31, r3
+	addi     r4, r31, 0x19c
+	lfs      f1, 0x228(r3)
+	addi     r3, r31, 0x138
+	stfs     f0, 8(r1)
+	stfs     f1, 0xc(r1)
+	stfs     f0, 0x10(r1)
+	bl       "makeTR__7MatrixfFR10Vector3<f>R10Vector3<f>"
+	mr       r3, r31
+	bl       updateCollTree__Q24Game8BaseItemFv
+	lwz      r3, gameSystem__4Game@sda21(r13)
+	bl       paused__Q24Game10GameSystemFv
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_80178D90
+	lwz      r3, moviePlayer__4Game@sda21(r13)
+	lwz      r0, 0x18(r3)
+	cmpwi    r0, 0
+	beq      lbl_80178CDC
+	b        lbl_80178D90
 
-	.loc_0x64:
-	  lbz       r0, 0x1E0(r31)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x118
-	  lfs       f1, 0x1DC(r31)
-	  lfs       f0, -0x5934(r2)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0, 0x2
-	  bne-      .loc_0x108
-	  mr        r3, r31
-	  bl        0xB54
-	  cmplwi    r3, 0
-	  beq-      .loc_0xF8
-	  lwz       r3, 0x1D8(r31)
-	  subi      r0, r3, 0x1
-	  stw       r0, 0x1D8(r31)
-	  lwz       r0, 0x1D8(r31)
-	  cmpwi     r0, 0
-	  bgt-      .loc_0xB4
-	  li        r0, 0
-	  stb       r0, 0x1E0(r31)
+lbl_80178CDC:
+	lbz      r0, 0x1e0(r31)
+	cmplwi   r0, 0
+	beq      lbl_80178D90
+	lfs      f1, 0x1dc(r31)
+	lfs      f0, lbl_80518A2C@sda21(r2)
+	fcmpo    cr0, f1, f0
+	cror     2, 0, 2
+	bne      lbl_80178D80
+	mr       r3, r31
+	bl       exitPiki__Q24Game5OnyonFv
+	cmplwi   r3, 0
+	beq      lbl_80178D70
+	lwz      r3, 0x1d8(r31)
+	addi     r0, r3, -1
+	stw      r0, 0x1d8(r31)
+	lwz      r0, 0x1d8(r31)
+	cmpwi    r0, 0
+	bgt      lbl_80178D2C
+	li       r0, 0
+	stb      r0, 0x1e0(r31)
 
-	.loc_0xB4:
-	  bl        -0xAF78C
-	  xoris     r3, r3, 0x8000
-	  lis       r0, 0x4330
-	  stw       r3, 0x1C(r1)
-	  lfd       f2, -0x5858(r2)
-	  stw       r0, 0x18(r1)
-	  lfs       f3, -0x5874(r2)
-	  lfd       f0, 0x18(r1)
-	  lfs       f1, -0x584C(r2)
-	  fsubs     f4, f0, f2
-	  lfs       f0, -0x58B0(r2)
-	  lfs       f2, -0x5850(r2)
-	  fdivs     f3, f4, f3
-	  fmadds    f0, f1, f3, f0
-	  fmuls     f0, f2, f0
-	  stfs      f0, 0x1DC(r31)
-	  b         .loc_0x118
+lbl_80178D2C:
+	bl       rand
+	xoris    r3, r3, 0x8000
+	lis      r0, 0x4330
+	stw      r3, 0x1c(r1)
+	lfd      f2, lbl_80518B08@sda21(r2)
+	stw      r0, 0x18(r1)
+	lfs      f3, lbl_80518AEC@sda21(r2)
+	lfd      f0, 0x18(r1)
+	lfs      f1, lbl_80518B14@sda21(r2)
+	fsubs    f4, f0, f2
+	lfs      f0, lbl_80518AB0@sda21(r2)
+	lfs      f2, lbl_80518B10@sda21(r2)
+	fdivs    f3, f4, f3
+	fmadds   f0, f1, f3, f0
+	fmuls    f0, f2, f0
+	stfs     f0, 0x1dc(r31)
+	b        lbl_80178D90
 
-	.loc_0xF8:
-	  li        r0, 0
-	  stw       r0, 0x1D8(r31)
-	  stb       r0, 0x1E0(r31)
-	  b         .loc_0x118
+lbl_80178D70:
+	li       r0, 0
+	stw      r0, 0x1d8(r31)
+	stb      r0, 0x1e0(r31)
+	b        lbl_80178D90
 
-	.loc_0x108:
-	  lwz       r3, -0x6514(r13)
-	  lfs       f0, 0x54(r3)
-	  fsubs     f0, f1, f0
-	  stfs      f0, 0x1DC(r31)
+lbl_80178D80:
+	lwz      r3, sys@sda21(r13)
+	lfs      f0, 0x54(r3)
+	fsubs    f0, f1, f0
+	stfs     f0, 0x1dc(r31)
 
-	.loc_0x118:
-	  lwz       r0, 0x34(r1)
-	  lwz       r31, 0x2C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_80178D90:
+	lwz      r0, 0x34(r1)
+	lwz      r31, 0x2c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -5246,109 +6290,108 @@ void Onyon::makeTrMatrix(void)
 void Onyon::changeMaterial(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  mr        r30, r3
-	  lhz       r0, 0x22E(r3)
-	  cmplwi    r0, 0x2
-	  bgt-      .loc_0xDC
-	  lwz       r3, 0x1B4(r30)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x38
-	  lha       r31, 0x20(r3)
-	  b         .loc_0x3C
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	mr       r30, r3
+	lhz      r0, 0x22e(r3)
+	cmplwi   r0, 2
+	bgt      lbl_80178E80
+	lwz      r3, 0x1b4(r30)
+	cmplwi   r3, 0
+	beq      lbl_80178DDC
+	lha      r31, 0x20(r3)
+	b        lbl_80178DE0
 
-	.loc_0x38:
-	  li        r31, -0x1
+lbl_80178DDC:
+	li       r31, -1
 
-	.loc_0x3C:
-	  lwz       r3, 0x234(r30)
-	  lwz       r3, 0x4(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x54
-	  bl        0x2BB2B4
-	  b         .loc_0x58
+lbl_80178DE0:
+	lwz      r3, 0x234(r30)
+	lwz      r3, 4(r3)
+	cmplwi   r3, 0
+	beq      lbl_80178DF8
+	bl       getFrameMax__Q23Sys16MatBaseAnimationFv
+	b        lbl_80178DFC
 
-	.loc_0x54:
-	  lfs       f1, -0x5934(r2)
+lbl_80178DF8:
+	lfs      f1, lbl_80518A2C@sda21(r2)
 
-	.loc_0x58:
-	  cmpwi     r31, 0x4
-	  bne-      .loc_0xC4
-	  lwz       r3, 0x1B4(r30)
-	  lfs       f3, 0x1B0(r30)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x98
-	  lwz       r3, 0x18(r3)
-	  lis       r0, 0x4330
-	  stw       r0, 0x8(r1)
-	  lha       r0, 0x6(r3)
-	  lfd       f2, -0x5858(r2)
-	  xoris     r0, r0, 0x8000
-	  stw       r0, 0xC(r1)
-	  lfd       f0, 0x8(r1)
-	  fsubs     f2, f0, f2
-	  b         .loc_0x9C
+lbl_80178DFC:
+	cmpwi    r31, 4
+	bne      lbl_80178E68
+	lwz      r3, 0x1b4(r30)
+	lfs      f3, 0x1b0(r30)
+	cmplwi   r3, 0
+	beq      lbl_80178E3C
+	lwz      r3, 0x18(r3)
+	lis      r0, 0x4330
+	stw      r0, 8(r1)
+	lha      r0, 6(r3)
+	lfd      f2, lbl_80518B08@sda21(r2)
+	xoris    r0, r0, 0x8000
+	stw      r0, 0xc(r1)
+	lfd      f0, 8(r1)
+	fsubs    f2, f0, f2
+	b        lbl_80178E40
 
-	.loc_0x98:
-	  lfs       f2, -0x5934(r2)
+lbl_80178E3C:
+	lfs      f2, lbl_80518A2C@sda21(r2)
 
-	.loc_0x9C:
-	  lfs       f0, -0x5934(r2)
-	  lwz       r3, 0x234(r30)
-	  fcmpu     cr0, f0, f2
-	  beq-      .loc_0xB4
-	  fdivs     f0, f3, f2
-	  b         .loc_0xB8
+lbl_80178E40:
+	lfs      f0, lbl_80518A2C@sda21(r2)
+	lwz      r3, 0x234(r30)
+	fcmpu    cr0, f0, f2
+	beq      lbl_80178E58
+	fdivs    f0, f3, f2
+	b        lbl_80178E5C
 
-	.loc_0xB4:
-	  lfs       f0, -0x5908(r2)
+lbl_80178E58:
+	lfs      f0, lbl_80518A58@sda21(r2)
 
-	.loc_0xB8:
-	  fmuls     f1, f1, f0
-	  bl        0x2BB57C
-	  b         .loc_0xCC
+lbl_80178E5C:
+	fmuls    f1, f1, f0
+	bl       setCurrentFrame__Q23Sys15MatBaseAnimatorFf
+	b        lbl_80178E70
 
-	.loc_0xC4:
-	  lwz       r3, 0x234(r30)
-	  bl        0x2BB570
+lbl_80178E68:
+	lwz      r3, 0x234(r30)
+	bl       setCurrentFrame__Q23Sys15MatBaseAnimatorFf
 
-	.loc_0xCC:
-	  lwz       r3, 0x234(r30)
-	  lfs       f1, -0x5934(r2)
-	  bl        0x2BB6D4
-	  b         .loc_0x120
+lbl_80178E70:
+	lwz      r3, 0x234(r30)
+	lfs      f1, lbl_80518A2C@sda21(r2)
+	bl       animate__Q23Sys15MatBaseAnimatorFf
+	b        lbl_80178EC4
 
-	.loc_0xDC:
-	  cmplwi    r0, 0x4
-	  bne-      .loc_0x120
-	  lwz       r3, 0x234(r30)
-	  lfs       f1, -0x5930(r2)
-	  bl        0x2BB6BC
-	  lwz       r3, 0x238(r30)
-	  lfs       f1, -0x5930(r2)
-	  bl        0x2BB6B0
-	  lwz       r3, 0x174(r30)
-	  lwz       r3, 0x8(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x174(r30)
-	  lwz       r3, 0x8(r3)
-	  bl        -0x112254
+lbl_80178E80:
+	cmplwi   r0, 4
+	bne      lbl_80178EC4
+	lwz      r3, 0x234(r30)
+	lfs      f1, lbl_80518A30@sda21(r2)
+	bl       animate__Q23Sys15MatBaseAnimatorFf
+	lwz      r3, 0x238(r30)
+	lfs      f1, lbl_80518A30@sda21(r2)
+	bl       animate__Q23Sys15MatBaseAnimatorFf
+	lwz      r3, 0x174(r30)
+	lwz      r3, 8(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 0x174(r30)
+	lwz      r3, 8(r3)
+	bl       diff__8J3DModelFv
 
-	.loc_0x120:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80178EC4:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -5360,136 +6403,135 @@ void Onyon::changeMaterial(void)
 void Onyon::setSpotEffect(bool)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  stw       r0, 0x44(r1)
-	  stw       r31, 0x3C(r1)
-	  mr        r31, r3
-	  lhz       r6, 0x22E(r3)
-	  cmplwi    r6, 0x4
-	  bne-      .loc_0x5C
-	  rlwinm.   r0,r4,0,24,31
-	  beq-      .loc_0x44
-	  lwz       r3, 0x208(r31)
-	  li        r4, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x1C0
+	stwu     r1, -0x40(r1)
+	mflr     r0
+	stw      r0, 0x44(r1)
+	stw      r31, 0x3c(r1)
+	mr       r31, r3
+	lhz      r6, 0x22e(r3)
+	cmplwi   r6, 4
+	bne      lbl_80178F38
+	clrlwi.  r0, r4, 0x18
+	beq      lbl_80178F20
+	lwz      r3, 0x208(r31)
+	li       r4, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_8017909C
 
-	.loc_0x44:
-	  lwz       r3, 0x208(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x1C0
+lbl_80178F20:
+	lwz      r3, 0x208(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_8017909C
 
-	.loc_0x5C:
-	  cmplwi    r6, 0x3
-	  bne-      .loc_0x130
-	  rlwinm.   r0,r4,0,24,31
-	  beq-      .loc_0xDC
-	  lis       r3, 0x804B
-	  addi      r4, r1, 0x8
-	  subi      r0, r3, 0x5814
-	  stw       r0, 0x8(r1)
-	  lfs       f0, 0x19C(r31)
-	  stfs      f0, 0xC(r1)
-	  lfs       f0, 0x1A0(r31)
-	  stfs      f0, 0x10(r1)
-	  lfs       f0, 0x1A4(r31)
-	  stfs      f0, 0x14(r1)
-	  lwz       r3, 0x1F8(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x1FC(r31)
-	  li        r4, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x200(r31)
-	  li        r4, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x1C0
+lbl_80178F38:
+	cmplwi   r6, 3
+	bne      lbl_8017900C
+	clrlwi.  r0, r4, 0x18
+	beq      lbl_80178FB8
+	lis      r3, __vt__Q23efx3Arg@ha
+	addi     r4, r1, 8
+	addi     r0, r3, __vt__Q23efx3Arg@l
+	stw      r0, 8(r1)
+	lfs      f0, 0x19c(r31)
+	stfs     f0, 0xc(r1)
+	lfs      f0, 0x1a0(r31)
+	stfs     f0, 0x10(r1)
+	lfs      f0, 0x1a4(r31)
+	stfs     f0, 0x14(r1)
+	lwz      r3, 0x1f8(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 0x1fc(r31)
+	li       r4, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 0x200(r31)
+	li       r4, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_8017909C
 
-	.loc_0xDC:
-	  lwz       r3, 0x1F8(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x1FC(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x1F8(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x200(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x1C0
+lbl_80178FB8:
+	lwz      r3, 0x1f8(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 0x1fc(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 0x1f8(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 0x200(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_8017909C
 
-	.loc_0x130:
-	  bge-      .loc_0x1C0
-	  rlwinm.   r0,r4,0,24,31
-	  beq-      .loc_0x1AC
-	  lis       r4, 0x804B
-	  lis       r3, 0x8051
-	  addi      r5, r3, 0x41E4
-	  lis       r3, 0x804B
-	  subi      r4, r4, 0x5814
-	  lfs       f2, 0x0(r5)
-	  lfs       f1, 0x4(r5)
-	  addi      r0, r3, 0x2680
-	  stw       r4, 0x18(r1)
-	  addi      r4, r1, 0x18
-	  lfs       f0, 0x8(r5)
-	  stfs      f2, 0x1C(r1)
-	  stfs      f1, 0x20(r1)
-	  stfs      f0, 0x24(r1)
-	  stw       r0, 0x18(r1)
-	  sth       r6, 0x28(r1)
-	  lfs       f0, 0x19C(r31)
-	  stfs      f0, 0x1C(r1)
-	  lfs       f0, 0x1A0(r31)
-	  stfs      f0, 0x20(r1)
-	  lfs       f0, 0x1A4(r31)
-	  stfs      f0, 0x24(r1)
-	  lwz       r3, 0x1EC(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x1C0
+lbl_8017900C:
+	bge      lbl_8017909C
+	clrlwi.  r0, r4, 0x18
+	beq      lbl_80179088
+	lis      r4, __vt__Q23efx3Arg@ha
+	lis      r3, "zero__10Vector3<f>"@ha
+	addi     r5, r3, "zero__10Vector3<f>"@l
+	lis      r3, __vt__Q23efx7ArgType@ha
+	addi     r4, r4, __vt__Q23efx3Arg@l
+	lfs      f2, 0(r5)
+	lfs      f1, 4(r5)
+	addi     r0, r3, __vt__Q23efx7ArgType@l
+	stw      r4, 0x18(r1)
+	addi     r4, r1, 0x18
+	lfs      f0, 8(r5)
+	stfs     f2, 0x1c(r1)
+	stfs     f1, 0x20(r1)
+	stfs     f0, 0x24(r1)
+	stw      r0, 0x18(r1)
+	sth      r6, 0x28(r1)
+	lfs      f0, 0x19c(r31)
+	stfs     f0, 0x1c(r1)
+	lfs      f0, 0x1a0(r31)
+	stfs     f0, 0x20(r1)
+	lfs      f0, 0x1a4(r31)
+	stfs     f0, 0x24(r1)
+	lwz      r3, 0x1ec(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_8017909C
 
-	.loc_0x1AC:
-	  lwz       r3, 0x1EC(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
+lbl_80179088:
+	lwz      r3, 0x1ec(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x1C0:
-	  lwz       r0, 0x44(r1)
-	  lwz       r31, 0x3C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
+lbl_8017909C:
+	lwz      r0, 0x44(r1)
+	lwz      r31, 0x3c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x40
+	blr
 	*/
 }
 
@@ -5501,94 +6543,93 @@ void Onyon::setSpotEffect(bool)
 void Onyon::setSpotEffectActive(bool)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  rlwinm.   r0,r4,0,24,31
-	  stw       r31, 0x2C(r1)
-	  mr        r31, r4
-	  stw       r30, 0x28(r1)
-	  mr        r30, r3
-	  beq-      .loc_0x40
-	  lwz       r3, -0x6C18(r13)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x40
-	  lbz       r0, 0x3C(r3)
-	  rlwinm.   r0,r0,0,26,26
-	  bne-      .loc_0x40
-	  li        r31, 0
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	clrlwi.  r0, r4, 0x18
+	stw      r31, 0x2c(r1)
+	mr       r31, r4
+	stw      r30, 0x28(r1)
+	mr       r30, r3
+	beq      lbl_801790F0
+	lwz      r3, gameSystem__4Game@sda21(r13)
+	cmplwi   r3, 0
+	beq      lbl_801790F0
+	lbz      r0, 0x3c(r3)
+	rlwinm.  r0, r0, 0, 0x1a, 0x1a
+	bne      lbl_801790F0
+	li       r31, 0
 
-	.loc_0x40:
-	  lhz       r0, 0x22E(r30)
-	  cmplwi    r0, 0x4
-	  bne-      .loc_0x84
-	  rlwinm.   r0,r31,0,24,31
-	  beq-      .loc_0x70
-	  lwz       r3, 0x20C(r30)
-	  li        r4, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x84
+lbl_801790F0:
+	lhz      r0, 0x22e(r30)
+	cmplwi   r0, 4
+	bne      lbl_80179134
+	clrlwi.  r0, r31, 0x18
+	beq      lbl_80179120
+	lwz      r3, 0x20c(r30)
+	li       r4, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_80179134
 
-	.loc_0x70:
-	  lwz       r3, 0x20C(r30)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
+lbl_80179120:
+	lwz      r3, 0x20c(r30)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x84:
-	  lhz       r6, 0x22E(r30)
-	  cmplwi    r6, 0x3
-	  bge-      .loc_0x11C
-	  rlwinm.   r0,r31,0,24,31
-	  beq-      .loc_0x108
-	  lis       r4, 0x804B
-	  lis       r3, 0x8051
-	  addi      r5, r3, 0x41E4
-	  lis       r3, 0x804B
-	  subi      r4, r4, 0x5814
-	  lfs       f2, 0x0(r5)
-	  lfs       f1, 0x4(r5)
-	  addi      r0, r3, 0x2680
-	  stw       r4, 0x8(r1)
-	  addi      r4, r1, 0x8
-	  lfs       f0, 0x8(r5)
-	  stfs      f2, 0xC(r1)
-	  stfs      f1, 0x10(r1)
-	  stfs      f0, 0x14(r1)
-	  stw       r0, 0x8(r1)
-	  sth       r6, 0x18(r1)
-	  lfs       f0, 0x19C(r30)
-	  stfs      f0, 0xC(r1)
-	  lfs       f0, 0x1A0(r30)
-	  stfs      f0, 0x10(r1)
-	  lfs       f0, 0x1A4(r30)
-	  stfs      f0, 0x14(r1)
-	  lwz       r3, 0x1F0(r30)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x11C
+lbl_80179134:
+	lhz      r6, 0x22e(r30)
+	cmplwi   r6, 3
+	bge      lbl_801791CC
+	clrlwi.  r0, r31, 0x18
+	beq      lbl_801791B8
+	lis      r4, __vt__Q23efx3Arg@ha
+	lis      r3, "zero__10Vector3<f>"@ha
+	addi     r5, r3, "zero__10Vector3<f>"@l
+	lis      r3, __vt__Q23efx7ArgType@ha
+	addi     r4, r4, __vt__Q23efx3Arg@l
+	lfs      f2, 0(r5)
+	lfs      f1, 4(r5)
+	addi     r0, r3, __vt__Q23efx7ArgType@l
+	stw      r4, 8(r1)
+	addi     r4, r1, 8
+	lfs      f0, 8(r5)
+	stfs     f2, 0xc(r1)
+	stfs     f1, 0x10(r1)
+	stfs     f0, 0x14(r1)
+	stw      r0, 8(r1)
+	sth      r6, 0x18(r1)
+	lfs      f0, 0x19c(r30)
+	stfs     f0, 0xc(r1)
+	lfs      f0, 0x1a0(r30)
+	stfs     f0, 0x10(r1)
+	lfs      f0, 0x1a4(r30)
+	stfs     f0, 0x14(r1)
+	lwz      r3, 0x1f0(r30)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_801791CC
 
-	.loc_0x108:
-	  lwz       r3, 0x1F0(r30)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
+lbl_801791B8:
+	lwz      r3, 0x1f0(r30)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x11C:
-	  lwz       r0, 0x34(r1)
-	  lwz       r31, 0x2C(r1)
-	  lwz       r30, 0x28(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_801791CC:
+	lwz      r0, 0x34(r1)
+	lwz      r31, 0x2c(r1)
+	lwz      r30, 0x28(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -5600,103 +6641,102 @@ void Onyon::setSpotEffectActive(bool)
 void Onyon::efxSuikomi(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  stw       r0, 0x44(r1)
-	  stw       r31, 0x3C(r1)
-	  mr        r31, r3
-	  lhz       r0, 0x22E(r3)
-	  cmplwi    r0, 0x2
-	  bgt-      .loc_0x90
-	  lis       r4, 0x804B
-	  lis       r3, 0x804E
-	  subi      r0, r4, 0x5808
-	  lis       r4, 0x804E
-	  stw       r0, 0x28(r1)
-	  addi      r0, r3, 0x6A78
-	  lis       r3, 0x804B
-	  addi      r5, r31, 0x138
-	  stw       r0, 0x28(r1)
-	  addi      r0, r4, 0x6A14
-	  li        r7, 0x100
-	  li        r6, 0
-	  stw       r0, 0x28(r1)
-	  addi      r0, r3, 0x266C
-	  addi      r3, r1, 0x28
-	  li        r4, 0
-	  sth       r7, 0x2C(r1)
-	  stw       r6, 0x30(r1)
-	  stw       r5, 0x34(r1)
-	  stw       r0, 0x28(r1)
-	  bl        0x236060
-	  mr        r3, r31
-	  li        r4, 0x3804
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x1C0(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x154
+	stwu     r1, -0x40(r1)
+	mflr     r0
+	stw      r0, 0x44(r1)
+	stw      r31, 0x3c(r1)
+	mr       r31, r3
+	lhz      r0, 0x22e(r3)
+	cmplwi   r0, 2
+	bgt      lbl_80179274
+	lis      r4, __vt__Q23efx5TBase@ha
+	lis      r3, __vt__Q23efx8TSimple1@ha
+	addi     r0, r4, __vt__Q23efx5TBase@l
+	lis      r4, __vt__Q23efx11TSimpleMtx1@ha
+	stw      r0, 0x28(r1)
+	addi     r0, r3, __vt__Q23efx8TSimple1@l
+	lis      r3, __vt__Q23efx10TOnyonEatC@ha
+	addi     r5, r31, 0x138
+	stw      r0, 0x28(r1)
+	addi     r0, r4, __vt__Q23efx11TSimpleMtx1@l
+	li       r7, 0x100
+	li       r6, 0
+	stw      r0, 0x28(r1)
+	addi     r0, r3, __vt__Q23efx10TOnyonEatC@l
+	addi     r3, r1, 0x28
+	li       r4, 0
+	sth      r7, 0x2c(r1)
+	stw      r6, 0x30(r1)
+	stw      r5, 0x34(r1)
+	stw      r0, 0x28(r1)
+	bl       create__Q23efx11TSimpleMtx1FPQ23efx3Arg
+	mr       r3, r31
+	li       r4, 0x3804
+	lwz      r12, 0(r31)
+	lwz      r12, 0x1c0(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_80179338
 
-	.loc_0x90:
-	  cmplwi    r0, 0x3
-	  bne-      .loc_0x120
-	  lwz       r12, 0x0(r3)
-	  li        r4, 0x381D
-	  lwz       r12, 0x1C0(r12)
-	  mtctr     r12
-	  bctrl
-	  lis       r3, 0x804B
-	  li        r6, 0
-	  subi      r0, r3, 0x5808
-	  lis       r3, 0x804E
-	  stw       r0, 0x18(r1)
-	  addi      r0, r3, 0x6A64
-	  lis       r4, 0x804B
-	  lis       r3, 0x804B
-	  stw       r0, 0x18(r1)
-	  addi      r5, r4, 0x2658
-	  subi      r0, r3, 0x5814
-	  li        r3, 0x185
-	  li        r7, 0x186
-	  sth       r3, 0x1C(r1)
-	  addi      r3, r1, 0x18
-	  addi      r4, r1, 0x8
-	  sth       r7, 0x1E(r1)
-	  stw       r6, 0x20(r1)
-	  stw       r6, 0x24(r1)
-	  stw       r5, 0x18(r1)
-	  stw       r0, 0x8(r1)
-	  lfs       f0, 0x19C(r31)
-	  stfs      f0, 0xC(r1)
-	  lfs       f0, 0x1A0(r31)
-	  stfs      f0, 0x10(r1)
-	  lfs       f0, 0x1A4(r31)
-	  stfs      f0, 0x14(r1)
-	  bl        0x235D18
-	  b         .loc_0x154
+lbl_80179274:
+	cmplwi   r0, 3
+	bne      lbl_80179304
+	lwz      r12, 0(r3)
+	li       r4, 0x381d
+	lwz      r12, 0x1c0(r12)
+	mtctr    r12
+	bctrl
+	lis      r3, __vt__Q23efx5TBase@ha
+	li       r6, 0
+	addi     r0, r3, __vt__Q23efx5TBase@l
+	lis      r3, __vt__Q23efx8TSimple2@ha
+	stw      r0, 0x18(r1)
+	addi     r0, r3, __vt__Q23efx8TSimple2@l
+	lis      r4, __vt__Q23efx8TPodSuck@ha
+	lis      r3, __vt__Q23efx3Arg@ha
+	stw      r0, 0x18(r1)
+	addi     r5, r4, __vt__Q23efx8TPodSuck@l
+	addi     r0, r3, __vt__Q23efx3Arg@l
+	li       r3, 0x185
+	li       r7, 0x186
+	sth      r3, 0x1c(r1)
+	addi     r3, r1, 0x18
+	addi     r4, r1, 8
+	sth      r7, 0x1e(r1)
+	stw      r6, 0x20(r1)
+	stw      r6, 0x24(r1)
+	stw      r5, 0x18(r1)
+	stw      r0, 8(r1)
+	lfs      f0, 0x19c(r31)
+	stfs     f0, 0xc(r1)
+	lfs      f0, 0x1a0(r31)
+	stfs     f0, 0x10(r1)
+	lfs      f0, 0x1a4(r31)
+	stfs     f0, 0x14(r1)
+	bl       create__Q23efx8TSimple2FPQ23efx3Arg
+	b        lbl_80179338
 
-	.loc_0x120:
-	  cmplwi    r0, 0x4
-	  bne-      .loc_0x154
-	  lwz       r12, 0x0(r3)
-	  li        r4, 0x381D
-	  lwz       r12, 0x1C0(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x214(r31)
-	  li        r4, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
+lbl_80179304:
+	cmplwi   r0, 4
+	bne      lbl_80179338
+	lwz      r12, 0(r3)
+	li       r4, 0x381d
+	lwz      r12, 0x1c0(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 0x214(r31)
+	li       r4, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x154:
-	  lwz       r0, 0x44(r1)
-	  lwz       r31, 0x3C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
+lbl_80179338:
+	lwz      r0, 0x44(r1)
+	lwz      r31, 0x3c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x40
+	blr
 	*/
 }
 
@@ -5708,113 +6748,112 @@ void Onyon::efxSuikomi(void)
 void Onyon::efxPafuPafu(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x60(r1)
-	  mflr      r0
-	  stw       r0, 0x64(r1)
-	  stw       r31, 0x5C(r1)
-	  mr        r31, r3
-	  bl        -0xAFDC0
-	  xoris     r3, r3, 0x8000
-	  lis       r0, 0x4330
-	  stw       r3, 0x44(r1)
-	  lfd       f3, -0x5858(r2)
-	  stw       r0, 0x40(r1)
-	  lfs       f1, -0x5874(r2)
-	  lfd       f2, 0x40(r1)
-	  lfs       f0, -0x5850(r2)
-	  fsubs     f2, f2, f3
-	  fdivs     f1, f2, f1
-	  fcmpo     cr0, f1, f0
-	  bgt-      .loc_0x18C
-	  lis       r3, 0x8048
-	  subi      r5, r3, 0x186C
-	  lwz       r4, 0x0(r5)
-	  lwz       r3, 0x4(r5)
-	  lwz       r0, 0x8(r5)
-	  stw       r4, 0x18(r1)
-	  stw       r3, 0x1C(r1)
-	  stw       r0, 0x20(r1)
-	  bl        -0xAFE14
-	  xoris     r3, r3, 0x8000
-	  lis       r0, 0x4330
-	  stw       r3, 0x44(r1)
-	  addi      r4, r1, 0x18
-	  lfd       f3, -0x5858(r2)
-	  stw       r0, 0x40(r1)
-	  lfs       f1, -0x5874(r2)
-	  lfd       f2, 0x40(r1)
-	  lfs       f0, -0x58AC(r2)
-	  fsubs     f2, f2, f3
-	  lwz       r3, 0x174(r31)
-	  fdivs     f1, f2, f1
-	  fmuls     f0, f0, f1
-	  fctiwz    f0, f0
-	  stfd      f0, 0x48(r1)
-	  lwz       r0, 0x4C(r1)
-	  rlwinm    r0,r0,2,0,29
-	  lwzx      r4, r4, r0
-	  bl        0x2C5BE4
-	  cmplwi    r3, 0
-	  beq-      .loc_0x18C
-	  lbz       r0, 0xD8(r31)
-	  rlwinm.   r0,r0,0,29,29
-	  beq-      .loc_0x18C
-	  bl        0x2B0488
-	  lis       r5, 0x804B
-	  lis       r4, 0x804E
-	  subi      r0, r5, 0x5808
-	  lis       r5, 0x804E
-	  stw       r0, 0x8(r1)
-	  addi      r0, r4, 0x6A78
-	  lis       r4, 0x804B
-	  li        r7, 0x104
-	  stw       r0, 0x8(r1)
-	  addi      r5, r5, 0x6A14
-	  li        r6, 0
-	  addi      r0, r4, 0x2644
-	  stw       r5, 0x8(r1)
-	  li        r4, 0
-	  stw       r3, 0x14(r1)
-	  addi      r3, r1, 0x8
-	  sth       r7, 0xC(r1)
-	  stw       r6, 0x10(r1)
-	  stw       r0, 0x8(r1)
-	  bl        0x235E4C
-	  lwz       r3, 0x17C(r31)
-	  li        r4, 0x3831
-	  li        r5, 0
-	  lwz       r12, 0x28(r3)
-	  lwz       r12, 0x7C(r12)
-	  mtctr     r12
-	  bctrl
-	  mr.       r31, r3
-	  beq-      .loc_0x18C
-	  lfs       f5, -0x5934(r2)
-	  li        r0, 0
-	  lfs       f1, -0x5908(r2)
-	  addi      r3, r1, 0x24
-	  stfs      f5, 0x28(r1)
-	  lfs       f2, -0x58A0(r2)
-	  stfs      f1, 0x24(r1)
-	  lfs       f3, -0x5848(r2)
-	  stfs      f5, 0x2C(r1)
-	  lfs       f4, -0x589C(r2)
-	  stfs      f5, 0x30(r1)
-	  stfs      f5, 0x34(r1)
-	  stb       r0, 0x38(r1)
-	  stb       r0, 0x39(r1)
-	  bl        0x1BB684
-	  mr        r3, r31
-	  addi      r4, r1, 0x24
-	  bl        0x2F7F84
+	stwu     r1, -0x60(r1)
+	mflr     r0
+	stw      r0, 0x64(r1)
+	stw      r31, 0x5c(r1)
+	mr       r31, r3
+	bl       rand
+	xoris    r3, r3, 0x8000
+	lis      r0, 0x4330
+	stw      r3, 0x44(r1)
+	lfd      f3, lbl_80518B08@sda21(r2)
+	stw      r0, 0x40(r1)
+	lfs      f1, lbl_80518AEC@sda21(r2)
+	lfd      f2, 0x40(r1)
+	lfs      f0, lbl_80518B10@sda21(r2)
+	fsubs    f2, f2, f3
+	fdivs    f1, f2, f1
+	fcmpo    cr0, f1, f0
+	bgt      lbl_801794D8
+	lis      r3, lbl_8047E794@ha
+	addi     r5, r3, lbl_8047E794@l
+	lwz      r4, 0(r5)
+	lwz      r3, 4(r5)
+	lwz      r0, 8(r5)
+	stw      r4, 0x18(r1)
+	stw      r3, 0x1c(r1)
+	stw      r0, 0x20(r1)
+	bl       rand
+	xoris    r3, r3, 0x8000
+	lis      r0, 0x4330
+	stw      r3, 0x44(r1)
+	addi     r4, r1, 0x18
+	lfd      f3, lbl_80518B08@sda21(r2)
+	stw      r0, 0x40(r1)
+	lfs      f1, lbl_80518AEC@sda21(r2)
+	lfd      f2, 0x40(r1)
+	lfs      f0, lbl_80518AB4@sda21(r2)
+	fsubs    f2, f2, f3
+	lwz      r3, 0x174(r31)
+	fdivs    f1, f2, f1
+	fmuls    f0, f0, f1
+	fctiwz   f0, f0
+	stfd     f0, 0x48(r1)
+	lwz      r0, 0x4c(r1)
+	slwi     r0, r0, 2
+	lwzx     r4, r4, r0
+	bl       getJoint__Q28SysShape5ModelFPc
+	cmplwi   r3, 0
+	beq      lbl_801794D8
+	lbz      r0, 0xd8(r31)
+	rlwinm.  r0, r0, 0, 0x1d, 0x1d
+	beq      lbl_801794D8
+	bl       getWorldMatrix__Q28SysShape5JointFv
+	lis      r5, __vt__Q23efx5TBase@ha
+	lis      r4, __vt__Q23efx8TSimple1@ha
+	addi     r0, r5, __vt__Q23efx5TBase@l
+	lis      r5, __vt__Q23efx11TSimpleMtx1@ha
+	stw      r0, 8(r1)
+	addi     r0, r4, __vt__Q23efx8TSimple1@l
+	lis      r4, __vt__Q23efx14TOnyonPuffPuff@ha
+	li       r7, 0x104
+	stw      r0, 8(r1)
+	addi     r5, r5, __vt__Q23efx11TSimpleMtx1@l
+	li       r6, 0
+	addi     r0, r4, __vt__Q23efx14TOnyonPuffPuff@l
+	stw      r5, 8(r1)
+	li       r4, 0
+	stw      r3, 0x14(r1)
+	addi     r3, r1, 8
+	sth      r7, 0xc(r1)
+	stw      r6, 0x10(r1)
+	stw      r0, 8(r1)
+	bl       create__Q23efx11TSimpleMtx1FPQ23efx3Arg
+	lwz      r3, 0x17c(r31)
+	li       r4, 0x3831
+	li       r5, 0
+	lwz      r12, 0x28(r3)
+	lwz      r12, 0x7c(r12)
+	mtctr    r12
+	bctrl
+	or.      r31, r3, r3
+	beq      lbl_801794D8
+	lfs      f5, lbl_80518A2C@sda21(r2)
+	li       r0, 0
+	lfs      f1, lbl_80518A58@sda21(r2)
+	addi     r3, r1, 0x24
+	stfs     f5, 0x28(r1)
+	lfs      f2, lbl_80518AC0@sda21(r2)
+	stfs     f1, 0x24(r1)
+	lfs      f3, lbl_80518B18@sda21(r2)
+	stfs     f5, 0x2c(r1)
+	lfs      f4, lbl_80518AC4@sda21(r2)
+	stfs     f5, 0x30(r1)
+	stfs     f5, 0x34(r1)
+	stb      r0, 0x38(r1)
+	stb      r0, 0x39(r1)
+	bl       set__Q36PSGame10SoundTable11SePerspInfoFfffff
+	mr       r3, r31
+	addi     r4, r1, 0x24
+	bl specializePerspCalc__Q23PSM7SeSoundFRCQ36PSGame10SoundTable11SePerspInfo
 
-	.loc_0x18C:
-	  lwz       r0, 0x64(r1)
-	  lwz       r31, 0x5C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x60
-	  blr
+lbl_801794D8:
+	lwz      r0, 0x64(r1)
+	lwz      r31, 0x5c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x60
+	blr
 	*/
 }
 
@@ -5826,53 +6865,52 @@ void Onyon::efxPafuPafu(void)
 void Onyon::efxPafuKira(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  subi      r4, r2, 0x5844
-	  stw       r0, 0x34(r1)
-	  stw       r31, 0x2C(r1)
-	  mr        r31, r3
-	  lwz       r3, 0x174(r3)
-	  bl        0x2C5ADC
-	  cmplwi    r3, 0
-	  beq-      .loc_0x9C
-	  lbz       r0, 0xD8(r31)
-	  rlwinm.   r0,r0,0,29,29
-	  beq-      .loc_0x9C
-	  bl        0x2B0380
-	  lis       r4, 0x804B
-	  lfs       f0, 0xC(r3)
-	  lfs       f1, 0x1C(r3)
-	  subi      r0, r4, 0x5808
-	  lfs       f2, 0x2C(r3)
-	  lis       r3, 0x804E
-	  addi      r5, r3, 0x6A78
-	  lis       r4, 0x804B
-	  stw       r0, 0x18(r1)
-	  lis       r3, 0x804B
-	  subi      r0, r3, 0x5814
-	  li        r7, 0x103
-	  li        r6, 0
-	  stw       r5, 0x18(r1)
-	  addi      r5, r4, 0x2630
-	  addi      r3, r1, 0x18
-	  sth       r7, 0x1C(r1)
-	  addi      r4, r1, 0x8
-	  stw       r6, 0x20(r1)
-	  stw       r5, 0x18(r1)
-	  stw       r0, 0x8(r1)
-	  stfs      f0, 0xC(r1)
-	  stfs      f1, 0x10(r1)
-	  stfs      f2, 0x14(r1)
-	  bl        0x235A00
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	addi     r4, r2, lbl_80518B1C@sda21
+	stw      r0, 0x34(r1)
+	stw      r31, 0x2c(r1)
+	mr       r31, r3
+	lwz      r3, 0x174(r3)
+	bl       getJoint__Q28SysShape5ModelFPc
+	cmplwi   r3, 0
+	beq      lbl_80179588
+	lbz      r0, 0xd8(r31)
+	rlwinm.  r0, r0, 0, 0x1d, 0x1d
+	beq      lbl_80179588
+	bl       getWorldMatrix__Q28SysShape5JointFv
+	lis      r4, __vt__Q23efx5TBase@ha
+	lfs      f0, 0xc(r3)
+	lfs      f1, 0x1c(r3)
+	addi     r0, r4, __vt__Q23efx5TBase@l
+	lfs      f2, 0x2c(r3)
+	lis      r3, __vt__Q23efx8TSimple1@ha
+	addi     r5, r3, __vt__Q23efx8TSimple1@l
+	lis      r4, __vt__Q23efx14TOnyonPuffKira@ha
+	stw      r0, 0x18(r1)
+	lis      r3, __vt__Q23efx3Arg@ha
+	addi     r0, r3, __vt__Q23efx3Arg@l
+	li       r7, 0x103
+	li       r6, 0
+	stw      r5, 0x18(r1)
+	addi     r5, r4, __vt__Q23efx14TOnyonPuffKira@l
+	addi     r3, r1, 0x18
+	sth      r7, 0x1c(r1)
+	addi     r4, r1, 8
+	stw      r6, 0x20(r1)
+	stw      r5, 0x18(r1)
+	stw      r0, 8(r1)
+	stfs     f0, 0xc(r1)
+	stfs     f1, 0x10(r1)
+	stfs     f2, 0x14(r1)
+	bl       create__Q23efx8TSimple1FPQ23efx3Arg
 
-	.loc_0x9C:
-	  lwz       r0, 0x34(r1)
-	  lwz       r31, 0x2C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_80179588:
+	lwz      r0, 0x34(r1)
+	lwz      r31, 0x2c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -5884,18 +6922,17 @@ void Onyon::efxPafuKira(void)
 void Onyon::getStoreCount(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r5, -0x6B70(r13)
-	  lhz       r4, 0x22E(r3)
-	  addi      r3, r5, 0xA8
-	  bl        0x77FFC
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r5, playData__4Game@sda21(r13)
+	lhz      r4, 0x22e(r3)
+	addi     r3, r5, 0xa8
+	bl       getColorSum__Q24Game13PikiContainerFi
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -5907,180 +6944,179 @@ void Onyon::getStoreCount(void)
 void Onyon::enterPiki(Game::Piki*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stfd      f31, 0x20(r1)
-	  psq_st    f31,0x28(r1),0,0
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  mr        r30, r4
-	  lwz       r6, -0x6B70(r13)
-	  lbz       r4, 0x2B8(r4)
-	  mr        r31, r3
-	  lbz       r5, 0x2B9(r30)
-	  addi      r3, r6, 0xA8
-	  bl        0x77E20
-	  lwz       r7, 0x0(r3)
-	  lis       r6, 0x804B
-	  lis       r4, 0x804B
-	  li        r5, 0x1
-	  addi      r0, r7, 0x1
-	  subi      r6, r6, 0x5D30
-	  stw       r0, 0x0(r3)
-	  addi      r0, r4, 0x1160
-	  mr        r3, r30
-	  addi      r4, r1, 0x8
-	  stw       r6, 0x8(r1)
-	  stw       r5, 0xC(r1)
-	  stw       r0, 0x8(r1)
-	  bl        -0x3E544
-	  lhz       r3, 0x22E(r31)
-	  cmplwi    r3, 0x2
-	  bgt-      .loc_0xC8
-	  lhz       r0, 0x22C(r31)
-	  cmplwi    r0, 0
-	  beq-      .loc_0xC8
-	  lwz       r3, 0x1B4(r31)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x9C
-	  lha       r0, 0x20(r3)
-	  b         .loc_0xA0
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stfd     f31, 0x20(r1)
+	psq_st   f31, 40(r1), 0, qr0
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	mr       r30, r4
+	lwz      r6, playData__4Game@sda21(r13)
+	lbz      r4, 0x2b8(r4)
+	mr       r31, r3
+	lbz      r5, 0x2b9(r30)
+	addi     r3, r6, 0xa8
+	bl       getCount__Q24Game13PikiContainerFii
+	lwz      r7, 0(r3)
+	lis      r6, __vt__Q24Game15CreatureKillArg@ha
+	lis      r4, __vt__Q24Game11PikiKillArg@ha
+	li       r5, 1
+	addi     r0, r7, 1
+	addi     r6, r6, __vt__Q24Game15CreatureKillArg@l
+	stw      r0, 0(r3)
+	addi     r0, r4, __vt__Q24Game11PikiKillArg@l
+	mr       r3, r30
+	addi     r4, r1, 8
+	stw      r6, 8(r1)
+	stw      r5, 0xc(r1)
+	stw      r0, 8(r1)
+	bl       kill__Q24Game8CreatureFPQ24Game15CreatureKillArg
+	lhz      r3, 0x22e(r31)
+	cmplwi   r3, 2
+	bgt      lbl_80179690
+	lhz      r0, 0x22c(r31)
+	cmplwi   r0, 0
+	beq      lbl_80179690
+	lwz      r3, 0x1b4(r31)
+	cmplwi   r3, 0
+	beq      lbl_80179664
+	lha      r0, 0x20(r3)
+	b        lbl_80179668
 
-	.loc_0x9C:
-	  li        r0, -0x1
+lbl_80179664:
+	li       r0, -1
 
-	.loc_0xA0:
-	  cmpwi     r0, 0x1
-	  beq-      .loc_0x224
-	  cmplwi    r31, 0
-	  mr        r5, r31
-	  beq-      .loc_0xB8
-	  addi      r5, r31, 0x178
+lbl_80179668:
+	cmpwi    r0, 1
+	beq      lbl_801797EC
+	cmplwi   r31, 0
+	mr       r5, r31
+	beq      lbl_80179680
+	addi     r5, r31, 0x178
 
-	.loc_0xB8:
-	  addi      r3, r31, 0x1A8
-	  li        r4, 0x1
-	  bl        0x2AF600
-	  b         .loc_0x224
+lbl_80179680:
+	addi     r3, r31, 0x1a8
+	li       r4, 1
+	bl       startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
+	b        lbl_801797EC
 
-	.loc_0xC8:
-	  cmplwi    r3, 0x4
-	  bne-      .loc_0x184
-	  lwz       r3, -0x6B70(r13)
-	  li        r4, 0x4
-	  addi      r3, r3, 0xA8
-	  bl        0x77F0C
-	  lwz       r5, -0x6B70(r13)
-	  mr        r30, r3
-	  li        r4, 0x3
-	  addi      r3, r5, 0xA8
-	  bl        0x77EF8
-	  add.      r0, r30, r3
-	  ble-      .loc_0x144
-	  lfs       f31, -0x5930(r2)
-	  mr        r3, r31
-	  li        r4, 0x1
-	  bl        0xAD4
-	  stfs      f31, 0x0(r3)
-	  li        r4, 0
-	  lwz       r3, 0x218(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x21C(r31)
-	  li        r4, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x224
+lbl_80179690:
+	cmplwi   r3, 4
+	bne      lbl_8017974C
+	lwz      r3, playData__4Game@sda21(r13)
+	li       r4, 4
+	addi     r3, r3, 0xa8
+	bl       getColorSum__Q24Game13PikiContainerFi
+	lwz      r5, playData__4Game@sda21(r13)
+	mr       r30, r3
+	li       r4, 3
+	addi     r3, r5, 0xa8
+	bl       getColorSum__Q24Game13PikiContainerFi
+	add.     r0, r30, r3
+	ble      lbl_8017970C
+	lfs      f31, lbl_80518A30@sda21(r2)
+	mr       r3, r31
+	li       r4, 1
+	bl       getPMotionSpeed__Q24Game5OnyonFi
+	stfs     f31, 0(r3)
+	li       r4, 0
+	lwz      r3, 0x218(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 0x21c(r31)
+	li       r4, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_801797EC
 
-	.loc_0x144:
-	  lwz       r3, 0x218(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x21C(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f31, -0x5934(r2)
-	  mr        r3, r31
-	  li        r4, 0x1
-	  bl        0xA64
-	  stfs      f31, 0x0(r3)
-	  b         .loc_0x224
+lbl_8017970C:
+	lwz      r3, 0x218(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 0x21c(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	lfs      f31, lbl_80518A2C@sda21(r2)
+	mr       r3, r31
+	li       r4, 1
+	bl       getPMotionSpeed__Q24Game5OnyonFi
+	stfs     f31, 0(r3)
+	b        lbl_801797EC
 
-	.loc_0x184:
-	  lfs       f0, -0x5930(r2)
-	  stfs      f0, 0x1D4(r31)
-	  lhz       r4, 0x22E(r31)
-	  cmplwi    r4, 0x3
-	  bne-      .loc_0x1AC
-	  addi      r3, r31, 0x1A8
-	  li        r4, 0
-	  li        r5, 0
-	  bl        0x2AF51C
-	  b         .loc_0x224
+lbl_8017974C:
+	lfs      f0, lbl_80518A30@sda21(r2)
+	stfs     f0, 0x1d4(r31)
+	lhz      r4, 0x22e(r31)
+	cmplwi   r4, 3
+	bne      lbl_80179774
+	addi     r3, r31, 0x1a8
+	li       r4, 0
+	li       r5, 0
+	bl       startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
+	b        lbl_801797EC
 
-	.loc_0x1AC:
-	  lwz       r3, -0x6B70(r13)
-	  addi      r3, r3, 0xA8
-	  bl        0x77E34
-	  cmpwi     r3, 0
-	  ble-      .loc_0x208
-	  lwz       r3, 0x1B4(r31)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x1D4
-	  lha       r0, 0x20(r3)
-	  b         .loc_0x1D8
+lbl_80179774:
+	lwz      r3, playData__4Game@sda21(r13)
+	addi     r3, r3, 0xa8
+	bl       getColorSum__Q24Game13PikiContainerFi
+	cmpwi    r3, 0
+	ble      lbl_801797D0
+	lwz      r3, 0x1b4(r31)
+	cmplwi   r3, 0
+	beq      lbl_8017979C
+	lha      r0, 0x20(r3)
+	b        lbl_801797A0
 
-	.loc_0x1D4:
-	  li        r0, -0x1
+lbl_8017979C:
+	li       r0, -1
 
-	.loc_0x1D8:
-	  cmplwi    r0, 0x1
-	  ble-      .loc_0x1E8
-	  cmpwi     r0, 0x3
-	  bne-      .loc_0x224
+lbl_801797A0:
+	cmplwi   r0, 1
+	ble      lbl_801797B0
+	cmpwi    r0, 3
+	bne      lbl_801797EC
 
-	.loc_0x1E8:
-	  cmplwi    r31, 0
-	  mr        r5, r31
-	  beq-      .loc_0x1F8
-	  addi      r5, r31, 0x178
+lbl_801797B0:
+	cmplwi   r31, 0
+	mr       r5, r31
+	beq      lbl_801797C0
+	addi     r5, r31, 0x178
 
-	.loc_0x1F8:
-	  addi      r3, r31, 0x1A8
-	  li        r4, 0x2
-	  bl        0x2AF4C0
-	  b         .loc_0x224
+lbl_801797C0:
+	addi     r3, r31, 0x1a8
+	li       r4, 2
+	bl       startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
+	b        lbl_801797EC
 
-	.loc_0x208:
-	  cmplwi    r31, 0
-	  mr        r5, r31
-	  beq-      .loc_0x218
-	  addi      r5, r31, 0x178
+lbl_801797D0:
+	cmplwi   r31, 0
+	mr       r5, r31
+	beq      lbl_801797E0
+	addi     r5, r31, 0x178
 
-	.loc_0x218:
-	  addi      r3, r31, 0x1A8
-	  li        r4, 0
-	  bl        0x2AF4A0
+lbl_801797E0:
+	addi     r3, r31, 0x1a8
+	li       r4, 0
+	bl       startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
 
-	.loc_0x224:
-	  psq_l     f31,0x28(r1),0,0
-	  lwz       r0, 0x34(r1)
-	  lfd       f31, 0x20(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_801797EC:
+	psq_l    f31, 40(r1), 0, qr0
+	lwz      r0, 0x34(r1)
+	lfd      f31, 0x20(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -6092,27 +7128,26 @@ void Onyon::enterPiki(Game::Piki*)
 void Onyon::exitPikis(int, int)
 {
 	/*
-	.loc_0x0:
-	  li        r0, 0x1
-	  lfs       f0, -0x5934(r2)
-	  stb       r0, 0x1E0(r3)
-	  cmpwi     r5, 0x3
-	  lwz       r0, 0x1D8(r3)
-	  add       r0, r0, r4
-	  stw       r0, 0x1D8(r3)
-	  stfs      f0, 0x1DC(r3)
-	  bne-      .loc_0x30
-	  lwz       r0, 0x1E8(r3)
-	  add       r0, r0, r4
-	  stw       r0, 0x1E8(r3)
+	li       r0, 1
+	lfs      f0, lbl_80518A2C@sda21(r2)
+	stb      r0, 0x1e0(r3)
+	cmpwi    r5, 3
+	lwz      r0, 0x1d8(r3)
+	add      r0, r0, r4
+	stw      r0, 0x1d8(r3)
+	stfs     f0, 0x1dc(r3)
+	bne      lbl_8017983C
+	lwz      r0, 0x1e8(r3)
+	add      r0, r0, r4
+	stw      r0, 0x1e8(r3)
 
-	.loc_0x30:
-	  cmpwi     r5, 0x4
-	  bnelr-
-	  lwz       r0, 0x1E4(r3)
-	  add       r0, r0, r4
-	  stw       r0, 0x1E4(r3)
-	  blr
+lbl_8017983C:
+	cmpwi    r5, 4
+	bnelr
+	lwz      r0, 0x1e4(r3)
+	add      r0, r0, r4
+	stw      r0, 0x1e4(r3)
+	blr
 	*/
 }
 
@@ -6124,324 +7159,323 @@ void Onyon::exitPikis(int, int)
 void Onyon::exitPiki(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x80(r1)
-	  mflr      r0
-	  stw       r0, 0x84(r1)
-	  stfd      f31, 0x70(r1)
-	  psq_st    f31,0x78(r1),0,0
-	  stmw      r27, 0x5C(r1)
-	  lwz       r4, -0x6C18(r13)
-	  lis       r5, 0x8048
-	  mr        r28, r3
-	  lbz       r0, 0x3C(r4)
-	  subi      r27, r5, 0x19E0
-	  rlwinm.   r0,r0,0,26,26
-	  bne-      .loc_0x3C
-	  li        r3, 0
-	  b         .loc_0x438
+	stwu     r1, -0x80(r1)
+	mflr     r0
+	stw      r0, 0x84(r1)
+	stfd     f31, 0x70(r1)
+	psq_st   f31, 120(r1), 0, qr0
+	stmw     r27, 0x5c(r1)
+	lwz      r4, gameSystem__4Game@sda21(r13)
+	lis      r5, lbl_8047E620@ha
+	mr       r28, r3
+	lbz      r0, 0x3c(r4)
+	addi     r27, r5, lbl_8047E620@l
+	rlwinm.  r0, r0, 0, 0x1a, 0x1a
+	bne      lbl_80179890
+	li       r3, 0
+	b        lbl_80179C8C
 
-	.loc_0x3C:
-	  lhz       r0, 0x22E(r28)
-	  li        r30, -0x1
-	  cmplwi    r0, 0x4
-	  mr        r31, r0
-	  bne-      .loc_0x8C
-	  lwz       r0, 0x1E4(r28)
-	  cmpwi     r0, 0
-	  ble-      .loc_0x64
-	  li        r31, 0x4
-	  b         .loc_0x8C
+lbl_80179890:
+	lhz      r0, 0x22e(r28)
+	li       r30, -1
+	cmplwi   r0, 4
+	mr       r31, r0
+	bne      lbl_801798E0
+	lwz      r0, 0x1e4(r28)
+	cmpwi    r0, 0
+	ble      lbl_801798B8
+	li       r31, 4
+	b        lbl_801798E0
 
-	.loc_0x64:
-	  lwz       r0, 0x1E8(r28)
-	  cmpwi     r0, 0
-	  ble-      .loc_0x78
-	  li        r31, 0x3
-	  b         .loc_0x8C
+lbl_801798B8:
+	lwz      r0, 0x1e8(r28)
+	cmpwi    r0, 0
+	ble      lbl_801798CC
+	li       r31, 3
+	b        lbl_801798E0
 
-	.loc_0x78:
-	  addi      r3, r27, 0x18
-	  addi      r5, r27, 0x180
-	  li        r4, 0x8F8
-	  crclr     6, 0x6
-	  bl        -0x14F29C
+lbl_801798CC:
+	addi     r3, r27, 0x18
+	addi     r5, r27, 0x180
+	li       r4, 0x8f8
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x8C:
-	  li        r29, 0x2
+lbl_801798E0:
+	li       r29, 2
 
-	.loc_0x90:
-	  lwz       r3, -0x6B70(r13)
-	  mr        r4, r31
-	  mr        r5, r29
-	  addi      r3, r3, 0xA8
-	  bl        0x77B28
-	  lwz       r0, 0x0(r3)
-	  cmpwi     r0, 0
-	  ble-      .loc_0xB8
-	  mr        r30, r29
-	  b         .loc_0xC0
+lbl_801798E4:
+	lwz      r3, playData__4Game@sda21(r13)
+	mr       r4, r31
+	mr       r5, r29
+	addi     r3, r3, 0xa8
+	bl       getCount__Q24Game13PikiContainerFii
+	lwz      r0, 0(r3)
+	cmpwi    r0, 0
+	ble      lbl_8017990C
+	mr       r30, r29
+	b        lbl_80179914
 
-	.loc_0xB8:
-	  subic.    r29, r29, 0x1
-	  bge+      .loc_0x90
+lbl_8017990C:
+	addic.   r29, r29, -1
+	bge      lbl_801798E4
 
-	.loc_0xC0:
-	  cmpwi     r30, -0x1
-	  bne-      .loc_0xD0
-	  li        r3, 0
-	  b         .loc_0x438
+lbl_80179914:
+	cmpwi    r30, -1
+	bne      lbl_80179924
+	li       r3, 0
+	b        lbl_80179C8C
 
-	.loc_0xD0:
-	  lwz       r3, -0x6D0C(r13)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x7C(r12)
-	  mtctr     r12
-	  bctrl
-	  mr.       r29, r3
-	  bne-      .loc_0x108
-	  li        r0, 0
-	  li        r3, 0
-	  stw       r0, 0x1D8(r28)
-	  stw       r0, 0x1E4(r28)
-	  stw       r0, 0x1E8(r28)
-	  stb       r0, 0x1E0(r28)
-	  b         .loc_0x438
+lbl_80179924:
+	lwz      r3, pikiMgr__4Game@sda21(r13)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x7c(r12)
+	mtctr    r12
+	bctrl
+	or.      r29, r3, r3
+	bne      lbl_8017995C
+	li       r0, 0
+	li       r3, 0
+	stw      r0, 0x1d8(r28)
+	stw      r0, 0x1e4(r28)
+	stw      r0, 0x1e8(r28)
+	stb      r0, 0x1e0(r28)
+	b        lbl_80179C8C
 
-	.loc_0x108:
-	  cmpwi     r31, 0x4
-	  bne-      .loc_0x120
-	  lwz       r3, 0x1E4(r28)
-	  subi      r0, r3, 0x1
-	  stw       r0, 0x1E4(r28)
-	  b         .loc_0x134
+lbl_8017995C:
+	cmpwi    r31, 4
+	bne      lbl_80179974
+	lwz      r3, 0x1e4(r28)
+	addi     r0, r3, -1
+	stw      r0, 0x1e4(r28)
+	b        lbl_80179988
 
-	.loc_0x120:
-	  cmpwi     r31, 0x3
-	  bne-      .loc_0x134
-	  lwz       r3, 0x1E8(r28)
-	  subi      r0, r3, 0x1
-	  stw       r0, 0x1E8(r28)
+lbl_80179974:
+	cmpwi    r31, 3
+	bne      lbl_80179988
+	lwz      r3, 0x1e8(r28)
+	addi     r0, r3, -1
+	stw      r0, 0x1e8(r28)
 
-	.loc_0x134:
-	  cmplwi    r29, 0
-	  bne-      .loc_0x150
-	  addi      r3, r27, 0x18
-	  addi      r5, r27, 0x60
-	  li        r4, 0x922
-	  crclr     6, 0x6
-	  bl        -0x14F360
+lbl_80179988:
+	cmplwi   r29, 0
+	bne      lbl_801799A4
+	addi     r3, r27, 0x18
+	addi     r5, r27, 0x60
+	li       r4, 0x922
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x150:
-	  lwz       r3, -0x6B70(r13)
-	  mr        r4, r31
-	  mr        r5, r30
-	  addi      r3, r3, 0xA8
-	  bl        0x77A68
-	  lwz       r5, 0x0(r3)
-	  mr        r4, r31
-	  subi      r0, r5, 0x1
-	  stw       r0, 0x0(r3)
-	  lwz       r3, -0x6B70(r13)
-	  addi      r3, r3, 0xA8
-	  bl        0x77BE0
-	  mr        r3, r29
-	  li        r4, 0
-	  bl        -0x3EA14
-	  mr        r3, r29
-	  mr        r4, r31
-	  bl        -0x2F428
-	  mr        r3, r29
-	  mr        r4, r30
-	  bl        -0x2F284
-	  lhz       r0, 0x22E(r28)
-	  cmplwi    r0, 0x4
-	  bne-      .loc_0x408
-	  mr        r4, r28
-	  addi      r3, r1, 0x1C
-	  bl        0x6A0
-	  lfs       f2, 0x1C(r1)
-	  mr        r4, r28
-	  lfs       f1, 0x20(r1)
-	  addi      r3, r1, 0x10
-	  lfs       f0, 0x24(r1)
-	  stfs      f2, 0x40(r1)
-	  stfs      f1, 0x44(r1)
-	  stfs      f0, 0x48(r1)
-	  lwz       r12, 0x0(r28)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f2, 0x44(r1)
-	  lfs       f0, 0x14(r1)
-	  lfs       f1, 0x40(r1)
-	  fsubs     f4, f2, f0
-	  lfs       f0, 0x10(r1)
-	  lfs       f3, 0x48(r1)
-	  fsubs     f2, f1, f0
-	  lfs       f0, 0x18(r1)
-	  fmuls     f5, f4, f4
-	  fsubs     f3, f3, f0
-	  lfs       f1, -0x5934(r2)
-	  fmuls     f0, f2, f2
-	  stfs      f2, 0x34(r1)
-	  fmuls     f6, f3, f3
-	  fadds     f0, f0, f5
-	  stfs      f4, 0x38(r1)
-	  stfs      f3, 0x3C(r1)
-	  fadds     f0, f6, f0
-	  fcmpo     cr0, f0, f1
-	  ble-      .loc_0x258
-	  fmadds    f0, f2, f2, f5
-	  fadds     f3, f6, f0
-	  fcmpo     cr0, f3, f1
-	  ble-      .loc_0x25C
-	  fsqrte    f0, f3
-	  fmuls     f3, f0, f3
-	  b         .loc_0x25C
+lbl_801799A4:
+	lwz      r3, playData__4Game@sda21(r13)
+	mr       r4, r31
+	mr       r5, r30
+	addi     r3, r3, 0xa8
+	bl       getCount__Q24Game13PikiContainerFii
+	lwz      r5, 0(r3)
+	mr       r4, r31
+	addi     r0, r5, -1
+	stw      r0, 0(r3)
+	lwz      r3, playData__4Game@sda21(r13)
+	addi     r3, r3, 0xa8
+	bl       getColorSum__Q24Game13PikiContainerFi
+	mr       r3, r29
+	li       r4, 0
+	bl       init__Q24Game8CreatureFPQ24Game15CreatureInitArg
+	mr       r3, r29
+	mr       r4, r31
+	bl       changeShape__Q24Game4PikiFi
+	mr       r3, r29
+	mr       r4, r30
+	bl       changeHappa__Q24Game4PikiFi
+	lhz      r0, 0x22e(r28)
+	cmplwi   r0, 4
+	bne      lbl_80179C5C
+	mr       r4, r28
+	addi     r3, r1, 0x1c
+	bl       getOutStart_UFO__Q24Game5OnyonFv
+	lfs      f2, 0x1c(r1)
+	mr       r4, r28
+	lfs      f1, 0x20(r1)
+	addi     r3, r1, 0x10
+	lfs      f0, 0x24(r1)
+	stfs     f2, 0x40(r1)
+	stfs     f1, 0x44(r1)
+	stfs     f0, 0x48(r1)
+	lwz      r12, 0(r28)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f2, 0x44(r1)
+	lfs      f0, 0x14(r1)
+	lfs      f1, 0x40(r1)
+	fsubs    f4, f2, f0
+	lfs      f0, 0x10(r1)
+	lfs      f3, 0x48(r1)
+	fsubs    f2, f1, f0
+	lfs      f0, 0x18(r1)
+	fmuls    f5, f4, f4
+	fsubs    f3, f3, f0
+	lfs      f1, lbl_80518A2C@sda21(r2)
+	fmuls    f0, f2, f2
+	stfs     f2, 0x34(r1)
+	fmuls    f6, f3, f3
+	fadds    f0, f0, f5
+	stfs     f4, 0x38(r1)
+	stfs     f3, 0x3c(r1)
+	fadds    f0, f6, f0
+	fcmpo    cr0, f0, f1
+	ble      lbl_80179AAC
+	fmadds   f0, f2, f2, f5
+	fadds    f3, f6, f0
+	fcmpo    cr0, f3, f1
+	ble      lbl_80179AB0
+	frsqrte  f0, f3
+	fmuls    f3, f0, f3
+	b        lbl_80179AB0
 
-	.loc_0x258:
-	  fmr       f3, f1
+lbl_80179AAC:
+	fmr      f3, f1
 
-	.loc_0x25C:
-	  lfs       f0, -0x5934(r2)
-	  fcmpo     cr0, f3, f0
-	  ble-      .loc_0x294
-	  lfs       f0, -0x5908(r2)
-	  lfs       f2, 0x34(r1)
-	  fdivs     f3, f0, f3
-	  lfs       f1, 0x38(r1)
-	  lfs       f0, 0x3C(r1)
-	  fmuls     f2, f2, f3
-	  fmuls     f1, f1, f3
-	  fmuls     f0, f0, f3
-	  stfs      f2, 0x34(r1)
-	  stfs      f1, 0x38(r1)
-	  stfs      f0, 0x3C(r1)
+lbl_80179AB0:
+	lfs      f0, lbl_80518A2C@sda21(r2)
+	fcmpo    cr0, f3, f0
+	ble      lbl_80179AE8
+	lfs      f0, lbl_80518A58@sda21(r2)
+	lfs      f2, 0x34(r1)
+	fdivs    f3, f0, f3
+	lfs      f1, 0x38(r1)
+	lfs      f0, 0x3c(r1)
+	fmuls    f2, f2, f3
+	fmuls    f1, f1, f3
+	fmuls    f0, f0, f3
+	stfs     f2, 0x34(r1)
+	stfs     f1, 0x38(r1)
+	stfs     f0, 0x3c(r1)
 
-	.loc_0x294:
-	  bl        -0xB0548
-	  xoris     r3, r3, 0x8000
-	  lis       r0, 0x4330
-	  stw       r3, 0x54(r1)
-	  mr        r3, r29
-	  lfd       f2, -0x5858(r2)
-	  addi      r4, r1, 0x40
-	  stw       r0, 0x50(r1)
-	  li        r5, 0
-	  lfs       f0, -0x5874(r2)
-	  lfd       f1, 0x50(r1)
-	  lfs       f4, -0x5930(r2)
-	  fsubs     f5, f1, f2
-	  lfs       f3, -0x5910(r2)
-	  lfs       f2, 0x3C(r1)
-	  lfs       f1, 0x38(r1)
-	  fdivs     f5, f5, f0
-	  lfs       f0, 0x34(r1)
-	  fmadds    f3, f4, f5, f3
-	  fmuls     f2, f2, f3
-	  fmuls     f1, f1, f3
-	  fmuls     f0, f0, f3
-	  stfs      f2, 0x3C(r1)
-	  stfs      f0, 0x34(r1)
-	  stfs      f1, 0x38(r1)
-	  bl        -0x3E9A4
-	  mr        r3, r29
-	  addi      r4, r1, 0x34
-	  lwz       r12, 0x0(r29)
-	  lwz       r12, 0x68(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r3, r29
-	  mr        r4, r28
-	  li        r5, 0x281E
-	  li        r6, 0x1
-	  bl        -0x31224
-	  lfs       f0, 0x228(r28)
-	  stfs      f0, 0x1FC(r29)
-	  lwz       r3, 0x294(r29)
-	  bl        0x1D518
-	  cmplwi    r3, 0
-	  beq-      .loc_0x38C
-	  stw       r3, 0x2C4(r29)
-	  lis       r4, 0x804B
-	  addi      r5, r4, 0x530
-	  li        r0, 0
-	  lis       r4, 0x804B
-	  stw       r5, 0x28(r1)
-	  addi      r5, r4, 0x524
-	  lis       r4, 0x804B
-	  stw       r5, 0x28(r1)
-	  addi      r6, r4, 0xD44
-	  addi      r5, r1, 0x28
-	  li        r4, 0
-	  stw       r3, 0x2C(r1)
-	  stw       r6, 0x28(r1)
-	  stb       r0, 0x30(r1)
-	  stb       r0, 0x31(r1)
-	  lwz       r3, 0x294(r29)
-	  bl        0x1D3BC
-	  b         .loc_0x39C
+lbl_80179AE8:
+	bl       rand
+	xoris    r3, r3, 0x8000
+	lis      r0, 0x4330
+	stw      r3, 0x54(r1)
+	mr       r3, r29
+	lfd      f2, lbl_80518B08@sda21(r2)
+	addi     r4, r1, 0x40
+	stw      r0, 0x50(r1)
+	li       r5, 0
+	lfs      f0, lbl_80518AEC@sda21(r2)
+	lfd      f1, 0x50(r1)
+	lfs      f4, lbl_80518A30@sda21(r2)
+	fsubs    f5, f1, f2
+	lfs      f3, lbl_80518A50@sda21(r2)
+	lfs      f2, 0x3c(r1)
+	lfs      f1, 0x38(r1)
+	fdivs    f5, f5, f0
+	lfs      f0, 0x34(r1)
+	fmadds   f3, f4, f5, f3
+	fmuls    f2, f2, f3
+	fmuls    f1, f1, f3
+	fmuls    f0, f0, f3
+	stfs     f2, 0x3c(r1)
+	stfs     f0, 0x34(r1)
+	stfs     f1, 0x38(r1)
+	bl       "setPosition__Q24Game8CreatureFR10Vector3<f>b"
+	mr       r3, r29
+	addi     r4, r1, 0x34
+	lwz      r12, 0(r29)
+	lwz      r12, 0x68(r12)
+	mtctr    r12
+	bctrl
+	mr       r3, r29
+	mr       r4, r28
+	li       r5, 0x281e
+	li       r6, 1
+	bl       startSound__Q24Game4PikiFPQ24Game8CreatureUlb
+	lfs      f0, 0x228(r28)
+	stfs     f0, 0x1fc(r29)
+	lwz      r3, 0x294(r29)
+	bl       searchOrima__Q26PikiAI5BrainFv
+	cmplwi   r3, 0
+	beq      lbl_80179BE0
+	stw      r3, 0x2c4(r29)
+	lis      r4, __vt__Q26PikiAI9ActionArg@ha
+	addi     r5, r4, __vt__Q26PikiAI9ActionArg@l
+	li       r0, 0
+	lis      r4, __vt__Q26PikiAI17CreatureActionArg@ha
+	stw      r5, 0x28(r1)
+	addi     r5, r4, __vt__Q26PikiAI17CreatureActionArg@l
+	lis      r4, __vt__Q26PikiAI19ActFormationInitArg@ha
+	stw      r5, 0x28(r1)
+	addi     r6, r4, __vt__Q26PikiAI19ActFormationInitArg@l
+	addi     r5, r1, 0x28
+	li       r4, 0
+	stw      r3, 0x2c(r1)
+	stw      r6, 0x28(r1)
+	stb      r0, 0x30(r1)
+	stb      r0, 0x31(r1)
+	lwz      r3, 0x294(r29)
+	bl       start__Q26PikiAI5BrainFiPQ26PikiAI9ActionArg
+	b        lbl_80179BF0
 
-	.loc_0x38C:
-	  lwz       r3, 0x294(r29)
-	  li        r4, 0x1
-	  li        r5, 0
-	  bl        0x1D3A8
+lbl_80179BE0:
+	lwz      r3, 0x294(r29)
+	li       r4, 1
+	li       r5, 0
+	bl       start__Q26PikiAI5BrainFiPQ26PikiAI9ActionArg
 
-	.loc_0x39C:
-	  lwz       r3, -0x6B70(r13)
-	  li        r4, 0x4
-	  addi      r3, r3, 0xA8
-	  bl        0x779B4
-	  lwz       r5, -0x6B70(r13)
-	  mr        r30, r3
-	  li        r4, 0x3
-	  addi      r3, r5, 0xA8
-	  bl        0x779A0
-	  add.      r0, r30, r3
-	  bne-      .loc_0x434
-	  lwz       r3, 0x218(r28)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x21C(r28)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f31, -0x5934(r2)
-	  mr        r3, r28
-	  li        r4, 0x1
-	  bl        0x554
-	  stfs      f31, 0x0(r3)
-	  b         .loc_0x434
+lbl_80179BF0:
+	lwz      r3, playData__4Game@sda21(r13)
+	li       r4, 4
+	addi     r3, r3, 0xa8
+	bl       getColorSum__Q24Game13PikiContainerFi
+	lwz      r5, playData__4Game@sda21(r13)
+	mr       r30, r3
+	li       r4, 3
+	addi     r3, r5, 0xa8
+	bl       getColorSum__Q24Game13PikiContainerFi
+	add.     r0, r30, r3
+	bne      lbl_80179C88
+	lwz      r3, 0x218(r28)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 0x21c(r28)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	lfs      f31, lbl_80518A2C@sda21(r2)
+	mr       r3, r28
+	li       r4, 1
+	bl       getPMotionSpeed__Q24Game5OnyonFi
+	stfs     f31, 0(r3)
+	b        lbl_80179C88
 
-	.loc_0x408:
-	  lis       r4, 0x804B
-	  lis       r3, 0x804B
-	  addi      r4, r4, 0x530
-	  stw       r28, 0xC(r1)
-	  addi      r0, r3, 0x524
-	  addi      r5, r1, 0x8
-	  stw       r4, 0x8(r1)
-	  li        r4, 0x3
-	  stw       r0, 0x8(r1)
-	  lwz       r3, 0x294(r29)
-	  bl        0x1D310
+lbl_80179C5C:
+	lis      r4, __vt__Q26PikiAI9ActionArg@ha
+	lis      r3, __vt__Q26PikiAI17CreatureActionArg@ha
+	addi     r4, r4, __vt__Q26PikiAI9ActionArg@l
+	stw      r28, 0xc(r1)
+	addi     r0, r3, __vt__Q26PikiAI17CreatureActionArg@l
+	addi     r5, r1, 8
+	stw      r4, 8(r1)
+	li       r4, 3
+	stw      r0, 8(r1)
+	lwz      r3, 0x294(r29)
+	bl       start__Q26PikiAI5BrainFiPQ26PikiAI9ActionArg
 
-	.loc_0x434:
-	  mr        r3, r29
+lbl_80179C88:
+	mr       r3, r29
 
-	.loc_0x438:
-	  psq_l     f31,0x78(r1),0,0
-	  lfd       f31, 0x70(r1)
-	  lmw       r27, 0x5C(r1)
-	  lwz       r0, 0x84(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x80
-	  blr
+lbl_80179C8C:
+	psq_l    f31, 120(r1), 0, qr0
+	lfd      f31, 0x70(r1)
+	lmw      r27, 0x5c(r1)
+	lwz      r0, 0x84(r1)
+	mtlr     r0
+	addi     r1, r1, 0x80
+	blr
 	*/
 }
 
@@ -6455,59 +7489,58 @@ void Onyon::exitPiki(void)
 void insideAccessArea__Q24Game5OnyonFR10Vector3f(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r4
-	  lhz       r0, 0x22E(r3)
-	  cmplwi    r0, 0x4
-	  bne-      .loc_0x6C
-	  mr        r4, r3
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x0(r4)
-	  lwz       r12, 0x198(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f1, 0x8(r31)
-	  lfs       f0, 0x10(r1)
-	  lfs       f2, 0x0(r31)
-	  fsubs     f3, f1, f0
-	  lfs       f1, 0x8(r1)
-	  lfs       f0, -0x583C(r2)
-	  fsubs     f2, f2, f1
-	  fmuls     f1, f3, f3
-	  fmadds    f1, f2, f2, f1
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0xA0
-	  li        r3, 0x1
-	  b         .loc_0xA4
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r4
+	lhz      r0, 0x22e(r3)
+	cmplwi   r0, 4
+	bne      lbl_80179D14
+	mr       r4, r3
+	addi     r3, r1, 8
+	lwz      r12, 0(r4)
+	lwz      r12, 0x198(r12)
+	mtctr    r12
+	bctrl
+	lfs      f1, 8(r31)
+	lfs      f0, 0x10(r1)
+	lfs      f2, 0(r31)
+	fsubs    f3, f1, f0
+	lfs      f1, 8(r1)
+	lfs      f0, lbl_80518B24@sda21(r2)
+	fsubs    f2, f2, f1
+	fmuls    f1, f3, f3
+	fmadds   f1, f2, f2, f1
+	fcmpo    cr0, f1, f0
+	bge      lbl_80179D48
+	li       r3, 1
+	b        lbl_80179D4C
 
-	.loc_0x6C:
-	  lfs       f1, 0x8(r31)
-	  lfs       f0, 0x1A4(r3)
-	  lfs       f2, 0x0(r31)
-	  fsubs     f3, f1, f0
-	  lfs       f1, 0x19C(r3)
-	  lfs       f0, -0x583C(r2)
-	  fsubs     f2, f2, f1
-	  fmuls     f1, f3, f3
-	  fmadds    f1, f2, f2, f1
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0xA0
-	  li        r3, 0x1
-	  b         .loc_0xA4
+lbl_80179D14:
+	lfs      f1, 8(r31)
+	lfs      f0, 0x1a4(r3)
+	lfs      f2, 0(r31)
+	fsubs    f3, f1, f0
+	lfs      f1, 0x19c(r3)
+	lfs      f0, lbl_80518B24@sda21(r2)
+	fsubs    f2, f2, f1
+	fmuls    f1, f3, f3
+	fmadds   f1, f2, f2, f1
+	fcmpo    cr0, f1, f0
+	bge      lbl_80179D48
+	li       r3, 1
+	b        lbl_80179D4C
 
-	.loc_0xA0:
-	  li        r3, 0
+lbl_80179D48:
+	li       r3, 0
 
-	.loc_0xA4:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80179D4C:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -6652,60 +7685,59 @@ void ItemOnyon::Mgr::setupSoundViewerAndBas(void) { }
 void Onyon::getInEnd_UFO(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stw       r31, 0x2C(r1)
-	  mr        r31, r3
-	  lwz       r0, 0x248(r4)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x78
-	  lfs       f1, -0x5934(r2)
-	  mr        r3, r0
-	  lfs       f0, -0x5838(r2)
-	  stfs      f1, 0x14(r1)
-	  stfs      f1, 0x18(r1)
-	  stfs      f0, 0x1C(r1)
-	  bl        0x2AF9E8
-	  addi      r4, r1, 0x14
-	  addi      r5, r1, 0x8
-	  bl        -0x8F2EC
-	  lfs       f2, 0x8(r1)
-	  lfs       f1, 0xC(r1)
-	  lfs       f0, 0x10(r1)
-	  stfs      f2, 0x14(r1)
-	  stfs      f1, 0x18(r1)
-	  stfs      f0, 0x1C(r1)
-	  stfs      f2, 0x0(r31)
-	  lfs       f0, 0x18(r1)
-	  stfs      f0, 0x4(r31)
-	  lfs       f0, 0x1C(r1)
-	  stfs      f0, 0x8(r31)
-	  b         .loc_0xB0
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stw      r31, 0x2c(r1)
+	mr       r31, r3
+	lwz      r0, 0x248(r4)
+	cmplwi   r0, 0
+	beq      lbl_80179EF8
+	lfs      f1, lbl_80518A2C@sda21(r2)
+	mr       r3, r0
+	lfs      f0, lbl_80518B28@sda21(r2)
+	stfs     f1, 0x14(r1)
+	stfs     f1, 0x18(r1)
+	stfs     f0, 0x1c(r1)
+	bl       getWorldMatrix__Q28SysShape5JointFv
+	addi     r4, r1, 0x14
+	addi     r5, r1, 8
+	bl       PSMTXMultVec
+	lfs      f2, 8(r1)
+	lfs      f1, 0xc(r1)
+	lfs      f0, 0x10(r1)
+	stfs     f2, 0x14(r1)
+	stfs     f1, 0x18(r1)
+	stfs     f0, 0x1c(r1)
+	stfs     f2, 0(r31)
+	lfs      f0, 0x18(r1)
+	stfs     f0, 4(r31)
+	lfs      f0, 0x1c(r1)
+	stfs     f0, 8(r31)
+	b        lbl_80179F30
 
-	.loc_0x78:
-	  lis       r3, 0x8048
-	  lis       r5, 0x8048
-	  subi      r3, r3, 0x19C8
-	  li        r4, 0x9F1
-	  subi      r5, r5, 0x1844
-	  crclr     6, 0x6
-	  bl        -0x14F8D0
-	  lis       r3, 0x8051
-	  lfsu      f0, 0x41E4(r3)
-	  stfs      f0, 0x0(r31)
-	  lfs       f0, 0x4(r3)
-	  stfs      f0, 0x4(r31)
-	  lfs       f0, 0x8(r3)
-	  stfs      f0, 0x8(r31)
+lbl_80179EF8:
+	lis      r3, lbl_8047E638@ha
+	lis      r5, lbl_8047E7BC@ha
+	addi     r3, r3, lbl_8047E638@l
+	li       r4, 0x9f1
+	addi     r5, r5, lbl_8047E7BC@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
+	lis      r3, "zero__10Vector3<f>"@ha
+	lfsu     f0, "zero__10Vector3<f>"@l(r3)
+	stfs     f0, 0(r31)
+	lfs      f0, 4(r3)
+	stfs     f0, 4(r31)
+	lfs      f0, 8(r3)
+	stfs     f0, 8(r31)
 
-	.loc_0xB0:
-	  lwz       r0, 0x34(r1)
-	  lwz       r31, 0x2C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_80179F30:
+	lwz      r0, 0x34(r1)
+	lwz      r31, 0x2c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -6717,107 +7749,106 @@ void Onyon::getInEnd_UFO(void)
 void Onyon::getInStart_UFO(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x60(r1)
-	  mflr      r0
-	  stw       r0, 0x64(r1)
-	  stfd      f31, 0x50(r1)
-	  psq_st    f31,0x58(r1),0,0
-	  stfd      f30, 0x40(r1)
-	  psq_st    f30,0x48(r1),0,0
-	  stw       r31, 0x3C(r1)
-	  stw       r30, 0x38(r1)
-	  mr        r31, r4
-	  mr        r30, r3
-	  lwz       r3, 0x248(r4)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x78
-	  lfs       f1, -0x5934(r2)
-	  lfs       f0, -0x5838(r2)
-	  stfs      f1, 0x14(r1)
-	  stfs      f1, 0x18(r1)
-	  stfs      f0, 0x1C(r1)
-	  bl        0x2AF910
-	  addi      r4, r1, 0x14
-	  addi      r5, r1, 0x8
-	  bl        -0x8F3C4
-	  lfs       f31, 0x8(r1)
-	  lfs       f30, 0x10(r1)
-	  lfs       f0, 0xC(r1)
-	  stfs      f31, 0x14(r1)
-	  stfs      f0, 0x18(r1)
-	  stfs      f30, 0x1C(r1)
-	  b         .loc_0xA0
+	stwu     r1, -0x60(r1)
+	mflr     r0
+	stw      r0, 0x64(r1)
+	stfd     f31, 0x50(r1)
+	psq_st   f31, 88(r1), 0, qr0
+	stfd     f30, 0x40(r1)
+	psq_st   f30, 72(r1), 0, qr0
+	stw      r31, 0x3c(r1)
+	stw      r30, 0x38(r1)
+	mr       r31, r4
+	mr       r30, r3
+	lwz      r3, 0x248(r4)
+	cmplwi   r3, 0
+	beq      lbl_80179FBC
+	lfs      f1, lbl_80518A2C@sda21(r2)
+	lfs      f0, lbl_80518B28@sda21(r2)
+	stfs     f1, 0x14(r1)
+	stfs     f1, 0x18(r1)
+	stfs     f0, 0x1c(r1)
+	bl       getWorldMatrix__Q28SysShape5JointFv
+	addi     r4, r1, 0x14
+	addi     r5, r1, 8
+	bl       PSMTXMultVec
+	lfs      f31, 8(r1)
+	lfs      f30, 0x10(r1)
+	lfs      f0, 0xc(r1)
+	stfs     f31, 0x14(r1)
+	stfs     f0, 0x18(r1)
+	stfs     f30, 0x1c(r1)
+	b        lbl_80179FE4
 
-	.loc_0x78:
-	  lis       r3, 0x8048
-	  lis       r5, 0x8048
-	  subi      r3, r3, 0x19C8
-	  li        r4, 0x9F1
-	  subi      r5, r5, 0x1844
-	  crclr     6, 0x6
-	  bl        -0x14F994
-	  lis       r3, 0x8051
-	  lfsu      f31, 0x41E4(r3)
-	  lfs       f30, 0x8(r3)
+lbl_80179FBC:
+	lis      r3, lbl_8047E638@ha
+	lis      r5, lbl_8047E7BC@ha
+	addi     r3, r3, lbl_8047E638@l
+	li       r4, 0x9f1
+	addi     r5, r5, lbl_8047E7BC@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
+	lis      r3, "zero__10Vector3<f>"@ha
+	lfsu     f31, "zero__10Vector3<f>"@l(r3)
+	lfs      f30, 8(r3)
 
-	.loc_0xA0:
-	  mr        r4, r31
-	  addi      r3, r1, 0x20
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f7, 0x20(r1)
-	  lfs       f4, 0x28(r1)
-	  fsubs     f2, f31, f7
-	  lfs       f5, -0x5934(r2)
-	  fsubs     f6, f30, f4
-	  lfs       f3, 0x24(r1)
-	  fmadds    f0, f2, f2, f5
-	  fmuls     f1, f6, f6
-	  fadds     f1, f1, f0
-	  fcmpo     cr0, f1, f5
-	  ble-      .loc_0xF4
-	  ble-      .loc_0xF8
-	  fsqrte    f0, f1
-	  fmuls     f1, f0, f1
-	  b         .loc_0xF8
+lbl_80179FE4:
+	mr       r4, r31
+	addi     r3, r1, 0x20
+	lwz      r12, 0(r31)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f7, 0x20(r1)
+	lfs      f4, 0x28(r1)
+	fsubs    f2, f31, f7
+	lfs      f5, lbl_80518A2C@sda21(r2)
+	fsubs    f6, f30, f4
+	lfs      f3, 0x24(r1)
+	fmadds   f0, f2, f2, f5
+	fmuls    f1, f6, f6
+	fadds    f1, f1, f0
+	fcmpo    cr0, f1, f5
+	ble      lbl_8017A038
+	ble      lbl_8017A03C
+	frsqrte  f0, f1
+	fmuls    f1, f0, f1
+	b        lbl_8017A03C
 
-	.loc_0xF4:
-	  fmr       f1, f5
+lbl_8017A038:
+	fmr      f1, f5
 
-	.loc_0xF8:
-	  lfs       f0, -0x5934(r2)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x118
-	  lfs       f0, -0x5908(r2)
-	  fdivs     f0, f0, f1
-	  fmuls     f2, f2, f0
-	  fmuls     f5, f5, f0
-	  fmuls     f6, f6, f0
+lbl_8017A03C:
+	lfs      f0, lbl_80518A2C@sda21(r2)
+	fcmpo    cr0, f1, f0
+	ble      lbl_8017A05C
+	lfs      f0, lbl_80518A58@sda21(r2)
+	fdivs    f0, f0, f1
+	fmuls    f2, f2, f0
+	fmuls    f5, f5, f0
+	fmuls    f6, f6, f0
 
-	.loc_0x118:
-	  lfs       f0, -0x5834(r2)
-	  fmuls     f2, f2, f0
-	  fmuls     f1, f5, f0
-	  fmuls     f0, f6, f0
-	  fadds     f2, f7, f2
-	  fadds     f1, f3, f1
-	  fadds     f0, f4, f0
-	  stfs      f2, 0x0(r30)
-	  stfs      f1, 0x4(r30)
-	  stfs      f0, 0x8(r30)
-	  psq_l     f31,0x58(r1),0,0
-	  lfd       f31, 0x50(r1)
-	  psq_l     f30,0x48(r1),0,0
-	  lfd       f30, 0x40(r1)
-	  lwz       r31, 0x3C(r1)
-	  lwz       r0, 0x64(r1)
-	  lwz       r30, 0x38(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x60
-	  blr
+lbl_8017A05C:
+	lfs      f0, lbl_80518B2C@sda21(r2)
+	fmuls    f2, f2, f0
+	fmuls    f1, f5, f0
+	fmuls    f0, f6, f0
+	fadds    f2, f7, f2
+	fadds    f1, f3, f1
+	fadds    f0, f4, f0
+	stfs     f2, 0(r30)
+	stfs     f1, 4(r30)
+	stfs     f0, 8(r30)
+	psq_l    f31, 88(r1), 0, qr0
+	lfd      f31, 0x50(r1)
+	psq_l    f30, 72(r1), 0, qr0
+	lfd      f30, 0x40(r1)
+	lwz      r31, 0x3c(r1)
+	lwz      r0, 0x64(r1)
+	lwz      r30, 0x38(r1)
+	mtlr     r0
+	addi     r1, r1, 0x60
+	blr
 	*/
 }
 
@@ -6829,60 +7860,59 @@ void Onyon::getInStart_UFO(void)
 void Onyon::getOutStart_UFO(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stw       r31, 0x2C(r1)
-	  mr        r31, r3
-	  lwz       r0, 0x24C(r4)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x78
-	  lfs       f1, -0x5934(r2)
-	  mr        r3, r0
-	  lfs       f0, -0x5838(r2)
-	  stfs      f1, 0x14(r1)
-	  stfs      f1, 0x18(r1)
-	  stfs      f0, 0x1C(r1)
-	  bl        0x2AF7BC
-	  addi      r4, r1, 0x14
-	  addi      r5, r1, 0x8
-	  bl        -0x8F518
-	  lfs       f2, 0x8(r1)
-	  lfs       f1, 0xC(r1)
-	  lfs       f0, 0x10(r1)
-	  stfs      f2, 0x14(r1)
-	  stfs      f1, 0x18(r1)
-	  stfs      f0, 0x1C(r1)
-	  stfs      f2, 0x0(r31)
-	  lfs       f0, 0x18(r1)
-	  stfs      f0, 0x4(r31)
-	  lfs       f0, 0x1C(r1)
-	  stfs      f0, 0x8(r31)
-	  b         .loc_0xB0
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stw      r31, 0x2c(r1)
+	mr       r31, r3
+	lwz      r0, 0x24c(r4)
+	cmplwi   r0, 0
+	beq      lbl_8017A124
+	lfs      f1, lbl_80518A2C@sda21(r2)
+	mr       r3, r0
+	lfs      f0, lbl_80518B28@sda21(r2)
+	stfs     f1, 0x14(r1)
+	stfs     f1, 0x18(r1)
+	stfs     f0, 0x1c(r1)
+	bl       getWorldMatrix__Q28SysShape5JointFv
+	addi     r4, r1, 0x14
+	addi     r5, r1, 8
+	bl       PSMTXMultVec
+	lfs      f2, 8(r1)
+	lfs      f1, 0xc(r1)
+	lfs      f0, 0x10(r1)
+	stfs     f2, 0x14(r1)
+	stfs     f1, 0x18(r1)
+	stfs     f0, 0x1c(r1)
+	stfs     f2, 0(r31)
+	lfs      f0, 0x18(r1)
+	stfs     f0, 4(r31)
+	lfs      f0, 0x1c(r1)
+	stfs     f0, 8(r31)
+	b        lbl_8017A15C
 
-	.loc_0x78:
-	  lis       r3, 0x8048
-	  lis       r5, 0x8048
-	  subi      r3, r3, 0x19C8
-	  li        r4, 0xA09
-	  subi      r5, r5, 0x1838
-	  crclr     6, 0x6
-	  bl        -0x14FAFC
-	  lis       r3, 0x8051
-	  lfsu      f0, 0x41E4(r3)
-	  stfs      f0, 0x0(r31)
-	  lfs       f0, 0x4(r3)
-	  stfs      f0, 0x4(r31)
-	  lfs       f0, 0x8(r3)
-	  stfs      f0, 0x8(r31)
+lbl_8017A124:
+	lis      r3, lbl_8047E638@ha
+	lis      r5, lbl_8047E7C8@ha
+	addi     r3, r3, lbl_8047E638@l
+	li       r4, 0xa09
+	addi     r5, r5, lbl_8047E7C8@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
+	lis      r3, "zero__10Vector3<f>"@ha
+	lfsu     f0, "zero__10Vector3<f>"@l(r3)
+	stfs     f0, 0(r31)
+	lfs      f0, 4(r3)
+	stfs     f0, 4(r31)
+	lfs      f0, 8(r3)
+	stfs     f0, 8(r31)
 
-	.loc_0xB0:
-	  lwz       r0, 0x34(r1)
-	  lwz       r31, 0x2C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_8017A15C:
+	lwz      r0, 0x34(r1)
+	lwz      r31, 0x2c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -6906,20 +7936,19 @@ namespace SysShape {
 	Animator::Animator(void)
 	{
 		/*
-		.loc_0x0:
-		  lis       r5, 0x804B
-		  lis       r4, 0x804F
-		  subi      r5, r5, 0x4678
-		  li        r0, 0
-		  stw       r5, 0x0(r3)
-		  subi      r4, r4, 0x4200
-		  stw       r4, 0x0(r3)
-		  stb       r0, 0x18(r3)
-		  stw       r0, 0xC(r3)
-		  stw       r0, 0x4(r3)
-		  stb       r0, 0x18(r3)
-		  stw       r0, 0x10(r3)
-		  blr
+	lis      r5, __vt__Q28SysShape12BaseAnimator@ha
+	lis      r4, __vt__Q28SysShape8Animator@ha
+	addi     r5, r5, __vt__Q28SysShape12BaseAnimator@l
+	li       r0, 0
+	stw      r5, 0(r3)
+	addi     r4, r4, __vt__Q28SysShape8Animator@l
+	stw      r4, 0(r3)
+	stb      r0, 0x18(r3)
+	stw      r0, 0xc(r3)
+	stw      r0, 4(r3)
+	stb      r0, 0x18(r3)
+	stw      r0, 0x10(r3)
+	blr
 		*/
 	}
 
@@ -6933,42 +7962,41 @@ namespace SysShape {
 void Onyon::getPMotionSpeed(int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  li        r3, 0
-	  blt-      .loc_0x34
-	  lwz       r0, 0x250(r30)
-	  cmpw      r31, r0
-	  bge-      .loc_0x34
-	  li        r3, 0x1
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r4, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	li       r3, 0
+	blt      lbl_8017A1D8
+	lwz      r0, 0x250(r30)
+	cmpw     r31, r0
+	bge      lbl_8017A1D8
+	li       r3, 1
 
-	.loc_0x34:
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x58
-	  lis       r3, 0x8048
-	  lis       r5, 0x8048
-	  subi      r3, r3, 0x19C8
-	  li        r4, 0xA2B
-	  subi      r5, r5, 0x1980
-	  crclr     6, 0x6
-	  bl        -0x14FBB8
+lbl_8017A1D8:
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_8017A1FC
+	lis      r3, lbl_8047E638@ha
+	lis      r5, lbl_8047E680@ha
+	addi     r3, r3, lbl_8047E638@l
+	li       r4, 0xa2b
+	addi     r5, r5, lbl_8047E680@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x58:
-	  lwz       r3, 0x258(r30)
-	  rlwinm    r0,r31,2,0,29
-	  add       r3, r3, r0
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8017A1FC:
+	lwz      r3, 0x258(r30)
+	slwi     r0, r31, 2
+	add      r3, r3, r0
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -6980,42 +8008,41 @@ void Onyon::getPMotionSpeed(int)
 void Onyon::getPAnimator(int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  li        r3, 0
-	  blt-      .loc_0x34
-	  lwz       r0, 0x250(r30)
-	  cmpw      r31, r0
-	  bge-      .loc_0x34
-	  li        r3, 0x1
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r4, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	li       r3, 0
+	blt      lbl_8017A254
+	lwz      r0, 0x250(r30)
+	cmpw     r31, r0
+	bge      lbl_8017A254
+	li       r3, 1
 
-	.loc_0x34:
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x58
-	  lis       r3, 0x8048
-	  lis       r5, 0x8048
-	  subi      r3, r3, 0x19C8
-	  li        r4, 0xA31
-	  subi      r5, r5, 0x1980
-	  crclr     6, 0x6
-	  bl        -0x14FC34
+lbl_8017A254:
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_8017A278
+	lis      r3, lbl_8047E638@ha
+	lis      r5, lbl_8047E680@ha
+	addi     r3, r3, lbl_8047E638@l
+	li       r4, 0xa31
+	addi     r5, r5, lbl_8047E680@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x58:
-	  mulli     r0, r31, 0x1C
-	  lwz       r3, 0x254(r30)
-	  add       r3, r3, r0
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8017A278:
+	mulli    r0, r31, 0x1c
+	lwz      r3, 0x254(r30)
+	add      r3, r3, r0
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -7037,127 +8064,126 @@ void Onyon::start_pmotion(int, int)
 void Onyon::update_pmotions(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x50(r1)
-	  mflr      r0
-	  stw       r0, 0x54(r1)
-	  stfd      f31, 0x40(r1)
-	  psq_st    f31,0x48(r1),0,0
-	  stmw      r24, 0x20(r1)
-	  mr        r26, r3
-	  lwz       r3, -0x6514(r13)
-	  lhz       r0, 0x22E(r26)
-	  lis       r4, 0x8048
-	  lfs       f31, 0x54(r3)
-	  subi      r31, r4, 0x19E0
-	  cmplwi    r0, 0x4
-	  bne-      .loc_0x17C
-	  li        r30, 0
-	  addi      r28, r1, 0x8
-	  mr        r29, r30
-	  li        r27, 0
-	  b         .loc_0x170
+	stwu     r1, -0x50(r1)
+	mflr     r0
+	stw      r0, 0x54(r1)
+	stfd     f31, 0x40(r1)
+	psq_st   f31, 72(r1), 0, qr0
+	stmw     r24, 0x20(r1)
+	mr       r26, r3
+	lwz      r3, sys@sda21(r13)
+	lhz      r0, 0x22e(r26)
+	lis      r4, lbl_8047E620@ha
+	lfs      f31, 0x54(r3)
+	addi     r31, r4, lbl_8047E620@l
+	cmplwi   r0, 4
+	bne      lbl_8017A418
+	li       r30, 0
+	addi     r28, r1, 8
+	mr       r29, r30
+	li       r27, 0
+	b        lbl_8017A40C
 
-	.loc_0x4C:
-	  lwz       r5, 0x1CC(r31)
-	  cmpwi     r27, 0
-	  lwz       r4, 0x1D0(r31)
-	  li        r3, 0
-	  lwz       r0, 0x1D4(r31)
-	  stw       r5, 0x8(r1)
-	  stw       r4, 0xC(r1)
-	  stw       r0, 0x10(r1)
-	  blt-      .loc_0x80
-	  lwz       r0, 0x250(r26)
-	  cmpw      r27, r0
-	  bge-      .loc_0x80
-	  li        r3, 0x1
+lbl_8017A2E8:
+	lwz      r5, 0x1cc(r31)
+	cmpwi    r27, 0
+	lwz      r4, 0x1d0(r31)
+	li       r3, 0
+	lwz      r0, 0x1d4(r31)
+	stw      r5, 8(r1)
+	stw      r4, 0xc(r1)
+	stw      r0, 0x10(r1)
+	blt      lbl_8017A31C
+	lwz      r0, 0x250(r26)
+	cmpw     r27, r0
+	bge      lbl_8017A31C
+	li       r3, 1
 
-	.loc_0x80:
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x9C
-	  addi      r3, r31, 0x18
-	  addi      r5, r31, 0x60
-	  li        r4, 0xA31
-	  crclr     6, 0x6
-	  bl        -0x14FCF4
+lbl_8017A31C:
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_8017A338
+	addi     r3, r31, 0x18
+	addi     r5, r31, 0x60
+	li       r4, 0xa31
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x9C:
-	  lwz       r0, 0x254(r26)
-	  cmpwi     r27, 0
-	  li        r3, 0
-	  add       r25, r0, r30
-	  blt-      .loc_0xC0
-	  lwz       r0, 0x250(r26)
-	  cmpw      r27, r0
-	  bge-      .loc_0xC0
-	  li        r3, 0x1
+lbl_8017A338:
+	lwz      r0, 0x254(r26)
+	cmpwi    r27, 0
+	li       r3, 0
+	add      r25, r0, r30
+	blt      lbl_8017A35C
+	lwz      r0, 0x250(r26)
+	cmpw     r27, r0
+	bge      lbl_8017A35C
+	li       r3, 1
 
-	.loc_0xC0:
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0xDC
-	  addi      r3, r31, 0x18
-	  addi      r5, r31, 0x60
-	  li        r4, 0xA2B
-	  crclr     6, 0x6
-	  bl        -0x14FD34
+lbl_8017A35C:
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_8017A378
+	addi     r3, r31, 0x18
+	addi     r5, r31, 0x60
+	li       r4, 0xa2b
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xDC:
-	  mr        r3, r25
-	  lwz       r4, 0x258(r26)
-	  lwz       r12, 0x0(r25)
-	  lfsx      f0, r4, r29
-	  lwz       r12, 0xC(r12)
-	  fmuls     f1, f31, f0
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x174(r26)
-	  lwz       r4, 0x0(r28)
-	  bl        0x2C4C44
-	  cmplwi    r3, 0
-	  beq-      .loc_0x148
-	  lhz       r24, 0x38(r3)
-	  mr        r3, r25
-	  lwz       r12, 0x0(r25)
-	  lwz       r25, 0x174(r26)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r4, 0x8(r25)
-	  rlwinm    r0,r24,2,14,29
-	  lwz       r4, 0x4(r4)
-	  lwz       r4, 0x28(r4)
-	  lwzx      r4, r4, r0
-	  stw       r3, 0x54(r4)
-	  b         .loc_0x160
+lbl_8017A378:
+	mr       r3, r25
+	lwz      r4, 0x258(r26)
+	lwz      r12, 0(r25)
+	lfsx     f0, r4, r29
+	lwz      r12, 0xc(r12)
+	fmuls    f1, f31, f0
+	mtctr    r12
+	bctrl
+	lwz      r3, 0x174(r26)
+	lwz      r4, 0(r28)
+	bl       getJoint__Q28SysShape5ModelFPc
+	cmplwi   r3, 0
+	beq      lbl_8017A3E4
+	lhz      r24, 0x38(r3)
+	mr       r3, r25
+	lwz      r12, 0(r25)
+	lwz      r25, 0x174(r26)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lwz      r4, 8(r25)
+	rlwinm   r0, r24, 2, 0xe, 0x1d
+	lwz      r4, 4(r4)
+	lwz      r4, 0x28(r4)
+	lwzx     r4, r4, r0
+	stw      r3, 0x54(r4)
+	b        lbl_8017A3FC
 
-	.loc_0x148:
-	  lwz       r6, 0x0(r28)
-	  addi      r3, r31, 0x18
-	  addi      r5, r31, 0x1D8
-	  li        r4, 0xA53
-	  crclr     6, 0x6
-	  bl        -0x14FDB8
+lbl_8017A3E4:
+	lwz      r6, 0(r28)
+	addi     r3, r31, 0x18
+	addi     r5, r31, 0x1d8
+	li       r4, 0xa53
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x160:
-	  addi      r30, r30, 0x1C
-	  addi      r29, r29, 0x4
-	  addi      r28, r28, 0x4
-	  addi      r27, r27, 0x1
+lbl_8017A3FC:
+	addi     r30, r30, 0x1c
+	addi     r29, r29, 4
+	addi     r28, r28, 4
+	addi     r27, r27, 1
 
-	.loc_0x170:
-	  lwz       r0, 0x250(r26)
-	  cmpw      r27, r0
-	  blt+      .loc_0x4C
+lbl_8017A40C:
+	lwz      r0, 0x250(r26)
+	cmpw     r27, r0
+	blt      lbl_8017A2E8
 
-	.loc_0x17C:
-	  psq_l     f31,0x48(r1),0,0
-	  lfd       f31, 0x40(r1)
-	  lmw       r24, 0x20(r1)
-	  lwz       r0, 0x54(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x50
-	  blr
+lbl_8017A418:
+	psq_l    f31, 72(r1), 0, qr0
+	lfd      f31, 0x40(r1)
+	lmw      r24, 0x20(r1)
+	lwz      r0, 0x54(r1)
+	mtlr     r0
+	addi     r1, r1, 0x50
+	blr
 	*/
 }
 
@@ -7169,145 +8195,144 @@ void Onyon::update_pmotions(void)
 void ItemOnyon::Mgr::initDependency(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r4, 0x804B
-	  addi      r3, r3, 0x4C
-	  stw       r0, 0x24(r1)
-	  li        r0, 0
-	  addi      r4, r4, 0x548
-	  cmplwi    r0, 0
-	  stw       r4, 0x8(r1)
-	  stw       r0, 0x14(r1)
-	  stw       r0, 0xC(r1)
-	  stw       r3, 0x10(r1)
-	  bne-      .loc_0x4C
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0x1B8
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lis      r4, "__vt__23Iterator<Q24Game5Onyon>"@ha
+	addi     r3, r3, 0x4c
+	stw      r0, 0x24(r1)
+	li       r0, 0
+	addi     r4, r4, "__vt__23Iterator<Q24Game5Onyon>"@l
+	cmplwi   r0, 0
+	stw      r4, 8(r1)
+	stw      r0, 0x14(r1)
+	stw      r0, 0xc(r1)
+	stw      r3, 0x10(r1)
+	bne      lbl_8017A480
+	lwz      r12, 0(r3)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
+	b        lbl_8017A5EC
 
-	.loc_0x4C:
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0xB8
+lbl_8017A480:
+	lwz      r12, 0(r3)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
+	b        lbl_8017A4EC
 
-	.loc_0x64:
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x1B8
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
+lbl_8017A498:
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	lwz      r3, 0x14(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_8017A5EC
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
 
-	.loc_0xB8:
-	  lwz       r12, 0x8(r1)
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x64
-	  b         .loc_0x1B8
+lbl_8017A4EC:
+	lwz      r12, 8(r1)
+	addi     r3, r1, 8
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_8017A498
+	b        lbl_8017A5EC
 
-	.loc_0xD8:
-	  lwz       r3, 0x10(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1BC(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x128
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0x1B8
+lbl_8017A50C:
+	lwz      r3, 0x10(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	lwz      r12, 0(r3)
+	lwz      r12, 0x1bc(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	cmplwi   r0, 0
+	bne      lbl_8017A55C
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
+	b        lbl_8017A5EC
 
-	.loc_0x128:
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0x19C
+lbl_8017A55C:
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
+	b        lbl_8017A5D0
 
-	.loc_0x148:
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x1B8
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
+lbl_8017A57C:
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	lwz      r3, 0x14(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_8017A5EC
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
 
-	.loc_0x19C:
-	  lwz       r12, 0x8(r1)
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x148
+lbl_8017A5D0:
+	lwz      r12, 8(r1)
+	addi     r3, r1, 8
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_8017A57C
 
-	.loc_0x1B8:
-	  lwz       r3, 0x10(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r4, 0xC(r1)
-	  cmplw     r4, r3
-	  bne+      .loc_0xD8
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8017A5EC:
+	lwz      r3, 0x10(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r4, 0xc(r1)
+	cmplw    r4, r3
+	bne      lbl_8017A50C
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -7326,36 +8351,35 @@ void BaseItem::initDependency(void) { }
 void ItemOnyon::Mgr::generatorGetShape(Game::GenItemParm*)
 {
 	/*
-	.loc_0x0:
-	  lwz       r0, 0x4(r4)
-	  cmpwi     r0, 0x3
-	  beq-      .loc_0x30
-	  bge-      .loc_0x1C
-	  cmpwi     r0, 0
-	  bge-      .loc_0x28
-	  b         .loc_0x3C
+	lwz      r0, 4(r4)
+	cmpwi    r0, 3
+	beq      lbl_8017A650
+	bge      lbl_8017A63C
+	cmpwi    r0, 0
+	bge      lbl_8017A648
+	b        lbl_8017A65C
 
-	.loc_0x1C:
-	  cmpwi     r0, 0x5
-	  bge-      .loc_0x3C
-	  b         .loc_0x38
+lbl_8017A63C:
+	cmpwi    r0, 5
+	bge      lbl_8017A65C
+	b        lbl_8017A658
 
-	.loc_0x28:
-	  li        r4, 0
-	  b         .loc_0x3C
+lbl_8017A648:
+	li       r4, 0
+	b        lbl_8017A65C
 
-	.loc_0x30:
-	  li        r4, 0x1
-	  b         .loc_0x3C
+lbl_8017A650:
+	li       r4, 1
+	b        lbl_8017A65C
 
-	.loc_0x38:
-	  li        r4, 0x2
+lbl_8017A658:
+	li       r4, 2
 
-	.loc_0x3C:
-	  lwz       r3, 0x1C(r3)
-	  rlwinm    r0,r4,2,0,29
-	  lwzx      r3, r3, r0
-	  blr
+lbl_8017A65C:
+	lwz      r3, 0x1c(r3)
+	slwi     r0, r4, 2
+	lwzx     r3, r3, r0
+	blr
 	*/
 }
 
@@ -7367,30 +8391,29 @@ void ItemOnyon::Mgr::generatorGetShape(Game::GenItemParm*)
 void ItemOnyon::Mgr::generatorNewItemParm(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r3, 0xC
-	  stw       r0, 0x14(r1)
-	  bl        -0x1567D8
-	  cmplwi    r3, 0
-	  beq-      .loc_0x44
-	  lis       r4, 0x804B
-	  lis       r5, 0x804B
-	  addi      r0, r4, 0x2624
-	  li        r4, 0
-	  stw       r0, 0x0(r3)
-	  addi      r5, r5, 0x2618
-	  li        r0, 0x1
-	  stw       r5, 0x0(r3)
-	  stw       r4, 0x4(r3)
-	  stb       r0, 0x8(r3)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	li       r3, 0xc
+	stw      r0, 0x14(r1)
+	bl       __nw__FUl
+	cmplwi   r3, 0
+	beq      lbl_8017A6B0
+	lis      r4, __vt__Q24Game11GenItemParm@ha
+	lis      r5, __vt__12GenOnyonParm@ha
+	addi     r0, r4, __vt__Q24Game11GenItemParm@l
+	li       r4, 0
+	stw      r0, 0(r3)
+	addi     r5, r5, __vt__12GenOnyonParm@l
+	li       r0, 1
+	stw      r5, 0(r3)
+	stw      r4, 4(r3)
+	stb      r0, 8(r3)
 
-	.loc_0x44:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8017A6B0:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -7402,42 +8425,41 @@ void ItemOnyon::Mgr::generatorNewItemParm(void)
 void ItemOnyon::Mgr::generatorWrite(Stream&, Game::GenItemParm*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r5
-	  stw       r30, 0x8(r1)
-	  mr        r30, r4
-	  mr        r3, r30
-	  lwz       r4, 0x414(r4)
-	  bl        0x299D50
-	  lwz       r4, 0x4(r31)
-	  mr        r3, r30
-	  bl        0x29B0D0
-	  lis       r4, 0x8048
-	  mr        r3, r30
-	  subi      r4, r4, 0x17F8
-	  crclr     6, 0x6
-	  bl        0x299AD8
-	  lwz       r4, 0x414(r30)
-	  mr        r3, r30
-	  bl        0x299D24
-	  lbz       r4, 0x8(r31)
-	  mr        r3, r30
-	  bl        0x29AF54
-	  lis       r4, 0x8048
-	  mr        r3, r30
-	  subi      r4, r4, 0x17E4
-	  crclr     6, 0x6
-	  bl        0x299AAC
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r5
+	stw      r30, 8(r1)
+	mr       r30, r4
+	mr       r3, r30
+	lwz      r4, 0x414(r4)
+	bl       textWriteTab__6StreamFi
+	lwz      r4, 4(r31)
+	mr       r3, r30
+	bl       writeInt__6StreamFi
+	lis      r4, lbl_8047E808@ha
+	mr       r3, r30
+	addi     r4, r4, lbl_8047E808@l
+	crclr    6
+	bl       textWriteText__6StreamFPce
+	lwz      r4, 0x414(r30)
+	mr       r3, r30
+	bl       textWriteTab__6StreamFi
+	lbz      r4, 8(r31)
+	mr       r3, r30
+	bl       writeByte__6StreamFUc
+	lis      r4, lbl_8047E81C@ha
+	mr       r3, r30
+	addi     r4, r4, lbl_8047E81C@l
+	crclr    6
+	bl       textWriteText__6StreamFPce
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -7449,39 +8471,38 @@ void ItemOnyon::Mgr::generatorWrite(Stream&, Game::GenItemParm*)
 void ItemOnyon::Mgr::generatorRead(Stream&, Game::GenItemParm*, unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r6
-	  stw       r30, 0x18(r1)
-	  mr        r30, r5
-	  stw       r29, 0x14(r1)
-	  mr        r29, r4
-	  mr        r3, r29
-	  bl        0x29A31C
-	  lis       r4, 0x3030
-	  stw       r3, 0x4(r30)
-	  addi      r0, r4, 0x3031
-	  cmplw     r31, r0
-	  blt-      .loc_0x5C
-	  mr        r3, r29
-	  bl        0x299D0C
-	  rlwinm    r0,r3,0,24,31
-	  subfic    r0, r0, 0x1
-	  cntlzw    r0, r0
-	  rlwinm    r0,r0,27,5,31
-	  stb       r0, 0x8(r30)
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r6
+	stw      r30, 0x18(r1)
+	mr       r30, r5
+	stw      r29, 0x14(r1)
+	mr       r29, r4
+	mr       r3, r29
+	bl       readInt__6StreamFv
+	lis      r4, 0x30303031@ha
+	stw      r3, 4(r30)
+	addi     r0, r4, 0x30303031@l
+	cmplw    r31, r0
+	blt      lbl_8017A7A8
+	mr       r3, r29
+	bl       readByte__6StreamFv
+	clrlwi   r0, r3, 0x18
+	subfic   r0, r0, 1
+	cntlzw   r0, r0
+	srwi     r0, r0, 5
+	stb      r0, 8(r30)
 
-	.loc_0x5C:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8017A7A8:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -7493,107 +8514,106 @@ void ItemOnyon::Mgr::generatorRead(Stream&, Game::GenItemParm*, unsigned long)
 ItemOnyon::Mgr::Mgr(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  extsh.    r0, r4
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r3
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  beq-      .loc_0x2C
-	  addi      r0, r31, 0x118
-	  stw       r0, 0x4(r31)
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	extsh.   r0, r4
+	stw      r31, 0x1c(r1)
+	mr       r31, r3
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	beq      lbl_8017A7F0
+	addi     r0, r31, 0x118
+	stw      r0, 4(r31)
 
-	.loc_0x2C:
-	  mr        r3, r31
-	  li        r4, 0
-	  li        r5, 0x1
-	  bl        0x52574
-	  addi      r29, r31, 0x30
-	  mr        r3, r29
-	  bl        0x296B88
-	  lis       r3, 0x804B
-	  li        r5, 0
-	  subi      r0, r3, 0x5324
-	  addi      r30, r31, 0x4C
-	  lis       r3, 0x804B
-	  stw       r0, 0x0(r29)
-	  addi      r0, r3, 0x25EC
-	  stw       r0, 0x0(r29)
-	  lis       r3, 0x804B
-	  addi      r4, r3, 0x242C
-	  stb       r5, 0x18(r29)
-	  addi      r0, r4, 0x74
-	  mr        r3, r30
-	  stw       r4, 0x0(r31)
-	  stw       r0, 0x30(r31)
-	  bl        0x296B48
-	  lis       r4, 0x804B
-	  lis       r3, 0x804B
-	  subi      r0, r4, 0x5324
-	  lis       r5, 0x804B
-	  stw       r0, 0x0(r30)
-	  addi      r0, r3, 0x25EC
-	  lis       r4, 0x804B
-	  lis       r3, 0x804B
-	  stw       r0, 0x0(r30)
-	  li        r0, 0
-	  addi      r6, r4, 0x2570
-	  addi      r4, r3, 0x24F0
-	  stb       r0, 0x18(r30)
-	  subi      r0, r5, 0x4A10
-	  addi      r29, r30, 0x20
-	  addi      r5, r6, 0x2C
-	  stw       r0, 0x1C(r30)
-	  addi      r0, r4, 0x2C
-	  mr        r3, r29
-	  stw       r6, 0x0(r30)
-	  stw       r5, 0x1C(r30)
-	  stw       r4, 0x0(r30)
-	  stw       r0, 0x1C(r30)
-	  bl        0x296AE8
-	  lis       r3, 0x804B
-	  lis       r4, 0x8043
-	  addi      r0, r3, 0x24E0
-	  li        r5, 0
-	  stw       r0, 0x0(r29)
-	  addi      r3, r31, 0xB4
-	  addi      r4, r4, 0x4240
-	  li        r6, 0x14
-	  li        r7, 0x3
-	  bl        -0xB9094
-	  lis       r4, 0x8043
-	  addi      r3, r31, 0xF0
-	  addi      r4, r4, 0x4240
-	  li        r5, 0
-	  li        r6, 0x14
-	  li        r7, 0x2
-	  bl        -0xB90B0
-	  li        r4, 0
-	  subi      r0, r2, 0x5830
-	  stw       r4, 0xA8(r31)
-	  li        r3, 0xC
-	  stw       r4, 0xA4(r31)
-	  stw       r4, 0xA0(r31)
-	  stw       r4, 0xB0(r31)
-	  stw       r4, 0xAC(r31)
-	  stw       r0, 0x8(r31)
-	  bl        -0x156968
-	  stw       r3, 0x1C(r31)
-	  li        r0, 0
-	  mr        r3, r31
-	  stw       r0, 0x88(r31)
-	  stw       r0, 0x8C(r31)
-	  stw       r0, 0x90(r31)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8017A7F0:
+	mr       r3, r31
+	li       r4, 0
+	li       r5, 1
+	bl       __ct__Q24Game11BaseItemMgrFi
+	addi     r29, r31, 0x30
+	mr       r3, r29
+	bl       __ct__5CNodeFv
+	lis      r3, __vt__16GenericContainer@ha
+	li       r5, 0
+	addi     r0, r3, __vt__16GenericContainer@l
+	addi     r30, r31, 0x4c
+	lis      r3, "__vt__24Container<Q24Game5Onyon>"@ha
+	stw      r0, 0(r29)
+	addi     r0, r3, "__vt__24Container<Q24Game5Onyon>"@l
+	stw      r0, 0(r29)
+	lis      r3, __vt__Q34Game9ItemOnyon3Mgr@ha
+	addi     r4, r3, __vt__Q34Game9ItemOnyon3Mgr@l
+	stb      r5, 0x18(r29)
+	addi     r0, r4, 0x74
+	mr       r3, r30
+	stw      r4, 0(r31)
+	stw      r0, 0x30(r31)
+	bl       __ct__5CNodeFv
+	lis      r4, __vt__16GenericContainer@ha
+	lis      r3, "__vt__24Container<Q24Game5Onyon>"@ha
+	addi     r0, r4, __vt__16GenericContainer@l
+	lis      r5, __vt__16GenericObjectMgr@ha
+	stw      r0, 0(r30)
+	addi     r0, r3, "__vt__24Container<Q24Game5Onyon>"@l
+	lis      r4, "__vt__24ObjectMgr<Q24Game5Onyon>"@ha
+	lis      r3, "__vt__28NodeObjectMgr<Q24Game5Onyon>"@ha
+	stw      r0, 0(r30)
+	li       r0, 0
+	addi     r6, r4, "__vt__24ObjectMgr<Q24Game5Onyon>"@l
+	addi     r4, r3, "__vt__28NodeObjectMgr<Q24Game5Onyon>"@l
+	stb      r0, 0x18(r30)
+	addi     r0, r5, __vt__16GenericObjectMgr@l
+	addi     r29, r30, 0x20
+	addi     r5, r6, 0x2c
+	stw      r0, 0x1c(r30)
+	addi     r0, r4, 0x2c
+	mr       r3, r29
+	stw      r6, 0(r30)
+	stw      r5, 0x1c(r30)
+	stw      r4, 0(r30)
+	stw      r0, 0x1c(r30)
+	bl       __ct__5CNodeFv
+	lis      r3, "__vt__26TObjectNode<Q24Game5Onyon>"@ha
+	lis      r4, __ct__Q23Sys18MatTevRegAnimationFv@ha
+	addi     r0, r3, "__vt__26TObjectNode<Q24Game5Onyon>"@l
+	li       r5, 0
+	stw      r0, 0(r29)
+	addi     r3, r31, 0xb4
+	addi     r4, r4, __ct__Q23Sys18MatTevRegAnimationFv@l
+	li       r6, 0x14
+	li       r7, 3
+	bl       __construct_array
+	lis      r4, __ct__Q23Sys18MatTevRegAnimationFv@ha
+	addi     r3, r31, 0xf0
+	addi     r4, r4, __ct__Q23Sys18MatTevRegAnimationFv@l
+	li       r5, 0
+	li       r6, 0x14
+	li       r7, 2
+	bl       __construct_array
+	li       r4, 0
+	addi     r0, r2, lbl_80518B30@sda21
+	stw      r4, 0xa8(r31)
+	li       r3, 0xc
+	stw      r4, 0xa4(r31)
+	stw      r4, 0xa0(r31)
+	stw      r4, 0xb0(r31)
+	stw      r4, 0xac(r31)
+	stw      r0, 8(r31)
+	bl       __nwa__FUl
+	stw      r3, 0x1c(r31)
+	li       r0, 0
+	mr       r3, r31
+	stw      r0, 0x88(r31)
+	stw      r0, 0x8c(r31)
+	stw      r0, 0x90(r31)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -7607,63 +8627,62 @@ ItemOnyon::Mgr::Mgr(void)
 void NodeObjectMgr<Game::Onyon>::~NodeObjectMgr()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0xAC
-	  lis       r3, 0x804B
-	  addic.    r0, r30, 0x20
-	  addi      r3, r3, 0x24F0
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x2C
-	  stw       r0, 0x1C(r30)
-	  beq-      .loc_0x54
-	  lis       r4, 0x804B
-	  addi      r3, r30, 0x20
-	  addi      r0, r4, 0x24E0
-	  li        r4, 0
-	  stw       r0, 0x20(r30)
-	  bl        0x296BEC
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_8017A9F8
+	lis      r3, "__vt__28NodeObjectMgr<Q24Game5Onyon>"@ha
+	addic.   r0, r30, 0x20
+	addi     r3, r3, "__vt__28NodeObjectMgr<Q24Game5Onyon>"@l
+	stw      r3, 0(r30)
+	addi     r0, r3, 0x2c
+	stw      r0, 0x1c(r30)
+	beq      lbl_8017A9A0
+	lis      r4, "__vt__26TObjectNode<Q24Game5Onyon>"@ha
+	addi     r3, r30, 0x20
+	addi     r0, r4, "__vt__26TObjectNode<Q24Game5Onyon>"@l
+	li       r4, 0
+	stw      r0, 0x20(r30)
+	bl       __dt__5CNodeFv
 
-	.loc_0x54:
-	  cmplwi    r30, 0
-	  beq-      .loc_0x9C
-	  lis       r3, 0x804B
-	  addi      r3, r3, 0x2570
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x2C
-	  stw       r0, 0x1C(r30)
-	  beq-      .loc_0x9C
-	  lis       r3, 0x804B
-	  addi      r0, r3, 0x25EC
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x9C
-	  lis       r4, 0x804B
-	  mr        r3, r30
-	  subi      r0, r4, 0x5324
-	  li        r4, 0
-	  stw       r0, 0x0(r30)
-	  bl        0x296BA4
+lbl_8017A9A0:
+	cmplwi   r30, 0
+	beq      lbl_8017A9E8
+	lis      r3, "__vt__24ObjectMgr<Q24Game5Onyon>"@ha
+	addi     r3, r3, "__vt__24ObjectMgr<Q24Game5Onyon>"@l
+	stw      r3, 0(r30)
+	addi     r0, r3, 0x2c
+	stw      r0, 0x1c(r30)
+	beq      lbl_8017A9E8
+	lis      r3, "__vt__24Container<Q24Game5Onyon>"@ha
+	addi     r0, r3, "__vt__24Container<Q24Game5Onyon>"@l
+	stw      r0, 0(r30)
+	beq      lbl_8017A9E8
+	lis      r4, __vt__16GenericContainer@ha
+	mr       r3, r30
+	addi     r0, r4, __vt__16GenericContainer@l
+	li       r4, 0
+	stw      r0, 0(r30)
+	bl       __dt__5CNodeFv
 
-	.loc_0x9C:
-	  extsh.    r0, r31
-	  ble-      .loc_0xAC
-	  mr        r3, r30
-	  bl        -0x156940
+lbl_8017A9E8:
+	extsh.   r0, r31
+	ble      lbl_8017A9F8
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0xAC:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8017A9F8:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -7675,33 +8694,32 @@ void NodeObjectMgr<Game::Onyon>::~NodeObjectMgr()
 void TObjectNode<Game::Onyon>::~TObjectNode()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x44
-	  lis       r5, 0x804B
-	  li        r4, 0
-	  addi      r0, r5, 0x24E0
-	  stw       r0, 0x0(r30)
-	  bl        0x296B44
-	  extsh.    r0, r31
-	  ble-      .loc_0x44
-	  mr        r3, r30
-	  bl        -0x1569A0
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_8017AA58
+	lis      r5, "__vt__26TObjectNode<Q24Game5Onyon>"@ha
+	li       r4, 0
+	addi     r0, r5, "__vt__26TObjectNode<Q24Game5Onyon>"@l
+	stw      r0, 0(r30)
+	bl       __dt__5CNodeFv
+	extsh.   r0, r31
+	ble      lbl_8017AA58
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x44:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8017AA58:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -7713,45 +8731,44 @@ void TObjectNode<Game::Onyon>::~TObjectNode()
 void ObjectMgr<Game::Onyon>::~ObjectMgr()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x6C
-	  lis       r4, 0x804B
-	  addi      r4, r4, 0x2570
-	  stw       r4, 0x0(r30)
-	  addi      r0, r4, 0x2C
-	  stw       r0, 0x1C(r30)
-	  beq-      .loc_0x5C
-	  lis       r4, 0x804B
-	  addi      r0, r4, 0x25EC
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x5C
-	  lis       r5, 0x804B
-	  li        r4, 0
-	  subi      r0, r5, 0x5324
-	  stw       r0, 0x0(r30)
-	  bl        0x296ABC
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_8017AAE0
+	lis      r4, "__vt__24ObjectMgr<Q24Game5Onyon>"@ha
+	addi     r4, r4, "__vt__24ObjectMgr<Q24Game5Onyon>"@l
+	stw      r4, 0(r30)
+	addi     r0, r4, 0x2c
+	stw      r0, 0x1c(r30)
+	beq      lbl_8017AAD0
+	lis      r4, "__vt__24Container<Q24Game5Onyon>"@ha
+	addi     r0, r4, "__vt__24Container<Q24Game5Onyon>"@l
+	stw      r0, 0(r30)
+	beq      lbl_8017AAD0
+	lis      r5, __vt__16GenericContainer@ha
+	li       r4, 0
+	addi     r0, r5, __vt__16GenericContainer@l
+	stw      r0, 0(r30)
+	bl       __dt__5CNodeFv
 
-	.loc_0x5C:
-	  extsh.    r0, r31
-	  ble-      .loc_0x6C
-	  mr        r3, r30
-	  bl        -0x156A28
+lbl_8017AAD0:
+	extsh.   r0, r31
+	ble      lbl_8017AAE0
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x6C:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8017AAE0:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -7763,39 +8780,38 @@ void ObjectMgr<Game::Onyon>::~ObjectMgr()
 void Container<Game::Onyon>::~Container()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x54
-	  lis       r4, 0x804B
-	  addi      r0, r4, 0x25EC
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x44
-	  lis       r5, 0x804B
-	  li        r4, 0
-	  subi      r0, r5, 0x5324
-	  stw       r0, 0x0(r30)
-	  bl        0x296A4C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_8017AB50
+	lis      r4, "__vt__24Container<Q24Game5Onyon>"@ha
+	addi     r0, r4, "__vt__24Container<Q24Game5Onyon>"@l
+	stw      r0, 0(r30)
+	beq      lbl_8017AB40
+	lis      r5, __vt__16GenericContainer@ha
+	li       r4, 0
+	addi     r0, r5, __vt__16GenericContainer@l
+	stw      r0, 0(r30)
+	bl       __dt__5CNodeFv
 
-	.loc_0x44:
-	  extsh.    r0, r31
-	  ble-      .loc_0x54
-	  mr        r3, r30
-	  bl        -0x156A98
+lbl_8017AB40:
+	extsh.   r0, r31
+	ble      lbl_8017AB50
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x54:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8017AB50:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -7809,86 +8825,85 @@ namespace Game {
 ItemOnyon::Mgr::~Mgr(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x100
-	  lis       r3, 0x804B
-	  addic.    r0, r30, 0x4C
-	  addi      r3, r3, 0x242C
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x74
-	  stw       r0, 0x30(r30)
-	  beq-      .loc_0xBC
-	  lis       r4, 0x804B
-	  addic.    r3, r30, 0x6C
-	  addi      r4, r4, 0x24F0
-	  stw       r4, 0x4C(r30)
-	  addi      r0, r4, 0x2C
-	  stw       r0, 0x68(r30)
-	  beq-      .loc_0x6C
-	  lis       r4, 0x804B
-	  addi      r0, r4, 0x24E0
-	  stw       r0, 0x6C(r30)
-	  li        r4, 0
-	  bl        0x2969B4
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_8017AC6C
+	lis      r3, __vt__Q34Game9ItemOnyon3Mgr@ha
+	addic.   r0, r30, 0x4c
+	addi     r3, r3, __vt__Q34Game9ItemOnyon3Mgr@l
+	stw      r3, 0(r30)
+	addi     r0, r3, 0x74
+	stw      r0, 0x30(r30)
+	beq      lbl_8017AC28
+	lis      r4, "__vt__28NodeObjectMgr<Q24Game5Onyon>"@ha
+	addic.   r3, r30, 0x6c
+	addi     r4, r4, "__vt__28NodeObjectMgr<Q24Game5Onyon>"@l
+	stw      r4, 0x4c(r30)
+	addi     r0, r4, 0x2c
+	stw      r0, 0x68(r30)
+	beq      lbl_8017ABD8
+	lis      r4, "__vt__26TObjectNode<Q24Game5Onyon>"@ha
+	addi     r0, r4, "__vt__26TObjectNode<Q24Game5Onyon>"@l
+	stw      r0, 0x6c(r30)
+	li       r4, 0
+	bl       __dt__5CNodeFv
 
-	.loc_0x6C:
-	  addic.    r0, r30, 0x4C
-	  beq-      .loc_0xBC
-	  lis       r3, 0x804B
-	  addic.    r0, r30, 0x4C
-	  addi      r3, r3, 0x2570
-	  stw       r3, 0x4C(r30)
-	  addi      r0, r3, 0x2C
-	  stw       r0, 0x68(r30)
-	  beq-      .loc_0xBC
-	  lis       r3, 0x804B
-	  addic.    r0, r30, 0x4C
-	  addi      r0, r3, 0x25EC
-	  stw       r0, 0x4C(r30)
-	  beq-      .loc_0xBC
-	  lis       r4, 0x804B
-	  addi      r3, r30, 0x4C
-	  subi      r0, r4, 0x5324
-	  li        r4, 0
-	  stw       r0, 0x4C(r30)
-	  bl        0x296964
+lbl_8017ABD8:
+	addic.   r0, r30, 0x4c
+	beq      lbl_8017AC28
+	lis      r3, "__vt__24ObjectMgr<Q24Game5Onyon>"@ha
+	addic.   r0, r30, 0x4c
+	addi     r3, r3, "__vt__24ObjectMgr<Q24Game5Onyon>"@l
+	stw      r3, 0x4c(r30)
+	addi     r0, r3, 0x2c
+	stw      r0, 0x68(r30)
+	beq      lbl_8017AC28
+	lis      r3, "__vt__24Container<Q24Game5Onyon>"@ha
+	addic.   r0, r30, 0x4c
+	addi     r0, r3, "__vt__24Container<Q24Game5Onyon>"@l
+	stw      r0, 0x4c(r30)
+	beq      lbl_8017AC28
+	lis      r4, __vt__16GenericContainer@ha
+	addi     r3, r30, 0x4c
+	addi     r0, r4, __vt__16GenericContainer@l
+	li       r4, 0
+	stw      r0, 0x4c(r30)
+	bl       __dt__5CNodeFv
 
-	.loc_0xBC:
-	  addic.    r0, r30, 0x30
-	  beq-      .loc_0xF0
-	  lis       r3, 0x804B
-	  addic.    r0, r30, 0x30
-	  addi      r0, r3, 0x25EC
-	  stw       r0, 0x30(r30)
-	  beq-      .loc_0xF0
-	  lis       r4, 0x804B
-	  addi      r3, r30, 0x30
-	  subi      r0, r4, 0x5324
-	  li        r4, 0
-	  stw       r0, 0x30(r30)
-	  bl        0x296930
+lbl_8017AC28:
+	addic.   r0, r30, 0x30
+	beq      lbl_8017AC5C
+	lis      r3, "__vt__24Container<Q24Game5Onyon>"@ha
+	addic.   r0, r30, 0x30
+	addi     r0, r3, "__vt__24Container<Q24Game5Onyon>"@l
+	stw      r0, 0x30(r30)
+	beq      lbl_8017AC5C
+	lis      r4, __vt__16GenericContainer@ha
+	addi     r3, r30, 0x30
+	addi     r0, r4, __vt__16GenericContainer@l
+	li       r4, 0
+	stw      r0, 0x30(r30)
+	bl       __dt__5CNodeFv
 
-	.loc_0xF0:
-	  extsh.    r0, r31
-	  ble-      .loc_0x100
-	  mr        r3, r30
-	  bl        -0x156BB4
+lbl_8017AC5C:
+	extsh.   r0, r31
+	ble      lbl_8017AC6C
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x100:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8017AC6C:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -7900,194 +8915,193 @@ ItemOnyon::Mgr::~Mgr(void)
 void Onyon::on_movie_end(bool)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  stw       r30, 0x8(r1)
-	  lhz       r4, 0x22E(r3)
-	  cmplwi    r4, 0x4
-	  bne-      .loc_0x3C
-	  lbz       r0, 0x240(r31)
-	  cmplwi    r0, 0x5
-	  bne-      .loc_0x74
-	  lfs       f0, -0x5934(r2)
-	  stfs      f0, 0x1D4(r31)
-	  b         .loc_0x74
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	stw      r30, 8(r1)
+	lhz      r4, 0x22e(r3)
+	cmplwi   r4, 4
+	bne      lbl_8017ACC4
+	lbz      r0, 0x240(r31)
+	cmplwi   r0, 5
+	bne      lbl_8017ACFC
+	lfs      f0, lbl_80518A2C@sda21(r2)
+	stfs     f0, 0x1d4(r31)
+	b        lbl_8017ACFC
 
-	.loc_0x3C:
-	  cmplwi    r4, 0x2
-	  li        r5, 0
-	  bgt-      .loc_0x5C
-	  lwz       r3, -0x6C18(r13)
-	  lwz       r0, 0x44(r3)
-	  cmpwi     r0, 0
-	  bne-      .loc_0x5C
-	  li        r5, 0x1
+lbl_8017ACC4:
+	cmplwi   r4, 2
+	li       r5, 0
+	bgt      lbl_8017ACE4
+	lwz      r3, gameSystem__4Game@sda21(r13)
+	lwz      r0, 0x44(r3)
+	cmpwi    r0, 0
+	bne      lbl_8017ACE4
+	li       r5, 1
 
-	.loc_0x5C:
-	  rlwinm.   r0,r5,0,24,31
-	  beq-      .loc_0x6C
-	  lwz       r3, -0x6B70(r13)
-	  bl        0x6C3E8
+lbl_8017ACE4:
+	clrlwi.  r0, r5, 0x18
+	beq      lbl_8017ACF4
+	lwz      r3, playData__4Game@sda21(r13)
+	bl       hasBootContainer__Q24Game8PlayDataFi
 
-	.loc_0x6C:
-	  lfs       f0, -0x5930(r2)
-	  stfs      f0, 0x1D4(r31)
+lbl_8017ACF4:
+	lfs      f0, lbl_80518A30@sda21(r2)
+	stfs     f0, 0x1d4(r31)
 
-	.loc_0x74:
-	  lhz       r4, 0x22E(r31)
-	  cmplwi    r4, 0x2
-	  bgt-      .loc_0xA0
-	  lwz       r3, 0x1B4(r31)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x94
-	  lha       r0, 0x20(r3)
-	  b         .loc_0x98
+lbl_8017ACFC:
+	lhz      r4, 0x22e(r31)
+	cmplwi   r4, 2
+	bgt      lbl_8017AD28
+	lwz      r3, 0x1b4(r31)
+	cmplwi   r3, 0
+	beq      lbl_8017AD1C
+	lha      r0, 0x20(r3)
+	b        lbl_8017AD20
 
-	.loc_0x94:
-	  li        r0, -0x1
+lbl_8017AD1C:
+	li       r0, -1
 
-	.loc_0x98:
-	  cmpwi     r0, 0x1
-	  beq-      .loc_0x23C
+lbl_8017AD20:
+	cmpwi    r0, 1
+	beq      lbl_8017AEC4
 
-	.loc_0xA0:
-	  cmplwi    r4, 0x4
-	  bne-      .loc_0x19C
-	  lwz       r3, -0x6B70(r13)
-	  li        r4, 0x4
-	  addi      r3, r3, 0xA8
-	  bl        0x76874
-	  lwz       r5, -0x6B70(r13)
-	  mr        r30, r3
-	  li        r4, 0x3
-	  addi      r3, r5, 0xA8
-	  bl        0x76860
-	  add.      r0, r30, r3
-	  ble-      .loc_0x13C
-	  lwz       r0, 0x250(r31)
-	  cmpwi     r0, 0x1
-	  bgt-      .loc_0xFC
-	  lis       r3, 0x8048
-	  lis       r5, 0x8048
-	  subi      r3, r3, 0x19C8
-	  li        r4, 0xA2B
-	  subi      r5, r5, 0x1980
-	  crclr     6, 0x6
-	  bl        -0x150740
+lbl_8017AD28:
+	cmplwi   r4, 4
+	bne      lbl_8017AE24
+	lwz      r3, playData__4Game@sda21(r13)
+	li       r4, 4
+	addi     r3, r3, 0xa8
+	bl       getColorSum__Q24Game13PikiContainerFi
+	lwz      r5, playData__4Game@sda21(r13)
+	mr       r30, r3
+	li       r4, 3
+	addi     r3, r5, 0xa8
+	bl       getColorSum__Q24Game13PikiContainerFi
+	add.     r0, r30, r3
+	ble      lbl_8017ADC4
+	lwz      r0, 0x250(r31)
+	cmpwi    r0, 1
+	bgt      lbl_8017AD84
+	lis      r3, lbl_8047E638@ha
+	lis      r5, lbl_8047E680@ha
+	addi     r3, r3, lbl_8047E638@l
+	li       r4, 0xa2b
+	addi     r5, r5, lbl_8047E680@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xFC:
-	  lfs       f0, -0x5930(r2)
-	  li        r4, 0
-	  lwz       r3, 0x258(r31)
-	  stfs      f0, 0x4(r3)
-	  lwz       r3, 0x218(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x21C(r31)
-	  li        r4, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x23C
+lbl_8017AD84:
+	lfs      f0, lbl_80518A30@sda21(r2)
+	li       r4, 0
+	lwz      r3, 0x258(r31)
+	stfs     f0, 4(r3)
+	lwz      r3, 0x218(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 0x21c(r31)
+	li       r4, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_8017AEC4
 
-	.loc_0x13C:
-	  lwz       r3, 0x218(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x21C(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x250(r31)
-	  cmpwi     r0, 0x1
-	  bgt-      .loc_0x18C
-	  lis       r3, 0x8048
-	  lis       r5, 0x8048
-	  subi      r3, r3, 0x19C8
-	  li        r4, 0xA2B
-	  subi      r5, r5, 0x1980
-	  crclr     6, 0x6
-	  bl        -0x1507D0
+lbl_8017ADC4:
+	lwz      r3, 0x218(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 0x21c(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x250(r31)
+	cmpwi    r0, 1
+	bgt      lbl_8017AE14
+	lis      r3, lbl_8047E638@ha
+	lis      r5, lbl_8047E680@ha
+	addi     r3, r3, lbl_8047E638@l
+	li       r4, 0xa2b
+	addi     r5, r5, lbl_8047E680@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x18C:
-	  lfs       f0, -0x5934(r2)
-	  lwz       r3, 0x258(r31)
-	  stfs      f0, 0x4(r3)
-	  b         .loc_0x23C
+lbl_8017AE14:
+	lfs      f0, lbl_80518A2C@sda21(r2)
+	lwz      r3, 0x258(r31)
+	stfs     f0, 4(r3)
+	b        lbl_8017AEC4
 
-	.loc_0x19C:
-	  lfs       f0, -0x5930(r2)
-	  stfs      f0, 0x1D4(r31)
-	  lhz       r4, 0x22E(r31)
-	  cmplwi    r4, 0x3
-	  bne-      .loc_0x1C4
-	  addi      r3, r31, 0x1A8
-	  li        r4, 0
-	  li        r5, 0
-	  bl        0x2ADE44
-	  b         .loc_0x23C
+lbl_8017AE24:
+	lfs      f0, lbl_80518A30@sda21(r2)
+	stfs     f0, 0x1d4(r31)
+	lhz      r4, 0x22e(r31)
+	cmplwi   r4, 3
+	bne      lbl_8017AE4C
+	addi     r3, r31, 0x1a8
+	li       r4, 0
+	li       r5, 0
+	bl       startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
+	b        lbl_8017AEC4
 
-	.loc_0x1C4:
-	  lwz       r3, -0x6B70(r13)
-	  addi      r3, r3, 0xA8
-	  bl        0x7675C
-	  cmpwi     r3, 0
-	  ble-      .loc_0x220
-	  lwz       r3, 0x1B4(r31)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x1EC
-	  lha       r0, 0x20(r3)
-	  b         .loc_0x1F0
+lbl_8017AE4C:
+	lwz      r3, playData__4Game@sda21(r13)
+	addi     r3, r3, 0xa8
+	bl       getColorSum__Q24Game13PikiContainerFi
+	cmpwi    r3, 0
+	ble      lbl_8017AEA8
+	lwz      r3, 0x1b4(r31)
+	cmplwi   r3, 0
+	beq      lbl_8017AE74
+	lha      r0, 0x20(r3)
+	b        lbl_8017AE78
 
-	.loc_0x1EC:
-	  li        r0, -0x1
+lbl_8017AE74:
+	li       r0, -1
 
-	.loc_0x1F0:
-	  cmplwi    r0, 0x1
-	  ble-      .loc_0x200
-	  cmpwi     r0, 0x3
-	  bne-      .loc_0x23C
+lbl_8017AE78:
+	cmplwi   r0, 1
+	ble      lbl_8017AE88
+	cmpwi    r0, 3
+	bne      lbl_8017AEC4
 
-	.loc_0x200:
-	  cmplwi    r31, 0
-	  mr        r5, r31
-	  beq-      .loc_0x210
-	  addi      r5, r31, 0x178
+lbl_8017AE88:
+	cmplwi   r31, 0
+	mr       r5, r31
+	beq      lbl_8017AE98
+	addi     r5, r31, 0x178
 
-	.loc_0x210:
-	  addi      r3, r31, 0x1A8
-	  li        r4, 0x2
-	  bl        0x2ADDE8
-	  b         .loc_0x23C
+lbl_8017AE98:
+	addi     r3, r31, 0x1a8
+	li       r4, 2
+	bl       startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
+	b        lbl_8017AEC4
 
-	.loc_0x220:
-	  cmplwi    r31, 0
-	  mr        r5, r31
-	  beq-      .loc_0x230
-	  addi      r5, r31, 0x178
+lbl_8017AEA8:
+	cmplwi   r31, 0
+	mr       r5, r31
+	beq      lbl_8017AEB8
+	addi     r5, r31, 0x178
 
-	.loc_0x230:
-	  addi      r3, r31, 0x1A8
-	  li        r4, 0
-	  bl        0x2ADDC8
+lbl_8017AEB8:
+	addi     r3, r31, 0x1a8
+	li       r4, 0
+	bl       startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
 
-	.loc_0x23C:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8017AEC4:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -8099,897 +9113,899 @@ void Onyon::on_movie_end(bool)
 void ItemOnyon::Mgr::birth(int, int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  lis       r6, 0x8048
-	  stw       r0, 0x34(r1)
-	  stmw      r25, 0x14(r1)
-	  mr        r30, r3
-	  mr        r28, r4
-	  mr        r26, r5
-	  subi      r31, r6, 0x19E0
-	  li        r25, 0
-	  li        r3, 0x1C
-	  bl        -0x157064
-	  mr.       r29, r3
-	  beq-      .loc_0x48
-	  bl        0x29647C
-	  lis       r3, 0x804B
-	  addi      r0, r3, 0x24E0
-	  stw       r0, 0x0(r29)
-
-	.loc_0x48:
-	  cmpwi     r28, 0x1
-	  beq-      .loc_0x410
-	  bge-      .loc_0x60
-	  cmpwi     r28, 0
-	  bge-      .loc_0x6C
-	  b         .loc_0xB84
-
-	.loc_0x60:
-	  cmpwi     r28, 0x3
-	  bge-      .loc_0xB84
-	  b         .loc_0x724
-
-	.loc_0x6C:
-	  li        r3, 0x260
-	  bl        -0x1570A8
-	  mr.       r27, r3
-	  beq-      .loc_0xF8
-	  li        r4, 0x402
-	  bl        0x5108C
-	  lis       r4, 0x804B
-	  li        r3, 0x8
-	  addi      r4, r4, 0x26B8
-	  stw       r4, 0x0(r27)
-	  addi      r0, r4, 0x1B0
-	  stw       r0, 0x178(r27)
-	  bl        -0x1570D4
-	  mr.       r0, r3
-	  beq-      .loc_0xB0
-	  bl        -0x46F28
-	  mr        r0, r3
-
-	.loc_0xB0:
-	  stw       r0, 0x114(r27)
-	  li        r0, 0
-	  lfs       f0, -0x5934(r2)
-	  li        r3, 0xC
-	  stfs      f0, 0x118(r27)
-	  stw       r0, 0x23C(r27)
-	  stfs      f0, 0x228(r27)
-	  bl        -0x157104
-	  mr.       r25, r3
-	  beq-      .loc_0xE8
-	  bl        0x2B93A0
-	  lis       r3, 0x804F
-	  subi      r0, r3, 0x3B74
-	  stw       r0, 0x0(r25)
-
-	.loc_0xE8:
-	  stw       r25, 0x234(r27)
-	  li        r0, 0
-	  stw       r0, 0x238(r27)
-	  stw       r0, 0x1F4(r27)
-
-	.loc_0xF8:
-	  mr        r3, r27
-	  li        r4, 0
-	  bl        -0x40014
-	  rlwinm    r25,r28,2,0,29
-	  addi      r3, r27, 0x1A8
-	  add       r5, r30, r25
-	  li        r4, 0
-	  lwz       r0, 0x88(r5)
-	  li        r5, 0
-	  stw       r0, 0x1B8(r27)
-	  bl        0x2ADC8C
-	  lfs       f0, -0x5930(r2)
-	  li        r3, 0x14
-	  stfs      f0, 0x1D4(r27)
-	  bl        -0x157168
-	  mr.       r0, r3
-	  beq-      .loc_0x154
-	  lwz       r4, 0x1C(r30)
-	  li        r5, 0
-	  li        r6, 0x2
-	  lwzx      r4, r4, r25
-	  bl        0x2C31B0
-	  mr        r0, r3
-
-	.loc_0x154:
-	  stw       r0, 0x174(r27)
-	  mr        r3, r27
-	  mr        r4, r26
-	  bl        -0x5A84
-	  add       r5, r30, r25
-	  lwz       r3, 0x114(r27)
-	  lwz       r4, 0x174(r27)
-	  li        r6, 0
-	  lwz       r5, 0x94(r5)
-	  bl        -0x46FE8
-	  lis       r4, 0x6C65
-	  lwz       r3, 0x114(r27)
-	  addi      r4, r4, 0x6731
-	  bl        -0x45220
-	  cmplwi    r3, 0
-	  beq-      .loc_0x19C
-	  li        r0, 0x1
-	  stb       r0, 0x58(r3)
-
-	.loc_0x19C:
-	  lis       r4, 0x6C65
-	  lwz       r3, 0x114(r27)
-	  addi      r4, r4, 0x6732
-	  bl        -0x45240
-	  cmplwi    r3, 0
-	  beq-      .loc_0x1BC
-	  li        r0, 0x1
-	  stb       r0, 0x58(r3)
-
-	.loc_0x1BC:
-	  lis       r4, 0x6C65
-	  lwz       r3, 0x114(r27)
-	  addi      r4, r4, 0x6733
-	  bl        -0x45260
-	  cmplwi    r3, 0
-	  beq-      .loc_0x1DC
-	  li        r0, 0x1
-	  stb       r0, 0x58(r3)
-
-	.loc_0x1DC:
-	  cmplwi    r3, 0
-	  bne-      .loc_0x1F8
-	  addi      r3, r31, 0x18
-	  addi      r5, r31, 0xDC
-	  li        r4, 0x695
-	  crclr     6, 0x6
-	  bl        -0x150A90
-
-	.loc_0x1F8:
-	  lis       r4, 0x666F
-	  lwz       r3, 0x114(r27)
-	  addi      r4, r4, 0x7431
-	  bl        -0x4529C
-	  cmplwi    r3, 0
-	  bne-      .loc_0x224
-	  addi      r3, r31, 0x18
-	  addi      r5, r31, 0xE8
-	  li        r4, 0x69A
-	  crclr     6, 0x6
-	  bl        -0x150ABC
-
-	.loc_0x224:
-	  lhz       r0, 0x22E(r27)
-	  cmplwi    r0, 0x4
-	  bne-      .loc_0x314
-	  lwz       r3, -0x6B70(r13)
-	  li        r4, 0x4
-	  addi      r3, r3, 0xA8
-	  bl        0x76498
-	  lwz       r5, -0x6B70(r13)
-	  mr        r28, r3
-	  li        r4, 0x3
-	  addi      r3, r5, 0xA8
-	  bl        0x76484
-	  add.      r0, r28, r3
-	  ble-      .loc_0x2BC
-	  lwz       r0, 0x250(r27)
-	  cmpwi     r0, 0x1
-	  bgt-      .loc_0x27C
-	  addi      r3, r31, 0x18
-	  addi      r5, r31, 0x60
-	  li        r4, 0xA2B
-	  crclr     6, 0x6
-	  bl        -0x150B14
-
-	.loc_0x27C:
-	  lfs       f0, -0x5930(r2)
-	  li        r4, 0
-	  lwz       r3, 0x258(r27)
-	  stfs      f0, 0x4(r3)
-	  lwz       r3, 0x218(r27)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x21C(r27)
-	  li        r4, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x3B4
-
-	.loc_0x2BC:
-	  lwz       r3, 0x218(r27)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x21C(r27)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x250(r27)
-	  cmpwi     r0, 0x1
-	  bgt-      .loc_0x304
-	  addi      r3, r31, 0x18
-	  addi      r5, r31, 0x60
-	  li        r4, 0xA2B
-	  crclr     6, 0x6
-	  bl        -0x150B9C
-
-	.loc_0x304:
-	  lfs       f0, -0x5934(r2)
-	  lwz       r3, 0x258(r27)
-	  stfs      f0, 0x4(r3)
-	  b         .loc_0x3B4
-
-	.loc_0x314:
-	  lfs       f0, -0x5930(r2)
-	  stfs      f0, 0x1D4(r27)
-	  lhz       r4, 0x22E(r27)
-	  cmplwi    r4, 0x3
-	  bne-      .loc_0x33C
-	  addi      r3, r27, 0x1A8
-	  li        r4, 0
-	  li        r5, 0
-	  bl        0x2ADA78
-	  b         .loc_0x3B4
-
-	.loc_0x33C:
-	  lwz       r3, -0x6B70(r13)
-	  addi      r3, r3, 0xA8
-	  bl        0x76390
-	  cmpwi     r3, 0
-	  ble-      .loc_0x398
-	  lwz       r3, 0x1B4(r27)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x364
-	  lha       r0, 0x20(r3)
-	  b         .loc_0x368
-
-	.loc_0x364:
-	  li        r0, -0x1
-
-	.loc_0x368:
-	  cmplwi    r0, 0x1
-	  ble-      .loc_0x378
-	  cmpwi     r0, 0x3
-	  bne-      .loc_0x3B4
-
-	.loc_0x378:
-	  cmplwi    r27, 0
-	  mr        r5, r27
-	  beq-      .loc_0x388
-	  addi      r5, r27, 0x178
-
-	.loc_0x388:
-	  addi      r3, r27, 0x1A8
-	  li        r4, 0x2
-	  bl        0x2ADA1C
-	  b         .loc_0x3B4
-
-	.loc_0x398:
-	  cmplwi    r27, 0
-	  mr        r5, r27
-	  beq-      .loc_0x3A8
-	  addi      r5, r27, 0x178
-
-	.loc_0x3A8:
-	  addi      r3, r27, 0x1A8
-	  li        r4, 0
-	  bl        0x2AD9FC
-
-	.loc_0x3B4:
-	  rlwinm    r0,r26,2,0,29
-	  mr        r25, r27
-	  add       r3, r30, r0
-	  mr        r4, r26
-	  stw       r27, 0xA0(r3)
-	  lwz       r3, -0x6B70(r13)
-	  bl        0x6BE30
-	  lwz       r3, -0x6C18(r13)
-	  lwz       r0, 0x44(r3)
-	  cmpwi     r0, 0
-	  bne-      .loc_0xB84
-	  lwz       r3, -0x6B70(r13)
-	  mr        r4, r26
-	  bl        0x6BE14
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0xB84
-	  addi      r3, r27, 0x1A8
-	  li        r4, 0x4
-	  li        r5, 0
-	  bl        0x2AD9AC
-	  lfs       f0, -0x5934(r2)
-	  stfs      f0, 0x1D4(r27)
-	  b         .loc_0xB84
-
-	.loc_0x410:
-	  li        r3, 0x260
-	  bl        -0x15744C
-	  mr.       r27, r3
-	  beq-      .loc_0x49C
-	  li        r4, 0x402
-	  bl        0x50CE8
-	  lis       r4, 0x804B
-	  li        r3, 0x8
-	  addi      r4, r4, 0x26B8
-	  stw       r4, 0x0(r27)
-	  addi      r0, r4, 0x1B0
-	  stw       r0, 0x178(r27)
-	  bl        -0x157478
-	  mr.       r0, r3
-	  beq-      .loc_0x454
-	  bl        -0x472CC
-	  mr        r0, r3
-
-	.loc_0x454:
-	  stw       r0, 0x114(r27)
-	  li        r0, 0
-	  lfs       f0, -0x5934(r2)
-	  li        r3, 0xC
-	  stfs      f0, 0x118(r27)
-	  stw       r0, 0x23C(r27)
-	  stfs      f0, 0x228(r27)
-	  bl        -0x1574A8
-	  mr.       r26, r3
-	  beq-      .loc_0x48C
-	  bl        0x2B8FFC
-	  lis       r3, 0x804F
-	  subi      r0, r3, 0x3B74
-	  stw       r0, 0x0(r26)
-
-	.loc_0x48C:
-	  stw       r26, 0x234(r27)
-	  li        r0, 0
-	  stw       r0, 0x238(r27)
-	  stw       r0, 0x1F4(r27)
-
-	.loc_0x49C:
-	  lwz       r3, -0x6980(r13)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x4BC
-	  mr        r4, r27
-	  bl        0xC6798
-	  lwz       r3, -0x6980(r13)
-	  mr        r4, r27
-	  bl        0xC6918
-
-	.loc_0x4BC:
-	  mr        r3, r27
-	  li        r4, 0
-	  bl        -0x403D8
-	  rlwinm    r25,r28,2,0,29
-	  addi      r3, r27, 0x1A8
-	  add       r5, r30, r25
-	  li        r4, 0
-	  lwz       r0, 0x88(r5)
-	  li        r5, 0
-	  stw       r0, 0x1B8(r27)
-	  bl        0x2AD8C8
-	  lfs       f0, -0x5930(r2)
-	  li        r3, 0x14
-	  stfs      f0, 0x1D4(r27)
-	  bl        -0x15752C
-	  mr.       r0, r3
-	  beq-      .loc_0x518
-	  lwz       r4, 0x1C(r30)
-	  li        r5, 0
-	  li        r6, 0x2
-	  lwzx      r4, r4, r25
-	  bl        0x2C2DEC
-	  mr        r0, r3
-
-	.loc_0x518:
-	  stw       r0, 0x174(r27)
-	  mr        r3, r27
-	  li        r4, 0x3
-	  bl        -0x5E48
-	  add       r5, r30, r25
-	  lwz       r3, 0x114(r27)
-	  lwz       r4, 0x174(r27)
-	  li        r6, 0
-	  lwz       r5, 0x94(r5)
-	  bl        -0x473AC
-	  lhz       r0, 0x22E(r27)
-	  cmplwi    r0, 0x4
-	  bne-      .loc_0x630
-	  lwz       r3, -0x6B70(r13)
-	  li        r4, 0x4
-	  addi      r3, r3, 0xA8
-	  bl        0x7617C
-	  lwz       r5, -0x6B70(r13)
-	  mr        r26, r3
-	  li        r4, 0x3
-	  addi      r3, r5, 0xA8
-	  bl        0x76168
-	  add.      r0, r26, r3
-	  ble-      .loc_0x5D8
-	  lwz       r0, 0x250(r27)
-	  cmpwi     r0, 0x1
-	  bgt-      .loc_0x598
-	  addi      r3, r31, 0x18
-	  addi      r5, r31, 0x60
-	  li        r4, 0xA2B
-	  crclr     6, 0x6
-	  bl        -0x150E30
-
-	.loc_0x598:
-	  lfs       f0, -0x5930(r2)
-	  li        r4, 0
-	  lwz       r3, 0x258(r27)
-	  stfs      f0, 0x4(r3)
-	  lwz       r3, 0x218(r27)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x21C(r27)
-	  li        r4, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x6D0
-
-	.loc_0x5D8:
-	  lwz       r3, 0x218(r27)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x21C(r27)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x250(r27)
-	  cmpwi     r0, 0x1
-	  bgt-      .loc_0x620
-	  addi      r3, r31, 0x18
-	  addi      r5, r31, 0x60
-	  li        r4, 0xA2B
-	  crclr     6, 0x6
-	  bl        -0x150EB8
-
-	.loc_0x620:
-	  lfs       f0, -0x5934(r2)
-	  lwz       r3, 0x258(r27)
-	  stfs      f0, 0x4(r3)
-	  b         .loc_0x6D0
-
-	.loc_0x630:
-	  lfs       f0, -0x5930(r2)
-	  stfs      f0, 0x1D4(r27)
-	  lhz       r4, 0x22E(r27)
-	  cmplwi    r4, 0x3
-	  bne-      .loc_0x658
-	  addi      r3, r27, 0x1A8
-	  li        r4, 0
-	  li        r5, 0
-	  bl        0x2AD75C
-	  b         .loc_0x6D0
-
-	.loc_0x658:
-	  lwz       r3, -0x6B70(r13)
-	  addi      r3, r3, 0xA8
-	  bl        0x76074
-	  cmpwi     r3, 0
-	  ble-      .loc_0x6B4
-	  lwz       r3, 0x1B4(r27)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x680
-	  lha       r0, 0x20(r3)
-	  b         .loc_0x684
-
-	.loc_0x680:
-	  li        r0, -0x1
-
-	.loc_0x684:
-	  cmplwi    r0, 0x1
-	  ble-      .loc_0x694
-	  cmpwi     r0, 0x3
-	  bne-      .loc_0x6D0
-
-	.loc_0x694:
-	  cmplwi    r27, 0
-	  mr        r5, r27
-	  beq-      .loc_0x6A4
-	  addi      r5, r27, 0x178
-
-	.loc_0x6A4:
-	  addi      r3, r27, 0x1A8
-	  li        r4, 0x2
-	  bl        0x2AD700
-	  b         .loc_0x6D0
-
-	.loc_0x6B4:
-	  cmplwi    r27, 0
-	  mr        r5, r27
-	  beq-      .loc_0x6C4
-	  addi      r5, r27, 0x178
-
-	.loc_0x6C4:
-	  addi      r3, r27, 0x1A8
-	  li        r4, 0
-	  bl        0x2AD6E0
-
-	.loc_0x6D0:
-	  lwz       r3, 0x174(r27)
-	  lwz       r3, 0x8(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x174(r27)
-	  lwz       r3, 0x8(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x174(r27)
-	  lwz       r3, 0x8(r3)
-	  bl        -0x114CC0
-	  lwz       r3, 0x174(r27)
-	  lwz       r3, 0x8(r3)
-	  bl        -0x114DFC
-	  stw       r27, 0xAC(r30)
-	  mr        r25, r27
-	  b         .loc_0xB84
-
-	.loc_0x724:
-	  li        r3, 0x260
-	  bl        -0x157760
-	  mr.       r27, r3
-	  beq-      .loc_0x7B0
-	  li        r4, 0x402
-	  bl        0x509D4
-	  lis       r4, 0x804B
-	  li        r3, 0x8
-	  addi      r4, r4, 0x26B8
-	  stw       r4, 0x0(r27)
-	  addi      r0, r4, 0x1B0
-	  stw       r0, 0x178(r27)
-	  bl        -0x15778C
-	  mr.       r0, r3
-	  beq-      .loc_0x768
-	  bl        -0x475E0
-	  mr        r0, r3
-
-	.loc_0x768:
-	  stw       r0, 0x114(r27)
-	  li        r0, 0
-	  lfs       f0, -0x5934(r2)
-	  li        r3, 0xC
-	  stfs      f0, 0x118(r27)
-	  stw       r0, 0x23C(r27)
-	  stfs      f0, 0x228(r27)
-	  bl        -0x1577BC
-	  mr.       r26, r3
-	  beq-      .loc_0x7A0
-	  bl        0x2B8CE8
-	  lis       r3, 0x804F
-	  subi      r0, r3, 0x3B74
-	  stw       r0, 0x0(r26)
-
-	.loc_0x7A0:
-	  stw       r26, 0x234(r27)
-	  li        r0, 0
-	  stw       r0, 0x238(r27)
-	  stw       r0, 0x1F4(r27)
-
-	.loc_0x7B0:
-	  mr        r3, r27
-	  li        r4, 0
-	  bl        -0x406CC
-	  rlwinm    r25,r28,2,0,29
-	  addi      r3, r27, 0x1A8
-	  add       r5, r30, r25
-	  li        r4, 0
-	  lwz       r0, 0x88(r5)
-	  li        r5, 0
-	  stw       r0, 0x1B8(r27)
-	  bl        0x2AD5D4
-	  lfs       f0, -0x5934(r2)
-	  li        r0, 0x403
-	  li        r3, 0x14
-	  stfs      f0, 0x1D4(r27)
-	  sth       r0, 0x128(r27)
-	  bl        -0x157828
-	  mr.       r0, r3
-	  beq-      .loc_0x814
-	  lwz       r4, 0x1C(r30)
-	  lis       r5, 0x8
-	  li        r6, 0x2
-	  lwzx      r4, r4, r25
-	  bl        0x2C2AF0
-	  mr        r0, r3
-
-	.loc_0x814:
-	  stw       r0, 0x174(r27)
-	  lis       r4, 0x100
-	  lwz       r3, 0x174(r27)
-	  lwz       r3, 0x8(r3)
-	  bl        -0x115028
-	  lwz       r3, 0x174(r27)
-	  lwz       r3, 0x8(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x174(r27)
-	  lwz       r3, 0x8(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x174(r27)
-	  lwz       r3, 0x8(r3)
-	  bl        -0x114E18
-	  lwz       r3, 0x174(r27)
-	  lwz       r3, 0x8(r3)
-	  bl        -0x114F54
-	  mr        r3, r27
-	  li        r4, 0x4
-	  bl        -0x619C
-	  add       r5, r30, r25
-	  lwz       r3, 0x114(r27)
-	  lwz       r4, 0x174(r27)
-	  li        r6, 0
-	  lwz       r5, 0x94(r5)
-	  bl        -0x47700
-	  lhz       r0, 0x22E(r27)
-	  cmplwi    r0, 0x4
-	  bne-      .loc_0x9DC
-	  li        r0, 0x3
-	  stw       r0, 0x250(r27)
-	  lwz       r25, 0x250(r27)
-	  mulli     r3, r25, 0x1C
-	  addi      r3, r3, 0x10
-	  bl        -0x1577E4
-	  lis       r4, 0x8018
-	  mr        r7, r25
-	  subi      r4, r4, 0x5E90
-	  li        r5, 0
-	  li        r6, 0x1C
-	  bl        -0xB9DB8
-	  stw       r3, 0x254(r27)
-	  lwz       r0, 0x250(r27)
-	  rlwinm    r3,r0,2,0,29
-	  bl        -0x15780C
-	  li        r5, 0
-	  stw       r3, 0x258(r27)
-	  mr        r6, r5
-	  mr        r7, r5
-	  b         .loc_0x92C
-
-	.loc_0x8F4:
-	  lwz       r4, 0x1B8(r27)
-	  cmpwi     r5, 0
-	  lwz       r3, 0x254(r27)
-	  addi      r0, r6, 0x10
-	  stwx      r4, r3, r0
-	  bne-      .loc_0x914
-	  lfs       f0, -0x5930(r2)
-	  b         .loc_0x918
-
-	.loc_0x914:
-	  lfs       f0, -0x5934(r2)
-
-	.loc_0x918:
-	  lwz       r3, 0x258(r27)
-	  addi      r6, r6, 0x1C
-	  addi      r5, r5, 0x1
-	  stfsx     f0, r3, r7
-	  addi      r7, r7, 0x4
-
-	.loc_0x92C:
-	  lwz       r0, 0x250(r27)
-	  cmpw      r5, r0
-	  blt+      .loc_0x8F4
-	  cmpwi     r0, 0
-	  bgt-      .loc_0x954
-	  addi      r3, r31, 0x18
-	  addi      r5, r31, 0x60
-	  li        r4, 0xA31
-	  crclr     6, 0x6
-	  bl        -0x1511EC
-
-	.loc_0x954:
-	  lwz       r3, 0x254(r27)
-	  li        r4, 0x1
-	  li        r5, 0
-	  bl        0x2AD44C
-	  lwz       r0, 0x250(r27)
-	  cmpwi     r0, 0x1
-	  bgt-      .loc_0x984
-	  addi      r3, r31, 0x18
-	  addi      r5, r31, 0x60
-	  li        r4, 0xA31
-	  crclr     6, 0x6
-	  bl        -0x15121C
-
-	.loc_0x984:
-	  lwz       r3, 0x254(r27)
-	  li        r4, 0x2
-	  li        r5, 0
-	  addi      r3, r3, 0x1C
-	  bl        0x2AD418
-	  lwz       r0, 0x250(r27)
-	  cmpwi     r0, 0x2
-	  bgt-      .loc_0x9B8
-	  addi      r3, r31, 0x18
-	  addi      r5, r31, 0x60
-	  li        r4, 0xA31
-	  crclr     6, 0x6
-	  bl        -0x151250
-
-	.loc_0x9B8:
-	  lwz       r3, 0x254(r27)
-	  li        r4, 0x3
-	  li        r5, 0
-	  addi      r3, r3, 0x38
-	  bl        0x2AD3E4
-	  lfs       f0, -0x5930(r2)
-	  lwz       r3, 0x258(r27)
-	  stfs      f0, 0x8(r3)
-	  b         .loc_0x9EC
-
-	.loc_0x9DC:
-	  li        r0, 0
-	  stw       r0, 0x250(r27)
-	  stw       r0, 0x254(r27)
-	  stw       r0, 0x258(r27)
-
-	.loc_0x9EC:
-	  lhz       r0, 0x22E(r27)
-	  cmplwi    r0, 0x4
-	  bne-      .loc_0xADC
-	  lwz       r3, -0x6B70(r13)
-	  li        r4, 0x4
-	  addi      r3, r3, 0xA8
-	  bl        0x75CD0
-	  lwz       r5, -0x6B70(r13)
-	  mr        r26, r3
-	  li        r4, 0x3
-	  addi      r3, r5, 0xA8
-	  bl        0x75CBC
-	  add.      r0, r26, r3
-	  ble-      .loc_0xA84
-	  lwz       r0, 0x250(r27)
-	  cmpwi     r0, 0x1
-	  bgt-      .loc_0xA44
-	  addi      r3, r31, 0x18
-	  addi      r5, r31, 0x60
-	  li        r4, 0xA2B
-	  crclr     6, 0x6
-	  bl        -0x1512DC
-
-	.loc_0xA44:
-	  lfs       f0, -0x5930(r2)
-	  li        r4, 0
-	  lwz       r3, 0x258(r27)
-	  stfs      f0, 0x4(r3)
-	  lwz       r3, 0x218(r27)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x21C(r27)
-	  li        r4, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0xB7C
-
-	.loc_0xA84:
-	  lwz       r3, 0x218(r27)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x21C(r27)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x250(r27)
-	  cmpwi     r0, 0x1
-	  bgt-      .loc_0xACC
-	  addi      r3, r31, 0x18
-	  addi      r5, r31, 0x60
-	  li        r4, 0xA2B
-	  crclr     6, 0x6
-	  bl        -0x151364
-
-	.loc_0xACC:
-	  lfs       f0, -0x5934(r2)
-	  lwz       r3, 0x258(r27)
-	  stfs      f0, 0x4(r3)
-	  b         .loc_0xB7C
-
-	.loc_0xADC:
-	  lfs       f0, -0x5930(r2)
-	  stfs      f0, 0x1D4(r27)
-	  lhz       r4, 0x22E(r27)
-	  cmplwi    r4, 0x3
-	  bne-      .loc_0xB04
-	  addi      r3, r27, 0x1A8
-	  li        r4, 0
-	  li        r5, 0
-	  bl        0x2AD2B0
-	  b         .loc_0xB7C
-
-	.loc_0xB04:
-	  lwz       r3, -0x6B70(r13)
-	  addi      r3, r3, 0xA8
-	  bl        0x75BC8
-	  cmpwi     r3, 0
-	  ble-      .loc_0xB60
-	  lwz       r3, 0x1B4(r27)
-	  cmplwi    r3, 0
-	  beq-      .loc_0xB2C
-	  lha       r0, 0x20(r3)
-	  b         .loc_0xB30
-
-	.loc_0xB2C:
-	  li        r0, -0x1
-
-	.loc_0xB30:
-	  cmplwi    r0, 0x1
-	  ble-      .loc_0xB40
-	  cmpwi     r0, 0x3
-	  bne-      .loc_0xB7C
-
-	.loc_0xB40:
-	  cmplwi    r27, 0
-	  mr        r5, r27
-	  beq-      .loc_0xB50
-	  addi      r5, r27, 0x178
-
-	.loc_0xB50:
-	  addi      r3, r27, 0x1A8
-	  li        r4, 0x2
-	  bl        0x2AD254
-	  b         .loc_0xB7C
-
-	.loc_0xB60:
-	  cmplwi    r27, 0
-	  mr        r5, r27
-	  beq-      .loc_0xB70
-	  addi      r5, r27, 0x178
-
-	.loc_0xB70:
-	  addi      r3, r27, 0x1A8
-	  li        r4, 0
-	  bl        0x2AD234
-
-	.loc_0xB7C:
-	  mr        r25, r27
-	  stw       r27, 0xB0(r30)
-
-	.loc_0xB84:
-	  stw       r25, 0x18(r29)
-	  mr        r4, r29
-	  addi      r3, r30, 0x6C
-	  bl        0x29599C
-	  lwz       r3, 0x18(r29)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x2C(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r3, r25
-	  lmw       r25, 0x14(r1)
-	  lwz       r0, 0x34(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	lis      r6, lbl_8047E620@ha
+	stw      r0, 0x34(r1)
+	stmw     r25, 0x14(r1)
+	mr       r30, r3
+	mr       r28, r4
+	mr       r26, r5
+	addi     r31, r6, lbl_8047E620@l
+	li       r25, 0
+	li       r3, 0x1c
+	bl       __nw__FUl
+	or.      r29, r3, r3
+	beq      lbl_8017AF24
+	bl       __ct__5CNodeFv
+	lis      r3, "__vt__26TObjectNode<Q24Game5Onyon>"@ha
+	addi     r0, r3, "__vt__26TObjectNode<Q24Game5Onyon>"@l
+	stw      r0, 0(r29)
+
+lbl_8017AF24:
+	cmpwi    r28, 1
+	beq      lbl_8017B2EC
+	bge      lbl_8017AF3C
+	cmpwi    r28, 0
+	bge      lbl_8017AF48
+	b        lbl_8017BA60
+
+lbl_8017AF3C:
+	cmpwi    r28, 3
+	bge      lbl_8017BA60
+	b        lbl_8017B600
+
+lbl_8017AF48:
+	li       r3, 0x260
+	bl       __nw__FUl
+	or.      r27, r3, r3
+	beq      lbl_8017AFD4
+	li       r4, 0x402
+	bl       __ct__Q24Game8BaseItemFi
+	lis      r4, __vt__Q24Game5Onyon@ha
+	li       r3, 8
+	addi     r4, r4, __vt__Q24Game5Onyon@l
+	stw      r4, 0(r27)
+	addi     r0, r4, 0x1b0
+	stw      r0, 0x178(r27)
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_8017AF8C
+	bl       __ct__8CollTreeFv
+	mr       r0, r3
+
+lbl_8017AF8C:
+	stw      r0, 0x114(r27)
+	li       r0, 0
+	lfs      f0, lbl_80518A2C@sda21(r2)
+	li       r3, 0xc
+	stfs     f0, 0x118(r27)
+	stw      r0, 0x23c(r27)
+	stfs     f0, 0x228(r27)
+	bl       __nw__FUl
+	or.      r25, r3, r3
+	beq      lbl_8017AFC4
+	bl       __ct__Q23Sys15MatBaseAnimatorFv
+	lis      r3, __vt__Q23Sys15MatLoopAnimator@ha
+	addi     r0, r3, __vt__Q23Sys15MatLoopAnimator@l
+	stw      r0, 0(r25)
+
+lbl_8017AFC4:
+	stw      r25, 0x234(r27)
+	li       r0, 0
+	stw      r0, 0x238(r27)
+	stw      r0, 0x1f4(r27)
+
+lbl_8017AFD4:
+	mr       r3, r27
+	li       r4, 0
+	bl       init__Q24Game8CreatureFPQ24Game15CreatureInitArg
+	slwi     r25, r28, 2
+	addi     r3, r27, 0x1a8
+	add      r5, r30, r25
+	li       r4, 0
+	lwz      r0, 0x88(r5)
+	li       r5, 0
+	stw      r0, 0x1b8(r27)
+	bl       startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
+	lfs      f0, lbl_80518A30@sda21(r2)
+	li       r3, 0x14
+	stfs     f0, 0x1d4(r27)
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_8017B030
+	lwz      r4, 0x1c(r30)
+	li       r5, 0
+	li       r6, 2
+	lwzx     r4, r4, r25
+	bl       __ct__Q28SysShape5ModelFP12J3DModelDataUlUl
+	mr       r0, r3
+
+lbl_8017B030:
+	stw      r0, 0x174(r27)
+	mr       r3, r27
+	mr       r4, r26
+	bl       setType__Q24Game5OnyonFi
+	add      r5, r30, r25
+	lwz      r3, 0x114(r27)
+	lwz      r4, 0x174(r27)
+	li       r6, 0
+	lwz      r5, 0x94(r5)
+	bl
+createFromFactory__8CollTreeFPQ28SysShape9MtxObjectP15CollPartFactoryP11CollPartMgr
+	lis      r4, 0x6C656731@ha
+	lwz      r3, 0x114(r27)
+	addi     r4, r4, 0x6C656731@l
+	bl       getCollPart__8CollTreeFUl
+	cmplwi   r3, 0
+	beq      lbl_8017B078
+	li       r0, 1
+	stb      r0, 0x58(r3)
+
+lbl_8017B078:
+	lis      r4, 0x6C656732@ha
+	lwz      r3, 0x114(r27)
+	addi     r4, r4, 0x6C656732@l
+	bl       getCollPart__8CollTreeFUl
+	cmplwi   r3, 0
+	beq      lbl_8017B098
+	li       r0, 1
+	stb      r0, 0x58(r3)
+
+lbl_8017B098:
+	lis      r4, 0x6C656733@ha
+	lwz      r3, 0x114(r27)
+	addi     r4, r4, 0x6C656733@l
+	bl       getCollPart__8CollTreeFUl
+	cmplwi   r3, 0
+	beq      lbl_8017B0B8
+	li       r0, 1
+	stb      r0, 0x58(r3)
+
+lbl_8017B0B8:
+	cmplwi   r3, 0
+	bne      lbl_8017B0D4
+	addi     r3, r31, 0x18
+	addi     r5, r31, 0xdc
+	li       r4, 0x695
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
+
+lbl_8017B0D4:
+	lis      r4, 0x666F7431@ha
+	lwz      r3, 0x114(r27)
+	addi     r4, r4, 0x666F7431@l
+	bl       getCollPart__8CollTreeFUl
+	cmplwi   r3, 0
+	bne      lbl_8017B100
+	addi     r3, r31, 0x18
+	addi     r5, r31, 0xe8
+	li       r4, 0x69a
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
+
+lbl_8017B100:
+	lhz      r0, 0x22e(r27)
+	cmplwi   r0, 4
+	bne      lbl_8017B1F0
+	lwz      r3, playData__4Game@sda21(r13)
+	li       r4, 4
+	addi     r3, r3, 0xa8
+	bl       getColorSum__Q24Game13PikiContainerFi
+	lwz      r5, playData__4Game@sda21(r13)
+	mr       r28, r3
+	li       r4, 3
+	addi     r3, r5, 0xa8
+	bl       getColorSum__Q24Game13PikiContainerFi
+	add.     r0, r28, r3
+	ble      lbl_8017B198
+	lwz      r0, 0x250(r27)
+	cmpwi    r0, 1
+	bgt      lbl_8017B158
+	addi     r3, r31, 0x18
+	addi     r5, r31, 0x60
+	li       r4, 0xa2b
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
+
+lbl_8017B158:
+	lfs      f0, lbl_80518A30@sda21(r2)
+	li       r4, 0
+	lwz      r3, 0x258(r27)
+	stfs     f0, 4(r3)
+	lwz      r3, 0x218(r27)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 0x21c(r27)
+	li       r4, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_8017B290
+
+lbl_8017B198:
+	lwz      r3, 0x218(r27)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 0x21c(r27)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x250(r27)
+	cmpwi    r0, 1
+	bgt      lbl_8017B1E0
+	addi     r3, r31, 0x18
+	addi     r5, r31, 0x60
+	li       r4, 0xa2b
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
+
+lbl_8017B1E0:
+	lfs      f0, lbl_80518A2C@sda21(r2)
+	lwz      r3, 0x258(r27)
+	stfs     f0, 4(r3)
+	b        lbl_8017B290
+
+lbl_8017B1F0:
+	lfs      f0, lbl_80518A30@sda21(r2)
+	stfs     f0, 0x1d4(r27)
+	lhz      r4, 0x22e(r27)
+	cmplwi   r4, 3
+	bne      lbl_8017B218
+	addi     r3, r27, 0x1a8
+	li       r4, 0
+	li       r5, 0
+	bl       startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
+	b        lbl_8017B290
+
+lbl_8017B218:
+	lwz      r3, playData__4Game@sda21(r13)
+	addi     r3, r3, 0xa8
+	bl       getColorSum__Q24Game13PikiContainerFi
+	cmpwi    r3, 0
+	ble      lbl_8017B274
+	lwz      r3, 0x1b4(r27)
+	cmplwi   r3, 0
+	beq      lbl_8017B240
+	lha      r0, 0x20(r3)
+	b        lbl_8017B244
+
+lbl_8017B240:
+	li       r0, -1
+
+lbl_8017B244:
+	cmplwi   r0, 1
+	ble      lbl_8017B254
+	cmpwi    r0, 3
+	bne      lbl_8017B290
+
+lbl_8017B254:
+	cmplwi   r27, 0
+	mr       r5, r27
+	beq      lbl_8017B264
+	addi     r5, r27, 0x178
+
+lbl_8017B264:
+	addi     r3, r27, 0x1a8
+	li       r4, 2
+	bl       startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
+	b        lbl_8017B290
+
+lbl_8017B274:
+	cmplwi   r27, 0
+	mr       r5, r27
+	beq      lbl_8017B284
+	addi     r5, r27, 0x178
+
+lbl_8017B284:
+	addi     r3, r27, 0x1a8
+	li       r4, 0
+	bl       startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
+
+lbl_8017B290:
+	slwi     r0, r26, 2
+	mr       r25, r27
+	add      r3, r30, r0
+	mr       r4, r26
+	stw      r27, 0xa0(r3)
+	lwz      r3, playData__4Game@sda21(r13)
+	bl       hasBootContainer__Q24Game8PlayDataFi
+	lwz      r3, gameSystem__4Game@sda21(r13)
+	lwz      r0, 0x44(r3)
+	cmpwi    r0, 0
+	bne      lbl_8017BA60
+	lwz      r3, playData__4Game@sda21(r13)
+	mr       r4, r26
+	bl       hasBootContainer__Q24Game8PlayDataFi
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_8017BA60
+	addi     r3, r27, 0x1a8
+	li       r4, 4
+	li       r5, 0
+	bl       startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
+	lfs      f0, lbl_80518A2C@sda21(r2)
+	stfs     f0, 0x1d4(r27)
+	b        lbl_8017BA60
+
+lbl_8017B2EC:
+	li       r3, 0x260
+	bl       __nw__FUl
+	or.      r27, r3, r3
+	beq      lbl_8017B378
+	li       r4, 0x402
+	bl       __ct__Q24Game8BaseItemFi
+	lis      r4, __vt__Q24Game5Onyon@ha
+	li       r3, 8
+	addi     r4, r4, __vt__Q24Game5Onyon@l
+	stw      r4, 0(r27)
+	addi     r0, r4, 0x1b0
+	stw      r0, 0x178(r27)
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_8017B330
+	bl       __ct__8CollTreeFv
+	mr       r0, r3
+
+lbl_8017B330:
+	stw      r0, 0x114(r27)
+	li       r0, 0
+	lfs      f0, lbl_80518A2C@sda21(r2)
+	li       r3, 0xc
+	stfs     f0, 0x118(r27)
+	stw      r0, 0x23c(r27)
+	stfs     f0, 0x228(r27)
+	bl       __nw__FUl
+	or.      r26, r3, r3
+	beq      lbl_8017B368
+	bl       __ct__Q23Sys15MatBaseAnimatorFv
+	lis      r3, __vt__Q23Sys15MatLoopAnimator@ha
+	addi     r0, r3, __vt__Q23Sys15MatLoopAnimator@l
+	stw      r0, 0(r26)
+
+lbl_8017B368:
+	stw      r26, 0x234(r27)
+	li       r0, 0
+	stw      r0, 0x238(r27)
+	stw      r0, 0x1f4(r27)
+
+lbl_8017B378:
+	lwz      r3, shadowMgr__4Game@sda21(r13)
+	cmplwi   r3, 0
+	beq      lbl_8017B398
+	mr       r4, r27
+	bl       createShadow__Q24Game9ShadowMgrFPQ24Game8Creature
+	lwz      r3, shadowMgr__4Game@sda21(r13)
+	mr       r4, r27
+	bl       addShadow__Q24Game9ShadowMgrFPQ24Game8Creature
+
+lbl_8017B398:
+	mr       r3, r27
+	li       r4, 0
+	bl       init__Q24Game8CreatureFPQ24Game15CreatureInitArg
+	slwi     r25, r28, 2
+	addi     r3, r27, 0x1a8
+	add      r5, r30, r25
+	li       r4, 0
+	lwz      r0, 0x88(r5)
+	li       r5, 0
+	stw      r0, 0x1b8(r27)
+	bl       startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
+	lfs      f0, lbl_80518A30@sda21(r2)
+	li       r3, 0x14
+	stfs     f0, 0x1d4(r27)
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_8017B3F4
+	lwz      r4, 0x1c(r30)
+	li       r5, 0
+	li       r6, 2
+	lwzx     r4, r4, r25
+	bl       __ct__Q28SysShape5ModelFP12J3DModelDataUlUl
+	mr       r0, r3
+
+lbl_8017B3F4:
+	stw      r0, 0x174(r27)
+	mr       r3, r27
+	li       r4, 3
+	bl       setType__Q24Game5OnyonFi
+	add      r5, r30, r25
+	lwz      r3, 0x114(r27)
+	lwz      r4, 0x174(r27)
+	li       r6, 0
+	lwz      r5, 0x94(r5)
+	bl
+createFromFactory__8CollTreeFPQ28SysShape9MtxObjectP15CollPartFactoryP11CollPartMgr
+	lhz      r0, 0x22e(r27)
+	cmplwi   r0, 4
+	bne      lbl_8017B50C
+	lwz      r3, playData__4Game@sda21(r13)
+	li       r4, 4
+	addi     r3, r3, 0xa8
+	bl       getColorSum__Q24Game13PikiContainerFi
+	lwz      r5, playData__4Game@sda21(r13)
+	mr       r26, r3
+	li       r4, 3
+	addi     r3, r5, 0xa8
+	bl       getColorSum__Q24Game13PikiContainerFi
+	add.     r0, r26, r3
+	ble      lbl_8017B4B4
+	lwz      r0, 0x250(r27)
+	cmpwi    r0, 1
+	bgt      lbl_8017B474
+	addi     r3, r31, 0x18
+	addi     r5, r31, 0x60
+	li       r4, 0xa2b
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
+
+lbl_8017B474:
+	lfs      f0, lbl_80518A30@sda21(r2)
+	li       r4, 0
+	lwz      r3, 0x258(r27)
+	stfs     f0, 4(r3)
+	lwz      r3, 0x218(r27)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 0x21c(r27)
+	li       r4, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_8017B5AC
+
+lbl_8017B4B4:
+	lwz      r3, 0x218(r27)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 0x21c(r27)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x250(r27)
+	cmpwi    r0, 1
+	bgt      lbl_8017B4FC
+	addi     r3, r31, 0x18
+	addi     r5, r31, 0x60
+	li       r4, 0xa2b
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
+
+lbl_8017B4FC:
+	lfs      f0, lbl_80518A2C@sda21(r2)
+	lwz      r3, 0x258(r27)
+	stfs     f0, 4(r3)
+	b        lbl_8017B5AC
+
+lbl_8017B50C:
+	lfs      f0, lbl_80518A30@sda21(r2)
+	stfs     f0, 0x1d4(r27)
+	lhz      r4, 0x22e(r27)
+	cmplwi   r4, 3
+	bne      lbl_8017B534
+	addi     r3, r27, 0x1a8
+	li       r4, 0
+	li       r5, 0
+	bl       startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
+	b        lbl_8017B5AC
+
+lbl_8017B534:
+	lwz      r3, playData__4Game@sda21(r13)
+	addi     r3, r3, 0xa8
+	bl       getColorSum__Q24Game13PikiContainerFi
+	cmpwi    r3, 0
+	ble      lbl_8017B590
+	lwz      r3, 0x1b4(r27)
+	cmplwi   r3, 0
+	beq      lbl_8017B55C
+	lha      r0, 0x20(r3)
+	b        lbl_8017B560
+
+lbl_8017B55C:
+	li       r0, -1
+
+lbl_8017B560:
+	cmplwi   r0, 1
+	ble      lbl_8017B570
+	cmpwi    r0, 3
+	bne      lbl_8017B5AC
+
+lbl_8017B570:
+	cmplwi   r27, 0
+	mr       r5, r27
+	beq      lbl_8017B580
+	addi     r5, r27, 0x178
+
+lbl_8017B580:
+	addi     r3, r27, 0x1a8
+	li       r4, 2
+	bl       startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
+	b        lbl_8017B5AC
+
+lbl_8017B590:
+	cmplwi   r27, 0
+	mr       r5, r27
+	beq      lbl_8017B5A0
+	addi     r5, r27, 0x178
+
+lbl_8017B5A0:
+	addi     r3, r27, 0x1a8
+	li       r4, 0
+	bl       startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
+
+lbl_8017B5AC:
+	lwz      r3, 0x174(r27)
+	lwz      r3, 8(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 0x174(r27)
+	lwz      r3, 8(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 0x174(r27)
+	lwz      r3, 8(r3)
+	bl       makeDL__8J3DModelFv
+	lwz      r3, 0x174(r27)
+	lwz      r3, 8(r3)
+	bl       lock__8J3DModelFv
+	stw      r27, 0xac(r30)
+	mr       r25, r27
+	b        lbl_8017BA60
+
+lbl_8017B600:
+	li       r3, 0x260
+	bl       __nw__FUl
+	or.      r27, r3, r3
+	beq      lbl_8017B68C
+	li       r4, 0x402
+	bl       __ct__Q24Game8BaseItemFi
+	lis      r4, __vt__Q24Game5Onyon@ha
+	li       r3, 8
+	addi     r4, r4, __vt__Q24Game5Onyon@l
+	stw      r4, 0(r27)
+	addi     r0, r4, 0x1b0
+	stw      r0, 0x178(r27)
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_8017B644
+	bl       __ct__8CollTreeFv
+	mr       r0, r3
+
+lbl_8017B644:
+	stw      r0, 0x114(r27)
+	li       r0, 0
+	lfs      f0, lbl_80518A2C@sda21(r2)
+	li       r3, 0xc
+	stfs     f0, 0x118(r27)
+	stw      r0, 0x23c(r27)
+	stfs     f0, 0x228(r27)
+	bl       __nw__FUl
+	or.      r26, r3, r3
+	beq      lbl_8017B67C
+	bl       __ct__Q23Sys15MatBaseAnimatorFv
+	lis      r3, __vt__Q23Sys15MatLoopAnimator@ha
+	addi     r0, r3, __vt__Q23Sys15MatLoopAnimator@l
+	stw      r0, 0(r26)
+
+lbl_8017B67C:
+	stw      r26, 0x234(r27)
+	li       r0, 0
+	stw      r0, 0x238(r27)
+	stw      r0, 0x1f4(r27)
+
+lbl_8017B68C:
+	mr       r3, r27
+	li       r4, 0
+	bl       init__Q24Game8CreatureFPQ24Game15CreatureInitArg
+	slwi     r25, r28, 2
+	addi     r3, r27, 0x1a8
+	add      r5, r30, r25
+	li       r4, 0
+	lwz      r0, 0x88(r5)
+	li       r5, 0
+	stw      r0, 0x1b8(r27)
+	bl       startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
+	lfs      f0, lbl_80518A2C@sda21(r2)
+	li       r0, 0x403
+	li       r3, 0x14
+	stfs     f0, 0x1d4(r27)
+	sth      r0, 0x128(r27)
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_8017B6F0
+	lwz      r4, 0x1c(r30)
+	lis      r5, 8
+	li       r6, 2
+	lwzx     r4, r4, r25
+	bl       __ct__Q28SysShape5ModelFP12J3DModelDataUlUl
+	mr       r0, r3
+
+lbl_8017B6F0:
+	stw      r0, 0x174(r27)
+	lis      r4, 0x100
+	lwz      r3, 0x174(r27)
+	lwz      r3, 8(r3)
+	bl       newDifferedDisplayList__8J3DModelFUl
+	lwz      r3, 0x174(r27)
+	lwz      r3, 8(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 0x174(r27)
+	lwz      r3, 8(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 0x174(r27)
+	lwz      r3, 8(r3)
+	bl       makeDL__8J3DModelFv
+	lwz      r3, 0x174(r27)
+	lwz      r3, 8(r3)
+	bl       lock__8J3DModelFv
+	mr       r3, r27
+	li       r4, 4
+	bl       setType__Q24Game5OnyonFi
+	add      r5, r30, r25
+	lwz      r3, 0x114(r27)
+	lwz      r4, 0x174(r27)
+	li       r6, 0
+	lwz      r5, 0x94(r5)
+	bl
+createFromFactory__8CollTreeFPQ28SysShape9MtxObjectP15CollPartFactoryP11CollPartMgr
+	lhz      r0, 0x22e(r27)
+	cmplwi   r0, 4
+	bne      lbl_8017B8B8
+	li       r0, 3
+	stw      r0, 0x250(r27)
+	lwz      r25, 0x250(r27)
+	mulli    r3, r25, 0x1c
+	addi     r3, r3, 0x10
+	bl       __nwa__FUl
+	lis      r4, __ct__Q28SysShape8AnimatorFv@ha
+	mr       r7, r25
+	addi     r4, r4, __ct__Q28SysShape8AnimatorFv@l
+	li       r5, 0
+	li       r6, 0x1c
+	bl       __construct_new_array
+	stw      r3, 0x254(r27)
+	lwz      r0, 0x250(r27)
+	slwi     r3, r0, 2
+	bl       __nwa__FUl
+	li       r5, 0
+	stw      r3, 0x258(r27)
+	mr       r6, r5
+	mr       r7, r5
+	b        lbl_8017B808
+
+lbl_8017B7D0:
+	lwz      r4, 0x1b8(r27)
+	cmpwi    r5, 0
+	lwz      r3, 0x254(r27)
+	addi     r0, r6, 0x10
+	stwx     r4, r3, r0
+	bne      lbl_8017B7F0
+	lfs      f0, lbl_80518A30@sda21(r2)
+	b        lbl_8017B7F4
+
+lbl_8017B7F0:
+	lfs      f0, lbl_80518A2C@sda21(r2)
+
+lbl_8017B7F4:
+	lwz      r3, 0x258(r27)
+	addi     r6, r6, 0x1c
+	addi     r5, r5, 1
+	stfsx    f0, r3, r7
+	addi     r7, r7, 4
+
+lbl_8017B808:
+	lwz      r0, 0x250(r27)
+	cmpw     r5, r0
+	blt      lbl_8017B7D0
+	cmpwi    r0, 0
+	bgt      lbl_8017B830
+	addi     r3, r31, 0x18
+	addi     r5, r31, 0x60
+	li       r4, 0xa31
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
+
+lbl_8017B830:
+	lwz      r3, 0x254(r27)
+	li       r4, 1
+	li       r5, 0
+	bl       startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
+	lwz      r0, 0x250(r27)
+	cmpwi    r0, 1
+	bgt      lbl_8017B860
+	addi     r3, r31, 0x18
+	addi     r5, r31, 0x60
+	li       r4, 0xa31
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
+
+lbl_8017B860:
+	lwz      r3, 0x254(r27)
+	li       r4, 2
+	li       r5, 0
+	addi     r3, r3, 0x1c
+	bl       startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
+	lwz      r0, 0x250(r27)
+	cmpwi    r0, 2
+	bgt      lbl_8017B894
+	addi     r3, r31, 0x18
+	addi     r5, r31, 0x60
+	li       r4, 0xa31
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
+
+lbl_8017B894:
+	lwz      r3, 0x254(r27)
+	li       r4, 3
+	li       r5, 0
+	addi     r3, r3, 0x38
+	bl       startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
+	lfs      f0, lbl_80518A30@sda21(r2)
+	lwz      r3, 0x258(r27)
+	stfs     f0, 8(r3)
+	b        lbl_8017B8C8
+
+lbl_8017B8B8:
+	li       r0, 0
+	stw      r0, 0x250(r27)
+	stw      r0, 0x254(r27)
+	stw      r0, 0x258(r27)
+
+lbl_8017B8C8:
+	lhz      r0, 0x22e(r27)
+	cmplwi   r0, 4
+	bne      lbl_8017B9B8
+	lwz      r3, playData__4Game@sda21(r13)
+	li       r4, 4
+	addi     r3, r3, 0xa8
+	bl       getColorSum__Q24Game13PikiContainerFi
+	lwz      r5, playData__4Game@sda21(r13)
+	mr       r26, r3
+	li       r4, 3
+	addi     r3, r5, 0xa8
+	bl       getColorSum__Q24Game13PikiContainerFi
+	add.     r0, r26, r3
+	ble      lbl_8017B960
+	lwz      r0, 0x250(r27)
+	cmpwi    r0, 1
+	bgt      lbl_8017B920
+	addi     r3, r31, 0x18
+	addi     r5, r31, 0x60
+	li       r4, 0xa2b
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
+
+lbl_8017B920:
+	lfs      f0, lbl_80518A30@sda21(r2)
+	li       r4, 0
+	lwz      r3, 0x258(r27)
+	stfs     f0, 4(r3)
+	lwz      r3, 0x218(r27)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 0x21c(r27)
+	li       r4, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_8017BA58
+
+lbl_8017B960:
+	lwz      r3, 0x218(r27)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 0x21c(r27)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x250(r27)
+	cmpwi    r0, 1
+	bgt      lbl_8017B9A8
+	addi     r3, r31, 0x18
+	addi     r5, r31, 0x60
+	li       r4, 0xa2b
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
+
+lbl_8017B9A8:
+	lfs      f0, lbl_80518A2C@sda21(r2)
+	lwz      r3, 0x258(r27)
+	stfs     f0, 4(r3)
+	b        lbl_8017BA58
+
+lbl_8017B9B8:
+	lfs      f0, lbl_80518A30@sda21(r2)
+	stfs     f0, 0x1d4(r27)
+	lhz      r4, 0x22e(r27)
+	cmplwi   r4, 3
+	bne      lbl_8017B9E0
+	addi     r3, r27, 0x1a8
+	li       r4, 0
+	li       r5, 0
+	bl       startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
+	b        lbl_8017BA58
+
+lbl_8017B9E0:
+	lwz      r3, playData__4Game@sda21(r13)
+	addi     r3, r3, 0xa8
+	bl       getColorSum__Q24Game13PikiContainerFi
+	cmpwi    r3, 0
+	ble      lbl_8017BA3C
+	lwz      r3, 0x1b4(r27)
+	cmplwi   r3, 0
+	beq      lbl_8017BA08
+	lha      r0, 0x20(r3)
+	b        lbl_8017BA0C
+
+lbl_8017BA08:
+	li       r0, -1
+
+lbl_8017BA0C:
+	cmplwi   r0, 1
+	ble      lbl_8017BA1C
+	cmpwi    r0, 3
+	bne      lbl_8017BA58
+
+lbl_8017BA1C:
+	cmplwi   r27, 0
+	mr       r5, r27
+	beq      lbl_8017BA2C
+	addi     r5, r27, 0x178
+
+lbl_8017BA2C:
+	addi     r3, r27, 0x1a8
+	li       r4, 2
+	bl       startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
+	b        lbl_8017BA58
+
+lbl_8017BA3C:
+	cmplwi   r27, 0
+	mr       r5, r27
+	beq      lbl_8017BA4C
+	addi     r5, r27, 0x178
+
+lbl_8017BA4C:
+	addi     r3, r27, 0x1a8
+	li       r4, 0
+	bl       startAnim__Q28SysShape8AnimatorFiPQ28SysShape14MotionListener
+
+lbl_8017BA58:
+	mr       r25, r27
+	stw      r27, 0xb0(r30)
+
+lbl_8017BA60:
+	stw      r25, 0x18(r29)
+	mr       r4, r29
+	addi     r3, r30, 0x6c
+	bl       add__5CNodeFP5CNode
+	lwz      r3, 0x18(r29)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x2c(r12)
+	mtctr    r12
+	bctrl
+	mr       r3, r25
+	lmw      r25, 0x14(r1)
+	lwz      r0, 0x34(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -9001,35 +10017,34 @@ void ItemOnyon::Mgr::birth(int, int)
 void ItemOnyon::Mgr::getOnyon(int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  cmpwi     r4, 0
-	  stw       r0, 0x14(r1)
-	  blt-      .loc_0x2C
-	  cmpwi     r4, 0x3
-	  bge-      .loc_0x2C
-	  rlwinm    r0,r4,2,0,29
-	  add       r3, r3, r0
-	  lwz       r3, 0xA0(r3)
-	  b         .loc_0x50
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	cmpwi    r4, 0
+	stw      r0, 0x14(r1)
+	blt      lbl_8017BAC8
+	cmpwi    r4, 3
+	bge      lbl_8017BAC8
+	slwi     r0, r4, 2
+	add      r3, r3, r0
+	lwz      r3, 0xa0(r3)
+	b        lbl_8017BAEC
 
-	.loc_0x2C:
-	  lis       r3, 0x8048
-	  lis       r5, 0x8048
-	  mr        r6, r4
-	  li        r4, 0xB72
-	  subi      r3, r3, 0x19C8
-	  subi      r5, r5, 0x17C8
-	  crclr     6, 0x6
-	  bl        -0x1514A4
-	  li        r3, 0
+lbl_8017BAC8:
+	lis      r3, lbl_8047E638@ha
+	lis      r5, lbl_8047E838@ha
+	mr       r6, r4
+	li       r4, 0xb72
+	addi     r3, r3, lbl_8047E638@l
+	addi     r5, r5, lbl_8047E838@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
+	li       r3, 0
 
-	.loc_0x50:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8017BAEC:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -9041,17 +10056,14 @@ void ItemOnyon::Mgr::getOnyon(int)
 void ItemOnyon::Mgr::init(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  bl        .loc_0x20
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-
-	.loc_0x20:
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	bl       load__Q34Game9ItemOnyon3MgrFv
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -9063,399 +10075,401 @@ void ItemOnyon::Mgr::init(void)
 void ItemOnyon::Mgr::load(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0xB0(r1)
-	  mflr      r0
-	  lis       r4, 0x8048
-	  li        r5, 0
-	  stw       r0, 0xB4(r1)
-	  stmw      r27, 0x9C(r1)
-	  mr        r31, r3
-	  subi      r30, r4, 0x19E0
-	  addi      r4, r30, 0x230
-	  lwz       r3, -0x6514(r13)
-	  bl        0x2A7818
-	  addi      r3, r1, 0x68
-	  addi      r4, r30, 0x23C
-	  bl        0x2D0A88
-	  lwz       r3, -0x63D8(r13)
-	  addi      r4, r1, 0x68
-	  bl        0x2D0BB8
-	  cmplwi    r3, 0
-	  beq-      .loc_0x54
-	  lwz       r29, 0x34(r3)
-	  b         .loc_0x58
+	stwu     r1, -0xb0(r1)
+	mflr     r0
+	lis      r4, lbl_8047E620@ha
+	li       r5, 0
+	stw      r0, 0xb4(r1)
+	stmw     r27, 0x9c(r1)
+	mr       r31, r3
+	addi     r30, r4, lbl_8047E620@l
+	addi     r4, r30, 0x230
+	lwz      r3, sys@sda21(r13)
+	bl       heapStatusStart__6SystemFPcP7JKRHeap
+	addi     r3, r1, 0x68
+	addi     r4, r30, 0x23c
+	bl       __ct__Q212LoadResource3ArgFPCc
+	lwz      r3, gLoadResourceMgr@sda21(r13)
+	addi     r4, r1, 0x68
+	bl       mountArchive__Q212LoadResource3MgrFRQ212LoadResource3Arg
+	cmplwi   r3, 0
+	beq      lbl_8017BB70
+	lwz      r29, 0x34(r3)
+	b        lbl_8017BB74
 
-	.loc_0x54:
-	  li        r29, 0
+lbl_8017BB70:
+	li       r29, 0
 
-	.loc_0x58:
-	  lwz       r3, -0x6514(r13)
-	  addi      r4, r30, 0x230
-	  bl        0x2A77E8
-	  addi      r3, r30, 0x258
-	  li        r4, 0
-	  bl        -0x158B70
-	  mr.       r27, r3
-	  bne-      .loc_0x8C
-	  addi      r3, r30, 0x18
-	  addi      r5, r30, 0x264
-	  li        r4, 0xB96
-	  crclr     6, 0x6
-	  bl        -0x151564
+lbl_8017BB74:
+	lwz      r3, sys@sda21(r13)
+	addi     r4, r30, 0x230
+	bl       heapStatusEnd__6SystemFPc
+	addi     r3, r30, 0x258
+	li       r4, 0
+	bl       getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
+	or.      r27, r3, r3
+	bne      lbl_8017BBA8
+	addi     r3, r30, 0x18
+	addi     r5, r30, 0x264
+	li       r4, 0xb96
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x8C:
-	  mr        r3, r27
-	  lis       r4, 0x24
-	  bl        -0x10C31C
-	  lwz       r4, 0x1C(r31)
-	  li        r28, 0
-	  li        r0, 0
-	  stw       r3, 0x0(r4)
-	  lwz       r3, -0x6C18(r13)
-	  lwz       r4, 0x44(r3)
-	  cmpwi     r4, 0x2
-	  beq-      .loc_0xC0
-	  cmpwi     r4, 0x3
-	  bne-      .loc_0xC4
+lbl_8017BBA8:
+	mr       r3, r27
+	lis      r4, 0x24
+	bl       load__22J3DModelLoaderDataBaseFPCvUl
+	lwz      r4, 0x1c(r31)
+	li       r28, 0
+	li       r0, 0
+	stw      r3, 0(r4)
+	lwz      r3, gameSystem__4Game@sda21(r13)
+	lwz      r4, 0x44(r3)
+	cmpwi    r4, 2
+	beq      lbl_8017BBDC
+	cmpwi    r4, 3
+	bne      lbl_8017BBE0
 
-	.loc_0xC0:
-	  li        r0, 0x1
+lbl_8017BBDC:
+	li       r0, 1
 
-	.loc_0xC4:
-	  rlwinm.   r0,r0,0,24,31
-	  bne-      .loc_0xD8
-	  lbz       r0, 0x48(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x1C0
+lbl_8017BBE0:
+	clrlwi.  r0, r0, 0x18
+	bne      lbl_8017BBF4
+	lbz      r0, 0x48(r3)
+	cmplwi   r0, 0
+	beq      lbl_8017BCDC
 
-	.loc_0xD8:
-	  cmpwi     r4, 0x1
-	  beq-      .loc_0x1C0
-	  lwz       r5, -0x6B70(r13)
-	  addi      r3, r1, 0x38
-	  addi      r4, r30, 0x298
-	  lbz       r0, 0x2F(r5)
-	  rlwinm.   r0,r0,0,31,31
-	  beq-      .loc_0xFC
-	  addi      r4, r30, 0x27C
+lbl_8017BBF4:
+	cmpwi    r4, 1
+	beq      lbl_8017BCDC
+	lwz      r5, playData__4Game@sda21(r13)
+	addi     r3, r1, 0x38
+	addi     r4, r30, 0x298
+	lbz      r0, 0x2f(r5)
+	clrlwi.  r0, r0, 0x1f
+	beq      lbl_8017BC18
+	addi     r4, r30, 0x27c
 
-	.loc_0xFC:
-	  bl        0x2D09C0
-	  lwz       r0, -0x77D4(r13)
-	  addi      r4, r1, 0x38
-	  lwz       r3, -0x63D8(r13)
-	  stw       r0, 0x50(r1)
-	  bl        0x2D0AE8
-	  cmplwi    r3, 0
-	  beq-      .loc_0x124
-	  lwz       r28, 0x34(r3)
-	  b         .loc_0x128
+lbl_8017BC18:
+	bl       __ct__Q212LoadResource3ArgFPCc
+	lwz      r0, sCurrentHeap__7JKRHeap@sda21(r13)
+	addi     r4, r1, 0x38
+	lwz      r3, gLoadResourceMgr@sda21(r13)
+	stw      r0, 0x50(r1)
+	bl       mountArchive__Q212LoadResource3MgrFRQ212LoadResource3Arg
+	cmplwi   r3, 0
+	beq      lbl_8017BC40
+	lwz      r28, 0x34(r3)
+	b        lbl_8017BC44
 
-	.loc_0x124:
-	  li        r28, 0
+lbl_8017BC40:
+	li       r28, 0
 
-	.loc_0x128:
-	  subi      r3, r2, 0x5828
-	  li        r4, 0
-	  bl        -0x158C34
-	  mr.       r27, r3
-	  bne-      .loc_0x150
-	  addi      r3, r30, 0x18
-	  addi      r5, r30, 0x2B0
-	  li        r4, 0xBB6
-	  crclr     6, 0x6
-	  bl        -0x151628
+lbl_8017BC44:
+	addi     r3, r2, lbl_80518B38@sda21
+	li       r4, 0
+	bl       getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
+	or.      r27, r3, r3
+	bne      lbl_8017BC6C
+	addi     r3, r30, 0x18
+	addi     r5, r30, 0x2b0
+	li       r4, 0xbb6
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x150:
-	  mr        r3, r27
-	  li        r4, 0x30
-	  bl        -0x10C3E0
-	  lwz       r5, 0x1C(r31)
-	  mr        r27, r3
-	  lis       r4, 0x4
-	  stw       r27, 0x4(r5)
-	  lwz       r3, 0x1C(r31)
-	  lwz       r3, 0x4(r3)
-	  bl        -0xF83B8
-	  lwz       r3, 0x1C(r31)
-	  lwz       r3, 0x4(r3)
-	  bl        -0xF826C
-	  li        r4, 0
-	  b         .loc_0x1AC
+lbl_8017BC6C:
+	mr       r3, r27
+	li       r4, 0x30
+	bl       load__22J3DModelLoaderDataBaseFPCvUl
+	lwz      r5, 0x1c(r31)
+	mr       r27, r3
+	lis      r4, 4
+	stw      r27, 4(r5)
+	lwz      r3, 0x1c(r31)
+	lwz      r3, 4(r3)
+	bl       newSharedDisplayList__12J3DModelDataFUl
+	lwz      r3, 0x1c(r31)
+	lwz      r3, 4(r3)
+	bl       makeSharedDL__12J3DModelDataFv
+	li       r4, 0
+	b        lbl_8017BCC8
 
-	.loc_0x18C:
-	  lwz       r3, 0x80(r27)
-	  rlwinm    r0,r4,2,14,29
-	  addi      r4, r4, 0x1
-	  lwzx      r3, r3, r0
-	  lwz       r0, 0xC(r3)
-	  rlwinm    r0,r0,0,20,15
-	  ori       r0, r0, 0x2000
-	  stw       r0, 0xC(r3)
+lbl_8017BCA8:
+	lwz      r3, 0x80(r27)
+	rlwinm   r0, r4, 2, 0xe, 0x1d
+	addi     r4, r4, 1
+	lwzx     r3, r3, r0
+	lwz      r0, 0xc(r3)
+	rlwinm   r0, r0, 0, 0x14, 0xf
+	ori      r0, r0, 0x2000
+	stw      r0, 0xc(r3)
 
-	.loc_0x1AC:
-	  lhz       r0, 0x7C(r27)
-	  rlwinm    r3,r4,0,16,31
-	  cmplw     r3, r0
-	  blt+      .loc_0x18C
-	  b         .loc_0x1CC
+lbl_8017BCC8:
+	lhz      r0, 0x7c(r27)
+	clrlwi   r3, r4, 0x10
+	cmplw    r3, r0
+	blt      lbl_8017BCA8
+	b        lbl_8017BCE8
 
-	.loc_0x1C0:
-	  lwz       r3, 0x1C(r31)
-	  li        r0, 0
-	  stw       r0, 0x4(r3)
+lbl_8017BCDC:
+	lwz      r3, 0x1c(r31)
+	li       r0, 0
+	stw      r0, 4(r3)
 
-	.loc_0x1CC:
-	  lwz       r3, 0x1C(r31)
-	  li        r4, 0
-	  lwz       r3, 0x0(r3)
-	  bl        0x2C25A8
-	  addi      r3, r30, 0x2C8
-	  li        r4, 0
-	  bl        -0x158CE8
-	  lwz       r5, 0x1C(r31)
-	  mr        r4, r3
-	  addi      r3, r31, 0xB4
-	  lwz       r5, 0x0(r5)
-	  bl        0x2B830C
-	  addi      r3, r30, 0x2D8
-	  li        r4, 0
-	  bl        -0x158D08
-	  lwz       r5, 0x1C(r31)
-	  mr        r4, r3
-	  addi      r3, r31, 0xC8
-	  lwz       r5, 0x0(r5)
-	  bl        0x2B82EC
-	  addi      r3, r30, 0x2E8
-	  li        r4, 0
-	  bl        -0x158D28
-	  lwz       r5, 0x1C(r31)
-	  mr        r4, r3
-	  addi      r3, r31, 0xDC
-	  lwz       r5, 0x0(r5)
-	  bl        0x2B82CC
-	  addi      r0, r30, 0x2FC
-	  mr        r3, r31
-	  stw       r0, 0x28(r31)
-	  addi      r4, r30, 0x310
-	  bl        0x51464
-	  lwz       r4, 0x1C(r31)
-	  mr        r27, r3
-	  mr        r6, r29
-	  li        r7, 0
-	  lwz       r5, 0x0(r4)
-	  addi      r4, r30, 0x31C
-	  bl        0x2C1FD8
-	  stw       r3, 0x88(r31)
-	  mr        r3, r27
-	  addi      r4, r30, 0x330
-	  bl        -0x43450
-	  stw       r3, 0x94(r31)
-	  mr        r3, r31
-	  mr        r4, r27
-	  bl        0x514AC
-	  lwz       r3, -0x6C18(r13)
-	  li        r0, 0
-	  lwz       r4, 0x44(r3)
-	  cmpwi     r4, 0x2
-	  beq-      .loc_0x2A8
-	  cmpwi     r4, 0x3
-	  bne-      .loc_0x2AC
+lbl_8017BCE8:
+	lwz      r3, 0x1c(r31)
+	li       r4, 0
+	lwz      r3, 0(r3)
+	bl       enableMaterialAnim__Q28SysShape5ModelFP12J3DModelDatai
+	addi     r3, r30, 0x2c8
+	li       r4, 0
+	bl       getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
+	lwz      r5, 0x1c(r31)
+	mr       r4, r3
+	addi     r3, r31, 0xb4
+	lwz      r5, 0(r5)
+	bl       attachResource__Q23Sys16MatBaseAnimationFPvP12J3DModelData
+	addi     r3, r30, 0x2d8
+	li       r4, 0
+	bl       getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
+	lwz      r5, 0x1c(r31)
+	mr       r4, r3
+	addi     r3, r31, 0xc8
+	lwz      r5, 0(r5)
+	bl       attachResource__Q23Sys16MatBaseAnimationFPvP12J3DModelData
+	addi     r3, r30, 0x2e8
+	li       r4, 0
+	bl       getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
+	lwz      r5, 0x1c(r31)
+	mr       r4, r3
+	addi     r3, r31, 0xdc
+	lwz      r5, 0(r5)
+	bl       attachResource__Q23Sys16MatBaseAnimationFPvP12J3DModelData
+	addi     r0, r30, 0x2fc
+	mr       r3, r31
+	stw      r0, 0x28(r31)
+	addi     r4, r30, 0x310
+	bl       openTextArc__Q24Game11BaseItemMgrFPc
+	lwz      r4, 0x1c(r31)
+	mr       r27, r3
+	mr       r6, r29
+	li       r7, 0
+	lwz      r5, 0(r4)
+	addi     r4, r30, 0x31c
+	bl
+load__Q28SysShape7AnimMgrFP13JKRFileLoaderPcP12J3DModelDataP13JKRFileLoaderPc
+	stw      r3, 0x88(r31)
+	mr       r3, r27
+	addi     r4, r30, 0x330
+	bl       load__15CollPartFactoryFP13JKRFileLoaderPc
+	stw      r3, 0x94(r31)
+	mr       r3, r31
+	mr       r4, r27
+	bl       closeTextArc__Q24Game11BaseItemMgrFP10JKRArchive
+	lwz      r3, gameSystem__4Game@sda21(r13)
+	li       r0, 0
+	lwz      r4, 0x44(r3)
+	cmpwi    r4, 2
+	beq      lbl_8017BDC4
+	cmpwi    r4, 3
+	bne      lbl_8017BDC8
 
-	.loc_0x2A8:
-	  li        r0, 0x1
+lbl_8017BDC4:
+	li       r0, 1
 
-	.loc_0x2AC:
-	  rlwinm.   r0,r0,0,24,31
-	  bne-      .loc_0x2C0
-	  lbz       r0, 0x48(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x338
+lbl_8017BDC8:
+	clrlwi.  r0, r0, 0x18
+	bne      lbl_8017BDDC
+	lbz      r0, 0x48(r3)
+	cmplwi   r0, 0
+	beq      lbl_8017BE54
 
-	.loc_0x2C0:
-	  cmpwi     r4, 0x1
-	  beq-      .loc_0x338
-	  lwz       r3, -0x6B70(r13)
-	  lbz       r0, 0x2F(r3)
-	  rlwinm.   r0,r0,0,31,31
-	  beq-      .loc_0x2E4
-	  addi      r0, r30, 0x340
-	  stw       r0, 0x28(r31)
-	  b         .loc_0x2EC
+lbl_8017BDDC:
+	cmpwi    r4, 1
+	beq      lbl_8017BE54
+	lwz      r3, playData__4Game@sda21(r13)
+	lbz      r0, 0x2f(r3)
+	clrlwi.  r0, r0, 0x1f
+	beq      lbl_8017BE00
+	addi     r0, r30, 0x340
+	stw      r0, 0x28(r31)
+	b        lbl_8017BE08
 
-	.loc_0x2E4:
-	  addi      r0, r30, 0x354
-	  stw       r0, 0x28(r31)
+lbl_8017BE00:
+	addi     r0, r30, 0x354
+	stw      r0, 0x28(r31)
 
-	.loc_0x2EC:
-	  mr        r3, r31
-	  addi      r4, r30, 0x310
-	  bl        0x513BC
-	  lwz       r4, 0x1C(r31)
-	  mr        r27, r3
-	  mr        r6, r28
-	  li        r7, 0
-	  lwz       r5, 0x4(r4)
-	  addi      r4, r30, 0x364
-	  bl        0x2C1F30
-	  stw       r3, 0x8C(r31)
-	  mr        r3, r27
-	  addi      r4, r30, 0x370
-	  bl        -0x434F8
-	  stw       r3, 0x98(r31)
-	  mr        r3, r31
-	  mr        r4, r27
-	  bl        0x51404
-	  b         .loc_0x344
+lbl_8017BE08:
+	mr       r3, r31
+	addi     r4, r30, 0x310
+	bl       openTextArc__Q24Game11BaseItemMgrFPc
+	lwz      r4, 0x1c(r31)
+	mr       r27, r3
+	mr       r6, r28
+	li       r7, 0
+	lwz      r5, 4(r4)
+	addi     r4, r30, 0x364
+	bl
+load__Q28SysShape7AnimMgrFP13JKRFileLoaderPcP12J3DModelDataP13JKRFileLoaderPc
+	stw      r3, 0x8c(r31)
+	mr       r3, r27
+	addi     r4, r30, 0x370
+	bl       load__15CollPartFactoryFP13JKRFileLoaderPc
+	stw      r3, 0x98(r31)
+	mr       r3, r31
+	mr       r4, r27
+	bl       closeTextArc__Q24Game11BaseItemMgrFP10JKRArchive
+	b        lbl_8017BE60
 
-	.loc_0x338:
-	  li        r0, 0
-	  stw       r0, 0x8C(r31)
-	  stw       r0, 0x98(r31)
+lbl_8017BE54:
+	li       r0, 0
+	stw      r0, 0x8c(r31)
+	stw      r0, 0x98(r31)
 
-	.loc_0x344:
-	  lwz       r5, -0x6B70(r13)
-	  addi      r3, r1, 0x8
-	  addi      r4, r30, 0x398
-	  lbz       r0, 0x2F(r5)
-	  rlwinm.   r0,r0,0,31,31
-	  beq-      .loc_0x360
-	  addi      r4, r30, 0x37C
+lbl_8017BE60:
+	lwz      r5, playData__4Game@sda21(r13)
+	addi     r3, r1, 8
+	addi     r4, r30, 0x398
+	lbz      r0, 0x2f(r5)
+	clrlwi.  r0, r0, 0x1f
+	beq      lbl_8017BE7C
+	addi     r4, r30, 0x37c
 
-	.loc_0x360:
-	  bl        0x2D075C
-	  lwz       r0, -0x77D4(r13)
-	  addi      r4, r1, 0x8
-	  lwz       r3, -0x63D8(r13)
-	  stw       r0, 0x20(r1)
-	  bl        0x2D0884
-	  cmplwi    r3, 0
-	  beq-      .loc_0x388
-	  lwz       r28, 0x34(r3)
-	  b         .loc_0x38C
+lbl_8017BE7C:
+	bl       __ct__Q212LoadResource3ArgFPCc
+	lwz      r0, sCurrentHeap__7JKRHeap@sda21(r13)
+	addi     r4, r1, 8
+	lwz      r3, gLoadResourceMgr@sda21(r13)
+	stw      r0, 0x20(r1)
+	bl       mountArchive__Q212LoadResource3MgrFRQ212LoadResource3Arg
+	cmplwi   r3, 0
+	beq      lbl_8017BEA4
+	lwz      r28, 0x34(r3)
+	b        lbl_8017BEA8
 
-	.loc_0x388:
-	  li        r28, 0
+lbl_8017BEA4:
+	li       r28, 0
 
-	.loc_0x38C:
-	  subi      r3, r2, 0x5820
-	  li        r4, 0
-	  bl        -0x158E98
-	  mr.       r27, r3
-	  bne-      .loc_0x3B4
-	  addi      r3, r30, 0x18
-	  addi      r5, r30, 0x3B0
-	  li        r4, 0xC33
-	  crclr     6, 0x6
-	  bl        -0x15188C
+lbl_8017BEA8:
+	addi     r3, r2, lbl_80518B40@sda21
+	li       r4, 0
+	bl       getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
+	or.      r27, r3, r3
+	bne      lbl_8017BED0
+	addi     r3, r30, 0x18
+	addi     r5, r30, 0x3b0
+	li       r4, 0xc33
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x3B4:
-	  lis       r4, 0x2102
-	  mr        r3, r27
-	  addi      r4, r4, 0x30
-	  bl        -0x10C648
-	  lwz       r5, 0x1C(r31)
-	  mr        r29, r3
-	  lis       r4, 0x4
-	  stw       r29, 0x8(r5)
-	  lwz       r3, 0x1C(r31)
-	  lwz       r3, 0x8(r3)
-	  bl        -0xF8620
-	  lwz       r3, 0x1C(r31)
-	  lwz       r3, 0x8(r3)
-	  bl        -0xF84D4
-	  li        r4, 0
-	  b         .loc_0x414
+lbl_8017BED0:
+	lis      r4, 0x21020030@ha
+	mr       r3, r27
+	addi     r4, r4, 0x21020030@l
+	bl       load__22J3DModelLoaderDataBaseFPCvUl
+	lwz      r5, 0x1c(r31)
+	mr       r29, r3
+	lis      r4, 4
+	stw      r29, 8(r5)
+	lwz      r3, 0x1c(r31)
+	lwz      r3, 8(r3)
+	bl       newSharedDisplayList__12J3DModelDataFUl
+	lwz      r3, 0x1c(r31)
+	lwz      r3, 8(r3)
+	bl       makeSharedDL__12J3DModelDataFv
+	li       r4, 0
+	b        lbl_8017BF30
 
-	.loc_0x3F4:
-	  lwz       r3, 0x80(r29)
-	  rlwinm    r0,r4,2,14,29
-	  addi      r4, r4, 0x1
-	  lwzx      r3, r3, r0
-	  lwz       r0, 0xC(r3)
-	  rlwinm    r0,r0,0,20,15
-	  ori       r0, r0, 0x2000
-	  stw       r0, 0xC(r3)
+lbl_8017BF10:
+	lwz      r3, 0x80(r29)
+	rlwinm   r0, r4, 2, 0xe, 0x1d
+	addi     r4, r4, 1
+	lwzx     r3, r3, r0
+	lwz      r0, 0xc(r3)
+	rlwinm   r0, r0, 0, 0x14, 0xf
+	ori      r0, r0, 0x2000
+	stw      r0, 0xc(r3)
 
-	.loc_0x414:
-	  lhz       r0, 0x7C(r29)
-	  rlwinm    r3,r4,0,16,31
-	  cmplw     r3, r0
-	  blt+      .loc_0x3F4
-	  lwz       r3, 0x1C(r31)
-	  li        r4, 0
-	  lwz       r3, 0x8(r3)
-	  bl        0x2C2350
-	  subi      r3, r2, 0x5818
-	  li        r4, 0
-	  bl        -0x158F40
-	  mr.       r27, r3
-	  bne-      .loc_0x45C
-	  addi      r3, r30, 0x18
-	  addi      r5, r30, 0x60
-	  li        r4, 0xC4F
-	  crclr     6, 0x6
-	  bl        -0x151934
+lbl_8017BF30:
+	lhz      r0, 0x7c(r29)
+	clrlwi   r3, r4, 0x10
+	cmplw    r3, r0
+	blt      lbl_8017BF10
+	lwz      r3, 0x1c(r31)
+	li       r4, 0
+	lwz      r3, 8(r3)
+	bl       enableMaterialAnim__Q28SysShape5ModelFP12J3DModelDatai
+	addi     r3, r2, lbl_80518B48@sda21
+	li       r4, 0
+	bl       getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
+	or.      r27, r3, r3
+	bne      lbl_8017BF78
+	addi     r3, r30, 0x18
+	addi     r5, r30, 0x60
+	li       r4, 0xc4f
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x45C:
-	  lwz       r5, 0x1C(r31)
-	  mr        r4, r27
-	  addi      r3, r31, 0xF0
-	  lwz       r5, 0x8(r5)
-	  bl        0x2B8098
-	  addi      r3, r30, 0x3C4
-	  li        r4, 0
-	  bl        -0x158F7C
-	  mr.       r27, r3
-	  bne-      .loc_0x498
-	  addi      r3, r30, 0x18
-	  addi      r5, r30, 0x60
-	  li        r4, 0xC54
-	  crclr     6, 0x6
-	  bl        -0x151970
+lbl_8017BF78:
+	lwz      r5, 0x1c(r31)
+	mr       r4, r27
+	addi     r3, r31, 0xf0
+	lwz      r5, 8(r5)
+	bl       attachResource__Q23Sys16MatBaseAnimationFPvP12J3DModelData
+	addi     r3, r30, 0x3c4
+	li       r4, 0
+	bl       getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
+	or.      r27, r3, r3
+	bne      lbl_8017BFB4
+	addi     r3, r30, 0x18
+	addi     r5, r30, 0x60
+	li       r4, 0xc54
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x498:
-	  lwz       r5, 0x1C(r31)
-	  mr        r4, r27
-	  addi      r3, r31, 0x104
-	  lwz       r5, 0x8(r5)
-	  bl        0x2B805C
-	  lwz       r3, -0x6B70(r13)
-	  lbz       r0, 0x2F(r3)
-	  rlwinm.   r0,r0,0,31,31
-	  beq-      .loc_0x4C8
-	  addi      r0, r30, 0x3D0
-	  stw       r0, 0x28(r31)
-	  b         .loc_0x4D0
+lbl_8017BFB4:
+	lwz      r5, 0x1c(r31)
+	mr       r4, r27
+	addi     r3, r31, 0x104
+	lwz      r5, 8(r5)
+	bl       attachResource__Q23Sys16MatBaseAnimationFPvP12J3DModelData
+	lwz      r3, playData__4Game@sda21(r13)
+	lbz      r0, 0x2f(r3)
+	clrlwi.  r0, r0, 0x1f
+	beq      lbl_8017BFE4
+	addi     r0, r30, 0x3d0
+	stw      r0, 0x28(r31)
+	b        lbl_8017BFEC
 
-	.loc_0x4C8:
-	  addi      r0, r30, 0x3E4
-	  stw       r0, 0x28(r31)
+lbl_8017BFE4:
+	addi     r0, r30, 0x3e4
+	stw      r0, 0x28(r31)
 
-	.loc_0x4D0:
-	  mr        r3, r31
-	  addi      r4, r30, 0x310
-	  bl        0x511D8
-	  mr        r5, r29
-	  mr        r27, r3
-	  mr        r6, r28
-	  addi      r4, r30, 0x3F4
-	  li        r7, 0
-	  bl        0x2C1D50
-	  stw       r3, 0x90(r31)
-	  mr        r3, r27
-	  addi      r4, r30, 0x370
-	  bl        -0x436D8
-	  stw       r3, 0x9C(r31)
-	  mr        r3, r31
-	  mr        r4, r27
-	  bl        0x51224
-	  lmw       r27, 0x9C(r1)
-	  lwz       r0, 0xB4(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0xB0
-	  blr
+lbl_8017BFEC:
+	mr       r3, r31
+	addi     r4, r30, 0x310
+	bl       openTextArc__Q24Game11BaseItemMgrFPc
+	mr       r5, r29
+	mr       r27, r3
+	mr       r6, r28
+	addi     r4, r30, 0x3f4
+	li       r7, 0
+	bl
+load__Q28SysShape7AnimMgrFP13JKRFileLoaderPcP12J3DModelDataP13JKRFileLoaderPc
+	stw      r3, 0x90(r31)
+	mr       r3, r27
+	addi     r4, r30, 0x370
+	bl       load__15CollPartFactoryFP13JKRFileLoaderPc
+	stw      r3, 0x9c(r31)
+	mr       r3, r31
+	mr       r4, r27
+	bl       closeTextArc__Q24Game11BaseItemMgrFP10JKRArchive
+	lmw      r27, 0x9c(r1)
+	lwz      r0, 0xb4(r1)
+	mtlr     r0
+	addi     r1, r1, 0xb0
+	blr
 	*/
 }
 
@@ -9467,10 +10481,9 @@ void ItemOnyon::Mgr::load(void)
 void ItemOnyon::Mgr::generatorGetID(void)
 {
 	/*
-	.loc_0x0:
-	  lis       r3, 0x6F6E
-	  addi      r3, r3, 0x796E
-	  blr
+	lis      r3, 0x6F6E796E@ha
+	addi     r3, r3, 0x6F6E796E@l
+	blr
 	*/
 }
 
@@ -9482,10 +10495,9 @@ void ItemOnyon::Mgr::generatorGetID(void)
 void ItemOnyon::Mgr::generatorLocalVersion(void)
 {
 	/*
-	.loc_0x0:
-	  lis       r3, 0x3030
-	  addi      r3, r3, 0x3031
-	  blr
+	lis      r3, 0x30303031@ha
+	addi     r3, r3, 0x30303031@l
+	blr
 	*/
 }
 
@@ -9497,18 +10509,17 @@ void ItemOnyon::Mgr::generatorLocalVersion(void)
 void ItemOnyon::Mgr::doAnimation(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwzu      r12, 0x4C(r3)
-	  lwz       r12, 0x64(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwzu     r12, 0x4c(r3)
+	lwz      r12, 0x64(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -9520,18 +10531,17 @@ void ItemOnyon::Mgr::doAnimation(void)
 void ItemOnyon::Mgr::doEntry(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwzu      r12, 0x4C(r3)
-	  lwz       r12, 0x68(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwzu     r12, 0x4c(r3)
+	lwz      r12, 0x68(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -9543,18 +10553,17 @@ void ItemOnyon::Mgr::doEntry(void)
 void ItemOnyon::Mgr::doSetView(int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwzu      r12, 0x4C(r3)
-	  lwz       r12, 0x6C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwzu     r12, 0x4c(r3)
+	lwz      r12, 0x6c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -9566,18 +10575,17 @@ void ItemOnyon::Mgr::doSetView(int)
 void ItemOnyon::Mgr::doViewCalc(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwzu      r12, 0x4C(r3)
-	  lwz       r12, 0x70(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwzu     r12, 0x4c(r3)
+	lwz      r12, 0x70(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -9589,18 +10597,17 @@ void ItemOnyon::Mgr::doViewCalc(void)
 void ItemOnyon::Mgr::doSimulation(float)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwzu      r12, 0x4C(r3)
-	  lwz       r12, 0x74(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwzu     r12, 0x4c(r3)
+	lwz      r12, 0x74(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -9612,18 +10619,17 @@ void ItemOnyon::Mgr::doSimulation(float)
 void ItemOnyon::Mgr::doDirectDraw(Graphics&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwzu      r12, 0x4C(r3)
-	  lwz       r12, 0x78(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwzu     r12, 0x4c(r3)
+	lwz      r12, 0x78(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -9670,18 +10676,17 @@ void BaseItemMgr::onUpdateUseList(Game::GenItemParm*, int) { }
 void ItemOnyon::Mgr::getEnd(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwzu      r12, 0x4C(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwzu     r12, 0x4c(r3)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -9704,18 +10709,17 @@ namespace Game {
 void ItemOnyon::Mgr::getStart(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwzu      r12, 0x4C(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwzu     r12, 0x4c(r3)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -9729,9 +10733,8 @@ void ItemOnyon::Mgr::getStart(void)
 void NodeObjectMgr<Game::Onyon>::getStart()
 {
 	/*
-	.loc_0x0:
-	  lwz       r3, 0x30(r3)
-	  blr
+	lwz      r3, 0x30(r3)
+	blr
 	*/
 }
 
@@ -9745,18 +10748,17 @@ namespace Game {
 void ItemOnyon::Mgr::getNext(void*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwzu      r12, 0x4C(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwzu     r12, 0x4c(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -9770,9 +10772,8 @@ void ItemOnyon::Mgr::getNext(void*)
 void NodeObjectMgr<Game::Onyon>::getNext(void*)
 {
 	/*
-	.loc_0x0:
-	  lwz       r3, 0x4(r4)
-	  blr
+	lwz      r3, 4(r4)
+	blr
 	*/
 }
 
@@ -9786,18 +10787,17 @@ namespace Game {
 void ItemOnyon::Mgr::get(void*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwzu      r12, 0x4C(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwzu     r12, 0x4c(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -9811,9 +10811,8 @@ void ItemOnyon::Mgr::get(void*)
 void NodeObjectMgr<Game::Onyon>::get(void*)
 {
 	/*
-	.loc_0x0:
-	  lwz       r3, 0x18(r4)
-	  blr
+	lwz      r3, 0x18(r4)
+	blr
 	*/
 }
 
@@ -9838,9 +10837,8 @@ namespace efx {
 void ArgType::getName(void)
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r2, 0x5810
-	  blr
+	addi     r3, r2, lbl_80518B50@sda21
+	blr
 	*/
 }
 
@@ -9852,12 +10850,11 @@ void ArgType::getName(void)
 void OnyonSpotArg::getID(void)
 {
 	/*
-	.loc_0x0:
-	  lis       r4, 0x5350
-	  lis       r3, 0x4F4E
-	  addi      r4, r4, 0x4F54
-	  addi      r3, r3, 0x595F
-	  blr
+	lis      r4, 0x53504F54@ha
+	lis      r3, 0x4F4E595F@ha
+	addi     r4, r4, 0x53504F54@l
+	addi     r3, r3, 0x4F4E595F@l
+	blr
 	*/
 }
 
@@ -9873,9 +10870,8 @@ namespace Game {
 void Onyon::getCreatureName(void)
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r2, 0x5830
-	  blr
+	addi     r3, r2, lbl_80518B30@sda21
+	blr
 	*/
 }
 
@@ -9901,9 +10897,8 @@ void BaseItem::do_setLODParm(Game::AILODParm&) { }
 void BaseItem::getMapCollisionRadius(void)
 {
 	/*
-	.loc_0x0:
-	  lfs       f1, 0x1D0(r3)
-	  blr
+	lfs      f1, 0x1d0(r3)
+	blr
 	*/
 }
 
@@ -9992,9 +10987,8 @@ namespace Game {
 void BaseItem::getWorkDistance(Sys::Sphere&)
 {
 	/*
-	.loc_0x0:
-	  lfs       f1, -0x5808(r2)
-	  blr
+	lfs      f1, lbl_80518B58@sda21(r2)
+	blr
 	*/
 }
 
@@ -10034,16 +11028,15 @@ void BaseItem::updateBoundSphere(void) { }
 void BaseItem::getBoundingSphere(Sys::Sphere&)
 {
 	/*
-	.loc_0x0:
-	  lfs       f0, 0x1C4(r3)
-	  stfs      f0, 0x0(r4)
-	  lfs       f0, 0x1C8(r3)
-	  stfs      f0, 0x4(r4)
-	  lfs       f0, 0x1CC(r3)
-	  stfs      f0, 0x8(r4)
-	  lfs       f0, 0x1D0(r3)
-	  stfs      f0, 0xC(r4)
-	  blr
+	lfs      f0, 0x1c4(r3)
+	stfs     f0, 0(r4)
+	lfs      f0, 0x1c8(r3)
+	stfs     f0, 4(r4)
+	lfs      f0, 0x1cc(r3)
+	stfs     f0, 8(r4)
+	lfs      f0, 0x1d0(r3)
+	stfs     f0, 0xc(r4)
+	blr
 	*/
 }
 
@@ -10057,24 +11050,23 @@ void BaseItem::getBoundingSphere(Sys::Sphere&)
 void onSetPosition__Q24Game8BaseItemFR10Vector3f(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lfs       f0, 0x0(r4)
-	  stfs      f0, 0x19C(r3)
-	  lfs       f0, 0x4(r4)
-	  stfs      f0, 0x1A0(r3)
-	  lfs       f0, 0x8(r4)
-	  stfs      f0, 0x1A4(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x21C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lfs      f0, 0(r4)
+	stfs     f0, 0x19c(r3)
+	lfs      f0, 4(r4)
+	stfs     f0, 0x1a0(r3)
+	lfs      f0, 8(r4)
+	stfs     f0, 0x1a4(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x21c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -10095,14 +11087,13 @@ void BaseItem::onSetPosition(void) { }
 void BaseItem::getVelocity(void)
 {
 	/*
-	.loc_0x0:
-	  lfs       f0, 0x190(r4)
-	  stfs      f0, 0x0(r3)
-	  lfs       f0, 0x194(r4)
-	  stfs      f0, 0x4(r3)
-	  lfs       f0, 0x198(r4)
-	  stfs      f0, 0x8(r3)
-	  blr
+	lfs      f0, 0x190(r4)
+	stfs     f0, 0(r3)
+	lfs      f0, 0x194(r4)
+	stfs     f0, 4(r3)
+	lfs      f0, 0x198(r4)
+	stfs     f0, 8(r3)
+	blr
 	*/
 }
 
@@ -10116,12 +11107,11 @@ void BaseItem::getVelocity(void)
 void getVelocityAt__Q24Game8BaseItemFR10Vector3f R10Vector3f(void)
 {
 	/*
-	.loc_0x0:
-	  lfs       f0, -0x5934(r2)
-	  stfs      f0, 0x0(r5)
-	  stfs      f0, 0x4(r5)
-	  stfs      f0, 0x8(r5)
-	  blr
+	lfs      f0, lbl_80518A2C@sda21(r2)
+	stfs     f0, 0(r5)
+	stfs     f0, 4(r5)
+	stfs     f0, 8(r5)
+	blr
 	*/
 }
 
@@ -10135,50 +11125,49 @@ namespace efx {
 TPodKira::~TPodKira(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x80
-	  lis       r3, 0x804B
-	  addi      r3, r3, 0x29EC
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x14
-	  stw       r0, 0x4(r30)
-	  beq-      .loc_0x70
-	  lis       r3, 0x804E
-	  addi      r3, r3, 0x68A8
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x14
-	  stw       r0, 0x4(r30)
-	  beq-      .loc_0x70
-	  lis       r4, 0x804E
-	  addi      r3, r30, 0x4
-	  addi      r5, r4, 0x698C
-	  li        r4, 0
-	  stw       r5, 0x0(r30)
-	  addi      r0, r5, 0x14
-	  stw       r0, 0x4(r30)
-	  bl        -0xEC760
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_8017C410
+	lis      r3, __vt__Q23efx8TPodKira@ha
+	addi     r3, r3, __vt__Q23efx8TPodKira@l
+	stw      r3, 0(r30)
+	addi     r0, r3, 0x14
+	stw      r0, 4(r30)
+	beq      lbl_8017C400
+	lis      r3, __vt__Q23efx9TChaseMtx@ha
+	addi     r3, r3, __vt__Q23efx9TChaseMtx@l
+	stw      r3, 0(r30)
+	addi     r0, r3, 0x14
+	stw      r0, 4(r30)
+	beq      lbl_8017C400
+	lis      r4, __vt__Q23efx5TSync@ha
+	addi     r3, r30, 4
+	addi     r5, r4, __vt__Q23efx5TSync@l
+	li       r4, 0
+	stw      r5, 0(r30)
+	addi     r0, r5, 0x14
+	stw      r0, 4(r30)
+	bl       __dt__18JPAEmitterCallBackFv
 
-	.loc_0x70:
-	  extsh.    r0, r31
-	  ble-      .loc_0x80
-	  mr        r3, r30
-	  bl        -0x158358
+lbl_8017C400:
+	extsh.   r0, r31
+	ble      lbl_8017C410
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x80:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8017C410:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -10190,50 +11179,49 @@ TPodKira::~TPodKira(void)
 TPodOpenB::~TPodOpenB(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x80
-	  lis       r3, 0x804B
-	  addi      r3, r3, 0x2A54
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x14
-	  stw       r0, 0x4(r30)
-	  beq-      .loc_0x70
-	  lis       r3, 0x804E
-	  addi      r3, r3, 0x68A8
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x14
-	  stw       r0, 0x4(r30)
-	  beq-      .loc_0x70
-	  lis       r4, 0x804E
-	  addi      r3, r30, 0x4
-	  addi      r5, r4, 0x698C
-	  li        r4, 0
-	  stw       r5, 0x0(r30)
-	  addi      r0, r5, 0x14
-	  stw       r0, 0x4(r30)
-	  bl        -0xEC7FC
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_8017C4AC
+	lis      r3, __vt__Q23efx9TPodOpenB@ha
+	addi     r3, r3, __vt__Q23efx9TPodOpenB@l
+	stw      r3, 0(r30)
+	addi     r0, r3, 0x14
+	stw      r0, 4(r30)
+	beq      lbl_8017C49C
+	lis      r3, __vt__Q23efx9TChaseMtx@ha
+	addi     r3, r3, __vt__Q23efx9TChaseMtx@l
+	stw      r3, 0(r30)
+	addi     r0, r3, 0x14
+	stw      r0, 4(r30)
+	beq      lbl_8017C49C
+	lis      r4, __vt__Q23efx5TSync@ha
+	addi     r3, r30, 4
+	addi     r5, r4, __vt__Q23efx5TSync@l
+	li       r4, 0
+	stw      r5, 0(r30)
+	addi     r0, r5, 0x14
+	stw      r0, 4(r30)
+	bl       __dt__18JPAEmitterCallBackFv
 
-	.loc_0x70:
-	  extsh.    r0, r31
-	  ble-      .loc_0x80
-	  mr        r3, r30
-	  bl        -0x1583F4
+lbl_8017C49C:
+	extsh.   r0, r31
+	ble      lbl_8017C4AC
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x80:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8017C4AC:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -10245,50 +11233,49 @@ TPodOpenB::~TPodOpenB(void)
 TPodOpenA::~TPodOpenA(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x80
-	  lis       r3, 0x804B
-	  addi      r3, r3, 0x2AA0
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x14
-	  stw       r0, 0x4(r30)
-	  beq-      .loc_0x70
-	  lis       r3, 0x804B
-	  addi      r3, r3, 0x2C24
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x14
-	  stw       r0, 0x4(r30)
-	  beq-      .loc_0x70
-	  lis       r4, 0x804E
-	  addi      r3, r30, 0x4
-	  addi      r5, r4, 0x698C
-	  li        r4, 0
-	  stw       r5, 0x0(r30)
-	  addi      r0, r5, 0x14
-	  stw       r0, 0x4(r30)
-	  bl        -0xEC898
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_8017C548
+	lis      r3, __vt__Q23efx9TPodOpenA@ha
+	addi     r3, r3, __vt__Q23efx9TPodOpenA@l
+	stw      r3, 0(r30)
+	addi     r0, r3, 0x14
+	stw      r0, 4(r30)
+	beq      lbl_8017C538
+	lis      r3, __vt__Q23efx8TForever@ha
+	addi     r3, r3, __vt__Q23efx8TForever@l
+	stw      r3, 0(r30)
+	addi     r0, r3, 0x14
+	stw      r0, 4(r30)
+	beq      lbl_8017C538
+	lis      r4, __vt__Q23efx5TSync@ha
+	addi     r3, r30, 4
+	addi     r5, r4, __vt__Q23efx5TSync@l
+	li       r4, 0
+	stw      r5, 0(r30)
+	addi     r0, r5, 0x14
+	stw      r0, 4(r30)
+	bl       __dt__18JPAEmitterCallBackFv
 
-	.loc_0x70:
-	  extsh.    r0, r31
-	  ble-      .loc_0x80
-	  mr        r3, r30
-	  bl        -0x158490
+lbl_8017C538:
+	extsh.   r0, r31
+	ble      lbl_8017C548
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x80:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8017C548:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -10307,50 +11294,49 @@ void TForever::doExecuteEmitterOperation(JPABaseEmitter*) { }
 TUfoGasOut::~TUfoGasOut(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x80
-	  lis       r3, 0x804B
-	  addi      r3, r3, 0x2AEC
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x14
-	  stw       r0, 0x4(r30)
-	  beq-      .loc_0x70
-	  lis       r3, 0x804E
-	  addi      r3, r3, 0x68A8
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x14
-	  stw       r0, 0x4(r30)
-	  beq-      .loc_0x70
-	  lis       r4, 0x804E
-	  addi      r3, r30, 0x4
-	  addi      r5, r4, 0x698C
-	  li        r4, 0
-	  stw       r5, 0x0(r30)
-	  addi      r0, r5, 0x14
-	  stw       r0, 0x4(r30)
-	  bl        -0xEC938
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_8017C5E8
+	lis      r3, __vt__Q23efx10TUfoGasOut@ha
+	addi     r3, r3, __vt__Q23efx10TUfoGasOut@l
+	stw      r3, 0(r30)
+	addi     r0, r3, 0x14
+	stw      r0, 4(r30)
+	beq      lbl_8017C5D8
+	lis      r3, __vt__Q23efx9TChaseMtx@ha
+	addi     r3, r3, __vt__Q23efx9TChaseMtx@l
+	stw      r3, 0(r30)
+	addi     r0, r3, 0x14
+	stw      r0, 4(r30)
+	beq      lbl_8017C5D8
+	lis      r4, __vt__Q23efx5TSync@ha
+	addi     r3, r30, 4
+	addi     r5, r4, __vt__Q23efx5TSync@l
+	li       r4, 0
+	stw      r5, 0(r30)
+	addi     r0, r5, 0x14
+	stw      r0, 4(r30)
+	bl       __dt__18JPAEmitterCallBackFv
 
-	.loc_0x70:
-	  extsh.    r0, r31
-	  ble-      .loc_0x80
-	  mr        r3, r30
-	  bl        -0x158530
+lbl_8017C5D8:
+	extsh.   r0, r31
+	ble      lbl_8017C5E8
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x80:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8017C5E8:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -10362,50 +11348,49 @@ TUfoGasOut::~TUfoGasOut(void)
 TUfoGasIn::~TUfoGasIn(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x80
-	  lis       r3, 0x804B
-	  addi      r3, r3, 0x2B38
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x14
-	  stw       r0, 0x4(r30)
-	  beq-      .loc_0x70
-	  lis       r3, 0x804E
-	  addi      r3, r3, 0x68A8
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x14
-	  stw       r0, 0x4(r30)
-	  beq-      .loc_0x70
-	  lis       r4, 0x804E
-	  addi      r3, r30, 0x4
-	  addi      r5, r4, 0x698C
-	  li        r4, 0
-	  stw       r5, 0x0(r30)
-	  addi      r0, r5, 0x14
-	  stw       r0, 0x4(r30)
-	  bl        -0xEC9D4
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_8017C684
+	lis      r3, __vt__Q23efx9TUfoGasIn@ha
+	addi     r3, r3, __vt__Q23efx9TUfoGasIn@l
+	stw      r3, 0(r30)
+	addi     r0, r3, 0x14
+	stw      r0, 4(r30)
+	beq      lbl_8017C674
+	lis      r3, __vt__Q23efx9TChaseMtx@ha
+	addi     r3, r3, __vt__Q23efx9TChaseMtx@l
+	stw      r3, 0(r30)
+	addi     r0, r3, 0x14
+	stw      r0, 4(r30)
+	beq      lbl_8017C674
+	lis      r4, __vt__Q23efx5TSync@ha
+	addi     r3, r30, 4
+	addi     r5, r4, __vt__Q23efx5TSync@l
+	li       r4, 0
+	stw      r5, 0(r30)
+	addi     r0, r5, 0x14
+	stw      r0, 4(r30)
+	bl       __dt__18JPAEmitterCallBackFv
 
-	.loc_0x70:
-	  extsh.    r0, r31
-	  ble-      .loc_0x80
-	  mr        r3, r30
-	  bl        -0x1585CC
+lbl_8017C674:
+	extsh.   r0, r31
+	ble      lbl_8017C684
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x80:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8017C684:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -10417,50 +11402,49 @@ TUfoGasIn::~TUfoGasIn(void)
 TUfoPodOpenSuck::~TUfoPodOpenSuck(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x80
-	  lis       r3, 0x804B
-	  addi      r3, r3, 0x2BBC
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x14
-	  stw       r0, 0x4(r30)
-	  beq-      .loc_0x70
-	  lis       r3, 0x804E
-	  addi      r3, r3, 0x68A8
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x14
-	  stw       r0, 0x4(r30)
-	  beq-      .loc_0x70
-	  lis       r4, 0x804E
-	  addi      r3, r30, 0x4
-	  addi      r5, r4, 0x698C
-	  li        r4, 0
-	  stw       r5, 0x0(r30)
-	  addi      r0, r5, 0x14
-	  stw       r0, 0x4(r30)
-	  bl        -0xECA70
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_8017C720
+	lis      r3, __vt__Q23efx15TUfoPodOpenSuck@ha
+	addi     r3, r3, __vt__Q23efx15TUfoPodOpenSuck@l
+	stw      r3, 0(r30)
+	addi     r0, r3, 0x14
+	stw      r0, 4(r30)
+	beq      lbl_8017C710
+	lis      r3, __vt__Q23efx9TChaseMtx@ha
+	addi     r3, r3, __vt__Q23efx9TChaseMtx@l
+	stw      r3, 0(r30)
+	addi     r0, r3, 0x14
+	stw      r0, 4(r30)
+	beq      lbl_8017C710
+	lis      r4, __vt__Q23efx5TSync@ha
+	addi     r3, r30, 4
+	addi     r5, r4, __vt__Q23efx5TSync@l
+	li       r4, 0
+	stw      r5, 0(r30)
+	addi     r0, r5, 0x14
+	stw      r0, 4(r30)
+	bl       __dt__18JPAEmitterCallBackFv
 
-	.loc_0x70:
-	  extsh.    r0, r31
-	  ble-      .loc_0x80
-	  mr        r3, r30
-	  bl        -0x158668
+lbl_8017C710:
+	extsh.   r0, r31
+	ble      lbl_8017C720
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x80:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8017C720:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -10476,10 +11460,9 @@ namespace Game {
 void ItemPikihead::InitArg::getName(void)
 {
 	/*
-	.loc_0x0:
-	  lis       r3, 0x8048
-	  subi      r3, r3, 0x15A4
-	  blr
+	lis      r3, lbl_8047EA5C@ha
+	addi     r3, r3, lbl_8047EA5C@l
+	blr
 	*/
 }
 
@@ -10491,10 +11474,9 @@ void ItemPikihead::InitArg::getName(void)
 void ItemInitArg::getName(void)
 {
 	/*
-	.loc_0x0:
-	  lis       r3, 0x8048
-	  subi      r3, r3, 0x158C
-	  blr
+	lis      r3, lbl_8047EA74@ha
+	addi     r3, r3, lbl_8047EA74@l
+	blr
 	*/
 }
 
@@ -10508,13 +11490,12 @@ void ItemInitArg::getName(void)
 void NodeObjectMgr<Game::Onyon>::resetMgr()
 {
 	/*
-	.loc_0x0:
-	  li        r0, 0
-	  stw       r0, 0x30(r3)
-	  stw       r0, 0x2C(r3)
-	  stw       r0, 0x28(r3)
-	  stw       r0, 0x24(r3)
-	  blr
+	li       r0, 0
+	stw      r0, 0x30(r3)
+	stw      r0, 0x2c(r3)
+	stw      r0, 0x28(r3)
+	stw      r0, 0x24(r3)
+	blr
 	*/
 }
 
@@ -10526,144 +11507,143 @@ void NodeObjectMgr<Game::Onyon>::resetMgr()
 void ObjectMgr<Game::Onyon>::doAnimation()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r4, 0x804B
-	  stw       r0, 0x24(r1)
-	  li        r0, 0
-	  addi      r4, r4, 0x548
-	  cmplwi    r0, 0
-	  stw       r0, 0x14(r1)
-	  stw       r4, 0x8(r1)
-	  stw       r0, 0xC(r1)
-	  stw       r3, 0x10(r1)
-	  bne-      .loc_0x48
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0x1B4
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lis      r4, "__vt__23Iterator<Q24Game5Onyon>"@ha
+	stw      r0, 0x24(r1)
+	li       r0, 0
+	addi     r4, r4, "__vt__23Iterator<Q24Game5Onyon>"@l
+	cmplwi   r0, 0
+	stw      r0, 0x14(r1)
+	stw      r4, 8(r1)
+	stw      r0, 0xc(r1)
+	stw      r3, 0x10(r1)
+	bne      lbl_8017C7B4
+	lwz      r12, 0(r3)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
+	b        lbl_8017C920
 
-	.loc_0x48:
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0xB4
+lbl_8017C7B4:
+	lwz      r12, 0(r3)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
+	b        lbl_8017C820
 
-	.loc_0x60:
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x1B4
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
+lbl_8017C7CC:
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	lwz      r3, 0x14(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_8017C920
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
 
-	.loc_0xB4:
-	  lwz       r12, 0x8(r1)
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x60
-	  b         .loc_0x1B4
+lbl_8017C820:
+	lwz      r12, 8(r1)
+	addi     r3, r1, 8
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_8017C7CC
+	b        lbl_8017C920
 
-	.loc_0xD4:
-	  lwz       r3, 0x10(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x3C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x124
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0x1B4
+lbl_8017C840:
+	lwz      r3, 0x10(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	lwz      r12, 0(r3)
+	lwz      r12, 0x3c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	cmplwi   r0, 0
+	bne      lbl_8017C890
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
+	b        lbl_8017C920
 
-	.loc_0x124:
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0x198
+lbl_8017C890:
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
+	b        lbl_8017C904
 
-	.loc_0x144:
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x1B4
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
+lbl_8017C8B0:
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	lwz      r3, 0x14(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_8017C920
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
 
-	.loc_0x198:
-	  lwz       r12, 0x8(r1)
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x144
+lbl_8017C904:
+	lwz      r12, 8(r1)
+	addi     r3, r1, 8
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_8017C8B0
 
-	.loc_0x1B4:
-	  lwz       r3, 0x10(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r4, 0xC(r1)
-	  cmplw     r4, r3
-	  bne+      .loc_0xD4
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8017C920:
+	lwz      r3, 0x10(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r4, 0xc(r1)
+	cmplw    r4, r3
+	bne      lbl_8017C840
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -10675,144 +11655,143 @@ void ObjectMgr<Game::Onyon>::doAnimation()
 void ObjectMgr<Game::Onyon>::doEntry()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r4, 0x804B
-	  stw       r0, 0x24(r1)
-	  li        r0, 0
-	  addi      r4, r4, 0x548
-	  cmplwi    r0, 0
-	  stw       r0, 0x14(r1)
-	  stw       r4, 0x8(r1)
-	  stw       r0, 0xC(r1)
-	  stw       r3, 0x10(r1)
-	  bne-      .loc_0x48
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0x1B4
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lis      r4, "__vt__23Iterator<Q24Game5Onyon>"@ha
+	stw      r0, 0x24(r1)
+	li       r0, 0
+	addi     r4, r4, "__vt__23Iterator<Q24Game5Onyon>"@l
+	cmplwi   r0, 0
+	stw      r0, 0x14(r1)
+	stw      r4, 8(r1)
+	stw      r0, 0xc(r1)
+	stw      r3, 0x10(r1)
+	bne      lbl_8017C998
+	lwz      r12, 0(r3)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
+	b        lbl_8017CB04
 
-	.loc_0x48:
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0xB4
+lbl_8017C998:
+	lwz      r12, 0(r3)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
+	b        lbl_8017CA04
 
-	.loc_0x60:
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x1B4
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
+lbl_8017C9B0:
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	lwz      r3, 0x14(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_8017CB04
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
 
-	.loc_0xB4:
-	  lwz       r12, 0x8(r1)
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x60
-	  b         .loc_0x1B4
+lbl_8017CA04:
+	lwz      r12, 8(r1)
+	addi     r3, r1, 8
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_8017C9B0
+	b        lbl_8017CB04
 
-	.loc_0xD4:
-	  lwz       r3, 0x10(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x40(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x124
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0x1B4
+lbl_8017CA24:
+	lwz      r3, 0x10(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	lwz      r12, 0(r3)
+	lwz      r12, 0x40(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	cmplwi   r0, 0
+	bne      lbl_8017CA74
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
+	b        lbl_8017CB04
 
-	.loc_0x124:
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0x198
+lbl_8017CA74:
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
+	b        lbl_8017CAE8
 
-	.loc_0x144:
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x1B4
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
+lbl_8017CA94:
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	lwz      r3, 0x14(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_8017CB04
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
 
-	.loc_0x198:
-	  lwz       r12, 0x8(r1)
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x144
+lbl_8017CAE8:
+	lwz      r12, 8(r1)
+	addi     r3, r1, 8
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_8017CA94
 
-	.loc_0x1B4:
-	  lwz       r3, 0x10(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r4, 0xC(r1)
-	  cmplw     r4, r3
-	  bne+      .loc_0xD4
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8017CB04:
+	lwz      r3, 0x10(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r4, 0xc(r1)
+	cmplw    r4, r3
+	bne      lbl_8017CA24
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -10824,148 +11803,147 @@ void ObjectMgr<Game::Onyon>::doEntry()
 void ObjectMgr<Game::Onyon>::doSetView(int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r5, 0x804B
-	  stw       r0, 0x24(r1)
-	  li        r0, 0
-	  addi      r5, r5, 0x548
-	  stw       r31, 0x1C(r1)
-	  cmplwi    r0, 0
-	  mr        r31, r4
-	  stw       r0, 0x14(r1)
-	  stw       r5, 0x8(r1)
-	  stw       r0, 0xC(r1)
-	  stw       r3, 0x10(r1)
-	  bne-      .loc_0x50
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0x1C0
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lis      r5, "__vt__23Iterator<Q24Game5Onyon>"@ha
+	stw      r0, 0x24(r1)
+	li       r0, 0
+	addi     r5, r5, "__vt__23Iterator<Q24Game5Onyon>"@l
+	stw      r31, 0x1c(r1)
+	cmplwi   r0, 0
+	mr       r31, r4
+	stw      r0, 0x14(r1)
+	stw      r5, 8(r1)
+	stw      r0, 0xc(r1)
+	stw      r3, 0x10(r1)
+	bne      lbl_8017CB84
+	lwz      r12, 0(r3)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
+	b        lbl_8017CCF4
 
-	.loc_0x50:
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0xBC
+lbl_8017CB84:
+	lwz      r12, 0(r3)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
+	b        lbl_8017CBF0
 
-	.loc_0x68:
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x1C0
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
+lbl_8017CB9C:
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	lwz      r3, 0x14(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_8017CCF4
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
 
-	.loc_0xBC:
-	  lwz       r12, 0x8(r1)
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x68
-	  b         .loc_0x1C0
+lbl_8017CBF0:
+	lwz      r12, 8(r1)
+	addi     r3, r1, 8
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_8017CB9C
+	b        lbl_8017CCF4
 
-	.loc_0xDC:
-	  lwz       r3, 0x10(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r12, 0x0(r3)
-	  mr        r4, r31
-	  lwz       r12, 0x44(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x130
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0x1C0
+lbl_8017CC10:
+	lwz      r3, 0x10(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	lwz      r12, 0(r3)
+	mr       r4, r31
+	lwz      r12, 0x44(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	cmplwi   r0, 0
+	bne      lbl_8017CC64
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
+	b        lbl_8017CCF4
 
-	.loc_0x130:
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0x1A4
+lbl_8017CC64:
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
+	b        lbl_8017CCD8
 
-	.loc_0x150:
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x1C0
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
+lbl_8017CC84:
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	lwz      r3, 0x14(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_8017CCF4
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
 
-	.loc_0x1A4:
-	  lwz       r12, 0x8(r1)
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x150
+lbl_8017CCD8:
+	lwz      r12, 8(r1)
+	addi     r3, r1, 8
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_8017CC84
 
-	.loc_0x1C0:
-	  lwz       r3, 0x10(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r4, 0xC(r1)
-	  cmplw     r4, r3
-	  bne+      .loc_0xDC
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8017CCF4:
+	lwz      r3, 0x10(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r4, 0xc(r1)
+	cmplw    r4, r3
+	bne      lbl_8017CC10
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -10977,144 +11955,143 @@ void ObjectMgr<Game::Onyon>::doSetView(int)
 void ObjectMgr<Game::Onyon>::doViewCalc()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r4, 0x804B
-	  stw       r0, 0x24(r1)
-	  li        r0, 0
-	  addi      r4, r4, 0x548
-	  cmplwi    r0, 0
-	  stw       r0, 0x14(r1)
-	  stw       r4, 0x8(r1)
-	  stw       r0, 0xC(r1)
-	  stw       r3, 0x10(r1)
-	  bne-      .loc_0x48
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0x1B4
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lis      r4, "__vt__23Iterator<Q24Game5Onyon>"@ha
+	stw      r0, 0x24(r1)
+	li       r0, 0
+	addi     r4, r4, "__vt__23Iterator<Q24Game5Onyon>"@l
+	cmplwi   r0, 0
+	stw      r0, 0x14(r1)
+	stw      r4, 8(r1)
+	stw      r0, 0xc(r1)
+	stw      r3, 0x10(r1)
+	bne      lbl_8017CD70
+	lwz      r12, 0(r3)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
+	b        lbl_8017CEDC
 
-	.loc_0x48:
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0xB4
+lbl_8017CD70:
+	lwz      r12, 0(r3)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
+	b        lbl_8017CDDC
 
-	.loc_0x60:
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x1B4
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
+lbl_8017CD88:
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	lwz      r3, 0x14(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_8017CEDC
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
 
-	.loc_0xB4:
-	  lwz       r12, 0x8(r1)
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x60
-	  b         .loc_0x1B4
+lbl_8017CDDC:
+	lwz      r12, 8(r1)
+	addi     r3, r1, 8
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_8017CD88
+	b        lbl_8017CEDC
 
-	.loc_0xD4:
-	  lwz       r3, 0x10(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x48(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x124
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0x1B4
+lbl_8017CDFC:
+	lwz      r3, 0x10(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	lwz      r12, 0(r3)
+	lwz      r12, 0x48(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	cmplwi   r0, 0
+	bne      lbl_8017CE4C
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
+	b        lbl_8017CEDC
 
-	.loc_0x124:
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0x198
+lbl_8017CE4C:
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
+	b        lbl_8017CEC0
 
-	.loc_0x144:
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x1B4
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
+lbl_8017CE6C:
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	lwz      r3, 0x14(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_8017CEDC
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
 
-	.loc_0x198:
-	  lwz       r12, 0x8(r1)
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x144
+lbl_8017CEC0:
+	lwz      r12, 8(r1)
+	addi     r3, r1, 8
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_8017CE6C
 
-	.loc_0x1B4:
-	  lwz       r3, 0x10(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r4, 0xC(r1)
-	  cmplw     r4, r3
-	  bne+      .loc_0xD4
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8017CEDC:
+	lwz      r3, 0x10(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r4, 0xc(r1)
+	cmplw    r4, r3
+	bne      lbl_8017CDFC
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -11126,148 +12103,147 @@ void ObjectMgr<Game::Onyon>::doViewCalc()
 void ObjectMgr<Game::Onyon>::doSimulation(float)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r4, 0x804B
-	  stw       r0, 0x24(r1)
-	  li        r0, 0
-	  addi      r4, r4, 0x548
-	  stfd      f31, 0x18(r1)
-	  fmr       f31, f1
-	  cmplwi    r0, 0
-	  stw       r4, 0x8(r1)
-	  stw       r0, 0x14(r1)
-	  stw       r0, 0xC(r1)
-	  stw       r3, 0x10(r1)
-	  bne-      .loc_0x50
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0x1C0
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lis      r4, "__vt__23Iterator<Q24Game5Onyon>"@ha
+	stw      r0, 0x24(r1)
+	li       r0, 0
+	addi     r4, r4, "__vt__23Iterator<Q24Game5Onyon>"@l
+	stfd     f31, 0x18(r1)
+	fmr      f31, f1
+	cmplwi   r0, 0
+	stw      r4, 8(r1)
+	stw      r0, 0x14(r1)
+	stw      r0, 0xc(r1)
+	stw      r3, 0x10(r1)
+	bne      lbl_8017CF5C
+	lwz      r12, 0(r3)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
+	b        lbl_8017D0CC
 
-	.loc_0x50:
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0xBC
+lbl_8017CF5C:
+	lwz      r12, 0(r3)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
+	b        lbl_8017CFC8
 
-	.loc_0x68:
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x1C0
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
+lbl_8017CF74:
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	lwz      r3, 0x14(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_8017D0CC
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
 
-	.loc_0xBC:
-	  lwz       r12, 0x8(r1)
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x68
-	  b         .loc_0x1C0
+lbl_8017CFC8:
+	lwz      r12, 8(r1)
+	addi     r3, r1, 8
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_8017CF74
+	b        lbl_8017D0CC
 
-	.loc_0xDC:
-	  lwz       r3, 0x10(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r12, 0x0(r3)
-	  fmr       f1, f31
-	  lwz       r12, 0x4C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x130
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0x1C0
+lbl_8017CFE8:
+	lwz      r3, 0x10(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	lwz      r12, 0(r3)
+	fmr      f1, f31
+	lwz      r12, 0x4c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	cmplwi   r0, 0
+	bne      lbl_8017D03C
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
+	b        lbl_8017D0CC
 
-	.loc_0x130:
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0x1A4
+lbl_8017D03C:
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
+	b        lbl_8017D0B0
 
-	.loc_0x150:
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x1C0
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
+lbl_8017D05C:
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	lwz      r3, 0x14(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_8017D0CC
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
 
-	.loc_0x1A4:
-	  lwz       r12, 0x8(r1)
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x150
+lbl_8017D0B0:
+	lwz      r12, 8(r1)
+	addi     r3, r1, 8
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_8017D05C
 
-	.loc_0x1C0:
-	  lwz       r3, 0x10(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r4, 0xC(r1)
-	  cmplw     r4, r3
-	  bne+      .loc_0xDC
-	  lwz       r0, 0x24(r1)
-	  lfd       f31, 0x18(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8017D0CC:
+	lwz      r3, 0x10(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r4, 0xc(r1)
+	cmplw    r4, r3
+	bne      lbl_8017CFE8
+	lwz      r0, 0x24(r1)
+	lfd      f31, 0x18(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -11279,148 +12255,147 @@ void ObjectMgr<Game::Onyon>::doSimulation(float)
 void ObjectMgr<Game::Onyon>::doDirectDraw(Graphics&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r5, 0x804B
-	  stw       r0, 0x24(r1)
-	  li        r0, 0
-	  addi      r5, r5, 0x548
-	  stw       r31, 0x1C(r1)
-	  cmplwi    r0, 0
-	  mr        r31, r4
-	  stw       r0, 0x14(r1)
-	  stw       r5, 0x8(r1)
-	  stw       r0, 0xC(r1)
-	  stw       r3, 0x10(r1)
-	  bne-      .loc_0x50
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0x1C0
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lis      r5, "__vt__23Iterator<Q24Game5Onyon>"@ha
+	stw      r0, 0x24(r1)
+	li       r0, 0
+	addi     r5, r5, "__vt__23Iterator<Q24Game5Onyon>"@l
+	stw      r31, 0x1c(r1)
+	cmplwi   r0, 0
+	mr       r31, r4
+	stw      r0, 0x14(r1)
+	stw      r5, 8(r1)
+	stw      r0, 0xc(r1)
+	stw      r3, 0x10(r1)
+	bne      lbl_8017D150
+	lwz      r12, 0(r3)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
+	b        lbl_8017D2C0
 
-	.loc_0x50:
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0xBC
+lbl_8017D150:
+	lwz      r12, 0(r3)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
+	b        lbl_8017D1BC
 
-	.loc_0x68:
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x1C0
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
+lbl_8017D168:
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	lwz      r3, 0x14(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_8017D2C0
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
 
-	.loc_0xBC:
-	  lwz       r12, 0x8(r1)
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x68
-	  b         .loc_0x1C0
+lbl_8017D1BC:
+	lwz      r12, 8(r1)
+	addi     r3, r1, 8
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_8017D168
+	b        lbl_8017D2C0
 
-	.loc_0xDC:
-	  lwz       r3, 0x10(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r12, 0x0(r3)
-	  mr        r4, r31
-	  lwz       r12, 0x50(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x130
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0x1C0
+lbl_8017D1DC:
+	lwz      r3, 0x10(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	lwz      r12, 0(r3)
+	mr       r4, r31
+	lwz      r12, 0x50(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	cmplwi   r0, 0
+	bne      lbl_8017D230
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
+	b        lbl_8017D2C0
 
-	.loc_0x130:
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0x1A4
+lbl_8017D230:
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
+	b        lbl_8017D2A4
 
-	.loc_0x150:
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x1C0
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
+lbl_8017D250:
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	lwz      r3, 0x14(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_8017D2C0
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
 
-	.loc_0x1A4:
-	  lwz       r12, 0x8(r1)
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x150
+lbl_8017D2A4:
+	lwz      r12, 8(r1)
+	addi     r3, r1, 8
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_8017D250
 
-	.loc_0x1C0:
-	  lwz       r3, 0x10(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r4, 0xC(r1)
-	  cmplw     r4, r3
-	  bne+      .loc_0xDC
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8017D2C0:
+	lwz      r3, 0x10(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r4, 0xc(r1)
+	cmplw    r4, r3
+	bne      lbl_8017D1DC
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -11432,18 +12407,17 @@ void ObjectMgr<Game::Onyon>::doDirectDraw(Graphics&)
 void Container<Game::Onyon>::getObject(void*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -11469,17 +12443,16 @@ u32 Container<Game::Onyon>::getTo() { return 0x0; }
 void __sinit_onyonMgr_cpp(void)
 {
 	/*
-	.loc_0x0:
-	  lis       r4, 0x8051
-	  li        r0, -0x1
-	  lfs       f0, 0x48B0(r4)
-	  lis       r3, 0x804B
-	  stw       r0, -0x6CD8(r13)
-	  stfsu     f0, 0x2420(r3)
-	  stfs      f0, -0x6CD4(r13)
-	  stfs      f0, 0x4(r3)
-	  stfs      f0, 0x8(r3)
-	  blr
+	lis      r4, __float_nan@ha
+	li       r0, -1
+	lfs      f0, __float_nan@l(r4)
+	lis      r3, lbl_804B2420@ha
+	stw      r0, lbl_805159A8@sda21(r13)
+	stfsu    f0, lbl_804B2420@l(r3)
+	stfs     f0, lbl_805159AC@sda21(r13)
+	stfs     f0, 4(r3)
+	stfs     f0, 8(r3)
+	blr
 	*/
 }
 
@@ -11491,9 +12464,8 @@ void __sinit_onyonMgr_cpp(void)
 @4 @efx::TForever::~TForever(void)
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x4
-	  b         -0x7694
+	addi     r3, r3, -4
+	b        __dt__Q23efx8TForeverFv
 	*/
 }
 
@@ -11505,9 +12477,8 @@ void __sinit_onyonMgr_cpp(void)
 @4 @efx::TUfoPodOpenSuck::~TUfoPodOpenSuck(void)
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x4
-	  b         -0xCC4
+	addi     r3, r3, -4
+	b        __dt__Q23efx15TUfoPodOpenSuckFv
 	*/
 }
 
@@ -11519,9 +12490,8 @@ void __sinit_onyonMgr_cpp(void)
 @4 @efx::TUfoGasIn::~TUfoGasIn(void)
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x4
-	  b         -0xD68
+	addi     r3, r3, -4
+	b        __dt__Q23efx9TUfoGasInFv
 	*/
 }
 
@@ -11533,9 +12503,8 @@ void __sinit_onyonMgr_cpp(void)
 @4 @efx::TUfoGasOut::~TUfoGasOut(void)
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x4
-	  b         -0xE0C
+	addi     r3, r3, -4
+	b        __dt__Q23efx10TUfoGasOutFv
 	*/
 }
 
@@ -11547,9 +12516,8 @@ void __sinit_onyonMgr_cpp(void)
 @4 @efx::TPodOpenA::~TPodOpenA(void)
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x4
-	  b         -0xEB4
+	addi     r3, r3, -4
+	b        __dt__Q23efx9TPodOpenAFv
 	*/
 }
 
@@ -11561,9 +12529,8 @@ void __sinit_onyonMgr_cpp(void)
 @4 @efx::TPodOpenB::~TPodOpenB(void)
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x4
-	  b         -0xF58
+	addi     r3, r3, -4
+	b        __dt__Q23efx9TPodOpenBFv
 	*/
 }
 
@@ -11575,9 +12542,8 @@ void __sinit_onyonMgr_cpp(void)
 @4 @efx::TPodKira::~TPodKira(void)
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x4
-	  b         -0xFFC
+	addi     r3, r3, -4
+	b        __dt__Q23efx8TPodKiraFv
 	*/
 }
 
@@ -11589,9 +12555,8 @@ void __sinit_onyonMgr_cpp(void)
 void @376 @Game::Onyon::onKeyEvent(SysShape::KeyEvent const&)
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x178
-	  b         -0x5254
+	addi     r3, r3, -376
+	b        onKeyEvent__Q24Game5OnyonFRCQ28SysShape8KeyEvent
 	*/
 }
 
@@ -11603,9 +12568,8 @@ void @376 @Game::Onyon::onKeyEvent(SysShape::KeyEvent const&)
 void NodeObjectMgr<Game::Onyon>::@28 @resetMgr()
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x1C
-	  b         -0xC48
+	addi     r3, r3, -28
+	b        "resetMgr__28NodeObjectMgr<Q24Game5Onyon>Fv"
 	*/
 }
 
@@ -11617,9 +12581,8 @@ void NodeObjectMgr<Game::Onyon>::@28 @resetMgr()
 void ObjectMgr<Game::Onyon>::@28 @doDirectDraw(Graphics&)
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x1C
-	  b         -0x2A4
+	addi     r3, r3, -28
+	b        "doDirectDraw__24ObjectMgr<Q24Game5Onyon>FR8Graphics"
 	*/
 }
 
@@ -11631,9 +12594,8 @@ void ObjectMgr<Game::Onyon>::@28 @doDirectDraw(Graphics&)
 void ObjectMgr<Game::Onyon>::@28 @doSimulation(float)
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x1C
-	  b         -0x4A0
+	addi     r3, r3, -28
+	b        "doSimulation__24ObjectMgr<Q24Game5Onyon>Ff"
 	*/
 }
 
@@ -11645,9 +12607,8 @@ void ObjectMgr<Game::Onyon>::@28 @doSimulation(float)
 void ObjectMgr<Game::Onyon>::@28 @doViewCalc()
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x1C
-	  b         -0x68C
+	addi     r3, r3, -28
+	b        "doViewCalc__24ObjectMgr<Q24Game5Onyon>Fv"
 	*/
 }
 
@@ -11659,9 +12620,8 @@ void ObjectMgr<Game::Onyon>::@28 @doViewCalc()
 void ObjectMgr<Game::Onyon>::@28 @doSetView(int)
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x1C
-	  b         -0x888
+	addi     r3, r3, -28
+	b        "doSetView__24ObjectMgr<Q24Game5Onyon>Fi"
 	*/
 }
 
@@ -11673,9 +12633,8 @@ void ObjectMgr<Game::Onyon>::@28 @doSetView(int)
 void ObjectMgr<Game::Onyon>::@28 @doEntry()
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x1C
-	  b         -0xA74
+	addi     r3, r3, -28
+	b        "doEntry__24ObjectMgr<Q24Game5Onyon>Fv"
 	*/
 }
 
@@ -11687,9 +12646,8 @@ void ObjectMgr<Game::Onyon>::@28 @doEntry()
 void ObjectMgr<Game::Onyon>::@28 @doAnimation()
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x1C
-	  b         -0xC60
+	addi     r3, r3, -28
+	b        "doAnimation__24ObjectMgr<Q24Game5Onyon>Fv"
 	*/
 }
 
@@ -11701,9 +12659,8 @@ void ObjectMgr<Game::Onyon>::@28 @doAnimation()
 void @48 @Game::ItemOnyon::Mgr::getEnd(void)
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x30
-	  b         -0x1258
+	addi     r3, r3, -48
+	b        getEnd__Q34Game9ItemOnyon3MgrFv
 	*/
 }
 
@@ -11715,9 +12672,8 @@ void @48 @Game::ItemOnyon::Mgr::getEnd(void)
 void @48 @Game::ItemOnyon::Mgr::getStart(void)
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x30
-	  b         -0x122C
+	addi     r3, r3, -48
+	b        getStart__Q34Game9ItemOnyon3MgrFv
 	*/
 }
 
@@ -11729,9 +12685,8 @@ void @48 @Game::ItemOnyon::Mgr::getStart(void)
 void @48 @Game::ItemOnyon::Mgr::getNext(void*)
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x30
-	  b         -0x1200
+	addi     r3, r3, -48
+	b        getNext__Q34Game9ItemOnyon3MgrFPv
 	*/
 }
 
@@ -11743,9 +12698,8 @@ void @48 @Game::ItemOnyon::Mgr::getNext(void*)
 void @48 @Game::ItemOnyon::Mgr::get(void*)
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x30
-	  b         -0x11D4
+	addi     r3, r3, -48
+	b        get__Q34Game9ItemOnyon3MgrFPv
 	*/
 }
 
@@ -11757,8 +12711,7 @@ void @48 @Game::ItemOnyon::Mgr::get(void*)
 @48 @Game::ItemOnyon::Mgr::~Mgr(void)
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x30
-	  b         -0x2888
+	addi     r3, r3, -48
+	b        __dt__Q34Game9ItemOnyon3MgrFv
 	*/
 }

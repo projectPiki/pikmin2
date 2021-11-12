@@ -1,6 +1,10 @@
 #include "types.h"
 
 /*
+    Generated from dpostproc
+*/
+
+/*
  * --INFO--
  * Address:	8002766C
  * Size:	000008
@@ -510,89 +514,88 @@ void __dt__Q37JGadget38TVector<
 JGadget::TVector_pointer_void::~TVector_pointer_void(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0xEC
-	  beq-      .loc_0xDC
-	  lwz       r5, 0x8(r30)
-	  lwz       r4, 0x4(r30)
-	  addi      r3, r5, 0x3
-	  cmplw     r5, r5
-	  sub       r3, r3, r5
-	  rlwinm    r3,r3,30,2,31
-	  bge-      .loc_0xB8
-	  rlwinm.   r0,r3,29,3,31
-	  mtctr     r0
-	  beq-      .loc_0xA0
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_80027C74
+	beq      lbl_80027C64
+	lwz      r5, 8(r30)
+	lwz      r4, 4(r30)
+	addi     r3, r5, 3
+	cmplw    r5, r5
+	subf     r3, r5, r3
+	srwi     r3, r3, 2
+	bge      lbl_80027C40
+	rlwinm.  r0, r3, 0x1d, 3, 0x1f
+	mtctr    r0
+	beq      lbl_80027C28
 
-	.loc_0x4C:
-	  lwz       r0, 0x0(r5)
-	  stw       r0, 0x0(r4)
-	  lwz       r0, 0x4(r5)
-	  stw       r0, 0x4(r4)
-	  lwz       r0, 0x8(r5)
-	  stw       r0, 0x8(r4)
-	  lwz       r0, 0xC(r5)
-	  stw       r0, 0xC(r4)
-	  lwz       r0, 0x10(r5)
-	  stw       r0, 0x10(r4)
-	  lwz       r0, 0x14(r5)
-	  stw       r0, 0x14(r4)
-	  lwz       r0, 0x18(r5)
-	  stw       r0, 0x18(r4)
-	  lwz       r0, 0x1C(r5)
-	  addi      r5, r5, 0x20
-	  stw       r0, 0x1C(r4)
-	  addi      r4, r4, 0x20
-	  bdnz+     .loc_0x4C
-	  andi.     r3, r3, 0x7
-	  beq-      .loc_0xB8
+lbl_80027BD4:
+	lwz      r0, 0(r5)
+	stw      r0, 0(r4)
+	lwz      r0, 4(r5)
+	stw      r0, 4(r4)
+	lwz      r0, 8(r5)
+	stw      r0, 8(r4)
+	lwz      r0, 0xc(r5)
+	stw      r0, 0xc(r4)
+	lwz      r0, 0x10(r5)
+	stw      r0, 0x10(r4)
+	lwz      r0, 0x14(r5)
+	stw      r0, 0x14(r4)
+	lwz      r0, 0x18(r5)
+	stw      r0, 0x18(r4)
+	lwz      r0, 0x1c(r5)
+	addi     r5, r5, 0x20
+	stw      r0, 0x1c(r4)
+	addi     r4, r4, 0x20
+	bdnz     lbl_80027BD4
+	andi.    r3, r3, 7
+	beq      lbl_80027C40
 
-	.loc_0xA0:
-	  mtctr     r3
+lbl_80027C28:
+	mtctr    r3
 
-	.loc_0xA4:
-	  lwz       r0, 0x0(r5)
-	  addi      r5, r5, 0x4
-	  stw       r0, 0x0(r4)
-	  addi      r4, r4, 0x4
-	  bdnz+     .loc_0xA4
+lbl_80027C2C:
+	lwz      r0, 0(r5)
+	addi     r5, r5, 4
+	stw      r0, 0(r4)
+	addi     r4, r4, 4
+	bdnz     lbl_80027C2C
 
-	.loc_0xB8:
-	  lwz       r0, 0x8(r30)
-	  mr        r3, r4
-	  b         .loc_0xC8
+lbl_80027C40:
+	lwz      r0, 8(r30)
+	mr       r3, r4
+	b        lbl_80027C50
 
-	.loc_0xC4:
-	  addi      r3, r3, 0x4
+lbl_80027C4C:
+	addi     r3, r3, 4
 
-	.loc_0xC8:
-	  cmplw     r3, r0
-	  bne+      .loc_0xC4
-	  stw       r4, 0x8(r30)
-	  lwz       r3, 0x4(r30)
-	  bl        -0x3BAC
+lbl_80027C50:
+	cmplw    r3, r0
+	bne      lbl_80027C4C
+	stw      r4, 8(r30)
+	lwz      r3, 4(r30)
+	bl       __dl__FPv
 
-	.loc_0xDC:
-	  extsh.    r0, r31
-	  ble-      .loc_0xEC
-	  mr        r3, r30
-	  bl        -0x3BBC
+lbl_80027C64:
+	extsh.   r0, r31
+	ble      lbl_80027C74
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0xEC:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80027C74:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -604,17 +607,11 @@ JGadget::TVector_pointer_void::~TVector_pointer_void(void)
 void JGadget::TVector_pointer_void::insert(void**, void* const&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  bl        .loc_0x20
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-
-	.loc_0x20:
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	bl "insert__Q27JGadget38TVector<Pv,Q27JGadget14TAllocator<Pv>>FPPvRCPv" lwz
+	r0, 0x14(r1) mtlr     r0 addi     r1, r1, 0x10 blr
 	*/
 }
 
@@ -681,65 +678,64 @@ void JGadget::TVector_pointer_void::erase(void**)
 void JGadget::TVector_pointer_void::erase(void**, void**)
 {
 	/*
-	.loc_0x0:
-	  lwz       r7, 0x8(r3)
-	  addi      r6, r7, 0x3
-	  cmplw     r5, r7
-	  sub       r6, r6, r5
-	  mr        r7, r4
-	  rlwinm    r6,r6,30,2,31
-	  bge-      .loc_0x94
-	  rlwinm.   r0,r6,29,3,31
-	  mtctr     r0
-	  beq-      .loc_0x7C
+	lwz      r7, 8(r3)
+	addi     r6, r7, 3
+	cmplw    r5, r7
+	subf     r6, r5, r6
+	mr       r7, r4
+	srwi     r6, r6, 2
+	bge      lbl_80027D9C
+	rlwinm.  r0, r6, 0x1d, 3, 0x1f
+	mtctr    r0
+	beq      lbl_80027D84
 
-	.loc_0x28:
-	  lwz       r0, 0x0(r5)
-	  stw       r0, 0x0(r7)
-	  lwz       r0, 0x4(r5)
-	  stw       r0, 0x4(r7)
-	  lwz       r0, 0x8(r5)
-	  stw       r0, 0x8(r7)
-	  lwz       r0, 0xC(r5)
-	  stw       r0, 0xC(r7)
-	  lwz       r0, 0x10(r5)
-	  stw       r0, 0x10(r7)
-	  lwz       r0, 0x14(r5)
-	  stw       r0, 0x14(r7)
-	  lwz       r0, 0x18(r5)
-	  stw       r0, 0x18(r7)
-	  lwz       r0, 0x1C(r5)
-	  addi      r5, r5, 0x20
-	  stw       r0, 0x1C(r7)
-	  addi      r7, r7, 0x20
-	  bdnz+     .loc_0x28
-	  andi.     r6, r6, 0x7
-	  beq-      .loc_0x94
+lbl_80027D30:
+	lwz      r0, 0(r5)
+	stw      r0, 0(r7)
+	lwz      r0, 4(r5)
+	stw      r0, 4(r7)
+	lwz      r0, 8(r5)
+	stw      r0, 8(r7)
+	lwz      r0, 0xc(r5)
+	stw      r0, 0xc(r7)
+	lwz      r0, 0x10(r5)
+	stw      r0, 0x10(r7)
+	lwz      r0, 0x14(r5)
+	stw      r0, 0x14(r7)
+	lwz      r0, 0x18(r5)
+	stw      r0, 0x18(r7)
+	lwz      r0, 0x1c(r5)
+	addi     r5, r5, 0x20
+	stw      r0, 0x1c(r7)
+	addi     r7, r7, 0x20
+	bdnz     lbl_80027D30
+	andi.    r6, r6, 7
+	beq      lbl_80027D9C
 
-	.loc_0x7C:
-	  mtctr     r6
+lbl_80027D84:
+	mtctr    r6
 
-	.loc_0x80:
-	  lwz       r0, 0x0(r5)
-	  addi      r5, r5, 0x4
-	  stw       r0, 0x0(r7)
-	  addi      r7, r7, 0x4
-	  bdnz+     .loc_0x80
+lbl_80027D88:
+	lwz      r0, 0(r5)
+	addi     r5, r5, 4
+	stw      r0, 0(r7)
+	addi     r7, r7, 4
+	bdnz     lbl_80027D88
 
-	.loc_0x94:
-	  lwz       r0, 0x8(r3)
-	  mr        r5, r7
-	  b         .loc_0xA4
+lbl_80027D9C:
+	lwz      r0, 8(r3)
+	mr       r5, r7
+	b        lbl_80027DAC
 
-	.loc_0xA0:
-	  addi      r5, r5, 0x4
+lbl_80027DA8:
+	addi     r5, r5, 4
 
-	.loc_0xA4:
-	  cmplw     r5, r0
-	  bne+      .loc_0xA0
-	  stw       r7, 0x8(r3)
-	  mr        r3, r4
-	  blr
+lbl_80027DAC:
+	cmplw    r5, r0
+	bne      lbl_80027DA8
+	stw      r7, 8(r3)
+	mr       r3, r4
+	blr
 	*/
 }
 

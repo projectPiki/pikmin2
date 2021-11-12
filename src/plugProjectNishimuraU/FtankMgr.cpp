@@ -1,5 +1,97 @@
 #include "types.h"
 
+/*
+    Generated from dpostproc
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_80489010
+    lbl_80489010:
+        .asciz "/enemy/data/Tank/fire_butadokkuri_main_s3tc.bti"
+    .global lbl_80489040
+    lbl_80489040:
+        .4byte 0x8375835E
+        .4byte 0x83688362
+        .4byte 0x834E838A
+        .4byte 0x837D836C
+        .4byte 0x815B8357
+        .4byte 0x83830000
+    .global lbl_80489058
+    lbl_80489058:
+        .asciz "FtankMgr.cpp"
+        .skip 3
+    .global lbl_80489068
+    lbl_80489068:
+        .asciz "P2Assert"
+        .skip 3
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__Q34Game5Ftank3Mgr
+    __vt__Q34Game5Ftank3Mgr:
+        .4byte 0
+        .4byte 0
+        .4byte doAnimation__Q24Game12EnemyMgrBaseFv
+        .4byte doEntry__Q24Game12EnemyMgrBaseFv
+        .4byte doSetView__Q24Game12EnemyMgrBaseFi
+        .4byte doViewCalc__Q24Game12EnemyMgrBaseFv
+        .4byte doSimulation__Q24Game12EnemyMgrBaseFf
+        .4byte doDirectDraw__Q24Game12EnemyMgrBaseFR8Graphics
+        .4byte doSimpleDraw__16GenericObjectMgrFP8Viewport
+        .4byte loadResources__16GenericObjectMgrFv
+        .4byte resetMgr__16GenericObjectMgrFv
+        .4byte pausable__16GenericObjectMgrFv
+        .4byte frozenable__16GenericObjectMgrFv
+        .4byte getMatrixLoadType__16GenericObjectMgrFv
+        .4byte 0
+        .4byte 0
+        .4byte "@4@__dt__Q34Game5Ftank3MgrFv"
+        .4byte getChildCount__5CNodeFv
+        .4byte "@4@getObject__Q24Game12EnemyMgrBaseFPv"
+        .4byte "@4@getNext__Q24Game12EnemyMgrBaseFPv"
+        .4byte "@4@getStart__Q24Game12EnemyMgrBaseFv"
+        .4byte "@4@getEnd__Q24Game12EnemyMgrBaseFv"
+        .4byte __dt__Q34Game5Ftank3MgrFv
+        .4byte getObject__Q24Game12EnemyMgrBaseFPv
+        .4byte getNext__Q24Game12EnemyMgrBaseFPv
+        .4byte getStart__Q24Game12EnemyMgrBaseFv
+        .4byte getEnd__Q24Game12EnemyMgrBaseFv
+        .4byte alloc__Q24Game12EnemyMgrBaseFv
+        .4byte birth__Q24Game12EnemyMgrBaseFRQ24Game13EnemyBirthArg
+        .4byte getJ3DModelData__Q24Game12EnemyMgrBaseCFv
+        .4byte getGenerator__Q24Game12EnemyMgrBaseCFv
+        .4byte killAll__Q24Game12EnemyMgrBaseFPQ24Game15CreatureKillArg
+        .4byte setupSoundViewerAndBas__Q24Game12EnemyMgrBaseFv
+        .4byte setDebugParm__Q24Game12EnemyMgrBaseFUl
+        .4byte resetDebugParm__Q24Game12EnemyMgrBaseFUl
+        .4byte getMaxObjects__Q24Game12EnemyMgrBaseCFv
+        .4byte startMovie__Q24Game12EnemyMgrBaseFv
+        .4byte endMovie__Q24Game12EnemyMgrBaseFv
+        .4byte get__Q24Game12EnemyMgrBaseFPv
+        .4byte isAlwaysMovieActor__Q24Game12EnemyMgrBaseFv
+        .4byte createObj__Q34Game5Ftank3MgrFi
+        .4byte getEnemy__Q34Game5Ftank3MgrFi
+        .4byte doAlloc__Q34Game5Ftank3MgrFv
+        .4byte getEnemyTypeID__Q34Game5Ftank3MgrFv
+        .4byte createModel__Q34Game4Tank3MgrFv
+        .4byte initParms__Q24Game12EnemyMgrBaseFv
+        .4byte loadResource__Q24Game12EnemyMgrBaseFv
+        .4byte initObjects__Q24Game12EnemyMgrBaseFv
+        .4byte initStoneSetting__Q24Game12EnemyMgrBaseFv
+        .4byte loadModelData__Q24Game12EnemyMgrBaseFP10JKRArchive
+        .4byte loadModelData__Q34Game4Tank3MgrFv
+        .4byte loadAnimData__Q34Game4Tank3MgrFv
+        .4byte loadTexData__Q34Game5Ftank3MgrFv
+        .4byte doLoadBmd__Q24Game12EnemyMgrBaseFPv
+        .4byte doLoadBdl__Q24Game12EnemyMgrBaseFPv
+        .4byte initGenerator__Q24Game12EnemyMgrBaseFv
+        .4byte getChangeTexture__Q34Game5Ftank3MgrFv
+        .4byte 0
+
+    .section .sdata, "wa"  # 0x80514680 - 0x80514D80
+    .global "cTankChangeTexName__Q34Game5Ftank22@unnamed@FtankMgr_cpp@"
+    "cTankChangeTexName__Q34Game5Ftank22@unnamed@FtankMgr_cpp@":
+        .4byte lbl_80489010
+*/
+
 namespace Game {
 
 /*
@@ -10,27 +102,26 @@ namespace Game {
 Ftank::Mgr::Mgr(int, unsigned char)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        -0x28728
-	  lis       r3, 0x804D
-	  lis       r4, 0x8049
-	  subi      r5, r3, 0x35A0
-	  mr        r3, r31
-	  stw       r5, 0x0(r31)
-	  addi      r5, r5, 0x38
-	  subi      r0, r4, 0x6FC0
-	  stw       r5, 0x4(r31)
-	  stw       r0, 0x18(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       __ct__Q34Game4Tank3MgrFiUc
+	lis      r3, __vt__Q34Game5Ftank3Mgr@ha
+	lis      r4, lbl_80489040@ha
+	addi     r5, r3, __vt__Q34Game5Ftank3Mgr@l
+	mr       r3, r31
+	stw      r5, 0(r31)
+	addi     r5, r5, 0x38
+	addi     r0, r4, lbl_80489040@l
+	stw      r5, 4(r31)
+	stw      r0, 0x18(r31)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -42,27 +133,26 @@ Ftank::Mgr::Mgr(int, unsigned char)
 void Ftank::Mgr::doAlloc()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  li        r3, 0x808
-	  bl        -0x27A2F0
-	  mr.       r4, r3
-	  beq-      .loc_0x2C
-	  bl        -0x21CFC
-	  mr        r4, r3
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	li       r3, 0x808
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_8029E1A8
+	bl       __ct__Q34Game4Tank5ParmsFv
+	mr       r4, r3
 
-	.loc_0x2C:
-	  mr        r3, r31
-	  bl        -0x16E910
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8029E1A8:
+	mr       r3, r31
+	bl       init__Q24Game12EnemyMgrBaseFPQ24Game14EnemyParmsBase
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -74,31 +164,30 @@ void Ftank::Mgr::doAlloc()
 void Ftank::Mgr::createObj(int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  mulli     r3, r31, 0x31C
-	  addi      r3, r3, 0x10
-	  bl        -0x27A23C
-	  lis       r4, 0x802A
-	  lis       r5, 0x802A
-	  subi      r4, r4, 0x1B7C
-	  mr        r7, r31
-	  subi      r5, r5, 0x1DDC
-	  li        r6, 0x31C
-	  bl        -0x1DC814
-	  stw       r3, 0x48(r30)
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	mulli    r3, r31, 0x31c
+	addi     r3, r3, 0x10
+	bl       __nwa__FUl
+	lis      r4, __ct__Q34Game5Ftank3ObjFv@ha
+	lis      r5, __dt__Q34Game5Ftank3ObjFv@ha
+	addi     r4, r4, __ct__Q34Game5Ftank3ObjFv@l
+	mr       r7, r31
+	addi     r5, r5, __dt__Q34Game5Ftank3ObjFv@l
+	li       r6, 0x31c
+	bl       __construct_new_array
+	stw      r3, 0x48(r30)
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -110,71 +199,70 @@ void Ftank::Mgr::createObj(int)
 Ftank::Obj::~Obj()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0xD4
-	  lis       r3, 0x804D
-	  addi      r0, r30, 0x30C
-	  subi      r4, r3, 0x342C
-	  stw       r4, 0x0(r30)
-	  addi      r3, r4, 0x1B0
-	  addi      r4, r4, 0x328
-	  stw       r3, 0x178(r30)
-	  lwz       r3, 0x17C(r30)
-	  stw       r4, 0x0(r3)
-	  lwz       r3, 0x17C(r30)
-	  sub       r0, r0, r3
-	  stw       r0, 0xC(r3)
-	  beq-      .loc_0xC4
-	  lis       r3, 0x804C
-	  addi      r0, r30, 0x308
-	  addi      r4, r3, 0x6B50
-	  stw       r4, 0x0(r30)
-	  addi      r3, r4, 0x1B0
-	  addi      r4, r4, 0x328
-	  stw       r3, 0x178(r30)
-	  lwz       r3, 0x17C(r30)
-	  stw       r4, 0x0(r3)
-	  lwz       r3, 0x17C(r30)
-	  sub       r0, r0, r3
-	  stw       r0, 0xC(r3)
-	  beq-      .loc_0xC4
-	  lis       r3, 0x804B
-	  addi      r0, r30, 0x2BC
-	  subi      r4, r3, 0x5CDC
-	  addi      r3, r30, 0x290
-	  stw       r4, 0x0(r30)
-	  addi      r5, r4, 0x1B0
-	  addi      r6, r4, 0x2F8
-	  li        r4, -0x1
-	  stw       r5, 0x178(r30)
-	  lwz       r5, 0x17C(r30)
-	  stw       r6, 0x0(r5)
-	  lwz       r5, 0x17C(r30)
-	  sub       r0, r0, r5
-	  stw       r0, 0xC(r5)
-	  bl        0x1732A4
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_8029E2F8
+	lis      r3, __vt__Q34Game5Ftank3Obj@ha
+	addi     r0, r30, 0x30c
+	addi     r4, r3, __vt__Q34Game5Ftank3Obj@l
+	stw      r4, 0(r30)
+	addi     r3, r4, 0x1b0
+	addi     r4, r4, 0x328
+	stw      r3, 0x178(r30)
+	lwz      r3, 0x17c(r30)
+	stw      r4, 0(r3)
+	lwz      r3, 0x17c(r30)
+	subf     r0, r3, r0
+	stw      r0, 0xc(r3)
+	beq      lbl_8029E2E8
+	lis      r3, __vt__Q34Game4Tank3Obj@ha
+	addi     r0, r30, 0x308
+	addi     r4, r3, __vt__Q34Game4Tank3Obj@l
+	stw      r4, 0(r30)
+	addi     r3, r4, 0x1b0
+	addi     r4, r4, 0x328
+	stw      r3, 0x178(r30)
+	lwz      r3, 0x17c(r30)
+	stw      r4, 0(r3)
+	lwz      r3, 0x17c(r30)
+	subf     r0, r3, r0
+	stw      r0, 0xc(r3)
+	beq      lbl_8029E2E8
+	lis      r3, __vt__Q24Game9EnemyBase@ha
+	addi     r0, r30, 0x2bc
+	addi     r4, r3, __vt__Q24Game9EnemyBase@l
+	addi     r3, r30, 0x290
+	stw      r4, 0(r30)
+	addi     r5, r4, 0x1b0
+	addi     r6, r4, 0x2f8
+	li       r4, -1
+	stw      r5, 0x178(r30)
+	lwz      r5, 0x17c(r30)
+	stw      r6, 0(r5)
+	lwz      r5, 0x17c(r30)
+	subf     r0, r5, r0
+	stw      r0, 0xc(r5)
+	bl       __dt__5CNodeFv
 
-	.loc_0xC4:
-	  extsh.    r0, r31
-	  ble-      .loc_0xD4
-	  mr        r3, r30
-	  bl        -0x27A240
+lbl_8029E2E8:
+	extsh.   r0, r31
+	ble      lbl_8029E2F8
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0xD4:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8029E2F8:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -186,11 +274,10 @@ Ftank::Obj::~Obj()
 void Ftank::Mgr::getEnemy(int)
 {
 	/*
-	.loc_0x0:
-	  mulli     r0, r4, 0x31C
-	  lwz       r3, 0x48(r3)
-	  add       r3, r3, r0
-	  blr
+	mulli    r0, r4, 0x31c
+	lwz      r3, 0x48(r3)
+	add      r3, r3, r0
+	blr
 	*/
 }
 
@@ -202,43 +289,40 @@ void Ftank::Mgr::getEnemy(int)
 void Ftank::Mgr::loadTexData()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  stw       r0, 0x44(r1)
-	  li        r0, 0
-	  stw       r31, 0x3C(r1)
-	  mr        r31, r3
-	  stw       r0, 0x44(r3)
-	  addi      r3, r1, 0x8
-	  lwz       r4, -0x7B38(r13)
-	  bl        0x1AE290
-	  lwz       r3, -0x63D8(r13)
-	  addi      r4, r1, 0x8
-	  bl        0x1AE44C
-	  cmplwi    r3, 0
-	  beq-      .loc_0x44
-	  lwz       r0, 0x30(r3)
-	  stw       r0, 0x44(r31)
+	stwu     r1, -0x40(r1)
+	mflr     r0
+	stw      r0, 0x44(r1)
+	li       r0, 0
+	stw      r31, 0x3c(r1)
+	mr       r31, r3
+	stw      r0, 0x44(r3)
+	addi     r3, r1, 8
+	lwz      r4,
+"cTankChangeTexName__Q34Game5Ftank22@unnamed@FtankMgr_cpp@"@sda21(r13) bl
+__ct__Q212LoadResource3ArgFPCc lwz      r3, gLoadResourceMgr@sda21(r13) addi r4,
+r1, 8 bl       load__Q212LoadResource3MgrFRQ212LoadResource3Arg cmplwi   r3, 0
+	beq      lbl_8029E368
+	lwz      r0, 0x30(r3)
+	stw      r0, 0x44(r31)
 
-	.loc_0x44:
-	  lwz       r0, 0x44(r31)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x6C
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  subi      r3, r3, 0x6FA8
-	  li        r4, 0x52
-	  subi      r5, r5, 0x6F98
-	  crclr     6, 0x6
-	  bl        -0x273D4C
+lbl_8029E368:
+	lwz      r0, 0x44(r31)
+	cmplwi   r0, 0
+	bne      lbl_8029E390
+	lis      r3, lbl_80489058@ha
+	lis      r5, lbl_80489068@ha
+	addi     r3, r3, lbl_80489058@l
+	li       r4, 0x52
+	addi     r5, r5, lbl_80489068@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x6C:
-	  lwz       r0, 0x44(r1)
-	  lwz       r31, 0x3C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
+lbl_8029E390:
+	lwz      r0, 0x44(r1)
+	lwz      r31, 0x3c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x40
+	blr
 	*/
 }
 
@@ -250,61 +334,60 @@ void Ftank::Mgr::loadTexData()
 Ftank::Mgr::~Mgr()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0xAC
-	  lis       r3, 0x804D
-	  subi      r3, r3, 0x35A0
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x38
-	  stw       r0, 0x4(r30)
-	  beq-      .loc_0x9C
-	  lis       r3, 0x804C
-	  addi      r3, r3, 0x6A68
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x38
-	  stw       r0, 0x4(r30)
-	  beq-      .loc_0x9C
-	  lis       r3, 0x804B
-	  subi      r3, r3, 0x760
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x38
-	  stw       r0, 0x4(r30)
-	  beq-      .loc_0x9C
-	  lis       r3, 0x804B
-	  addic.    r0, r30, 0x4
-	  subi      r3, r3, 0x5304
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x38
-	  stw       r0, 0x4(r30)
-	  beq-      .loc_0x9C
-	  lis       r4, 0x804B
-	  addi      r3, r30, 0x4
-	  subi      r0, r4, 0x5324
-	  li        r4, 0
-	  stw       r0, 0x4(r30)
-	  bl        0x17314C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_8029E450
+	lis      r3, __vt__Q34Game5Ftank3Mgr@ha
+	addi     r3, r3, __vt__Q34Game5Ftank3Mgr@l
+	stw      r3, 0(r30)
+	addi     r0, r3, 0x38
+	stw      r0, 4(r30)
+	beq      lbl_8029E440
+	lis      r3, __vt__Q34Game4Tank3Mgr@ha
+	addi     r3, r3, __vt__Q34Game4Tank3Mgr@l
+	stw      r3, 0(r30)
+	addi     r0, r3, 0x38
+	stw      r0, 4(r30)
+	beq      lbl_8029E440
+	lis      r3, __vt__Q24Game12EnemyMgrBase@ha
+	addi     r3, r3, __vt__Q24Game12EnemyMgrBase@l
+	stw      r3, 0(r30)
+	addi     r0, r3, 0x38
+	stw      r0, 4(r30)
+	beq      lbl_8029E440
+	lis      r3, __vt__Q24Game13IEnemyMgrBase@ha
+	addic.   r0, r30, 4
+	addi     r3, r3, __vt__Q24Game13IEnemyMgrBase@l
+	stw      r3, 0(r30)
+	addi     r0, r3, 0x38
+	stw      r0, 4(r30)
+	beq      lbl_8029E440
+	lis      r4, __vt__16GenericContainer@ha
+	addi     r3, r30, 4
+	addi     r0, r4, __vt__16GenericContainer@l
+	li       r4, 0
+	stw      r0, 4(r30)
+	bl       __dt__5CNodeFv
 
-	.loc_0x9C:
-	  extsh.    r0, r31
-	  ble-      .loc_0xAC
-	  mr        r3, r30
-	  bl        -0x27A398
+lbl_8029E440:
+	extsh.   r0, r31
+	ble      lbl_8029E450
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0xAC:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8029E450:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -323,9 +406,8 @@ u32 Ftank::Mgr::getEnemyTypeID() { return 0x18; }
 void Ftank::Mgr::getChangeTexture()
 {
 	/*
-	.loc_0x0:
-	  lwz       r3, 0x44(r3)
-	  blr
+	lwz      r3, 0x44(r3)
+	blr
 	*/
 }
 
@@ -337,9 +419,8 @@ void Ftank::Mgr::getChangeTexture()
 Ftank::Mgr::@4 @~Mgr()
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x4
-	  b         -0xDC
+	addi     r3, r3, -4
+	b        __dt__Q34Game5Ftank3MgrFv
 	*/
 }
 } // namespace Game

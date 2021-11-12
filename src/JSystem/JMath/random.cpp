@@ -1,6 +1,10 @@
 #include "types.h"
 
 /*
+    Generated from dpostproc
+*/
+
+/*
  * --INFO--
  * Address:	80035100
  * Size:	000008
@@ -8,9 +12,8 @@
 JMath::TRandom_fast_::TRandom_fast_(unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stw       r4, 0x0(r3)
-	  blr
+	stw      r4, 0(r3)
+	blr
 	*/
 }
 

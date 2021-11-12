@@ -1,6 +1,181 @@
 #include "types.h"
 
 /*
+    Generated from dpostproc
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_80479688
+    lbl_80479688:
+        .asciz "JaiInit.aaf"
+    .global lbl_80479694
+    lbl_80479694:
+        .asciz "AudioRes/"
+        .skip 2
+    .global lbl_804796A0
+    lbl_804796A0:
+        .asciz "JaiSeqs.arc"
+
+    .section .sdata, "wa"  # 0x80514680 - 0x80514D80
+    .global distanceParameterMoveTime__18JAIGlobalParameter
+    distanceParameterMoveTime__18JAIGlobalParameter:
+        .byte 0x3
+    .global audioSystemThreadPriority__18JAIGlobalParameter
+    audioSystemThreadPriority__18JAIGlobalParameter:
+        .byte 0x2
+    .global audioDvdThreadPriority__18JAIGlobalParameter
+    audioDvdThreadPriority__18JAIGlobalParameter:
+        .byte 0x3
+    .global seqMuteVolumeSePlay__18JAIGlobalParameter
+    seqMuteVolumeSePlay__18JAIGlobalParameter:
+        .byte 0x28
+    .global seqParameterLines__18JAIGlobalParameter
+    seqParameterLines__18JAIGlobalParameter:
+        .byte 0x7
+    .global streamParameterLines__18JAIGlobalParameter
+    streamParameterLines__18JAIGlobalParameter:
+        .byte 0x7
+    .global seDistanceFxParameter__18JAIGlobalParameter
+    seDistanceFxParameter__18JAIGlobalParameter:
+        .byte 0x0
+        .byte 0x96
+    .global soundSceneMax__18JAIGlobalParameter
+    soundSceneMax__18JAIGlobalParameter:
+        .4byte 0x00000002
+    .global seRegistMax__18JAIGlobalParameter
+    seRegistMax__18JAIGlobalParameter:
+        .4byte 0x00000014
+    .global seTrackMax__18JAIGlobalParameter
+    seTrackMax__18JAIGlobalParameter:
+        .4byte 0x00000020
+    .global seqTrackMax__18JAIGlobalParameter
+    seqTrackMax__18JAIGlobalParameter:
+        .4byte 0x00000020
+    .global seqPlayTrackMax__18JAIGlobalParameter
+    seqPlayTrackMax__18JAIGlobalParameter:
+        .4byte 0x00000008
+    .global seqControlBufferMax__18JAIGlobalParameter
+    seqControlBufferMax__18JAIGlobalParameter:
+        .4byte 0x00000008
+    .global autoHeapMax__18JAIGlobalParameter
+    autoHeapMax__18JAIGlobalParameter:
+        .4byte 0x00000002
+    .global stayHeapMax__18JAIGlobalParameter
+    stayHeapMax__18JAIGlobalParameter:
+        .4byte 0x00000002
+    .global autoHeapRoomSize__18JAIGlobalParameter
+    autoHeapRoomSize__18JAIGlobalParameter:
+        .4byte 0x0000C000
+    .global stayHeapSize__18JAIGlobalParameter
+    stayHeapSize__18JAIGlobalParameter:
+        .4byte 0x00010000
+    .global initDataFileName__18JAIGlobalParameter
+    initDataFileName__18JAIGlobalParameter:
+        .4byte lbl_80479688
+    .global wavePath__18JAIGlobalParameter
+    wavePath__18JAIGlobalParameter:
+        .4byte lbl_80516F28
+    .global sequenceArchivesPath__18JAIGlobalParameter
+    sequenceArchivesPath__18JAIGlobalParameter:
+        .4byte lbl_80516F30
+    .global streamPath__18JAIGlobalParameter
+    streamPath__18JAIGlobalParameter:
+        .4byte lbl_80516F38
+    .global audioResPath__18JAIGlobalParameter
+    audioResPath__18JAIGlobalParameter:
+        .4byte lbl_80479694
+    .global sequenceArchivesFileName__18JAIGlobalParameter
+    sequenceArchivesFileName__18JAIGlobalParameter:
+        .4byte lbl_804796A0
+    .global inputGainDown__18JAIGlobalParameter
+    inputGainDown__18JAIGlobalParameter:
+        .float 0.5
+    .global outputGainUp__18JAIGlobalParameter
+    outputGainUp__18JAIGlobalParameter:
+        .float 1.2
+    .global distanceMax__18JAIGlobalParameter
+    distanceMax__18JAIGlobalParameter:
+        .float 5000.0
+    .global maxVolumeDistance__18JAIGlobalParameter
+    maxVolumeDistance__18JAIGlobalParameter:
+        .float 1000.0
+    .global seDolbyCenterValue__18JAIGlobalParameter
+    seDolbyCenterValue__18JAIGlobalParameter:
+        .float 30.0
+    .global seDolbyFrontDistanceMax__18JAIGlobalParameter
+    seDolbyFrontDistanceMax__18JAIGlobalParameter:
+        .float -300.0
+    .global seDolbyBehindDistanceMax__18JAIGlobalParameter
+    seDolbyBehindDistanceMax__18JAIGlobalParameter:
+        .float 1000.0
+    .global dopplarMoveTime__18JAIGlobalParameter
+    dopplarMoveTime__18JAIGlobalParameter:
+        .4byte 0x0000000F
+    .global dummyObjectLifeTime__18JAIGlobalParameter
+    dummyObjectLifeTime__18JAIGlobalParameter:
+        .4byte 0x00000258
+    .global dummyObjectMax__18JAIGlobalParameter
+    dummyObjectMax__18JAIGlobalParameter:
+        .4byte 0x0000000A
+    .global seqMuteMoveSpeedSePlay__18JAIGlobalParameter
+    seqMuteMoveSpeedSePlay__18JAIGlobalParameter:
+        .4byte 0x00000003
+    .global audioCameraMax__18JAIGlobalParameter
+    audioCameraMax__18JAIGlobalParameter:
+        .4byte 0x00000001
+    .global systemTrackMax__18JAIGlobalParameter
+    systemTrackMax__18JAIGlobalParameter:
+        .4byte 0x00000100
+    .global systemRootTrackMax__18JAIGlobalParameter
+    systemRootTrackMax__18JAIGlobalParameter:
+        .4byte 0x00000010
+    .global panDistanceMax__18JAIGlobalParameter
+    panDistanceMax__18JAIGlobalParameter:
+        .float 500.0
+    .global panDistance2Max__18JAIGlobalParameter
+    panDistance2Max__18JAIGlobalParameter:
+        .float 1000.0
+    .global panAngleParameter__18JAIGlobalParameter
+    panAngleParameter__18JAIGlobalParameter:
+        .float 12.0
+    .global panAngleParameter2__18JAIGlobalParameter
+    panAngleParameter2__18JAIGlobalParameter:
+        .float 2.4
+    .global dopplarParameter__18JAIGlobalParameter
+    dopplarParameter__18JAIGlobalParameter:
+        .float 3200.0
+    .global seDistanceWaitMax__18JAIGlobalParameter
+    seDistanceWaitMax__18JAIGlobalParameter:
+        .4byte 0x000C0000
+    .global seDistancepitchMax__18JAIGlobalParameter
+    seDistancepitchMax__18JAIGlobalParameter:
+        .float 0.2
+
+    .section .sbss # 0x80514D80 - 0x80516360
+    .global seDefaultFx__18JAIGlobalParameter
+    seDefaultFx__18JAIGlobalParameter:
+        .skip 0x4
+    .global interfaceHeapSize__18JAIGlobalParameter
+    interfaceHeapSize__18JAIGlobalParameter:
+        .skip 0x4
+    .global minDistanceVolume__18JAIGlobalParameter
+    minDistanceVolume__18JAIGlobalParameter:
+        .skip 0x8
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_80516F28
+    lbl_80516F28:
+        .asciz "Banks/"
+        .skip 1
+    .global lbl_80516F30
+    lbl_80516F30:
+        .asciz "Seqs/"
+        .skip 2
+    .global lbl_80516F38
+    lbl_80516F38:
+        .asciz "Stream/"
+*/
+
+/*
  * --INFO--
  * Address:	........
  * Size:	000008
@@ -38,12 +213,11 @@ void JAIGlobalParameter::setParamInitFileLoadSwitch(unsigned char)
 void JAIGlobalParameter::setParamInitDataPointer(void*)
 {
 	/*
-	.loc_0x0:
-	  stw       r3, -0x7438(r13)
-	  li        r0, 0x4
-	  lwz       r3, -0x7498(r13)
-	  stb       r0, 0xC(r3)
-	  blr
+	stw      r3, aafPointer__Q27JAInter8InitData@sda21(r13)
+	li       r0, 4
+	lwz      r3, msBasic__8JAIBasic@sda21(r13)
+	stb      r0, 0xc(r3)
+	blr
 	*/
 }
 
@@ -65,9 +239,8 @@ void JAIGlobalParameter::setParamInterfaceHeapSize(unsigned long)
 void JAIGlobalParameter::setParamSoundSceneMax(unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stw       r3, -0x7E98(r13)
-	  blr
+	stw      r3, soundSceneMax__18JAIGlobalParameter@sda21(r13)
+	blr
 	*/
 }
 
@@ -89,9 +262,8 @@ void JAIGlobalParameter::setParamSeRegistMax(unsigned long)
 void JAIGlobalParameter::setParamSeTrackMax(unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stw       r3, -0x7E90(r13)
-	  blr
+	stw      r3, seTrackMax__18JAIGlobalParameter@sda21(r13)
+	blr
 	*/
 }
 
@@ -113,11 +285,10 @@ void JAIGlobalParameter::setParamSeqTrackMax(unsigned long)
 void JAIGlobalParameter::setParamSeqPlayTrackMax(unsigned long)
 {
 	/*
-	.loc_0x0:
-	  rlwinm    r0,r3,1,0,30
-	  stw       r3, -0x7E88(r13)
-	  stw       r0, -0x7E84(r13)
-	  blr
+	slwi     r0, r3, 1
+	stw      r3, seqPlayTrackMax__18JAIGlobalParameter@sda21(r13)
+	stw      r0, seqControlBufferMax__18JAIGlobalParameter@sda21(r13)
+	blr
 	*/
 }
 
@@ -129,9 +300,8 @@ void JAIGlobalParameter::setParamSeqPlayTrackMax(unsigned long)
 void JAIGlobalParameter::setParamSeqControlBufferMax(unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stw       r3, -0x7E84(r13)
-	  blr
+	stw      r3, seqControlBufferMax__18JAIGlobalParameter@sda21(r13)
+	blr
 	*/
 }
 
@@ -163,9 +333,8 @@ void JAIGlobalParameter::setParamStreamParameterBufferMax(unsigned long)
 void JAIGlobalParameter::setParamAutoHeapMax(unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stw       r3, -0x7E80(r13)
-	  blr
+	stw      r3, autoHeapMax__18JAIGlobalParameter@sda21(r13)
+	blr
 	*/
 }
 
@@ -177,9 +346,8 @@ void JAIGlobalParameter::setParamAutoHeapMax(unsigned long)
 void JAIGlobalParameter::setParamStayHeapMax(unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stw       r3, -0x7E7C(r13)
-	  blr
+	stw      r3, stayHeapMax__18JAIGlobalParameter@sda21(r13)
+	blr
 	*/
 }
 
@@ -211,9 +379,8 @@ void JAIGlobalParameter::setParamOutputGainUp(float)
 void JAIGlobalParameter::setParamDistanceMax(float)
 {
 	/*
-	.loc_0x0:
-	  stfs      f1, -0x7E50(r13)
-	  blr
+	stfs     f1, distanceMax__18JAIGlobalParameter@sda21(r13)
+	blr
 	*/
 }
 
@@ -225,9 +392,8 @@ void JAIGlobalParameter::setParamDistanceMax(float)
 void JAIGlobalParameter::setParamMaxVolumeDistance(float)
 {
 	/*
-	.loc_0x0:
-	  stfs      f1, -0x7E4C(r13)
-	  blr
+	stfs     f1, maxVolumeDistance__18JAIGlobalParameter@sda21(r13)
+	blr
 	*/
 }
 
@@ -239,9 +405,8 @@ void JAIGlobalParameter::setParamMaxVolumeDistance(float)
 void JAIGlobalParameter::setParamMinDistanceVolume(float)
 {
 	/*
-	.loc_0x0:
-	  stfs      f1, -0x7440(r13)
-	  blr
+	stfs     f1, minDistanceVolume__18JAIGlobalParameter@sda21(r13)
+	blr
 	*/
 }
 
@@ -293,12 +458,11 @@ void JAIGlobalParameter::setParamStreamDecodedBufferBlocks(unsigned long)
 void JAIGlobalParameter::setParamStreamInsideBufferCut(bool)
 {
 	/*
-	.loc_0x0:
-	  lwz       r4, -0x7498(r13)
-	  lbz       r0, 0xE(r4)
-	  rlwimi    r0,r3,3,28,28
-	  stb       r0, 0xE(r4)
-	  blr
+	lwz      r4, msBasic__8JAIBasic@sda21(r13)
+	lbz      r0, 0xe(r4)
+	rlwimi   r0, r3, 3, 0x1c, 0x1c
+	stb      r0, 0xe(r4)
+	blr
 	*/
 }
 
@@ -310,9 +474,8 @@ void JAIGlobalParameter::setParamStreamInsideBufferCut(bool)
 void JAIGlobalParameter::setParamAutoHeapRoomSize(unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stw       r3, -0x7E78(r13)
-	  blr
+	stw      r3, autoHeapRoomSize__18JAIGlobalParameter@sda21(r13)
+	blr
 	*/
 }
 
@@ -324,9 +487,8 @@ void JAIGlobalParameter::setParamAutoHeapRoomSize(unsigned long)
 void JAIGlobalParameter::setParamStayHeapSize(unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stw       r3, -0x7E74(r13)
-	  blr
+	stw      r3, stayHeapSize__18JAIGlobalParameter@sda21(r13)
+	blr
 	*/
 }
 
@@ -368,9 +530,8 @@ void JAIGlobalParameter::setParamSeDolbyBehindDistanceMax(float)
 void JAIGlobalParameter::setParamInitDataFileName(char*)
 {
 	/*
-	.loc_0x0:
-	  stw       r3, -0x7E70(r13)
-	  blr
+	stw      r3, initDataFileName__18JAIGlobalParameter@sda21(r13)
+	blr
 	*/
 }
 
@@ -432,9 +593,8 @@ void JAIGlobalParameter::setParamAudioResPath(char*)
 void JAIGlobalParameter::setParamSequenceArchivesFileName(char*)
 {
 	/*
-	.loc_0x0:
-	  stw       r3, -0x7E5C(r13)
-	  blr
+	stw      r3, sequenceArchivesFileName__18JAIGlobalParameter@sda21(r13)
+	blr
 	*/
 }
 
@@ -476,9 +636,8 @@ void JAIGlobalParameter::setParamDopplarMoveTime(unsigned long)
 void JAIGlobalParameter::setParamDistanceParameterMoveTime(unsigned char)
 {
 	/*
-	.loc_0x0:
-	  stb       r3, -0x7EA0(r13)
-	  blr
+	stb      r3, distanceParameterMoveTime__18JAIGlobalParameter@sda21(r13)
+	blr
 	*/
 }
 
@@ -530,9 +689,8 @@ void JAIGlobalParameter::setParamSeqMuteMoveSpeedSePlay(unsigned long)
 void JAIGlobalParameter::setParamAudioCameraMax(unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stw       r3, -0x7E2C(r13)
-	  blr
+	stw      r3, audioCameraMax__18JAIGlobalParameter@sda21(r13)
+	blr
 	*/
 }
 
@@ -544,9 +702,8 @@ void JAIGlobalParameter::setParamAudioCameraMax(unsigned long)
 void JAIGlobalParameter::setParamSystemTrackMax(long)
 {
 	/*
-	.loc_0x0:
-	  stw       r3, -0x7E28(r13)
-	  blr
+	stw      r3, systemTrackMax__18JAIGlobalParameter@sda21(r13)
+	blr
 	*/
 }
 
@@ -558,9 +715,8 @@ void JAIGlobalParameter::setParamSystemTrackMax(long)
 void JAIGlobalParameter::setParamSystemRootTrackMax(long)
 {
 	/*
-	.loc_0x0:
-	  stw       r3, -0x7E24(r13)
-	  blr
+	stw      r3, systemRootTrackMax__18JAIGlobalParameter@sda21(r13)
+	blr
 	*/
 }
 
@@ -642,43 +798,42 @@ void JAIGlobalParameter::setParamStreamParameterLines(unsigned char)
 void JAIGlobalParameter::setParamSoundOutputMode(unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  cmpwi     r3, 0x1
-	  stw       r0, 0x14(r1)
-	  li        r0, 0x1
-	  beq-      .loc_0x3C
-	  bge-      .loc_0x28
-	  cmpwi     r3, 0
-	  bge-      .loc_0x34
-	  b         .loc_0x48
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	cmpwi    r3, 1
+	stw      r0, 0x14(r1)
+	li       r0, 1
+	beq      lbl_800ADA44
+	bge      lbl_800ADA30
+	cmpwi    r3, 0
+	bge      lbl_800ADA3C
+	b        lbl_800ADA50
 
-	.loc_0x28:
-	  cmpwi     r3, 0x3
-	  bge-      .loc_0x48
-	  b         .loc_0x44
+lbl_800ADA30:
+	cmpwi    r3, 3
+	bge      lbl_800ADA50
+	b        lbl_800ADA4C
 
-	.loc_0x34:
-	  li        r0, 0
-	  b         .loc_0x48
+lbl_800ADA3C:
+	li       r0, 0
+	b        lbl_800ADA50
 
-	.loc_0x3C:
-	  li        r0, 0x1
-	  b         .loc_0x48
+lbl_800ADA44:
+	li       r0, 1
+	b        lbl_800ADA50
 
-	.loc_0x44:
-	  li        r0, 0x2
+lbl_800ADA4C:
+	li       r0, 2
 
-	.loc_0x48:
-	  lwz       r4, -0x7498(r13)
-	  stb       r3, 0xD(r4)
-	  mr        r3, r0
-	  bl        -0x9124
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_800ADA50:
+	lwz      r4, msBasic__8JAIBasic@sda21(r13)
+	stb      r3, 0xd(r4)
+	mr       r3, r0
+	bl       setOutputMode__9JASDriverFUl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -740,16 +895,15 @@ void JAIGlobalParameter::getParamInterfaceHeapSize()
 void JAIGlobalParameter::getParamSeCategoryMax()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  bl        0x9BB8
-	  lwz       r0, 0x14(r1)
-	  rlwinm    r3,r3,0,24,31
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	bl       getCategotyMax__Q27JAInter10SoundTableFv
+	lwz      r0, 0x14(r1)
+	clrlwi   r3, r3, 0x18
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -761,9 +915,8 @@ void JAIGlobalParameter::getParamSeCategoryMax()
 void JAIGlobalParameter::getParamSoundSceneMax()
 {
 	/*
-	.loc_0x0:
-	  lwz       r3, -0x7E98(r13)
-	  blr
+	lwz      r3, soundSceneMax__18JAIGlobalParameter@sda21(r13)
+	blr
 	*/
 }
 
@@ -775,9 +928,8 @@ void JAIGlobalParameter::getParamSoundSceneMax()
 void JAIGlobalParameter::getParamSeRegistMax()
 {
 	/*
-	.loc_0x0:
-	  lwz       r3, -0x7E94(r13)
-	  blr
+	lwz      r3, seRegistMax__18JAIGlobalParameter@sda21(r13)
+	blr
 	*/
 }
 
@@ -789,9 +941,8 @@ void JAIGlobalParameter::getParamSeRegistMax()
 void JAIGlobalParameter::getParamSeTrackMax()
 {
 	/*
-	.loc_0x0:
-	  lwz       r3, -0x7E90(r13)
-	  blr
+	lwz      r3, seTrackMax__18JAIGlobalParameter@sda21(r13)
+	blr
 	*/
 }
 
@@ -803,9 +954,8 @@ void JAIGlobalParameter::getParamSeTrackMax()
 void JAIGlobalParameter::getParamSeqTrackMax()
 {
 	/*
-	.loc_0x0:
-	  lwz       r3, -0x7E8C(r13)
-	  blr
+	lwz      r3, seqTrackMax__18JAIGlobalParameter@sda21(r13)
+	blr
 	*/
 }
 
@@ -817,9 +967,8 @@ void JAIGlobalParameter::getParamSeqTrackMax()
 void JAIGlobalParameter::getParamSeqControlBufferMax()
 {
 	/*
-	.loc_0x0:
-	  lwz       r3, -0x7E84(r13)
-	  blr
+	lwz      r3, seqControlBufferMax__18JAIGlobalParameter@sda21(r13)
+	blr
 	*/
 }
 
@@ -851,9 +1000,8 @@ void JAIGlobalParameter::getParamStreamParameterBufferMax()
 void JAIGlobalParameter::getParamAutoHeapMax()
 {
 	/*
-	.loc_0x0:
-	  lwz       r3, -0x7E80(r13)
-	  blr
+	lwz      r3, autoHeapMax__18JAIGlobalParameter@sda21(r13)
+	blr
 	*/
 }
 
@@ -865,9 +1013,8 @@ void JAIGlobalParameter::getParamAutoHeapMax()
 void JAIGlobalParameter::getParamStayHeapMax()
 {
 	/*
-	.loc_0x0:
-	  lwz       r3, -0x7E7C(r13)
-	  blr
+	lwz      r3, stayHeapMax__18JAIGlobalParameter@sda21(r13)
+	blr
 	*/
 }
 
@@ -879,9 +1026,8 @@ void JAIGlobalParameter::getParamStayHeapMax()
 void JAIGlobalParameter::getParamSeqPlayTrackMax()
 {
 	/*
-	.loc_0x0:
-	  lwz       r3, -0x7E88(r13)
-	  blr
+	lwz      r3, seqPlayTrackMax__18JAIGlobalParameter@sda21(r13)
+	blr
 	*/
 }
 
@@ -913,9 +1059,8 @@ void JAIGlobalParameter::getParamOutputGainUp()
 void JAIGlobalParameter::getParamDistanceMax()
 {
 	/*
-	.loc_0x0:
-	  lfs       f1, -0x7E50(r13)
-	  blr
+	lfs      f1, distanceMax__18JAIGlobalParameter@sda21(r13)
+	blr
 	*/
 }
 
@@ -927,9 +1072,8 @@ void JAIGlobalParameter::getParamDistanceMax()
 void JAIGlobalParameter::getParamMaxVolumeDistance()
 {
 	/*
-	.loc_0x0:
-	  lfs       f1, -0x7E4C(r13)
-	  blr
+	lfs      f1, maxVolumeDistance__18JAIGlobalParameter@sda21(r13)
+	blr
 	*/
 }
 
@@ -941,9 +1085,8 @@ void JAIGlobalParameter::getParamMaxVolumeDistance()
 void JAIGlobalParameter::getParamMinDistanceVolume()
 {
 	/*
-	.loc_0x0:
-	  lfs       f1, -0x7440(r13)
-	  blr
+	lfs      f1, minDistanceVolume__18JAIGlobalParameter@sda21(r13)
+	blr
 	*/
 }
 
@@ -995,15 +1138,14 @@ void JAIGlobalParameter::getParamStreamUseOffFlag()
 void JAIGlobalParameter::getParamStreamDecodedBufferBlocks()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  bl        0xB3C4
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	bl       getDecodedBufferBlocks__Q27JAInter9StreamMgrFv
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1015,9 +1157,8 @@ void JAIGlobalParameter::getParamStreamDecodedBufferBlocks()
 void JAIGlobalParameter::getParamAutoHeapRoomSize()
 {
 	/*
-	.loc_0x0:
-	  lwz       r3, -0x7E78(r13)
-	  blr
+	lwz      r3, autoHeapRoomSize__18JAIGlobalParameter@sda21(r13)
+	blr
 	*/
 }
 
@@ -1029,9 +1170,8 @@ void JAIGlobalParameter::getParamAutoHeapRoomSize()
 void JAIGlobalParameter::getParamStayHeapSize()
 {
 	/*
-	.loc_0x0:
-	  lwz       r3, -0x7E74(r13)
-	  blr
+	lwz      r3, stayHeapSize__18JAIGlobalParameter@sda21(r13)
+	blr
 	*/
 }
 
@@ -1043,9 +1183,8 @@ void JAIGlobalParameter::getParamStayHeapSize()
 void JAIGlobalParameter::getParamSeDolbyCenterValue()
 {
 	/*
-	.loc_0x0:
-	  lfs       f1, -0x7E48(r13)
-	  blr
+	lfs      f1, seDolbyCenterValue__18JAIGlobalParameter@sda21(r13)
+	blr
 	*/
 }
 
@@ -1077,9 +1216,8 @@ void JAIGlobalParameter::getParamSeDolbyBehindDistanceMax()
 void JAIGlobalParameter::getParamInitDataFileName()
 {
 	/*
-	.loc_0x0:
-	  lwz       r3, -0x7E70(r13)
-	  blr
+	lwz      r3, initDataFileName__18JAIGlobalParameter@sda21(r13)
+	blr
 	*/
 }
 
@@ -1101,9 +1239,8 @@ void JAIGlobalParameter::getParamSoundTableFileName()
 void JAIGlobalParameter::getParamWavePath()
 {
 	/*
-	.loc_0x0:
-	  lwz       r3, -0x7E6C(r13)
-	  blr
+	lwz      r3, wavePath__18JAIGlobalParameter@sda21(r13)
+	blr
 	*/
 }
 
@@ -1115,9 +1252,8 @@ void JAIGlobalParameter::getParamWavePath()
 void JAIGlobalParameter::getParamSequenceArchivesPath()
 {
 	/*
-	.loc_0x0:
-	  lwz       r3, -0x7E68(r13)
-	  blr
+	lwz      r3, sequenceArchivesPath__18JAIGlobalParameter@sda21(r13)
+	blr
 	*/
 }
 
@@ -1129,9 +1265,8 @@ void JAIGlobalParameter::getParamSequenceArchivesPath()
 void JAIGlobalParameter::getParamStreamPath()
 {
 	/*
-	.loc_0x0:
-	  lwz       r3, -0x7E64(r13)
-	  blr
+	lwz      r3, streamPath__18JAIGlobalParameter@sda21(r13)
+	blr
 	*/
 }
 
@@ -1143,9 +1278,8 @@ void JAIGlobalParameter::getParamStreamPath()
 void JAIGlobalParameter::getParamAudioResPath()
 {
 	/*
-	.loc_0x0:
-	  lwz       r3, -0x7E60(r13)
-	  blr
+	lwz      r3, audioResPath__18JAIGlobalParameter@sda21(r13)
+	blr
 	*/
 }
 
@@ -1157,9 +1291,8 @@ void JAIGlobalParameter::getParamAudioResPath()
 void JAIGlobalParameter::getParamSequenceArchivesFileName()
 {
 	/*
-	.loc_0x0:
-	  lwz       r3, -0x7E5C(r13)
-	  blr
+	lwz      r3, sequenceArchivesFileName__18JAIGlobalParameter@sda21(r13)
+	blr
 	*/
 }
 
@@ -1191,9 +1324,8 @@ void JAIGlobalParameter::getParamStreamEntryCancelFlag()
 void JAIGlobalParameter::getParamDopplarMoveTime()
 {
 	/*
-	.loc_0x0:
-	  lwz       r3, -0x7E3C(r13)
-	  blr
+	lwz      r3, dopplarMoveTime__18JAIGlobalParameter@sda21(r13)
+	blr
 	*/
 }
 
@@ -1215,9 +1347,8 @@ void JAIGlobalParameter::getParamDopplarParameter()
 void JAIGlobalParameter::getParamDistanceParameterMoveTime()
 {
 	/*
-	.loc_0x0:
-	  lbz       r3, -0x7EA0(r13)
-	  blr
+	lbz      r3, distanceParameterMoveTime__18JAIGlobalParameter@sda21(r13)
+	blr
 	*/
 }
 
@@ -1229,9 +1360,8 @@ void JAIGlobalParameter::getParamDistanceParameterMoveTime()
 void JAIGlobalParameter::getParamDummyObjectLifeTime()
 {
 	/*
-	.loc_0x0:
-	  lwz       r3, -0x7E38(r13)
-	  blr
+	lwz      r3, dummyObjectLifeTime__18JAIGlobalParameter@sda21(r13)
+	blr
 	*/
 }
 
@@ -1243,9 +1373,8 @@ void JAIGlobalParameter::getParamDummyObjectLifeTime()
 void JAIGlobalParameter::getParamDummyObjectMax()
 {
 	/*
-	.loc_0x0:
-	  lwz       r3, -0x7E34(r13)
-	  blr
+	lwz      r3, dummyObjectMax__18JAIGlobalParameter@sda21(r13)
+	blr
 	*/
 }
 
@@ -1257,9 +1386,8 @@ void JAIGlobalParameter::getParamDummyObjectMax()
 void JAIGlobalParameter::getParamSeqMuteVolumeSePlay()
 {
 	/*
-	.loc_0x0:
-	  lbz       r3, -0x7E9D(r13)
-	  blr
+	lbz      r3, seqMuteVolumeSePlay__18JAIGlobalParameter@sda21(r13)
+	blr
 	*/
 }
 
@@ -1271,9 +1399,8 @@ void JAIGlobalParameter::getParamSeqMuteVolumeSePlay()
 void JAIGlobalParameter::getParamSeqMuteMoveSpeedSePlay()
 {
 	/*
-	.loc_0x0:
-	  lwz       r3, -0x7E30(r13)
-	  blr
+	lwz      r3, seqMuteMoveSpeedSePlay__18JAIGlobalParameter@sda21(r13)
+	blr
 	*/
 }
 
@@ -1285,9 +1412,8 @@ void JAIGlobalParameter::getParamSeqMuteMoveSpeedSePlay()
 void JAIGlobalParameter::getParamAudioCameraMax()
 {
 	/*
-	.loc_0x0:
-	  lwz       r3, -0x7E2C(r13)
-	  blr
+	lwz      r3, audioCameraMax__18JAIGlobalParameter@sda21(r13)
+	blr
 	*/
 }
 
@@ -1319,9 +1445,8 @@ void JAIGlobalParameter::getParamSystemRootTrackMax()
 void JAIGlobalParameter::getParamSeqParameterLines()
 {
 	/*
-	.loc_0x0:
-	  lbz       r3, -0x7E9C(r13)
-	  blr
+	lbz      r3, seqParameterLines__18JAIGlobalParameter@sda21(r13)
+	blr
 	*/
 }
 
@@ -1333,9 +1458,8 @@ void JAIGlobalParameter::getParamSeqParameterLines()
 void JAIGlobalParameter::getParamStreamParameterLines()
 {
 	/*
-	.loc_0x0:
-	  lbz       r3, -0x7E9B(r13)
-	  blr
+	lbz      r3, streamParameterLines__18JAIGlobalParameter@sda21(r13)
+	blr
 	*/
 }
 
@@ -1347,8 +1471,7 @@ void JAIGlobalParameter::getParamStreamParameterLines()
 void JAIGlobalParameter::getParamSeDistanceWaitMax()
 {
 	/*
-	.loc_0x0:
-	  lhz       r3, -0x7E0C(r13)
-	  blr
+	lhz      r3, seDistanceWaitMax__18JAIGlobalParameter@sda21(r13)
+	blr
 	*/
 }

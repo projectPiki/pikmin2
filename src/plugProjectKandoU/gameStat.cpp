@@ -1,5 +1,49 @@
 #include "types.h"
 
+/*
+    Generated from dpostproc
+
+    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
+    .4byte __sinit_gameStat_cpp
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_80480500
+    lbl_80480500:
+        .4byte 0x67616D65
+        .4byte 0x53746174
+        .4byte 0x2E637070
+        .4byte 0x00000000
+    .global lbl_80480510
+    lbl_80480510:
+        .asciz "P2Assert"
+        .skip 3
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__Q34Game8GameStat11PikiCounter
+    __vt__Q34Game8GameStat11PikiCounter:
+        .4byte 0
+        .4byte 0
+        .4byte __opi__Q34Game8GameStat11PikiCounterFv
+        .4byte __cl__Q34Game8GameStat11PikiCounterFi
+
+    .section .bss  # 0x804EFC20 - 0x8051467C
+    .global formationPikis__Q24Game8GameStat
+    formationPikis__Q24Game8GameStat:
+        .skip 0x220
+    .global workPikis__Q24Game8GameStat
+    workPikis__Q24Game8GameStat:
+        .skip 0xE0
+    .global alivePikis__Q24Game8GameStat
+    alivePikis__Q24Game8GameStat:
+        .skip 0x20
+    .global mePikis__Q24Game8GameStat
+    mePikis__Q24Game8GameStat:
+        .skip 0x20
+    .global zikatuPikis__Q24Game8GameStat
+    zikatuPikis__Q24Game8GameStat:
+        .skip 0x20
+*/
+
 namespace Game {
 
 /*
@@ -10,29 +54,28 @@ namespace Game {
 void GameStat::clear()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r3, 0x8051
-	  stw       r0, 0x14(r1)
-	  addi      r3, r3, 0x22EC
-	  bl        0x4D0
-	  lis       r3, 0x8051
-	  addi      r3, r3, 0x260C
-	  bl        0x298
-	  lis       r3, 0x8051
-	  addi      r3, r3, 0x250C
-	  bl        0x4B8
-	  lis       r3, 0x8051
-	  addi      r3, r3, 0x25EC
-	  bl        0x280
-	  lis       r3, 0x8051
-	  addi      r3, r3, 0x262C
-	  bl        0x274
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lis      r3, formationPikis__Q24Game8GameStat@ha
+	stw      r0, 0x14(r1)
+	addi     r3, r3, formationPikis__Q24Game8GameStat@l
+	bl       clear__Q34Game8GameStat15PikiNaviCounterFv
+	lis      r3, mePikis__Q24Game8GameStat@ha
+	addi     r3, r3, mePikis__Q24Game8GameStat@l
+	bl       clear__Q34Game8GameStat11PikiCounterFv
+	lis      r3, workPikis__Q24Game8GameStat@ha
+	addi     r3, r3, workPikis__Q24Game8GameStat@l
+	bl       clear__Q34Game8GameStat15PikiNaviCounterFv
+	lis      r3, alivePikis__Q24Game8GameStat@ha
+	addi     r3, r3, alivePikis__Q24Game8GameStat@l
+	bl       clear__Q34Game8GameStat11PikiCounterFv
+	lis      r3, zikatuPikis__Q24Game8GameStat@ha
+	addi     r3, r3, zikatuPikis__Q24Game8GameStat@l
+	bl       clear__Q34Game8GameStat11PikiCounterFv
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -44,31 +87,30 @@ void GameStat::clear()
 void GameStat::getMapPikmins_exclude_Me(int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  cmpwi     r3, -0x1
-	  stw       r0, 0x14(r1)
-	  bne-      .loc_0x2C
-	  lis       r3, 0x8051
-	  lwzu      r12, 0x25EC(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x40
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	cmpwi    r3, -1
+	stw      r0, 0x14(r1)
+	bne      lbl_801D0E3C
+	lis      r3, alivePikis__Q24Game8GameStat@ha
+	lwzu     r12, alivePikis__Q24Game8GameStat@l(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_801D0E50
 
-	.loc_0x2C:
-	  lis       r4, 0x8051
-	  rlwinm    r0,r3,2,0,29
-	  addi      r3, r4, 0x25EC
-	  add       r3, r3, r0
-	  lwz       r3, 0x4(r3)
+lbl_801D0E3C:
+	lis      r4, alivePikis__Q24Game8GameStat@ha
+	slwi     r0, r3, 2
+	addi     r3, r4, alivePikis__Q24Game8GameStat@l
+	add      r3, r3, r0
+	lwz      r3, 4(r3)
 
-	.loc_0x40:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_801D0E50:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -80,46 +122,45 @@ void GameStat::getMapPikmins_exclude_Me(int)
 void GameStat::getMapPikmins(int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  cmpwi     r3, -0x1
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  bne-      .loc_0x50
-	  lis       r3, 0x8051
-	  lwzu      r12, 0x260C(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lis       r4, 0x8051
-	  mr        r31, r3
-	  addi      r3, r4, 0x25EC
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  add       r3, r3, r31
-	  b         .loc_0x78
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	cmpwi    r3, -1
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	bne      lbl_801D0EB0
+	lis      r3, mePikis__Q24Game8GameStat@ha
+	lwzu     r12, mePikis__Q24Game8GameStat@l(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lis      r4, alivePikis__Q24Game8GameStat@ha
+	mr       r31, r3
+	addi     r3, r4, alivePikis__Q24Game8GameStat@l
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	add      r3, r3, r31
+	b        lbl_801D0ED8
 
-	.loc_0x50:
-	  lis       r5, 0x8051
-	  lis       r4, 0x8051
-	  rlwinm    r6,r3,2,0,29
-	  addi      r3, r5, 0x25EC
-	  addi      r0, r4, 0x260C
-	  add       r4, r3, r6
-	  add       r3, r0, r6
-	  lwz       r4, 0x4(r4)
-	  lwz       r0, 0x4(r3)
-	  add       r3, r4, r0
+lbl_801D0EB0:
+	lis      r5, alivePikis__Q24Game8GameStat@ha
+	lis      r4, mePikis__Q24Game8GameStat@ha
+	slwi     r6, r3, 2
+	addi     r3, r5, alivePikis__Q24Game8GameStat@l
+	addi     r0, r4, mePikis__Q24Game8GameStat@l
+	add      r4, r3, r6
+	add      r3, r0, r6
+	lwz      r4, 4(r4)
+	lwz      r0, 4(r3)
+	add      r3, r4, r0
 
-	.loc_0x78:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_801D0ED8:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -131,31 +172,30 @@ void GameStat::getMapPikmins(int)
 void GameStat::getZikatuPikmins(int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  cmpwi     r3, -0x1
-	  stw       r0, 0x14(r1)
-	  bne-      .loc_0x2C
-	  lis       r3, 0x8051
-	  lwzu      r12, 0x262C(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x40
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	cmpwi    r3, -1
+	stw      r0, 0x14(r1)
+	bne      lbl_801D0F18
+	lis      r3, zikatuPikis__Q24Game8GameStat@ha
+	lwzu     r12, zikatuPikis__Q24Game8GameStat@l(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_801D0F2C
 
-	.loc_0x2C:
-	  lis       r4, 0x8051
-	  rlwinm    r0,r3,2,0,29
-	  addi      r3, r4, 0x262C
-	  add       r3, r3, r0
-	  lwz       r3, 0x4(r3)
+lbl_801D0F18:
+	lis      r4, zikatuPikis__Q24Game8GameStat@ha
+	slwi     r0, r3, 2
+	addi     r3, r4, zikatuPikis__Q24Game8GameStat@l
+	add      r3, r3, r0
+	lwz      r3, 4(r3)
 
-	.loc_0x40:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_801D0F2C:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -167,77 +207,76 @@ void GameStat::getZikatuPikmins(int)
 void GameStat::getAllPikmins(int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  cmpwi     r30, -0x1
-	  bne-      .loc_0x68
-	  lis       r3, 0x8051
-	  lwzu      r12, 0x260C(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lis       r4, 0x8051
-	  mr        r31, r3
-	  addi      r3, r4, 0x25EC
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r4, -0x6B70(r13)
-	  add       r31, r3, r31
-	  addi      r3, r4, 0xA8
-	  bl        0x206EC
-	  add       r3, r31, r3
-	  b         .loc_0xE0
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	stw      r30, 8(r1)
+	mr       r30, r3
+	cmpwi    r30, -1
+	bne      lbl_801D0FA4
+	lis      r3, mePikis__Q24Game8GameStat@ha
+	lwzu     r12, mePikis__Q24Game8GameStat@l(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lis      r4, alivePikis__Q24Game8GameStat@ha
+	mr       r31, r3
+	addi     r3, r4, alivePikis__Q24Game8GameStat@l
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lwz      r4, playData__4Game@sda21(r13)
+	add      r31, r3, r31
+	addi     r3, r4, 0xa8
+	bl       getTotalSum__Q24Game13PikiContainerFv
+	add      r3, r31, r3
+	b        lbl_801D101C
 
-	.loc_0x68:
-	  bne-      .loc_0xA4
-	  lis       r3, 0x8051
-	  lwzu      r12, 0x260C(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lis       r4, 0x8051
-	  mr        r31, r3
-	  addi      r3, r4, 0x25EC
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  add       r31, r3, r31
-	  b         .loc_0xCC
+lbl_801D0FA4:
+	bne      lbl_801D0FE0
+	lis      r3, mePikis__Q24Game8GameStat@ha
+	lwzu     r12, mePikis__Q24Game8GameStat@l(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lis      r4, alivePikis__Q24Game8GameStat@ha
+	mr       r31, r3
+	addi     r3, r4, alivePikis__Q24Game8GameStat@l
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	add      r31, r3, r31
+	b        lbl_801D1008
 
-	.loc_0xA4:
-	  lis       r4, 0x8051
-	  lis       r3, 0x8051
-	  rlwinm    r5,r30,2,0,29
-	  addi      r4, r4, 0x25EC
-	  addi      r0, r3, 0x260C
-	  add       r4, r4, r5
-	  add       r3, r0, r5
-	  lwz       r4, 0x4(r4)
-	  lwz       r0, 0x4(r3)
-	  add       r31, r4, r0
+lbl_801D0FE0:
+	lis      r4, alivePikis__Q24Game8GameStat@ha
+	lis      r3, mePikis__Q24Game8GameStat@ha
+	slwi     r5, r30, 2
+	addi     r4, r4, alivePikis__Q24Game8GameStat@l
+	addi     r0, r3, mePikis__Q24Game8GameStat@l
+	add      r4, r4, r5
+	add      r3, r0, r5
+	lwz      r4, 4(r4)
+	lwz      r0, 4(r3)
+	add      r31, r4, r0
 
-	.loc_0xCC:
-	  lwz       r3, -0x6B70(r13)
-	  mr        r4, r30
-	  addi      r3, r3, 0xA8
-	  bl        0x2059C
-	  add       r3, r31, r3
+lbl_801D1008:
+	lwz      r3, playData__4Game@sda21(r13)
+	mr       r4, r30
+	addi     r3, r3, 0xa8
+	bl       getColorSum__Q24Game13PikiContainerFi
+	add      r3, r31, r3
 
-	.loc_0xE0:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_801D101C:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -249,24 +288,21 @@ void GameStat::getAllPikmins(int)
 GameStat::PikiCounter::PikiCounter()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r4, 0x804B
-	  stw       r0, 0x14(r1)
-	  addi      r0, r4, 0x7960
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  stw       r0, 0x0(r3)
-	  bl        .loc_0x3C
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-
-	.loc_0x3C:
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lis      r4, __vt__Q34Game8GameStat11PikiCounter@ha
+	stw      r0, 0x14(r1)
+	addi     r0, r4, __vt__Q34Game8GameStat11PikiCounter@l
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	stw      r0, 0(r3)
+	bl       clear__Q34Game8GameStat11PikiCounterFv
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -278,16 +314,15 @@ GameStat::PikiCounter::PikiCounter()
 void GameStat::PikiCounter::clear()
 {
 	/*
-	.loc_0x0:
-	  li        r0, 0
-	  stw       r0, 0x4(r3)
-	  stw       r0, 0x8(r3)
-	  stw       r0, 0xC(r3)
-	  stw       r0, 0x10(r3)
-	  stw       r0, 0x14(r3)
-	  stw       r0, 0x18(r3)
-	  stw       r0, 0x1C(r3)
-	  blr
+	li       r0, 0
+	stw      r0, 4(r3)
+	stw      r0, 8(r3)
+	stw      r0, 0xc(r3)
+	stw      r0, 0x10(r3)
+	stw      r0, 0x14(r3)
+	stw      r0, 0x18(r3)
+	stw      r0, 0x1c(r3)
+	blr
 	*/
 }
 
@@ -299,44 +334,43 @@ void GameStat::PikiCounter::clear()
 void GameStat::PikiCounter::inc(Game::Piki*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  li        r0, 0
-	  stw       r31, 0xC(r1)
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lbz       r31, 0x2B8(r4)
-	  cmpwi     r31, 0
-	  blt-      .loc_0x34
-	  cmpwi     r31, 0x7
-	  bge-      .loc_0x34
-	  li        r0, 0x1
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	li       r0, 0
+	stw      r31, 0xc(r1)
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lbz      r31, 0x2b8(r4)
+	cmpwi    r31, 0
+	blt      lbl_801D10C8
+	cmpwi    r31, 7
+	bge      lbl_801D10C8
+	li       r0, 1
 
-	.loc_0x34:
-	  rlwinm.   r0,r0,0,24,31
-	  bne-      .loc_0x58
-	  lis       r3, 0x8048
-	  lis       r5, 0x8048
-	  addi      r3, r3, 0x500
-	  li        r4, 0x93
-	  addi      r5, r5, 0x510
-	  crclr     6, 0x6
-	  bl        -0x1A6AA8
+lbl_801D10C8:
+	clrlwi.  r0, r0, 0x18
+	bne      lbl_801D10EC
+	lis      r3, lbl_80480500@ha
+	lis      r5, lbl_80480510@ha
+	addi     r3, r3, lbl_80480500@l
+	li       r4, 0x93
+	addi     r5, r5, lbl_80480510@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x58:
-	  rlwinm    r0,r31,2,0,29
-	  add       r4, r30, r0
-	  lwz       r3, 0x4(r4)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x4(r4)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_801D10EC:
+	slwi     r0, r31, 2
+	add      r4, r30, r0
+	lwz      r3, 4(r4)
+	addi     r0, r3, 1
+	stw      r0, 4(r4)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -348,44 +382,43 @@ void GameStat::PikiCounter::inc(Game::Piki*)
 void GameStat::PikiCounter::dec(Game::Piki*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  li        r0, 0
-	  stw       r31, 0xC(r1)
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lbz       r31, 0x2B8(r4)
-	  cmpwi     r31, 0
-	  blt-      .loc_0x34
-	  cmpwi     r31, 0x7
-	  bge-      .loc_0x34
-	  li        r0, 0x1
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	li       r0, 0
+	stw      r31, 0xc(r1)
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lbz      r31, 0x2b8(r4)
+	cmpwi    r31, 0
+	blt      lbl_801D114C
+	cmpwi    r31, 7
+	bge      lbl_801D114C
+	li       r0, 1
 
-	.loc_0x34:
-	  rlwinm.   r0,r0,0,24,31
-	  bne-      .loc_0x58
-	  lis       r3, 0x8048
-	  lis       r5, 0x8048
-	  addi      r3, r3, 0x500
-	  li        r4, 0x9C
-	  addi      r5, r5, 0x510
-	  crclr     6, 0x6
-	  bl        -0x1A6B2C
+lbl_801D114C:
+	clrlwi.  r0, r0, 0x18
+	bne      lbl_801D1170
+	lis      r3, lbl_80480500@ha
+	lis      r5, lbl_80480510@ha
+	addi     r3, r3, lbl_80480500@l
+	li       r4, 0x9c
+	addi     r5, r5, lbl_80480510@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x58:
-	  rlwinm    r0,r31,2,0,29
-	  add       r4, r30, r0
-	  lwz       r3, 0x4(r4)
-	  subi      r0, r3, 0x1
-	  stw       r0, 0x4(r4)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_801D1170:
+	slwi     r0, r31, 2
+	add      r4, r30, r0
+	lwz      r3, 4(r4)
+	addi     r0, r3, -1
+	stw      r0, 4(r4)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -397,43 +430,42 @@ void GameStat::PikiCounter::dec(Game::Piki*)
 void GameStat::PikiCounter::inc(int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  li        r0, 0
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  blt-      .loc_0x30
-	  cmpwi     r31, 0x7
-	  bge-      .loc_0x30
-	  li        r0, 0x1
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	li       r0, 0
+	stw      r31, 0xc(r1)
+	or.      r31, r4, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	blt      lbl_801D11CC
+	cmpwi    r31, 7
+	bge      lbl_801D11CC
+	li       r0, 1
 
-	.loc_0x30:
-	  rlwinm.   r0,r0,0,24,31
-	  bne-      .loc_0x54
-	  lis       r3, 0x8048
-	  lis       r5, 0x8048
-	  addi      r3, r3, 0x500
-	  li        r4, 0xA4
-	  addi      r5, r5, 0x510
-	  crclr     6, 0x6
-	  bl        -0x1A6BAC
+lbl_801D11CC:
+	clrlwi.  r0, r0, 0x18
+	bne      lbl_801D11F0
+	lis      r3, lbl_80480500@ha
+	lis      r5, lbl_80480510@ha
+	addi     r3, r3, lbl_80480500@l
+	li       r4, 0xa4
+	addi     r5, r5, lbl_80480510@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x54:
-	  rlwinm    r0,r31,2,0,29
-	  add       r4, r30, r0
-	  lwz       r3, 0x4(r4)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x4(r4)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_801D11F0:
+	slwi     r0, r31, 2
+	add      r4, r30, r0
+	lwz      r3, 4(r4)
+	addi     r0, r3, 1
+	stw      r0, 4(r4)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -445,43 +477,42 @@ void GameStat::PikiCounter::inc(int)
 void GameStat::PikiCounter::dec(int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  li        r0, 0
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  blt-      .loc_0x30
-	  cmpwi     r31, 0x7
-	  bge-      .loc_0x30
-	  li        r0, 0x1
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	li       r0, 0
+	stw      r31, 0xc(r1)
+	or.      r31, r4, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	blt      lbl_801D124C
+	cmpwi    r31, 7
+	bge      lbl_801D124C
+	li       r0, 1
 
-	.loc_0x30:
-	  rlwinm.   r0,r0,0,24,31
-	  bne-      .loc_0x54
-	  lis       r3, 0x8048
-	  lis       r5, 0x8048
-	  addi      r3, r3, 0x500
-	  li        r4, 0xAA
-	  addi      r5, r5, 0x510
-	  crclr     6, 0x6
-	  bl        -0x1A6C2C
+lbl_801D124C:
+	clrlwi.  r0, r0, 0x18
+	bne      lbl_801D1270
+	lis      r3, lbl_80480500@ha
+	lis      r5, lbl_80480510@ha
+	addi     r3, r3, lbl_80480500@l
+	li       r4, 0xaa
+	addi     r5, r5, lbl_80480510@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x54:
-	  rlwinm    r0,r31,2,0,29
-	  add       r4, r30, r0
-	  lwz       r3, 0x4(r4)
-	  subi      r0, r3, 0x1
-	  stw       r0, 0x4(r4)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_801D1270:
+	slwi     r0, r31, 2
+	add      r4, r30, r0
+	lwz      r3, 4(r4)
+	addi     r0, r3, -1
+	stw      r0, 4(r4)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -493,58 +524,57 @@ void GameStat::PikiCounter::dec(int)
 void GameStat::PikiNaviCounter::clear()
 {
 	/*
-	.loc_0x0:
-	  li        r0, 0
-	  stw       r0, 0x4(r3)
-	  stw       r0, 0x8(r3)
-	  stw       r0, 0xC(r3)
-	  stw       r0, 0x10(r3)
-	  stw       r0, 0x14(r3)
-	  stw       r0, 0x18(r3)
-	  stw       r0, 0x1C(r3)
-	  stw       r0, 0x24(r3)
-	  stw       r0, 0x28(r3)
-	  stw       r0, 0x2C(r3)
-	  stw       r0, 0x30(r3)
-	  stw       r0, 0x34(r3)
-	  stw       r0, 0x38(r3)
-	  stw       r0, 0x3C(r3)
-	  stw       r0, 0x44(r3)
-	  stw       r0, 0x48(r3)
-	  stw       r0, 0x4C(r3)
-	  stw       r0, 0x50(r3)
-	  stw       r0, 0x54(r3)
-	  stw       r0, 0x58(r3)
-	  stw       r0, 0x5C(r3)
-	  stw       r0, 0x64(r3)
-	  stw       r0, 0x68(r3)
-	  stw       r0, 0x6C(r3)
-	  stw       r0, 0x70(r3)
-	  stw       r0, 0x74(r3)
-	  stw       r0, 0x78(r3)
-	  stw       r0, 0x7C(r3)
-	  stw       r0, 0x84(r3)
-	  stw       r0, 0x88(r3)
-	  stw       r0, 0x8C(r3)
-	  stw       r0, 0x90(r3)
-	  stw       r0, 0x94(r3)
-	  stw       r0, 0x98(r3)
-	  stw       r0, 0x9C(r3)
-	  stw       r0, 0xA4(r3)
-	  stw       r0, 0xA8(r3)
-	  stw       r0, 0xAC(r3)
-	  stw       r0, 0xB0(r3)
-	  stw       r0, 0xB4(r3)
-	  stw       r0, 0xB8(r3)
-	  stw       r0, 0xBC(r3)
-	  stw       r0, 0xC4(r3)
-	  stw       r0, 0xC8(r3)
-	  stw       r0, 0xCC(r3)
-	  stw       r0, 0xD0(r3)
-	  stw       r0, 0xD4(r3)
-	  stw       r0, 0xD8(r3)
-	  stw       r0, 0xDC(r3)
-	  blr
+	li       r0, 0
+	stw      r0, 4(r3)
+	stw      r0, 8(r3)
+	stw      r0, 0xc(r3)
+	stw      r0, 0x10(r3)
+	stw      r0, 0x14(r3)
+	stw      r0, 0x18(r3)
+	stw      r0, 0x1c(r3)
+	stw      r0, 0x24(r3)
+	stw      r0, 0x28(r3)
+	stw      r0, 0x2c(r3)
+	stw      r0, 0x30(r3)
+	stw      r0, 0x34(r3)
+	stw      r0, 0x38(r3)
+	stw      r0, 0x3c(r3)
+	stw      r0, 0x44(r3)
+	stw      r0, 0x48(r3)
+	stw      r0, 0x4c(r3)
+	stw      r0, 0x50(r3)
+	stw      r0, 0x54(r3)
+	stw      r0, 0x58(r3)
+	stw      r0, 0x5c(r3)
+	stw      r0, 0x64(r3)
+	stw      r0, 0x68(r3)
+	stw      r0, 0x6c(r3)
+	stw      r0, 0x70(r3)
+	stw      r0, 0x74(r3)
+	stw      r0, 0x78(r3)
+	stw      r0, 0x7c(r3)
+	stw      r0, 0x84(r3)
+	stw      r0, 0x88(r3)
+	stw      r0, 0x8c(r3)
+	stw      r0, 0x90(r3)
+	stw      r0, 0x94(r3)
+	stw      r0, 0x98(r3)
+	stw      r0, 0x9c(r3)
+	stw      r0, 0xa4(r3)
+	stw      r0, 0xa8(r3)
+	stw      r0, 0xac(r3)
+	stw      r0, 0xb0(r3)
+	stw      r0, 0xb4(r3)
+	stw      r0, 0xb8(r3)
+	stw      r0, 0xbc(r3)
+	stw      r0, 0xc4(r3)
+	stw      r0, 0xc8(r3)
+	stw      r0, 0xcc(r3)
+	stw      r0, 0xd0(r3)
+	stw      r0, 0xd4(r3)
+	stw      r0, 0xd8(r3)
+	stw      r0, 0xdc(r3)
+	blr
 	*/
 }
 
@@ -556,58 +586,57 @@ void GameStat::PikiNaviCounter::clear()
 void GameStat::PikiNaviCounter::inc(Game::Piki*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  lwz       r5, 0x2C4(r4)
-	  cmplwi    r5, 0
-	  beq-      .loc_0x30
-	  lhz       r31, 0x2DC(r5)
-	  b         .loc_0x34
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	lwz      r5, 0x2c4(r4)
+	cmplwi   r5, 0
+	beq      lbl_801D1398
+	lhz      r31, 0x2dc(r5)
+	b        lbl_801D139C
 
-	.loc_0x30:
-	  li        r31, 0x2
+lbl_801D1398:
+	li       r31, 2
 
-	.loc_0x34:
-	  lbz       r30, 0x2B8(r4)
-	  li        r0, 0
-	  cmpwi     r30, 0
-	  blt-      .loc_0x50
-	  cmpwi     r30, 0x7
-	  bge-      .loc_0x50
-	  li        r0, 0x1
+lbl_801D139C:
+	lbz      r30, 0x2b8(r4)
+	li       r0, 0
+	cmpwi    r30, 0
+	blt      lbl_801D13B8
+	cmpwi    r30, 7
+	bge      lbl_801D13B8
+	li       r0, 1
 
-	.loc_0x50:
-	  rlwinm.   r0,r0,0,24,31
-	  bne-      .loc_0x74
-	  lis       r3, 0x8048
-	  lis       r5, 0x8048
-	  addi      r3, r3, 0x500
-	  li        r4, 0x93
-	  addi      r5, r5, 0x510
-	  crclr     6, 0x6
-	  bl        -0x1A6D98
+lbl_801D13B8:
+	clrlwi.  r0, r0, 0x18
+	bne      lbl_801D13DC
+	lis      r3, lbl_80480500@ha
+	lis      r5, lbl_80480510@ha
+	addi     r3, r3, lbl_80480500@l
+	li       r4, 0x93
+	addi     r5, r5, lbl_80480510@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x74:
-	  rlwinm    r3,r31,5,0,26
-	  rlwinm    r0,r30,2,0,29
-	  add       r3, r29, r3
-	  add       r4, r3, r0
-	  lwz       r3, 0x4(r4)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x4(r4)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_801D13DC:
+	slwi     r3, r31, 5
+	slwi     r0, r30, 2
+	add      r3, r29, r3
+	add      r4, r3, r0
+	lwz      r3, 4(r4)
+	addi     r0, r3, 1
+	stw      r0, 4(r4)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -619,58 +648,57 @@ void GameStat::PikiNaviCounter::inc(Game::Piki*)
 void GameStat::PikiNaviCounter::dec(Game::Piki*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  lwz       r5, 0x2C4(r4)
-	  cmplwi    r5, 0
-	  beq-      .loc_0x30
-	  lhz       r31, 0x2DC(r5)
-	  b         .loc_0x34
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	lwz      r5, 0x2c4(r4)
+	cmplwi   r5, 0
+	beq      lbl_801D1444
+	lhz      r31, 0x2dc(r5)
+	b        lbl_801D1448
 
-	.loc_0x30:
-	  li        r31, 0x2
+lbl_801D1444:
+	li       r31, 2
 
-	.loc_0x34:
-	  lbz       r30, 0x2B8(r4)
-	  li        r0, 0
-	  cmpwi     r30, 0
-	  blt-      .loc_0x50
-	  cmpwi     r30, 0x7
-	  bge-      .loc_0x50
-	  li        r0, 0x1
+lbl_801D1448:
+	lbz      r30, 0x2b8(r4)
+	li       r0, 0
+	cmpwi    r30, 0
+	blt      lbl_801D1464
+	cmpwi    r30, 7
+	bge      lbl_801D1464
+	li       r0, 1
 
-	.loc_0x50:
-	  rlwinm.   r0,r0,0,24,31
-	  bne-      .loc_0x74
-	  lis       r3, 0x8048
-	  lis       r5, 0x8048
-	  addi      r3, r3, 0x500
-	  li        r4, 0x9C
-	  addi      r5, r5, 0x510
-	  crclr     6, 0x6
-	  bl        -0x1A6E44
+lbl_801D1464:
+	clrlwi.  r0, r0, 0x18
+	bne      lbl_801D1488
+	lis      r3, lbl_80480500@ha
+	lis      r5, lbl_80480510@ha
+	addi     r3, r3, lbl_80480500@l
+	li       r4, 0x9c
+	addi     r5, r5, lbl_80480510@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x74:
-	  rlwinm    r3,r31,5,0,26
-	  rlwinm    r0,r30,2,0,29
-	  add       r3, r29, r3
-	  add       r4, r3, r0
-	  lwz       r3, 0x4(r4)
-	  subi      r0, r3, 0x1
-	  stw       r0, 0x4(r4)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_801D1488:
+	slwi     r3, r31, 5
+	slwi     r0, r30, 2
+	add      r3, r29, r3
+	add      r4, r3, r0
+	lwz      r3, 4(r4)
+	addi     r0, r3, -1
+	stw      r0, 4(r4)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -684,164 +712,163 @@ void GameStat::PikiNaviCounter::dec(Game::Piki*)
 void __sinit_gameStat_cpp(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r3, 0x8051
-	  lis       r4, 0x801D
-	  stw       r0, 0x14(r1)
-	  addi      r3, r3, 0x22EC
-	  li        r5, 0
-	  addi      r4, r4, 0x1034
-	  li        r6, 0x20
-	  li        r7, 0x7
-	  bl        -0x10FCAC
-	  lis       r4, 0x8051
-	  lis       r3, 0x8051
-	  addi      r8, r4, 0x22EC
-	  li        r0, 0
-	  stw       r0, 0x4(r8)
-	  lis       r4, 0x801D
-	  addi      r3, r3, 0x250C
-	  li        r5, 0
-	  stw       r0, 0x8(r8)
-	  addi      r4, r4, 0x1034
-	  li        r6, 0x20
-	  li        r7, 0x7
-	  stw       r0, 0xC(r8)
-	  stw       r0, 0x10(r8)
-	  stw       r0, 0x14(r8)
-	  stw       r0, 0x18(r8)
-	  stw       r0, 0x1C(r8)
-	  stw       r0, 0x24(r8)
-	  stw       r0, 0x28(r8)
-	  stw       r0, 0x2C(r8)
-	  stw       r0, 0x30(r8)
-	  stw       r0, 0x34(r8)
-	  stw       r0, 0x38(r8)
-	  stw       r0, 0x3C(r8)
-	  stw       r0, 0x44(r8)
-	  stw       r0, 0x48(r8)
-	  stw       r0, 0x4C(r8)
-	  stw       r0, 0x50(r8)
-	  stw       r0, 0x54(r8)
-	  stw       r0, 0x58(r8)
-	  stw       r0, 0x5C(r8)
-	  stw       r0, 0x64(r8)
-	  stw       r0, 0x68(r8)
-	  stw       r0, 0x6C(r8)
-	  stw       r0, 0x70(r8)
-	  stw       r0, 0x74(r8)
-	  stw       r0, 0x78(r8)
-	  stw       r0, 0x7C(r8)
-	  stw       r0, 0x84(r8)
-	  stw       r0, 0x88(r8)
-	  stw       r0, 0x8C(r8)
-	  stw       r0, 0x90(r8)
-	  stw       r0, 0x94(r8)
-	  stw       r0, 0x98(r8)
-	  stw       r0, 0x9C(r8)
-	  stw       r0, 0xA4(r8)
-	  stw       r0, 0xA8(r8)
-	  stw       r0, 0xAC(r8)
-	  stw       r0, 0xB0(r8)
-	  stw       r0, 0xB4(r8)
-	  stw       r0, 0xB8(r8)
-	  stw       r0, 0xBC(r8)
-	  stw       r0, 0xC4(r8)
-	  stw       r0, 0xC8(r8)
-	  stw       r0, 0xCC(r8)
-	  stw       r0, 0xD0(r8)
-	  stw       r0, 0xD4(r8)
-	  stw       r0, 0xD8(r8)
-	  stw       r0, 0xDC(r8)
-	  bl        -0x10FD9C
-	  lis       r3, 0x8051
-	  lis       r6, 0x804B
-	  addi      r7, r3, 0x250C
-	  li        r8, 0
-	  stw       r8, 0x4(r7)
-	  lis       r3, 0x8051
-	  addi      r5, r3, 0x25EC
-	  addi      r0, r6, 0x7960
-	  stw       r8, 0x8(r7)
-	  lis       r3, 0x8051
-	  addi      r4, r3, 0x260C
-	  stw       r8, 0xC(r7)
-	  lis       r3, 0x8051
-	  stw       r8, 0x10(r7)
-	  stw       r8, 0x14(r7)
-	  stw       r8, 0x18(r7)
-	  stw       r8, 0x1C(r7)
-	  stw       r8, 0x24(r7)
-	  stw       r8, 0x28(r7)
-	  stw       r8, 0x2C(r7)
-	  stw       r8, 0x30(r7)
-	  stw       r8, 0x34(r7)
-	  stw       r8, 0x38(r7)
-	  stw       r8, 0x3C(r7)
-	  stw       r8, 0x44(r7)
-	  stw       r8, 0x48(r7)
-	  stw       r8, 0x4C(r7)
-	  stw       r8, 0x50(r7)
-	  stw       r8, 0x54(r7)
-	  stw       r8, 0x58(r7)
-	  stw       r8, 0x5C(r7)
-	  stw       r8, 0x64(r7)
-	  stw       r8, 0x68(r7)
-	  stw       r8, 0x6C(r7)
-	  stw       r8, 0x70(r7)
-	  stw       r8, 0x74(r7)
-	  stw       r8, 0x78(r7)
-	  stw       r8, 0x7C(r7)
-	  stw       r8, 0x84(r7)
-	  stw       r8, 0x88(r7)
-	  stw       r8, 0x8C(r7)
-	  stw       r8, 0x90(r7)
-	  stw       r8, 0x94(r7)
-	  stw       r8, 0x98(r7)
-	  stw       r8, 0x9C(r7)
-	  stw       r8, 0xA4(r7)
-	  stw       r8, 0xA8(r7)
-	  stw       r8, 0xAC(r7)
-	  stw       r8, 0xB0(r7)
-	  stw       r8, 0xB4(r7)
-	  stw       r8, 0xB8(r7)
-	  stw       r8, 0xBC(r7)
-	  stw       r8, 0xC4(r7)
-	  stw       r8, 0xC8(r7)
-	  stw       r8, 0xCC(r7)
-	  stw       r8, 0xD0(r7)
-	  stw       r8, 0xD4(r7)
-	  stwu      r0, 0x262C(r3)
-	  stw       r8, 0xD8(r7)
-	  stw       r8, 0xDC(r7)
-	  stw       r0, 0x0(r5)
-	  stw       r8, 0x4(r5)
-	  stw       r8, 0x8(r5)
-	  stw       r8, 0xC(r5)
-	  stw       r8, 0x10(r5)
-	  stw       r8, 0x14(r5)
-	  stw       r8, 0x18(r5)
-	  stw       r8, 0x1C(r5)
-	  stw       r0, 0x0(r4)
-	  stw       r8, 0x4(r4)
-	  stw       r8, 0x8(r4)
-	  stw       r8, 0xC(r4)
-	  stw       r8, 0x10(r4)
-	  stw       r8, 0x14(r4)
-	  stw       r8, 0x18(r4)
-	  stw       r8, 0x1C(r4)
-	  stw       r8, 0x4(r3)
-	  stw       r8, 0x8(r3)
-	  stw       r8, 0xC(r3)
-	  stw       r8, 0x10(r3)
-	  stw       r8, 0x14(r3)
-	  stw       r8, 0x18(r3)
-	  stw       r8, 0x1C(r3)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lis      r3, formationPikis__Q24Game8GameStat@ha
+	lis      r4, __ct__Q34Game8GameStat11PikiCounterFv@ha
+	stw      r0, 0x14(r1)
+	addi     r3, r3, formationPikis__Q24Game8GameStat@l
+	li       r5, 0
+	addi     r4, r4, __ct__Q34Game8GameStat11PikiCounterFv@l
+	li       r6, 0x20
+	li       r7, 7
+	bl       __construct_array
+	lis      r4, formationPikis__Q24Game8GameStat@ha
+	lis      r3, workPikis__Q24Game8GameStat@ha
+	addi     r8, r4, formationPikis__Q24Game8GameStat@l
+	li       r0, 0
+	stw      r0, 4(r8)
+	lis      r4, __ct__Q34Game8GameStat11PikiCounterFv@ha
+	addi     r3, r3, workPikis__Q24Game8GameStat@l
+	li       r5, 0
+	stw      r0, 8(r8)
+	addi     r4, r4, __ct__Q34Game8GameStat11PikiCounterFv@l
+	li       r6, 0x20
+	li       r7, 7
+	stw      r0, 0xc(r8)
+	stw      r0, 0x10(r8)
+	stw      r0, 0x14(r8)
+	stw      r0, 0x18(r8)
+	stw      r0, 0x1c(r8)
+	stw      r0, 0x24(r8)
+	stw      r0, 0x28(r8)
+	stw      r0, 0x2c(r8)
+	stw      r0, 0x30(r8)
+	stw      r0, 0x34(r8)
+	stw      r0, 0x38(r8)
+	stw      r0, 0x3c(r8)
+	stw      r0, 0x44(r8)
+	stw      r0, 0x48(r8)
+	stw      r0, 0x4c(r8)
+	stw      r0, 0x50(r8)
+	stw      r0, 0x54(r8)
+	stw      r0, 0x58(r8)
+	stw      r0, 0x5c(r8)
+	stw      r0, 0x64(r8)
+	stw      r0, 0x68(r8)
+	stw      r0, 0x6c(r8)
+	stw      r0, 0x70(r8)
+	stw      r0, 0x74(r8)
+	stw      r0, 0x78(r8)
+	stw      r0, 0x7c(r8)
+	stw      r0, 0x84(r8)
+	stw      r0, 0x88(r8)
+	stw      r0, 0x8c(r8)
+	stw      r0, 0x90(r8)
+	stw      r0, 0x94(r8)
+	stw      r0, 0x98(r8)
+	stw      r0, 0x9c(r8)
+	stw      r0, 0xa4(r8)
+	stw      r0, 0xa8(r8)
+	stw      r0, 0xac(r8)
+	stw      r0, 0xb0(r8)
+	stw      r0, 0xb4(r8)
+	stw      r0, 0xb8(r8)
+	stw      r0, 0xbc(r8)
+	stw      r0, 0xc4(r8)
+	stw      r0, 0xc8(r8)
+	stw      r0, 0xcc(r8)
+	stw      r0, 0xd0(r8)
+	stw      r0, 0xd4(r8)
+	stw      r0, 0xd8(r8)
+	stw      r0, 0xdc(r8)
+	bl       __construct_array
+	lis      r3, workPikis__Q24Game8GameStat@ha
+	lis      r6, __vt__Q34Game8GameStat11PikiCounter@ha
+	addi     r7, r3, workPikis__Q24Game8GameStat@l
+	li       r8, 0
+	stw      r8, 4(r7)
+	lis      r3, alivePikis__Q24Game8GameStat@ha
+	addi     r5, r3, alivePikis__Q24Game8GameStat@l
+	addi     r0, r6, __vt__Q34Game8GameStat11PikiCounter@l
+	stw      r8, 8(r7)
+	lis      r3, mePikis__Q24Game8GameStat@ha
+	addi     r4, r3, mePikis__Q24Game8GameStat@l
+	stw      r8, 0xc(r7)
+	lis      r3, zikatuPikis__Q24Game8GameStat@ha
+	stw      r8, 0x10(r7)
+	stw      r8, 0x14(r7)
+	stw      r8, 0x18(r7)
+	stw      r8, 0x1c(r7)
+	stw      r8, 0x24(r7)
+	stw      r8, 0x28(r7)
+	stw      r8, 0x2c(r7)
+	stw      r8, 0x30(r7)
+	stw      r8, 0x34(r7)
+	stw      r8, 0x38(r7)
+	stw      r8, 0x3c(r7)
+	stw      r8, 0x44(r7)
+	stw      r8, 0x48(r7)
+	stw      r8, 0x4c(r7)
+	stw      r8, 0x50(r7)
+	stw      r8, 0x54(r7)
+	stw      r8, 0x58(r7)
+	stw      r8, 0x5c(r7)
+	stw      r8, 0x64(r7)
+	stw      r8, 0x68(r7)
+	stw      r8, 0x6c(r7)
+	stw      r8, 0x70(r7)
+	stw      r8, 0x74(r7)
+	stw      r8, 0x78(r7)
+	stw      r8, 0x7c(r7)
+	stw      r8, 0x84(r7)
+	stw      r8, 0x88(r7)
+	stw      r8, 0x8c(r7)
+	stw      r8, 0x90(r7)
+	stw      r8, 0x94(r7)
+	stw      r8, 0x98(r7)
+	stw      r8, 0x9c(r7)
+	stw      r8, 0xa4(r7)
+	stw      r8, 0xa8(r7)
+	stw      r8, 0xac(r7)
+	stw      r8, 0xb0(r7)
+	stw      r8, 0xb4(r7)
+	stw      r8, 0xb8(r7)
+	stw      r8, 0xbc(r7)
+	stw      r8, 0xc4(r7)
+	stw      r8, 0xc8(r7)
+	stw      r8, 0xcc(r7)
+	stw      r8, 0xd0(r7)
+	stw      r8, 0xd4(r7)
+	stwu     r0, zikatuPikis__Q24Game8GameStat@l(r3)
+	stw      r8, 0xd8(r7)
+	stw      r8, 0xdc(r7)
+	stw      r0, 0(r5)
+	stw      r8, 4(r5)
+	stw      r8, 8(r5)
+	stw      r8, 0xc(r5)
+	stw      r8, 0x10(r5)
+	stw      r8, 0x14(r5)
+	stw      r8, 0x18(r5)
+	stw      r8, 0x1c(r5)
+	stw      r0, 0(r4)
+	stw      r8, 4(r4)
+	stw      r8, 8(r4)
+	stw      r8, 0xc(r4)
+	stw      r8, 0x10(r4)
+	stw      r8, 0x14(r4)
+	stw      r8, 0x18(r4)
+	stw      r8, 0x1c(r4)
+	stw      r8, 4(r3)
+	stw      r8, 8(r3)
+	stw      r8, 0xc(r3)
+	stw      r8, 0x10(r3)
+	stw      r8, 0x14(r3)
+	stw      r8, 0x18(r3)
+	stw      r8, 0x1c(r3)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }

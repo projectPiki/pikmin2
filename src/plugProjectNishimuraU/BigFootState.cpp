@@ -1,5 +1,167 @@
 #include "types.h"
 
+/*
+    Generated from dpostproc
+
+    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
+    .4byte __sinit_BigFootState_cpp
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global lbl_804D1978
+    lbl_804D1978:
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+    .global __vt__Q34Game7BigFoot9StateWalk
+    __vt__Q34Game7BigFoot9StateWalk:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game7BigFoot9StateWalkFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
+   exec__Q34Game7BigFoot9StateWalkFPQ24Game9EnemyBase .4byte
+   cleanup__Q34Game7BigFoot9StateWalkFPQ24Game9EnemyBase .4byte
+   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
+   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game7BigFoot10StateFlick
+    __vt__Q34Game7BigFoot10StateFlick:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game7BigFoot10StateFlickFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
+   exec__Q34Game7BigFoot10StateFlickFPQ24Game9EnemyBase .4byte
+   cleanup__Q34Game7BigFoot10StateFlickFPQ24Game9EnemyBase .4byte
+   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
+   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game7BigFoot9StateWait
+    __vt__Q34Game7BigFoot9StateWait:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game7BigFoot9StateWaitFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
+   exec__Q34Game7BigFoot9StateWaitFPQ24Game9EnemyBase .4byte
+   cleanup__Q34Game7BigFoot9StateWaitFPQ24Game9EnemyBase .4byte
+   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
+   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game7BigFoot9StateLand
+    __vt__Q34Game7BigFoot9StateLand:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game7BigFoot9StateLandFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
+   exec__Q34Game7BigFoot9StateLandFPQ24Game9EnemyBase .4byte
+   cleanup__Q34Game7BigFoot9StateLandFPQ24Game9EnemyBase .4byte
+   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
+   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game7BigFoot9StateStay
+    __vt__Q34Game7BigFoot9StateStay:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game7BigFoot9StateStayFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
+   exec__Q34Game7BigFoot9StateStayFPQ24Game9EnemyBase .4byte
+   cleanup__Q34Game7BigFoot9StateStayFPQ24Game9EnemyBase .4byte
+   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
+   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game7BigFoot9StateDead
+    __vt__Q34Game7BigFoot9StateDead:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game7BigFoot9StateDeadFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
+   exec__Q34Game7BigFoot9StateDeadFPQ24Game9EnemyBase .4byte
+   cleanup__Q34Game7BigFoot9StateDeadFPQ24Game9EnemyBase .4byte
+   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
+   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game7BigFoot5State
+    __vt__Q34Game7BigFoot5State:
+        .4byte 0
+        .4byte 0
+        .4byte init__Q24Game13EnemyFSMStateFPQ24Game9EnemyBasePQ24Game8StateArg
+        .4byte exec__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte cleanup__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game7BigFoot3FSM
+    __vt__Q34Game7BigFoot3FSM:
+        .4byte 0
+        .4byte 0
+        .4byte init__Q34Game7BigFoot3FSMFPQ24Game9EnemyBase
+        .4byte
+   start__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   exec__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase .4byte
+   transit__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseiPQ24Game8StateArg
+        .4byte
+   doDirectDraw__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseR8Graphics .4byte
+   getCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase .4byte
+   setCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBasePQ24Game13EnemyFSMState
+        .4byte 0
+
+    .section .sbss # 0x80514D80 - 0x80516360
+    .global lbl_80515DA8
+    lbl_80515DA8:
+        .skip 0x4
+    .global lbl_80515DAC
+    lbl_80515DAC:
+        .skip 0x4
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_8051C668
+    lbl_8051C668:
+        .4byte 0x64656164
+        .4byte 0x00000000
+    .global lbl_8051C670
+    lbl_8051C670:
+        .4byte 0x73746179
+        .4byte 0x00000000
+    .global lbl_8051C678
+    lbl_8051C678:
+        .4byte 0x6C616E64
+        .4byte 0x00000000
+    .global lbl_8051C680
+    lbl_8051C680:
+        .4byte 0x77616974
+        .4byte 0x00000000
+    .global lbl_8051C688
+    lbl_8051C688:
+        .4byte 0x666C6963
+        .4byte 0x6B000000
+    .global lbl_8051C690
+    lbl_8051C690:
+        .4byte 0x77616C6B
+        .4byte 0x00000000
+    .global lbl_8051C698
+    lbl_8051C698:
+        .4byte 0x00000000
+    .global lbl_8051C69C
+    lbl_8051C69C:
+        .4byte 0x3A83126F
+    .global lbl_8051C6A0
+    lbl_8051C6A0:
+        .float 1.0
+    .global lbl_8051C6A4
+    lbl_8051C6A4:
+        .4byte 0x40A00000
+    .global lbl_8051C6A8
+    lbl_8051C6A8:
+        .4byte 0xC47A0000
+        .4byte 0x00000000
+*/
+
 namespace Game {
 
 /*
@@ -10,156 +172,155 @@ namespace Game {
 void BigFoot::FSM::init(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r4, 0x6
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        -0x195A9C
-	  li        r3, 0x10
-	  bl        -0x2A2464
-	  mr.       r4, r3
-	  beq-      .loc_0x64
-	  lis       r3, 0x804B
-	  lis       r5, 0x804D
-	  subi      r0, r3, 0x65C
-	  lis       r3, 0x804D
-	  stw       r0, 0x0(r4)
-	  li        r7, 0
-	  addi      r6, r5, 0x1A5C
-	  subi      r5, r2, 0x1CF8
-	  stw       r7, 0x4(r4)
-	  addi      r0, r3, 0x1A38
-	  stw       r7, 0x8(r4)
-	  stw       r6, 0x0(r4)
-	  stw       r5, 0xC(r4)
-	  stw       r0, 0x0(r4)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	li       r4, 6
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       create__Q24Game17EnemyStateMachineFi
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_802C634C
+	lis      r3, __vt__Q24Game13EnemyFSMState@ha
+	lis      r5, __vt__Q34Game7BigFoot5State@ha
+	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
+	lis      r3, __vt__Q34Game7BigFoot9StateDead@ha
+	stw      r0, 0(r4)
+	li       r7, 0
+	addi     r6, r5, __vt__Q34Game7BigFoot5State@l
+	addi     r5, r2, lbl_8051C668@sda21
+	stw      r7, 4(r4)
+	addi     r0, r3, __vt__Q34Game7BigFoot9StateDead@l
+	stw      r7, 8(r4)
+	stw      r6, 0(r4)
+	stw      r5, 0xc(r4)
+	stw      r0, 0(r4)
 
-	.loc_0x64:
-	  mr        r3, r31
-	  bl        -0x195A48
-	  li        r3, 0x10
-	  bl        -0x2A24B4
-	  mr.       r4, r3
-	  beq-      .loc_0xB8
-	  lis       r3, 0x804B
-	  lis       r5, 0x804D
-	  subi      r0, r3, 0x65C
-	  lis       r3, 0x804D
-	  stw       r0, 0x0(r4)
-	  li        r0, 0x1
-	  li        r7, 0
-	  addi      r6, r5, 0x1A5C
-	  stw       r0, 0x4(r4)
-	  subi      r5, r2, 0x1CF0
-	  addi      r0, r3, 0x1A14
-	  stw       r7, 0x8(r4)
-	  stw       r6, 0x0(r4)
-	  stw       r5, 0xC(r4)
-	  stw       r0, 0x0(r4)
+lbl_802C634C:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_802C63A0
+	lis      r3, __vt__Q24Game13EnemyFSMState@ha
+	lis      r5, __vt__Q34Game7BigFoot5State@ha
+	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
+	lis      r3, __vt__Q34Game7BigFoot9StateStay@ha
+	stw      r0, 0(r4)
+	li       r0, 1
+	li       r7, 0
+	addi     r6, r5, __vt__Q34Game7BigFoot5State@l
+	stw      r0, 4(r4)
+	addi     r5, r2, lbl_8051C670@sda21
+	addi     r0, r3, __vt__Q34Game7BigFoot9StateStay@l
+	stw      r7, 8(r4)
+	stw      r6, 0(r4)
+	stw      r5, 0xc(r4)
+	stw      r0, 0(r4)
 
-	.loc_0xB8:
-	  mr        r3, r31
-	  bl        -0x195A9C
-	  li        r3, 0x10
-	  bl        -0x2A2508
-	  mr.       r4, r3
-	  beq-      .loc_0x10C
-	  lis       r3, 0x804B
-	  lis       r5, 0x804D
-	  subi      r0, r3, 0x65C
-	  lis       r3, 0x804D
-	  stw       r0, 0x0(r4)
-	  li        r0, 0x2
-	  li        r7, 0
-	  addi      r6, r5, 0x1A5C
-	  stw       r0, 0x4(r4)
-	  subi      r5, r2, 0x1CE8
-	  addi      r0, r3, 0x19F0
-	  stw       r7, 0x8(r4)
-	  stw       r6, 0x0(r4)
-	  stw       r5, 0xC(r4)
-	  stw       r0, 0x0(r4)
+lbl_802C63A0:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_802C63F4
+	lis      r3, __vt__Q24Game13EnemyFSMState@ha
+	lis      r5, __vt__Q34Game7BigFoot5State@ha
+	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
+	lis      r3, __vt__Q34Game7BigFoot9StateLand@ha
+	stw      r0, 0(r4)
+	li       r0, 2
+	li       r7, 0
+	addi     r6, r5, __vt__Q34Game7BigFoot5State@l
+	stw      r0, 4(r4)
+	addi     r5, r2, lbl_8051C678@sda21
+	addi     r0, r3, __vt__Q34Game7BigFoot9StateLand@l
+	stw      r7, 8(r4)
+	stw      r6, 0(r4)
+	stw      r5, 0xc(r4)
+	stw      r0, 0(r4)
 
-	.loc_0x10C:
-	  mr        r3, r31
-	  bl        -0x195AF0
-	  li        r3, 0x10
-	  bl        -0x2A255C
-	  mr.       r4, r3
-	  beq-      .loc_0x160
-	  lis       r3, 0x804B
-	  lis       r5, 0x804D
-	  subi      r0, r3, 0x65C
-	  lis       r3, 0x804D
-	  stw       r0, 0x0(r4)
-	  li        r0, 0x3
-	  li        r7, 0
-	  addi      r6, r5, 0x1A5C
-	  stw       r0, 0x4(r4)
-	  subi      r5, r2, 0x1CE0
-	  addi      r0, r3, 0x19CC
-	  stw       r7, 0x8(r4)
-	  stw       r6, 0x0(r4)
-	  stw       r5, 0xC(r4)
-	  stw       r0, 0x0(r4)
+lbl_802C63F4:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_802C6448
+	lis      r3, __vt__Q24Game13EnemyFSMState@ha
+	lis      r5, __vt__Q34Game7BigFoot5State@ha
+	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
+	lis      r3, __vt__Q34Game7BigFoot9StateWait@ha
+	stw      r0, 0(r4)
+	li       r0, 3
+	li       r7, 0
+	addi     r6, r5, __vt__Q34Game7BigFoot5State@l
+	stw      r0, 4(r4)
+	addi     r5, r2, lbl_8051C680@sda21
+	addi     r0, r3, __vt__Q34Game7BigFoot9StateWait@l
+	stw      r7, 8(r4)
+	stw      r6, 0(r4)
+	stw      r5, 0xc(r4)
+	stw      r0, 0(r4)
 
-	.loc_0x160:
-	  mr        r3, r31
-	  bl        -0x195B44
-	  li        r3, 0x10
-	  bl        -0x2A25B0
-	  mr.       r4, r3
-	  beq-      .loc_0x1B4
-	  lis       r3, 0x804B
-	  lis       r5, 0x804D
-	  subi      r0, r3, 0x65C
-	  lis       r3, 0x804D
-	  stw       r0, 0x0(r4)
-	  li        r0, 0x4
-	  li        r7, 0
-	  addi      r6, r5, 0x1A5C
-	  stw       r0, 0x4(r4)
-	  subi      r5, r2, 0x1CD8
-	  addi      r0, r3, 0x19A8
-	  stw       r7, 0x8(r4)
-	  stw       r6, 0x0(r4)
-	  stw       r5, 0xC(r4)
-	  stw       r0, 0x0(r4)
+lbl_802C6448:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_802C649C
+	lis      r3, __vt__Q24Game13EnemyFSMState@ha
+	lis      r5, __vt__Q34Game7BigFoot5State@ha
+	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
+	lis      r3, __vt__Q34Game7BigFoot10StateFlick@ha
+	stw      r0, 0(r4)
+	li       r0, 4
+	li       r7, 0
+	addi     r6, r5, __vt__Q34Game7BigFoot5State@l
+	stw      r0, 4(r4)
+	addi     r5, r2, lbl_8051C688@sda21
+	addi     r0, r3, __vt__Q34Game7BigFoot10StateFlick@l
+	stw      r7, 8(r4)
+	stw      r6, 0(r4)
+	stw      r5, 0xc(r4)
+	stw      r0, 0(r4)
 
-	.loc_0x1B4:
-	  mr        r3, r31
-	  bl        -0x195B98
-	  li        r3, 0x10
-	  bl        -0x2A2604
-	  mr.       r4, r3
-	  beq-      .loc_0x208
-	  lis       r3, 0x804B
-	  lis       r5, 0x804D
-	  subi      r0, r3, 0x65C
-	  lis       r3, 0x804D
-	  stw       r0, 0x0(r4)
-	  li        r0, 0x5
-	  li        r7, 0
-	  addi      r6, r5, 0x1A5C
-	  stw       r0, 0x4(r4)
-	  subi      r5, r2, 0x1CD0
-	  addi      r0, r3, 0x1984
-	  stw       r7, 0x8(r4)
-	  stw       r6, 0x0(r4)
-	  stw       r5, 0xC(r4)
-	  stw       r0, 0x0(r4)
+lbl_802C649C:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_802C64F0
+	lis      r3, __vt__Q24Game13EnemyFSMState@ha
+	lis      r5, __vt__Q34Game7BigFoot5State@ha
+	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
+	lis      r3, __vt__Q34Game7BigFoot9StateWalk@ha
+	stw      r0, 0(r4)
+	li       r0, 5
+	li       r7, 0
+	addi     r6, r5, __vt__Q34Game7BigFoot5State@l
+	stw      r0, 4(r4)
+	addi     r5, r2, lbl_8051C690@sda21
+	addi     r0, r3, __vt__Q34Game7BigFoot9StateWalk@l
+	stw      r7, 8(r4)
+	stw      r6, 0(r4)
+	stw      r5, 0xc(r4)
+	stw      r0, 0(r4)
 
-	.loc_0x208:
-	  mr        r3, r31
-	  bl        -0x195BEC
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_802C64F0:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -171,58 +332,57 @@ void BigFoot::FSM::init(Game::EnemyBase*)
 void BigFoot::StateDead::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stw       r31, 0x2C(r1)
-	  mr        r31, r4
-	  mr        r3, r31
-	  bl        0x2CA0
-	  mr        r3, r31
-	  bl        0x45A4
-	  mr        r3, r31
-	  bl        -0x1C0E14
-	  lwz       r0, 0x1E0(r31)
-	  mr        r3, r31
-	  lfs       f0, -0x1CC8(r2)
-	  rlwinm    r0,r0,0,26,24
-	  stw       r0, 0x1E0(r31)
-	  stfs      f0, 0x1D4(r31)
-	  stfs      f0, 0x1D8(r31)
-	  stfs      f0, 0x1DC(r31)
-	  bl        -0x1C4BDC
-	  mr        r3, r31
-	  li        r4, 0
-	  li        r5, 0
-	  bl        -0x1C1564
-	  mr        r4, r31
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f2, 0x8(r1)
-	  addi      r5, r1, 0x14
-	  lfs       f1, 0xC(r1)
-	  li        r4, 0
-	  lfs       f0, 0x10(r1)
-	  li        r6, 0x2
-	  stfs      f2, 0x14(r1)
-	  lwz       r3, -0x6960(r13)
-	  stfs      f1, 0x18(r1)
-	  stfs      f0, 0x1C(r1)
-	  bl        -0x74370
-	  lwz       r3, -0x6958(r13)
-	  addi      r5, r1, 0x14
-	  li        r4, 0xA
-	  li        r6, 0x2
-	  bl        -0x72E40
-	  lwz       r0, 0x34(r1)
-	  lwz       r31, 0x2C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stw      r31, 0x2c(r1)
+	mr       r31, r4
+	mr       r3, r31
+	bl       forceFinishIKMotion__Q34Game7BigFoot3ObjFv
+	mr       r3, r31
+	bl       startDeadEffect__Q34Game7BigFoot3ObjFv
+	mr       r3, r31
+	bl       deathProcedure__Q24Game9EnemyBaseFv
+	lwz      r0, 0x1e0(r31)
+	mr       r3, r31
+	lfs      f0, lbl_8051C698@sda21(r2)
+	rlwinm   r0, r0, 0, 0x1a, 0x18
+	stw      r0, 0x1e0(r31)
+	stfs     f0, 0x1d4(r31)
+	stfs     f0, 0x1d8(r31)
+	stfs     f0, 0x1dc(r31)
+	bl       setEmotionCaution__Q24Game9EnemyBaseFv
+	mr       r3, r31
+	li       r4, 0
+	li       r5, 0
+	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
+	mr       r4, r31
+	addi     r3, r1, 8
+	lwz      r12, 0(r31)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f2, 8(r1)
+	addi     r5, r1, 0x14
+	lfs      f1, 0xc(r1)
+	li       r4, 0
+	lfs      f0, 0x10(r1)
+	li       r6, 2
+	stfs     f2, 0x14(r1)
+	lwz      r3, cameraMgr__4Game@sda21(r13)
+	stfs     f1, 0x18(r1)
+	stfs     f0, 0x1c(r1)
+	bl       "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
+	lwz      r3, rumbleMgr__4Game@sda21(r13)
+	addi     r5, r1, 0x14
+	li       r4, 0xa
+	li       r6, 2
+	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
+	lwz      r0, 0x34(r1)
+	lwz      r31, 0x2c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -234,50 +394,49 @@ void BigFoot::StateDead::init(Game::EnemyBase*, Game::StateArg*)
 void BigFoot::StateDead::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  mr        r3, r31
-	  bl        0x49D4
-	  lwz       r3, 0x188(r31)
-	  lbz       r0, 0x24(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x80
-	  lwz       r0, 0x1C(r3)
-	  cmplwi    r0, 0x2
-	  bne-      .loc_0x58
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x264(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r3, r31
-	  bl        0x2F60
-	  b         .loc_0x80
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	mr       r3, r31
+	bl       updateDeadFurEffect__Q34Game7BigFoot3ObjFv
+	lwz      r3, 0x188(r31)
+	lbz      r0, 0x24(r3)
+	cmplwi   r0, 0
+	beq      lbl_802C6658
+	lwz      r0, 0x1c(r3)
+	cmplwi   r0, 2
+	bne      lbl_802C6630
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r12, 0x264(r12)
+	mtctr    r12
+	bctrl
+	mr       r3, r31
+	bl       createItemAndEnemy__Q34Game7BigFoot3ObjFv
+	b        lbl_802C6658
 
-	.loc_0x58:
-	  cmplwi    r0, 0x3
-	  bne-      .loc_0x6C
-	  li        r0, 0x1
-	  stb       r0, 0x2DC(r31)
-	  b         .loc_0x80
+lbl_802C6630:
+	cmplwi   r0, 3
+	bne      lbl_802C6644
+	li       r0, 1
+	stb      r0, 0x2dc(r31)
+	b        lbl_802C6658
 
-	.loc_0x6C:
-	  cmplwi    r0, 0x3E8
-	  bne-      .loc_0x80
-	  mr        r3, r31
-	  li        r4, 0
-	  bl        -0x18B564
+lbl_802C6644:
+	cmplwi   r0, 0x3e8
+	bne      lbl_802C6658
+	mr       r3, r31
+	li       r4, 0
+	bl       kill__Q24Game8CreatureFPQ24Game15CreatureKillArg
 
-	.loc_0x80:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_802C6658:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -296,40 +455,39 @@ void BigFoot::StateDead::cleanup(Game::EnemyBase*) { }
 void BigFoot::StateStay::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r3, -0x1
-	  lfs       f0, -0x1CC8(r2)
-	  stw       r0, 0x14(r1)
-	  li        r0, 0
-	  li        r5, 0
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r3, 0x2C4(r4)
-	  mr        r3, r31
-	  li        r4, 0x1
-	  lwz       r6, 0x1E0(r31)
-	  oris      r6, r6, 0x40
-	  stw       r6, 0x1E0(r31)
-	  lwz       r6, 0x1E0(r31)
-	  rlwinm    r6,r6,0,17,15
-	  stw       r6, 0x1E0(r31)
-	  lwz       r6, 0x1E0(r31)
-	  oris      r6, r6, 0x4000
-	  stw       r6, 0x1E0(r31)
-	  stw       r0, 0x230(r31)
-	  stfs      f0, 0x1D4(r31)
-	  stfs      f0, 0x1D8(r31)
-	  stfs      f0, 0x1DC(r31)
-	  bl        -0x1C16D0
-	  mr        r3, r31
-	  bl        -0x1BF3FC
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	li       r3, -1
+	lfs      f0, lbl_8051C698@sda21(r2)
+	stw      r0, 0x14(r1)
+	li       r0, 0
+	li       r5, 0
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r3, 0x2c4(r4)
+	mr       r3, r31
+	li       r4, 1
+	lwz      r6, 0x1e0(r31)
+	oris     r6, r6, 0x40
+	stw      r6, 0x1e0(r31)
+	lwz      r6, 0x1e0(r31)
+	rlwinm   r6, r6, 0, 0x11, 0xf
+	stw      r6, 0x1e0(r31)
+	lwz      r6, 0x1e0(r31)
+	oris     r6, r6, 0x4000
+	stw      r6, 0x1e0(r31)
+	stw      r0, 0x230(r31)
+	stfs     f0, 0x1d4(r31)
+	stfs     f0, 0x1d8(r31)
+	stfs     f0, 0x1dc(r31)
+	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
+	mr       r3, r31
+	bl       stopMotion__Q24Game9EnemyBaseFv
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -341,61 +499,62 @@ void BigFoot::StateStay::init(Game::EnemyBase*, Game::StateArg*)
 void BigFoot::StateStay::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stfd      f31, 0x10(r1)
-	  psq_st    f31,0x18(r1),0,0
-	  stw       r31, 0xC(r1)
-	  stw       r30, 0x8(r1)
-	  mr        r31, r4
-	  mr        r30, r3
-	  lwz       r5, 0xC0(r31)
-	  li        r4, 0
-	  mr        r3, r31
-	  lfs       f31, 0x3AC(r5)
-	  fmr       f1, f31
-	  bl        -0x1B1C6C
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x4C
-	  li        r0, 0x1
-	  b         .loc_0x70
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stfd     f31, 0x10(r1)
+	psq_st   f31, 24(r1), 0, qr0
+	stw      r31, 0xc(r1)
+	stw      r30, 8(r1)
+	mr       r31, r4
+	mr       r30, r3
+	lwz      r5, 0xc0(r31)
+	li       r4, 0
+	mr       r3, r31
+	lfs      f31, 0x3ac(r5)
+	fmr      f1, f31
+	bl
+"isThereOlimar__Q24Game9EnemyFuncFPQ24Game8CreaturefP23Condition<Q24Game4Navi>"
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802C6740
+	li       r0, 1
+	b        lbl_802C6764
 
-	.loc_0x4C:
-	  fmr       f1, f31
-	  mr        r3, r31
-	  li        r4, 0
-	  bl        -0x1B2018
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x6C
-	  li        r0, 0x1
-	  b         .loc_0x70
+lbl_802C6740:
+	fmr      f1, f31
+	mr       r3, r31
+	li       r4, 0
+	bl
+"isTherePikmin__Q24Game9EnemyFuncFPQ24Game8CreaturefP23Condition<Q24Game4Piki>"
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802C6760
+	li       r0, 1
+	b        lbl_802C6764
 
-	.loc_0x6C:
-	  li        r0, 0
+lbl_802C6760:
+	li       r0, 0
 
-	.loc_0x70:
-	  rlwinm.   r0,r0,0,24,31
-	  beq-      .loc_0x98
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x2
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_802C6764:
+	clrlwi.  r0, r0, 0x18
+	beq      lbl_802C678C
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 2
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x98:
-	  psq_l     f31,0x18(r1),0,0
-	  lwz       r0, 0x24(r1)
-	  lfd       f31, 0x10(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_802C678C:
+	psq_l    f31, 24(r1), 0, qr0
+	lwz      r0, 0x24(r1)
+	lfd      f31, 0x10(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -414,52 +573,51 @@ void BigFoot::StateStay::cleanup(Game::EnemyBase*) { }
 void BigFoot::StateLand::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lfs       f0, -0x1CC4(r2)
-	  stw       r0, 0x14(r1)
-	  li        r0, -0x1
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  mr        r3, r31
-	  stw       r0, 0x2C4(r4)
-	  stfs      f0, 0x2D4(r4)
-	  lwz       r0, 0x1E0(r4)
-	  oris      r0, r0, 0x40
-	  stw       r0, 0x1E0(r4)
-	  lwz       r0, 0x1E0(r4)
-	  rlwinm    r0,r0,0,26,24
-	  stw       r0, 0x1E0(r4)
-	  lwz       r0, 0x1E0(r4)
-	  ori       r0, r0, 0x8000
-	  stw       r0, 0x1E0(r4)
-	  lwz       r0, 0x1E0(r4)
-	  rlwinm    r0,r0,0,2,0
-	  stw       r0, 0x1E0(r4)
-	  bl        -0x1C4E3C
-	  li        r0, 0
-	  lfs       f0, -0x1CC8(r2)
-	  stw       r0, 0x230(r31)
-	  mr        r3, r31
-	  li        r4, 0x1
-	  li        r5, 0
-	  stfs      f0, 0x1D4(r31)
-	  stfs      f0, 0x1D8(r31)
-	  stfs      f0, 0x1DC(r31)
-	  bl        -0x1C182C
-	  lwz       r3, -0x6980(r13)
-	  mr        r4, r31
-	  bl        -0x84A5C
-	  lwz       r3, -0x6980(r13)
-	  mr        r4, r31
-	  li        r5, 0x1
-	  bl        -0x8474C
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lfs      f0, lbl_8051C69C@sda21(r2)
+	stw      r0, 0x14(r1)
+	li       r0, -1
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	mr       r3, r31
+	stw      r0, 0x2c4(r4)
+	stfs     f0, 0x2d4(r4)
+	lwz      r0, 0x1e0(r4)
+	oris     r0, r0, 0x40
+	stw      r0, 0x1e0(r4)
+	lwz      r0, 0x1e0(r4)
+	rlwinm   r0, r0, 0, 0x1a, 0x18
+	stw      r0, 0x1e0(r4)
+	lwz      r0, 0x1e0(r4)
+	ori      r0, r0, 0x8000
+	stw      r0, 0x1e0(r4)
+	lwz      r0, 0x1e0(r4)
+	rlwinm   r0, r0, 0, 2, 0
+	stw      r0, 0x1e0(r4)
+	bl       setEmotionExcitement__Q24Game9EnemyBaseFv
+	li       r0, 0
+	lfs      f0, lbl_8051C698@sda21(r2)
+	stw      r0, 0x230(r31)
+	mr       r3, r31
+	li       r4, 1
+	li       r5, 0
+	stfs     f0, 0x1d4(r31)
+	stfs     f0, 0x1d8(r31)
+	stfs     f0, 0x1dc(r31)
+	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
+	lwz      r3, shadowMgr__4Game@sda21(r13)
+	mr       r4, r31
+	bl       addJointShadow__Q24Game9ShadowMgrFPQ24Game8Creature
+	lwz      r3, shadowMgr__4Game@sda21(r13)
+	mr       r4, r31
+	li       r5, 1
+	bl       setForceVisible__Q24Game9ShadowMgrFPQ24Game8Creatureb
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -471,111 +629,110 @@ void BigFoot::StateLand::init(Game::EnemyBase*, Game::StateArg*)
 void BigFoot::StateLand::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stw       r31, 0x2C(r1)
-	  mr        r31, r4
-	  stw       r30, 0x28(r1)
-	  mr        r30, r3
-	  mr        r3, r31
-	  bl        0x4B58
-	  lwz       r3, 0x188(r31)
-	  lbz       r0, 0x24(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x160
-	  lwz       r0, 0x1C(r3)
-	  cmplwi    r0, 0x2
-	  bne-      .loc_0xC8
-	  lwz       r0, 0x1E0(r31)
-	  li        r30, 0
-	  rlwinm    r0,r0,0,10,8
-	  stw       r0, 0x1E0(r31)
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stw      r31, 0x2c(r1)
+	mr       r31, r4
+	stw      r30, 0x28(r1)
+	mr       r30, r3
+	mr       r3, r31
+	bl       addShadowScale__Q34Game7BigFoot3ObjFv
+	lwz      r3, 0x188(r31)
+	lbz      r0, 0x24(r3)
+	cmplwi   r0, 0
+	beq      lbl_802C69C4
+	lwz      r0, 0x1c(r3)
+	cmplwi   r0, 2
+	bne      lbl_802C692C
+	lwz      r0, 0x1e0(r31)
+	li       r30, 0
+	rlwinm   r0, r0, 0, 0xa, 8
+	stw      r0, 0x1e0(r31)
 
-	.loc_0x50:
-	  lwz       r5, 0x280(r31)
-	  mr        r3, r31
-	  mr        r4, r30
-	  bl        0x3C8C
-	  addi      r30, r30, 0x1
-	  cmpwi     r30, 0x4
-	  blt+      .loc_0x50
-	  mr        r4, r31
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f2, 0x8(r1)
-	  addi      r5, r1, 0x14
-	  lfs       f1, 0xC(r1)
-	  li        r4, 0xF
-	  lfs       f0, 0x10(r1)
-	  li        r6, 0x2
-	  stfs      f2, 0x14(r1)
-	  lwz       r3, -0x6960(r13)
-	  stfs      f1, 0x18(r1)
-	  stfs      f0, 0x1C(r1)
-	  bl        -0x746D4
-	  lwz       r3, -0x6958(r13)
-	  addi      r5, r1, 0x14
-	  li        r4, 0xF
-	  li        r6, 0x2
-	  bl        -0x731A4
-	  b         .loc_0x160
+lbl_802C68B4:
+	lwz      r5, 0x280(r31)
+	mr       r3, r31
+	mr       r4, r30
+	bl       createOnGroundEffect__Q34Game7BigFoot3ObjFiPQ24Game8WaterBox
+	addi     r30, r30, 1
+	cmpwi    r30, 4
+	blt      lbl_802C68B4
+	mr       r4, r31
+	addi     r3, r1, 8
+	lwz      r12, 0(r31)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f2, 8(r1)
+	addi     r5, r1, 0x14
+	lfs      f1, 0xc(r1)
+	li       r4, 0xf
+	lfs      f0, 0x10(r1)
+	li       r6, 2
+	stfs     f2, 0x14(r1)
+	lwz      r3, cameraMgr__4Game@sda21(r13)
+	stfs     f1, 0x18(r1)
+	stfs     f0, 0x1c(r1)
+	bl       "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
+	lwz      r3, rumbleMgr__4Game@sda21(r13)
+	addi     r5, r1, 0x14
+	li       r4, 0xf
+	li       r6, 2
+	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
+	b        lbl_802C69C4
 
-	.loc_0xC8:
-	  cmplwi    r0, 0x3E8
-	  bne-      .loc_0x160
-	  lfs       f1, 0x200(r31)
-	  lfs       f0, -0x1CC8(r2)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0, 0x2
-	  bne-      .loc_0x108
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x160
+lbl_802C692C:
+	cmplwi   r0, 0x3e8
+	bne      lbl_802C69C4
+	lfs      f1, 0x200(r31)
+	lfs      f0, lbl_8051C698@sda21(r2)
+	fcmpo    cr0, f1, f0
+	cror     2, 0, 2
+	bne      lbl_802C696C
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 0
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802C69C4
 
-	.loc_0x108:
-	  mr        r3, r31
-	  li        r4, 0
-	  bl        -0x1B231C
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x140
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x4
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x160
+lbl_802C696C:
+	mr       r3, r31
+	li       r4, 0
+	bl       isStartFlick__Q24Game9EnemyFuncFPQ24Game9EnemyBaseb
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802C69A4
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 4
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802C69C4
 
-	.loc_0x140:
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x3
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_802C69A4:
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 3
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x160:
-	  lwz       r0, 0x34(r1)
-	  lwz       r31, 0x2C(r1)
-	  lwz       r30, 0x28(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_802C69C4:
+	lwz      r0, 0x34(r1)
+	lwz      r31, 0x2c(r1)
+	lwz      r30, 0x28(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -587,30 +744,29 @@ void BigFoot::StateLand::exec(Game::EnemyBase*)
 void BigFoot::StateLand::cleanup(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  mr        r3, r31
-	  bl        0x2764
-	  mr        r3, r31
-	  bl        0x31E8
-	  lwz       r0, 0x1E0(r31)
-	  mr        r4, r31
-	  lfs       f0, -0x1CC0(r2)
-	  li        r5, 0
-	  ori       r0, r0, 0x40
-	  stw       r0, 0x1E0(r31)
-	  stfs      f0, 0x2D4(r31)
-	  lwz       r3, -0x6980(r13)
-	  bl        -0x84920
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	mr       r3, r31
+	bl       startProgramedIK__Q34Game7BigFoot3ObjFv
+	mr       r3, r31
+	bl       setBossAppearBGM__Q34Game7BigFoot3ObjFv
+	lwz      r0, 0x1e0(r31)
+	mr       r4, r31
+	lfs      f0, lbl_8051C6A0@sda21(r2)
+	li       r5, 0
+	ori      r0, r0, 0x40
+	stw      r0, 0x1e0(r31)
+	stfs     f0, 0x2d4(r31)
+	lwz      r3, shadowMgr__4Game@sda21(r13)
+	bl       setForceVisible__Q24Game9ShadowMgrFPQ24Game8Creatureb
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -622,35 +778,34 @@ void BigFoot::StateLand::cleanup(Game::EnemyBase*)
 void BigFoot::StateWait::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lfs       f0, -0x1CC8(r2)
-	  stw       r0, 0x14(r1)
-	  li        r0, -0x1
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  mr        r3, r31
-	  stw       r0, 0x2C4(r4)
-	  stfs      f0, 0x2C0(r4)
-	  bl        0x1D98
-	  mr        r3, r31
-	  bl        0x24C8
-	  li        r0, 0
-	  lfs       f0, -0x1CC8(r2)
-	  stw       r0, 0x230(r31)
-	  mr        r3, r31
-	  li        r4, 0x2
-	  li        r5, 0
-	  stfs      f0, 0x1D4(r31)
-	  stfs      f0, 0x1D8(r31)
-	  stfs      f0, 0x1DC(r31)
-	  bl        -0x1C1A8C
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lfs      f0, lbl_8051C698@sda21(r2)
+	stw      r0, 0x14(r1)
+	li       r0, -1
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	mr       r3, r31
+	stw      r0, 0x2c4(r4)
+	stfs     f0, 0x2c0(r4)
+	bl       resetFlickWalkTimeMax__Q34Game7BigFoot3ObjFv
+	mr       r3, r31
+	bl       setIKParameter__Q34Game7BigFoot3ObjFv
+	li       r0, 0
+	lfs      f0, lbl_8051C698@sda21(r2)
+	stw      r0, 0x230(r31)
+	mr       r3, r31
+	li       r4, 2
+	li       r5, 0
+	stfs     f0, 0x1d4(r31)
+	stfs     f0, 0x1d8(r31)
+	stfs     f0, 0x1dc(r31)
+	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -662,76 +817,75 @@ void BigFoot::StateWait::init(Game::EnemyBase*, Game::StateArg*)
 void BigFoot::StateWait::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lfs       f0, -0x1CC8(r2)
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lwz       r5, -0x6514(r13)
-	  lfs       f2, 0x2C0(r4)
-	  lfs       f1, 0x54(r5)
-	  fadds     f1, f2, f1
-	  stfs      f1, 0x2C0(r4)
-	  lfs       f1, 0x200(r4)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0, 0x2
-	  bne-      .loc_0x58
-	  li        r0, 0
-	  mr        r3, r31
-	  stw       r0, 0x2C4(r31)
-	  bl        -0x1C1858
-	  b         .loc_0xA0
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lfs      f0, lbl_8051C698@sda21(r2)
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lwz      r5, sys@sda21(r13)
+	lfs      f2, 0x2c0(r4)
+	lfs      f1, 0x54(r5)
+	fadds    f1, f2, f1
+	stfs     f1, 0x2c0(r4)
+	lfs      f1, 0x200(r4)
+	fcmpo    cr0, f1, f0
+	cror     2, 0, 2
+	bne      lbl_802C6B00
+	li       r0, 0
+	mr       r3, r31
+	stw      r0, 0x2c4(r31)
+	bl       finishMotion__Q24Game9EnemyBaseFv
+	b        lbl_802C6B48
 
-	.loc_0x58:
-	  mr        r3, r31
-	  li        r4, 0
-	  bl        -0x1B24B0
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x80
-	  li        r0, 0x4
-	  mr        r3, r31
-	  stw       r0, 0x2C4(r31)
-	  bl        -0x1C1880
-	  b         .loc_0xA0
+lbl_802C6B00:
+	mr       r3, r31
+	li       r4, 0
+	bl       isStartFlick__Q24Game9EnemyFuncFPQ24Game9EnemyBaseb
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802C6B28
+	li       r0, 4
+	mr       r3, r31
+	stw      r0, 0x2c4(r31)
+	bl       finishMotion__Q24Game9EnemyBaseFv
+	b        lbl_802C6B48
 
-	.loc_0x80:
-	  lfs       f1, 0x2C0(r31)
-	  lfs       f0, -0x1CBC(r2)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0xA0
-	  li        r0, 0x5
-	  mr        r3, r31
-	  stw       r0, 0x2C4(r31)
-	  bl        -0x1C18A4
+lbl_802C6B28:
+	lfs      f1, 0x2c0(r31)
+	lfs      f0, lbl_8051C6A4@sda21(r2)
+	fcmpo    cr0, f1, f0
+	ble      lbl_802C6B48
+	li       r0, 5
+	mr       r3, r31
+	stw      r0, 0x2c4(r31)
+	bl       finishMotion__Q24Game9EnemyBaseFv
 
-	.loc_0xA0:
-	  lwz       r3, 0x188(r31)
-	  lbz       r0, 0x24(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0xDC
-	  lwz       r0, 0x1C(r3)
-	  cmplwi    r0, 0x3E8
-	  bne-      .loc_0xDC
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r6, 0
-	  lwz       r5, 0x2C4(r31)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_802C6B48:
+	lwz      r3, 0x188(r31)
+	lbz      r0, 0x24(r3)
+	cmplwi   r0, 0
+	beq      lbl_802C6B84
+	lwz      r0, 0x1c(r3)
+	cmplwi   r0, 0x3e8
+	bne      lbl_802C6B84
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r6, 0
+	lwz      r5, 0x2c4(r31)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0xDC:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_802C6B84:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -750,34 +904,33 @@ void BigFoot::StateWait::cleanup(Game::EnemyBase*) { }
 void BigFoot::StateFlick::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lfs       f0, -0x1CC8(r2)
-	  li        r5, 0
-	  stw       r0, 0x14(r1)
-	  li        r0, -0x1
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  mr        r3, r31
-	  stw       r0, 0x2C4(r4)
-	  li        r0, 0
-	  li        r4, 0x3
-	  stfs      f0, 0x2C0(r31)
-	  stw       r0, 0x230(r31)
-	  stfs      f0, 0x1D4(r31)
-	  stfs      f0, 0x1D8(r31)
-	  stfs      f0, 0x1DC(r31)
-	  bl        -0x1C1BE0
-	  mr        r3, r31
-	  bl        0x2620
-	  mr        r3, r31
-	  bl        0x2A38
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lfs      f0, lbl_8051C698@sda21(r2)
+	li       r5, 0
+	stw      r0, 0x14(r1)
+	li       r0, -1
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	mr       r3, r31
+	stw      r0, 0x2c4(r4)
+	li       r0, 0
+	li       r4, 3
+	stfs     f0, 0x2c0(r31)
+	stw      r0, 0x230(r31)
+	stfs     f0, 0x1d4(r31)
+	stfs     f0, 0x1d8(r31)
+	stfs     f0, 0x1dc(r31)
+	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
+	mr       r3, r31
+	bl       startBlendMotion__Q34Game7BigFoot3ObjFv
+	mr       r3, r31
+	bl       startBossChargeBGM__Q34Game7BigFoot3ObjFv
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -789,61 +942,61 @@ void BigFoot::StateFlick::init(Game::EnemyBase*, Game::StateArg*)
 void BigFoot::StateFlick::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  lwz       r5, 0x188(r4)
-	  lbz       r0, 0x24(r5)
-	  cmplwi    r0, 0
-	  beq-      .loc_0xAC
-	  lwz       r0, 0x1C(r5)
-	  cmplwi    r0, 0x2
-	  bne-      .loc_0x5C
-	  lwz       r5, 0xC0(r31)
-	  mr        r3, r31
-	  lfs       f4, -0x1CB8(r2)
-	  li        r4, 0
-	  lfs       f1, 0x53C(r5)
-	  lfs       f2, 0x4C4(r5)
-	  lfs       f3, 0x4EC(r5)
-	  bl        -0x1B3B3C
-	  lfs       f0, -0x1CC8(r2)
-	  stfs      f0, 0x20C(r31)
-	  b         .loc_0xAC
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	lwz      r5, 0x188(r4)
+	lbz      r0, 0x24(r5)
+	cmplwi   r0, 0
+	beq      lbl_802C6CB8
+	lwz      r0, 0x1c(r5)
+	cmplwi   r0, 2
+	bne      lbl_802C6C68
+	lwz      r5, 0xc0(r31)
+	mr       r3, r31
+	lfs      f4, lbl_8051C6A8@sda21(r2)
+	li       r4, 0
+	lfs      f1, 0x53c(r5)
+	lfs      f2, 0x4c4(r5)
+	lfs      f3, 0x4ec(r5)
+	bl
+"flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
+	lfs      f0, lbl_8051C698@sda21(r2)
+	stfs     f0, 0x20c(r31)
+	b        lbl_802C6CB8
 
-	.loc_0x5C:
-	  cmplwi    r0, 0x3E8
-	  bne-      .loc_0xAC
-	  lfs       f1, 0x200(r31)
-	  lfs       f0, -0x1CC8(r2)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0, 0x2
-	  bne-      .loc_0x94
-	  lwz       r12, 0x0(r3)
-	  li        r5, 0
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0xAC
+lbl_802C6C68:
+	cmplwi   r0, 0x3e8
+	bne      lbl_802C6CB8
+	lfs      f1, 0x200(r31)
+	lfs      f0, lbl_8051C698@sda21(r2)
+	fcmpo    cr0, f1, f0
+	cror     2, 0, 2
+	bne      lbl_802C6CA0
+	lwz      r12, 0(r3)
+	li       r5, 0
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802C6CB8
 
-	.loc_0x94:
-	  lwz       r12, 0x0(r3)
-	  li        r5, 0x5
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_802C6CA0:
+	lwz      r12, 0(r3)
+	li       r5, 5
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0xAC:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_802C6CB8:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -855,25 +1008,24 @@ void BigFoot::StateFlick::exec(Game::EnemyBase*)
 void BigFoot::StateFlick::cleanup(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  mr        r3, r31
-	  bl        0x254C
-	  mr        r3, r31
-	  bl        0x1B98
-	  li        r0, 0x1
-	  mr        r3, r31
-	  stb       r0, 0x2DE(r31)
-	  bl        0x2234
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	mr       r3, r31
+	bl       finishBlendMotion__Q34Game7BigFoot3ObjFv
+	mr       r3, r31
+	bl       setFlickWalkTimeMax__Q34Game7BigFoot3ObjFv
+	li       r0, 1
+	mr       r3, r31
+	stb      r0, 0x2de(r31)
+	bl       setIKParameter__Q34Game7BigFoot3ObjFv
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -885,37 +1037,36 @@ void BigFoot::StateFlick::cleanup(Game::EnemyBase*)
 void BigFoot::StateWalk::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lfs       f0, -0x1CC8(r2)
-	  stw       r0, 0x14(r1)
-	  li        r0, -0x1
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  mr        r3, r31
-	  stw       r0, 0x2C4(r4)
-	  li        r0, 0
-	  stfs      f0, 0x2C0(r4)
-	  stw       r0, 0x230(r4)
-	  stfs      f0, 0x1D4(r4)
-	  stfs      f0, 0x1D8(r4)
-	  stfs      f0, 0x1DC(r4)
-	  bl        0x242C
-	  mr        r3, r31
-	  bl        0x1BB8
-	  lbz       r0, 0x2DE(r31)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x5C
-	  mr        r3, r31
-	  bl        0x2988
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lfs      f0, lbl_8051C698@sda21(r2)
+	stw      r0, 0x14(r1)
+	li       r0, -1
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	mr       r3, r31
+	stw      r0, 0x2c4(r4)
+	li       r0, 0
+	stfs     f0, 0x2c0(r4)
+	stw      r0, 0x230(r4)
+	stfs     f0, 0x1d4(r4)
+	stfs     f0, 0x1d8(r4)
+	stfs     f0, 0x1dc(r4)
+	bl       startIKMotion__Q34Game7BigFoot3ObjFv
+	mr       r3, r31
+	bl       getTargetPosition__Q34Game7BigFoot3ObjFv
+	lbz      r0, 0x2de(r31)
+	cmplwi   r0, 0
+	beq      lbl_802C6D70
+	mr       r3, r31
+	bl       startBossAttackLoopBGM__Q34Game7BigFoot3ObjFv
 
-	.loc_0x5C:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_802C6D70:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -927,79 +1078,78 @@ void BigFoot::StateWalk::init(Game::EnemyBase*, Game::StateArg*)
 void BigFoot::StateWalk::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  mr        r3, r31
-	  bl        0x1B6C
-	  lwz       r3, -0x6514(r13)
-	  lfs       f2, 0x2C0(r31)
-	  lfs       f1, 0x54(r3)
-	  lfs       f0, -0x1CC8(r2)
-	  fadds     f1, f2, f1
-	  stfs      f1, 0x2C0(r31)
-	  lfs       f1, 0x200(r31)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0, 0x2
-	  bne-      .loc_0x70
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0xE8
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	mr       r3, r31
+	bl       getTargetPosition__Q34Game7BigFoot3ObjFv
+	lwz      r3, sys@sda21(r13)
+	lfs      f2, 0x2c0(r31)
+	lfs      f1, 0x54(r3)
+	lfs      f0, lbl_8051C698@sda21(r2)
+	fadds    f1, f2, f1
+	stfs     f1, 0x2c0(r31)
+	lfs      f1, 0x200(r31)
+	fcmpo    cr0, f1, f0
+	cror     2, 0, 2
+	bne      lbl_802C6DF4
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 0
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802C6E6C
 
-	.loc_0x70:
-	  mr        r3, r31
-	  li        r4, 0
-	  bl        -0x1B27A4
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x98
-	  li        r0, 0x4
-	  mr        r3, r31
-	  stw       r0, 0x2C4(r31)
-	  bl        0x238C
-	  b         .loc_0xB8
+lbl_802C6DF4:
+	mr       r3, r31
+	li       r4, 0
+	bl       isStartFlick__Q24Game9EnemyFuncFPQ24Game9EnemyBaseb
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802C6E1C
+	li       r0, 4
+	mr       r3, r31
+	stw      r0, 0x2c4(r31)
+	bl       finishIKMotion__Q34Game7BigFoot3ObjFv
+	b        lbl_802C6E3C
 
-	.loc_0x98:
-	  lfs       f1, 0x2C0(r31)
-	  lfs       f0, 0x2D8(r31)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0xB8
-	  li        r0, 0x3
-	  mr        r3, r31
-	  stw       r0, 0x2C4(r31)
-	  bl        0x2368
+lbl_802C6E1C:
+	lfs      f1, 0x2c0(r31)
+	lfs      f0, 0x2d8(r31)
+	fcmpo    cr0, f1, f0
+	ble      lbl_802C6E3C
+	li       r0, 3
+	mr       r3, r31
+	stw      r0, 0x2c4(r31)
+	bl       finishIKMotion__Q34Game7BigFoot3ObjFv
 
-	.loc_0xB8:
-	  mr        r3, r31
-	  bl        0x23A8
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xE8
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r6, 0
-	  lwz       r5, 0x2C4(r31)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_802C6E3C:
+	mr       r3, r31
+	bl       isFinishIKMotion__Q34Game7BigFoot3ObjFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802C6E6C
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r6, 0
+	lwz      r5, 0x2c4(r31)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0xE8:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_802C6E6C:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1011,23 +1161,22 @@ void BigFoot::StateWalk::exec(Game::EnemyBase*)
 void BigFoot::StateWalk::cleanup(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lbz       r0, 0x2DE(r4)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x28
-	  li        r0, 0
-	  mr        r3, r4
-	  stb       r0, 0x2DE(r4)
-	  bl        0x2914
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lbz      r0, 0x2de(r4)
+	cmplwi   r0, 0
+	beq      lbl_802C6EAC
+	li       r0, 0
+	mr       r3, r4
+	stb      r0, 0x2de(r4)
+	bl       finishBossAttackLoopBGM__Q34Game7BigFoot3ObjFv
 
-	.loc_0x28:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_802C6EAC:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1041,16 +1190,15 @@ void BigFoot::StateWalk::cleanup(Game::EnemyBase*)
 void __sinit_BigFootState_cpp(void)
 {
 	/*
-	.loc_0x0:
-	  lis       r4, 0x8051
-	  li        r0, -0x1
-	  lfs       f0, 0x48B0(r4)
-	  lis       r3, 0x804D
-	  stw       r0, -0x68D8(r13)
-	  stfsu     f0, 0x1978(r3)
-	  stfs      f0, -0x68D4(r13)
-	  stfs      f0, 0x4(r3)
-	  stfs      f0, 0x8(r3)
-	  blr
+	lis      r4, __float_nan@ha
+	li       r0, -1
+	lfs      f0, __float_nan@l(r4)
+	lis      r3, lbl_804D1978@ha
+	stw      r0, lbl_80515DA8@sda21(r13)
+	stfsu    f0, lbl_804D1978@l(r3)
+	stfs     f0, lbl_80515DAC@sda21(r13)
+	stfs     f0, 4(r3)
+	stfs     f0, 8(r3)
+	blr
 	*/
 }

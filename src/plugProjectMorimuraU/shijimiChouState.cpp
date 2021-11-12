@@ -1,5 +1,180 @@
 #include "types.h"
 
+/*
+    Generated from dpostproc
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__Q34Game11ShijimiChou9StateRest
+    __vt__Q34Game11ShijimiChou9StateRest:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game11ShijimiChou9StateRestFPQ24Game9EnemyBasePQ24Game8StateArg
+        .4byte exec__Q34Game11ShijimiChou9StateRestFPQ24Game9EnemyBase
+        .4byte cleanup__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game11ShijimiChou10StateLeave
+    __vt__Q34Game11ShijimiChou10StateLeave:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game11ShijimiChou10StateLeaveFPQ24Game9EnemyBasePQ24Game8StateArg
+        .4byte exec__Q34Game11ShijimiChou10StateLeaveFPQ24Game9EnemyBase
+        .4byte cleanup__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game11ShijimiChou9StateDead
+    __vt__Q34Game11ShijimiChou9StateDead:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game11ShijimiChou9StateDeadFPQ24Game9EnemyBasePQ24Game8StateArg
+        .4byte exec__Q34Game11ShijimiChou9StateDeadFPQ24Game9EnemyBase
+        .4byte cleanup__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game11ShijimiChou9StateFall
+    __vt__Q34Game11ShijimiChou9StateFall:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game11ShijimiChou9StateFallFPQ24Game9EnemyBasePQ24Game8StateArg
+        .4byte exec__Q34Game11ShijimiChou9StateFallFPQ24Game9EnemyBase
+        .4byte cleanup__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game11ShijimiChou8StateFly
+    __vt__Q34Game11ShijimiChou8StateFly:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game11ShijimiChou8StateFlyFPQ24Game9EnemyBasePQ24Game8StateArg
+        .4byte exec__Q34Game11ShijimiChou8StateFlyFPQ24Game9EnemyBase
+        .4byte cleanup__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game11ShijimiChou9StateWait
+    __vt__Q34Game11ShijimiChou9StateWait:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game11ShijimiChou9StateWaitFPQ24Game9EnemyBasePQ24Game8StateArg
+        .4byte exec__Q34Game11ShijimiChou9StateWaitFPQ24Game9EnemyBase
+        .4byte cleanup__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game11ShijimiChou5State
+    __vt__Q34Game11ShijimiChou5State:
+        .4byte 0
+        .4byte 0
+        .4byte init__Q24Game13EnemyFSMStateFPQ24Game9EnemyBasePQ24Game8StateArg
+        .4byte exec__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte cleanup__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game11ShijimiChou3FSM
+    __vt__Q34Game11ShijimiChou3FSM:
+        .4byte 0
+        .4byte 0
+        .4byte init__Q34Game11ShijimiChou3FSMFPQ24Game9EnemyBase
+        .4byte
+   start__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   exec__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase .4byte
+   transit__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseiPQ24Game8StateArg
+        .4byte
+   doDirectDraw__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseR8Graphics .4byte
+   getCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase .4byte
+   setCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBasePQ24Game13EnemyFSMState
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_8051EE10
+    lbl_8051EE10:
+        .4byte 0x77616974
+        .4byte 0x00000000
+    .global lbl_8051EE18
+    lbl_8051EE18:
+        .4byte 0x00000000
+    .global lbl_8051EE1C
+    lbl_8051EE1C:
+        .4byte 0x47000000
+    .global lbl_8051EE20
+    lbl_8051EE20:
+        .4byte 0x43300000
+        .4byte 0x80000000
+    .global lbl_8051EE28
+    lbl_8051EE28:
+        .4byte 0x43340000
+    .global lbl_8051EE2C
+    lbl_8051EE2C:
+        .4byte 0x43160000
+    .global lbl_8051EE30
+    lbl_8051EE30:
+        .4byte 0x666C7900
+    .global lbl_8051EE34
+    lbl_8051EE34:
+        .4byte 0x42700000
+    .global lbl_8051EE38
+    lbl_8051EE38:
+        .4byte 0x66616C6C
+        .4byte 0x00000000
+    .global lbl_8051EE40
+    lbl_8051EE40:
+        .4byte 0xC1A00000
+    .global lbl_8051EE44
+    lbl_8051EE44:
+        .4byte 0x64656164
+        .4byte 0x00000000
+    .global lbl_8051EE4C
+    lbl_8051EE4C:
+        .float 1.0
+    .global lbl_8051EE50
+    lbl_8051EE50:
+        .4byte 0x6C656176
+        .4byte 0x65000000
+    .global lbl_8051EE58
+    lbl_8051EE58:
+        .4byte 0x72657374
+        .4byte 0x00000000
+    .global lbl_8051EE60
+    lbl_8051EE60:
+        .4byte 0x41F00000
+    .global lbl_8051EE64
+    lbl_8051EE64:
+        .4byte 0x42C80000
+    .global lbl_8051EE68
+    lbl_8051EE68:
+        .4byte 0x42480000
+    .global lbl_8051EE6C
+    lbl_8051EE6C:
+        .4byte 0x44160000
+    .global lbl_8051EE70
+    lbl_8051EE70:
+        .4byte 0x43C80000
+        .4byte 0x00000000
+*/
+
 namespace Game {
 
 /*
@@ -10,87 +185,84 @@ namespace Game {
 void ShijimiChou::FSM::init(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r4, 0x6
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        -0x256ECC
-	  li        r3, 0x14
-	  bl        -0x363894
-	  mr.       r4, r3
-	  beq-      .loc_0x38
-	  li        r4, 0
-	  bl        .loc_0x108
-	  mr        r4, r3
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	li       r4, 6
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       create__Q24Game17EnemyStateMachineFi
+	li       r3, 0x14
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_80387750
+	li       r4, 0
+	bl       __ct__Q34Game11ShijimiChou9StateWaitFi
+	mr       r4, r3
 
-	.loc_0x38:
-	  mr        r3, r31
-	  bl        -0x256E4C
-	  li        r3, 0x14
-	  bl        -0x3638B8
-	  mr.       r4, r3
-	  beq-      .loc_0x5C
-	  li        r4, 0x1
-	  bl        0x2F0
-	  mr        r4, r3
+lbl_80387750:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	li       r3, 0x14
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_80387774
+	li       r4, 1
+	bl       __ct__Q34Game11ShijimiChou8StateFlyFi
+	mr       r4, r3
 
-	.loc_0x5C:
-	  mr        r3, r31
-	  bl        -0x256E70
-	  li        r3, 0x14
-	  bl        -0x3638DC
-	  mr.       r4, r3
-	  beq-      .loc_0x80
-	  li        r4, 0x2
-	  bl        0x444
-	  mr        r4, r3
+lbl_80387774:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	li       r3, 0x14
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_80387798
+	li       r4, 2
+	bl       __ct__Q34Game11ShijimiChou9StateFallFi
+	mr       r4, r3
 
-	.loc_0x80:
-	  mr        r3, r31
-	  bl        -0x256E94
-	  li        r3, 0x10
-	  bl        -0x363900
-	  mr.       r4, r3
-	  beq-      .loc_0xA4
-	  li        r4, 0x3
-	  bl        0x5C0
-	  mr        r4, r3
+lbl_80387798:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_803877BC
+	li       r4, 3
+	bl       __ct__Q34Game11ShijimiChou9StateDeadFi
+	mr       r4, r3
 
-	.loc_0xA4:
-	  mr        r3, r31
-	  bl        -0x256EB8
-	  li        r3, 0x10
-	  bl        -0x363924
-	  mr.       r4, r3
-	  beq-      .loc_0xC8
-	  li        r4, 0x4
-	  bl        0x78C
-	  mr        r4, r3
+lbl_803877BC:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_803877E0
+	li       r4, 4
+	bl       __ct__Q34Game11ShijimiChou10StateLeaveFi
+	mr       r4, r3
 
-	.loc_0xC8:
-	  mr        r3, r31
-	  bl        -0x256EDC
-	  li        r3, 0x20
-	  bl        -0x363948
-	  mr.       r4, r3
-	  beq-      .loc_0xEC
-	  li        r4, 0x5
-	  bl        0x80C
-	  mr        r4, r3
+lbl_803877E0:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	li       r3, 0x20
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_80387804
+	li       r4, 5
+	bl       __ct__Q34Game11ShijimiChou9StateRestFi
+	mr       r4, r3
 
-	.loc_0xEC:
-	  mr        r3, r31
-	  bl        -0x256F00
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-
-	.loc_0x108:
+lbl_80387804:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -102,22 +274,21 @@ void ShijimiChou::FSM::init(Game::EnemyBase*)
 ShijimiChou::StateWait::StateWait(int)
 {
 	/*
-	.loc_0x0:
-	  lis       r5, 0x804B
-	  lis       r6, 0x804E
-	  subi      r0, r5, 0x65C
-	  lis       r5, 0x804E
-	  stw       r0, 0x0(r3)
-	  li        r7, 0
-	  addi      r6, r6, 0x4B80
-	  addi      r5, r5, 0x4B5C
-	  stw       r4, 0x4(r3)
-	  addi      r0, r2, 0xAB0
-	  stw       r7, 0x8(r3)
-	  stw       r6, 0x0(r3)
-	  stw       r5, 0x0(r3)
-	  stw       r0, 0xC(r3)
-	  blr
+	lis      r5, __vt__Q24Game13EnemyFSMState@ha
+	lis      r6, __vt__Q34Game11ShijimiChou5State@ha
+	addi     r0, r5, __vt__Q24Game13EnemyFSMState@l
+	lis      r5, __vt__Q34Game11ShijimiChou9StateWait@ha
+	stw      r0, 0(r3)
+	li       r7, 0
+	addi     r6, r6, __vt__Q34Game11ShijimiChou5State@l
+	addi     r5, r5, __vt__Q34Game11ShijimiChou9StateWait@l
+	stw      r4, 4(r3)
+	addi     r0, r2, lbl_8051EE10@sda21
+	stw      r7, 8(r3)
+	stw      r6, 0(r3)
+	stw      r5, 0(r3)
+	stw      r0, 0xc(r3)
+	blr
 	*/
 }
 
@@ -129,55 +300,54 @@ ShijimiChou::StateWait::StateWait(int)
 void ShijimiChou::StateWait::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stfd      f31, 0x20(r1)
-	  psq_st    f31,0x28(r1),0,0
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  mr        r31, r4
-	  mr        r30, r3
-	  lwz       r0, 0x1E0(r4)
-	  mr        r3, r31
-	  lfs       f0, 0xAB8(r2)
-	  li        r4, 0x2
-	  ori       r0, r0, 0x4
-	  li        r5, 0
-	  stw       r0, 0x1E0(r31)
-	  stfs      f0, 0x1D4(r31)
-	  stfs      f0, 0x1D8(r31)
-	  stfs      f0, 0x1DC(r31)
-	  stfs      f0, 0x1C8(r31)
-	  stfs      f0, 0x1CC(r31)
-	  stfs      f0, 0x1D0(r31)
-	  bl        -0x2828B0
-	  bl        -0x2BE318
-	  xoris     r3, r3, 0x8000
-	  lis       r0, 0x4330
-	  stw       r3, 0xC(r1)
-	  mr        r3, r31
-	  lfd       f2, 0xAC0(r2)
-	  stw       r0, 0x8(r1)
-	  lfs       f0, 0xABC(r2)
-	  lfd       f1, 0x8(r1)
-	  fsubs     f1, f1, f2
-	  fdivs     f31, f1, f0
-	  bl        -0x2806C4
-	  fmuls     f1, f1, f31
-	  mr        r3, r31
-	  bl        -0x2826C8
-	  li        r0, 0
-	  stw       r0, 0x10(r30)
-	  psq_l     f31,0x28(r1),0,0
-	  lwz       r0, 0x34(r1)
-	  lfd       f31, 0x20(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stfd     f31, 0x20(r1)
+	psq_st   f31, 40(r1), 0, qr0
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	mr       r31, r4
+	mr       r30, r3
+	lwz      r0, 0x1e0(r4)
+	mr       r3, r31
+	lfs      f0, lbl_8051EE18@sda21(r2)
+	li       r4, 2
+	ori      r0, r0, 4
+	li       r5, 0
+	stw      r0, 0x1e0(r31)
+	stfs     f0, 0x1d4(r31)
+	stfs     f0, 0x1d8(r31)
+	stfs     f0, 0x1dc(r31)
+	stfs     f0, 0x1c8(r31)
+	stfs     f0, 0x1cc(r31)
+	stfs     f0, 0x1d0(r31)
+	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
+	bl       rand
+	xoris    r3, r3, 0x8000
+	lis      r0, 0x4330
+	stw      r3, 0xc(r1)
+	mr       r3, r31
+	lfd      f2, lbl_8051EE20@sda21(r2)
+	stw      r0, 8(r1)
+	lfs      f0, lbl_8051EE1C@sda21(r2)
+	lfd      f1, 8(r1)
+	fsubs    f1, f1, f2
+	fdivs    f31, f1, f0
+	bl       getMotionFrameMax__Q24Game9EnemyBaseFv
+	fmuls    f1, f1, f31
+	mr       r3, r31
+	bl       setMotionFrame__Q24Game9EnemyBaseFf
+	li       r0, 0
+	stw      r0, 0x10(r30)
+	psq_l    f31, 40(r1), 0, qr0
+	lwz      r0, 0x34(r1)
+	lfd      f31, 0x20(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -189,103 +359,103 @@ void ShijimiChou::StateWait::init(Game::EnemyBase*, Game::StateArg*)
 void ShijimiChou::StateWait::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lwz       r5, 0x10(r3)
-	  addi      r0, r5, 0x1
-	  stw       r0, 0x10(r3)
-	  lwz       r0, 0x10(r3)
-	  cmpwi     r0, 0xA
-	  ble-      .loc_0x10C
-	  lwz       r0, 0x2C0(r31)
-	  cmpwi     r0, 0x3
-	  bne-      .loc_0xBC
-	  lwz       r0, 0x2E8(r31)
-	  cmplw     r0, r31
-	  beq-      .loc_0x68
-	  lwz       r12, 0x0(r3)
-	  li        r5, 0x5
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x128
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lwz      r5, 0x10(r3)
+	addi     r0, r5, 1
+	stw      r0, 0x10(r3)
+	lwz      r0, 0x10(r3)
+	cmpwi    r0, 0xa
+	ble      lbl_80387A28
+	lwz      r0, 0x2c0(r31)
+	cmpwi    r0, 3
+	bne      lbl_803879D8
+	lwz      r0, 0x2e8(r31)
+	cmplw    r0, r31
+	beq      lbl_80387984
+	lwz      r12, 0(r3)
+	li       r5, 5
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_80387A44
 
-	.loc_0x68:
-	  lwz       r3, 0x2C8(r31)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x120
-	  lwz       r4, 0x1E0(r3)
-	  li        r3, 0
-	  rlwinm.   r0,r4,0,21,21
-	  bne-      .loc_0x8C
-	  rlwinm.   r0,r4,0,13,13
-	  beq-      .loc_0x90
+lbl_80387984:
+	lwz      r3, 0x2c8(r31)
+	cmplwi   r3, 0
+	beq      lbl_80387A3C
+	lwz      r4, 0x1e0(r3)
+	li       r3, 0
+	rlwinm.  r0, r4, 0, 0x15, 0x15
+	bne      lbl_803879A8
+	rlwinm.  r0, r4, 0, 0xd, 0xd
+	beq      lbl_803879AC
 
-	.loc_0x8C:
-	  li        r3, 0x1
+lbl_803879A8:
+	li       r3, 1
 
-	.loc_0x90:
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x120
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x1
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x128
+lbl_803879AC:
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_80387A3C
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 1
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_80387A44
 
-	.loc_0xBC:
-	  lwz       r0, 0x2E8(r31)
-	  cmplw     r0, r31
-	  bne-      .loc_0xE8
-	  lfs       f1, 0xAC8(r2)
-	  mr        r3, r31
-	  lfs       f2, 0xACC(r2)
-	  li        r4, 0
-	  li        r5, 0
-	  bl        -0x274E94
-	  cmplwi    r3, 0
-	  beq-      .loc_0x120
+lbl_803879D8:
+	lwz      r0, 0x2e8(r31)
+	cmplw    r0, r31
+	bne      lbl_80387A04
+	lfs      f1, lbl_8051EE28@sda21(r2)
+	mr       r3, r31
+	lfs      f2, lbl_8051EE2C@sda21(r2)
+	li       r4, 0
+	li       r5, 0
+	bl
+"getNearestPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Piki>"
+	cmplwi   r3, 0
+	beq      lbl_80387A3C
 
-	.loc_0xE8:
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x1
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x128
+lbl_80387A04:
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 1
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_80387A44
 
-	.loc_0x10C:
-	  lwz       r0, 0x2E8(r31)
-	  cmplw     r0, r31
-	  bne-      .loc_0x120
-	  mr        r3, r31
-	  bl        0x47DC
+lbl_80387A28:
+	lwz      r0, 0x2e8(r31)
+	cmplw    r0, r31
+	bne      lbl_80387A3C
+	mr       r3, r31
+	bl       leaderInit__Q34Game11ShijimiChou3ObjFv
 
-	.loc_0x120:
-	  mr        r3, r31
-	  bl        0x31F8
+lbl_80387A3C:
+	mr       r3, r31
+	bl       fly__Q34Game11ShijimiChou3ObjFv
 
-	.loc_0x128:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80387A44:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -297,22 +467,21 @@ void ShijimiChou::StateWait::exec(Game::EnemyBase*)
 ShijimiChou::StateFly::StateFly(int)
 {
 	/*
-	.loc_0x0:
-	  lis       r5, 0x804B
-	  lis       r6, 0x804E
-	  subi      r0, r5, 0x65C
-	  lis       r5, 0x804E
-	  stw       r0, 0x0(r3)
-	  li        r7, 0
-	  addi      r6, r6, 0x4B80
-	  addi      r5, r5, 0x4B38
-	  stw       r4, 0x4(r3)
-	  addi      r0, r2, 0xAD0
-	  stw       r7, 0x8(r3)
-	  stw       r6, 0x0(r3)
-	  stw       r5, 0x0(r3)
-	  stw       r0, 0xC(r3)
-	  blr
+	lis      r5, __vt__Q24Game13EnemyFSMState@ha
+	lis      r6, __vt__Q34Game11ShijimiChou5State@ha
+	addi     r0, r5, __vt__Q24Game13EnemyFSMState@l
+	lis      r5, __vt__Q34Game11ShijimiChou8StateFly@ha
+	stw      r0, 0(r3)
+	li       r7, 0
+	addi     r6, r6, __vt__Q34Game11ShijimiChou5State@l
+	addi     r5, r5, __vt__Q34Game11ShijimiChou8StateFly@l
+	stw      r4, 4(r3)
+	addi     r0, r2, lbl_8051EE30@sda21
+	stw      r7, 8(r3)
+	stw      r6, 0(r3)
+	stw      r5, 0(r3)
+	stw      r0, 0xc(r3)
+	blr
 	*/
 }
 
@@ -324,28 +493,27 @@ ShijimiChou::StateFly::StateFly(int)
 void ShijimiChou::StateFly::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  mr        r3, r31
-	  bl        0x4130
-	  li        r3, 0
-	  stw       r3, 0x2C4(r31)
-	  lwz       r0, 0x1E0(r31)
-	  rlwinm    r0,r0,0,26,24
-	  stw       r0, 0x1E0(r31)
-	  stw       r3, 0x10(r30)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	mr       r3, r31
+	bl       setNextGoal__Q34Game11ShijimiChou3ObjFv
+	li       r3, 0
+	stw      r3, 0x2c4(r31)
+	lwz      r0, 0x1e0(r31)
+	rlwinm   r0, r0, 0, 0x1a, 0x18
+	stw      r0, 0x1e0(r31)
+	stw      r3, 0x10(r30)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -357,79 +525,78 @@ void ShijimiChou::StateFly::init(Game::EnemyBase*, Game::StateArg*)
 void ShijimiChou::StateFly::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r4
-	  stw       r30, 0x18(r1)
-	  mr        r30, r3
-	  mr        r3, r31
-	  bl        0x30AC
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x38
-	  lwz       r3, 0x2C4(r31)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x2C4(r31)
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r4
+	stw      r30, 0x18(r1)
+	mr       r30, r3
+	mr       r3, r31
+	bl       checkFlyStart__Q34Game11ShijimiChou3ObjFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80387B24
+	lwz      r3, 0x2c4(r31)
+	addi     r0, r3, 1
+	stw      r0, 0x2c4(r31)
 
-	.loc_0x38:
-	  lwz       r3, 0x10(r30)
-	  cmpwi     r3, 0xA
-	  bne-      .loc_0x50
-	  mr        r3, r31
-	  bl        0x47F4
-	  b         .loc_0x58
+lbl_80387B24:
+	lwz      r3, 0x10(r30)
+	cmpwi    r3, 0xa
+	bne      lbl_80387B3C
+	mr       r3, r31
+	bl       fadeAppearEffect__Q34Game11ShijimiChou3ObjFv
+	b        lbl_80387B44
 
-	.loc_0x50:
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x10(r30)
+lbl_80387B3C:
+	addi     r0, r3, 1
+	stw      r0, 0x10(r30)
 
-	.loc_0x58:
-	  lwz       r0, 0x2C0(r31)
-	  lwz       r3, 0xC0(r31)
-	  cmpwi     r0, 0x2
-	  lfs       f2, 0x81C(r3)
-	  bne-      .loc_0x70
-	  lfs       f2, 0x844(r3)
+lbl_80387B44:
+	lwz      r0, 0x2c0(r31)
+	lwz      r3, 0xc0(r31)
+	cmpwi    r0, 2
+	lfs      f2, 0x81c(r3)
+	bne      lbl_80387B5C
+	lfs      f2, 0x844(r3)
 
-	.loc_0x70:
-	  cmpwi     r0, 0x3
-	  bne-      .loc_0x7C
-	  lfs       f2, 0xAD4(r2)
+lbl_80387B5C:
+	cmpwi    r0, 3
+	bne      lbl_80387B68
+	lfs      f2, lbl_8051EE34@sda21(r2)
 
-	.loc_0x7C:
-	  lwz       r3, 0x2C4(r31)
-	  lis       r0, 0x4330
-	  stw       r0, 0x8(r1)
-	  xoris     r0, r3, 0x8000
-	  lfd       f1, 0xAC0(r2)
-	  stw       r0, 0xC(r1)
-	  lfd       f0, 0x8(r1)
-	  fsubs     f0, f0, f1
-	  fcmpo     cr0, f0, f2
-	  ble-      .loc_0xC8
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x4
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0xD0
+lbl_80387B68:
+	lwz      r3, 0x2c4(r31)
+	lis      r0, 0x4330
+	stw      r0, 8(r1)
+	xoris    r0, r3, 0x8000
+	lfd      f1, lbl_8051EE20@sda21(r2)
+	stw      r0, 0xc(r1)
+	lfd      f0, 8(r1)
+	fsubs    f0, f0, f1
+	fcmpo    cr0, f0, f2
+	ble      lbl_80387BB4
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 4
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_80387BBC
 
-	.loc_0xC8:
-	  mr        r3, r31
-	  bl        0x3080
+lbl_80387BB4:
+	mr       r3, r31
+	bl       fly__Q34Game11ShijimiChou3ObjFv
 
-	.loc_0xD0:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80387BBC:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -441,22 +608,21 @@ void ShijimiChou::StateFly::exec(Game::EnemyBase*)
 ShijimiChou::StateFall::StateFall(int)
 {
 	/*
-	.loc_0x0:
-	  lis       r5, 0x804B
-	  lis       r6, 0x804E
-	  subi      r0, r5, 0x65C
-	  lis       r5, 0x804E
-	  stw       r0, 0x0(r3)
-	  li        r7, 0
-	  addi      r6, r6, 0x4B80
-	  addi      r5, r5, 0x4B14
-	  stw       r4, 0x4(r3)
-	  addi      r0, r2, 0xAD8
-	  stw       r7, 0x8(r3)
-	  stw       r6, 0x0(r3)
-	  stw       r5, 0x0(r3)
-	  stw       r0, 0xC(r3)
-	  blr
+	lis      r5, __vt__Q24Game13EnemyFSMState@ha
+	lis      r6, __vt__Q34Game11ShijimiChou5State@ha
+	addi     r0, r5, __vt__Q24Game13EnemyFSMState@l
+	lis      r5, __vt__Q34Game11ShijimiChou9StateFall@ha
+	stw      r0, 0(r3)
+	li       r7, 0
+	addi     r6, r6, __vt__Q34Game11ShijimiChou5State@l
+	addi     r5, r5, __vt__Q34Game11ShijimiChou9StateFall@l
+	stw      r4, 4(r3)
+	addi     r0, r2, lbl_8051EE38@sda21
+	stw      r7, 8(r3)
+	stw      r6, 0(r3)
+	stw      r5, 0(r3)
+	stw      r0, 0xc(r3)
+	blr
 	*/
 }
 
@@ -468,61 +634,60 @@ ShijimiChou::StateFall::StateFall(int)
 void ShijimiChou::StateFall::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stw       r31, 0x2C(r1)
-	  mr        r31, r4
-	  stw       r30, 0x28(r1)
-	  mr        r30, r3
-	  mr        r3, r31
-	  bl        -0x28049C
-	  lwz       r0, 0x1E0(r31)
-	  rlwinm    r0,r0,0,30,28
-	  stw       r0, 0x1E0(r31)
-	  lwz       r3, 0xC0(r31)
-	  lbz       r0, 0x94C(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x64
-	  lfs       f1, 0x1D4(r31)
-	  lfs       f2, 0x1D8(r31)
-	  lfs       f3, 0x1DC(r31)
-	  lfs       f0, 0xAE0(r2)
-	  stfs      f1, 0x14(r1)
-	  stfs      f0, 0x1D8(r31)
-	  stfs      f2, 0x18(r1)
-	  stfs      f3, 0x1C(r1)
-	  stfs      f3, 0x1DC(r31)
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stw      r31, 0x2c(r1)
+	mr       r31, r4
+	stw      r30, 0x28(r1)
+	mr       r30, r3
+	mr       r3, r31
+	bl       hardConstraintOff__Q24Game9EnemyBaseFv
+	lwz      r0, 0x1e0(r31)
+	rlwinm   r0, r0, 0, 0x1e, 0x1c
+	stw      r0, 0x1e0(r31)
+	lwz      r3, 0xc0(r31)
+	lbz      r0, 0x94c(r3)
+	cmplwi   r0, 0
+	beq      lbl_80387C74
+	lfs      f1, 0x1d4(r31)
+	lfs      f2, 0x1d8(r31)
+	lfs      f3, 0x1dc(r31)
+	lfs      f0, lbl_8051EE40@sda21(r2)
+	stfs     f1, 0x14(r1)
+	stfs     f0, 0x1d8(r31)
+	stfs     f2, 0x18(r1)
+	stfs     f3, 0x1c(r1)
+	stfs     f3, 0x1dc(r31)
 
-	.loc_0x64:
-	  mr        r4, r31
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f0, 0x8(r1)
-	  li        r4, 0x5917
-	  li        r5, 0
-	  stfs      f0, 0x2CC(r31)
-	  lfs       f0, 0xC(r1)
-	  stfs      f0, 0x2D0(r31)
-	  lfs       f0, 0x10(r1)
-	  stfs      f0, 0x2D4(r31)
-	  lwz       r3, 0x28C(r31)
-	  lwz       r12, 0x28(r3)
-	  lwz       r12, 0x88(r12)
-	  mtctr     r12
-	  bctrl
-	  li        r0, 0
-	  stw       r0, 0x10(r30)
-	  lwz       r0, 0x34(r1)
-	  lwz       r31, 0x2C(r1)
-	  lwz       r30, 0x28(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_80387C74:
+	mr       r4, r31
+	addi     r3, r1, 8
+	lwz      r12, 0(r31)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f0, 8(r1)
+	li       r4, 0x5917
+	li       r5, 0
+	stfs     f0, 0x2cc(r31)
+	lfs      f0, 0xc(r1)
+	stfs     f0, 0x2d0(r31)
+	lfs      f0, 0x10(r1)
+	stfs     f0, 0x2d4(r31)
+	lwz      r3, 0x28c(r31)
+	lwz      r12, 0x28(r3)
+	lwz      r12, 0x88(r12)
+	mtctr    r12
+	bctrl
+	li       r0, 0
+	stw      r0, 0x10(r30)
+	lwz      r0, 0x34(r1)
+	lwz      r31, 0x2c(r1)
+	lwz      r30, 0x28(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -534,50 +699,49 @@ void ShijimiChou::StateFall::init(Game::EnemyBase*, Game::StateArg*)
 void ShijimiChou::StateFall::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lwz       r3, 0xC0(r4)
-	  lbz       r0, 0x94C(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x34
-	  mr        r3, r31
-	  bl        0x4270
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lwz      r3, 0xc0(r4)
+	lbz      r0, 0x94c(r3)
+	cmplwi   r0, 0
+	beq      lbl_80387D14
+	mr       r3, r31
+	bl       fallBehavior__Q34Game11ShijimiChou3ObjFv
 
-	.loc_0x34:
-	  mr        r3, r31
-	  bl        0x41E0
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x50
-	  lwz       r0, 0x10(r30)
-	  cmpwi     r0, 0x64
-	  ble-      .loc_0x70
+lbl_80387D14:
+	mr       r3, r31
+	bl       isFallEnd__Q34Game11ShijimiChou3ObjFv
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_80387D30
+	lwz      r0, 0x10(r30)
+	cmpwi    r0, 0x64
+	ble      lbl_80387D50
 
-	.loc_0x50:
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x3
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_80387D30:
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 3
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x70:
-	  lwz       r3, 0x10(r30)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x10(r30)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80387D50:
+	lwz      r3, 0x10(r30)
+	addi     r0, r3, 1
+	stw      r0, 0x10(r30)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -589,22 +753,21 @@ void ShijimiChou::StateFall::exec(Game::EnemyBase*)
 ShijimiChou::StateDead::StateDead(int)
 {
 	/*
-	.loc_0x0:
-	  lis       r5, 0x804B
-	  lis       r6, 0x804E
-	  subi      r0, r5, 0x65C
-	  lis       r5, 0x804E
-	  stw       r0, 0x0(r3)
-	  li        r7, 0
-	  addi      r6, r6, 0x4B80
-	  addi      r5, r5, 0x4AF0
-	  stw       r4, 0x4(r3)
-	  addi      r0, r2, 0xAE4
-	  stw       r7, 0x8(r3)
-	  stw       r6, 0x0(r3)
-	  stw       r5, 0x0(r3)
-	  stw       r0, 0xC(r3)
-	  blr
+	lis      r5, __vt__Q24Game13EnemyFSMState@ha
+	lis      r6, __vt__Q34Game11ShijimiChou5State@ha
+	addi     r0, r5, __vt__Q24Game13EnemyFSMState@l
+	lis      r5, __vt__Q34Game11ShijimiChou9StateDead@ha
+	stw      r0, 0(r3)
+	li       r7, 0
+	addi     r6, r6, __vt__Q34Game11ShijimiChou5State@l
+	addi     r5, r5, __vt__Q34Game11ShijimiChou9StateDead@l
+	stw      r4, 4(r3)
+	addi     r0, r2, lbl_8051EE44@sda21
+	stw      r7, 8(r3)
+	stw      r6, 0(r3)
+	stw      r5, 0(r3)
+	stw      r0, 0xc(r3)
+	blr
 	*/
 }
 
@@ -616,47 +779,46 @@ ShijimiChou::StateDead::StateDead(int)
 void ShijimiChou::StateDead::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  li        r4, 0
-	  lwz       r12, 0x0(r31)
-	  mr        r3, r31
-	  lwz       r12, 0xAC(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x1E0(r31)
-	  mr        r3, r31
-	  lfs       f0, 0xAB8(r2)
-	  rlwinm    r0,r0,0,30,28
-	  stw       r0, 0x1E0(r31)
-	  stfs      f0, 0x1D4(r31)
-	  stfs      f0, 0x1D8(r31)
-	  stfs      f0, 0x1DC(r31)
-	  stfs      f0, 0x1C8(r31)
-	  stfs      f0, 0x1CC(r31)
-	  stfs      f0, 0x1D0(r31)
-	  lwz       r0, 0x1E0(r31)
-	  ori       r0, r0, 0x80
-	  stw       r0, 0x1E0(r31)
-	  bl        -0x2826F4
-	  mr        r3, r31
-	  li        r4, 0x1
-	  li        r5, 0
-	  bl        -0x282E20
-	  lfs       f1, 0xAB8(r2)
-	  mr        r3, r31
-	  bl        0xE65E4
-	  mr        r3, r31
-	  bl        0x4120
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	li       r4, 0
+	lwz      r12, 0(r31)
+	mr       r3, r31
+	lwz      r12, 0xac(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x1e0(r31)
+	mr       r3, r31
+	lfs      f0, lbl_8051EE18@sda21(r2)
+	rlwinm   r0, r0, 0, 0x1e, 0x1c
+	stw      r0, 0x1e0(r31)
+	stfs     f0, 0x1d4(r31)
+	stfs     f0, 0x1d8(r31)
+	stfs     f0, 0x1dc(r31)
+	stfs     f0, 0x1c8(r31)
+	stfs     f0, 0x1cc(r31)
+	stfs     f0, 0x1d0(r31)
+	lwz      r0, 0x1e0(r31)
+	ori      r0, r0, 0x80
+	stw      r0, 0x1e0(r31)
+	bl       deathProcedure__Q24Game9EnemyBaseFv
+	mr       r3, r31
+	li       r4, 1
+	li       r5, 0
+	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
+	lfs      f1, lbl_8051EE18@sda21(r2)
+	mr       r3, r31
+	bl       PSStartEnemyFatalHitSE__FPQ24Game9EnemyBasef
+	mr       r3, r31
+	bl       deadEffect__Q34Game11ShijimiChou3ObjFv
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -668,78 +830,77 @@ void ShijimiChou::StateDead::init(Game::EnemyBase*, Game::StateArg*)
 void ShijimiChou::StateDead::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x50(r1)
-	  mflr      r0
-	  stw       r0, 0x54(r1)
-	  stw       r31, 0x4C(r1)
-	  mr        r31, r4
-	  lwz       r3, 0x188(r4)
-	  lbz       r0, 0x24(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x100
-	  lwz       r0, 0x1C(r3)
-	  cmplwi    r0, 0x3E8
-	  bne-      .loc_0x100
-	  mr        r3, r31
-	  bl        0x2AF8
-	  lfs       f1, 0xAB8(r2)
-	  mr        r3, r31
-	  bl        0xE63EC
-	  mr        r3, r31
-	  addi      r4, r1, 0x20
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x204(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r4, 0x20(r1)
-	  lis       r3, 0x804B
-	  lwz       r6, 0x24(r1)
-	  subi      r0, r3, 0x5808
-	  lwz       r5, 0x28(r1)
-	  lis       r3, 0x804B
-	  stw       r4, 0x8(r1)
-	  lis       r4, 0x804E
-	  subi      r10, r3, 0x5814
-	  lfs       f0, 0xAEC(r2)
-	  stw       r6, 0xC(r1)
-	  lis       r9, 0x804B
-	  lfs       f3, 0x8(r1)
-	  lis       r3, 0x804F
-	  stw       r5, 0x10(r1)
-	  li        r8, 0xC
-	  lfs       f2, 0xC(r1)
-	  li        r6, 0x52
-	  lfs       f1, 0x10(r1)
-	  li        r5, 0
-	  stw       r0, 0x14(r1)
-	  addi      r7, r4, 0x6A78
-	  subi      r9, r9, 0x5820
-	  subi      r0, r3, 0x79A0
-	  stw       r10, 0x2C(r1)
-	  addi      r3, r1, 0x14
-	  addi      r4, r1, 0x2C
-	  stw       r7, 0x14(r1)
-	  stfs      f3, 0x30(r1)
-	  stfs      f2, 0x34(r1)
-	  stfs      f1, 0x38(r1)
-	  stw       r9, 0x2C(r1)
-	  stw       r8, 0x3C(r1)
-	  stfs      f0, 0x40(r1)
-	  sth       r6, 0x18(r1)
-	  stw       r5, 0x1C(r1)
-	  stw       r0, 0x14(r1)
-	  bl        0x4016C
-	  mr        r3, r31
-	  li        r4, 0
-	  bl        -0x24CE5C
+	stwu     r1, -0x50(r1)
+	mflr     r0
+	stw      r0, 0x54(r1)
+	stw      r31, 0x4c(r1)
+	mr       r31, r4
+	lwz      r3, 0x188(r4)
+	lbz      r0, 0x24(r3)
+	cmplwi   r0, 0
+	beq      lbl_80387F50
+	lwz      r0, 0x1c(r3)
+	cmplwi   r0, 0x3e8
+	bne      lbl_80387F50
+	mr       r3, r31
+	bl       genItem__Q34Game11ShijimiChou3ObjFv
+	lfs      f1, lbl_8051EE18@sda21(r2)
+	mr       r3, r31
+	bl       PSStartEnemyGhostSE__FPQ24Game9EnemyBasef
+	mr       r3, r31
+	addi     r4, r1, 0x20
+	lwz      r12, 0(r31)
+	lwz      r12, 0x204(r12)
+	mtctr    r12
+	bctrl
+	lwz      r4, 0x20(r1)
+	lis      r3, __vt__Q23efx5TBase@ha
+	lwz      r6, 0x24(r1)
+	addi     r0, r3, __vt__Q23efx5TBase@l
+	lwz      r5, 0x28(r1)
+	lis      r3, __vt__Q23efx3Arg@ha
+	stw      r4, 8(r1)
+	lis      r4, __vt__Q23efx8TSimple1@ha
+	addi     r10, r3, __vt__Q23efx3Arg@l
+	lfs      f0, lbl_8051EE4C@sda21(r2)
+	stw      r6, 0xc(r1)
+	lis      r9, __vt__Q23efx12ArgEnemyType@ha
+	lfs      f3, 8(r1)
+	lis      r3, __vt__Q23efx10TEnemyDead@ha
+	stw      r5, 0x10(r1)
+	li       r8, 0xc
+	lfs      f2, 0xc(r1)
+	li       r6, 0x52
+	lfs      f1, 0x10(r1)
+	li       r5, 0
+	stw      r0, 0x14(r1)
+	addi     r7, r4, __vt__Q23efx8TSimple1@l
+	addi     r9, r9, __vt__Q23efx12ArgEnemyType@l
+	addi     r0, r3, __vt__Q23efx10TEnemyDead@l
+	stw      r10, 0x2c(r1)
+	addi     r3, r1, 0x14
+	addi     r4, r1, 0x2c
+	stw      r7, 0x14(r1)
+	stfs     f3, 0x30(r1)
+	stfs     f2, 0x34(r1)
+	stfs     f1, 0x38(r1)
+	stw      r9, 0x2c(r1)
+	stw      r8, 0x3c(r1)
+	stfs     f0, 0x40(r1)
+	sth      r6, 0x18(r1)
+	stw      r5, 0x1c(r1)
+	stw      r0, 0x14(r1)
+	bl       create__Q23efx10TEnemyDeadFPQ23efx3Arg
+	mr       r3, r31
+	li       r4, 0
+	bl       kill__Q24Game8CreatureFPQ24Game15CreatureKillArg
 
-	.loc_0x100:
-	  lwz       r0, 0x54(r1)
-	  lwz       r31, 0x4C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x50
-	  blr
+lbl_80387F50:
+	lwz      r0, 0x54(r1)
+	lwz      r31, 0x4c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x50
+	blr
 	*/
 }
 
@@ -751,22 +912,21 @@ void ShijimiChou::StateDead::exec(Game::EnemyBase*)
 ShijimiChou::StateLeave::StateLeave(int)
 {
 	/*
-	.loc_0x0:
-	  lis       r5, 0x804B
-	  lis       r6, 0x804E
-	  subi      r0, r5, 0x65C
-	  lis       r5, 0x804E
-	  stw       r0, 0x0(r3)
-	  li        r7, 0
-	  addi      r6, r6, 0x4B80
-	  addi      r5, r5, 0x4ACC
-	  stw       r4, 0x4(r3)
-	  addi      r0, r2, 0xAF0
-	  stw       r7, 0x8(r3)
-	  stw       r6, 0x0(r3)
-	  stw       r5, 0x0(r3)
-	  stw       r0, 0xC(r3)
-	  blr
+	lis      r5, __vt__Q24Game13EnemyFSMState@ha
+	lis      r6, __vt__Q34Game11ShijimiChou5State@ha
+	addi     r0, r5, __vt__Q24Game13EnemyFSMState@l
+	lis      r5, __vt__Q34Game11ShijimiChou10StateLeave@ha
+	stw      r0, 0(r3)
+	li       r7, 0
+	addi     r6, r6, __vt__Q34Game11ShijimiChou5State@l
+	addi     r5, r5, __vt__Q34Game11ShijimiChou10StateLeave@l
+	stw      r4, 4(r3)
+	addi     r0, r2, lbl_8051EE50@sda21
+	stw      r7, 8(r3)
+	stw      r6, 0(r3)
+	stw      r5, 0(r3)
+	stw      r0, 0xc(r3)
+	blr
 	*/
 }
 
@@ -778,24 +938,23 @@ ShijimiChou::StateLeave::StateLeave(int)
 void ShijimiChou::StateLeave::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  mr        r3, r31
-	  bl        -0x28663C
-	  lwz       r0, 0x1E0(r31)
-	  mr        r3, r31
-	  ori       r0, r0, 0x40
-	  stw       r0, 0x1E0(r31)
-	  bl        0x3A70
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	mr       r3, r31
+	bl       setEmotionCaution__Q24Game9EnemyBaseFv
+	lwz      r0, 0x1e0(r31)
+	mr       r3, r31
+	ori      r0, r0, 0x40
+	stw      r0, 0x1e0(r31)
+	bl       leaveInit__Q34Game11ShijimiChou3ObjFv
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -807,16 +966,15 @@ void ShijimiChou::StateLeave::init(Game::EnemyBase*, Game::StateArg*)
 void ShijimiChou::StateLeave::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r3, r4
-	  stw       r0, 0x14(r1)
-	  bl        0x38D4
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r3, r4
+	stw      r0, 0x14(r1)
+	bl       leave__Q34Game11ShijimiChou3ObjFv
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -828,22 +986,21 @@ void ShijimiChou::StateLeave::exec(Game::EnemyBase*)
 ShijimiChou::StateRest::StateRest(int)
 {
 	/*
-	.loc_0x0:
-	  lis       r5, 0x804B
-	  lis       r6, 0x804E
-	  subi      r0, r5, 0x65C
-	  lis       r5, 0x804E
-	  stw       r0, 0x0(r3)
-	  li        r7, 0
-	  addi      r6, r6, 0x4B80
-	  addi      r5, r5, 0x4AA8
-	  stw       r4, 0x4(r3)
-	  addi      r0, r2, 0xAF8
-	  stw       r7, 0x8(r3)
-	  stw       r6, 0x0(r3)
-	  stw       r5, 0x0(r3)
-	  stw       r0, 0xC(r3)
-	  blr
+	lis      r5, __vt__Q24Game13EnemyFSMState@ha
+	lis      r6, __vt__Q34Game11ShijimiChou5State@ha
+	addi     r0, r5, __vt__Q24Game13EnemyFSMState@l
+	lis      r5, __vt__Q34Game11ShijimiChou9StateRest@ha
+	stw      r0, 0(r3)
+	li       r7, 0
+	addi     r6, r6, __vt__Q34Game11ShijimiChou5State@l
+	addi     r5, r5, __vt__Q34Game11ShijimiChou9StateRest@l
+	stw      r4, 4(r3)
+	addi     r0, r2, lbl_8051EE58@sda21
+	stw      r7, 8(r3)
+	stw      r6, 0(r3)
+	stw      r5, 0(r3)
+	stw      r0, 0xc(r3)
+	blr
 	*/
 }
 
@@ -855,56 +1012,55 @@ ShijimiChou::StateRest::StateRest(int)
 void ShijimiChou::StateRest::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  li        r0, 0x1
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r4
-	  stw       r30, 0x18(r1)
-	  mr        r30, r3
-	  stb       r0, 0x1C(r3)
-	  li        r0, 0
-	  stw       r0, 0x10(r3)
-	  bl        -0x2BEAD0
-	  xoris     r0, r3, 0x8000
-	  lis       r3, 0x4330
-	  stw       r0, 0xC(r1)
-	  li        r0, 0
-	  lfd       f3, 0xAC0(r2)
-	  stw       r3, 0x8(r1)
-	  lfs       f2, 0xABC(r2)
-	  lfd       f0, 0x8(r1)
-	  lfs       f1, 0xB04(r2)
-	  fsubs     f3, f0, f3
-	  lfs       f0, 0xB00(r2)
-	  fdivs     f2, f3, f2
-	  fmadds    f0, f1, f2, f0
-	  fctiwz    f0, f0
-	  stfd      f0, 0x10(r1)
-	  lwz       r3, 0x14(r1)
-	  stw       r3, 0x18(r30)
-	  stb       r0, 0x1D(r30)
-	  stw       r0, 0x14(r30)
-	  stb       r0, 0x1E(r30)
-	  lwz       r3, -0x6C18(r13)
-	  cmplwi    r3, 0
-	  beq-      .loc_0xA4
-	  lwz       r0, 0x44(r3)
-	  cmpwi     r0, 0x4
-	  bne-      .loc_0xA4
-	  lwz       r0, 0x1E0(r31)
-	  rlwinm    r0,r0,0,26,24
-	  stw       r0, 0x1E0(r31)
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	li       r0, 1
+	stw      r31, 0x1c(r1)
+	mr       r31, r4
+	stw      r30, 0x18(r1)
+	mr       r30, r3
+	stb      r0, 0x1c(r3)
+	li       r0, 0
+	stw      r0, 0x10(r3)
+	bl       rand
+	xoris    r0, r3, 0x8000
+	lis      r3, 0x4330
+	stw      r0, 0xc(r1)
+	li       r0, 0
+	lfd      f3, lbl_8051EE20@sda21(r2)
+	stw      r3, 8(r1)
+	lfs      f2, lbl_8051EE1C@sda21(r2)
+	lfd      f0, 8(r1)
+	lfs      f1, lbl_8051EE64@sda21(r2)
+	fsubs    f3, f0, f3
+	lfs      f0, lbl_8051EE60@sda21(r2)
+	fdivs    f2, f3, f2
+	fmadds   f0, f1, f2, f0
+	fctiwz   f0, f0
+	stfd     f0, 0x10(r1)
+	lwz      r3, 0x14(r1)
+	stw      r3, 0x18(r30)
+	stb      r0, 0x1d(r30)
+	stw      r0, 0x14(r30)
+	stb      r0, 0x1e(r30)
+	lwz      r3, gameSystem__4Game@sda21(r13)
+	cmplwi   r3, 0
+	beq      lbl_803880E8
+	lwz      r0, 0x44(r3)
+	cmpwi    r0, 4
+	bne      lbl_803880E8
+	lwz      r0, 0x1e0(r31)
+	rlwinm   r0, r0, 0, 0x1a, 0x18
+	stw      r0, 0x1e0(r31)
 
-	.loc_0xA4:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_803880E8:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -916,238 +1072,237 @@ void ShijimiChou::StateRest::init(Game::EnemyBase*, Game::StateArg*)
 void ShijimiChou::StateRest::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x80(r1)
-	  mflr      r0
-	  stw       r0, 0x84(r1)
-	  stfd      f31, 0x70(r1)
-	  psq_st    f31,0x78(r1),0,0
-	  stfd      f30, 0x60(r1)
-	  psq_st    f30,0x68(r1),0,0
-	  stfd      f29, 0x50(r1)
-	  psq_st    f29,0x58(r1),0,0
-	  stw       r31, 0x4C(r1)
-	  stw       r30, 0x48(r1)
-	  mr        r30, r3
-	  mr        r31, r4
-	  lbz       r0, 0x1D(r3)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x6C
-	  lwz       r4, 0x1E0(r31)
-	  li        r3, 0
-	  rlwinm.   r0,r4,0,21,21
-	  bne-      .loc_0x58
-	  rlwinm.   r0,r4,0,13,13
-	  beq-      .loc_0x5C
+	stwu     r1, -0x80(r1)
+	mflr     r0
+	stw      r0, 0x84(r1)
+	stfd     f31, 0x70(r1)
+	psq_st   f31, 120(r1), 0, qr0
+	stfd     f30, 0x60(r1)
+	psq_st   f30, 104(r1), 0, qr0
+	stfd     f29, 0x50(r1)
+	psq_st   f29, 88(r1), 0, qr0
+	stw      r31, 0x4c(r1)
+	stw      r30, 0x48(r1)
+	mr       r30, r3
+	mr       r31, r4
+	lbz      r0, 0x1d(r3)
+	cmplwi   r0, 0
+	bne      lbl_8038816C
+	lwz      r4, 0x1e0(r31)
+	li       r3, 0
+	rlwinm.  r0, r4, 0, 0x15, 0x15
+	bne      lbl_80388158
+	rlwinm.  r0, r4, 0, 0xd, 0xd
+	beq      lbl_8038815C
 
-	.loc_0x58:
-	  li        r3, 0x1
+lbl_80388158:
+	li       r3, 1
 
-	.loc_0x5C:
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x6C
-	  mr        r3, r31
-	  bl        0x2E8C
+lbl_8038815C:
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_8038816C
+	mr       r3, r31
+	bl       restFly__Q34Game11ShijimiChou3ObjFv
 
-	.loc_0x6C:
-	  lwz       r3, 0x10(r30)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x10(r30)
-	  lbz       r0, 0x1D(r30)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x27C
-	  li        r0, 0
-	  stw       r0, 0x14(r30)
-	  lbz       r0, 0x1E(r30)
-	  cmplwi    r0, 0
-	  beq-      .loc_0xA0
-	  mr        r3, r31
-	  bl        -0x280EBC
+lbl_8038816C:
+	lwz      r3, 0x10(r30)
+	addi     r0, r3, 1
+	stw      r0, 0x10(r30)
+	lbz      r0, 0x1d(r30)
+	cmplwi   r0, 0
+	beq      lbl_8038837C
+	li       r0, 0
+	stw      r0, 0x14(r30)
+	lbz      r0, 0x1e(r30)
+	cmplwi   r0, 0
+	beq      lbl_803881A0
+	mr       r3, r31
+	bl       stopMotion__Q24Game9EnemyBaseFv
 
-	.loc_0xA0:
-	  lbz       r0, 0x1C(r30)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x10C
-	  li        r0, 0
-	  stw       r0, 0x10(r30)
-	  bl        -0x2BEC14
-	  xoris     r0, r3, 0x8000
-	  lis       r4, 0x4330
-	  stw       r0, 0x34(r1)
-	  li        r0, 0
-	  lfd       f3, 0xAC0(r2)
-	  mr        r3, r31
-	  stw       r4, 0x30(r1)
-	  lfs       f1, 0xABC(r2)
-	  lfd       f2, 0x30(r1)
-	  lfs       f0, 0xB08(r2)
-	  fsubs     f2, f2, f3
-	  fdivs     f1, f2, f1
-	  fmadds    f0, f0, f1, f0
-	  fctiwz    f0, f0
-	  stfd      f0, 0x38(r1)
-	  lwz       r4, 0x3C(r1)
-	  stw       r4, 0x18(r30)
-	  stb       r0, 0x1C(r30)
-	  stb       r0, 0x1E(r30)
-	  bl        -0x282F64
-	  b         .loc_0x14C
+lbl_803881A0:
+	lbz      r0, 0x1c(r30)
+	cmplwi   r0, 0
+	beq      lbl_8038820C
+	li       r0, 0
+	stw      r0, 0x10(r30)
+	bl       rand
+	xoris    r0, r3, 0x8000
+	lis      r4, 0x4330
+	stw      r0, 0x34(r1)
+	li       r0, 0
+	lfd      f3, lbl_8051EE20@sda21(r2)
+	mr       r3, r31
+	stw      r4, 0x30(r1)
+	lfs      f1, lbl_8051EE1C@sda21(r2)
+	lfd      f2, 0x30(r1)
+	lfs      f0, lbl_8051EE68@sda21(r2)
+	fsubs    f2, f2, f3
+	fdivs    f1, f2, f1
+	fmadds   f0, f0, f1, f0
+	fctiwz   f0, f0
+	stfd     f0, 0x38(r1)
+	lwz      r4, 0x3c(r1)
+	stw      r4, 0x18(r30)
+	stb      r0, 0x1c(r30)
+	stb      r0, 0x1e(r30)
+	bl       finishMotion__Q24Game9EnemyBaseFv
+	b        lbl_8038824C
 
-	.loc_0x10C:
-	  mr        r3, r31
-	  bl        -0x280F10
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x14C
-	  lwz       r3, 0x188(r31)
-	  lbz       r0, 0x24(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x14C
-	  lwz       r0, 0x1C(r3)
-	  cmplwi    r0, 0x3E8
-	  bne-      .loc_0x14C
-	  li        r0, 0x1
-	  lfs       f1, 0xAB8(r2)
-	  stb       r0, 0x1E(r30)
-	  mr        r3, r31
-	  bl        -0x283020
+lbl_8038820C:
+	mr       r3, r31
+	bl       isFinishMotion__Q24Game9EnemyBaseFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_8038824C
+	lwz      r3, 0x188(r31)
+	lbz      r0, 0x24(r3)
+	cmplwi   r0, 0
+	beq      lbl_8038824C
+	lwz      r0, 0x1c(r3)
+	cmplwi   r0, 0x3e8
+	bne      lbl_8038824C
+	li       r0, 1
+	lfs      f1, lbl_8051EE18@sda21(r2)
+	stb      r0, 0x1e(r30)
+	mr       r3, r31
+	bl       setMotionFrame__Q24Game9EnemyBaseFf
 
-	.loc_0x14C:
-	  mr        r3, r31
-	  bl        0x357C
-	  lwz       r3, 0x10(r30)
-	  lwz       r0, 0x18(r30)
-	  cmpw      r3, r0
-	  blt-      .loc_0x314
-	  bne-      .loc_0x180
-	  mr        r3, r31
-	  li        r4, 0x2
-	  li        r5, 0
-	  bl        -0x283270
-	  li        r0, 0
-	  stb       r0, 0x1E(r30)
+lbl_8038824C:
+	mr       r3, r31
+	bl       resetRestPos__Q34Game11ShijimiChou3ObjFv
+	lwz      r3, 0x10(r30)
+	lwz      r0, 0x18(r30)
+	cmpw     r3, r0
+	blt      lbl_80388414
+	bne      lbl_80388280
+	mr       r3, r31
+	li       r4, 2
+	li       r5, 0
+	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
+	li       r0, 0
+	stb      r0, 0x1e(r30)
 
-	.loc_0x180:
-	  mr        r3, r31
-	  bl        0x329C
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x314
-	  mr        r3, r31
-	  bl        -0x280B00
-	  li        r3, 0x1
-	  li        r0, 0
-	  stb       r3, 0x1C(r30)
-	  mr        r3, r31
-	  stb       r0, 0x1D(r30)
-	  bl        -0x2810A8
-	  lwz       r4, 0x2C8(r31)
-	  addi      r3, r1, 0x20
-	  lwz       r12, 0x0(r4)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r31
-	  addi      r3, r1, 0x14
-	  lwz       r12, 0x0(r31)
-	  lfs       f31, 0x20(r1)
-	  lwz       r12, 0x8(r12)
-	  lfs       f30, 0x24(r1)
-	  lfs       f29, 0x28(r1)
-	  mtctr     r12
-	  bctrl
-	  lfs       f0, 0x14(r1)
-	  li        r0, 0
-	  lfs       f1, 0x18(r1)
-	  fsubs     f2, f0, f31
-	  lfs       f0, 0x1C(r1)
-	  fsubs     f1, f1, f30
-	  fsubs     f0, f0, f29
-	  fadds     f31, f31, f2
-	  fadds     f30, f30, f1
-	  fadds     f29, f29, f0
-	  stfs      f31, 0x304(r31)
-	  stfs      f30, 0x308(r31)
-	  stfs      f29, 0x30C(r31)
-	  stw       r0, 0x10(r30)
-	  bl        -0x2BED84
-	  xoris     r3, r3, 0x8000
-	  lis       r0, 0x4330
-	  stw       r3, 0x3C(r1)
-	  mr        r3, r31
-	  lfd       f3, 0xAC0(r2)
-	  li        r4, 0x2
-	  stw       r0, 0x38(r1)
-	  li        r5, 0
-	  lfs       f2, 0xABC(r2)
-	  lfd       f0, 0x38(r1)
-	  lfs       f1, 0xB10(r2)
-	  fsubs     f3, f0, f3
-	  lfs       f0, 0xB0C(r2)
-	  fdivs     f2, f3, f2
-	  fmadds    f0, f1, f2, f0
-	  fctiwz    f0, f0
-	  stfd      f0, 0x30(r1)
-	  lwz       r0, 0x34(r1)
-	  stw       r0, 0x18(r30)
-	  bl        -0x283370
-	  b         .loc_0x314
+lbl_80388280:
+	mr       r3, r31
+	bl       checkRestOff__Q34Game11ShijimiChou3ObjFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80388414
+	mr       r3, r31
+	bl       hardConstraintOff__Q24Game9EnemyBaseFv
+	li       r3, 1
+	li       r0, 0
+	stb      r3, 0x1c(r30)
+	mr       r3, r31
+	stb      r0, 0x1d(r30)
+	bl       startMotion__Q24Game9EnemyBaseFv
+	lwz      r4, 0x2c8(r31)
+	addi     r3, r1, 0x20
+	lwz      r12, 0(r4)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r31
+	addi     r3, r1, 0x14
+	lwz      r12, 0(r31)
+	lfs      f31, 0x20(r1)
+	lwz      r12, 8(r12)
+	lfs      f30, 0x24(r1)
+	lfs      f29, 0x28(r1)
+	mtctr    r12
+	bctrl
+	lfs      f0, 0x14(r1)
+	li       r0, 0
+	lfs      f1, 0x18(r1)
+	fsubs    f2, f0, f31
+	lfs      f0, 0x1c(r1)
+	fsubs    f1, f1, f30
+	fsubs    f0, f0, f29
+	fadds    f31, f31, f2
+	fadds    f30, f30, f1
+	fadds    f29, f29, f0
+	stfs     f31, 0x304(r31)
+	stfs     f30, 0x308(r31)
+	stfs     f29, 0x30c(r31)
+	stw      r0, 0x10(r30)
+	bl       rand
+	xoris    r3, r3, 0x8000
+	lis      r0, 0x4330
+	stw      r3, 0x3c(r1)
+	mr       r3, r31
+	lfd      f3, lbl_8051EE20@sda21(r2)
+	li       r4, 2
+	stw      r0, 0x38(r1)
+	li       r5, 0
+	lfs      f2, lbl_8051EE1C@sda21(r2)
+	lfd      f0, 0x38(r1)
+	lfs      f1, lbl_8051EE70@sda21(r2)
+	fsubs    f3, f0, f3
+	lfs      f0, lbl_8051EE6C@sda21(r2)
+	fdivs    f2, f3, f2
+	fmadds   f0, f1, f2, f0
+	fctiwz   f0, f0
+	stfd     f0, 0x30(r1)
+	lwz      r0, 0x34(r1)
+	stw      r0, 0x18(r30)
+	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
+	b        lbl_80388414
 
-	.loc_0x27C:
-	  lwz       r3, 0x10(r30)
-	  lwz       r0, 0x18(r30)
-	  cmpw      r3, r0
-	  ble-      .loc_0x2BC
-	  lwz       r4, 0x2C8(r31)
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x0(r4)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f1, 0xC(r1)
-	  lfs       f2, 0x10(r1)
-	  lfs       f0, 0x8(r1)
-	  stfs      f0, 0x304(r31)
-	  stfs      f1, 0x308(r31)
-	  stfs      f2, 0x30C(r31)
+lbl_8038837C:
+	lwz      r3, 0x10(r30)
+	lwz      r0, 0x18(r30)
+	cmpw     r3, r0
+	ble      lbl_803883BC
+	lwz      r4, 0x2c8(r31)
+	addi     r3, r1, 8
+	lwz      r12, 0(r4)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f1, 0xc(r1)
+	lfs      f2, 0x10(r1)
+	lfs      f0, 8(r1)
+	stfs     f0, 0x304(r31)
+	stfs     f1, 0x308(r31)
+	stfs     f2, 0x30c(r31)
 
-	.loc_0x2BC:
-	  lwz       r3, 0x14(r30)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x14(r30)
-	  lwz       r0, 0x14(r30)
-	  cmpwi     r0, 0x14
-	  ble-      .loc_0x314
-	  mr        r3, r31
-	  bl        0x2DD8
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x314
-	  li        r0, 0x1
-	  lfs       f0, 0xAB8(r2)
-	  stb       r0, 0x1D(r30)
-	  mr        r3, r31
-	  stb       r0, 0x1C(r30)
-	  stfs      f0, 0x1C8(r31)
-	  stfs      f0, 0x1CC(r31)
-	  stfs      f0, 0x1D0(r31)
-	  stfs      f0, 0x1D4(r31)
-	  stfs      f0, 0x1D8(r31)
-	  stfs      f0, 0x1DC(r31)
-	  bl        -0x280C94
+lbl_803883BC:
+	lwz      r3, 0x14(r30)
+	addi     r0, r3, 1
+	stw      r0, 0x14(r30)
+	lwz      r0, 0x14(r30)
+	cmpwi    r0, 0x14
+	ble      lbl_80388414
+	mr       r3, r31
+	bl       checkRestOn__Q34Game11ShijimiChou3ObjFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80388414
+	li       r0, 1
+	lfs      f0, lbl_8051EE18@sda21(r2)
+	stb      r0, 0x1d(r30)
+	mr       r3, r31
+	stb      r0, 0x1c(r30)
+	stfs     f0, 0x1c8(r31)
+	stfs     f0, 0x1cc(r31)
+	stfs     f0, 0x1d0(r31)
+	stfs     f0, 0x1d4(r31)
+	stfs     f0, 0x1d8(r31)
+	stfs     f0, 0x1dc(r31)
+	bl       hardConstraintOn__Q24Game9EnemyBaseFv
 
-	.loc_0x314:
-	  mr        r3, r31
-	  bl        0x2CE4
-	  psq_l     f31,0x78(r1),0,0
-	  lfd       f31, 0x70(r1)
-	  psq_l     f30,0x68(r1),0,0
-	  lfd       f30, 0x60(r1)
-	  psq_l     f29,0x58(r1),0,0
-	  lfd       f29, 0x50(r1)
-	  lwz       r31, 0x4C(r1)
-	  lwz       r0, 0x84(r1)
-	  lwz       r30, 0x48(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x80
-	  blr
+lbl_80388414:
+	mr       r3, r31
+	bl       restCheck__Q34Game11ShijimiChou3ObjFv
+	psq_l    f31, 120(r1), 0, qr0
+	lfd      f31, 0x70(r1)
+	psq_l    f30, 104(r1), 0, qr0
+	lfd      f30, 0x60(r1)
+	psq_l    f29, 88(r1), 0, qr0
+	lfd      f29, 0x50(r1)
+	lwz      r31, 0x4c(r1)
+	lwz      r0, 0x84(r1)
+	lwz      r30, 0x48(r1)
+	mtlr     r0
+	addi     r1, r1, 0x80
+	blr
 	*/
 }
 } // namespace Game

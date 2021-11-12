@@ -2,6 +2,55 @@
 #include "CNode.h"
 #include "JSystem/JUT/JUTFont.h"
 
+/*
+    Generated from dpostproc
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_804995F0
+    lbl_804995F0:
+        .asciz "node.cpp"
+        .skip 0x3
+    .global lbl_804995FC
+    lbl_804995FC:
+        .asciz "CNode add err count %d\n"
+    .global lbl_80499614
+    lbl_80499614:
+        .asciz "CNode concat Loop Err!\n"
+    .global lbl_8049962C
+    lbl_8049962C:
+        .asciz "%d child (realchild = %d)!\n"
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__5CNode
+    __vt__5CNode:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__5CNodeFv
+        .4byte getChildCount__5CNodeFv
+    .global __vt__4Node
+    __vt__4Node:
+        .4byte 0
+        .4byte 0
+        .4byte update__4NodeFv
+        .4byte draw__4NodeFR8Graphics
+        .4byte displayInfo__4NodeFi
+        .4byte 0
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_80520250
+    lbl_80520250:
+        .asciz "    "
+        .skip 3
+    .global lbl_80520258
+    lbl_80520258:
+        .asciz "[%s]\n"
+        .skip 2
+    .global lbl_80520260
+    lbl_80520260:
+        .asciz "CNode"
+        .skip 2
+*/
+
 extern const char lbl_804995F0[12]; // node.cpp
 extern const char lbl_8049962C[28]; // %d child (realchild = %d)!\n
 extern const char lbl_80520260[8];  // CNode
@@ -21,59 +70,58 @@ Node* Node::init() { return this; }
 // void Node::displayInfo(int)
 // {
 /*
-.loc_0x0:
-  stwu      r1, -0x20(r1)
-  mflr      r0
-  stw       r0, 0x24(r1)
-  stw       r31, 0x1C(r1)
-  li        r31, 0
-  stw       r30, 0x18(r1)
-  mr        r30, r4
-  stw       r29, 0x14(r1)
-  mr        r29, r3
-  b         .loc_0x38
+    stwu     r1, -0x20(r1)
+    mflr     r0
+    stw      r0, 0x24(r1)
+    stw      r31, 0x1c(r1)
+    li       r31, 0
+    stw      r30, 0x18(r1)
+    mr       r30, r4
+    stw      r29, 0x14(r1)
+    mr       r29, r3
+    b        lbl_80411240
 
-.loc_0x28:
-  addi      r3, r2, 0x1EF0
-  crclr     6, 0x6
-  bl        -0x323B4C
-  addi      r31, r31, 0x1
+lbl_80411230:
+    addi     r3, r2, lbl_80520250@sda21
+    crclr    6
+    bl       OSReport
+    addi     r31, r31, 1
 
-.loc_0x38:
-  cmpw      r31, r30
-  blt+      .loc_0x28
-  lwz       r4, 0x0(r29)
-  addi      r3, r2, 0x1EF8
-  crclr     6, 0x6
-  bl        -0x323B68
-  lwz       r31, 0x4(r29)
-  cmplwi    r31, 0
-  beq-      .loc_0x8C
-  subi      r31, r31, 0xC
-  b         .loc_0x8C
+lbl_80411240:
+    cmpw     r31, r30
+    blt      lbl_80411230
+    lwz      r4, 0(r29)
+    addi     r3, r2, lbl_80520258@sda21
+    crclr    6
+    bl       OSReport
+    lwz      r31, 4(r29)
+    cmplwi   r31, 0
+    beq      lbl_80411294
+    addi     r31, r31, -12
+    b        lbl_80411294
 
-.loc_0x64:
-  lwz       r3, 0xC(r31)
-  addi      r4, r30, 0x1
-  lwz       r12, 0x20(r3)
-  lwz       r12, 0x10(r12)
-  mtctr     r12
-  bctrl
-  lwz       r31, 0x18(r31)
-  cmplwi    r31, 0
-  beq-      .loc_0x8C
-  subi      r31, r31, 0xC
+lbl_8041126C:
+    lwz      r3, 0xc(r31)
+    addi     r4, r30, 1
+    lwz      r12, 0x20(r3)
+    lwz      r12, 0x10(r12)
+    mtctr    r12
+    bctrl
+    lwz      r31, 0x18(r31)
+    cmplwi   r31, 0
+    beq      lbl_80411294
+    addi     r31, r31, -12
 
-.loc_0x8C:
-  cmplwi    r31, 0
-  bne+      .loc_0x64
-  lwz       r0, 0x24(r1)
-  lwz       r31, 0x1C(r1)
-  lwz       r30, 0x18(r1)
-  lwz       r29, 0x14(r1)
-  mtlr      r0
-  addi      r1, r1, 0x20
-  blr
+lbl_80411294:
+    cmplwi   r31, 0
+    bne      lbl_8041126C
+    lwz      r0, 0x24(r1)
+    lwz      r31, 0x1c(r1)
+    lwz      r30, 0x18(r1)
+    lwz      r29, 0x14(r1)
+    mtlr     r0
+    addi     r1, r1, 0x20
+    blr
 */
 // }
 
@@ -85,36 +133,35 @@ Node* Node::init() { return this; }
 // void Node::update()
 // {
 /*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  stw       r0, 0x14(r1)
-  stw       r31, 0xC(r1)
-  lwz       r31, 0x4(r3)
-  cmplwi    r31, 0
-  beq-      .loc_0x48
-  subi      r31, r31, 0xC
-  b         .loc_0x48
+    stwu     r1, -0x10(r1)
+    mflr     r0
+    stw      r0, 0x14(r1)
+    stw      r31, 0xc(r1)
+    lwz      r31, 4(r3)
+    cmplwi   r31, 0
+    beq      lbl_80411300
+    addi     r31, r31, -12
+    b        lbl_80411300
 
-.loc_0x24:
-  lwz       r3, 0xC(r31)
-  lwz       r12, 0x20(r3)
-  lwz       r12, 0x8(r12)
-  mtctr     r12
-  bctrl
-  lwz       r31, 0x18(r31)
-  cmplwi    r31, 0
-  beq-      .loc_0x48
-  subi      r31, r31, 0xC
+lbl_804112DC:
+    lwz      r3, 0xc(r31)
+    lwz      r12, 0x20(r3)
+    lwz      r12, 8(r12)
+    mtctr    r12
+    bctrl
+    lwz      r31, 0x18(r31)
+    cmplwi   r31, 0
+    beq      lbl_80411300
+    addi     r31, r31, -12
 
-.loc_0x48:
-  cmplwi    r31, 0
-  bne+      .loc_0x24
-  lwz       r0, 0x14(r1)
-  lwz       r31, 0xC(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
+lbl_80411300:
+    cmplwi   r31, 0
+    bne      lbl_804112DC
+    lwz      r0, 0x14(r1)
+    lwz      r31, 0xc(r1)
+    mtlr     r0
+    addi     r1, r1, 0x10
+    blr
 */
 // }
 
@@ -126,40 +173,39 @@ Node* Node::init() { return this; }
 // void Node::draw(Graphics&)
 // {
 /*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  stw       r0, 0x14(r1)
-  stw       r31, 0xC(r1)
-  stw       r30, 0x8(r1)
-  mr        r30, r4
-  lwz       r31, 0x4(r3)
-  cmplwi    r31, 0
-  beq-      .loc_0x54
-  subi      r31, r31, 0xC
-  b         .loc_0x54
+    stwu     r1, -0x10(r1)
+    mflr     r0
+    stw      r0, 0x14(r1)
+    stw      r31, 0xc(r1)
+    stw      r30, 8(r1)
+    mr       r30, r4
+    lwz      r31, 4(r3)
+    cmplwi   r31, 0
+    beq      lbl_80411370
+    addi     r31, r31, -12
+    b        lbl_80411370
 
-.loc_0x2C:
-  lwz       r3, 0xC(r31)
-  mr        r4, r30
-  lwz       r12, 0x20(r3)
-  lwz       r12, 0xC(r12)
-  mtctr     r12
-  bctrl
-  lwz       r31, 0x18(r31)
-  cmplwi    r31, 0
-  beq-      .loc_0x54
-  subi      r31, r31, 0xC
+lbl_80411348:
+    lwz      r3, 0xc(r31)
+    mr       r4, r30
+    lwz      r12, 0x20(r3)
+    lwz      r12, 0xc(r12)
+    mtctr    r12
+    bctrl
+    lwz      r31, 0x18(r31)
+    cmplwi   r31, 0
+    beq      lbl_80411370
+    addi     r31, r31, -12
 
-.loc_0x54:
-  cmplwi    r31, 0
-  bne+      .loc_0x2C
-  lwz       r0, 0x14(r1)
-  lwz       r31, 0xC(r1)
-  lwz       r30, 0x8(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
+lbl_80411370:
+    cmplwi   r31, 0
+    bne      lbl_80411348
+    lwz      r0, 0x14(r1)
+    lwz      r31, 0xc(r1)
+    lwz      r30, 8(r1)
+    mtlr     r0
+    addi     r1, r1, 0x10
+    blr
 */
 // }
 
@@ -171,19 +217,18 @@ Node* Node::init() { return this; }
 // CNode::CNode()
 // {
 /*
-.loc_0x0:
-  lis       r5, 0x804F
-  li        r4, 0
-  subi      r5, r5, 0x4AD8
-  addi      r0, r2, 0x1F00
-  stw       r5, 0x0(r3)
-  stw       r4, 0x10(r3)
-  stw       r4, 0xC(r3)
-  stw       r4, 0x8(r3)
-  stw       r4, 0x4(r3)
-  stw       r0, 0x14(r3)
-  stw       r0, 0x14(r3)
-  blr
+    lis      r5, __vt__5CNode@ha
+    li       r4, 0
+    addi     r5, r5, __vt__5CNode@l
+    addi     r0, r2, lbl_80520260@sda21
+    stw      r5, 0(r3)
+    stw      r4, 0x10(r3)
+    stw      r4, 0xc(r3)
+    stw      r4, 8(r3)
+    stw      r4, 4(r3)
+    stw      r0, 0x14(r3)
+    stw      r0, 0x14(r3)
+    blr
 */
 // }
 
@@ -195,31 +240,28 @@ Node* Node::init() { return this; }
 // void CNode::addHead(CNode*)
 // {
 /*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  stw       r0, 0x14(r1)
-  lwz       r5, 0x10(r3)
-  cmplwi    r5, 0
-  beq-      .loc_0x34
-  stw       r3, 0xC(r4)
-  li        r0, 0
-  stw       r4, 0x10(r3)
-  stw       r0, 0x8(r4)
-  stw       r5, 0x4(r4)
-  stw       r4, 0x8(r5)
-  b         .loc_0x38
+    stwu     r1, -0x10(r1)
+    mflr     r0
+    stw      r0, 0x14(r1)
+    lwz      r5, 0x10(r3)
+    cmplwi   r5, 0
+    beq      lbl_804113F4
+    stw      r3, 0xc(r4)
+    li       r0, 0
+    stw      r4, 0x10(r3)
+    stw      r0, 8(r4)
+    stw      r5, 4(r4)
+    stw      r4, 8(r5)
+    b        lbl_804113F8
 
-.loc_0x34:
-  bl        .loc_0x48
+lbl_804113F4:
+    bl       add__5CNodeFP5CNode
 
-.loc_0x38:
-  lwz       r0, 0x14(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
-
-.loc_0x48:
+lbl_804113F8:
+    lwz      r0, 0x14(r1)
+    mtlr     r0
+    addi     r1, r1, 0x10
+    blr
 */
 // }
 
@@ -231,67 +273,66 @@ Node* Node::init() { return this; }
 // void CNode::add(CNode*)
 // {
 /*
-.loc_0x0:
-  stwu      r1, -0x20(r1)
-  mflr      r0
-  stw       r0, 0x24(r1)
-  stmw      r27, 0xC(r1)
-  mr        r27, r4
-  lwz       r5, 0x10(r3)
-  cmplwi    r5, 0
-  beq-      .loc_0x40
-  b         .loc_0x28
+    stwu     r1, -0x20(r1)
+    mflr     r0
+    stw      r0, 0x24(r1)
+    stmw     r27, 0xc(r1)
+    mr       r27, r4
+    lwz      r5, 0x10(r3)
+    cmplwi   r5, 0
+    beq      lbl_80411448
+    b        lbl_80411430
 
-.loc_0x24:
-  mr        r5, r0
+lbl_8041142C:
+    mr       r5, r0
 
-.loc_0x28:
-  lwz       r0, 0x4(r5)
-  cmplwi    r0, 0
-  bne+      .loc_0x24
-  stw       r27, 0x4(r5)
-  stw       r5, 0x8(r27)
-  b         .loc_0x44
+lbl_80411430:
+    lwz      r0, 4(r5)
+    cmplwi   r0, 0
+    bne      lbl_8041142C
+    stw      r27, 4(r5)
+    stw      r5, 8(r27)
+    b        lbl_8041144C
 
-.loc_0x40:
-  stw       r27, 0x10(r3)
+lbl_80411448:
+    stw      r27, 0x10(r3)
 
-.loc_0x44:
-  stw       r3, 0xC(r27)
-  lis       r5, 0x804A
-  lis       r4, 0x804A
-  li        r28, 0
-  lwz       r29, 0x10(r3)
-  subi      r30, r5, 0x6A10
-  subi      r31, r4, 0x6A04
-  b         .loc_0x94
+lbl_8041144C:
+    stw      r3, 0xc(r27)
+    lis      r5, lbl_804995F0@ha
+    lis      r4, lbl_804995FC@ha
+    li       r28, 0
+    lwz      r29, 0x10(r3)
+    addi     r30, r5, lbl_804995F0@l
+    addi     r31, r4, lbl_804995FC@l
+    b        lbl_8041149C
 
-.loc_0x64:
-  cmplw     r29, r27
-  bne-      .loc_0x70
-  addi      r28, r28, 0x1
+lbl_8041146C:
+    cmplw    r29, r27
+    bne      lbl_80411478
+    addi     r28, r28, 1
 
-.loc_0x70:
-  cmpwi     r28, 0x1
-  ble-      .loc_0x90
-  mr        r3, r30
-  mr        r5, r31
-  mr        r6, r28
-  li        r4, 0xF2
-  crclr     6, 0x6
-  bl        -0x3E6E54
+lbl_80411478:
+    cmpwi    r28, 1
+    ble      lbl_80411498
+    mr       r3, r30
+    mr       r5, r31
+    mr       r6, r28
+    li       r4, 0xf2
+    crclr    6
+    bl       panic_f__12JUTExceptionFPCciPCce
 
-.loc_0x90:
-  lwz       r29, 0x4(r29)
+lbl_80411498:
+    lwz      r29, 4(r29)
 
-.loc_0x94:
-  cmplwi    r29, 0
-  bne+      .loc_0x64
-  lmw       r27, 0xC(r1)
-  lwz       r0, 0x24(r1)
-  mtlr      r0
-  addi      r1, r1, 0x20
-  blr
+lbl_8041149C:
+    cmplwi   r29, 0
+    bne      lbl_8041146C
+    lmw      r27, 0xc(r1)
+    lwz      r0, 0x24(r1)
+    mtlr     r0
+    addi     r1, r1, 0x20
+    blr
 */
 // }
 
@@ -303,19 +344,18 @@ Node* Node::init() { return this; }
 // int CNode::calcNextCount()
 // {
 /*
-.loc_0x0:
-  li        r4, 0x1
-  b         .loc_0xC
+    li       r4, 1
+    b        lbl_804114C4
 
-.loc_0x8:
-  addi      r4, r4, 0x1
+lbl_804114C0:
+    addi     r4, r4, 1
 
-.loc_0xC:
-  lwz       r3, 0x4(r3)
-  cmplwi    r3, 0
-  bne+      .loc_0x8
-  mr        r3, r4
-  blr
+lbl_804114C4:
+    lwz      r3, 4(r3)
+    cmplwi   r3, 0
+    bne      lbl_804114C0
+    mr       r3, r4
+    blr
 */
 // }
 
@@ -327,63 +367,62 @@ Node* Node::init() { return this; }
 // void CNode::concat(CNode*)
 // {
 /*
-.loc_0x0:
-  stwu      r1, -0x20(r1)
-  mflr      r0
-  stw       r0, 0x24(r1)
-  stmw      r27, 0xC(r1)
-  mr        r27, r4
-  cmplw     r3, r27
-  mr        r29, r3
-  mr        r28, r3
-  bne-      .loc_0x40
-  lis       r3, 0x804A
-  lis       r5, 0x804A
-  subi      r3, r3, 0x6A10
-  li        r4, 0x10E
-  subi      r5, r5, 0x69EC
-  crclr     6, 0x6
-  bl        -0x3E6ED4
+    stwu     r1, -0x20(r1)
+    mflr     r0
+    stw      r0, 0x24(r1)
+    stmw     r27, 0xc(r1)
+    mr       r27, r4
+    cmplw    r3, r27
+    mr       r29, r3
+    mr       r28, r3
+    bne      lbl_80411518
+    lis      r3, lbl_804995F0@ha
+    lis      r5, lbl_80499614@ha
+    addi     r3, r3, lbl_804995F0@l
+    li       r4, 0x10e
+    addi     r5, r5, lbl_80499614@l
+    crclr    6
+    bl       panic_f__12JUTExceptionFPCciPCce
 
-.loc_0x40:
-  lis       r4, 0x804A
-  lis       r3, 0x804A
-  subi      r30, r4, 0x6A10
-  subi      r31, r3, 0x69EC
-  b         .loc_0x74
+lbl_80411518:
+    lis      r4, lbl_804995F0@ha
+    lis      r3, lbl_80499614@ha
+    addi     r30, r4, lbl_804995F0@l
+    addi     r31, r3, lbl_80499614@l
+    b        lbl_8041154C
 
-.loc_0x54:
-  cmplw     r28, r27
-  bne-      .loc_0x70
-  mr        r3, r30
-  mr        r5, r31
-  li        r4, 0x112
-  crclr     6, 0x6
-  bl        -0x3E6F04
+lbl_8041152C:
+    cmplw    r28, r27
+    bne      lbl_80411548
+    mr       r3, r30
+    mr       r5, r31
+    li       r4, 0x112
+    crclr    6
+    bl       panic_f__12JUTExceptionFPCciPCce
 
-.loc_0x70:
-  lwz       r28, 0x4(r28)
+lbl_80411548:
+    lwz      r28, 4(r28)
 
-.loc_0x74:
-  lwz       r0, 0x4(r28)
-  cmplwi    r0, 0
-  bne+      .loc_0x54
-  b         .loc_0x88
+lbl_8041154C:
+    lwz      r0, 4(r28)
+    cmplwi   r0, 0
+    bne      lbl_8041152C
+    b        lbl_80411560
 
-.loc_0x84:
-  mr        r29, r0
+lbl_8041155C:
+    mr       r29, r0
 
-.loc_0x88:
-  lwz       r0, 0x4(r29)
-  cmplwi    r0, 0
-  bne+      .loc_0x84
-  stw       r27, 0x4(r29)
-  stw       r29, 0x8(r27)
-  lmw       r27, 0xC(r1)
-  lwz       r0, 0x24(r1)
-  mtlr      r0
-  addi      r1, r1, 0x20
-  blr
+lbl_80411560:
+    lwz      r0, 4(r29)
+    cmplwi   r0, 0
+    bne      lbl_8041155C
+    stw      r27, 4(r29)
+    stw      r29, 8(r27)
+    lmw      r27, 0xc(r1)
+    lwz      r0, 0x24(r1)
+    mtlr     r0
+    addi     r1, r1, 0x20
+    blr
 */
 // }
 
@@ -395,27 +434,26 @@ Node* Node::init() { return this; }
 // CNode::~CNode()
 // {
 /*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  stw       r0, 0x14(r1)
-  stw       r31, 0xC(r1)
-  mr.       r31, r3
-  beq-      .loc_0x30
-  lis       r5, 0x804F
-  extsh.    r0, r4
-  subi      r0, r5, 0x4AD8
-  stw       r0, 0x0(r31)
-  ble-      .loc_0x30
-  bl        -0x3ED500
+    stwu     r1, -0x10(r1)
+    mflr     r0
+    stw      r0, 0x14(r1)
+    stw      r31, 0xc(r1)
+    or.      r31, r3, r3
+    beq      lbl_804115B8
+    lis      r5, __vt__5CNode@ha
+    extsh.   r0, r4
+    addi     r0, r5, __vt__5CNode@l
+    stw      r0, 0(r31)
+    ble      lbl_804115B8
+    bl       __dl__FPv
 
-.loc_0x30:
-  lwz       r0, 0x14(r1)
-  mr        r3, r31
-  lwz       r31, 0xC(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
+lbl_804115B8:
+    lwz      r0, 0x14(r1)
+    mr       r3, r31
+    lwz      r31, 0xc(r1)
+    mtlr     r0
+    addi     r1, r1, 0x10
+    blr
 */
 // }
 
@@ -427,57 +465,56 @@ Node* Node::init() { return this; }
 // void CNode::del()
 // {
 /*
-.loc_0x0:
-  lwz       r4, 0xC(r3)
-  cmplwi    r4, 0
-  beqlr-
-  lwz       r5, 0x10(r4)
-  li        r6, 0
-  b         .loc_0x8C
+    lwz      r4, 0xc(r3)
+    cmplwi   r4, 0
+    beqlr
+    lwz      r5, 0x10(r4)
+    li       r6, 0
+    b        lbl_8041165C
 
-.loc_0x18:
-  cmplw     r5, r3
-  bne-      .loc_0x84
-  cmplwi    r6, 0
-  beq-      .loc_0x54
-  lwz       r0, 0x4(r5)
-  stw       r0, 0x4(r6)
-  lwz       r4, 0x4(r5)
-  cmplwi    r4, 0
-  beq-      .loc_0x40
-  stw       r6, 0x8(r4)
+lbl_804115E8:
+    cmplw    r5, r3
+    bne      lbl_80411654
+    cmplwi   r6, 0
+    beq      lbl_80411624
+    lwz      r0, 4(r5)
+    stw      r0, 4(r6)
+    lwz      r4, 4(r5)
+    cmplwi   r4, 0
+    beq      lbl_80411610
+    stw      r6, 8(r4)
 
-.loc_0x40:
-  li        r0, 0
-  stw       r0, 0x8(r3)
-  stw       r0, 0x4(r3)
-  stw       r0, 0xC(r3)
-  blr
+lbl_80411610:
+    li       r0, 0
+    stw      r0, 8(r3)
+    stw      r0, 4(r3)
+    stw      r0, 0xc(r3)
+    blr
 
-.loc_0x54:
-  lwz       r0, 0x4(r5)
-  stw       r0, 0x10(r4)
-  lwz       r4, 0x4(r5)
-  cmplwi    r4, 0
-  beq-      .loc_0x70
-  li        r0, 0
-  stw       r0, 0x8(r4)
+lbl_80411624:
+    lwz      r0, 4(r5)
+    stw      r0, 0x10(r4)
+    lwz      r4, 4(r5)
+    cmplwi   r4, 0
+    beq      lbl_80411640
+    li       r0, 0
+    stw      r0, 8(r4)
 
-.loc_0x70:
-  li        r0, 0
-  stw       r0, 0x8(r3)
-  stw       r0, 0x4(r3)
-  stw       r0, 0xC(r3)
-  blr
+lbl_80411640:
+    li       r0, 0
+    stw      r0, 8(r3)
+    stw      r0, 4(r3)
+    stw      r0, 0xc(r3)
+    blr
 
-.loc_0x84:
-  mr        r6, r5
-  lwz       r5, 0x4(r5)
+lbl_80411654:
+    mr       r6, r5
+    lwz      r5, 4(r5)
 
-.loc_0x8C:
-  cmplwi    r5, 0
-  bne+      .loc_0x18
-  blr
+lbl_8041165C:
+    cmplwi   r5, 0
+    bne      lbl_804115E8
+    blr
 */
 // }
 
@@ -489,26 +526,25 @@ Node* Node::init() { return this; }
 // int CNode::getChildCount()
 // {
 /*
-.loc_0x0:
-  lwz       r0, 0x10(r3)
-  cmplwi    r0, 0
-  beq-      .loc_0x2C
-  mr        r4, r0
-  li        r3, 0
-  b         .loc_0x20
+    lwz      r0, 0x10(r3)
+    cmplwi   r0, 0
+    beq      lbl_80411694
+    mr       r4, r0
+    li       r3, 0
+    b        lbl_80411688
 
-.loc_0x18:
-  lwz       r4, 0x4(r4)
-  addi      r3, r3, 0x1
+lbl_80411680:
+    lwz      r4, 4(r4)
+    addi     r3, r3, 1
 
-.loc_0x20:
-  cmplwi    r4, 0
-  bne+      .loc_0x18
-  blr
+lbl_80411688:
+    cmplwi   r4, 0
+    bne      lbl_80411680
+    blr
 
-.loc_0x2C:
-  li        r3, 0
-  blr
+lbl_80411694:
+    li       r3, 0
+    blr
 */
 // }
 

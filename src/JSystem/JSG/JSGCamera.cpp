@@ -1,6 +1,58 @@
 #include "types.h"
 
 /*
+    Generated from dpostproc
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__Q26JStage7TCamera
+    __vt__Q26JStage7TCamera:
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte JSGFGetType__Q26JStage7TCameraCFv
+        .4byte JSGGetName__Q26JStage7TObjectCFv
+        .4byte JSGUpdate__Q26JStage7TObjectFv
+        .4byte JSGGetFlag__Q26JStage7TObjectCFv
+        .4byte JSGSetFlag__Q26JStage7TObjectFUl
+        .4byte JSGGetData__Q26JStage7TObjectCFUlPvUl
+        .4byte JSGSetData__Q26JStage7TObjectFUlPCvUl
+        .4byte JSGGetParent__Q26JStage7TObjectCFPPQ26JStage7TObjectPUl
+        .4byte JSGSetParent__Q26JStage7TObjectFPQ26JStage7TObjectUl
+        .4byte JSGSetRelation__Q26JStage7TObjectFbPQ26JStage7TObjectUl
+        .4byte JSGFindNodeID__Q26JStage7TObjectCFPCc
+        .4byte JSGGetNodeTransformation__Q26JStage7TObjectCFUlPA4_f
+        .4byte JSGGetProjectionType__Q26JStage7TCameraCFv
+        .4byte
+   JSGSetProjectionType__Q26JStage7TCameraFQ26JStage18TECameraProjection .4byte
+   JSGGetProjectionNear__Q26JStage7TCameraCFv .4byte
+   JSGSetProjectionNear__Q26JStage7TCameraFf .4byte
+   JSGGetProjectionFar__Q26JStage7TCameraCFv .4byte
+   JSGSetProjectionFar__Q26JStage7TCameraFf .4byte
+   JSGGetProjectionFovy__Q26JStage7TCameraCFv .4byte
+   JSGSetProjectionFovy__Q26JStage7TCameraFf .4byte
+   JSGGetProjectionAspect__Q26JStage7TCameraCFv .4byte
+   JSGSetProjectionAspect__Q26JStage7TCameraFf .4byte
+   JSGGetProjectionField__Q26JStage7TCameraCFPf .4byte
+   JSGSetProjectionField__Q26JStage7TCameraFPCf .4byte
+   JSGGetViewType__Q26JStage7TCameraCFv .4byte
+   JSGSetViewType__Q26JStage7TCameraFQ26JStage12TECameraView .4byte
+   JSGGetViewPosition__Q26JStage7TCameraCFP3Vec .4byte
+   JSGSetViewPosition__Q26JStage7TCameraFRC3Vec .4byte
+   JSGGetViewUpVector__Q26JStage7TCameraCFP3Vec .4byte
+   JSGSetViewUpVector__Q26JStage7TCameraFRC3Vec .4byte
+   JSGGetViewTargetPosition__Q26JStage7TCameraCFP3Vec .4byte
+   JSGSetViewTargetPosition__Q26JStage7TCameraFRC3Vec .4byte
+   JSGGetViewRoll__Q26JStage7TCameraCFv .4byte
+   JSGSetViewRoll__Q26JStage7TCameraFf .4byte 0
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_80516C70
+    lbl_80516C70:
+        .4byte 0x00000000
+        .4byte 0x00000000
+*/
+
+/*
  * --INFO--
  * Address:	800987F4
  * Size:	000060
@@ -8,33 +60,32 @@
 JStage::TCamera::~TCamera(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x44
-	  lis       r5, 0x804A
-	  li        r4, 0
-	  addi      r0, r5, 0x35E8
-	  stw       r0, 0x0(r30)
-	  bl        0xB0
-	  extsh.    r0, r31
-	  ble-      .loc_0x44
-	  mr        r3, r30
-	  bl        -0x74780
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_80098838
+	lis      r5, __vt__Q26JStage7TCamera@ha
+	li       r4, 0
+	addi     r0, r5, __vt__Q26JStage7TCamera@l
+	stw      r0, 0(r30)
+	bl       __dt__Q26JStage7TObjectFv
+	extsh.   r0, r31
+	ble      lbl_80098838
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x44:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80098838:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -67,9 +118,8 @@ void JStage::TCamera::JSGSetProjectionType(JStage::TECameraProjection) { }
 void JStage::TCamera::JSGGetProjectionNear() const
 {
 	/*
-	.loc_0x0:
-	  lfs       f1, -0x76F0(r2)
-	  blr
+	lfs      f1, lbl_80516C70@sda21(r2)
+	blr
 	*/
 }
 
@@ -88,10 +138,9 @@ void JStage::TCamera::JSGSetProjectionNear(float) { }
 void JStage::TCamera::JSGGetProjectionFar() const
 {
 	/*
-	.loc_0x0:
-	  lis       r3, 0x8051
-	  lfs       f1, 0x48D8(r3)
-	  blr
+	lis      r3, __float_max@ha
+	lfs      f1, __float_max@l(r3)
+	blr
 	*/
 }
 
@@ -110,9 +159,8 @@ void JStage::TCamera::JSGSetProjectionFar(float) { }
 void JStage::TCamera::JSGGetProjectionFovy() const
 {
 	/*
-	.loc_0x0:
-	  lfs       f1, -0x76F0(r2)
-	  blr
+	lfs      f1, lbl_80516C70@sda21(r2)
+	blr
 	*/
 }
 
@@ -131,9 +179,8 @@ void JStage::TCamera::JSGSetProjectionFovy(float) { }
 void JStage::TCamera::JSGGetProjectionAspect() const
 {
 	/*
-	.loc_0x0:
-	  lfs       f1, -0x76F0(r2)
-	  blr
+	lfs      f1, lbl_80516C70@sda21(r2)
+	blr
 	*/
 }
 
@@ -222,9 +269,8 @@ void JStage::TCamera::JSGSetViewTargetPosition(Vec const&) { }
 void JStage::TCamera::JSGGetViewRoll() const
 {
 	/*
-	.loc_0x0:
-	  lfs       f1, -0x76F0(r2)
-	  blr
+	lfs      f1, lbl_80516C70@sda21(r2)
+	blr
 	*/
 }
 

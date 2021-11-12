@@ -1,5 +1,106 @@
 #include "types.h"
 
+/*
+    Generated from dpostproc
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_80488348
+    lbl_80488348:
+        .asciz "/enemy/data/FireChappy/yakichappy.btk"
+        .skip 2
+    .global lbl_80488370
+    lbl_80488370:
+        .asciz "/enemy/data/FireChappy/yakichappy.brk"
+        .skip 2
+    .global lbl_80488398
+    lbl_80488398:
+        .4byte 0x8384834C
+        .4byte 0x83608383
+        .4byte 0x83628373
+        .4byte 0x815B837D
+        .4byte 0x836C815B
+        .4byte 0x83578383
+        .4byte 0x00000000
+    .global lbl_804883B4
+    lbl_804883B4:
+        .asciz "FireChappyMgr.cpp"
+        .skip 2
+    .global lbl_804883C8
+    lbl_804883C8:
+        .asciz "P2Assert"
+        .skip 3
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__Q34Game10FireChappy3Mgr
+    __vt__Q34Game10FireChappy3Mgr:
+        .4byte 0
+        .4byte 0
+        .4byte doAnimation__Q24Game12EnemyMgrBaseFv
+        .4byte doEntry__Q24Game12EnemyMgrBaseFv
+        .4byte doSetView__Q24Game12EnemyMgrBaseFi
+        .4byte doViewCalc__Q24Game12EnemyMgrBaseFv
+        .4byte doSimulation__Q24Game12EnemyMgrBaseFf
+        .4byte doDirectDraw__Q24Game12EnemyMgrBaseFR8Graphics
+        .4byte doSimpleDraw__16GenericObjectMgrFP8Viewport
+        .4byte loadResources__16GenericObjectMgrFv
+        .4byte resetMgr__16GenericObjectMgrFv
+        .4byte pausable__16GenericObjectMgrFv
+        .4byte frozenable__16GenericObjectMgrFv
+        .4byte getMatrixLoadType__16GenericObjectMgrFv
+        .4byte 0
+        .4byte 0
+        .4byte "@4@__dt__Q34Game10FireChappy3MgrFv"
+        .4byte getChildCount__5CNodeFv
+        .4byte "@4@getObject__Q24Game12EnemyMgrBaseFPv"
+        .4byte "@4@getNext__Q24Game12EnemyMgrBaseFPv"
+        .4byte "@4@getStart__Q24Game12EnemyMgrBaseFv"
+        .4byte "@4@getEnd__Q24Game12EnemyMgrBaseFv"
+        .4byte __dt__Q34Game10FireChappy3MgrFv
+        .4byte getObject__Q24Game12EnemyMgrBaseFPv
+        .4byte getNext__Q24Game12EnemyMgrBaseFPv
+        .4byte getStart__Q24Game12EnemyMgrBaseFv
+        .4byte getEnd__Q24Game12EnemyMgrBaseFv
+        .4byte alloc__Q24Game12EnemyMgrBaseFv
+        .4byte birth__Q24Game12EnemyMgrBaseFRQ24Game13EnemyBirthArg
+        .4byte getJ3DModelData__Q24Game12EnemyMgrBaseCFv
+        .4byte getGenerator__Q24Game12EnemyMgrBaseCFv
+        .4byte killAll__Q24Game12EnemyMgrBaseFPQ24Game15CreatureKillArg
+        .4byte setupSoundViewerAndBas__Q24Game12EnemyMgrBaseFv
+        .4byte setDebugParm__Q24Game12EnemyMgrBaseFUl
+        .4byte resetDebugParm__Q24Game12EnemyMgrBaseFUl
+        .4byte getMaxObjects__Q24Game12EnemyMgrBaseCFv
+        .4byte startMovie__Q24Game12EnemyMgrBaseFv
+        .4byte endMovie__Q24Game12EnemyMgrBaseFv
+        .4byte get__Q24Game12EnemyMgrBaseFPv
+        .4byte isAlwaysMovieActor__Q24Game12EnemyMgrBaseFv
+        .4byte createObj__Q34Game10FireChappy3MgrFi
+        .4byte getEnemy__Q34Game10FireChappy3MgrFi
+        .4byte doAlloc__Q34Game10FireChappy3MgrFv
+        .4byte getEnemyTypeID__Q34Game10FireChappy3MgrFv
+        .4byte createModel__Q34Game10FireChappy3MgrFv
+        .4byte initParms__Q24Game12EnemyMgrBaseFv
+        .4byte loadResource__Q24Game12EnemyMgrBaseFv
+        .4byte initObjects__Q24Game12EnemyMgrBaseFv
+        .4byte initStoneSetting__Q24Game12EnemyMgrBaseFv
+        .4byte loadModelData__Q24Game12EnemyMgrBaseFP10JKRArchive
+        .4byte loadModelData__Q34Game10FireChappy3MgrFv
+        .4byte loadAnimData__Q24Game12EnemyMgrBaseFv
+        .4byte loadTexData__Q34Game10FireChappy3MgrFv
+        .4byte doLoadBmd__Q34Game10FireChappy3MgrFPv
+        .4byte doLoadBdl__Q24Game12EnemyMgrBaseFPv
+        .4byte initGenerator__Q24Game12EnemyMgrBaseFv
+
+    .section .sdata, "wa"  # 0x80514680 - 0x80514D80
+    .global
+   "cMatAnimBtkTexName__Q34Game10FireChappy27@unnamed@FireChappyMgr_cpp@"
+    "cMatAnimBtkTexName__Q34Game10FireChappy27@unnamed@FireChappyMgr_cpp@":
+        .4byte lbl_80488348
+    .global
+   "cMatAnimBrkTexName__Q34Game10FireChappy27@unnamed@FireChappyMgr_cpp@"
+    "cMatAnimBrkTexName__Q34Game10FireChappy27@unnamed@FireChappyMgr_cpp@":
+        .4byte lbl_80488370
+*/
+
 namespace Game {
 
 /*
@@ -10,27 +111,26 @@ namespace Game {
 FireChappy::Mgr::Mgr(int, unsigned char)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        -0x1604B8
-	  lis       r3, 0x804D
-	  lis       r4, 0x8049
-	  subi      r5, r3, 0x52E8
-	  mr        r3, r31
-	  stw       r5, 0x0(r31)
-	  addi      r5, r5, 0x38
-	  subi      r0, r4, 0x7C68
-	  stw       r5, 0x4(r31)
-	  stw       r0, 0x18(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       __ct__Q24Game12EnemyMgrBaseFiUc
+	lis      r3, __vt__Q34Game10FireChappy3Mgr@ha
+	lis      r4, lbl_80488398@ha
+	addi     r5, r3, __vt__Q34Game10FireChappy3Mgr@l
+	mr       r3, r31
+	stw      r5, 0(r31)
+	addi     r5, r5, 0x38
+	addi     r0, r4, lbl_80488398@l
+	stw      r5, 4(r31)
+	stw      r0, 0x18(r31)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -42,27 +142,26 @@ FireChappy::Mgr::Mgr(int, unsigned char)
 void FireChappy::Mgr::doAlloc()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  li        r3, 0x884
-	  bl        -0x26B2FC
-	  mr.       r4, r3
-	  beq-      .loc_0x2C
-	  bl        -0x175874
-	  mr        r4, r3
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	li       r3, 0x884
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_8028F1B4
+	bl       __ct__Q34Game10ChappyBase5ParmsFv
+	mr       r4, r3
 
-	.loc_0x2C:
-	  mr        r3, r31
-	  bl        -0x15F91C
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8028F1B4:
+	mr       r3, r31
+	bl       init__Q24Game12EnemyMgrBaseFPQ24Game14EnemyParmsBase
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -74,31 +173,30 @@ void FireChappy::Mgr::doAlloc()
 void FireChappy::Mgr::createObj(int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  mulli     r3, r31, 0x310
-	  addi      r3, r3, 0x10
-	  bl        -0x26B248
-	  lis       r4, 0x8029
-	  lis       r5, 0x8029
-	  subi      r4, r4, 0x9D4
-	  mr        r7, r31
-	  subi      r5, r5, 0xDD0
-	  li        r6, 0x310
-	  bl        -0x1CD820
-	  stw       r3, 0x44(r30)
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	mulli    r3, r31, 0x310
+	addi     r3, r3, 0x10
+	bl       __nwa__FUl
+	lis      r4, __ct__Q34Game10FireChappy3ObjFv@ha
+	lis      r5, __dt__Q34Game10FireChappy3ObjFv@ha
+	addi     r4, r4, __ct__Q34Game10FireChappy3ObjFv@l
+	mr       r7, r31
+	addi     r5, r5, __dt__Q34Game10FireChappy3ObjFv@l
+	li       r6, 0x310
+	bl       __construct_new_array
+	stw      r3, 0x44(r30)
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -110,71 +208,70 @@ void FireChappy::Mgr::createObj(int)
 FireChappy::Obj::~Obj()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0xD4
-	  lis       r3, 0x804D
-	  addi      r0, r30, 0x300
-	  subi      r4, r3, 0x50BC
-	  stw       r4, 0x0(r30)
-	  addi      r3, r4, 0x1B0
-	  addi      r4, r4, 0x334
-	  stw       r3, 0x178(r30)
-	  lwz       r3, 0x17C(r30)
-	  stw       r4, 0x0(r3)
-	  lwz       r3, 0x17C(r30)
-	  sub       r0, r0, r3
-	  stw       r0, 0xC(r3)
-	  beq-      .loc_0xC4
-	  lis       r3, 0x804B
-	  addi      r0, r30, 0x2E4
-	  subi      r4, r3, 0x20B4
-	  stw       r4, 0x0(r30)
-	  addi      r3, r4, 0x1B0
-	  addi      r4, r4, 0x334
-	  stw       r3, 0x178(r30)
-	  lwz       r3, 0x17C(r30)
-	  stw       r4, 0x0(r3)
-	  lwz       r3, 0x17C(r30)
-	  sub       r0, r0, r3
-	  stw       r0, 0xC(r3)
-	  beq-      .loc_0xC4
-	  lis       r3, 0x804B
-	  addi      r0, r30, 0x2BC
-	  subi      r4, r3, 0x5CDC
-	  addi      r3, r30, 0x290
-	  stw       r4, 0x0(r30)
-	  addi      r5, r4, 0x1B0
-	  addi      r6, r4, 0x2F8
-	  li        r4, -0x1
-	  stw       r5, 0x178(r30)
-	  lwz       r5, 0x17C(r30)
-	  stw       r6, 0x0(r5)
-	  lwz       r5, 0x17C(r30)
-	  sub       r0, r0, r5
-	  stw       r0, 0xC(r5)
-	  bl        0x182298
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_8028F304
+	lis      r3, __vt__Q34Game10FireChappy3Obj@ha
+	addi     r0, r30, 0x300
+	addi     r4, r3, __vt__Q34Game10FireChappy3Obj@l
+	stw      r4, 0(r30)
+	addi     r3, r4, 0x1b0
+	addi     r4, r4, 0x334
+	stw      r3, 0x178(r30)
+	lwz      r3, 0x17c(r30)
+	stw      r4, 0(r3)
+	lwz      r3, 0x17c(r30)
+	subf     r0, r3, r0
+	stw      r0, 0xc(r3)
+	beq      lbl_8028F2F4
+	lis      r3, __vt__Q34Game10ChappyBase3Obj@ha
+	addi     r0, r30, 0x2e4
+	addi     r4, r3, __vt__Q34Game10ChappyBase3Obj@l
+	stw      r4, 0(r30)
+	addi     r3, r4, 0x1b0
+	addi     r4, r4, 0x334
+	stw      r3, 0x178(r30)
+	lwz      r3, 0x17c(r30)
+	stw      r4, 0(r3)
+	lwz      r3, 0x17c(r30)
+	subf     r0, r3, r0
+	stw      r0, 0xc(r3)
+	beq      lbl_8028F2F4
+	lis      r3, __vt__Q24Game9EnemyBase@ha
+	addi     r0, r30, 0x2bc
+	addi     r4, r3, __vt__Q24Game9EnemyBase@l
+	addi     r3, r30, 0x290
+	stw      r4, 0(r30)
+	addi     r5, r4, 0x1b0
+	addi     r6, r4, 0x2f8
+	li       r4, -1
+	stw      r5, 0x178(r30)
+	lwz      r5, 0x17c(r30)
+	stw      r6, 0(r5)
+	lwz      r5, 0x17c(r30)
+	subf     r0, r5, r0
+	stw      r0, 0xc(r5)
+	bl       __dt__5CNodeFv
 
-	.loc_0xC4:
-	  extsh.    r0, r31
-	  ble-      .loc_0xD4
-	  mr        r3, r30
-	  bl        -0x26B24C
+lbl_8028F2F4:
+	extsh.   r0, r31
+	ble      lbl_8028F304
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0xD4:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8028F304:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -186,11 +283,10 @@ FireChappy::Obj::~Obj()
 void FireChappy::Mgr::getEnemy(int)
 {
 	/*
-	.loc_0x0:
-	  mulli     r0, r4, 0x310
-	  lwz       r3, 0x44(r3)
-	  add       r3, r3, r0
-	  blr
+	mulli    r0, r4, 0x310
+	lwz      r3, 0x44(r3)
+	add      r3, r3, r0
+	blr
 	*/
 }
 
@@ -202,37 +298,36 @@ void FireChappy::Mgr::getEnemy(int)
 void FireChappy::Mgr::loadModelData()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        -0x15F238
-	  li        r5, 0
-	  b         .loc_0x40
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       loadModelData__Q24Game12EnemyMgrBaseFv
+	li       r5, 0
+	b        lbl_8028F370
 
-	.loc_0x20:
-	  lwz       r3, 0x80(r4)
-	  rlwinm    r0,r5,2,14,29
-	  addi      r5, r5, 0x1
-	  lwzx      r3, r3, r0
-	  lwz       r0, 0xC(r3)
-	  rlwinm    r0,r0,0,20,15
-	  ori       r0, r0, 0x2000
-	  stw       r0, 0xC(r3)
+lbl_8028F350:
+	lwz      r3, 0x80(r4)
+	rlwinm   r0, r5, 2, 0xe, 0x1d
+	addi     r5, r5, 1
+	lwzx     r3, r3, r0
+	lwz      r0, 0xc(r3)
+	rlwinm   r0, r0, 0, 0x14, 0xf
+	ori      r0, r0, 0x2000
+	stw      r0, 0xc(r3)
 
-	.loc_0x40:
-	  lwz       r4, 0x1C(r31)
-	  rlwinm    r0,r5,0,16,31
-	  lhz       r3, 0x7C(r4)
-	  cmplw     r0, r3
-	  blt+      .loc_0x20
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8028F370:
+	lwz      r4, 0x1c(r31)
+	clrlwi   r0, r5, 0x10
+	lhz      r3, 0x7c(r4)
+	cmplw    r0, r3
+	blt      lbl_8028F350
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -244,94 +339,95 @@ void FireChappy::Mgr::loadModelData()
 void FireChappy::Mgr::loadTexData()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x70(r1)
-	  mflr      r0
-	  li        r4, 0
-	  stw       r0, 0x74(r1)
-	  stw       r31, 0x6C(r1)
-	  stw       r30, 0x68(r1)
-	  mr        r30, r3
-	  lwz       r3, 0x1C(r3)
-	  bl        0x1AEEE4
-	  lwz       r4, -0x7B48(r13)
-	  addi      r3, r1, 0x38
-	  li        r31, 0
-	  bl        0x1BD210
-	  lwz       r3, -0x63D8(r13)
-	  addi      r4, r1, 0x38
-	  bl        0x1BD3CC
-	  cmplwi    r3, 0
-	  beq-      .loc_0x4C
-	  lwz       r31, 0x30(r3)
+	stwu     r1, -0x70(r1)
+	mflr     r0
+	li       r4, 0
+	stw      r0, 0x74(r1)
+	stw      r31, 0x6c(r1)
+	stw      r30, 0x68(r1)
+	mr       r30, r3
+	lwz      r3, 0x1c(r3)
+	bl       enableMaterialAnim__Q28SysShape5ModelFP12J3DModelDatai
+	lwz      r4,
+"cMatAnimBtkTexName__Q34Game10FireChappy27@unnamed@FireChappyMgr_cpp@"@sda21(r13)
+	addi     r3, r1, 0x38
+	li       r31, 0
+	bl       __ct__Q212LoadResource3ArgFPCc
+	lwz      r3, gLoadResourceMgr@sda21(r13)
+	addi     r4, r1, 0x38
+	bl       load__Q212LoadResource3MgrFRQ212LoadResource3Arg
+	cmplwi   r3, 0
+	beq      lbl_8028F3E4
+	lwz      r31, 0x30(r3)
 
-	.loc_0x4C:
-	  cmplwi    r31, 0
-	  bne-      .loc_0x70
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  subi      r3, r3, 0x7C4C
-	  li        r4, 0x6E
-	  subi      r5, r5, 0x7C38
-	  crclr     6, 0x6
-	  bl        -0x264DC4
+lbl_8028F3E4:
+	cmplwi   r31, 0
+	bne      lbl_8028F408
+	lis      r3, lbl_804883B4@ha
+	lis      r5, lbl_804883C8@ha
+	addi     r3, r3, lbl_804883B4@l
+	li       r4, 0x6e
+	addi     r5, r5, lbl_804883C8@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x70:
-	  li        r3, 0x10
-	  bl        -0x26B568
-	  mr.       r0, r3
-	  beq-      .loc_0x88
-	  bl        0x1A4D1C
-	  mr        r0, r3
+lbl_8028F408:
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_8028F420
+	bl       __ct__Q23Sys15MatTexAnimationFv
+	mr       r0, r3
 
-	.loc_0x88:
-	  stw       r0, 0x48(r30)
-	  mr        r4, r31
-	  lwz       r3, 0x48(r30)
-	  lwz       r5, 0x1C(r30)
-	  bl        0x1A4BF0
-	  lwz       r4, -0x7B44(r13)
-	  addi      r3, r1, 0x8
-	  li        r31, 0
-	  bl        0x1BD198
-	  lwz       r3, -0x63D8(r13)
-	  addi      r4, r1, 0x8
-	  bl        0x1BD354
-	  cmplwi    r3, 0
-	  beq-      .loc_0xC4
-	  lwz       r31, 0x30(r3)
+lbl_8028F420:
+	stw      r0, 0x48(r30)
+	mr       r4, r31
+	lwz      r3, 0x48(r30)
+	lwz      r5, 0x1c(r30)
+	bl       attachResource__Q23Sys16MatBaseAnimationFPvP12J3DModelData
+	lwz      r4,
+"cMatAnimBrkTexName__Q34Game10FireChappy27@unnamed@FireChappyMgr_cpp@"@sda21(r13)
+	addi     r3, r1, 8
+	li       r31, 0
+	bl       __ct__Q212LoadResource3ArgFPCc
+	lwz      r3, gLoadResourceMgr@sda21(r13)
+	addi     r4, r1, 8
+	bl       load__Q212LoadResource3MgrFRQ212LoadResource3Arg
+	cmplwi   r3, 0
+	beq      lbl_8028F45C
+	lwz      r31, 0x30(r3)
 
-	.loc_0xC4:
-	  cmplwi    r31, 0
-	  bne-      .loc_0xE8
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  subi      r3, r3, 0x7C4C
-	  li        r4, 0x76
-	  subi      r5, r5, 0x7C38
-	  crclr     6, 0x6
-	  bl        -0x264E3C
+lbl_8028F45C:
+	cmplwi   r31, 0
+	bne      lbl_8028F480
+	lis      r3, lbl_804883B4@ha
+	lis      r5, lbl_804883C8@ha
+	addi     r3, r3, lbl_804883B4@l
+	li       r4, 0x76
+	addi     r5, r5, lbl_804883C8@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xE8:
-	  li        r3, 0x14
-	  bl        -0x26B5E0
-	  mr.       r0, r3
-	  beq-      .loc_0x100
-	  bl        0x1A4DB0
-	  mr        r0, r3
+lbl_8028F480:
+	li       r3, 0x14
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_8028F498
+	bl       __ct__Q23Sys18MatTevRegAnimationFv
+	mr       r0, r3
 
-	.loc_0x100:
-	  stw       r0, 0x4C(r30)
-	  mr        r4, r31
-	  lwz       r3, 0x4C(r30)
-	  lwz       r5, 0x1C(r30)
-	  bl        0x1A4B78
-	  lwz       r0, 0x74(r1)
-	  lwz       r31, 0x6C(r1)
-	  lwz       r30, 0x68(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x70
-	  blr
+lbl_8028F498:
+	stw      r0, 0x4c(r30)
+	mr       r4, r31
+	lwz      r3, 0x4c(r30)
+	lwz      r5, 0x1c(r30)
+	bl       attachResource__Q23Sys16MatBaseAnimationFPvP12J3DModelData
+	lwz      r0, 0x74(r1)
+	lwz      r31, 0x6c(r1)
+	lwz      r30, 0x68(r1)
+	mtlr     r0
+	addi     r1, r1, 0x70
+	blr
 	*/
 }
 
@@ -343,42 +439,41 @@ void FireChappy::Mgr::loadTexData()
 void FireChappy::Mgr::createModel()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  li        r3, 0x14
-	  bl        -0x26B63C
-	  mr.       r31, r3
-	  beq-      .loc_0x3C
-	  lwz       r4, 0x1C(r30)
-	  lis       r5, 0x4
-	  lbz       r6, 0x24(r30)
-	  bl        0x1AECE0
-	  mr        r31, r3
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	stw      r30, 8(r1)
+	mr       r30, r3
+	li       r3, 0x14
+	bl       __nw__FUl
+	or.      r31, r3, r3
+	beq      lbl_8028F500
+	lwz      r4, 0x1c(r30)
+	lis      r5, 4
+	lbz      r6, 0x24(r30)
+	bl       __ct__Q28SysShape5ModelFP12J3DModelDataUlUl
+	mr       r31, r3
 
-	.loc_0x3C:
-	  cmplwi    r31, 0
-	  bne-      .loc_0x60
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  subi      r3, r3, 0x7C4C
-	  li        r4, 0x90
-	  subi      r5, r5, 0x7C38
-	  crclr     6, 0x6
-	  bl        -0x264EE0
+lbl_8028F500:
+	cmplwi   r31, 0
+	bne      lbl_8028F524
+	lis      r3, lbl_804883B4@ha
+	lis      r5, lbl_804883C8@ha
+	addi     r3, r3, lbl_804883B4@l
+	li       r4, 0x90
+	addi     r5, r5, lbl_804883C8@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x60:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8028F524:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -390,55 +485,54 @@ void FireChappy::Mgr::createModel()
 FireChappy::Mgr::~Mgr()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x94
-	  lis       r3, 0x804D
-	  subi      r3, r3, 0x52E8
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x38
-	  stw       r0, 0x4(r30)
-	  beq-      .loc_0x84
-	  lis       r3, 0x804B
-	  subi      r3, r3, 0x760
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x38
-	  stw       r0, 0x4(r30)
-	  beq-      .loc_0x84
-	  lis       r3, 0x804B
-	  addic.    r0, r30, 0x4
-	  subi      r3, r3, 0x5304
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x38
-	  stw       r0, 0x4(r30)
-	  beq-      .loc_0x84
-	  lis       r4, 0x804B
-	  addi      r3, r30, 0x4
-	  subi      r0, r4, 0x5324
-	  li        r4, 0
-	  stw       r0, 0x4(r30)
-	  bl        0x181FC8
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_8028F5D4
+	lis      r3, __vt__Q34Game10FireChappy3Mgr@ha
+	addi     r3, r3, __vt__Q34Game10FireChappy3Mgr@l
+	stw      r3, 0(r30)
+	addi     r0, r3, 0x38
+	stw      r0, 4(r30)
+	beq      lbl_8028F5C4
+	lis      r3, __vt__Q24Game12EnemyMgrBase@ha
+	addi     r3, r3, __vt__Q24Game12EnemyMgrBase@l
+	stw      r3, 0(r30)
+	addi     r0, r3, 0x38
+	stw      r0, 4(r30)
+	beq      lbl_8028F5C4
+	lis      r3, __vt__Q24Game13IEnemyMgrBase@ha
+	addic.   r0, r30, 4
+	addi     r3, r3, __vt__Q24Game13IEnemyMgrBase@l
+	stw      r3, 0(r30)
+	addi     r0, r3, 0x38
+	stw      r0, 4(r30)
+	beq      lbl_8028F5C4
+	lis      r4, __vt__16GenericContainer@ha
+	addi     r3, r30, 4
+	addi     r0, r4, __vt__16GenericContainer@l
+	li       r4, 0
+	stw      r0, 4(r30)
+	bl       __dt__5CNodeFv
 
-	.loc_0x84:
-	  extsh.    r0, r31
-	  ble-      .loc_0x94
-	  mr        r3, r30
-	  bl        -0x26B51C
+lbl_8028F5C4:
+	extsh.   r0, r31
+	ble      lbl_8028F5D4
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x94:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8028F5D4:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -457,18 +551,17 @@ u32 FireChappy::Mgr::getEnemyTypeID() { return 0x21; }
 void FireChappy::Mgr::doLoadBmd(void*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r5, 0x124
-	  mr        r3, r4
-	  stw       r0, 0x14(r1)
-	  addi      r4, r5, 0x30
-	  bl        -0x21FD7C
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lis      r5, 0x01240030@ha
+	mr       r3, r4
+	stw      r0, 0x14(r1)
+	addi     r4, r5, 0x01240030@l
+	bl       load__22J3DModelLoaderDataBaseFPCvUl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -480,9 +573,8 @@ void FireChappy::Mgr::doLoadBmd(void*)
 FireChappy::Mgr::@4 @~Mgr()
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x4
-	  b         -0xE8
+	addi     r3, r3, -4
+	b        __dt__Q34Game10FireChappy3MgrFv
 	*/
 }
 } // namespace Game

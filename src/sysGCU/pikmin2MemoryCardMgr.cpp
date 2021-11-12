@@ -5,6 +5,110 @@
 #include "Game/MemoryCard/Resource.h"
 #include "JSystem/JKRArchive.h"
 
+/*
+    Generated from dpostproc
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_8049ADB8
+    lbl_8049ADB8:
+        .asciz "Pikmin2_SaveData"
+        .skip 3
+    .global gStrMemoryCardMgrCpp
+    gStrMemoryCardMgrCpp:
+        .asciz "pikmin2MemoryCardMgr.cpp"
+        .skip 3
+    .global gStrMemoryCardMgrP2Assert
+    gStrMemoryCardMgrP2Assert:
+        .asciz "P2Assert"
+        .skip 3
+    .global lbl_8049ADF4
+    lbl_8049ADF4:
+        .asciz "sizeof(PlayerInfo): %d BLOCKSIZE %d padding:%d \n"
+        .skip 3
+    .global lbl_8049AE28
+    lbl_8049AE28:
+        .asciz "/memoryCard/memoryCardHeader.szs"
+        .skip 3
+        .asciz "banner.dat"
+        .skip 1
+        .asciz "icon.dat"
+        .skip 3
+    .global lbl_8049AE64
+    lbl_8049AE64:
+        .asciz "MemoryCardModify Error"
+        .skip 1
+        .asciz "card [%d] memory[%d]\n"
+        .skip 2
+    .global lbl_8049AE94
+    lbl_8049AE94:
+        .asciz "PIKMIN 2"
+        .skip 3
+    .global lbl_8049AEA0
+    lbl_8049AEA0:
+        .asciz "%02d/%02d/%04d %02d:%02d:%02d"
+        .skip 2
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global lbl_804ECF58
+    lbl_804ECF58:
+        .4byte lbl_80443790
+        .4byte lbl_804437EC
+        .4byte lbl_80443768
+        .4byte lbl_804437FC
+        .4byte lbl_8044385C
+        .4byte lbl_804438BC
+        .4byte lbl_804438D4
+        .4byte lbl_80443930
+        .4byte lbl_80443994
+        .4byte lbl_804439A8
+        .4byte lbl_804439B8
+        .4byte lbl_804439C8
+    .global __vt__Q34Game10MemoryCard25MgrCommandGetPlayerHeader
+    __vt__Q34Game10MemoryCard25MgrCommandGetPlayerHeader:
+        .4byte 0
+        .4byte 0
+        .4byte getClassSize__Q34Game10MemoryCard25MgrCommandGetPlayerHeaderFv
+    .global __vt__Q34Game10MemoryCard20MgrCommandCopyPlayer
+    __vt__Q34Game10MemoryCard20MgrCommandCopyPlayer:
+        .4byte 0
+        .4byte 0
+        .4byte getClassSize__Q34Game10MemoryCard20MgrCommandCopyPlayerFv
+    .global __vt__Q34Game10MemoryCard18MgrCommandPlayerNo
+    __vt__Q34Game10MemoryCard18MgrCommandPlayerNo:
+        .4byte 0
+        .4byte 0
+        .4byte getClassSize__Q34Game10MemoryCard18MgrCommandPlayerNoFv
+    .global __vt__Q34Game10MemoryCard3Mgr
+    __vt__Q34Game10MemoryCard3Mgr:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q34Game10MemoryCard3MgrFv
+        .4byte update__Q34Game10MemoryCard3MgrFv
+        .4byte doInit__13MemoryCardMgrFv
+        .4byte doCardProc__Q34Game10MemoryCard3MgrFPvP20MemoryCardMgrCommand
+        .4byte getHeaderSize__Q34Game10MemoryCard3MgrFv
+        .4byte doMakeHeader__Q34Game10MemoryCard3MgrFPUc
+        .4byte doSetCardStat__Q34Game10MemoryCard3MgrFP8CARDStat
+        .4byte doCheckCardStat__Q34Game10MemoryCard3MgrFP8CARDStat
+        .4byte isErrorOccured__Q34Game10MemoryCard3MgrFv
+    .global __vt__Q34Game10MemoryCard8Resource
+    __vt__Q34Game10MemoryCard8Resource:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q34Game10MemoryCard8ResourceFv
+        .4byte 0
+
+    .section .sdata, "wa"  # 0x80514680 - 0x80514D80
+    .global cFileName__Q24Game10MemoryCard
+    cFileName__Q24Game10MemoryCard:
+        .4byte lbl_8049ADB8
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_80520978
+    lbl_80520978:
+        .asciz "dameck\n"
+*/
+
 extern const char
     lbl_8049ADF4[49]; // "sizeof(PlayerInfo): %d BLOCKSIZE %d padding:%d \n"
 
@@ -141,89 +245,89 @@ namespace MemoryCard {
 // void Game::MemoryCard::Mgr::loadResource(JKRHeap*)
 // {
 /*
-.loc_0x0:
-  stwu      r1, -0x20(r1)
-  mflr      r0
-  lis       r5, 0x804A
-  stw       r0, 0x24(r1)
-  stw       r31, 0x1C(r1)
-  stw       r30, 0x18(r1)
-  subi      r30, r5, 0x5248
-  li        r5, 0
-  stw       r29, 0x14(r1)
-  mr        r29, r4
-  stw       r28, 0x10(r1)
-  mr        r28, r3
-  li        r3, 0x1C
-  bl        -0x41ECC0
-  mr.       r31, r3
-  beq-      .loc_0x54
-  bl        -0x425C40
-  lis       r3, 0x804F
-  subi      r0, r3, 0x3028
-  stw       r0, 0x0(r31)
-  stw       r28, 0x18(r31)
+    stwu     r1, -0x20(r1)
+    mflr     r0
+    lis      r5, lbl_8049ADB8@ha
+    stw      r0, 0x24(r1)
+    stw      r31, 0x1c(r1)
+    stw      r30, 0x18(r1)
+    addi     r30, r5, lbl_8049ADB8@l
+    li       r5, 0
+    stw      r29, 0x14(r1)
+    mr       r29, r4
+    stw      r28, 0x10(r1)
+    mr       r28, r3
+    li       r3, 0x1c
+    bl       __nw__FUlP7JKRHeapi
+    or.      r31, r3, r3
+    beq      lbl_80442C20
+    bl       __ct__11JKRDisposerFv
+    lis      r3, __vt__Q34Game10MemoryCard8Resource@ha
+    addi     r0, r3, __vt__Q34Game10MemoryCard8Resource@l
+    stw      r0, 0(r31)
+    stw      r28, 0x18(r31)
 
-.loc_0x54:
-  cmplwi    r31, 0
-  bne-      .loc_0x70
-  addi      r3, r30, 0x14
-  addi      r5, r30, 0x30
-  li        r4, 0x215
-  crclr     6, 0x6
-  bl        -0x4185F8
+lbl_80442C20:
+    cmplwi   r31, 0
+    bne      lbl_80442C3C
+    addi     r3, r30, 0x14
+    addi     r5, r30, 0x30
+    li       r4, 0x215
+    crclr    6
+    bl       panic_f__12JUTExceptionFPCciPCce
 
-.loc_0x70:
-  mr        r5, r29
-  addi      r3, r30, 0x70
-  li        r4, 0x1
-  li        r6, 0x1
-  bl        -0x427B1C
-  mr.       r31, r3
-  bne-      .loc_0xA0
-  addi      r3, r30, 0x14
-  addi      r5, r30, 0x30
-  li        r4, 0x21C
-  crclr     6, 0x6
-  bl        -0x418628
+lbl_80442C3C:
+    mr       r5, r29
+    addi     r3, r30, 0x70
+    li       r4, 1
+    li       r6, 1
+    bl
+mount__10JKRArchiveFPCcQ210JKRArchive10EMountModeP7JKRHeapQ210JKRArchive15EMountDirection
+    or.      r31, r3, r3
+    bne      lbl_80442C6C
+    addi     r3, r30, 0x14
+    addi     r5, r30, 0x30
+    li       r4, 0x21c
+    crclr    6
+    bl       panic_f__12JUTExceptionFPCciPCce
 
-.loc_0xA0:
-  mr        r4, r31
-  addi      r3, r30, 0x94
-  bl        -0x41FC5C
-  stw       r3, 0xDC(r28)
-  mr        r4, r31
-  addi      r3, r30, 0xA0
-  bl        -0x41FC6C
-  stw       r3, 0xE0(r28)
-  lwz       r0, 0xDC(r28)
-  cmplwi    r0, 0
-  bne-      .loc_0xE0
-  addi      r3, r30, 0x14
-  addi      r5, r30, 0x30
-  li        r4, 0x21F
-  crclr     6, 0x6
-  bl        -0x418668
+lbl_80442C6C:
+    mr       r4, r31
+    addi     r3, r30, 0x94
+    bl       getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
+    stw      r3, 0xdc(r28)
+    mr       r4, r31
+    addi     r3, r30, 0xa0
+    bl       getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
+    stw      r3, 0xe0(r28)
+    lwz      r0, 0xdc(r28)
+    cmplwi   r0, 0
+    bne      lbl_80442CAC
+    addi     r3, r30, 0x14
+    addi     r5, r30, 0x30
+    li       r4, 0x21f
+    crclr    6
+    bl       panic_f__12JUTExceptionFPCciPCce
 
-.loc_0xE0:
-  lwz       r0, 0xE0(r28)
-  cmplwi    r0, 0
-  bne-      .loc_0x100
-  addi      r3, r30, 0x14
-  addi      r5, r30, 0x30
-  li        r4, 0x220
-  crclr     6, 0x6
-  bl        -0x418688
+lbl_80442CAC:
+    lwz      r0, 0xe0(r28)
+    cmplwi   r0, 0
+    bne      lbl_80442CCC
+    addi     r3, r30, 0x14
+    addi     r5, r30, 0x30
+    li       r4, 0x220
+    crclr    6
+    bl       panic_f__12JUTExceptionFPCciPCce
 
-.loc_0x100:
-  lwz       r0, 0x24(r1)
-  lwz       r31, 0x1C(r1)
-  lwz       r30, 0x18(r1)
-  lwz       r29, 0x14(r1)
-  lwz       r28, 0x10(r1)
-  mtlr      r0
-  addi      r1, r1, 0x20
-  blr
+lbl_80442CCC:
+    lwz      r0, 0x24(r1)
+    lwz      r31, 0x1c(r1)
+    lwz      r30, 0x18(r1)
+    lwz      r29, 0x14(r1)
+    lwz      r28, 0x10(r1)
+    mtlr     r0
+    addi     r1, r1, 0x20
+    blr
 
 }
 
@@ -237,11 +341,10 @@ namespace Game {
 void MemoryCard::Mgr::destroyResource(void)
 {
 /*
-.loc_0x0:
-  li        r0, 0
-  stw       r0, 0xDC(r3)
-  stw       r0, 0xE0(r3)
-  blr
+    li       r0, 0
+    stw      r0, 0xdc(r3)
+    stw      r0, 0xe0(r3)
+    blr
 
 }
 
@@ -253,15 +356,14 @@ void MemoryCard::Mgr::destroyResource(void)
 void MemoryCard::Mgr::update(void)
 {
 /*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  stw       r0, 0x14(r1)
-  bl        -0x21BC
-  lwz       r0, 0x14(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
+    stwu     r1, -0x10(r1)
+    mflr     r0
+    stw      r0, 0x14(r1)
+    bl       update__13MemoryCardMgrFv
+    lwz      r0, 0x14(r1)
+    mtlr     r0
+    addi     r1, r1, 0x10
+    blr
 
 }
 
@@ -273,36 +375,35 @@ void MemoryCard::Mgr::update(void)
 void MemoryCard::Mgr::format(void)
 {
 /*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  stw       r0, 0x14(r1)
-  stw       r31, 0xC(r1)
-  li        r31, 0
-  stw       r30, 0x8(r1)
-  mr        r30, r3
-  addi      r3, r30, 0xAC
-  bl        -0x352FC0
-  cmpwi     r3, 0
-  beq-      .loc_0x50
-  mr        r3, r30
-  li        r4, 0
-  bl        -0x2524
-  mr        r0, r3
-  addi      r3, r30, 0xAC
-  mr        r31, r0
-  bl        -0x35311C
-  addi      r3, r30, 0xC4
-  bl        -0x352E3C
+    stwu     r1, -0x10(r1)
+    mflr     r0
+    stw      r0, 0x14(r1)
+    stw      r31, 0xc(r1)
+    li       r31, 0
+    stw      r30, 8(r1)
+    mr       r30, r3
+    addi     r3, r30, 0xac
+    bl       OSTryLockMutex
+    cmpwi    r3, 0
+    beq      lbl_80442D6C
+    mr       r3, r30
+    li       r4, 0
+    bl       cardFormat__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlot
+    mr       r0, r3
+    addi     r3, r30, 0xac
+    mr       r31, r0
+    bl       OSUnlockMutex
+    addi     r3, r30, 0xc4
+    bl       OSSignalCond
 
-.loc_0x50:
-  lwz       r0, 0x14(r1)
-  mr        r3, r31
-  lwz       r31, 0xC(r1)
-  lwz       r30, 0x8(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
+lbl_80442D6C:
+    lwz      r0, 0x14(r1)
+    mr       r3, r31
+    lwz      r31, 0xc(r1)
+    lwz      r30, 8(r1)
+    mtlr     r0
+    addi     r1, r1, 0x10
+    blr
 
 }
 
@@ -334,40 +435,37 @@ void MemoryCard::Mgr::verifySerialNo(void)
 void MemoryCard::Mgr::checkBeforeSave(void)
 {
 /*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  stw       r0, 0x14(r1)
-  stw       r31, 0xC(r1)
-  li        r31, 0
-  stw       r30, 0x8(r1)
-  mr        r30, r3
-  bl        .loc_0x74
-  rlwinm.   r0,r3,0,24,31
-  beq-      .loc_0x58
-  addi      r3, r30, 0xAC
-  bl        -0x353038
-  cmpwi     r3, 0
-  beq-      .loc_0x58
-  mr        r3, r30
-  li        r31, 0x1
-  li        r4, 0xF
-  bl        -0x2718
-  addi      r3, r30, 0xAC
-  bl        -0x353190
-  addi      r3, r30, 0xC4
-  bl        -0x352EB0
+    stwu     r1, -0x10(r1)
+    mflr     r0
+    stw      r0, 0x14(r1)
+    stw      r31, 0xc(r1)
+    li       r31, 0
+    stw      r30, 8(r1)
+    mr       r30, r3
+    bl       checkError__Q34Game10MemoryCard3MgrFv
+    clrlwi.  r0, r3, 0x18
+    beq      lbl_80442DE0
+    addi     r3, r30, 0xac
+    bl       OSTryLockMutex
+    cmpwi    r3, 0
+    beq      lbl_80442DE0
+    mr       r3, r30
+    li       r31, 1
+    li       r4, 0xf
+    bl       setCommand__13MemoryCardMgrFi
+    addi     r3, r30, 0xac
+    bl       OSUnlockMutex
+    addi     r3, r30, 0xc4
+    bl       OSSignalCond
 
-.loc_0x58:
-  lwz       r0, 0x14(r1)
-  mr        r3, r31
-  lwz       r31, 0xC(r1)
-  lwz       r30, 0x8(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
-
-.loc_0x74:
+lbl_80442DE0:
+    lwz      r0, 0x14(r1)
+    mr       r3, r31
+    lwz      r31, 0xc(r1)
+    lwz      r30, 8(r1)
+    mtlr     r0
+    addi     r1, r1, 0x10
+    blr
 
 }
 
@@ -379,38 +477,37 @@ void MemoryCard::Mgr::checkBeforeSave(void)
 void MemoryCard::Mgr::checkError(void)
 {
 /*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  stw       r0, 0x14(r1)
-  stw       r31, 0xC(r1)
-  li        r31, 0
-  stw       r30, 0x8(r1)
-  mr        r30, r3
-  bl        0x3A4C
-  rlwinm.   r0,r3,0,24,31
-  beq-      .loc_0x58
-  addi      r3, r30, 0xAC
-  bl        -0x3530AC
-  cmpwi     r3, 0
-  beq-      .loc_0x58
-  mr        r3, r30
-  li        r31, 0x1
-  li        r4, 0x10
-  bl        -0x278C
-  addi      r3, r30, 0xAC
-  bl        -0x353204
-  addi      r3, r30, 0xC4
-  bl        -0x352F24
+    stwu     r1, -0x10(r1)
+    mflr     r0
+    stw      r0, 0x14(r1)
+    stw      r31, 0xc(r1)
+    li       r31, 0
+    stw      r30, 8(r1)
+    mr       r30, r3
+    bl       resetError__Q34Game10MemoryCard3MgrFv
+    clrlwi.  r0, r3, 0x18
+    beq      lbl_80442E54
+    addi     r3, r30, 0xac
+    bl       OSTryLockMutex
+    cmpwi    r3, 0
+    beq      lbl_80442E54
+    mr       r3, r30
+    li       r31, 1
+    li       r4, 0x10
+    bl       setCommand__13MemoryCardMgrFi
+    addi     r3, r30, 0xac
+    bl       OSUnlockMutex
+    addi     r3, r30, 0xc4
+    bl       OSSignalCond
 
-.loc_0x58:
-  lwz       r0, 0x14(r1)
-  mr        r3, r31
-  lwz       r31, 0xC(r1)
-  lwz       r30, 0x8(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
+lbl_80442E54:
+    lwz      r0, 0x14(r1)
+    mr       r3, r31
+    lwz      r31, 0xc(r1)
+    lwz      r30, 8(r1)
+    mtlr     r0
+    addi     r1, r1, 0x10
+    blr
 
 }
 
@@ -422,38 +519,37 @@ void MemoryCard::Mgr::checkError(void)
 void MemoryCard::Mgr::createNewFile(void)
 {
 /*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  stw       r0, 0x14(r1)
-  stw       r31, 0xC(r1)
-  li        r31, 0
-  stw       r30, 0x8(r1)
-  mr        r30, r3
-  bl        0x39D8
-  rlwinm.   r0,r3,0,24,31
-  beq-      .loc_0x58
-  addi      r3, r30, 0xAC
-  bl        -0x353120
-  cmpwi     r3, 0
-  beq-      .loc_0x58
-  mr        r3, r30
-  li        r31, 0x1
-  li        r4, 0x7
-  bl        -0x2800
-  addi      r3, r30, 0xAC
-  bl        -0x353278
-  addi      r3, r30, 0xC4
-  bl        -0x352F98
+    stwu     r1, -0x10(r1)
+    mflr     r0
+    stw      r0, 0x14(r1)
+    stw      r31, 0xc(r1)
+    li       r31, 0
+    stw      r30, 8(r1)
+    mr       r30, r3
+    bl       resetError__Q34Game10MemoryCard3MgrFv
+    clrlwi.  r0, r3, 0x18
+    beq      lbl_80442EC8
+    addi     r3, r30, 0xac
+    bl       OSTryLockMutex
+    cmpwi    r3, 0
+    beq      lbl_80442EC8
+    mr       r3, r30
+    li       r31, 1
+    li       r4, 7
+    bl       setCommand__13MemoryCardMgrFi
+    addi     r3, r30, 0xac
+    bl       OSUnlockMutex
+    addi     r3, r30, 0xc4
+    bl       OSSignalCond
 
-.loc_0x58:
-  lwz       r0, 0x14(r1)
-  mr        r3, r31
-  lwz       r31, 0xC(r1)
-  lwz       r30, 0x8(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
+lbl_80442EC8:
+    lwz      r0, 0x14(r1)
+    mr       r3, r31
+    lwz      r31, 0xc(r1)
+    lwz      r30, 8(r1)
+    mtlr     r0
+    addi     r1, r1, 0x10
+    blr
 
 }
 
@@ -465,57 +561,56 @@ void MemoryCard::Mgr::createNewFile(void)
 void MemoryCard::Mgr::saveGameOption(void)
 {
 /*
-.loc_0x0:
-  stwu      r1, -0x20(r1)
-  mflr      r0
-  stw       r0, 0x24(r1)
-  stw       r31, 0x1C(r1)
-  li        r31, 0
-  stw       r30, 0x18(r1)
-  li        r30, 0
-  stw       r29, 0x14(r1)
-  mr        r29, r3
-  bl        0x395C
-  rlwinm.   r0,r3,0,24,31
-  beq-      .loc_0x60
-  addi      r3, r29, 0xAC
-  bl        -0x35319C
-  cmpwi     r3, 0
-  beq-      .loc_0x60
-  mr        r3, r29
-  li        r31, 0x1
-  li        r4, 0x10
-  bl        -0x287C
-  addi      r3, r29, 0xAC
-  bl        -0x3532F4
-  addi      r3, r29, 0xC4
-  bl        -0x353014
+    stwu     r1, -0x20(r1)
+    mflr     r0
+    stw      r0, 0x24(r1)
+    stw      r31, 0x1c(r1)
+    li       r31, 0
+    stw      r30, 0x18(r1)
+    li       r30, 0
+    stw      r29, 0x14(r1)
+    mr       r29, r3
+    bl       resetError__Q34Game10MemoryCard3MgrFv
+    clrlwi.  r0, r3, 0x18
+    beq      lbl_80442F44
+    addi     r3, r29, 0xac
+    bl       OSTryLockMutex
+    cmpwi    r3, 0
+    beq      lbl_80442F44
+    mr       r3, r29
+    li       r31, 1
+    li       r4, 0x10
+    bl       setCommand__13MemoryCardMgrFi
+    addi     r3, r29, 0xac
+    bl       OSUnlockMutex
+    addi     r3, r29, 0xc4
+    bl       OSSignalCond
 
-.loc_0x60:
-  rlwinm.   r0,r31,0,24,31
-  beq-      .loc_0x98
-  addi      r3, r29, 0xAC
-  bl        -0x3531D4
-  cmpwi     r3, 0
-  beq-      .loc_0x98
-  mr        r3, r29
-  li        r30, 0x1
-  li        r4, 0x5
-  bl        -0x28B4
-  addi      r3, r29, 0xAC
-  bl        -0x35332C
-  addi      r3, r29, 0xC4
-  bl        -0x35304C
+lbl_80442F44:
+    clrlwi.  r0, r31, 0x18
+    beq      lbl_80442F7C
+    addi     r3, r29, 0xac
+    bl       OSTryLockMutex
+    cmpwi    r3, 0
+    beq      lbl_80442F7C
+    mr       r3, r29
+    li       r30, 1
+    li       r4, 5
+    bl       setCommand__13MemoryCardMgrFi
+    addi     r3, r29, 0xac
+    bl       OSUnlockMutex
+    addi     r3, r29, 0xc4
+    bl       OSSignalCond
 
-.loc_0x98:
-  lwz       r0, 0x24(r1)
-  mr        r3, r30
-  lwz       r31, 0x1C(r1)
-  lwz       r30, 0x18(r1)
-  lwz       r29, 0x14(r1)
-  mtlr      r0
-  addi      r1, r1, 0x20
-  blr
+lbl_80442F7C:
+    lwz      r0, 0x24(r1)
+    mr       r3, r30
+    lwz      r31, 0x1c(r1)
+    lwz      r30, 0x18(r1)
+    lwz      r29, 0x14(r1)
+    mtlr     r0
+    addi     r1, r1, 0x20
+    blr
 
 }
 
@@ -527,57 +622,56 @@ void MemoryCard::Mgr::saveGameOption(void)
 void MemoryCard::Mgr::loadGameOption(void)
 {
 /*
-.loc_0x0:
-  stwu      r1, -0x20(r1)
-  mflr      r0
-  stw       r0, 0x24(r1)
-  stw       r31, 0x1C(r1)
-  li        r31, 0
-  stw       r30, 0x18(r1)
-  li        r30, 0
-  stw       r29, 0x14(r1)
-  mr        r29, r3
-  bl        0x38A4
-  rlwinm.   r0,r3,0,24,31
-  beq-      .loc_0x60
-  addi      r3, r29, 0xAC
-  bl        -0x353254
-  cmpwi     r3, 0
-  beq-      .loc_0x60
-  mr        r3, r29
-  li        r31, 0x1
-  li        r4, 0x10
-  bl        -0x2934
-  addi      r3, r29, 0xAC
-  bl        -0x3533AC
-  addi      r3, r29, 0xC4
-  bl        -0x3530CC
+    stwu     r1, -0x20(r1)
+    mflr     r0
+    stw      r0, 0x24(r1)
+    stw      r31, 0x1c(r1)
+    li       r31, 0
+    stw      r30, 0x18(r1)
+    li       r30, 0
+    stw      r29, 0x14(r1)
+    mr       r29, r3
+    bl       resetError__Q34Game10MemoryCard3MgrFv
+    clrlwi.  r0, r3, 0x18
+    beq      lbl_80442FFC
+    addi     r3, r29, 0xac
+    bl       OSTryLockMutex
+    cmpwi    r3, 0
+    beq      lbl_80442FFC
+    mr       r3, r29
+    li       r31, 1
+    li       r4, 0x10
+    bl       setCommand__13MemoryCardMgrFi
+    addi     r3, r29, 0xac
+    bl       OSUnlockMutex
+    addi     r3, r29, 0xc4
+    bl       OSSignalCond
 
-.loc_0x60:
-  rlwinm.   r0,r31,0,24,31
-  beq-      .loc_0x98
-  addi      r3, r29, 0xAC
-  bl        -0x35328C
-  cmpwi     r3, 0
-  beq-      .loc_0x98
-  mr        r3, r29
-  li        r30, 0x1
-  li        r4, 0x6
-  bl        -0x296C
-  addi      r3, r29, 0xAC
-  bl        -0x3533E4
-  addi      r3, r29, 0xC4
-  bl        -0x353104
+lbl_80442FFC:
+    clrlwi.  r0, r31, 0x18
+    beq      lbl_80443034
+    addi     r3, r29, 0xac
+    bl       OSTryLockMutex
+    cmpwi    r3, 0
+    beq      lbl_80443034
+    mr       r3, r29
+    li       r30, 1
+    li       r4, 6
+    bl       setCommand__13MemoryCardMgrFi
+    addi     r3, r29, 0xac
+    bl       OSUnlockMutex
+    addi     r3, r29, 0xc4
+    bl       OSSignalCond
 
-.loc_0x98:
-  lwz       r0, 0x24(r1)
-  mr        r3, r30
-  lwz       r31, 0x1C(r1)
-  lwz       r30, 0x18(r1)
-  lwz       r29, 0x14(r1)
-  mtlr      r0
-  addi      r1, r1, 0x20
-  blr
+lbl_80443034:
+    lwz      r0, 0x24(r1)
+    mr       r3, r30
+    lwz      r31, 0x1c(r1)
+    lwz      r30, 0x18(r1)
+    lwz      r29, 0x14(r1)
+    mtlr     r0
+    addi     r1, r1, 0x20
+    blr
 
 }
 
@@ -589,92 +683,91 @@ void MemoryCard::Mgr::loadGameOption(void)
 void MemoryCard::Mgr::savePlayerNoCheckSerialNumber(int)
 {
 /*
-.loc_0x0:
-  stwu      r1, -0x30(r1)
-  mflr      r0
-  stw       r0, 0x34(r1)
-  stw       r31, 0x2C(r1)
-  stw       r30, 0x28(r1)
-  li        r30, 0
-  stw       r29, 0x24(r1)
-  mr.       r29, r4
-  stw       r28, 0x20(r1)
-  mr        r28, r3
-  blt-      .loc_0x34
-  cmpwi     r29, 0x3
-  blt-      .loc_0x60
+    stwu     r1, -0x30(r1)
+    mflr     r0
+    stw      r0, 0x34(r1)
+    stw      r31, 0x2c(r1)
+    stw      r30, 0x28(r1)
+    li       r30, 0
+    stw      r29, 0x24(r1)
+    or.      r29, r4, r4
+    stw      r28, 0x20(r1)
+    mr       r28, r3
+    blt      lbl_80443088
+    cmpwi    r29, 3
+    blt      lbl_804430B4
 
-.loc_0x34:
-  lwz       r3, -0x6514(r13)
-  lwz       r3, 0x60(r3)
-  lbz       r3, 0x20(r3)
-  extsb.    r0, r3
-  blt-      .loc_0x54
-  extsb     r0, r3
-  cmpwi     r0, 0x3
-  blt-      .loc_0x5C
+lbl_80443088:
+    lwz      r3, sys@sda21(r13)
+    lwz      r3, 0x60(r3)
+    lbz      r3, 0x20(r3)
+    extsb.   r0, r3
+    blt      lbl_804430A8
+    extsb    r0, r3
+    cmpwi    r0, 3
+    blt      lbl_804430B0
 
-.loc_0x54:
-  li        r29, 0
-  b         .loc_0x60
+lbl_804430A8:
+    li       r29, 0
+    b        lbl_804430B4
 
-.loc_0x5C:
-  mr        r29, r0
+lbl_804430B0:
+    mr       r29, r0
 
-.loc_0x60:
-  mr        r3, r28
-  li        r31, 0
-  bl        0x37A8
-  rlwinm.   r0,r3,0,24,31
-  beq-      .loc_0xA4
-  addi      r3, r28, 0xAC
-  bl        -0x353350
-  cmpwi     r3, 0
-  beq-      .loc_0xA4
-  mr        r3, r28
-  li        r31, 0x1
-  li        r4, 0x10
-  bl        -0x2A30
-  addi      r3, r28, 0xAC
-  bl        -0x3534A8
-  addi      r3, r28, 0xC4
-  bl        -0x3531C8
+lbl_804430B4:
+    mr       r3, r28
+    li       r31, 0
+    bl       resetError__Q34Game10MemoryCard3MgrFv
+    clrlwi.  r0, r3, 0x18
+    beq      lbl_804430F8
+    addi     r3, r28, 0xac
+    bl       OSTryLockMutex
+    cmpwi    r3, 0
+    beq      lbl_804430F8
+    mr       r3, r28
+    li       r31, 1
+    li       r4, 0x10
+    bl       setCommand__13MemoryCardMgrFi
+    addi     r3, r28, 0xac
+    bl       OSUnlockMutex
+    addi     r3, r28, 0xc4
+    bl       OSSignalCond
 
-.loc_0xA4:
-  rlwinm.   r0,r31,0,24,31
-  beq-      .loc_0x100
-  addi      r3, r28, 0xAC
-  bl        -0x353388
-  cmpwi     r3, 0
-  beq-      .loc_0x100
-  lis       r4, 0x804F
-  lis       r3, 0x804F
-  subi      r0, r4, 0x30B8
-  li        r5, 0x9
-  stw       r0, 0xC(r1)
-  subi      r0, r3, 0x3060
-  mr        r3, r28
-  addi      r4, r1, 0x8
-  stw       r5, 0x8(r1)
-  li        r30, 0x1
-  stw       r0, 0xC(r1)
-  stw       r29, 0x10(r1)
-  bl        -0x2A4C
-  addi      r3, r28, 0xAC
-  bl        -0x353504
-  addi      r3, r28, 0xC4
-  bl        -0x353224
+lbl_804430F8:
+    clrlwi.  r0, r31, 0x18
+    beq      lbl_80443154
+    addi     r3, r28, 0xac
+    bl       OSTryLockMutex
+    cmpwi    r3, 0
+    beq      lbl_80443154
+    lis      r4, __vt__24MemoryCardMgrCommandBase@ha
+    lis      r3, __vt__Q34Game10MemoryCard18MgrCommandPlayerNo@ha
+    addi     r0, r4, __vt__24MemoryCardMgrCommandBase@l
+    li       r5, 9
+    stw      r0, 0xc(r1)
+    addi     r0, r3, __vt__Q34Game10MemoryCard18MgrCommandPlayerNo@l
+    mr       r3, r28
+    addi     r4, r1, 8
+    stw      r5, 8(r1)
+    li       r30, 1
+    stw      r0, 0xc(r1)
+    stw      r29, 0x10(r1)
+    bl       setCommand__13MemoryCardMgrFP24MemoryCardMgrCommandBase
+    addi     r3, r28, 0xac
+    bl       OSUnlockMutex
+    addi     r3, r28, 0xc4
+    bl       OSSignalCond
 
-.loc_0x100:
-  lwz       r0, 0x34(r1)
-  mr        r3, r30
-  lwz       r31, 0x2C(r1)
-  lwz       r30, 0x28(r1)
-  lwz       r29, 0x24(r1)
-  lwz       r28, 0x20(r1)
-  mtlr      r0
-  addi      r1, r1, 0x30
-  blr
+lbl_80443154:
+    lwz      r0, 0x34(r1)
+    mr       r3, r30
+    lwz      r31, 0x2c(r1)
+    lwz      r30, 0x28(r1)
+    lwz      r29, 0x24(r1)
+    lwz      r28, 0x20(r1)
+    mtlr     r0
+    addi     r1, r1, 0x30
+    blr
 
 }
 
@@ -686,92 +779,91 @@ void MemoryCard::Mgr::savePlayerNoCheckSerialNumber(int)
 void MemoryCard::Mgr::savePlayer(int)
 {
 /*
-.loc_0x0:
-  stwu      r1, -0x30(r1)
-  mflr      r0
-  stw       r0, 0x34(r1)
-  stmw      r27, 0x1C(r1)
-  mr.       r28, r4
-  mr        r27, r3
-  li        r30, 0
-  li        r29, 0x8
-  blt-      .loc_0x2C
-  cmpwi     r28, 0x3
-  blt-      .loc_0x5C
+    stwu     r1, -0x30(r1)
+    mflr     r0
+    stw      r0, 0x34(r1)
+    stmw     r27, 0x1c(r1)
+    or.      r28, r4, r4
+    mr       r27, r3
+    li       r30, 0
+    li       r29, 8
+    blt      lbl_804431A4
+    cmpwi    r28, 3
+    blt      lbl_804431D4
 
-.loc_0x2C:
-  lwz       r3, -0x6514(r13)
-  lwz       r3, 0x60(r3)
-  lbz       r3, 0x20(r3)
-  extsb.    r0, r3
-  blt-      .loc_0x4C
-  extsb     r0, r3
-  cmpwi     r0, 0x3
-  blt-      .loc_0x54
+lbl_804431A4:
+    lwz      r3, sys@sda21(r13)
+    lwz      r3, 0x60(r3)
+    lbz      r3, 0x20(r3)
+    extsb.   r0, r3
+    blt      lbl_804431C4
+    extsb    r0, r3
+    cmpwi    r0, 3
+    blt      lbl_804431CC
 
-.loc_0x4C:
-  li        r3, 0
-  b         .loc_0x100
+lbl_804431C4:
+    li       r3, 0
+    b        lbl_80443278
 
-.loc_0x54:
-  mr        r28, r0
-  b         .loc_0x60
+lbl_804431CC:
+    mr       r28, r0
+    b        lbl_804431D8
 
-.loc_0x5C:
-  li        r29, 0x9
+lbl_804431D4:
+    li       r29, 9
 
-.loc_0x60:
-  mr        r3, r27
-  li        r31, 0
-  bl        0x3684
-  rlwinm.   r0,r3,0,24,31
-  beq-      .loc_0xA4
-  addi      r3, r27, 0xAC
-  bl        -0x353474
-  cmpwi     r3, 0
-  beq-      .loc_0xA4
-  mr        r3, r27
-  li        r31, 0x1
-  li        r4, 0x10
-  bl        -0x2B54
-  addi      r3, r27, 0xAC
-  bl        -0x3535CC
-  addi      r3, r27, 0xC4
-  bl        -0x3532EC
+lbl_804431D8:
+    mr       r3, r27
+    li       r31, 0
+    bl       resetError__Q34Game10MemoryCard3MgrFv
+    clrlwi.  r0, r3, 0x18
+    beq      lbl_8044321C
+    addi     r3, r27, 0xac
+    bl       OSTryLockMutex
+    cmpwi    r3, 0
+    beq      lbl_8044321C
+    mr       r3, r27
+    li       r31, 1
+    li       r4, 0x10
+    bl       setCommand__13MemoryCardMgrFi
+    addi     r3, r27, 0xac
+    bl       OSUnlockMutex
+    addi     r3, r27, 0xc4
+    bl       OSSignalCond
 
-.loc_0xA4:
-  rlwinm.   r0,r31,0,24,31
-  beq-      .loc_0xFC
-  addi      r3, r27, 0xAC
-  bl        -0x3534AC
-  cmpwi     r3, 0
-  beq-      .loc_0xFC
-  lis       r4, 0x804F
-  lis       r3, 0x804F
-  subi      r4, r4, 0x30B8
-  stw       r29, 0x8(r1)
-  subi      r0, r3, 0x3060
-  mr        r3, r27
-  stw       r4, 0xC(r1)
-  addi      r4, r1, 0x8
-  li        r30, 0x1
-  stw       r0, 0xC(r1)
-  stw       r28, 0x10(r1)
-  bl        -0x2B6C
-  addi      r3, r27, 0xAC
-  bl        -0x353624
-  addi      r3, r27, 0xC4
-  bl        -0x353344
+lbl_8044321C:
+    clrlwi.  r0, r31, 0x18
+    beq      lbl_80443274
+    addi     r3, r27, 0xac
+    bl       OSTryLockMutex
+    cmpwi    r3, 0
+    beq      lbl_80443274
+    lis      r4, __vt__24MemoryCardMgrCommandBase@ha
+    lis      r3, __vt__Q34Game10MemoryCard18MgrCommandPlayerNo@ha
+    addi     r4, r4, __vt__24MemoryCardMgrCommandBase@l
+    stw      r29, 8(r1)
+    addi     r0, r3, __vt__Q34Game10MemoryCard18MgrCommandPlayerNo@l
+    mr       r3, r27
+    stw      r4, 0xc(r1)
+    addi     r4, r1, 8
+    li       r30, 1
+    stw      r0, 0xc(r1)
+    stw      r28, 0x10(r1)
+    bl       setCommand__13MemoryCardMgrFP24MemoryCardMgrCommandBase
+    addi     r3, r27, 0xac
+    bl       OSUnlockMutex
+    addi     r3, r27, 0xc4
+    bl       OSSignalCond
 
-.loc_0xFC:
-  mr        r3, r30
+lbl_80443274:
+    mr       r3, r30
 
-.loc_0x100:
-  lmw       r27, 0x1C(r1)
-  lwz       r0, 0x34(r1)
-  mtlr      r0
-  addi      r1, r1, 0x30
-  blr
+lbl_80443278:
+    lmw      r27, 0x1c(r1)
+    lwz      r0, 0x34(r1)
+    mtlr     r0
+    addi     r1, r1, 0x30
+    blr
 
 }
 
@@ -783,88 +875,87 @@ void MemoryCard::Mgr::savePlayer(int)
 void MemoryCard::Mgr::loadPlayer(int)
 {
 /*
-.loc_0x0:
-  stwu      r1, -0x30(r1)
-  mflr      r0
-  stw       r0, 0x34(r1)
-  li        r0, 0
-  stw       r31, 0x2C(r1)
-  stw       r30, 0x28(r1)
-  li        r30, 0
-  stw       r29, 0x24(r1)
-  mr.       r29, r4
-  stw       r28, 0x20(r1)
-  mr        r28, r3
-  blt-      .loc_0x3C
-  cmpwi     r29, 0x3
-  bge-      .loc_0x3C
-  li        r0, 0x1
+    stwu     r1, -0x30(r1)
+    mflr     r0
+    stw      r0, 0x34(r1)
+    li       r0, 0
+    stw      r31, 0x2c(r1)
+    stw      r30, 0x28(r1)
+    li       r30, 0
+    stw      r29, 0x24(r1)
+    or.      r29, r4, r4
+    stw      r28, 0x20(r1)
+    mr       r28, r3
+    blt      lbl_804432C8
+    cmpwi    r29, 3
+    bge      lbl_804432C8
+    li       r0, 1
 
-.loc_0x3C:
-  rlwinm.   r0,r0,0,24,31
-  bne-      .loc_0x60
-  lis       r3, 0x804A
-  lis       r5, 0x804A
-  subi      r3, r3, 0x5234
-  li        r4, 0x32F
-  subi      r5, r5, 0x5218
-  crclr     6, 0x6
-  bl        -0x418CA8
+lbl_804432C8:
+    clrlwi.  r0, r0, 0x18
+    bne      lbl_804432EC
+    lis      r3, gStrMemoryCardMgrCpp@ha
+    lis      r5, gStrMemoryCardMgrP2Assert@ha
+    addi     r3, r3, gStrMemoryCardMgrCpp@l
+    li       r4, 0x32f
+    addi     r5, r5, gStrMemoryCardMgrP2Assert@l
+    crclr    6
+    bl       panic_f__12JUTExceptionFPCciPCce
 
-.loc_0x60:
-  mr        r3, r28
-  li        r31, 0
-  bl        0x3570
-  rlwinm.   r0,r3,0,24,31
-  beq-      .loc_0xA4
-  addi      r3, r28, 0xAC
-  bl        -0x353588
-  cmpwi     r3, 0
-  beq-      .loc_0xA4
-  mr        r3, r28
-  li        r31, 0x1
-  li        r4, 0x10
-  bl        -0x2C68
-  addi      r3, r28, 0xAC
-  bl        -0x3536E0
-  addi      r3, r28, 0xC4
-  bl        -0x353400
+lbl_804432EC:
+    mr       r3, r28
+    li       r31, 0
+    bl       resetError__Q34Game10MemoryCard3MgrFv
+    clrlwi.  r0, r3, 0x18
+    beq      lbl_80443330
+    addi     r3, r28, 0xac
+    bl       OSTryLockMutex
+    cmpwi    r3, 0
+    beq      lbl_80443330
+    mr       r3, r28
+    li       r31, 1
+    li       r4, 0x10
+    bl       setCommand__13MemoryCardMgrFi
+    addi     r3, r28, 0xac
+    bl       OSUnlockMutex
+    addi     r3, r28, 0xc4
+    bl       OSSignalCond
 
-.loc_0xA4:
-  rlwinm.   r0,r31,0,24,31
-  beq-      .loc_0x100
-  addi      r3, r28, 0xAC
-  bl        -0x3535C0
-  cmpwi     r3, 0
-  beq-      .loc_0x100
-  lis       r4, 0x804F
-  lis       r3, 0x804F
-  subi      r0, r4, 0x30B8
-  li        r5, 0xA
-  stw       r0, 0xC(r1)
-  subi      r0, r3, 0x3060
-  mr        r3, r28
-  addi      r4, r1, 0x8
-  stw       r5, 0x8(r1)
-  li        r30, 0x1
-  stw       r0, 0xC(r1)
-  stw       r29, 0x10(r1)
-  bl        -0x2C84
-  addi      r3, r28, 0xAC
-  bl        -0x35373C
-  addi      r3, r28, 0xC4
-  bl        -0x35345C
+lbl_80443330:
+    clrlwi.  r0, r31, 0x18
+    beq      lbl_8044338C
+    addi     r3, r28, 0xac
+    bl       OSTryLockMutex
+    cmpwi    r3, 0
+    beq      lbl_8044338C
+    lis      r4, __vt__24MemoryCardMgrCommandBase@ha
+    lis      r3, __vt__Q34Game10MemoryCard18MgrCommandPlayerNo@ha
+    addi     r0, r4, __vt__24MemoryCardMgrCommandBase@l
+    li       r5, 0xa
+    stw      r0, 0xc(r1)
+    addi     r0, r3, __vt__Q34Game10MemoryCard18MgrCommandPlayerNo@l
+    mr       r3, r28
+    addi     r4, r1, 8
+    stw      r5, 8(r1)
+    li       r30, 1
+    stw      r0, 0xc(r1)
+    stw      r29, 0x10(r1)
+    bl       setCommand__13MemoryCardMgrFP24MemoryCardMgrCommandBase
+    addi     r3, r28, 0xac
+    bl       OSUnlockMutex
+    addi     r3, r28, 0xc4
+    bl       OSSignalCond
 
-.loc_0x100:
-  lwz       r0, 0x34(r1)
-  mr        r3, r30
-  lwz       r31, 0x2C(r1)
-  lwz       r30, 0x28(r1)
-  lwz       r29, 0x24(r1)
-  lwz       r28, 0x20(r1)
-  mtlr      r0
-  addi      r1, r1, 0x30
-  blr
+lbl_8044338C:
+    lwz      r0, 0x34(r1)
+    mr       r3, r30
+    lwz      r31, 0x2c(r1)
+    lwz      r30, 0x28(r1)
+    lwz      r29, 0x24(r1)
+    lwz      r28, 0x20(r1)
+    mtlr     r0
+    addi     r1, r1, 0x30
+    blr
 
 }
 
@@ -876,88 +967,87 @@ void MemoryCard::Mgr::loadPlayer(int)
 void MemoryCard::Mgr::deletePlayer(int)
 {
 /*
-.loc_0x0:
-  stwu      r1, -0x30(r1)
-  mflr      r0
-  stw       r0, 0x34(r1)
-  li        r0, 0
-  stw       r31, 0x2C(r1)
-  stw       r30, 0x28(r1)
-  li        r30, 0
-  stw       r29, 0x24(r1)
-  mr.       r29, r4
-  stw       r28, 0x20(r1)
-  mr        r28, r3
-  blt-      .loc_0x3C
-  cmpwi     r29, 0x3
-  bge-      .loc_0x3C
-  li        r0, 0x1
+    stwu     r1, -0x30(r1)
+    mflr     r0
+    stw      r0, 0x34(r1)
+    li       r0, 0
+    stw      r31, 0x2c(r1)
+    stw      r30, 0x28(r1)
+    li       r30, 0
+    stw      r29, 0x24(r1)
+    or.      r29, r4, r4
+    stw      r28, 0x20(r1)
+    mr       r28, r3
+    blt      lbl_804433EC
+    cmpwi    r29, 3
+    bge      lbl_804433EC
+    li       r0, 1
 
-.loc_0x3C:
-  rlwinm.   r0,r0,0,24,31
-  bne-      .loc_0x60
-  lis       r3, 0x804A
-  lis       r5, 0x804A
-  subi      r3, r3, 0x5234
-  li        r4, 0x347
-  subi      r5, r5, 0x5218
-  crclr     6, 0x6
-  bl        -0x418DCC
+lbl_804433EC:
+    clrlwi.  r0, r0, 0x18
+    bne      lbl_80443410
+    lis      r3, gStrMemoryCardMgrCpp@ha
+    lis      r5, gStrMemoryCardMgrP2Assert@ha
+    addi     r3, r3, gStrMemoryCardMgrCpp@l
+    li       r4, 0x347
+    addi     r5, r5, gStrMemoryCardMgrP2Assert@l
+    crclr    6
+    bl       panic_f__12JUTExceptionFPCciPCce
 
-.loc_0x60:
-  mr        r3, r28
-  li        r31, 0
-  bl        0x344C
-  rlwinm.   r0,r3,0,24,31
-  beq-      .loc_0xA4
-  addi      r3, r28, 0xAC
-  bl        -0x3536AC
-  cmpwi     r3, 0
-  beq-      .loc_0xA4
-  mr        r3, r28
-  li        r31, 0x1
-  li        r4, 0x10
-  bl        -0x2D8C
-  addi      r3, r28, 0xAC
-  bl        -0x353804
-  addi      r3, r28, 0xC4
-  bl        -0x353524
+lbl_80443410:
+    mr       r3, r28
+    li       r31, 0
+    bl       resetError__Q34Game10MemoryCard3MgrFv
+    clrlwi.  r0, r3, 0x18
+    beq      lbl_80443454
+    addi     r3, r28, 0xac
+    bl       OSTryLockMutex
+    cmpwi    r3, 0
+    beq      lbl_80443454
+    mr       r3, r28
+    li       r31, 1
+    li       r4, 0x10
+    bl       setCommand__13MemoryCardMgrFi
+    addi     r3, r28, 0xac
+    bl       OSUnlockMutex
+    addi     r3, r28, 0xc4
+    bl       OSSignalCond
 
-.loc_0xA4:
-  rlwinm.   r0,r31,0,24,31
-  beq-      .loc_0x100
-  addi      r3, r28, 0xAC
-  bl        -0x3536E4
-  cmpwi     r3, 0
-  beq-      .loc_0x100
-  lis       r4, 0x804F
-  lis       r3, 0x804F
-  subi      r0, r4, 0x30B8
-  li        r5, 0xB
-  stw       r0, 0xC(r1)
-  subi      r0, r3, 0x3060
-  mr        r3, r28
-  addi      r4, r1, 0x8
-  stw       r5, 0x8(r1)
-  li        r30, 0x1
-  stw       r0, 0xC(r1)
-  stw       r29, 0x10(r1)
-  bl        -0x2DA8
-  addi      r3, r28, 0xAC
-  bl        -0x353860
-  addi      r3, r28, 0xC4
-  bl        -0x353580
+lbl_80443454:
+    clrlwi.  r0, r31, 0x18
+    beq      lbl_804434B0
+    addi     r3, r28, 0xac
+    bl       OSTryLockMutex
+    cmpwi    r3, 0
+    beq      lbl_804434B0
+    lis      r4, __vt__24MemoryCardMgrCommandBase@ha
+    lis      r3, __vt__Q34Game10MemoryCard18MgrCommandPlayerNo@ha
+    addi     r0, r4, __vt__24MemoryCardMgrCommandBase@l
+    li       r5, 0xb
+    stw      r0, 0xc(r1)
+    addi     r0, r3, __vt__Q34Game10MemoryCard18MgrCommandPlayerNo@l
+    mr       r3, r28
+    addi     r4, r1, 8
+    stw      r5, 8(r1)
+    li       r30, 1
+    stw      r0, 0xc(r1)
+    stw      r29, 0x10(r1)
+    bl       setCommand__13MemoryCardMgrFP24MemoryCardMgrCommandBase
+    addi     r3, r28, 0xac
+    bl       OSUnlockMutex
+    addi     r3, r28, 0xc4
+    bl       OSSignalCond
 
-.loc_0x100:
-  lwz       r0, 0x34(r1)
-  mr        r3, r30
-  lwz       r31, 0x2C(r1)
-  lwz       r30, 0x28(r1)
-  lwz       r29, 0x24(r1)
-  lwz       r28, 0x20(r1)
-  mtlr      r0
-  addi      r1, r1, 0x30
-  blr
+lbl_804434B0:
+    lwz      r0, 0x34(r1)
+    mr       r3, r30
+    lwz      r31, 0x2c(r1)
+    lwz      r30, 0x28(r1)
+    lwz      r29, 0x24(r1)
+    lwz      r28, 0x20(r1)
+    mtlr     r0
+    addi     r1, r1, 0x30
+    blr
 
 }
 
@@ -969,103 +1059,102 @@ void MemoryCard::Mgr::deletePlayer(int)
 void MemoryCard::Mgr::copyPlayer(int, int)
 {
 /*
-.loc_0x0:
-  stwu      r1, -0x30(r1)
-  mflr      r0
-  stw       r0, 0x34(r1)
-  li        r0, 0
-  stmw      r27, 0x1C(r1)
-  mr.       r29, r4
-  mr        r28, r3
-  mr        r30, r5
-  li        r31, 0
-  blt-      .loc_0x34
-  cmpwi     r29, 0x2
-  bgt-      .loc_0x34
-  li        r0, 0x1
+    stwu     r1, -0x30(r1)
+    mflr     r0
+    stw      r0, 0x34(r1)
+    li       r0, 0
+    stmw     r27, 0x1c(r1)
+    or.      r29, r4, r4
+    mr       r28, r3
+    mr       r30, r5
+    li       r31, 0
+    blt      lbl_80443508
+    cmpwi    r29, 2
+    bgt      lbl_80443508
+    li       r0, 1
 
-.loc_0x34:
-  rlwinm.   r0,r0,0,24,31
-  bne-      .loc_0x58
-  lis       r3, 0x804A
-  lis       r5, 0x804A
-  subi      r3, r3, 0x5234
-  li        r4, 0x35E
-  subi      r5, r5, 0x5218
-  crclr     6, 0x6
-  bl        -0x418EE8
+lbl_80443508:
+    clrlwi.  r0, r0, 0x18
+    bne      lbl_8044352C
+    lis      r3, gStrMemoryCardMgrCpp@ha
+    lis      r5, gStrMemoryCardMgrP2Assert@ha
+    addi     r3, r3, gStrMemoryCardMgrCpp@l
+    li       r4, 0x35e
+    addi     r5, r5, gStrMemoryCardMgrP2Assert@l
+    crclr    6
+    bl       panic_f__12JUTExceptionFPCciPCce
 
-.loc_0x58:
-  cmpwi     r30, 0
-  li        r0, 0
-  blt-      .loc_0x70
-  cmpwi     r30, 0x2
-  bgt-      .loc_0x70
-  li        r0, 0x1
+lbl_8044352C:
+    cmpwi    r30, 0
+    li       r0, 0
+    blt      lbl_80443544
+    cmpwi    r30, 2
+    bgt      lbl_80443544
+    li       r0, 1
 
-.loc_0x70:
-  rlwinm.   r0,r0,0,24,31
-  bne-      .loc_0x94
-  lis       r3, 0x804A
-  lis       r5, 0x804A
-  subi      r3, r3, 0x5234
-  li        r4, 0x35F
-  subi      r5, r5, 0x5218
-  crclr     6, 0x6
-  bl        -0x418F24
+lbl_80443544:
+    clrlwi.  r0, r0, 0x18
+    bne      lbl_80443568
+    lis      r3, gStrMemoryCardMgrCpp@ha
+    lis      r5, gStrMemoryCardMgrP2Assert@ha
+    addi     r3, r3, gStrMemoryCardMgrCpp@l
+    li       r4, 0x35f
+    addi     r5, r5, gStrMemoryCardMgrP2Assert@l
+    crclr    6
+    bl       panic_f__12JUTExceptionFPCciPCce
 
-.loc_0x94:
-  mr        r3, r28
-  li        r27, 0
-  bl        0x32F4
-  rlwinm.   r0,r3,0,24,31
-  beq-      .loc_0xD8
-  addi      r3, r28, 0xAC
-  bl        -0x353804
-  cmpwi     r3, 0
-  beq-      .loc_0xD8
-  mr        r3, r28
-  li        r27, 0x1
-  li        r4, 0x10
-  bl        -0x2EE4
-  addi      r3, r28, 0xAC
-  bl        -0x35395C
-  addi      r3, r28, 0xC4
-  bl        -0x35367C
+lbl_80443568:
+    mr       r3, r28
+    li       r27, 0
+    bl       resetError__Q34Game10MemoryCard3MgrFv
+    clrlwi.  r0, r3, 0x18
+    beq      lbl_804435AC
+    addi     r3, r28, 0xac
+    bl       OSTryLockMutex
+    cmpwi    r3, 0
+    beq      lbl_804435AC
+    mr       r3, r28
+    li       r27, 1
+    li       r4, 0x10
+    bl       setCommand__13MemoryCardMgrFi
+    addi     r3, r28, 0xac
+    bl       OSUnlockMutex
+    addi     r3, r28, 0xc4
+    bl       OSSignalCond
 
-.loc_0xD8:
-  rlwinm.   r0,r27,0,24,31
-  beq-      .loc_0x138
-  addi      r3, r28, 0xAC
-  bl        -0x35383C
-  cmpwi     r3, 0
-  beq-      .loc_0x138
-  lis       r4, 0x804F
-  lis       r3, 0x804F
-  subi      r0, r4, 0x30B8
-  sth       r29, 0x10(r1)
-  li        r4, 0xC
-  li        r31, 0x1
-  stw       r0, 0xC(r1)
-  subi      r0, r3, 0x306C
-  mr        r3, r28
-  stw       r4, 0x8(r1)
-  addi      r4, r1, 0x8
-  stw       r0, 0xC(r1)
-  sth       r30, 0x12(r1)
-  bl        -0x2F04
-  addi      r3, r28, 0xAC
-  bl        -0x3539BC
-  addi      r3, r28, 0xC4
-  bl        -0x3536DC
+lbl_804435AC:
+    clrlwi.  r0, r27, 0x18
+    beq      lbl_8044360C
+    addi     r3, r28, 0xac
+    bl       OSTryLockMutex
+    cmpwi    r3, 0
+    beq      lbl_8044360C
+    lis      r4, __vt__24MemoryCardMgrCommandBase@ha
+    lis      r3, __vt__Q34Game10MemoryCard20MgrCommandCopyPlayer@ha
+    addi     r0, r4, __vt__24MemoryCardMgrCommandBase@l
+    sth      r29, 0x10(r1)
+    li       r4, 0xc
+    li       r31, 1
+    stw      r0, 0xc(r1)
+    addi     r0, r3, __vt__Q34Game10MemoryCard20MgrCommandCopyPlayer@l
+    mr       r3, r28
+    stw      r4, 8(r1)
+    addi     r4, r1, 8
+    stw      r0, 0xc(r1)
+    sth      r30, 0x12(r1)
+    bl       setCommand__13MemoryCardMgrFP24MemoryCardMgrCommandBase
+    addi     r3, r28, 0xac
+    bl       OSUnlockMutex
+    addi     r3, r28, 0xc4
+    bl       OSSignalCond
 
-.loc_0x138:
-  mr        r3, r31
-  lmw       r27, 0x1C(r1)
-  lwz       r0, 0x34(r1)
-  mtlr      r0
-  addi      r1, r1, 0x30
-  blr
+lbl_8044360C:
+    mr       r3, r31
+    lmw      r27, 0x1c(r1)
+    lwz      r0, 0x34(r1)
+    mtlr     r0
+    addi     r1, r1, 0x30
+    blr
 
 }
 
@@ -1152,240 +1241,262 @@ MemoryCard::Mgr::getPlayerHeader(Game::MemoryCard::PlayerFileInfo*)
 void MemoryCard::Mgr::doCardProc(void*, MemoryCardMgrCommand*)
 {
 /*
-.loc_0x0:
-  stwu      r1, -0x20(r1)
-  mflr      r0
-  stw       r0, 0x24(r1)
-  stmw      r26, 0x8(r1)
-  mr        r26, r3
-  mr        r27, r5
-  li        r28, 0
-  lwz       r3, -0x77D4(r13)
-  bl        -0x41FF4C
-  lwz       r29, -0x77D4(r13)
-  li        r31, 0
-  mr        r30, r3
-  stw       r31, 0xD8(r26)
-  lwz       r3, 0x0(r27)
-  subi      r0, r3, 0x5
-  cmplwi    r0, 0xB
-  bgt-      .loc_0x2CC
-  lis       r3, 0x804F
-  rlwinm    r0,r0,2,0,29
-  subi      r3, r3, 0x30A8
-  lwzx      r0, r3, r0
-  mtctr     r0
-  bctr
-  lwz       r0, 0xE4(r26)
-  mr        r3, r26
-  ori       r0, r0, 0x1
-  stw       r0, 0xE4(r26)
-  bl        0x944
-  lwz       r0, 0xE4(r26)
-  mr        r28, r3
-  rlwinm    r0,r0,0,0,30
-  stw       r0, 0xE4(r26)
-  b         .loc_0x2E8
-  lwz       r0, 0xE4(r26)
-  mr        r3, r26
-  ori       r0, r0, 0x1
-  stw       r0, 0xE4(r26)
-  bl        0xBBC
-  rlwinm.   r0,r3,0,24,31
-  beq-      .loc_0xCC
-  mr        r3, r26
-  li        r4, 0
-  li        r5, 0
-  bl        0xD14
-  rlwinm.   r0,r3,0,24,31
-  beq-      .loc_0xCC
-  mr        r3, r26
-  bl        0x7DC
-  rlwinm.   r0,r3,0,24,31
-  beq-      .loc_0xCC
-  li        r31, 0x1
+    stwu     r1, -0x20(r1)
+    mflr     r0
+    stw      r0, 0x24(r1)
+    stmw     r26, 8(r1)
+    mr       r26, r3
+    mr       r27, r5
+    li       r28, 0
+    lwz      r3, sCurrentHeap__7JKRHeap@sda21(r13)
+    bl       getTotalFreeSize__7JKRHeapFv
+    lwz      r29, sCurrentHeap__7JKRHeap@sda21(r13)
+    li       r31, 0
+    mr       r30, r3
+    stw      r31, 0xd8(r26)
+    lwz      r3, 0(r27)
+    addi     r0, r3, -5
+    cmplwi   r0, 0xb
+    bgt      lbl_804439D8
+    lis      r3, lbl_804ECF58@ha
+    slwi     r0, r0, 2
+    addi     r3, r3, lbl_804ECF58@l
+    lwzx     r0, r3, r0
+    mtctr    r0
+    bctr
 
-.loc_0xCC:
-  lwz       r0, 0xE4(r26)
-  mr        r28, r31
-  rlwinm    r0,r0,0,0,30
-  stw       r0, 0xE4(r26)
-  b         .loc_0x2E8
-  mr        r3, r26
-  bl        0xE9C
-  mr        r28, r3
-  b         .loc_0x2E8
-  lwz       r0, 0xE4(r26)
-  mr        r3, r26
-  ori       r0, r0, 0x1
-  stw       r0, 0xE4(r26)
-  bl        0xB50
-  rlwinm.   r0,r3,0,24,31
-  beq-      .loc_0x13C
-  lwz       r0, 0x8(r27)
-  mr        r3, r26
-  li        r5, 0x1
-  extsb     r4, r0
-  bl        0x116C
-  rlwinm.   r0,r3,0,24,31
-  beq-      .loc_0x13C
-  mr        r3, r26
-  bl        0x76C
-  rlwinm.   r0,r3,0,24,31
-  beq-      .loc_0x13C
-  li        r31, 0x1
+lbl_80443768:
+    lwz      r0, 0xe4(r26)
+    mr       r3, r26
+    ori      r0, r0, 1
+    stw      r0, 0xe4(r26)
+    bl       commandCreateNewFile__Q34Game10MemoryCard3MgrFv
+    lwz      r0, 0xe4(r26)
+    mr       r28, r3
+    rlwinm   r0, r0, 0, 0, 0x1e
+    stw      r0, 0xe4(r26)
+    b        lbl_804439F4
 
-.loc_0x13C:
-  lwz       r0, 0xE4(r26)
-  mr        r28, r31
-  rlwinm    r0,r0,0,0,30
-  stw       r0, 0xE4(r26)
-  b         .loc_0x2E8
-  lwz       r0, 0xE4(r26)
-  mr        r3, r26
-  ori       r0, r0, 0x1
-  stw       r0, 0xE4(r26)
-  bl        0xAF0
-  rlwinm.   r0,r3,0,24,31
-  beq-      .loc_0x19C
-  lwz       r0, 0x8(r27)
-  mr        r3, r26
-  li        r5, 0x1
-  extsb     r4, r0
-  bl        0x11DC
-  rlwinm.   r0,r3,0,24,31
-  beq-      .loc_0x19C
-  mr        r3, r26
-  bl        0x70C
-  rlwinm.   r0,r3,0,24,31
-  beq-      .loc_0x19C
-  li        r31, 0x1
+lbl_80443790:
+    lwz      r0, 0xe4(r26)
+    mr       r3, r26
+    ori      r0, r0, 1
+    stw      r0, 0xe4(r26)
+    bl       varifyCardStatus__Q34Game10MemoryCard3MgrFv
+    clrlwi.  r0, r3, 0x18
+    beq      lbl_804437D8
+    mr       r3, r26
+    li       r4, 0
+    li       r5, 0
+    bl       commandSaveGameOption__Q34Game10MemoryCard3MgrFbb
+    clrlwi.  r0, r3, 0x18
+    beq      lbl_804437D8
+    mr       r3, r26
+    bl       commandSaveHeader__Q34Game10MemoryCard3MgrFv
+    clrlwi.  r0, r3, 0x18
+    beq      lbl_804437D8
+    li       r31, 1
 
-.loc_0x19C:
-  lwz       r0, 0xE4(r26)
-  mr        r28, r31
-  rlwinm    r0,r0,0,0,30
-  stw       r0, 0xE4(r26)
-  b         .loc_0x2E8
-  lwz       r0, 0x8(r27)
-  mr        r3, r26
-  extsb     r4, r0
-  bl        0x1830
-  mr        r28, r3
-  b         .loc_0x2E8
-  lwz       r0, 0xE4(r26)
-  mr        r3, r26
-  ori       r0, r0, 0x1
-  stw       r0, 0xE4(r26)
-  bl        0xA78
-  rlwinm.   r0,r3,0,24,31
-  beq-      .loc_0x210
-  lwz       r0, 0x8(r27)
-  mr        r3, r26
-  extsb     r4, r0
-  bl        0x1BAC
-  rlwinm.   r0,r3,0,24,31
-  beq-      .loc_0x210
-  mr        r3, r26
-  bl        0x698
-  rlwinm.   r0,r3,0,24,31
-  beq-      .loc_0x210
-  li        r31, 0x1
+lbl_804437D8:
+    lwz      r0, 0xe4(r26)
+    mr       r28, r31
+    rlwinm   r0, r0, 0, 0, 0x1e
+    stw      r0, 0xe4(r26)
+    b        lbl_804439F4
 
-.loc_0x210:
-  lwz       r0, 0xE4(r26)
-  mr        r28, r31
-  rlwinm    r0,r0,0,0,30
-  stw       r0, 0xE4(r26)
-  b         .loc_0x2E8
-  lwz       r0, 0xE4(r26)
-  mr        r3, r26
-  ori       r0, r0, 0x1
-  stw       r0, 0xE4(r26)
-  bl        0xA1C
-  rlwinm.   r0,r3,0,24,31
-  beq-      .loc_0x274
-  lha       r4, 0x8(r27)
-  mr        r3, r26
-  lha       r0, 0xA(r27)
-  extsb     r4, r4
-  extsb     r5, r0
-  bl        0x1DE0
-  rlwinm.   r0,r3,0,24,31
-  beq-      .loc_0x274
-  mr        r3, r26
-  bl        0x634
-  rlwinm.   r0,r3,0,24,31
-  beq-      .loc_0x274
-  li        r31, 0x1
+lbl_804437EC:
+    mr       r3, r26
+    bl       commandLoadGameOption__Q34Game10MemoryCard3MgrFv
+    mr       r28, r3
+    b        lbl_804439F4
 
-.loc_0x274:
-  lwz       r0, 0xE4(r26)
-  mr        r28, r31
-  rlwinm    r0,r0,0,0,30
-  stw       r0, 0xE4(r26)
-  b         .loc_0x2E8
-  lwz       r4, 0x8(r27)
-  mr        r3, r26
-  bl        .loc_0x354
-  mr        r28, r3
-  b         .loc_0x2E8
-  mr        r3, r26
-  bl        0x1D2C
-  mr        r28, r3
-  b         .loc_0x2E8
-  mr        r3, r26
-  bl        0x434
-  mr        r28, r3
-  b         .loc_0x2E8
-  mr        r3, r26
-  bl        0x4A0
-  mr        r28, r3
-  b         .loc_0x2E8
+lbl_804437FC:
+    lwz      r0, 0xe4(r26)
+    mr       r3, r26
+    ori      r0, r0, 1
+    stw      r0, 0xe4(r26)
+    bl       varifyCardStatus__Q34Game10MemoryCard3MgrFv
+    clrlwi.  r0, r3, 0x18
+    beq      lbl_80443848
+    lwz      r0, 8(r27)
+    mr       r3, r26
+    li       r5, 1
+    extsb    r4, r0
+    bl       commandSavePlayer__Q34Game10MemoryCard3MgrFScb
+    clrlwi.  r0, r3, 0x18
+    beq      lbl_80443848
+    mr       r3, r26
+    bl       commandSaveHeader__Q34Game10MemoryCard3MgrFv
+    clrlwi.  r0, r3, 0x18
+    beq      lbl_80443848
+    li       r31, 1
 
-.loc_0x2CC:
-  lis       r3, 0x804A
-  lis       r5, 0x804A
-  subi      r3, r3, 0x5234
-  li        r4, 0x3E3
-  subi      r5, r5, 0x5218
-  crclr     6, 0x6
-  bl        -0x4193B0
+lbl_80443848:
+    lwz      r0, 0xe4(r26)
+    mr       r28, r31
+    rlwinm   r0, r0, 0, 0, 0x1e
+    stw      r0, 0xe4(r26)
+    b        lbl_804439F4
 
-.loc_0x2E8:
-  lwz       r0, -0x77D4(r13)
-  cmplw     r29, r0
-  beq-      .loc_0x310
-  lis       r3, 0x804A
-  lis       r5, 0x804A
-  subi      r3, r3, 0x5234
-  li        r4, 0x3F0
-  subi      r5, r5, 0x5218
-  crclr     6, 0x6
-  bl        -0x4193D8
+lbl_8044385C:
+    lwz      r0, 0xe4(r26)
+    mr       r3, r26
+    ori      r0, r0, 1
+    stw      r0, 0xe4(r26)
+    bl       varifyCardStatus__Q34Game10MemoryCard3MgrFv
+    clrlwi.  r0, r3, 0x18
+    beq      lbl_804438A8
+    lwz      r0, 8(r27)
+    mr       r3, r26
+    li       r5, 1
+    extsb    r4, r0
+    bl       commandSavePlayerNoCheckSerialNo__Q34Game10MemoryCard3MgrFScb
+    clrlwi.  r0, r3, 0x18
+    beq      lbl_804438A8
+    mr       r3, r26
+    bl       commandSaveHeader__Q34Game10MemoryCard3MgrFv
+    clrlwi.  r0, r3, 0x18
+    beq      lbl_804438A8
+    li       r31, 1
 
-.loc_0x310:
-  lwz       r3, -0x77D4(r13)
-  bl        -0x420240
-  cmpw      r30, r3
-  beq-      .loc_0x33C
-  lis       r3, 0x804A
-  lis       r5, 0x804A
-  subi      r3, r3, 0x5234
-  li        r4, 0x3F2
-  subi      r5, r5, 0x5218
-  crclr     6, 0x6
-  bl        -0x419404
+lbl_804438A8:
+    lwz      r0, 0xe4(r26)
+    mr       r28, r31
+    rlwinm   r0, r0, 0, 0, 0x1e
+    stw      r0, 0xe4(r26)
+    b        lbl_804439F4
 
-.loc_0x33C:
-  mr        r3, r28
-  lmw       r26, 0x8(r1)
-  lwz       r0, 0x24(r1)
-  mtlr      r0
-  addi      r1, r1, 0x20
-  blr
+lbl_804438BC:
+    lwz      r0, 8(r27)
+    mr       r3, r26
+    extsb    r4, r0
+    bl       commandLoadPlayer__Q34Game10MemoryCard3MgrFSc
+    mr       r28, r3
+    b        lbl_804439F4
 
-.loc_0x354:
+lbl_804438D4:
+    lwz      r0, 0xe4(r26)
+    mr       r3, r26
+    ori      r0, r0, 1
+    stw      r0, 0xe4(r26)
+    bl       varifyCardStatus__Q34Game10MemoryCard3MgrFv
+    clrlwi.  r0, r3, 0x18
+    beq      lbl_8044391C
+    lwz      r0, 8(r27)
+    mr       r3, r26
+    extsb    r4, r0
+    bl       commandDeletePlayer__Q34Game10MemoryCard3MgrFSc
+    clrlwi.  r0, r3, 0x18
+    beq      lbl_8044391C
+    mr       r3, r26
+    bl       commandSaveHeader__Q34Game10MemoryCard3MgrFv
+    clrlwi.  r0, r3, 0x18
+    beq      lbl_8044391C
+    li       r31, 1
+
+lbl_8044391C:
+    lwz      r0, 0xe4(r26)
+    mr       r28, r31
+    rlwinm   r0, r0, 0, 0, 0x1e
+    stw      r0, 0xe4(r26)
+    b        lbl_804439F4
+
+lbl_80443930:
+    lwz      r0, 0xe4(r26)
+    mr       r3, r26
+    ori      r0, r0, 1
+    stw      r0, 0xe4(r26)
+    bl       varifyCardStatus__Q34Game10MemoryCard3MgrFv
+    clrlwi.  r0, r3, 0x18
+    beq      lbl_80443980
+    lha      r4, 8(r27)
+    mr       r3, r26
+    lha      r0, 0xa(r27)
+    extsb    r4, r4
+    extsb    r5, r0
+    bl       commandCopyPlayer__Q34Game10MemoryCard3MgrFScSc
+    clrlwi.  r0, r3, 0x18
+    beq      lbl_80443980
+    mr       r3, r26
+    bl       commandSaveHeader__Q34Game10MemoryCard3MgrFv
+    clrlwi.  r0, r3, 0x18
+    beq      lbl_80443980
+    li       r31, 1
+
+lbl_80443980:
+    lwz      r0, 0xe4(r26)
+    mr       r28, r31
+    rlwinm   r0, r0, 0, 0, 0x1e
+    stw      r0, 0xe4(r26)
+    b        lbl_804439F4
+
+lbl_80443994:
+    lwz      r4, 8(r27)
+    mr       r3, r26
+    bl
+commandUpdatePlayerHeader__Q34Game10MemoryCard3MgrFPQ34Game10MemoryCard14PlayerFileInfo
+    mr       r28, r3
+    b        lbl_804439F4
+
+lbl_804439A8:
+    mr       r3, r26
+    bl       commandCheckSerialNo__Q34Game10MemoryCard3MgrFv
+    mr       r28, r3
+    b        lbl_804439F4
+
+lbl_804439B8:
+    mr       r3, r26
+    bl       commandCheckBeforeSave__Q34Game10MemoryCard3MgrFv
+    mr       r28, r3
+    b        lbl_804439F4
+
+lbl_804439C8:
+    mr       r3, r26
+    bl       commandCheckError__Q34Game10MemoryCard3MgrFv
+    mr       r28, r3
+    b        lbl_804439F4
+
+lbl_804439D8:
+    lis      r3, gStrMemoryCardMgrCpp@ha
+    lis      r5, gStrMemoryCardMgrP2Assert@ha
+    addi     r3, r3, gStrMemoryCardMgrCpp@l
+    li       r4, 0x3e3
+    addi     r5, r5, gStrMemoryCardMgrP2Assert@l
+    crclr    6
+    bl       panic_f__12JUTExceptionFPCciPCce
+
+lbl_804439F4:
+    lwz      r0, sCurrentHeap__7JKRHeap@sda21(r13)
+    cmplw    r29, r0
+    beq      lbl_80443A1C
+    lis      r3, gStrMemoryCardMgrCpp@ha
+    lis      r5, gStrMemoryCardMgrP2Assert@ha
+    addi     r3, r3, gStrMemoryCardMgrCpp@l
+    li       r4, 0x3f0
+    addi     r5, r5, gStrMemoryCardMgrP2Assert@l
+    crclr    6
+    bl       panic_f__12JUTExceptionFPCciPCce
+
+lbl_80443A1C:
+    lwz      r3, sCurrentHeap__7JKRHeap@sda21(r13)
+    bl       getTotalFreeSize__7JKRHeapFv
+    cmpw     r30, r3
+    beq      lbl_80443A48
+    lis      r3, gStrMemoryCardMgrCpp@ha
+    lis      r5, gStrMemoryCardMgrP2Assert@ha
+    addi     r3, r3, gStrMemoryCardMgrCpp@l
+    li       r4, 0x3f2
+    addi     r5, r5, gStrMemoryCardMgrP2Assert@l
+    crclr    6
+    bl       panic_f__12JUTExceptionFPCciPCce
+
+lbl_80443A48:
+    mr       r3, r28
+    lmw      r26, 8(r1)
+    lwz      r0, 0x24(r1)
+    mtlr     r0
+    addi     r1, r1, 0x20
+    blr
 
 }
 
@@ -1674,44 +1785,43 @@ void MemoryCard::Mgr::commandUpdatePlayerHeader(
 void MemoryCard::Mgr::commandCheckBeforeSave(void)
 {
 /*
-.loc_0x0:
-  stwu      r1, -0x30(r1)
-  mflr      r0
-  li        r5, 0
-  stw       r0, 0x34(r1)
-  addi      r4, r1, 0x8
-  stw       r31, 0x2C(r1)
-  mr        r31, r3
-  lwz       r6, -0x7978(r13)
-  bl        -0x29E8
-  rlwinm.   r0,r3,0,24,31
-  beq-      .loc_0x40
-  addi      r3, r1, 0x8
-  bl        -0x36A3C4
-  mr        r3, r31
-  bl        0x18B0
-  b         .loc_0x68
+    stwu     r1, -0x30(r1)
+    mflr     r0
+    li       r5, 0
+    stw      r0, 0x34(r1)
+    addi     r4, r1, 8
+    stw      r31, 0x2c(r1)
+    mr       r31, r3
+    lwz      r6, cFileName__Q24Game10MemoryCard@sda21(r13)
+    bl fileOpen__13MemoryCardMgrFP12CARDFileInfoQ213MemoryCardMgr9ECardSlotPCc
+    clrlwi.  r0, r3, 0x18
+    beq      lbl_80443E30
+    addi     r3, r1, 8
+    bl       CARDClose
+    mr       r3, r31
+    bl       commandCheckSerialNo__Q34Game10MemoryCard3MgrFv
+    b        lbl_80443E58
 
-.loc_0x40:
-  mr        r3, r31
-  li        r4, 0
-  bl        0xB4
-  lwz       r0, 0xD4(r31)
-  cmpwi     r0, 0x2
-  bne-      .loc_0x64
-  mr        r3, r31
-  li        r4, 0x3
-  bl        -0x1610
+lbl_80443E30:
+    mr       r3, r31
+    li       r4, 0
+    bl       checkSpace__Q34Game10MemoryCard3MgrFQ213MemoryCardMgr9ECardSlot
+    lwz      r0, 0xd4(r31)
+    cmpwi    r0, 2
+    bne      lbl_80443E54
+    mr       r3, r31
+    li       r4, 3
+    bl setInsideStatusFlag__13MemoryCardMgrFQ213MemoryCardMgr17EInsideStatusFlag
 
-.loc_0x64:
-  li        r3, 0
+lbl_80443E54:
+    li       r3, 0
 
-.loc_0x68:
-  lwz       r0, 0x34(r1)
-  lwz       r31, 0x2C(r1)
-  mtlr      r0
-  addi      r1, r1, 0x30
-  blr
+lbl_80443E58:
+    lwz      r0, 0x34(r1)
+    lwz      r31, 0x2c(r1)
+    mtlr     r0
+    addi     r1, r1, 0x30
+    blr
 
 }
 
@@ -1723,47 +1833,44 @@ void MemoryCard::Mgr::commandCheckBeforeSave(void)
 void MemoryCard::Mgr::commandCheckError(void)
 {
 /*
-.loc_0x0:
-  stwu      r1, -0x30(r1)
-  mflr      r0
-  li        r5, 0
-  stw       r0, 0x34(r1)
-  addi      r4, r1, 0x8
-  stw       r31, 0x2C(r1)
-  li        r31, 0x1
-  stw       r30, 0x28(r1)
-  mr        r30, r3
-  lwz       r6, -0x7978(r13)
-  bl        -0x2A6C
-  rlwinm.   r0,r3,0,24,31
-  beq-      .loc_0x40
-  addi      r3, r1, 0x8
-  bl        -0x36A448
-  b         .loc_0x64
+    stwu     r1, -0x30(r1)
+    mflr     r0
+    li       r5, 0
+    stw      r0, 0x34(r1)
+    addi     r4, r1, 8
+    stw      r31, 0x2c(r1)
+    li       r31, 1
+    stw      r30, 0x28(r1)
+    mr       r30, r3
+    lwz      r6, cFileName__Q24Game10MemoryCard@sda21(r13)
+    bl fileOpen__13MemoryCardMgrFP12CARDFileInfoQ213MemoryCardMgr9ECardSlotPCc
+    clrlwi.  r0, r3, 0x18
+    beq      lbl_80443EAC
+    addi     r3, r1, 8
+    bl       CARDClose
+    b        lbl_80443ED0
 
-.loc_0x40:
-  mr        r3, r30
-  li        r4, 0
-  bl        .loc_0x80
-  rlwinm.   r0,r3,0,24,31
-  beq-      .loc_0x60
-  mr        r3, r30
-  li        r4, 0x3
-  bl        -0x1688
+lbl_80443EAC:
+    mr       r3, r30
+    li       r4, 0
+    bl       checkSpace__Q34Game10MemoryCard3MgrFQ213MemoryCardMgr9ECardSlot
+    clrlwi.  r0, r3, 0x18
+    beq      lbl_80443ECC
+    mr       r3, r30
+    li       r4, 3
+    bl setInsideStatusFlag__13MemoryCardMgrFQ213MemoryCardMgr17EInsideStatusFlag
 
-.loc_0x60:
-  li        r31, 0
+lbl_80443ECC:
+    li       r31, 0
 
-.loc_0x64:
-  lwz       r0, 0x34(r1)
-  mr        r3, r31
-  lwz       r31, 0x2C(r1)
-  lwz       r30, 0x28(r1)
-  mtlr      r0
-  addi      r1, r1, 0x30
-  blr
-
-.loc_0x80:
+lbl_80443ED0:
+    lwz      r0, 0x34(r1)
+    mr       r3, r31
+    lwz      r31, 0x2c(r1)
+    lwz      r30, 0x28(r1)
+    mtlr     r0
+    addi     r1, r1, 0x30
+    blr
 
 }
 
@@ -1775,65 +1882,64 @@ void MemoryCard::Mgr::commandCheckError(void)
 void MemoryCard::Mgr::checkSpace(MemoryCardMgr::ECardSlot)
 {
 /*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  lis       r5, 0x3
-  stw       r0, 0x14(r1)
-  addi      r5, r5, 0x6000
-  stw       r31, 0xC(r1)
-  li        r31, 0
-  stw       r30, 0x8(r1)
-  mr        r30, r3
-  bl        -0x1C68
-  cmpwi     r3, 0x1
-  beq-      .loc_0x60
-  bge-      .loc_0x40
-  cmpwi     r3, 0
-  bge-      .loc_0x4C
-  b         .loc_0x80
+    stwu     r1, -0x10(r1)
+    mflr     r0
+    lis      r5, 0x00036000@ha
+    stw      r0, 0x14(r1)
+    addi     r5, r5, 0x00036000@l
+    stw      r31, 0xc(r1)
+    li       r31, 0
+    stw      r30, 8(r1)
+    mr       r30, r3
+    bl       checkSpace__13MemoryCardMgrFQ213MemoryCardMgr9ECardSloti
+    cmpwi    r3, 1
+    beq      lbl_80443F4C
+    bge      lbl_80443F2C
+    cmpwi    r3, 0
+    bge      lbl_80443F38
+    b        lbl_80443F6C
 
-.loc_0x40:
-  cmpwi     r3, 0x3
-  bge-      .loc_0x80
-  b         .loc_0x70
+lbl_80443F2C:
+    cmpwi    r3, 3
+    bge      lbl_80443F6C
+    b        lbl_80443F5C
 
-.loc_0x4C:
-  mr        r3, r30
-  li        r4, 0x2
-  bl        -0x1700
-  li        r31, 0x1
-  b         .loc_0x9C
+lbl_80443F38:
+    mr       r3, r30
+    li       r4, 2
+    bl setInsideStatusFlag__13MemoryCardMgrFQ213MemoryCardMgr17EInsideStatusFlag
+    li       r31, 1
+    b        lbl_80443F88
 
-.loc_0x60:
-  mr        r3, r30
-  li        r4, 0x6
-  bl        -0x1714
-  b         .loc_0x9C
+lbl_80443F4C:
+    mr       r3, r30
+    li       r4, 6
+    bl setInsideStatusFlag__13MemoryCardMgrFQ213MemoryCardMgr17EInsideStatusFlag
+    b        lbl_80443F88
 
-.loc_0x70:
-  mr        r3, r30
-  li        r4, 0x7
-  bl        -0x1724
-  b         .loc_0x9C
+lbl_80443F5C:
+    mr       r3, r30
+    li       r4, 7
+    bl setInsideStatusFlag__13MemoryCardMgrFQ213MemoryCardMgr17EInsideStatusFlag
+    b        lbl_80443F88
 
-.loc_0x80:
-  lis       r3, 0x804A
-  lis       r5, 0x804A
-  subi      r3, r3, 0x5234
-  li        r4, 0x4C4
-  subi      r5, r5, 0x5218
-  crclr     6, 0x6
-  bl        -0x419944
+lbl_80443F6C:
+    lis      r3, gStrMemoryCardMgrCpp@ha
+    lis      r5, gStrMemoryCardMgrP2Assert@ha
+    addi     r3, r3, gStrMemoryCardMgrCpp@l
+    li       r4, 0x4c4
+    addi     r5, r5, gStrMemoryCardMgrP2Assert@l
+    crclr    6
+    bl       panic_f__12JUTExceptionFPCciPCce
 
-.loc_0x9C:
-  lwz       r0, 0x14(r1)
-  mr        r3, r31
-  lwz       r31, 0xC(r1)
-  lwz       r30, 0x8(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
+lbl_80443F88:
+    lwz      r0, 0x14(r1)
+    mr       r3, r31
+    lwz      r31, 0xc(r1)
+    lwz      r30, 8(r1)
+    mtlr     r0
+    addi     r1, r1, 0x10
+    blr
 
 }
 
@@ -1845,85 +1951,84 @@ void MemoryCard::Mgr::checkSpace(MemoryCardMgr::ECardSlot)
 void MemoryCard::Mgr::commandSaveHeader(void)
 {
 /*
-.loc_0x0:
-  stwu      r1, -0x30(r1)
-  mflr      r0
-  stw       r0, 0x34(r1)
-  stw       r31, 0x2C(r1)
-  li        r31, 0
-  stw       r30, 0x28(r1)
-  mr        r30, r3
-  lwz       r12, 0x0(r3)
-  lwz       r12, 0x28(r12)
-  mtctr     r12
-  bctrl
-  rlwinm.   r0,r3,0,24,31
-  bne-      .loc_0xFC
-  lwz       r6, -0x7978(r13)
-  mr        r3, r30
-  addi      r4, r1, 0x8
-  li        r5, 0
-  bl        -0x2BC0
-  rlwinm.   r0,r3,0,24,31
-  beq-      .loc_0xD4
-  addi      r3, r1, 0x8
-  bl        -0x36A59C
-  mr        r3, r30
-  lwz       r12, 0x0(r30)
-  lwz       r12, 0x28(r12)
-  mtctr     r12
-  bctrl
-  rlwinm.   r0,r3,0,24,31
-  bne-      .loc_0x84
-  lwz       r5, -0x7978(r13)
-  mr        r3, r30
-  li        r4, 0
-  bl        -0x2A5C
+    stwu     r1, -0x30(r1)
+    mflr     r0
+    stw      r0, 0x34(r1)
+    stw      r31, 0x2c(r1)
+    li       r31, 0
+    stw      r30, 0x28(r1)
+    mr       r30, r3
+    lwz      r12, 0(r3)
+    lwz      r12, 0x28(r12)
+    mtctr    r12
+    bctrl
+    clrlwi.  r0, r3, 0x18
+    bne      lbl_804440A0
+    lwz      r6, cFileName__Q24Game10MemoryCard@sda21(r13)
+    mr       r3, r30
+    addi     r4, r1, 8
+    li       r5, 0
+    bl fileOpen__13MemoryCardMgrFP12CARDFileInfoQ213MemoryCardMgr9ECardSlotPCc
+    clrlwi.  r0, r3, 0x18
+    beq      lbl_80444078
+    addi     r3, r1, 8
+    bl       CARDClose
+    mr       r3, r30
+    lwz      r12, 0(r30)
+    lwz      r12, 0x28(r12)
+    mtctr    r12
+    bctrl
+    clrlwi.  r0, r3, 0x18
+    bne      lbl_80444028
+    lwz      r5, cFileName__Q24Game10MemoryCard@sda21(r13)
+    mr       r3, r30
+    li       r4, 0
+    bl       writeHeader__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlotPCc
 
-.loc_0x84:
-  mr        r3, r30
-  lwz       r12, 0x0(r30)
-  lwz       r12, 0x28(r12)
-  mtctr     r12
-  bctrl
-  rlwinm.   r0,r3,0,24,31
-  bne-      .loc_0xB0
-  lwz       r5, -0x7978(r13)
-  mr        r3, r30
-  li        r4, 0
-  bl        -0x2808
+lbl_80444028:
+    mr       r3, r30
+    lwz      r12, 0(r30)
+    lwz      r12, 0x28(r12)
+    mtctr    r12
+    bctrl
+    clrlwi.  r0, r3, 0x18
+    bne      lbl_80444054
+    lwz      r5, cFileName__Q24Game10MemoryCard@sda21(r13)
+    mr       r3, r30
+    li       r4, 0
+    bl       writeCardStatus__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlotPCc
 
-.loc_0xB0:
-  mr        r3, r30
-  lwz       r12, 0x0(r30)
-  lwz       r12, 0x28(r12)
-  mtctr     r12
-  bctrl
-  rlwinm.   r0,r3,0,24,31
-  bne-      .loc_0xFC
-  li        r31, 0x1
-  b         .loc_0xFC
+lbl_80444054:
+    mr       r3, r30
+    lwz      r12, 0(r30)
+    lwz      r12, 0x28(r12)
+    mtctr    r12
+    bctrl
+    clrlwi.  r0, r3, 0x18
+    bne      lbl_804440A0
+    li       r31, 1
+    b        lbl_804440A0
 
-.loc_0xD4:
-  mr        r3, r30
-  lwz       r12, 0x0(r30)
-  lwz       r12, 0x28(r12)
-  mtctr     r12
-  bctrl
-  rlwinm.   r0,r3,0,24,31
-  bne-      .loc_0xFC
-  mr        r3, r30
-  li        r4, 0x3
-  bl        -0x185C
+lbl_80444078:
+    mr       r3, r30
+    lwz      r12, 0(r30)
+    lwz      r12, 0x28(r12)
+    mtctr    r12
+    bctrl
+    clrlwi.  r0, r3, 0x18
+    bne      lbl_804440A0
+    mr       r3, r30
+    li       r4, 3
+    bl setInsideStatusFlag__13MemoryCardMgrFQ213MemoryCardMgr17EInsideStatusFlag
 
-.loc_0xFC:
-  lwz       r0, 0x34(r1)
-  mr        r3, r31
-  lwz       r31, 0x2C(r1)
-  lwz       r30, 0x28(r1)
-  mtlr      r0
-  addi      r1, r1, 0x30
-  blr
+lbl_804440A0:
+    lwz      r0, 0x34(r1)
+    mr       r3, r31
+    lwz      r31, 0x2c(r1)
+    lwz      r30, 0x28(r1)
+    mtlr     r0
+    addi     r1, r1, 0x30
+    blr
 
 }
 
@@ -1935,137 +2040,134 @@ void MemoryCard::Mgr::commandSaveHeader(void)
 void MemoryCard::Mgr::commandCreateNewFile(void)
 {
 /*
-.loc_0x0:
-  stwu      r1, -0x40(r1)
-  mflr      r0
-  li        r5, 0
-  stw       r0, 0x44(r1)
-  addi      r4, r1, 0x10
-  stw       r31, 0x3C(r1)
-  stw       r30, 0x38(r1)
-  li        r30, 0
-  stw       r29, 0x34(r1)
-  mr        r29, r3
-  lwz       r6, -0x7978(r13)
-  bl        -0x2CC0
-  rlwinm.   r0,r3,0,24,31
-  beq-      .loc_0x48
-  addi      r3, r1, 0x10
-  bl        -0x36A69C
-  li        r30, 0x1
-  b         .loc_0x180
+    stwu     r1, -0x40(r1)
+    mflr     r0
+    li       r5, 0
+    stw      r0, 0x44(r1)
+    addi     r4, r1, 0x10
+    stw      r31, 0x3c(r1)
+    stw      r30, 0x38(r1)
+    li       r30, 0
+    stw      r29, 0x34(r1)
+    mr       r29, r3
+    lwz      r6, cFileName__Q24Game10MemoryCard@sda21(r13)
+    bl fileOpen__13MemoryCardMgrFP12CARDFileInfoQ213MemoryCardMgr9ECardSlotPCc
+    clrlwi.  r0, r3, 0x18
+    beq      lbl_80444104
+    addi     r3, r1, 0x10
+    bl       CARDClose
+    li       r30, 1
+    b        lbl_8044423C
 
-.loc_0x48:
-  lis       r4, 0x3
-  mr        r3, r29
-  addi      r5, r4, 0x6000
-  li        r4, 0
-  bl        -0x1E6C
-  cmpwi     r3, 0x1
-  beq-      .loc_0x90
-  bge-      .loc_0x74
-  cmpwi     r3, 0
-  bge-      .loc_0x80
-  b         .loc_0xB0
+lbl_80444104:
+    lis      r4, 0x00036000@ha
+    mr       r3, r29
+    addi     r5, r4, 0x00036000@l
+    li       r4, 0
+    bl       checkSpace__13MemoryCardMgrFQ213MemoryCardMgr9ECardSloti
+    cmpwi    r3, 1
+    beq      lbl_8044414C
+    bge      lbl_80444130
+    cmpwi    r3, 0
+    bge      lbl_8044413C
+    b        lbl_8044416C
 
-.loc_0x74:
-  cmpwi     r3, 0x3
-  bge-      .loc_0xB0
-  b         .loc_0xA0
+lbl_80444130:
+    cmpwi    r3, 3
+    bge      lbl_8044416C
+    b        lbl_8044415C
 
-.loc_0x80:
-  mr        r3, r29
-  li        r4, 0x2
-  bl        -0x1904
-  b         .loc_0xCC
+lbl_8044413C:
+    mr       r3, r29
+    li       r4, 2
+    bl setInsideStatusFlag__13MemoryCardMgrFQ213MemoryCardMgr17EInsideStatusFlag
+    b        lbl_80444188
 
-.loc_0x90:
-  mr        r3, r29
-  li        r4, 0x6
-  bl        -0x1914
-  b         .loc_0xCC
+lbl_8044414C:
+    mr       r3, r29
+    li       r4, 6
+    bl setInsideStatusFlag__13MemoryCardMgrFQ213MemoryCardMgr17EInsideStatusFlag
+    b        lbl_80444188
 
-.loc_0xA0:
-  mr        r3, r29
-  li        r4, 0x7
-  bl        -0x1924
-  b         .loc_0xCC
+lbl_8044415C:
+    mr       r3, r29
+    li       r4, 7
+    bl setInsideStatusFlag__13MemoryCardMgrFQ213MemoryCardMgr17EInsideStatusFlag
+    b        lbl_80444188
 
-.loc_0xB0:
-  lis       r3, 0x804A
-  lis       r5, 0x804A
-  subi      r3, r3, 0x5234
-  li        r4, 0x4C4
-  subi      r5, r5, 0x5218
-  crclr     6, 0x6
-  bl        -0x419B44
+lbl_8044416C:
+    lis      r3, gStrMemoryCardMgrCpp@ha
+    lis      r5, gStrMemoryCardMgrP2Assert@ha
+    addi     r3, r3, gStrMemoryCardMgrCpp@l
+    li       r4, 0x4c4
+    addi     r5, r5, gStrMemoryCardMgrP2Assert@l
+    crclr    6
+    bl       panic_f__12JUTExceptionFPCciPCce
 
-.loc_0xCC:
-  mr        r3, r29
-  addi      r4, r1, 0x8
-  li        r5, 0
-  bl        -0x1A0C
-  rlwinm.   r0,r3,0,24,31
-  beq-      .loc_0xF8
-  lwz       r3, -0x6514(r13)
-  lwz       r5, 0x8(r1)
-  lwz       r3, 0x60(r3)
-  lwz       r6, 0xC(r1)
-  bl        0x2B74
+lbl_80444188:
+    mr       r3, r29
+    addi     r4, r1, 8
+    li       r5, 0
+    bl       readCardSerialNo__13MemoryCardMgrFPUxQ213MemoryCardMgr9ECardSlot
+    clrlwi.  r0, r3, 0x18
+    beq      lbl_804441B4
+    lwz      r3, sys@sda21(r13)
+    lwz      r5, 8(r1)
+    lwz      r3, 0x60(r3)
+    lwz      r6, 0xc(r1)
+    bl       setCardSerialNo__Q34Game14CommonSaveData3MgrFUx
 
-.loc_0xF8:
-  mr        r3, r29
-  bl        -0x31FC
-  cmplwi    r3, 0x2
-  bne-      .loc_0x150
-  lis       r3, 0x3
-  lwz       r4, -0x7978(r13)
-  addi      r5, r3, 0x6000
-  addi      r6, r1, 0x10
-  li        r3, 0
-  bl        -0x36A3D8
-  mr        r31, r3
-  addi      r3, r1, 0x10
-  bl        -0x36A788
-  cmpwi     r31, 0
-  bne-      .loc_0x144
-  mr        r3, r29
-  li        r4, 0
-  bl        .loc_0x1A0
-  b         .loc_0x150
+lbl_804441B4:
+    mr       r3, r29
+    bl       checkStatus__13MemoryCardMgrFv
+    cmplwi   r3, 2
+    bne      lbl_8044420C
+    lis      r3, 0x00036000@ha
+    lwz      r4, cFileName__Q24Game10MemoryCard@sda21(r13)
+    addi     r5, r3, 0x00036000@l
+    addi     r6, r1, 0x10
+    li       r3, 0
+    bl       CARDCreate
+    mr       r31, r3
+    addi     r3, r1, 0x10
+    bl       CARDClose
+    cmpwi    r31, 0
+    bne      lbl_80444200
+    mr       r3, r29
+    li       r4, 0
+    bl       dataFormat__Q34Game10MemoryCard3MgrFQ213MemoryCardMgr9ECardSlot
+    b        lbl_8044420C
 
-.loc_0x144:
-  mr        r3, r29
-  li        r4, 0xA
-  bl        -0x19C8
+lbl_80444200:
+    mr       r3, r29
+    li       r4, 0xa
+    bl setInsideStatusFlag__13MemoryCardMgrFQ213MemoryCardMgr17EInsideStatusFlag
 
-.loc_0x150:
-  mr        r3, r29
-  lwz       r12, 0x0(r29)
-  lwz       r12, 0x28(r12)
-  mtctr     r12
-  bctrl
-  rlwinm.   r0,r3,0,24,31
-  bne-      .loc_0x174
-  li        r30, 0x1
-  b         .loc_0x180
+lbl_8044420C:
+    mr       r3, r29
+    lwz      r12, 0(r29)
+    lwz      r12, 0x28(r12)
+    mtctr    r12
+    bctrl
+    clrlwi.  r0, r3, 0x18
+    bne      lbl_80444230
+    li       r30, 1
+    b        lbl_8044423C
 
-.loc_0x174:
-  mr        r3, r29
-  li        r4, 0xA
-  bl        -0x19F8
+lbl_80444230:
+    mr       r3, r29
+    li       r4, 0xa
+    bl setInsideStatusFlag__13MemoryCardMgrFQ213MemoryCardMgr17EInsideStatusFlag
 
-.loc_0x180:
-  lwz       r0, 0x44(r1)
-  mr        r3, r30
-  lwz       r31, 0x3C(r1)
-  lwz       r30, 0x38(r1)
-  lwz       r29, 0x34(r1)
-  mtlr      r0
-  addi      r1, r1, 0x40
-  blr
-
-.loc_0x1A0:
+lbl_8044423C:
+    lwz      r0, 0x44(r1)
+    mr       r3, r30
+    lwz      r31, 0x3c(r1)
+    lwz      r30, 0x38(r1)
+    lwz      r29, 0x34(r1)
+    mtlr     r0
+    addi     r1, r1, 0x40
+    blr
 
 }
 
@@ -2077,79 +2179,78 @@ void MemoryCard::Mgr::commandCreateNewFile(void)
 void MemoryCard::Mgr::dataFormat(MemoryCardMgr::ECardSlot)
 {
 /*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  stw       r0, 0x14(r1)
-  stw       r31, 0xC(r1)
-  mr        r31, r4
-  stw       r30, 0x8(r1)
-  mr        r30, r3
-  lwz       r12, 0x0(r3)
-  lwz       r12, 0x28(r12)
-  mtctr     r12
-  bctrl
-  rlwinm.   r0,r3,0,24,31
-  bne-      .loc_0x44
-  lwz       r5, -0x7978(r13)
-  mr        r3, r30
-  mr        r4, r31
-  bl        -0x2CD4
+    stwu     r1, -0x10(r1)
+    mflr     r0
+    stw      r0, 0x14(r1)
+    stw      r31, 0xc(r1)
+    mr       r31, r4
+    stw      r30, 8(r1)
+    mr       r30, r3
+    lwz      r12, 0(r3)
+    lwz      r12, 0x28(r12)
+    mtctr    r12
+    bctrl
+    clrlwi.  r0, r3, 0x18
+    bne      lbl_804442A0
+    lwz      r5, cFileName__Q24Game10MemoryCard@sda21(r13)
+    mr       r3, r30
+    mr       r4, r31
+    bl       writeHeader__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlotPCc
 
-.loc_0x44:
-  mr        r3, r30
-  lwz       r12, 0x0(r30)
-  lwz       r12, 0x28(r12)
-  mtctr     r12
-  bctrl
-  rlwinm.   r0,r3,0,24,31
-  bne-      .loc_0x78
-  mr        r3, r30
-  bl        0x1904
-  mr        r3, r30
-  li        r4, 0
-  li        r5, 0x1
-  bl        0x1FC
+lbl_804442A0:
+    mr       r3, r30
+    lwz      r12, 0(r30)
+    lwz      r12, 0x28(r12)
+    mtctr    r12
+    bctrl
+    clrlwi.  r0, r3, 0x18
+    bne      lbl_804442D4
+    mr       r3, r30
+    bl       writeInvalidGameOption__Q34Game10MemoryCard3MgrFv
+    mr       r3, r30
+    li       r4, 0
+    li       r5, 1
+    bl       commandSaveGameOption__Q34Game10MemoryCard3MgrFbb
 
-.loc_0x78:
-  mr        r3, r30
-  lwz       r12, 0x0(r30)
-  lwz       r12, 0x28(r12)
-  mtctr     r12
-  bctrl
-  rlwinm.   r0,r3,0,24,31
-  bne-      .loc_0x9C
-  mr        r3, r30
-  bl        0x1988
+lbl_804442D4:
+    mr       r3, r30
+    lwz      r12, 0(r30)
+    lwz      r12, 0x28(r12)
+    mtctr    r12
+    bctrl
+    clrlwi.  r0, r3, 0x18
+    bne      lbl_804442F8
+    mr       r3, r30
+    bl       writeInvalidPlayerInfoAll__Q34Game10MemoryCard3MgrFv
 
-.loc_0x9C:
-  mr        r3, r30
-  lwz       r12, 0x0(r30)
-  lwz       r12, 0x28(r12)
-  mtctr     r12
-  bctrl
-  rlwinm.   r0,r3,0,24,31
-  bne-      .loc_0xC8
-  lwz       r5, -0x7978(r13)
-  mr        r3, r30
-  mr        r4, r31
-  bl        -0x2AD8
+lbl_804442F8:
+    mr       r3, r30
+    lwz      r12, 0(r30)
+    lwz      r12, 0x28(r12)
+    mtctr    r12
+    bctrl
+    clrlwi.  r0, r3, 0x18
+    bne      lbl_80444324
+    lwz      r5, cFileName__Q24Game10MemoryCard@sda21(r13)
+    mr       r3, r30
+    mr       r4, r31
+    bl       writeCardStatus__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlotPCc
 
-.loc_0xC8:
-  mr        r3, r30
-  lwz       r12, 0x0(r30)
-  lwz       r12, 0x28(r12)
-  mtctr     r12
-  bctrl
-  rlwinm    r0,r3,0,24,31
-  lwz       r31, 0xC(r1)
-  cntlzw    r0, r0
-  lwz       r30, 0x8(r1)
-  rlwinm    r3,r0,27,5,31
-  lwz       r0, 0x14(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
+lbl_80444324:
+    mr       r3, r30
+    lwz      r12, 0(r30)
+    lwz      r12, 0x28(r12)
+    mtctr    r12
+    bctrl
+    clrlwi   r0, r3, 0x18
+    lwz      r31, 0xc(r1)
+    cntlzw   r0, r0
+    lwz      r30, 8(r1)
+    srwi     r3, r0, 5
+    lwz      r0, 0x14(r1)
+    mtlr     r0
+    addi     r1, r1, 0x10
+    blr
 
 }
 
@@ -2171,113 +2272,112 @@ void MemoryCard::Mgr::writeBrokenData(MemoryCardMgr::ECardSlot)
 void MemoryCard::Mgr::varifyCardStatus(void)
 {
 /*
-.loc_0x0:
-  stwu      r1, -0x30(r1)
-  mflr      r0
-  li        r5, 0
-  stw       r0, 0x34(r1)
-  addi      r4, r1, 0x8
-  stw       r31, 0x2C(r1)
-  stw       r30, 0x28(r1)
-  stw       r29, 0x24(r1)
-  stw       r28, 0x20(r1)
-  mr        r28, r3
-  lwz       r6, -0x7978(r13)
-  bl        -0x2F60
-  rlwinm.   r0,r3,0,24,31
-  beq-      .loc_0x50
-  mr        r3, r28
-  addi      r5, r1, 0x8
-  li        r4, 0
-  bl        -0x2700
-  addi      r3, r1, 0x8
-  bl        -0x36A94C
+    stwu     r1, -0x30(r1)
+    mflr     r0
+    li       r5, 0
+    stw      r0, 0x34(r1)
+    addi     r4, r1, 8
+    stw      r31, 0x2c(r1)
+    stw      r30, 0x28(r1)
+    stw      r29, 0x24(r1)
+    stw      r28, 0x20(r1)
+    mr       r28, r3
+    lwz      r6, cFileName__Q24Game10MemoryCard@sda21(r13)
+    bl fileOpen__13MemoryCardMgrFP12CARDFileInfoQ213MemoryCardMgr9ECardSlotPCc
+    clrlwi.  r0, r3, 0x18
+    beq      lbl_804443AC
+    mr       r3, r28
+    addi     r5, r1, 8
+    li       r4, 0
+    bl checkCardStat__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlotP12CARDFileInfo
+    addi     r3, r1, 8
+    bl       CARDClose
 
-.loc_0x50:
-  lbz       r0, 0xD0(r28)
-  cmplwi    r0, 0
-  beq-      .loc_0x64
-  li        r3, 0x1
-  b         .loc_0x150
+lbl_804443AC:
+    lbz      r0, 0xd0(r28)
+    cmplwi   r0, 0
+    beq      lbl_804443C0
+    li       r3, 1
+    b        lbl_804444AC
 
-.loc_0x64:
-  li        r3, 0x2000
-  bl        -0x420418
-  li        r4, 0xCD
-  mr        r30, r3
-  li        r5, 0x2000
-  bl        -0x43F320
-  li        r31, 0
-  mr        r29, r31
+lbl_804443C0:
+    li       r3, 0x2000
+    bl       __nwa__FUl
+    li       r4, 0xcd
+    mr       r30, r3
+    li       r5, 0x2000
+    bl       memset
+    li       r31, 0
+    mr       r29, r31
 
-.loc_0x84:
-  mr        r3, r28
-  lwz       r12, 0x0(r28)
-  lwz       r12, 0x28(r12)
-  mtctr     r12
-  bctrl
-  rlwinm.   r0,r3,0,24,31
-  bne-      .loc_0xBC
-  lwz       r5, -0x7978(r13)
-  mr        r3, r28
-  mr        r6, r30
-  mr        r8, r29
-  li        r4, 0
-  li        r7, 0x2000
-  bl        -0x2978
+lbl_804443E0:
+    mr       r3, r28
+    lwz      r12, 0(r28)
+    lwz      r12, 0x28(r12)
+    mtctr    r12
+    bctrl
+    clrlwi.  r0, r3, 0x18
+    bne      lbl_80444418
+    lwz      r5, cFileName__Q24Game10MemoryCard@sda21(r13)
+    mr       r3, r28
+    mr       r6, r30
+    mr       r8, r29
+    li       r4, 0
+    li       r7, 0x2000
+    bl       write__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlotPCcPUcll
 
-.loc_0xBC:
-  addi      r31, r31, 0x1
-  addi      r29, r29, 0x2000
-  cmpwi     r31, 0x1B
-  blt+      .loc_0x84
-  mr        r3, r30
-  bl        -0x420378
-  mr        r3, r28
-  lwz       r12, 0x0(r28)
-  lwz       r12, 0x28(r12)
-  mtctr     r12
-  bctrl
-  rlwinm.   r0,r3,0,24,31
-  bne-      .loc_0x100
-  lwz       r5, -0x7978(r13)
-  mr        r3, r28
-  li        r4, 0
-  bl        -0x2E90
+lbl_80444418:
+    addi     r31, r31, 1
+    addi     r29, r29, 0x2000
+    cmpwi    r31, 0x1b
+    blt      lbl_804443E0
+    mr       r3, r30
+    bl       __dl__FPv
+    mr       r3, r28
+    lwz      r12, 0(r28)
+    lwz      r12, 0x28(r12)
+    mtctr    r12
+    bctrl
+    clrlwi.  r0, r3, 0x18
+    bne      lbl_8044445C
+    lwz      r5, cFileName__Q24Game10MemoryCard@sda21(r13)
+    mr       r3, r28
+    li       r4, 0
+    bl       writeHeader__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlotPCc
 
-.loc_0x100:
-  mr        r3, r28
-  lwz       r12, 0x0(r28)
-  lwz       r12, 0x28(r12)
-  mtctr     r12
-  bctrl
-  rlwinm.   r0,r3,0,24,31
-  bne-      .loc_0x12C
-  lwz       r5, -0x7978(r13)
-  mr        r3, r28
-  li        r4, 0
-  bl        -0x2C3C
+lbl_8044445C:
+    mr       r3, r28
+    lwz      r12, 0(r28)
+    lwz      r12, 0x28(r12)
+    mtctr    r12
+    bctrl
+    clrlwi.  r0, r3, 0x18
+    bne      lbl_80444488
+    lwz      r5, cFileName__Q24Game10MemoryCard@sda21(r13)
+    mr       r3, r28
+    li       r4, 0
+    bl       writeCardStatus__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlotPCc
 
-.loc_0x12C:
-  mr        r3, r28
-  lwz       r12, 0x0(r28)
-  lwz       r12, 0x28(r12)
-  mtctr     r12
-  bctrl
-  rlwinm    r0,r3,0,24,31
-  cntlzw    r0, r0
-  rlwinm    r0,r0,27,5,31
-  mr        r3, r0
+lbl_80444488:
+    mr       r3, r28
+    lwz      r12, 0(r28)
+    lwz      r12, 0x28(r12)
+    mtctr    r12
+    bctrl
+    clrlwi   r0, r3, 0x18
+    cntlzw   r0, r0
+    srwi     r0, r0, 5
+    mr       r3, r0
 
-.loc_0x150:
-  lwz       r0, 0x34(r1)
-  lwz       r31, 0x2C(r1)
-  lwz       r30, 0x28(r1)
-  lwz       r29, 0x24(r1)
-  lwz       r28, 0x20(r1)
-  mtlr      r0
-  addi      r1, r1, 0x30
-  blr
+lbl_804444AC:
+    lwz      r0, 0x34(r1)
+    lwz      r31, 0x2c(r1)
+    lwz      r30, 0x28(r1)
+    lwz      r29, 0x24(r1)
+    lwz      r28, 0x20(r1)
+    mtlr     r0
+    addi     r1, r1, 0x30
+    blr
 
 }
 
@@ -2289,139 +2389,139 @@ void MemoryCard::Mgr::varifyCardStatus(void)
 void MemoryCard::Mgr::commandSaveGameOption(bool, bool)
 {
 /*
-.loc_0x0:
-  stwu      r1, -0x450(r1)
-  mflr      r0
-  stw       r0, 0x454(r1)
-  rlwinm.   r0,r4,0,24,31
-  stmw      r25, 0x434(r1)
-  mr        r28, r3
-  mr        r25, r5
-  li        r31, 0
-  bne-      .loc_0x34
-  li        r4, 0
-  bl        0x430
-  rlwinm.   r0,r3,0,24,31
-  beq-      .loc_0x198
+    stwu     r1, -0x450(r1)
+    mflr     r0
+    stw      r0, 0x454(r1)
+    clrlwi.  r0, r4, 0x18
+    stmw     r25, 0x434(r1)
+    mr       r28, r3
+    mr       r25, r5
+    li       r31, 0
+    bne      lbl_80444500
+    li       r4, 0
+    bl       checkSerialNo__Q34Game10MemoryCard3MgrFb
+    clrlwi.  r0, r3, 0x18
+    beq      lbl_80444664
 
-.loc_0x34:
-  lwz       r4, 0xCC(r28)
-  li        r3, 0x2000
-  li        r5, -0x20
-  bl        -0x4204C4
-  mr.       r30, r3
-  bne-      .loc_0x68
-  lis       r3, 0x804A
-  lis       r5, 0x804A
-  subi      r3, r3, 0x5234
-  li        r4, 0x5DC
-  subi      r5, r5, 0x5218
-  crclr     6, 0x6
-  bl        -0x419EF0
+lbl_80444500:
+    lwz      r4, 0xcc(r28)
+    li       r3, 0x2000
+    li       r5, -32
+    bl       __nwa__FUlP7JKRHeapi
+    or.      r30, r3, r3
+    bne      lbl_80444534
+    lis      r3, gStrMemoryCardMgrCpp@ha
+    lis      r5, gStrMemoryCardMgrP2Assert@ha
+    addi     r3, r3, gStrMemoryCardMgrCpp@l
+    li       r4, 0x5dc
+    addi     r5, r5, gStrMemoryCardMgrP2Assert@l
+    crclr    6
+    bl       panic_f__12JUTExceptionFPCciPCce
 
-.loc_0x68:
-  rlwinm.   r0,r25,0,24,31
-  li        r29, -0x1
-  li        r26, 0
-  bne-      .loc_0xE0
-  li        r25, 0
-  li        r27, 0x2000
+lbl_80444534:
+    clrlwi.  r0, r25, 0x18
+    li       r29, -1
+    li       r26, 0
+    bne      lbl_804445AC
+    li       r25, 0
+    li       r27, 0x2000
 
-.loc_0x80:
-  lwz       r5, -0x7978(r13)
-  mr        r3, r28
-  mr        r6, r30
-  mr        r8, r27
-  li        r4, 0
-  li        r7, 0x2000
-  bl        -0x2800
-  rlwinm.   r0,r3,0,24,31
-  bne-      .loc_0xAC
-  li        r26, 0x1
-  b         .loc_0xE0
+lbl_8044454C:
+    lwz      r5, cFileName__Q24Game10MemoryCard@sda21(r13)
+    mr       r3, r28
+    mr       r6, r30
+    mr       r8, r27
+    li       r4, 0
+    li       r7, 0x2000
+    bl       read__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlotPCcPUcll
+    clrlwi.  r0, r3, 0x18
+    bne      lbl_80444578
+    li       r26, 1
+    b        lbl_804445AC
 
-.loc_0xAC:
-  mr        r3, r28
-  mr        r4, r30
-  bl        0x13D0
-  rlwinm    r0,r3,0,24,31
-  cntlzw    r0, r0
-  rlwinm.   r0,r0,27,24,31
-  beq-      .loc_0xD0
-  mr        r29, r25
-  b         .loc_0xE0
+lbl_80444578:
+    mr       r3, r28
+    mr       r4, r30
+    bl checkOptionInfo__Q34Game10MemoryCard3MgrFPQ34Game10MemoryCard10OptionInfo
+    clrlwi   r0, r3, 0x18
+    cntlzw   r0, r0
+    rlwinm.  r0, r0, 0x1b, 0x18, 0x1f
+    beq      lbl_8044459C
+    mr       r29, r25
+    b        lbl_804445AC
 
-.loc_0xD0:
-  addi      r25, r25, 0x1
-  addi      r27, r27, 0x2000
-  cmpwi     r25, 0x2
-  blt+      .loc_0x80
+lbl_8044459C:
+    addi     r25, r25, 1
+    addi     r27, r27, 0x2000
+    cmpwi    r25, 2
+    blt      lbl_8044454C
 
-.loc_0xE0:
-  cmpwi     r29, -0x1
-  bne-      .loc_0xFC
-  lwz       r3, -0x6514(r13)
-  lwz       r3, 0x60(r3)
-  lwz       r3, 0x28(r3)
-  addi      r0, r3, 0x1
-  rlwinm    r29,r0,0,31,31
+lbl_804445AC:
+    cmpwi    r29, -1
+    bne      lbl_804445C8
+    lwz      r3, sys@sda21(r13)
+    lwz      r3, 0x60(r3)
+    lwz      r3, 0x28(r3)
+    addi     r0, r3, 1
+    clrlwi   r29, r0, 0x1f
 
-.loc_0xFC:
-  rlwinm.   r0,r26,0,24,31
-  bne-      .loc_0x190
-  lwz       r6, -0x6514(r13)
-  lis       r5, 0x4F70
-  lis       r4, 0x3030
-  addi      r3, r1, 0x8
-  lwz       r8, 0x60(r6)
-  addi      r6, r5, 0x5661
-  addi      r0, r4, 0x3032
-  addi      r4, r30, 0xC
-  lwz       r7, 0x28(r8)
-  li        r5, 0x1C00
-  addi      r7, r7, 0x1
-  stw       r7, 0x28(r8)
-  stw       r6, 0x0(r30)
-  stw       r0, 0x4(r30)
-  lwz       r6, -0x6514(r13)
-  lwz       r6, 0x60(r6)
-  lwz       r0, 0x28(r6)
-  stw       r0, 0x8(r30)
-  bl        -0x2ED20
-  mr        r3, r28
-  addi      r4, r1, 0x8
-  bl        0x2B0
-  mr        r3, r28
-  mr        r4, r30
-  bl        0x1394
-  stw       r3, 0x1FFC(r30)
-  rlwinm    r4,r29,13,0,18
-  mr        r3, r28
-  mr        r6, r30
-  lwz       r5, -0x7978(r13)
-  addi      r8, r4, 0x2000
-  li        r4, 0
-  li        r7, 0x2000
-  bl        -0x2BB8
-  mr        r31, r3
+lbl_804445C8:
+    clrlwi.  r0, r26, 0x18
+    bne      lbl_8044465C
+    lwz      r6, sys@sda21(r13)
+    lis      r5, 0x4F705661@ha
+    lis      r4, 0x30303032@ha
+    addi     r3, r1, 8
+    lwz      r8, 0x60(r6)
+    addi     r6, r5, 0x4F705661@l
+    addi     r0, r4, 0x30303032@l
+    addi     r4, r30, 0xc
+    lwz      r7, 0x28(r8)
+    li       r5, 0x1c00
+    addi     r7, r7, 1
+    stw      r7, 0x28(r8)
+    stw      r6, 0(r30)
+    stw      r0, 4(r30)
+    lwz      r6, sys@sda21(r13)
+    lwz      r6, 0x60(r6)
+    lwz      r0, 0x28(r6)
+    stw      r0, 8(r30)
+    bl       __ct__9RamStreamFPvi
+    mr       r3, r28
+    addi     r4, r1, 8
+    bl       writeGameOption__Q34Game10MemoryCard3MgrFR6Stream
+    mr       r3, r28
+    mr       r4, r30
+    bl
+calcCheckSumOptionInfo__Q34Game10MemoryCard3MgrFPQ34Game10MemoryCard10OptionInfo
+    stw      r3, 0x1ffc(r30)
+    slwi     r4, r29, 0xd
+    mr       r3, r28
+    mr       r6, r30
+    lwz      r5, cFileName__Q24Game10MemoryCard@sda21(r13)
+    addi     r8, r4, 0x2000
+    li       r4, 0
+    li       r7, 0x2000
+    bl       write__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlotPCcPUcll
+    mr       r31, r3
 
-.loc_0x190:
-  mr        r3, r30
-  bl        -0x4205AC
+lbl_8044465C:
+    mr       r3, r30
+    bl       __dl__FPv
 
-.loc_0x198:
-  rlwinm.   r0,r31,0,24,31
-  beq-      .loc_0x1A8
-  lwz       r3, -0x6514(r13)
-  bl        -0x21760
+lbl_80444664:
+    clrlwi.  r0, r31, 0x18
+    beq      lbl_80444674
+    lwz      r3, sys@sda21(r13)
+    bl       clearOptionBlockSaveFlag__6SystemFv
 
-.loc_0x1A8:
-  mr        r3, r31
-  lmw       r25, 0x434(r1)
-  lwz       r0, 0x454(r1)
-  mtlr      r0
-  addi      r1, r1, 0x450
-  blr
+lbl_80444674:
+    mr       r3, r31
+    lmw      r25, 0x434(r1)
+    lwz      r0, 0x454(r1)
+    mtlr     r0
+    addi     r1, r1, 0x450
+    blr
 
 }
 
@@ -2433,177 +2533,176 @@ void MemoryCard::Mgr::commandSaveGameOption(bool, bool)
 void MemoryCard::Mgr::commandLoadGameOption(void)
 {
 /*
-.loc_0x0:
-  stwu      r1, -0x460(r1)
-  mflr      r0
-  li        r5, 0
-  stw       r0, 0x464(r1)
-  addi      r4, r1, 0x10
-  stmw      r25, 0x444(r1)
-  mr        r29, r3
-  li        r30, 0
-  bl        -0x1F24
-  rlwinm.   r0,r3,0,24,31
-  beq-      .loc_0x224
-  lwz       r3, -0x77D4(r13)
-  bl        -0x420EDC
-  lwz       r4, 0xCC(r29)
-  mr        r31, r3
-  li        r3, 0x2000
-  li        r5, -0x20
-  bl        -0x420688
-  cmplwi    r3, 0
-  stw       r3, 0x8(r1)
-  bne-      .loc_0x70
-  lis       r3, 0x804A
-  lis       r5, 0x804A
-  subi      r3, r3, 0x5234
-  li        r4, 0x650
-  subi      r5, r5, 0x5218
-  crclr     6, 0x6
-  bl        -0x41A0B8
+    stwu     r1, -0x460(r1)
+    mflr     r0
+    li       r5, 0
+    stw      r0, 0x464(r1)
+    addi     r4, r1, 0x10
+    stmw     r25, 0x444(r1)
+    mr       r29, r3
+    li       r30, 0
+    bl       readCardSerialNo__13MemoryCardMgrFPUxQ213MemoryCardMgr9ECardSlot
+    clrlwi.  r0, r3, 0x18
+    beq      lbl_804448B0
+    lwz      r3, sCurrentHeap__7JKRHeap@sda21(r13)
+    bl       getTotalFreeSize__7JKRHeapFv
+    lwz      r4, 0xcc(r29)
+    mr       r31, r3
+    li       r3, 0x2000
+    li       r5, -32
+    bl       __nwa__FUlP7JKRHeapi
+    cmplwi   r3, 0
+    stw      r3, 8(r1)
+    bne      lbl_804446FC
+    lis      r3, gStrMemoryCardMgrCpp@ha
+    lis      r5, gStrMemoryCardMgrP2Assert@ha
+    addi     r3, r3, gStrMemoryCardMgrCpp@l
+    li       r4, 0x650
+    addi     r5, r5, gStrMemoryCardMgrP2Assert@l
+    crclr    6
+    bl       panic_f__12JUTExceptionFPCciPCce
 
-.loc_0x70:
-  lwz       r4, 0xCC(r29)
-  li        r3, 0x2000
-  li        r5, -0x20
-  bl        -0x4206C0
-  cmplwi    r3, 0
-  stw       r3, 0xC(r1)
-  bne-      .loc_0xA8
-  lis       r3, 0x804A
-  lis       r5, 0x804A
-  subi      r3, r3, 0x5234
-  li        r4, 0x652
-  subi      r5, r5, 0x5218
-  crclr     6, 0x6
-  bl        -0x41A0F0
+lbl_804446FC:
+    lwz      r4, 0xcc(r29)
+    li       r3, 0x2000
+    li       r5, -32
+    bl       __nwa__FUlP7JKRHeapi
+    cmplwi   r3, 0
+    stw      r3, 0xc(r1)
+    bne      lbl_80444734
+    lis      r3, gStrMemoryCardMgrCpp@ha
+    lis      r5, gStrMemoryCardMgrP2Assert@ha
+    addi     r3, r3, gStrMemoryCardMgrCpp@l
+    li       r4, 0x652
+    addi     r5, r5, gStrMemoryCardMgrP2Assert@l
+    crclr    6
+    bl       panic_f__12JUTExceptionFPCciPCce
 
-.loc_0xA8:
-  addi      r27, r1, 0x8
-  li        r25, 0
-  li        r26, 0
-  li        r28, 0x2000
+lbl_80444734:
+    addi     r27, r1, 8
+    li       r25, 0
+    li       r26, 0
+    li       r28, 0x2000
 
-.loc_0xB8:
-  lwz       r5, -0x7978(r13)
-  mr        r3, r29
-  lwz       r6, 0x0(r27)
-  mr        r8, r28
-  li        r4, 0
-  li        r7, 0x2000
-  bl        -0x29F8
-  rlwinm.   r0,r3,0,24,31
-  bne-      .loc_0xE4
-  li        r30, 0
-  li        r25, 0x1
+lbl_80444744:
+    lwz      r5, cFileName__Q24Game10MemoryCard@sda21(r13)
+    mr       r3, r29
+    lwz      r6, 0(r27)
+    mr       r8, r28
+    li       r4, 0
+    li       r7, 0x2000
+    bl       read__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlotPCcPUcll
+    clrlwi.  r0, r3, 0x18
+    bne      lbl_80444770
+    li       r30, 0
+    li       r25, 1
 
-.loc_0xE4:
-  addi      r26, r26, 0x1
-  addi      r27, r27, 0x4
-  cmpwi     r26, 0x2
-  addi      r28, r28, 0x2000
-  blt+      .loc_0xB8
-  rlwinm.   r0,r25,0,24,31
-  bne-      .loc_0x1E8
-  lwz       r26, 0x8(r1)
-  mr        r3, r29
-  lwz       r25, 0xC(r1)
-  li        r27, 0
-  mr        r4, r26
-  bl        0x11B0
-  mr        r28, r3
-  mr        r3, r29
-  mr        r4, r25
-  bl        0x11A0
-  rlwinm.   r0,r28,0,24,31
-  beq-      .loc_0x158
-  rlwinm.   r0,r3,0,24,31
-  beq-      .loc_0x158
-  lwz       r3, 0x8(r26)
-  lwz       r0, 0x8(r25)
-  cmplw     r3, r0
-  blt-      .loc_0x150
-  mr        r27, r26
-  b         .loc_0x184
+lbl_80444770:
+    addi     r26, r26, 1
+    addi     r27, r27, 4
+    cmpwi    r26, 2
+    addi     r28, r28, 0x2000
+    blt      lbl_80444744
+    clrlwi.  r0, r25, 0x18
+    bne      lbl_80444874
+    lwz      r26, 8(r1)
+    mr       r3, r29
+    lwz      r25, 0xc(r1)
+    li       r27, 0
+    mr       r4, r26
+    bl checkOptionInfo__Q34Game10MemoryCard3MgrFPQ34Game10MemoryCard10OptionInfo
+    mr       r28, r3
+    mr       r3, r29
+    mr       r4, r25
+    bl checkOptionInfo__Q34Game10MemoryCard3MgrFPQ34Game10MemoryCard10OptionInfo
+    clrlwi.  r0, r28, 0x18
+    beq      lbl_804447E4
+    clrlwi.  r0, r3, 0x18
+    beq      lbl_804447E4
+    lwz      r3, 8(r26)
+    lwz      r0, 8(r25)
+    cmplw    r3, r0
+    blt      lbl_804447DC
+    mr       r27, r26
+    b        lbl_80444810
 
-.loc_0x150:
-  mr        r27, r25
-  b         .loc_0x184
+lbl_804447DC:
+    mr       r27, r25
+    b        lbl_80444810
 
-.loc_0x158:
-  rlwinm.   r0,r28,0,24,31
-  beq-      .loc_0x170
-  rlwinm.   r0,r3,0,24,31
-  bne-      .loc_0x170
-  mr        r27, r26
-  b         .loc_0x184
+lbl_804447E4:
+    clrlwi.  r0, r28, 0x18
+    beq      lbl_804447FC
+    clrlwi.  r0, r3, 0x18
+    bne      lbl_804447FC
+    mr       r27, r26
+    b        lbl_80444810
 
-.loc_0x170:
-  rlwinm.   r0,r28,0,24,31
-  bne-      .loc_0x184
-  rlwinm.   r0,r3,0,24,31
-  beq-      .loc_0x184
-  mr        r27, r25
+lbl_804447FC:
+    clrlwi.  r0, r28, 0x18
+    bne      lbl_80444810
+    clrlwi.  r0, r3, 0x18
+    beq      lbl_80444810
+    mr       r27, r25
 
-.loc_0x184:
-  cmplwi    r27, 0
-  bne-      .loc_0x1A4
-  li        r0, 0x1
-  stw       r0, 0xD8(r29)
-  lwz       r3, -0x6514(r13)
-  lwz       r3, 0x60(r3)
-  bl        0x2484
-  b         .loc_0x1D4
+lbl_80444810:
+    cmplwi   r27, 0
+    bne      lbl_80444830
+    li       r0, 1
+    stw      r0, 0xd8(r29)
+    lwz      r3, sys@sda21(r13)
+    lwz      r3, 0x60(r3)
+    bl       setDefault__Q34Game14CommonSaveData3MgrFv
+    b        lbl_80444860
 
-.loc_0x1A4:
-  lwz       r5, -0x6514(r13)
-  addi      r3, r1, 0x18
-  lwz       r0, 0x8(r27)
-  addi      r4, r27, 0xC
-  lwz       r6, 0x60(r5)
-  li        r30, 0x1
-  li        r5, 0x1C00
-  stw       r0, 0x28(r6)
-  bl        -0x2EF58
-  mr        r3, r29
-  addi      r4, r1, 0x18
-  bl        0xA0
+lbl_80444830:
+    lwz      r5, sys@sda21(r13)
+    addi     r3, r1, 0x18
+    lwz      r0, 8(r27)
+    addi     r4, r27, 0xc
+    lwz      r6, 0x60(r5)
+    li       r30, 1
+    li       r5, 0x1c00
+    stw      r0, 0x28(r6)
+    bl       __ct__9RamStreamFPvi
+    mr       r3, r29
+    addi     r4, r1, 0x18
+    bl       readGameOption__Q34Game10MemoryCard3MgrFR6Stream
 
-.loc_0x1D4:
-  lwz       r3, -0x6514(r13)
-  lwz       r5, 0x10(r1)
-  lwz       r3, 0x60(r3)
-  lwz       r6, 0x14(r1)
-  bl        0x24B4
+lbl_80444860:
+    lwz      r3, sys@sda21(r13)
+    lwz      r5, 0x10(r1)
+    lwz      r3, 0x60(r3)
+    lwz      r6, 0x14(r1)
+    bl       setCardSerialNo__Q34Game14CommonSaveData3MgrFUx
 
-.loc_0x1E8:
-  lwz       r3, 0x8(r1)
-  bl        -0x4207C4
-  lwz       r3, 0xC(r1)
-  bl        -0x4207CC
-  lwz       r3, -0x77D4(r13)
-  bl        -0x4210A8
-  cmpw      r31, r3
-  beq-      .loc_0x224
-  lis       r3, 0x804A
-  lis       r5, 0x804A
-  subi      r3, r3, 0x5234
-  li        r4, 0x6AB
-  subi      r5, r5, 0x5218
-  crclr     6, 0x6
-  bl        -0x41A26C
+lbl_80444874:
+    lwz      r3, 8(r1)
+    bl       __dl__FPv
+    lwz      r3, 0xc(r1)
+    bl       __dl__FPv
+    lwz      r3, sCurrentHeap__7JKRHeap@sda21(r13)
+    bl       getTotalFreeSize__7JKRHeapFv
+    cmpw     r31, r3
+    beq      lbl_804448B0
+    lis      r3, gStrMemoryCardMgrCpp@ha
+    lis      r5, gStrMemoryCardMgrP2Assert@ha
+    addi     r3, r3, gStrMemoryCardMgrCpp@l
+    li       r4, 0x6ab
+    addi     r5, r5, gStrMemoryCardMgrP2Assert@l
+    crclr    6
+    bl       panic_f__12JUTExceptionFPCciPCce
 
-.loc_0x224:
-  lwz       r3, -0x6514(r13)
-  lwz       r3, 0x60(r3)
-  bl        0x25FC
-  mr        r3, r30
-  lmw       r25, 0x444(r1)
-  lwz       r0, 0x464(r1)
-  mtlr      r0
-  addi      r1, r1, 0x460
-  blr
+lbl_804448B0:
+    lwz      r3, sys@sda21(r13)
+    lwz      r3, 0x60(r3)
+    bl       setup__Q34Game14CommonSaveData3MgrFv
+    mr       r3, r30
+    lmw      r25, 0x444(r1)
+    lwz      r0, 0x464(r1)
+    mtlr     r0
+    addi     r1, r1, 0x460
+    blr
 
 }
 
@@ -2615,17 +2714,16 @@ void MemoryCard::Mgr::commandLoadGameOption(void)
 void MemoryCard::Mgr::writeGameOption(Stream&)
 {
 /*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  stw       r0, 0x14(r1)
-  lwz       r3, -0x6514(r13)
-  lwz       r3, 0x60(r3)
-  bl        0x2474
-  lwz       r0, 0x14(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
+    stwu     r1, -0x10(r1)
+    mflr     r0
+    stw      r0, 0x14(r1)
+    lwz      r3, sys@sda21(r13)
+    lwz      r3, 0x60(r3)
+    bl       write__Q34Game14CommonSaveData3MgrFR6Stream
+    lwz      r0, 0x14(r1)
+    mtlr     r0
+    addi     r1, r1, 0x10
+    blr
 
 }
 
@@ -2637,17 +2735,16 @@ void MemoryCard::Mgr::writeGameOption(Stream&)
 void MemoryCard::Mgr::readGameOption(Stream&)
 {
 /*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  stw       r0, 0x14(r1)
-  lwz       r3, -0x6514(r13)
-  lwz       r3, 0x60(r3)
-  bl        0x24F8
-  lwz       r0, 0x14(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
+    stwu     r1, -0x10(r1)
+    mflr     r0
+    stw      r0, 0x14(r1)
+    lwz      r3, sys@sda21(r13)
+    lwz      r3, 0x60(r3)
+    bl       read__Q34Game14CommonSaveData3MgrFR6Stream
+    lwz      r0, 0x14(r1)
+    mtlr     r0
+    addi     r1, r1, 0x10
+    blr
 
 }
 
@@ -2659,41 +2756,41 @@ void MemoryCard::Mgr::readGameOption(Stream&)
 void MemoryCard::Mgr::checkSerialNo(bool)
 {
 /*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  stw       r0, 0x14(r1)
-  stw       r31, 0xC(r1)
-  li        r31, 0
-  lwz       r5, -0x6514(r13)
-  lwz       r5, 0x60(r5)
-  lhz       r0, 0x40(r5)
-  rlwinm.   r0,r0,0,31,31
-  bne-      .loc_0x40
-  rlwinm.   r0,r4,0,24,31
-  beq-      .loc_0x38
-  li        r0, 0x3
-  stw       r0, 0xD8(r3)
+    stwu     r1, -0x10(r1)
+    mflr     r0
+    stw      r0, 0x14(r1)
+    stw      r31, 0xc(r1)
+    li       r31, 0
+    lwz      r5, sys@sda21(r13)
+    lwz      r5, 0x60(r5)
+    lhz      r0, 0x40(r5)
+    clrlwi.  r0, r0, 0x1f
+    bne      lbl_80444964
+    clrlwi.  r0, r4, 0x18
+    beq      lbl_8044495C
+    li       r0, 3
+    stw      r0, 0xd8(r3)
 
-.loc_0x38:
-  li        r31, 0x1
-  b         .loc_0x58
+lbl_8044495C:
+    li       r31, 1
+    b        lbl_8044497C
 
-.loc_0x40:
-  addi      r4, r5, 0x30
-  li        r5, 0
-  bl        0x1E74
-  rlwinm.   r0,r3,0,24,31
-  beq-      .loc_0x58
-  li        r31, 0x1
+lbl_80444964:
+    addi     r4, r5, 0x30
+    li       r5, 0
+    bl
+verifyCardSerialNo__Q34Game10MemoryCard3MgrFPUxQ213MemoryCardMgr9ECardSlot
+    clrlwi.  r0, r3, 0x18
+    beq      lbl_8044497C
+    li       r31, 1
 
-.loc_0x58:
-  lwz       r0, 0x14(r1)
-  mr        r3, r31
-  lwz       r31, 0xC(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
+lbl_8044497C:
+    lwz      r0, 0x14(r1)
+    mr       r3, r31
+    lwz      r31, 0xc(r1)
+    mtlr     r0
+    addi     r1, r1, 0x10
+    blr
 
 }
 
@@ -2705,71 +2802,69 @@ void MemoryCard::Mgr::checkSerialNo(bool)
 void MemoryCard::Mgr::commandSavePlayer(signed char, bool)
 {
 /*
-.loc_0x0:
-  stwu      r1, -0x20(r1)
-  mflr      r0
-  stw       r0, 0x24(r1)
-  stmw      r27, 0xC(r1)
-  mr        r31, r4
-  mr        r30, r3
-  mr        r27, r5
-  extsb.    r0, r31
-  li        r28, 0
-  li        r3, 0
-  blt-      .loc_0x3C
-  extsb     r0, r31
-  cmpwi     r0, 0x3
-  bge-      .loc_0x3C
-  li        r3, 0x1
+    stwu     r1, -0x20(r1)
+    mflr     r0
+    stw      r0, 0x24(r1)
+    stmw     r27, 0xc(r1)
+    mr       r31, r4
+    mr       r30, r3
+    mr       r27, r5
+    extsb.   r0, r31
+    li       r28, 0
+    li       r3, 0
+    blt      lbl_804449D0
+    extsb    r0, r31
+    cmpwi    r0, 3
+    bge      lbl_804449D0
+    li       r3, 1
 
-.loc_0x3C:
-  rlwinm.   r0,r3,0,24,31
-  bne-      .loc_0x60
-  lis       r3, 0x804A
-  lis       r5, 0x804A
-  subi      r3, r3, 0x5234
-  li        r4, 0x77A
-  subi      r5, r5, 0x5218
-  crclr     6, 0x6
-  bl        -0x41A3B0
+lbl_804449D0:
+    clrlwi.  r0, r3, 0x18
+    bne      lbl_804449F4
+    lis      r3, gStrMemoryCardMgrCpp@ha
+    lis      r5, gStrMemoryCardMgrP2Assert@ha
+    addi     r3, r3, gStrMemoryCardMgrCpp@l
+    li       r4, 0x77a
+    addi     r5, r5, gStrMemoryCardMgrP2Assert@l
+    crclr    6
+    bl       panic_f__12JUTExceptionFPCciPCce
 
-.loc_0x60:
-  lwz       r3, -0x6514(r13)
-  li        r29, 0
-  lwz       r4, 0x60(r3)
-  lhz       r0, 0x40(r4)
-  rlwinm.   r0,r0,0,31,31
-  bne-      .loc_0x80
-  li        r29, 0x1
-  b         .loc_0x9C
+lbl_804449F4:
+    lwz      r3, sys@sda21(r13)
+    li       r29, 0
+    lwz      r4, 0x60(r3)
+    lhz      r0, 0x40(r4)
+    clrlwi.  r0, r0, 0x1f
+    bne      lbl_80444A14
+    li       r29, 1
+    b        lbl_80444A30
 
-.loc_0x80:
-  mr        r3, r30
-  addi      r4, r4, 0x30
-  li        r5, 0
-  bl        0x1DC0
-  rlwinm.   r0,r3,0,24,31
-  beq-      .loc_0x9C
-  li        r29, 0x1
+lbl_80444A14:
+    mr       r3, r30
+    addi     r4, r4, 0x30
+    li       r5, 0
+    bl
+verifyCardSerialNo__Q34Game10MemoryCard3MgrFPUxQ213MemoryCardMgr9ECardSlot
+    clrlwi.  r0, r3, 0x18
+    beq      lbl_80444A30
+    li       r29, 1
 
-.loc_0x9C:
-  rlwinm.   r0,r29,0,24,31
-  beq-      .loc_0xB8
-  mr        r3, r30
-  mr        r4, r31
-  mr        r5, r27
-  bl        .loc_0xD0
-  mr        r28, r3
+lbl_80444A30:
+    clrlwi.  r0, r29, 0x18
+    beq      lbl_80444A4C
+    mr       r3, r30
+    mr       r4, r31
+    mr       r5, r27
+    bl       commandSavePlayerNoCheckSerialNo__Q34Game10MemoryCard3MgrFScb
+    mr       r28, r3
 
-.loc_0xB8:
-  mr        r3, r28
-  lmw       r27, 0xC(r1)
-  lwz       r0, 0x24(r1)
-  mtlr      r0
-  addi      r1, r1, 0x20
-  blr
-
-.loc_0xD0:
+lbl_80444A4C:
+    mr       r3, r28
+    lmw      r27, 0xc(r1)
+    lwz      r0, 0x24(r1)
+    mtlr     r0
+    addi     r1, r1, 0x20
+    blr
 
 }
 
@@ -3288,122 +3383,121 @@ void MemoryCard::Mgr::getIndexPlayerInfo(
 void MemoryCard::Mgr::commandLoadPlayer(signed char)
 {
 /*
-.loc_0x0:
-  stwu      r1, -0x440(r1)
-  mflr      r0
-  stw       r0, 0x444(r1)
-  stw       r31, 0x43C(r1)
-  mr        r31, r4
-  extsb.    r0, r31
-  stw       r30, 0x438(r1)
-  mr        r30, r3
-  li        r3, 0
-  stw       r29, 0x434(r1)
-  blt-      .loc_0x3C
-  extsb     r0, r31
-  cmpwi     r0, 0x3
-  bge-      .loc_0x3C
-  li        r3, 0x1
+    stwu     r1, -0x440(r1)
+    mflr     r0
+    stw      r0, 0x444(r1)
+    stw      r31, 0x43c(r1)
+    mr       r31, r4
+    extsb.   r0, r31
+    stw      r30, 0x438(r1)
+    mr       r30, r3
+    li       r3, 0
+    stw      r29, 0x434(r1)
+    blt      lbl_80445134
+    extsb    r0, r31
+    cmpwi    r0, 3
+    bge      lbl_80445134
+    li       r3, 1
 
-.loc_0x3C:
-  rlwinm.   r0,r3,0,24,31
-  bne-      .loc_0x60
-  lis       r3, 0x804A
-  lis       r5, 0x804A
-  subi      r3, r3, 0x5234
-  li        r4, 0x8D8
-  subi      r5, r5, 0x5218
-  crclr     6, 0x6
-  bl        -0x41AB14
+lbl_80445134:
+    clrlwi.  r0, r3, 0x18
+    bne      lbl_80445158
+    lis      r3, gStrMemoryCardMgrCpp@ha
+    lis      r5, gStrMemoryCardMgrP2Assert@ha
+    addi     r3, r3, gStrMemoryCardMgrCpp@l
+    li       r4, 0x8d8
+    addi     r5, r5, gStrMemoryCardMgrP2Assert@l
+    crclr    6
+    bl       panic_f__12JUTExceptionFPCciPCce
 
-.loc_0x60:
-  mr        r3, r30
-  bl        -0xAD0
-  lwz       r0, 0xD8(r30)
-  cmpwi     r0, 0x1
-  bne-      .loc_0x7C
-  li        r0, 0
-  stw       r0, 0xD8(r30)
+lbl_80445158:
+    mr       r3, r30
+    bl       commandLoadGameOption__Q34Game10MemoryCard3MgrFv
+    lwz      r0, 0xd8(r30)
+    cmpwi    r0, 1
+    bne      lbl_80445174
+    li       r0, 0
+    stw      r0, 0xd8(r30)
 
-.loc_0x7C:
-  mr        r3, r30
-  lwz       r12, 0x0(r30)
-  lwz       r12, 0x28(r12)
-  mtctr     r12
-  bctrl
-  rlwinm.   r0,r3,0,24,31
-  bne-      .loc_0x160
-  mr        r3, r30
-  addi      r4, r1, 0x8
-  li        r5, 0
-  bl        -0x2A14
-  rlwinm.   r0,r3,0,24,31
-  beq-      .loc_0x160
-  lis       r3, 0x1
-  lwz       r4, 0xCC(r30)
-  subi      r3, r3, 0x4000
-  li        r5, -0x20
-  bl        -0x421170
-  mr.       r29, r3
-  bne-      .loc_0xE8
-  lis       r3, 0x804A
-  lis       r5, 0x804A
-  subi      r3, r3, 0x5234
-  li        r4, 0x8F2
-  subi      r5, r5, 0x5218
-  crclr     6, 0x6
-  bl        -0x41AB9C
+lbl_80445174:
+    mr       r3, r30
+    lwz      r12, 0(r30)
+    lwz      r12, 0x28(r12)
+    mtctr    r12
+    bctrl
+    clrlwi.  r0, r3, 0x18
+    bne      lbl_80445258
+    mr       r3, r30
+    addi     r4, r1, 8
+    li       r5, 0
+    bl       readCardSerialNo__13MemoryCardMgrFPUxQ213MemoryCardMgr9ECardSlot
+    clrlwi.  r0, r3, 0x18
+    beq      lbl_80445258
+    lis      r3, 0x0000C000@ha
+    lwz      r4, 0xcc(r30)
+    addi     r3, r3, 0x0000C000@l
+    li       r5, -32
+    bl       __nwa__FUlP7JKRHeapi
+    or.      r29, r3, r3
+    bne      lbl_804451E0
+    lis      r3, gStrMemoryCardMgrCpp@ha
+    lis      r5, gStrMemoryCardMgrP2Assert@ha
+    addi     r3, r3, gStrMemoryCardMgrCpp@l
+    li       r4, 0x8f2
+    addi     r5, r5, gStrMemoryCardMgrP2Assert@l
+    crclr    6
+    bl       panic_f__12JUTExceptionFPCciPCce
 
-.loc_0xE8:
-  lwz       r3, -0x6514(r13)
-  lwz       r5, 0x8(r1)
-  lwz       r3, 0x60(r3)
-  lwz       r6, 0xC(r1)
-  bl        0x1B34
-  mr        r3, r30
-  mr        r4, r31
-  mr        r5, r29
-  bl        0x130
-  rlwinm.   r0,r3,0,24,31
-  beq-      .loc_0x158
-  lis       r5, 0x1
-  addi      r3, r1, 0x10
-  addi      r4, r29, 0x40
-  subi      r5, r5, 0x4080
-  bl        -0x2F924
-  mr        r3, r30
-  addi      r4, r1, 0x10
-  bl        0x704
-  lwz       r3, -0x6514(r13)
-  lwz       r3, 0x60(r3)
-  stb       r31, 0x20(r3)
-  lwz       r0, 0x10(r29)
-  stw       r0, 0x18(r3)
-  lwz       r0, 0x3C(r29)
-  stw       r0, 0x1C(r3)
-  lhz       r0, 0xE(r29)
-  sth       r0, 0x22(r3)
+lbl_804451E0:
+    lwz      r3, sys@sda21(r13)
+    lwz      r5, 8(r1)
+    lwz      r3, 0x60(r3)
+    lwz      r6, 0xc(r1)
+    bl       setCardSerialNo__Q34Game14CommonSaveData3MgrFUx
+    mr       r3, r30
+    mr       r4, r31
+    mr       r5, r29
+    bl       loadPlayerProc__Q34Game10MemoryCard3MgrFScPUc
+    clrlwi.  r0, r3, 0x18
+    beq      lbl_80445250
+    lis      r5, 0x0000BF80@ha
+    addi     r3, r1, 0x10
+    addi     r4, r29, 0x40
+    addi     r5, r5, 0x0000BF80@l
+    bl       __ct__9RamStreamFPvi
+    mr       r3, r30
+    addi     r4, r1, 0x10
+    bl       readPlayer__Q34Game10MemoryCard3MgrFR6Stream
+    lwz      r3, sys@sda21(r13)
+    lwz      r3, 0x60(r3)
+    stb      r31, 0x20(r3)
+    lwz      r0, 0x10(r29)
+    stw      r0, 0x18(r3)
+    lwz      r0, 0x3c(r29)
+    stw      r0, 0x1c(r3)
+    lhz      r0, 0xe(r29)
+    sth      r0, 0x22(r3)
 
-.loc_0x158:
-  mr        r3, r29
-  bl        -0x4211A0
+lbl_80445250:
+    mr       r3, r29
+    bl       __dl__FPv
 
-.loc_0x160:
-  mr        r3, r30
-  lwz       r12, 0x0(r30)
-  lwz       r12, 0x28(r12)
-  mtctr     r12
-  bctrl
-  rlwinm    r0,r3,0,24,31
-  lwz       r31, 0x43C(r1)
-  cntlzw    r0, r0
-  lwz       r30, 0x438(r1)
-  rlwinm    r3,r0,27,5,31
-  lwz       r0, 0x444(r1)
-  lwz       r29, 0x434(r1)
-  mtlr      r0
-  addi      r1, r1, 0x440
-  blr
+lbl_80445258:
+    mr       r3, r30
+    lwz      r12, 0(r30)
+    lwz      r12, 0x28(r12)
+    mtctr    r12
+    bctrl
+    clrlwi   r0, r3, 0x18
+    lwz      r31, 0x43c(r1)
+    cntlzw   r0, r0
+    lwz      r30, 0x438(r1)
+    srwi     r3, r0, 5
+    lwz      r0, 0x444(r1)
+    lwz      r29, 0x434(r1)
+    mtlr     r0
+    addi     r1, r1, 0x440
+    blr
 
 }
 
@@ -3415,50 +3509,49 @@ void MemoryCard::Mgr::commandLoadPlayer(signed char)
 void MemoryCard::Mgr::loadPlayerForNoCard(signed char)
 {
 /*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  li        r3, 0
-  stw       r0, 0x14(r1)
-  stw       r31, 0xC(r1)
-  mr        r31, r4
-  extsb.    r0, r31
-  blt-      .loc_0x30
-  extsb     r0, r31
-  cmpwi     r0, 0x3
-  bge-      .loc_0x30
-  li        r3, 0x1
+    stwu     r1, -0x10(r1)
+    mflr     r0
+    li       r3, 0
+    stw      r0, 0x14(r1)
+    stw      r31, 0xc(r1)
+    mr       r31, r4
+    extsb.   r0, r31
+    blt      lbl_804452C4
+    extsb    r0, r31
+    cmpwi    r0, 3
+    bge      lbl_804452C4
+    li       r3, 1
 
-.loc_0x30:
-  rlwinm.   r0,r3,0,24,31
-  bne-      .loc_0x54
-  lis       r3, 0x804A
-  lis       r5, 0x804A
-  subi      r3, r3, 0x5234
-  li        r4, 0x94E
-  subi      r5, r5, 0x5218
-  crclr     6, 0x6
-  bl        -0x41ACA4
+lbl_804452C4:
+    clrlwi.  r0, r3, 0x18
+    bne      lbl_804452E8
+    lis      r3, gStrMemoryCardMgrCpp@ha
+    lis      r5, gStrMemoryCardMgrP2Assert@ha
+    addi     r3, r3, gStrMemoryCardMgrCpp@l
+    li       r4, 0x94e
+    addi     r5, r5, gStrMemoryCardMgrP2Assert@l
+    crclr    6
+    bl       panic_f__12JUTExceptionFPCciPCce
 
-.loc_0x54:
-  lwz       r3, -0x6514(r13)
-  extsb     r4, r31
-  lwz       r3, 0x60(r3)
-  stb       r31, 0x20(r3)
-  lwz       r3, -0x6514(r13)
-  lwz       r3, 0x60(r3)
-  bl        0x1CB4
-  lwz       r3, -0x6B70(r13)
-  bl        -0x25E848
-  lwz       r3, -0x6514(r13)
-  lwz       r3, 0x60(r3)
-  bl        0x1A28
-  lwz       r0, 0x14(r1)
-  li        r3, 0x1
-  lwz       r31, 0xC(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
+lbl_804452E8:
+    lwz      r3, sys@sda21(r13)
+    extsb    r4, r31
+    lwz      r3, 0x60(r3)
+    stb      r31, 0x20(r3)
+    lwz      r3, sys@sda21(r13)
+    lwz      r3, 0x60(r3)
+    bl       resetPlayer__Q34Game14CommonSaveData3MgrFSc
+    lwz      r3, playData__4Game@sda21(r13)
+    bl       reset__Q24Game8PlayDataFv
+    lwz      r3, sys@sda21(r13)
+    lwz      r3, 0x60(r3)
+    bl       resetCardSerialNo__Q34Game14CommonSaveData3MgrFv
+    lwz      r0, 0x14(r1)
+    li       r3, 1
+    lwz      r31, 0xc(r1)
+    mtlr     r0
+    addi     r1, r1, 0x10
+    blr
 
 }
 
@@ -3470,111 +3563,111 @@ void MemoryCard::Mgr::loadPlayerForNoCard(signed char)
 void MemoryCard::Mgr::loadPlayerProc(signed char, unsigned char*)
 {
 /*
-.loc_0x0:
-  stwu      r1, -0x60(r1)
-  mflr      r0
-  stw       r0, 0x64(r1)
-  stw       r31, 0x5C(r1)
-  li        r31, 0
-  stw       r30, 0x58(r1)
-  mr        r30, r3
-  li        r3, 0
-  stw       r29, 0x54(r1)
-  mr        r29, r5
-  stw       r28, 0x50(r1)
-  mr        r28, r4
-  extsb.    r0, r28
-  blt-      .loc_0x48
-  extsb     r0, r28
-  cmpwi     r0, 0x3
-  bge-      .loc_0x48
-  li        r3, 0x1
+    stwu     r1, -0x60(r1)
+    mflr     r0
+    stw      r0, 0x64(r1)
+    stw      r31, 0x5c(r1)
+    li       r31, 0
+    stw      r30, 0x58(r1)
+    mr       r30, r3
+    li       r3, 0
+    stw      r29, 0x54(r1)
+    mr       r29, r5
+    stw      r28, 0x50(r1)
+    mr       r28, r4
+    extsb.   r0, r28
+    blt      lbl_80445378
+    extsb    r0, r28
+    cmpwi    r0, 3
+    bge      lbl_80445378
+    li       r3, 1
 
-.loc_0x48:
-  rlwinm.   r0,r3,0,24,31
-  bne-      .loc_0x6C
-  lis       r3, 0x804A
-  lis       r5, 0x804A
-  subi      r3, r3, 0x5234
-  li        r4, 0x967
-  subi      r5, r5, 0x5218
-  crclr     6, 0x6
-  bl        -0x41AD58
+lbl_80445378:
+    clrlwi.  r0, r3, 0x18
+    bne      lbl_8044539C
+    lis      r3, gStrMemoryCardMgrCpp@ha
+    lis      r5, gStrMemoryCardMgrP2Assert@ha
+    addi     r3, r3, gStrMemoryCardMgrCpp@l
+    li       r4, 0x967
+    addi     r5, r5, gStrMemoryCardMgrP2Assert@l
+    crclr    6
+    bl       panic_f__12JUTExceptionFPCciPCce
 
-.loc_0x6C:
-  li        r0, 0
-  mr        r3, r30
-  stb       r0, 0x14(r1)
-  mr        r4, r28
-  addi      r5, r1, 0x8
-  li        r6, 0
-  stw       r0, 0x18(r1)
-  stw       r0, 0x1C(r1)
-  stw       r0, 0x20(r1)
-  stw       r0, 0x24(r1)
-  stw       r0, 0x28(r1)
-  stw       r0, 0x2C(r1)
-  stw       r0, 0x30(r1)
-  stw       r0, 0x34(r1)
-  stw       r0, 0x38(r1)
-  stw       r0, 0x3C(r1)
-  stw       r0, 0x40(r1)
-  stw       r0, 0x44(r1)
-  bl        -0x59C
-  mr.       r0, r3
-  blt-      .loc_0x11C
-  cmpwi     r0, 0x4
-  bge-      .loc_0x11C
-  lis       r3, 0x1
-  lwz       r5, -0x7978(r13)
-  subi      r7, r3, 0x4000
-  mr        r3, r30
-  mullw     r8, r0, r7
-  mr        r6, r29
-  li        r4, 0
-  addi      r8, r8, 0x6000
-  bl        -0x36B4
-  rlwinm.   r0,r3,0,24,31
-  mr        r31, r3
-  beq-      .loc_0x154
-  mr        r3, r30
-  mr        r4, r29
-  bl        0x5F8
-  rlwinm.   r0,r3,0,24,31
-  bne-      .loc_0x154
-  li        r0, 0x2
-  li        r31, 0
-  stw       r0, 0xD8(r30)
-  b         .loc_0x154
+lbl_8044539C:
+    li       r0, 0
+    mr       r3, r30
+    stb      r0, 0x14(r1)
+    mr       r4, r28
+    addi     r5, r1, 8
+    li       r6, 0
+    stw      r0, 0x18(r1)
+    stw      r0, 0x1c(r1)
+    stw      r0, 0x20(r1)
+    stw      r0, 0x24(r1)
+    stw      r0, 0x28(r1)
+    stw      r0, 0x2c(r1)
+    stw      r0, 0x30(r1)
+    stw      r0, 0x34(r1)
+    stw      r0, 0x38(r1)
+    stw      r0, 0x3c(r1)
+    stw      r0, 0x40(r1)
+    stw      r0, 0x44(r1)
+    bl
+getIndexPlayerInfo__Q34Game10MemoryCard3MgrFScPQ34Game10MemoryCard16PlayerInfoHeaderPb
+    or.      r0, r3, r3
+    blt      lbl_8044544C
+    cmpwi    r0, 4
+    bge      lbl_8044544C
+    lis      r3, 0x0000C000@ha
+    lwz      r5, cFileName__Q24Game10MemoryCard@sda21(r13)
+    addi     r7, r3, 0x0000C000@l
+    mr       r3, r30
+    mullw    r8, r0, r7
+    mr       r6, r29
+    li       r4, 0
+    addi     r8, r8, 0x6000
+    bl       read__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlotPCcPUcll
+    clrlwi.  r0, r3, 0x18
+    mr       r31, r3
+    beq      lbl_80445484
+    mr       r3, r30
+    mr       r4, r29
+    bl checkPlayerInfo__Q34Game10MemoryCard3MgrFPQ34Game10MemoryCard10PlayerInfo
+    clrlwi.  r0, r3, 0x18
+    bne      lbl_80445484
+    li       r0, 2
+    li       r31, 0
+    stw      r0, 0xd8(r30)
+    b        lbl_80445484
 
-.loc_0x11C:
-  lwz       r3, 0x8(r1)
-  subis     r0, r3, 0x506C
-  cmplwi    r0, 0x496E
-  bne-      .loc_0x148
-  lwz       r3, -0x6514(r13)
-  extsb     r4, r28
-  lwz       r3, 0x60(r3)
-  bl        0x1B4C
-  lwz       r3, -0x6B70(r13)
-  bl        -0x25E9B0
-  b         .loc_0x154
+lbl_8044544C:
+    lwz      r3, 8(r1)
+    addis    r0, r3, 0xaf94
+    cmplwi   r0, 0x496e
+    bne      lbl_80445478
+    lwz      r3, sys@sda21(r13)
+    extsb    r4, r28
+    lwz      r3, 0x60(r3)
+    bl       resetPlayer__Q34Game14CommonSaveData3MgrFSc
+    lwz      r3, playData__4Game@sda21(r13)
+    bl       reset__Q24Game8PlayDataFv
+    b        lbl_80445484
 
-.loc_0x148:
-  li        r0, 0x2
-  li        r31, 0
-  stw       r0, 0xD8(r30)
+lbl_80445478:
+    li       r0, 2
+    li       r31, 0
+    stw      r0, 0xd8(r30)
 
-.loc_0x154:
-  lwz       r0, 0x64(r1)
-  mr        r3, r31
-  lwz       r31, 0x5C(r1)
-  lwz       r30, 0x58(r1)
-  lwz       r29, 0x54(r1)
-  lwz       r28, 0x50(r1)
-  mtlr      r0
-  addi      r1, r1, 0x60
-  blr
+lbl_80445484:
+    lwz      r0, 0x64(r1)
+    mr       r3, r31
+    lwz      r31, 0x5c(r1)
+    lwz      r30, 0x58(r1)
+    lwz      r29, 0x54(r1)
+    lwz      r28, 0x50(r1)
+    mtlr     r0
+    addi     r1, r1, 0x60
+    blr
 
 }
 
@@ -3586,48 +3679,48 @@ void MemoryCard::Mgr::loadPlayerProc(signed char, unsigned char*)
 void MemoryCard::Mgr::commandDeletePlayer(signed char)
 {
 /*
-.loc_0x0:
-  stwu      r1, -0x20(r1)
-  mflr      r0
-  li        r5, 0
-  li        r6, 0
-  stw       r0, 0x24(r1)
-  stw       r31, 0x1C(r1)
-  li        r31, 0
-  stw       r30, 0x18(r1)
-  mr        r30, r4
-  stw       r29, 0x14(r1)
-  mr        r29, r3
-  bl        -0x68C
-  mr.       r4, r3
-  blt-      .loc_0x54
-  cmpwi     r4, 0x4
-  bge-      .loc_0x54
-  mr        r3, r29
-  extsb     r5, r30
-  bl        0x7FC
-  mr        r31, r3
-  b         .loc_0x74
+    stwu     r1, -0x20(r1)
+    mflr     r0
+    li       r5, 0
+    li       r6, 0
+    stw      r0, 0x24(r1)
+    stw      r31, 0x1c(r1)
+    li       r31, 0
+    stw      r30, 0x18(r1)
+    mr       r30, r4
+    stw      r29, 0x14(r1)
+    mr       r29, r3
+    bl
+getIndexPlayerInfo__Q34Game10MemoryCard3MgrFScPQ34Game10MemoryCard16PlayerInfoHeaderPb
+    or.      r4, r3, r3
+    blt      lbl_804454FC
+    cmpwi    r4, 4
+    bge      lbl_804454FC
+    mr       r3, r29
+    extsb    r5, r30
+    bl       writeInvalidPlayerInfo__Q34Game10MemoryCard3MgrFiSc
+    mr       r31, r3
+    b        lbl_8044551C
 
-.loc_0x54:
-  mr        r3, r29
-  mr        r4, r30
-  li        r5, 0
-  bl        0xE1C
-  rlwinm.   r0,r3,0,24,31
-  bne-      .loc_0x74
-  li        r0, 0x2
-  stw       r0, 0xD8(r29)
+lbl_804454FC:
+    mr       r3, r29
+    mr       r4, r30
+    li       r5, 0
+    bl       modifyPlayerInfo__Q34Game10MemoryCard3MgrFScPb
+    clrlwi.  r0, r3, 0x18
+    bne      lbl_8044551C
+    li       r0, 2
+    stw      r0, 0xd8(r29)
 
-.loc_0x74:
-  lwz       r0, 0x24(r1)
-  mr        r3, r31
-  lwz       r31, 0x1C(r1)
-  lwz       r30, 0x18(r1)
-  lwz       r29, 0x14(r1)
-  mtlr      r0
-  addi      r1, r1, 0x20
-  blr
+lbl_8044551C:
+    lwz      r0, 0x24(r1)
+    mr       r3, r31
+    lwz      r31, 0x1c(r1)
+    lwz      r30, 0x18(r1)
+    lwz      r29, 0x14(r1)
+    mtlr     r0
+    addi     r1, r1, 0x20
+    blr
 
 }
 
@@ -3771,37 +3864,37 @@ bool)
 void MemoryCard::Mgr::commandCheckSerialNo(void)
 {
 /*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  stw       r0, 0x14(r1)
-  stw       r31, 0xC(r1)
-  li        r31, 0
-  lwz       r4, -0x6514(r13)
-  lwz       r4, 0x60(r4)
-  lhz       r0, 0x40(r4)
-  rlwinm.   r0,r0,0,31,31
-  bne-      .loc_0x38
-  li        r0, 0x3
-  li        r31, 0x1
-  stw       r0, 0xD8(r3)
-  b         .loc_0x50
+    stwu     r1, -0x10(r1)
+    mflr     r0
+    stw      r0, 0x14(r1)
+    stw      r31, 0xc(r1)
+    li       r31, 0
+    lwz      r4, sys@sda21(r13)
+    lwz      r4, 0x60(r4)
+    lhz      r0, 0x40(r4)
+    clrlwi.  r0, r0, 0x1f
+    bne      lbl_80445710
+    li       r0, 3
+    li       r31, 1
+    stw      r0, 0xd8(r3)
+    b        lbl_80445728
 
-.loc_0x38:
-  addi      r4, r4, 0x30
-  li        r5, 0
-  bl        0x10C8
-  rlwinm.   r0,r3,0,24,31
-  beq-      .loc_0x50
-  li        r31, 0x1
+lbl_80445710:
+    addi     r4, r4, 0x30
+    li       r5, 0
+    bl
+verifyCardSerialNo__Q34Game10MemoryCard3MgrFPUxQ213MemoryCardMgr9ECardSlot
+    clrlwi.  r0, r3, 0x18
+    beq      lbl_80445728
+    li       r31, 1
 
-.loc_0x50:
-  lwz       r0, 0x14(r1)
-  mr        r3, r31
-  lwz       r31, 0xC(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
+lbl_80445728:
+    lwz      r0, 0x14(r1)
+    mr       r3, r31
+    lwz      r31, 0xc(r1)
+    mtlr     r0
+    addi     r1, r1, 0x10
+    blr
 
 }
 
@@ -3813,135 +3906,135 @@ void MemoryCard::Mgr::commandCheckSerialNo(void)
 void MemoryCard::Mgr::commandCopyPlayer(signed char, signed char)
 {
 /*
-.loc_0x0:
-  stwu      r1, -0x60(r1)
-  mflr      r0
-  stw       r0, 0x64(r1)
-  stmw      r27, 0x4C(r1)
-  mr        r27, r3
-  mr        r28, r4
-  lis       r3, 0x1
-  mr        r29, r5
-  li        r5, -0x20
-  subi      r3, r3, 0x4000
-  lwz       r4, 0xCC(r27)
-  bl        -0x421724
-  mr.       r30, r3
-  bne-      .loc_0x54
-  lis       r3, 0x804A
-  lis       r5, 0x804A
-  subi      r3, r3, 0x5234
-  li        r4, 0xA5A
-  subi      r5, r5, 0x5218
-  crclr     6, 0x6
-  bl        -0x41B150
+    stwu     r1, -0x60(r1)
+    mflr     r0
+    stw      r0, 0x64(r1)
+    stmw     r27, 0x4c(r1)
+    mr       r27, r3
+    mr       r28, r4
+    lis      r3, 0x0000C000@ha
+    mr       r29, r5
+    li       r5, -32
+    addi     r3, r3, 0x0000C000@l
+    lwz      r4, 0xcc(r27)
+    bl       __nwa__FUlP7JKRHeapi
+    or.      r30, r3, r3
+    bne      lbl_80445794
+    lis      r3, gStrMemoryCardMgrCpp@ha
+    lis      r5, gStrMemoryCardMgrP2Assert@ha
+    addi     r3, r3, gStrMemoryCardMgrCpp@l
+    li       r4, 0xa5a
+    addi     r5, r5, gStrMemoryCardMgrP2Assert@l
+    crclr    6
+    bl       panic_f__12JUTExceptionFPCciPCce
 
-.loc_0x54:
-  extsb.    r0, r28
-  li        r31, 0
-  mr        r3, r31
-  blt-      .loc_0x74
-  extsb     r0, r28
-  cmpwi     r0, 0x3
-  bge-      .loc_0x74
-  li        r3, 0x1
+lbl_80445794:
+    extsb.   r0, r28
+    li       r31, 0
+    mr       r3, r31
+    blt      lbl_804457B4
+    extsb    r0, r28
+    cmpwi    r0, 3
+    bge      lbl_804457B4
+    li       r3, 1
 
-.loc_0x74:
-  rlwinm.   r0,r3,0,24,31
-  bne-      .loc_0x98
-  lis       r3, 0x804A
-  lis       r5, 0x804A
-  subi      r3, r3, 0x5234
-  li        r4, 0x967
-  subi      r5, r5, 0x5218
-  crclr     6, 0x6
-  bl        -0x41B194
+lbl_804457B4:
+    clrlwi.  r0, r3, 0x18
+    bne      lbl_804457D8
+    lis      r3, gStrMemoryCardMgrCpp@ha
+    lis      r5, gStrMemoryCardMgrP2Assert@ha
+    addi     r3, r3, gStrMemoryCardMgrCpp@l
+    li       r4, 0x967
+    addi     r5, r5, gStrMemoryCardMgrP2Assert@l
+    crclr    6
+    bl       panic_f__12JUTExceptionFPCciPCce
 
-.loc_0x98:
-  li        r0, 0
-  mr        r3, r27
-  stb       r0, 0x14(r1)
-  mr        r4, r28
-  addi      r5, r1, 0x8
-  li        r6, 0
-  stw       r0, 0x18(r1)
-  stw       r0, 0x1C(r1)
-  stw       r0, 0x20(r1)
-  stw       r0, 0x24(r1)
-  stw       r0, 0x28(r1)
-  stw       r0, 0x2C(r1)
-  stw       r0, 0x30(r1)
-  stw       r0, 0x34(r1)
-  stw       r0, 0x38(r1)
-  stw       r0, 0x3C(r1)
-  stw       r0, 0x40(r1)
-  stw       r0, 0x44(r1)
-  bl        -0x9D8
-  mr.       r0, r3
-  blt-      .loc_0x148
-  cmpwi     r0, 0x4
-  bge-      .loc_0x148
-  lis       r3, 0x1
-  lwz       r5, -0x7978(r13)
-  subi      r7, r3, 0x4000
-  mr        r3, r27
-  mullw     r8, r0, r7
-  mr        r6, r30
-  li        r4, 0
-  addi      r8, r8, 0x6000
-  bl        -0x3AF0
-  rlwinm.   r0,r3,0,24,31
-  mr        r31, r3
-  beq-      .loc_0x180
-  mr        r3, r27
-  mr        r4, r30
-  bl        0x1BC
-  rlwinm.   r0,r3,0,24,31
-  bne-      .loc_0x180
-  li        r0, 0x2
-  li        r31, 0
-  stw       r0, 0xD8(r27)
-  b         .loc_0x180
+lbl_804457D8:
+    li       r0, 0
+    mr       r3, r27
+    stb      r0, 0x14(r1)
+    mr       r4, r28
+    addi     r5, r1, 8
+    li       r6, 0
+    stw      r0, 0x18(r1)
+    stw      r0, 0x1c(r1)
+    stw      r0, 0x20(r1)
+    stw      r0, 0x24(r1)
+    stw      r0, 0x28(r1)
+    stw      r0, 0x2c(r1)
+    stw      r0, 0x30(r1)
+    stw      r0, 0x34(r1)
+    stw      r0, 0x38(r1)
+    stw      r0, 0x3c(r1)
+    stw      r0, 0x40(r1)
+    stw      r0, 0x44(r1)
+    bl
+getIndexPlayerInfo__Q34Game10MemoryCard3MgrFScPQ34Game10MemoryCard16PlayerInfoHeaderPb
+    or.      r0, r3, r3
+    blt      lbl_80445888
+    cmpwi    r0, 4
+    bge      lbl_80445888
+    lis      r3, 0x0000C000@ha
+    lwz      r5, cFileName__Q24Game10MemoryCard@sda21(r13)
+    addi     r7, r3, 0x0000C000@l
+    mr       r3, r27
+    mullw    r8, r0, r7
+    mr       r6, r30
+    li       r4, 0
+    addi     r8, r8, 0x6000
+    bl       read__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlotPCcPUcll
+    clrlwi.  r0, r3, 0x18
+    mr       r31, r3
+    beq      lbl_804458C0
+    mr       r3, r27
+    mr       r4, r30
+    bl checkPlayerInfo__Q34Game10MemoryCard3MgrFPQ34Game10MemoryCard10PlayerInfo
+    clrlwi.  r0, r3, 0x18
+    bne      lbl_804458C0
+    li       r0, 2
+    li       r31, 0
+    stw      r0, 0xd8(r27)
+    b        lbl_804458C0
 
-.loc_0x148:
-  lwz       r3, 0x8(r1)
-  subis     r0, r3, 0x506C
-  cmplwi    r0, 0x496E
-  bne-      .loc_0x174
-  lwz       r3, -0x6514(r13)
-  extsb     r4, r28
-  lwz       r3, 0x60(r3)
-  bl        0x1710
-  lwz       r3, -0x6B70(r13)
-  bl        -0x25EDEC
-  b         .loc_0x180
+lbl_80445888:
+    lwz      r3, 8(r1)
+    addis    r0, r3, 0xaf94
+    cmplwi   r0, 0x496e
+    bne      lbl_804458B4
+    lwz      r3, sys@sda21(r13)
+    extsb    r4, r28
+    lwz      r3, 0x60(r3)
+    bl       resetPlayer__Q34Game14CommonSaveData3MgrFSc
+    lwz      r3, playData__4Game@sda21(r13)
+    bl       reset__Q24Game8PlayDataFv
+    b        lbl_804458C0
 
-.loc_0x174:
-  li        r0, 0x2
-  li        r31, 0
-  stw       r0, 0xD8(r27)
+lbl_804458B4:
+    li       r0, 2
+    li       r31, 0
+    stw      r0, 0xd8(r27)
 
-.loc_0x180:
-  rlwinm.   r0,r31,0,24,31
-  mr        r28, r31
-  beq-      .loc_0x1A8
-  stb       r29, 0x8(r30)
-  mr        r3, r27
-  mr        r4, r29
-  mr        r5, r30
-  li        r6, 0
-  bl        -0x3A4
-  mr        r28, r3
+lbl_804458C0:
+    clrlwi.  r0, r31, 0x18
+    mr       r28, r31
+    beq      lbl_804458E8
+    stb      r29, 8(r30)
+    mr       r3, r27
+    mr       r4, r29
+    mr       r5, r30
+    li       r6, 0
+    bl       savePlayerProc__Q34Game10MemoryCard3MgrFScPUcb
+    mr       r28, r3
 
-.loc_0x1A8:
-  mr        r3, r30
-  bl        -0x421838
-  mr        r3, r28
-  lmw       r27, 0x4C(r1)
-  lwz       r0, 0x64(r1)
-  mtlr      r0
-  addi      r1, r1, 0x60
-  blr
+lbl_804458E8:
+    mr       r3, r30
+    bl       __dl__FPv
+    mr       r3, r28
+    lmw      r27, 0x4c(r1)
+    lwz      r0, 0x64(r1)
+    mtlr     r0
+    addi     r1, r1, 0x60
+    blr
 
 }
 
@@ -3953,16 +4046,15 @@ void MemoryCard::Mgr::commandCopyPlayer(signed char, signed char)
 void MemoryCard::Mgr::writePlayer(Stream&)
 {
 /*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  stw       r0, 0x14(r1)
-  lwz       r3, -0x6B70(r13)
-  bl        -0x228924
-  lwz       r0, 0x14(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
+    stwu     r1, -0x10(r1)
+    mflr     r0
+    stw      r0, 0x14(r1)
+    lwz      r3, playData__4Game@sda21(r13)
+    bl       write__Q24Game8PlayDataFR6Stream
+    lwz      r0, 0x14(r1)
+    mtlr     r0
+    addi     r1, r1, 0x10
+    blr
 
 }
 
@@ -3974,16 +4066,15 @@ void MemoryCard::Mgr::writePlayer(Stream&)
 void MemoryCard::Mgr::readPlayer(Stream&)
 {
 /*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  stw       r0, 0x14(r1)
-  lwz       r3, -0x6B70(r13)
-  bl        -0x228208
-  lwz       r0, 0x14(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
+    stwu     r1, -0x10(r1)
+    mflr     r0
+    stw      r0, 0x14(r1)
+    lwz      r3, playData__4Game@sda21(r13)
+    bl       read__Q24Game8PlayDataFR6Stream
+    lwz      r0, 0x14(r1)
+    mtlr     r0
+    addi     r1, r1, 0x10
+    blr
 
 }
 
@@ -3995,38 +4086,38 @@ void MemoryCard::Mgr::readPlayer(Stream&)
 void MemoryCard::Mgr::checkOptionInfo(Game::MemoryCard::OptionInfo*)
 {
 /*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  stw       r0, 0x14(r1)
-  stw       r31, 0xC(r1)
-  li        r31, 0
-  stw       r30, 0x8(r1)
-  mr        r30, r4
-  lbz       r0, 0xD0(r3)
-  cmplwi    r0, 0
-  beq-      .loc_0x58
-  bl        0x70
-  rlwinm.   r0,r3,0,24,31
-  beq-      .loc_0x58
-  lwz       r3, 0x0(r30)
-  subis     r0, r3, 0x4F70
-  cmplwi    r0, 0x5661
-  bne-      .loc_0x58
-  lwz       r3, 0x4(r30)
-  subis     r0, r3, 0x3030
-  cmplwi    r0, 0x3032
-  bne-      .loc_0x58
-  li        r31, 0x1
+    stwu     r1, -0x10(r1)
+    mflr     r0
+    stw      r0, 0x14(r1)
+    stw      r31, 0xc(r1)
+    li       r31, 0
+    stw      r30, 8(r1)
+    mr       r30, r4
+    lbz      r0, 0xd0(r3)
+    cmplwi   r0, 0
+    beq      lbl_804459A8
+    bl
+testCheckSumOptionInfo__Q34Game10MemoryCard3MgrFPQ34Game10MemoryCard10OptionInfo
+    clrlwi.  r0, r3, 0x18
+    beq      lbl_804459A8
+    lwz      r3, 0(r30)
+    addis    r0, r3, 0xb090
+    cmplwi   r0, 0x5661
+    bne      lbl_804459A8
+    lwz      r3, 4(r30)
+    addis    r0, r3, 0xcfd0
+    cmplwi   r0, 0x3032
+    bne      lbl_804459A8
+    li       r31, 1
 
-.loc_0x58:
-  lwz       r0, 0x14(r1)
-  mr        r3, r31
-  lwz       r31, 0xC(r1)
-  lwz       r30, 0x8(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
+lbl_804459A8:
+    lwz      r0, 0x14(r1)
+    mr       r3, r31
+    lwz      r31, 0xc(r1)
+    lwz      r30, 8(r1)
+    mtlr     r0
+    addi     r1, r1, 0x10
+    blr
 
 }
 
@@ -4089,38 +4180,38 @@ void MemoryCard::Mgr::testCheckSumOptionInfo(
 void MemoryCard::Mgr::checkPlayerInfo(Game::MemoryCard::PlayerInfo*)
 {
 /*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  stw       r0, 0x14(r1)
-  stw       r31, 0xC(r1)
-  li        r31, 0
-  stw       r30, 0x8(r1)
-  mr        r30, r4
-  lbz       r0, 0xD0(r3)
-  cmplwi    r0, 0
-  beq-      .loc_0x58
-  bl        0x74
-  rlwinm.   r0,r3,0,24,31
-  beq-      .loc_0x58
-  lwz       r3, 0x0(r30)
-  subis     r0, r3, 0x506C
-  cmplwi    r0, 0x5661
-  bne-      .loc_0x58
-  lwz       r3, 0x4(r30)
-  subis     r0, r3, 0x3030
-  cmplwi    r0, 0x3033
-  bne-      .loc_0x58
-  li        r31, 0x1
+    stwu     r1, -0x10(r1)
+    mflr     r0
+    stw      r0, 0x14(r1)
+    stw      r31, 0xc(r1)
+    li       r31, 0
+    stw      r30, 8(r1)
+    mr       r30, r4
+    lbz      r0, 0xd0(r3)
+    cmplwi   r0, 0
+    beq      lbl_80445A80
+    bl
+testCheckSumPlayerInfo__Q34Game10MemoryCard3MgrFPQ34Game10MemoryCard10PlayerInfo
+    clrlwi.  r0, r3, 0x18
+    beq      lbl_80445A80
+    lwz      r3, 0(r30)
+    addis    r0, r3, 0xaf94
+    cmplwi   r0, 0x5661
+    bne      lbl_80445A80
+    lwz      r3, 4(r30)
+    addis    r0, r3, 0xcfd0
+    cmplwi   r0, 0x3033
+    bne      lbl_80445A80
+    li       r31, 1
 
-.loc_0x58:
-  lwz       r0, 0x14(r1)
-  mr        r3, r31
-  lwz       r31, 0xC(r1)
-  lwz       r30, 0x8(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
+lbl_80445A80:
+    lwz      r0, 0x14(r1)
+    mr       r3, r31
+    lwz      r31, 0xc(r1)
+    lwz      r30, 8(r1)
+    mtlr     r0
+    addi     r1, r1, 0x10
+    blr
 
 }
 
@@ -4186,69 +4277,68 @@ void MemoryCard::Mgr::testCheckSumPlayerInfo(
 void MemoryCard::Mgr::getCardStatus(void)
 {
 /*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  stw       r0, 0x14(r1)
-  stw       r31, 0xC(r1)
-  stw       r30, 0x8(r1)
-  mr        r30, r3
-  bl        -0x4B68
-  cmplwi    r3, 0x2
-  bne-      .loc_0x90
-  lwz       r0, 0xD8(r30)
-  cmpwi     r0, 0x2
-  beq-      .loc_0x60
-  bge-      .loc_0x44
-  cmpwi     r0, 0
-  beq-      .loc_0x50
-  bge-      .loc_0x58
-  b         .loc_0x70
+    stwu     r1, -0x10(r1)
+    mflr     r0
+    stw      r0, 0x14(r1)
+    stw      r31, 0xc(r1)
+    stw      r30, 8(r1)
+    mr       r30, r3
+    bl       checkStatus__13MemoryCardMgrFv
+    cmplwi   r3, 2
+    bne      lbl_80445B9C
+    lwz      r0, 0xd8(r30)
+    cmpwi    r0, 2
+    beq      lbl_80445B6C
+    bge      lbl_80445B50
+    cmpwi    r0, 0
+    beq      lbl_80445B5C
+    bge      lbl_80445B64
+    b        lbl_80445B7C
 
-.loc_0x44:
-  cmpwi     r0, 0x4
-  bge-      .loc_0x70
-  b         .loc_0x68
+lbl_80445B50:
+    cmpwi    r0, 4
+    bge      lbl_80445B7C
+    b        lbl_80445B74
 
-.loc_0x50:
-  li        r31, 0x2
-  b         .loc_0x9C
+lbl_80445B5C:
+    li       r31, 2
+    b        lbl_80445BA8
 
-.loc_0x58:
-  li        r31, 0xC
-  b         .loc_0x9C
+lbl_80445B64:
+    li       r31, 0xc
+    b        lbl_80445BA8
 
-.loc_0x60:
-  li        r31, 0xD
-  b         .loc_0x9C
+lbl_80445B6C:
+    li       r31, 0xd
+    b        lbl_80445BA8
 
-.loc_0x68:
-  li        r31, 0xE
-  b         .loc_0x9C
+lbl_80445B74:
+    li       r31, 0xe
+    b        lbl_80445BA8
 
-.loc_0x70:
-  lis       r3, 0x804A
-  lis       r5, 0x804A
-  subi      r3, r3, 0x5234
-  li        r4, 0xB10
-  subi      r5, r5, 0x5218
-  crclr     6, 0x6
-  bl        -0x41B554
-  b         .loc_0x9C
+lbl_80445B7C:
+    lis      r3, gStrMemoryCardMgrCpp@ha
+    lis      r5, gStrMemoryCardMgrP2Assert@ha
+    addi     r3, r3, gStrMemoryCardMgrCpp@l
+    li       r4, 0xb10
+    addi     r5, r5, gStrMemoryCardMgrP2Assert@l
+    crclr    6
+    bl       panic_f__12JUTExceptionFPCciPCce
+    b        lbl_80445BA8
 
-.loc_0x90:
-  mr        r3, r30
-  bl        -0x4BE4
-  mr        r31, r3
+lbl_80445B9C:
+    mr       r3, r30
+    bl       checkStatus__13MemoryCardMgrFv
+    mr       r31, r3
 
-.loc_0x9C:
-  lwz       r0, 0x14(r1)
-  mr        r3, r31
-  lwz       r31, 0xC(r1)
-  lwz       r30, 0x8(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
+lbl_80445BA8:
+    lwz      r0, 0x14(r1)
+    mr       r3, r31
+    lwz      r31, 0xc(r1)
+    lwz      r30, 8(r1)
+    mtlr     r0
+    addi     r1, r1, 0x10
+    blr
 
 }
 
@@ -4260,59 +4350,58 @@ void MemoryCard::Mgr::getCardStatus(void)
 void MemoryCard::Mgr::writeInvalidGameOption(void)
 {
 /*
-.loc_0x0:
-  stwu      r1, -0x20(r1)
-  mflr      r0
-  li        r5, -0x20
-  stw       r0, 0x24(r1)
-  stmw      r27, 0xC(r1)
-  mr        r27, r3
-  li        r3, 0x2000
-  lwz       r4, 0xCC(r27)
-  bl        -0x421B9C
-  mr.       r29, r3
-  bne-      .loc_0x48
-  lis       r3, 0x804A
-  lis       r5, 0x804A
-  subi      r3, r3, 0x5234
-  li        r4, 0xB29
-  subi      r5, r5, 0x5218
-  crclr     6, 0x6
-  bl        -0x41B5C8
+    stwu     r1, -0x20(r1)
+    mflr     r0
+    li       r5, -32
+    stw      r0, 0x24(r1)
+    stmw     r27, 0xc(r1)
+    mr       r27, r3
+    li       r3, 0x2000
+    lwz      r4, 0xcc(r27)
+    bl       __nwa__FUlP7JKRHeapi
+    or.      r29, r3, r3
+    bne      lbl_80445C0C
+    lis      r3, gStrMemoryCardMgrCpp@ha
+    lis      r5, gStrMemoryCardMgrP2Assert@ha
+    addi     r3, r3, gStrMemoryCardMgrCpp@l
+    li       r4, 0xb29
+    addi     r5, r5, gStrMemoryCardMgrP2Assert@l
+    crclr    6
+    bl       panic_f__12JUTExceptionFPCciPCce
 
-.loc_0x48:
-  lis       r3, 0x4F70
-  li        r30, 0x1
-  addi      r0, r3, 0x496E
-  li        r28, 0
-  stw       r0, 0x0(r29)
-  li        r31, 0x2000
+lbl_80445C0C:
+    lis      r3, 0x4F70496E@ha
+    li       r30, 1
+    addi     r0, r3, 0x4F70496E@l
+    li       r28, 0
+    stw      r0, 0(r29)
+    li       r31, 0x2000
 
-.loc_0x60:
-  lwz       r5, -0x7978(r13)
-  mr        r3, r27
-  mr        r6, r29
-  mr        r8, r31
-  li        r4, 0
-  li        r7, 0x2000
-  bl        -0x41A0
-  rlwinm.   r0,r3,0,24,31
-  bne-      .loc_0x88
-  li        r30, 0
+lbl_80445C24:
+    lwz      r5, cFileName__Q24Game10MemoryCard@sda21(r13)
+    mr       r3, r27
+    mr       r6, r29
+    mr       r8, r31
+    li       r4, 0
+    li       r7, 0x2000
+    bl       write__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlotPCcPUcll
+    clrlwi.  r0, r3, 0x18
+    bne      lbl_80445C4C
+    li       r30, 0
 
-.loc_0x88:
-  addi      r28, r28, 0x1
-  addi      r31, r31, 0x2000
-  cmpwi     r28, 0x2
-  blt+      .loc_0x60
-  mr        r3, r29
-  bl        -0x421BAC
-  mr        r3, r30
-  lmw       r27, 0xC(r1)
-  lwz       r0, 0x24(r1)
-  mtlr      r0
-  addi      r1, r1, 0x20
-  blr
+lbl_80445C4C:
+    addi     r28, r28, 1
+    addi     r31, r31, 0x2000
+    cmpwi    r28, 2
+    blt      lbl_80445C24
+    mr       r3, r29
+    bl       __dl__FPv
+    mr       r3, r30
+    lmw      r27, 0xc(r1)
+    lwz      r0, 0x24(r1)
+    mtlr     r0
+    addi     r1, r1, 0x20
+    blr
 
 }
 
@@ -4324,41 +4413,38 @@ void MemoryCard::Mgr::writeInvalidGameOption(void)
 void MemoryCard::Mgr::writeInvalidPlayerInfoAll(void)
 {
 /*
-.loc_0x0:
-  stwu      r1, -0x20(r1)
-  mflr      r0
-  stw       r0, 0x24(r1)
-  stw       r31, 0x1C(r1)
-  li        r31, 0x1
-  stw       r30, 0x18(r1)
-  li        r30, 0
-  stw       r29, 0x14(r1)
-  mr        r29, r3
+    stwu     r1, -0x20(r1)
+    mflr     r0
+    stw      r0, 0x24(r1)
+    stw      r31, 0x1c(r1)
+    li       r31, 1
+    stw      r30, 0x18(r1)
+    li       r30, 0
+    stw      r29, 0x14(r1)
+    mr       r29, r3
 
-.loc_0x24:
-  subi      r0, r30, 0x1
-  mr        r3, r29
-  mr        r4, r30
-  extsb     r5, r0
-  bl        .loc_0x70
-  rlwinm.   r0,r3,0,24,31
-  bne-      .loc_0x44
-  li        r31, 0
+lbl_80445CA0:
+    addi     r0, r30, -1
+    mr       r3, r29
+    mr       r4, r30
+    extsb    r5, r0
+    bl       writeInvalidPlayerInfo__Q34Game10MemoryCard3MgrFiSc
+    clrlwi.  r0, r3, 0x18
+    bne      lbl_80445CC0
+    li       r31, 0
 
-.loc_0x44:
-  addi      r30, r30, 0x1
-  cmpwi     r30, 0x4
-  blt+      .loc_0x24
-  lwz       r0, 0x24(r1)
-  mr        r3, r31
-  lwz       r31, 0x1C(r1)
-  lwz       r30, 0x18(r1)
-  lwz       r29, 0x14(r1)
-  mtlr      r0
-  addi      r1, r1, 0x20
-  blr
-
-.loc_0x70:
+lbl_80445CC0:
+    addi     r30, r30, 1
+    cmpwi    r30, 4
+    blt      lbl_80445CA0
+    lwz      r0, 0x24(r1)
+    mr       r3, r31
+    lwz      r31, 0x1c(r1)
+    lwz      r30, 0x18(r1)
+    lwz      r29, 0x14(r1)
+    mtlr     r0
+    addi     r1, r1, 0x20
+    blr
 
 }
 
@@ -4370,81 +4456,80 @@ void MemoryCard::Mgr::writeInvalidPlayerInfoAll(void)
 void MemoryCard::Mgr::writeInvalidPlayerInfo(int, signed char)
 {
 /*
-.loc_0x0:
-  stwu      r1, -0x20(r1)
-  mflr      r0
-  stw       r0, 0x24(r1)
-  li        r0, 0
-  stw       r31, 0x1C(r1)
-  stw       r30, 0x18(r1)
-  mr        r30, r5
-  stw       r29, 0x14(r1)
-  mr.       r29, r4
-  stw       r28, 0x10(r1)
-  mr        r28, r3
-  blt-      .loc_0x3C
-  cmpwi     r29, 0x4
-  bge-      .loc_0x3C
-  li        r0, 0x1
+    stwu     r1, -0x20(r1)
+    mflr     r0
+    stw      r0, 0x24(r1)
+    li       r0, 0
+    stw      r31, 0x1c(r1)
+    stw      r30, 0x18(r1)
+    mr       r30, r5
+    stw      r29, 0x14(r1)
+    or.      r29, r4, r4
+    stw      r28, 0x10(r1)
+    mr       r28, r3
+    blt      lbl_80445D28
+    cmpwi    r29, 4
+    bge      lbl_80445D28
+    li       r0, 1
 
-.loc_0x3C:
-  rlwinm.   r0,r0,0,24,31
-  bne-      .loc_0x60
-  lis       r3, 0x804A
-  lis       r5, 0x804A
-  subi      r3, r3, 0x5234
-  li        r4, 0xB6A
-  subi      r5, r5, 0x5218
-  crclr     6, 0x6
-  bl        -0x41B708
+lbl_80445D28:
+    clrlwi.  r0, r0, 0x18
+    bne      lbl_80445D4C
+    lis      r3, gStrMemoryCardMgrCpp@ha
+    lis      r5, gStrMemoryCardMgrP2Assert@ha
+    addi     r3, r3, gStrMemoryCardMgrCpp@l
+    li       r4, 0xb6a
+    addi     r5, r5, gStrMemoryCardMgrP2Assert@l
+    crclr    6
+    bl       panic_f__12JUTExceptionFPCciPCce
 
-.loc_0x60:
-  lwz       r4, 0xCC(r28)
-  li        r3, 0x2000
-  li        r5, -0x20
-  bl        -0x421D10
-  mr.       r31, r3
-  bne-      .loc_0x94
-  lis       r3, 0x804A
-  lis       r5, 0x804A
-  subi      r3, r3, 0x5234
-  li        r4, 0xB6D
-  subi      r5, r5, 0x5218
-  crclr     6, 0x6
-  bl        -0x41B73C
+lbl_80445D4C:
+    lwz      r4, 0xcc(r28)
+    li       r3, 0x2000
+    li       r5, -32
+    bl       __nwa__FUlP7JKRHeapi
+    or.      r31, r3, r3
+    bne      lbl_80445D80
+    lis      r3, gStrMemoryCardMgrCpp@ha
+    lis      r5, gStrMemoryCardMgrP2Assert@ha
+    addi     r3, r3, gStrMemoryCardMgrCpp@l
+    li       r4, 0xb6d
+    addi     r5, r5, gStrMemoryCardMgrP2Assert@l
+    crclr    6
+    bl       panic_f__12JUTExceptionFPCciPCce
 
-.loc_0x94:
-  mr        r3, r31
-  li        r4, 0xCD
-  li        r5, 0x2000
-  bl        -0x440CD8
-  lis       r3, 0x506C
-  lis       r4, 0x1
-  addi      r5, r3, 0x496E
-  mr        r3, r28
-  subi      r0, r4, 0x4000
-  stw       r5, 0x0(r31)
-  mullw     r8, r29, r0
-  mr        r6, r31
-  stb       r30, 0x8(r31)
-  li        r4, 0
-  li        r7, 0x2000
-  lwz       r5, -0x7978(r13)
-  addi      r8, r8, 0x6000
-  bl        -0x4328
-  mr        r0, r3
-  mr        r3, r31
-  mr        r31, r0
-  bl        -0x421D20
-  lwz       r0, 0x24(r1)
-  mr        r3, r31
-  lwz       r31, 0x1C(r1)
-  lwz       r30, 0x18(r1)
-  lwz       r29, 0x14(r1)
-  lwz       r28, 0x10(r1)
-  mtlr      r0
-  addi      r1, r1, 0x20
-  blr
+lbl_80445D80:
+    mr       r3, r31
+    li       r4, 0xcd
+    li       r5, 0x2000
+    bl       memset
+    lis      r3, 0x506C496E@ha
+    lis      r4, 0x0000C000@ha
+    addi     r5, r3, 0x506C496E@l
+    mr       r3, r28
+    addi     r0, r4, 0x0000C000@l
+    stw      r5, 0(r31)
+    mullw    r8, r29, r0
+    mr       r6, r31
+    stb      r30, 8(r31)
+    li       r4, 0
+    li       r7, 0x2000
+    lwz      r5, cFileName__Q24Game10MemoryCard@sda21(r13)
+    addi     r8, r8, 0x6000
+    bl       write__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlotPCcPUcll
+    mr       r0, r3
+    mr       r3, r31
+    mr       r31, r0
+    bl       __dl__FPv
+    lwz      r0, 0x24(r1)
+    mr       r3, r31
+    lwz      r31, 0x1c(r1)
+    lwz      r30, 0x18(r1)
+    lwz      r29, 0x14(r1)
+    lwz      r28, 0x10(r1)
+    mtlr     r0
+    addi     r1, r1, 0x20
+    blr
 
 }
 
@@ -4883,368 +4968,367 @@ void MemoryCard::Mgr::getIndexInvalidPlayerInfo(int*, signed char*,
 void MemoryCard::Mgr::modifyPlayerInfo(signed char, bool*)
 {
 /*
-.loc_0x0:
-  stwu      r1, -0x60(r1)
-  mflr      r0
-  stw       r0, 0x64(r1)
-  stmw      r19, 0x2C(r1)
-  mr.       r23, r5
-  mr        r31, r3
-  mr        r26, r4
-  beq-      .loc_0x28
-  li        r0, 0
-  stb       r0, 0x0(r23)
+    stwu     r1, -0x60(r1)
+    mflr     r0
+    stw      r0, 0x64(r1)
+    stmw     r19, 0x2c(r1)
+    or.      r23, r5, r5
+    mr       r31, r3
+    mr       r26, r4
+    beq      lbl_8044634C
+    li       r0, 0
+    stb      r0, 0(r23)
 
-.loc_0x28:
-  li        r3, 0
-  li        r0, -0x1
-  addi      r27, r1, 0xC
-  stw       r3, 0x1C(r1)
-  mr        r24, r27
-  li        r25, 0
-  stb       r3, 0x8(r1)
-  li        r22, 0x6000
-  lis       r20, 0x1
-  stw       r0, 0x10(r1)
-  stw       r3, 0x20(r1)
-  stb       r3, 0x9(r1)
-  stw       r0, 0x14(r1)
-  stw       r3, 0x24(r1)
-  stb       r3, 0xA(r1)
-  stw       r0, 0x18(r1)
-  stb       r3, 0xC(r1)
-  stb       r3, 0xD(r1)
-  stb       r3, 0xE(r1)
-  stb       r3, 0xF(r1)
+lbl_8044634C:
+    li       r3, 0
+    li       r0, -1
+    addi     r27, r1, 0xc
+    stw      r3, 0x1c(r1)
+    mr       r24, r27
+    li       r25, 0
+    stb      r3, 8(r1)
+    li       r22, 0x6000
+    lis      r20, 0x0000C000@ha
+    stw      r0, 0x10(r1)
+    stw      r3, 0x20(r1)
+    stb      r3, 9(r1)
+    stw      r0, 0x14(r1)
+    stw      r3, 0x24(r1)
+    stb      r3, 0xa(r1)
+    stw      r0, 0x18(r1)
+    stb      r3, 0xc(r1)
+    stb      r3, 0xd(r1)
+    stb      r3, 0xe(r1)
+    stb      r3, 0xf(r1)
 
-.loc_0x78:
-  lwz       r4, 0xCC(r31)
-  subi      r3, r20, 0x4000
-  li        r5, -0x20
-  bl        -0x422360
-  mr.       r28, r3
-  bne-      .loc_0xAC
-  lis       r3, 0x804A
-  lis       r5, 0x804A
-  subi      r3, r3, 0x5234
-  li        r4, 0xD75
-  subi      r5, r5, 0x5218
-  crclr     6, 0x6
-  bl        -0x41BD8C
+lbl_8044639C:
+    lwz      r4, 0xcc(r31)
+    addi     r3, r20, 0x0000C000@l
+    li       r5, -32
+    bl       __nwa__FUlP7JKRHeapi
+    or.      r28, r3, r3
+    bne      lbl_804463D0
+    lis      r3, gStrMemoryCardMgrCpp@ha
+    lis      r5, gStrMemoryCardMgrP2Assert@ha
+    addi     r3, r3, gStrMemoryCardMgrCpp@l
+    li       r4, 0xd75
+    addi     r5, r5, gStrMemoryCardMgrP2Assert@l
+    crclr    6
+    bl       panic_f__12JUTExceptionFPCciPCce
 
-.loc_0xAC:
-  lwz       r5, -0x7978(r13)
-  mr        r3, r31
-  mr        r6, r28
-  mr        r8, r22
-  subi      r7, r20, 0x4000
-  li        r4, 0
-  bl        -0x4684
-  rlwinm.   r0,r3,0,24,31
-  mr        r29, r3
-  beq-      .loc_0x214
-  lbz       r0, 0xD0(r31)
-  li        r19, 0
-  mr        r21, r19
-  cmplwi    r0, 0
-  mr        r30, r19
-  beq-      .loc_0x114
-  lis       r5, 0x1
-  mr        r3, r31
-  mr        r4, r28
-  subi      r5, r5, 0x4004
-  bl        -0x3D90
-  addis     r4, r28, 0x1
-  lwz       r0, -0x4004(r4)
-  cmplw     r0, r3
-  bne-      .loc_0x114
-  li        r30, 0x1
+lbl_804463D0:
+    lwz      r5, cFileName__Q24Game10MemoryCard@sda21(r13)
+    mr       r3, r31
+    mr       r6, r28
+    mr       r8, r22
+    addi     r7, r20, -16384
+    li       r4, 0
+    bl       read__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlotPCcPUcll
+    clrlwi.  r0, r3, 0x18
+    mr       r29, r3
+    beq      lbl_80446538
+    lbz      r0, 0xd0(r31)
+    li       r19, 0
+    mr       r21, r19
+    cmplwi   r0, 0
+    mr       r30, r19
+    beq      lbl_80446438
+    lis      r5, 0x0000BFFC@ha
+    mr       r3, r31
+    mr       r4, r28
+    addi     r5, r5, 0x0000BFFC@l
+    bl       calcCheckSum__13MemoryCardMgrFPvUl
+    addis    r4, r28, 1
+    lwz      r0, -0x4004(r4)
+    cmplw    r0, r3
+    bne      lbl_80446438
+    li       r30, 1
 
-.loc_0x114:
-  rlwinm.   r0,r30,0,24,31
-  beq-      .loc_0x130
-  lwz       r3, 0x0(r28)
-  subis     r0, r3, 0x506C
-  cmplwi    r0, 0x5661
-  bne-      .loc_0x130
-  li        r21, 0x1
+lbl_80446438:
+    clrlwi.  r0, r30, 0x18
+    beq      lbl_80446454
+    lwz      r3, 0(r28)
+    addis    r0, r3, 0xaf94
+    cmplwi   r0, 0x5661
+    bne      lbl_80446454
+    li       r21, 1
 
-.loc_0x130:
-  rlwinm.   r0,r21,0,24,31
-  beq-      .loc_0x14C
-  lwz       r3, 0x4(r28)
-  subis     r0, r3, 0x3030
-  cmplwi    r0, 0x3033
-  bne-      .loc_0x14C
-  li        r19, 0x1
+lbl_80446454:
+    clrlwi.  r0, r21, 0x18
+    beq      lbl_80446470
+    lwz      r3, 4(r28)
+    addis    r0, r3, 0xcfd0
+    cmplwi   r0, 0x3033
+    bne      lbl_80446470
+    li       r19, 1
 
-.loc_0x14C:
-  rlwinm.   r0,r19,0,24,31
-  beq-      .loc_0x1B4
-  lbz       r0, 0x8(r28)
-  addi      r7, r1, 0x1C
-  extsb     r0, r0
-  rlwinm    r4,r0,2,0,29
-  lwzx      r3, r7, r4
-  cmplwi    r3, 0
-  beq-      .loc_0x17C
-  lwz       r0, 0x10(r28)
-  cmplw     r0, r3
-  ble-      .loc_0x1A8
+lbl_80446470:
+    clrlwi.  r0, r19, 0x18
+    beq      lbl_804464D8
+    lbz      r0, 8(r28)
+    addi     r7, r1, 0x1c
+    extsb    r0, r0
+    slwi     r4, r0, 2
+    lwzx     r3, r7, r4
+    cmplwi   r3, 0
+    beq      lbl_804464A0
+    lwz      r0, 0x10(r28)
+    cmplw    r0, r3
+    ble      lbl_804464CC
 
-.loc_0x17C:
-  addi      r6, r1, 0x10
-  lwzx      r5, r6, r4
-  cmpwi     r5, -0x1
-  beq-      .loc_0x198
-  addi      r3, r1, 0xC
-  li        r0, 0x1
-  stbx      r0, r3, r5
+lbl_804464A0:
+    addi     r6, r1, 0x10
+    lwzx     r5, r6, r4
+    cmpwi    r5, -1
+    beq      lbl_804464BC
+    addi     r3, r1, 0xc
+    li       r0, 1
+    stbx     r0, r3, r5
 
-.loc_0x198:
-  lwz       r0, 0x10(r28)
-  stwx      r25, r6, r4
-  stwx      r0, r7, r4
-  b         .loc_0x214
+lbl_804464BC:
+    lwz      r0, 0x10(r28)
+    stwx     r25, r6, r4
+    stwx     r0, r7, r4
+    b        lbl_80446538
 
-.loc_0x1A8:
-  li        r0, 0x1
-  stb       r0, 0x0(r24)
-  b         .loc_0x214
+lbl_804464CC:
+    li       r0, 1
+    stb      r0, 0(r24)
+    b        lbl_80446538
 
-.loc_0x1B4:
-  lwz       r3, 0x0(r28)
-  subis     r0, r3, 0x506C
-  cmplwi    r0, 0x496E
-  bne-      .loc_0x20C
-  lbz       r3, 0x8(r28)
-  extsb.    r0, r3
-  blt-      .loc_0x20C
-  extsb     r0, r3
-  cmpwi     r0, 0x3
-  bge-      .loc_0x20C
-  addi      r3, r1, 0x8
-  lbzx      r0, r3, r0
-  cmplwi    r0, 0
-  beq-      .loc_0x1F4
-  li        r0, 0x1
-  stb       r0, 0x0(r24)
+lbl_804464D8:
+    lwz      r3, 0(r28)
+    addis    r0, r3, 0xaf94
+    cmplwi   r0, 0x496e
+    bne      lbl_80446530
+    lbz      r3, 8(r28)
+    extsb.   r0, r3
+    blt      lbl_80446530
+    extsb    r0, r3
+    cmpwi    r0, 3
+    bge      lbl_80446530
+    addi     r3, r1, 8
+    lbzx     r0, r3, r0
+    cmplwi   r0, 0
+    beq      lbl_80446518
+    li       r0, 1
+    stb      r0, 0(r24)
 
-.loc_0x1F4:
-  lbz       r0, 0x8(r28)
-  addi      r3, r1, 0x8
-  li        r4, 0x1
-  extsb     r0, r0
-  stbx      r4, r3, r0
-  b         .loc_0x214
+lbl_80446518:
+    lbz      r0, 8(r28)
+    addi     r3, r1, 8
+    li       r4, 1
+    extsb    r0, r0
+    stbx     r4, r3, r0
+    b        lbl_80446538
 
-.loc_0x20C:
-  li        r0, 0x1
-  stb       r0, 0x0(r24)
+lbl_80446530:
+    li       r0, 1
+    stb      r0, 0(r24)
 
-.loc_0x214:
-  mr        r3, r28
-  subi      r5, r20, 0x4000
-  li        r4, 0xCD
-  bl        -0x441490
-  mr        r3, r28
-  bl        -0x422498
-  rlwinm.   r0,r29,0,24,31
-  beq-      .loc_0x24C
-  addi      r25, r25, 0x1
-  addis     r22, r22, 0x1
-  cmpwi     r25, 0x4
-  addi      r24, r24, 0x1
-  subi      r22, r22, 0x4000
-  blt+      .loc_0x78
+lbl_80446538:
+    mr       r3, r28
+    addi     r5, r20, -16384
+    li       r4, 0xcd
+    bl       memset
+    mr       r3, r28
+    bl       __dl__FPv
+    clrlwi.  r0, r29, 0x18
+    beq      lbl_80446570
+    addi     r25, r25, 1
+    addis    r22, r22, 1
+    cmpwi    r25, 4
+    addi     r24, r24, 1
+    addi     r22, r22, -16384
+    blt      lbl_8044639C
 
-.loc_0x24C:
-  rlwinm.   r0,r29,0,24,31
-  beq-      .loc_0x4A4
-  extsb     r25, r26
-  addi      r20, r1, 0x8
-  addi      r22, r1, 0x10
-  li        r28, 0
-  rlwinm    r24,r25,2,0,29
-  li        r30, 0x6000
+lbl_80446570:
+    clrlwi.  r0, r29, 0x18
+    beq      lbl_804467C8
+    extsb    r25, r26
+    addi     r20, r1, 8
+    addi     r22, r1, 0x10
+    li       r28, 0
+    slwi     r24, r25, 2
+    li       r30, 0x6000
 
-.loc_0x26C:
-  lbz       r0, 0x0(r27)
-  cmplwi    r0, 0
-  beq-      .loc_0x48C
-  lbzx      r0, r20, r25
-  cmplwi    r0, 0
-  bne-      .loc_0x350
-  lwzx      r0, r22, r24
-  cmpwi     r0, -0x1
-  bne-      .loc_0x350
-  cmpwi     r28, 0
-  li        r0, 0
-  blt-      .loc_0x2A8
-  cmpwi     r28, 0x4
-  bge-      .loc_0x2A8
-  li        r0, 0x1
+lbl_80446590:
+    lbz      r0, 0(r27)
+    cmplwi   r0, 0
+    beq      lbl_804467B0
+    lbzx     r0, r20, r25
+    cmplwi   r0, 0
+    bne      lbl_80446674
+    lwzx     r0, r22, r24
+    cmpwi    r0, -1
+    bne      lbl_80446674
+    cmpwi    r28, 0
+    li       r0, 0
+    blt      lbl_804465CC
+    cmpwi    r28, 4
+    bge      lbl_804465CC
+    li       r0, 1
 
-.loc_0x2A8:
-  rlwinm.   r0,r0,0,24,31
-  bne-      .loc_0x2CC
-  lis       r3, 0x804A
-  lis       r5, 0x804A
-  subi      r3, r3, 0x5234
-  li        r4, 0xB6A
-  subi      r5, r5, 0x5218
-  crclr     6, 0x6
-  bl        -0x41BFAC
+lbl_804465CC:
+    clrlwi.  r0, r0, 0x18
+    bne      lbl_804465F0
+    lis      r3, gStrMemoryCardMgrCpp@ha
+    lis      r5, gStrMemoryCardMgrP2Assert@ha
+    addi     r3, r3, gStrMemoryCardMgrCpp@l
+    li       r4, 0xb6a
+    addi     r5, r5, gStrMemoryCardMgrP2Assert@l
+    crclr    6
+    bl       panic_f__12JUTExceptionFPCciPCce
 
-.loc_0x2CC:
-  lwz       r4, 0xCC(r31)
-  li        r3, 0x2000
-  li        r5, -0x20
-  bl        -0x4225B4
-  mr.       r21, r3
-  bne-      .loc_0x300
-  lis       r3, 0x804A
-  lis       r5, 0x804A
-  subi      r3, r3, 0x5234
-  li        r4, 0xB6D
-  subi      r5, r5, 0x5218
-  crclr     6, 0x6
-  bl        -0x41BFE0
+lbl_804465F0:
+    lwz      r4, 0xcc(r31)
+    li       r3, 0x2000
+    li       r5, -32
+    bl       __nwa__FUlP7JKRHeapi
+    or.      r21, r3, r3
+    bne      lbl_80446624
+    lis      r3, gStrMemoryCardMgrCpp@ha
+    lis      r5, gStrMemoryCardMgrP2Assert@ha
+    addi     r3, r3, gStrMemoryCardMgrCpp@l
+    li       r4, 0xb6d
+    addi     r5, r5, gStrMemoryCardMgrP2Assert@l
+    crclr    6
+    bl       panic_f__12JUTExceptionFPCciPCce
 
-.loc_0x300:
-  mr        r3, r21
-  li        r4, 0xCD
-  li        r5, 0x2000
-  bl        -0x44157C
-  lis       r4, 0x506C
-  mr        r3, r31
-  addi      r0, r4, 0x496E
-  mr        r6, r21
-  stw       r0, 0x0(r21)
-  mr        r8, r30
-  li        r4, 0
-  li        r7, 0x2000
-  stb       r26, 0x8(r21)
-  lwz       r5, -0x7978(r13)
-  bl        -0x4BC0
-  mr        r19, r3
-  mr        r3, r21
-  bl        -0x4225B4
-  mr        r0, r19
-  b         .loc_0x46C
+lbl_80446624:
+    mr       r3, r21
+    li       r4, 0xcd
+    li       r5, 0x2000
+    bl       memset
+    lis      r4, 0x506C496E@ha
+    mr       r3, r31
+    addi     r0, r4, 0x506C496E@l
+    mr       r6, r21
+    stw      r0, 0(r21)
+    mr       r8, r30
+    li       r4, 0
+    li       r7, 0x2000
+    stb      r26, 8(r21)
+    lwz      r5, cFileName__Q24Game10MemoryCard@sda21(r13)
+    bl       write__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlotPCcPUcll
+    mr       r19, r3
+    mr       r3, r21
+    bl       __dl__FPv
+    mr       r0, r19
+    b        lbl_80446790
 
-.loc_0x350:
-  lbz       r0, 0x8(r1)
-  mr        r21, r26
-  cmplwi    r0, 0
-  bne-      .loc_0x374
-  lwz       r0, 0x10(r1)
-  cmpwi     r0, -0x1
-  bne-      .loc_0x374
-  li        r21, 0
-  b         .loc_0x3B0
+lbl_80446674:
+    lbz      r0, 8(r1)
+    mr       r21, r26
+    cmplwi   r0, 0
+    bne      lbl_80446698
+    lwz      r0, 0x10(r1)
+    cmpwi    r0, -1
+    bne      lbl_80446698
+    li       r21, 0
+    b        lbl_804466D4
 
-.loc_0x374:
-  lbz       r0, 0x9(r1)
-  cmplwi    r0, 0
-  bne-      .loc_0x394
-  lwz       r0, 0x14(r1)
-  cmpwi     r0, -0x1
-  bne-      .loc_0x394
-  li        r21, 0x1
-  b         .loc_0x3B0
+lbl_80446698:
+    lbz      r0, 9(r1)
+    cmplwi   r0, 0
+    bne      lbl_804466B8
+    lwz      r0, 0x14(r1)
+    cmpwi    r0, -1
+    bne      lbl_804466B8
+    li       r21, 1
+    b        lbl_804466D4
 
-.loc_0x394:
-  lbz       r0, 0xA(r1)
-  cmplwi    r0, 0
-  bne-      .loc_0x3B0
-  lwz       r0, 0x18(r1)
-  cmpwi     r0, -0x1
-  bne-      .loc_0x3B0
-  li        r21, 0x2
+lbl_804466B8:
+    lbz      r0, 0xa(r1)
+    cmplwi   r0, 0
+    bne      lbl_804466D4
+    lwz      r0, 0x18(r1)
+    cmpwi    r0, -1
+    bne      lbl_804466D4
+    li       r21, 2
 
-.loc_0x3B0:
-  cmpwi     r28, 0
-  li        r0, 0
-  blt-      .loc_0x3C8
-  cmpwi     r28, 0x4
-  bge-      .loc_0x3C8
-  li        r0, 0x1
+lbl_804466D4:
+    cmpwi    r28, 0
+    li       r0, 0
+    blt      lbl_804466EC
+    cmpwi    r28, 4
+    bge      lbl_804466EC
+    li       r0, 1
 
-.loc_0x3C8:
-  rlwinm.   r0,r0,0,24,31
-  bne-      .loc_0x3EC
-  lis       r3, 0x804A
-  lis       r5, 0x804A
-  subi      r3, r3, 0x5234
-  li        r4, 0xB6A
-  subi      r5, r5, 0x5218
-  crclr     6, 0x6
-  bl        -0x41C0CC
+lbl_804466EC:
+    clrlwi.  r0, r0, 0x18
+    bne      lbl_80446710
+    lis      r3, gStrMemoryCardMgrCpp@ha
+    lis      r5, gStrMemoryCardMgrP2Assert@ha
+    addi     r3, r3, gStrMemoryCardMgrCpp@l
+    li       r4, 0xb6a
+    addi     r5, r5, gStrMemoryCardMgrP2Assert@l
+    crclr    6
+    bl       panic_f__12JUTExceptionFPCciPCce
 
-.loc_0x3EC:
-  lwz       r4, 0xCC(r31)
-  li        r3, 0x2000
-  li        r5, -0x20
-  bl        -0x4226D4
-  mr.       r19, r3
-  bne-      .loc_0x420
-  lis       r3, 0x804A
-  lis       r5, 0x804A
-  subi      r3, r3, 0x5234
-  li        r4, 0xB6D
-  subi      r5, r5, 0x5218
-  crclr     6, 0x6
-  bl        -0x41C100
+lbl_80446710:
+    lwz      r4, 0xcc(r31)
+    li       r3, 0x2000
+    li       r5, -32
+    bl       __nwa__FUlP7JKRHeapi
+    or.      r19, r3, r3
+    bne      lbl_80446744
+    lis      r3, gStrMemoryCardMgrCpp@ha
+    lis      r5, gStrMemoryCardMgrP2Assert@ha
+    addi     r3, r3, gStrMemoryCardMgrCpp@l
+    li       r4, 0xb6d
+    addi     r5, r5, gStrMemoryCardMgrP2Assert@l
+    crclr    6
+    bl       panic_f__12JUTExceptionFPCciPCce
 
-.loc_0x420:
-  mr        r3, r19
-  li        r4, 0xCD
-  li        r5, 0x2000
-  bl        -0x44169C
-  lis       r4, 0x506C
-  mr        r3, r31
-  addi      r0, r4, 0x496E
-  mr        r6, r19
-  stw       r0, 0x0(r19)
-  mr        r8, r30
-  li        r4, 0
-  li        r7, 0x2000
-  stb       r21, 0x8(r19)
-  lwz       r5, -0x7978(r13)
-  bl        -0x4CE0
-  mr        r21, r3
-  mr        r3, r19
-  bl        -0x4226D4
-  mr        r0, r21
+lbl_80446744:
+    mr       r3, r19
+    li       r4, 0xcd
+    li       r5, 0x2000
+    bl       memset
+    lis      r4, 0x506C496E@ha
+    mr       r3, r31
+    addi     r0, r4, 0x506C496E@l
+    mr       r6, r19
+    stw      r0, 0(r19)
+    mr       r8, r30
+    li       r4, 0
+    li       r7, 0x2000
+    stb      r21, 8(r19)
+    lwz      r5, cFileName__Q24Game10MemoryCard@sda21(r13)
+    bl       write__13MemoryCardMgrFQ213MemoryCardMgr9ECardSlotPCcPUcll
+    mr       r21, r3
+    mr       r3, r19
+    bl       __dl__FPv
+    mr       r0, r21
 
-.loc_0x46C:
-  rlwinm.   r0,r0,0,24,31
-  beq-      .loc_0x488
-  cmplwi    r23, 0
-  beq-      .loc_0x4A4
-  li        r0, 0x1
-  stb       r0, 0x0(r23)
-  b         .loc_0x4A4
+lbl_80446790:
+    clrlwi.  r0, r0, 0x18
+    beq      lbl_804467AC
+    cmplwi   r23, 0
+    beq      lbl_804467C8
+    li       r0, 1
+    stb      r0, 0(r23)
+    b        lbl_804467C8
 
-.loc_0x488:
-  li        r29, 0
+lbl_804467AC:
+    li       r29, 0
 
-.loc_0x48C:
-  addi      r28, r28, 0x1
-  addis     r30, r30, 0x1
-  cmpwi     r28, 0x4
-  addi      r27, r27, 0x1
-  subi      r30, r30, 0x4000
-  blt+      .loc_0x26C
+lbl_804467B0:
+    addi     r28, r28, 1
+    addis    r30, r30, 1
+    cmpwi    r28, 4
+    addi     r27, r27, 1
+    addi     r30, r30, -16384
+    blt      lbl_80446590
 
-.loc_0x4A4:
-  mr        r3, r29
-  lmw       r19, 0x2C(r1)
-  lwz       r0, 0x64(r1)
-  mtlr      r0
-  addi      r1, r1, 0x60
-  blr
+lbl_804467C8:
+    mr       r3, r29
+    lmw      r19, 0x2c(r1)
+    lwz      r0, 0x64(r1)
+    mtlr     r0
+    addi     r1, r1, 0x60
+    blr
 
 }
 
@@ -5306,44 +5390,43 @@ void MemoryCard::Mgr::verifyCardSerialNo(unsigned long long*,
 void MemoryCard::Mgr::resetError(void)
 {
 /*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  stw       r0, 0x14(r1)
-  stw       r31, 0xC(r1)
-  mr        r31, r3
-  li        r3, 0
-  bl        -0x36E47C
-  cmpwi     r3, 0
-  beq-      .loc_0x3C
-  mr        r3, r31
-  bl        -0x5A20
-  li        r0, 0
-  stw       r0, 0xD8(r31)
-  mr        r31, r3
-  b         .loc_0x40
+    stwu     r1, -0x10(r1)
+    mflr     r0
+    stw      r0, 0x14(r1)
+    stw      r31, 0xc(r1)
+    mr       r31, r3
+    li       r3, 0
+    bl       CARDProbe
+    cmpwi    r3, 0
+    beq      lbl_804468A0
+    mr       r3, r31
+    bl       cardMount__13MemoryCardMgrFv
+    li       r0, 0
+    stw      r0, 0xd8(r31)
+    mr       r31, r3
+    b        lbl_804468A4
 
-.loc_0x3C:
-  li        r31, 0x1
+lbl_804468A0:
+    li       r31, 1
 
-.loc_0x40:
-  rlwinm.   r0,r31,0,24,31
-  bne-      .loc_0x64
-  lis       r3, 0x804A
-  lis       r5, 0x804A
-  subi      r3, r3, 0x5234
-  li        r4, 0xEBD
-  subi      r5, r5, 0x5218
-  crclr     6, 0x6
-  bl        -0x41C284
+lbl_804468A4:
+    clrlwi.  r0, r31, 0x18
+    bne      lbl_804468C8
+    lis      r3, gStrMemoryCardMgrCpp@ha
+    lis      r5, gStrMemoryCardMgrP2Assert@ha
+    addi     r3, r3, gStrMemoryCardMgrCpp@l
+    li       r4, 0xebd
+    addi     r5, r5, gStrMemoryCardMgrP2Assert@l
+    crclr    6
+    bl       panic_f__12JUTExceptionFPCciPCce
 
-.loc_0x64:
-  lwz       r0, 0x14(r1)
-  mr        r3, r31
-  lwz       r31, 0xC(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
+lbl_804468C8:
+    lwz      r0, 0x14(r1)
+    mr       r3, r31
+    lwz      r31, 0xc(r1)
+    mtlr     r0
+    addi     r1, r1, 0x10
+    blr
 
 }
 
@@ -5355,86 +5438,85 @@ void MemoryCard::Mgr::resetError(void)
 void MemoryCard::Mgr::doMakeHeader(unsigned char*)
 {
 /*
-.loc_0x0:
-  stwu      r1, -0x40(r1)
-  mflr      r0
-  lis       r5, 0x804A
-  stw       r0, 0x44(r1)
-  subi      r5, r5, 0x516C
-  stw       r31, 0x3C(r1)
-  mr        r31, r4
-  li        r4, 0x20
-  stw       r30, 0x38(r1)
-  mr        r30, r3
-  addi      r3, r31, 0x1800
-  crclr     6, 0x6
-  bl        -0x37F3F8
-  bl        -0x353D84
-  addi      r5, r1, 0x10
-  bl        -0x353B6C
-  lwz       r0, 0x10(r1)
-  lis       r3, 0x804A
-  subi      r5, r3, 0x5160
-  li        r4, 0x20
-  stw       r0, 0x8(r1)
-  addi      r3, r31, 0x1820
-  lwz       r6, 0x20(r1)
-  lwz       r7, 0x1C(r1)
-  lwz       r8, 0x24(r1)
-  addi      r6, r6, 0x1
-  lwz       r9, 0x18(r1)
-  lwz       r10, 0x14(r1)
-  crclr     6, 0x6
-  bl        -0x37F43C
-  lwz       r4, 0xDC(r30)
-  cmplwi    r4, 0
-  beq-      .loc_0xD4
-  lwz       r0, 0xE0(r30)
-  cmplwi    r0, 0
-  beq-      .loc_0xD4
-  mr        r3, r31
-  li        r5, 0xE00
-  bl        -0x4417DC
-  lwz       r4, 0xE0(r30)
-  addi      r3, r31, 0xE00
-  li        r5, 0x400
-  bl        -0x4417EC
-  lwz       r4, 0xE0(r30)
-  addi      r3, r31, 0x1200
-  li        r5, 0x400
-  bl        -0x4417FC
-  lwz       r4, 0xE0(r30)
-  addi      r3, r31, 0x1600
-  li        r5, 0x200
-  addi      r4, r4, 0x400
-  bl        -0x441810
-  b         .loc_0x114
+    stwu     r1, -0x40(r1)
+    mflr     r0
+    lis      r5, lbl_8049AE94@ha
+    stw      r0, 0x44(r1)
+    addi     r5, r5, lbl_8049AE94@l
+    stw      r31, 0x3c(r1)
+    mr       r31, r4
+    li       r4, 0x20
+    stw      r30, 0x38(r1)
+    mr       r30, r3
+    addi     r3, r31, 0x1800
+    crclr    6
+    bl       snprintf
+    bl       OSGetTime
+    addi     r5, r1, 0x10
+    bl       OSTicksToCalendarTime
+    lwz      r0, 0x10(r1)
+    lis      r3, lbl_8049AEA0@ha
+    addi     r5, r3, lbl_8049AEA0@l
+    li       r4, 0x20
+    stw      r0, 8(r1)
+    addi     r3, r31, 0x1820
+    lwz      r6, 0x20(r1)
+    lwz      r7, 0x1c(r1)
+    lwz      r8, 0x24(r1)
+    addi     r6, r6, 1
+    lwz      r9, 0x18(r1)
+    lwz      r10, 0x14(r1)
+    crclr    6
+    bl       snprintf
+    lwz      r4, 0xdc(r30)
+    cmplwi   r4, 0
+    beq      lbl_804469B4
+    lwz      r0, 0xe0(r30)
+    cmplwi   r0, 0
+    beq      lbl_804469B4
+    mr       r3, r31
+    li       r5, 0xe00
+    bl       memcpy
+    lwz      r4, 0xe0(r30)
+    addi     r3, r31, 0xe00
+    li       r5, 0x400
+    bl       memcpy
+    lwz      r4, 0xe0(r30)
+    addi     r3, r31, 0x1200
+    li       r5, 0x400
+    bl       memcpy
+    lwz      r4, 0xe0(r30)
+    addi     r3, r31, 0x1600
+    li       r5, 0x200
+    addi     r4, r4, 0x400
+    bl       memcpy
+    b        lbl_804469F4
 
-.loc_0xD4:
-  mr        r3, r31
-  li        r4, 0
-  li        r5, 0xC00
-  bl        -0x44190C
-  addi      r3, r31, 0xC00
-  li        r4, 0xFF
-  li        r5, 0x200
-  bl        -0x44191C
-  addi      r3, r31, 0xE00
-  li        r4, 0
-  li        r5, 0x2000
-  bl        -0x44192C
-  addi      r3, r31, 0x2E00
-  li        r4, 0xFF
-  li        r5, 0x200
-  bl        -0x44193C
+lbl_804469B4:
+    mr       r3, r31
+    li       r4, 0
+    li       r5, 0xc00
+    bl       memset
+    addi     r3, r31, 0xc00
+    li       r4, 0xff
+    li       r5, 0x200
+    bl       memset
+    addi     r3, r31, 0xe00
+    li       r4, 0
+    li       r5, 0x2000
+    bl       memset
+    addi     r3, r31, 0x2e00
+    li       r4, 0xff
+    li       r5, 0x200
+    bl       memset
 
-.loc_0x114:
-  lwz       r0, 0x44(r1)
-  lwz       r31, 0x3C(r1)
-  lwz       r30, 0x38(r1)
-  mtlr      r0
-  addi      r1, r1, 0x40
-  blr
+lbl_804469F4:
+    lwz      r0, 0x44(r1)
+    lwz      r31, 0x3c(r1)
+    lwz      r30, 0x38(r1)
+    mtlr     r0
+    addi     r1, r1, 0x40
+    blr
 
 }
 
@@ -5446,72 +5528,71 @@ void MemoryCard::Mgr::doMakeHeader(unsigned char*)
 void MemoryCard::Mgr::doSetCardStat(CARDStat*)
 {
 /*
-.loc_0x0:
-  li        r3, 0
-  li        r0, 0x1800
-  stw       r3, 0x30(r4)
-  stw       r0, 0x38(r4)
-  lbz       r0, 0x2E(r4)
-  rlwinm    r0,r0,0,0,29
-  ori       r0, r0, 0x1
-  stb       r0, 0x2E(r4)
-  lbz       r0, 0x2E(r4)
-  rlwinm    r0,r0,0,30,28
-  ori       r0, r0, 0x4
-  stb       r0, 0x2E(r4)
-  lhz       r0, 0x34(r4)
-  rlwinm    r0,r0,0,0,29
-  ori       r0, r0, 0x1
-  sth       r0, 0x34(r4)
-  lhz       r0, 0x34(r4)
-  rlwinm    r0,r0,0,30,27
-  ori       r0, r0, 0x4
-  sth       r0, 0x34(r4)
-  lhz       r0, 0x34(r4)
-  rlwinm    r0,r0,0,28,25
-  sth       r0, 0x34(r4)
-  lhz       r0, 0x34(r4)
-  rlwinm    r0,r0,0,26,23
-  sth       r0, 0x34(r4)
-  lhz       r0, 0x34(r4)
-  rlwinm    r0,r0,0,24,21
-  sth       r0, 0x34(r4)
-  lhz       r0, 0x34(r4)
-  rlwinm    r0,r0,0,22,19
-  sth       r0, 0x34(r4)
-  lhz       r0, 0x34(r4)
-  rlwinm    r0,r0,0,20,17
-  sth       r0, 0x34(r4)
-  lhz       r0, 0x34(r4)
-  rlwinm    r0,r0,0,18,31
-  sth       r0, 0x34(r4)
-  lhz       r0, 0x36(r4)
-  rlwinm    r0,r0,0,0,29
-  ori       r0, r0, 0x3
-  sth       r0, 0x36(r4)
-  lhz       r0, 0x36(r4)
-  rlwinm    r0,r0,0,30,27
-  ori       r0, r0, 0xC
-  sth       r0, 0x36(r4)
-  lhz       r0, 0x36(r4)
-  rlwinm    r0,r0,0,28,25
-  sth       r0, 0x36(r4)
-  lhz       r0, 0x36(r4)
-  rlwinm    r0,r0,0,26,23
-  sth       r0, 0x36(r4)
-  lhz       r0, 0x36(r4)
-  rlwinm    r0,r0,0,24,21
-  sth       r0, 0x36(r4)
-  lhz       r0, 0x36(r4)
-  rlwinm    r0,r0,0,22,19
-  sth       r0, 0x36(r4)
-  lhz       r0, 0x36(r4)
-  rlwinm    r0,r0,0,20,17
-  sth       r0, 0x36(r4)
-  lhz       r0, 0x36(r4)
-  rlwinm    r0,r0,0,18,31
-  sth       r0, 0x36(r4)
-  blr
+    li       r3, 0
+    li       r0, 0x1800
+    stw      r3, 0x30(r4)
+    stw      r0, 0x38(r4)
+    lbz      r0, 0x2e(r4)
+    rlwinm   r0, r0, 0, 0, 0x1d
+    ori      r0, r0, 1
+    stb      r0, 0x2e(r4)
+    lbz      r0, 0x2e(r4)
+    rlwinm   r0, r0, 0, 0x1e, 0x1c
+    ori      r0, r0, 4
+    stb      r0, 0x2e(r4)
+    lhz      r0, 0x34(r4)
+    rlwinm   r0, r0, 0, 0, 0x1d
+    ori      r0, r0, 1
+    sth      r0, 0x34(r4)
+    lhz      r0, 0x34(r4)
+    rlwinm   r0, r0, 0, 0x1e, 0x1b
+    ori      r0, r0, 4
+    sth      r0, 0x34(r4)
+    lhz      r0, 0x34(r4)
+    rlwinm   r0, r0, 0, 0x1c, 0x19
+    sth      r0, 0x34(r4)
+    lhz      r0, 0x34(r4)
+    rlwinm   r0, r0, 0, 0x1a, 0x17
+    sth      r0, 0x34(r4)
+    lhz      r0, 0x34(r4)
+    rlwinm   r0, r0, 0, 0x18, 0x15
+    sth      r0, 0x34(r4)
+    lhz      r0, 0x34(r4)
+    rlwinm   r0, r0, 0, 0x16, 0x13
+    sth      r0, 0x34(r4)
+    lhz      r0, 0x34(r4)
+    rlwinm   r0, r0, 0, 0x14, 0x11
+    sth      r0, 0x34(r4)
+    lhz      r0, 0x34(r4)
+    clrlwi   r0, r0, 0x12
+    sth      r0, 0x34(r4)
+    lhz      r0, 0x36(r4)
+    rlwinm   r0, r0, 0, 0, 0x1d
+    ori      r0, r0, 3
+    sth      r0, 0x36(r4)
+    lhz      r0, 0x36(r4)
+    rlwinm   r0, r0, 0, 0x1e, 0x1b
+    ori      r0, r0, 0xc
+    sth      r0, 0x36(r4)
+    lhz      r0, 0x36(r4)
+    rlwinm   r0, r0, 0, 0x1c, 0x19
+    sth      r0, 0x36(r4)
+    lhz      r0, 0x36(r4)
+    rlwinm   r0, r0, 0, 0x1a, 0x17
+    sth      r0, 0x36(r4)
+    lhz      r0, 0x36(r4)
+    rlwinm   r0, r0, 0, 0x18, 0x15
+    sth      r0, 0x36(r4)
+    lhz      r0, 0x36(r4)
+    rlwinm   r0, r0, 0, 0x16, 0x13
+    sth      r0, 0x36(r4)
+    lhz      r0, 0x36(r4)
+    rlwinm   r0, r0, 0, 0x14, 0x11
+    sth      r0, 0x36(r4)
+    lhz      r0, 0x36(r4)
+    clrlwi   r0, r0, 0x12
+    sth      r0, 0x36(r4)
+    blr
 
 }
 
@@ -5523,66 +5604,65 @@ void MemoryCard::Mgr::doSetCardStat(CARDStat*)
 void MemoryCard::Mgr::doCheckCardStat(CARDStat*)
 {
 /*
-.loc_0x0:
-  lwz       r0, 0x30(r4)
-  cmplwi    r0, 0
-  bne-      .loc_0xCC
-  lwz       r0, 0x38(r4)
-  cmplwi    r0, 0x1800
-  bne-      .loc_0xCC
-  lbz       r3, 0x2E(r4)
-  rlwinm    r0,r3,0,30,31
-  cmpwi     r0, 0x1
-  bne-      .loc_0xCC
-  rlwinm    r0,r3,0,29,29
-  cmpwi     r0, 0x4
-  bne-      .loc_0xCC
-  lhz       r3, 0x34(r4)
-  rlwinm    r0,r3,0,30,31
-  cmpwi     r0, 0x1
-  bne-      .loc_0xCC
-  rlwinm    r0,r3,30,30,31
-  cmpwi     r0, 0x1
-  bne-      .loc_0xCC
-  rlwinm.   r0,r3,28,30,31
-  bne-      .loc_0xCC
-  rlwinm.   r0,r3,26,30,31
-  bne-      .loc_0xCC
-  rlwinm.   r0,r3,24,30,31
-  bne-      .loc_0xCC
-  rlwinm.   r0,r3,22,30,31
-  bne-      .loc_0xCC
-  rlwinm.   r0,r3,20,30,31
-  bne-      .loc_0xCC
-  rlwinm.   r0,r3,18,30,31
-  bne-      .loc_0xCC
-  lhz       r3, 0x36(r4)
-  rlwinm    r0,r3,0,30,31
-  cmpwi     r0, 0x3
-  bne-      .loc_0xCC
-  rlwinm    r0,r3,30,30,31
-  cmpwi     r0, 0x3
-  bne-      .loc_0xCC
-  rlwinm.   r0,r3,28,30,31
-  bne-      .loc_0xCC
-  rlwinm.   r0,r3,26,30,31
-  bne-      .loc_0xCC
-  rlwinm.   r0,r3,24,30,31
-  bne-      .loc_0xCC
-  rlwinm.   r0,r3,22,30,31
-  bne-      .loc_0xCC
-  rlwinm.   r0,r3,20,30,31
-  bne-      .loc_0xCC
-  rlwinm.   r0,r3,18,30,31
-  beq-      .loc_0xD4
+    lwz      r0, 0x30(r4)
+    cmplwi   r0, 0
+    bne      lbl_80446BDC
+    lwz      r0, 0x38(r4)
+    cmplwi   r0, 0x1800
+    bne      lbl_80446BDC
+    lbz      r3, 0x2e(r4)
+    clrlwi   r0, r3, 0x1e
+    cmpwi    r0, 1
+    bne      lbl_80446BDC
+    rlwinm   r0, r3, 0, 0x1d, 0x1d
+    cmpwi    r0, 4
+    bne      lbl_80446BDC
+    lhz      r3, 0x34(r4)
+    clrlwi   r0, r3, 0x1e
+    cmpwi    r0, 1
+    bne      lbl_80446BDC
+    rlwinm   r0, r3, 0x1e, 0x1e, 0x1f
+    cmpwi    r0, 1
+    bne      lbl_80446BDC
+    rlwinm.  r0, r3, 0x1c, 0x1e, 0x1f
+    bne      lbl_80446BDC
+    rlwinm.  r0, r3, 0x1a, 0x1e, 0x1f
+    bne      lbl_80446BDC
+    rlwinm.  r0, r3, 0x18, 0x1e, 0x1f
+    bne      lbl_80446BDC
+    rlwinm.  r0, r3, 0x16, 0x1e, 0x1f
+    bne      lbl_80446BDC
+    rlwinm.  r0, r3, 0x14, 0x1e, 0x1f
+    bne      lbl_80446BDC
+    rlwinm.  r0, r3, 0x12, 0x1e, 0x1f
+    bne      lbl_80446BDC
+    lhz      r3, 0x36(r4)
+    clrlwi   r0, r3, 0x1e
+    cmpwi    r0, 3
+    bne      lbl_80446BDC
+    rlwinm   r0, r3, 0x1e, 0x1e, 0x1f
+    cmpwi    r0, 3
+    bne      lbl_80446BDC
+    rlwinm.  r0, r3, 0x1c, 0x1e, 0x1f
+    bne      lbl_80446BDC
+    rlwinm.  r0, r3, 0x1a, 0x1e, 0x1f
+    bne      lbl_80446BDC
+    rlwinm.  r0, r3, 0x18, 0x1e, 0x1f
+    bne      lbl_80446BDC
+    rlwinm.  r0, r3, 0x16, 0x1e, 0x1f
+    bne      lbl_80446BDC
+    rlwinm.  r0, r3, 0x14, 0x1e, 0x1f
+    bne      lbl_80446BDC
+    rlwinm.  r0, r3, 0x12, 0x1e, 0x1f
+    beq      lbl_80446BE4
 
-.loc_0xCC:
-  li        r3, 0
-  blr
+lbl_80446BDC:
+    li       r3, 0
+    blr
 
-.loc_0xD4:
-  li        r3, 0x1
-  blr
+lbl_80446BE4:
+    li       r3, 1
+    blr
 
 }
 
@@ -5624,34 +5704,33 @@ u32 MemoryCard::MgrCommandPlayerNo::getClassSize(void)
 MemoryCard::Mgr::~Mgr(void)
 {
 /*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  stw       r0, 0x14(r1)
-  stw       r31, 0xC(r1)
-  mr.       r31, r3
-  beq-      .loc_0x44
-  lis       r3, 0x804F
-  subi      r0, r3, 0x3054
-  stw       r0, 0x0(r31)
-  beq-      .loc_0x34
-  lis       r3, 0x804F
-  subi      r0, r3, 0x30F0
-  stw       r0, 0x0(r31)
+    stwu     r1, -0x10(r1)
+    mflr     r0
+    stw      r0, 0x14(r1)
+    stw      r31, 0xc(r1)
+    or.      r31, r3, r3
+    beq      lbl_80446C48
+    lis      r3, __vt__Q34Game10MemoryCard3Mgr@ha
+    addi     r0, r3, __vt__Q34Game10MemoryCard3Mgr@l
+    stw      r0, 0(r31)
+    beq      lbl_80446C38
+    lis      r3, __vt__13MemoryCardMgr@ha
+    addi     r0, r3, __vt__13MemoryCardMgr@l
+    stw      r0, 0(r31)
 
-.loc_0x34:
-  extsh.    r0, r4
-  ble-      .loc_0x44
-  mr        r3, r31
-  bl        -0x422B90
+lbl_80446C38:
+    extsh.   r0, r4
+    ble      lbl_80446C48
+    mr       r3, r31
+    bl       __dl__FPv
 
-.loc_0x44:
-  lwz       r0, 0x14(r1)
-  mr        r3, r31
-  lwz       r31, 0xC(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
+lbl_80446C48:
+    lwz      r0, 0x14(r1)
+    mr       r3, r31
+    lwz      r31, 0xc(r1)
+    mtlr     r0
+    addi     r1, r1, 0x10
+    blr
 
 }
 

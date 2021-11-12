@@ -1,6 +1,119 @@
 #include "types.h"
 
 /*
+    Generated from dpostproc
+
+    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
+        .4byte __sinit_wipe_cpp
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global lbl_804EBED8
+    lbl_804EBED8:
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+    .global __vt__10BlackFader
+    __vt__10BlackFader:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__10BlackFaderFv
+        .4byte getChildCount__5CNodeFv
+        .4byte update__8WipeBaseFv
+        .4byte draw__8WipeBaseFv
+        .4byte isWhite__10BlackFaderFv
+        .4byte isBlack__10BlackFaderFv
+        .4byte on_start__8WipeBaseFv
+        .4byte do_draw__10BlackFaderFf
+    .global __vt__14WipeOutInFader
+    __vt__14WipeOutInFader:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__14WipeOutInFaderFv
+        .4byte getChildCount__5CNodeFv
+        .4byte update__8WipeBaseFv
+        .4byte draw__8WipeBaseFv
+        .4byte isWhite__14WipeOutInFaderFv
+        .4byte isBlack__14WipeOutInFaderFv
+        .4byte on_start__14WipeOutInFaderFv
+        .4byte do_draw__14WipeOutInFaderFf
+    .global __vt__12WipeOutFader
+    __vt__12WipeOutFader:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__12WipeOutFaderFv
+        .4byte getChildCount__5CNodeFv
+        .4byte update__8WipeBaseFv
+        .4byte draw__8WipeBaseFv
+        .4byte isWhite__12WipeOutFaderFv
+        .4byte isBlack__12WipeOutFaderFv
+        .4byte on_start__12WipeOutFaderFv
+        .4byte do_draw__12WipeOutFaderFf
+    .global __vt__11WipeInFader
+    __vt__11WipeInFader:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__11WipeInFaderFv
+        .4byte getChildCount__5CNodeFv
+        .4byte update__8WipeBaseFv
+        .4byte draw__8WipeBaseFv
+        .4byte isWhite__11WipeInFaderFv
+        .4byte isBlack__11WipeInFaderFv
+        .4byte on_start__8WipeBaseFv
+        .4byte do_draw__11WipeInFaderFf
+    .global __vt__8WipeBase
+    __vt__8WipeBase:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__8WipeBaseFv
+        .4byte getChildCount__5CNodeFv
+        .4byte update__8WipeBaseFv
+        .4byte draw__8WipeBaseFv
+        .4byte isWhite__8WipeBaseFv
+        .4byte isBlack__8WipeBaseFv
+        .4byte on_start__8WipeBaseFv
+        .4byte do_draw__8WipeBaseFf
+        .4byte 0
+
+    .section .sbss # 0x80514D80 - 0x80516360
+    .global lbl_805161C0
+    lbl_805161C0:
+        .skip 0x4
+    .global lbl_805161C4
+    lbl_805161C4:
+        .skip 0x4
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_805205E8
+    lbl_805205E8:
+        .4byte 0x00000000
+    .global lbl_805205EC
+    lbl_805205EC:
+        .float 1.0
+    .global lbl_805205F0
+    lbl_805205F0:
+        .float 0.5
+    .global lbl_805205F4
+    lbl_805205F4:
+        .4byte 0x3E4CCCCD
+    .global lbl_805205F8
+    lbl_805205F8:
+        .4byte 0x3F4CCCCD
+    .global lbl_805205FC
+    lbl_805205FC:
+        .4byte 0x437F0000
+    .global lbl_80520600
+    lbl_80520600:
+        .4byte 0x43300000
+        .4byte 0x00000000
+    .global lbl_80520608
+    lbl_80520608:
+        .4byte 0x3FA00000
+    .global lbl_8052060C
+    lbl_8052060C:
+        .float 0.1
+*/
+
+/*
  * --INFO--
  * Address:	8042BD0C
  * Size:	00005C
@@ -8,30 +121,29 @@
 WipeBase::WipeBase()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        -0x1A990
-	  lis       r3, 0x804F
-	  lfs       f1, 0x2288(r2)
-	  subi      r0, r3, 0x407C
-	  lfs       f0, 0x228C(r2)
-	  stw       r0, 0x0(r31)
-	  li        r4, 0
-	  li        r0, 0x1
-	  mr        r3, r31
-	  stfs      f1, 0x18(r31)
-	  stfs      f0, 0x1C(r31)
-	  stb       r4, 0x20(r31)
-	  stb       r0, 0x21(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       __ct__5CNodeFv
+	lis      r3, __vt__8WipeBase@ha
+	lfs      f1, lbl_805205E8@sda21(r2)
+	addi     r0, r3, __vt__8WipeBase@l
+	lfs      f0, lbl_805205EC@sda21(r2)
+	stw      r0, 0(r31)
+	li       r4, 0
+	li       r0, 1
+	mr       r3, r31
+	stfs     f1, 0x18(r31)
+	stfs     f0, 0x1c(r31)
+	stb      r4, 0x20(r31)
+	stb      r0, 0x21(r31)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -43,23 +155,22 @@ WipeBase::WipeBase()
 void WipeBase::start(float)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lfs       f0, 0x2288(r2)
-	  stw       r0, 0x14(r1)
-	  li        r0, 0x1
-	  stfs      f0, 0x18(r3)
-	  stfs      f1, 0x1C(r3)
-	  stb       r0, 0x20(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lfs      f0, lbl_805205E8@sda21(r2)
+	stw      r0, 0x14(r1)
+	li       r0, 1
+	stfs     f0, 0x18(r3)
+	stfs     f1, 0x1c(r3)
+	stb      r0, 0x20(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -78,39 +189,38 @@ void WipeBase::on_start() { }
 void WipeBase::update()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  lbz       r0, 0x20(r31)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x64
-	  lwz       r3, -0x6514(r13)
-	  lfs       f0, 0x1C(r31)
-	  lfs       f1, 0x54(r3)
-	  lfs       f2, 0x18(r31)
-	  fdivs     f1, f1, f0
-	  lfs       f0, 0x228C(r2)
-	  fadds     f1, f2, f1
-	  stfs      f1, 0x18(r31)
-	  lfs       f1, 0x18(r31)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0x1, 0x2
-	  bne-      .loc_0x64
-	  stfs      f0, 0x18(r31)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	lbz      r0, 0x20(r31)
+	cmplwi   r0, 0
+	beq      lbl_8042BE10
+	lwz      r3, sys@sda21(r13)
+	lfs      f0, 0x1c(r31)
+	lfs      f1, 0x54(r3)
+	lfs      f2, 0x18(r31)
+	fdivs    f1, f1, f0
+	lfs      f0, lbl_805205EC@sda21(r2)
+	fadds    f1, f2, f1
+	stfs     f1, 0x18(r31)
+	lfs      f1, 0x18(r31)
+	fcmpo    cr0, f1, f0
+	cror     2, 1, 2
+	bne      lbl_8042BE10
+	stfs     f0, 0x18(r31)
 
-	.loc_0x64:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8042BE10:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -122,33 +232,32 @@ void WipeBase::update()
 void WipeBase::draw()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lbz       r0, 0x20(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x4C
-	  lwz       r12, 0x0(r3)
-	  lfs       f1, 0x18(r31)
-	  lwz       r12, 0x24(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f1, 0x228C(r2)
-	  lfs       f0, 0x18(r31)
-	  fcmpu     cr0, f1, f0
-	  bne-      .loc_0x4C
-	  li        r0, 0
-	  stb       r0, 0x20(r31)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lbz      r0, 0x20(r3)
+	cmplwi   r0, 0
+	beq      lbl_8042BE70
+	lwz      r12, 0(r3)
+	lfs      f1, 0x18(r31)
+	lwz      r12, 0x24(r12)
+	mtctr    r12
+	bctrl
+	lfs      f1, lbl_805205EC@sda21(r2)
+	lfs      f0, 0x18(r31)
+	fcmpu    cr0, f1, f0
+	bne      lbl_8042BE70
+	li       r0, 0
+	stb      r0, 0x20(r31)
 
-	.loc_0x4C:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8042BE70:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -167,13 +276,12 @@ void WipeBase::do_draw(float) { }
 void WipeInFader::isWhite()
 {
 	/*
-	.loc_0x0:
-	  lfs       f1, 0x18(r3)
-	  lfs       f0, 0x2290(r2)
-	  fcmpo     cr0, f1, f0
-	  mfcr      r0
-	  rlwinm    r3,r0,2,31,31
-	  blr
+	lfs      f1, 0x18(r3)
+	lfs      f0, lbl_805205F0@sda21(r2)
+	fcmpo    cr0, f1, f0
+	mfcr     r0
+	rlwinm   r3, r0, 2, 0x1f, 0x1f
+	blr
 	*/
 }
 
@@ -185,13 +293,12 @@ void WipeInFader::isWhite()
 void WipeInFader::isBlack()
 {
 	/*
-	.loc_0x0:
-	  lfs       f1, 0x18(r3)
-	  lfs       f0, 0x2290(r2)
-	  fcmpo     cr0, f1, f0
-	  mfcr      r0
-	  rlwinm    r3,r0,1,31,31
-	  blr
+	lfs      f1, 0x18(r3)
+	lfs      f0, lbl_805205F0@sda21(r2)
+	fcmpo    cr0, f1, f0
+	mfcr     r0
+	srwi     r3, r0, 0x1f
+	blr
 	*/
 }
 
@@ -203,37 +310,36 @@ void WipeInFader::isBlack()
 WipeInFader::WipeInFader()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        -0x1AB3C
-	  lis       r4, 0x804F
-	  lis       r3, 0x804F
-	  subi      r0, r4, 0x407C
-	  lfs       f1, 0x2288(r2)
-	  stw       r0, 0x0(r31)
-	  li        r5, 0
-	  lfs       f0, 0x228C(r2)
-	  li        r4, 0x1
-	  stfs      f1, 0x18(r31)
-	  subi      r0, r3, 0x40A4
-	  mr        r3, r31
-	  stfs      f0, 0x1C(r31)
-	  stb       r5, 0x20(r31)
-	  stb       r4, 0x21(r31)
-	  stw       r0, 0x0(r31)
-	  stb       r5, 0x24(r31)
-	  stb       r5, 0x25(r31)
-	  stb       r5, 0x26(r31)
-	  stb       r5, 0x27(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       __ct__5CNodeFv
+	lis      r4, __vt__8WipeBase@ha
+	lis      r3, __vt__11WipeInFader@ha
+	addi     r0, r4, __vt__8WipeBase@l
+	lfs      f1, lbl_805205E8@sda21(r2)
+	stw      r0, 0(r31)
+	li       r5, 0
+	lfs      f0, lbl_805205EC@sda21(r2)
+	li       r4, 1
+	stfs     f1, 0x18(r31)
+	addi     r0, r3, __vt__11WipeInFader@l
+	mr       r3, r31
+	stfs     f0, 0x1c(r31)
+	stb      r5, 0x20(r31)
+	stb      r4, 0x21(r31)
+	stw      r0, 0(r31)
+	stb      r5, 0x24(r31)
+	stb      r5, 0x25(r31)
+	stb      r5, 0x26(r31)
+	stb      r5, 0x27(r31)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -245,92 +351,92 @@ WipeInFader::WipeInFader()
 void WipeInFader::do_draw(float)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x60(r1)
-	  mflr      r0
-	  stw       r0, 0x64(r1)
-	  stfd      f31, 0x50(r1)
-	  psq_st    f31,0x58(r1),0,0
-	  stw       r31, 0x4C(r1)
-	  stw       r30, 0x48(r1)
-	  lwz       r4, -0x6514(r13)
-	  mr        r30, r3
-	  fmr       f31, f1
-	  lwz       r31, 0x24(r4)
-	  addi      r3, r31, 0xBC
-	  lwz       r12, 0xBC(r31)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f0, 0x2294(r2)
-	  addi      r31, r31, 0xBC
-	  fcmpo     cr0, f31, f0
-	  bge-      .loc_0x58
-	  lfs       f1, 0x2288(r2)
-	  b         .loc_0x64
+	stwu     r1, -0x60(r1)
+	mflr     r0
+	stw      r0, 0x64(r1)
+	stfd     f31, 0x50(r1)
+	psq_st   f31, 88(r1), 0, qr0
+	stw      r31, 0x4c(r1)
+	stw      r30, 0x48(r1)
+	lwz      r4, sys@sda21(r13)
+	mr       r30, r3
+	fmr      f31, f1
+	lwz      r31, 0x24(r4)
+	addi     r3, r31, 0xbc
+	lwz      r12, 0xbc(r31)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	lfs      f0, lbl_805205F4@sda21(r2)
+	addi     r31, r31, 0xbc
+	fcmpo    cr0, f31, f0
+	bge      lbl_8042BF88
+	lfs      f1, lbl_805205E8@sda21(r2)
+	b        lbl_8042BF94
 
-	.loc_0x58:
-	  fsubs     f1, f31, f0
-	  lfs       f0, 0x2298(r2)
-	  fdivs     f1, f1, f0
+lbl_8042BF88:
+	fsubs    f1, f31, f0
+	lfs      f0, lbl_805205F8@sda21(r2)
+	fdivs    f1, f1, f0
 
-	.loc_0x64:
-	  lfs       f0, 0x229C(r2)
-	  mr        r3, r31
-	  lbz       r0, 0x26(r30)
-	  addi      r4, r1, 0x8
-	  fmuls     f0, f0, f1
-	  lbz       r6, 0x24(r30)
-	  lbz       r7, 0x25(r30)
-	  addi      r5, r1, 0xC
-	  stb       r6, 0x18(r1)
-	  addi      r6, r1, 0x10
-	  fctiwz    f0, f0
-	  stb       r7, 0x19(r1)
-	  addi      r7, r1, 0x14
-	  stb       r0, 0x1A(r1)
-	  stfd      f0, 0x30(r1)
-	  lwz       r0, 0x34(r1)
-	  subfic    r0, r0, 0xFF
-	  stb       r0, 0x1B(r1)
-	  lwz       r0, 0x18(r1)
-	  stw       r0, 0x14(r1)
-	  stw       r0, 0x10(r1)
-	  stw       r0, 0xC(r1)
-	  stw       r0, 0x8(r1)
-	  bl        -0x3F5964
-	  bl        -0x8DD0
-	  lhz       r30, 0x6(r3)
-	  bl        -0x8DD8
-	  lhz       r4, 0x4(r3)
-	  lis       r0, 0x4330
-	  lfs       f3, 0x2288(r2)
-	  mr        r3, r31
-	  stw       r4, 0x3C(r1)
-	  addi      r4, r1, 0x1C
-	  lfd       f2, 0x22A0(r2)
-	  stw       r0, 0x38(r1)
-	  lfd       f0, 0x38(r1)
-	  stw       r30, 0x44(r1)
-	  fsubs     f1, f0, f2
-	  stw       r0, 0x40(r1)
-	  lfd       f0, 0x40(r1)
-	  fadds     f1, f3, f1
-	  stfs      f3, 0x1C(r1)
-	  fsubs     f0, f0, f2
-	  stfs      f3, 0x20(r1)
-	  fadds     f0, f3, f0
-	  stfs      f1, 0x24(r1)
-	  stfs      f0, 0x28(r1)
-	  bl        -0x3F587C
-	  psq_l     f31,0x58(r1),0,0
-	  lwz       r0, 0x64(r1)
-	  lfd       f31, 0x50(r1)
-	  lwz       r31, 0x4C(r1)
-	  lwz       r30, 0x48(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x60
-	  blr
+lbl_8042BF94:
+	lfs      f0, lbl_805205FC@sda21(r2)
+	mr       r3, r31
+	lbz      r0, 0x26(r30)
+	addi     r4, r1, 8
+	fmuls    f0, f0, f1
+	lbz      r6, 0x24(r30)
+	lbz      r7, 0x25(r30)
+	addi     r5, r1, 0xc
+	stb      r6, 0x18(r1)
+	addi     r6, r1, 0x10
+	fctiwz   f0, f0
+	stb      r7, 0x19(r1)
+	addi     r7, r1, 0x14
+	stb      r0, 0x1a(r1)
+	stfd     f0, 0x30(r1)
+	lwz      r0, 0x34(r1)
+	subfic   r0, r0, 0xff
+	stb      r0, 0x1b(r1)
+	lwz      r0, 0x18(r1)
+	stw      r0, 0x14(r1)
+	stw      r0, 0x10(r1)
+	stw      r0, 0xc(r1)
+	stw      r0, 8(r1)
+	bl
+setColor__14J2DGrafContextFQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColor
+	bl       getRenderModeObj__6SystemFv
+	lhz      r30, 6(r3)
+	bl       getRenderModeObj__6SystemFv
+	lhz      r4, 4(r3)
+	lis      r0, 0x4330
+	lfs      f3, lbl_805205E8@sda21(r2)
+	mr       r3, r31
+	stw      r4, 0x3c(r1)
+	addi     r4, r1, 0x1c
+	lfd      f2, lbl_80520600@sda21(r2)
+	stw      r0, 0x38(r1)
+	lfd      f0, 0x38(r1)
+	stw      r30, 0x44(r1)
+	fsubs    f1, f0, f2
+	stw      r0, 0x40(r1)
+	lfd      f0, 0x40(r1)
+	fadds    f1, f3, f1
+	stfs     f3, 0x1c(r1)
+	fsubs    f0, f0, f2
+	stfs     f3, 0x20(r1)
+	fadds    f0, f3, f0
+	stfs     f1, 0x24(r1)
+	stfs     f0, 0x28(r1)
+	bl       "fillBox__14J2DGrafContextFRCQ29JGeometry8TBox2<f>"
+	psq_l    f31, 88(r1), 0, qr0
+	lwz      r0, 0x64(r1)
+	lfd      f31, 0x50(r1)
+	lwz      r31, 0x4c(r1)
+	lwz      r30, 0x48(r1)
+	mtlr     r0
+	addi     r1, r1, 0x60
+	blr
 	*/
 }
 
@@ -342,37 +448,36 @@ void WipeInFader::do_draw(float)
 WipeOutFader::WipeOutFader()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        -0x1ACF8
-	  lis       r4, 0x804F
-	  lis       r3, 0x804F
-	  subi      r0, r4, 0x407C
-	  lfs       f1, 0x2288(r2)
-	  stw       r0, 0x0(r31)
-	  li        r5, 0
-	  lfs       f0, 0x228C(r2)
-	  li        r4, 0x1
-	  stfs      f1, 0x18(r31)
-	  subi      r0, r3, 0x40CC
-	  mr        r3, r31
-	  stfs      f0, 0x1C(r31)
-	  stb       r5, 0x20(r31)
-	  stb       r4, 0x21(r31)
-	  stw       r0, 0x0(r31)
-	  stb       r5, 0x24(r31)
-	  stb       r5, 0x25(r31)
-	  stb       r5, 0x26(r31)
-	  stb       r5, 0x27(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       __ct__5CNodeFv
+	lis      r4, __vt__8WipeBase@ha
+	lis      r3, __vt__12WipeOutFader@ha
+	addi     r0, r4, __vt__8WipeBase@l
+	lfs      f1, lbl_805205E8@sda21(r2)
+	stw      r0, 0(r31)
+	li       r5, 0
+	lfs      f0, lbl_805205EC@sda21(r2)
+	li       r4, 1
+	stfs     f1, 0x18(r31)
+	addi     r0, r3, __vt__12WipeOutFader@l
+	mr       r3, r31
+	stfs     f0, 0x1c(r31)
+	stb      r5, 0x20(r31)
+	stb      r4, 0x21(r31)
+	stw      r0, 0(r31)
+	stb      r5, 0x24(r31)
+	stb      r5, 0x25(r31)
+	stb      r5, 0x26(r31)
+	stb      r5, 0x27(r31)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -391,13 +496,12 @@ void WipeOutFader::on_start() { }
 void WipeOutFader::isWhite()
 {
 	/*
-	.loc_0x0:
-	  lfs       f1, 0x18(r3)
-	  lfs       f0, 0x2290(r2)
-	  fcmpo     cr0, f1, f0
-	  mfcr      r0
-	  rlwinm    r3,r0,1,31,31
-	  blr
+	lfs      f1, 0x18(r3)
+	lfs      f0, lbl_805205F0@sda21(r2)
+	fcmpo    cr0, f1, f0
+	mfcr     r0
+	srwi     r3, r0, 0x1f
+	blr
 	*/
 }
 
@@ -409,13 +513,12 @@ void WipeOutFader::isWhite()
 void WipeOutFader::isBlack()
 {
 	/*
-	.loc_0x0:
-	  lfs       f1, 0x18(r3)
-	  lfs       f0, 0x2290(r2)
-	  fcmpo     cr0, f1, f0
-	  mfcr      r0
-	  rlwinm    r3,r0,2,31,31
-	  blr
+	lfs      f1, 0x18(r3)
+	lfs      f0, lbl_805205F0@sda21(r2)
+	fcmpo    cr0, f1, f0
+	mfcr     r0
+	rlwinm   r3, r0, 2, 0x1f, 0x1f
+	blr
 	*/
 }
 
@@ -427,89 +530,89 @@ void WipeOutFader::isBlack()
 void WipeOutFader::do_draw(float)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x60(r1)
-	  mflr      r0
-	  stw       r0, 0x64(r1)
-	  stfd      f31, 0x50(r1)
-	  psq_st    f31,0x58(r1),0,0
-	  stw       r31, 0x4C(r1)
-	  stw       r30, 0x48(r1)
-	  lfs       f0, 0x2298(r2)
-	  mr        r30, r3
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x34
-	  lfs       f31, 0x228C(r2)
-	  b         .loc_0x3C
+	stwu     r1, -0x60(r1)
+	mflr     r0
+	stw      r0, 0x64(r1)
+	stfd     f31, 0x50(r1)
+	psq_st   f31, 88(r1), 0, qr0
+	stw      r31, 0x4c(r1)
+	stw      r30, 0x48(r1)
+	lfs      f0, lbl_805205F8@sda21(r2)
+	mr       r30, r3
+	fcmpo    cr0, f1, f0
+	ble      lbl_8042C154
+	lfs      f31, lbl_805205EC@sda21(r2)
+	b        lbl_8042C15C
 
-	.loc_0x34:
-	  lfs       f0, 0x22A8(r2)
-	  fmuls     f31, f0, f1
+lbl_8042C154:
+	lfs      f0, lbl_80520608@sda21(r2)
+	fmuls    f31, f0, f1
 
-	.loc_0x3C:
-	  lwz       r3, -0x6514(r13)
-	  lwz       r31, 0x24(r3)
-	  addi      r3, r31, 0xBC
-	  lwz       r12, 0xBC(r31)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f0, 0x229C(r2)
-	  addi      r31, r31, 0xBC
-	  lbz       r0, 0x26(r30)
-	  mr        r3, r31
-	  fmuls     f0, f0, f31
-	  lbz       r5, 0x24(r30)
-	  lbz       r6, 0x25(r30)
-	  addi      r4, r1, 0x8
-	  stb       r5, 0x18(r1)
-	  addi      r5, r1, 0xC
-	  fctiwz    f0, f0
-	  stb       r6, 0x19(r1)
-	  addi      r6, r1, 0x10
-	  addi      r7, r1, 0x14
-	  stb       r0, 0x1A(r1)
-	  stfd      f0, 0x30(r1)
-	  lwz       r0, 0x34(r1)
-	  stb       r0, 0x1B(r1)
-	  lwz       r0, 0x18(r1)
-	  stw       r0, 0x14(r1)
-	  stw       r0, 0x10(r1)
-	  stw       r0, 0xC(r1)
-	  stw       r0, 0x8(r1)
-	  bl        -0x3F5B48
-	  bl        -0x8FB4
-	  lhz       r30, 0x6(r3)
-	  bl        -0x8FBC
-	  lhz       r4, 0x4(r3)
-	  lis       r0, 0x4330
-	  lfs       f3, 0x2288(r2)
-	  mr        r3, r31
-	  stw       r4, 0x3C(r1)
-	  addi      r4, r1, 0x1C
-	  lfd       f2, 0x22A0(r2)
-	  stw       r0, 0x38(r1)
-	  lfd       f0, 0x38(r1)
-	  stw       r30, 0x44(r1)
-	  fsubs     f1, f0, f2
-	  stw       r0, 0x40(r1)
-	  lfd       f0, 0x40(r1)
-	  fadds     f1, f3, f1
-	  stfs      f3, 0x1C(r1)
-	  fsubs     f0, f0, f2
-	  stfs      f3, 0x20(r1)
-	  fadds     f0, f3, f0
-	  stfs      f1, 0x24(r1)
-	  stfs      f0, 0x28(r1)
-	  bl        -0x3F5A60
-	  psq_l     f31,0x58(r1),0,0
-	  lwz       r0, 0x64(r1)
-	  lfd       f31, 0x50(r1)
-	  lwz       r31, 0x4C(r1)
-	  lwz       r30, 0x48(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x60
-	  blr
+lbl_8042C15C:
+	lwz      r3, sys@sda21(r13)
+	lwz      r31, 0x24(r3)
+	addi     r3, r31, 0xbc
+	lwz      r12, 0xbc(r31)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	lfs      f0, lbl_805205FC@sda21(r2)
+	addi     r31, r31, 0xbc
+	lbz      r0, 0x26(r30)
+	mr       r3, r31
+	fmuls    f0, f0, f31
+	lbz      r5, 0x24(r30)
+	lbz      r6, 0x25(r30)
+	addi     r4, r1, 8
+	stb      r5, 0x18(r1)
+	addi     r5, r1, 0xc
+	fctiwz   f0, f0
+	stb      r6, 0x19(r1)
+	addi     r6, r1, 0x10
+	addi     r7, r1, 0x14
+	stb      r0, 0x1a(r1)
+	stfd     f0, 0x30(r1)
+	lwz      r0, 0x34(r1)
+	stb      r0, 0x1b(r1)
+	lwz      r0, 0x18(r1)
+	stw      r0, 0x14(r1)
+	stw      r0, 0x10(r1)
+	stw      r0, 0xc(r1)
+	stw      r0, 8(r1)
+	bl
+setColor__14J2DGrafContextFQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColor
+	bl       getRenderModeObj__6SystemFv
+	lhz      r30, 6(r3)
+	bl       getRenderModeObj__6SystemFv
+	lhz      r4, 4(r3)
+	lis      r0, 0x4330
+	lfs      f3, lbl_805205E8@sda21(r2)
+	mr       r3, r31
+	stw      r4, 0x3c(r1)
+	addi     r4, r1, 0x1c
+	lfd      f2, lbl_80520600@sda21(r2)
+	stw      r0, 0x38(r1)
+	lfd      f0, 0x38(r1)
+	stw      r30, 0x44(r1)
+	fsubs    f1, f0, f2
+	stw      r0, 0x40(r1)
+	lfd      f0, 0x40(r1)
+	fadds    f1, f3, f1
+	stfs     f3, 0x1c(r1)
+	fsubs    f0, f0, f2
+	stfs     f3, 0x20(r1)
+	fadds    f0, f3, f0
+	stfs     f1, 0x24(r1)
+	stfs     f0, 0x28(r1)
+	bl       "fillBox__14J2DGrafContextFRCQ29JGeometry8TBox2<f>"
+	psq_l    f31, 88(r1), 0, qr0
+	lwz      r0, 0x64(r1)
+	lfd      f31, 0x50(r1)
+	lwz      r31, 0x4c(r1)
+	lwz      r30, 0x48(r1)
+	mtlr     r0
+	addi     r1, r1, 0x60
+	blr
 	*/
 }
 
@@ -521,27 +624,26 @@ void WipeOutFader::do_draw(float)
 void WipeOutInFader::on_start()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lfs       f1, 0x2288(r2)
-	  mr        r4, r3
-	  stw       r0, 0x14(r1)
-	  li        r0, 0x1
-	  lfs       f0, 0x22AC(r2)
-	  stb       r0, 0x74(r3)
-	  addi      r3, r4, 0x24
-	  stfs      f1, 0x3C(r4)
-	  stfs      f0, 0x40(r4)
-	  stb       r0, 0x44(r4)
-	  lwz       r12, 0x24(r4)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lfs      f1, lbl_805205E8@sda21(r2)
+	mr       r4, r3
+	stw      r0, 0x14(r1)
+	li       r0, 1
+	lfs      f0, lbl_8052060C@sda21(r2)
+	stb      r0, 0x74(r3)
+	addi     r3, r4, 0x24
+	stfs     f1, 0x3c(r4)
+	stfs     f0, 0x40(r4)
+	stb      r0, 0x44(r4)
+	lwz      r12, 0x24(r4)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -553,24 +655,23 @@ void WipeOutInFader::on_start()
 void WipeOutInFader::isWhite()
 {
 	/*
-	.loc_0x0:
-	  lbz       r0, 0x74(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x24
-	  lfs       f1, 0x18(r3)
-	  lfs       f0, 0x2290(r2)
-	  fcmpo     cr0, f1, f0
-	  mfcr      r0
-	  rlwinm    r3,r0,1,31,31
-	  blr
+	lbz      r0, 0x74(r3)
+	cmplwi   r0, 0
+	beq      lbl_8042C2CC
+	lfs      f1, 0x18(r3)
+	lfs      f0, lbl_805205F0@sda21(r2)
+	fcmpo    cr0, f1, f0
+	mfcr     r0
+	srwi     r3, r0, 0x1f
+	blr
 
-	.loc_0x24:
-	  lfs       f1, 0x18(r3)
-	  lfs       f0, 0x2290(r2)
-	  fcmpo     cr0, f1, f0
-	  mfcr      r0
-	  rlwinm    r3,r0,2,31,31
-	  blr
+lbl_8042C2CC:
+	lfs      f1, 0x18(r3)
+	lfs      f0, lbl_805205F0@sda21(r2)
+	fcmpo    cr0, f1, f0
+	mfcr     r0
+	rlwinm   r3, r0, 2, 0x1f, 0x1f
+	blr
 	*/
 }
 
@@ -582,21 +683,20 @@ void WipeOutInFader::isWhite()
 void WipeOutInFader::isBlack()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm    r0,r3,0,24,31
-	  cntlzw    r0, r0
-	  rlwinm    r3,r0,27,5,31
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	clrlwi   r0, r3, 0x18
+	cntlzw   r0, r0
+	srwi     r3, r0, 5
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -608,55 +708,54 @@ void WipeOutInFader::isBlack()
 void WipeOutInFader::do_draw(float)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lbz       r0, 0x74(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x80
-	  lbz       r0, 0x44(r31)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x68
-	  li        r0, 0
-	  lfs       f1, 0x22AC(r2)
-	  stb       r0, 0x74(r31)
-	  li        r0, 0x1
-	  lfs       f0, 0x2288(r2)
-	  addi      r3, r31, 0x4C
-	  lfs       f2, 0x1C(r31)
-	  fsubs     f1, f2, f1
-	  stfs      f0, 0x64(r31)
-	  stfs      f1, 0x68(r31)
-	  stb       r0, 0x6C(r31)
-	  lwz       r12, 0x4C(r31)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lbz      r0, 0x74(r3)
+	cmplwi   r0, 0
+	beq      lbl_8042C39C
+	lbz      r0, 0x44(r31)
+	cmplwi   r0, 0
+	bne      lbl_8042C384
+	li       r0, 0
+	lfs      f1, lbl_8052060C@sda21(r2)
+	stb      r0, 0x74(r31)
+	li       r0, 1
+	lfs      f0, lbl_805205E8@sda21(r2)
+	addi     r3, r31, 0x4c
+	lfs      f2, 0x1c(r31)
+	fsubs    f1, f2, f1
+	stfs     f0, 0x64(r31)
+	stfs     f1, 0x68(r31)
+	stb      r0, 0x6c(r31)
+	lwz      r12, 0x4c(r31)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x68:
-	  addi      r3, r31, 0x24
-	  lwz       r12, 0x24(r31)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x94
+lbl_8042C384:
+	addi     r3, r31, 0x24
+	lwz      r12, 0x24(r31)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_8042C3B0
 
-	.loc_0x80:
-	  addi      r3, r31, 0x4C
-	  lwz       r12, 0x4C(r31)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
+lbl_8042C39C:
+	addi     r3, r31, 0x4c
+	lwz      r12, 0x4c(r31)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x94:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8042C3B0:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -668,38 +767,37 @@ void WipeOutInFader::do_draw(float)
 BlackFader::BlackFader()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        -0x1B048
-	  lis       r4, 0x804F
-	  lis       r3, 0x804F
-	  subi      r0, r4, 0x407C
-	  lfs       f1, 0x2288(r2)
-	  stw       r0, 0x0(r31)
-	  li        r5, 0
-	  lfs       f0, 0x228C(r2)
-	  li        r4, 0x1
-	  stfs      f1, 0x18(r31)
-	  subi      r0, r3, 0x411C
-	  mr        r3, r31
-	  stfs      f0, 0x1C(r31)
-	  stb       r5, 0x20(r31)
-	  stb       r4, 0x21(r31)
-	  stw       r0, 0x0(r31)
-	  stb       r5, 0x24(r31)
-	  stb       r5, 0x25(r31)
-	  stb       r5, 0x26(r31)
-	  stb       r5, 0x27(r31)
-	  stb       r4, 0x28(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       __ct__5CNodeFv
+	lis      r4, __vt__8WipeBase@ha
+	lis      r3, __vt__10BlackFader@ha
+	addi     r0, r4, __vt__8WipeBase@l
+	lfs      f1, lbl_805205E8@sda21(r2)
+	stw      r0, 0(r31)
+	li       r5, 0
+	lfs      f0, lbl_805205EC@sda21(r2)
+	li       r4, 1
+	stfs     f1, 0x18(r31)
+	addi     r0, r3, __vt__10BlackFader@l
+	mr       r3, r31
+	stfs     f0, 0x1c(r31)
+	stb      r5, 0x20(r31)
+	stb      r4, 0x21(r31)
+	stw      r0, 0(r31)
+	stb      r5, 0x24(r31)
+	stb      r5, 0x25(r31)
+	stb      r5, 0x26(r31)
+	stb      r5, 0x27(r31)
+	stb      r4, 0x28(r31)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -711,11 +809,10 @@ BlackFader::BlackFader()
 void BlackFader::isWhite()
 {
 	/*
-	.loc_0x0:
-	  lbz       r0, 0x28(r3)
-	  cntlzw    r0, r0
-	  rlwinm    r3,r0,27,5,31
-	  blr
+	lbz      r0, 0x28(r3)
+	cntlzw   r0, r0
+	srwi     r3, r0, 5
+	blr
 	*/
 }
 
@@ -727,9 +824,8 @@ void BlackFader::isWhite()
 void BlackFader::isBlack()
 {
 	/*
-	.loc_0x0:
-	  lbz       r3, 0x28(r3)
-	  blr
+	lbz      r3, 0x28(r3)
+	blr
 	*/
 }
 
@@ -741,81 +837,81 @@ void BlackFader::isBlack()
 void BlackFader::do_draw(float)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x50(r1)
-	  mflr      r0
-	  stw       r0, 0x54(r1)
-	  stw       r31, 0x4C(r1)
-	  stw       r30, 0x48(r1)
-	  mr        r30, r3
-	  lwz       r4, -0x6514(r13)
-	  lwz       r31, 0x24(r4)
-	  lwz       r12, 0xBC(r31)
-	  addi      r3, r31, 0xBC
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  lbz       r0, 0x28(r30)
-	  li        r3, 0xFF
-	  lbz       r4, 0x24(r30)
-	  addi      r31, r31, 0xBC
-	  lbz       r5, 0x25(r30)
-	  cmplwi    r0, 0
-	  lbz       r6, 0x26(r30)
-	  stb       r4, 0x1C(r1)
-	  stb       r5, 0x1D(r1)
-	  stb       r6, 0x1E(r1)
-	  stb       r3, 0x1F(r1)
-	  bne-      .loc_0x78
-	  li        r0, 0
-	  stb       r4, 0x1C(r1)
-	  stb       r5, 0x1D(r1)
-	  stb       r6, 0x1E(r1)
-	  stb       r0, 0x1F(r1)
+	stwu     r1, -0x50(r1)
+	mflr     r0
+	stw      r0, 0x54(r1)
+	stw      r31, 0x4c(r1)
+	stw      r30, 0x48(r1)
+	mr       r30, r3
+	lwz      r4, sys@sda21(r13)
+	lwz      r31, 0x24(r4)
+	lwz      r12, 0xbc(r31)
+	addi     r3, r31, 0xbc
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	lbz      r0, 0x28(r30)
+	li       r3, 0xff
+	lbz      r4, 0x24(r30)
+	addi     r31, r31, 0xbc
+	lbz      r5, 0x25(r30)
+	cmplwi   r0, 0
+	lbz      r6, 0x26(r30)
+	stb      r4, 0x1c(r1)
+	stb      r5, 0x1d(r1)
+	stb      r6, 0x1e(r1)
+	stb      r3, 0x1f(r1)
+	bne      lbl_8042C4D0
+	li       r0, 0
+	stb      r4, 0x1c(r1)
+	stb      r5, 0x1d(r1)
+	stb      r6, 0x1e(r1)
+	stb      r0, 0x1f(r1)
 
-	.loc_0x78:
-	  lwz       r0, 0x1C(r1)
-	  mr        r3, r31
-	  addi      r4, r1, 0xC
-	  addi      r5, r1, 0x10
-	  stw       r0, 0x8(r1)
-	  addi      r6, r1, 0x14
-	  addi      r7, r1, 0x18
-	  stw       r0, 0x18(r1)
-	  stw       r0, 0x14(r1)
-	  stw       r0, 0x10(r1)
-	  stw       r0, 0xC(r1)
-	  bl        -0x3F5E70
-	  bl        -0x92DC
-	  lhz       r30, 0x6(r3)
-	  bl        -0x92E4
-	  lhz       r4, 0x4(r3)
-	  lis       r0, 0x4330
-	  lfs       f3, 0x2288(r2)
-	  mr        r3, r31
-	  stw       r4, 0x34(r1)
-	  addi      r4, r1, 0x20
-	  lfd       f2, 0x22A0(r2)
-	  stw       r0, 0x30(r1)
-	  lfd       f0, 0x30(r1)
-	  stw       r30, 0x3C(r1)
-	  fsubs     f1, f0, f2
-	  stw       r0, 0x38(r1)
-	  lfd       f0, 0x38(r1)
-	  fadds     f1, f3, f1
-	  stfs      f3, 0x20(r1)
-	  fsubs     f0, f0, f2
-	  stfs      f3, 0x24(r1)
-	  fadds     f0, f3, f0
-	  stfs      f1, 0x28(r1)
-	  stfs      f0, 0x2C(r1)
-	  bl        -0x3F5D88
-	  lwz       r0, 0x54(r1)
-	  lwz       r31, 0x4C(r1)
-	  lwz       r30, 0x48(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x50
-	  blr
+lbl_8042C4D0:
+	lwz      r0, 0x1c(r1)
+	mr       r3, r31
+	addi     r4, r1, 0xc
+	addi     r5, r1, 0x10
+	stw      r0, 8(r1)
+	addi     r6, r1, 0x14
+	addi     r7, r1, 0x18
+	stw      r0, 0x18(r1)
+	stw      r0, 0x14(r1)
+	stw      r0, 0x10(r1)
+	stw      r0, 0xc(r1)
+	bl
+setColor__14J2DGrafContextFQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColor
+	bl       getRenderModeObj__6SystemFv
+	lhz      r30, 6(r3)
+	bl       getRenderModeObj__6SystemFv
+	lhz      r4, 4(r3)
+	lis      r0, 0x4330
+	lfs      f3, lbl_805205E8@sda21(r2)
+	mr       r3, r31
+	stw      r4, 0x34(r1)
+	addi     r4, r1, 0x20
+	lfd      f2, lbl_80520600@sda21(r2)
+	stw      r0, 0x30(r1)
+	lfd      f0, 0x30(r1)
+	stw      r30, 0x3c(r1)
+	fsubs    f1, f0, f2
+	stw      r0, 0x38(r1)
+	lfd      f0, 0x38(r1)
+	fadds    f1, f3, f1
+	stfs     f3, 0x20(r1)
+	fsubs    f0, f0, f2
+	stfs     f3, 0x24(r1)
+	fadds    f0, f3, f0
+	stfs     f1, 0x28(r1)
+	stfs     f0, 0x2c(r1)
+	bl       "fillBox__14J2DGrafContextFRCQ29JGeometry8TBox2<f>"
+	lwz      r0, 0x54(r1)
+	lwz      r31, 0x4c(r1)
+	lwz      r30, 0x48(r1)
+	mtlr     r0
+	addi     r1, r1, 0x50
+	blr
 	*/
 }
 
@@ -971,39 +1067,38 @@ u32 WipeBase::isBlack() { return 0x0; }
 BlackFader::~BlackFader()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x54
-	  lis       r4, 0x804F
-	  subi      r0, r4, 0x411C
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x44
-	  lis       r5, 0x804F
-	  li        r4, 0
-	  subi      r0, r5, 0x407C
-	  stw       r0, 0x0(r30)
-	  bl        -0x1B040
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_8042C5DC
+	lis      r4, __vt__10BlackFader@ha
+	addi     r0, r4, __vt__10BlackFader@l
+	stw      r0, 0(r30)
+	beq      lbl_8042C5CC
+	lis      r5, __vt__8WipeBase@ha
+	li       r4, 0
+	addi     r0, r5, __vt__8WipeBase@l
+	stw      r0, 0(r30)
+	bl       __dt__5CNodeFv
 
-	.loc_0x44:
-	  extsh.    r0, r31
-	  ble-      .loc_0x54
-	  mr        r3, r30
-	  bl        -0x408524
+lbl_8042C5CC:
+	extsh.   r0, r31
+	ble      lbl_8042C5DC
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x54:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8042C5DC:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1015,71 +1110,70 @@ BlackFader::~BlackFader()
 WipeOutInFader::~WipeOutInFader()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r3
-	  stw       r30, 0x8(r1)
-	  mr        r30, r4
-	  beq-      .loc_0xC4
-	  lis       r3, 0x804F
-	  addic.    r0, r31, 0x4C
-	  subi      r0, r3, 0x40F4
-	  stw       r0, 0x0(r31)
-	  beq-      .loc_0x60
-	  lis       r3, 0x804F
-	  addic.    r0, r31, 0x4C
-	  subi      r0, r3, 0x40A4
-	  stw       r0, 0x4C(r31)
-	  beq-      .loc_0x60
-	  lis       r4, 0x804F
-	  addi      r3, r31, 0x4C
-	  subi      r0, r4, 0x407C
-	  li        r4, 0
-	  stw       r0, 0x4C(r31)
-	  bl        -0x1B0CC
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r3, r3
+	stw      r30, 8(r1)
+	mr       r30, r4
+	beq      lbl_8042C6BC
+	lis      r3, __vt__14WipeOutInFader@ha
+	addic.   r0, r31, 0x4c
+	addi     r0, r3, __vt__14WipeOutInFader@l
+	stw      r0, 0(r31)
+	beq      lbl_8042C658
+	lis      r3, __vt__11WipeInFader@ha
+	addic.   r0, r31, 0x4c
+	addi     r0, r3, __vt__11WipeInFader@l
+	stw      r0, 0x4c(r31)
+	beq      lbl_8042C658
+	lis      r4, __vt__8WipeBase@ha
+	addi     r3, r31, 0x4c
+	addi     r0, r4, __vt__8WipeBase@l
+	li       r4, 0
+	stw      r0, 0x4c(r31)
+	bl       __dt__5CNodeFv
 
-	.loc_0x60:
-	  addic.    r0, r31, 0x24
-	  beq-      .loc_0x94
-	  lis       r3, 0x804F
-	  addic.    r0, r31, 0x24
-	  subi      r0, r3, 0x40CC
-	  stw       r0, 0x24(r31)
-	  beq-      .loc_0x94
-	  lis       r4, 0x804F
-	  addi      r3, r31, 0x24
-	  subi      r0, r4, 0x407C
-	  li        r4, 0
-	  stw       r0, 0x24(r31)
-	  bl        -0x1B100
+lbl_8042C658:
+	addic.   r0, r31, 0x24
+	beq      lbl_8042C68C
+	lis      r3, __vt__12WipeOutFader@ha
+	addic.   r0, r31, 0x24
+	addi     r0, r3, __vt__12WipeOutFader@l
+	stw      r0, 0x24(r31)
+	beq      lbl_8042C68C
+	lis      r4, __vt__8WipeBase@ha
+	addi     r3, r31, 0x24
+	addi     r0, r4, __vt__8WipeBase@l
+	li       r4, 0
+	stw      r0, 0x24(r31)
+	bl       __dt__5CNodeFv
 
-	.loc_0x94:
-	  cmplwi    r31, 0
-	  beq-      .loc_0xB4
-	  lis       r4, 0x804F
-	  mr        r3, r31
-	  subi      r0, r4, 0x407C
-	  li        r4, 0
-	  stw       r0, 0x0(r31)
-	  bl        -0x1B120
+lbl_8042C68C:
+	cmplwi   r31, 0
+	beq      lbl_8042C6AC
+	lis      r4, __vt__8WipeBase@ha
+	mr       r3, r31
+	addi     r0, r4, __vt__8WipeBase@l
+	li       r4, 0
+	stw      r0, 0(r31)
+	bl       __dt__5CNodeFv
 
-	.loc_0xB4:
-	  extsh.    r0, r30
-	  ble-      .loc_0xC4
-	  mr        r3, r31
-	  bl        -0x408604
+lbl_8042C6AC:
+	extsh.   r0, r30
+	ble      lbl_8042C6BC
+	mr       r3, r31
+	bl       __dl__FPv
 
-	.loc_0xC4:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8042C6BC:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1091,16 +1185,15 @@ WipeOutInFader::~WipeOutInFader()
 void __sinit_wipe_cpp(void)
 {
 	/*
-	.loc_0x0:
-	  lis       r4, 0x8051
-	  li        r0, -0x1
-	  lfs       f0, 0x48B0(r4)
-	  lis       r3, 0x804F
-	  stw       r0, -0x64C0(r13)
-	  stfsu     f0, -0x4128(r3)
-	  stfs      f0, -0x64BC(r13)
-	  stfs      f0, 0x4(r3)
-	  stfs      f0, 0x8(r3)
-	  blr
+	lis      r4, __float_nan@ha
+	li       r0, -1
+	lfs      f0, __float_nan@l(r4)
+	lis      r3, lbl_804EBED8@ha
+	stw      r0, lbl_805161C0@sda21(r13)
+	stfsu    f0, lbl_804EBED8@l(r3)
+	stfs     f0, lbl_805161C4@sda21(r13)
+	stfs     f0, 4(r3)
+	stfs     f0, 8(r3)
+	blr
 	*/
 }

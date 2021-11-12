@@ -5,6 +5,251 @@
 #include "JSystem/JKR/JKRHeap.h"
 #include "JSystem/JUTException.h"
 
+/*
+    Generated from dpostproc
+
+    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
+        .4byte __sinit_system_cpp
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global gStrSystem_CPP
+    gStrSystem_CPP:
+        .asciz "system.cpp"
+        .skip 0x1
+    .global gStrSystem_MemoryAllocError
+    gStrSystem_MemoryAllocError:
+        .asciz "Memory Alloc Error!\n%x (size %d)
+   align(%d)\nRestTotal=%d\nRestFree =%d\n" .skip 0x2 .global
+   gStrSystem_InOnLine gStrSystem_InOnLine: .asciz "%s in \"%s\" on line %d\n"
+        .skip 0x1
+    .global lbl_80499834
+    lbl_80499834:
+        .asciz "%s in \"%s\" on\n line %d\n"
+        .short 0x0100
+        .short 0x0200
+        .short 0x0400
+        .short 0x0020
+        .short 0x0040
+        .short 0x0001
+        .short 0x0004
+        .short 0x0008
+        .short 0x0002
+        .short 0x0010
+        .short 0x0000
+        .short 0x0000
+        .asciz "--- Game debug information ---\n"
+        .4byte 0x83528393
+        .4byte 0x835C815B
+        .4byte 0x838B82AA
+        .4byte 0x82A082E8
+        .4byte 0x82DC82B9
+        .4byte 0x82F10A00
+        .asciz "aramStrm"
+        .skip 3
+        .asciz "cpuLockCount %d retraceCount %d\n"
+        .skip 3
+        .asciz "system/retrace"
+        .skip 1
+        .asciz "CPU LOCKED!"
+    .global str_MapFileName
+    str_MapFileName:
+        .asciz "/pikmin2UP.map"
+        .skip 1
+        .asciz "construct"
+        .skip 2
+        .asciz "DvdThread"
+        .skip 2
+        .asciz "SysTimers"
+        .skip 2
+        .asciz "ResetManager"
+        .skip 3
+        .asciz "ResourceMgr2D"
+        .skip 2
+    .global lbl_8049993C
+    lbl_8049993C:
+        .asciz "P2Assert"
+        .skip 3
+        .asciz "constructWithDvdAccess1st"
+        .skip 2
+        .asciz "gameConfig.ini"
+        .skip 1
+        .asciz "constructWithDvdAccess2nd"
+        .skip 2
+        .asciz "P2JME::Mgr"
+        .skip 1
+        .asciz "SoundSystem"
+        .asciz "/AudioRes"
+        .skip 2
+        .asciz "PSound.aaf"
+        .skip 1
+        .asciz "PSGame.h"
+        .skip 3
+        .asciz "unknown renderMode:%d \n"
+    .global lbl_804999E4
+    lbl_804999E4:
+        .asciz "no display"
+        .skip 0x1
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global localNtsc608x448IntDfProg
+    localNtsc608x448IntDfProg:
+        .4byte 0x00000002
+        .4byte 0x026001C0
+        .4byte 0x01C0001B
+        .4byte 0x0010029A
+        .4byte 0x01C00000
+        .4byte 0x00000000
+        .4byte 0x00000606
+        .4byte 0x06060606
+        .4byte 0x06060606
+        .4byte 0x06060606
+        .4byte 0x06060606
+        .4byte 0x06060606
+        .4byte 0x06060000
+        .4byte 0x15161500
+        .4byte 0x00000000
+    .global localNtsc608x448IntDf
+    localNtsc608x448IntDf:
+        .4byte 0x00000000
+        .4byte 0x026001C0
+        .4byte 0x01C0001B
+        .4byte 0x0010029A
+        .4byte 0x01C00000
+        .4byte 0x00000001
+        .4byte 0x00000606
+        .4byte 0x06060606
+        .4byte 0x06060606
+        .4byte 0x06060606
+        .4byte 0x06060606
+        .4byte 0x06060606
+        .4byte 0x06060707
+        .4byte 0x0C0C0C07
+        .4byte 0x07000000
+    .global localPal608x448IntDf
+    localPal608x448IntDf:
+        .4byte 0x00000004
+        .4byte 0x026001C0
+        .4byte 0x021A0019
+        .4byte 0x0012029E
+        .4byte 0x021A0000
+        .4byte 0x00000001
+        .4byte 0x00000606
+        .4byte 0x06060606
+        .4byte 0x06060606
+        .4byte 0x06060606
+        .4byte 0x06060606
+        .4byte 0x06060606
+        .4byte 0x06060707
+        .4byte 0x0C0C0C07
+        .4byte 0x07000000
+    .global localPal60608x448IntDf
+    localPal60608x448IntDf:
+        .4byte 0x00000014
+        .4byte 0x026001C0
+        .4byte 0x01C0001B
+        .4byte 0x0010029A
+        .4byte 0x01C00000
+        .4byte 0x00000001
+        .4byte 0x00000606
+        .4byte 0x06060606
+        .4byte 0x06060606
+        .4byte 0x06060606
+        .4byte 0x06060606
+        .4byte 0x06060606
+        .4byte 0x06060707
+        .4byte 0x0C0C0C07
+        .4byte 0x07000000
+    .global sRenderModeTable
+    sRenderModeTable:
+        .4byte localNtsc608x448IntDf
+        .4byte localNtsc608x448IntDfProg
+        .4byte localPal608x448IntDf
+        .4byte localPal60608x448IntDf
+    .global lbl_804EBB40
+    lbl_804EBB40:
+        .4byte 0x00000000
+        .4byte 0xFFFFFFFF
+        .4byte constructWithDvdAccessFirst__6SystemFv
+    .global lbl_804EBB4C
+    lbl_804EBB4C:
+        .4byte 0x00000000
+        .4byte 0xFFFFFFFF
+        .4byte constructWithDvdAccessSecond__6SystemFv
+    .global __vt__9AppThread
+    __vt__9AppThread:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__9AppThreadFv
+        .4byte run__9JKRThreadFv
+    .global "__vt__17Delegate<6System>"
+    "__vt__17Delegate<6System>":
+        .4byte 0
+        .4byte 0
+        .4byte "invoke__17Delegate<6System>Fv"
+    .global __vt__Q23PSM7Factory
+    __vt__Q23PSM7Factory:
+        .4byte 0
+        .4byte 0
+        .4byte newSceneMgr__Q23PSM7FactoryFv
+
+    .section .sdata, "wa"  # 0x80514680 - 0x80514D80
+    .global sUseABXCommand
+    sUseABXCommand:
+        .byte 0x01
+        .byte 0x00
+        .byte 0x00
+        .byte 0x00
+    .global cMapFileName
+    cMapFileName:
+        .4byte str_MapFileName
+
+    .section .sbss # 0x80514D80 - 0x80516360
+    .global mRenderMode__6System
+    mRenderMode__6System:
+        .skip 0x4
+    .global sys
+    sys:
+        .skip 0x4
+    .global sVerifyArg__6System
+    sVerifyArg__6System:
+        .skip 0x8
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global gStrSystem_Abort
+    gStrSystem_Abort:
+        .asciz "abort\n"
+        .skip 0x1
+    .global lbl_80520408
+    lbl_80520408:
+        .float 0.016666668
+    .global lbl_8052040C
+    lbl_8052040C:
+        .float 1.0
+    .global lbl_80520410
+    lbl_80520410:
+        .float 0.5
+    .global lbl_80520414
+    lbl_80520414:
+        .asciz "ARAMMgr"
+        .4byte 0x00000000
+    .global lbl_80520420
+    lbl_80520420:
+        .4byte 0x43300000
+        .4byte 0x00000000
+    .global lbl_80520428
+    lbl_80520428:
+        .asciz "sound"
+        .skip 0x2
+    .global lbl_80520430
+    lbl_80520430:
+        .float 60.0
+        .4byte 0x00000000
+    .global lbl_80520438
+    lbl_80520438:
+        .4byte 0x43300000
+        .4byte 0x80000000
+*/
+
 extern char gStrSystem_CPP[11]; // system.cpp
 
 extern char
@@ -190,85 +435,84 @@ extern char gStrSystem_InOnLine[23]; // %s in \"%s\" on line %d\n
 void preUserCallback(unsigned short, OSContext*, unsigned long, unsigned long)
 {
 /*
-.loc_0x0:
-  stwu      r1, -0x40(r1)
-  mflr      r0
-  lis       r4, 0x804A
-  stw       r0, 0x44(r1)
-  stw       r31, 0x3C(r1)
-  stw       r30, 0x38(r1)
-  subi      r30, r4, 0x6838
-  stw       r29, 0x34(r1)
-  stw       r28, 0x30(r1)
-  lwz       r3, -0x6514(r13)
-  bl        0x218
-  lwz       r7, 0x84(r30)
-  addi      r31, r1, 0xC
-  lwz       r6, 0x88(r30)
-  li        r28, 0
-  lwz       r5, 0x8C(r30)
-  lwz       r4, 0x90(r30)
-  lwz       r3, 0x94(r30)
-  lhz       r0, 0x98(r30)
-  stw       r7, 0xC(r1)
-  stw       r6, 0x10(r1)
-  stw       r5, 0x14(r1)
-  stw       r4, 0x18(r1)
-  stw       r3, 0x1C(r1)
-  sth       r0, 0x20(r1)
-  b         .loc_0xA4
+    stwu     r1, -0x40(r1)
+    mflr     r0
+    lis      r4, gStrSystem_CPP@ha
+    stw      r0, 0x44(r1)
+    stw      r31, 0x3c(r1)
+    stw      r30, 0x38(r1)
+    addi     r30, r4, gStrSystem_CPP@l
+    stw      r29, 0x34(r1)
+    stw      r28, 0x30(r1)
+    lwz      r3, sys@sda21(r13)
+    bl       disableCPULockDetector__6SystemFv
+    lwz      r7, 0x84(r30)
+    addi     r31, r1, 0xc
+    lwz      r6, 0x88(r30)
+    li       r28, 0
+    lwz      r5, 0x8c(r30)
+    lwz      r4, 0x90(r30)
+    lwz      r3, 0x94(r30)
+    lhz      r0, 0x98(r30)
+    stw      r7, 0xc(r1)
+    stw      r6, 0x10(r1)
+    stw      r5, 0x14(r1)
+    stw      r4, 0x18(r1)
+    stw      r3, 0x1c(r1)
+    sth      r0, 0x20(r1)
+    b        lbl_80422190
 
-.loc_0x68:
-  li        r3, 0x64
-  bl        -0x3F5B34
-  lwz       r3, -0x7770(r13)
-  addi      r4, r1, 0x8
-  li        r5, 0
-  bl        -0x3F6598
-  lwz       r0, 0x8(r1)
-  cmplwi    r0, 0
-  beq-      .loc_0xA4
-  sub       r3, r0, r29
-  sub       r0, r29, r0
-  nor       r3, r3, r0
-  addi      r0, r28, 0x1
-  srawi     r3, r3, 0x1F
-  and       r28, r0, r3
+lbl_80422154:
+    li       r3, 0x64
+    bl       waitTime__12JUTExceptionFl
+    lwz      r3, sErrorManager__12JUTException@sda21(r13)
+    addi     r4, r1, 8
+    li       r5, 0
+    bl       readPad__12JUTExceptionFPUlPUl
+    lwz      r0, 8(r1)
+    cmplwi   r0, 0
+    beq      lbl_80422190
+    subf     r3, r29, r0
+    subf     r0, r0, r29
+    nor      r3, r3, r0
+    addi     r0, r28, 1
+    srawi    r3, r3, 0x1f
+    and      r28, r0, r3
 
-.loc_0xA4:
-  rlwinm    r0,r28,1,0,30
-  lhzx      r29, r31, r0
-  cmplwi    r29, 0
-  bne+      .loc_0x68
-  lwz       r3, -0x775C(r13)
-  li        r0, 0x1
-  stb       r0, -0x7990(r13)
-  cmplwi    r3, 0
-  beq-      .loc_0xEC
-  stb       r0, 0x68(r3)
-  li        r0, 0x3
-  addi      r4, r30, 0x9C
-  stw       r0, 0x58(r3)
-  bl        -0x3F9798
-  lwz       r3, -0x7790(r13)
-  li        r4, 0x1
-  bl        -0x3F90CC
-  b         .loc_0xF8
+lbl_80422190:
+    slwi     r0, r28, 1
+    lhzx     r29, r31, r0
+    cmplwi   r29, 0
+    bne      lbl_80422154
+    lwz      r3, sConsole__12JUTException@sda21(r13)
+    li       r0, 1
+    stb      r0, sUseABXCommand@sda21(r13)
+    cmplwi   r3, 0
+    beq      lbl_804221D8
+    stb      r0, 0x68(r3)
+    li       r0, 3
+    addi     r4, r30, 0x9c
+    stw      r0, 0x58(r3)
+    bl       print__10JUTConsoleFPCc
+    lwz      r3, sManager__17JUTConsoleManager@sda21(r13)
+    li       r4, 1
+    bl       drawDirect__17JUTConsoleManagerCFb
+    b        lbl_804221E4
 
-.loc_0xEC:
-  addi      r3, r30, 0xBC
-  crclr     6, 0x6
-  bl        -0x334AF4
+lbl_804221D8:
+    addi     r3, r30, 0xbc
+    crclr    6
+    bl       OSReport
 
-.loc_0xF8:
-  lwz       r0, 0x44(r1)
-  lwz       r31, 0x3C(r1)
-  lwz       r30, 0x38(r1)
-  lwz       r29, 0x34(r1)
-  lwz       r28, 0x30(r1)
-  mtlr      r0
-  addi      r1, r1, 0x40
-  blr
+lbl_804221E4:
+    lwz      r0, 0x44(r1)
+    lwz      r31, 0x3c(r1)
+    lwz      r30, 0x38(r1)
+    lwz      r29, 0x34(r1)
+    lwz      r28, 0x30(r1)
+    mtlr     r0
+    addi     r1, r1, 0x40
+    blr
 
 }
 
@@ -280,18 +524,17 @@ void preUserCallback(unsigned short, OSContext*, unsigned long, unsigned long)
 void myTask(void*)
 {
 /*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  mr        r4, r3
-  stw       r0, 0x14(r1)
-  lwz       r5, -0x6514(r13)
-  lwz       r3, 0x5C(r5)
-  bl        0x1EEA4
-  lwz       r0, 0x14(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
+    stwu     r1, -0x10(r1)
+    mflr     r0
+    mr       r4, r3
+    stw      r0, 0x14(r1)
+    lwz      r5, sys@sda21(r13)
+    lwz      r3, 0x5c(r5)
+    bl       cardProc__13MemoryCardMgrFPv
+    lwz      r0, 0x14(r1)
+    mtlr     r0
+    addi     r1, r1, 0x10
+    blr
 
 }
 
@@ -304,28 +547,27 @@ void myTask(void*)
 System::FragmentationChecker::FragmentationChecker(char*, bool)
 {
 /*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  stw       r0, 0x14(r1)
-  stw       r31, 0xC(r1)
-  stw       r30, 0x8(r1)
-  mr        r30, r3
-  stw       r4, 0x4(r3)
-  lwz       r3, -0x77D4(r13)
-  bl        -0x3FEA9C
-  mr        r31, r3
-  lwz       r3, -0x77D4(r13)
-  bl        -0x3FEA7C
-  sub       r0, r3, r31
-  mr        r3, r30
-  stw       r0, 0x0(r30)
-  lwz       r31, 0xC(r1)
-  lwz       r30, 0x8(r1)
-  lwz       r0, 0x14(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
+    stwu     r1, -0x10(r1)
+    mflr     r0
+    stw      r0, 0x14(r1)
+    stw      r31, 0xc(r1)
+    stw      r30, 8(r1)
+    mr       r30, r3
+    stw      r4, 4(r3)
+    lwz      r3, sCurrentHeap__7JKRHeap@sda21(r13)
+    bl       getFreeSize__7JKRHeapFv
+    mr       r31, r3
+    lwz      r3, sCurrentHeap__7JKRHeap@sda21(r13)
+    bl       getTotalFreeSize__7JKRHeapFv
+    subf     r0, r31, r3
+    mr       r3, r30
+    stw      r0, 0(r30)
+    lwz      r31, 0xc(r1)
+    lwz      r30, 8(r1)
+    lwz      r0, 0x14(r1)
+    mtlr     r0
+    addi     r1, r1, 0x10
+    blr
 
 }
 
@@ -337,32 +579,31 @@ System::FragmentationChecker::FragmentationChecker(char*, bool)
 System::FragmentationChecker::~FragmentationChecker(void)
 {
 /*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  stw       r0, 0x14(r1)
-  stw       r31, 0xC(r1)
-  mr        r31, r4
-  stw       r30, 0x8(r1)
-  mr.       r30, r3
-  beq-      .loc_0x40
-  lwz       r3, -0x77D4(r13)
-  bl        -0x3FEAF4
-  lwz       r3, -0x77D4(r13)
-  bl        -0x3FEAD0
-  extsh.    r0, r31
-  ble-      .loc_0x40
-  mr        r3, r30
-  bl        -0x3FE20C
+    stwu     r1, -0x10(r1)
+    mflr     r0
+    stw      r0, 0x14(r1)
+    stw      r31, 0xc(r1)
+    mr       r31, r4
+    stw      r30, 8(r1)
+    or.      r30, r3, r3
+    beq      lbl_804222C4
+    lwz      r3, sCurrentHeap__7JKRHeap@sda21(r13)
+    bl       getFreeSize__7JKRHeapFv
+    lwz      r3, sCurrentHeap__7JKRHeap@sda21(r13)
+    bl       getTotalFreeSize__7JKRHeapFv
+    extsh.   r0, r31
+    ble      lbl_804222C4
+    mr       r3, r30
+    bl       __dl__FPv
 
-.loc_0x40:
-  lwz       r0, 0x14(r1)
-  mr        r3, r30
-  lwz       r31, 0xC(r1)
-  lwz       r30, 0x8(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
+lbl_804222C4:
+    lwz      r0, 0x14(r1)
+    mr       r3, r30
+    lwz      r31, 0xc(r1)
+    lwz      r30, 8(r1)
+    mtlr     r0
+    addi     r1, r1, 0x10
+    blr
 
 }
 
@@ -374,22 +615,21 @@ System::FragmentationChecker::~FragmentationChecker(void)
 void System::assert_fragmentation(char*)
 {
 /*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  stw       r0, 0x14(r1)
-  stw       r31, 0xC(r1)
-  lwz       r3, -0x77D4(r13)
-  bl        -0x3FEB40
-  mr        r31, r3
-  lwz       r3, -0x77D4(r13)
-  bl        -0x3FEB20
-  cmplw     r31, r3
-  lwz       r0, 0x14(r1)
-  lwz       r31, 0xC(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
+    stwu     r1, -0x10(r1)
+    mflr     r0
+    stw      r0, 0x14(r1)
+    stw      r31, 0xc(r1)
+    lwz      r3, sCurrentHeap__7JKRHeap@sda21(r13)
+    bl       getFreeSize__7JKRHeapFv
+    mr       r31, r3
+    lwz      r3, sCurrentHeap__7JKRHeap@sda21(r13)
+    bl       getTotalFreeSize__7JKRHeapFv
+    cmplw    r31, r3
+    lwz      r0, 0x14(r1)
+    lwz      r31, 0xc(r1)
+    mtlr     r0
+    addi     r1, r1, 0x10
+    blr
 
 }
 
@@ -401,11 +641,10 @@ void System::assert_fragmentation(char*)
 void System::enableCPULockDetector(int)
 {
 /*
-.loc_0x0:
-  li        r0, 0
-  stw       r0, 0x1C(r3)
-  stw       r4, 0x20(r3)
-  blr
+    li       r0, 0
+    stw      r0, 0x1c(r3)
+    stw      r4, 0x20(r3)
+    blr
 
 }
 
@@ -417,13 +656,12 @@ void System::enableCPULockDetector(int)
 void System::disableCPULockDetector()
 {
 /*
-.loc_0x0:
-  lwz       r4, 0x20(r3)
-  li        r0, 0
-  stw       r0, 0x20(r3)
-  stw       r0, 0x1C(r3)
-  mr        r3, r4
-  blr
+    lwz      r4, 0x20(r3)
+    li       r0, 0
+    stw      r0, 0x20(r3)
+    stw      r0, 0x1c(r3)
+    mr       r3, r4
+    blr
 
 }
 
@@ -435,52 +673,51 @@ void System::disableCPULockDetector()
 void retraceCallback(unsigned long)
 {
 /*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  lis       r3, 0x804A
-  stw       r0, 0x14(r1)
-  stw       r31, 0xC(r1)
-  subi      r31, r3, 0x6838
-  lwz       r4, -0x6514(r13)
-  lwz       r3, 0x1C(r4)
-  addi      r0, r3, 0x1
-  stw       r0, 0x1C(r4)
-  bl        -0x3435BC
-  cmpwi     r3, 0x1
-  bne-      .loc_0x40
-  lwz       r3, -0x6514(r13)
-  li        r0, 0
-  stw       r0, 0x1C(r3)
+    stwu     r1, -0x10(r1)
+    mflr     r0
+    lis      r3, gStrSystem_CPP@ha
+    stw      r0, 0x14(r1)
+    stw      r31, 0xc(r1)
+    addi     r31, r3, gStrSystem_CPP@l
+    lwz      r4, sys@sda21(r13)
+    lwz      r3, 0x1c(r4)
+    addi     r0, r3, 1
+    stw      r0, 0x1c(r4)
+    bl       DVDGetDriveStatus
+    cmpwi    r3, 1
+    bne      lbl_80422384
+    lwz      r3, sys@sda21(r13)
+    li       r0, 0
+    stw      r0, 0x1c(r3)
 
-.loc_0x40:
-  lwz       r5, -0x6514(r13)
-  lwz       r3, 0x20(r5)
-  cmpwi     r3, 0
-  ble-      .loc_0x90
-  lwz       r0, 0x1C(r5)
-  cmpw      r0, r3
-  ble-      .loc_0x90
-  li        r0, 0
-  addi      r3, r31, 0xE0
-  stb       r0, -0x7990(r13)
-  lwz       r4, 0x20(r5)
-  lwz       r5, 0x1C(r5)
-  crclr     6, 0x6
-  bl        -0x334CCC
-  addi      r4, r31, 0x104
-  addi      r6, r31, 0x114
-  li        r3, 0x1
-  li        r5, 0
-  crclr     6, 0x6
-  bl        -0x46C
+lbl_80422384:
+    lwz      r5, sys@sda21(r13)
+    lwz      r3, 0x20(r5)
+    cmpwi    r3, 0
+    ble      lbl_804223D4
+    lwz      r0, 0x1c(r5)
+    cmpw     r0, r3
+    ble      lbl_804223D4
+    li       r0, 0
+    addi     r3, r31, 0xe0
+    stb      r0, sUseABXCommand@sda21(r13)
+    lwz      r4, 0x20(r5)
+    lwz      r5, 0x1c(r5)
+    crclr    6
+    bl       OSReport
+    addi     r4, r31, 0x104
+    addi     r6, r31, 0x114
+    li       r3, 1
+    li       r5, 0
+    crclr    6
+    bl       kando_panic_f__FbPCciPCce
 
-.loc_0x90:
-  lwz       r0, 0x14(r1)
-  lwz       r31, 0xC(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
+lbl_804223D4:
+    lwz      r0, 0x14(r1)
+    lwz      r31, 0xc(r1)
+    mtlr     r0
+    addi     r1, r1, 0x10
+    blr
 
 }
 
@@ -492,82 +729,79 @@ void retraceCallback(unsigned long)
 System::System()
 {
 /*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  lfs       f1, 0x20A8(r2)
-  stw       r0, 0x14(r1)
-  li        r0, 0
-  lfs       f0, 0x20AC(r2)
-  stw       r31, 0xC(r1)
-  stw       r30, 0x8(r1)
-  mr        r30, r3
-  stw       r0, 0x38(r3)
-  addi      r3, r30, 0x68
-  stw       r0, 0x3C(r30)
-  stw       r0, 0x48(r30)
-  stw       r0, 0x4C(r30)
-  stfs      f1, 0x54(r30)
-  stw       r0, 0x60(r30)
-  stfs      f0, 0x64(r30)
-  bl        0x23EC
-  li        r4, 0
-  li        r0, 0x1
-  stw       r4, 0xD4(r30)
-  mr        r3, r30
-  stb       r4, 0xD8(r30)
-  stb       r4, 0xD9(r30)
-  stb       r4, 0xDA(r30)
-  stb       r4, 0xDB(r30)
-  stw       r30, -0x6514(r13)
-  stb       r0, -0x7990(r13)
-  bl        0xFBC
-  lis       r3, 0x43
-  lwz       r31, -0x77D4(r13)
-  subi      r3, r3, 0x8000
-  li        r4, 0
-  li        r5, 0x1
-  bl        -0x4025A8
-  stw       r3, 0x38(r30)
-  lwz       r3, 0x38(r30)
-  bl        -0x3FEED8
-  li        r3, 0x54
-  bl        -0x3FE5E0
-  mr.       r0, r3
-  beq-      .loc_0xB0
-  bl        0x8B34
-  mr        r0, r3
+    stwu     r1, -0x10(r1)
+    mflr     r0
+    lfs      f1, lbl_80520408@sda21(r2)
+    stw      r0, 0x14(r1)
+    li       r0, 0
+    lfs      f0, lbl_8052040C@sda21(r2)
+    stw      r31, 0xc(r1)
+    stw      r30, 8(r1)
+    mr       r30, r3
+    stw      r0, 0x38(r3)
+    addi     r3, r30, 0x68
+    stw      r0, 0x3c(r30)
+    stw      r0, 0x48(r30)
+    stw      r0, 0x4c(r30)
+    stfs     f1, 0x54(r30)
+    stw      r0, 0x60(r30)
+    stfs     f0, 0x64(r30)
+    bl       __ct__16DvdThreadCommandFv
+    li       r4, 0
+    li       r0, 1
+    stw      r4, 0xd4(r30)
+    mr       r3, r30
+    stb      r4, 0xd8(r30)
+    stb      r4, 0xd9(r30)
+    stb      r4, 0xda(r30)
+    stb      r4, 0xdb(r30)
+    stw      r30, sys@sda21(r13)
+    stb      r0, sUseABXCommand@sda21(r13)
+    bl       initCurrentHeapMutex__6SystemFv
+    lis      r3, 0x00428000@ha
+    lwz      r31, sCurrentHeap__7JKRHeap@sda21(r13)
+    addi     r3, r3, 0x00428000@l
+    li       r4, 0
+    li       r5, 1
+    bl       create__10JKRExpHeapFUlP7JKRHeapb
+    stw      r3, 0x38(r30)
+    lwz      r3, 0x38(r30)
+    bl       becomeCurrentHeap__7JKRHeapFv
+    li       r3, 0x54
+    bl       __nw__FUl
+    or.      r0, r3, r3
+    beq      lbl_80422498
+    bl       __ct__10HeapStatusFv
+    mr       r0, r3
 
-.loc_0xB0:
-  stw       r0, 0x50(r30)
-  mr        r3, r30
-  bl        .loc_0x11C
-  mr        r3, r31
-  bl        -0x3FEF04
-  li        r0, 0
-  lis       r3, 0x8042
-  stw       r0, 0x24(r30)
-  addi      r4, r3, 0x2344
-  lwz       r3, -0x76E0(r13)
-  bl        -0x3EE7D4
-  li        r0, 0
-  stb       r0, 0xD8(r30)
-  stb       r0, 0xD9(r30)
-  stb       r0, 0xDA(r30)
-  stb       r0, 0xDB(r30)
-  lwz       r3, 0x38(r30)
-  bl        -0x3FECFC
-  lwz       r3, 0x38(r30)
-  bl        -0x3FED04
-  lwz       r0, 0x14(r1)
-  mr        r3, r30
-  lwz       r31, 0xC(r1)
-  lwz       r30, 0x8(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
-
-.loc_0x11C:
+lbl_80422498:
+    stw      r0, 0x50(r30)
+    mr       r3, r30
+    bl       construct__6SystemFv
+    mr       r3, r31
+    bl       becomeCurrentHeap__7JKRHeapFv
+    li       r0, 0
+    lis      r3, retraceCallback__FUl@ha
+    stw      r0, 0x24(r30)
+    addi     r4, r3, retraceCallback__FUl@l
+    lwz      r3, sManager__8JUTVideo@sda21(r13)
+    bl       setPostRetraceCallback__8JUTVideoFPFUl_v
+    li       r0, 0
+    stb      r0, 0xd8(r30)
+    stb      r0, 0xd9(r30)
+    stb      r0, 0xda(r30)
+    stb      r0, 0xdb(r30)
+    lwz      r3, 0x38(r30)
+    bl       getTotalFreeSize__7JKRHeapFv
+    lwz      r3, 0x38(r30)
+    bl       getTotalFreeSize__7JKRHeapFv
+    lwz      r0, 0x14(r1)
+    mr       r3, r30
+    lwz      r31, 0xc(r1)
+    lwz      r30, 8(r1)
+    mtlr     r0
+    addi     r1, r1, 0x10
+    blr
 
 }
 
@@ -589,154 +823,153 @@ System::~System()
 void System::construct()
 {
 /*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  lis       r4, 0x804A
-  li        r5, 0
-  stw       r0, 0x14(r1)
-  stw       r31, 0xC(r1)
-  subi      r31, r4, 0x6838
-  addi      r4, r31, 0x130
-  stw       r30, 0x8(r1)
-  mr        r30, r3
-  bl        0xE30
-  bl        -0x32F988
-  bl        -0x358F9C
-  li        r0, 0
-  mr        r3, r30
-  stw       r0, 0x30(r30)
-  addi      r4, r31, 0x13C
-  li        r5, 0
-  stw       r0, 0x34(r30)
-  bl        0xE0C
-  li        r3, 0x88
-  bl        -0x3FE6B4
-  mr.       r0, r3
-  beq-      .loc_0x78
-  lis       r4, 0x1
-  li        r5, 0x10
-  subi      r4, r4, 0x8000
-  li        r6, 0x1D
-  bl        0x2344
-  mr        r0, r3
+    stwu     r1, -0x10(r1)
+    mflr     r0
+    lis      r4, gStrSystem_CPP@ha
+    li       r5, 0
+    stw      r0, 0x14(r1)
+    stw      r31, 0xc(r1)
+    addi     r31, r4, gStrSystem_CPP@l
+    addi     r4, r31, 0x130
+    stw      r30, 8(r1)
+    mr       r30, r3
+    bl       heapStatusStart__6SystemFPcP7JKRHeap
+    bl       OSGetTick
+    bl       srand
+    li       r0, 0
+    mr       r3, r30
+    stw      r0, 0x30(r30)
+    addi     r4, r31, 0x13c
+    li       r5, 0
+    stw      r0, 0x34(r30)
+    bl       heapStatusStart__6SystemFPcP7JKRHeap
+    li       r3, 0x88
+    bl       __nw__FUl
+    or.      r0, r3, r3
+    beq      lbl_8042257C
+    lis      r4, 0x00008000@ha
+    li       r5, 0x10
+    addi     r4, r4, 0x00008000@l
+    li       r6, 0x1d
+    bl       __ct__9DvdThreadFUlii
+    mr       r0, r3
 
-.loc_0x78:
-  stw       r0, 0x40(r30)
-  mr        r3, r30
-  addi      r4, r31, 0x13C
-  bl        0xDDC
-  mr        r3, r30
-  addi      r4, r31, 0x148
-  li        r5, 0
-  bl        0xDC4
-  li        r3, 0x28
-  bl        -0x3FE6FC
-  mr.       r0, r3
-  beq-      .loc_0xB0
-  bl        0x8250
-  mr        r0, r3
+lbl_8042257C:
+    stw      r0, 0x40(r30)
+    mr       r3, r30
+    addi     r4, r31, 0x13c
+    bl       heapStatusEnd__6SystemFPc
+    mr       r3, r30
+    addi     r4, r31, 0x148
+    li       r5, 0
+    bl       heapStatusStart__6SystemFPcP7JKRHeap
+    li       r3, 0x28
+    bl       __nw__FUl
+    or.      r0, r3, r3
+    beq      lbl_804225B4
+    bl       __ct__9SysTimersFv
+    mr       r0, r3
 
-.loc_0xB0:
-  stw       r0, 0x28(r30)
-  mr        r3, r30
-  addi      r4, r31, 0x148
-  bl        0xDA4
-  mr        r3, r30
-  addi      r4, r31, 0x154
-  li        r5, 0
-  bl        0xD8C
-  li        r3, 0x14
-  bl        -0x3FE734
-  mr.       r0, r3
-  beq-      .loc_0xEC
-  lfs       f1, 0x20B0(r2)
-  bl        0x77C8
-  mr        r0, r3
+lbl_804225B4:
+    stw      r0, 0x28(r30)
+    mr       r3, r30
+    addi     r4, r31, 0x148
+    bl       heapStatusEnd__6SystemFPc
+    mr       r3, r30
+    addi     r4, r31, 0x154
+    li       r5, 0
+    bl       heapStatusStart__6SystemFPcP7JKRHeap
+    li       r3, 0x14
+    bl       __nw__FUl
+    or.      r0, r3, r3
+    beq      lbl_804225F0
+    lfs      f1, lbl_80520410@sda21(r2)
+    bl       __ct__12ResetManagerFf
+    mr       r0, r3
 
-.loc_0xEC:
-  stw       r0, 0x44(r30)
-  mr        r3, r30
-  addi      r4, r31, 0x154
-  bl        0xD68
-  li        r3, 0xE8
-  bl        -0x3FE760
-  mr.       r0, r3
-  beq-      .loc_0x114
-  bl        0x20510
-  mr        r0, r3
+lbl_804225F0:
+    stw      r0, 0x44(r30)
+    mr       r3, r30
+    addi     r4, r31, 0x154
+    bl       heapStatusEnd__6SystemFPc
+    li       r3, 0xe8
+    bl       __nw__FUl
+    or.      r0, r3, r3
+    beq      lbl_80422618
+    bl       __ct__Q34Game10MemoryCard3MgrFv
+    mr       r0, r3
 
-.loc_0x114:
-  stw       r0, 0x5C(r30)
-  lwz       r3, 0x5C(r30)
-  bl        0x1E4AC
-  li        r3, 0x1
-  li        r4, 0x11
-  li        r5, 0x4000
-  li        r6, 0
-  bl        -0x3FC95C
-  stw       r3, 0x58(r30)
-  lis       r3, 0x8042
-  addi      r4, r3, 0x2204
-  li        r5, 0
-  lwz       r3, 0x58(r30)
-  li        r6, 0
-  bl        -0x3FC638
-  mr        r3, r30
-  addi      r4, r2, 0x20B4
-  li        r5, 0
-  bl        0xCFC
-  bl        0x104B4
-  bl        0x335C8
-  mr        r3, r30
-  addi      r4, r2, 0x20B4
-  bl        0xCF0
-  mr        r3, r30
-  addi      r4, r31, 0x164
-  li        r5, 0
-  bl        0xCD8
-  lwz       r3, -0x77D4(r13)
-  bl        0x118E4
-  mr        r3, r30
-  addi      r4, r31, 0x164
-  bl        0xCCC
-  li        r3, 0x48
-  bl        -0x3FE7FC
-  mr.       r0, r3
-  beq-      .loc_0x1B0
-  bl        0x245BC
-  mr        r0, r3
+lbl_80422618:
+    stw      r0, 0x5c(r30)
+    lwz      r3, 0x5c(r30)
+    bl       init__13MemoryCardMgrFv
+    li       r3, 1
+    li       r4, 0x11
+    li       r5, 0x4000
+    li       r6, 0
+    bl       create__7JKRTaskFiiUlP7JKRHeap
+    stw      r3, 0x58(r30)
+    lis      r3, myTask__FPv@ha
+    addi     r4, r3, myTask__FPv@l
+    li       r5, 0
+    lwz      r3, 0x58(r30)
+    li       r6, 0
+    bl       request__7JKRTaskFPFPv_vPvPv
+    mr       r3, r30
+    addi     r4, r2, lbl_80520414@sda21
+    li       r5, 0
+    bl       heapStatusStart__6SystemFPcP7JKRHeap
+    bl       init__Q24ARAM3MgrFv
+    bl       init__Q211Pikmin2ARAM3MgrFv
+    mr       r3, r30
+    addi     r4, r2, lbl_80520414@sda21
+    bl       heapStatusEnd__6SystemFPc
+    mr       r3, r30
+    addi     r4, r31, 0x164
+    li       r5, 0
+    bl       heapStatusStart__6SystemFPcP7JKRHeap
+    lwz      r3, sCurrentHeap__7JKRHeap@sda21(r13)
+    bl       init__Q28Resource5Mgr2DFP7JKRHeap
+    mr       r3, r30
+    addi     r4, r31, 0x164
+    bl       heapStatusEnd__6SystemFPc
+    li       r3, 0x48
+    bl       __nw__FUl
+    or.      r0, r3, r3
+    beq      lbl_804226B4
+    bl       __ct__Q34Game14CommonSaveData3MgrFv
+    mr       r0, r3
 
-.loc_0x1B0:
-  stw       r0, 0x60(r30)
-  li        r3, 0xC
-  bl        -0x3FE818
-  mr.       r0, r3
-  beq-      .loc_0x1CC
-  bl        0x7C4C
-  mr        r0, r3
+lbl_804226B4:
+    stw      r0, 0x60(r30)
+    li       r3, 0xc
+    bl       __nw__FUl
+    or.      r0, r3, r3
+    beq      lbl_804226D0
+    bl       __ct__9DvdStatusFv
+    mr       r0, r3
 
-.loc_0x1CC:
-  stw       r0, 0x48(r30)
-  bl        0x29F90
-  li        r3, 0x8
-  bl        -0x3FE838
-  mr.       r0, r3
-  beq-      .loc_0x1EC
-  bl        0x1ABC
-  mr        r0, r3
+lbl_804226D0:
+    stw      r0, 0x48(r30)
+    bl       init__Q212LoadResource3MgrFv
+    li       r3, 8
+    bl       __nw__FUl
+    or.      r0, r3, r3
+    beq      lbl_804226F0
+    bl       __ct__8GameFlowFv
+    mr       r0, r3
 
-.loc_0x1EC:
-  stw       r0, 0x3C(r30)
-  mr        r3, r30
-  addi      r4, r31, 0x130
-  bl        0xC68
-  lwz       r0, 0x14(r1)
-  lwz       r31, 0xC(r1)
-  lwz       r30, 0x8(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
+lbl_804226F0:
+    stw      r0, 0x3c(r30)
+    mr       r3, r30
+    addi     r4, r31, 0x130
+    bl       heapStatusEnd__6SystemFPc
+    lwz      r0, 0x14(r1)
+    lwz      r31, 0xc(r1)
+    lwz      r30, 8(r1)
+    mtlr     r0
+    addi     r1, r1, 0x10
+    blr
 
 }
 
@@ -748,67 +981,66 @@ void System::construct()
 void System::constructWithDvdAccessFirst()
 {
 /*
-.loc_0x0:
-  stwu      r1, -0x20(r1)
-  mflr      r0
-  lis       r4, 0x804A
-  stw       r0, 0x24(r1)
-  stw       r31, 0x1C(r1)
-  subi      r31, r4, 0x6838
-  stw       r30, 0x18(r1)
-  stw       r29, 0x14(r1)
-  mr        r29, r3
-  lwz       r3, -0x77D4(r13)
-  lwz       r12, 0x0(r3)
-  lwz       r12, 0x10(r12)
-  mtctr     r12
-  bctrl
-  subis     r0, r3, 0x4558
-  cmplwi    r0, 0x5048
-  beq-      .loc_0x58
-  addi      r3, r31, 0
-  addi      r5, r31, 0x174
-  li        r4, 0x3F5
-  crclr     6, 0x6
-  bl        -0x3F812C
+    stwu     r1, -0x20(r1)
+    mflr     r0
+    lis      r4, gStrSystem_CPP@ha
+    stw      r0, 0x24(r1)
+    stw      r31, 0x1c(r1)
+    addi     r31, r4, gStrSystem_CPP@l
+    stw      r30, 0x18(r1)
+    stw      r29, 0x14(r1)
+    mr       r29, r3
+    lwz      r3, sCurrentHeap__7JKRHeap@sda21(r13)
+    lwz      r12, 0(r3)
+    lwz      r12, 0x10(r12)
+    mtctr    r12
+    bctrl
+    addis    r0, r3, 0xbaa8
+    cmplwi   r0, 0x5048
+    beq      lbl_80422770
+    addi     r3, r31, 0
+    addi     r5, r31, 0x174
+    li       r4, 0x3f5
+    crclr    6
+    bl       panic_f__12JUTExceptionFPCciPCce
 
-.loc_0x58:
-  lwz       r30, -0x77D4(r13)
-  lwz       r3, 0x38(r29)
-  bl        -0x3FF1D4
-  mr        r3, r29
-  addi      r4, r31, 0x180
-  li        r5, 0
-  bl        0xBD4
-  lis       r3, 0x8051
-  addi      r4, r31, 0x19C
-  addi      r3, r3, 0x41FC
-  bl        0xFFD8
-  mr        r3, r29
-  bl        0x224
-  mr        r3, r29
-  addi      r4, r31, 0x180
-  bl        0xBB8
-  lwz       r3, 0x38(r29)
-  bl        -0x3FEFD4
-  lwz       r3, 0x38(r29)
-  bl        -0x3FEFDC
-  lwz       r3, 0x38(r29)
-  bl        -0x3FF010
-  lwz       r3, 0x38(r29)
-  bl        -0x3FF018
-  mr        r3, r30
-  bl        -0x3FF230
-  mr        r3, r29
-  li        r4, 0x1
-  bl        0xB88
-  lwz       r0, 0x24(r1)
-  lwz       r31, 0x1C(r1)
-  lwz       r30, 0x18(r1)
-  lwz       r29, 0x14(r1)
-  mtlr      r0
-  addi      r1, r1, 0x20
-  blr
+lbl_80422770:
+    lwz      r30, sCurrentHeap__7JKRHeap@sda21(r13)
+    lwz      r3, 0x38(r29)
+    bl       becomeCurrentHeap__7JKRHeapFv
+    mr       r3, r29
+    addi     r4, r31, 0x180
+    li       r5, 0
+    bl       heapStatusStart__6SystemFPcP7JKRHeap
+    lis      r3, gGameConfig__4Game@ha
+    addi     r4, r31, 0x19c
+    addi     r3, r3, gGameConfig__4Game@l
+    bl       load__Q24Game10GameConfigFPc
+    mr       r3, r29
+    bl       createSoundSystem__6SystemFv
+    mr       r3, r29
+    addi     r4, r31, 0x180
+    bl       heapStatusEnd__6SystemFPc
+    lwz      r3, 0x38(r29)
+    bl       getTotalFreeSize__7JKRHeapFv
+    lwz      r3, 0x38(r29)
+    bl       getTotalFreeSize__7JKRHeapFv
+    lwz      r3, 0x38(r29)
+    bl       getFreeSize__7JKRHeapFv
+    lwz      r3, 0x38(r29)
+    bl       getFreeSize__7JKRHeapFv
+    mr       r3, r30
+    bl       becomeCurrentHeap__7JKRHeapFv
+    mr       r3, r29
+    li       r4, 1
+    bl       heapStatusDump__6SystemFb
+    lwz      r0, 0x24(r1)
+    lwz      r31, 0x1c(r1)
+    lwz      r30, 0x18(r1)
+    lwz      r29, 0x14(r1)
+    mtlr     r0
+    addi     r1, r1, 0x20
+    blr
 
 }
 
@@ -820,83 +1052,82 @@ void System::constructWithDvdAccessFirst()
 void System::constructWithDvdAccessSecond()
 {
 /*
-.loc_0x0:
-  stwu      r1, -0x20(r1)
-  mflr      r0
-  lis       r4, 0x804A
-  stw       r0, 0x24(r1)
-  stw       r31, 0x1C(r1)
-  subi      r31, r4, 0x6838
-  stw       r30, 0x18(r1)
-  stw       r29, 0x14(r1)
-  mr        r29, r3
-  bl        0x358
-  lwz       r3, -0x77D4(r13)
-  lwz       r12, 0x0(r3)
-  lwz       r12, 0x10(r12)
-  mtctr     r12
-  bctrl
-  subis     r0, r3, 0x4558
-  cmplwi    r0, 0x5048
-  beq-      .loc_0x5C
-  addi      r3, r31, 0
-  addi      r5, r31, 0x174
-  li        r4, 0x428
-  crclr     6, 0x6
-  bl        -0x3F8218
+    stwu     r1, -0x20(r1)
+    mflr     r0
+    lis      r4, gStrSystem_CPP@ha
+    stw      r0, 0x24(r1)
+    stw      r31, 0x1c(r1)
+    addi     r31, r4, gStrSystem_CPP@l
+    stw      r30, 0x18(r1)
+    stw      r29, 0x14(r1)
+    mr       r29, r3
+    bl       loadSoundResource__6SystemFv
+    lwz      r3, sCurrentHeap__7JKRHeap@sda21(r13)
+    lwz      r12, 0(r3)
+    lwz      r12, 0x10(r12)
+    mtctr    r12
+    bctrl
+    addis    r0, r3, 0xbaa8
+    cmplwi   r0, 0x5048
+    beq      lbl_8042285C
+    addi     r3, r31, 0
+    addi     r5, r31, 0x174
+    li       r4, 0x428
+    crclr    6
+    bl       panic_f__12JUTExceptionFPCciPCce
 
-.loc_0x5C:
-  lwz       r30, -0x77D4(r13)
-  lwz       r3, 0x38(r29)
-  bl        -0x3FF2C0
-  mr        r3, r29
-  addi      r4, r31, 0x1AC
-  li        r5, 0
-  bl        0xAE8
-  mr        r3, r29
-  addi      r4, r31, 0x1C8
-  li        r5, 0
-  bl        0xAD8
-  mr        r3, r30
-  bl        0x15620
-  mr        r3, r29
-  addi      r4, r31, 0x1C8
-  bl        0xACC
-  bl        -0x1FA5F4
-  li        r3, 0x10C
-  bl        -0x3FEA00
-  mr.       r0, r3
-  beq-      .loc_0xB8
-  bl        -0x274C30
-  mr        r0, r3
+lbl_8042285C:
+    lwz      r30, sCurrentHeap__7JKRHeap@sda21(r13)
+    lwz      r3, 0x38(r29)
+    bl       becomeCurrentHeap__7JKRHeapFv
+    mr       r3, r29
+    addi     r4, r31, 0x1ac
+    li       r5, 0
+    bl       heapStatusStart__6SystemFPcP7JKRHeap
+    mr       r3, r29
+    addi     r4, r31, 0x1c8
+    li       r5, 0
+    bl       heapStatusStart__6SystemFPcP7JKRHeap
+    mr       r3, r30
+    bl       create__Q25P2JME3MgrFP10JKRExpHeap
+    mr       r3, r29
+    addi     r4, r31, 0x1c8
+    bl       heapStatusEnd__6SystemFPc
+    bl       globalInstance__Q34Game10PelletList3MgrFv
+    li       r3, 0x10c
+    bl       __nw__FUl
+    or.      r0, r3, r3
+    beq      lbl_804228B8
+    bl       __ct__Q24Game6StagesFv
+    mr       r0, r3
 
-.loc_0xB8:
-  stw       r0, -0x6C38(r13)
-  bl        -0x23C788
-  bl        0xF334
-  mr        r3, r29
-  addi      r4, r31, 0x1AC
-  bl        0xA98
-  lwz       r3, 0x38(r29)
-  bl        -0x3FF0F4
-  lwz       r3, 0x38(r29)
-  bl        -0x3FF0FC
-  lwz       r3, 0x38(r29)
-  bl        -0x3FF130
-  lwz       r3, 0x38(r29)
-  bl        -0x3FF138
-  mr        r3, r30
-  bl        -0x3FF350
-  mr        r3, r29
-  li        r4, 0x1
-  bl        0xA68
-  lwz       r0, 0x24(r1)
-  lwz       r31, 0x1C(r1)
-  lwz       r30, 0x18(r1)
-  lwz       r29, 0x14(r1)
-  mtlr      r0
-  addi      r1, r1, 0x20
-  blr
+lbl_804228B8:
+    stw      r0, stageList__4Game@sda21(r13)
+    bl       construct__Q24Game8PlayDataFv
+    bl       construct__Q24Game9MovieListFv
+    mr       r3, r29
+    addi     r4, r31, 0x1ac
+    bl       heapStatusEnd__6SystemFPc
+    lwz      r3, 0x38(r29)
+    bl       getTotalFreeSize__7JKRHeapFv
+    lwz      r3, 0x38(r29)
+    bl       getTotalFreeSize__7JKRHeapFv
+    lwz      r3, 0x38(r29)
+    bl       getFreeSize__7JKRHeapFv
+    lwz      r3, 0x38(r29)
+    bl       getFreeSize__7JKRHeapFv
+    mr       r3, r30
+    bl       becomeCurrentHeap__7JKRHeapFv
+    mr       r3, r29
+    li       r4, 1
+    bl       heapStatusDump__6SystemFb
+    lwz      r0, 0x24(r1)
+    lwz      r31, 0x1c(r1)
+    lwz      r30, 0x18(r1)
+    lwz      r29, 0x14(r1)
+    mtlr     r0
+    addi     r1, r1, 0x20
+    blr
 
 }
 
@@ -908,30 +1139,29 @@ void System::constructWithDvdAccessSecond()
 void System::createRomFont(JKRHeap*)
 {
 /*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  stw       r0, 0x14(r1)
-  stw       r31, 0xC(r1)
-  mr        r31, r4
-  stw       r30, 0x8(r1)
-  mr        r30, r3
-  li        r3, 0x1C
-  bl        -0x3FEA9C
-  mr.       r0, r3
-  beq-      .loc_0x38
-  mr        r4, r31
-  bl        -0x3F0304
-  mr        r0, r3
+    stwu     r1, -0x10(r1)
+    mflr     r0
+    stw      r0, 0x14(r1)
+    stw      r31, 0xc(r1)
+    mr       r31, r4
+    stw      r30, 8(r1)
+    mr       r30, r3
+    li       r3, 0x1c
+    bl       __nw__FUl
+    or.      r0, r3, r3
+    beq      lbl_80422958
+    mr       r4, r31
+    bl       __ct__10JUTRomFontFP7JKRHeap
+    mr       r0, r3
 
-.loc_0x38:
-  stw       r0, 0xDC(r30)
-  lwz       r0, 0x14(r1)
-  lwz       r31, 0xC(r1)
-  lwz       r30, 0x8(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
+lbl_80422958:
+    stw      r0, 0xdc(r30)
+    lwz      r0, 0x14(r1)
+    lwz      r31, 0xc(r1)
+    lwz      r30, 8(r1)
+    mtlr     r0
+    addi     r1, r1, 0x10
+    blr
 
 }
 
@@ -943,29 +1173,28 @@ void System::createRomFont(JKRHeap*)
 void System::destroyRomFont()
 {
 /*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  stw       r0, 0x14(r1)
-  stw       r31, 0xC(r1)
-  mr        r31, r3
-  lwz       r3, 0xDC(r3)
-  cmplwi    r3, 0
-  beq-      .loc_0x34
-  lwz       r12, 0x0(r3)
-  li        r4, 0x1
-  lwz       r12, 0x8(r12)
-  mtctr     r12
-  bctrl
+    stwu     r1, -0x10(r1)
+    mflr     r0
+    stw      r0, 0x14(r1)
+    stw      r31, 0xc(r1)
+    mr       r31, r3
+    lwz      r3, 0xdc(r3)
+    cmplwi   r3, 0
+    beq      lbl_804229A8
+    lwz      r12, 0(r3)
+    li       r4, 1
+    lwz      r12, 8(r12)
+    mtctr    r12
+    bctrl
 
-.loc_0x34:
-  li        r0, 0
-  stw       r0, 0xDC(r31)
-  lwz       r0, 0x14(r1)
-  lwz       r31, 0xC(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
+lbl_804229A8:
+    li       r0, 0
+    stw      r0, 0xdc(r31)
+    lwz      r0, 0x14(r1)
+    lwz      r31, 0xc(r1)
+    mtlr     r0
+    addi     r1, r1, 0x10
+    blr
 
 }
 
@@ -977,129 +1206,128 @@ void System::destroyRomFont()
 void System::createSoundSystem()
 {
 /*
-.loc_0x0:
-  stwu      r1, -0x20(r1)
-  mflr      r0
-  lis       r4, 0x804A
-  li        r5, 0
-  stw       r0, 0x24(r1)
-  stmw      r27, 0xC(r1)
-  subi      r29, r4, 0x6838
-  addi      r4, r29, 0x1D4
-  lwz       r3, -0x6514(r13)
-  bl        0x974
-  lwz       r31, -0x77D4(r13)
-  cmplwi    r31, 0
-  bne-      .loc_0x48
-  addi      r3, r29, 0
-  addi      r5, r29, 0x174
-  li        r4, 0x486
-  crclr     6, 0x6
-  bl        -0x3F83C8
+    stwu     r1, -0x20(r1)
+    mflr     r0
+    lis      r4, gStrSystem_CPP@ha
+    li       r5, 0
+    stw      r0, 0x24(r1)
+    stmw     r27, 0xc(r1)
+    addi     r29, r4, gStrSystem_CPP@l
+    addi     r4, r29, 0x1d4
+    lwz      r3, sys@sda21(r13)
+    bl       heapStatusStart__6SystemFPcP7JKRHeap
+    lwz      r31, sCurrentHeap__7JKRHeap@sda21(r13)
+    cmplwi   r31, 0
+    bne      lbl_80422A0C
+    addi     r3, r29, 0
+    addi     r5, r29, 0x174
+    li       r4, 0x486
+    crclr    6
+    bl       panic_f__12JUTExceptionFPCciPCce
 
-.loc_0x48:
-  lwz       r0, -0x6450(r13)
-  cmplwi    r0, 0
-  bne-      .loc_0x68
-  addi      r3, r29, 0
-  addi      r5, r29, 0x174
-  li        r4, 0x489
-  crclr     6, 0x6
-  bl        -0x3F83E8
+lbl_80422A0C:
+    lwz      r0, gResMgr2D@sda21(r13)
+    cmplwi   r0, 0
+    bne      lbl_80422A2C
+    addi     r3, r29, 0
+    addi     r5, r29, 0x174
+    li       r4, 0x489
+    crclr    6
+    bl       panic_f__12JUTExceptionFPCciPCce
 
-.loc_0x68:
-  lwz       r3, -0x6450(r13)
-  lwz       r27, 0x4(r3)
-  mr        r3, r27
-  bl        -0x3FF284
-  mr        r4, r27
-  li        r5, 0x1
-  bl        -0x402B7C
-  mr.       r28, r3
-  bne-      .loc_0xA0
-  addi      r3, r29, 0
-  addi      r5, r29, 0x174
-  li        r4, 0x48D
-  crclr     6, 0x6
-  bl        -0x3F8420
+lbl_80422A2C:
+    lwz      r3, gResMgr2D@sda21(r13)
+    lwz      r27, 4(r3)
+    mr       r3, r27
+    bl       getFreeSize__7JKRHeapFv
+    mr       r4, r27
+    li       r5, 1
+    bl       create__10JKRExpHeapFUlP7JKRHeapb
+    or.      r28, r3, r3
+    bne      lbl_80422A64
+    addi     r3, r29, 0
+    addi     r5, r29, 0x174
+    li       r4, 0x48d
+    crclr    6
+    bl       panic_f__12JUTExceptionFPCciPCce
 
-.loc_0xA0:
-  mr        r3, r28
-  bl        -0x3FF4C4
-  mr        r4, r28
-  addi      r3, r29, 0x1E0
-  li        r5, 0
-  bl        -0x4010B4
-  mr        r4, r3
-  addi      r3, r29, 0x1EC
-  bl        -0x3FFA6C
-  mr.       r30, r3
-  bne-      .loc_0xE0
-  addi      r3, r29, 0
-  addi      r5, r29, 0x174
-  li        r4, 0x495
-  crclr     6, 0x6
-  bl        -0x3F8460
+lbl_80422A64:
+    mr       r3, r28
+    bl       becomeCurrentHeap__7JKRHeapFv
+    mr       r4, r28
+    addi     r3, r29, 0x1e0
+    li       r5, 0
+    bl       mount__12JKRFileCacheFPCcP7JKRHeapPCc
+    mr       r4, r3
+    addi     r3, r29, 0x1ec
+    bl       getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
+    or.      r30, r3, r3
+    bne      lbl_80422AA4
+    addi     r3, r29, 0
+    addi     r5, r29, 0x174
+    li       r4, 0x495
+    crclr    6
+    bl       panic_f__12JUTExceptionFPCciPCce
 
-.loc_0xE0:
-  li        r3, 0x1C
-  bl        -0x3FEC04
-  mr.       r27, r3
-  beq-      .loc_0x100
-  bl        -0xEDBDC
-  lis       r3, 0x804F
-  subi      r0, r3, 0x448C
-  stw       r0, 0x10(r27)
+lbl_80422AA4:
+    li       r3, 0x1c
+    bl       __nw__FUl
+    or.      r27, r3, r3
+    beq      lbl_80422AC4
+    bl       __ct__Q26PSGame10SysFactoryFv
+    lis      r3, __vt__Q23PSM7Factory@ha
+    addi     r0, r3, __vt__Q23PSM7Factory@l
+    stw      r0, 0x10(r27)
 
-.loc_0x100:
-  lis       r3, 0x8047
-  lis       r0, 0x90
-  addi      r4, r3, 0xF0C
-  mr        r3, r27
-  stw       r4, 0xC(r27)
-  stw       r31, 0x0(r27)
-  stw       r0, 0x4(r27)
-  stw       r30, 0x8(r27)
-  bl        -0xEDBD8
-  mr        r3, r31
-  bl        -0x3FF338
-  mr        r4, r31
-  li        r5, 0x1
-  bl        -0x3FDD88
-  mr        r27, r3
-  bl        -0x3FF55C
-  lwz       r0, -0x6780(r13)
-  cmplwi    r0, 0
-  bne-      .loc_0x160
-  addi      r3, r29, 0x1F8
-  addi      r5, r29, 0x174
-  li        r4, 0x1D3
-  crclr     6, 0x6
-  bl        -0x3F84E0
+lbl_80422AC4:
+    lis      r3, makeSeSound__Q23PSM7SeSoundFv@ha
+    lis      r0, 0x90
+    addi     r4, r3, makeSeSound__Q23PSM7SeSoundFv@l
+    mr       r3, r27
+    stw      r4, 0xc(r27)
+    stw      r31, 0(r27)
+    stw      r0, 4(r27)
+    stw      r30, 8(r27)
+    bl       newSoundSystem__Q26PSGame10SysFactoryFv
+    mr       r3, r31
+    bl       getFreeSize__7JKRHeapFv
+    mr       r4, r31
+    li       r5, 1
+    bl       create__12JKRSolidHeapFUlP7JKRHeapb
+    mr       r27, r3
+    bl       becomeCurrentHeap__7JKRHeapFv
+    lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
+    cmplwi   r0, 0
+    bne      lbl_80422B24
+    addi     r3, r29, 0x1f8
+    addi     r5, r29, 0x174
+    li       r4, 0x1d3
+    crclr    6
+    bl       panic_f__12JUTExceptionFPCciPCce
 
-.loc_0x160:
-  lwz       r3, -0x6780(r13)
-  lwz       r12, 0x0(r3)
-  lwz       r12, 0x10(r12)
-  mtctr     r12
-  bctrl
-  mr        r3, r27
-  bl        -0x3FDBF4
-  mr        r3, r31
-  bl        -0x3FF5A0
-  mr        r3, r28
-  bl        -0x3FF598
-  lwz       r3, -0x6514(r13)
-  addi      r4, r29, 0x1D4
-  bl        0x80C
-  lwz       r3, -0x6450(r13)
-  lwz       r0, 0x8(r3)
-  stw       r0, 0xC(r3)
-  lmw       r27, 0xC(r1)
-  lwz       r0, 0x24(r1)
-  mtlr      r0
-  addi      r1, r1, 0x20
-  blr
+lbl_80422B24:
+    lwz      r3, spSceneMgr__8PSSystem@sda21(r13)
+    lwz      r12, 0(r3)
+    lwz      r12, 0x10(r12)
+    mtctr    r12
+    bctrl
+    mr       r3, r27
+    bl       adjustSize__12JKRSolidHeapFv
+    mr       r3, r31
+    bl       becomeCurrentHeap__7JKRHeapFv
+    mr       r3, r28
+    bl       destroy__7JKRHeapFv
+    lwz      r3, sys@sda21(r13)
+    addi     r4, r29, 0x1d4
+    bl       heapStatusEnd__6SystemFPc
+    lwz      r3, gResMgr2D@sda21(r13)
+    lwz      r0, 8(r3)
+    stw      r0, 0xc(r3)
+    lmw      r27, 0xc(r1)
+    lwz      r0, 0x24(r1)
+    mtlr     r0
+    addi     r1, r1, 0x20
+    blr
 
 }
 
@@ -1111,71 +1339,70 @@ void System::createSoundSystem()
 void System::loadSoundResource()
 {
 /*
-.loc_0x0:
-  stwu      r1, -0x20(r1)
-  mflr      r0
-  lis       r3, 0x804A
-  stw       r0, 0x24(r1)
-  stw       r31, 0x1C(r1)
-  subi      r31, r3, 0x6838
-  stw       r30, 0x18(r1)
-  stw       r29, 0x14(r1)
-  stw       r28, 0x10(r1)
-  lwz       r28, -0x77D4(r13)
-  mr        r3, r28
-  bl        -0x3FF3F4
-  mr        r4, r28
-  li        r5, 0x1
-  bl        -0x3FDE44
-  mr        r30, r3
-  bl        -0x3FF618
-  lwz       r0, -0x6780(r13)
-  cmplwi    r0, 0
-  bne-      .loc_0x64
-  addi      r3, r31, 0x1F8
-  addi      r5, r31, 0x174
-  li        r4, 0x1D3
-  crclr     6, 0x6
-  bl        -0x3F859C
+    stwu     r1, -0x20(r1)
+    mflr     r0
+    lis      r3, gStrSystem_CPP@ha
+    stw      r0, 0x24(r1)
+    stw      r31, 0x1c(r1)
+    addi     r31, r3, gStrSystem_CPP@l
+    stw      r30, 0x18(r1)
+    stw      r29, 0x14(r1)
+    stw      r28, 0x10(r1)
+    lwz      r28, sCurrentHeap__7JKRHeap@sda21(r13)
+    mr       r3, r28
+    bl       getFreeSize__7JKRHeapFv
+    mr       r4, r28
+    li       r5, 1
+    bl       create__12JKRSolidHeapFUlP7JKRHeapb
+    mr       r30, r3
+    bl       becomeCurrentHeap__7JKRHeapFv
+    lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
+    cmplwi   r0, 0
+    bne      lbl_80422BE0
+    addi     r3, r31, 0x1f8
+    addi     r5, r31, 0x174
+    li       r4, 0x1d3
+    crclr    6
+    bl       panic_f__12JUTExceptionFPCciPCce
 
-.loc_0x64:
-  lwz       r29, -0x6780(r13)
-  cmplwi    r29, 0
-  bne-      .loc_0x84
-  addi      r3, r31, 0x1F8
-  addi      r5, r31, 0x174
-  li        r4, 0x1DC
-  crclr     6, 0x6
-  bl        -0x3F85BC
+lbl_80422BE0:
+    lwz      r29, spSceneMgr__8PSSystem@sda21(r13)
+    cmplwi   r29, 0
+    bne      lbl_80422C00
+    addi     r3, r31, 0x1f8
+    addi     r5, r31, 0x174
+    li       r4, 0x1dc
+    crclr    6
+    bl       panic_f__12JUTExceptionFPCciPCce
 
-.loc_0x84:
-  lwz       r29, 0x4(r29)
-  cmplwi    r29, 0
-  bne-      .loc_0xA4
-  addi      r3, r31, 0
-  addi      r5, r31, 0x174
-  li        r4, 0x4DD
-  crclr     6, 0x6
-  bl        -0x3F85DC
+lbl_80422C00:
+    lwz      r29, 4(r29)
+    cmplwi   r29, 0
+    bne      lbl_80422C20
+    addi     r3, r31, 0
+    addi     r5, r31, 0x174
+    li       r4, 0x4dd
+    crclr    6
+    bl       panic_f__12JUTExceptionFPCciPCce
 
-.loc_0xA4:
-  mr        r3, r29
-  lwz       r12, 0x0(r29)
-  lwz       r12, 0x14(r12)
-  mtctr     r12
-  bctrl
-  mr        r3, r30
-  bl        -0x3FDCF0
-  mr        r3, r28
-  bl        -0x3FF69C
-  lwz       r0, 0x24(r1)
-  lwz       r31, 0x1C(r1)
-  lwz       r30, 0x18(r1)
-  lwz       r29, 0x14(r1)
-  lwz       r28, 0x10(r1)
-  mtlr      r0
-  addi      r1, r1, 0x20
-  blr
+lbl_80422C20:
+    mr       r3, r29
+    lwz      r12, 0(r29)
+    lwz      r12, 0x14(r12)
+    mtctr    r12
+    bctrl
+    mr       r3, r30
+    bl       adjustSize__12JKRSolidHeapFv
+    mr       r3, r28
+    bl       becomeCurrentHeap__7JKRHeapFv
+    lwz      r0, 0x24(r1)
+    lwz      r31, 0x1c(r1)
+    lwz      r30, 0x18(r1)
+    lwz      r29, 0x14(r1)
+    lwz      r28, 0x10(r1)
+    mtlr     r0
+    addi     r1, r1, 0x20
+    blr
 
 }
 
@@ -1217,73 +1444,72 @@ void System::clearGXVerifyLevel()
 void System::initialize()
 {
 /*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  lis       r5, 0x8070
-  stw       r0, 0x14(r1)
-  lwz       r4, 0x0(r5)
-  subis     r0, r4, 0x7661
-  cmplwi    r0, 0x6C64
-  bne-      .loc_0x2C
-  lbz       r3, 0x4(r5)
-  bl        0x58C
-  b         .loc_0x34
+    stwu     r1, -0x10(r1)
+    mflr     r0
+    lis      r5, 0x80700000@ha
+    stw      r0, 0x14(r1)
+    lwz      r4, 0x80700000@l(r5)
+    addis    r0, r4, 0x899f
+    cmplwi   r0, 0x6c64
+    bne      lbl_80422C90
+    lbz      r3, 4(r5)
+    bl       setRenderMode__6SystemFQ26System11ERenderMode
+    b        lbl_80422C98
 
-.loc_0x2C:
-  li        r3, 0
-  bl        0x580
+lbl_80422C90:
+    li       r3, 0
+    bl       setRenderMode__6SystemFQ26System11ERenderMode
 
-.loc_0x34:
-  li        r3, 0x4
-  oris      r3, r3, 0x4
-  mtspr     914, r3
-  li        r3, 0x5
-  oris      r3, r3, 0x5
-  mtspr     915, r3
-  li        r3, 0x6
-  oris      r3, r3, 0x6
-  mtspr     916, r3
-  li        r3, 0x7
-  oris      r3, r3, 0x7
-  mtspr     917, r3
-  lis       r4, 0x7
-  addi      r5, r4, 0x800
-  li        r7, 0x1
-  lis       r6, 0xA
-  lis       r4, 0x90
-  li        r0, -0x1
-  stw       r7, -0x7F30(r13)
-  stw       r6, -0x7F2C(r13)
-  stw       r5, -0x7F28(r13)
-  stw       r4, -0x7F24(r13)
-  stw       r0, -0x7F20(r13)
-  bl        0x530
-  stw       r3, -0x7F0C(r13)
-  bl        -0x3995A0
-  lwz       r5, -0x7770(r13)
-  li        r0, -0x1
-  lis       r4, 0x8042
-  stw       r0, 0x84(r5)
-  addi      r3, r4, 0x20EC
-  stw       r0, 0x88(r5)
-  bl        -0x3F6578
-  lwz       r5, -0x7770(r13)
-  li        r0, 0
-  lis       r4, 0x8042
-  stw       r0, 0x90(r5)
-  addi      r3, r4, 0x1EC4
-  lwz       r4, -0x7770(r13)
-  stw       r0, 0x8C(r4)
-  bl        -0x3FEEB4
-  lwz       r3, -0x77D0(r13)
-  bl        -0x3FF79C
-  lwz       r3, -0x798C(r13)
-  bl        -0x3F6598
-  lwz       r0, 0x14(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
+lbl_80422C98:
+    li       r3, 4
+    oris     r3, r3, 4
+    mtspr    0x392, r3
+    li       r3, 5
+    oris     r3, r3, 5
+    mtspr    0x393, r3
+    li       r3, 6
+    oris     r3, r3, 6
+    mtspr    0x394, r3
+    li       r3, 7
+    oris     r3, r3, 7
+    mtspr    0x395, r3
+    lis      r4, 0x00070800@ha
+    addi     r5, r4, 0x00070800@l
+    li       r7, 1
+    lis      r6, 0xa
+    lis      r4, 0x90
+    li       r0, -1
+    stw      r7, maxStdHeaps__Q29JFWSystem11CSetUpParam@sda21(r13)
+    stw      r6, sysHeapSize__Q29JFWSystem11CSetUpParam@sda21(r13)
+    stw      r5, fifoBufSize__Q29JFWSystem11CSetUpParam@sda21(r13)
+    stw      r4, aramAudioBufSize__Q29JFWSystem11CSetUpParam@sda21(r13)
+    stw      r0, aramGraphBufSize__Q29JFWSystem11CSetUpParam@sda21(r13)
+    bl       getRenderModeObj__6SystemFv
+    stw      r3, renderMode__Q29JFWSystem11CSetUpParam@sda21(r13)
+    bl       init__9JFWSystemFv
+    lwz      r5, sErrorManager__12JUTException@sda21(r13)
+    li       r0, -1
+    lis      r4, preUserCallback__FUsP9OSContextUlUl@ha
+    stw      r0, 0x84(r5)
+    addi     r3, r4, preUserCallback__FUsP9OSContextUlUl@l
+    stw      r0, 0x88(r5)
+    bl       setPreUserCallback__12JUTExceptionFPFUsP9OSContextUlUl_v
+    lwz      r5, sErrorManager__12JUTException@sda21(r13)
+    li       r0, 0
+    lis      r4, Pikmin2DefaultMemoryErrorRoutine__FPvUli@ha
+    stw      r0, 0x90(r5)
+    addi     r3, r4, Pikmin2DefaultMemoryErrorRoutine__FPvUli@l
+    lwz      r4, sErrorManager__12JUTException@sda21(r13)
+    stw      r0, 0x8c(r4)
+    bl       setErrorHandler__7JKRHeapFPFPvUli_v
+    lwz      r3, sRootHeap__7JKRHeap@sda21(r13)
+    bl       becomeCurrentHeap__7JKRHeapFv
+    lwz      r3, cMapFileName@sda21(r13)
+    bl       appendMapFile__12JUTExceptionFPCc
+    lwz      r0, 0x14(r1)
+    mtlr     r0
+    addi     r1, r1, 0x10
+    blr
 
 }
 
@@ -1295,46 +1521,45 @@ void System::initialize()
 void System::loadResourceFirst()
 {
 /*
-.loc_0x0:
-  stwu      r1, -0x20(r1)
-  mflr      r0
-  li        r5, 0
-  stw       r0, 0x24(r1)
-  stw       r31, 0x1C(r1)
-  mr        r31, r3
-  li        r3, 0x14
-  lwz       r4, 0x38(r31)
-  bl        -0x3FEE3C
-  mr.       r5, r3
-  beq-      .loc_0x74
-  lis       r3, 0x804F
-  lis       r4, 0x804B
-  subi      r8, r3, 0x44C0
-  lis       r3, 0x804F
-  lwz       r7, 0x0(r8)
-  addi      r4, r4, 0xF00
-  lwz       r6, 0x4(r8)
-  subi      r0, r3, 0x4498
-  lwz       r3, 0x8(r8)
-  stw       r7, 0x8(r1)
-  stw       r4, 0x0(r5)
-  stw       r0, 0x0(r5)
-  stw       r31, 0x4(r5)
-  stw       r7, 0x8(r5)
-  stw       r6, 0xC(r5)
-  stw       r6, 0xC(r1)
-  stw       r3, 0x10(r1)
-  stw       r3, 0x10(r5)
+    stwu     r1, -0x20(r1)
+    mflr     r0
+    li       r5, 0
+    stw      r0, 0x24(r1)
+    stw      r31, 0x1c(r1)
+    mr       r31, r3
+    li       r3, 0x14
+    lwz      r4, 0x38(r31)
+    bl       __nw__FUlP7JKRHeapi
+    or.      r5, r3, r3
+    beq      lbl_80422DD0
+    lis      r3, lbl_804EBB40@ha
+    lis      r4, __vt__9IDelegate@ha
+    addi     r8, r3, lbl_804EBB40@l
+    lis      r3, "__vt__17Delegate<6System>"@ha
+    lwz      r7, 0(r8)
+    addi     r4, r4, __vt__9IDelegate@l
+    lwz      r6, 4(r8)
+    addi     r0, r3, "__vt__17Delegate<6System>"@l
+    lwz      r3, 8(r8)
+    stw      r7, 8(r1)
+    stw      r4, 0(r5)
+    stw      r0, 0(r5)
+    stw      r31, 4(r5)
+    stw      r7, 8(r5)
+    stw      r6, 0xc(r5)
+    stw      r6, 0xc(r1)
+    stw      r3, 0x10(r1)
+    stw      r3, 0x10(r5)
 
-.loc_0x74:
-  mr        r3, r31
-  addi      r4, r31, 0x68
-  bl        0x160
-  lwz       r0, 0x24(r1)
-  lwz       r31, 0x1C(r1)
-  mtlr      r0
-  addi      r1, r1, 0x20
-  blr
+lbl_80422DD0:
+    mr       r3, r31
+    addi     r4, r31, 0x68
+    bl       dvdLoadUseCallBack__6SystemFP16DvdThreadCommandP9IDelegate
+    lwz      r0, 0x24(r1)
+    lwz      r31, 0x1c(r1)
+    mtlr     r0
+    addi     r1, r1, 0x20
+    blr
 
 }
 
@@ -1346,46 +1571,45 @@ void System::loadResourceFirst()
 void System::loadResourceSecond()
 {
 /*
-.loc_0x0:
-  stwu      r1, -0x20(r1)
-  mflr      r0
-  li        r5, 0
-  stw       r0, 0x24(r1)
-  stw       r31, 0x1C(r1)
-  mr        r31, r3
-  li        r3, 0x14
-  lwz       r4, 0x38(r31)
-  bl        -0x3FEED0
-  mr.       r5, r3
-  beq-      .loc_0x74
-  lis       r3, 0x804F
-  lis       r4, 0x804B
-  subi      r8, r3, 0x44B4
-  lis       r3, 0x804F
-  lwz       r7, 0x0(r8)
-  addi      r4, r4, 0xF00
-  lwz       r6, 0x4(r8)
-  subi      r0, r3, 0x4498
-  lwz       r3, 0x8(r8)
-  stw       r7, 0x8(r1)
-  stw       r4, 0x0(r5)
-  stw       r0, 0x0(r5)
-  stw       r31, 0x4(r5)
-  stw       r7, 0x8(r5)
-  stw       r6, 0xC(r5)
-  stw       r6, 0xC(r1)
-  stw       r3, 0x10(r1)
-  stw       r3, 0x10(r5)
+    stwu     r1, -0x20(r1)
+    mflr     r0
+    li       r5, 0
+    stw      r0, 0x24(r1)
+    stw      r31, 0x1c(r1)
+    mr       r31, r3
+    li       r3, 0x14
+    lwz      r4, 0x38(r31)
+    bl       __nw__FUlP7JKRHeapi
+    or.      r5, r3, r3
+    beq      lbl_80422E64
+    lis      r3, lbl_804EBB4C@ha
+    lis      r4, __vt__9IDelegate@ha
+    addi     r8, r3, lbl_804EBB4C@l
+    lis      r3, "__vt__17Delegate<6System>"@ha
+    lwz      r7, 0(r8)
+    addi     r4, r4, __vt__9IDelegate@l
+    lwz      r6, 4(r8)
+    addi     r0, r3, "__vt__17Delegate<6System>"@l
+    lwz      r3, 8(r8)
+    stw      r7, 8(r1)
+    stw      r4, 0(r5)
+    stw      r0, 0(r5)
+    stw      r31, 4(r5)
+    stw      r7, 8(r5)
+    stw      r6, 0xc(r5)
+    stw      r6, 0xc(r1)
+    stw      r3, 0x10(r1)
+    stw      r3, 0x10(r5)
 
-.loc_0x74:
-  mr        r3, r31
-  addi      r4, r31, 0x68
-  bl        0xCC
-  lwz       r0, 0x24(r1)
-  lwz       r31, 0x1C(r1)
-  mtlr      r0
-  addi      r1, r1, 0x20
-  blr
+lbl_80422E64:
+    mr       r3, r31
+    addi     r4, r31, 0x68
+    bl       dvdLoadUseCallBack__6SystemFP16DvdThreadCommandP9IDelegate
+    lwz      r0, 0x24(r1)
+    lwz      r31, 0x1c(r1)
+    mtlr     r0
+    addi     r1, r1, 0x20
+    blr
 
 }
 
@@ -1397,20 +1621,19 @@ void System::loadResourceSecond()
 void System::run()
 {
 /*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  stw       r0, 0x14(r1)
-  lwz       r3, 0x3C(r3)
-  lwz       r12, 0x0(r3)
-  lwz       r12, 0x8(r12)
-  mtctr     r12
-  bctrl
-  lwz       r0, 0x14(r1)
-  li        r3, 0
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
+    stwu     r1, -0x10(r1)
+    mflr     r0
+    stw      r0, 0x14(r1)
+    lwz      r3, 0x3c(r3)
+    lwz      r12, 0(r3)
+    lwz      r12, 8(r12)
+    mtctr    r12
+    bctrl
+    lwz      r0, 0x14(r1)
+    li       r3, 0
+    mtlr     r0
+    addi     r1, r1, 0x10
+    blr
 
 }
 
@@ -1422,29 +1645,28 @@ void System::run()
 void System::getTime()
 {
 /*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  stw       r0, 0x14(r1)
-  bl        -0x33031C
-  lis       r5, 0x8000
-  lis       r4, 0x1062
-  lwz       r5, 0xF8(r5)
-  lis       r0, 0x4330
-  addi      r4, r4, 0x4DD3
-  stw       r0, 0x8(r1)
-  rlwinm    r0,r5,30,2,31
-  lfd       f1, 0x20C0(r2)
-  mulhwu    r0, r4, r0
-  rlwinm    r0,r0,26,6,31
-  divwu     r0, r3, r0
-  stw       r0, 0xC(r1)
-  lfd       f0, 0x8(r1)
-  fsubs     f1, f0, f1
-  lwz       r0, 0x14(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
+    stwu     r1, -0x10(r1)
+    mflr     r0
+    stw      r0, 0x14(r1)
+    bl       OSGetTick
+    lis      r5, 0x800000F8@ha
+    lis      r4, 0x10624DD3@ha
+    lwz      r5, 0x800000F8@l(r5)
+    lis      r0, 0x4330
+    addi     r4, r4, 0x10624DD3@l
+    stw      r0, 8(r1)
+    srwi     r0, r5, 2
+    lfd      f1, lbl_80520420@sda21(r2)
+    mulhwu   r0, r4, r0
+    srwi     r0, r0, 6
+    divwu    r0, r3, r0
+    stw      r0, 0xc(r1)
+    lfd      f0, 8(r1)
+    fsubs    f1, f0, f1
+    lwz      r0, 0x14(r1)
+    mtlr     r0
+    addi     r1, r1, 0x10
+    blr
 
 }
 
@@ -1466,11 +1688,10 @@ void System::checkOptionBlockSaveFlag()
 void System::clearOptionBlockSaveFlag()
 {
 /*
-.loc_0x0:
-  lwz       r3, 0x60(r3)
-  li        r0, 0
-  stb       r0, 0x42(r3)
-  blr
+    lwz      r3, 0x60(r3)
+    li       r0, 0
+    stb      r0, 0x42(r3)
+    blr
 
 }
 
@@ -1482,11 +1703,10 @@ void System::clearOptionBlockSaveFlag()
 void System::setOptionBlockSaveFlag()
 {
 /*
-.loc_0x0:
-  lwz       r3, 0x60(r3)
-  li        r0, 0x1
-  stb       r0, 0x42(r3)
-  blr
+    lwz      r3, 0x60(r3)
+    li       r0, 1
+    stb      r0, 0x42(r3)
+    blr
 
 }
 
@@ -1498,9 +1718,8 @@ void System::setOptionBlockSaveFlag()
 void System::getPlayCommonData()
 {
 /*
-.loc_0x0:
-  lwz       r3, 0x60(r3)
-  blr
+    lwz      r3, 0x60(r3)
+    blr
 
 }
 
@@ -1512,31 +1731,30 @@ void System::getPlayCommonData()
 void System::dvdLoadUseCallBack(DvdThreadCommand*, IDelegate*)
 {
 /*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  stw       r0, 0x14(r1)
-  stw       r31, 0xC(r1)
-  mr        r31, r4
-  stw       r30, 0x8(r1)
-  mr        r30, r3
-  lwz       r0, 0x40(r3)
-  cmplwi    r0, 0
-  beq-      .loc_0x40
-  mr        r3, r31
-  mr        r4, r5
-  bl        0x1930
-  lwz       r3, 0x40(r30)
-  mr        r4, r31
-  bl        0x1CC8
+    stwu     r1, -0x10(r1)
+    mflr     r0
+    stw      r0, 0x14(r1)
+    stw      r31, 0xc(r1)
+    mr       r31, r4
+    stw      r30, 8(r1)
+    mr       r30, r3
+    lwz      r0, 0x40(r3)
+    cmplwi   r0, 0
+    beq      lbl_80422F78
+    mr       r3, r31
+    mr       r4, r5
+    bl       loadUseCallBack__16DvdThreadCommandFP9IDelegate
+    lwz      r3, 0x40(r30)
+    mr       r4, r31
+    bl       sendCommand__9DvdThreadFP16DvdThreadCommand
 
-.loc_0x40:
-  lwz       r0, 0x14(r1)
-  lwz       r31, 0xC(r1)
-  lwz       r30, 0x8(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
+lbl_80422F78:
+    lwz      r0, 0x14(r1)
+    lwz      r31, 0xc(r1)
+    lwz      r30, 8(r1)
+    mtlr     r0
+    addi     r1, r1, 0x10
+    blr
 
 }
 
@@ -1598,32 +1816,31 @@ void System::dvdLoadSyncAll(DvdThread::ESyncBlockFlag)
 void System::deleteThreads()
 {
 /*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  stw       r0, 0x14(r1)
-  stw       r31, 0xC(r1)
-  mr        r31, r3
-  lwz       r3, 0x40(r3)
-  cmplwi    r3, 0
-  beq-      .loc_0x40
-  beq-      .loc_0x38
-  lwz       r12, 0x0(r3)
-  li        r4, 0x1
-  lwz       r12, 0x8(r12)
-  mtctr     r12
-  bctrl
+    stwu     r1, -0x10(r1)
+    mflr     r0
+    stw      r0, 0x14(r1)
+    stw      r31, 0xc(r1)
+    mr       r31, r3
+    lwz      r3, 0x40(r3)
+    cmplwi   r3, 0
+    beq      lbl_80422FD0
+    beq      lbl_80422FC8
+    lwz      r12, 0(r3)
+    li       r4, 1
+    lwz      r12, 8(r12)
+    mtctr    r12
+    bctrl
 
-.loc_0x38:
-  li        r0, 0
-  stw       r0, 0x40(r31)
+lbl_80422FC8:
+    li       r0, 0
+    stw      r0, 0x40(r31)
 
-.loc_0x40:
-  lwz       r0, 0x14(r1)
-  lwz       r31, 0xC(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
+lbl_80422FD0:
+    lwz      r0, 0x14(r1)
+    lwz      r31, 0xc(r1)
+    mtlr     r0
+    addi     r1, r1, 0x10
+    blr
 
 }
 
@@ -1635,48 +1852,47 @@ void System::deleteThreads()
 DvdThread::~DvdThread()
 {
 /*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  stw       r0, 0x14(r1)
-  stw       r31, 0xC(r1)
-  mr        r31, r4
-  stw       r30, 0x8(r1)
-  mr.       r30, r3
-  beq-      .loc_0x70
-  lis       r3, 0x804F
-  addic.    r0, r30, 0x7C
-  subi      r0, r3, 0x4278
-  stw       r0, 0x0(r30)
-  beq-      .loc_0x40
-  addi      r3, r30, 0x7C
-  li        r4, 0
-  bl        -0x3FC7B8
+    stwu     r1, -0x10(r1)
+    mflr     r0
+    stw      r0, 0x14(r1)
+    stw      r31, 0xc(r1)
+    mr       r31, r4
+    stw      r30, 8(r1)
+    or.      r30, r3, r3
+    beq      lbl_80423054
+    lis      r3, __vt__9DvdThread@ha
+    addic.   r0, r30, 0x7c
+    addi     r0, r3, __vt__9DvdThread@l
+    stw      r0, 0(r30)
+    beq      lbl_80423024
+    addi     r3, r30, 0x7c
+    li       r4, 0
+    bl       __dt__10JSUPtrListFv
 
-.loc_0x40:
-  cmplwi    r30, 0
-  beq-      .loc_0x60
-  lis       r4, 0x804F
-  mr        r3, r30
-  subi      r0, r4, 0x44A8
-  li        r4, 0
-  stw       r0, 0x0(r30)
-  bl        -0x3FD808
+lbl_80423024:
+    cmplwi   r30, 0
+    beq      lbl_80423044
+    lis      r4, __vt__9AppThread@ha
+    mr       r3, r30
+    addi     r0, r4, __vt__9AppThread@l
+    li       r4, 0
+    stw      r0, 0(r30)
+    bl       __dt__9JKRThreadFv
 
-.loc_0x60:
-  extsh.    r0, r31
-  ble-      .loc_0x70
-  mr        r3, r30
-  bl        -0x3FEF9C
+lbl_80423044:
+    extsh.   r0, r31
+    ble      lbl_80423054
+    mr       r3, r30
+    bl       __dl__FPv
 
-.loc_0x70:
-  lwz       r0, 0x14(r1)
-  mr        r3, r30
-  lwz       r31, 0xC(r1)
-  lwz       r30, 0x8(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
+lbl_80423054:
+    lwz      r0, 0x14(r1)
+    mr       r3, r30
+    lwz      r31, 0xc(r1)
+    lwz      r30, 8(r1)
+    mtlr     r0
+    addi     r1, r1, 0x10
+    blr
 
 }
 
@@ -1688,11 +1904,10 @@ DvdThread::~DvdThread()
 void System::setCurrentDisplay(JFWDisplay*)
 {
 /*
-.loc_0x0:
-  lwz       r0, 0x4C(r3)
-  stw       r4, 0x4C(r3)
-  mr        r3, r0
-  blr
+    lwz      r0, 0x4c(r3)
+    stw      r4, 0x4c(r3)
+    mr       r3, r0
+    blr
 
 }
 
@@ -1704,16 +1919,15 @@ void System::setCurrentDisplay(JFWDisplay*)
 void System::clearCurrentDisplay(JFWDisplay*)
 {
 /*
-.loc_0x0:
-  lwz       r0, 0x4C(r3)
-  cmplw     r0, r4
-  bne-      .loc_0x14
-  li        r0, 0
-  stw       r0, 0x4C(r3)
+    lwz      r0, 0x4c(r3)
+    cmplw    r0, r4
+    bne      lbl_80423094
+    li       r0, 0
+    stw      r0, 0x4c(r3)
 
-.loc_0x14:
-  li        r3, 0
-  blr
+lbl_80423094:
+    li       r3, 0
+    blr
 
 }
 
@@ -1725,22 +1939,21 @@ void System::clearCurrentDisplay(JFWDisplay*)
 void System::beginFrame()
 {
 /*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  stw       r0, 0x14(r1)
-  li        r0, 0
-  stw       r31, 0xC(r1)
-  mr        r31, r3
-  stw       r0, 0x1C(r3)
-  bl        -0x3F5A58
-  lwz       r3, 0x48(r31)
-  bl        0x7294
-  lwz       r0, 0x14(r1)
-  lwz       r31, 0xC(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
+    stwu     r1, -0x10(r1)
+    mflr     r0
+    stw      r0, 0x14(r1)
+    li       r0, 0
+    stw      r31, 0xc(r1)
+    mr       r31, r3
+    stw      r0, 0x1c(r3)
+    bl       read__10JUTGamePadFv
+    lwz      r3, 0x48(r31)
+    bl       update__9DvdStatusFv
+    lwz      r0, 0x14(r1)
+    lwz      r31, 0xc(r1)
+    mtlr     r0
+    addi     r1, r1, 0x10
+    blr
 
 }
 
@@ -1752,32 +1965,31 @@ void System::beginFrame()
 void System::endFrame()
 {
 /*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  stw       r0, 0x14(r1)
-  stw       r31, 0xC(r1)
-  mr        r31, r3
-  lwz       r3, 0x4C(r3)
-  lwz       r12, 0x0(r3)
-  lwz       r12, 0x10(r12)
-  mtctr     r12
-  bctrl
-  mr        r3, r31
-  bl        0x2D8
-  lwz       r3, 0x44(r31)
-  bl        0x6D6C
-  lwz       r3, -0x77A8(r13)
-  cmplwi    r3, 0
-  beq-      .loc_0x48
-  bl        -0x3FD6D8
+    stwu     r1, -0x10(r1)
+    mflr     r0
+    stw      r0, 0x14(r1)
+    stw      r31, 0xc(r1)
+    mr       r31, r3
+    lwz      r3, 0x4c(r3)
+    lwz      r12, 0(r3)
+    lwz      r12, 0x10(r12)
+    mtctr    r12
+    bctrl
+    mr       r3, r31
+    bl       inactiveGP__6SystemFv
+    lwz      r3, 0x44(r31)
+    bl       update__12ResetManagerFv
+    lwz      r3, sManager__15JKRThreadSwitch@sda21(r13)
+    cmplwi   r3, 0
+    beq      lbl_80423120
+    bl       loopProc__15JKRThreadSwitchFv
 
-.loc_0x48:
-  lwz       r0, 0x14(r1)
-  lwz       r31, 0xC(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
+lbl_80423120:
+    lwz      r0, 0x14(r1)
+    lwz      r31, 0xc(r1)
+    mtlr     r0
+    addi     r1, r1, 0x10
+    blr
 
 }
 
@@ -1789,25 +2001,24 @@ void System::endFrame()
 void System::beginRender()
 {
 /*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  stw       r0, 0x14(r1)
-  stw       r31, 0xC(r1)
-  mr        r31, r3
-  bl        0x280
-  li        r3, 0
-  bl        -0x34AD50
-  lwz       r3, 0x4C(r31)
-  lwz       r12, 0x0(r3)
-  lwz       r12, 0x8(r12)
-  mtctr     r12
-  bctrl
-  lwz       r0, 0x14(r1)
-  lwz       r31, 0xC(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
+    stwu     r1, -0x10(r1)
+    mflr     r0
+    stw      r0, 0x14(r1)
+    stw      r31, 0xc(r1)
+    mr       r31, r3
+    bl       activeGP__6SystemFv
+    li       r3, 0
+    bl       CARDProbe
+    lwz      r3, 0x4c(r31)
+    lwz      r12, 0(r3)
+    lwz      r12, 8(r12)
+    mtctr    r12
+    bctrl
+    lwz      r0, 0x14(r1)
+    lwz      r31, 0xc(r1)
+    mtlr     r0
+    addi     r1, r1, 0x10
+    blr
 
 }
 
@@ -1819,47 +2030,46 @@ void System::beginRender()
 void System::endRender()
 {
 /*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  stw       r0, 0x14(r1)
-  stw       r31, 0xC(r1)
-  stw       r30, 0x8(r1)
-  mr        r30, r3
-  lwz       r31, -0x67A8(r13)
-  cmplwi    r31, 0
-  beq-      .loc_0x50
-  lwz       r3, -0x6514(r13)
-  addi      r4, r2, 0x20C8
-  li        r5, 0x1
-  lwz       r3, 0x28(r3)
-  bl        0x7948
-  mr        r3, r31
-  bl        -0xEAA6C
-  lwz       r3, -0x6514(r13)
-  addi      r4, r2, 0x20C8
-  lwz       r3, 0x28(r3)
-  bl        0x7934
+    stwu     r1, -0x10(r1)
+    mflr     r0
+    stw      r0, 0x14(r1)
+    stw      r31, 0xc(r1)
+    stw      r30, 8(r1)
+    mr       r30, r3
+    lwz      r31, spSysIF__8PSSystem@sda21(r13)
+    cmplwi   r31, 0
+    beq      lbl_804231CC
+    lwz      r3, sys@sda21(r13)
+    addi     r4, r2, lbl_80520428@sda21
+    li       r5, 1
+    lwz      r3, 0x28(r3)
+    bl       _start__9SysTimersFPcb
+    mr       r3, r31
+    bl       mainLoop__Q28PSSystem5SysIFFv
+    lwz      r3, sys@sda21(r13)
+    addi     r4, r2, lbl_80520428@sda21
+    lwz      r3, 0x28(r3)
+    bl       _stop__9SysTimersFPc
 
-.loc_0x50:
-  lwz       r3, 0x48(r30)
-  bl        0x7374
-  lwz       r3, 0x44(r30)
-  lwz       r12, 0x0(r3)
-  lwz       r12, 0x8(r12)
-  mtctr     r12
-  bctrl
-  lwz       r3, 0x4C(r30)
-  lwz       r12, 0x0(r3)
-  lwz       r12, 0xC(r12)
-  mtctr     r12
-  bctrl
-  lwz       r0, 0x14(r1)
-  lwz       r31, 0xC(r1)
-  lwz       r30, 0x8(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
+lbl_804231CC:
+    lwz      r3, 0x48(r30)
+    bl       draw__9DvdStatusFv
+    lwz      r3, 0x44(r30)
+    lwz      r12, 0(r3)
+    lwz      r12, 8(r12)
+    mtctr    r12
+    bctrl
+    lwz      r3, 0x4c(r30)
+    lwz      r12, 0(r3)
+    lwz      r12, 0xc(r12)
+    mtctr    r12
+    bctrl
+    lwz      r0, 0x14(r1)
+    lwz      r31, 0xc(r1)
+    lwz      r30, 8(r1)
+    mtlr     r0
+    addi     r1, r1, 0x10
+    blr
 
 }
 
@@ -1871,11 +2081,10 @@ void System::endRender()
 void System::setRenderMode(System::ERenderMode)
 {
 /*
-.loc_0x0:
-  lwz       r0, -0x6518(r13)
-  stw       r3, -0x6518(r13)
-  mr        r3, r0
-  blr
+    lwz      r0, mRenderMode__6System@sda21(r13)
+    stw      r3, mRenderMode__6System@sda21(r13)
+    mr       r3, r0
+    blr
 
 }
 
@@ -1887,13 +2096,12 @@ void System::setRenderMode(System::ERenderMode)
 void System::getRenderModeObj()
 {
 /*
-.loc_0x0:
-  lwz       r0, -0x6518(r13)
-  lis       r3, 0x804F
-  subi      r3, r3, 0x44D0
-  rlwinm    r0,r0,2,0,29
-  lwzx      r3, r3, r0
-  blr
+    lwz      r0, mRenderMode__6System@sda21(r13)
+    lis      r3, sRenderModeTable@ha
+    addi     r3, r3, sRenderModeTable@l
+    slwi     r0, r0, 2
+    lwzx     r3, r3, r0
+    blr
 
 }
 
@@ -1905,97 +2113,96 @@ void System::getRenderModeObj()
 void System::changeRenderMode(System::ERenderMode)
 {
 /*
-.loc_0x0:
-  stwu      r1, -0x20(r1)
-  mflr      r0
-  lis       r5, 0x804A
-  stw       r0, 0x24(r1)
-  stw       r31, 0x1C(r1)
-  subi      r31, r5, 0x6838
-  stw       r30, 0x18(r1)
-  stw       r29, 0x14(r1)
-  mr        r29, r4
-  stw       r28, 0x10(r1)
-  mr        r28, r3
-  lwz       r30, -0x76E0(r13)
-  cmplwi    r30, 0
-  bne-      .loc_0x4C
-  addi      r3, r31, 0
-  addi      r5, r31, 0x174
-  li        r4, 0x761
-  crclr     6, 0x6
-  bl        -0x3F8C44
+    stwu     r1, -0x20(r1)
+    mflr     r0
+    lis      r5, gStrSystem_CPP@ha
+    stw      r0, 0x24(r1)
+    stw      r31, 0x1c(r1)
+    addi     r31, r5, gStrSystem_CPP@l
+    stw      r30, 0x18(r1)
+    stw      r29, 0x14(r1)
+    mr       r29, r4
+    stw      r28, 0x10(r1)
+    mr       r28, r3
+    lwz      r30, sManager__8JUTVideo@sda21(r13)
+    cmplwi   r30, 0
+    bne      lbl_80423288
+    addi     r3, r31, 0
+    addi     r5, r31, 0x174
+    li       r4, 0x761
+    crclr    6
+    bl       panic_f__12JUTExceptionFPCciPCce
 
-.loc_0x4C:
-  lwz       r0, -0x6518(r13)
-  cmpw      r0, r29
-  beq-      .loc_0x88
-  stw       r29, -0x6518(r13)
-  li        r3, 0x1
-  bl        -0x3511D4
-  bl        -0x35137C
-  bl        -0x352070
-  lwz       r0, -0x6518(r13)
-  lis       r3, 0x804F
-  subi      r4, r3, 0x44D0
-  mr        r3, r30
-  rlwinm    r0,r0,2,0,29
-  lwzx      r4, r4, r0
-  bl        -0x3EF650
+lbl_80423288:
+    lwz      r0, mRenderMode__6System@sda21(r13)
+    cmpw     r0, r29
+    beq      lbl_804232C4
+    stw      r29, mRenderMode__6System@sda21(r13)
+    li       r3, 1
+    bl       VISetBlack
+    bl       VIFlush
+    bl       VIWaitForRetrace
+    lwz      r0, mRenderMode__6System@sda21(r13)
+    lis      r3, sRenderModeTable@ha
+    addi     r4, r3, sRenderModeTable@l
+    mr       r3, r30
+    slwi     r0, r0, 2
+    lwzx     r4, r4, r0
+    bl       setRenderMode__8JUTVideoFPC16_GXRenderModeObj
 
-.loc_0x88:
-  cmpwi     r29, 0x2
-  beq-      .loc_0xC8
-  bge-      .loc_0xA4
-  cmpwi     r29, 0
-  beq-      .loc_0xB0
-  bge-      .loc_0xBC
-  b         .loc_0xE0
+lbl_804232C4:
+    cmpwi    r29, 2
+    beq      lbl_80423304
+    bge      lbl_804232E0
+    cmpwi    r29, 0
+    beq      lbl_804232EC
+    bge      lbl_804232F8
+    b        lbl_8042331C
 
-.loc_0xA4:
-  cmpwi     r29, 0x4
-  bge-      .loc_0xE0
-  b         .loc_0xD4
+lbl_804232E0:
+    cmpwi    r29, 4
+    bge      lbl_8042331C
+    b        lbl_80423310
 
-.loc_0xB0:
-  li        r3, 0
-  bl        -0x331EBC
-  b         .loc_0xF8
+lbl_804232EC:
+    li       r3, 0
+    bl       OSSetProgressiveMode
+    b        lbl_80423334
 
-.loc_0xBC:
-  li        r3, 0x1
-  bl        -0x331EC8
-  b         .loc_0xF8
+lbl_804232F8:
+    li       r3, 1
+    bl       OSSetProgressiveMode
+    b        lbl_80423334
 
-.loc_0xC8:
-  li        r3, 0
-  bl        -0x331E30
-  b         .loc_0xF8
+lbl_80423304:
+    li       r3, 0
+    bl       OSSetEuRgb60Mode
+    b        lbl_80423334
 
-.loc_0xD4:
-  li        r3, 0x1
-  bl        -0x331E3C
-  b         .loc_0xF8
+lbl_80423310:
+    li       r3, 1
+    bl       OSSetEuRgb60Mode
+    b        lbl_80423334
 
-.loc_0xE0:
-  mr        r6, r29
-  addi      r3, r31, 0
-  addi      r5, r31, 0x204
-  li        r4, 0x781
-  crclr     6, 0x6
-  bl        -0x3F8CF0
+lbl_8042331C:
+    mr       r6, r29
+    addi     r3, r31, 0
+    addi     r5, r31, 0x204
+    li       r4, 0x781
+    crclr    6
+    bl       panic_f__12JUTExceptionFPCciPCce
 
-.loc_0xF8:
-  lwz       r3, 0x60(r28)
-  bl        0x23C90
-  lwz       r0, 0x24(r1)
-  lwz       r31, 0x1C(r1)
-  lwz       r30, 0x18(r1)
-  lwz       r29, 0x14(r1)
-  lwz       r28, 0x10(r1)
-  mtlr      r0
-  addi      r1, r1, 0x20
-  blr
+lbl_80423334:
+    lwz      r3, 0x60(r28)
+    bl       setDeflicker__Q34Game14CommonSaveData3MgrFv
+    lwz      r0, 0x24(r1)
+    lwz      r31, 0x1c(r1)
+    lwz      r30, 0x18(r1)
+    lwz      r29, 0x14(r1)
+    lwz      r28, 0x10(r1)
+    mtlr     r0
+    addi     r1, r1, 0x20
+    blr
 
 }
 
@@ -2063,17 +2270,16 @@ void System::heapStatusDumpNode()
 void System::resetOn(bool)
 {
 /*
-.loc_0x0:
-  lwz       r3, 0x44(r3)
-  rlwinm.   r0,r4,0,24,31
-  lwz       r0, 0xC(r3)
-  ori       r0, r0, 0x1
-  stw       r0, 0xC(r3)
-  beqlr-
-  lwz       r0, 0xC(r3)
-  ori       r0, r0, 0x8
-  stw       r0, 0xC(r3)
-  blr
+    lwz      r3, 0x44(r3)
+    clrlwi.  r0, r4, 0x18
+    lwz      r0, 0xc(r3)
+    ori      r0, r0, 1
+    stw      r0, 0xc(r3)
+    beqlr
+    lwz      r0, 0xc(r3)
+    ori      r0, r0, 8
+    stw      r0, 0xc(r3)
+    blr
 
 }
 
@@ -2095,12 +2301,11 @@ void System::resetOff()
 void System::resetPermissionOn()
 {
 /*
-.loc_0x0:
-  lwz       r3, 0x44(r3)
-  lwz       r0, 0xC(r3)
-  oris      r0, r0, 0x1000
-  stw       r0, 0xC(r3)
-  blr
+    lwz      r3, 0x44(r3)
+    lwz      r0, 0xc(r3)
+    oris     r0, r0, 0x1000
+    stw      r0, 0xc(r3)
+    blr
 
 }
 
@@ -2112,13 +2317,12 @@ void System::resetPermissionOn()
 void System::isResetActive()
 {
 /*
-.loc_0x0:
-  lwz       r3, 0x44(r3)
-  lwz       r3, 0x4(r3)
-  neg       r0, r3
-  or        r0, r0, r3
-  rlwinm    r3,r0,1,31,31
-  blr
+    lwz      r3, 0x44(r3)
+    lwz      r3, 4(r3)
+    neg      r0, r3
+    or       r0, r0, r3
+    srwi     r3, r0, 0x1f
+    blr
 
 }
 
@@ -2130,12 +2334,11 @@ void System::isResetActive()
 void System::activeGP()
 {
 /*
-.loc_0x0:
-  lwz       r3, 0x44(r3)
-  lwz       r0, 0xC(r3)
-  ori       r0, r0, 0x2
-  stw       r0, 0xC(r3)
-  blr
+    lwz      r3, 0x44(r3)
+    lwz      r0, 0xc(r3)
+    ori      r0, r0, 2
+    stw      r0, 0xc(r3)
+    blr
 
 }
 
@@ -2147,12 +2350,11 @@ void System::activeGP()
 void System::inactiveGP()
 {
 /*
-.loc_0x0:
-  lwz       r3, 0x44(r3)
-  lwz       r0, 0xC(r3)
-  rlwinm    r0,r0,0,31,29
-  stw       r0, 0xC(r3)
-  blr
+    lwz      r3, 0x44(r3)
+    lwz      r0, 0xc(r3)
+    rlwinm   r0, r0, 0, 0x1f, 0x1d
+    stw      r0, 0xc(r3)
+    blr
 
 }
 
@@ -2164,16 +2366,15 @@ void System::inactiveGP()
 void System::isDvdErrorOccured()
 {
 /*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  stw       r0, 0x14(r1)
-  lwz       r3, 0x48(r3)
-  bl        0x6F28
-  lwz       r0, 0x14(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
+    stwu     r1, -0x10(r1)
+    mflr     r0
+    stw      r0, 0x14(r1)
+    lwz      r3, 0x48(r3)
+    bl       isErrorOccured__9DvdStatusFv
+    lwz      r0, 0x14(r1)
+    mtlr     r0
+    addi     r1, r1, 0x10
+    blr
 
 }
 
@@ -2185,20 +2386,19 @@ void System::isDvdErrorOccured()
 void System::initCurrentHeapMutex()
 {
 /*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  stw       r0, 0x14(r1)
-  stw       r31, 0xC(r1)
-  mr        r31, r3
-  bl        -0x3338F8
-  li        r0, 0
-  stw       r0, 0x18(r31)
-  lwz       r0, 0x14(r1)
-  lwz       r31, 0xC(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
+    stwu     r1, -0x10(r1)
+    mflr     r0
+    stw      r0, 0x14(r1)
+    stw      r31, 0xc(r1)
+    mr       r31, r3
+    bl       OSInitMutex
+    li       r0, 0
+    stw      r0, 0x18(r31)
+    lwz      r0, 0x14(r1)
+    lwz      r31, 0xc(r1)
+    mtlr     r0
+    addi     r1, r1, 0x10
+    blr
 
 }
 
@@ -2210,37 +2410,36 @@ void System::initCurrentHeapMutex()
 void System::startChangeCurrentHeap(JKRHeap*)
 {
 /*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  stw       r0, 0x14(r1)
-  stw       r31, 0xC(r1)
-  mr        r31, r4
-  stw       r30, 0x8(r1)
-  mr        r30, r3
-  bl        -0x3338FC
-  lwz       r0, 0x18(r30)
-  cmplwi    r0, 0
-  beq-      .loc_0x48
-  lis       r3, 0x804A
-  lis       r5, 0x804A
-  subi      r3, r3, 0x6838
-  li        r4, 0x7F1
-  subi      r5, r5, 0x66C4
-  crclr     6, 0x6
-  bl        -0x3F8E4C
+    stwu     r1, -0x10(r1)
+    mflr     r0
+    stw      r0, 0x14(r1)
+    stw      r31, 0xc(r1)
+    mr       r31, r4
+    stw      r30, 8(r1)
+    mr       r30, r3
+    bl       OSLockMutex
+    lwz      r0, 0x18(r30)
+    cmplwi   r0, 0
+    beq      lbl_80423490
+    lis      r3, gStrSystem_CPP@ha
+    lis      r5, lbl_8049993C@ha
+    addi     r3, r3, gStrSystem_CPP@l
+    li       r4, 0x7f1
+    addi     r5, r5, lbl_8049993C@l
+    crclr    6
+    bl       panic_f__12JUTExceptionFPCciPCce
 
-.loc_0x48:
-  lwz       r0, -0x77D4(r13)
-  mr        r3, r31
-  stw       r0, 0x18(r30)
-  bl        -0x3FFEF8
-  lwz       r0, 0x14(r1)
-  lwz       r31, 0xC(r1)
-  lwz       r30, 0x8(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
+lbl_80423490:
+    lwz      r0, sCurrentHeap__7JKRHeap@sda21(r13)
+    mr       r3, r31
+    stw      r0, 0x18(r30)
+    bl       becomeCurrentHeap__7JKRHeapFv
+    lwz      r0, 0x14(r1)
+    lwz      r31, 0xc(r1)
+    lwz      r30, 8(r1)
+    mtlr     r0
+    addi     r1, r1, 0x10
+    blr
 
 }
 
@@ -2252,35 +2451,34 @@ void System::startChangeCurrentHeap(JKRHeap*)
 void System::endChangeCurrentHeap()
 {
 /*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  stw       r0, 0x14(r1)
-  stw       r31, 0xC(r1)
-  mr        r31, r3
-  lwz       r0, 0x18(r3)
-  cmplwi    r0, 0
-  bne-      .loc_0x3C
-  lis       r3, 0x804A
-  lis       r5, 0x804A
-  subi      r3, r3, 0x6838
-  li        r4, 0x7F9
-  subi      r5, r5, 0x66C4
-  crclr     6, 0x6
-  bl        -0x3F8EB0
+    stwu     r1, -0x10(r1)
+    mflr     r0
+    stw      r0, 0x14(r1)
+    stw      r31, 0xc(r1)
+    mr       r31, r3
+    lwz      r0, 0x18(r3)
+    cmplwi   r0, 0
+    bne      lbl_804234F4
+    lis      r3, gStrSystem_CPP@ha
+    lis      r5, lbl_8049993C@ha
+    addi     r3, r3, gStrSystem_CPP@l
+    li       r4, 0x7f9
+    addi     r5, r5, lbl_8049993C@l
+    crclr    6
+    bl       panic_f__12JUTExceptionFPCciPCce
 
-.loc_0x3C:
-  lwz       r3, 0x18(r31)
-  bl        -0x3FFF54
-  li        r0, 0
-  mr        r3, r31
-  stw       r0, 0x18(r31)
-  bl        -0x3338C4
-  lwz       r0, 0x14(r1)
-  lwz       r31, 0xC(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
+lbl_804234F4:
+    lwz      r3, 0x18(r31)
+    bl       becomeCurrentHeap__7JKRHeapFv
+    li       r0, 0
+    mr       r3, r31
+    stw      r0, 0x18(r31)
+    bl       OSUnlockMutex
+    lwz      r0, 0x14(r1)
+    lwz      r31, 0xc(r1)
+    mtlr     r0
+    addi     r1, r1, 0x10
+    blr
 
 }
 
@@ -2319,49 +2517,48 @@ void System::refreshGenNode()
 void System::setFrameRate(int)
 {
 /*
-.loc_0x0:
-  stwu      r1, -0x20(r1)
-  mflr      r0
-  stw       r0, 0x24(r1)
-  stw       r31, 0x1C(r1)
-  stw       r30, 0x18(r1)
-  mr        r30, r4
-  stw       r29, 0x14(r1)
-  mr        r29, r3
-  lwz       r31, 0x4C(r3)
-  cmplwi    r31, 0
-  bne-      .loc_0x48
-  lis       r3, 0x804A
-  lis       r5, 0x804A
-  subi      r3, r3, 0x6838
-  li        r4, 0x927
-  subi      r5, r5, 0x661C
-  crclr     6, 0x6
-  bl        -0x3F8F30
+    stwu     r1, -0x20(r1)
+    mflr     r0
+    stw      r0, 0x24(r1)
+    stw      r31, 0x1c(r1)
+    stw      r30, 0x18(r1)
+    mr       r30, r4
+    stw      r29, 0x14(r1)
+    mr       r29, r3
+    lwz      r31, 0x4c(r3)
+    cmplwi   r31, 0
+    bne      lbl_80423574
+    lis      r3, gStrSystem_CPP@ha
+    lis      r5, lbl_804999E4@ha
+    addi     r3, r3, gStrSystem_CPP@l
+    li       r4, 0x927
+    addi     r5, r5, lbl_804999E4@l
+    crclr    6
+    bl       panic_f__12JUTExceptionFPCciPCce
 
-.loc_0x48:
-  xoris     r0, r30, 0x8000
-  lis       r3, 0x4330
-  stw       r0, 0xC(r1)
-  li        r0, 0
-  lfd       f2, 0x20D8(r2)
-  stw       r3, 0x8(r1)
-  lfs       f0, 0x20D0(r2)
-  lfd       f1, 0x8(r1)
-  fsubs     f1, f1, f2
-  stfs      f1, 0x64(r29)
-  lfs       f1, 0x64(r29)
-  fdivs     f0, f1, f0
-  stfs      f0, 0x54(r29)
-  sth       r30, 0x1C(r31)
-  stw       r0, 0x20(r31)
-  lwz       r31, 0x1C(r1)
-  lwz       r30, 0x18(r1)
-  lwz       r0, 0x24(r1)
-  lwz       r29, 0x14(r1)
-  mtlr      r0
-  addi      r1, r1, 0x20
-  blr
+lbl_80423574:
+    xoris    r0, r30, 0x8000
+    lis      r3, 0x4330
+    stw      r0, 0xc(r1)
+    li       r0, 0
+    lfd      f2, lbl_80520438@sda21(r2)
+    stw      r3, 8(r1)
+    lfs      f0, lbl_80520430@sda21(r2)
+    lfd      f1, 8(r1)
+    fsubs    f1, f1, f2
+    stfs     f1, 0x64(r29)
+    lfs      f1, 0x64(r29)
+    fdivs    f0, f1, f0
+    stfs     f0, 0x54(r29)
+    sth      r30, 0x1c(r31)
+    stw      r0, 0x20(r31)
+    lwz      r31, 0x1c(r1)
+    lwz      r30, 0x18(r1)
+    lwz      r0, 0x24(r1)
+    lwz      r29, 0x14(r1)
+    mtlr     r0
+    addi     r1, r1, 0x20
+    blr
 
 }
 
@@ -2393,37 +2590,36 @@ u32  ISectionMgr::getCurrentSection()
 void System::dvdLoadSyncNoBlock(DvdThreadCommand*)
 {
 /*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  stw       r0, 0x14(r1)
-  stw       r31, 0xC(r1)
-  mr        r31, r3
-  lwz       r3, 0x40(r3)
-  cmplwi    r3, 0
-  beq-      .loc_0x2C
-  li        r5, 0x1
-  bl        0x16A4
-  b         .loc_0x30
+    stwu     r1, -0x10(r1)
+    mflr     r0
+    stw      r0, 0x14(r1)
+    stw      r31, 0xc(r1)
+    mr       r31, r3
+    lwz      r3, 0x40(r3)
+    cmplwi   r3, 0
+    beq      lbl_80423600
+    li       r5, 1
+    bl       sync__9DvdThreadFP16DvdThreadCommandQ29DvdThread14ESyncBlockFlag
+    b        lbl_80423604
 
-.loc_0x2C:
-  li        r3, 0x1
+lbl_80423600:
+    li       r3, 1
 
-.loc_0x30:
-  rlwinm.   r0,r3,0,24,31
-  beq-      .loc_0x4C
-  lwz       r3, 0x48(r31)
-  bl        0x6D18
-  rlwinm    r0,r3,0,24,31
-  cntlzw    r0, r0
-  rlwinm    r3,r0,27,5,31
+lbl_80423604:
+    clrlwi.  r0, r3, 0x18
+    beq      lbl_80423620
+    lwz      r3, 0x48(r31)
+    bl       isErrorOccured__9DvdStatusFv
+    clrlwi   r0, r3, 0x18
+    cntlzw   r0, r0
+    srwi     r3, r0, 5
 
-.loc_0x4C:
-  lwz       r0, 0x14(r1)
-  lwz       r31, 0xC(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
+lbl_80423620:
+    lwz      r0, 0x14(r1)
+    lwz      r31, 0xc(r1)
+    mtlr     r0
+    addi     r1, r1, 0x10
+    blr
 
 }
 
@@ -2435,36 +2631,35 @@ void System::dvdLoadSyncNoBlock(DvdThreadCommand*)
 void System::dvdLoadSyncAllNoBlock()
 {
 /*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  stw       r0, 0x14(r1)
-  stw       r31, 0xC(r1)
-  mr        r31, r3
-  lwz       r3, 0x48(r3)
-  bl        0x6CDC
-  rlwinm.   r0,r3,0,24,31
-  beq-      .loc_0x2C
-  li        r3, -0x1
-  b         .loc_0x48
+    stwu     r1, -0x10(r1)
+    mflr     r0
+    stw      r0, 0x14(r1)
+    stw      r31, 0xc(r1)
+    mr       r31, r3
+    lwz      r3, 0x48(r3)
+    bl       isErrorOccured__9DvdStatusFv
+    clrlwi.  r0, r3, 0x18
+    beq      lbl_80423660
+    li       r3, -1
+    b        lbl_8042367C
 
-.loc_0x2C:
-  lwz       r3, 0x40(r31)
-  cmplwi    r3, 0
-  beq-      .loc_0x44
-  li        r4, 0x1
-  bl        0x16DC
-  b         .loc_0x48
+lbl_80423660:
+    lwz      r3, 0x40(r31)
+    cmplwi   r3, 0
+    beq      lbl_80423678
+    li       r4, 1
+    bl       syncAll__9DvdThreadFQ29DvdThread14ESyncBlockFlag
+    b        lbl_8042367C
 
-.loc_0x44:
-  li        r3, 0
+lbl_80423678:
+    li       r3, 0
 
-.loc_0x48:
-  lwz       r0, 0x14(r1)
-  lwz       r31, 0xC(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
+lbl_8042367C:
+    lwz      r0, 0x14(r1)
+    lwz      r31, 0xc(r1)
+    mtlr     r0
+    addi     r1, r1, 0x10
+    blr
 
 }
 
@@ -2476,33 +2671,32 @@ void System::dvdLoadSyncAllNoBlock()
 AppThread::~AppThread()
 {
 /*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  stw       r0, 0x14(r1)
-  stw       r31, 0xC(r1)
-  mr        r31, r4
-  stw       r30, 0x8(r1)
-  mr.       r30, r3
-  beq-      .loc_0x44
-  lis       r5, 0x804F
-  li        r4, 0
-  subi      r0, r5, 0x44A8
-  stw       r0, 0x0(r30)
-  bl        -0x3FDE88
-  extsh.    r0, r31
-  ble-      .loc_0x44
-  mr        r3, r30
-  bl        -0x3FF61C
+    stwu     r1, -0x10(r1)
+    mflr     r0
+    stw      r0, 0x14(r1)
+    stw      r31, 0xc(r1)
+    mr       r31, r4
+    stw      r30, 8(r1)
+    or.      r30, r3, r3
+    beq      lbl_804236D4
+    lis      r5, __vt__9AppThread@ha
+    li       r4, 0
+    addi     r0, r5, __vt__9AppThread@l
+    stw      r0, 0(r30)
+    bl       __dt__9JKRThreadFv
+    extsh.   r0, r31
+    ble      lbl_804236D4
+    mr       r3, r30
+    bl       __dl__FPv
 
-.loc_0x44:
-  lwz       r0, 0x14(r1)
-  mr        r3, r30
-  lwz       r31, 0xC(r1)
-  lwz       r30, 0x8(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
+lbl_804236D4:
+    lwz      r0, 0x14(r1)
+    mr       r3, r30
+    lwz      r31, 0xc(r1)
+    lwz      r30, 8(r1)
+    mtlr     r0
+    addi     r1, r1, 0x10
+    blr
 
 }
 
@@ -2516,23 +2710,22 @@ namespace PSM {
 void Factory::newSceneMgr(void)
 {
 /*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  li        r3, 0x14
-  stw       r0, 0x14(r1)
-  bl        -0x3FF85C
-  mr.       r0, r3
-  beq-      .loc_0x24
-  bl        0x36AB8
-  mr        r0, r3
+    stwu     r1, -0x10(r1)
+    mflr     r0
+    li       r3, 0x14
+    stw      r0, 0x14(r1)
+    bl       __nw__FUl
+    or.      r0, r3, r3
+    beq      lbl_80423714
+    bl       __ct__Q23PSM8SceneMgrFv
+    mr       r0, r3
 
-.loc_0x24:
-  mr        r3, r0
-  lwz       r0, 0x14(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
+lbl_80423714:
+    mr       r3, r0
+    lwz      r0, 0x14(r1)
+    mtlr     r0
+    addi     r1, r1, 0x10
+    blr
 
 }
 
@@ -2546,19 +2739,18 @@ void Factory::newSceneMgr(void)
 void Delegate<System>::invoke()
 {
 /*
-.loc_0x0:
-  stwu      r1, -0x10(r1)
-  mflr      r0
-  mr        r4, r3
-  stw       r0, 0x14(r1)
-  addi      r12, r4, 0x8
-  lwz       r3, 0x4(r3)
-  bl        -0x361C1C
-  nop
-  lwz       r0, 0x14(r1)
-  mtlr      r0
-  addi      r1, r1, 0x10
-  blr
+    stwu     r1, -0x10(r1)
+    mflr     r0
+    mr       r4, r3
+    stw      r0, 0x14(r1)
+    addi     r12, r4, 8
+    lwz      r3, 4(r3)
+    bl       __ptmf_scall
+    nop
+    lwz      r0, 0x14(r1)
+    mtlr     r0
+    addi     r1, r1, 0x10
+    blr
 
 }
 
@@ -2570,13 +2762,12 @@ void Delegate<System>::invoke()
 void __sinit_system_cpp(void)
 {
 /*
-.loc_0x0:
-  li        r4, 0x1
-  li        r0, 0
-  subi      r3, r13, 0x6510
-  stw       r4, -0x6510(r13)
-  stb       r0, 0x4(r3)
-  blr
+    li       r4, 1
+    li       r0, 0
+    addi     r3, r13, sVerifyArg__6System@sda21
+    stw      r4, sVerifyArg__6System@sda21(r13)
+    stb      r0, 4(r3)
+    blr
 
 }
 */

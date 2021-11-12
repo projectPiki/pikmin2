@@ -1,5 +1,367 @@
 #include "types.h"
 
+/*
+    Generated from dpostproc
+
+    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
+    .4byte __sinit_singleGS_MainGame_cpp
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_80482150
+    lbl_80482150:
+        .skip 0xC
+        .asciz "SingleGS_Game"
+        .skip 2
+    .global lbl_8048216C
+    lbl_8048216C:
+        .asciz "x01_gamestart"
+        .skip 2
+    .global lbl_8048217C
+    lbl_8048217C:
+        .asciz "x01_coursein_forest"
+    .global lbl_80482190
+    lbl_80482190:
+        .asciz "x01_coursein_yakushima"
+        .skip 1
+    .global lbl_804821A8
+    lbl_804821A8:
+        .asciz "x01_coursein_last"
+        .skip 2
+        .4byte lbl_8048216C
+        .4byte lbl_8048217C
+        .4byte lbl_80482190
+        .4byte lbl_804821A8
+        .asciz "singleGS_MainGame.cpp"
+        .skip 2
+        .asciz "P2Assert"
+        .skip 3
+        .asciz "BGS::GAME START"
+        .4byte 0x7330305F
+        .4byte 0x636F7572
+        .4byte 0x7365696E
+        .4byte 0x00000000
+        .4byte 0x7330455F
+        .4byte 0x72657475
+        .4byte 0x726E5F63
+        .4byte 0x61766500
+        .4byte 0x696C6C65
+        .4byte 0x67616C20
+        .4byte 0x73746174
+        .4byte 0x65204761
+        .4byte 0x6D655374
+        .4byte 0x6174653A
+        .4byte 0x3A696E69
+        .4byte 0x740A0000
+        .4byte 0x50534761
+        .4byte 0x6D652E68
+        .4byte 0x00000000
+        .4byte 0x50535363
+        .4byte 0x656E652E
+        .4byte 0x68000000
+        .4byte 0x67657420
+        .4byte 0x736F756E
+        .4byte 0x64207363
+        .4byte 0x656E6520
+        .4byte 0x61740A69
+        .4byte 0x6E76616C
+        .4byte 0x69642074
+        .4byte 0x696D6D69
+        .4byte 0x6E670A00
+        .4byte 0x50534D61
+        .4byte 0x696E5369
+        .4byte 0x64655F53
+        .4byte 0x63656E65
+        .4byte 0x2E680000
+        .4byte 0x6732365F
+        .4byte 0x696E6F75
+        .4byte 0x745F626C
+        .4byte 0x61636B00
+        .4byte 0x6732395F
+        .4byte 0x696E6F75
+        .4byte 0x745F7768
+        .4byte 0x69746500
+        .4byte 0x6732435F
+        .4byte 0x696E6F75
+        .4byte 0x745F7265
+        .4byte 0x64000000
+        .4byte 0x6E6F2064
+        .4byte 0x6F776E20
+        .4byte 0x666C6F6F
+        .4byte 0x72203230
+        .4byte 0x0A000000
+        .4byte 0x7831375F
+        .4byte 0x6A6F696E
+        .4byte 0x5F677569
+        .4byte 0x64650000
+        .4byte 0x7831355F
+        .4byte 0x6578705F
+        .4byte 0x78000000
+        .4byte 0x7830325F
+        .4byte 0x77617463
+        .4byte 0x685F7265
+        .4byte 0x645F7069
+        .4byte 0x6B6D696E
+        .4byte 0x00000000
+        .4byte 0x7830345F
+        .4byte 0x6578705F
+        .4byte 0x79000000
+        .4byte 0x6730315F
+        .4byte 0x7069636B
+        .4byte 0x5F6D6500
+        .4byte 0x6733335F
+        .4byte 0x63616D65
+        .4byte 0x72615F64
+        .4byte 0x656D6F00
+        .4byte 0x72657061
+        .4byte 0x792D646F
+        .4byte 0x6E650000
+        .4byte 0x736D656E
+        .4byte 0x755F6573
+        .4byte 0x63617065
+        .4byte 0x0A000000
+        .4byte 0x7330355F
+        .4byte 0x70696B6D
+        .4byte 0x696E7A65
+        .4byte 0x726F0000
+    .global lbl_8048235C
+    lbl_8048235C:
+        .4byte 0x7330335F
+        .4byte 0x6F72696D
+        .4byte 0x61646F77
+        .4byte 0x6E000000
+    .global lbl_8048236C
+    lbl_8048236C:
+        .4byte 0x7330395F
+        .4byte 0x686F6C65
+        .4byte 0x696E0000
+        .4byte 0x7331305F
+        .4byte 0x7375636B
+        .4byte 0x5F747265
+        .4byte 0x61737572
+        .4byte 0x65000000
+        .4byte 0x7830375F
+        .4byte 0x66697273
+        .4byte 0x745F7265
+        .4byte 0x636F7665
+        .4byte 0x72790000
+        .4byte 0x6730385F
+        .4byte 0x66697273
+        .4byte 0x745F7265
+        .4byte 0x7475726E
+        .4byte 0x00000000
+        .4byte 0x6733325F
+        .4byte 0x6765745F
+        .4byte 0x6D617000
+        .4byte 0x7331335F
+        .4byte 0x70696B6D
+        .4byte 0x696E5F73
+        .4byte 0x7570706C
+        .4byte 0x79000000
+        .4byte 0x7830335F
+        .4byte 0x66696E64
+        .4byte 0x5F726564
+        .4byte 0x5F6F6E79
+        .4byte 0x6F6E0000
+        .4byte 0x6733355F
+        .4byte 0x70726573
+        .4byte 0x6964656E
+        .4byte 0x745F6761
+        .4byte 0x6D657374
+        .4byte 0x61727400
+    .global lbl_80482400
+    lbl_80482400:
+        .4byte 0x73746172
+        .4byte 0x742D7265
+        .4byte 0x70617900
+    .global lbl_8048240C
+    lbl_8048240C:
+        .4byte 0x63686563
+        .4byte 0x6B2D7265
+        .4byte 0x70617900
+    .global lbl_80482418
+    lbl_80482418:
+        .4byte 0x67616D65
+        .4byte 0x73746174
+        .4byte 0x653A3A63
+        .4byte 0x6C65616E
+        .4byte 0x75700000
+        .4byte 0x00000000
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global lbl_804C04D8
+    lbl_804C04D8:
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+    .global __vt__Q32og6Screen14DispMemberSave
+    __vt__Q32og6Screen14DispMemberSave:
+        .4byte 0
+        .4byte 0
+        .4byte getSize__Q32og6Screen14DispMemberSaveFv
+        .4byte getOwnerID__Q32og6Screen14DispMemberSaveFv
+        .4byte getMemberID__Q32og6Screen14DispMemberSaveFv
+        .4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
+    .global __vt__Q32og6Screen19DispMemberSMenuCont
+    __vt__Q32og6Screen19DispMemberSMenuCont:
+        .4byte 0
+        .4byte 0
+        .4byte getSize__Q32og6Screen19DispMemberSMenuContFv
+        .4byte getOwnerID__Q32og6Screen19DispMemberSMenuContFv
+        .4byte getMemberID__Q32og6Screen19DispMemberSMenuContFv
+        .4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
+    .global __vt__Q32og6Screen22DispMemberSMenuPauseVS
+    __vt__Q32og6Screen22DispMemberSMenuPauseVS:
+        .4byte 0
+        .4byte 0
+        .4byte getSize__Q32og6Screen22DispMemberSMenuPauseVSFv
+        .4byte getOwnerID__Q32og6Screen22DispMemberSMenuPauseVSFv
+        .4byte getMemberID__Q32og6Screen22DispMemberSMenuPauseVSFv
+        .4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
+    .global __vt__Q32og6Screen18DispMemberSMenuMap
+    __vt__Q32og6Screen18DispMemberSMenuMap:
+        .4byte 0
+        .4byte 0
+        .4byte getSize__Q32og6Screen18DispMemberSMenuMapFv
+        .4byte getOwnerID__Q32og6Screen18DispMemberSMenuMapFv
+        .4byte getMemberID__Q32og6Screen18DispMemberSMenuMapFv
+        .4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
+    .global __vt__Q32og6Screen19DispMemberSMenuItem
+    __vt__Q32og6Screen19DispMemberSMenuItem:
+        .4byte 0
+        .4byte 0
+        .4byte getSize__Q32og6Screen19DispMemberSMenuItemFv
+        .4byte getOwnerID__Q32og6Screen19DispMemberSMenuItemFv
+        .4byte getMemberID__Q32og6Screen19DispMemberSMenuItemFv
+        .4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
+    .global __vt__Q32og6Screen27DispMemberSMenuPauseDoukutu
+    __vt__Q32og6Screen27DispMemberSMenuPauseDoukutu:
+        .4byte 0
+        .4byte 0
+        .4byte getSize__Q32og6Screen27DispMemberSMenuPauseDoukutuFv
+        .4byte getOwnerID__Q32og6Screen27DispMemberSMenuPauseDoukutuFv
+        .4byte getMemberID__Q32og6Screen27DispMemberSMenuPauseDoukutuFv
+        .4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
+    .global __vt__Q32og6Screen20DispMemberSMenuPause
+    __vt__Q32og6Screen20DispMemberSMenuPause:
+        .4byte 0
+        .4byte 0
+        .4byte getSize__Q32og6Screen20DispMemberSMenuPauseFv
+        .4byte getOwnerID__Q32og6Screen20DispMemberSMenuPauseFv
+        .4byte getMemberID__Q32og6Screen20DispMemberSMenuPauseFv
+        .4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
+    .global __vt__Q32og6Screen18DispMemberSMenuAll
+    __vt__Q32og6Screen18DispMemberSMenuAll:
+        .4byte 0
+        .4byte 0
+        .4byte getSize__Q32og6Screen18DispMemberSMenuAllFv
+        .4byte getOwnerID__Q32og6Screen18DispMemberSMenuAllFv
+        .4byte getMemberID__Q32og6Screen18DispMemberSMenuAllFv
+        .4byte doSetSubMemberAll__Q32og6Screen18DispMemberSMenuAllFv
+    .global __vt__Q34Game10SingleGame9GameState
+    __vt__Q34Game10SingleGame9GameState:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionPQ24Game8StateArg
+        .4byte exec__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSection
+        .4byte
+   cleanup__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSection .4byte
+   "resume__Q24Game36FSMState<Q24Game17SingleGameSection>FPQ24Game17SingleGameSection"
+        .4byte
+   "restart__Q24Game36FSMState<Q24Game17SingleGameSection>FPQ24Game17SingleGameSection"
+        .4byte
+   "transit__Q24Game36FSMState<Q24Game17SingleGameSection>FPQ24Game17SingleGameSectioniPQ24Game8StateArg"
+        .4byte
+   draw__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionR8Graphics
+        .4byte
+   onOrimaDown__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectioni
+        .4byte
+   onMovieStart__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl
+        .4byte
+   onMovieDone__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl
+        .4byte
+   onMovieCommand__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectioni
+        .4byte
+   onHoleIn__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionPQ34Game8ItemCave4Item
+        .4byte
+   onNextFloor__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionPQ34Game8ItemHole4Item
+        .4byte
+   onFountainReturn__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionPQ34Game15ItemBigFountain4Item
+        .4byte
+   on_section_fadeout__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSection
+        .4byte
+   on_demo_timer__Q34Game10SingleGame9GameStateFPQ24Game17SingleGameSectionUl
+        .4byte 0
+
+    .section .sbss # 0x80514D80 - 0x80516360
+    .global lbl_80515BE8
+    lbl_80515BE8:
+        .skip 0x4
+    .global lbl_80515BEC
+    lbl_80515BEC:
+        .skip 0x4
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_80519FA8
+    lbl_80519FA8:
+        .4byte 0x00000000
+    .global lbl_80519FAC
+    lbl_80519FAC:
+        .4byte 0x40C00000
+    .global lbl_80519FB0
+    lbl_80519FB0:
+        .4byte 0x47FA0000
+    .global lbl_80519FB4
+    lbl_80519FB4:
+        .4byte 0x43340000
+    .global lbl_80519FB8
+    lbl_80519FB8:
+        .4byte 0x736D2D63
+        .4byte 0x616E6300
+    .global lbl_80519FC0
+    lbl_80519FC0:
+        .4byte 0x736D2D75
+        .4byte 0x676F7400
+    .global lbl_80519FC8
+    lbl_80519FC8:
+        .4byte 0x736D2D7A
+        .4byte 0x656E6B00
+    .global lbl_80519FD0
+    lbl_80519FD0:
+        .4byte 0x6F70656E
+        .4byte 0x2D736D00
+    .global lbl_80519FD8
+    lbl_80519FD8:
+        .4byte 0x41A00000
+    .global lbl_80519FDC
+    lbl_80519FDC:
+        .float 1.0
+    .global lbl_80519FE0
+    lbl_80519FE0:
+        .4byte 0x3F666666
+    .global lbl_80519FE4
+    lbl_80519FE4:
+        .4byte 0x3F4CCCCD
+    .global lbl_80519FE8
+    lbl_80519FE8:
+        .4byte 0x44610000
+    .global lbl_80519FEC
+    lbl_80519FEC:
+        .4byte 0xC49D8000
+    .global lbl_80519FF0
+    lbl_80519FF0:
+        .4byte 0xC2A00000
+    .global lbl_80519FF4
+    lbl_80519FF4:
+        .4byte 0x4587F000
+    .global lbl_80519FF8
+    lbl_80519FF8:
+        .4byte 0x40F64D06
+    .global lbl_80519FFC
+    lbl_80519FFC:
+        .4byte 0x40A00000
+*/
+
 namespace Game {
 
 /*
@@ -10,645 +372,644 @@ namespace Game {
 void SingleGame::GameState::init(Game::SingleGameSection*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x140(r1)
-	  mflr      r0
-	  lis       r6, 0x8048
-	  stw       r0, 0x144(r1)
-	  li        r0, 0
-	  stmw      r27, 0x12C(r1)
-	  mr        r27, r3
-	  mr        r28, r4
-	  mr        r29, r5
-	  addi      r31, r6, 0x2150
-	  stw       r0, -0x69E8(r13)
-	  lwz       r3, -0x64AC(r13)
-	  bl        0x2192D4
-	  lwz       r4, -0x6C18(r13)
-	  li        r0, 0
-	  lbz       r3, 0x3C(r4)
-	  ori       r3, r3, 0x20
-	  stb       r3, 0x3C(r4)
-	  stb       r0, 0x10(r27)
-	  stb       r0, 0x19(r27)
-	  stb       r0, 0x20(r27)
-	  lwz       r4, 0x22C(r28)
-	  lwz       r3, -0x6B70(r13)
-	  lwz       r30, 0x48(r4)
-	  mr        r4, r30
-	  bl        -0x2C1A4
-	  lwz       r5, -0x6B70(r13)
-	  lbz       r0, 0x20(r5)
-	  rlwinm.   r0,r0,0,31,31
-	  bne-      .loc_0xA4
-	  lwz       r3, -0x6D20(r13)
-	  li        r4, 0
-	  lwz       r3, 0xC8(r3)
-	  lfs       f0, 0x9D0(r3)
-	  stfs      f0, 0x24(r5)
-	  lwz       r3, -0x6D20(r13)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x24(r12)
-	  mtctr     r12
-	  bctrl
-	  bl        -0xD1664
+	stwu     r1, -0x140(r1)
+	mflr     r0
+	lis      r6, lbl_80482150@ha
+	stw      r0, 0x144(r1)
+	li       r0, 0
+	stmw     r27, 0x12c(r1)
+	mr       r27, r3
+	mr       r28, r4
+	mr       r29, r5
+	addi     r31, r6, lbl_80482150@l
+	stw      r0, mSoundDeathCount__Q24Game8DeathMgr@sda21(r13)
+	lwz      r3, moviePlayer__4Game@sda21(r13)
+	bl       reset__Q24Game11MoviePlayerFv
+	lwz      r4, gameSystem__4Game@sda21(r13)
+	li       r0, 0
+	lbz      r3, 0x3c(r4)
+	ori      r3, r3, 0x20
+	stb      r3, 0x3c(r4)
+	stb      r0, 0x10(r27)
+	stb      r0, 0x19(r27)
+	stb      r0, 0x20(r27)
+	lwz      r4, 0x22c(r28)
+	lwz      r3, playData__4Game@sda21(r13)
+	lwz      r30, 0x48(r4)
+	mr       r4, r30
+	bl       setCurrentCourse__Q24Game8PlayDataFi
+	lwz      r5, playData__4Game@sda21(r13)
+	lbz      r0, 0x20(r5)
+	clrlwi.  r0, r0, 0x1f
+	bne      lbl_80213650
+	lwz      r3, naviMgr__4Game@sda21(r13)
+	li       r4, 0
+	lwz      r3, 0xc8(r3)
+	lfs      f0, 0x9d0(r3)
+	stfs     f0, 0x24(r5)
+	lwz      r3, naviMgr__4Game@sda21(r13)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x24(r12)
+	mtctr    r12
+	bctrl
+	bl       setLifeMax__Q24Game4NaviFv
 
-	.loc_0xA4:
-	  lwz       r5, -0x6B70(r13)
-	  lbz       r0, 0x20(r5)
-	  rlwinm.   r0,r0,31,31,31
-	  bne-      .loc_0xE0
-	  lwz       r3, -0x6D20(r13)
-	  li        r4, 0x1
-	  lwz       r3, 0xC8(r3)
-	  lfs       f0, 0x9D0(r3)
-	  stfs      f0, 0x28(r5)
-	  lwz       r3, -0x6D20(r13)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x24(r12)
-	  mtctr     r12
-	  bctrl
-	  bl        -0xD16A0
+lbl_80213650:
+	lwz      r5, playData__4Game@sda21(r13)
+	lbz      r0, 0x20(r5)
+	rlwinm.  r0, r0, 0x1f, 0x1f, 0x1f
+	bne      lbl_8021368C
+	lwz      r3, naviMgr__4Game@sda21(r13)
+	li       r4, 1
+	lwz      r3, 0xc8(r3)
+	lfs      f0, 0x9d0(r3)
+	stfs     f0, 0x28(r5)
+	lwz      r3, naviMgr__4Game@sda21(r13)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x24(r12)
+	mtctr    r12
+	bctrl
+	bl       setLifeMax__Q24Game4NaviFv
 
-	.loc_0xE0:
-	  cmplwi    r29, 0
-	  bne-      .loc_0xFC
-	  addi      r3, r31, 0x7C
-	  addi      r5, r31, 0x94
-	  li        r4, 0x270
-	  crclr     6, 0x6
-	  bl        -0x1E9064
+lbl_8021368C:
+	cmplwi   r29, 0
+	bne      lbl_802136A8
+	addi     r3, r31, 0x7c
+	addi     r5, r31, 0x94
+	li       r4, 0x270
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xFC:
-	  lfs       f1, -0x43B8(r2)
-	  mr        r3, r28
-	  lhz       r29, 0x2(r29)
-	  li        r4, 0
-	  fmr       f2, f1
-	  bl        -0xC599C
-	  lwz       r3, -0x6560(r13)
-	  li        r0, 0
-	  lwz       r3, 0x18(r3)
-	  stb       r0, 0x91(r3)
-	  lwz       r3, -0x6560(r13)
-	  lwz       r3, 0x18(r3)
-	  stw       r30, 0x94(r3)
-	  lwz       r3, -0x6C18(r13)
-	  stb       r0, 0x48(r3)
-	  stw       r0, 0x248(r28)
-	  stb       r0, 0x194(r28)
-	  lwz       r3, -0x6B70(r13)
-	  lbz       r0, 0x20(r3)
-	  rlwinm.   r0,r0,0,31,31
-	  bne-      .loc_0x160
-	  mr        r3, r28
-	  li        r4, 0
-	  bl        -0xC5DEC
-	  b         .loc_0x16C
+lbl_802136A8:
+	lfs      f1, lbl_80519FA8@sda21(r2)
+	mr       r3, r28
+	lhz      r29, 2(r29)
+	li       r4, 0
+	fmr      f2, f1
+	bl       setFixNearFar__Q24Game15BaseGameSectionFbff
+	lwz      r3, gGame2DMgr__6Screen@sda21(r13)
+	li       r0, 0
+	lwz      r3, 0x18(r3)
+	stb      r0, 0x91(r3)
+	lwz      r3, gGame2DMgr__6Screen@sda21(r13)
+	lwz      r3, 0x18(r3)
+	stw      r30, 0x94(r3)
+	lwz      r3, gameSystem__4Game@sda21(r13)
+	stb      r0, 0x48(r3)
+	stw      r0, 0x248(r28)
+	stb      r0, 0x194(r28)
+	lwz      r3, playData__4Game@sda21(r13)
+	lbz      r0, 0x20(r3)
+	clrlwi.  r0, r0, 0x1f
+	bne      lbl_8021370C
+	mr       r3, r28
+	li       r4, 0
+	bl       setPlayerMode__Q24Game15BaseGameSectionFi
+	b        lbl_80213718
 
-	.loc_0x160:
-	  mr        r3, r28
-	  li        r4, 0x1
-	  bl        -0xC5DFC
+lbl_8021370C:
+	mr       r3, r28
+	li       r4, 1
+	bl       setPlayerMode__Q24Game15BaseGameSectionFi
 
-	.loc_0x16C:
-	  mr        r3, r28
-	  bl        -0xC5994
-	  lwz       r3, 0x244(r28)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x194
-	  lwz       r12, 0x0(r3)
-	  li        r4, 0
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
+lbl_80213718:
+	mr       r3, r28
+	bl       setCamController__Q24Game15BaseGameSectionFv
+	lwz      r3, 0x244(r28)
+	cmplwi   r3, 0
+	beq      lbl_80213740
+	lwz      r12, 0(r3)
+	li       r4, 0
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x194:
-	  mr        r3, r28
-	  bl        -0xBEC20
-	  lwz       r3, -0x6D0C(r13)
-	  addi      r4, r31, 0xA0
-	  bl        -0xB4550
-	  lwz       r3, -0x64AC(r13)
-	  bl        0x2191A0
-	  cmpwi     r29, 0x2
-	  beq-      .loc_0x1DC
-	  bge-      .loc_0x1CC
-	  cmpwi     r29, 0
-	  beq-      .loc_0x4BC
-	  bge-      .loc_0x5E8
-	  b         .loc_0x6A8
+lbl_80213740:
+	mr       r3, r28
+	bl       setupMainMapGames__Q24Game17SingleGameSectionFv
+	lwz      r3, pikiMgr__4Game@sda21(r13)
+	addi     r4, r31, 0xa0
+	bl       debugShapeDL__Q24Game7PikiMgrFPc
+	lwz      r3, moviePlayer__4Game@sda21(r13)
+	bl       getActiveGameCamera__Q24Game11MoviePlayerFv
+	cmpwi    r29, 2
+	beq      lbl_80213788
+	bge      lbl_80213778
+	cmpwi    r29, 0
+	beq      lbl_80213A68
+	bge      lbl_80213B94
+	b        lbl_80213C54
 
-	.loc_0x1CC:
-	  cmpwi     r29, 0x5
-	  beq-      .loc_0x208
-	  bge-      .loc_0x6A8
-	  b         .loc_0x5E8
+lbl_80213778:
+	cmpwi    r29, 5
+	beq      lbl_802137B4
+	bge      lbl_80213C54
+	b        lbl_80213B94
 
-	.loc_0x1DC:
-	  li        r0, 0x2
-	  mr        r3, r27
-	  sth       r0, 0x8(r1)
-	  mr        r4, r28
-	  addi      r6, r1, 0x8
-	  li        r5, 0x5
-	  lwz       r12, 0x0(r27)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x89C
+lbl_80213788:
+	li       r0, 2
+	mr       r3, r27
+	sth      r0, 8(r1)
+	mr       r4, r28
+	addi     r6, r1, 8
+	li       r5, 5
+	lwz      r12, 0(r27)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_80213E48
 
-	.loc_0x208:
-	  lwz       r4, 0x22C(r28)
-	  addi      r3, r31, 0x1C
-	  lwz       r5, 0xC8(r28)
-	  li        r0, 0
-	  lwz       r6, 0x14(r4)
-	  li        r4, 0x1F
-	  lfs       f0, -0x43B8(r2)
-	  stw       r3, 0xE8(r1)
-	  lwz       r3, -0x6B70(r13)
-	  stw       r6, 0xEC(r1)
-	  stw       r5, 0xF4(r1)
-	  stfs      f0, 0x100(r1)
-	  stfs      f0, 0x104(r1)
-	  stfs      f0, 0x108(r1)
-	  stfs      f0, 0x10C(r1)
-	  stw       r0, 0x110(r1)
-	  stw       r0, 0xF8(r1)
-	  stw       r0, 0xF0(r1)
-	  stw       r0, 0x114(r1)
-	  stw       r0, 0xFC(r1)
-	  stw       r0, 0x118(r1)
-	  bl        -0x2C464
-	  lwz       r3, -0x6E20(r13)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x270
-	  addi      r3, r3, 0x4
+lbl_802137B4:
+	lwz      r4, 0x22c(r28)
+	addi     r3, r31, 0x1c
+	lwz      r5, 0xc8(r28)
+	li       r0, 0
+	lwz      r6, 0x14(r4)
+	li       r4, 0x1f
+	lfs      f0, lbl_80519FA8@sda21(r2)
+	stw      r3, 0xe8(r1)
+	lwz      r3, playData__4Game@sda21(r13)
+	stw      r6, 0xec(r1)
+	stw      r5, 0xf4(r1)
+	stfs     f0, 0x100(r1)
+	stfs     f0, 0x104(r1)
+	stfs     f0, 0x108(r1)
+	stfs     f0, 0x10c(r1)
+	stw      r0, 0x110(r1)
+	stw      r0, 0xf8(r1)
+	stw      r0, 0xf0(r1)
+	stw      r0, 0x114(r1)
+	stw      r0, 0xfc(r1)
+	stw      r0, 0x118(r1)
+	bl       setDemoFlag__Q24Game8PlayDataFi
+	lwz      r3, generalEnemyMgr__4Game@sda21(r13)
+	cmplwi   r3, 0
+	beq      lbl_8021381C
+	addi     r3, r3, 4
 
-	.loc_0x270:
-	  li        r0, 0
-	  stw       r3, 0x44(r1)
-	  addi      r3, r1, 0x3C
-	  stw       r0, 0x48(r1)
-	  stw       r0, 0x3C(r1)
-	  stw       r0, 0x40(r1)
-	  bl        -0x1053A4
-	  b         .loc_0x2B4
+lbl_8021381C:
+	li       r0, 0
+	stw      r3, 0x44(r1)
+	addi     r3, r1, 0x3c
+	stw      r0, 0x48(r1)
+	stw      r0, 0x3c(r1)
+	stw      r0, 0x40(r1)
+	bl       "first__37GeneralMgrIterator<Q24Game9EnemyBase>Fv"
+	b        lbl_80213860
 
-	.loc_0x290:
-	  lwz       r12, 0x0(r3)
-	  lwz       r4, 0x40(r1)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  li        r4, 0
-	  bl        -0xD7E04
-	  addi      r3, r1, 0x3C
-	  bl        -0x10596C
+lbl_8021383C:
+	lwz      r12, 0(r3)
+	lwz      r4, 0x40(r1)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	li       r4, 0
+	bl       movie_begin__Q24Game8CreatureFb
+	addi     r3, r1, 0x3c
+	bl       "next__37GeneralMgrIterator<Q24Game9EnemyBase>Fv"
 
-	.loc_0x2B4:
-	  lwz       r3, 0x3C(r1)
-	  cmplwi    r3, 0
-	  bne+      .loc_0x290
-	  li        r0, 0
-	  lwz       r3, -0x6D0C(r13)
-	  lis       r4, 0x804B
-	  stw       r0, 0x38(r1)
-	  subi      r4, r4, 0x4364
-	  cmplwi    r0, 0
-	  stw       r4, 0x2C(r1)
-	  stw       r0, 0x30(r1)
-	  stw       r3, 0x34(r1)
-	  bne-      .loc_0x300
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x30(r1)
-	  b         .loc_0x464
+lbl_80213860:
+	lwz      r3, 0x3c(r1)
+	cmplwi   r3, 0
+	bne      lbl_8021383C
+	li       r0, 0
+	lwz      r3, pikiMgr__4Game@sda21(r13)
+	lis      r4, "__vt__22Iterator<Q24Game4Piki>"@ha
+	stw      r0, 0x38(r1)
+	addi     r4, r4, "__vt__22Iterator<Q24Game4Piki>"@l
+	cmplwi   r0, 0
+	stw      r4, 0x2c(r1)
+	stw      r0, 0x30(r1)
+	stw      r3, 0x34(r1)
+	bne      lbl_802138AC
+	lwz      r12, 0(r3)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x30(r1)
+	b        lbl_80213A10
 
-	.loc_0x300:
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x30(r1)
-	  b         .loc_0x36C
+lbl_802138AC:
+	lwz      r12, 0(r3)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x30(r1)
+	b        lbl_80213918
 
-	.loc_0x318:
-	  lwz       r3, 0x34(r1)
-	  lwz       r4, 0x30(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x38(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x464
-	  lwz       r3, 0x34(r1)
-	  lwz       r4, 0x30(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x30(r1)
+lbl_802138C4:
+	lwz      r3, 0x34(r1)
+	lwz      r4, 0x30(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	lwz      r3, 0x38(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_80213A10
+	lwz      r3, 0x34(r1)
+	lwz      r4, 0x30(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x30(r1)
 
-	.loc_0x36C:
-	  lwz       r12, 0x2C(r1)
-	  addi      r3, r1, 0x2C
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x318
-	  b         .loc_0x464
+lbl_80213918:
+	lwz      r12, 0x2c(r1)
+	addi     r3, r1, 0x2c
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802138C4
+	b        lbl_80213A10
 
-	.loc_0x38C:
-	  lwz       r3, 0x34(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  li        r4, 0
-	  bl        -0xD7F00
-	  lwz       r0, 0x38(r1)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x3D4
-	  lwz       r3, 0x34(r1)
-	  lwz       r4, 0x30(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x30(r1)
-	  b         .loc_0x464
+lbl_80213938:
+	lwz      r3, 0x34(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	li       r4, 0
+	bl       movie_begin__Q24Game8CreatureFb
+	lwz      r0, 0x38(r1)
+	cmplwi   r0, 0
+	bne      lbl_80213980
+	lwz      r3, 0x34(r1)
+	lwz      r4, 0x30(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x30(r1)
+	b        lbl_80213A10
 
-	.loc_0x3D4:
-	  lwz       r3, 0x34(r1)
-	  lwz       r4, 0x30(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x30(r1)
-	  b         .loc_0x448
+lbl_80213980:
+	lwz      r3, 0x34(r1)
+	lwz      r4, 0x30(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x30(r1)
+	b        lbl_802139F4
 
-	.loc_0x3F4:
-	  lwz       r3, 0x34(r1)
-	  lwz       r4, 0x30(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x38(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x464
-	  lwz       r3, 0x34(r1)
-	  lwz       r4, 0x30(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x30(r1)
+lbl_802139A0:
+	lwz      r3, 0x34(r1)
+	lwz      r4, 0x30(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	lwz      r3, 0x38(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_80213A10
+	lwz      r3, 0x34(r1)
+	lwz      r4, 0x30(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x30(r1)
 
-	.loc_0x448:
-	  lwz       r12, 0x2C(r1)
-	  addi      r3, r1, 0x2C
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x3F4
+lbl_802139F4:
+	lwz      r12, 0x2c(r1)
+	addi     r3, r1, 0x2c
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802139A0
 
-	.loc_0x464:
-	  lwz       r3, 0x34(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r4, 0x30(r1)
-	  cmplw     r4, r3
-	  bne+      .loc_0x38C
-	  lwz       r0, 0xCC(r28)
-	  addi      r4, r1, 0xE8
-	  lwz       r3, -0x64AC(r13)
-	  stw       r0, 0xF8(r1)
-	  bl        0x218F90
-	  lwz       r3, -0x6C18(r13)
-	  lwz       r3, 0x40(r3)
-	  bl        -0xEC970
-	  lwz       r3, 0x244(r28)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x6BC
+lbl_80213A10:
+	lwz      r3, 0x34(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r4, 0x30(r1)
+	cmplw    r4, r3
+	bne      lbl_80213938
+	lwz      r0, 0xcc(r28)
+	addi     r4, r1, 0xe8
+	lwz      r3, moviePlayer__4Game@sda21(r13)
+	stw      r0, 0xf8(r1)
+	bl       play__Q24Game11MoviePlayerFRQ24Game12MoviePlayArg
+	lwz      r3, gameSystem__4Game@sda21(r13)
+	lwz      r3, 0x40(r3)
+	bl       setStartTime__Q24Game7TimeMgrFv
+	lwz      r3, 0x244(r28)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_80213C68
 
-	.loc_0x4BC:
-	  lwz       r4, 0x22C(r28)
-	  lwz       r3, -0x6B70(r13)
-	  lwz       r4, 0x48(r4)
-	  addi      r30, r4, 0x1F
-	  mr        r4, r30
-	  bl        -0x2C69C
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x578
-	  lwz       r3, -0x6B70(r13)
-	  mr        r4, r30
-	  bl        -0x2C6EC
-	  lwz       r11, 0x22C(r28)
-	  addi      r5, r1, 0x1C
-	  lwz       r6, 0x6C(r31)
-	  li        r0, 0
-	  lwz       r9, 0x70(r31)
-	  addi      r4, r1, 0xB4
-	  lwz       r8, 0x74(r31)
-	  lwz       r7, 0x78(r31)
-	  lwz       r3, 0x48(r11)
-	  stw       r6, 0x1C(r1)
-	  rlwinm    r6,r3,2,0,29
-	  lwz       r10, 0xC8(r28)
-	  lwz       r11, 0x14(r11)
-	  lfs       f0, -0x43B8(r2)
-	  stw       r9, 0x20(r1)
-	  lwz       r3, -0x64AC(r13)
-	  stw       r8, 0x24(r1)
-	  stw       r7, 0x28(r1)
-	  lwzx      r5, r5, r6
-	  stw       r11, 0xB8(r1)
-	  stw       r5, 0xB4(r1)
-	  stw       r10, 0xC0(r1)
-	  stfs      f0, 0xCC(r1)
-	  stfs      f0, 0xD0(r1)
-	  stfs      f0, 0xD4(r1)
-	  stfs      f0, 0xD8(r1)
-	  stw       r0, 0xDC(r1)
-	  stw       r0, 0xC4(r1)
-	  stw       r0, 0xBC(r1)
-	  stw       r0, 0xE0(r1)
-	  stw       r0, 0xC8(r1)
-	  stw       r0, 0xE4(r1)
-	  lwz       r0, 0xCC(r28)
-	  stw       r0, 0xC4(r1)
-	  bl        0x218EB4
-	  b         .loc_0x5D8
+lbl_80213A68:
+	lwz      r4, 0x22c(r28)
+	lwz      r3, playData__4Game@sda21(r13)
+	lwz      r4, 0x48(r4)
+	addi     r30, r4, 0x1f
+	mr       r4, r30
+	bl       isDemoFlag__Q24Game8PlayDataFi
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_80213B24
+	lwz      r3, playData__4Game@sda21(r13)
+	mr       r4, r30
+	bl       setDemoFlag__Q24Game8PlayDataFi
+	lwz      r11, 0x22c(r28)
+	addi     r5, r1, 0x1c
+	lwz      r6, 0x6c(r31)
+	li       r0, 0
+	lwz      r9, 0x70(r31)
+	addi     r4, r1, 0xb4
+	lwz      r8, 0x74(r31)
+	lwz      r7, 0x78(r31)
+	lwz      r3, 0x48(r11)
+	stw      r6, 0x1c(r1)
+	slwi     r6, r3, 2
+	lwz      r10, 0xc8(r28)
+	lwz      r11, 0x14(r11)
+	lfs      f0, lbl_80519FA8@sda21(r2)
+	stw      r9, 0x20(r1)
+	lwz      r3, moviePlayer__4Game@sda21(r13)
+	stw      r8, 0x24(r1)
+	stw      r7, 0x28(r1)
+	lwzx     r5, r5, r6
+	stw      r11, 0xb8(r1)
+	stw      r5, 0xb4(r1)
+	stw      r10, 0xc0(r1)
+	stfs     f0, 0xcc(r1)
+	stfs     f0, 0xd0(r1)
+	stfs     f0, 0xd4(r1)
+	stfs     f0, 0xd8(r1)
+	stw      r0, 0xdc(r1)
+	stw      r0, 0xc4(r1)
+	stw      r0, 0xbc(r1)
+	stw      r0, 0xe0(r1)
+	stw      r0, 0xc8(r1)
+	stw      r0, 0xe4(r1)
+	lwz      r0, 0xcc(r28)
+	stw      r0, 0xc4(r1)
+	bl       play__Q24Game11MoviePlayerFRQ24Game12MoviePlayArg
+	b        lbl_80213B84
 
-	.loc_0x578:
-	  lwz       r4, 0x22C(r28)
-	  addi      r3, r31, 0xB0
-	  lwz       r5, 0xC8(r28)
-	  li        r0, 0
-	  lwz       r6, 0x14(r4)
-	  addi      r4, r1, 0x80
-	  lfs       f0, -0x43B8(r2)
-	  stw       r3, 0x80(r1)
-	  lwz       r3, -0x64AC(r13)
-	  stw       r6, 0x84(r1)
-	  stw       r5, 0x8C(r1)
-	  stfs      f0, 0x98(r1)
-	  stfs      f0, 0x9C(r1)
-	  stfs      f0, 0xA0(r1)
-	  stfs      f0, 0xA4(r1)
-	  stw       r0, 0xA8(r1)
-	  stw       r0, 0x90(r1)
-	  stw       r0, 0x88(r1)
-	  stw       r0, 0xAC(r1)
-	  stw       r0, 0x94(r1)
-	  stw       r0, 0xB0(r1)
-	  lwz       r0, 0xCC(r28)
-	  stw       r0, 0x90(r1)
-	  bl        0x218E50
+lbl_80213B24:
+	lwz      r4, 0x22c(r28)
+	addi     r3, r31, 0xb0
+	lwz      r5, 0xc8(r28)
+	li       r0, 0
+	lwz      r6, 0x14(r4)
+	addi     r4, r1, 0x80
+	lfs      f0, lbl_80519FA8@sda21(r2)
+	stw      r3, 0x80(r1)
+	lwz      r3, moviePlayer__4Game@sda21(r13)
+	stw      r6, 0x84(r1)
+	stw      r5, 0x8c(r1)
+	stfs     f0, 0x98(r1)
+	stfs     f0, 0x9c(r1)
+	stfs     f0, 0xa0(r1)
+	stfs     f0, 0xa4(r1)
+	stw      r0, 0xa8(r1)
+	stw      r0, 0x90(r1)
+	stw      r0, 0x88(r1)
+	stw      r0, 0xac(r1)
+	stw      r0, 0x94(r1)
+	stw      r0, 0xb0(r1)
+	lwz      r0, 0xcc(r28)
+	stw      r0, 0x90(r1)
+	bl       play__Q24Game11MoviePlayerFRQ24Game12MoviePlayArg
 
-	.loc_0x5D8:
-	  lwz       r3, -0x6C18(r13)
-	  lwz       r3, 0x40(r3)
-	  bl        -0xECAB0
-	  b         .loc_0x6BC
+lbl_80213B84:
+	lwz      r3, gameSystem__4Game@sda21(r13)
+	lwz      r3, 0x40(r3)
+	bl       setStartTime__Q24Game7TimeMgrFv
+	b        lbl_80213C68
 
-	.loc_0x5E8:
-	  lwz       r4, 0x22C(r28)
-	  addi      r3, r31, 0xC0
-	  lwz       r5, 0xC8(r28)
-	  li        r0, 0
-	  lwz       r6, 0x14(r4)
-	  addi      r4, r1, 0x4C
-	  lfs       f0, -0x43B8(r2)
-	  stw       r3, 0x4C(r1)
-	  lwz       r3, -0x64AC(r13)
-	  stw       r6, 0x50(r1)
-	  stw       r5, 0x58(r1)
-	  stfs      f0, 0x64(r1)
-	  stfs      f0, 0x68(r1)
-	  stfs      f0, 0x6C(r1)
-	  stfs      f0, 0x70(r1)
-	  stw       r0, 0x74(r1)
-	  stw       r0, 0x5C(r1)
-	  stw       r0, 0x54(r1)
-	  stw       r0, 0x78(r1)
-	  stw       r0, 0x60(r1)
-	  stw       r0, 0x7C(r1)
-	  lwz       r0, 0xCC(r28)
-	  stw       r0, 0x5C(r1)
-	  bl        0x218DE0
-	  li        r30, 0
+lbl_80213B94:
+	lwz      r4, 0x22c(r28)
+	addi     r3, r31, 0xc0
+	lwz      r5, 0xc8(r28)
+	li       r0, 0
+	lwz      r6, 0x14(r4)
+	addi     r4, r1, 0x4c
+	lfs      f0, lbl_80519FA8@sda21(r2)
+	stw      r3, 0x4c(r1)
+	lwz      r3, moviePlayer__4Game@sda21(r13)
+	stw      r6, 0x50(r1)
+	stw      r5, 0x58(r1)
+	stfs     f0, 0x64(r1)
+	stfs     f0, 0x68(r1)
+	stfs     f0, 0x6c(r1)
+	stfs     f0, 0x70(r1)
+	stw      r0, 0x74(r1)
+	stw      r0, 0x5c(r1)
+	stw      r0, 0x54(r1)
+	stw      r0, 0x78(r1)
+	stw      r0, 0x60(r1)
+	stw      r0, 0x7c(r1)
+	lwz      r0, 0xcc(r28)
+	stw      r0, 0x5c(r1)
+	bl       play__Q24Game11MoviePlayerFRQ24Game12MoviePlayArg
+	li       r30, 0
 
-	.loc_0x64C:
-	  lwz       r3, -0x6B70(r13)
-	  mr        r4, r30
-	  bl        -0x2CB28
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x67C
-	  lwz       r3, -0x6CD0(r13)
-	  mr        r4, r30
-	  bl        -0x98178
-	  cmplwi    r3, 0
-	  beq-      .loc_0x67C
-	  li        r4, 0x3
-	  bl        -0x9C9A8
+lbl_80213BF8:
+	lwz      r3, playData__4Game@sda21(r13)
+	mr       r4, r30
+	bl       hasBootContainer__Q24Game8PlayDataFi
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80213C28
+	lwz      r3, mgr__Q24Game9ItemOnyon@sda21(r13)
+	mr       r4, r30
+	bl       getOnyon__Q34Game9ItemOnyon3MgrFi
+	cmplwi   r3, 0
+	beq      lbl_80213C28
+	li       r4, 3
+	bl       setSpotState__Q24Game5OnyonFQ34Game5Onyon10cSpotState
 
-	.loc_0x67C:
-	  addi      r30, r30, 0x1
-	  cmpwi     r30, 0x3
-	  blt+      .loc_0x64C
-	  cmplwi    r29, 0x1
-	  bne-      .loc_0x6BC
-	  lwz       r3, -0x6C18(r13)
-	  lwz       r4, -0x6B70(r13)
-	  lwz       r3, 0x40(r3)
-	  lfs       f1, 0x68(r4)
-	  bl        -0xECBAC
-	  b         .loc_0x6BC
+lbl_80213C28:
+	addi     r30, r30, 1
+	cmpwi    r30, 3
+	blt      lbl_80213BF8
+	cmplwi   r29, 1
+	bne      lbl_80213C68
+	lwz      r3, gameSystem__4Game@sda21(r13)
+	lwz      r4, playData__4Game@sda21(r13)
+	lwz      r3, 0x40(r3)
+	lfs      f1, 0x68(r4)
+	bl       setTime__Q24Game7TimeMgrFf
+	b        lbl_80213C68
 
-	.loc_0x6A8:
-	  addi      r3, r31, 0x7C
-	  addi      r5, r31, 0xD0
-	  li        r4, 0x340
-	  crclr     6, 0x6
-	  bl        -0x1E9624
+lbl_80213C54:
+	addi     r3, r31, 0x7c
+	addi     r5, r31, 0xd0
+	li       r4, 0x340
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x6BC:
-	  lwz       r3, -0x6514(r13)
-	  li        r4, 0x1
-	  bl        0x20F6F8
-	  lwz       r3, -0x6C18(r13)
-	  cmplwi    r29, 0x3
-	  lwz       r3, 0x40(r3)
-	  lwz       r0, 0x240(r3)
-	  rlwinm    r0,r0,0,0,30
-	  stw       r0, 0x240(r3)
-	  beq-      .loc_0x748
-	  li        r29, 0
-	  li        r30, 0
+lbl_80213C68:
+	lwz      r3, sys@sda21(r13)
+	li       r4, 1
+	bl       heapStatusDump__6SystemFb
+	lwz      r3, gameSystem__4Game@sda21(r13)
+	cmplwi   r29, 3
+	lwz      r3, 0x40(r3)
+	lwz      r0, 0x240(r3)
+	rlwinm   r0, r0, 0, 0, 0x1e
+	stw      r0, 0x240(r3)
+	beq      lbl_80213CF4
+	li       r29, 0
+	li       r30, 0
 
-	.loc_0x6EC:
-	  lwz       r3, -0x6B70(r13)
-	  mr        r4, r30
-	  bl        -0x2CC80
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x728
-	  mr        r3, r30
-	  bl        -0x42D74
-	  cmpwi     r3, 0
-	  bne-      .loc_0x728
-	  lwz       r3, -0x6B70(r13)
-	  mr        r4, r30
-	  addi      r3, r3, 0xA8
-	  bl        -0x22718
-	  li        r29, 0x1
-	  b         .loc_0x734
+lbl_80213C98:
+	lwz      r3, playData__4Game@sda21(r13)
+	mr       r4, r30
+	bl       hasContainer__Q24Game8PlayDataFi
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80213CD4
+	mr       r3, r30
+	bl       getAllPikmins__Q24Game8GameStatFi
+	cmpwi    r3, 0
+	bne      lbl_80213CD4
+	lwz      r3, playData__4Game@sda21(r13)
+	mr       r4, r30
+	addi     r3, r3, 0xa8
+	bl       getColorSum__Q24Game13PikiContainerFi
+	li       r29, 1
+	b        lbl_80213CE0
 
-	.loc_0x728:
-	  addi      r30, r30, 0x1
-	  cmpwi     r30, 0x2
-	  ble+      .loc_0x6EC
+lbl_80213CD4:
+	addi     r30, r30, 1
+	cmpwi    r30, 2
+	ble      lbl_80213C98
 
-	.loc_0x734:
-	  rlwinm.   r0,r29,0,24,31
-	  beq-      .loc_0x750
-	  li        r0, 0x1
-	  stb       r0, 0x10(r27)
-	  b         .loc_0x750
+lbl_80213CE0:
+	clrlwi.  r0, r29, 0x18
+	beq      lbl_80213CFC
+	li       r0, 1
+	stb      r0, 0x10(r27)
+	b        lbl_80213CFC
 
-	.loc_0x748:
-	  li        r0, 0
-	  stb       r0, 0x10(r27)
+lbl_80213CF4:
+	li       r0, 0
+	stb      r0, 0x10(r27)
 
-	.loc_0x750:
-	  li        r0, 0
-	  lfs       f0, -0x43B4(r2)
-	  stb       r0, 0x11(r27)
-	  mr        r3, r28
-	  stfs      f0, 0x14(r27)
-	  bl        -0xBFD78
-	  li        r0, 0
-	  stb       r0, 0x18(r27)
-	  lwz       r3, -0x6C18(r13)
-	  lbz       r0, 0x3C(r3)
-	  rlwinm    r0,r0,0,31,29
-	  stb       r0, 0x3C(r3)
-	  lwz       r3, -0x6560(r13)
-	  bl        0x1E82DC
-	  li        r0, 0
-	  lis       r3, 0x8051
-	  stb       r0, 0x23D(r28)
-	  addi      r4, r3, 0x41E4
-	  lfs       f1, -0x43B0(r2)
-	  addi      r5, r1, 0x10
-	  lwz       r3, -0x6A50(r13)
-	  addi      r6, r1, 0xC
-	  bl        0xAA20
-	  cmpwi     r3, 0
-	  bne-      .loc_0x7C0
-	  li        r0, 0x1
-	  stb       r0, 0x23E(r28)
-	  b         .loc_0x7C8
+lbl_80213CFC:
+	li       r0, 0
+	lfs      f0, lbl_80519FAC@sda21(r2)
+	stb      r0, 0x11(r27)
+	mr       r3, r28
+	stfs     f0, 0x14(r27)
+	bl       clearCaveMenus__Q24Game17SingleGameSectionFv
+	li       r0, 0
+	stb      r0, 0x18(r27)
+	lwz      r3, gameSystem__4Game@sda21(r13)
+	lbz      r0, 0x3c(r3)
+	rlwinm   r0, r0, 0, 0x1f, 0x1d
+	stb      r0, 0x3c(r3)
+	lwz      r3, gGame2DMgr__6Screen@sda21(r13)
+	bl       initInCourse__Q26Screen9Game2DMgrFv
+	li       r0, 0
+	lis      r3, "zero__10Vector3<f>"@ha
+	stb      r0, 0x23d(r28)
+	addi     r4, r3, "zero__10Vector3<f>"@l
+	lfs      f1, lbl_80519FB0@sda21(r2)
+	addi     r5, r1, 0x10
+	lwz      r3, mgr__5Radar@sda21(r13)
+	addi     r6, r1, 0xc
+	bl       "calcNearestTreasure__Q25Radar3MgrFR10Vector3<f>fR10Vector3<f>Rf"
+	cmpwi    r3, 0
+	bne      lbl_80213D6C
+	li       r0, 1
+	stb      r0, 0x23e(r28)
+	b        lbl_80213D74
 
-	.loc_0x7C0:
-	  li        r0, 0
-	  stb       r0, 0x23E(r28)
+lbl_80213D6C:
+	li       r0, 0
+	stb      r0, 0x23e(r28)
 
-	.loc_0x7C8:
-	  lwz       r0, -0x6A50(r13)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x89C
-	  bl        0xA8B0
-	  cmpwi     r3, 0
-	  bne-      .loc_0x89C
-	  lwz       r0, -0x6780(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x800
-	  addi      r3, r31, 0xF0
-	  addi      r5, r31, 0x94
-	  li        r4, 0x1D3
-	  crclr     6, 0x6
-	  bl        -0x1E9768
+lbl_80213D74:
+	lwz      r0, mgr__5Radar@sda21(r13)
+	cmplwi   r0, 0
+	beq      lbl_80213E48
+	bl       getNumOtakaraItems__Q25Radar3MgrFv
+	cmpwi    r3, 0
+	bne      lbl_80213E48
+	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_80213DAC
+	addi     r3, r31, 0xf0
+	addi     r5, r31, 0x94
+	li       r4, 0x1d3
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x800:
-	  lwz       r27, -0x6780(r13)
-	  cmplwi    r27, 0
-	  bne-      .loc_0x820
-	  addi      r3, r31, 0xF0
-	  addi      r5, r31, 0x94
-	  li        r4, 0x1DC
-	  crclr     6, 0x6
-	  bl        -0x1E9788
+lbl_80213DAC:
+	lwz      r27, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r27, 0
+	bne      lbl_80213DCC
+	addi     r3, r31, 0xf0
+	addi     r5, r31, 0x94
+	li       r4, 0x1dc
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x820:
-	  lwz       r0, 0x4(r27)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x840
-	  addi      r3, r31, 0xFC
-	  addi      r5, r31, 0x94
-	  li        r4, 0xCF
-	  crclr     6, 0x6
-	  bl        -0x1E97A8
+lbl_80213DCC:
+	lwz      r0, 4(r27)
+	cmplwi   r0, 0
+	bne      lbl_80213DEC
+	addi     r3, r31, 0xfc
+	addi     r5, r31, 0x94
+	li       r4, 0xcf
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x840:
-	  lwz       r3, 0x4(r27)
-	  lwz       r27, 0x4(r3)
-	  cmplwi    r27, 0
-	  bne-      .loc_0x864
-	  addi      r3, r31, 0xFC
-	  addi      r5, r31, 0x108
-	  li        r4, 0xD1
-	  crclr     6, 0x6
-	  bl        -0x1E97CC
+lbl_80213DEC:
+	lwz      r3, 4(r27)
+	lwz      r27, 4(r3)
+	cmplwi   r27, 0
+	bne      lbl_80213E10
+	addi     r3, r31, 0xfc
+	addi     r5, r31, 0x108
+	li       r4, 0xd1
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x864:
-	  lwz       r12, 0x0(r27)
-	  mr        r3, r27
-	  lwz       r12, 0x40(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x894
-	  addi      r3, r31, 0x12C
-	  addi      r5, r31, 0x94
-	  li        r4, 0x177
-	  crclr     6, 0x6
-	  bl        -0x1E97FC
+lbl_80213E10:
+	lwz      r12, 0(r27)
+	mr       r3, r27
+	lwz      r12, 0x40(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_80213E40
+	addi     r3, r31, 0x12c
+	addi     r5, r31, 0x94
+	li       r4, 0x177
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x894:
-	  mr        r3, r27
-	  bl        0x255CC4
+lbl_80213E40:
+	mr       r3, r27
+	bl       setPollutUp__Q23PSM12Scene_GroundFv
 
-	.loc_0x89C:
-	  lmw       r27, 0x12C(r1)
-	  lwz       r0, 0x144(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x140
-	  blr
+lbl_80213E48:
+	lmw      r27, 0x12c(r1)
+	lwz      r0, 0x144(r1)
+	mtlr     r0
+	addi     r1, r1, 0x140
+	blr
 	*/
 }
 
@@ -670,185 +1031,184 @@ void SingleGame::GameState::gameStart(Game::SingleGameSection*)
 void SingleGame::GameState::check_DemoInout(Game::SingleGameSection*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0xB0(r1)
-	  mflr      r0
-	  lis       r5, 0x8048
-	  stw       r0, 0xB4(r1)
-	  stw       r31, 0xAC(r1)
-	  mr        r31, r4
-	  li        r4, 0xD
-	  stw       r30, 0xA8(r1)
-	  addi      r30, r5, 0x2150
-	  lwz       r3, -0x6B70(r13)
-	  bl        -0x2CAA4
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0xD0
-	  lwz       r3, -0x6B70(r13)
-	  li        r4, 0x3
-	  addi      r3, r3, 0xA8
-	  bl        -0x228EC
-	  cmpwi     r3, 0
-	  ble-      .loc_0xD0
-	  lwz       r3, -0x6B70(r13)
-	  li        r4, 0xD
-	  bl        -0x2CB0C
-	  lwz       r4, 0x22C(r31)
-	  addi      r3, r30, 0x140
-	  lwz       r5, 0xC8(r31)
-	  li        r0, 0
-	  lwz       r4, 0x14(r4)
-	  lfs       f0, -0x43B8(r2)
-	  stw       r3, 0x70(r1)
-	  lwz       r3, -0x6CD0(r13)
-	  stw       r4, 0x74(r1)
-	  stw       r5, 0x7C(r1)
-	  stfs      f0, 0x88(r1)
-	  stfs      f0, 0x8C(r1)
-	  stfs      f0, 0x90(r1)
-	  stfs      f0, 0x94(r1)
-	  stw       r0, 0x98(r1)
-	  stw       r0, 0x80(r1)
-	  stw       r0, 0x78(r1)
-	  stw       r0, 0x9C(r1)
-	  stw       r0, 0x84(r1)
-	  stw       r0, 0xA0(r1)
-	  lwz       r3, 0xB0(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0xBC
-	  li        r4, 0
-	  bl        -0xD84C4
+	stwu     r1, -0xb0(r1)
+	mflr     r0
+	lis      r5, lbl_80482150@ha
+	stw      r0, 0xb4(r1)
+	stw      r31, 0xac(r1)
+	mr       r31, r4
+	li       r4, 0xd
+	stw      r30, 0xa8(r1)
+	addi     r30, r5, lbl_80482150@l
+	lwz      r3, playData__4Game@sda21(r13)
+	bl       isDemoFlag__Q24Game8PlayDataFi
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_80213F2C
+	lwz      r3, playData__4Game@sda21(r13)
+	li       r4, 3
+	addi     r3, r3, 0xa8
+	bl       getColorSum__Q24Game13PikiContainerFi
+	cmpwi    r3, 0
+	ble      lbl_80213F2C
+	lwz      r3, playData__4Game@sda21(r13)
+	li       r4, 0xd
+	bl       setDemoFlag__Q24Game8PlayDataFi
+	lwz      r4, 0x22c(r31)
+	addi     r3, r30, 0x140
+	lwz      r5, 0xc8(r31)
+	li       r0, 0
+	lwz      r4, 0x14(r4)
+	lfs      f0, lbl_80519FA8@sda21(r2)
+	stw      r3, 0x70(r1)
+	lwz      r3, mgr__Q24Game9ItemOnyon@sda21(r13)
+	stw      r4, 0x74(r1)
+	stw      r5, 0x7c(r1)
+	stfs     f0, 0x88(r1)
+	stfs     f0, 0x8c(r1)
+	stfs     f0, 0x90(r1)
+	stfs     f0, 0x94(r1)
+	stw      r0, 0x98(r1)
+	stw      r0, 0x80(r1)
+	stw      r0, 0x78(r1)
+	stw      r0, 0x9c(r1)
+	stw      r0, 0x84(r1)
+	stw      r0, 0xa0(r1)
+	lwz      r3, 0xb0(r3)
+	cmplwi   r3, 0
+	beq      lbl_80213F18
+	li       r4, 0
+	bl       movie_begin__Q24Game8CreatureFb
 
-	.loc_0xBC:
-	  lwz       r3, -0x64AC(r13)
-	  addi      r4, r1, 0x70
-	  bl        0x218AB0
-	  li        r3, 0x1
-	  b         .loc_0x270
+lbl_80213F18:
+	lwz      r3, moviePlayer__4Game@sda21(r13)
+	addi     r4, r1, 0x70
+	bl       play__Q24Game11MoviePlayerFRQ24Game12MoviePlayArg
+	li       r3, 1
+	b        lbl_802140CC
 
-	.loc_0xD0:
-	  lwz       r3, -0x6C18(r13)
-	  lbz       r0, 0x3C(r3)
-	  rlwinm.   r0,r0,0,26,26
-	  beq-      .loc_0x190
-	  lwz       r3, -0x6B70(r13)
-	  li        r4, 0xE
-	  bl        -0x2CB64
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x190
-	  lwz       r3, -0x6B70(r13)
-	  li        r4, 0x4
-	  addi      r3, r3, 0xA8
-	  bl        -0x229AC
-	  cmpwi     r3, 0
-	  ble-      .loc_0x190
-	  lwz       r3, -0x6B70(r13)
-	  li        r4, 0xE
-	  bl        -0x2CBCC
-	  lwz       r4, 0x22C(r31)
-	  addi      r3, r30, 0x150
-	  lwz       r5, 0xC8(r31)
-	  li        r0, 0
-	  lwz       r4, 0x14(r4)
-	  lfs       f0, -0x43B8(r2)
-	  stw       r3, 0x3C(r1)
-	  lwz       r3, -0x6CD0(r13)
-	  stw       r4, 0x40(r1)
-	  stw       r5, 0x48(r1)
-	  stfs      f0, 0x54(r1)
-	  stfs      f0, 0x58(r1)
-	  stfs      f0, 0x5C(r1)
-	  stfs      f0, 0x60(r1)
-	  stw       r0, 0x64(r1)
-	  stw       r0, 0x4C(r1)
-	  stw       r0, 0x44(r1)
-	  stw       r0, 0x68(r1)
-	  stw       r0, 0x50(r1)
-	  stw       r0, 0x6C(r1)
-	  lwz       r3, 0xB0(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x17C
-	  li        r4, 0
-	  bl        -0xD8584
+lbl_80213F2C:
+	lwz      r3, gameSystem__4Game@sda21(r13)
+	lbz      r0, 0x3c(r3)
+	rlwinm.  r0, r0, 0, 0x1a, 0x1a
+	beq      lbl_80213FEC
+	lwz      r3, playData__4Game@sda21(r13)
+	li       r4, 0xe
+	bl       isDemoFlag__Q24Game8PlayDataFi
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_80213FEC
+	lwz      r3, playData__4Game@sda21(r13)
+	li       r4, 4
+	addi     r3, r3, 0xa8
+	bl       getColorSum__Q24Game13PikiContainerFi
+	cmpwi    r3, 0
+	ble      lbl_80213FEC
+	lwz      r3, playData__4Game@sda21(r13)
+	li       r4, 0xe
+	bl       setDemoFlag__Q24Game8PlayDataFi
+	lwz      r4, 0x22c(r31)
+	addi     r3, r30, 0x150
+	lwz      r5, 0xc8(r31)
+	li       r0, 0
+	lwz      r4, 0x14(r4)
+	lfs      f0, lbl_80519FA8@sda21(r2)
+	stw      r3, 0x3c(r1)
+	lwz      r3, mgr__Q24Game9ItemOnyon@sda21(r13)
+	stw      r4, 0x40(r1)
+	stw      r5, 0x48(r1)
+	stfs     f0, 0x54(r1)
+	stfs     f0, 0x58(r1)
+	stfs     f0, 0x5c(r1)
+	stfs     f0, 0x60(r1)
+	stw      r0, 0x64(r1)
+	stw      r0, 0x4c(r1)
+	stw      r0, 0x44(r1)
+	stw      r0, 0x68(r1)
+	stw      r0, 0x50(r1)
+	stw      r0, 0x6c(r1)
+	lwz      r3, 0xb0(r3)
+	cmplwi   r3, 0
+	beq      lbl_80213FD8
+	li       r4, 0
+	bl       movie_begin__Q24Game8CreatureFb
 
-	.loc_0x17C:
-	  lwz       r3, -0x64AC(r13)
-	  addi      r4, r1, 0x3C
-	  bl        0x2189F0
-	  li        r3, 0x1
-	  b         .loc_0x270
+lbl_80213FD8:
+	lwz      r3, moviePlayer__4Game@sda21(r13)
+	addi     r4, r1, 0x3c
+	bl       play__Q24Game11MoviePlayerFRQ24Game12MoviePlayArg
+	li       r3, 1
+	b        lbl_802140CC
 
-	.loc_0x190:
-	  lwz       r3, -0x6C18(r13)
-	  lbz       r0, 0x3C(r3)
-	  rlwinm.   r0,r0,0,26,26
-	  beq-      .loc_0x26C
-	  lwz       r3, -0x6B70(r13)
-	  li        r4, 0xF
-	  bl        -0x2CC24
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x26C
-	  lwz       r3, -0x6B70(r13)
-	  li        r4, 0x1
-	  addi      r3, r3, 0xA8
-	  bl        -0x22A6C
-	  cmpwi     r3, 0
-	  ble-      .loc_0x26C
-	  lwz       r3, -0x6B70(r13)
-	  li        r4, 0xF
-	  bl        -0x2CC8C
-	  lwz       r4, 0x22C(r31)
-	  addi      r3, r30, 0x160
-	  lwz       r5, 0xC8(r31)
-	  li        r0, 0
-	  lwz       r6, 0x14(r4)
-	  li        r4, 0x1
-	  lfs       f0, -0x43B8(r2)
-	  stw       r3, 0x8(r1)
-	  lwz       r3, -0x6CD0(r13)
-	  stw       r6, 0xC(r1)
-	  stw       r5, 0x14(r1)
-	  stfs      f0, 0x20(r1)
-	  stfs      f0, 0x24(r1)
-	  stfs      f0, 0x28(r1)
-	  stfs      f0, 0x2C(r1)
-	  stw       r0, 0x30(r1)
-	  stw       r0, 0x18(r1)
-	  stw       r0, 0x10(r1)
-	  stw       r0, 0x34(r1)
-	  stw       r0, 0x1C(r1)
-	  stw       r0, 0x38(r1)
-	  bl        -0x985EC
-	  cmplwi    r3, 0
-	  beq-      .loc_0x240
-	  li        r4, 0
-	  bl        -0xD8648
+lbl_80213FEC:
+	lwz      r3, gameSystem__4Game@sda21(r13)
+	lbz      r0, 0x3c(r3)
+	rlwinm.  r0, r0, 0, 0x1a, 0x1a
+	beq      lbl_802140C8
+	lwz      r3, playData__4Game@sda21(r13)
+	li       r4, 0xf
+	bl       isDemoFlag__Q24Game8PlayDataFi
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_802140C8
+	lwz      r3, playData__4Game@sda21(r13)
+	li       r4, 1
+	addi     r3, r3, 0xa8
+	bl       getColorSum__Q24Game13PikiContainerFi
+	cmpwi    r3, 0
+	ble      lbl_802140C8
+	lwz      r3, playData__4Game@sda21(r13)
+	li       r4, 0xf
+	bl       setDemoFlag__Q24Game8PlayDataFi
+	lwz      r4, 0x22c(r31)
+	addi     r3, r30, 0x160
+	lwz      r5, 0xc8(r31)
+	li       r0, 0
+	lwz      r6, 0x14(r4)
+	li       r4, 1
+	lfs      f0, lbl_80519FA8@sda21(r2)
+	stw      r3, 8(r1)
+	lwz      r3, mgr__Q24Game9ItemOnyon@sda21(r13)
+	stw      r6, 0xc(r1)
+	stw      r5, 0x14(r1)
+	stfs     f0, 0x20(r1)
+	stfs     f0, 0x24(r1)
+	stfs     f0, 0x28(r1)
+	stfs     f0, 0x2c(r1)
+	stw      r0, 0x30(r1)
+	stw      r0, 0x18(r1)
+	stw      r0, 0x10(r1)
+	stw      r0, 0x34(r1)
+	stw      r0, 0x1c(r1)
+	stw      r0, 0x38(r1)
+	bl       getOnyon__Q34Game9ItemOnyon3MgrFi
+	cmplwi   r3, 0
+	beq      lbl_8021409C
+	li       r4, 0
+	bl       movie_begin__Q24Game8CreatureFb
 
-	.loc_0x240:
-	  lwz       r3, -0x6CD0(r13)
-	  lwz       r3, 0xB0(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x258
-	  li        r4, 0
-	  bl        -0xD8660
+lbl_8021409C:
+	lwz      r3, mgr__Q24Game9ItemOnyon@sda21(r13)
+	lwz      r3, 0xb0(r3)
+	cmplwi   r3, 0
+	beq      lbl_802140B4
+	li       r4, 0
+	bl       movie_begin__Q24Game8CreatureFb
 
-	.loc_0x258:
-	  lwz       r3, -0x64AC(r13)
-	  addi      r4, r1, 0x8
-	  bl        0x218914
-	  li        r3, 0x1
-	  b         .loc_0x270
+lbl_802140B4:
+	lwz      r3, moviePlayer__4Game@sda21(r13)
+	addi     r4, r1, 8
+	bl       play__Q24Game11MoviePlayerFRQ24Game12MoviePlayArg
+	li       r3, 1
+	b        lbl_802140CC
 
-	.loc_0x26C:
-	  li        r3, 0
+lbl_802140C8:
+	li       r3, 0
 
-	.loc_0x270:
-	  lwz       r0, 0xB4(r1)
-	  lwz       r31, 0xAC(r1)
-	  lwz       r30, 0xA8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0xB0
-	  blr
+lbl_802140CC:
+	lwz      r0, 0xb4(r1)
+	lwz      r31, 0xac(r1)
+	lwz      r30, 0xa8(r1)
+	mtlr     r0
+	addi     r1, r1, 0xb0
+	blr
 	*/
 }
 
@@ -1682,495 +2042,493 @@ void SingleGame::GameState::on_demo_timer(Game::SingleGameSection*,
 void SingleGame::GameState::exec(Game::SingleGameSection*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x140(r1)
-	  mflr      r0
-	  stw       r0, 0x144(r1)
-	  stw       r31, 0x13C(r1)
-	  stw       r30, 0x138(r1)
-	  mr        r30, r4
-	  stw       r29, 0x134(r1)
-	  mr        r29, r3
-	  lis       r3, 0x8048
-	  lbz       r0, 0x18(r29)
-	  addi      r31, r3, 0x2150
-	  cmplwi    r0, 0
-	  bne-      .loc_0x6C4
-	  lbz       r0, 0x20(r29)
-	  cmplwi    r0, 0
-	  beq-      .loc_0xA0
-	  lwz       r3, -0x65F8(r13)
-	  bl        0x1A4954
-	  lwz       r3, -0x6560(r13)
-	  bl        0x1E73C8
-	  lwz       r3, -0x6560(r13)
-	  bl        0x1E9AE0
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x6C4
-	  li        r7, 0
-	  li        r3, 0x1
-	  li        r0, 0x64
-	  stb       r3, 0x18(r1)
-	  mr        r3, r29
-	  mr        r4, r30
-	  stb       r7, 0x19(r1)
-	  addi      r6, r1, 0x18
-	  li        r5, 0x2
-	  stb       r7, 0x1A(r1)
-	  sth       r0, 0x1C(r1)
-	  lwz       r12, 0x0(r29)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x6C4
+	stwu     r1, -0x140(r1)
+	mflr     r0
+	stw      r0, 0x144(r1)
+	stw      r31, 0x13c(r1)
+	stw      r30, 0x138(r1)
+	mr       r30, r4
+	stw      r29, 0x134(r1)
+	mr       r29, r3
+	lis      r3, lbl_80482150@ha
+	lbz      r0, 0x18(r29)
+	addi     r31, r3, lbl_80482150@l
+	cmplwi   r0, 0
+	bne      lbl_802152DC
+	lbz      r0, 0x20(r29)
+	cmplwi   r0, 0
+	beq      lbl_80214CB8
+	lwz      r3, particle2dMgr@sda21(r13)
+	bl       update__14TParticle2dMgrFv
+	lwz      r3, gGame2DMgr__6Screen@sda21(r13)
+	bl       update__Q26Screen9Game2DMgrFv
+	lwz      r3, gGame2DMgr__6Screen@sda21(r13)
+	bl       check_Save__Q26Screen9Game2DMgrCFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802152DC
+	li       r7, 0
+	li       r3, 1
+	li       r0, 0x64
+	stb      r3, 0x18(r1)
+	mr       r3, r29
+	mr       r4, r30
+	stb      r7, 0x19(r1)
+	addi     r6, r1, 0x18
+	li       r5, 2
+	stb      r7, 0x1a(r1)
+	sth      r0, 0x1c(r1)
+	lwz      r12, 0(r29)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802152DC
 
-	.loc_0xA0:
-	  mr        r3, r30
-	  bl        -0xC9440
-	  lwz       r3, 0x250(r30)
-	  lwz       r0, 0x4(r29)
-	  lwz       r3, 0x4(r3)
-	  cmpw      r3, r0
-	  bne-      .loc_0x6C4
-	  mr        r3, r30
-	  bl        -0xBF7EC
-	  li        r3, -0x1
-	  bl        -0x43E80
-	  cmpwi     r3, 0xF
-	  blt-      .loc_0x134
-	  lwz       r3, -0x64AC(r13)
-	  lwz       r0, 0x18(r3)
-	  cmpwi     r0, 0
-	  bne-      .loc_0x134
-	  lwz       r3, -0x6B70(r13)
-	  li        r4, 0x30
-	  bl        -0x2D924
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x134
-	  lwz       r3, -0x6B70(r13)
-	  li        r4, 0x1
-	  bl        -0x2DC40
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x134
-	  lwz       r3, -0x6B70(r13)
-	  li        r4, 0x30
-	  bl        -0x2D988
-	  mr        r3, r30
-	  lfs       f1, -0x43AC(r2)
-	  lwz       r12, 0x0(r30)
-	  li        r4, 0x7
-	  lwz       r12, 0xA4(r12)
-	  mtctr     r12
-	  bctrl
+lbl_80214CB8:
+	mr       r3, r30
+	bl       doUpdate__Q24Game15BaseGameSectionFv
+	lwz      r3, 0x250(r30)
+	lwz      r0, 4(r29)
+	lwz      r3, 4(r3)
+	cmpw     r3, r0
+	bne      lbl_802152DC
+	mr       r3, r30
+	bl       updateMainMapScreen__Q24Game17SingleGameSectionFv
+	li       r3, -1
+	bl       getMapPikmins__Q24Game8GameStatFi
+	cmpwi    r3, 0xf
+	blt      lbl_80214D4C
+	lwz      r3, moviePlayer__4Game@sda21(r13)
+	lwz      r0, 0x18(r3)
+	cmpwi    r0, 0
+	bne      lbl_80214D4C
+	lwz      r3, playData__4Game@sda21(r13)
+	li       r4, 0x30
+	bl       isDemoFlag__Q24Game8PlayDataFi
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_80214D4C
+	lwz      r3, playData__4Game@sda21(r13)
+	li       r4, 1
+	bl       hasBootContainer__Q24Game8PlayDataFi
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80214D4C
+	lwz      r3, playData__4Game@sda21(r13)
+	li       r4, 0x30
+	bl       setDemoFlag__Q24Game8PlayDataFi
+	mr       r3, r30
+	lfs      f1, lbl_80519FB4@sda21(r2)
+	lwz      r12, 0(r30)
+	li       r4, 7
+	lwz      r12, 0xa4(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x134:
-	  lwz       r3, -0x64AC(r13)
-	  lwz       r0, 0x18(r3)
-	  cmpwi     r0, 0
-	  bne-      .loc_0x15C
-	  mr        r3, r29
-	  bl        0x24FC
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x15C
-	  mr        r3, r29
-	  bl        0x2560
+lbl_80214D4C:
+	lwz      r3, moviePlayer__4Game@sda21(r13)
+	lwz      r0, 0x18(r3)
+	cmpwi    r0, 0
+	bne      lbl_80214D74
+	mr       r3, r29
+	bl       needRepayDemo__Q34Game10SingleGame9GameStateFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80214D74
+	mr       r3, r29
+	bl       startRepayDemo__Q34Game10SingleGame9GameStateFv
 
-	.loc_0x15C:
-	  mr        r3, r29
-	  bl        0x2698
-	  cmpwi     r3, 0x3
-	  beq-      .loc_0x190
-	  bge-      .loc_0x180
-	  cmpwi     r3, 0x1
-	  beq-      .loc_0x6C4
-	  bge-      .loc_0x250
-	  b         .loc_0x26C
+lbl_80214D74:
+	mr       r3, r29
+	bl       updateRepayDemo__Q34Game10SingleGame9GameStateFv
+	cmpwi    r3, 3
+	beq      lbl_80214DA8
+	bge      lbl_80214D98
+	cmpwi    r3, 1
+	beq      lbl_802152DC
+	bge      lbl_80214E68
+	b        lbl_80214E84
 
-	.loc_0x180:
-	  cmpwi     r3, 0x5
-	  bge-      .loc_0x26C
-	  b         .loc_0x1F0
-	  b         .loc_0x6C4
+lbl_80214D98:
+	cmpwi    r3, 5
+	bge      lbl_80214E84
+	b        lbl_80214E08
+	b        lbl_802152DC
 
-	.loc_0x190:
-	  lwz       r3, -0x6D0C(r13)
-	  li        r4, 0
-	  bl        -0xB50FC
-	  lwz       r4, 0x22C(r30)
-	  mr        r3, r30
-	  bl        -0xC762C
-	  mr        r3, r30
-	  bl        -0xC76D8
-	  lwz       r3, -0x6C18(r13)
-	  addi      r5, r31, 0x1E0
-	  li        r4, 0
-	  li        r6, 0x3
-	  bl        -0x5FE44
-	  li        r0, 0
-	  mr        r3, r29
-	  stb       r0, 0xC(r1)
-	  mr        r4, r30
-	  addi      r6, r1, 0xC
-	  li        r5, 0xB
-	  lwz       r12, 0x0(r29)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x6C4
+lbl_80214DA8:
+	lwz      r3, pikiMgr__4Game@sda21(r13)
+	li       r4, 0
+	bl       forceEnterPikmins__Q24Game7PikiMgrFUc
+	lwz      r4, 0x22c(r30)
+	mr       r3, r30
+	bl       saveToGeneratorCache__Q24Game15BaseGameSectionFPQ24Game10CourseInfo
+	mr       r3, r30
+	bl       advanceDayCount__Q24Game15BaseGameSectionFv
+	lwz      r3, gameSystem__4Game@sda21(r13)
+	addi     r5, r31, 0x1e0
+	li       r4, 0
+	li       r6, 3
+	bl       setPause__Q24Game10GameSystemFbPci
+	li       r0, 0
+	mr       r3, r29
+	stb      r0, 0xc(r1)
+	mr       r4, r30
+	addi     r6, r1, 0xc
+	li       r5, 0xb
+	lwz      r12, 0(r29)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802152DC
 
-	.loc_0x1F0:
-	  lwz       r3, -0x6D0C(r13)
-	  li        r4, 0
-	  bl        -0xB515C
-	  lwz       r4, 0x22C(r30)
-	  mr        r3, r30
-	  bl        -0xC768C
-	  mr        r3, r30
-	  bl        -0xC7738
-	  lwz       r3, -0x6C18(r13)
-	  addi      r5, r31, 0x1E0
-	  li        r4, 0
-	  li        r6, 0x3
-	  bl        -0x5FEA4
-	  li        r0, 0x2
-	  mr        r3, r29
-	  stb       r0, 0x8(r1)
-	  mr        r4, r30
-	  addi      r6, r1, 0x8
-	  li        r5, 0xB
-	  lwz       r12, 0x0(r29)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x6C4
+lbl_80214E08:
+	lwz      r3, pikiMgr__4Game@sda21(r13)
+	li       r4, 0
+	bl       forceEnterPikmins__Q24Game7PikiMgrFUc
+	lwz      r4, 0x22c(r30)
+	mr       r3, r30
+	bl       saveToGeneratorCache__Q24Game15BaseGameSectionFPQ24Game10CourseInfo
+	mr       r3, r30
+	bl       advanceDayCount__Q24Game15BaseGameSectionFv
+	lwz      r3, gameSystem__4Game@sda21(r13)
+	addi     r5, r31, 0x1e0
+	li       r4, 0
+	li       r6, 3
+	bl       setPause__Q24Game10GameSystemFbPci
+	li       r0, 2
+	mr       r3, r29
+	stb      r0, 8(r1)
+	mr       r4, r30
+	addi     r6, r1, 8
+	li       r5, 0xb
+	lwz      r12, 0(r29)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802152DC
 
-	.loc_0x250:
-	  bl        0x256CE0
-	  lwz       r3, -0x6C18(r13)
-	  addi      r5, r31, 0x1E0
-	  li        r4, 0
-	  li        r6, 0x3
-	  bl        -0x5FEE8
-	  b         .loc_0x6C4
+lbl_80214E68:
+	bl       PSPause_StartMenuOff__Fv
+	lwz      r3, gameSystem__4Game@sda21(r13)
+	addi     r5, r31, 0x1e0
+	li       r4, 0
+	li       r6, 3
+	bl       setPause__Q24Game10GameSystemFbPci
+	b        lbl_802152DC
 
-	.loc_0x26C:
-	  lbz       r0, 0x180(r30)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x288
-	  mr        r3, r30
-	  bl        -0xC0778
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x6C4
+lbl_80214E84:
+	lbz      r0, 0x180(r30)
+	cmplwi   r0, 0
+	beq      lbl_80214EA0
+	mr       r3, r30
+	bl       updateCaveMenus__Q24Game17SingleGameSectionFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802152DC
 
-	.loc_0x288:
-	  lwz       r3, -0x6560(r13)
-	  lwz       r4, 0x10C(r30)
-	  bl        0x1E71D0
-	  lwz       r3, -0x6560(r13)
-	  bl        0x1E8080
-	  cmpwi     r3, 0x2
-	  beq-      .loc_0x2F0
-	  bge-      .loc_0x2B8
-	  cmpwi     r3, 0
-	  beq-      .loc_0x49C
-	  bge-      .loc_0x2C8
-	  b         .loc_0x414
+lbl_80214EA0:
+	lwz      r3, gGame2DMgr__6Screen@sda21(r13)
+	lwz      r4, 0x10c(r30)
+	bl       setGamePad__Q26Screen9Game2DMgrFP10Controller
+	lwz      r3, gGame2DMgr__6Screen@sda21(r13)
+	bl       check_SMenu__Q26Screen9Game2DMgrFv
+	cmpwi    r3, 2
+	beq      lbl_80214F08
+	bge      lbl_80214ED0
+	cmpwi    r3, 0
+	beq      lbl_802150B4
+	bge      lbl_80214EE0
+	b        lbl_8021502C
 
-	.loc_0x2B8:
-	  cmpwi     r3, 0x4
-	  beq-      .loc_0x3FC
-	  bge-      .loc_0x414
-	  b         .loc_0x350
+lbl_80214ED0:
+	cmpwi    r3, 4
+	beq      lbl_80215014
+	bge      lbl_8021502C
+	b        lbl_80214F68
 
-	.loc_0x2C8:
-	  lwz       r3, -0x6C18(r13)
-	  li        r4, 0
-	  subi      r5, r2, 0x43A8
-	  bl        -0x5FF68
-	  lwz       r3, -0x6C18(r13)
-	  li        r4, 0
-	  subi      r5, r2, 0x43A8
-	  li        r6, 0x3
-	  bl        -0x5FF6C
-	  b         .loc_0x49C
+lbl_80214EE0:
+	lwz      r3, gameSystem__4Game@sda21(r13)
+	li       r4, 0
+	addi     r5, r2, lbl_80519FB8@sda21
+	bl       setMoviePause__Q24Game10GameSystemFbPc
+	lwz      r3, gameSystem__4Game@sda21(r13)
+	li       r4, 0
+	addi     r5, r2, lbl_80519FB8@sda21
+	li       r6, 3
+	bl       setPause__Q24Game10GameSystemFbPci
+	b        lbl_802150B4
 
-	.loc_0x2F0:
-	  lwz       r3, -0x6C18(r13)
-	  li        r4, 0
-	  subi      r5, r2, 0x43A0
-	  lbz       r0, 0x3C(r3)
-	  rlwinm    r0,r0,0,27,25
-	  stb       r0, 0x3C(r3)
-	  lwz       r3, -0x6C18(r13)
-	  bl        -0x5FFA0
-	  lwz       r3, -0x6C18(r13)
-	  li        r4, 0
-	  subi      r5, r2, 0x43A0
-	  li        r6, 0x3
-	  bl        -0x5FFA4
-	  li        r0, 0
-	  mr        r3, r29
-	  sth       r0, 0x14(r1)
-	  mr        r4, r30
-	  addi      r6, r1, 0x14
-	  li        r5, 0x5
-	  lwz       r12, 0x0(r29)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x6C4
+lbl_80214F08:
+	lwz      r3, gameSystem__4Game@sda21(r13)
+	li       r4, 0
+	addi     r5, r2, lbl_80519FC0@sda21
+	lbz      r0, 0x3c(r3)
+	rlwinm   r0, r0, 0, 0x1b, 0x19
+	stb      r0, 0x3c(r3)
+	lwz      r3, gameSystem__4Game@sda21(r13)
+	bl       setMoviePause__Q24Game10GameSystemFbPc
+	lwz      r3, gameSystem__4Game@sda21(r13)
+	li       r4, 0
+	addi     r5, r2, lbl_80519FC0@sda21
+	li       r6, 3
+	bl       setPause__Q24Game10GameSystemFbPci
+	li       r0, 0
+	mr       r3, r29
+	sth      r0, 0x14(r1)
+	mr       r4, r30
+	addi     r6, r1, 0x14
+	li       r5, 5
+	lwz      r12, 0(r29)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802152DC
 
-	.loc_0x350:
-	  lwz       r3, -0x6560(r13)
-	  lwz       r3, 0x18(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm    r0,r3,0,24,31
-	  cmplwi    r0, 0x1
-	  beq-      .loc_0x388
-	  addi      r3, r31, 0x7C
-	  addi      r5, r31, 0x94
-	  li        r4, 0x518
-	  crclr     6, 0x6
-	  bl        -0x1EA95C
+lbl_80214F68:
+	lwz      r3, gGame2DMgr__6Screen@sda21(r13)
+	lwz      r3, 0x18(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	clrlwi   r0, r3, 0x18
+	cmplwi   r0, 1
+	beq      lbl_80214FA0
+	addi     r3, r31, 0x7c
+	addi     r5, r31, 0x94
+	li       r4, 0x518
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x388:
-	  lwz       r3, -0x6B70(r13)
-	  li        r0, 0
-	  stb       r0, 0x20(r3)
-	  lwz       r3, -0x6D20(r13)
-	  bl        -0xB9DC0
-	  lwz       r3, -0x6C18(r13)
-	  li        r4, 0
-	  subi      r5, r2, 0x4398
-	  lbz       r0, 0x3C(r3)
-	  rlwinm    r0,r0,0,27,25
-	  stb       r0, 0x3C(r3)
-	  lwz       r3, -0x6C18(r13)
-	  bl        -0x6004C
-	  lwz       r3, -0x6C18(r13)
-	  li        r4, 0
-	  subi      r5, r2, 0x4398
-	  li        r6, 0x3
-	  bl        -0x60050
-	  mr        r3, r30
-	  bl        -0xC5248
-	  mr        r3, r29
-	  mr        r4, r30
-	  lwz       r12, 0x0(r29)
-	  li        r5, 0
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x6C4
+lbl_80214FA0:
+	lwz      r3, playData__4Game@sda21(r13)
+	li       r0, 0
+	stb      r0, 0x20(r3)
+	lwz      r3, naviMgr__4Game@sda21(r13)
+	bl       clearDeadCount__Q24Game7NaviMgrFv
+	lwz      r3, gameSystem__4Game@sda21(r13)
+	li       r4, 0
+	addi     r5, r2, lbl_80519FC8@sda21
+	lbz      r0, 0x3c(r3)
+	rlwinm   r0, r0, 0, 0x1b, 0x19
+	stb      r0, 0x3c(r3)
+	lwz      r3, gameSystem__4Game@sda21(r13)
+	bl       setMoviePause__Q24Game10GameSystemFbPc
+	lwz      r3, gameSystem__4Game@sda21(r13)
+	li       r4, 0
+	addi     r5, r2, lbl_80519FC8@sda21
+	li       r6, 3
+	bl       setPause__Q24Game10GameSystemFbPci
+	mr       r3, r30
+	bl       clearHeap__Q24Game15BaseGameSectionFv
+	mr       r3, r29
+	mr       r4, r30
+	lwz      r12, 0(r29)
+	li       r5, 0
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802152DC
 
-	.loc_0x3FC:
-	  addi      r3, r31, 0x7C
-	  addi      r5, r31, 0x1EC
-	  li        r4, 0x526
-	  crclr     6, 0x6
-	  bl        -0x1EA9E4
-	  b         .loc_0x49C
+lbl_80215014:
+	addi     r3, r31, 0x7c
+	addi     r5, r31, 0x1ec
+	li       r4, 0x526
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
+	b        lbl_802150B4
 
-	.loc_0x414:
-	  lwz       r3, -0x6C18(r13)
-	  lbz       r0, 0x3C(r3)
-	  rlwinm.   r0,r0,0,28,28
-	  bne-      .loc_0x49C
-	  lwz       r4, -0x64AC(r13)
-	  lwz       r0, 0x18(r4)
-	  cmpwi     r0, 0
-	  bne-      .loc_0x49C
-	  bl        -0x60084
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x49C
-	  lwz       r3, 0x10C(r30)
-	  lwz       r0, 0x1C(r3)
-	  rlwinm.   r0,r0,0,19,19
-	  beq-      .loc_0x49C
-	  addi      r3, r1, 0x60
-	  bl        .loc_0x6E0
-	  mr        r3, r30
-	  addi      r4, r1, 0x60
-	  bl        -0xC00A0
-	  lwz       r3, -0x6560(r13)
-	  addi      r4, r1, 0x60
-	  bl        0x1E7C4C
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x49C
-	  lwz       r3, -0x6C18(r13)
-	  li        r4, 0x1
-	  subi      r5, r2, 0x4390
-	  li        r6, 0x3
-	  bl        -0x6010C
-	  lwz       r3, -0x6C18(r13)
-	  li        r4, 0x1
-	  subi      r5, r2, 0x4390
-	  bl        -0x6012C
+lbl_8021502C:
+	lwz      r3, gameSystem__4Game@sda21(r13)
+	lbz      r0, 0x3c(r3)
+	rlwinm.  r0, r0, 0, 0x1c, 0x1c
+	bne      lbl_802150B4
+	lwz      r4, moviePlayer__4Game@sda21(r13)
+	lwz      r0, 0x18(r4)
+	cmpwi    r0, 0
+	bne      lbl_802150B4
+	bl       paused__Q24Game10GameSystemFv
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_802150B4
+	lwz      r3, 0x10c(r30)
+	lwz      r0, 0x1c(r3)
+	rlwinm.  r0, r0, 0, 0x13, 0x13
+	beq      lbl_802150B4
+	addi     r3, r1, 0x60
+	bl       __ct__Q32og6Screen18DispMemberSMenuAllFv
+	mr       r3, r30
+	addi     r4, r1, 0x60
+	bl
+setDispMemberSMenu__Q24Game17SingleGameSectionFRQ32og6Screen18DispMemberSMenuAll
+	lwz      r3, gGame2DMgr__6Screen@sda21(r13)
+	addi     r4, r1, 0x60
+	bl       open_SMenu__Q26Screen9Game2DMgrFRQ32og6Screen18DispMemberSMenuAll
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802150B4
+	lwz      r3, gameSystem__4Game@sda21(r13)
+	li       r4, 1
+	addi     r5, r2, lbl_80519FD0@sda21
+	li       r6, 3
+	bl       setPause__Q24Game10GameSystemFbPci
+	lwz      r3, gameSystem__4Game@sda21(r13)
+	li       r4, 1
+	addi     r5, r2, lbl_80519FD0@sda21
+	bl       setMoviePause__Q24Game10GameSystemFbPc
 
-	.loc_0x49C:
-	  lwz       r3, -0x6C18(r13)
-	  bl        -0x600F8
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x51C
-	  lwz       r3, -0x6C18(r13)
-	  lbz       r0, 0x3C(r3)
-	  rlwinm.   r0,r0,0,28,28
-	  bne-      .loc_0x51C
-	  lwz       r3, 0x40(r3)
-	  bl        -0xEDD40
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x51C
-	  lbz       r0, 0x180(r30)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x51C
-	  lwz       r4, -0x6C18(r13)
-	  lbz       r3, 0x3C(r4)
-	  rlwinm.   r0,r3,0,26,26
-	  beq-      .loc_0x51C
-	  rlwinm    r3,r3,0,27,25
-	  li        r0, 0
-	  stb       r3, 0x3C(r4)
-	  mr        r3, r29
-	  mr        r4, r30
-	  addi      r6, r1, 0x10
-	  sth       r0, 0x10(r1)
-	  li        r5, 0x5
-	  lwz       r12, 0x0(r29)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x6C4
+lbl_802150B4:
+	lwz      r3, gameSystem__4Game@sda21(r13)
+	bl       paused_soft__Q24Game10GameSystemFv
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_80215134
+	lwz      r3, gameSystem__4Game@sda21(r13)
+	lbz      r0, 0x3c(r3)
+	rlwinm.  r0, r0, 0, 0x1c, 0x1c
+	bne      lbl_80215134
+	lwz      r3, 0x40(r3)
+	bl       isDayOver__Q24Game7TimeMgrFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80215134
+	lbz      r0, 0x180(r30)
+	cmplwi   r0, 0
+	bne      lbl_80215134
+	lwz      r4, gameSystem__4Game@sda21(r13)
+	lbz      r3, 0x3c(r4)
+	rlwinm.  r0, r3, 0, 0x1a, 0x1a
+	beq      lbl_80215134
+	rlwinm   r3, r3, 0, 0x1b, 0x19
+	li       r0, 0
+	stb      r3, 0x3c(r4)
+	mr       r3, r29
+	mr       r4, r30
+	addi     r6, r1, 0x10
+	sth      r0, 0x10(r1)
+	li       r5, 5
+	lwz      r12, 0(r29)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802152DC
 
-	.loc_0x51C:
-	  lbz       r0, 0x10(r29)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x660
-	  lwz       r3, -0x64AC(r13)
-	  lwz       r0, 0x18(r3)
-	  cmpwi     r0, 0
-	  bne-      .loc_0x660
-	  li        r3, -0x1
-	  bl        -0x44218
-	  mr        r29, r3
-	  li        r3, -0x1
-	  bl        -0x44274
-	  sub.      r0, r29, r3
-	  bne-      .loc_0x660
-	  lwz       r3, -0x6B70(r13)
-	  li        r4, 0x1
-	  bl        -0x2E09C
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x660
-	  lwz       r5, -0x6C18(r13)
-	  addi      r4, r31, 0x1FC
-	  lfs       f0, -0x43B8(r2)
-	  li        r0, 0
-	  lbz       r3, 0x3C(r5)
-	  rlwinm    r3,r3,0,27,25
-	  stb       r3, 0x3C(r5)
-	  lwz       r5, 0xC8(r30)
-	  lwz       r3, -0x6D20(r13)
-	  stw       r4, 0x2C(r1)
-	  stw       r0, 0x30(r1)
-	  stw       r5, 0x38(r1)
-	  stfs      f0, 0x44(r1)
-	  stfs      f0, 0x48(r1)
-	  stfs      f0, 0x4C(r1)
-	  stfs      f0, 0x50(r1)
-	  stw       r0, 0x54(r1)
-	  stw       r0, 0x3C(r1)
-	  stw       r0, 0x34(r1)
-	  stw       r0, 0x58(r1)
-	  stw       r0, 0x40(r1)
-	  stw       r0, 0x5C(r1)
-	  bl        -0xBA5B8
-	  mr.       r29, r3
-	  bne-      .loc_0x600
-	  lwz       r3, -0x6C18(r13)
-	  li        r4, 0x1
-	  lwz       r3, 0x58(r3)
-	  lwz       r0, 0xE4(r3)
-	  cmpwi     r0, 0
-	  bne-      .loc_0x5E8
-	  li        r4, 0
+lbl_80215134:
+	lbz      r0, 0x10(r29)
+	cmplwi   r0, 0
+	bne      lbl_80215278
+	lwz      r3, moviePlayer__4Game@sda21(r13)
+	lwz      r0, 0x18(r3)
+	cmpwi    r0, 0
+	bne      lbl_80215278
+	li       r3, -1
+	bl       getAllPikmins__Q24Game8GameStatFi
+	mr       r29, r3
+	li       r3, -1
+	bl       getZikatuPikmins__Q24Game8GameStatFi
+	subf.    r0, r3, r29
+	bne      lbl_80215278
+	lwz      r3, playData__4Game@sda21(r13)
+	li       r4, 1
+	bl       hasBootContainer__Q24Game8PlayDataFi
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80215278
+	lwz      r5, gameSystem__4Game@sda21(r13)
+	addi     r4, r31, 0x1fc
+	lfs      f0, lbl_80519FA8@sda21(r2)
+	li       r0, 0
+	lbz      r3, 0x3c(r5)
+	rlwinm   r3, r3, 0, 0x1b, 0x19
+	stb      r3, 0x3c(r5)
+	lwz      r5, 0xc8(r30)
+	lwz      r3, naviMgr__4Game@sda21(r13)
+	stw      r4, 0x2c(r1)
+	stw      r0, 0x30(r1)
+	stw      r5, 0x38(r1)
+	stfs     f0, 0x44(r1)
+	stfs     f0, 0x48(r1)
+	stfs     f0, 0x4c(r1)
+	stfs     f0, 0x50(r1)
+	stw      r0, 0x54(r1)
+	stw      r0, 0x3c(r1)
+	stw      r0, 0x34(r1)
+	stw      r0, 0x58(r1)
+	stw      r0, 0x40(r1)
+	stw      r0, 0x5c(r1)
+	bl       getActiveNavi__Q24Game7NaviMgrFv
+	or.      r29, r3, r3
+	bne      lbl_80215218
+	lwz      r3, gameSystem__4Game@sda21(r13)
+	li       r4, 1
+	lwz      r3, 0x58(r3)
+	lwz      r0, 0xe4(r3)
+	cmpwi    r0, 0
+	bne      lbl_80215200
+	li       r4, 0
 
-	.loc_0x5E8:
-	  lwz       r3, -0x6D20(r13)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x24(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r29, r3
+lbl_80215200:
+	lwz      r3, naviMgr__4Game@sda21(r13)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x24(r12)
+	mtctr    r12
+	bctrl
+	mr       r29, r3
 
-	.loc_0x600:
-	  lwz       r0, 0xCC(r30)
-	  mr        r4, r29
-	  addi      r3, r1, 0x20
-	  stw       r0, 0x3C(r1)
-	  lwz       r12, 0x0(r29)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f2, 0x20(r1)
-	  mr        r3, r29
-	  lfs       f1, 0x24(r1)
-	  lfs       f0, 0x28(r1)
-	  stfs      f2, 0x44(r1)
-	  stfs      f1, 0x48(r1)
-	  stfs      f0, 0x4C(r1)
-	  lwz       r12, 0x0(r29)
-	  lwz       r12, 0x64(r12)
-	  mtctr     r12
-	  bctrl
-	  stfs      f1, 0x50(r1)
-	  addi      r4, r1, 0x2C
-	  lwz       r3, -0x64AC(r13)
-	  bl        0x217760
-	  b         .loc_0x6C4
+lbl_80215218:
+	lwz      r0, 0xcc(r30)
+	mr       r4, r29
+	addi     r3, r1, 0x20
+	stw      r0, 0x3c(r1)
+	lwz      r12, 0(r29)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f2, 0x20(r1)
+	mr       r3, r29
+	lfs      f1, 0x24(r1)
+	lfs      f0, 0x28(r1)
+	stfs     f2, 0x44(r1)
+	stfs     f1, 0x48(r1)
+	stfs     f0, 0x4c(r1)
+	lwz      r12, 0(r29)
+	lwz      r12, 0x64(r12)
+	mtctr    r12
+	bctrl
+	stfs     f1, 0x50(r1)
+	addi     r4, r1, 0x2c
+	lwz      r3, moviePlayer__4Game@sda21(r13)
+	bl       play__Q24Game11MoviePlayerFRQ24Game12MoviePlayArg
+	b        lbl_802152DC
 
-	.loc_0x660:
-	  bl        0x243B18
-	  mr        r0, r3
-	  li        r3, -0x1
-	  mr        r29, r0
-	  bl        -0x44478
-	  cmpwi     r3, 0xA
-	  bge-      .loc_0x6A8
-	  lwz       r0, -0x69E8(r13)
-	  cmpwi     r0, 0
-	  ble-      .loc_0x6A8
-	  cmplwi    r29, 0
-	  beq-      .loc_0x6C4
-	  mr        r3, r29
-	  lwz       r12, 0x0(r29)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x6C4
+lbl_80215278:
+	bl       PSMGetPikminNumD__Fv
+	mr       r0, r3
+	li       r3, -1
+	mr       r29, r0
+	bl       getMapPikmins_exclude_Me__Q24Game8GameStatFi
+	cmpwi    r3, 0xa
+	bge      lbl_802152C0
+	lwz      r0, mSoundDeathCount__Q24Game8DeathMgr@sda21(r13)
+	cmpwi    r0, 0
+	ble      lbl_802152C0
+	cmplwi   r29, 0
+	beq      lbl_802152DC
+	mr       r3, r29
+	lwz      r12, 0(r29)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802152DC
 
-	.loc_0x6A8:
-	  cmplwi    r29, 0
-	  beq-      .loc_0x6C4
-	  mr        r3, r29
-	  lwz       r12, 0x0(r29)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
+lbl_802152C0:
+	cmplwi   r29, 0
+	beq      lbl_802152DC
+	mr       r3, r29
+	lwz      r12, 0(r29)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x6C4:
-	  lwz       r0, 0x144(r1)
-	  lwz       r31, 0x13C(r1)
-	  lwz       r30, 0x138(r1)
-	  lwz       r29, 0x134(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x140
-	  blr
-
-	.loc_0x6E0:
+lbl_802152DC:
+	lwz      r0, 0x144(r1)
+	lwz      r31, 0x13c(r1)
+	lwz      r30, 0x138(r1)
+	lwz      r29, 0x134(r1)
+	mtlr     r0
+	addi     r1, r1, 0x140
+	blr
 	*/
 }
 
@@ -2186,126 +2544,125 @@ namespace og {
 		DispMemberSMenuAll::DispMemberSMenuAll(void)
 		{
 			/*
-			.loc_0x0:
-			  stwu      r1, -0x30(r1)
-			  lis       r4, 0x804B
-			  addi      r5, r4, 0x1148
-			  lis       r9, 0x804C
-			  stmw      r24, 0x10(r1)
-			  addi      r0, r9, 0x58C
-			  lis       r8, 0x804C
-			  lis       r7, 0x804C
-			  addi      r26, r8, 0x574
-			  lis       r6, 0x804C
-			  addi      r12, r7, 0x55C
-			  li        r4, 0
-			  addi      r10, r6, 0x544
-			  li        r25, 0x4D2
-			  li        r24, 0x9A5
-			  li        r11, 0x56
-			  li        r9, 0x6F
-			  li        r8, 0x16
-			  li        r7, 0x14D
-			  li        r6, 0x2C
-			  stw       r5, 0x0(r3)
-			  stw       r4, 0x4(r3)
-			  stw       r0, 0x0(r3)
-			  li        r0, 0x1
-			  stw       r5, 0x8(r3)
-			  stw       r4, 0xC(r3)
-			  stw       r26, 0x8(r3)
-			  stw       r25, 0x10(r3)
-			  stw       r24, 0x14(r3)
-			  stw       r0, 0x18(r3)
-			  stw       r5, 0x1C(r3)
-			  stw       r4, 0x20(r3)
-			  stw       r12, 0x1C(r3)
-			  stw       r0, 0x30(r3)
-			  stw       r11, 0x24(r3)
-			  stw       r24, 0x28(r3)
-			  stb       r0, 0x2C(r3)
-			  stb       r4, 0x2D(r3)
-			  stw       r5, 0x34(r3)
-			  stw       r4, 0x38(r3)
-			  stw       r10, 0x34(r3)
-			  stw       r9, 0x3C(r3)
-			  stw       r8, 0x40(r3)
-			  stw       r7, 0x44(r3)
-			  stw       r6, 0x48(r3)
-			  stb       r4, 0x4C(r3)
-			  stb       r4, 0x4D(r3)
-			  stb       r4, 0x4E(r3)
-			  stb       r4, 0x4F(r3)
-			  stb       r4, 0x50(r3)
-			  stb       r4, 0x51(r3)
-			  stb       r4, 0x52(r3)
-			  stb       r4, 0x53(r3)
-			  stb       r4, 0x54(r3)
-			  stb       r4, 0x55(r3)
-			  stb       r4, 0x56(r3)
-			  stb       r4, 0x57(r3)
-			  stb       r4, 0x58(r3)
-			  lis       r12, 0x804C
-			  lis       r11, 0x75
-			  lis       r10, 0xA
-			  stb       r4, 0x59(r3)
-			  lis       r9, 0x1
-			  lis       r8, 0x745F
-			  lis       r7, 0x804C
-			  stw       r5, 0x5C(r3)
-			  lis       r6, 0x804C
-			  addi      r12, r12, 0x52C
-			  subi      r24, r11, 0x344F
-			  stw       r4, 0x60(r3)
-			  subi      r25, r10, 0x40F
-			  subi      r26, r9, 0x2BCF
-			  li        r27, 0x10E1
-			  stw       r12, 0x5C(r3)
-			  li        r28, 0x141
-			  li        r29, 0xA
-			  li        r30, 0x14
-			  stw       r0, 0x64(r3)
-			  li        r31, 0x1E
-			  li        r12, 0x28
-			  li        r11, 0x32
-			  stw       r24, 0x68(r3)
-			  li        r10, 0x3C
-			  li        r9, 0x46
-			  addi      r8, r8, 0x3031
-			  stw       r25, 0x6C(r3)
-			  addi      r7, r7, 0x514
-			  addi      r6, r6, 0x4FC
-			  stw       r26, 0x70(r3)
-			  stw       r27, 0x74(r3)
-			  stw       r28, 0x78(r3)
-			  stw       r29, 0x7C(r3)
-			  stw       r30, 0x80(r3)
-			  stw       r31, 0x84(r3)
-			  stw       r12, 0x88(r3)
-			  stw       r11, 0x8C(r3)
-			  stw       r10, 0x90(r3)
-			  stw       r9, 0x94(r3)
-			  stb       r4, 0xA5(r3)
-			  stb       r4, 0xA6(r3)
-			  stw       r4, 0x98(r3)
-			  stw       r8, 0x9C(r3)
-			  stb       r0, 0xA0(r3)
-			  stb       r0, 0xA1(r3)
-			  stb       r0, 0xA2(r3)
-			  stb       r0, 0xA3(r3)
-			  stb       r0, 0xA4(r3)
-			  stw       r5, 0xA8(r3)
-			  stw       r4, 0xAC(r3)
-			  stw       r7, 0xA8(r3)
-			  stw       r0, 0xB0(r3)
-			  stw       r5, 0xB4(r3)
-			  stw       r4, 0xB8(r3)
-			  stw       r6, 0xB4(r3)
-			  stw       r4, 0xBC(r3)
-			  stb       r4, 0xC0(r3)
-			  lmw       r24, 0x10(r1)
-			  addi      r1, r1, 0x30
-			  blr
+	stwu     r1, -0x30(r1)
+	lis      r4, __vt__Q32og6Screen14DispMemberBase@ha
+	addi     r5, r4, __vt__Q32og6Screen14DispMemberBase@l
+	lis      r9, __vt__Q32og6Screen18DispMemberSMenuAll@ha
+	stmw     r24, 0x10(r1)
+	addi     r0, r9, __vt__Q32og6Screen18DispMemberSMenuAll@l
+	lis      r8, __vt__Q32og6Screen20DispMemberSMenuPause@ha
+	lis      r7, __vt__Q32og6Screen27DispMemberSMenuPauseDoukutu@ha
+	addi     r26, r8, __vt__Q32og6Screen20DispMemberSMenuPause@l
+	lis      r6, __vt__Q32og6Screen19DispMemberSMenuItem@ha
+	addi     r12, r7, __vt__Q32og6Screen27DispMemberSMenuPauseDoukutu@l
+	li       r4, 0
+	addi     r10, r6, __vt__Q32og6Screen19DispMemberSMenuItem@l
+	li       r25, 0x4d2
+	li       r24, 0x9a5
+	li       r11, 0x56
+	li       r9, 0x6f
+	li       r8, 0x16
+	li       r7, 0x14d
+	li       r6, 0x2c
+	stw      r5, 0(r3)
+	stw      r4, 4(r3)
+	stw      r0, 0(r3)
+	li       r0, 1
+	stw      r5, 8(r3)
+	stw      r4, 0xc(r3)
+	stw      r26, 8(r3)
+	stw      r25, 0x10(r3)
+	stw      r24, 0x14(r3)
+	stw      r0, 0x18(r3)
+	stw      r5, 0x1c(r3)
+	stw      r4, 0x20(r3)
+	stw      r12, 0x1c(r3)
+	stw      r0, 0x30(r3)
+	stw      r11, 0x24(r3)
+	stw      r24, 0x28(r3)
+	stb      r0, 0x2c(r3)
+	stb      r4, 0x2d(r3)
+	stw      r5, 0x34(r3)
+	stw      r4, 0x38(r3)
+	stw      r10, 0x34(r3)
+	stw      r9, 0x3c(r3)
+	stw      r8, 0x40(r3)
+	stw      r7, 0x44(r3)
+	stw      r6, 0x48(r3)
+	stb      r4, 0x4c(r3)
+	stb      r4, 0x4d(r3)
+	stb      r4, 0x4e(r3)
+	stb      r4, 0x4f(r3)
+	stb      r4, 0x50(r3)
+	stb      r4, 0x51(r3)
+	stb      r4, 0x52(r3)
+	stb      r4, 0x53(r3)
+	stb      r4, 0x54(r3)
+	stb      r4, 0x55(r3)
+	stb      r4, 0x56(r3)
+	stb      r4, 0x57(r3)
+	stb      r4, 0x58(r3)
+	lis      r12, __vt__Q32og6Screen18DispMemberSMenuMap@ha
+	lis      r11, 0x0074CBB1@ha
+	lis      r10, 0x0009FBF1@ha
+	stb      r4, 0x59(r3)
+	lis      r9, 0x0000D431@ha
+	lis      r8, 0x745F3031@ha
+	lis      r7, __vt__Q32og6Screen22DispMemberSMenuPauseVS@ha
+	stw      r5, 0x5c(r3)
+	lis      r6, __vt__Q32og6Screen19DispMemberSMenuCont@ha
+	addi     r12, r12, __vt__Q32og6Screen18DispMemberSMenuMap@l
+	addi     r24, r11, 0x0074CBB1@l
+	stw      r4, 0x60(r3)
+	addi     r25, r10, 0x0009FBF1@l
+	addi     r26, r9, 0x0000D431@l
+	li       r27, 0x10e1
+	stw      r12, 0x5c(r3)
+	li       r28, 0x141
+	li       r29, 0xa
+	li       r30, 0x14
+	stw      r0, 0x64(r3)
+	li       r31, 0x1e
+	li       r12, 0x28
+	li       r11, 0x32
+	stw      r24, 0x68(r3)
+	li       r10, 0x3c
+	li       r9, 0x46
+	addi     r8, r8, 0x745F3031@l
+	stw      r25, 0x6c(r3)
+	addi     r7, r7, __vt__Q32og6Screen22DispMemberSMenuPauseVS@l
+	addi     r6, r6, __vt__Q32og6Screen19DispMemberSMenuCont@l
+	stw      r26, 0x70(r3)
+	stw      r27, 0x74(r3)
+	stw      r28, 0x78(r3)
+	stw      r29, 0x7c(r3)
+	stw      r30, 0x80(r3)
+	stw      r31, 0x84(r3)
+	stw      r12, 0x88(r3)
+	stw      r11, 0x8c(r3)
+	stw      r10, 0x90(r3)
+	stw      r9, 0x94(r3)
+	stb      r4, 0xa5(r3)
+	stb      r4, 0xa6(r3)
+	stw      r4, 0x98(r3)
+	stw      r8, 0x9c(r3)
+	stb      r0, 0xa0(r3)
+	stb      r0, 0xa1(r3)
+	stb      r0, 0xa2(r3)
+	stb      r0, 0xa3(r3)
+	stb      r0, 0xa4(r3)
+	stw      r5, 0xa8(r3)
+	stw      r4, 0xac(r3)
+	stw      r7, 0xa8(r3)
+	stw      r0, 0xb0(r3)
+	stw      r5, 0xb4(r3)
+	stw      r4, 0xb8(r3)
+	stw      r6, 0xb4(r3)
+	stw      r4, 0xbc(r3)
+	stb      r4, 0xc0(r3)
+	lmw      r24, 0x10(r1)
+	addi     r1, r1, 0x30
+	blr
 			*/
 		}
 
@@ -2321,64 +2678,63 @@ namespace og {
 void SingleGame::GameState::onOrimaDown(Game::SingleGameSection*, int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x50(r1)
-	  mflr      r0
-	  lis       r3, 0x8048
-	  lfs       f0, -0x43B8(r2)
-	  stw       r0, 0x54(r1)
-	  li        r0, 0
-	  stw       r31, 0x4C(r1)
-	  mr        r31, r5
-	  addi      r5, r3, 0x235C
-	  stw       r30, 0x48(r1)
-	  mr        r30, r4
-	  lwz       r6, 0xC8(r4)
-	  mr        r4, r31
-	  lwz       r3, -0x6D20(r13)
-	  stw       r0, 0xC(r1)
-	  stw       r5, 0x8(r1)
-	  stw       r6, 0x14(r1)
-	  stfs      f0, 0x20(r1)
-	  stfs      f0, 0x24(r1)
-	  stfs      f0, 0x28(r1)
-	  stfs      f0, 0x2C(r1)
-	  stw       r31, 0x30(r1)
-	  stw       r0, 0x18(r1)
-	  stw       r0, 0x10(r1)
-	  stw       r0, 0x34(r1)
-	  stw       r0, 0x1C(r1)
-	  stw       r0, 0x38(r1)
-	  lwz       r0, 0xCC(r30)
-	  stw       r0, 0x18(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x24(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r4, -0x64AC(r13)
-	  cmpwi     r31, 0
-	  stw       r3, 0x18C(r4)
-	  bne-      .loc_0xA4
-	  lwz       r0, 0x104(r30)
-	  lwz       r3, -0x64AC(r13)
-	  stw       r0, 0x190(r3)
-	  b         .loc_0xB0
+	stwu     r1, -0x50(r1)
+	mflr     r0
+	lis      r3, lbl_8048235C@ha
+	lfs      f0, lbl_80519FA8@sda21(r2)
+	stw      r0, 0x54(r1)
+	li       r0, 0
+	stw      r31, 0x4c(r1)
+	mr       r31, r5
+	addi     r5, r3, lbl_8048235C@l
+	stw      r30, 0x48(r1)
+	mr       r30, r4
+	lwz      r6, 0xc8(r4)
+	mr       r4, r31
+	lwz      r3, naviMgr__4Game@sda21(r13)
+	stw      r0, 0xc(r1)
+	stw      r5, 8(r1)
+	stw      r6, 0x14(r1)
+	stfs     f0, 0x20(r1)
+	stfs     f0, 0x24(r1)
+	stfs     f0, 0x28(r1)
+	stfs     f0, 0x2c(r1)
+	stw      r31, 0x30(r1)
+	stw      r0, 0x18(r1)
+	stw      r0, 0x10(r1)
+	stw      r0, 0x34(r1)
+	stw      r0, 0x1c(r1)
+	stw      r0, 0x38(r1)
+	lwz      r0, 0xcc(r30)
+	stw      r0, 0x18(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x24(r12)
+	mtctr    r12
+	bctrl
+	lwz      r4, moviePlayer__4Game@sda21(r13)
+	cmpwi    r31, 0
+	stw      r3, 0x18c(r4)
+	bne      lbl_80215578
+	lwz      r0, 0x104(r30)
+	lwz      r3, moviePlayer__4Game@sda21(r13)
+	stw      r0, 0x190(r3)
+	b        lbl_80215584
 
-	.loc_0xA4:
-	  lwz       r0, 0x108(r30)
-	  lwz       r3, -0x64AC(r13)
-	  stw       r0, 0x190(r3)
+lbl_80215578:
+	lwz      r0, 0x108(r30)
+	lwz      r3, moviePlayer__4Game@sda21(r13)
+	stw      r0, 0x190(r3)
 
-	.loc_0xB0:
-	  lwz       r3, -0x64AC(r13)
-	  addi      r4, r1, 0x8
-	  bl        0x217444
-	  lwz       r0, 0x54(r1)
-	  lwz       r31, 0x4C(r1)
-	  lwz       r30, 0x48(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x50
-	  blr
+lbl_80215584:
+	lwz      r3, moviePlayer__4Game@sda21(r13)
+	addi     r4, r1, 8
+	bl       play__Q24Game11MoviePlayerFRQ24Game12MoviePlayArg
+	lwz      r0, 0x54(r1)
+	lwz      r31, 0x4c(r1)
+	lwz      r30, 0x48(r1)
+	mtlr     r0
+	addi     r1, r1, 0x50
+	blr
 	*/
 }
 
@@ -4478,44 +4834,43 @@ void SingleGame::GameState::onMovieDone(Game::SingleGameSection*,
 void SingleGame::GameState::needRepayDemo(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  lbz       r0, 0x19(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x24
-	  li        r3, 0
-	  b         .loc_0x60
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	lbz      r0, 0x19(r3)
+	cmplwi   r0, 0
+	beq      lbl_80217280
+	li       r3, 0
+	b        lbl_802172BC
 
-	.loc_0x24:
-	  lwz       r3, -0x6B70(r13)
-	  li        r31, 0
-	  bl        -0x2E42C
-	  lwz       r3, -0x6B70(r13)
-	  bl        -0x2E2CC
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x44
-	  li        r31, 0x1
+lbl_80217280:
+	lwz      r3, playData__4Game@sda21(r13)
+	li       r31, 0
+	bl       getRepayLevel__Q24Game8PlayDataFv
+	lwz      r3, playData__4Game@sda21(r13)
+	bl       checkRepayLevelFirstClear__Q24Game8PlayDataFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802172A0
+	li       r31, 1
 
-	.loc_0x44:
-	  lwz       r3, -0x6B70(r13)
-	  bl        -0x3143C
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x5C
-	  li        r3, 0x1
-	  b         .loc_0x60
+lbl_802172A0:
+	lwz      r3, playData__4Game@sda21(r13)
+	bl       isCompletePelletTrigger__Q24Game8PlayDataFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802172B8
+	li       r3, 1
+	b        lbl_802172BC
 
-	.loc_0x5C:
-	  mr        r3, r31
+lbl_802172B8:
+	mr       r3, r31
 
-	.loc_0x60:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_802172BC:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -4527,95 +4882,94 @@ void SingleGame::GameState::needRepayDemo(void)
 void SingleGame::GameState::startRepayDemo(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x60(r1)
-	  mflr      r0
-	  stw       r0, 0x64(r1)
-	  stfd      f31, 0x50(r1)
-	  psq_st    f31,0x58(r1),0,0
-	  stw       r31, 0x4C(r1)
-	  mr        r31, r3
-	  lbz       r0, 0x19(r3)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x124
-	  li        r0, 0x1
-	  lis       r3, 0x8048
-	  stb       r0, 0x19(r31)
-	  addi      r5, r3, 0x2400
-	  li        r4, 0x1
-	  li        r6, 0x3
-	  lwz       r3, -0x6C18(r13)
-	  bl        -0x62380
-	  lis       r4, 0x8048
-	  lwz       r3, -0x6C18(r13)
-	  addi      r5, r4, 0x2400
-	  li        r4, 0x1
-	  bl        -0x623A4
-	  lfs       f0, -0x4364(r2)
-	  stfs      f0, 0x1C(r31)
-	  lwz       r3, -0x6B70(r13)
-	  bl        -0x2E4DC
-	  mr        r0, r3
-	  lwz       r3, -0x6B70(r13)
-	  mr        r31, r0
-	  mr        r4, r31
-	  bl        -0x2E3CC
-	  fmr       f31, f1
-	  lwz       r3, -0x6B70(r13)
-	  bl        -0x314F0
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xC4
-	  addi      r3, r1, 0x28
-	  li        r4, 0x2
-	  li        r5, 0
-	  bl        0x1F7E70
-	  lwz       r3, -0x6560(r13)
-	  addi      r4, r1, 0x28
-	  bl        0x1E7224
-	  lwz       r3, -0x6C18(r13)
-	  lbz       r0, 0x3C(r3)
-	  rlwinm    r0,r0,0,27,25
-	  stb       r0, 0x3C(r3)
-	  b         .loc_0x120
+	stwu     r1, -0x60(r1)
+	mflr     r0
+	stw      r0, 0x64(r1)
+	stfd     f31, 0x50(r1)
+	psq_st   f31, 88(r1), 0, qr0
+	stw      r31, 0x4c(r1)
+	mr       r31, r3
+	lbz      r0, 0x19(r3)
+	cmplwi   r0, 0
+	bne      lbl_802173F4
+	li       r0, 1
+	lis      r3, lbl_80482400@ha
+	stb      r0, 0x19(r31)
+	addi     r5, r3, lbl_80482400@l
+	li       r4, 1
+	li       r6, 3
+	lwz      r3, gameSystem__4Game@sda21(r13)
+	bl       setPause__Q24Game10GameSystemFbPci
+	lis      r4, lbl_80482400@ha
+	lwz      r3, gameSystem__4Game@sda21(r13)
+	addi     r5, r4, lbl_80482400@l
+	li       r4, 1
+	bl       setMoviePause__Q24Game10GameSystemFbPc
+	lfs      f0, lbl_80519FFC@sda21(r2)
+	stfs     f0, 0x1c(r31)
+	lwz      r3, playData__4Game@sda21(r13)
+	bl       getRepayLevel__Q24Game8PlayDataFv
+	mr       r0, r3
+	lwz      r3, playData__4Game@sda21(r13)
+	mr       r31, r0
+	mr       r4, r31
+	bl       getRepayLevelPercent__Q24Game8PlayDataFi
+	fmr      f31, f1
+	lwz      r3, playData__4Game@sda21(r13)
+	bl       isCompletePelletTrigger__Q24Game8PlayDataFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80217394
+	addi     r3, r1, 0x28
+	li       r4, 2
+	li       r5, 0
+	bl __ct__Q32kh6Screen11DispPayDeptFQ42kh6Screen11DispPayDept11PayDeptTypei
+	lwz      r3, gGame2DMgr__6Screen@sda21(r13)
+	addi     r4, r1, 0x28
+	bl       open_PayDept__Q26Screen9Game2DMgrFRQ32kh6Screen11DispPayDept
+	lwz      r3, gameSystem__4Game@sda21(r13)
+	lbz      r0, 0x3c(r3)
+	rlwinm   r0, r0, 0, 0x1b, 0x19
+	stb      r0, 0x3c(r3)
+	b        lbl_802173F0
 
-	.loc_0xC4:
-	  cmpwi     r31, 0x9
-	  bge-      .loc_0xF4
-	  fctiwz    f0, f31
-	  addi      r3, r1, 0x18
-	  li        r4, 0
-	  stfd      f0, 0x38(r1)
-	  lwz       r5, 0x3C(r1)
-	  bl        0x1F7E30
-	  lwz       r3, -0x6560(r13)
-	  addi      r4, r1, 0x18
-	  bl        0x1E71E4
-	  b         .loc_0x120
+lbl_80217394:
+	cmpwi    r31, 9
+	bge      lbl_802173C4
+	fctiwz   f0, f31
+	addi     r3, r1, 0x18
+	li       r4, 0
+	stfd     f0, 0x38(r1)
+	lwz      r5, 0x3c(r1)
+	bl __ct__Q32kh6Screen11DispPayDeptFQ42kh6Screen11DispPayDept11PayDeptTypei
+	lwz      r3, gGame2DMgr__6Screen@sda21(r13)
+	addi     r4, r1, 0x18
+	bl       open_PayDept__Q26Screen9Game2DMgrFRQ32kh6Screen11DispPayDept
+	b        lbl_802173F0
 
-	.loc_0xF4:
-	  addi      r3, r1, 0x8
-	  li        r4, 0x1
-	  li        r5, 0
-	  bl        0x1F7E10
-	  lwz       r3, -0x6560(r13)
-	  addi      r4, r1, 0x8
-	  bl        0x1E71C4
-	  lwz       r3, -0x6C18(r13)
-	  lbz       r0, 0x3C(r3)
-	  rlwinm    r0,r0,0,27,25
-	  stb       r0, 0x3C(r3)
+lbl_802173C4:
+	addi     r3, r1, 8
+	li       r4, 1
+	li       r5, 0
+	bl __ct__Q32kh6Screen11DispPayDeptFQ42kh6Screen11DispPayDept11PayDeptTypei
+	lwz      r3, gGame2DMgr__6Screen@sda21(r13)
+	addi     r4, r1, 8
+	bl       open_PayDept__Q26Screen9Game2DMgrFRQ32kh6Screen11DispPayDept
+	lwz      r3, gameSystem__4Game@sda21(r13)
+	lbz      r0, 0x3c(r3)
+	rlwinm   r0, r0, 0, 0x1b, 0x19
+	stb      r0, 0x3c(r3)
 
-	.loc_0x120:
-	  bl        0x25456C
+lbl_802173F0:
+	bl       PSPause_StartMenuOn__Fv
 
-	.loc_0x124:
-	  psq_l     f31,0x58(r1),0,0
-	  lwz       r0, 0x64(r1)
-	  lfd       f31, 0x50(r1)
-	  lwz       r31, 0x4C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x60
-	  blr
+lbl_802173F4:
+	psq_l    f31, 88(r1), 0, qr0
+	lwz      r0, 0x64(r1)
+	lfd      f31, 0x50(r1)
+	lwz      r31, 0x4c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x60
+	blr
 	*/
 }
 
@@ -4627,57 +4981,56 @@ void SingleGame::GameState::startRepayDemo(void)
 void SingleGame::GameState::updateRepayDemo(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lbz       r0, 0x19(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x90
-	  lwz       r3, -0x6560(r13)
-	  bl        0x1E7214
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x88
-	  lis       r4, 0x8048
-	  lwz       r3, -0x6C18(r13)
-	  addi      r5, r4, 0x240C
-	  li        r4, 0
-	  bl        -0x624CC
-	  li        r0, 0
-	  stb       r0, 0x19(r31)
-	  lwz       r3, -0x6B70(r13)
-	  bl        -0x315F8
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x64
-	  li        r3, 0x4
-	  b         .loc_0x94
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lbz      r0, 0x19(r3)
+	cmplwi   r0, 0
+	beq      lbl_802174A0
+	lwz      r3, gGame2DMgr__6Screen@sda21(r13)
+	bl       check_PayDept__Q26Screen9Game2DMgrCFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80217498
+	lis      r4, lbl_8048240C@ha
+	lwz      r3, gameSystem__4Game@sda21(r13)
+	addi     r5, r4, lbl_8048240C@l
+	li       r4, 0
+	bl       setMoviePause__Q24Game10GameSystemFbPc
+	li       r0, 0
+	stb      r0, 0x19(r31)
+	lwz      r3, playData__4Game@sda21(r13)
+	bl       isCompletePelletTrigger__Q24Game8PlayDataFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80217474
+	li       r3, 4
+	b        lbl_802174A4
 
-	.loc_0x64:
-	  lwz       r3, -0x6B70(r13)
-	  bl        -0x2E354
-	  lwz       r3, -0x6B70(r13)
-	  bl        -0x2E624
-	  cmpwi     r3, 0x9
-	  li        r3, 0x2
-	  blt-      .loc_0x94
-	  li        r3, 0x3
-	  b         .loc_0x94
+lbl_80217474:
+	lwz      r3, playData__4Game@sda21(r13)
+	bl       experienceRepayLevelFirstClear__Q24Game8PlayDataFv
+	lwz      r3, playData__4Game@sda21(r13)
+	bl       getRepayLevel__Q24Game8PlayDataFv
+	cmpwi    r3, 9
+	li       r3, 2
+	blt      lbl_802174A4
+	li       r3, 3
+	b        lbl_802174A4
 
-	.loc_0x88:
-	  li        r3, 0x1
-	  b         .loc_0x94
+lbl_80217498:
+	li       r3, 1
+	b        lbl_802174A4
 
-	.loc_0x90:
-	  li        r3, 0
+lbl_802174A0:
+	li       r3, 0
 
-	.loc_0x94:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_802174A4:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -4699,41 +5052,40 @@ void SingleGame::GameState::drawRepayDemo(Graphics&)
 void SingleGame::GameState::draw(Game::SingleGameSection*, Graphics&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  lbz       r0, 0x18(r3)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x64
-	  lbz       r0, 0x20(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x48
-	  mr        r3, r31
-	  mr        r4, r5
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x118(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x64
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	lbz      r0, 0x18(r3)
+	cmplwi   r0, 0
+	bne      lbl_8021751C
+	lbz      r0, 0x20(r3)
+	cmplwi   r0, 0
+	beq      lbl_80217500
+	mr       r3, r31
+	mr       r4, r5
+	lwz      r12, 0(r31)
+	lwz      r12, 0x118(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_8021751C
 
-	.loc_0x48:
-	  mr        r3, r31
-	  mr        r4, r5
-	  bl        -0xCB8E0
-	  mr        r3, r31
-	  bl        -0xC1A98
-	  mr        r3, r31
-	  bl        -0xC8340
+lbl_80217500:
+	mr       r3, r31
+	mr       r4, r5
+	bl       doDraw__Q24Game15BaseGameSectionFR8Graphics
+	mr       r3, r31
+	bl       drawMainMapScreen__Q24Game17SingleGameSectionFv
+	mr       r3, r31
+	bl       test_draw_treasure_detector__Q24Game15BaseGameSectionFv
 
-	.loc_0x64:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8021751C:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -4745,35 +5097,34 @@ void SingleGame::GameState::draw(Game::SingleGameSection*, Graphics&)
 void SingleGame::GameState::cleanup(Game::SingleGameSection*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r3, 0x8048
-	  stw       r0, 0x14(r1)
-	  addi      r5, r3, 0x2418
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  li        r4, 0
-	  lwz       r6, -0x6C18(r13)
-	  lbz       r0, 0x3C(r6)
-	  rlwinm    r0,r0,0,31,29
-	  stb       r0, 0x3C(r6)
-	  lwz       r3, -0x6C18(r13)
-	  bl        -0x625E0
-	  lwz       r0, 0xFC(r31)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x48
-	  bl        0x24FEC4
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lis      r3, lbl_80482418@ha
+	stw      r0, 0x14(r1)
+	addi     r5, r3, lbl_80482418@l
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	li       r4, 0
+	lwz      r6, gameSystem__4Game@sda21(r13)
+	lbz      r0, 0x3c(r6)
+	rlwinm   r0, r0, 0, 0x1f, 0x1d
+	stb      r0, 0x3c(r6)
+	lwz      r3, gameSystem__4Game@sda21(r13)
+	bl       setMoviePause__Q24Game10GameSystemFbPc
+	lwz      r0, 0xfc(r31)
+	cmplwi   r0, 0
+	beq      lbl_80217578
+	bl       PSMCancelToPauseOffMainBgm__Fv
 
-	.loc_0x48:
-	  mr        r3, r31
-	  li        r4, 0
-	  bl        0x24018
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80217578:
+	mr       r3, r31
+	li       r4, 0
+	bl       setDraw2DCreature__Q24Game15BaseGameSectionFPQ24Game8Creature
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -4798,10 +5149,9 @@ namespace Screen {
 	void DispMemberSave::getOwnerID(void)
 	{
 		/*
-		.loc_0x0:
-		  lis       r3, 0x4F
-		  addi      r3, r3, 0x4741
-		  blr
+	lis      r3, 0x004F4741@ha
+	addi     r3, r3, 0x004F4741@l
+	blr
 		*/
 	}
 
@@ -4813,11 +5163,10 @@ namespace Screen {
 	void DispMemberSave::getMemberID(void)
 	{
 		/*
-		.loc_0x0:
-		  lis       r4, 0x5341
-		  li        r3, 0
-		  addi      r4, r4, 0x5645
-		  blr
+	lis      r4, 0x53415645@ha
+	li       r3, 0
+	addi     r4, r4, 0x53415645@l
+	blr
 		*/
 	}
 
@@ -4836,10 +5185,9 @@ namespace Screen {
 	void DispMemberSMenuCont::getOwnerID(void)
 	{
 		/*
-		.loc_0x0:
-		  lis       r3, 0x4F
-		  addi      r3, r3, 0x4741
-		  blr
+	lis      r3, 0x004F4741@ha
+	addi     r3, r3, 0x004F4741@l
+	blr
 		*/
 	}
 
@@ -4851,12 +5199,11 @@ namespace Screen {
 	void DispMemberSMenuCont::getMemberID(void)
 	{
 		/*
-		.loc_0x0:
-		  lis       r4, 0x434F
-		  lis       r3, 0x53
-		  addi      r4, r4, 0x4E54
-		  addi      r3, r3, 0x4D5F
-		  blr
+	lis      r4, 0x434F4E54@ha
+	lis      r3, 0x00534D5F@ha
+	addi     r4, r4, 0x434F4E54@l
+	addi     r3, r3, 0x00534D5F@l
+	blr
 		*/
 	}
 
@@ -4875,10 +5222,9 @@ namespace Screen {
 	void DispMemberSMenuPauseVS::getOwnerID(void)
 	{
 		/*
-		.loc_0x0:
-		  lis       r3, 0x4F
-		  addi      r3, r3, 0x4741
-		  blr
+	lis      r3, 0x004F4741@ha
+	addi     r3, r3, 0x004F4741@l
+	blr
 		*/
 	}
 
@@ -4890,12 +5236,11 @@ namespace Screen {
 	void DispMemberSMenuPauseVS::getMemberID(void)
 	{
 		/*
-		.loc_0x0:
-		  lis       r4, 0x535F
-		  lis       r3, 0x534D
-		  addi      r4, r4, 0x5653
-		  addi      r3, r3, 0x5F50
-		  blr
+	lis      r4, 0x535F5653@ha
+	lis      r3, 0x534D5F50@ha
+	addi     r4, r4, 0x535F5653@l
+	addi     r3, r3, 0x534D5F50@l
+	blr
 		*/
 	}
 
@@ -4914,10 +5259,9 @@ namespace Screen {
 	void DispMemberSMenuMap::getOwnerID(void)
 	{
 		/*
-		.loc_0x0:
-		  lis       r3, 0x4F
-		  addi      r3, r3, 0x4741
-		  blr
+	lis      r3, 0x004F4741@ha
+	addi     r3, r3, 0x004F4741@l
+	blr
 		*/
 	}
 
@@ -4929,11 +5273,10 @@ namespace Screen {
 	void DispMemberSMenuMap::getMemberID(void)
 	{
 		/*
-		.loc_0x0:
-		  lis       r4, 0x5F4D
-		  li        r3, 0x534D
-		  addi      r4, r4, 0x4150
-		  blr
+	lis      r4, 0x5F4D4150@ha
+	li       r3, 0x534d
+	addi     r4, r4, 0x5F4D4150@l
+	blr
 		*/
 	}
 
@@ -4952,10 +5295,9 @@ namespace Screen {
 	void DispMemberSMenuItem::getOwnerID(void)
 	{
 		/*
-		.loc_0x0:
-		  lis       r3, 0x4F
-		  addi      r3, r3, 0x4741
-		  blr
+	lis      r3, 0x004F4741@ha
+	addi     r3, r3, 0x004F4741@l
+	blr
 		*/
 	}
 
@@ -4967,12 +5309,11 @@ namespace Screen {
 	void DispMemberSMenuItem::getMemberID(void)
 	{
 		/*
-		.loc_0x0:
-		  lis       r4, 0x4954
-		  lis       r3, 0x53
-		  addi      r4, r4, 0x454D
-		  addi      r3, r3, 0x4D5F
-		  blr
+	lis      r4, 0x4954454D@ha
+	lis      r3, 0x00534D5F@ha
+	addi     r4, r4, 0x4954454D@l
+	addi     r3, r3, 0x00534D5F@l
+	blr
 		*/
 	}
 
@@ -4991,10 +5332,9 @@ namespace Screen {
 	void DispMemberSMenuPauseDoukutu::getOwnerID(void)
 	{
 		/*
-		.loc_0x0:
-		  lis       r3, 0x4F
-		  addi      r3, r3, 0x4741
-		  blr
+	lis      r3, 0x004F4741@ha
+	addi     r3, r3, 0x004F4741@l
+	blr
 		*/
 	}
 
@@ -5006,12 +5346,11 @@ namespace Screen {
 	void DispMemberSMenuPauseDoukutu::getMemberID(void)
 	{
 		/*
-		.loc_0x0:
-		  lis       r4, 0x5345
-		  lis       r3, 0x50
-		  addi      r4, r4, 0x5F44
-		  addi      r3, r3, 0x4155
-		  blr
+	lis      r4, 0x53455F44@ha
+	lis      r3, 0x00504155@ha
+	addi     r4, r4, 0x53455F44@l
+	addi     r3, r3, 0x00504155@l
+	blr
 		*/
 	}
 
@@ -5030,10 +5369,9 @@ namespace Screen {
 	void DispMemberSMenuPause::getOwnerID(void)
 	{
 		/*
-		.loc_0x0:
-		  lis       r3, 0x4F
-		  addi      r3, r3, 0x4741
-		  blr
+	lis      r3, 0x004F4741@ha
+	addi     r3, r3, 0x004F4741@l
+	blr
 		*/
 	}
 
@@ -5045,12 +5383,11 @@ namespace Screen {
 	void DispMemberSMenuPause::getMemberID(void)
 	{
 		/*
-		.loc_0x0:
-		  lis       r4, 0x4155
-		  lis       r3, 0x534D
-		  addi      r4, r4, 0x5345
-		  addi      r3, r3, 0x5F50
-		  blr
+	lis      r4, 0x41555345@ha
+	lis      r3, 0x534D5F50@ha
+	addi     r4, r4, 0x41555345@l
+	addi     r3, r3, 0x534D5F50@l
+	blr
 		*/
 	}
 
@@ -5069,10 +5406,9 @@ namespace Screen {
 	void DispMemberSMenuAll::getOwnerID(void)
 	{
 		/*
-		.loc_0x0:
-		  lis       r3, 0x4F
-		  addi      r3, r3, 0x4741
-		  blr
+	lis      r3, 0x004F4741@ha
+	addi     r3, r3, 0x004F4741@l
+	blr
 		*/
 	}
 
@@ -5084,11 +5420,10 @@ namespace Screen {
 	void DispMemberSMenuAll::getMemberID(void)
 	{
 		/*
-		.loc_0x0:
-		  lis       r4, 0x5F41
-		  li        r3, 0x534D
-		  addi      r4, r4, 0x4C4C
-		  blr
+	lis      r4, 0x5F414C4C@ha
+	li       r3, 0x534d
+	addi     r4, r4, 0x5F414C4C@l
+	blr
 		*/
 	}
 
@@ -5100,34 +5435,33 @@ namespace Screen {
 	void DispMemberSMenuAll::doSetSubMemberAll(void)
 	{
 		/*
-		.loc_0x0:
-		  stwu      r1, -0x10(r1)
-		  mflr      r0
-		  stw       r0, 0x14(r1)
-		  stw       r31, 0xC(r1)
-		  mr        r31, r3
-		  addi      r4, r31, 0x8
-		  bl        0xF7CF8
-		  mr        r3, r31
-		  addi      r4, r31, 0x1C
-		  bl        0xF7CEC
-		  mr        r3, r31
-		  addi      r4, r31, 0x34
-		  bl        0xF7CE0
-		  mr        r3, r31
-		  addi      r4, r31, 0x5C
-		  bl        0xF7CD4
-		  mr        r3, r31
-		  addi      r4, r31, 0xA8
-		  bl        0xF7CC8
-		  mr        r3, r31
-		  addi      r4, r31, 0xB4
-		  bl        0xF7CBC
-		  lwz       r0, 0x14(r1)
-		  lwz       r31, 0xC(r1)
-		  mtlr      r0
-		  addi      r1, r1, 0x10
-		  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	addi     r4, r31, 8
+	bl setSubMember__Q32og6Screen14DispMemberBaseFPQ32og6Screen14DispMemberBase
+	mr       r3, r31
+	addi     r4, r31, 0x1c
+	bl setSubMember__Q32og6Screen14DispMemberBaseFPQ32og6Screen14DispMemberBase
+	mr       r3, r31
+	addi     r4, r31, 0x34
+	bl setSubMember__Q32og6Screen14DispMemberBaseFPQ32og6Screen14DispMemberBase
+	mr       r3, r31
+	addi     r4, r31, 0x5c
+	bl setSubMember__Q32og6Screen14DispMemberBaseFPQ32og6Screen14DispMemberBase
+	mr       r3, r31
+	addi     r4, r31, 0xa8
+	bl setSubMember__Q32og6Screen14DispMemberBaseFPQ32og6Screen14DispMemberBase
+	mr       r3, r31
+	addi     r4, r31, 0xb4
+	bl setSubMember__Q32og6Screen14DispMemberBaseFPQ32og6Screen14DispMemberBase
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 		*/
 	}
 
@@ -5143,16 +5477,15 @@ namespace Screen {
 void __sinit_singleGS_MainGame_cpp(void)
 {
 	/*
-	.loc_0x0:
-	  lis       r4, 0x8051
-	  li        r0, -0x1
-	  lfs       f0, 0x48B0(r4)
-	  lis       r3, 0x804C
-	  stw       r0, -0x6A98(r13)
-	  stfsu     f0, 0x4D8(r3)
-	  stfs      f0, -0x6A94(r13)
-	  stfs      f0, 0x4(r3)
-	  stfs      f0, 0x8(r3)
-	  blr
+	lis      r4, __float_nan@ha
+	li       r0, -1
+	lfs      f0, __float_nan@l(r4)
+	lis      r3, lbl_804C04D8@ha
+	stw      r0, lbl_80515BE8@sda21(r13)
+	stfsu    f0, lbl_804C04D8@l(r3)
+	stfs     f0, lbl_80515BEC@sda21(r13)
+	stfs     f0, 4(r3)
+	stfs     f0, 8(r3)
+	blr
 	*/
 }

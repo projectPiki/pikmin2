@@ -1,6 +1,34 @@
 #include "types.h"
 
 /*
+    Generated from dpostproc
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__11JASInstRand
+    __vt__11JASInstRand:
+        .4byte 0
+        .4byte 0
+        .4byte getY__11JASInstRandCFii
+        .4byte 0
+
+    .section .sbss # 0x80514D80 - 0x80516360
+    .global init$644
+    init$644:
+        .skip 0x4
+    .global oRandom$643
+    oRandom$643:
+        .skip 0x4
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_80516CF0
+    lbl_80516CF0:
+        .4byte 0x40000000
+    .global lbl_80516CF4
+    lbl_80516CF4:
+        .float 1.0
+*/
+
+/*
  * --INFO--
  * Address:	8009B4E8
  * Size:	0000A4
@@ -8,49 +36,48 @@
 void JASInstRand::getY(int, int) const
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r3
-	  lbz       r0, -0x75C8(r13)
-	  extsb.    r0, r0
-	  bne-      .loc_0x34
-	  subi      r3, r13, 0x75C4
-	  li        r4, 0
-	  bl        -0x66410
-	  li        r0, 0x1
-	  stb       r0, -0x75C8(r13)
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r3
+	lbz      r0, init$644@sda21(r13)
+	extsb.   r0, r0
+	bne      lbl_8009B51C
+	addi     r3, r13, oRandom$643@sda21
+	li       r4, 0
+	bl       __ct__Q25JMath13TRandom_fast_FUl
+	li       r0, 1
+	stb      r0, init$644@sda21(r13)
 
-	.loc_0x34:
-	  lis       r3, 0x19
-	  lwz       r4, -0x75C4(r13)
-	  addi      r0, r3, 0x660D
-	  lis       r5, 0x8051
-	  mullw     r3, r4, r0
-	  lfs       f5, -0x766C(r2)
-	  lfs       f0, 0x48DC(r5)
-	  lfs       f3, -0x7670(r2)
-	  fsubs     f4, f5, f0
-	  lfs       f2, 0xC(r31)
-	  addis     r3, r3, 0x3C6F
-	  lfs       f0, 0x8(r31)
-	  subi      r3, r3, 0xCA1
-	  rlwinm    r0,r3,23,9,31
-	  stw       r3, -0x75C4(r13)
-	  oris      r0, r0, 0x3F80
-	  stw       r0, 0x8(r1)
-	  lwz       r0, 0x24(r1)
-	  lfs       f1, 0x8(r1)
-	  lwz       r31, 0x1C(r1)
-	  fsubs     f1, f1, f5
-	  fmuls     f1, f3, f1
-	  fnmsubs   f1, f5, f4, f1
-	  fmuls     f1, f1, f2
-	  fadds     f1, f1, f0
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8009B51C:
+	lis      r3, 0x0019660D@ha
+	lwz      r4, oRandom$643@sda21(r13)
+	addi     r0, r3, 0x0019660D@l
+	lis      r5, __float_epsilon@ha
+	mullw    r3, r4, r0
+	lfs      f5, lbl_80516CF4@sda21(r2)
+	lfs      f0, __float_epsilon@l(r5)
+	lfs      f3, lbl_80516CF0@sda21(r2)
+	fsubs    f4, f5, f0
+	lfs      f2, 0xc(r31)
+	addis    r3, r3, 0x3c6f
+	lfs      f0, 8(r31)
+	addi     r3, r3, -3233
+	srwi     r0, r3, 9
+	stw      r3, oRandom$643@sda21(r13)
+	oris     r0, r0, 0x3f80
+	stw      r0, 8(r1)
+	lwz      r0, 0x24(r1)
+	lfs      f1, 8(r1)
+	lwz      r31, 0x1c(r1)
+	fsubs    f1, f1, f5
+	fmuls    f1, f3, f1
+	fnmsubs  f1, f5, f4, f1
+	fmuls    f1, f1, f2
+	fadds    f1, f1, f0
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }

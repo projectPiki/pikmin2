@@ -1,6 +1,63 @@
 #include "types.h"
 
 /*
+    Generated from dpostproc
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global OSC_RELEASE_TABLE__10JASBankMgr
+    OSC_RELEASE_TABLE__10JASBankMgr:
+        .4byte 0x0001000A
+        .4byte 0x0000000F
+        .4byte 0x00000000
+    .global OSC_ENV__10JASBankMgr
+    OSC_ENV__10JASBankMgr:
+        .4byte 0x00000000
+        .float 1.0
+        .4byte 0x00000000
+        .4byte OSC_RELEASE_TABLE__10JASBankMgr
+        .float 1.0
+        .4byte 0x00000000
+        .4byte 0x00000000
+
+    .section .sbss # 0x80514D80 - 0x80516360
+    .global sTableSize__10JASBankMgr
+    sTableSize__10JASBankMgr:
+        .skip 0x4
+    .global sBankArray__10JASBankMgr
+    sBankArray__10JASBankMgr:
+        .skip 0x4
+    .global sVir2PhyTable__10JASBankMgr
+    sVir2PhyTable__10JASBankMgr:
+        .skip 0x4
+    .global
+   "sInstance__123JASSingletonHolder<62JASMemPool<10JASChannel,Q217JASThreadingModel14SingleThreaded>,Q217JASCreationPolicy15NewFromRootHeap>"
+    "sInstance__123JASSingletonHolder<62JASMemPool<10JASChannel,Q217JASThreadingModel14SingleThreaded>,Q217JASCreationPolicy15NewFromRootHeap>":
+        .skip 0x4
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_80516C88
+    lbl_80516C88:
+        .float 1.0
+    .global lbl_80516C8C
+    lbl_80516C8C:
+        .float 0.5
+    .global lbl_80516C90
+    lbl_80516C90:
+        .4byte 0x00000000
+    .global lbl_80516C94
+    lbl_80516C94:
+        .4byte 0x42FE0000
+    .global lbl_80516C98
+    lbl_80516C98:
+        .4byte 0x43300000
+        .4byte 0x00000000
+    .global lbl_80516CA0
+    lbl_80516CA0:
+        .4byte 0x4682C008
+        .4byte 0x00000000
+*/
+
+/*
  * --INFO--
  * Address:	80098F34
  * Size:	000138
@@ -8,93 +65,92 @@
 void JASBankMgr::init(int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r5, 0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  stw       r30, 0x8(r1)
-	  rlwinm    r30,r3,2,0,29
-	  mr        r3, r30
-	  lwz       r4, -0x7548(r13)
-	  bl        -0x74F14
-	  stw       r3, -0x75E4(r13)
-	  rlwinm    r3,r31,1,0,30
-	  lwz       r4, -0x7548(r13)
-	  li        r5, 0
-	  bl        -0x74F28
-	  stw       r3, -0x75E0(r13)
-	  mr        r4, r30
-	  lwz       r3, -0x75E4(r13)
-	  bl        0xD2E4
-	  cmpwi     r31, 0
-	  li        r12, 0
-	  ble-      .loc_0x11C
-	  cmpwi     r31, 0x8
-	  subi      r4, r31, 0x8
-	  ble-      .loc_0xF0
-	  addi      r0, r4, 0x7
-	  lis       r3, 0x1
-	  rlwinm    r0,r0,29,3,31
-	  li        r11, 0
-	  subi      r10, r3, 0x1
-	  mtctr     r0
-	  cmpwi     r4, 0
-	  ble-      .loc_0xF0
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	li       r5, 0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	stw      r30, 8(r1)
+	slwi     r30, r3, 2
+	mr       r3, r30
+	lwz      r4, JASDram@sda21(r13)
+	bl       __nwa__FUlP7JKRHeapi
+	stw      r3, sBankArray__10JASBankMgr@sda21(r13)
+	slwi     r3, r31, 1
+	lwz      r4, JASDram@sda21(r13)
+	li       r5, 0
+	bl       __nwa__FUlP7JKRHeapi
+	stw      r3, sVir2PhyTable__10JASBankMgr@sda21(r13)
+	mr       r4, r30
+	lwz      r3, sBankArray__10JASBankMgr@sda21(r13)
+	bl       bzero__7JASCalcFPvUl
+	cmpwi    r31, 0
+	li       r12, 0
+	ble      lbl_80099050
+	cmpwi    r31, 8
+	addi     r4, r31, -8
+	ble      lbl_80099024
+	addi     r0, r4, 7
+	lis      r3, 0x0000FFFF@ha
+	srwi     r0, r0, 3
+	li       r11, 0
+	addi     r10, r3, 0x0000FFFF@l
+	mtctr    r0
+	cmpwi    r4, 0
+	ble      lbl_80099024
 
-	.loc_0x88:
-	  lwz       r3, -0x75E0(r13)
-	  addi      r8, r11, 0x2
-	  addi      r7, r11, 0x4
-	  addi      r6, r11, 0x6
-	  sthx      r10, r3, r11
-	  addi      r5, r11, 0x8
-	  addi      r4, r11, 0xA
-	  addi      r3, r11, 0xC
-	  lwz       r9, -0x75E0(r13)
-	  addi      r0, r11, 0xE
-	  addi      r11, r11, 0x10
-	  addi      r12, r12, 0x8
-	  sthx      r10, r9, r8
-	  lwz       r8, -0x75E0(r13)
-	  sthx      r10, r8, r7
-	  lwz       r7, -0x75E0(r13)
-	  sthx      r10, r7, r6
-	  lwz       r6, -0x75E0(r13)
-	  sthx      r10, r6, r5
-	  lwz       r5, -0x75E0(r13)
-	  sthx      r10, r5, r4
-	  lwz       r4, -0x75E0(r13)
-	  sthx      r10, r4, r3
-	  lwz       r3, -0x75E0(r13)
-	  sthx      r10, r3, r0
-	  bdnz+     .loc_0x88
+lbl_80098FBC:
+	lwz      r3, sVir2PhyTable__10JASBankMgr@sda21(r13)
+	addi     r8, r11, 2
+	addi     r7, r11, 4
+	addi     r6, r11, 6
+	sthx     r10, r3, r11
+	addi     r5, r11, 8
+	addi     r4, r11, 0xa
+	addi     r3, r11, 0xc
+	lwz      r9, sVir2PhyTable__10JASBankMgr@sda21(r13)
+	addi     r0, r11, 0xe
+	addi     r11, r11, 0x10
+	addi     r12, r12, 8
+	sthx     r10, r9, r8
+	lwz      r8, sVir2PhyTable__10JASBankMgr@sda21(r13)
+	sthx     r10, r8, r7
+	lwz      r7, sVir2PhyTable__10JASBankMgr@sda21(r13)
+	sthx     r10, r7, r6
+	lwz      r6, sVir2PhyTable__10JASBankMgr@sda21(r13)
+	sthx     r10, r6, r5
+	lwz      r5, sVir2PhyTable__10JASBankMgr@sda21(r13)
+	sthx     r10, r5, r4
+	lwz      r4, sVir2PhyTable__10JASBankMgr@sda21(r13)
+	sthx     r10, r4, r3
+	lwz      r3, sVir2PhyTable__10JASBankMgr@sda21(r13)
+	sthx     r10, r3, r0
+	bdnz     lbl_80098FBC
 
-	.loc_0xF0:
-	  lis       r3, 0x1
-	  sub       r0, r31, r12
-	  rlwinm    r5,r12,1,0,30
-	  subi      r4, r3, 0x1
-	  mtctr     r0
-	  cmpw      r12, r31
-	  bge-      .loc_0x11C
+lbl_80099024:
+	lis      r3, 0x0000FFFF@ha
+	subf     r0, r12, r31
+	slwi     r5, r12, 1
+	addi     r4, r3, 0x0000FFFF@l
+	mtctr    r0
+	cmpw     r12, r31
+	bge      lbl_80099050
 
-	.loc_0x10C:
-	  lwz       r3, -0x75E0(r13)
-	  sthx      r4, r3, r5
-	  addi      r5, r5, 0x2
-	  bdnz+     .loc_0x10C
+lbl_80099040:
+	lwz      r3, sVir2PhyTable__10JASBankMgr@sda21(r13)
+	sthx     r4, r3, r5
+	addi     r5, r5, 2
+	bdnz     lbl_80099040
 
-	.loc_0x11C:
-	  stw       r31, -0x75E8(r13)
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80099050:
+	stw      r31, sTableSize__10JASBankMgr@sda21(r13)
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -116,37 +172,36 @@ void JASBankMgr::registBank(int, JASBank*)
 void JASBankMgr::registBankBNK(int, void*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lwz       r3, 0x8(r4)
-	  mr        r4, r30
-	  bl        0x54
-	  mr        r3, r31
-	  bl        0x1744
-	  cmplwi    r3, 0
-	  bne-      .loc_0x40
-	  li        r3, 0
-	  b         .loc_0x50
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lwz      r3, 8(r4)
+	mr       r4, r30
+	bl       setVir2PhyTable__10JASBankMgrFUli
+	mr       r3, r31
+	bl       createBasicBank__12JASBNKParserFPv
+	cmplwi   r3, 0
+	bne      lbl_800990AC
+	li       r3, 0
+	b        lbl_800990BC
 
-	.loc_0x40:
-	  lwz       r4, -0x75E4(r13)
-	  rlwinm    r0,r30,2,0,29
-	  stwx      r3, r4, r0
-	  li        r3, 0x1
+lbl_800990AC:
+	lwz      r4, sBankArray__10JASBankMgr@sda21(r13)
+	slwi     r0, r30, 2
+	stwx     r3, r4, r0
+	li       r3, 1
 
-	.loc_0x50:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_800990BC:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -168,11 +223,10 @@ void JASBankMgr::getBank(int)
 void JASBankMgr::getPhysicalNumber(unsigned short)
 {
 	/*
-	.loc_0x0:
-	  lwz       r4, -0x75E0(r13)
-	  rlwinm    r0,r3,1,15,30
-	  lhzx      r3, r4, r0
-	  blr
+	lwz      r4, sVir2PhyTable__10JASBankMgr@sda21(r13)
+	rlwinm   r0, r3, 1, 0xf, 0x1e
+	lhzx     r3, r4, r0
+	blr
 	*/
 }
 
@@ -184,13 +238,12 @@ void JASBankMgr::getPhysicalNumber(unsigned short)
 void JASBankMgr::setVir2PhyTable(unsigned long, int)
 {
 	/*
-	.loc_0x0:
-	  cmplwi    r3, 0xFFFF
-	  beqlr-
-	  lwz       r5, -0x75E0(r13)
-	  rlwinm    r0,r3,1,0,30
-	  sthx      r4, r5, r0
-	  blr
+	cmplwi   r3, 0xffff
+	beqlr
+	lwz      r5, sVir2PhyTable__10JASBankMgr@sda21(r13)
+	slwi     r0, r3, 1
+	sthx     r4, r5, r0
+	blr
 	*/
 }
 
@@ -202,52 +255,51 @@ void JASBankMgr::setVir2PhyTable(unsigned long, int)
 void JASBankMgr::assignWaveBank(int, int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  cmpwi     r3, 0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  bge-      .loc_0x20
-	  li        r31, 0
-	  b         .loc_0x40
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	cmpwi    r3, 0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	bge      lbl_8009911C
+	li       r31, 0
+	b        lbl_8009913C
 
-	.loc_0x20:
-	  lwz       r0, -0x75E8(r13)
-	  cmpw      r3, r0
-	  blt-      .loc_0x34
-	  li        r31, 0
-	  b         .loc_0x40
+lbl_8009911C:
+	lwz      r0, sTableSize__10JASBankMgr@sda21(r13)
+	cmpw     r3, r0
+	blt      lbl_80099130
+	li       r31, 0
+	b        lbl_8009913C
 
-	.loc_0x34:
-	  lwz       r5, -0x75E4(r13)
-	  rlwinm    r0,r3,2,0,29
-	  lwzx      r31, r5, r0
+lbl_80099130:
+	lwz      r5, sBankArray__10JASBankMgr@sda21(r13)
+	slwi     r0, r3, 2
+	lwzx     r31, r5, r0
 
-	.loc_0x40:
-	  cmplwi    r31, 0
-	  bne-      .loc_0x50
-	  li        r3, 0
-	  b         .loc_0x70
+lbl_8009913C:
+	cmplwi   r31, 0
+	bne      lbl_8009914C
+	li       r3, 0
+	b        lbl_8009916C
 
-	.loc_0x50:
-	  mr        r3, r4
-	  bl        0x2F48
-	  cmplwi    r3, 0
-	  bne-      .loc_0x68
-	  li        r3, 0
-	  b         .loc_0x70
+lbl_8009914C:
+	mr       r3, r4
+	bl       getWaveBank__14JASWaveBankMgrFi
+	cmplwi   r3, 0
+	bne      lbl_80099164
+	li       r3, 0
+	b        lbl_8009916C
 
-	.loc_0x68:
-	  stw       r3, 0x4(r31)
-	  li        r3, 0x1
+lbl_80099164:
+	stw      r3, 4(r31)
+	li       r3, 1
 
-	.loc_0x70:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8009916C:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -666,53 +718,52 @@ void JASBankMgr::noteOnOsc(int, unsigned char, unsigned char, unsigned short,
 void JASBankMgr::gateOn(JASChannel*, unsigned char, unsigned char)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r5
-	  stw       r30, 0x18(r1)
-	  mr        r30, r3
-	  lbz       r0, 0xE4(r3)
-	  cmplwi    r0, 0x2
-	  bne-      .loc_0x30
-	  rlwinm    r3,r4,0,24,31
-	  b         .loc_0x44
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r5
+	stw      r30, 0x18(r1)
+	mr       r30, r3
+	lbz      r0, 0xe4(r3)
+	cmplwi   r0, 2
+	bne      lbl_80099684
+	clrlwi   r3, r4, 0x18
+	b        lbl_80099698
 
-	.loc_0x30:
-	  lwz       r5, 0xE8(r30)
-	  rlwinm    r3,r4,0,24,31
-	  addi      r0, r3, 0x3C
-	  lbz       r3, 0x1(r5)
-	  sub       r3, r0, r3
+lbl_80099684:
+	lwz      r5, 0xe8(r30)
+	clrlwi   r3, r4, 0x18
+	addi     r0, r3, 0x3c
+	lbz      r3, 1(r5)
+	subf     r3, r3, r0
 
-	.loc_0x44:
-	  bl        0xB140
-	  rlwinm    r3,r31,0,24,31
-	  lis       r0, 0x4330
-	  stw       r3, 0xC(r1)
-	  lfs       f0, 0xF0(r30)
-	  stw       r0, 0x8(r1)
-	  lfd       f2, -0x76C8(r2)
-	  fmuls     f3, f0, f1
-	  lfd       f1, 0x8(r1)
-	  lfs       f0, -0x76CC(r2)
-	  fsubs     f1, f1, f2
-	  stfs      f3, 0xF8(r30)
-	  fdivs     f0, f1, f0
-	  stfs      f0, 0xFC(r30)
-	  lfs       f0, 0xFC(r30)
-	  lfs       f1, 0xF4(r30)
-	  fmuls     f0, f0, f0
-	  fmuls     f0, f1, f0
-	  stfs      f0, 0xFC(r30)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80099698:
+	bl       key2pitch_c5__9JASDriverFi
+	clrlwi   r3, r31, 0x18
+	lis      r0, 0x4330
+	stw      r3, 0xc(r1)
+	lfs      f0, 0xf0(r30)
+	stw      r0, 8(r1)
+	lfd      f2, lbl_80516C98@sda21(r2)
+	fmuls    f3, f0, f1
+	lfd      f1, 8(r1)
+	lfs      f0, lbl_80516C94@sda21(r2)
+	fsubs    f1, f1, f2
+	stfs     f3, 0xf8(r30)
+	fdivs    f0, f1, f0
+	stfs     f0, 0xfc(r30)
+	lfs      f0, 0xfc(r30)
+	lfs      f1, 0xf4(r30)
+	fmuls    f0, f0, f0
+	fmuls    f0, f1, f0
+	stfs     f0, 0xfc(r30)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 

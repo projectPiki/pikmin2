@@ -1,6 +1,28 @@
 #include "types.h"
 
 /*
+    Generated from dpostproc
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_80516BB8
+    lbl_80516BB8:
+        .4byte 0x00000000
+    .global lbl_80516BBC
+    lbl_80516BBC:
+        .4byte 0x42000000
+    .global lbl_80516BC0
+    lbl_80516BC0:
+        .float 0.5
+    .global lbl_80516BC4
+    lbl_80516BC4:
+        .4byte 0x40400000
+    .global lbl_80516BC8
+    lbl_80516BC8:
+        .float 1.0
+        .4byte 0x00000000
+*/
+
+/*
  * --INFO--
  * Address:	80090538
  * Size:	0001FC
@@ -176,19 +198,18 @@ JPARandom::~JPARandom()
 void JSUList<JPABaseEmitter>::JSUList()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        -0x69E78
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       initiate__10JSUPtrListFv
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -200,24 +221,23 @@ void JSUList<JPABaseEmitter>::JSUList()
 void JPANode<JPABaseParticle>::~JPANode()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r3
-	  beq-      .loc_0x24
-	  extsh.    r0, r4
-	  ble-      .loc_0x24
-	  bl        -0x6C6D0
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r3, r3
+	beq      lbl_80090788
+	extsh.   r0, r4
+	ble      lbl_80090788
+	bl       __dl__FPv
 
-	.loc_0x24:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80090788:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -229,11 +249,10 @@ void JPANode<JPABaseParticle>::~JPANode()
 void JPANode<JPABaseParticle>::JPANode()
 {
 	/*
-	.loc_0x0:
-	  li        r0, 0
-	  stw       r0, 0x0(r3)
-	  stw       r0, 0x4(r3)
-	  blr
+	li       r0, 0
+	stw      r0, 0(r3)
+	stw      r0, 4(r3)
+	blr
 	*/
 }
 
@@ -255,35 +274,34 @@ JPABaseParticle::~JPABaseParticle()
 JPABaseEmitter::~JPABaseEmitter()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x44
-	  addic.    r0, r30, 0x58
-	  beq-      .loc_0x34
-	  addi      r3, r30, 0x58
-	  li        r4, 0
-	  bl        -0x6A010
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_800907F4
+	addic.   r0, r30, 0x58
+	beq      lbl_800907E4
+	addi     r3, r30, 0x58
+	li       r4, 0
+	bl       __dt__10JSUPtrLinkFv
 
-	.loc_0x34:
-	  extsh.    r0, r31
-	  ble-      .loc_0x44
-	  mr        r3, r30
-	  bl        -0x6C73C
+lbl_800907E4:
+	extsh.   r0, r31
+	ble      lbl_800907F4
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x44:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_800907F4:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -295,29 +313,28 @@ JPABaseEmitter::~JPABaseEmitter()
 JPABaseEmitter::JPABaseEmitter()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  mr        r4, r31
-	  addi      r3, r31, 0x58
-	  bl        -0x6A074
-	  li        r0, 0
-	  mr        r3, r31
-	  stw       r0, 0xC4(r31)
-	  stw       r0, 0xC8(r31)
-	  stw       r0, 0xCC(r31)
-	  stw       r0, 0xD0(r31)
-	  stw       r0, 0xD4(r31)
-	  stw       r0, 0xD8(r31)
-	  stw       r0, 0xDC(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	mr       r4, r31
+	addi     r3, r31, 0x58
+	bl       __ct__10JSUPtrLinkFPv
+	li       r0, 0
+	mr       r3, r31
+	stw      r0, 0xc4(r31)
+	stw      r0, 0xc8(r31)
+	stw      r0, 0xcc(r31)
+	stw      r0, 0xd0(r31)
+	stw      r0, 0xd4(r31)
+	stw      r0, 0xd8(r31)
+	stw      r0, 0xdc(r31)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -349,30 +366,29 @@ void JPAList<JPABaseParticle>::~JPAList()
 void JSUList<JPABaseEmitter>::~JSUList()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x38
-	  li        r4, 0
-	  bl        -0x6A024
-	  extsh.    r0, r31
-	  ble-      .loc_0x38
-	  mr        r3, r30
-	  bl        -0x6C7E8
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_800908A0
+	li       r4, 0
+	bl       __dt__10JSUPtrListFv
+	extsh.   r0, r31
+	ble      lbl_800908A0
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x38:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_800908A0:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -481,59 +497,58 @@ void JPAEmitterManager::calc(unsigned char)
 void JPAEmitterManager::calc()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  li        r29, 0
-	  stw       r28, 0x10(r1)
-	  mr        r28, r3
-	  b         .loc_0x80
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	li       r29, 0
+	stw      r28, 0x10(r1)
+	mr       r28, r3
+	b        lbl_80090A18
 
-	.loc_0x28:
-	  rlwinm    r0,r29,0,24,31
-	  lwz       r3, 0x0(r28)
-	  mulli     r0, r0, 0xC
-	  lwzx      r31, r3, r0
-	  b         .loc_0x74
+lbl_800909C0:
+	clrlwi   r0, r29, 0x18
+	lwz      r3, 0(r28)
+	mulli    r0, r0, 0xc
+	lwzx     r31, r3, r0
+	b        lbl_80090A0C
 
-	.loc_0x3C:
-	  lwz       r30, 0x0(r31)
-	  lwz       r31, 0xC(r31)
-	  lwz       r3, 0xE8(r30)
-	  mr        r5, r30
-	  lwz       r4, 0x20(r28)
-	  bl        0x61B4
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x74
-	  lwz       r0, 0xF4(r30)
-	  rlwinm.   r0,r0,0,22,22
-	  bne-      .loc_0x74
-	  mr        r3, r28
-	  mr        r4, r30
-	  bl        0x2F8
+lbl_800909D4:
+	lwz      r30, 0(r31)
+	lwz      r31, 0xc(r31)
+	lwz      r3, 0xe8(r30)
+	mr       r5, r30
+	lwz      r4, 0x20(r28)
+	bl       calc__11JPAResourceFP18JPAEmitterWorkDataP14JPABaseEmitter
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80090A0C
+	lwz      r0, 0xf4(r30)
+	rlwinm.  r0, r0, 0, 0x16, 0x16
+	bne      lbl_80090A0C
+	mr       r3, r28
+	mr       r4, r30
+	bl       forceDeleteEmitter__17JPAEmitterManagerFP14JPABaseEmitter
 
-	.loc_0x74:
-	  cmplwi    r31, 0
-	  bne+      .loc_0x3C
-	  addi      r29, r29, 0x1
+lbl_80090A0C:
+	cmplwi   r31, 0
+	bne      lbl_800909D4
+	addi     r29, r29, 1
 
-	.loc_0x80:
-	  lbz       r0, 0x2C(r28)
-	  rlwinm    r3,r29,0,24,31
-	  cmplw     r3, r0
-	  blt+      .loc_0x28
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80090A18:
+	lbz      r0, 0x2c(r28)
+	clrlwi   r3, r29, 0x18
+	cmplw    r3, r0
+	blt      lbl_800909C0
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -545,141 +560,140 @@ void JPAEmitterManager::calc()
 void JPAEmitterManager::draw(const JPADrawInfo*, unsigned char)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r5
-	  stw       r30, 0x18(r1)
-	  mr        r30, r4
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  lwz       r4, 0x20(r3)
-	  mr        r3, r30
-	  addi      r4, r4, 0x184
-	  bl        0x59854
-	  lwz       r4, 0x20(r29)
-	  addi      r3, r30, 0x30
-	  addi      r4, r4, 0x1B4
-	  bl        0x59844
-	  mr        r3, r29
-	  bl        0x3B4
-	  li        r3, 0
-	  li        r4, 0
-	  li        r5, 0
-	  li        r6, 0
-	  li        r7, 0x1
-	  li        r8, 0
-	  bl        0x57AE4
-	  li        r3, 0
-	  li        r4, 0
-	  li        r5, 0
-	  li        r6, 0
-	  li        r7, 0x1
-	  li        r8, 0
-	  bl        0x57B30
-	  li        r3, 0
-	  li        r4, 0x1
-	  li        r5, 0x1
-	  bl        0x55088
-	  li        r3, 0x1
-	  li        r4, 0x1
-	  li        r5, 0x1
-	  bl        0x55078
-	  li        r3, 0x2
-	  li        r4, 0x1
-	  li        r5, 0x1
-	  bl        0x55068
-	  li        r3, 0
-	  bl        0x550A8
-	  li        r3, 0
-	  bl        0x550E4
-	  bl        0x53BC4
-	  li        r3, 0x9
-	  li        r4, 0x2
-	  bl        0x5376C
-	  li        r3, 0xD
-	  li        r4, 0x2
-	  bl        0x53760
-	  li        r3, 0
-	  li        r4, 0x9
-	  li        r5, 0x1
-	  li        r6, 0x1
-	  li        r7, 0
-	  bl        0x53BCC
-	  li        r3, 0
-	  li        r4, 0xD
-	  li        r5, 0x1
-	  li        r6, 0x1
-	  li        r7, 0
-	  bl        0x53BB4
-	  li        r3, 0x1
-	  li        r4, 0x9
-	  li        r5, 0x1
-	  li        r6, 0x4
-	  li        r7, 0
-	  bl        0x53B9C
-	  li        r3, 0x1
-	  li        r4, 0xD
-	  li        r5, 0x1
-	  li        r6, 0x4
-	  li        r7, 0
-	  bl        0x53B84
-	  li        r3, 0
-	  bl        0x58A8C
-	  li        r3, 0x4
-	  li        r4, 0
-	  li        r5, 0
-	  li        r6, 0x1
-	  li        r7, 0
-	  li        r8, 0
-	  li        r9, 0x2
-	  bl        0x562F4
-	  li        r3, 0x5
-	  li        r4, 0
-	  li        r5, 0
-	  li        r6, 0x1
-	  li        r7, 0
-	  li        r8, 0
-	  li        r9, 0x2
-	  bl        0x562D4
-	  li        r3, 0
-	  bl        0x56290
-	  rlwinm    r0,r31,0,24,31
-	  lwz       r3, 0x0(r29)
-	  mulli     r0, r0, 0xC
-	  lwzx      r31, r3, r0
-	  b         .loc_0x1DC
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r5
+	stw      r30, 0x18(r1)
+	mr       r30, r4
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	lwz      r4, 0x20(r3)
+	mr       r3, r30
+	addi     r4, r4, 0x184
+	bl       PSMTXCopy
+	lwz      r4, 0x20(r29)
+	addi     r3, r30, 0x30
+	addi     r4, r4, 0x1b4
+	bl       PSMTXCopy
+	mr       r3, r29
+	bl       calcYBBCam__17JPAEmitterManagerFv
+	li       r3, 0
+	li       r4, 0
+	li       r5, 0
+	li       r6, 0
+	li       r7, 1
+	li       r8, 0
+	bl       GXSetTevColorOp
+	li       r3, 0
+	li       r4, 0
+	li       r5, 0
+	li       r6, 0
+	li       r7, 1
+	li       r8, 0
+	bl       GXSetTevAlphaOp
+	li       r3, 0
+	li       r4, 1
+	li       r5, 1
+	bl       GXEnableTexOffsets
+	li       r3, 1
+	li       r4, 1
+	li       r5, 1
+	bl       GXEnableTexOffsets
+	li       r3, 2
+	li       r4, 1
+	li       r5, 1
+	bl       GXEnableTexOffsets
+	li       r3, 0
+	bl       GXSetCullMode
+	li       r3, 0
+	bl       GXSetCoPlanar
+	bl       GXClearVtxDesc
+	li       r3, 9
+	li       r4, 2
+	bl       GXSetVtxDesc
+	li       r3, 0xd
+	li       r4, 2
+	bl       GXSetVtxDesc
+	li       r3, 0
+	li       r4, 9
+	li       r5, 1
+	li       r6, 1
+	li       r7, 0
+	bl       GXSetVtxAttrFmt
+	li       r3, 0
+	li       r4, 0xd
+	li       r5, 1
+	li       r6, 1
+	li       r7, 0
+	bl       GXSetVtxAttrFmt
+	li       r3, 1
+	li       r4, 9
+	li       r5, 1
+	li       r6, 4
+	li       r7, 0
+	bl       GXSetVtxAttrFmt
+	li       r3, 1
+	li       r4, 0xd
+	li       r5, 1
+	li       r6, 4
+	li       r7, 0
+	bl       GXSetVtxAttrFmt
+	li       r3, 0
+	bl       GXSetCurrentMtx
+	li       r3, 4
+	li       r4, 0
+	li       r5, 0
+	li       r6, 1
+	li       r7, 0
+	li       r8, 0
+	li       r9, 2
+	bl       GXSetChanCtrl
+	li       r3, 5
+	li       r4, 0
+	li       r5, 0
+	li       r6, 1
+	li       r7, 0
+	li       r8, 0
+	li       r9, 2
+	bl       GXSetChanCtrl
+	li       r3, 0
+	bl       GXSetNumChans
+	clrlwi   r0, r31, 0x18
+	lwz      r3, 0(r29)
+	mulli    r0, r0, 0xc
+	lwzx     r31, r3, r0
+	b        lbl_80090C24
 
-	.loc_0x1A4:
-	  lwz       r5, 0x0(r31)
-	  lwz       r0, 0xF4(r5)
-	  rlwinm.   r0,r0,0,29,29
-	  bne-      .loc_0x1D8
-	  lbz       r0, 0x113(r5)
-	  lwz       r4, 0x1C(r29)
-	  rlwinm    r0,r0,2,0,29
-	  lwz       r3, 0x20(r29)
-	  lwzx      r0, r4, r0
-	  stw       r0, 0x8(r3)
-	  lwz       r3, 0xE8(r5)
-	  lwz       r4, 0x20(r29)
-	  bl        0x64DC
+lbl_80090BEC:
+	lwz      r5, 0(r31)
+	lwz      r0, 0xf4(r5)
+	rlwinm.  r0, r0, 0, 0x1d, 0x1d
+	bne      lbl_80090C20
+	lbz      r0, 0x113(r5)
+	lwz      r4, 0x1c(r29)
+	slwi     r0, r0, 2
+	lwz      r3, 0x20(r29)
+	lwzx     r0, r4, r0
+	stw      r0, 8(r3)
+	lwz      r3, 0xe8(r5)
+	lwz      r4, 0x20(r29)
+	bl       draw__11JPAResourceFP18JPAEmitterWorkDataP14JPABaseEmitter
 
-	.loc_0x1D8:
-	  lwz       r31, 0xC(r31)
+lbl_80090C20:
+	lwz      r31, 0xc(r31)
 
-	.loc_0x1DC:
-	  cmplwi    r31, 0
-	  bne+      .loc_0x1A4
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80090C24:
+	cmplwi   r31, 0
+	bne      lbl_80090BEC
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -721,35 +735,32 @@ void JPAEmitterManager::draw(float (*)[4])
 void JPAEmitterManager::forceDeleteAllEmitter()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  li        r31, 0
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  b         .loc_0x30
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	li       r31, 0
+	stw      r30, 8(r1)
+	mr       r30, r3
+	b        lbl_80090C78
 
-	.loc_0x20:
-	  mr        r3, r30
-	  mr        r4, r31
-	  bl        .loc_0x58
-	  addi      r31, r31, 0x1
+lbl_80090C68:
+	mr       r3, r30
+	mr       r4, r31
+	bl       forceDeleteGroupEmitter__17JPAEmitterManagerFUc
+	addi     r31, r31, 1
 
-	.loc_0x30:
-	  lbz       r0, 0x2C(r30)
-	  rlwinm    r3,r31,0,24,31
-	  cmplw     r3, r0
-	  blt+      .loc_0x20
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-
-	.loc_0x58:
+lbl_80090C78:
+	lbz      r0, 0x2c(r30)
+	clrlwi   r3, r31, 0x18
+	cmplw    r3, r0
+	blt      lbl_80090C68
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -761,37 +772,34 @@ void JPAEmitterManager::forceDeleteAllEmitter()
 void JPAEmitterManager::forceDeleteGroupEmitter(unsigned char)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  rlwinm    r0,r4,0,24,31
-	  stw       r31, 0xC(r1)
-	  mulli     r31, r0, 0xC
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  b         .loc_0x34
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	clrlwi   r0, r4, 0x18
+	stw      r31, 0xc(r1)
+	mulli    r31, r0, 0xc
+	stw      r30, 8(r1)
+	mr       r30, r3
+	b        lbl_80090CD4
 
-	.loc_0x24:
-	  lwz       r4, 0x4(r3)
-	  mr        r3, r30
-	  lwz       r4, 0x0(r4)
-	  bl        .loc_0x60
+lbl_80090CC4:
+	lwz      r4, 4(r3)
+	mr       r3, r30
+	lwz      r4, 0(r4)
+	bl       forceDeleteEmitter__17JPAEmitterManagerFP14JPABaseEmitter
 
-	.loc_0x34:
-	  lwz       r0, 0x0(r30)
-	  add       r3, r31, r0
-	  lwz       r0, 0x8(r3)
-	  cmplwi    r0, 0
-	  bne+      .loc_0x24
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-
-	.loc_0x60:
+lbl_80090CD4:
+	lwz      r0, 0(r30)
+	add      r3, r31, r0
+	lwz      r0, 8(r3)
+	cmplwi   r0, 0
+	bne      lbl_80090CC4
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -803,34 +811,33 @@ void JPAEmitterManager::forceDeleteGroupEmitter(unsigned char)
 void JPAEmitterManager::forceDeleteEmitter(JPABaseEmitter*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  mr        r3, r31
-	  bl        -0xAC8
-	  lwz       r0, 0xF4(r31)
-	  addi      r4, r31, 0x58
-	  ori       r0, r0, 0x300
-	  stw       r0, 0xF4(r31)
-	  lbz       r0, 0x112(r31)
-	  lwz       r3, 0x0(r30)
-	  mulli     r0, r0, 0xC
-	  add       r3, r3, r0
-	  bl        -0x6A120
-	  addi      r3, r30, 0x4
-	  addi      r4, r31, 0x58
-	  bl        -0x6A3B4
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	mr       r3, r31
+	bl       deleteAllParticle__14JPABaseEmitterFv
+	lwz      r0, 0xf4(r31)
+	addi     r4, r31, 0x58
+	ori      r0, r0, 0x300
+	stw      r0, 0xf4(r31)
+	lbz      r0, 0x112(r31)
+	lwz      r3, 0(r30)
+	mulli    r0, r0, 0xc
+	add      r3, r3, r0
+	bl       remove__10JSUPtrListFP10JSUPtrLink
+	addi     r3, r30, 4
+	addi     r4, r31, 0x58
+	bl       prepend__10JSUPtrListFP10JSUPtrLink
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -842,11 +849,10 @@ void JPAEmitterManager::forceDeleteEmitter(JPABaseEmitter*)
 void JPAEmitterManager::entryResourceManager(JPAResourceManager*, unsigned char)
 {
 	/*
-	.loc_0x0:
-	  lwz       r3, 0x1C(r3)
-	  rlwinm    r0,r5,2,22,29
-	  stwx      r4, r3, r0
-	  blr
+	lwz      r3, 0x1c(r3)
+	rlwinm   r0, r5, 2, 0x16, 0x1d
+	stwx     r4, r3, r0
+	blr
 	*/
 }
 
@@ -858,67 +864,66 @@ void JPAEmitterManager::entryResourceManager(JPAResourceManager*, unsigned char)
 void JPAEmitterManager::clearResourceManager(unsigned char)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stmw      r26, 0x8(r1)
-	  mr        r27, r4
-	  mr        r26, r3
-	  rlwinm    r31,r4,0,24,31
-	  li        r28, 0
-	  b         .loc_0x94
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stmw     r26, 8(r1)
+	mr       r27, r4
+	mr       r26, r3
+	clrlwi   r31, r4, 0x18
+	li       r28, 0
+	b        lbl_80090E10
 
-	.loc_0x24:
-	  rlwinm    r0,r28,0,24,31
-	  lwz       r3, 0x0(r26)
-	  mulli     r0, r0, 0xC
-	  lwzx      r3, r3, r0
-	  b         .loc_0x88
+lbl_80090DA0:
+	clrlwi   r0, r28, 0x18
+	lwz      r3, 0(r26)
+	mulli    r0, r0, 0xc
+	lwzx     r3, r3, r0
+	b        lbl_80090E04
 
-	.loc_0x38:
-	  lwz       r29, 0x0(r3)
-	  lwz       r30, 0xC(r3)
-	  lbz       r0, 0x113(r29)
-	  cmplw     r31, r0
-	  bne-      .loc_0x84
-	  mr        r3, r29
-	  bl        -0xB74
-	  lwz       r0, 0xF4(r29)
-	  addi      r4, r29, 0x58
-	  ori       r0, r0, 0x300
-	  stw       r0, 0xF4(r29)
-	  lbz       r0, 0x112(r29)
-	  lwz       r3, 0x0(r26)
-	  mulli     r0, r0, 0xC
-	  add       r3, r3, r0
-	  bl        -0x6A1CC
-	  addi      r3, r26, 0x4
-	  addi      r4, r29, 0x58
-	  bl        -0x6A460
+lbl_80090DB4:
+	lwz      r29, 0(r3)
+	lwz      r30, 0xc(r3)
+	lbz      r0, 0x113(r29)
+	cmplw    r31, r0
+	bne      lbl_80090E00
+	mr       r3, r29
+	bl       deleteAllParticle__14JPABaseEmitterFv
+	lwz      r0, 0xf4(r29)
+	addi     r4, r29, 0x58
+	ori      r0, r0, 0x300
+	stw      r0, 0xf4(r29)
+	lbz      r0, 0x112(r29)
+	lwz      r3, 0(r26)
+	mulli    r0, r0, 0xc
+	add      r3, r3, r0
+	bl       remove__10JSUPtrListFP10JSUPtrLink
+	addi     r3, r26, 4
+	addi     r4, r29, 0x58
+	bl       prepend__10JSUPtrListFP10JSUPtrLink
 
-	.loc_0x84:
-	  mr        r3, r30
+lbl_80090E00:
+	mr       r3, r30
 
-	.loc_0x88:
-	  cmplwi    r3, 0
-	  bne+      .loc_0x38
-	  addi      r28, r28, 0x1
+lbl_80090E04:
+	cmplwi   r3, 0
+	bne      lbl_80090DB4
+	addi     r28, r28, 1
 
-	.loc_0x94:
-	  lbz       r0, 0x2C(r26)
-	  rlwinm    r3,r28,0,24,31
-	  cmplw     r3, r0
-	  blt+      .loc_0x24
-	  lwz       r3, 0x1C(r26)
-	  rlwinm    r0,r27,2,22,29
-	  li        r4, 0
-	  stwx      r4, r3, r0
-	  lmw       r26, 0x8(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80090E10:
+	lbz      r0, 0x2c(r26)
+	clrlwi   r3, r28, 0x18
+	cmplw    r3, r0
+	blt      lbl_80090DA0
+	lwz      r3, 0x1c(r26)
+	rlwinm   r0, r27, 2, 0x16, 0x1d
+	li       r4, 0
+	stwx     r4, r3, r0
+	lmw      r26, 8(r1)
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -930,70 +935,69 @@ void JPAEmitterManager::clearResourceManager(unsigned char)
 void JPAEmitterManager::calcYBBCam()
 {
 	/*
-	.loc_0x0:
-	  lwz       r5, 0x20(r3)
-	  lis       r4, 0x8051
-	  lfs       f3, -0x77A8(r2)
-	  lfs       f4, 0x198(r5)
-	  lfs       f5, 0x1A8(r5)
-	  fmadds    f2, f4, f4, f3
-	  lfs       f1, -0x77A4(r2)
-	  lfs       f0, 0x48DC(r4)
-	  fmadds    f6, f5, f5, f2
-	  fmuls     f0, f1, f0
-	  fcmpo     cr0, f6, f0
-	  cror      2, 0, 0x2
-	  beq-      .loc_0x6C
-	  fcmpo     cr0, f6, f3
-	  cror      2, 0, 0x2
-	  bne-      .loc_0x44
-	  b         .loc_0x64
+	lwz      r5, 0x20(r3)
+	lis      r4, __float_epsilon@ha
+	lfs      f3, lbl_80516BB8@sda21(r2)
+	lfs      f4, 0x198(r5)
+	lfs      f5, 0x1a8(r5)
+	fmadds   f2, f4, f4, f3
+	lfs      f1, lbl_80516BBC@sda21(r2)
+	lfs      f0, __float_epsilon@l(r4)
+	fmadds   f6, f5, f5, f2
+	fmuls    f0, f1, f0
+	fcmpo    cr0, f6, f0
+	cror     2, 0, 2
+	beq      lbl_80090EB0
+	fcmpo    cr0, f6, f3
+	cror     2, 0, 2
+	bne      lbl_80090E88
+	b        lbl_80090EA8
 
-	.loc_0x44:
-	  fsqrte    f3, f6
-	  lfs       f2, -0x77A0(r2)
-	  lfs       f0, -0x779C(r2)
-	  frsp      f3, f3
-	  fmuls     f1, f3, f3
-	  fmuls     f2, f2, f3
-	  fnmsubs   f0, f6, f1, f0
-	  fmuls     f6, f2, f0
+lbl_80090E88:
+	frsqrte  f3, f6
+	lfs      f2, lbl_80516BC0@sda21(r2)
+	lfs      f0, lbl_80516BC4@sda21(r2)
+	frsp     f3, f3
+	fmuls    f1, f3, f3
+	fmuls    f2, f2, f3
+	fnmsubs  f0, f6, f1, f0
+	fmuls    f6, f2, f0
 
-	.loc_0x64:
-	  fmuls     f4, f4, f6
-	  fmuls     f5, f5, f6
+lbl_80090EA8:
+	fmuls    f4, f4, f6
+	fmuls    f5, f5, f6
 
-	.loc_0x6C:
-	  lfs       f1, -0x7798(r2)
-	  fneg      f0, f5
-	  lwz       r4, 0x20(r3)
-	  lfs       f2, -0x77A8(r2)
-	  stfs      f1, 0x154(r4)
-	  lwz       r4, 0x20(r3)
-	  stfs      f2, 0x158(r4)
-	  lwz       r4, 0x20(r3)
-	  stfs      f2, 0x15C(r4)
-	  lwz       r4, 0x20(r3)
-	  lfs       f1, 0x190(r4)
-	  stfs      f1, 0x160(r4)
-	  lwz       r4, 0x20(r3)
-	  stfs      f2, 0x164(r4)
-	  lwz       r4, 0x20(r3)
-	  stfs      f4, 0x168(r4)
-	  lwz       r4, 0x20(r3)
-	  stfs      f0, 0x16C(r4)
-	  lwz       r4, 0x20(r3)
-	  lfs       f0, 0x1A0(r4)
-	  stfs      f0, 0x170(r4)
-	  lwz       r4, 0x20(r3)
-	  stfs      f2, 0x174(r4)
-	  lwz       r4, 0x20(r3)
-	  stfs      f5, 0x178(r4)
-	  lwz       r4, 0x20(r3)
-	  stfs      f4, 0x17C(r4)
-	  lwz       r3, 0x20(r3)
-	  lfs       f0, 0x1B0(r3)
-	  stfs      f0, 0x180(r3)
-	  blr
+lbl_80090EB0:
+	lfs      f1, lbl_80516BC8@sda21(r2)
+	fneg     f0, f5
+	lwz      r4, 0x20(r3)
+	lfs      f2, lbl_80516BB8@sda21(r2)
+	stfs     f1, 0x154(r4)
+	lwz      r4, 0x20(r3)
+	stfs     f2, 0x158(r4)
+	lwz      r4, 0x20(r3)
+	stfs     f2, 0x15c(r4)
+	lwz      r4, 0x20(r3)
+	lfs      f1, 0x190(r4)
+	stfs     f1, 0x160(r4)
+	lwz      r4, 0x20(r3)
+	stfs     f2, 0x164(r4)
+	lwz      r4, 0x20(r3)
+	stfs     f4, 0x168(r4)
+	lwz      r4, 0x20(r3)
+	stfs     f0, 0x16c(r4)
+	lwz      r4, 0x20(r3)
+	lfs      f0, 0x1a0(r4)
+	stfs     f0, 0x170(r4)
+	lwz      r4, 0x20(r3)
+	stfs     f2, 0x174(r4)
+	lwz      r4, 0x20(r3)
+	stfs     f5, 0x178(r4)
+	lwz      r4, 0x20(r3)
+	stfs     f4, 0x17c(r4)
+	lwz      r3, 0x20(r3)
+	lfs      f0, 0x1b0(r3)
+	stfs     f0, 0x180(r3)
+	blr
 	*/
 }

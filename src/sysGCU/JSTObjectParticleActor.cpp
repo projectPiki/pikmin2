@@ -1,5 +1,130 @@
 #include "types.h"
 
+/*
+    Generated from dpostproc
+
+    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
+        .4byte __sinit_JSTObjectParticleActor_cpp
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_8049BA78
+    lbl_8049BA78:
+        .4byte 0x7475746F
+        .4byte 0x7269616C
+        .4byte 0x00000000
+    .global lbl_8049BA84
+    lbl_8049BA84:
+        .4byte 0x79616B75
+        .4byte 0x7368696D
+        .4byte 0x61000000
+    .global lbl_8049BA90
+    lbl_8049BA90:
+        .4byte 0x73747269
+        .4byte 0x6E673A25
+        .4byte 0x752C2573
+        .4byte 0x0A000000
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global lbl_804ED7D0
+    lbl_804ED7D0:
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+    .global __vt__Q34Game5P2JST19ObjectParticleActor
+    __vt__Q34Game5P2JST19ObjectParticleActor:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q34Game5P2JST19ObjectParticleActorFv
+        .4byte JSGFGetType__Q26JStage6TActorCFv
+        .4byte JSGGetName__Q34Game5P2JST11ObjectActorCFv
+        .4byte JSGUpdate__Q26JStage7TObjectFv
+        .4byte JSGGetFlag__Q34Game5P2JST11ObjectActorCFv
+        .4byte JSGSetFlag__Q34Game5P2JST11ObjectActorFUl
+        .4byte JSGGetData__Q26JStage7TObjectCFUlPvUl
+        .4byte JSGSetData__Q34Game5P2JST11ObjectActorFUlPCvUl
+        .4byte JSGGetParent__Q26JStage7TObjectCFPPQ26JStage7TObjectPUl
+        .4byte JSGSetParent__Q26JStage7TObjectFPQ26JStage7TObjectUl
+        .4byte JSGSetRelation__Q26JStage7TObjectFbPQ26JStage7TObjectUl
+        .4byte JSGFindNodeID__Q34Game5P2JST11ObjectActorCFPCc
+        .4byte JSGGetNodeTransformation__Q34Game5P2JST11ObjectActorCFUlPA4_f
+        .4byte JSGGetTranslation__Q34Game5P2JST19ObjectParticleActorCFP3Vec
+        .4byte JSGSetTranslation__Q34Game5P2JST19ObjectParticleActorFRC3Vec
+        .4byte JSGGetScaling__Q34Game5P2JST11ObjectActorCFP3Vec
+        .4byte JSGSetScaling__Q34Game5P2JST11ObjectActorFRC3Vec
+        .4byte JSGGetRotation__Q34Game5P2JST11ObjectActorCFP3Vec
+        .4byte JSGSetRotation__Q34Game5P2JST11ObjectActorFRC3Vec
+        .4byte JSGGetShape__Q34Game5P2JST11ObjectActorCFv
+        .4byte JSGSetShape__Q34Game5P2JST19ObjectParticleActorFUl
+        .4byte JSGGetAnimation__Q34Game5P2JST11ObjectActorCFv
+        .4byte JSGSetAnimation__Q34Game5P2JST11ObjectActorFUl
+        .4byte JSGGetAnimationFrame__Q34Game5P2JST11ObjectActorCFv
+        .4byte JSGSetAnimationFrame__Q34Game5P2JST11ObjectActorFf
+        .4byte JSGGetAnimationFrameMax__Q34Game5P2JST11ObjectActorCFv
+        .4byte JSGGetAnimationTransition__Q26JStage6TActorCFv
+        .4byte JSGSetAnimationTransition__Q26JStage6TActorFf
+        .4byte JSGGetTextureAnimation__Q26JStage6TActorCFv
+        .4byte JSGSetTextureAnimation__Q26JStage6TActorFUl
+        .4byte JSGGetTextureAnimationFrame__Q26JStage6TActorCFv
+        .4byte JSGSetTextureAnimationFrame__Q26JStage6TActorFf
+        .4byte JSGGetTextureAnimationFrameMax__Q26JStage6TActorCFv
+        .4byte 0
+        .4byte 0
+        .4byte "@4@reset__Q34Game5P2JST19ObjectParticleActorFv"
+        .4byte "@4@update__Q34Game5P2JST19ObjectParticleActorFv"
+        .4byte "@4@start__Q34Game5P2JST11ObjectActorFv"
+        .4byte "@4@stop__Q34Game5P2JST19ObjectParticleActorFv"
+        .4byte "@4@parseUserData___Q34Game5P2JST19ObjectParticleActorFUlPCv"
+        .4byte reset__Q34Game5P2JST19ObjectParticleActorFv
+        .4byte update__Q34Game5P2JST19ObjectParticleActorFv
+        .4byte entry__Q34Game5P2JST11ObjectActorFv
+        .4byte start__Q34Game5P2JST11ObjectActorFv
+        .4byte stop__Q34Game5P2JST19ObjectParticleActorFv
+        .4byte setShape__Q34Game5P2JST11ObjectActorFv
+        .4byte setAnim__Q34Game5P2JST11ObjectActorFv
+        .4byte mountArchive__Q34Game5P2JST11ObjectActorFv
+        .4byte parseUserData___Q34Game5P2JST19ObjectParticleActorFUlPCv
+        .4byte 0
+        .4byte 0
+        .4byte "@112@__dt__Q34Game5P2JST19ObjectParticleActorFv"
+        .4byte execute__18JPAEmitterCallBackFP14JPABaseEmitter
+        .4byte
+   "@112@executeAfter__Q34Game5P2JST19ObjectParticleActorFP14JPABaseEmitter"
+        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
+        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+        .4byte
+   executeAfter__Q34Game5P2JST19ObjectParticleActorFP14JPABaseEmitter
+
+    .section .sbss # 0x80514D80 - 0x80516360
+    .global lbl_805162F0
+    lbl_805162F0:
+        .skip 0x4
+    .global lbl_805162F4
+    lbl_805162F4:
+        .skip 0x4
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_80520B98
+    lbl_80520B98:
+        .4byte 0x666F7265
+        .4byte 0x73740000
+    .global lbl_80520BA0
+    lbl_80520BA0:
+        .4byte 0x6C617374
+        .4byte 0x00000000
+    .global lbl_80520BA8
+    lbl_80520BA8:
+        .4byte 0x00000000
+    .global lbl_80520BAC
+    lbl_80520BAC:
+        .4byte 0x6B696C6C
+        .4byte 0x00000000
+    .global lbl_80520BB4
+    lbl_80520BB4:
+        .4byte 0x4067726F
+        .4byte 0x756E6400
+        .4byte 0x00000000
+*/
+
 namespace Game {
 
 /*
@@ -127,17 +252,16 @@ P2JST::ObjectParticleActor::ObjectParticleActor(char const*, Game::MoviePlayer*,
 void P2JST::ObjectParticleActor::reset(void)
 {
 	/*
-	.loc_0x0:
-	  li        r4, 0
-	  li        r0, -0x1
-	  stw       r4, 0x7C(r3)
-	  lfs       f0, 0x2848(r2)
-	  stw       r4, 0x74(r3)
-	  sth       r0, 0x84(r3)
-	  stfs      f0, 0xBC(r3)
-	  stfs      f0, 0xC0(r3)
-	  stfs      f0, 0xC4(r3)
-	  blr
+	li       r4, 0
+	li       r0, -1
+	stw      r4, 0x7c(r3)
+	lfs      f0, lbl_80520BA8@sda21(r2)
+	stw      r4, 0x74(r3)
+	sth      r0, 0x84(r3)
+	stfs     f0, 0xbc(r3)
+	stfs     f0, 0xc0(r3)
+	stfs     f0, 0xc4(r3)
+	blr
 	*/
 }
 
@@ -149,15 +273,14 @@ void P2JST::ObjectParticleActor::reset(void)
 void P2JST::ObjectParticleActor::stop(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  bl        0x5A4
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	bl       killEmitter__Q34Game5P2JST19ObjectParticleActorFv
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -169,63 +292,62 @@ void P2JST::ObjectParticleActor::stop(void)
 void P2JST::ObjectParticleActor::update(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lbz       r0, 0xB9(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x70
-	  lwz       r3, -0x6C18(r13)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x70
-	  lwz       r3, 0x58(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x7C(r12)
-	  mtctr     r12
-	  bctrl
-	  cmplwi    r3, 0
-	  beq-      .loc_0x70
-	  lwz       r0, 0x48(r3)
-	  li        r3, 0x1
-	  lbz       r4, 0xB9(r31)
-	  slw       r0, r3, r0
-	  rlwinm    r0,r0,0,24,31
-	  and.      r0, r4, r0
-	  beq-      .loc_0x70
-	  li        r0, 0
-	  stb       r0, 0xB8(r31)
-	  b         .loc_0xAC
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lbz      r0, 0xb9(r3)
+	cmplwi   r0, 0
+	beq      lbl_804546F4
+	lwz      r3, gameSystem__4Game@sda21(r13)
+	cmplwi   r3, 0
+	beq      lbl_804546F4
+	lwz      r3, 0x58(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x7c(r12)
+	mtctr    r12
+	bctrl
+	cmplwi   r3, 0
+	beq      lbl_804546F4
+	lwz      r0, 0x48(r3)
+	li       r3, 1
+	lbz      r4, 0xb9(r31)
+	slw      r0, r3, r0
+	clrlwi   r0, r0, 0x18
+	and.     r0, r4, r0
+	beq      lbl_804546F4
+	li       r0, 0
+	stb      r0, 0xb8(r31)
+	b        lbl_80454730
 
-	.loc_0x70:
-	  lbz       r0, 0xB8(r31)
-	  rlwinm.   r0,r0,0,31,31
-	  beq-      .loc_0x90
-	  lwz       r0, 0x7C(r31)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x90
-	  mr        r3, r31
-	  bl        0x220
+lbl_804546F4:
+	lbz      r0, 0xb8(r31)
+	clrlwi.  r0, r0, 0x1f
+	beq      lbl_80454714
+	lwz      r0, 0x7c(r31)
+	cmplwi   r0, 0
+	bne      lbl_80454714
+	mr       r3, r31
+	bl       emit__Q34Game5P2JST19ObjectParticleActorFv
 
-	.loc_0x90:
-	  lbz       r0, 0xB8(r31)
-	  rlwinm.   r0,r0,0,30,30
-	  beq-      .loc_0xA4
-	  mr        r3, r31
-	  bl        0x4F0
+lbl_80454714:
+	lbz      r0, 0xb8(r31)
+	rlwinm.  r0, r0, 0, 0x1e, 0x1e
+	beq      lbl_80454728
+	mr       r3, r31
+	bl       killEmitter__Q34Game5P2JST19ObjectParticleActorFv
 
-	.loc_0xA4:
-	  li        r0, 0
-	  stb       r0, 0xB8(r31)
+lbl_80454728:
+	li       r0, 0
+	stb      r0, 0xb8(r31)
 
-	.loc_0xAC:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80454730:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -237,22 +359,21 @@ void P2JST::ObjectParticleActor::update(void)
 void P2JST::ObjectParticleActor::JSGSetShape(unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  rlwinm    r5,r4,0,16,31
-	  stw       r0, 0x14(r1)
-	  rlwinm    r0,r4,8,24,31
-	  stw       r5, 0x74(r3)
-	  stb       r0, 0x78(r3)
-	  lbz       r0, 0xB8(r3)
-	  ori       r0, r0, 0x1
-	  stb       r0, 0xB8(r3)
-	  bl        0x4A8
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	clrlwi   r5, r4, 0x10
+	stw      r0, 0x14(r1)
+	srwi     r0, r4, 0x18
+	stw      r5, 0x74(r3)
+	stb      r0, 0x78(r3)
+	lbz      r0, 0xb8(r3)
+	ori      r0, r0, 1
+	stb      r0, 0xb8(r3)
+	bl       killEmitter__Q34Game5P2JST19ObjectParticleActorFv
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -264,119 +385,119 @@ void P2JST::ObjectParticleActor::JSGSetShape(unsigned long)
 void P2JST::ObjectParticleActor::parseUserData_(unsigned long, void const*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  addi      r4, r1, 0xC
-	  stw       r31, 0x2C(r1)
-	  mr        r31, r3
-	  addi      r3, r1, 0x8
-	  stw       r30, 0x28(r1)
-	  stw       r29, 0x24(r1)
-	  stw       r28, 0x20(r1)
-	  stw       r5, 0x8(r1)
-	  bl        -0x44BDAC
-	  lbz       r3, 0xC(r1)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x158
-	  lwz       r4, 0x18(r1)
-	  li        r0, 0
-	  cmplwi    r4, 0
-	  beq-      .loc_0x58
-	  cmplwi    r3, 0x60
-	  bne-      .loc_0x58
-	  li        r0, 0x1
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	addi     r4, r1, 0xc
+	stw      r31, 0x2c(r1)
+	mr       r31, r3
+	addi     r3, r1, 8
+	stw      r30, 0x28(r1)
+	stw      r29, 0x24(r1)
+	stw      r28, 0x20(r1)
+	stw      r5, 8(r1)
+	bl
+getData__Q47JStudio3stb4data22TParse_TParagraph_dataCFPQ57JStudio3stb4data22TParse_TParagraph_data5TData
+	lbz      r3, 0xc(r1)
+	cmplwi   r3, 0
+	beq      lbl_804548D8
+	lwz      r4, 0x18(r1)
+	li       r0, 0
+	cmplwi   r4, 0
+	beq      lbl_804547D8
+	cmplwi   r3, 0x60
+	bne      lbl_804547D8
+	li       r0, 1
 
-	.loc_0x58:
-	  rlwinm.   r0,r0,0,24,31
-	  beq-      .loc_0x158
-	  li        r0, -0x1
-	  lis       r3, 0x804A
-	  sth       r0, 0x84(r31)
-	  mr        r29, r4
-	  subi      r30, r3, 0x4570
-	  li        r28, 0
-	  b         .loc_0x14C
+lbl_804547D8:
+	clrlwi.  r0, r0, 0x18
+	beq      lbl_804548D8
+	li       r0, -1
+	lis      r3, lbl_8049BA90@ha
+	sth      r0, 0x84(r31)
+	mr       r29, r4
+	addi     r30, r3, lbl_8049BA90@l
+	li       r28, 0
+	b        lbl_804548CC
 
-	.loc_0x7C:
-	  mr        r3, r30
-	  mr        r4, r28
-	  mr        r5, r29
-	  crclr     6, 0x6
-	  bl        -0x367120
-	  cmplwi    r28, 0
-	  bne-      .loc_0xD4
-	  mr        r3, r29
-	  addi      r4, r2, 0x284C
-	  bl        -0x38A160
-	  cmpwi     r3, 0
-	  bne-      .loc_0xBC
-	  lbz       r0, 0xB8(r31)
-	  ori       r0, r0, 0x2
-	  stb       r0, 0xB8(r31)
-	  b         .loc_0x138
+lbl_804547FC:
+	mr       r3, r30
+	mr       r4, r28
+	mr       r5, r29
+	crclr    6
+	bl       OSReport
+	cmplwi   r28, 0
+	bne      lbl_80454854
+	mr       r3, r29
+	addi     r4, r2, lbl_80520BAC@sda21
+	bl       strcmp
+	cmpwi    r3, 0
+	bne      lbl_8045483C
+	lbz      r0, 0xb8(r31)
+	ori      r0, r0, 2
+	stb      r0, 0xb8(r31)
+	b        lbl_804548B8
 
-	.loc_0xBC:
-	  lwz       r3, 0x8(r31)
-	  mr        r4, r29
-	  lwz       r3, 0x1CC(r3)
-	  bl        -0x23490
-	  stw       r3, 0x80(r31)
-	  b         .loc_0x138
+lbl_8045483C:
+	lwz      r3, 8(r31)
+	mr       r4, r29
+	lwz      r3, 0x1cc(r3)
+	bl       findCreature__Q34Game5P2JST12ObjectSystemCFPCc
+	stw      r3, 0x80(r31)
+	b        lbl_804548B8
 
-	.loc_0xD4:
-	  cmplwi    r28, 0x1
-	  bne-      .loc_0x138
-	  mr        r3, r29
-	  addi      r4, r2, 0x2854
-	  bl        -0x38A1A4
-	  cmpwi     r3, 0
-	  bne-      .loc_0xFC
-	  li        r0, -0x2
-	  sth       r0, 0x84(r31)
-	  b         .loc_0x138
+lbl_80454854:
+	cmplwi   r28, 1
+	bne      lbl_804548B8
+	mr       r3, r29
+	addi     r4, r2, lbl_80520BB4@sda21
+	bl       strcmp
+	cmpwi    r3, 0
+	bne      lbl_8045487C
+	li       r0, -2
+	sth      r0, 0x84(r31)
+	b        lbl_804548B8
 
-	.loc_0xFC:
-	  lwz       r3, 0x80(r31)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x138
-	  lwz       r3, 0x174(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x138
-	  mr        r4, r29
-	  bl        -0x158B4
-	  cmplwi    r3, 0
-	  beq-      .loc_0x130
-	  lhz       r0, 0x38(r3)
-	  sth       r0, 0x84(r31)
-	  b         .loc_0x138
+lbl_8045487C:
+	lwz      r3, 0x80(r31)
+	cmplwi   r3, 0
+	beq      lbl_804548B8
+	lwz      r3, 0x174(r3)
+	cmplwi   r3, 0
+	beq      lbl_804548B8
+	mr       r4, r29
+	bl       getJoint__Q28SysShape5ModelFPc
+	cmplwi   r3, 0
+	beq      lbl_804548B0
+	lhz      r0, 0x38(r3)
+	sth      r0, 0x84(r31)
+	b        lbl_804548B8
 
-	.loc_0x130:
-	  li        r0, -0x1
-	  sth       r0, 0x84(r31)
+lbl_804548B0:
+	li       r0, -1
+	sth      r0, 0x84(r31)
 
-	.loc_0x138:
-	  mr        r3, r29
-	  li        r4, 0
-	  addi      r28, r28, 0x1
-	  bl        -0x38A274
-	  addi      r29, r3, 0x1
+lbl_804548B8:
+	mr       r3, r29
+	li       r4, 0
+	addi     r28, r28, 1
+	bl       strchr
+	addi     r29, r3, 1
 
-	.loc_0x14C:
-	  lwz       r0, 0x14(r1)
-	  cmplw     r28, r0
-	  blt+      .loc_0x7C
+lbl_804548CC:
+	lwz      r0, 0x14(r1)
+	cmplw    r28, r0
+	blt      lbl_804547FC
 
-	.loc_0x158:
-	  lwz       r0, 0x34(r1)
-	  lwz       r31, 0x2C(r1)
-	  lwz       r30, 0x28(r1)
-	  lwz       r29, 0x24(r1)
-	  lwz       r28, 0x20(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_804548D8:
+	lwz      r0, 0x34(r1)
+	lwz      r31, 0x2c(r1)
+	lwz      r30, 0x28(r1)
+	lwz      r29, 0x24(r1)
+	lwz      r28, 0x20(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -388,14 +509,13 @@ void P2JST::ObjectParticleActor::parseUserData_(unsigned long, void const*)
 void P2JST::ObjectParticleActor::JSGSetTranslation(Vec const&)
 {
 	/*
-	.loc_0x0:
-	  lfs       f0, 0x0(r4)
-	  lfs       f1, 0x4(r4)
-	  stfs      f0, 0xBC(r3)
-	  lfs       f0, 0x8(r4)
-	  stfs      f1, 0xC0(r3)
-	  stfs      f0, 0xC4(r3)
-	  blr
+	lfs      f0, 0(r4)
+	lfs      f1, 4(r4)
+	stfs     f0, 0xbc(r3)
+	lfs      f0, 8(r4)
+	stfs     f1, 0xc0(r3)
+	stfs     f0, 0xc4(r3)
+	blr
 	*/
 }
 
@@ -407,14 +527,13 @@ void P2JST::ObjectParticleActor::JSGSetTranslation(Vec const&)
 void P2JST::ObjectParticleActor::JSGGetTranslation(const(Vec*))
 {
 	/*
-	.loc_0x0:
-	  lfs       f0, 0xBC(r3)
-	  lfs       f1, 0xC0(r3)
-	  stfs      f0, 0x0(r4)
-	  lfs       f0, 0xC4(r3)
-	  stfs      f1, 0x4(r4)
-	  stfs      f0, 0x8(r4)
-	  blr
+	lfs      f0, 0xbc(r3)
+	lfs      f1, 0xc0(r3)
+	stfs     f0, 0(r4)
+	lfs      f0, 0xc4(r3)
+	stfs     f1, 4(r4)
+	stfs     f0, 8(r4)
+	blr
 	*/
 }
 
@@ -426,143 +545,142 @@ void P2JST::ObjectParticleActor::JSGGetTranslation(const(Vec*))
 void P2JST::ObjectParticleActor::emit(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  stw       r0, 0x44(r1)
-	  stw       r31, 0x3C(r1)
-	  mr        r31, r3
-	  lwz       r0, 0x7C(r3)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x1DC
-	  lfs       f1, 0x2848(r2)
-	  stfs      f1, 0x2C(r1)
-	  stfs      f1, 0x30(r1)
-	  stfs      f1, 0x34(r1)
-	  lwz       r4, 0x80(r31)
-	  cmplwi    r4, 0
-	  beq-      .loc_0x130
-	  lwz       r12, 0x0(r4)
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f2, 0x8(r1)
-	  lfs       f1, 0xC(r1)
-	  lfs       f0, 0x10(r1)
-	  stfs      f2, 0x2C(r1)
-	  stfs      f1, 0x30(r1)
-	  stfs      f0, 0x34(r1)
-	  lwz       r5, 0x80(r31)
-	  lwz       r4, 0x174(r5)
-	  cmplwi    r4, 0
-	  beq-      .loc_0xB8
-	  lha       r3, 0x84(r31)
-	  extsh.    r0, r3
-	  blt-      .loc_0xB8
-	  mulli     r0, r3, 0x3C
-	  lwz       r3, 0x10(r4)
-	  add       r3, r3, r0
-	  bl        -0x2B120
-	  addi      r4, r31, 0x88
-	  bl        -0x36A6FC
-	  lfs       f0, 0x94(r31)
-	  stfs      f0, 0x2C(r1)
-	  lfs       f0, 0xA4(r31)
-	  stfs      f0, 0x30(r1)
-	  lfs       f0, 0xB4(r31)
-	  stfs      f0, 0x34(r1)
-	  b         .loc_0x178
+	stwu     r1, -0x40(r1)
+	mflr     r0
+	stw      r0, 0x44(r1)
+	stw      r31, 0x3c(r1)
+	mr       r31, r3
+	lwz      r0, 0x7c(r3)
+	cmplwi   r0, 0
+	bne      lbl_80454B0C
+	lfs      f1, lbl_80520BA8@sda21(r2)
+	stfs     f1, 0x2c(r1)
+	stfs     f1, 0x30(r1)
+	stfs     f1, 0x34(r1)
+	lwz      r4, 0x80(r31)
+	cmplwi   r4, 0
+	beq      lbl_80454A60
+	lwz      r12, 0(r4)
+	addi     r3, r1, 8
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f2, 8(r1)
+	lfs      f1, 0xc(r1)
+	lfs      f0, 0x10(r1)
+	stfs     f2, 0x2c(r1)
+	stfs     f1, 0x30(r1)
+	stfs     f0, 0x34(r1)
+	lwz      r5, 0x80(r31)
+	lwz      r4, 0x174(r5)
+	cmplwi   r4, 0
+	beq      lbl_804549E8
+	lha      r3, 0x84(r31)
+	extsh.   r0, r3
+	blt      lbl_804549E8
+	mulli    r0, r3, 0x3c
+	lwz      r3, 0x10(r4)
+	add      r3, r3, r0
+	bl       getWorldMatrix__Q28SysShape5JointFv
+	addi     r4, r31, 0x88
+	bl       PSMTXCopy
+	lfs      f0, 0x94(r31)
+	stfs     f0, 0x2c(r1)
+	lfs      f0, 0xa4(r31)
+	stfs     f0, 0x30(r1)
+	lfs      f0, 0xb4(r31)
+	stfs     f0, 0x34(r1)
+	b        lbl_80454AA8
 
-	.loc_0xB8:
-	  lha       r0, 0x84(r31)
-	  cmpwi     r0, -0x1
-	  bne-      .loc_0xEC
-	  addi      r3, r5, 0x138
-	  addi      r4, r31, 0x88
-	  bl        -0x36A730
-	  lfs       f0, 0x94(r31)
-	  stfs      f0, 0x2C(r1)
-	  lfs       f0, 0xA4(r31)
-	  stfs      f0, 0x30(r1)
-	  lfs       f0, 0xB4(r31)
-	  stfs      f0, 0x34(r1)
-	  b         .loc_0x178
+lbl_804549E8:
+	lha      r0, 0x84(r31)
+	cmpwi    r0, -1
+	bne      lbl_80454A1C
+	addi     r3, r5, 0x138
+	addi     r4, r31, 0x88
+	bl       PSMTXCopy
+	lfs      f0, 0x94(r31)
+	stfs     f0, 0x2c(r1)
+	lfs      f0, 0xa4(r31)
+	stfs     f0, 0x30(r1)
+	lfs      f0, 0xb4(r31)
+	stfs     f0, 0x34(r1)
+	b        lbl_80454AA8
 
-	.loc_0xEC:
-	  lfs       f0, 0xBC(r31)
-	  addi      r3, r31, 0x88
-	  lwz       r6, -0x64AC(r13)
-	  addi      r4, r1, 0x2C
-	  stfs      f0, 0x2C(r1)
-	  addi      r5, r1, 0x20
-	  lfs       f0, 0x2848(r2)
-	  lfs       f1, 0xC0(r31)
-	  stfs      f1, 0x30(r1)
-	  lfs       f1, 0xC4(r31)
-	  stfs      f1, 0x34(r1)
-	  lfs       f1, 0x1C8(r6)
-	  stfs      f0, 0x20(r1)
-	  stfs      f1, 0x24(r1)
-	  stfs      f0, 0x28(r1)
-	  bl        -0x2C1D0
-	  b         .loc_0x178
+lbl_80454A1C:
+	lfs      f0, 0xbc(r31)
+	addi     r3, r31, 0x88
+	lwz      r6, moviePlayer__4Game@sda21(r13)
+	addi     r4, r1, 0x2c
+	stfs     f0, 0x2c(r1)
+	addi     r5, r1, 0x20
+	lfs      f0, lbl_80520BA8@sda21(r2)
+	lfs      f1, 0xc0(r31)
+	stfs     f1, 0x30(r1)
+	lfs      f1, 0xc4(r31)
+	stfs     f1, 0x34(r1)
+	lfs      f1, 0x1c8(r6)
+	stfs     f0, 0x20(r1)
+	stfs     f1, 0x24(r1)
+	stfs     f0, 0x28(r1)
+	bl       "makeTR__7MatrixfFR10Vector3<f>R10Vector3<f>"
+	b        lbl_80454AA8
 
-	.loc_0x130:
-	  lha       r0, 0x84(r31)
-	  cmpwi     r0, -0x2
-	  beq-      .loc_0x1DC
-	  lfs       f0, 0xBC(r31)
-	  addi      r3, r31, 0x88
-	  lwz       r6, -0x64AC(r13)
-	  addi      r4, r1, 0x2C
-	  stfs      f0, 0x2C(r1)
-	  addi      r5, r1, 0x14
-	  lfs       f0, 0xC0(r31)
-	  stfs      f0, 0x30(r1)
-	  lfs       f0, 0xC4(r31)
-	  stfs      f0, 0x34(r1)
-	  lfs       f0, 0x1C8(r6)
-	  stfs      f1, 0x14(r1)
-	  stfs      f0, 0x18(r1)
-	  stfs      f1, 0x1C(r1)
-	  bl        -0x2C21C
+lbl_80454A60:
+	lha      r0, 0x84(r31)
+	cmpwi    r0, -2
+	beq      lbl_80454B0C
+	lfs      f0, 0xbc(r31)
+	addi     r3, r31, 0x88
+	lwz      r6, moviePlayer__4Game@sda21(r13)
+	addi     r4, r1, 0x2c
+	stfs     f0, 0x2c(r1)
+	addi     r5, r1, 0x14
+	lfs      f0, 0xc0(r31)
+	stfs     f0, 0x30(r1)
+	lfs      f0, 0xc4(r31)
+	stfs     f0, 0x34(r1)
+	lfs      f0, 0x1c8(r6)
+	stfs     f1, 0x14(r1)
+	stfs     f0, 0x18(r1)
+	stfs     f1, 0x1c(r1)
+	bl       "makeTR__7MatrixfFR10Vector3<f>R10Vector3<f>"
 
-	.loc_0x178:
-	  lwz       r0, 0x74(r31)
-	  addi      r5, r1, 0x2C
-	  lwz       r3, -0x65E8(r13)
-	  li        r7, 0x7
-	  lbz       r6, 0x78(r31)
-	  rlwinm    r4,r0,0,16,31
-	  bl        -0x99144
-	  stw       r3, 0x7C(r31)
-	  lwz       r3, 0x7C(r31)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x1DC
-	  lwz       r0, 0xF4(r3)
-	  cmplwi    r31, 0
-	  mr        r5, r31
-	  ori       r0, r0, 0x40
-	  stw       r0, 0xF4(r3)
-	  beq-      .loc_0x1C0
-	  addi      r5, r31, 0x70
+lbl_80454AA8:
+	lwz      r0, 0x74(r31)
+	addi     r5, r1, 0x2c
+	lwz      r3, particleMgr@sda21(r13)
+	li       r7, 7
+	lbz      r6, 0x78(r31)
+	clrlwi   r4, r0, 0x10
+	bl       "createDemo__11ParticleMgrFUsR10Vector3<f>UcUc"
+	stw      r3, 0x7c(r31)
+	lwz      r3, 0x7c(r31)
+	cmplwi   r3, 0
+	beq      lbl_80454B0C
+	lwz      r0, 0xf4(r3)
+	cmplwi   r31, 0
+	mr       r5, r31
+	ori      r0, r0, 0x40
+	stw      r0, 0xf4(r3)
+	beq      lbl_80454AF0
+	addi     r5, r31, 0x70
 
-	.loc_0x1C0:
-	  lwz       r4, 0x7C(r31)
-	  addi      r3, r31, 0x88
-	  stw       r5, 0xEC(r4)
-	  lwz       r5, 0x7C(r31)
-	  addi      r4, r5, 0x68
-	  addi      r5, r5, 0xA4
-	  bl        -0x3C0DEC
+lbl_80454AF0:
+	lwz      r4, 0x7c(r31)
+	addi     r3, r31, 0x88
+	stw      r5, 0xec(r4)
+	lwz      r5, 0x7c(r31)
+	addi     r4, r5, 0x68
+	addi     r5, r5, 0xa4
+	bl       "JPASetRMtxTVecfromMtx__FPA4_CfPA4_fPQ29JGeometry8TVec3<f>"
 
-	.loc_0x1DC:
-	  lwz       r0, 0x44(r1)
-	  lwz       r31, 0x3C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
+lbl_80454B0C:
+	lwz      r0, 0x44(r1)
+	lwz      r31, 0x3c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x40
+	blr
 	*/
 }
 
@@ -574,76 +692,75 @@ void P2JST::ObjectParticleActor::emit(void)
 void P2JST::ObjectParticleActor::executeAfter(JPABaseEmitter*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stw       r31, 0x2C(r1)
-	  mr        r31, r4
-	  stw       r30, 0x28(r1)
-	  mr        r30, r3
-	  lwz       r3, 0x80(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0xA4
-	  lwz       r5, 0x174(r3)
-	  cmplwi    r5, 0
-	  beq-      .loc_0x5C
-	  lha       r4, 0x84(r30)
-	  extsh.    r0, r4
-	  blt-      .loc_0x5C
-	  mulli     r0, r4, 0x3C
-	  lwz       r3, 0x10(r5)
-	  add       r3, r3, r0
-	  bl        -0x2B2CC
-	  addi      r4, r30, 0x88
-	  bl        -0x36A8A8
-	  b         .loc_0xCC
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stw      r31, 0x2c(r1)
+	mr       r31, r4
+	stw      r30, 0x28(r1)
+	mr       r30, r3
+	lwz      r3, 0x80(r3)
+	cmplwi   r3, 0
+	beq      lbl_80454BC4
+	lwz      r5, 0x174(r3)
+	cmplwi   r5, 0
+	beq      lbl_80454B7C
+	lha      r4, 0x84(r30)
+	extsh.   r0, r4
+	blt      lbl_80454B7C
+	mulli    r0, r4, 0x3c
+	lwz      r3, 0x10(r5)
+	add      r3, r3, r0
+	bl       getWorldMatrix__Q28SysShape5JointFv
+	addi     r4, r30, 0x88
+	bl       PSMTXCopy
+	b        lbl_80454BEC
 
-	.loc_0x5C:
-	  lha       r0, 0x84(r30)
-	  cmpwi     r0, -0x1
-	  bne-      .loc_0x78
-	  addi      r3, r3, 0x138
-	  addi      r4, r30, 0x88
-	  bl        -0x36A8C4
-	  b         .loc_0xCC
+lbl_80454B7C:
+	lha      r0, 0x84(r30)
+	cmpwi    r0, -1
+	bne      lbl_80454B98
+	addi     r3, r3, 0x138
+	addi     r4, r30, 0x88
+	bl       PSMTXCopy
+	b        lbl_80454BEC
 
-	.loc_0x78:
-	  lwz       r5, -0x64AC(r13)
-	  addi      r3, r30, 0x88
-	  lfs       f0, 0x2848(r2)
-	  addi      r4, r30, 0xBC
-	  lfs       f1, 0x1C8(r5)
-	  addi      r5, r1, 0x14
-	  stfs      f0, 0x14(r1)
-	  stfs      f1, 0x18(r1)
-	  stfs      f0, 0x1C(r1)
-	  bl        -0x2C334
-	  b         .loc_0xCC
+lbl_80454B98:
+	lwz      r5, moviePlayer__4Game@sda21(r13)
+	addi     r3, r30, 0x88
+	lfs      f0, lbl_80520BA8@sda21(r2)
+	addi     r4, r30, 0xbc
+	lfs      f1, 0x1c8(r5)
+	addi     r5, r1, 0x14
+	stfs     f0, 0x14(r1)
+	stfs     f1, 0x18(r1)
+	stfs     f0, 0x1c(r1)
+	bl       "makeTR__7MatrixfFR10Vector3<f>R10Vector3<f>"
+	b        lbl_80454BEC
 
-	.loc_0xA4:
-	  lwz       r5, -0x64AC(r13)
-	  addi      r3, r30, 0x88
-	  lfs       f0, 0x2848(r2)
-	  addi      r4, r30, 0xBC
-	  lfs       f1, 0x1C8(r5)
-	  addi      r5, r1, 0x8
-	  stfs      f0, 0x8(r1)
-	  stfs      f1, 0xC(r1)
-	  stfs      f0, 0x10(r1)
-	  bl        -0x2C360
+lbl_80454BC4:
+	lwz      r5, moviePlayer__4Game@sda21(r13)
+	addi     r3, r30, 0x88
+	lfs      f0, lbl_80520BA8@sda21(r2)
+	addi     r4, r30, 0xbc
+	lfs      f1, 0x1c8(r5)
+	addi     r5, r1, 8
+	stfs     f0, 8(r1)
+	stfs     f1, 0xc(r1)
+	stfs     f0, 0x10(r1)
+	bl       "makeTR__7MatrixfFR10Vector3<f>R10Vector3<f>"
 
-	.loc_0xCC:
-	  addi      r3, r30, 0x88
-	  addi      r4, r31, 0x68
-	  addi      r5, r31, 0xA4
-	  bl        -0x3C0EDC
-	  lwz       r0, 0x34(r1)
-	  lwz       r31, 0x2C(r1)
-	  lwz       r30, 0x28(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_80454BEC:
+	addi     r3, r30, 0x88
+	addi     r4, r31, 0x68
+	addi     r5, r31, 0xa4
+	bl       "JPASetRMtxTVecfromMtx__FPA4_CfPA4_fPQ29JGeometry8TVec3<f>"
+	lwz      r0, 0x34(r1)
+	lwz      r31, 0x2c(r1)
+	lwz      r30, 0x28(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -655,26 +772,25 @@ void P2JST::ObjectParticleActor::executeAfter(JPABaseEmitter*)
 void P2JST::ObjectParticleActor::killEmitter(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r4, 0x7C(r3)
-	  cmplwi    r4, 0
-	  beq-      .loc_0x30
-	  lwz       r3, -0x65E8(r13)
-	  bl        -0x9918C
-	  li        r0, 0
-	  stw       r0, 0x7C(r31)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r4, 0x7c(r3)
+	cmplwi   r4, 0
+	beq      lbl_80454C44
+	lwz      r3, particleMgr@sda21(r13)
+	bl       fade__11ParticleMgrFP14JPABaseEmitter
+	li       r0, 0
+	stw      r0, 0x7c(r31)
 
-	.loc_0x30:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80454C44:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -686,41 +802,40 @@ void P2JST::ObjectParticleActor::killEmitter(void)
 P2JST::ObjectParticleActor::~ObjectParticleActor(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x64
-	  lis       r4, 0x804F
-	  addi      r3, r30, 0x70
-	  subi      r6, r4, 0x2824
-	  li        r4, 0
-	  stw       r6, 0x0(r30)
-	  addi      r5, r6, 0x8C
-	  addi      r0, r6, 0xCC
-	  stw       r5, 0x4(r30)
-	  stw       r0, 0x70(r30)
-	  bl        -0x3C5000
-	  mr        r3, r30
-	  li        r4, 0
-	  bl        -0x26278
-	  extsh.    r0, r31
-	  ble-      .loc_0x64
-	  mr        r3, r30
-	  bl        -0x430C04
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_80454CBC
+	lis      r4, __vt__Q34Game5P2JST19ObjectParticleActor@ha
+	addi     r3, r30, 0x70
+	addi     r6, r4, __vt__Q34Game5P2JST19ObjectParticleActor@l
+	li       r4, 0
+	stw      r6, 0(r30)
+	addi     r5, r6, 0x8c
+	addi     r0, r6, 0xcc
+	stw      r5, 4(r30)
+	stw      r0, 0x70(r30)
+	bl       __dt__18JPAEmitterCallBackFv
+	mr       r3, r30
+	li       r4, 0
+	bl       __dt__Q34Game5P2JST11ObjectActorFv
+	extsh.   r0, r31
+	ble      lbl_80454CBC
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x64:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80454CBC:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -734,17 +849,16 @@ P2JST::ObjectParticleActor::~ObjectParticleActor(void)
 void __sinit_JSTObjectParticleActor_cpp(void)
 {
 	/*
-	.loc_0x0:
-	  lis       r4, 0x8051
-	  li        r0, -0x1
-	  lfs       f0, 0x48B0(r4)
-	  lis       r3, 0x804F
-	  stw       r0, -0x6390(r13)
-	  stfsu     f0, -0x2830(r3)
-	  stfs      f0, -0x638C(r13)
-	  stfs      f0, 0x4(r3)
-	  stfs      f0, 0x8(r3)
-	  blr
+	lis      r4, __float_nan@ha
+	li       r0, -1
+	lfs      f0, __float_nan@l(r4)
+	lis      r3, lbl_804ED7D0@ha
+	stw      r0, lbl_805162F0@sda21(r13)
+	stfsu    f0, lbl_804ED7D0@l(r3)
+	stfs     f0, lbl_805162F4@sda21(r13)
+	stfs     f0, 4(r3)
+	stfs     f0, 8(r3)
+	blr
 	*/
 }
 
@@ -771,9 +885,8 @@ void @4 @Game::P2JST::ObjectParticleActor::parseUserData_(unsigned long,
 void @4 @Game::P2JST::ObjectParticleActor::stop(void)
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x4
-	  b         -0x6A8
+	addi     r3, r3, -4
+	b        stop__Q34Game5P2JST19ObjectParticleActorFv
 	*/
 }
 
@@ -785,9 +898,8 @@ void @4 @Game::P2JST::ObjectParticleActor::stop(void)
 void @4 @Game::P2JST::ObjectParticleActor::update(void)
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x4
-	  b         -0x690
+	addi     r3, r3, -4
+	b        update__Q34Game5P2JST19ObjectParticleActorFv
 	*/
 }
 
@@ -799,9 +911,8 @@ void @4 @Game::P2JST::ObjectParticleActor::update(void)
 void @4 @Game::P2JST::ObjectParticleActor::reset(void)
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x4
-	  b         -0x6E0
+	addi     r3, r3, -4
+	b        reset__Q34Game5P2JST19ObjectParticleActorFv
 	*/
 }
 
@@ -813,9 +924,8 @@ void @4 @Game::P2JST::ObjectParticleActor::reset(void)
 void @112 @Game::P2JST::ObjectParticleActor::executeAfter(JPABaseEmitter*)
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x70
-	  b         -0x204
+	addi     r3, r3, -112
+	b        executeAfter__Q34Game5P2JST19ObjectParticleActorFP14JPABaseEmitter
 	*/
 }
 
@@ -827,8 +937,7 @@ void @112 @Game::P2JST::ObjectParticleActor::executeAfter(JPABaseEmitter*)
 @112 @Game::P2JST::ObjectParticleActor::~ObjectParticleActor(void)
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x70
-	  b         -0xD4
+	addi     r3, r3, -112
+	b        __dt__Q34Game5P2JST19ObjectParticleActorFv
 	*/
 }

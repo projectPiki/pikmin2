@@ -1,6 +1,32 @@
 #include "types.h"
 
 /*
+    Generated from dpostproc
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__Q217JASSimpleWaveBank11TWaveHandle
+    __vt__Q217JASSimpleWaveBank11TWaveHandle:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q217JASSimpleWaveBank11TWaveHandleFv
+        .4byte getWaveInfo__Q217JASSimpleWaveBank11TWaveHandleCFv
+        .4byte getWavePtr__Q217JASSimpleWaveBank11TWaveHandleCFv
+    .global __vt__17JASSimpleWaveBank
+    __vt__17JASSimpleWaveBank:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__17JASSimpleWaveBankFv
+        .4byte getWaveHandle__17JASSimpleWaveBankCFUl
+        .4byte getWaveArc__17JASSimpleWaveBankFi
+        .4byte 0
+        .4byte 0
+        .4byte onDispose__10JASWaveArcFv
+        .4byte onLoadDone__10JASWaveArcFv
+        .4byte onEraseDone__10JASWaveArcFv
+        .4byte 0
+*/
+
+/*
  * --INFO--
  * Address:	8009B6C4
  * Size:	000060
@@ -8,31 +34,30 @@
 JASSimpleWaveBank::JASSimpleWaveBank()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r4, 0x804A
-	  stw       r0, 0x14(r1)
-	  addi      r0, r4, 0x37F8
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  stw       r0, 0x0(r3)
-	  addi      r3, r31, 0x4
-	  bl        0x3AC
-	  lis       r3, 0x804A
-	  li        r0, 0
-	  addi      r4, r3, 0x386C
-	  mr        r3, r31
-	  stw       r4, 0x0(r31)
-	  addi      r4, r4, 0x14
-	  stw       r4, 0x4(r31)
-	  stw       r0, 0x60(r31)
-	  stw       r0, 0x64(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lis      r4, __vt__11JASWaveBank@ha
+	stw      r0, 0x14(r1)
+	addi     r0, r4, __vt__11JASWaveBank@l
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	stw      r0, 0(r3)
+	addi     r3, r31, 4
+	bl       __ct__10JASWaveArcFv
+	lis      r3, __vt__17JASSimpleWaveBank@ha
+	li       r0, 0
+	addi     r4, r3, __vt__17JASSimpleWaveBank@l
+	mr       r3, r31
+	stw      r4, 0(r31)
+	addi     r4, r4, 0x14
+	stw      r4, 4(r31)
+	stw      r0, 0x60(r31)
+	stw      r0, 0x64(r31)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -44,68 +69,67 @@ JASSimpleWaveBank::JASSimpleWaveBank()
 JASSimpleWaveBank::~JASSimpleWaveBank()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  mr        r30, r4
-	  stw       r29, 0x14(r1)
-	  mr.       r29, r3
-	  beq-      .loc_0xB4
-	  lis       r4, 0x804A
-	  lis       r3, 0x800A
-	  addi      r4, r4, 0x386C
-	  stw       r4, 0x0(r29)
-	  addi      r0, r4, 0x14
-	  subi      r4, r3, 0x4808
-	  stw       r0, 0x4(r29)
-	  lwz       r3, 0x60(r29)
-	  bl        0x25FE0
-	  addic.    r0, r29, 0x4
-	  beq-      .loc_0x90
-	  lis       r3, 0x804A
-	  addic.    r31, r29, 0x8
-	  addi      r0, r3, 0x38D8
-	  stw       r0, 0x4(r29)
-	  beq-      .loc_0x90
-	  cmplwi    r31, 0
-	  beq-      .loc_0x90
-	  addic.    r3, r29, 0x14
-	  beq-      .loc_0x7C
-	  li        r4, 0
-	  bl        -0x74FCC
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	mr       r30, r4
+	stw      r29, 0x14(r1)
+	or.      r29, r3, r3
+	beq      lbl_8009B7D8
+	lis      r4, __vt__17JASSimpleWaveBank@ha
+	lis      r3, __dt__Q217JASSimpleWaveBank11TWaveHandleFv@ha
+	addi     r4, r4, __vt__17JASSimpleWaveBank@l
+	stw      r4, 0(r29)
+	addi     r0, r4, 0x14
+	addi     r4, r3, __dt__Q217JASSimpleWaveBank11TWaveHandleFv@l
+	stw      r0, 4(r29)
+	lwz      r3, 0x60(r29)
+	bl       __destroy_new_array
+	addic.   r0, r29, 4
+	beq      lbl_8009B7B4
+	lis      r3, __vt__10JASWaveArc@ha
+	addic.   r31, r29, 8
+	addi     r0, r3, __vt__10JASWaveArc@l
+	stw      r0, 4(r29)
+	beq      lbl_8009B7B4
+	cmplwi   r31, 0
+	beq      lbl_8009B7B4
+	addic.   r3, r29, 0x14
+	beq      lbl_8009B7A0
+	li       r4, 0
+	bl       __dt__10JSUPtrLinkFv
 
-	.loc_0x7C:
-	  cmplwi    r31, 0
-	  beq-      .loc_0x90
-	  mr        r3, r31
-	  li        r4, 0
-	  bl        -0x74F48
+lbl_8009B7A0:
+	cmplwi   r31, 0
+	beq      lbl_8009B7B4
+	mr       r3, r31
+	li       r4, 0
+	bl       __dt__10JSUPtrListFv
 
-	.loc_0x90:
-	  cmplwi    r29, 0
-	  beq-      .loc_0xA4
-	  lis       r3, 0x804A
-	  addi      r0, r3, 0x37F8
-	  stw       r0, 0x0(r29)
+lbl_8009B7B4:
+	cmplwi   r29, 0
+	beq      lbl_8009B7C8
+	lis      r3, __vt__11JASWaveBank@ha
+	addi     r0, r3, __vt__11JASWaveBank@l
+	stw      r0, 0(r29)
 
-	.loc_0xA4:
-	  extsh.    r0, r30
-	  ble-      .loc_0xB4
-	  mr        r3, r29
-	  bl        -0x77720
+lbl_8009B7C8:
+	extsh.   r0, r30
+	ble      lbl_8009B7D8
+	mr       r3, r29
+	bl       __dl__FPv
 
-	.loc_0xB4:
-	  lwz       r0, 0x24(r1)
-	  mr        r3, r29
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8009B7D8:
+	lwz      r0, 0x24(r1)
+	mr       r3, r29
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -117,34 +141,33 @@ JASSimpleWaveBank::~JASSimpleWaveBank()
 JASSimpleWaveBank::TWaveHandle::~TWaveHandle(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r3
-	  beq-      .loc_0x44
-	  lis       r3, 0x804A
-	  addi      r0, r3, 0x3858
-	  stw       r0, 0x0(r31)
-	  beq-      .loc_0x34
-	  lis       r3, 0x804A
-	  addi      r0, r3, 0x37BC
-	  stw       r0, 0x0(r31)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r3, r3
+	beq      lbl_8009B83C
+	lis      r3, __vt__Q217JASSimpleWaveBank11TWaveHandle@ha
+	addi     r0, r3, __vt__Q217JASSimpleWaveBank11TWaveHandle@l
+	stw      r0, 0(r31)
+	beq      lbl_8009B82C
+	lis      r3, __vt__13JASWaveHandle@ha
+	addi     r0, r3, __vt__13JASWaveHandle@l
+	stw      r0, 0(r31)
 
-	.loc_0x34:
-	  extsh.    r0, r4
-	  ble-      .loc_0x44
-	  mr        r3, r31
-	  bl        -0x77784
+lbl_8009B82C:
+	extsh.   r0, r4
+	ble      lbl_8009B83C
+	mr       r3, r31
+	bl       __dl__FPv
 
-	.loc_0x44:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8009B83C:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -156,40 +179,39 @@ JASSimpleWaveBank::TWaveHandle::~TWaveHandle(void)
 void JASSimpleWaveBank::setWaveTableSize(unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lis       r3, 0x800A
-	  subi      r0, r3, 0x4808
-	  lwz       r3, 0x60(r30)
-	  mr        r4, r0
-	  bl        0x25EC8
-	  bl        0x7AC
-	  mulli     r6, r31, 0x30
-	  mr        r4, r3
-	  li        r5, 0
-	  addi      r3, r6, 0x10
-	  bl        -0x77850
-	  lis       r4, 0x800A
-	  lis       r5, 0x800A
-	  subi      r4, r4, 0x4728
-	  mr        r7, r31
-	  subi      r5, r5, 0x4808
-	  li        r6, 0x30
-	  bl        0x2613C
-	  stw       r3, 0x60(r30)
-	  stw       r31, 0x64(r30)
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lis      r3, __dt__Q217JASSimpleWaveBank11TWaveHandleFv@ha
+	addi     r0, r3, __dt__Q217JASSimpleWaveBank11TWaveHandleFv@l
+	lwz      r3, 0x60(r30)
+	mr       r4, r0
+	bl       __destroy_new_array
+	bl       getCurrentHeap__11JASWaveBankFv
+	mulli    r6, r31, 0x30
+	mr       r4, r3
+	li       r5, 0
+	addi     r3, r6, 0x10
+	bl       __nwa__FUlP7JKRHeapi
+	lis      r4, __ct__Q217JASSimpleWaveBank11TWaveHandleFv@ha
+	lis      r5, __dt__Q217JASSimpleWaveBank11TWaveHandleFv@ha
+	addi     r4, r4, __ct__Q217JASSimpleWaveBank11TWaveHandleFv@l
+	mr       r7, r31
+	addi     r5, r5, __dt__Q217JASSimpleWaveBank11TWaveHandleFv@l
+	li       r6, 0x30
+	bl       __construct_new_array
+	stw      r3, 0x60(r30)
+	stw      r31, 0x64(r30)
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -201,16 +223,15 @@ void JASSimpleWaveBank::setWaveTableSize(unsigned long)
 JASSimpleWaveBank::TWaveHandle::TWaveHandle(void)
 {
 	/*
-	.loc_0x0:
-	  lis       r5, 0x804A
-	  lis       r4, 0x804A
-	  addi      r5, r5, 0x37BC
-	  li        r0, 0
-	  stw       r5, 0x0(r3)
-	  addi      r4, r4, 0x3858
-	  stw       r4, 0x0(r3)
-	  stw       r0, 0x2C(r3)
-	  blr
+	lis      r5, __vt__13JASWaveHandle@ha
+	lis      r4, __vt__Q217JASSimpleWaveBank11TWaveHandle@ha
+	addi     r5, r5, __vt__13JASWaveHandle@l
+	li       r0, 0
+	stw      r5, 0(r3)
+	addi     r4, r4, __vt__Q217JASSimpleWaveBank11TWaveHandle@l
+	stw      r4, 0(r3)
+	stw      r0, 0x2c(r3)
+	blr
 	*/
 }
 
@@ -222,18 +243,17 @@ JASSimpleWaveBank::TWaveHandle::TWaveHandle(void)
 void JASSimpleWaveBank::getWaveHandle(unsigned long) const
 {
 	/*
-	.loc_0x0:
-	  lwz       r0, 0x64(r3)
-	  cmplw     r4, r0
-	  blt-      .loc_0x14
-	  li        r3, 0
-	  blr
+	lwz      r0, 0x64(r3)
+	cmplw    r4, r0
+	blt      lbl_8009B910
+	li       r3, 0
+	blr
 
-	.loc_0x14:
-	  mulli     r0, r4, 0x30
-	  lwz       r3, 0x60(r3)
-	  add       r3, r3, r0
-	  blr
+lbl_8009B910:
+	mulli    r0, r4, 0x30
+	lwz      r3, 0x60(r3)
+	add      r3, r3, r0
+	blr
 	*/
 }
 
@@ -245,44 +265,43 @@ void JASSimpleWaveBank::getWaveHandle(unsigned long) const
 void JASSimpleWaveBank::setWaveInfo(unsigned long, const JASWaveInfo&)
 {
 	/*
-	.loc_0x0:
-	  mulli     r11, r4, 0x30
-	  lwz       r0, 0x60(r3)
-	  lbz       r8, 0x0(r5)
-	  addi      r6, r3, 0x4C
-	  lbz       r7, 0x1(r5)
-	  addi      r4, r3, 0x8
-	  addi      r10, r11, 0x4
-	  lfs       f0, 0x4(r5)
-	  add       r10, r0, r10
-	  lwz       r0, 0x8(r5)
-	  stb       r8, 0x0(r10)
-	  lwz       r9, 0xC(r5)
-	  stb       r7, 0x1(r10)
-	  lwz       r8, 0x10(r5)
-	  stfs      f0, 0x4(r10)
-	  lwz       r7, 0x14(r5)
-	  stw       r0, 0x8(r10)
-	  lwz       r0, 0x18(r5)
-	  stw       r9, 0xC(r10)
-	  lwz       r9, 0x1C(r5)
-	  stw       r8, 0x10(r10)
-	  lha       r8, 0x20(r5)
-	  stw       r7, 0x14(r10)
-	  lha       r7, 0x22(r5)
-	  stw       r0, 0x18(r10)
-	  lwz       r0, 0x24(r5)
-	  stw       r9, 0x1C(r10)
-	  sth       r8, 0x20(r10)
-	  sth       r7, 0x22(r10)
-	  stw       r0, 0x24(r10)
-	  lwz       r0, 0x60(r3)
-	  add       r5, r0, r11
-	  stw       r6, 0x28(r5)
-	  lwz       r0, 0x60(r3)
-	  add       r3, r0, r11
-	  stw       r4, 0x2C(r3)
-	  blr
+	mulli    r11, r4, 0x30
+	lwz      r0, 0x60(r3)
+	lbz      r8, 0(r5)
+	addi     r6, r3, 0x4c
+	lbz      r7, 1(r5)
+	addi     r4, r3, 8
+	addi     r10, r11, 4
+	lfs      f0, 4(r5)
+	add      r10, r0, r10
+	lwz      r0, 8(r5)
+	stb      r8, 0(r10)
+	lwz      r9, 0xc(r5)
+	stb      r7, 1(r10)
+	lwz      r8, 0x10(r5)
+	stfs     f0, 4(r10)
+	lwz      r7, 0x14(r5)
+	stw      r0, 8(r10)
+	lwz      r0, 0x18(r5)
+	stw      r9, 0xc(r10)
+	lwz      r9, 0x1c(r5)
+	stw      r8, 0x10(r10)
+	lha      r8, 0x20(r5)
+	stw      r7, 0x14(r10)
+	lha      r7, 0x22(r5)
+	stw      r0, 0x18(r10)
+	lwz      r0, 0x24(r5)
+	stw      r9, 0x1c(r10)
+	sth      r8, 0x20(r10)
+	sth      r7, 0x22(r10)
+	stw      r0, 0x24(r10)
+	lwz      r0, 0x60(r3)
+	add      r5, r0, r11
+	stw      r6, 0x28(r5)
+	lwz      r0, 0x60(r3)
+	add      r3, r0, r11
+	stw      r4, 0x2c(r3)
+	blr
 	*/
 }
 
@@ -294,17 +313,16 @@ void JASSimpleWaveBank::setWaveInfo(unsigned long, const JASWaveInfo&)
 void JASSimpleWaveBank::getWaveArc(int)
 {
 	/*
-	.loc_0x0:
-	  cmpwi     r4, 0
-	  beq-      .loc_0x10
-	  li        r3, 0
-	  blr
+	cmpwi    r4, 0
+	beq      lbl_8009B9C4
+	li       r3, 0
+	blr
 
-	.loc_0x10:
-	  cmplwi    r3, 0
-	  beqlr-
-	  addi      r3, r3, 0x4
-	  blr
+lbl_8009B9C4:
+	cmplwi   r3, 0
+	beqlr
+	addi     r3, r3, 4
+	blr
 	*/
 }
 
@@ -316,9 +334,8 @@ void JASSimpleWaveBank::getWaveArc(int)
 void JASSimpleWaveBank::TWaveHandle::getWaveInfo() const
 {
 	/*
-	.loc_0x0:
-	  addi      r3, r3, 0x4
-	  blr
+	addi     r3, r3, 4
+	blr
 	*/
 }
 
@@ -330,18 +347,17 @@ void JASSimpleWaveBank::TWaveHandle::getWaveInfo() const
 void JASSimpleWaveBank::TWaveHandle::getWavePtr() const
 {
 	/*
-	.loc_0x0:
-	  lwz       r4, 0x2C(r3)
-	  lwz       r4, 0x38(r4)
-	  cmplwi    r4, 0
-	  bne-      .loc_0x18
-	  li        r3, 0
-	  blr
+	lwz      r4, 0x2c(r3)
+	lwz      r4, 0x38(r4)
+	cmplwi   r4, 0
+	bne      lbl_8009B9F4
+	li       r3, 0
+	blr
 
-	.loc_0x18:
-	  lwz       r0, 0xC(r3)
-	  add       r3, r4, r0
-	  blr
+lbl_8009B9F4:
+	lwz      r0, 0xc(r3)
+	add      r3, r4, r0
+	blr
 	*/
 }
 

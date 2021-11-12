@@ -1,6 +1,269 @@
 #include "types.h"
 
 /*
+    Generated from dpostproc
+
+    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
+    .4byte __sinit_JUTException_cpp
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_80473C18
+    lbl_80473C18:
+        .asciz "SYSTEM RESET"
+        .skip 3
+    .global lbl_80473C28
+    lbl_80473C28:
+        .asciz "MACHINE CHECK"
+        .skip 2
+    .global lbl_80473C38
+    lbl_80473C38:
+        .asciz "EXTERNAL INTERRUPT"
+        .skip 1
+    .global lbl_80473C4C
+    lbl_80473C4C:
+        .asciz "ALIGNMENT"
+        .skip 2
+    .global lbl_80473C58
+    lbl_80473C58:
+        .asciz "FLOATING POINT"
+        .skip 1
+    .global lbl_80473C68
+    lbl_80473C68:
+        .asciz "DECREMENTER"
+    .global lbl_80473C74
+    lbl_80473C74:
+        .asciz "SYSTEM CALL"
+    .global lbl_80473C80
+    lbl_80473C80:
+        .asciz "PERFORMACE MONITOR"
+        .skip 1
+    .global lbl_80473C94
+    lbl_80473C94:
+        .asciz "BREAK POINT"
+    .global lbl_80473CA0
+    lbl_80473CA0:
+        .asciz "SYSTEM INTERRUPT"
+        .skip 3
+    .global lbl_80473CB4
+    lbl_80473CB4:
+        .asciz "THERMAL INTERRUPT"
+        .skip 2
+    .global lbl_80473CC8
+    lbl_80473CC8:
+        .asciz "PROTECTION"
+        .skip 1
+    .global lbl_80473CD4
+    lbl_80473CD4:
+        .asciz "%s in \"%s\" on line %d\n"
+        .skip 1
+        .asciz "F%02d: Nan      "
+        .skip 3
+        .asciz "F%02d:+Inf     "
+        .asciz "F%02d:-Inf     "
+        .asciz "F%02d: 0.0      "
+        .skip 3
+        .asciz "F%02d:%+.3E"
+        .asciz "-------------------------------- FPR\n"
+        .skip 2
+        .asciz "-------------------------------- TRACE\n"
+        .asciz "Address:   BackChain   LR save\n"
+        .asciz "Suppress trace.\n"
+        .skip 3
+        .asciz "%08X:  %08X    %08X\n"
+        .skip 3
+        .asciz "CONTEXT:%08XH  (%s EXCEPTION)\n"
+        .skip 1
+        .asciz "CONTEXT:%08XH\n"
+        .skip 1
+        .asciz " FPE: Invalid operation\n"
+        .skip 3
+        .asciz " Infinity - Infinity\n"
+        .skip 2
+        .asciz " Infinity / Infinity\n"
+        .skip 2
+        .asciz " Infinity * 0\n"
+        .skip 1
+        .asciz " Invalid compare\n"
+        .skip 2
+        .asciz " Software request\n"
+        .skip 1
+        .asciz " Invalid square root\n"
+        .skip 2
+        .asciz " Invalid integer convert\n"
+        .skip 2
+        .asciz " FPE: Overflow\n"
+        .asciz " FPE: Underflow\n"
+        .skip 3
+        .asciz " FPE: Zero division\n"
+        .skip 3
+        .asciz " FPE: Inexact result\n"
+        .skip 2
+        .asciz "SRR0:   %08XH   SRR1:%08XH\n"
+        .asciz "DSISR:  %08XH   DAR: %08XH\n"
+        .asciz "-------------------------------- GPR\n"
+        .skip 2
+        .asciz "R%02d:%08XH  R%02d:%08XH  R%02d:%08XH\n"
+        .skip 1
+        .asciz "R%02d:%08XH  R%02d:%08XH\n"
+        .skip 2
+    .global lbl_80473FBC
+    lbl_80473FBC:
+        .asciz "%s %s:%x section:%d\n"
+        .skip 3
+        .asciz "-------------------------------- GPRMAP\n"
+        .skip 3
+        .asciz "R%02d: %08XH"
+        .skip 3
+        .asciz "  no information\n"
+        .skip 2
+        .asciz "  no register which seem to address.\n"
+        .skip 2
+        .asciz "-------------------------------- SRR0MAP\n"
+        .skip 2
+        .asciz "SRR0: %08XH"
+        .asciz " MSR:%08XH\t FPSCR:%08XH\n"
+        .skip 3
+        .asciz "******** EXCEPTION OCCURRED! ********\nFrameMemory:%XH\n"
+        .skip 1
+        .asciz "******** USER HALT ********\nFrameMemory:%XH\n"
+        .skip 3
+        .asciz "--------------------------------\n"
+        .skip 2
+    .global lbl_8047412C
+    lbl_8047412C:
+        .asciz "  [%08X]: .%s [%08X: %XH]\n  %s\n"
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global sMessageQueue__12JUTException
+    sMessageQueue__12JUTException:
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+    .global c3bcnt
+    c3bcnt:
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+    .global sCpuExpName__12JUTException
+    sCpuExpName__12JUTException:
+        .4byte lbl_80473C18
+        .4byte lbl_80473C28
+        .4byte lbl_80516610
+        .4byte lbl_80516614
+        .4byte lbl_80473C38
+        .4byte lbl_80473C4C
+        .4byte lbl_80516618
+        .4byte lbl_80473C58
+        .4byte lbl_80473C68
+        .4byte lbl_80473C74
+        .4byte lbl_80516620
+        .4byte lbl_80473C80
+        .4byte lbl_80473C94
+        .4byte lbl_80473CA0
+        .4byte lbl_80473CB4
+        .4byte lbl_80473CC8
+        .4byte lbl_80473C58
+    .global __vt__12JUTException
+    __vt__12JUTException:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__12JUTExceptionFv
+        .4byte run__12JUTExceptionFv
+        .4byte 0
+
+    .section .bss  # 0x804EFC20 - 0x8051467C
+    .global sMapFileList__12JUTException
+    sMapFileList__12JUTException:
+        .skip 0xC
+
+    .section .sdata, "wa"  # 0x80514680 - 0x80514D80
+    .global sMessageBuffer__12JUTException
+    sMessageBuffer__12JUTException:
+        .4byte 0
+
+    .section .sbss # 0x80514D80 - 0x80516360
+    .global sErrorManager__12JUTException
+    sErrorManager__12JUTException:
+        .skip 0x4
+    .global sPreUserCallback__12JUTException
+    sPreUserCallback__12JUTException:
+        .skip 0x4
+    .global sPostUserCallback__12JUTException
+    sPostUserCallback__12JUTException:
+        .skip 0x4
+    .global sConsoleBuffer__12JUTException
+    sConsoleBuffer__12JUTException:
+        .skip 0x4
+    .global sConsoleBufferSize__12JUTException
+    sConsoleBufferSize__12JUTException:
+        .skip 0x4
+    .global sConsole__12JUTException
+    sConsole__12JUTException:
+        .skip 0x4
+    .global msr__12JUTException
+    msr__12JUTException:
+        .skip 0x4
+    .global fpscr__12JUTException
+    fpscr__12JUTException:
+        .skip 0x4
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_80516610
+    lbl_80516610:
+        .asciz "DSI"
+    .global lbl_80516614
+    lbl_80516614:
+        .asciz "ISI"
+    .global lbl_80516618
+    lbl_80516618:
+        .asciz "PROGRAM"
+    .global lbl_80516620
+    lbl_80516620:
+        .asciz "TRACE"
+        .skip 2
+    .global lbl_80516628
+    lbl_80516628:
+        .float 0.0
+    .global lbl_8051662C
+    lbl_8051662C:
+        .4byte 0x20000000
+    .global lbl_80516630
+    lbl_80516630:
+        .4byte 0x0A000000
+    .global lbl_80516634
+    lbl_80516634:
+        .4byte 0x20534E61
+        .4byte 0x4E0A0000
+    .global lbl_8051663C
+    lbl_8051663C:
+        .4byte 0x2030202F
+        .4byte 0x20300A00
+    .global lbl_80516644
+    lbl_80516644:
+        .4byte 0x00000000
+    .global lbl_80516648
+    lbl_80516648:
+        .asciz ".map"
+        .skip 3
+    .global lbl_80516650
+    lbl_80516650:
+        .float 10.0
+    .global lbl_80516654
+    lbl_80516654:
+        .float 6.0
+*/
+
+/*
  * --INFO--
  * Address:	........
  * Size:	0000E4
@@ -18,79 +281,78 @@ JUTException::JUTException(JUTDirectPrint*)
 void JUTException::create(JUTDirectPrint*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lwz       r0, -0x7770(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0xF4
-	  lwz       r4, -0x77D8(r13)
-	  li        r3, 0xA4
-	  li        r5, 0
-	  bl        -0x63FC
-	  mr.       r31, r3
-	  beq-      .loc_0xE8
-	  li        r4, 0x4000
-	  li        r5, 0x10
-	  li        r6, 0
-	  bl        -0x4D1C
-	  lis       r3, 0x804A
-	  lis       r4, 0x8003
-	  addi      r0, r3, 0x42C
-	  stw       r0, 0x0(r31)
-	  li        r3, 0x2
-	  subi      r4, r4, 0x5AC4
-	  stw       r30, 0x80(r31)
-	  bl        0xC3524
-	  lis       r4, 0x8003
-	  li        r3, 0x3
-	  subi      r4, r4, 0x5AC4
-	  bl        0xC3514
-	  lis       r4, 0x8003
-	  li        r3, 0x6
-	  subi      r4, r4, 0x5AC4
-	  bl        0xC3504
-	  lis       r4, 0x8003
-	  li        r3, 0x5
-	  subi      r4, r4, 0x5AC4
-	  bl        0xC34F4
-	  lis       r4, 0x8003
-	  li        r3, 0xF
-	  subi      r4, r4, 0x5AC4
-	  bl        0xC34E4
-	  li        r3, 0
-	  bl        0x424
-	  li        r5, 0
-	  li        r4, -0x1
-	  stw       r5, -0x776C(r13)
-	  li        r3, 0xA
-	  li        r0, 0x1F
-	  stw       r5, -0x7768(r13)
-	  stw       r5, 0x84(r31)
-	  stw       r4, 0x88(r31)
-	  stw       r3, 0x8C(r31)
-	  stw       r3, 0x90(r31)
-	  stw       r4, 0x94(r31)
-	  stw       r5, 0x98(r31)
-	  stw       r0, 0x9C(r31)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lwz      r0, sErrorManager__12JUTException@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_8002A400
+	lwz      r4, sSystemHeap__7JKRHeap@sda21(r13)
+	li       r3, 0xa4
+	li       r5, 0
+	bl       __nw__FUlP7JKRHeapi
+	or.      r31, r3, r3
+	beq      lbl_8002A3F4
+	li       r4, 0x4000
+	li       r5, 0x10
+	li       r6, 0
+	bl       __ct__9JKRThreadFUlii
+	lis      r3, __vt__12JUTException@ha
+	lis      r4, errorHandler__12JUTExceptionFUsP9OSContextUlUl@ha
+	addi     r0, r3, __vt__12JUTException@l
+	stw      r0, 0(r31)
+	li       r3, 2
+	addi     r4, r4, errorHandler__12JUTExceptionFUsP9OSContextUlUl@l
+	stw      r30, 0x80(r31)
+	bl       OSSetErrorHandler
+	lis      r4, errorHandler__12JUTExceptionFUsP9OSContextUlUl@ha
+	li       r3, 3
+	addi     r4, r4, errorHandler__12JUTExceptionFUsP9OSContextUlUl@l
+	bl       OSSetErrorHandler
+	lis      r4, errorHandler__12JUTExceptionFUsP9OSContextUlUl@ha
+	li       r3, 6
+	addi     r4, r4, errorHandler__12JUTExceptionFUsP9OSContextUlUl@l
+	bl       OSSetErrorHandler
+	lis      r4, errorHandler__12JUTExceptionFUsP9OSContextUlUl@ha
+	li       r3, 5
+	addi     r4, r4, errorHandler__12JUTExceptionFUsP9OSContextUlUl@l
+	bl       OSSetErrorHandler
+	lis      r4, errorHandler__12JUTExceptionFUsP9OSContextUlUl@ha
+	li       r3, 0xf
+	addi     r4, r4, errorHandler__12JUTExceptionFUsP9OSContextUlUl@l
+	bl       OSSetErrorHandler
+	li       r3, 0
+	bl       setFPException__12JUTExceptionFUl
+	li       r5, 0
+	li       r4, -1
+	stw      r5, sPreUserCallback__12JUTException@sda21(r13)
+	li       r3, 0xa
+	li       r0, 0x1f
+	stw      r5, sPostUserCallback__12JUTException@sda21(r13)
+	stw      r5, 0x84(r31)
+	stw      r4, 0x88(r31)
+	stw      r3, 0x8c(r31)
+	stw      r3, 0x90(r31)
+	stw      r4, 0x94(r31)
+	stw      r5, 0x98(r31)
+	stw      r0, 0x9c(r31)
 
-	.loc_0xE8:
-	  stw       r31, -0x7770(r13)
-	  lwz       r3, 0x2C(r31)
-	  bl        0xC80F8
+lbl_8002A3F4:
+	stw      r31, sErrorManager__12JUTException@sda21(r13)
+	lwz      r3, 0x2c(r31)
+	bl       OSResumeThread
 
-	.loc_0xF4:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r3, -0x7770(r13)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8002A400:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r3, sErrorManager__12JUTException@sda21(r13)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -102,87 +364,86 @@ void JUTException::create(JUTDirectPrint*)
 void JUTException::run()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stmw      r25, 0x14(r1)
-	  mr        r31, r3
-	  bl        0xAA128
-	  li        r0, -0x901
-	  and       r3, r3, r0
-	  bl        0xAA124
-	  lis       r3, 0x804A
-	  subi      r4, r13, 0x7FD0
-	  addi      r3, r3, 0x3A8
-	  li        r5, 0x1
-	  bl        0xC506C
-	  lis       r3, 0x804A
-	  addi      r30, r3, 0x3A8
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stmw     r25, 0x14(r1)
+	mr       r31, r3
+	bl       PPCMfmsr
+	li       r0, -2305
+	and      r3, r3, r0
+	bl       PPCMtmsr
+	lis      r3, sMessageQueue__12JUTException@ha
+	addi     r4, r13, sMessageBuffer__12JUTException@sda21
+	addi     r3, r3, sMessageQueue__12JUTException@l
+	li       r5, 1
+	bl       OSInitMessageQueue
+	lis      r3, sMessageQueue__12JUTException@ha
+	addi     r30, r3, sMessageQueue__12JUTException@l
 
-	.loc_0x40:
-	  mr        r3, r30
-	  addi      r4, r1, 0x8
-	  li        r5, 0x1
-	  bl        0xC517C
-	  li        r3, 0
-	  bl        0xA65EC
-	  li        r3, 0
-	  bl        0xA6628
-	  lwz       r3, 0x8(r1)
-	  lhz       r28, 0x4(r3)
-	  lwz       r29, 0x0(r3)
-	  cmplwi    r28, 0x11
-	  lwz       r27, 0x8(r3)
-	  lwz       r26, 0xC(r3)
-	  lwz       r25, 0x10(r3)
-	  bge-      .loc_0x88
-	  lwz       r0, 0x4(r27)
-	  stw       r0, 0xA0(r31)
+lbl_8002A45C:
+	mr       r3, r30
+	addi     r4, r1, 8
+	li       r5, 1
+	bl       OSReceiveMessage
+	li       r3, 0
+	bl       VISetPreRetraceCallback
+	li       r3, 0
+	bl       VISetPostRetraceCallback
+	lwz      r3, 8(r1)
+	lhz      r28, 4(r3)
+	lwz      r29, 0(r3)
+	cmplwi   r28, 0x11
+	lwz      r27, 8(r3)
+	lwz      r26, 0xc(r3)
+	lwz      r25, 0x10(r3)
+	bge      lbl_8002A4A4
+	lwz      r0, 4(r27)
+	stw      r0, 0xa0(r31)
 
-	.loc_0x88:
-	  bl        0xA7C1C
-	  stw       r3, 0x7C(r31)
-	  lwz       r0, 0x7C(r31)
-	  cmplwi    r0, 0
-	  bne-      .loc_0xA4
-	  lwz       r3, -0x7770(r13)
-	  bl        0x21F0
+lbl_8002A4A4:
+	bl       VIGetCurrentFrameBuffer
+	stw      r3, 0x7c(r31)
+	lwz      r0, 0x7c(r31)
+	cmplwi   r0, 0
+	bne      lbl_8002A4C0
+	lwz      r3, sErrorManager__12JUTException@sda21(r13)
+	bl       createFB__12JUTExceptionFv
 
-	.loc_0xA4:
-	  lwz       r3, -0x7770(r13)
-	  lwz       r4, 0x7C(r31)
-	  lwz       r3, 0x80(r3)
-	  lhz       r5, 0x4(r3)
-	  lhz       r6, 0x6(r3)
-	  bl        -0x548
-	  cmplwi    r29, 0
-	  beq-      .loc_0xE0
-	  mr        r12, r29
-	  mr        r3, r28
-	  mr        r4, r27
-	  mr        r5, r26
-	  mr        r6, r25
-	  mtctr     r12
-	  bctrl
+lbl_8002A4C0:
+	lwz      r3, sErrorManager__12JUTException@sda21(r13)
+	lwz      r4, 0x7c(r31)
+	lwz      r3, 0x80(r3)
+	lhz      r5, 4(r3)
+	lhz      r6, 6(r3)
+	bl       changeFrameBuffer__14JUTDirectPrintFPvUsUs
+	cmplwi   r29, 0
+	beq      lbl_8002A4FC
+	mr       r12, r29
+	mr       r3, r28
+	mr       r4, r27
+	mr       r5, r26
+	mr       r6, r25
+	mtctr    r12
+	bctrl
 
-	.loc_0xE0:
-	  bl        0xC473C
-	  bl        0xA7BC0
-	  stw       r3, 0x7C(r31)
-	  lwz       r3, -0x7770(r13)
-	  lwz       r4, 0x7C(r31)
-	  lwz       r3, 0x80(r3)
-	  lhz       r5, 0x4(r3)
-	  lhz       r6, 0x6(r3)
-	  bl        -0x590
-	  lwz       r3, -0x7770(r13)
-	  mr        r4, r28
-	  mr        r5, r27
-	  mr        r6, r26
-	  mr        r7, r25
-	  bl        0x1C0C
-	  b         .loc_0x40
+lbl_8002A4FC:
+	bl       OSDisableInterrupts
+	bl       VIGetCurrentFrameBuffer
+	stw      r3, 0x7c(r31)
+	lwz      r3, sErrorManager__12JUTException@sda21(r13)
+	lwz      r4, 0x7c(r31)
+	lwz      r3, 0x80(r3)
+	lhz      r5, 4(r3)
+	lhz      r6, 6(r3)
+	bl       changeFrameBuffer__14JUTDirectPrintFPvUsUs
+	lwz      r3, sErrorManager__12JUTException@sda21(r13)
+	mr       r4, r28
+	mr       r5, r27
+	mr       r6, r26
+	mr       r7, r25
+	bl       printContext__12JUTExceptionFUsP9OSContextUlUl
+	b        lbl_8002A45C
 	*/
 }
 
@@ -284,121 +545,120 @@ void JUTException::panic_f_va(const char*, int, const char*, __va_list_struct*)
 void JUTException::panic_f(const char*, int, const char*, ...)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x190(r1)
-	  mflr      r0
-	  stw       r0, 0x194(r1)
-	  stw       r31, 0x18C(r1)
-	  mr        r31, r4
-	  stw       r30, 0x188(r1)
-	  mr        r30, r3
-	  stw       r29, 0x184(r1)
-	  bne-      cr1, .loc_0x44
-	  stfd      f1, 0x28(r1)
-	  stfd      f2, 0x30(r1)
-	  stfd      f3, 0x38(r1)
-	  stfd      f4, 0x40(r1)
-	  stfd      f5, 0x48(r1)
-	  stfd      f6, 0x50(r1)
-	  stfd      f7, 0x58(r1)
-	  stfd      f8, 0x60(r1)
+	stwu     r1, -0x190(r1)
+	mflr     r0
+	stw      r0, 0x194(r1)
+	stw      r31, 0x18c(r1)
+	mr       r31, r4
+	stw      r30, 0x188(r1)
+	mr       r30, r3
+	stw      r29, 0x184(r1)
+	bne      cr1, lbl_8002A684
+	stfd     f1, 0x28(r1)
+	stfd     f2, 0x30(r1)
+	stfd     f3, 0x38(r1)
+	stfd     f4, 0x40(r1)
+	stfd     f5, 0x48(r1)
+	stfd     f6, 0x50(r1)
+	stfd     f7, 0x58(r1)
+	stfd     f8, 0x60(r1)
 
-	.loc_0x44:
-	  addi      r11, r1, 0x198
-	  addi      r0, r1, 0x8
-	  lis       r12, 0x300
-	  stw       r3, 0x8(r1)
-	  addi      r29, r1, 0x68
-	  addi      r3, r1, 0x74
-	  stw       r4, 0xC(r1)
-	  li        r4, 0xFF
-	  stw       r6, 0x14(r1)
-	  mr        r6, r29
-	  stw       r5, 0x10(r1)
-	  stw       r7, 0x18(r1)
-	  stw       r8, 0x1C(r1)
-	  stw       r9, 0x20(r1)
-	  stw       r10, 0x24(r1)
-	  stw       r12, 0x68(r1)
-	  stw       r11, 0x6C(r1)
-	  stw       r0, 0x70(r1)
-	  bl        0x9CF98
-	  lwz       r0, -0x7770(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0xB0
-	  mr        r3, r30
-	  mr        r4, r31
-	  addi      r5, r1, 0x74
-	  crclr     6, 0x6
-	  bl        0xC3080
+lbl_8002A684:
+	addi     r11, r1, 0x198
+	addi     r0, r1, 8
+	lis      r12, 0x300
+	stw      r3, 8(r1)
+	addi     r29, r1, 0x68
+	addi     r3, r1, 0x74
+	stw      r4, 0xc(r1)
+	li       r4, 0xff
+	stw      r6, 0x14(r1)
+	mr       r6, r29
+	stw      r5, 0x10(r1)
+	stw      r7, 0x18(r1)
+	stw      r8, 0x1c(r1)
+	stw      r9, 0x20(r1)
+	stw      r10, 0x24(r1)
+	stw      r12, 0x68(r1)
+	stw      r11, 0x6c(r1)
+	stw      r0, 0x70(r1)
+	bl       vsnprintf
+	lwz      r0, sErrorManager__12JUTException@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_8002A6F0
+	mr       r3, r30
+	mr       r4, r31
+	addi     r5, r1, 0x74
+	crclr    6
+	bl       OSPanic
 
-	.loc_0xB0:
-	  bl        0xC2910
-	  lis       r5, 0x804F
-	  mr        r4, r3
-	  addi      r3, r5, 0x128
-	  li        r5, 0x2C8
-	  bl        -0x25568
-	  bl        0xC2A5C
-	  lwz       r7, -0x7770(r13)
-	  lis       r6, 0x804F
-	  lis       r4, 0x804F
-	  li        r5, 0xFF
-	  stw       r3, 0xA0(r7)
-	  addi      r6, r6, 0x108
-	  li        r0, 0
-	  addi      r3, r4, 0x128
-	  lwz       r7, -0x775C(r13)
-	  lwz       r4, -0x776C(r13)
-	  cmplwi    r7, 0
-	  sth       r5, 0x4(r6)
-	  stw       r4, 0x0(r6)
-	  stw       r3, 0x8(r6)
-	  stw       r0, 0xC(r6)
-	  stw       r0, 0x10(r6)
-	  beq-      .loc_0x120
-	  beq-      .loc_0x13C
-	  lwz       r0, 0x58(r7)
-	  rlwinm.   r0,r0,0,30,30
-	  bne-      .loc_0x13C
+lbl_8002A6F0:
+	bl       OSGetCurrentContext
+	lis      r5, context$2483@ha
+	mr       r4, r3
+	addi     r3, r5, context$2483@l
+	li       r5, 0x2c8
+	bl       memcpy
+	bl       OSGetStackPointer
+	lwz      r7, sErrorManager__12JUTException@sda21(r13)
+	lis      r6, exCallbackObject@ha
+	lis      r4, context$2483@ha
+	li       r5, 0xff
+	stw      r3, 0xa0(r7)
+	addi     r6, r6, exCallbackObject@l
+	li       r0, 0
+	addi     r3, r4, context$2483@l
+	lwz      r7, sConsole__12JUTException@sda21(r13)
+	lwz      r4, sPreUserCallback__12JUTException@sda21(r13)
+	cmplwi   r7, 0
+	sth      r5, 4(r6)
+	stw      r4, 0(r6)
+	stw      r3, 8(r6)
+	stw      r0, 0xc(r6)
+	stw      r0, 0x10(r6)
+	beq      lbl_8002A760
+	beq      lbl_8002A77C
+	lwz      r0, 0x58(r7)
+	rlwinm.  r0, r0, 0, 0x1e, 0x1e
+	bne      lbl_8002A77C
 
-	.loc_0x120:
-	  lis       r3, 0x8047
-	  mr        r5, r30
-	  addi      r3, r3, 0x3CD4
-	  mr        r6, r31
-	  addi      r4, r1, 0x74
-	  crclr     6, 0x6
-	  bl        0xC2F74
+lbl_8002A760:
+	lis      r3, lbl_80473CD4@ha
+	mr       r5, r30
+	addi     r3, r3, lbl_80473CD4@l
+	mr       r6, r31
+	addi     r4, r1, 0x74
+	crclr    6
+	bl       OSReport
 
-	.loc_0x13C:
-	  lwz       r3, -0x775C(r13)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x164
-	  lis       r4, 0x8047
-	  mr        r6, r30
-	  addi      r4, r4, 0x3CD4
-	  mr        r7, r31
-	  addi      r5, r1, 0x74
-	  crclr     6, 0x6
-	  bl        -0x1E00
+lbl_8002A77C:
+	lwz      r3, sConsole__12JUTException@sda21(r13)
+	cmplwi   r3, 0
+	beq      lbl_8002A7A4
+	lis      r4, lbl_80473CD4@ha
+	mr       r6, r30
+	addi     r4, r4, lbl_80473CD4@l
+	mr       r7, r31
+	addi     r5, r1, 0x74
+	crclr    6
+	bl       print_f__10JUTConsoleFPCce
 
-	.loc_0x164:
-	  lis       r3, 0x804A
-	  lis       r4, 0x804F
-	  addi      r3, r3, 0x3A8
-	  li        r5, 0x1
-	  addi      r4, r4, 0x108
-	  bl        0xC4D64
-	  bl        0xC7208
-	  bl        0xC7FBC
-	  lwz       r0, 0x194(r1)
-	  lwz       r31, 0x18C(r1)
-	  lwz       r30, 0x188(r1)
-	  lwz       r29, 0x184(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x190
-	  blr
+lbl_8002A7A4:
+	lis      r3, sMessageQueue__12JUTException@ha
+	lis      r4, exCallbackObject@ha
+	addi     r3, r3, sMessageQueue__12JUTException@l
+	li       r5, 1
+	addi     r4, r4, exCallbackObject@l
+	bl       OSSendMessage
+	bl       OSGetCurrentThread
+	bl       OSSuspendThread
+	lwz      r0, 0x194(r1)
+	lwz      r31, 0x18c(r1)
+	lwz      r30, 0x188(r1)
+	lwz      r29, 0x184(r1)
+	mtlr     r0
+	addi     r1, r1, 0x190
+	blr
 	*/
 }
 
@@ -410,29 +670,28 @@ void JUTException::panic_f(const char*, int, const char*, ...)
 void JUTException::setFPException(unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  cmplwi    r3, 0
-	  stw       r0, 0x14(r1)
-	  stw       r3, -0x7C98(r13)
-	  beq-      .loc_0x2C
-	  lis       r4, 0x8003
-	  li        r3, 0x10
-	  subi      r4, r4, 0x5AC4
-	  bl        0xC3094
-	  b         .loc_0x38
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	cmplwi   r3, 0
+	stw      r0, 0x14(r1)
+	stw      r3, __OSFpscrEnableBits@sda21(r13)
+	beq      lbl_8002A80C
+	lis      r4, errorHandler__12JUTExceptionFUsP9OSContextUlUl@ha
+	li       r3, 0x10
+	addi     r4, r4, errorHandler__12JUTExceptionFUsP9OSContextUlUl@l
+	bl       OSSetErrorHandler
+	b        lbl_8002A818
 
-	.loc_0x2C:
-	  li        r3, 0x10
-	  li        r4, 0
-	  bl        0xC3084
+lbl_8002A80C:
+	li       r3, 0x10
+	li       r4, 0
+	bl       OSSetErrorHandler
 
-	.loc_0x38:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8002A818:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -454,657 +713,656 @@ void JUTException::showFloatSub(int, float)
 void JUTException::showFloat(OSContext*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x60(r1)
-	  mflr      r0
-	  lis       r5, 0x8047
-	  stw       r0, 0x64(r1)
-	  stmw      r27, 0x4C(r1)
-	  mr        r27, r4
-	  addi      r30, r5, 0x3C18
-	  lwz       r3, -0x775C(r13)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x75C
-	  addi      r4, r30, 0x128
-	  bl        -0x1E28
-	  mr        r29, r27
-	  li        r28, 0
-	  lis       r31, 0x7F80
-
-	.loc_0x3C:
-	  lfd       f0, 0x90(r29)
-	  frsp      f1, f0
-	  stfs      f1, 0x2C(r1)
-	  lwz       r3, 0x2C(r1)
-	  stfs      f1, 0x40(r1)
-	  rlwinm    r0,r3,0,1,8
-	  cmpw      r0, r31
-	  beq-      .loc_0x6C
-	  bge-      .loc_0x9C
-	  cmpwi     r0, 0
-	  beq-      .loc_0x84
-	  b         .loc_0x9C
-
-	.loc_0x6C:
-	  rlwinm.   r0,r3,0,9,31
-	  beq-      .loc_0x7C
-	  li        r0, 0x1
-	  b         .loc_0xA0
-
-	.loc_0x7C:
-	  li        r0, 0x2
-	  b         .loc_0xA0
-
-	.loc_0x84:
-	  rlwinm.   r0,r3,0,9,31
-	  beq-      .loc_0x94
-	  li        r0, 0x5
-	  b         .loc_0xA0
-
-	.loc_0x94:
-	  li        r0, 0x3
-	  b         .loc_0xA0
-
-	.loc_0x9C:
-	  li        r0, 0x4
-
-	.loc_0xA0:
-	  cmpwi     r0, 0x1
-	  bne-      .loc_0xC0
-	  lwz       r3, -0x775C(r13)
-	  mr        r5, r28
-	  addi      r4, r30, 0xD4
-	  crclr     6, 0x6
-	  bl        -0x1F40
-	  b         .loc_0x198
-
-	.loc_0xC0:
-	  stfs      f1, 0x28(r1)
-	  lis       r0, 0x7F80
-	  lwz       r4, 0x28(r1)
-	  rlwinm    r3,r4,0,1,8
-	  cmpw      r3, r0
-	  beq-      .loc_0xE8
-	  bge-      .loc_0x118
-	  cmpwi     r3, 0
-	  beq-      .loc_0x100
-	  b         .loc_0x118
-
-	.loc_0xE8:
-	  rlwinm.   r0,r4,0,9,31
-	  beq-      .loc_0xF8
-	  li        r0, 0x1
-	  b         .loc_0x11C
-
-	.loc_0xF8:
-	  li        r0, 0x2
-	  b         .loc_0x11C
-
-	.loc_0x100:
-	  rlwinm.   r0,r4,0,9,31
-	  beq-      .loc_0x110
-	  li        r0, 0x5
-	  b         .loc_0x11C
-
-	.loc_0x110:
-	  li        r0, 0x3
-	  b         .loc_0x11C
-
-	.loc_0x118:
-	  li        r0, 0x4
-
-	.loc_0x11C:
-	  cmpwi     r0, 0x2
-	  bne-      .loc_0x160
-	  lbz       r0, 0x40(r1)
-	  rlwinm.   r0,r0,0,24,24
-	  beq-      .loc_0x148
-	  lwz       r3, -0x775C(r13)
-	  mr        r5, r28
-	  addi      r4, r30, 0xE8
-	  crclr     6, 0x6
-	  bl        -0x1FC8
-	  b         .loc_0x198
-
-	.loc_0x148:
-	  lwz       r3, -0x775C(r13)
-	  mr        r5, r28
-	  addi      r4, r30, 0xF8
-	  crclr     6, 0x6
-	  bl        -0x1FE0
-	  b         .loc_0x198
-
-	.loc_0x160:
-	  lfs       f0, -0x7D38(r2)
-	  fcmpu     cr0, f0, f1
-	  bne-      .loc_0x184
-	  lwz       r3, -0x775C(r13)
-	  mr        r5, r28
-	  addi      r4, r30, 0x108
-	  crclr     6, 0x6
-	  bl        -0x2004
-	  b         .loc_0x198
-
-	.loc_0x184:
-	  lwz       r3, -0x775C(r13)
-	  mr        r5, r28
-	  addi      r4, r30, 0x11C
-	  crset     6, 0x6
-	  bl        -0x201C
-
-	.loc_0x198:
-	  lwz       r3, -0x775C(r13)
-	  subi      r4, r2, 0x7D34
-	  bl        -0x1F9C
-	  lfd       f0, 0xE8(r29)
-	  frsp      f1, f0
-	  stfs      f1, 0x24(r1)
-	  lwz       r3, 0x24(r1)
-	  stfs      f1, 0x3C(r1)
-	  rlwinm    r0,r3,0,1,8
-	  cmpw      r0, r31
-	  beq-      .loc_0x1D4
-	  bge-      .loc_0x204
-	  cmpwi     r0, 0
-	  beq-      .loc_0x1EC
-	  b         .loc_0x204
-
-	.loc_0x1D4:
-	  rlwinm.   r0,r3,0,9,31
-	  beq-      .loc_0x1E4
-	  li        r0, 0x1
-	  b         .loc_0x208
-
-	.loc_0x1E4:
-	  li        r0, 0x2
-	  b         .loc_0x208
-
-	.loc_0x1EC:
-	  rlwinm.   r0,r3,0,9,31
-	  beq-      .loc_0x1FC
-	  li        r0, 0x5
-	  b         .loc_0x208
-
-	.loc_0x1FC:
-	  li        r0, 0x3
-	  b         .loc_0x208
-
-	.loc_0x204:
-	  li        r0, 0x4
-
-	.loc_0x208:
-	  cmpwi     r0, 0x1
-	  bne-      .loc_0x228
-	  lwz       r3, -0x775C(r13)
-	  addi      r4, r30, 0xD4
-	  addi      r5, r28, 0xB
-	  crclr     6, 0x6
-	  bl        -0x20A8
-	  b         .loc_0x300
-
-	.loc_0x228:
-	  stfs      f1, 0x20(r1)
-	  lis       r0, 0x7F80
-	  lwz       r4, 0x20(r1)
-	  rlwinm    r3,r4,0,1,8
-	  cmpw      r3, r0
-	  beq-      .loc_0x250
-	  bge-      .loc_0x280
-	  cmpwi     r3, 0
-	  beq-      .loc_0x268
-	  b         .loc_0x280
-
-	.loc_0x250:
-	  rlwinm.   r0,r4,0,9,31
-	  beq-      .loc_0x260
-	  li        r0, 0x1
-	  b         .loc_0x284
-
-	.loc_0x260:
-	  li        r0, 0x2
-	  b         .loc_0x284
-
-	.loc_0x268:
-	  rlwinm.   r0,r4,0,9,31
-	  beq-      .loc_0x278
-	  li        r0, 0x5
-	  b         .loc_0x284
-
-	.loc_0x278:
-	  li        r0, 0x3
-	  b         .loc_0x284
-
-	.loc_0x280:
-	  li        r0, 0x4
-
-	.loc_0x284:
-	  cmpwi     r0, 0x2
-	  bne-      .loc_0x2C8
-	  lbz       r0, 0x3C(r1)
-	  rlwinm.   r0,r0,0,24,24
-	  beq-      .loc_0x2B0
-	  lwz       r3, -0x775C(r13)
-	  addi      r4, r30, 0xE8
-	  addi      r5, r28, 0xB
-	  crclr     6, 0x6
-	  bl        -0x2130
-	  b         .loc_0x300
-
-	.loc_0x2B0:
-	  lwz       r3, -0x775C(r13)
-	  addi      r4, r30, 0xF8
-	  addi      r5, r28, 0xB
-	  crclr     6, 0x6
-	  bl        -0x2148
-	  b         .loc_0x300
-
-	.loc_0x2C8:
-	  lfs       f0, -0x7D38(r2)
-	  fcmpu     cr0, f0, f1
-	  bne-      .loc_0x2EC
-	  lwz       r3, -0x775C(r13)
-	  addi      r4, r30, 0x108
-	  addi      r5, r28, 0xB
-	  crclr     6, 0x6
-	  bl        -0x216C
-	  b         .loc_0x300
-
-	.loc_0x2EC:
-	  lwz       r3, -0x775C(r13)
-	  addi      r4, r30, 0x11C
-	  addi      r5, r28, 0xB
-	  crset     6, 0x6
-	  bl        -0x2184
-
-	.loc_0x300:
-	  lwz       r3, -0x775C(r13)
-	  subi      r4, r2, 0x7D34
-	  bl        -0x2104
-	  lfd       f0, 0x140(r29)
-	  frsp      f1, f0
-	  stfs      f1, 0x1C(r1)
-	  lwz       r3, 0x1C(r1)
-	  stfs      f1, 0x38(r1)
-	  rlwinm    r0,r3,0,1,8
-	  cmpw      r0, r31
-	  beq-      .loc_0x33C
-	  bge-      .loc_0x36C
-	  cmpwi     r0, 0
-	  beq-      .loc_0x354
-	  b         .loc_0x36C
-
-	.loc_0x33C:
-	  rlwinm.   r0,r3,0,9,31
-	  beq-      .loc_0x34C
-	  li        r0, 0x1
-	  b         .loc_0x370
-
-	.loc_0x34C:
-	  li        r0, 0x2
-	  b         .loc_0x370
-
-	.loc_0x354:
-	  rlwinm.   r0,r3,0,9,31
-	  beq-      .loc_0x364
-	  li        r0, 0x5
-	  b         .loc_0x370
-
-	.loc_0x364:
-	  li        r0, 0x3
-	  b         .loc_0x370
-
-	.loc_0x36C:
-	  li        r0, 0x4
-
-	.loc_0x370:
-	  cmpwi     r0, 0x1
-	  bne-      .loc_0x390
-	  lwz       r3, -0x775C(r13)
-	  addi      r4, r30, 0xD4
-	  addi      r5, r28, 0x16
-	  crclr     6, 0x6
-	  bl        -0x2210
-	  b         .loc_0x468
-
-	.loc_0x390:
-	  stfs      f1, 0x18(r1)
-	  lis       r0, 0x7F80
-	  lwz       r4, 0x18(r1)
-	  rlwinm    r3,r4,0,1,8
-	  cmpw      r3, r0
-	  beq-      .loc_0x3B8
-	  bge-      .loc_0x3E8
-	  cmpwi     r3, 0
-	  beq-      .loc_0x3D0
-	  b         .loc_0x3E8
-
-	.loc_0x3B8:
-	  rlwinm.   r0,r4,0,9,31
-	  beq-      .loc_0x3C8
-	  li        r0, 0x1
-	  b         .loc_0x3EC
-
-	.loc_0x3C8:
-	  li        r0, 0x2
-	  b         .loc_0x3EC
-
-	.loc_0x3D0:
-	  rlwinm.   r0,r4,0,9,31
-	  beq-      .loc_0x3E0
-	  li        r0, 0x5
-	  b         .loc_0x3EC
-
-	.loc_0x3E0:
-	  li        r0, 0x3
-	  b         .loc_0x3EC
-
-	.loc_0x3E8:
-	  li        r0, 0x4
-
-	.loc_0x3EC:
-	  cmpwi     r0, 0x2
-	  bne-      .loc_0x430
-	  lbz       r0, 0x38(r1)
-	  rlwinm.   r0,r0,0,24,24
-	  beq-      .loc_0x418
-	  lwz       r3, -0x775C(r13)
-	  addi      r4, r30, 0xE8
-	  addi      r5, r28, 0x16
-	  crclr     6, 0x6
-	  bl        -0x2298
-	  b         .loc_0x468
-
-	.loc_0x418:
-	  lwz       r3, -0x775C(r13)
-	  addi      r4, r30, 0xF8
-	  addi      r5, r28, 0x16
-	  crclr     6, 0x6
-	  bl        -0x22B0
-	  b         .loc_0x468
-
-	.loc_0x430:
-	  lfs       f0, -0x7D38(r2)
-	  fcmpu     cr0, f0, f1
-	  bne-      .loc_0x454
-	  lwz       r3, -0x775C(r13)
-	  addi      r4, r30, 0x108
-	  addi      r5, r28, 0x16
-	  crclr     6, 0x6
-	  bl        -0x22D4
-	  b         .loc_0x468
-
-	.loc_0x454:
-	  lwz       r3, -0x775C(r13)
-	  addi      r4, r30, 0x11C
-	  addi      r5, r28, 0x16
-	  crset     6, 0x6
-	  bl        -0x22EC
-
-	.loc_0x468:
-	  lwz       r3, -0x775C(r13)
-	  subi      r4, r2, 0x7D30
-	  bl        -0x226C
-	  addi      r28, r28, 0x1
-	  addi      r29, r29, 0x8
-	  cmpwi     r28, 0xA
-	  blt+      .loc_0x3C
-	  lfd       f0, 0xE0(r27)
-	  lis       r0, 0x7F80
-	  frsp      f1, f0
-	  stfs      f1, 0x14(r1)
-	  lwz       r4, 0x14(r1)
-	  stfs      f1, 0x34(r1)
-	  rlwinm    r3,r4,0,1,8
-	  cmpw      r3, r0
-	  beq-      .loc_0x4B8
-	  bge-      .loc_0x4E8
-	  cmpwi     r3, 0
-	  beq-      .loc_0x4D0
-	  b         .loc_0x4E8
-
-	.loc_0x4B8:
-	  rlwinm.   r0,r4,0,9,31
-	  beq-      .loc_0x4C8
-	  li        r0, 0x1
-	  b         .loc_0x4EC
-
-	.loc_0x4C8:
-	  li        r0, 0x2
-	  b         .loc_0x4EC
-
-	.loc_0x4D0:
-	  rlwinm.   r0,r4,0,9,31
-	  beq-      .loc_0x4E0
-	  li        r0, 0x5
-	  b         .loc_0x4EC
-
-	.loc_0x4E0:
-	  li        r0, 0x3
-	  b         .loc_0x4EC
-
-	.loc_0x4E8:
-	  li        r0, 0x4
-
-	.loc_0x4EC:
-	  cmpwi     r0, 0x1
-	  bne-      .loc_0x50C
-	  lwz       r3, -0x775C(r13)
-	  addi      r4, r30, 0xD4
-	  li        r5, 0xA
-	  crclr     6, 0x6
-	  bl        -0x238C
-	  b         .loc_0x5E4
-
-	.loc_0x50C:
-	  stfs      f1, 0x10(r1)
-	  lis       r0, 0x7F80
-	  lwz       r4, 0x10(r1)
-	  rlwinm    r3,r4,0,1,8
-	  cmpw      r3, r0
-	  beq-      .loc_0x534
-	  bge-      .loc_0x564
-	  cmpwi     r3, 0
-	  beq-      .loc_0x54C
-	  b         .loc_0x564
-
-	.loc_0x534:
-	  rlwinm.   r0,r4,0,9,31
-	  beq-      .loc_0x544
-	  li        r0, 0x1
-	  b         .loc_0x568
-
-	.loc_0x544:
-	  li        r0, 0x2
-	  b         .loc_0x568
-
-	.loc_0x54C:
-	  rlwinm.   r0,r4,0,9,31
-	  beq-      .loc_0x55C
-	  li        r0, 0x5
-	  b         .loc_0x568
-
-	.loc_0x55C:
-	  li        r0, 0x3
-	  b         .loc_0x568
-
-	.loc_0x564:
-	  li        r0, 0x4
-
-	.loc_0x568:
-	  cmpwi     r0, 0x2
-	  bne-      .loc_0x5AC
-	  lbz       r0, 0x34(r1)
-	  rlwinm.   r0,r0,0,24,24
-	  beq-      .loc_0x594
-	  lwz       r3, -0x775C(r13)
-	  addi      r4, r30, 0xE8
-	  li        r5, 0xA
-	  crclr     6, 0x6
-	  bl        -0x2414
-	  b         .loc_0x5E4
-
-	.loc_0x594:
-	  lwz       r3, -0x775C(r13)
-	  addi      r4, r30, 0xF8
-	  li        r5, 0xA
-	  crclr     6, 0x6
-	  bl        -0x242C
-	  b         .loc_0x5E4
-
-	.loc_0x5AC:
-	  lfs       f0, -0x7D38(r2)
-	  fcmpu     cr0, f0, f1
-	  bne-      .loc_0x5D0
-	  lwz       r3, -0x775C(r13)
-	  addi      r4, r30, 0x108
-	  li        r5, 0xA
-	  crclr     6, 0x6
-	  bl        -0x2450
-	  b         .loc_0x5E4
-
-	.loc_0x5D0:
-	  lwz       r3, -0x775C(r13)
-	  addi      r4, r30, 0x11C
-	  li        r5, 0xA
-	  crset     6, 0x6
-	  bl        -0x2468
-
-	.loc_0x5E4:
-	  lwz       r3, -0x775C(r13)
-	  subi      r4, r2, 0x7D34
-	  bl        -0x23E8
-	  lfd       f0, 0x138(r27)
-	  lis       r0, 0x7F80
-	  frsp      f1, f0
-	  stfs      f1, 0xC(r1)
-	  lwz       r4, 0xC(r1)
-	  stfs      f1, 0x30(r1)
-	  rlwinm    r3,r4,0,1,8
-	  cmpw      r3, r0
-	  beq-      .loc_0x624
-	  bge-      .loc_0x654
-	  cmpwi     r3, 0
-	  beq-      .loc_0x63C
-	  b         .loc_0x654
-
-	.loc_0x624:
-	  rlwinm.   r0,r4,0,9,31
-	  beq-      .loc_0x634
-	  li        r0, 0x1
-	  b         .loc_0x658
-
-	.loc_0x634:
-	  li        r0, 0x2
-	  b         .loc_0x658
-
-	.loc_0x63C:
-	  rlwinm.   r0,r4,0,9,31
-	  beq-      .loc_0x64C
-	  li        r0, 0x5
-	  b         .loc_0x658
-
-	.loc_0x64C:
-	  li        r0, 0x3
-	  b         .loc_0x658
-
-	.loc_0x654:
-	  li        r0, 0x4
-
-	.loc_0x658:
-	  cmpwi     r0, 0x1
-	  bne-      .loc_0x678
-	  lwz       r3, -0x775C(r13)
-	  addi      r4, r30, 0xD4
-	  li        r5, 0x15
-	  crclr     6, 0x6
-	  bl        -0x24F8
-	  b         .loc_0x750
-
-	.loc_0x678:
-	  stfs      f1, 0x8(r1)
-	  lis       r0, 0x7F80
-	  lwz       r4, 0x8(r1)
-	  rlwinm    r3,r4,0,1,8
-	  cmpw      r3, r0
-	  beq-      .loc_0x6A0
-	  bge-      .loc_0x6D0
-	  cmpwi     r3, 0
-	  beq-      .loc_0x6B8
-	  b         .loc_0x6D0
-
-	.loc_0x6A0:
-	  rlwinm.   r0,r4,0,9,31
-	  beq-      .loc_0x6B0
-	  li        r0, 0x1
-	  b         .loc_0x6D4
-
-	.loc_0x6B0:
-	  li        r0, 0x2
-	  b         .loc_0x6D4
-
-	.loc_0x6B8:
-	  rlwinm.   r0,r4,0,9,31
-	  beq-      .loc_0x6C8
-	  li        r0, 0x5
-	  b         .loc_0x6D4
-
-	.loc_0x6C8:
-	  li        r0, 0x3
-	  b         .loc_0x6D4
-
-	.loc_0x6D0:
-	  li        r0, 0x4
-
-	.loc_0x6D4:
-	  cmpwi     r0, 0x2
-	  bne-      .loc_0x718
-	  lbz       r0, 0x30(r1)
-	  rlwinm.   r0,r0,0,24,24
-	  beq-      .loc_0x700
-	  lwz       r3, -0x775C(r13)
-	  addi      r4, r30, 0xE8
-	  li        r5, 0x15
-	  crclr     6, 0x6
-	  bl        -0x2580
-	  b         .loc_0x750
-
-	.loc_0x700:
-	  lwz       r3, -0x775C(r13)
-	  addi      r4, r30, 0xF8
-	  li        r5, 0x15
-	  crclr     6, 0x6
-	  bl        -0x2598
-	  b         .loc_0x750
-
-	.loc_0x718:
-	  lfs       f0, -0x7D38(r2)
-	  fcmpu     cr0, f0, f1
-	  bne-      .loc_0x73C
-	  lwz       r3, -0x775C(r13)
-	  addi      r4, r30, 0x108
-	  li        r5, 0x15
-	  crclr     6, 0x6
-	  bl        -0x25BC
-	  b         .loc_0x750
-
-	.loc_0x73C:
-	  lwz       r3, -0x775C(r13)
-	  addi      r4, r30, 0x11C
-	  li        r5, 0x15
-	  crset     6, 0x6
-	  bl        -0x25D4
-
-	.loc_0x750:
-	  lwz       r3, -0x775C(r13)
-	  subi      r4, r2, 0x7D30
-	  bl        -0x2554
-
-	.loc_0x75C:
-	  lmw       r27, 0x4C(r1)
-	  lwz       r0, 0x64(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x60
-	  blr
+	stwu     r1, -0x60(r1)
+	mflr     r0
+	lis      r5, lbl_80473C18@ha
+	stw      r0, 0x64(r1)
+	stmw     r27, 0x4c(r1)
+	mr       r27, r4
+	addi     r30, r5, lbl_80473C18@l
+	lwz      r3, sConsole__12JUTException@sda21(r13)
+	cmplwi   r3, 0
+	beq      lbl_8002AF84
+	addi     r4, r30, 0x128
+	bl       print__10JUTConsoleFPCc
+	mr       r29, r27
+	li       r28, 0
+	lis      r31, 0x7f80
+
+lbl_8002A864:
+	lfd      f0, 0x90(r29)
+	frsp     f1, f0
+	stfs     f1, 0x2c(r1)
+	lwz      r3, 0x2c(r1)
+	stfs     f1, 0x40(r1)
+	rlwinm   r0, r3, 0, 1, 8
+	cmpw     r0, r31
+	beq      lbl_8002A894
+	bge      lbl_8002A8C4
+	cmpwi    r0, 0
+	beq      lbl_8002A8AC
+	b        lbl_8002A8C4
+
+lbl_8002A894:
+	clrlwi.  r0, r3, 9
+	beq      lbl_8002A8A4
+	li       r0, 1
+	b        lbl_8002A8C8
+
+lbl_8002A8A4:
+	li       r0, 2
+	b        lbl_8002A8C8
+
+lbl_8002A8AC:
+	clrlwi.  r0, r3, 9
+	beq      lbl_8002A8BC
+	li       r0, 5
+	b        lbl_8002A8C8
+
+lbl_8002A8BC:
+	li       r0, 3
+	b        lbl_8002A8C8
+
+lbl_8002A8C4:
+	li       r0, 4
+
+lbl_8002A8C8:
+	cmpwi    r0, 1
+	bne      lbl_8002A8E8
+	lwz      r3, sConsole__12JUTException@sda21(r13)
+	mr       r5, r28
+	addi     r4, r30, 0xd4
+	crclr    6
+	bl       print_f__10JUTConsoleFPCce
+	b        lbl_8002A9C0
+
+lbl_8002A8E8:
+	stfs     f1, 0x28(r1)
+	lis      r0, 0x7f80
+	lwz      r4, 0x28(r1)
+	rlwinm   r3, r4, 0, 1, 8
+	cmpw     r3, r0
+	beq      lbl_8002A910
+	bge      lbl_8002A940
+	cmpwi    r3, 0
+	beq      lbl_8002A928
+	b        lbl_8002A940
+
+lbl_8002A910:
+	clrlwi.  r0, r4, 9
+	beq      lbl_8002A920
+	li       r0, 1
+	b        lbl_8002A944
+
+lbl_8002A920:
+	li       r0, 2
+	b        lbl_8002A944
+
+lbl_8002A928:
+	clrlwi.  r0, r4, 9
+	beq      lbl_8002A938
+	li       r0, 5
+	b        lbl_8002A944
+
+lbl_8002A938:
+	li       r0, 3
+	b        lbl_8002A944
+
+lbl_8002A940:
+	li       r0, 4
+
+lbl_8002A944:
+	cmpwi    r0, 2
+	bne      lbl_8002A988
+	lbz      r0, 0x40(r1)
+	rlwinm.  r0, r0, 0, 0x18, 0x18
+	beq      lbl_8002A970
+	lwz      r3, sConsole__12JUTException@sda21(r13)
+	mr       r5, r28
+	addi     r4, r30, 0xe8
+	crclr    6
+	bl       print_f__10JUTConsoleFPCce
+	b        lbl_8002A9C0
+
+lbl_8002A970:
+	lwz      r3, sConsole__12JUTException@sda21(r13)
+	mr       r5, r28
+	addi     r4, r30, 0xf8
+	crclr    6
+	bl       print_f__10JUTConsoleFPCce
+	b        lbl_8002A9C0
+
+lbl_8002A988:
+	lfs      f0, lbl_80516628@sda21(r2)
+	fcmpu    cr0, f0, f1
+	bne      lbl_8002A9AC
+	lwz      r3, sConsole__12JUTException@sda21(r13)
+	mr       r5, r28
+	addi     r4, r30, 0x108
+	crclr    6
+	bl       print_f__10JUTConsoleFPCce
+	b        lbl_8002A9C0
+
+lbl_8002A9AC:
+	lwz      r3, sConsole__12JUTException@sda21(r13)
+	mr       r5, r28
+	addi     r4, r30, 0x11c
+	crset    6
+	bl       print_f__10JUTConsoleFPCce
+
+lbl_8002A9C0:
+	lwz      r3, sConsole__12JUTException@sda21(r13)
+	addi     r4, r2, lbl_8051662C@sda21
+	bl       print__10JUTConsoleFPCc
+	lfd      f0, 0xe8(r29)
+	frsp     f1, f0
+	stfs     f1, 0x24(r1)
+	lwz      r3, 0x24(r1)
+	stfs     f1, 0x3c(r1)
+	rlwinm   r0, r3, 0, 1, 8
+	cmpw     r0, r31
+	beq      lbl_8002A9FC
+	bge      lbl_8002AA2C
+	cmpwi    r0, 0
+	beq      lbl_8002AA14
+	b        lbl_8002AA2C
+
+lbl_8002A9FC:
+	clrlwi.  r0, r3, 9
+	beq      lbl_8002AA0C
+	li       r0, 1
+	b        lbl_8002AA30
+
+lbl_8002AA0C:
+	li       r0, 2
+	b        lbl_8002AA30
+
+lbl_8002AA14:
+	clrlwi.  r0, r3, 9
+	beq      lbl_8002AA24
+	li       r0, 5
+	b        lbl_8002AA30
+
+lbl_8002AA24:
+	li       r0, 3
+	b        lbl_8002AA30
+
+lbl_8002AA2C:
+	li       r0, 4
+
+lbl_8002AA30:
+	cmpwi    r0, 1
+	bne      lbl_8002AA50
+	lwz      r3, sConsole__12JUTException@sda21(r13)
+	addi     r4, r30, 0xd4
+	addi     r5, r28, 0xb
+	crclr    6
+	bl       print_f__10JUTConsoleFPCce
+	b        lbl_8002AB28
+
+lbl_8002AA50:
+	stfs     f1, 0x20(r1)
+	lis      r0, 0x7f80
+	lwz      r4, 0x20(r1)
+	rlwinm   r3, r4, 0, 1, 8
+	cmpw     r3, r0
+	beq      lbl_8002AA78
+	bge      lbl_8002AAA8
+	cmpwi    r3, 0
+	beq      lbl_8002AA90
+	b        lbl_8002AAA8
+
+lbl_8002AA78:
+	clrlwi.  r0, r4, 9
+	beq      lbl_8002AA88
+	li       r0, 1
+	b        lbl_8002AAAC
+
+lbl_8002AA88:
+	li       r0, 2
+	b        lbl_8002AAAC
+
+lbl_8002AA90:
+	clrlwi.  r0, r4, 9
+	beq      lbl_8002AAA0
+	li       r0, 5
+	b        lbl_8002AAAC
+
+lbl_8002AAA0:
+	li       r0, 3
+	b        lbl_8002AAAC
+
+lbl_8002AAA8:
+	li       r0, 4
+
+lbl_8002AAAC:
+	cmpwi    r0, 2
+	bne      lbl_8002AAF0
+	lbz      r0, 0x3c(r1)
+	rlwinm.  r0, r0, 0, 0x18, 0x18
+	beq      lbl_8002AAD8
+	lwz      r3, sConsole__12JUTException@sda21(r13)
+	addi     r4, r30, 0xe8
+	addi     r5, r28, 0xb
+	crclr    6
+	bl       print_f__10JUTConsoleFPCce
+	b        lbl_8002AB28
+
+lbl_8002AAD8:
+	lwz      r3, sConsole__12JUTException@sda21(r13)
+	addi     r4, r30, 0xf8
+	addi     r5, r28, 0xb
+	crclr    6
+	bl       print_f__10JUTConsoleFPCce
+	b        lbl_8002AB28
+
+lbl_8002AAF0:
+	lfs      f0, lbl_80516628@sda21(r2)
+	fcmpu    cr0, f0, f1
+	bne      lbl_8002AB14
+	lwz      r3, sConsole__12JUTException@sda21(r13)
+	addi     r4, r30, 0x108
+	addi     r5, r28, 0xb
+	crclr    6
+	bl       print_f__10JUTConsoleFPCce
+	b        lbl_8002AB28
+
+lbl_8002AB14:
+	lwz      r3, sConsole__12JUTException@sda21(r13)
+	addi     r4, r30, 0x11c
+	addi     r5, r28, 0xb
+	crset    6
+	bl       print_f__10JUTConsoleFPCce
+
+lbl_8002AB28:
+	lwz      r3, sConsole__12JUTException@sda21(r13)
+	addi     r4, r2, lbl_8051662C@sda21
+	bl       print__10JUTConsoleFPCc
+	lfd      f0, 0x140(r29)
+	frsp     f1, f0
+	stfs     f1, 0x1c(r1)
+	lwz      r3, 0x1c(r1)
+	stfs     f1, 0x38(r1)
+	rlwinm   r0, r3, 0, 1, 8
+	cmpw     r0, r31
+	beq      lbl_8002AB64
+	bge      lbl_8002AB94
+	cmpwi    r0, 0
+	beq      lbl_8002AB7C
+	b        lbl_8002AB94
+
+lbl_8002AB64:
+	clrlwi.  r0, r3, 9
+	beq      lbl_8002AB74
+	li       r0, 1
+	b        lbl_8002AB98
+
+lbl_8002AB74:
+	li       r0, 2
+	b        lbl_8002AB98
+
+lbl_8002AB7C:
+	clrlwi.  r0, r3, 9
+	beq      lbl_8002AB8C
+	li       r0, 5
+	b        lbl_8002AB98
+
+lbl_8002AB8C:
+	li       r0, 3
+	b        lbl_8002AB98
+
+lbl_8002AB94:
+	li       r0, 4
+
+lbl_8002AB98:
+	cmpwi    r0, 1
+	bne      lbl_8002ABB8
+	lwz      r3, sConsole__12JUTException@sda21(r13)
+	addi     r4, r30, 0xd4
+	addi     r5, r28, 0x16
+	crclr    6
+	bl       print_f__10JUTConsoleFPCce
+	b        lbl_8002AC90
+
+lbl_8002ABB8:
+	stfs     f1, 0x18(r1)
+	lis      r0, 0x7f80
+	lwz      r4, 0x18(r1)
+	rlwinm   r3, r4, 0, 1, 8
+	cmpw     r3, r0
+	beq      lbl_8002ABE0
+	bge      lbl_8002AC10
+	cmpwi    r3, 0
+	beq      lbl_8002ABF8
+	b        lbl_8002AC10
+
+lbl_8002ABE0:
+	clrlwi.  r0, r4, 9
+	beq      lbl_8002ABF0
+	li       r0, 1
+	b        lbl_8002AC14
+
+lbl_8002ABF0:
+	li       r0, 2
+	b        lbl_8002AC14
+
+lbl_8002ABF8:
+	clrlwi.  r0, r4, 9
+	beq      lbl_8002AC08
+	li       r0, 5
+	b        lbl_8002AC14
+
+lbl_8002AC08:
+	li       r0, 3
+	b        lbl_8002AC14
+
+lbl_8002AC10:
+	li       r0, 4
+
+lbl_8002AC14:
+	cmpwi    r0, 2
+	bne      lbl_8002AC58
+	lbz      r0, 0x38(r1)
+	rlwinm.  r0, r0, 0, 0x18, 0x18
+	beq      lbl_8002AC40
+	lwz      r3, sConsole__12JUTException@sda21(r13)
+	addi     r4, r30, 0xe8
+	addi     r5, r28, 0x16
+	crclr    6
+	bl       print_f__10JUTConsoleFPCce
+	b        lbl_8002AC90
+
+lbl_8002AC40:
+	lwz      r3, sConsole__12JUTException@sda21(r13)
+	addi     r4, r30, 0xf8
+	addi     r5, r28, 0x16
+	crclr    6
+	bl       print_f__10JUTConsoleFPCce
+	b        lbl_8002AC90
+
+lbl_8002AC58:
+	lfs      f0, lbl_80516628@sda21(r2)
+	fcmpu    cr0, f0, f1
+	bne      lbl_8002AC7C
+	lwz      r3, sConsole__12JUTException@sda21(r13)
+	addi     r4, r30, 0x108
+	addi     r5, r28, 0x16
+	crclr    6
+	bl       print_f__10JUTConsoleFPCce
+	b        lbl_8002AC90
+
+lbl_8002AC7C:
+	lwz      r3, sConsole__12JUTException@sda21(r13)
+	addi     r4, r30, 0x11c
+	addi     r5, r28, 0x16
+	crset    6
+	bl       print_f__10JUTConsoleFPCce
+
+lbl_8002AC90:
+	lwz      r3, sConsole__12JUTException@sda21(r13)
+	addi     r4, r2, lbl_80516630@sda21
+	bl       print__10JUTConsoleFPCc
+	addi     r28, r28, 1
+	addi     r29, r29, 8
+	cmpwi    r28, 0xa
+	blt      lbl_8002A864
+	lfd      f0, 0xe0(r27)
+	lis      r0, 0x7f80
+	frsp     f1, f0
+	stfs     f1, 0x14(r1)
+	lwz      r4, 0x14(r1)
+	stfs     f1, 0x34(r1)
+	rlwinm   r3, r4, 0, 1, 8
+	cmpw     r3, r0
+	beq      lbl_8002ACE0
+	bge      lbl_8002AD10
+	cmpwi    r3, 0
+	beq      lbl_8002ACF8
+	b        lbl_8002AD10
+
+lbl_8002ACE0:
+	clrlwi.  r0, r4, 9
+	beq      lbl_8002ACF0
+	li       r0, 1
+	b        lbl_8002AD14
+
+lbl_8002ACF0:
+	li       r0, 2
+	b        lbl_8002AD14
+
+lbl_8002ACF8:
+	clrlwi.  r0, r4, 9
+	beq      lbl_8002AD08
+	li       r0, 5
+	b        lbl_8002AD14
+
+lbl_8002AD08:
+	li       r0, 3
+	b        lbl_8002AD14
+
+lbl_8002AD10:
+	li       r0, 4
+
+lbl_8002AD14:
+	cmpwi    r0, 1
+	bne      lbl_8002AD34
+	lwz      r3, sConsole__12JUTException@sda21(r13)
+	addi     r4, r30, 0xd4
+	li       r5, 0xa
+	crclr    6
+	bl       print_f__10JUTConsoleFPCce
+	b        lbl_8002AE0C
+
+lbl_8002AD34:
+	stfs     f1, 0x10(r1)
+	lis      r0, 0x7f80
+	lwz      r4, 0x10(r1)
+	rlwinm   r3, r4, 0, 1, 8
+	cmpw     r3, r0
+	beq      lbl_8002AD5C
+	bge      lbl_8002AD8C
+	cmpwi    r3, 0
+	beq      lbl_8002AD74
+	b        lbl_8002AD8C
+
+lbl_8002AD5C:
+	clrlwi.  r0, r4, 9
+	beq      lbl_8002AD6C
+	li       r0, 1
+	b        lbl_8002AD90
+
+lbl_8002AD6C:
+	li       r0, 2
+	b        lbl_8002AD90
+
+lbl_8002AD74:
+	clrlwi.  r0, r4, 9
+	beq      lbl_8002AD84
+	li       r0, 5
+	b        lbl_8002AD90
+
+lbl_8002AD84:
+	li       r0, 3
+	b        lbl_8002AD90
+
+lbl_8002AD8C:
+	li       r0, 4
+
+lbl_8002AD90:
+	cmpwi    r0, 2
+	bne      lbl_8002ADD4
+	lbz      r0, 0x34(r1)
+	rlwinm.  r0, r0, 0, 0x18, 0x18
+	beq      lbl_8002ADBC
+	lwz      r3, sConsole__12JUTException@sda21(r13)
+	addi     r4, r30, 0xe8
+	li       r5, 0xa
+	crclr    6
+	bl       print_f__10JUTConsoleFPCce
+	b        lbl_8002AE0C
+
+lbl_8002ADBC:
+	lwz      r3, sConsole__12JUTException@sda21(r13)
+	addi     r4, r30, 0xf8
+	li       r5, 0xa
+	crclr    6
+	bl       print_f__10JUTConsoleFPCce
+	b        lbl_8002AE0C
+
+lbl_8002ADD4:
+	lfs      f0, lbl_80516628@sda21(r2)
+	fcmpu    cr0, f0, f1
+	bne      lbl_8002ADF8
+	lwz      r3, sConsole__12JUTException@sda21(r13)
+	addi     r4, r30, 0x108
+	li       r5, 0xa
+	crclr    6
+	bl       print_f__10JUTConsoleFPCce
+	b        lbl_8002AE0C
+
+lbl_8002ADF8:
+	lwz      r3, sConsole__12JUTException@sda21(r13)
+	addi     r4, r30, 0x11c
+	li       r5, 0xa
+	crset    6
+	bl       print_f__10JUTConsoleFPCce
+
+lbl_8002AE0C:
+	lwz      r3, sConsole__12JUTException@sda21(r13)
+	addi     r4, r2, lbl_8051662C@sda21
+	bl       print__10JUTConsoleFPCc
+	lfd      f0, 0x138(r27)
+	lis      r0, 0x7f80
+	frsp     f1, f0
+	stfs     f1, 0xc(r1)
+	lwz      r4, 0xc(r1)
+	stfs     f1, 0x30(r1)
+	rlwinm   r3, r4, 0, 1, 8
+	cmpw     r3, r0
+	beq      lbl_8002AE4C
+	bge      lbl_8002AE7C
+	cmpwi    r3, 0
+	beq      lbl_8002AE64
+	b        lbl_8002AE7C
+
+lbl_8002AE4C:
+	clrlwi.  r0, r4, 9
+	beq      lbl_8002AE5C
+	li       r0, 1
+	b        lbl_8002AE80
+
+lbl_8002AE5C:
+	li       r0, 2
+	b        lbl_8002AE80
+
+lbl_8002AE64:
+	clrlwi.  r0, r4, 9
+	beq      lbl_8002AE74
+	li       r0, 5
+	b        lbl_8002AE80
+
+lbl_8002AE74:
+	li       r0, 3
+	b        lbl_8002AE80
+
+lbl_8002AE7C:
+	li       r0, 4
+
+lbl_8002AE80:
+	cmpwi    r0, 1
+	bne      lbl_8002AEA0
+	lwz      r3, sConsole__12JUTException@sda21(r13)
+	addi     r4, r30, 0xd4
+	li       r5, 0x15
+	crclr    6
+	bl       print_f__10JUTConsoleFPCce
+	b        lbl_8002AF78
+
+lbl_8002AEA0:
+	stfs     f1, 8(r1)
+	lis      r0, 0x7f80
+	lwz      r4, 8(r1)
+	rlwinm   r3, r4, 0, 1, 8
+	cmpw     r3, r0
+	beq      lbl_8002AEC8
+	bge      lbl_8002AEF8
+	cmpwi    r3, 0
+	beq      lbl_8002AEE0
+	b        lbl_8002AEF8
+
+lbl_8002AEC8:
+	clrlwi.  r0, r4, 9
+	beq      lbl_8002AED8
+	li       r0, 1
+	b        lbl_8002AEFC
+
+lbl_8002AED8:
+	li       r0, 2
+	b        lbl_8002AEFC
+
+lbl_8002AEE0:
+	clrlwi.  r0, r4, 9
+	beq      lbl_8002AEF0
+	li       r0, 5
+	b        lbl_8002AEFC
+
+lbl_8002AEF0:
+	li       r0, 3
+	b        lbl_8002AEFC
+
+lbl_8002AEF8:
+	li       r0, 4
+
+lbl_8002AEFC:
+	cmpwi    r0, 2
+	bne      lbl_8002AF40
+	lbz      r0, 0x30(r1)
+	rlwinm.  r0, r0, 0, 0x18, 0x18
+	beq      lbl_8002AF28
+	lwz      r3, sConsole__12JUTException@sda21(r13)
+	addi     r4, r30, 0xe8
+	li       r5, 0x15
+	crclr    6
+	bl       print_f__10JUTConsoleFPCce
+	b        lbl_8002AF78
+
+lbl_8002AF28:
+	lwz      r3, sConsole__12JUTException@sda21(r13)
+	addi     r4, r30, 0xf8
+	li       r5, 0x15
+	crclr    6
+	bl       print_f__10JUTConsoleFPCce
+	b        lbl_8002AF78
+
+lbl_8002AF40:
+	lfs      f0, lbl_80516628@sda21(r2)
+	fcmpu    cr0, f0, f1
+	bne      lbl_8002AF64
+	lwz      r3, sConsole__12JUTException@sda21(r13)
+	addi     r4, r30, 0x108
+	li       r5, 0x15
+	crclr    6
+	bl       print_f__10JUTConsoleFPCce
+	b        lbl_8002AF78
+
+lbl_8002AF64:
+	lwz      r3, sConsole__12JUTException@sda21(r13)
+	addi     r4, r30, 0x11c
+	li       r5, 0x15
+	crset    6
+	bl       print_f__10JUTConsoleFPCce
+
+lbl_8002AF78:
+	lwz      r3, sConsole__12JUTException@sda21(r13)
+	addi     r4, r2, lbl_80516630@sda21
+	bl       print__10JUTConsoleFPCc
+
+lbl_8002AF84:
+	lmw      r27, 0x4c(r1)
+	lwz      r0, 0x64(r1)
+	mtlr     r0
+	addi     r1, r1, 0x60
+	blr
 	*/
 }
 
@@ -1138,78 +1396,77 @@ void search_name_part(unsigned char*, unsigned char*, int)
 void JUTException::showStack(OSContext*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r4, 0x8047
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  addi      r31, r4, 0x3C18
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  stw       r28, 0x10(r1)
-	  mr        r28, r3
-	  lwz       r0, -0x775C(r13)
-	  cmplwi    r0, 0
-	  beq-      .loc_0xDC
-	  mr        r3, r0
-	  addi      r4, r31, 0x150
-	  bl        -0x25A8
-	  lwz       r29, 0xA0(r28)
-	  addi      r4, r31, 0x178
-	  lwz       r3, -0x775C(r13)
-	  crclr     6, 0x6
-	  bl        -0x2648
-	  li        r30, 0
-	  b         .loc_0xBC
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lis      r4, lbl_80473C18@ha
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	addi     r31, r4, lbl_80473C18@l
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	stw      r28, 0x10(r1)
+	mr       r28, r3
+	lwz      r0, sConsole__12JUTException@sda21(r13)
+	cmplwi   r0, 0
+	beq      lbl_8002B074
+	mr       r3, r0
+	addi     r4, r31, 0x150
+	bl       print__10JUTConsoleFPCc
+	lwz      r29, 0xa0(r28)
+	addi     r4, r31, 0x178
+	lwz      r3, sConsole__12JUTException@sda21(r13)
+	crclr    6
+	bl       print_f__10JUTConsoleFPCce
+	li       r30, 0
+	b        lbl_8002B054
 
-	.loc_0x5C:
-	  lwz       r0, 0x94(r28)
-	  cmplw     r30, r0
-	  ble-      .loc_0x78
-	  lwz       r3, -0x775C(r13)
-	  addi      r4, r31, 0x198
-	  bl        -0x25DC
-	  b         .loc_0xDC
+lbl_8002AFF4:
+	lwz      r0, 0x94(r28)
+	cmplw    r30, r0
+	ble      lbl_8002B010
+	lwz      r3, sConsole__12JUTException@sda21(r13)
+	addi     r4, r31, 0x198
+	bl       print__10JUTConsoleFPCc
+	b        lbl_8002B074
 
-	.loc_0x78:
-	  lwz       r3, -0x775C(r13)
-	  mr        r5, r29
-	  lwz       r6, 0x0(r29)
-	  addi      r4, r31, 0x1AC
-	  lwz       r7, 0x4(r29)
-	  crclr     6, 0x6
-	  bl        -0x2688
-	  lwz       r4, 0x4(r29)
-	  mr        r3, r28
-	  li        r5, 0
-	  bl        0x2A0
-	  lwz       r3, -0x7790(r13)
-	  li        r4, 0x1
-	  bl        -0x1F40
-	  lwz       r3, 0x90(r28)
-	  bl        0x15D8
-	  lwz       r29, 0x0(r29)
+lbl_8002B010:
+	lwz      r3, sConsole__12JUTException@sda21(r13)
+	mr       r5, r29
+	lwz      r6, 0(r29)
+	addi     r4, r31, 0x1ac
+	lwz      r7, 4(r29)
+	crclr    6
+	bl       print_f__10JUTConsoleFPCce
+	lwz      r4, 4(r29)
+	mr       r3, r28
+	li       r5, 0
+	bl       showMapInfo_subroutine__12JUTExceptionFUlb
+	lwz      r3, sManager__17JUTConsoleManager@sda21(r13)
+	li       r4, 1
+	bl       drawDirect__17JUTConsoleManagerCFb
+	lwz      r3, 0x90(r28)
+	bl       waitTime__12JUTExceptionFl
+	lwz      r29, 0(r29)
 
-	.loc_0xBC:
-	  cmplwi    r29, 0
-	  beq-      .loc_0xDC
-	  addis     r0, r29, 0x1
-	  cmplwi    r0, 0xFFFF
-	  beq-      .loc_0xDC
-	  cmplwi    r30, 0x10
-	  addi      r30, r30, 0x1
-	  blt+      .loc_0x5C
+lbl_8002B054:
+	cmplwi   r29, 0
+	beq      lbl_8002B074
+	addis    r0, r29, 1
+	cmplwi   r0, 0xffff
+	beq      lbl_8002B074
+	cmplwi   r30, 0x10
+	addi     r30, r30, 1
+	blt      lbl_8002AFF4
 
-	.loc_0xDC:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8002B074:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -1421,209 +1678,208 @@ void JUTException::showGPR(OSContext*)
 void JUTException::showMapInfo_subroutine(unsigned long, bool)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x160(r1)
-	  mflr      r0
-	  stw       r0, 0x164(r1)
-	  lis       r0, 0x8000
-	  stw       r31, 0x15C(r1)
-	  mr        r31, r4
-	  cmplw     r31, r0
-	  stw       r30, 0x158(r1)
-	  blt-      .loc_0x34
-	  lis       r3, 0x8300
-	  subi      r0, r3, 0x1
-	  cmplw     r31, r0
-	  ble-      .loc_0x3C
+	stwu     r1, -0x160(r1)
+	mflr     r0
+	stw      r0, 0x164(r1)
+	lis      r0, 0x8000
+	stw      r31, 0x15c(r1)
+	mr       r31, r4
+	cmplw    r31, r0
+	stw      r30, 0x158(r1)
+	blt      lbl_8002B30C
+	lis      r3, 0x82FFFFFF@ha
+	addi     r0, r3, 0x82FFFFFF@l
+	cmplw    r31, r0
+	ble      lbl_8002B314
 
-	.loc_0x34:
-	  li        r3, 0
-	  b         .loc_0x240
+lbl_8002B30C:
+	li       r3, 0
+	b        lbl_8002B518
 
-	.loc_0x3C:
-	  rlwinm.   r3,r5,0,24,31
-	  subi      r0, r2, 0x7D30
-	  bne-      .loc_0x4C
-	  subi      r0, r2, 0x7D1C
+lbl_8002B314:
+	clrlwi.  r3, r5, 0x18
+	addi     r0, r2, lbl_80516630@sda21
+	bne      lbl_8002B324
+	addi     r0, r2, lbl_80516644@sda21
 
-	.loc_0x4C:
-	  cmplwi    r31, 0
-	  bne-      .loc_0x5C
-	  li        r30, 0
-	  b         .loc_0x108
+lbl_8002B324:
+	cmplwi   r31, 0
+	bne      lbl_8002B334
+	li       r30, 0
+	b        lbl_8002B3E0
 
-	.loc_0x5C:
-	  lis       r3, 0x8000
-	  lwz       r8, 0x30C8(r3)
-	  b         .loc_0xFC
+lbl_8002B334:
+	lis      r3, 0x800030C8@ha
+	lwz      r8, 0x800030C8@l(r3)
+	b        lbl_8002B3D4
 
-	.loc_0x68:
-	  lwz       r3, 0xC(r8)
-	  li        r6, 0
-	  lwz       r7, 0x10(r8)
-	  mtctr     r3
-	  cmplwi    r3, 0
-	  ble-      .loc_0xF8
+lbl_8002B340:
+	lwz      r3, 0xc(r8)
+	li       r6, 0
+	lwz      r7, 0x10(r8)
+	mtctr    r3
+	cmplwi   r3, 0
+	ble      lbl_8002B3D0
 
-	.loc_0x80:
-	  lwz       r9, 0x4(r7)
-	  cmplwi    r9, 0
-	  beq-      .loc_0xEC
-	  lwz       r3, 0x0(r7)
-	  rlwinm    r4,r3,0,0,30
-	  cmplw     r4, r31
-	  bgt-      .loc_0xEC
-	  add       r3, r4, r9
-	  cmplw     r31, r3
-	  bge-      .loc_0xEC
-	  addic.    r3, r1, 0x20
-	  beq-      .loc_0xB8
-	  lwz       r3, 0x0(r8)
-	  stw       r3, 0x20(r1)
+lbl_8002B358:
+	lwz      r9, 4(r7)
+	cmplwi   r9, 0
+	beq      lbl_8002B3C4
+	lwz      r3, 0(r7)
+	rlwinm   r4, r3, 0, 0, 0x1e
+	cmplw    r4, r31
+	bgt      lbl_8002B3C4
+	add      r3, r4, r9
+	cmplw    r31, r3
+	bge      lbl_8002B3C4
+	addic.   r3, r1, 0x20
+	beq      lbl_8002B390
+	lwz      r3, 0(r8)
+	stw      r3, 0x20(r1)
 
-	.loc_0xB8:
-	  addic.    r3, r1, 0x1C
-	  beq-      .loc_0xC4
-	  stw       r6, 0x1C(r1)
+lbl_8002B390:
+	addic.   r3, r1, 0x1c
+	beq      lbl_8002B39C
+	stw      r6, 0x1c(r1)
 
-	.loc_0xC4:
-	  addic.    r3, r1, 0x18
-	  beq-      .loc_0xD4
-	  sub       r3, r31, r4
-	  stw       r3, 0x18(r1)
+lbl_8002B39C:
+	addic.   r3, r1, 0x18
+	beq      lbl_8002B3AC
+	subf     r3, r4, r31
+	stw      r3, 0x18(r1)
 
-	.loc_0xD4:
-	  addic.    r3, r1, 0x24
-	  beq-      .loc_0xE4
-	  lwz       r3, 0x14(r8)
-	  stw       r3, 0x24(r1)
+lbl_8002B3AC:
+	addic.   r3, r1, 0x24
+	beq      lbl_8002B3BC
+	lwz      r3, 0x14(r8)
+	stw      r3, 0x24(r1)
 
-	.loc_0xE4:
-	  li        r30, 0x1
-	  b         .loc_0x108
+lbl_8002B3BC:
+	li       r30, 1
+	b        lbl_8002B3E0
 
-	.loc_0xEC:
-	  addi      r7, r7, 0x8
-	  addi      r6, r6, 0x1
-	  bdnz+     .loc_0x80
+lbl_8002B3C4:
+	addi     r7, r7, 8
+	addi     r6, r6, 1
+	bdnz     lbl_8002B358
 
-	.loc_0xF8:
-	  lwz       r8, 0x4(r8)
+lbl_8002B3D0:
+	lwz      r8, 4(r8)
 
-	.loc_0xFC:
-	  cmplwi    r8, 0
-	  bne+      .loc_0x68
-	  li        r30, 0
+lbl_8002B3D4:
+	cmplwi   r8, 0
+	bne      lbl_8002B340
+	li       r30, 0
 
-	.loc_0x108:
-	  rlwinm    r3,r30,0,24,31
-	  cmplwi    r3, 0x1
-	  bne-      .loc_0x1B8
-	  lwz       r5, 0x24(r1)
-	  addi      r6, r1, 0x28
-	  mr        r3, r5
-	  b         .loc_0x134
+lbl_8002B3E0:
+	clrlwi   r3, r30, 0x18
+	cmplwi   r3, 1
+	bne      lbl_8002B490
+	lwz      r5, 0x24(r1)
+	addi     r6, r1, 0x28
+	mr       r3, r5
+	b        lbl_8002B40C
 
-	.loc_0x124:
-	  cmpwi     r4, 0x5C
-	  bne-      .loc_0x130
-	  mr        r5, r3
+lbl_8002B3FC:
+	cmpwi    r4, 0x5c
+	bne      lbl_8002B408
+	mr       r5, r3
 
-	.loc_0x130:
-	  addi      r3, r3, 0x1
+lbl_8002B408:
+	addi     r3, r3, 1
 
-	.loc_0x134:
-	  lbz       r4, 0x0(r3)
-	  cmplwi    r4, 0
-	  bne+      .loc_0x124
-	  lbz       r3, 0x0(r5)
-	  cmpwi     r3, 0x5C
-	  bne-      .loc_0x150
-	  addi      r5, r5, 0x1
+lbl_8002B40C:
+	lbz      r4, 0(r3)
+	cmplwi   r4, 0
+	bne      lbl_8002B3FC
+	lbz      r3, 0(r5)
+	cmpwi    r3, 0x5c
+	bne      lbl_8002B428
+	addi     r5, r5, 1
 
-	.loc_0x150:
-	  li        r4, 0
-	  b         .loc_0x174
+lbl_8002B428:
+	li       r4, 0
+	b        lbl_8002B44C
 
-	.loc_0x158:
-	  cmpwi     r3, 0x2E
-	  beq-      .loc_0x188
-	  lbz       r3, 0x0(r5)
-	  addi      r4, r4, 0x1
-	  addi      r5, r5, 0x1
-	  stb       r3, 0x0(r6)
-	  addi      r6, r6, 0x1
+lbl_8002B430:
+	cmpwi    r3, 0x2e
+	beq      lbl_8002B460
+	lbz      r3, 0(r5)
+	addi     r4, r4, 1
+	addi     r5, r5, 1
+	stb      r3, 0(r6)
+	addi     r6, r6, 1
 
-	.loc_0x174:
-	  lbz       r3, 0x0(r5)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x188
-	  cmpwi     r4, 0x20
-	  blt+      .loc_0x158
+lbl_8002B44C:
+	lbz      r3, 0(r5)
+	cmplwi   r3, 0
+	beq      lbl_8002B460
+	cmpwi    r4, 0x20
+	blt      lbl_8002B430
 
-	.loc_0x188:
-	  li        r5, 0
-	  lis       r3, 0x8047
-	  stb       r5, 0x0(r6)
-	  addi      r4, r3, 0x3FBC
-	  lwz       r3, -0x775C(r13)
-	  mr        r5, r0
-	  lwz       r7, 0x18(r1)
-	  addi      r6, r1, 0x28
-	  lwz       r8, 0x1C(r1)
-	  crclr     6, 0x6
-	  bl        -0x2AE8
-	  li        r5, 0
+lbl_8002B460:
+	li       r5, 0
+	lis      r3, lbl_80473FBC@ha
+	stb      r5, 0(r6)
+	addi     r4, r3, lbl_80473FBC@l
+	lwz      r3, sConsole__12JUTException@sda21(r13)
+	mr       r5, r0
+	lwz      r7, 0x18(r1)
+	addi     r6, r1, 0x28
+	lwz      r8, 0x1c(r1)
+	crclr    6
+	bl       print_f__10JUTConsoleFPCce
+	li       r5, 0
 
-	.loc_0x1B8:
-	  lis       r3, 0x8050
-	  lwz       r0, 0x6E74(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x23C
-	  rlwinm    r0,r30,0,24,31
-	  cmplwi    r0, 0x1
-	  bne-      .loc_0x200
-	  stw       r5, 0x8(r1)
-	  addi      r3, r1, 0x28
-	  lwz       r4, 0x18(r1)
-	  addi      r6, r1, 0x14
-	  lwz       r5, 0x1C(r1)
-	  addi      r7, r1, 0x10
-	  addi      r8, r1, 0x4C
-	  li        r9, 0x100
-	  li        r10, 0x1
-	  bl        0x1374
-	  b         .loc_0x228
+lbl_8002B490:
+	lis      r3, sMapFileList__12JUTException@ha
+	lwz      r0, sMapFileList__12JUTException@l(r3)
+	cmplwi   r0, 0
+	beq      lbl_8002B514
+	clrlwi   r0, r30, 0x18
+	cmplwi   r0, 1
+	bne      lbl_8002B4D8
+	stw      r5, 8(r1)
+	addi     r3, r1, 0x28
+	lwz      r4, 0x18(r1)
+	addi     r6, r1, 0x14
+	lwz      r5, 0x1c(r1)
+	addi     r7, r1, 0x10
+	addi     r8, r1, 0x4c
+	li       r9, 0x100
+	li       r10, 1
+	bl       queryMapAddress__12JUTExceptionFPcUllPUlPUlPcUlbb
+	b        lbl_8002B500
 
-	.loc_0x200:
-	  stw       r5, 0x8(r1)
-	  mr        r4, r31
-	  addi      r6, r1, 0x14
-	  addi      r7, r1, 0x10
-	  addi      r8, r1, 0x4C
-	  li        r3, 0
-	  li        r5, -0x1
-	  li        r9, 0x100
-	  li        r10, 0x1
-	  bl        0x1348
+lbl_8002B4D8:
+	stw      r5, 8(r1)
+	mr       r4, r31
+	addi     r6, r1, 0x14
+	addi     r7, r1, 0x10
+	addi     r8, r1, 0x4c
+	li       r3, 0
+	li       r5, -1
+	li       r9, 0x100
+	li       r10, 1
+	bl       queryMapAddress__12JUTExceptionFPcUllPUlPUlPcUlbb
 
-	.loc_0x228:
-	  rlwinm    r0,r3,0,24,31
-	  cmplwi    r0, 0x1
-	  bne-      .loc_0x23C
-	  li        r3, 0x1
-	  b         .loc_0x240
+lbl_8002B500:
+	clrlwi   r0, r3, 0x18
+	cmplwi   r0, 1
+	bne      lbl_8002B514
+	li       r3, 1
+	b        lbl_8002B518
 
-	.loc_0x23C:
-	  li        r3, 0
+lbl_8002B514:
+	li       r3, 0
 
-	.loc_0x240:
-	  lwz       r0, 0x164(r1)
-	  lwz       r31, 0x15C(r1)
-	  lwz       r30, 0x158(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x160
-	  blr
+lbl_8002B518:
+	lwz      r0, 0x164(r1)
+	lwz      r31, 0x15c(r1)
+	lwz      r30, 0x158(r1)
+	mtlr     r0
+	addi     r1, r1, 0x160
+	blr
 	*/
 }
 
@@ -1635,254 +1891,253 @@ void JUTException::showMapInfo_subroutine(unsigned long, bool)
 void JUTException::showGPRMap(OSContext*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x170(r1)
-	  mflr      r0
-	  lis       r5, 0x8047
-	  stw       r0, 0x174(r1)
-	  stmw      r24, 0x150(r1)
-	  mr        r24, r3
-	  mr        r25, r4
-	  addi      r30, r5, 0x3C18
-	  lwz       r0, -0x775C(r13)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x2E0
-	  mr        r3, r0
-	  addi      r4, r30, 0x3BC
-	  li        r27, 0
-	  bl        -0x2B3C
-	  mr        r28, r25
-	  li        r26, 0
-	  lis       r31, 0x8000
+	stwu     r1, -0x170(r1)
+	mflr     r0
+	lis      r5, lbl_80473C18@ha
+	stw      r0, 0x174(r1)
+	stmw     r24, 0x150(r1)
+	mr       r24, r3
+	mr       r25, r4
+	addi     r30, r5, lbl_80473C18@l
+	lwz      r0, sConsole__12JUTException@sda21(r13)
+	cmplwi   r0, 0
+	beq      lbl_8002B810
+	mr       r3, r0
+	addi     r4, r30, 0x3bc
+	li       r27, 0
+	bl       print__10JUTConsoleFPCc
+	mr       r28, r25
+	li       r26, 0
+	lis      r31, 0x8000
 
-	.loc_0x48:
-	  lwz       r25, 0x0(r28)
-	  cmplw     r25, r31
-	  blt-      .loc_0x2BC
-	  lis       r3, 0x8300
-	  subi      r0, r3, 0x1
-	  cmplw     r25, r0
-	  bgt-      .loc_0x2BC
-	  lwz       r3, -0x775C(r13)
-	  mr        r5, r26
-	  mr        r6, r25
-	  addi      r4, r30, 0x3E8
-	  li        r27, 0x1
-	  crclr     6, 0x6
-	  bl        -0x2C0C
-	  lis       r4, 0x8000
-	  li        r6, 0x1
-	  cmplw     r25, r4
-	  blt-      .loc_0xA0
-	  lis       r3, 0x8300
-	  subi      r0, r3, 0x1
-	  cmplw     r25, r0
-	  ble-      .loc_0xA8
+lbl_8002B578:
+	lwz      r25, 0(r28)
+	cmplw    r25, r31
+	blt      lbl_8002B7EC
+	lis      r3, 0x82FFFFFF@ha
+	addi     r0, r3, 0x82FFFFFF@l
+	cmplw    r25, r0
+	bgt      lbl_8002B7EC
+	lwz      r3, sConsole__12JUTException@sda21(r13)
+	mr       r5, r26
+	mr       r6, r25
+	addi     r4, r30, 0x3e8
+	li       r27, 1
+	crclr    6
+	bl       print_f__10JUTConsoleFPCce
+	lis      r4, 0x8000
+	li       r6, 1
+	cmplw    r25, r4
+	blt      lbl_8002B5D0
+	lis      r3, 0x82FFFFFF@ha
+	addi     r0, r3, 0x82FFFFFF@l
+	cmplw    r25, r0
+	ble      lbl_8002B5D8
 
-	.loc_0xA0:
-	  li        r0, 0
-	  b         .loc_0x294
+lbl_8002B5D0:
+	li       r0, 0
+	b        lbl_8002B7C4
 
-	.loc_0xA8:
-	  cmplwi    r25, 0
-	  subi      r5, r2, 0x7D30
-	  bne-      .loc_0xBC
-	  li        r29, 0
-	  b         .loc_0x164
+lbl_8002B5D8:
+	cmplwi   r25, 0
+	addi     r5, r2, lbl_80516630@sda21
+	bne      lbl_8002B5EC
+	li       r29, 0
+	b        lbl_8002B694
 
-	.loc_0xBC:
-	  lwz       r8, 0x30C8(r4)
-	  b         .loc_0x158
+lbl_8002B5EC:
+	lwz      r8, 0x30c8(r4)
+	b        lbl_8002B688
 
-	.loc_0xC4:
-	  lwz       r0, 0xC(r8)
-	  li        r4, 0
-	  lwz       r7, 0x10(r8)
-	  mtctr     r0
-	  cmplwi    r0, 0
-	  ble-      .loc_0x154
+lbl_8002B5F4:
+	lwz      r0, 0xc(r8)
+	li       r4, 0
+	lwz      r7, 0x10(r8)
+	mtctr    r0
+	cmplwi   r0, 0
+	ble      lbl_8002B684
 
-	.loc_0xDC:
-	  lwz       r9, 0x4(r7)
-	  cmplwi    r9, 0
-	  beq-      .loc_0x148
-	  lwz       r0, 0x0(r7)
-	  rlwinm    r3,r0,0,0,30
-	  cmplw     r3, r25
-	  bgt-      .loc_0x148
-	  add       r0, r3, r9
-	  cmplw     r25, r0
-	  bge-      .loc_0x148
-	  addic.    r0, r1, 0x14
-	  beq-      .loc_0x114
-	  lwz       r0, 0x0(r8)
-	  stw       r0, 0x14(r1)
+lbl_8002B60C:
+	lwz      r9, 4(r7)
+	cmplwi   r9, 0
+	beq      lbl_8002B678
+	lwz      r0, 0(r7)
+	rlwinm   r3, r0, 0, 0, 0x1e
+	cmplw    r3, r25
+	bgt      lbl_8002B678
+	add      r0, r3, r9
+	cmplw    r25, r0
+	bge      lbl_8002B678
+	addic.   r0, r1, 0x14
+	beq      lbl_8002B644
+	lwz      r0, 0(r8)
+	stw      r0, 0x14(r1)
 
-	.loc_0x114:
-	  addic.    r0, r1, 0x18
-	  beq-      .loc_0x120
-	  stw       r4, 0x18(r1)
+lbl_8002B644:
+	addic.   r0, r1, 0x18
+	beq      lbl_8002B650
+	stw      r4, 0x18(r1)
 
-	.loc_0x120:
-	  addic.    r0, r1, 0x1C
-	  beq-      .loc_0x130
-	  sub       r0, r25, r3
-	  stw       r0, 0x1C(r1)
+lbl_8002B650:
+	addic.   r0, r1, 0x1c
+	beq      lbl_8002B660
+	subf     r0, r3, r25
+	stw      r0, 0x1c(r1)
 
-	.loc_0x130:
-	  addic.    r0, r1, 0x10
-	  beq-      .loc_0x140
-	  lwz       r0, 0x14(r8)
-	  stw       r0, 0x10(r1)
+lbl_8002B660:
+	addic.   r0, r1, 0x10
+	beq      lbl_8002B670
+	lwz      r0, 0x14(r8)
+	stw      r0, 0x10(r1)
 
-	.loc_0x140:
-	  li        r29, 0x1
-	  b         .loc_0x164
+lbl_8002B670:
+	li       r29, 1
+	b        lbl_8002B694
 
-	.loc_0x148:
-	  addi      r7, r7, 0x8
-	  addi      r4, r4, 0x1
-	  bdnz+     .loc_0xDC
+lbl_8002B678:
+	addi     r7, r7, 8
+	addi     r4, r4, 1
+	bdnz     lbl_8002B60C
 
-	.loc_0x154:
-	  lwz       r8, 0x4(r8)
+lbl_8002B684:
+	lwz      r8, 4(r8)
 
-	.loc_0x158:
-	  cmplwi    r8, 0
-	  bne+      .loc_0xC4
-	  li        r29, 0
+lbl_8002B688:
+	cmplwi   r8, 0
+	bne      lbl_8002B5F4
+	li       r29, 0
 
-	.loc_0x164:
-	  rlwinm    r0,r29,0,24,31
-	  cmplwi    r0, 0x1
-	  bne-      .loc_0x20C
-	  lwz       r4, 0x10(r1)
-	  addi      r6, r1, 0x28
-	  mr        r3, r4
-	  b         .loc_0x190
+lbl_8002B694:
+	clrlwi   r0, r29, 0x18
+	cmplwi   r0, 1
+	bne      lbl_8002B73C
+	lwz      r4, 0x10(r1)
+	addi     r6, r1, 0x28
+	mr       r3, r4
+	b        lbl_8002B6C0
 
-	.loc_0x180:
-	  cmpwi     r0, 0x5C
-	  bne-      .loc_0x18C
-	  mr        r4, r3
+lbl_8002B6B0:
+	cmpwi    r0, 0x5c
+	bne      lbl_8002B6BC
+	mr       r4, r3
 
-	.loc_0x18C:
-	  addi      r3, r3, 0x1
+lbl_8002B6BC:
+	addi     r3, r3, 1
 
-	.loc_0x190:
-	  lbz       r0, 0x0(r3)
-	  cmplwi    r0, 0
-	  bne+      .loc_0x180
-	  lbz       r0, 0x0(r4)
-	  cmpwi     r0, 0x5C
-	  bne-      .loc_0x1AC
-	  addi      r4, r4, 0x1
+lbl_8002B6C0:
+	lbz      r0, 0(r3)
+	cmplwi   r0, 0
+	bne      lbl_8002B6B0
+	lbz      r0, 0(r4)
+	cmpwi    r0, 0x5c
+	bne      lbl_8002B6DC
+	addi     r4, r4, 1
 
-	.loc_0x1AC:
-	  li        r3, 0
-	  b         .loc_0x1D0
+lbl_8002B6DC:
+	li       r3, 0
+	b        lbl_8002B700
 
-	.loc_0x1B4:
-	  cmpwi     r0, 0x2E
-	  beq-      .loc_0x1E4
-	  lbz       r0, 0x0(r4)
-	  addi      r3, r3, 0x1
-	  addi      r4, r4, 0x1
-	  stb       r0, 0x0(r6)
-	  addi      r6, r6, 0x1
+lbl_8002B6E4:
+	cmpwi    r0, 0x2e
+	beq      lbl_8002B714
+	lbz      r0, 0(r4)
+	addi     r3, r3, 1
+	addi     r4, r4, 1
+	stb      r0, 0(r6)
+	addi     r6, r6, 1
 
-	.loc_0x1D0:
-	  lbz       r0, 0x0(r4)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x1E4
-	  cmpwi     r3, 0x20
-	  blt+      .loc_0x1B4
+lbl_8002B700:
+	lbz      r0, 0(r4)
+	cmplwi   r0, 0
+	beq      lbl_8002B714
+	cmpwi    r3, 0x20
+	blt      lbl_8002B6E4
 
-	.loc_0x1E4:
-	  li        r0, 0
-	  lwz       r3, -0x775C(r13)
-	  stb       r0, 0x0(r6)
-	  addi      r4, r30, 0x3A4
-	  lwz       r7, 0x1C(r1)
-	  addi      r6, r1, 0x28
-	  lwz       r8, 0x18(r1)
-	  crclr     6, 0x6
-	  bl        -0x2D94
-	  li        r6, 0
+lbl_8002B714:
+	li       r0, 0
+	lwz      r3, sConsole__12JUTException@sda21(r13)
+	stb      r0, 0(r6)
+	addi     r4, r30, 0x3a4
+	lwz      r7, 0x1c(r1)
+	addi     r6, r1, 0x28
+	lwz      r8, 0x18(r1)
+	crclr    6
+	bl       print_f__10JUTConsoleFPCce
+	li       r6, 0
 
-	.loc_0x20C:
-	  lis       r3, 0x8050
-	  lwz       r0, 0x6E74(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x290
-	  rlwinm    r0,r29,0,24,31
-	  cmplwi    r0, 0x1
-	  bne-      .loc_0x254
-	  stw       r6, 0x8(r1)
-	  addi      r3, r1, 0x28
-	  lwz       r4, 0x1C(r1)
-	  addi      r6, r1, 0x20
-	  lwz       r5, 0x18(r1)
-	  addi      r7, r1, 0x24
-	  addi      r8, r1, 0x4C
-	  li        r9, 0x100
-	  li        r10, 0x1
-	  bl        0x10C8
-	  b         .loc_0x27C
+lbl_8002B73C:
+	lis      r3, sMapFileList__12JUTException@ha
+	lwz      r0, sMapFileList__12JUTException@l(r3)
+	cmplwi   r0, 0
+	beq      lbl_8002B7C0
+	clrlwi   r0, r29, 0x18
+	cmplwi   r0, 1
+	bne      lbl_8002B784
+	stw      r6, 8(r1)
+	addi     r3, r1, 0x28
+	lwz      r4, 0x1c(r1)
+	addi     r6, r1, 0x20
+	lwz      r5, 0x18(r1)
+	addi     r7, r1, 0x24
+	addi     r8, r1, 0x4c
+	li       r9, 0x100
+	li       r10, 1
+	bl       queryMapAddress__12JUTExceptionFPcUllPUlPUlPcUlbb
+	b        lbl_8002B7AC
 
-	.loc_0x254:
-	  stw       r6, 0x8(r1)
-	  mr        r4, r25
-	  addi      r6, r1, 0x20
-	  addi      r7, r1, 0x24
-	  addi      r8, r1, 0x4C
-	  li        r3, 0
-	  li        r5, -0x1
-	  li        r9, 0x100
-	  li        r10, 0x1
-	  bl        0x109C
+lbl_8002B784:
+	stw      r6, 8(r1)
+	mr       r4, r25
+	addi     r6, r1, 0x20
+	addi     r7, r1, 0x24
+	addi     r8, r1, 0x4c
+	li       r3, 0
+	li       r5, -1
+	li       r9, 0x100
+	li       r10, 1
+	bl       queryMapAddress__12JUTExceptionFPcUllPUlPUlPcUlbb
 
-	.loc_0x27C:
-	  rlwinm    r0,r3,0,24,31
-	  cmplwi    r0, 0x1
-	  bne-      .loc_0x290
-	  li        r0, 0x1
-	  b         .loc_0x294
+lbl_8002B7AC:
+	clrlwi   r0, r3, 0x18
+	cmplwi   r0, 1
+	bne      lbl_8002B7C0
+	li       r0, 1
+	b        lbl_8002B7C4
 
-	.loc_0x290:
-	  li        r0, 0
+lbl_8002B7C0:
+	li       r0, 0
 
-	.loc_0x294:
-	  rlwinm.   r0,r0,0,24,31
-	  bne-      .loc_0x2A8
-	  lwz       r3, -0x775C(r13)
-	  addi      r4, r30, 0x3F8
-	  bl        -0x2DA8
+lbl_8002B7C4:
+	clrlwi.  r0, r0, 0x18
+	bne      lbl_8002B7D8
+	lwz      r3, sConsole__12JUTException@sda21(r13)
+	addi     r4, r30, 0x3f8
+	bl       print__10JUTConsoleFPCc
 
-	.loc_0x2A8:
-	  lwz       r3, -0x7790(r13)
-	  li        r4, 0x1
-	  bl        -0x26DC
-	  lwz       r3, 0x90(r24)
-	  bl        0xE3C
+lbl_8002B7D8:
+	lwz      r3, sManager__17JUTConsoleManager@sda21(r13)
+	li       r4, 1
+	bl       drawDirect__17JUTConsoleManagerCFb
+	lwz      r3, 0x90(r24)
+	bl       waitTime__12JUTExceptionFl
 
-	.loc_0x2BC:
-	  addi      r26, r26, 0x1
-	  addi      r28, r28, 0x4
-	  cmpwi     r26, 0x1F
-	  blt+      .loc_0x48
-	  rlwinm.   r0,r27,0,24,31
-	  bne-      .loc_0x2E0
-	  lwz       r3, -0x775C(r13)
-	  addi      r4, r30, 0x40C
-	  bl        -0x2DE0
+lbl_8002B7EC:
+	addi     r26, r26, 1
+	addi     r28, r28, 4
+	cmpwi    r26, 0x1f
+	blt      lbl_8002B578
+	clrlwi.  r0, r27, 0x18
+	bne      lbl_8002B810
+	lwz      r3, sConsole__12JUTException@sda21(r13)
+	addi     r4, r30, 0x40c
+	bl       print__10JUTConsoleFPCc
 
-	.loc_0x2E0:
-	  lmw       r24, 0x150(r1)
-	  lwz       r0, 0x174(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x170
-	  blr
+lbl_8002B810:
+	lmw      r24, 0x150(r1)
+	lwz      r0, 0x174(r1)
+	mtlr     r0
+	addi     r1, r1, 0x170
+	blr
 	*/
 }
 
@@ -2230,435 +2485,434 @@ void JUTException::isEnablePad() const
 void JUTException::readPad(unsigned long*, unsigned long*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x3A0(r1)
-	  mflr      r0
-	  stw       r0, 0x3A4(r1)
-	  stmw      r22, 0x378(r1)
-	  mr        r29, r3
-	  mr        r26, r4
-	  mr        r25, r5
-	  li        r22, 0
-	  bl        0xC6FA0
-	  lis       r5, 0x1062
-	  mr        r28, r4
-	  mr        r27, r3
-	  lis       r23, 0x8000
-	  addi      r24, r5, 0x4DD3
-	  li        r31, 0x32
-	  li        r30, 0
+	stwu     r1, -0x3a0(r1)
+	mflr     r0
+	stw      r0, 0x3a4(r1)
+	stmw     r22, 0x378(r1)
+	mr       r29, r3
+	mr       r26, r4
+	mr       r25, r5
+	li       r22, 0
+	bl       OSGetTime
+	lis      r5, 0x10624DD3@ha
+	mr       r28, r4
+	mr       r27, r3
+	lis      r23, 0x8000
+	addi     r24, r5, 0x10624DD3@l
+	li       r31, 0x32
+	li       r30, 0
 
-	.loc_0x40:
-	  bl        0xC6F80
-	  lwz       r0, 0xF8(r23)
-	  subc      r4, r4, r28
-	  subfe     r3, r27, r3
-	  li        r5, 0
-	  rlwinm    r0,r0,30,2,31
-	  mulhwu    r0, r24, r0
-	  rlwinm    r6,r0,26,6,31
-	  bl        0x96194
-	  xoris     r5, r3, 0x8000
-	  xoris     r3, r30, 0x8000
-	  subc      r0, r4, r31
-	  subfe     r3, r3, r5
-	  subfe     r3, r5, r5
-	  neg.      r3, r3
-	  bne+      .loc_0x40
-	  lwz       r3, 0x84(r29)
-	  addis     r0, r3, 0x1
-	  cmplwi    r0, 0xFFFF
-	  bne-      .loc_0x434
-	  addi      r3, r1, 0x2C8
-	  li        r4, 0
-	  bl        0x17F0
-	  addi      r3, r1, 0x218
-	  li        r4, 0x1
-	  bl        0x17E4
-	  addi      r3, r1, 0x168
-	  li        r4, 0x2
-	  bl        0x17D8
-	  addi      r3, r1, 0xB8
-	  li        r4, 0x3
-	  bl        0x17CC
-	  bl        0x19D0
-	  lha       r0, 0x344(r1)
-	  li        r3, 0
-	  cmpwi     r0, -0x1
-	  beq-      .loc_0xE4
-	  lbz       r0, 0x360(r1)
-	  cmplwi    r0, 0
-	  beq-      .loc_0xE4
-	  li        r3, 0x1
+lbl_8002BC10:
+	bl       OSGetTime
+	lwz      r0, 0xf8(r23)
+	subfc    r4, r28, r4
+	subfe    r3, r27, r3
+	li       r5, 0
+	srwi     r0, r0, 2
+	mulhwu   r0, r24, r0
+	srwi     r6, r0, 6
+	bl       __div2i
+	xoris    r5, r3, 0x8000
+	xoris    r3, r30, 0x8000
+	subfc    r0, r31, r4
+	subfe    r3, r3, r5
+	subfe    r3, r5, r5
+	neg.     r3, r3
+	bne      lbl_8002BC10
+	lwz      r3, 0x84(r29)
+	addis    r0, r3, 1
+	cmplwi   r0, 0xffff
+	bne      lbl_8002C004
+	addi     r3, r1, 0x2c8
+	li       r4, 0
+	bl       __ct__10JUTGamePadFQ210JUTGamePad8EPadPort
+	addi     r3, r1, 0x218
+	li       r4, 1
+	bl       __ct__10JUTGamePadFQ210JUTGamePad8EPadPort
+	addi     r3, r1, 0x168
+	li       r4, 2
+	bl       __ct__10JUTGamePadFQ210JUTGamePad8EPadPort
+	addi     r3, r1, 0xb8
+	li       r4, 3
+	bl       __ct__10JUTGamePadFQ210JUTGamePad8EPadPort
+	bl       read__10JUTGamePadFv
+	lha      r0, 0x344(r1)
+	li       r3, 0
+	cmpwi    r0, -1
+	beq      lbl_8002BCB4
+	lbz      r0, 0x360(r1)
+	cmplwi   r0, 0
+	beq      lbl_8002BCB4
+	li       r3, 1
 
-	.loc_0xE4:
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x11C
-	  lis       r3, 0x804A
-	  li        r5, 0
-	  addi      r4, r3, 0x3C8
-	  lwz       r3, 0x0(r4)
-	  lwz       r4, 0x4(r4)
-	  xor       r0, r3, r5
-	  xor       r5, r4, r5
-	  or.       r0, r5, r0
-	  beq-      .loc_0x114
-	  b         .loc_0x124
+lbl_8002BCB4:
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_8002BCEC
+	lis      r3, c3bcnt@ha
+	li       r5, 0
+	addi     r4, r3, c3bcnt@l
+	lwz      r3, 0(r4)
+	lwz      r4, 4(r4)
+	xor      r0, r3, r5
+	xor      r5, r4, r5
+	or.      r0, r5, r0
+	beq      lbl_8002BCE4
+	b        lbl_8002BCF4
 
-	.loc_0x114:
-	  bl        0xC6EAC
-	  b         .loc_0x124
+lbl_8002BCE4:
+	bl       OSGetTime
+	b        lbl_8002BCF4
 
-	.loc_0x11C:
-	  li        r4, 0
-	  mr        r3, r4
+lbl_8002BCEC:
+	li       r4, 0
+	mr       r3, r4
 
-	.loc_0x124:
-	  lha       r0, 0x294(r1)
-	  lis       r5, 0x804A
-	  addi      r6, r5, 0x3C8
-	  li        r5, 0
-	  cmpwi     r0, -0x1
-	  stw       r4, 0x4(r6)
-	  stw       r3, 0x0(r6)
-	  beq-      .loc_0x154
-	  lbz       r0, 0x2B0(r1)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x154
-	  li        r5, 0x1
+lbl_8002BCF4:
+	lha      r0, 0x294(r1)
+	lis      r5, c3bcnt@ha
+	addi     r6, r5, c3bcnt@l
+	li       r5, 0
+	cmpwi    r0, -1
+	stw      r4, 4(r6)
+	stw      r3, 0(r6)
+	beq      lbl_8002BD24
+	lbz      r0, 0x2b0(r1)
+	cmplwi   r0, 0
+	beq      lbl_8002BD24
+	li       r5, 1
 
-	.loc_0x154:
-	  rlwinm.   r0,r5,0,24,31
-	  beq-      .loc_0x18C
-	  lis       r3, 0x804A
-	  li        r5, 0
-	  addi      r4, r3, 0x3C8
-	  lwz       r3, 0x8(r4)
-	  lwz       r4, 0xC(r4)
-	  xor       r0, r3, r5
-	  xor       r5, r4, r5
-	  or.       r0, r5, r0
-	  beq-      .loc_0x184
-	  b         .loc_0x194
+lbl_8002BD24:
+	clrlwi.  r0, r5, 0x18
+	beq      lbl_8002BD5C
+	lis      r3, c3bcnt@ha
+	li       r5, 0
+	addi     r4, r3, c3bcnt@l
+	lwz      r3, 8(r4)
+	lwz      r4, 0xc(r4)
+	xor      r0, r3, r5
+	xor      r5, r4, r5
+	or.      r0, r5, r0
+	beq      lbl_8002BD54
+	b        lbl_8002BD64
 
-	.loc_0x184:
-	  bl        0xC6E3C
-	  b         .loc_0x194
+lbl_8002BD54:
+	bl       OSGetTime
+	b        lbl_8002BD64
 
-	.loc_0x18C:
-	  li        r4, 0
-	  mr        r3, r4
+lbl_8002BD5C:
+	li       r4, 0
+	mr       r3, r4
 
-	.loc_0x194:
-	  lha       r0, 0x1E4(r1)
-	  lis       r5, 0x804A
-	  addi      r29, r5, 0x3C8
-	  li        r5, 0
-	  cmpwi     r0, -0x1
-	  stw       r4, 0xC(r29)
-	  stw       r3, 0x8(r29)
-	  beq-      .loc_0x1C4
-	  lbz       r0, 0x200(r1)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x1C4
-	  li        r5, 0x1
+lbl_8002BD64:
+	lha      r0, 0x1e4(r1)
+	lis      r5, c3bcnt@ha
+	addi     r29, r5, c3bcnt@l
+	li       r5, 0
+	cmpwi    r0, -1
+	stw      r4, 0xc(r29)
+	stw      r3, 8(r29)
+	beq      lbl_8002BD94
+	lbz      r0, 0x200(r1)
+	cmplwi   r0, 0
+	beq      lbl_8002BD94
+	li       r5, 1
 
-	.loc_0x1C4:
-	  rlwinm.   r0,r5,0,24,31
-	  beq-      .loc_0x1FC
-	  lis       r3, 0x804A
-	  li        r5, 0
-	  addi      r4, r3, 0x3C8
-	  lwz       r3, 0x10(r4)
-	  lwz       r4, 0x14(r4)
-	  xor       r0, r3, r5
-	  xor       r5, r4, r5
-	  or.       r0, r5, r0
-	  beq-      .loc_0x1F4
-	  b         .loc_0x204
+lbl_8002BD94:
+	clrlwi.  r0, r5, 0x18
+	beq      lbl_8002BDCC
+	lis      r3, c3bcnt@ha
+	li       r5, 0
+	addi     r4, r3, c3bcnt@l
+	lwz      r3, 0x10(r4)
+	lwz      r4, 0x14(r4)
+	xor      r0, r3, r5
+	xor      r5, r4, r5
+	or.      r0, r5, r0
+	beq      lbl_8002BDC4
+	b        lbl_8002BDD4
 
-	.loc_0x1F4:
-	  bl        0xC6DCC
-	  b         .loc_0x204
+lbl_8002BDC4:
+	bl       OSGetTime
+	b        lbl_8002BDD4
 
-	.loc_0x1FC:
-	  li        r4, 0
-	  mr        r3, r4
+lbl_8002BDCC:
+	li       r4, 0
+	mr       r3, r4
 
-	.loc_0x204:
-	  lha       r0, 0x134(r1)
-	  lis       r5, 0x804A
-	  addi      r30, r5, 0x3C8
-	  li        r5, 0
-	  cmpwi     r0, -0x1
-	  stw       r4, 0x14(r30)
-	  stw       r3, 0x10(r30)
-	  beq-      .loc_0x234
-	  lbz       r0, 0x150(r1)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x234
-	  li        r5, 0x1
+lbl_8002BDD4:
+	lha      r0, 0x134(r1)
+	lis      r5, c3bcnt@ha
+	addi     r30, r5, c3bcnt@l
+	li       r5, 0
+	cmpwi    r0, -1
+	stw      r4, 0x14(r30)
+	stw      r3, 0x10(r30)
+	beq      lbl_8002BE04
+	lbz      r0, 0x150(r1)
+	cmplwi   r0, 0
+	beq      lbl_8002BE04
+	li       r5, 1
 
-	.loc_0x234:
-	  rlwinm.   r0,r5,0,24,31
-	  beq-      .loc_0x26C
-	  lis       r3, 0x804A
-	  li        r5, 0
-	  addi      r4, r3, 0x3C8
-	  lwz       r3, 0x18(r4)
-	  lwz       r4, 0x1C(r4)
-	  xor       r0, r3, r5
-	  xor       r5, r4, r5
-	  or.       r0, r5, r0
-	  beq-      .loc_0x264
-	  b         .loc_0x274
+lbl_8002BE04:
+	clrlwi.  r0, r5, 0x18
+	beq      lbl_8002BE3C
+	lis      r3, c3bcnt@ha
+	li       r5, 0
+	addi     r4, r3, c3bcnt@l
+	lwz      r3, 0x18(r4)
+	lwz      r4, 0x1c(r4)
+	xor      r0, r3, r5
+	xor      r5, r4, r5
+	or.      r0, r5, r0
+	beq      lbl_8002BE34
+	b        lbl_8002BE44
 
-	.loc_0x264:
-	  bl        0xC6D5C
-	  b         .loc_0x274
+lbl_8002BE34:
+	bl       OSGetTime
+	b        lbl_8002BE44
 
-	.loc_0x26C:
-	  li        r4, 0
-	  mr        r3, r4
+lbl_8002BE3C:
+	li       r4, 0
+	mr       r3, r4
 
-	.loc_0x274:
-	  lis       r5, 0x804A
-	  li        r27, 0
-	  addi      r31, r5, 0x3C8
-	  lwz       r0, 0x0(r31)
-	  lwz       r5, 0x4(r31)
-	  stw       r4, 0x1C(r31)
-	  xor       r0, r0, r27
-	  xor       r4, r5, r27
-	  or.       r0, r4, r0
-	  stw       r3, 0x18(r31)
-	  beq-      .loc_0x2C0
-	  bl        0xC6D20
-	  lis       r5, 0x804A
-	  addi      r6, r5, 0x3C8
-	  lwz       r5, 0x4(r6)
-	  lwz       r0, 0x0(r6)
-	  subc      r27, r4, r5
-	  subfe     r24, r0, r3
-	  b         .loc_0x2C4
+lbl_8002BE44:
+	lis      r5, c3bcnt@ha
+	li       r27, 0
+	addi     r31, r5, c3bcnt@l
+	lwz      r0, 0(r31)
+	lwz      r5, 4(r31)
+	stw      r4, 0x1c(r31)
+	xor      r0, r0, r27
+	xor      r4, r5, r27
+	or.      r0, r4, r0
+	stw      r3, 0x18(r31)
+	beq      lbl_8002BE90
+	bl       OSGetTime
+	lis      r5, c3bcnt@ha
+	addi     r6, r5, c3bcnt@l
+	lwz      r5, 4(r6)
+	lwz      r0, 0(r6)
+	subfc    r27, r5, r4
+	subfe    r24, r0, r3
+	b        lbl_8002BE94
 
-	.loc_0x2C0:
-	  mr        r24, r27
+lbl_8002BE90:
+	mr       r24, r27
 
-	.loc_0x2C4:
-	  lwz       r0, 0x8(r29)
-	  li        r28, 0
-	  lwz       r3, 0xC(r29)
-	  xor       r0, r0, r28
-	  xor       r3, r3, r28
-	  or.       r0, r3, r0
-	  beq-      .loc_0x2F8
-	  bl        0xC6CE0
-	  lwz       r5, 0xC(r29)
-	  lwz       r0, 0x8(r29)
-	  subc      r28, r4, r5
-	  subfe     r29, r0, r3
-	  b         .loc_0x2FC
+lbl_8002BE94:
+	lwz      r0, 8(r29)
+	li       r28, 0
+	lwz      r3, 0xc(r29)
+	xor      r0, r0, r28
+	xor      r3, r3, r28
+	or.      r0, r3, r0
+	beq      lbl_8002BEC8
+	bl       OSGetTime
+	lwz      r5, 0xc(r29)
+	lwz      r0, 8(r29)
+	subfc    r28, r5, r4
+	subfe    r29, r0, r3
+	b        lbl_8002BECC
 
-	.loc_0x2F8:
-	  mr        r29, r28
+lbl_8002BEC8:
+	mr       r29, r28
 
-	.loc_0x2FC:
-	  lwz       r0, 0x10(r30)
-	  li        r23, 0
-	  lwz       r3, 0x14(r30)
-	  xor       r0, r0, r23
-	  xor       r3, r3, r23
-	  or.       r0, r3, r0
-	  beq-      .loc_0x330
-	  bl        0xC6CA8
-	  lwz       r5, 0x14(r30)
-	  lwz       r0, 0x10(r30)
-	  subc      r23, r4, r5
-	  subfe     r22, r0, r3
-	  b         .loc_0x334
+lbl_8002BECC:
+	lwz      r0, 0x10(r30)
+	li       r23, 0
+	lwz      r3, 0x14(r30)
+	xor      r0, r0, r23
+	xor      r3, r3, r23
+	or.      r0, r3, r0
+	beq      lbl_8002BF00
+	bl       OSGetTime
+	lwz      r5, 0x14(r30)
+	lwz      r0, 0x10(r30)
+	subfc    r23, r5, r4
+	subfe    r22, r0, r3
+	b        lbl_8002BF04
 
-	.loc_0x330:
-	  mr        r22, r23
+lbl_8002BF00:
+	mr       r22, r23
 
-	.loc_0x334:
-	  lwz       r0, 0x18(r31)
-	  li        r30, 0
-	  lwz       r3, 0x1C(r31)
-	  xor       r0, r0, r30
-	  xor       r3, r3, r30
-	  or.       r0, r3, r0
-	  beq-      .loc_0x368
-	  bl        0xC6C70
-	  lwz       r5, 0x1C(r31)
-	  lwz       r0, 0x18(r31)
-	  subc      r30, r4, r5
-	  subfe     r31, r0, r3
-	  b         .loc_0x36C
+lbl_8002BF04:
+	lwz      r0, 0x18(r31)
+	li       r30, 0
+	lwz      r3, 0x1c(r31)
+	xor      r0, r0, r30
+	xor      r3, r3, r30
+	or.      r0, r3, r0
+	beq      lbl_8002BF38
+	bl       OSGetTime
+	lwz      r5, 0x1c(r31)
+	lwz      r0, 0x18(r31)
+	subfc    r30, r5, r4
+	subfe    r31, r0, r3
+	b        lbl_8002BF3C
 
-	.loc_0x368:
-	  mr        r31, r30
+lbl_8002BF38:
+	mr       r31, r30
 
-	.loc_0x36C:
-	  mr        r6, r27
-	  mr        r5, r24
-	  addi      r3, r1, 0x2C8
-	  bl        0x1A88
-	  mr        r6, r28
-	  mr        r5, r29
-	  addi      r3, r1, 0x218
-	  bl        0x1A78
-	  mr        r6, r23
-	  mr        r5, r22
-	  addi      r3, r1, 0x168
-	  bl        0x1A68
-	  mr        r6, r30
-	  mr        r5, r31
-	  addi      r3, r1, 0xB8
-	  bl        0x1A58
-	  cmplwi    r26, 0
-	  beq-      .loc_0x3D4
-	  lwz       r3, 0x2E4(r1)
-	  lwz       r0, 0x234(r1)
-	  lwz       r4, 0x184(r1)
-	  or        r0, r3, r0
-	  lwz       r3, 0xD4(r1)
-	  or        r0, r4, r0
-	  or        r0, r3, r0
-	  stw       r0, 0x0(r26)
+lbl_8002BF3C:
+	mr       r6, r27
+	mr       r5, r24
+	addi     r3, r1, 0x2c8
+	bl       checkResetCallback__10JUTGamePadFx
+	mr       r6, r28
+	mr       r5, r29
+	addi     r3, r1, 0x218
+	bl       checkResetCallback__10JUTGamePadFx
+	mr       r6, r23
+	mr       r5, r22
+	addi     r3, r1, 0x168
+	bl       checkResetCallback__10JUTGamePadFx
+	mr       r6, r30
+	mr       r5, r31
+	addi     r3, r1, 0xb8
+	bl       checkResetCallback__10JUTGamePadFx
+	cmplwi   r26, 0
+	beq      lbl_8002BFA4
+	lwz      r3, 0x2e4(r1)
+	lwz      r0, 0x234(r1)
+	lwz      r4, 0x184(r1)
+	or       r0, r3, r0
+	lwz      r3, 0xd4(r1)
+	or       r0, r4, r0
+	or       r0, r3, r0
+	stw      r0, 0(r26)
 
-	.loc_0x3D4:
-	  cmplwi    r25, 0
-	  beq-      .loc_0x3FC
-	  lwz       r3, 0x2E0(r1)
-	  lwz       r0, 0x230(r1)
-	  lwz       r4, 0x180(r1)
-	  or        r0, r3, r0
-	  lwz       r3, 0xD0(r1)
-	  or        r0, r4, r0
-	  or        r0, r3, r0
-	  stw       r0, 0x0(r25)
+lbl_8002BFA4:
+	cmplwi   r25, 0
+	beq      lbl_8002BFCC
+	lwz      r3, 0x2e0(r1)
+	lwz      r0, 0x230(r1)
+	lwz      r4, 0x180(r1)
+	or       r0, r3, r0
+	lwz      r3, 0xd0(r1)
+	or       r0, r4, r0
+	or       r0, r3, r0
+	stw      r0, 0(r25)
 
-	.loc_0x3FC:
-	  addi      r3, r1, 0xB8
-	  li        r22, 0x1
-	  li        r4, -0x1
-	  bl        0x1554
-	  addi      r3, r1, 0x168
-	  li        r4, -0x1
-	  bl        0x1548
-	  addi      r3, r1, 0x218
-	  li        r4, -0x1
-	  bl        0x153C
-	  addi      r3, r1, 0x2C8
-	  li        r4, -0x1
-	  bl        0x1530
-	  b         .loc_0x558
+lbl_8002BFCC:
+	addi     r3, r1, 0xb8
+	li       r22, 1
+	li       r4, -1
+	bl       __dt__10JUTGamePadFv
+	addi     r3, r1, 0x168
+	li       r4, -1
+	bl       __dt__10JUTGamePadFv
+	addi     r3, r1, 0x218
+	li       r4, -1
+	bl       __dt__10JUTGamePadFv
+	addi     r3, r1, 0x2c8
+	li       r4, -1
+	bl       __dt__10JUTGamePadFv
+	b        lbl_8002C128
 
-	.loc_0x434:
-	  lwz       r4, 0x88(r29)
-	  cmpwi     r4, 0
-	  blt-      .loc_0x520
-	  addi      r3, r1, 0x8
-	  bl        0x1444
-	  lha       r0, 0x84(r1)
-	  lis       r3, 0x804A
-	  addi      r23, r3, 0x3C8
-	  li        r3, 0
-	  cmpwi     r0, -0x1
-	  beq-      .loc_0x470
-	  lbz       r0, 0xA0(r1)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x470
-	  li        r3, 0x1
+lbl_8002C004:
+	lwz      r4, 0x88(r29)
+	cmpwi    r4, 0
+	blt      lbl_8002C0F0
+	addi     r3, r1, 8
+	bl       __ct__10JUTGamePadFQ210JUTGamePad8EPadPort
+	lha      r0, 0x84(r1)
+	lis      r3, c3bcnt@ha
+	addi     r23, r3, c3bcnt@l
+	li       r3, 0
+	cmpwi    r0, -1
+	beq      lbl_8002C040
+	lbz      r0, 0xa0(r1)
+	cmplwi   r0, 0
+	beq      lbl_8002C040
+	li       r3, 1
 
-	.loc_0x470:
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x4A0
-	  lwz       r3, 0x0(r23)
-	  li        r5, 0
-	  lwz       r4, 0x4(r23)
-	  xor       r0, r3, r5
-	  xor       r5, r4, r5
-	  or.       r0, r5, r0
-	  beq-      .loc_0x498
-	  b         .loc_0x4A8
+lbl_8002C040:
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_8002C070
+	lwz      r3, 0(r23)
+	li       r5, 0
+	lwz      r4, 4(r23)
+	xor      r0, r3, r5
+	xor      r5, r4, r5
+	or.      r0, r5, r0
+	beq      lbl_8002C068
+	b        lbl_8002C078
 
-	.loc_0x498:
-	  bl        0xC6B28
-	  b         .loc_0x4A8
+lbl_8002C068:
+	bl       OSGetTime
+	b        lbl_8002C078
 
-	.loc_0x4A0:
-	  li        r4, 0
-	  mr        r3, r4
+lbl_8002C070:
+	li       r4, 0
+	mr       r3, r4
 
-	.loc_0x4A8:
-	  li        r6, 0
-	  stw       r4, 0x4(r23)
-	  xor       r4, r4, r6
-	  xor       r0, r3, r6
-	  stw       r3, 0x0(r23)
-	  or.       r0, r4, r0
-	  beq-      .loc_0x4DC
-	  bl        0xC6AFC
-	  lwz       r5, 0x4(r23)
-	  lwz       r0, 0x0(r23)
-	  subc      r6, r4, r5
-	  subfe     r5, r0, r3
-	  b         .loc_0x4E0
+lbl_8002C078:
+	li       r6, 0
+	stw      r4, 4(r23)
+	xor      r4, r4, r6
+	xor      r0, r3, r6
+	stw      r3, 0(r23)
+	or.      r0, r4, r0
+	beq      lbl_8002C0AC
+	bl       OSGetTime
+	lwz      r5, 4(r23)
+	lwz      r0, 0(r23)
+	subfc    r6, r5, r4
+	subfe    r5, r0, r3
+	b        lbl_8002C0B0
 
-	.loc_0x4DC:
-	  mr        r5, r6
+lbl_8002C0AC:
+	mr       r5, r6
 
-	.loc_0x4E0:
-	  addi      r3, r1, 0x8
-	  bl        0x191C
-	  bl        0x15A8
-	  cmplwi    r26, 0
-	  beq-      .loc_0x4FC
-	  lwz       r0, 0x24(r1)
-	  stw       r0, 0x0(r26)
+lbl_8002C0B0:
+	addi     r3, r1, 8
+	bl       checkResetCallback__10JUTGamePadFx
+	bl       read__10JUTGamePadFv
+	cmplwi   r26, 0
+	beq      lbl_8002C0CC
+	lwz      r0, 0x24(r1)
+	stw      r0, 0(r26)
 
-	.loc_0x4FC:
-	  cmplwi    r25, 0
-	  beq-      .loc_0x50C
-	  lwz       r0, 0x20(r1)
-	  stw       r0, 0x0(r25)
+lbl_8002C0CC:
+	cmplwi   r25, 0
+	beq      lbl_8002C0DC
+	lwz      r0, 0x20(r1)
+	stw      r0, 0(r25)
 
-	.loc_0x50C:
-	  addi      r3, r1, 0x8
-	  li        r22, 0x1
-	  li        r4, -0x1
-	  bl        0x1444
-	  b         .loc_0x558
+lbl_8002C0DC:
+	addi     r3, r1, 8
+	li       r22, 1
+	li       r4, -1
+	bl       __dt__10JUTGamePadFv
+	b        lbl_8002C128
 
-	.loc_0x520:
-	  cmplwi    r3, 0
-	  beq-      .loc_0x558
-	  bl        0x1568
-	  cmplwi    r26, 0
-	  beq-      .loc_0x540
-	  lwz       r3, 0x84(r29)
-	  lwz       r0, 0x1C(r3)
-	  stw       r0, 0x0(r26)
+lbl_8002C0F0:
+	cmplwi   r3, 0
+	beq      lbl_8002C128
+	bl       read__10JUTGamePadFv
+	cmplwi   r26, 0
+	beq      lbl_8002C110
+	lwz      r3, 0x84(r29)
+	lwz      r0, 0x1c(r3)
+	stw      r0, 0(r26)
 
-	.loc_0x540:
-	  cmplwi    r25, 0
-	  beq-      .loc_0x554
-	  lwz       r3, 0x84(r29)
-	  lwz       r0, 0x18(r3)
-	  stw       r0, 0x0(r25)
+lbl_8002C110:
+	cmplwi   r25, 0
+	beq      lbl_8002C124
+	lwz      r3, 0x84(r29)
+	lwz      r0, 0x18(r3)
+	stw      r0, 0(r25)
 
-	.loc_0x554:
-	  li        r22, 0x1
+lbl_8002C124:
+	li       r22, 1
 
-	.loc_0x558:
-	  mr        r3, r22
-	  lmw       r22, 0x378(r1)
-	  lwz       r0, 0x3A4(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x3A0
-	  blr
+lbl_8002C128:
+	mr       r3, r22
+	lmw      r22, 0x378(r1)
+	lwz      r0, 0x3a4(r1)
+	mtlr     r0
+	addi     r1, r1, 0x3a0
+	blr
 	*/
 }
 
@@ -3066,45 +3320,44 @@ void JUTException::printContext(unsigned short, OSContext*, unsigned long,
 void JUTException::waitTime(long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stmw      r26, 0x8(r1)
-	  mr.       r26, r3
-	  beq-      .loc_0x74
-	  bl        0xC6554
-	  lis       r5, 0x1062
-	  mr        r28, r4
-	  mr        r29, r3
-	  srawi     r27, r26, 0x1F
-	  addi      r30, r5, 0x4DD3
-	  lis       r31, 0x8000
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stmw     r26, 8(r1)
+	or.      r26, r3, r3
+	beq      lbl_8002C698
+	bl       OSGetTime
+	lis      r5, 0x10624DD3@ha
+	mr       r28, r4
+	mr       r29, r3
+	srawi    r27, r26, 0x1f
+	addi     r30, r5, 0x10624DD3@l
+	lis      r31, 0x8000
 
-	.loc_0x34:
-	  bl        0xC6538
-	  lwz       r0, 0xF8(r31)
-	  subc      r4, r4, r28
-	  subfe     r3, r29, r3
-	  li        r5, 0
-	  rlwinm    r0,r0,30,2,31
-	  mulhwu    r0, r30, r0
-	  rlwinm    r6,r0,26,6,31
-	  bl        0x9574C
-	  xoris     r5, r3, 0x8000
-	  xoris     r3, r27, 0x8000
-	  subc      r0, r4, r26
-	  subfe     r3, r3, r5
-	  subfe     r3, r5, r5
-	  neg.      r3, r3
-	  bne+      .loc_0x34
+lbl_8002C658:
+	bl       OSGetTime
+	lwz      r0, 0xf8(r31)
+	subfc    r4, r28, r4
+	subfe    r3, r29, r3
+	li       r5, 0
+	srwi     r0, r0, 2
+	mulhwu   r0, r30, r0
+	srwi     r6, r0, 6
+	bl       __div2i
+	xoris    r5, r3, 0x8000
+	xoris    r3, r27, 0x8000
+	subfc    r0, r26, r4
+	subfe    r3, r3, r5
+	subfe    r3, r5, r5
+	neg.     r3, r3
+	bne      lbl_8002C658
 
-	.loc_0x74:
-	  lmw       r26, 0x8(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8002C698:
+	lmw      r26, 8(r1)
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -3116,74 +3369,73 @@ void JUTException::waitTime(long)
 void JUTException::createFB()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r4, 0x804B
-	  stw       r0, 0x24(r1)
-	  subi      r0, r4, 0x7BC4
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r0
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  stw       r28, 0x10(r1)
-	  mr        r28, r3
-	  bl        0xBFD4C
-	  lis       r4, 0x804B
-	  subi      r5, r4, 0x7BC4
-	  lhz       r4, 0x4(r5)
-	  lhz       r0, 0x8(r5)
-	  addi      r4, r4, 0xF
-	  rlwinm    r4,r4,0,16,27
-	  mullw     r0, r4, r0
-	  rlwinm    r7,r0,1,0,30
-	  sub       r0, r3, r7
-	  rlwinm    r30,r0,0,0,26
-	  subi      r0, r30, 0x14
-	  rlwinm.   r29,r0,0,0,26
-	  beq-      .loc_0x78
-	  mr        r3, r29
-	  mr        r4, r31
-	  mr        r6, r30
-	  li        r5, 0x1
-	  bl        0x620
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lis      r4, GXNtsc480Int@ha
+	stw      r0, 0x24(r1)
+	addi     r0, r4, GXNtsc480Int@l
+	stw      r31, 0x1c(r1)
+	mr       r31, r0
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	stw      r28, 0x10(r1)
+	mr       r28, r3
+	bl       OSGetArenaHi
+	lis      r4, GXNtsc480Int@ha
+	addi     r5, r4, GXNtsc480Int@l
+	lhz      r4, 4(r5)
+	lhz      r0, 8(r5)
+	addi     r4, r4, 0xf
+	rlwinm   r4, r4, 0, 0x10, 0x1b
+	mullw    r0, r4, r0
+	slwi     r7, r0, 1
+	subf     r0, r7, r3
+	rlwinm   r30, r0, 0, 0, 0x1a
+	addi     r0, r30, -20
+	rlwinm.  r29, r0, 0, 0, 0x1a
+	beq      lbl_8002C724
+	mr       r3, r29
+	mr       r4, r31
+	mr       r6, r30
+	li       r5, 1
+	bl       __ct__13JUTExternalFBFP16_GXRenderModeObj8_GXGammaPvUl
 
-	.loc_0x78:
-	  lwz       r3, 0x80(r28)
-	  mr        r4, r30
-	  lhz       r5, 0x4(r31)
-	  lhz       r6, 0x6(r31)
-	  bl        -0x27A8
-	  mr        r3, r31
-	  bl        0xA4FC0
-	  mr        r3, r30
-	  bl        0xA5910
-	  li        r3, 0
-	  bl        0xA597C
-	  bl        0xA57D4
-	  bl        0xA57D0
-	  li        r30, 0
+lbl_8002C724:
+	lwz      r3, 0x80(r28)
+	mr       r4, r30
+	lhz      r5, 4(r31)
+	lhz      r6, 6(r31)
+	bl       changeFrameBuffer__14JUTDirectPrintFPvUsUs
+	mr       r3, r31
+	bl       VIConfigure
+	mr       r3, r30
+	bl       VISetNextFrameBuffer
+	li       r3, 0
+	bl       VISetBlack
+	bl       VIFlush
+	bl       VIFlush
+	li       r30, 0
 
-	.loc_0xB0:
-	  bl        0xA59E8
-	  mr        r31, r3
+lbl_8002C75C:
+	bl       VIGetRetraceCount
+	mr       r31, r3
 
-	.loc_0xB8:
-	  bl        0xA59E0
-	  cmplw     r31, r3
-	  beq+      .loc_0xB8
-	  addi      r30, r30, 0x1
-	  cmpwi     r30, 0x3
-	  blt+      .loc_0xB0
-	  stw       r29, 0x7C(r28)
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8002C764:
+	bl       VIGetRetraceCount
+	cmplw    r31, r3
+	beq      lbl_8002C764
+	addi     r30, r30, 1
+	cmpwi    r30, 3
+	blt      lbl_8002C75C
+	stw      r29, 0x7c(r28)
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -3243,52 +3495,51 @@ void JUTException::setPostUserCallback(void (*)(unsigned short, OSContext*,
 void JUTException::appendMapFile(const char*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x7C
-	  lis       r3, 0x8050
-	  lwz       r31, 0x6E74(r3)
-	  b         .loc_0x44
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_8002C82C
+	lis      r3, sMapFileList__12JUTException@ha
+	lwz      r31, sMapFileList__12JUTException@l(r3)
+	b        lbl_8002C7F4
 
-	.loc_0x28:
-	  lwz       r4, 0x0(r31)
-	  mr        r3, r30
-	  lwz       r4, 0x0(r4)
-	  bl        0x9DEDC
-	  cmpwi     r3, 0
-	  beq-      .loc_0x7C
-	  lwz       r31, 0xC(r31)
+lbl_8002C7D8:
+	lwz      r4, 0(r31)
+	mr       r3, r30
+	lwz      r4, 0(r4)
+	bl       strcmp
+	cmpwi    r3, 0
+	beq      lbl_8002C82C
+	lwz      r31, 0xc(r31)
 
-	.loc_0x44:
-	  cmplwi    r31, 0
-	  bne+      .loc_0x28
-	  li        r3, 0x14
-	  bl        -0x895C
-	  mr.       r31, r3
-	  beq-      .loc_0x6C
-	  mr        r4, r31
-	  addi      r3, r31, 0x4
-	  bl        -0x605C
-	  stw       r30, 0x0(r31)
+lbl_8002C7F4:
+	cmplwi   r31, 0
+	bne      lbl_8002C7D8
+	li       r3, 0x14
+	bl       __nw__FUl
+	or.      r31, r3, r3
+	beq      lbl_8002C81C
+	mr       r4, r31
+	addi     r3, r31, 4
+	bl       __ct__10JSUPtrLinkFPv
+	stw      r30, 0(r31)
 
-	.loc_0x6C:
-	  lis       r3, 0x8050
-	  addi      r4, r31, 0x4
-	  addi      r3, r3, 0x6E74
-	  bl        -0x5F44
+lbl_8002C81C:
+	lis      r3, sMapFileList__12JUTException@ha
+	addi     r4, r31, 4
+	addi     r3, r3, sMapFileList__12JUTException@l
+	bl       append__10JSUPtrListFP10JSUPtrLink
 
-	.loc_0x7C:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8002C82C:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -3657,69 +3908,68 @@ void JUTException::queryMapAddress_single(char*, unsigned long, long,
 void JUTException::createConsole(void*, unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0xC8
-	  cmplwi    r31, 0
-	  bne-      .loc_0x2C
-	  b         .loc_0xC8
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_8002CD28
+	cmplwi   r31, 0
+	bne      lbl_8002CC8C
+	b        lbl_8002CD28
 
-	.loc_0x2C:
-	  mr        r3, r31
-	  li        r4, 0x32
-	  bl        -0x4918
-	  cmplwi    r3, 0
-	  beq-      .loc_0xC8
-	  stw       r30, -0x7764(r13)
-	  mr        r4, r30
-	  mr        r5, r31
-	  li        r3, 0x32
-	  stw       r31, -0x7760(r13)
-	  bl        -0x4B50
-	  mr        r4, r3
-	  lwz       r3, -0x7790(r13)
-	  stw       r4, -0x775C(r13)
-	  bl        -0x3B44
-	  lwz       r5, -0x775C(r13)
-	  li        r4, 0xF
-	  lfs       f1, -0x7D10(r2)
-	  li        r3, 0x1A
-	  lfs       f0, -0x7D0C(r2)
-	  li        r0, 0x17
-	  stfs      f1, 0x50(r5)
-	  stfs      f0, 0x54(r5)
-	  lwz       r5, -0x775C(r13)
-	  stw       r4, 0x40(r5)
-	  stw       r3, 0x44(r5)
-	  lwz       r3, -0x775C(r13)
-	  stw       r0, 0x48(r3)
-	  lwz       r0, 0x48(r3)
-	  lwz       r4, 0x24(r3)
-	  cmplw     r0, r4
-	  ble-      .loc_0xB0
-	  stw       r4, 0x48(r3)
+lbl_8002CC8C:
+	mr       r3, r31
+	li       r4, 0x32
+	bl       getLineFromObjectSize__10JUTConsoleFUlUi
+	cmplwi   r3, 0
+	beq      lbl_8002CD28
+	stw      r30, sConsoleBuffer__12JUTException@sda21(r13)
+	mr       r4, r30
+	mr       r5, r31
+	li       r3, 0x32
+	stw      r31, sConsoleBufferSize__12JUTException@sda21(r13)
+	bl       create__10JUTConsoleFUiPvUl
+	mr       r4, r3
+	lwz      r3, sManager__17JUTConsoleManager@sda21(r13)
+	stw      r4, sConsole__12JUTException@sda21(r13)
+	bl       setDirectConsole__17JUTConsoleManagerFP10JUTConsole
+	lwz      r5, sConsole__12JUTException@sda21(r13)
+	li       r4, 0xf
+	lfs      f1, lbl_80516650@sda21(r2)
+	li       r3, 0x1a
+	lfs      f0, lbl_80516654@sda21(r2)
+	li       r0, 0x17
+	stfs     f1, 0x50(r5)
+	stfs     f0, 0x54(r5)
+	lwz      r5, sConsole__12JUTException@sda21(r13)
+	stw      r4, 0x40(r5)
+	stw      r3, 0x44(r5)
+	lwz      r3, sConsole__12JUTException@sda21(r13)
+	stw      r0, 0x48(r3)
+	lwz      r0, 0x48(r3)
+	lwz      r4, 0x24(r3)
+	cmplw    r0, r4
+	ble      lbl_8002CD10
+	stw      r4, 0x48(r3)
 
-	.loc_0xB0:
-	  lwz       r3, -0x775C(r13)
-	  li        r4, 0x1
-	  li        r0, 0x3
-	  stb       r4, 0x68(r3)
-	  lwz       r3, -0x775C(r13)
-	  stw       r0, 0x58(r3)
+lbl_8002CD10:
+	lwz      r3, sConsole__12JUTException@sda21(r13)
+	li       r4, 1
+	li       r0, 3
+	stb      r4, 0x68(r3)
+	lwz      r3, sConsole__12JUTException@sda21(r13)
+	stw      r0, 0x58(r3)
 
-	.loc_0xC8:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8002CD28:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -3731,15 +3981,14 @@ void JUTException::createConsole(void*, unsigned long)
 JUTExternalFB::JUTExternalFB(_GXRenderModeObj*, _GXGamma, void*, unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stw       r4, 0x0(r3)
-	  li        r4, 0x1
-	  li        r0, 0
-	  stw       r7, 0x4(r3)
-	  sth       r4, 0xC(r3)
-	  sth       r5, 0xE(r3)
-	  stb       r0, 0x10(r3)
-	  blr
+	stw      r4, 0(r3)
+	li       r4, 1
+	li       r0, 0
+	stw      r7, 4(r3)
+	sth      r4, 0xc(r3)
+	sth      r5, 0xe(r3)
+	stb      r0, 0x10(r3)
+	blr
 	*/
 }
 
@@ -3771,33 +4020,32 @@ void JUTException::disableFpuException()
 JUTException::~JUTException()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x44
-	  lis       r5, 0x804A
-	  li        r4, 0
-	  addi      r0, r5, 0x42C
-	  stw       r0, 0x0(r30)
-	  bl        -0x7558
-	  extsh.    r0, r31
-	  ble-      .loc_0x44
-	  mr        r3, r30
-	  bl        -0x8CEC
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_8002CDA4
+	lis      r5, __vt__12JUTException@ha
+	li       r4, 0
+	addi     r0, r5, __vt__12JUTException@l
+	stw      r0, 0(r30)
+	bl       __dt__9JKRThreadFv
+	extsh.   r0, r31
+	ble      lbl_8002CDA4
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x44:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8002CDA4:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -3809,25 +4057,24 @@ JUTException::~JUTException()
 void __sinit_JUTException_cpp(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r3, 0x8050
-	  li        r4, 0
-	  stw       r0, 0x14(r1)
-	  addi      r3, r3, 0x6E74
-	  bl        -0x65A8
-	  lis       r3, 0x8050
-	  lis       r4, 0x8003
-	  lis       r5, 0x804F
-	  addi      r3, r3, 0x6E74
-	  subi      r4, r4, 0x31F8
-	  addi      r5, r5, 0x11C
-	  bl        0x9490C
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lis      r3, sMapFileList__12JUTException@ha
+	li       r4, 0
+	stw      r0, 0x14(r1)
+	addi     r3, r3, sMapFileList__12JUTException@l
+	bl       __ct__10JSUPtrListFb
+	lis      r3, sMapFileList__12JUTException@ha
+	lis      r4, "__dt__39JSUList<Q212JUTException12JUTExMapFile>Fv"@ha
+	lis      r5, lbl_804F011C@ha
+	addi     r3, r3, sMapFileList__12JUTException@l
+	addi     r4, r4, "__dt__39JSUList<Q212JUTException12JUTExMapFile>Fv"@l
+	addi     r5, r5, lbl_804F011C@l
+	bl       __register_global_object
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -3839,29 +4086,28 @@ void __sinit_JUTException_cpp(void)
 void JSUList<JUTException::JUTExMapFile>::~JSUList()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x38
-	  li        r4, 0
-	  bl        -0x65C4
-	  extsh.    r0, r31
-	  ble-      .loc_0x38
-	  mr        r3, r30
-	  bl        -0x8D88
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_8002CE40
+	li       r4, 0
+	bl       __dt__10JSUPtrListFv
+	extsh.   r0, r31
+	ble      lbl_8002CE40
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x38:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8002CE40:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }

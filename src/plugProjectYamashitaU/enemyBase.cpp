@@ -2,6 +2,830 @@
 #include "Game/EnemyBase.h"
 #include "Game/generalEnemyMgr.h"
 
+/*
+    Generated from dpostproc
+
+    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
+    .4byte __sinit_enemyBase_cpp
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    lbl_8047A520:
+        .skip 0xC
+        .asciz "enemyBase"
+        .skip 2
+    lbl_8047A538:
+        .asciz "e-upd-do"
+        .skip 3
+    lbl_8047A544:
+        .asciz "enemyBase.cpp"
+        .skip 2
+    lbl_8047A554:
+        .asciz "P2Assert"
+        .skip 3
+        .asciz "BirthTypeDrop"
+        .skip 2
+        .asciz "BirthTypeDropPikmin"
+        .asciz "BirthTypeDropOlimar"
+        .asciz "BirthTypeDropTreasure"
+        .skip 2
+        .asciz "BirthTypeDropEarthquake"
+        .asciz "Earthquake"
+        .skip 1
+    lbl_8047A5D4:
+        .asciz "Unknown birth type:%d"
+        .skip 2
+    lbl_8047A5EC:
+        .asciz "EnemyKillArg"
+        .skip 3
+    lbl_8047A5FC:
+        .asciz "CreatureKillArg"
+    lbl_8047A60C:
+        .asciz "abolished type\n"
+    lbl_8047A61C:
+        .asciz "PelletInitArg"
+        .skip 2
+    lbl_8047A62C:
+        .asciz "ArgScale"
+        .skip 3
+    lbl_8047A638:
+        .asciz "ItemHoney::InitArg"
+        .skip 1
+    lbl_8047A64C:
+        .asciz "ArgEnemyType"
+        .skip 3
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    lbl_804AA150:
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+    lbl_804AA15C:
+        .4byte lbl_80105D00
+        .4byte lbl_80105CE4
+        .4byte lbl_80105D00
+        .4byte lbl_80105D00
+        .4byte lbl_80105D00
+        .4byte lbl_80105CEC
+        .4byte lbl_80105D00
+        .4byte lbl_80105D00
+        .4byte lbl_80105D00
+        .4byte lbl_80105D00
+        .4byte lbl_80105CF4
+        .4byte lbl_80105D00
+        .4byte lbl_80105D00
+        .4byte lbl_80105D00
+        .4byte lbl_80105D00
+        .4byte lbl_80105D00
+        .4byte lbl_80105D00
+        .4byte lbl_80105D00
+        .4byte lbl_80105D00
+        .4byte lbl_80105D00
+        .4byte lbl_80105CFC
+    lbl_804AA1B0:
+        .4byte lbl_80106E04
+        .4byte lbl_80106E50
+        .4byte lbl_80106E78
+        .4byte lbl_80106EC4
+        .4byte lbl_80106F2C
+        .4byte lbl_80106F50
+        .4byte lbl_80106EC4
+        .4byte lbl_80106EE4
+        .4byte lbl_80106F08
+    .global __vt__Q34Game10EnemyStone8DrawInfo
+    __vt__Q34Game10EnemyStone8DrawInfo:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q34Game10EnemyStone8DrawInfoFv
+        .4byte getChildCount__5CNodeFv
+    .global __vt__Q23PSM10EnemyHekoi
+    __vt__Q23PSM10EnemyHekoi:
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte "@16@__dt__Q23PSM10EnemyHekoiFv"
+        .4byte __dt__Q23PSM10EnemyHekoiFv
+        .4byte frameEnd_onPlaySe__Q23PSM13CreatureAnimeFv
+        .4byte getCastType__Q23PSM10EnemyHekoiFv
+        .4byte exec__Q23PSM13CreatureAnimeFv
+        .4byte getJAIObject__Q23PSM13CreatureAnimeFv
+        .4byte onCalcOn__Q23PSM9EnemyBaseFv
+        .4byte loopCalc__Q23PSM8CreatureFRQ23PSM12FrameCalcArg
+        .4byte startSoundInner__Q23PSM9EnemyBaseFRQ23PSM13StartSoundArg
+        .4byte judgeNearWithPlayer__Q23PSM9EnemyBaseFRC3VecRC3Vecff
+        .4byte onPlayingSe__Q23PSM8CreatureFUlP8JAISound
+        .4byte getHandleArea__Q23PSM13CreatureAnimeFUc
+        .4byte 0
+        .4byte 0
+        .4byte "@48@__dt__Q23PSM10EnemyHekoiFv"
+        .4byte "@48@startSound__Q23PSM13CreatureAnimeFUlUl"
+        .4byte "@48@startSound__Q23PSM13CreatureAnimeFUcUlUl"
+        .4byte "@48@startSound__Q23PSM13CreatureAnimeFPP8JAISoundUlUl"
+        .4byte stopAllSound__Q27JAInter10ObjectBaseFv
+        .4byte stopSound__Q27JAInter10ObjectBaseFUlUl
+        .4byte enable__Q27JAInter10ObjectBaseFv
+        .4byte disable__Q27JAInter6ObjectFv
+        .4byte dispose__Q27JAInter10ObjectBaseFv
+        .4byte getFreeSoundHandlePointer__Q27JAInter10ObjectBaseFv
+        .4byte getUseSoundHandlePointer__Q27JAInter10ObjectBaseFUl
+        .4byte handleStop__13JAIAnimeSoundFUcUl
+        .4byte loop__Q27JAInter6ObjectFv
+        .4byte
+   "@48@playActorAnimSound__Q23PSM13CreatureAnimeFPQ27JAInter5ActorfUc" .4byte
+   "@48@startAnimSound__Q23PSM9EnemyBaseFUlPP8JAISoundPQ27JAInter5ActorUc"
+        .4byte
+   setSpeedModifySound__13JAIAnimeSoundFP8JAISoundP22JAIAnimeFrameSoundDataf
+        .4byte startSound__Q23PSM13CreatureAnimeFUlUl
+        .4byte startSound__Q23PSM13CreatureAnimeFUcUlUl
+        .4byte startSound__Q23PSM13CreatureAnimeFPP8JAISoundUlUl
+        .4byte startAnimSound__Q23PSM9EnemyBaseFUlPP8JAISoundPQ27JAInter5ActorUc
+        .4byte playActorAnimSound__Q23PSM13CreatureAnimeFPQ27JAInter5ActorfUc
+        .4byte onCalcTurnOn__Q23PSM9EnemyBaseFv
+        .4byte onCalcTurnOff__Q23PSM9EnemyBaseFv
+        .4byte 0
+        .4byte 0
+        .4byte battleOn__Q23PSM10BattleLinkFv
+        .4byte "@184@battleOff__Q23PSM9EnemyBaseFv"
+        .4byte 0
+        .4byte 0
+        .4byte kehaiOn__Q23PSM9KehaiLinkFv
+        .4byte kehaiOff__Q23PSM9KehaiLinkFv
+        .4byte battleOff__Q23PSM9EnemyBaseFv
+        .4byte setKilled__Q23PSM9EnemyBaseFv
+        .4byte updateKehai__Q23PSM9EnemyBaseFv
+        .4byte updateBattle__Q23PSM9EnemyBaseFv
+    .global __vt__Q24Game13PelletInitArg
+    __vt__Q24Game13PelletInitArg:
+        .4byte 0
+        .4byte 0
+        .4byte getName__Q24Game13PelletInitArgFv
+    .global __vt__Q24Game12EnemyKillArg
+    __vt__Q24Game12EnemyKillArg:
+        .4byte 0
+        .4byte 0
+        .4byte getName__Q24Game12EnemyKillArgFv
+    .global __vt__Q24Game15CreatureKillArg
+    __vt__Q24Game15CreatureKillArg:
+        .4byte 0
+        .4byte 0
+        .4byte getName__Q24Game15CreatureKillArgFv
+    .global __vt__Q23efx8ArgScale
+    __vt__Q23efx8ArgScale:
+        .4byte 0
+        .4byte 0
+        .4byte getName__Q23efx8ArgScaleFv
+    .global __vt__Q34Game9ItemHoney7InitArg
+    __vt__Q34Game9ItemHoney7InitArg:
+        .4byte 0
+        .4byte 0
+        .4byte getName__Q34Game9ItemHoney7InitArgFv
+    .global __vt__Q24Game15CreatureInitArg
+    __vt__Q24Game15CreatureInitArg:
+        .4byte 0
+        .4byte 0
+        .4byte 0
+    .global __vt__Q24Game11Interaction
+    __vt__Q24Game11Interaction:
+        .4byte 0
+        .4byte 0
+        .4byte actCommon__Q24Game11InteractionFPQ24Game8Creature
+        .4byte actPiki__Q24Game11InteractionFPQ24Game4Piki
+        .4byte actNavi__Q24Game11InteractionFPQ24Game4Navi
+        .4byte actEnemy__Q24Game11InteractionFPQ24Game9EnemyBase
+        .4byte actPellet__Q24Game11InteractionFPQ24Game6Pellet
+        .4byte actOnyon__Q24Game11InteractionFPQ24Game5Onyon
+        .4byte actItem__Q24Game11InteractionFPQ24Game8BaseItem
+    .global __vt__Q24Game9EnemyBase
+    __vt__Q24Game9EnemyBase:
+        .4byte 0
+        .4byte 0
+        .4byte getPosition__Q24Game9EnemyBaseFv
+        .4byte checkCollision__Q24Game8CreatureFPQ24Game10CellObject
+        .4byte getBoundingSphere__Q24Game9EnemyBaseFRQ23Sys6Sphere
+        .4byte collisionUpdatable__Q24Game8CreatureFv
+        .4byte isPiki__Q24Game8CreatureFv
+        .4byte isNavi__Q24Game8CreatureFv
+        .4byte deferPikiCollision__Q24Game10CellObjectFv
+        .4byte getTypeName__Q24Game8CreatureFv
+        .4byte getObjType__Q24Game8CreatureFv
+        .4byte constructor__Q24Game9EnemyBaseFv
+        .4byte onInit__Q24Game9EnemyBaseFPQ24Game15CreatureInitArg
+        .4byte onKill__Q24Game9EnemyBaseFPQ24Game15CreatureKillArg
+        .4byte onInitPost__Q24Game9EnemyBaseFPQ24Game15CreatureInitArg
+        .4byte doAnimation__Q24Game9EnemyBaseFv
+        .4byte doEntry__Q24Game9EnemyBaseFv
+        .4byte doSetView__Q24Game9EnemyBaseFi
+        .4byte doViewCalc__Q24Game9EnemyBaseFv
+        .4byte doSimulation__Q24Game9EnemyBaseFf
+        .4byte doDirectDraw__Q24Game8CreatureFR8Graphics
+        .4byte getBodyRadius__Q24Game9EnemyBaseFv
+        .4byte getCellRadius__Q24Game9EnemyBaseFv
+        .4byte "initPosition__Q24Game8CreatureFR10Vector3<f>"
+        .4byte "onInitPosition__Q24Game8CreatureFR10Vector3<f>"
+        .4byte getFaceDir__Q24Game9EnemyBaseFv
+        .4byte "setVelocity__Q24Game9EnemyBaseFR10Vector3<f>"
+        .4byte getVelocity__Q24Game9EnemyBaseFv
+        .4byte "onSetPosition__Q24Game9EnemyBaseFR10Vector3<f>"
+        .4byte "onSetPositionPost__Q24Game9EnemyBaseFR10Vector3<f>"
+        .4byte updateTrMatrix__Q24Game9EnemyBaseFv
+        .4byte isTeki__Q24Game9EnemyBaseFv
+        .4byte isPellet__Q24Game8CreatureFv
+        .4byte inWaterCallback__Q24Game9EnemyBaseFPQ24Game8WaterBox
+        .4byte outWaterCallback__Q24Game9EnemyBaseFv
+        .4byte inWater__Q24Game9EnemyBaseFv
+        .4byte getFlockMgr__Q24Game8CreatureFv
+        .4byte onStartCapture__Q24Game8CreatureFv
+        .4byte onUpdateCapture__Q24Game8CreatureFR7Matrixf
+        .4byte onEndCapture__Q24Game8CreatureFv
+        .4byte isAtari__Q24Game8CreatureFv
+        .4byte setAtari__Q24Game8CreatureFb
+        .4byte isAlive__Q24Game8CreatureFv
+        .4byte setAlive__Q24Game8CreatureFb
+        .4byte isCollisionFlick__Q24Game8CreatureFv
+        .4byte setCollisionFlick__Q24Game8CreatureFb
+        .4byte isMovieActor__Q24Game8CreatureFv
+        .4byte isMovieExtra__Q24Game8CreatureFv
+        .4byte isMovieMotion__Q24Game8CreatureFv
+        .4byte setMovieMotion__Q24Game8CreatureFb
+        .4byte isBuried__Q24Game8CreatureFv
+        .4byte isFlying__Q24Game9EnemyBaseFv
+        .4byte isUnderground__Q24Game8CreatureFv
+        .4byte isLivingThing__Q24Game8CreatureFv
+        .4byte isDebugCollision__Q24Game8CreatureFv
+        .4byte setDebugCollision__Q24Game8CreatureFb
+        .4byte doSave__Q24Game8CreatureFR6Stream
+        .4byte doLoad__Q24Game8CreatureFR6Stream
+        .4byte bounceCallback__Q24Game8CreatureFPQ23Sys8Triangle
+        .4byte collisionCallback__Q24Game9EnemyBaseFRQ24Game9CollEvent
+        .4byte platCallback__Q24Game8CreatureFRQ24Game9PlatEvent
+        .4byte getJAIObject__Q24Game9EnemyBaseFv
+        .4byte getPSCreature__Q24Game9EnemyBaseFv
+        .4byte getSound_AILOD__Q24Game8CreatureFv
+        .4byte getSound_PosPtr__Q24Game9EnemyBaseFv
+        .4byte sound_culling__Q24Game9EnemyBaseFv
+        .4byte getSound_CurrAnimFrame__Q24Game9EnemyBaseFv
+        .4byte getSound_CurrAnimSpeed__Q24Game9EnemyBaseFv
+        .4byte on_movie_begin__Q24Game8CreatureFb
+        .4byte on_movie_end__Q24Game8CreatureFb
+        .4byte movieStartAnimation__Q24Game8CreatureFUl
+        .4byte movieStartDemoAnimation__Q24Game8CreatureFPQ28SysShape8AnimInfo
+        .4byte movieSetAnimationLastFrame__Q24Game8CreatureFv
+        .4byte "movieSetTranslation__Q24Game8CreatureFR10Vector3<f>f"
+        .4byte movieSetFaceDir__Q24Game8CreatureFf
+        .4byte "movieGotoPosition__Q24Game8CreatureFR10Vector3<f>"
+        .4byte movieUserCommand__Q24Game8CreatureFUlPQ24Game11MoviePlayer
+        .4byte getShadowParam__Q24Game8CreatureFRQ24Game11ShadowParam
+        .4byte needShadow__Q24Game9EnemyBaseFv
+        .4byte getLifeGaugeParam__Q24Game9EnemyBaseFRQ24Game14LifeGaugeParam
+        .4byte getLODSphere__Q24Game9EnemyBaseFRQ23Sys6Sphere
+        .4byte getLODCylinder__Q24Game8CreatureFRQ23Sys8Cylinder
+        .4byte startPick__Q24Game8CreatureFv
+        .4byte endPick__Q24Game8CreatureFb
+        .4byte getMabiki__Q24Game8CreatureFv
+        .4byte getFootmarks__Q24Game8CreatureFv
+        .4byte onStickStart__Q24Game9EnemyBaseFPQ24Game8Creature
+        .4byte onStickEnd__Q24Game9EnemyBaseFPQ24Game8Creature
+        .4byte onStickStartSelf__Q24Game8CreatureFPQ24Game8Creature
+        .4byte onStickEndSelf__Q24Game8CreatureFPQ24Game8Creature
+        .4byte isSlotFree__Q24Game8CreatureFs
+        .4byte getFreeStickSlot__Q24Game8CreatureFv
+        .4byte "getNearFreeStickSlot__Q24Game8CreatureFR10Vector3<f>"
+        .4byte getRandomFreeStickSlot__Q24Game8CreatureFv
+        .4byte onSlotStickStart__Q24Game8CreatureFPQ24Game8Creatures
+        .4byte onSlotStickEnd__Q24Game8CreatureFPQ24Game8Creatures
+        .4byte "calcStickSlotGlobal__Q24Game8CreatureFsR10Vector3<f>"
+        .4byte "getVelocityAt__Q24Game9EnemyBaseFR10Vector3<f>R10Vector3<f>"
+        .4byte "getAngularEffect__Q24Game8CreatureFR10Vector3<f>R10Vector3<f>"
+        .4byte "applyImpulse__Q24Game8CreatureFR10Vector3<f>R10Vector3<f>"
+        .4byte ignoreAtari__Q24Game8CreatureFPQ24Game8Creature
+        .4byte getSuckPos__Q24Game8CreatureFv
+        .4byte getGoalPos__Q24Game8CreatureFv
+        .4byte isSuckReady__Q24Game8CreatureFv
+        .4byte isSuckArriveWait__Q24Game8CreatureFv
+        .4byte stimulate__Q24Game9EnemyBaseFRQ24Game11Interaction
+        .4byte getCreatureName__Q24Game9EnemyBaseFv
+        .4byte getCreatureID__Q24Game9EnemyBaseFv
+        .4byte 0
+        .4byte 0
+        .4byte "@376@onKeyEvent__Q24Game9EnemyBaseFRCQ28SysShape8KeyEvent"
+        .4byte __dt__Q24Game9EnemyBaseFv
+        .4byte "birth__Q24Game9EnemyBaseFR10Vector3<f>f"
+        .4byte 0
+        .4byte update__Q24Game9EnemyBaseFv
+        .4byte 0
+        .4byte doUpdateCommon__Q24Game9EnemyBaseFv
+        .4byte doUpdateCarcass__Q24Game9EnemyBaseFv
+        .4byte doAnimationUpdateAnimator__Q24Game9EnemyBaseFv
+        .4byte doAnimationCullingOff__Q24Game9EnemyBaseFv
+        .4byte doAnimationCullingOn__Q24Game9EnemyBaseFv
+        .4byte doAnimationStick__Q24Game9EnemyBaseFv
+        .4byte doSimulationCarcass__Q24Game9EnemyBaseFf
+        .4byte doDebugDraw__Q24Game9EnemyBaseFR8Graphics
+        .4byte doSimpleDraw__Q24Game9EnemyBaseFP8Viewport
+        .4byte doSimulationGround__Q24Game9EnemyBaseFf
+        .4byte doSimulationFlying__Q24Game9EnemyBaseFf
+        .4byte doSimulationStick__Q24Game9EnemyBaseFf
+        .4byte changeMaterial__Q24Game9EnemyBaseFv
+        .4byte "getCommonEffectPos__Q24Game9EnemyBaseFR10Vector3<f>"
+        .4byte getFitEffectPos__Q24Game9EnemyBaseFv
+        .4byte viewGetShape__Q24Game9EnemyBaseFv
+        .4byte view_start_carrymotion__Q24Game9EnemyBaseFv
+        .4byte view_finish_carrymotion__Q24Game9EnemyBaseFv
+        .4byte viewStartPreCarryMotion__Q24Game9EnemyBaseFv
+        .4byte viewStartCarryMotion__Q24Game9EnemyBaseFv
+        .4byte viewOnPelletKilled__Q24Game9EnemyBaseFv
+        .4byte getOffsetForMapCollision__Q24Game9EnemyBaseFv
+        .4byte setParameters__Q24Game9EnemyBaseFv
+        .4byte initMouthSlots__Q24Game9EnemyBaseFv
+        .4byte initWalkSmokeEffect__Q24Game9EnemyBaseFv
+        .4byte getWalkSmokeEffectMgr__Q24Game9EnemyBaseFv
+        .4byte onKeyEvent__Q24Game9EnemyBaseFRCQ28SysShape8KeyEvent
+        .4byte injure__Q24Game9EnemyBaseFv
+        .4byte setCollEvent__Q24Game9EnemyBaseFRQ24Game9CollEvent
+        .4byte "getEfxHamonPos__Q24Game9EnemyBaseFP10Vector3<f>"
+        .4byte createInstanceEfxHamon__Q24Game9EnemyBaseFv
+        .4byte updateEfxHamon__Q24Game9EnemyBaseFv
+        .4byte createEfxHamon__Q24Game9EnemyBaseFv
+        .4byte fadeEfxHamon__Q24Game9EnemyBaseFv
+        .4byte 0
+        .4byte getMouthSlots__Q24Game9EnemyBaseFv
+        .4byte doGetLifeGaugeParam__Q24Game9EnemyBaseFRQ24Game14LifeGaugeParam
+        .4byte throwupItem__Q24Game9EnemyBaseFv
+        .4byte "getThrowupItemPosition__Q24Game9EnemyBaseFP10Vector3<f>"
+        .4byte "getThrowupItemVelocity__Q24Game9EnemyBaseFP10Vector3<f>"
+        .4byte throwupItemInDeathProcedure__Q24Game9EnemyBaseFv
+        .4byte setLODSphere__Q24Game9EnemyBaseFRQ23Sys6Sphere
+        .4byte damageCallBack__Q24Game9EnemyBaseFPQ24Game8CreaturefP8CollPart
+        .4byte pressCallBack__Q24Game9EnemyBaseFPQ24Game8CreaturefP8CollPart
+        .4byte
+   flyCollisionCallBack__Q24Game9EnemyBaseFPQ24Game8CreaturefP8CollPart .4byte
+   hipdropCallBack__Q24Game9EnemyBaseFPQ24Game8CreaturefP8CollPart .4byte
+   dropCallBack__Q24Game9EnemyBaseFPQ24Game8Creature .4byte
+   earthquakeCallBack__Q24Game9EnemyBaseFPQ24Game8Creaturef .4byte
+   farmCallBack__Q24Game9EnemyBaseFPQ24Game8Creaturef .4byte
+   "bombCallBack__Q24Game9EnemyBaseFPQ24Game8CreatureR10Vector3<f>f" .4byte
+   eatWhitePikminCallBack__Q24Game9EnemyBaseFPQ24Game8Creaturef .4byte
+   dopeCallBack__Q24Game9EnemyBaseFPQ24Game8Creaturei .4byte
+   doDopeCallBack__Q24Game9EnemyBaseFPQ24Game8Creaturei .4byte
+   doStartStoneState__Q24Game9EnemyBaseFv .4byte
+   doFinishStoneState__Q24Game9EnemyBaseFv .4byte
+   getDamageCoeStoneState__Q24Game9EnemyBaseFv .4byte
+   doStartEarthquakeState__Q24Game9EnemyBaseFf .4byte
+   doFinishEarthquakeState__Q24Game9EnemyBaseFv .4byte
+   doStartEarthquakeFitState__Q24Game9EnemyBaseFv .4byte
+   doFinishEarthquakeFitState__Q24Game9EnemyBaseFv .4byte
+   lifeRecover__Q24Game9EnemyBaseFv .4byte
+   startCarcassMotion__Q24Game9EnemyBaseFv .4byte
+   setCarcassArg__Q24Game9EnemyBaseFRQ24Game13PelletViewArg .4byte
+   getCarcassArgHeight__Q24Game9EnemyBaseFv .4byte
+   doBecomeCarcass__Q24Game9EnemyBaseFv .4byte
+   startWaitingBirthTypeDrop__Q24Game9EnemyBaseFv .4byte
+   finishWaitingBirthTypeDrop__Q24Game9EnemyBaseFv .4byte
+   isFinishableWaitingBirthTypeDrop__Q24Game9EnemyBaseFv .4byte
+   doStartWaitingBirthTypeDrop__Q24Game9EnemyBaseFv .4byte
+   doFinishWaitingBirthTypeDrop__Q24Game9EnemyBaseFv .4byte
+   wallCallback__Q24Game9EnemyBaseFRCQ24Game8MoveInfo .4byte
+   getDownSmokeScale__Q24Game9EnemyBaseFv .4byte
+   doStartMovie__Q24Game9EnemyBaseFv .4byte doEndMovie__Q24Game9EnemyBaseFv
+        .4byte 0
+        .4byte 0
+        .4byte viewGetBaseScale__Q24Game10PelletViewFv
+        .4byte "@700@12@viewGetShape__Q24Game9EnemyBaseFv"
+        .4byte viewGetCollTreeJointIndex__Q24Game10PelletViewFv
+        .4byte viewGetCollTreeOffset__Q24Game10PelletViewFv
+        .4byte "@700@12@view_start_carrymotion__Q24Game9EnemyBaseFv"
+        .4byte "@700@12@view_finish_carrymotion__Q24Game9EnemyBaseFv"
+        .4byte "@700@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv"
+        .4byte "@700@12@viewStartCarryMotion__Q24Game9EnemyBaseFv"
+        .4byte "@700@12@viewOnPelletKilled__Q24Game9EnemyBaseFv"
+        .4byte "viewEntryShape__Q24Game10PelletViewFR7MatrixfR10Vector3<f>"
+    .global __vt__Q24Game17EnemyAnimKeyEvent
+    __vt__Q24Game17EnemyAnimKeyEvent:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q24Game17EnemyAnimKeyEventFv
+        .4byte getChildCount__5CNodeFv
+    .global __vt__Q28SysShape8KeyEvent
+    __vt__Q28SysShape8KeyEvent:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q28SysShape8KeyEventFv
+        .4byte getChildCount__5CNodeFv
+    .global __vt__Q28SysShape14MotionListener
+    __vt__Q28SysShape14MotionListener:
+        .4byte 0
+        .4byte 0
+        .4byte 0
+    .global __vt__Q24Game10PelletView
+    __vt__Q24Game10PelletView:
+        .4byte 0
+        .4byte 0
+        .4byte viewGetBaseScale__Q24Game10PelletViewFv
+        .4byte 0
+        .4byte viewGetCollTreeJointIndex__Q24Game10PelletViewFv
+        .4byte viewGetCollTreeOffset__Q24Game10PelletViewFv
+        .4byte view_start_carrymotion__Q24Game10PelletViewFv
+        .4byte view_finish_carrymotion__Q24Game10PelletViewFv
+        .4byte viewStartPreCarryMotion__Q24Game10PelletViewFv
+        .4byte viewStartCarryMotion__Q24Game10PelletViewFv
+        .4byte viewOnPelletKilled__Q24Game10PelletViewFv
+        .4byte "viewEntryShape__Q24Game10PelletViewFR7MatrixfR10Vector3<f>"
+    .global __vt__Q34Game12EnemyBaseFSM12StateMachine
+    __vt__Q34Game12EnemyBaseFSM12StateMachine:
+        .4byte 0
+        .4byte 0
+        .4byte init__Q34Game12EnemyBaseFSM12StateMachineFPQ24Game9EnemyBase
+        .4byte
+   start__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   exec__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase .4byte
+   transit__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseiPQ24Game8StateArg
+        .4byte
+   doDirectDraw__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseR8Graphics .4byte
+   getCurrState__Q34Game12EnemyBaseFSM12StateMachineFPQ24Game9EnemyBase .4byte
+   setCurrState__Q34Game12EnemyBaseFSM12StateMachineFPQ24Game9EnemyBasePQ24Game13EnemyFSMState
+        .4byte update__Q34Game12EnemyBaseFSM12StateMachineFPQ24Game9EnemyBase
+        .4byte entry__Q34Game12EnemyBaseFSM12StateMachineFPQ24Game9EnemyBase
+        .4byte
+   simulation__Q34Game12EnemyBaseFSM12StateMachineFPQ24Game9EnemyBasef .4byte
+   animation__Q34Game12EnemyBaseFSM12StateMachineFPQ24Game9EnemyBase .4byte
+   bounceProcedure__Q34Game12EnemyBaseFSM12StateMachineFPQ24Game9EnemyBasePQ23Sys8Triangle
+    .global __vt__Q34Game12EnemyBaseFSM10StoneState
+    __vt__Q34Game12EnemyBaseFSM10StoneState:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game12EnemyBaseFSM10StoneStateFPQ24Game9EnemyBasePQ24Game8StateArg
+        .4byte exec__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte cleanup__Q34Game12EnemyBaseFSM10StoneStateFPQ24Game9EnemyBase
+        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .4byte
+   update__Q34Game12EnemyBaseFSM11LivingStateFPQ24Game9EnemyBase .4byte
+   entry__Q34Game12EnemyBaseFSM11LivingStateFPQ24Game9EnemyBase .4byte
+   simulation__Q34Game12EnemyBaseFSM11LivingStateFPQ24Game9EnemyBasef .4byte
+   bounceProcedure__Q34Game12EnemyBaseFSM10StoneStateFPQ24Game9EnemyBasePQ23Sys8Triangle
+        .4byte animation__Q34Game12EnemyBaseFSM5StateFPQ24Game9EnemyBase
+        .4byte
+   updateCullingOff__Q34Game12EnemyBaseFSM10StoneStateFPQ24Game9EnemyBase .4byte
+   updateAlways__Q34Game12EnemyBaseFSM10StoneStateFPQ24Game9EnemyBase .global
+   __vt__Q34Game12EnemyBaseFSM15EarthquakeState
+    __vt__Q34Game12EnemyBaseFSM15EarthquakeState:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game12EnemyBaseFSM15EarthquakeStateFPQ24Game9EnemyBasePQ24Game8StateArg
+        .4byte exec__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte
+   cleanup__Q34Game12EnemyBaseFSM15EarthquakeStateFPQ24Game9EnemyBase .4byte
+   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
+   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .4byte
+   update__Q34Game12EnemyBaseFSM11LivingStateFPQ24Game9EnemyBase .4byte
+   entry__Q34Game12EnemyBaseFSM11LivingStateFPQ24Game9EnemyBase .4byte
+   simulation__Q34Game12EnemyBaseFSM11LivingStateFPQ24Game9EnemyBasef .4byte
+   bounceProcedure__Q34Game12EnemyBaseFSM5StateFPQ24Game9EnemyBasePQ23Sys8Triangle
+        .4byte animation__Q34Game12EnemyBaseFSM5StateFPQ24Game9EnemyBase
+        .4byte
+   updateCullingOff__Q34Game12EnemyBaseFSM15EarthquakeStateFPQ24Game9EnemyBase
+        .4byte
+   updateAlways__Q34Game12EnemyBaseFSM11LivingStateFPQ24Game9EnemyBase .global
+   __vt__Q34Game12EnemyBaseFSM8FitState
+    __vt__Q34Game12EnemyBaseFSM8FitState:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game12EnemyBaseFSM8FitStateFPQ24Game9EnemyBasePQ24Game8StateArg
+        .4byte exec__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte cleanup__Q34Game12EnemyBaseFSM8FitStateFPQ24Game9EnemyBase
+        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .4byte
+   update__Q34Game12EnemyBaseFSM11LivingStateFPQ24Game9EnemyBase .4byte
+   entry__Q34Game12EnemyBaseFSM11LivingStateFPQ24Game9EnemyBase .4byte
+   simulation__Q34Game12EnemyBaseFSM11LivingStateFPQ24Game9EnemyBasef .4byte
+   bounceProcedure__Q34Game12EnemyBaseFSM5StateFPQ24Game9EnemyBasePQ23Sys8Triangle
+        .4byte animation__Q34Game12EnemyBaseFSM5StateFPQ24Game9EnemyBase
+        .4byte
+   updateCullingOff__Q34Game12EnemyBaseFSM8FitStateFPQ24Game9EnemyBase .4byte
+   updateAlways__Q34Game12EnemyBaseFSM8FitStateFPQ24Game9EnemyBase .global
+   __vt__Q34Game12EnemyBaseFSM11LivingState
+    __vt__Q34Game12EnemyBaseFSM11LivingState:
+        .4byte 0
+        .4byte 0
+        .4byte init__Q24Game13EnemyFSMStateFPQ24Game9EnemyBasePQ24Game8StateArg
+        .4byte exec__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte cleanup__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .4byte
+   update__Q34Game12EnemyBaseFSM11LivingStateFPQ24Game9EnemyBase .4byte
+   entry__Q34Game12EnemyBaseFSM11LivingStateFPQ24Game9EnemyBase .4byte
+   simulation__Q34Game12EnemyBaseFSM11LivingStateFPQ24Game9EnemyBasef .4byte
+   bounceProcedure__Q34Game12EnemyBaseFSM5StateFPQ24Game9EnemyBasePQ23Sys8Triangle
+        .4byte animation__Q34Game12EnemyBaseFSM5StateFPQ24Game9EnemyBase
+        .4byte
+   updateCullingOff__Q34Game12EnemyBaseFSM11LivingStateFPQ24Game9EnemyBase
+        .4byte
+   updateAlways__Q34Game12EnemyBaseFSM11LivingStateFPQ24Game9EnemyBase .global
+   __vt__Q23efx12ArgEnemyType
+    __vt__Q23efx12ArgEnemyType:
+        .4byte 0
+        .4byte 0
+        .4byte getName__Q23efx12ArgEnemyTypeFv
+    .global __vt__Q23efx3Arg
+    __vt__Q23efx3Arg:
+        .4byte 0
+        .4byte 0
+        .4byte getName__Q23efx3ArgFv
+    .global __vt__Q23efx5TBase
+    __vt__Q23efx5TBase:
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+    .global __vt__Q34Game12EnemyBaseFSM11AppearState
+    __vt__Q34Game12EnemyBaseFSM11AppearState:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game12EnemyBaseFSM11AppearStateFPQ24Game9EnemyBasePQ24Game8StateArg
+        .4byte exec__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte cleanup__Q34Game12EnemyBaseFSM11AppearStateFPQ24Game9EnemyBase
+        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .4byte
+   update__Q34Game12EnemyBaseFSM11AppearStateFPQ24Game9EnemyBase .4byte
+   entry__Q34Game12EnemyBaseFSM11AppearStateFPQ24Game9EnemyBase .4byte
+   simulation__Q34Game12EnemyBaseFSM11AppearStateFPQ24Game9EnemyBasef .4byte
+   bounceProcedure__Q34Game12EnemyBaseFSM5StateFPQ24Game9EnemyBasePQ23Sys8Triangle
+        .4byte animation__Q34Game12EnemyBaseFSM5StateFPQ24Game9EnemyBase
+    .global __vt__Q34Game12EnemyBaseFSM28BirthTypeDropEarthquakeState
+    __vt__Q34Game12EnemyBaseFSM28BirthTypeDropEarthquakeState:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game12EnemyBaseFSM18BirthTypeDropStateFPQ24Game9EnemyBasePQ24Game8StateArg
+        .4byte exec__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte
+   cleanup__Q34Game12EnemyBaseFSM18BirthTypeDropStateFPQ24Game9EnemyBase .4byte
+   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
+   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .4byte
+   update__Q34Game12EnemyBaseFSM18BirthTypeDropStateFPQ24Game9EnemyBase .4byte
+   entry__Q34Game12EnemyBaseFSM18BirthTypeDropStateFPQ24Game9EnemyBase .4byte
+   simulation__Q34Game12EnemyBaseFSM18BirthTypeDropStateFPQ24Game9EnemyBasef
+        .4byte
+   bounceProcedure__Q34Game12EnemyBaseFSM5StateFPQ24Game9EnemyBasePQ23Sys8Triangle
+        .4byte
+   animation__Q34Game12EnemyBaseFSM18BirthTypeDropStateFPQ24Game9EnemyBase
+        .4byte
+   isFinishableWaitingBirthTypeDrop__Q34Game12EnemyBaseFSM28BirthTypeDropEarthquakeStateFPQ24Game9EnemyBase
+    .global __vt__Q34Game12EnemyBaseFSM26BirthTypeDropTreasureState
+    __vt__Q34Game12EnemyBaseFSM26BirthTypeDropTreasureState:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game12EnemyBaseFSM18BirthTypeDropStateFPQ24Game9EnemyBasePQ24Game8StateArg
+        .4byte exec__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte
+   cleanup__Q34Game12EnemyBaseFSM18BirthTypeDropStateFPQ24Game9EnemyBase .4byte
+   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
+   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .4byte
+   update__Q34Game12EnemyBaseFSM18BirthTypeDropStateFPQ24Game9EnemyBase .4byte
+   entry__Q34Game12EnemyBaseFSM18BirthTypeDropStateFPQ24Game9EnemyBase .4byte
+   simulation__Q34Game12EnemyBaseFSM18BirthTypeDropStateFPQ24Game9EnemyBasef
+        .4byte
+   bounceProcedure__Q34Game12EnemyBaseFSM5StateFPQ24Game9EnemyBasePQ23Sys8Triangle
+        .4byte
+   animation__Q34Game12EnemyBaseFSM18BirthTypeDropStateFPQ24Game9EnemyBase
+        .4byte
+   isFinishableWaitingBirthTypeDrop__Q34Game12EnemyBaseFSM26BirthTypeDropTreasureStateFPQ24Game9EnemyBase
+    .global __vt__Q34Game12EnemyBaseFSM24BirthTypeDropOlimarState
+    __vt__Q34Game12EnemyBaseFSM24BirthTypeDropOlimarState:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game12EnemyBaseFSM18BirthTypeDropStateFPQ24Game9EnemyBasePQ24Game8StateArg
+        .4byte exec__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte
+   cleanup__Q34Game12EnemyBaseFSM18BirthTypeDropStateFPQ24Game9EnemyBase .4byte
+   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
+   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .4byte
+   update__Q34Game12EnemyBaseFSM18BirthTypeDropStateFPQ24Game9EnemyBase .4byte
+   entry__Q34Game12EnemyBaseFSM18BirthTypeDropStateFPQ24Game9EnemyBase .4byte
+   simulation__Q34Game12EnemyBaseFSM18BirthTypeDropStateFPQ24Game9EnemyBasef
+        .4byte
+   bounceProcedure__Q34Game12EnemyBaseFSM5StateFPQ24Game9EnemyBasePQ23Sys8Triangle
+        .4byte
+   animation__Q34Game12EnemyBaseFSM18BirthTypeDropStateFPQ24Game9EnemyBase
+        .4byte
+   isFinishableWaitingBirthTypeDrop__Q34Game12EnemyBaseFSM24BirthTypeDropOlimarStateFPQ24Game9EnemyBase
+    .global __vt__Q34Game12EnemyBaseFSM24BirthTypeDropPikminState
+    __vt__Q34Game12EnemyBaseFSM24BirthTypeDropPikminState:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game12EnemyBaseFSM18BirthTypeDropStateFPQ24Game9EnemyBasePQ24Game8StateArg
+        .4byte exec__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte
+   cleanup__Q34Game12EnemyBaseFSM18BirthTypeDropStateFPQ24Game9EnemyBase .4byte
+   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
+   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .4byte
+   update__Q34Game12EnemyBaseFSM18BirthTypeDropStateFPQ24Game9EnemyBase .4byte
+   entry__Q34Game12EnemyBaseFSM18BirthTypeDropStateFPQ24Game9EnemyBase .4byte
+   simulation__Q34Game12EnemyBaseFSM18BirthTypeDropStateFPQ24Game9EnemyBasef
+        .4byte
+   bounceProcedure__Q34Game12EnemyBaseFSM5StateFPQ24Game9EnemyBasePQ23Sys8Triangle
+        .4byte
+   animation__Q34Game12EnemyBaseFSM18BirthTypeDropStateFPQ24Game9EnemyBase
+        .4byte
+   isFinishableWaitingBirthTypeDrop__Q34Game12EnemyBaseFSM24BirthTypeDropPikminStateFPQ24Game9EnemyBase
+    .global __vt__Q34Game12EnemyBaseFSM18BirthTypeDropState
+    __vt__Q34Game12EnemyBaseFSM18BirthTypeDropState:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game12EnemyBaseFSM18BirthTypeDropStateFPQ24Game9EnemyBasePQ24Game8StateArg
+        .4byte exec__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte
+   cleanup__Q34Game12EnemyBaseFSM18BirthTypeDropStateFPQ24Game9EnemyBase .4byte
+   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
+   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .4byte
+   update__Q34Game12EnemyBaseFSM18BirthTypeDropStateFPQ24Game9EnemyBase .4byte
+   entry__Q34Game12EnemyBaseFSM18BirthTypeDropStateFPQ24Game9EnemyBase .4byte
+   simulation__Q34Game12EnemyBaseFSM18BirthTypeDropStateFPQ24Game9EnemyBasef
+        .4byte
+   bounceProcedure__Q34Game12EnemyBaseFSM5StateFPQ24Game9EnemyBasePQ23Sys8Triangle
+        .4byte
+   animation__Q34Game12EnemyBaseFSM18BirthTypeDropStateFPQ24Game9EnemyBase
+        .4byte
+   isFinishableWaitingBirthTypeDrop__Q34Game12EnemyBaseFSM18BirthTypeDropStateFPQ24Game9EnemyBase
+    .global __vt__Q34Game12EnemyBaseFSM5State
+    __vt__Q34Game12EnemyBaseFSM5State:
+        .4byte 0
+        .4byte 0
+        .4byte init__Q24Game13EnemyFSMStateFPQ24Game9EnemyBasePQ24Game8StateArg
+        .4byte exec__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte cleanup__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .4byte
+   update__Q34Game12EnemyBaseFSM5StateFPQ24Game9EnemyBase .4byte
+   entry__Q34Game12EnemyBaseFSM5StateFPQ24Game9EnemyBase .4byte
+   simulation__Q34Game12EnemyBaseFSM5StateFPQ24Game9EnemyBasef .4byte
+   bounceProcedure__Q34Game12EnemyBaseFSM5StateFPQ24Game9EnemyBasePQ23Sys8Triangle
+        .4byte animation__Q34Game12EnemyBaseFSM5StateFPQ24Game9EnemyBase
+
+    .section .sbss # 0x80514D80 - 0x80516360
+    .global lbl_80515820
+    lbl_80515820:
+        .skip 0x4
+    .global lbl_80515824
+    lbl_80515824:
+        .skip 0x4
+    .global gParmArc__4Game
+    gParmArc__4Game:
+        .skip 0x4
+    .global "sInstance__Q28PSSystem24ArcMgr<Q26PSGame6BASARC>"
+    "sInstance__Q28PSSystem24ArcMgr<Q26PSGame6BASARC>":
+        .skip 0x4
+    .global "sInstance__Q28PSSystem39SingletonBase<Q33PSM12BossBgmFader3Mgr>"
+    "sInstance__Q28PSSystem39SingletonBase<Q33PSM12BossBgmFader3Mgr>":
+        .skip 0x4
+    .global "sInstance__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"
+    "sInstance__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>":
+        .skip 0x4
+    .global "sInstance__Q28PSSystem34SingletonBase<Q23PSM11CreaturePrm>"
+    "sInstance__Q28PSSystem34SingletonBase<Q23PSM11CreaturePrm>":
+        .skip 0x4
+    .global "sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"
+    "sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>":
+        .skip 0x4
+    .global "sInstance__Q28PSSystem38SingletonBase<Q23PSM15BgmTrackMapFile>"
+    "sInstance__Q28PSSystem38SingletonBase<Q23PSM15BgmTrackMapFile>":
+        .skip 0x4
+    .global
+   "sInstance__Q28PSSystem49SingletonBase<Q36PSGame10SoundTable11CategoryMgr>"
+    "sInstance__Q28PSSystem49SingletonBase<Q36PSGame10SoundTable11CategoryMgr>":
+        .skip 0x4
+    .global "sInstance__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"
+    "sInstance__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>":
+        .skip 0x4
+    .global "sInstance__Q28PSSystem39SingletonBase<Q28PSSystem11SeqDataList>"
+    "sInstance__Q28PSSystem39SingletonBase<Q28PSSystem11SeqDataList>":
+        .skip 0x4
+    .global "sInstance__Q28PSSystem42SingletonBase<Q28PSSystem14StreamDataList>"
+    "sInstance__Q28PSSystem42SingletonBase<Q28PSSystem14StreamDataList>":
+        .skip 0x8
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    lbl_80517798:
+        .float 300.0
+    lbl_8051779C:
+        .float 32768.0
+    lbl_805177A0:
+        .float 6.2831855
+    lbl_805177A4:
+        .float 50.0
+    lbl_805177A8:
+        .float -325.9493
+    lbl_805177AC:
+        .float 325.9493
+    lbl_805177B0:
+        .float 0.0
+        .skip 4
+    lbl_805177B8:
+        .4byte 0x43300000
+        .4byte 0x80000000
+    lbl_805177C0:
+        .float 2.0
+    PELLETVIEW_BASE_SCALE:
+        .float 1.0
+    lbl_805177C8:
+        .float 0.2
+    lbl_805177CC:
+        .float 3.1415927
+    lbl_805177D0:
+        .float 4.0
+    lbl_805177D4:
+        .float 0.25
+    lbl_805177D8:
+        .float 0.017453294
+        .skip 4
+    lbl_805177E0:
+        .4byte 0x43300000
+        .4byte 0x00000000
+    lbl_805177E8:
+        .asciz "Appear"
+        .skip 1
+    lbl_805177F0:
+        .asciz "Living"
+        .skip 1
+    lbl_805177F8:
+        .asciz "Stone"
+        .skip 2
+    lbl_80517800:
+        .asciz "Fit"
+    lbl_80517804:
+        .float 2.5
+    lbl_80517808:
+        .float 0.99
+    lbl_8051780C:
+        .float 0.9
+    lbl_80517810:
+        .float 0.85
+    lbl_80517814:
+        .float 0.5
+    lbl_80517818:
+        .float 10.0
+    lbl_8051781C:
+        .float 250.0
+    lbl_80517820:
+        .asciz "e-calc"
+        .skip 1
+    lbl_80517828:
+        .float 3.0
+    lbl_8051782C:
+        .float 0.6
+    lbl_80517830:
+        .float 0.03490659
+    lbl_80517834:
+        .float 0.043633234
+    lbl_80517838:
+        .float 200.0
+    lbl_8051783C:
+        .float 8.0
+    lbl_80517840:
+        .float 150.0
+    lbl_80517844:
+        .float 100.0
+    lbl_80517848:
+        .float 1.5
+    lbl_8051784C:
+        .asciz "Arg"
+*/
+
 namespace Game {
 namespace EnemyBaseFSM {
 	struct State {

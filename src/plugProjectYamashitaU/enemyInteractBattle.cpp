@@ -1,5 +1,67 @@
 #include "types.h"
 
+/*
+    Generated from dpostproc
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__Q24Game12InteractDrop
+    __vt__Q24Game12InteractDrop:
+        .4byte 0
+        .4byte 0
+        .4byte actCommon__Q24Game11InteractionFPQ24Game8Creature
+        .4byte actPiki__Q24Game11InteractionFPQ24Game4Piki
+        .4byte actNavi__Q24Game11InteractionFPQ24Game4Navi
+        .4byte actEnemy__Q24Game12InteractDropFPQ24Game9EnemyBase
+        .4byte actPellet__Q24Game11InteractionFPQ24Game6Pellet
+        .4byte actOnyon__Q24Game11InteractionFPQ24Game5Onyon
+        .4byte actItem__Q24Game11InteractionFPQ24Game8BaseItem
+    .global __vt__Q24Game20InteractFlyCollision
+    __vt__Q24Game20InteractFlyCollision:
+        .4byte 0
+        .4byte 0
+        .4byte actCommon__Q24Game11InteractionFPQ24Game8Creature
+        .4byte actPiki__Q24Game11InteractionFPQ24Game4Piki
+        .4byte actNavi__Q24Game11InteractionFPQ24Game4Navi
+        .4byte actEnemy__Q24Game20InteractFlyCollisionFPQ24Game9EnemyBase
+        .4byte actPellet__Q24Game11InteractionFPQ24Game6Pellet
+        .4byte actOnyon__Q24Game11InteractionFPQ24Game5Onyon
+        .4byte actItem__Q24Game11InteractionFPQ24Game8BaseItem
+    .global __vt__Q24Game13InteractPress
+    __vt__Q24Game13InteractPress:
+        .4byte 0
+        .4byte 0
+        .4byte actCommon__Q24Game11InteractionFPQ24Game8Creature
+        .4byte actPiki__Q24Game13InteractPressFPQ24Game4Piki
+        .4byte actNavi__Q24Game13InteractPressFPQ24Game4Navi
+        .4byte actEnemy__Q24Game13InteractPressFPQ24Game9EnemyBase
+        .4byte actPellet__Q24Game11InteractionFPQ24Game6Pellet
+        .4byte actOnyon__Q24Game11InteractionFPQ24Game5Onyon
+        .4byte actItem__Q24Game11InteractionFPQ24Game8BaseItem
+    .global __vt__Q24Game18InteractEarthquake
+    __vt__Q24Game18InteractEarthquake:
+        .4byte 0
+        .4byte 0
+        .4byte actCommon__Q24Game11InteractionFPQ24Game8Creature
+        .4byte actPiki__Q24Game11InteractionFPQ24Game4Piki
+        .4byte actNavi__Q24Game11InteractionFPQ24Game4Navi
+        .4byte actEnemy__Q24Game18InteractEarthquakeFPQ24Game9EnemyBase
+        .4byte actPellet__Q24Game11InteractionFPQ24Game6Pellet
+        .4byte actOnyon__Q24Game11InteractionFPQ24Game5Onyon
+        .4byte actItem__Q24Game11InteractionFPQ24Game8BaseItem
+    .global __vt__Q24Game15InteractHipdrop
+    __vt__Q24Game15InteractHipdrop:
+        .4byte 0
+        .4byte 0
+        .4byte actCommon__Q24Game14InteractAttackFPQ24Game8Creature
+        .4byte actPiki__Q24Game11InteractionFPQ24Game4Piki
+        .4byte actNavi__Q24Game14InteractAttackFPQ24Game4Navi
+        .4byte actEnemy__Q24Game15InteractHipdropFPQ24Game9EnemyBase
+        .4byte actPellet__Q24Game11InteractionFPQ24Game6Pellet
+        .4byte actOnyon__Q24Game11InteractionFPQ24Game5Onyon
+        .4byte actItem__Q24Game14InteractAttackFPQ24Game8BaseItem
+        .4byte 0
+*/
+
 namespace Game {
 
 /*
@@ -10,40 +72,39 @@ namespace Game {
 void InteractHipdrop::actEnemy(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r4, 0x4(r30)
-	  lwz       r12, 0x27C(r12)
-	  lfs       f1, 0x8(r30)
-	  lwz       r5, 0xC(r30)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x64
-	  mr        r3, r31
-	  lwz       r4, 0x4(r30)
-	  lwz       r12, 0x0(r31)
-	  lfs       f1, 0x8(r30)
-	  lwz       r12, 0x284(r12)
-	  lwz       r5, 0xC(r30)
-	  mtctr     r12
-	  bctrl
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r4, 4(r30)
+	lwz      r12, 0x27c(r12)
+	lfs      f1, 8(r30)
+	lwz      r5, 0xc(r30)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_8010BA64
+	mr       r3, r31
+	lwz      r4, 4(r30)
+	lwz      r12, 0(r31)
+	lfs      f1, 8(r30)
+	lwz      r12, 0x284(r12)
+	lwz      r5, 0xc(r30)
+	mtctr    r12
+	bctrl
 
-	.loc_0x64:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8010BA64:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -55,38 +116,37 @@ void InteractHipdrop::actEnemy(Game::EnemyBase*)
 void InteractEarthquake::actEnemy(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  li        r31, 0
-	  stw       r30, 0x18(r1)
-	  mr        r30, r4
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  mr        r3, r30
-	  bl        -0x5750
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x54
-	  mr        r3, r30
-	  lwz       r4, 0x4(r29)
-	  lwz       r12, 0x0(r30)
-	  lfs       f1, 0x8(r29)
-	  lwz       r12, 0x28C(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r31, r3
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	li       r31, 0
+	stw      r30, 0x18(r1)
+	mr       r30, r4
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	mr       r3, r30
+	bl       checkBirthTypeDropEarthquake__Q24Game9EnemyBaseFv
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_8010BAD0
+	mr       r3, r30
+	lwz      r4, 4(r29)
+	lwz      r12, 0(r30)
+	lfs      f1, 8(r29)
+	lwz      r12, 0x28c(r12)
+	mtctr    r12
+	bctrl
+	mr       r31, r3
 
-	.loc_0x54:
-	  lwz       r0, 0x24(r1)
-	  mr        r3, r31
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8010BAD0:
+	lwz      r0, 0x24(r1)
+	mr       r3, r31
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -98,23 +158,22 @@ void InteractEarthquake::actEnemy(Game::EnemyBase*)
 void InteractPress::actEnemy(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r5, r3
-	  mr        r3, r4
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r4, 0x4(r5)
-	  lwz       r12, 0x27C(r12)
-	  lfs       f1, 0x8(r5)
-	  lwz       r5, 0xC(r5)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r5, r3
+	mr       r3, r4
+	stw      r0, 0x14(r1)
+	lwz      r12, 0(r3)
+	lwz      r4, 4(r5)
+	lwz      r12, 0x27c(r12)
+	lfs      f1, 8(r5)
+	lwz      r5, 0xc(r5)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -126,23 +185,22 @@ void InteractPress::actEnemy(Game::EnemyBase*)
 void InteractFlyCollision::actEnemy(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r5, r3
-	  mr        r3, r4
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r4, 0x4(r5)
-	  lwz       r12, 0x280(r12)
-	  lfs       f1, 0x8(r5)
-	  lwz       r5, 0xC(r5)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r5, r3
+	mr       r3, r4
+	stw      r0, 0x14(r1)
+	lwz      r12, 0(r3)
+	lwz      r4, 4(r5)
+	lwz      r12, 0x280(r12)
+	lfs      f1, 8(r5)
+	lwz      r5, 0xc(r5)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -154,88 +212,87 @@ void InteractFlyCollision::actEnemy(Game::EnemyBase*)
 void InteractAttack::actEnemy(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  li        r31, 0
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r29, r4
-	  stw       r28, 0x10(r1)
-	  mr        r28, r3
-	  lwz       r0, 0x1E0(r4)
-	  rlwinm.   r0,r0,0,31,31
-	  bne-      .loc_0xF8
-	  lwz       r3, 0x4(r28)
-	  li        r30, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x9C
-	  lwz       r3, 0x4(r28)
-	  lhz       r0, 0x2DC(r3)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x80
-	  lwz       r3, 0x1E0(r29)
-	  rlwinm.   r0,r3,0,15,15
-	  bne-      .loc_0xA0
-	  oris      r0, r3, 0x1
-	  li        r30, 0x1
-	  stw       r0, 0x1E0(r29)
-	  b         .loc_0xA0
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	li       r31, 0
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	mr       r29, r4
+	stw      r28, 0x10(r1)
+	mr       r28, r3
+	lwz      r0, 0x1e0(r4)
+	clrlwi.  r0, r0, 0x1f
+	bne      lbl_8010BC68
+	lwz      r3, 4(r28)
+	li       r30, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_8010BC0C
+	lwz      r3, 4(r28)
+	lhz      r0, 0x2dc(r3)
+	cmplwi   r0, 0
+	bne      lbl_8010BBF0
+	lwz      r3, 0x1e0(r29)
+	rlwinm.  r0, r3, 0, 0xf, 0xf
+	bne      lbl_8010BC10
+	oris     r0, r3, 1
+	li       r30, 1
+	stw      r0, 0x1e0(r29)
+	b        lbl_8010BC10
 
-	.loc_0x80:
-	  lwz       r3, 0x1E0(r29)
-	  rlwinm.   r0,r3,0,14,14
-	  bne-      .loc_0xA0
-	  oris      r0, r3, 0x2
-	  li        r30, 0x1
-	  stw       r0, 0x1E0(r29)
-	  b         .loc_0xA0
+lbl_8010BBF0:
+	lwz      r3, 0x1e0(r29)
+	rlwinm.  r0, r3, 0, 0xe, 0xe
+	bne      lbl_8010BC10
+	oris     r0, r3, 2
+	li       r30, 1
+	stw      r0, 0x1e0(r29)
+	b        lbl_8010BC10
 
-	.loc_0x9C:
-	  li        r30, 0x1
+lbl_8010BC0C:
+	li       r30, 1
 
-	.loc_0xA0:
-	  rlwinm.   r0,r30,0,24,31
-	  beq-      .loc_0xF8
-	  lwz       r0, 0x1E0(r29)
-	  rlwinm.   r0,r0,0,22,22
-	  beq-      .loc_0xD4
-	  mr        r3, r29
-	  lwz       r12, 0x0(r29)
-	  lwz       r12, 0x2AC(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f0, 0x8(r28)
-	  fmuls     f0, f0, f1
-	  stfs      f0, 0x8(r28)
+lbl_8010BC10:
+	clrlwi.  r0, r30, 0x18
+	beq      lbl_8010BC68
+	lwz      r0, 0x1e0(r29)
+	rlwinm.  r0, r0, 0, 0x16, 0x16
+	beq      lbl_8010BC44
+	mr       r3, r29
+	lwz      r12, 0(r29)
+	lwz      r12, 0x2ac(r12)
+	mtctr    r12
+	bctrl
+	lfs      f0, 8(r28)
+	fmuls    f0, f0, f1
+	stfs     f0, 8(r28)
 
-	.loc_0xD4:
-	  mr        r3, r29
-	  lwz       r4, 0x4(r28)
-	  lwz       r12, 0x0(r29)
-	  lfs       f1, 0x8(r28)
-	  lwz       r12, 0x278(r12)
-	  lwz       r5, 0xC(r28)
-	  mtctr     r12
-	  bctrl
-	  mr        r31, r3
+lbl_8010BC44:
+	mr       r3, r29
+	lwz      r4, 4(r28)
+	lwz      r12, 0(r29)
+	lfs      f1, 8(r28)
+	lwz      r12, 0x278(r12)
+	lwz      r5, 0xc(r28)
+	mtctr    r12
+	bctrl
+	mr       r31, r3
 
-	.loc_0xF8:
-	  lwz       r0, 0x24(r1)
-	  mr        r3, r31
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8010BC68:
+	lwz      r0, 0x24(r1)
+	mr       r3, r31
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -247,21 +304,20 @@ void InteractAttack::actEnemy(Game::EnemyBase*)
 void InteractDrop::actEnemy(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r5, r3
-	  mr        r3, r4
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r4, 0x4(r5)
-	  lwz       r12, 0x288(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r5, r3
+	mr       r3, r4
+	stw      r0, 0x14(r1)
+	lwz      r12, 0(r3)
+	lwz      r4, 4(r5)
+	lwz      r12, 0x288(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -273,39 +329,38 @@ void InteractDrop::actEnemy(Game::EnemyBase*)
 void InteractBomb::actEnemy(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  li        r31, 0
-	  stw       r30, 0x18(r1)
-	  mr        r30, r4
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  mr        r3, r30
-	  bl        -0x59D8
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x58
-	  mr        r3, r30
-	  addi      r5, r29, 0xC
-	  lwz       r12, 0x0(r30)
-	  lwz       r4, 0x4(r29)
-	  lwz       r12, 0x294(r12)
-	  lfs       f1, 0x8(r29)
-	  mtctr     r12
-	  bctrl
-	  mr        r31, r3
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	li       r31, 0
+	stw      r30, 0x18(r1)
+	mr       r30, r4
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	mr       r3, r30
+	bl       isBeforeAppearState__Q24Game9EnemyBaseFv
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_8010BD1C
+	mr       r3, r30
+	addi     r5, r29, 0xc
+	lwz      r12, 0(r30)
+	lwz      r4, 4(r29)
+	lwz      r12, 0x294(r12)
+	lfs      f1, 8(r29)
+	mtctr    r12
+	bctrl
+	mr       r31, r3
 
-	.loc_0x58:
-	  lwz       r0, 0x24(r1)
-	  mr        r3, r31
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8010BD1C:
+	lwz      r0, 0x24(r1)
+	mr       r3, r31
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 } // namespace Game

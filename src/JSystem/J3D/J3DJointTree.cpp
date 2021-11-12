@@ -1,6 +1,46 @@
 #include "types.h"
 
 /*
+    Generated from dpostproc
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global lbl_804A2F70
+    lbl_804A2F70:
+        .4byte lbl_8008839C
+        .4byte lbl_8008836C
+        .4byte lbl_80088390
+        .4byte lbl_800883F0
+        .4byte lbl_800883F0
+        .4byte lbl_800883F0
+        .4byte lbl_800883F0
+        .4byte lbl_800883F0
+        .4byte lbl_800883F0
+        .4byte lbl_800883F0
+        .4byte lbl_800883F0
+        .4byte lbl_800883F0
+        .4byte lbl_800883F0
+        .4byte lbl_800883F0
+        .4byte lbl_800883F0
+        .4byte lbl_800883F0
+        .4byte lbl_800883A0
+        .4byte lbl_800883BC
+        .4byte lbl_800883D8
+    .global __vt__12J3DJointTree
+    __vt__12J3DJointTree:
+        .4byte 0
+        .4byte 0
+        .4byte calc__12J3DJointTreeFP12J3DMtxBufferRC3VecRA3_A4_Cf
+        .4byte __dt__12J3DJointTreeFv
+        .4byte 0
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_80516AF0
+    lbl_80516AF0:
+        .4byte 0xBDCCCCCD
+        .4byte 0x00000000
+*/
+
+/*
  * --INFO--
  * Address:	8008828C
  * Size:	000084
@@ -8,40 +48,39 @@
 J3DJointTree::J3DJointTree()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r4, 0x804A
-	  stw       r0, 0x14(r1)
-	  li        r0, 0
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  addi      r3, r4, 0x2FBC
-	  stw       r3, 0x0(r31)
-	  addi      r3, r31, 0x34
-	  stw       r0, 0x4(r31)
-	  stw       r0, 0x8(r31)
-	  stw       r0, 0xC(r31)
-	  stw       r0, 0x10(r31)
-	  stw       r0, 0x14(r31)
-	  stw       r0, 0x18(r31)
-	  sth       r0, 0x1C(r31)
-	  sth       r0, 0x1E(r31)
-	  stw       r0, 0x20(r31)
-	  stw       r0, 0x24(r31)
-	  stw       r0, 0x28(r31)
-	  stw       r0, 0x2C(r31)
-	  stw       r0, 0x30(r31)
-	  bl        -0x294C0
-	  li        r0, 0
-	  mr        r3, r31
-	  stw       r0, 0x40(r31)
-	  stw       r0, 0x44(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lis      r4, __vt__12J3DJointTree@ha
+	stw      r0, 0x14(r1)
+	li       r0, 0
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	addi     r3, r4, __vt__12J3DJointTree@l
+	stw      r3, 0(r31)
+	addi     r3, r31, 0x34
+	stw      r0, 4(r31)
+	stw      r0, 8(r31)
+	stw      r0, 0xc(r31)
+	stw      r0, 0x10(r31)
+	stw      r0, 0x14(r31)
+	stw      r0, 0x18(r31)
+	sth      r0, 0x1c(r31)
+	sth      r0, 0x1e(r31)
+	stw      r0, 0x20(r31)
+	stw      r0, 0x24(r31)
+	stw      r0, 0x28(r31)
+	stw      r0, 0x2c(r31)
+	stw      r0, 0x30(r31)
+	bl       __ct__14J3DDrawMtxDataFv
+	li       r0, 0
+	mr       r3, r31
+	stw      r0, 0x40(r31)
+	stw      r0, 0x44(r31)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -167,120 +206,119 @@ void J3DJointTree::makeHierarchy(J3DJoint*, const J3DModelHierarchy**,
 void J3DJointTree::findImportantMtxIndex()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  li        r9, 0
-	  stmw      r25, 0x14(r1)
-	  lhz       r4, 0x36(r3)
-	  lhz       r0, 0x1E(r3)
-	  cmplwi    r4, 0
-	  lwz       r7, 0x24(r3)
-	  lwz       r6, 0x28(r3)
-	  lwz       r5, 0x30(r3)
-	  ble-      .loc_0xF4
-	  cmplwi    r4, 0x8
-	  subi      r8, r4, 0x8
-	  ble-      .loc_0xE8
-	  rlwinm    r10,r8,0,16,31
-	  b         .loc_0xC4
+	stwu     r1, -0x30(r1)
+	li       r9, 0
+	stmw     r25, 0x14(r1)
+	lhz      r4, 0x36(r3)
+	lhz      r0, 0x1e(r3)
+	cmplwi   r4, 0
+	lwz      r7, 0x24(r3)
+	lwz      r6, 0x28(r3)
+	lwz      r5, 0x30(r3)
+	ble      lbl_80088560
+	cmplwi   r4, 8
+	addi     r8, r4, -8
+	ble      lbl_80088554
+	clrlwi   r10, r8, 0x10
+	b        lbl_80088530
 
-	.loc_0x3C:
-	  lwz       r8, 0x3C(r3)
-	  rlwinm    r25,r9,1,15,30
-	  addi      r27, r25, 0x2
-	  addi      r9, r9, 0x8
-	  lhzx      r11, r8, r25
-	  add       r8, r5, r25
-	  addi      r28, r25, 0x4
-	  addi      r29, r25, 0x6
-	  sth       r11, 0x0(r8)
-	  addi      r30, r25, 0x8
-	  addi      r31, r25, 0xA
-	  addi      r12, r25, 0xC
-	  lwz       r26, 0x3C(r3)
-	  addi      r11, r25, 0xE
-	  lhzx      r27, r26, r27
-	  sth       r27, 0x2(r8)
-	  lwz       r27, 0x3C(r3)
-	  lhzx      r28, r27, r28
-	  sth       r28, 0x4(r8)
-	  lwz       r28, 0x3C(r3)
-	  lhzx      r29, r28, r29
-	  sth       r29, 0x6(r8)
-	  lwz       r29, 0x3C(r3)
-	  lhzx      r30, r29, r30
-	  sth       r30, 0x8(r8)
-	  lwz       r30, 0x3C(r3)
-	  lhzx      r31, r30, r31
-	  sth       r31, 0xA(r8)
-	  lwz       r31, 0x3C(r3)
-	  lhzx      r12, r31, r12
-	  sth       r12, 0xC(r8)
-	  lwz       r12, 0x3C(r3)
-	  lhzx      r11, r12, r11
-	  sth       r11, 0xE(r8)
+lbl_800884A8:
+	lwz      r8, 0x3c(r3)
+	rlwinm   r25, r9, 1, 0xf, 0x1e
+	addi     r27, r25, 2
+	addi     r9, r9, 8
+	lhzx     r11, r8, r25
+	add      r8, r5, r25
+	addi     r28, r25, 4
+	addi     r29, r25, 6
+	sth      r11, 0(r8)
+	addi     r30, r25, 8
+	addi     r31, r25, 0xa
+	addi     r12, r25, 0xc
+	lwz      r26, 0x3c(r3)
+	addi     r11, r25, 0xe
+	lhzx     r27, r26, r27
+	sth      r27, 2(r8)
+	lwz      r27, 0x3c(r3)
+	lhzx     r28, r27, r28
+	sth      r28, 4(r8)
+	lwz      r28, 0x3c(r3)
+	lhzx     r29, r28, r29
+	sth      r29, 6(r8)
+	lwz      r29, 0x3c(r3)
+	lhzx     r30, r29, r30
+	sth      r30, 8(r8)
+	lwz      r30, 0x3c(r3)
+	lhzx     r31, r30, r31
+	sth      r31, 0xa(r8)
+	lwz      r31, 0x3c(r3)
+	lhzx     r12, r31, r12
+	sth      r12, 0xc(r8)
+	lwz      r12, 0x3c(r3)
+	lhzx     r11, r12, r11
+	sth      r11, 0xe(r8)
 
-	.loc_0xC4:
-	  rlwinm    r8,r9,0,16,31
-	  cmplw     r8, r10
-	  blt+      .loc_0x3C
-	  b         .loc_0xE8
+lbl_80088530:
+	clrlwi   r8, r9, 0x10
+	cmplw    r8, r10
+	blt      lbl_800884A8
+	b        lbl_80088554
 
-	.loc_0xD4:
-	  lwz       r8, 0x3C(r3)
-	  rlwinm    r10,r9,1,15,30
-	  addi      r9, r9, 0x1
-	  lhzx      r8, r8, r10
-	  sthx      r8, r5, r10
+lbl_80088540:
+	lwz      r8, 0x3c(r3)
+	rlwinm   r10, r9, 1, 0xf, 0x1e
+	addi     r9, r9, 1
+	lhzx     r8, r8, r10
+	sthx     r8, r5, r10
 
-	.loc_0xE8:
-	  rlwinm    r8,r9,0,16,31
-	  cmplw     r8, r4
-	  blt+      .loc_0xD4
+lbl_80088554:
+	clrlwi   r8, r9, 0x10
+	cmplw    r8, r4
+	blt      lbl_80088540
 
-	.loc_0xF4:
-	  li        r11, 0
-	  b         .loc_0x160
+lbl_80088560:
+	li       r11, 0
+	b        lbl_800885CC
 
-	.loc_0xFC:
-	  lwz       r8, 0x20(r3)
-	  rlwinm    r4,r11,0,16,31
-	  mr        r9, r6
-	  mr        r10, r7
-	  lbzx      r4, r8, r4
-	  li        r8, 0
-	  lfs       f1, -0x7870(r2)
-	  mtctr     r4
-	  cmpwi     r4, 0
-	  ble-      .loc_0x14C
+lbl_80088568:
+	lwz      r8, 0x20(r3)
+	clrlwi   r4, r11, 0x10
+	mr       r9, r6
+	mr       r10, r7
+	lbzx     r4, r8, r4
+	li       r8, 0
+	lfs      f1, lbl_80516AF0@sda21(r2)
+	mtctr    r4
+	cmpwi    r4, 0
+	ble      lbl_800885B8
 
-	.loc_0x124:
-	  lfs       f0, 0x0(r9)
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x138
-	  fmr       f1, f0
-	  lhz       r8, 0x0(r10)
+lbl_80088590:
+	lfs      f0, 0(r9)
+	fcmpo    cr0, f1, f0
+	bge      lbl_800885A4
+	fmr      f1, f0
+	lhz      r8, 0(r10)
 
-	.loc_0x138:
-	  addi      r9, r9, 0x4
-	  addi      r10, r10, 0x2
-	  addi      r6, r6, 0x4
-	  addi      r7, r7, 0x2
-	  bdnz+     .loc_0x124
+lbl_800885A4:
+	addi     r9, r9, 4
+	addi     r10, r10, 2
+	addi     r6, r6, 4
+	addi     r7, r7, 2
+	bdnz     lbl_80088590
 
-	.loc_0x14C:
-	  lhz       r4, 0x36(r3)
-	  add       r4, r11, r4
-	  addi      r11, r11, 0x1
-	  rlwinm    r4,r4,1,0,30
-	  sthx      r8, r5, r4
+lbl_800885B8:
+	lhz      r4, 0x36(r3)
+	add      r4, r11, r4
+	addi     r11, r11, 1
+	slwi     r4, r4, 1
+	sthx     r8, r5, r4
 
-	.loc_0x160:
-	  cmpw      r11, r0
-	  blt+      .loc_0xFC
-	  lmw       r25, 0x14(r1)
-	  addi      r1, r1, 0x30
-	  blr
+lbl_800885CC:
+	cmpw     r11, r0
+	blt      lbl_80088568
+	lmw      r25, 0x14(r1)
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -292,39 +330,36 @@ void J3DJointTree::findImportantMtxIndex()
 void J3DJointTree::calc(J3DMtxBuffer*, const Vec&, const float (&)[3][4])
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  mr        r4, r5
-	  mr        r5, r6
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lwz       r3, 0x14(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x24(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r3, r31
-	  bl        .loc_0x70
-	  lwz       r3, 0x10(r30)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x58
-	  lwz       r0, 0x14(r30)
-	  stw       r0, -0x7670(r13)
-	  bl        -0x1CAE0
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	mr       r4, r5
+	mr       r5, r6
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lwz      r3, 0x14(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x24(r12)
+	mtctr    r12
+	bctrl
+	mr       r3, r31
+	bl       setMtxBuffer__10J3DMtxCalcFP12J3DMtxBuffer
+	lwz      r3, 0x10(r30)
+	cmplwi   r3, 0
+	beq      lbl_80088638
+	lwz      r0, 0x14(r30)
+	stw      r0, mCurrentMtxCalc__8J3DJoint@sda21(r13)
+	bl       recursiveCalc__8J3DJointFv
 
-	.loc_0x58:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-
-	.loc_0x70:
+lbl_80088638:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -336,8 +371,7 @@ void J3DJointTree::calc(J3DMtxBuffer*, const Vec&, const float (&)[3][4])
 void J3DMtxCalc::setMtxBuffer(J3DMtxBuffer*)
 {
 	/*
-	.loc_0x0:
-	  stw       r3, -0x7678(r13)
-	  blr
+	stw      r3, mMtxBuffer__10J3DMtxCalc@sda21(r13)
+	blr
 	*/
 }

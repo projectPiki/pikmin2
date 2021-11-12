@@ -1,5 +1,79 @@
 #include "types.h"
 
+/*
+    Generated from dpostproc
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_8048D1D8
+    lbl_8048D1D8:
+        .4byte 0x836E8369
+        .4byte 0x83688362
+        .4byte 0x834E838A
+        .4byte 0x837D836C
+        .4byte 0x815B8357
+        .4byte 0x83830000
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__Q34Game4Hana3Mgr
+    __vt__Q34Game4Hana3Mgr:
+        .4byte 0
+        .4byte 0
+        .4byte doAnimation__Q24Game12EnemyMgrBaseFv
+        .4byte doEntry__Q24Game12EnemyMgrBaseFv
+        .4byte doSetView__Q24Game12EnemyMgrBaseFi
+        .4byte doViewCalc__Q24Game12EnemyMgrBaseFv
+        .4byte doSimulation__Q24Game12EnemyMgrBaseFf
+        .4byte doDirectDraw__Q24Game12EnemyMgrBaseFR8Graphics
+        .4byte doSimpleDraw__16GenericObjectMgrFP8Viewport
+        .4byte loadResources__16GenericObjectMgrFv
+        .4byte resetMgr__16GenericObjectMgrFv
+        .4byte pausable__16GenericObjectMgrFv
+        .4byte frozenable__16GenericObjectMgrFv
+        .4byte getMatrixLoadType__16GenericObjectMgrFv
+        .4byte 0
+        .4byte 0
+        .4byte "@4@__dt__Q34Game4Hana3MgrFv"
+        .4byte getChildCount__5CNodeFv
+        .4byte "@4@getObject__Q24Game12EnemyMgrBaseFPv"
+        .4byte "@4@getNext__Q24Game12EnemyMgrBaseFPv"
+        .4byte "@4@getStart__Q24Game12EnemyMgrBaseFv"
+        .4byte "@4@getEnd__Q24Game12EnemyMgrBaseFv"
+        .4byte __dt__Q34Game4Hana3MgrFv
+        .4byte getObject__Q24Game12EnemyMgrBaseFPv
+        .4byte getNext__Q24Game12EnemyMgrBaseFPv
+        .4byte getStart__Q24Game12EnemyMgrBaseFv
+        .4byte getEnd__Q24Game12EnemyMgrBaseFv
+        .4byte alloc__Q24Game12EnemyMgrBaseFv
+        .4byte birth__Q24Game12EnemyMgrBaseFRQ24Game13EnemyBirthArg
+        .4byte getJ3DModelData__Q24Game12EnemyMgrBaseCFv
+        .4byte getGenerator__Q24Game12EnemyMgrBaseCFv
+        .4byte killAll__Q24Game12EnemyMgrBaseFPQ24Game15CreatureKillArg
+        .4byte setupSoundViewerAndBas__Q24Game12EnemyMgrBaseFv
+        .4byte setDebugParm__Q24Game12EnemyMgrBaseFUl
+        .4byte resetDebugParm__Q24Game12EnemyMgrBaseFUl
+        .4byte getMaxObjects__Q24Game12EnemyMgrBaseCFv
+        .4byte startMovie__Q24Game12EnemyMgrBaseFv
+        .4byte endMovie__Q24Game12EnemyMgrBaseFv
+        .4byte get__Q24Game12EnemyMgrBaseFPv
+        .4byte isAlwaysMovieActor__Q24Game12EnemyMgrBaseFv
+        .4byte createObj__Q34Game4Hana3MgrFi
+        .4byte getEnemy__Q34Game4Hana3MgrFi
+        .4byte doAlloc__Q34Game4Hana3MgrFv
+        .4byte getEnemyTypeID__Q34Game4Hana3MgrFv
+        .4byte createModel__Q24Game12EnemyMgrBaseFv
+        .4byte initParms__Q24Game12EnemyMgrBaseFv
+        .4byte loadResource__Q24Game12EnemyMgrBaseFv
+        .4byte initObjects__Q24Game12EnemyMgrBaseFv
+        .4byte initStoneSetting__Q24Game12EnemyMgrBaseFv
+        .4byte loadModelData__Q24Game12EnemyMgrBaseFP10JKRArchive
+        .4byte loadModelData__Q34Game4Hana3MgrFv
+        .4byte loadAnimData__Q24Game12EnemyMgrBaseFv
+        .4byte loadTexData__Q24Game12EnemyMgrBaseFv
+        .4byte doLoadBmd__Q34Game4Hana3MgrFPv
+        .4byte doLoadBdl__Q24Game12EnemyMgrBaseFPv
+        .4byte initGenerator__Q24Game12EnemyMgrBaseFv
+*/
+
 namespace Game {
 
 /*
@@ -10,27 +84,26 @@ namespace Game {
 Hana::Mgr::Mgr(int, unsigned char)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        -0x1C416C
-	  lis       r3, 0x804D
-	  lis       r4, 0x8049
-	  addi      r5, r3, 0x52C8
-	  mr        r3, r31
-	  stw       r5, 0x0(r31)
-	  addi      r5, r5, 0x38
-	  subi      r0, r4, 0x2E28
-	  stw       r5, 0x4(r31)
-	  stw       r0, 0x18(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       __ct__Q24Game12EnemyMgrBaseFiUc
+	lis      r3, __vt__Q34Game4Hana3Mgr@ha
+	lis      r4, lbl_8048D1D8@ha
+	addi     r5, r3, __vt__Q34Game4Hana3Mgr@l
+	mr       r3, r31
+	stw      r5, 0(r31)
+	addi     r5, r5, 0x38
+	addi     r0, r4, lbl_8048D1D8@l
+	stw      r5, 4(r31)
+	stw      r0, 0x18(r31)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -42,27 +115,26 @@ Hana::Mgr::Mgr(int, unsigned char)
 void Hana::Mgr::doAlloc(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  li        r3, 0x884
-	  bl        -0x2CEFB0
-	  mr.       r4, r3
-	  beq-      .loc_0x2C
-	  bl        -0x1D9528
-	  mr        r4, r3
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	li       r3, 0x884
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_802F2E68
+	bl       __ct__Q34Game10ChappyBase5ParmsFv
+	mr       r4, r3
 
-	.loc_0x2C:
-	  mr        r3, r31
-	  bl        -0x1C35D0
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_802F2E68:
+	mr       r3, r31
+	bl       init__Q24Game12EnemyMgrBaseFPQ24Game14EnemyParmsBase
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -74,31 +146,30 @@ void Hana::Mgr::doAlloc(void)
 void Hana::Mgr::createObj(int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  mulli     r3, r31, 0x2F8
-	  addi      r3, r3, 0x10
-	  bl        -0x2CEEFC
-	  lis       r4, 0x802F
-	  lis       r5, 0x802F
-	  addi      r4, r4, 0x3138
-	  mr        r7, r31
-	  addi      r5, r5, 0x2EE4
-	  li        r6, 0x2F8
-	  bl        -0x2314D4
-	  stw       r3, 0x44(r30)
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	mulli    r3, r31, 0x2f8
+	addi     r3, r3, 0x10
+	bl       __nwa__FUl
+	lis      r4, __ct__Q34Game4Hana3ObjFv@ha
+	lis      r5, __dt__Q34Game4Hana3ObjFv@ha
+	addi     r4, r4, __ct__Q34Game4Hana3ObjFv@l
+	mr       r7, r31
+	addi     r5, r5, __dt__Q34Game4Hana3ObjFv@l
+	li       r6, 0x2f8
+	bl       __construct_new_array
+	stw      r3, 0x44(r30)
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -110,71 +181,70 @@ void Hana::Mgr::createObj(int)
 Hana::Obj::~Obj(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0xD4
-	  lis       r3, 0x804D
-	  addi      r0, r30, 0x2E8
-	  addi      r4, r3, 0x53D4
-	  stw       r4, 0x0(r30)
-	  addi      r3, r4, 0x1B0
-	  addi      r4, r4, 0x334
-	  stw       r3, 0x178(r30)
-	  lwz       r3, 0x17C(r30)
-	  stw       r4, 0x0(r3)
-	  lwz       r3, 0x17C(r30)
-	  sub       r0, r0, r3
-	  stw       r0, 0xC(r3)
-	  beq-      .loc_0xC4
-	  lis       r3, 0x804B
-	  addi      r0, r30, 0x2E4
-	  subi      r4, r3, 0x20B4
-	  stw       r4, 0x0(r30)
-	  addi      r3, r4, 0x1B0
-	  addi      r4, r4, 0x334
-	  stw       r3, 0x178(r30)
-	  lwz       r3, 0x17C(r30)
-	  stw       r4, 0x0(r3)
-	  lwz       r3, 0x17C(r30)
-	  sub       r0, r0, r3
-	  stw       r0, 0xC(r3)
-	  beq-      .loc_0xC4
-	  lis       r3, 0x804B
-	  addi      r0, r30, 0x2BC
-	  subi      r4, r3, 0x5CDC
-	  addi      r3, r30, 0x290
-	  stw       r4, 0x0(r30)
-	  addi      r5, r4, 0x1B0
-	  addi      r6, r4, 0x2F8
-	  li        r4, -0x1
-	  stw       r5, 0x178(r30)
-	  lwz       r5, 0x17C(r30)
-	  stw       r6, 0x0(r5)
-	  lwz       r5, 0x17C(r30)
-	  sub       r0, r0, r5
-	  stw       r0, 0xC(r5)
-	  bl        0x11E5E4
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_802F2FB8
+	lis      r3, __vt__Q34Game4Hana3Obj@ha
+	addi     r0, r30, 0x2e8
+	addi     r4, r3, __vt__Q34Game4Hana3Obj@l
+	stw      r4, 0(r30)
+	addi     r3, r4, 0x1b0
+	addi     r4, r4, 0x334
+	stw      r3, 0x178(r30)
+	lwz      r3, 0x17c(r30)
+	stw      r4, 0(r3)
+	lwz      r3, 0x17c(r30)
+	subf     r0, r3, r0
+	stw      r0, 0xc(r3)
+	beq      lbl_802F2FA8
+	lis      r3, __vt__Q34Game10ChappyBase3Obj@ha
+	addi     r0, r30, 0x2e4
+	addi     r4, r3, __vt__Q34Game10ChappyBase3Obj@l
+	stw      r4, 0(r30)
+	addi     r3, r4, 0x1b0
+	addi     r4, r4, 0x334
+	stw      r3, 0x178(r30)
+	lwz      r3, 0x17c(r30)
+	stw      r4, 0(r3)
+	lwz      r3, 0x17c(r30)
+	subf     r0, r3, r0
+	stw      r0, 0xc(r3)
+	beq      lbl_802F2FA8
+	lis      r3, __vt__Q24Game9EnemyBase@ha
+	addi     r0, r30, 0x2bc
+	addi     r4, r3, __vt__Q24Game9EnemyBase@l
+	addi     r3, r30, 0x290
+	stw      r4, 0(r30)
+	addi     r5, r4, 0x1b0
+	addi     r6, r4, 0x2f8
+	li       r4, -1
+	stw      r5, 0x178(r30)
+	lwz      r5, 0x17c(r30)
+	stw      r6, 0(r5)
+	lwz      r5, 0x17c(r30)
+	subf     r0, r5, r0
+	stw      r0, 0xc(r5)
+	bl       __dt__5CNodeFv
 
-	.loc_0xC4:
-	  extsh.    r0, r31
-	  ble-      .loc_0xD4
-	  mr        r3, r30
-	  bl        -0x2CEF00
+lbl_802F2FA8:
+	extsh.   r0, r31
+	ble      lbl_802F2FB8
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0xD4:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_802F2FB8:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -186,11 +256,10 @@ Hana::Obj::~Obj(void)
 void Hana::Mgr::getEnemy(int)
 {
 	/*
-	.loc_0x0:
-	  mulli     r0, r4, 0x2F8
-	  lwz       r3, 0x44(r3)
-	  add       r3, r3, r0
-	  blr
+	mulli    r0, r4, 0x2f8
+	lwz      r3, 0x44(r3)
+	add      r3, r3, r0
+	blr
 	*/
 }
 
@@ -202,37 +271,36 @@ void Hana::Mgr::getEnemy(int)
 void Hana::Mgr::loadModelData(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        -0x1C2EEC
-	  li        r5, 0
-	  b         .loc_0x40
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       loadModelData__Q24Game12EnemyMgrBaseFv
+	li       r5, 0
+	b        lbl_802F3024
 
-	.loc_0x20:
-	  lwz       r3, 0x80(r4)
-	  rlwinm    r0,r5,2,14,29
-	  addi      r5, r5, 0x1
-	  lwzx      r3, r3, r0
-	  lwz       r0, 0xC(r3)
-	  rlwinm    r0,r0,0,20,15
-	  ori       r0, r0, 0x2000
-	  stw       r0, 0xC(r3)
+lbl_802F3004:
+	lwz      r3, 0x80(r4)
+	rlwinm   r0, r5, 2, 0xe, 0x1d
+	addi     r5, r5, 1
+	lwzx     r3, r3, r0
+	lwz      r0, 0xc(r3)
+	rlwinm   r0, r0, 0, 0x14, 0xf
+	ori      r0, r0, 0x2000
+	stw      r0, 0xc(r3)
 
-	.loc_0x40:
-	  lwz       r4, 0x1C(r31)
-	  rlwinm    r0,r5,0,16,31
-	  lhz       r3, 0x7C(r4)
-	  cmplw     r0, r3
-	  blt+      .loc_0x20
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_802F3024:
+	lwz      r4, 0x1c(r31)
+	clrlwi   r0, r5, 0x10
+	lhz      r3, 0x7c(r4)
+	cmplw    r0, r3
+	blt      lbl_802F3004
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -244,55 +312,54 @@ void Hana::Mgr::loadModelData(void)
 Hana::Mgr::~Mgr(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x94
-	  lis       r3, 0x804D
-	  addi      r3, r3, 0x52C8
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x38
-	  stw       r0, 0x4(r30)
-	  beq-      .loc_0x84
-	  lis       r3, 0x804B
-	  subi      r3, r3, 0x760
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x38
-	  stw       r0, 0x4(r30)
-	  beq-      .loc_0x84
-	  lis       r3, 0x804B
-	  addic.    r0, r30, 0x4
-	  subi      r3, r3, 0x5304
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x38
-	  stw       r0, 0x4(r30)
-	  beq-      .loc_0x84
-	  lis       r4, 0x804B
-	  addi      r3, r30, 0x4
-	  subi      r0, r4, 0x5324
-	  li        r4, 0
-	  stw       r0, 0x4(r30)
-	  bl        0x11E4BC
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_802F30E0
+	lis      r3, __vt__Q34Game4Hana3Mgr@ha
+	addi     r3, r3, __vt__Q34Game4Hana3Mgr@l
+	stw      r3, 0(r30)
+	addi     r0, r3, 0x38
+	stw      r0, 4(r30)
+	beq      lbl_802F30D0
+	lis      r3, __vt__Q24Game12EnemyMgrBase@ha
+	addi     r3, r3, __vt__Q24Game12EnemyMgrBase@l
+	stw      r3, 0(r30)
+	addi     r0, r3, 0x38
+	stw      r0, 4(r30)
+	beq      lbl_802F30D0
+	lis      r3, __vt__Q24Game13IEnemyMgrBase@ha
+	addic.   r0, r30, 4
+	addi     r3, r3, __vt__Q24Game13IEnemyMgrBase@l
+	stw      r3, 0(r30)
+	addi     r0, r3, 0x38
+	stw      r0, 4(r30)
+	beq      lbl_802F30D0
+	lis      r4, __vt__16GenericContainer@ha
+	addi     r3, r30, 4
+	addi     r0, r4, __vt__16GenericContainer@l
+	li       r4, 0
+	stw      r0, 4(r30)
+	bl       __dt__5CNodeFv
 
-	.loc_0x84:
-	  extsh.    r0, r31
-	  ble-      .loc_0x94
-	  mr        r3, r30
-	  bl        -0x2CF028
+lbl_802F30D0:
+	extsh.   r0, r31
+	ble      lbl_802F30E0
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x94:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_802F30E0:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -311,18 +378,17 @@ u32 Hana::Mgr::getEnemyTypeID(void) { return 0x54; }
 void Hana::Mgr::doLoadBmd(void*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r5, 0x2124
-	  mr        r3, r4
-	  stw       r0, 0x14(r1)
-	  addi      r4, r5, 0x30
-	  bl        -0x283888
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lis      r5, 0x21240030@ha
+	mr       r3, r4
+	stw      r0, 0x14(r1)
+	addi     r4, r5, 0x21240030@l
+	bl       load__22J3DModelLoaderDataBaseFPCvUl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -334,9 +400,8 @@ void Hana::Mgr::doLoadBmd(void*)
 @4 @Game::Hana::Mgr::~Mgr(void)
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x4
-	  b         -0xE8
+	addi     r3, r3, -4
+	b        __dt__Q34Game4Hana3MgrFv
 	*/
 }
 } // namespace Game

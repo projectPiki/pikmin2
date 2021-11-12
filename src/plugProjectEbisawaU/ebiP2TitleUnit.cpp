@@ -1,6 +1,120 @@
 #include "types.h"
 
 /*
+    Generated from dpostproc
+
+    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
+        .4byte __sinit_ebiP2TitleUnit_cpp
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_804961D8
+    lbl_804961D8:
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x65626950
+        .4byte 0x32546974
+        .4byte 0x6C65556E
+        .4byte 0x69740000
+        .4byte 0x6F70656E
+        .4byte 0x696E672E
+        .4byte 0x626D6400
+    .global lbl_80496200
+    lbl_80496200:
+        .4byte 0x65626950
+        .4byte 0x32546974
+        .4byte 0x6C65556E
+        .4byte 0x69742E63
+        .4byte 0x70700000
+    .global lbl_80496214
+    lbl_80496214:
+        .asciz "P2Assert"
+        .skip 3
+        .4byte 0x6F70656E
+        .4byte 0x696E675F
+        .4byte 0x77616974
+        .4byte 0x2E62636B
+        .4byte 0x00000000
+        .4byte 0x6F70656E
+        .4byte 0x696E675F
+        .4byte 0x6B617A65
+        .4byte 0x2E62636B
+        .4byte 0x00000000
+        .4byte 0x656E656D
+        .4byte 0x792E626D
+        .4byte 0x64000000
+        .4byte 0x656E656D
+        .4byte 0x792E6263
+        .4byte 0x6B000000
+    .global lbl_80496260
+    lbl_80496260:
+        .4byte 0x626C6163
+        .4byte 0x6B5F706C
+        .4byte 0x616E6500
+        .4byte 0x00000000
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global lbl_804E79B8
+    lbl_804E79B8:
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+
+    .section .sbss # 0x80514D80 - 0x80516360
+    .global lbl_805160B8
+    lbl_805160B8:
+        .skip 0x4
+    .global lbl_805160BC
+    lbl_805160BC:
+        .skip 0x4
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_8051F838
+    lbl_8051F838:
+        .float 1.0
+    .global lbl_8051F83C
+    lbl_8051F83C:
+        .4byte 0x00000000
+    .global lbl_8051F840
+    lbl_8051F840:
+        .float 0.5
+    .global lbl_8051F844
+    lbl_8051F844:
+        .4byte 0x42700000
+    .global lbl_8051F848
+    lbl_8051F848:
+        .4byte 0x3E4CCCCD
+    .global lbl_8051F84C
+    lbl_8051F84C:
+        .4byte 0x3F4CCCCD
+    .global lbl_8051F850
+    lbl_8051F850:
+        .4byte 0xC0A00001
+        .4byte 0x00000000
+    .global lbl_8051F858
+    lbl_8051F858:
+        .4byte 0x43300000
+        .4byte 0x00000000
+    .global lbl_8051F860
+    lbl_8051F860:
+        .4byte 0x63616D2E
+        .4byte 0x626D6400
+    .global lbl_8051F868
+    lbl_8051F868:
+        .4byte 0x63616D2E
+        .4byte 0x62636B00
+    .global lbl_8051F870
+    lbl_8051F870:
+        .4byte 0x63616D2E
+        .4byte 0x62726B00
+    .global lbl_8051F878
+    lbl_8051F878:
+        .4byte 0x43300000
+        .4byte 0x80000000
+*/
+
+/*
  * --INFO--
  * Address:	........
  * Size:	0000A8
@@ -23,47 +137,46 @@ namespace title {
 	void TParamBase::loadSettingFile(JKRArchive*, char*)
 	{
 		/*
-		.loc_0x0:
-		  stwu      r1, -0x430(r1)
-		  mflr      r0
-		  stw       r0, 0x434(r1)
-		  stw       r31, 0x42C(r1)
-		  mr        r31, r3
-		  mr        r3, r4
-		  lwz       r12, 0x0(r4)
-		  mr        r4, r5
-		  lwz       r12, 0x14(r12)
-		  mtctr     r12
-		  bctrl
-		  cmplwi    r3, 0
-		  beq-      .loc_0x70
-		  mr        r4, r3
-		  addi      r3, r1, 0x8
-		  li        r5, -0x1
-		  bl        0x54DC0
-		  li        r0, 0x1
-		  cmpwi     r0, 0x1
-		  stw       r0, 0x14(r1)
-		  bne-      .loc_0x5C
-		  li        r0, 0
-		  stw       r0, 0x41C(r1)
+	stwu     r1, -0x430(r1)
+	mflr     r0
+	stw      r0, 0x434(r1)
+	stw      r31, 0x42c(r1)
+	mr       r31, r3
+	mr       r3, r4
+	lwz      r12, 0(r4)
+	mr       r4, r5
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	cmplwi   r3, 0
+	beq      lbl_803C0B68
+	mr       r4, r3
+	addi     r3, r1, 8
+	li       r5, -1
+	bl       __ct__9RamStreamFPvi
+	li       r0, 1
+	cmpwi    r0, 1
+	stw      r0, 0x14(r1)
+	bne      lbl_803C0B54
+	li       r0, 0
+	stw      r0, 0x41c(r1)
 
-		.loc_0x5C:
-		  mr        r3, r31
-		  addi      r4, r1, 0x8
-		  bl        0x52C98
-		  li        r3, 0x1
-		  b         .loc_0x74
+lbl_803C0B54:
+	mr       r3, r31
+	addi     r4, r1, 8
+	bl       read__10ParametersFR6Stream
+	li       r3, 1
+	b        lbl_803C0B6C
 
-		.loc_0x70:
-		  li        r3, 0
+lbl_803C0B68:
+	li       r3, 0
 
-		.loc_0x74:
-		  lwz       r0, 0x434(r1)
-		  lwz       r31, 0x42C(r1)
-		  mtlr      r0
-		  addi      r1, r1, 0x430
-		  blr
+lbl_803C0B6C:
+	lwz      r0, 0x434(r1)
+	lwz      r31, 0x42c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x430
+	blr
 		*/
 	}
 
@@ -75,51 +188,50 @@ namespace title {
 	void TObjBase::calcModelBaseMtx_(void)
 	{
 		/*
-		.loc_0x0:
-		  stwu      r1, -0x40(r1)
-		  mflr      r0
-		  lfs       f6, 0x14DC(r2)
-		  stw       r0, 0x44(r1)
-		  lfs       f7, 0x14D8(r2)
-		  stw       r31, 0x3C(r1)
-		  lfs       f0, 0x10(r3)
-		  lfs       f1, 0x18(r3)
-		  fneg      f8, f0
-		  lwz       r4, 0x28(r3)
-		  lfs       f5, 0xC(r3)
-		  fmr       f2, f1
-		  addi      r31, r4, 0x24
-		  fmsubs    f3, f7, f8, f6
-		  fmuls     f4, f6, f8
-		  fnmsubs   f0, f7, f5, f6
-		  stfs      f3, 0x24(r4)
-		  fmr       f3, f1
-		  fmsubs    f4, f6, f5, f4
-		  stfs      f6, 0x28(r4)
-		  stfs      f5, 0x2C(r4)
-		  lfs       f5, 0x4(r3)
-		  stfs      f5, 0x30(r4)
-		  stfs      f4, 0x34(r4)
-		  stfs      f7, 0x38(r4)
-		  stfs      f6, 0x3C(r4)
-		  stfs      f6, 0x40(r4)
-		  stfs      f0, 0x44(r4)
-		  stfs      f6, 0x48(r4)
-		  stfs      f8, 0x4C(r4)
-		  lfs       f0, 0x8(r3)
-		  addi      r3, r1, 0x8
-		  fneg      f0, f0
-		  stfs      f0, 0x50(r4)
-		  bl        -0x2D6434
-		  mr        r3, r31
-		  mr        r5, r31
-		  addi      r4, r1, 0x8
-		  bl        -0x2D6918
-		  lwz       r0, 0x44(r1)
-		  lwz       r31, 0x3C(r1)
-		  mtlr      r0
-		  addi      r1, r1, 0x40
-		  blr
+	stwu     r1, -0x40(r1)
+	mflr     r0
+	lfs      f6, lbl_8051F83C@sda21(r2)
+	stw      r0, 0x44(r1)
+	lfs      f7, lbl_8051F838@sda21(r2)
+	stw      r31, 0x3c(r1)
+	lfs      f0, 0x10(r3)
+	lfs      f1, 0x18(r3)
+	fneg     f8, f0
+	lwz      r4, 0x28(r3)
+	lfs      f5, 0xc(r3)
+	fmr      f2, f1
+	addi     r31, r4, 0x24
+	fmsubs   f3, f7, f8, f6
+	fmuls    f4, f6, f8
+	fnmsubs  f0, f7, f5, f6
+	stfs     f3, 0x24(r4)
+	fmr      f3, f1
+	fmsubs   f4, f6, f5, f4
+	stfs     f6, 0x28(r4)
+	stfs     f5, 0x2c(r4)
+	lfs      f5, 4(r3)
+	stfs     f5, 0x30(r4)
+	stfs     f4, 0x34(r4)
+	stfs     f7, 0x38(r4)
+	stfs     f6, 0x3c(r4)
+	stfs     f6, 0x40(r4)
+	stfs     f0, 0x44(r4)
+	stfs     f6, 0x48(r4)
+	stfs     f8, 0x4c(r4)
+	lfs      f0, 8(r3)
+	addi     r3, r1, 8
+	fneg     f0, f0
+	stfs     f0, 0x50(r4)
+	bl       PSMTXScale
+	mr       r3, r31
+	mr       r5, r31
+	addi     r4, r1, 8
+	bl       PSMTXConcat
+	lwz      r0, 0x44(r1)
+	lwz      r31, 0x3c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x40
+	blr
 		*/
 	}
 
@@ -149,46 +261,45 @@ namespace title {
 	void TObjBase::pushOut(ebi::title::TObjBase*)
 	{
 		/*
-		.loc_0x0:
-		  stwu      r1, -0x20(r1)
-		  mflr      r0
-		  stw       r0, 0x24(r1)
-		  stw       r31, 0x1C(r1)
-		  mr        r31, r4
-		  stw       r30, 0x18(r1)
-		  mr        r30, r3
-		  lwz       r12, 0x0(r3)
-		  lwz       r12, 0xC(r12)
-		  mtctr     r12
-		  bctrl
-		  rlwinm.   r0,r3,0,24,31
-		  beq-      .loc_0x7C
-		  mr        r3, r31
-		  lwz       r12, 0x0(r31)
-		  lwz       r12, 0xC(r12)
-		  mtctr     r12
-		  bctrl
-		  rlwinm.   r0,r3,0,24,31
-		  beq-      .loc_0x7C
-		  lfs       f1, 0x1C(r30)
-		  addi      r3, r1, 0x8
-		  lfs       f0, 0x1C(r31)
-		  addi      r4, r31, 0x4
-		  fadds     f0, f1, f0
-		  stfs      f0, 0x10(r1)
-		  lfs       f0, 0x4(r30)
-		  stfs      f0, 0x8(r1)
-		  lfs       f0, 0x8(r30)
-		  stfs      f0, 0xC(r1)
-		  bl        0x95F4
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r4
+	stw      r30, 0x18(r1)
+	mr       r30, r3
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803C0CAC
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803C0CAC
+	lfs      f1, 0x1c(r30)
+	addi     r3, r1, 8
+	lfs      f0, 0x1c(r31)
+	addi     r4, r31, 4
+	fadds    f0, f1, f0
+	stfs     f0, 0x10(r1)
+	lfs      f0, 4(r30)
+	stfs     f0, 8(r1)
+	lfs      f0, 8(r30)
+	stfs     f0, 0xc(r1)
+	bl       "out__Q23ebi11EGECircle2fFP10Vector2<f>"
 
-		.loc_0x7C:
-		  lwz       r0, 0x24(r1)
-		  lwz       r31, 0x1C(r1)
-		  lwz       r30, 0x18(r1)
-		  mtlr      r0
-		  addi      r1, r1, 0x20
-		  blr
+lbl_803C0CAC:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 		*/
 	}
 
@@ -200,151 +311,151 @@ namespace title {
 	void TMapBase::setArchive(JKRArchive*)
 	{
 		/*
-		.loc_0x0:
-		  stwu      r1, -0x20(r1)
-		  mflr      r0
-		  stw       r0, 0x24(r1)
-		  stw       r31, 0x1C(r1)
-		  mr        r31, r3
-		  stw       r30, 0x18(r1)
-		  stw       r29, 0x14(r1)
-		  stw       r28, 0x10(r1)
-		  mr        r28, r4
-		  lis       r4, 0x8049
-		  lwz       r12, 0x0(r28)
-		  addi      r30, r4, 0x61D8
-		  mr        r3, r28
-		  lwz       r12, 0x14(r12)
-		  addi      r4, r30, 0x1C
-		  mtctr     r12
-		  bctrl
-		  mr.       r29, r3
-		  bne-      .loc_0x60
-		  addi      r3, r30, 0x28
-		  addi      r5, r30, 0x3C
-		  li        r4, 0x60
-		  crclr     6, 0x6
-		  bl        -0x3966E0
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r3
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	stw      r28, 0x10(r1)
+	mr       r28, r4
+	lis      r4, lbl_804961D8@ha
+	lwz      r12, 0(r28)
+	addi     r30, r4, lbl_804961D8@l
+	mr       r3, r28
+	lwz      r12, 0x14(r12)
+	addi     r4, r30, 0x1c
+	mtctr    r12
+	bctrl
+	or.      r29, r3, r3
+	bne      lbl_803C0D24
+	addi     r3, r30, 0x28
+	addi     r5, r30, 0x3c
+	li       r4, 0x60
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-		.loc_0x60:
-		  mr        r3, r29
-		  lis       r4, 0x2010
-		  bl        -0x351498
-		  stw       r3, 0x30(r31)
-		  mr        r3, r28
-		  addi      r4, r30, 0x48
-		  lwz       r12, 0x0(r28)
-		  lwz       r12, 0x14(r12)
-		  mtctr     r12
-		  bctrl
-		  mr.       r29, r3
-		  bne-      .loc_0xA4
-		  addi      r3, r30, 0x28
-		  addi      r5, r30, 0x3C
-		  li        r4, 0x6A
-		  crclr     6, 0x6
-		  bl        -0x396724
+lbl_803C0D24:
+	mr       r3, r29
+	lis      r4, 0x2010
+	bl       load__22J3DModelLoaderDataBaseFPCvUl
+	stw      r3, 0x30(r31)
+	mr       r3, r28
+	addi     r4, r30, 0x48
+	lwz      r12, 0(r28)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	or.      r29, r3, r3
+	bne      lbl_803C0D68
+	addi     r3, r30, 0x28
+	addi     r5, r30, 0x3c
+	li       r4, 0x6a
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-		.loc_0xA4:
-		  mr        r3, r29
-		  bl        -0x34E7CC
-		  stw       r3, 0x48(r31)
-		  mr        r3, r28
-		  addi      r4, r30, 0x5C
-		  lwz       r12, 0x0(r28)
-		  lwz       r12, 0x14(r12)
-		  mtctr     r12
-		  bctrl
-		  mr.       r29, r3
-		  bne-      .loc_0xE4
-		  addi      r3, r30, 0x28
-		  addi      r5, r30, 0x3C
-		  li        r4, 0x6F
-		  crclr     6, 0x6
-		  bl        -0x396764
+lbl_803C0D68:
+	mr       r3, r29
+	bl       load__20J3DAnmLoaderDataBaseFPCv
+	stw      r3, 0x48(r31)
+	mr       r3, r28
+	addi     r4, r30, 0x5c
+	lwz      r12, 0(r28)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	or.      r29, r3, r3
+	bne      lbl_803C0DA8
+	addi     r3, r30, 0x28
+	addi     r5, r30, 0x3c
+	li       r4, 0x6f
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-		.loc_0xE4:
-		  mr        r3, r29
-		  bl        -0x34E80C
-		  stw       r3, 0x64(r31)
-		  lis       r4, 0x4
-		  lwz       r3, 0x30(r31)
-		  bl        -0x33D4E4
-		  lwz       r3, 0x30(r31)
-		  bl        -0x33D394
-		  lwz       r3, 0x30(r31)
-		  lwz       r4, 0x48(r31)
-		  lwz       r0, 0x18(r3)
-		  rlwinm    r3,r0,0,28,31
-		  bl        -0x3556B0
-		  stw       r3, 0x4C(r31)
-		  li        r6, 0
-		  li        r7, 0
-		  li        r8, 0
-		  lwz       r3, 0x30(r31)
-		  lwz       r4, 0x48(r31)
-		  lwz       r0, 0x18(r3)
-		  lwz       r5, 0x64(r31)
-		  rlwinm    r3,r0,0,28,31
-		  bl        -0x3AB010
-		  stw       r3, 0x68(r31)
-		  li        r3, 0xDC
-		  lfs       f0, 0x14DC(r2)
-		  stfs      f0, 0x14(r31)
-		  bl        -0x39CF70
-		  mr.       r30, r3
-		  beq-      .loc_0x194
-		  lis       r3, 0x804A
-		  lwz       r29, 0x30(r31)
-		  addi      r0, r3, 0x19F0
-		  mr        r28, r30
-		  stw       r0, 0x0(r30)
-		  addi      r3, r28, 0x88
-		  bl        -0x3621F0
-		  mr        r3, r28
-		  bl        -0x35AB44
-		  mr        r3, r28
-		  mr        r4, r29
-		  lis       r5, 0x2
-		  li        r6, 0x1
-		  bl        -0x35AAD4
+lbl_803C0DA8:
+	mr       r3, r29
+	bl       load__20J3DAnmLoaderDataBaseFPCv
+	stw      r3, 0x64(r31)
+	lis      r4, 4
+	lwz      r3, 0x30(r31)
+	bl       newSharedDisplayList__12J3DModelDataFUl
+	lwz      r3, 0x30(r31)
+	bl       makeSharedDL__12J3DModelDataFv
+	lwz      r3, 0x30(r31)
+	lwz      r4, 0x48(r31)
+	lwz      r0, 0x18(r3)
+	clrlwi   r3, r0, 0x1c
+	bl       J3DNewMtxCalcAnm__FUlP15J3DAnmTransform
+	stw      r3, 0x4c(r31)
+	li       r6, 0
+	li       r7, 0
+	li       r8, 0
+	lwz      r3, 0x30(r31)
+	lwz      r4, 0x48(r31)
+	lwz      r0, 0x18(r3)
+	lwz      r5, 0x64(r31)
+	clrlwi   r3, r0, 0x1c
+	bl
+J3DUNewMtxCalcAnm__FUlP15J3DAnmTransformP15J3DAnmTransformP15J3DAnmTransformP15J3DAnmTransform14J3DMtxCalcFlag
+	stw      r3, 0x68(r31)
+	li       r3, 0xdc
+	lfs      f0, lbl_8051F83C@sda21(r2)
+	stfs     f0, 0x14(r31)
+	bl       __nw__FUl
+	or.      r30, r3, r3
+	beq      lbl_803C0E58
+	lis      r3, __vt__8J3DModel@ha
+	lwz      r29, 0x30(r31)
+	addi     r0, r3, __vt__8J3DModel@l
+	mr       r28, r30
+	stw      r0, 0(r30)
+	addi     r3, r28, 0x88
+	bl       init__15J3DVertexBufferFv
+	mr       r3, r28
+	bl       initialize__8J3DModelFv
+	mr       r3, r28
+	mr       r4, r29
+	lis      r5, 2
+	li       r6, 1
+	bl       entryModelData__8J3DModelFP12J3DModelDataUlUl
 
-		.loc_0x194:
-		  stw       r30, 0x28(r31)
-		  addi      r3, r31, 0x34
-		  lwz       r4, 0x48(r31)
-		  lha       r4, 0x6(r4)
-		  bl        -0x3597F0
-		  li        r0, 0x2
-		  lfs       f1, 0x14E4(r2)
-		  stb       r0, 0x38(r31)
-		  addi      r3, r31, 0x50
-		  lfs       f2, 0x14E0(r2)
-		  lwz       r4, -0x6514(r13)
-		  lfs       f0, 0x54(r4)
-		  fmuls     f0, f1, f0
-		  fmuls     f0, f2, f0
-		  stfs      f0, 0x40(r31)
-		  lwz       r4, 0x64(r31)
-		  lha       r4, 0x6(r4)
-		  bl        -0x359824
-		  li        r0, 0x2
-		  lfs       f1, 0x14E4(r2)
-		  stb       r0, 0x54(r31)
-		  lfs       f2, 0x14E0(r2)
-		  lwz       r3, -0x6514(r13)
-		  lfs       f0, 0x54(r3)
-		  fmuls     f0, f1, f0
-		  fmuls     f0, f2, f0
-		  stfs      f0, 0x5C(r31)
-		  lwz       r31, 0x1C(r1)
-		  lwz       r30, 0x18(r1)
-		  lwz       r29, 0x14(r1)
-		  lwz       r28, 0x10(r1)
-		  lwz       r0, 0x24(r1)
-		  mtlr      r0
-		  addi      r1, r1, 0x20
-		  blr
+lbl_803C0E58:
+	stw      r30, 0x28(r31)
+	addi     r3, r31, 0x34
+	lwz      r4, 0x48(r31)
+	lha      r4, 6(r4)
+	bl       init__12J3DFrameCtrlFs
+	li       r0, 2
+	lfs      f1, lbl_8051F844@sda21(r2)
+	stb      r0, 0x38(r31)
+	addi     r3, r31, 0x50
+	lfs      f2, lbl_8051F840@sda21(r2)
+	lwz      r4, sys@sda21(r13)
+	lfs      f0, 0x54(r4)
+	fmuls    f0, f1, f0
+	fmuls    f0, f2, f0
+	stfs     f0, 0x40(r31)
+	lwz      r4, 0x64(r31)
+	lha      r4, 6(r4)
+	bl       init__12J3DFrameCtrlFs
+	li       r0, 2
+	lfs      f1, lbl_8051F844@sda21(r2)
+	stb      r0, 0x54(r31)
+	lfs      f2, lbl_8051F840@sda21(r2)
+	lwz      r3, sys@sda21(r13)
+	lfs      f0, 0x54(r3)
+	fmuls    f0, f1, f0
+	fmuls    f0, f2, f0
+	stfs     f0, 0x5c(r31)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 		*/
 	}
 
@@ -356,25 +467,24 @@ namespace title {
 	void TMapBase::startWind(float)
 	{
 		/*
-		.loc_0x0:
-		  stwu      r1, -0x10(r1)
-		  mflr      r0
-		  stw       r0, 0x14(r1)
-		  li        r0, 0x1
-		  stw       r31, 0xC(r1)
-		  mr        r31, r3
-		  stw       r0, 0x2C(r3)
-		  lwz       r3, -0x6514(r13)
-		  lfs       f0, 0x54(r3)
-		  fdivs     f1, f1, f0
-		  bl        -0x2FF3C0
-		  stw       r3, 0x6C(r31)
-		  stw       r3, 0x70(r31)
-		  lwz       r0, 0x14(r1)
-		  lwz       r31, 0xC(r1)
-		  mtlr      r0
-		  addi      r1, r1, 0x10
-		  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	li       r0, 1
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	stw      r0, 0x2c(r3)
+	lwz      r3, sys@sda21(r13)
+	lfs      f0, 0x54(r3)
+	fdivs    f1, f1, f0
+	bl       __cvt_fp2unsigned
+	stw      r3, 0x6c(r31)
+	stw      r3, 0x70(r31)
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 		*/
 	}
 
@@ -386,186 +496,185 @@ namespace title {
 	void TMapBase::update(void)
 	{
 		/*
-		.loc_0x0:
-		  stwu      r1, -0x60(r1)
-		  mflr      r0
-		  stw       r0, 0x64(r1)
-		  stfd      f31, 0x50(r1)
-		  psq_st    f31,0x58(r1),0,0
-		  stw       r31, 0x4C(r1)
-		  stw       r30, 0x48(r1)
-		  lfs       f0, 0x10(r3)
-		  mr        r31, r3
-		  lfs       f1, 0x18(r31)
-		  addi      r3, r1, 0x8
-		  fneg      f8, f0
-		  lfs       f6, 0x14DC(r2)
-		  lfs       f7, 0x14D8(r2)
-		  fmr       f2, f1
-		  lwz       r4, 0x28(r31)
-		  fmsubs    f3, f7, f8, f6
-		  lfs       f5, 0xC(r31)
-		  fmuls     f4, f6, f8
-		  addi      r30, r4, 0x24
-		  stfs      f3, 0x24(r4)
-		  fnmsubs   f0, f7, f5, f6
-		  fmsubs    f4, f6, f5, f4
-		  stfs      f6, 0x28(r4)
-		  fmr       f3, f1
-		  stfs      f5, 0x2C(r4)
-		  lfs       f5, 0x4(r31)
-		  stfs      f5, 0x30(r4)
-		  stfs      f4, 0x34(r4)
-		  stfs      f7, 0x38(r4)
-		  stfs      f6, 0x3C(r4)
-		  stfs      f6, 0x40(r4)
-		  stfs      f0, 0x44(r4)
-		  stfs      f6, 0x48(r4)
-		  stfs      f8, 0x4C(r4)
-		  lfs       f0, 0x8(r31)
-		  fneg      f0, f0
-		  stfs      f0, 0x50(r4)
-		  bl        -0x2D67F0
-		  mr        r3, r30
-		  mr        r5, r30
-		  addi      r4, r1, 0x8
-		  bl        -0x2D6CD4
-		  lwz       r0, 0x6C(r31)
-		  cmplwi    r0, 0
-		  bne-      .loc_0xC0
-		  li        r0, 0
-		  stw       r0, 0x2C(r31)
+	stwu     r1, -0x60(r1)
+	mflr     r0
+	stw      r0, 0x64(r1)
+	stfd     f31, 0x50(r1)
+	psq_st   f31, 88(r1), 0, qr0
+	stw      r31, 0x4c(r1)
+	stw      r30, 0x48(r1)
+	lfs      f0, 0x10(r3)
+	mr       r31, r3
+	lfs      f1, 0x18(r31)
+	addi     r3, r1, 8
+	fneg     f8, f0
+	lfs      f6, lbl_8051F83C@sda21(r2)
+	lfs      f7, lbl_8051F838@sda21(r2)
+	fmr      f2, f1
+	lwz      r4, 0x28(r31)
+	fmsubs   f3, f7, f8, f6
+	lfs      f5, 0xc(r31)
+	fmuls    f4, f6, f8
+	addi     r30, r4, 0x24
+	stfs     f3, 0x24(r4)
+	fnmsubs  f0, f7, f5, f6
+	fmsubs   f4, f6, f5, f4
+	stfs     f6, 0x28(r4)
+	fmr      f3, f1
+	stfs     f5, 0x2c(r4)
+	lfs      f5, 4(r31)
+	stfs     f5, 0x30(r4)
+	stfs     f4, 0x34(r4)
+	stfs     f7, 0x38(r4)
+	stfs     f6, 0x3c(r4)
+	stfs     f6, 0x40(r4)
+	stfs     f0, 0x44(r4)
+	stfs     f6, 0x48(r4)
+	stfs     f8, 0x4c(r4)
+	lfs      f0, 8(r31)
+	fneg     f0, f0
+	stfs     f0, 0x50(r4)
+	bl       PSMTXScale
+	mr       r3, r30
+	mr       r5, r30
+	addi     r4, r1, 8
+	bl       PSMTXConcat
+	lwz      r0, 0x6c(r31)
+	cmplwi   r0, 0
+	bne      lbl_803C0FEC
+	li       r0, 0
+	stw      r0, 0x2c(r31)
 
-		.loc_0xC0:
-		  lwz       r0, 0x2C(r31)
-		  cmpwi     r0, 0x1
-		  beq-      .loc_0x10C
-		  bge-      .loc_0x220
-		  cmpwi     r0, 0
-		  bge-      .loc_0xDC
-		  b         .loc_0x220
+lbl_803C0FEC:
+	lwz      r0, 0x2c(r31)
+	cmpwi    r0, 1
+	beq      lbl_803C1038
+	bge      lbl_803C114C
+	cmpwi    r0, 0
+	bge      lbl_803C1008
+	b        lbl_803C114C
 
-		.loc_0xDC:
-		  addi      r3, r31, 0x34
-		  bl        -0x359964
-		  lfs       f0, 0x44(r31)
-		  lwz       r3, 0x48(r31)
-		  stfs      f0, 0x8(r3)
-		  lwz       r3, 0x28(r31)
-		  lwz       r0, 0x4C(r31)
-		  lwz       r3, 0x4(r3)
-		  lwz       r3, 0x28(r3)
-		  lwz       r3, 0x0(r3)
-		  stw       r0, 0x54(r3)
-		  b         .loc_0x220
+lbl_803C1008:
+	addi     r3, r31, 0x34
+	bl       update__12J3DFrameCtrlFv
+	lfs      f0, 0x44(r31)
+	lwz      r3, 0x48(r31)
+	stfs     f0, 8(r3)
+	lwz      r3, 0x28(r31)
+	lwz      r0, 0x4c(r31)
+	lwz      r3, 4(r3)
+	lwz      r3, 0x28(r3)
+	lwz      r3, 0(r3)
+	stw      r0, 0x54(r3)
+	b        lbl_803C114C
 
-		.loc_0x10C:
-		  addi      r3, r31, 0x34
-		  bl        -0x359994
-		  addi      r3, r31, 0x50
-		  bl        -0x35999C
-		  lfs       f0, 0x44(r31)
-		  lwz       r3, 0x48(r31)
-		  stfs      f0, 0x8(r3)
-		  lfs       f0, 0x60(r31)
-		  lwz       r3, 0x64(r31)
-		  stfs      f0, 0x8(r3)
-		  lwz       r3, 0x6C(r31)
-		  lwz       r30, 0x68(r31)
-		  cmplwi    r3, 0
-		  beq-      .loc_0x14C
-		  subi      r0, r3, 0x1
-		  stw       r0, 0x6C(r31)
+lbl_803C1038:
+	addi     r3, r31, 0x34
+	bl       update__12J3DFrameCtrlFv
+	addi     r3, r31, 0x50
+	bl       update__12J3DFrameCtrlFv
+	lfs      f0, 0x44(r31)
+	lwz      r3, 0x48(r31)
+	stfs     f0, 8(r3)
+	lfs      f0, 0x60(r31)
+	lwz      r3, 0x64(r31)
+	stfs     f0, 8(r3)
+	lwz      r3, 0x6c(r31)
+	lwz      r30, 0x68(r31)
+	cmplwi   r3, 0
+	beq      lbl_803C1078
+	addi     r0, r3, -1
+	stw      r0, 0x6c(r31)
 
-		.loc_0x14C:
-		  lwz       r4, 0x70(r31)
-		  cmplwi    r4, 0
-		  beq-      .loc_0x18C
-		  lwz       r3, 0x6C(r31)
-		  lis       r0, 0x4330
-		  stw       r0, 0x38(r1)
-		  lfd       f2, 0x14F8(r2)
-		  stw       r3, 0x3C(r1)
-		  lfd       f0, 0x38(r1)
-		  stw       r4, 0x44(r1)
-		  fsubs     f1, f0, f2
-		  stw       r0, 0x40(r1)
-		  lfd       f0, 0x40(r1)
-		  fsubs     f0, f0, f2
-		  fdivs     f1, f1, f0
-		  b         .loc_0x190
+lbl_803C1078:
+	lwz      r4, 0x70(r31)
+	cmplwi   r4, 0
+	beq      lbl_803C10B8
+	lwz      r3, 0x6c(r31)
+	lis      r0, 0x4330
+	stw      r0, 0x38(r1)
+	lfd      f2, lbl_8051F858@sda21(r2)
+	stw      r3, 0x3c(r1)
+	lfd      f0, 0x38(r1)
+	stw      r4, 0x44(r1)
+	fsubs    f1, f0, f2
+	stw      r0, 0x40(r1)
+	lfd      f0, 0x40(r1)
+	fsubs    f0, f0, f2
+	fdivs    f1, f1, f0
+	b        lbl_803C10BC
 
-		.loc_0x18C:
-		  lfs       f1, 0x14DC(r2)
+lbl_803C10B8:
+	lfs      f1, lbl_8051F83C@sda21(r2)
 
-		.loc_0x190:
-		  lfs       f31, 0x14D8(r2)
-		  lfs       f0, 0x14E8(r2)
-		  fsubs     f2, f31, f1
-		  fcmpo     cr0, f2, f0
-		  cror      2, 0, 0x2
-		  bne-      .loc_0x1B0
-		  fdivs     f31, f2, f0
-		  b         .loc_0x1D0
+lbl_803C10BC:
+	lfs      f31, lbl_8051F838@sda21(r2)
+	lfs      f0, lbl_8051F848@sda21(r2)
+	fsubs    f2, f31, f1
+	fcmpo    cr0, f2, f0
+	cror     2, 0, 2
+	bne      lbl_803C10DC
+	fdivs    f31, f2, f0
+	b        lbl_803C10FC
 
-		.loc_0x1B0:
-		  lfs       f0, 0x14EC(r2)
-		  fcmpo     cr0, f2, f0
-		  cror      2, 0, 0x2
-		  bne-      .loc_0x1C4
-		  b         .loc_0x1D0
+lbl_803C10DC:
+	lfs      f0, lbl_8051F84C@sda21(r2)
+	fcmpo    cr0, f2, f0
+	cror     2, 0, 2
+	bne      lbl_803C10F0
+	b        lbl_803C10FC
 
-		.loc_0x1C4:
-		  lfs       f1, 0x14F0(r2)
-		  fneg      f0, f1
-		  fmadds    f31, f1, f2, f0
+lbl_803C10F0:
+	lfs      f1, lbl_8051F850@sda21(r2)
+	fneg     f0, f1
+	fmadds   f31, f1, f2, f0
 
-		.loc_0x1D0:
-		  mr        r3, r30
-		  lfs       f0, 0x14D8(r2)
-		  lwz       r12, 0x0(r30)
-		  li        r4, 0
-		  fsubs     f1, f0, f31
-		  lwz       r12, 0x1C(r12)
-		  mtctr     r12
-		  bctrl
-		  mr        r3, r30
-		  fmr       f1, f31
-		  lwz       r12, 0x0(r30)
-		  li        r4, 0x1
-		  lwz       r12, 0x1C(r12)
-		  mtctr     r12
-		  bctrl
-		  lwz       r3, 0x28(r31)
-		  lwz       r3, 0x4(r3)
-		  lwz       r3, 0x28(r3)
-		  lwz       r3, 0x0(r3)
-		  stw       r30, 0x54(r3)
+lbl_803C10FC:
+	mr       r3, r30
+	lfs      f0, lbl_8051F838@sda21(r2)
+	lwz      r12, 0(r30)
+	li       r4, 0
+	fsubs    f1, f0, f31
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	mr       r3, r30
+	fmr      f1, f31
+	lwz      r12, 0(r30)
+	li       r4, 1
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 0x28(r31)
+	lwz      r3, 4(r3)
+	lwz      r3, 0x28(r3)
+	lwz      r3, 0(r3)
+	stw      r30, 0x54(r3)
 
-		.loc_0x220:
-		  lwz       r3, 0x28(r31)
-		  lwz       r12, 0x0(r3)
-		  lwz       r12, 0x10(r12)
-		  mtctr     r12
-		  bctrl
-		  lwz       r3, 0x28(r31)
-		  lwz       r12, 0x0(r3)
-		  lwz       r12, 0xC(r12)
-		  mtctr     r12
-		  bctrl
-		  lwz       r3, 0x28(r31)
-		  lwz       r12, 0x0(r3)
-		  lwz       r12, 0x1C(r12)
-		  mtctr     r12
-		  bctrl
-		  psq_l     f31,0x58(r1),0,0
-		  lwz       r0, 0x64(r1)
-		  lfd       f31, 0x50(r1)
-		  lwz       r31, 0x4C(r1)
-		  lwz       r30, 0x48(r1)
-		  mtlr      r0
-		  addi      r1, r1, 0x60
-		  blr
+lbl_803C114C:
+	lwz      r3, 0x28(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 0x28(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 0x28(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	psq_l    f31, 88(r1), 0, qr0
+	lwz      r0, 0x64(r1)
+	lfd      f31, 0x50(r1)
+	lwz      r31, 0x4c(r1)
+	lwz      r30, 0x48(r1)
+	mtlr     r0
+	addi     r1, r1, 0x60
+	blr
 		*/
 	}
 
@@ -577,97 +686,96 @@ namespace title {
 	void TBGEnemyBase::setArchive(JKRArchive*)
 	{
 		/*
-		.loc_0x0:
-		  stwu      r1, -0x20(r1)
-		  mflr      r0
-		  stw       r0, 0x24(r1)
-		  stw       r31, 0x1C(r1)
-		  stw       r30, 0x18(r1)
-		  stw       r29, 0x14(r1)
-		  mr        r29, r4
-		  lis       r4, 0x8049
-		  stw       r28, 0x10(r1)
-		  addi      r31, r4, 0x61D8
-		  mr        r28, r3
-		  mr        r3, r29
-		  lwz       r12, 0x0(r29)
-		  addi      r4, r31, 0x70
-		  lwz       r12, 0x14(r12)
-		  mtctr     r12
-		  bctrl
-		  mr.       r30, r3
-		  bne-      .loc_0x60
-		  addi      r3, r31, 0x28
-		  addi      r5, r31, 0x3C
-		  li        r4, 0xC7
-		  crclr     6, 0x6
-		  bl        -0x396BC4
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	mr       r29, r4
+	lis      r4, lbl_804961D8@ha
+	stw      r28, 0x10(r1)
+	addi     r31, r4, lbl_804961D8@l
+	mr       r28, r3
+	mr       r3, r29
+	lwz      r12, 0(r29)
+	addi     r4, r31, 0x70
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	or.      r30, r3, r3
+	bne      lbl_803C1208
+	addi     r3, r31, 0x28
+	addi     r5, r31, 0x3c
+	li       r4, 0xc7
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-		.loc_0x60:
-		  mr        r3, r30
-		  lis       r4, 0x2010
-		  bl        -0x35197C
-		  stw       r3, 0x2C(r28)
-		  mr        r3, r29
-		  addi      r4, r31, 0x7C
-		  lwz       r12, 0x0(r29)
-		  lwz       r12, 0x14(r12)
-		  mtctr     r12
-		  bctrl
-		  mr.       r30, r3
-		  bne-      .loc_0xA4
-		  addi      r3, r31, 0x28
-		  addi      r5, r31, 0x3C
-		  li        r4, 0xD1
-		  crclr     6, 0x6
-		  bl        -0x396C08
+lbl_803C1208:
+	mr       r3, r30
+	lis      r4, 0x2010
+	bl       load__22J3DModelLoaderDataBaseFPCvUl
+	stw      r3, 0x2c(r28)
+	mr       r3, r29
+	addi     r4, r31, 0x7c
+	lwz      r12, 0(r29)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	or.      r30, r3, r3
+	bne      lbl_803C124C
+	addi     r3, r31, 0x28
+	addi     r5, r31, 0x3c
+	li       r4, 0xd1
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-		.loc_0xA4:
-		  mr        r3, r30
-		  bl        -0x34ECB0
-		  stw       r3, 0x44(r28)
-		  lis       r4, 0x4
-		  lwz       r3, 0x2C(r28)
-		  bl        -0x33D988
-		  lwz       r3, 0x2C(r28)
-		  bl        -0x33D838
-		  lwz       r3, 0x2C(r28)
-		  lwz       r4, 0x44(r28)
-		  lwz       r0, 0x18(r3)
-		  rlwinm    r3,r0,0,28,31
-		  bl        -0x355B54
-		  stw       r3, 0x48(r28)
-		  li        r3, 0xDC
-		  lfs       f0, 0x14DC(r2)
-		  stfs      f0, 0x14(r28)
-		  bl        -0x39D3EC
-		  mr.       r31, r3
-		  beq-      .loc_0x12C
-		  lis       r3, 0x804A
-		  lwz       r30, 0x2C(r28)
-		  addi      r0, r3, 0x19F0
-		  mr        r29, r31
-		  stw       r0, 0x0(r31)
-		  addi      r3, r29, 0x88
-		  bl        -0x36266C
-		  mr        r3, r29
-		  bl        -0x35AFC0
-		  mr        r3, r29
-		  mr        r4, r30
-		  lis       r5, 0x2
-		  li        r6, 0x1
-		  bl        -0x35AF50
+lbl_803C124C:
+	mr       r3, r30
+	bl       load__20J3DAnmLoaderDataBaseFPCv
+	stw      r3, 0x44(r28)
+	lis      r4, 4
+	lwz      r3, 0x2c(r28)
+	bl       newSharedDisplayList__12J3DModelDataFUl
+	lwz      r3, 0x2c(r28)
+	bl       makeSharedDL__12J3DModelDataFv
+	lwz      r3, 0x2c(r28)
+	lwz      r4, 0x44(r28)
+	lwz      r0, 0x18(r3)
+	clrlwi   r3, r0, 0x1c
+	bl       J3DNewMtxCalcAnm__FUlP15J3DAnmTransform
+	stw      r3, 0x48(r28)
+	li       r3, 0xdc
+	lfs      f0, lbl_8051F83C@sda21(r2)
+	stfs     f0, 0x14(r28)
+	bl       __nw__FUl
+	or.      r31, r3, r3
+	beq      lbl_803C12D4
+	lis      r3, __vt__8J3DModel@ha
+	lwz      r30, 0x2c(r28)
+	addi     r0, r3, __vt__8J3DModel@l
+	mr       r29, r31
+	stw      r0, 0(r31)
+	addi     r3, r29, 0x88
+	bl       init__15J3DVertexBufferFv
+	mr       r3, r29
+	bl       initialize__8J3DModelFv
+	mr       r3, r29
+	mr       r4, r30
+	lis      r5, 2
+	li       r6, 1
+	bl       entryModelData__8J3DModelFP12J3DModelDataUlUl
 
-		.loc_0x12C:
-		  stw       r31, 0x28(r28)
-		  lwz       r0, 0x24(r1)
-		  lwz       r31, 0x1C(r1)
-		  lwz       r30, 0x18(r1)
-		  lwz       r29, 0x14(r1)
-		  lwz       r28, 0x10(r1)
-		  mtlr      r0
-		  addi      r1, r1, 0x20
-		  blr
+lbl_803C12D4:
+	stw      r31, 0x28(r28)
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 		*/
 	}
 
@@ -679,30 +787,29 @@ namespace title {
 	void TBGEnemyBase::start(void)
 	{
 		/*
-		.loc_0x0:
-		  stwu      r1, -0x10(r1)
-		  mflr      r0
-		  stw       r0, 0x14(r1)
-		  stw       r31, 0xC(r1)
-		  mr        r31, r3
-		  lwz       r4, 0x44(r3)
-		  addi      r3, r31, 0x30
-		  lha       r4, 0x6(r4)
-		  bl        -0x359CA0
-		  li        r0, 0
-		  lfs       f1, 0x14E4(r2)
-		  stb       r0, 0x34(r31)
-		  lfs       f2, 0x14E0(r2)
-		  lwz       r3, -0x6514(r13)
-		  lfs       f0, 0x54(r3)
-		  fmuls     f0, f1, f0
-		  fmuls     f0, f2, f0
-		  stfs      f0, 0x3C(r31)
-		  lwz       r31, 0xC(r1)
-		  lwz       r0, 0x14(r1)
-		  mtlr      r0
-		  addi      r1, r1, 0x10
-		  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r4, 0x44(r3)
+	addi     r3, r31, 0x30
+	lha      r4, 6(r4)
+	bl       init__12J3DFrameCtrlFs
+	li       r0, 0
+	lfs      f1, lbl_8051F844@sda21(r2)
+	stb      r0, 0x34(r31)
+	lfs      f2, lbl_8051F840@sda21(r2)
+	lwz      r3, sys@sda21(r13)
+	lfs      f0, 0x54(r3)
+	fmuls    f0, f1, f0
+	fmuls    f0, f2, f0
+	stfs     f0, 0x3c(r31)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 		*/
 	}
 
@@ -714,80 +821,79 @@ namespace title {
 	void TBGEnemyBase::update(void)
 	{
 		/*
-		.loc_0x0:
-		  stwu      r1, -0x40(r1)
-		  mflr      r0
-		  lfs       f7, 0x14D8(r2)
-		  stw       r0, 0x44(r1)
-		  lfs       f6, 0x14DC(r2)
-		  stw       r31, 0x3C(r1)
-		  stw       r30, 0x38(r1)
-		  mr        r30, r3
-		  lfs       f0, 0x10(r3)
-		  addi      r3, r1, 0x8
-		  lfs       f1, 0x18(r30)
-		  fneg      f8, f0
-		  lwz       r4, 0x28(r30)
-		  lfs       f5, 0xC(r30)
-		  fmr       f2, f1
-		  addi      r31, r4, 0x24
-		  fmsubs    f3, f7, f8, f6
-		  fmuls     f4, f6, f8
-		  fnmsubs   f0, f7, f5, f6
-		  stfs      f3, 0x24(r4)
-		  fmr       f3, f1
-		  fmsubs    f4, f6, f5, f4
-		  stfs      f6, 0x28(r4)
-		  stfs      f5, 0x2C(r4)
-		  lfs       f5, 0x4(r30)
-		  stfs      f5, 0x30(r4)
-		  stfs      f4, 0x34(r4)
-		  stfs      f7, 0x38(r4)
-		  stfs      f6, 0x3C(r4)
-		  stfs      f6, 0x40(r4)
-		  stfs      f0, 0x44(r4)
-		  stfs      f6, 0x48(r4)
-		  stfs      f8, 0x4C(r4)
-		  lfs       f0, 0x8(r30)
-		  fneg      f0, f0
-		  stfs      f0, 0x50(r4)
-		  bl        -0x2D6C10
-		  mr        r3, r31
-		  mr        r5, r31
-		  addi      r4, r1, 0x8
-		  bl        -0x2D70F4
-		  addi      r3, r30, 0x30
-		  bl        -0x359D54
-		  lfs       f0, 0x40(r30)
-		  lwz       r3, 0x44(r30)
-		  stfs      f0, 0x8(r3)
-		  lwz       r3, 0x28(r30)
-		  lwz       r0, 0x48(r30)
-		  lwz       r3, 0x4(r3)
-		  lwz       r3, 0x28(r3)
-		  lwz       r3, 0x0(r3)
-		  stw       r0, 0x54(r3)
-		  lwz       r3, 0x28(r30)
-		  lwz       r12, 0x0(r3)
-		  lwz       r12, 0x10(r12)
-		  mtctr     r12
-		  bctrl
-		  lwz       r3, 0x28(r30)
-		  lwz       r12, 0x0(r3)
-		  lwz       r12, 0xC(r12)
-		  mtctr     r12
-		  bctrl
-		  lwz       r3, 0x28(r30)
-		  lwz       r12, 0x0(r3)
-		  lwz       r12, 0x1C(r12)
-		  mtctr     r12
-		  bctrl
-		  lwz       r0, 0x44(r1)
-		  lwz       r31, 0x3C(r1)
-		  lwz       r30, 0x38(r1)
-		  mtlr      r0
-		  addi      r1, r1, 0x40
-		  blr
+	stwu     r1, -0x40(r1)
+	mflr     r0
+	lfs      f7, lbl_8051F838@sda21(r2)
+	stw      r0, 0x44(r1)
+	lfs      f6, lbl_8051F83C@sda21(r2)
+	stw      r31, 0x3c(r1)
+	stw      r30, 0x38(r1)
+	mr       r30, r3
+	lfs      f0, 0x10(r3)
+	addi     r3, r1, 8
+	lfs      f1, 0x18(r30)
+	fneg     f8, f0
+	lwz      r4, 0x28(r30)
+	lfs      f5, 0xc(r30)
+	fmr      f2, f1
+	addi     r31, r4, 0x24
+	fmsubs   f3, f7, f8, f6
+	fmuls    f4, f6, f8
+	fnmsubs  f0, f7, f5, f6
+	stfs     f3, 0x24(r4)
+	fmr      f3, f1
+	fmsubs   f4, f6, f5, f4
+	stfs     f6, 0x28(r4)
+	stfs     f5, 0x2c(r4)
+	lfs      f5, 4(r30)
+	stfs     f5, 0x30(r4)
+	stfs     f4, 0x34(r4)
+	stfs     f7, 0x38(r4)
+	stfs     f6, 0x3c(r4)
+	stfs     f6, 0x40(r4)
+	stfs     f0, 0x44(r4)
+	stfs     f6, 0x48(r4)
+	stfs     f8, 0x4c(r4)
+	lfs      f0, 8(r30)
+	fneg     f0, f0
+	stfs     f0, 0x50(r4)
+	bl       PSMTXScale
+	mr       r3, r31
+	mr       r5, r31
+	addi     r4, r1, 8
+	bl       PSMTXConcat
+	addi     r3, r30, 0x30
+	bl       update__12J3DFrameCtrlFv
+	lfs      f0, 0x40(r30)
+	lwz      r3, 0x44(r30)
+	stfs     f0, 8(r3)
+	lwz      r3, 0x28(r30)
+	lwz      r0, 0x48(r30)
+	lwz      r3, 4(r3)
+	lwz      r3, 0x28(r3)
+	lwz      r3, 0(r3)
+	stw      r0, 0x54(r3)
+	lwz      r3, 0x28(r30)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 0x28(r30)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 0x28(r30)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x44(r1)
+	lwz      r31, 0x3c(r1)
+	lwz      r30, 0x38(r1)
+	mtlr     r0
+	addi     r1, r1, 0x40
+	blr
 		*/
 	}
 
@@ -799,203 +905,202 @@ namespace title {
 	void TBlackPlane::setArchive(JKRArchive*)
 	{
 		/*
-		.loc_0x0:
-		  stwu      r1, -0x20(r1)
-		  mflr      r0
-		  stw       r0, 0x24(r1)
-		  stw       r31, 0x1C(r1)
-		  mr        r31, r3
-		  stw       r30, 0x18(r1)
-		  stw       r29, 0x14(r1)
-		  mr        r29, r4
-		  mr        r3, r29
-		  addi      r4, r2, 0x1500
-		  stw       r28, 0x10(r1)
-		  lwz       r12, 0x0(r29)
-		  lwz       r12, 0x14(r12)
-		  mtctr     r12
-		  bctrl
-		  mr.       r28, r3
-		  bne-      .loc_0x60
-		  lis       r3, 0x8049
-		  lis       r5, 0x8049
-		  addi      r3, r3, 0x6200
-		  li        r4, 0x102
-		  addi      r5, r5, 0x6214
-		  crclr     6, 0x6
-		  bl        -0x396E94
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r3
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	mr       r29, r4
+	mr       r3, r29
+	addi     r4, r2, lbl_8051F860@sda21
+	stw      r28, 0x10(r1)
+	lwz      r12, 0(r29)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	or.      r28, r3, r3
+	bne      lbl_803C14D8
+	lis      r3, lbl_80496200@ha
+	lis      r5, lbl_80496214@ha
+	addi     r3, r3, lbl_80496200@l
+	li       r4, 0x102
+	addi     r5, r5, lbl_80496214@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-		.loc_0x60:
-		  mr        r3, r28
-		  lis       r4, 0x1010
-		  bl        -0x351C4C
-		  stw       r3, 0x2C(r31)
-		  mr        r3, r29
-		  addi      r4, r2, 0x1508
-		  lwz       r12, 0x0(r29)
-		  lwz       r12, 0x14(r12)
-		  mtctr     r12
-		  bctrl
-		  mr.       r28, r3
-		  bne-      .loc_0xAC
-		  lis       r3, 0x8049
-		  lis       r5, 0x8049
-		  addi      r3, r3, 0x6200
-		  li        r4, 0x10C
-		  addi      r5, r5, 0x6214
-		  crclr     6, 0x6
-		  bl        -0x396EE0
+lbl_803C14D8:
+	mr       r3, r28
+	lis      r4, 0x1010
+	bl       load__22J3DModelLoaderDataBaseFPCvUl
+	stw      r3, 0x2c(r31)
+	mr       r3, r29
+	addi     r4, r2, lbl_8051F868@sda21
+	lwz      r12, 0(r29)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	or.      r28, r3, r3
+	bne      lbl_803C1524
+	lis      r3, lbl_80496200@ha
+	lis      r5, lbl_80496214@ha
+	addi     r3, r3, lbl_80496200@l
+	li       r4, 0x10c
+	addi     r5, r5, lbl_80496214@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-		.loc_0xAC:
-		  mr        r3, r28
-		  bl        -0x34EF88
-		  stw       r3, 0x44(r31)
-		  mr        r3, r29
-		  addi      r4, r2, 0x1510
-		  lwz       r12, 0x0(r29)
-		  lwz       r12, 0x14(r12)
-		  mtctr     r12
-		  bctrl
-		  mr.       r28, r3
-		  bne-      .loc_0xF4
-		  lis       r3, 0x8049
-		  lis       r5, 0x8049
-		  addi      r3, r3, 0x6200
-		  li        r4, 0x111
-		  addi      r5, r5, 0x6214
-		  crclr     6, 0x6
-		  bl        -0x396F28
+lbl_803C1524:
+	mr       r3, r28
+	bl       load__20J3DAnmLoaderDataBaseFPCv
+	stw      r3, 0x44(r31)
+	mr       r3, r29
+	addi     r4, r2, lbl_8051F870@sda21
+	lwz      r12, 0(r29)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	or.      r28, r3, r3
+	bne      lbl_803C156C
+	lis      r3, lbl_80496200@ha
+	lis      r5, lbl_80496214@ha
+	addi     r3, r3, lbl_80496200@l
+	li       r4, 0x111
+	addi     r5, r5, lbl_80496214@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-		.loc_0xF4:
-		  mr        r3, r28
-		  bl        -0x34EFD0
-		  stw       r3, 0x60(r31)
-		  lwz       r3, 0x2C(r31)
-		  lwz       r4, 0x44(r31)
-		  lwz       r0, 0x18(r3)
-		  rlwinm    r3,r0,0,28,31
-		  bl        -0x355E60
-		  stw       r3, 0x48(r31)
-		  li        r3, 0xDC
-		  lfs       f0, 0x14DC(r2)
-		  stfs      f0, 0x14(r31)
-		  bl        -0x39D6F8
-		  mr.       r29, r3
-		  beq-      .loc_0x168
-		  lis       r3, 0x804A
-		  lwz       r30, 0x2C(r31)
-		  addi      r0, r3, 0x19F0
-		  mr        r28, r29
-		  stw       r0, 0x0(r29)
-		  addi      r3, r28, 0x88
-		  bl        -0x362978
-		  mr        r3, r28
-		  bl        -0x35B2CC
-		  mr        r3, r28
-		  mr        r4, r30
-		  lis       r5, 0x2
-		  li        r6, 0x1
-		  bl        -0x35B25C
+lbl_803C156C:
+	mr       r3, r28
+	bl       load__20J3DAnmLoaderDataBaseFPCv
+	stw      r3, 0x60(r31)
+	lwz      r3, 0x2c(r31)
+	lwz      r4, 0x44(r31)
+	lwz      r0, 0x18(r3)
+	clrlwi   r3, r0, 0x1c
+	bl       J3DNewMtxCalcAnm__FUlP15J3DAnmTransform
+	stw      r3, 0x48(r31)
+	li       r3, 0xdc
+	lfs      f0, lbl_8051F83C@sda21(r2)
+	stfs     f0, 0x14(r31)
+	bl       __nw__FUl
+	or.      r29, r3, r3
+	beq      lbl_803C15E0
+	lis      r3, __vt__8J3DModel@ha
+	lwz      r30, 0x2c(r31)
+	addi     r0, r3, __vt__8J3DModel@l
+	mr       r28, r29
+	stw      r0, 0(r29)
+	addi     r3, r28, 0x88
+	bl       init__15J3DVertexBufferFv
+	mr       r3, r28
+	bl       initialize__8J3DModelFv
+	mr       r3, r28
+	mr       r4, r30
+	lis      r5, 2
+	li       r6, 1
+	bl       entryModelData__8J3DModelFP12J3DModelDataUlUl
 
-		.loc_0x168:
-		  stw       r29, 0x28(r31)
-		  lwz       r4, 0x28(r31)
-		  lwz       r3, 0x60(r31)
-		  lwz       r4, 0x4(r4)
-		  bl        -0x357F14
-		  li        r29, 0
-		  b         .loc_0x284
+lbl_803C15E0:
+	stw      r29, 0x28(r31)
+	lwz      r4, 0x28(r31)
+	lwz      r3, 0x60(r31)
+	lwz      r4, 4(r4)
+	bl       searchUpdateMaterialID__15J3DAnmTevRegKeyFP12J3DModelData
+	li       r29, 0
+	b        lbl_803C16FC
 
-		.loc_0x184:
-		  li        r3, 0xF4
-		  bl        -0x39D75C
-		  mr.       r30, r3
-		  beq-      .loc_0x248
-		  lis       r3, 0x804A
-		  lis       r4, 0x8008
-		  addi      r0, r3, 0x1B10
-		  li        r6, 0x8
-		  lis       r3, 0x8007
-		  stw       r0, 0x0(r30)
-		  subi      r5, r3, 0x5B9C
-		  addi      r4, r4, 0x3CF0
-		  addi      r3, r30, 0x4
-		  li        r7, 0x2
-		  bl        -0x2FFDF8
-		  lis       r3, 0x8008
-		  lis       r5, 0x8007
-		  addi      r4, r3, 0x3EF0
-		  li        r6, 0x8
-		  addi      r3, r30, 0x14
-		  subi      r5, r5, 0x5B60
-		  li        r7, 0x8
-		  bl        -0x2FFE18
-		  lis       r3, 0x8008
-		  lis       r5, 0x8007
-		  addi      r4, r3, 0x3D08
-		  li        r6, 0xC
-		  addi      r3, r30, 0x54
-		  subi      r5, r5, 0x5B24
-		  li        r7, 0x8
-		  bl        -0x2FFE38
-		  lis       r3, 0x8008
-		  lis       r5, 0x8007
-		  addi      r4, r3, 0x424C
-		  li        r6, 0x8
-		  addi      r3, r30, 0xB4
-		  subi      r5, r5, 0x5ADC
-		  li        r7, 0x4
-		  bl        -0x2FFE58
-		  lis       r3, 0x8008
-		  lis       r5, 0x8007
-		  addi      r4, r3, 0x4234
-		  li        r6, 0x8
-		  addi      r3, r30, 0xD4
-		  subi      r5, r5, 0x5AA0
-		  li        r7, 0x4
-		  bl        -0x2FFE78
-		  mr        r3, r30
-		  bl        -0x3575C8
+lbl_803C15FC:
+	li       r3, 0xf4
+	bl       __nw__FUl
+	or.      r30, r3, r3
+	beq      lbl_803C16C0
+	lis      r3, __vt__14J3DMaterialAnm@ha
+	lis      r4, __ct__14J3DMatColorAnmFv@ha
+	addi     r0, r3, __vt__14J3DMaterialAnm@l
+	li       r6, 8
+	lis      r3, __dt__14J3DMatColorAnmFv@ha
+	stw      r0, 0(r30)
+	addi     r5, r3, __dt__14J3DMatColorAnmFv@l
+	addi     r4, r4, __ct__14J3DMatColorAnmFv@l
+	addi     r3, r30, 4
+	li       r7, 2
+	bl       __construct_array
+	lis      r3, __ct__12J3DTexMtxAnmFv@ha
+	lis      r5, __dt__12J3DTexMtxAnmFv@ha
+	addi     r4, r3, __ct__12J3DTexMtxAnmFv@l
+	li       r6, 8
+	addi     r3, r30, 0x14
+	addi     r5, r5, __dt__12J3DTexMtxAnmFv@l
+	li       r7, 8
+	bl       __construct_array
+	lis      r3, __ct__11J3DTexNoAnmFv@ha
+	lis      r5, __dt__11J3DTexNoAnmFv@ha
+	addi     r4, r3, __ct__11J3DTexNoAnmFv@l
+	li       r6, 0xc
+	addi     r3, r30, 0x54
+	addi     r5, r5, __dt__11J3DTexNoAnmFv@l
+	li       r7, 8
+	bl       __construct_array
+	lis      r3, __ct__14J3DTevColorAnmFv@ha
+	lis      r5, __dt__14J3DTevColorAnmFv@ha
+	addi     r4, r3, __ct__14J3DTevColorAnmFv@l
+	li       r6, 8
+	addi     r3, r30, 0xb4
+	addi     r5, r5, __dt__14J3DTevColorAnmFv@l
+	li       r7, 4
+	bl       __construct_array
+	lis      r3, __ct__15J3DTevKColorAnmFv@ha
+	lis      r5, __dt__15J3DTevKColorAnmFv@ha
+	addi     r4, r3, __ct__15J3DTevKColorAnmFv@l
+	li       r6, 8
+	addi     r3, r30, 0xd4
+	addi     r5, r5, __dt__15J3DTevKColorAnmFv@l
+	li       r7, 4
+	bl       __construct_array
+	mr       r3, r30
+	bl       initialize__14J3DMaterialAnmFv
 
-		.loc_0x248:
-		  lwz       r3, 0x28(r31)
-		  rlwinm    r28,r29,2,14,29
-		  lwz       r3, 0x4(r3)
-		  lwz       r3, 0x60(r3)
-		  lwzx      r3, r3, r28
-		  lwz       r12, 0x0(r3)
-		  lwz       r12, 0x2C(r12)
-		  mtctr     r12
-		  bctrl
-		  lwz       r3, 0x28(r31)
-		  addi      r29, r29, 0x1
-		  lwz       r3, 0x4(r3)
-		  lwz       r3, 0x60(r3)
-		  lwzx      r3, r3, r28
-		  stw       r30, 0x3C(r3)
+lbl_803C16C0:
+	lwz      r3, 0x28(r31)
+	rlwinm   r28, r29, 2, 0xe, 0x1d
+	lwz      r3, 4(r3)
+	lwz      r3, 0x60(r3)
+	lwzx     r3, r3, r28
+	lwz      r12, 0(r3)
+	lwz      r12, 0x2c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 0x28(r31)
+	addi     r29, r29, 1
+	lwz      r3, 4(r3)
+	lwz      r3, 0x60(r3)
+	lwzx     r3, r3, r28
+	stw      r30, 0x3c(r3)
 
-		.loc_0x284:
-		  lwz       r4, 0x28(r31)
-		  rlwinm    r3,r29,0,16,31
-		  lwz       r5, 0x4(r4)
-		  lhz       r0, 0x5C(r5)
-		  cmplw     r3, r0
-		  blt+      .loc_0x184
-		  lwz       r4, 0x60(r31)
-		  addi      r3, r5, 0x58
-		  bl        -0x33CEB4
-		  lis       r5, 0x8051
-		  mr        r4, r3
-		  subi      r3, r5, 0xDD0
-		  bl        -0x362BD8
-		  lwz       r0, 0x24(r1)
-		  lwz       r31, 0x1C(r1)
-		  lwz       r30, 0x18(r1)
-		  lwz       r29, 0x14(r1)
-		  lwz       r28, 0x10(r1)
-		  mtlr      r0
-		  addi      r1, r1, 0x20
-		  blr
+lbl_803C16FC:
+	lwz      r4, 0x28(r31)
+	clrlwi   r3, r29, 0x10
+	lwz      r5, 4(r4)
+	lhz      r0, 0x5c(r5)
+	cmplw    r3, r0
+	blt      lbl_803C15FC
+	lwz      r4, 0x60(r31)
+	addi     r3, r5, 0x58
+	bl       entryTevRegAnimator__16J3DMaterialTableFP15J3DAnmTevRegKey
+	lis      r5, j3dSys@ha
+	mr       r4, r3
+	addi     r3, r5, j3dSys@l
+	bl       ErrorReport__6J3DSysCF10J3DErrType
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 		*/
 	}
 
@@ -1007,47 +1112,46 @@ namespace title {
 	void TBlackPlane::start(void)
 	{
 		/*
-		.loc_0x0:
-		  stwu      r1, -0x10(r1)
-		  mflr      r0
-		  stw       r0, 0x14(r1)
-		  stw       r31, 0xC(r1)
-		  mr        r31, r3
-		  lwz       r4, 0x44(r3)
-		  addi      r3, r31, 0x30
-		  lha       r4, 0x6(r4)
-		  subi      r0, r4, 0x2
-		  extsh     r4, r0
-		  bl        -0x35A100
-		  li        r0, 0
-		  lfs       f1, 0x14E4(r2)
-		  stb       r0, 0x34(r31)
-		  addi      r3, r31, 0x4C
-		  lfs       f2, 0x14E0(r2)
-		  lwz       r4, -0x6514(r13)
-		  lfs       f0, 0x54(r4)
-		  fmuls     f0, f1, f0
-		  fmuls     f0, f2, f0
-		  stfs      f0, 0x3C(r31)
-		  lwz       r4, 0x60(r31)
-		  lha       r4, 0x6(r4)
-		  subi      r0, r4, 0x2
-		  extsh     r4, r0
-		  bl        -0x35A13C
-		  li        r0, 0
-		  lfs       f1, 0x14E4(r2)
-		  stb       r0, 0x50(r31)
-		  lfs       f2, 0x14E0(r2)
-		  lwz       r3, -0x6514(r13)
-		  lfs       f0, 0x54(r3)
-		  fmuls     f0, f1, f0
-		  fmuls     f0, f2, f0
-		  stfs      f0, 0x58(r31)
-		  lwz       r31, 0xC(r1)
-		  lwz       r0, 0x14(r1)
-		  mtlr      r0
-		  addi      r1, r1, 0x10
-		  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r4, 0x44(r3)
+	addi     r3, r31, 0x30
+	lha      r4, 6(r4)
+	addi     r0, r4, -2
+	extsh    r4, r0
+	bl       init__12J3DFrameCtrlFs
+	li       r0, 0
+	lfs      f1, lbl_8051F844@sda21(r2)
+	stb      r0, 0x34(r31)
+	addi     r3, r31, 0x4c
+	lfs      f2, lbl_8051F840@sda21(r2)
+	lwz      r4, sys@sda21(r13)
+	lfs      f0, 0x54(r4)
+	fmuls    f0, f1, f0
+	fmuls    f0, f2, f0
+	stfs     f0, 0x3c(r31)
+	lwz      r4, 0x60(r31)
+	lha      r4, 6(r4)
+	addi     r0, r4, -2
+	extsh    r4, r0
+	bl       init__12J3DFrameCtrlFs
+	li       r0, 0
+	lfs      f1, lbl_8051F844@sda21(r2)
+	stb      r0, 0x50(r31)
+	lfs      f2, lbl_8051F840@sda21(r2)
+	lwz      r3, sys@sda21(r13)
+	lfs      f0, 0x54(r3)
+	fmuls    f0, f1, f0
+	fmuls    f0, f2, f0
+	stfs     f0, 0x58(r31)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 		*/
 	}
 
@@ -1059,75 +1163,74 @@ namespace title {
 	void TBlackPlane::updateBeforeCamera(void)
 	{
 		/*
-		.loc_0x0:
-		  stwu      r1, -0x40(r1)
-		  mflr      r0
-		  lfs       f7, 0x14D8(r2)
-		  stw       r0, 0x44(r1)
-		  lfs       f6, 0x14DC(r2)
-		  stw       r31, 0x3C(r1)
-		  stw       r30, 0x38(r1)
-		  mr        r30, r3
-		  lfs       f0, 0x10(r3)
-		  addi      r3, r1, 0x8
-		  lfs       f1, 0x18(r30)
-		  fneg      f8, f0
-		  lwz       r4, 0x28(r30)
-		  lfs       f5, 0xC(r30)
-		  fmr       f2, f1
-		  addi      r31, r4, 0x24
-		  fmsubs    f3, f7, f8, f6
-		  fmuls     f4, f6, f8
-		  fnmsubs   f0, f7, f5, f6
-		  stfs      f3, 0x24(r4)
-		  fmr       f3, f1
-		  fmsubs    f4, f6, f5, f4
-		  stfs      f6, 0x28(r4)
-		  stfs      f5, 0x2C(r4)
-		  lfs       f5, 0x4(r30)
-		  stfs      f5, 0x30(r4)
-		  stfs      f4, 0x34(r4)
-		  stfs      f7, 0x38(r4)
-		  stfs      f6, 0x3C(r4)
-		  stfs      f6, 0x40(r4)
-		  stfs      f0, 0x44(r4)
-		  stfs      f6, 0x48(r4)
-		  stfs      f8, 0x4C(r4)
-		  lfs       f0, 0x8(r30)
-		  fneg      f0, f0
-		  stfs      f0, 0x50(r4)
-		  bl        -0x2D70AC
-		  mr        r3, r31
-		  mr        r5, r31
-		  addi      r4, r1, 0x8
-		  bl        -0x2D7590
-		  addi      r3, r30, 0x30
-		  bl        -0x35A1F0
-		  addi      r3, r30, 0x4C
-		  bl        -0x35A1F8
-		  lfs       f0, 0x5C(r30)
-		  lwz       r3, 0x60(r30)
-		  stfs      f0, 0x8(r3)
-		  lfs       f0, 0x40(r30)
-		  lwz       r3, 0x44(r30)
-		  stfs      f0, 0x8(r3)
-		  lwz       r3, 0x28(r30)
-		  lwz       r0, 0x48(r30)
-		  lwz       r3, 0x4(r3)
-		  lwz       r3, 0x28(r3)
-		  lwz       r3, 0x0(r3)
-		  stw       r0, 0x54(r3)
-		  lwz       r3, 0x28(r30)
-		  lwz       r12, 0x0(r3)
-		  lwz       r12, 0x10(r12)
-		  mtctr     r12
-		  bctrl
-		  lwz       r0, 0x44(r1)
-		  lwz       r31, 0x3C(r1)
-		  lwz       r30, 0x38(r1)
-		  mtlr      r0
-		  addi      r1, r1, 0x40
-		  blr
+	stwu     r1, -0x40(r1)
+	mflr     r0
+	lfs      f7, lbl_8051F838@sda21(r2)
+	stw      r0, 0x44(r1)
+	lfs      f6, lbl_8051F83C@sda21(r2)
+	stw      r31, 0x3c(r1)
+	stw      r30, 0x38(r1)
+	mr       r30, r3
+	lfs      f0, 0x10(r3)
+	addi     r3, r1, 8
+	lfs      f1, 0x18(r30)
+	fneg     f8, f0
+	lwz      r4, 0x28(r30)
+	lfs      f5, 0xc(r30)
+	fmr      f2, f1
+	addi     r31, r4, 0x24
+	fmsubs   f3, f7, f8, f6
+	fmuls    f4, f6, f8
+	fnmsubs  f0, f7, f5, f6
+	stfs     f3, 0x24(r4)
+	fmr      f3, f1
+	fmsubs   f4, f6, f5, f4
+	stfs     f6, 0x28(r4)
+	stfs     f5, 0x2c(r4)
+	lfs      f5, 4(r30)
+	stfs     f5, 0x30(r4)
+	stfs     f4, 0x34(r4)
+	stfs     f7, 0x38(r4)
+	stfs     f6, 0x3c(r4)
+	stfs     f6, 0x40(r4)
+	stfs     f0, 0x44(r4)
+	stfs     f6, 0x48(r4)
+	stfs     f8, 0x4c(r4)
+	lfs      f0, 8(r30)
+	fneg     f0, f0
+	stfs     f0, 0x50(r4)
+	bl       PSMTXScale
+	mr       r3, r31
+	mr       r5, r31
+	addi     r4, r1, 8
+	bl       PSMTXConcat
+	addi     r3, r30, 0x30
+	bl       update__12J3DFrameCtrlFv
+	addi     r3, r30, 0x4c
+	bl       update__12J3DFrameCtrlFv
+	lfs      f0, 0x5c(r30)
+	lwz      r3, 0x60(r30)
+	stfs     f0, 8(r3)
+	lfs      f0, 0x40(r30)
+	lwz      r3, 0x44(r30)
+	stfs     f0, 8(r3)
+	lwz      r3, 0x28(r30)
+	lwz      r0, 0x48(r30)
+	lwz      r3, 4(r3)
+	lwz      r3, 0x28(r3)
+	lwz      r3, 0(r3)
+	stw      r0, 0x54(r3)
+	lwz      r3, 0x28(r30)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x44(r1)
+	lwz      r31, 0x3c(r1)
+	lwz      r30, 0x38(r1)
+	mtlr     r0
+	addi     r1, r1, 0x40
+	blr
 		*/
 	}
 
@@ -1139,27 +1242,26 @@ namespace title {
 	void TBlackPlane::updateAfterCamera(void)
 	{
 		/*
-		.loc_0x0:
-		  stwu      r1, -0x10(r1)
-		  mflr      r0
-		  stw       r0, 0x14(r1)
-		  stw       r31, 0xC(r1)
-		  mr        r31, r3
-		  lwz       r3, 0x28(r3)
-		  lwz       r12, 0x0(r3)
-		  lwz       r12, 0xC(r12)
-		  mtctr     r12
-		  bctrl
-		  lwz       r3, 0x28(r31)
-		  lwz       r12, 0x0(r3)
-		  lwz       r12, 0x1C(r12)
-		  mtctr     r12
-		  bctrl
-		  lwz       r0, 0x14(r1)
-		  lwz       r31, 0xC(r1)
-		  mtlr      r0
-		  addi      r1, r1, 0x10
-		  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r3, 0x28(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 0x28(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 		*/
 	}
 
@@ -1171,26 +1273,25 @@ namespace title {
 	void TBlackPlane::setLogo(void)
 	{
 		/*
-		.loc_0x0:
-		  stwu      r1, -0x20(r1)
-		  lis       r0, 0x4330
-		  lfd       f1, 0x1518(r2)
-		  lha       r4, 0x38(r3)
-		  stw       r0, 0x8(r1)
-		  xoris     r4, r4, 0x8000
-		  stw       r4, 0xC(r1)
-		  lfd       f0, 0x8(r1)
-		  stw       r0, 0x10(r1)
-		  fsubs     f0, f0, f1
-		  stfs      f0, 0x40(r3)
-		  lha       r0, 0x54(r3)
-		  xoris     r0, r0, 0x8000
-		  stw       r0, 0x14(r1)
-		  lfd       f0, 0x10(r1)
-		  fsubs     f0, f0, f1
-		  stfs      f0, 0x5C(r3)
-		  addi      r1, r1, 0x20
-		  blr
+	stwu     r1, -0x20(r1)
+	lis      r0, 0x4330
+	lfd      f1, lbl_8051F878@sda21(r2)
+	lha      r4, 0x38(r3)
+	stw      r0, 8(r1)
+	xoris    r4, r4, 0x8000
+	stw      r4, 0xc(r1)
+	lfd      f0, 8(r1)
+	stw      r0, 0x10(r1)
+	fsubs    f0, f0, f1
+	stfs     f0, 0x40(r3)
+	lha      r0, 0x54(r3)
+	xoris    r0, r0, 0x8000
+	stw      r0, 0x14(r1)
+	lfd      f0, 0x10(r1)
+	fsubs    f0, f0, f1
+	stfs     f0, 0x5c(r3)
+	addi     r1, r1, 0x20
+	blr
 		*/
 	}
 
@@ -1202,37 +1303,36 @@ namespace title {
 	void TBlackPlane::getCameraPos(void)
 	{
 		/*
-		.loc_0x0:
-		  stwu      r1, -0x10(r1)
-		  mflr      r0
-		  stw       r0, 0x14(r1)
-		  stw       r31, 0xC(r1)
-		  mr        r31, r4
-		  lis       r4, 0x8049
-		  stw       r30, 0x8(r1)
-		  mr        r30, r3
-		  addi      r4, r4, 0x6260
-		  lwz       r5, 0x28(r31)
-		  lwz       r3, 0x4(r5)
-		  lwz       r3, 0x54(r3)
-		  bl        -0x392C48
-		  lwz       r4, 0x28(r31)
-		  mulli     r0, r3, 0x30
-		  lwz       r3, 0x84(r4)
-		  lwz       r3, 0xC(r3)
-		  add       r3, r3, r0
-		  lfs       f2, 0x2C(r3)
-		  lfs       f1, 0x1C(r3)
-		  lfs       f0, 0xC(r3)
-		  stfs      f0, 0x0(r30)
-		  stfs      f1, 0x4(r30)
-		  stfs      f2, 0x8(r30)
-		  lwz       r31, 0xC(r1)
-		  lwz       r30, 0x8(r1)
-		  lwz       r0, 0x14(r1)
-		  mtlr      r0
-		  addi      r1, r1, 0x10
-		  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	lis      r4, lbl_80496260@ha
+	stw      r30, 8(r1)
+	mr       r30, r3
+	addi     r4, r4, lbl_80496260@l
+	lwz      r5, 0x28(r31)
+	lwz      r3, 4(r5)
+	lwz      r3, 0x54(r3)
+	bl       getIndex__10JUTNameTabCFPCc
+	lwz      r4, 0x28(r31)
+	mulli    r0, r3, 0x30
+	lwz      r3, 0x84(r4)
+	lwz      r3, 0xc(r3)
+	add      r3, r3, r0
+	lfs      f2, 0x2c(r3)
+	lfs      f1, 0x1c(r3)
+	lfs      f0, 0xc(r3)
+	stfs     f0, 0(r30)
+	stfs     f1, 4(r30)
+	stfs     f2, 8(r30)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 		*/
 	}
 
@@ -1248,16 +1348,15 @@ namespace title {
 void __sinit_ebiP2TitleUnit_cpp(void)
 {
 	/*
-	.loc_0x0:
-	  lis       r4, 0x8051
-	  li        r0, -0x1
-	  lfs       f0, 0x48B0(r4)
-	  lis       r3, 0x804E
-	  stw       r0, -0x65C8(r13)
-	  stfsu     f0, 0x79B8(r3)
-	  stfs      f0, -0x65C4(r13)
-	  stfs      f0, 0x4(r3)
-	  stfs      f0, 0x8(r3)
-	  blr
+	lis      r4, __float_nan@ha
+	li       r0, -1
+	lfs      f0, __float_nan@l(r4)
+	lis      r3, lbl_804E79B8@ha
+	stw      r0, lbl_805160B8@sda21(r13)
+	stfsu    f0, lbl_804E79B8@l(r3)
+	stfs     f0, lbl_805160BC@sda21(r13)
+	stfs     f0, 4(r3)
+	stfs     f0, 8(r3)
+	blr
 	*/
 }

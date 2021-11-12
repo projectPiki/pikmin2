@@ -1,5 +1,19 @@
 #include "types.h"
 
+/*
+    Generated from dpostproc
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_80483A48
+    lbl_80483A48:
+        .asciz "gameTekiStat.cpp"
+        .skip 3
+    .global lbl_80483A5C
+    lbl_80483A5C:
+        .asciz "P2Assert"
+        .skip 3
+*/
+
 namespace Game {
 
 /*
@@ -10,20 +24,19 @@ namespace Game {
 void TekiStat::Info::incKilled(void)
 {
 	/*
-	.loc_0x0:
-	  lwz       r4, -0x6C18(r13)
-	  cmplwi    r4, 0
-	  beqlr-
-	  lwz       r0, 0x44(r4)
-	  cmpwi     r0, 0
-	  bnelr-
-	  lwz       r4, 0x0(r3)
-	  addi      r0, r4, 0x1
-	  stw       r0, 0x0(r3)
-	  lbz       r0, 0x8(r3)
-	  ori       r0, r0, 0x1
-	  stb       r0, 0x8(r3)
-	  blr
+	lwz      r4, gameSystem__4Game@sda21(r13)
+	cmplwi   r4, 0
+	beqlr
+	lwz      r0, 0x44(r4)
+	cmpwi    r0, 0
+	bnelr
+	lwz      r4, 0(r3)
+	addi     r0, r4, 1
+	stw      r0, 0(r3)
+	lbz      r0, 8(r3)
+	ori      r0, r0, 1
+	stb      r0, 8(r3)
+	blr
 	*/
 }
 
@@ -35,17 +48,16 @@ void TekiStat::Info::incKilled(void)
 void TekiStat::Info::incKillPikmin(void)
 {
 	/*
-	.loc_0x0:
-	  lwz       r4, -0x6C18(r13)
-	  cmplwi    r4, 0
-	  beqlr-
-	  lwz       r0, 0x44(r4)
-	  cmpwi     r0, 0
-	  bnelr-
-	  lwz       r4, 0x4(r3)
-	  addi      r0, r4, 0x1
-	  stw       r0, 0x4(r3)
-	  blr
+	lwz      r4, gameSystem__4Game@sda21(r13)
+	cmplwi   r4, 0
+	beqlr
+	lwz      r0, 0x44(r4)
+	cmpwi    r0, 0
+	bnelr
+	lwz      r4, 4(r3)
+	addi     r0, r4, 1
+	stw      r0, 4(r3)
+	blr
 	*/
 }
 
@@ -57,11 +69,10 @@ void TekiStat::Info::incKillPikmin(void)
 TekiStat::Mgr::Mgr(void)
 {
 	/*
-	.loc_0x0:
-	  li        r0, 0
-	  stw       r0, 0x0(r3)
-	  stw       r0, 0x4(r3)
-	  blr
+	li       r0, 0
+	stw      r0, 0(r3)
+	stw      r0, 4(r3)
+	blr
 	*/
 }
 
@@ -73,48 +84,47 @@ TekiStat::Mgr::Mgr(void)
 void TekiStat::Mgr::whatsNew(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  li        r31, 0
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  b         .loc_0x5C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	li       r31, 0
+	stw      r30, 8(r1)
+	mr       r30, r3
+	b        lbl_802338E4
 
-	.loc_0x20:
-	  mr        r3, r30
-	  mr        r4, r31
-	  bl        0x214
-	  lbz       r0, 0x8(r3)
-	  rlwinm.   r0,r0,0,31,31
-	  beq-      .loc_0x58
-	  mr        r3, r30
-	  mr        r4, r31
-	  bl        0x1FC
-	  lbz       r0, 0x8(r3)
-	  rlwinm.   r0,r0,0,30,30
-	  bne-      .loc_0x58
-	  li        r3, 0x1
-	  b         .loc_0x6C
+lbl_802338A8:
+	mr       r3, r30
+	mr       r4, r31
+	bl       getTekiInfo__Q34Game8TekiStat3MgrFi
+	lbz      r0, 8(r3)
+	clrlwi.  r0, r0, 0x1f
+	beq      lbl_802338E0
+	mr       r3, r30
+	mr       r4, r31
+	bl       getTekiInfo__Q34Game8TekiStat3MgrFi
+	lbz      r0, 8(r3)
+	rlwinm.  r0, r0, 0, 0x1e, 0x1e
+	bne      lbl_802338E0
+	li       r3, 1
+	b        lbl_802338F4
 
-	.loc_0x58:
-	  addi      r31, r31, 0x1
+lbl_802338E0:
+	addi     r31, r31, 1
 
-	.loc_0x5C:
-	  lwz       r0, 0x4(r30)
-	  cmpw      r31, r0
-	  blt+      .loc_0x20
-	  li        r3, 0
+lbl_802338E4:
+	lwz      r0, 4(r30)
+	cmpw     r31, r0
+	blt      lbl_802338A8
+	li       r3, 0
 
-	.loc_0x6C:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_802338F4:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -126,43 +136,42 @@ void TekiStat::Mgr::whatsNew(void)
 void TekiStat::Mgr::setOutOfDateAll(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  li        r31, 0
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  b         .loc_0x54
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	li       r31, 0
+	stw      r30, 8(r1)
+	mr       r30, r3
+	b        lbl_80233960
 
-	.loc_0x20:
-	  mr        r3, r30
-	  mr        r4, r31
-	  bl        0x190
-	  lbz       r0, 0x8(r3)
-	  rlwinm.   r0,r0,0,31,31
-	  beq-      .loc_0x50
-	  mr        r3, r30
-	  mr        r4, r31
-	  bl        0x178
-	  lbz       r0, 0x8(r3)
-	  ori       r0, r0, 0x2
-	  stb       r0, 0x8(r3)
+lbl_8023392C:
+	mr       r3, r30
+	mr       r4, r31
+	bl       getTekiInfo__Q34Game8TekiStat3MgrFi
+	lbz      r0, 8(r3)
+	clrlwi.  r0, r0, 0x1f
+	beq      lbl_8023395C
+	mr       r3, r30
+	mr       r4, r31
+	bl       getTekiInfo__Q34Game8TekiStat3MgrFi
+	lbz      r0, 8(r3)
+	ori      r0, r0, 2
+	stb      r0, 8(r3)
 
-	.loc_0x50:
-	  addi      r31, r31, 0x1
+lbl_8023395C:
+	addi     r31, r31, 1
 
-	.loc_0x54:
-	  lwz       r0, 0x4(r30)
-	  cmpw      r31, r0
-	  blt+      .loc_0x20
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80233960:
+	lwz      r0, 4(r30)
+	cmpw     r31, r0
+	blt      lbl_8023392C
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -174,65 +183,64 @@ void TekiStat::Mgr::setOutOfDateAll(void)
 void TekiStat::Mgr::clear(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  li        r3, 0
-	  lwz       r0, 0x0(r29)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x3C
-	  lwz       r0, 0x4(r29)
-	  cmpwi     r0, 0
-	  beq-      .loc_0x3C
-	  li        r3, 0x1
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	li       r3, 0
+	lwz      r0, 0(r29)
+	cmplwi   r0, 0
+	beq      lbl_802339C0
+	lwz      r0, 4(r29)
+	cmpwi    r0, 0
+	beq      lbl_802339C0
+	li       r3, 1
 
-	.loc_0x3C:
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x60
-	  lis       r3, 0x8048
-	  lis       r5, 0x8048
-	  addi      r3, r3, 0x3A48
-	  li        r4, 0x3C
-	  addi      r5, r5, 0x3A5C
-	  crclr     6, 0x6
-	  bl        -0x2093A0
+lbl_802339C0:
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_802339E4
+	lis      r3, lbl_80483A48@ha
+	lis      r5, lbl_80483A5C@ha
+	addi     r3, r3, lbl_80483A48@l
+	li       r4, 0x3c
+	addi     r5, r5, lbl_80483A5C@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x60:
-	  li        r30, 0
-	  li        r31, 0
-	  b         .loc_0xA0
+lbl_802339E4:
+	li       r30, 0
+	li       r31, 0
+	b        lbl_80233A24
 
-	.loc_0x6C:
-	  mr        r3, r29
-	  mr        r4, r30
-	  bl        0xCC
-	  stw       r31, 0x0(r3)
-	  mr        r3, r29
-	  mr        r4, r30
-	  bl        0xBC
-	  stw       r31, 0x4(r3)
-	  mr        r3, r29
-	  mr        r4, r30
-	  bl        0xAC
-	  stb       r31, 0x8(r3)
-	  addi      r30, r30, 0x1
+lbl_802339F0:
+	mr       r3, r29
+	mr       r4, r30
+	bl       getTekiInfo__Q34Game8TekiStat3MgrFi
+	stw      r31, 0(r3)
+	mr       r3, r29
+	mr       r4, r30
+	bl       getTekiInfo__Q34Game8TekiStat3MgrFi
+	stw      r31, 4(r3)
+	mr       r3, r29
+	mr       r4, r30
+	bl       getTekiInfo__Q34Game8TekiStat3MgrFi
+	stb      r31, 8(r3)
+	addi     r30, r30, 1
 
-	.loc_0xA0:
-	  lwz       r0, 0x4(r29)
-	  cmpw      r30, r0
-	  blt+      .loc_0x6C
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80233A24:
+	lwz      r0, 4(r29)
+	cmpw     r30, r0
+	blt      lbl_802339F0
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -244,31 +252,30 @@ void TekiStat::Mgr::clear(void)
 void TekiStat::Mgr::allocate(int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  mulli     r3, r31, 0xC
-	  addi      r3, r3, 0x10
-	  bl        -0x20FAC4
-	  lis       r4, 0x8023
-	  mr        r7, r31
-	  addi      r4, r4, 0x3AAC
-	  li        r5, 0
-	  li        r6, 0xC
-	  bl        -0x172098
-	  stw       r3, 0x0(r30)
-	  stw       r31, 0x4(r30)
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	mulli    r3, r31, 0xc
+	addi     r3, r3, 0x10
+	bl       __nwa__FUl
+	lis      r4, __ct__Q34Game8TekiStat4InfoFv@ha
+	mr       r7, r31
+	addi     r4, r4, __ct__Q34Game8TekiStat4InfoFv@l
+	li       r5, 0
+	li       r6, 0xc
+	bl       __construct_new_array
+	stw      r3, 0(r30)
+	stw      r31, 4(r30)
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -280,13 +287,12 @@ void TekiStat::Mgr::allocate(int)
 TekiStat::Info::Info(void)
 {
 	/*
-	.loc_0x0:
-	  li        r0, 0
-	  stb       r0, 0x8(r3)
-	  stw       r0, 0x4(r3)
-	  stw       r0, 0x0(r3)
-	  stb       r0, 0x8(r3)
-	  blr
+	li       r0, 0
+	stb      r0, 8(r3)
+	stw      r0, 4(r3)
+	stw      r0, 0(r3)
+	stb      r0, 8(r3)
+	blr
 	*/
 }
 
@@ -298,42 +304,41 @@ TekiStat::Info::Info(void)
 void TekiStat::Mgr::getTekiInfo(int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  li        r3, 0
-	  blt-      .loc_0x34
-	  lwz       r0, 0x4(r30)
-	  cmpw      r31, r0
-	  bge-      .loc_0x34
-	  li        r3, 0x1
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r4, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	li       r3, 0
+	blt      lbl_80233AF8
+	lwz      r0, 4(r30)
+	cmpw     r31, r0
+	bge      lbl_80233AF8
+	li       r3, 1
 
-	.loc_0x34:
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x58
-	  lis       r3, 0x8048
-	  lis       r5, 0x8048
-	  addi      r3, r3, 0x3A48
-	  li        r4, 0x4C
-	  addi      r5, r5, 0x3A5C
-	  crclr     6, 0x6
-	  bl        -0x2094D8
+lbl_80233AF8:
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_80233B1C
+	lis      r3, lbl_80483A48@ha
+	lis      r5, lbl_80483A5C@ha
+	addi     r3, r3, lbl_80483A48@l
+	li       r4, 0x4c
+	addi     r5, r5, lbl_80483A5C@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x58:
-	  mulli     r0, r31, 0xC
-	  lwz       r3, 0x0(r30)
-	  add       r3, r3, r0
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80233B1C:
+	mulli    r0, r31, 0xc
+	lwz      r3, 0(r30)
+	add      r3, r3, r0
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -365,63 +370,62 @@ void TekiStat::Info::read(Stream&)
 void TekiStat::Mgr::write(Stream&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stmw      r27, 0xC(r1)
-	  mr        r28, r4
-	  mr        r27, r3
-	  lwz       r4, 0x4(r3)
-	  mr        r3, r28
-	  bl        0x1E1C60
-	  li        r29, 0
-	  li        r30, 0
-	  b         .loc_0xA0
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stmw     r27, 0xc(r1)
+	mr       r28, r4
+	mr       r27, r3
+	lwz      r4, 4(r3)
+	mr       r3, r28
+	bl       writeInt__6StreamFi
+	li       r29, 0
+	li       r30, 0
+	b        lbl_80233BE0
 
-	.loc_0x30:
-	  cmpwi     r29, 0
-	  li        r0, 0
-	  blt-      .loc_0x48
-	  cmpw      r29, r3
-	  bge-      .loc_0x48
-	  li        r0, 0x1
+lbl_80233B70:
+	cmpwi    r29, 0
+	li       r0, 0
+	blt      lbl_80233B88
+	cmpw     r29, r3
+	bge      lbl_80233B88
+	li       r0, 1
 
-	.loc_0x48:
-	  rlwinm.   r0,r0,0,24,31
-	  bne-      .loc_0x6C
-	  lis       r3, 0x8048
-	  lis       r5, 0x8048
-	  addi      r3, r3, 0x3A48
-	  li        r4, 0x4C
-	  addi      r5, r5, 0x3A5C
-	  crclr     6, 0x6
-	  bl        -0x209568
+lbl_80233B88:
+	clrlwi.  r0, r0, 0x18
+	bne      lbl_80233BAC
+	lis      r3, lbl_80483A48@ha
+	lis      r5, lbl_80483A5C@ha
+	addi     r3, r3, lbl_80483A48@l
+	li       r4, 0x4c
+	addi     r5, r5, lbl_80483A5C@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x6C:
-	  lwz       r0, 0x0(r27)
-	  mr        r3, r28
-	  add       r31, r0, r30
-	  lwz       r4, 0x0(r31)
-	  bl        0x1E1C04
-	  lwz       r4, 0x4(r31)
-	  mr        r3, r28
-	  bl        0x1E1BF8
-	  mr        r3, r28
-	  lbz       r4, 0x8(r31)
-	  bl        0x1E1A9C
-	  addi      r30, r30, 0xC
-	  addi      r29, r29, 0x1
+lbl_80233BAC:
+	lwz      r0, 0(r27)
+	mr       r3, r28
+	add      r31, r0, r30
+	lwz      r4, 0(r31)
+	bl       writeInt__6StreamFi
+	lwz      r4, 4(r31)
+	mr       r3, r28
+	bl       writeInt__6StreamFi
+	mr       r3, r28
+	lbz      r4, 8(r31)
+	bl       writeByte__6StreamFUc
+	addi     r30, r30, 0xc
+	addi     r29, r29, 1
 
-	.loc_0xA0:
-	  lwz       r3, 0x4(r27)
-	  cmpw      r29, r3
-	  blt+      .loc_0x30
-	  lmw       r27, 0xC(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80233BE0:
+	lwz      r3, 4(r27)
+	cmpw     r29, r3
+	blt      lbl_80233B70
+	lmw      r27, 0xc(r1)
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -433,76 +437,75 @@ void TekiStat::Mgr::write(Stream&)
 void TekiStat::Mgr::read(Stream&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stmw      r27, 0xC(r1)
-	  mr        r31, r4
-	  mr        r30, r3
-	  mr        r3, r31
-	  bl        0x1E0E74
-	  lwz       r0, 0x4(r30)
-	  mr        r29, r3
-	  cmpw      r29, r0
-	  beq-      .loc_0x4C
-	  lis       r3, 0x8048
-	  lis       r5, 0x8048
-	  addi      r3, r3, 0x3A48
-	  li        r4, 0x69
-	  addi      r5, r5, 0x3A5C
-	  crclr     6, 0x6
-	  bl        -0x209608
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stmw     r27, 0xc(r1)
+	mr       r31, r4
+	mr       r30, r3
+	mr       r3, r31
+	bl       readInt__6StreamFv
+	lwz      r0, 4(r30)
+	mr       r29, r3
+	cmpw     r29, r0
+	beq      lbl_80233C4C
+	lis      r3, lbl_80483A48@ha
+	lis      r5, lbl_80483A5C@ha
+	addi     r3, r3, lbl_80483A48@l
+	li       r4, 0x69
+	addi     r5, r5, lbl_80483A5C@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x4C:
-	  stw       r29, 0x4(r30)
-	  li        r27, 0
-	  li        r28, 0
-	  b         .loc_0xCC
+lbl_80233C4C:
+	stw      r29, 4(r30)
+	li       r27, 0
+	li       r28, 0
+	b        lbl_80233CCC
 
-	.loc_0x5C:
-	  cmpwi     r27, 0
-	  li        r0, 0
-	  blt-      .loc_0x74
-	  cmpw      r27, r3
-	  bge-      .loc_0x74
-	  li        r0, 0x1
+lbl_80233C5C:
+	cmpwi    r27, 0
+	li       r0, 0
+	blt      lbl_80233C74
+	cmpw     r27, r3
+	bge      lbl_80233C74
+	li       r0, 1
 
-	.loc_0x74:
-	  rlwinm.   r0,r0,0,24,31
-	  bne-      .loc_0x98
-	  lis       r3, 0x8048
-	  lis       r5, 0x8048
-	  addi      r3, r3, 0x3A48
-	  li        r4, 0x4C
-	  addi      r5, r5, 0x3A5C
-	  crclr     6, 0x6
-	  bl        -0x209654
+lbl_80233C74:
+	clrlwi.  r0, r0, 0x18
+	bne      lbl_80233C98
+	lis      r3, lbl_80483A48@ha
+	lis      r5, lbl_80483A5C@ha
+	addi     r3, r3, lbl_80483A48@l
+	li       r4, 0x4c
+	addi     r5, r5, lbl_80483A5C@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x98:
-	  lwz       r0, 0x0(r30)
-	  mr        r3, r31
-	  add       r29, r0, r28
-	  bl        0x1E0DEC
-	  stw       r3, 0x0(r29)
-	  mr        r3, r31
-	  bl        0x1E0DE0
-	  stw       r3, 0x4(r29)
-	  mr        r3, r31
-	  bl        0x1E07E0
-	  stb       r3, 0x8(r29)
-	  addi      r28, r28, 0xC
-	  addi      r27, r27, 0x1
+lbl_80233C98:
+	lwz      r0, 0(r30)
+	mr       r3, r31
+	add      r29, r0, r28
+	bl       readInt__6StreamFv
+	stw      r3, 0(r29)
+	mr       r3, r31
+	bl       readInt__6StreamFv
+	stw      r3, 4(r29)
+	mr       r3, r31
+	bl       readByte__6StreamFv
+	stb      r3, 8(r29)
+	addi     r28, r28, 0xc
+	addi     r27, r27, 1
 
-	.loc_0xCC:
-	  lwz       r3, 0x4(r30)
-	  cmpw      r27, r3
-	  blt+      .loc_0x5C
-	  lmw       r27, 0xC(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80233CCC:
+	lwz      r3, 4(r30)
+	cmpw     r27, r3
+	blt      lbl_80233C5C
+	lmw      r27, 0xc(r1)
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 } // namespace Game

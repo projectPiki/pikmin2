@@ -1,5 +1,39 @@
 #include "types.h"
 
+/*
+    Generated from dpostproc
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__Q32og6Screen18CallBack_CatchPiki
+    __vt__Q32og6Screen18CallBack_CatchPiki:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q32og6Screen18CallBack_CatchPikiFv
+        .4byte getChildCount__5CNodeFv
+        .4byte update__Q32og6Screen18CallBack_CatchPikiFv
+        .4byte draw__Q29P2DScreen4NodeFR8GraphicsR14J2DGrafContext
+        .4byte doInit__Q29P2DScreen4NodeFv
+        .4byte 0
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_8051D628
+    lbl_8051D628:
+        .4byte 0x3ECCCCCD
+    .global lbl_8051D62C
+    lbl_8051D62C:
+        .4byte 0x41F00000
+    .global lbl_8051D630
+    lbl_8051D630:
+        .float 0.7
+    .global lbl_8051D634
+    lbl_8051D634:
+        .4byte 0x00000000
+    .global lbl_8051D638
+    lbl_8051D638:
+        .float 0.5
+        .4byte 0x00000000
+*/
+
 namespace og {
 
 namespace Screen {
@@ -12,39 +46,38 @@ namespace Screen {
 	CallBack_CatchPiki::CallBack_CatchPiki(void)
 	{
 		/*
-		.loc_0x0:
-		  stwu      r1, -0x10(r1)
-		  mflr      r0
-		  stw       r0, 0x14(r1)
-		  stw       r31, 0xC(r1)
-		  stw       r30, 0x8(r1)
-		  mr        r30, r3
-		  mr        r0, r30
-		  mr        r31, r0
-		  bl        0x109B50
-		  lis       r3, 0x804D
-		  lis       r4, 0x804D
-		  addi      r0, r3, 0x7B0C
-		  lis       r3, 0x804E
-		  stw       r0, 0x0(r31)
-		  li        r5, 0
-		  addi      r4, r4, 0x7F2C
-		  subi      r0, r3, 0x7FF8
-		  stw       r5, 0x18(r31)
-		  addi      r3, r30, 0x28
-		  stw       r4, 0x0(r31)
-		  stw       r0, 0x0(r30)
-		  bl        0x21590
-		  li        r0, 0
-		  mr        r3, r30
-		  stw       r0, 0x1C(r30)
-		  stw       r0, 0x20(r30)
-		  lwz       r31, 0xC(r1)
-		  lwz       r30, 0x8(r1)
-		  lwz       r0, 0x14(r1)
-		  mtlr      r0
-		  addi      r1, r1, 0x10
-		  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	stw      r30, 8(r1)
+	mr       r30, r3
+	mr       r0, r30
+	mr       r31, r0
+	bl       __ct__5CNodeFv
+	lis      r3, __vt__Q29P2DScreen4Node@ha
+	lis      r4, __vt__Q29P2DScreen12CallBackNode@ha
+	addi     r0, r3, __vt__Q29P2DScreen4Node@l
+	lis      r3, __vt__Q32og6Screen18CallBack_CatchPiki@ha
+	stw      r0, 0(r31)
+	li       r5, 0
+	addi     r4, r4, __vt__Q29P2DScreen12CallBackNode@l
+	addi     r0, r3, __vt__Q32og6Screen18CallBack_CatchPiki@l
+	stw      r5, 0x18(r31)
+	addi     r3, r30, 0x28
+	stw      r4, 0(r31)
+	stw      r0, 0(r30)
+	bl       __ct__Q32og6Screen8ScaleMgrFv
+	li       r0, 0
+	mr       r3, r30
+	stw      r0, 0x1c(r30)
+	stw      r0, 0x20(r30)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 		*/
 	}
 
@@ -56,24 +89,23 @@ namespace Screen {
 	ScaleMgr::~ScaleMgr(void)
 	{
 		/*
-		.loc_0x0:
-		  stwu      r1, -0x10(r1)
-		  mflr      r0
-		  stw       r0, 0x14(r1)
-		  stw       r31, 0xC(r1)
-		  mr.       r31, r3
-		  beq-      .loc_0x24
-		  extsh.    r0, r4
-		  ble-      .loc_0x24
-		  bl        -0x2E380C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r3, r3
+	beq      lbl_803078C4
+	extsh.   r0, r4
+	ble      lbl_803078C4
+	bl       __dl__FPv
 
-		.loc_0x24:
-		  lwz       r0, 0x14(r1)
-		  mr        r3, r31
-		  lwz       r31, 0xC(r1)
-		  mtlr      r0
-		  addi      r1, r1, 0x10
-		  blr
+lbl_803078C4:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 		*/
 	}
 
@@ -148,73 +180,70 @@ namespace Screen {
 	void CallBack_CatchPiki::update(void)
 	{
 		/*
-		.loc_0x0:
-		  stwu      r1, -0x20(r1)
-		  mflr      r0
-		  stw       r0, 0x24(r1)
-		  stfd      f31, 0x10(r1)
-		  psq_st    f31,0x18(r1),0,0
-		  stw       r31, 0xC(r1)
-		  stw       r30, 0x8(r1)
-		  mr        r30, r3
-		  lwz       r4, 0x1C(r3)
-		  cmplwi    r4, 0
-		  beq-      .loc_0xD0
-		  lwz       r0, 0x20(r30)
-		  cmplwi    r0, 0
-		  beq-      .loc_0xD0
-		  lwz       r31, 0x0(r4)
-		  lwz       r0, 0x24(r30)
-		  cmplw     r31, r0
-		  beq-      .loc_0x74
-		  cmplwi    r31, 0x13
-		  bge-      .loc_0x74
-		  mr        r4, r31
-		  bl        .loc_0xF0
-		  lfs       f1, -0xD38(r2)
-		  addi      r3, r30, 0x28
-		  lfs       f2, -0xD34(r2)
-		  lfs       f3, -0xD30(r2)
-		  lfs       f4, -0xD2C(r2)
-		  bl        0x214D0
-		  stw       r31, 0x24(r30)
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stfd     f31, 0x10(r1)
+	psq_st   f31, 24(r1), 0, qr0
+	stw      r31, 0xc(r1)
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lwz      r4, 0x1c(r3)
+	cmplwi   r4, 0
+	beq      lbl_80307A6C
+	lwz      r0, 0x20(r30)
+	cmplwi   r0, 0
+	beq      lbl_80307A6C
+	lwz      r31, 0(r4)
+	lwz      r0, 0x24(r30)
+	cmplw    r31, r0
+	beq      lbl_80307A10
+	cmplwi   r31, 0x13
+	bge      lbl_80307A10
+	mr       r4, r31
+	bl       setPikiIcon__Q32og6Screen18CallBack_CatchPikiFi
+	lfs      f1, lbl_8051D628@sda21(r2)
+	addi     r3, r30, 0x28
+	lfs      f2, lbl_8051D62C@sda21(r2)
+	lfs      f3, lbl_8051D630@sda21(r2)
+	lfs      f4, lbl_8051D634@sda21(r2)
+	bl       up__Q32og6Screen8ScaleMgrFffff
+	stw      r31, 0x24(r30)
 
-		.loc_0x74:
-		  addi      r3, r30, 0x28
-		  bl        0x21570
-		  lwz       r3, 0x20(r30)
-		  fmr       f31, f1
-		  lfs       f2, -0xD28(r2)
-		  li        r4, 0x7A
-		  lfs       f4, 0x28(r3)
-		  lfs       f3, 0x20(r3)
-		  lfs       f1, 0x2C(r3)
-		  lfs       f0, 0x24(r3)
-		  fsubs     f4, f4, f3
-		  lfs       f3, -0xD2C(r2)
-		  fsubs     f0, f1, f0
-		  fmuls     f1, f4, f2
-		  fmuls     f2, f0, f2
-		  bl        -0x2CF64C
-		  lwz       r3, 0x20(r30)
-		  stfs      f31, 0xCC(r3)
-		  stfs      f31, 0xD0(r3)
-		  lwz       r12, 0x0(r3)
-		  lwz       r12, 0x2C(r12)
-		  mtctr     r12
-		  bctrl
+lbl_80307A10:
+	addi     r3, r30, 0x28
+	bl       calc__Q32og6Screen8ScaleMgrFv
+	lwz      r3, 0x20(r30)
+	fmr      f31, f1
+	lfs      f2, lbl_8051D638@sda21(r2)
+	li       r4, 0x7a
+	lfs      f4, 0x28(r3)
+	lfs      f3, 0x20(r3)
+	lfs      f1, 0x2c(r3)
+	lfs      f0, 0x24(r3)
+	fsubs    f4, f4, f3
+	lfs      f3, lbl_8051D634@sda21(r2)
+	fsubs    f0, f1, f0
+	fmuls    f1, f4, f2
+	fmuls    f2, f0, f2
+	bl       rotate__7J2DPaneFff13J2DRotateAxisf
+	lwz      r3, 0x20(r30)
+	stfs     f31, 0xcc(r3)
+	stfs     f31, 0xd0(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x2c(r12)
+	mtctr    r12
+	bctrl
 
-		.loc_0xD0:
-		  psq_l     f31,0x18(r1),0,0
-		  lwz       r0, 0x24(r1)
-		  lfd       f31, 0x10(r1)
-		  lwz       r31, 0xC(r1)
-		  lwz       r30, 0x8(r1)
-		  mtlr      r0
-		  addi      r1, r1, 0x20
-		  blr
-
-		.loc_0xF0:
+lbl_80307A6C:
+	psq_l    f31, 24(r1), 0, qr0
+	lwz      r0, 0x24(r1)
+	lfd      f31, 0x10(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 		*/
 	}
 
@@ -226,28 +255,27 @@ namespace Screen {
 	void CallBack_CatchPiki::setPikiIcon(int)
 	{
 		/*
-		.loc_0x0:
-		  stwu      r1, -0x10(r1)
-		  mflr      r0
-		  cmpwi     r4, 0x13
-		  stw       r0, 0x14(r1)
-		  bge-      .loc_0x3C
-		  lwz       r3, 0x20(r3)
-		  lis       r6, 0x8051
-		  rlwinm    r0,r4,2,0,29
-		  li        r5, 0
-		  lwz       r12, 0x0(r3)
-		  addi      r4, r6, 0x3BB0
-		  lwzx      r4, r4, r0
-		  lwz       r12, 0x110(r12)
-		  mtctr     r12
-		  bctrl
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	cmpwi    r4, 0x13
+	stw      r0, 0x14(r1)
+	bge      lbl_80307AC8
+	lwz      r3, 0x20(r3)
+	lis      r6, PikiIconTextureResTIMG__Q22og6Screen@ha
+	slwi     r0, r4, 2
+	li       r5, 0
+	lwz      r12, 0(r3)
+	addi     r4, r6, PikiIconTextureResTIMG__Q22og6Screen@l
+	lwzx     r4, r4, r0
+	lwz      r12, 0x110(r12)
+	mtctr    r12
+	bctrl
 
-		.loc_0x3C:
-		  lwz       r0, 0x14(r1)
-		  mtlr      r0
-		  addi      r1, r1, 0x10
-		  blr
+lbl_80307AC8:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 		*/
 	}
 
@@ -259,43 +287,42 @@ namespace Screen {
 	CallBack_CatchPiki::~CallBack_CatchPiki(void)
 	{
 		/*
-		.loc_0x0:
-		  stwu      r1, -0x10(r1)
-		  mflr      r0
-		  stw       r0, 0x14(r1)
-		  stw       r31, 0xC(r1)
-		  mr        r31, r4
-		  stw       r30, 0x8(r1)
-		  mr.       r30, r3
-		  beq-      .loc_0x64
-		  lis       r4, 0x804E
-		  subi      r0, r4, 0x7FF8
-		  stw       r0, 0x0(r30)
-		  beq-      .loc_0x54
-		  lis       r4, 0x804D
-		  addi      r0, r4, 0x7F2C
-		  stw       r0, 0x0(r30)
-		  beq-      .loc_0x54
-		  lis       r5, 0x804D
-		  li        r4, 0
-		  addi      r0, r5, 0x7B0C
-		  stw       r0, 0x0(r30)
-		  bl        0x109A60
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_80307B3C
+	lis      r4, __vt__Q32og6Screen18CallBack_CatchPiki@ha
+	addi     r0, r4, __vt__Q32og6Screen18CallBack_CatchPiki@l
+	stw      r0, 0(r30)
+	beq      lbl_80307B2C
+	lis      r4, __vt__Q29P2DScreen12CallBackNode@ha
+	addi     r0, r4, __vt__Q29P2DScreen12CallBackNode@l
+	stw      r0, 0(r30)
+	beq      lbl_80307B2C
+	lis      r5, __vt__Q29P2DScreen4Node@ha
+	li       r4, 0
+	addi     r0, r5, __vt__Q29P2DScreen4Node@l
+	stw      r0, 0(r30)
+	bl       __dt__5CNodeFv
 
-		.loc_0x54:
-		  extsh.    r0, r31
-		  ble-      .loc_0x64
-		  mr        r3, r30
-		  bl        -0x2E3A84
+lbl_80307B2C:
+	extsh.   r0, r31
+	ble      lbl_80307B3C
+	mr       r3, r30
+	bl       __dl__FPv
 
-		.loc_0x64:
-		  lwz       r0, 0x14(r1)
-		  mr        r3, r30
-		  lwz       r31, 0xC(r1)
-		  lwz       r30, 0x8(r1)
-		  mtlr      r0
-		  addi      r1, r1, 0x10
-		  blr
+lbl_80307B3C:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 		*/
 	}
 } // namespace Screen

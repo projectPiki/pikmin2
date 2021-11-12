@@ -1,6 +1,149 @@
 #include "types.h"
 
 /*
+    Generated from dpostproc
+
+    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
+    .4byte "__sinit_object-actor_cpp"
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global lbl_8049F5B0
+    lbl_8049F5B0:
+        .4byte 0x00000000
+        .4byte 0x00000058
+        .4byte 0x00000000
+    .global lbl_8049F5BC
+    lbl_8049F5BC:
+        .4byte 0x00000000
+        .4byte 0x00000060
+        .4byte 0x00000000
+    .global lbl_8049F5C8
+    lbl_8049F5C8:
+        .4byte 0x00000000
+        .4byte 0x0000007C
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000074
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000070
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000068
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000064
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x0000006C
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000084
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000080
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000088
+        .4byte 0x00000000
+    .global __vt__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION_FRAME_
+    __vt__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION_FRAME_:
+        .4byte 0
+        .4byte 0
+        .4byte
+   __cl__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION_FRAME_CFfPQ27JStudio8TAdaptor
+        .4byte
+   __dt__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION_FRAME_Fv
+    .global __vt__Q214JStudio_JStage14TAdaptor_actor
+    __vt__Q214JStudio_JStage14TAdaptor_actor:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q214JStudio_JStage14TAdaptor_actorFv
+        .4byte
+   adaptor_do_prepare__Q214JStudio_JStage14TAdaptor_actorFPCQ27JStudio7TObject
+        .4byte
+   adaptor_do_begin__Q214JStudio_JStage14TAdaptor_actorFPCQ27JStudio7TObject
+        .4byte
+   adaptor_do_end__Q214JStudio_JStage14TAdaptor_actorFPCQ27JStudio7TObject
+        .4byte
+   adaptor_do_update__Q214JStudio_JStage14TAdaptor_actorFPCQ27JStudio7TObjectUl
+        .4byte
+   adaptor_do_data__Q214JStudio_JStage14TAdaptor_actorFPCQ27JStudio7TObjectPCvUlPCvUl
+        .4byte
+   adaptor_do_PARENT__Q214JStudio_JStage14TAdaptor_actorFQ37JStudio4data15TEOperationDataPCvUl
+        .4byte
+   adaptor_do_PARENT_NODE__Q214JStudio_JStage14TAdaptor_actorFQ37JStudio4data15TEOperationDataPCvUl
+        .4byte
+   adaptor_do_PARENT_ENABLE__Q214JStudio_JStage14TAdaptor_actorFQ37JStudio4data15TEOperationDataPCvUl
+        .4byte
+   adaptor_do_PARENT_FUNCTION__Q214JStudio_JStage14TAdaptor_actorFQ37JStudio4data15TEOperationDataPCvUl
+        .4byte
+   adaptor_do_RELATION__Q214JStudio_JStage14TAdaptor_actorFQ37JStudio4data15TEOperationDataPCvUl
+        .4byte
+   adaptor_do_RELATION_NODE__Q214JStudio_JStage14TAdaptor_actorFQ37JStudio4data15TEOperationDataPCvUl
+        .4byte
+   adaptor_do_RELATION_ENABLE__Q214JStudio_JStage14TAdaptor_actorFQ37JStudio4data15TEOperationDataPCvUl
+        .4byte
+   adaptor_do_SHAPE__Q214JStudio_JStage14TAdaptor_actorFQ37JStudio4data15TEOperationDataPCvUl
+        .4byte
+   adaptor_do_ANIMATION__Q214JStudio_JStage14TAdaptor_actorFQ37JStudio4data15TEOperationDataPCvUl
+        .4byte
+   adaptor_do_ANIMATION_MODE__Q214JStudio_JStage14TAdaptor_actorFQ37JStudio4data15TEOperationDataPCvUl
+        .4byte
+   adaptor_do_TEXTURE_ANIMATION__Q214JStudio_JStage14TAdaptor_actorFQ37JStudio4data15TEOperationDataPCvUl
+        .4byte
+   adaptor_do_TEXTURE_ANIMATION_MODE__Q214JStudio_JStage14TAdaptor_actorFQ37JStudio4data15TEOperationDataPCvUl
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+    .global
+   "__vt__Q214JStudio_JStage81TVariableValueOutput_object_<Q214JStudio_JStage14TAdaptor_actor,Q26JStage6TActor>"
+    "__vt__Q214JStudio_JStage81TVariableValueOutput_object_<Q214JStudio_JStage14TAdaptor_actor,Q26JStage6TActor>":
+        .4byte 0
+        .4byte 0
+        .4byte
+   "__cl__Q214JStudio_JStage81TVariableValueOutput_object_<Q214JStudio_JStage14TAdaptor_actor,Q26JStage6TActor>CFfPQ27JStudio8TAdaptor"
+        .4byte
+   "__dt__Q214JStudio_JStage81TVariableValueOutput_object_<Q214JStudio_JStage14TAdaptor_actor,Q26JStage6TActor>Fv"
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+
+    .section .bss  # 0x804EFC20 - 0x8051467C
+    .global saoVVOutput___Q214JStudio_JStage14TAdaptor_actor
+    saoVVOutput___Q214JStudio_JStage14TAdaptor_actor:
+        .skip 0xD0
+    .global saoVVOutput_ANIMATION_FRAME___Q214JStudio_JStage14TAdaptor_actor
+    saoVVOutput_ANIMATION_FRAME___Q214JStudio_JStage14TAdaptor_actor:
+        .skip 0x90
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_805164A8
+    lbl_805164A8:
+        .4byte 0x00000000
+        .4byte 0x00000000
+*/
+
+/*
  * --INFO--
  * Address:	80012198
  * Size:	0000C8
@@ -71,39 +214,38 @@ JStudio_JStage::TAdaptor_actor::TAdaptor_actor(const JStage::TSystem*,
 JStudio_JStage::TAdaptor_actor::~TAdaptor_actor()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x5C
-	  lis       r5, 0x804A
-	  li        r4, 0
-	  subi      r0, r5, 0x9BC
-	  stw       r0, 0x0(r30)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r3, r30
-	  li        r4, 0
-	  bl        -0x4A0C
-	  extsh.    r0, r31
-	  ble-      .loc_0x5C
-	  mr        r3, r30
-	  bl        0x11DFC
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_800122BC
+	lis      r5, __vt__Q214JStudio_JStage14TAdaptor_actor@ha
+	li       r4, 0
+	addi     r0, r5, __vt__Q214JStudio_JStage14TAdaptor_actor@l
+	stw      r0, 0(r30)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	mr       r3, r30
+	li       r4, 0
+	bl       __dt__Q27JStudio14TAdaptor_actorFv
+	extsh.   r0, r31
+	ble      lbl_800122BC
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x5C:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_800122BC:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -115,58 +257,57 @@ JStudio_JStage::TAdaptor_actor::~TAdaptor_actor()
 void JStudio_JStage::TAdaptor_actor::adaptor_do_prepare(const JStudio::TObject*)
 {
 	/*
-	.loc_0x0:
-	  lis       r4, 0x8050
-	  addi      r0, r4, 0x6AD4
-	  mr        r5, r0
-	  b         .loc_0x38
+	lis      r4, saoVVOutput___Q214JStudio_JStage14TAdaptor_actor@ha
+	addi     r0, r4, saoVVOutput___Q214JStudio_JStage14TAdaptor_actor@l
+	mr       r5, r0
+	b        lbl_80012310
 
-	.loc_0x10:
-	  mulli     r0, r0, 0x14
-	  lwz       r4, 0x4(r3)
-	  cmplwi    r5, 0
-	  add       r4, r4, r0
-	  beq-      .loc_0x2C
-	  mr        r0, r5
-	  b         .loc_0x30
+lbl_800122E8:
+	mulli    r0, r0, 0x14
+	lwz      r4, 4(r3)
+	cmplwi   r5, 0
+	add      r4, r4, r0
+	beq      lbl_80012304
+	mr       r0, r5
+	b        lbl_80012308
 
-	.loc_0x2C:
-	  subi      r0, r13, 0x78F0
+lbl_80012304:
+	addi     r0, r13, soOutput_none___Q27JStudio14TVariableValue@sda21
 
-	.loc_0x30:
-	  stw       r0, 0x10(r4)
-	  addi      r5, r5, 0x20
+lbl_80012308:
+	stw      r0, 0x10(r4)
+	addi     r5, r5, 0x20
 
-	.loc_0x38:
-	  lwz       r0, 0x4(r5)
-	  cmpwi     r0, -0x1
-	  bne+      .loc_0x10
-	  lis       r4, 0x8050
-	  addi      r0, r4, 0x6BA4
-	  mr        r5, r0
-	  b         .loc_0x7C
+lbl_80012310:
+	lwz      r0, 4(r5)
+	cmpwi    r0, -1
+	bne      lbl_800122E8
+	lis      r4,
+saoVVOutput_ANIMATION_FRAME___Q214JStudio_JStage14TAdaptor_actor@ha addi     r0,
+r4, saoVVOutput_ANIMATION_FRAME___Q214JStudio_JStage14TAdaptor_actor@l mr r5, r0
+	b        lbl_80012354
 
-	.loc_0x54:
-	  mulli     r0, r0, 0x14
-	  lwz       r4, 0x4(r3)
-	  cmplwi    r5, 0
-	  add       r4, r4, r0
-	  beq-      .loc_0x70
-	  mr        r0, r5
-	  b         .loc_0x74
+lbl_8001232C:
+	mulli    r0, r0, 0x14
+	lwz      r4, 4(r3)
+	cmplwi   r5, 0
+	add      r4, r4, r0
+	beq      lbl_80012348
+	mr       r0, r5
+	b        lbl_8001234C
 
-	.loc_0x70:
-	  subi      r0, r13, 0x78F0
+lbl_80012348:
+	addi     r0, r13, soOutput_none___Q27JStudio14TVariableValue@sda21
 
-	.loc_0x74:
-	  stw       r0, 0x10(r4)
-	  addi      r5, r5, 0x30
+lbl_8001234C:
+	stw      r0, 0x10(r4)
+	addi     r5, r5, 0x30
 
-	.loc_0x7C:
-	  lwz       r0, 0x4(r5)
-	  cmpwi     r0, -0x1
-	  bne+      .loc_0x54
-	  blr
+lbl_80012354:
+	lwz      r0, 4(r5)
+	cmpwi    r0, -1
+	bne      lbl_8001232C
+	blr
 	*/
 }
 
@@ -178,91 +319,92 @@ void JStudio_JStage::TAdaptor_actor::adaptor_do_prepare(const JStudio::TObject*)
 void JStudio_JStage::TAdaptor_actor::adaptor_do_begin(const JStudio::TObject*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r3
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  stw       r28, 0x10(r1)
-	  mr        r28, r4
-	  lwz       r29, 0x128(r3)
-	  lwz       r12, 0x0(r29)
-	  mr        r3, r29
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r12, 0x0(r29)
-	  ori       r4, r3, 0x1
-	  mr        r3, r29
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r4, 0x14(r28)
-	  mr        r3, r31
-	  bl        0x6AC
-	  lis       r4, 0x8050
-	  lis       r3, 0x8001
-	  addi      r0, r4, 0x6AD4
-	  li        r29, 0
-	  mr        r28, r0
-	  subi      r30, r3, 0x2F50
-	  b         .loc_0xAC
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r3
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	stw      r28, 0x10(r1)
+	mr       r28, r4
+	lwz      r29, 0x128(r3)
+	lwz      r12, 0(r29)
+	mr       r3, r29
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	lwz      r12, 0(r29)
+	ori      r4, r3, 1
+	mr       r3, r29
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r4, 0x14(r28)
+	mr       r3, r31
+	bl getJSG_SRT___Q214JStudio_JStage14TAdaptor_actorFPCQ27JStudio8TControl lis
+r4, saoVVOutput___Q214JStudio_JStage14TAdaptor_actor@ha lis      r3,
+update_immediate___Q27JStudio14TVariableValueFPQ27JStudio14TVariableValued@ha
+	addi     r0, r4, saoVVOutput___Q214JStudio_JStage14TAdaptor_actor@l
+	li       r29, 0
+	mr       r28, r0
+	addi     r30, r3,
+update_immediate___Q27JStudio14TVariableValueFPQ27JStudio14TVariableValued@l b
+lbl_80012410
 
-	.loc_0x7C:
-	  lwz       r3, 0x128(r31)
-	  addi      r12, r28, 0x14
-	  bl        0xAF73C
-	  nop
-	  lwz       r0, 0x4(r28)
-	  addi      r28, r28, 0x20
-	  lwz       r3, 0x4(r31)
-	  mulli     r0, r0, 0x14
-	  add       r3, r3, r0
-	  stw       r30, 0x8(r3)
-	  stw       r29, 0x4(r3)
-	  stfs      f1, 0xC(r3)
+lbl_800123E0:
+	lwz      r3, 0x128(r31)
+	addi     r12, r28, 0x14
+	bl       __ptmf_scall
+	nop
+	lwz      r0, 4(r28)
+	addi     r28, r28, 0x20
+	lwz      r3, 4(r31)
+	mulli    r0, r0, 0x14
+	add      r3, r3, r0
+	stw      r30, 8(r3)
+	stw      r29, 4(r3)
+	stfs     f1, 0xc(r3)
 
-	.loc_0xAC:
-	  lwz       r0, 0x4(r28)
-	  cmpwi     r0, -0x1
-	  bne+      .loc_0x7C
-	  lis       r4, 0x8050
-	  lis       r3, 0x8001
-	  addi      r0, r4, 0x6BA4
-	  li        r30, 0
-	  mr        r28, r0
-	  subi      r29, r3, 0x2F50
-	  b         .loc_0x104
+lbl_80012410:
+	lwz      r0, 4(r28)
+	cmpwi    r0, -1
+	bne      lbl_800123E0
+	lis      r4,
+saoVVOutput_ANIMATION_FRAME___Q214JStudio_JStage14TAdaptor_actor@ha lis      r3,
+update_immediate___Q27JStudio14TVariableValueFPQ27JStudio14TVariableValued@ha
+	addi     r0, r4,
+saoVVOutput_ANIMATION_FRAME___Q214JStudio_JStage14TAdaptor_actor@l li       r30,
+0 mr       r28, r0 addi     r29, r3,
+update_immediate___Q27JStudio14TVariableValueFPQ27JStudio14TVariableValued@l b
+lbl_80012468
 
-	.loc_0xD4:
-	  lwz       r3, 0x128(r31)
-	  addi      r12, r28, 0x18
-	  bl        0xAF6E4
-	  nop
-	  lwz       r0, 0x4(r28)
-	  addi      r28, r28, 0x30
-	  lwz       r3, 0x4(r31)
-	  mulli     r0, r0, 0x14
-	  add       r3, r3, r0
-	  stw       r29, 0x8(r3)
-	  stw       r30, 0x4(r3)
-	  stfs      f1, 0xC(r3)
+lbl_80012438:
+	lwz      r3, 0x128(r31)
+	addi     r12, r28, 0x18
+	bl       __ptmf_scall
+	nop
+	lwz      r0, 4(r28)
+	addi     r28, r28, 0x30
+	lwz      r3, 4(r31)
+	mulli    r0, r0, 0x14
+	add      r3, r3, r0
+	stw      r29, 8(r3)
+	stw      r30, 4(r3)
+	stfs     f1, 0xc(r3)
 
-	.loc_0x104:
-	  lwz       r0, 0x4(r28)
-	  cmpwi     r0, -0x1
-	  bne+      .loc_0xD4
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80012468:
+	lwz      r0, 4(r28)
+	cmpwi    r0, -1
+	bne      lbl_80012438
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -274,28 +416,27 @@ void JStudio_JStage::TAdaptor_actor::adaptor_do_begin(const JStudio::TObject*)
 void JStudio_JStage::TAdaptor_actor::adaptor_do_end(const JStudio::TObject*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  lwz       r31, 0x128(r3)
-	  lwz       r12, 0x0(r31)
-	  mr        r3, r31
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r12, 0x0(r31)
-	  rlwinm    r4,r3,0,0,30
-	  mr        r3, r31
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	lwz      r31, 0x128(r3)
+	lwz      r12, 0(r31)
+	mr       r3, r31
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	lwz      r12, 0(r31)
+	rlwinm   r4, r3, 0, 0, 0x1e
+	mr       r3, r31
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -799,117 +940,110 @@ void JStudio_JStage::TAdaptor_actor::setJSG_ID_(
 void JStudio_JStage::TAdaptor_actor::setJSG_SRT_(const JStudio::TControl*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x90(r1)
-	  mflr      r0
-	  lis       r5, 0x8047
-	  stw       r0, 0x94(r1)
-	  addi      r5, r5, 0x3350
-	  stw       r31, 0x8C(r1)
-	  mr        r31, r4
-	  addi      r4, r1, 0x5C
-	  stw       r30, 0x88(r1)
-	  mr        r30, r3
-	  bl        -0x55F0
-	  lis       r3, 0x8047
-	  addi      r4, r1, 0x68
-	  addi      r5, r3, 0x335C
-	  mr        r3, r30
-	  bl        -0x5604
-	  lis       r4, 0x8047
-	  mr        r3, r30
-	  addi      r5, r4, 0x3368
-	  addi      r4, r1, 0x74
-	  bl        -0x5618
-	  lbz       r0, 0x140(r30)
-	  cmplwi    r0, 0
-	  bne-      .loc_0xB0
-	  lbz       r0, 0x74(r31)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x74
-	  addi      r0, r1, 0x5C
-	  b         .loc_0xA8
+	stwu     r1, -0x90(r1)
+	mflr     r0
+	lis      r5,
+sauVariableValue_3_TRANSLATION_XYZ__Q27JStudio14TAdaptor_actor@ha stw      r0,
+0x94(r1) addi     r5, r5,
+sauVariableValue_3_TRANSLATION_XYZ__Q27JStudio14TAdaptor_actor@l stw      r31,
+0x8c(r1) mr       r31, r4 addi     r4, r1, 0x5c stw      r30, 0x88(r1) mr r30,
+r3 bl       adaptor_getVariableValue_Vec__Q27JStudio8TAdaptorCFP3VecPCUl lis r3,
+sauVariableValue_3_ROTATION_XYZ__Q27JStudio14TAdaptor_actor@ha addi     r4, r1,
+0x68 addi     r5, r3,
+sauVariableValue_3_ROTATION_XYZ__Q27JStudio14TAdaptor_actor@l mr       r3, r30
+	bl       adaptor_getVariableValue_Vec__Q27JStudio8TAdaptorCFP3VecPCUl
+	lis      r4, sauVariableValue_3_SCALING_XYZ__Q27JStudio14TAdaptor_actor@ha
+	mr       r3, r30
+	addi     r5, r4,
+sauVariableValue_3_SCALING_XYZ__Q27JStudio14TAdaptor_actor@l addi     r4, r1,
+0x74 bl       adaptor_getVariableValue_Vec__Q27JStudio8TAdaptorCFP3VecPCUl lbz
+r0, 0x140(r30) cmplwi   r0, 0 bne      lbl_800129A4 lbz      r0, 0x74(r31)
+	cmplwi   r0, 0
+	bne      lbl_80012968
+	addi     r0, r1, 0x5c
+	b        lbl_8001299C
 
-	.loc_0x74:
-	  addi      r3, r31, 0x98
-	  addi      r4, r1, 0x5C
-	  addi      r5, r1, 0x38
-	  bl        0xD8264
-	  lfs       f1, 0x6C(r1)
-	  addi      r0, r1, 0x38
-	  lfs       f0, 0x90(r31)
-	  lfs       f2, 0x68(r1)
-	  fadds     f1, f1, f0
-	  lfs       f0, 0x70(r1)
-	  stfs      f2, 0x44(r1)
-	  stfs      f1, 0x48(r1)
-	  stfs      f0, 0x4C(r1)
+lbl_80012968:
+	addi     r3, r31, 0x98
+	addi     r4, r1, 0x5c
+	addi     r5, r1, 0x38
+	bl       PSMTXMultVec
+	lfs      f1, 0x6c(r1)
+	addi     r0, r1, 0x38
+	lfs      f0, 0x90(r31)
+	lfs      f2, 0x68(r1)
+	fadds    f1, f1, f0
+	lfs      f0, 0x70(r1)
+	stfs     f2, 0x44(r1)
+	stfs     f1, 0x48(r1)
+	stfs     f0, 0x4c(r1)
 
-	.loc_0xA8:
-	  mr        r31, r0
-	  b         .loc_0x118
+lbl_8001299C:
+	mr       r31, r0
+	b        lbl_80012A0C
 
-	.loc_0xB0:
-	  lwz       r0, 0x134(r30)
-	  addi      r31, r1, 0x5C
-	  cmpwi     r0, 0x1
-	  beq-      .loc_0x118
-	  bge-      .loc_0x118
-	  cmpwi     r0, 0
-	  bge-      .loc_0xD0
-	  b         .loc_0x118
+lbl_800129A4:
+	lwz      r0, 0x134(r30)
+	addi     r31, r1, 0x5c
+	cmpwi    r0, 1
+	beq      lbl_80012A0C
+	bge      lbl_80012A0C
+	cmpwi    r0, 0
+	bge      lbl_800129C4
+	b        lbl_80012A0C
 
-	.loc_0xD0:
-	  lwz       r5, 0x138(r30)
-	  mr        r4, r31
-	  lwz       r6, 0x13C(r30)
-	  addi      r3, r1, 0x8
-	  bl        -0xC08
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0xF4
-	  li        r0, 0
-	  b         .loc_0x10C
+lbl_800129C4:
+	lwz      r5, 0x138(r30)
+	mr       r4, r31
+	lwz      r6, 0x13c(r30)
+	addi     r3, r1, 8
+	bl
+transform_toGlobalFromLocal__14JStudio_JStageFPA4_fRCQ37JStudio8TControl39TTransform_translation_rotation_scalingPCQ26JStage7TObjectUl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_800129E8
+	li       r0, 0
+	b        lbl_80012A00
 
-	.loc_0xF4:
-	  addi      r3, r1, 0x50
-	  addi      r4, r1, 0x44
-	  addi      r5, r1, 0x38
-	  addi      r6, r1, 0x8
-	  bl        -0x1884
-	  li        r0, 0x1
+lbl_800129E8:
+	addi     r3, r1, 0x50
+	addi     r4, r1, 0x44
+	addi     r5, r1, 0x38
+	addi     r6, r1, 8
+	bl       getFromTransformation_SRxyzT__Q27JStudio4mathFP3VecP3VecP3VecPA4_Cf
+	li       r0, 1
 
-	.loc_0x10C:
-	  rlwinm.   r0,r0,0,24,31
-	  beq-      .loc_0x160
-	  addi      r31, r1, 0x38
+lbl_80012A00:
+	clrlwi.  r0, r0, 0x18
+	beq      lbl_80012A54
+	addi     r31, r1, 0x38
 
-	.loc_0x118:
-	  lwz       r3, 0x128(r30)
-	  mr        r4, r31
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x40(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x128(r30)
-	  addi      r4, r31, 0xC
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x50(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x128(r30)
-	  addi      r4, r31, 0x18
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x48(r12)
-	  mtctr     r12
-	  bctrl
+lbl_80012A0C:
+	lwz      r3, 0x128(r30)
+	mr       r4, r31
+	lwz      r12, 0(r3)
+	lwz      r12, 0x40(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 0x128(r30)
+	addi     r4, r31, 0xc
+	lwz      r12, 0(r3)
+	lwz      r12, 0x50(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 0x128(r30)
+	addi     r4, r31, 0x18
+	lwz      r12, 0(r3)
+	lwz      r12, 0x48(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x160:
-	  lwz       r0, 0x94(r1)
-	  lwz       r31, 0x8C(r1)
-	  lwz       r30, 0x88(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x90
-	  blr
+lbl_80012A54:
+	lwz      r0, 0x94(r1)
+	lwz      r31, 0x8c(r1)
+	lwz      r30, 0x88(r1)
+	mtlr     r0
+	addi     r1, r1, 0x90
+	blr
 	*/
 }
 
@@ -921,118 +1055,116 @@ void JStudio_JStage::TAdaptor_actor::setJSG_SRT_(const JStudio::TControl*)
 void JStudio_JStage::TAdaptor_actor::getJSG_SRT_(const JStudio::TControl*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x90(r1)
-	  mflr      r0
-	  stw       r0, 0x94(r1)
-	  stw       r31, 0x8C(r1)
-	  mr        r31, r4
-	  addi      r4, r1, 0x5C
-	  stw       r30, 0x88(r1)
-	  mr        r30, r3
-	  lwz       r3, 0x128(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x3C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x128(r30)
-	  addi      r4, r1, 0x68
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x4C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x128(r30)
-	  addi      r4, r1, 0x74
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x44(r12)
-	  mtctr     r12
-	  bctrl
-	  lbz       r0, 0x140(r30)
-	  cmplwi    r0, 0
-	  bne-      .loc_0xC0
-	  lbz       r0, 0x75(r31)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x84
-	  addi      r0, r1, 0x5C
-	  b         .loc_0xB8
+	stwu     r1, -0x90(r1)
+	mflr     r0
+	stw      r0, 0x94(r1)
+	stw      r31, 0x8c(r1)
+	mr       r31, r4
+	addi     r4, r1, 0x5c
+	stw      r30, 0x88(r1)
+	mr       r30, r3
+	lwz      r3, 0x128(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x3c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 0x128(r30)
+	addi     r4, r1, 0x68
+	lwz      r12, 0(r3)
+	lwz      r12, 0x4c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 0x128(r30)
+	addi     r4, r1, 0x74
+	lwz      r12, 0(r3)
+	lwz      r12, 0x44(r12)
+	mtctr    r12
+	bctrl
+	lbz      r0, 0x140(r30)
+	cmplwi   r0, 0
+	bne      lbl_80012B2C
+	lbz      r0, 0x75(r31)
+	cmplwi   r0, 0
+	bne      lbl_80012AF0
+	addi     r0, r1, 0x5c
+	b        lbl_80012B24
 
-	.loc_0x84:
-	  addi      r3, r31, 0xC8
-	  addi      r4, r1, 0x5C
-	  addi      r5, r1, 0x38
-	  bl        0xD80DC
-	  lfs       f1, 0x6C(r1)
-	  addi      r0, r1, 0x38
-	  lfs       f0, 0x94(r31)
-	  lfs       f2, 0x68(r1)
-	  fadds     f1, f1, f0
-	  lfs       f0, 0x70(r1)
-	  stfs      f2, 0x44(r1)
-	  stfs      f1, 0x48(r1)
-	  stfs      f0, 0x4C(r1)
+lbl_80012AF0:
+	addi     r3, r31, 0xc8
+	addi     r4, r1, 0x5c
+	addi     r5, r1, 0x38
+	bl       PSMTXMultVec
+	lfs      f1, 0x6c(r1)
+	addi     r0, r1, 0x38
+	lfs      f0, 0x94(r31)
+	lfs      f2, 0x68(r1)
+	fadds    f1, f1, f0
+	lfs      f0, 0x70(r1)
+	stfs     f2, 0x44(r1)
+	stfs     f1, 0x48(r1)
+	stfs     f0, 0x4c(r1)
 
-	.loc_0xB8:
-	  mr        r31, r0
-	  b         .loc_0x128
+lbl_80012B24:
+	mr       r31, r0
+	b        lbl_80012B94
 
-	.loc_0xC0:
-	  lwz       r0, 0x134(r30)
-	  addi      r31, r1, 0x5C
-	  cmpwi     r0, 0x1
-	  beq-      .loc_0x128
-	  bge-      .loc_0x128
-	  cmpwi     r0, 0
-	  bge-      .loc_0xE0
-	  b         .loc_0x128
+lbl_80012B2C:
+	lwz      r0, 0x134(r30)
+	addi     r31, r1, 0x5c
+	cmpwi    r0, 1
+	beq      lbl_80012B94
+	bge      lbl_80012B94
+	cmpwi    r0, 0
+	bge      lbl_80012B4C
+	b        lbl_80012B94
 
-	.loc_0xE0:
-	  lwz       r5, 0x138(r30)
-	  mr        r4, r31
-	  lwz       r6, 0x13C(r30)
-	  addi      r3, r1, 0x8
-	  bl        -0xC60
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x104
-	  li        r0, 0
-	  b         .loc_0x11C
+lbl_80012B4C:
+	lwz      r5, 0x138(r30)
+	mr       r4, r31
+	lwz      r6, 0x13c(r30)
+	addi     r3, r1, 8
+	bl
+transform_toLocalFromGlobal__14JStudio_JStageFPA4_fRCQ37JStudio8TControl39TTransform_translation_rotation_scalingPCQ26JStage7TObjectUl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_80012B70
+	li       r0, 0
+	b        lbl_80012B88
 
-	.loc_0x104:
-	  addi      r3, r1, 0x50
-	  addi      r4, r1, 0x44
-	  addi      r5, r1, 0x38
-	  addi      r6, r1, 0x8
-	  bl        -0x1A0C
-	  li        r0, 0x1
+lbl_80012B70:
+	addi     r3, r1, 0x50
+	addi     r4, r1, 0x44
+	addi     r5, r1, 0x38
+	addi     r6, r1, 8
+	bl       getFromTransformation_SRxyzT__Q27JStudio4mathFP3VecP3VecP3VecPA4_Cf
+	li       r0, 1
 
-	.loc_0x11C:
-	  rlwinm.   r0,r0,0,24,31
-	  beq-      .loc_0x164
-	  addi      r31, r1, 0x38
+lbl_80012B88:
+	clrlwi.  r0, r0, 0x18
+	beq      lbl_80012BD0
+	addi     r31, r1, 0x38
 
-	.loc_0x128:
-	  lis       r4, 0x8047
-	  mr        r3, r30
-	  addi      r4, r4, 0x3350
-	  mr        r5, r31
-	  bl        -0x58E8
-	  lis       r4, 0x8047
-	  mr        r3, r30
-	  addi      r4, r4, 0x335C
-	  addi      r5, r31, 0xC
-	  bl        -0x58FC
-	  lis       r4, 0x8047
-	  mr        r3, r30
-	  addi      r4, r4, 0x3368
-	  addi      r5, r31, 0x18
-	  bl        -0x5910
+lbl_80012B94:
+	lis      r4,
+sauVariableValue_3_TRANSLATION_XYZ__Q27JStudio14TAdaptor_actor@ha mr       r3,
+r30 addi     r4, r4,
+sauVariableValue_3_TRANSLATION_XYZ__Q27JStudio14TAdaptor_actor@l mr       r5,
+r31 bl       adaptor_setVariableValue_Vec__Q27JStudio8TAdaptorFPCUlRC3Vec lis
+r4, sauVariableValue_3_ROTATION_XYZ__Q27JStudio14TAdaptor_actor@ha mr       r3,
+r30 addi     r4, r4,
+sauVariableValue_3_ROTATION_XYZ__Q27JStudio14TAdaptor_actor@l addi     r5, r31,
+0xc bl       adaptor_setVariableValue_Vec__Q27JStudio8TAdaptorFPCUlRC3Vec lis
+r4, sauVariableValue_3_SCALING_XYZ__Q27JStudio14TAdaptor_actor@ha mr       r3,
+r30 addi     r4, r4,
+sauVariableValue_3_SCALING_XYZ__Q27JStudio14TAdaptor_actor@l addi     r5, r31,
+0x18 bl       adaptor_setVariableValue_Vec__Q27JStudio8TAdaptorFPCUlRC3Vec
 
-	.loc_0x164:
-	  lwz       r0, 0x94(r1)
-	  lwz       r31, 0x8C(r1)
-	  lwz       r30, 0x88(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x90
-	  blr
+lbl_80012BD0:
+	lwz      r0, 0x94(r1)
+	lwz      r31, 0x8c(r1)
+	lwz      r30, 0x88(r1)
+	mtlr     r0
+	addi     r1, r1, 0x90
+	blr
 	*/
 }
 
@@ -1159,251 +1291,232 @@ void JStudio_JStage::TAdaptor_actor::TVVOutput_ANIMATION_FRAME_::
 void __sinit_object - actor_cpp(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x110(r1)
-	  mflr      r0
-	  lis       r3, 0x804A
-	  lis       r4, 0x804A
-	  stw       r0, 0x114(r1)
-	  lis       r5, 0x804A
-	  lis       r12, 0x804F
-	  li        r11, 0x1
-	  stmw      r25, 0xF4(r1)
-	  subi      r31, r3, 0xA50
-	  subi      r25, r4, 0xB68
-	  lis       r3, 0x8050
-	  subi      r30, r12, 0x218
-	  subi      r12, r5, 0x91C
-	  lis       r4, 0x8001
-	  addi      r4, r4, 0x30FC
-	  addi      r5, r30, 0
-	  stwu      r25, 0x6AD4(r3)
-	  lwz       r10, 0x24(r31)
-	  lwz       r9, 0x28(r31)
-	  lwz       r8, 0x2C(r31)
-	  lwz       r7, 0x30(r31)
-	  lwz       r6, 0x34(r31)
-	  lwz       r0, 0x38(r31)
-	  stw       r25, 0x34(r1)
-	  stw       r12, 0x34(r1)
-	  stw       r11, 0x38(r1)
-	  stw       r10, 0x3C(r1)
-	  stw       r9, 0x40(r1)
-	  stw       r8, 0x44(r1)
-	  stw       r7, 0x48(r1)
-	  stw       r6, 0x4C(r1)
-	  stw       r0, 0x50(r1)
-	  stw       r12, 0x0(r3)
-	  stw       r11, 0x4(r3)
-	  stw       r10, 0x8(r3)
-	  stw       r9, 0xC(r3)
-	  stw       r8, 0x10(r3)
-	  stw       r7, 0x14(r3)
-	  stw       r6, 0x18(r3)
-	  stw       r0, 0x1C(r3)
-	  bl        0xAE930
-	  lis       r4, 0x804A
-	  addi      r3, r1, 0x34
-	  subi      r0, r4, 0x91C
-	  li        r4, 0
-	  stw       r0, 0x34(r1)
-	  bl        -0x5D80
-	  lis       r4, 0x804A
-	  lis       r3, 0x804A
-	  subi      r11, r4, 0xB68
-	  li        r9, -0x1
-	  stw       r11, 0x14(r1)
-	  subi      r10, r3, 0x91C
-	  lis       r4, 0x8048
-	  lis       r3, 0x8050
-	  stw       r10, 0x14(r1)
-	  subi      r8, r4, 0x60F0
-	  lis       r4, 0x8001
-	  lwz       r7, 0x0(r8)
-	  stw       r9, 0x18(r1)
-	  addi      r3, r3, 0x6AD4
-	  addi      r4, r4, 0x30FC
-	  addi      r5, r30, 0xC
-	  lwz       r6, 0x4(r8)
-	  stw       r7, 0x1C(r1)
-	  stw       r6, 0x20(r1)
-	  lwz       r0, 0x8(r8)
-	  stwu      r11, 0x20(r3)
-	  stw       r0, 0x24(r1)
-	  stw       r7, 0x28(r1)
-	  stw       r6, 0x2C(r1)
-	  stw       r0, 0x30(r1)
-	  stw       r10, 0x0(r3)
-	  stw       r9, 0x4(r3)
-	  stw       r7, 0x8(r3)
-	  stw       r6, 0xC(r3)
-	  stw       r0, 0x10(r3)
-	  stw       r7, 0x14(r3)
-	  stw       r6, 0x18(r3)
-	  stw       r0, 0x1C(r3)
-	  bl        0xAE890
-	  lis       r4, 0x804A
-	  addi      r3, r1, 0x14
-	  subi      r0, r4, 0x91C
-	  li        r4, 0
-	  stw       r0, 0x14(r1)
-	  bl        -0x5E20
-	  lis       r4, 0x804A
-	  lwz       r25, 0x3C(r31)
-	  subi      r29, r4, 0xB68
-	  lis       r3, 0x8050
-	  lwz       r12, 0x40(r31)
-	  li        r27, 0
-	  stwu      r29, 0x6BA4(r3)
-	  li        r26, 0x12D
-	  lwz       r11, 0x44(r31)
-	  addi      r28, r31, 0x84
-	  lwz       r10, 0x48(r31)
-	  lis       r4, 0x8001
-	  lwz       r9, 0x4C(r31)
-	  addi      r4, r4, 0x2CCC
-	  lwz       r8, 0x50(r31)
-	  addi      r5, r30, 0x18
-	  lwz       r7, 0x54(r31)
-	  lwz       r6, 0x58(r31)
-	  lwz       r0, 0x5C(r31)
-	  stw       r29, 0xB4(r1)
-	  stw       r28, 0xB4(r1)
-	  stw       r27, 0xB8(r1)
-	  stw       r26, 0xBC(r1)
-	  stw       r25, 0xC0(r1)
-	  stw       r12, 0xC4(r1)
-	  stw       r11, 0xC8(r1)
-	  stw       r10, 0xCC(r1)
-	  stw       r9, 0xD0(r1)
-	  stw       r8, 0xD4(r1)
-	  stw       r7, 0xD8(r1)
-	  stw       r6, 0xDC(r1)
-	  stw       r0, 0xE0(r1)
-	  stw       r28, 0x0(r3)
-	  stw       r27, 0x4(r3)
-	  stw       r26, 0x8(r3)
-	  stw       r25, 0xC(r3)
-	  stw       r12, 0x10(r3)
-	  stw       r11, 0x14(r3)
-	  stw       r10, 0x18(r3)
-	  stw       r9, 0x1C(r3)
-	  stw       r8, 0x20(r3)
-	  stw       r7, 0x24(r3)
-	  stw       r6, 0x28(r3)
-	  stw       r0, 0x2C(r3)
-	  bl        0xAE7C4
-	  mr        r0, r28
-	  addi      r3, r1, 0xB4
-	  stw       r0, 0xB4(r1)
-	  li        r4, 0
-	  bl        -0x5EE8
-	  lis       r4, 0x804A
-	  lis       r3, 0x8050
-	  subi      r25, r4, 0xB68
-	  lwz       r29, 0x60(r31)
-	  addi      r3, r3, 0x6BA4
-	  lwz       r12, 0x64(r31)
-	  stwu      r25, 0x30(r3)
-	  li        r27, 0x2
-	  lwz       r11, 0x68(r31)
-	  li        r28, 0x131
-	  lwz       r10, 0x6C(r31)
-	  addi      r26, r31, 0x84
-	  lwz       r9, 0x70(r31)
-	  lis       r4, 0x8001
-	  lwz       r8, 0x74(r31)
-	  addi      r4, r4, 0x2CCC
-	  lwz       r7, 0x78(r31)
-	  addi      r5, r30, 0x24
-	  lwz       r6, 0x7C(r31)
-	  lwz       r0, 0x80(r31)
-	  stw       r25, 0x84(r1)
-	  stw       r26, 0x84(r1)
-	  stw       r27, 0x88(r1)
-	  stw       r28, 0x8C(r1)
-	  stw       r29, 0x90(r1)
-	  stw       r12, 0x94(r1)
-	  stw       r11, 0x98(r1)
-	  stw       r10, 0x9C(r1)
-	  stw       r9, 0xA0(r1)
-	  stw       r8, 0xA4(r1)
-	  stw       r7, 0xA8(r1)
-	  stw       r6, 0xAC(r1)
-	  stw       r0, 0xB0(r1)
-	  stw       r26, 0x0(r3)
-	  stw       r27, 0x4(r3)
-	  stw       r28, 0x8(r3)
-	  stw       r29, 0xC(r3)
-	  stw       r12, 0x10(r3)
-	  stw       r11, 0x14(r3)
-	  stw       r10, 0x18(r3)
-	  stw       r9, 0x1C(r3)
-	  stw       r8, 0x20(r3)
-	  stw       r7, 0x24(r3)
-	  stw       r6, 0x28(r3)
-	  stw       r0, 0x2C(r3)
-	  bl        0xAE6F8
-	  mr        r0, r26
-	  addi      r3, r1, 0x84
-	  stw       r0, 0x84(r1)
-	  li        r4, 0
-	  bl        -0x5FB4
-	  lis       r3, 0x804A
-	  li        r10, -0x1
-	  subi      r12, r3, 0xB68
-	  li        r9, 0
-	  stw       r12, 0x54(r1)
-	  mr        r11, r26
-	  lis       r4, 0x8048
-	  lis       r3, 0x8050
-	  stw       r11, 0x54(r1)
-	  subi      r8, r4, 0x60F0
-	  lwz       r7, 0x0(r8)
-	  lis       r4, 0x8001
-	  stw       r10, 0x58(r1)
-	  addi      r3, r3, 0x6BA4
-	  addi      r5, r30, 0x30
-	  addi      r4, r4, 0x2CCC
-	  stw       r9, 0x5C(r1)
-	  lwz       r6, 0x4(r8)
-	  stw       r7, 0x8(r1)
-	  stw       r7, 0x60(r1)
-	  stw       r6, 0x64(r1)
-	  lwz       r0, 0x8(r8)
-	  stw       r6, 0xC(r1)
-	  stwu      r12, 0x60(r3)
-	  stw       r0, 0x68(r1)
-	  stw       r0, 0x10(r1)
-	  stw       r7, 0x6C(r1)
-	  stw       r6, 0x70(r1)
-	  stw       r0, 0x74(r1)
-	  stw       r7, 0x78(r1)
-	  stw       r6, 0x7C(r1)
-	  stw       r0, 0x80(r1)
-	  stw       r11, 0x0(r3)
-	  stw       r10, 0x4(r3)
-	  stw       r9, 0x8(r3)
-	  stw       r7, 0xC(r3)
-	  stw       r6, 0x10(r3)
-	  stw       r0, 0x14(r3)
-	  stw       r7, 0x18(r3)
-	  stw       r6, 0x1C(r3)
-	  stw       r0, 0x20(r3)
-	  stw       r7, 0x24(r3)
-	  stw       r6, 0x28(r3)
-	  stw       r0, 0x2C(r3)
-	  bl        0xAE630
-	  mr        r0, r26
-	  addi      r3, r1, 0x54
-	  stw       r0, 0x54(r1)
-	  li        r4, 0
-	  bl        -0x607C
-	  lmw       r25, 0xF4(r1)
-	  lwz       r0, 0x114(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x110
-	  blr
+	stwu     r1, -0x110(r1)
+	mflr     r0
+	lis      r3, lbl_8049F5B0@ha
+	lis      r4, __vt__Q37JStudio14TVariableValue7TOutput@ha
+	stw      r0, 0x114(r1)
+	lis      r5,
+	"__vt__Q214JStudio_JStage81TVariableValueOutput_object_<Q214JStudio_JStage14TAdaptor_actor,Q26JStage6TActor>"@ha
+	lis      r12, lbl_804EFDE8@ha
+	li       r11, 1
+	stmw     r25, 0xf4(r1)
+	addi     r31, r3, lbl_8049F5B0@l
+	addi     r25, r4, __vt__Q37JStudio14TVariableValue7TOutput@l
+	lis      r3, saoVVOutput___Q214JStudio_JStage14TAdaptor_actor@ha
+	addi     r30, r12, lbl_804EFDE8@l
+	addi     r12, r5,
+	"__vt__Q214JStudio_JStage81TVariableValueOutput_object_<Q214JStudio_JStage14TAdaptor_actor,Q26JStage6TActor>"@l
+	lis      r4,
+	"__dt__Q214JStudio_JStage81TVariableValueOutput_object_<Q214JStudio_JStage14TAdaptor_actor,Q26JStage6TActor>Fv"@ha
+	addi     r4, r4,
+	"__dt__Q214JStudio_JStage81TVariableValueOutput_object_<Q214JStudio_JStage14TAdaptor_actor,Q26JStage6TActor>Fv"@l
+	addi     r5, r30, 0
+	stwu     r25, saoVVOutput___Q214JStudio_JStage14TAdaptor_actor@l(r3)
+	lwz      r10, 0x24(r31)
+	lwz      r9, 0x28(r31)
+	lwz      r8, 0x2c(r31)
+	lwz      r7, 0x30(r31)
+	lwz      r6, 0x34(r31)
+	lwz      r0, 0x38(r31)
+	stw      r25, 0x34(r1)
+	stw      r12, 0x34(r1)
+	stw      r11, 0x38(r1)
+	stw      r10, 0x3c(r1)
+	stw      r9, 0x40(r1)
+	stw      r8, 0x44(r1)
+	stw      r7, 0x48(r1)
+	stw      r6, 0x4c(r1)
+	stw      r0, 0x50(r1)
+	stw      r12, 0(r3)
+	stw      r11, 4(r3)
+	stw      r10, 8(r3)
+	stw      r9, 0xc(r3)
+	stw      r8, 0x10(r3)
+	stw      r7, 0x14(r3)
+	stw      r6, 0x18(r3)
+	stw      r0, 0x1c(r3)
+	bl       __register_global_object
+	lis      r4,
+	"__vt__Q214JStudio_JStage81TVariableValueOutput_object_<Q214JStudio_JStage14TAdaptor_actor,Q26JStage6TActor>"@ha
+	addi     r3, r1, 0x34
+	addi     r0, r4,
+	"__vt__Q214JStudio_JStage81TVariableValueOutput_object_<Q214JStudio_JStage14TAdaptor_actor,Q26JStage6TActor>"@l
+	li       r4, 0
+	stw      r0, 0x34(r1)
+	bl       __dt__Q37JStudio14TVariableValue7TOutputFv
+	lis      r4, __vt__Q37JStudio14TVariableValue7TOutput@ha
+	lis      r3,
+	"__vt__Q214JStudio_JStage81TVariableValueOutput_object_<Q214JStudio_JStage14TAdaptor_actor,Q26JStage6TActor>"@ha
+	addi     r11, r4, __vt__Q37JStudio14TVariableValue7TOutput@l
+	li       r9, -1
+	stw      r11, 0x14(r1)
+	addi     r10, r3,
+	"__vt__Q214JStudio_JStage81TVariableValueOutput_object_<Q214JStudio_JStage14TAdaptor_actor,Q26JStage6TActor>"@l
+	lis      r4, __ptmf_null@ha
+	lis      r3, saoVVOutput___Q214JStudio_JStage14TAdaptor_actor@ha
+	stw      r10, 0x14(r1)
+	addi     r8, r4, __ptmf_null@l
+	lis      r4,
+	"__dt__Q214JStudio_JStage81TVariableValueOutput_object_<Q214JStudio_JStage14TAdaptor_actor,Q26JStage6TActor>Fv"@ha
+	lwz      r7, 0(r8)
+	stw      r9, 0x18(r1)
+	addi     r3, r3, saoVVOutput___Q214JStudio_JStage14TAdaptor_actor@l
+	addi     r4, r4,
+	"__dt__Q214JStudio_JStage81TVariableValueOutput_object_<Q214JStudio_JStage14TAdaptor_actor,Q26JStage6TActor>Fv"@l
+	addi     r5, r30, 0xc
+	lwz      r6, 4(r8)
+	stw      r7, 0x1c(r1)
+	stw      r6, 0x20(r1)
+	lwz      r0, 8(r8)
+	stwu     r11, 0x20(r3)
+	stw      r0, 0x24(r1)
+	stw      r7, 0x28(r1)
+	stw      r6, 0x2c(r1)
+	stw      r0, 0x30(r1)
+	stw      r10, 0(r3)
+	stw      r9, 4(r3)
+	stw      r7, 8(r3)
+	stw      r6, 0xc(r3)
+	stw      r0, 0x10(r3)
+	stw      r7, 0x14(r3)
+	stw      r6, 0x18(r3)
+	stw      r0, 0x1c(r3)
+	bl       __register_global_object
+	lis      r4,
+	"__vt__Q214JStudio_JStage81TVariableValueOutput_object_<Q214JStudio_JStage14TAdaptor_actor,Q26JStage6TActor>"@ha
+	addi     r3, r1, 0x14
+	addi     r0, r4,
+	"__vt__Q214JStudio_JStage81TVariableValueOutput_object_<Q214JStudio_JStage14TAdaptor_actor,Q26JStage6TActor>"@l
+	li       r4, 0
+	stw      r0, 0x14(r1)
+	bl       __dt__Q37JStudio14TVariableValue7TOutputFv
+	lis      r4, __vt__Q37JStudio14TVariableValue7TOutput@ha
+	lwz      r25, 0x3c(r31)
+	addi     r29, r4, __vt__Q37JStudio14TVariableValue7TOutput@l
+	lis      r3,
+	saoVVOutput_ANIMATION_FRAME___Q214JStudio_JStage14TAdaptor_actor@ha lwz r12,
+	0x40(r31) li       r27, 0 stwu     r29,
+	saoVVOutput_ANIMATION_FRAME___Q214JStudio_JStage14TAdaptor_actor@l(r3) li
+	r26, 0x12d lwz      r11, 0x44(r31) addi     r28, r31, 0x84 lwz      r10,
+	0x48(r31) lis      r4,
+	__dt__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION_FRAME_Fv@ha
+	lwz      r9, 0x4c(r31)
+	addi     r4, r4,
+	__dt__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION_FRAME_Fv@l lwz
+	r8, 0x50(r31) addi     r5, r30, 0x18 lwz      r7, 0x54(r31) lwz      r6,
+	0x58(r31) lwz      r0, 0x5c(r31) stw      r29, 0xb4(r1) stw      r28,
+	0xb4(r1) stw      r27, 0xb8(r1) stw      r26, 0xbc(r1) stw      r25,
+	0xc0(r1) stw      r12, 0xc4(r1) stw      r11, 0xc8(r1) stw      r10,
+	0xcc(r1) stw      r9, 0xd0(r1) stw      r8, 0xd4(r1) stw      r7, 0xd8(r1)
+	stw      r6, 0xdc(r1)
+	stw      r0, 0xe0(r1)
+	stw      r28, 0(r3)
+	stw      r27, 4(r3)
+	stw      r26, 8(r3)
+	stw      r25, 0xc(r3)
+	stw      r12, 0x10(r3)
+	stw      r11, 0x14(r3)
+	stw      r10, 0x18(r3)
+	stw      r9, 0x1c(r3)
+	stw      r8, 0x20(r3)
+	stw      r7, 0x24(r3)
+	stw      r6, 0x28(r3)
+	stw      r0, 0x2c(r3)
+	bl       __register_global_object
+	mr       r0, r28
+	addi     r3, r1, 0xb4
+	stw      r0, 0xb4(r1)
+	li       r4, 0
+	bl       __dt__Q37JStudio14TVariableValue7TOutputFv
+	lis      r4, __vt__Q37JStudio14TVariableValue7TOutput@ha
+	lis      r3,
+	saoVVOutput_ANIMATION_FRAME___Q214JStudio_JStage14TAdaptor_actor@ha addi
+	r25, r4, __vt__Q37JStudio14TVariableValue7TOutput@l lwz      r29, 0x60(r31)
+	addi     r3, r3,
+	saoVVOutput_ANIMATION_FRAME___Q214JStudio_JStage14TAdaptor_actor@l lwz r12,
+	0x64(r31) stwu     r25, 0x30(r3) li       r27, 2 lwz      r11, 0x68(r31) li
+	r28, 0x131 lwz      r10, 0x6c(r31) addi     r26, r31, 0x84 lwz      r9,
+	0x70(r31) lis      r4,
+	__dt__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION_FRAME_Fv@ha
+	lwz      r8, 0x74(r31)
+	addi     r4, r4,
+	__dt__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION_FRAME_Fv@l lwz
+	r7, 0x78(r31) addi     r5, r30, 0x24 lwz      r6, 0x7c(r31) lwz      r0,
+	0x80(r31) stw      r25, 0x84(r1) stw      r26, 0x84(r1) stw      r27,
+	0x88(r1) stw      r28, 0x8c(r1) stw      r29, 0x90(r1) stw      r12,
+	0x94(r1) stw      r11, 0x98(r1) stw      r10, 0x9c(r1) stw      r9, 0xa0(r1)
+	stw      r8, 0xa4(r1)
+	stw      r7, 0xa8(r1)
+	stw      r6, 0xac(r1)
+	stw      r0, 0xb0(r1)
+	stw      r26, 0(r3)
+	stw      r27, 4(r3)
+	stw      r28, 8(r3)
+	stw      r29, 0xc(r3)
+	stw      r12, 0x10(r3)
+	stw      r11, 0x14(r3)
+	stw      r10, 0x18(r3)
+	stw      r9, 0x1c(r3)
+	stw      r8, 0x20(r3)
+	stw      r7, 0x24(r3)
+	stw      r6, 0x28(r3)
+	stw      r0, 0x2c(r3)
+	bl       __register_global_object
+	mr       r0, r26
+	addi     r3, r1, 0x84
+	stw      r0, 0x84(r1)
+	li       r4, 0
+	bl       __dt__Q37JStudio14TVariableValue7TOutputFv
+	lis      r3, __vt__Q37JStudio14TVariableValue7TOutput@ha
+	li       r10, -1
+	addi     r12, r3, __vt__Q37JStudio14TVariableValue7TOutput@l
+	li       r9, 0
+	stw      r12, 0x54(r1)
+	mr       r11, r26
+	lis      r4, __ptmf_null@ha
+	lis      r3,
+	saoVVOutput_ANIMATION_FRAME___Q214JStudio_JStage14TAdaptor_actor@ha stw r11,
+	0x54(r1) addi     r8, r4, __ptmf_null@l lwz      r7, 0(r8) lis      r4,
+	__dt__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION_FRAME_Fv@ha
+	stw      r10, 0x58(r1)
+	addi     r3, r3,
+	saoVVOutput_ANIMATION_FRAME___Q214JStudio_JStage14TAdaptor_actor@l addi r5,
+	r30, 0x30 addi     r4, r4,
+	__dt__Q314JStudio_JStage14TAdaptor_actor26TVVOutput_ANIMATION_FRAME_Fv@l stw
+	r9, 0x5c(r1) lwz      r6, 4(r8) stw      r7, 8(r1) stw      r7, 0x60(r1) stw
+	r6, 0x64(r1) lwz      r0, 8(r8) stw      r6, 0xc(r1) stwu     r12, 0x60(r3)
+	stw      r0, 0x68(r1)
+	stw      r0, 0x10(r1)
+	stw      r7, 0x6c(r1)
+	stw      r6, 0x70(r1)
+	stw      r0, 0x74(r1)
+	stw      r7, 0x78(r1)
+	stw      r6, 0x7c(r1)
+	stw      r0, 0x80(r1)
+	stw      r11, 0(r3)
+	stw      r10, 4(r3)
+	stw      r9, 8(r3)
+	stw      r7, 0xc(r3)
+	stw      r6, 0x10(r3)
+	stw      r0, 0x14(r3)
+	stw      r7, 0x18(r3)
+	stw      r6, 0x1c(r3)
+	stw      r0, 0x20(r3)
+	stw      r7, 0x24(r3)
+	stw      r6, 0x28(r3)
+	stw      r0, 0x2c(r3)
+	bl       __register_global_object
+	mr       r0, r26
+	addi     r3, r1, 0x54
+	stw      r0, 0x54(r1)
+	li       r4, 0
+	bl       __dt__Q37JStudio14TVariableValue7TOutputFv
+	lmw      r25, 0xf4(r1)
+	lwz      r0, 0x114(r1)
+	mtlr     r0
+	addi     r1, r1, 0x110
+	blr
 	*/
 }
 

@@ -1,6 +1,101 @@
 #include "types.h"
 
 /*
+    Generated from dpostproc
+
+    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
+    .4byte __sinit_JKRDvdRipper_cpp
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_80473688
+    lbl_80473688:
+        .4byte 0x4A4B5244
+        .4byte 0x76645269
+        .4byte 0x70706572
+        .4byte 0x2E637070
+        .4byte 0x00000000
+        .4byte 0x536F7272
+        .4byte 0x792C206E
+        .4byte 0x6F742070
+        .4byte 0x72657061
+        .4byte 0x72656420
+        .4byte 0x666F7220
+        .4byte 0x535A5020
+        .4byte 0x7265736F
+        .4byte 0x75726365
+        .4byte 0x0A000000
+        .4byte 0x3A3A3A4E
+        .4byte 0x6F742073
+        .4byte 0x7570706F
+        .4byte 0x72742053
+        .4byte 0x5A502077
+        .4byte 0x69746820
+        .4byte 0x6F666673
+        .4byte 0x65742072
+        .4byte 0x65616400
+
+    .section .bss  # 0x804EFC20 - 0x8051467C
+    .global sDvdAsyncList__12JKRDvdRipper
+    sDvdAsyncList__12JKRDvdRipper:
+        .skip 0xC
+
+    .section .sdata, "wa"  # 0x80514680 - 0x80514D80
+    .global errorRetry__12JKRDvdRipper
+    errorRetry__12JKRDvdRipper:
+        .4byte 0x01000000
+    .global sSZSBufferSize__12JKRDvdRipper
+    sSZSBufferSize__12JKRDvdRipper:
+        .4byte 0x00000400
+
+    .section .sbss # 0x80514D80 - 0x80516360
+    .global szpBuf_2
+    szpBuf_2:
+        .skip 0x4
+    .global szpEnd_2
+    szpEnd_2:
+        .skip 0x4
+    .global refBuf_2
+    refBuf_2:
+        .skip 0x4
+    .global refEnd_2
+    refEnd_2:
+        .skip 0x4
+    .global refCurrent_2
+    refCurrent_2:
+        .skip 0x4
+    .global srcOffset_2
+    srcOffset_2:
+        .skip 0x4
+    .global transLeft_2
+    transLeft_2:
+        .skip 0x4
+    .global srcLimit_2
+    srcLimit_2:
+        .skip 0x4
+    .global srcFile_2
+    srcFile_2:
+        .skip 0x4
+    .global fileOffset_2
+    fileOffset_2:
+        .skip 0x4
+    .global readCount_2
+    readCount_2:
+        .skip 0x4
+    .global maxDest_2
+    maxDest_2:
+        .skip 0x4
+    .global isInitMutex_2
+    isInitMutex_2:
+        .skip 0x4
+    .global tsPtr_2
+    tsPtr_2:
+        .skip 0x4
+    .global tsArea_2
+    tsArea_2:
+        .skip 0x8
+*/
+
+/*
  * --INFO--
  * Address:	8001F188
  * Size:	0000B4
@@ -668,227 +763,226 @@ void JKRDecompressFromDVD(JKRDvdFile*, void*, unsigned long, unsigned long,
 void decompSZS_subroutine(unsigned char*, unsigned char*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  li        r0, 0
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  li        r30, 0
-	  stw       r29, 0x14(r1)
-	  mr        r29, r4
-	  li        r4, 0
-	  lbz       r5, 0x0(r3)
-	  cmpwi     r5, 0x59
-	  bne-      .loc_0x58
-	  lbz       r5, 0x1(r3)
-	  cmpwi     r5, 0x61
-	  bne-      .loc_0x58
-	  lbz       r5, 0x2(r3)
-	  cmpwi     r5, 0x7A
-	  bne-      .loc_0x58
-	  lbz       r5, 0x3(r3)
-	  cmpwi     r5, 0x30
-	  beq-      .loc_0x60
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	li       r0, 0
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	li       r30, 0
+	stw      r29, 0x14(r1)
+	mr       r29, r4
+	li       r4, 0
+	lbz      r5, 0(r3)
+	cmpwi    r5, 0x59
+	bne      lbl_8001F968
+	lbz      r5, 1(r3)
+	cmpwi    r5, 0x61
+	bne      lbl_8001F968
+	lbz      r5, 2(r3)
+	cmpwi    r5, 0x7a
+	bne      lbl_8001F968
+	lbz      r5, 3(r3)
+	cmpwi    r5, 0x30
+	beq      lbl_8001F970
 
-	.loc_0x58:
-	  li        r3, -0x1
-	  b         .loc_0x29C
+lbl_8001F968:
+	li       r3, -1
+	b        lbl_8001FBAC
 
-	.loc_0x60:
-	  lwz       r7, -0x7814(r13)
-	  lwz       r6, 0x4(r3)
-	  lwz       r5, -0x780C(r13)
-	  sub       r6, r6, r7
-	  add       r31, r29, r6
-	  add       r5, r29, r5
-	  cmplw     r31, r5
-	  ble-      .loc_0x84
-	  mr        r31, r5
+lbl_8001F970:
+	lwz      r7, fileOffset_2@sda21(r13)
+	lwz      r6, 4(r3)
+	lwz      r5, maxDest_2@sda21(r13)
+	subf     r6, r7, r6
+	add      r31, r29, r6
+	add      r5, r29, r5
+	cmplw    r31, r5
+	ble      lbl_8001F994
+	mr       r31, r5
 
-	.loc_0x84:
-	  addi      r3, r3, 0x10
+lbl_8001F994:
+	addi     r3, r3, 0x10
 
-	.loc_0x88:
-	  cmpwi     r4, 0
-	  bne-      .loc_0xC8
-	  lwz       r0, -0x781C(r13)
-	  cmplw     r3, r0
-	  ble-      .loc_0xBC
-	  lwz       r0, -0x7820(r13)
-	  cmplwi    r0, 0
-	  beq-      .loc_0xBC
-	  bl        0x2E4
-	  cmplwi    r3, 0
-	  bne-      .loc_0xBC
-	  li        r3, -0x1
-	  b         .loc_0x29C
+lbl_8001F998:
+	cmpwi    r4, 0
+	bne      lbl_8001F9D8
+	lwz      r0, srcLimit_2@sda21(r13)
+	cmplw    r3, r0
+	ble      lbl_8001F9CC
+	lwz      r0, transLeft_2@sda21(r13)
+	cmplwi   r0, 0
+	beq      lbl_8001F9CC
+	bl       nextSrcData__FPUc2
+	cmplwi   r3, 0
+	bne      lbl_8001F9CC
+	li       r3, -1
+	b        lbl_8001FBAC
 
-	.loc_0xBC:
-	  lbz       r0, 0x0(r3)
-	  li        r4, 0x8
-	  addi      r3, r3, 0x1
+lbl_8001F9CC:
+	lbz      r0, 0(r3)
+	li       r4, 8
+	addi     r3, r3, 1
 
-	.loc_0xC8:
-	  rlwinm.   r5,r0,0,24,24
-	  beq-      .loc_0x160
-	  lwz       r6, -0x7814(r13)
-	  cmplwi    r6, 0
-	  beq-      .loc_0x134
-	  lwz       r5, -0x7810(r13)
-	  cmplw     r5, r6
-	  blt-      .loc_0x100
-	  lbz       r5, 0x0(r3)
-	  addi      r30, r30, 0x1
-	  stb       r5, 0x0(r29)
-	  addi      r29, r29, 0x1
-	  cmplw     r29, r31
-	  beq-      .loc_0x290
+lbl_8001F9D8:
+	rlwinm.  r5, r0, 0, 0x18, 0x18
+	beq      lbl_8001FA70
+	lwz      r6, fileOffset_2@sda21(r13)
+	cmplwi   r6, 0
+	beq      lbl_8001FA44
+	lwz      r5, readCount_2@sda21(r13)
+	cmplw    r5, r6
+	blt      lbl_8001FA10
+	lbz      r5, 0(r3)
+	addi     r30, r30, 1
+	stb      r5, 0(r29)
+	addi     r29, r29, 1
+	cmplw    r29, r31
+	beq      lbl_8001FBA0
 
-	.loc_0x100:
-	  lwz       r6, -0x7828(r13)
-	  lbz       r7, 0x0(r3)
-	  addi      r5, r6, 0x1
-	  stw       r5, -0x7828(r13)
-	  stb       r7, 0x0(r6)
-	  lwz       r6, -0x7828(r13)
-	  lwz       r5, -0x782C(r13)
-	  cmplw     r6, r5
-	  bne-      .loc_0x12C
-	  lwz       r5, -0x7830(r13)
-	  stw       r5, -0x7828(r13)
+lbl_8001FA10:
+	lwz      r6, refCurrent_2@sda21(r13)
+	lbz      r7, 0(r3)
+	addi     r5, r6, 1
+	stw      r5, refCurrent_2@sda21(r13)
+	stb      r7, 0(r6)
+	lwz      r6, refCurrent_2@sda21(r13)
+	lwz      r5, refEnd_2@sda21(r13)
+	cmplw    r6, r5
+	bne      lbl_8001FA3C
+	lwz      r5, refBuf_2@sda21(r13)
+	stw      r5, refCurrent_2@sda21(r13)
 
-	.loc_0x12C:
-	  addi      r3, r3, 0x1
-	  b         .loc_0x150
+lbl_8001FA3C:
+	addi     r3, r3, 1
+	b        lbl_8001FA60
 
-	.loc_0x134:
-	  lbz       r5, 0x0(r3)
-	  addi      r3, r3, 0x1
-	  addi      r30, r30, 0x1
-	  stb       r5, 0x0(r29)
-	  addi      r29, r29, 0x1
-	  cmplw     r29, r31
-	  beq-      .loc_0x290
+lbl_8001FA44:
+	lbz      r5, 0(r3)
+	addi     r3, r3, 1
+	addi     r30, r30, 1
+	stb      r5, 0(r29)
+	addi     r29, r29, 1
+	cmplw    r29, r31
+	beq      lbl_8001FBA0
 
-	.loc_0x150:
-	  lwz       r5, -0x7810(r13)
-	  addi      r5, r5, 0x1
-	  stw       r5, -0x7810(r13)
-	  b         .loc_0x280
+lbl_8001FA60:
+	lwz      r5, readCount_2@sda21(r13)
+	addi     r5, r5, 1
+	stw      r5, readCount_2@sda21(r13)
+	b        lbl_8001FB90
 
-	.loc_0x160:
-	  lwz       r8, -0x7814(r13)
-	  lbz       r6, 0x0(r3)
-	  cmplwi    r8, 0
-	  lbz       r9, 0x1(r3)
-	  srawi     r5, r6, 0x4
-	  rlwimi    r9,r6,8,20,23
-	  addi      r3, r3, 0x2
-	  beq-      .loc_0x1A8
-	  lwz       r6, -0x7828(r13)
-	  lwz       r7, -0x7830(r13)
-	  sub       r6, r6, r9
-	  subi      r9, r6, 0x1
-	  cmplw     r9, r7
-	  bge-      .loc_0x1B0
-	  lwz       r6, -0x782C(r13)
-	  sub       r6, r6, r7
-	  add       r9, r9, r6
-	  b         .loc_0x1B0
+lbl_8001FA70:
+	lwz      r8, fileOffset_2@sda21(r13)
+	lbz      r6, 0(r3)
+	cmplwi   r8, 0
+	lbz      r9, 1(r3)
+	srawi    r5, r6, 4
+	rlwimi   r9, r6, 8, 0x14, 0x17
+	addi     r3, r3, 2
+	beq      lbl_8001FAB8
+	lwz      r6, refCurrent_2@sda21(r13)
+	lwz      r7, refBuf_2@sda21(r13)
+	subf     r6, r9, r6
+	addi     r9, r6, -1
+	cmplw    r9, r7
+	bge      lbl_8001FAC0
+	lwz      r6, refEnd_2@sda21(r13)
+	subf     r6, r7, r6
+	add      r9, r9, r6
+	b        lbl_8001FAC0
 
-	.loc_0x1A8:
-	  sub       r6, r29, r9
-	  subi      r9, r6, 0x1
+lbl_8001FAB8:
+	subf     r6, r9, r29
+	addi     r9, r6, -1
 
-	.loc_0x1B0:
-	  cmpwi     r5, 0
-	  bne-      .loc_0x1C8
-	  lbz       r5, 0x0(r3)
-	  addi      r3, r3, 0x1
-	  addi      r5, r5, 0x12
-	  b         .loc_0x1CC
+lbl_8001FAC0:
+	cmpwi    r5, 0
+	bne      lbl_8001FAD8
+	lbz      r5, 0(r3)
+	addi     r3, r3, 1
+	addi     r5, r5, 0x12
+	b        lbl_8001FADC
 
-	.loc_0x1C8:
-	  addi      r5, r5, 0x2
+lbl_8001FAD8:
+	addi     r5, r5, 2
 
-	.loc_0x1CC:
-	  cmplwi    r8, 0
-	  beq-      .loc_0x250
+lbl_8001FADC:
+	cmplwi   r8, 0
+	beq      lbl_8001FB60
 
-	.loc_0x1D4:
-	  lwz       r7, -0x7810(r13)
-	  lwz       r6, -0x7814(r13)
-	  cmplw     r7, r6
-	  blt-      .loc_0x1FC
-	  lbz       r6, 0x0(r9)
-	  addi      r30, r30, 0x1
-	  stb       r6, 0x0(r29)
-	  addi      r29, r29, 0x1
-	  cmplw     r29, r31
-	  beq-      .loc_0x280
+lbl_8001FAE4:
+	lwz      r7, readCount_2@sda21(r13)
+	lwz      r6, fileOffset_2@sda21(r13)
+	cmplw    r7, r6
+	blt      lbl_8001FB0C
+	lbz      r6, 0(r9)
+	addi     r30, r30, 1
+	stb      r6, 0(r29)
+	addi     r29, r29, 1
+	cmplw    r29, r31
+	beq      lbl_8001FB90
 
-	.loc_0x1FC:
-	  lwz       r7, -0x7828(r13)
-	  lbz       r8, 0x0(r9)
-	  addi      r6, r7, 0x1
-	  stw       r6, -0x7828(r13)
-	  stb       r8, 0x0(r7)
-	  lwz       r6, -0x7828(r13)
-	  lwz       r7, -0x782C(r13)
-	  cmplw     r6, r7
-	  bne-      .loc_0x228
-	  lwz       r6, -0x7830(r13)
-	  stw       r6, -0x7828(r13)
+lbl_8001FB0C:
+	lwz      r7, refCurrent_2@sda21(r13)
+	lbz      r8, 0(r9)
+	addi     r6, r7, 1
+	stw      r6, refCurrent_2@sda21(r13)
+	stb      r8, 0(r7)
+	lwz      r6, refCurrent_2@sda21(r13)
+	lwz      r7, refEnd_2@sda21(r13)
+	cmplw    r6, r7
+	bne      lbl_8001FB38
+	lwz      r6, refBuf_2@sda21(r13)
+	stw      r6, refCurrent_2@sda21(r13)
 
-	.loc_0x228:
-	  addi      r9, r9, 0x1
-	  cmplw     r9, r7
-	  bne-      .loc_0x238
-	  lwz       r9, -0x7830(r13)
+lbl_8001FB38:
+	addi     r9, r9, 1
+	cmplw    r9, r7
+	bne      lbl_8001FB48
+	lwz      r9, refBuf_2@sda21(r13)
 
-	.loc_0x238:
-	  lwz       r6, -0x7810(r13)
-	  subic.    r5, r5, 0x1
-	  addi      r6, r6, 0x1
-	  stw       r6, -0x7810(r13)
-	  bne+      .loc_0x1D4
-	  b         .loc_0x280
+lbl_8001FB48:
+	lwz      r6, readCount_2@sda21(r13)
+	addic.   r5, r5, -1
+	addi     r6, r6, 1
+	stw      r6, readCount_2@sda21(r13)
+	bne      lbl_8001FAE4
+	b        lbl_8001FB90
 
-	.loc_0x250:
-	  lbz       r6, 0x0(r9)
-	  addi      r30, r30, 0x1
-	  stb       r6, 0x0(r29)
-	  addi      r29, r29, 0x1
-	  cmplw     r29, r31
-	  beq-      .loc_0x280
-	  lwz       r6, -0x7810(r13)
-	  subic.    r5, r5, 0x1
-	  addi      r9, r9, 0x1
-	  addi      r6, r6, 0x1
-	  stw       r6, -0x7810(r13)
-	  bne+      .loc_0x250
+lbl_8001FB60:
+	lbz      r6, 0(r9)
+	addi     r30, r30, 1
+	stb      r6, 0(r29)
+	addi     r29, r29, 1
+	cmplw    r29, r31
+	beq      lbl_8001FB90
+	lwz      r6, readCount_2@sda21(r13)
+	addic.   r5, r5, -1
+	addi     r9, r9, 1
+	addi     r6, r6, 1
+	stw      r6, readCount_2@sda21(r13)
+	bne      lbl_8001FB60
 
-	.loc_0x280:
-	  cmplw     r29, r31
-	  rlwinm    r0,r0,1,0,30
-	  subi      r4, r4, 0x1
-	  blt+      .loc_0x88
+lbl_8001FB90:
+	cmplw    r29, r31
+	slwi     r0, r0, 1
+	addi     r4, r4, -1
+	blt      lbl_8001F998
 
-	.loc_0x290:
-	  lwz       r4, -0x7804(r13)
-	  li        r3, 0
-	  stw       r30, 0x0(r4)
+lbl_8001FBA0:
+	lwz      r4, tsPtr_2@sda21(r13)
+	li       r3, 0
+	stw      r30, 0(r4)
 
-	.loc_0x29C:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8001FBAC:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -900,72 +994,71 @@ void decompSZS_subroutine(unsigned char*, unsigned char*)
 void firstSrcData()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  lwz       r4, -0x7834(r13)
-	  lwz       r3, -0x7838(r13)
-	  subi      r0, r4, 0x19
-	  lwz       r5, -0x7820(r13)
-	  sub       r4, r4, r3
-	  stw       r0, -0x781C(r13)
-	  cmplw     r5, r4
-	  mr        r29, r3
-	  mr        r31, r4
-	  bge-      .loc_0x44
-	  mr        r31, r5
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	lwz      r4, szpEnd_2@sda21(r13)
+	lwz      r3, szpBuf_2@sda21(r13)
+	addi     r0, r4, -25
+	lwz      r5, transLeft_2@sda21(r13)
+	subf     r4, r3, r4
+	stw      r0, srcLimit_2@sda21(r13)
+	cmplw    r5, r4
+	mr       r29, r3
+	mr       r31, r4
+	bge      lbl_8001FC0C
+	mr       r31, r5
 
-	.loc_0x44:
-	  mr        r30, r31
+lbl_8001FC0C:
+	mr       r30, r31
 
-	.loc_0x48:
-	  lwz       r3, -0x7818(r13)
-	  mr        r4, r29
-	  lwz       r6, -0x7824(r13)
-	  mr        r5, r30
-	  addi      r3, r3, 0x5C
-	  li        r7, 0x2
-	  bl        0xBCE58
-	  cmpwi     r3, 0
-	  bge-      .loc_0x90
-	  cmpwi     r3, -0x3
-	  beq-      .loc_0x80
-	  lbz       r0, -0x7FF0(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x88
+lbl_8001FC10:
+	lwz      r3, srcFile_2@sda21(r13)
+	mr       r4, r29
+	lwz      r6, srcOffset_2@sda21(r13)
+	mr       r5, r30
+	addi     r3, r3, 0x5c
+	li       r7, 2
+	bl       DVDReadPrio
+	cmpwi    r3, 0
+	bge      lbl_8001FC58
+	cmpwi    r3, -3
+	beq      lbl_8001FC48
+	lbz      r0, errorRetry__12JKRDvdRipper@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_8001FC50
 
-	.loc_0x80:
-	  li        r3, 0
-	  b         .loc_0xB8
+lbl_8001FC48:
+	li       r3, 0
+	b        lbl_8001FC80
 
-	.loc_0x88:
-	  bl        0xB15E4
-	  b         .loc_0x48
+lbl_8001FC50:
+	bl       VIWaitForRetrace
+	b        lbl_8001FC10
 
-	.loc_0x90:
-	  mr        r3, r29
-	  mr        r4, r31
-	  bl        0xCCA8C
-	  lwz       r4, -0x7824(r13)
-	  mr        r3, r29
-	  lwz       r0, -0x7820(r13)
-	  add       r4, r4, r31
-	  sub       r0, r0, r31
-	  stw       r4, -0x7824(r13)
-	  stw       r0, -0x7820(r13)
+lbl_8001FC58:
+	mr       r3, r29
+	mr       r4, r31
+	bl       DCInvalidateRange
+	lwz      r4, srcOffset_2@sda21(r13)
+	mr       r3, r29
+	lwz      r0, transLeft_2@sda21(r13)
+	add      r4, r4, r31
+	subf     r0, r31, r0
+	stw      r4, srcOffset_2@sda21(r13)
+	stw      r0, transLeft_2@sda21(r13)
 
-	.loc_0xB8:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8001FC80:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -977,92 +1070,91 @@ void firstSrcData()
 void nextSrcData(unsigned char*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  mr        r4, r3
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  stw       r28, 0x10(r1)
-	  lwz       r0, -0x7834(r13)
-	  sub       r29, r0, r4
-	  rlwinm.   r5,r29,0,27,31
-	  beq-      .loc_0x40
-	  lwz       r3, -0x7838(r13)
-	  addi      r0, r3, 0x20
-	  sub       r28, r0, r5
-	  b         .loc_0x44
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	mr       r4, r3
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	stw      r28, 0x10(r1)
+	lwz      r0, szpEnd_2@sda21(r13)
+	subf     r29, r4, r0
+	clrlwi.  r5, r29, 0x1b
+	beq      lbl_8001FCDC
+	lwz      r3, szpBuf_2@sda21(r13)
+	addi     r0, r3, 0x20
+	subf     r28, r5, r0
+	b        lbl_8001FCE0
 
-	.loc_0x40:
-	  lwz       r28, -0x7838(r13)
+lbl_8001FCDC:
+	lwz      r28, szpBuf_2@sda21(r13)
 
-	.loc_0x44:
-	  mr        r3, r28
-	  mr        r5, r29
-	  bl        -0x1AB4C
-	  lwz       r0, -0x7834(r13)
-	  add       r29, r28, r29
-	  lwz       r3, -0x7820(r13)
-	  sub       r30, r0, r29
-	  cmplw     r30, r3
-	  ble-      .loc_0x6C
-	  mr        r30, r3
+lbl_8001FCE0:
+	mr       r3, r28
+	mr       r5, r29
+	bl       memcpy
+	lwz      r0, szpEnd_2@sda21(r13)
+	add      r29, r28, r29
+	lwz      r3, transLeft_2@sda21(r13)
+	subf     r30, r29, r0
+	cmplw    r30, r3
+	ble      lbl_8001FD08
+	mr       r30, r3
 
-	.loc_0x6C:
-	  lis       r3, 0x8002
-	  subi      r31, r3, 0x258
+lbl_8001FD08:
+	lis      r3, isErrorRetry__12JKRDvdRipperFv@ha
+	addi     r31, r3, isErrorRetry__12JKRDvdRipperFv@l
 
-	.loc_0x74:
-	  lwz       r3, -0x7818(r13)
-	  mr        r4, r29
-	  lwz       r6, -0x7824(r13)
-	  mr        r5, r30
-	  addi      r3, r3, 0x5C
-	  li        r7, 0x2
-	  bl        0xBCD58
-	  cmpwi     r3, 0
-	  bge-      .loc_0xB8
-	  cmpwi     r3, -0x3
-	  beq-      .loc_0xA8
-	  cmplwi    r31, 0
-	  bne-      .loc_0xB0
+lbl_8001FD10:
+	lwz      r3, srcFile_2@sda21(r13)
+	mr       r4, r29
+	lwz      r6, srcOffset_2@sda21(r13)
+	mr       r5, r30
+	addi     r3, r3, 0x5c
+	li       r7, 2
+	bl       DVDReadPrio
+	cmpwi    r3, 0
+	bge      lbl_8001FD54
+	cmpwi    r3, -3
+	beq      lbl_8001FD44
+	cmplwi   r31, 0
+	bne      lbl_8001FD4C
 
-	.loc_0xA8:
-	  li        r3, 0
-	  b         .loc_0xEC
+lbl_8001FD44:
+	li       r3, 0
+	b        lbl_8001FD88
 
-	.loc_0xB0:
-	  bl        0xB14E8
-	  b         .loc_0x74
+lbl_8001FD4C:
+	bl       VIWaitForRetrace
+	b        lbl_8001FD10
 
-	.loc_0xB8:
-	  mr        r3, r29
-	  mr        r4, r30
-	  bl        0xCC990
-	  lwz       r0, -0x7820(r13)
-	  lwz       r3, -0x7824(r13)
-	  sub.      r0, r0, r30
-	  add       r3, r3, r30
-	  stw       r3, -0x7824(r13)
-	  stw       r0, -0x7820(r13)
-	  bne-      .loc_0xE8
-	  add       r0, r29, r30
-	  stw       r0, -0x781C(r13)
+lbl_8001FD54:
+	mr       r3, r29
+	mr       r4, r30
+	bl       DCInvalidateRange
+	lwz      r0, transLeft_2@sda21(r13)
+	lwz      r3, srcOffset_2@sda21(r13)
+	subf.    r0, r30, r0
+	add      r3, r3, r30
+	stw      r3, srcOffset_2@sda21(r13)
+	stw      r0, transLeft_2@sda21(r13)
+	bne      lbl_8001FD84
+	add      r0, r29, r30
+	stw      r0, srcLimit_2@sda21(r13)
 
-	.loc_0xE8:
-	  mr        r3, r28
+lbl_8001FD84:
+	mr       r3, r28
 
-	.loc_0xEC:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8001FD88:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -1074,9 +1166,8 @@ void nextSrcData(unsigned char*)
 void JKRDvdRipper::isErrorRetry()
 {
 	/*
-	.loc_0x0:
-	  lbz       r3, -0x7FF0(r13)
-	  blr
+	lbz      r3, errorRetry__12JKRDvdRipper@sda21(r13)
+	blr
 	*/
 }
 
@@ -1088,24 +1179,23 @@ void JKRDvdRipper::isErrorRetry()
 void __sinit_JKRDvdRipper_cpp(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r3, 0x8050
-	  stw       r0, 0x14(r1)
-	  addi      r3, r3, 0x6E18
-	  bl        0x6B0C
-	  lis       r3, 0x8050
-	  lis       r4, 0x8002
-	  lis       r5, 0x804F
-	  addi      r3, r3, 0x6E18
-	  subi      r4, r4, 0x20C
-	  subi      r5, r5, 0x88
-	  bl        0xA1920
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lis      r3, sDvdAsyncList__12JKRDvdRipper@ha
+	stw      r0, 0x14(r1)
+	addi     r3, r3, sDvdAsyncList__12JKRDvdRipper@l
+	bl       initiate__10JSUPtrListFv
+	lis      r3, sDvdAsyncList__12JKRDvdRipper@ha
+	lis      r4, "__dt__23JSUList<12JKRDMCommand>Fv"@ha
+	lis      r5, lbl_804EFF78@ha
+	addi     r3, r3, sDvdAsyncList__12JKRDvdRipper@l
+	addi     r4, r4, "__dt__23JSUList<12JKRDMCommand>Fv"@l
+	addi     r5, r5, lbl_804EFF78@l
+	bl       __register_global_object
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1117,29 +1207,28 @@ void __sinit_JKRDvdRipper_cpp(void)
 void JSUList<JKRDMCommand>::~JSUList()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x38
-	  li        r4, 0
-	  bl        0x6A50
-	  extsh.    r0, r31
-	  ble-      .loc_0x38
-	  mr        r3, r30
-	  bl        0x428C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_8001FE2C
+	li       r4, 0
+	bl       __dt__10JSUPtrListFv
+	extsh.   r0, r31
+	ble      lbl_8001FE2C
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x38:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8001FE2C:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }

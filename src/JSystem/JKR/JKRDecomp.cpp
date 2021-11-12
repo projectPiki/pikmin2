@@ -1,6 +1,39 @@
 #include "types.h"
 
 /*
+    Generated from dpostproc
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global sMessageBuffer__9JKRDecomp
+    sMessageBuffer__9JKRDecomp:
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+    .global sMessageQueue__9JKRDecomp
+    sMessageQueue__9JKRDecomp:
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+    .global __vt__9JKRDecomp
+    __vt__9JKRDecomp:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__9JKRDecompFv
+        .4byte run__9JKRDecompFv
+
+    .section .sbss # 0x80514D80 - 0x80516360
+    .global sDecompObject__9JKRDecomp
+    sDecompObject__9JKRDecomp:
+        .skip 0x8
+*/
+
+/*
  * --INFO--
  * Address:	8001C934
  * Size:	000060
@@ -8,37 +41,34 @@
 void JKRDecomp::create(long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r0, -0x7888(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x48
-	  lwz       r4, -0x77D8(r13)
-	  li        r3, 0x7C
-	  li        r5, 0
-	  bl        0x75E0
-	  mr.       r0, r3
-	  beq-      .loc_0x44
-	  mr        r4, r31
-	  bl        .loc_0x60
-	  mr        r0, r3
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r0, sDecompObject__9JKRDecomp@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_8001C97C
+	lwz      r4, sSystemHeap__7JKRHeap@sda21(r13)
+	li       r3, 0x7c
+	li       r5, 0
+	bl       __nw__FUlP7JKRHeapi
+	or.      r0, r3, r3
+	beq      lbl_8001C978
+	mr       r4, r31
+	bl       __ct__9JKRDecompFl
+	mr       r0, r3
 
-	.loc_0x44:
-	  stw       r0, -0x7888(r13)
+lbl_8001C978:
+	stw      r0, sDecompObject__9JKRDecomp@sda21(r13)
 
-	.loc_0x48:
-	  lwz       r0, 0x14(r1)
-	  lwz       r3, -0x7888(r13)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-
-	.loc_0x60:
+lbl_8001C97C:
+	lwz      r0, 0x14(r1)
+	lwz      r3, sDecompObject__9JKRDecomp@sda21(r13)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -50,27 +80,26 @@ void JKRDecomp::create(long)
 JKRDecomp::JKRDecomp(long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r6, r4
-	  li        r4, 0x4000
-	  stw       r0, 0x14(r1)
-	  li        r5, 0x10
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        0x8C84
-	  lis       r3, 0x804A
-	  subi      r0, r3, 0x2B8
-	  stw       r0, 0x0(r31)
-	  lwz       r3, 0x2C(r31)
-	  bl        0xD5B2C
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r6, r4
+	li       r4, 0x4000
+	stw      r0, 0x14(r1)
+	li       r5, 0x10
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       __ct__9JKRThreadFUlii
+	lis      r3, __vt__9JKRDecomp@ha
+	addi     r0, r3, __vt__9JKRDecomp@l
+	stw      r0, 0(r31)
+	lwz      r3, 0x2c(r31)
+	bl       OSResumeThread
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -82,33 +111,32 @@ JKRDecomp::JKRDecomp(long)
 JKRDecomp::~JKRDecomp()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x44
-	  lis       r5, 0x804A
-	  li        r4, 0
-	  subi      r0, r5, 0x2B8
-	  stw       r0, 0x0(r30)
-	  bl        0x8E24
-	  extsh.    r0, r31
-	  ble-      .loc_0x44
-	  mr        r3, r30
-	  bl        0x7690
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_8001CA28
+	lis      r5, __vt__9JKRDecomp@ha
+	li       r4, 0
+	addi     r0, r5, __vt__9JKRDecomp@l
+	stw      r0, 0(r30)
+	bl       __dt__9JKRThreadFv
+	extsh.   r0, r31
+	ble      lbl_8001CA28
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x44:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8001CA28:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -120,65 +148,64 @@ JKRDecomp::~JKRDecomp()
 void JKRDecomp::run()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r3, 0x804A
-	  lis       r4, 0x804A
-	  stw       r0, 0x24(r1)
-	  subi      r3, r3, 0x2D8
-	  li        r5, 0x4
-	  subi      r4, r4, 0x2E8
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  bl        0xD2A50
-	  lis       r3, 0x804A
-	  subi      r31, r3, 0x2D8
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lis      r3, sMessageQueue__9JKRDecomp@ha
+	lis      r4, sMessageBuffer__9JKRDecomp@ha
+	stw      r0, 0x24(r1)
+	addi     r3, r3, sMessageQueue__9JKRDecomp@l
+	li       r5, 4
+	addi     r4, r4, sMessageBuffer__9JKRDecomp@l
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	bl       OSInitMessageQueue
+	lis      r3, sMessageQueue__9JKRDecomp@ha
+	addi     r31, r3, sMessageQueue__9JKRDecomp@l
 
-	.loc_0x34:
-	  mr        r3, r31
-	  addi      r4, r1, 0x8
-	  li        r5, 0x1
-	  bl        0xD2B60
-	  lwz       r30, 0x8(r1)
-	  lwz       r3, 0x4(r30)
-	  lwz       r4, 0x8(r30)
-	  lwz       r5, 0xC(r30)
-	  lwz       r6, 0x10(r30)
-	  bl        0x140
-	  lwz       r0, 0x20(r30)
-	  cmpwi     r0, 0
-	  beq-      .loc_0x7C
-	  cmpwi     r0, 0x1
-	  bne+      .loc_0x34
-	  lwz       r3, 0x24(r30)
-	  bl        -0x2FE0
-	  b         .loc_0x34
+lbl_8001CA78:
+	mr       r3, r31
+	addi     r4, r1, 8
+	li       r5, 1
+	bl       OSReceiveMessage
+	lwz      r30, 8(r1)
+	lwz      r3, 4(r30)
+	lwz      r4, 8(r30)
+	lwz      r5, 0xc(r30)
+	lwz      r6, 0x10(r30)
+	bl       decode__9JKRDecompFPUcPUcUlUl
+	lwz      r0, 0x20(r30)
+	cmpwi    r0, 0
+	beq      lbl_8001CAC0
+	cmpwi    r0, 1
+	bne      lbl_8001CA78
+	lwz      r3, 0x24(r30)
+	bl       sendCommand__12JKRAramPieceFP12JKRAMCommand
+	b        lbl_8001CA78
 
-	.loc_0x7C:
-	  lwz       r12, 0x14(r30)
-	  cmplwi    r12, 0
-	  beq-      .loc_0x98
-	  mr        r3, r30
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x34
+lbl_8001CAC0:
+	lwz      r12, 0x14(r30)
+	cmplwi   r12, 0
+	beq      lbl_8001CADC
+	mr       r3, r30
+	mtctr    r12
+	bctrl
+	b        lbl_8001CA78
 
-	.loc_0x98:
-	  lwz       r3, 0x1C(r30)
-	  cmplwi    r3, 0
-	  beq-      .loc_0xB4
-	  li        r4, 0x1
-	  li        r5, 0
-	  bl        0xD2A2C
-	  b         .loc_0x34
+lbl_8001CADC:
+	lwz      r3, 0x1c(r30)
+	cmplwi   r3, 0
+	beq      lbl_8001CAF8
+	li       r4, 1
+	li       r5, 0
+	bl       OSSendMessage
+	b        lbl_8001CA78
 
-	.loc_0xB4:
-	  addi      r3, r30, 0x28
-	  li        r4, 0x1
-	  li        r5, 0
-	  bl        0xD2A18
-	  b         .loc_0x34
+lbl_8001CAF8:
+	addi     r3, r30, 0x28
+	li       r4, 1
+	li       r5, 0
+	bl       OSSendMessage
+	b        lbl_8001CA78
 	*/
 }
 
@@ -190,19 +217,18 @@ void JKRDecomp::run()
 void JKRDecomp::sendCommand(JKRDecompCommand*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r5, 0x804A
-	  mr        r4, r3
-	  stw       r0, 0x14(r1)
-	  subi      r3, r5, 0x2D8
-	  li        r5, 0x1
-	  bl        0xD29F4
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lis      r5, sMessageQueue__9JKRDecomp@ha
+	mr       r4, r3
+	stw      r0, 0x14(r1)
+	addi     r3, r5, sMessageQueue__9JKRDecomp@l
+	li       r5, 1
+	bl       OSSendMessage
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -557,31 +583,30 @@ void JKRDecomp::decodeSZS(unsigned char*, unsigned char*, unsigned long,
 void JKRDecomp::checkCompressed(unsigned char*)
 {
 	/*
-	.loc_0x0:
-	  lbz       r0, 0x0(r3)
-	  cmpwi     r0, 0x59
-	  bne-      .loc_0x48
-	  lbz       r0, 0x1(r3)
-	  cmpwi     r0, 0x61
-	  bne-      .loc_0x48
-	  lbz       r0, 0x3(r3)
-	  cmpwi     r0, 0x30
-	  bne-      .loc_0x48
-	  lbz       r0, 0x2(r3)
-	  cmpwi     r0, 0x79
-	  bne-      .loc_0x38
-	  li        r3, 0x1
-	  blr
+	lbz      r0, 0(r3)
+	cmpwi    r0, 0x59
+	bne      lbl_8001CF38
+	lbz      r0, 1(r3)
+	cmpwi    r0, 0x61
+	bne      lbl_8001CF38
+	lbz      r0, 3(r3)
+	cmpwi    r0, 0x30
+	bne      lbl_8001CF38
+	lbz      r0, 2(r3)
+	cmpwi    r0, 0x79
+	bne      lbl_8001CF28
+	li       r3, 1
+	blr
 
-	.loc_0x38:
-	  cmpwi     r0, 0x7A
-	  bne-      .loc_0x48
-	  li        r3, 0x2
-	  blr
+lbl_8001CF28:
+	cmpwi    r0, 0x7a
+	bne      lbl_8001CF38
+	li       r3, 2
+	blr
 
-	.loc_0x48:
-	  li        r3, 0
-	  blr
+lbl_8001CF38:
+	li       r3, 0
+	blr
 	*/
 }
 
@@ -593,27 +618,26 @@ void JKRDecomp::checkCompressed(unsigned char*)
 JKRDecompCommand::JKRDecompCommand()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r5, 0x1
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  addi      r3, r31, 0x28
-	  addi      r4, r31, 0x48
-	  bl        0xD255C
-	  li        r0, 0
-	  mr        r3, r31
-	  stw       r0, 0x14(r31)
-	  stw       r0, 0x1C(r31)
-	  stw       r31, 0x18(r31)
-	  stw       r0, 0x20(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	li       r5, 1
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	addi     r3, r31, 0x28
+	addi     r4, r31, 0x48
+	bl       OSInitMessageQueue
+	li       r0, 0
+	mr       r3, r31
+	stw      r0, 0x14(r31)
+	stw      r0, 0x1c(r31)
+	stw      r31, 0x18(r31)
+	stw      r0, 0x20(r31)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -625,23 +649,22 @@ JKRDecompCommand::JKRDecompCommand()
 JKRDecompCommand::~JKRDecompCommand()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r3
-	  beq-      .loc_0x24
-	  extsh.    r0, r4
-	  ble-      .loc_0x24
-	  bl        0x7104
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r3, r3
+	beq      lbl_8001CFB4
+	extsh.   r0, r4
+	ble      lbl_8001CFB4
+	bl       __dl__FPv
 
-	.loc_0x24:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8001CFB4:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }

@@ -1,6 +1,131 @@
 #include "types.h"
 
 /*
+    Generated from dpostproc
+
+    .section .sdata, "wa"  # 0x80514680 - 0x80514D80
+    .global zz_80514788
+    zz_80514788:
+        .double 0.0078125
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global lbl_804A4350
+    lbl_804A4350:
+        .4byte lbl_800A184C
+        .4byte lbl_800A185C
+        .4byte lbl_800A186C
+        .4byte lbl_800A19FC
+        .4byte lbl_800A19FC
+        .4byte lbl_800A19FC
+        .4byte lbl_800A19FC
+        .4byte lbl_800A19FC
+        .4byte lbl_800A19FC
+        .4byte lbl_800A19FC
+        .4byte lbl_800A19FC
+        .4byte lbl_800A19FC
+        .4byte lbl_800A188C
+        .4byte lbl_800A1940
+        .4byte lbl_800A19FC
+        .4byte lbl_800A19FC
+        .4byte lbl_800A19D4
+    .global lbl_804A4394
+    lbl_804A4394:
+        .4byte lbl_800A1C3C
+        .4byte lbl_800A1CBC
+        .4byte lbl_800A1CBC
+        .4byte lbl_800A1CBC
+        .4byte lbl_800A1C5C
+        .4byte lbl_800A1CBC
+        .4byte lbl_800A1CBC
+        .4byte lbl_800A1CBC
+        .4byte lbl_800A1C80
+        .4byte lbl_800A1CBC
+        .4byte lbl_800A1CBC
+        .4byte lbl_800A1CBC
+        .4byte lbl_800A1C70
+        .4byte lbl_800A1CBC
+        .4byte lbl_800A1CBC
+        .4byte lbl_800A1CBC
+        .4byte lbl_800A1CB8
+
+    .section .sbss # 0x80514D80 - 0x80516360
+    .global sCallBackFunc__8JASTrack
+    sCallBackFunc__8JASTrack:
+        .skip 0x4
+    .global sParser__8JASTrack
+    sParser__8JASTrack:
+        .skip 0x4
+    .global sFreeList__8JASTrack
+    sFreeList__8JASTrack:
+        .skip 0x4
+    .global sFreeListEnd__8JASTrack
+    sFreeListEnd__8JASTrack:
+        .skip 0x4
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_80516D78
+    lbl_80516D78:
+        .4byte 0x00000000
+    .global lbl_80516D7C
+    lbl_80516D7C:
+        .float 1.0
+    .global lbl_80516D80
+    lbl_80516D80:
+        .4byte 0x43300000
+        .4byte 0x00000000
+    .global lbl_80516D88
+    lbl_80516D88:
+        .float 0.5
+    .global lbl_80516D8C
+    lbl_80516D8C:
+        .4byte 0x46FFFE00
+    .global lbl_80516D90
+    lbl_80516D90:
+        .4byte 0x43000000
+    .global lbl_80516D94
+    lbl_80516D94:
+        .4byte 0x3FAAAAAB
+    .global lbl_80516D98
+    lbl_80516D98:
+        .4byte 0x42C80000
+    .global lbl_80516D9C
+    lbl_80516D9C:
+        .4byte 0x42F00000
+    .global lbl_80516DA0
+    lbl_80516DA0:
+        .4byte 0x41200000
+        .4byte 0x00000000
+    .global lbl_80516DA8
+    lbl_80516DA8:
+        .4byte 0x43300000
+        .4byte 0x80000000
+    .global lbl_80516DB0
+    lbl_80516DB0:
+        .4byte 0x3D638E39
+        .4byte 0x00000000
+    .global lbl_80516DB8
+    lbl_80516DB8:
+        .4byte 0x40100000
+        .4byte 0x00000000
+    .global lbl_80516DC0
+    lbl_80516DC0:
+        .4byte 0x40800000
+    .global lbl_80516DC4
+    lbl_80516DC4:
+        .4byte 0x3FC90FDB
+    .global lbl_80516DC8
+    lbl_80516DC8:
+        .4byte 0xC3A2F983
+    .global lbl_80516DCC
+    lbl_80516DCC:
+        .4byte 0x43A2F983
+    .global lbl_80516DD0
+    lbl_80516DD0:
+        .4byte 0x41400000
+        .4byte 0x00000000
+*/
+
+/*
  * --INFO--
  * Address:	8009EF94
  * Size:	00012C
@@ -8,84 +133,81 @@
 JASTrack::JASTrack()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        -0x786D8
-	  addi      r3, r31, 0xE8
-	  bl        0x3878
-	  addi      r3, r31, 0xF4
-	  bl        0x954C
-	  li        r0, 0
-	  addi      r3, r31, 0x148
-	  stw       r0, 0x144(r31)
-	  bl        .loc_0x12C
-	  addi      r3, r31, 0x268
-	  bl        -0x28BC
-	  li        r4, 0
-	  lfs       f0, -0x75E8(r2)
-	  stw       r4, 0x2F8(r31)
-	  li        r0, 0x78
-	  addi      r3, r31, 0xF4
-	  stfs      f0, 0x340(r31)
-	  stfs      f0, 0x344(r31)
-	  stw       r4, 0x348(r31)
-	  stw       r4, 0x34C(r31)
-	  sth       r4, 0x350(r31)
-	  sth       r0, 0x352(r31)
-	  sth       r0, 0x354(r31)
-	  stb       r4, 0x356(r31)
-	  stb       r4, 0x357(r31)
-	  stb       r4, 0x358(r31)
-	  stb       r4, 0x359(r31)
-	  stb       r4, 0x35A(r31)
-	  stb       r4, 0x35B(r31)
-	  stb       r4, 0x362(r31)
-	  stb       r4, 0x363(r31)
-	  stb       r4, 0x364(r31)
-	  stb       r4, 0x365(r31)
-	  stb       r4, 0x366(r31)
-	  bl        0x9504
-	  lis       r4, 0x804A
-	  addi      r3, r31, 0x148
-	  addi      r5, r4, 0x3CF8
-	  lha       r0, 0x0(r5)
-	  li        r4, 0x120
-	  sth       r0, 0x2E0(r31)
-	  lha       r0, 0x2(r5)
-	  sth       r0, 0x2E2(r31)
-	  lha       r0, 0x4(r5)
-	  sth       r0, 0x2E4(r31)
-	  lha       r0, 0x6(r5)
-	  sth       r0, 0x2E6(r31)
-	  lha       r0, 0x8(r5)
-	  sth       r0, 0x2E8(r31)
-	  lha       r0, 0xA(r5)
-	  sth       r0, 0x2EA(r31)
-	  lha       r0, 0xC(r5)
-	  sth       r0, 0x2EC(r31)
-	  lha       r0, 0xE(r5)
-	  sth       r0, 0x2EE(r31)
-	  lha       r0, 0x10(r5)
-	  sth       r0, 0x2F0(r31)
-	  lha       r0, 0x12(r5)
-	  sth       r0, 0x2F2(r31)
-	  lha       r0, 0x14(r5)
-	  sth       r0, 0x2F4(r31)
-	  lha       r0, 0x16(r5)
-	  sth       r0, 0x2F6(r31)
-	  bl        0x71C0
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-
-	.loc_0x12C:
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       initiate__10JSUPtrListFv
+	addi     r3, r31, 0xe8
+	bl       __ct__10JASVibrateFv
+	addi     r3, r31, 0xf4
+	bl       __ct__17JASChannelUpdaterFv
+	li       r0, 0
+	addi     r3, r31, 0x148
+	stw      r0, 0x144(r31)
+	bl       __ct__Q28JASTrack11TimedParam_Fv
+	addi     r3, r31, 0x268
+	bl       __ct__16JASRegisterParamFv
+	li       r4, 0
+	lfs      f0, lbl_80516D78@sda21(r2)
+	stw      r4, 0x2f8(r31)
+	li       r0, 0x78
+	addi     r3, r31, 0xf4
+	stfs     f0, 0x340(r31)
+	stfs     f0, 0x344(r31)
+	stw      r4, 0x348(r31)
+	stw      r4, 0x34c(r31)
+	sth      r4, 0x350(r31)
+	sth      r0, 0x352(r31)
+	sth      r0, 0x354(r31)
+	stb      r4, 0x356(r31)
+	stb      r4, 0x357(r31)
+	stb      r4, 0x358(r31)
+	stb      r4, 0x359(r31)
+	stb      r4, 0x35a(r31)
+	stb      r4, 0x35b(r31)
+	stb      r4, 0x362(r31)
+	stb      r4, 0x363(r31)
+	stb      r4, 0x364(r31)
+	stb      r4, 0x365(r31)
+	stb      r4, 0x366(r31)
+	bl       init__17JASChannelUpdaterFv
+	lis      r4, sAdsTable__9JASPlayer@ha
+	addi     r3, r31, 0x148
+	addi     r5, r4, sAdsTable__9JASPlayer@l
+	lha      r0, 0(r5)
+	li       r4, 0x120
+	sth      r0, 0x2e0(r31)
+	lha      r0, 2(r5)
+	sth      r0, 0x2e2(r31)
+	lha      r0, 4(r5)
+	sth      r0, 0x2e4(r31)
+	lha      r0, 6(r5)
+	sth      r0, 0x2e6(r31)
+	lha      r0, 8(r5)
+	sth      r0, 0x2e8(r31)
+	lha      r0, 0xa(r5)
+	sth      r0, 0x2ea(r31)
+	lha      r0, 0xc(r5)
+	sth      r0, 0x2ec(r31)
+	lha      r0, 0xe(r5)
+	sth      r0, 0x2ee(r31)
+	lha      r0, 0x10(r5)
+	sth      r0, 0x2f0(r31)
+	lha      r0, 0x12(r5)
+	sth      r0, 0x2f2(r31)
+	lha      r0, 0x14(r5)
+	sth      r0, 0x2f4(r31)
+	lha      r0, 0x16(r5)
+	sth      r0, 0x2f6(r31)
+	bl       bzero__7JASCalcFPvUl
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -97,26 +219,25 @@ JASTrack::JASTrack()
 JASTrack::TimedParam_::TimedParam_(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        0x50
-	  lis       r4, 0x800A
-	  mr        r3, r31
-	  subi      r4, r4, 0xEF4
-	  li        r5, 0
-	  li        r6, 0x10
-	  li        r7, 0x12
-	  bl        0x2274C
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       __ct__Q28JASTrack12AInnerParam_Fv
+	lis      r4, __ct__Q28JASTrack10MoveParam_Fv@ha
+	mr       r3, r31
+	addi     r4, r4, __ct__Q28JASTrack10MoveParam_Fv@l
+	li       r5, 0
+	li       r6, 0x10
+	li       r7, 0x12
+	bl       __construct_array
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -128,13 +249,12 @@ JASTrack::TimedParam_::TimedParam_(void)
 JASTrack::MoveParam_::MoveParam_(void)
 {
 	/*
-	.loc_0x0:
-	  lfs       f0, -0x75E8(r2)
-	  stfs      f0, 0x0(r3)
-	  stfs      f0, 0x4(r3)
-	  stfs      f0, 0x8(r3)
-	  stfs      f0, 0xC(r3)
-	  blr
+	lfs      f0, lbl_80516D78@sda21(r2)
+	stfs     f0, 0(r3)
+	stfs     f0, 4(r3)
+	stfs     f0, 8(r3)
+	stfs     f0, 0xc(r3)
+	blr
 	*/
 }
 
@@ -146,83 +266,82 @@ JASTrack::MoveParam_::MoveParam_(void)
 JASTrack::AInnerParam_::AInnerParam_(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lfs       f0, -0x75E8(r2)
-	  li        r5, 0
-	  stw       r0, 0x14(r1)
-	  li        r6, 0x10
-	  li        r7, 0x4
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lis       r3, 0x800A
-	  stfs      f0, 0x0(r31)
-	  subi      r4, r3, 0xEF4
-	  addi      r3, r31, 0xC0
-	  stfs      f0, 0x4(r31)
-	  stfs      f0, 0x8(r31)
-	  stfs      f0, 0xC(r31)
-	  stfs      f0, 0x10(r31)
-	  stfs      f0, 0x14(r31)
-	  stfs      f0, 0x18(r31)
-	  stfs      f0, 0x1C(r31)
-	  stfs      f0, 0x20(r31)
-	  stfs      f0, 0x24(r31)
-	  stfs      f0, 0x28(r31)
-	  stfs      f0, 0x2C(r31)
-	  stfs      f0, 0x30(r31)
-	  stfs      f0, 0x34(r31)
-	  stfs      f0, 0x38(r31)
-	  stfs      f0, 0x3C(r31)
-	  stfs      f0, 0x40(r31)
-	  stfs      f0, 0x44(r31)
-	  stfs      f0, 0x48(r31)
-	  stfs      f0, 0x4C(r31)
-	  stfs      f0, 0x50(r31)
-	  stfs      f0, 0x54(r31)
-	  stfs      f0, 0x58(r31)
-	  stfs      f0, 0x5C(r31)
-	  stfs      f0, 0x60(r31)
-	  stfs      f0, 0x64(r31)
-	  stfs      f0, 0x68(r31)
-	  stfs      f0, 0x6C(r31)
-	  stfs      f0, 0x70(r31)
-	  stfs      f0, 0x74(r31)
-	  stfs      f0, 0x78(r31)
-	  stfs      f0, 0x7C(r31)
-	  stfs      f0, 0x80(r31)
-	  stfs      f0, 0x84(r31)
-	  stfs      f0, 0x88(r31)
-	  stfs      f0, 0x8C(r31)
-	  stfs      f0, 0x90(r31)
-	  stfs      f0, 0x94(r31)
-	  stfs      f0, 0x98(r31)
-	  stfs      f0, 0x9C(r31)
-	  stfs      f0, 0xA0(r31)
-	  stfs      f0, 0xA4(r31)
-	  stfs      f0, 0xA8(r31)
-	  stfs      f0, 0xAC(r31)
-	  stfs      f0, 0xB0(r31)
-	  stfs      f0, 0xB4(r31)
-	  stfs      f0, 0xB8(r31)
-	  stfs      f0, 0xBC(r31)
-	  bl        0x22628
-	  lfs       f0, -0x75E8(r2)
-	  mr        r3, r31
-	  stfs      f0, 0x100(r31)
-	  stfs      f0, 0x104(r31)
-	  stfs      f0, 0x108(r31)
-	  stfs      f0, 0x10C(r31)
-	  stfs      f0, 0x110(r31)
-	  stfs      f0, 0x114(r31)
-	  stfs      f0, 0x118(r31)
-	  stfs      f0, 0x11C(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lfs      f0, lbl_80516D78@sda21(r2)
+	li       r5, 0
+	stw      r0, 0x14(r1)
+	li       r6, 0x10
+	li       r7, 4
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lis      r3, __ct__Q28JASTrack10MoveParam_Fv@ha
+	stfs     f0, 0(r31)
+	addi     r4, r3, __ct__Q28JASTrack10MoveParam_Fv@l
+	addi     r3, r31, 0xc0
+	stfs     f0, 4(r31)
+	stfs     f0, 8(r31)
+	stfs     f0, 0xc(r31)
+	stfs     f0, 0x10(r31)
+	stfs     f0, 0x14(r31)
+	stfs     f0, 0x18(r31)
+	stfs     f0, 0x1c(r31)
+	stfs     f0, 0x20(r31)
+	stfs     f0, 0x24(r31)
+	stfs     f0, 0x28(r31)
+	stfs     f0, 0x2c(r31)
+	stfs     f0, 0x30(r31)
+	stfs     f0, 0x34(r31)
+	stfs     f0, 0x38(r31)
+	stfs     f0, 0x3c(r31)
+	stfs     f0, 0x40(r31)
+	stfs     f0, 0x44(r31)
+	stfs     f0, 0x48(r31)
+	stfs     f0, 0x4c(r31)
+	stfs     f0, 0x50(r31)
+	stfs     f0, 0x54(r31)
+	stfs     f0, 0x58(r31)
+	stfs     f0, 0x5c(r31)
+	stfs     f0, 0x60(r31)
+	stfs     f0, 0x64(r31)
+	stfs     f0, 0x68(r31)
+	stfs     f0, 0x6c(r31)
+	stfs     f0, 0x70(r31)
+	stfs     f0, 0x74(r31)
+	stfs     f0, 0x78(r31)
+	stfs     f0, 0x7c(r31)
+	stfs     f0, 0x80(r31)
+	stfs     f0, 0x84(r31)
+	stfs     f0, 0x88(r31)
+	stfs     f0, 0x8c(r31)
+	stfs     f0, 0x90(r31)
+	stfs     f0, 0x94(r31)
+	stfs     f0, 0x98(r31)
+	stfs     f0, 0x9c(r31)
+	stfs     f0, 0xa0(r31)
+	stfs     f0, 0xa4(r31)
+	stfs     f0, 0xa8(r31)
+	stfs     f0, 0xac(r31)
+	stfs     f0, 0xb0(r31)
+	stfs     f0, 0xb4(r31)
+	stfs     f0, 0xb8(r31)
+	stfs     f0, 0xbc(r31)
+	bl       __construct_array
+	lfs      f0, lbl_80516D78@sda21(r2)
+	mr       r3, r31
+	stfs     f0, 0x100(r31)
+	stfs     f0, 0x104(r31)
+	stfs     f0, 0x108(r31)
+	stfs     f0, 0x10c(r31)
+	stfs     f0, 0x110(r31)
+	stfs     f0, 0x114(r31)
+	stfs     f0, 0x118(r31)
+	stfs     f0, 0x11c(r31)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -254,131 +373,130 @@ JASTrack::~JASTrack()
 void JASTrack::init()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  addi      r3, r31, 0xC
-	  bl        -0x2A14
-	  addi      r3, r31, 0x54
-	  bl        -0x2F64
-	  addi      r3, r31, 0x94
-	  bl        0x377C
-	  li        r0, 0
-	  addi      r3, r31, 0xF4
-	  stw       r0, 0xE0(r31)
-	  stb       r0, 0xE4(r31)
-	  stb       r0, 0xE5(r31)
-	  stb       r0, 0xE6(r31)
-	  stw       r0, 0xC0(r31)
-	  stw       r0, 0xC4(r31)
-	  stw       r0, 0xC8(r31)
-	  stw       r0, 0xCC(r31)
-	  stw       r0, 0xD0(r31)
-	  stw       r0, 0xD4(r31)
-	  stw       r0, 0xD8(r31)
-	  stw       r0, 0xDC(r31)
-	  bl        0x927C
-	  li        r0, 0
-	  mr        r3, r31
-	  stw       r0, 0x144(r31)
-	  bl        0x410
-	  addi      r3, r31, 0x268
-	  bl        -0x2B6C
-	  lis       r3, 0x8048
-	  li        r7, 0xF
-	  subi      r6, r3, 0x7408
-	  stw       r7, 0x2D8(r31)
-	  lwz       r5, 0x0(r6)
-	  li        r0, 0
-	  lfs       f2, 0x4(r6)
-	  stw       r5, 0x2A8(r31)
-	  lwz       r4, 0x8(r6)
-	  stfs      f2, 0x2AC(r31)
-	  lwz       r3, 0xC(r6)
-	  stw       r4, 0x2B0(r31)
-	  lfs       f1, 0x10(r6)
-	  stw       r3, 0x2B4(r31)
-	  lfs       f0, 0x14(r6)
-	  stfs      f1, 0x2B8(r31)
-	  stfs      f0, 0x2BC(r31)
-	  stw       r7, 0x2DC(r31)
-	  stw       r5, 0x2C0(r31)
-	  stfs      f2, 0x2C4(r31)
-	  stw       r4, 0x2C8(r31)
-	  stw       r3, 0x2CC(r31)
-	  stfs      f1, 0x2D0(r31)
-	  stfs      f0, 0x2D4(r31)
-	  stw       r0, 0x2F8(r31)
-	  stw       r0, 0x2FC(r31)
-	  stw       r0, 0x300(r31)
-	  stw       r0, 0x304(r31)
-	  stw       r0, 0x308(r31)
-	  stw       r0, 0x30C(r31)
-	  stw       r0, 0x310(r31)
-	  stw       r0, 0x314(r31)
-	  stw       r0, 0x318(r31)
-	  stw       r0, 0x31C(r31)
-	  stw       r0, 0x320(r31)
-	  stw       r0, 0x324(r31)
-	  stw       r0, 0x328(r31)
-	  stw       r0, 0x32C(r31)
-	  stw       r0, 0x330(r31)
-	  stw       r0, 0x334(r31)
-	  stw       r0, 0x338(r31)
-	  lwz       r3, 0x33C(r31)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x134
-	  bl        -0x2F38
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	addi     r3, r31, 0xc
+	bl       init__10JASSeqCtrlFv
+	addi     r3, r31, 0x54
+	bl       init__12JASTrackPortFv
+	addi     r3, r31, 0x94
+	bl       init__10JASIntrMgrFv
+	li       r0, 0
+	addi     r3, r31, 0xf4
+	stw      r0, 0xe0(r31)
+	stb      r0, 0xe4(r31)
+	stb      r0, 0xe5(r31)
+	stb      r0, 0xe6(r31)
+	stw      r0, 0xc0(r31)
+	stw      r0, 0xc4(r31)
+	stw      r0, 0xc8(r31)
+	stw      r0, 0xcc(r31)
+	stw      r0, 0xd0(r31)
+	stw      r0, 0xd4(r31)
+	stw      r0, 0xd8(r31)
+	stw      r0, 0xdc(r31)
+	bl       init__17JASChannelUpdaterFv
+	li       r0, 0
+	mr       r3, r31
+	stw      r0, 0x144(r31)
+	bl       initTimed__8JASTrackFv
+	addi     r3, r31, 0x268
+	bl       init__16JASRegisterParamFv
+	lis      r3, sEnvelopeDef__9JASPlayer@ha
+	li       r7, 0xf
+	addi     r6, r3, sEnvelopeDef__9JASPlayer@l
+	stw      r7, 0x2d8(r31)
+	lwz      r5, 0(r6)
+	li       r0, 0
+	lfs      f2, 4(r6)
+	stw      r5, 0x2a8(r31)
+	lwz      r4, 8(r6)
+	stfs     f2, 0x2ac(r31)
+	lwz      r3, 0xc(r6)
+	stw      r4, 0x2b0(r31)
+	lfs      f1, 0x10(r6)
+	stw      r3, 0x2b4(r31)
+	lfs      f0, 0x14(r6)
+	stfs     f1, 0x2b8(r31)
+	stfs     f0, 0x2bc(r31)
+	stw      r7, 0x2dc(r31)
+	stw      r5, 0x2c0(r31)
+	stfs     f2, 0x2c4(r31)
+	stw      r4, 0x2c8(r31)
+	stw      r3, 0x2cc(r31)
+	stfs     f1, 0x2d0(r31)
+	stfs     f0, 0x2d4(r31)
+	stw      r0, 0x2f8(r31)
+	stw      r0, 0x2fc(r31)
+	stw      r0, 0x300(r31)
+	stw      r0, 0x304(r31)
+	stw      r0, 0x308(r31)
+	stw      r0, 0x30c(r31)
+	stw      r0, 0x310(r31)
+	stw      r0, 0x314(r31)
+	stw      r0, 0x318(r31)
+	stw      r0, 0x31c(r31)
+	stw      r0, 0x320(r31)
+	stw      r0, 0x324(r31)
+	stw      r0, 0x328(r31)
+	stw      r0, 0x32c(r31)
+	stw      r0, 0x330(r31)
+	stw      r0, 0x334(r31)
+	stw      r0, 0x338(r31)
+	lwz      r3, 0x33c(r31)
+	cmplwi   r3, 0
+	beq      lbl_8009F388
+	bl       initExtBuffer__13JASOuterParamFv
 
-	.loc_0x134:
-	  lfs       f1, -0x75E8(r2)
-	  li        r0, 0
-	  lfs       f0, -0x75E4(r2)
-	  addi      r3, r31, 0xE8
-	  stfs      f1, 0x340(r31)
-	  stfs      f0, 0x344(r31)
-	  stw       r0, 0x348(r31)
-	  bl        0x34B4
-	  li        r5, 0
-	  li        r4, 0x78
-	  stw       r5, 0x34C(r31)
-	  li        r0, 0x30
-	  mr        r3, r31
-	  sth       r5, 0x350(r31)
-	  sth       r4, 0x352(r31)
-	  sth       r0, 0x354(r31)
-	  bl        0x1308
-	  li        r5, 0
-	  li        r4, 0xA
-	  stb       r5, 0x356(r31)
-	  li        r3, 0xD
-	  li        r0, 0x1
-	  stb       r5, 0x357(r31)
-	  stb       r4, 0x358(r31)
-	  stb       r5, 0x359(r31)
-	  stb       r5, 0x35A(r31)
-	  stb       r5, 0x35B(r31)
-	  stb       r5, 0x35C(r31)
-	  stb       r5, 0x35F(r31)
-	  stb       r3, 0x13E(r31)
-	  stb       r5, 0x35D(r31)
-	  stb       r5, 0x360(r31)
-	  stb       r3, 0x13F(r31)
-	  stb       r5, 0x35E(r31)
-	  stb       r5, 0x361(r31)
-	  stb       r3, 0x140(r31)
-	  stb       r5, 0x362(r31)
-	  stb       r5, 0x363(r31)
-	  stb       r0, 0x364(r31)
-	  stb       r5, 0x365(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8009F388:
+	lfs      f1, lbl_80516D78@sda21(r2)
+	li       r0, 0
+	lfs      f0, lbl_80516D7C@sda21(r2)
+	addi     r3, r31, 0xe8
+	stfs     f1, 0x340(r31)
+	stfs     f0, 0x344(r31)
+	stw      r0, 0x348(r31)
+	bl       init__10JASVibrateFv
+	li       r5, 0
+	li       r4, 0x78
+	stw      r5, 0x34c(r31)
+	li       r0, 0x30
+	mr       r3, r31
+	sth      r5, 0x350(r31)
+	sth      r4, 0x352(r31)
+	sth      r0, 0x354(r31)
+	bl       updateTempo__8JASTrackFv
+	li       r5, 0
+	li       r4, 0xa
+	stb      r5, 0x356(r31)
+	li       r3, 0xd
+	li       r0, 1
+	stb      r5, 0x357(r31)
+	stb      r4, 0x358(r31)
+	stb      r5, 0x359(r31)
+	stb      r5, 0x35a(r31)
+	stb      r5, 0x35b(r31)
+	stb      r5, 0x35c(r31)
+	stb      r5, 0x35f(r31)
+	stb      r3, 0x13e(r31)
+	stb      r5, 0x35d(r31)
+	stb      r5, 0x360(r31)
+	stb      r3, 0x13f(r31)
+	stb      r5, 0x35e(r31)
+	stb      r5, 0x361(r31)
+	stb      r3, 0x140(r31)
+	stb      r5, 0x362(r31)
+	stb      r5, 0x363(r31)
+	stb      r0, 0x364(r31)
+	stb      r5, 0x365(r31)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -400,164 +518,163 @@ void JASTrack::inherit()
 void JASTrack::mainProc()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stw       r31, 0x2C(r1)
-	  mr        r31, r3
-	  stw       r30, 0x28(r1)
-	  li        r30, 0
-	  stw       r29, 0x24(r1)
-	  stw       r28, 0x20(r1)
-	  lbz       r0, 0x365(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0xAC
-	  lwz       r5, 0x2F8(r31)
-	  cmplwi    r5, 0
-	  beq-      .loc_0xAC
-	  lhz       r4, 0x352(r31)
-	  lis       r3, 0x4330
-	  lhz       r0, 0x352(r5)
-	  stw       r4, 0xC(r1)
-	  lfd       f2, -0x75E0(r2)
-	  stw       r3, 0x8(r1)
-	  lfs       f0, -0x75E4(r2)
-	  lfd       f1, 0x8(r1)
-	  stw       r0, 0x14(r1)
-	  fsubs     f3, f1, f2
-	  stw       r3, 0x10(r1)
-	  lfd       f1, 0x10(r1)
-	  fsubs     f1, f1, f2
-	  fdivs     f3, f3, f1
-	  fcmpo     cr0, f3, f0
-	  ble-      .loc_0x80
-	  fmr       f3, f0
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stw      r31, 0x2c(r1)
+	mr       r31, r3
+	stw      r30, 0x28(r1)
+	li       r30, 0
+	stw      r29, 0x24(r1)
+	stw      r28, 0x20(r1)
+	lbz      r0, 0x365(r3)
+	cmplwi   r0, 0
+	beq      lbl_8009F4E8
+	lwz      r5, 0x2f8(r31)
+	cmplwi   r5, 0
+	beq      lbl_8009F4E8
+	lhz      r4, 0x352(r31)
+	lis      r3, 0x4330
+	lhz      r0, 0x352(r5)
+	stw      r4, 0xc(r1)
+	lfd      f2, lbl_80516D80@sda21(r2)
+	stw      r3, 8(r1)
+	lfs      f0, lbl_80516D7C@sda21(r2)
+	lfd      f1, 8(r1)
+	stw      r0, 0x14(r1)
+	fsubs    f3, f1, f2
+	stw      r3, 0x10(r1)
+	lfd      f1, 0x10(r1)
+	fsubs    f1, f1, f2
+	fdivs    f3, f3, f1
+	fcmpo    cr0, f3, f0
+	ble      lbl_8009F4BC
+	fmr      f3, f0
 
-	.loc_0x80:
-	  lfs       f1, 0x340(r31)
-	  lfs       f0, -0x75E4(r2)
-	  fadds     f1, f1, f3
-	  stfs      f1, 0x340(r31)
-	  lfs       f1, 0x340(r31)
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0xA4
-	  li        r3, 0
-	  b         .loc_0x1EC
+lbl_8009F4BC:
+	lfs      f1, 0x340(r31)
+	lfs      f0, lbl_80516D7C@sda21(r2)
+	fadds    f1, f1, f3
+	stfs     f1, 0x340(r31)
+	lfs      f1, 0x340(r31)
+	fcmpo    cr0, f1, f0
+	bge      lbl_8009F4E0
+	li       r3, 0
+	b        lbl_8009F628
 
-	.loc_0xA4:
-	  fsubs     f0, f1, f0
-	  stfs      f0, 0x340(r31)
+lbl_8009F4E0:
+	fsubs    f0, f1, f0
+	stfs     f0, 0x340(r31)
 
-	.loc_0xAC:
-	  addi      r3, r31, 0x94
-	  li        r4, 0x7
-	  bl        0x354C
-	  addi      r3, r31, 0x94
-	  bl        0x3610
-	  mr        r3, r31
-	  bl        0x170
-	  lbz       r0, 0x362(r31)
-	  cmplwi    r0, 0
-	  beq-      .loc_0xE0
-	  lbz       r0, 0x358(r31)
-	  rlwinm.   r0,r0,0,30,30
-	  bne-      .loc_0x174
+lbl_8009F4E8:
+	addi     r3, r31, 0x94
+	li       r4, 7
+	bl       request__10JASIntrMgrFUl
+	addi     r3, r31, 0x94
+	bl       timerProcess__10JASIntrMgrFv
+	mr       r3, r31
+	bl       tryInterrupt__8JASTrackFv
+	lbz      r0, 0x362(r31)
+	cmplwi   r0, 0
+	beq      lbl_8009F51C
+	lbz      r0, 0x358(r31)
+	rlwinm.  r0, r0, 0, 0x1e, 0x1e
+	bne      lbl_8009F5B0
 
-	.loc_0xE0:
-	  lwz       r0, 0x14(r31)
-	  cmpwi     r0, -0x1
-	  bne-      .loc_0x108
-	  mr        r3, r31
-	  li        r4, 0
-	  bl        0x598
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x16C
-	  li        r0, 0
-	  stw       r0, 0x14(r31)
+lbl_8009F51C:
+	lwz      r0, 0x14(r31)
+	cmpwi    r0, -1
+	bne      lbl_8009F544
+	mr       r3, r31
+	li       r4, 0
+	bl       checkNoteStop__8JASTrackFl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_8009F5A8
+	li       r0, 0
+	stw      r0, 0x14(r31)
 
-	.loc_0x108:
-	  lwz       r3, 0x4C(r31)
-	  cmpwi     r3, 0
-	  ble-      .loc_0x11C
-	  subi      r0, r3, 0x1
-	  stw       r0, 0x4C(r31)
+lbl_8009F544:
+	lwz      r3, 0x4c(r31)
+	cmpwi    r3, 0
+	ble      lbl_8009F558
+	addi     r0, r3, -1
+	stw      r0, 0x4c(r31)
 
-	.loc_0x11C:
-	  lwz       r0, 0x14(r31)
-	  cmpwi     r0, 0
-	  ble-      .loc_0x15C
-	  addi      r3, r31, 0xC
-	  bl        -0x2C30
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x16C
-	  lwz       r3, 0xE0(r31)
-	  addis     r0, r3, 0x1
-	  cmplwi    r0, 0xFFFF
-	  beq-      .loc_0x15C
-	  lbz       r0, 0xE4(r31)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x15C
-	  li        r0, 0
-	  stw       r0, 0xC0(r31)
+lbl_8009F558:
+	lwz      r0, 0x14(r31)
+	cmpwi    r0, 0
+	ble      lbl_8009F598
+	addi     r3, r31, 0xc
+	bl       waitCountDown__10JASSeqCtrlFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_8009F5A8
+	lwz      r3, 0xe0(r31)
+	addis    r0, r3, 1
+	cmplwi   r0, 0xffff
+	beq      lbl_8009F598
+	lbz      r0, 0xe4(r31)
+	cmplwi   r0, 0
+	bne      lbl_8009F598
+	li       r0, 0
+	stw      r0, 0xc0(r31)
 
-	.loc_0x15C:
-	  mr        r4, r31
-	  subi      r3, r13, 0x758C
-	  bl        -0x1420
-	  mr        r30, r3
+lbl_8009F598:
+	mr       r4, r31
+	addi     r3, r13, sParser__8JASTrack@sda21
+	bl       parseSeq__12JASSeqParserFP8JASTrack
+	mr       r30, r3
 
-	.loc_0x16C:
-	  mr        r3, r31
-	  bl        0x774
+lbl_8009F5A8:
+	mr       r3, r31
+	bl       updateTimedParam__8JASTrackFv
 
-	.loc_0x174:
-	  mr        r3, r31
-	  li        r4, 0
-	  li        r5, 0
-	  bl        0x14D0
-	  cmpwi     r30, 0
-	  bge-      .loc_0x194
-	  li        r3, -0x1
-	  b         .loc_0x1EC
+lbl_8009F5B0:
+	mr       r3, r31
+	li       r4, 0
+	li       r5, 0
+	bl       updateSeq__8JASTrackFUlb
+	cmpwi    r30, 0
+	bge      lbl_8009F5D0
+	li       r3, -1
+	b        lbl_8009F628
 
-	.loc_0x194:
-	  mr        r30, r31
-	  li        r29, 0
-	  li        r31, 0
+lbl_8009F5D0:
+	mr       r30, r31
+	li       r29, 0
+	li       r31, 0
 
-	.loc_0x1A0:
-	  lwz       r28, 0x2FC(r30)
-	  cmplwi    r28, 0
-	  beq-      .loc_0x1D8
-	  lbz       r0, 0x35B(r28)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x1D8
-	  mr        r3, r28
-	  bl        .loc_0x0
-	  extsb     r0, r3
-	  cmpwi     r0, -0x1
-	  bne-      .loc_0x1D8
-	  mr        r3, r28
-	  bl        0x1A84
-	  stw       r31, 0x2FC(r30)
+lbl_8009F5DC:
+	lwz      r28, 0x2fc(r30)
+	cmplwi   r28, 0
+	beq      lbl_8009F614
+	lbz      r0, 0x35b(r28)
+	cmplwi   r0, 0
+	beq      lbl_8009F614
+	mr       r3, r28
+	bl       mainProc__8JASTrackFv
+	extsb    r0, r3
+	cmpwi    r0, -1
+	bne      lbl_8009F614
+	mr       r3, r28
+	bl       close__8JASTrackFv
+	stw      r31, 0x2fc(r30)
 
-	.loc_0x1D8:
-	  addi      r29, r29, 0x1
-	  addi      r30, r30, 0x4
-	  cmpwi     r29, 0x10
-	  blt+      .loc_0x1A0
-	  li        r3, 0
+lbl_8009F614:
+	addi     r29, r29, 1
+	addi     r30, r30, 4
+	cmpwi    r29, 0x10
+	blt      lbl_8009F5DC
+	li       r3, 0
 
-	.loc_0x1EC:
-	  lwz       r0, 0x34(r1)
-	  lwz       r31, 0x2C(r1)
-	  lwz       r30, 0x28(r1)
-	  lwz       r29, 0x24(r1)
-	  lwz       r28, 0x20(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_8009F628:
+	lwz      r0, 0x34(r1)
+	lwz      r31, 0x2c(r1)
+	lwz      r30, 0x28(r1)
+	lwz      r29, 0x24(r1)
+	lwz      r28, 0x20(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -569,17 +686,16 @@ void JASTrack::mainProc()
 void JASTrack::setInterrupt(unsigned short)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  addi      r3, r3, 0x94
-	  rlwinm    r4,r4,0,16,31
-	  stw       r0, 0x14(r1)
-	  bl        0x33E0
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	addi     r3, r3, 0x94
+	clrlwi   r4, r4, 0x10
+	stw      r0, 0x14(r1)
+	bl       request__10JASIntrMgrFUl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -591,37 +707,36 @@ void JASTrack::setInterrupt(unsigned short)
 void JASTrack::tryInterrupt()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r0, 0x50(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x28
-	  li        r3, 0
-	  b         .loc_0x4C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r0, 0x50(r3)
+	cmplwi   r0, 0
+	beq      lbl_8009F698
+	li       r3, 0
+	b        lbl_8009F6BC
 
-	.loc_0x28:
-	  addi      r3, r31, 0x94
-	  bl        0x3400
-	  cmplwi    r3, 0
-	  bne-      .loc_0x40
-	  li        r3, 0
-	  b         .loc_0x4C
+lbl_8009F698:
+	addi     r3, r31, 0x94
+	bl       checkIntr__10JASIntrMgrFv
+	cmplwi   r3, 0
+	bne      lbl_8009F6B0
+	li       r3, 0
+	b        lbl_8009F6BC
 
-	.loc_0x40:
-	  mr        r4, r3
-	  addi      r3, r31, 0xC
-	  bl        -0x2D50
+lbl_8009F6B0:
+	mr       r4, r3
+	addi     r3, r31, 0xc
+	bl       callIntr__10JASSeqCtrlFPv
 
-	.loc_0x4C:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8009F6BC:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -754,62 +869,61 @@ void JASTrack::getDolby() const
 void JASTrack::initTimed()
 {
 	/*
-	.loc_0x0:
-	  lfs       f1, -0x75E8(r2)
-	  li        r5, 0
-	  lfs       f0, -0x75E4(r2)
-	  b         .loc_0x64
+	lfs      f1, lbl_80516D78@sda21(r2)
+	li       r5, 0
+	lfs      f0, lbl_80516D7C@sda21(r2)
+	b        lbl_8009F73C
 
-	.loc_0x10:
-	  rlwinm    r0,r5,4,20,27
-	  addi      r5, r5, 0x6
-	  add       r4, r3, r0
-	  stfs      f1, 0x150(r4)
-	  stfs      f0, 0x148(r4)
-	  stfs      f0, 0x14C(r4)
-	  stfs      f1, 0x160(r4)
-	  stfs      f0, 0x158(r4)
-	  stfs      f0, 0x15C(r4)
-	  stfs      f1, 0x170(r4)
-	  stfs      f0, 0x168(r4)
-	  stfs      f0, 0x16C(r4)
-	  stfs      f1, 0x180(r4)
-	  stfs      f0, 0x178(r4)
-	  stfs      f0, 0x17C(r4)
-	  stfs      f1, 0x190(r4)
-	  stfs      f0, 0x188(r4)
-	  stfs      f0, 0x18C(r4)
-	  stfs      f1, 0x1A0(r4)
-	  stfs      f0, 0x198(r4)
-	  stfs      f0, 0x19C(r4)
+lbl_8009F6E8:
+	rlwinm   r0, r5, 4, 0x14, 0x1b
+	addi     r5, r5, 6
+	add      r4, r3, r0
+	stfs     f1, 0x150(r4)
+	stfs     f0, 0x148(r4)
+	stfs     f0, 0x14c(r4)
+	stfs     f1, 0x160(r4)
+	stfs     f0, 0x158(r4)
+	stfs     f0, 0x15c(r4)
+	stfs     f1, 0x170(r4)
+	stfs     f0, 0x168(r4)
+	stfs     f0, 0x16c(r4)
+	stfs     f1, 0x180(r4)
+	stfs     f0, 0x178(r4)
+	stfs     f0, 0x17c(r4)
+	stfs     f1, 0x190(r4)
+	stfs     f0, 0x188(r4)
+	stfs     f0, 0x18c(r4)
+	stfs     f1, 0x1a0(r4)
+	stfs     f0, 0x198(r4)
+	stfs     f0, 0x19c(r4)
 
-	.loc_0x64:
-	  rlwinm    r0,r5,0,24,31
-	  cmplwi    r0, 0x12
-	  blt+      .loc_0x10
-	  lfs       f1, -0x75E8(r2)
-	  lfs       f0, -0x75D8(r2)
-	  stfs      f1, 0x158(r3)
-	  stfs      f1, 0x15C(r3)
-	  stfs      f0, 0x178(r3)
-	  stfs      f0, 0x17C(r3)
-	  stfs      f0, 0x248(r3)
-	  stfs      f0, 0x24C(r3)
-	  stfs      f1, 0x258(r3)
-	  stfs      f1, 0x25C(r3)
-	  stfs      f1, 0x168(r3)
-	  stfs      f1, 0x16C(r3)
-	  stfs      f1, 0x188(r3)
-	  stfs      f1, 0x18C(r3)
-	  stfs      f1, 0x218(r3)
-	  stfs      f1, 0x21C(r3)
-	  stfs      f1, 0x228(r3)
-	  stfs      f1, 0x22C(r3)
-	  stfs      f1, 0x238(r3)
-	  stfs      f1, 0x23C(r3)
-	  stfs      f1, 0x198(r3)
-	  stfs      f1, 0x19C(r3)
-	  blr
+lbl_8009F73C:
+	clrlwi   r0, r5, 0x18
+	cmplwi   r0, 0x12
+	blt      lbl_8009F6E8
+	lfs      f1, lbl_80516D78@sda21(r2)
+	lfs      f0, lbl_80516D88@sda21(r2)
+	stfs     f1, 0x158(r3)
+	stfs     f1, 0x15c(r3)
+	stfs     f0, 0x178(r3)
+	stfs     f0, 0x17c(r3)
+	stfs     f0, 0x248(r3)
+	stfs     f0, 0x24c(r3)
+	stfs     f1, 0x258(r3)
+	stfs     f1, 0x25c(r3)
+	stfs     f1, 0x168(r3)
+	stfs     f1, 0x16c(r3)
+	stfs     f1, 0x188(r3)
+	stfs     f1, 0x18c(r3)
+	stfs     f1, 0x218(r3)
+	stfs     f1, 0x21c(r3)
+	stfs     f1, 0x228(r3)
+	stfs     f1, 0x22c(r3)
+	stfs     f1, 0x238(r3)
+	stfs     f1, 0x23c(r3)
+	stfs     f1, 0x198(r3)
+	stfs     f1, 0x19c(r3)
+	blr
 	*/
 }
 
@@ -821,11 +935,10 @@ void JASTrack::initTimed()
 void JASTrack::connectBus(int, int)
 {
 	/*
-	.loc_0x0:
-	  rlwinm    r0,r4,1,0,30
-	  add       r3, r3, r0
-	  sth       r5, 0x12A(r3)
-	  blr
+	slwi     r0, r4, 1
+	add      r3, r3, r0
+	sth      r5, 0x12a(r3)
+	blr
 	*/
 }
 
@@ -837,128 +950,122 @@ void JASTrack::connectBus(int, int)
 void JASTrack::noteOn(unsigned char, long, long, long, unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  stw       r0, 0x44(r1)
-	  stmw      r25, 0x24(r1)
-	  mr        r26, r3
-	  mr        r27, r4
-	  mr        r28, r5
-	  mr        r29, r6
-	  mr        r30, r7
-	  mr        r31, r8
-	  lbz       r0, 0x363(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x48
-	  lbz       r0, 0x358(r26)
-	  rlwinm.   r0,r0,0,25,25
-	  beq-      .loc_0x48
-	  li        r3, -0x1
-	  b         .loc_0x190
+	stwu     r1, -0x40(r1)
+	mflr     r0
+	stw      r0, 0x44(r1)
+	stmw     r25, 0x24(r1)
+	mr       r26, r3
+	mr       r27, r4
+	mr       r28, r5
+	mr       r29, r6
+	mr       r30, r7
+	mr       r31, r8
+	lbz      r0, 0x363(r3)
+	cmplwi   r0, 0
+	beq      lbl_8009F7FC
+	lbz      r0, 0x358(r26)
+	rlwinm.  r0, r0, 0, 0x19, 0x19
+	beq      lbl_8009F7FC
+	li       r3, -1
+	b        lbl_8009F944
 
-	.loc_0x48:
-	  rlwinm    r0,r27,0,24,31
-	  li        r3, 0x1
-	  lbz       r4, 0x35A(r26)
-	  slw       r0, r3, r0
-	  and.      r0, r4, r0
-	  beq-      .loc_0x68
-	  li        r3, -0x1
-	  b         .loc_0x190
+lbl_8009F7FC:
+	clrlwi   r0, r27, 0x18
+	li       r3, 1
+	lbz      r4, 0x35a(r26)
+	slw      r0, r3, r0
+	and.     r0, r4, r0
+	beq      lbl_8009F81C
+	li       r3, -1
+	b        lbl_8009F944
 
-	.loc_0x68:
-	  mr        r3, r26
-	  mr        r4, r27
-	  li        r5, 0
-	  bl        0x1D4
-	  addi      r3, r26, 0x268
-	  bl        -0x2FF4
-	  rlwinm    r3,r3,0,24,31
-	  bl        -0x6764
-	  rlwinm    r25,r3,0,24,31
-	  addi      r3, r26, 0x268
-	  bl        -0x2FF8
-	  lwz       r12, 0x144(r26)
-	  mr        r5, r3
-	  cmplwi    r12, 0
-	  bne-      .loc_0xD0
-	  lis       r3, 0x800A
-	  lhz       r7, 0x282(r26)
-	  addi      r8, r3, 0x2948
-	  rlwinm    r4,r5,0,24,31
-	  mr        r3, r25
-	  mr        r9, r26
-	  rlwinm    r5,r28,0,24,31
-	  rlwinm    r6,r29,0,24,31
-	  bl        -0x66F8
-	  mr        r28, r3
-	  b         .loc_0xF0
+lbl_8009F81C:
+	mr       r3, r26
+	mr       r4, r27
+	li       r5, 0
+	bl       noteOff__8JASTrackFUcUs
+	addi     r3, r26, 0x268
+	bl       getBankNumber__16JASRegisterParamCFv
+	clrlwi   r3, r3, 0x18
+	bl       getPhysicalNumber__10JASBankMgrFUs
+	clrlwi   r25, r3, 0x18
+	addi     r3, r26, 0x268
+	bl       getProgramNumber__16JASRegisterParamCFv
+	lwz      r12, 0x144(r26)
+	mr       r5, r3
+	cmplwi   r12, 0
+	bne      lbl_8009F884
+	lis      r3,
+channelUpdateCallback__8JASTrackFUlP10JASChannelPQ26JASDsp8TChannelPv@ha lhz r7,
+0x282(r26) addi     r8, r3,
+channelUpdateCallback__8JASTrackFUlP10JASChannelPQ26JASDsp8TChannelPv@l clrlwi
+r4, r5, 0x18 mr       r3, r25 mr       r9, r26 clrlwi   r5, r28, 0x18 clrlwi r6,
+r29, 0x18 bl
+noteOn__10JASBankMgrFiiUcUcUsPFUlP10JASChannelPQ26JASDsp8TChannelPv_vPv mr r28,
+r3 b        lbl_8009F8A4
 
-	.loc_0xD0:
-	  mr        r3, r26
-	  mr        r4, r25
-	  rlwinm    r6,r28,0,24,31
-	  rlwinm    r7,r29,0,24,31
-	  lhz       r8, 0x282(r26)
-	  mtctr     r12
-	  bctrl
-	  mr        r28, r3
+lbl_8009F884:
+	mr       r3, r26
+	mr       r4, r25
+	clrlwi   r6, r28, 0x18
+	clrlwi   r7, r29, 0x18
+	lhz      r8, 0x282(r26)
+	mtctr    r12
+	bctrl
+	mr       r28, r3
 
-	.loc_0xF0:
-	  cmplwi    r28, 0
-	  bne-      .loc_0x100
-	  li        r3, -0x1
-	  b         .loc_0x190
+lbl_8009F8A4:
+	cmplwi   r28, 0
+	bne      lbl_8009F8B4
+	li       r3, -1
+	b        lbl_8009F944
 
-	.loc_0x100:
-	  stw       r30, 0x2C(r28)
-	  mr        r3, r26
-	  mr        r4, r28
-	  bl        -0x78FDC
-	  rlwinm    r0,r27,2,22,29
-	  lis       r5, 0x4330
-	  add       r4, r26, r0
-	  stw       r5, 0x8(r1)
-	  lfd       f3, -0x75E0(r2)
-	  mr        r3, r28
-	  stw       r28, 0xC0(r4)
-	  stw       r31, 0xC8(r28)
-	  lhz       r6, 0x278(r26)
-	  lhz       r4, 0x27A(r26)
-	  stw       r6, 0xC(r1)
-	  lhz       r0, 0x27C(r26)
-	  lfd       f0, 0x8(r1)
-	  stw       r4, 0x14(r1)
-	  fsubs     f1, f0, f3
-	  stw       r5, 0x10(r1)
-	  lfd       f0, 0x10(r1)
-	  stw       r0, 0x1C(r1)
-	  fsubs     f2, f0, f3
-	  stw       r5, 0x18(r1)
-	  lfd       f0, 0x18(r1)
-	  fsubs     f3, f0, f3
-	  bl        0x3D80
-	  mr        r3, r26
-	  mr        r4, r28
-	  bl        .loc_0x1A4
-	  lhz       r4, 0x350(r26)
-	  cmplwi    r4, 0
-	  beq-      .loc_0x18C
-	  mr        r3, r28
-	  bl        0x3C4C
+lbl_8009F8B4:
+	stw      r30, 0x2c(r28)
+	mr       r3, r26
+	mr       r4, r28
+	bl       append__10JSUPtrListFP10JSUPtrLink
+	rlwinm   r0, r27, 2, 0x16, 0x1d
+	lis      r5, 0x4330
+	add      r4, r26, r0
+	stw      r5, 8(r1)
+	lfd      f3, lbl_80516D80@sda21(r2)
+	mr       r3, r28
+	stw      r28, 0xc0(r4)
+	stw      r31, 0xc8(r28)
+	lhz      r6, 0x278(r26)
+	lhz      r4, 0x27a(r26)
+	stw      r6, 0xc(r1)
+	lhz      r0, 0x27c(r26)
+	lfd      f0, 8(r1)
+	stw      r4, 0x14(r1)
+	fsubs    f1, f0, f3
+	stw      r5, 0x10(r1)
+	lfd      f0, 0x10(r1)
+	stw      r0, 0x1c(r1)
+	fsubs    f2, f0, f3
+	stw      r5, 0x18(r1)
+	lfd      f0, 0x18(r1)
+	fsubs    f3, f0, f3
+	bl       setPanPower__10JASChannelFfff
+	mr       r3, r26
+	mr       r4, r28
+	bl       overwriteOsc__8JASTrackFP10JASChannel
+	lhz      r4, 0x350(r26)
+	cmplwi   r4, 0
+	beq      lbl_8009F940
+	mr       r3, r28
+	bl       directReleaseOsc__10JASChannelFUs
 
-	.loc_0x18C:
-	  li        r3, 0
+lbl_8009F940:
+	li       r3, 0
 
-	.loc_0x190:
-	  lmw       r25, 0x24(r1)
-	  lwz       r0, 0x44(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
-
-	.loc_0x1A4:
+lbl_8009F944:
+	lmw      r25, 0x24(r1)
+	lwz      r0, 0x44(r1)
+	mtlr     r0
+	addi     r1, r1, 0x40
+	blr
 	*/
 }
 
@@ -970,56 +1077,55 @@ void JASTrack::noteOn(unsigned char, long, long, long, unsigned long)
 void JASTrack::overwriteOsc(JASChannel*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stmw      r26, 0x8(r1)
-	  mr        r26, r4
-	  mr        r30, r3
-	  li        r28, 0
-	  mr        r29, r3
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stmw     r26, 8(r1)
+	mr       r26, r4
+	mr       r30, r3
+	li       r28, 0
+	mr       r29, r3
 
-	.loc_0x20:
-	  lwz       r3, 0x2D8(r30)
-	  cmplwi    r3, 0xF
-	  beq-      .loc_0x7C
-	  rlwinm.   r0,r3,0,28,28
-	  rlwinm    r31,r3,0,30,31
-	  beq-      .loc_0x4C
-	  mr        r3, r26
-	  mr        r4, r31
-	  addi      r5, r29, 0x2A8
-	  bl        0x3BF4
-	  b         .loc_0x6C
+lbl_8009F978:
+	lwz      r3, 0x2d8(r30)
+	cmplwi   r3, 0xf
+	beq      lbl_8009F9D4
+	rlwinm.  r0, r3, 0, 0x1c, 0x1c
+	clrlwi   r31, r3, 0x1e
+	beq      lbl_8009F9A4
+	mr       r3, r26
+	mr       r4, r31
+	addi     r5, r29, 0x2a8
+	bl       copyOsc__10JASChannelFiPQ213JASOscillator4Data
+	b        lbl_8009F9C4
 
-	.loc_0x4C:
-	  rlwinm.   r0,r3,0,29,29
-	  beq-      .loc_0x6C
-	  lwz       r27, 0x2B4(r29)
-	  mr        r3, r26
-	  mr        r4, r31
-	  addi      r5, r29, 0x2A8
-	  bl        0x3BD4
-	  stw       r27, 0x2B4(r29)
+lbl_8009F9A4:
+	rlwinm.  r0, r3, 0, 0x1d, 0x1d
+	beq      lbl_8009F9C4
+	lwz      r27, 0x2b4(r29)
+	mr       r3, r26
+	mr       r4, r31
+	addi     r5, r29, 0x2a8
+	bl       copyOsc__10JASChannelFiPQ213JASOscillator4Data
+	stw      r27, 0x2b4(r29)
 
-	.loc_0x6C:
-	  mr        r3, r26
-	  mr        r4, r31
-	  addi      r5, r29, 0x2A8
-	  bl        0x3C08
+lbl_8009F9C4:
+	mr       r3, r26
+	mr       r4, r31
+	addi     r5, r29, 0x2a8
+	bl       overwriteOsc__10JASChannelFiPQ213JASOscillator4Data
 
-	.loc_0x7C:
-	  addi      r28, r28, 0x1
-	  addi      r29, r29, 0x18
-	  cmpwi     r28, 0x2
-	  addi      r30, r30, 0x4
-	  blt+      .loc_0x20
-	  lmw       r26, 0x8(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8009F9D4:
+	addi     r28, r28, 1
+	addi     r29, r29, 0x18
+	cmpwi    r28, 2
+	addi     r30, r30, 4
+	blt      lbl_8009F978
+	lmw      r26, 8(r1)
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -1031,41 +1137,40 @@ void JASTrack::overwriteOsc(JASChannel*)
 void JASTrack::noteOff(unsigned char, unsigned short)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  rlwinm    r0,r4,2,22,29
-	  stw       r31, 0xC(r1)
-	  add       r31, r3, r0
-	  lwz       r3, 0xC0(r31)
-	  cmplwi    r3, 0
-	  bne-      .loc_0x2C
-	  li        r3, 0
-	  b         .loc_0x54
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	rlwinm   r0, r4, 2, 0x16, 0x1d
+	stw      r31, 0xc(r1)
+	add      r31, r3, r0
+	lwz      r3, 0xc0(r31)
+	cmplwi   r3, 0
+	bne      lbl_8009FA28
+	li       r3, 0
+	b        lbl_8009FA50
 
-	.loc_0x2C:
-	  rlwinm.   r0,r5,0,16,31
-	  bne-      .loc_0x40
-	  li        r4, 0
-	  bl        0x3D94
-	  b         .loc_0x48
+lbl_8009FA28:
+	clrlwi.  r0, r5, 0x10
+	bne      lbl_8009FA3C
+	li       r4, 0
+	bl       release__10JASChannelFUs
+	b        lbl_8009FA44
 
-	.loc_0x40:
-	  mr        r4, r5
-	  bl        0x3D88
+lbl_8009FA3C:
+	mr       r4, r5
+	bl       release__10JASChannelFUs
 
-	.loc_0x48:
-	  li        r0, 0
-	  li        r3, 0x1
-	  stw       r0, 0xC0(r31)
+lbl_8009FA44:
+	li       r0, 0
+	li       r3, 1
+	stw      r0, 0xc0(r31)
 
-	.loc_0x54:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8009FA50:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1077,36 +1182,35 @@ void JASTrack::noteOff(unsigned char, unsigned short)
 void JASTrack::gateOn(unsigned char, long, long, long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  rlwinm    r0,r4,2,22,29
-	  add       r3, r3, r0
-	  stw       r31, 0xC(r1)
-	  stw       r30, 0x8(r1)
-	  mr        r30, r7
-	  lwz       r31, 0xC0(r3)
-	  cmplwi    r31, 0
-	  bne-      .loc_0x34
-	  li        r3, -0x1
-	  b         .loc_0x4C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	rlwinm   r0, r4, 2, 0x16, 0x1d
+	add      r3, r3, r0
+	stw      r31, 0xc(r1)
+	stw      r30, 8(r1)
+	mr       r30, r7
+	lwz      r31, 0xc0(r3)
+	cmplwi   r31, 0
+	bne      lbl_8009FA98
+	li       r3, -1
+	b        lbl_8009FAB0
 
-	.loc_0x34:
-	  rlwinm    r4,r5,0,24,31
-	  mr        r3, r31
-	  rlwinm    r5,r6,0,24,31
-	  bl        -0x6450
-	  stw       r30, 0x2C(r31)
-	  li        r3, 0
+lbl_8009FA98:
+	clrlwi   r4, r5, 0x18
+	mr       r3, r31
+	clrlwi   r5, r6, 0x18
+	bl       gateOn__10JASBankMgrFP10JASChannelUcUc
+	stw      r30, 0x2c(r31)
+	li       r3, 0
 
-	.loc_0x4C:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8009FAB0:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1118,20 +1222,19 @@ void JASTrack::gateOn(unsigned char, long, long, long)
 void JASTrack::checkNoteStop(long)
 {
 	/*
-	.loc_0x0:
-	  rlwinm    r0,r4,2,0,29
-	  add       r3, r3, r0
-	  lwz       r3, 0xC0(r3)
-	  cmplwi    r3, 0
-	  bne-      .loc_0x1C
-	  li        r3, 0x1
-	  blr
+	slwi     r0, r4, 2
+	add      r3, r3, r0
+	lwz      r3, 0xc0(r3)
+	cmplwi   r3, 0
+	bne      lbl_8009FAE4
+	li       r3, 1
+	blr
 
-	.loc_0x1C:
-	  lwz       r0, 0x18(r3)
-	  cntlzw    r0, r0
-	  rlwinm    r3,r0,27,24,31
-	  blr
+lbl_8009FAE4:
+	lwz      r0, 0x18(r3)
+	cntlzw   r0, r0
+	rlwinm   r3, r0, 0x1b, 0x18, 0x1f
+	blr
 	*/
 }
 
@@ -1143,73 +1246,72 @@ void JASTrack::checkNoteStop(long)
 void JASTrack::oscSetupFull(unsigned char, unsigned long, unsigned long)
 {
 	/*
-	.loc_0x0:
-	  rlwinm.   r0,r4,25,31,31
-	  rlwinm    r8,r4,28,31,31
-	  rlwinm    r12,r4,0,28,31
-	  rlwinm    r9,r4,26,31,31
-	  rlwinm    r10,r4,27,31,31
-	  beq-      .loc_0x70
-	  mulli     r11, r8, 0x18
-	  lis       r4, 0x8048
-	  cmpwi     r12, 0x1
-	  subi      r7, r4, 0x7408
-	  lwz       r0, 0x0(r7)
-	  add       r11, r3, r11
-	  lfs       f0, 0x4(r7)
-	  stw       r0, 0x2A8(r11)
-	  lwz       r4, 0x8(r7)
-	  stfs      f0, 0x2AC(r11)
-	  lwz       r0, 0xC(r7)
-	  stw       r4, 0x2B0(r11)
-	  lfs       f1, 0x10(r7)
-	  stw       r0, 0x2B4(r11)
-	  lfs       f0, 0x14(r7)
-	  stfs      f1, 0x2B8(r11)
-	  stfs      f0, 0x2BC(r11)
-	  stw       r12, 0x2A8(r11)
-	  beq-      .loc_0x68
-	  b         .loc_0x70
+	rlwinm.  r0, r4, 0x19, 0x1f, 0x1f
+	rlwinm   r8, r4, 0x1c, 0x1f, 0x1f
+	clrlwi   r12, r4, 0x1c
+	rlwinm   r9, r4, 0x1a, 0x1f, 0x1f
+	rlwinm   r10, r4, 0x1b, 0x1f, 0x1f
+	beq      lbl_8009FB64
+	mulli    r11, r8, 0x18
+	lis      r4, sEnvelopeDef__9JASPlayer@ha
+	cmpwi    r12, 1
+	addi     r7, r4, sEnvelopeDef__9JASPlayer@l
+	lwz      r0, 0(r7)
+	add      r11, r3, r11
+	lfs      f0, 4(r7)
+	stw      r0, 0x2a8(r11)
+	lwz      r4, 8(r7)
+	stfs     f0, 0x2ac(r11)
+	lwz      r0, 0xc(r7)
+	stw      r4, 0x2b0(r11)
+	lfs      f1, 0x10(r7)
+	stw      r0, 0x2b4(r11)
+	lfs      f0, 0x14(r7)
+	stfs     f1, 0x2b8(r11)
+	stfs     f0, 0x2bc(r11)
+	stw      r12, 0x2a8(r11)
+	beq      lbl_8009FB5C
+	b        lbl_8009FB64
 
-	.loc_0x68:
-	  lfs       f0, -0x75E4(r2)
-	  stfs      f0, 0x2BC(r11)
+lbl_8009FB5C:
+	lfs      f0, lbl_80516D7C@sda21(r2)
+	stfs     f0, 0x2bc(r11)
 
-	.loc_0x70:
-	  cmplwi    r9, 0
-	  beq-      .loc_0xA4
-	  cmplwi    r5, 0
-	  bne-      .loc_0x90
-	  mulli     r0, r8, 0x18
-	  li        r7, 0
-	  add       r4, r3, r0
-	  stw       r7, 0x2B0(r4)
+lbl_8009FB64:
+	cmplwi   r9, 0
+	beq      lbl_8009FB98
+	cmplwi   r5, 0
+	bne      lbl_8009FB84
+	mulli    r0, r8, 0x18
+	li       r7, 0
+	add      r4, r3, r0
+	stw      r7, 0x2b0(r4)
 
-	.loc_0x90:
-	  mulli     r0, r8, 0x18
-	  lwz       r4, 0xC(r3)
-	  add       r5, r4, r5
-	  add       r4, r3, r0
-	  stw       r5, 0x2B0(r4)
+lbl_8009FB84:
+	mulli    r0, r8, 0x18
+	lwz      r4, 0xc(r3)
+	add      r5, r4, r5
+	add      r4, r3, r0
+	stw      r5, 0x2b0(r4)
 
-	.loc_0xA4:
-	  cmplwi    r10, 0
-	  beqlr-
-	  cmplwi    r6, 0
-	  bne-      .loc_0xC8
-	  mulli     r0, r8, 0x18
-	  lis       r4, 0x804A
-	  addi      r5, r4, 0x3D10
-	  add       r4, r3, r0
-	  stw       r5, 0x2B4(r4)
+lbl_8009FB98:
+	cmplwi   r10, 0
+	beqlr
+	cmplwi   r6, 0
+	bne      lbl_8009FBBC
+	mulli    r0, r8, 0x18
+	lis      r4, sRelTable__9JASPlayer@ha
+	addi     r5, r4, sRelTable__9JASPlayer@l
+	add      r4, r3, r0
+	stw      r5, 0x2b4(r4)
 
-	.loc_0xC8:
-	  mulli     r0, r8, 0x18
-	  lwz       r4, 0xC(r3)
-	  add       r4, r4, r6
-	  add       r3, r3, r0
-	  stw       r4, 0x2B4(r3)
-	  blr
+lbl_8009FBBC:
+	mulli    r0, r8, 0x18
+	lwz      r4, 0xc(r3)
+	add      r4, r4, r6
+	add      r3, r3, r0
+	stw      r4, 0x2b4(r3)
+	blr
 	*/
 }
 
@@ -1221,37 +1323,36 @@ void JASTrack::oscSetupFull(unsigned char, unsigned long, unsigned long)
 void JASTrack::oscSetupSimpleEnv(unsigned char, unsigned long)
 {
 	/*
-	.loc_0x0:
-	  rlwinm    r0,r4,0,24,31
-	  cmpwi     r0, 0x1
-	  beq-      .loc_0x60
-	  bgelr-
-	  cmpwi     r0, 0
-	  bltlr-
-	  lis       r4, 0x8048
-	  subi      r6, r4, 0x7408
-	  lwz       r0, 0x0(r6)
-	  lfs       f0, 0x4(r6)
-	  stw       r0, 0x2A8(r3)
-	  lwz       r4, 0x8(r6)
-	  stfs      f0, 0x2AC(r3)
-	  lwz       r0, 0xC(r6)
-	  stw       r4, 0x2B0(r3)
-	  lfs       f1, 0x10(r6)
-	  stw       r0, 0x2B4(r3)
-	  lfs       f0, 0x14(r6)
-	  stfs      f1, 0x2B8(r3)
-	  stfs      f0, 0x2BC(r3)
-	  lwz       r0, 0xC(r3)
-	  add       r0, r0, r5
-	  stw       r0, 0x2B0(r3)
-	  blr
+	clrlwi   r0, r4, 0x18
+	cmpwi    r0, 1
+	beq      lbl_8009FC34
+	bgelr
+	cmpwi    r0, 0
+	bltlr
+	lis      r4, sEnvelopeDef__9JASPlayer@ha
+	addi     r6, r4, sEnvelopeDef__9JASPlayer@l
+	lwz      r0, 0(r6)
+	lfs      f0, 4(r6)
+	stw      r0, 0x2a8(r3)
+	lwz      r4, 8(r6)
+	stfs     f0, 0x2ac(r3)
+	lwz      r0, 0xc(r6)
+	stw      r4, 0x2b0(r3)
+	lfs      f1, 0x10(r6)
+	stw      r0, 0x2b4(r3)
+	lfs      f0, 0x14(r6)
+	stfs     f1, 0x2b8(r3)
+	stfs     f0, 0x2bc(r3)
+	lwz      r0, 0xc(r3)
+	add      r0, r0, r5
+	stw      r0, 0x2b0(r3)
+	blr
 
-	.loc_0x60:
-	  lwz       r0, 0xC(r3)
-	  add       r0, r0, r5
-	  stw       r0, 0x2B4(r3)
-	  blr
+lbl_8009FC34:
+	lwz      r0, 0xc(r3)
+	add      r0, r0, r5
+	stw      r0, 0x2b4(r3)
+	blr
 	*/
 }
 
@@ -1273,70 +1374,69 @@ void JASTrack::updateOscParam(int, float)
 void JASTrack::oscSetupSimple(unsigned char)
 {
 	/*
-	.loc_0x0:
-	  rlwinm    r0,r4,0,24,31
-	  cmpwi     r0, 0x1
-	  beq-      .loc_0x64
-	  bge-      .loc_0x1C
-	  cmpwi     r0, 0
-	  bge-      .loc_0x28
-	  blr
+	clrlwi   r0, r4, 0x18
+	cmpwi    r0, 1
+	beq      lbl_8009FCA8
+	bge      lbl_8009FC60
+	cmpwi    r0, 0
+	bge      lbl_8009FC6C
+	blr
 
-	.loc_0x1C:
-	  cmpwi     r0, 0x3
-	  bgelr-
-	  b         .loc_0xA0
+lbl_8009FC60:
+	cmpwi    r0, 3
+	bgelr
+	b        lbl_8009FCE4
 
-	.loc_0x28:
-	  lis       r4, 0x8048
-	  subi      r5, r4, 0x73F0
-	  lwz       r0, 0x0(r5)
-	  lfs       f0, 0x4(r5)
-	  stw       r0, 0x2C0(r3)
-	  lwz       r4, 0x8(r5)
-	  stfs      f0, 0x2C4(r3)
-	  lwz       r0, 0xC(r5)
-	  stw       r4, 0x2C8(r3)
-	  lfs       f1, 0x10(r5)
-	  stw       r0, 0x2CC(r3)
-	  lfs       f0, 0x14(r5)
-	  stfs      f1, 0x2D0(r3)
-	  stfs      f0, 0x2D4(r3)
-	  blr
+lbl_8009FC6C:
+	lis      r4, sVibratoDef__9JASPlayer@ha
+	addi     r5, r4, sVibratoDef__9JASPlayer@l
+	lwz      r0, 0(r5)
+	lfs      f0, 4(r5)
+	stw      r0, 0x2c0(r3)
+	lwz      r4, 8(r5)
+	stfs     f0, 0x2c4(r3)
+	lwz      r0, 0xc(r5)
+	stw      r4, 0x2c8(r3)
+	lfs      f1, 0x10(r5)
+	stw      r0, 0x2cc(r3)
+	lfs      f0, 0x14(r5)
+	stfs     f1, 0x2d0(r3)
+	stfs     f0, 0x2d4(r3)
+	blr
 
-	.loc_0x64:
-	  lis       r4, 0x8048
-	  subi      r5, r4, 0x73D8
-	  lwz       r0, 0x0(r5)
-	  lfs       f0, 0x4(r5)
-	  stw       r0, 0x2A8(r3)
-	  lwz       r4, 0x8(r5)
-	  stfs      f0, 0x2AC(r3)
-	  lwz       r0, 0xC(r5)
-	  stw       r4, 0x2B0(r3)
-	  lfs       f1, 0x10(r5)
-	  stw       r0, 0x2B4(r3)
-	  lfs       f0, 0x14(r5)
-	  stfs      f1, 0x2B8(r3)
-	  stfs      f0, 0x2BC(r3)
-	  blr
+lbl_8009FCA8:
+	lis      r4, sTremoroDef__9JASPlayer@ha
+	addi     r5, r4, sTremoroDef__9JASPlayer@l
+	lwz      r0, 0(r5)
+	lfs      f0, 4(r5)
+	stw      r0, 0x2a8(r3)
+	lwz      r4, 8(r5)
+	stfs     f0, 0x2ac(r3)
+	lwz      r0, 0xc(r5)
+	stw      r4, 0x2b0(r3)
+	lfs      f1, 0x10(r5)
+	stw      r0, 0x2b4(r3)
+	lfs      f0, 0x14(r5)
+	stfs     f1, 0x2b8(r3)
+	stfs     f0, 0x2bc(r3)
+	blr
 
-	.loc_0xA0:
-	  lis       r4, 0x8048
-	  subi      r5, r4, 0x73D8
-	  lwz       r0, 0x0(r5)
-	  lfs       f0, 0x4(r5)
-	  stw       r0, 0x2C0(r3)
-	  lwz       r4, 0x8(r5)
-	  stfs      f0, 0x2C4(r3)
-	  lwz       r0, 0xC(r5)
-	  stw       r4, 0x2C8(r3)
-	  lfs       f1, 0x10(r5)
-	  stw       r0, 0x2CC(r3)
-	  lfs       f0, 0x14(r5)
-	  stfs      f1, 0x2D0(r3)
-	  stfs      f0, 0x2D4(r3)
-	  blr
+lbl_8009FCE4:
+	lis      r4, sTremoroDef__9JASPlayer@ha
+	addi     r5, r4, sTremoroDef__9JASPlayer@l
+	lwz      r0, 0(r5)
+	lfs      f0, 4(r5)
+	stw      r0, 0x2c0(r3)
+	lwz      r4, 8(r5)
+	stfs     f0, 0x2c4(r3)
+	lwz      r0, 0xc(r5)
+	stw      r4, 0x2c8(r3)
+	lfs      f1, 0x10(r5)
+	stw      r0, 0x2cc(r3)
+	lfs      f0, 0x14(r5)
+	stfs     f1, 0x2d0(r3)
+	stfs     f0, 0x2d4(r3)
+	blr
 	*/
 }
 
@@ -1348,87 +1448,86 @@ void JASTrack::oscSetupSimple(unsigned char)
 void JASTrack::updateTimedParam()
 {
 	/*
-	.loc_0x0:
-	  li        r0, 0x12
-	  mr        r5, r3
-	  lfs       f3, -0x75E8(r2)
-	  li        r6, 0
-	  mtctr     r0
+	li       r0, 0x12
+	mr       r5, r3
+	lfs      f3, lbl_80516D78@sda21(r2)
+	li       r6, 0
+	mtctr    r0
 
-	.loc_0x14:
-	  lfs       f0, 0x150(r5)
-	  fcmpo     cr0, f0, f3
-	  ble-      .loc_0xCC
-	  lfs       f2, 0x148(r5)
-	  cmpwi     r6, 0x5
-	  lfs       f1, 0x154(r5)
-	  lfs       f0, -0x75E4(r2)
-	  fadds     f1, f2, f1
-	  stfs      f1, 0x148(r5)
-	  lfs       f1, 0x150(r5)
-	  fsubs     f0, f1, f0
-	  stfs      f0, 0x150(r5)
-	  ble-      .loc_0x50
-	  cmpwi     r6, 0xB
-	  blt-      .loc_0x68
+lbl_8009FD34:
+	lfs      f0, 0x150(r5)
+	fcmpo    cr0, f0, f3
+	ble      lbl_8009FDEC
+	lfs      f2, 0x148(r5)
+	cmpwi    r6, 5
+	lfs      f1, 0x154(r5)
+	lfs      f0, lbl_80516D7C@sda21(r2)
+	fadds    f1, f2, f1
+	stfs     f1, 0x148(r5)
+	lfs      f1, 0x150(r5)
+	fsubs    f0, f1, f0
+	stfs     f0, 0x150(r5)
+	ble      lbl_8009FD70
+	cmpwi    r6, 0xb
+	blt      lbl_8009FD88
 
-	.loc_0x50:
-	  li        r0, 0x1
-	  lwz       r4, 0x34C(r3)
-	  slw       r0, r0, r6
-	  or        r0, r4, r0
-	  stw       r0, 0x34C(r3)
-	  b         .loc_0xCC
+lbl_8009FD70:
+	li       r0, 1
+	lwz      r4, 0x34c(r3)
+	slw      r0, r0, r6
+	or       r0, r4, r0
+	stw      r0, 0x34c(r3)
+	b        lbl_8009FDEC
 
-	.loc_0x68:
-	  cmpwi     r6, 0x9
-	  lfs       f0, 0x148(r5)
-	  beq-      .loc_0xB8
-	  bge-      .loc_0x90
-	  cmpwi     r6, 0x7
-	  beq-      .loc_0xA8
-	  bge-      .loc_0xB0
-	  cmpwi     r6, 0x6
-	  bge-      .loc_0xA0
-	  b         .loc_0xCC
+lbl_8009FD88:
+	cmpwi    r6, 9
+	lfs      f0, 0x148(r5)
+	beq      lbl_8009FDD8
+	bge      lbl_8009FDB0
+	cmpwi    r6, 7
+	beq      lbl_8009FDC8
+	bge      lbl_8009FDD0
+	cmpwi    r6, 6
+	bge      lbl_8009FDC0
+	b        lbl_8009FDEC
 
-	.loc_0x90:
-	  cmpwi     r6, 0xB
-	  beq-      .loc_0xC8
-	  bge-      .loc_0xCC
-	  b         .loc_0xC0
+lbl_8009FDB0:
+	cmpwi    r6, 0xb
+	beq      lbl_8009FDE8
+	bge      lbl_8009FDEC
+	b        lbl_8009FDE0
 
-	.loc_0xA0:
-	  stfs      f0, 0x2B8(r3)
-	  b         .loc_0xCC
+lbl_8009FDC0:
+	stfs     f0, 0x2b8(r3)
+	b        lbl_8009FDEC
 
-	.loc_0xA8:
-	  stfs      f0, 0x2AC(r3)
-	  b         .loc_0xCC
+lbl_8009FDC8:
+	stfs     f0, 0x2ac(r3)
+	b        lbl_8009FDEC
 
-	.loc_0xB0:
-	  stfs      f0, 0x2BC(r3)
-	  b         .loc_0xCC
+lbl_8009FDD0:
+	stfs     f0, 0x2bc(r3)
+	b        lbl_8009FDEC
 
-	.loc_0xB8:
-	  stfs      f0, 0x2D0(r3)
-	  b         .loc_0xCC
+lbl_8009FDD8:
+	stfs     f0, 0x2d0(r3)
+	b        lbl_8009FDEC
 
-	.loc_0xC0:
-	  stfs      f0, 0x2C4(r3)
-	  b         .loc_0xCC
+lbl_8009FDE0:
+	stfs     f0, 0x2c4(r3)
+	b        lbl_8009FDEC
 
-	.loc_0xC8:
-	  stfs      f0, 0x2D4(r3)
+lbl_8009FDE8:
+	stfs     f0, 0x2d4(r3)
 
-	.loc_0xCC:
-	  addi      r5, r5, 0x10
-	  addi      r6, r6, 0x1
-	  bdnz+     .loc_0x14
-	  lwz       r0, 0x34C(r3)
-	  ori       r0, r0, 0x2
-	  stw       r0, 0x34C(r3)
-	  blr
+lbl_8009FDEC:
+	addi     r5, r5, 0x10
+	addi     r6, r6, 1
+	bdnz     lbl_8009FD34
+	lwz      r0, 0x34c(r3)
+	ori      r0, r0, 2
+	stw      r0, 0x34c(r3)
+	blr
 	*/
 }
 
@@ -1440,285 +1539,284 @@ void JASTrack::updateTimedParam()
 void JASTrack::updateTrackAll()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0xA0(r1)
-	  mflr      r0
-	  stw       r0, 0xA4(r1)
-	  stfd      f31, 0x90(r1)
-	  psq_st    f31,0x98(r1),0,0
-	  stfd      f30, 0x80(r1)
-	  psq_st    f30,0x88(r1),0,0
-	  stfd      f29, 0x70(r1)
-	  psq_st    f29,0x78(r1),0,0
-	  stfd      f28, 0x60(r1)
-	  psq_st    f28,0x68(r1),0,0
-	  stfd      f27, 0x50(r1)
-	  psq_st    f27,0x58(r1),0,0
-	  stfd      f26, 0x40(r1)
-	  psq_st    f26,0x48(r1),0,0
-	  stw       r31, 0x3C(r1)
-	  stw       r30, 0x38(r1)
-	  mr        r31, r3
-	  lis       r0, 0x4330
-	  lhz       r3, 0x27E(r3)
-	  li        r4, 0
-	  stw       r0, 0x10(r1)
-	  lfd       f3, -0x75E0(r2)
-	  stw       r3, 0x14(r1)
-	  lfs       f2, -0x75D4(r2)
-	  lfd       f0, 0x10(r1)
-	  lfs       f1, -0x75D0(r2)
-	  fsubs     f3, f0, f3
-	  lfs       f0, 0x258(r31)
-	  fmuls     f4, f1, f0
-	  fdivs     f29, f3, f2
-	  psq_st    f4,0x8(r1),0x1,0x4
-	  lbz       r3, 0x8(r1)
-	  extsb     r3, r3
-	  extsb.    r0, r3
-	  bge-      .loc_0x9C
-	  neg       r0, r3
-	  li        r3, 0
-	  extsb     r4, r0
+	stwu     r1, -0xa0(r1)
+	mflr     r0
+	stw      r0, 0xa4(r1)
+	stfd     f31, 0x90(r1)
+	psq_st   f31, 152(r1), 0, qr0
+	stfd     f30, 0x80(r1)
+	psq_st   f30, 136(r1), 0, qr0
+	stfd     f29, 0x70(r1)
+	psq_st   f29, 120(r1), 0, qr0
+	stfd     f28, 0x60(r1)
+	psq_st   f28, 104(r1), 0, qr0
+	stfd     f27, 0x50(r1)
+	psq_st   f27, 88(r1), 0, qr0
+	stfd     f26, 0x40(r1)
+	psq_st   f26, 72(r1), 0, qr0
+	stw      r31, 0x3c(r1)
+	stw      r30, 0x38(r1)
+	mr       r31, r3
+	lis      r0, 0x4330
+	lhz      r3, 0x27e(r3)
+	li       r4, 0
+	stw      r0, 0x10(r1)
+	lfd      f3, lbl_80516D80@sda21(r2)
+	stw      r3, 0x14(r1)
+	lfs      f2, lbl_80516D8C@sda21(r2)
+	lfd      f0, 0x10(r1)
+	lfs      f1, lbl_80516D90@sda21(r2)
+	fsubs    f3, f0, f3
+	lfs      f0, 0x258(r31)
+	fmuls    f4, f1, f0
+	fdivs    f29, f3, f2
+	psq_st   f4, 8(r1), 1, qr4
+	lbz      r3, 8(r1)
+	extsb    r3, r3
+	extsb.   r0, r3
+	bge      lbl_8009FEA4
+	neg      r0, r3
+	li       r3, 0
+	extsb    r4, r0
 
-	.loc_0x9C:
-	  li        r0, 0x10
-	  stb       r0, 0x13C(r31)
-	  stb       r4, 0x136(r31)
-	  stb       r3, 0x137(r31)
-	  lbz       r0, 0x359(r31)
-	  lfs       f28, 0x148(r31)
-	  cmplwi    r0, 0
-	  bne-      .loc_0xC0
-	  fmuls     f28, f28, f28
+lbl_8009FEA4:
+	li       r0, 0x10
+	stb      r0, 0x13c(r31)
+	stb      r4, 0x136(r31)
+	stb      r3, 0x137(r31)
+	lbz      r0, 0x359(r31)
+	lfs      f28, 0x148(r31)
+	cmplwi   r0, 0
+	bne      lbl_8009FEC8
+	fmuls    f28, f28, f28
 
-	.loc_0xC0:
-	  lbz       r0, 0x363(r31)
-	  cmplwi    r0, 0
-	  beq-      .loc_0xD0
-	  lfs       f28, -0x75E8(r2)
+lbl_8009FEC8:
+	lbz      r0, 0x363(r31)
+	cmplwi   r0, 0
+	beq      lbl_8009FED8
+	lfs      f28, lbl_80516D78@sda21(r2)
 
-	.loc_0xD0:
-	  lhz       r3, 0x276(r31)
-	  lis       r0, 0x4330
-	  stw       r0, 0x10(r1)
-	  lfd       f2, -0x75E0(r2)
-	  stw       r3, 0x14(r1)
-	  lfs       f1, 0x158(r31)
-	  lfd       f0, 0x10(r1)
-	  fsubs     f2, f0, f2
-	  bl        -0x3928
-	  fmr       f30, f1
-	  addi      r3, r31, 0xE8
-	  bl        0x29A0
-	  lwz       r3, 0x33C(r31)
-	  fmuls     f27, f30, f1
-	  lfs       f26, 0x178(r31)
-	  cmplwi    r3, 0
-	  lfs       f31, 0x168(r31)
-	  lfs       f30, 0x188(r31)
-	  beq-      .loc_0x1F4
-	  li        r4, 0x1
-	  bl        -0x3AC4
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x138
-	  lwz       r3, 0x33C(r31)
-	  lfs       f0, 0x4(r3)
-	  fmuls     f28, f28, f0
+lbl_8009FED8:
+	lhz      r3, 0x276(r31)
+	lis      r0, 0x4330
+	stw      r0, 0x10(r1)
+	lfd      f2, lbl_80516D80@sda21(r2)
+	stw      r3, 0x14(r1)
+	lfs      f1, 0x158(r31)
+	lfd      f0, 0x10(r1)
+	fsubs    f2, f0, f2
+	bl       pitchToCent__9JASPlayerFff
+	fmr      f30, f1
+	addi     r3, r31, 0xe8
+	bl       getValue__10JASVibrateCFv
+	lwz      r3, 0x33c(r31)
+	fmuls    f27, f30, f1
+	lfs      f26, 0x178(r31)
+	cmplwi   r3, 0
+	lfs      f31, 0x168(r31)
+	lfs      f30, 0x188(r31)
+	beq      lbl_8009FFFC
+	li       r4, 1
+	bl       checkOuterSwitch__13JASOuterParamFUs
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_8009FF40
+	lwz      r3, 0x33c(r31)
+	lfs      f0, 4(r3)
+	fmuls    f28, f28, f0
 
-	.loc_0x138:
-	  lwz       r3, 0x33C(r31)
-	  li        r4, 0x2
-	  bl        -0x3AE4
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x158
-	  lwz       r3, 0x33C(r31)
-	  lfs       f0, 0x8(r3)
-	  fmuls     f27, f27, f0
+lbl_8009FF40:
+	lwz      r3, 0x33c(r31)
+	li       r4, 2
+	bl       checkOuterSwitch__13JASOuterParamFUs
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_8009FF60
+	lwz      r3, 0x33c(r31)
+	lfs      f0, 8(r3)
+	fmuls    f27, f27, f0
 
-	.loc_0x158:
-	  lwz       r3, 0x33C(r31)
-	  li        r4, 0x4
-	  bl        -0x3B04
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x18C
-	  lwz       r3, 0x33C(r31)
-	  fmr       f1, f31
-	  fmr       f3, f29
-	  lbz       r4, 0x35D(r31)
-	  lfs       f2, 0xC(r3)
-	  mr        r3, r31
-	  bl        0x267C
-	  fmr       f31, f1
+lbl_8009FF60:
+	lwz      r3, 0x33c(r31)
+	li       r4, 4
+	bl       checkOuterSwitch__13JASOuterParamFUs
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_8009FF94
+	lwz      r3, 0x33c(r31)
+	fmr      f1, f31
+	fmr      f3, f29
+	lbz      r4, 0x35d(r31)
+	lfs      f2, 0xc(r3)
+	mr       r3, r31
+	bl       panCalc__8JASTrackFfffUc
+	fmr      f31, f1
 
-	.loc_0x18C:
-	  lwz       r3, 0x33C(r31)
-	  li        r4, 0x10
-	  bl        -0x3B38
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x1C0
-	  lwz       r3, 0x33C(r31)
-	  fmr       f1, f30
-	  fmr       f3, f29
-	  lbz       r4, 0x35E(r31)
-	  lfs       f2, 0x10(r3)
-	  mr        r3, r31
-	  bl        0x2648
-	  fmr       f30, f1
+lbl_8009FF94:
+	lwz      r3, 0x33c(r31)
+	li       r4, 0x10
+	bl       checkOuterSwitch__13JASOuterParamFUs
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_8009FFC8
+	lwz      r3, 0x33c(r31)
+	fmr      f1, f30
+	fmr      f3, f29
+	lbz      r4, 0x35e(r31)
+	lfs      f2, 0x10(r3)
+	mr       r3, r31
+	bl       panCalc__8JASTrackFfffUc
+	fmr      f30, f1
 
-	.loc_0x1C0:
-	  lwz       r3, 0x33C(r31)
-	  li        r4, 0x8
-	  bl        -0x3B6C
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x1F4
-	  lwz       r3, 0x33C(r31)
-	  fmr       f1, f26
-	  fmr       f3, f29
-	  lbz       r4, 0x35C(r31)
-	  lfs       f2, 0x14(r3)
-	  mr        r3, r31
-	  bl        0x2614
-	  fmr       f26, f1
+lbl_8009FFC8:
+	lwz      r3, 0x33c(r31)
+	li       r4, 8
+	bl       checkOuterSwitch__13JASOuterParamFUs
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_8009FFFC
+	lwz      r3, 0x33c(r31)
+	fmr      f1, f26
+	fmr      f3, f29
+	lbz      r4, 0x35c(r31)
+	lfs      f2, 0x14(r3)
+	mr       r3, r31
+	bl       panCalc__8JASTrackFfffUc
+	fmr      f26, f1
 
-	.loc_0x1F4:
-	  lwz       r4, 0x2F8(r31)
-	  cmplwi    r4, 0
-	  beq-      .loc_0x20C
-	  lbz       r0, 0x357(r31)
-	  rlwinm.   r0,r0,0,31,31
-	  beq-      .loc_0x224
+lbl_8009FFFC:
+	lwz      r4, 0x2f8(r31)
+	cmplwi   r4, 0
+	beq      lbl_800A0014
+	lbz      r0, 0x357(r31)
+	clrlwi.  r0, r0, 0x1f
+	beq      lbl_800A002C
 
-	.loc_0x20C:
-	  stfs      f28, 0xF4(r31)
-	  stfs      f27, 0xF8(r31)
-	  stfs      f26, 0xFC(r31)
-	  stfs      f31, 0x100(r31)
-	  stfs      f30, 0x104(r31)
-	  b         .loc_0x3A0
+lbl_800A0014:
+	stfs     f28, 0xf4(r31)
+	stfs     f27, 0xf8(r31)
+	stfs     f26, 0xfc(r31)
+	stfs     f31, 0x100(r31)
+	stfs     f30, 0x104(r31)
+	b        lbl_800A01A8
 
-	.loc_0x224:
-	  lhz       r3, 0x280(r31)
-	  lis       r0, 0x4330
-	  lfs       f0, 0xF4(r4)
-	  fmr       f1, f26
-	  stw       r3, 0x14(r1)
-	  mr        r3, r31
-	  fmuls     f0, f0, f28
-	  lfd       f4, -0x75E0(r2)
-	  stw       r0, 0x10(r1)
-	  lfs       f2, -0x75D4(r2)
-	  lfd       f3, 0x10(r1)
-	  stfs      f0, 0xF4(r31)
-	  fsubs     f0, f3, f4
-	  lwz       r4, 0x2F8(r31)
-	  fdivs     f29, f0, f2
-	  lfs       f0, 0xF8(r4)
-	  fmuls     f0, f0, f27
-	  fmr       f3, f29
-	  stfs      f0, 0xF8(r31)
-	  lwz       r5, 0x2F8(r31)
-	  lbz       r4, 0x35F(r31)
-	  lfs       f2, 0xFC(r5)
-	  bl        0x2584
-	  stfs      f1, 0xFC(r31)
-	  fmr       f1, f31
-	  fmr       f3, f29
-	  mr        r3, r31
-	  lwz       r5, 0x2F8(r31)
-	  lbz       r4, 0x360(r31)
-	  lfs       f2, 0x100(r5)
-	  bl        0x2564
-	  stfs      f1, 0x100(r31)
-	  fmr       f1, f30
-	  fmr       f3, f29
-	  mr        r3, r31
-	  lwz       r5, 0x2F8(r31)
-	  lbz       r4, 0x361(r31)
-	  lfs       f2, 0x104(r5)
-	  bl        0x2544
-	  stfs      f1, 0x104(r31)
-	  lwz       r3, 0x33C(r31)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x318
-	  li        r4, 0x80
-	  bl        -0x3C78
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x318
-	  li        r30, 0
-	  b         .loc_0x304
+lbl_800A002C:
+	lhz      r3, 0x280(r31)
+	lis      r0, 0x4330
+	lfs      f0, 0xf4(r4)
+	fmr      f1, f26
+	stw      r3, 0x14(r1)
+	mr       r3, r31
+	fmuls    f0, f0, f28
+	lfd      f4, lbl_80516D80@sda21(r2)
+	stw      r0, 0x10(r1)
+	lfs      f2, lbl_80516D8C@sda21(r2)
+	lfd      f3, 0x10(r1)
+	stfs     f0, 0xf4(r31)
+	fsubs    f0, f3, f4
+	lwz      r4, 0x2f8(r31)
+	fdivs    f29, f0, f2
+	lfs      f0, 0xf8(r4)
+	fmuls    f0, f0, f27
+	fmr      f3, f29
+	stfs     f0, 0xf8(r31)
+	lwz      r5, 0x2f8(r31)
+	lbz      r4, 0x35f(r31)
+	lfs      f2, 0xfc(r5)
+	bl       panCalc__8JASTrackFfffUc
+	stfs     f1, 0xfc(r31)
+	fmr      f1, f31
+	fmr      f3, f29
+	mr       r3, r31
+	lwz      r5, 0x2f8(r31)
+	lbz      r4, 0x360(r31)
+	lfs      f2, 0x100(r5)
+	bl       panCalc__8JASTrackFfffUc
+	stfs     f1, 0x100(r31)
+	fmr      f1, f30
+	fmr      f3, f29
+	mr       r3, r31
+	lwz      r5, 0x2f8(r31)
+	lbz      r4, 0x361(r31)
+	lfs      f2, 0x104(r5)
+	bl       panCalc__8JASTrackFfffUc
+	stfs     f1, 0x104(r31)
+	lwz      r3, 0x33c(r31)
+	cmplwi   r3, 0
+	beq      lbl_800A0120
+	li       r4, 0x80
+	bl       checkOuterSwitch__13JASOuterParamFUs
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_800A0120
+	li       r30, 0
+	b        lbl_800A010C
 
-	.loc_0x2E8:
-	  lwz       r3, 0x33C(r31)
-	  mr        r4, r30
-	  bl        -0x3C68
-	  rlwinm    r4,r30,1,23,30
-	  addi      r30, r30, 0x1
-	  addi      r0, r4, 0x108
-	  sthx      r3, r31, r0
+lbl_800A00F0:
+	lwz      r3, 0x33c(r31)
+	mr       r4, r30
+	bl       getIntFirFilter__13JASOuterParamFUc
+	rlwinm   r4, r30, 1, 0x17, 0x1e
+	addi     r30, r30, 1
+	addi     r0, r4, 0x108
+	sthx     r3, r31, r0
 
-	.loc_0x304:
-	  rlwinm    r0,r30,0,24,31
-	  cmplwi    r0, 0x8
-	  blt+      .loc_0x2E8
-	  li        r0, 0x8
-	  stb       r0, 0x13D(r31)
+lbl_800A010C:
+	clrlwi   r0, r30, 0x18
+	cmplwi   r0, 8
+	blt      lbl_800A00F0
+	li       r0, 8
+	stb      r0, 0x13d(r31)
 
-	.loc_0x318:
-	  lfs       f1, -0x75D4(r2)
-	  lfs       f0, 0x208(r31)
-	  fmuls     f0, f1, f0
-	  fctiwz    f0, f0
-	  stfd      f0, 0x10(r1)
-	  lwz       r0, 0x14(r1)
-	  sth       r0, 0x118(r31)
-	  lfs       f0, 0x218(r31)
-	  fmuls     f0, f1, f0
-	  fctiwz    f0, f0
-	  stfd      f0, 0x18(r1)
-	  lwz       r0, 0x1C(r1)
-	  sth       r0, 0x11A(r31)
-	  lfs       f0, 0x228(r31)
-	  fmuls     f0, f1, f0
-	  fctiwz    f0, f0
-	  stfd      f0, 0x20(r1)
-	  lwz       r0, 0x24(r1)
-	  sth       r0, 0x11C(r31)
-	  lfs       f0, 0x238(r31)
-	  fmuls     f0, f1, f0
-	  fctiwz    f0, f0
-	  stfd      f0, 0x28(r1)
-	  lwz       r0, 0x2C(r1)
-	  sth       r0, 0x11E(r31)
-	  lbz       r0, 0x13D(r31)
-	  ori       r0, r0, 0x20
-	  stb       r0, 0x13D(r31)
-	  lfs       f0, 0x198(r31)
-	  fmuls     f0, f1, f0
-	  fctiwz    f0, f0
-	  stfd      f0, 0x30(r1)
-	  lwz       r0, 0x34(r1)
-	  sth       r0, 0x128(r31)
+lbl_800A0120:
+	lfs      f1, lbl_80516D8C@sda21(r2)
+	lfs      f0, 0x208(r31)
+	fmuls    f0, f1, f0
+	fctiwz   f0, f0
+	stfd     f0, 0x10(r1)
+	lwz      r0, 0x14(r1)
+	sth      r0, 0x118(r31)
+	lfs      f0, 0x218(r31)
+	fmuls    f0, f1, f0
+	fctiwz   f0, f0
+	stfd     f0, 0x18(r1)
+	lwz      r0, 0x1c(r1)
+	sth      r0, 0x11a(r31)
+	lfs      f0, 0x228(r31)
+	fmuls    f0, f1, f0
+	fctiwz   f0, f0
+	stfd     f0, 0x20(r1)
+	lwz      r0, 0x24(r1)
+	sth      r0, 0x11c(r31)
+	lfs      f0, 0x238(r31)
+	fmuls    f0, f1, f0
+	fctiwz   f0, f0
+	stfd     f0, 0x28(r1)
+	lwz      r0, 0x2c(r1)
+	sth      r0, 0x11e(r31)
+	lbz      r0, 0x13d(r31)
+	ori      r0, r0, 0x20
+	stb      r0, 0x13d(r31)
+	lfs      f0, 0x198(r31)
+	fmuls    f0, f1, f0
+	fctiwz   f0, f0
+	stfd     f0, 0x30(r1)
+	lwz      r0, 0x34(r1)
+	sth      r0, 0x128(r31)
 
-	.loc_0x3A0:
-	  psq_l     f31,0x98(r1),0,0
-	  lfd       f31, 0x90(r1)
-	  psq_l     f30,0x88(r1),0,0
-	  lfd       f30, 0x80(r1)
-	  psq_l     f29,0x78(r1),0,0
-	  lfd       f29, 0x70(r1)
-	  psq_l     f28,0x68(r1),0,0
-	  lfd       f28, 0x60(r1)
-	  psq_l     f27,0x58(r1),0,0
-	  lfd       f27, 0x50(r1)
-	  psq_l     f26,0x48(r1),0,0
-	  lfd       f26, 0x40(r1)
-	  lwz       r31, 0x3C(r1)
-	  lwz       r0, 0xA4(r1)
-	  lwz       r30, 0x38(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0xA0
-	  blr
+lbl_800A01A8:
+	psq_l    f31, 152(r1), 0, qr0
+	lfd      f31, 0x90(r1)
+	psq_l    f30, 136(r1), 0, qr0
+	lfd      f30, 0x80(r1)
+	psq_l    f29, 120(r1), 0, qr0
+	lfd      f29, 0x70(r1)
+	psq_l    f28, 104(r1), 0, qr0
+	lfd      f28, 0x60(r1)
+	psq_l    f27, 88(r1), 0, qr0
+	lfd      f27, 0x50(r1)
+	psq_l    f26, 72(r1), 0, qr0
+	lfd      f26, 0x40(r1)
+	lwz      r31, 0x3c(r1)
+	lwz      r0, 0xa4(r1)
+	lwz      r30, 0x38(r1)
+	mtlr     r0
+	addi     r1, r1, 0xa0
+	blr
 	*/
 }
 
@@ -1730,375 +1828,372 @@ void JASTrack::updateTrackAll()
 void JASTrack::updateTrack(unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0xB0(r1)
-	  mflr      r0
-	  stw       r0, 0xB4(r1)
-	  stfd      f31, 0xA0(r1)
-	  psq_st    f31,0xA8(r1),0,0
-	  stfd      f30, 0x90(r1)
-	  psq_st    f30,0x98(r1),0,0
-	  stfd      f29, 0x80(r1)
-	  psq_st    f29,0x88(r1),0,0
-	  stfd      f28, 0x70(r1)
-	  psq_st    f28,0x78(r1),0,0
-	  stfd      f27, 0x60(r1)
-	  psq_st    f27,0x68(r1),0,0
-	  stfd      f26, 0x50(r1)
-	  psq_st    f26,0x58(r1),0,0
-	  stmw      r24, 0x30(r1)
-	  mr        r25, r3
-	  lis       r3, 0x4330
-	  lhz       r5, 0x27E(r25)
-	  rlwinm.   r0,r4,0,14,14
-	  stw       r3, 0x10(r1)
-	  mr        r26, r4
-	  lfd       f2, -0x75E0(r2)
-	  stw       r5, 0x14(r1)
-	  lfs       f0, -0x75D4(r2)
-	  lfd       f1, 0x10(r1)
-	  fsubs     f1, f1, f2
-	  fdivs     f26, f1, f0
-	  beq-      .loc_0xAC
-	  lfs       f1, -0x75D0(r2)
-	  li        r4, 0
-	  lfs       f0, 0x258(r25)
-	  fmuls     f3, f1, f0
-	  psq_st    f3,0x8(r1),0x1,0x4
-	  lbz       r3, 0x8(r1)
-	  extsb     r3, r3
-	  extsb.    r0, r3
-	  bge-      .loc_0xA4
-	  neg       r0, r3
-	  li        r3, 0
-	  extsb     r4, r0
+	stwu     r1, -0xb0(r1)
+	mflr     r0
+	stw      r0, 0xb4(r1)
+	stfd     f31, 0xa0(r1)
+	psq_st   f31, 168(r1), 0, qr0
+	stfd     f30, 0x90(r1)
+	psq_st   f30, 152(r1), 0, qr0
+	stfd     f29, 0x80(r1)
+	psq_st   f29, 136(r1), 0, qr0
+	stfd     f28, 0x70(r1)
+	psq_st   f28, 120(r1), 0, qr0
+	stfd     f27, 0x60(r1)
+	psq_st   f27, 104(r1), 0, qr0
+	stfd     f26, 0x50(r1)
+	psq_st   f26, 88(r1), 0, qr0
+	stmw     r24, 0x30(r1)
+	mr       r25, r3
+	lis      r3, 0x4330
+	lhz      r5, 0x27e(r25)
+	rlwinm.  r0, r4, 0, 0xe, 0xe
+	stw      r3, 0x10(r1)
+	mr       r26, r4
+	lfd      f2, lbl_80516D80@sda21(r2)
+	stw      r5, 0x14(r1)
+	lfs      f0, lbl_80516D8C@sda21(r2)
+	lfd      f1, 0x10(r1)
+	fsubs    f1, f1, f2
+	fdivs    f26, f1, f0
+	beq      lbl_800A029C
+	lfs      f1, lbl_80516D90@sda21(r2)
+	li       r4, 0
+	lfs      f0, 0x258(r25)
+	fmuls    f3, f1, f0
+	psq_st   f3, 8(r1), 1, qr4
+	lbz      r3, 8(r1)
+	extsb    r3, r3
+	extsb.   r0, r3
+	bge      lbl_800A0294
+	neg      r0, r3
+	li       r3, 0
+	extsb    r4, r0
 
-	.loc_0xA4:
-	  stb       r4, 0x136(r25)
-	  stb       r3, 0x137(r25)
+lbl_800A0294:
+	stb      r4, 0x136(r25)
+	stb      r3, 0x137(r25)
 
-	.loc_0xAC:
-	  rlwinm.   r0,r26,0,25,25
-	  beq-      .loc_0xC8
-	  lwz       r0, 0x2F8(r25)
-	  cmplwi    r0, 0
-	  bne-      .loc_0xC8
-	  mr        r3, r25
-	  bl        .loc_0x4E0
+lbl_800A029C:
+	rlwinm.  r0, r26, 0, 0x19, 0x19
+	beq      lbl_800A02B8
+	lwz      r0, 0x2f8(r25)
+	cmplwi   r0, 0
+	bne      lbl_800A02B8
+	mr       r3, r25
+	bl       updateTempo__8JASTrackFv
 
-	.loc_0xC8:
-	  rlwinm.   r31,r26,0,31,31
-	  lfs       f30, -0x75E4(r2)
-	  beq-      .loc_0x140
-	  lbz       r0, 0x359(r25)
-	  lfs       f31, 0x148(r25)
-	  cmplwi    r0, 0
-	  bne-      .loc_0xE8
-	  fmuls     f31, f31, f31
+lbl_800A02B8:
+	clrlwi.  r31, r26, 0x1f
+	lfs      f30, lbl_80516D7C@sda21(r2)
+	beq      lbl_800A0330
+	lbz      r0, 0x359(r25)
+	lfs      f31, 0x148(r25)
+	cmplwi   r0, 0
+	bne      lbl_800A02D8
+	fmuls    f31, f31, f31
 
-	.loc_0xE8:
-	  lbz       r0, 0x363(r25)
-	  cmplwi    r0, 0
-	  beq-      .loc_0xF8
-	  lfs       f31, -0x75E8(r2)
+lbl_800A02D8:
+	lbz      r0, 0x363(r25)
+	cmplwi   r0, 0
+	beq      lbl_800A02E8
+	lfs      f31, lbl_80516D78@sda21(r2)
 
-	.loc_0xF8:
-	  lwz       r3, 0x33C(r25)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x120
-	  li        r4, 0x1
-	  bl        -0x3E94
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x120
-	  lwz       r3, 0x33C(r25)
-	  lfs       f0, 0x4(r3)
-	  fmuls     f31, f31, f0
+lbl_800A02E8:
+	lwz      r3, 0x33c(r25)
+	cmplwi   r3, 0
+	beq      lbl_800A0310
+	li       r4, 1
+	bl       checkOuterSwitch__13JASOuterParamFUs
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_800A0310
+	lwz      r3, 0x33c(r25)
+	lfs      f0, 4(r3)
+	fmuls    f31, f31, f0
 
-	.loc_0x120:
-	  lbz       r0, 0x362(r25)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x140
-	  lbz       r0, 0x358(r25)
-	  rlwinm.   r0,r0,0,31,31
-	  beq-      .loc_0x140
-	  lfs       f0, 0x248(r25)
-	  fmuls     f31, f31, f0
+lbl_800A0310:
+	lbz      r0, 0x362(r25)
+	cmplwi   r0, 0
+	beq      lbl_800A0330
+	lbz      r0, 0x358(r25)
+	clrlwi.  r0, r0, 0x1f
+	beq      lbl_800A0330
+	lfs      f0, 0x248(r25)
+	fmuls    f31, f31, f0
 
-	.loc_0x140:
-	  rlwinm.   r30,r26,0,30,30
-	  beq-      .loc_0x1A4
-	  lhz       r3, 0x276(r25)
-	  lis       r0, 0x4330
-	  stw       r0, 0x10(r1)
-	  lfd       f2, -0x75E0(r2)
-	  stw       r3, 0x14(r1)
-	  lfs       f1, 0x158(r25)
-	  lfd       f0, 0x10(r1)
-	  fsubs     f2, f0, f2
-	  bl        -0x3D88
-	  fmr       f30, f1
-	  addi      r3, r25, 0xE8
-	  bl        0x2540
-	  lwz       r3, 0x33C(r25)
-	  fmuls     f30, f30, f1
-	  cmplwi    r3, 0
-	  beq-      .loc_0x1A4
-	  li        r4, 0x2
-	  bl        -0x3F18
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x1A4
-	  lwz       r3, 0x33C(r25)
-	  lfs       f0, 0x8(r3)
-	  fmuls     f30, f30, f0
+lbl_800A0330:
+	rlwinm.  r30, r26, 0, 0x1e, 0x1e
+	beq      lbl_800A0394
+	lhz      r3, 0x276(r25)
+	lis      r0, 0x4330
+	stw      r0, 0x10(r1)
+	lfd      f2, lbl_80516D80@sda21(r2)
+	stw      r3, 0x14(r1)
+	lfs      f1, 0x158(r25)
+	lfd      f0, 0x10(r1)
+	fsubs    f2, f0, f2
+	bl       pitchToCent__9JASPlayerFff
+	fmr      f30, f1
+	addi     r3, r25, 0xe8
+	bl       getValue__10JASVibrateCFv
+	lwz      r3, 0x33c(r25)
+	fmuls    f30, f30, f1
+	cmplwi   r3, 0
+	beq      lbl_800A0394
+	li       r4, 2
+	bl       checkOuterSwitch__13JASOuterParamFUs
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_800A0394
+	lwz      r3, 0x33c(r25)
+	lfs      f0, 8(r3)
+	fmuls    f30, f30, f0
 
-	.loc_0x1A4:
-	  rlwinm.   r29,r26,0,28,28
-	  beq-      .loc_0x1EC
-	  lwz       r3, 0x33C(r25)
-	  lfs       f29, 0x178(r25)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x1EC
-	  li        r4, 0x8
-	  bl        -0x3F4C
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x1EC
-	  lwz       r3, 0x33C(r25)
-	  fmr       f1, f29
-	  fmr       f3, f26
-	  lbz       r4, 0x35C(r25)
-	  lfs       f2, 0x14(r3)
-	  mr        r3, r25
-	  bl        0x2234
-	  fmr       f29, f1
+lbl_800A0394:
+	rlwinm.  r29, r26, 0, 0x1c, 0x1c
+	beq      lbl_800A03DC
+	lwz      r3, 0x33c(r25)
+	lfs      f29, 0x178(r25)
+	cmplwi   r3, 0
+	beq      lbl_800A03DC
+	li       r4, 8
+	bl       checkOuterSwitch__13JASOuterParamFUs
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_800A03DC
+	lwz      r3, 0x33c(r25)
+	fmr      f1, f29
+	fmr      f3, f26
+	lbz      r4, 0x35c(r25)
+	lfs      f2, 0x14(r3)
+	mr       r3, r25
+	bl       panCalc__8JASTrackFfffUc
+	fmr      f29, f1
 
-	.loc_0x1EC:
-	  rlwinm.   r28,r26,0,29,29
-	  beq-      .loc_0x234
-	  lwz       r3, 0x33C(r25)
-	  lfs       f28, 0x168(r25)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x234
-	  li        r4, 0x4
-	  bl        -0x3F94
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x234
-	  lwz       r3, 0x33C(r25)
-	  fmr       f1, f28
-	  fmr       f3, f26
-	  lbz       r4, 0x35D(r25)
-	  lfs       f2, 0xC(r3)
-	  mr        r3, r25
-	  bl        0x21EC
-	  fmr       f28, f1
+lbl_800A03DC:
+	rlwinm.  r28, r26, 0, 0x1d, 0x1d
+	beq      lbl_800A0424
+	lwz      r3, 0x33c(r25)
+	lfs      f28, 0x168(r25)
+	cmplwi   r3, 0
+	beq      lbl_800A0424
+	li       r4, 4
+	bl       checkOuterSwitch__13JASOuterParamFUs
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_800A0424
+	lwz      r3, 0x33c(r25)
+	fmr      f1, f28
+	fmr      f3, f26
+	lbz      r4, 0x35d(r25)
+	lfs      f2, 0xc(r3)
+	mr       r3, r25
+	bl       panCalc__8JASTrackFfffUc
+	fmr      f28, f1
 
-	.loc_0x234:
-	  rlwinm.   r27,r26,0,27,27
-	  beq-      .loc_0x27C
-	  lwz       r3, 0x33C(r25)
-	  lfs       f27, 0x188(r25)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x27C
-	  li        r4, 0x10
-	  bl        -0x3FDC
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x27C
-	  lwz       r3, 0x33C(r25)
-	  fmr       f1, f27
-	  fmr       f3, f26
-	  lbz       r4, 0x35E(r25)
-	  lfs       f2, 0x10(r3)
-	  mr        r3, r25
-	  bl        0x21A4
-	  fmr       f27, f1
+lbl_800A0424:
+	rlwinm.  r27, r26, 0, 0x1b, 0x1b
+	beq      lbl_800A046C
+	lwz      r3, 0x33c(r25)
+	lfs      f27, 0x188(r25)
+	cmplwi   r3, 0
+	beq      lbl_800A046C
+	li       r4, 0x10
+	bl       checkOuterSwitch__13JASOuterParamFUs
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_800A046C
+	lwz      r3, 0x33c(r25)
+	fmr      f1, f27
+	fmr      f3, f26
+	lbz      r4, 0x35e(r25)
+	lfs      f2, 0x10(r3)
+	mr       r3, r25
+	bl       panCalc__8JASTrackFfffUc
+	fmr      f27, f1
 
-	.loc_0x27C:
-	  rlwinm.   r0,r26,0,16,19
-	  beq-      .loc_0x2F4
-	  lfs       f1, -0x75D4(r2)
-	  lfs       f0, 0x208(r25)
-	  fmuls     f0, f1, f0
-	  fctiwz    f0, f0
-	  stfd      f0, 0x10(r1)
-	  lwz       r0, 0x14(r1)
-	  sth       r0, 0x118(r25)
-	  lfs       f0, 0x218(r25)
-	  fmuls     f0, f1, f0
-	  fctiwz    f0, f0
-	  stfd      f0, 0x18(r1)
-	  lwz       r0, 0x1C(r1)
-	  sth       r0, 0x11A(r25)
-	  lfs       f0, 0x228(r25)
-	  fmuls     f0, f1, f0
-	  fctiwz    f0, f0
-	  stfd      f0, 0x20(r1)
-	  lwz       r0, 0x24(r1)
-	  sth       r0, 0x11C(r25)
-	  lfs       f0, 0x238(r25)
-	  fmuls     f0, f1, f0
-	  fctiwz    f0, f0
-	  stfd      f0, 0x28(r1)
-	  lwz       r0, 0x2C(r1)
-	  sth       r0, 0x11E(r25)
-	  lbz       r0, 0x13D(r25)
-	  ori       r0, r0, 0x20
-	  stb       r0, 0x13D(r25)
+lbl_800A046C:
+	rlwinm.  r0, r26, 0, 0x10, 0x13
+	beq      lbl_800A04E4
+	lfs      f1, lbl_80516D8C@sda21(r2)
+	lfs      f0, 0x208(r25)
+	fmuls    f0, f1, f0
+	fctiwz   f0, f0
+	stfd     f0, 0x10(r1)
+	lwz      r0, 0x14(r1)
+	sth      r0, 0x118(r25)
+	lfs      f0, 0x218(r25)
+	fmuls    f0, f1, f0
+	fctiwz   f0, f0
+	stfd     f0, 0x18(r1)
+	lwz      r0, 0x1c(r1)
+	sth      r0, 0x11a(r25)
+	lfs      f0, 0x228(r25)
+	fmuls    f0, f1, f0
+	fctiwz   f0, f0
+	stfd     f0, 0x20(r1)
+	lwz      r0, 0x24(r1)
+	sth      r0, 0x11c(r25)
+	lfs      f0, 0x238(r25)
+	fmuls    f0, f1, f0
+	fctiwz   f0, f0
+	stfd     f0, 0x28(r1)
+	lwz      r0, 0x2c(r1)
+	sth      r0, 0x11e(r25)
+	lbz      r0, 0x13d(r25)
+	ori      r0, r0, 0x20
+	stb      r0, 0x13d(r25)
 
-	.loc_0x2F4:
-	  lwz       r3, 0x33C(r25)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x358
-	  rlwinm.   r0,r26,0,24,24
-	  beq-      .loc_0x358
-	  li        r4, 0x80
-	  bl        -0x4098
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x358
-	  li        r24, 0
-	  b         .loc_0x33C
+lbl_800A04E4:
+	lwz      r3, 0x33c(r25)
+	cmplwi   r3, 0
+	beq      lbl_800A0548
+	rlwinm.  r0, r26, 0, 0x18, 0x18
+	beq      lbl_800A0548
+	li       r4, 0x80
+	bl       checkOuterSwitch__13JASOuterParamFUs
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_800A0548
+	li       r24, 0
+	b        lbl_800A052C
 
-	.loc_0x320:
-	  lwz       r3, 0x33C(r25)
-	  mr        r4, r24
-	  bl        -0x4088
-	  rlwinm    r4,r24,1,23,30
-	  addi      r24, r24, 0x1
-	  addi      r0, r4, 0x108
-	  sthx      r3, r25, r0
+lbl_800A0510:
+	lwz      r3, 0x33c(r25)
+	mr       r4, r24
+	bl       getIntFirFilter__13JASOuterParamFUc
+	rlwinm   r4, r24, 1, 0x17, 0x1e
+	addi     r24, r24, 1
+	addi     r0, r4, 0x108
+	sthx     r3, r25, r0
 
-	.loc_0x33C:
-	  rlwinm    r0,r24,0,24,31
-	  cmplwi    r0, 0x8
-	  blt+      .loc_0x320
-	  lbz       r0, 0x13D(r25)
-	  rlwinm    r3,r0,0,26,26
-	  addi      r0, r3, 0x8
-	  stb       r0, 0x13D(r25)
+lbl_800A052C:
+	clrlwi   r0, r24, 0x18
+	cmplwi   r0, 8
+	blt      lbl_800A0510
+	lbz      r0, 0x13d(r25)
+	rlwinm   r3, r0, 0, 0x1a, 0x1a
+	addi     r0, r3, 8
+	stb      r0, 0x13d(r25)
 
-	.loc_0x358:
-	  rlwinm.   r0,r26,0,26,26
-	  beq-      .loc_0x37C
-	  lfs       f1, -0x75D4(r2)
-	  lfs       f0, 0x198(r25)
-	  fmuls     f0, f1, f0
-	  fctiwz    f0, f0
-	  stfd      f0, 0x28(r1)
-	  lwz       r0, 0x2C(r1)
-	  sth       r0, 0x128(r25)
+lbl_800A0548:
+	rlwinm.  r0, r26, 0, 0x1a, 0x1a
+	beq      lbl_800A056C
+	lfs      f1, lbl_80516D8C@sda21(r2)
+	lfs      f0, 0x198(r25)
+	fmuls    f0, f1, f0
+	fctiwz   f0, f0
+	stfd     f0, 0x28(r1)
+	lwz      r0, 0x2c(r1)
+	sth      r0, 0x128(r25)
 
-	.loc_0x37C:
-	  lwz       r4, 0x2F8(r25)
-	  cmplwi    r4, 0
-	  beq-      .loc_0x394
-	  lbz       r0, 0x357(r25)
-	  rlwinm.   r0,r0,0,31,31
-	  beq-      .loc_0x3D4
+lbl_800A056C:
+	lwz      r4, 0x2f8(r25)
+	cmplwi   r4, 0
+	beq      lbl_800A0584
+	lbz      r0, 0x357(r25)
+	clrlwi.  r0, r0, 0x1f
+	beq      lbl_800A05C4
 
-	.loc_0x394:
-	  cmplwi    r31, 0
-	  beq-      .loc_0x3A0
-	  stfs      f31, 0xF4(r25)
+lbl_800A0584:
+	cmplwi   r31, 0
+	beq      lbl_800A0590
+	stfs     f31, 0xf4(r25)
 
-	.loc_0x3A0:
-	  cmplwi    r30, 0
-	  beq-      .loc_0x3AC
-	  stfs      f30, 0xF8(r25)
+lbl_800A0590:
+	cmplwi   r30, 0
+	beq      lbl_800A059C
+	stfs     f30, 0xf8(r25)
 
-	.loc_0x3AC:
-	  cmplwi    r29, 0
-	  beq-      .loc_0x3B8
-	  stfs      f29, 0xFC(r25)
+lbl_800A059C:
+	cmplwi   r29, 0
+	beq      lbl_800A05A8
+	stfs     f29, 0xfc(r25)
 
-	.loc_0x3B8:
-	  cmplwi    r28, 0
-	  beq-      .loc_0x3C4
-	  stfs      f28, 0x100(r25)
+lbl_800A05A8:
+	cmplwi   r28, 0
+	beq      lbl_800A05B4
+	stfs     f28, 0x100(r25)
 
-	.loc_0x3C4:
-	  cmplwi    r27, 0
-	  beq-      .loc_0x49C
-	  stfs      f27, 0x104(r25)
-	  b         .loc_0x49C
+lbl_800A05B4:
+	cmplwi   r27, 0
+	beq      lbl_800A068C
+	stfs     f27, 0x104(r25)
+	b        lbl_800A068C
 
-	.loc_0x3D4:
-	  lhz       r3, 0x280(r25)
-	  lis       r0, 0x4330
-	  stw       r0, 0x28(r1)
-	  cmplwi    r31, 0
-	  lfd       f2, -0x75E0(r2)
-	  stw       r3, 0x2C(r1)
-	  lfs       f0, -0x75D4(r2)
-	  lfd       f1, 0x28(r1)
-	  fsubs     f1, f1, f2
-	  fdivs     f26, f1, f0
-	  beq-      .loc_0x40C
-	  lfs       f0, 0xF4(r4)
-	  fmuls     f0, f0, f31
-	  stfs      f0, 0xF4(r25)
+lbl_800A05C4:
+	lhz      r3, 0x280(r25)
+	lis      r0, 0x4330
+	stw      r0, 0x28(r1)
+	cmplwi   r31, 0
+	lfd      f2, lbl_80516D80@sda21(r2)
+	stw      r3, 0x2c(r1)
+	lfs      f0, lbl_80516D8C@sda21(r2)
+	lfd      f1, 0x28(r1)
+	fsubs    f1, f1, f2
+	fdivs    f26, f1, f0
+	beq      lbl_800A05FC
+	lfs      f0, 0xf4(r4)
+	fmuls    f0, f0, f31
+	stfs     f0, 0xf4(r25)
 
-	.loc_0x40C:
-	  cmplwi    r30, 0
-	  beq-      .loc_0x424
-	  lwz       r3, 0x2F8(r25)
-	  lfs       f0, 0xF8(r3)
-	  fmuls     f0, f0, f30
-	  stfs      f0, 0xF8(r25)
+lbl_800A05FC:
+	cmplwi   r30, 0
+	beq      lbl_800A0614
+	lwz      r3, 0x2f8(r25)
+	lfs      f0, 0xf8(r3)
+	fmuls    f0, f0, f30
+	stfs     f0, 0xf8(r25)
 
-	.loc_0x424:
-	  cmplwi    r29, 0
-	  beq-      .loc_0x44C
-	  lwz       r3, 0x2F8(r25)
-	  fmr       f1, f29
-	  fmr       f3, f26
-	  lbz       r4, 0x35F(r25)
-	  lfs       f2, 0xFC(r3)
-	  mr        r3, r25
-	  bl        0x1FD4
-	  stfs      f1, 0xFC(r25)
+lbl_800A0614:
+	cmplwi   r29, 0
+	beq      lbl_800A063C
+	lwz      r3, 0x2f8(r25)
+	fmr      f1, f29
+	fmr      f3, f26
+	lbz      r4, 0x35f(r25)
+	lfs      f2, 0xfc(r3)
+	mr       r3, r25
+	bl       panCalc__8JASTrackFfffUc
+	stfs     f1, 0xfc(r25)
 
-	.loc_0x44C:
-	  cmplwi    r28, 0
-	  beq-      .loc_0x474
-	  lwz       r3, 0x2F8(r25)
-	  fmr       f1, f28
-	  fmr       f3, f26
-	  lbz       r4, 0x360(r25)
-	  lfs       f2, 0x100(r3)
-	  mr        r3, r25
-	  bl        0x1FAC
-	  stfs      f1, 0x100(r25)
+lbl_800A063C:
+	cmplwi   r28, 0
+	beq      lbl_800A0664
+	lwz      r3, 0x2f8(r25)
+	fmr      f1, f28
+	fmr      f3, f26
+	lbz      r4, 0x360(r25)
+	lfs      f2, 0x100(r3)
+	mr       r3, r25
+	bl       panCalc__8JASTrackFfffUc
+	stfs     f1, 0x100(r25)
 
-	.loc_0x474:
-	  cmplwi    r27, 0
-	  beq-      .loc_0x49C
-	  lwz       r3, 0x2F8(r25)
-	  fmr       f1, f27
-	  fmr       f3, f26
-	  lbz       r4, 0x361(r25)
-	  lfs       f2, 0x104(r3)
-	  mr        r3, r25
-	  bl        0x1F84
-	  stfs      f1, 0x104(r25)
+lbl_800A0664:
+	cmplwi   r27, 0
+	beq      lbl_800A068C
+	lwz      r3, 0x2f8(r25)
+	fmr      f1, f27
+	fmr      f3, f26
+	lbz      r4, 0x361(r25)
+	lfs      f2, 0x104(r3)
+	mr       r3, r25
+	bl       panCalc__8JASTrackFfffUc
+	stfs     f1, 0x104(r25)
 
-	.loc_0x49C:
-	  psq_l     f31,0xA8(r1),0,0
-	  lfd       f31, 0xA0(r1)
-	  psq_l     f30,0x98(r1),0,0
-	  lfd       f30, 0x90(r1)
-	  psq_l     f29,0x88(r1),0,0
-	  lfd       f29, 0x80(r1)
-	  psq_l     f28,0x78(r1),0,0
-	  lfd       f28, 0x70(r1)
-	  psq_l     f27,0x68(r1),0,0
-	  lfd       f27, 0x60(r1)
-	  psq_l     f26,0x58(r1),0,0
-	  lfd       f26, 0x50(r1)
-	  lmw       r24, 0x30(r1)
-	  lwz       r0, 0xB4(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0xB0
-	  blr
-
-	.loc_0x4E0:
+lbl_800A068C:
+	psq_l    f31, 168(r1), 0, qr0
+	lfd      f31, 0xa0(r1)
+	psq_l    f30, 152(r1), 0, qr0
+	lfd      f30, 0x90(r1)
+	psq_l    f29, 136(r1), 0, qr0
+	lfd      f29, 0x80(r1)
+	psq_l    f28, 120(r1), 0, qr0
+	lfd      f28, 0x70(r1)
+	psq_l    f27, 104(r1), 0, qr0
+	lfd      f27, 0x60(r1)
+	psq_l    f26, 88(r1), 0, qr0
+	lfd      f26, 0x50(r1)
+	lmw      r24, 0x30(r1)
+	lwz      r0, 0xb4(r1)
+	mtlr     r0
+	addi     r1, r1, 0xb0
+	blr
 	*/
 }
 
@@ -2110,278 +2205,275 @@ void JASTrack::updateTrack(unsigned long)
 void JASTrack::updateTempo()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  stw       r0, 0x44(r1)
-	  stmw      r24, 0x20(r1)
-	  mr        r24, r3
-	  lwz       r3, 0x2F8(r3)
-	  cmplwi    r3, 0
-	  bne-      .loc_0xB4
-	  lhz       r3, 0x354(r24)
-	  lis       r0, 0x4330
-	  stw       r0, 0x8(r1)
-	  lfd       f2, -0x75E0(r2)
-	  stw       r3, 0xC(r1)
-	  lfd       f0, 0x8(r1)
-	  stw       r0, 0x10(r1)
-	  fsubs     f0, f0, f2
-	  stfs      f0, 0x344(r24)
-	  lhz       r0, 0x352(r24)
-	  lfs       f1, 0x344(r24)
-	  stw       r0, 0x14(r1)
-	  lfd       f0, 0x10(r1)
-	  fsubs     f0, f0, f2
-	  fmuls     f0, f1, f0
-	  stfs      f0, 0x344(r24)
-	  bl        0x7AC0
-	  lfs       f2, 0x344(r24)
-	  lfs       f0, -0x75CC(r2)
-	  fdivs     f1, f2, f1
-	  stfs      f1, 0x344(r24)
-	  lfs       f1, 0x344(r24)
-	  fmuls     f0, f1, f0
-	  stfs      f0, 0x344(r24)
-	  lwz       r3, 0x33C(r24)
-	  cmplwi    r3, 0
-	  beq-      .loc_0xC8
-	  li        r4, 0x40
-	  bl        -0x42FC
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xC8
-	  lwz       r3, 0x33C(r24)
-	  lfs       f1, 0x344(r24)
-	  lfs       f0, 0x18(r3)
-	  fmuls     f0, f1, f0
-	  stfs      f0, 0x344(r24)
-	  b         .loc_0xC8
+	stwu     r1, -0x40(r1)
+	mflr     r0
+	stw      r0, 0x44(r1)
+	stmw     r24, 0x20(r1)
+	mr       r24, r3
+	lwz      r3, 0x2f8(r3)
+	cmplwi   r3, 0
+	bne      lbl_800A0784
+	lhz      r3, 0x354(r24)
+	lis      r0, 0x4330
+	stw      r0, 8(r1)
+	lfd      f2, lbl_80516D80@sda21(r2)
+	stw      r3, 0xc(r1)
+	lfd      f0, 8(r1)
+	stw      r0, 0x10(r1)
+	fsubs    f0, f0, f2
+	stfs     f0, 0x344(r24)
+	lhz      r0, 0x352(r24)
+	lfs      f1, 0x344(r24)
+	stw      r0, 0x14(r1)
+	lfd      f0, 0x10(r1)
+	fsubs    f0, f0, f2
+	fmuls    f0, f1, f0
+	stfs     f0, 0x344(r24)
+	bl       getDacRate__9JASDriverFv
+	lfs      f2, 0x344(r24)
+	lfs      f0, lbl_80516D94@sda21(r2)
+	fdivs    f1, f2, f1
+	stfs     f1, 0x344(r24)
+	lfs      f1, 0x344(r24)
+	fmuls    f0, f1, f0
+	stfs     f0, 0x344(r24)
+	lwz      r3, 0x33c(r24)
+	cmplwi   r3, 0
+	beq      lbl_800A0798
+	li       r4, 0x40
+	bl       checkOuterSwitch__13JASOuterParamFUs
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_800A0798
+	lwz      r3, 0x33c(r24)
+	lfs      f1, 0x344(r24)
+	lfs      f0, 0x18(r3)
+	fmuls    f0, f1, f0
+	stfs     f0, 0x344(r24)
+	b        lbl_800A0798
 
-	.loc_0xB4:
-	  lfs       f0, 0x344(r3)
-	  stfs      f0, 0x344(r24)
-	  lwz       r3, 0x2F8(r24)
-	  lhz       r0, 0x354(r3)
-	  sth       r0, 0x354(r24)
+lbl_800A0784:
+	lfs      f0, 0x344(r3)
+	stfs     f0, 0x344(r24)
+	lwz      r3, 0x2f8(r24)
+	lhz      r0, 0x354(r3)
+	sth      r0, 0x354(r24)
 
-	.loc_0xC8:
-	  li        r25, 0
-	  mr        r26, r24
+lbl_800A0798:
+	li       r25, 0
+	mr       r26, r24
 
-	.loc_0xD0:
-	  lwz       r24, 0x2FC(r26)
-	  cmplwi    r24, 0
-	  beq-      .loc_0x390
-	  lbz       r0, 0x35B(r24)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x390
-	  lwz       r3, 0x2F8(r24)
-	  cmplwi    r3, 0
-	  bne-      .loc_0x188
-	  lhz       r3, 0x354(r24)
-	  lis       r0, 0x4330
-	  stw       r0, 0x10(r1)
-	  lfd       f2, -0x75E0(r2)
-	  stw       r3, 0x14(r1)
-	  lfd       f0, 0x10(r1)
-	  stw       r0, 0x8(r1)
-	  fsubs     f0, f0, f2
-	  stfs      f0, 0x344(r24)
-	  lhz       r0, 0x352(r24)
-	  lfs       f1, 0x344(r24)
-	  stw       r0, 0xC(r1)
-	  lfd       f0, 0x8(r1)
-	  fsubs     f0, f0, f2
-	  fmuls     f0, f1, f0
-	  stfs      f0, 0x344(r24)
-	  bl        0x79EC
-	  lfs       f2, 0x344(r24)
-	  lfs       f0, -0x75CC(r2)
-	  fdivs     f1, f2, f1
-	  stfs      f1, 0x344(r24)
-	  lfs       f1, 0x344(r24)
-	  fmuls     f0, f1, f0
-	  stfs      f0, 0x344(r24)
-	  lwz       r3, 0x33C(r24)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x19C
-	  li        r4, 0x40
-	  bl        -0x43D0
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x19C
-	  lwz       r3, 0x33C(r24)
-	  lfs       f1, 0x344(r24)
-	  lfs       f0, 0x18(r3)
-	  fmuls     f0, f1, f0
-	  stfs      f0, 0x344(r24)
-	  b         .loc_0x19C
+lbl_800A07A0:
+	lwz      r24, 0x2fc(r26)
+	cmplwi   r24, 0
+	beq      lbl_800A0A60
+	lbz      r0, 0x35b(r24)
+	cmplwi   r0, 0
+	beq      lbl_800A0A60
+	lwz      r3, 0x2f8(r24)
+	cmplwi   r3, 0
+	bne      lbl_800A0858
+	lhz      r3, 0x354(r24)
+	lis      r0, 0x4330
+	stw      r0, 0x10(r1)
+	lfd      f2, lbl_80516D80@sda21(r2)
+	stw      r3, 0x14(r1)
+	lfd      f0, 0x10(r1)
+	stw      r0, 8(r1)
+	fsubs    f0, f0, f2
+	stfs     f0, 0x344(r24)
+	lhz      r0, 0x352(r24)
+	lfs      f1, 0x344(r24)
+	stw      r0, 0xc(r1)
+	lfd      f0, 8(r1)
+	fsubs    f0, f0, f2
+	fmuls    f0, f1, f0
+	stfs     f0, 0x344(r24)
+	bl       getDacRate__9JASDriverFv
+	lfs      f2, 0x344(r24)
+	lfs      f0, lbl_80516D94@sda21(r2)
+	fdivs    f1, f2, f1
+	stfs     f1, 0x344(r24)
+	lfs      f1, 0x344(r24)
+	fmuls    f0, f1, f0
+	stfs     f0, 0x344(r24)
+	lwz      r3, 0x33c(r24)
+	cmplwi   r3, 0
+	beq      lbl_800A086C
+	li       r4, 0x40
+	bl       checkOuterSwitch__13JASOuterParamFUs
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_800A086C
+	lwz      r3, 0x33c(r24)
+	lfs      f1, 0x344(r24)
+	lfs      f0, 0x18(r3)
+	fmuls    f0, f1, f0
+	stfs     f0, 0x344(r24)
+	b        lbl_800A086C
 
-	.loc_0x188:
-	  lfs       f0, 0x344(r3)
-	  stfs      f0, 0x344(r24)
-	  lwz       r3, 0x2F8(r24)
-	  lhz       r0, 0x354(r3)
-	  sth       r0, 0x354(r24)
+lbl_800A0858:
+	lfs      f0, 0x344(r3)
+	stfs     f0, 0x344(r24)
+	lwz      r3, 0x2f8(r24)
+	lhz      r0, 0x354(r3)
+	sth      r0, 0x354(r24)
 
-	.loc_0x19C:
-	  li        r31, 0
-	  mr        r27, r24
+lbl_800A086C:
+	li       r31, 0
+	mr       r27, r24
 
-	.loc_0x1A4:
-	  lwz       r28, 0x2FC(r27)
-	  cmplwi    r28, 0
-	  beq-      .loc_0x380
-	  lbz       r0, 0x35B(r28)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x380
-	  lwz       r3, 0x2F8(r28)
-	  cmplwi    r3, 0
-	  bne-      .loc_0x25C
-	  lhz       r3, 0x354(r28)
-	  lis       r0, 0x4330
-	  stw       r0, 0x10(r1)
-	  lfd       f2, -0x75E0(r2)
-	  stw       r3, 0x14(r1)
-	  lfd       f0, 0x10(r1)
-	  stw       r0, 0x8(r1)
-	  fsubs     f0, f0, f2
-	  stfs      f0, 0x344(r28)
-	  lhz       r0, 0x352(r28)
-	  lfs       f1, 0x344(r28)
-	  stw       r0, 0xC(r1)
-	  lfd       f0, 0x8(r1)
-	  fsubs     f0, f0, f2
-	  fmuls     f0, f1, f0
-	  stfs      f0, 0x344(r28)
-	  bl        0x7918
-	  lfs       f2, 0x344(r28)
-	  lfs       f0, -0x75CC(r2)
-	  fdivs     f1, f2, f1
-	  stfs      f1, 0x344(r28)
-	  lfs       f1, 0x344(r28)
-	  fmuls     f0, f1, f0
-	  stfs      f0, 0x344(r28)
-	  lwz       r3, 0x33C(r28)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x270
-	  li        r4, 0x40
-	  bl        -0x44A4
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x270
-	  lwz       r3, 0x33C(r28)
-	  lfs       f1, 0x344(r28)
-	  lfs       f0, 0x18(r3)
-	  fmuls     f0, f1, f0
-	  stfs      f0, 0x344(r28)
-	  b         .loc_0x270
+lbl_800A0874:
+	lwz      r28, 0x2fc(r27)
+	cmplwi   r28, 0
+	beq      lbl_800A0A50
+	lbz      r0, 0x35b(r28)
+	cmplwi   r0, 0
+	beq      lbl_800A0A50
+	lwz      r3, 0x2f8(r28)
+	cmplwi   r3, 0
+	bne      lbl_800A092C
+	lhz      r3, 0x354(r28)
+	lis      r0, 0x4330
+	stw      r0, 0x10(r1)
+	lfd      f2, lbl_80516D80@sda21(r2)
+	stw      r3, 0x14(r1)
+	lfd      f0, 0x10(r1)
+	stw      r0, 8(r1)
+	fsubs    f0, f0, f2
+	stfs     f0, 0x344(r28)
+	lhz      r0, 0x352(r28)
+	lfs      f1, 0x344(r28)
+	stw      r0, 0xc(r1)
+	lfd      f0, 8(r1)
+	fsubs    f0, f0, f2
+	fmuls    f0, f1, f0
+	stfs     f0, 0x344(r28)
+	bl       getDacRate__9JASDriverFv
+	lfs      f2, 0x344(r28)
+	lfs      f0, lbl_80516D94@sda21(r2)
+	fdivs    f1, f2, f1
+	stfs     f1, 0x344(r28)
+	lfs      f1, 0x344(r28)
+	fmuls    f0, f1, f0
+	stfs     f0, 0x344(r28)
+	lwz      r3, 0x33c(r28)
+	cmplwi   r3, 0
+	beq      lbl_800A0940
+	li       r4, 0x40
+	bl       checkOuterSwitch__13JASOuterParamFUs
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_800A0940
+	lwz      r3, 0x33c(r28)
+	lfs      f1, 0x344(r28)
+	lfs      f0, 0x18(r3)
+	fmuls    f0, f1, f0
+	stfs     f0, 0x344(r28)
+	b        lbl_800A0940
 
-	.loc_0x25C:
-	  lfs       f0, 0x344(r3)
-	  stfs      f0, 0x344(r28)
-	  lwz       r3, 0x2F8(r28)
-	  lhz       r0, 0x354(r3)
-	  sth       r0, 0x354(r28)
+lbl_800A092C:
+	lfs      f0, 0x344(r3)
+	stfs     f0, 0x344(r28)
+	lwz      r3, 0x2f8(r28)
+	lhz      r0, 0x354(r3)
+	sth      r0, 0x354(r28)
 
-	.loc_0x270:
-	  li        r30, 0
+lbl_800A0940:
+	li       r30, 0
 
-	.loc_0x274:
-	  lwz       r29, 0x2FC(r28)
-	  cmplwi    r29, 0
-	  beq-      .loc_0x370
-	  lbz       r0, 0x35B(r29)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x370
-	  lwz       r3, 0x2F8(r29)
-	  cmplwi    r3, 0
-	  bne-      .loc_0x32C
-	  lhz       r3, 0x354(r29)
-	  lis       r0, 0x4330
-	  stw       r0, 0x10(r1)
-	  lfd       f2, -0x75E0(r2)
-	  stw       r3, 0x14(r1)
-	  lfd       f0, 0x10(r1)
-	  stw       r0, 0x8(r1)
-	  fsubs     f0, f0, f2
-	  stfs      f0, 0x344(r29)
-	  lhz       r0, 0x352(r29)
-	  lfs       f1, 0x344(r29)
-	  stw       r0, 0xC(r1)
-	  lfd       f0, 0x8(r1)
-	  fsubs     f0, f0, f2
-	  fmuls     f0, f1, f0
-	  stfs      f0, 0x344(r29)
-	  bl        0x7848
-	  lfs       f2, 0x344(r29)
-	  lfs       f0, -0x75CC(r2)
-	  fdivs     f1, f2, f1
-	  stfs      f1, 0x344(r29)
-	  lfs       f1, 0x344(r29)
-	  fmuls     f0, f1, f0
-	  stfs      f0, 0x344(r29)
-	  lwz       r3, 0x33C(r29)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x340
-	  li        r4, 0x40
-	  bl        -0x4574
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x340
-	  lwz       r3, 0x33C(r29)
-	  bl        .loc_0x3B4
-	  lfs       f0, 0x344(r29)
-	  fmuls     f0, f0, f1
-	  stfs      f0, 0x344(r29)
-	  b         .loc_0x340
+lbl_800A0944:
+	lwz      r29, 0x2fc(r28)
+	cmplwi   r29, 0
+	beq      lbl_800A0A40
+	lbz      r0, 0x35b(r29)
+	cmplwi   r0, 0
+	beq      lbl_800A0A40
+	lwz      r3, 0x2f8(r29)
+	cmplwi   r3, 0
+	bne      lbl_800A09FC
+	lhz      r3, 0x354(r29)
+	lis      r0, 0x4330
+	stw      r0, 0x10(r1)
+	lfd      f2, lbl_80516D80@sda21(r2)
+	stw      r3, 0x14(r1)
+	lfd      f0, 0x10(r1)
+	stw      r0, 8(r1)
+	fsubs    f0, f0, f2
+	stfs     f0, 0x344(r29)
+	lhz      r0, 0x352(r29)
+	lfs      f1, 0x344(r29)
+	stw      r0, 0xc(r1)
+	lfd      f0, 8(r1)
+	fsubs    f0, f0, f2
+	fmuls    f0, f1, f0
+	stfs     f0, 0x344(r29)
+	bl       getDacRate__9JASDriverFv
+	lfs      f2, 0x344(r29)
+	lfs      f0, lbl_80516D94@sda21(r2)
+	fdivs    f1, f2, f1
+	stfs     f1, 0x344(r29)
+	lfs      f1, 0x344(r29)
+	fmuls    f0, f1, f0
+	stfs     f0, 0x344(r29)
+	lwz      r3, 0x33c(r29)
+	cmplwi   r3, 0
+	beq      lbl_800A0A10
+	li       r4, 0x40
+	bl       checkOuterSwitch__13JASOuterParamFUs
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_800A0A10
+	lwz      r3, 0x33c(r29)
+	bl       getTempo__13JASOuterParamCFv
+	lfs      f0, 0x344(r29)
+	fmuls    f0, f0, f1
+	stfs     f0, 0x344(r29)
+	b        lbl_800A0A10
 
-	.loc_0x32C:
-	  lfs       f0, 0x344(r3)
-	  stfs      f0, 0x344(r29)
-	  lwz       r3, 0x2F8(r29)
-	  lhz       r0, 0x354(r3)
-	  sth       r0, 0x354(r29)
+lbl_800A09FC:
+	lfs      f0, 0x344(r3)
+	stfs     f0, 0x344(r29)
+	lwz      r3, 0x2f8(r29)
+	lhz      r0, 0x354(r3)
+	sth      r0, 0x354(r29)
 
-	.loc_0x340:
-	  li        r24, 0
+lbl_800A0A10:
+	li       r24, 0
 
-	.loc_0x344:
-	  lwz       r3, 0x2FC(r29)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x360
-	  lbz       r0, 0x35B(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x360
-	  bl        .loc_0x0
+lbl_800A0A14:
+	lwz      r3, 0x2fc(r29)
+	cmplwi   r3, 0
+	beq      lbl_800A0A30
+	lbz      r0, 0x35b(r3)
+	cmplwi   r0, 0
+	beq      lbl_800A0A30
+	bl       updateTempo__8JASTrackFv
 
-	.loc_0x360:
-	  addi      r24, r24, 0x1
-	  addi      r29, r29, 0x4
-	  cmpwi     r24, 0x10
-	  blt+      .loc_0x344
+lbl_800A0A30:
+	addi     r24, r24, 1
+	addi     r29, r29, 4
+	cmpwi    r24, 0x10
+	blt      lbl_800A0A14
 
-	.loc_0x370:
-	  addi      r30, r30, 0x1
-	  addi      r28, r28, 0x4
-	  cmpwi     r30, 0x10
-	  blt+      .loc_0x274
+lbl_800A0A40:
+	addi     r30, r30, 1
+	addi     r28, r28, 4
+	cmpwi    r30, 0x10
+	blt      lbl_800A0944
 
-	.loc_0x380:
-	  addi      r31, r31, 0x1
-	  addi      r27, r27, 0x4
-	  cmpwi     r31, 0x10
-	  blt+      .loc_0x1A4
+lbl_800A0A50:
+	addi     r31, r31, 1
+	addi     r27, r27, 4
+	cmpwi    r31, 0x10
+	blt      lbl_800A0874
 
-	.loc_0x390:
-	  addi      r25, r25, 0x1
-	  addi      r26, r26, 0x4
-	  cmpwi     r25, 0x10
-	  blt+      .loc_0xD0
-	  lmw       r24, 0x20(r1)
-	  lwz       r0, 0x44(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
-
-	.loc_0x3B4:
+lbl_800A0A60:
+	addi     r25, r25, 1
+	addi     r26, r26, 4
+	cmpwi    r25, 0x10
+	blt      lbl_800A07A0
+	lmw      r24, 0x20(r1)
+	lwz      r0, 0x44(r1)
+	mtlr     r0
+	addi     r1, r1, 0x40
+	blr
 	*/
 }
 
@@ -2393,9 +2485,8 @@ void JASTrack::updateTempo()
 void JASOuterParam::getTempo() const
 {
 	/*
-	.loc_0x0:
-	  lfs       f1, 0x18(r3)
-	  blr
+	lfs      f1, 0x18(r3)
+	blr
 	*/
 }
 
@@ -2407,212 +2498,211 @@ void JASOuterParam::getTempo() const
 void JASTrack::updateSeq(unsigned long, bool)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  stw       r0, 0x44(r1)
-	  stmw      r18, 0x8(r1)
-	  mr        r18, r3
-	  mr        r31, r5
-	  lwz       r3, 0x33C(r3)
-	  lwz       r0, 0x34C(r18)
-	  cmplwi    r3, 0
-	  or        r21, r4, r0
-	  beq-      .loc_0x44
-	  bl        -0x4630
-	  rlwinm    r0,r3,0,16,31
-	  lwz       r3, 0x33C(r18)
-	  or        r21, r21, r0
-	  li        r4, 0
-	  bl        -0x464C
+	stwu     r1, -0x40(r1)
+	mflr     r0
+	stw      r0, 0x44(r1)
+	stmw     r18, 8(r1)
+	mr       r18, r3
+	mr       r31, r5
+	lwz      r3, 0x33c(r3)
+	lwz      r0, 0x34c(r18)
+	cmplwi   r3, 0
+	or       r21, r4, r0
+	beq      lbl_800A0AD0
+	bl       getOuterUpdate__13JASOuterParamFv
+	clrlwi   r0, r3, 0x10
+	lwz      r3, 0x33c(r18)
+	or       r21, r21, r0
+	li       r4, 0
+	bl       setOuterUpdate__13JASOuterParamFUs
 
-	.loc_0x44:
-	  addi      r3, r18, 0xE8
-	  bl        0x1D9C
-	  li        r0, 0
-	  cmplwi    r21, 0
-	  stw       r0, 0x34C(r18)
-	  beq-      .loc_0x68
-	  mr        r3, r18
-	  mr        r4, r21
-	  bl        -0x900
+lbl_800A0AD0:
+	addi     r3, r18, 0xe8
+	bl       incCounter__10JASVibrateFv
+	li       r0, 0
+	cmplwi   r21, 0
+	stw      r0, 0x34c(r18)
+	beq      lbl_800A0AF4
+	mr       r3, r18
+	mr       r4, r21
+	bl       updateTrack__8JASTrackFUl
 
-	.loc_0x68:
-	  li        r20, 0
-	  mr        r22, r18
+lbl_800A0AF4:
+	li       r20, 0
+	mr       r22, r18
 
-	.loc_0x70:
-	  lwz       r18, 0x2FC(r22)
-	  cmplwi    r18, 0
-	  beq-      .loc_0x270
-	  lbz       r0, 0x35B(r18)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x270
-	  rlwinm.   r0,r31,0,24,31
-	  beq-      .loc_0x264
-	  lwz       r3, 0x33C(r18)
-	  lwz       r0, 0x34C(r18)
-	  cmplwi    r3, 0
-	  or        r29, r21, r0
-	  beq-      .loc_0xBC
-	  bl        -0x46A8
-	  rlwinm    r0,r3,0,16,31
-	  lwz       r3, 0x33C(r18)
-	  or        r29, r29, r0
-	  li        r4, 0
-	  bl        -0x46C4
+lbl_800A0AFC:
+	lwz      r18, 0x2fc(r22)
+	cmplwi   r18, 0
+	beq      lbl_800A0CFC
+	lbz      r0, 0x35b(r18)
+	cmplwi   r0, 0
+	beq      lbl_800A0CFC
+	clrlwi.  r0, r31, 0x18
+	beq      lbl_800A0CF0
+	lwz      r3, 0x33c(r18)
+	lwz      r0, 0x34c(r18)
+	cmplwi   r3, 0
+	or       r29, r21, r0
+	beq      lbl_800A0B48
+	bl       getOuterUpdate__13JASOuterParamFv
+	clrlwi   r0, r3, 0x10
+	lwz      r3, 0x33c(r18)
+	or       r29, r29, r0
+	li       r4, 0
+	bl       setOuterUpdate__13JASOuterParamFUs
 
-	.loc_0xBC:
-	  addi      r3, r18, 0xE8
-	  bl        0x1D24
-	  li        r0, 0
-	  cmplwi    r29, 0
-	  stw       r0, 0x34C(r18)
-	  beq-      .loc_0xE0
-	  mr        r3, r18
-	  mr        r4, r29
-	  bl        -0x978
+lbl_800A0B48:
+	addi     r3, r18, 0xe8
+	bl       incCounter__10JASVibrateFv
+	li       r0, 0
+	cmplwi   r29, 0
+	stw      r0, 0x34c(r18)
+	beq      lbl_800A0B6C
+	mr       r3, r18
+	mr       r4, r29
+	bl       updateTrack__8JASTrackFUl
 
-	.loc_0xE0:
-	  li        r30, 0
-	  mr        r23, r18
+lbl_800A0B6C:
+	li       r30, 0
+	mr       r23, r18
 
-	.loc_0xE8:
-	  lwz       r24, 0x2FC(r23)
-	  cmplwi    r24, 0
-	  beq-      .loc_0x250
-	  lbz       r0, 0x35B(r24)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x250
-	  rlwinm.   r0,r31,0,24,31
-	  beq-      .loc_0x244
-	  lwz       r3, 0x33C(r24)
-	  lwz       r0, 0x34C(r24)
-	  cmplwi    r3, 0
-	  or        r27, r29, r0
-	  beq-      .loc_0x134
-	  bl        -0x4720
-	  rlwinm    r0,r3,0,16,31
-	  lwz       r3, 0x33C(r24)
-	  or        r27, r27, r0
-	  li        r4, 0
-	  bl        -0x473C
+lbl_800A0B74:
+	lwz      r24, 0x2fc(r23)
+	cmplwi   r24, 0
+	beq      lbl_800A0CDC
+	lbz      r0, 0x35b(r24)
+	cmplwi   r0, 0
+	beq      lbl_800A0CDC
+	clrlwi.  r0, r31, 0x18
+	beq      lbl_800A0CD0
+	lwz      r3, 0x33c(r24)
+	lwz      r0, 0x34c(r24)
+	cmplwi   r3, 0
+	or       r27, r29, r0
+	beq      lbl_800A0BC0
+	bl       getOuterUpdate__13JASOuterParamFv
+	clrlwi   r0, r3, 0x10
+	lwz      r3, 0x33c(r24)
+	or       r27, r27, r0
+	li       r4, 0
+	bl       setOuterUpdate__13JASOuterParamFUs
 
-	.loc_0x134:
-	  addi      r3, r24, 0xE8
-	  bl        0x1CAC
-	  li        r0, 0
-	  cmplwi    r27, 0
-	  stw       r0, 0x34C(r24)
-	  beq-      .loc_0x158
-	  mr        r3, r24
-	  mr        r4, r27
-	  bl        -0x9F0
+lbl_800A0BC0:
+	addi     r3, r24, 0xe8
+	bl       incCounter__10JASVibrateFv
+	li       r0, 0
+	cmplwi   r27, 0
+	stw      r0, 0x34c(r24)
+	beq      lbl_800A0BE4
+	mr       r3, r24
+	mr       r4, r27
+	bl       updateTrack__8JASTrackFUl
 
-	.loc_0x158:
-	  li        r28, 0
+lbl_800A0BE4:
+	li       r28, 0
 
-	.loc_0x15C:
-	  lwz       r25, 0x2FC(r24)
-	  cmplwi    r25, 0
-	  beq-      .loc_0x230
-	  lbz       r0, 0x35B(r25)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x230
-	  rlwinm.   r0,r31,0,24,31
-	  beq-      .loc_0x224
-	  lwz       r3, 0x33C(r25)
-	  lwz       r0, 0x34C(r25)
-	  cmplwi    r3, 0
-	  or        r26, r27, r0
-	  beq-      .loc_0x1A8
-	  bl        -0x4794
-	  rlwinm    r0,r3,0,16,31
-	  lwz       r3, 0x33C(r25)
-	  or        r26, r26, r0
-	  li        r4, 0
-	  bl        -0x47B0
+lbl_800A0BE8:
+	lwz      r25, 0x2fc(r24)
+	cmplwi   r25, 0
+	beq      lbl_800A0CBC
+	lbz      r0, 0x35b(r25)
+	cmplwi   r0, 0
+	beq      lbl_800A0CBC
+	clrlwi.  r0, r31, 0x18
+	beq      lbl_800A0CB0
+	lwz      r3, 0x33c(r25)
+	lwz      r0, 0x34c(r25)
+	cmplwi   r3, 0
+	or       r26, r27, r0
+	beq      lbl_800A0C34
+	bl       getOuterUpdate__13JASOuterParamFv
+	clrlwi   r0, r3, 0x10
+	lwz      r3, 0x33c(r25)
+	or       r26, r26, r0
+	li       r4, 0
+	bl       setOuterUpdate__13JASOuterParamFUs
 
-	.loc_0x1A8:
-	  addi      r3, r25, 0xE8
-	  bl        0x1C38
-	  li        r0, 0
-	  cmplwi    r26, 0
-	  stw       r0, 0x34C(r25)
-	  beq-      .loc_0x1CC
-	  mr        r3, r25
-	  mr        r4, r26
-	  bl        -0xA64
+lbl_800A0C34:
+	addi     r3, r25, 0xe8
+	bl       incCounter__10JASVibrateFv
+	li       r0, 0
+	cmplwi   r26, 0
+	stw      r0, 0x34c(r25)
+	beq      lbl_800A0C58
+	mr       r3, r25
+	mr       r4, r26
+	bl       updateTrack__8JASTrackFUl
 
-	.loc_0x1CC:
-	  rlwinm    r19,r31,0,24,31
-	  li        r18, 0
+lbl_800A0C58:
+	clrlwi   r19, r31, 0x18
+	li       r18, 0
 
-	.loc_0x1D4:
-	  lwz       r3, 0x2FC(r25)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x210
-	  lbz       r0, 0x35B(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x210
-	  cmplwi    r19, 0
-	  beq-      .loc_0x204
-	  mr        r4, r26
-	  mr        r5, r31
-	  bl        .loc_0x0
-	  b         .loc_0x210
+lbl_800A0C60:
+	lwz      r3, 0x2fc(r25)
+	cmplwi   r3, 0
+	beq      lbl_800A0C9C
+	lbz      r0, 0x35b(r3)
+	cmplwi   r0, 0
+	beq      lbl_800A0C9C
+	cmplwi   r19, 0
+	beq      lbl_800A0C90
+	mr       r4, r26
+	mr       r5, r31
+	bl       updateSeq__8JASTrackFUlb
+	b        lbl_800A0C9C
 
-	.loc_0x204:
-	  lwz       r0, 0x34C(r3)
-	  or        r0, r0, r26
-	  stw       r0, 0x34C(r3)
+lbl_800A0C90:
+	lwz      r0, 0x34c(r3)
+	or       r0, r0, r26
+	stw      r0, 0x34c(r3)
 
-	.loc_0x210:
-	  addi      r18, r18, 0x1
-	  addi      r25, r25, 0x4
-	  cmpwi     r18, 0x10
-	  blt+      .loc_0x1D4
-	  b         .loc_0x230
+lbl_800A0C9C:
+	addi     r18, r18, 1
+	addi     r25, r25, 4
+	cmpwi    r18, 0x10
+	blt      lbl_800A0C60
+	b        lbl_800A0CBC
 
-	.loc_0x224:
-	  lwz       r0, 0x34C(r25)
-	  or        r0, r0, r27
-	  stw       r0, 0x34C(r25)
+lbl_800A0CB0:
+	lwz      r0, 0x34c(r25)
+	or       r0, r0, r27
+	stw      r0, 0x34c(r25)
 
-	.loc_0x230:
-	  addi      r28, r28, 0x1
-	  addi      r24, r24, 0x4
-	  cmpwi     r28, 0x10
-	  blt+      .loc_0x15C
-	  b         .loc_0x250
+lbl_800A0CBC:
+	addi     r28, r28, 1
+	addi     r24, r24, 4
+	cmpwi    r28, 0x10
+	blt      lbl_800A0BE8
+	b        lbl_800A0CDC
 
-	.loc_0x244:
-	  lwz       r0, 0x34C(r24)
-	  or        r0, r0, r29
-	  stw       r0, 0x34C(r24)
+lbl_800A0CD0:
+	lwz      r0, 0x34c(r24)
+	or       r0, r0, r29
+	stw      r0, 0x34c(r24)
 
-	.loc_0x250:
-	  addi      r30, r30, 0x1
-	  addi      r23, r23, 0x4
-	  cmpwi     r30, 0x10
-	  blt+      .loc_0xE8
-	  b         .loc_0x270
+lbl_800A0CDC:
+	addi     r30, r30, 1
+	addi     r23, r23, 4
+	cmpwi    r30, 0x10
+	blt      lbl_800A0B74
+	b        lbl_800A0CFC
 
-	.loc_0x264:
-	  lwz       r0, 0x34C(r18)
-	  or        r0, r0, r21
-	  stw       r0, 0x34C(r18)
+lbl_800A0CF0:
+	lwz      r0, 0x34c(r18)
+	or       r0, r0, r21
+	stw      r0, 0x34c(r18)
 
-	.loc_0x270:
-	  addi      r20, r20, 0x1
-	  addi      r22, r22, 0x4
-	  cmpwi     r20, 0x10
-	  blt+      .loc_0x70
-	  lmw       r18, 0x8(r1)
-	  lwz       r0, 0x44(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
+lbl_800A0CFC:
+	addi     r20, r20, 1
+	addi     r22, r22, 4
+	cmpwi    r20, 0x10
+	blt      lbl_800A0AFC
+	lmw      r18, 8(r1)
+	lwz      r0, 0x44(r1)
+	mtlr     r0
+	addi     r1, r1, 0x40
+	blr
 	*/
 }
 
@@ -2624,65 +2714,64 @@ void JASTrack::updateSeq(unsigned long, bool)
 void JASTrack::seqTimeToDspTime(long, unsigned char)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stfd      f31, 0x20(r1)
-	  psq_st    f31,0x28(r1),0,0
-	  lis       r6, 0x4330
-	  xoris     r0, r4, 0x8000
-	  rlwinm    r4,r5,0,24,31
-	  stw       r0, 0xC(r1)
-	  lbz       r0, 0x364(r3)
-	  stw       r6, 0x8(r1)
-	  lfd       f1, -0x75B8(r2)
-	  cmplwi    r0, 0
-	  lfd       f0, 0x8(r1)
-	  stw       r4, 0x14(r1)
-	  lfd       f2, -0x75E0(r2)
-	  fsubs     f31, f0, f1
-	  stw       r6, 0x10(r1)
-	  lfs       f0, -0x75C8(r2)
-	  lfd       f1, 0x10(r1)
-	  fsubs     f1, f1, f2
-	  fmuls     f31, f31, f1
-	  fdivs     f31, f31, f0
-	  beq-      .loc_0x6C
-	  lfs       f0, 0x344(r3)
-	  fdivs     f31, f31, f0
-	  b         .loc_0xB4
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stfd     f31, 0x20(r1)
+	psq_st   f31, 40(r1), 0, qr0
+	lis      r6, 0x4330
+	xoris    r0, r4, 0x8000
+	clrlwi   r4, r5, 0x18
+	stw      r0, 0xc(r1)
+	lbz      r0, 0x364(r3)
+	stw      r6, 8(r1)
+	lfd      f1, lbl_80516DA8@sda21(r2)
+	cmplwi   r0, 0
+	lfd      f0, 8(r1)
+	stw      r4, 0x14(r1)
+	lfd      f2, lbl_80516D80@sda21(r2)
+	fsubs    f31, f0, f1
+	stw      r6, 0x10(r1)
+	lfs      f0, lbl_80516D98@sda21(r2)
+	lfd      f1, 0x10(r1)
+	fsubs    f1, f1, f2
+	fmuls    f31, f31, f1
+	fdivs    f31, f31, f0
+	beq      lbl_800A0D8C
+	lfs      f0, 0x344(r3)
+	fdivs    f31, f31, f0
+	b        lbl_800A0DD4
 
-	.loc_0x6C:
-	  lhz       r0, 0x354(r3)
-	  stw       r6, 0x10(r1)
-	  lfs       f1, -0x75C4(r2)
-	  stw       r0, 0x14(r1)
-	  lfd       f0, 0x10(r1)
-	  fsubs     f0, f0, f2
-	  fdivs     f0, f1, f0
-	  fmuls     f31, f31, f0
-	  bl        0x744C
-	  lis       r0, 0x4330
-	  stw       r3, 0xC(r1)
-	  lfd       f2, -0x75E0(r2)
-	  stw       r0, 0x8(r1)
-	  lfs       f0, -0x75C0(r2)
-	  lfd       f1, 0x8(r1)
-	  fsubs     f1, f1, f2
-	  fdivs     f0, f1, f0
-	  fmuls     f31, f31, f0
+lbl_800A0D8C:
+	lhz      r0, 0x354(r3)
+	stw      r6, 0x10(r1)
+	lfs      f1, lbl_80516D9C@sda21(r2)
+	stw      r0, 0x14(r1)
+	lfd      f0, 0x10(r1)
+	fsubs    f0, f0, f2
+	fdivs    f0, f1, f0
+	fmuls    f31, f31, f0
+	bl       getSubFrames__9JASDriverFv
+	lis      r0, 0x4330
+	stw      r3, 0xc(r1)
+	lfd      f2, lbl_80516D80@sda21(r2)
+	stw      r0, 8(r1)
+	lfs      f0, lbl_80516DA0@sda21(r2)
+	lfd      f1, 8(r1)
+	fsubs    f1, f1, f2
+	fdivs    f0, f1, f0
+	fmuls    f31, f31, f0
 
-	.loc_0xB4:
-	  fctiwz    f0, f31
-	  stfd      f0, 0x10(r1)
-	  lwz       r3, 0x14(r1)
-	  psq_l     f31,0x28(r1),0,0
-	  lwz       r0, 0x34(r1)
-	  lfd       f31, 0x20(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_800A0DD4:
+	fctiwz   f0, f31
+	stfd     f0, 0x10(r1)
+	lwz      r3, 0x14(r1)
+	psq_l    f31, 40(r1), 0, qr0
+	lwz      r0, 0x34(r1)
+	lfd      f31, 0x20(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -2694,44 +2783,43 @@ void JASTrack::seqTimeToDspTime(long, unsigned char)
 void JASTrack::setParam(int, float, int)
 {
 	/*
-	.loc_0x0:
-	  rlwinm    r4,r4,4,0,27
-	  stwu      r1, -0x20(r1)
-	  addi      r4, r4, 0x148
-	  cmpwi     r5, 0
-	  add       r4, r3, r4
-	  stfs      f1, 0x4(r4)
-	  bgt-      .loc_0x38
-	  lfs       f0, 0x4(r4)
-	  lfs       f1, -0x75E8(r2)
-	  stfs      f0, 0x0(r4)
-	  lfs       f0, -0x75E4(r2)
-	  stfs      f1, 0xC(r4)
-	  stfs      f0, 0x8(r4)
-	  b         .loc_0x7C
+	slwi     r4, r4, 4
+	stwu     r1, -0x20(r1)
+	addi     r4, r4, 0x148
+	cmpwi    r5, 0
+	add      r4, r3, r4
+	stfs     f1, 4(r4)
+	bgt      lbl_800A0E30
+	lfs      f0, 4(r4)
+	lfs      f1, lbl_80516D78@sda21(r2)
+	stfs     f0, 0(r4)
+	lfs      f0, lbl_80516D7C@sda21(r2)
+	stfs     f1, 0xc(r4)
+	stfs     f0, 8(r4)
+	b        lbl_800A0E74
 
-	.loc_0x38:
-	  xoris     r3, r5, 0x8000
-	  lis       r0, 0x4330
-	  stw       r3, 0xC(r1)
-	  lfs       f3, 0x4(r4)
-	  stw       r0, 0x8(r1)
-	  lfs       f1, 0x0(r4)
-	  lfd       f2, -0x75B8(r2)
-	  lfd       f0, 0x8(r1)
-	  fsubs     f1, f3, f1
-	  stw       r3, 0x14(r1)
-	  fsubs     f0, f0, f2
-	  stw       r0, 0x10(r1)
-	  fdivs     f1, f1, f0
-	  lfd       f0, 0x10(r1)
-	  fsubs     f0, f0, f2
-	  stfs      f1, 0xC(r4)
-	  stfs      f0, 0x8(r4)
+lbl_800A0E30:
+	xoris    r3, r5, 0x8000
+	lis      r0, 0x4330
+	stw      r3, 0xc(r1)
+	lfs      f3, 4(r4)
+	stw      r0, 8(r1)
+	lfs      f1, 0(r4)
+	lfd      f2, lbl_80516DA8@sda21(r2)
+	lfd      f0, 8(r1)
+	fsubs    f1, f3, f1
+	stw      r3, 0x14(r1)
+	fsubs    f0, f0, f2
+	stw      r0, 0x10(r1)
+	fdivs    f1, f1, f0
+	lfd      f0, 0x10(r1)
+	fsubs    f0, f0, f2
+	stfs     f1, 0xc(r4)
+	stfs     f0, 8(r4)
 
-	.loc_0x7C:
-	  addi      r1, r1, 0x20
-	  blr
+lbl_800A0E74:
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -2743,32 +2831,31 @@ void JASTrack::setParam(int, float, int)
 void JASTrack::setSeqData(unsigned char*, long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  bl        -0x1C44
-	  li        r0, 0x3
-	  mr        r4, r31
-	  stb       r0, 0x357(r30)
-	  addi      r3, r30, 0xC
-	  li        r5, 0
-	  bl        -0x45F8
-	  mr        r3, r30
-	  bl        -0x10B0
-	  li        r0, 0x2
-	  li        r3, 0x1
-	  stb       r0, 0x35B(r30)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	bl       init__8JASTrackFv
+	li       r0, 3
+	mr       r4, r31
+	stb      r0, 0x357(r30)
+	addi     r3, r30, 0xc
+	li       r5, 0
+	bl       start__10JASSeqCtrlFPvUl
+	mr       r3, r30
+	bl       updateTrackAll__8JASTrackFv
+	li       r0, 2
+	li       r3, 1
+	stb      r0, 0x35b(r30)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2780,51 +2867,50 @@ void JASTrack::setSeqData(unsigned char*, long)
 void JASTrack::startSeq()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lbz       r0, 0x35B(r3)
-	  cmpwi     r0, 0x2
-	  beq-      .loc_0x50
-	  bge-      .loc_0x2C
-	  cmpwi     r0, 0
-	  beq-      .loc_0x38
-	  bge-      .loc_0x40
-	  b         .loc_0x58
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lbz      r0, 0x35b(r3)
+	cmpwi    r0, 2
+	beq      lbl_800A0F30
+	bge      lbl_800A0F0C
+	cmpwi    r0, 0
+	beq      lbl_800A0F18
+	bge      lbl_800A0F20
+	b        lbl_800A0F38
 
-	.loc_0x2C:
-	  cmpwi     r0, 0x4
-	  bge-      .loc_0x58
-	  b         .loc_0x48
+lbl_800A0F0C:
+	cmpwi    r0, 4
+	bge      lbl_800A0F38
+	b        lbl_800A0F28
 
-	.loc_0x38:
-	  li        r3, 0
-	  b         .loc_0x68
+lbl_800A0F18:
+	li       r3, 0
+	b        lbl_800A0F48
 
-	.loc_0x40:
-	  li        r3, 0
-	  b         .loc_0x68
+lbl_800A0F20:
+	li       r3, 0
+	b        lbl_800A0F48
 
-	.loc_0x48:
-	  li        r3, 0
-	  b         .loc_0x68
+lbl_800A0F28:
+	li       r3, 0
+	b        lbl_800A0F48
 
-	.loc_0x50:
-	  li        r0, 0x1
-	  stb       r0, 0x35B(r3)
+lbl_800A0F30:
+	li       r0, 1
+	stb      r0, 0x35b(r3)
 
-	.loc_0x58:
-	  lis       r5, 0x800A
-	  mr        r4, r3
-	  addi      r3, r5, 0x2658
-	  bl        0x3AC8
+lbl_800A0F38:
+	lis      r5, rootCallback__8JASTrackFPv@ha
+	mr       r4, r3
+	addi     r3, r5, rootCallback__8JASTrackFPv@l
+	bl       registerSubFrameCallback__9JASDriverFPFPv_lPv
 
-	.loc_0x68:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_800A0F48:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2836,86 +2922,85 @@ void JASTrack::startSeq()
 void JASTrack::stopSeq()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  lbz       r0, 0x35B(r3)
-	  cmpwi     r0, 0x1
-	  beq-      .loc_0xD4
-	  bge-      .loc_0x38
-	  cmpwi     r0, 0
-	  bge-      .loc_0xDC
-	  b         .loc_0xD4
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	lbz      r0, 0x35b(r3)
+	cmpwi    r0, 1
+	beq      lbl_800A102C
+	bge      lbl_800A0F90
+	cmpwi    r0, 0
+	bge      lbl_800A1034
+	b        lbl_800A102C
 
-	.loc_0x38:
-	  cmpwi     r0, 0x3
-	  bge-      .loc_0xD4
-	  li        r0, 0
-	  stb       r0, 0x35B(r29)
-	  lbz       r0, 0x366(r29)
-	  cmplwi    r0, 0
-	  beq-      .loc_0xDC
-	  cmplwi    r29, 0
-	  beq-      .loc_0xDC
-	  lwz       r30, 0x0(r29)
-	  b         .loc_0x90
+lbl_800A0F90:
+	cmpwi    r0, 3
+	bge      lbl_800A102C
+	li       r0, 0
+	stb      r0, 0x35b(r29)
+	lbz      r0, 0x366(r29)
+	cmplwi   r0, 0
+	beq      lbl_800A1034
+	cmplwi   r29, 0
+	beq      lbl_800A1034
+	lwz      r30, 0(r29)
+	b        lbl_800A0FE8
 
-	.loc_0x64:
-	  lwz       r3, 0x0(r30)
-	  li        r4, 0
-	  lwz       r31, 0xC(r3)
-	  bl        0x2800
-	  lwz       r3, 0x0(r30)
-	  bl        0x37F0
-	  lwz       r4, 0x0(r30)
-	  mr        r3, r29
-	  lwz       r4, 0x0(r4)
-	  bl        -0x7A3BC
-	  mr        r30, r31
+lbl_800A0FBC:
+	lwz      r3, 0(r30)
+	li       r4, 0
+	lwz      r31, 0xc(r3)
+	bl       release__10JASChannelFUs
+	lwz      r3, 0(r30)
+	bl       free__10JASChannelFv
+	lwz      r4, 0(r30)
+	mr       r3, r29
+	lwz      r4, 0(r4)
+	bl       remove__10JSUPtrListFP10JSUPtrLink
+	mr       r30, r31
 
-	.loc_0x90:
-	  cmplwi    r30, 0
-	  bne+      .loc_0x64
-	  cmplwi    r29, 0
-	  beq-      .loc_0xAC
-	  mr        r3, r29
-	  li        r4, 0
-	  bl        -0x7A798
+lbl_800A0FE8:
+	cmplwi   r30, 0
+	bne      lbl_800A0FBC
+	cmplwi   r29, 0
+	beq      lbl_800A1004
+	mr       r3, r29
+	li       r4, 0
+	bl       __dt__10JSUPtrListFv
 
-	.loc_0xAC:
-	  li        r0, 0
-	  stw       r0, 0x0(r29)
-	  lwz       r3, -0x7584(r13)
-	  cmplwi    r3, 0
-	  beq-      .loc_0xC8
-	  stw       r29, 0x0(r3)
-	  b         .loc_0xCC
+lbl_800A1004:
+	li       r0, 0
+	stw      r0, 0(r29)
+	lwz      r3, sFreeListEnd__8JASTrack@sda21(r13)
+	cmplwi   r3, 0
+	beq      lbl_800A1020
+	stw      r29, 0(r3)
+	b        lbl_800A1024
 
-	.loc_0xC8:
-	  stw       r29, -0x7588(r13)
+lbl_800A1020:
+	stw      r29, sFreeList__8JASTrack@sda21(r13)
 
-	.loc_0xCC:
-	  stw       r29, -0x7584(r13)
-	  b         .loc_0xDC
+lbl_800A1024:
+	stw      r29, sFreeListEnd__8JASTrack@sda21(r13)
+	b        lbl_800A1034
 
-	.loc_0xD4:
-	  li        r0, 0x3
-	  stb       r0, 0x35B(r29)
+lbl_800A102C:
+	li       r0, 3
+	stb      r0, 0x35b(r29)
 
-	.loc_0xDC:
-	  lwz       r0, 0x24(r1)
-	  li        r3, 0x1
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_800A1034:
+	lwz      r0, 0x24(r1)
+	li       r3, 1
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -2927,24 +3012,21 @@ void JASTrack::stopSeq()
 void JASTrack::stopSeqMain()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r4, 0
-	  li        r5, 0x1
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        -0x5E4
-	  mr        r3, r31
-	  bl        .loc_0x3C
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-
-	.loc_0x3C:
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	li       r4, 0
+	li       r5, 1
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       updateSeq__8JASTrackFUlb
+	mr       r3, r31
+	bl       close__8JASTrackFv
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2956,160 +3038,159 @@ void JASTrack::stopSeqMain()
 void JASTrack::close()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r3
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  stw       r28, 0x10(r1)
-	  lbz       r0, 0x35B(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x1B4
-	  lwz       r0, 0x2F8(r31)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x78
-	  li        r28, 0
-	  li        r30, 0
-	  b         .loc_0x68
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r3
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	stw      r28, 0x10(r1)
+	lbz      r0, 0x35b(r3)
+	cmplwi   r0, 0
+	beq      lbl_800A1244
+	lwz      r0, 0x2f8(r31)
+	cmplwi   r0, 0
+	bne      lbl_800A1108
+	li       r28, 0
+	li       r30, 0
+	b        lbl_800A10F8
 
-	.loc_0x44:
-	  rlwinm    r3,r28,2,22,29
-	  addi      r29, r3, 0xC0
-	  lwzx      r3, r31, r29
-	  cmplwi    r3, 0
-	  beq-      .loc_0x64
-	  li        r4, 0xA
-	  bl        0x26DC
-	  stwx      r30, r31, r29
+lbl_800A10D4:
+	rlwinm   r3, r28, 2, 0x16, 0x1d
+	addi     r29, r3, 0xc0
+	lwzx     r3, r31, r29
+	cmplwi   r3, 0
+	beq      lbl_800A10F4
+	li       r4, 0xa
+	bl       release__10JASChannelFUs
+	stwx     r30, r31, r29
 
-	.loc_0x64:
-	  addi      r28, r28, 0x1
+lbl_800A10F4:
+	addi     r28, r28, 1
 
-	.loc_0x68:
-	  rlwinm    r0,r28,0,24,31
-	  cmplwi    r0, 0x8
-	  blt+      .loc_0x44
-	  b         .loc_0xB4
+lbl_800A10F8:
+	clrlwi   r0, r28, 0x18
+	cmplwi   r0, 8
+	blt      lbl_800A10D4
+	b        lbl_800A1144
 
-	.loc_0x78:
-	  li        r28, 0
-	  li        r30, 0
-	  b         .loc_0xA8
+lbl_800A1108:
+	li       r28, 0
+	li       r30, 0
+	b        lbl_800A1138
 
-	.loc_0x84:
-	  rlwinm    r3,r28,2,22,29
-	  addi      r29, r3, 0xC0
-	  lwzx      r3, r31, r29
-	  cmplwi    r3, 0
-	  beq-      .loc_0xA4
-	  li        r4, 0
-	  bl        0x269C
-	  stwx      r30, r31, r29
+lbl_800A1114:
+	rlwinm   r3, r28, 2, 0x16, 0x1d
+	addi     r29, r3, 0xc0
+	lwzx     r3, r31, r29
+	cmplwi   r3, 0
+	beq      lbl_800A1134
+	li       r4, 0
+	bl       release__10JASChannelFUs
+	stwx     r30, r31, r29
 
-	.loc_0xA4:
-	  addi      r28, r28, 0x1
+lbl_800A1134:
+	addi     r28, r28, 1
 
-	.loc_0xA8:
-	  rlwinm    r0,r28,0,24,31
-	  cmplwi    r0, 0x8
-	  blt+      .loc_0x84
+lbl_800A1138:
+	clrlwi   r0, r28, 0x18
+	cmplwi   r0, 8
+	blt      lbl_800A1114
 
-	.loc_0xB4:
-	  li        r30, 0
-	  mr        r29, r31
-	  stb       r30, 0x35B(r31)
-	  li        r28, 0
+lbl_800A1144:
+	li       r30, 0
+	mr       r29, r31
+	stb      r30, 0x35b(r31)
+	li       r28, 0
 
-	.loc_0xC4:
-	  lwz       r3, 0x2FC(r29)
-	  cmplwi    r3, 0
-	  beq-      .loc_0xD8
-	  bl        .loc_0x0
-	  stw       r30, 0x2FC(r29)
+lbl_800A1154:
+	lwz      r3, 0x2fc(r29)
+	cmplwi   r3, 0
+	beq      lbl_800A1168
+	bl       close__8JASTrackFv
+	stw      r30, 0x2fc(r29)
 
-	.loc_0xD8:
-	  addi      r28, r28, 0x1
-	  addi      r29, r29, 0x4
-	  cmpwi     r28, 0x10
-	  blt+      .loc_0xC4
-	  li        r0, 0
-	  stb       r0, 0x363(r31)
-	  lwz       r29, 0x0(r31)
-	  b         .loc_0x124
+lbl_800A1168:
+	addi     r28, r28, 1
+	addi     r29, r29, 4
+	cmpwi    r28, 0x10
+	blt      lbl_800A1154
+	li       r0, 0
+	stb      r0, 0x363(r31)
+	lwz      r29, 0(r31)
+	b        lbl_800A11B4
 
-	.loc_0xF8:
-	  lwz       r3, 0x0(r29)
-	  li        r4, 0
-	  lwz       r30, 0xC(r3)
-	  bl        0x2634
-	  lwz       r3, 0x0(r29)
-	  bl        0x3624
-	  lwz       r4, 0x0(r29)
-	  mr        r3, r31
-	  lwz       r4, 0x0(r4)
-	  bl        -0x7A588
-	  mr        r29, r30
+lbl_800A1188:
+	lwz      r3, 0(r29)
+	li       r4, 0
+	lwz      r30, 0xc(r3)
+	bl       release__10JASChannelFUs
+	lwz      r3, 0(r29)
+	bl       free__10JASChannelFv
+	lwz      r4, 0(r29)
+	mr       r3, r31
+	lwz      r4, 0(r4)
+	bl       remove__10JSUPtrListFP10JSUPtrLink
+	mr       r29, r30
 
-	.loc_0x124:
-	  cmplwi    r29, 0
-	  bne+      .loc_0xF8
-	  lbz       r0, 0x366(r31)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x1B4
-	  cmplwi    r31, 0
-	  beq-      .loc_0x1B4
-	  lwz       r29, 0x0(r31)
-	  b         .loc_0x174
+lbl_800A11B4:
+	cmplwi   r29, 0
+	bne      lbl_800A1188
+	lbz      r0, 0x366(r31)
+	cmplwi   r0, 0
+	beq      lbl_800A1244
+	cmplwi   r31, 0
+	beq      lbl_800A1244
+	lwz      r29, 0(r31)
+	b        lbl_800A1204
 
-	.loc_0x148:
-	  lwz       r3, 0x0(r29)
-	  li        r4, 0
-	  lwz       r30, 0xC(r3)
-	  bl        0x25E4
-	  lwz       r3, 0x0(r29)
-	  bl        0x35D4
-	  lwz       r4, 0x0(r29)
-	  mr        r3, r31
-	  lwz       r4, 0x0(r4)
-	  bl        -0x7A5D8
-	  mr        r29, r30
+lbl_800A11D8:
+	lwz      r3, 0(r29)
+	li       r4, 0
+	lwz      r30, 0xc(r3)
+	bl       release__10JASChannelFUs
+	lwz      r3, 0(r29)
+	bl       free__10JASChannelFv
+	lwz      r4, 0(r29)
+	mr       r3, r31
+	lwz      r4, 0(r4)
+	bl       remove__10JSUPtrListFP10JSUPtrLink
+	mr       r29, r30
 
-	.loc_0x174:
-	  cmplwi    r29, 0
-	  bne+      .loc_0x148
-	  cmplwi    r31, 0
-	  beq-      .loc_0x190
-	  mr        r3, r31
-	  li        r4, 0
-	  bl        -0x7A9B4
+lbl_800A1204:
+	cmplwi   r29, 0
+	bne      lbl_800A11D8
+	cmplwi   r31, 0
+	beq      lbl_800A1220
+	mr       r3, r31
+	li       r4, 0
+	bl       __dt__10JSUPtrListFv
 
-	.loc_0x190:
-	  li        r0, 0
-	  stw       r0, 0x0(r31)
-	  lwz       r3, -0x7584(r13)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x1AC
-	  stw       r31, 0x0(r3)
-	  b         .loc_0x1B0
+lbl_800A1220:
+	li       r0, 0
+	stw      r0, 0(r31)
+	lwz      r3, sFreeListEnd__8JASTrack@sda21(r13)
+	cmplwi   r3, 0
+	beq      lbl_800A123C
+	stw      r31, 0(r3)
+	b        lbl_800A1240
 
-	.loc_0x1AC:
-	  stw       r31, -0x7588(r13)
+lbl_800A123C:
+	stw      r31, sFreeList__8JASTrack@sda21(r13)
 
-	.loc_0x1B0:
-	  stw       r31, -0x7584(r13)
+lbl_800A1240:
+	stw      r31, sFreeListEnd__8JASTrack@sda21(r13)
 
-	.loc_0x1B4:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_800A1244:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -3121,45 +3202,44 @@ void JASTrack::close()
 void JASTrack::setNoteMask(unsigned char)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stmw      r26, 0x8(r1)
-	  mr        r26, r3
-	  rlwinm    r29,r4,0,24,31
-	  li        r27, 0
-	  li        r30, 0x1
-	  li        r31, 0
-	  stb       r4, 0x35A(r3)
-	  b         .loc_0x60
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stmw     r26, 8(r1)
+	mr       r26, r3
+	clrlwi   r29, r4, 0x18
+	li       r27, 0
+	li       r30, 1
+	li       r31, 0
+	stb      r4, 0x35a(r3)
+	b        lbl_800A12C4
 
-	.loc_0x2C:
-	  rlwinm    r0,r27,0,24,31
-	  slw       r0, r30, r0
-	  and.      r0, r29, r0
-	  beq-      .loc_0x5C
-	  rlwinm    r3,r27,2,22,29
-	  addi      r28, r3, 0xC0
-	  lwzx      r3, r26, r28
-	  cmplwi    r3, 0
-	  beq-      .loc_0x5C
-	  li        r4, 0xA
-	  bl        0x2510
-	  stwx      r31, r26, r28
+lbl_800A1290:
+	clrlwi   r0, r27, 0x18
+	slw      r0, r30, r0
+	and.     r0, r29, r0
+	beq      lbl_800A12C0
+	rlwinm   r3, r27, 2, 0x16, 0x1d
+	addi     r28, r3, 0xc0
+	lwzx     r3, r26, r28
+	cmplwi   r3, 0
+	beq      lbl_800A12C0
+	li       r4, 0xa
+	bl       release__10JASChannelFUs
+	stwx     r31, r26, r28
 
-	.loc_0x5C:
-	  addi      r27, r27, 0x1
+lbl_800A12C0:
+	addi     r27, r27, 1
 
-	.loc_0x60:
-	  rlwinm    r0,r27,0,24,31
-	  cmplwi    r0, 0x8
-	  blt+      .loc_0x2C
-	  lmw       r26, 0x8(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_800A12C4:
+	clrlwi   r0, r27, 0x18
+	cmplwi   r0, 8
+	blt      lbl_800A1290
+	lmw      r26, 8(r1)
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -3171,194 +3251,193 @@ void JASTrack::setNoteMask(unsigned char)
 void JASTrack::muteTrack(bool)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stmw      r23, 0xC(r1)
-	  mr        r26, r4
-	  mr        r28, r3
-	  stb       r26, 0x363(r3)
-	  lwz       r0, 0x34C(r3)
-	  ori       r0, r0, 0x1
-	  stw       r0, 0x34C(r3)
-	  lbz       r0, 0x363(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x7C
-	  lbz       r0, 0x358(r28)
-	  rlwinm.   r0,r0,0,26,26
-	  beq-      .loc_0x7C
-	  li        r24, 0
-	  li        r25, 0
-	  b         .loc_0x70
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stmw     r23, 0xc(r1)
+	mr       r26, r4
+	mr       r28, r3
+	stb      r26, 0x363(r3)
+	lwz      r0, 0x34c(r3)
+	ori      r0, r0, 1
+	stw      r0, 0x34c(r3)
+	lbz      r0, 0x363(r3)
+	cmplwi   r0, 0
+	beq      lbl_800A1360
+	lbz      r0, 0x358(r28)
+	rlwinm.  r0, r0, 0, 0x1a, 0x1a
+	beq      lbl_800A1360
+	li       r24, 0
+	li       r25, 0
+	b        lbl_800A1354
 
-	.loc_0x4C:
-	  rlwinm    r3,r24,2,22,29
-	  addi      r23, r3, 0xC0
-	  lwzx      r3, r28, r23
-	  cmplwi    r3, 0
-	  beq-      .loc_0x6C
-	  li        r4, 0xA
-	  bl        0x2480
-	  stwx      r25, r28, r23
+lbl_800A1330:
+	rlwinm   r3, r24, 2, 0x16, 0x1d
+	addi     r23, r3, 0xc0
+	lwzx     r3, r28, r23
+	cmplwi   r3, 0
+	beq      lbl_800A1350
+	li       r4, 0xa
+	bl       release__10JASChannelFUs
+	stwx     r25, r28, r23
 
-	.loc_0x6C:
-	  addi      r24, r24, 0x1
+lbl_800A1350:
+	addi     r24, r24, 1
 
-	.loc_0x70:
-	  rlwinm    r0,r24,0,24,31
-	  cmplwi    r0, 0x8
-	  blt+      .loc_0x4C
+lbl_800A1354:
+	clrlwi   r0, r24, 0x18
+	cmplwi   r0, 8
+	blt      lbl_800A1330
 
-	.loc_0x7C:
-	  li        r27, 0
+lbl_800A1360:
+	li       r27, 0
 
-	.loc_0x80:
-	  lwz       r24, 0x2FC(r28)
-	  cmplwi    r24, 0
-	  beq-      .loc_0x210
-	  stb       r26, 0x363(r24)
-	  lwz       r0, 0x34C(r24)
-	  ori       r0, r0, 0x1
-	  stw       r0, 0x34C(r24)
-	  lbz       r0, 0x363(r24)
-	  cmplwi    r0, 0
-	  beq-      .loc_0xF0
-	  lbz       r0, 0x358(r24)
-	  rlwinm.   r0,r0,0,26,26
-	  beq-      .loc_0xF0
-	  li        r29, 0
-	  mr        r25, r29
-	  b         .loc_0xE4
+lbl_800A1364:
+	lwz      r24, 0x2fc(r28)
+	cmplwi   r24, 0
+	beq      lbl_800A14F4
+	stb      r26, 0x363(r24)
+	lwz      r0, 0x34c(r24)
+	ori      r0, r0, 1
+	stw      r0, 0x34c(r24)
+	lbz      r0, 0x363(r24)
+	cmplwi   r0, 0
+	beq      lbl_800A13D4
+	lbz      r0, 0x358(r24)
+	rlwinm.  r0, r0, 0, 0x1a, 0x1a
+	beq      lbl_800A13D4
+	li       r29, 0
+	mr       r25, r29
+	b        lbl_800A13C8
 
-	.loc_0xC0:
-	  rlwinm    r3,r29,2,22,29
-	  addi      r23, r3, 0xC0
-	  lwzx      r3, r24, r23
-	  cmplwi    r3, 0
-	  beq-      .loc_0xE0
-	  li        r4, 0xA
-	  bl        0x240C
-	  stwx      r25, r24, r23
+lbl_800A13A4:
+	rlwinm   r3, r29, 2, 0x16, 0x1d
+	addi     r23, r3, 0xc0
+	lwzx     r3, r24, r23
+	cmplwi   r3, 0
+	beq      lbl_800A13C4
+	li       r4, 0xa
+	bl       release__10JASChannelFUs
+	stwx     r25, r24, r23
 
-	.loc_0xE0:
-	  addi      r29, r29, 0x1
+lbl_800A13C4:
+	addi     r29, r29, 1
 
-	.loc_0xE4:
-	  rlwinm    r0,r29,0,24,31
-	  cmplwi    r0, 0x8
-	  blt+      .loc_0xC0
+lbl_800A13C8:
+	clrlwi   r0, r29, 0x18
+	cmplwi   r0, 8
+	blt      lbl_800A13A4
 
-	.loc_0xF0:
-	  li        r31, 0
-	  mr        r29, r24
+lbl_800A13D4:
+	li       r31, 0
+	mr       r29, r24
 
-	.loc_0xF8:
-	  lwz       r30, 0x2FC(r29)
-	  cmplwi    r30, 0
-	  beq-      .loc_0x200
-	  stb       r26, 0x363(r30)
-	  lwz       r0, 0x34C(r30)
-	  ori       r0, r0, 0x1
-	  stw       r0, 0x34C(r30)
-	  lbz       r0, 0x363(r30)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x168
-	  lbz       r0, 0x358(r30)
-	  rlwinm.   r0,r0,0,26,26
-	  beq-      .loc_0x168
-	  li        r24, 0
-	  mr        r25, r24
-	  b         .loc_0x15C
+lbl_800A13DC:
+	lwz      r30, 0x2fc(r29)
+	cmplwi   r30, 0
+	beq      lbl_800A14E4
+	stb      r26, 0x363(r30)
+	lwz      r0, 0x34c(r30)
+	ori      r0, r0, 1
+	stw      r0, 0x34c(r30)
+	lbz      r0, 0x363(r30)
+	cmplwi   r0, 0
+	beq      lbl_800A144C
+	lbz      r0, 0x358(r30)
+	rlwinm.  r0, r0, 0, 0x1a, 0x1a
+	beq      lbl_800A144C
+	li       r24, 0
+	mr       r25, r24
+	b        lbl_800A1440
 
-	.loc_0x138:
-	  rlwinm    r3,r24,2,22,29
-	  addi      r23, r3, 0xC0
-	  lwzx      r3, r30, r23
-	  cmplwi    r3, 0
-	  beq-      .loc_0x158
-	  li        r4, 0xA
-	  bl        0x2394
-	  stwx      r25, r30, r23
+lbl_800A141C:
+	rlwinm   r3, r24, 2, 0x16, 0x1d
+	addi     r23, r3, 0xc0
+	lwzx     r3, r30, r23
+	cmplwi   r3, 0
+	beq      lbl_800A143C
+	li       r4, 0xa
+	bl       release__10JASChannelFUs
+	stwx     r25, r30, r23
 
-	.loc_0x158:
-	  addi      r24, r24, 0x1
+lbl_800A143C:
+	addi     r24, r24, 1
 
-	.loc_0x15C:
-	  rlwinm    r0,r24,0,24,31
-	  cmplwi    r0, 0x8
-	  blt+      .loc_0x138
+lbl_800A1440:
+	clrlwi   r0, r24, 0x18
+	cmplwi   r0, 8
+	blt      lbl_800A141C
 
-	.loc_0x168:
-	  li        r25, 0
+lbl_800A144C:
+	li       r25, 0
 
-	.loc_0x16C:
-	  lwz       r23, 0x2FC(r30)
-	  cmplwi    r23, 0
-	  beq-      .loc_0x1F0
-	  stb       r26, 0x363(r23)
-	  lwz       r0, 0x34C(r23)
-	  ori       r0, r0, 0x1
-	  stw       r0, 0x34C(r23)
-	  lbz       r0, 0x363(r23)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x1C8
-	  lbz       r0, 0x358(r23)
-	  rlwinm.   r0,r0,0,26,26
-	  beq-      .loc_0x1C8
-	  li        r24, 0
-	  b         .loc_0x1BC
+lbl_800A1450:
+	lwz      r23, 0x2fc(r30)
+	cmplwi   r23, 0
+	beq      lbl_800A14D4
+	stb      r26, 0x363(r23)
+	lwz      r0, 0x34c(r23)
+	ori      r0, r0, 1
+	stw      r0, 0x34c(r23)
+	lbz      r0, 0x363(r23)
+	cmplwi   r0, 0
+	beq      lbl_800A14AC
+	lbz      r0, 0x358(r23)
+	rlwinm.  r0, r0, 0, 0x1a, 0x1a
+	beq      lbl_800A14AC
+	li       r24, 0
+	b        lbl_800A14A0
 
-	.loc_0x1A8:
-	  mr        r3, r23
-	  mr        r4, r24
-	  li        r5, 0xA
-	  bl        -0x1A9C
-	  addi      r24, r24, 0x1
+lbl_800A148C:
+	mr       r3, r23
+	mr       r4, r24
+	li       r5, 0xa
+	bl       noteOff__8JASTrackFUcUs
+	addi     r24, r24, 1
 
-	.loc_0x1BC:
-	  rlwinm    r0,r24,0,24,31
-	  cmplwi    r0, 0x8
-	  blt+      .loc_0x1A8
+lbl_800A14A0:
+	clrlwi   r0, r24, 0x18
+	cmplwi   r0, 8
+	blt      lbl_800A148C
 
-	.loc_0x1C8:
-	  li        r24, 0
+lbl_800A14AC:
+	li       r24, 0
 
-	.loc_0x1CC:
-	  lwz       r3, 0x2FC(r23)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x1E0
-	  mr        r4, r26
-	  bl        .loc_0x0
+lbl_800A14B0:
+	lwz      r3, 0x2fc(r23)
+	cmplwi   r3, 0
+	beq      lbl_800A14C4
+	mr       r4, r26
+	bl       muteTrack__8JASTrackFb
 
-	.loc_0x1E0:
-	  addi      r24, r24, 0x1
-	  addi      r23, r23, 0x4
-	  cmpwi     r24, 0x10
-	  blt+      .loc_0x1CC
+lbl_800A14C4:
+	addi     r24, r24, 1
+	addi     r23, r23, 4
+	cmpwi    r24, 0x10
+	blt      lbl_800A14B0
 
-	.loc_0x1F0:
-	  addi      r25, r25, 0x1
-	  addi      r30, r30, 0x4
-	  cmpwi     r25, 0x10
-	  blt+      .loc_0x16C
+lbl_800A14D4:
+	addi     r25, r25, 1
+	addi     r30, r30, 4
+	cmpwi    r25, 0x10
+	blt      lbl_800A1450
 
-	.loc_0x200:
-	  addi      r31, r31, 0x1
-	  addi      r29, r29, 0x4
-	  cmpwi     r31, 0x10
-	  blt+      .loc_0xF8
+lbl_800A14E4:
+	addi     r31, r31, 1
+	addi     r29, r29, 4
+	cmpwi    r31, 0x10
+	blt      lbl_800A13DC
 
-	.loc_0x210:
-	  addi      r27, r27, 0x1
-	  addi      r28, r28, 0x4
-	  cmpwi     r27, 0x10
-	  blt+      .loc_0x80
-	  lmw       r23, 0xC(r1)
-	  lwz       r0, 0x34(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_800A14F4:
+	addi     r27, r27, 1
+	addi     r28, r28, 4
+	cmpwi    r27, 0x10
+	blt      lbl_800A1364
+	lmw      r23, 0xc(r1)
+	lwz      r0, 0x34(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -3380,24 +3459,23 @@ void JASTrack::muteChildTracks(unsigned short)
 void JASTrack::start(void*, unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  addi      r3, r31, 0xC
-	  bl        -0x4C78
-	  li        r0, 0x1
-	  mr        r3, r31
-	  stb       r0, 0x35B(r31)
-	  bl        -0x1738
-	  lwz       r0, 0x14(r1)
-	  li        r3, 0
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	addi     r3, r31, 0xc
+	bl       start__10JASSeqCtrlFPvUl
+	li       r0, 1
+	mr       r3, r31
+	stb      r0, 0x35b(r31)
+	bl       updateTrackAll__8JASTrackFv
+	lwz      r0, 0x14(r1)
+	li       r3, 0
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -3409,140 +3487,139 @@ void JASTrack::start(void*, unsigned long)
 void JASTrack::openChild(unsigned char, unsigned char)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  rlwinm    r0,r4,2,22,29
-	  stmw      r27, 0xC(r1)
-	  mr        r27, r3
-	  add       r30, r27, r0
-	  mr        r28, r4
-	  mr        r29, r5
-	  lwz       r3, 0x2FC(r30)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x3C
-	  bl        -0x4FC
-	  li        r0, 0
-	  stw       r0, 0x2FC(r30)
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	rlwinm   r0, r4, 2, 0x16, 0x1d
+	stmw     r27, 0xc(r1)
+	mr       r27, r3
+	add      r30, r27, r0
+	mr       r28, r4
+	mr       r29, r5
+	lwz      r3, 0x2fc(r30)
+	cmplwi   r3, 0
+	beq      lbl_800A1598
+	bl       close__8JASTrackFv
+	li       r0, 0
+	stw      r0, 0x2fc(r30)
 
-	.loc_0x3C:
-	  lwz       r31, -0x7588(r13)
-	  cmplwi    r31, 0
-	  bne-      .loc_0x50
-	  li        r31, 0
-	  b         .loc_0x68
+lbl_800A1598:
+	lwz      r31, sFreeList__8JASTrack@sda21(r13)
+	cmplwi   r31, 0
+	bne      lbl_800A15AC
+	li       r31, 0
+	b        lbl_800A15C4
 
-	.loc_0x50:
-	  lwz       r0, 0x0(r31)
-	  cmplwi    r0, 0
-	  stw       r0, -0x7588(r13)
-	  bne-      .loc_0x68
-	  li        r0, 0
-	  stw       r0, -0x7584(r13)
+lbl_800A15AC:
+	lwz      r0, 0(r31)
+	cmplwi   r0, 0
+	stw      r0, sFreeList__8JASTrack@sda21(r13)
+	bne      lbl_800A15C4
+	li       r0, 0
+	stw      r0, sFreeListEnd__8JASTrack@sda21(r13)
 
-	.loc_0x68:
-	  cmplwi    r31, 0
-	  beq-      .loc_0x7C
-	  mr        r3, r31
-	  bl        -0x263C
-	  mr        r31, r3
+lbl_800A15C4:
+	cmplwi   r31, 0
+	beq      lbl_800A15D8
+	mr       r3, r31
+	bl       __ct__8JASTrackFv
+	mr       r31, r3
 
-	.loc_0x7C:
-	  cmplwi    r31, 0
-	  bne-      .loc_0x8C
-	  li        r3, 0
-	  b         .loc_0x1C8
+lbl_800A15D8:
+	cmplwi   r31, 0
+	bne      lbl_800A15E8
+	li       r3, 0
+	b        lbl_800A1724
 
-	.loc_0x8C:
-	  mr        r3, r31
-	  bl        -0x2398
-	  li        r3, 0x1
-	  rlwinm    r0,r28,0,24,31
-	  stb       r3, 0x366(r31)
-	  stw       r27, 0x2F8(r31)
-	  stb       r29, 0x357(r31)
-	  lwz       r4, 0x348(r27)
-	  rlwinm    r3,r4,4,0,27
-	  rlwinm    r4,r4,0,0,3
-	  or        r0, r3, r0
-	  addis     r3, r4, 0x1000
-	  rlwinm    r0,r0,0,4,31
-	  or        r0, r3, r0
-	  stw       r0, 0x348(r31)
-	  stw       r31, 0x2FC(r30)
-	  lwz       r3, 0x2F8(r31)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x1C4
-	  lhz       r3, 0x352(r3)
-	  li        r0, 0
-	  sth       r3, 0x352(r31)
-	  stb       r0, 0x365(r31)
-	  lwz       r3, 0x2F8(r31)
-	  lfs       f0, 0x344(r3)
-	  stfs      f0, 0x344(r31)
-	  lwz       r3, 0x2F8(r31)
-	  lhz       r0, 0x354(r3)
-	  sth       r0, 0x354(r31)
-	  lwz       r3, 0x2F8(r31)
-	  lbz       r0, 0x364(r3)
-	  stb       r0, 0x364(r31)
-	  lwz       r3, 0x2F8(r31)
-	  lbz       r0, 0x362(r3)
-	  stb       r0, 0x362(r31)
-	  lwz       r3, 0x2F8(r31)
-	  lbz       r0, 0x358(r3)
-	  stb       r0, 0x358(r31)
-	  lwz       r3, 0x2F8(r31)
-	  lbz       r0, 0x359(r3)
-	  stb       r0, 0x359(r31)
-	  lwz       r3, 0x2F8(r31)
-	  lbz       r0, 0x363(r3)
-	  stb       r0, 0x363(r31)
-	  lbz       r0, 0x357(r31)
-	  rlwinm.   r0,r0,0,30,30
-	  bne-      .loc_0x1C4
-	  lwz       r4, 0x2F8(r31)
-	  addi      r3, r31, 0x268
-	  addi      r4, r4, 0x268
-	  bl        -0x4EE4
-	  lwz       r3, 0x2F8(r31)
-	  lbz       r0, 0x35C(r3)
-	  stb       r0, 0x35C(r31)
-	  lwz       r3, 0x2F8(r31)
-	  lbz       r0, 0x35F(r3)
-	  stb       r0, 0x35F(r31)
-	  lwz       r3, 0x2F8(r31)
-	  lbz       r0, 0x13E(r3)
-	  stb       r0, 0x13E(r31)
-	  lwz       r3, 0x2F8(r31)
-	  lbz       r0, 0x35D(r3)
-	  stb       r0, 0x35D(r31)
-	  lwz       r3, 0x2F8(r31)
-	  lbz       r0, 0x360(r3)
-	  stb       r0, 0x360(r31)
-	  lwz       r3, 0x2F8(r31)
-	  lbz       r0, 0x13F(r3)
-	  stb       r0, 0x13F(r31)
-	  lwz       r3, 0x2F8(r31)
-	  lbz       r0, 0x35E(r3)
-	  stb       r0, 0x35E(r31)
-	  lwz       r3, 0x2F8(r31)
-	  lbz       r0, 0x361(r3)
-	  stb       r0, 0x361(r31)
-	  lwz       r3, 0x2F8(r31)
-	  lbz       r0, 0x140(r3)
-	  stb       r0, 0x140(r31)
+lbl_800A15E8:
+	mr       r3, r31
+	bl       init__8JASTrackFv
+	li       r3, 1
+	clrlwi   r0, r28, 0x18
+	stb      r3, 0x366(r31)
+	stw      r27, 0x2f8(r31)
+	stb      r29, 0x357(r31)
+	lwz      r4, 0x348(r27)
+	slwi     r3, r4, 4
+	rlwinm   r4, r4, 0, 0, 3
+	or       r0, r3, r0
+	addis    r3, r4, 0x1000
+	clrlwi   r0, r0, 4
+	or       r0, r3, r0
+	stw      r0, 0x348(r31)
+	stw      r31, 0x2fc(r30)
+	lwz      r3, 0x2f8(r31)
+	cmplwi   r3, 0
+	beq      lbl_800A1720
+	lhz      r3, 0x352(r3)
+	li       r0, 0
+	sth      r3, 0x352(r31)
+	stb      r0, 0x365(r31)
+	lwz      r3, 0x2f8(r31)
+	lfs      f0, 0x344(r3)
+	stfs     f0, 0x344(r31)
+	lwz      r3, 0x2f8(r31)
+	lhz      r0, 0x354(r3)
+	sth      r0, 0x354(r31)
+	lwz      r3, 0x2f8(r31)
+	lbz      r0, 0x364(r3)
+	stb      r0, 0x364(r31)
+	lwz      r3, 0x2f8(r31)
+	lbz      r0, 0x362(r3)
+	stb      r0, 0x362(r31)
+	lwz      r3, 0x2f8(r31)
+	lbz      r0, 0x358(r3)
+	stb      r0, 0x358(r31)
+	lwz      r3, 0x2f8(r31)
+	lbz      r0, 0x359(r3)
+	stb      r0, 0x359(r31)
+	lwz      r3, 0x2f8(r31)
+	lbz      r0, 0x363(r3)
+	stb      r0, 0x363(r31)
+	lbz      r0, 0x357(r31)
+	rlwinm.  r0, r0, 0, 0x1e, 0x1e
+	bne      lbl_800A1720
+	lwz      r4, 0x2f8(r31)
+	addi     r3, r31, 0x268
+	addi     r4, r4, 0x268
+	bl       inherit__16JASRegisterParamFRC16JASRegisterParam
+	lwz      r3, 0x2f8(r31)
+	lbz      r0, 0x35c(r3)
+	stb      r0, 0x35c(r31)
+	lwz      r3, 0x2f8(r31)
+	lbz      r0, 0x35f(r3)
+	stb      r0, 0x35f(r31)
+	lwz      r3, 0x2f8(r31)
+	lbz      r0, 0x13e(r3)
+	stb      r0, 0x13e(r31)
+	lwz      r3, 0x2f8(r31)
+	lbz      r0, 0x35d(r3)
+	stb      r0, 0x35d(r31)
+	lwz      r3, 0x2f8(r31)
+	lbz      r0, 0x360(r3)
+	stb      r0, 0x360(r31)
+	lwz      r3, 0x2f8(r31)
+	lbz      r0, 0x13f(r3)
+	stb      r0, 0x13f(r31)
+	lwz      r3, 0x2f8(r31)
+	lbz      r0, 0x35e(r3)
+	stb      r0, 0x35e(r31)
+	lwz      r3, 0x2f8(r31)
+	lbz      r0, 0x361(r3)
+	stb      r0, 0x361(r31)
+	lwz      r3, 0x2f8(r31)
+	lbz      r0, 0x140(r3)
+	stb      r0, 0x140(r31)
 
-	.loc_0x1C4:
-	  mr        r3, r31
+lbl_800A1720:
+	mr       r3, r31
 
-	.loc_0x1C8:
-	  lmw       r27, 0xC(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_800A1724:
+	lmw      r27, 0xc(r1)
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -3564,29 +3641,26 @@ void JASTrack::loadTbl(unsigned long, unsigned long, unsigned long)
 void JASTrack::exchangeRegisterValue(unsigned char)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  rlwinm    r0,r4,0,24,31
-	  cmplwi    r0, 0x40
-	  bge-      .loc_0x20
-	  bl        .loc_0x40
-	  b         .loc_0x30
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	clrlwi   r0, r4, 0x18
+	cmplwi   r0, 0x40
+	bge      lbl_800A1758
+	bl       readReg32__8JASTrackFUc
+	b        lbl_800A1768
 
-	.loc_0x20:
-	  subi      r0, r4, 0x40
-	  rlwinm    r0,r0,1,23,30
-	  add       r3, r3, r0
-	  lhz       r3, 0x74(r3)
+lbl_800A1758:
+	addi     r0, r4, -64
+	rlwinm   r0, r0, 1, 0x17, 0x1e
+	add      r3, r3, r0
+	lhz      r3, 0x74(r3)
 
-	.loc_0x30:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-
-	.loc_0x40:
+lbl_800A1768:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -3598,54 +3672,51 @@ void JASTrack::exchangeRegisterValue(unsigned char)
 void JASTrack::readReg32(unsigned char)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  rlwinm    r0,r4,0,24,31
-	  cmpwi     r0, 0x28
-	  stw       r31, 0xC(r1)
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  bge-      .loc_0x30
-	  cmpwi     r0, 0x23
-	  beq-      .loc_0x48
-	  b         .loc_0x6C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	clrlwi   r0, r4, 0x18
+	cmpwi    r0, 0x28
+	stw      r31, 0xc(r1)
+	stw      r30, 8(r1)
+	mr       r30, r3
+	bge      lbl_800A17A8
+	cmpwi    r0, 0x23
+	beq      lbl_800A17C0
+	b        lbl_800A17E4
 
-	.loc_0x30:
-	  cmpwi     r0, 0x2C
-	  bge-      .loc_0x6C
-	  rlwinm    r0,r0,2,0,29
-	  add       r3, r30, r0
-	  lwz       r31, 0x1E8(r3)
-	  b         .loc_0x78
+lbl_800A17A8:
+	cmpwi    r0, 0x2c
+	bge      lbl_800A17E4
+	slwi     r0, r0, 2
+	add      r3, r30, r0
+	lwz      r31, 0x1e8(r3)
+	b        lbl_800A17F0
 
-	.loc_0x48:
-	  li        r4, 0x4
-	  bl        .loc_0x94
-	  rlwinm    r31,r3,16,0,15
-	  li        r4, 0x5
-	  mr        r3, r30
-	  bl        .loc_0x94
-	  rlwinm    r0,r3,0,16,31
-	  or        r31, r31, r0
-	  b         .loc_0x78
+lbl_800A17C0:
+	li       r4, 4
+	bl       readReg16__8JASTrackFUc
+	slwi     r31, r3, 0x10
+	li       r4, 5
+	mr       r3, r30
+	bl       readReg16__8JASTrackFUc
+	clrlwi   r0, r3, 0x10
+	or       r31, r31, r0
+	b        lbl_800A17F0
 
-	.loc_0x6C:
-	  mr        r3, r30
-	  bl        .loc_0x94
-	  rlwinm    r31,r3,0,16,31
+lbl_800A17E4:
+	mr       r3, r30
+	bl       readReg16__8JASTrackFUc
+	clrlwi   r31, r3, 0x10
 
-	.loc_0x78:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-
-	.loc_0x94:
+lbl_800A17F0:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -3657,173 +3728,191 @@ void JASTrack::readReg32(unsigned char)
 void JASTrack::readReg16(unsigned char)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  rlwinm    r5,r4,0,24,31
-	  stw       r0, 0x14(r1)
-	  subi      r0, r5, 0x20
-	  cmplwi    r0, 0x10
-	  stw       r31, 0xC(r1)
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  bgt-      .loc_0x1F0
-	  lis       r5, 0x804A
-	  rlwinm    r0,r0,2,0,29
-	  addi      r5, r5, 0x4350
-	  lwzx      r0, r5, r0
-	  mtctr     r0
-	  bctr
-	  addi      r3, r30, 0x268
-	  bl        -0x5014
-	  rlwinm    r31,r3,0,24,31
-	  b         .loc_0x1FC
-	  addi      r3, r30, 0x268
-	  bl        -0x5014
-	  rlwinm    r31,r3,0,24,31
-	  b         .loc_0x1FC
-	  li        r4, 0
-	  bl        .loc_0x0
-	  rlwinm    r31,r3,8,16,23
-	  mr        r3, r30
-	  li        r4, 0x1
-	  bl        .loc_0x0
-	  or        r31, r31, r3
-	  b         .loc_0x1FC
-	  li        r0, 0x4
-	  addi      r3, r30, 0x3C
-	  li        r31, 0
-	  li        r5, 0xF
-	  mtctr     r0
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	clrlwi   r5, r4, 0x18
+	stw      r0, 0x14(r1)
+	addi     r0, r5, -32
+	cmplwi   r0, 0x10
+	stw      r31, 0xc(r1)
+	stw      r30, 8(r1)
+	mr       r30, r3
+	bgt      lbl_800A19FC
+	lis      r5, lbl_804A4350@ha
+	slwi     r0, r0, 2
+	addi     r5, r5, lbl_804A4350@l
+	lwzx     r0, r5, r0
+	mtctr    r0
+	bctr
+	.global  lbl_800A184C
 
-	.loc_0x94:
-	  lwz       r4, 0x2FC(r3)
-	  rlwinm    r31,r31,1,16,30
-	  cmplwi    r4, 0
-	  beq-      .loc_0xB8
-	  lbz       r0, 0x35B(r4)
-	  cmplwi    r0, 0
-	  beq-      .loc_0xB8
-	  ori       r0, r31, 0x1
-	  rlwinm    r31,r0,0,16,31
+lbl_800A184C:
+	addi     r3, r30, 0x268
+	bl       getBankNumber__16JASRegisterParamCFv
+	clrlwi   r31, r3, 0x18
+	b        lbl_800A1A08
+	.global  lbl_800A185C
 
-	.loc_0xB8:
-	  lwz       r4, 0x2F8(r3)
-	  rlwinm    r31,r31,1,16,30
-	  cmplwi    r4, 0
-	  beq-      .loc_0xDC
-	  lbz       r0, 0x35B(r4)
-	  cmplwi    r0, 0
-	  beq-      .loc_0xDC
-	  ori       r0, r31, 0x1
-	  rlwinm    r31,r0,0,16,31
+lbl_800A185C:
+	addi     r3, r30, 0x268
+	bl       getProgramNumber__16JASRegisterParamCFv
+	clrlwi   r31, r3, 0x18
+	b        lbl_800A1A08
+	.global  lbl_800A186C
 
-	.loc_0xDC:
-	  lwz       r4, 0x2F4(r3)
-	  rlwinm    r31,r31,1,16,30
-	  cmplwi    r4, 0
-	  beq-      .loc_0x100
-	  lbz       r0, 0x35B(r4)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x100
-	  ori       r0, r31, 0x1
-	  rlwinm    r31,r0,0,16,31
+lbl_800A186C:
+	li       r4, 0
+	bl       readReg16__8JASTrackFUc
+	rlwinm   r31, r3, 8, 0x10, 0x17
+	mr       r3, r30
+	li       r4, 1
+	bl       readReg16__8JASTrackFUc
+	or       r31, r31, r3
+	b        lbl_800A1A08
+	.global  lbl_800A188C
 
-	.loc_0x100:
-	  lwz       r4, 0x2F0(r3)
-	  rlwinm    r31,r31,1,16,30
-	  cmplwi    r4, 0
-	  beq-      .loc_0x124
-	  lbz       r0, 0x35B(r4)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x124
-	  ori       r0, r31, 0x1
-	  rlwinm    r31,r0,0,16,31
+lbl_800A188C:
+	li       r0, 4
+	addi     r3, r30, 0x3c
+	li       r31, 0
+	li       r5, 0xf
+	mtctr    r0
 
-	.loc_0x124:
-	  subi      r3, r3, 0x10
-	  subi      r5, r5, 0x3
-	  bdnz+     .loc_0x94
-	  b         .loc_0x1FC
-	  li        r0, 0x4
-	  addi      r4, r30, 0x1C
-	  li        r31, 0
-	  li        r5, 0x7
-	  mtctr     r0
+lbl_800A18A0:
+	lwz      r4, 0x2fc(r3)
+	rlwinm   r31, r31, 1, 0x10, 0x1e
+	cmplwi   r4, 0
+	beq      lbl_800A18C4
+	lbz      r0, 0x35b(r4)
+	cmplwi   r0, 0
+	beq      lbl_800A18C4
+	ori      r0, r31, 1
+	clrlwi   r31, r0, 0x10
 
-	.loc_0x148:
-	  lwz       r3, 0xC0(r4)
-	  rlwinm    r31,r31,1,16,30
-	  cmplwi    r3, 0
-	  bne-      .loc_0x160
-	  li        r0, 0x1
-	  b         .loc_0x178
+lbl_800A18C4:
+	lwz      r4, 0x2f8(r3)
+	rlwinm   r31, r31, 1, 0x10, 0x1e
+	cmplwi   r4, 0
+	beq      lbl_800A18E8
+	lbz      r0, 0x35b(r4)
+	cmplwi   r0, 0
+	beq      lbl_800A18E8
+	ori      r0, r31, 1
+	clrlwi   r31, r0, 0x10
 
-	.loc_0x160:
-	  lwz       r0, 0x18(r3)
-	  cmpwi     r0, 0
-	  bne-      .loc_0x174
-	  li        r0, 0x1
-	  b         .loc_0x178
+lbl_800A18E8:
+	lwz      r4, 0x2f4(r3)
+	rlwinm   r31, r31, 1, 0x10, 0x1e
+	cmplwi   r4, 0
+	beq      lbl_800A190C
+	lbz      r0, 0x35b(r4)
+	cmplwi   r0, 0
+	beq      lbl_800A190C
+	ori      r0, r31, 1
+	clrlwi   r31, r0, 0x10
 
-	.loc_0x174:
-	  li        r0, 0
+lbl_800A190C:
+	lwz      r4, 0x2f0(r3)
+	rlwinm   r31, r31, 1, 0x10, 0x1e
+	cmplwi   r4, 0
+	beq      lbl_800A1930
+	lbz      r0, 0x35b(r4)
+	cmplwi   r0, 0
+	beq      lbl_800A1930
+	ori      r0, r31, 1
+	clrlwi   r31, r0, 0x10
 
-	.loc_0x178:
-	  lwz       r3, 0xBC(r4)
-	  rlwinm    r0,r0,0,24,31
-	  or        r31, r31, r0
-	  cmplwi    r3, 0
-	  rlwinm    r31,r31,1,16,30
-	  bne-      .loc_0x198
-	  li        r0, 0x1
-	  b         .loc_0x1B0
+lbl_800A1930:
+	addi     r3, r3, -16
+	addi     r5, r5, -3
+	bdnz     lbl_800A18A0
+	b        lbl_800A1A08
+	.global  lbl_800A1940
 
-	.loc_0x198:
-	  lwz       r0, 0x18(r3)
-	  cmpwi     r0, 0
-	  bne-      .loc_0x1AC
-	  li        r0, 0x1
-	  b         .loc_0x1B0
+lbl_800A1940:
+	li       r0, 4
+	addi     r4, r30, 0x1c
+	li       r31, 0
+	li       r5, 7
+	mtctr    r0
 
-	.loc_0x1AC:
-	  li        r0, 0
+lbl_800A1954:
+	lwz      r3, 0xc0(r4)
+	rlwinm   r31, r31, 1, 0x10, 0x1e
+	cmplwi   r3, 0
+	bne      lbl_800A196C
+	li       r0, 1
+	b        lbl_800A1984
 
-	.loc_0x1B0:
-	  rlwinm    r0,r0,0,24,31
-	  subi      r5, r5, 0x1
-	  or        r31, r31, r0
-	  subi      r4, r4, 0x8
-	  bdnz+     .loc_0x148
-	  b         .loc_0x1FC
-	  lwz       r0, 0x18(r30)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x1DC
-	  li        r0, 0
-	  b         .loc_0x1E8
+lbl_800A196C:
+	lwz      r0, 0x18(r3)
+	cmpwi    r0, 0
+	bne      lbl_800A1980
+	li       r0, 1
+	b        lbl_800A1984
 
-	.loc_0x1DC:
-	  rlwinm    r0,r0,1,0,30
-	  add       r3, r30, r0
-	  lhz       r0, 0x3A(r3)
+lbl_800A1980:
+	li       r0, 0
 
-	.loc_0x1E8:
-	  mr        r31, r0
-	  b         .loc_0x1FC
+lbl_800A1984:
+	lwz      r3, 0xbc(r4)
+	clrlwi   r0, r0, 0x18
+	or       r31, r31, r0
+	cmplwi   r3, 0
+	rlwinm   r31, r31, 1, 0x10, 0x1e
+	bne      lbl_800A19A4
+	li       r0, 1
+	b        lbl_800A19BC
 
-	.loc_0x1F0:
-	  rlwinm    r0,r4,1,23,30
-	  add       r3, r30, r0
-	  lhz       r31, 0x268(r3)
+lbl_800A19A4:
+	lwz      r0, 0x18(r3)
+	cmpwi    r0, 0
+	bne      lbl_800A19B8
+	li       r0, 1
+	b        lbl_800A19BC
 
-	.loc_0x1FC:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_800A19B8:
+	li       r0, 0
+
+lbl_800A19BC:
+	clrlwi   r0, r0, 0x18
+	addi     r5, r5, -1
+	or       r31, r31, r0
+	addi     r4, r4, -8
+	bdnz     lbl_800A1954
+	b        lbl_800A1A08
+	.global  lbl_800A19D4
+
+lbl_800A19D4:
+	lwz      r0, 0x18(r30)
+	cmplwi   r0, 0
+	bne      lbl_800A19E8
+	li       r0, 0
+	b        lbl_800A19F4
+
+lbl_800A19E8:
+	slwi     r0, r0, 1
+	add      r3, r30, r0
+	lhz      r0, 0x3a(r3)
+
+lbl_800A19F4:
+	mr       r31, r0
+	b        lbl_800A1A08
+	.global  lbl_800A19FC
+
+lbl_800A19FC:
+	rlwinm   r0, r4, 1, 0x17, 0x1e
+	add      r3, r30, r0
+	lhz      r31, 0x268(r3)
+
+lbl_800A1A08:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -3835,71 +3924,70 @@ void JASTrack::readReg16(unsigned char)
 void JASTrack::writeRegDirect(unsigned char, unsigned short)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  rlwinm    r0,r4,0,24,31
-	  cmpwi     r0, 0x20
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  mr        r30, r4
-	  stw       r29, 0x14(r1)
-	  mr        r29, r5
-	  stw       r28, 0x10(r1)
-	  mr        r28, r3
-	  bge-      .loc_0x48
-	  cmpwi     r0, 0x3
-	  bge-      .loc_0x9C
-	  cmpwi     r0, 0
-	  bge-      .loc_0x58
-	  b         .loc_0x9C
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	clrlwi   r0, r4, 0x18
+	cmpwi    r0, 0x20
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	mr       r30, r4
+	stw      r29, 0x14(r1)
+	mr       r29, r5
+	stw      r28, 0x10(r1)
+	mr       r28, r3
+	bge      lbl_800A1A6C
+	cmpwi    r0, 3
+	bge      lbl_800A1AC0
+	cmpwi    r0, 0
+	bge      lbl_800A1A7C
+	b        lbl_800A1AC0
 
-	.loc_0x48:
-	  cmpwi     r0, 0x22
-	  beq-      .loc_0x70
-	  bge-      .loc_0x9C
-	  b         .loc_0xB0
+lbl_800A1A6C:
+	cmpwi    r0, 0x22
+	beq      lbl_800A1A94
+	bge      lbl_800A1AC0
+	b        lbl_800A1AD4
 
-	.loc_0x58:
-	  rlwinm    r3,r29,0,24,31
-	  mr        r29, r3
-	  bl        -0x54D0
-	  rlwinm    r4,r3,0,16,31
-	  b         .loc_0xA0
-	  b         .loc_0xB0
+lbl_800A1A7C:
+	clrlwi   r3, r29, 0x18
+	mr       r29, r3
+	bl       extend8to16__9JASPlayerFUc
+	clrlwi   r4, r3, 0x10
+	b        lbl_800A1AC4
+	b        lbl_800A1AD4
 
-	.loc_0x70:
-	  rlwinm    r31,r29,24,24,31
-	  rlwinm    r30,r29,0,16,31
-	  mr        r3, r31
-	  bl        -0x54EC
-	  sth       r31, 0x268(r28)
-	  rlwinm    r0,r30,0,24,31
-	  mr        r4, r29
-	  li        r30, 0x1
-	  sth       r3, 0x26E(r28)
-	  mr        r29, r0
-	  b         .loc_0xA0
+lbl_800A1A94:
+	rlwinm   r31, r29, 0x18, 0x18, 0x1f
+	clrlwi   r30, r29, 0x10
+	mr       r3, r31
+	bl       extend8to16__9JASPlayerFUc
+	sth      r31, 0x268(r28)
+	clrlwi   r0, r30, 0x18
+	mr       r4, r29
+	li       r30, 1
+	sth      r3, 0x26e(r28)
+	mr       r29, r0
+	b        lbl_800A1AC4
 
-	.loc_0x9C:
-	  mr        r4, r29
+lbl_800A1AC0:
+	mr       r4, r29
 
-	.loc_0xA0:
-	  rlwinm    r0,r30,1,23,30
-	  add       r3, r28, r0
-	  sth       r29, 0x268(r3)
-	  sth       r4, 0x26E(r28)
+lbl_800A1AC4:
+	rlwinm   r0, r30, 1, 0x17, 0x1e
+	add      r3, r28, r0
+	sth      r29, 0x268(r3)
+	sth      r4, 0x26e(r28)
 
-	.loc_0xB0:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_800A1AD4:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -3931,481 +4019,496 @@ void JSULoByte(unsigned short)
 void JASTrack::writeRegParam(unsigned char)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  rlwinm    r0,r4,0,28,31
-	  cmpwi     r0, 0xA
-	  stmw      r22, 0x8(r1)
-	  mr        r31, r3
-	  rlwinm    r3,r4,0,24,31
-	  beq-      .loc_0x48
-	  bge-      .loc_0x34
-	  cmpwi     r0, 0x9
-	  bge-      .loc_0x6C
-	  b         .loc_0x94
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	clrlwi   r0, r4, 0x1c
+	cmpwi    r0, 0xa
+	stmw     r22, 8(r1)
+	mr       r31, r3
+	clrlwi   r3, r4, 0x18
+	beq      lbl_800A1B3C
+	bge      lbl_800A1B28
+	cmpwi    r0, 9
+	bge      lbl_800A1B60
+	b        lbl_800A1B88
 
-	.loc_0x34:
-	  cmpwi     r0, 0xC
-	  bge-      .loc_0x94
-	  li        r27, 0
-	  li        r26, 0xB
-	  b         .loc_0x9C
+lbl_800A1B28:
+	cmpwi    r0, 0xc
+	bge      lbl_800A1B88
+	li       r27, 0
+	li       r26, 0xb
+	b        lbl_800A1B90
 
-	.loc_0x48:
-	  lwz       r3, 0x10(r31)
-	  li        r26, 0xA
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x10(r31)
-	  lbz       r0, 0x0(r3)
-	  rlwinm    r3,r0,28,28,31
-	  rlwinm    r27,r0,0,28,29
-	  addi      r25, r3, 0x4
-	  b         .loc_0x9C
+lbl_800A1B3C:
+	lwz      r3, 0x10(r31)
+	li       r26, 0xa
+	addi     r0, r3, 1
+	stw      r0, 0x10(r31)
+	lbz      r0, 0(r3)
+	rlwinm   r3, r0, 0x1c, 0x1c, 0x1f
+	rlwinm   r27, r0, 0, 0x1c, 0x1d
+	addi     r25, r3, 4
+	b        lbl_800A1B90
 
-	.loc_0x6C:
-	  lwz       r3, 0x10(r31)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x10(r31)
-	  lbz       r0, 0x0(r3)
-	  rlwinm    r27,r0,0,28,29
-	  rlwinm    r26,r0,0,24,27
-	  cmplwi    r27, 0x8
-	  bne-      .loc_0x9C
-	  li        r27, 0x10
-	  b         .loc_0x9C
+lbl_800A1B60:
+	lwz      r3, 0x10(r31)
+	addi     r0, r3, 1
+	stw      r0, 0x10(r31)
+	lbz      r0, 0(r3)
+	rlwinm   r27, r0, 0, 0x1c, 0x1d
+	rlwinm   r26, r0, 0, 0x18, 0x1b
+	cmplwi   r27, 8
+	bne      lbl_800A1B90
+	li       r27, 0x10
+	b        lbl_800A1B90
 
-	.loc_0x94:
-	  rlwinm    r27,r3,0,28,29
-	  rlwinm    r26,r3,0,30,31
+lbl_800A1B88:
+	rlwinm   r27, r3, 0, 0x1c, 0x1d
+	clrlwi   r26, r3, 0x1e
 
-	.loc_0x9C:
-	  lwz       r3, 0x10(r31)
-	  cmplwi    r26, 0xA
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x10(r31)
-	  lbz       r30, 0x0(r3)
-	  bne-      .loc_0x128
-	  lwz       r3, 0x10(r31)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x10(r31)
-	  lbz       r4, 0x0(r3)
-	  cmpwi     r4, 0x28
-	  bge-      .loc_0xD8
-	  cmpwi     r4, 0x23
-	  beq-      .loc_0xF0
-	  b         .loc_0x118
+lbl_800A1B90:
+	lwz      r3, 0x10(r31)
+	cmplwi   r26, 0xa
+	addi     r0, r3, 1
+	stw      r0, 0x10(r31)
+	lbz      r30, 0(r3)
+	bne      lbl_800A1C1C
+	lwz      r3, 0x10(r31)
+	addi     r0, r3, 1
+	stw      r0, 0x10(r31)
+	lbz      r4, 0(r3)
+	cmpwi    r4, 0x28
+	bge      lbl_800A1BCC
+	cmpwi    r4, 0x23
+	beq      lbl_800A1BE4
+	b        lbl_800A1C0C
 
-	.loc_0xD8:
-	  cmpwi     r4, 0x2C
-	  bge-      .loc_0x118
-	  rlwinm    r0,r4,2,0,29
-	  add       r3, r31, r0
-	  lwz       r22, 0x1E8(r3)
-	  b         .loc_0x124
+lbl_800A1BCC:
+	cmpwi    r4, 0x2c
+	bge      lbl_800A1C0C
+	slwi     r0, r4, 2
+	add      r3, r31, r0
+	lwz      r22, 0x1e8(r3)
+	b        lbl_800A1C18
 
-	.loc_0xF0:
-	  mr        r3, r31
-	  li        r4, 0x4
-	  bl        -0x3E0
-	  rlwinm    r22,r3,16,0,15
-	  li        r4, 0x5
-	  mr        r3, r31
-	  bl        -0x3F0
-	  rlwinm    r0,r3,0,16,31
-	  or        r22, r22, r0
-	  b         .loc_0x124
+lbl_800A1BE4:
+	mr       r3, r31
+	li       r4, 4
+	bl       readReg16__8JASTrackFUc
+	slwi     r22, r3, 0x10
+	li       r4, 5
+	mr       r3, r31
+	bl       readReg16__8JASTrackFUc
+	clrlwi   r0, r3, 0x10
+	or       r22, r22, r0
+	b        lbl_800A1C18
 
-	.loc_0x118:
-	  mr        r3, r31
-	  bl        -0x404
-	  rlwinm    r22,r3,0,16,31
+lbl_800A1C0C:
+	mr       r3, r31
+	bl       readReg16__8JASTrackFUc
+	clrlwi   r22, r3, 0x10
 
-	.loc_0x124:
-	  mr        r24, r22
+lbl_800A1C18:
+	mr       r24, r22
 
-	.loc_0x128:
-	  cmplwi    r27, 0x10
-	  bgt-      .loc_0x1C8
-	  lis       r3, 0x804A
-	  rlwinm    r0,r27,2,0,29
-	  addi      r3, r3, 0x4394
-	  lwzx      r0, r3, r0
-	  mtctr     r0
-	  bctr
-	  lwz       r4, 0x10(r31)
-	  mr        r3, r31
-	  addi      r0, r4, 0x1
-	  stw       r0, 0x10(r31)
-	  lbz       r4, 0x0(r4)
-	  bl        -0x444
-	  extsh     r23, r3
-	  b         .loc_0x1C8
-	  lwz       r3, 0x10(r31)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x10(r31)
-	  lbz       r23, 0x0(r3)
-	  b         .loc_0x1C8
-	  addi      r3, r31, 0xC
-	  bl        -0x5228
-	  extsh     r23, r3
-	  b         .loc_0x1C8
-	  lwz       r3, 0x10(r31)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x10(r31)
-	  lbz       r4, 0x0(r3)
-	  rlwinm.   r0,r4,0,24,24
-	  beq-      .loc_0x1B0
-	  rlwinm    r0,r4,8,0,23
-	  extsh     r23, r0
-	  b         .loc_0x1C8
+lbl_800A1C1C:
+	cmplwi   r27, 0x10
+	bgt      lbl_800A1CBC
+	lis      r3, lbl_804A4394@ha
+	slwi     r0, r27, 2
+	addi     r3, r3, lbl_804A4394@l
+	lwzx     r0, r3, r0
+	mtctr    r0
+	bctr
+	.global  lbl_800A1C3C
 
-	.loc_0x1B0:
-	  rlwinm    r3,r4,8,0,23
-	  rlwinm    r0,r4,1,0,30
-	  or        r0, r3, r0
-	  extsh     r23, r0
-	  b         .loc_0x1C8
-	  li        r23, -0x1
+lbl_800A1C3C:
+	lwz      r4, 0x10(r31)
+	mr       r3, r31
+	addi     r0, r4, 1
+	stw      r0, 0x10(r31)
+	lbz      r4, 0(r4)
+	bl       readReg16__8JASTrackFUc
+	extsh    r23, r3
+	b        lbl_800A1CBC
+	.global  lbl_800A1C5C
 
-	.loc_0x1C8:
-	  mr        r3, r31
-	  mr        r4, r30
-	  bl        -0x4B8
-	  cmpwi     r26, 0x20
-	  extsh     r22, r3
-	  beq-      .loc_0x314
-	  bge-      .loc_0x230
-	  cmpwi     r26, 0xA
-	  beq-      .loc_0x398
-	  bge-      .loc_0x218
-	  cmpwi     r26, 0x2
-	  beq-      .loc_0x288
-	  bge-      .loc_0x20C
-	  cmpwi     r26, 0
-	  beq-      .loc_0x43C
-	  bge-      .loc_0x26C
-	  b         .loc_0x43C
+lbl_800A1C5C:
+	lwz      r3, 0x10(r31)
+	addi     r0, r3, 1
+	stw      r0, 0x10(r31)
+	lbz      r23, 0(r3)
+	b        lbl_800A1CBC
+	.global  lbl_800A1C70
 
-	.loc_0x20C:
-	  cmpwi     r26, 0x4
-	  bge-      .loc_0x43C
-	  b         .loc_0x2B4
+lbl_800A1C70:
+	addi     r3, r31, 0xc
+	bl       read16__10JASSeqCtrlFv
+	extsh    r23, r3
+	b        lbl_800A1CBC
+	.global  lbl_800A1C80
 
-	.loc_0x218:
-	  cmpwi     r26, 0x10
-	  beq-      .loc_0x2CC
-	  bge-      .loc_0x43C
-	  cmpwi     r26, 0xC
-	  bge-      .loc_0x43C
-	  b         .loc_0x2C0
+lbl_800A1C80:
+	lwz      r3, 0x10(r31)
+	addi     r0, r3, 1
+	stw      r0, 0x10(r31)
+	lbz      r4, 0(r3)
+	rlwinm.  r0, r4, 0, 0x18, 0x18
+	beq      lbl_800A1CA4
+	slwi     r0, r4, 8
+	extsh    r23, r0
+	b        lbl_800A1CBC
 
-	.loc_0x230:
-	  cmpwi     r26, 0x50
-	  beq-      .loc_0x364
-	  bge-      .loc_0x254
-	  cmpwi     r26, 0x40
-	  beq-      .loc_0x35C
-	  bge-      .loc_0x43C
-	  cmpwi     r26, 0x30
-	  beq-      .loc_0x354
-	  b         .loc_0x43C
+lbl_800A1CA4:
+	slwi     r3, r4, 8
+	slwi     r0, r4, 1
+	or       r0, r3, r0
+	extsh    r23, r0
+	b        lbl_800A1CBC
+	.global  lbl_800A1CB8
 
-	.loc_0x254:
-	  cmpwi     r26, 0x90
-	  beq-      .loc_0x378
-	  bge-      .loc_0x43C
-	  cmpwi     r26, 0x60
-	  beq-      .loc_0x36C
-	  b         .loc_0x43C
+lbl_800A1CB8:
+	li       r23, -1
+	.global  lbl_800A1CBC
 
-	.loc_0x26C:
-	  cmplwi    r27, 0x4
-	  bne-      .loc_0x280
-	  rlwinm    r3,r23,0,24,31
-	  bl        -0x57B8
-	  mr        r23, r3
+lbl_800A1CBC:
+	mr       r3, r31
+	mr       r4, r30
+	bl       readReg16__8JASTrackFUc
+	cmpwi    r26, 0x20
+	extsh    r22, r3
+	beq      lbl_800A1E08
+	bge      lbl_800A1D24
+	cmpwi    r26, 0xa
+	beq      lbl_800A1E8C
+	bge      lbl_800A1D0C
+	cmpwi    r26, 2
+	beq      lbl_800A1D7C
+	bge      lbl_800A1D00
+	cmpwi    r26, 0
+	beq      lbl_800A1F30
+	bge      lbl_800A1D60
+	b        lbl_800A1F30
 
-	.loc_0x280:
-	  add       r23, r23, r22
-	  b         .loc_0x43C
+lbl_800A1D00:
+	cmpwi    r26, 4
+	bge      lbl_800A1F30
+	b        lbl_800A1DA8
 
-	.loc_0x288:
-	  extsh     r0, r23
-	  mr        r3, r31
-	  mullw     r22, r22, r0
-	  li        r4, 0x4
-	  rlwinm    r5,r22,16,16,31
-	  bl        -0x36C
-	  rlwinm    r5,r22,0,16,31
-	  mr        r3, r31
-	  li        r4, 0x5
-	  bl        -0x37C
-	  b         .loc_0x59C
+lbl_800A1D0C:
+	cmpwi    r26, 0x10
+	beq      lbl_800A1DC0
+	bge      lbl_800A1F30
+	cmpwi    r26, 0xc
+	bge      lbl_800A1F30
+	b        lbl_800A1DB4
 
-	.loc_0x2B4:
-	  sub       r0, r22, r23
-	  sth       r0, 0x26E(r31)
-	  b         .loc_0x59C
+lbl_800A1D24:
+	cmpwi    r26, 0x50
+	beq      lbl_800A1E58
+	bge      lbl_800A1D48
+	cmpwi    r26, 0x40
+	beq      lbl_800A1E50
+	bge      lbl_800A1F30
+	cmpwi    r26, 0x30
+	beq      lbl_800A1E48
+	b        lbl_800A1F30
 
-	.loc_0x2C0:
-	  sub       r0, r22, r23
-	  extsh     r23, r0
-	  b         .loc_0x43C
+lbl_800A1D48:
+	cmpwi    r26, 0x90
+	beq      lbl_800A1E6C
+	bge      lbl_800A1F30
+	cmpwi    r26, 0x60
+	beq      lbl_800A1E60
+	b        lbl_800A1F30
 
-	.loc_0x2CC:
-	  cmplwi    r27, 0x4
-	  bne-      .loc_0x2E0
-	  rlwinm    r3,r23,0,24,31
-	  bl        -0x5818
-	  mr        r23, r3
+lbl_800A1D60:
+	cmplwi   r27, 4
+	bne      lbl_800A1D74
+	clrlwi   r3, r23, 0x18
+	bl       extend8to16__9JASPlayerFUc
+	mr       r23, r3
 
-	.loc_0x2E0:
-	  extsh.    r0, r23
-	  bge-      .loc_0x300
-	  extsh     r0, r23
-	  rlwinm    r3,r22,0,16,31
-	  neg       r0, r0
-	  sraw      r0, r3, r0
-	  extsh     r23, r0
-	  b         .loc_0x43C
+lbl_800A1D74:
+	add      r23, r23, r22
+	b        lbl_800A1F30
 
-	.loc_0x300:
-	  rlwinm    r3,r22,0,16,31
-	  extsh     r0, r23
-	  slw       r0, r3, r0
-	  extsh     r23, r0
-	  b         .loc_0x43C
+lbl_800A1D7C:
+	extsh    r0, r23
+	mr       r3, r31
+	mullw    r22, r22, r0
+	li       r4, 4
+	srwi     r5, r22, 0x10
+	bl       writeRegDirect__8JASTrackFUcUs
+	clrlwi   r5, r22, 0x10
+	mr       r3, r31
+	li       r4, 5
+	bl       writeRegDirect__8JASTrackFUcUs
+	b        lbl_800A2090
 
-	.loc_0x314:
-	  cmplwi    r27, 0x4
-	  bne-      .loc_0x328
-	  rlwinm    r3,r23,0,24,31
-	  bl        -0x5860
-	  mr        r23, r3
+lbl_800A1DA8:
+	subf     r0, r23, r22
+	sth      r0, 0x26e(r31)
+	b        lbl_800A2090
 
-	.loc_0x328:
-	  extsh.    r0, r23
-	  bge-      .loc_0x344
-	  extsh     r0, r23
-	  neg       r0, r0
-	  sraw      r0, r22, r0
-	  extsh     r23, r0
-	  b         .loc_0x43C
+lbl_800A1DB4:
+	subf     r0, r23, r22
+	extsh    r23, r0
+	b        lbl_800A1F30
 
-	.loc_0x344:
-	  extsh     r0, r23
-	  slw       r0, r22, r0
-	  extsh     r23, r0
-	  b         .loc_0x43C
+lbl_800A1DC0:
+	cmplwi   r27, 4
+	bne      lbl_800A1DD4
+	clrlwi   r3, r23, 0x18
+	bl       extend8to16__9JASPlayerFUc
+	mr       r23, r3
 
-	.loc_0x354:
-	  and       r23, r23, r22
-	  b         .loc_0x43C
+lbl_800A1DD4:
+	extsh.   r0, r23
+	bge      lbl_800A1DF4
+	extsh    r0, r23
+	clrlwi   r3, r22, 0x10
+	neg      r0, r0
+	sraw     r0, r3, r0
+	extsh    r23, r0
+	b        lbl_800A1F30
 
-	.loc_0x35C:
-	  or        r23, r23, r22
-	  b         .loc_0x43C
+lbl_800A1DF4:
+	clrlwi   r3, r22, 0x10
+	extsh    r0, r23
+	slw      r0, r3, r0
+	extsh    r23, r0
+	b        lbl_800A1F30
 
-	.loc_0x364:
-	  xor       r23, r23, r22
-	  b         .loc_0x43C
+lbl_800A1E08:
+	cmplwi   r27, 4
+	bne      lbl_800A1E1C
+	clrlwi   r3, r23, 0x18
+	bl       extend8to16__9JASPlayerFUc
+	mr       r23, r3
 
-	.loc_0x36C:
-	  neg       r0, r22
-	  extsh     r23, r0
-	  b         .loc_0x43C
+lbl_800A1E1C:
+	extsh.   r0, r23
+	bge      lbl_800A1E38
+	extsh    r0, r23
+	neg      r0, r0
+	sraw     r0, r22, r0
+	extsh    r23, r0
+	b        lbl_800A1F30
 
-	.loc_0x378:
-	  bl        -0x57C8
-	  rlwinm    r4,r23,0,16,31
-	  mr        r28, r3
-	  divwu     r0, r28, r4
-	  mullw     r0, r0, r4
-	  sub       r0, r28, r0
-	  extsh     r23, r0
-	  b         .loc_0x43C
+lbl_800A1E38:
+	extsh    r0, r23
+	slw      r0, r22, r0
+	extsh    r23, r0
+	b        lbl_800A1F30
 
-	.loc_0x398:
-	  cmpwi     r25, 0x6
-	  extsh     r4, r23
-	  beq-      .loc_0x3F0
-	  bge-      .loc_0x3B8
-	  cmpwi     r25, 0x4
-	  beq-      .loc_0x3C8
-	  bge-      .loc_0x3D8
-	  b         .loc_0x434
+lbl_800A1E48:
+	and      r23, r23, r22
+	b        lbl_800A1F30
 
-	.loc_0x3B8:
-	  cmpwi     r25, 0x8
-	  beq-      .loc_0x424
-	  bge-      .loc_0x434
-	  b         .loc_0x40C
+lbl_800A1E50:
+	or       r23, r23, r22
+	b        lbl_800A1F30
 
-	.loc_0x3C8:
-	  lwz       r3, 0xC(r31)
-	  add       r0, r24, r4
-	  lbzx      r28, r3, r0
-	  b         .loc_0x434
+lbl_800A1E58:
+	xor      r23, r23, r22
+	b        lbl_800A1F30
 
-	.loc_0x3D8:
-	  rlwinm    r0,r4,1,0,30
-	  addi      r3, r31, 0xC
-	  add       r4, r24, r0
-	  bl        -0x5504
-	  rlwinm    r28,r3,0,16,31
-	  b         .loc_0x434
+lbl_800A1E60:
+	neg      r0, r22
+	extsh    r23, r0
+	b        lbl_800A1F30
 
-	.loc_0x3F0:
-	  rlwinm    r0,r4,1,0,30
-	  addi      r3, r31, 0xC
-	  add       r4, r4, r0
-	  add       r4, r24, r4
-	  bl        -0x5508
-	  mr        r28, r3
-	  b         .loc_0x434
+lbl_800A1E6C:
+	bl       getRandomS32__9JASPlayerFv
+	clrlwi   r4, r23, 0x10
+	mr       r28, r3
+	divwu    r0, r28, r4
+	mullw    r0, r0, r4
+	subf     r0, r0, r28
+	extsh    r23, r0
+	b        lbl_800A1F30
 
-	.loc_0x40C:
-	  rlwinm    r0,r4,2,0,29
-	  addi      r3, r31, 0xC
-	  add       r4, r24, r0
-	  bl        -0x54F8
-	  mr        r28, r3
-	  b         .loc_0x434
+lbl_800A1E8C:
+	cmpwi    r25, 6
+	extsh    r4, r23
+	beq      lbl_800A1EE4
+	bge      lbl_800A1EAC
+	cmpwi    r25, 4
+	beq      lbl_800A1EBC
+	bge      lbl_800A1ECC
+	b        lbl_800A1F28
 
-	.loc_0x424:
-	  addi      r3, r31, 0xC
-	  add       r4, r24, r4
-	  bl        -0x550C
-	  mr        r28, r3
+lbl_800A1EAC:
+	cmpwi    r25, 8
+	beq      lbl_800A1F18
+	bge      lbl_800A1F28
+	b        lbl_800A1F00
 
-	.loc_0x434:
-	  rlwinm    r0,r28,0,16,31
-	  extsh     r23, r0
+lbl_800A1EBC:
+	lwz      r3, 0xc(r31)
+	add      r0, r24, r4
+	lbzx     r28, r3, r0
+	b        lbl_800A1F28
 
-	.loc_0x43C:
-	  cmpwi     r30, 0x22
-	  beq-      .loc_0x514
-	  bge-      .loc_0x468
-	  cmpwi     r30, 0x20
-	  beq-      .loc_0x4C4
-	  bge-      .loc_0x4A8
-	  cmpwi     r30, 0x3
-	  bge-      .loc_0x550
-	  cmpwi     r30, 0
-	  bge-      .loc_0x494
-	  b         .loc_0x550
+lbl_800A1ECC:
+	slwi     r0, r4, 1
+	addi     r3, r31, 0xc
+	add      r4, r24, r0
+	bl       get16__10JASSeqCtrlCFUl
+	clrlwi   r28, r3, 0x10
+	b        lbl_800A1F28
 
-	.loc_0x468:
-	  cmpwi     r30, 0x2E
-	  beq-      .loc_0x4E4
-	  bge-      .loc_0x488
-	  cmpwi     r30, 0x2C
-	  bge-      .loc_0x550
-	  cmpwi     r30, 0x28
-	  bge-      .loc_0x540
-	  b         .loc_0x550
+lbl_800A1EE4:
+	slwi     r0, r4, 1
+	addi     r3, r31, 0xc
+	add      r4, r4, r0
+	add      r4, r24, r4
+	bl       get24__10JASSeqCtrlCFUl
+	mr       r28, r3
+	b        lbl_800A1F28
 
-	.loc_0x488:
-	  cmpwi     r30, 0x30
-	  bge-      .loc_0x550
-	  b         .loc_0x4FC
+lbl_800A1F00:
+	slwi     r0, r4, 2
+	addi     r3, r31, 0xc
+	add      r4, r24, r0
+	bl       get32__10JASSeqCtrlCFUl
+	mr       r28, r3
+	b        lbl_800A1F28
 
-	.loc_0x494:
-	  rlwinm    r3,r23,0,24,31
-	  mr        r23, r3
-	  bl        -0x59DC
-	  rlwinm    r29,r3,0,16,31
-	  b         .loc_0x554
+lbl_800A1F18:
+	addi     r3, r31, 0xc
+	add      r4, r24, r4
+	bl       get32__10JASSeqCtrlCFUl
+	mr       r28, r3
 
-	.loc_0x4A8:
-	  addi      r3, r31, 0x268
-	  bl        -0x5764
-	  rlwinm    r0,r23,0,24,31
-	  li        r30, 0x6
-	  rlwimi    r0,r3,8,16,23
-	  extsh     r23, r0
-	  b         .loc_0x554
+lbl_800A1F28:
+	clrlwi   r0, r28, 0x10
+	extsh    r23, r0
 
-	.loc_0x4C4:
-	  addi      r3, r31, 0x268
-	  bl        -0x5770
-	  extsh     r0, r23
-	  li        r30, 0x6
-	  rlwinm    r0,r0,8,0,23
-	  rlwimi    r0,r3,0,24,31
-	  extsh     r23, r0
-	  b         .loc_0x554
+lbl_800A1F30:
+	cmpwi    r30, 0x22
+	beq      lbl_800A2008
+	bge      lbl_800A1F5C
+	cmpwi    r30, 0x20
+	beq      lbl_800A1FB8
+	bge      lbl_800A1F9C
+	cmpwi    r30, 3
+	bge      lbl_800A2044
+	cmpwi    r30, 0
+	bge      lbl_800A1F88
+	b        lbl_800A2044
 
-	.loc_0x4E4:
-	  lhz       r3, 0x282(r31)
-	  rlwinm    r0,r23,0,24,31
-	  li        r30, 0xD
-	  rlwimi    r0,r3,0,16,23
-	  extsh     r23, r0
-	  b         .loc_0x554
+lbl_800A1F5C:
+	cmpwi    r30, 0x2e
+	beq      lbl_800A1FD8
+	bge      lbl_800A1F7C
+	cmpwi    r30, 0x2c
+	bge      lbl_800A2044
+	cmpwi    r30, 0x28
+	bge      lbl_800A2034
+	b        lbl_800A2044
 
-	.loc_0x4FC:
-	  lhz       r0, 0x282(r31)
-	  extsh     r3, r23
-	  rlwimi    r0,r3,8,0,23
-	  li        r30, 0xD
-	  extsh     r23, r0
-	  b         .loc_0x554
+lbl_800A1F7C:
+	cmpwi    r30, 0x30
+	bge      lbl_800A2044
+	b        lbl_800A1FF0
 
-	.loc_0x514:
-	  extsh     r22, r23
-	  mr        r3, r31
-	  srawi     r0, r22, 0x8
-	  li        r4, 0
-	  rlwinm    r5,r0,0,16,31
-	  bl        -0x5F8
-	  rlwinm    r0,r22,0,24,31
-	  li        r30, 0x1
-	  mr        r23, r0
-	  mr        r29, r0
-	  b         .loc_0x554
+lbl_800A1F88:
+	clrlwi   r3, r23, 0x18
+	mr       r23, r3
+	bl       extend8to16__9JASPlayerFUc
+	clrlwi   r29, r3, 0x10
+	b        lbl_800A2048
 
-	.loc_0x540:
-	  rlwinm    r0,r30,2,0,29
-	  add       r3, r31, r0
-	  stw       r28, 0x1E8(r3)
-	  b         .loc_0x59C
+lbl_800A1F9C:
+	addi     r3, r31, 0x268
+	bl       getBankNumber__16JASRegisterParamCFv
+	clrlwi   r0, r23, 0x18
+	li       r30, 6
+	rlwimi   r0, r3, 8, 0x10, 0x17
+	extsh    r23, r0
+	b        lbl_800A2048
 
-	.loc_0x550:
-	  rlwinm    r29,r23,0,16,31
+lbl_800A1FB8:
+	addi     r3, r31, 0x268
+	bl       getProgramNumber__16JASRegisterParamCFv
+	extsh    r0, r23
+	li       r30, 6
+	slwi     r0, r0, 8
+	rlwimi   r0, r3, 0, 0x18, 0x1f
+	extsh    r23, r0
+	b        lbl_800A2048
 
-	.loc_0x554:
-	  rlwinm    r0,r30,1,23,30
-	  rlwinm    r4,r30,0,24,31
-	  add       r3, r31, r0
-	  sth       r23, 0x268(r3)
-	  cmpwi     r4, 0x7
-	  sth       r29, 0x26E(r31)
-	  beq-      .loc_0x590
-	  bge-      .loc_0x59C
-	  cmpwi     r4, 0x6
-	  bge-      .loc_0x580
-	  b         .loc_0x59C
+lbl_800A1FD8:
+	lhz      r3, 0x282(r31)
+	clrlwi   r0, r23, 0x18
+	li       r30, 0xd
+	rlwimi   r0, r3, 0, 0x10, 0x17
+	extsh    r23, r0
+	b        lbl_800A2048
 
-	.loc_0x580:
-	  li        r0, 0xF
-	  stw       r0, 0x2D8(r31)
-	  stw       r0, 0x2DC(r31)
-	  b         .loc_0x59C
+lbl_800A1FF0:
+	lhz      r0, 0x282(r31)
+	extsh    r3, r23
+	rlwimi   r0, r3, 8, 0, 0x17
+	li       r30, 0xd
+	extsh    r23, r0
+	b        lbl_800A2048
 
-	.loc_0x590:
-	  lwz       r0, 0x34C(r31)
-	  ori       r0, r0, 0x2
-	  stw       r0, 0x34C(r31)
+lbl_800A2008:
+	extsh    r22, r23
+	mr       r3, r31
+	srawi    r0, r22, 8
+	li       r4, 0
+	clrlwi   r5, r0, 0x10
+	bl       writeRegDirect__8JASTrackFUcUs
+	clrlwi   r0, r22, 0x18
+	li       r30, 1
+	mr       r23, r0
+	mr       r29, r0
+	b        lbl_800A2048
 
-	.loc_0x59C:
-	  lmw       r22, 0x8(r1)
-	  lwz       r0, 0x34(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_800A2034:
+	slwi     r0, r30, 2
+	add      r3, r31, r0
+	stw      r28, 0x1e8(r3)
+	b        lbl_800A2090
+
+lbl_800A2044:
+	clrlwi   r29, r23, 0x10
+
+lbl_800A2048:
+	rlwinm   r0, r30, 1, 0x17, 0x1e
+	clrlwi   r4, r30, 0x18
+	add      r3, r31, r0
+	sth      r23, 0x268(r3)
+	cmpwi    r4, 7
+	sth      r29, 0x26e(r31)
+	beq      lbl_800A2084
+	bge      lbl_800A2090
+	cmpwi    r4, 6
+	bge      lbl_800A2074
+	b        lbl_800A2090
+
+lbl_800A2074:
+	li       r0, 0xf
+	stw      r0, 0x2d8(r31)
+	stw      r0, 0x2dc(r31)
+	b        lbl_800A2090
+
+lbl_800A2084:
+	lwz      r0, 0x34c(r31)
+	ori      r0, r0, 2
+	stw      r0, 0x34c(r31)
+
+lbl_800A2090:
+	lmw      r22, 8(r1)
+	lwz      r0, 0x34(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -4417,16 +4520,15 @@ void JASTrack::writeRegParam(unsigned char)
 void JASTrack::readSelfPort(int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  addi      r3, r3, 0x54
-	  stw       r0, 0x14(r1)
-	  bl        -0x5D1C
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	addi     r3, r3, 0x54
+	stw      r0, 0x14(r1)
+	bl       readImport__12JASTrackPortFi
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -4438,16 +4540,15 @@ void JASTrack::readSelfPort(int)
 void JASTrack::writeSelfPort(int, unsigned short)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  addi      r3, r3, 0x54
-	  stw       r0, 0x14(r1)
-	  bl        -0x5CF4
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	addi     r3, r3, 0x54
+	stw      r0, 0x14(r1)
+	bl       writeExport__12JASTrackPortFiUs
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -4459,39 +4560,38 @@ void JASTrack::writeSelfPort(int, unsigned short)
 void JASTrack::writePortAppDirect(unsigned long, unsigned short)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  addi      r3, r30, 0x54
-	  bl        -0x5D40
-	  cmplwi    r31, 0
-	  beq-      .loc_0x34
-	  cmplwi    r31, 0x1
-	  bne-      .loc_0x4C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	addi     r3, r30, 0x54
+	bl       writeImport__12JASTrackPortFiUs
+	cmplwi   r31, 0
+	beq      lbl_800A2120
+	cmplwi   r31, 1
+	bne      lbl_800A2138
 
-	.loc_0x34:
-	  cmplwi    r31, 0
-	  addi      r3, r30, 0x94
-	  li        r4, 0x4
-	  bne-      .loc_0x48
-	  li        r4, 0x3
+lbl_800A2120:
+	cmplwi   r31, 0
+	addi     r3, r30, 0x94
+	li       r4, 4
+	bne      lbl_800A2134
+	li       r4, 3
 
-	.loc_0x48:
-	  bl        0x908
+lbl_800A2134:
+	bl       request__10JASIntrMgrFUl
 
-	.loc_0x4C:
-	  lwz       r0, 0x14(r1)
-	  li        r3, 0x1
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_800A2138:
+	lwz      r0, 0x14(r1)
+	li       r3, 1
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -4503,21 +4603,20 @@ void JASTrack::writePortAppDirect(unsigned long, unsigned short)
 void JASTrack::readPortAppDirect(unsigned long, unsigned short*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  addi      r3, r3, 0x54
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r5
-	  bl        -0x5DBC
-	  sth       r3, 0x0(r31)
-	  li        r3, 0x1
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	addi     r3, r3, 0x54
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r5
+	bl       readExport__12JASTrackPortFi
+	sth      r3, 0(r31)
+	li       r3, 1
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -4549,70 +4648,69 @@ void JASTrack::routeTrack(unsigned long) const
 void JASTrack::writePortApp(unsigned long, unsigned short)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r7, r4
-	  stw       r0, 0x14(r1)
-	  rlwinm    r0,r4,4,28,31
-	  stw       r31, 0xC(r1)
-	  stw       r30, 0x8(r1)
-	  mtctr     r0
-	  cmplwi    r0, 0
-	  ble-      .loc_0x4C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r7, r4
+	stw      r0, 0x14(r1)
+	srwi     r0, r4, 0x1c
+	stw      r31, 0xc(r1)
+	stw      r30, 8(r1)
+	mtctr    r0
+	cmplwi   r0, 0
+	ble      lbl_800A21D8
 
-	.loc_0x28:
-	  rlwinm    r6,r7,2,26,29
-	  addi      r0, r6, 0x2FC
-	  lwzx      r3, r3, r0
-	  cmplwi    r3, 0
-	  bne-      .loc_0x44
-	  li        r31, 0
-	  b         .loc_0x50
+lbl_800A21B4:
+	rlwinm   r6, r7, 2, 0x1a, 0x1d
+	addi     r0, r6, 0x2fc
+	lwzx     r3, r3, r0
+	cmplwi   r3, 0
+	bne      lbl_800A21D0
+	li       r31, 0
+	b        lbl_800A21DC
 
-	.loc_0x44:
-	  rlwinm    r7,r7,28,4,31
-	  bdnz+     .loc_0x28
+lbl_800A21D0:
+	srwi     r7, r7, 4
+	bdnz     lbl_800A21B4
 
-	.loc_0x4C:
-	  mr        r31, r3
+lbl_800A21D8:
+	mr       r31, r3
 
-	.loc_0x50:
-	  cmplwi    r31, 0
-	  bne-      .loc_0x60
-	  li        r3, 0
-	  b         .loc_0x9C
+lbl_800A21DC:
+	cmplwi   r31, 0
+	bne      lbl_800A21EC
+	li       r3, 0
+	b        lbl_800A2228
 
-	.loc_0x60:
-	  rlwinm    r30,r4,16,24,31
-	  addi      r3, r31, 0x54
-	  mr        r4, r30
-	  bl        -0x5E2C
-	  cmplwi    r30, 0
-	  beq-      .loc_0x80
-	  cmplwi    r30, 0x1
-	  bne-      .loc_0x98
+lbl_800A21EC:
+	rlwinm   r30, r4, 0x10, 0x18, 0x1f
+	addi     r3, r31, 0x54
+	mr       r4, r30
+	bl       writeImport__12JASTrackPortFiUs
+	cmplwi   r30, 0
+	beq      lbl_800A220C
+	cmplwi   r30, 1
+	bne      lbl_800A2224
 
-	.loc_0x80:
-	  cmplwi    r30, 0
-	  addi      r3, r31, 0x94
-	  li        r4, 0x4
-	  bne-      .loc_0x94
-	  li        r4, 0x3
+lbl_800A220C:
+	cmplwi   r30, 0
+	addi     r3, r31, 0x94
+	li       r4, 4
+	bne      lbl_800A2220
+	li       r4, 3
 
-	.loc_0x94:
-	  bl        0x81C
+lbl_800A2220:
+	bl       request__10JASIntrMgrFUl
 
-	.loc_0x98:
-	  li        r3, 0x1
+lbl_800A2224:
+	li       r3, 1
 
-	.loc_0x9C:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_800A2228:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -4624,50 +4722,49 @@ void JASTrack::writePortApp(unsigned long, unsigned short)
 void JASTrack::readPortApp(unsigned long, unsigned short*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r6, r4
-	  stw       r0, 0x14(r1)
-	  rlwinm    r0,r4,4,28,31
-	  stw       r31, 0xC(r1)
-	  mr        r31, r5
-	  mtctr     r0
-	  cmplwi    r0, 0
-	  ble-      .loc_0x4C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r6, r4
+	stw      r0, 0x14(r1)
+	srwi     r0, r4, 0x1c
+	stw      r31, 0xc(r1)
+	mr       r31, r5
+	mtctr    r0
+	cmplwi   r0, 0
+	ble      lbl_800A228C
 
-	.loc_0x28:
-	  rlwinm    r5,r6,2,26,29
-	  addi      r0, r5, 0x2FC
-	  lwzx      r3, r3, r0
-	  cmplwi    r3, 0
-	  bne-      .loc_0x44
-	  li        r3, 0
-	  b         .loc_0x4C
+lbl_800A2268:
+	rlwinm   r5, r6, 2, 0x1a, 0x1d
+	addi     r0, r5, 0x2fc
+	lwzx     r3, r3, r0
+	cmplwi   r3, 0
+	bne      lbl_800A2284
+	li       r3, 0
+	b        lbl_800A228C
 
-	.loc_0x44:
-	  rlwinm    r6,r6,28,4,31
-	  bdnz+     .loc_0x28
+lbl_800A2284:
+	srwi     r6, r6, 4
+	bdnz     lbl_800A2268
 
-	.loc_0x4C:
-	  cmplwi    r3, 0
-	  bne-      .loc_0x5C
-	  li        r3, 0
-	  b         .loc_0x70
+lbl_800A228C:
+	cmplwi   r3, 0
+	bne      lbl_800A229C
+	li       r3, 0
+	b        lbl_800A22B0
 
-	.loc_0x5C:
-	  addi      r3, r3, 0x54
-	  rlwinm    r4,r4,16,24,31
-	  bl        -0x5EF4
-	  sth       r3, 0x0(r31)
-	  li        r3, 0x1
+lbl_800A229C:
+	addi     r3, r3, 0x54
+	rlwinm   r4, r4, 0x10, 0x18, 0x1f
+	bl       readExport__12JASTrackPortFi
+	sth      r3, 0(r31)
+	li       r3, 1
 
-	.loc_0x70:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_800A22B0:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -4699,125 +4796,124 @@ void JASTrack::checkImportApp(unsigned long) const
 void JASTrack::pause(bool, bool)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  rlwinm.   r0,r4,0,24,31
-	  stmw      r26, 0x8(r1)
-	  mr        r30, r4
-	  mr        r29, r3
-	  mr        r31, r5
-	  stb       r30, 0x362(r3)
-	  beq-      .loc_0xC4
-	  lbz       r0, 0x358(r29)
-	  rlwinm.   r0,r0,0,31,31
-	  beq-      .loc_0x40
-	  lwz       r0, 0x34C(r29)
-	  ori       r0, r0, 0x1
-	  stw       r0, 0x34C(r29)
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	clrlwi.  r0, r4, 0x18
+	stmw     r26, 8(r1)
+	mr       r30, r4
+	mr       r29, r3
+	mr       r31, r5
+	stb      r30, 0x362(r3)
+	beq      lbl_800A2388
+	lbz      r0, 0x358(r29)
+	clrlwi.  r0, r0, 0x1f
+	beq      lbl_800A2304
+	lwz      r0, 0x34c(r29)
+	ori      r0, r0, 1
+	stw      r0, 0x34c(r29)
 
-	.loc_0x40:
-	  lbz       r0, 0x358(r29)
-	  rlwinm.   r0,r0,0,29,29
-	  beq-      .loc_0x88
-	  li        r26, 0
-	  li        r28, 0
-	  b         .loc_0x7C
+lbl_800A2304:
+	lbz      r0, 0x358(r29)
+	rlwinm.  r0, r0, 0, 0x1d, 0x1d
+	beq      lbl_800A234C
+	li       r26, 0
+	li       r28, 0
+	b        lbl_800A2340
 
-	.loc_0x58:
-	  rlwinm    r3,r26,2,22,29
-	  addi      r27, r3, 0xC0
-	  lwzx      r3, r29, r27
-	  cmplwi    r3, 0
-	  beq-      .loc_0x78
-	  li        r4, 0xA
-	  bl        0x1494
-	  stwx      r28, r29, r27
+lbl_800A231C:
+	rlwinm   r3, r26, 2, 0x16, 0x1d
+	addi     r27, r3, 0xc0
+	lwzx     r3, r29, r27
+	cmplwi   r3, 0
+	beq      lbl_800A233C
+	li       r4, 0xa
+	bl       release__10JASChannelFUs
+	stwx     r28, r29, r27
 
-	.loc_0x78:
-	  addi      r26, r26, 0x1
+lbl_800A233C:
+	addi     r26, r26, 1
 
-	.loc_0x7C:
-	  rlwinm    r0,r26,0,24,31
-	  cmplwi    r0, 0x8
-	  blt+      .loc_0x58
+lbl_800A2340:
+	clrlwi   r0, r26, 0x18
+	cmplwi   r0, 8
+	blt      lbl_800A231C
 
-	.loc_0x88:
-	  lbz       r0, 0x358(r29)
-	  rlwinm.   r0,r0,0,28,28
-	  beq-      .loc_0xFC
-	  li        r26, 0
-	  mr        r28, r29
+lbl_800A234C:
+	lbz      r0, 0x358(r29)
+	rlwinm.  r0, r0, 0, 0x1c, 0x1c
+	beq      lbl_800A23C0
+	li       r26, 0
+	mr       r28, r29
 
-	.loc_0x9C:
-	  lwz       r3, 0xC0(r28)
-	  cmplwi    r3, 0
-	  beq-      .loc_0xB0
-	  li        r4, 0x1
-	  bl        0x1324
+lbl_800A2360:
+	lwz      r3, 0xc0(r28)
+	cmplwi   r3, 0
+	beq      lbl_800A2374
+	li       r4, 1
+	bl       setPauseFlag__10JASChannelFb
 
-	.loc_0xB0:
-	  addi      r26, r26, 0x1
-	  addi      r28, r28, 0x4
-	  cmpwi     r26, 0x8
-	  blt+      .loc_0x9C
-	  b         .loc_0xFC
+lbl_800A2374:
+	addi     r26, r26, 1
+	addi     r28, r28, 4
+	cmpwi    r26, 8
+	blt      lbl_800A2360
+	b        lbl_800A23C0
 
-	.loc_0xC4:
-	  lwz       r0, 0x34C(r29)
-	  mr        r28, r29
-	  li        r26, 0
-	  ori       r0, r0, 0x1
-	  stw       r0, 0x34C(r29)
+lbl_800A2388:
+	lwz      r0, 0x34c(r29)
+	mr       r28, r29
+	li       r26, 0
+	ori      r0, r0, 1
+	stw      r0, 0x34c(r29)
 
-	.loc_0xD8:
-	  lwz       r3, 0xC0(r28)
-	  cmplwi    r3, 0
-	  beq-      .loc_0xEC
-	  li        r4, 0
-	  bl        0x12E8
+lbl_800A239C:
+	lwz      r3, 0xc0(r28)
+	cmplwi   r3, 0
+	beq      lbl_800A23B0
+	li       r4, 0
+	bl       setPauseFlag__10JASChannelFb
 
-	.loc_0xEC:
-	  addi      r26, r26, 0x1
-	  addi      r28, r28, 0x4
-	  cmpwi     r26, 0x8
-	  blt+      .loc_0xD8
+lbl_800A23B0:
+	addi     r26, r26, 1
+	addi     r28, r28, 4
+	cmpwi    r26, 8
+	blt      lbl_800A239C
 
-	.loc_0xFC:
-	  rlwinm    r0,r30,0,24,31
-	  addi      r3, r29, 0x94
-	  cntlzw    r0, r0
-	  rlwinm    r4,r0,27,5,31
-	  bl        0x66C
-	  rlwinm.   r0,r31,0,24,31
-	  beq-      .loc_0x154
-	  li        r26, 0
-	  mr        r28, r29
+lbl_800A23C0:
+	clrlwi   r0, r30, 0x18
+	addi     r3, r29, 0x94
+	cntlzw   r0, r0
+	srwi     r4, r0, 5
+	bl       request__10JASIntrMgrFUl
+	clrlwi.  r0, r31, 0x18
+	beq      lbl_800A2418
+	li       r26, 0
+	mr       r28, r29
 
-	.loc_0x120:
-	  lwz       r3, 0x2FC(r28)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x144
-	  lbz       r0, 0x35B(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x144
-	  mr        r4, r30
-	  li        r5, 0x1
-	  bl        .loc_0x0
+lbl_800A23E4:
+	lwz      r3, 0x2fc(r28)
+	cmplwi   r3, 0
+	beq      lbl_800A2408
+	lbz      r0, 0x35b(r3)
+	cmplwi   r0, 0
+	beq      lbl_800A2408
+	mr       r4, r30
+	li       r5, 1
+	bl       pause__8JASTrackFbb
 
-	.loc_0x144:
-	  addi      r26, r26, 0x1
-	  addi      r28, r28, 0x4
-	  cmpwi     r26, 0x10
-	  blt+      .loc_0x120
+lbl_800A2408:
+	addi     r26, r26, 1
+	addi     r28, r28, 4
+	cmpwi    r26, 0x10
+	blt      lbl_800A23E4
 
-	.loc_0x154:
-	  lmw       r26, 0x8(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_800A2418:
+	lmw      r26, 8(r1)
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -4829,135 +4925,134 @@ void JASTrack::pause(bool, bool)
 void JASTrack::getTranspose() const
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stmw      r23, 0xC(r1)
-	  mr        r28, r3
-	  lwz       r31, 0x2F8(r3)
-	  cmplwi    r31, 0
-	  beq-      .loc_0x154
-	  lwz       r30, 0x2F8(r31)
-	  cmplwi    r30, 0
-	  beq-      .loc_0x13C
-	  lwz       r29, 0x2F8(r30)
-	  cmplwi    r29, 0
-	  beq-      .loc_0x124
-	  lwz       r27, 0x2F8(r29)
-	  cmplwi    r27, 0
-	  beq-      .loc_0x10C
-	  lwz       r26, 0x2F8(r27)
-	  cmplwi    r26, 0
-	  beq-      .loc_0xF4
-	  lwz       r25, 0x2F8(r26)
-	  cmplwi    r25, 0
-	  beq-      .loc_0xDC
-	  lwz       r24, 0x2F8(r25)
-	  cmplwi    r24, 0
-	  beq-      .loc_0xC4
-	  lwz       r23, 0x2F8(r24)
-	  cmplwi    r23, 0
-	  beq-      .loc_0xAC
-	  lwz       r3, 0x2F8(r23)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x94
-	  bl        .loc_0x0
-	  lbz       r0, 0x356(r23)
-	  extsb     r0, r0
-	  add       r3, r0, r3
-	  b         .loc_0x9C
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stmw     r23, 0xc(r1)
+	mr       r28, r3
+	lwz      r31, 0x2f8(r3)
+	cmplwi   r31, 0
+	beq      lbl_800A2580
+	lwz      r30, 0x2f8(r31)
+	cmplwi   r30, 0
+	beq      lbl_800A2568
+	lwz      r29, 0x2f8(r30)
+	cmplwi   r29, 0
+	beq      lbl_800A2550
+	lwz      r27, 0x2f8(r29)
+	cmplwi   r27, 0
+	beq      lbl_800A2538
+	lwz      r26, 0x2f8(r27)
+	cmplwi   r26, 0
+	beq      lbl_800A2520
+	lwz      r25, 0x2f8(r26)
+	cmplwi   r25, 0
+	beq      lbl_800A2508
+	lwz      r24, 0x2f8(r25)
+	cmplwi   r24, 0
+	beq      lbl_800A24F0
+	lwz      r23, 0x2f8(r24)
+	cmplwi   r23, 0
+	beq      lbl_800A24D8
+	lwz      r3, 0x2f8(r23)
+	cmplwi   r3, 0
+	beq      lbl_800A24C0
+	bl       getTranspose__8JASTrackCFv
+	lbz      r0, 0x356(r23)
+	extsb    r0, r0
+	add      r3, r0, r3
+	b        lbl_800A24C8
 
-	.loc_0x94:
-	  lbz       r3, 0x356(r23)
-	  extsb     r3, r3
+lbl_800A24C0:
+	lbz      r3, 0x356(r23)
+	extsb    r3, r3
 
-	.loc_0x9C:
-	  lbz       r0, 0x356(r24)
-	  extsb     r0, r0
-	  add       r3, r0, r3
-	  b         .loc_0xB4
+lbl_800A24C8:
+	lbz      r0, 0x356(r24)
+	extsb    r0, r0
+	add      r3, r0, r3
+	b        lbl_800A24E0
 
-	.loc_0xAC:
-	  lbz       r3, 0x356(r24)
-	  extsb     r3, r3
+lbl_800A24D8:
+	lbz      r3, 0x356(r24)
+	extsb    r3, r3
 
-	.loc_0xB4:
-	  lbz       r0, 0x356(r25)
-	  extsb     r0, r0
-	  add       r3, r0, r3
-	  b         .loc_0xCC
+lbl_800A24E0:
+	lbz      r0, 0x356(r25)
+	extsb    r0, r0
+	add      r3, r0, r3
+	b        lbl_800A24F8
 
-	.loc_0xC4:
-	  lbz       r3, 0x356(r25)
-	  extsb     r3, r3
+lbl_800A24F0:
+	lbz      r3, 0x356(r25)
+	extsb    r3, r3
 
-	.loc_0xCC:
-	  lbz       r0, 0x356(r26)
-	  extsb     r0, r0
-	  add       r3, r0, r3
-	  b         .loc_0xE4
+lbl_800A24F8:
+	lbz      r0, 0x356(r26)
+	extsb    r0, r0
+	add      r3, r0, r3
+	b        lbl_800A2510
 
-	.loc_0xDC:
-	  lbz       r3, 0x356(r26)
-	  extsb     r3, r3
+lbl_800A2508:
+	lbz      r3, 0x356(r26)
+	extsb    r3, r3
 
-	.loc_0xE4:
-	  lbz       r0, 0x356(r27)
-	  extsb     r0, r0
-	  add       r3, r0, r3
-	  b         .loc_0xFC
+lbl_800A2510:
+	lbz      r0, 0x356(r27)
+	extsb    r0, r0
+	add      r3, r0, r3
+	b        lbl_800A2528
 
-	.loc_0xF4:
-	  lbz       r3, 0x356(r27)
-	  extsb     r3, r3
+lbl_800A2520:
+	lbz      r3, 0x356(r27)
+	extsb    r3, r3
 
-	.loc_0xFC:
-	  lbz       r0, 0x356(r29)
-	  extsb     r0, r0
-	  add       r3, r0, r3
-	  b         .loc_0x114
+lbl_800A2528:
+	lbz      r0, 0x356(r29)
+	extsb    r0, r0
+	add      r3, r0, r3
+	b        lbl_800A2540
 
-	.loc_0x10C:
-	  lbz       r3, 0x356(r29)
-	  extsb     r3, r3
+lbl_800A2538:
+	lbz      r3, 0x356(r29)
+	extsb    r3, r3
 
-	.loc_0x114:
-	  lbz       r0, 0x356(r30)
-	  extsb     r0, r0
-	  add       r3, r0, r3
-	  b         .loc_0x12C
+lbl_800A2540:
+	lbz      r0, 0x356(r30)
+	extsb    r0, r0
+	add      r3, r0, r3
+	b        lbl_800A2558
 
-	.loc_0x124:
-	  lbz       r3, 0x356(r30)
-	  extsb     r3, r3
+lbl_800A2550:
+	lbz      r3, 0x356(r30)
+	extsb    r3, r3
 
-	.loc_0x12C:
-	  lbz       r0, 0x356(r31)
-	  extsb     r0, r0
-	  add       r3, r0, r3
-	  b         .loc_0x144
+lbl_800A2558:
+	lbz      r0, 0x356(r31)
+	extsb    r0, r0
+	add      r3, r0, r3
+	b        lbl_800A2570
 
-	.loc_0x13C:
-	  lbz       r3, 0x356(r31)
-	  extsb     r3, r3
+lbl_800A2568:
+	lbz      r3, 0x356(r31)
+	extsb    r3, r3
 
-	.loc_0x144:
-	  lbz       r0, 0x356(r28)
-	  extsb     r0, r0
-	  add       r3, r0, r3
-	  b         .loc_0x15C
+lbl_800A2570:
+	lbz      r0, 0x356(r28)
+	extsb    r0, r0
+	add      r3, r0, r3
+	b        lbl_800A2588
 
-	.loc_0x154:
-	  lbz       r3, 0x356(r28)
-	  extsb     r3, r3
+lbl_800A2580:
+	lbz      r3, 0x356(r28)
+	extsb    r3, r3
 
-	.loc_0x15C:
-	  lmw       r23, 0xC(r1)
-	  lwz       r0, 0x34(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_800A2588:
+	lmw      r23, 0xc(r1)
+	lwz      r0, 0x34(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -4969,26 +5064,25 @@ void JASTrack::getTranspose() const
 void JASTrack::setTempo(unsigned short)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  sth       r4, 0x352(r3)
-	  lwz       r0, 0x2F8(r3)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x24
-	  bl        -0x1EE8
-	  b         .loc_0x2C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	sth      r4, 0x352(r3)
+	lwz      r0, 0x2f8(r3)
+	cmplwi   r0, 0
+	bne      lbl_800A25C0
+	bl       updateTempo__8JASTrackFv
+	b        lbl_800A25C8
 
-	.loc_0x24:
-	  li        r0, 0x1
-	  stb       r0, 0x365(r3)
+lbl_800A25C0:
+	li       r0, 1
+	stb      r0, 0x365(r3)
 
-	.loc_0x2C:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_800A25C8:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -5000,21 +5094,20 @@ void JASTrack::setTempo(unsigned short)
 void JASTrack::setTimebase(unsigned short)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  sth       r4, 0x354(r3)
-	  lwz       r0, 0x2F8(r3)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x20
-	  bl        -0x1F24
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	sth      r4, 0x354(r3)
+	lwz      r0, 0x2f8(r3)
+	cmplwi   r0, 0
+	bne      lbl_800A25F8
+	bl       updateTempo__8JASTrackFv
 
-	.loc_0x20:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_800A25F8:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -5026,35 +5119,34 @@ void JASTrack::setTimebase(unsigned short)
 void JASTrack::panCalc(float, float, float, unsigned char)
 {
 	/*
-	.loc_0x0:
-	  rlwinm    r0,r4,0,24,31
-	  cmpwi     r0, 0x1
-	  beq-      .loc_0x2C
-	  bge-      .loc_0x1C
-	  cmpwi     r0, 0
-	  bgelr-
-	  b         .loc_0x48
+	clrlwi   r0, r4, 0x18
+	cmpwi    r0, 1
+	beq      lbl_800A2634
+	bge      lbl_800A2624
+	cmpwi    r0, 0
+	bgelr
+	b        lbl_800A2650
 
-	.loc_0x1C:
-	  cmpwi     r0, 0x3
-	  bge-      .loc_0x48
-	  b         .loc_0x34
-	  blr
+lbl_800A2624:
+	cmpwi    r0, 3
+	bge      lbl_800A2650
+	b        lbl_800A263C
+	blr
 
-	.loc_0x2C:
-	  fmr       f1, f2
-	  blr
+lbl_800A2634:
+	fmr      f1, f2
+	blr
 
-	.loc_0x34:
-	  lfs       f4, -0x75E4(r2)
-	  fmuls     f0, f2, f3
-	  fsubs     f2, f4, f3
-	  fmadds    f1, f1, f2, f0
-	  blr
+lbl_800A263C:
+	lfs      f4, lbl_80516D7C@sda21(r2)
+	fmuls    f0, f2, f3
+	fsubs    f2, f4, f3
+	fmadds   f1, f1, f2, f0
+	blr
 
-	.loc_0x48:
-	  lfs       f1, -0x75E8(r2)
-	  blr
+lbl_800A2650:
+	lfs      f1, lbl_80516D78@sda21(r2)
+	blr
 	*/
 }
 
@@ -5066,82 +5158,81 @@ void JASTrack::panCalc(float, float, float, unsigned char)
 void JASTrack::rootCallback(void*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r3
-	  bne-      .loc_0x20
-	  li        r3, -0x1
-	  b         .loc_0xE0
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r3, r3
+	bne      lbl_800A2678
+	li       r3, -1
+	b        lbl_800A2738
 
-	.loc_0x20:
-	  lbz       r0, 0x35B(r31)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x34
-	  li        r3, -0x1
-	  b         .loc_0xE0
+lbl_800A2678:
+	lbz      r0, 0x35b(r31)
+	cmplwi   r0, 0
+	bne      lbl_800A268C
+	li       r3, -1
+	b        lbl_800A2738
 
-	.loc_0x34:
-	  cmplwi    r0, 0x3
-	  bne-      .loc_0x48
-	  bl        -0x1640
-	  li        r3, -0x1
-	  b         .loc_0xE0
+lbl_800A268C:
+	cmplwi   r0, 3
+	bne      lbl_800A26A0
+	bl       stopSeqMain__8JASTrackFv
+	li       r3, -1
+	b        lbl_800A2738
 
-	.loc_0x48:
-	  lfs       f1, 0x340(r31)
-	  subi      r3, r13, 0x7EF8
-	  lfs       f0, 0x344(r31)
-	  li        r4, 0x4
-	  fadds     f0, f1, f0
-	  stfs      f0, 0x340(r31)
-	  bl        0x4A034
-	  lfs       f1, 0x340(r31)
-	  lfs       f0, -0x7EF8(r13)
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0xC8
-	  mr        r3, r31
-	  li        r4, 0
-	  li        r5, 0x1
-	  bl        -0x1C4C
-	  b         .loc_0xDC
+lbl_800A26A0:
+	lfs      f1, 0x340(r31)
+	addi     r3, r13, zz_80514788@sda21
+	lfs      f0, 0x344(r31)
+	li       r4, 4
+	fadds    f0, f1, f0
+	stfs     f0, 0x340(r31)
+	bl       DCInvalidateRange
+	lfs      f1, 0x340(r31)
+	lfs      f0, zz_80514788@sda21(r13)
+	fcmpo    cr0, f1, f0
+	bge      lbl_800A2720
+	mr       r3, r31
+	li       r4, 0
+	li       r5, 1
+	bl       updateSeq__8JASTrackFUlb
+	b        lbl_800A2734
 
-	.loc_0x88:
-	  subi      r3, r13, 0x7EF8
-	  li        r4, 0x4
-	  bl        0x4A004
-	  lfs       f1, 0x340(r31)
-	  mr        r3, r31
-	  lfs       f0, -0x7EF8(r13)
-	  fsubs     f0, f1, f0
-	  stfs      f0, 0x340(r31)
-	  bl        -0x32C4
-	  extsb     r0, r3
-	  cmpwi     r0, -0x1
-	  bne-      .loc_0xC8
-	  mr        r3, r31
-	  bl        -0x16C0
-	  li        r3, -0x1
-	  b         .loc_0xE0
+lbl_800A26E0:
+	addi     r3, r13, zz_80514788@sda21
+	li       r4, 4
+	bl       DCInvalidateRange
+	lfs      f1, 0x340(r31)
+	mr       r3, r31
+	lfs      f0, zz_80514788@sda21(r13)
+	fsubs    f0, f1, f0
+	stfs     f0, 0x340(r31)
+	bl       mainProc__8JASTrackFv
+	extsb    r0, r3
+	cmpwi    r0, -1
+	bne      lbl_800A2720
+	mr       r3, r31
+	bl       stopSeqMain__8JASTrackFv
+	li       r3, -1
+	b        lbl_800A2738
 
-	.loc_0xC8:
-	  lfs       f1, 0x340(r31)
-	  lfs       f0, -0x7EF8(r13)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0x1, 0x2
-	  beq+      .loc_0x88
+lbl_800A2720:
+	lfs      f1, 0x340(r31)
+	lfs      f0, zz_80514788@sda21(r13)
+	fcmpo    cr0, f1, f0
+	cror     2, 1, 2
+	beq      lbl_800A26E0
 
-	.loc_0xDC:
-	  li        r3, 0
+lbl_800A2734:
+	li       r3, 0
 
-	.loc_0xE0:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_800A2738:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -5168,68 +5259,67 @@ void JASTrack::registerSeqCallback(unsigned short (*)(JASTrack*,
 void JASTrack::newMemPool(int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  li        r5, 0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  li        r3, 0x368
-	  lwz       r4, -0x7548(r13)
-	  bl        -0x7E734
-	  lwz       r4, -0x7548(r13)
-	  mr        r31, r3
-	  li        r3, 0x2C
-	  li        r5, 0
-	  bl        -0x7E850
-	  mr.       r0, r3
-	  beq-      .loc_0x50
-	  bl        -0x639C
-	  mr        r0, r3
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	li       r5, 0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	li       r3, 0x368
+	lwz      r4, JASDram@sda21(r13)
+	bl       __nwa__FUlP7JKRHeapi
+	lwz      r4, JASDram@sda21(r13)
+	mr       r31, r3
+	li       r3, 0x2c
+	li       r5, 0
+	bl       __nw__FUlP7JKRHeapi
+	or.      r0, r3, r3
+	beq      lbl_800A27A4
+	bl       __ct__13JASOuterParamFv
+	mr       r0, r3
 
-	.loc_0x50:
-	  stw       r0, 0x33C(r31)
-	  li        r30, 0x1
-	  stw       r31, -0x7588(r13)
-	  b         .loc_0xA8
+lbl_800A27A4:
+	stw      r0, 0x33c(r31)
+	li       r30, 1
+	stw      r31, sFreeList__8JASTrack@sda21(r13)
+	b        lbl_800A27FC
 
-	.loc_0x60:
-	  lwz       r4, -0x7548(r13)
-	  li        r3, 0x368
-	  li        r5, 0
-	  bl        -0x7E778
-	  stw       r3, 0x0(r31)
-	  li        r3, 0x2C
-	  li        r5, 0
-	  lwz       r4, -0x7548(r13)
-	  bl        -0x7E894
-	  mr.       r0, r3
-	  beq-      .loc_0x94
-	  bl        -0x63E0
-	  mr        r0, r3
+lbl_800A27B4:
+	lwz      r4, JASDram@sda21(r13)
+	li       r3, 0x368
+	li       r5, 0
+	bl       __nwa__FUlP7JKRHeapi
+	stw      r3, 0(r31)
+	li       r3, 0x2c
+	li       r5, 0
+	lwz      r4, JASDram@sda21(r13)
+	bl       __nw__FUlP7JKRHeapi
+	or.      r0, r3, r3
+	beq      lbl_800A27E8
+	bl       __ct__13JASOuterParamFv
+	mr       r0, r3
 
-	.loc_0x94:
-	  lwz       r3, 0x0(r31)
-	  addi      r30, r30, 0x1
-	  stw       r0, 0x33C(r3)
-	  lwz       r31, 0x0(r31)
-	  stw       r31, -0x7584(r13)
+lbl_800A27E8:
+	lwz      r3, 0(r31)
+	addi     r30, r30, 1
+	stw      r0, 0x33c(r3)
+	lwz      r31, 0(r31)
+	stw      r31, sFreeListEnd__8JASTrack@sda21(r13)
 
-	.loc_0xA8:
-	  cmpw      r30, r29
-	  blt+      .loc_0x60
-	  li        r0, 0
-	  stw       r0, 0x0(r31)
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_800A27FC:
+	cmpw     r30, r29
+	blt      lbl_800A27B4
+	li       r0, 0
+	stw      r0, 0(r31)
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -5251,21 +5341,18 @@ void JASTrack::getFreeMemCount()
 JASVibrate::JASVibrate()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        .loc_0x30
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-
-	.loc_0x30:
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       init__10JASVibrateFv
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -5277,13 +5364,12 @@ JASVibrate::JASVibrate()
 void JASVibrate::init()
 {
 	/*
-	.loc_0x0:
-	  lfs       f1, -0x75B0(r2)
-	  lfs       f0, -0x75E8(r2)
-	  stfs      f1, 0x8(r3)
-	  stfs      f0, 0x4(r3)
-	  stfs      f0, 0x0(r3)
-	  blr
+	lfs      f1, lbl_80516DB0@sda21(r2)
+	lfs      f0, lbl_80516D78@sda21(r2)
+	stfs     f1, 8(r3)
+	stfs     f0, 4(r3)
+	stfs     f0, 0(r3)
+	blr
 	*/
 }
 
@@ -5295,20 +5381,19 @@ void JASVibrate::init()
 void JASVibrate::incCounter()
 {
 	/*
-	.loc_0x0:
-	  lfs       f2, 0x0(r3)
-	  lfs       f1, 0x8(r3)
-	  lfd       f0, -0x75A8(r2)
-	  fadds     f1, f2, f1
-	  stfs      f1, 0x0(r3)
-	  lfs       f1, 0x0(r3)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0x1, 0x2
-	  bnelr-
-	  lfs       f0, -0x75A0(r2)
-	  fsubs     f0, f1, f0
-	  stfs      f0, 0x0(r3)
-	  blr
+	lfs      f2, 0(r3)
+	lfs      f1, 8(r3)
+	lfd      f0, lbl_80516DB8@sda21(r2)
+	fadds    f1, f2, f1
+	stfs     f1, 0(r3)
+	lfs      f1, 0(r3)
+	fcmpo    cr0, f1, f0
+	cror     2, 1, 2
+	bnelr
+	lfs      f0, lbl_80516DC0@sda21(r2)
+	fsubs    f0, f1, f0
+	stfs     f0, 0(r3)
+	blr
 	*/
 }
 
@@ -5320,56 +5405,55 @@ void JASVibrate::incCounter()
 void JASVibrate::getValue() const
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lfs       f2, -0x75E8(r2)
-	  lfs       f3, 0x4(r3)
-	  stw       r0, 0x24(r1)
-	  fcmpu     cr0, f2, f3
-	  bne-      .loc_0x24
-	  lfs       f1, -0x75E4(r2)
-	  b         .loc_0x94
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lfs      f2, lbl_80516D78@sda21(r2)
+	lfs      f3, 4(r3)
+	stw      r0, 0x24(r1)
+	fcmpu    cr0, f2, f3
+	bne      lbl_800A28C8
+	lfs      f1, lbl_80516D7C@sda21(r2)
+	b        lbl_800A2938
 
-	.loc_0x24:
-	  lfs       f1, -0x759C(r2)
-	  lfs       f0, 0x0(r3)
-	  fmuls     f1, f1, f0
-	  fcmpo     cr0, f1, f2
-	  bge-      .loc_0x64
-	  lfs       f0, -0x7598(r2)
-	  lis       r3, 0x8050
-	  addi      r3, r3, 0x71A0
-	  fmuls     f0, f1, f0
-	  fctiwz    f0, f0
-	  stfd      f0, 0x8(r1)
-	  lwz       r0, 0xC(r1)
-	  rlwinm    r0,r0,3,18,28
-	  lfsx      f0, r3, r0
-	  fneg      f1, f0
-	  b         .loc_0x88
+lbl_800A28C8:
+	lfs      f1, lbl_80516DC4@sda21(r2)
+	lfs      f0, 0(r3)
+	fmuls    f1, f1, f0
+	fcmpo    cr0, f1, f2
+	bge      lbl_800A2908
+	lfs      f0, lbl_80516DC8@sda21(r2)
+	lis      r3, sincosTable___5JMath@ha
+	addi     r3, r3, sincosTable___5JMath@l
+	fmuls    f0, f1, f0
+	fctiwz   f0, f0
+	stfd     f0, 8(r1)
+	lwz      r0, 0xc(r1)
+	rlwinm   r0, r0, 3, 0x12, 0x1c
+	lfsx     f0, r3, r0
+	fneg     f1, f0
+	b        lbl_800A292C
 
-	.loc_0x64:
-	  lfs       f0, -0x7594(r2)
-	  lis       r3, 0x8050
-	  addi      r3, r3, 0x71A0
-	  fmuls     f0, f1, f0
-	  fctiwz    f0, f0
-	  stfd      f0, 0x10(r1)
-	  lwz       r0, 0x14(r1)
-	  rlwinm    r0,r0,3,18,28
-	  lfsx      f1, r3, r0
+lbl_800A2908:
+	lfs      f0, lbl_80516DCC@sda21(r2)
+	lis      r3, sincosTable___5JMath@ha
+	addi     r3, r3, sincosTable___5JMath@l
+	fmuls    f0, f1, f0
+	fctiwz   f0, f0
+	stfd     f0, 0x10(r1)
+	lwz      r0, 0x14(r1)
+	rlwinm   r0, r0, 3, 0x12, 0x1c
+	lfsx     f1, r3, r0
 
-	.loc_0x88:
-	  fmuls     f1, f1, f3
-	  lfs       f2, -0x7590(r2)
-	  bl        -0x6364
+lbl_800A292C:
+	fmuls    f1, f1, f3
+	lfs      f2, lbl_80516DD0@sda21(r2)
+	bl       pitchToCent__9JASPlayerFff
 
-	.loc_0x94:
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_800A2938:
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 

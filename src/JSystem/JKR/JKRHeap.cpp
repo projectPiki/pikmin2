@@ -6,6 +6,90 @@
 #include "Dolphin/os.h"
 #include "JSystem/JKR/JKRDisposer.h"
 
+/*
+    Generated from dpostproc
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_80473A68
+    lbl_80473A68:
+        .asciz "JKRHeap.cpp"
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__7JKRHeap
+    __vt__7JKRHeap:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__7JKRHeapFv
+        .4byte callAllDisposer__7JKRHeapFv
+        .4byte 0
+        .4byte 0
+        .4byte dump_sort__7JKRHeapFv
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte do_changeGroupID__7JKRHeapFUc
+        .4byte do_getCurrentGroupId__7JKRHeapFv
+        .4byte state_register__7JKRHeapCFPQ27JKRHeap6TStateUl
+        .4byte state_compare__7JKRHeapCFRCQ27JKRHeap6TStateRCQ27JKRHeap6TState
+        .4byte state_dump__7JKRHeapCFRCQ27JKRHeap6TState
+
+    .section .sdata, "wa"  # 0x80514680 - 0x80514D80
+    .global sDefaultFillFlag__7JKRHeap
+    sDefaultFillFlag__7JKRHeap:
+        .byte 1
+        .skip 3
+
+    .section .sbss # 0x80514D80 - 0x80516360
+    .global sSystemHeap__7JKRHeap
+    sSystemHeap__7JKRHeap:
+        .skip 0x4
+    .global sCurrentHeap__7JKRHeap
+    sCurrentHeap__7JKRHeap:
+        .skip 0x4
+    .global sRootHeap__7JKRHeap
+    sRootHeap__7JKRHeap:
+        .skip 0x4
+    .global mErrorHandler__7JKRHeap
+    mErrorHandler__7JKRHeap:
+        .skip 0x4
+    .global sDefaultFillCheckFlag__7JKRHeap
+    sDefaultFillCheckFlag__7JKRHeap:
+        .skip 0x4
+    .global mCodeStart__7JKRHeap
+    mCodeStart__7JKRHeap:
+        .skip 0x4
+    .global mCodeEnd__7JKRHeap
+    mCodeEnd__7JKRHeap:
+        .skip 0x4
+    .global mUserRamStart__7JKRHeap
+    mUserRamStart__7JKRHeap:
+        .skip 0x4
+    .global mUserRamEnd__7JKRHeap
+    mUserRamEnd__7JKRHeap:
+        .skip 0x4
+    .global mMemorySize__7JKRHeap
+    mMemorySize__7JKRHeap:
+        .skip 0x4
+    .global bVerbose___Q27JKRHeap6TState
+    bVerbose___Q27JKRHeap6TState:
+        .skip 0x8
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_80516530
+    lbl_80516530:
+        .4byte 0x61626F72
+        .4byte 0x740A0000
+*/
+
 // TODO: This is stupid-hacky. Fix pls.
 typedef void Destructor(void*, short);
 #define INVOKE_VIRT_DTOR(o, v) (((*(Destructor***)(o))[2])((o), (v)))
@@ -147,100 +231,99 @@ JKRHeap::JKRHeap(void* startPtr, ulong size, JKRHeap* parentHeap,
 JKRHeap::~JKRHeap()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0xF8
-	  lis       r3, 0x804A
-	  addic.    r4, r30, 0x40
-	  subi      r0, r3, 0x100
-	  stw       r0, 0x0(r30)
-	  lwz       r3, 0x50(r30)
-	  beq-      .loc_0x3C
-	  addi      r4, r4, 0xC
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_800234D0
+	lis      r3, __vt__7JKRHeap@ha
+	addic.   r4, r30, 0x40
+	addi     r0, r3, __vt__7JKRHeap@l
+	stw      r0, 0(r30)
+	lwz      r3, 0x50(r30)
+	beq      lbl_80023414
+	addi     r4, r4, 0xc
 
-	.loc_0x3C:
-	  bl        0x3810
-	  lwz       r4, -0x77D0(r13)
-	  lwz       r3, 0x40(r4)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x54
-	  subi      r3, r3, 0xC
+lbl_80023414:
+	bl       remove__10JSUPtrListFP10JSUPtrLink
+	lwz      r4, sRootHeap__7JKRHeap@sda21(r13)
+	lwz      r3, 0x40(r4)
+	cmplwi   r3, 0
+	beq      lbl_8002342C
+	addi     r3, r3, -12
 
-	.loc_0x54:
-	  lwz       r0, -0x77D4(r13)
-	  cmplw     r0, r30
-	  bne-      .loc_0x78
-	  cmplwi    r3, 0
-	  bne-      .loc_0x70
-	  mr        r0, r4
-	  b         .loc_0x74
+lbl_8002342C:
+	lwz      r0, sCurrentHeap__7JKRHeap@sda21(r13)
+	cmplw    r0, r30
+	bne      lbl_80023450
+	cmplwi   r3, 0
+	bne      lbl_80023448
+	mr       r0, r4
+	b        lbl_8002344C
 
-	.loc_0x70:
-	  lwz       r0, 0xC(r3)
+lbl_80023448:
+	lwz      r0, 0xc(r3)
 
-	.loc_0x74:
-	  stw       r0, -0x77D4(r13)
+lbl_8002344C:
+	stw      r0, sCurrentHeap__7JKRHeap@sda21(r13)
 
-	.loc_0x78:
-	  lwz       r0, -0x77D8(r13)
-	  cmplw     r0, r30
-	  bne-      .loc_0x98
-	  cmplwi    r3, 0
-	  bne-      .loc_0x90
-	  b         .loc_0x94
+lbl_80023450:
+	lwz      r0, sSystemHeap__7JKRHeap@sda21(r13)
+	cmplw    r0, r30
+	bne      lbl_80023470
+	cmplwi   r3, 0
+	bne      lbl_80023468
+	b        lbl_8002346C
 
-	.loc_0x90:
-	  lwz       r4, 0xC(r3)
+lbl_80023468:
+	lwz      r4, 0xc(r3)
 
-	.loc_0x94:
-	  stw       r4, -0x77D8(r13)
+lbl_8002346C:
+	stw      r4, sSystemHeap__7JKRHeap@sda21(r13)
 
-	.loc_0x98:
-	  addic.    r0, r30, 0x5C
-	  beq-      .loc_0xAC
-	  addi      r3, r30, 0x5C
-	  li        r4, 0
-	  bl        0x33E8
+lbl_80023470:
+	addic.   r0, r30, 0x5c
+	beq      lbl_80023484
+	addi     r3, r30, 0x5c
+	li       r4, 0
+	bl       __dt__10JSUPtrListFv
 
-	.loc_0xAC:
-	  addic.    r0, r30, 0x40
-	  beq-      .loc_0xDC
-	  addic.    r0, r30, 0x4C
-	  beq-      .loc_0xC8
-	  addi      r3, r30, 0x4C
-	  li        r4, 0
-	  bl        0x3334
+lbl_80023484:
+	addic.   r0, r30, 0x40
+	beq      lbl_800234B4
+	addic.   r0, r30, 0x4c
+	beq      lbl_800234A0
+	addi     r3, r30, 0x4c
+	li       r4, 0
+	bl       __dt__10JSUPtrLinkFv
 
-	.loc_0xC8:
-	  addic.    r0, r30, 0x40
-	  beq-      .loc_0xDC
-	  addi      r3, r30, 0x40
-	  li        r4, 0
-	  bl        0x33B8
+lbl_800234A0:
+	addic.   r0, r30, 0x40
+	beq      lbl_800234B4
+	addi     r3, r30, 0x40
+	li       r4, 0
+	bl       __dt__10JSUPtrListFv
 
-	.loc_0xDC:
-	  mr        r3, r30
-	  li        r4, 0
-	  bl        -0x6488
-	  extsh.    r0, r31
-	  ble-      .loc_0xF8
-	  mr        r3, r30
-	  bl        0xBE8
+lbl_800234B4:
+	mr       r3, r30
+	li       r4, 0
+	bl       __dt__11JKRDisposerFv
+	extsh.   r0, r31
+	ble      lbl_800234D0
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0xF8:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_800234D0:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1146,16 +1229,15 @@ template <> JKRHeap* JSUTree<JKRHeap>::getEndChild() const { return nullptr; }
 template <> void JSUTreeIterator<JKRHeap>::operator++()
 {
 	/*
-	.loc_0x0:
-	  lwz       r4, 0x0(r3)
-	  lwz       r4, 0x18(r4)
-	  cmplwi    r4, 0
-	  beq-      .loc_0x14
-	  subi      r4, r4, 0xC
+	lwz      r4, 0(r3)
+	lwz      r4, 0x18(r4)
+	cmplwi   r4, 0
+	beq      lbl_80023BE8
+	addi     r4, r4, -12
 
-	.loc_0x14:
-	  stw       r4, 0x0(r3)
-	  blr
+lbl_80023BE8:
+	stw      r4, 0(r3)
+	blr
 	*/
 }
 
@@ -1198,12 +1280,11 @@ template <> int JSUTree<JKRHeap>::getNumChildren() const
 template <> JKRHeap* JSUTree<JKRHeap>::getFirstChild() const
 {
 	/*
-	.loc_0x0:
-	  lwz       r3, 0x0(r3)
-	  cmplwi    r3, 0
-	  beqlr-
-	  subi      r3, r3, 0xC
-	  blr
+	lwz      r3, 0(r3)
+	cmplwi   r3, 0
+	beqlr
+	addi     r3, r3, -12
+	blr
 	*/
 }
 
@@ -1299,56 +1380,55 @@ u32 JKRHeap::dispose(void* memory, ulong p2)
 void JKRHeap::dispose(void*, void*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  li        r31, 0
-	  stw       r30, 0x18(r1)
-	  mr        r30, r5
-	  stw       r29, 0x14(r1)
-	  mr        r29, r4
-	  stw       r28, 0x10(r1)
-	  mr        r28, r3
-	  lwz       r4, 0x5C(r3)
-	  b         .loc_0x7C
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	li       r31, 0
+	stw      r30, 0x18(r1)
+	mr       r30, r5
+	stw      r29, 0x14(r1)
+	mr       r29, r4
+	stw      r28, 0x10(r1)
+	mr       r28, r3
+	lwz      r4, 0x5c(r3)
+	b        lbl_80023D4C
 
-	.loc_0x34:
-	  lwz       r3, 0x0(r4)
-	  cmplw     r29, r3
-	  bgt-      .loc_0x74
-	  cmplw     r3, r30
-	  bge-      .loc_0x74
-	  lwz       r12, 0x0(r3)
-	  li        r4, -0x1
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  cmplwi    r31, 0
-	  bne-      .loc_0x6C
-	  lwz       r4, 0x5C(r28)
-	  b         .loc_0x7C
+lbl_80023D04:
+	lwz      r3, 0(r4)
+	cmplw    r29, r3
+	bgt      lbl_80023D44
+	cmplw    r3, r30
+	bge      lbl_80023D44
+	lwz      r12, 0(r3)
+	li       r4, -1
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	cmplwi   r31, 0
+	bne      lbl_80023D3C
+	lwz      r4, 0x5c(r28)
+	b        lbl_80023D4C
 
-	.loc_0x6C:
-	  lwz       r4, 0xC(r31)
-	  b         .loc_0x7C
+lbl_80023D3C:
+	lwz      r4, 0xc(r31)
+	b        lbl_80023D4C
 
-	.loc_0x74:
-	  mr        r31, r4
-	  lwz       r4, 0xC(r4)
+lbl_80023D44:
+	mr       r31, r4
+	lwz      r4, 0xc(r4)
 
-	.loc_0x7C:
-	  cmplwi    r4, 0
-	  bne+      .loc_0x34
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80023D4C:
+	cmplwi   r4, 0
+	bne      lbl_80023D04
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -1401,48 +1481,47 @@ void JKRHeap::dispose()
 void JKRHeap::copyMemory(void*, void*, unsigned long)
 {
 	/*
-	.loc_0x0:
-	  addi      r0, r5, 0x3
-	  rlwinm.   r0,r0,30,2,31
-	  mr        r5, r0
-	  beqlr-
-	  rlwinm.   r0,r0,29,3,31
-	  mtctr     r0
-	  beq-      .loc_0x70
+	addi     r0, r5, 3
+	rlwinm.  r0, r0, 0x1e, 2, 0x1f
+	mr       r5, r0
+	beqlr
+	rlwinm.  r0, r0, 0x1d, 3, 0x1f
+	mtctr    r0
+	beq      lbl_80023E34
 
-	.loc_0x1C:
-	  lwz       r0, 0x0(r4)
-	  stw       r0, 0x0(r3)
-	  lwz       r0, 0x4(r4)
-	  stw       r0, 0x4(r3)
-	  lwz       r0, 0x8(r4)
-	  stw       r0, 0x8(r3)
-	  lwz       r0, 0xC(r4)
-	  stw       r0, 0xC(r3)
-	  lwz       r0, 0x10(r4)
-	  stw       r0, 0x10(r3)
-	  lwz       r0, 0x14(r4)
-	  stw       r0, 0x14(r3)
-	  lwz       r0, 0x18(r4)
-	  stw       r0, 0x18(r3)
-	  lwz       r0, 0x1C(r4)
-	  addi      r4, r4, 0x20
-	  stw       r0, 0x1C(r3)
-	  addi      r3, r3, 0x20
-	  bdnz+     .loc_0x1C
-	  andi.     r5, r5, 0x7
-	  beqlr-
+lbl_80023DE0:
+	lwz      r0, 0(r4)
+	stw      r0, 0(r3)
+	lwz      r0, 4(r4)
+	stw      r0, 4(r3)
+	lwz      r0, 8(r4)
+	stw      r0, 8(r3)
+	lwz      r0, 0xc(r4)
+	stw      r0, 0xc(r3)
+	lwz      r0, 0x10(r4)
+	stw      r0, 0x10(r3)
+	lwz      r0, 0x14(r4)
+	stw      r0, 0x14(r3)
+	lwz      r0, 0x18(r4)
+	stw      r0, 0x18(r3)
+	lwz      r0, 0x1c(r4)
+	addi     r4, r4, 0x20
+	stw      r0, 0x1c(r3)
+	addi     r3, r3, 0x20
+	bdnz     lbl_80023DE0
+	andi.    r5, r5, 7
+	beqlr
 
-	.loc_0x70:
-	  mtctr     r5
+lbl_80023E34:
+	mtctr    r5
 
-	.loc_0x74:
-	  lwz       r0, 0x0(r4)
-	  addi      r4, r4, 0x4
-	  stw       r0, 0x0(r3)
-	  addi      r3, r3, 0x4
-	  bdnz+     .loc_0x74
-	  blr
+lbl_80023E38:
+	lwz      r0, 0(r4)
+	addi     r4, r4, 4
+	stw      r0, 0(r3)
+	addi     r3, r3, 4
+	bdnz     lbl_80023E38
+	blr
 	*/
 }
 
@@ -1818,330 +1897,319 @@ void operator delete[](void* memory)
 JKRHeap::TState::~TState()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x90(r1)
-	  mflr      r0
-	  stw       r0, 0x94(r1)
-	  stmw      r26, 0x78(r1)
-	  mr.       r31, r3
-	  mr        r28, r4
-	  beq-      .loc_0x3FC
-	  lbz       r0, 0x18(r31)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x258
-	  lwz       r3, 0x10(r31)
-	  li        r0, 0
-	  lwz       r5, 0x14(r31)
-	  cmplwi    r3, 0
-	  stw       r0, 0x54(r1)
-	  stw       r0, 0x58(r1)
-	  beq-      .loc_0x48
-	  b         .loc_0x4C
+	stwu     r1, -0x90(r1)
+	mflr     r0
+	stw      r0, 0x94(r1)
+	stmw     r26, 0x78(r1)
+	or.      r31, r3, r3
+	mr       r28, r4
+	beq      lbl_800244F8
+	lbz      r0, 0x18(r31)
+	cmplwi   r0, 0
+	beq      lbl_80024354
+	lwz      r3, 0x10(r31)
+	li       r0, 0
+	lwz      r5, 0x14(r31)
+	cmplwi   r3, 0
+	stw      r0, 0x54(r1)
+	stw      r0, 0x58(r1)
+	beq      lbl_80024144
+	b        lbl_80024148
 
-	.loc_0x48:
-	  lwz       r3, -0x77D4(r13)
+lbl_80024144:
+	lwz      r3, sCurrentHeap__7JKRHeap@sda21(r13)
 
-	.loc_0x4C:
-	  li        r6, 0
-	  li        r0, -0x1
-	  stw       r3, 0x64(r1)
-	  addi      r4, r1, 0x54
-	  stw       r5, 0x68(r1)
-	  stb       r6, 0x6C(r1)
-	  stw       r6, 0x70(r1)
-	  stw       r0, 0x74(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x54(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x10(r31)
-	  mr        r4, r31
-	  addi      r5, r1, 0x54
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x58(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xA4
-	  b         .loc_0xEC
+lbl_80024148:
+	li       r6, 0
+	li       r0, -1
+	stw      r3, 0x64(r1)
+	addi     r4, r1, 0x54
+	stw      r5, 0x68(r1)
+	stb      r6, 0x6c(r1)
+	stw      r6, 0x70(r1)
+	stw      r0, 0x74(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x54(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 0x10(r31)
+	mr       r4, r31
+	addi     r5, r1, 0x54
+	lwz      r12, 0(r3)
+	lwz      r12, 0x58(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_800241A0
+	b        lbl_800241E8
 
-	.loc_0xA4:
-	  mr        r3, r31
-	  addi      r4, r1, 0x54
-	  bl        0x48C
-	  lbz       r0, -0x77B0(r13)
-	  cmplwi    r0, 0
-	  beq-      .loc_0xEC
-	  lwz       r3, 0x10(r31)
-	  mr        r4, r31
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x5C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x64(r1)
-	  addi      r4, r1, 0x54
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x5C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_800241A0:
+	mr       r3, r31
+	addi     r4, r1, 0x54
+	bl state_dumpDifference__7JKRHeapFRCQ27JKRHeap6TStateRCQ27JKRHeap6TState lbz
+r0, bVerbose___Q27JKRHeap6TState@sda21(r13) cmplwi   r0, 0 beq      lbl_800241E8
+	lwz      r3, 0x10(r31)
+	mr       r4, r31
+	lwz      r12, 0(r3)
+	lwz      r12, 0x5c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 0x64(r1)
+	addi     r4, r1, 0x54
+	lwz      r12, 0(r3)
+	lwz      r12, 0x5c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0xEC:
-	  lbz       r0, 0x6C(r1)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x258
-	  addi      r3, r1, 0x54
-	  bl        0x418
-	  mr        r29, r3
-	  addi      r3, r1, 0x54
-	  bl        0x404
-	  li        r0, 0
-	  mr        r4, r3
-	  stw       r0, 0x30(r1)
-	  addi      r3, r1, 0x40
-	  mr        r5, r29
-	  li        r6, 0
-	  stw       r0, 0x34(r1)
-	  bl        0x3C4
-	  addi      r3, r1, 0x4C
-	  bl        0x3A8
-	  lwz       r3, 0x40(r1)
-	  addi      r4, r1, 0x30
-	  lwz       r5, 0x44(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x54(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x64(r1)
-	  addi      r4, r1, 0x54
-	  addi      r5, r1, 0x30
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x58(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x178
-	  b         .loc_0x1C0
+lbl_800241E8:
+	lbz      r0, 0x6c(r1)
+	cmplwi   r0, 0
+	beq      lbl_80024354
+	addi     r3, r1, 0x54
+	bl       getId__Q27JKRHeap6TStateCFv
+	mr       r29, r3
+	addi     r3, r1, 0x54
+	bl       getHeap__Q27JKRHeap6TStateCFv
+	li       r0, 0
+	mr       r4, r3
+	stw      r0, 0x30(r1)
+	addi     r3, r1, 0x40
+	mr       r5, r29
+	li       r6, 0
+	stw      r0, 0x34(r1)
+	bl       __ct__Q37JKRHeap6TState9TArgumentFPC7JKRHeapUlb
+	addi     r3, r1, 0x4c
+	bl       __ct__Q37JKRHeap6TState9TLocationFv
+	lwz      r3, 0x40(r1)
+	addi     r4, r1, 0x30
+	lwz      r5, 0x44(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x54(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 0x64(r1)
+	addi     r4, r1, 0x54
+	addi     r5, r1, 0x30
+	lwz      r12, 0(r3)
+	lwz      r12, 0x58(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80024274
+	b        lbl_800242BC
 
-	.loc_0x178:
-	  addi      r3, r1, 0x54
-	  addi      r4, r1, 0x30
-	  bl        0x3B8
-	  lbz       r0, -0x77B0(r13)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x1C0
-	  lwz       r3, 0x64(r1)
-	  addi      r4, r1, 0x54
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x5C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x40(r1)
-	  addi      r4, r1, 0x30
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x5C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_80024274:
+	addi     r3, r1, 0x54
+	addi     r4, r1, 0x30
+	bl state_dumpDifference__7JKRHeapFRCQ27JKRHeap6TStateRCQ27JKRHeap6TState lbz
+r0, bVerbose___Q27JKRHeap6TState@sda21(r13) cmplwi   r0, 0 beq      lbl_800242BC
+	lwz      r3, 0x64(r1)
+	addi     r4, r1, 0x54
+	lwz      r12, 0(r3)
+	lwz      r12, 0x5c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 0x40(r1)
+	addi     r4, r1, 0x30
+	lwz      r12, 0(r3)
+	lwz      r12, 0x5c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x1C0:
-	  addi      r3, r1, 0x30
-	  bl        0x30C
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x258
-	  addi      r3, r1, 0x30
-	  bl        0x340
-	  mr        r29, r3
-	  addi      r3, r1, 0x30
-	  bl        0x32C
-	  mr        r4, r3
-	  mr        r5, r29
-	  addi      r3, r1, 0xC
-	  li        r6, 0
-	  bl        0x25C
-	  lwz       r3, 0x40(r1)
-	  addi      r4, r1, 0x30
-	  addi      r5, r1, 0xC
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x58(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x224
-	  bl        0x22C
-	  b         .loc_0x24C
+lbl_800242BC:
+	addi     r3, r1, 0x30
+	bl       isCompareOnDestructed__Q27JKRHeap6TStateCFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80024354
+	addi     r3, r1, 0x30
+	bl       getId__Q27JKRHeap6TStateCFv
+	mr       r29, r3
+	addi     r3, r1, 0x30
+	bl       getHeap__Q27JKRHeap6TStateCFv
+	mr       r4, r3
+	mr       r5, r29
+	addi     r3, r1, 0xc
+	li       r6, 0
+	bl       __ct__Q27JKRHeap6TStateFPC7JKRHeapUlb
+	lwz      r3, 0x40(r1)
+	addi     r4, r1, 0x30
+	addi     r5, r1, 0xc
+	lwz      r12, 0(r3)
+	lwz      r12, 0x58(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80024320
+	bl       isVerbose__Q27JKRHeap6TStateFv
+	b        lbl_80024348
 
-	.loc_0x224:
-	  addi      r3, r1, 0x30
-	  addi      r4, r1, 0xC
-	  bl        0x30C
-	  bl        0x218
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x24C
-	  addi      r3, r1, 0x30
-	  bl        .loc_0x414
-	  addi      r3, r1, 0xC
-	  bl        .loc_0x414
+lbl_80024320:
+	addi     r3, r1, 0x30
+	addi     r4, r1, 0xc
+	bl state_dumpDifference__7JKRHeapFRCQ27JKRHeap6TStateRCQ27JKRHeap6TState bl
+isVerbose__Q27JKRHeap6TStateFv clrlwi.  r0, r3, 0x18 beq      lbl_80024348 addi
+r3, r1, 0x30 bl       dump__Q27JKRHeap6TStateCFv addi     r3, r1, 0xc bl
+dump__Q27JKRHeap6TStateCFv
 
-	.loc_0x24C:
-	  addi      r3, r1, 0xC
-	  li        r4, -0x1
-	  bl        .loc_0x0
+lbl_80024348:
+	addi     r3, r1, 0xc
+	li       r4, -1
+	bl       __dt__Q27JKRHeap6TStateFv
 
-	.loc_0x258:
-	  extsh.    r0, r28
-	  ble-      .loc_0x3FC
-	  lwz       r28, -0x77D0(r13)
-	  cmplwi    r28, 0
-	  beq-      .loc_0x3DC
-	  lwz       r0, 0x30(r28)
-	  cmplw     r0, r31
-	  bgt-      .loc_0x3D4
-	  lwz       r0, 0x34(r28)
-	  cmplw     r31, r0
-	  bge-      .loc_0x3D4
-	  lwz       r0, 0x48(r28)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x3CC
-	  addi      r3, r28, 0x40
-	  bl        -0x770
-	  cmplwi    r3, 0
-	  beq-      .loc_0x2A4
-	  subi      r3, r3, 0xC
+lbl_80024354:
+	extsh.   r0, r28
+	ble      lbl_800244F8
+	lwz      r28, sRootHeap__7JKRHeap@sda21(r13)
+	cmplwi   r28, 0
+	beq      lbl_800244D8
+	lwz      r0, 0x30(r28)
+	cmplw    r0, r31
+	bgt      lbl_800244D0
+	lwz      r0, 0x34(r28)
+	cmplw    r31, r0
+	bge      lbl_800244D0
+	lwz      r0, 0x48(r28)
+	cmplwi   r0, 0
+	beq      lbl_800244C8
+	addi     r3, r28, 0x40
+	bl       getFirstLink__10JSUPtrListCFv
+	cmplwi   r3, 0
+	beq      lbl_800243A0
+	addi     r3, r3, -12
 
-	.loc_0x2A4:
-	  mr        r29, r3
-	  b         .loc_0x3C4
+lbl_800243A0:
+	mr       r29, r3
+	b        lbl_800244C0
 
-	.loc_0x2AC:
-	  lwz       r30, 0xC(r29)
-	  lwz       r0, 0x30(r30)
-	  cmplw     r0, r31
-	  bgt-      .loc_0x3A4
-	  lwz       r0, 0x34(r30)
-	  cmplw     r31, r0
-	  bge-      .loc_0x3A4
-	  lwz       r0, 0x48(r30)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x39C
-	  addi      r3, r30, 0x40
-	  bl        -0x7C8
-	  mr        r26, r3
-	  b         .loc_0x38C
+lbl_800243A8:
+	lwz      r30, 0xc(r29)
+	lwz      r0, 0x30(r30)
+	cmplw    r0, r31
+	bgt      lbl_800244A0
+	lwz      r0, 0x34(r30)
+	cmplw    r31, r0
+	bge      lbl_800244A0
+	lwz      r0, 0x48(r30)
+	cmplwi   r0, 0
+	beq      lbl_80024498
+	addi     r3, r30, 0x40
+	bl       "getFirstChild__17JSUTree<7JKRHeap>CFv"
+	mr       r26, r3
+	b        lbl_80024488
 
-	.loc_0x2E4:
-	  lwz       r27, 0xC(r26)
-	  lwz       r0, 0x30(r27)
-	  cmplw     r0, r31
-	  bgt-      .loc_0x370
-	  lwz       r0, 0x34(r27)
-	  cmplw     r31, r0
-	  bge-      .loc_0x370
-	  addi      r3, r27, 0x40
-	  bl        -0x7FC
-	  cmplwi    r3, 0
-	  beq-      .loc_0x368
-	  addi      r3, r27, 0x40
-	  bl        -0x804
-	  mr        r4, r3
-	  addi      r3, r1, 0x8
-	  bl        -0x820
-	  b         .loc_0x34C
+lbl_800243E0:
+	lwz      r27, 0xc(r26)
+	lwz      r0, 0x30(r27)
+	cmplw    r0, r31
+	bgt      lbl_8002446C
+	lwz      r0, 0x34(r27)
+	cmplw    r31, r0
+	bge      lbl_8002446C
+	addi     r3, r27, 0x40
+	bl       "getNumChildren__17JSUTree<7JKRHeap>CFv"
+	cmplwi   r3, 0
+	beq      lbl_80024464
+	addi     r3, r27, 0x40
+	bl       "getFirstChild__17JSUTree<7JKRHeap>CFv"
+	mr       r4, r3
+	addi     r3, r1, 8
+	bl       "__ct__25JSUTreeIterator<7JKRHeap>FP17JSUTree<7JKRHeap>"
+	b        lbl_80024448
 
-	.loc_0x328:
-	  addi      r3, r1, 0x8
-	  bl        -0x838
-	  mr        r4, r31
-	  bl        -0xB00
-	  cmplwi    r3, 0
-	  beq-      .loc_0x344
-	  b         .loc_0x374
+lbl_80024424:
+	addi     r3, r1, 8
+	bl       "__rf__25JSUTreeIterator<7JKRHeap>CFv"
+	mr       r4, r31
+	bl       find__7JKRHeapCFPv
+	cmplwi   r3, 0
+	beq      lbl_80024440
+	b        lbl_80024470
 
-	.loc_0x344:
-	  addi      r3, r1, 0x8
-	  bl        -0x870
+lbl_80024440:
+	addi     r3, r1, 8
+	bl       "__pp__25JSUTreeIterator<7JKRHeap>Fv"
 
-	.loc_0x34C:
-	  addi      r3, r27, 0x40
-	  bl        -0x880
-	  mr        r4, r3
-	  addi      r3, r1, 0x8
-	  bl        -0x8A4
-	  rlwinm.   r0,r3,0,24,31
-	  bne+      .loc_0x328
+lbl_80024448:
+	addi     r3, r27, 0x40
+	bl       "getEndChild__17JSUTree<7JKRHeap>CFv"
+	mr       r4, r3
+	addi     r3, r1, 8
+	bl       "__ne__25JSUTreeIterator<7JKRHeap>CFPC17JSUTree<7JKRHeap>"
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_80024424
 
-	.loc_0x368:
-	  mr        r3, r27
-	  b         .loc_0x374
+lbl_80024464:
+	mr       r3, r27
+	b        lbl_80024470
 
-	.loc_0x370:
-	  li        r3, 0
+lbl_8002446C:
+	li       r3, 0
 
-	.loc_0x374:
-	  cmplwi    r3, 0
-	  beq-      .loc_0x380
-	  b         .loc_0x3A8
+lbl_80024470:
+	cmplwi   r3, 0
+	beq      lbl_8002447C
+	b        lbl_800244A4
 
-	.loc_0x380:
-	  mr        r3, r26
-	  bl        -0x8E0
-	  mr        r26, r3
+lbl_8002447C:
+	mr       r3, r26
+	bl       "getNextChild__17JSUTree<7JKRHeap>CFv"
+	mr       r26, r3
 
-	.loc_0x38C:
-	  addi      r3, r30, 0x40
-	  bl        -0x8C0
-	  cmplw     r26, r3
-	  bne+      .loc_0x2E4
+lbl_80024488:
+	addi     r3, r30, 0x40
+	bl       "getEndChild__17JSUTree<7JKRHeap>CFv"
+	cmplw    r26, r3
+	bne      lbl_800243E0
 
-	.loc_0x39C:
-	  mr        r3, r30
-	  b         .loc_0x3A8
+lbl_80024498:
+	mr       r3, r30
+	b        lbl_800244A4
 
-	.loc_0x3A4:
-	  li        r3, 0
+lbl_800244A0:
+	li       r3, 0
 
-	.loc_0x3A8:
-	  cmplwi    r3, 0
-	  beq-      .loc_0x3B4
-	  b         .loc_0x3E0
+lbl_800244A4:
+	cmplwi   r3, 0
+	beq      lbl_800244B0
+	b        lbl_800244DC
 
-	.loc_0x3B4:
-	  lwz       r29, 0x18(r29)
-	  cmplwi    r29, 0
-	  beq-      .loc_0x3C4
-	  subi      r29, r29, 0xC
+lbl_800244B0:
+	lwz      r29, 0x18(r29)
+	cmplwi   r29, 0
+	beq      lbl_800244C0
+	addi     r29, r29, -12
 
-	.loc_0x3C4:
-	  cmplwi    r29, 0
-	  bne+      .loc_0x2AC
+lbl_800244C0:
+	cmplwi   r29, 0
+	bne      lbl_800243A8
 
-	.loc_0x3CC:
-	  mr        r3, r28
-	  b         .loc_0x3E0
+lbl_800244C8:
+	mr       r3, r28
+	b        lbl_800244DC
 
-	.loc_0x3D4:
-	  li        r3, 0
-	  b         .loc_0x3E0
+lbl_800244D0:
+	li       r3, 0
+	b        lbl_800244DC
 
-	.loc_0x3DC:
-	  li        r3, 0
+lbl_800244D8:
+	li       r3, 0
 
-	.loc_0x3E0:
-	  cmplwi    r3, 0
-	  beq-      .loc_0x3FC
-	  lwz       r12, 0x0(r3)
-	  mr        r4, r31
-	  lwz       r12, 0x28(r12)
-	  mtctr     r12
-	  bctrl
+lbl_800244DC:
+	cmplwi   r3, 0
+	beq      lbl_800244F8
+	lwz      r12, 0(r3)
+	mr       r4, r31
+	lwz      r12, 0x28(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x3FC:
-	  mr        r3, r31
-	  lmw       r26, 0x78(r1)
-	  lwz       r0, 0x94(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x90
-	  blr
-
-	.loc_0x414:
+lbl_800244F8:
+	mr       r3, r31
+	lmw      r26, 0x78(r1)
+	lwz      r0, 0x94(r1)
+	mtlr     r0
+	addi     r1, r1, 0x90
+	blr
 	*/
 }
 

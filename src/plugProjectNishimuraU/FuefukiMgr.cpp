@@ -1,5 +1,336 @@
 #include "types.h"
 
+/*
+    Generated from dpostproc
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_80488C20
+    lbl_80488C20:
+        .4byte 0x3234362D
+        .4byte 0x46756566
+        .4byte 0x756B694D
+        .4byte 0x67720000
+    .global lbl_80488C30
+    lbl_80488C30:
+        .4byte 0x83748347
+        .4byte 0x8374834C
+        .4byte 0x83808356
+        .4byte 0x837D836C
+        .4byte 0x815B8357
+        .4byte 0x83830000
+        .4byte 0x456E656D
+        .4byte 0x79506172
+        .4byte 0x6D734261
+        .4byte 0x73650000
+        .4byte 0x8F6F8CBB
+        .4byte 0x8E9E8AD4
+        .4byte 0x284D6178
+        .4byte 0x29000000
+        .4byte 0x8F6F8CBB
+        .4byte 0x8E9E8AD4
+        .4byte 0x284D696E
+        .4byte 0x29000000
+        .4byte 0x8F6F8CBB
+        .4byte 0x8AD48A75
+        .4byte 0x00000000
+        .4byte 0x83748347
+        .4byte 0x8AD48A75
+        .4byte 0x28312900
+        .4byte 0x83748347
+        .4byte 0x8AD48A75
+        .4byte 0x28328160
+        .4byte 0x3A91E097
+        .4byte 0xF1836983
+        .4byte 0x56290000
+        .4byte 0x83748347
+        .4byte 0x8AD48A75
+        .4byte 0x28328160
+        .4byte 0x3A91E097
+        .4byte 0xF1834183
+        .4byte 0x8A290000
+        .4byte 0x82E082AA
+        .4byte 0x82AB8E9E
+        .4byte 0x8AD40000
+        .4byte 0x93A682B0
+        .4byte 0x83578383
+        .4byte 0x83938376
+        .4byte 0x8E9E8AD4
+        .4byte 0x00000000
+        .4byte 0x92CA8FED
+        .4byte 0x8F6F8CBB
+        .4byte 0x97A60000
+        .4byte 0x43726561
+        .4byte 0x74757265
+        .4byte 0x3A3A5072
+        .4byte 0x6F706572
+        .4byte 0x74790000
+        .4byte 0x66726963
+        .4byte 0x74696F6E
+        .4byte 0x286E6F74
+        .4byte 0x20757365
+        .4byte 0x64290000
+        .4byte 0x77616C6C
+        .4byte 0x5265666C
+        .4byte 0x65637469
+        .4byte 0x6F6E0000
+        .4byte 0x66616365
+        .4byte 0x44697241
+        .4byte 0x646A7573
+        .4byte 0x74000000
+        .4byte 0x626F756E
+        .4byte 0x63654661
+        .4byte 0x63746F72
+        .4byte 0x00000000
+        .4byte 0x83898343
+        .4byte 0x837482CC
+        .4byte 0x8D8282B3
+        .4byte 0x00000000
+        .4byte 0x83898343
+        .4byte 0x837489F1
+        .4byte 0x959C97A6
+        .4byte 0x00000000
+        .4byte 0x8C7889FA
+        .4byte 0x83898343
+        .4byte 0x83740000
+        .4byte 0x837D8362
+        .4byte 0x837682C6
+        .4byte 0x82CC9396
+        .4byte 0x82E80000
+        .4byte 0x837D8362
+        .4byte 0x837682C6
+        .4byte 0x82CC82A0
+        .4byte 0x82BD82E8
+        .4byte 0x837C838A
+        .4byte 0x83538393
+        .4byte 0x82CC9149
+        .4byte 0x92E80000
+        .4byte 0x8373834E
+        .4byte 0x837E8393
+        .4byte 0x82C682CC
+        .4byte 0x82A082BD
+        .4byte 0x82E80000
+        .4byte 0x835F8381
+        .4byte 0x815B8357
+        .4byte 0x83588350
+        .4byte 0x815B838B
+        .4byte 0x585A0000
+        .4byte 0x835F8381
+        .4byte 0x815B8357
+        .4byte 0x83588350
+        .4byte 0x815B838B
+        .4byte 0x59000000
+        .4byte 0x835F8381
+        .4byte 0x815B8357
+        .4byte 0x8374838C
+        .4byte 0x815B8380
+        .4byte 0x00000000
+        .4byte 0x89F1935D
+        .4byte 0x91AC9378
+        .4byte 0x97A60000
+        .4byte 0x89F1935D
+        .4byte 0x8DC591E5
+        .4byte 0x91AC9378
+        .4byte 0x00000000
+        .4byte 0x8365838A
+        .4byte 0x8367838A
+        .4byte 0x815B0000
+        .4byte 0x837A815B
+        .4byte 0x838094CD
+        .4byte 0x88CD0000
+        .4byte 0x83768389
+        .4byte 0x83438378
+        .4byte 0x815B8367
+        .4byte 0x8B9797A3
+        .4byte 0x00000000
+        .4byte 0x8E8B8A45
+        .4byte 0x8B9797A3
+        .4byte 0x00000000
+        .4byte 0x8E8B8A45
+        .4byte 0x8A709378
+        .4byte 0x00000000
+        .4byte 0x92548DF5
+        .4byte 0x8B9797A3
+        .4byte 0x00000000
+        .4byte 0x92548DF5
+        .4byte 0x8A709378
+        .4byte 0x00000000
+        .4byte 0x905582E8
+        .4byte 0x95A582A2
+        .4byte 0x97CD0000
+        .4byte 0x905582E8
+        .4byte 0x95A582A2
+        .4byte 0x835F8381
+        .4byte 0x815B8357
+        .4byte 0x00000000
+        .4byte 0x905582E8
+        .4byte 0x95A582A2
+        .4byte 0x94CD88CD
+        .4byte 0x00000000
+        .4byte 0x905582E8
+        .4byte 0x95A582A2
+        .4byte 0x97A60000
+        .4byte 0x8D558C82
+        .4byte 0x89C2945C
+        .4byte 0x94CD88CD
+        .4byte 0x00000000
+        .4byte 0x8D558C82
+        .4byte 0x89C2945C
+        .4byte 0x8A709378
+        .4byte 0x00000000
+        .4byte 0x8D558C82
+        .4byte 0x83718362
+        .4byte 0x836794CD
+        .4byte 0x88CD0000
+        .4byte 0x8D558C82
+        .4byte 0x83718362
+        .4byte 0x83678A70
+        .4byte 0x93780000
+        .4byte 0x8C7889FA
+        .4byte 0x8E9E8AD4
+        .4byte 0x00000000
+        .4byte 0x90CE89BB
+        .4byte 0x8E9E8AD4
+        .4byte 0x00000000
+        .4byte 0x83718362
+        .4byte 0x83768368
+        .4byte 0x838D8362
+        .4byte 0x8376835F
+        .4byte 0x8381815B
+        .4byte 0x83570000
+        .4byte 0x926E906B
+        .4byte 0x8B4390E2
+        .4byte 0x8A6D97A7
+        .4byte 0x00000000
+        .4byte 0x926E906B
+        .4byte 0x8B4390E2
+        .4byte 0x8E9E8AD4
+        .4byte 0x00000000
+        .4byte 0x905582E8
+        .4byte 0x95A582A2
+        .4byte 0x91C58C82
+        .4byte 0x82600000
+        .4byte 0x905582E8
+        .4byte 0x95A582A2
+        .4byte 0x92A39574
+        .4byte 0x82500000
+        .4byte 0x905582E8
+        .4byte 0x95A582A2
+        .4byte 0x91C58C82
+        .4byte 0x82610000
+        .4byte 0x905582E8
+        .4byte 0x95A582A2
+        .4byte 0x92A39574
+        .4byte 0x82510000
+        .4byte 0x905582E8
+        .4byte 0x95A582A2
+        .4byte 0x91C58C82
+        .4byte 0x82620000
+        .4byte 0x905582E8
+        .4byte 0x95A582A2
+        .4byte 0x92A39574
+        .4byte 0x82520000
+        .4byte 0x905582E8
+        .4byte 0x95A582A2
+        .4byte 0x91C58C82
+        .4byte 0x82630000
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__Q34Game7Fuefuki5Parms
+    __vt__Q34Game7Fuefuki5Parms:
+        .4byte 0
+        .4byte 0
+        .4byte read__Q34Game7Fuefuki5ParmsFR6Stream
+    .global __vt__Q34Game7Fuefuki3Mgr
+    __vt__Q34Game7Fuefuki3Mgr:
+        .4byte 0
+        .4byte 0
+        .4byte doAnimation__Q24Game12EnemyMgrBaseFv
+        .4byte doEntry__Q24Game12EnemyMgrBaseFv
+        .4byte doSetView__Q24Game12EnemyMgrBaseFi
+        .4byte doViewCalc__Q24Game12EnemyMgrBaseFv
+        .4byte doSimulation__Q24Game12EnemyMgrBaseFf
+        .4byte doDirectDraw__Q24Game12EnemyMgrBaseFR8Graphics
+        .4byte doSimpleDraw__16GenericObjectMgrFP8Viewport
+        .4byte loadResources__16GenericObjectMgrFv
+        .4byte resetMgr__16GenericObjectMgrFv
+        .4byte pausable__16GenericObjectMgrFv
+        .4byte frozenable__16GenericObjectMgrFv
+        .4byte getMatrixLoadType__16GenericObjectMgrFv
+        .4byte 0
+        .4byte 0
+        .4byte "@4@__dt__Q34Game7Fuefuki3MgrFv"
+        .4byte getChildCount__5CNodeFv
+        .4byte "@4@getObject__Q24Game12EnemyMgrBaseFPv"
+        .4byte "@4@getNext__Q24Game12EnemyMgrBaseFPv"
+        .4byte "@4@getStart__Q24Game12EnemyMgrBaseFv"
+        .4byte "@4@getEnd__Q24Game12EnemyMgrBaseFv"
+        .4byte __dt__Q34Game7Fuefuki3MgrFv
+        .4byte getObject__Q24Game12EnemyMgrBaseFPv
+        .4byte getNext__Q24Game12EnemyMgrBaseFPv
+        .4byte getStart__Q24Game12EnemyMgrBaseFv
+        .4byte getEnd__Q24Game12EnemyMgrBaseFv
+        .4byte alloc__Q24Game12EnemyMgrBaseFv
+        .4byte birth__Q24Game12EnemyMgrBaseFRQ24Game13EnemyBirthArg
+        .4byte getJ3DModelData__Q24Game12EnemyMgrBaseCFv
+        .4byte getGenerator__Q24Game12EnemyMgrBaseCFv
+        .4byte killAll__Q24Game12EnemyMgrBaseFPQ24Game15CreatureKillArg
+        .4byte setupSoundViewerAndBas__Q24Game12EnemyMgrBaseFv
+        .4byte setDebugParm__Q24Game12EnemyMgrBaseFUl
+        .4byte resetDebugParm__Q24Game12EnemyMgrBaseFUl
+        .4byte getMaxObjects__Q24Game12EnemyMgrBaseCFv
+        .4byte startMovie__Q24Game12EnemyMgrBaseFv
+        .4byte endMovie__Q24Game12EnemyMgrBaseFv
+        .4byte get__Q24Game12EnemyMgrBaseFPv
+        .4byte isAlwaysMovieActor__Q24Game12EnemyMgrBaseFv
+        .4byte createObj__Q34Game7Fuefuki3MgrFi
+        .4byte getEnemy__Q34Game7Fuefuki3MgrFi
+        .4byte doAlloc__Q34Game7Fuefuki3MgrFv
+        .4byte getEnemyTypeID__Q34Game7Fuefuki3MgrFv
+        .4byte createModel__Q24Game12EnemyMgrBaseFv
+        .4byte initParms__Q24Game12EnemyMgrBaseFv
+        .4byte loadResource__Q24Game12EnemyMgrBaseFv
+        .4byte initObjects__Q24Game12EnemyMgrBaseFv
+        .4byte initStoneSetting__Q24Game12EnemyMgrBaseFv
+        .4byte loadModelData__Q24Game12EnemyMgrBaseFP10JKRArchive
+        .4byte loadModelData__Q24Game12EnemyMgrBaseFv
+        .4byte loadAnimData__Q24Game12EnemyMgrBaseFv
+        .4byte loadTexData__Q24Game12EnemyMgrBaseFv
+        .4byte doLoadBmd__Q24Game12EnemyMgrBaseFPv
+        .4byte doLoadBdl__Q24Game12EnemyMgrBaseFPv
+        .4byte initGenerator__Q24Game12EnemyMgrBaseFv
+        .4byte 0
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_8051BC70
+    lbl_8051BC70:
+        .4byte 0x41F00000
+    .global lbl_8051BC74
+    lbl_8051BC74:
+        .4byte 0x00000000
+    .global lbl_8051BC78
+    lbl_8051BC78:
+        .4byte 0x42C80000
+    .global lbl_8051BC7C
+    lbl_8051BC7C:
+        .4byte 0x41A00000
+    .global lbl_8051BC80
+    lbl_8051BC80:
+        .4byte 0x40400000
+    .global lbl_8051BC84
+    lbl_8051BC84:
+        .4byte 0x40A00000
+    .global lbl_8051BC88
+    lbl_8051BC88:
+        .4byte 0x41200000
+    .global lbl_8051BC8C
+    lbl_8051BC8C:
+        .float 0.5
+    .global lbl_8051BC90
+    lbl_8051BC90:
+        .float 1.0
+        .4byte 0x00000000
+*/
+
 namespace Game {
 
 /*
@@ -10,27 +341,26 @@ namespace Game {
 Fuefuki::Mgr::Mgr(int, unsigned char)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        -0x16CFB8
-	  lis       r3, 0x804D
-	  lis       r4, 0x8049
-	  subi      r5, r3, 0x3E64
-	  mr        r3, r31
-	  stw       r5, 0x0(r31)
-	  addi      r5, r5, 0x38
-	  subi      r0, r4, 0x73D0
-	  stw       r5, 0x4(r31)
-	  stw       r0, 0x18(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       __ct__Q24Game12EnemyMgrBaseFiUc
+	lis      r3, __vt__Q34Game7Fuefuki3Mgr@ha
+	lis      r4, lbl_80488C30@ha
+	addi     r5, r3, __vt__Q34Game7Fuefuki3Mgr@l
+	mr       r3, r31
+	stw      r5, 0(r31)
+	addi     r5, r5, 0x38
+	addi     r0, r4, lbl_80488C30@l
+	stw      r5, 4(r31)
+	stw      r0, 0x18(r31)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -42,29 +372,26 @@ Fuefuki::Mgr::Mgr(int, unsigned char)
 void Fuefuki::Mgr::doAlloc()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  li        r3, 0x970
-	  bl        -0x277DFC
-	  mr.       r4, r3
-	  beq-      .loc_0x2C
-	  bl        .loc_0x48
-	  mr        r4, r3
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	li       r3, 0x970
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_8029BCB4
+	bl       __ct__Q34Game7Fuefuki5ParmsFv
+	mr       r4, r3
 
-	.loc_0x2C:
-	  mr        r3, r31
-	  bl        -0x16C41C
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-
-	.loc_0x48:
+lbl_8029BCB4:
+	mr       r3, r31
+	bl       init__Q24Game12EnemyMgrBaseFPQ24Game14EnemyParmsBase
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -76,27 +403,24 @@ void Fuefuki::Mgr::doAlloc()
 Fuefuki::Parms::Parms()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        -0x192548
-	  lis       r4, 0x804D
-	  addi      r3, r31, 0x7F8
-	  subi      r0, r4, 0x3E70
-	  li        r4, 0x1
-	  stw       r0, 0xD8(r31)
-	  bl        .loc_0x48
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-
-	.loc_0x48:
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       __ct__Q24Game14EnemyParmsBaseFv
+	lis      r4, __vt__Q34Game7Fuefuki5Parms@ha
+	addi     r3, r31, 0x7f8
+	addi     r0, r4, __vt__Q34Game7Fuefuki5Parms@l
+	li       r4, 1
+	stw      r0, 0xd8(r31)
+	bl       __ct__Q44Game7Fuefuki5Parms11ProperParmsFv
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -108,165 +432,164 @@ Fuefuki::Parms::Parms()
 Fuefuki::Parms::ProperParms::ProperParms()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  extsh.    r0, r4
-	  lis       r4, 0x8049
-	  stw       r31, 0xC(r1)
-	  subi      r31, r4, 0x73E0
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  beq-      .loc_0x30
-	  addi      r0, r30, 0x174
-	  stw       r0, 0x0(r30)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	extsh.   r0, r4
+	lis      r4, lbl_80488C20@ha
+	stw      r31, 0xc(r1)
+	addi     r31, r4, lbl_80488C20@l
+	stw      r30, 8(r1)
+	mr       r30, r3
+	beq      lbl_8029BD48
+	addi     r0, r30, 0x174
+	stw      r0, 0(r30)
 
-	.loc_0x30:
-	  li        r0, 0
-	  lis       r5, 0x6670
-	  stw       r0, 0x4(r30)
-	  addi      r0, r31, 0x28
-	  mr        r4, r30
-	  addi      r3, r30, 0xC
-	  stw       r0, 0x8(r30)
-	  addi      r5, r5, 0x3031
-	  addi      r6, r31, 0x38
-	  bl        0x1778EC
-	  lis       r3, 0x804B
-	  lis       r5, 0x6670
-	  subi      r0, r3, 0x5344
-	  lfs       f0, -0x26F0(r2)
-	  stw       r0, 0xC(r30)
-	  mr        r4, r30
-	  lfs       f1, -0x26EC(r2)
-	  addi      r3, r30, 0x34
-	  stfs      f0, 0x24(r30)
-	  addi      r5, r5, 0x3032
-	  lfs       f0, -0x26E8(r2)
-	  addi      r6, r31, 0x48
-	  stfs      f1, 0x2C(r30)
-	  stfs      f0, 0x30(r30)
-	  bl        0x1778B0
-	  lis       r3, 0x804B
-	  lis       r5, 0x6670
-	  subi      r0, r3, 0x5344
-	  lfs       f0, -0x26E4(r2)
-	  stw       r0, 0x34(r30)
-	  mr        r4, r30
-	  lfs       f1, -0x26EC(r2)
-	  addi      r3, r30, 0x5C
-	  stfs      f0, 0x4C(r30)
-	  addi      r5, r5, 0x3033
-	  lfs       f0, -0x26E8(r2)
-	  addi      r6, r31, 0x58
-	  stfs      f1, 0x54(r30)
-	  stfs      f0, 0x58(r30)
-	  bl        0x177874
-	  lis       r3, 0x804B
-	  lis       r5, 0x6670
-	  subi      r0, r3, 0x5344
-	  lfs       f0, -0x26E0(r2)
-	  stw       r0, 0x5C(r30)
-	  mr        r4, r30
-	  lfs       f1, -0x26EC(r2)
-	  addi      r3, r30, 0x84
-	  stfs      f0, 0x74(r30)
-	  addi      r5, r5, 0x3131
-	  lfs       f0, -0x26E8(r2)
-	  addi      r6, r31, 0x64
-	  stfs      f1, 0x7C(r30)
-	  stfs      f0, 0x80(r30)
-	  bl        0x177838
-	  lis       r3, 0x804B
-	  lis       r5, 0x6670
-	  subi      r0, r3, 0x5344
-	  lfs       f1, -0x26EC(r2)
-	  stw       r0, 0x84(r30)
-	  mr        r4, r30
-	  lfs       f0, -0x26DC(r2)
-	  addi      r3, r30, 0xAC
-	  stfs      f1, 0x9C(r30)
-	  addi      r5, r5, 0x3132
-	  addi      r6, r31, 0x70
-	  stfs      f1, 0xA4(r30)
-	  stfs      f0, 0xA8(r30)
-	  bl        0x177800
-	  lis       r3, 0x804B
-	  lis       r5, 0x6670
-	  subi      r0, r3, 0x5344
-	  lfs       f0, -0x26DC(r2)
-	  stw       r0, 0xAC(r30)
-	  mr        r4, r30
-	  lfs       f1, -0x26EC(r2)
-	  addi      r3, r30, 0xD4
-	  stfs      f0, 0xC4(r30)
-	  addi      r5, r5, 0x3133
-	  lfs       f0, -0x26D8(r2)
-	  addi      r6, r31, 0x88
-	  stfs      f1, 0xCC(r30)
-	  stfs      f0, 0xD0(r30)
-	  bl        0x1777C4
-	  lis       r3, 0x804B
-	  lis       r5, 0x6670
-	  subi      r0, r3, 0x5344
-	  lfs       f0, -0x26D8(r2)
-	  stw       r0, 0xD4(r30)
-	  mr        r4, r30
-	  lfs       f1, -0x26EC(r2)
-	  addi      r3, r30, 0xFC
-	  stfs      f0, 0xEC(r30)
-	  addi      r5, r5, 0x3231
-	  lfs       f0, -0x26E4(r2)
-	  addi      r6, r31, 0xA0
-	  stfs      f1, 0xF4(r30)
-	  stfs      f0, 0xF8(r30)
-	  bl        0x177788
-	  lis       r3, 0x804B
-	  lis       r5, 0x6670
-	  subi      r0, r3, 0x5344
-	  lfs       f0, -0x26E0(r2)
-	  stw       r0, 0xFC(r30)
-	  mr        r4, r30
-	  lfs       f1, -0x26EC(r2)
-	  addi      r3, r30, 0x124
-	  stfs      f0, 0x114(r30)
-	  addi      r5, r5, 0x3232
-	  lfs       f0, -0x26D8(r2)
-	  addi      r6, r31, 0xAC
-	  stfs      f1, 0x11C(r30)
-	  stfs      f0, 0x120(r30)
-	  bl        0x17774C
-	  lis       r3, 0x804B
-	  lis       r5, 0x6670
-	  subi      r0, r3, 0x5344
-	  lfs       f1, -0x26EC(r2)
-	  stw       r0, 0x124(r30)
-	  mr        r4, r30
-	  lfs       f0, -0x26DC(r2)
-	  addi      r3, r30, 0x14C
-	  stfs      f1, 0x13C(r30)
-	  addi      r5, r5, 0x3331
-	  addi      r6, r31, 0xC0
-	  stfs      f1, 0x144(r30)
-	  stfs      f0, 0x148(r30)
-	  bl        0x177714
-	  lis       r3, 0x804B
-	  lfs       f2, -0x26D4(r2)
-	  subi      r0, r3, 0x5344
-	  lfs       f1, -0x26EC(r2)
-	  stw       r0, 0x14C(r30)
-	  mr        r3, r30
-	  lfs       f0, -0x26D0(r2)
-	  stfs      f2, 0x164(r30)
-	  stfs      f1, 0x16C(r30)
-	  stfs      f0, 0x170(r30)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8029BD48:
+	li       r0, 0
+	lis      r5, 0x66703031@ha
+	stw      r0, 4(r30)
+	addi     r0, r31, 0x28
+	mr       r4, r30
+	addi     r3, r30, 0xc
+	stw      r0, 8(r30)
+	addi     r5, r5, 0x66703031@l
+	addi     r6, r31, 0x38
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x66703032@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_8051BC70@sda21(r2)
+	stw      r0, 0xc(r30)
+	mr       r4, r30
+	lfs      f1, lbl_8051BC74@sda21(r2)
+	addi     r3, r30, 0x34
+	stfs     f0, 0x24(r30)
+	addi     r5, r5, 0x66703032@l
+	lfs      f0, lbl_8051BC78@sda21(r2)
+	addi     r6, r31, 0x48
+	stfs     f1, 0x2c(r30)
+	stfs     f0, 0x30(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x66703033@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_8051BC7C@sda21(r2)
+	stw      r0, 0x34(r30)
+	mr       r4, r30
+	lfs      f1, lbl_8051BC74@sda21(r2)
+	addi     r3, r30, 0x5c
+	stfs     f0, 0x4c(r30)
+	addi     r5, r5, 0x66703033@l
+	lfs      f0, lbl_8051BC78@sda21(r2)
+	addi     r6, r31, 0x58
+	stfs     f1, 0x54(r30)
+	stfs     f0, 0x58(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x66703131@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_8051BC80@sda21(r2)
+	stw      r0, 0x5c(r30)
+	mr       r4, r30
+	lfs      f1, lbl_8051BC74@sda21(r2)
+	addi     r3, r30, 0x84
+	stfs     f0, 0x74(r30)
+	addi     r5, r5, 0x66703131@l
+	lfs      f0, lbl_8051BC78@sda21(r2)
+	addi     r6, r31, 0x64
+	stfs     f1, 0x7c(r30)
+	stfs     f0, 0x80(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x66703132@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f1, lbl_8051BC74@sda21(r2)
+	stw      r0, 0x84(r30)
+	mr       r4, r30
+	lfs      f0, lbl_8051BC84@sda21(r2)
+	addi     r3, r30, 0xac
+	stfs     f1, 0x9c(r30)
+	addi     r5, r5, 0x66703132@l
+	addi     r6, r31, 0x70
+	stfs     f1, 0xa4(r30)
+	stfs     f0, 0xa8(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x66703133@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_8051BC84@sda21(r2)
+	stw      r0, 0xac(r30)
+	mr       r4, r30
+	lfs      f1, lbl_8051BC74@sda21(r2)
+	addi     r3, r30, 0xd4
+	stfs     f0, 0xc4(r30)
+	addi     r5, r5, 0x66703133@l
+	lfs      f0, lbl_8051BC88@sda21(r2)
+	addi     r6, r31, 0x88
+	stfs     f1, 0xcc(r30)
+	stfs     f0, 0xd0(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x66703231@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_8051BC88@sda21(r2)
+	stw      r0, 0xd4(r30)
+	mr       r4, r30
+	lfs      f1, lbl_8051BC74@sda21(r2)
+	addi     r3, r30, 0xfc
+	stfs     f0, 0xec(r30)
+	addi     r5, r5, 0x66703231@l
+	lfs      f0, lbl_8051BC7C@sda21(r2)
+	addi     r6, r31, 0xa0
+	stfs     f1, 0xf4(r30)
+	stfs     f0, 0xf8(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x66703232@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_8051BC80@sda21(r2)
+	stw      r0, 0xfc(r30)
+	mr       r4, r30
+	lfs      f1, lbl_8051BC74@sda21(r2)
+	addi     r3, r30, 0x124
+	stfs     f0, 0x114(r30)
+	addi     r5, r5, 0x66703232@l
+	lfs      f0, lbl_8051BC88@sda21(r2)
+	addi     r6, r31, 0xac
+	stfs     f1, 0x11c(r30)
+	stfs     f0, 0x120(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x66703331@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f1, lbl_8051BC74@sda21(r2)
+	stw      r0, 0x124(r30)
+	mr       r4, r30
+	lfs      f0, lbl_8051BC84@sda21(r2)
+	addi     r3, r30, 0x14c
+	stfs     f1, 0x13c(r30)
+	addi     r5, r5, 0x66703331@l
+	addi     r6, r31, 0xc0
+	stfs     f1, 0x144(r30)
+	stfs     f0, 0x148(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lfs      f2, lbl_8051BC8C@sda21(r2)
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f1, lbl_8051BC74@sda21(r2)
+	stw      r0, 0x14c(r30)
+	mr       r3, r30
+	lfs      f0, lbl_8051BC90@sda21(r2)
+	stfs     f2, 0x164(r30)
+	stfs     f1, 0x16c(r30)
+	stfs     f0, 0x170(r30)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -278,31 +601,30 @@ Fuefuki::Parms::ProperParms::ProperParms()
 void Fuefuki::Mgr::createObj(int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  mulli     r3, r31, 0x304
-	  addi      r3, r3, 0x10
-	  bl        -0x278000
-	  lis       r4, 0x802A
-	  lis       r5, 0x802A
-	  subi      r4, r4, 0x3DE4
-	  mr        r7, r31
-	  subi      r5, r5, 0x4018
-	  li        r6, 0x304
-	  bl        -0x1DA5D8
-	  stw       r3, 0x44(r30)
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	mulli    r3, r31, 0x304
+	addi     r3, r3, 0x10
+	bl       __nwa__FUl
+	lis      r4, __ct__Q34Game7Fuefuki3ObjFv@ha
+	lis      r5, __dt__Q34Game7Fuefuki3ObjFv@ha
+	addi     r4, r4, __ct__Q34Game7Fuefuki3ObjFv@l
+	mr       r7, r31
+	addi     r5, r5, __dt__Q34Game7Fuefuki3ObjFv@l
+	li       r6, 0x304
+	bl       __construct_new_array
+	stw      r3, 0x44(r30)
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -314,58 +636,57 @@ void Fuefuki::Mgr::createObj(int)
 Fuefuki::Obj::~Obj()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r3
-	  stw       r30, 0x8(r1)
-	  mr        r30, r4
-	  beq-      .loc_0xA0
-	  lis       r3, 0x804D
-	  addi      r0, r31, 0x2F4
-	  subi      r4, r3, 0x3D28
-	  stw       r4, 0x0(r31)
-	  addi      r3, r4, 0x1B0
-	  addi      r4, r4, 0x2FC
-	  stw       r3, 0x178(r31)
-	  lwz       r3, 0x17C(r31)
-	  stw       r4, 0x0(r3)
-	  lwz       r3, 0x17C(r31)
-	  sub       r0, r0, r3
-	  stw       r0, 0xC(r3)
-	  beq-      .loc_0x90
-	  lis       r3, 0x804B
-	  addi      r0, r31, 0x2BC
-	  subi      r4, r3, 0x5CDC
-	  addi      r3, r31, 0x290
-	  stw       r4, 0x0(r31)
-	  addi      r5, r4, 0x1B0
-	  addi      r6, r4, 0x2F8
-	  li        r4, -0x1
-	  stw       r5, 0x178(r31)
-	  lwz       r5, 0x17C(r31)
-	  stw       r6, 0x0(r5)
-	  lwz       r5, 0x17C(r31)
-	  sub       r0, r0, r5
-	  stw       r0, 0xC(r5)
-	  bl        0x175514
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r3, r3
+	stw      r30, 8(r1)
+	mr       r30, r4
+	beq      lbl_8029C088
+	lis      r3, __vt__Q34Game7Fuefuki3Obj@ha
+	addi     r0, r31, 0x2f4
+	addi     r4, r3, __vt__Q34Game7Fuefuki3Obj@l
+	stw      r4, 0(r31)
+	addi     r3, r4, 0x1b0
+	addi     r4, r4, 0x2fc
+	stw      r3, 0x178(r31)
+	lwz      r3, 0x17c(r31)
+	stw      r4, 0(r3)
+	lwz      r3, 0x17c(r31)
+	subf     r0, r3, r0
+	stw      r0, 0xc(r3)
+	beq      lbl_8029C078
+	lis      r3, __vt__Q24Game9EnemyBase@ha
+	addi     r0, r31, 0x2bc
+	addi     r4, r3, __vt__Q24Game9EnemyBase@l
+	addi     r3, r31, 0x290
+	stw      r4, 0(r31)
+	addi     r5, r4, 0x1b0
+	addi     r6, r4, 0x2f8
+	li       r4, -1
+	stw      r5, 0x178(r31)
+	lwz      r5, 0x17c(r31)
+	stw      r6, 0(r5)
+	lwz      r5, 0x17c(r31)
+	subf     r0, r5, r0
+	stw      r0, 0xc(r5)
+	bl       __dt__5CNodeFv
 
-	.loc_0x90:
-	  extsh.    r0, r30
-	  ble-      .loc_0xA0
-	  mr        r3, r31
-	  bl        -0x277FD0
+lbl_8029C078:
+	extsh.   r0, r30
+	ble      lbl_8029C088
+	mr       r3, r31
+	bl       __dl__FPv
 
-	.loc_0xA0:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8029C088:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -377,11 +698,10 @@ Fuefuki::Obj::~Obj()
 void Fuefuki::Mgr::getEnemy(int)
 {
 	/*
-	.loc_0x0:
-	  mulli     r0, r4, 0x304
-	  lwz       r3, 0x44(r3)
-	  add       r3, r3, r0
-	  blr
+	mulli    r0, r4, 0x304
+	lwz      r3, 0x44(r3)
+	add      r3, r3, r0
+	blr
 	*/
 }
 
@@ -393,27 +713,26 @@ void Fuefuki::Mgr::getEnemy(int)
 void Fuefuki::Parms::read(Stream&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  bl        0x177724
-	  mr        r4, r31
-	  addi      r3, r30, 0xE0
-	  bl        0x177718
-	  mr        r4, r31
-	  addi      r3, r30, 0x7F8
-	  bl        0x17770C
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	bl       read__10ParametersFR6Stream
+	mr       r4, r31
+	addi     r3, r30, 0xe0
+	bl       read__10ParametersFR6Stream
+	mr       r4, r31
+	addi     r3, r30, 0x7f8
+	bl       read__10ParametersFR6Stream
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -425,55 +744,54 @@ void Fuefuki::Parms::read(Stream&)
 Fuefuki::Mgr::~Mgr()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x94
-	  lis       r3, 0x804D
-	  subi      r3, r3, 0x3E64
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x38
-	  stw       r0, 0x4(r30)
-	  beq-      .loc_0x84
-	  lis       r3, 0x804B
-	  subi      r3, r3, 0x760
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x38
-	  stw       r0, 0x4(r30)
-	  beq-      .loc_0x84
-	  lis       r3, 0x804B
-	  addic.    r0, r30, 0x4
-	  subi      r3, r3, 0x5304
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x38
-	  stw       r0, 0x4(r30)
-	  beq-      .loc_0x84
-	  lis       r4, 0x804B
-	  addi      r3, r30, 0x4
-	  subi      r0, r4, 0x5324
-	  li        r4, 0
-	  stw       r0, 0x4(r30)
-	  bl        0x175404
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_8029C198
+	lis      r3, __vt__Q34Game7Fuefuki3Mgr@ha
+	addi     r3, r3, __vt__Q34Game7Fuefuki3Mgr@l
+	stw      r3, 0(r30)
+	addi     r0, r3, 0x38
+	stw      r0, 4(r30)
+	beq      lbl_8029C188
+	lis      r3, __vt__Q24Game12EnemyMgrBase@ha
+	addi     r3, r3, __vt__Q24Game12EnemyMgrBase@l
+	stw      r3, 0(r30)
+	addi     r0, r3, 0x38
+	stw      r0, 4(r30)
+	beq      lbl_8029C188
+	lis      r3, __vt__Q24Game13IEnemyMgrBase@ha
+	addic.   r0, r30, 4
+	addi     r3, r3, __vt__Q24Game13IEnemyMgrBase@l
+	stw      r3, 0(r30)
+	addi     r0, r3, 0x38
+	stw      r0, 4(r30)
+	beq      lbl_8029C188
+	lis      r4, __vt__16GenericContainer@ha
+	addi     r3, r30, 4
+	addi     r0, r4, __vt__16GenericContainer@l
+	li       r4, 0
+	stw      r0, 4(r30)
+	bl       __dt__5CNodeFv
 
-	.loc_0x84:
-	  extsh.    r0, r31
-	  ble-      .loc_0x94
-	  mr        r3, r30
-	  bl        -0x2780E0
+lbl_8029C188:
+	extsh.   r0, r31
+	ble      lbl_8029C198
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x94:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8029C198:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -492,9 +810,8 @@ u32 Fuefuki::Mgr::getEnemyTypeID() { return 0x29; }
 Fuefuki::Mgr::@4 @~Mgr()
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x4
-	  b         -0xBC
+	addi     r3, r3, -4
+	b        __dt__Q34Game7Fuefuki3MgrFv
 	*/
 }
 } // namespace Game

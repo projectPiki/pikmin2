@@ -1,6 +1,140 @@
 #include "types.h"
 
 /*
+    Generated from dpostproc
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__18J3DModelLoader_v21
+    __vt__18J3DModelLoader_v21:
+        .4byte 0
+        .4byte 0
+        .4byte load__14J3DModelLoaderFPCvUl
+        .4byte loadMaterialTable__14J3DModelLoaderFPCv
+        .4byte loadBinaryDisplayList__14J3DModelLoaderFPCvUl
+        .4byte calcLoadSize__14J3DModelLoaderFPCvUl
+        .4byte calcLoadMaterialTableSize__14J3DModelLoaderFPCv
+        .4byte calcLoadBinaryDisplayListSize__14J3DModelLoaderFPCvUl
+        .4byte countMaterialNum__14J3DModelLoaderFPCv
+        .4byte setupBBoardInfo__14J3DModelLoaderFv
+        .4byte __dt__18J3DModelLoader_v21Fv
+        .4byte readMaterial__14J3DModelLoaderFPC16J3DMaterialBlockUl
+        .4byte readMaterial_v21__18J3DModelLoader_v21FPC20J3DMaterialBlock_v21Ul
+        .4byte readMaterialTable__14J3DModelLoaderFPC16J3DMaterialBlockUl
+        .4byte
+   readMaterialTable_v21__18J3DModelLoader_v21FPC20J3DMaterialBlock_v21Ul .4byte
+   calcSizeMaterial__14J3DModelLoaderFPC16J3DMaterialBlockUl .4byte
+   calcSizeMaterialTable__14J3DModelLoaderFPC16J3DMaterialBlockUl .global
+   __vt__18J3DModelLoader_v26
+    __vt__18J3DModelLoader_v26:
+        .4byte 0
+        .4byte 0
+        .4byte load__14J3DModelLoaderFPCvUl
+        .4byte loadMaterialTable__14J3DModelLoaderFPCv
+        .4byte loadBinaryDisplayList__14J3DModelLoaderFPCvUl
+        .4byte calcLoadSize__14J3DModelLoaderFPCvUl
+        .4byte calcLoadMaterialTableSize__14J3DModelLoaderFPCv
+        .4byte calcLoadBinaryDisplayListSize__14J3DModelLoaderFPCvUl
+        .4byte countMaterialNum__14J3DModelLoaderFPCv
+        .4byte setupBBoardInfo__14J3DModelLoaderFv
+        .4byte __dt__18J3DModelLoader_v26Fv
+        .4byte readMaterial__18J3DModelLoader_v26FPC16J3DMaterialBlockUl
+        .4byte readMaterial_v21__14J3DModelLoaderFPC20J3DMaterialBlock_v21Ul
+        .4byte readMaterialTable__18J3DModelLoader_v26FPC16J3DMaterialBlockUl
+        .4byte
+   readMaterialTable_v21__14J3DModelLoaderFPC20J3DMaterialBlock_v21Ul .4byte
+   calcSizeMaterial__18J3DModelLoader_v26FPC16J3DMaterialBlockUl .4byte
+   calcSizeMaterialTable__18J3DModelLoader_v26FPC16J3DMaterialBlockUl .global
+   "__vt__73J3DMtxCalcNoAnm<27J3DMtxCalcCalcTransformMaya,24J3DMtxCalcJ3DSysInitMaya>"
+    "__vt__73J3DMtxCalcNoAnm<27J3DMtxCalcCalcTransformMaya,24J3DMtxCalcJ3DSysInitMaya>":
+        .4byte 0
+        .4byte 0
+        .4byte
+   "__dt__73J3DMtxCalcNoAnm<27J3DMtxCalcCalcTransformMaya,24J3DMtxCalcJ3DSysInitMaya>Fv"
+        .4byte setAnmTransform__10J3DMtxCalcFP15J3DAnmTransform
+        .4byte getAnmTransform__10J3DMtxCalcFv
+        .4byte setAnmTransform__10J3DMtxCalcFUcP15J3DAnmTransform
+        .4byte getAnmTransform__10J3DMtxCalcFUc
+        .4byte setWeight__10J3DMtxCalcFUcf
+        .4byte getWeight__10J3DMtxCalcCFUc
+        .4byte
+   "init__73J3DMtxCalcNoAnm<27J3DMtxCalcCalcTransformMaya,24J3DMtxCalcJ3DSysInitMaya>FRC3VecRA3_A4_Cf"
+        .4byte
+   "calc__73J3DMtxCalcNoAnm<27J3DMtxCalcCalcTransformMaya,24J3DMtxCalcJ3DSysInitMaya>Fv"
+    .global
+   "__vt__83J3DMtxCalcNoAnm<32J3DMtxCalcCalcTransformSoftimage,29J3DMtxCalcJ3DSysInitSoftimage>"
+    "__vt__83J3DMtxCalcNoAnm<32J3DMtxCalcCalcTransformSoftimage,29J3DMtxCalcJ3DSysInitSoftimage>":
+        .4byte 0
+        .4byte 0
+        .4byte
+   "__dt__83J3DMtxCalcNoAnm<32J3DMtxCalcCalcTransformSoftimage,29J3DMtxCalcJ3DSysInitSoftimage>Fv"
+        .4byte setAnmTransform__10J3DMtxCalcFP15J3DAnmTransform
+        .4byte getAnmTransform__10J3DMtxCalcFv
+        .4byte setAnmTransform__10J3DMtxCalcFUcP15J3DAnmTransform
+        .4byte getAnmTransform__10J3DMtxCalcFUc
+        .4byte setWeight__10J3DMtxCalcFUcf
+        .4byte getWeight__10J3DMtxCalcCFUc
+        .4byte
+   "init__83J3DMtxCalcNoAnm<32J3DMtxCalcCalcTransformSoftimage,29J3DMtxCalcJ3DSysInitSoftimage>FRC3VecRA3_A4_Cf"
+        .4byte
+   "calc__83J3DMtxCalcNoAnm<32J3DMtxCalcCalcTransformSoftimage,29J3DMtxCalcJ3DSysInitSoftimage>Fv"
+    .global
+   "__vt__75J3DMtxCalcNoAnm<28J3DMtxCalcCalcTransformBasic,25J3DMtxCalcJ3DSysInitBasic>"
+    "__vt__75J3DMtxCalcNoAnm<28J3DMtxCalcCalcTransformBasic,25J3DMtxCalcJ3DSysInitBasic>":
+        .4byte 0
+        .4byte 0
+        .4byte
+   "__dt__75J3DMtxCalcNoAnm<28J3DMtxCalcCalcTransformBasic,25J3DMtxCalcJ3DSysInitBasic>Fv"
+        .4byte setAnmTransform__10J3DMtxCalcFP15J3DAnmTransform
+        .4byte getAnmTransform__10J3DMtxCalcFv
+        .4byte setAnmTransform__10J3DMtxCalcFUcP15J3DAnmTransform
+        .4byte getAnmTransform__10J3DMtxCalcFUc
+        .4byte setWeight__10J3DMtxCalcFUcf
+        .4byte getWeight__10J3DMtxCalcCFUc
+        .4byte
+   "init__75J3DMtxCalcNoAnm<28J3DMtxCalcCalcTransformBasic,25J3DMtxCalcJ3DSysInitBasic>FRC3VecRA3_A4_Cf"
+        .4byte
+   "calc__75J3DMtxCalcNoAnm<28J3DMtxCalcCalcTransformBasic,25J3DMtxCalcJ3DSysInitBasic>Fv"
+    .global __vt__19J3DMtxCalcNoAnmBase
+    __vt__19J3DMtxCalcNoAnmBase:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__19J3DMtxCalcNoAnmBaseFv
+        .4byte setAnmTransform__10J3DMtxCalcFP15J3DAnmTransform
+        .4byte getAnmTransform__10J3DMtxCalcFv
+        .4byte setAnmTransform__10J3DMtxCalcFUcP15J3DAnmTransform
+        .4byte getAnmTransform__10J3DMtxCalcFUc
+        .4byte setWeight__10J3DMtxCalcFUcf
+        .4byte getWeight__10J3DMtxCalcCFUc
+        .4byte 0
+        .4byte 0
+    .global __vt__10J3DTexture
+    __vt__10J3DTexture:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__10J3DTextureFv
+    .global __vt__14J3DModelLoader
+    __vt__14J3DModelLoader:
+        .4byte 0
+        .4byte 0
+        .4byte load__14J3DModelLoaderFPCvUl
+        .4byte loadMaterialTable__14J3DModelLoaderFPCv
+        .4byte loadBinaryDisplayList__14J3DModelLoaderFPCvUl
+        .4byte calcLoadSize__14J3DModelLoaderFPCvUl
+        .4byte calcLoadMaterialTableSize__14J3DModelLoaderFPCv
+        .4byte calcLoadBinaryDisplayListSize__14J3DModelLoaderFPCvUl
+        .4byte countMaterialNum__14J3DModelLoaderFPCv
+        .4byte setupBBoardInfo__14J3DModelLoaderFv
+        .4byte __dt__14J3DModelLoaderFv
+        .4byte readMaterial__14J3DModelLoaderFPC16J3DMaterialBlockUl
+        .4byte readMaterial_v21__14J3DModelLoaderFPC20J3DMaterialBlock_v21Ul
+        .4byte readMaterialTable__14J3DModelLoaderFPC16J3DMaterialBlockUl
+        .4byte
+   readMaterialTable_v21__14J3DModelLoaderFPC20J3DMaterialBlock_v21Ul .4byte
+   calcSizeMaterial__14J3DModelLoaderFPC16J3DMaterialBlockUl .4byte
+   calcSizeMaterialTable__14J3DModelLoaderFPC16J3DMaterialBlockUl
+*/
+
+/*
  * --INFO--
  * Address:	8006F894
  * Size:	000154
@@ -8,102 +142,101 @@
 void J3DModelLoaderDataBase::load(const void*, unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  cmplwi    r3, 0
-	  mr        r5, r4
-	  stw       r0, 0x44(r1)
-	  bne-      .loc_0x20
-	  li        r3, 0
-	  b         .loc_0x144
+	stwu     r1, -0x40(r1)
+	mflr     r0
+	cmplwi   r3, 0
+	mr       r5, r4
+	stw      r0, 0x44(r1)
+	bne      lbl_8006F8B4
+	li       r3, 0
+	b        lbl_8006F9D8
 
-	.loc_0x20:
-	  lwz       r6, 0x0(r3)
-	  subis     r0, r6, 0x4A33
-	  cmplwi    r0, 0x4431
-	  bne-      .loc_0x48
-	  lwz       r4, 0x4(r3)
-	  subis     r0, r4, 0x626D
-	  cmplwi    r0, 0x6431
-	  bne-      .loc_0x48
-	  li        r3, 0
-	  b         .loc_0x144
+lbl_8006F8B4:
+	lwz      r6, 0(r3)
+	addis    r0, r6, 0xb5cd
+	cmplwi   r0, 0x4431
+	bne      lbl_8006F8DC
+	lwz      r4, 4(r3)
+	addis    r0, r4, 0x9d93
+	cmplwi   r0, 0x6431
+	bne      lbl_8006F8DC
+	li       r3, 0
+	b        lbl_8006F9D8
 
-	.loc_0x48:
-	  subis     r0, r6, 0x4A33
-	  cmplwi    r0, 0x4432
-	  bne-      .loc_0xC4
-	  lwz       r4, 0x4(r3)
-	  subis     r0, r4, 0x626D
-	  cmplwi    r0, 0x6432
-	  bne-      .loc_0xC4
-	  lis       r4, 0x804A
-	  li        r6, 0
-	  addi      r0, r4, 0x1F74
-	  stw       r6, 0x28(r1)
-	  lis       r4, 0x804A
-	  stw       r0, 0x24(r1)
-	  addi      r0, r4, 0x1E30
-	  mr        r4, r3
-	  addi      r3, r1, 0x24
-	  stw       r6, 0x2C(r1)
-	  stw       r6, 0x30(r1)
-	  stw       r6, 0x34(r1)
-	  stw       r6, 0x38(r1)
-	  stb       r6, 0x3C(r1)
-	  sth       r6, 0x3E(r1)
-	  stw       r0, 0x24(r1)
-	  bl        0x26C
-	  lis       r5, 0x804A
-	  lis       r4, 0x804A
-	  addi      r0, r5, 0x1E30
-	  stw       r0, 0x24(r1)
-	  addi      r0, r4, 0x1F74
-	  stw       r0, 0x24(r1)
-	  b         .loc_0x144
+lbl_8006F8DC:
+	addis    r0, r6, 0xb5cd
+	cmplwi   r0, 0x4432
+	bne      lbl_8006F958
+	lwz      r4, 4(r3)
+	addis    r0, r4, 0x9d93
+	cmplwi   r0, 0x6432
+	bne      lbl_8006F958
+	lis      r4, __vt__14J3DModelLoader@ha
+	li       r6, 0
+	addi     r0, r4, __vt__14J3DModelLoader@l
+	stw      r6, 0x28(r1)
+	lis      r4, __vt__18J3DModelLoader_v21@ha
+	stw      r0, 0x24(r1)
+	addi     r0, r4, __vt__18J3DModelLoader_v21@l
+	mr       r4, r3
+	addi     r3, r1, 0x24
+	stw      r6, 0x2c(r1)
+	stw      r6, 0x30(r1)
+	stw      r6, 0x34(r1)
+	stw      r6, 0x38(r1)
+	stb      r6, 0x3c(r1)
+	sth      r6, 0x3e(r1)
+	stw      r0, 0x24(r1)
+	bl       load__14J3DModelLoaderFPCvUl
+	lis      r5, __vt__18J3DModelLoader_v21@ha
+	lis      r4, __vt__14J3DModelLoader@ha
+	addi     r0, r5, __vt__18J3DModelLoader_v21@l
+	stw      r0, 0x24(r1)
+	addi     r0, r4, __vt__14J3DModelLoader@l
+	stw      r0, 0x24(r1)
+	b        lbl_8006F9D8
 
-	.loc_0xC4:
-	  subis     r0, r6, 0x4A33
-	  cmplwi    r0, 0x4432
-	  bne-      .loc_0x140
-	  lwz       r4, 0x4(r3)
-	  subis     r0, r4, 0x626D
-	  cmplwi    r0, 0x6433
-	  bne-      .loc_0x140
-	  lis       r4, 0x804A
-	  li        r6, 0
-	  addi      r0, r4, 0x1F74
-	  stw       r6, 0xC(r1)
-	  lis       r4, 0x804A
-	  stw       r0, 0x8(r1)
-	  addi      r0, r4, 0x1E74
-	  mr        r4, r3
-	  addi      r3, r1, 0x8
-	  stw       r6, 0x10(r1)
-	  stw       r6, 0x14(r1)
-	  stw       r6, 0x18(r1)
-	  stw       r6, 0x1C(r1)
-	  stb       r6, 0x20(r1)
-	  sth       r6, 0x22(r1)
-	  stw       r0, 0x8(r1)
-	  bl        0x1F0
-	  lis       r5, 0x804A
-	  lis       r4, 0x804A
-	  addi      r0, r5, 0x1E74
-	  stw       r0, 0x8(r1)
-	  addi      r0, r4, 0x1F74
-	  stw       r0, 0x8(r1)
-	  b         .loc_0x144
+lbl_8006F958:
+	addis    r0, r6, 0xb5cd
+	cmplwi   r0, 0x4432
+	bne      lbl_8006F9D4
+	lwz      r4, 4(r3)
+	addis    r0, r4, 0x9d93
+	cmplwi   r0, 0x6433
+	bne      lbl_8006F9D4
+	lis      r4, __vt__14J3DModelLoader@ha
+	li       r6, 0
+	addi     r0, r4, __vt__14J3DModelLoader@l
+	stw      r6, 0xc(r1)
+	lis      r4, __vt__18J3DModelLoader_v26@ha
+	stw      r0, 8(r1)
+	addi     r0, r4, __vt__18J3DModelLoader_v26@l
+	mr       r4, r3
+	addi     r3, r1, 8
+	stw      r6, 0x10(r1)
+	stw      r6, 0x14(r1)
+	stw      r6, 0x18(r1)
+	stw      r6, 0x1c(r1)
+	stb      r6, 0x20(r1)
+	sth      r6, 0x22(r1)
+	stw      r0, 8(r1)
+	bl       load__14J3DModelLoaderFPCvUl
+	lis      r5, __vt__18J3DModelLoader_v26@ha
+	lis      r4, __vt__14J3DModelLoader@ha
+	addi     r0, r5, __vt__18J3DModelLoader_v26@l
+	stw      r0, 8(r1)
+	addi     r0, r4, __vt__14J3DModelLoader@l
+	stw      r0, 8(r1)
+	b        lbl_8006F9D8
 
-	.loc_0x140:
-	  li        r3, 0
+lbl_8006F9D4:
+	li       r3, 0
 
-	.loc_0x144:
-	  lwz       r0, 0x44(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
+lbl_8006F9D8:
+	lwz      r0, 0x44(r1)
+	mtlr     r0
+	addi     r1, r1, 0x40
+	blr
 	*/
 }
 
@@ -115,34 +248,33 @@ void J3DModelLoaderDataBase::load(const void*, unsigned long)
 J3DModelLoader_v26::~J3DModelLoader_v26()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r3
-	  beq-      .loc_0x44
-	  lis       r3, 0x804A
-	  addi      r0, r3, 0x1E74
-	  stw       r0, 0x0(r31)
-	  beq-      .loc_0x34
-	  lis       r3, 0x804A
-	  addi      r0, r3, 0x1F74
-	  stw       r0, 0x0(r31)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r3, r3
+	beq      lbl_8006FA2C
+	lis      r3, __vt__18J3DModelLoader_v26@ha
+	addi     r0, r3, __vt__18J3DModelLoader_v26@l
+	stw      r0, 0(r31)
+	beq      lbl_8006FA1C
+	lis      r3, __vt__14J3DModelLoader@ha
+	addi     r0, r3, __vt__14J3DModelLoader@l
+	stw      r0, 0(r31)
 
-	.loc_0x34:
-	  extsh.    r0, r4
-	  ble-      .loc_0x44
-	  mr        r3, r31
-	  bl        -0x4B974
+lbl_8006FA1C:
+	extsh.   r0, r4
+	ble      lbl_8006FA2C
+	mr       r3, r31
+	bl       __dl__FPv
 
-	.loc_0x44:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8006FA2C:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -154,34 +286,33 @@ J3DModelLoader_v26::~J3DModelLoader_v26()
 J3DModelLoader_v21::~J3DModelLoader_v21()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r3
-	  beq-      .loc_0x44
-	  lis       r3, 0x804A
-	  addi      r0, r3, 0x1E30
-	  stw       r0, 0x0(r31)
-	  beq-      .loc_0x34
-	  lis       r3, 0x804A
-	  addi      r0, r3, 0x1F74
-	  stw       r0, 0x0(r31)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r3, r3
+	beq      lbl_8006FA88
+	lis      r3, __vt__18J3DModelLoader_v21@ha
+	addi     r0, r3, __vt__18J3DModelLoader_v21@l
+	stw      r0, 0(r31)
+	beq      lbl_8006FA78
+	lis      r3, __vt__14J3DModelLoader@ha
+	addi     r0, r3, __vt__14J3DModelLoader@l
+	stw      r0, 0(r31)
 
-	.loc_0x34:
-	  extsh.    r0, r4
-	  ble-      .loc_0x44
-	  mr        r3, r31
-	  bl        -0x4B9D0
+lbl_8006FA78:
+	extsh.   r0, r4
+	ble      lbl_8006FA88
+	mr       r3, r31
+	bl       __dl__FPv
 
-	.loc_0x44:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8006FA88:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -193,27 +324,26 @@ J3DModelLoader_v21::~J3DModelLoader_v21()
 J3DModelLoader::~J3DModelLoader()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r3
-	  beq-      .loc_0x30
-	  lis       r5, 0x804A
-	  extsh.    r0, r4
-	  addi      r0, r5, 0x1F74
-	  stw       r0, 0x0(r31)
-	  ble-      .loc_0x30
-	  bl        -0x4BA18
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r3, r3
+	beq      lbl_8006FAD0
+	lis      r5, __vt__14J3DModelLoader@ha
+	extsh.   r0, r4
+	addi     r0, r5, __vt__14J3DModelLoader@l
+	stw      r0, 0(r31)
+	ble      lbl_8006FAD0
+	bl       __dl__FPv
 
-	.loc_0x30:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8006FAD0:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -225,62 +355,61 @@ J3DModelLoader::~J3DModelLoader()
 void J3DModelLoaderDataBase::loadBinaryDisplayList(const void*, unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  cmplwi    r3, 0
-	  mr        r5, r4
-	  stw       r0, 0x34(r1)
-	  bne-      .loc_0x20
-	  li        r3, 0
-	  b         .loc_0xAC
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	cmplwi   r3, 0
+	mr       r5, r4
+	stw      r0, 0x34(r1)
+	bne      lbl_8006FB08
+	li       r3, 0
+	b        lbl_8006FB94
 
-	.loc_0x20:
-	  lwz       r4, 0x0(r3)
-	  subis     r0, r4, 0x4A33
-	  cmplwi    r0, 0x4432
-	  bne-      .loc_0xA8
-	  lwz       r4, 0x4(r3)
-	  subis     r0, r4, 0x6264
-	  cmplwi    r0, 0x6C33
-	  beq-      .loc_0x48
-	  cmplwi    r0, 0x6C34
-	  bne-      .loc_0xA8
+lbl_8006FB08:
+	lwz      r4, 0(r3)
+	addis    r0, r4, 0xb5cd
+	cmplwi   r0, 0x4432
+	bne      lbl_8006FB90
+	lwz      r4, 4(r3)
+	addis    r0, r4, 0x9d9c
+	cmplwi   r0, 0x6c33
+	beq      lbl_8006FB30
+	cmplwi   r0, 0x6c34
+	bne      lbl_8006FB90
 
-	.loc_0x48:
-	  lis       r4, 0x804A
-	  li        r6, 0
-	  addi      r0, r4, 0x1F74
-	  stw       r6, 0xC(r1)
-	  lis       r4, 0x804A
-	  stw       r0, 0x8(r1)
-	  addi      r0, r4, 0x1E74
-	  mr        r4, r3
-	  addi      r3, r1, 0x8
-	  stw       r6, 0x10(r1)
-	  stw       r6, 0x14(r1)
-	  stw       r6, 0x18(r1)
-	  stw       r6, 0x1C(r1)
-	  stb       r6, 0x20(r1)
-	  sth       r6, 0x22(r1)
-	  stw       r0, 0x8(r1)
-	  bl        0x448
-	  lis       r5, 0x804A
-	  lis       r4, 0x804A
-	  addi      r0, r5, 0x1E74
-	  stw       r0, 0x8(r1)
-	  addi      r0, r4, 0x1F74
-	  stw       r0, 0x8(r1)
-	  b         .loc_0xAC
+lbl_8006FB30:
+	lis      r4, __vt__14J3DModelLoader@ha
+	li       r6, 0
+	addi     r0, r4, __vt__14J3DModelLoader@l
+	stw      r6, 0xc(r1)
+	lis      r4, __vt__18J3DModelLoader_v26@ha
+	stw      r0, 8(r1)
+	addi     r0, r4, __vt__18J3DModelLoader_v26@l
+	mr       r4, r3
+	addi     r3, r1, 8
+	stw      r6, 0x10(r1)
+	stw      r6, 0x14(r1)
+	stw      r6, 0x18(r1)
+	stw      r6, 0x1c(r1)
+	stb      r6, 0x20(r1)
+	sth      r6, 0x22(r1)
+	stw      r0, 8(r1)
+	bl       loadBinaryDisplayList__14J3DModelLoaderFPCvUl
+	lis      r5, __vt__18J3DModelLoader_v26@ha
+	lis      r4, __vt__14J3DModelLoader@ha
+	addi     r0, r5, __vt__18J3DModelLoader_v26@l
+	stw      r0, 8(r1)
+	addi     r0, r4, __vt__14J3DModelLoader@l
+	stw      r0, 8(r1)
+	b        lbl_8006FB94
 
-	.loc_0xA8:
-	  li        r3, 0
+lbl_8006FB90:
+	li       r3, 0
 
-	.loc_0xAC:
-	  lwz       r0, 0x34(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_8006FB94:
+	lwz      r0, 0x34(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -292,220 +421,220 @@ void J3DModelLoaderDataBase::loadBinaryDisplayList(const void*, unsigned long)
 void J3DModelLoader::load(const void*, unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stmw      r26, 0x18(r1)
-	  mr        r27, r3
-	  mr        r29, r4
-	  mr        r28, r5
-	  lwz       r3, -0x77D4(r13)
-	  bl        -0x4C3E4
-	  li        r3, 0xE4
-	  bl        -0x4BD28
-	  mr.       r0, r3
-	  beq-      .loc_0x3C
-	  bl        0x13BD4
-	  mr        r0, r3
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stmw     r26, 0x18(r1)
+	mr       r27, r3
+	mr       r29, r4
+	mr       r28, r5
+	lwz      r3, sCurrentHeap__7JKRHeap@sda21(r13)
+	bl       getTotalFreeSize__7JKRHeapFv
+	li       r3, 0xe4
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_8006FBE0
+	bl       __ct__12J3DModelDataFv
+	mr       r0, r3
 
-	.loc_0x3C:
-	  stw       r0, 0x4(r27)
-	  lwz       r3, 0x4(r27)
-	  bl        0x13BAC
-	  lwz       r4, 0x4(r27)
-	  lis       r3, 0x4D41
-	  li        r0, 0
-	  lwz       r26, 0xC(r29)
-	  stw       r29, 0x4(r4)
-	  addi      r30, r29, 0x20
-	  addi      r31, r3, 0x5432
-	  li        r29, 0
-	  lwz       r3, 0x4(r27)
-	  stw       r0, 0x1C(r3)
-	  lwz       r3, 0x4(r27)
-	  addi      r0, r3, 0x58
-	  stw       r0, 0x8(r27)
-	  b         .loc_0x1F0
+lbl_8006FBE0:
+	stw      r0, 4(r27)
+	lwz      r3, 4(r27)
+	bl       clear__12J3DModelDataFv
+	lwz      r4, 4(r27)
+	lis      r3, 0x4D415432@ha
+	li       r0, 0
+	lwz      r26, 0xc(r29)
+	stw      r29, 4(r4)
+	addi     r30, r29, 0x20
+	addi     r31, r3, 0x4D415432@l
+	li       r29, 0
+	lwz      r3, 4(r27)
+	stw      r0, 0x1c(r3)
+	lwz      r3, 4(r27)
+	addi     r0, r3, 0x58
+	stw      r0, 8(r27)
+	b        lbl_8006FD94
 
-	.loc_0x80:
-	  lwz       r4, 0x0(r30)
-	  cmpw      r4, r31
-	  beq-      .loc_0x1A4
-	  bge-      .loc_0xE0
-	  lis       r3, 0x494E
-	  addi      r0, r3, 0x4631
-	  cmpw      r4, r0
-	  beq-      .loc_0x130
-	  bge-      .loc_0xCC
-	  lis       r3, 0x4556
-	  addi      r0, r3, 0x5031
-	  cmpw      r4, r0
-	  beq-      .loc_0x154
-	  bge-      .loc_0x1E4
-	  lis       r3, 0x4452
-	  addi      r0, r3, 0x5731
-	  cmpw      r4, r0
-	  beq-      .loc_0x164
-	  b         .loc_0x1E4
+lbl_8006FC24:
+	lwz      r4, 0(r30)
+	cmpw     r4, r31
+	beq      lbl_8006FD48
+	bge      lbl_8006FC84
+	lis      r3, 0x494E4631@ha
+	addi     r0, r3, 0x494E4631@l
+	cmpw     r4, r0
+	beq      lbl_8006FCD4
+	bge      lbl_8006FC70
+	lis      r3, 0x45565031@ha
+	addi     r0, r3, 0x45565031@l
+	cmpw     r4, r0
+	beq      lbl_8006FCF8
+	bge      lbl_8006FD88
+	lis      r3, 0x44525731@ha
+	addi     r0, r3, 0x44525731@l
+	cmpw     r4, r0
+	beq      lbl_8006FD08
+	b        lbl_8006FD88
 
-	.loc_0xCC:
-	  lis       r3, 0x4A4E
-	  addi      r0, r3, 0x5431
-	  cmpw      r4, r0
-	  beq-      .loc_0x174
-	  b         .loc_0x1E4
+lbl_8006FC70:
+	lis      r3, 0x4A4E5431@ha
+	addi     r0, r3, 0x4A4E5431@l
+	cmpw     r4, r0
+	beq      lbl_8006FD18
+	b        lbl_8006FD88
 
-	.loc_0xE0:
-	  lis       r3, 0x5445
-	  addi      r0, r3, 0x5831
-	  cmpw      r4, r0
-	  beq-      .loc_0x1D8
-	  bge-      .loc_0x11C
-	  lis       r3, 0x5348
-	  addi      r0, r3, 0x5031
-	  cmpw      r4, r0
-	  beq-      .loc_0x1C4
-	  bge-      .loc_0x1E4
-	  lis       r3, 0x4D41
-	  addi      r0, r3, 0x5434
-	  cmpw      r4, r0
-	  bge-      .loc_0x1E4
-	  b         .loc_0x184
+lbl_8006FC84:
+	lis      r3, 0x54455831@ha
+	addi     r0, r3, 0x54455831@l
+	cmpw     r4, r0
+	beq      lbl_8006FD7C
+	bge      lbl_8006FCC0
+	lis      r3, 0x53485031@ha
+	addi     r0, r3, 0x53485031@l
+	cmpw     r4, r0
+	beq      lbl_8006FD68
+	bge      lbl_8006FD88
+	lis      r3, 0x4D415434@ha
+	addi     r0, r3, 0x4D415434@l
+	cmpw     r4, r0
+	bge      lbl_8006FD88
+	b        lbl_8006FD28
 
-	.loc_0x11C:
-	  lis       r3, 0x5654
-	  addi      r0, r3, 0x5831
-	  cmpw      r4, r0
-	  beq-      .loc_0x144
-	  b         .loc_0x1E4
+lbl_8006FCC0:
+	lis      r3, 0x56545831@ha
+	addi     r0, r3, 0x56545831@l
+	cmpw     r4, r0
+	beq      lbl_8006FCE8
+	b        lbl_8006FD88
 
-	.loc_0x130:
-	  mr        r3, r27
-	  mr        r4, r30
-	  mr        r5, r28
-	  bl        0x6C8
-	  b         .loc_0x1E4
+lbl_8006FCD4:
+	mr       r3, r27
+	mr       r4, r30
+	mr       r5, r28
+	bl       readInformation__14J3DModelLoaderFPC17J3DModelInfoBlockUl
+	b        lbl_8006FD88
 
-	.loc_0x144:
-	  mr        r3, r27
-	  mr        r4, r30
-	  bl        0x87C
-	  b         .loc_0x1E4
+lbl_8006FCE8:
+	mr       r3, r27
+	mr       r4, r30
+	bl       readVertex__14J3DModelLoaderFPC14J3DVertexBlock
+	b        lbl_8006FD88
 
-	.loc_0x154:
-	  mr        r3, r27
-	  mr        r4, r30
-	  bl        0xAA4
-	  b         .loc_0x1E4
+lbl_8006FCF8:
+	mr       r3, r27
+	mr       r4, r30
+	bl       readEnvelop__14J3DModelLoaderFPC16J3DEnvelopeBlock
+	b        lbl_8006FD88
 
-	.loc_0x164:
-	  mr        r3, r27
-	  mr        r4, r30
-	  bl        0xB2C
-	  b         .loc_0x1E4
+lbl_8006FD08:
+	mr       r3, r27
+	mr       r4, r30
+	bl       readDraw__14J3DModelLoaderFPC12J3DDrawBlock
+	b        lbl_8006FD88
 
-	.loc_0x174:
-	  mr        r3, r27
-	  mr        r4, r30
-	  bl        0xBD4
-	  b         .loc_0x1E4
+lbl_8006FD18:
+	mr       r3, r27
+	mr       r4, r30
+	bl       readJoint__14J3DModelLoaderFPC13J3DJointBlock
+	b        lbl_8006FD88
 
-	.loc_0x184:
-	  mr        r3, r27
-	  mr        r4, r30
-	  lwz       r12, 0x0(r27)
-	  mr        r5, r28
-	  lwz       r12, 0x2C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x1E4
+lbl_8006FD28:
+	mr       r3, r27
+	mr       r4, r30
+	lwz      r12, 0(r27)
+	mr       r5, r28
+	lwz      r12, 0x2c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_8006FD88
 
-	.loc_0x1A4:
-	  mr        r3, r27
-	  mr        r4, r30
-	  lwz       r12, 0x0(r27)
-	  mr        r5, r28
-	  lwz       r12, 0x30(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x1E4
+lbl_8006FD48:
+	mr       r3, r27
+	mr       r4, r30
+	lwz      r12, 0(r27)
+	mr       r5, r28
+	lwz      r12, 0x30(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_8006FD88
 
-	.loc_0x1C4:
-	  mr        r3, r27
-	  mr        r4, r30
-	  mr        r5, r28
-	  bl        0x1190
-	  b         .loc_0x1E4
+lbl_8006FD68:
+	mr       r3, r27
+	mr       r4, r30
+	mr       r5, r28
+	bl       readShape__14J3DModelLoaderFPC13J3DShapeBlockUl
+	b        lbl_8006FD88
 
-	.loc_0x1D8:
-	  mr        r3, r27
-	  mr        r4, r30
-	  bl        0x129C
+lbl_8006FD7C:
+	mr       r3, r27
+	mr       r4, r30
+	bl       readTexture__14J3DModelLoaderFPC15J3DTextureBlock
 
-	.loc_0x1E4:
-	  lwz       r0, 0x4(r30)
-	  addi      r29, r29, 0x1
-	  add       r30, r30, r0
+lbl_8006FD88:
+	lwz      r0, 4(r30)
+	addi     r29, r29, 1
+	add      r30, r30, r0
 
-	.loc_0x1F0:
-	  cmplw     r29, r26
-	  blt+      .loc_0x80
-	  lwz       r3, 0x4(r27)
-	  addi      r5, r1, 0x8
-	  li        r4, 0
-	  lwz       r0, 0x14(r3)
-	  stw       r0, 0x8(r1)
-	  lwz       r26, 0x4(r27)
-	  addi      r3, r26, 0x10
-	  addi      r6, r26, 0x58
-	  addi      r7, r26, 0x78
-	  bl        0x18550
-	  addi      r3, r26, 0x78
-	  addi      r4, r26, 0x44
-	  addi      r5, r26, 0x88
-	  bl        0x19894
-	  lwz       r3, 0x4(r27)
-	  addi      r3, r3, 0x78
-	  bl        0x198EC
-	  lwz       r3, 0x4(r27)
-	  addi      r3, r3, 0x10
-	  bl        0x18684
-	  mr        r3, r27
-	  lwz       r12, 0x0(r27)
-	  lwz       r12, 0x24(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x4(r27)
-	  lwz       r0, 0x8(r3)
-	  rlwinm.   r0,r0,0,23,23
-	  beq-      .loc_0x2A4
-	  li        r5, 0
-	  b         .loc_0x290
+lbl_8006FD94:
+	cmplw    r29, r26
+	blt      lbl_8006FC24
+	lwz      r3, 4(r27)
+	addi     r5, r1, 8
+	li       r4, 0
+	lwz      r0, 0x14(r3)
+	stw      r0, 8(r1)
+	lwz      r26, 4(r27)
+	addi     r3, r26, 0x10
+	addi     r6, r26, 0x58
+	addi     r7, r26, 0x78
+	bl
+makeHierarchy__12J3DJointTreeFP8J3DJointPPC17J3DModelHierarchyP16J3DMaterialTableP13J3DShapeTable
+	addi     r3, r26, 0x78
+	addi     r4, r26, 0x44
+	addi     r5, r26, 0x88
+	bl       initShapeNodes__13J3DShapeTableFP14J3DDrawMtxDataP13J3DVertexData
+	lwz      r3, 4(r27)
+	addi     r3, r3, 0x78
+	bl       sortVcdVatCmd__13J3DShapeTableFv
+	lwz      r3, 4(r27)
+	addi     r3, r3, 0x10
+	bl       findImportantMtxIndex__12J3DJointTreeFv
+	mr       r3, r27
+	lwz      r12, 0(r27)
+	lwz      r12, 0x24(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 4(r27)
+	lwz      r0, 8(r3)
+	rlwinm.  r0, r0, 0, 0x17, 0x17
+	beq      lbl_8006FE48
+	li       r5, 0
+	b        lbl_8006FE34
 
-	.loc_0x274:
-	  lwz       r3, 0x80(r4)
-	  rlwinm    r0,r5,2,14,29
-	  addi      r5, r5, 0x1
-	  lwzx      r3, r3, r0
-	  lwz       r0, 0xC(r3)
-	  ori       r0, r0, 0x200
-	  stw       r0, 0xC(r3)
+lbl_8006FE18:
+	lwz      r3, 0x80(r4)
+	rlwinm   r0, r5, 2, 0xe, 0x1d
+	addi     r5, r5, 1
+	lwzx     r3, r3, r0
+	lwz      r0, 0xc(r3)
+	ori      r0, r0, 0x200
+	stw      r0, 0xc(r3)
 
-	.loc_0x290:
-	  lwz       r4, 0x4(r27)
-	  rlwinm    r0,r5,0,16,31
-	  lhz       r3, 0x7C(r4)
-	  cmplw     r0, r3
-	  blt+      .loc_0x274
+lbl_8006FE34:
+	lwz      r4, 4(r27)
+	clrlwi   r0, r5, 0x10
+	lhz      r3, 0x7c(r4)
+	cmplw    r0, r3
+	blt      lbl_8006FE18
 
-	.loc_0x2A4:
-	  lwz       r3, 0x4(r27)
-	  lmw       r26, 0x18(r1)
-	  lwz       r0, 0x34(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_8006FE48:
+	lwz      r3, 4(r27)
+	lmw      r26, 0x18(r1)
+	lwz      r0, 0x34(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -534,109 +663,108 @@ void J3DModelLoader::readMaterial(const J3DMaterialBlock*, unsigned long) { }
 void J3DModelLoader::loadMaterialTable(const void*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stmw      r27, 0xC(r1)
-	  mr        r31, r3
-	  mr        r27, r4
-	  li        r3, 0x20
-	  bl        -0x4BFE0
-	  mr.       r0, r3
-	  beq-      .loc_0x30
-	  bl        0x13DE4
-	  mr        r0, r3
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stmw     r27, 0xc(r1)
+	mr       r31, r3
+	mr       r27, r4
+	li       r3, 0x20
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_8006FE98
+	bl       __ct__16J3DMaterialTableFv
+	mr       r0, r3
 
-	.loc_0x30:
-	  stw       r0, 0x8(r31)
-	  lwz       r3, 0x8(r31)
-	  bl        0x13DAC
-	  lis       r3, 0x4D41
-	  lwz       r30, 0xC(r27)
-	  addi      r28, r27, 0x20
-	  li        r27, 0
-	  addi      r29, r3, 0x5433
-	  b         .loc_0xE4
+lbl_8006FE98:
+	stw      r0, 8(r31)
+	lwz      r3, 8(r31)
+	bl       clear__16J3DMaterialTableFv
+	lis      r3, 0x4D415433@ha
+	lwz      r30, 0xc(r27)
+	addi     r28, r27, 0x20
+	li       r27, 0
+	addi     r29, r3, 0x4D415433@l
+	b        lbl_8006FF4C
 
-	.loc_0x54:
-	  lwz       r4, 0x0(r28)
-	  cmpw      r4, r29
-	  beq-      .loc_0x8C
-	  bge-      .loc_0x78
-	  lis       r3, 0x4D41
-	  addi      r0, r3, 0x5432
-	  cmpw      r4, r0
-	  bge-      .loc_0xAC
-	  b         .loc_0xD8
+lbl_8006FEBC:
+	lwz      r4, 0(r28)
+	cmpw     r4, r29
+	beq      lbl_8006FEF4
+	bge      lbl_8006FEE0
+	lis      r3, 0x4D415432@ha
+	addi     r0, r3, 0x4D415432@l
+	cmpw     r4, r0
+	bge      lbl_8006FF14
+	b        lbl_8006FF40
 
-	.loc_0x78:
-	  lis       r3, 0x5445
-	  addi      r0, r3, 0x5831
-	  cmpw      r4, r0
-	  beq-      .loc_0xCC
-	  b         .loc_0xD8
+lbl_8006FEE0:
+	lis      r3, 0x54455831@ha
+	addi     r0, r3, 0x54455831@l
+	cmpw     r4, r0
+	beq      lbl_8006FF34
+	b        lbl_8006FF40
 
-	.loc_0x8C:
-	  mr        r3, r31
-	  mr        r4, r28
-	  lwz       r12, 0x0(r31)
-	  lis       r5, 0x5110
-	  lwz       r12, 0x34(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0xD8
+lbl_8006FEF4:
+	mr       r3, r31
+	mr       r4, r28
+	lwz      r12, 0(r31)
+	lis      r5, 0x5110
+	lwz      r12, 0x34(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_8006FF40
 
-	.loc_0xAC:
-	  mr        r3, r31
-	  mr        r4, r28
-	  lwz       r12, 0x0(r31)
-	  lis       r5, 0x5110
-	  lwz       r12, 0x38(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0xD8
+lbl_8006FF14:
+	mr       r3, r31
+	mr       r4, r28
+	lwz      r12, 0(r31)
+	lis      r5, 0x5110
+	lwz      r12, 0x38(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_8006FF40
 
-	.loc_0xCC:
-	  mr        r3, r31
-	  mr        r4, r28
-	  bl        0x1440
+lbl_8006FF34:
+	mr       r3, r31
+	mr       r4, r28
+	bl       readTextureTable__14J3DModelLoaderFPC15J3DTextureBlock
 
-	.loc_0xD8:
-	  lwz       r0, 0x4(r28)
-	  addi      r27, r27, 0x1
-	  add       r28, r28, r0
+lbl_8006FF40:
+	lwz      r0, 4(r28)
+	addi     r27, r27, 1
+	add      r28, r28, r0
 
-	.loc_0xE4:
-	  cmplw     r27, r30
-	  blt+      .loc_0x54
-	  lwz       r3, 0x8(r31)
-	  lwz       r0, 0x14(r3)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x130
-	  li        r3, 0xC
-	  bl        -0x4C0C4
-	  cmplwi    r3, 0
-	  beq-      .loc_0x128
-	  lis       r4, 0x804A
-	  li        r0, 0
-	  addi      r4, r4, 0x1F68
-	  stw       r4, 0x8(r3)
-	  sth       r0, 0x0(r3)
-	  sth       r0, 0x2(r3)
-	  stw       r0, 0x4(r3)
+lbl_8006FF4C:
+	cmplw    r27, r30
+	blt      lbl_8006FEBC
+	lwz      r3, 8(r31)
+	lwz      r0, 0x14(r3)
+	cmplwi   r0, 0
+	bne      lbl_8006FF98
+	li       r3, 0xc
+	bl       __nw__FUl
+	cmplwi   r3, 0
+	beq      lbl_8006FF90
+	lis      r4, __vt__10J3DTexture@ha
+	li       r0, 0
+	addi     r4, r4, __vt__10J3DTexture@l
+	stw      r4, 8(r3)
+	sth      r0, 0(r3)
+	sth      r0, 2(r3)
+	stw      r0, 4(r3)
 
-	.loc_0x128:
-	  lwz       r4, 0x8(r31)
-	  stw       r3, 0x14(r4)
+lbl_8006FF90:
+	lwz      r4, 8(r31)
+	stw      r3, 0x14(r4)
 
-	.loc_0x130:
-	  lwz       r3, 0x8(r31)
-	  lmw       r27, 0xC(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8006FF98:
+	lwz      r3, 8(r31)
+	lmw      r27, 0xc(r1)
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -667,210 +795,210 @@ void J3DModelLoader::readMaterialTable(const J3DMaterialBlock*, unsigned long)
 void J3DModelLoader::loadBinaryDisplayList(const void*, unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stmw      r24, 0x10(r1)
-	  mr        r25, r3
-	  mr        r27, r4
-	  mr        r26, r5
-	  li        r3, 0xE4
-	  bl        -0x4C134
-	  mr.       r0, r3
-	  beq-      .loc_0x34
-	  bl        0x137C8
-	  mr        r0, r3
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stmw     r24, 0x10(r1)
+	mr       r25, r3
+	mr       r27, r4
+	mr       r26, r5
+	li       r3, 0xe4
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_8006FFEC
+	bl       __ct__12J3DModelDataFv
+	mr       r0, r3
 
-	.loc_0x34:
-	  stw       r0, 0x4(r25)
-	  lwz       r3, 0x4(r25)
-	  bl        0x137A0
-	  lwz       r4, 0x4(r25)
-	  lis       r3, 0x4D41
-	  li        r0, 0x1
-	  lwz       r24, 0xC(r27)
-	  stw       r27, 0x4(r4)
-	  addi      r28, r27, 0x20
-	  rlwinm    r30,r26,0,6,7
-	  rlwinm    r29,r26,0,18,19
-	  lwz       r4, 0x4(r25)
-	  addi      r31, r3, 0x5433
-	  li        r27, 0
-	  stw       r0, 0x1C(r4)
-	  lwz       r3, 0x4(r25)
-	  addi      r0, r3, 0x58
-	  stw       r0, 0x8(r25)
-	  b         .loc_0x218
+lbl_8006FFEC:
+	stw      r0, 4(r25)
+	lwz      r3, 4(r25)
+	bl       clear__12J3DModelDataFv
+	lwz      r4, 4(r25)
+	lis      r3, 0x4D415433@ha
+	li       r0, 1
+	lwz      r24, 0xc(r27)
+	stw      r27, 4(r4)
+	addi     r28, r27, 0x20
+	rlwinm   r30, r26, 0, 6, 7
+	rlwinm   r29, r26, 0, 0x12, 0x13
+	lwz      r4, 4(r25)
+	addi     r31, r3, 0x4D415433@l
+	li       r27, 0
+	stw      r0, 0x1c(r4)
+	lwz      r3, 4(r25)
+	addi     r0, r3, 0x58
+	stw      r0, 8(r25)
+	b        lbl_800701D0
 
-	.loc_0x80:
-	  lwz       r4, 0x0(r28)
-	  cmpw      r4, r31
-	  beq-      .loc_0x1C8
-	  bge-      .loc_0xE0
-	  lis       r3, 0x494E
-	  addi      r0, r3, 0x4631
-	  cmpw      r4, r0
-	  beq-      .loc_0x130
-	  bge-      .loc_0xCC
-	  lis       r3, 0x4556
-	  addi      r0, r3, 0x5031
-	  cmpw      r4, r0
-	  beq-      .loc_0x154
-	  bge-      .loc_0x20C
-	  lis       r3, 0x4452
-	  addi      r0, r3, 0x5731
-	  cmpw      r4, r0
-	  beq-      .loc_0x164
-	  b         .loc_0x20C
+lbl_80070038:
+	lwz      r4, 0(r28)
+	cmpw     r4, r31
+	beq      lbl_80070180
+	bge      lbl_80070098
+	lis      r3, 0x494E4631@ha
+	addi     r0, r3, 0x494E4631@l
+	cmpw     r4, r0
+	beq      lbl_800700E8
+	bge      lbl_80070084
+	lis      r3, 0x45565031@ha
+	addi     r0, r3, 0x45565031@l
+	cmpw     r4, r0
+	beq      lbl_8007010C
+	bge      lbl_800701C4
+	lis      r3, 0x44525731@ha
+	addi     r0, r3, 0x44525731@l
+	cmpw     r4, r0
+	beq      lbl_8007011C
+	b        lbl_800701C4
 
-	.loc_0xCC:
-	  lis       r3, 0x4A4E
-	  addi      r0, r3, 0x5431
-	  cmpw      r4, r0
-	  beq-      .loc_0x174
-	  b         .loc_0x20C
+lbl_80070084:
+	lis      r3, 0x4A4E5431@ha
+	addi     r0, r3, 0x4A4E5431@l
+	cmpw     r4, r0
+	beq      lbl_8007012C
+	b        lbl_800701C4
 
-	.loc_0xE0:
-	  lis       r3, 0x5445
-	  addi      r0, r3, 0x5831
-	  cmpw      r4, r0
-	  beq-      .loc_0x198
-	  bge-      .loc_0x11C
-	  lis       r3, 0x5348
-	  addi      r0, r3, 0x5031
-	  cmpw      r4, r0
-	  beq-      .loc_0x184
-	  bge-      .loc_0x20C
-	  lis       r3, 0x4D44
-	  addi      r0, r3, 0x4C33
-	  cmpw      r4, r0
-	  beq-      .loc_0x1A8
-	  b         .loc_0x20C
+lbl_80070098:
+	lis      r3, 0x54455831@ha
+	addi     r0, r3, 0x54455831@l
+	cmpw     r4, r0
+	beq      lbl_80070150
+	bge      lbl_800700D4
+	lis      r3, 0x53485031@ha
+	addi     r0, r3, 0x53485031@l
+	cmpw     r4, r0
+	beq      lbl_8007013C
+	bge      lbl_800701C4
+	lis      r3, 0x4D444C33@ha
+	addi     r0, r3, 0x4D444C33@l
+	cmpw     r4, r0
+	beq      lbl_80070160
+	b        lbl_800701C4
 
-	.loc_0x11C:
-	  lis       r3, 0x5654
-	  addi      r0, r3, 0x5831
-	  cmpw      r4, r0
-	  beq-      .loc_0x144
-	  b         .loc_0x20C
+lbl_800700D4:
+	lis      r3, 0x56545831@ha
+	addi     r0, r3, 0x56545831@l
+	cmpw     r4, r0
+	beq      lbl_800700FC
+	b        lbl_800701C4
 
-	.loc_0x130:
-	  mr        r3, r25
-	  mr        r4, r28
-	  mr        r5, r26
-	  bl        0x2B4
-	  b         .loc_0x20C
+lbl_800700E8:
+	mr       r3, r25
+	mr       r4, r28
+	mr       r5, r26
+	bl       readInformation__14J3DModelLoaderFPC17J3DModelInfoBlockUl
+	b        lbl_800701C4
 
-	.loc_0x144:
-	  mr        r3, r25
-	  mr        r4, r28
-	  bl        0x468
-	  b         .loc_0x20C
+lbl_800700FC:
+	mr       r3, r25
+	mr       r4, r28
+	bl       readVertex__14J3DModelLoaderFPC14J3DVertexBlock
+	b        lbl_800701C4
 
-	.loc_0x154:
-	  mr        r3, r25
-	  mr        r4, r28
-	  bl        0x690
-	  b         .loc_0x20C
+lbl_8007010C:
+	mr       r3, r25
+	mr       r4, r28
+	bl       readEnvelop__14J3DModelLoaderFPC16J3DEnvelopeBlock
+	b        lbl_800701C4
 
-	.loc_0x164:
-	  mr        r3, r25
-	  mr        r4, r28
-	  bl        0x718
-	  b         .loc_0x20C
+lbl_8007011C:
+	mr       r3, r25
+	mr       r4, r28
+	bl       readDraw__14J3DModelLoaderFPC12J3DDrawBlock
+	b        lbl_800701C4
 
-	.loc_0x174:
-	  mr        r3, r25
-	  mr        r4, r28
-	  bl        0x7C0
-	  b         .loc_0x20C
+lbl_8007012C:
+	mr       r3, r25
+	mr       r4, r28
+	bl       readJoint__14J3DModelLoaderFPC13J3DJointBlock
+	b        lbl_800701C4
 
-	.loc_0x184:
-	  mr        r3, r25
-	  mr        r4, r28
-	  mr        r5, r26
-	  bl        0xDBC
-	  b         .loc_0x20C
+lbl_8007013C:
+	mr       r3, r25
+	mr       r4, r28
+	mr       r5, r26
+	bl       readShape__14J3DModelLoaderFPC13J3DShapeBlockUl
+	b        lbl_800701C4
 
-	.loc_0x198:
-	  mr        r3, r25
-	  mr        r4, r28
-	  bl        0xEC8
-	  b         .loc_0x20C
+lbl_80070150:
+	mr       r3, r25
+	mr       r4, r28
+	bl       readTexture__14J3DModelLoaderFPC15J3DTextureBlock
+	b        lbl_800701C4
 
-	.loc_0x1A8:
-	  mr        r3, r25
-	  mr        r4, r28
-	  mr        r5, r26
-	  bl        0x1424
-	  mr        r3, r25
-	  mr        r4, r26
-	  bl        0x15D4
-	  b         .loc_0x20C
+lbl_80070160:
+	mr       r3, r25
+	mr       r4, r28
+	mr       r5, r26
+	bl       readMaterialDL__14J3DModelLoaderFPC18J3DMaterialDLBlockUl
+	mr       r3, r25
+	mr       r4, r26
+	bl       modifyMaterial__14J3DModelLoaderFUl
+	b        lbl_800701C4
 
-	.loc_0x1C8:
-	  cmplwi    r29, 0
-	  lis       r5, 0x5010
-	  stw       r28, 0x10(r25)
-	  or        r5, r5, r30
-	  bne-      .loc_0x1F8
-	  lwz       r12, 0x0(r25)
-	  mr        r3, r25
-	  mr        r4, r28
-	  lwz       r12, 0x2C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x20C
+lbl_80070180:
+	cmplwi   r29, 0
+	lis      r5, 0x5010
+	stw      r28, 0x10(r25)
+	or       r5, r5, r30
+	bne      lbl_800701B0
+	lwz      r12, 0(r25)
+	mr       r3, r25
+	mr       r4, r28
+	lwz      r12, 0x2c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_800701C4
 
-	.loc_0x1F8:
-	  cmplwi    r29, 0x2000
-	  bne-      .loc_0x20C
-	  mr        r3, r25
-	  mr        r4, r28
-	  bl        0x1280
+lbl_800701B0:
+	cmplwi   r29, 0x2000
+	bne      lbl_800701C4
+	mr       r3, r25
+	mr       r4, r28
+	bl       readPatchedMaterial__14J3DModelLoaderFPC16J3DMaterialBlockUl
 
-	.loc_0x20C:
-	  lwz       r0, 0x4(r28)
-	  addi      r27, r27, 0x1
-	  add       r28, r28, r0
+lbl_800701C4:
+	lwz      r0, 4(r28)
+	addi     r27, r27, 1
+	add      r28, r28, r0
 
-	.loc_0x218:
-	  cmplw     r27, r24
-	  blt+      .loc_0x80
-	  lwz       r3, 0x4(r25)
-	  addi      r5, r1, 0x8
-	  li        r4, 0
-	  lwz       r0, 0x14(r3)
-	  stw       r0, 0x8(r1)
-	  lwz       r24, 0x4(r25)
-	  addi      r3, r24, 0x10
-	  addi      r6, r24, 0x58
-	  addi      r7, r24, 0x78
-	  bl        0x18114
-	  addi      r3, r24, 0x78
-	  addi      r4, r24, 0x44
-	  addi      r5, r24, 0x88
-	  bl        0x19458
-	  lwz       r3, 0x4(r25)
-	  addi      r3, r3, 0x78
-	  bl        0x194B0
-	  lwz       r3, 0x4(r25)
-	  addi      r3, r3, 0x10
-	  bl        0x18248
-	  mr        r3, r25
-	  lwz       r12, 0x0(r25)
-	  lwz       r12, 0x24(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x4(r25)
-	  bl        0x1372C
-	  lwz       r3, 0x4(r25)
-	  lmw       r24, 0x10(r1)
-	  lwz       r0, 0x34(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_800701D0:
+	cmplw    r27, r24
+	blt      lbl_80070038
+	lwz      r3, 4(r25)
+	addi     r5, r1, 8
+	li       r4, 0
+	lwz      r0, 0x14(r3)
+	stw      r0, 8(r1)
+	lwz      r24, 4(r25)
+	addi     r3, r24, 0x10
+	addi     r6, r24, 0x58
+	addi     r7, r24, 0x78
+	bl
+makeHierarchy__12J3DJointTreeFP8J3DJointPPC17J3DModelHierarchyP16J3DMaterialTableP13J3DShapeTable
+	addi     r3, r24, 0x78
+	addi     r4, r24, 0x44
+	addi     r5, r24, 0x88
+	bl       initShapeNodes__13J3DShapeTableFP14J3DDrawMtxDataP13J3DVertexData
+	lwz      r3, 4(r25)
+	addi     r3, r3, 0x78
+	bl       sortVcdVatCmd__13J3DShapeTableFv
+	lwz      r3, 4(r25)
+	addi     r3, r3, 0x10
+	bl       findImportantMtxIndex__12J3DJointTreeFv
+	mr       r3, r25
+	lwz      r12, 0(r25)
+	lwz      r12, 0x24(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 4(r25)
+	bl       indexToPtr__12J3DModelDataFv
+	lwz      r3, 4(r25)
+	lmw      r24, 0x10(r1)
+	lwz      r0, 0x34(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -882,106 +1010,105 @@ void J3DModelLoader::loadBinaryDisplayList(const void*, unsigned long)
 void J3DModelLoader::setupBBoardInfo()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stmw      r27, 0xC(r1)
-	  mr        r29, r3
-	  li        r30, 0
-	  b         .loc_0x124
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stmw     r27, 0xc(r1)
+	mr       r29, r3
+	li       r30, 0
+	b        lbl_80070380
 
-	.loc_0x1C:
-	  lwz       r3, 0x28(r4)
-	  rlwinm    r31,r30,2,14,29
-	  lwzx      r3, r3, r31
-	  lwz       r4, 0x58(r3)
-	  cmplwi    r4, 0
-	  beq-      .loc_0x120
-	  lwz       r5, 0x8(r4)
-	  lwz       r3, 0xC(r29)
-	  lhz       r27, 0x8(r5)
-	  lwz       r4, 0x10(r3)
-	  bl        0x1868
-	  lwz       r5, 0xC(r29)
-	  mr        r28, r3
-	  lwz       r4, 0xC(r5)
-	  mr        r3, r5
-	  bl        0x183C
-	  rlwinm    r0,r27,1,15,30
-	  lhzx      r0, r28, r0
-	  mulli     r0, r0, 0x28
-	  lbzx      r0, r3, r0
-	  cmpwi     r0, 0x2
-	  beq-      .loc_0xDC
-	  bge-      .loc_0x88
-	  cmpwi     r0, 0
-	  beq-      .loc_0x94
-	  bge-      .loc_0xB0
-	  b         .loc_0x120
+lbl_80070278:
+	lwz      r3, 0x28(r4)
+	rlwinm   r31, r30, 2, 0xe, 0x1d
+	lwzx     r3, r3, r31
+	lwz      r4, 0x58(r3)
+	cmplwi   r4, 0
+	beq      lbl_8007037C
+	lwz      r5, 8(r4)
+	lwz      r3, 0xc(r29)
+	lhz      r27, 8(r5)
+	lwz      r4, 0x10(r3)
+	bl       "JSUConvertOffsetToPtr<Us>__FPCvUl"
+	lwz      r5, 0xc(r29)
+	mr       r28, r3
+	lwz      r4, 0xc(r5)
+	mr       r3, r5
+	bl       "JSUConvertOffsetToPtr<16J3DShapeInitData>__FPCvUl"
+	rlwinm   r0, r27, 1, 0xf, 0x1e
+	lhzx     r0, r28, r0
+	mulli    r0, r0, 0x28
+	lbzx     r0, r3, r0
+	cmpwi    r0, 2
+	beq      lbl_80070338
+	bge      lbl_800702E4
+	cmpwi    r0, 0
+	beq      lbl_800702F0
+	bge      lbl_8007030C
+	b        lbl_8007037C
 
-	.loc_0x88:
-	  cmpwi     r0, 0x4
-	  bge-      .loc_0x120
-	  b         .loc_0x108
+lbl_800702E4:
+	cmpwi    r0, 4
+	bge      lbl_8007037C
+	b        lbl_80070364
 
-	.loc_0x94:
-	  lwz       r3, 0x4(r29)
-	  lwz       r3, 0x28(r3)
-	  lwzx      r3, r3, r31
-	  lbz       r0, 0x16(r3)
-	  rlwinm    r0,r0,0,28,31
-	  stb       r0, 0x16(r3)
-	  b         .loc_0x120
+lbl_800702F0:
+	lwz      r3, 4(r29)
+	lwz      r3, 0x28(r3)
+	lwzx     r3, r3, r31
+	lbz      r0, 0x16(r3)
+	clrlwi   r0, r0, 0x1c
+	stb      r0, 0x16(r3)
+	b        lbl_8007037C
 
-	.loc_0xB0:
-	  lwz       r3, 0x4(r29)
-	  li        r0, 0x1
-	  lwz       r3, 0x28(r3)
-	  lwzx      r4, r3, r31
-	  lbz       r3, 0x16(r4)
-	  rlwinm    r3,r3,0,28,23
-	  ori       r3, r3, 0x10
-	  stb       r3, 0x16(r4)
-	  lwz       r3, 0x4(r29)
-	  sth       r0, 0xE(r3)
-	  b         .loc_0x120
+lbl_8007030C:
+	lwz      r3, 4(r29)
+	li       r0, 1
+	lwz      r3, 0x28(r3)
+	lwzx     r4, r3, r31
+	lbz      r3, 0x16(r4)
+	rlwinm   r3, r3, 0, 0x1c, 0x17
+	ori      r3, r3, 0x10
+	stb      r3, 0x16(r4)
+	lwz      r3, 4(r29)
+	sth      r0, 0xe(r3)
+	b        lbl_8007037C
 
-	.loc_0xDC:
-	  lwz       r3, 0x4(r29)
-	  li        r0, 0x1
-	  lwz       r3, 0x28(r3)
-	  lwzx      r4, r3, r31
-	  lbz       r3, 0x16(r4)
-	  rlwinm    r3,r3,0,28,23
-	  ori       r3, r3, 0x20
-	  stb       r3, 0x16(r4)
-	  lwz       r3, 0x4(r29)
-	  sth       r0, 0xE(r3)
-	  b         .loc_0x120
+lbl_80070338:
+	lwz      r3, 4(r29)
+	li       r0, 1
+	lwz      r3, 0x28(r3)
+	lwzx     r4, r3, r31
+	lbz      r3, 0x16(r4)
+	rlwinm   r3, r3, 0, 0x1c, 0x17
+	ori      r3, r3, 0x20
+	stb      r3, 0x16(r4)
+	lwz      r3, 4(r29)
+	sth      r0, 0xe(r3)
+	b        lbl_8007037C
 
-	.loc_0x108:
-	  lwz       r3, 0x4(r29)
-	  lwz       r3, 0x28(r3)
-	  lwzx      r3, r3, r31
-	  lbz       r0, 0x16(r3)
-	  rlwinm    r0,r0,0,28,31
-	  stb       r0, 0x16(r3)
+lbl_80070364:
+	lwz      r3, 4(r29)
+	lwz      r3, 0x28(r3)
+	lwzx     r3, r3, r31
+	lbz      r0, 0x16(r3)
+	clrlwi   r0, r0, 0x1c
+	stb      r0, 0x16(r3)
 
-	.loc_0x120:
-	  addi      r30, r30, 0x1
+lbl_8007037C:
+	addi     r30, r30, 1
 
-	.loc_0x124:
-	  lwz       r4, 0x4(r29)
-	  rlwinm    r0,r30,0,16,31
-	  lhz       r3, 0x2C(r4)
-	  cmplw     r0, r3
-	  blt+      .loc_0x1C
-	  lmw       r27, 0xC(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80070380:
+	lwz      r4, 4(r29)
+	clrlwi   r0, r30, 0x10
+	lhz      r3, 0x2c(r4)
+	cmplw    r0, r3
+	blt      lbl_80070278
+	lmw      r27, 0xc(r1)
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -993,113 +1120,118 @@ void J3DModelLoader::setupBBoardInfo()
 void J3DModelLoader::readInformation(const J3DModelInfoBlock*, unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r7, 0
-	  stw       r0, 0x14(r1)
-	  lhz       r0, 0x8(r4)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  or        r0, r5, r0
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lwz       r3, 0x4(r3)
-	  stw       r0, 0x8(r3)
-	  lwz       r3, 0x4(r30)
-	  lwz       r0, 0x8(r3)
-	  stw       r0, 0x18(r3)
-	  lwz       r3, 0x4(r30)
-	  lwz       r0, 0x8(r3)
-	  rlwinm    r0,r0,0,28,31
-	  cmpwi     r0, 0x1
-	  beq-      .loc_0xA8
-	  bge-      .loc_0x60
-	  cmpwi     r0, 0
-	  bge-      .loc_0x6C
-	  b         .loc_0x11C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	li       r7, 0
+	stw      r0, 0x14(r1)
+	lhz      r0, 8(r4)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	or       r0, r5, r0
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lwz      r3, 4(r3)
+	stw      r0, 8(r3)
+	lwz      r3, 4(r30)
+	lwz      r0, 8(r3)
+	stw      r0, 0x18(r3)
+	lwz      r3, 4(r30)
+	lwz      r0, 8(r3)
+	clrlwi   r0, r0, 0x1c
+	cmpwi    r0, 1
+	beq      lbl_80070450
+	bge      lbl_80070408
+	cmpwi    r0, 0
+	bge      lbl_80070414
+	b        lbl_800704C4
 
-	.loc_0x60:
-	  cmpwi     r0, 0x3
-	  bge-      .loc_0x11C
-	  b         .loc_0xE4
+lbl_80070408:
+	cmpwi    r0, 3
+	bge      lbl_800704C4
+	b        lbl_8007048C
 
-	.loc_0x6C:
-	  li        r3, 0x4
-	  bl        -0x4C574
-	  cmplwi    r3, 0
-	  beq-      .loc_0xA0
-	  lis       r4, 0x804A
-	  lis       r5, 0x804A
-	  subi      r0, r4, 0x4C4
-	  lis       r4, 0x804A
-	  stw       r0, 0x0(r3)
-	  addi      r5, r5, 0x1F3C
-	  addi      r0, r4, 0x1F10
-	  stw       r5, 0x0(r3)
-	  stw       r0, 0x0(r3)
+lbl_80070414:
+	li       r3, 4
+	bl       __nw__FUl
+	cmplwi   r3, 0
+	beq      lbl_80070448
+	lis      r4, __vt__10J3DMtxCalc@ha
+	lis      r5, __vt__19J3DMtxCalcNoAnmBase@ha
+	addi     r0, r4, __vt__10J3DMtxCalc@l
+	lis      r4,
+"__vt__75J3DMtxCalcNoAnm<28J3DMtxCalcCalcTransformBasic,25J3DMtxCalcJ3DSysInitBasic>"@ha
+	stw      r0, 0(r3)
+	addi     r5, r5, __vt__19J3DMtxCalcNoAnmBase@l
+	addi     r0, r4,
+"__vt__75J3DMtxCalcNoAnm<28J3DMtxCalcCalcTransformBasic,25J3DMtxCalcJ3DSysInitBasic>"@l
+	stw      r5, 0(r3)
+	stw      r0, 0(r3)
 
-	.loc_0xA0:
-	  mr        r7, r3
-	  b         .loc_0x11C
+lbl_80070448:
+	mr       r7, r3
+	b        lbl_800704C4
 
-	.loc_0xA8:
-	  li        r3, 0x4
-	  bl        -0x4C5B0
-	  cmplwi    r3, 0
-	  beq-      .loc_0xDC
-	  lis       r4, 0x804A
-	  lis       r5, 0x804A
-	  subi      r0, r4, 0x4C4
-	  lis       r4, 0x804A
-	  stw       r0, 0x0(r3)
-	  addi      r5, r5, 0x1F3C
-	  addi      r0, r4, 0x1EE4
-	  stw       r5, 0x0(r3)
-	  stw       r0, 0x0(r3)
+lbl_80070450:
+	li       r3, 4
+	bl       __nw__FUl
+	cmplwi   r3, 0
+	beq      lbl_80070484
+	lis      r4, __vt__10J3DMtxCalc@ha
+	lis      r5, __vt__19J3DMtxCalcNoAnmBase@ha
+	addi     r0, r4, __vt__10J3DMtxCalc@l
+	lis      r4,
+"__vt__83J3DMtxCalcNoAnm<32J3DMtxCalcCalcTransformSoftimage,29J3DMtxCalcJ3DSysInitSoftimage>"@ha
+	stw      r0, 0(r3)
+	addi     r5, r5, __vt__19J3DMtxCalcNoAnmBase@l
+	addi     r0, r4,
+"__vt__83J3DMtxCalcNoAnm<32J3DMtxCalcCalcTransformSoftimage,29J3DMtxCalcJ3DSysInitSoftimage>"@l
+	stw      r5, 0(r3)
+	stw      r0, 0(r3)
 
-	.loc_0xDC:
-	  mr        r7, r3
-	  b         .loc_0x11C
+lbl_80070484:
+	mr       r7, r3
+	b        lbl_800704C4
 
-	.loc_0xE4:
-	  li        r3, 0x4
-	  bl        -0x4C5EC
-	  cmplwi    r3, 0
-	  beq-      .loc_0x118
-	  lis       r4, 0x804A
-	  lis       r5, 0x804A
-	  subi      r0, r4, 0x4C4
-	  lis       r4, 0x804A
-	  stw       r0, 0x0(r3)
-	  addi      r5, r5, 0x1F3C
-	  addi      r0, r4, 0x1EB8
-	  stw       r5, 0x0(r3)
-	  stw       r0, 0x0(r3)
+lbl_8007048C:
+	li       r3, 4
+	bl       __nw__FUl
+	cmplwi   r3, 0
+	beq      lbl_800704C0
+	lis      r4, __vt__10J3DMtxCalc@ha
+	lis      r5, __vt__19J3DMtxCalcNoAnmBase@ha
+	addi     r0, r4, __vt__10J3DMtxCalc@l
+	lis      r4,
+"__vt__73J3DMtxCalcNoAnm<27J3DMtxCalcCalcTransformMaya,24J3DMtxCalcJ3DSysInitMaya>"@ha
+	stw      r0, 0(r3)
+	addi     r5, r5, __vt__19J3DMtxCalcNoAnmBase@l
+	addi     r0, r4,
+"__vt__73J3DMtxCalcNoAnm<27J3DMtxCalcCalcTransformMaya,24J3DMtxCalcJ3DSysInitMaya>"@l
+	stw      r5, 0(r3)
+	stw      r0, 0(r3)
 
-	.loc_0x118:
-	  mr        r7, r3
+lbl_800704C0:
+	mr       r7, r3
 
-	.loc_0x11C:
-	  lwz       r4, 0x4(r30)
-	  mr        r3, r31
-	  lwz       r6, 0xC(r31)
-	  stw       r7, 0x24(r4)
-	  lwz       r0, 0x10(r31)
-	  lwz       r5, 0x4(r30)
-	  lwz       r4, 0x14(r31)
-	  stw       r6, 0x98(r5)
-	  lwz       r5, 0x4(r30)
-	  stw       r0, 0x88(r5)
-	  bl        0x15EC
-	  lwz       r4, 0x4(r30)
-	  stw       r3, 0x14(r4)
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_800704C4:
+	lwz      r4, 4(r30)
+	mr       r3, r31
+	lwz      r6, 0xc(r31)
+	stw      r7, 0x24(r4)
+	lwz      r0, 0x10(r31)
+	lwz      r5, 4(r30)
+	lwz      r4, 0x14(r31)
+	stw      r6, 0x98(r5)
+	lwz      r5, 4(r30)
+	stw      r0, 0x88(r5)
+	bl       "JSUConvertOffsetToPtr<17J3DModelHierarchy>__FPCvPCv"
+	lwz      r4, 4(r30)
+	stw      r3, 0x14(r4)
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1111,34 +1243,33 @@ void J3DModelLoader::readInformation(const J3DModelInfoBlock*, unsigned long)
 J3DMtxCalcNoAnmBase::~J3DMtxCalcNoAnmBase()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r3
-	  beq-      .loc_0x44
-	  lis       r3, 0x804A
-	  addi      r0, r3, 0x1F3C
-	  stw       r0, 0x0(r31)
-	  beq-      .loc_0x34
-	  lis       r3, 0x804A
-	  subi      r0, r3, 0x4C4
-	  stw       r0, 0x0(r31)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r3, r3
+	beq      lbl_80070554
+	lis      r3, __vt__19J3DMtxCalcNoAnmBase@ha
+	addi     r0, r3, __vt__19J3DMtxCalcNoAnmBase@l
+	stw      r0, 0(r31)
+	beq      lbl_80070544
+	lis      r3, __vt__10J3DMtxCalc@ha
+	addi     r0, r3, __vt__10J3DMtxCalc@l
+	stw      r0, 0(r31)
 
-	.loc_0x34:
-	  extsh.    r0, r4
-	  ble-      .loc_0x44
-	  mr        r3, r31
-	  bl        -0x4C49C
+lbl_80070544:
+	extsh.   r0, r4
+	ble      lbl_80070554
+	mr       r3, r31
+	bl       __dl__FPv
 
-	.loc_0x44:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80070554:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1150,189 +1281,188 @@ J3DMtxCalcNoAnmBase::~J3DMtxCalcNoAnmBase()
 void J3DModelLoader::readVertex(const J3DVertexBlock*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stmw      r27, 0xC(r1)
-	  mr        r30, r4
-	  lwz       r4, 0x8(r4)
-	  lwz       r5, 0x4(r3)
-	  mr        r3, r30
-	  addi      r31, r5, 0x88
-	  bl        0x1530
-	  stw       r3, 0x14(r31)
-	  mr        r3, r30
-	  lwz       r4, 0xC(r30)
-	  bl        0x1508
-	  stw       r3, 0x18(r31)
-	  mr        r3, r30
-	  lwz       r4, 0x10(r30)
-	  bl        0x14F8
-	  stw       r3, 0x1C(r31)
-	  mr        r3, r30
-	  lwz       r4, 0x14(r30)
-	  bl        0x14E8
-	  stw       r3, 0x20(r31)
-	  mr        r29, r30
-	  mr        r28, r31
-	  li        r27, 0
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stmw     r27, 0xc(r1)
+	mr       r30, r4
+	lwz      r4, 8(r4)
+	lwz      r5, 4(r3)
+	mr       r3, r30
+	addi     r31, r5, 0x88
+	bl       "JSUConvertOffsetToPtr<17_GXVtxAttrFmtList>__FPCvPCv"
+	stw      r3, 0x14(r31)
+	mr       r3, r30
+	lwz      r4, 0xc(r30)
+	bl       "JSUConvertOffsetToPtr<v>__FPCvPCv"
+	stw      r3, 0x18(r31)
+	mr       r3, r30
+	lwz      r4, 0x10(r30)
+	bl       "JSUConvertOffsetToPtr<v>__FPCvPCv"
+	stw      r3, 0x1c(r31)
+	mr       r3, r30
+	lwz      r4, 0x14(r30)
+	bl       "JSUConvertOffsetToPtr<v>__FPCvPCv"
+	stw      r3, 0x20(r31)
+	mr       r29, r30
+	mr       r28, r31
+	li       r27, 0
 
-	.loc_0x68:
-	  lwz       r4, 0x18(r29)
-	  mr        r3, r30
-	  bl        0x14CC
-	  addi      r27, r27, 0x1
-	  stw       r3, 0x24(r28)
-	  cmpwi     r27, 0x2
-	  addi      r29, r29, 0x4
-	  addi      r28, r28, 0x4
-	  blt+      .loc_0x68
-	  mr        r28, r30
-	  mr        r29, r31
-	  li        r27, 0
+lbl_800705D4:
+	lwz      r4, 0x18(r29)
+	mr       r3, r30
+	bl       "JSUConvertOffsetToPtr<v>__FPCvPCv"
+	addi     r27, r27, 1
+	stw      r3, 0x24(r28)
+	cmpwi    r27, 2
+	addi     r29, r29, 4
+	addi     r28, r28, 4
+	blt      lbl_800705D4
+	mr       r28, r30
+	mr       r29, r31
+	li       r27, 0
 
-	.loc_0x98:
-	  lwz       r4, 0x20(r28)
-	  mr        r3, r30
-	  bl        0x149C
-	  addi      r27, r27, 0x1
-	  stw       r3, 0x2C(r29)
-	  cmpwi     r27, 0x8
-	  addi      r28, r28, 0x4
-	  addi      r29, r29, 0x4
-	  blt+      .loc_0x98
-	  lwz       r3, 0x14(r31)
-	  b         .loc_0xD8
+lbl_80070604:
+	lwz      r4, 0x20(r28)
+	mr       r3, r30
+	bl       "JSUConvertOffsetToPtr<v>__FPCvPCv"
+	addi     r27, r27, 1
+	stw      r3, 0x2c(r29)
+	cmpwi    r27, 8
+	addi     r28, r28, 4
+	addi     r29, r29, 4
+	blt      lbl_80070604
+	lwz      r3, 0x14(r31)
+	b        lbl_80070644
 
-	.loc_0xC4:
-	  cmpwi     r0, 0xA
-	  bne-      .loc_0xD4
-	  lwz       r0, 0x8(r3)
-	  b         .loc_0xE8
+lbl_80070630:
+	cmpwi    r0, 0xa
+	bne      lbl_80070640
+	lwz      r0, 8(r3)
+	b        lbl_80070654
 
-	.loc_0xD4:
-	  addi      r3, r3, 0x10
+lbl_80070640:
+	addi     r3, r3, 0x10
 
-	.loc_0xD8:
-	  lwz       r0, 0x0(r3)
-	  cmpwi     r0, 0xFF
-	  bne+      .loc_0xC4
-	  li        r0, 0x4
+lbl_80070644:
+	lwz      r0, 0(r3)
+	cmpwi    r0, 0xff
+	bne      lbl_80070630
+	li       r0, 4
 
-	.loc_0xE8:
-	  cmpwi     r0, 0x4
-	  li        r4, 0x6
-	  bne-      .loc_0xF8
-	  li        r4, 0xC
+lbl_80070654:
+	cmpwi    r0, 4
+	li       r4, 6
+	bne      lbl_80070664
+	li       r4, 0xc
 
-	.loc_0xF8:
-	  lwz       r0, 0x20(r31)
-	  li        r3, 0
-	  cmplwi    r0, 0
-	  beq-      .loc_0x110
-	  mr        r3, r0
-	  b         .loc_0x134
+lbl_80070664:
+	lwz      r0, 0x20(r31)
+	li       r3, 0
+	cmplwi   r0, 0
+	beq      lbl_8007067C
+	mr       r3, r0
+	b        lbl_800706A0
 
-	.loc_0x110:
-	  lwz       r0, 0x24(r31)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x124
-	  mr        r3, r0
-	  b         .loc_0x134
+lbl_8007067C:
+	lwz      r0, 0x24(r31)
+	cmplwi   r0, 0
+	beq      lbl_80070690
+	mr       r3, r0
+	b        lbl_800706A0
 
-	.loc_0x124:
-	  lwz       r0, 0x2C(r31)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x134
-	  mr        r3, r0
+lbl_80070690:
+	lwz      r0, 0x2c(r31)
+	cmplwi   r0, 0
+	beq      lbl_800706A0
+	mr       r3, r0
 
-	.loc_0x134:
-	  lwz       r0, 0x1C(r31)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x14C
-	  li        r0, 0
-	  stw       r0, 0x4(r31)
-	  b         .loc_0x180
+lbl_800706A0:
+	lwz      r0, 0x1c(r31)
+	cmplwi   r0, 0
+	bne      lbl_800706B8
+	li       r0, 0
+	stw      r0, 4(r31)
+	b        lbl_800706EC
 
-	.loc_0x14C:
-	  cmplwi    r3, 0
-	  beq-      .loc_0x168
-	  sub       r0, r3, r0
-	  divwu     r3, r0, r4
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x4(r31)
-	  b         .loc_0x180
+lbl_800706B8:
+	cmplwi   r3, 0
+	beq      lbl_800706D4
+	subf     r0, r0, r3
+	divwu    r3, r0, r4
+	addi     r0, r3, 1
+	stw      r0, 4(r31)
+	b        lbl_800706EC
 
-	.loc_0x168:
-	  lwz       r3, 0x10(r30)
-	  lwz       r0, 0x4(r30)
-	  sub       r0, r0, r3
-	  divwu     r3, r0, r4
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x4(r31)
+lbl_800706D4:
+	lwz      r3, 0x10(r30)
+	lwz      r0, 4(r30)
+	subf     r0, r3, r0
+	divwu    r3, r0, r4
+	addi     r0, r3, 1
+	stw      r0, 4(r31)
 
-	.loc_0x180:
-	  lwz       r0, 0x28(r31)
-	  li        r3, 0
-	  cmplwi    r0, 0
-	  beq-      .loc_0x198
-	  mr        r3, r0
-	  b         .loc_0x1A8
+lbl_800706EC:
+	lwz      r0, 0x28(r31)
+	li       r3, 0
+	cmplwi   r0, 0
+	beq      lbl_80070704
+	mr       r3, r0
+	b        lbl_80070714
 
-	.loc_0x198:
-	  lwz       r0, 0x2C(r31)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x1A8
-	  mr        r3, r0
+lbl_80070704:
+	lwz      r0, 0x2c(r31)
+	cmplwi   r0, 0
+	beq      lbl_80070714
+	mr       r3, r0
 
-	.loc_0x1A8:
-	  lwz       r0, 0x24(r31)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x1C0
-	  li        r0, 0
-	  stw       r0, 0x8(r31)
-	  b         .loc_0x1F4
+lbl_80070714:
+	lwz      r0, 0x24(r31)
+	cmplwi   r0, 0
+	bne      lbl_8007072C
+	li       r0, 0
+	stw      r0, 8(r31)
+	b        lbl_80070760
 
-	.loc_0x1C0:
-	  cmplwi    r3, 0
-	  beq-      .loc_0x1DC
-	  sub       r0, r3, r0
-	  rlwinm    r3,r0,30,2,31
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x8(r31)
-	  b         .loc_0x1F4
+lbl_8007072C:
+	cmplwi   r3, 0
+	beq      lbl_80070748
+	subf     r0, r0, r3
+	srwi     r3, r0, 2
+	addi     r0, r3, 1
+	stw      r0, 8(r31)
+	b        lbl_80070760
 
-	.loc_0x1DC:
-	  lwz       r3, 0x18(r30)
-	  lwz       r0, 0x4(r30)
-	  sub       r0, r0, r3
-	  rlwinm    r3,r0,30,2,31
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x8(r31)
+lbl_80070748:
+	lwz      r3, 0x18(r30)
+	lwz      r0, 4(r30)
+	subf     r0, r3, r0
+	srwi     r3, r0, 2
+	addi     r0, r3, 1
+	stw      r0, 8(r31)
 
-	.loc_0x1F4:
-	  lwz       r0, 0x2C(r31)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x20C
-	  li        r0, 0
-	  stw       r0, 0xC(r31)
-	  b         .loc_0x224
+lbl_80070760:
+	lwz      r0, 0x2c(r31)
+	cmplwi   r0, 0
+	bne      lbl_80070778
+	li       r0, 0
+	stw      r0, 0xc(r31)
+	b        lbl_80070790
 
-	.loc_0x20C:
-	  lwz       r3, 0x20(r30)
-	  lwz       r0, 0x4(r30)
-	  sub       r0, r0, r3
-	  rlwinm    r3,r0,29,3,31
-	  addi      r0, r3, 0x1
-	  stw       r0, 0xC(r31)
+lbl_80070778:
+	lwz      r3, 0x20(r30)
+	lwz      r0, 4(r30)
+	subf     r0, r3, r0
+	srwi     r3, r0, 3
+	addi     r0, r3, 1
+	stw      r0, 0xc(r31)
 
-	.loc_0x224:
-	  lmw       r27, 0xC(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80070790:
+	lmw      r27, 0xc(r1)
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -1344,45 +1474,44 @@ void J3DModelLoader::readVertex(const J3DVertexBlock*)
 void J3DModelLoader::readEnvelop(const J3DEnvelopeBlock*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  lhz       r0, 0x8(r4)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  mr        r30, r4
-	  lwz       r4, 0xC(r4)
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  mr        r3, r30
-	  lwz       r5, 0x4(r29)
-	  sth       r0, 0x2E(r5)
-	  lwz       r31, 0x4(r29)
-	  bl        -0x27388
-	  stw       r3, 0x30(r31)
-	  mr        r3, r30
-	  lwz       r4, 0x10(r30)
-	  lwz       r31, 0x4(r29)
-	  bl        -0x2736C
-	  stw       r3, 0x34(r31)
-	  mr        r3, r30
-	  lwz       r4, 0x14(r30)
-	  lwz       r31, 0x4(r29)
-	  bl        -0x27350
-	  stw       r3, 0x38(r31)
-	  mr        r3, r30
-	  lwz       r4, 0x18(r30)
-	  lwz       r31, 0x4(r29)
-	  bl        0x1278
-	  stw       r3, 0x3C(r31)
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	lhz      r0, 8(r4)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	mr       r30, r4
+	lwz      r4, 0xc(r4)
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	mr       r3, r30
+	lwz      r5, 4(r29)
+	sth      r0, 0x2e(r5)
+	lwz      r31, 4(r29)
+	bl       "JSUConvertOffsetToPtr<Uc>__FPCvPCv"
+	stw      r3, 0x30(r31)
+	mr       r3, r30
+	lwz      r4, 0x10(r30)
+	lwz      r31, 4(r29)
+	bl       "JSUConvertOffsetToPtr<Us>__FPCvPCv"
+	stw      r3, 0x34(r31)
+	mr       r3, r30
+	lwz      r4, 0x14(r30)
+	lwz      r31, 4(r29)
+	bl       "JSUConvertOffsetToPtr<f>__FPCvPCv"
+	stw      r3, 0x38(r31)
+	mr       r3, r30
+	lwz      r4, 0x18(r30)
+	lwz      r31, 4(r29)
+	bl       "JSUConvertOffsetToPtr<A3_A4_f>__FPCvPCv"
+	stw      r3, 0x3c(r31)
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -1394,59 +1523,58 @@ void J3DModelLoader::readEnvelop(const J3DEnvelopeBlock*)
 void J3DModelLoader::readDraw(const J3DDrawBlock*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  lhz       r0, 0x8(r4)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  mr        r30, r4
-	  lwz       r4, 0xC(r4)
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  lwz       r31, 0x4(r3)
-	  mr        r3, r30
-	  lhz       r5, 0x2E(r31)
-	  sub       r0, r0, r5
-	  sth       r0, 0x44(r31)
-	  bl        -0x27424
-	  stw       r3, 0x48(r31)
-	  mr        r3, r30
-	  lwz       r4, 0x10(r30)
-	  bl        -0x27404
-	  stw       r3, 0x4C(r31)
-	  li        r5, 0
-	  lhz       r4, 0x44(r31)
-	  b         .loc_0x78
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	lhz      r0, 8(r4)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	mr       r30, r4
+	lwz      r4, 0xc(r4)
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	lwz      r31, 4(r3)
+	mr       r3, r30
+	lhz      r5, 0x2e(r31)
+	subf     r0, r5, r0
+	sth      r0, 0x44(r31)
+	bl       "JSUConvertOffsetToPtr<Uc>__FPCvPCv"
+	stw      r3, 0x48(r31)
+	mr       r3, r30
+	lwz      r4, 0x10(r30)
+	bl       "JSUConvertOffsetToPtr<Us>__FPCvPCv"
+	stw      r3, 0x4c(r31)
+	li       r5, 0
+	lhz      r4, 0x44(r31)
+	b        lbl_800708B4
 
-	.loc_0x60:
-	  lwz       r3, 0x48(r31)
-	  rlwinm    r0,r5,0,16,31
-	  lbzx      r0, r3, r0
-	  cmplwi    r0, 0x1
-	  beq-      .loc_0x84
-	  addi      r5, r5, 0x1
+lbl_8007089C:
+	lwz      r3, 0x48(r31)
+	clrlwi   r0, r5, 0x10
+	lbzx     r0, r3, r0
+	cmplwi   r0, 1
+	beq      lbl_800708C0
+	addi     r5, r5, 1
 
-	.loc_0x78:
-	  rlwinm    r0,r5,0,16,31
-	  cmplw     r0, r4
-	  blt+      .loc_0x60
+lbl_800708B4:
+	clrlwi   r0, r5, 0x10
+	cmplw    r0, r4
+	blt      lbl_8007089C
 
-	.loc_0x84:
-	  sth       r5, 0x46(r31)
-	  lhz       r0, 0x44(r31)
-	  lwz       r31, 0x4(r29)
-	  rlwinm    r3,r0,1,0,30
-	  bl        -0x4C924
-	  stw       r3, 0x40(r31)
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_800708C0:
+	sth      r5, 0x46(r31)
+	lhz      r0, 0x44(r31)
+	lwz      r31, 4(r29)
+	slwi     r3, r0, 1
+	bl       __nwa__FUl
+	stw      r3, 0x40(r31)
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -1458,76 +1586,75 @@ void J3DModelLoader::readDraw(const J3DDrawBlock*)
 void J3DModelLoader::readJoint(const J3DJointBlock*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r3
-	  addi      r3, r1, 0x8
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r29, r4
-	  bl        0x1208
-	  lwz       r0, 0x14(r29)
-	  lhz       r4, 0x8(r29)
-	  lwz       r3, 0x4(r31)
-	  cmplwi    r0, 0
-	  sth       r4, 0x2C(r3)
-	  beq-      .loc_0x78
-	  li        r3, 0x10
-	  bl        -0x4CA94
-	  mr.       r30, r3
-	  beq-      .loc_0x6C
-	  lwz       r4, 0x14(r29)
-	  mr        r3, r29
-	  bl        -0x274E0
-	  mr        r4, r3
-	  mr        r3, r30
-	  bl        -0x41C4C
-	  mr        r30, r3
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r3
+	addi     r3, r1, 8
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	mr       r29, r4
+	bl       __ct__15J3DJointFactoryFRC13J3DJointBlock
+	lwz      r0, 0x14(r29)
+	lhz      r4, 8(r29)
+	lwz      r3, 4(r31)
+	cmplwi   r0, 0
+	sth      r4, 0x2c(r3)
+	beq      lbl_8007096C
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r30, r3, r3
+	beq      lbl_80070960
+	lwz      r4, 0x14(r29)
+	mr       r3, r29
+	bl       "JSUConvertOffsetToPtr<7ResNTAB>__FPCvPCv"
+	mr       r4, r3
+	mr       r3, r30
+	bl       __ct__10JUTNameTabFPC7ResNTAB
+	mr       r30, r3
 
-	.loc_0x6C:
-	  lwz       r3, 0x4(r31)
-	  stw       r30, 0x54(r3)
-	  b         .loc_0x84
+lbl_80070960:
+	lwz      r3, 4(r31)
+	stw      r30, 0x54(r3)
+	b        lbl_80070978
 
-	.loc_0x78:
-	  lwz       r3, 0x4(r31)
-	  li        r0, 0
-	  stw       r0, 0x54(r3)
+lbl_8007096C:
+	lwz      r3, 4(r31)
+	li       r0, 0
+	stw      r0, 0x54(r3)
 
-	.loc_0x84:
-	  lwz       r30, 0x4(r31)
-	  lhz       r0, 0x2C(r30)
-	  rlwinm    r3,r0,2,0,29
-	  bl        -0x4C9D8
-	  stw       r3, 0x28(r30)
-	  li        r29, 0
-	  b         .loc_0xBC
+lbl_80070978:
+	lwz      r30, 4(r31)
+	lhz      r0, 0x2c(r30)
+	slwi     r3, r0, 2
+	bl       __nwa__FUl
+	stw      r3, 0x28(r30)
+	li       r29, 0
+	b        lbl_800709B0
 
-	.loc_0xA0:
-	  addi      r3, r1, 0x8
-	  rlwinm    r4,r29,0,16,31
-	  bl        0x11DC
-	  lwz       r4, 0x28(r30)
-	  rlwinm    r0,r29,2,14,29
-	  addi      r29, r29, 0x1
-	  stwx      r3, r4, r0
+lbl_80070994:
+	addi     r3, r1, 8
+	clrlwi   r4, r29, 0x10
+	bl       create__15J3DJointFactoryFi
+	lwz      r4, 0x28(r30)
+	rlwinm   r0, r29, 2, 0xe, 0x1d
+	addi     r29, r29, 1
+	stwx     r3, r4, r0
 
-	.loc_0xBC:
-	  lwz       r30, 0x4(r31)
-	  rlwinm    r0,r29,0,16,31
-	  lhz       r3, 0x2C(r30)
-	  cmplw     r0, r3
-	  blt+      .loc_0xA0
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_800709B0:
+	lwz      r30, 4(r31)
+	clrlwi   r0, r29, 0x10
+	lhz      r3, 0x2c(r30)
+	cmplw    r0, r3
+	blt      lbl_80070994
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -1539,196 +1666,197 @@ void J3DModelLoader::readJoint(const J3DJointBlock*)
 void J3DModelLoader_v26::readMaterial(const J3DMaterialBlock*, unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0xB0(r1)
-	  mflr      r0
-	  stw       r0, 0xB4(r1)
-	  stmw      r27, 0x9C(r1)
-	  mr        r29, r3
-	  mr        r27, r4
-	  mr        r30, r5
-	  addi      r3, r1, 0x8
-	  bl        -0x465C
-	  lhz       r0, 0x8(r27)
-	  addi      r3, r1, 0x8
-	  lwz       r4, 0x8(r29)
-	  sth       r0, 0x4(r4)
-	  bl        -0x43A0
-	  lwz       r0, 0x14(r27)
-	  lwz       r4, 0x8(r29)
-	  cmplwi    r0, 0
-	  sth       r3, 0x6(r4)
-	  beq-      .loc_0x84
-	  li        r3, 0x10
-	  bl        -0x4CB8C
-	  mr.       r28, r3
-	  beq-      .loc_0x78
-	  lwz       r4, 0x14(r27)
-	  mr        r3, r27
-	  bl        -0x275D8
-	  mr        r4, r3
-	  mr        r3, r28
-	  bl        -0x41D44
-	  mr        r28, r3
+	stwu     r1, -0xb0(r1)
+	mflr     r0
+	stw      r0, 0xb4(r1)
+	stmw     r27, 0x9c(r1)
+	mr       r29, r3
+	mr       r27, r4
+	mr       r30, r5
+	addi     r3, r1, 8
+	bl       __ct__18J3DMaterialFactoryFRC16J3DMaterialBlock
+	lhz      r0, 8(r27)
+	addi     r3, r1, 8
+	lwz      r4, 8(r29)
+	sth      r0, 4(r4)
+	bl       countUniqueMaterials__18J3DMaterialFactoryFv
+	lwz      r0, 0x14(r27)
+	lwz      r4, 8(r29)
+	cmplwi   r0, 0
+	sth      r3, 6(r4)
+	beq      lbl_80070A64
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r28, r3, r3
+	beq      lbl_80070A58
+	lwz      r4, 0x14(r27)
+	mr       r3, r27
+	bl       "JSUConvertOffsetToPtr<7ResNTAB>__FPCvPCv"
+	mr       r4, r3
+	mr       r3, r28
+	bl       __ct__10JUTNameTabFPC7ResNTAB
+	mr       r28, r3
 
-	.loc_0x78:
-	  lwz       r3, 0x8(r29)
-	  stw       r28, 0xC(r3)
-	  b         .loc_0x90
+lbl_80070A58:
+	lwz      r3, 8(r29)
+	stw      r28, 0xc(r3)
+	b        lbl_80070A70
 
-	.loc_0x84:
-	  lwz       r3, 0x8(r29)
-	  li        r0, 0
-	  stw       r0, 0xC(r3)
+lbl_80070A64:
+	lwz      r3, 8(r29)
+	li       r0, 0
+	stw      r0, 0xc(r3)
 
-	.loc_0x90:
-	  lwz       r3, 0x8(r29)
-	  lhz       r0, 0x4(r3)
-	  rlwinm    r3,r0,2,0,29
-	  bl        -0x4CAD0
-	  lwz       r4, 0x8(r29)
-	  rlwinm.   r31,r30,0,10,10
-	  stw       r3, 0x8(r4)
-	  beq-      .loc_0xF0
-	  lwz       r3, 0x8(r29)
-	  li        r4, 0x20
-	  lhz       r28, 0x6(r3)
-	  mulli     r3, r28, 0x4C
-	  addi      r3, r3, 0x10
-	  bl        -0x4CAAC
-	  lis       r4, 0x8007
-	  lis       r5, 0x8007
-	  addi      r4, r4, 0xC54
-	  mr        r7, r28
-	  subi      r5, r5, 0x256C
-	  li        r6, 0x4C
-	  bl        0x50F30
-	  lwz       r4, 0x8(r29)
-	  stw       r3, 0x10(r4)
-	  b         .loc_0xFC
+lbl_80070A70:
+	lwz      r3, 8(r29)
+	lhz      r0, 4(r3)
+	slwi     r3, r0, 2
+	bl       __nwa__FUl
+	lwz      r4, 8(r29)
+	rlwinm.  r31, r30, 0, 0xa, 0xa
+	stw      r3, 8(r4)
+	beq      lbl_80070AD0
+	lwz      r3, 8(r29)
+	li       r4, 0x20
+	lhz      r28, 6(r3)
+	mulli    r3, r28, 0x4c
+	addi     r3, r3, 0x10
+	bl       __nwa__FUli
+	lis      r4, __ct__11J3DMaterialFv@ha
+	lis      r5, __dt__11J3DMaterialFv@ha
+	addi     r4, r4, __ct__11J3DMaterialFv@l
+	mr       r7, r28
+	addi     r5, r5, __dt__11J3DMaterialFv@l
+	li       r6, 0x4c
+	bl       __construct_new_array
+	lwz      r4, 8(r29)
+	stw      r3, 0x10(r4)
+	b        lbl_80070ADC
 
-	.loc_0xF0:
-	  lwz       r3, 0x8(r29)
-	  li        r0, 0
-	  stw       r0, 0x10(r3)
+lbl_80070AD0:
+	lwz      r3, 8(r29)
+	li       r0, 0
+	stw      r0, 0x10(r3)
 
-	.loc_0xFC:
-	  cmplwi    r31, 0
-	  beq-      .loc_0x158
-	  li        r27, 0
-	  b         .loc_0x144
+lbl_80070ADC:
+	cmplwi   r31, 0
+	beq      lbl_80070B38
+	li       r27, 0
+	b        lbl_80070B24
 
-	.loc_0x10C:
-	  rlwinm    r6,r27,0,16,31
-	  lwz       r0, 0x10(r4)
-	  mulli     r28, r6, 0x4C
-	  mr        r7, r30
-	  addi      r3, r1, 0x8
-	  li        r5, 0
-	  add       r4, r0, r28
-	  bl        -0x444C
-	  lwz       r3, 0x8(r29)
-	  addi      r27, r27, 0x1
-	  lwz       r0, 0x10(r3)
-	  add       r3, r0, r28
-	  rlwinm    r0,r3,28,4,31
-	  stw       r0, 0x20(r3)
+lbl_80070AEC:
+	clrlwi   r6, r27, 0x10
+	lwz      r0, 0x10(r4)
+	mulli    r28, r6, 0x4c
+	mr       r7, r30
+	addi     r3, r1, 8
+	li       r5, 0
+	add      r4, r0, r28
+	bl
+create__18J3DMaterialFactoryCFP11J3DMaterialQ218J3DMaterialFactory12MaterialTypeiUl
+	lwz      r3, 8(r29)
+	addi     r27, r27, 1
+	lwz      r0, 0x10(r3)
+	add      r3, r0, r28
+	srwi     r0, r3, 4
+	stw      r0, 0x20(r3)
 
-	.loc_0x144:
-	  lwz       r4, 0x8(r29)
-	  rlwinm    r3,r27,0,16,31
-	  lhz       r0, 0x6(r4)
-	  cmplw     r3, r0
-	  blt+      .loc_0x10C
+lbl_80070B24:
+	lwz      r4, 8(r29)
+	clrlwi   r3, r27, 0x10
+	lhz      r0, 6(r4)
+	cmplw    r3, r0
+	blt      lbl_80070AEC
 
-	.loc_0x158:
-	  li        r27, 0
-	  b         .loc_0x18C
+lbl_80070B38:
+	li       r27, 0
+	b        lbl_80070B6C
 
-	.loc_0x160:
-	  mr        r7, r30
-	  addi      r3, r1, 0x8
-	  rlwinm    r6,r27,0,16,31
-	  li        r4, 0
-	  li        r5, 0
-	  bl        -0x4498
-	  lwz       r4, 0x8(r29)
-	  rlwinm    r0,r27,2,14,29
-	  addi      r27, r27, 0x1
-	  lwz       r4, 0x8(r4)
-	  stwx      r3, r4, r0
+lbl_80070B40:
+	mr       r7, r30
+	addi     r3, r1, 8
+	clrlwi   r6, r27, 0x10
+	li       r4, 0
+	li       r5, 0
+	bl
+create__18J3DMaterialFactoryCFP11J3DMaterialQ218J3DMaterialFactory12MaterialTypeiUl
+	lwz      r4, 8(r29)
+	rlwinm   r0, r27, 2, 0xe, 0x1d
+	addi     r27, r27, 1
+	lwz      r4, 8(r4)
+	stwx     r3, r4, r0
 
-	.loc_0x18C:
-	  lwz       r3, 0x8(r29)
-	  rlwinm    r4,r27,0,16,31
-	  lhz       r0, 0x4(r3)
-	  cmplw     r4, r0
-	  blt+      .loc_0x160
-	  cmplwi    r31, 0
-	  beq-      .loc_0x21C
-	  li        r8, 0
-	  b         .loc_0x204
+lbl_80070B6C:
+	lwz      r3, 8(r29)
+	clrlwi   r4, r27, 0x10
+	lhz      r0, 4(r3)
+	cmplw    r4, r0
+	blt      lbl_80070B40
+	cmplwi   r31, 0
+	beq      lbl_80070BFC
+	li       r8, 0
+	b        lbl_80070BE4
 
-	.loc_0x1B0:
-	  lwz       r3, 0x10(r1)
-	  rlwinm    r6,r8,1,15,30
-	  rlwinm    r7,r8,2,14,29
-	  lwz       r4, 0x10(r5)
-	  lhzx      r0, r3, r6
-	  addi      r8, r8, 0x1
-	  lwz       r3, 0x8(r5)
-	  mulli     r0, r0, 0x4C
-	  lwzx      r3, r3, r7
-	  add       r0, r4, r0
-	  rlwinm    r0,r0,28,4,31
-	  stw       r0, 0x20(r3)
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0x8(r29)
-	  lhzx      r0, r3, r6
-	  lwz       r3, 0x8(r4)
-	  mulli     r0, r0, 0x4C
-	  lwz       r4, 0x10(r4)
-	  lwzx      r3, r3, r7
-	  add       r0, r4, r0
-	  stw       r0, 0x38(r3)
+lbl_80070B90:
+	lwz      r3, 0x10(r1)
+	rlwinm   r6, r8, 1, 0xf, 0x1e
+	rlwinm   r7, r8, 2, 0xe, 0x1d
+	lwz      r4, 0x10(r5)
+	lhzx     r0, r3, r6
+	addi     r8, r8, 1
+	lwz      r3, 8(r5)
+	mulli    r0, r0, 0x4c
+	lwzx     r3, r3, r7
+	add      r0, r4, r0
+	srwi     r0, r0, 4
+	stw      r0, 0x20(r3)
+	lwz      r3, 0x10(r1)
+	lwz      r4, 8(r29)
+	lhzx     r0, r3, r6
+	lwz      r3, 8(r4)
+	mulli    r0, r0, 0x4c
+	lwz      r4, 0x10(r4)
+	lwzx     r3, r3, r7
+	add      r0, r4, r0
+	stw      r0, 0x38(r3)
 
-	.loc_0x204:
-	  lwz       r5, 0x8(r29)
-	  rlwinm    r3,r8,0,16,31
-	  lhz       r0, 0x4(r5)
-	  cmplw     r3, r0
-	  blt+      .loc_0x1B0
-	  b         .loc_0x260
+lbl_80070BE4:
+	lwz      r5, 8(r29)
+	clrlwi   r3, r8, 0x10
+	lhz      r0, 4(r5)
+	cmplw    r3, r0
+	blt      lbl_80070B90
+	b        lbl_80070C40
 
-	.loc_0x21C:
-	  li        r7, 0
-	  b         .loc_0x24C
+lbl_80070BFC:
+	li       r7, 0
+	b        lbl_80070C2C
 
-	.loc_0x224:
-	  lwz       r4, 0x10(r1)
-	  rlwinm    r3,r7,1,15,30
-	  lwz       r6, 0x8(r5)
-	  rlwinm    r0,r7,2,14,29
-	  lhzx      r4, r4, r3
-	  addi      r7, r7, 0x1
-	  rlwinm    r5,r6,28,4,31
-	  lwzx      r3, r6, r0
-	  add       r0, r5, r4
-	  stw       r0, 0x20(r3)
+lbl_80070C04:
+	lwz      r4, 0x10(r1)
+	rlwinm   r3, r7, 1, 0xf, 0x1e
+	lwz      r6, 8(r5)
+	rlwinm   r0, r7, 2, 0xe, 0x1d
+	lhzx     r4, r4, r3
+	addi     r7, r7, 1
+	srwi     r5, r6, 4
+	lwzx     r3, r6, r0
+	add      r0, r5, r4
+	stw      r0, 0x20(r3)
 
-	.loc_0x24C:
-	  lwz       r5, 0x8(r29)
-	  rlwinm    r3,r7,0,16,31
-	  lhz       r0, 0x4(r5)
-	  cmplw     r3, r0
-	  blt+      .loc_0x224
+lbl_80070C2C:
+	lwz      r5, 8(r29)
+	clrlwi   r3, r7, 0x10
+	lhz      r0, 4(r5)
+	cmplw    r3, r0
+	blt      lbl_80070C04
 
-	.loc_0x260:
-	  lmw       r27, 0x9C(r1)
-	  lwz       r0, 0xB4(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0xB0
-	  blr
+lbl_80070C40:
+	lmw      r27, 0x9c(r1)
+	lwz      r0, 0xb4(r1)
+	mtlr     r0
+	addi     r1, r1, 0xb0
+	blr
 	*/
 }
 
@@ -1740,28 +1868,27 @@ void J3DModelLoader_v26::readMaterial(const J3DMaterialBlock*, unsigned long)
 J3DMaterial::J3DMaterial()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r5, 0x3CF4
-	  lis       r6, 0x804A
-	  stw       r0, 0x14(r1)
-	  addi      r0, r6, 0x15D8
-	  subi      r5, r5, 0x3100
-	  lis       r4, 0xF4
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  stw       r0, 0x0(r3)
-	  subi      r0, r4, 0x30C4
-	  stw       r5, 0x40(r3)
-	  stw       r0, 0x44(r3)
-	  bl        -0xE4F4
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lis      r5, 0x3CF3CF00@ha
+	lis      r6, __vt__11J3DMaterial@ha
+	stw      r0, 0x14(r1)
+	addi     r0, r6, __vt__11J3DMaterial@l
+	addi     r5, r5, 0x3CF3CF00@l
+	lis      r4, 0x00F3CF3C@ha
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	stw      r0, 0(r3)
+	addi     r0, r4, 0x00F3CF3C@l
+	stw      r5, 0x40(r3)
+	stw      r0, 0x44(r3)
+	bl       initialize__11J3DMaterialFv
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1969,90 +2096,89 @@ void J3DModelLoader_v21::readMaterial_v21(const J3DMaterialBlock_v21*,
 void J3DModelLoader::readShape(const J3DShapeBlock*, unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  stw       r0, 0x44(r1)
-	  stmw      r27, 0x2C(r1)
-	  mr        r28, r4
-	  mr        r27, r3
-	  mr        r30, r5
-	  stw       r28, 0xC(r3)
-	  addi      r3, r1, 0x8
-	  lwz       r31, 0x4(r27)
-	  bl        0xDE4
-	  lwz       r0, 0x14(r28)
-	  lhz       r3, 0x8(r28)
-	  cmplwi    r0, 0
-	  sth       r3, 0x7C(r31)
-	  beq-      .loc_0x74
-	  li        r3, 0x10
-	  bl        -0x4D0A4
-	  mr.       r29, r3
-	  beq-      .loc_0x6C
-	  lwz       r4, 0x14(r28)
-	  mr        r3, r28
-	  bl        -0x27AF0
-	  mr        r4, r3
-	  mr        r3, r29
-	  bl        -0x4225C
-	  mr        r29, r3
+	stwu     r1, -0x40(r1)
+	mflr     r0
+	stw      r0, 0x44(r1)
+	stmw     r27, 0x2c(r1)
+	mr       r28, r4
+	mr       r27, r3
+	mr       r30, r5
+	stw      r28, 0xc(r3)
+	addi     r3, r1, 8
+	lwz      r31, 4(r27)
+	bl       __ct__15J3DShapeFactoryFRC13J3DShapeBlock
+	lwz      r0, 0x14(r28)
+	lhz      r3, 8(r28)
+	cmplwi   r0, 0
+	sth      r3, 0x7c(r31)
+	beq      lbl_80070F78
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r29, r3, r3
+	beq      lbl_80070F70
+	lwz      r4, 0x14(r28)
+	mr       r3, r28
+	bl       "JSUConvertOffsetToPtr<7ResNTAB>__FPCvPCv"
+	mr       r4, r3
+	mr       r3, r29
+	bl       __ct__10JUTNameTabFPC7ResNTAB
+	mr       r29, r3
 
-	.loc_0x6C:
-	  stw       r29, 0x84(r31)
-	  b         .loc_0x7C
+lbl_80070F70:
+	stw      r29, 0x84(r31)
+	b        lbl_80070F80
 
-	.loc_0x74:
-	  li        r0, 0
-	  stw       r0, 0x84(r31)
+lbl_80070F78:
+	li       r0, 0
+	stw      r0, 0x84(r31)
 
-	.loc_0x7C:
-	  lhz       r0, 0x7C(r31)
-	  rlwinm    r3,r0,2,0,29
-	  bl        -0x4CFDC
-	  stw       r3, 0x80(r31)
-	  addi      r3, r1, 0x8
-	  lhz       r4, 0x7C(r31)
-	  bl        0x1358
-	  lwz       r3, 0x4(r27)
-	  li        r6, 0
-	  lwz       r29, 0x14(r3)
-	  b         .loc_0xFC
+lbl_80070F80:
+	lhz      r0, 0x7c(r31)
+	slwi     r3, r0, 2
+	bl       __nwa__FUl
+	stw      r3, 0x80(r31)
+	addi     r3, r1, 8
+	lhz      r4, 0x7c(r31)
+	bl       allocVcdVatCmdBuffer__15J3DShapeFactoryFUl
+	lwz      r3, 4(r27)
+	li       r6, 0
+	lwz      r29, 0x14(r3)
+	b        lbl_80071000
 
-	.loc_0xA8:
-	  cmplwi    r0, 0x12
-	  bne-      .loc_0xF8
-	  lhz       r4, 0x2(r29)
-	  mr        r5, r30
-	  addi      r3, r1, 0x8
-	  bl        0xE00
-	  lhz       r0, 0x2(r29)
-	  lwz       r4, 0x80(r31)
-	  rlwinm    r0,r0,2,0,29
-	  stwx      r3, r4, r0
-	  lhz       r0, 0x2(r29)
-	  lwz       r3, 0xC(r1)
-	  rlwinm    r0,r0,1,0,30
-	  lwz       r4, 0x8(r1)
-	  lhzx      r0, r3, r0
-	  lwz       r5, 0x10(r1)
-	  mulli     r3, r0, 0x28
-	  addi      r0, r3, 0x4
-	  lhzx      r0, r4, r0
-	  add       r6, r5, r0
+lbl_80070FAC:
+	cmplwi   r0, 0x12
+	bne      lbl_80070FFC
+	lhz      r4, 2(r29)
+	mr       r5, r30
+	addi     r3, r1, 8
+	bl       create__15J3DShapeFactoryFiUlP14_GXVtxDescList
+	lhz      r0, 2(r29)
+	lwz      r4, 0x80(r31)
+	slwi     r0, r0, 2
+	stwx     r3, r4, r0
+	lhz      r0, 2(r29)
+	lwz      r3, 0xc(r1)
+	slwi     r0, r0, 1
+	lwz      r4, 8(r1)
+	lhzx     r0, r3, r0
+	lwz      r5, 0x10(r1)
+	mulli    r3, r0, 0x28
+	addi     r0, r3, 4
+	lhzx     r0, r4, r0
+	add      r6, r5, r0
 
-	.loc_0xF8:
-	  addi      r29, r29, 0x4
+lbl_80070FFC:
+	addi     r29, r29, 4
 
-	.loc_0xFC:
-	  lhz       r0, 0x0(r29)
-	  cmplwi    r0, 0
-	  bne+      .loc_0xA8
-	  lmw       r27, 0x2C(r1)
-	  lwz       r0, 0x44(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
+lbl_80071000:
+	lhz      r0, 0(r29)
+	cmplwi   r0, 0
+	bne      lbl_80070FAC
+	lmw      r27, 0x2c(r1)
+	lwz      r0, 0x44(r1)
+	mtlr     r0
+	addi     r1, r1, 0x40
+	blr
 	*/
 }
 
@@ -2064,64 +2190,63 @@ void J3DModelLoader::readShape(const J3DShapeBlock*, unsigned long)
 void J3DModelLoader::readTexture(const J3DTextureBlock*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stmw      r27, 0xC(r1)
-	  mr        r28, r4
-	  lhz       r29, 0x8(r4)
-	  mr        r27, r3
-	  lwz       r4, 0xC(r4)
-	  mr        r3, r28
-	  bl        0xA34
-	  lwz       r0, 0x10(r28)
-	  mr        r31, r3
-	  cmplwi    r0, 0
-	  beq-      .loc_0x70
-	  li        r3, 0x10
-	  bl        -0x4D1B8
-	  mr.       r30, r3
-	  beq-      .loc_0x64
-	  lwz       r4, 0x10(r28)
-	  mr        r3, r28
-	  bl        -0x27C04
-	  mr        r4, r3
-	  mr        r3, r30
-	  bl        -0x42370
-	  mr        r30, r3
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stmw     r27, 0xc(r1)
+	mr       r28, r4
+	lhz      r29, 8(r4)
+	mr       r27, r3
+	lwz      r4, 0xc(r4)
+	mr       r3, r28
+	bl       "JSUConvertOffsetToPtr<7ResTIMG>__FPCvPCv"
+	lwz      r0, 0x10(r28)
+	mr       r31, r3
+	cmplwi   r0, 0
+	beq      lbl_80071090
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r30, r3, r3
+	beq      lbl_80071084
+	lwz      r4, 0x10(r28)
+	mr       r3, r28
+	bl       "JSUConvertOffsetToPtr<7ResNTAB>__FPCvPCv"
+	mr       r4, r3
+	mr       r3, r30
+	bl       __ct__10JUTNameTabFPC7ResNTAB
+	mr       r30, r3
 
-	.loc_0x64:
-	  lwz       r3, 0x8(r27)
-	  stw       r30, 0x18(r3)
-	  b         .loc_0x7C
+lbl_80071084:
+	lwz      r3, 8(r27)
+	stw      r30, 0x18(r3)
+	b        lbl_8007109C
 
-	.loc_0x70:
-	  lwz       r3, 0x8(r27)
-	  li        r0, 0
-	  stw       r0, 0x18(r3)
+lbl_80071090:
+	lwz      r3, 8(r27)
+	li       r0, 0
+	stw      r0, 0x18(r3)
 
-	.loc_0x7C:
-	  li        r3, 0xC
-	  bl        -0x4D1FC
-	  cmplwi    r3, 0
-	  beq-      .loc_0xA8
-	  lis       r4, 0x804A
-	  li        r0, 0
-	  addi      r4, r4, 0x1F68
-	  stw       r4, 0x8(r3)
-	  sth       r29, 0x0(r3)
-	  sth       r0, 0x2(r3)
-	  stw       r31, 0x4(r3)
+lbl_8007109C:
+	li       r3, 0xc
+	bl       __nw__FUl
+	cmplwi   r3, 0
+	beq      lbl_800710C8
+	lis      r4, __vt__10J3DTexture@ha
+	li       r0, 0
+	addi     r4, r4, __vt__10J3DTexture@l
+	stw      r4, 8(r3)
+	sth      r29, 0(r3)
+	sth      r0, 2(r3)
+	stw      r31, 4(r3)
 
-	.loc_0xA8:
-	  lwz       r4, 0x8(r27)
-	  stw       r3, 0x14(r4)
-	  lmw       r27, 0xC(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_800710C8:
+	lwz      r4, 8(r27)
+	stw      r3, 0x14(r4)
+	lmw      r27, 0xc(r1)
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -2353,64 +2478,63 @@ void J3DModelLoader_v21::readMaterialTable_v21(const J3DMaterialBlock_v21*,
 void J3DModelLoader::readTextureTable(const J3DTextureBlock*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stmw      r27, 0xC(r1)
-	  mr        r28, r4
-	  lhz       r29, 0x8(r4)
-	  mr        r27, r3
-	  lwz       r4, 0xC(r4)
-	  mr        r3, r28
-	  bl        0x6D8
-	  lwz       r0, 0x10(r28)
-	  mr        r31, r3
-	  cmplwi    r0, 0
-	  beq-      .loc_0x70
-	  li        r3, 0x10
-	  bl        -0x4D514
-	  mr.       r30, r3
-	  beq-      .loc_0x64
-	  lwz       r4, 0x10(r28)
-	  mr        r3, r28
-	  bl        -0x27F60
-	  mr        r4, r3
-	  mr        r3, r30
-	  bl        -0x426CC
-	  mr        r30, r3
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stmw     r27, 0xc(r1)
+	mr       r28, r4
+	lhz      r29, 8(r4)
+	mr       r27, r3
+	lwz      r4, 0xc(r4)
+	mr       r3, r28
+	bl       "JSUConvertOffsetToPtr<7ResTIMG>__FPCvPCv"
+	lwz      r0, 0x10(r28)
+	mr       r31, r3
+	cmplwi   r0, 0
+	beq      lbl_800713EC
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r30, r3, r3
+	beq      lbl_800713E0
+	lwz      r4, 0x10(r28)
+	mr       r3, r28
+	bl       "JSUConvertOffsetToPtr<7ResNTAB>__FPCvPCv"
+	mr       r4, r3
+	mr       r3, r30
+	bl       __ct__10JUTNameTabFPC7ResNTAB
+	mr       r30, r3
 
-	.loc_0x64:
-	  lwz       r3, 0x8(r27)
-	  stw       r30, 0x18(r3)
-	  b         .loc_0x7C
+lbl_800713E0:
+	lwz      r3, 8(r27)
+	stw      r30, 0x18(r3)
+	b        lbl_800713F8
 
-	.loc_0x70:
-	  lwz       r3, 0x8(r27)
-	  li        r0, 0
-	  stw       r0, 0x18(r3)
+lbl_800713EC:
+	lwz      r3, 8(r27)
+	li       r0, 0
+	stw      r0, 0x18(r3)
 
-	.loc_0x7C:
-	  li        r3, 0xC
-	  bl        -0x4D558
-	  cmplwi    r3, 0
-	  beq-      .loc_0xA8
-	  lis       r4, 0x804A
-	  li        r0, 0
-	  addi      r4, r4, 0x1F68
-	  stw       r4, 0x8(r3)
-	  sth       r29, 0x0(r3)
-	  sth       r0, 0x2(r3)
-	  stw       r31, 0x4(r3)
+lbl_800713F8:
+	li       r3, 0xc
+	bl       __nw__FUl
+	cmplwi   r3, 0
+	beq      lbl_80071424
+	lis      r4, __vt__10J3DTexture@ha
+	li       r0, 0
+	addi     r4, r4, __vt__10J3DTexture@l
+	stw      r4, 8(r3)
+	sth      r29, 0(r3)
+	sth      r0, 2(r3)
+	stw      r31, 4(r3)
 
-	.loc_0xA8:
-	  lwz       r4, 0x8(r27)
-	  stw       r3, 0x14(r4)
-	  lmw       r27, 0xC(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80071424:
+	lwz      r4, 8(r27)
+	stw      r3, 0x14(r4)
+	lmw      r27, 0xc(r1)
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -2422,101 +2546,101 @@ void J3DModelLoader::readTextureTable(const J3DTextureBlock*)
 void J3DModelLoader::readPatchedMaterial(const J3DMaterialBlock*, unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0xA0(r1)
-	  mflr      r0
-	  stw       r0, 0xA4(r1)
-	  stw       r31, 0x9C(r1)
-	  stw       r30, 0x98(r1)
-	  mr        r30, r5
-	  stw       r29, 0x94(r1)
-	  mr        r29, r3
-	  addi      r3, r1, 0x8
-	  stw       r28, 0x90(r1)
-	  mr        r28, r4
-	  bl        -0x50C8
-	  lhz       r0, 0x8(r28)
-	  addi      r3, r1, 0x8
-	  lwz       r4, 0x8(r29)
-	  sth       r0, 0x4(r4)
-	  bl        -0x4E0C
-	  lwz       r0, 0x14(r28)
-	  lwz       r4, 0x8(r29)
-	  cmplwi    r0, 0
-	  sth       r3, 0x6(r4)
-	  beq-      .loc_0x90
-	  li        r3, 0x10
-	  bl        -0x4D5F8
-	  mr.       r31, r3
-	  beq-      .loc_0x84
-	  lwz       r4, 0x14(r28)
-	  mr        r3, r28
-	  bl        -0x28044
-	  mr        r4, r3
-	  mr        r3, r31
-	  bl        -0x427B0
-	  mr        r31, r3
+	stwu     r1, -0xa0(r1)
+	mflr     r0
+	stw      r0, 0xa4(r1)
+	stw      r31, 0x9c(r1)
+	stw      r30, 0x98(r1)
+	mr       r30, r5
+	stw      r29, 0x94(r1)
+	mr       r29, r3
+	addi     r3, r1, 8
+	stw      r28, 0x90(r1)
+	mr       r28, r4
+	bl       __ct__18J3DMaterialFactoryFRC16J3DMaterialBlock
+	lhz      r0, 8(r28)
+	addi     r3, r1, 8
+	lwz      r4, 8(r29)
+	sth      r0, 4(r4)
+	bl       countUniqueMaterials__18J3DMaterialFactoryFv
+	lwz      r0, 0x14(r28)
+	lwz      r4, 8(r29)
+	cmplwi   r0, 0
+	sth      r3, 6(r4)
+	beq      lbl_800714D0
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r31, r3, r3
+	beq      lbl_800714C4
+	lwz      r4, 0x14(r28)
+	mr       r3, r28
+	bl       "JSUConvertOffsetToPtr<7ResNTAB>__FPCvPCv"
+	mr       r4, r3
+	mr       r3, r31
+	bl       __ct__10JUTNameTabFPC7ResNTAB
+	mr       r31, r3
 
-	.loc_0x84:
-	  lwz       r3, 0x8(r29)
-	  stw       r31, 0xC(r3)
-	  b         .loc_0x9C
+lbl_800714C4:
+	lwz      r3, 8(r29)
+	stw      r31, 0xc(r3)
+	b        lbl_800714DC
 
-	.loc_0x90:
-	  lwz       r3, 0x8(r29)
-	  li        r0, 0
-	  stw       r0, 0xC(r3)
+lbl_800714D0:
+	lwz      r3, 8(r29)
+	li       r0, 0
+	stw      r0, 0xc(r3)
 
-	.loc_0x9C:
-	  lwz       r3, 0x8(r29)
-	  lhz       r0, 0x4(r3)
-	  rlwinm    r3,r0,2,0,29
-	  bl        -0x4D53C
-	  lwz       r4, 0x8(r29)
-	  li        r0, 0
-	  li        r31, 0
-	  stw       r3, 0x8(r4)
-	  lwz       r3, 0x8(r29)
-	  stw       r0, 0x10(r3)
-	  b         .loc_0x11C
+lbl_800714DC:
+	lwz      r3, 8(r29)
+	lhz      r0, 4(r3)
+	slwi     r3, r0, 2
+	bl       __nwa__FUl
+	lwz      r4, 8(r29)
+	li       r0, 0
+	li       r31, 0
+	stw      r3, 8(r4)
+	lwz      r3, 8(r29)
+	stw      r0, 0x10(r3)
+	b        lbl_8007155C
 
-	.loc_0xC8:
-	  rlwinm    r28,r31,0,16,31
-	  mr        r7, r30
-	  mr        r6, r28
-	  addi      r3, r1, 0x8
-	  li        r4, 0
-	  li        r5, 0x2
-	  bl        -0x4E64
-	  lwz       r4, 0x8(r29)
-	  rlwinm    r6,r31,2,14,29
-	  rlwinm    r0,r28,1,0,30
-	  addi      r31, r31, 0x1
-	  lwz       r4, 0x8(r4)
-	  stwx      r3, r4, r6
-	  lwz       r4, 0x8(r29)
-	  lwz       r3, 0x10(r1)
-	  lwz       r5, 0x8(r4)
-	  lhzx      r0, r3, r0
-	  rlwinm    r4,r5,28,4,31
-	  lwzx      r3, r5, r6
-	  add       r0, r4, r0
-	  stw       r0, 0x20(r3)
+lbl_80071508:
+	clrlwi   r28, r31, 0x10
+	mr       r7, r30
+	mr       r6, r28
+	addi     r3, r1, 8
+	li       r4, 0
+	li       r5, 2
+	bl
+create__18J3DMaterialFactoryCFP11J3DMaterialQ218J3DMaterialFactory12MaterialTypeiUl
+	lwz      r4, 8(r29)
+	rlwinm   r6, r31, 2, 0xe, 0x1d
+	slwi     r0, r28, 1
+	addi     r31, r31, 1
+	lwz      r4, 8(r4)
+	stwx     r3, r4, r6
+	lwz      r4, 8(r29)
+	lwz      r3, 0x10(r1)
+	lwz      r5, 8(r4)
+	lhzx     r0, r3, r0
+	srwi     r4, r5, 4
+	lwzx     r3, r5, r6
+	add      r0, r4, r0
+	stw      r0, 0x20(r3)
 
-	.loc_0x11C:
-	  lwz       r3, 0x8(r29)
-	  rlwinm    r4,r31,0,16,31
-	  lhz       r0, 0x4(r3)
-	  cmplw     r4, r0
-	  blt+      .loc_0xC8
-	  lwz       r0, 0xA4(r1)
-	  lwz       r31, 0x9C(r1)
-	  lwz       r30, 0x98(r1)
-	  lwz       r29, 0x94(r1)
-	  lwz       r28, 0x90(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0xA0
-	  blr
+lbl_8007155C:
+	lwz      r3, 8(r29)
+	clrlwi   r4, r31, 0x10
+	lhz      r0, 4(r3)
+	cmplw    r4, r0
+	blt      lbl_80071508
+	lwz      r0, 0xa4(r1)
+	lwz      r31, 0x9c(r1)
+	lwz      r30, 0x98(r1)
+	lwz      r29, 0x94(r1)
+	lwz      r28, 0x90(r1)
+	mtlr     r0
+	addi     r1, r1, 0xa0
+	blr
 	*/
 }
 
@@ -2528,140 +2652,141 @@ void J3DModelLoader::readPatchedMaterial(const J3DMaterialBlock*, unsigned long)
 void J3DModelLoader::readMaterialDL(const J3DMaterialDLBlock*, unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0xA0(r1)
-	  mflr      r0
-	  stw       r0, 0xA4(r1)
-	  stw       r31, 0x9C(r1)
-	  mr        r31, r5
-	  stw       r30, 0x98(r1)
-	  mr        r30, r3
-	  addi      r3, r1, 0x8
-	  stw       r29, 0x94(r1)
-	  stw       r28, 0x90(r1)
-	  mr        r28, r4
-	  bl        -0x4FD0
-	  lwz       r4, 0x8(r30)
-	  lhz       r0, 0x4(r4)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x150
-	  li        r3, 0x1
-	  lwz       r0, 0x20(r28)
-	  sth       r3, 0x1C(r4)
-	  lhz       r4, 0x8(r28)
-	  cmplwi    r0, 0
-	  lwz       r3, 0x8(r30)
-	  sth       r4, 0x4(r3)
-	  lwz       r3, 0x8(r30)
-	  sth       r4, 0x6(r3)
-	  beq-      .loc_0xA0
-	  li        r3, 0x10
-	  bl        -0x4D758
-	  mr.       r29, r3
-	  beq-      .loc_0x94
-	  lwz       r4, 0x20(r28)
-	  mr        r3, r28
-	  bl        -0x281A4
-	  mr        r4, r3
-	  mr        r3, r29
-	  bl        -0x42910
-	  mr        r29, r3
+	stwu     r1, -0xa0(r1)
+	mflr     r0
+	stw      r0, 0xa4(r1)
+	stw      r31, 0x9c(r1)
+	mr       r31, r5
+	stw      r30, 0x98(r1)
+	mr       r30, r3
+	addi     r3, r1, 8
+	stw      r29, 0x94(r1)
+	stw      r28, 0x90(r1)
+	mr       r28, r4
+	bl       __ct__18J3DMaterialFactoryFRC18J3DMaterialDLBlock
+	lwz      r4, 8(r30)
+	lhz      r0, 4(r4)
+	cmplwi   r0, 0
+	bne      lbl_800716E0
+	li       r3, 1
+	lwz      r0, 0x20(r28)
+	sth      r3, 0x1c(r4)
+	lhz      r4, 8(r28)
+	cmplwi   r0, 0
+	lwz      r3, 8(r30)
+	sth      r4, 4(r3)
+	lwz      r3, 8(r30)
+	sth      r4, 6(r3)
+	beq      lbl_80071630
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r29, r3, r3
+	beq      lbl_80071624
+	lwz      r4, 0x20(r28)
+	mr       r3, r28
+	bl       "JSUConvertOffsetToPtr<7ResNTAB>__FPCvPCv"
+	mr       r4, r3
+	mr       r3, r29
+	bl       __ct__10JUTNameTabFPC7ResNTAB
+	mr       r29, r3
 
-	.loc_0x94:
-	  lwz       r3, 0x8(r30)
-	  stw       r29, 0xC(r3)
-	  b         .loc_0xAC
+lbl_80071624:
+	lwz      r3, 8(r30)
+	stw      r29, 0xc(r3)
+	b        lbl_8007163C
 
-	.loc_0xA0:
-	  lwz       r3, 0x8(r30)
-	  li        r0, 0
-	  stw       r0, 0xC(r3)
+lbl_80071630:
+	lwz      r3, 8(r30)
+	li       r0, 0
+	stw      r0, 0xc(r3)
 
-	.loc_0xAC:
-	  lwz       r3, 0x8(r30)
-	  lhz       r0, 0x4(r3)
-	  rlwinm    r3,r0,2,0,29
-	  bl        -0x4D69C
-	  lwz       r4, 0x8(r30)
-	  li        r0, 0
-	  li        r29, 0
-	  stw       r3, 0x8(r4)
-	  lwz       r3, 0x8(r30)
-	  stw       r0, 0x10(r3)
-	  b         .loc_0x104
+lbl_8007163C:
+	lwz      r3, 8(r30)
+	lhz      r0, 4(r3)
+	slwi     r3, r0, 2
+	bl       __nwa__FUl
+	lwz      r4, 8(r30)
+	li       r0, 0
+	li       r29, 0
+	stw      r3, 8(r4)
+	lwz      r3, 8(r30)
+	stw      r0, 0x10(r3)
+	b        lbl_80071694
 
-	.loc_0xD8:
-	  mr        r7, r31
-	  addi      r3, r1, 0x8
-	  rlwinm    r6,r29,0,16,31
-	  li        r4, 0
-	  li        r5, 0x1
-	  bl        -0x4FC0
-	  lwz       r4, 0x8(r30)
-	  rlwinm    r0,r29,2,14,29
-	  addi      r29, r29, 0x1
-	  lwz       r4, 0x8(r4)
-	  stwx      r3, r4, r0
+lbl_80071668:
+	mr       r7, r31
+	addi     r3, r1, 8
+	clrlwi   r6, r29, 0x10
+	li       r4, 0
+	li       r5, 1
+	bl
+create__18J3DMaterialFactoryCFP11J3DMaterialQ218J3DMaterialFactory12MaterialTypeiUl
+	lwz      r4, 8(r30)
+	rlwinm   r0, r29, 2, 0xe, 0x1d
+	addi     r29, r29, 1
+	lwz      r4, 8(r4)
+	stwx     r3, r4, r0
 
-	.loc_0x104:
-	  lwz       r3, 0x8(r30)
-	  rlwinm    r4,r29,0,16,31
-	  lhz       r0, 0x4(r3)
-	  cmplw     r4, r0
-	  blt+      .loc_0xD8
-	  li        r6, 0
-	  lis       r4, 0xC000
-	  b         .loc_0x138
+lbl_80071694:
+	lwz      r3, 8(r30)
+	clrlwi   r4, r29, 0x10
+	lhz      r0, 4(r3)
+	cmplw    r4, r0
+	blt      lbl_80071668
+	li       r6, 0
+	lis      r4, 0xc000
+	b        lbl_800716C8
 
-	.loc_0x124:
-	  lwz       r3, 0x8(r5)
-	  rlwinm    r0,r6,2,14,29
-	  addi      r6, r6, 0x1
-	  lwzx      r3, r3, r0
-	  stw       r4, 0x20(r3)
+lbl_800716B4:
+	lwz      r3, 8(r5)
+	rlwinm   r0, r6, 2, 0xe, 0x1d
+	addi     r6, r6, 1
+	lwzx     r3, r3, r0
+	stw      r4, 0x20(r3)
 
-	.loc_0x138:
-	  lwz       r5, 0x8(r30)
-	  rlwinm    r3,r6,0,16,31
-	  lhz       r0, 0x4(r5)
-	  cmplw     r3, r0
-	  blt+      .loc_0x124
-	  b         .loc_0x19C
+lbl_800716C8:
+	lwz      r5, 8(r30)
+	clrlwi   r3, r6, 0x10
+	lhz      r0, 4(r5)
+	cmplw    r3, r0
+	blt      lbl_800716B4
+	b        lbl_8007172C
 
-	.loc_0x150:
-	  li        r28, 0
-	  b         .loc_0x188
+lbl_800716E0:
+	li       r28, 0
+	b        lbl_80071718
 
-	.loc_0x158:
-	  lwz       r3, 0x8(r4)
-	  rlwinm    r29,r28,2,14,29
-	  rlwinm    r6,r28,0,16,31
-	  mr        r7, r31
-	  lwzx      r4, r3, r29
-	  addi      r3, r1, 0x8
-	  li        r5, 0x1
-	  bl        -0x5048
-	  lwz       r4, 0x8(r30)
-	  addi      r28, r28, 0x1
-	  lwz       r4, 0x8(r4)
-	  stwx      r3, r4, r29
+lbl_800716E8:
+	lwz      r3, 8(r4)
+	rlwinm   r29, r28, 2, 0xe, 0x1d
+	clrlwi   r6, r28, 0x10
+	mr       r7, r31
+	lwzx     r4, r3, r29
+	addi     r3, r1, 8
+	li       r5, 1
+	bl
+create__18J3DMaterialFactoryCFP11J3DMaterialQ218J3DMaterialFactory12MaterialTypeiUl
+	lwz      r4, 8(r30)
+	addi     r28, r28, 1
+	lwz      r4, 8(r4)
+	stwx     r3, r4, r29
 
-	.loc_0x188:
-	  lwz       r4, 0x8(r30)
-	  rlwinm    r3,r28,0,16,31
-	  lhz       r0, 0x4(r4)
-	  cmplw     r3, r0
-	  blt+      .loc_0x158
+lbl_80071718:
+	lwz      r4, 8(r30)
+	clrlwi   r3, r28, 0x10
+	lhz      r0, 4(r4)
+	cmplw    r3, r0
+	blt      lbl_800716E8
 
-	.loc_0x19C:
-	  lwz       r0, 0xA4(r1)
-	  lwz       r31, 0x9C(r1)
-	  lwz       r30, 0x98(r1)
-	  lwz       r29, 0x94(r1)
-	  lwz       r28, 0x90(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0xA0
-	  blr
+lbl_8007172C:
+	lwz      r0, 0xa4(r1)
+	lwz      r31, 0x9c(r1)
+	lwz      r30, 0x98(r1)
+	lwz      r29, 0x94(r1)
+	lwz      r28, 0x90(r1)
+	mtlr     r0
+	addi     r1, r1, 0xa0
+	blr
 	*/
 }
 
@@ -2673,44 +2798,43 @@ void J3DModelLoader::readMaterialDL(const J3DMaterialDLBlock*, unsigned long)
 void J3DModelLoader::modifyMaterial(unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0xA0(r1)
-	  mflr      r0
-	  stw       r0, 0xA4(r1)
-	  rlwinm.   r0,r4,0,18,18
-	  stw       r31, 0x9C(r1)
-	  stw       r30, 0x98(r1)
-	  mr        r30, r3
-	  beq-      .loc_0x64
-	  lwz       r4, 0x10(r30)
-	  addi      r3, r1, 0x8
-	  bl        -0x53D0
-	  li        r31, 0
-	  b         .loc_0x50
+	stwu     r1, -0xa0(r1)
+	mflr     r0
+	stw      r0, 0xa4(r1)
+	rlwinm.  r0, r4, 0, 0x12, 0x12
+	stw      r31, 0x9c(r1)
+	stw      r30, 0x98(r1)
+	mr       r30, r3
+	beq      lbl_800717B0
+	lwz      r4, 0x10(r30)
+	addi     r3, r1, 8
+	bl       __ct__18J3DMaterialFactoryFRC16J3DMaterialBlock
+	li       r31, 0
+	b        lbl_8007179C
 
-	.loc_0x34:
-	  lwz       r4, 0x8(r4)
-	  rlwinm    r0,r31,2,14,29
-	  rlwinm    r5,r31,0,16,31
-	  addi      r3, r1, 0x8
-	  lwzx      r4, r4, r0
-	  bl        -0x3CB8
-	  addi      r31, r31, 0x1
+lbl_80071780:
+	lwz      r4, 8(r4)
+	rlwinm   r0, r31, 2, 0xe, 0x1d
+	clrlwi   r5, r31, 0x10
+	addi     r3, r1, 8
+	lwzx     r4, r4, r0
+	bl       modifyPatchedCurrentMtx__18J3DMaterialFactoryCFP11J3DMateriali
+	addi     r31, r31, 1
 
-	.loc_0x50:
-	  lwz       r4, 0x8(r30)
-	  rlwinm    r3,r31,0,16,31
-	  lhz       r0, 0x4(r4)
-	  cmplw     r3, r0
-	  blt+      .loc_0x34
+lbl_8007179C:
+	lwz      r4, 8(r30)
+	clrlwi   r3, r31, 0x10
+	lhz      r0, 4(r4)
+	cmplw    r3, r0
+	blt      lbl_80071780
 
-	.loc_0x64:
-	  lwz       r0, 0xA4(r1)
-	  lwz       r31, 0x9C(r1)
-	  lwz       r30, 0x98(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0xA0
-	  blr
+lbl_800717B0:
+	lwz      r0, 0xa4(r1)
+	lwz      r31, 0x9c(r1)
+	lwz      r30, 0x98(r1)
+	mtlr     r0
+	addi     r1, r1, 0xa0
+	blr
 	*/
 }
 
@@ -2743,27 +2867,26 @@ void J3DModelLoader::calcSizeMaterialTable(const J3DMaterialBlock*,
 J3DTexture::~J3DTexture()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r3
-	  beq-      .loc_0x30
-	  lis       r5, 0x804A
-	  extsh.    r0, r4
-	  addi      r0, r5, 0x1F68
-	  stw       r0, 0x8(r31)
-	  ble-      .loc_0x30
-	  bl        -0x4D750
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r3, r3
+	beq      lbl_80071808
+	lis      r5, __vt__10J3DTexture@ha
+	extsh.   r0, r4
+	addi     r0, r5, __vt__10J3DTexture@l
+	stw      r0, 8(r31)
+	ble      lbl_80071808
+	bl       __dl__FPv
 
-	.loc_0x30:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80071808:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -3057,15 +3180,14 @@ void J3DMtxCalcNoAnm<J3DMtxCalcCalcTransformBasic,
 void JSUConvertOffsetToPtr<ResTIMG>(const void*, const void*)
 {
 	/*
-	.loc_0x0:
-	  cmplwi    r4, 0
-	  bne-      .loc_0x10
-	  li        r3, 0
-	  blr
+	cmplwi   r4, 0
+	bne      lbl_80071A88
+	li       r3, 0
+	blr
 
-	.loc_0x10:
-	  add       r3, r3, r4
-	  blr
+lbl_80071A88:
+	add      r3, r3, r4
+	blr
 	*/
 }
 
@@ -3077,15 +3199,14 @@ void JSUConvertOffsetToPtr<ResTIMG>(const void*, const void*)
 void JSUConvertOffsetToPtr<float[3][4]>(const void*, const void*)
 {
 	/*
-	.loc_0x0:
-	  cmplwi    r4, 0
-	  bne-      .loc_0x10
-	  li        r3, 0
-	  blr
+	cmplwi   r4, 0
+	bne      lbl_80071AA0
+	li       r3, 0
+	blr
 
-	.loc_0x10:
-	  add       r3, r3, r4
-	  blr
+lbl_80071AA0:
+	add      r3, r3, r4
+	blr
 	*/
 }
 
@@ -3097,15 +3218,14 @@ void JSUConvertOffsetToPtr<float[3][4]>(const void*, const void*)
 void JSUConvertOffsetToPtr<void>(const void*, const void*)
 {
 	/*
-	.loc_0x0:
-	  cmplwi    r4, 0
-	  bne-      .loc_0x10
-	  li        r3, 0
-	  blr
+	cmplwi   r4, 0
+	bne      lbl_80071AB8
+	li       r3, 0
+	blr
 
-	.loc_0x10:
-	  add       r3, r3, r4
-	  blr
+lbl_80071AB8:
+	add      r3, r3, r4
+	blr
 	*/
 }
 
@@ -3117,15 +3237,14 @@ void JSUConvertOffsetToPtr<void>(const void*, const void*)
 void JSUConvertOffsetToPtr<_GXVtxAttrFmtList>(const void*, const void*)
 {
 	/*
-	.loc_0x0:
-	  cmplwi    r4, 0
-	  bne-      .loc_0x10
-	  li        r3, 0
-	  blr
+	cmplwi   r4, 0
+	bne      lbl_80071AD0
+	li       r3, 0
+	blr
 
-	.loc_0x10:
-	  add       r3, r3, r4
-	  blr
+lbl_80071AD0:
+	add      r3, r3, r4
+	blr
 	*/
 }
 
@@ -3137,15 +3256,14 @@ void JSUConvertOffsetToPtr<_GXVtxAttrFmtList>(const void*, const void*)
 void JSUConvertOffsetToPtr<J3DModelHierarchy>(const void*, const void*)
 {
 	/*
-	.loc_0x0:
-	  cmplwi    r4, 0
-	  bne-      .loc_0x10
-	  li        r3, 0
-	  blr
+	cmplwi   r4, 0
+	bne      lbl_80071AE8
+	li       r3, 0
+	blr
 
-	.loc_0x10:
-	  add       r3, r3, r4
-	  blr
+lbl_80071AE8:
+	add      r3, r3, r4
+	blr
 	*/
 }
 
@@ -3157,15 +3275,14 @@ void JSUConvertOffsetToPtr<J3DModelHierarchy>(const void*, const void*)
 void JSUConvertOffsetToPtr<J3DShapeInitData>(const void*, unsigned long)
 {
 	/*
-	.loc_0x0:
-	  cmplwi    r4, 0
-	  bne-      .loc_0x10
-	  li        r3, 0
-	  blr
+	cmplwi   r4, 0
+	bne      lbl_80071B00
+	li       r3, 0
+	blr
 
-	.loc_0x10:
-	  add       r3, r3, r4
-	  blr
+lbl_80071B00:
+	add      r3, r3, r4
+	blr
 	*/
 }
 
@@ -3177,14 +3294,13 @@ void JSUConvertOffsetToPtr<J3DShapeInitData>(const void*, unsigned long)
 void JSUConvertOffsetToPtr<unsigned short>(const void*, unsigned long)
 {
 	/*
-	.loc_0x0:
-	  cmplwi    r4, 0
-	  bne-      .loc_0x10
-	  li        r3, 0
-	  blr
+	cmplwi   r4, 0
+	bne      lbl_80071B18
+	li       r3, 0
+	blr
 
-	.loc_0x10:
-	  add       r3, r3, r4
-	  blr
+lbl_80071B18:
+	add      r3, r3, r4
+	blr
 	*/
 }

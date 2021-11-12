@@ -1,5 +1,248 @@
 #include "types.h"
 
+/*
+    Generated from dpostproc
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_8049D080
+    lbl_8049D080:
+        .asciz "PSMainSide_Demo.cpp"
+        .asciz "P2Assert"
+        .skip 3
+        .asciz "PSGame.h"
+        .skip 3
+        .asciz "PSScene.h"
+        .skip 2
+        .asciz "get sound scene at\ninvalid timming\n"
+    .global lbl_8049D0DC
+    lbl_8049D0DC:
+        .asciz "s21_dayend_takeoff"
+        .skip 1
+    audio_info:
+        .4byte 0
+        .4byte 0x7F030000
+        .float 1.0
+        .float 0.0078125
+        .asciz "s02_dayend_result"
+        .skip 2
+        .asciz "s01_dayend"
+        .skip 1
+        .asciz "s03_orimadown"
+        .skip 2
+        .asciz "s05_pikminzero"
+        .skip 1
+        .asciz "s11_dope_first_b"
+        .skip 3
+        .asciz "s11_dope_first_r"
+        .skip 3
+        .asciz "s11_dopebin_first_b"
+        .asciz "s11_dopebin_first_r"
+        .asciz "s17_suck_equipment"
+        .skip 1
+        .asciz "s22_cv_suck_equipment"
+        .skip 2
+        .asciz "s10_suck_treasure"
+        .skip 2
+        .asciz "s22_cv_suck_treasure"
+        .skip 3
+        .asciz "s04_dayend_orimadown"
+        .skip 3
+        .asciz "s06_dayend_pikminzero"
+        .skip 2
+        .asciz "g1A_red_doping"
+        .skip 1
+        .asciz "g1B_black_doping"
+        .skip 3
+        .asciz "g02_boot_onyonR"
+        .asciz "g1E_boot_onyonY"
+        .asciz "g20_boot_onyonB"
+        .asciz "g03_meet_redpikmin"
+        .skip 1
+        .asciz "g1F_meet_yellowpikmin"
+        .skip 2
+        .asciz "g21_meet_bluepikmin"
+        .asciz "g24_meet_blackpikmin"
+        .skip 3
+        .asciz "g27_meet_whitepikmin"
+        .skip 3
+        .asciz "g33_camera_demo"
+        .asciz "s09_holein"
+        .skip 1
+        .asciz "s16_find_item_00"
+        .skip 3
+        .asciz "s16_find_item_01"
+        .skip 3
+        .asciz "s16_find_item_02"
+        .skip 3
+        .asciz "s16_find_item_03"
+        .skip 3
+        .asciz "s16_find_item_04"
+        .skip 3
+        .asciz "s16_find_item_05"
+        .skip 3
+        .asciz "s16_find_item_06"
+        .skip 3
+        .asciz "s16_find_item_07"
+        .skip 3
+        .asciz "s16_find_item_08"
+        .skip 3
+        .asciz "s16_find_item_09"
+        .skip 3
+        .asciz "s16_find_item_10"
+        .skip 3
+        .asciz "s16_find_item_11"
+        .skip 3
+        .asciz "s16_find_item_12"
+        .skip 3
+        .asciz "s0C_cv_escape"
+        .skip 2
+        .asciz "g01_pick_me"
+        .asciz "g04_find_treasure"
+        .skip 2
+        .asciz "g05_find_cave_f_01"
+        .skip 1
+        .asciz "g05_find_cave_f_02"
+        .skip 1
+        .asciz "g05_find_cave_f_03"
+        .skip 1
+        .asciz "g05_find_cave_f_04"
+        .skip 1
+        .asciz "g05_find_cave_l_01"
+        .skip 1
+        .asciz "g05_find_cave_l_02"
+        .skip 1
+        .asciz "g05_find_cave_l_03"
+        .skip 1
+        .asciz "g05_find_cave_t_01"
+        .skip 1
+        .asciz "g05_find_cave_t_02"
+        .skip 1
+        .asciz "g05_find_cave_t_03"
+        .skip 1
+        .asciz "g05_find_cave_y_01"
+        .skip 1
+        .asciz "g05_find_cave_y_02"
+        .skip 1
+        .asciz "g05_find_cave_y_03"
+        .skip 1
+        .asciz "g05_find_cave_y_04"
+        .skip 1
+        .asciz "g0A_cv_find_hole"
+        .skip 3
+        .asciz "g0B_cv_find_fountain"
+        .skip 3
+        .asciz "g18_find_gate"
+        .skip 2
+        .asciz "g19_find_rock"
+        .skip 2
+        .asciz "g2D_red_extract"
+        .asciz "g2E_black_extract"
+        .skip 2
+        .asciz "g34_yellow_extract"
+        .skip 1
+        .asciz "g37_get_louie"
+        .skip 2
+        .asciz "g38_find_whitepom"
+        .skip 2
+        .asciz "g39_find_blackpom"
+        .skip 2
+        .asciz "x01_gamestart"
+        .skip 2
+        .asciz "x02_watch_red_pikmin"
+        .skip 3
+        .asciz "x06_join"
+        .skip 3
+        .asciz "x12_drain_water"
+        .asciz "x10_find_yellow_onyon"
+        .skip 2
+        .asciz "x11_find_blue_onyon"
+        .asciz "x16_hiba"
+        .skip 3
+        .asciz "x13_exp_leafchappy"
+        .skip 1
+        .asciz "x20_blackman"
+        .skip 3
+        .asciz "s13_pikmin_supply"
+        .skip 2
+        .asciz "s0B_cv_coursein"
+        .asciz "s0E_return_cave"
+        .asciz "e00_E3_cavestart"
+        .skip 3
+        .asciz "g07_cv_gamestart"
+        .skip 3
+        .asciz "g08_first_return"
+        .skip 3
+        .asciz "g09_first_sunset"
+        .skip 3
+        .asciz "g16_100_pikmin"
+        .skip 1
+        .asciz "g16_95_pikmin"
+        .skip 2
+        .asciz "g26_inout_black"
+        .asciz "g29_inout_white"
+        .asciz "g2B_white_poison"
+        .skip 3
+        .asciz "g2C_inout_red"
+        .skip 2
+        .asciz "g36_find_louie"
+        .skip 1
+        .asciz "x01_coursein_forest"
+        .asciz "x01_coursein_yakushima"
+        .skip 1
+        .asciz "x01_coursein_last"
+        .skip 2
+        .asciz "x04_exp_y"
+        .skip 2
+        .asciz "x05_louiestart"
+        .skip 1
+        .asciz "x07_first_recovery"
+        .skip 1
+        .asciz "x08_cv_suck_carcass"
+        .asciz "x09_exp_detector"
+        .skip 3
+        .asciz "x14_white_dig"
+        .skip 2
+        .asciz "g32_get_map"
+        .asciz "g35_president_gamestart"
+        .asciz "x15_exp_x"
+        .skip 2
+        .asciz "x17_join_guide"
+        .skip 1
+        .asciz "x18_exp_pellet"
+        .skip 1
+        .asciz "x03_find_red_onyon"
+        .skip 1
+        .asciz "x19_vs_bedama"
+        .skip 2
+        .asciz "g2F_appear_hole"
+        .asciz "g30_appear_fountain"
+        .asciz "PSMainSide_Scene.h"
+        .skip 1
+        .asciz "PSCommon.h"
+        .skip 1
+        .asciz "s12_cv_giveup"
+        .skip 2
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__Q23PSM4Demo
+    __vt__Q23PSM4Demo:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q23PSM4DemoFv
+        .4byte init__Q23PSM4DemoFP3VecP3VecPA4_fQ23PSM7DemoArg
+        .4byte initiate__Q23PSM4DemoFQ23PSM7DemoArgPUc
+        .4byte initDemoScene__Q23PSM4DemoFRQ23PSM7DemoArgPQ23PSM10Scene_Demo
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_80520C90
+    lbl_80520C90:
+        .asciz ""
+        .skip 3
+    .global lbl_80520C94
+    lbl_80520C94:
+        .asciz "key"
+*/
+
 namespace PSM {
 
 /*
@@ -10,30 +253,29 @@ namespace PSM {
 Demo::Demo()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        -0x447030
-	  lis       r3, 0x804F
-	  li        r5, 0
-	  subi      r0, r3, 0xDB0
-	  li        r4, 0x1
-	  stw       r0, 0x0(r31)
-	  li        r0, -0x1
-	  mr        r3, r31
-	  stb       r5, 0x18(r31)
-	  stb       r4, 0x19(r31)
-	  stw       r0, 0x1C(r31)
-	  stw       r0, 0x20(r31)
-	  stw       r5, 0x24(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       __ct__11JKRDisposerFv
+	lis      r3, __vt__Q23PSM4Demo@ha
+	li       r5, 0
+	addi     r0, r3, __vt__Q23PSM4Demo@l
+	li       r4, 1
+	stw      r0, 0(r31)
+	li       r0, -1
+	mr       r3, r31
+	stb      r5, 0x18(r31)
+	stb      r4, 0x19(r31)
+	stw      r0, 0x1c(r31)
+	stw      r0, 0x20(r31)
+	stw      r5, 0x24(r31)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -45,158 +287,156 @@ Demo::Demo()
 void Demo::init(Vec*, Vec*, float (*)[4], PSM::DemoArg)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  lis       r8, 0x804A
-	  stw       r0, 0x44(r1)
-	  stmw      r25, 0x24(r1)
-	  mr        r30, r3
-	  mr        r25, r4
-	  mr        r27, r5
-	  mr        r26, r6
-	  mr        r31, r7
-	  subi      r29, r8, 0x2F80
-	  li        r3, 0x38
-	  bl        -0x4401D0
-	  mr.       r28, r3
-	  beq-      .loc_0x44
-	  bl        -0x12EBD0
-	  mr        r28, r3
+	stwu     r1, -0x40(r1)
+	mflr     r0
+	lis      r8, lbl_8049D080@ha
+	stw      r0, 0x44(r1)
+	stmw     r25, 0x24(r1)
+	mr       r30, r3
+	mr       r25, r4
+	mr       r27, r5
+	mr       r26, r6
+	mr       r31, r7
+	addi     r29, r8, lbl_8049D080@l
+	li       r3, 0x38
+	bl       __nw__FUl
+	or.      r28, r3, r3
+	beq      lbl_80464088
+	bl       __ct__Q26PSGame9SceneInfoFv
+	mr       r28, r3
 
-	.loc_0x44:
-	  mr        r3, r28
-	  li        r4, 0x1
-	  li        r5, 0x2
-	  bl        -0x12EBAC
-	  li        r0, 0x1
-	  li        r8, 0xFF
-	  stb       r0, 0x7(r28)
-	  mr        r3, r30
-	  addi      r4, r1, 0xC
-	  addi      r5, r1, 0x8
-	  stw       r25, 0x8(r28)
-	  stw       r27, 0x10(r28)
-	  stw       r26, 0x18(r28)
-	  stb       r8, 0x6(r28)
-	  lwz       r7, 0x0(r31)
-	  lwz       r6, 0x4(r31)
-	  lwz       r0, 0x8(r31)
-	  stb       r8, 0x8(r1)
-	  stw       r7, 0xC(r1)
-	  stw       r6, 0x10(r1)
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r0, r3
-	  lwz       r3, 0x4(r31)
-	  mr        r26, r0
-	  bl        -0x3997E8
-	  addi      r3, r3, 0x1
-	  bl        -0x440154
-	  stw       r3, 0x28(r30)
-	  lwz       r3, 0x28(r30)
-	  lwz       r4, 0x4(r31)
-	  bl        -0x3998B8
-	  li        r3, 0x2C
-	  bl        -0x440274
-	  mr.       r27, r3
-	  beq-      .loc_0xF0
-	  lbz       r4, 0x8(r1)
-	  mr        r5, r28
-	  bl        0x3940
-	  mr        r27, r3
+lbl_80464088:
+	mr       r3, r28
+	li       r4, 1
+	li       r5, 2
+	bl
+setStageFlag__Q26PSGame9SceneInfoFQ36PSGame9SceneInfo7FlagDefQ36PSGame9SceneInfo12FlagBitShift
+	li       r0, 1
+	li       r8, 0xff
+	stb      r0, 7(r28)
+	mr       r3, r30
+	addi     r4, r1, 0xc
+	addi     r5, r1, 8
+	stw      r25, 8(r28)
+	stw      r27, 0x10(r28)
+	stw      r26, 0x18(r28)
+	stb      r8, 6(r28)
+	lwz      r7, 0(r31)
+	lwz      r6, 4(r31)
+	lwz      r0, 8(r31)
+	stb      r8, 8(r1)
+	stw      r7, 0xc(r1)
+	stw      r6, 0x10(r1)
+	stw      r0, 0x14(r1)
+	lwz      r12, 0(r30)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	mr       r0, r3
+	lwz      r3, 4(r31)
+	mr       r26, r0
+	bl       strlen
+	addi     r3, r3, 1
+	bl       __nwa__FUl
+	stw      r3, 0x28(r30)
+	lwz      r3, 0x28(r30)
+	lwz      r4, 4(r31)
+	bl       strcpy
+	li       r3, 0x2c
+	bl       __nw__FUl
+	or.      r27, r3, r3
+	beq      lbl_80464134
+	lbz      r4, 8(r1)
+	mr       r5, r28
+	bl       __ct__Q23PSM10Scene_DemoFUcPQ26PSGame9SceneInfo
+	mr       r27, r3
 
-	.loc_0xF0:
-	  cmplwi    r27, 0
-	  bne-      .loc_0x10C
-	  addi      r3, r29, 0
-	  addi      r5, r29, 0x14
-	  li        r4, 0xC7
-	  crclr     6, 0x6
-	  bl        -0x439B0C
+lbl_80464134:
+	cmplwi   r27, 0
+	bne      lbl_80464150
+	addi     r3, r29, 0
+	addi     r5, r29, 0x14
+	li       r4, 0xc7
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x10C:
-	  lwz       r0, -0x6780(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x12C
-	  addi      r3, r29, 0x20
-	  addi      r5, r29, 0x14
-	  li        r4, 0x1D3
-	  crclr     6, 0x6
-	  bl        -0x439B2C
+lbl_80464150:
+	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_80464170
+	addi     r3, r29, 0x20
+	addi     r5, r29, 0x14
+	li       r4, 0x1d3
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x12C:
-	  lwz       r28, -0x6780(r13)
-	  cmplwi    r28, 0
-	  bne-      .loc_0x14C
-	  addi      r3, r29, 0x20
-	  addi      r5, r29, 0x14
-	  li        r4, 0x1DC
-	  crclr     6, 0x6
-	  bl        -0x439B4C
+lbl_80464170:
+	lwz      r28, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r28, 0
+	bne      lbl_80464190
+	addi     r3, r29, 0x20
+	addi     r5, r29, 0x14
+	li       r4, 0x1dc
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x14C:
-	  lwz       r0, 0x4(r28)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x16C
-	  addi      r3, r29, 0x2C
-	  addi      r5, r29, 0x14
-	  li        r4, 0xCF
-	  crclr     6, 0x6
-	  bl        -0x439B6C
+lbl_80464190:
+	lwz      r0, 4(r28)
+	cmplwi   r0, 0
+	bne      lbl_804641B0
+	addi     r3, r29, 0x2c
+	addi     r5, r29, 0x14
+	li       r4, 0xcf
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x16C:
-	  lwz       r3, 0x4(r28)
-	  lwz       r28, 0x4(r3)
-	  cmplwi    r28, 0
-	  bne-      .loc_0x190
-	  addi      r3, r29, 0x2C
-	  addi      r5, r29, 0x38
-	  li        r4, 0xD1
-	  crclr     6, 0x6
-	  bl        -0x439B90
+lbl_804641B0:
+	lwz      r3, 4(r28)
+	lwz      r28, 4(r3)
+	cmplwi   r28, 0
+	bne      lbl_804641D4
+	addi     r3, r29, 0x2c
+	addi     r5, r29, 0x38
+	li       r4, 0xd1
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x190:
-	  mr        r3, r28
-	  mr        r4, r27
-	  bl        -0x122AC8
-	  cmplwi    r27, 0
-	  bne-      .loc_0x1B8
-	  addi      r3, r29, 0
-	  addi      r5, r29, 0x14
-	  li        r4, 0xCB
-	  crclr     6, 0x6
-	  bl        -0x439BB8
+lbl_804641D4:
+	mr       r3, r28
+	mr       r4, r27
+	bl       adaptChildScene__Q28PSSystem5SceneFPQ28PSSystem5Scene
+	cmplwi   r27, 0
+	bne      lbl_804641FC
+	addi     r3, r29, 0
+	addi     r5, r29, 0x14
+	li       r4, 0xcb
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x1B8:
-	  cmplwi    r26, 0
-	  beq-      .loc_0x1CC
-	  mr        r3, r27
-	  mr        r4, r26
-	  bl        -0x122974
+lbl_804641FC:
+	cmplwi   r26, 0
+	beq      lbl_80464210
+	mr       r3, r27
+	mr       r4, r26
+	bl       appendSeq__Q28PSSystem5SceneFPQ28PSSystem7SeqBase
 
-	.loc_0x1CC:
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  mr        r5, r27
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  li        r0, 0x1
-	  mr        r3, r30
-	  stb       r0, 0x18(r30)
-	  bl        .loc_0x20C
-	  lmw       r25, 0x24(r1)
-	  lwz       r0, 0x44(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
-
-	.loc_0x20C:
+lbl_80464210:
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	mr       r5, r27
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	li       r0, 1
+	mr       r3, r30
+	stb      r0, 0x18(r30)
+	bl       demo1stLoadSync__Q23PSM4DemoFv
+	lmw      r25, 0x24(r1)
+	lwz      r0, 0x44(r1)
+	mtlr     r0
+	addi     r1, r1, 0x40
+	blr
 	*/
 }
 
@@ -208,76 +448,75 @@ void Demo::init(Vec*, Vec*, float (*)[4], PSM::DemoArg)
 void Demo::demo1stLoadSync()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r3, 0x804A
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  subi      r31, r3, 0x2F80
-	  stw       r30, 0x8(r1)
-	  lwz       r0, -0x6780(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x3C
-	  addi      r3, r31, 0x20
-	  addi      r5, r31, 0x14
-	  li        r4, 0x1D3
-	  crclr     6, 0x6
-	  bl        -0x439C48
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lis      r3, lbl_8049D080@ha
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	addi     r31, r3, lbl_8049D080@l
+	stw      r30, 8(r1)
+	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_8046428C
+	addi     r3, r31, 0x20
+	addi     r5, r31, 0x14
+	li       r4, 0x1d3
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x3C:
-	  lwz       r30, -0x6780(r13)
-	  cmplwi    r30, 0
-	  bne-      .loc_0x5C
-	  addi      r3, r31, 0x20
-	  addi      r5, r31, 0x14
-	  li        r4, 0x1DC
-	  crclr     6, 0x6
-	  bl        -0x439C68
+lbl_8046428C:
+	lwz      r30, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r30, 0
+	bne      lbl_804642AC
+	addi     r3, r31, 0x20
+	addi     r5, r31, 0x14
+	li       r4, 0x1dc
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x5C:
-	  lwz       r0, 0x4(r30)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x7C
-	  addi      r3, r31, 0x2C
-	  addi      r5, r31, 0x14
-	  li        r4, 0xCF
-	  crclr     6, 0x6
-	  bl        -0x439C88
+lbl_804642AC:
+	lwz      r0, 4(r30)
+	cmplwi   r0, 0
+	bne      lbl_804642CC
+	addi     r3, r31, 0x2c
+	addi     r5, r31, 0x14
+	li       r4, 0xcf
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x7C:
-	  lwz       r3, 0x4(r30)
-	  lwz       r30, 0x4(r3)
-	  cmplwi    r30, 0
-	  bne-      .loc_0xA0
-	  addi      r3, r31, 0x2C
-	  addi      r5, r31, 0x38
-	  li        r4, 0xD1
-	  crclr     6, 0x6
-	  bl        -0x439CAC
+lbl_804642CC:
+	lwz      r3, 4(r30)
+	lwz      r30, 4(r3)
+	cmplwi   r30, 0
+	bne      lbl_804642F0
+	addi     r3, r31, 0x2c
+	addi     r5, r31, 0x38
+	li       r4, 0xd1
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xA0:
-	  lwz       r0, 0x4(r30)
-	  cmplwi    r0, 0
-	  bne-      .loc_0xC0
-	  addi      r3, r31, 0x2C
-	  addi      r5, r31, 0x14
-	  li        r4, 0x5B
-	  crclr     6, 0x6
-	  bl        -0x439CCC
+lbl_804642F0:
+	lwz      r0, 4(r30)
+	cmplwi   r0, 0
+	bne      lbl_80464310
+	addi     r3, r31, 0x2c
+	addi     r5, r31, 0x14
+	li       r4, 0x5b
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xC0:
-	  lwz       r3, 0x4(r30)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80464310:
+	lwz      r3, 4(r30)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -289,27 +528,26 @@ void Demo::demo1stLoadSync()
 void Demo::initDemoScene(PSM::DemoArg&, PSM::Scene_Demo*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r6, 0x804A
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r5
-	  lwz       r3, 0x4(r4)
-	  subi      r4, r6, 0x2F24
-	  bl        -0x399C9C
-	  cmpwi     r3, 0
-	  bne-      .loc_0x34
-	  li        r0, 0x1
-	  stb       r0, 0x28(r31)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lis      r6, lbl_8049D0DC@ha
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r5
+	lwz      r3, 4(r4)
+	addi     r4, r6, lbl_8049D0DC@l
+	bl       strcmp
+	cmpwi    r3, 0
+	bne      lbl_80464370
+	li       r0, 1
+	stb      r0, 0x28(r31)
 
-	.loc_0x34:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80464370:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -3781,122 +4019,121 @@ void Demo::initiate(PSM::DemoArg, unsigned char*)
 Demo::~Demo()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r5, 0x804A
-	  stw       r0, 0x24(r1)
-	  stmw      r27, 0xC(r1)
-	  mr.       r27, r3
-	  mr        r28, r4
-	  subi      r31, r5, 0x2F80
-	  beq-      .loc_0x16C
-	  lis       r4, 0x804F
-	  subi      r0, r4, 0xDB0
-	  stw       r0, 0x0(r27)
-	  bl        0x814
-	  lwz       r0, -0x6780(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x54
-	  addi      r3, r31, 0x20
-	  addi      r5, r31, 0x14
-	  li        r4, 0x1D3
-	  crclr     6, 0x6
-	  bl        -0x43BB38
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lis      r5, lbl_8049D080@ha
+	stw      r0, 0x24(r1)
+	stmw     r27, 0xc(r1)
+	or.      r27, r3, r3
+	mr       r28, r4
+	addi     r31, r5, lbl_8049D080@l
+	beq      lbl_80466294
+	lis      r4, __vt__Q23PSM4Demo@ha
+	addi     r0, r4, __vt__Q23PSM4Demo@l
+	stw      r0, 0(r27)
+	bl       becomeSceneCamera__Q23PSM4DemoFv
+	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_8046617C
+	addi     r3, r31, 0x20
+	addi     r5, r31, 0x14
+	li       r4, 0x1d3
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x54:
-	  lwz       r30, -0x6780(r13)
-	  cmplwi    r30, 0
-	  bne-      .loc_0x74
-	  addi      r3, r31, 0x20
-	  addi      r5, r31, 0x14
-	  li        r4, 0x1DC
-	  crclr     6, 0x6
-	  bl        -0x43BB58
+lbl_8046617C:
+	lwz      r30, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r30, 0
+	bne      lbl_8046619C
+	addi     r3, r31, 0x20
+	addi     r5, r31, 0x14
+	li       r4, 0x1dc
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x74:
-	  lwz       r0, 0x4(r30)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x94
-	  addi      r3, r31, 0x2C
-	  addi      r5, r31, 0x14
-	  li        r4, 0xCF
-	  crclr     6, 0x6
-	  bl        -0x43BB78
+lbl_8046619C:
+	lwz      r0, 4(r30)
+	cmplwi   r0, 0
+	bne      lbl_804661BC
+	addi     r3, r31, 0x2c
+	addi     r5, r31, 0x14
+	li       r4, 0xcf
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x94:
-	  lwz       r3, 0x4(r30)
-	  lwz       r30, 0x4(r3)
-	  cmplwi    r30, 0
-	  bne-      .loc_0xB8
-	  addi      r3, r31, 0x2C
-	  addi      r5, r31, 0x38
-	  li        r4, 0xD1
-	  crclr     6, 0x6
-	  bl        -0x43BB9C
+lbl_804661BC:
+	lwz      r3, 4(r30)
+	lwz      r30, 4(r3)
+	cmplwi   r30, 0
+	bne      lbl_804661E0
+	addi     r3, r31, 0x2c
+	addi     r5, r31, 0x38
+	li       r4, 0xd1
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xB8:
-	  lwz       r0, 0x4(r30)
-	  cmplwi    r0, 0
-	  bne-      .loc_0xD8
-	  addi      r3, r31, 0x2C
-	  addi      r5, r31, 0x14
-	  li        r4, 0x5A
-	  crclr     6, 0x6
-	  bl        -0x43BBBC
+lbl_804661E0:
+	lwz      r0, 4(r30)
+	cmplwi   r0, 0
+	bne      lbl_80466200
+	addi     r3, r31, 0x2c
+	addi     r5, r31, 0x14
+	li       r4, 0x5a
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xD8:
-	  lwz       r0, -0x6780(r13)
-	  lwz       r30, 0x4(r30)
-	  cmplwi    r0, 0
-	  bne-      .loc_0xFC
-	  addi      r3, r31, 0x20
-	  addi      r5, r31, 0x14
-	  li        r4, 0x1D3
-	  crclr     6, 0x6
-	  bl        -0x43BBE0
+lbl_80466200:
+	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
+	lwz      r30, 4(r30)
+	cmplwi   r0, 0
+	bne      lbl_80466224
+	addi     r3, r31, 0x20
+	addi     r5, r31, 0x14
+	li       r4, 0x1d3
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xFC:
-	  lwz       r29, -0x6780(r13)
-	  cmplwi    r29, 0
-	  bne-      .loc_0x11C
-	  addi      r3, r31, 0x20
-	  addi      r5, r31, 0x14
-	  li        r4, 0x1DC
-	  crclr     6, 0x6
-	  bl        -0x43BC00
+lbl_80466224:
+	lwz      r29, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r29, 0
+	bne      lbl_80466244
+	addi     r3, r31, 0x20
+	addi     r5, r31, 0x14
+	li       r4, 0x1dc
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x11C:
-	  mr        r3, r29
-	  mr        r4, r30
-	  bl        -0x1244AC
-	  lwz       r3, 0x28(r27)
-	  bl        -0x4421A0
-	  cmplwi    r30, 0
-	  beq-      .loc_0x150
-	  mr        r3, r30
-	  li        r4, 0x1
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
+lbl_80466244:
+	mr       r3, r29
+	mr       r4, r30
+	bl       deleteScene__Q28PSSystem8SceneMgrFPQ28PSSystem5Scene
+	lwz      r3, 0x28(r27)
+	bl       __dl__FPv
+	cmplwi   r30, 0
+	beq      lbl_80466278
+	mr       r3, r30
+	li       r4, 1
+	lwz      r12, 0(r30)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x150:
-	  mr        r3, r27
-	  li        r4, 0
-	  bl        -0x44924C
-	  extsh.    r0, r28
-	  ble-      .loc_0x16C
-	  mr        r3, r27
-	  bl        -0x4421DC
+lbl_80466278:
+	mr       r3, r27
+	li       r4, 0
+	bl       __dt__11JKRDisposerFv
+	extsh.   r0, r28
+	ble      lbl_80466294
+	mr       r3, r27
+	bl       __dl__FPv
 
-	.loc_0x16C:
-	  mr        r3, r27
-	  lmw       r27, 0xC(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80466294:
+	mr       r3, r27
+	lmw      r27, 0xc(r1)
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -3908,519 +4145,516 @@ Demo::~Demo()
 void Demo::onDemoTop()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r4, 0x804A
-	  stw       r0, 0x24(r1)
-	  stmw      r27, 0xC(r1)
-	  mr        r29, r3
-	  subi      r31, r4, 0x2F80
-	  lwz       r0, -0x6780(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x3C
-	  addi      r3, r31, 0x20
-	  addi      r5, r31, 0x14
-	  li        r4, 0x1D3
-	  crclr     6, 0x6
-	  bl        -0x43BCA4
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lis      r4, lbl_8049D080@ha
+	stw      r0, 0x24(r1)
+	stmw     r27, 0xc(r1)
+	mr       r29, r3
+	addi     r31, r4, lbl_8049D080@l
+	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_804662E8
+	addi     r3, r31, 0x20
+	addi     r5, r31, 0x14
+	li       r4, 0x1d3
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x3C:
-	  lwz       r28, -0x6780(r13)
-	  cmplwi    r28, 0
-	  bne-      .loc_0x5C
-	  addi      r3, r31, 0x20
-	  addi      r5, r31, 0x14
-	  li        r4, 0x1DC
-	  crclr     6, 0x6
-	  bl        -0x43BCC4
+lbl_804662E8:
+	lwz      r28, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r28, 0
+	bne      lbl_80466308
+	addi     r3, r31, 0x20
+	addi     r5, r31, 0x14
+	li       r4, 0x1dc
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x5C:
-	  lwz       r0, 0x4(r28)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x7C
-	  addi      r3, r31, 0x2C
-	  addi      r5, r31, 0x14
-	  li        r4, 0xCF
-	  crclr     6, 0x6
-	  bl        -0x43BCE4
+lbl_80466308:
+	lwz      r0, 4(r28)
+	cmplwi   r0, 0
+	bne      lbl_80466328
+	addi     r3, r31, 0x2c
+	addi     r5, r31, 0x14
+	li       r4, 0xcf
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x7C:
-	  lwz       r3, 0x4(r28)
-	  lwz       r28, 0x4(r3)
-	  cmplwi    r28, 0
-	  bne-      .loc_0xA0
-	  addi      r3, r31, 0x2C
-	  addi      r5, r31, 0x38
-	  li        r4, 0xD1
-	  crclr     6, 0x6
-	  bl        -0x43BD08
+lbl_80466328:
+	lwz      r3, 4(r28)
+	lwz      r28, 4(r3)
+	cmplwi   r28, 0
+	bne      lbl_8046634C
+	addi     r3, r31, 0x2c
+	addi     r5, r31, 0x38
+	li       r4, 0xd1
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xA0:
-	  lwz       r0, 0x4(r28)
-	  cmplwi    r0, 0
-	  bne-      .loc_0xC0
-	  addi      r3, r31, 0x2C
-	  addi      r5, r31, 0x14
-	  li        r4, 0x5B
-	  crclr     6, 0x6
-	  bl        -0x43BD28
+lbl_8046634C:
+	lwz      r0, 4(r28)
+	cmplwi   r0, 0
+	bne      lbl_8046636C
+	addi     r3, r31, 0x2c
+	addi     r5, r31, 0x14
+	li       r4, 0x5b
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xC0:
-	  lwz       r3, 0x4(r28)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x3C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, -0x6E4C(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0xF4
-	  addi      r3, r31, 0x86C
-	  addi      r5, r31, 0x14
-	  li        r4, 0x89
-	  crclr     6, 0x6
-	  bl        -0x43BD5C
+lbl_8046636C:
+	lwz      r3, 4(r28)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x3c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0,
+"sInstance__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@sda21(r13) cmplwi
+r0, 0 bne      lbl_804663A0 addi     r3, r31, 0x86c addi     r5, r31, 0x14 li
+r4, 0x89 crclr    6 bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xF4:
-	  lwz       r3, -0x6E4C(r13)
-	  li        r4, 0x1
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, -0x6780(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x12C
-	  addi      r3, r31, 0x20
-	  addi      r5, r31, 0x14
-	  li        r4, 0x1D3
-	  crclr     6, 0x6
-	  bl        -0x43BD94
+lbl_804663A0:
+	lwz      r3,
+"sInstance__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@sda21(r13) li r4, 1
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_804663D8
+	addi     r3, r31, 0x20
+	addi     r5, r31, 0x14
+	li       r4, 0x1d3
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x12C:
-	  lwz       r28, -0x6780(r13)
-	  cmplwi    r28, 0
-	  bne-      .loc_0x14C
-	  addi      r3, r31, 0x20
-	  addi      r5, r31, 0x14
-	  li        r4, 0x1DC
-	  crclr     6, 0x6
-	  bl        -0x43BDB4
+lbl_804663D8:
+	lwz      r28, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r28, 0
+	bne      lbl_804663F8
+	addi     r3, r31, 0x20
+	addi     r5, r31, 0x14
+	li       r4, 0x1dc
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x14C:
-	  lwz       r0, 0x4(r28)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x16C
-	  addi      r3, r31, 0x2C
-	  addi      r5, r31, 0x14
-	  li        r4, 0xCF
-	  crclr     6, 0x6
-	  bl        -0x43BDD4
+lbl_804663F8:
+	lwz      r0, 4(r28)
+	cmplwi   r0, 0
+	bne      lbl_80466418
+	addi     r3, r31, 0x2c
+	addi     r5, r31, 0x14
+	li       r4, 0xcf
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x16C:
-	  lwz       r3, 0x4(r28)
-	  lwz       r28, 0x4(r3)
-	  cmplwi    r28, 0
-	  bne-      .loc_0x190
-	  addi      r3, r31, 0x2C
-	  addi      r5, r31, 0x38
-	  li        r4, 0xD1
-	  crclr     6, 0x6
-	  bl        -0x43BDF8
+lbl_80466418:
+	lwz      r3, 4(r28)
+	lwz      r28, 4(r3)
+	cmplwi   r28, 0
+	bne      lbl_8046643C
+	addi     r3, r31, 0x2c
+	addi     r5, r31, 0x38
+	li       r4, 0xd1
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x190:
-	  mr        r3, r28
-	  lwz       r12, 0x0(r28)
-	  lwz       r12, 0x4C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, -0x6780(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x1C4
-	  addi      r3, r31, 0x20
-	  addi      r5, r31, 0x14
-	  li        r4, 0x1D3
-	  crclr     6, 0x6
-	  bl        -0x43BE2C
+lbl_8046643C:
+	mr       r3, r28
+	lwz      r12, 0(r28)
+	lwz      r12, 0x4c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_80466470
+	addi     r3, r31, 0x20
+	addi     r5, r31, 0x14
+	li       r4, 0x1d3
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x1C4:
-	  lwz       r28, -0x6780(r13)
-	  cmplwi    r28, 0
-	  bne-      .loc_0x1E4
-	  addi      r3, r31, 0x20
-	  addi      r5, r31, 0x14
-	  li        r4, 0x1DC
-	  crclr     6, 0x6
-	  bl        -0x43BE4C
+lbl_80466470:
+	lwz      r28, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r28, 0
+	bne      lbl_80466490
+	addi     r3, r31, 0x20
+	addi     r5, r31, 0x14
+	li       r4, 0x1dc
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x1E4:
-	  lwz       r0, 0x4(r28)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x204
-	  addi      r3, r31, 0x2C
-	  addi      r5, r31, 0x14
-	  li        r4, 0xCF
-	  crclr     6, 0x6
-	  bl        -0x43BE6C
+lbl_80466490:
+	lwz      r0, 4(r28)
+	cmplwi   r0, 0
+	bne      lbl_804664B0
+	addi     r3, r31, 0x2c
+	addi     r5, r31, 0x14
+	li       r4, 0xcf
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x204:
-	  lwz       r3, 0x4(r28)
-	  lwz       r28, 0x4(r3)
-	  cmplwi    r28, 0
-	  bne-      .loc_0x228
-	  addi      r3, r31, 0x2C
-	  addi      r5, r31, 0x38
-	  li        r4, 0xD1
-	  crclr     6, 0x6
-	  bl        -0x43BE90
+lbl_804664B0:
+	lwz      r3, 4(r28)
+	lwz      r28, 4(r3)
+	cmplwi   r28, 0
+	bne      lbl_804664D4
+	addi     r3, r31, 0x2c
+	addi     r5, r31, 0x38
+	li       r4, 0xd1
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x228:
-	  mr        r3, r28
-	  lwz       r12, 0x0(r28)
-	  lwz       r12, 0x2C(r12)
-	  mtctr     r12
-	  bctrl
-	  mr.       r27, r3
-	  beq-      .loc_0x24C
-	  li        r0, 0
-	  sth       r0, 0x10(r27)
+lbl_804664D4:
+	mr       r3, r28
+	lwz      r12, 0(r28)
+	lwz      r12, 0x2c(r12)
+	mtctr    r12
+	bctrl
+	or.      r27, r3, r3
+	beq      lbl_804664F8
+	li       r0, 0
+	sth      r0, 0x10(r27)
 
-	.loc_0x24C:
-	  lwz       r0, -0x6780(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x26C
-	  addi      r3, r31, 0x20
-	  addi      r5, r31, 0x14
-	  li        r4, 0x1D3
-	  crclr     6, 0x6
-	  bl        -0x43BED4
+lbl_804664F8:
+	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_80466518
+	addi     r3, r31, 0x20
+	addi     r5, r31, 0x14
+	li       r4, 0x1d3
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x26C:
-	  lwz       r28, -0x6780(r13)
-	  cmplwi    r28, 0
-	  bne-      .loc_0x28C
-	  addi      r3, r31, 0x20
-	  addi      r5, r31, 0x14
-	  li        r4, 0x1DC
-	  crclr     6, 0x6
-	  bl        -0x43BEF4
+lbl_80466518:
+	lwz      r28, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r28, 0
+	bne      lbl_80466538
+	addi     r3, r31, 0x20
+	addi     r5, r31, 0x14
+	li       r4, 0x1dc
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x28C:
-	  lwz       r0, 0x4(r28)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x2AC
-	  addi      r3, r31, 0x2C
-	  addi      r5, r31, 0x14
-	  li        r4, 0xCF
-	  crclr     6, 0x6
-	  bl        -0x43BF14
+lbl_80466538:
+	lwz      r0, 4(r28)
+	cmplwi   r0, 0
+	bne      lbl_80466558
+	addi     r3, r31, 0x2c
+	addi     r5, r31, 0x14
+	li       r4, 0xcf
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x2AC:
-	  lwz       r3, 0x4(r28)
-	  lwz       r30, 0x4(r3)
-	  cmplwi    r30, 0
-	  bne-      .loc_0x2D0
-	  addi      r3, r31, 0x2C
-	  addi      r5, r31, 0x38
-	  li        r4, 0xD1
-	  crclr     6, 0x6
-	  bl        -0x43BF38
+lbl_80466558:
+	lwz      r3, 4(r28)
+	lwz      r30, 4(r3)
+	cmplwi   r30, 0
+	bne      lbl_8046657C
+	addi     r3, r31, 0x2c
+	addi     r5, r31, 0x38
+	li       r4, 0xd1
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x2D0:
-	  lwz       r12, 0x0(r30)
-	  mr        r3, r30
-	  lwz       r12, 0x40(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x300
-	  addi      r3, r31, 0x858
-	  addi      r5, r31, 0x14
-	  li        r4, 0x177
-	  crclr     6, 0x6
-	  bl        -0x43BF68
+lbl_8046657C:
+	lwz      r12, 0(r30)
+	mr       r3, r30
+	lwz      r12, 0x40(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_804665AC
+	addi     r3, r31, 0x858
+	addi     r5, r31, 0x14
+	li       r4, 0x177
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x300:
-	  lwz       r28, 0x28(r29)
-	  addi      r4, r31, 0x94
-	  mr        r3, r28
-	  bl        -0x39BEF8
-	  cmpwi     r3, 0
-	  beq-      .loc_0x3B8
-	  mr        r3, r28
-	  addi      r4, r31, 0x80
-	  bl        -0x39BF0C
-	  cmpwi     r3, 0
-	  beq-      .loc_0x3B8
-	  mr        r3, r28
-	  addi      r4, r31, 0x168
-	  bl        -0x39BF20
-	  cmpwi     r3, 0
-	  beq-      .loc_0x3B8
-	  mr        r3, r28
-	  addi      r4, r31, 0xB0
-	  bl        -0x39BF34
-	  cmpwi     r3, 0
-	  beq-      .loc_0x3B8
-	  mr        r3, r28
-	  addi      r4, r31, 0x180
-	  bl        -0x39BF48
-	  cmpwi     r3, 0
-	  beq-      .loc_0x3B8
-	  mr        r3, r28
-	  addi      r4, r31, 0x26C
-	  bl        -0x39BF5C
-	  cmpwi     r3, 0
-	  beq-      .loc_0x3B8
-	  mr        r3, r28
-	  addi      r4, r31, 0x37C
-	  bl        -0x39BF70
-	  cmpwi     r3, 0
-	  beq-      .loc_0x3B8
-	  mr        r3, r28
-	  addi      r4, r31, 0x878
-	  bl        -0x39BF84
-	  cmpwi     r3, 0
-	  beq-      .loc_0x3B8
-	  mr        r3, r28
-	  addi      r4, r31, 0x5C
-	  bl        -0x39BF98
-	  cmpwi     r3, 0
-	  bne-      .loc_0x450
+lbl_804665AC:
+	lwz      r28, 0x28(r29)
+	addi     r4, r31, 0x94
+	mr       r3, r28
+	bl       strcmp
+	cmpwi    r3, 0
+	beq      lbl_80466664
+	mr       r3, r28
+	addi     r4, r31, 0x80
+	bl       strcmp
+	cmpwi    r3, 0
+	beq      lbl_80466664
+	mr       r3, r28
+	addi     r4, r31, 0x168
+	bl       strcmp
+	cmpwi    r3, 0
+	beq      lbl_80466664
+	mr       r3, r28
+	addi     r4, r31, 0xb0
+	bl       strcmp
+	cmpwi    r3, 0
+	beq      lbl_80466664
+	mr       r3, r28
+	addi     r4, r31, 0x180
+	bl       strcmp
+	cmpwi    r3, 0
+	beq      lbl_80466664
+	mr       r3, r28
+	addi     r4, r31, 0x26c
+	bl       strcmp
+	cmpwi    r3, 0
+	beq      lbl_80466664
+	mr       r3, r28
+	addi     r4, r31, 0x37c
+	bl       strcmp
+	cmpwi    r3, 0
+	beq      lbl_80466664
+	mr       r3, r28
+	addi     r4, r31, 0x878
+	bl       strcmp
+	cmpwi    r3, 0
+	beq      lbl_80466664
+	mr       r3, r28
+	addi     r4, r31, 0x5c
+	bl       strcmp
+	cmpwi    r3, 0
+	bne      lbl_804666FC
 
-	.loc_0x3B8:
-	  addi      r3, r30, 0x10
-	  li        r4, 0xF
-	  bl        -0x132A30
-	  cmplwi    r27, 0
-	  beq-      .loc_0x470
-	  mr        r3, r27
-	  bl        -0x12595C
-	  mr        r3, r30
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x58(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x42C
-	  mr        r3, r30
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x6C(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x42C
-	  mr        r3, r27
-	  li        r4, 0x3079
-	  li        r5, 0x1
-	  bl        -0x1259F4
-	  mr        r3, r27
-	  li        r4, 0x307A
-	  li        r5, 0x1
-	  bl        -0x125A04
+lbl_80466664:
+	addi     r3, r30, 0x10
+	li       r4, 0xf
+	bl       stopAllSound__Q28PSSystem6SeqMgrFUl
+	cmplwi   r27, 0
+	beq      lbl_8046671C
+	mr       r3, r27
+	bl       off__Q28PSSystem8EnvSeMgrFv
+	mr       r3, r30
+	lwz      r12, 0(r30)
+	lwz      r12, 0x58(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_804666D8
+	mr       r3, r30
+	lwz      r12, 0(r30)
+	lwz      r12, 0x6c(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_804666D8
+	mr       r3, r27
+	li       r4, 0x3079
+	li       r5, 1
+	bl       on__Q28PSSystem8EnvSeMgrFUlb
+	mr       r3, r27
+	li       r4, 0x307a
+	li       r5, 1
+	bl       on__Q28PSSystem8EnvSeMgrFUlb
 
-	.loc_0x42C:
-	  mr        r3, r27
-	  li        r4, 0x4014
-	  li        r5, 0x1
-	  bl        -0x1259A0
-	  mr        r3, r27
-	  li        r4, 0x4015
-	  li        r5, 0x1
-	  bl        -0x1259B0
-	  b         .loc_0x470
+lbl_804666D8:
+	mr       r3, r27
+	li       r4, 0x4014
+	li       r5, 1
+	bl       off__Q28PSSystem8EnvSeMgrFUlb
+	mr       r3, r27
+	li       r4, 0x4015
+	li       r5, 1
+	bl       off__Q28PSSystem8EnvSeMgrFUlb
+	b        lbl_8046671C
 
-	.loc_0x450:
-	  addi      r3, r30, 0x10
-	  li        r4, 0x1
-	  bl        -0x132C38
-	  cmplwi    r27, 0
-	  beq-      .loc_0x470
-	  mr        r3, r27
-	  li        r4, 0x2
-	  bl        -0x125AA0
+lbl_804666FC:
+	addi     r3, r30, 0x10
+	li       r4, 1
+	bl       pauseOnAllSeq__Q28PSSystem6SeqMgrFQ38PSSystem7SeqBase9PauseMode
+	cmplwi   r27, 0
+	beq      lbl_8046671C
+	mr       r3, r27
+	li       r4, 2
+	bl       setAllPauseFlag__Q28PSSystem8EnvSeMgrFUc
 
-	.loc_0x470:
-	  mr        r3, r28
-	  addi      r4, r31, 0x824
-	  bl        -0x39C064
-	  cmpwi     r3, 0
-	  bne-      .loc_0x494
-	  addi      r3, r30, 0x10
-	  li        r4, 0xF
-	  bl        -0x132AFC
-	  b         .loc_0x61C
+lbl_8046671C:
+	mr       r3, r28
+	addi     r4, r31, 0x824
+	bl       strcmp
+	cmpwi    r3, 0
+	bne      lbl_80466740
+	addi     r3, r30, 0x10
+	li       r4, 0xf
+	bl       stopAllSound__Q28PSSystem6SeqMgrFUl
+	b        lbl_804668C8
 
-	.loc_0x494:
-	  mr        r3, r28
-	  addi      r4, r31, 0x5A8
-	  bl        -0x39C088
-	  cmpwi     r3, 0
-	  bne-      .loc_0x58C
-	  lwz       r0, -0x6780(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x4C8
-	  addi      r3, r31, 0x20
-	  addi      r5, r31, 0x14
-	  li        r4, 0x1D3
-	  crclr     6, 0x6
-	  bl        -0x43C130
+lbl_80466740:
+	mr       r3, r28
+	addi     r4, r31, 0x5a8
+	bl       strcmp
+	cmpwi    r3, 0
+	bne      lbl_80466838
+	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_80466774
+	addi     r3, r31, 0x20
+	addi     r5, r31, 0x14
+	li       r4, 0x1d3
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x4C8:
-	  lwz       r28, -0x6780(r13)
-	  cmplwi    r28, 0
-	  bne-      .loc_0x4E8
-	  addi      r3, r31, 0x20
-	  addi      r5, r31, 0x14
-	  li        r4, 0x1DC
-	  crclr     6, 0x6
-	  bl        -0x43C150
+lbl_80466774:
+	lwz      r28, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r28, 0
+	bne      lbl_80466794
+	addi     r3, r31, 0x20
+	addi     r5, r31, 0x14
+	li       r4, 0x1dc
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x4E8:
-	  lwz       r0, 0x4(r28)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x508
-	  addi      r3, r31, 0x2C
-	  addi      r5, r31, 0x14
-	  li        r4, 0xC7
-	  crclr     6, 0x6
-	  bl        -0x43C170
+lbl_80466794:
+	lwz      r0, 4(r28)
+	cmplwi   r0, 0
+	bne      lbl_804667B4
+	addi     r3, r31, 0x2c
+	addi     r5, r31, 0x14
+	li       r4, 0xc7
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x508:
-	  lwz       r3, 0x4(r28)
-	  lwz       r28, 0x4(r3)
-	  cmplwi    r28, 0
-	  bne-      .loc_0x52C
-	  addi      r3, r31, 0x20
-	  addi      r5, r31, 0x14
-	  li        r4, 0x1E5
-	  crclr     6, 0x6
-	  bl        -0x43C194
+lbl_804667B4:
+	lwz      r3, 4(r28)
+	lwz      r28, 4(r3)
+	cmplwi   r28, 0
+	bne      lbl_804667D8
+	addi     r3, r31, 0x20
+	addi     r5, r31, 0x14
+	li       r4, 0x1e5
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x52C:
-	  addi      r3, r28, 0x10
-	  li        r4, 0x1
-	  bl        -0x132944
-	  mr.       r28, r3
-	  bne-      .loc_0x554
-	  addi      r3, r31, 0x20
-	  addi      r5, r31, 0x14
-	  li        r4, 0x1E7
-	  crclr     6, 0x6
-	  bl        -0x43C1BC
+lbl_804667D8:
+	addi     r3, r28, 0x10
+	li       r4, 1
+	bl       getSeq__Q28PSSystem6SeqMgrFUl
+	or.      r28, r3, r3
+	bne      lbl_80466800
+	addi     r3, r31, 0x20
+	addi     r5, r31, 0x14
+	li       r4, 0x1e7
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x554:
-	  cmplwi    r28, 0
-	  bne-      .loc_0x570
-	  addi      r3, r31, 0
-	  addi      r5, r31, 0x14
-	  li        r4, 0x2DB
-	  crclr     6, 0x6
-	  bl        -0x43C1D8
+lbl_80466800:
+	cmplwi   r28, 0
+	bne      lbl_8046681C
+	addi     r3, r31, 0
+	addi     r5, r31, 0x14
+	li       r4, 0x2db
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x570:
-	  mr        r3, r28
-	  li        r4, 0x5
-	  lwz       r12, 0x10(r28)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x61C
+lbl_8046681C:
+	mr       r3, r28
+	li       r4, 5
+	lwz      r12, 0x10(r28)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_804668C8
 
-	.loc_0x58C:
-	  mr        r3, r28
-	  addi      r4, r31, 0x580
-	  bl        -0x39C180
-	  cmpwi     r3, 0
-	  bne-      .loc_0x61C
-	  lwz       r0, -0x6E3C(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x5C0
-	  addi      r3, r31, 0x86C
-	  addi      r5, r31, 0x14
-	  li        r4, 0x89
-	  crclr     6, 0x6
-	  bl        -0x43C228
+lbl_80466838:
+	mr       r3, r28
+	addi     r4, r31, 0x580
+	bl       strcmp
+	cmpwi    r3, 0
+	bne      lbl_804668C8
+	lwz      r0,
+"sInstance__Q28PSSystem49SingletonBase<Q36PSGame10SoundTable11CategoryMgr>"@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_8046686C
+	addi     r3, r31, 0x86c
+	addi     r5, r31, 0x14
+	li       r4, 0x89
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x5C0:
-	  lwz       r28, -0x6E3C(r13)
-	  lwz       r0, 0x18(r28)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x5E4
-	  addi      r3, r31, 0x20
-	  addi      r5, r31, 0x14
-	  li        r4, 0x5D
-	  crclr     6, 0x6
-	  bl        -0x43C24C
+lbl_8046686C:
+	lwz      r28,
+"sInstance__Q28PSSystem49SingletonBase<Q36PSGame10SoundTable11CategoryMgr>"@sda21(r13)
+	lwz      r0, 0x18(r28)
+	cmplwi   r0, 0
+	bne      lbl_80466890
+	addi     r3, r31, 0x20
+	addi     r5, r31, 0x14
+	li       r4, 0x5d
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x5E4:
-	  lwz       r3, 0x18(r28)
-	  li        r0, 0x1
-	  stb       r0, 0x15(r3)
-	  lwz       r0, 0xC(r28)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x610
-	  addi      r3, r31, 0x20
-	  addi      r5, r31, 0x14
-	  li        r4, 0x5D
-	  crclr     6, 0x6
-	  bl        -0x43C278
+lbl_80466890:
+	lwz      r3, 0x18(r28)
+	li       r0, 1
+	stb      r0, 0x15(r3)
+	lwz      r0, 0xc(r28)
+	cmplwi   r0, 0
+	bne      lbl_804668BC
+	addi     r3, r31, 0x20
+	addi     r5, r31, 0x14
+	li       r4, 0x5d
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x610:
-	  lwz       r3, 0xC(r28)
-	  li        r0, 0x1
-	  stb       r0, 0x15(r3)
+lbl_804668BC:
+	lwz      r3, 0xc(r28)
+	li       r0, 1
+	stb      r0, 0x15(r3)
 
-	.loc_0x61C:
-	  lwz       r4, 0x1C(r29)
-	  addis     r0, r4, 0x1
-	  cmplwi    r0, 0xFFFF
-	  beq-      .loc_0x638
-	  lwz       r3, -0x67A8(r13)
-	  li        r5, 0
-	  bl        -0x12E2B0
+lbl_804668C8:
+	lwz      r4, 0x1c(r29)
+	addis    r0, r4, 1
+	cmplwi   r0, 0xffff
+	beq      lbl_804668E4
+	lwz      r3, spSysIF__8PSSystem@sda21(r13)
+	li       r5, 0
+	bl       playSystemSe__Q28PSSystem5SysIFFUlUl
 
-	.loc_0x638:
-	  lwz       r0, 0x4(r30)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x658
-	  addi      r3, r31, 0x2C
-	  addi      r5, r31, 0x14
-	  li        r4, 0x5B
-	  crclr     6, 0x6
-	  bl        -0x43C2C0
+lbl_804668E4:
+	lwz      r0, 4(r30)
+	cmplwi   r0, 0
+	bne      lbl_80466904
+	addi     r3, r31, 0x2c
+	addi     r5, r31, 0x14
+	li       r4, 0x5b
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x658:
-	  lwz       r3, 0x4(r30)
-	  addi      r3, r3, 0x10
-	  bl        -0x132AB0
-	  cmplwi    r3, 0
-	  beq-      .loc_0x6AC
-	  lbz       r0, 0x19(r29)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x6AC
-	  lwz       r0, 0x4(r30)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x698
-	  addi      r3, r31, 0x2C
-	  addi      r5, r31, 0x14
-	  li        r4, 0x5B
-	  crclr     6, 0x6
-	  bl        -0x43C300
+lbl_80466904:
+	lwz      r3, 4(r30)
+	addi     r3, r3, 0x10
+	bl       getFirstSeq__Q28PSSystem6SeqMgrFv
+	cmplwi   r3, 0
+	beq      lbl_80466958
+	lbz      r0, 0x19(r29)
+	cmplwi   r0, 0
+	beq      lbl_80466958
+	lwz      r0, 4(r30)
+	cmplwi   r0, 0
+	bne      lbl_80466944
+	addi     r3, r31, 0x2c
+	addi     r5, r31, 0x14
+	li       r4, 0x5b
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x698:
-	  lwz       r3, 0x4(r30)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_80466944:
+	lwz      r3, 4(r30)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x6AC:
-	  lmw       r27, 0xC(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80466958:
+	lmw      r27, 0xc(r1)
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -4432,82 +4666,77 @@ void Demo::onDemoTop()
 void Demo::becomeSceneCamera()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r3, 0x804A
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  subi      r31, r3, 0x2F80
-	  stw       r30, 0x8(r1)
-	  lwz       r0, -0x6780(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x3C
-	  addi      r3, r31, 0x20
-	  addi      r5, r31, 0x14
-	  li        r4, 0x1D3
-	  crclr     6, 0x6
-	  bl        -0x43C364
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lis      r3, lbl_8049D080@ha
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	addi     r31, r3, lbl_8049D080@l
+	stw      r30, 8(r1)
+	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_804669A8
+	addi     r3, r31, 0x20
+	addi     r5, r31, 0x14
+	li       r4, 0x1d3
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x3C:
-	  lwz       r30, -0x6780(r13)
-	  cmplwi    r30, 0
-	  bne-      .loc_0x5C
-	  addi      r3, r31, 0x20
-	  addi      r5, r31, 0x14
-	  li        r4, 0x1DC
-	  crclr     6, 0x6
-	  bl        -0x43C384
+lbl_804669A8:
+	lwz      r30, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r30, 0
+	bne      lbl_804669C8
+	addi     r3, r31, 0x20
+	addi     r5, r31, 0x14
+	li       r4, 0x1dc
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x5C:
-	  lwz       r0, 0x4(r30)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x7C
-	  addi      r3, r31, 0x2C
-	  addi      r5, r31, 0x14
-	  li        r4, 0xCF
-	  crclr     6, 0x6
-	  bl        -0x43C3A4
+lbl_804669C8:
+	lwz      r0, 4(r30)
+	cmplwi   r0, 0
+	bne      lbl_804669E8
+	addi     r3, r31, 0x2c
+	addi     r5, r31, 0x14
+	li       r4, 0xcf
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x7C:
-	  lwz       r3, 0x4(r30)
-	  lwz       r30, 0x4(r3)
-	  cmplwi    r30, 0
-	  bne-      .loc_0xA0
-	  addi      r3, r31, 0x2C
-	  addi      r5, r31, 0x38
-	  li        r4, 0xD1
-	  crclr     6, 0x6
-	  bl        -0x43C3C8
+lbl_804669E8:
+	lwz      r3, 4(r30)
+	lwz      r30, 4(r3)
+	cmplwi   r30, 0
+	bne      lbl_80466A0C
+	addi     r3, r31, 0x2c
+	addi     r5, r31, 0x38
+	li       r4, 0xd1
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xA0:
-	  mr        r3, r30
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x3C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, -0x6E4C(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0xD4
-	  addi      r3, r31, 0x86C
-	  addi      r5, r31, 0x14
-	  li        r4, 0x89
-	  crclr     6, 0x6
-	  bl        -0x43C3FC
+lbl_80466A0C:
+	mr       r3, r30
+	lwz      r12, 0(r30)
+	lwz      r12, 0x3c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0,
+"sInstance__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@sda21(r13) cmplwi
+r0, 0 bne      lbl_80466A40 addi     r3, r31, 0x86c addi     r5, r31, 0x14 li
+r4, 0x89 crclr    6 bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xD4:
-	  lwz       r3, -0x6E4C(r13)
-	  li        r4, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80466A40:
+	lwz      r3,
+"sInstance__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@sda21(r13) li r4, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -4519,80 +4748,79 @@ void Demo::becomeSceneCamera()
 void Demo::onDemoFadeoutStart(unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r3, 0x804A
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  subi      r31, r3, 0x2F80
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r29, r4
-	  lwz       r0, -0x6780(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x44
-	  addi      r3, r31, 0x20
-	  addi      r5, r31, 0x14
-	  li        r4, 0x1D3
-	  crclr     6, 0x6
-	  bl        -0x43C470
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lis      r3, lbl_8049D080@ha
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	addi     r31, r3, lbl_8049D080@l
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	mr       r29, r4
+	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_80466AB4
+	addi     r3, r31, 0x20
+	addi     r5, r31, 0x14
+	li       r4, 0x1d3
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x44:
-	  lwz       r30, -0x6780(r13)
-	  cmplwi    r30, 0
-	  bne-      .loc_0x64
-	  addi      r3, r31, 0x20
-	  addi      r5, r31, 0x14
-	  li        r4, 0x1DC
-	  crclr     6, 0x6
-	  bl        -0x43C490
+lbl_80466AB4:
+	lwz      r30, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r30, 0
+	bne      lbl_80466AD4
+	addi     r3, r31, 0x20
+	addi     r5, r31, 0x14
+	li       r4, 0x1dc
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x64:
-	  lwz       r0, 0x4(r30)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x84
-	  addi      r3, r31, 0x2C
-	  addi      r5, r31, 0x14
-	  li        r4, 0xCF
-	  crclr     6, 0x6
-	  bl        -0x43C4B0
+lbl_80466AD4:
+	lwz      r0, 4(r30)
+	cmplwi   r0, 0
+	bne      lbl_80466AF4
+	addi     r3, r31, 0x2c
+	addi     r5, r31, 0x14
+	li       r4, 0xcf
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x84:
-	  lwz       r3, 0x4(r30)
-	  lwz       r30, 0x4(r3)
-	  cmplwi    r30, 0
-	  bne-      .loc_0xA8
-	  addi      r3, r31, 0x2C
-	  addi      r5, r31, 0x38
-	  li        r4, 0xD1
-	  crclr     6, 0x6
-	  bl        -0x43C4D4
+lbl_80466AF4:
+	lwz      r3, 4(r30)
+	lwz      r30, 4(r3)
+	cmplwi   r30, 0
+	bne      lbl_80466B18
+	addi     r3, r31, 0x2c
+	addi     r5, r31, 0x38
+	li       r4, 0xd1
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xA8:
-	  lwz       r0, 0x4(r30)
-	  cmplwi    r0, 0
-	  bne-      .loc_0xC8
-	  addi      r3, r31, 0x2C
-	  addi      r5, r31, 0x14
-	  li        r4, 0x5B
-	  crclr     6, 0x6
-	  bl        -0x43C4F4
+lbl_80466B18:
+	lwz      r0, 4(r30)
+	cmplwi   r0, 0
+	bne      lbl_80466B38
+	addi     r3, r31, 0x2c
+	addi     r5, r31, 0x14
+	li       r4, 0x5b
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xC8:
-	  lwz       r3, 0x4(r30)
-	  subi      r4, r29, 0x2
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x24(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80466B38:
+	lwz      r3, 4(r30)
+	addi     r4, r29, -2
+	lwz      r12, 0(r3)
+	lwz      r12, 0x24(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -4604,494 +4832,489 @@ void Demo::onDemoFadeoutStart(unsigned long)
 void Demo::onDemoEnd()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r4, 0x804A
-	  stw       r0, 0x24(r1)
-	  stmw      r27, 0xC(r1)
-	  mr        r29, r3
-	  subi      r31, r4, 0x2F80
-	  lwz       r0, -0x6780(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x3C
-	  addi      r3, r31, 0x20
-	  addi      r5, r31, 0x14
-	  li        r4, 0x1D3
-	  crclr     6, 0x6
-	  bl        -0x43C564
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lis      r4, lbl_8049D080@ha
+	stw      r0, 0x24(r1)
+	stmw     r27, 0xc(r1)
+	mr       r29, r3
+	addi     r31, r4, lbl_8049D080@l
+	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_80466BA8
+	addi     r3, r31, 0x20
+	addi     r5, r31, 0x14
+	li       r4, 0x1d3
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x3C:
-	  lwz       r28, -0x6780(r13)
-	  cmplwi    r28, 0
-	  bne-      .loc_0x5C
-	  addi      r3, r31, 0x20
-	  addi      r5, r31, 0x14
-	  li        r4, 0x1DC
-	  crclr     6, 0x6
-	  bl        -0x43C584
+lbl_80466BA8:
+	lwz      r28, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r28, 0
+	bne      lbl_80466BC8
+	addi     r3, r31, 0x20
+	addi     r5, r31, 0x14
+	li       r4, 0x1dc
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x5C:
-	  lwz       r0, 0x4(r28)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x7C
-	  addi      r3, r31, 0x2C
-	  addi      r5, r31, 0x14
-	  li        r4, 0xCF
-	  crclr     6, 0x6
-	  bl        -0x43C5A4
+lbl_80466BC8:
+	lwz      r0, 4(r28)
+	cmplwi   r0, 0
+	bne      lbl_80466BE8
+	addi     r3, r31, 0x2c
+	addi     r5, r31, 0x14
+	li       r4, 0xcf
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x7C:
-	  lwz       r3, 0x4(r28)
-	  lwz       r28, 0x4(r3)
-	  cmplwi    r28, 0
-	  bne-      .loc_0xA0
-	  addi      r3, r31, 0x2C
-	  addi      r5, r31, 0x38
-	  li        r4, 0xD1
-	  crclr     6, 0x6
-	  bl        -0x43C5C8
+lbl_80466BE8:
+	lwz      r3, 4(r28)
+	lwz      r28, 4(r3)
+	cmplwi   r28, 0
+	bne      lbl_80466C0C
+	addi     r3, r31, 0x2c
+	addi     r5, r31, 0x38
+	li       r4, 0xd1
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xA0:
-	  mr        r3, r28
-	  lwz       r12, 0x0(r28)
-	  lwz       r12, 0x3C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, -0x6E4C(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0xD4
-	  addi      r3, r31, 0x86C
-	  addi      r5, r31, 0x14
-	  li        r4, 0x89
-	  crclr     6, 0x6
-	  bl        -0x43C5FC
+lbl_80466C0C:
+	mr       r3, r28
+	lwz      r12, 0(r28)
+	lwz      r12, 0x3c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0,
+"sInstance__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@sda21(r13) cmplwi
+r0, 0 bne      lbl_80466C40 addi     r3, r31, 0x86c addi     r5, r31, 0x14 li
+r4, 0x89 crclr    6 bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xD4:
-	  lwz       r3, -0x6E4C(r13)
-	  li        r4, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, -0x6780(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x10C
-	  addi      r3, r31, 0x20
-	  addi      r5, r31, 0x14
-	  li        r4, 0x1D3
-	  crclr     6, 0x6
-	  bl        -0x43C634
+lbl_80466C40:
+	lwz      r3,
+"sInstance__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@sda21(r13) li r4, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_80466C78
+	addi     r3, r31, 0x20
+	addi     r5, r31, 0x14
+	li       r4, 0x1d3
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x10C:
-	  lwz       r28, -0x6780(r13)
-	  cmplwi    r28, 0
-	  bne-      .loc_0x12C
-	  addi      r3, r31, 0x20
-	  addi      r5, r31, 0x14
-	  li        r4, 0x1DC
-	  crclr     6, 0x6
-	  bl        -0x43C654
+lbl_80466C78:
+	lwz      r28, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r28, 0
+	bne      lbl_80466C98
+	addi     r3, r31, 0x20
+	addi     r5, r31, 0x14
+	li       r4, 0x1dc
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x12C:
-	  lwz       r0, 0x4(r28)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x14C
-	  addi      r3, r31, 0x2C
-	  addi      r5, r31, 0x14
-	  li        r4, 0xCF
-	  crclr     6, 0x6
-	  bl        -0x43C674
+lbl_80466C98:
+	lwz      r0, 4(r28)
+	cmplwi   r0, 0
+	bne      lbl_80466CB8
+	addi     r3, r31, 0x2c
+	addi     r5, r31, 0x14
+	li       r4, 0xcf
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x14C:
-	  lwz       r3, 0x4(r28)
-	  lwz       r28, 0x4(r3)
-	  cmplwi    r28, 0
-	  bne-      .loc_0x170
-	  addi      r3, r31, 0x2C
-	  addi      r5, r31, 0x38
-	  li        r4, 0xD1
-	  crclr     6, 0x6
-	  bl        -0x43C698
+lbl_80466CB8:
+	lwz      r3, 4(r28)
+	lwz      r28, 4(r3)
+	cmplwi   r28, 0
+	bne      lbl_80466CDC
+	addi     r3, r31, 0x2c
+	addi     r5, r31, 0x38
+	li       r4, 0xd1
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x170:
-	  mr        r3, r28
-	  lwz       r12, 0x0(r28)
-	  lwz       r12, 0x50(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, -0x6780(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x1A4
-	  addi      r3, r31, 0x20
-	  addi      r5, r31, 0x14
-	  li        r4, 0x1D3
-	  crclr     6, 0x6
-	  bl        -0x43C6CC
+lbl_80466CDC:
+	mr       r3, r28
+	lwz      r12, 0(r28)
+	lwz      r12, 0x50(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_80466D10
+	addi     r3, r31, 0x20
+	addi     r5, r31, 0x14
+	li       r4, 0x1d3
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x1A4:
-	  lwz       r28, -0x6780(r13)
-	  cmplwi    r28, 0
-	  bne-      .loc_0x1C4
-	  addi      r3, r31, 0x20
-	  addi      r5, r31, 0x14
-	  li        r4, 0x1DC
-	  crclr     6, 0x6
-	  bl        -0x43C6EC
+lbl_80466D10:
+	lwz      r28, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r28, 0
+	bne      lbl_80466D30
+	addi     r3, r31, 0x20
+	addi     r5, r31, 0x14
+	li       r4, 0x1dc
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x1C4:
-	  lwz       r0, 0x4(r28)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x1E4
-	  addi      r3, r31, 0x2C
-	  addi      r5, r31, 0x14
-	  li        r4, 0xCF
-	  crclr     6, 0x6
-	  bl        -0x43C70C
+lbl_80466D30:
+	lwz      r0, 4(r28)
+	cmplwi   r0, 0
+	bne      lbl_80466D50
+	addi     r3, r31, 0x2c
+	addi     r5, r31, 0x14
+	li       r4, 0xcf
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x1E4:
-	  lwz       r3, 0x4(r28)
-	  lwz       r30, 0x4(r3)
-	  cmplwi    r30, 0
-	  bne-      .loc_0x208
-	  addi      r3, r31, 0x2C
-	  addi      r5, r31, 0x38
-	  li        r4, 0xD1
-	  crclr     6, 0x6
-	  bl        -0x43C730
+lbl_80466D50:
+	lwz      r3, 4(r28)
+	lwz      r30, 4(r3)
+	cmplwi   r30, 0
+	bne      lbl_80466D74
+	addi     r3, r31, 0x2c
+	addi     r5, r31, 0x38
+	li       r4, 0xd1
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x208:
-	  lwz       r12, 0x0(r30)
-	  mr        r3, r30
-	  lwz       r12, 0x40(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x238
-	  addi      r3, r31, 0x858
-	  addi      r5, r31, 0x14
-	  li        r4, 0x177
-	  crclr     6, 0x6
-	  bl        -0x43C760
+lbl_80466D74:
+	lwz      r12, 0(r30)
+	mr       r3, r30
+	lwz      r12, 0x40(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_80466DA4
+	addi     r3, r31, 0x858
+	addi     r5, r31, 0x14
+	li       r4, 0x177
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x238:
-	  lwz       r12, 0x0(r30)
-	  mr        r3, r30
-	  lwz       r28, 0x28(r29)
-	  lwz       r12, 0x2C(r12)
-	  mtctr     r12
-	  bctrl
-	  mr.       r27, r3
-	  beq-      .loc_0x384
-	  mr        r3, r28
-	  addi      r4, r31, 0x94
-	  bl        -0x39C70C
-	  cmpwi     r3, 0
-	  beq-      .loc_0x30C
-	  mr        r3, r28
-	  addi      r4, r31, 0x80
-	  bl        -0x39C720
-	  cmpwi     r3, 0
-	  beq-      .loc_0x30C
-	  mr        r3, r28
-	  addi      r4, r31, 0x168
-	  bl        -0x39C734
-	  cmpwi     r3, 0
-	  beq-      .loc_0x30C
-	  mr        r3, r28
-	  addi      r4, r31, 0xB0
-	  bl        -0x39C748
-	  cmpwi     r3, 0
-	  beq-      .loc_0x30C
-	  mr        r3, r28
-	  addi      r4, r31, 0x180
-	  bl        -0x39C75C
-	  cmpwi     r3, 0
-	  beq-      .loc_0x30C
-	  mr        r3, r28
-	  addi      r4, r31, 0x26C
-	  bl        -0x39C770
-	  cmpwi     r3, 0
-	  beq-      .loc_0x30C
-	  mr        r3, r28
-	  addi      r4, r31, 0x37C
-	  bl        -0x39C784
-	  cmpwi     r3, 0
-	  beq-      .loc_0x30C
-	  mr        r3, r28
-	  addi      r4, r31, 0x878
-	  bl        -0x39C798
-	  cmpwi     r3, 0
-	  beq-      .loc_0x30C
-	  mr        r3, r28
-	  addi      r4, r31, 0x5C
-	  bl        -0x39C7AC
-	  cmpwi     r3, 0
-	  bne-      .loc_0x37C
+lbl_80466DA4:
+	lwz      r12, 0(r30)
+	mr       r3, r30
+	lwz      r28, 0x28(r29)
+	lwz      r12, 0x2c(r12)
+	mtctr    r12
+	bctrl
+	or.      r27, r3, r3
+	beq      lbl_80466EF0
+	mr       r3, r28
+	addi     r4, r31, 0x94
+	bl       strcmp
+	cmpwi    r3, 0
+	beq      lbl_80466E78
+	mr       r3, r28
+	addi     r4, r31, 0x80
+	bl       strcmp
+	cmpwi    r3, 0
+	beq      lbl_80466E78
+	mr       r3, r28
+	addi     r4, r31, 0x168
+	bl       strcmp
+	cmpwi    r3, 0
+	beq      lbl_80466E78
+	mr       r3, r28
+	addi     r4, r31, 0xb0
+	bl       strcmp
+	cmpwi    r3, 0
+	beq      lbl_80466E78
+	mr       r3, r28
+	addi     r4, r31, 0x180
+	bl       strcmp
+	cmpwi    r3, 0
+	beq      lbl_80466E78
+	mr       r3, r28
+	addi     r4, r31, 0x26c
+	bl       strcmp
+	cmpwi    r3, 0
+	beq      lbl_80466E78
+	mr       r3, r28
+	addi     r4, r31, 0x37c
+	bl       strcmp
+	cmpwi    r3, 0
+	beq      lbl_80466E78
+	mr       r3, r28
+	addi     r4, r31, 0x878
+	bl       strcmp
+	cmpwi    r3, 0
+	beq      lbl_80466E78
+	mr       r3, r28
+	addi     r4, r31, 0x5c
+	bl       strcmp
+	cmpwi    r3, 0
+	bne      lbl_80466EE8
 
-	.loc_0x30C:
-	  mr        r3, r27
-	  bl        -0x12615C
-	  mr        r3, r30
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x58(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x36C
-	  mr        r3, r30
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x6C(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x36C
-	  mr        r3, r27
-	  li        r4, 0x3079
-	  li        r5, 0x1
-	  bl        -0x1261F4
-	  mr        r3, r27
-	  li        r4, 0x307A
-	  li        r5, 0x1
-	  bl        -0x126204
+lbl_80466E78:
+	mr       r3, r27
+	bl       off__Q28PSSystem8EnvSeMgrFv
+	mr       r3, r30
+	lwz      r12, 0(r30)
+	lwz      r12, 0x58(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80466ED8
+	mr       r3, r30
+	lwz      r12, 0(r30)
+	lwz      r12, 0x6c(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_80466ED8
+	mr       r3, r27
+	li       r4, 0x3079
+	li       r5, 1
+	bl       on__Q28PSSystem8EnvSeMgrFUlb
+	mr       r3, r27
+	li       r4, 0x307a
+	li       r5, 1
+	bl       on__Q28PSSystem8EnvSeMgrFUlb
 
-	.loc_0x36C:
-	  mr        r3, r27
-	  li        r4, 0
-	  bl        -0x126268
-	  b         .loc_0x384
+lbl_80466ED8:
+	mr       r3, r27
+	li       r4, 0
+	bl       setAllPauseFlag__Q28PSSystem8EnvSeMgrFUc
+	b        lbl_80466EF0
 
-	.loc_0x37C:
-	  mr        r3, r27
-	  bl        -0x126158
+lbl_80466EE8:
+	mr       r3, r27
+	bl       reservePauseOff__Q28PSSystem8EnvSeMgrFv
 
-	.loc_0x384:
-	  mr        r3, r28
-	  addi      r4, r31, 0x5A8
-	  bl        -0x39C838
-	  cmpwi     r3, 0
-	  bne-      .loc_0x434
-	  lwz       r0, -0x6780(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x3B8
-	  addi      r3, r31, 0x20
-	  addi      r5, r31, 0x14
-	  li        r4, 0x1D3
-	  crclr     6, 0x6
-	  bl        -0x43C8E0
+lbl_80466EF0:
+	mr       r3, r28
+	addi     r4, r31, 0x5a8
+	bl       strcmp
+	cmpwi    r3, 0
+	bne      lbl_80466FA0
+	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_80466F24
+	addi     r3, r31, 0x20
+	addi     r5, r31, 0x14
+	li       r4, 0x1d3
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x3B8:
-	  lwz       r28, -0x6780(r13)
-	  cmplwi    r28, 0
-	  bne-      .loc_0x3D8
-	  addi      r3, r31, 0x20
-	  addi      r5, r31, 0x14
-	  li        r4, 0x1DC
-	  crclr     6, 0x6
-	  bl        -0x43C900
+lbl_80466F24:
+	lwz      r28, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r28, 0
+	bne      lbl_80466F44
+	addi     r3, r31, 0x20
+	addi     r5, r31, 0x14
+	li       r4, 0x1dc
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x3D8:
-	  lwz       r0, 0x4(r28)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x3F8
-	  addi      r3, r31, 0x2C
-	  addi      r5, r31, 0x14
-	  li        r4, 0xCF
-	  crclr     6, 0x6
-	  bl        -0x43C920
+lbl_80466F44:
+	lwz      r0, 4(r28)
+	cmplwi   r0, 0
+	bne      lbl_80466F64
+	addi     r3, r31, 0x2c
+	addi     r5, r31, 0x14
+	li       r4, 0xcf
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x3F8:
-	  lwz       r3, 0x4(r28)
-	  lwz       r28, 0x4(r3)
-	  cmplwi    r28, 0
-	  bne-      .loc_0x41C
-	  addi      r3, r31, 0x2C
-	  addi      r5, r31, 0x38
-	  li        r4, 0xD1
-	  crclr     6, 0x6
-	  bl        -0x43C944
+lbl_80466F64:
+	lwz      r3, 4(r28)
+	lwz      r28, 4(r3)
+	cmplwi   r28, 0
+	bne      lbl_80466F88
+	addi     r3, r31, 0x2c
+	addi     r5, r31, 0x38
+	li       r4, 0xd1
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x41C:
-	  mr        r3, r28
-	  lwz       r12, 0x0(r28)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x618
+lbl_80466F88:
+	mr       r3, r28
+	lwz      r12, 0(r28)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_80467184
 
-	.loc_0x434:
-	  mr        r3, r28
-	  addi      r4, r31, 0x1EC
-	  bl        -0x39C8E8
-	  cmpwi     r3, 0
-	  bne-      .loc_0x528
-	  lwz       r0, -0x6780(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x468
-	  addi      r3, r31, 0x20
-	  addi      r5, r31, 0x14
-	  li        r4, 0x1D3
-	  crclr     6, 0x6
-	  bl        -0x43C990
+lbl_80466FA0:
+	mr       r3, r28
+	addi     r4, r31, 0x1ec
+	bl       strcmp
+	cmpwi    r3, 0
+	bne      lbl_80467094
+	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_80466FD4
+	addi     r3, r31, 0x20
+	addi     r5, r31, 0x14
+	li       r4, 0x1d3
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x468:
-	  lwz       r28, -0x6780(r13)
-	  cmplwi    r28, 0
-	  bne-      .loc_0x488
-	  addi      r3, r31, 0x20
-	  addi      r5, r31, 0x14
-	  li        r4, 0x1DC
-	  crclr     6, 0x6
-	  bl        -0x43C9B0
+lbl_80466FD4:
+	lwz      r28, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r28, 0
+	bne      lbl_80466FF4
+	addi     r3, r31, 0x20
+	addi     r5, r31, 0x14
+	li       r4, 0x1dc
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x488:
-	  lwz       r0, 0x4(r28)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x4A8
-	  addi      r3, r31, 0x2C
-	  addi      r5, r31, 0x14
-	  li        r4, 0xC7
-	  crclr     6, 0x6
-	  bl        -0x43C9D0
+lbl_80466FF4:
+	lwz      r0, 4(r28)
+	cmplwi   r0, 0
+	bne      lbl_80467014
+	addi     r3, r31, 0x2c
+	addi     r5, r31, 0x14
+	li       r4, 0xc7
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x4A8:
-	  lwz       r3, 0x4(r28)
-	  lwz       r28, 0x4(r3)
-	  cmplwi    r28, 0
-	  bne-      .loc_0x4CC
-	  addi      r3, r31, 0x20
-	  addi      r5, r31, 0x14
-	  li        r4, 0x1E5
-	  crclr     6, 0x6
-	  bl        -0x43C9F4
+lbl_80467014:
+	lwz      r3, 4(r28)
+	lwz      r28, 4(r3)
+	cmplwi   r28, 0
+	bne      lbl_80467038
+	addi     r3, r31, 0x20
+	addi     r5, r31, 0x14
+	li       r4, 0x1e5
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x4CC:
-	  addi      r3, r28, 0x10
-	  li        r4, 0x1
-	  bl        -0x1331A4
-	  mr.       r28, r3
-	  bne-      .loc_0x4F4
-	  addi      r3, r31, 0x20
-	  addi      r5, r31, 0x14
-	  li        r4, 0x1E7
-	  crclr     6, 0x6
-	  bl        -0x43CA1C
+lbl_80467038:
+	addi     r3, r28, 0x10
+	li       r4, 1
+	bl       getSeq__Q28PSSystem6SeqMgrFUl
+	or.      r28, r3, r3
+	bne      lbl_80467060
+	addi     r3, r31, 0x20
+	addi     r5, r31, 0x14
+	li       r4, 0x1e7
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x4F4:
-	  cmplwi    r28, 0
-	  bne-      .loc_0x510
-	  addi      r3, r31, 0
-	  addi      r5, r31, 0x14
-	  li        r4, 0x342
-	  crclr     6, 0x6
-	  bl        -0x43CA38
+lbl_80467060:
+	cmplwi   r28, 0
+	bne      lbl_8046707C
+	addi     r3, r31, 0
+	addi     r5, r31, 0x14
+	li       r4, 0x342
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x510:
-	  mr        r3, r28
-	  lwz       r12, 0x10(r28)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x618
+lbl_8046707C:
+	mr       r3, r28
+	lwz      r12, 0x10(r28)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_80467184
 
-	.loc_0x528:
-	  mr        r3, r28
-	  addi      r4, r31, 0x610
-	  bl        -0x39C9DC
-	  cmpwi     r3, 0
-	  bne-      .loc_0x618
-	  lwz       r0, -0x6780(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x55C
-	  addi      r3, r31, 0x20
-	  addi      r5, r31, 0x14
-	  li        r4, 0x1D3
-	  crclr     6, 0x6
-	  bl        -0x43CA84
+lbl_80467094:
+	mr       r3, r28
+	addi     r4, r31, 0x610
+	bl       strcmp
+	cmpwi    r3, 0
+	bne      lbl_80467184
+	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_804670C8
+	addi     r3, r31, 0x20
+	addi     r5, r31, 0x14
+	li       r4, 0x1d3
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x55C:
-	  lwz       r28, -0x6780(r13)
-	  cmplwi    r28, 0
-	  bne-      .loc_0x57C
-	  addi      r3, r31, 0x20
-	  addi      r5, r31, 0x14
-	  li        r4, 0x1DC
-	  crclr     6, 0x6
-	  bl        -0x43CAA4
+lbl_804670C8:
+	lwz      r28, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r28, 0
+	bne      lbl_804670E8
+	addi     r3, r31, 0x20
+	addi     r5, r31, 0x14
+	li       r4, 0x1dc
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x57C:
-	  lwz       r0, 0x4(r28)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x59C
-	  addi      r3, r31, 0x2C
-	  addi      r5, r31, 0x14
-	  li        r4, 0xC7
-	  crclr     6, 0x6
-	  bl        -0x43CAC4
+lbl_804670E8:
+	lwz      r0, 4(r28)
+	cmplwi   r0, 0
+	bne      lbl_80467108
+	addi     r3, r31, 0x2c
+	addi     r5, r31, 0x14
+	li       r4, 0xc7
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x59C:
-	  lwz       r3, 0x4(r28)
-	  lwz       r28, 0x4(r3)
-	  cmplwi    r28, 0
-	  bne-      .loc_0x5C0
-	  addi      r3, r31, 0x20
-	  addi      r5, r31, 0x14
-	  li        r4, 0x1E5
-	  crclr     6, 0x6
-	  bl        -0x43CAE8
+lbl_80467108:
+	lwz      r3, 4(r28)
+	lwz      r28, 4(r3)
+	cmplwi   r28, 0
+	bne      lbl_8046712C
+	addi     r3, r31, 0x20
+	addi     r5, r31, 0x14
+	li       r4, 0x1e5
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x5C0:
-	  addi      r3, r28, 0x10
-	  li        r4, 0x1
-	  bl        -0x133298
-	  mr.       r28, r3
-	  bne-      .loc_0x5E8
-	  addi      r3, r31, 0x20
-	  addi      r5, r31, 0x14
-	  li        r4, 0x1E7
-	  crclr     6, 0x6
-	  bl        -0x43CB10
+lbl_8046712C:
+	addi     r3, r28, 0x10
+	li       r4, 1
+	bl       getSeq__Q28PSSystem6SeqMgrFUl
+	or.      r28, r3, r3
+	bne      lbl_80467154
+	addi     r3, r31, 0x20
+	addi     r5, r31, 0x14
+	li       r4, 0x1e7
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x5E8:
-	  cmplwi    r28, 0
-	  bne-      .loc_0x604
-	  addi      r3, r31, 0
-	  addi      r5, r31, 0x14
-	  li        r4, 0x346
-	  crclr     6, 0x6
-	  bl        -0x43CB2C
+lbl_80467154:
+	cmplwi   r28, 0
+	bne      lbl_80467170
+	addi     r3, r31, 0
+	addi     r5, r31, 0x14
+	li       r4, 0x346
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x604:
-	  mr        r3, r28
-	  lwz       r12, 0x10(r28)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
+lbl_80467170:
+	mr       r3, r28
+	lwz      r12, 0x10(r28)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x618:
-	  addi      r3, r30, 0x10
-	  bl        -0x133614
-	  lwz       r12, 0x24(r29)
-	  cmplwi    r12, 0
-	  beq-      .loc_0x634
-	  mtctr     r12
-	  bctrl
+lbl_80467184:
+	addi     r3, r30, 0x10
+	bl       reservePauseOffAllSeq__Q28PSSystem6SeqMgrFv
+	lwz      r12, 0x24(r29)
+	cmplwi   r12, 0
+	beq      lbl_804671A0
+	mtctr    r12
+	bctrl
 
-	.loc_0x634:
-	  lwz       r4, 0x20(r29)
-	  addis     r0, r4, 0x1
-	  cmplwi    r0, 0xFFFF
-	  beq-      .loc_0x650
-	  lwz       r3, -0x67A8(r13)
-	  li        r5, 0
-	  bl        -0x12EB88
+lbl_804671A0:
+	lwz      r4, 0x20(r29)
+	addis    r0, r4, 1
+	cmplwi   r0, 0xffff
+	beq      lbl_804671BC
+	lwz      r3, spSysIF__8PSSystem@sda21(r13)
+	li       r5, 0
+	bl       playSystemSe__Q28PSSystem5SysIFFUlUl
 
-	.loc_0x650:
-	  lmw       r27, 0xC(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_804671BC:
+	lmw      r27, 0xc(r1)
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -5103,191 +5326,192 @@ void Demo::onDemoEnd()
 void Demo::onMessageEnd(int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r29, r4
-	  lwz       r30, 0x28(r3)
-	  lis       r3, 0x804A
-	  subi      r31, r3, 0x2F80
-	  mr        r3, r30
-	  addi      r4, r31, 0x580
-	  bl        -0x39CB40
-	  cmpwi     r3, 0
-	  bne-      .loc_0x178
-	  lwz       r0, -0x6E3C(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x5C
-	  addi      r3, r31, 0x86C
-	  addi      r5, r31, 0x14
-	  li        r4, 0x89
-	  crclr     6, 0x6
-	  bl        -0x43CBE8
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	mr       r29, r4
+	lwz      r30, 0x28(r3)
+	lis      r3, lbl_8049D080@ha
+	addi     r31, r3, lbl_8049D080@l
+	mr       r3, r30
+	addi     r4, r31, 0x580
+	bl       strcmp
+	cmpwi    r3, 0
+	bne      lbl_80467348
+	lwz      r0,
+"sInstance__Q28PSSystem49SingletonBase<Q36PSGame10SoundTable11CategoryMgr>"@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_8046722C
+	addi     r3, r31, 0x86c
+	addi     r5, r31, 0x14
+	li       r4, 0x89
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x5C:
-	  lwz       r30, -0x6E3C(r13)
-	  lwz       r0, 0x18(r30)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x80
-	  addi      r3, r31, 0x20
-	  addi      r5, r31, 0x14
-	  li        r4, 0x5D
-	  crclr     6, 0x6
-	  bl        -0x43CC0C
+lbl_8046722C:
+	lwz      r30,
+"sInstance__Q28PSSystem49SingletonBase<Q36PSGame10SoundTable11CategoryMgr>"@sda21(r13)
+	lwz      r0, 0x18(r30)
+	cmplwi   r0, 0
+	bne      lbl_80467250
+	addi     r3, r31, 0x20
+	addi     r5, r31, 0x14
+	li       r4, 0x5d
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x80:
-	  lwz       r3, 0x18(r30)
-	  li        r0, 0
-	  stb       r0, 0x15(r3)
-	  lwz       r0, 0xC(r30)
-	  cmplwi    r0, 0
-	  bne-      .loc_0xAC
-	  addi      r3, r31, 0x20
-	  addi      r5, r31, 0x14
-	  li        r4, 0x5D
-	  crclr     6, 0x6
-	  bl        -0x43CC38
+lbl_80467250:
+	lwz      r3, 0x18(r30)
+	li       r0, 0
+	stb      r0, 0x15(r3)
+	lwz      r0, 0xc(r30)
+	cmplwi   r0, 0
+	bne      lbl_8046727C
+	addi     r3, r31, 0x20
+	addi     r5, r31, 0x14
+	li       r4, 0x5d
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xAC:
-	  lwz       r3, 0xC(r30)
-	  li        r0, 0
-	  stb       r0, 0x15(r3)
-	  lwz       r0, -0x6780(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0xD8
-	  addi      r3, r31, 0x20
-	  addi      r5, r31, 0x14
-	  li        r4, 0x1D3
-	  crclr     6, 0x6
-	  bl        -0x43CC64
+lbl_8046727C:
+	lwz      r3, 0xc(r30)
+	li       r0, 0
+	stb      r0, 0x15(r3)
+	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_804672A8
+	addi     r3, r31, 0x20
+	addi     r5, r31, 0x14
+	li       r4, 0x1d3
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xD8:
-	  lwz       r30, -0x6780(r13)
-	  cmplwi    r30, 0
-	  bne-      .loc_0xF8
-	  addi      r3, r31, 0x20
-	  addi      r5, r31, 0x14
-	  li        r4, 0x1DC
-	  crclr     6, 0x6
-	  bl        -0x43CC84
+lbl_804672A8:
+	lwz      r30, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r30, 0
+	bne      lbl_804672C8
+	addi     r3, r31, 0x20
+	addi     r5, r31, 0x14
+	li       r4, 0x1dc
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xF8:
-	  lwz       r0, 0x4(r30)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x118
-	  addi      r3, r31, 0x2C
-	  addi      r5, r31, 0x14
-	  li        r4, 0xCF
-	  crclr     6, 0x6
-	  bl        -0x43CCA4
+lbl_804672C8:
+	lwz      r0, 4(r30)
+	cmplwi   r0, 0
+	bne      lbl_804672E8
+	addi     r3, r31, 0x2c
+	addi     r5, r31, 0x14
+	li       r4, 0xcf
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x118:
-	  lwz       r3, 0x4(r30)
-	  lwz       r30, 0x4(r3)
-	  cmplwi    r30, 0
-	  bne-      .loc_0x13C
-	  addi      r3, r31, 0x2C
-	  addi      r5, r31, 0x38
-	  li        r4, 0xD1
-	  crclr     6, 0x6
-	  bl        -0x43CCC8
+lbl_804672E8:
+	lwz      r3, 4(r30)
+	lwz      r30, 4(r3)
+	cmplwi   r30, 0
+	bne      lbl_8046730C
+	addi     r3, r31, 0x2c
+	addi     r5, r31, 0x38
+	li       r4, 0xd1
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x13C:
-	  lwz       r0, 0x4(r30)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x15C
-	  addi      r3, r31, 0x2C
-	  addi      r5, r31, 0x14
-	  li        r4, 0x5A
-	  crclr     6, 0x6
-	  bl        -0x43CCE8
+lbl_8046730C:
+	lwz      r0, 4(r30)
+	cmplwi   r0, 0
+	bne      lbl_8046732C
+	addi     r3, r31, 0x2c
+	addi     r5, r31, 0x14
+	li       r4, 0x5a
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x15C:
-	  lwz       r3, 0x4(r30)
-	  li        r4, 0x5
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x24C
+lbl_8046732C:
+	lwz      r3, 4(r30)
+	li       r4, 5
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_8046741C
 
-	.loc_0x178:
-	  mr        r3, r30
-	  addi      r4, r31, 0x810
-	  bl        -0x39CC90
-	  cmpwi     r3, 0
-	  bne-      .loc_0x24C
-	  cmpwi     r29, 0
-	  bne-      .loc_0x24C
-	  lwz       r0, -0x6780(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x1B4
-	  addi      r3, r31, 0x20
-	  addi      r5, r31, 0x14
-	  li        r4, 0x1D3
-	  crclr     6, 0x6
-	  bl        -0x43CD40
+lbl_80467348:
+	mr       r3, r30
+	addi     r4, r31, 0x810
+	bl       strcmp
+	cmpwi    r3, 0
+	bne      lbl_8046741C
+	cmpwi    r29, 0
+	bne      lbl_8046741C
+	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_80467384
+	addi     r3, r31, 0x20
+	addi     r5, r31, 0x14
+	li       r4, 0x1d3
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x1B4:
-	  lwz       r30, -0x6780(r13)
-	  cmplwi    r30, 0
-	  bne-      .loc_0x1D4
-	  addi      r3, r31, 0x20
-	  addi      r5, r31, 0x14
-	  li        r4, 0x1DC
-	  crclr     6, 0x6
-	  bl        -0x43CD60
+lbl_80467384:
+	lwz      r30, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r30, 0
+	bne      lbl_804673A4
+	addi     r3, r31, 0x20
+	addi     r5, r31, 0x14
+	li       r4, 0x1dc
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x1D4:
-	  lwz       r0, 0x4(r30)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x1F4
-	  addi      r3, r31, 0x2C
-	  addi      r5, r31, 0x14
-	  li        r4, 0xCF
-	  crclr     6, 0x6
-	  bl        -0x43CD80
+lbl_804673A4:
+	lwz      r0, 4(r30)
+	cmplwi   r0, 0
+	bne      lbl_804673C4
+	addi     r3, r31, 0x2c
+	addi     r5, r31, 0x14
+	li       r4, 0xcf
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x1F4:
-	  lwz       r3, 0x4(r30)
-	  lwz       r30, 0x4(r3)
-	  cmplwi    r30, 0
-	  bne-      .loc_0x218
-	  addi      r3, r31, 0x2C
-	  addi      r5, r31, 0x38
-	  li        r4, 0xD1
-	  crclr     6, 0x6
-	  bl        -0x43CDA4
+lbl_804673C4:
+	lwz      r3, 4(r30)
+	lwz      r30, 4(r3)
+	cmplwi   r30, 0
+	bne      lbl_804673E8
+	addi     r3, r31, 0x2c
+	addi     r5, r31, 0x38
+	li       r4, 0xd1
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x218:
-	  lwz       r0, 0x4(r30)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x238
-	  addi      r3, r31, 0x2C
-	  addi      r5, r31, 0x14
-	  li        r4, 0x5A
-	  crclr     6, 0x6
-	  bl        -0x43CDC4
+lbl_804673E8:
+	lwz      r0, 4(r30)
+	cmplwi   r0, 0
+	bne      lbl_80467408
+	addi     r3, r31, 0x2c
+	addi     r5, r31, 0x14
+	li       r4, 0x5a
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x238:
-	  lwz       r3, 0x4(r30)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_80467408:
+	lwz      r3, 4(r30)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x24C:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8046741C:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -5301,74 +5525,73 @@ void Demo::onMessageEnd(int)
 void PSMCancelToPauseOffMainBgm()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r3, 0x804A
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  subi      r31, r3, 0x2F80
-	  stw       r30, 0x8(r1)
-	  lwz       r0, -0x6780(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x3C
-	  addi      r3, r31, 0x20
-	  addi      r5, r31, 0x14
-	  li        r4, 0x1D3
-	  crclr     6, 0x6
-	  bl        -0x43CE30
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lis      r3, lbl_8049D080@ha
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	addi     r31, r3, lbl_8049D080@l
+	stw      r30, 8(r1)
+	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_80467474
+	addi     r3, r31, 0x20
+	addi     r5, r31, 0x14
+	li       r4, 0x1d3
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x3C:
-	  lwz       r30, -0x6780(r13)
-	  cmplwi    r30, 0
-	  bne-      .loc_0x5C
-	  addi      r3, r31, 0x20
-	  addi      r5, r31, 0x14
-	  li        r4, 0x1DC
-	  crclr     6, 0x6
-	  bl        -0x43CE50
+lbl_80467474:
+	lwz      r30, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r30, 0
+	bne      lbl_80467494
+	addi     r3, r31, 0x20
+	addi     r5, r31, 0x14
+	li       r4, 0x1dc
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x5C:
-	  lwz       r0, 0x4(r30)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x7C
-	  addi      r3, r31, 0x2C
-	  addi      r5, r31, 0x14
-	  li        r4, 0xCF
-	  crclr     6, 0x6
-	  bl        -0x43CE70
+lbl_80467494:
+	lwz      r0, 4(r30)
+	cmplwi   r0, 0
+	bne      lbl_804674B4
+	addi     r3, r31, 0x2c
+	addi     r5, r31, 0x14
+	li       r4, 0xcf
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x7C:
-	  lwz       r3, 0x4(r30)
-	  lwz       r30, 0x4(r3)
-	  cmplwi    r30, 0
-	  bne-      .loc_0xA0
-	  addi      r3, r31, 0x2C
-	  addi      r5, r31, 0x38
-	  li        r4, 0xD1
-	  crclr     6, 0x6
-	  bl        -0x43CE94
+lbl_804674B4:
+	lwz      r3, 4(r30)
+	lwz      r30, 4(r3)
+	cmplwi   r30, 0
+	bne      lbl_804674D8
+	addi     r3, r31, 0x2c
+	addi     r5, r31, 0x38
+	li       r4, 0xd1
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xA0:
-	  addi      r3, r30, 0x10
-	  bl        -0x133944
-	  mr        r3, r30
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x2C(r12)
-	  mtctr     r12
-	  bctrl
-	  cmplwi    r3, 0
-	  beq-      .loc_0xCC
-	  li        r0, 0
-	  sth       r0, 0x10(r3)
+lbl_804674D8:
+	addi     r3, r30, 0x10
+	bl       cancelPauseOffAllSeq__Q28PSSystem6SeqMgrFv
+	mr       r3, r30
+	lwz      r12, 0(r30)
+	lwz      r12, 0x2c(r12)
+	mtctr    r12
+	bctrl
+	cmplwi   r3, 0
+	beq      lbl_80467504
+	li       r0, 0
+	sth      r0, 0x10(r3)
 
-	.loc_0xCC:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80467504:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -5380,76 +5603,75 @@ void PSMCancelToPauseOffMainBgm()
 void PSMGetGameSceneA()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r3, 0x804A
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  subi      r31, r3, 0x2F80
-	  stw       r30, 0x8(r1)
-	  lwz       r0, -0x6780(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x3C
-	  addi      r3, r31, 0x20
-	  addi      r5, r31, 0x14
-	  li        r4, 0x1D3
-	  crclr     6, 0x6
-	  bl        -0x43CF14
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lis      r3, lbl_8049D080@ha
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	addi     r31, r3, lbl_8049D080@l
+	stw      r30, 8(r1)
+	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_80467558
+	addi     r3, r31, 0x20
+	addi     r5, r31, 0x14
+	li       r4, 0x1d3
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x3C:
-	  lwz       r30, -0x6780(r13)
-	  cmplwi    r30, 0
-	  bne-      .loc_0x5C
-	  addi      r3, r31, 0x20
-	  addi      r5, r31, 0x14
-	  li        r4, 0x1DC
-	  crclr     6, 0x6
-	  bl        -0x43CF34
+lbl_80467558:
+	lwz      r30, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r30, 0
+	bne      lbl_80467578
+	addi     r3, r31, 0x20
+	addi     r5, r31, 0x14
+	li       r4, 0x1dc
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x5C:
-	  lwz       r0, 0x4(r30)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x7C
-	  addi      r3, r31, 0x2C
-	  addi      r5, r31, 0x14
-	  li        r4, 0xCF
-	  crclr     6, 0x6
-	  bl        -0x43CF54
+lbl_80467578:
+	lwz      r0, 4(r30)
+	cmplwi   r0, 0
+	bne      lbl_80467598
+	addi     r3, r31, 0x2c
+	addi     r5, r31, 0x14
+	li       r4, 0xcf
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x7C:
-	  lwz       r3, 0x4(r30)
-	  lwz       r30, 0x4(r3)
-	  cmplwi    r30, 0
-	  bne-      .loc_0xA0
-	  addi      r3, r31, 0x2C
-	  addi      r5, r31, 0x38
-	  li        r4, 0xD1
-	  crclr     6, 0x6
-	  bl        -0x43CF78
+lbl_80467598:
+	lwz      r3, 4(r30)
+	lwz      r30, 4(r3)
+	cmplwi   r30, 0
+	bne      lbl_804675BC
+	addi     r3, r31, 0x2c
+	addi     r5, r31, 0x38
+	li       r4, 0xd1
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xA0:
-	  lwz       r12, 0x0(r30)
-	  mr        r3, r30
-	  lwz       r12, 0x40(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0xD0
-	  addi      r3, r31, 0x858
-	  addi      r5, r31, 0x14
-	  li        r4, 0x177
-	  crclr     6, 0x6
-	  bl        -0x43CFA8
+lbl_804675BC:
+	lwz      r12, 0(r30)
+	mr       r3, r30
+	lwz      r12, 0x40(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_804675EC
+	addi     r3, r31, 0x858
+	addi     r5, r31, 0x14
+	li       r4, 0x177
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xD0:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_804675EC:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -5463,13 +5685,12 @@ namespace PSM {
 void Scene_Cave::isPollutUp()
 {
 	/*
-	.loc_0x0:
-	  lwz       r4, 0x64(r3)
-	  subfic    r3, r4, -0x1
-	  addi      r0, r4, 0x1
-	  or        r0, r3, r0
-	  rlwinm    r3,r0,1,31,31
-	  blr
+	lwz      r4, 0x64(r3)
+	subfic   r3, r4, -1
+	addi     r0, r4, 1
+	or       r0, r3, r0
+	srwi     r3, r0, 0x1f
+	blr
 	*/
 }
 

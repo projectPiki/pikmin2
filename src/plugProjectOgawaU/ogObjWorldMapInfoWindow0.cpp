@@ -1,5 +1,82 @@
 #include "types.h"
 
+/*
+    Generated from dpostproc
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__Q32og9newScreen22ObjWorldMapInfoWindow0
+    __vt__Q32og9newScreen22ObjWorldMapInfoWindow0:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q32og9newScreen22ObjWorldMapInfoWindow0Fv
+        .4byte getChildCount__5CNodeFv
+        .4byte 0
+        .4byte 0
+        .4byte "@24@__dt__Q32og9newScreen22ObjWorldMapInfoWindow0Fv"
+        .4byte update__Q26Screen7ObjBaseFv
+        .4byte draw__Q26Screen7ObjBaseFR8Graphics
+        .4byte start__Q26Screen7ObjBaseFPCQ26Screen13StartSceneArg
+        .4byte end__Q26Screen7ObjBaseFPCQ26Screen11EndSceneArg
+        .4byte setOwner__Q26Screen7ObjBaseFPQ26Screen9SceneBase
+        .4byte getOwner__Q26Screen7ObjBaseCFv
+        .4byte create__Q26Screen7ObjBaseFP10JKRArchive
+        .4byte confirmSetScene__Q26Screen7ObjBaseFRQ26Screen11SetSceneArg
+        .4byte confirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
+        .4byte confirmEndScene__Q26Screen7ObjBaseFPQ26Screen11EndSceneArg
+        .4byte
+   doStart__Q32og9newScreen22ObjWorldMapInfoWindow0FPCQ26Screen13StartSceneArg
+        .4byte doEnd__Q32og9newScreen15ObjSMenuPauseVSFPCQ26Screen11EndSceneArg
+        .4byte doCreate__Q32og9newScreen22ObjWorldMapInfoWindow0FP10JKRArchive
+        .4byte doUpdateFadein__Q32og9newScreen22ObjWorldMapInfoWindow0Fv
+        .4byte doUpdateFadeinFinish__Q32og9newScreen15ObjSMenuPauseVSFv
+        .4byte doUpdate__Q32og9newScreen15ObjSMenuPauseVSFv
+        .4byte doUpdateFinish__Q32og9newScreen15ObjSMenuPauseVSFv
+        .4byte doUpdateFadeout__Q32og9newScreen15ObjSMenuPauseVSFv
+        .4byte doUpdateFadeoutFinish__Q32og9newScreen22ObjWorldMapInfoWindow0Fv
+        .4byte doDraw__Q32og9newScreen15ObjSMenuPauseVSFR8Graphics
+        .4byte doConfirmSetScene__Q26Screen7ObjBaseFRQ26Screen11SetSceneArg
+        .4byte doConfirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
+        .4byte doConfirmEndScene__Q26Screen7ObjBaseFRPQ26Screen11EndSceneArg
+        .4byte in_L__Q32og9newScreen15ObjSMenuPauseVSFv
+        .4byte in_R__Q32og9newScreen15ObjSMenuPauseVSFv
+        .4byte wait__Q32og9newScreen15ObjSMenuPauseVSFv
+        .4byte out_L__Q32og9newScreen22ObjWorldMapInfoWindow0Fv
+        .4byte out_R__Q32og9newScreen15ObjSMenuPauseVSFv
+        .4byte loop__Q32og9newScreen12ObjSMenuBaseFv
+        .4byte doUpdateCancelAction__Q32og9newScreen15ObjSMenuPauseVSFv
+        .4byte doUpdateRAction__Q32og9newScreen15ObjSMenuPauseVSFv
+        .4byte doUpdateLAction__Q32og9newScreen15ObjSMenuPauseVSFv
+        .4byte updateFadeIn__Q32og9newScreen12ObjSMenuBaseFv
+        .4byte updateFadeOut__Q32og9newScreen12ObjSMenuBaseFv
+        .4byte commonUpdate__Q32og9newScreen22ObjWorldMapInfoWindow0Fv
+        .4byte out_cancel__Q32og9newScreen22ObjWorldMapInfoWindow0Fv
+        .4byte out_menu_0__Q32og9newScreen22ObjWorldMapInfoWindow0Fv
+        .4byte out_menu_1__Q32og9newScreen22ObjWorldMapInfoWindow0Fv
+        .4byte getResult__Q32og9newScreen22ObjWorldMapInfoWindow0Fv
+    .global __vt__Q32og6Screen26DispMemberWorldMapInfoWin0
+    __vt__Q32og6Screen26DispMemberWorldMapInfoWin0:
+        .4byte 0
+        .4byte 0
+        .4byte getSize__Q32og6Screen26DispMemberWorldMapInfoWin0Fv
+        .4byte getOwnerID__Q32og6Screen26DispMemberWorldMapInfoWin0Fv
+        .4byte getMemberID__Q32og6Screen26DispMemberWorldMapInfoWin0Fv
+        .4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_8051DF08
+    lbl_8051DF08:
+        .float 0.5
+    .global lbl_8051DF0C
+    lbl_8051DF0C:
+        .4byte 0x3F19999A
+    .global lbl_8051DF10
+    lbl_8051DF10:
+        .4byte 0x44480000
+    .global lbl_8051DF14
+    lbl_8051DF14:
+        .float 1.0
+*/
+
 namespace og {
 
 /*
@@ -10,40 +87,39 @@ namespace og {
 newScreen::ObjWorldMapInfoWindow0::ObjWorldMapInfoWindow0(char const*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r5, 0x8049
-	  stw       r0, 0x14(r1)
-	  subi      r0, r5, 0xA38
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  mr        r4, r0
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  bl        -0x21D8
-	  lis       r3, 0x804E
-	  li        r0, 0
-	  subi      r4, r3, 0x62B0
-	  mr        r3, r30
-	  stw       r4, 0x0(r30)
-	  addi      r4, r4, 0x10
-	  stw       r4, 0x18(r30)
-	  stw       r0, 0xCC(r30)
-	  stw       r31, 0x14(r30)
-	  stw       r0, 0xB0(r30)
-	  stw       r0, 0xB4(r30)
-	  stw       r0, 0xB8(r30)
-	  stw       r0, 0xBC(r30)
-	  stw       r0, 0xD0(r30)
-	  lwz       r0, 0xD0(r30)
-	  stw       r0, 0xAC(r30)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lis      r5, lbl_8048F5C8@ha
+	stw      r0, 0x14(r1)
+	addi     r0, r5, lbl_8048F5C8@l
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	mr       r4, r0
+	stw      r30, 8(r1)
+	mr       r30, r3
+	bl       __ct__Q32og9newScreen15ObjSMenuPauseVSFPCc
+	lis      r3, __vt__Q32og9newScreen22ObjWorldMapInfoWindow0@ha
+	li       r0, 0
+	addi     r4, r3, __vt__Q32og9newScreen22ObjWorldMapInfoWindow0@l
+	mr       r3, r30
+	stw      r4, 0(r30)
+	addi     r4, r4, 0x10
+	stw      r4, 0x18(r30)
+	stw      r0, 0xcc(r30)
+	stw      r31, 0x14(r30)
+	stw      r0, 0xb0(r30)
+	stw      r0, 0xb4(r30)
+	stw      r0, 0xb8(r30)
+	stw      r0, 0xbc(r30)
+	stw      r0, 0xd0(r30)
+	lwz      r0, 0xd0(r30)
+	stw      r0, 0xac(r30)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -55,266 +131,265 @@ newScreen::ObjWorldMapInfoWindow0::ObjWorldMapInfoWindow0(char const*)
 void newScreen::ObjWorldMapInfoWindow0::doCreate(JKRArchive*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  lis       r5, 0x8049
-	  stw       r0, 0x44(r1)
-	  stw       r31, 0x3C(r1)
-	  subi      r31, r5, 0xA58
-	  stw       r30, 0x38(r1)
-	  stw       r29, 0x34(r1)
-	  mr        r29, r4
-	  stw       r28, 0x30(r1)
-	  mr        r28, r3
-	  bl        0x128BB8
-	  lis       r4, 0x4F
-	  lis       r6, 0x5769
-	  lis       r5, 0x574D
-	  mr        r30, r3
-	  addi      r4, r4, 0x4741
-	  addi      r6, r6, 0x6E30
-	  addi      r5, r5, 0x6170
-	  bl        -0x1C0F4
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x60
-	  stw       r30, 0xCC(r28)
-	  b         .loc_0x164
+	stwu     r1, -0x40(r1)
+	mflr     r0
+	lis      r5, lbl_8048F5A8@ha
+	stw      r0, 0x44(r1)
+	stw      r31, 0x3c(r1)
+	addi     r31, r5, lbl_8048F5A8@l
+	stw      r30, 0x38(r1)
+	stw      r29, 0x34(r1)
+	mr       r29, r4
+	stw      r28, 0x30(r1)
+	mr       r28, r3
+	bl       getDispMember__Q26Screen7ObjBaseFv
+	lis      r4, 0x004F4741@ha
+	lis      r6, 0x57696E30@ha
+	lis      r5, 0x574D6170@ha
+	mr       r30, r3
+	addi     r4, r4, 0x004F4741@l
+	addi     r6, r6, 0x57696E30@l
+	addi     r5, r5, 0x574D6170@l
+	bl       isID__Q32og6Screen14DispMemberBaseFUlUx
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_8032B424
+	stw      r30, 0xcc(r28)
+	b        lbl_8032B528
 
-	.loc_0x60:
-	  lis       r4, 0x4D52
-	  lis       r6, 0x4C45
-	  lis       r5, 0x5653
-	  mr        r3, r30
-	  addi      r4, r4, 0x4D52
-	  addi      r6, r6, 0x4354
-	  addi      r5, r5, 0x5345
-	  bl        -0x1C124
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x94
-	  lwz       r0, 0x10(r30)
-	  stw       r0, 0xCC(r28)
-	  b         .loc_0x164
+lbl_8032B424:
+	lis      r4, 0x4D524D52@ha
+	lis      r6, 0x4C454354@ha
+	lis      r5, 0x56535345@ha
+	mr       r3, r30
+	addi     r4, r4, 0x4D524D52@l
+	addi     r6, r6, 0x4C454354@l
+	addi     r5, r5, 0x56535345@l
+	bl       isID__Q32og6Screen14DispMemberBaseFUlUx
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_8032B458
+	lwz      r0, 0x10(r30)
+	stw      r0, 0xcc(r28)
+	b        lbl_8032B528
 
-	.loc_0x94:
-	  lis       r4, 0x4D52
-	  lis       r6, 0x4C45
-	  lis       r5, 0x4348
-	  mr        r3, r30
-	  addi      r4, r4, 0x4D52
-	  addi      r6, r6, 0x4354
-	  addi      r5, r5, 0x5345
-	  bl        -0x1C158
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xC8
-	  lwz       r0, 0x20(r30)
-	  stw       r0, 0xCC(r28)
-	  b         .loc_0x164
+lbl_8032B458:
+	lis      r4, 0x4D524D52@ha
+	lis      r6, 0x4C454354@ha
+	lis      r5, 0x43485345@ha
+	mr       r3, r30
+	addi     r4, r4, 0x4D524D52@l
+	addi     r6, r6, 0x4C454354@l
+	addi     r5, r5, 0x43485345@l
+	bl       isID__Q32og6Screen14DispMemberBaseFUlUx
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_8032B48C
+	lwz      r0, 0x20(r30)
+	stw      r0, 0xcc(r28)
+	b        lbl_8032B528
 
-	.loc_0xC8:
-	  lis       r4, 0x4D52
-	  lis       r6, 0x4E45
-	  mr        r3, r30
-	  li        r5, 0x4445
-	  addi      r4, r4, 0x4D52
-	  addi      r6, r6, 0x4D59
-	  bl        -0x1C188
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x118
-	  lwz       r0, 0x18(r30)
-	  stw       r0, 0xCC(r28)
-	  lwz       r0, 0xCC(r28)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x164
-	  addi      r3, r31, 0
-	  addi      r5, r31, 0x34
-	  li        r4, 0x7D
-	  crclr     6, 0x6
-	  bl        -0x300E94
-	  b         .loc_0x164
+lbl_8032B48C:
+	lis      r4, 0x4D524D52@ha
+	lis      r6, 0x4E454D59@ha
+	mr       r3, r30
+	li       r5, 0x4445
+	addi     r4, r4, 0x4D524D52@l
+	addi     r6, r6, 0x4E454D59@l
+	bl       isID__Q32og6Screen14DispMemberBaseFUlUx
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_8032B4DC
+	lwz      r0, 0x18(r30)
+	stw      r0, 0xcc(r28)
+	lwz      r0, 0xcc(r28)
+	cmplwi   r0, 0
+	bne      lbl_8032B528
+	addi     r3, r31, 0
+	addi     r5, r31, 0x34
+	li       r4, 0x7d
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
+	b        lbl_8032B528
 
-	.loc_0x118:
-	  lis       r4, 0x4D52
-	  lis       r6, 0x4954
-	  mr        r3, r30
-	  li        r5, 0x44
-	  addi      r4, r4, 0x4D52
-	  addi      r6, r6, 0x454D
-	  bl        -0x1C1D8
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x164
-	  lwz       r0, 0x18(r30)
-	  stw       r0, 0xCC(r28)
-	  lwz       r0, 0xCC(r28)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x164
-	  addi      r3, r31, 0
-	  addi      r5, r31, 0x34
-	  li        r4, 0x81
-	  crclr     6, 0x6
-	  bl        -0x300EE4
+lbl_8032B4DC:
+	lis      r4, 0x4D524D52@ha
+	lis      r6, 0x4954454D@ha
+	mr       r3, r30
+	li       r5, 0x44
+	addi     r4, r4, 0x4D524D52@l
+	addi     r6, r6, 0x4954454D@l
+	bl       isID__Q32og6Screen14DispMemberBaseFUlUx
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_8032B528
+	lwz      r0, 0x18(r30)
+	stw      r0, 0xcc(r28)
+	lwz      r0, 0xcc(r28)
+	cmplwi   r0, 0
+	bne      lbl_8032B528
+	addi     r3, r31, 0
+	addi     r5, r31, 0x34
+	li       r4, 0x81
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x164:
-	  lwz       r0, 0xCC(r28)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x1DC
-	  li        r3, 0x28
-	  bl        -0x307694
-	  cmplwi    r3, 0
-	  beq-      .loc_0x1D8
-	  lis       r4, 0x804B
-	  lis       r7, 0x804E
-	  addi      r0, r4, 0x1148
-	  lis       r6, 0x305F
-	  stw       r0, 0x0(r3)
-	  li        r8, 0
-	  lis       r5, 0x34
-	  lis       r4, 0x315F
-	  stw       r8, 0x4(r3)
-	  subi      r0, r7, 0x61F8
-	  addi      r6, r6, 0x3030
-	  addi      r5, r5, 0x3731
-	  stw       r0, 0x0(r3)
-	  addi      r4, r4, 0x3030
-	  li        r0, 0xB4
-	  stw       r8, 0x8(r3)
-	  stw       r6, 0x14(r3)
-	  stw       r5, 0x10(r3)
-	  stw       r4, 0x1C(r3)
-	  stw       r5, 0x18(r3)
-	  stb       r0, 0x20(r3)
-	  stb       r8, 0x21(r3)
+lbl_8032B528:
+	lwz      r0, 0xcc(r28)
+	cmplwi   r0, 0
+	bne      lbl_8032B5A0
+	li       r3, 0x28
+	bl       __nw__FUl
+	cmplwi   r3, 0
+	beq      lbl_8032B59C
+	lis      r4, __vt__Q32og6Screen14DispMemberBase@ha
+	lis      r7, __vt__Q32og6Screen26DispMemberWorldMapInfoWin0@ha
+	addi     r0, r4, __vt__Q32og6Screen14DispMemberBase@l
+	lis      r6, 0x305F3030@ha
+	stw      r0, 0(r3)
+	li       r8, 0
+	lis      r5, 0x00343731@ha
+	lis      r4, 0x315F3030@ha
+	stw      r8, 4(r3)
+	addi     r0, r7, __vt__Q32og6Screen26DispMemberWorldMapInfoWin0@l
+	addi     r6, r6, 0x305F3030@l
+	addi     r5, r5, 0x00343731@l
+	stw      r0, 0(r3)
+	addi     r4, r4, 0x315F3030@l
+	li       r0, 0xb4
+	stw      r8, 8(r3)
+	stw      r6, 0x14(r3)
+	stw      r5, 0x10(r3)
+	stw      r4, 0x1c(r3)
+	stw      r5, 0x18(r3)
+	stb      r0, 0x20(r3)
+	stb      r8, 0x21(r3)
 
-	.loc_0x1D8:
-	  stw       r3, 0xCC(r28)
+lbl_8032B59C:
+	stw      r3, 0xcc(r28)
 
-	.loc_0x1DC:
-	  li        r3, 0x148
-	  bl        -0x307700
-	  mr.       r0, r3
-	  beq-      .loc_0x1F4
-	  bl        0x1097FC
-	  mr        r0, r3
+lbl_8032B5A0:
+	li       r3, 0x148
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_8032B5B8
+	bl       __ct__Q29P2DScreen10Mgr_tuningFv
+	mr       r0, r3
 
-	.loc_0x1F4:
-	  stw       r0, 0xB0(r28)
-	  mr        r6, r29
-	  addi      r4, r31, 0x40
-	  lis       r5, 0x110
-	  lwz       r3, 0xB0(r28)
-	  bl        -0x2EBFA8
-	  lis       r5, 0x6E75
-	  lis       r4, 0x4E
-	  lwz       r3, 0xB0(r28)
-	  addi      r6, r5, 0x3030
-	  addi      r5, r4, 0x6D65
-	  bl        -0x28738
-	  li        r0, 0
-	  lis       r5, 0x6E75
-	  stb       r0, 0xB0(r3)
-	  lis       r4, 0x4E
-	  addi      r6, r5, 0x3032
-	  lwz       r3, 0xB0(r28)
-	  addi      r5, r4, 0x6D65
-	  bl        -0x28758
-	  li        r0, 0
-	  stb       r0, 0xB0(r3)
-	  lwz       r3, 0xB0(r28)
-	  bl        -0x11D4
-	  li        r3, 0x78
-	  bl        -0x307778
-	  mr.       r0, r3
-	  beq-      .loc_0x26C
-	  bl        -0x21800
-	  mr        r0, r3
+lbl_8032B5B8:
+	stw      r0, 0xb0(r28)
+	mr       r6, r29
+	addi     r4, r31, 0x40
+	lis      r5, 0x110
+	lwz      r3, 0xb0(r28)
+	bl       set__9J2DScreenFPCcUlP10JKRArchive
+	lis      r5, 0x6E753030@ha
+	lis      r4, 0x004E6D65@ha
+	lwz      r3, 0xb0(r28)
+	addi     r6, r5, 0x6E753030@l
+	addi     r5, r4, 0x004E6D65@l
+	bl       TagSearch__Q22og6ScreenFP9J2DScreenUx
+	li       r0, 0
+	lis      r5, 0x6E753032@ha
+	stb      r0, 0xb0(r3)
+	lis      r4, 0x004E6D65@ha
+	addi     r6, r5, 0x6E753032@l
+	lwz      r3, 0xb0(r28)
+	addi     r5, r4, 0x004E6D65@l
+	bl       TagSearch__Q22og6ScreenFP9J2DScreenUx
+	li       r0, 0
+	stb      r0, 0xb0(r3)
+	lwz      r3, 0xb0(r28)
+	bl       setFurikoScreen__Q22og6ScreenFPQ29P2DScreen3Mgr
+	li       r3, 0x78
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_8032B630
+	bl       __ct__Q32og6Screen7MenuMgrFv
+	mr       r0, r3
 
-	.loc_0x26C:
-	  lis       r10, 0x795F
-	  stw       r0, 0xB4(r28)
-	  addi      r0, r10, 0x6972
-	  lis       r4, 0x6D30
-	  lis       r3, 0x506D
-	  stw       r0, 0xC(r1)
-	  addi      r9, r3, 0x3031
-	  addi      r6, r4, 0x3179
-	  stw       r9, 0x8(r1)
-	  addi      r7, r4, 0x316E
-	  lis       r3, 0x6E5F
-	  li        r5, 0x4E
-	  stw       r7, 0x14(r1)
-	  li        r11, 0x54
-	  addi      r4, r3, 0x696C
-	  addi      r0, r3, 0x6972
-	  stw       r5, 0x10(r1)
-	  mr        r8, r6
-	  addi      r10, r10, 0x696C
-	  li        r5, 0x4E
-	  stw       r7, 0x1C(r1)
-	  li        r7, 0x54
-	  stw       r11, 0x18(r1)
-	  stw       r4, 0x24(r1)
-	  stw       r9, 0x20(r1)
-	  stw       r0, 0x2C(r1)
-	  stw       r9, 0x28(r1)
-	  lwz       r3, 0xB4(r28)
-	  lwz       r4, 0xB0(r28)
-	  bl        -0x214A0
-	  lwz       r3, 0xB0(r28)
-	  lis       r4, 0x6D30
-	  lwz       r7, 0xCC(r28)
-	  addi      r6, r4, 0x3179
-	  lwz       r12, 0x0(r3)
-	  li        r5, 0x54
-	  lwz       r30, 0x10(r7)
-	  lwz       r12, 0x3C(r12)
-	  lwz       r31, 0x14(r7)
-	  mtctr     r12
-	  bctrl
-	  stw       r31, 0x1C(r3)
-	  lis       r4, 0x6D30
-	  addi      r6, r4, 0x316E
-	  li        r5, 0x54
-	  stw       r30, 0x18(r3)
-	  lwz       r3, 0xB0(r28)
-	  lwz       r4, 0xCC(r28)
-	  lwz       r12, 0x0(r3)
-	  lwz       r30, 0x18(r4)
-	  lwz       r12, 0x3C(r12)
-	  lwz       r31, 0x1C(r4)
-	  mtctr     r12
-	  bctrl
-	  stw       r31, 0x1C(r3)
-	  stw       r30, 0x18(r3)
-	  lwz       r3, 0xB0(r28)
-	  bl        -0x21914
-	  lis       r6, 0x6D30
-	  lwz       r4, 0xB0(r28)
-	  mr        r3, r29
-	  li        r5, 0x54
-	  addi      r6, r6, 0x3179
-	  bl        -0x22E40
-	  stw       r3, 0xB8(r28)
-	  lis       r6, 0x6D30
-	  mr        r3, r29
-	  li        r5, 0x54
-	  lwz       r4, 0xB0(r28)
-	  addi      r6, r6, 0x316E
-	  bl        -0x22E5C
-	  stw       r3, 0xBC(r28)
-	  lfs       f1, -0x458(r2)
-	  lwz       r3, 0xB8(r28)
-	  bl        -0x22304
-	  lwz       r3, 0xBC(r28)
-	  lfs       f1, -0x454(r2)
-	  bl        -0x22310
-	  lwz       r0, 0x44(r1)
-	  lwz       r31, 0x3C(r1)
-	  lwz       r30, 0x38(r1)
-	  lwz       r29, 0x34(r1)
-	  lwz       r28, 0x30(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
+lbl_8032B630:
+	lis      r10, 0x795F6972@ha
+	stw      r0, 0xb4(r28)
+	addi     r0, r10, 0x795F6972@l
+	lis      r4, 0x6D303179@ha
+	lis      r3, 0x506D3031@ha
+	stw      r0, 0xc(r1)
+	addi     r9, r3, 0x506D3031@l
+	addi     r6, r4, 0x6D303179@l
+	stw      r9, 8(r1)
+	addi     r7, r4, 0x316e
+	lis      r3, 0x6E5F696C@ha
+	li       r5, 0x4e
+	stw      r7, 0x14(r1)
+	li       r11, 0x54
+	addi     r4, r3, 0x6E5F696C@l
+	addi     r0, r3, 0x6972
+	stw      r5, 0x10(r1)
+	mr       r8, r6
+	addi     r10, r10, 0x696c
+	li       r5, 0x4e
+	stw      r7, 0x1c(r1)
+	li       r7, 0x54
+	stw      r11, 0x18(r1)
+	stw      r4, 0x24(r1)
+	stw      r9, 0x20(r1)
+	stw      r0, 0x2c(r1)
+	stw      r9, 0x28(r1)
+	lwz      r3, 0xb4(r28)
+	lwz      r4, 0xb0(r28)
+	bl       init2taku__Q32og6Screen7MenuMgrFP9J2DScreenUxUxUxUxUxUxUxUx
+	lwz      r3, 0xb0(r28)
+	lis      r4, 0x6D303179@ha
+	lwz      r7, 0xcc(r28)
+	addi     r6, r4, 0x6D303179@l
+	lwz      r12, 0(r3)
+	li       r5, 0x54
+	lwz      r30, 0x10(r7)
+	lwz      r12, 0x3c(r12)
+	lwz      r31, 0x14(r7)
+	mtctr    r12
+	bctrl
+	stw      r31, 0x1c(r3)
+	lis      r4, 0x6D30316E@ha
+	addi     r6, r4, 0x6D30316E@l
+	li       r5, 0x54
+	stw      r30, 0x18(r3)
+	lwz      r3, 0xb0(r28)
+	lwz      r4, 0xcc(r28)
+	lwz      r12, 0(r3)
+	lwz      r30, 0x18(r4)
+	lwz      r12, 0x3c(r12)
+	lwz      r31, 0x1c(r4)
+	mtctr    r12
+	bctrl
+	stw      r31, 0x1c(r3)
+	stw      r30, 0x18(r3)
+	lwz      r3, 0xb0(r28)
+	bl       setCallBackMessage__Q22og6ScreenFPQ29P2DScreen3Mgr
+	lis      r6, 0x6D303179@ha
+	lwz      r4, 0xb0(r28)
+	mr       r3, r29
+	li       r5, 0x54
+	addi     r6, r6, 0x6D303179@l
+	bl       setMenuScreen__Q22og6ScreenFP10JKRArchivePQ29P2DScreen3MgrUx
+	stw      r3, 0xb8(r28)
+	lis      r6, 0x6D30316E@ha
+	mr       r3, r29
+	li       r5, 0x54
+	lwz      r4, 0xb0(r28)
+	addi     r6, r6, 0x6D30316E@l
+	bl       setMenuScreen__Q22og6ScreenFP10JKRArchivePQ29P2DScreen3MgrUx
+	stw      r3, 0xbc(r28)
+	lfs      f1, lbl_8051DF08@sda21(r2)
+	lwz      r3, 0xb8(r28)
+	bl       open__Q32og6Screen15AnimText_ScreenFf
+	lwz      r3, 0xbc(r28)
+	lfs      f1, lbl_8051DF0C@sda21(r2)
+	bl       open__Q32og6Screen15AnimText_ScreenFf
+	lwz      r0, 0x44(r1)
+	lwz      r31, 0x3c(r1)
+	lwz      r30, 0x38(r1)
+	lwz      r29, 0x34(r1)
+	lwz      r28, 0x30(r1)
+	mtlr     r0
+	addi     r1, r1, 0x40
+	blr
 	*/
 }
 
@@ -326,42 +401,41 @@ void newScreen::ObjWorldMapInfoWindow0::doCreate(JKRArchive*)
 void newScreen::ObjWorldMapInfoWindow0::doStart(Screen::StartSceneArg const*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r3, 0xCC(r3)
-	  lbz       r0, 0x21(r3)
-	  stw       r0, 0xD0(r31)
-	  lwz       r0, 0xD0(r31)
-	  lwz       r3, 0xB4(r31)
-	  rlwinm    r4,r0,0,16,31
-	  bl        -0x20BBC
-	  lwz       r0, 0xD0(r31)
-	  mr        r3, r31
-	  stw       r0, 0xAC(r31)
-	  lwz       r4, 0xAC(r31)
-	  bl        -0x21C0
-	  lwz       r3, -0x6858(r13)
-	  bl        -0x1EA54
-	  lis       r5, 0x6B6F
-	  lis       r4, 0x6675
-	  lwz       r3, 0xB0(r31)
-	  addi      r6, r5, 0x3030
-	  addi      r5, r4, 0x7269
-	  bl        -0x1138
-	  bl        -0x18D4
-	  mr        r3, r31
-	  li        r4, 0
-	  bl        -0x14E38
-	  lwz       r0, 0x14(r1)
-	  li        r3, 0x1
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r3, 0xcc(r3)
+	lbz      r0, 0x21(r3)
+	stw      r0, 0xd0(r31)
+	lwz      r0, 0xd0(r31)
+	lwz      r3, 0xb4(r31)
+	clrlwi   r4, r0, 0x10
+	bl       initSelNum__Q32og6Screen7MenuMgrFUs
+	lwz      r0, 0xd0(r31)
+	mr       r3, r31
+	stw      r0, 0xac(r31)
+	lwz      r4, 0xac(r31)
+	bl       blink_Menu__Q32og9newScreen15ObjSMenuPauseVSFi
+	lwz      r3, ogSound__2og@sda21(r13)
+	bl       setOpenWMapMenu__Q22og5SoundFv
+	lis      r5, 0x6B6F3030@ha
+	lis      r4, 0x66757269@ha
+	lwz      r3, 0xb0(r31)
+	addi     r6, r5, 0x6B6F3030@l
+	addi     r5, r4, 0x66757269@l
+	bl       getFurikoPtr__Q22og6ScreenFPQ29P2DScreen3MgrUx
+	bl       stop__Q32og6Screen15CallBack_FurikoFv
+	mr       r3, r31
+	li       r4, 0
+	bl       start_LR__Q32og9newScreen12ObjSMenuBaseFPCQ26Screen13StartSceneArg
+	lwz      r0, 0x14(r1)
+	li       r3, 1
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -373,45 +447,44 @@ void newScreen::ObjWorldMapInfoWindow0::doStart(Screen::StartSceneArg const*)
 void newScreen::ObjWorldMapInfoWindow0::doUpdateFadein(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xA4(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r4, -0x6514(r13)
-	  lis       r3, 0x8051
-	  lfs       f1, 0x44(r30)
-	  addi      r3, r3, 0x3CF4
-	  lfs       f0, 0x54(r4)
-	  li        r31, 0
-	  fadds     f0, f1, f0
-	  stfs      f0, 0x44(r30)
-	  lfs       f1, 0x44(r30)
-	  lfs       f2, 0x8(r3)
-	  fcmpo     cr0, f1, f2
-	  ble-      .loc_0x5C
-	  li        r31, 0x1
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lwz      r12, 0(r3)
+	lwz      r12, 0xa4(r12)
+	mtctr    r12
+	bctrl
+	lwz      r4, sys@sda21(r13)
+	lis      r3, msBaseVal__Q32og9newScreen12ObjSMenuBase@ha
+	lfs      f1, 0x44(r30)
+	addi     r3, r3, msBaseVal__Q32og9newScreen12ObjSMenuBase@l
+	lfs      f0, 0x54(r4)
+	li       r31, 0
+	fadds    f0, f1, f0
+	stfs     f0, 0x44(r30)
+	lfs      f1, 0x44(r30)
+	lfs      f2, 8(r3)
+	fcmpo    cr0, f1, f2
+	ble      lbl_8032B870
+	li       r31, 1
 
-	.loc_0x5C:
-	  bl        -0x291D4
-	  lfs       f2, -0x44C(r2)
-	  mr        r3, r31
-	  lfs       f0, -0x450(r2)
-	  fsubs     f1, f2, f1
-	  fmuls     f0, f0, f1
-	  stfs      f0, 0x40(r30)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8032B870:
+	bl       calcSmooth0to1__Q22og6ScreenFff
+	lfs      f2, lbl_8051DF14@sda21(r2)
+	mr       r3, r31
+	lfs      f0, lbl_8051DF10@sda21(r2)
+	fsubs    f1, f2, f1
+	fmuls    f0, f0, f1
+	stfs     f0, 0x40(r30)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -423,15 +496,14 @@ void newScreen::ObjWorldMapInfoWindow0::doUpdateFadein(void)
 void newScreen::ObjWorldMapInfoWindow0::commonUpdate(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  bl        -0x2234
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	bl       commonUpdate__Q32og9newScreen15ObjSMenuPauseVSFv
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -443,21 +515,20 @@ void newScreen::ObjWorldMapInfoWindow0::commonUpdate(void)
 void newScreen::ObjWorldMapInfoWindow0::out_cancel(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  li        r0, 0
-	  lwz       r4, 0xCC(r3)
-	  stw       r0, 0x8(r4)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x84(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	li       r0, 0
+	lwz      r4, 0xcc(r3)
+	stw      r0, 8(r4)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x84(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -469,21 +540,20 @@ void newScreen::ObjWorldMapInfoWindow0::out_cancel(void)
 void newScreen::ObjWorldMapInfoWindow0::out_menu_0(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  li        r0, 0
-	  lwz       r4, 0xCC(r3)
-	  stw       r0, 0x8(r4)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x84(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	li       r0, 0
+	lwz      r4, 0xcc(r3)
+	stw      r0, 8(r4)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x84(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -495,21 +565,20 @@ void newScreen::ObjWorldMapInfoWindow0::out_menu_0(void)
 void newScreen::ObjWorldMapInfoWindow0::out_menu_1(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  li        r0, 0x1
-	  lwz       r4, 0xCC(r3)
-	  stw       r0, 0x8(r4)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x84(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	li       r0, 1
+	lwz      r4, 0xcc(r3)
+	stw      r0, 8(r4)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x84(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -532,43 +601,42 @@ void newScreen::ObjWorldMapInfoWindow0::out_L(void)
 void newScreen::ObjWorldMapInfoWindow0::doUpdateFadeoutFinish(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xB4(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  mr        r3, r31
-	  bl        -0x156A8
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0xB4(r12)
-	  mtctr     r12
-	  bctrl
-	  cmpwi     r3, 0
-	  bne-      .loc_0x74
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x30(r12)
-	  mtctr     r12
-	  bctrl
-	  li        r4, 0
-	  li        r5, 0
-	  li        r6, 0
-	  li        r7, 0
-	  bl        0x12689C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r12, 0(r3)
+	lwz      r12, 0xb4(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	mr       r3, r31
+	bl       setFinishState__Q32og9newScreen12ObjSMenuBaseFl
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r12, 0xb4(r12)
+	mtctr    r12
+	bctrl
+	cmpwi    r3, 0
+	bne      lbl_8032B9EC
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r12, 0x30(r12)
+	mtctr    r12
+	bctrl
+	li       r4, 0
+	li       r5, 0
+	li       r6, 0
+	li       r7, 0
+	bl       setColorBG__Q26Screen9SceneBaseFUcUcUcUc
 
-	.loc_0x74:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8032B9EC:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -580,10 +648,9 @@ void newScreen::ObjWorldMapInfoWindow0::doUpdateFadeoutFinish(void)
 void newScreen::ObjWorldMapInfoWindow0::getResult(void)
 {
 	/*
-	.loc_0x0:
-	  lwz       r3, 0xCC(r3)
-	  lwz       r3, 0x8(r3)
-	  blr
+	lwz      r3, 0xcc(r3)
+	lwz      r3, 8(r3)
+	blr
 	*/
 }
 
@@ -595,35 +662,34 @@ void newScreen::ObjWorldMapInfoWindow0::getResult(void)
 newScreen::ObjWorldMapInfoWindow0::~ObjWorldMapInfoWindow0(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x4C
-	  lis       r5, 0x804E
-	  li        r4, 0
-	  subi      r5, r5, 0x62B0
-	  stw       r5, 0x0(r30)
-	  addi      r0, r5, 0x10
-	  stw       r0, 0x18(r30)
-	  bl        -0x2834
-	  extsh.    r0, r31
-	  ble-      .loc_0x4C
-	  mr        r3, r30
-	  bl        -0x3079A0
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_8032BA58
+	lis      r5, __vt__Q32og9newScreen22ObjWorldMapInfoWindow0@ha
+	li       r4, 0
+	addi     r5, r5, __vt__Q32og9newScreen22ObjWorldMapInfoWindow0@l
+	stw      r5, 0(r30)
+	addi     r0, r5, 0x10
+	stw      r0, 0x18(r30)
+	bl       __dt__Q32og9newScreen15ObjSMenuPauseVSFv
+	extsh.   r0, r31
+	ble      lbl_8032BA58
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x4C:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8032BA58:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -644,10 +710,9 @@ namespace Screen {
 	void DispMemberWorldMapInfoWin0::getOwnerID(void)
 	{
 		/*
-		.loc_0x0:
-		  lis       r3, 0x4F
-		  addi      r3, r3, 0x4741
-		  blr
+	lis      r3, 0x004F4741@ha
+	addi     r3, r3, 0x004F4741@l
+	blr
 		*/
 	}
 
@@ -659,12 +724,11 @@ namespace Screen {
 	void DispMemberWorldMapInfoWin0::getMemberID(void)
 	{
 		/*
-		.loc_0x0:
-		  lis       r4, 0x5769
-		  lis       r3, 0x574D
-		  addi      r4, r4, 0x6E30
-		  addi      r3, r3, 0x6170
-		  blr
+	lis      r4, 0x57696E30@ha
+	lis      r3, 0x574D6170@ha
+	addi     r4, r4, 0x57696E30@l
+	addi     r3, r3, 0x574D6170@l
+	blr
 		*/
 	}
 
@@ -676,9 +740,8 @@ namespace Screen {
 	@24 @og::newScreen::ObjWorldMapInfoWindow0::~ObjWorldMapInfoWindow0(void)
 	{
 		/*
-		.loc_0x0:
-		  subi      r3, r3, 0x18
-		  b         -0x94
+	addi     r3, r3, -24
+	b        __dt__Q32og9newScreen22ObjWorldMapInfoWindow0Fv
 		*/
 	}
 } // namespace Screen

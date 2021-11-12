@@ -1,6 +1,322 @@
 #include "types.h"
 
 /*
+    Generated from dpostproc
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_804985B8
+    lbl_804985B8:
+        .4byte 0x7265735F
+        .4byte 0x70696B6D
+        .4byte 0x696E646F
+        .4byte 0x776E2E73
+        .4byte 0x7A730000
+    .global lbl_804985CC
+    lbl_804985CC:
+        .4byte 0x50696B6D
+        .4byte 0x696E446F
+        .4byte 0x776E0000
+    .global lbl_804985D8
+    lbl_804985D8:
+        .4byte 0x7265735F
+        .4byte 0x70726573
+        .4byte 0x6964656E
+        .4byte 0x74646F77
+        .4byte 0x6E2E737A
+        .4byte 0x73000000
+    .global lbl_804985F0
+    lbl_804985F0:
+        .4byte 0x50726573
+        .4byte 0x6964656E
+        .4byte 0x74446F77
+        .4byte 0x6E000000
+    .global lbl_80498600
+    lbl_80498600:
+        .4byte 0x67616D65
+        .4byte 0x6F766572
+        .4byte 0x5F6C6F75
+        .4byte 0x69652E73
+        .4byte 0x7A730000
+    .global lbl_80498614
+    lbl_80498614:
+        .4byte 0x4C756A69
+        .4byte 0x446F776E
+        .4byte 0x00000000
+    .global lbl_80498620
+    lbl_80498620:
+        .4byte 0x7265735F
+        .4byte 0x6F72696D
+        .4byte 0x61646F77
+        .4byte 0x6E2E737A
+        .4byte 0x73000000
+    .global lbl_80498634
+    lbl_80498634:
+        .4byte 0x4F72696D
+        .4byte 0x61446F77
+        .4byte 0x6E000000
+    .global lbl_80498640
+    lbl_80498640:
+        .4byte 0x7265735F
+        .4byte 0x67616D65
+        .4byte 0x6F766572
+        .4byte 0x2E737A73
+        .4byte 0x00000000
+    .global lbl_80498654
+    lbl_80498654:
+        .4byte 0x47616D65
+        .4byte 0x4F766572
+        .4byte 0x00000000
+    .global lbl_80498660
+    lbl_80498660:
+        .4byte 0x7265735F
+        .4byte 0x67726F75
+        .4byte 0x6E642E73
+        .4byte 0x7A730000
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global lbl_804EA878
+    lbl_804EA878:
+        .4byte lbl_8040020C
+        .4byte lbl_8040032C
+        .4byte lbl_804004D8
+        .4byte lbl_8040030C
+        .4byte lbl_804003F8
+        .4byte lbl_80400418
+        .4byte lbl_80400438
+        .4byte lbl_80400458
+        .4byte lbl_80400478
+        .4byte lbl_804003D8
+        .4byte lbl_8040026C
+        .4byte lbl_8040028C
+        .4byte lbl_8040024C
+        .4byte lbl_8040022C
+        .4byte lbl_804002AC
+        .4byte lbl_8040034C
+        .4byte lbl_80400370
+        .4byte lbl_80400394
+        .4byte lbl_804002CC
+        .4byte lbl_804002EC
+        .4byte lbl_804003B8
+        .4byte lbl_80400498
+        .4byte lbl_804004B8
+        .4byte lbl_804004F8
+        .4byte lbl_80400518
+        .4byte lbl_80400538
+        .4byte lbl_80400558
+        .4byte lbl_80400578
+    .global lbl_804EA8E8
+    lbl_804EA8E8:
+        .4byte lbl_804005DC
+        .4byte lbl_8040061C
+        .4byte lbl_80400658
+        .4byte lbl_804006A0
+        .4byte lbl_804006E8
+        .4byte lbl_80400730
+        .4byte lbl_80400778
+        .4byte lbl_804007C0
+        .4byte lbl_804007E0
+        .4byte lbl_804008BC
+        .4byte lbl_80400800
+        .4byte lbl_80400840
+        .4byte lbl_8040087C
+    .global __vt__Q29newScreen3Mgr
+    __vt__Q29newScreen3Mgr:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q29newScreen3MgrFv
+        .4byte setScene__Q26Screen3MgrFRQ26Screen11SetSceneArg
+        .4byte startScene__Q26Screen3MgrFPQ26Screen13StartSceneArg
+        .4byte endScene__Q26Screen3MgrFPQ26Screen11EndSceneArg
+        .4byte reset__Q29newScreen3MgrFv
+        .4byte setColorBG__Q29newScreen3MgrFRQ28JUtility6TColor
+        .4byte setBGMode__Q29newScreen3MgrFi
+        .4byte doGetSceneBase__Q29newScreen3MgrFl
+        .4byte drawBG__Q29newScreen3MgrFR8Graphics
+        .4byte drawWipe__Q26Screen3MgrFR8Graphics
+    .global __vt__Q26Screen7MgrBase
+    __vt__Q26Screen7MgrBase:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q26Screen7MgrBaseFv
+        .4byte 0
+        .4byte 0
+        .4byte 0
+    .global __vt__Q28Morimura16TPikminDownScene
+    __vt__Q28Morimura16TPikminDownScene:
+        .4byte 0
+        .4byte 0
+        .4byte getSceneType__Q28Morimura16TPikminDownSceneFv
+        .4byte getOwnerID__Q28Morimura16TPikminDownSceneFv
+        .4byte getMemberID__Q28Morimura16TPikminDownSceneFv
+        .4byte isUseBackupSceneInfo__Q28Morimura16TPikminDownSceneFv
+        .4byte isDrawInDemo__Q26Screen9SceneBaseCFv
+        .4byte getResName__Q28Morimura16TPikminDownSceneCFv
+        .4byte doCreateObj__Q28Morimura16TPikminDownSceneFP10JKRArchive
+        .4byte doUserCallBackFunc__Q26Screen9SceneBaseFPQ28Resource10MgrCommand
+        .4byte setPort__Q26Screen9SceneBaseFR8Graphics
+        .4byte doUpdateActive__Q26Screen9SceneBaseFv
+        .4byte doConfirmSetScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg
+        .4byte
+   doConfirmStartScene__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg .4byte
+   doConfirmEndScene__Q26Screen9SceneBaseFRPQ26Screen11EndSceneArg .4byte
+   doStart__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg .4byte
+   doEnd__Q26Screen9SceneBaseFPQ26Screen11EndSceneArg .4byte
+   setDefaultDispMember__Q26Screen9SceneBaseFv .4byte
+   doSetBackupScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg .4byte
+   doGetFinishState__Q26Screen9SceneBaseFv .global
+   __vt__Q28Morimura19TPresidentDownScene
+    __vt__Q28Morimura19TPresidentDownScene:
+        .4byte 0
+        .4byte 0
+        .4byte getSceneType__Q28Morimura19TPresidentDownSceneFv
+        .4byte getOwnerID__Q28Morimura19TPresidentDownSceneFv
+        .4byte getMemberID__Q28Morimura19TPresidentDownSceneFv
+        .4byte isUseBackupSceneInfo__Q28Morimura18TGameOverSceneBaseFv
+        .4byte isDrawInDemo__Q26Screen9SceneBaseCFv
+        .4byte getResName__Q28Morimura19TPresidentDownSceneCFv
+        .4byte doCreateObj__Q28Morimura19TPresidentDownSceneFP10JKRArchive
+        .4byte doUserCallBackFunc__Q26Screen9SceneBaseFPQ28Resource10MgrCommand
+        .4byte setPort__Q26Screen9SceneBaseFR8Graphics
+        .4byte doUpdateActive__Q26Screen9SceneBaseFv
+        .4byte doConfirmSetScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg
+        .4byte
+   doConfirmStartScene__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg .4byte
+   doConfirmEndScene__Q26Screen9SceneBaseFRPQ26Screen11EndSceneArg .4byte
+   doStart__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg .4byte
+   doEnd__Q26Screen9SceneBaseFPQ26Screen11EndSceneArg .4byte
+   setDefaultDispMember__Q26Screen9SceneBaseFv .4byte
+   doSetBackupScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg .4byte
+   doGetFinishState__Q26Screen9SceneBaseFv .global
+   __vt__Q28Morimura14TLujiDownScene
+    __vt__Q28Morimura14TLujiDownScene:
+        .4byte 0
+        .4byte 0
+        .4byte getSceneType__Q28Morimura14TLujiDownSceneFv
+        .4byte getOwnerID__Q28Morimura14TLujiDownSceneFv
+        .4byte getMemberID__Q28Morimura14TLujiDownSceneFv
+        .4byte isUseBackupSceneInfo__Q28Morimura18TGameOverSceneBaseFv
+        .4byte isDrawInDemo__Q26Screen9SceneBaseCFv
+        .4byte getResName__Q28Morimura14TLujiDownSceneCFv
+        .4byte doCreateObj__Q28Morimura14TLujiDownSceneFP10JKRArchive
+        .4byte doUserCallBackFunc__Q26Screen9SceneBaseFPQ28Resource10MgrCommand
+        .4byte setPort__Q26Screen9SceneBaseFR8Graphics
+        .4byte doUpdateActive__Q26Screen9SceneBaseFv
+        .4byte doConfirmSetScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg
+        .4byte
+   doConfirmStartScene__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg .4byte
+   doConfirmEndScene__Q26Screen9SceneBaseFRPQ26Screen11EndSceneArg .4byte
+   doStart__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg .4byte
+   doEnd__Q26Screen9SceneBaseFPQ26Screen11EndSceneArg .4byte
+   setDefaultDispMember__Q26Screen9SceneBaseFv .4byte
+   doSetBackupScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg .4byte
+   doGetFinishState__Q26Screen9SceneBaseFv .global
+   __vt__Q28Morimura15TOrimaDownScene
+    __vt__Q28Morimura15TOrimaDownScene:
+        .4byte 0
+        .4byte 0
+        .4byte getSceneType__Q28Morimura15TOrimaDownSceneFv
+        .4byte getOwnerID__Q28Morimura15TOrimaDownSceneFv
+        .4byte getMemberID__Q28Morimura15TOrimaDownSceneFv
+        .4byte isUseBackupSceneInfo__Q28Morimura18TGameOverSceneBaseFv
+        .4byte isDrawInDemo__Q26Screen9SceneBaseCFv
+        .4byte getResName__Q28Morimura15TOrimaDownSceneCFv
+        .4byte doCreateObj__Q28Morimura15TOrimaDownSceneFP10JKRArchive
+        .4byte doUserCallBackFunc__Q26Screen9SceneBaseFPQ28Resource10MgrCommand
+        .4byte setPort__Q26Screen9SceneBaseFR8Graphics
+        .4byte doUpdateActive__Q26Screen9SceneBaseFv
+        .4byte doConfirmSetScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg
+        .4byte
+   doConfirmStartScene__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg .4byte
+   doConfirmEndScene__Q26Screen9SceneBaseFRPQ26Screen11EndSceneArg .4byte
+   doStart__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg .4byte
+   doEnd__Q26Screen9SceneBaseFPQ26Screen11EndSceneArg .4byte
+   setDefaultDispMember__Q26Screen9SceneBaseFv .4byte
+   doSetBackupScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg .4byte
+   doGetFinishState__Q26Screen9SceneBaseFv .global
+   __vt__Q28Morimura14TGameOverScene
+    __vt__Q28Morimura14TGameOverScene:
+        .4byte 0
+        .4byte 0
+        .4byte getSceneType__Q28Morimura14TGameOverSceneFv
+        .4byte getOwnerID__Q28Morimura14TGameOverSceneFv
+        .4byte getMemberID__Q28Morimura14TGameOverSceneFv
+        .4byte isUseBackupSceneInfo__Q28Morimura14TGameOverSceneFv
+        .4byte isDrawInDemo__Q26Screen9SceneBaseCFv
+        .4byte getResName__Q28Morimura14TGameOverSceneCFv
+        .4byte doCreateObj__Q28Morimura14TGameOverSceneFP10JKRArchive
+        .4byte doUserCallBackFunc__Q26Screen9SceneBaseFPQ28Resource10MgrCommand
+        .4byte setPort__Q26Screen9SceneBaseFR8Graphics
+        .4byte doUpdateActive__Q26Screen9SceneBaseFv
+        .4byte doConfirmSetScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg
+        .4byte
+   doConfirmStartScene__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg .4byte
+   doConfirmEndScene__Q26Screen9SceneBaseFRPQ26Screen11EndSceneArg .4byte
+   doStart__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg .4byte
+   doEnd__Q26Screen9SceneBaseFPQ26Screen11EndSceneArg .4byte
+   setDefaultDispMember__Q26Screen9SceneBaseFv .4byte
+   doSetBackupScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg .4byte
+   doGetFinishState__Q26Screen9SceneBaseFv .global
+   __vt__Q28Morimura18TGameOverSceneBase
+    __vt__Q28Morimura18TGameOverSceneBase:
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte isUseBackupSceneInfo__Q28Morimura18TGameOverSceneBaseFv
+        .4byte isDrawInDemo__Q26Screen9SceneBaseCFv
+        .4byte 0
+        .4byte 0
+        .4byte doUserCallBackFunc__Q26Screen9SceneBaseFPQ28Resource10MgrCommand
+        .4byte setPort__Q26Screen9SceneBaseFR8Graphics
+        .4byte doUpdateActive__Q26Screen9SceneBaseFv
+        .4byte doConfirmSetScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg
+        .4byte
+   doConfirmStartScene__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg .4byte
+   doConfirmEndScene__Q26Screen9SceneBaseFRPQ26Screen11EndSceneArg .4byte
+   doStart__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg .4byte
+   doEnd__Q26Screen9SceneBaseFPQ26Screen11EndSceneArg .4byte
+   setDefaultDispMember__Q26Screen9SceneBaseFv .4byte
+   doSetBackupScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg .4byte
+   doGetFinishState__Q26Screen9SceneBaseFv .global
+   __vt__Q28Morimura13THurryUpScene
+    __vt__Q28Morimura13THurryUpScene:
+        .4byte 0
+        .4byte 0
+        .4byte getSceneType__Q28Morimura13THurryUpSceneFv
+        .4byte getOwnerID__Q28Morimura13THurryUpSceneFv
+        .4byte getMemberID__Q28Morimura13THurryUpSceneFv
+        .4byte isUseBackupSceneInfo__Q26Screen9SceneBaseFv
+        .4byte isDrawInDemo__Q26Screen9SceneBaseCFv
+        .4byte getResName__Q28Morimura13THurryUpSceneCFv
+        .4byte doCreateObj__Q28Morimura13THurryUpSceneFP10JKRArchive
+        .4byte doUserCallBackFunc__Q26Screen9SceneBaseFPQ28Resource10MgrCommand
+        .4byte setPort__Q26Screen9SceneBaseFR8Graphics
+        .4byte doUpdateActive__Q26Screen9SceneBaseFv
+        .4byte doConfirmSetScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg
+        .4byte
+   doConfirmStartScene__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg .4byte
+   doConfirmEndScene__Q26Screen9SceneBaseFRPQ26Screen11EndSceneArg .4byte
+   doStart__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg .4byte
+   doEnd__Q26Screen9SceneBaseFPQ26Screen11EndSceneArg .4byte
+   setDefaultDispMember__Q26Screen9SceneBaseFv .4byte
+   doSetBackupScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg .4byte
+   doGetFinishState__Q26Screen9SceneBaseFv .4byte 0
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_80520048
+    lbl_80520048:
+        .4byte 0x00000000
+    .global lbl_8052004C
+    lbl_8052004C:
+        .float 0.5
+    .global lbl_80520050
+    lbl_80520050:
+        .4byte 0x43300000
+        .4byte 0x00000000
+*/
+
+/*
  * --INFO--
  * Address:	804001D8
  * Size:	0003CC
@@ -8,308 +324,391 @@
 void newScreen::createScene_Ogawa(long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  subi      r0, r3, 0x2710
-	  cmplwi    r0, 0x1B
-	  li        r3, 0
-	  bgt-      .loc_0x3BC
-	  lis       r4, 0x804F
-	  rlwinm    r0,r0,2,0,29
-	  subi      r4, r4, 0x5788
-	  lwzx      r0, r4, r0
-	  mtctr     r0
-	  bctr
-	  li        r3, 0x228
-	  bl        -0x3DC36C
-	  mr.       r0, r3
-	  beq-      .loc_0x4C
-	  bl        -0xF2810
-	  mr        r0, r3
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	addi     r0, r3, -10000
+	cmplwi   r0, 0x1b
+	li       r3, 0
+	bgt      lbl_80400594
+	lis      r4, lbl_804EA878@ha
+	slwi     r0, r0, 2
+	addi     r4, r4, lbl_804EA878@l
+	lwzx     r0, r4, r0
+	mtctr    r0
+	bctr
+	.global  lbl_8040020C
 
-	.loc_0x4C:
-	  mr        r3, r0
-	  b         .loc_0x3BC
-	  li        r3, 0x224
-	  bl        -0x3DC38C
-	  mr.       r0, r3
-	  beq-      .loc_0x6C
-	  bl        -0xED640
-	  mr        r0, r3
+lbl_8040020C:
+	li       r3, 0x228
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_80400224
+	bl       __ct__Q32og9newScreen6GroundFv
+	mr       r0, r3
 
-	.loc_0x6C:
-	  mr        r3, r0
-	  b         .loc_0x3BC
-	  li        r3, 0x224
-	  bl        -0x3DC3AC
-	  mr.       r0, r3
-	  beq-      .loc_0x8C
-	  bl        -0xEC310
-	  mr        r0, r3
+lbl_80400224:
+	mr       r3, r0
+	b        lbl_80400594
+	.global  lbl_8040022C
 
-	.loc_0x8C:
-	  mr        r3, r0
-	  b         .loc_0x3BC
-	  li        r3, 0x224
-	  bl        -0x3DC3CC
-	  mr.       r0, r3
-	  beq-      .loc_0xAC
-	  bl        -0xEC1C8
-	  mr        r0, r3
+lbl_8040022C:
+	li       r3, 0x224
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_80400244
+	bl       __ct__Q32og9newScreen8SMenuMapFv
+	mr       r0, r3
 
-	.loc_0xAC:
-	  mr        r3, r0
-	  b         .loc_0x3BC
-	  li        r3, 0x224
-	  bl        -0x3DC3EC
-	  mr.       r0, r3
-	  beq-      .loc_0xCC
-	  bl        -0xDCD18
-	  mr        r0, r3
+lbl_80400244:
+	mr       r3, r0
+	b        lbl_80400594
+	.global  lbl_8040024C
 
-	.loc_0xCC:
-	  mr        r3, r0
-	  b         .loc_0x3BC
-	  li        r3, 0x224
-	  bl        -0x3DC40C
-	  mr.       r0, r3
-	  beq-      .loc_0xEC
-	  bl        -0xE826C
-	  mr        r0, r3
+lbl_8040024C:
+	li       r3, 0x224
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_80400264
+	bl       __ct__Q32og9newScreen9SMenuItemFv
+	mr       r0, r3
 
-	.loc_0xEC:
-	  mr        r3, r0
-	  b         .loc_0x3BC
-	  li        r3, 0x224
-	  bl        -0x3DC42C
-	  mr.       r0, r3
-	  beq-      .loc_0x10C
-	  bl        -0xE6700
-	  mr        r0, r3
+lbl_80400264:
+	mr       r3, r0
+	b        lbl_80400594
+	.global  lbl_8040026C
 
-	.loc_0x10C:
-	  mr        r3, r0
-	  b         .loc_0x3BC
-	  li        r3, 0x220
-	  bl        -0x3DC44C
-	  mr.       r0, r3
-	  beq-      .loc_0x12C
-	  bl        -0xE605C
-	  mr        r0, r3
+lbl_8040026C:
+	li       r3, 0x224
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_80400284
+	bl       __ct__Q32og9newScreen10SMenuPauseFv
+	mr       r0, r3
 
-	.loc_0x12C:
-	  mr        r3, r0
-	  b         .loc_0x3BC
-	  li        r3, 0x220
-	  bl        -0x3DC46C
-	  mr.       r0, r3
-	  beq-      .loc_0x14C
-	  bl        -0xE44BC
-	  mr        r0, r3
+lbl_80400284:
+	mr       r3, r0
+	b        lbl_80400594
+	.global  lbl_8040028C
 
-	.loc_0x14C:
-	  mr        r3, r0
-	  b         .loc_0x3BC
-	  li        r3, 0x220
-	  bl        -0x3DC48C
-	  mr.       r0, r3
-	  beq-      .loc_0x16C
-	  bl        -0xE36AC
-	  mr        r0, r3
+lbl_8040028C:
+	li       r3, 0x224
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_804002A4
+	bl       __ct__Q32og9newScreen17SMenuPauseDoukutuFv
+	mr       r0, r3
 
-	.loc_0x16C:
-	  mr        r3, r0
-	  b         .loc_0x3BC
-	  li        r3, 0x224
-	  bl        -0x3DC4AC
-	  mr.       r0, r3
-	  beq-      .loc_0x190
-	  li        r4, 0x271F
-	  bl        -0xE1908
-	  mr        r0, r3
+lbl_804002A4:
+	mr       r3, r0
+	b        lbl_80400594
+	.global  lbl_804002AC
 
-	.loc_0x190:
-	  mr        r3, r0
-	  b         .loc_0x3BC
-	  li        r3, 0x224
-	  bl        -0x3DC4D0
-	  mr.       r0, r3
-	  beq-      .loc_0x1B4
-	  li        r4, 0x2720
-	  bl        -0xE192C
-	  mr        r0, r3
+lbl_804002AC:
+	li       r3, 0x224
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_804002C4
+	bl       __ct__Q32og9newScreen10CourseNameFv
+	mr       r0, r3
 
-	.loc_0x1B4:
-	  mr        r3, r0
-	  b         .loc_0x3BC
-	  li        r3, 0x224
-	  bl        -0x3DC4F4
-	  mr.       r0, r3
-	  beq-      .loc_0x1D8
-	  li        r4, 0x2721
-	  bl        -0xE1950
-	  mr        r0, r3
+lbl_804002C4:
+	mr       r3, r0
+	b        lbl_80400594
+	.global  lbl_804002CC
 
-	.loc_0x1D8:
-	  mr        r3, r0
-	  b         .loc_0x3BC
-	  li        r3, 0x224
-	  bl        -0x3DC518
-	  mr.       r0, r3
-	  beq-      .loc_0x1F8
-	  bl        -0xE06C4
-	  mr        r0, r3
+lbl_804002CC:
+	li       r3, 0x224
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_804002E4
+	bl       __ct__Q32og9newScreen10KanteiDemoFv
+	mr       r0, r3
 
-	.loc_0x1F8:
-	  mr        r3, r0
-	  b         .loc_0x3BC
-	  li        r3, 0x220
-	  bl        -0x3DC538
-	  mr.       r0, r3
-	  beq-      .loc_0x218
-	  bl        -0xDBAF4
-	  mr        r0, r3
+lbl_804002E4:
+	mr       r3, r0
+	b        lbl_80400594
+	.global  lbl_804002EC
 
-	.loc_0x218:
-	  mr        r3, r0
-	  b         .loc_0x3BC
-	  li        r3, 0x224
-	  bl        -0x3DC558
-	  mr.       r0, r3
-	  beq-      .loc_0x238
-	  bl        -0xDE500
-	  mr        r0, r3
+lbl_804002EC:
+	li       r3, 0x220
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_80400304
+	bl       __ct__Q32og9newScreen11SpecialItemFv
+	mr       r0, r3
 
-	.loc_0x238:
-	  mr        r3, r0
-	  b         .loc_0x3BC
-	  li        r3, 0x224
-	  bl        -0x3DC578
-	  mr.       r0, r3
-	  beq-      .loc_0x258
-	  bl        -0xDE520
-	  mr        r0, r3
+lbl_80400304:
+	mr       r3, r0
+	b        lbl_80400594
+	.global  lbl_8040030C
 
-	.loc_0x258:
-	  mr        r3, r0
-	  b         .loc_0x3BC
-	  li        r3, 0x224
-	  bl        -0x3DC598
-	  mr.       r0, r3
-	  beq-      .loc_0x278
-	  bl        -0xDE540
-	  mr        r0, r3
+lbl_8040030C:
+	li       r3, 0x220
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_80400324
+	bl       __ct__Q32og9newScreen5FloorFv
+	mr       r0, r3
 
-	.loc_0x278:
-	  mr        r3, r0
-	  b         .loc_0x3BC
-	  li        r3, 0x224
-	  bl        -0x3DC5B8
-	  mr.       r0, r3
-	  beq-      .loc_0x298
-	  bl        -0xDE560
-	  mr        r0, r3
+lbl_80400324:
+	mr       r3, r0
+	b        lbl_80400594
+	.global  lbl_8040032C
 
-	.loc_0x298:
-	  mr        r3, r0
-	  b         .loc_0x3BC
-	  li        r3, 0x224
-	  bl        -0x3DC5D8
-	  mr.       r0, r3
-	  beq-      .loc_0x2B8
-	  bl        -0xDE580
-	  mr        r0, r3
+lbl_8040032C:
+	li       r3, 0x220
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_80400344
+	bl       __ct__Q32og9newScreen4CaveFv
+	mr       r0, r3
 
-	.loc_0x2B8:
-	  mr        r3, r0
-	  b         .loc_0x3BC
-	  li        r3, 0x224
-	  bl        -0x3DC5F8
-	  mr.       r0, r3
-	  beq-      .loc_0x2D8
-	  bl        -0xDB6F4
-	  mr        r0, r3
+lbl_80400344:
+	mr       r3, r0
+	b        lbl_80400594
+	.global  lbl_8040034C
 
-	.loc_0x2D8:
-	  mr        r3, r0
-	  b         .loc_0x3BC
-	  li        r3, 0x220
-	  bl        -0x3DC618
-	  mr.       r0, r3
-	  beq-      .loc_0x2F8
-	  bl        -0xDABE0
-	  mr        r0, r3
+lbl_8040034C:
+	li       r3, 0x224
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_80400368
+	li       r4, 0x271f
+	bl       __ct__Q32og9newScreen7AnaDemoFl
+	mr       r0, r3
 
-	.loc_0x2F8:
-	  mr        r3, r0
-	  b         .loc_0x3BC
-	  li        r3, 0x220
-	  bl        -0x3DC638
-	  mr.       r0, r3
-	  beq-      .loc_0x318
-	  bl        -0xD888C
-	  mr        r0, r3
+lbl_80400368:
+	mr       r3, r0
+	b        lbl_80400594
+	.global  lbl_80400370
 
-	.loc_0x318:
-	  mr        r3, r0
-	  b         .loc_0x3BC
-	  li        r3, 0x224
-	  bl        -0x3DC658
-	  mr.       r0, r3
-	  beq-      .loc_0x338
-	  bl        -0xD78D8
-	  mr        r0, r3
+lbl_80400370:
+	li       r3, 0x224
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_8040038C
+	li       r4, 0x2720
+	bl       __ct__Q32og9newScreen7AnaDemoFl
+	mr       r0, r3
 
-	.loc_0x338:
-	  mr        r3, r0
-	  b         .loc_0x3BC
-	  li        r3, 0x220
-	  bl        -0x3DC678
-	  mr.       r0, r3
-	  beq-      .loc_0x358
-	  bl        -0xD682C
-	  mr        r0, r3
+lbl_8040038C:
+	mr       r3, r0
+	b        lbl_80400594
+	.global  lbl_80400394
 
-	.loc_0x358:
-	  mr        r3, r0
-	  b         .loc_0x3BC
-	  li        r3, 0x220
-	  bl        -0x3DC698
-	  mr.       r0, r3
-	  beq-      .loc_0x378
-	  bl        -0xD4AA4
-	  mr        r0, r3
+lbl_80400394:
+	li       r3, 0x224
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_804003B0
+	li       r4, 0x2721
+	bl       __ct__Q32og9newScreen7AnaDemoFl
+	mr       r0, r3
 
-	.loc_0x378:
-	  mr        r3, r0
-	  b         .loc_0x3BC
-	  li        r3, 0x220
-	  bl        -0x3DC6B8
-	  mr.       r0, r3
-	  beq-      .loc_0x398
-	  bl        -0xD4360
-	  mr        r0, r3
+lbl_804003B0:
+	mr       r3, r0
+	b        lbl_80400594
+	.global  lbl_804003B8
 
-	.loc_0x398:
-	  mr        r3, r0
-	  b         .loc_0x3BC
-	  li        r3, 0x224
-	  bl        -0x3DC6D8
-	  mr.       r0, r3
-	  beq-      .loc_0x3B8
-	  bl        -0xD0098
-	  mr        r0, r3
+lbl_804003B8:
+	li       r3, 0x224
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_804003D0
+	bl       __ct__Q32og9newScreen11Challenge2PFv
+	mr       r0, r3
 
-	.loc_0x3B8:
-	  mr        r3, r0
+lbl_804003D0:
+	mr       r3, r0
+	b        lbl_80400594
+	.global  lbl_804003D8
 
-	.loc_0x3BC:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_804003D8:
+	li       r3, 0x220
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_804003F0
+	bl       __ct__Q32og9newScreen7UfoMenuFv
+	mr       r0, r3
+
+lbl_804003F0:
+	mr       r3, r0
+	b        lbl_80400594
+	.global  lbl_804003F8
+
+lbl_804003F8:
+	li       r3, 0x224
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_80400410
+	bl       __ct__Q32og9newScreen7ContenaFv
+	mr       r0, r3
+
+lbl_80400410:
+	mr       r3, r0
+	b        lbl_80400594
+	.global  lbl_80400418
+
+lbl_80400418:
+	li       r3, 0x224
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_80400430
+	bl       __ct__Q32og9newScreen7ContenaFv
+	mr       r0, r3
+
+lbl_80400430:
+	mr       r3, r0
+	b        lbl_80400594
+	.global  lbl_80400438
+
+lbl_80400438:
+	li       r3, 0x224
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_80400450
+	bl       __ct__Q32og9newScreen7ContenaFv
+	mr       r0, r3
+
+lbl_80400450:
+	mr       r3, r0
+	b        lbl_80400594
+	.global  lbl_80400458
+
+lbl_80400458:
+	li       r3, 0x224
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_80400470
+	bl       __ct__Q32og9newScreen7ContenaFv
+	mr       r0, r3
+
+lbl_80400470:
+	mr       r3, r0
+	b        lbl_80400594
+	.global  lbl_80400478
+
+lbl_80400478:
+	li       r3, 0x224
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_80400490
+	bl       __ct__Q32og9newScreen7ContenaFv
+	mr       r0, r3
+
+lbl_80400490:
+	mr       r3, r0
+	b        lbl_80400594
+	.global  lbl_80400498
+
+lbl_80400498:
+	li       r3, 0x224
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_804004B0
+	bl       __ct__Q32og9newScreen4SaveFv
+	mr       r0, r3
+
+lbl_804004B0:
+	mr       r3, r0
+	b        lbl_80400594
+	.global  lbl_804004B8
+
+lbl_804004B8:
+	li       r3, 0x220
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_804004D0
+	bl       __ct__Q32og9newScreen8FinalMsgFv
+	mr       r0, r3
+
+lbl_804004D0:
+	mr       r3, r0
+	b        lbl_80400594
+	.global  lbl_804004D8
+
+lbl_804004D8:
+	li       r3, 0x220
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_804004F0
+	bl       __ct__Q32og9newScreen2VsFv
+	mr       r0, r3
+
+lbl_804004F0:
+	mr       r3, r0
+	b        lbl_80400594
+	.global  lbl_804004F8
+
+lbl_804004F8:
+	li       r3, 0x224
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_80400510
+	bl       __ct__Q32og9newScreen11Challenge1PFv
+	mr       r0, r3
+
+lbl_80400510:
+	mr       r3, r0
+	b        lbl_80400594
+	.global  lbl_80400518
+
+lbl_80400518:
+	li       r3, 0x220
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_80400530
+	bl       __ct__Q32og9newScreen12SMenuPauseVSFv
+	mr       r0, r3
+
+lbl_80400530:
+	mr       r3, r0
+	b        lbl_80400594
+	.global  lbl_80400538
+
+lbl_80400538:
+	li       r3, 0x220
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_80400550
+	bl       __ct__Q32og9newScreen19WorldMapInfoWindow0Fv
+	mr       r0, r3
+
+lbl_80400550:
+	mr       r3, r0
+	b        lbl_80400594
+	.global  lbl_80400558
+
+lbl_80400558:
+	li       r3, 0x220
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_80400570
+	bl       __ct__Q32og9newScreen19WorldMapInfoWindow1Fv
+	mr       r0, r3
+
+lbl_80400570:
+	mr       r3, r0
+	b        lbl_80400594
+	.global  lbl_80400578
+
+lbl_80400578:
+	li       r3, 0x224
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_80400590
+	bl       __ct__Q32og9newScreen9SMenuContFv
+	mr       r0, r3
+
+lbl_80400590:
+	mr       r3, r0
+
+lbl_80400594:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -321,245 +720,283 @@ void newScreen::createScene_Ogawa(long)
 void newScreen::createScene_Morimura(long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  subi      r0, r3, 0x272D
-	  cmplwi    r0, 0xC
-	  li        r3, 0
-	  stw       r31, 0xC(r1)
-	  bgt-      .loc_0x334
-	  lis       r4, 0x804F
-	  rlwinm    r0,r0,2,0,29
-	  subi      r4, r4, 0x5718
-	  lwzx      r0, r4, r0
-	  mtctr     r0
-	  bctr
-	  li        r3, 0x228
-	  bl        -0x3DC73C
-	  mr.       r31, r3
-	  beq-      .loc_0x70
-	  bl        0x511A4
-	  lis       r4, 0x804E
-	  lis       r3, 0x804E
-	  addi      r0, r4, 0x3F18
-	  li        r4, 0
-	  stw       r0, 0x0(r31)
-	  subi      r0, r3, 0x4F5C
-	  stw       r4, 0x220(r31)
-	  stw       r0, 0x0(r31)
-	  stw       r4, 0x224(r31)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	addi     r0, r3, -10029
+	cmplwi   r0, 0xc
+	li       r3, 0
+	stw      r31, 0xc(r1)
+	bgt      lbl_804008D8
+	lis      r4, lbl_804EA8E8@ha
+	slwi     r0, r0, 2
+	addi     r4, r4, lbl_804EA8E8@l
+	lwzx     r0, r4, r0
+	mtctr    r0
+	bctr
+	.global  lbl_804005DC
 
-	.loc_0x70:
-	  mr        r3, r31
-	  b         .loc_0x334
-	  li        r3, 0x224
-	  bl        -0x3DC77C
-	  mr.       r31, r3
-	  beq-      .loc_0xAC
-	  bl        0x51164
-	  lis       r4, 0x804E
-	  lis       r3, 0x804F
-	  addi      r0, r4, 0x3F18
-	  li        r4, 0
-	  stw       r0, 0x0(r31)
-	  subi      r0, r3, 0x54BC
-	  stw       r4, 0x220(r31)
-	  stw       r0, 0x0(r31)
+lbl_804005DC:
+	li       r3, 0x228
+	bl       __nw__FUl
+	or.      r31, r3, r3
+	beq      lbl_80400614
+	bl       __ct__Q26Screen9SceneBaseFv
+	lis      r4, __vt__Q28Morimura9THIOScene@ha
+	lis      r3, __vt__Q28Morimura15TCountDownScene@ha
+	addi     r0, r4, __vt__Q28Morimura9THIOScene@l
+	li       r4, 0
+	stw      r0, 0(r31)
+	addi     r0, r3, __vt__Q28Morimura15TCountDownScene@l
+	stw      r4, 0x220(r31)
+	stw      r0, 0(r31)
+	stw      r4, 0x224(r31)
 
-	.loc_0xAC:
-	  mr        r3, r31
-	  b         .loc_0x334
-	  li        r3, 0x224
-	  bl        -0x3DC7B8
-	  mr.       r31, r3
-	  beq-      .loc_0xF4
-	  bl        0x51128
-	  lis       r3, 0x804E
-	  lis       r4, 0x804F
-	  addi      r0, r3, 0x3F18
-	  lis       r3, 0x804F
-	  stw       r0, 0x0(r31)
-	  li        r5, 0
-	  subi      r4, r4, 0x550C
-	  subi      r0, r3, 0x555C
-	  stw       r5, 0x220(r31)
-	  stw       r4, 0x0(r31)
-	  stw       r0, 0x0(r31)
+lbl_80400614:
+	mr       r3, r31
+	b        lbl_804008D8
+	.global  lbl_8040061C
 
-	.loc_0xF4:
-	  mr        r3, r31
-	  b         .loc_0x334
-	  li        r3, 0x224
-	  bl        -0x3DC800
-	  mr.       r31, r3
-	  beq-      .loc_0x13C
-	  bl        0x510E0
-	  lis       r3, 0x804E
-	  lis       r4, 0x804F
-	  addi      r0, r3, 0x3F18
-	  lis       r3, 0x804F
-	  stw       r0, 0x0(r31)
-	  li        r5, 0
-	  subi      r4, r4, 0x550C
-	  subi      r0, r3, 0x55AC
-	  stw       r5, 0x220(r31)
-	  stw       r4, 0x0(r31)
-	  stw       r0, 0x0(r31)
+lbl_8040061C:
+	li       r3, 0x224
+	bl       __nw__FUl
+	or.      r31, r3, r3
+	beq      lbl_80400650
+	bl       __ct__Q26Screen9SceneBaseFv
+	lis      r4, __vt__Q28Morimura9THIOScene@ha
+	lis      r3, __vt__Q28Morimura13THurryUpScene@ha
+	addi     r0, r4, __vt__Q28Morimura9THIOScene@l
+	li       r4, 0
+	stw      r0, 0(r31)
+	addi     r0, r3, __vt__Q28Morimura13THurryUpScene@l
+	stw      r4, 0x220(r31)
+	stw      r0, 0(r31)
 
-	.loc_0x13C:
-	  mr        r3, r31
-	  b         .loc_0x334
-	  li        r3, 0x224
-	  bl        -0x3DC848
-	  mr.       r31, r3
-	  beq-      .loc_0x184
-	  bl        0x51098
-	  lis       r3, 0x804E
-	  lis       r4, 0x804F
-	  addi      r0, r3, 0x3F18
-	  lis       r3, 0x804F
-	  stw       r0, 0x0(r31)
-	  li        r5, 0
-	  subi      r4, r4, 0x550C
-	  subi      r0, r3, 0x55FC
-	  stw       r5, 0x220(r31)
-	  stw       r4, 0x0(r31)
-	  stw       r0, 0x0(r31)
+lbl_80400650:
+	mr       r3, r31
+	b        lbl_804008D8
+	.global  lbl_80400658
 
-	.loc_0x184:
-	  mr        r3, r31
-	  b         .loc_0x334
-	  li        r3, 0x224
-	  bl        -0x3DC890
-	  mr.       r31, r3
-	  beq-      .loc_0x1CC
-	  bl        0x51050
-	  lis       r3, 0x804E
-	  lis       r4, 0x804F
-	  addi      r0, r3, 0x3F18
-	  lis       r3, 0x804F
-	  stw       r0, 0x0(r31)
-	  li        r5, 0
-	  subi      r4, r4, 0x550C
-	  subi      r0, r3, 0x564C
-	  stw       r5, 0x220(r31)
-	  stw       r4, 0x0(r31)
-	  stw       r0, 0x0(r31)
+lbl_80400658:
+	li       r3, 0x224
+	bl       __nw__FUl
+	or.      r31, r3, r3
+	beq      lbl_80400698
+	bl       __ct__Q26Screen9SceneBaseFv
+	lis      r3, __vt__Q28Morimura9THIOScene@ha
+	lis      r4, __vt__Q28Morimura18TGameOverSceneBase@ha
+	addi     r0, r3, __vt__Q28Morimura9THIOScene@l
+	lis      r3, __vt__Q28Morimura14TGameOverScene@ha
+	stw      r0, 0(r31)
+	li       r5, 0
+	addi     r4, r4, __vt__Q28Morimura18TGameOverSceneBase@l
+	addi     r0, r3, __vt__Q28Morimura14TGameOverScene@l
+	stw      r5, 0x220(r31)
+	stw      r4, 0(r31)
+	stw      r0, 0(r31)
 
-	.loc_0x1CC:
-	  mr        r3, r31
-	  b         .loc_0x334
-	  li        r3, 0x224
-	  bl        -0x3DC8D8
-	  mr.       r31, r3
-	  beq-      .loc_0x214
-	  bl        0x51008
-	  lis       r3, 0x804E
-	  lis       r4, 0x804F
-	  addi      r0, r3, 0x3F18
-	  lis       r3, 0x804F
-	  stw       r0, 0x0(r31)
-	  li        r5, 0
-	  subi      r4, r4, 0x550C
-	  subi      r0, r3, 0x569C
-	  stw       r5, 0x220(r31)
-	  stw       r4, 0x0(r31)
-	  stw       r0, 0x0(r31)
+lbl_80400698:
+	mr       r3, r31
+	b        lbl_804008D8
+	.global  lbl_804006A0
 
-	.loc_0x214:
-	  mr        r3, r31
-	  b         .loc_0x334
-	  li        r3, 0x228
-	  bl        -0x3DC920
-	  mr.       r0, r3
-	  beq-      .loc_0x234
-	  bl        -0x889E4
-	  mr        r0, r3
+lbl_804006A0:
+	li       r3, 0x224
+	bl       __nw__FUl
+	or.      r31, r3, r3
+	beq      lbl_804006E0
+	bl       __ct__Q26Screen9SceneBaseFv
+	lis      r3, __vt__Q28Morimura9THIOScene@ha
+	lis      r4, __vt__Q28Morimura18TGameOverSceneBase@ha
+	addi     r0, r3, __vt__Q28Morimura9THIOScene@l
+	lis      r3, __vt__Q28Morimura15TOrimaDownScene@ha
+	stw      r0, 0(r31)
+	li       r5, 0
+	addi     r4, r4, __vt__Q28Morimura18TGameOverSceneBase@l
+	addi     r0, r3, __vt__Q28Morimura15TOrimaDownScene@l
+	stw      r5, 0x220(r31)
+	stw      r4, 0(r31)
+	stw      r0, 0(r31)
 
-	.loc_0x234:
-	  mr        r3, r0
-	  b         .loc_0x334
-	  li        r3, 0x228
-	  bl        -0x3DC940
-	  mr.       r0, r3
-	  beq-      .loc_0x254
-	  bl        -0x85444
-	  mr        r0, r3
+lbl_804006E0:
+	mr       r3, r31
+	b        lbl_804008D8
+	.global  lbl_804006E8
 
-	.loc_0x254:
-	  mr        r3, r0
-	  b         .loc_0x334
-	  li        r3, 0x228
-	  bl        -0x3DC960
-	  mr.       r31, r3
-	  beq-      .loc_0x294
-	  bl        0x50F80
-	  lis       r4, 0x804E
-	  lis       r3, 0x804E
-	  addi      r0, r4, 0x3F18
-	  li        r4, 0
-	  stw       r0, 0x0(r31)
-	  addi      r0, r3, 0x5040
-	  stw       r4, 0x220(r31)
-	  stw       r0, 0x0(r31)
-	  stw       r4, 0x224(r31)
+lbl_804006E8:
+	li       r3, 0x224
+	bl       __nw__FUl
+	or.      r31, r3, r3
+	beq      lbl_80400728
+	bl       __ct__Q26Screen9SceneBaseFv
+	lis      r3, __vt__Q28Morimura9THIOScene@ha
+	lis      r4, __vt__Q28Morimura18TGameOverSceneBase@ha
+	addi     r0, r3, __vt__Q28Morimura9THIOScene@l
+	lis      r3, __vt__Q28Morimura14TLujiDownScene@ha
+	stw      r0, 0(r31)
+	li       r5, 0
+	addi     r4, r4, __vt__Q28Morimura18TGameOverSceneBase@l
+	addi     r0, r3, __vt__Q28Morimura14TLujiDownScene@l
+	stw      r5, 0x220(r31)
+	stw      r4, 0(r31)
+	stw      r0, 0(r31)
 
-	.loc_0x294:
-	  mr        r3, r31
-	  b         .loc_0x334
-	  li        r3, 0x224
-	  bl        -0x3DC9A0
-	  mr.       r31, r3
-	  beq-      .loc_0x2D0
-	  bl        0x50F40
-	  lis       r4, 0x804E
-	  lis       r3, 0x804E
-	  addi      r0, r4, 0x3F18
-	  li        r4, 0
-	  stw       r0, 0x0(r31)
-	  addi      r0, r3, 0x51A8
-	  stw       r4, 0x220(r31)
-	  stw       r0, 0x0(r31)
+lbl_80400728:
+	mr       r3, r31
+	b        lbl_804008D8
+	.global  lbl_80400730
 
-	.loc_0x2D0:
-	  mr        r3, r31
-	  b         .loc_0x334
-	  li        r3, 0x228
-	  bl        -0x3DC9DC
-	  mr.       r31, r3
-	  beq-      .loc_0x310
-	  bl        0x50F04
-	  lis       r4, 0x804E
-	  lis       r3, 0x804E
-	  addi      r0, r4, 0x3F18
-	  li        r4, 0
-	  stw       r0, 0x0(r31)
-	  addi      r0, r3, 0x5420
-	  stw       r4, 0x220(r31)
-	  stw       r0, 0x0(r31)
-	  stw       r4, 0x224(r31)
+lbl_80400730:
+	li       r3, 0x224
+	bl       __nw__FUl
+	or.      r31, r3, r3
+	beq      lbl_80400770
+	bl       __ct__Q26Screen9SceneBaseFv
+	lis      r3, __vt__Q28Morimura9THIOScene@ha
+	lis      r4, __vt__Q28Morimura18TGameOverSceneBase@ha
+	addi     r0, r3, __vt__Q28Morimura9THIOScene@l
+	lis      r3, __vt__Q28Morimura19TPresidentDownScene@ha
+	stw      r0, 0(r31)
+	li       r5, 0
+	addi     r4, r4, __vt__Q28Morimura18TGameOverSceneBase@l
+	addi     r0, r3, __vt__Q28Morimura19TPresidentDownScene@l
+	stw      r5, 0x220(r31)
+	stw      r4, 0(r31)
+	stw      r0, 0(r31)
 
-	.loc_0x310:
-	  mr        r3, r31
-	  b         .loc_0x334
-	  li        r3, 0x224
-	  bl        -0x3DCA1C
-	  mr.       r0, r3
-	  beq-      .loc_0x330
-	  bl        -0x80178
-	  mr        r0, r3
+lbl_80400770:
+	mr       r3, r31
+	b        lbl_804008D8
+	.global  lbl_80400778
 
-	.loc_0x330:
-	  mr        r3, r0
+lbl_80400778:
+	li       r3, 0x224
+	bl       __nw__FUl
+	or.      r31, r3, r3
+	beq      lbl_804007B8
+	bl       __ct__Q26Screen9SceneBaseFv
+	lis      r3, __vt__Q28Morimura9THIOScene@ha
+	lis      r4, __vt__Q28Morimura18TGameOverSceneBase@ha
+	addi     r0, r3, __vt__Q28Morimura9THIOScene@l
+	lis      r3, __vt__Q28Morimura16TPikminDownScene@ha
+	stw      r0, 0(r31)
+	li       r5, 0
+	addi     r4, r4, __vt__Q28Morimura18TGameOverSceneBase@l
+	addi     r0, r3, __vt__Q28Morimura16TPikminDownScene@l
+	stw      r5, 0x220(r31)
+	stw      r4, 0(r31)
+	stw      r0, 0(r31)
 
-	.loc_0x334:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_804007B8:
+	mr       r3, r31
+	b        lbl_804008D8
+	.global  lbl_804007C0
+
+lbl_804007C0:
+	li       r3, 0x228
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_804007D8
+	bl       __ct__Q28Morimura12TDEnemySceneFv
+	mr       r0, r3
+
+lbl_804007D8:
+	mr       r3, r0
+	b        lbl_804008D8
+	.global  lbl_804007E0
+
+lbl_804007E0:
+	li       r3, 0x228
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_804007F8
+	bl       __ct__Q28Morimura11TDItemSceneFv
+	mr       r0, r3
+
+lbl_804007F8:
+	mr       r3, r0
+	b        lbl_804008D8
+	.global  lbl_80400800
+
+lbl_80400800:
+	li       r3, 0x228
+	bl       __nw__FUl
+	or.      r31, r3, r3
+	beq      lbl_80400838
+	bl       __ct__Q26Screen9SceneBaseFv
+	lis      r4, __vt__Q28Morimura9THIOScene@ha
+	lis      r3, __vt__Q28Morimura21TChallengeSelectScene@ha
+	addi     r0, r4, __vt__Q28Morimura9THIOScene@l
+	li       r4, 0
+	stw      r0, 0(r31)
+	addi     r0, r3, __vt__Q28Morimura21TChallengeSelectScene@l
+	stw      r4, 0x220(r31)
+	stw      r0, 0(r31)
+	stw      r4, 0x224(r31)
+
+lbl_80400838:
+	mr       r3, r31
+	b        lbl_804008D8
+	.global  lbl_80400840
+
+lbl_80400840:
+	li       r3, 0x224
+	bl       __nw__FUl
+	or.      r31, r3, r3
+	beq      lbl_80400874
+	bl       __ct__Q26Screen9SceneBaseFv
+	lis      r4, __vt__Q28Morimura9THIOScene@ha
+	lis      r3, __vt__Q28Morimura21TChallengeResultScene@ha
+	addi     r0, r4, __vt__Q28Morimura9THIOScene@l
+	li       r4, 0
+	stw      r0, 0(r31)
+	addi     r0, r3, __vt__Q28Morimura21TChallengeResultScene@l
+	stw      r4, 0x220(r31)
+	stw      r0, 0(r31)
+
+lbl_80400874:
+	mr       r3, r31
+	b        lbl_804008D8
+	.global  lbl_8040087C
+
+lbl_8040087C:
+	li       r3, 0x228
+	bl       __nw__FUl
+	or.      r31, r3, r3
+	beq      lbl_804008B4
+	bl       __ct__Q26Screen9SceneBaseFv
+	lis      r4, __vt__Q28Morimura9THIOScene@ha
+	lis      r3, __vt__Q28Morimura14TVsSelectScene@ha
+	addi     r0, r4, __vt__Q28Morimura9THIOScene@l
+	li       r4, 0
+	stw      r0, 0(r31)
+	addi     r0, r3, __vt__Q28Morimura14TVsSelectScene@l
+	stw      r4, 0x220(r31)
+	stw      r0, 0(r31)
+	stw      r4, 0x224(r31)
+
+lbl_804008B4:
+	mr       r3, r31
+	b        lbl_804008D8
+	.global  lbl_804008BC
+
+lbl_804008BC:
+	li       r3, 0x224
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_804008D4
+	bl       __ct__Q28Morimura13THiScoreSceneFv
+	mr       r0, r3
+
+lbl_804008D4:
+	mr       r3, r0
+
+lbl_804008D8:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -571,31 +1008,30 @@ void newScreen::createScene_Morimura(long)
 void newScreen::Mgr::doGetSceneBase(long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  mr        r3, r31
-	  bl        -0x72C
-	  cmplwi    r3, 0
-	  bne-      .loc_0x2C
-	  mr        r3, r31
-	  bl        -0x370
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	mr       r3, r31
+	bl       createScene_Ogawa__9newScreenFl
+	cmplwi   r3, 0
+	bne      lbl_80400918
+	mr       r3, r31
+	bl       createScene_Morimura__9newScreenFl
 
-	.loc_0x2C:
-	  cmplwi    r3, 0
-	  bne-      .loc_0x3C
-	  mr        r3, r31
-	  bl        -0x4E50
+lbl_80400918:
+	cmplwi   r3, 0
+	bne      lbl_80400928
+	mr       r3, r31
+	bl       createScene_Koono__Q22kh6ScreenFl
 
-	.loc_0x3C:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80400928:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -607,52 +1043,51 @@ void newScreen::Mgr::doGetSceneBase(long)
 void newScreen::Mgr::create()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r3, 0xA8
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  bl        -0x3DCAAC
-	  mr.       r31, r3
-	  beq-      .loc_0x54
-	  bl        0x519F8
-	  lis       r4, 0x804F
-	  li        r3, -0x1
-	  subi      r4, r4, 0x56E4
-	  li        r0, 0
-	  stw       r4, 0x0(r31)
-	  stw       r3, 0x9C(r31)
-	  stw       r3, 0xA0(r31)
-	  stb       r0, 0x90(r31)
-	  stb       r0, 0x91(r31)
-	  stb       r0, 0x92(r31)
-	  stw       r0, 0x94(r31)
-	  stw       r0, 0x98(r31)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	li       r3, 0xa8
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	bl       __nw__FUl
+	or.      r31, r3, r3
+	beq      lbl_80400990
+	bl       __ct__Q26Screen3MgrFv
+	lis      r4, __vt__Q29newScreen3Mgr@ha
+	li       r3, -1
+	addi     r4, r4, __vt__Q29newScreen3Mgr@l
+	li       r0, 0
+	stw      r4, 0(r31)
+	stw      r3, 0x9c(r31)
+	stw      r3, 0xa0(r31)
+	stb      r0, 0x90(r31)
+	stb      r0, 0x91(r31)
+	stb      r0, 0x92(r31)
+	stw      r0, 0x94(r31)
+	stw      r0, 0x98(r31)
 
-	.loc_0x54:
-	  stw       r31, -0x6398(r13)
-	  mr        r3, r31
-	  bl        0x51BE8
-	  li        r0, 0
-	  mr        r3, r31
-	  stb       r0, 0xA0(r31)
-	  stb       r0, 0xA1(r31)
-	  stb       r0, 0xA2(r31)
-	  stb       r0, 0xA3(r31)
-	  lbz       r0, 0xA0(r31)
-	  stb       r0, 0x9C(r31)
-	  lbz       r0, 0xA1(r31)
-	  stb       r0, 0x9D(r31)
-	  lbz       r0, 0xA2(r31)
-	  stb       r0, 0x9E(r31)
-	  lbz       r0, 0xA3(r31)
-	  stb       r0, 0x9F(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80400990:
+	stw      r31, sScreenMgr__Q26Screen3Mgr@sda21(r13)
+	mr       r3, r31
+	bl       init__Q26Screen3MgrFv
+	li       r0, 0
+	mr       r3, r31
+	stb      r0, 0xa0(r31)
+	stb      r0, 0xa1(r31)
+	stb      r0, 0xa2(r31)
+	stb      r0, 0xa3(r31)
+	lbz      r0, 0xa0(r31)
+	stb      r0, 0x9c(r31)
+	lbz      r0, 0xa1(r31)
+	stb      r0, 0x9d(r31)
+	lbz      r0, 0xa2(r31)
+	stb      r0, 0x9e(r31)
+	lbz      r0, 0xa3(r31)
+	stb      r0, 0x9f(r31)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -666,55 +1101,54 @@ namespace Screen {
 Mgr::~Mgr()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x94
-	  lis       r3, 0x804F
-	  li        r0, 0
-	  subi      r4, r3, 0x28FC
-	  addi      r3, r30, 0x78
-	  stw       r4, 0x0(r30)
-	  li        r4, -0x1
-	  stw       r0, -0x6398(r13)
-	  bl        0x10B64
-	  addi      r3, r30, 0x60
-	  li        r4, -0x1
-	  bl        0x10B58
-	  addi      r3, r30, 0x44
-	  li        r4, -0x1
-	  bl        0x10B4C
-	  addi      r3, r30, 0x2C
-	  li        r4, -0x1
-	  bl        0x10B40
-	  cmplwi    r30, 0
-	  beq-      .loc_0x84
-	  lis       r4, 0x804F
-	  mr        r3, r30
-	  subi      r0, r4, 0x56B4
-	  li        r4, 0
-	  stw       r0, 0x0(r30)
-	  bl        -0x3E3A34
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_80400A7C
+	lis      r3, __vt__Q26Screen3Mgr@ha
+	li       r0, 0
+	addi     r4, r3, __vt__Q26Screen3Mgr@l
+	addi     r3, r30, 0x78
+	stw      r4, 0(r30)
+	li       r4, -1
+	stw      r0, sScreenMgr__Q26Screen3Mgr@sda21(r13)
+	bl       __dt__5CNodeFv
+	addi     r3, r30, 0x60
+	li       r4, -1
+	bl       __dt__5CNodeFv
+	addi     r3, r30, 0x44
+	li       r4, -1
+	bl       __dt__5CNodeFv
+	addi     r3, r30, 0x2c
+	li       r4, -1
+	bl       __dt__5CNodeFv
+	cmplwi   r30, 0
+	beq      lbl_80400A6C
+	lis      r4, __vt__Q26Screen7MgrBase@ha
+	mr       r3, r30
+	addi     r0, r4, __vt__Q26Screen7MgrBase@l
+	li       r4, 0
+	stw      r0, 0(r30)
+	bl       __dt__11JKRDisposerFv
 
-	.loc_0x84:
-	  extsh.    r0, r31
-	  ble-      .loc_0x94
-	  mr        r3, r30
-	  bl        -0x3DC9C4
+lbl_80400A6C:
+	extsh.   r0, r31
+	ble      lbl_80400A7C
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x94:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80400A7C:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -728,121 +1162,121 @@ Mgr::~Mgr()
 void newScreen::Mgr::drawBG(Graphics&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x80(r1)
-	  mflr      r0
-	  stw       r0, 0x84(r1)
-	  stfd      f31, 0x70(r1)
-	  psq_st    f31,0x78(r1),0,0
-	  stfd      f30, 0x60(r1)
-	  psq_st    f30,0x68(r1),0,0
-	  stfd      f29, 0x50(r1)
-	  psq_st    f29,0x58(r1),0,0
-	  stw       r31, 0x4C(r1)
-	  stw       r30, 0x48(r1)
-	  mr        r30, r3
-	  addi      r31, r4, 0x190
-	  lbz       r0, 0x9F(r3)
-	  lbz       r4, 0xA3(r3)
-	  cmplw     r0, r4
-	  ble-      .loc_0x64
-	  sub       r0, r0, r4
-	  srawi     r0, r0, 0x2
-	  addze     r3, r0
-	  addi      r0, r3, 0x1
-	  rlwinm    r0,r0,0,24,31
-	  add       r0, r4, r0
-	  stb       r0, 0xA3(r30)
-	  b         .loc_0x84
+	stwu     r1, -0x80(r1)
+	mflr     r0
+	stw      r0, 0x84(r1)
+	stfd     f31, 0x70(r1)
+	psq_st   f31, 120(r1), 0, qr0
+	stfd     f30, 0x60(r1)
+	psq_st   f30, 104(r1), 0, qr0
+	stfd     f29, 0x50(r1)
+	psq_st   f29, 88(r1), 0, qr0
+	stw      r31, 0x4c(r1)
+	stw      r30, 0x48(r1)
+	mr       r30, r3
+	addi     r31, r4, 0x190
+	lbz      r0, 0x9f(r3)
+	lbz      r4, 0xa3(r3)
+	cmplw    r0, r4
+	ble      lbl_80400AFC
+	subf     r0, r4, r0
+	srawi    r0, r0, 2
+	addze    r3, r0
+	addi     r0, r3, 1
+	clrlwi   r0, r0, 0x18
+	add      r0, r4, r0
+	stb      r0, 0xa3(r30)
+	b        lbl_80400B1C
 
-	.loc_0x64:
-	  bge-      .loc_0x84
-	  sub       r0, r4, r0
-	  srawi     r0, r0, 0x2
-	  addze     r3, r0
-	  addi      r0, r3, 0x1
-	  rlwinm    r0,r0,0,24,31
-	  sub       r0, r4, r0
-	  stb       r0, 0xA3(r30)
+lbl_80400AFC:
+	bge      lbl_80400B1C
+	subf     r0, r0, r4
+	srawi    r0, r0, 2
+	addze    r3, r0
+	addi     r0, r3, 1
+	clrlwi   r0, r0, 0x18
+	subf     r0, r0, r4
+	stb      r0, 0xa3(r30)
 
-	.loc_0x84:
-	  lbz       r0, 0xA3(r30)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x170
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  bl        0x226E8
-	  lhz       r3, 0x4(r3)
-	  lis       r0, 0x4330
-	  stw       r0, 0x30(r1)
-	  lfd       f1, 0x1CF0(r2)
-	  stw       r3, 0x34(r1)
-	  lfs       f30, 0x1CE8(r2)
-	  lfd       f0, 0x30(r1)
-	  fsubs     f31, f0, f1
-	  bl        0x226C4
-	  lhz       r3, 0x6(r3)
-	  lis       r0, 0x4330
-	  lwz       r4, 0xA4(r30)
-	  stw       r3, 0x3C(r1)
-	  lfd       f1, 0x1CF0(r2)
-	  cmpwi     r4, 0x1
-	  stw       r0, 0x38(r1)
-	  lfd       f0, 0x38(r1)
-	  fsubs     f29, f0, f1
-	  bne-      .loc_0x100
-	  lfs       f0, 0x1CEC(r2)
-	  fmuls     f29, f29, f0
-	  b         .loc_0x110
+lbl_80400B1C:
+	lbz      r0, 0xa3(r30)
+	cmplwi   r0, 0
+	beq      lbl_80400C08
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	bl       getRenderModeObj__6SystemFv
+	lhz      r3, 4(r3)
+	lis      r0, 0x4330
+	stw      r0, 0x30(r1)
+	lfd      f1, lbl_80520050@sda21(r2)
+	stw      r3, 0x34(r1)
+	lfs      f30, lbl_80520048@sda21(r2)
+	lfd      f0, 0x30(r1)
+	fsubs    f31, f0, f1
+	bl       getRenderModeObj__6SystemFv
+	lhz      r3, 6(r3)
+	lis      r0, 0x4330
+	lwz      r4, 0xa4(r30)
+	stw      r3, 0x3c(r1)
+	lfd      f1, lbl_80520050@sda21(r2)
+	cmpwi    r4, 1
+	stw      r0, 0x38(r1)
+	lfd      f0, 0x38(r1)
+	fsubs    f29, f0, f1
+	bne      lbl_80400B98
+	lfs      f0, lbl_8052004C@sda21(r2)
+	fmuls    f29, f29, f0
+	b        lbl_80400BA8
 
-	.loc_0x100:
-	  cmpwi     r4, 0x2
-	  bne-      .loc_0x110
-	  lfs       f0, 0x1CEC(r2)
-	  fmuls     f30, f0, f29
+lbl_80400B98:
+	cmpwi    r4, 2
+	bne      lbl_80400BA8
+	lfs      f0, lbl_8052004C@sda21(r2)
+	fmuls    f30, f0, f29
 
-	.loc_0x110:
-	  lwz       r0, 0xA0(r30)
-	  mr        r3, r31
-	  addi      r4, r1, 0x8
-	  addi      r5, r1, 0xC
-	  stw       r0, 0x18(r1)
-	  addi      r6, r1, 0x10
-	  addi      r7, r1, 0x14
-	  stw       r0, 0x14(r1)
-	  stw       r0, 0x10(r1)
-	  stw       r0, 0xC(r1)
-	  stw       r0, 0x8(r1)
-	  bl        -0x3CA548
-	  li        r3, 0
-	  bl        -0x317A84
-	  lfs       f2, 0x1CE8(r2)
-	  fadds     f0, f30, f29
-	  stfs      f30, 0x20(r1)
-	  mr        r3, r31
-	  fadds     f1, f2, f31
-	  addi      r4, r1, 0x1C
-	  stfs      f2, 0x1C(r1)
-	  stfs      f1, 0x24(r1)
-	  stfs      f0, 0x28(r1)
-	  bl        -0x3CA430
+lbl_80400BA8:
+	lwz      r0, 0xa0(r30)
+	mr       r3, r31
+	addi     r4, r1, 8
+	addi     r5, r1, 0xc
+	stw      r0, 0x18(r1)
+	addi     r6, r1, 0x10
+	addi     r7, r1, 0x14
+	stw      r0, 0x14(r1)
+	stw      r0, 0x10(r1)
+	stw      r0, 0xc(r1)
+	stw      r0, 8(r1)
+	bl
+setColor__14J2DGrafContextFQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColorQ28JUtility6TColor
+	li       r3, 0
+	bl       GXSetAlphaUpdate
+	lfs      f2, lbl_80520048@sda21(r2)
+	fadds    f0, f30, f29
+	stfs     f30, 0x20(r1)
+	mr       r3, r31
+	fadds    f1, f2, f31
+	addi     r4, r1, 0x1c
+	stfs     f2, 0x1c(r1)
+	stfs     f1, 0x24(r1)
+	stfs     f0, 0x28(r1)
+	bl       "fillBox__14J2DGrafContextFRCQ29JGeometry8TBox2<f>"
 
-	.loc_0x170:
-	  psq_l     f31,0x78(r1),0,0
-	  lfd       f31, 0x70(r1)
-	  psq_l     f30,0x68(r1),0,0
-	  lfd       f30, 0x60(r1)
-	  psq_l     f29,0x58(r1),0,0
-	  lfd       f29, 0x50(r1)
-	  lwz       r31, 0x4C(r1)
-	  lwz       r0, 0x84(r1)
-	  lwz       r30, 0x48(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x80
-	  blr
+lbl_80400C08:
+	psq_l    f31, 120(r1), 0, qr0
+	lfd      f31, 0x70(r1)
+	psq_l    f30, 104(r1), 0, qr0
+	lfd      f30, 0x60(r1)
+	psq_l    f29, 88(r1), 0, qr0
+	lfd      f29, 0x50(r1)
+	lwz      r31, 0x4c(r1)
+	lwz      r0, 0x84(r1)
+	lwz      r30, 0x48(r1)
+	mtlr     r0
+	addi     r1, r1, 0x80
+	blr
 	*/
 }
 
@@ -854,36 +1288,35 @@ void newScreen::Mgr::drawBG(Graphics&)
 void newScreen::Mgr::reset()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        0x519A4
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x4C
-	  li        r0, 0
-	  li        r3, 0x1
-	  stb       r0, 0x90(r31)
-	  stb       r0, 0x91(r31)
-	  stb       r0, 0x92(r31)
-	  stw       r0, 0x94(r31)
-	  stw       r0, 0x98(r31)
-	  stb       r0, 0x9F(r31)
-	  stb       r0, 0xA3(r31)
-	  stw       r0, 0xA4(r31)
-	  b         .loc_0x50
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       reset__Q26Screen3MgrFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80400C84
+	li       r0, 0
+	li       r3, 1
+	stb      r0, 0x90(r31)
+	stb      r0, 0x91(r31)
+	stb      r0, 0x92(r31)
+	stw      r0, 0x94(r31)
+	stw      r0, 0x98(r31)
+	stb      r0, 0x9f(r31)
+	stb      r0, 0xa3(r31)
+	stw      r0, 0xa4(r31)
+	b        lbl_80400C88
 
-	.loc_0x4C:
-	  li        r3, 0
+lbl_80400C84:
+	li       r3, 0
 
-	.loc_0x50:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80400C88:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -895,59 +1328,58 @@ void newScreen::Mgr::reset()
 newScreen::Mgr::~Mgr()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0xA4
-	  lis       r3, 0x804F
-	  subi      r0, r3, 0x56E4
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x94
-	  lis       r3, 0x804F
-	  li        r0, 0
-	  subi      r4, r3, 0x28FC
-	  addi      r3, r30, 0x78
-	  stw       r4, 0x0(r30)
-	  li        r4, -0x1
-	  stw       r0, -0x6398(r13)
-	  bl        0x108A0
-	  addi      r3, r30, 0x60
-	  li        r4, -0x1
-	  bl        0x10894
-	  addi      r3, r30, 0x44
-	  li        r4, -0x1
-	  bl        0x10888
-	  addi      r3, r30, 0x2C
-	  li        r4, -0x1
-	  bl        0x1087C
-	  cmplwi    r30, 0
-	  beq-      .loc_0x94
-	  lis       r4, 0x804F
-	  mr        r3, r30
-	  subi      r0, r4, 0x56B4
-	  li        r4, 0
-	  stw       r0, 0x0(r30)
-	  bl        -0x3E3CF8
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_80400D40
+	lis      r3, __vt__Q29newScreen3Mgr@ha
+	addi     r0, r3, __vt__Q29newScreen3Mgr@l
+	stw      r0, 0(r30)
+	beq      lbl_80400D30
+	lis      r3, __vt__Q26Screen3Mgr@ha
+	li       r0, 0
+	addi     r4, r3, __vt__Q26Screen3Mgr@l
+	addi     r3, r30, 0x78
+	stw      r4, 0(r30)
+	li       r4, -1
+	stw      r0, sScreenMgr__Q26Screen3Mgr@sda21(r13)
+	bl       __dt__5CNodeFv
+	addi     r3, r30, 0x60
+	li       r4, -1
+	bl       __dt__5CNodeFv
+	addi     r3, r30, 0x44
+	li       r4, -1
+	bl       __dt__5CNodeFv
+	addi     r3, r30, 0x2c
+	li       r4, -1
+	bl       __dt__5CNodeFv
+	cmplwi   r30, 0
+	beq      lbl_80400D30
+	lis      r4, __vt__Q26Screen7MgrBase@ha
+	mr       r3, r30
+	addi     r0, r4, __vt__Q26Screen7MgrBase@l
+	li       r4, 0
+	stw      r0, 0(r30)
+	bl       __dt__11JKRDisposerFv
 
-	.loc_0x94:
-	  extsh.    r0, r31
-	  ble-      .loc_0xA4
-	  mr        r3, r30
-	  bl        -0x3DCC88
+lbl_80400D30:
+	extsh.   r0, r31
+	ble      lbl_80400D40
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0xA4:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80400D40:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -959,16 +1391,15 @@ newScreen::Mgr::~Mgr()
 void newScreen::Mgr::setColorBG(JUtility::TColor&)
 {
 	/*
-	.loc_0x0:
-	  lbz       r0, 0x0(r4)
-	  stb       r0, 0x9C(r3)
-	  lbz       r0, 0x1(r4)
-	  stb       r0, 0x9D(r3)
-	  lbz       r0, 0x2(r4)
-	  stb       r0, 0x9E(r3)
-	  lbz       r0, 0x3(r4)
-	  stb       r0, 0x9F(r3)
-	  blr
+	lbz      r0, 0(r4)
+	stb      r0, 0x9c(r3)
+	lbz      r0, 1(r4)
+	stb      r0, 0x9d(r3)
+	lbz      r0, 2(r4)
+	stb      r0, 0x9e(r3)
+	lbz      r0, 3(r4)
+	stb      r0, 0x9f(r3)
+	blr
 	*/
 }
 
@@ -1000,33 +1431,32 @@ void Mgr::drawWipe(Graphics&) { }
 MgrBase::~MgrBase()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x44
-	  lis       r5, 0x804F
-	  li        r4, 0
-	  subi      r0, r5, 0x56B4
-	  stw       r0, 0x0(r30)
-	  bl        -0x3E3D88
-	  extsh.    r0, r31
-	  ble-      .loc_0x44
-	  mr        r3, r30
-	  bl        -0x3DCD18
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_80400DD0
+	lis      r5, __vt__Q26Screen7MgrBase@ha
+	li       r4, 0
+	addi     r0, r5, __vt__Q26Screen7MgrBase@l
+	stw      r0, 0(r30)
+	bl       __dt__11JKRDisposerFv
+	extsh.   r0, r31
+	ble      lbl_80400DD0
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x44:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80400DD0:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1040,10 +1470,9 @@ MgrBase::~MgrBase()
 void Morimura::TPikminDownScene::getResName() const
 {
 	/*
-	.loc_0x0:
-	  lis       r3, 0x804A
-	  subi      r3, r3, 0x7A48
-	  blr
+	lis      r3, lbl_804985B8@ha
+	addi     r3, r3, lbl_804985B8@l
+	blr
 	*/
 }
 
@@ -1055,41 +1484,40 @@ void Morimura::TPikminDownScene::getResName() const
 void Morimura::TPikminDownScene::doCreateObj(JKRArchive*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  mr        r30, r4
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  li        r3, 0x90
-	  bl        -0x3DCF78
-	  mr.       r31, r3
-	  beq-      .loc_0x50
-	  lis       r4, 0x804A
-	  subi      r4, r4, 0x7A34
-	  bl        -0xB8EE8
-	  lis       r3, 0x804E
-	  subi      r3, r3, 0x49F4
-	  stw       r3, 0x0(r31)
-	  addi      r0, r3, 0x10
-	  stw       r0, 0x18(r31)
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	mr       r30, r4
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	li       r3, 0x90
+	bl       __nw__FUl
+	or.      r31, r3, r3
+	beq      lbl_80400E48
+	lis      r4, lbl_804985CC@ha
+	addi     r4, r4, lbl_804985CC@l
+	bl       __ct__Q28Morimura13TGameOverBaseFPc
+	lis      r3, __vt__Q28Morimura13TPikminDown2D@ha
+	addi     r3, r3, __vt__Q28Morimura13TPikminDown2D@l
+	stw      r3, 0(r31)
+	addi     r0, r3, 0x10
+	stw      r0, 0x18(r31)
 
-	.loc_0x50:
-	  mr        r3, r29
-	  mr        r4, r31
-	  mr        r5, r30
-	  bl        0x50F20
-	  stw       r31, 0x220(r29)
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80400E48:
+	mr       r3, r29
+	mr       r4, r31
+	mr       r5, r30
+	bl       registObj__Q26Screen9SceneBaseFPQ26Screen7ObjBaseP10JKRArchive
+	stw      r31, 0x220(r29)
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -1115,10 +1543,9 @@ u32 Morimura::TPikminDownScene::getSceneType() { return 0x272F; }
 void Morimura::TPikminDownScene::getOwnerID()
 {
 	/*
-	.loc_0x0:
-	  lis       r3, 0x4D52
-	  addi      r3, r3, 0x4D52
-	  blr
+	lis      r3, 0x4D524D52@ha
+	addi     r3, r3, 0x4D524D52@l
+	blr
 	*/
 }
 
@@ -1130,12 +1557,11 @@ void Morimura::TPikminDownScene::getOwnerID()
 void Morimura::TPikminDownScene::getMemberID()
 {
 	/*
-	.loc_0x0:
-	  lis       r4, 0x4552
-	  lis       r3, 0x47
-	  addi      r4, r4, 0x3244
-	  addi      r3, r3, 0x4F56
-	  blr
+	lis      r4, 0x45523244@ha
+	lis      r3, 0x00474F56@ha
+	addi     r4, r4, 0x45523244@l
+	addi     r3, r3, 0x00474F56@l
+	blr
 	*/
 }
 
@@ -1147,10 +1573,9 @@ void Morimura::TPikminDownScene::getMemberID()
 void Morimura::TPresidentDownScene::getResName() const
 {
 	/*
-	.loc_0x0:
-	  lis       r3, 0x804A
-	  subi      r3, r3, 0x7A28
-	  blr
+	lis      r3, lbl_804985D8@ha
+	addi     r3, r3, lbl_804985D8@l
+	blr
 	*/
 }
 
@@ -1162,41 +1587,40 @@ void Morimura::TPresidentDownScene::getResName() const
 void Morimura::TPresidentDownScene::doCreateObj(JKRArchive*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  mr        r30, r4
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  li        r3, 0x90
-	  bl        -0x3DD034
-	  mr.       r31, r3
-	  beq-      .loc_0x50
-	  lis       r4, 0x804A
-	  subi      r4, r4, 0x7A10
-	  bl        -0xB8FA4
-	  lis       r3, 0x804E
-	  subi      r3, r3, 0x4978
-	  stw       r3, 0x0(r31)
-	  addi      r0, r3, 0x10
-	  stw       r0, 0x18(r31)
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	mr       r30, r4
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	li       r3, 0x90
+	bl       __nw__FUl
+	or.      r31, r3, r3
+	beq      lbl_80400F04
+	lis      r4, lbl_804985F0@ha
+	addi     r4, r4, lbl_804985F0@l
+	bl       __ct__Q28Morimura13TGameOverBaseFPc
+	lis      r3, __vt__Q28Morimura16TPresidentDown2D@ha
+	addi     r3, r3, __vt__Q28Morimura16TPresidentDown2D@l
+	stw      r3, 0(r31)
+	addi     r0, r3, 0x10
+	stw      r0, 0x18(r31)
 
-	.loc_0x50:
-	  mr        r3, r29
-	  mr        r4, r31
-	  mr        r5, r30
-	  bl        0x50E64
-	  stw       r31, 0x220(r29)
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80400F04:
+	mr       r3, r29
+	mr       r4, r31
+	mr       r5, r30
+	bl       registObj__Q26Screen9SceneBaseFPQ26Screen7ObjBaseP10JKRArchive
+	stw      r31, 0x220(r29)
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -1215,10 +1639,9 @@ u32 Morimura::TPresidentDownScene::getSceneType() { return 0x2732; }
 void Morimura::TPresidentDownScene::getOwnerID()
 {
 	/*
-	.loc_0x0:
-	  lis       r3, 0x4D52
-	  addi      r3, r3, 0x4D52
-	  blr
+	lis      r3, 0x4D524D52@ha
+	addi     r3, r3, 0x4D524D52@l
+	blr
 	*/
 }
 
@@ -1230,12 +1653,11 @@ void Morimura::TPresidentDownScene::getOwnerID()
 void Morimura::TPresidentDownScene::getMemberID()
 {
 	/*
-	.loc_0x0:
-	  lis       r4, 0x4552
-	  lis       r3, 0x47
-	  addi      r4, r4, 0x3244
-	  addi      r3, r3, 0x4F56
-	  blr
+	lis      r4, 0x45523244@ha
+	lis      r3, 0x00474F56@ha
+	addi     r4, r4, 0x45523244@l
+	addi     r3, r3, 0x00474F56@l
+	blr
 	*/
 }
 
@@ -1247,30 +1669,29 @@ void Morimura::TPresidentDownScene::getMemberID()
 void Morimura::TGameOverSceneBase::isUseBackupSceneInfo()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r3, -0x6D20(r13)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x38
-	  bl        -0x2A5E10
-	  li        r0, 0x1
-	  srawi     r5, r3, 0x1F
-	  rlwinm    r4,r0,1,31,31
-	  subc      r0, r3, r0
-	  adde      r0, r5, r4
-	  rlwinm    r3,r0,0,24,31
-	  b         .loc_0x3C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r3, naviMgr__4Game@sda21(r13)
+	cmplwi   r3, 0
+	beq      lbl_80400F94
+	bl       getAliveCount__Q24Game7NaviMgrFv
+	li       r0, 1
+	srawi    r5, r3, 0x1f
+	srwi     r4, r0, 0x1f
+	subfc    r0, r0, r3
+	adde     r0, r5, r4
+	clrlwi   r3, r0, 0x18
+	b        lbl_80400F98
 
-	.loc_0x38:
-	  li        r3, 0x1
+lbl_80400F94:
+	li       r3, 1
 
-	.loc_0x3C:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80400F98:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1282,10 +1703,9 @@ void Morimura::TGameOverSceneBase::isUseBackupSceneInfo()
 void Morimura::TLujiDownScene::getResName() const
 {
 	/*
-	.loc_0x0:
-	  lis       r3, 0x804A
-	  subi      r3, r3, 0x7A00
-	  blr
+	lis      r3, lbl_80498600@ha
+	addi     r3, r3, lbl_80498600@l
+	blr
 	*/
 }
 
@@ -1297,41 +1717,40 @@ void Morimura::TLujiDownScene::getResName() const
 void Morimura::TLujiDownScene::doCreateObj(JKRArchive*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  mr        r30, r4
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  li        r3, 0x90
-	  bl        -0x3DD134
-	  mr.       r31, r3
-	  beq-      .loc_0x50
-	  lis       r4, 0x804A
-	  subi      r4, r4, 0x79EC
-	  bl        -0xB90A4
-	  lis       r3, 0x804E
-	  subi      r3, r3, 0x48FC
-	  stw       r3, 0x0(r31)
-	  addi      r0, r3, 0x10
-	  stw       r0, 0x18(r31)
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	mr       r30, r4
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	li       r3, 0x90
+	bl       __nw__FUl
+	or.      r31, r3, r3
+	beq      lbl_80401004
+	lis      r4, lbl_80498614@ha
+	addi     r4, r4, lbl_80498614@l
+	bl       __ct__Q28Morimura13TGameOverBaseFPc
+	lis      r3, __vt__Q28Morimura11TLujiDown2D@ha
+	addi     r3, r3, __vt__Q28Morimura11TLujiDown2D@l
+	stw      r3, 0(r31)
+	addi     r0, r3, 0x10
+	stw      r0, 0x18(r31)
 
-	.loc_0x50:
-	  mr        r3, r29
-	  mr        r4, r31
-	  mr        r5, r30
-	  bl        0x50D64
-	  stw       r31, 0x220(r29)
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80401004:
+	mr       r3, r29
+	mr       r4, r31
+	mr       r5, r30
+	bl       registObj__Q26Screen9SceneBaseFPQ26Screen7ObjBaseP10JKRArchive
+	stw      r31, 0x220(r29)
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -1350,10 +1769,9 @@ u32 Morimura::TLujiDownScene::getSceneType() { return 0x2731; }
 void Morimura::TLujiDownScene::getOwnerID()
 {
 	/*
-	.loc_0x0:
-	  lis       r3, 0x4D52
-	  addi      r3, r3, 0x4D52
-	  blr
+	lis      r3, 0x4D524D52@ha
+	addi     r3, r3, 0x4D524D52@l
+	blr
 	*/
 }
 
@@ -1365,12 +1783,11 @@ void Morimura::TLujiDownScene::getOwnerID()
 void Morimura::TLujiDownScene::getMemberID()
 {
 	/*
-	.loc_0x0:
-	  lis       r4, 0x4552
-	  lis       r3, 0x47
-	  addi      r4, r4, 0x3244
-	  addi      r3, r3, 0x4F56
-	  blr
+	lis      r4, 0x45523244@ha
+	lis      r3, 0x00474F56@ha
+	addi     r4, r4, 0x45523244@l
+	addi     r3, r3, 0x00474F56@l
+	blr
 	*/
 }
 
@@ -1382,10 +1799,9 @@ void Morimura::TLujiDownScene::getMemberID()
 void Morimura::TOrimaDownScene::getResName() const
 {
 	/*
-	.loc_0x0:
-	  lis       r3, 0x804A
-	  subi      r3, r3, 0x79E0
-	  blr
+	lis      r3, lbl_80498620@ha
+	addi     r3, r3, lbl_80498620@l
+	blr
 	*/
 }
 
@@ -1397,41 +1813,40 @@ void Morimura::TOrimaDownScene::getResName() const
 void Morimura::TOrimaDownScene::doCreateObj(JKRArchive*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  mr        r30, r4
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  li        r3, 0x90
-	  bl        -0x3DD1E8
-	  mr.       r31, r3
-	  beq-      .loc_0x50
-	  lis       r4, 0x804A
-	  subi      r4, r4, 0x79CC
-	  bl        -0xB9158
-	  lis       r3, 0x804E
-	  subi      r3, r3, 0x4880
-	  stw       r3, 0x0(r31)
-	  addi      r0, r3, 0x10
-	  stw       r0, 0x18(r31)
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	mr       r30, r4
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	li       r3, 0x90
+	bl       __nw__FUl
+	or.      r31, r3, r3
+	beq      lbl_804010B8
+	lis      r4, lbl_80498634@ha
+	addi     r4, r4, lbl_80498634@l
+	bl       __ct__Q28Morimura13TGameOverBaseFPc
+	lis      r3, __vt__Q28Morimura12TOrimaDown2D@ha
+	addi     r3, r3, __vt__Q28Morimura12TOrimaDown2D@l
+	stw      r3, 0(r31)
+	addi     r0, r3, 0x10
+	stw      r0, 0x18(r31)
 
-	.loc_0x50:
-	  mr        r3, r29
-	  mr        r4, r31
-	  mr        r5, r30
-	  bl        0x50CB0
-	  stw       r31, 0x220(r29)
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_804010B8:
+	mr       r3, r29
+	mr       r4, r31
+	mr       r5, r30
+	bl       registObj__Q26Screen9SceneBaseFPQ26Screen7ObjBaseP10JKRArchive
+	stw      r31, 0x220(r29)
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -1450,10 +1865,9 @@ u32 Morimura::TOrimaDownScene::getSceneType() { return 0x2730; }
 void Morimura::TOrimaDownScene::getOwnerID()
 {
 	/*
-	.loc_0x0:
-	  lis       r3, 0x4D52
-	  addi      r3, r3, 0x4D52
-	  blr
+	lis      r3, 0x4D524D52@ha
+	addi     r3, r3, 0x4D524D52@l
+	blr
 	*/
 }
 
@@ -1465,12 +1879,11 @@ void Morimura::TOrimaDownScene::getOwnerID()
 void Morimura::TOrimaDownScene::getMemberID()
 {
 	/*
-	.loc_0x0:
-	  lis       r4, 0x4552
-	  lis       r3, 0x47
-	  addi      r4, r4, 0x3244
-	  addi      r3, r3, 0x4F56
-	  blr
+	lis      r4, 0x45523244@ha
+	lis      r3, 0x00474F56@ha
+	addi     r4, r4, 0x45523244@l
+	addi     r3, r3, 0x00474F56@l
+	blr
 	*/
 }
 
@@ -1482,10 +1895,9 @@ void Morimura::TOrimaDownScene::getMemberID()
 void Morimura::TGameOverScene::getResName() const
 {
 	/*
-	.loc_0x0:
-	  lis       r3, 0x804A
-	  subi      r3, r3, 0x79C0
-	  blr
+	lis      r3, lbl_80498640@ha
+	addi     r3, r3, lbl_80498640@l
+	blr
 	*/
 }
 
@@ -1497,41 +1909,40 @@ void Morimura::TGameOverScene::getResName() const
 void Morimura::TGameOverScene::doCreateObj(JKRArchive*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  mr        r30, r4
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  li        r3, 0x90
-	  bl        -0x3DD29C
-	  mr.       r31, r3
-	  beq-      .loc_0x50
-	  lis       r4, 0x804A
-	  subi      r4, r4, 0x79AC
-	  bl        -0xB920C
-	  lis       r3, 0x804E
-	  subi      r3, r3, 0x4804
-	  stw       r3, 0x0(r31)
-	  addi      r0, r3, 0x10
-	  stw       r0, 0x18(r31)
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	mr       r30, r4
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	li       r3, 0x90
+	bl       __nw__FUl
+	or.      r31, r3, r3
+	beq      lbl_8040116C
+	lis      r4, lbl_80498654@ha
+	addi     r4, r4, lbl_80498654@l
+	bl       __ct__Q28Morimura13TGameOverBaseFPc
+	lis      r3, __vt__Q28Morimura11TGameOver2D@ha
+	addi     r3, r3, __vt__Q28Morimura11TGameOver2D@l
+	stw      r3, 0(r31)
+	addi     r0, r3, 0x10
+	stw      r0, 0x18(r31)
 
-	.loc_0x50:
-	  mr        r3, r29
-	  mr        r4, r31
-	  mr        r5, r30
-	  bl        0x50BFC
-	  stw       r31, 0x220(r29)
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8040116C:
+	mr       r3, r29
+	mr       r4, r31
+	mr       r5, r30
+	bl       registObj__Q26Screen9SceneBaseFPQ26Screen7ObjBaseP10JKRArchive
+	stw      r31, 0x220(r29)
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -1557,10 +1968,9 @@ u32 Morimura::TGameOverScene::getSceneType() { return 0x272F; }
 void Morimura::TGameOverScene::getOwnerID()
 {
 	/*
-	.loc_0x0:
-	  lis       r3, 0x4D52
-	  addi      r3, r3, 0x4D52
-	  blr
+	lis      r3, 0x4D524D52@ha
+	addi     r3, r3, 0x4D524D52@l
+	blr
 	*/
 }
 
@@ -1572,12 +1982,11 @@ void Morimura::TGameOverScene::getOwnerID()
 void Morimura::TGameOverScene::getMemberID()
 {
 	/*
-	.loc_0x0:
-	  lis       r4, 0x4552
-	  lis       r3, 0x47
-	  addi      r4, r4, 0x3244
-	  addi      r3, r3, 0x4F56
-	  blr
+	lis      r4, 0x45523244@ha
+	lis      r3, 0x00474F56@ha
+	addi     r4, r4, 0x45523244@l
+	addi     r3, r3, 0x00474F56@l
+	blr
 	*/
 }
 
@@ -1589,10 +1998,9 @@ void Morimura::TGameOverScene::getMemberID()
 void Morimura::THurryUpScene::getResName() const
 {
 	/*
-	.loc_0x0:
-	  lis       r3, 0x804A
-	  subi      r3, r3, 0x79A0
-	  blr
+	lis      r3, lbl_80498660@ha
+	addi     r3, r3, lbl_80498660@l
+	blr
 	*/
 }
 
@@ -1604,35 +2012,34 @@ void Morimura::THurryUpScene::getResName() const
 void Morimura::THurryUpScene::doCreateObj(JKRArchive*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  mr        r30, r4
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  li        r3, 0x118
-	  bl        -0x3DD358
-	  mr.       r31, r3
-	  beq-      .loc_0x38
-	  bl        -0xBADD8
-	  mr        r31, r3
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	mr       r30, r4
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	li       r3, 0x118
+	bl       __nw__FUl
+	or.      r31, r3, r3
+	beq      lbl_80401210
+	bl       __ct__Q28Morimura10THurryUp2DFv
+	mr       r31, r3
 
-	.loc_0x38:
-	  mr        r3, r29
-	  mr        r4, r31
-	  mr        r5, r30
-	  bl        0x50B58
-	  stw       r31, 0x220(r29)
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80401210:
+	mr       r3, r29
+	mr       r4, r31
+	mr       r5, r30
+	bl       registObj__Q26Screen9SceneBaseFPQ26Screen7ObjBaseP10JKRArchive
+	stw      r31, 0x220(r29)
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -1651,10 +2058,9 @@ u32 Morimura::THurryUpScene::getSceneType() { return 0x272E; }
 void Morimura::THurryUpScene::getOwnerID()
 {
 	/*
-	.loc_0x0:
-	  lis       r3, 0x4D52
-	  addi      r3, r3, 0x4D52
-	  blr
+	lis      r3, 0x4D524D52@ha
+	addi     r3, r3, 0x4D524D52@l
+	blr
 	*/
 }
 
@@ -1666,11 +2072,10 @@ void Morimura::THurryUpScene::getOwnerID()
 void Morimura::THurryUpScene::getMemberID()
 {
 	/*
-	.loc_0x0:
-	  lis       r4, 0x5259
-	  lis       r3, 0x48
-	  addi      r4, r4, 0x5550
-	  addi      r3, r3, 0x5552
-	  blr
+	lis      r4, 0x52595550@ha
+	lis      r3, 0x00485552@ha
+	addi     r4, r4, 0x52595550@l
+	addi     r3, r3, 0x00485552@l
+	blr
 	*/
 }

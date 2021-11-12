@@ -1,5 +1,66 @@
 #include "types.h"
 
+/*
+    Generated from dpostproc
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_8048EE98
+    lbl_8048EE98:
+        .4byte 0x6F675363
+        .4byte 0x656E6541
+        .4byte 0x6E614465
+        .4byte 0x6D6F2E63
+        .4byte 0x70700000
+    .global lbl_8048EEAC
+    lbl_8048EEAC:
+        .4byte 0x93B48C41
+        .4byte 0x8381836A
+        .4byte 0x8385815B
+        .4byte 0x82C582CD
+        .4byte 0x82A082E8
+        .4byte 0x82DC82B9
+        .4byte 0x82F18149
+        .4byte 0x0A000000
+    .global lbl_8048EECC
+    lbl_8048EECC:
+        .4byte 0x616E6120
+        .4byte 0x64656D6F
+        .4byte 0x20736372
+        .4byte 0x65656E00
+    .global lbl_8048EEDC
+    lbl_8048EEDC:
+        .4byte 0x7265735F
+        .4byte 0x616E615F
+        .4byte 0x64656D6F
+        .4byte 0x2E737A73
+        .4byte 0x00000000
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__Q32og9newScreen7AnaDemo
+    __vt__Q32og9newScreen7AnaDemo:
+        .4byte 0
+        .4byte 0
+        .4byte getSceneType__Q32og9newScreen7AnaDemoFv
+        .4byte getOwnerID__Q32og9newScreen7AnaDemoFv
+        .4byte getMemberID__Q32og9newScreen7AnaDemoFv
+        .4byte isUseBackupSceneInfo__Q32og9newScreen7AnaDemoFv
+        .4byte isDrawInDemo__Q26Screen9SceneBaseCFv
+        .4byte getResName__Q32og9newScreen7AnaDemoCFv
+        .4byte doCreateObj__Q32og9newScreen7AnaDemoFP10JKRArchive
+        .4byte
+   doUserCallBackFunc__Q32og9newScreen7AnaDemoFPQ28Resource10MgrCommand .4byte
+   setPort__Q26Screen9SceneBaseFR8Graphics .4byte
+   doUpdateActive__Q26Screen9SceneBaseFv .4byte
+   doConfirmSetScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg .4byte
+   doConfirmStartScene__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg .4byte
+   doConfirmEndScene__Q26Screen9SceneBaseFRPQ26Screen11EndSceneArg .4byte
+   doStart__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg .4byte
+   doEnd__Q26Screen9SceneBaseFPQ26Screen11EndSceneArg .4byte
+   setDefaultDispMember__Q26Screen9SceneBaseFv .4byte
+   doSetBackupScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg .4byte
+   doGetFinishState__Q26Screen9SceneBaseFv
+*/
+
 namespace og {
 
 /*
@@ -10,45 +71,44 @@ namespace og {
 newScreen::AnaDemo::AnaDemo(long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  bl        0x132D1C
-	  subi      r0, r31, 0x271F
-	  lis       r3, 0x804E
-	  subi      r3, r3, 0x6B90
-	  cmplwi    r0, 0x1
-	  stw       r3, 0x0(r30)
-	  ble-      .loc_0x40
-	  cmpwi     r31, 0x2721
-	  bne-      .loc_0x48
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	bl       __ct__Q26Screen9SceneBaseFv
+	addi     r0, r31, -10015
+	lis      r3, __vt__Q32og9newScreen7AnaDemo@ha
+	addi     r3, r3, __vt__Q32og9newScreen7AnaDemo@l
+	cmplwi   r0, 1
+	stw      r3, 0(r30)
+	ble      lbl_8031EA98
+	cmpwi    r31, 0x2721
+	bne      lbl_8031EAA0
 
-	.loc_0x40:
-	  stw       r31, 0x220(r30)
-	  b         .loc_0x64
+lbl_8031EA98:
+	stw      r31, 0x220(r30)
+	b        lbl_8031EABC
 
-	.loc_0x48:
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  subi      r3, r3, 0x1168
-	  li        r4, 0x23
-	  subi      r5, r5, 0x1154
-	  crclr     6, 0x6
-	  bl        -0x2F4478
+lbl_8031EAA0:
+	lis      r3, lbl_8048EE98@ha
+	lis      r5, lbl_8048EEAC@ha
+	addi     r3, r3, lbl_8048EE98@l
+	li       r4, 0x23
+	addi     r5, r5, lbl_8048EEAC@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x64:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8031EABC:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -77,39 +137,38 @@ void newScreen::AnaDemo::doUserCallBackFunc(Resource::MgrCommand*) { }
 void newScreen::AnaDemo::doCreateObj(JKRArchive*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  li        r3, 0x94
-	  bl        -0x2FAC58
-	  mr.       r4, r3
-	  beq-      .loc_0x3C
-	  lis       r4, 0x8049
-	  subi      r4, r4, 0x1134
-	  bl        -0x1CF4
-	  mr        r4, r3
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	li       r3, 0x94
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_8031EB18
+	lis      r4, lbl_8048EECC@ha
+	addi     r4, r4, lbl_8048EECC@l
+	bl       __ct__Q32og9newScreen10ObjAnaDemoFPCc
+	mr       r4, r3
 
-	.loc_0x3C:
-	  mr        r3, r30
-	  mr        r5, r31
-	  bl        0x133254
-	  mr        r3, r30
-	  li        r4, 0
-	  li        r5, 0
-	  li        r6, 0
-	  li        r7, 0x96
-	  bl        0x13374C
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8031EB18:
+	mr       r3, r30
+	mr       r5, r31
+	bl       registObj__Q26Screen9SceneBaseFPQ26Screen7ObjBaseP10JKRArchive
+	mr       r3, r30
+	li       r4, 0
+	li       r5, 0
+	li       r6, 0
+	li       r7, 0x96
+	bl       setColorBG__Q26Screen9SceneBaseFUcUcUcUc
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -121,10 +180,9 @@ void newScreen::AnaDemo::doCreateObj(JKRArchive*)
 void newScreen::AnaDemo::getResName() const
 {
 	/*
-	.loc_0x0:
-	  lis       r3, 0x8049
-	  subi      r3, r3, 0x1124
-	  blr
+	lis      r3, lbl_8048EEDC@ha
+	addi     r3, r3, lbl_8048EEDC@l
+	blr
 	*/
 }
 
@@ -136,9 +194,8 @@ void newScreen::AnaDemo::getResName() const
 void newScreen::AnaDemo::getSceneType(void)
 {
 	/*
-	.loc_0x0:
-	  lwz       r3, 0x220(r3)
-	  blr
+	lwz      r3, 0x220(r3)
+	blr
 	*/
 }
 
@@ -150,10 +207,9 @@ void newScreen::AnaDemo::getSceneType(void)
 void newScreen::AnaDemo::getOwnerID(void)
 {
 	/*
-	.loc_0x0:
-	  lis       r3, 0x4F
-	  addi      r3, r3, 0x4741
-	  blr
+	lis      r3, 0x004F4741@ha
+	addi     r3, r3, 0x004F4741@l
+	blr
 	*/
 }
 
@@ -165,42 +221,41 @@ void newScreen::AnaDemo::getOwnerID(void)
 void newScreen::AnaDemo::getMemberID(void)
 {
 	/*
-	.loc_0x0:
-	  lwz       r0, 0x220(r3)
-	  li        r4, 0
-	  li        r3, 0
-	  cmpwi     r0, 0x2720
-	  beq-      .loc_0x44
-	  bge-      .loc_0x24
-	  cmpwi     r0, 0x271F
-	  bge-      .loc_0x30
-	  blr
+	lwz      r0, 0x220(r3)
+	li       r4, 0
+	li       r3, 0
+	cmpwi    r0, 0x2720
+	beq      lbl_8031EBB8
+	bge      lbl_8031EB98
+	cmpwi    r0, 0x271f
+	bge      lbl_8031EBA4
+	blr
 
-	.loc_0x24:
-	  cmpwi     r0, 0x2722
-	  bgelr-
-	  b         .loc_0x58
+lbl_8031EB98:
+	cmpwi    r0, 0x2722
+	bgelr
+	b        lbl_8031EBCC
 
-	.loc_0x30:
-	  lis       r4, 0x4445
-	  lis       r3, 0x414E
-	  addi      r4, r4, 0x4D4F
-	  addi      r3, r3, 0x415F
-	  blr
+lbl_8031EBA4:
+	lis      r4, 0x44454D4F@ha
+	lis      r3, 0x414E415F@ha
+	addi     r4, r4, 0x44454D4F@l
+	addi     r3, r3, 0x414E415F@l
+	blr
 
-	.loc_0x44:
-	  lis       r4, 0x4B45
-	  lis       r3, 0x4B
-	  addi      r4, r4, 0x5455
-	  addi      r3, r3, 0x414E
-	  blr
+lbl_8031EBB8:
+	lis      r4, 0x4B455455@ha
+	lis      r3, 0x004B414E@ha
+	addi     r4, r4, 0x4B455455@l
+	addi     r3, r3, 0x004B414E@l
+	blr
 
-	.loc_0x58:
-	  lis       r4, 0x4D4F
-	  lis       r3, 0x4341
-	  addi      r4, r4, 0x5245
-	  addi      r3, r3, 0x5645
-	  blr
+lbl_8031EBCC:
+	lis      r4, 0x4D4F5245@ha
+	lis      r3, 0x43415645@ha
+	addi     r4, r4, 0x4D4F5245@l
+	addi     r3, r3, 0x43415645@l
+	blr
 	*/
 }
 

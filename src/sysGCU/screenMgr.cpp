@@ -1,5 +1,174 @@
 #include "types.h"
 
+/*
+    Generated from dpostproc
+
+    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
+        .4byte __sinit_screenMgr_cpp
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_8049B8C8
+    lbl_8049B8C8:
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+    .global lbl_8049B8D4
+    lbl_8049B8D4:
+        .4byte 0x73637265
+        .4byte 0x656E4D67
+        .4byte 0x722E6370
+        .4byte 0x70000000
+    .global lbl_8049B8E4
+    lbl_8049B8E4:
+        .asciz "P2Assert"
+        .skip 3
+        .4byte 0x64697370
+        .4byte 0x4D656D62
+        .4byte 0x65725B25
+        .4byte 0x735D2053
+        .4byte 0x697A6520
+        .4byte 0x6F766572
+        .4byte 0x2E200A20
+        .4byte 0x2564206D
+        .4byte 0x61783A25
+        .4byte 0x64000000
+        .4byte 0x53657453
+        .4byte 0x63656E65
+        .4byte 0x00000000
+        .4byte 0x53746172
+        .4byte 0x74536365
+        .4byte 0x6E650000
+        .4byte 0x456E6453
+        .4byte 0x63656E65
+        .4byte 0x00000000
+    .global lbl_8049B93C
+    lbl_8049B93C:
+        .4byte 0x63616E27
+        .4byte 0x74207265
+        .4byte 0x7365742E
+        .4byte 0x206F776E
+        .4byte 0x65725B25
+        .4byte 0x735D2020
+        .4byte 0x6D656D62
+        .4byte 0x65725B25
+        .4byte 0x735D0A00
+        .4byte 0x63616E27
+        .4byte 0x74207374
+        .4byte 0x61727453
+        .4byte 0x63656E65
+        .4byte 0x2E0A206F
+        .4byte 0x776E6572
+        .4byte 0x5B25735D
+        .4byte 0x206D656D
+        .4byte 0x6265725B
+        .4byte 0x25735D0A
+        .4byte 0x00000000
+        .4byte 0x73637265
+        .4byte 0x656E2063
+        .4byte 0x6F6D6D61
+        .4byte 0x6E642062
+        .4byte 0x75666665
+        .4byte 0x72206973
+        .4byte 0x20656D70
+        .4byte 0x74792E0A
+        .4byte 0x00000000
+        .4byte 0x81798347
+        .4byte 0x8389815B
+        .4byte 0x817A8352
+        .4byte 0x837D8393
+        .4byte 0x8368836F
+        .4byte 0x83628374
+        .4byte 0x834082AA
+        .4byte 0x91AB82E8
+        .4byte 0x82DC82B9
+        .4byte 0x82F10A00
+        .4byte 0x4D69736D
+        .4byte 0x61746368
+        .4byte 0x20617267
+        .4byte 0x2E206375
+        .4byte 0x7272656E
+        .4byte 0x74207363
+        .4byte 0x656E653A
+        .4byte 0x25642061
+        .4byte 0x72673A25
+        .4byte 0x640A0000
+        .4byte 0x8356815B
+        .4byte 0x839382CC
+        .4byte 0x90B690AC
+        .4byte 0x82C98EB8
+        .4byte 0x94730000
+        .4byte 0x63616E27
+        .4byte 0x74206372
+        .4byte 0x65617465
+        .4byte 0x204E6577
+        .4byte 0x20536365
+        .4byte 0x6E65496E
+        .4byte 0x666F4C69
+        .4byte 0x73742E0A
+        .4byte 0x00000000
+    .global lbl_8049BA38
+    lbl_8049BA38:
+        .4byte 0x746F2020
+        .4byte 0x205B2573
+        .4byte 0x5D205B25
+        .4byte 0x735D0A66
+        .4byte 0x726F6D20
+        .4byte 0x5B25735D
+        .4byte 0x205B2573
+        .4byte 0x5D0A0000
+
+    .section .data, "wa"	# 0x8049E220 - 0x804EFC20
+    .global lbl_804ED6F8
+    lbl_804ED6F8:
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+    .global __vt__Q26Screen3Mgr
+    __vt__Q26Screen3Mgr:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q26Screen3MgrFv
+        .4byte setScene__Q26Screen3MgrFRQ26Screen11SetSceneArg
+        .4byte startScene__Q26Screen3MgrFPQ26Screen13StartSceneArg
+        .4byte endScene__Q26Screen3MgrFPQ26Screen11EndSceneArg
+        .4byte reset__Q26Screen3MgrFv
+        .4byte setColorBG__Q26Screen3MgrFRQ28JUtility6TColor
+        .4byte setBGMode__Q26Screen3MgrFi
+        .4byte doGetSceneBase__Q26Screen3MgrFl
+        .4byte drawBG__Q26Screen3MgrFR8Graphics
+        .4byte drawWipe__Q26Screen3MgrFR8Graphics
+    .global __vt__Q26Screen10MgrCommand
+    __vt__Q26Screen10MgrCommand:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q26Screen10MgrCommandFv
+        .4byte getChildCount__5CNodeFv
+    .global __vt__Q26Screen13SceneInfoList
+    __vt__Q26Screen13SceneInfoList:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q26Screen13SceneInfoListFv
+        .4byte getChildCount__5CNodeFv
+        .4byte 0
+
+    .section .sbss # 0x80514D80 - 0x80516360
+    .global lbl_805162E0
+    lbl_805162E0:
+        .skip 0x4
+    .global lbl_805162E4
+    lbl_805162E4:
+        .skip 0x4
+    .global sScreenMgr__Q26Screen3Mgr
+    sScreenMgr__Q26Screen3Mgr:
+        .skip 0x8
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_80520B80
+    lbl_80520B80:
+        .4byte 0x00000000
+        .4byte 0x00000000
+*/
+
 namespace Screen {
 
 /*
@@ -40,28 +209,27 @@ void getSceneMemberName(Screen::SceneBase*)
 SceneInfoList::SceneInfoList(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        -0x40F84
-	  lis       r3, 0x804F
-	  li        r0, 0
-	  subi      r4, r3, 0x28BC
-	  addi      r3, r31, 0x1C
-	  stw       r4, 0x0(r31)
-	  li        r4, 0xCD
-	  li        r5, 0x400
-	  stw       r0, 0x18(r31)
-	  bl        -0x44D284
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       __ct__5CNodeFv
+	lis      r3, __vt__Q26Screen13SceneInfoList@ha
+	li       r0, 0
+	addi     r4, r3, __vt__Q26Screen13SceneInfoList@l
+	addi     r3, r31, 0x1c
+	stw      r4, 0(r31)
+	li       r4, 0xcd
+	li       r5, 0x400
+	stw      r0, 0x18(r31)
+	bl       memset
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -173,128 +341,127 @@ void MgrCommand::setTypeInvalid(void)
 Mgr::Mgr(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r3
-	  mr        r0, r31
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r29, r0
-	  bl        -0x4353AC
-	  lis       r4, 0x804F
-	  lis       r3, 0x804F
-	  subi      r4, r4, 0x56B4
-	  li        r0, 0
-	  stw       r4, 0x0(r29)
-	  subi      r4, r3, 0x28FC
-	  addi      r3, r31, 0x2C
-	  stw       r4, 0x0(r31)
-	  stb       r0, 0x18(r31)
-	  stb       r0, 0x19(r31)
-	  stb       r0, 0x1A(r31)
-	  stb       r0, 0x1B(r31)
-	  stw       r0, 0x1C(r31)
-	  stw       r0, 0x20(r31)
-	  bl        -0x41024
-	  addi      r3, r31, 0x44
-	  bl        -0x4102C
-	  li        r0, 0
-	  addi      r3, r31, 0x60
-	  stw       r0, 0x5C(r31)
-	  bl        -0x4103C
-	  addi      r3, r31, 0x78
-	  bl        -0x41044
-	  li        r0, 0
-	  li        r29, 0
-	  stb       r0, 0x18(r31)
-	  stb       r0, 0x19(r31)
-	  stb       r0, 0x1A(r31)
-	  stb       r0, 0x1B(r31)
-	  stw       r0, 0x3C(r31)
-	  stw       r0, 0x38(r31)
-	  stw       r0, 0x34(r31)
-	  stw       r0, 0x30(r31)
-	  stw       r0, 0x54(r31)
-	  stw       r0, 0x50(r31)
-	  stw       r0, 0x4C(r31)
-	  stw       r0, 0x48(r31)
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r3
+	mr       r0, r31
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	mr       r29, r0
+	bl       __ct__11JKRDisposerFv
+	lis      r4, __vt__Q26Screen7MgrBase@ha
+	lis      r3, __vt__Q26Screen3Mgr@ha
+	addi     r4, r4, __vt__Q26Screen7MgrBase@l
+	li       r0, 0
+	stw      r4, 0(r29)
+	addi     r4, r3, __vt__Q26Screen3Mgr@l
+	addi     r3, r31, 0x2c
+	stw      r4, 0(r31)
+	stb      r0, 0x18(r31)
+	stb      r0, 0x19(r31)
+	stb      r0, 0x1a(r31)
+	stb      r0, 0x1b(r31)
+	stw      r0, 0x1c(r31)
+	stw      r0, 0x20(r31)
+	bl       __ct__5CNodeFv
+	addi     r3, r31, 0x44
+	bl       __ct__5CNodeFv
+	li       r0, 0
+	addi     r3, r31, 0x60
+	stw      r0, 0x5c(r31)
+	bl       __ct__5CNodeFv
+	addi     r3, r31, 0x78
+	bl       __ct__5CNodeFv
+	li       r0, 0
+	li       r29, 0
+	stb      r0, 0x18(r31)
+	stb      r0, 0x19(r31)
+	stb      r0, 0x1a(r31)
+	stb      r0, 0x1b(r31)
+	stw      r0, 0x3c(r31)
+	stw      r0, 0x38(r31)
+	stw      r0, 0x34(r31)
+	stw      r0, 0x30(r31)
+	stw      r0, 0x54(r31)
+	stw      r0, 0x50(r31)
+	stw      r0, 0x4c(r31)
+	stw      r0, 0x48(r31)
 
-	.loc_0xBC:
-	  li        r3, 0x47C
-	  bl        -0x42E570
-	  mr.       r30, r3
-	  beq-      .loc_0x128
-	  lis       r3, 0x804F
-	  li        r6, 0
-	  subi      r0, r3, 0x4AD8
-	  addi      r5, r2, 0x2820
-	  stw       r0, 0x0(r30)
-	  lis       r3, 0x804F
-	  subi      r4, r3, 0x28CC
-	  li        r0, -0x1
-	  stw       r6, 0x10(r30)
-	  addi      r3, r30, 0x464
-	  stw       r6, 0xC(r30)
-	  stw       r6, 0x8(r30)
-	  stw       r6, 0x4(r30)
-	  stw       r5, 0x14(r30)
-	  stw       r4, 0x0(r30)
-	  stw       r0, 0x18(r30)
-	  stw       r6, 0x1C(r30)
-	  stw       r6, 0x60(r30)
-	  bl        -0x362938
-	  addi      r3, r30, 0x464
-	  bl        -0x362908
-	  addi      r3, r30, 0x464
-	  bl        -0x362834
+lbl_80452410:
+	li       r3, 0x47c
+	bl       __nw__FUl
+	or.      r30, r3, r3
+	beq      lbl_8045247C
+	lis      r3, __vt__5CNode@ha
+	li       r6, 0
+	addi     r0, r3, __vt__5CNode@l
+	addi     r5, r2, lbl_80520B80@sda21
+	stw      r0, 0(r30)
+	lis      r3, __vt__Q26Screen10MgrCommand@ha
+	addi     r4, r3, __vt__Q26Screen10MgrCommand@l
+	li       r0, -1
+	stw      r6, 0x10(r30)
+	addi     r3, r30, 0x464
+	stw      r6, 0xc(r30)
+	stw      r6, 8(r30)
+	stw      r6, 4(r30)
+	stw      r5, 0x14(r30)
+	stw      r4, 0(r30)
+	stw      r0, 0x18(r30)
+	stw      r6, 0x1c(r30)
+	stw      r6, 0x60(r30)
+	bl       OSInitMutex
+	addi     r3, r30, 0x464
+	bl       OSLockMutex
+	addi     r3, r30, 0x464
+	bl       OSUnlockMutex
 
-	.loc_0x128:
-	  mr        r4, r30
-	  addi      r3, r31, 0x44
-	  bl        -0x4107C
-	  addi      r29, r29, 0x1
-	  cmplwi    r29, 0xA
-	  blt+      .loc_0xBC
-	  li        r0, 0
-	  li        r3, 0xC64
-	  stw       r0, 0x70(r31)
-	  stw       r0, 0x6C(r31)
-	  stw       r0, 0x68(r31)
-	  stw       r0, 0x64(r31)
-	  stw       r0, 0x88(r31)
-	  stw       r0, 0x84(r31)
-	  stw       r0, 0x80(r31)
-	  stw       r0, 0x7C(r31)
-	  bl        -0x42E510
-	  lis       r4, 0x8045
-	  lis       r5, 0x8045
-	  addi      r4, r4, 0x2300
-	  li        r6, 0x41C
-	  addi      r5, r5, 0x2520
-	  li        r7, 0x3
-	  bl        -0x390AE8
-	  li        r29, 0
-	  mr        r30, r3
+lbl_8045247C:
+	mr       r4, r30
+	addi     r3, r31, 0x44
+	bl       add__5CNodeFP5CNode
+	addi     r29, r29, 1
+	cmplwi   r29, 0xa
+	blt      lbl_80452410
+	li       r0, 0
+	li       r3, 0xc64
+	stw      r0, 0x70(r31)
+	stw      r0, 0x6c(r31)
+	stw      r0, 0x68(r31)
+	stw      r0, 0x64(r31)
+	stw      r0, 0x88(r31)
+	stw      r0, 0x84(r31)
+	stw      r0, 0x80(r31)
+	stw      r0, 0x7c(r31)
+	bl       __nwa__FUl
+	lis      r4, __ct__Q26Screen13SceneInfoListFv@ha
+	lis      r5, __dt__Q26Screen13SceneInfoListFv@ha
+	addi     r4, r4, __ct__Q26Screen13SceneInfoListFv@l
+	li       r6, 0x41c
+	addi     r5, r5, __dt__Q26Screen13SceneInfoListFv@l
+	li       r7, 3
+	bl       __construct_new_array
+	li       r29, 0
+	mr       r30, r3
 
-	.loc_0x190:
-	  mr        r4, r30
-	  addi      r3, r31, 0x78
-	  bl        -0x410E4
-	  addi      r29, r29, 0x1
-	  addi      r30, r30, 0x41C
-	  cmplwi    r29, 0x3
-	  blt+      .loc_0x190
-	  lwz       r0, 0x24(r1)
-	  mr        r3, r31
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_804524E4:
+	mr       r4, r30
+	addi     r3, r31, 0x78
+	bl       add__5CNodeFP5CNode
+	addi     r29, r29, 1
+	addi     r30, r30, 0x41c
+	cmplwi   r29, 3
+	blt      lbl_804524E4
+	lwz      r0, 0x24(r1)
+	mr       r3, r31
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -306,33 +473,32 @@ Mgr::Mgr(void)
 SceneInfoList::~SceneInfoList(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x44
-	  lis       r5, 0x804F
-	  li        r4, 0
-	  subi      r0, r5, 0x28BC
-	  stw       r0, 0x0(r30)
-	  bl        -0x40FC8
-	  extsh.    r0, r31
-	  ble-      .loc_0x44
-	  mr        r3, r30
-	  bl        -0x42E4AC
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_80452564
+	lis      r5, __vt__Q26Screen13SceneInfoList@ha
+	li       r4, 0
+	addi     r0, r5, __vt__Q26Screen13SceneInfoList@l
+	stw      r0, 0(r30)
+	bl       __dt__5CNodeFv
+	extsh.   r0, r31
+	ble      lbl_80452564
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x44:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80452564:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -344,37 +510,36 @@ SceneInfoList::~SceneInfoList(void)
 void Mgr::init(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r0, 0x5C(r3)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x5C
-	  lwz       r4, -0x77D4(r13)
-	  li        r3, 0x880
-	  li        r5, 0x1
-	  bl        -0x42D83C
-	  stw       r3, 0x5C(r31)
-	  lwz       r0, 0x5C(r31)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x5C
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x472C
-	  li        r4, 0x195
-	  subi      r5, r5, 0x471C
-	  crclr     6, 0x6
-	  bl        -0x427F98
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r0, 0x5c(r3)
+	cmplwi   r0, 0
+	bne      lbl_804525DC
+	lwz      r4, sCurrentHeap__7JKRHeap@sda21(r13)
+	li       r3, 0x880
+	li       r5, 1
+	bl       create__12JKRSolidHeapFUlP7JKRHeapb
+	stw      r3, 0x5c(r31)
+	lwz      r0, 0x5c(r31)
+	cmplwi   r0, 0
+	bne      lbl_804525DC
+	lis      r3, lbl_8049B8D4@ha
+	lis      r5, lbl_8049B8E4@ha
+	addi     r3, r3, lbl_8049B8D4@l
+	li       r4, 0x195
+	addi     r5, r5, lbl_8049B8E4@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x5C:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_804525DC:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -386,78 +551,77 @@ void Mgr::init(void)
 void Mgr::reset(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stw       r31, 0x2C(r1)
-	  li        r31, 0
-	  stw       r30, 0x28(r1)
-	  mr        r30, r3
-	  bl        0x1150
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x90
-	  lwz       r3, 0x1C(r30)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  addi      r5, r1, 0x14
-	  li        r3, 0
-	  bl        -0x14FA6C
-	  lwz       r3, 0x1C(r30)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  addi      r5, r1, 0x8
-	  bl        -0x14FA88
-	  lis       r3, 0x804A
-	  lis       r4, 0x804A
-	  subi      r5, r4, 0x46C4
-	  addi      r6, r1, 0x14
-	  subi      r3, r3, 0x472C
-	  addi      r7, r1, 0x8
-	  li        r4, 0x1AB
-	  crclr     6, 0x6
-	  bl        -0x428038
-	  b         .loc_0xE0
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stw      r31, 0x2c(r1)
+	li       r31, 0
+	stw      r30, 0x28(r1)
+	mr       r30, r3
+	bl       isCurrentSceneLoading__Q26Screen3MgrFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80452680
+	lwz      r3, 0x1c(r30)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	addi     r5, r1, 0x14
+	li       r3, 0
+	bl       TagToName__Q22og6ScreenFUxPc
+	lwz      r3, 0x1c(r30)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	addi     r5, r1, 8
+	bl       TagToName__Q22og6ScreenFUxPc
+	lis      r3, lbl_8049B8D4@ha
+	lis      r4, lbl_8049B93C@ha
+	addi     r5, r4, lbl_8049B93C@l
+	addi     r6, r1, 0x14
+	addi     r3, r3, lbl_8049B8D4@l
+	addi     r7, r1, 8
+	li       r4, 0x1ab
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
+	b        lbl_804526D0
 
-	.loc_0x90:
-	  lwz       r3, -0x6450(r13)
-	  bl        -0x1EAF8
-	  li        r0, 0
-	  stb       r0, 0x18(r30)
-	  stb       r0, 0x19(r30)
-	  stb       r0, 0x1A(r30)
-	  stb       r0, 0x1B(r30)
-	  stw       r0, 0x1C(r30)
-	  b         .loc_0xBC
+lbl_80452680:
+	lwz      r3, gResMgr2D@sda21(r13)
+	bl       destroyAll__Q28Resource3MgrFv
+	li       r0, 0
+	stb      r0, 0x18(r30)
+	stb      r0, 0x19(r30)
+	stb      r0, 0x1a(r30)
+	stb      r0, 0x1b(r30)
+	stw      r0, 0x1c(r30)
+	b        lbl_804526AC
 
-	.loc_0xB4:
-	  mr        r3, r30
-	  bl        0x468
+lbl_804526A4:
+	mr       r3, r30
+	bl       releaseCommand__Q26Screen3MgrFPQ26Screen10MgrCommand
 
-	.loc_0xBC:
-	  mr        r3, r30
-	  bl        0x3B0
-	  mr.       r4, r3
-	  bne+      .loc_0xB4
-	  mr        r3, r30
-	  bl        0x840
-	  lwz       r3, 0x5C(r30)
-	  bl        -0x42EF98
-	  li        r31, 0x1
+lbl_804526AC:
+	mr       r3, r30
+	bl       getCurrentCommand__Q26Screen3MgrFv
+	or.      r4, r3, r3
+	bne      lbl_804526A4
+	mr       r3, r30
+	bl       clearBackupSceneInfo__Q26Screen3MgrFv
+	lwz      r3, 0x5c(r30)
+	bl       freeAll__7JKRHeapFv
+	li       r31, 1
 
-	.loc_0xE0:
-	  lwz       r0, 0x34(r1)
-	  mr        r3, r31
-	  lwz       r31, 0x2C(r1)
-	  lwz       r30, 0x28(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_804526D0:
+	lwz      r0, 0x34(r1)
+	mr       r3, r31
+	lwz      r31, 0x2c(r1)
+	lwz      r30, 0x28(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -479,151 +643,150 @@ void Mgr::create(void)
 void Mgr::startScene(Screen::StartSceneArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  lis       r5, 0x804A
-	  stw       r0, 0x44(r1)
-	  stmw      r27, 0x2C(r1)
-	  mr        r27, r3
-	  mr        r28, r4
-	  subi      r30, r5, 0x4738
-	  li        r29, 0x1
-	  lwz       r3, 0x1C(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x40
-	  beq-      .loc_0x170
-	  bl        -0x8D8
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x170
+	stwu     r1, -0x40(r1)
+	mflr     r0
+	lis      r5, lbl_8049B8C8@ha
+	stw      r0, 0x44(r1)
+	stmw     r27, 0x2c(r1)
+	mr       r27, r3
+	mr       r28, r4
+	addi     r30, r5, lbl_8049B8C8@l
+	li       r29, 1
+	lwz      r3, 0x1c(r3)
+	cmplwi   r3, 0
+	beq      lbl_8045272C
+	beq      lbl_8045285C
+	bl       confirmStartScene__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_8045285C
 
-	.loc_0x40:
-	  lwz       r0, 0x3C(r27)
-	  li        r31, 0
-	  cmplwi    r0, 0
-	  beq-      .loc_0x58
-	  li        r31, 0x1
-	  b         .loc_0x80
+lbl_8045272C:
+	lwz      r0, 0x3c(r27)
+	li       r31, 0
+	cmplwi   r0, 0
+	beq      lbl_80452744
+	li       r31, 1
+	b        lbl_8045276C
 
-	.loc_0x58:
-	  lwz       r3, 0x1C(r27)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x7C
-	  mr        r4, r28
-	  bl        -0xB3C
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x80
-	  li        r31, 0x1
-	  b         .loc_0x80
+lbl_80452744:
+	lwz      r3, 0x1c(r27)
+	cmplwi   r3, 0
+	beq      lbl_80452768
+	mr       r4, r28
+	bl       start__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_8045276C
+	li       r31, 1
+	b        lbl_8045276C
 
-	.loc_0x7C:
-	  li        r29, 0
+lbl_80452768:
+	li       r29, 0
 
-	.loc_0x80:
-	  rlwinm.   r0,r31,0,24,31
-	  beq-      .loc_0x1D0
-	  mr        r3, r27
-	  bl        0x2F0
-	  mr.       r31, r3
-	  bne-      .loc_0xA0
-	  li        r29, 0
-	  b         .loc_0x1D0
+lbl_8045276C:
+	clrlwi.  r0, r31, 0x18
+	beq      lbl_804528BC
+	mr       r3, r27
+	bl       getNewCommand__Q26Screen3MgrFv
+	or.      r31, r3, r3
+	bne      lbl_8045278C
+	li       r29, 0
+	b        lbl_804528BC
 
-	.loc_0xA0:
-	  addi      r3, r31, 0x464
-	  bl        -0x362C28
-	  addi      r3, r30, 0x5C
-	  li        r0, 0x1
-	  stw       r3, 0x14(r31)
-	  addi      r3, r31, 0x464
-	  stw       r0, 0x18(r31)
-	  bl        -0x362C40
-	  cmplwi    r28, 0
-	  beq-      .loc_0x128
-	  mr        r3, r28
-	  lwz       r12, 0x0(r28)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  cmplwi    r3, 0x40
-	  ble-      .loc_0xF8
-	  addi      r3, r30, 0xC
-	  addi      r5, r30, 0x1C
-	  li        r4, 0x102
-	  crclr     6, 0x6
-	  bl        -0x4281A0
+lbl_8045278C:
+	addi     r3, r31, 0x464
+	bl       OSLockMutex
+	addi     r3, r30, 0x5c
+	li       r0, 1
+	stw      r3, 0x14(r31)
+	addi     r3, r31, 0x464
+	stw      r0, 0x18(r31)
+	bl       OSLockMutex
+	cmplwi   r28, 0
+	beq      lbl_80452814
+	mr       r3, r28
+	lwz      r12, 0(r28)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	cmplwi   r3, 0x40
+	ble      lbl_804527E4
+	addi     r3, r30, 0xc
+	addi     r5, r30, 0x1c
+	li       r4, 0x102
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xF8:
-	  addi      r0, r31, 0x20
-	  mr        r3, r28
-	  stw       r0, 0x1C(r31)
-	  lwz       r12, 0x0(r28)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r5, r3
-	  mr        r4, r28
-	  addi      r3, r31, 0x20
-	  bl        -0x44D670
-	  b         .loc_0x15C
+lbl_804527E4:
+	addi     r0, r31, 0x20
+	mr       r3, r28
+	stw      r0, 0x1c(r31)
+	lwz      r12, 0(r28)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	mr       r5, r3
+	mr       r4, r28
+	addi     r3, r31, 0x20
+	bl       memcpy
+	b        lbl_80452848
 
-	.loc_0x128:
-	  lwz       r0, 0x1C(r31)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x154
-	  addi      r3, r31, 0x464
-	  bl        -0x362CBC
-	  addi      r3, r31, 0x20
-	  li        r4, 0xCD
-	  li        r5, 0x40
-	  bl        -0x44D780
-	  addi      r3, r31, 0x464
-	  bl        -0x362BF8
+lbl_80452814:
+	lwz      r0, 0x1c(r31)
+	cmplwi   r0, 0
+	beq      lbl_80452840
+	addi     r3, r31, 0x464
+	bl       OSLockMutex
+	addi     r3, r31, 0x20
+	li       r4, 0xcd
+	li       r5, 0x40
+	bl       memset
+	addi     r3, r31, 0x464
+	bl       OSUnlockMutex
 
-	.loc_0x154:
-	  li        r0, 0
-	  stw       r0, 0x1C(r31)
+lbl_80452840:
+	li       r0, 0
+	stw      r0, 0x1c(r31)
 
-	.loc_0x15C:
-	  addi      r3, r31, 0x464
-	  bl        -0x362C08
-	  addi      r3, r31, 0x464
-	  bl        -0x362C10
-	  b         .loc_0x1D0
+lbl_80452848:
+	addi     r3, r31, 0x464
+	bl       OSUnlockMutex
+	addi     r3, r31, 0x464
+	bl       OSUnlockMutex
+	b        lbl_804528BC
 
-	.loc_0x170:
-	  lwz       r3, 0x1C(r27)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  addi      r5, r1, 0x14
-	  li        r3, 0
-	  bl        -0x14FCB0
-	  lwz       r3, 0x1C(r27)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  addi      r5, r1, 0x8
-	  bl        -0x14FCCC
-	  addi      r3, r30, 0xC
-	  addi      r5, r30, 0x98
-	  addi      r6, r1, 0x14
-	  addi      r7, r1, 0x8
-	  li        r4, 0x212
-	  crclr     6, 0x6
-	  bl        -0x428274
-	  li        r29, 0
+lbl_8045285C:
+	lwz      r3, 0x1c(r27)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	addi     r5, r1, 0x14
+	li       r3, 0
+	bl       TagToName__Q22og6ScreenFUxPc
+	lwz      r3, 0x1c(r27)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	addi     r5, r1, 8
+	bl       TagToName__Q22og6ScreenFUxPc
+	addi     r3, r30, 0xc
+	addi     r5, r30, 0x98
+	addi     r6, r1, 0x14
+	addi     r7, r1, 8
+	li       r4, 0x212
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
+	li       r29, 0
 
-	.loc_0x1D0:
-	  mr        r3, r29
-	  lmw       r27, 0x2C(r1)
-	  lwz       r0, 0x44(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
+lbl_804528BC:
+	mr       r3, r29
+	lmw      r27, 0x2c(r1)
+	lwz      r0, 0x44(r1)
+	mtlr     r0
+	addi     r1, r1, 0x40
+	blr
 	*/
 }
 
@@ -635,128 +798,127 @@ void Mgr::startScene(Screen::StartSceneArg*)
 void Mgr::endScene(Screen::EndSceneArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r5, 0x804A
-	  stw       r0, 0x24(r1)
-	  stmw      r27, 0xC(r1)
-	  mr        r27, r3
-	  mr        r28, r4
-	  subi      r30, r5, 0x4738
-	  li        r29, 0x1
-	  lwz       r3, 0x1C(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x40
-	  beq-      .loc_0x170
-	  bl        -0xA48
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x170
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lis      r5, lbl_8049B8C8@ha
+	stw      r0, 0x24(r1)
+	stmw     r27, 0xc(r1)
+	mr       r27, r3
+	mr       r28, r4
+	addi     r30, r5, lbl_8049B8C8@l
+	li       r29, 1
+	lwz      r3, 0x1c(r3)
+	cmplwi   r3, 0
+	beq      lbl_80452914
+	beq      lbl_80452A44
+	bl       confirmEndScene__Q26Screen9SceneBaseFPQ26Screen11EndSceneArg
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80452A44
 
-	.loc_0x40:
-	  lwz       r0, 0x3C(r27)
-	  li        r31, 0
-	  cmplwi    r0, 0
-	  beq-      .loc_0x58
-	  li        r31, 0x1
-	  b         .loc_0x80
+lbl_80452914:
+	lwz      r0, 0x3c(r27)
+	li       r31, 0
+	cmplwi   r0, 0
+	beq      lbl_8045292C
+	li       r31, 1
+	b        lbl_80452954
 
-	.loc_0x58:
-	  lwz       r3, 0x1C(r27)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x7C
-	  mr        r4, r28
-	  bl        -0xCAC
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x80
-	  li        r31, 0x1
-	  b         .loc_0x80
+lbl_8045292C:
+	lwz      r3, 0x1c(r27)
+	cmplwi   r3, 0
+	beq      lbl_80452950
+	mr       r4, r28
+	bl       end__Q26Screen9SceneBaseFPQ26Screen11EndSceneArg
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_80452954
+	li       r31, 1
+	b        lbl_80452954
 
-	.loc_0x7C:
-	  li        r29, 0
+lbl_80452950:
+	li       r29, 0
 
-	.loc_0x80:
-	  rlwinm.   r0,r31,0,24,31
-	  beq-      .loc_0x174
-	  mr        r3, r27
-	  bl        0x108
-	  mr.       r31, r3
-	  bne-      .loc_0xA0
-	  li        r29, 0
-	  b         .loc_0x174
+lbl_80452954:
+	clrlwi.  r0, r31, 0x18
+	beq      lbl_80452A48
+	mr       r3, r27
+	bl       getNewCommand__Q26Screen3MgrFv
+	or.      r31, r3, r3
+	bne      lbl_80452974
+	li       r29, 0
+	b        lbl_80452A48
 
-	.loc_0xA0:
-	  addi      r3, r31, 0x464
-	  bl        -0x362E10
-	  addi      r3, r30, 0x68
-	  li        r0, 0x2
-	  stw       r3, 0x14(r31)
-	  addi      r3, r31, 0x464
-	  stw       r0, 0x18(r31)
-	  bl        -0x362E28
-	  cmplwi    r28, 0
-	  beq-      .loc_0x128
-	  mr        r3, r28
-	  lwz       r12, 0x0(r28)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  cmplwi    r3, 0x40
-	  ble-      .loc_0xF8
-	  addi      r3, r30, 0xC
-	  addi      r5, r30, 0x1C
-	  li        r4, 0x102
-	  crclr     6, 0x6
-	  bl        -0x428388
+lbl_80452974:
+	addi     r3, r31, 0x464
+	bl       OSLockMutex
+	addi     r3, r30, 0x68
+	li       r0, 2
+	stw      r3, 0x14(r31)
+	addi     r3, r31, 0x464
+	stw      r0, 0x18(r31)
+	bl       OSLockMutex
+	cmplwi   r28, 0
+	beq      lbl_804529FC
+	mr       r3, r28
+	lwz      r12, 0(r28)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	cmplwi   r3, 0x40
+	ble      lbl_804529CC
+	addi     r3, r30, 0xc
+	addi     r5, r30, 0x1c
+	li       r4, 0x102
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xF8:
-	  addi      r0, r31, 0x20
-	  mr        r3, r28
-	  stw       r0, 0x1C(r31)
-	  lwz       r12, 0x0(r28)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r5, r3
-	  mr        r4, r28
-	  addi      r3, r31, 0x20
-	  bl        -0x44D858
-	  b         .loc_0x15C
+lbl_804529CC:
+	addi     r0, r31, 0x20
+	mr       r3, r28
+	stw      r0, 0x1c(r31)
+	lwz      r12, 0(r28)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	mr       r5, r3
+	mr       r4, r28
+	addi     r3, r31, 0x20
+	bl       memcpy
+	b        lbl_80452A30
 
-	.loc_0x128:
-	  lwz       r0, 0x1C(r31)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x154
-	  addi      r3, r31, 0x464
-	  bl        -0x362EA4
-	  addi      r3, r31, 0x20
-	  li        r4, 0xCD
-	  li        r5, 0x40
-	  bl        -0x44D968
-	  addi      r3, r31, 0x464
-	  bl        -0x362DE0
+lbl_804529FC:
+	lwz      r0, 0x1c(r31)
+	cmplwi   r0, 0
+	beq      lbl_80452A28
+	addi     r3, r31, 0x464
+	bl       OSLockMutex
+	addi     r3, r31, 0x20
+	li       r4, 0xcd
+	li       r5, 0x40
+	bl       memset
+	addi     r3, r31, 0x464
+	bl       OSUnlockMutex
 
-	.loc_0x154:
-	  li        r0, 0
-	  stw       r0, 0x1C(r31)
+lbl_80452A28:
+	li       r0, 0
+	stw      r0, 0x1c(r31)
 
-	.loc_0x15C:
-	  addi      r3, r31, 0x464
-	  bl        -0x362DF0
-	  addi      r3, r31, 0x464
-	  bl        -0x362DF8
-	  b         .loc_0x174
+lbl_80452A30:
+	addi     r3, r31, 0x464
+	bl       OSUnlockMutex
+	addi     r3, r31, 0x464
+	bl       OSUnlockMutex
+	b        lbl_80452A48
 
-	.loc_0x170:
-	  li        r29, 0
+lbl_80452A44:
+	li       r29, 0
 
-	.loc_0x174:
-	  mr        r3, r29
-	  lmw       r27, 0xC(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80452A48:
+	mr       r3, r29
+	lmw      r27, 0xc(r1)
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -768,9 +930,8 @@ void Mgr::endScene(Screen::EndSceneArg*)
 void Mgr::getCurrentCommand(void)
 {
 	/*
-	.loc_0x0:
-	  lwz       r3, 0x3C(r3)
-	  blr
+	lwz      r3, 0x3c(r3)
+	blr
 	*/
 }
 
@@ -782,55 +943,54 @@ void Mgr::getCurrentCommand(void)
 void Mgr::getNewCommand(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  lis       r3, 0x804A
-	  lwz       r30, 0x54(r29)
-	  subi      r31, r3, 0x4738
-	  cmplwi    r30, 0
-	  bne-      .loc_0x44
-	  addi      r3, r31, 0xC
-	  addi      r5, r31, 0xC4
-	  li        r4, 0x267
-	  crclr     6, 0x6
-	  bl        -0x428468
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	lis      r3, lbl_8049B8C8@ha
+	lwz      r30, 0x54(r29)
+	addi     r31, r3, lbl_8049B8C8@l
+	cmplwi   r30, 0
+	bne      lbl_80452AAC
+	addi     r3, r31, 0xc
+	addi     r5, r31, 0xc4
+	li       r4, 0x267
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x44:
-	  cmplwi    r30, 0
-	  beq-      .loc_0x74
-	  addi      r3, r30, 0x464
-	  bl        -0x362F50
-	  mr        r3, r30
-	  bl        -0x414F0
-	  mr        r4, r30
-	  addi      r3, r29, 0x2C
-	  bl        -0x416C4
-	  addi      r3, r30, 0x464
-	  bl        -0x362E90
-	  b         .loc_0x88
+lbl_80452AAC:
+	cmplwi   r30, 0
+	beq      lbl_80452ADC
+	addi     r3, r30, 0x464
+	bl       OSLockMutex
+	mr       r3, r30
+	bl       del__5CNodeFv
+	mr       r4, r30
+	addi     r3, r29, 0x2c
+	bl       add__5CNodeFP5CNode
+	addi     r3, r30, 0x464
+	bl       OSUnlockMutex
+	b        lbl_80452AF0
 
-	.loc_0x74:
-	  addi      r3, r31, 0xC
-	  addi      r5, r31, 0xE8
-	  li        r4, 0x272
-	  crclr     6, 0x6
-	  bl        -0x4284AC
+lbl_80452ADC:
+	addi     r3, r31, 0xc
+	addi     r5, r31, 0xe8
+	li       r4, 0x272
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x88:
-	  lwz       r0, 0x24(r1)
-	  mr        r3, r30
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80452AF0:
+	lwz      r0, 0x24(r1)
+	mr       r3, r30
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -842,29 +1002,28 @@ void Mgr::getNewCommand(void)
 void Mgr::releaseCommand(Screen::MgrCommand*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  addi      r3, r31, 0x464
-	  bl        -0x362FC8
-	  mr        r3, r31
-	  bl        -0x41568
-	  mr        r4, r31
-	  addi      r3, r30, 0x44
-	  bl        -0x4173C
-	  addi      r3, r31, 0x464
-	  bl        -0x362F08
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	addi     r3, r31, 0x464
+	bl       OSLockMutex
+	mr       r3, r31
+	bl       del__5CNodeFv
+	mr       r4, r31
+	addi     r3, r30, 0x44
+	bl       add__5CNodeFP5CNode
+	addi     r3, r31, 0x464
+	bl       OSUnlockMutex
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -886,221 +1045,220 @@ void Mgr::updateCurrentScene(void)
 void Mgr::update(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r3
-	  lis       r3, 0x804A
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  subi      r29, r3, 0x4738
-	  stw       r28, 0x10(r1)
-	  lwz       r4, 0x20(r31)
-	  lwz       r28, 0x3C(r31)
-	  cmplwi    r4, 0
-	  beq-      .loc_0x58
-	  lwz       r0, 0x1C(r4)
-	  rlwinm.   r0,r0,0,19,19
-	  beq-      .loc_0x58
-	  mr        r3, r28
-	  b         .loc_0x50
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r3
+	lis      r3, lbl_8049B8C8@ha
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	addi     r29, r3, lbl_8049B8C8@l
+	stw      r28, 0x10(r1)
+	lwz      r4, 0x20(r31)
+	lwz      r28, 0x3c(r31)
+	cmplwi   r4, 0
+	beq      lbl_80452BC0
+	lwz      r0, 0x1c(r4)
+	rlwinm.  r0, r0, 0, 0x13, 0x13
+	beq      lbl_80452BC0
+	mr       r3, r28
+	b        lbl_80452BB8
 
-	.loc_0x4C:
-	  lwz       r3, 0x4(r3)
+lbl_80452BB4:
+	lwz      r3, 4(r3)
 
-	.loc_0x50:
-	  cmplwi    r3, 0
-	  bne+      .loc_0x4C
+lbl_80452BB8:
+	cmplwi   r3, 0
+	bne      lbl_80452BB4
 
-	.loc_0x58:
-	  cmplwi    r28, 0
-	  beq-      .loc_0x2A8
-	  addi      r3, r28, 0x464
-	  bl        -0x363064
-	  lwz       r0, 0x18(r28)
-	  lwz       r3, 0x1C(r31)
-	  cmpwi     r0, 0x1
-	  beq-      .loc_0x100
-	  bge-      .loc_0x8C
-	  cmpwi     r0, -0x1
-	  beq-      .loc_0x2A0
-	  bge-      .loc_0x98
-	  b         .loc_0x28C
+lbl_80452BC0:
+	cmplwi   r28, 0
+	beq      lbl_80452E10
+	addi     r3, r28, 0x464
+	bl       OSLockMutex
+	lwz      r0, 0x18(r28)
+	lwz      r3, 0x1c(r31)
+	cmpwi    r0, 1
+	beq      lbl_80452C68
+	bge      lbl_80452BF4
+	cmpwi    r0, -1
+	beq      lbl_80452E08
+	bge      lbl_80452C00
+	b        lbl_80452DF4
 
-	.loc_0x8C:
-	  cmpwi     r0, 0x3
-	  bge-      .loc_0x28C
-	  b         .loc_0x1E4
+lbl_80452BF4:
+	cmpwi    r0, 3
+	bge      lbl_80452DF4
+	b        lbl_80452D4C
 
-	.loc_0x98:
-	  lwz       r29, 0x1C(r28)
-	  mr        r3, r31
-	  bl        0xB54
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x2A0
-	  lbz       r0, 0x8(r29)
-	  cmplwi    r0, 0
-	  bne-      .loc_0xC8
-	  mr        r3, r31
-	  bl        0xD4C
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x2A0
+lbl_80452C00:
+	lwz      r29, 0x1c(r28)
+	mr       r3, r31
+	bl       isCurrentSceneLoading__Q26Screen3MgrFv
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_80452E08
+	lbz      r0, 8(r29)
+	cmplwi   r0, 0
+	bne      lbl_80452C30
+	mr       r3, r31
+	bl       isSceneFinish__Q26Screen3MgrFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80452E08
 
-	.loc_0xC8:
-	  lwz       r5, 0x60(r28)
-	  mr        r3, r31
-	  mr        r4, r29
-	  bl        0x33C
-	  addi      r3, r28, 0x464
-	  bl        -0x3630DC
-	  mr        r3, r28
-	  bl        -0x4167C
-	  mr        r4, r28
-	  addi      r3, r31, 0x44
-	  bl        -0x41850
-	  addi      r3, r28, 0x464
-	  bl        -0x36301C
-	  b         .loc_0x2A0
+lbl_80452C30:
+	lwz      r5, 0x60(r28)
+	mr       r3, r31
+	mr       r4, r29
+	bl       changeScene__Q26Screen3MgrFRQ26Screen11SetSceneArgPUc
+	addi     r3, r28, 0x464
+	bl       OSLockMutex
+	mr       r3, r28
+	bl       del__5CNodeFv
+	mr       r4, r28
+	addi     r3, r31, 0x44
+	bl       add__5CNodeFP5CNode
+	addi     r3, r28, 0x464
+	bl       OSUnlockMutex
+	b        lbl_80452E08
 
-	.loc_0x100:
-	  cmplwi    r3, 0
-	  bne-      .loc_0x11C
-	  addi      r3, r29, 0xC
-	  addi      r5, r29, 0x1C
-	  li        r4, 0x2D6
-	  crclr     6, 0x6
-	  bl        -0x428640
+lbl_80452C68:
+	cmplwi   r3, 0
+	bne      lbl_80452C84
+	addi     r3, r29, 0xc
+	addi     r5, r29, 0x1c
+	li       r4, 0x2d6
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x11C:
-	  lwz       r3, 0x1C(r28)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x1A0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r30, r3
-	  lwz       r3, 0x1C(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  cmpw      r3, r30
-	  beq-      .loc_0x1A0
-	  lwz       r3, 0x1C(r28)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r30, r3
-	  lwz       r3, 0x1C(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r6, r3
-	  mr        r7, r30
-	  addi      r3, r29, 0xC
-	  addi      r5, r29, 0x110
-	  li        r4, 0x2DE
-	  crclr     6, 0x6
-	  bl        -0x4286C4
+lbl_80452C84:
+	lwz      r3, 0x1c(r28)
+	cmplwi   r3, 0
+	beq      lbl_80452D08
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	mr       r30, r3
+	lwz      r3, 0x1c(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	cmpw     r3, r30
+	beq      lbl_80452D08
+	lwz      r3, 0x1c(r28)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	mr       r30, r3
+	lwz      r3, 0x1c(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	mr       r6, r3
+	mr       r7, r30
+	addi     r3, r29, 0xc
+	addi     r5, r29, 0x110
+	li       r4, 0x2de
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x1A0:
-	  lwz       r3, 0x1C(r31)
-	  lwz       r4, 0x1C(r28)
-	  bl        -0x10F8
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x2A0
-	  addi      r3, r28, 0x464
-	  bl        -0x3631B8
-	  mr        r3, r28
-	  bl        -0x41758
-	  mr        r4, r28
-	  addi      r3, r31, 0x44
-	  bl        -0x4192C
-	  addi      r3, r28, 0x464
-	  bl        -0x3630F8
-	  lwz       r3, 0x1C(r31)
-	  bl        -0x135C
-	  b         .loc_0x2A0
+lbl_80452D08:
+	lwz      r3, 0x1c(r31)
+	lwz      r4, 0x1c(r28)
+	bl       start__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80452E08
+	addi     r3, r28, 0x464
+	bl       OSLockMutex
+	mr       r3, r28
+	bl       del__5CNodeFv
+	mr       r4, r28
+	addi     r3, r31, 0x44
+	bl       add__5CNodeFP5CNode
+	addi     r3, r28, 0x464
+	bl       OSUnlockMutex
+	lwz      r3, 0x1c(r31)
+	bl       update__Q26Screen9SceneBaseFv
+	b        lbl_80452E08
 
-	.loc_0x1E4:
-	  cmplwi    r3, 0
-	  bne-      .loc_0x200
-	  addi      r3, r29, 0xC
-	  addi      r5, r29, 0x1C
-	  li        r4, 0x2F3
-	  crclr     6, 0x6
-	  bl        -0x428724
+lbl_80452D4C:
+	cmplwi   r3, 0
+	bne      lbl_80452D68
+	addi     r3, r29, 0xc
+	addi     r5, r29, 0x1c
+	li       r4, 0x2f3
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x200:
-	  lwz       r3, 0x1C(r28)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x250
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r30, r3
-	  lwz       r3, 0x1C(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  cmpw      r3, r30
-	  beq-      .loc_0x250
-	  addi      r3, r29, 0xC
-	  addi      r5, r29, 0x1C
-	  li        r4, 0x2F7
-	  crclr     6, 0x6
-	  bl        -0x428774
+lbl_80452D68:
+	lwz      r3, 0x1c(r28)
+	cmplwi   r3, 0
+	beq      lbl_80452DB8
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	mr       r30, r3
+	lwz      r3, 0x1c(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	cmpw     r3, r30
+	beq      lbl_80452DB8
+	addi     r3, r29, 0xc
+	addi     r5, r29, 0x1c
+	li       r4, 0x2f7
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x250:
-	  lwz       r3, 0x1C(r31)
-	  lwz       r4, 0x1C(r28)
-	  bl        -0x1130
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x2A0
-	  addi      r3, r28, 0x464
-	  bl        -0x363268
-	  mr        r3, r28
-	  bl        -0x41808
-	  mr        r4, r28
-	  addi      r3, r31, 0x44
-	  bl        -0x419DC
-	  addi      r3, r28, 0x464
-	  bl        -0x3631A8
-	  b         .loc_0x2A0
+lbl_80452DB8:
+	lwz      r3, 0x1c(r31)
+	lwz      r4, 0x1c(r28)
+	bl       end__Q26Screen9SceneBaseFPQ26Screen11EndSceneArg
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80452E08
+	addi     r3, r28, 0x464
+	bl       OSLockMutex
+	mr       r3, r28
+	bl       del__5CNodeFv
+	mr       r4, r28
+	addi     r3, r31, 0x44
+	bl       add__5CNodeFP5CNode
+	addi     r3, r28, 0x464
+	bl       OSUnlockMutex
+	b        lbl_80452E08
 
-	.loc_0x28C:
-	  addi      r3, r29, 0xC
-	  addi      r5, r29, 0x1C
-	  li        r4, 0x30D
-	  crclr     6, 0x6
-	  bl        -0x4287C4
+lbl_80452DF4:
+	addi     r3, r29, 0xc
+	addi     r5, r29, 0x1c
+	li       r4, 0x30d
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x2A0:
-	  addi      r3, r28, 0x464
-	  bl        -0x3631C8
+lbl_80452E08:
+	addi     r3, r28, 0x464
+	bl       OSUnlockMutex
 
-	.loc_0x2A8:
-	  lwz       r3, 0x1C(r31)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x2B8
-	  bl        -0x1434
+lbl_80452E10:
+	lwz      r3, 0x1c(r31)
+	cmplwi   r3, 0
+	beq      lbl_80452E20
+	bl       update__Q26Screen9SceneBaseFv
 
-	.loc_0x2B8:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80452E20:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -1112,58 +1270,57 @@ void Mgr::update(void)
 void Mgr::draw(Graphics&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lwz       r5, -0x64AC(r13)
-	  cmplwi    r5, 0
-	  beq-      .loc_0x58
-	  lwz       r0, 0x1F0(r5)
-	  rlwinm.   r0,r0,0,31,31
-	  beq-      .loc_0x58
-	  lwz       r3, 0x1C(r30)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x9C
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x9C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lwz      r5, moviePlayer__4Game@sda21(r13)
+	cmplwi   r5, 0
+	beq      lbl_80452E98
+	lwz      r0, 0x1f0(r5)
+	clrlwi.  r0, r0, 0x1f
+	beq      lbl_80452E98
+	lwz      r3, 0x1c(r30)
+	cmplwi   r3, 0
+	beq      lbl_80452EDC
+	lwz      r12, 0(r3)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80452EDC
 
-	.loc_0x58:
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x28(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x1C(r30)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x84
-	  mr        r4, r31
-	  bl        -0x1338
+lbl_80452E98:
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	lwz      r12, 0x28(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 0x1c(r30)
+	cmplwi   r3, 0
+	beq      lbl_80452EC4
+	mr       r4, r31
+	bl       draw__Q26Screen9SceneBaseFR8Graphics
 
-	.loc_0x84:
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x2C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_80452EC4:
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	lwz      r12, 0x2c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x9C:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80452EDC:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1209,41 +1366,40 @@ void Mgr::createNewBackupSceneInfo(Screen::SceneBase*)
 void Mgr::clearBackupSceneInfo(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  lwz       r31, 0x70(r3)
-	  b         .loc_0x40
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	lwz      r31, 0x70(r3)
+	b        lbl_80452F40
 
-	.loc_0x24:
-	  lwz       r30, 0x4(r31)
-	  mr        r3, r31
-	  bl        -0x4195C
-	  mr        r4, r31
-	  addi      r3, r29, 0x78
-	  bl        -0x41B30
-	  mr        r31, r30
+lbl_80452F24:
+	lwz      r30, 4(r31)
+	mr       r3, r31
+	bl       del__5CNodeFv
+	mr       r4, r31
+	addi     r3, r29, 0x78
+	bl       add__5CNodeFP5CNode
+	mr       r31, r30
 
-	.loc_0x40:
-	  cmplwi    r31, 0
-	  bne+      .loc_0x24
-	  li        r0, 0
-	  stw       r0, 0x70(r29)
-	  stw       r0, 0x6C(r29)
-	  stw       r0, 0x68(r29)
-	  stw       r0, 0x64(r29)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80452F40:
+	cmplwi   r31, 0
+	bne      lbl_80452F24
+	li       r0, 0
+	stw      r0, 0x70(r29)
+	stw      r0, 0x6c(r29)
+	stw      r0, 0x68(r29)
+	stw      r0, 0x64(r29)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -1255,176 +1411,175 @@ void Mgr::clearBackupSceneInfo(void)
 void Mgr::changeScene(Screen::SetSceneArg&, unsigned char*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stmw      r25, 0x14(r1)
-	  mr        r30, r4
-	  lis       r4, 0x804A
-	  mr        r29, r3
-	  mr        r3, r30
-	  mr        r31, r5
-	  subi      r27, r4, 0x4738
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, -0x65F8(r13)
-	  mr        r25, r3
-	  cmplwi    r0, 0
-	  beq-      .loc_0x60
-	  mr        r3, r0
-	  li        r4, 0
-	  bl        -0x997F0
-	  lwz       r3, -0x65F8(r13)
-	  li        r4, 0x1
-	  bl        -0x997FC
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stmw     r25, 0x14(r1)
+	mr       r30, r4
+	lis      r4, lbl_8049B8C8@ha
+	mr       r29, r3
+	mr       r3, r30
+	mr       r31, r5
+	addi     r27, r4, lbl_8049B8C8@l
+	lwz      r12, 0(r30)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, particle2dMgr@sda21(r13)
+	mr       r25, r3
+	cmplwi   r0, 0
+	beq      lbl_80452FD8
+	mr       r3, r0
+	li       r4, 0
+	bl       killGroup__14TParticle2dMgrFUc
+	lwz      r3, particle2dMgr@sda21(r13)
+	li       r4, 1
+	bl       killGroup__14TParticle2dMgrFUc
 
-	.loc_0x60:
-	  lwz       r26, 0x1C(r29)
-	  cmplwi    r26, 0
-	  beq-      .loc_0x124
-	  lbz       r0, 0x9(r30)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x114
-	  cmplwi    r26, 0
-	  bne-      .loc_0x94
-	  addi      r3, r27, 0xC
-	  addi      r5, r27, 0x1C
-	  li        r4, 0x357
-	  crclr     6, 0x6
-	  bl        -0x4289C8
+lbl_80452FD8:
+	lwz      r26, 0x1c(r29)
+	cmplwi   r26, 0
+	beq      lbl_8045309C
+	lbz      r0, 9(r30)
+	cmplwi   r0, 0
+	beq      lbl_8045308C
+	cmplwi   r26, 0
+	bne      lbl_8045300C
+	addi     r3, r27, 0xc
+	addi     r5, r27, 0x1c
+	li       r4, 0x357
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x94:
-	  lwz       r28, 0x88(r29)
-	  cmplwi    r28, 0
-	  bne-      .loc_0xB8
-	  addi      r3, r27, 0xC
-	  addi      r5, r27, 0x14C
-	  li        r4, 0x368
-	  crclr     6, 0x6
-	  bl        -0x4289E8
-	  b         .loc_0x108
+lbl_8045300C:
+	lwz      r28, 0x88(r29)
+	cmplwi   r28, 0
+	bne      lbl_80453030
+	addi     r3, r27, 0xc
+	addi     r5, r27, 0x14c
+	li       r4, 0x368
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
+	b        lbl_80453080
 
-	.loc_0xB8:
-	  mr        r3, r28
-	  bl        -0x41A64
-	  mr        r3, r26
-	  lwz       r26, 0x21C(r26)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x18(r28)
-	  mr        r3, r26
-	  lwz       r12, 0x0(r26)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r5, r3
-	  mr        r4, r26
-	  addi      r3, r28, 0x1C
-	  bl        -0x44DED8
-	  addi      r3, r28, 0x1C
-	  bl        -0x143AB0
+lbl_80453030:
+	mr       r3, r28
+	bl       del__5CNodeFv
+	mr       r3, r26
+	lwz      r26, 0x21c(r26)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x18(r28)
+	mr       r3, r26
+	lwz      r12, 0(r26)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	mr       r5, r3
+	mr       r4, r26
+	addi     r3, r28, 0x1c
+	bl       memcpy
+	addi     r3, r28, 0x1c
+	bl       setSubMemberAll__Q32og6Screen14DispMemberBaseFv
 
-	.loc_0x108:
-	  mr        r4, r28
-	  addi      r3, r29, 0x60
-	  bl        -0x41CC8
+lbl_80453080:
+	mr       r4, r28
+	addi     r3, r29, 0x60
+	bl       addHead__5CNodeFP5CNode
 
-	.loc_0x114:
-	  lwz       r3, 0x1C(r29)
-	  bl        -0x179C
-	  lwz       r3, 0x5C(r29)
-	  bl        -0x42F968
+lbl_8045308C:
+	lwz      r3, 0x1c(r29)
+	bl       destroy__Q26Screen9SceneBaseFv
+	lwz      r3, 0x5c(r29)
+	bl       freeAll__7JKRHeapFv
 
-	.loc_0x124:
-	  lwz       r3, -0x77D4(r13)
-	  bl        -0x42F8C0
-	  stw       r3, 0x24(r29)
-	  lwz       r3, -0x6450(r13)
-	  lwz       r3, 0x4(r3)
-	  lwz       r0, 0x38(r3)
-	  stw       r0, 0x28(r29)
-	  lwz       r26, -0x77D4(r13)
-	  lwz       r3, 0x5C(r29)
-	  bl        -0x42FB1C
-	  mr        r3, r29
-	  mr        r4, r25
-	  lwz       r12, 0x0(r29)
-	  lwz       r12, 0x24(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r28, r3
-	  mr        r3, r26
-	  bl        -0x42FB40
-	  cmplwi    r28, 0
-	  bne-      .loc_0x18C
-	  addi      r3, r27, 0xC
-	  addi      r5, r27, 0x138
-	  li        r4, 0x34B
-	  crclr     6, 0x6
-	  bl        -0x428AC0
+lbl_8045309C:
+	lwz      r3, sCurrentHeap__7JKRHeap@sda21(r13)
+	bl       getTotalFreeSize__7JKRHeapFv
+	stw      r3, 0x24(r29)
+	lwz      r3, gResMgr2D@sda21(r13)
+	lwz      r3, 4(r3)
+	lwz      r0, 0x38(r3)
+	stw      r0, 0x28(r29)
+	lwz      r26, sCurrentHeap__7JKRHeap@sda21(r13)
+	lwz      r3, 0x5c(r29)
+	bl       becomeCurrentHeap__7JKRHeapFv
+	mr       r3, r29
+	mr       r4, r25
+	lwz      r12, 0(r29)
+	lwz      r12, 0x24(r12)
+	mtctr    r12
+	bctrl
+	mr       r28, r3
+	mr       r3, r26
+	bl       becomeCurrentHeap__7JKRHeapFv
+	cmplwi   r28, 0
+	bne      lbl_80453104
+	addi     r3, r27, 0xc
+	addi     r5, r27, 0x138
+	li       r4, 0x34b
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x18C:
-	  lwz       r0, 0x20(r29)
-	  stw       r0, 0x104(r28)
-	  stw       r28, 0x1C(r29)
-	  lwz       r3, 0x1C(r29)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x238
-	  lwz       r0, 0xC(r30)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x1C0
-	  lwz       r4, 0x21C(r3)
-	  mr        r3, r29
-	  mr        r5, r31
-	  bl        0x64C
+lbl_80453104:
+	lwz      r0, 0x20(r29)
+	stw      r0, 0x104(r28)
+	stw      r28, 0x1c(r29)
+	lwz      r3, 0x1c(r29)
+	cmplwi   r3, 0
+	beq      lbl_804531B0
+	lwz      r0, 0xc(r30)
+	cmplwi   r0, 0
+	beq      lbl_80453138
+	lwz      r4, 0x21c(r3)
+	mr       r3, r29
+	mr       r5, r31
+	bl       copyDispMember__Q26Screen3MgrFPUcPUc
 
-	.loc_0x1C0:
-	  lwz       r3, 0x1C(r29)
-	  stw       r29, 0x108(r3)
-	  lwz       r0, 0x20(r29)
-	  lwz       r3, 0x1C(r29)
-	  stw       r0, 0x104(r3)
-	  lwz       r3, 0x1C(r29)
-	  bl        -0x1824
-	  lwz       r3, 0x1C(r29)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x238
-	  lwz       r28, 0x70(r29)
-	  b         .loc_0x21C
+lbl_80453138:
+	lwz      r3, 0x1c(r29)
+	stw      r29, 0x108(r3)
+	lwz      r0, 0x20(r29)
+	lwz      r3, 0x1c(r29)
+	stw      r0, 0x104(r3)
+	lwz      r3, 0x1c(r29)
+	bl       create__Q26Screen9SceneBaseFv
+	lwz      r3, 0x1c(r29)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_804531B0
+	lwz      r28, 0x70(r29)
+	b        lbl_80453194
 
-	.loc_0x200:
-	  lwz       r27, 0x4(r28)
-	  mr        r3, r28
-	  bl        -0x41BB0
-	  mr        r4, r28
-	  addi      r3, r29, 0x78
-	  bl        -0x41D84
-	  mr        r28, r27
+lbl_80453178:
+	lwz      r27, 4(r28)
+	mr       r3, r28
+	bl       del__5CNodeFv
+	mr       r4, r28
+	addi     r3, r29, 0x78
+	bl       add__5CNodeFP5CNode
+	mr       r28, r27
 
-	.loc_0x21C:
-	  cmplwi    r28, 0
-	  bne+      .loc_0x200
-	  li        r0, 0
-	  stw       r0, 0x70(r29)
-	  stw       r0, 0x6C(r29)
-	  stw       r0, 0x68(r29)
-	  stw       r0, 0x64(r29)
+lbl_80453194:
+	cmplwi   r28, 0
+	bne      lbl_80453178
+	li       r0, 0
+	stw      r0, 0x70(r29)
+	stw      r0, 0x6c(r29)
+	stw      r0, 0x68(r29)
+	stw      r0, 0x64(r29)
 
-	.loc_0x238:
-	  lmw       r25, 0x14(r1)
-	  lwz       r0, 0x34(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_804531B0:
+	lmw      r25, 0x14(r1)
+	lwz      r0, 0x34(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -1436,431 +1591,428 @@ void Mgr::changeScene(Screen::SetSceneArg&, unsigned char*)
 void Mgr::setScene(Screen::SetSceneArg&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  lis       r5, 0x804A
-	  stw       r0, 0x44(r1)
-	  stmw      r26, 0x28(r1)
-	  mr        r27, r4
-	  mr        r26, r3
-	  subi      r31, r5, 0x4738
-	  li        r28, 0x1
-	  lbz       r0, 0x8(r4)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x4C
-	  lwz       r3, 0x1C(r26)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x4C
-	  beq-      .loc_0x57C
-	  bl        -0x1434
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x57C
+	stwu     r1, -0x40(r1)
+	mflr     r0
+	lis      r5, lbl_8049B8C8@ha
+	stw      r0, 0x44(r1)
+	stmw     r26, 0x28(r1)
+	mr       r27, r4
+	mr       r26, r3
+	addi     r31, r5, lbl_8049B8C8@l
+	li       r28, 1
+	lbz      r0, 8(r4)
+	cmplwi   r0, 0
+	bne      lbl_80453210
+	lwz      r3, 0x1c(r26)
+	cmplwi   r3, 0
+	beq      lbl_80453210
+	beq      lbl_80453740
+	bl       confirmSetScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80453740
 
-	.loc_0x4C:
-	  lwz       r30, 0x54(r26)
-	  cmplwi    r30, 0
-	  bne-      .loc_0x6C
-	  addi      r3, r31, 0xC
-	  addi      r5, r31, 0xC4
-	  li        r4, 0x267
-	  crclr     6, 0x6
-	  bl        -0x428BEC
+lbl_80453210:
+	lwz      r30, 0x54(r26)
+	cmplwi   r30, 0
+	bne      lbl_80453230
+	addi     r3, r31, 0xc
+	addi     r5, r31, 0xc4
+	li       r4, 0x267
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x6C:
-	  cmplwi    r30, 0
-	  beq-      .loc_0x9C
-	  addi      r3, r30, 0x464
-	  bl        -0x3636D4
-	  mr        r3, r30
-	  bl        -0x41C74
-	  mr        r4, r30
-	  addi      r3, r26, 0x2C
-	  bl        -0x41E48
-	  addi      r3, r30, 0x464
-	  bl        -0x363614
-	  b         .loc_0xB0
+lbl_80453230:
+	cmplwi   r30, 0
+	beq      lbl_80453260
+	addi     r3, r30, 0x464
+	bl       OSLockMutex
+	mr       r3, r30
+	bl       del__5CNodeFv
+	mr       r4, r30
+	addi     r3, r26, 0x2c
+	bl       add__5CNodeFP5CNode
+	addi     r3, r30, 0x464
+	bl       OSUnlockMutex
+	b        lbl_80453274
 
-	.loc_0x9C:
-	  addi      r3, r31, 0xC
-	  addi      r5, r31, 0xE8
-	  li        r4, 0x272
-	  crclr     6, 0x6
-	  bl        -0x428C30
+lbl_80453260:
+	addi     r3, r31, 0xc
+	addi     r5, r31, 0xe8
+	li       r4, 0x272
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xB0:
-	  cmplwi    r30, 0
-	  bne-      .loc_0xC0
-	  li        r28, 0
-	  b         .loc_0x570
+lbl_80453274:
+	cmplwi   r30, 0
+	bne      lbl_80453284
+	li       r28, 0
+	b        lbl_80453734
 
-	.loc_0xC0:
-	  addi      r3, r30, 0x464
-	  bl        -0x363720
-	  lbz       r0, 0x8(r27)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x2A8
-	  mr        r3, r26
-	  bl        .loc_0x598
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x260
-	  addi      r3, r31, 0x50
-	  li        r0, 0
-	  stw       r3, 0x14(r30)
-	  addi      r3, r30, 0x464
-	  stw       r0, 0x18(r30)
-	  bl        -0x363754
-	  cmplwi    r27, 0
-	  beq-      .loc_0x164
-	  mr        r3, r27
-	  lwz       r12, 0x0(r27)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  cmplwi    r3, 0x40
-	  ble-      .loc_0x134
-	  addi      r3, r31, 0xC
-	  addi      r5, r31, 0x1C
-	  li        r4, 0x102
-	  crclr     6, 0x6
-	  bl        -0x428CB4
+lbl_80453284:
+	addi     r3, r30, 0x464
+	bl       OSLockMutex
+	lbz      r0, 8(r27)
+	cmplwi   r0, 0
+	beq      lbl_8045346C
+	mr       r3, r26
+	bl       isCurrentSceneLoading__Q26Screen3MgrFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80453424
+	addi     r3, r31, 0x50
+	li       r0, 0
+	stw      r3, 0x14(r30)
+	addi     r3, r30, 0x464
+	stw      r0, 0x18(r30)
+	bl       OSLockMutex
+	cmplwi   r27, 0
+	beq      lbl_80453328
+	mr       r3, r27
+	lwz      r12, 0(r27)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	cmplwi   r3, 0x40
+	ble      lbl_804532F8
+	addi     r3, r31, 0xc
+	addi     r5, r31, 0x1c
+	li       r4, 0x102
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x134:
-	  addi      r0, r30, 0x20
-	  mr        r3, r27
-	  stw       r0, 0x1C(r30)
-	  lwz       r12, 0x0(r27)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r5, r3
-	  mr        r4, r27
-	  addi      r3, r30, 0x20
-	  bl        -0x44E184
-	  b         .loc_0x198
+lbl_804532F8:
+	addi     r0, r30, 0x20
+	mr       r3, r27
+	stw      r0, 0x1c(r30)
+	lwz      r12, 0(r27)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	mr       r5, r3
+	mr       r4, r27
+	addi     r3, r30, 0x20
+	bl       memcpy
+	b        lbl_8045335C
 
-	.loc_0x164:
-	  lwz       r0, 0x1C(r30)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x190
-	  addi      r3, r30, 0x464
-	  bl        -0x3637D0
-	  addi      r3, r30, 0x20
-	  li        r4, 0xCD
-	  li        r5, 0x40
-	  bl        -0x44E294
-	  addi      r3, r30, 0x464
-	  bl        -0x36370C
+lbl_80453328:
+	lwz      r0, 0x1c(r30)
+	cmplwi   r0, 0
+	beq      lbl_80453354
+	addi     r3, r30, 0x464
+	bl       OSLockMutex
+	addi     r3, r30, 0x20
+	li       r4, 0xcd
+	li       r5, 0x40
+	bl       memset
+	addi     r3, r30, 0x464
+	bl       OSUnlockMutex
 
-	.loc_0x190:
-	  li        r0, 0
-	  stw       r0, 0x1C(r30)
+lbl_80453354:
+	li       r0, 0
+	stw      r0, 0x1c(r30)
 
-	.loc_0x198:
-	  addi      r3, r30, 0x464
-	  bl        -0x36371C
-	  lwz       r27, 0xC(r27)
-	  addi      r3, r30, 0x464
-	  bl        -0x363804
-	  cmplwi    r27, 0
-	  beq-      .loc_0x24C
-	  mr        r3, r27
-	  lwz       r12, 0x0(r27)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  cmplwi    r3, 0x400
-	  bgt-      .loc_0x208
-	  addi      r0, r30, 0x64
-	  mr        r3, r27
-	  stw       r0, 0x60(r30)
-	  lwz       r12, 0x0(r27)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r5, r3
-	  mr        r4, r27
-	  addi      r3, r30, 0x64
-	  bl        -0x44E220
-	  lwz       r3, 0x60(r30)
-	  bl        -0x143DF8
-	  b         .loc_0x254
+lbl_8045335C:
+	addi     r3, r30, 0x464
+	bl       OSUnlockMutex
+	lwz      r27, 0xc(r27)
+	addi     r3, r30, 0x464
+	bl       OSLockMutex
+	cmplwi   r27, 0
+	beq      lbl_80453410
+	mr       r3, r27
+	lwz      r12, 0(r27)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	cmplwi   r3, 0x400
+	bgt      lbl_804533CC
+	addi     r0, r30, 0x64
+	mr       r3, r27
+	stw      r0, 0x60(r30)
+	lwz      r12, 0(r27)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	mr       r5, r3
+	mr       r4, r27
+	addi     r3, r30, 0x64
+	bl       memcpy
+	lwz      r3, 0x60(r30)
+	bl       setSubMemberAll__Q32og6Screen14DispMemberBaseFv
+	b        lbl_80453418
 
-	.loc_0x208:
-	  mr        r3, r27
-	  addi      r4, r1, 0x14
-	  bl        -0x144038
-	  mr        r3, r27
-	  lwz       r12, 0x0(r27)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r7, r3
-	  addi      r3, r31, 0xC
-	  addi      r5, r31, 0x28
-	  addi      r6, r1, 0x14
-	  li        r4, 0x125
-	  li        r8, 0x400
-	  crclr     6, 0x6
-	  bl        -0x428DC8
-	  b         .loc_0x254
+lbl_804533CC:
+	mr       r3, r27
+	addi     r4, r1, 0x14
+	bl       getMemberName__Q32og6Screen14DispMemberBaseFPc
+	mr       r3, r27
+	lwz      r12, 0(r27)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	mr       r7, r3
+	addi     r3, r31, 0xc
+	addi     r5, r31, 0x28
+	addi     r6, r1, 0x14
+	li       r4, 0x125
+	li       r8, 0x400
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
+	b        lbl_80453418
 
-	.loc_0x24C:
-	  li        r0, 0
-	  stw       r0, 0x60(r30)
+lbl_80453410:
+	li       r0, 0
+	stw      r0, 0x60(r30)
 
-	.loc_0x254:
-	  addi      r3, r30, 0x464
-	  bl        -0x3637D8
-	  b         .loc_0x570
+lbl_80453418:
+	addi     r3, r30, 0x464
+	bl       OSUnlockMutex
+	b        lbl_80453734
 
-	.loc_0x260:
-	  addi      r3, r30, 0x464
-	  bl        -0x3638C0
-	  mr        r3, r30
-	  bl        -0x41E60
-	  mr        r4, r30
-	  addi      r3, r26, 0x44
-	  bl        -0x42034
-	  addi      r3, r30, 0x464
-	  bl        -0x363800
-	  lwz       r3, 0xC(r27)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x294
-	  bl        -0x143E88
+lbl_80453424:
+	addi     r3, r30, 0x464
+	bl       OSLockMutex
+	mr       r3, r30
+	bl       del__5CNodeFv
+	mr       r4, r30
+	addi     r3, r26, 0x44
+	bl       add__5CNodeFP5CNode
+	addi     r3, r30, 0x464
+	bl       OSUnlockMutex
+	lwz      r3, 0xc(r27)
+	cmplwi   r3, 0
+	beq      lbl_80453458
+	bl       setSubMemberAll__Q32og6Screen14DispMemberBaseFv
 
-	.loc_0x294:
-	  lwz       r5, 0xC(r27)
-	  mr        r3, r26
-	  mr        r4, r27
-	  bl        -0x4EC
-	  b         .loc_0x570
+lbl_80453458:
+	lwz      r5, 0xc(r27)
+	mr       r3, r26
+	mr       r4, r27
+	bl       changeScene__Q26Screen3MgrFRQ26Screen11SetSceneArgPUc
+	b        lbl_80453734
 
-	.loc_0x2A8:
-	  lwz       r0, 0x1C(r26)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x52C
-	  lwz       r29, 0x54(r26)
-	  cmplwi    r29, 0
-	  bne-      .loc_0x2D4
-	  addi      r3, r31, 0xC
-	  addi      r5, r31, 0xC4
-	  li        r4, 0x267
-	  crclr     6, 0x6
-	  bl        -0x428E54
+lbl_8045346C:
+	lwz      r0, 0x1c(r26)
+	cmplwi   r0, 0
+	beq      lbl_804536F0
+	lwz      r29, 0x54(r26)
+	cmplwi   r29, 0
+	bne      lbl_80453498
+	addi     r3, r31, 0xc
+	addi     r5, r31, 0xc4
+	li       r4, 0x267
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x2D4:
-	  cmplwi    r29, 0
-	  beq-      .loc_0x304
-	  addi      r3, r29, 0x464
-	  bl        -0x36393C
-	  mr        r3, r29
-	  bl        -0x41EDC
-	  mr        r4, r29
-	  addi      r3, r26, 0x2C
-	  bl        -0x420B0
-	  addi      r3, r29, 0x464
-	  bl        -0x36387C
-	  b         .loc_0x318
+lbl_80453498:
+	cmplwi   r29, 0
+	beq      lbl_804534C8
+	addi     r3, r29, 0x464
+	bl       OSLockMutex
+	mr       r3, r29
+	bl       del__5CNodeFv
+	mr       r4, r29
+	addi     r3, r26, 0x2c
+	bl       add__5CNodeFP5CNode
+	addi     r3, r29, 0x464
+	bl       OSUnlockMutex
+	b        lbl_804534DC
 
-	.loc_0x304:
-	  addi      r3, r31, 0xC
-	  addi      r5, r31, 0xE8
-	  li        r4, 0x272
-	  crclr     6, 0x6
-	  bl        -0x428E98
+lbl_804534C8:
+	addi     r3, r31, 0xc
+	addi     r5, r31, 0xe8
+	li       r4, 0x272
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x318:
-	  cmplwi    r29, 0
-	  beq-      .loc_0x500
-	  addi      r3, r30, 0x464
-	  bl        -0x363980
-	  addi      r3, r31, 0x68
-	  li        r0, 0x2
-	  stw       r3, 0x14(r30)
-	  addi      r3, r30, 0x464
-	  stw       r0, 0x18(r30)
-	  bl        -0x363998
-	  lwz       r0, 0x1C(r30)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x36C
-	  addi      r3, r30, 0x464
-	  bl        -0x3639AC
-	  addi      r3, r30, 0x20
-	  li        r4, 0xCD
-	  li        r5, 0x40
-	  bl        -0x44E470
-	  addi      r3, r30, 0x464
-	  bl        -0x3638E8
+lbl_804534DC:
+	cmplwi   r29, 0
+	beq      lbl_804536C4
+	addi     r3, r30, 0x464
+	bl       OSLockMutex
+	addi     r3, r31, 0x68
+	li       r0, 2
+	stw      r3, 0x14(r30)
+	addi     r3, r30, 0x464
+	stw      r0, 0x18(r30)
+	bl       OSLockMutex
+	lwz      r0, 0x1c(r30)
+	cmplwi   r0, 0
+	beq      lbl_80453530
+	addi     r3, r30, 0x464
+	bl       OSLockMutex
+	addi     r3, r30, 0x20
+	li       r4, 0xcd
+	li       r5, 0x40
+	bl       memset
+	addi     r3, r30, 0x464
+	bl       OSUnlockMutex
 
-	.loc_0x36C:
-	  li        r0, 0
-	  addi      r3, r30, 0x464
-	  stw       r0, 0x1C(r30)
-	  bl        -0x3638F8
-	  addi      r3, r30, 0x464
-	  bl        -0x363900
-	  addi      r3, r31, 0x50
-	  li        r0, 0
-	  stw       r3, 0x14(r29)
-	  addi      r3, r29, 0x464
-	  stw       r0, 0x18(r29)
-	  bl        -0x3639F4
-	  cmplwi    r27, 0
-	  beq-      .loc_0x404
-	  mr        r3, r27
-	  lwz       r12, 0x0(r27)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  cmplwi    r3, 0x40
-	  ble-      .loc_0x3D4
-	  addi      r3, r31, 0xC
-	  addi      r5, r31, 0x1C
-	  li        r4, 0x102
-	  crclr     6, 0x6
-	  bl        -0x428F54
+lbl_80453530:
+	li       r0, 0
+	addi     r3, r30, 0x464
+	stw      r0, 0x1c(r30)
+	bl       OSUnlockMutex
+	addi     r3, r30, 0x464
+	bl       OSUnlockMutex
+	addi     r3, r31, 0x50
+	li       r0, 0
+	stw      r3, 0x14(r29)
+	addi     r3, r29, 0x464
+	stw      r0, 0x18(r29)
+	bl       OSLockMutex
+	cmplwi   r27, 0
+	beq      lbl_804535C8
+	mr       r3, r27
+	lwz      r12, 0(r27)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	cmplwi   r3, 0x40
+	ble      lbl_80453598
+	addi     r3, r31, 0xc
+	addi     r5, r31, 0x1c
+	li       r4, 0x102
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x3D4:
-	  addi      r0, r29, 0x20
-	  mr        r3, r27
-	  stw       r0, 0x1C(r29)
-	  lwz       r12, 0x0(r27)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r5, r3
-	  mr        r4, r27
-	  addi      r3, r29, 0x20
-	  bl        -0x44E424
-	  b         .loc_0x438
+lbl_80453598:
+	addi     r0, r29, 0x20
+	mr       r3, r27
+	stw      r0, 0x1c(r29)
+	lwz      r12, 0(r27)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	mr       r5, r3
+	mr       r4, r27
+	addi     r3, r29, 0x20
+	bl       memcpy
+	b        lbl_804535FC
 
-	.loc_0x404:
-	  lwz       r0, 0x1C(r29)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x430
-	  addi      r3, r29, 0x464
-	  bl        -0x363A70
-	  addi      r3, r29, 0x20
-	  li        r4, 0xCD
-	  li        r5, 0x40
-	  bl        -0x44E534
-	  addi      r3, r29, 0x464
-	  bl        -0x3639AC
+lbl_804535C8:
+	lwz      r0, 0x1c(r29)
+	cmplwi   r0, 0
+	beq      lbl_804535F4
+	addi     r3, r29, 0x464
+	bl       OSLockMutex
+	addi     r3, r29, 0x20
+	li       r4, 0xcd
+	li       r5, 0x40
+	bl       memset
+	addi     r3, r29, 0x464
+	bl       OSUnlockMutex
 
-	.loc_0x430:
-	  li        r0, 0
-	  stw       r0, 0x1C(r29)
+lbl_804535F4:
+	li       r0, 0
+	stw      r0, 0x1c(r29)
 
-	.loc_0x438:
-	  addi      r3, r29, 0x464
-	  bl        -0x3639BC
-	  lwz       r27, 0xC(r27)
-	  addi      r3, r29, 0x464
-	  bl        -0x363AA4
-	  cmplwi    r27, 0
-	  beq-      .loc_0x4EC
-	  mr        r3, r27
-	  lwz       r12, 0x0(r27)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  cmplwi    r3, 0x400
-	  bgt-      .loc_0x4A8
-	  addi      r0, r29, 0x64
-	  mr        r3, r27
-	  stw       r0, 0x60(r29)
-	  lwz       r12, 0x0(r27)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r5, r3
-	  mr        r4, r27
-	  addi      r3, r29, 0x64
-	  bl        -0x44E4C0
-	  lwz       r3, 0x60(r29)
-	  bl        -0x144098
-	  b         .loc_0x4F4
+lbl_804535FC:
+	addi     r3, r29, 0x464
+	bl       OSUnlockMutex
+	lwz      r27, 0xc(r27)
+	addi     r3, r29, 0x464
+	bl       OSLockMutex
+	cmplwi   r27, 0
+	beq      lbl_804536B0
+	mr       r3, r27
+	lwz      r12, 0(r27)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	cmplwi   r3, 0x400
+	bgt      lbl_8045366C
+	addi     r0, r29, 0x64
+	mr       r3, r27
+	stw      r0, 0x60(r29)
+	lwz      r12, 0(r27)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	mr       r5, r3
+	mr       r4, r27
+	addi     r3, r29, 0x64
+	bl       memcpy
+	lwz      r3, 0x60(r29)
+	bl       setSubMemberAll__Q32og6Screen14DispMemberBaseFv
+	b        lbl_804536B8
 
-	.loc_0x4A8:
-	  mr        r3, r27
-	  addi      r4, r1, 0x8
-	  bl        -0x1442D8
-	  mr        r3, r27
-	  lwz       r12, 0x0(r27)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r7, r3
-	  addi      r3, r31, 0xC
-	  addi      r5, r31, 0x28
-	  addi      r6, r1, 0x8
-	  li        r4, 0x125
-	  li        r8, 0x400
-	  crclr     6, 0x6
-	  bl        -0x429068
-	  b         .loc_0x4F4
+lbl_8045366C:
+	mr       r3, r27
+	addi     r4, r1, 8
+	bl       getMemberName__Q32og6Screen14DispMemberBaseFPc
+	mr       r3, r27
+	lwz      r12, 0(r27)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	mr       r7, r3
+	addi     r3, r31, 0xc
+	addi     r5, r31, 0x28
+	addi     r6, r1, 8
+	li       r4, 0x125
+	li       r8, 0x400
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
+	b        lbl_804536B8
 
-	.loc_0x4EC:
-	  li        r0, 0
-	  stw       r0, 0x60(r29)
+lbl_804536B0:
+	li       r0, 0
+	stw      r0, 0x60(r29)
 
-	.loc_0x4F4:
-	  addi      r3, r29, 0x464
-	  bl        -0x363A78
-	  b         .loc_0x570
+lbl_804536B8:
+	addi     r3, r29, 0x464
+	bl       OSUnlockMutex
+	b        lbl_80453734
 
-	.loc_0x500:
-	  addi      r3, r30, 0x464
-	  bl        -0x363B60
-	  mr        r3, r30
-	  bl        -0x42100
-	  mr        r4, r30
-	  addi      r3, r26, 0x44
-	  bl        -0x422D4
-	  addi      r3, r30, 0x464
-	  bl        -0x363AA0
-	  li        r28, 0
-	  b         .loc_0x570
+lbl_804536C4:
+	addi     r3, r30, 0x464
+	bl       OSLockMutex
+	mr       r3, r30
+	bl       del__5CNodeFv
+	mr       r4, r30
+	addi     r3, r26, 0x44
+	bl       add__5CNodeFP5CNode
+	addi     r3, r30, 0x464
+	bl       OSUnlockMutex
+	li       r28, 0
+	b        lbl_80453734
 
-	.loc_0x52C:
-	  addi      r3, r30, 0x464
-	  bl        -0x363B8C
-	  mr        r3, r30
-	  bl        -0x4212C
-	  mr        r4, r30
-	  addi      r3, r26, 0x44
-	  bl        -0x42300
-	  addi      r3, r30, 0x464
-	  bl        -0x363ACC
-	  lwz       r3, 0xC(r27)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x560
-	  bl        -0x144154
+lbl_804536F0:
+	addi     r3, r30, 0x464
+	bl       OSLockMutex
+	mr       r3, r30
+	bl       del__5CNodeFv
+	mr       r4, r30
+	addi     r3, r26, 0x44
+	bl       add__5CNodeFP5CNode
+	addi     r3, r30, 0x464
+	bl       OSUnlockMutex
+	lwz      r3, 0xc(r27)
+	cmplwi   r3, 0
+	beq      lbl_80453724
+	bl       setSubMemberAll__Q32og6Screen14DispMemberBaseFv
 
-	.loc_0x560:
-	  lwz       r5, 0xC(r27)
-	  mr        r3, r26
-	  mr        r4, r27
-	  bl        -0x7B8
+lbl_80453724:
+	lwz      r5, 0xc(r27)
+	mr       r3, r26
+	mr       r4, r27
+	bl       changeScene__Q26Screen3MgrFRQ26Screen11SetSceneArgPUc
 
-	.loc_0x570:
-	  addi      r3, r30, 0x464
-	  bl        -0x363AF4
-	  b         .loc_0x580
+lbl_80453734:
+	addi     r3, r30, 0x464
+	bl       OSUnlockMutex
+	b        lbl_80453744
 
-	.loc_0x57C:
-	  li        r28, 0
+lbl_80453740:
+	li       r28, 0
 
-	.loc_0x580:
-	  mr        r3, r28
-	  lmw       r26, 0x28(r1)
-	  lwz       r0, 0x44(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
-
-	.loc_0x598:
+lbl_80453744:
+	mr       r3, r28
+	lmw      r26, 0x28(r1)
+	lwz      r0, 0x44(r1)
+	mtlr     r0
+	addi     r1, r1, 0x40
+	blr
 	*/
 }
 
@@ -1872,16 +2024,15 @@ void Mgr::setScene(Screen::SetSceneArg&)
 void Mgr::isCurrentSceneLoading(void)
 {
 	/*
-	.loc_0x0:
-	  lwz       r4, 0x1C(r3)
-	  li        r3, 0
-	  cmplwi    r4, 0
-	  beqlr-
-	  lwz       r0, 0x120(r4)
-	  cmpwi     r0, 0x1
-	  bnelr-
-	  li        r3, 0x1
-	  blr
+	lwz      r4, 0x1c(r3)
+	li       r3, 0
+	cmplwi   r4, 0
+	beqlr
+	lwz      r0, 0x120(r4)
+	cmpwi    r0, 1
+	bnelr
+	li       r3, 1
+	blr
 	*/
 }
 
@@ -1893,101 +2044,100 @@ void Mgr::isCurrentSceneLoading(void)
 void Mgr::copyDispMember(unsigned char*, unsigned char*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x50(r1)
-	  mflr      r0
-	  stw       r0, 0x54(r1)
-	  stmw      r27, 0x3C(r1)
-	  mr        r27, r3
-	  mr        r31, r4
-	  mr        r30, r5
-	  lwz       r3, 0x1C(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r0, r3
-	  lwz       r3, 0x1C(r27)
-	  mr        r29, r0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r0, r3
-	  mr        r27, r4
-	  mr        r28, r0
-	  mr        r3, r30
-	  mr        r4, r29
-	  mr        r6, r27
-	  mr        r5, r28
-	  bl        -0x1444CC
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x90
-	  mr        r3, r30
-	  mr        r4, r29
-	  mr        r6, r27
-	  mr        r5, r28
-	  bl        -0x144344
-	  cmplwi    r3, 0
-	  beq-      .loc_0xC0
+	stwu     r1, -0x50(r1)
+	mflr     r0
+	stw      r0, 0x54(r1)
+	stmw     r27, 0x3c(r1)
+	mr       r27, r3
+	mr       r31, r4
+	mr       r30, r5
+	lwz      r3, 0x1c(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	mr       r0, r3
+	lwz      r3, 0x1c(r27)
+	mr       r29, r0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	mr       r0, r3
+	mr       r27, r4
+	mr       r28, r0
+	mr       r3, r30
+	mr       r4, r29
+	mr       r6, r27
+	mr       r5, r28
+	bl       isID__Q32og6Screen14DispMemberBaseFUlUx
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_80453810
+	mr       r3, r30
+	mr       r4, r29
+	mr       r6, r27
+	mr       r5, r28
+	bl       getSubMember__Q32og6Screen14DispMemberBaseFUlUx
+	cmplwi   r3, 0
+	beq      lbl_80453840
 
-	.loc_0x90:
-	  mr        r3, r30
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r5, r3
-	  mr        r3, r31
-	  mr        r4, r30
-	  bl        -0x44E694
-	  mr        r3, r31
-	  bl        -0x14426C
-	  b         .loc_0x14C
+lbl_80453810:
+	mr       r3, r30
+	lwz      r12, 0(r30)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	mr       r5, r3
+	mr       r3, r31
+	mr       r4, r30
+	bl       memcpy
+	mr       r3, r31
+	bl       setSubMemberAll__Q32og6Screen14DispMemberBaseFv
+	b        lbl_804538CC
 
-	.loc_0xC0:
-	  mr        r3, r30
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  addi      r5, r1, 0x14
-	  li        r3, 0
-	  bl        -0x150C94
-	  mr        r3, r30
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  addi      r5, r1, 0x8
-	  bl        -0x150CB0
-	  mr        r4, r29
-	  addi      r5, r1, 0x2C
-	  li        r3, 0
-	  bl        -0x150CC0
-	  mr        r4, r27
-	  mr        r3, r28
-	  addi      r5, r1, 0x20
-	  bl        -0x150CD0
-	  lis       r3, 0x804A
-	  lis       r4, 0x804A
-	  subi      r5, r4, 0x45C8
-	  addi      r6, r1, 0x2C
-	  subi      r3, r3, 0x472C
-	  addi      r7, r1, 0x20
-	  addi      r8, r1, 0x14
-	  addi      r9, r1, 0x8
-	  li        r4, 0x44A
-	  crclr     6, 0x6
-	  bl        -0x429288
+lbl_80453840:
+	mr       r3, r30
+	lwz      r12, 0(r30)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	addi     r5, r1, 0x14
+	li       r3, 0
+	bl       TagToName__Q22og6ScreenFUxPc
+	mr       r3, r30
+	lwz      r12, 0(r30)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	addi     r5, r1, 8
+	bl       TagToName__Q22og6ScreenFUxPc
+	mr       r4, r29
+	addi     r5, r1, 0x2c
+	li       r3, 0
+	bl       TagToName__Q22og6ScreenFUxPc
+	mr       r4, r27
+	mr       r3, r28
+	addi     r5, r1, 0x20
+	bl       TagToName__Q22og6ScreenFUxPc
+	lis      r3, lbl_8049B8D4@ha
+	lis      r4, lbl_8049BA38@ha
+	addi     r5, r4, lbl_8049BA38@l
+	addi     r6, r1, 0x2c
+	addi     r3, r3, lbl_8049B8D4@l
+	addi     r7, r1, 0x20
+	addi     r8, r1, 0x14
+	addi     r9, r1, 8
+	li       r4, 0x44a
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x14C:
-	  lmw       r27, 0x3C(r1)
-	  lwz       r0, 0x54(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x50
-	  blr
+lbl_804538CC:
+	lmw      r27, 0x3c(r1)
+	lwz      r0, 0x54(r1)
+	mtlr     r0
+	addi     r1, r1, 0x50
+	blr
 	*/
 }
 
@@ -1999,24 +2149,23 @@ void Mgr::copyDispMember(unsigned char*, unsigned char*)
 void Mgr::setDispMember(og::Screen::DispMemberBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x1C(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x20
-	  bl        -0x1838
-	  b         .loc_0x24
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r3, 0x1c(r3)
+	cmplwi   r3, 0
+	beq      lbl_80453900
+	bl       setDispMember__Q26Screen9SceneBaseFPQ32og6Screen14DispMemberBase
+	b        lbl_80453904
 
-	.loc_0x20:
-	  li        r3, 0
+lbl_80453900:
+	li       r3, 0
 
-	.loc_0x24:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80453904:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2028,16 +2177,15 @@ void Mgr::setDispMember(og::Screen::DispMemberBase*)
 void Mgr::getDispMember(void)
 {
 	/*
-	.loc_0x0:
-	  lwz       r3, 0x1C(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x14
-	  lwz       r3, 0x21C(r3)
-	  blr
+	lwz      r3, 0x1c(r3)
+	cmplwi   r3, 0
+	beq      lbl_80453928
+	lwz      r3, 0x21c(r3)
+	blr
 
-	.loc_0x14:
-	  li        r3, 0
-	  blr
+lbl_80453928:
+	li       r3, 0
+	blr
 	*/
 }
 
@@ -2049,27 +2197,26 @@ void Mgr::getDispMember(void)
 void Mgr::getSceneType(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x1C(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x2C
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x30
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r3, 0x1c(r3)
+	cmplwi   r3, 0
+	beq      lbl_8045395C
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_80453960
 
-	.loc_0x2C:
-	  li        r3, 0
+lbl_8045395C:
+	li       r3, 0
 
-	.loc_0x30:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80453960:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2081,19 +2228,18 @@ void Mgr::getSceneType(void)
 void Mgr::isSceneFinish(void)
 {
 	/*
-	.loc_0x0:
-	  lwz       r3, 0x1C(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x20
-	  lwz       r0, 0x120(r3)
-	  subfic    r0, r0, 0x4
-	  cntlzw    r0, r0
-	  rlwinm    r3,r0,27,5,31
-	  blr
+	lwz      r3, 0x1c(r3)
+	cmplwi   r3, 0
+	beq      lbl_80453990
+	lwz      r0, 0x120(r3)
+	subfic   r0, r0, 4
+	cntlzw   r0, r0
+	srwi     r3, r0, 5
+	blr
 
-	.loc_0x20:
-	  li        r3, 0x1
-	  blr
+lbl_80453990:
+	li       r3, 1
+	blr
 	*/
 }
 
@@ -2105,23 +2251,22 @@ void Mgr::isSceneFinish(void)
 void Mgr::getSceneFinishState(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  li        r0, -0x1
-	  lwz       r3, 0x1C(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x24
-	  bl        -0x17C4
-	  mr        r0, r3
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	li       r0, -1
+	lwz      r3, 0x1c(r3)
+	cmplwi   r3, 0
+	beq      lbl_804539BC
+	bl       getFinishState__Q26Screen9SceneBaseFv
+	mr       r0, r3
 
-	.loc_0x24:
-	  mr        r3, r0
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_804539BC:
+	mr       r3, r0
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2133,14 +2278,13 @@ void Mgr::getSceneFinishState(void)
 void Mgr::setGamePad(Controller*)
 {
 	/*
-	.loc_0x0:
-	  stw       r4, 0x20(r3)
-	  lwz       r4, 0x1C(r3)
-	  cmplwi    r4, 0
-	  beqlr-
-	  lwz       r0, 0x20(r3)
-	  stw       r0, 0x104(r4)
-	  blr
+	stw      r4, 0x20(r3)
+	lwz      r4, 0x1c(r3)
+	cmplwi   r4, 0
+	beqlr
+	lwz      r0, 0x20(r3)
+	stw      r0, 0x104(r4)
+	blr
 	*/
 }
 
@@ -2152,24 +2296,23 @@ void Mgr::setGamePad(Controller*)
 void Mgr::setBackupScene(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x1C(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x20
-	  bl        -0x1A44
-	  b         .loc_0x24
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r3, 0x1c(r3)
+	cmplwi   r3, 0
+	beq      lbl_80453A0C
+	bl       setBackupScene__Q26Screen9SceneBaseFv
+	b        lbl_80453A10
 
-	.loc_0x20:
-	  li        r3, 0
+lbl_80453A0C:
+	li       r3, 0
 
-	.loc_0x24:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80453A10:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2181,29 +2324,28 @@ void Mgr::setBackupScene(void)
 void Mgr::isAnyReservation() const
 {
 	/*
-	.loc_0x0:
-	  lwz       r3, 0x3C(r3)
-	  b         .loc_0x28
+	lwz      r3, 0x3c(r3)
+	b        lbl_80453A48
 
-	.loc_0x8:
-	  lwz       r0, 0x18(r3)
-	  cmpwi     r0, 0
-	  beq-      .loc_0x1C
-	  cmpwi     r0, 0x1
-	  bne-      .loc_0x24
+lbl_80453A28:
+	lwz      r0, 0x18(r3)
+	cmpwi    r0, 0
+	beq      lbl_80453A3C
+	cmpwi    r0, 1
+	bne      lbl_80453A44
 
-	.loc_0x1C:
-	  li        r3, 0x1
-	  blr
+lbl_80453A3C:
+	li       r3, 1
+	blr
 
-	.loc_0x24:
-	  lwz       r3, 0x4(r3)
+lbl_80453A44:
+	lwz      r3, 4(r3)
 
-	.loc_0x28:
-	  cmplwi    r3, 0
-	  bne+      .loc_0x8
-	  li        r3, 0
-	  blr
+lbl_80453A48:
+	cmplwi   r3, 0
+	bne      lbl_80453A28
+	li       r3, 0
+	blr
 	*/
 }
 
@@ -2215,35 +2357,34 @@ void Mgr::isAnyReservation() const
 MgrCommand::~MgrCommand(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x4C
-	  lis       r4, 0x804F
-	  subi      r0, r4, 0x28CC
-	  stw       r0, 0x0(r30)
-	  bl        -0x424B4
-	  mr        r3, r30
-	  li        r4, 0
-	  bl        -0x42508
-	  extsh.    r0, r31
-	  ble-      .loc_0x4C
-	  mr        r3, r30
-	  bl        -0x42F9EC
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_80453AA4
+	lis      r4, __vt__Q26Screen10MgrCommand@ha
+	addi     r0, r4, __vt__Q26Screen10MgrCommand@l
+	stw      r0, 0(r30)
+	bl       del__5CNodeFv
+	mr       r3, r30
+	li       r4, 0
+	bl       __dt__5CNodeFv
+	extsh.   r0, r31
+	ble      lbl_80453AA4
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x4C:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80453AA4:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2257,16 +2398,15 @@ MgrCommand::~MgrCommand(void)
 void __sinit_screenMgr_cpp(void)
 {
 	/*
-	.loc_0x0:
-	  lis       r4, 0x8051
-	  li        r0, -0x1
-	  lfs       f0, 0x48B0(r4)
-	  lis       r3, 0x804F
-	  stw       r0, -0x63A0(r13)
-	  stfsu     f0, -0x2908(r3)
-	  stfs      f0, -0x639C(r13)
-	  stfs      f0, 0x4(r3)
-	  stfs      f0, 0x8(r3)
-	  blr
+	lis      r4, __float_nan@ha
+	li       r0, -1
+	lfs      f0, __float_nan@l(r4)
+	lis      r3, lbl_804ED6F8@ha
+	stw      r0, lbl_805162E0@sda21(r13)
+	stfsu    f0, lbl_804ED6F8@l(r3)
+	stfs     f0, lbl_805162E4@sda21(r13)
+	stfs     f0, 4(r3)
+	stfs     f0, 8(r3)
+	blr
 	*/
 }

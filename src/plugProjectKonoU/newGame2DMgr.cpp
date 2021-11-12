@@ -1,5 +1,145 @@
 #include "types.h"
 
+/*
+    Generated from dpostproc
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_80498510
+    lbl_80498510:
+        .4byte 0x6E657747
+        .4byte 0x616D6532
+        .4byte 0x444D6772
+        .4byte 0x2E637070
+        .4byte 0x00000000
+    .global lbl_80498524
+    lbl_80498524:
+        .asciz "P2Assert"
+        .skip 3
+    .global lbl_80498530
+    lbl_80498530:
+        .4byte 0x534D454E
+        .4byte 0x55204D4F
+        .4byte 0x44452045
+        .4byte 0x52522100
+    .global lbl_80498540
+    lbl_80498540:
+        .4byte 0x534D454E
+        .4byte 0x55204669
+        .4byte 0x6E697368
+        .4byte 0x53746174
+        .4byte 0x65457272
+        .4byte 0x6F722025
+        .4byte 0x64200A00
+    .global lbl_8049855C
+    lbl_8049855C:
+        .4byte 0x6661696C
+        .4byte 0x20746F20
+        .4byte 0x6F70656E
+        .4byte 0x204B616E
+        .4byte 0x74656921
+        .4byte 0x0A000000
+    .global lbl_80498574
+    lbl_80498574:
+        .4byte 0x63616C6C
+        .4byte 0x20746F20
+        .4byte 0x4F472073
+        .4byte 0x616E0000
+    .global lbl_80498584
+    lbl_80498584:
+        .4byte 0x64697370
+        .4byte 0x206D656D
+        .4byte 0x62657220
+        .4byte 0x65727200
+    .global lbl_80498594
+    lbl_80498594:
+        .4byte 0x6B684669
+        .4byte 0x6E616C46
+        .4byte 0x6C6F6F72
+        .4byte 0x2E680000
+    .global lbl_804985A4
+    lbl_804985A4:
+        .4byte 0x496C6C65
+        .4byte 0x67616C20
+        .4byte 0x63616C6C
+        .4byte 0x2E0A0000
+        .4byte 0x00000000
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global lbl_804EA7D8
+    lbl_804EA7D8:
+        .4byte lbl_803FD008
+        .4byte lbl_803FCFB8
+        .4byte lbl_803FCFC0
+        .4byte lbl_803FCFCC
+        .4byte lbl_803FCFD8
+        .4byte lbl_803FCFE4
+        .4byte lbl_803FCFF0
+        .4byte lbl_803FCFFC
+    .global __vt__Q26Screen11EndSceneArg
+    __vt__Q26Screen11EndSceneArg:
+        .4byte 0
+        .4byte 0
+        .4byte getSceneType__Q26Screen12SceneArgBaseCFv
+        .4byte getClassSize__Q26Screen11EndSceneArgFv
+    .global __vt__Q32og9newScreen15SArgChallenge1P
+    __vt__Q32og9newScreen15SArgChallenge1P:
+        .4byte 0
+        .4byte 0
+        .4byte getSceneType__Q32og9newScreen15SArgChallenge1PCFv
+        .4byte getClassSize__Q32og9newScreen15SArgChallenge1PFv
+    .global __vt__Q32og9newScreen15SArgChallenge2P
+    __vt__Q32og9newScreen15SArgChallenge2P:
+        .4byte 0
+        .4byte 0
+        .4byte getSceneType__Q32og9newScreen15SArgChallenge2PCFv
+        .4byte getClassSize__Q32og9newScreen15SArgChallenge2PFv
+    .global __vt__Q32og9newScreen17SArgChallengeBase
+    __vt__Q32og9newScreen17SArgChallengeBase:
+        .4byte 0
+        .4byte 0
+        .4byte getSceneType__Q26Screen12SceneArgBaseCFv
+        .4byte 0
+    .global __vt__Q32kh6Screen11DispReadyGo
+    __vt__Q32kh6Screen11DispReadyGo:
+        .4byte 0
+        .4byte 0
+        .4byte getSize__Q32kh6Screen11DispReadyGoFv
+        .4byte getOwnerID__Q32kh6Screen11DispReadyGoFv
+        .4byte getMemberID__Q32kh6Screen11DispReadyGoFv
+        .4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
+    .global __vt__Q32kh6Screen14DispFinalFloor
+    __vt__Q32kh6Screen14DispFinalFloor:
+        .4byte 0
+        .4byte 0
+        .4byte getSize__Q32kh6Screen14DispFinalFloorFv
+        .4byte getOwnerID__Q32kh6Screen14DispFinalFloorFv
+        .4byte getMemberID__Q32kh6Screen14DispFinalFloorFv
+        .4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
+    .global __vt__Q26Screen9Game2DMgr
+    __vt__Q26Screen9Game2DMgr:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q26Screen9Game2DMgrFv
+        .4byte 0
+
+    .section .sbss # 0x80514D80 - 0x80516360
+    .global gGame2DMgr__6Screen
+    gGame2DMgr__6Screen:
+        .skip 0x8
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_80520038
+    lbl_80520038:
+        .4byte 0x3FC00000
+    .global lbl_8052003C
+    lbl_8052003C:
+        .4byte 0x3DA3D70A
+    .global lbl_80520040
+    lbl_80520040:
+        .float 1.0
+        .4byte 0x00000000
+*/
+
 namespace Screen {
 
 /*
@@ -10,37 +150,34 @@ namespace Screen {
 void Game2DMgr::create()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r0, -0x6560(r13)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x34
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x7AF0
-	  li        r4, 0x1E6
-	  subi      r5, r5, 0x7ADC
-	  crclr     6, 0x6
-	  bl        -0x3D18DC
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r0, gGame2DMgr__6Screen@sda21(r13)
+	cmplwi   r0, 0
+	beq      lbl_803FBF20
+	lis      r3, lbl_80498510@ha
+	lis      r5, lbl_80498524@ha
+	addi     r3, r3, lbl_80498510@l
+	li       r4, 0x1e6
+	addi     r5, r5, lbl_80498524@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x34:
-	  li        r3, 0x1C
-	  bl        -0x3D8080
-	  mr.       r0, r3
-	  beq-      .loc_0x4C
-	  bl        .loc_0x60
-	  mr        r0, r3
+lbl_803FBF20:
+	li       r3, 0x1c
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_803FBF38
+	bl       __ct__Q26Screen9Game2DMgrFv
+	mr       r0, r3
 
-	.loc_0x4C:
-	  stw       r0, -0x6560(r13)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-
-	.loc_0x60:
+lbl_803FBF38:
+	stw      r0, gGame2DMgr__6Screen@sda21(r13)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -52,29 +189,28 @@ void Game2DMgr::create()
 Game2DMgr::Game2DMgr()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        -0x3DEF94
-	  lis       r3, 0x804F
-	  li        r0, 0
-	  subi      r3, r3, 0x5798
-	  stw       r3, 0x0(r31)
-	  stw       r0, 0x18(r31)
-	  bl        0x49C4
-	  stw       r3, 0x18(r31)
-	  lwz       r3, 0x18(r31)
-	  bl        0x565FC
-	  bl        -0xEC920
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       __ct__11JKRDisposerFv
+	lis      r3, __vt__Q26Screen9Game2DMgr@ha
+	li       r0, 0
+	addi     r3, r3, __vt__Q26Screen9Game2DMgr@l
+	stw      r3, 0(r31)
+	stw      r0, 0x18(r31)
+	bl       create__Q29newScreen3MgrFv
+	stw      r3, 0x18(r31)
+	lwz      r3, 0x18(r31)
+	bl       init__Q26Screen3MgrFv
+	bl       create__Q22og5Lib2DFv
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -86,35 +222,34 @@ Game2DMgr::Game2DMgr()
 Game2DMgr::~Game2DMgr()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x4C
-	  lis       r4, 0x804F
-	  li        r0, 0
-	  subi      r5, r4, 0x5798
-	  li        r4, 0
-	  stw       r5, 0x0(r30)
-	  stw       r0, -0x6560(r13)
-	  bl        -0x3DEFA8
-	  extsh.    r0, r31
-	  ble-      .loc_0x4C
-	  mr        r3, r30
-	  bl        -0x3D7F38
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_803FBFF0
+	lis      r4, __vt__Q26Screen9Game2DMgr@ha
+	li       r0, 0
+	addi     r5, r4, __vt__Q26Screen9Game2DMgr@l
+	li       r4, 0
+	stw      r5, 0(r30)
+	stw      r0, gGame2DMgr__6Screen@sda21(r13)
+	bl       __dt__11JKRDisposerFv
+	extsh.   r0, r31
+	ble      lbl_803FBFF0
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x4C:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803FBFF0:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -126,15 +261,14 @@ Game2DMgr::~Game2DMgr()
 void Game2DMgr::initInCourse()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  bl        -0xEE618
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	bl       initGround__Q22og9newScreenFv
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -146,16 +280,15 @@ void Game2DMgr::initInCourse()
 void Game2DMgr::update()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x18(r3)
-	  bl        0x56B2C
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r3, 0x18(r3)
+	bl       update__Q26Screen3MgrFv
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -167,16 +300,15 @@ void Game2DMgr::update()
 void Game2DMgr::draw(Graphics&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x18(r3)
-	  bl        0x56DE0
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r3, 0x18(r3)
+	bl       draw__Q26Screen3MgrFR8Graphics
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -195,16 +327,15 @@ void Game2DMgr::drawIndirect(Graphics&) { }
 void Game2DMgr::setGamePad(Controller*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x18(r3)
-	  bl        0x57948
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r3, 0x18(r3)
+	bl       setGamePad__Q26Screen3MgrFP10Controller
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -216,24 +347,23 @@ void Game2DMgr::setGamePad(Controller*)
 void Game2DMgr::setDispMember(og::Screen::DispMemberBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x18(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x20
-	  bl        0x5782C
-	  b         .loc_0x24
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r3, 0x18(r3)
+	cmplwi   r3, 0
+	beq      lbl_803FC0BC
+	bl       setDispMember__Q26Screen3MgrFPQ32og6Screen14DispMemberBase
+	b        lbl_803FC0C0
 
-	.loc_0x20:
-	  li        r3, 0
+lbl_803FC0BC:
+	li       r3, 0
 
-	.loc_0x24:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803FC0C0:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -245,21 +375,20 @@ void Game2DMgr::setDispMember(og::Screen::DispMemberBase*)
 void Game2DMgr::setToumeiBG()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r4, 0
-	  li        r5, 0
-	  stw       r0, 0x14(r1)
-	  li        r6, 0
-	  li        r7, 0
-	  lwz       r3, 0x18(r3)
-	  lwz       r3, 0x1C(r3)
-	  bl        0x56190
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	li       r4, 0
+	li       r5, 0
+	stw      r0, 0x14(r1)
+	li       r6, 0
+	li       r7, 0
+	lwz      r3, 0x18(r3)
+	lwz      r3, 0x1c(r3)
+	bl       setColorBG__Q26Screen9SceneBaseFUcUcUcUc
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -271,58 +400,57 @@ void Game2DMgr::setToumeiBG()
 void Game2DMgr::open_GameGround(og::Screen::DispMemberGround&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r3
-	  lwz       r5, -0x6B70(r13)
-	  lbz       r0, 0x2F(r5)
-	  rlwinm.   r0,r0,0,31,31
-	  beq-      .loc_0x2C
-	  li        r0, 0x1
-	  stb       r0, 0x5E(r4)
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r3
+	lwz      r5, playData__4Game@sda21(r13)
+	lbz      r0, 0x2f(r5)
+	clrlwi.  r0, r0, 0x1f
+	beq      lbl_803FC134
+	li       r0, 1
+	stb      r0, 0x5e(r4)
 
-	.loc_0x2C:
-	  lwz       r7, -0x6B70(r13)
-	  lis       r6, 0x804E
-	  lis       r3, 0x804E
-	  li        r5, 0x2710
-	  lwz       r0, 0xE8(r7)
-	  subi      r7, r6, 0x7B98
-	  subi      r6, r3, 0x7BA8
-	  li        r3, 0
-	  stw       r0, 0x20(r4)
-	  li        r0, 0x1
-	  stw       r7, 0x8(r1)
-	  stw       r4, 0x14(r1)
-	  addi      r4, r1, 0x8
-	  stw       r6, 0x8(r1)
-	  stw       r5, 0xC(r1)
-	  stb       r3, 0x10(r1)
-	  stb       r0, 0x11(r1)
-	  lwz       r3, 0x18(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xA4
-	  lwz       r3, 0x18(r31)
-	  li        r4, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
+lbl_803FC134:
+	lwz      r7, playData__4Game@sda21(r13)
+	lis      r6, __vt__Q26Screen12SceneArgBase@ha
+	lis      r3, __vt__Q26Screen11SetSceneArg@ha
+	li       r5, 0x2710
+	lwz      r0, 0xe8(r7)
+	addi     r7, r6, __vt__Q26Screen12SceneArgBase@l
+	addi     r6, r3, __vt__Q26Screen11SetSceneArg@l
+	li       r3, 0
+	stw      r0, 0x20(r4)
+	li       r0, 1
+	stw      r7, 8(r1)
+	stw      r4, 0x14(r1)
+	addi     r4, r1, 8
+	stw      r6, 8(r1)
+	stw      r5, 0xc(r1)
+	stb      r3, 0x10(r1)
+	stb      r0, 0x11(r1)
+	lwz      r3, 0x18(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FC1AC
+	lwz      r3, 0x18(r31)
+	li       r4, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0xA4:
-	  lwz       r0, 0x24(r1)
-	  li        r3, 0
-	  lwz       r31, 0x1C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_803FC1AC:
+	lwz      r0, 0x24(r1)
+	li       r3, 0
+	lwz      r31, 0x1c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -334,33 +462,32 @@ void Game2DMgr::open_GameGround(og::Screen::DispMemberGround&)
 void Game2DMgr::is_GameGround()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  li        r31, 0
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lwz       r3, 0x18(r3)
-	  bl        0x5774C
-	  cmpwi     r3, 0x2710
-	  bne-      .loc_0x44
-	  lwz       r3, 0x18(r30)
-	  lwz       r3, 0x1C(r3)
-	  lwz       r0, 0x120(r3)
-	  cmpwi     r0, 0x1
-	  beq-      .loc_0x44
-	  li        r31, 0x1
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	li       r31, 0
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lwz      r3, 0x18(r3)
+	bl       getSceneType__Q26Screen3MgrFv
+	cmpwi    r3, 0x2710
+	bne      lbl_803FC208
+	lwz      r3, 0x18(r30)
+	lwz      r3, 0x1c(r3)
+	lwz      r0, 0x120(r3)
+	cmpwi    r0, 1
+	beq      lbl_803FC208
+	li       r31, 1
 
-	.loc_0x44:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803FC208:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -372,122 +499,121 @@ void Game2DMgr::is_GameGround()
 void Game2DMgr::open_GameCave(og::Screen::DispMemberCave&, int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x50(r1)
-	  mflr      r0
-	  stw       r0, 0x54(r1)
-	  stw       r31, 0x4C(r1)
-	  mr        r31, r3
-	  lwz       r6, -0x6B70(r13)
-	  lbz       r0, 0x2F(r6)
-	  rlwinm.   r0,r0,0,31,31
-	  beq-      .loc_0x2C
-	  li        r0, 0x1
-	  stb       r0, 0x5D(r4)
+	stwu     r1, -0x50(r1)
+	mflr     r0
+	stw      r0, 0x54(r1)
+	stw      r31, 0x4c(r1)
+	mr       r31, r3
+	lwz      r6, playData__4Game@sda21(r13)
+	lbz      r0, 0x2f(r6)
+	clrlwi.  r0, r0, 0x1f
+	beq      lbl_803FC250
+	li       r0, 1
+	stb      r0, 0x5d(r4)
 
-	.loc_0x2C:
-	  lwz       r3, -0x6B70(r13)
-	  cmpwi     r5, 0
-	  lwz       r0, 0xEC(r3)
-	  stw       r0, 0x20(r4)
-	  bne-      .loc_0xB0
-	  lis       r5, 0x804E
-	  lis       r3, 0x804E
-	  subi      r0, r5, 0x7B98
-	  li        r5, 0x2711
-	  stw       r0, 0x34(r1)
-	  subi      r6, r3, 0x7BA8
-	  li        r3, 0
-	  li        r0, 0x1
-	  stw       r4, 0x40(r1)
-	  addi      r4, r1, 0x34
-	  stw       r6, 0x34(r1)
-	  stw       r5, 0x38(r1)
-	  stb       r3, 0x3C(r1)
-	  stb       r0, 0x3D(r1)
-	  lwz       r3, 0x18(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x19C
-	  lwz       r3, 0x18(r31)
-	  li        r4, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x19C
+lbl_803FC250:
+	lwz      r3, playData__4Game@sda21(r13)
+	cmpwi    r5, 0
+	lwz      r0, 0xec(r3)
+	stw      r0, 0x20(r4)
+	bne      lbl_803FC2D4
+	lis      r5, __vt__Q26Screen12SceneArgBase@ha
+	lis      r3, __vt__Q26Screen11SetSceneArg@ha
+	addi     r0, r5, __vt__Q26Screen12SceneArgBase@l
+	li       r5, 0x2711
+	stw      r0, 0x34(r1)
+	addi     r6, r3, __vt__Q26Screen11SetSceneArg@l
+	li       r3, 0
+	li       r0, 1
+	stw      r4, 0x40(r1)
+	addi     r4, r1, 0x34
+	stw      r6, 0x34(r1)
+	stw      r5, 0x38(r1)
+	stb      r3, 0x3c(r1)
+	stb      r0, 0x3d(r1)
+	lwz      r3, 0x18(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FC3C0
+	lwz      r3, 0x18(r31)
+	li       r4, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_803FC3C0
 
-	.loc_0xB0:
-	  rlwinm.   r0,r5,0,30,30
-	  beq-      .loc_0x19C
-	  lis       r5, 0x804E
-	  lis       r3, 0x804E
-	  subi      r0, r5, 0x7B98
-	  li        r5, 0x2711
-	  stw       r0, 0x24(r1)
-	  subi      r6, r3, 0x7BA8
-	  li        r3, 0
-	  li        r0, 0x1
-	  stw       r4, 0x30(r1)
-	  addi      r4, r1, 0x24
-	  stw       r6, 0x24(r1)
-	  stw       r5, 0x28(r1)
-	  stb       r3, 0x2C(r1)
-	  stb       r0, 0x2D(r1)
-	  lwz       r3, 0x18(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x19C
-	  lis       r4, 0x804B
-	  lis       r3, 0x804E
-	  addi      r8, r4, 0x1148
-	  li        r9, 0
-	  subi      r7, r3, 0x7B98
-	  lis       r6, 0x804F
-	  lis       r4, 0x804E
-	  addi      r0, r1, 0x18
-	  li        r5, 0x4E22
-	  li        r3, 0x1
-	  stw       r8, 0x18(r1)
-	  subi      r8, r6, 0x57B0
-	  subi      r6, r4, 0x7BA8
-	  addi      r4, r1, 0x8
-	  stw       r7, 0x8(r1)
-	  stw       r9, 0x1C(r1)
-	  stw       r8, 0x18(r1)
-	  stb       r9, 0x20(r1)
-	  stw       r6, 0x8(r1)
-	  stw       r5, 0xC(r1)
-	  stb       r9, 0x10(r1)
-	  stb       r3, 0x11(r1)
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x18(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x19C
-	  lwz       r3, 0x18(r31)
-	  li        r4, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
+lbl_803FC2D4:
+	rlwinm.  r0, r5, 0, 0x1e, 0x1e
+	beq      lbl_803FC3C0
+	lis      r5, __vt__Q26Screen12SceneArgBase@ha
+	lis      r3, __vt__Q26Screen11SetSceneArg@ha
+	addi     r0, r5, __vt__Q26Screen12SceneArgBase@l
+	li       r5, 0x2711
+	stw      r0, 0x24(r1)
+	addi     r6, r3, __vt__Q26Screen11SetSceneArg@l
+	li       r3, 0
+	li       r0, 1
+	stw      r4, 0x30(r1)
+	addi     r4, r1, 0x24
+	stw      r6, 0x24(r1)
+	stw      r5, 0x28(r1)
+	stb      r3, 0x2c(r1)
+	stb      r0, 0x2d(r1)
+	lwz      r3, 0x18(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FC3C0
+	lis      r4, __vt__Q32og6Screen14DispMemberBase@ha
+	lis      r3, __vt__Q26Screen12SceneArgBase@ha
+	addi     r8, r4, __vt__Q32og6Screen14DispMemberBase@l
+	li       r9, 0
+	addi     r7, r3, __vt__Q26Screen12SceneArgBase@l
+	lis      r6, __vt__Q32kh6Screen14DispFinalFloor@ha
+	lis      r4, __vt__Q26Screen11SetSceneArg@ha
+	addi     r0, r1, 0x18
+	li       r5, 0x4e22
+	li       r3, 1
+	stw      r8, 0x18(r1)
+	addi     r8, r6, __vt__Q32kh6Screen14DispFinalFloor@l
+	addi     r6, r4, __vt__Q26Screen11SetSceneArg@l
+	addi     r4, r1, 8
+	stw      r7, 8(r1)
+	stw      r9, 0x1c(r1)
+	stw      r8, 0x18(r1)
+	stb      r9, 0x20(r1)
+	stw      r6, 8(r1)
+	stw      r5, 0xc(r1)
+	stb      r9, 0x10(r1)
+	stb      r3, 0x11(r1)
+	stw      r0, 0x14(r1)
+	lwz      r3, 0x18(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FC3C0
+	lwz      r3, 0x18(r31)
+	li       r4, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x19C:
-	  lwz       r0, 0x54(r1)
-	  li        r3, 0
-	  lwz       r31, 0x4C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x50
-	  blr
+lbl_803FC3C0:
+	lwz      r0, 0x54(r1)
+	li       r3, 0
+	lwz      r31, 0x4c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x50
+	blr
 	*/
 }
 
@@ -499,33 +625,32 @@ void Game2DMgr::open_GameCave(og::Screen::DispMemberCave&, int)
 void Game2DMgr::is_GameCave()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  li        r31, 0
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lwz       r3, 0x18(r3)
-	  bl        0x57538
-	  cmpwi     r3, 0x2711
-	  bne-      .loc_0x44
-	  lwz       r3, 0x18(r30)
-	  lwz       r3, 0x1C(r3)
-	  lwz       r0, 0x120(r3)
-	  cmpwi     r0, 0x1
-	  beq-      .loc_0x44
-	  li        r31, 0x1
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	li       r31, 0
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lwz      r3, 0x18(r3)
+	bl       getSceneType__Q26Screen3MgrFv
+	cmpwi    r3, 0x2711
+	bne      lbl_803FC41C
+	lwz      r3, 0x18(r30)
+	lwz      r3, 0x1c(r3)
+	lwz      r0, 0x120(r3)
+	cmpwi    r0, 1
+	beq      lbl_803FC41C
+	li       r31, 1
 
-	.loc_0x44:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803FC41C:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -537,115 +662,114 @@ void Game2DMgr::is_GameCave()
 void Game2DMgr::open_GameVs(og::Screen::DispMemberVs&, int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x60(r1)
-	  mflr      r0
-	  cmpwi     r5, 0
-	  stw       r0, 0x64(r1)
-	  stw       r31, 0x5C(r1)
-	  mr        r31, r3
-	  bne-      .loc_0x8C
-	  lis       r5, 0x804E
-	  lis       r3, 0x804E
-	  subi      r0, r5, 0x7B98
-	  li        r5, 0x2712
-	  stw       r0, 0x28(r1)
-	  subi      r6, r3, 0x7BA8
-	  li        r3, 0
-	  li        r0, 0x1
-	  stw       r4, 0x34(r1)
-	  addi      r4, r1, 0x28
-	  stw       r6, 0x28(r1)
-	  stw       r5, 0x2C(r1)
-	  stb       r3, 0x30(r1)
-	  stb       r0, 0x31(r1)
-	  lwz       r3, 0x18(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x188
-	  lwz       r3, 0x18(r31)
-	  li        r4, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x188
+	stwu     r1, -0x60(r1)
+	mflr     r0
+	cmpwi    r5, 0
+	stw      r0, 0x64(r1)
+	stw      r31, 0x5c(r1)
+	mr       r31, r3
+	bne      lbl_803FC4C4
+	lis      r5, __vt__Q26Screen12SceneArgBase@ha
+	lis      r3, __vt__Q26Screen11SetSceneArg@ha
+	addi     r0, r5, __vt__Q26Screen12SceneArgBase@l
+	li       r5, 0x2712
+	stw      r0, 0x28(r1)
+	addi     r6, r3, __vt__Q26Screen11SetSceneArg@l
+	li       r3, 0
+	li       r0, 1
+	stw      r4, 0x34(r1)
+	addi     r4, r1, 0x28
+	stw      r6, 0x28(r1)
+	stw      r5, 0x2c(r1)
+	stb      r3, 0x30(r1)
+	stb      r0, 0x31(r1)
+	lwz      r3, 0x18(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FC5C0
+	lwz      r3, 0x18(r31)
+	li       r4, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_803FC5C0
 
-	.loc_0x8C:
-	  rlwinm.   r0,r5,0,31,31
-	  beq-      .loc_0x188
-	  lis       r5, 0x804E
-	  lis       r3, 0x804E
-	  subi      r0, r5, 0x7B98
-	  li        r5, 0x2712
-	  stw       r0, 0x18(r1)
-	  subi      r6, r3, 0x7BA8
-	  li        r3, 0
-	  li        r0, 0x1
-	  stw       r4, 0x24(r1)
-	  addi      r4, r1, 0x18
-	  stw       r6, 0x18(r1)
-	  stw       r5, 0x1C(r1)
-	  stb       r3, 0x20(r1)
-	  stb       r0, 0x21(r1)
-	  lwz       r3, 0x18(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x188
-	  lis       r4, 0x804B
-	  lis       r3, 0x804E
-	  li        r9, 0
-	  lis       r5, 0x804F
-	  addi      r10, r4, 0x1148
-	  subi      r6, r3, 0x7B98
-	  lis       r4, 0x804E
-	  addi      r0, r1, 0x38
-	  li        r7, 0x1
-	  stb       r9, 0x44(r1)
-	  li        r3, 0x4E21
-	  subi      r8, r5, 0x57C8
-	  stw       r10, 0x38(r1)
-	  subi      r5, r4, 0x7BA8
-	  addi      r4, r1, 0x8
-	  stw       r6, 0x8(r1)
-	  stw       r9, 0x3C(r1)
-	  stw       r8, 0x38(r1)
-	  stw       r9, 0x40(r1)
-	  stb       r9, 0x45(r1)
-	  stw       r9, 0x48(r1)
-	  stb       r7, 0x44(r1)
-	  stw       r5, 0x8(r1)
-	  stw       r3, 0xC(r1)
-	  stb       r9, 0x10(r1)
-	  stb       r7, 0x11(r1)
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x18(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x188
-	  lwz       r3, 0x18(r31)
-	  li        r4, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
+lbl_803FC4C4:
+	clrlwi.  r0, r5, 0x1f
+	beq      lbl_803FC5C0
+	lis      r5, __vt__Q26Screen12SceneArgBase@ha
+	lis      r3, __vt__Q26Screen11SetSceneArg@ha
+	addi     r0, r5, __vt__Q26Screen12SceneArgBase@l
+	li       r5, 0x2712
+	stw      r0, 0x18(r1)
+	addi     r6, r3, __vt__Q26Screen11SetSceneArg@l
+	li       r3, 0
+	li       r0, 1
+	stw      r4, 0x24(r1)
+	addi     r4, r1, 0x18
+	stw      r6, 0x18(r1)
+	stw      r5, 0x1c(r1)
+	stb      r3, 0x20(r1)
+	stb      r0, 0x21(r1)
+	lwz      r3, 0x18(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FC5C0
+	lis      r4, __vt__Q32og6Screen14DispMemberBase@ha
+	lis      r3, __vt__Q26Screen12SceneArgBase@ha
+	li       r9, 0
+	lis      r5, __vt__Q32kh6Screen11DispReadyGo@ha
+	addi     r10, r4, __vt__Q32og6Screen14DispMemberBase@l
+	addi     r6, r3, __vt__Q26Screen12SceneArgBase@l
+	lis      r4, __vt__Q26Screen11SetSceneArg@ha
+	addi     r0, r1, 0x38
+	li       r7, 1
+	stb      r9, 0x44(r1)
+	li       r3, 0x4e21
+	addi     r8, r5, __vt__Q32kh6Screen11DispReadyGo@l
+	stw      r10, 0x38(r1)
+	addi     r5, r4, __vt__Q26Screen11SetSceneArg@l
+	addi     r4, r1, 8
+	stw      r6, 8(r1)
+	stw      r9, 0x3c(r1)
+	stw      r8, 0x38(r1)
+	stw      r9, 0x40(r1)
+	stb      r9, 0x45(r1)
+	stw      r9, 0x48(r1)
+	stb      r7, 0x44(r1)
+	stw      r5, 8(r1)
+	stw      r3, 0xc(r1)
+	stb      r9, 0x10(r1)
+	stb      r7, 0x11(r1)
+	stw      r0, 0x14(r1)
+	lwz      r3, 0x18(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FC5C0
+	lwz      r3, 0x18(r31)
+	li       r4, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x188:
-	  lwz       r0, 0x64(r1)
-	  li        r3, 0x1
-	  lwz       r31, 0x5C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x60
-	  blr
+lbl_803FC5C0:
+	lwz      r0, 0x64(r1)
+	li       r3, 1
+	lwz      r31, 0x5c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x60
+	blr
 	*/
 }
 
@@ -657,56 +781,55 @@ void Game2DMgr::open_GameVs(og::Screen::DispMemberVs&, int)
 void Game2DMgr::check_VsStatus()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  stw       r30, 0x8(r1)
-	  li        r30, 0x3
-	  lwz       r3, 0x18(r3)
-	  bl        0x57320
-	  mr.       r31, r3
-	  beq-      .loc_0x80
-	  lis       r4, 0x4F
-	  li        r6, 0x5653
-	  addi      r4, r4, 0x4741
-	  li        r5, 0
-	  bl        -0xED2F4
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x80
-	  lwz       r0, 0x8(r31)
-	  cmpwi     r0, 0x1
-	  beq-      .loc_0x74
-	  bge-      .loc_0x60
-	  cmpwi     r0, 0
-	  bge-      .loc_0x6C
-	  b         .loc_0x80
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	stw      r30, 8(r1)
+	li       r30, 3
+	lwz      r3, 0x18(r3)
+	bl       getDispMember__Q26Screen3MgrFv
+	or.      r31, r3, r3
+	beq      lbl_803FC658
+	lis      r4, 0x004F4741@ha
+	li       r6, 0x5653
+	addi     r4, r4, 0x004F4741@l
+	li       r5, 0
+	bl       isID__Q32og6Screen14DispMemberBaseFUlUx
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FC658
+	lwz      r0, 8(r31)
+	cmpwi    r0, 1
+	beq      lbl_803FC64C
+	bge      lbl_803FC638
+	cmpwi    r0, 0
+	bge      lbl_803FC644
+	b        lbl_803FC658
 
-	.loc_0x60:
-	  cmpwi     r0, 0x3
-	  bge-      .loc_0x80
-	  b         .loc_0x7C
+lbl_803FC638:
+	cmpwi    r0, 3
+	bge      lbl_803FC658
+	b        lbl_803FC654
 
-	.loc_0x6C:
-	  li        r30, 0
-	  b         .loc_0x80
+lbl_803FC644:
+	li       r30, 0
+	b        lbl_803FC658
 
-	.loc_0x74:
-	  li        r30, 0x1
-	  b         .loc_0x80
+lbl_803FC64C:
+	li       r30, 1
+	b        lbl_803FC658
 
-	.loc_0x7C:
-	  li        r30, 0x2
+lbl_803FC654:
+	li       r30, 2
 
-	.loc_0x80:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803FC658:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -718,220 +841,219 @@ void Game2DMgr::check_VsStatus()
 void Game2DMgr::open_GameChallenge2P(og::Screen::DispMemberChallenge2P&, int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x90(r1)
-	  mflr      r0
-	  lis       r6, 0x804E
-	  lis       r7, 0x804E
-	  stw       r0, 0x94(r1)
-	  subi      r8, r6, 0x7B98
-	  subi      r0, r7, 0x7588
-	  lis       r7, 0x804E
-	  stw       r31, 0x8C(r1)
-	  li        r9, 0x2724
-	  lfs       f0, 0x1CD8(r2)
-	  subi      r10, r7, 0x7BA8
-	  stw       r8, 0x8(r1)
-	  li        r7, 0x1
-	  lis       r6, 0x804F
-	  cmpwi     r5, 0
-	  stw       r0, 0x8(r1)
-	  subi      r0, r6, 0x57D8
-	  lis       r6, 0x804F
-	  mr        r31, r3
-	  stw       r8, 0x4C(r1)
-	  li        r8, 0
-	  stw       r0, 0x8(r1)
-	  subi      r0, r6, 0x57E8
-	  stw       r10, 0x4C(r1)
-	  stw       r9, 0x50(r1)
-	  stb       r8, 0x54(r1)
-	  stb       r7, 0x55(r1)
-	  stw       r4, 0x58(r1)
-	  stfs      f0, 0xC(r1)
-	  stw       r0, 0x8(r1)
-	  bne-      .loc_0xBC
-	  lwz       r3, 0x18(r31)
-	  addi      r4, r1, 0x4C
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x320
-	  lwz       r3, 0x18(r31)
-	  addi      r4, r1, 0x8
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x320
+	stwu     r1, -0x90(r1)
+	mflr     r0
+	lis      r6, __vt__Q26Screen12SceneArgBase@ha
+	lis      r7, __vt__Q26Screen13StartSceneArg@ha
+	stw      r0, 0x94(r1)
+	addi     r8, r6, __vt__Q26Screen12SceneArgBase@l
+	addi     r0, r7, __vt__Q26Screen13StartSceneArg@l
+	lis      r7, __vt__Q26Screen11SetSceneArg@ha
+	stw      r31, 0x8c(r1)
+	li       r9, 0x2724
+	lfs      f0, lbl_80520038@sda21(r2)
+	addi     r10, r7, __vt__Q26Screen11SetSceneArg@l
+	stw      r8, 8(r1)
+	li       r7, 1
+	lis      r6, __vt__Q32og9newScreen17SArgChallengeBase@ha
+	cmpwi    r5, 0
+	stw      r0, 8(r1)
+	addi     r0, r6, __vt__Q32og9newScreen17SArgChallengeBase@l
+	lis      r6, __vt__Q32og9newScreen15SArgChallenge2P@ha
+	mr       r31, r3
+	stw      r8, 0x4c(r1)
+	li       r8, 0
+	stw      r0, 8(r1)
+	addi     r0, r6, __vt__Q32og9newScreen15SArgChallenge2P@l
+	stw      r10, 0x4c(r1)
+	stw      r9, 0x50(r1)
+	stb      r8, 0x54(r1)
+	stb      r7, 0x55(r1)
+	stw      r4, 0x58(r1)
+	stfs     f0, 0xc(r1)
+	stw      r0, 8(r1)
+	bne      lbl_803FC730
+	lwz      r3, 0x18(r31)
+	addi     r4, r1, 0x4c
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FC994
+	lwz      r3, 0x18(r31)
+	addi     r4, r1, 8
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_803FC994
 
-	.loc_0xBC:
-	  rlwinm    r0,r5,0,30,31
-	  cmpwi     r0, 0x3
-	  bne-      .loc_0x194
-	  lwz       r3, 0x18(r31)
-	  addi      r4, r1, 0x4C
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x320
-	  lis       r4, 0x804B
-	  lis       r3, 0x804E
-	  li        r9, 0
-	  lis       r5, 0x804F
-	  addi      r10, r4, 0x1148
-	  subi      r6, r3, 0x7B98
-	  lis       r4, 0x804E
-	  addi      r0, r1, 0x70
-	  li        r7, 0x1
-	  stb       r9, 0x7C(r1)
-	  li        r3, 0x4E21
-	  subi      r8, r5, 0x57C8
-	  stw       r10, 0x70(r1)
-	  subi      r5, r4, 0x7BA8
-	  addi      r4, r1, 0x3C
-	  stb       r9, 0x7D(r1)
-	  stw       r9, 0x80(r1)
-	  stw       r6, 0x3C(r1)
-	  stw       r9, 0x74(r1)
-	  stw       r8, 0x70(r1)
-	  stw       r9, 0x78(r1)
-	  stb       r7, 0x7C(r1)
-	  stb       r7, 0x7D(r1)
-	  stw       r7, 0x80(r1)
-	  stw       r5, 0x3C(r1)
-	  stw       r3, 0x40(r1)
-	  stb       r9, 0x44(r1)
-	  stb       r7, 0x45(r1)
-	  stw       r0, 0x48(r1)
-	  lwz       r3, 0x18(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x320
-	  lwz       r3, 0x18(r31)
-	  li        r4, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x320
+lbl_803FC730:
+	clrlwi   r0, r5, 0x1e
+	cmpwi    r0, 3
+	bne      lbl_803FC808
+	lwz      r3, 0x18(r31)
+	addi     r4, r1, 0x4c
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FC994
+	lis      r4, __vt__Q32og6Screen14DispMemberBase@ha
+	lis      r3, __vt__Q26Screen12SceneArgBase@ha
+	li       r9, 0
+	lis      r5, __vt__Q32kh6Screen11DispReadyGo@ha
+	addi     r10, r4, __vt__Q32og6Screen14DispMemberBase@l
+	addi     r6, r3, __vt__Q26Screen12SceneArgBase@l
+	lis      r4, __vt__Q26Screen11SetSceneArg@ha
+	addi     r0, r1, 0x70
+	li       r7, 1
+	stb      r9, 0x7c(r1)
+	li       r3, 0x4e21
+	addi     r8, r5, __vt__Q32kh6Screen11DispReadyGo@l
+	stw      r10, 0x70(r1)
+	addi     r5, r4, __vt__Q26Screen11SetSceneArg@l
+	addi     r4, r1, 0x3c
+	stb      r9, 0x7d(r1)
+	stw      r9, 0x80(r1)
+	stw      r6, 0x3c(r1)
+	stw      r9, 0x74(r1)
+	stw      r8, 0x70(r1)
+	stw      r9, 0x78(r1)
+	stb      r7, 0x7c(r1)
+	stb      r7, 0x7d(r1)
+	stw      r7, 0x80(r1)
+	stw      r5, 0x3c(r1)
+	stw      r3, 0x40(r1)
+	stb      r9, 0x44(r1)
+	stb      r7, 0x45(r1)
+	stw      r0, 0x48(r1)
+	lwz      r3, 0x18(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FC994
+	lwz      r3, 0x18(r31)
+	li       r4, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_803FC994
 
-	.loc_0x194:
-	  rlwinm.   r0,r5,0,31,31
-	  beq-      .loc_0x264
-	  lwz       r3, 0x18(r31)
-	  addi      r4, r1, 0x4C
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x320
-	  lis       r4, 0x804B
-	  lis       r3, 0x804E
-	  li        r9, 0
-	  lis       r5, 0x804F
-	  addi      r10, r4, 0x1148
-	  subi      r6, r3, 0x7B98
-	  lis       r4, 0x804E
-	  addi      r0, r1, 0x5C
-	  li        r7, 0x1
-	  stb       r9, 0x68(r1)
-	  li        r3, 0x4E21
-	  subi      r8, r5, 0x57C8
-	  stw       r10, 0x5C(r1)
-	  subi      r5, r4, 0x7BA8
-	  addi      r4, r1, 0x2C
-	  stw       r9, 0x6C(r1)
-	  stw       r6, 0x2C(r1)
-	  stw       r9, 0x60(r1)
-	  stw       r8, 0x5C(r1)
-	  stw       r9, 0x64(r1)
-	  stb       r9, 0x69(r1)
-	  stb       r7, 0x68(r1)
-	  stw       r7, 0x6C(r1)
-	  stw       r5, 0x2C(r1)
-	  stw       r3, 0x30(r1)
-	  stb       r9, 0x34(r1)
-	  stb       r7, 0x35(r1)
-	  stw       r0, 0x38(r1)
-	  lwz       r3, 0x18(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x320
-	  lwz       r3, 0x18(r31)
-	  li        r4, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x320
+lbl_803FC808:
+	clrlwi.  r0, r5, 0x1f
+	beq      lbl_803FC8D8
+	lwz      r3, 0x18(r31)
+	addi     r4, r1, 0x4c
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FC994
+	lis      r4, __vt__Q32og6Screen14DispMemberBase@ha
+	lis      r3, __vt__Q26Screen12SceneArgBase@ha
+	li       r9, 0
+	lis      r5, __vt__Q32kh6Screen11DispReadyGo@ha
+	addi     r10, r4, __vt__Q32og6Screen14DispMemberBase@l
+	addi     r6, r3, __vt__Q26Screen12SceneArgBase@l
+	lis      r4, __vt__Q26Screen11SetSceneArg@ha
+	addi     r0, r1, 0x5c
+	li       r7, 1
+	stb      r9, 0x68(r1)
+	li       r3, 0x4e21
+	addi     r8, r5, __vt__Q32kh6Screen11DispReadyGo@l
+	stw      r10, 0x5c(r1)
+	addi     r5, r4, __vt__Q26Screen11SetSceneArg@l
+	addi     r4, r1, 0x2c
+	stw      r9, 0x6c(r1)
+	stw      r6, 0x2c(r1)
+	stw      r9, 0x60(r1)
+	stw      r8, 0x5c(r1)
+	stw      r9, 0x64(r1)
+	stb      r9, 0x69(r1)
+	stb      r7, 0x68(r1)
+	stw      r7, 0x6c(r1)
+	stw      r5, 0x2c(r1)
+	stw      r3, 0x30(r1)
+	stb      r9, 0x34(r1)
+	stb      r7, 0x35(r1)
+	stw      r0, 0x38(r1)
+	lwz      r3, 0x18(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FC994
+	lwz      r3, 0x18(r31)
+	li       r4, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_803FC994
 
-	.loc_0x264:
-	  rlwinm.   r0,r5,0,30,30
-	  beq-      .loc_0x320
-	  lwz       r3, 0x18(r31)
-	  addi      r4, r1, 0x4C
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x320
-	  lis       r4, 0x804B
-	  lis       r3, 0x804E
-	  li        r9, 0
-	  lis       r5, 0x804F
-	  addi      r10, r4, 0x1148
-	  subi      r6, r3, 0x7B98
-	  lis       r4, 0x804E
-	  addi      r0, r1, 0x20
-	  li        r7, 0x1
-	  stb       r9, 0x28(r1)
-	  li        r3, 0x4E22
-	  subi      r8, r5, 0x57B0
-	  stw       r10, 0x20(r1)
-	  subi      r5, r4, 0x7BA8
-	  addi      r4, r1, 0x10
-	  stw       r6, 0x10(r1)
-	  stw       r9, 0x24(r1)
-	  stw       r8, 0x20(r1)
-	  stb       r7, 0x28(r1)
-	  stw       r5, 0x10(r1)
-	  stw       r3, 0x14(r1)
-	  stb       r9, 0x18(r1)
-	  stb       r7, 0x19(r1)
-	  stw       r0, 0x1C(r1)
-	  lwz       r3, 0x18(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x320
-	  lwz       r3, 0x18(r31)
-	  li        r4, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
+lbl_803FC8D8:
+	rlwinm.  r0, r5, 0, 0x1e, 0x1e
+	beq      lbl_803FC994
+	lwz      r3, 0x18(r31)
+	addi     r4, r1, 0x4c
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FC994
+	lis      r4, __vt__Q32og6Screen14DispMemberBase@ha
+	lis      r3, __vt__Q26Screen12SceneArgBase@ha
+	li       r9, 0
+	lis      r5, __vt__Q32kh6Screen14DispFinalFloor@ha
+	addi     r10, r4, __vt__Q32og6Screen14DispMemberBase@l
+	addi     r6, r3, __vt__Q26Screen12SceneArgBase@l
+	lis      r4, __vt__Q26Screen11SetSceneArg@ha
+	addi     r0, r1, 0x20
+	li       r7, 1
+	stb      r9, 0x28(r1)
+	li       r3, 0x4e22
+	addi     r8, r5, __vt__Q32kh6Screen14DispFinalFloor@l
+	stw      r10, 0x20(r1)
+	addi     r5, r4, __vt__Q26Screen11SetSceneArg@l
+	addi     r4, r1, 0x10
+	stw      r6, 0x10(r1)
+	stw      r9, 0x24(r1)
+	stw      r8, 0x20(r1)
+	stb      r7, 0x28(r1)
+	stw      r5, 0x10(r1)
+	stw      r3, 0x14(r1)
+	stb      r9, 0x18(r1)
+	stb      r7, 0x19(r1)
+	stw      r0, 0x1c(r1)
+	lwz      r3, 0x18(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FC994
+	lwz      r3, 0x18(r31)
+	li       r4, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x320:
-	  lwz       r0, 0x94(r1)
-	  lwz       r31, 0x8C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x90
-	  blr
+lbl_803FC994:
+	lwz      r0, 0x94(r1)
+	lwz      r31, 0x8c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x90
+	blr
 	*/
 }
 
@@ -943,217 +1065,216 @@ void Game2DMgr::open_GameChallenge2P(og::Screen::DispMemberChallenge2P&, int)
 void Game2DMgr::open_GameChallenge1P(og::Screen::DispMemberChallenge1P&, int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x90(r1)
-	  mflr      r0
-	  lis       r6, 0x804E
-	  lis       r7, 0x804E
-	  stw       r0, 0x94(r1)
-	  subi      r8, r6, 0x7B98
-	  subi      r0, r7, 0x7588
-	  lis       r7, 0x804E
-	  stw       r31, 0x8C(r1)
-	  li        r9, 0x2727
-	  lfs       f0, 0x1CD8(r2)
-	  subi      r10, r7, 0x7BA8
-	  stw       r8, 0x8(r1)
-	  li        r7, 0x1
-	  lis       r6, 0x804F
-	  cmpwi     r5, 0
-	  stw       r0, 0x8(r1)
-	  subi      r0, r6, 0x57D8
-	  lis       r6, 0x804F
-	  mr        r31, r3
-	  stw       r8, 0x4C(r1)
-	  li        r8, 0
-	  stw       r0, 0x8(r1)
-	  subi      r0, r6, 0x57F8
-	  stw       r10, 0x4C(r1)
-	  stw       r9, 0x50(r1)
-	  stb       r8, 0x54(r1)
-	  stb       r7, 0x55(r1)
-	  stw       r4, 0x58(r1)
-	  stfs      f0, 0xC(r1)
-	  stw       r0, 0x8(r1)
-	  bne-      .loc_0xBC
-	  lwz       r3, 0x18(r31)
-	  addi      r4, r1, 0x4C
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x314
-	  lwz       r3, 0x18(r31)
-	  addi      r4, r1, 0x8
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x314
+	stwu     r1, -0x90(r1)
+	mflr     r0
+	lis      r6, __vt__Q26Screen12SceneArgBase@ha
+	lis      r7, __vt__Q26Screen13StartSceneArg@ha
+	stw      r0, 0x94(r1)
+	addi     r8, r6, __vt__Q26Screen12SceneArgBase@l
+	addi     r0, r7, __vt__Q26Screen13StartSceneArg@l
+	lis      r7, __vt__Q26Screen11SetSceneArg@ha
+	stw      r31, 0x8c(r1)
+	li       r9, 0x2727
+	lfs      f0, lbl_80520038@sda21(r2)
+	addi     r10, r7, __vt__Q26Screen11SetSceneArg@l
+	stw      r8, 8(r1)
+	li       r7, 1
+	lis      r6, __vt__Q32og9newScreen17SArgChallengeBase@ha
+	cmpwi    r5, 0
+	stw      r0, 8(r1)
+	addi     r0, r6, __vt__Q32og9newScreen17SArgChallengeBase@l
+	lis      r6, __vt__Q32og9newScreen15SArgChallenge1P@ha
+	mr       r31, r3
+	stw      r8, 0x4c(r1)
+	li       r8, 0
+	stw      r0, 8(r1)
+	addi     r0, r6, __vt__Q32og9newScreen15SArgChallenge1P@l
+	stw      r10, 0x4c(r1)
+	stw      r9, 0x50(r1)
+	stb      r8, 0x54(r1)
+	stb      r7, 0x55(r1)
+	stw      r4, 0x58(r1)
+	stfs     f0, 0xc(r1)
+	stw      r0, 8(r1)
+	bne      lbl_803FCA64
+	lwz      r3, 0x18(r31)
+	addi     r4, r1, 0x4c
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FCCBC
+	lwz      r3, 0x18(r31)
+	addi     r4, r1, 8
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_803FCCBC
 
-	.loc_0xBC:
-	  rlwinm    r0,r5,0,30,31
-	  cmpwi     r0, 0x3
-	  bne-      .loc_0x190
-	  lwz       r3, 0x18(r31)
-	  addi      r4, r1, 0x4C
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x314
-	  lis       r4, 0x804B
-	  lis       r3, 0x804E
-	  li        r9, 0
-	  lis       r5, 0x804F
-	  addi      r10, r4, 0x1148
-	  subi      r6, r3, 0x7B98
-	  lis       r4, 0x804E
-	  addi      r0, r1, 0x70
-	  li        r7, 0x1
-	  stb       r9, 0x7D(r1)
-	  li        r3, 0x4E21
-	  subi      r8, r5, 0x57C8
-	  stw       r10, 0x70(r1)
-	  subi      r5, r4, 0x7BA8
-	  addi      r4, r1, 0x3C
-	  stw       r9, 0x80(r1)
-	  stw       r6, 0x3C(r1)
-	  stw       r9, 0x74(r1)
-	  stw       r8, 0x70(r1)
-	  stw       r9, 0x78(r1)
-	  stb       r9, 0x7C(r1)
-	  stb       r7, 0x7D(r1)
-	  stw       r7, 0x80(r1)
-	  stw       r5, 0x3C(r1)
-	  stw       r3, 0x40(r1)
-	  stb       r9, 0x44(r1)
-	  stb       r7, 0x45(r1)
-	  stw       r0, 0x48(r1)
-	  lwz       r3, 0x18(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x314
-	  lwz       r3, 0x18(r31)
-	  li        r4, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x314
+lbl_803FCA64:
+	clrlwi   r0, r5, 0x1e
+	cmpwi    r0, 3
+	bne      lbl_803FCB38
+	lwz      r3, 0x18(r31)
+	addi     r4, r1, 0x4c
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FCCBC
+	lis      r4, __vt__Q32og6Screen14DispMemberBase@ha
+	lis      r3, __vt__Q26Screen12SceneArgBase@ha
+	li       r9, 0
+	lis      r5, __vt__Q32kh6Screen11DispReadyGo@ha
+	addi     r10, r4, __vt__Q32og6Screen14DispMemberBase@l
+	addi     r6, r3, __vt__Q26Screen12SceneArgBase@l
+	lis      r4, __vt__Q26Screen11SetSceneArg@ha
+	addi     r0, r1, 0x70
+	li       r7, 1
+	stb      r9, 0x7d(r1)
+	li       r3, 0x4e21
+	addi     r8, r5, __vt__Q32kh6Screen11DispReadyGo@l
+	stw      r10, 0x70(r1)
+	addi     r5, r4, __vt__Q26Screen11SetSceneArg@l
+	addi     r4, r1, 0x3c
+	stw      r9, 0x80(r1)
+	stw      r6, 0x3c(r1)
+	stw      r9, 0x74(r1)
+	stw      r8, 0x70(r1)
+	stw      r9, 0x78(r1)
+	stb      r9, 0x7c(r1)
+	stb      r7, 0x7d(r1)
+	stw      r7, 0x80(r1)
+	stw      r5, 0x3c(r1)
+	stw      r3, 0x40(r1)
+	stb      r9, 0x44(r1)
+	stb      r7, 0x45(r1)
+	stw      r0, 0x48(r1)
+	lwz      r3, 0x18(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FCCBC
+	lwz      r3, 0x18(r31)
+	li       r4, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_803FCCBC
 
-	.loc_0x190:
-	  cmpwi     r5, 0x1
-	  bne-      .loc_0x25C
-	  lwz       r3, 0x18(r31)
-	  addi      r4, r1, 0x4C
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x314
-	  lis       r4, 0x804B
-	  lis       r3, 0x804E
-	  li        r9, 0
-	  lis       r5, 0x804F
-	  addi      r10, r4, 0x1148
-	  subi      r6, r3, 0x7B98
-	  lis       r4, 0x804E
-	  addi      r0, r1, 0x5C
-	  li        r7, 0x1
-	  stw       r9, 0x6C(r1)
-	  li        r3, 0x4E21
-	  subi      r8, r5, 0x57C8
-	  stw       r10, 0x5C(r1)
-	  subi      r5, r4, 0x7BA8
-	  addi      r4, r1, 0x2C
-	  stw       r6, 0x2C(r1)
-	  stw       r9, 0x60(r1)
-	  stw       r8, 0x5C(r1)
-	  stw       r9, 0x64(r1)
-	  stb       r9, 0x68(r1)
-	  stb       r9, 0x69(r1)
-	  stw       r7, 0x6C(r1)
-	  stw       r5, 0x2C(r1)
-	  stw       r3, 0x30(r1)
-	  stb       r9, 0x34(r1)
-	  stb       r7, 0x35(r1)
-	  stw       r0, 0x38(r1)
-	  lwz       r3, 0x18(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x314
-	  lwz       r3, 0x18(r31)
-	  li        r4, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x314
+lbl_803FCB38:
+	cmpwi    r5, 1
+	bne      lbl_803FCC04
+	lwz      r3, 0x18(r31)
+	addi     r4, r1, 0x4c
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FCCBC
+	lis      r4, __vt__Q32og6Screen14DispMemberBase@ha
+	lis      r3, __vt__Q26Screen12SceneArgBase@ha
+	li       r9, 0
+	lis      r5, __vt__Q32kh6Screen11DispReadyGo@ha
+	addi     r10, r4, __vt__Q32og6Screen14DispMemberBase@l
+	addi     r6, r3, __vt__Q26Screen12SceneArgBase@l
+	lis      r4, __vt__Q26Screen11SetSceneArg@ha
+	addi     r0, r1, 0x5c
+	li       r7, 1
+	stw      r9, 0x6c(r1)
+	li       r3, 0x4e21
+	addi     r8, r5, __vt__Q32kh6Screen11DispReadyGo@l
+	stw      r10, 0x5c(r1)
+	addi     r5, r4, __vt__Q26Screen11SetSceneArg@l
+	addi     r4, r1, 0x2c
+	stw      r6, 0x2c(r1)
+	stw      r9, 0x60(r1)
+	stw      r8, 0x5c(r1)
+	stw      r9, 0x64(r1)
+	stb      r9, 0x68(r1)
+	stb      r9, 0x69(r1)
+	stw      r7, 0x6c(r1)
+	stw      r5, 0x2c(r1)
+	stw      r3, 0x30(r1)
+	stb      r9, 0x34(r1)
+	stb      r7, 0x35(r1)
+	stw      r0, 0x38(r1)
+	lwz      r3, 0x18(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FCCBC
+	lwz      r3, 0x18(r31)
+	li       r4, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_803FCCBC
 
-	.loc_0x25C:
-	  cmpwi     r5, 0x2
-	  bne-      .loc_0x314
-	  lwz       r3, 0x18(r31)
-	  addi      r4, r1, 0x4C
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x314
-	  lis       r4, 0x804B
-	  lis       r3, 0x804E
-	  addi      r8, r4, 0x1148
-	  li        r9, 0
-	  subi      r7, r3, 0x7B98
-	  lis       r6, 0x804F
-	  lis       r4, 0x804E
-	  addi      r0, r1, 0x20
-	  li        r5, 0x4E22
-	  li        r3, 0x1
-	  stw       r8, 0x20(r1)
-	  subi      r8, r6, 0x57B0
-	  subi      r6, r4, 0x7BA8
-	  addi      r4, r1, 0x10
-	  stw       r7, 0x10(r1)
-	  stw       r9, 0x24(r1)
-	  stw       r8, 0x20(r1)
-	  stb       r9, 0x28(r1)
-	  stw       r6, 0x10(r1)
-	  stw       r5, 0x14(r1)
-	  stb       r9, 0x18(r1)
-	  stb       r3, 0x19(r1)
-	  stw       r0, 0x1C(r1)
-	  lwz       r3, 0x18(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x314
-	  lwz       r3, 0x18(r31)
-	  li        r4, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
+lbl_803FCC04:
+	cmpwi    r5, 2
+	bne      lbl_803FCCBC
+	lwz      r3, 0x18(r31)
+	addi     r4, r1, 0x4c
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FCCBC
+	lis      r4, __vt__Q32og6Screen14DispMemberBase@ha
+	lis      r3, __vt__Q26Screen12SceneArgBase@ha
+	addi     r8, r4, __vt__Q32og6Screen14DispMemberBase@l
+	li       r9, 0
+	addi     r7, r3, __vt__Q26Screen12SceneArgBase@l
+	lis      r6, __vt__Q32kh6Screen14DispFinalFloor@ha
+	lis      r4, __vt__Q26Screen11SetSceneArg@ha
+	addi     r0, r1, 0x20
+	li       r5, 0x4e22
+	li       r3, 1
+	stw      r8, 0x20(r1)
+	addi     r8, r6, __vt__Q32kh6Screen14DispFinalFloor@l
+	addi     r6, r4, __vt__Q26Screen11SetSceneArg@l
+	addi     r4, r1, 0x10
+	stw      r7, 0x10(r1)
+	stw      r9, 0x24(r1)
+	stw      r8, 0x20(r1)
+	stb      r9, 0x28(r1)
+	stw      r6, 0x10(r1)
+	stw      r5, 0x14(r1)
+	stb      r9, 0x18(r1)
+	stb      r3, 0x19(r1)
+	stw      r0, 0x1c(r1)
+	lwz      r3, 0x18(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FCCBC
+	lwz      r3, 0x18(r31)
+	li       r4, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x314:
-	  lwz       r0, 0x94(r1)
-	  lwz       r31, 0x8C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x90
-	  blr
+lbl_803FCCBC:
+	lwz      r0, 0x94(r1)
+	lwz      r31, 0x8c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x90
+	blr
 	*/
 }
 
@@ -1165,65 +1286,62 @@ void Game2DMgr::open_GameChallenge1P(og::Screen::DispMemberChallenge1P&, int)
 void Game2DMgr::open_SMenu(og::Screen::DispMemberSMenuAll&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lwz       r3, 0x18(r3)
-	  bl        0x56D30
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x34
-	  li        r3, 0
-	  b         .loc_0x98
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lwz      r3, 0x18(r3)
+	bl       isAnyReservation__Q26Screen3MgrCFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FCD04
+	li       r3, 0
+	b        lbl_803FCD68
 
-	.loc_0x34:
-	  lwz       r3, 0x18(r30)
-	  bl        0x56C28
-	  cmpwi     r3, 0x2724
-	  beq-      .loc_0x6C
-	  bge-      .loc_0x5C
-	  cmpwi     r3, 0x2713
-	  bge-      .loc_0x64
-	  cmpwi     r3, 0x2710
-	  bge-      .loc_0x6C
-	  b         .loc_0x64
+lbl_803FCD04:
+	lwz      r3, 0x18(r30)
+	bl       getSceneType__Q26Screen3MgrFv
+	cmpwi    r3, 0x2724
+	beq      lbl_803FCD3C
+	bge      lbl_803FCD2C
+	cmpwi    r3, 0x2713
+	bge      lbl_803FCD34
+	cmpwi    r3, 0x2710
+	bge      lbl_803FCD3C
+	b        lbl_803FCD34
 
-	.loc_0x5C:
-	  cmpwi     r3, 0x2727
-	  beq-      .loc_0x6C
+lbl_803FCD2C:
+	cmpwi    r3, 0x2727
+	beq      lbl_803FCD3C
 
-	.loc_0x64:
-	  li        r3, 0
-	  b         .loc_0x98
+lbl_803FCD34:
+	li       r3, 0
+	b        lbl_803FCD68
 
-	.loc_0x6C:
-	  lwz       r3, -0x6D20(r13)
-	  bl        -0x2A2120
-	  cmplwi    r3, 0
-	  bne-      .loc_0x84
-	  li        r3, 0
-	  b         .loc_0x98
+lbl_803FCD3C:
+	lwz      r3, naviMgr__4Game@sda21(r13)
+	bl       getActiveNavi__Q24Game7NaviMgrFv
+	cmplwi   r3, 0
+	bne      lbl_803FCD54
+	li       r3, 0
+	b        lbl_803FCD68
 
-	.loc_0x84:
-	  li        r0, 0x1
-	  mr        r3, r30
-	  stb       r0, 0xA6(r31)
-	  mr        r4, r31
-	  bl        .loc_0xB0
+lbl_803FCD54:
+	li       r0, 1
+	mr       r3, r30
+	stb      r0, 0xa6(r31)
+	mr       r4, r31
+	bl open_SMenu_Sub__Q26Screen9Game2DMgrFRQ32og6Screen18DispMemberSMenuAll
 
-	.loc_0x98:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-
-	.loc_0xB0:
+lbl_803FCD68:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1235,133 +1353,132 @@ void Game2DMgr::open_SMenu(og::Screen::DispMemberSMenuAll&)
 void Game2DMgr::open_SMenu_Sub(og::Screen::DispMemberSMenuAll&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  stw       r0, 0x44(r1)
-	  stw       r31, 0x3C(r1)
-	  li        r31, 0
-	  stw       r30, 0x38(r1)
-	  mr        r30, r4
-	  stw       r29, 0x34(r1)
-	  mr        r29, r3
-	  stw       r28, 0x30(r1)
-	  lwz       r0, 0x14(r4)
-	  stw       r0, 0x28(r4)
-	  lwz       r3, 0x18(r3)
-	  lbz       r0, 0x91(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x4C
-	  li        r0, 0x1
-	  stb       r0, 0xA5(r30)
-	  b         .loc_0x54
+	stwu     r1, -0x40(r1)
+	mflr     r0
+	stw      r0, 0x44(r1)
+	stw      r31, 0x3c(r1)
+	li       r31, 0
+	stw      r30, 0x38(r1)
+	mr       r30, r4
+	stw      r29, 0x34(r1)
+	mr       r29, r3
+	stw      r28, 0x30(r1)
+	lwz      r0, 0x14(r4)
+	stw      r0, 0x28(r4)
+	lwz      r3, 0x18(r3)
+	lbz      r0, 0x91(r3)
+	cmplwi   r0, 0
+	beq      lbl_803FCDCC
+	li       r0, 1
+	stb      r0, 0xa5(r30)
+	b        lbl_803FCDD4
 
-	.loc_0x4C:
-	  li        r0, 0
-	  stb       r0, 0xA5(r30)
+lbl_803FCDCC:
+	li       r0, 0
+	stb      r0, 0xa5(r30)
 
-	.loc_0x54:
-	  lwz       r0, 0x28(r30)
-	  cmplwi    r0, 0x2710
-	  bge-      .loc_0x6C
-	  li        r0, 0x1
-	  stb       r0, 0x2C(r30)
-	  b         .loc_0x74
+lbl_803FCDD4:
+	lwz      r0, 0x28(r30)
+	cmplwi   r0, 0x2710
+	bge      lbl_803FCDEC
+	li       r0, 1
+	stb      r0, 0x2c(r30)
+	b        lbl_803FCDF4
 
-	.loc_0x6C:
-	  li        r0, 0
-	  stb       r0, 0x2C(r30)
+lbl_803FCDEC:
+	li       r0, 0
+	stb      r0, 0x2c(r30)
 
-	.loc_0x74:
-	  lwz       r3, -0x6858(r13)
-	  bl        -0xF0250
-	  bl        0x6EB60
-	  lwz       r0, 0xBC(r30)
-	  cmpwi     r0, 0
-	  beq-      .loc_0x9C
-	  blt-      .loc_0x144
-	  cmpwi     r0, 0x3
-	  bge-      .loc_0x144
-	  b         .loc_0xF0
+lbl_803FCDF4:
+	lwz      r3, ogSound__2og@sda21(r13)
+	bl       setOpen__Q22og5SoundFv
+	bl       PSPause_StartMenuOn__Fv
+	lwz      r0, 0xbc(r30)
+	cmpwi    r0, 0
+	beq      lbl_803FCE1C
+	blt      lbl_803FCEC4
+	cmpwi    r0, 3
+	bge      lbl_803FCEC4
+	b        lbl_803FCE70
 
-	.loc_0x9C:
-	  lis       r4, 0x804E
-	  lis       r3, 0x804E
-	  subi      r0, r4, 0x7B98
-	  li        r5, 0x271D
-	  stw       r0, 0x18(r1)
-	  subi      r4, r3, 0x7BA8
-	  li        r3, 0
-	  li        r0, 0x1
-	  stw       r4, 0x18(r1)
-	  addi      r4, r1, 0x18
-	  stw       r5, 0x1C(r1)
-	  stb       r3, 0x20(r1)
-	  stb       r0, 0x21(r1)
-	  stw       r30, 0x24(r1)
-	  lwz       r3, 0x18(r29)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r28, r3
-	  b         .loc_0x160
+lbl_803FCE1C:
+	lis      r4, __vt__Q26Screen12SceneArgBase@ha
+	lis      r3, __vt__Q26Screen11SetSceneArg@ha
+	addi     r0, r4, __vt__Q26Screen12SceneArgBase@l
+	li       r5, 0x271d
+	stw      r0, 0x18(r1)
+	addi     r4, r3, __vt__Q26Screen11SetSceneArg@l
+	li       r3, 0
+	li       r0, 1
+	stw      r4, 0x18(r1)
+	addi     r4, r1, 0x18
+	stw      r5, 0x1c(r1)
+	stb      r3, 0x20(r1)
+	stb      r0, 0x21(r1)
+	stw      r30, 0x24(r1)
+	lwz      r3, 0x18(r29)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	mr       r28, r3
+	b        lbl_803FCEE0
 
-	.loc_0xF0:
-	  lis       r4, 0x804E
-	  lis       r3, 0x804E
-	  subi      r0, r4, 0x7B98
-	  li        r5, 0x2728
-	  stw       r0, 0x8(r1)
-	  subi      r4, r3, 0x7BA8
-	  li        r3, 0
-	  li        r0, 0x1
-	  stw       r4, 0x8(r1)
-	  addi      r4, r1, 0x8
-	  stw       r5, 0xC(r1)
-	  stb       r3, 0x10(r1)
-	  stb       r0, 0x11(r1)
-	  stw       r30, 0x14(r1)
-	  lwz       r3, 0x18(r29)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r28, r3
-	  b         .loc_0x160
+lbl_803FCE70:
+	lis      r4, __vt__Q26Screen12SceneArgBase@ha
+	lis      r3, __vt__Q26Screen11SetSceneArg@ha
+	addi     r0, r4, __vt__Q26Screen12SceneArgBase@l
+	li       r5, 0x2728
+	stw      r0, 8(r1)
+	addi     r4, r3, __vt__Q26Screen11SetSceneArg@l
+	li       r3, 0
+	li       r0, 1
+	stw      r4, 8(r1)
+	addi     r4, r1, 8
+	stw      r5, 0xc(r1)
+	stb      r3, 0x10(r1)
+	stb      r0, 0x11(r1)
+	stw      r30, 0x14(r1)
+	lwz      r3, 0x18(r29)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	mr       r28, r3
+	b        lbl_803FCEE0
 
-	.loc_0x144:
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x7AF0
-	  li        r4, 0x3C9
-	  subi      r5, r5, 0x7AD0
-	  crclr     6, 0x6
-	  bl        -0x3D289C
+lbl_803FCEC4:
+	lis      r3, lbl_80498510@ha
+	lis      r5, lbl_80498530@ha
+	addi     r3, r3, lbl_80498510@l
+	li       r4, 0x3c9
+	addi     r5, r5, lbl_80498530@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x160:
-	  rlwinm.   r0,r28,0,24,31
-	  beq-      .loc_0x18C
-	  lwz       r3, 0x18(r29)
-	  li        r4, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x18C
-	  li        r31, 0x1
+lbl_803FCEE0:
+	clrlwi.  r0, r28, 0x18
+	beq      lbl_803FCF0C
+	lwz      r3, 0x18(r29)
+	li       r4, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FCF0C
+	li       r31, 1
 
-	.loc_0x18C:
-	  lwz       r0, 0x44(r1)
-	  mr        r3, r31
-	  lwz       r31, 0x3C(r1)
-	  lwz       r30, 0x38(r1)
-	  lwz       r29, 0x34(r1)
-	  lwz       r28, 0x30(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
+lbl_803FCF0C:
+	lwz      r0, 0x44(r1)
+	mr       r3, r31
+	lwz      r31, 0x3c(r1)
+	lwz      r30, 0x38(r1)
+	lwz      r29, 0x34(r1)
+	lwz      r28, 0x30(r1)
+	mtlr     r0
+	addi     r1, r1, 0x40
+	blr
 	*/
 }
 
@@ -1373,93 +1490,114 @@ void Game2DMgr::open_SMenu_Sub(og::Screen::DispMemberSMenuAll&)
 void Game2DMgr::check_SMenu()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  li        r31, -0x1
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lwz       r3, 0x18(r3)
-	  bl        0x569E0
-	  cmpwi     r3, 0x2728
-	  beq-      .loc_0x50
-	  bge-      .loc_0x44
-	  cmpwi     r3, 0x271E
-	  bge-      .loc_0x108
-	  cmpwi     r3, 0x271A
-	  bge-      .loc_0x50
-	  b         .loc_0x108
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	li       r31, -1
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lwz      r3, 0x18(r3)
+	bl       getSceneType__Q26Screen3MgrFv
+	cmpwi    r3, 0x2728
+	beq      lbl_803FCF80
+	bge      lbl_803FCF74
+	cmpwi    r3, 0x271e
+	bge      lbl_803FD038
+	cmpwi    r3, 0x271a
+	bge      lbl_803FCF80
+	b        lbl_803FD038
 
-	.loc_0x44:
-	  cmpwi     r3, 0x272B
-	  beq-      .loc_0x50
-	  b         .loc_0x108
+lbl_803FCF74:
+	cmpwi    r3, 0x272b
+	beq      lbl_803FCF80
+	b        lbl_803FD038
 
-	.loc_0x50:
-	  lwz       r3, 0x18(r30)
-	  bl        0x569EC
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x100
-	  lwz       r3, 0x18(r30)
-	  bl        0x56A04
-	  cmplwi    r3, 0x7
-	  bgt-      .loc_0xD8
-	  lis       r4, 0x804F
-	  rlwinm    r0,r3,2,0,29
-	  subi      r4, r4, 0x5828
-	  lwzx      r0, r4, r0
-	  mtctr     r0
-	  bctr
-	  li        r31, 0
-	  b         .loc_0x10C
-	  bl        0x6EB88
-	  li        r31, 0x1
-	  b         .loc_0x10C
-	  bl        0x6EB7C
-	  li        r31, 0x2
-	  b         .loc_0x10C
-	  bl        0x6EB70
-	  li        r31, 0x3
-	  b         .loc_0x10C
-	  bl        0x6EB64
-	  li        r31, 0x1
-	  b         .loc_0x10C
-	  bl        0x6EB58
-	  li        r31, 0x4
-	  b         .loc_0x10C
-	  bl        0x6EB4C
-	  li        r31, 0x5
-	  b         .loc_0x10C
+lbl_803FCF80:
+	lwz      r3, 0x18(r30)
+	bl       isSceneFinish__Q26Screen3MgrFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FD030
+	lwz      r3, 0x18(r30)
+	bl       getSceneFinishState__Q26Screen3MgrFv
+	cmplwi   r3, 7
+	bgt      lbl_803FD008
+	lis      r4, lbl_804EA7D8@ha
+	slwi     r0, r3, 2
+	addi     r4, r4, lbl_804EA7D8@l
+	lwzx     r0, r4, r0
+	mtctr    r0
+	bctr
+	.global  lbl_803FCFB8
 
-	.loc_0xD8:
-	  lis       r5, 0x804A
-	  lis       r4, 0x804A
-	  subi      r0, r5, 0x7AF0
-	  mr        r6, r3
-	  subi      r5, r4, 0x7AC0
-	  li        r4, 0x415
-	  mr        r3, r0
-	  crclr     6, 0x6
-	  bl        -0x3D29E8
-	  b         .loc_0x10C
+lbl_803FCFB8:
+	li       r31, 0
+	b        lbl_803FD03C
+	.global  lbl_803FCFC0
 
-	.loc_0x100:
-	  li        r31, 0
-	  b         .loc_0x10C
+lbl_803FCFC0:
+	bl       PSPause_StartMenuOff__Fv
+	li       r31, 1
+	b        lbl_803FD03C
+	.global  lbl_803FCFCC
 
-	.loc_0x108:
-	  li        r31, -0x1
+lbl_803FCFCC:
+	bl       PSPause_StartMenuOff__Fv
+	li       r31, 2
+	b        lbl_803FD03C
+	.global  lbl_803FCFD8
 
-	.loc_0x10C:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803FCFD8:
+	bl       PSPause_StartMenuOff__Fv
+	li       r31, 3
+	b        lbl_803FD03C
+	.global  lbl_803FCFE4
+
+lbl_803FCFE4:
+	bl       PSPause_StartMenuOff__Fv
+	li       r31, 1
+	b        lbl_803FD03C
+	.global  lbl_803FCFF0
+
+lbl_803FCFF0:
+	bl       PSPause_StartMenuOff__Fv
+	li       r31, 4
+	b        lbl_803FD03C
+	.global  lbl_803FCFFC
+
+lbl_803FCFFC:
+	bl       PSPause_StartMenuOff__Fv
+	li       r31, 5
+	b        lbl_803FD03C
+	.global  lbl_803FD008
+
+lbl_803FD008:
+	lis      r5, lbl_80498510@ha
+	lis      r4, lbl_80498540@ha
+	addi     r0, r5, lbl_80498510@l
+	mr       r6, r3
+	addi     r5, r4, lbl_80498540@l
+	li       r4, 0x415
+	mr       r3, r0
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
+	b        lbl_803FD03C
+
+lbl_803FD030:
+	li       r31, 0
+	b        lbl_803FD03C
+
+lbl_803FD038:
+	li       r31, -1
+
+lbl_803FD03C:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1471,53 +1609,52 @@ void Game2DMgr::check_SMenu()
 void Game2DMgr::open_WorldMapInfoWin0(og::Screen::DispMemberWorldMapInfoWin0&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r5, 0x804E
-	  lis       r6, 0x804E
-	  stw       r0, 0x24(r1)
-	  subi      r0, r6, 0x7B98
-	  subi      r7, r5, 0x7BA8
-	  li        r6, 0x2729
-	  stw       r31, 0x1C(r1)
-	  li        r5, 0
-	  mr        r31, r3
-	  stw       r0, 0x8(r1)
-	  li        r0, 0x1
-	  stw       r4, 0x14(r1)
-	  addi      r4, r1, 0x8
-	  stw       r7, 0x8(r1)
-	  stw       r6, 0xC(r1)
-	  stb       r5, 0x10(r1)
-	  stb       r0, 0x11(r1)
-	  lwz       r3, 0x18(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x90
-	  lwz       r3, 0x18(r31)
-	  li        r4, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x90
-	  li        r3, 0x1
-	  b         .loc_0x94
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lis      r5, __vt__Q26Screen11SetSceneArg@ha
+	lis      r6, __vt__Q26Screen12SceneArgBase@ha
+	stw      r0, 0x24(r1)
+	addi     r0, r6, __vt__Q26Screen12SceneArgBase@l
+	addi     r7, r5, __vt__Q26Screen11SetSceneArg@l
+	li       r6, 0x2729
+	stw      r31, 0x1c(r1)
+	li       r5, 0
+	mr       r31, r3
+	stw      r0, 8(r1)
+	li       r0, 1
+	stw      r4, 0x14(r1)
+	addi     r4, r1, 8
+	stw      r7, 8(r1)
+	stw      r6, 0xc(r1)
+	stb      r5, 0x10(r1)
+	stb      r0, 0x11(r1)
+	lwz      r3, 0x18(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FD0E8
+	lwz      r3, 0x18(r31)
+	li       r4, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FD0E8
+	li       r3, 1
+	b        lbl_803FD0EC
 
-	.loc_0x90:
-	  li        r3, 0
+lbl_803FD0E8:
+	li       r3, 0
 
-	.loc_0x94:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_803FD0EC:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -1529,46 +1666,45 @@ void Game2DMgr::open_WorldMapInfoWin0(og::Screen::DispMemberWorldMapInfoWin0&)
 void Game2DMgr::check_WorldMapInfoWin0() const
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r3, 0x18(r3)
-	  bl        0x56818
-	  cmpwi     r3, 0x2729
-	  beq-      .loc_0x2C
-	  li        r3, 0x2
-	  b         .loc_0x68
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r3, 0x18(r3)
+	bl       getSceneType__Q26Screen3MgrFv
+	cmpwi    r3, 0x2729
+	beq      lbl_803FD12C
+	li       r3, 2
+	b        lbl_803FD168
 
-	.loc_0x2C:
-	  lwz       r3, 0x18(r31)
-	  bl        0x56840
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x64
-	  lwz       r3, 0x18(r31)
-	  bl        0x56858
-	  cmpwi     r3, 0
-	  bne-      .loc_0x54
-	  li        r3, 0
-	  b         .loc_0x68
+lbl_803FD12C:
+	lwz      r3, 0x18(r31)
+	bl       isSceneFinish__Q26Screen3MgrFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FD164
+	lwz      r3, 0x18(r31)
+	bl       getSceneFinishState__Q26Screen3MgrFv
+	cmpwi    r3, 0
+	bne      lbl_803FD154
+	li       r3, 0
+	b        lbl_803FD168
 
-	.loc_0x54:
-	  cmpwi     r3, 0x1
-	  bne-      .loc_0x64
-	  li        r3, 0x1
-	  b         .loc_0x68
+lbl_803FD154:
+	cmpwi    r3, 1
+	bne      lbl_803FD164
+	li       r3, 1
+	b        lbl_803FD168
 
-	.loc_0x64:
-	  li        r3, 0x3
+lbl_803FD164:
+	li       r3, 3
 
-	.loc_0x68:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803FD168:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1580,53 +1716,52 @@ void Game2DMgr::check_WorldMapInfoWin0() const
 void Game2DMgr::open_WorldMapInfoWin1(og::Screen::DispMemberWorldMapInfoWin1&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r5, 0x804E
-	  lis       r6, 0x804E
-	  stw       r0, 0x24(r1)
-	  subi      r0, r6, 0x7B98
-	  subi      r7, r5, 0x7BA8
-	  li        r6, 0x272A
-	  stw       r31, 0x1C(r1)
-	  li        r5, 0
-	  mr        r31, r3
-	  stw       r0, 0x8(r1)
-	  li        r0, 0x1
-	  stw       r4, 0x14(r1)
-	  addi      r4, r1, 0x8
-	  stw       r7, 0x8(r1)
-	  stw       r6, 0xC(r1)
-	  stb       r5, 0x10(r1)
-	  stb       r0, 0x11(r1)
-	  lwz       r3, 0x18(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x90
-	  lwz       r3, 0x18(r31)
-	  li        r4, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x90
-	  li        r3, 0x1
-	  b         .loc_0x94
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lis      r5, __vt__Q26Screen11SetSceneArg@ha
+	lis      r6, __vt__Q26Screen12SceneArgBase@ha
+	stw      r0, 0x24(r1)
+	addi     r0, r6, __vt__Q26Screen12SceneArgBase@l
+	addi     r7, r5, __vt__Q26Screen11SetSceneArg@l
+	li       r6, 0x272a
+	stw      r31, 0x1c(r1)
+	li       r5, 0
+	mr       r31, r3
+	stw      r0, 8(r1)
+	li       r0, 1
+	stw      r4, 0x14(r1)
+	addi     r4, r1, 8
+	stw      r7, 8(r1)
+	stw      r6, 0xc(r1)
+	stb      r5, 0x10(r1)
+	stb      r0, 0x11(r1)
+	lwz      r3, 0x18(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FD20C
+	lwz      r3, 0x18(r31)
+	li       r4, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FD20C
+	li       r3, 1
+	b        lbl_803FD210
 
-	.loc_0x90:
-	  li        r3, 0
+lbl_803FD20C:
+	li       r3, 0
 
-	.loc_0x94:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_803FD210:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -1638,46 +1773,45 @@ void Game2DMgr::open_WorldMapInfoWin1(og::Screen::DispMemberWorldMapInfoWin1&)
 void Game2DMgr::check_WorldMapInfoWin1() const
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r3, 0x18(r3)
-	  bl        0x566F4
-	  cmpwi     r3, 0x272A
-	  beq-      .loc_0x2C
-	  li        r3, 0x2
-	  b         .loc_0x68
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r3, 0x18(r3)
+	bl       getSceneType__Q26Screen3MgrFv
+	cmpwi    r3, 0x272a
+	beq      lbl_803FD250
+	li       r3, 2
+	b        lbl_803FD28C
 
-	.loc_0x2C:
-	  lwz       r3, 0x18(r31)
-	  bl        0x5671C
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x64
-	  lwz       r3, 0x18(r31)
-	  bl        0x56734
-	  cmpwi     r3, 0
-	  bne-      .loc_0x54
-	  li        r3, 0
-	  b         .loc_0x68
+lbl_803FD250:
+	lwz      r3, 0x18(r31)
+	bl       isSceneFinish__Q26Screen3MgrFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FD288
+	lwz      r3, 0x18(r31)
+	bl       getSceneFinishState__Q26Screen3MgrFv
+	cmpwi    r3, 0
+	bne      lbl_803FD278
+	li       r3, 0
+	b        lbl_803FD28C
 
-	.loc_0x54:
-	  cmpwi     r3, 0x1
-	  bne-      .loc_0x64
-	  li        r3, 0x1
-	  b         .loc_0x68
+lbl_803FD278:
+	cmpwi    r3, 1
+	bne      lbl_803FD288
+	li       r3, 1
+	b        lbl_803FD28C
 
-	.loc_0x64:
-	  li        r3, 0x3
+lbl_803FD288:
+	li       r3, 3
 
-	.loc_0x68:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803FD28C:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1689,96 +1823,95 @@ void Game2DMgr::check_WorldMapInfoWin1() const
 void Game2DMgr::open_Kantei(og::Screen::DispMemberKantei&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r3
-	  lwz       r3, 0x18(r3)
-	  lbz       r0, 0x91(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x30
-	  li        r0, 0x1
-	  stb       r0, 0x38(r4)
-	  b         .loc_0x38
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r3
+	lwz      r3, 0x18(r3)
+	lbz      r0, 0x91(r3)
+	cmplwi   r0, 0
+	beq      lbl_803FD2D0
+	li       r0, 1
+	stb      r0, 0x38(r4)
+	b        lbl_803FD2D8
 
-	.loc_0x30:
-	  li        r0, 0
-	  stb       r0, 0x38(r4)
+lbl_803FD2D0:
+	li       r0, 0
+	stb      r0, 0x38(r4)
 
-	.loc_0x38:
-	  lwz       r0, 0xC(r4)
-	  cmplwi    r0, 0x2710
-	  blt-      .loc_0x50
-	  li        r0, 0x1
-	  stb       r0, 0x28(r4)
-	  b         .loc_0x58
+lbl_803FD2D8:
+	lwz      r0, 0xc(r4)
+	cmplwi   r0, 0x2710
+	blt      lbl_803FD2F0
+	li       r0, 1
+	stb      r0, 0x28(r4)
+	b        lbl_803FD2F8
 
-	.loc_0x50:
-	  li        r0, 0
-	  stb       r0, 0x28(r4)
+lbl_803FD2F0:
+	li       r0, 0
+	stb      r0, 0x28(r4)
 
-	.loc_0x58:
-	  lbz       r0, 0x28(r4)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x70
-	  li        r0, 0x1
-	  stw       r0, 0x34(r4)
-	  b         .loc_0x78
+lbl_803FD2F8:
+	lbz      r0, 0x28(r4)
+	cmplwi   r0, 0
+	beq      lbl_803FD310
+	li       r0, 1
+	stw      r0, 0x34(r4)
+	b        lbl_803FD318
 
-	.loc_0x70:
-	  li        r0, 0
-	  stw       r0, 0x34(r4)
+lbl_803FD310:
+	li       r0, 0
+	stw      r0, 0x34(r4)
 
-	.loc_0x78:
-	  lis       r5, 0x804E
-	  lis       r3, 0x804E
-	  subi      r0, r5, 0x7B98
-	  li        r5, 0x2722
-	  stw       r0, 0x8(r1)
-	  subi      r6, r3, 0x7BA8
-	  li        r3, 0
-	  li        r0, 0x1
-	  stw       r4, 0x14(r1)
-	  addi      r4, r1, 0x8
-	  stw       r6, 0x8(r1)
-	  stw       r5, 0xC(r1)
-	  stb       r3, 0x10(r1)
-	  stb       r0, 0x11(r1)
-	  lwz       r3, 0x18(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xF4
-	  lwz       r3, 0x18(r31)
-	  li        r4, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xF4
-	  bl        0x6E5D0
-	  b         .loc_0x110
+lbl_803FD318:
+	lis      r5, __vt__Q26Screen12SceneArgBase@ha
+	lis      r3, __vt__Q26Screen11SetSceneArg@ha
+	addi     r0, r5, __vt__Q26Screen12SceneArgBase@l
+	li       r5, 0x2722
+	stw      r0, 8(r1)
+	addi     r6, r3, __vt__Q26Screen11SetSceneArg@l
+	li       r3, 0
+	li       r0, 1
+	stw      r4, 0x14(r1)
+	addi     r4, r1, 8
+	stw      r6, 8(r1)
+	stw      r5, 0xc(r1)
+	stb      r3, 0x10(r1)
+	stb      r0, 0x11(r1)
+	lwz      r3, 0x18(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FD394
+	lwz      r3, 0x18(r31)
+	li       r4, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FD394
+	bl       PSPause_StartMenuOn__Fv
+	b        lbl_803FD3B0
 
-	.loc_0xF4:
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x7AF0
-	  li        r4, 0x476
-	  subi      r5, r5, 0x7AA4
-	  crclr     6, 0x6
-	  bl        -0x3D2D6C
+lbl_803FD394:
+	lis      r3, lbl_80498510@ha
+	lis      r5, lbl_8049855C@ha
+	addi     r3, r3, lbl_80498510@l
+	li       r4, 0x476
+	addi     r5, r5, lbl_8049855C@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x110:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_803FD3B0:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -1790,44 +1923,43 @@ void Game2DMgr::open_Kantei(og::Screen::DispMemberKantei&)
 void Game2DMgr::close_Kantei()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r3, 0x18(r3)
-	  bl        0x56554
-	  cmpwi     r3, 0x2722
-	  bne-      .loc_0x70
-	  lwz       r3, 0x18(r31)
-	  bl        0x56600
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x54
-	  lwz       r3, 0x18(r31)
-	  li        r4, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  bl        0x6E738
-	  b         .loc_0x70
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r3, 0x18(r3)
+	bl       getSceneType__Q26Screen3MgrFv
+	cmpwi    r3, 0x2722
+	bne      lbl_803FD434
+	lwz      r3, 0x18(r31)
+	bl       setBackupScene__Q26Screen3MgrFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FD418
+	lwz      r3, 0x18(r31)
+	li       r4, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	bl       PSPause_StartMenuOff__Fv
+	b        lbl_803FD434
 
-	.loc_0x54:
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x7AF0
-	  li        r4, 0x48F
-	  subi      r5, r5, 0x7A8C
-	  crclr     6, 0x6
-	  bl        -0x3D2DF0
+lbl_803FD418:
+	lis      r3, lbl_80498510@ha
+	lis      r5, lbl_80498574@ha
+	addi     r3, r3, lbl_80498510@l
+	li       r4, 0x48f
+	addi     r5, r5, lbl_80498574@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x70:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803FD434:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1839,38 +1971,37 @@ void Game2DMgr::close_Kantei()
 void Game2DMgr::update_Kantei()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  stw       r30, 0x8(r1)
-	  li        r30, 0x1
-	  lwz       r3, 0x18(r3)
-	  bl        0x564B0
-	  mr.       r31, r3
-	  beq-      .loc_0x58
-	  lis       r4, 0x4F
-	  lis       r6, 0x4E54
-	  addi      r4, r4, 0x4741
-	  li        r5, 0x4B41
-	  addi      r6, r6, 0x4549
-	  bl        -0xEE168
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x58
-	  lbz       r0, 0x30(r31)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x58
-	  li        r30, 0
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	stw      r30, 8(r1)
+	li       r30, 1
+	lwz      r3, 0x18(r3)
+	bl       getDispMember__Q26Screen3MgrFv
+	or.      r31, r3, r3
+	beq      lbl_803FD4A0
+	lis      r4, 0x004F4741@ha
+	lis      r6, 0x4E544549@ha
+	addi     r4, r4, 0x004F4741@l
+	li       r5, 0x4b41
+	addi     r6, r6, 0x4E544549@l
+	bl       isID__Q32og6Screen14DispMemberBaseFUlUx
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FD4A0
+	lbz      r0, 0x30(r31)
+	cmplwi   r0, 0
+	beq      lbl_803FD4A0
+	li       r30, 0
 
-	.loc_0x58:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803FD4A0:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1882,43 +2013,42 @@ void Game2DMgr::update_Kantei()
 void Game2DMgr::open_SpecialItem(og::Screen::DispMemberSpecialItem&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r5, 0x804E
-	  lis       r6, 0x804E
-	  stw       r0, 0x24(r1)
-	  subi      r0, r6, 0x7B98
-	  subi      r7, r5, 0x7BA8
-	  li        r6, 0x2723
-	  stw       r31, 0x1C(r1)
-	  li        r5, 0
-	  mr        r31, r3
-	  stw       r0, 0x8(r1)
-	  li        r0, 0x1
-	  stw       r4, 0x14(r1)
-	  addi      r4, r1, 0x8
-	  stw       r7, 0x8(r1)
-	  stw       r6, 0xC(r1)
-	  stb       r5, 0x10(r1)
-	  stb       r0, 0x11(r1)
-	  lwz       r3, 0x18(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x18(r31)
-	  li        r4, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  bl        0x6E428
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lis      r5, __vt__Q26Screen11SetSceneArg@ha
+	lis      r6, __vt__Q26Screen12SceneArgBase@ha
+	stw      r0, 0x24(r1)
+	addi     r0, r6, __vt__Q26Screen12SceneArgBase@l
+	addi     r7, r5, __vt__Q26Screen11SetSceneArg@l
+	li       r6, 0x2723
+	stw      r31, 0x1c(r1)
+	li       r5, 0
+	mr       r31, r3
+	stw      r0, 8(r1)
+	li       r0, 1
+	stw      r4, 0x14(r1)
+	addi     r4, r1, 8
+	stw      r7, 8(r1)
+	stw      r6, 0xc(r1)
+	stb      r5, 0x10(r1)
+	stb      r0, 0x11(r1)
+	lwz      r3, 0x18(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 0x18(r31)
+	li       r4, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	bl       PSPause_StartMenuOn__Fv
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -1930,44 +2060,43 @@ void Game2DMgr::open_SpecialItem(og::Screen::DispMemberSpecialItem&)
 void Game2DMgr::close_SpecialItem()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r3, 0x18(r3)
-	  bl        0x563CC
-	  cmpwi     r3, 0x2723
-	  bne-      .loc_0x70
-	  lwz       r3, 0x18(r31)
-	  bl        0x56478
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x54
-	  lwz       r3, 0x18(r31)
-	  li        r4, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  bl        0x6E5B0
-	  b         .loc_0x70
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r3, 0x18(r3)
+	bl       getSceneType__Q26Screen3MgrFv
+	cmpwi    r3, 0x2723
+	bne      lbl_803FD5BC
+	lwz      r3, 0x18(r31)
+	bl       setBackupScene__Q26Screen3MgrFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FD5A0
+	lwz      r3, 0x18(r31)
+	li       r4, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	bl       PSPause_StartMenuOff__Fv
+	b        lbl_803FD5BC
 
-	.loc_0x54:
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x7AF0
-	  li        r4, 0x4C7
-	  subi      r5, r5, 0x7A8C
-	  crclr     6, 0x6
-	  bl        -0x3D2F78
+lbl_803FD5A0:
+	lis      r3, lbl_80498510@ha
+	lis      r5, lbl_80498574@ha
+	addi     r3, r3, lbl_80498510@l
+	li       r4, 0x4c7
+	addi     r5, r5, lbl_80498574@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x70:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803FD5BC:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1979,43 +2108,42 @@ void Game2DMgr::close_SpecialItem()
 void Game2DMgr::open_Floor(og::Screen::DispMemberFloor&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r6, 0x804E
-	  li        r5, 0
-	  stw       r0, 0x24(r1)
-	  subi      r0, r6, 0x7B98
-	  lis       r6, 0x804E
-	  stw       r31, 0x1C(r1)
-	  subi      r7, r6, 0x7BA8
-	  li        r6, 0x2713
-	  mr        r31, r3
-	  stw       r0, 0x8(r1)
-	  li        r0, 0x1
-	  stb       r5, 0x10(r1)
-	  stw       r4, 0x14(r1)
-	  addi      r4, r1, 0x8
-	  stw       r7, 0x8(r1)
-	  stw       r6, 0xC(r1)
-	  stb       r0, 0x11(r1)
-	  stb       r0, 0x10(r1)
-	  lwz       r3, 0x18(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x18(r31)
-	  li        r4, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lis      r6, __vt__Q26Screen12SceneArgBase@ha
+	li       r5, 0
+	stw      r0, 0x24(r1)
+	addi     r0, r6, __vt__Q26Screen12SceneArgBase@l
+	lis      r6, __vt__Q26Screen11SetSceneArg@ha
+	stw      r31, 0x1c(r1)
+	addi     r7, r6, __vt__Q26Screen11SetSceneArg@l
+	li       r6, 0x2713
+	mr       r31, r3
+	stw      r0, 8(r1)
+	li       r0, 1
+	stb      r5, 0x10(r1)
+	stw      r4, 0x14(r1)
+	addi     r4, r1, 8
+	stw      r7, 8(r1)
+	stw      r6, 0xc(r1)
+	stb      r0, 0x11(r1)
+	stb      r0, 0x10(r1)
+	lwz      r3, 0x18(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 0x18(r31)
+	li       r4, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -2027,37 +2155,36 @@ void Game2DMgr::open_Floor(og::Screen::DispMemberFloor&)
 void Game2DMgr::close_Floor()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r3
-	  lwz       r3, 0x18(r3)
-	  bl        0x562B8
-	  cmpwi     r3, 0x2713
-	  bne-      .loc_0x5C
-	  lis       r4, 0x804E
-	  lis       r3, 0x804F
-	  subi      r4, r4, 0x7B98
-	  li        r0, 0x1
-	  stw       r4, 0x8(r1)
-	  subi      r3, r3, 0x5808
-	  addi      r4, r1, 0x8
-	  stw       r3, 0x8(r1)
-	  stb       r0, 0xC(r1)
-	  lwz       r3, 0x18(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r3
+	lwz      r3, 0x18(r3)
+	bl       getSceneType__Q26Screen3MgrFv
+	cmpwi    r3, 0x2713
+	bne      lbl_803FD6BC
+	lis      r4, __vt__Q26Screen12SceneArgBase@ha
+	lis      r3, __vt__Q26Screen11EndSceneArg@ha
+	addi     r4, r4, __vt__Q26Screen12SceneArgBase@l
+	li       r0, 1
+	stw      r4, 8(r1)
+	addi     r3, r3, __vt__Q26Screen11EndSceneArg@l
+	addi     r4, r1, 8
+	stw      r3, 8(r1)
+	stb      r0, 0xc(r1)
+	lwz      r3, 0x18(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x5C:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_803FD6BC:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -2069,32 +2196,31 @@ void Game2DMgr::close_Floor()
 void Game2DMgr::set_FloorVS_LoadEnd()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r3, 0x18(r3)
-	  bl        0x56248
-	  cmpwi     r3, 0x2713
-	  bne-      .loc_0x48
-	  lwz       r3, 0x18(r31)
-	  bl        0x5621C
-	  li        r0, 0x1
-	  mr        r4, r3
-	  stb       r0, 0x12(r3)
-	  lwz       r3, 0x18(r31)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x48
-	  bl        0x561CC
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r3, 0x18(r3)
+	bl       getSceneType__Q26Screen3MgrFv
+	cmpwi    r3, 0x2713
+	bne      lbl_803FD718
+	lwz      r3, 0x18(r31)
+	bl       getDispMember__Q26Screen3MgrFv
+	li       r0, 1
+	mr       r4, r3
+	stb      r0, 0x12(r3)
+	lwz      r3, 0x18(r31)
+	cmplwi   r3, 0
+	beq      lbl_803FD718
+	bl       setDispMember__Q26Screen3MgrFPQ32og6Screen14DispMemberBase
 
-	.loc_0x48:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803FD718:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2106,27 +2232,26 @@ void Game2DMgr::set_FloorVS_LoadEnd()
 void Game2DMgr::startCount_Floor()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r3, 0x18(r3)
-	  bl        0x561EC
-	  cmpwi     r3, 0x2713
-	  bne-      .loc_0x34
-	  lwz       r3, 0x18(r31)
-	  bl        0x561C0
-	  li        r0, 0x1
-	  stb       r0, 0x10(r3)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r3, 0x18(r3)
+	bl       getSceneType__Q26Screen3MgrFv
+	cmpwi    r3, 0x2713
+	bne      lbl_803FD760
+	lwz      r3, 0x18(r31)
+	bl       getDispMember__Q26Screen3MgrFv
+	li       r0, 1
+	stb      r0, 0x10(r3)
 
-	.loc_0x34:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803FD760:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2138,27 +2263,26 @@ void Game2DMgr::startCount_Floor()
 void Game2DMgr::startFadeBG_Floor()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r3, 0x18(r3)
-	  bl        0x561A4
-	  cmpwi     r3, 0x2713
-	  bne-      .loc_0x34
-	  lwz       r3, 0x18(r31)
-	  bl        0x56178
-	  li        r0, 0x1
-	  stb       r0, 0x11(r3)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r3, 0x18(r3)
+	bl       getSceneType__Q26Screen3MgrFv
+	cmpwi    r3, 0x2713
+	bne      lbl_803FD7A8
+	lwz      r3, 0x18(r31)
+	bl       getDispMember__Q26Screen3MgrFv
+	li       r0, 1
+	stb      r0, 0x11(r3)
 
-	.loc_0x34:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803FD7A8:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2170,43 +2294,42 @@ void Game2DMgr::startFadeBG_Floor()
 void Game2DMgr::open_CourseName(og::Screen::DispMemberCourseName&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r6, 0x804E
-	  li        r5, 0
-	  stw       r0, 0x24(r1)
-	  subi      r0, r6, 0x7B98
-	  lis       r6, 0x804E
-	  stw       r31, 0x1C(r1)
-	  subi      r7, r6, 0x7BA8
-	  li        r6, 0x271E
-	  mr        r31, r3
-	  stw       r0, 0x8(r1)
-	  li        r0, 0x1
-	  stb       r5, 0x10(r1)
-	  stw       r4, 0x14(r1)
-	  addi      r4, r1, 0x8
-	  stw       r7, 0x8(r1)
-	  stw       r6, 0xC(r1)
-	  stb       r0, 0x11(r1)
-	  stb       r0, 0x10(r1)
-	  lwz       r3, 0x18(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x18(r31)
-	  li        r4, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lis      r6, __vt__Q26Screen12SceneArgBase@ha
+	li       r5, 0
+	stw      r0, 0x24(r1)
+	addi     r0, r6, __vt__Q26Screen12SceneArgBase@l
+	lis      r6, __vt__Q26Screen11SetSceneArg@ha
+	stw      r31, 0x1c(r1)
+	addi     r7, r6, __vt__Q26Screen11SetSceneArg@l
+	li       r6, 0x271e
+	mr       r31, r3
+	stw      r0, 8(r1)
+	li       r0, 1
+	stb      r5, 0x10(r1)
+	stw      r4, 0x14(r1)
+	addi     r4, r1, 8
+	stw      r7, 8(r1)
+	stw      r6, 0xc(r1)
+	stb      r0, 0x11(r1)
+	stb      r0, 0x10(r1)
+	lwz      r3, 0x18(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 0x18(r31)
+	li       r4, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -2218,27 +2341,26 @@ void Game2DMgr::open_CourseName(og::Screen::DispMemberCourseName&)
 void Game2DMgr::startFadeBG_CourseName()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r3, 0x18(r3)
-	  bl        0x560CC
-	  cmpwi     r3, 0x271E
-	  bne-      .loc_0x34
-	  lwz       r3, 0x18(r31)
-	  bl        0x560A0
-	  li        r0, 0x1
-	  stb       r0, 0xD(r3)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r3, 0x18(r3)
+	bl       getSceneType__Q26Screen3MgrFv
+	cmpwi    r3, 0x271e
+	bne      lbl_803FD880
+	lwz      r3, 0x18(r31)
+	bl       getDispMember__Q26Screen3MgrFv
+	li       r0, 1
+	stb      r0, 0xd(r3)
 
-	.loc_0x34:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803FD880:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2250,37 +2372,36 @@ void Game2DMgr::startFadeBG_CourseName()
 void Game2DMgr::close_CourseName()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r3
-	  lwz       r3, 0x18(r3)
-	  bl        0x56084
-	  cmpwi     r3, 0x271E
-	  bne-      .loc_0x5C
-	  lis       r4, 0x804E
-	  lis       r3, 0x804F
-	  subi      r4, r4, 0x7B98
-	  li        r0, 0x1
-	  stw       r4, 0x8(r1)
-	  subi      r3, r3, 0x5808
-	  addi      r4, r1, 0x8
-	  stw       r3, 0x8(r1)
-	  stb       r0, 0xC(r1)
-	  lwz       r3, 0x18(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r3
+	lwz      r3, 0x18(r3)
+	bl       getSceneType__Q26Screen3MgrFv
+	cmpwi    r3, 0x271e
+	bne      lbl_803FD8F0
+	lis      r4, __vt__Q26Screen12SceneArgBase@ha
+	lis      r3, __vt__Q26Screen11EndSceneArg@ha
+	addi     r4, r4, __vt__Q26Screen12SceneArgBase@l
+	li       r0, 1
+	stw      r4, 8(r1)
+	addi     r3, r3, __vt__Q26Screen11EndSceneArg@l
+	addi     r4, r1, 8
+	stw      r3, 8(r1)
+	stb      r0, 0xc(r1)
+	lwz      r3, 0x18(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x5C:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_803FD8F0:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -2292,27 +2413,26 @@ void Game2DMgr::close_CourseName()
 void Game2DMgr::startCount_CourseName()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r3, 0x18(r3)
-	  bl        0x56014
-	  cmpwi     r3, 0x271E
-	  bne-      .loc_0x34
-	  lwz       r3, 0x18(r31)
-	  bl        0x55FE8
-	  li        r0, 0x1
-	  stb       r0, 0xC(r3)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r3, 0x18(r3)
+	bl       getSceneType__Q26Screen3MgrFv
+	cmpwi    r3, 0x271e
+	bne      lbl_803FD938
+	lwz      r3, 0x18(r31)
+	bl       getDispMember__Q26Screen3MgrFv
+	li       r0, 1
+	stb      r0, 0xc(r3)
 
-	.loc_0x34:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803FD938:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2324,171 +2444,170 @@ void Game2DMgr::startCount_CourseName()
 void Game2DMgr::open_GameOver(Screen::Game2DMgr::GameOverTitle)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x60(r1)
-	  mflr      r0
-	  cmpwi     r4, 0x2
-	  stw       r0, 0x64(r1)
-	  stw       r31, 0x5C(r1)
-	  mr        r31, r3
-	  beq-      .loc_0x110
-	  bge-      .loc_0x30
-	  cmpwi     r4, 0
-	  beq-      .loc_0x40
-	  bge-      .loc_0xA8
-	  b         .loc_0x244
+	stwu     r1, -0x60(r1)
+	mflr     r0
+	cmpwi    r4, 2
+	stw      r0, 0x64(r1)
+	stw      r31, 0x5c(r1)
+	mr       r31, r3
+	beq      lbl_803FDA5C
+	bge      lbl_803FD97C
+	cmpwi    r4, 0
+	beq      lbl_803FD98C
+	bge      lbl_803FD9F4
+	b        lbl_803FDB90
 
-	.loc_0x30:
-	  cmpwi     r4, 0x4
-	  beq-      .loc_0x1E0
-	  bge-      .loc_0x244
-	  b         .loc_0x178
+lbl_803FD97C:
+	cmpwi    r4, 4
+	beq      lbl_803FDB2C
+	bge      lbl_803FDB90
+	b        lbl_803FDAC4
 
-	.loc_0x40:
-	  lis       r4, 0x804E
-	  li        r3, 0
-	  subi      r0, r4, 0x7B98
-	  lis       r4, 0x804E
-	  stw       r0, 0x48(r1)
-	  subi      r4, r4, 0x7BA8
-	  li        r5, 0x272F
-	  li        r0, 0x1
-	  stw       r4, 0x48(r1)
-	  addi      r4, r1, 0x48
-	  stw       r5, 0x4C(r1)
-	  stb       r3, 0x50(r1)
-	  stb       r0, 0x51(r1)
-	  stw       r3, 0x54(r1)
-	  lwz       r3, 0x18(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x18(r31)
-	  li        r4, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x244
+lbl_803FD98C:
+	lis      r4, __vt__Q26Screen12SceneArgBase@ha
+	li       r3, 0
+	addi     r0, r4, __vt__Q26Screen12SceneArgBase@l
+	lis      r4, __vt__Q26Screen11SetSceneArg@ha
+	stw      r0, 0x48(r1)
+	addi     r4, r4, __vt__Q26Screen11SetSceneArg@l
+	li       r5, 0x272f
+	li       r0, 1
+	stw      r4, 0x48(r1)
+	addi     r4, r1, 0x48
+	stw      r5, 0x4c(r1)
+	stb      r3, 0x50(r1)
+	stb      r0, 0x51(r1)
+	stw      r3, 0x54(r1)
+	lwz      r3, 0x18(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 0x18(r31)
+	li       r4, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_803FDB90
 
-	.loc_0xA8:
-	  lis       r4, 0x804E
-	  li        r3, 0
-	  subi      r0, r4, 0x7B98
-	  lis       r4, 0x804E
-	  stw       r0, 0x38(r1)
-	  subi      r4, r4, 0x7BA8
-	  li        r5, 0x2730
-	  li        r0, 0x1
-	  stw       r4, 0x38(r1)
-	  addi      r4, r1, 0x38
-	  stw       r5, 0x3C(r1)
-	  stb       r3, 0x40(r1)
-	  stb       r0, 0x41(r1)
-	  stw       r3, 0x44(r1)
-	  lwz       r3, 0x18(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x18(r31)
-	  li        r4, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x244
+lbl_803FD9F4:
+	lis      r4, __vt__Q26Screen12SceneArgBase@ha
+	li       r3, 0
+	addi     r0, r4, __vt__Q26Screen12SceneArgBase@l
+	lis      r4, __vt__Q26Screen11SetSceneArg@ha
+	stw      r0, 0x38(r1)
+	addi     r4, r4, __vt__Q26Screen11SetSceneArg@l
+	li       r5, 0x2730
+	li       r0, 1
+	stw      r4, 0x38(r1)
+	addi     r4, r1, 0x38
+	stw      r5, 0x3c(r1)
+	stb      r3, 0x40(r1)
+	stb      r0, 0x41(r1)
+	stw      r3, 0x44(r1)
+	lwz      r3, 0x18(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 0x18(r31)
+	li       r4, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_803FDB90
 
-	.loc_0x110:
-	  lis       r4, 0x804E
-	  li        r3, 0
-	  subi      r0, r4, 0x7B98
-	  lis       r4, 0x804E
-	  stw       r0, 0x28(r1)
-	  subi      r4, r4, 0x7BA8
-	  li        r5, 0x2731
-	  li        r0, 0x1
-	  stw       r4, 0x28(r1)
-	  addi      r4, r1, 0x28
-	  stw       r5, 0x2C(r1)
-	  stb       r3, 0x30(r1)
-	  stb       r0, 0x31(r1)
-	  stw       r3, 0x34(r1)
-	  lwz       r3, 0x18(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x18(r31)
-	  li        r4, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x244
+lbl_803FDA5C:
+	lis      r4, __vt__Q26Screen12SceneArgBase@ha
+	li       r3, 0
+	addi     r0, r4, __vt__Q26Screen12SceneArgBase@l
+	lis      r4, __vt__Q26Screen11SetSceneArg@ha
+	stw      r0, 0x28(r1)
+	addi     r4, r4, __vt__Q26Screen11SetSceneArg@l
+	li       r5, 0x2731
+	li       r0, 1
+	stw      r4, 0x28(r1)
+	addi     r4, r1, 0x28
+	stw      r5, 0x2c(r1)
+	stb      r3, 0x30(r1)
+	stb      r0, 0x31(r1)
+	stw      r3, 0x34(r1)
+	lwz      r3, 0x18(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 0x18(r31)
+	li       r4, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_803FDB90
 
-	.loc_0x178:
-	  lis       r4, 0x804E
-	  li        r3, 0
-	  subi      r0, r4, 0x7B98
-	  lis       r4, 0x804E
-	  stw       r0, 0x18(r1)
-	  subi      r4, r4, 0x7BA8
-	  li        r5, 0x2732
-	  li        r0, 0x1
-	  stw       r4, 0x18(r1)
-	  addi      r4, r1, 0x18
-	  stw       r5, 0x1C(r1)
-	  stb       r3, 0x20(r1)
-	  stb       r0, 0x21(r1)
-	  stw       r3, 0x24(r1)
-	  lwz       r3, 0x18(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x18(r31)
-	  li        r4, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x244
+lbl_803FDAC4:
+	lis      r4, __vt__Q26Screen12SceneArgBase@ha
+	li       r3, 0
+	addi     r0, r4, __vt__Q26Screen12SceneArgBase@l
+	lis      r4, __vt__Q26Screen11SetSceneArg@ha
+	stw      r0, 0x18(r1)
+	addi     r4, r4, __vt__Q26Screen11SetSceneArg@l
+	li       r5, 0x2732
+	li       r0, 1
+	stw      r4, 0x18(r1)
+	addi     r4, r1, 0x18
+	stw      r5, 0x1c(r1)
+	stb      r3, 0x20(r1)
+	stb      r0, 0x21(r1)
+	stw      r3, 0x24(r1)
+	lwz      r3, 0x18(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 0x18(r31)
+	li       r4, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_803FDB90
 
-	.loc_0x1E0:
-	  lis       r4, 0x804E
-	  li        r3, 0
-	  subi      r0, r4, 0x7B98
-	  lis       r4, 0x804E
-	  stw       r0, 0x8(r1)
-	  subi      r4, r4, 0x7BA8
-	  li        r5, 0x2733
-	  li        r0, 0x1
-	  stw       r4, 0x8(r1)
-	  addi      r4, r1, 0x8
-	  stw       r5, 0xC(r1)
-	  stb       r3, 0x10(r1)
-	  stb       r0, 0x11(r1)
-	  stw       r3, 0x14(r1)
-	  lwz       r3, 0x18(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x18(r31)
-	  li        r4, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
+lbl_803FDB2C:
+	lis      r4, __vt__Q26Screen12SceneArgBase@ha
+	li       r3, 0
+	addi     r0, r4, __vt__Q26Screen12SceneArgBase@l
+	lis      r4, __vt__Q26Screen11SetSceneArg@ha
+	stw      r0, 8(r1)
+	addi     r4, r4, __vt__Q26Screen11SetSceneArg@l
+	li       r5, 0x2733
+	li       r0, 1
+	stw      r4, 8(r1)
+	addi     r4, r1, 8
+	stw      r5, 0xc(r1)
+	stb      r3, 0x10(r1)
+	stb      r0, 0x11(r1)
+	stw      r3, 0x14(r1)
+	lwz      r3, 0x18(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 0x18(r31)
+	li       r4, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x244:
-	  lwz       r0, 0x64(r1)
-	  lwz       r31, 0x5C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x60
-	  blr
+lbl_803FDB90:
+	lwz      r0, 0x64(r1)
+	lwz      r31, 0x5c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x60
+	blr
 	*/
 }
 
@@ -2500,58 +2619,57 @@ void Game2DMgr::open_GameOver(Screen::Game2DMgr::GameOverTitle)
 void Game2DMgr::close_GameOver()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r3, 0x18(r3)
-	  bl        0x55D74
-	  cmpwi     r3, 0x2733
-	  beq-      .loc_0x38
-	  bge-      .loc_0x98
-	  cmpwi     r3, 0x272F
-	  beq-      .loc_0x38
-	  bge-      .loc_0x54
-	  b         .loc_0x98
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r3, 0x18(r3)
+	bl       getSceneType__Q26Screen3MgrFv
+	cmpwi    r3, 0x2733
+	beq      lbl_803FDBDC
+	bge      lbl_803FDC3C
+	cmpwi    r3, 0x272f
+	beq      lbl_803FDBDC
+	bge      lbl_803FDBF8
+	b        lbl_803FDC3C
 
-	.loc_0x38:
-	  lwz       r3, 0x18(r31)
-	  li        r4, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x98
+lbl_803FDBDC:
+	lwz      r3, 0x18(r31)
+	li       r4, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_803FDC3C
 
-	.loc_0x54:
-	  lwz       r3, 0x18(r31)
-	  bl        0x55DF0
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x80
-	  lwz       r3, 0x18(r31)
-	  li        r4, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x98
+lbl_803FDBF8:
+	lwz      r3, 0x18(r31)
+	bl       setBackupScene__Q26Screen3MgrFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FDC24
+	lwz      r3, 0x18(r31)
+	li       r4, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_803FDC3C
 
-	.loc_0x80:
-	  lwz       r3, 0x18(r31)
-	  li        r4, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
+lbl_803FDC24:
+	lwz      r3, 0x18(r31)
+	li       r4, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x98:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803FDC3C:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2563,69 +2681,68 @@ void Game2DMgr::close_GameOver()
 void Game2DMgr::open_CaveInMenu(og::Screen::DispMemberAnaDemo&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r4
-	  stw       r30, 0x18(r1)
-	  mr        r30, r3
-	  lwz       r3, 0x18(r3)
-	  bl        0x55DB0
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x34
-	  li        r3, 0
-	  b         .loc_0xC8
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r4
+	stw      r30, 0x18(r1)
+	mr       r30, r3
+	lwz      r3, 0x18(r3)
+	bl       isAnyReservation__Q26Screen3MgrCFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FDC84
+	li       r3, 0
+	b        lbl_803FDD18
 
-	.loc_0x34:
-	  lwz       r3, 0x18(r30)
-	  bl        0x55CA8
-	  cmpwi     r3, 0x2710
-	  bne-      .loc_0xC4
-	  lis       r4, 0x804E
-	  lis       r3, 0x804E
-	  subi      r0, r4, 0x7B98
-	  li        r5, 0x271F
-	  stw       r0, 0x8(r1)
-	  subi      r4, r3, 0x7BA8
-	  li        r3, 0
-	  li        r0, 0x1
-	  stw       r4, 0x8(r1)
-	  addi      r4, r1, 0x8
-	  stw       r5, 0xC(r1)
-	  stb       r3, 0x10(r1)
-	  stb       r0, 0x11(r1)
-	  stw       r31, 0x14(r1)
-	  lwz       r3, 0x18(r30)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xC4
-	  lwz       r3, 0x18(r30)
-	  li        r4, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xC4
-	  bl        0x6DC54
-	  li        r3, 0x1
-	  b         .loc_0xC8
+lbl_803FDC84:
+	lwz      r3, 0x18(r30)
+	bl       getSceneType__Q26Screen3MgrFv
+	cmpwi    r3, 0x2710
+	bne      lbl_803FDD14
+	lis      r4, __vt__Q26Screen12SceneArgBase@ha
+	lis      r3, __vt__Q26Screen11SetSceneArg@ha
+	addi     r0, r4, __vt__Q26Screen12SceneArgBase@l
+	li       r5, 0x271f
+	stw      r0, 8(r1)
+	addi     r4, r3, __vt__Q26Screen11SetSceneArg@l
+	li       r3, 0
+	li       r0, 1
+	stw      r4, 8(r1)
+	addi     r4, r1, 8
+	stw      r5, 0xc(r1)
+	stb      r3, 0x10(r1)
+	stb      r0, 0x11(r1)
+	stw      r31, 0x14(r1)
+	lwz      r3, 0x18(r30)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FDD14
+	lwz      r3, 0x18(r30)
+	li       r4, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FDD14
+	bl       PSPause_StartMenuOn__Fv
+	li       r3, 1
+	b        lbl_803FDD18
 
-	.loc_0xC4:
-	  li        r3, 0
+lbl_803FDD14:
+	li       r3, 0
 
-	.loc_0xC8:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_803FDD18:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -2637,56 +2754,55 @@ void Game2DMgr::open_CaveInMenu(og::Screen::DispMemberAnaDemo&)
 void Game2DMgr::check_CaveInMenu()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  lwz       r3, 0x18(r3)
-	  bl        0x55BD0
-	  mr.       r31, r3
-	  beq-      .loc_0x80
-	  lis       r4, 0x4F
-	  lis       r6, 0x4445
-	  lis       r5, 0x414E
-	  addi      r4, r4, 0x4741
-	  addi      r6, r6, 0x4D4F
-	  addi      r5, r5, 0x415F
-	  bl        -0xEEA4C
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x78
-	  lbz       r0, 0x1F(r31)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x58
-	  li        r31, 0
-	  b         .loc_0x84
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	lwz      r3, 0x18(r3)
+	bl       getDispMember__Q26Screen3MgrFv
+	or.      r31, r3, r3
+	beq      lbl_803FDDB0
+	lis      r4, 0x004F4741@ha
+	lis      r6, 0x44454D4F@ha
+	lis      r5, 0x414E415F@ha
+	addi     r4, r4, 0x004F4741@l
+	addi     r6, r6, 0x44454D4F@l
+	addi     r5, r5, 0x414E415F@l
+	bl       isID__Q32og6Screen14DispMemberBaseFUlUx
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FDDA8
+	lbz      r0, 0x1f(r31)
+	cmplwi   r0, 0
+	beq      lbl_803FDD88
+	li       r31, 0
+	b        lbl_803FDDB4
 
-	.loc_0x58:
-	  lbz       r0, 0x1E(r31)
-	  li        r3, 0x2
-	  cmplwi    r0, 0
-	  beq-      .loc_0x6C
-	  li        r3, 0x1
+lbl_803FDD88:
+	lbz      r0, 0x1e(r31)
+	li       r3, 2
+	cmplwi   r0, 0
+	beq      lbl_803FDD9C
+	li       r3, 1
 
-	.loc_0x6C:
-	  mr        r31, r3
-	  bl        0x6DDA8
-	  b         .loc_0x84
+lbl_803FDD9C:
+	mr       r31, r3
+	bl       PSPause_StartMenuOff__Fv
+	b        lbl_803FDDB4
 
-	.loc_0x78:
-	  li        r31, -0x1
-	  b         .loc_0x84
+lbl_803FDDA8:
+	li       r31, -1
+	b        lbl_803FDDB4
 
-	.loc_0x80:
-	  li        r31, -0x2
+lbl_803FDDB0:
+	li       r31, -2
 
-	.loc_0x84:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803FDDB4:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2698,69 +2814,68 @@ void Game2DMgr::check_CaveInMenu()
 void Game2DMgr::open_KanketuMenu(og::Screen::DispMemberKanketuMenu&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r4
-	  stw       r30, 0x18(r1)
-	  mr        r30, r3
-	  lwz       r3, 0x18(r3)
-	  bl        0x55C34
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x34
-	  li        r3, 0
-	  b         .loc_0xC8
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r4
+	stw      r30, 0x18(r1)
+	mr       r30, r3
+	lwz      r3, 0x18(r3)
+	bl       isAnyReservation__Q26Screen3MgrCFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FDE00
+	li       r3, 0
+	b        lbl_803FDE94
 
-	.loc_0x34:
-	  lwz       r3, 0x18(r30)
-	  bl        0x55B2C
-	  cmpwi     r3, 0x2711
-	  bne-      .loc_0xC4
-	  lis       r4, 0x804E
-	  lis       r3, 0x804E
-	  subi      r0, r4, 0x7B98
-	  li        r5, 0x2720
-	  stw       r0, 0x8(r1)
-	  subi      r4, r3, 0x7BA8
-	  li        r3, 0
-	  li        r0, 0x1
-	  stw       r4, 0x8(r1)
-	  addi      r4, r1, 0x8
-	  stw       r5, 0xC(r1)
-	  stb       r3, 0x10(r1)
-	  stb       r0, 0x11(r1)
-	  stw       r31, 0x14(r1)
-	  lwz       r3, 0x18(r30)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xC4
-	  lwz       r3, 0x18(r30)
-	  li        r4, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xC4
-	  bl        0x6DAD8
-	  li        r3, 0x1
-	  b         .loc_0xC8
+lbl_803FDE00:
+	lwz      r3, 0x18(r30)
+	bl       getSceneType__Q26Screen3MgrFv
+	cmpwi    r3, 0x2711
+	bne      lbl_803FDE90
+	lis      r4, __vt__Q26Screen12SceneArgBase@ha
+	lis      r3, __vt__Q26Screen11SetSceneArg@ha
+	addi     r0, r4, __vt__Q26Screen12SceneArgBase@l
+	li       r5, 0x2720
+	stw      r0, 8(r1)
+	addi     r4, r3, __vt__Q26Screen11SetSceneArg@l
+	li       r3, 0
+	li       r0, 1
+	stw      r4, 8(r1)
+	addi     r4, r1, 8
+	stw      r5, 0xc(r1)
+	stb      r3, 0x10(r1)
+	stb      r0, 0x11(r1)
+	stw      r31, 0x14(r1)
+	lwz      r3, 0x18(r30)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FDE90
+	lwz      r3, 0x18(r30)
+	li       r4, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FDE90
+	bl       PSPause_StartMenuOn__Fv
+	li       r3, 1
+	b        lbl_803FDE94
 
-	.loc_0xC4:
-	  li        r3, 0
+lbl_803FDE90:
+	li       r3, 0
 
-	.loc_0xC8:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_803FDE94:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -2772,76 +2887,75 @@ void Game2DMgr::open_KanketuMenu(og::Screen::DispMemberKanketuMenu&)
 void Game2DMgr::open_ChallengeKanketuMenu(og::Screen::DispMemberKanketuMenu&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r4
-	  stw       r30, 0x18(r1)
-	  mr        r30, r3
-	  lwz       r3, 0x18(r3)
-	  bl        0x55B54
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x34
-	  li        r3, 0
-	  b         .loc_0xDC
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r4
+	stw      r30, 0x18(r1)
+	mr       r30, r3
+	lwz      r3, 0x18(r3)
+	bl       isAnyReservation__Q26Screen3MgrCFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FDEE0
+	li       r3, 0
+	b        lbl_803FDF88
 
-	.loc_0x34:
-	  lwz       r3, 0x18(r30)
-	  bl        0x55A4C
-	  cmpwi     r3, 0x2727
-	  beq-      .loc_0x54
-	  lwz       r3, 0x18(r30)
-	  bl        0x55A3C
-	  cmpwi     r3, 0x2724
-	  bne-      .loc_0xD8
+lbl_803FDEE0:
+	lwz      r3, 0x18(r30)
+	bl       getSceneType__Q26Screen3MgrFv
+	cmpwi    r3, 0x2727
+	beq      lbl_803FDF00
+	lwz      r3, 0x18(r30)
+	bl       getSceneType__Q26Screen3MgrFv
+	cmpwi    r3, 0x2724
+	bne      lbl_803FDF84
 
-	.loc_0x54:
-	  li        r6, 0x1
-	  lis       r3, 0x804E
-	  stb       r6, 0x26(r31)
-	  subi      r0, r3, 0x7B98
-	  lis       r4, 0x804E
-	  li        r3, 0x2720
-	  stw       r0, 0x8(r1)
-	  subi      r5, r4, 0x7BA8
-	  li        r0, 0
-	  addi      r4, r1, 0x8
-	  stw       r5, 0x8(r1)
-	  stw       r3, 0xC(r1)
-	  stb       r0, 0x10(r1)
-	  stb       r6, 0x11(r1)
-	  stw       r31, 0x14(r1)
-	  lwz       r3, 0x18(r30)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xD8
-	  lwz       r3, 0x18(r30)
-	  li        r4, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xD8
-	  bl        0x6D9E4
-	  li        r3, 0x1
-	  b         .loc_0xDC
+lbl_803FDF00:
+	li       r6, 1
+	lis      r3, __vt__Q26Screen12SceneArgBase@ha
+	stb      r6, 0x26(r31)
+	addi     r0, r3, __vt__Q26Screen12SceneArgBase@l
+	lis      r4, __vt__Q26Screen11SetSceneArg@ha
+	li       r3, 0x2720
+	stw      r0, 8(r1)
+	addi     r5, r4, __vt__Q26Screen11SetSceneArg@l
+	li       r0, 0
+	addi     r4, r1, 8
+	stw      r5, 8(r1)
+	stw      r3, 0xc(r1)
+	stb      r0, 0x10(r1)
+	stb      r6, 0x11(r1)
+	stw      r31, 0x14(r1)
+	lwz      r3, 0x18(r30)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FDF84
+	lwz      r3, 0x18(r30)
+	li       r4, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FDF84
+	bl       PSPause_StartMenuOn__Fv
+	li       r3, 1
+	b        lbl_803FDF88
 
-	.loc_0xD8:
-	  li        r3, 0
+lbl_803FDF84:
+	li       r3, 0
 
-	.loc_0xDC:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_803FDF88:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -2853,56 +2967,55 @@ void Game2DMgr::open_ChallengeKanketuMenu(og::Screen::DispMemberKanketuMenu&)
 void Game2DMgr::check_KanketuMenu()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  lwz       r3, 0x18(r3)
-	  bl        0x55960
-	  mr.       r31, r3
-	  beq-      .loc_0x80
-	  lis       r4, 0x4F
-	  lis       r6, 0x4B45
-	  lis       r5, 0x4B
-	  addi      r4, r4, 0x4741
-	  addi      r6, r6, 0x5455
-	  addi      r5, r5, 0x414E
-	  bl        -0xEECBC
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x78
-	  lbz       r0, 0x1F(r31)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x58
-	  li        r31, 0
-	  b         .loc_0x84
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	lwz      r3, 0x18(r3)
+	bl       getDispMember__Q26Screen3MgrFv
+	or.      r31, r3, r3
+	beq      lbl_803FE020
+	lis      r4, 0x004F4741@ha
+	lis      r6, 0x4B455455@ha
+	lis      r5, 0x004B414E@ha
+	addi     r4, r4, 0x004F4741@l
+	addi     r6, r6, 0x4B455455@l
+	addi     r5, r5, 0x004B414E@l
+	bl       isID__Q32og6Screen14DispMemberBaseFUlUx
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FE018
+	lbz      r0, 0x1f(r31)
+	cmplwi   r0, 0
+	beq      lbl_803FDFF8
+	li       r31, 0
+	b        lbl_803FE024
 
-	.loc_0x58:
-	  lbz       r0, 0x1E(r31)
-	  li        r3, 0x2
-	  cmplwi    r0, 0
-	  beq-      .loc_0x6C
-	  li        r3, 0x1
+lbl_803FDFF8:
+	lbz      r0, 0x1e(r31)
+	li       r3, 2
+	cmplwi   r0, 0
+	beq      lbl_803FE00C
+	li       r3, 1
 
-	.loc_0x6C:
-	  mr        r31, r3
-	  bl        0x6DB38
-	  b         .loc_0x84
+lbl_803FE00C:
+	mr       r31, r3
+	bl       PSPause_StartMenuOff__Fv
+	b        lbl_803FE024
 
-	.loc_0x78:
-	  li        r31, -0x1
-	  b         .loc_0x84
+lbl_803FE018:
+	li       r31, -1
+	b        lbl_803FE024
 
-	.loc_0x80:
-	  li        r31, -0x2
+lbl_803FE020:
+	li       r31, -2
 
-	.loc_0x84:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803FE024:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2914,79 +3027,78 @@ void Game2DMgr::check_KanketuMenu()
 void Game2DMgr::open_CaveMoreMenu(og::Screen::DispMemberCaveMore&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r4
-	  stw       r30, 0x18(r1)
-	  mr        r30, r3
-	  lwz       r3, 0x18(r3)
-	  bl        0x559C4
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x34
-	  li        r3, 0
-	  b         .loc_0xE8
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r4
+	stw      r30, 0x18(r1)
+	mr       r30, r3
+	lwz      r3, 0x18(r3)
+	bl       isAnyReservation__Q26Screen3MgrCFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FE070
+	li       r3, 0
+	b        lbl_803FE124
 
-	.loc_0x34:
-	  lwz       r3, 0x18(r30)
-	  bl        0x558BC
-	  cmpwi     r3, 0x2711
-	  beq-      .loc_0x64
-	  lwz       r3, 0x18(r30)
-	  bl        0x558AC
-	  cmpwi     r3, 0x2727
-	  beq-      .loc_0x64
-	  lwz       r3, 0x18(r30)
-	  bl        0x5589C
-	  cmpwi     r3, 0x2724
-	  bne-      .loc_0xE4
+lbl_803FE070:
+	lwz      r3, 0x18(r30)
+	bl       getSceneType__Q26Screen3MgrFv
+	cmpwi    r3, 0x2711
+	beq      lbl_803FE0A0
+	lwz      r3, 0x18(r30)
+	bl       getSceneType__Q26Screen3MgrFv
+	cmpwi    r3, 0x2727
+	beq      lbl_803FE0A0
+	lwz      r3, 0x18(r30)
+	bl       getSceneType__Q26Screen3MgrFv
+	cmpwi    r3, 0x2724
+	bne      lbl_803FE120
 
-	.loc_0x64:
-	  lis       r4, 0x804E
-	  lis       r3, 0x804E
-	  subi      r0, r4, 0x7B98
-	  li        r5, 0x2721
-	  stw       r0, 0x8(r1)
-	  subi      r4, r3, 0x7BA8
-	  li        r3, 0
-	  li        r0, 0x1
-	  stw       r4, 0x8(r1)
-	  addi      r4, r1, 0x8
-	  stw       r5, 0xC(r1)
-	  stb       r3, 0x10(r1)
-	  stb       r0, 0x11(r1)
-	  stw       r31, 0x14(r1)
-	  lwz       r3, 0x18(r30)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xE4
-	  lwz       r3, 0x18(r30)
-	  li        r4, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xE4
-	  bl        0x6D848
-	  li        r3, 0x1
-	  b         .loc_0xE8
+lbl_803FE0A0:
+	lis      r4, __vt__Q26Screen12SceneArgBase@ha
+	lis      r3, __vt__Q26Screen11SetSceneArg@ha
+	addi     r0, r4, __vt__Q26Screen12SceneArgBase@l
+	li       r5, 0x2721
+	stw      r0, 8(r1)
+	addi     r4, r3, __vt__Q26Screen11SetSceneArg@l
+	li       r3, 0
+	li       r0, 1
+	stw      r4, 8(r1)
+	addi     r4, r1, 8
+	stw      r5, 0xc(r1)
+	stb      r3, 0x10(r1)
+	stb      r0, 0x11(r1)
+	stw      r31, 0x14(r1)
+	lwz      r3, 0x18(r30)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FE120
+	lwz      r3, 0x18(r30)
+	li       r4, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FE120
+	bl       PSPause_StartMenuOn__Fv
+	li       r3, 1
+	b        lbl_803FE124
 
-	.loc_0xE4:
-	  li        r3, 0
+lbl_803FE120:
+	li       r3, 0
 
-	.loc_0xE8:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_803FE124:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -2998,56 +3110,55 @@ void Game2DMgr::open_CaveMoreMenu(og::Screen::DispMemberCaveMore&)
 void Game2DMgr::check_CaveMoreMenu()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  lwz       r3, 0x18(r3)
-	  bl        0x557C4
-	  mr.       r31, r3
-	  beq-      .loc_0x80
-	  lis       r4, 0x4F
-	  lis       r6, 0x4D4F
-	  lis       r5, 0x4341
-	  addi      r4, r4, 0x4741
-	  addi      r6, r6, 0x5245
-	  addi      r5, r5, 0x5645
-	  bl        -0xEEE58
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x78
-	  lbz       r0, 0x1F(r31)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x58
-	  li        r31, 0
-	  b         .loc_0x84
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	lwz      r3, 0x18(r3)
+	bl       getDispMember__Q26Screen3MgrFv
+	or.      r31, r3, r3
+	beq      lbl_803FE1BC
+	lis      r4, 0x004F4741@ha
+	lis      r6, 0x4D4F5245@ha
+	lis      r5, 0x43415645@ha
+	addi     r4, r4, 0x004F4741@l
+	addi     r6, r6, 0x4D4F5245@l
+	addi     r5, r5, 0x43415645@l
+	bl       isID__Q32og6Screen14DispMemberBaseFUlUx
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FE1B4
+	lbz      r0, 0x1f(r31)
+	cmplwi   r0, 0
+	beq      lbl_803FE194
+	li       r31, 0
+	b        lbl_803FE1C0
 
-	.loc_0x58:
-	  lbz       r0, 0x1E(r31)
-	  li        r3, 0x2
-	  cmplwi    r0, 0
-	  beq-      .loc_0x6C
-	  li        r3, 0x1
+lbl_803FE194:
+	lbz      r0, 0x1e(r31)
+	li       r3, 2
+	cmplwi   r0, 0
+	beq      lbl_803FE1A8
+	li       r3, 1
 
-	.loc_0x6C:
-	  mr        r31, r3
-	  bl        0x6D99C
-	  b         .loc_0x84
+lbl_803FE1A8:
+	mr       r31, r3
+	bl       PSPause_StartMenuOff__Fv
+	b        lbl_803FE1C0
 
-	.loc_0x78:
-	  li        r31, -0x1
-	  b         .loc_0x84
+lbl_803FE1B4:
+	li       r31, -1
+	b        lbl_803FE1C0
 
-	.loc_0x80:
-	  li        r31, -0x2
+lbl_803FE1BC:
+	li       r31, -2
 
-	.loc_0x84:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803FE1C0:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -3059,54 +3170,53 @@ void Game2DMgr::check_CaveMoreMenu()
 void Game2DMgr::open_FinalResult(kh::Screen::DispFinalResult&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r6, 0x804E
-	  li        r5, 0
-	  stw       r0, 0x24(r1)
-	  subi      r0, r6, 0x7B98
-	  lis       r6, 0x804E
-	  stw       r31, 0x1C(r1)
-	  subi      r7, r6, 0x7BA8
-	  li        r6, 0x4E26
-	  mr        r31, r3
-	  stw       r0, 0x8(r1)
-	  li        r0, 0x1
-	  stb       r5, 0x10(r1)
-	  stw       r4, 0x14(r1)
-	  addi      r4, r1, 0x8
-	  stw       r7, 0x8(r1)
-	  stw       r6, 0xC(r1)
-	  stb       r0, 0x11(r1)
-	  stb       r0, 0x10(r1)
-	  lwz       r3, 0x18(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x94
-	  lwz       r3, 0x18(r31)
-	  li        r4, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x94
-	  li        r3, 0x1
-	  b         .loc_0x98
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lis      r6, __vt__Q26Screen12SceneArgBase@ha
+	li       r5, 0
+	stw      r0, 0x24(r1)
+	addi     r0, r6, __vt__Q26Screen12SceneArgBase@l
+	lis      r6, __vt__Q26Screen11SetSceneArg@ha
+	stw      r31, 0x1c(r1)
+	addi     r7, r6, __vt__Q26Screen11SetSceneArg@l
+	li       r6, 0x4e26
+	mr       r31, r3
+	stw      r0, 8(r1)
+	li       r0, 1
+	stb      r5, 0x10(r1)
+	stw      r4, 0x14(r1)
+	addi     r4, r1, 8
+	stw      r7, 8(r1)
+	stw      r6, 0xc(r1)
+	stb      r0, 0x11(r1)
+	stb      r0, 0x10(r1)
+	lwz      r3, 0x18(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FE26C
+	lwz      r3, 0x18(r31)
+	li       r4, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FE26C
+	li       r3, 1
+	b        lbl_803FE270
 
-	.loc_0x94:
-	  li        r3, 0
+lbl_803FE26C:
+	li       r3, 0
 
-	.loc_0x98:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_803FE270:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -3118,48 +3228,47 @@ void Game2DMgr::open_FinalResult(kh::Screen::DispFinalResult&)
 void Game2DMgr::check_FinalResult() const
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r3, 0x18(r3)
-	  bl        0x55694
-	  cmpwi     r3, 0x4E26
-	  beq-      .loc_0x2C
-	  li        r3, -0x1
-	  b         .loc_0x78
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r3, 0x18(r3)
+	bl       getSceneType__Q26Screen3MgrFv
+	cmpwi    r3, 0x4e26
+	beq      lbl_803FE2B0
+	li       r3, -1
+	b        lbl_803FE2FC
 
-	.loc_0x2C:
-	  lwz       r3, 0x18(r31)
-	  bl        0x55660
-	  lis       r5, 0x5253
-	  li        r4, 0x4B48
-	  addi      r6, r5, 0x4C54
-	  li        r5, 0x465F
-	  bl        -0xEEFAC
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x6C
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x7AF0
-	  li        r4, 0x664
-	  subi      r5, r5, 0x7A7C
-	  crclr     6, 0x6
-	  bl        -0x3D3CAC
+lbl_803FE2B0:
+	lwz      r3, 0x18(r31)
+	bl       getDispMember__Q26Screen3MgrFv
+	lis      r5, 0x52534C54@ha
+	li       r4, 0x4b48
+	addi     r6, r5, 0x52534C54@l
+	li       r5, 0x465f
+	bl       isID__Q32og6Screen14DispMemberBaseFUlUx
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_803FE2F0
+	lis      r3, lbl_80498510@ha
+	lis      r5, lbl_80498584@ha
+	addi     r3, r3, lbl_80498510@l
+	li       r4, 0x664
+	addi     r5, r5, lbl_80498584@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x6C:
-	  lwz       r3, 0x18(r31)
-	  bl        0x55620
-	  lwz       r3, 0x10(r3)
+lbl_803FE2F0:
+	lwz      r3, 0x18(r31)
+	bl       getDispMember__Q26Screen3MgrFv
+	lwz      r3, 0x10(r3)
 
-	.loc_0x78:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803FE2FC:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -3171,53 +3280,52 @@ void Game2DMgr::check_FinalResult() const
 void Game2DMgr::open_CaveResult(kh::Screen::DispCaveResult&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r5, 0x804E
-	  lis       r6, 0x804E
-	  stw       r0, 0x24(r1)
-	  subi      r0, r6, 0x7B98
-	  subi      r7, r5, 0x7BA8
-	  li        r6, 0x4E20
-	  stw       r31, 0x1C(r1)
-	  li        r5, 0
-	  mr        r31, r3
-	  stw       r0, 0x8(r1)
-	  li        r0, 0x1
-	  stw       r4, 0x14(r1)
-	  addi      r4, r1, 0x8
-	  stw       r7, 0x8(r1)
-	  stw       r6, 0xC(r1)
-	  stb       r5, 0x10(r1)
-	  stb       r0, 0x11(r1)
-	  lwz       r3, 0x18(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x90
-	  lwz       r3, 0x18(r31)
-	  li        r4, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x90
-	  li        r3, 0x1
-	  b         .loc_0x94
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lis      r5, __vt__Q26Screen11SetSceneArg@ha
+	lis      r6, __vt__Q26Screen12SceneArgBase@ha
+	stw      r0, 0x24(r1)
+	addi     r0, r6, __vt__Q26Screen12SceneArgBase@l
+	addi     r7, r5, __vt__Q26Screen11SetSceneArg@l
+	li       r6, 0x4e20
+	stw      r31, 0x1c(r1)
+	li       r5, 0
+	mr       r31, r3
+	stw      r0, 8(r1)
+	li       r0, 1
+	stw      r4, 0x14(r1)
+	addi     r4, r1, 8
+	stw      r7, 8(r1)
+	stw      r6, 0xc(r1)
+	stb      r5, 0x10(r1)
+	stb      r0, 0x11(r1)
+	lwz      r3, 0x18(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FE3A0
+	lwz      r3, 0x18(r31)
+	li       r4, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FE3A0
+	li       r3, 1
+	b        lbl_803FE3A4
 
-	.loc_0x90:
-	  li        r3, 0
+lbl_803FE3A0:
+	li       r3, 0
 
-	.loc_0x94:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_803FE3A4:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -3229,48 +3337,47 @@ void Game2DMgr::open_CaveResult(kh::Screen::DispCaveResult&)
 void Game2DMgr::check_CaveResult() const
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r3, 0x18(r3)
-	  bl        0x55560
-	  cmpwi     r3, 0x4E20
-	  beq-      .loc_0x2C
-	  li        r3, -0x1
-	  b         .loc_0x78
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r3, 0x18(r3)
+	bl       getSceneType__Q26Screen3MgrFv
+	cmpwi    r3, 0x4e20
+	beq      lbl_803FE3E4
+	li       r3, -1
+	b        lbl_803FE430
 
-	.loc_0x2C:
-	  lwz       r3, 0x18(r31)
-	  bl        0x5552C
-	  lis       r5, 0x5253
-	  li        r4, 0x4B48
-	  addi      r6, r5, 0x4C54
-	  li        r5, 0x435F
-	  bl        -0xEF0E0
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x6C
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x7AF0
-	  li        r4, 0x678
-	  subi      r5, r5, 0x7A7C
-	  crclr     6, 0x6
-	  bl        -0x3D3DE0
+lbl_803FE3E4:
+	lwz      r3, 0x18(r31)
+	bl       getDispMember__Q26Screen3MgrFv
+	lis      r5, 0x52534C54@ha
+	li       r4, 0x4b48
+	addi     r6, r5, 0x52534C54@l
+	li       r5, 0x435f
+	bl       isID__Q32og6Screen14DispMemberBaseFUlUx
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_803FE424
+	lis      r3, lbl_80498510@ha
+	lis      r5, lbl_80498584@ha
+	addi     r3, r3, lbl_80498510@l
+	li       r4, 0x678
+	addi     r5, r5, lbl_80498584@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x6C:
-	  lwz       r3, 0x18(r31)
-	  bl        0x554EC
-	  lwz       r3, 0x34(r3)
+lbl_803FE424:
+	lwz      r3, 0x18(r31)
+	bl       getDispMember__Q26Screen3MgrFv
+	lwz      r3, 0x34(r3)
 
-	.loc_0x78:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803FE430:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -3282,54 +3389,53 @@ void Game2DMgr::check_CaveResult() const
 void Game2DMgr::open_DayEndResult(kh::Screen::DispDayEndResult&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r6, 0x804E
-	  li        r5, 0
-	  stw       r0, 0x24(r1)
-	  subi      r0, r6, 0x7B98
-	  lis       r6, 0x804E
-	  stw       r31, 0x1C(r1)
-	  subi      r7, r6, 0x7BA8
-	  li        r6, 0x4E2A
-	  mr        r31, r3
-	  stw       r0, 0x8(r1)
-	  li        r0, 0x1
-	  stb       r5, 0x10(r1)
-	  stw       r4, 0x14(r1)
-	  addi      r4, r1, 0x8
-	  stw       r7, 0x8(r1)
-	  stw       r6, 0xC(r1)
-	  stb       r0, 0x11(r1)
-	  stb       r0, 0x10(r1)
-	  lwz       r3, 0x18(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x94
-	  lwz       r3, 0x18(r31)
-	  li        r4, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x94
-	  li        r3, 0x1
-	  b         .loc_0x98
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lis      r6, __vt__Q26Screen12SceneArgBase@ha
+	li       r5, 0
+	stw      r0, 0x24(r1)
+	addi     r0, r6, __vt__Q26Screen12SceneArgBase@l
+	lis      r6, __vt__Q26Screen11SetSceneArg@ha
+	stw      r31, 0x1c(r1)
+	addi     r7, r6, __vt__Q26Screen11SetSceneArg@l
+	li       r6, 0x4e2a
+	mr       r31, r3
+	stw      r0, 8(r1)
+	li       r0, 1
+	stb      r5, 0x10(r1)
+	stw      r4, 0x14(r1)
+	addi     r4, r1, 8
+	stw      r7, 8(r1)
+	stw      r6, 0xc(r1)
+	stb      r0, 0x11(r1)
+	stb      r0, 0x10(r1)
+	lwz      r3, 0x18(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FE4D8
+	lwz      r3, 0x18(r31)
+	li       r4, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FE4D8
+	li       r3, 1
+	b        lbl_803FE4DC
 
-	.loc_0x94:
-	  li        r3, 0
+lbl_803FE4D8:
+	li       r3, 0
 
-	.loc_0x98:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_803FE4DC:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -3341,57 +3447,56 @@ void Game2DMgr::open_DayEndResult(kh::Screen::DispDayEndResult&)
 void Game2DMgr::check_DayEndResult() const
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r3, 0x18(r3)
-	  bl        0x55428
-	  cmpwi     r3, 0x4E23
-	  beq-      .loc_0x4C
-	  lwz       r3, 0x18(r31)
-	  bl        0x55418
-	  cmpwi     r3, 0x4E24
-	  beq-      .loc_0x4C
-	  lwz       r3, 0x18(r31)
-	  bl        0x55408
-	  cmpwi     r3, 0x4E25
-	  beq-      .loc_0x4C
-	  li        r3, -0x1
-	  b         .loc_0x9C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r3, 0x18(r3)
+	bl       getSceneType__Q26Screen3MgrFv
+	cmpwi    r3, 0x4e23
+	beq      lbl_803FE53C
+	lwz      r3, 0x18(r31)
+	bl       getSceneType__Q26Screen3MgrFv
+	cmpwi    r3, 0x4e24
+	beq      lbl_803FE53C
+	lwz      r3, 0x18(r31)
+	bl       getSceneType__Q26Screen3MgrFv
+	cmpwi    r3, 0x4e25
+	beq      lbl_803FE53C
+	li       r3, -1
+	b        lbl_803FE58C
 
-	.loc_0x4C:
-	  lwz       r3, 0x18(r31)
-	  bl        0x553D4
-	  lis       r4, 0x5253
-	  lis       r5, 0x44
-	  addi      r6, r4, 0x4C54
-	  li        r4, 0x4B48
-	  addi      r5, r5, 0x455F
-	  bl        -0xEF23C
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x90
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x7AF0
-	  li        r4, 0x697
-	  subi      r5, r5, 0x7A7C
-	  crclr     6, 0x6
-	  bl        -0x3D3F3C
+lbl_803FE53C:
+	lwz      r3, 0x18(r31)
+	bl       getDispMember__Q26Screen3MgrFv
+	lis      r4, 0x52534C54@ha
+	lis      r5, 0x0044455F@ha
+	addi     r6, r4, 0x52534C54@l
+	li       r4, 0x4b48
+	addi     r5, r5, 0x0044455F@l
+	bl       isID__Q32og6Screen14DispMemberBaseFUlUx
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_803FE580
+	lis      r3, lbl_80498510@ha
+	lis      r5, lbl_80498584@ha
+	addi     r3, r3, lbl_80498510@l
+	li       r4, 0x697
+	addi     r5, r5, lbl_80498584@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x90:
-	  lwz       r3, 0x18(r31)
-	  bl        0x55390
-	  lwz       r3, 0x58(r3)
+lbl_803FE580:
+	lwz      r3, 0x18(r31)
+	bl       getDispMember__Q26Screen3MgrFv
+	lwz      r3, 0x58(r3)
 
-	.loc_0x9C:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803FE58C:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -3403,53 +3508,52 @@ void Game2DMgr::check_DayEndResult() const
 void Game2DMgr::open_PayDept(kh::Screen::DispPayDept&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r5, 0x804E
-	  lis       r6, 0x804E
-	  stw       r0, 0x24(r1)
-	  subi      r0, r6, 0x7B98
-	  subi      r7, r5, 0x7BA8
-	  li        r6, 0x4E27
-	  stw       r31, 0x1C(r1)
-	  li        r5, 0
-	  mr        r31, r3
-	  stw       r0, 0x8(r1)
-	  li        r0, 0x1
-	  stw       r4, 0x14(r1)
-	  addi      r4, r1, 0x8
-	  stw       r7, 0x8(r1)
-	  stw       r6, 0xC(r1)
-	  stb       r5, 0x10(r1)
-	  stb       r0, 0x11(r1)
-	  lwz       r3, 0x18(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x90
-	  lwz       r3, 0x18(r31)
-	  li        r4, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x90
-	  li        r3, 0x1
-	  b         .loc_0x94
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lis      r5, __vt__Q26Screen11SetSceneArg@ha
+	lis      r6, __vt__Q26Screen12SceneArgBase@ha
+	stw      r0, 0x24(r1)
+	addi     r0, r6, __vt__Q26Screen12SceneArgBase@l
+	addi     r7, r5, __vt__Q26Screen11SetSceneArg@l
+	li       r6, 0x4e27
+	stw      r31, 0x1c(r1)
+	li       r5, 0
+	mr       r31, r3
+	stw      r0, 8(r1)
+	li       r0, 1
+	stw      r4, 0x14(r1)
+	addi     r4, r1, 8
+	stw      r7, 8(r1)
+	stw      r6, 0xc(r1)
+	stb      r5, 0x10(r1)
+	stb      r0, 0x11(r1)
+	lwz      r3, 0x18(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FE630
+	lwz      r3, 0x18(r31)
+	li       r4, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FE630
+	li       r3, 1
+	b        lbl_803FE634
 
-	.loc_0x90:
-	  li        r3, 0
+lbl_803FE630:
+	li       r3, 0
 
-	.loc_0x94:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_803FE634:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -3461,32 +3565,31 @@ void Game2DMgr::open_PayDept(kh::Screen::DispPayDept&)
 void Game2DMgr::check_PayDept() const
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  li        r31, 0
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lwz       r3, 0x18(r3)
-	  bl        0x552C8
-	  cmpwi     r3, 0x4E27
-	  bne-      .loc_0x40
-	  lwz       r3, 0x18(r30)
-	  bl        0x552F8
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x40
-	  li        r31, 0x1
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	li       r31, 0
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lwz      r3, 0x18(r3)
+	bl       getSceneType__Q26Screen3MgrFv
+	cmpwi    r3, 0x4e27
+	bne      lbl_803FE688
+	lwz      r3, 0x18(r30)
+	bl       isSceneFinish__Q26Screen3MgrFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FE688
+	li       r31, 1
 
-	.loc_0x40:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803FE688:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -3498,53 +3601,52 @@ void Game2DMgr::check_PayDept() const
 void Game2DMgr::open_Save(og::Screen::DispMemberSave&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r5, 0x804E
-	  lis       r6, 0x804E
-	  stw       r0, 0x24(r1)
-	  subi      r0, r6, 0x7B98
-	  subi      r7, r5, 0x7BA8
-	  li        r6, 0x2725
-	  stw       r31, 0x1C(r1)
-	  li        r5, 0
-	  mr        r31, r3
-	  stw       r0, 0x8(r1)
-	  li        r0, 0x1
-	  stw       r4, 0x14(r1)
-	  addi      r4, r1, 0x8
-	  stw       r7, 0x8(r1)
-	  stw       r6, 0xC(r1)
-	  stb       r5, 0x10(r1)
-	  stb       r0, 0x11(r1)
-	  lwz       r3, 0x18(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x90
-	  lwz       r3, 0x18(r31)
-	  li        r4, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x90
-	  li        r3, 0x1
-	  b         .loc_0x94
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lis      r5, __vt__Q26Screen11SetSceneArg@ha
+	lis      r6, __vt__Q26Screen12SceneArgBase@ha
+	stw      r0, 0x24(r1)
+	addi     r0, r6, __vt__Q26Screen12SceneArgBase@l
+	addi     r7, r5, __vt__Q26Screen11SetSceneArg@l
+	li       r6, 0x2725
+	stw      r31, 0x1c(r1)
+	li       r5, 0
+	mr       r31, r3
+	stw      r0, 8(r1)
+	li       r0, 1
+	stw      r4, 0x14(r1)
+	addi     r4, r1, 8
+	stw      r7, 8(r1)
+	stw      r6, 0xc(r1)
+	stb      r5, 0x10(r1)
+	stb      r0, 0x11(r1)
+	lwz      r3, 0x18(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FE734
+	lwz      r3, 0x18(r31)
+	li       r4, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FE734
+	li       r3, 1
+	b        lbl_803FE738
 
-	.loc_0x90:
-	  li        r3, 0
+lbl_803FE734:
+	li       r3, 0
 
-	.loc_0x94:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_803FE738:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -3556,32 +3658,31 @@ void Game2DMgr::open_Save(og::Screen::DispMemberSave&)
 void Game2DMgr::check_Save() const
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  li        r31, 0
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lwz       r3, 0x18(r3)
-	  bl        0x551C4
-	  cmpwi     r3, 0x2725
-	  bne-      .loc_0x40
-	  lwz       r3, 0x18(r30)
-	  bl        0x551F4
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x40
-	  li        r31, 0x1
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	li       r31, 0
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lwz      r3, 0x18(r3)
+	bl       getSceneType__Q26Screen3MgrFv
+	cmpwi    r3, 0x2725
+	bne      lbl_803FE78C
+	lwz      r3, 0x18(r30)
+	bl       isSceneFinish__Q26Screen3MgrFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FE78C
+	li       r31, 1
 
-	.loc_0x40:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803FE78C:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -3593,53 +3694,52 @@ void Game2DMgr::check_Save() const
 void Game2DMgr::open_FinalMessage(og::Screen::DispMemberFinalMessage&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r5, 0x804E
-	  lis       r6, 0x804E
-	  stw       r0, 0x24(r1)
-	  subi      r0, r6, 0x7B98
-	  subi      r7, r5, 0x7BA8
-	  li        r6, 0x2726
-	  stw       r31, 0x1C(r1)
-	  li        r5, 0
-	  mr        r31, r3
-	  stw       r0, 0x8(r1)
-	  li        r0, 0x1
-	  stw       r4, 0x14(r1)
-	  addi      r4, r1, 0x8
-	  stw       r7, 0x8(r1)
-	  stw       r6, 0xC(r1)
-	  stb       r5, 0x10(r1)
-	  stb       r0, 0x11(r1)
-	  lwz       r3, 0x18(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x90
-	  lwz       r3, 0x18(r31)
-	  li        r4, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x90
-	  li        r3, 0x1
-	  b         .loc_0x94
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lis      r5, __vt__Q26Screen11SetSceneArg@ha
+	lis      r6, __vt__Q26Screen12SceneArgBase@ha
+	stw      r0, 0x24(r1)
+	addi     r0, r6, __vt__Q26Screen12SceneArgBase@l
+	addi     r7, r5, __vt__Q26Screen11SetSceneArg@l
+	li       r6, 0x2726
+	stw      r31, 0x1c(r1)
+	li       r5, 0
+	mr       r31, r3
+	stw      r0, 8(r1)
+	li       r0, 1
+	stw      r4, 0x14(r1)
+	addi     r4, r1, 8
+	stw      r7, 8(r1)
+	stw      r6, 0xc(r1)
+	stb      r5, 0x10(r1)
+	stb      r0, 0x11(r1)
+	lwz      r3, 0x18(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FE838
+	lwz      r3, 0x18(r31)
+	li       r4, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FE838
+	li       r3, 1
+	b        lbl_803FE83C
 
-	.loc_0x90:
-	  li        r3, 0
+lbl_803FE838:
+	li       r3, 0
 
-	.loc_0x94:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_803FE83C:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -3651,29 +3751,28 @@ void Game2DMgr::open_FinalMessage(og::Screen::DispMemberFinalMessage&)
 void Game2DMgr::check_FinalMessage() const
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r3, 0x18(r3)
-	  bl        0x550C8
-	  cmpwi     r3, 0x2726
-	  beq-      .loc_0x2C
-	  li        r3, -0xA
-	  b         .loc_0x34
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r3, 0x18(r3)
+	bl       getSceneType__Q26Screen3MgrFv
+	cmpwi    r3, 0x2726
+	beq      lbl_803FE87C
+	li       r3, -10
+	b        lbl_803FE884
 
-	.loc_0x2C:
-	  lwz       r3, 0x18(r31)
-	  bl        0x55118
+lbl_803FE87C:
+	lwz      r3, 0x18(r31)
+	bl       getSceneFinishState__Q26Screen3MgrFv
 
-	.loc_0x34:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803FE884:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -3685,39 +3784,38 @@ void Game2DMgr::check_FinalMessage() const
 void Game2DMgr::stopFinalFloorSound()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r3, 0x18(r3)
-	  bl        0x55080
-	  cmpwi     r3, 0x4E22
-	  bne-      .loc_0x5C
-	  lwz       r3, 0x18(r31)
-	  lwz       r31, 0x1C(r3)
-	  lwz       r0, 0x220(r31)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x54
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x7A6C
-	  li        r4, 0x7C
-	  subi      r5, r5, 0x7ADC
-	  crclr     6, 0x6
-	  bl        -0x3D42A8
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r3, 0x18(r3)
+	bl       getSceneType__Q26Screen3MgrFv
+	cmpwi    r3, 0x4e22
+	bne      lbl_803FE8F4
+	lwz      r3, 0x18(r31)
+	lwz      r31, 0x1c(r3)
+	lwz      r0, 0x220(r31)
+	cmplwi   r0, 0
+	bne      lbl_803FE8EC
+	lis      r3, lbl_80498594@ha
+	lis      r5, lbl_80498524@ha
+	addi     r3, r3, lbl_80498594@l
+	li       r4, 0x7c
+	addi     r5, r5, lbl_80498524@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x54:
-	  lwz       r3, 0x220(r31)
-	  bl        0x3B8C
+lbl_803FE8EC:
+	lwz      r3, 0x220(r31)
+	bl       stopSound__Q32kh6Screen13ObjFinalFloorFv
 
-	.loc_0x5C:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803FE8F4:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -3729,39 +3827,38 @@ void Game2DMgr::stopFinalFloorSound()
 void Game2DMgr::restartFinalFloorSound()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r3, 0x18(r3)
-	  bl        0x55010
-	  cmpwi     r3, 0x4E22
-	  bne-      .loc_0x5C
-	  lwz       r3, 0x18(r31)
-	  lwz       r31, 0x1C(r3)
-	  lwz       r0, 0x220(r31)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x54
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x7A6C
-	  li        r4, 0x7D
-	  subi      r5, r5, 0x7ADC
-	  crclr     6, 0x6
-	  bl        -0x3D4318
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r3, 0x18(r3)
+	bl       getSceneType__Q26Screen3MgrFv
+	cmpwi    r3, 0x4e22
+	bne      lbl_803FE964
+	lwz      r3, 0x18(r31)
+	lwz      r31, 0x1c(r3)
+	lwz      r0, 0x220(r31)
+	cmplwi   r0, 0
+	bne      lbl_803FE95C
+	lis      r3, lbl_80498594@ha
+	lis      r5, lbl_80498524@ha
+	addi     r3, r3, lbl_80498594@l
+	li       r4, 0x7d
+	addi     r5, r5, lbl_80498524@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x54:
-	  lwz       r3, 0x220(r31)
-	  bl        0x3B5C
+lbl_803FE95C:
+	lwz      r3, 0x220(r31)
+	bl       restartSound__Q32kh6Screen13ObjFinalFloorFv
 
-	.loc_0x5C:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803FE964:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -3773,49 +3870,48 @@ void Game2DMgr::restartFinalFloorSound()
 void Game2DMgr::check_ReadyGo() const
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r3, 0x18(r3)
-	  bl        0x54FA0
-	  cmpwi     r3, 0x4E21
-	  beq-      .loc_0x2C
-	  li        r3, -0x1
-	  b         .loc_0x7C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r3, 0x18(r3)
+	bl       getSceneType__Q26Screen3MgrFv
+	cmpwi    r3, 0x4e21
+	beq      lbl_803FE9A4
+	li       r3, -1
+	b        lbl_803FE9F4
 
-	.loc_0x2C:
-	  lwz       r3, 0x18(r31)
-	  bl        0x54F6C
-	  lis       r4, 0x595F
-	  lis       r5, 0x5245
-	  addi      r6, r4, 0x474F
-	  li        r4, 0x4B48
-	  addi      r5, r5, 0x4144
-	  bl        -0xEF6A4
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x70
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x7AF0
-	  li        r4, 0x6E6
-	  subi      r5, r5, 0x7A7C
-	  crclr     6, 0x6
-	  bl        -0x3D43A4
+lbl_803FE9A4:
+	lwz      r3, 0x18(r31)
+	bl       getDispMember__Q26Screen3MgrFv
+	lis      r4, 0x595F474F@ha
+	lis      r5, 0x52454144@ha
+	addi     r6, r4, 0x595F474F@l
+	li       r4, 0x4b48
+	addi     r5, r5, 0x52454144@l
+	bl       isID__Q32og6Screen14DispMemberBaseFUlUx
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_803FE9E8
+	lis      r3, lbl_80498510@ha
+	lis      r5, lbl_80498584@ha
+	addi     r3, r3, lbl_80498510@l
+	li       r4, 0x6e6
+	addi     r5, r5, lbl_80498584@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x70:
-	  lwz       r3, 0x18(r31)
-	  bl        0x54F28
-	  lwz       r3, 0x8(r3)
+lbl_803FE9E8:
+	lwz      r3, 0x18(r31)
+	bl       getDispMember__Q26Screen3MgrFv
+	lwz      r3, 8(r3)
 
-	.loc_0x7C:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803FE9F4:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -3827,53 +3923,52 @@ void Game2DMgr::check_ReadyGo() const
 void Game2DMgr::open_WinLoseReason(kh::Screen::DispWinLoseReason&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r5, 0x804E
-	  lis       r6, 0x804E
-	  stw       r0, 0x24(r1)
-	  subi      r0, r6, 0x7B98
-	  subi      r7, r5, 0x7BA8
-	  li        r6, 0x4E29
-	  stw       r31, 0x1C(r1)
-	  li        r5, 0
-	  mr        r31, r3
-	  stw       r0, 0x8(r1)
-	  li        r0, 0x1
-	  stw       r4, 0x14(r1)
-	  addi      r4, r1, 0x8
-	  stw       r7, 0x8(r1)
-	  stw       r6, 0xC(r1)
-	  stb       r5, 0x10(r1)
-	  stb       r0, 0x11(r1)
-	  lwz       r3, 0x18(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x90
-	  lwz       r3, 0x18(r31)
-	  li        r4, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x90
-	  li        r3, 0x1
-	  b         .loc_0x94
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lis      r5, __vt__Q26Screen11SetSceneArg@ha
+	lis      r6, __vt__Q26Screen12SceneArgBase@ha
+	stw      r0, 0x24(r1)
+	addi     r0, r6, __vt__Q26Screen12SceneArgBase@l
+	addi     r7, r5, __vt__Q26Screen11SetSceneArg@l
+	li       r6, 0x4e29
+	stw      r31, 0x1c(r1)
+	li       r5, 0
+	mr       r31, r3
+	stw      r0, 8(r1)
+	li       r0, 1
+	stw      r4, 0x14(r1)
+	addi     r4, r1, 8
+	stw      r7, 8(r1)
+	stw      r6, 0xc(r1)
+	stb      r5, 0x10(r1)
+	stb      r0, 0x11(r1)
+	lwz      r3, 0x18(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FEA98
+	lwz      r3, 0x18(r31)
+	li       r4, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FEA98
+	li       r3, 1
+	b        lbl_803FEA9C
 
-	.loc_0x90:
-	  li        r3, 0
+lbl_803FEA98:
+	li       r3, 0
 
-	.loc_0x94:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_803FEA9C:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -3885,37 +3980,36 @@ void Game2DMgr::open_WinLoseReason(kh::Screen::DispWinLoseReason&)
 void Game2DMgr::check_WinLoseReason() const
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r3, 0x18(r3)
-	  bl        0x54E68
-	  cmpwi     r3, 0x4E29
-	  beq-      .loc_0x2C
-	  li        r3, 0
-	  b         .loc_0x54
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r3, 0x18(r3)
+	bl       getSceneType__Q26Screen3MgrFv
+	cmpwi    r3, 0x4e29
+	beq      lbl_803FEADC
+	li       r3, 0
+	b        lbl_803FEB04
 
-	.loc_0x2C:
-	  lwz       r4, 0x18(r31)
-	  li        r3, 0
-	  lwz       r4, 0x1C(r4)
-	  lbz       r0, 0x230(r4)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x54
-	  lbz       r0, 0x231(r4)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x54
-	  li        r3, 0x1
+lbl_803FEADC:
+	lwz      r4, 0x18(r31)
+	li       r3, 0
+	lwz      r4, 0x1c(r4)
+	lbz      r0, 0x230(r4)
+	cmplwi   r0, 0
+	beq      lbl_803FEB04
+	lbz      r0, 0x231(r4)
+	cmplwi   r0, 0
+	beq      lbl_803FEB04
+	li       r3, 1
 
-	.loc_0x54:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803FEB04:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -3927,53 +4021,52 @@ void Game2DMgr::check_WinLoseReason() const
 void Game2DMgr::open_WinLose(kh::Screen::DispWinLose&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r5, 0x804E
-	  lis       r6, 0x804E
-	  stw       r0, 0x24(r1)
-	  subi      r0, r6, 0x7B98
-	  subi      r7, r5, 0x7BA8
-	  li        r6, 0x4E28
-	  stw       r31, 0x1C(r1)
-	  li        r5, 0
-	  mr        r31, r3
-	  stw       r0, 0x8(r1)
-	  li        r0, 0x1
-	  stw       r4, 0x14(r1)
-	  addi      r4, r1, 0x8
-	  stw       r7, 0x8(r1)
-	  stw       r6, 0xC(r1)
-	  stb       r5, 0x10(r1)
-	  stb       r0, 0x11(r1)
-	  lwz       r3, 0x18(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x90
-	  lwz       r3, 0x18(r31)
-	  li        r4, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x90
-	  li        r3, 0x1
-	  b         .loc_0x94
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lis      r5, __vt__Q26Screen11SetSceneArg@ha
+	lis      r6, __vt__Q26Screen12SceneArgBase@ha
+	stw      r0, 0x24(r1)
+	addi     r0, r6, __vt__Q26Screen12SceneArgBase@l
+	addi     r7, r5, __vt__Q26Screen11SetSceneArg@l
+	li       r6, 0x4e28
+	stw      r31, 0x1c(r1)
+	li       r5, 0
+	mr       r31, r3
+	stw      r0, 8(r1)
+	li       r0, 1
+	stw      r4, 0x14(r1)
+	addi     r4, r1, 8
+	stw      r7, 8(r1)
+	stw      r6, 0xc(r1)
+	stb      r5, 0x10(r1)
+	stb      r0, 0x11(r1)
+	lwz      r3, 0x18(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FEBA8
+	lwz      r3, 0x18(r31)
+	li       r4, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FEBA8
+	li       r3, 1
+	b        lbl_803FEBAC
 
-	.loc_0x90:
-	  li        r3, 0
+lbl_803FEBA8:
+	li       r3, 0
 
-	.loc_0x94:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_803FEBAC:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -3985,49 +4078,48 @@ void Game2DMgr::open_WinLose(kh::Screen::DispWinLose&)
 void Game2DMgr::check_WinLose() const
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r3, 0x18(r3)
-	  bl        0x54D58
-	  cmpwi     r3, 0x4E28
-	  beq-      .loc_0x2C
-	  li        r3, -0x1
-	  b         .loc_0x7C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r3, 0x18(r3)
+	bl       getSceneType__Q26Screen3MgrFv
+	cmpwi    r3, 0x4e28
+	beq      lbl_803FEBEC
+	li       r3, -1
+	b        lbl_803FEC3C
 
-	.loc_0x2C:
-	  lwz       r3, 0x18(r31)
-	  bl        0x54D24
-	  lis       r4, 0x4C4F
-	  lis       r5, 0x5749
-	  addi      r6, r4, 0x5345
-	  li        r4, 0x4B48
-	  addi      r5, r5, 0x4E5F
-	  bl        -0xEF8EC
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x70
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x7AF0
-	  li        r4, 0x709
-	  subi      r5, r5, 0x7A7C
-	  crclr     6, 0x6
-	  bl        -0x3D45EC
+lbl_803FEBEC:
+	lwz      r3, 0x18(r31)
+	bl       getDispMember__Q26Screen3MgrFv
+	lis      r4, 0x4C4F5345@ha
+	lis      r5, 0x57494E5F@ha
+	addi     r6, r4, 0x4C4F5345@l
+	li       r4, 0x4b48
+	addi     r5, r5, 0x57494E5F@l
+	bl       isID__Q32og6Screen14DispMemberBaseFUlUx
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_803FEC30
+	lis      r3, lbl_80498510@ha
+	lis      r5, lbl_80498584@ha
+	addi     r3, r3, lbl_80498510@l
+	li       r4, 0x709
+	addi     r5, r5, lbl_80498584@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x70:
-	  lwz       r3, 0x18(r31)
-	  bl        0x54CE0
-	  lwz       r3, 0xC(r3)
+lbl_803FEC30:
+	lwz      r3, 0x18(r31)
+	bl       getDispMember__Q26Screen3MgrFv
+	lwz      r3, 0xc(r3)
 
-	.loc_0x7C:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803FEC3C:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -4039,64 +4131,63 @@ void Game2DMgr::check_WinLose() const
 void Game2DMgr::open_TimeUp1P()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  lis       r5, 0x804B
-	  lis       r4, 0x804E
-	  stw       r0, 0x34(r1)
-	  addi      r10, r5, 0x1148
-	  subi      r7, r4, 0x7B98
-	  lis       r6, 0x804C
-	  stw       r31, 0x2C(r1)
-	  li        r11, 0
-	  li        r8, 0x1
-	  addi      r0, r1, 0x18
-	  stw       r10, 0x18(r1)
-	  lis       r4, 0x804E
-	  addi      r10, r6, 0xF5C
-	  li        r9, 0x4
-	  li        r5, 0x4E28
-	  subi      r6, r4, 0x7BA8
-	  stw       r7, 0x8(r1)
-	  mr        r31, r3
-	  addi      r4, r1, 0x8
-	  stw       r11, 0x1C(r1)
-	  stw       r10, 0x18(r1)
-	  stw       r9, 0x20(r1)
-	  stw       r8, 0x24(r1)
-	  stw       r6, 0x8(r1)
-	  stw       r5, 0xC(r1)
-	  stb       r11, 0x10(r1)
-	  stb       r8, 0x11(r1)
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x18(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xBC
-	  lwz       r3, 0x18(r31)
-	  li        r4, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xBC
-	  li        r3, 0x1
-	  b         .loc_0xC0
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	lis      r5, __vt__Q32og6Screen14DispMemberBase@ha
+	lis      r4, __vt__Q26Screen12SceneArgBase@ha
+	stw      r0, 0x34(r1)
+	addi     r10, r5, __vt__Q32og6Screen14DispMemberBase@l
+	addi     r7, r4, __vt__Q26Screen12SceneArgBase@l
+	lis      r6, __vt__Q32kh6Screen11DispWinLose@ha
+	stw      r31, 0x2c(r1)
+	li       r11, 0
+	li       r8, 1
+	addi     r0, r1, 0x18
+	stw      r10, 0x18(r1)
+	lis      r4, __vt__Q26Screen11SetSceneArg@ha
+	addi     r10, r6, __vt__Q32kh6Screen11DispWinLose@l
+	li       r9, 4
+	li       r5, 0x4e28
+	addi     r6, r4, __vt__Q26Screen11SetSceneArg@l
+	stw      r7, 8(r1)
+	mr       r31, r3
+	addi     r4, r1, 8
+	stw      r11, 0x1c(r1)
+	stw      r10, 0x18(r1)
+	stw      r9, 0x20(r1)
+	stw      r8, 0x24(r1)
+	stw      r6, 8(r1)
+	stw      r5, 0xc(r1)
+	stb      r11, 0x10(r1)
+	stb      r8, 0x11(r1)
+	stw      r0, 0x14(r1)
+	lwz      r3, 0x18(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FED0C
+	lwz      r3, 0x18(r31)
+	li       r4, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FED0C
+	li       r3, 1
+	b        lbl_803FED10
 
-	.loc_0xBC:
-	  li        r3, 0
+lbl_803FED0C:
+	li       r3, 0
 
-	.loc_0xC0:
-	  lwz       r0, 0x34(r1)
-	  lwz       r31, 0x2C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_803FED10:
+	lwz      r0, 0x34(r1)
+	lwz      r31, 0x2c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -4108,64 +4199,63 @@ void Game2DMgr::open_TimeUp1P()
 void Game2DMgr::open_TimeUp2P()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  lis       r5, 0x804B
-	  lis       r4, 0x804E
-	  stw       r0, 0x34(r1)
-	  addi      r10, r5, 0x1148
-	  subi      r7, r4, 0x7B98
-	  lis       r6, 0x804C
-	  stw       r31, 0x2C(r1)
-	  li        r11, 0
-	  li        r8, 0x1
-	  addi      r0, r1, 0x18
-	  stw       r10, 0x18(r1)
-	  lis       r4, 0x804E
-	  addi      r10, r6, 0xF5C
-	  li        r9, 0x5
-	  li        r5, 0x4E28
-	  subi      r6, r4, 0x7BA8
-	  stw       r7, 0x8(r1)
-	  mr        r31, r3
-	  addi      r4, r1, 0x8
-	  stw       r11, 0x1C(r1)
-	  stw       r10, 0x18(r1)
-	  stw       r9, 0x20(r1)
-	  stw       r8, 0x24(r1)
-	  stw       r6, 0x8(r1)
-	  stw       r5, 0xC(r1)
-	  stb       r11, 0x10(r1)
-	  stb       r8, 0x11(r1)
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x18(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xBC
-	  lwz       r3, 0x18(r31)
-	  li        r4, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xBC
-	  li        r3, 0x1
-	  b         .loc_0xC0
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	lis      r5, __vt__Q32og6Screen14DispMemberBase@ha
+	lis      r4, __vt__Q26Screen12SceneArgBase@ha
+	stw      r0, 0x34(r1)
+	addi     r10, r5, __vt__Q32og6Screen14DispMemberBase@l
+	addi     r7, r4, __vt__Q26Screen12SceneArgBase@l
+	lis      r6, __vt__Q32kh6Screen11DispWinLose@ha
+	stw      r31, 0x2c(r1)
+	li       r11, 0
+	li       r8, 1
+	addi     r0, r1, 0x18
+	stw      r10, 0x18(r1)
+	lis      r4, __vt__Q26Screen11SetSceneArg@ha
+	addi     r10, r6, __vt__Q32kh6Screen11DispWinLose@l
+	li       r9, 5
+	li       r5, 0x4e28
+	addi     r6, r4, __vt__Q26Screen11SetSceneArg@l
+	stw      r7, 8(r1)
+	mr       r31, r3
+	addi     r4, r1, 8
+	stw      r11, 0x1c(r1)
+	stw      r10, 0x18(r1)
+	stw      r9, 0x20(r1)
+	stw      r8, 0x24(r1)
+	stw      r6, 8(r1)
+	stw      r5, 0xc(r1)
+	stb      r11, 0x10(r1)
+	stb      r8, 0x11(r1)
+	stw      r0, 0x14(r1)
+	lwz      r3, 0x18(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FEDE0
+	lwz      r3, 0x18(r31)
+	li       r4, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FEDE0
+	li       r3, 1
+	b        lbl_803FEDE4
 
-	.loc_0xBC:
-	  li        r3, 0
+lbl_803FEDE0:
+	li       r3, 0
 
-	.loc_0xC0:
-	  lwz       r0, 0x34(r1)
-	  lwz       r31, 0x2C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_803FEDE4:
+	lwz      r0, 0x34(r1)
+	lwz      r31, 0x2c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -4177,119 +4267,118 @@ void Game2DMgr::open_TimeUp2P()
 void Game2DMgr::open_Contena(og::Screen::DispMemberContena&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r4
-	  stw       r30, 0x18(r1)
-	  mr        r30, r3
-	  lwz       r3, 0x18(r3)
-	  bl        0x54C08
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x34
-	  li        r3, 0
-	  b         .loc_0x140
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r4
+	stw      r30, 0x18(r1)
+	mr       r30, r3
+	lwz      r3, 0x18(r3)
+	bl       isAnyReservation__Q26Screen3MgrCFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FEE2C
+	li       r3, 0
+	b        lbl_803FEF38
 
-	.loc_0x34:
-	  lfs       f1, 0x1CDC(r2)
-	  mr        r3, r30
-	  bl        0x12A8
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x50
-	  li        r3, 0
-	  b         .loc_0x140
+lbl_803FEE2C:
+	lfs      f1, lbl_8052003C@sda21(r2)
+	mr       r3, r30
+	bl       checkDayEnd__Q26Screen9Game2DMgrCFf
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FEE48
+	li       r3, 0
+	b        lbl_803FEF38
 
-	.loc_0x50:
-	  lwz       r0, 0x8(r31)
-	  li        r6, 0
-	  cmpwi     r0, 0x2
-	  beq-      .loc_0x94
-	  bge-      .loc_0x74
-	  cmpwi     r0, 0
-	  beq-      .loc_0x84
-	  bge-      .loc_0x8C
-	  b         .loc_0xA8
+lbl_803FEE48:
+	lwz      r0, 8(r31)
+	li       r6, 0
+	cmpwi    r0, 2
+	beq      lbl_803FEE8C
+	bge      lbl_803FEE6C
+	cmpwi    r0, 0
+	beq      lbl_803FEE7C
+	bge      lbl_803FEE84
+	b        lbl_803FEEA0
 
-	.loc_0x74:
-	  cmpwi     r0, 0x4
-	  beq-      .loc_0x9C
-	  bge-      .loc_0xA8
-	  b         .loc_0xA4
+lbl_803FEE6C:
+	cmpwi    r0, 4
+	beq      lbl_803FEE94
+	bge      lbl_803FEEA0
+	b        lbl_803FEE9C
 
-	.loc_0x84:
-	  li        r6, 0x2714
-	  b         .loc_0xA8
+lbl_803FEE7C:
+	li       r6, 0x2714
+	b        lbl_803FEEA0
 
-	.loc_0x8C:
-	  li        r6, 0x2715
-	  b         .loc_0xA8
+lbl_803FEE84:
+	li       r6, 0x2715
+	b        lbl_803FEEA0
 
-	.loc_0x94:
-	  li        r6, 0x2716
-	  b         .loc_0xA8
+lbl_803FEE8C:
+	li       r6, 0x2716
+	b        lbl_803FEEA0
 
-	.loc_0x9C:
-	  li        r6, 0x2717
-	  b         .loc_0xA8
+lbl_803FEE94:
+	li       r6, 0x2717
+	b        lbl_803FEEA0
 
-	.loc_0xA4:
-	  li        r6, 0x2718
+lbl_803FEE9C:
+	li       r6, 0x2718
 
-	.loc_0xA8:
-	  lis       r3, 0x804E
-	  lis       r4, 0x804E
-	  subi      r0, r3, 0x7B98
-	  li        r3, 0
-	  stw       r0, 0x8(r1)
-	  subi      r5, r4, 0x7BA8
-	  li        r0, 0x1
-	  addi      r4, r1, 0x8
-	  stw       r5, 0x8(r1)
-	  stw       r6, 0xC(r1)
-	  stb       r3, 0x10(r1)
-	  stb       r0, 0x11(r1)
-	  stw       r31, 0x14(r1)
-	  lwz       r3, 0x18(r30)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x13C
-	  lwz       r3, 0x18(r30)
-	  li        r4, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x13C
-	  lwz       r0, 0x8(r31)
-	  cmpwi     r0, 0x3
-	  bge-      .loc_0x134
-	  cmpwi     r0, 0
-	  bge-      .loc_0x130
-	  b         .loc_0x134
+lbl_803FEEA0:
+	lis      r3, __vt__Q26Screen12SceneArgBase@ha
+	lis      r4, __vt__Q26Screen11SetSceneArg@ha
+	addi     r0, r3, __vt__Q26Screen12SceneArgBase@l
+	li       r3, 0
+	stw      r0, 8(r1)
+	addi     r5, r4, __vt__Q26Screen11SetSceneArg@l
+	li       r0, 1
+	addi     r4, r1, 8
+	stw      r5, 8(r1)
+	stw      r6, 0xc(r1)
+	stb      r3, 0x10(r1)
+	stb      r0, 0x11(r1)
+	stw      r31, 0x14(r1)
+	lwz      r3, 0x18(r30)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FEF34
+	lwz      r3, 0x18(r30)
+	li       r4, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FEF34
+	lwz      r0, 8(r31)
+	cmpwi    r0, 3
+	bge      lbl_803FEF2C
+	cmpwi    r0, 0
+	bge      lbl_803FEF28
+	b        lbl_803FEF2C
 
-	.loc_0x130:
-	  bl        0x6CA34
+lbl_803FEF28:
+	bl       PSPause_StartMenuOn__Fv
 
-	.loc_0x134:
-	  li        r3, 0x1
-	  b         .loc_0x140
+lbl_803FEF2C:
+	li       r3, 1
+	b        lbl_803FEF38
 
-	.loc_0x13C:
-	  li        r3, 0
+lbl_803FEF34:
+	li       r3, 0
 
-	.loc_0x140:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_803FEF38:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -4301,71 +4390,70 @@ void Game2DMgr::open_Contena(og::Screen::DispMemberContena&)
 void Game2DMgr::check_Contena()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  li        r31, -0x1
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lwz       r3, 0x18(r3)
-	  bl        0x549C0
-	  subi      r0, r3, 0x2714
-	  cmplwi    r0, 0x3
-	  ble-      .loc_0x38
-	  cmpwi     r3, 0x2718
-	  bne-      .loc_0xAC
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	li       r31, -1
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lwz      r3, 0x18(r3)
+	bl       getSceneType__Q26Screen3MgrFv
+	addi     r0, r3, -10004
+	cmplwi   r0, 3
+	ble      lbl_803FEF88
+	cmpwi    r3, 0x2718
+	bne      lbl_803FEFFC
 
-	.loc_0x38:
-	  lwz       r3, 0x18(r30)
-	  bl        0x54988
-	  lis       r4, 0x4F
-	  lis       r6, 0x5445
-	  lis       r5, 0x43
-	  mr        r31, r3
-	  addi      r4, r4, 0x4741
-	  addi      r6, r6, 0x4E41
-	  addi      r5, r5, 0x4F4E
-	  bl        -0xEFC90
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xA8
-	  lwz       r0, 0x30(r31)
-	  cmpwi     r0, 0x4
-	  beq-      .loc_0x8C
-	  bge-      .loc_0x94
-	  cmpwi     r0, 0x3
-	  bge-      .loc_0x84
-	  b         .loc_0x94
+lbl_803FEF88:
+	lwz      r3, 0x18(r30)
+	bl       getDispMember__Q26Screen3MgrFv
+	lis      r4, 0x004F4741@ha
+	lis      r6, 0x54454E41@ha
+	lis      r5, 0x00434F4E@ha
+	mr       r31, r3
+	addi     r4, r4, 0x004F4741@l
+	addi     r6, r6, 0x54454E41@l
+	addi     r5, r5, 0x00434F4E@l
+	bl       isID__Q32og6Screen14DispMemberBaseFUlUx
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FEFF8
+	lwz      r0, 0x30(r31)
+	cmpwi    r0, 4
+	beq      lbl_803FEFDC
+	bge      lbl_803FEFE4
+	cmpwi    r0, 3
+	bge      lbl_803FEFD4
+	b        lbl_803FEFE4
 
-	.loc_0x84:
-	  li        r31, 0x1
-	  b         .loc_0x98
+lbl_803FEFD4:
+	li       r31, 1
+	b        lbl_803FEFE8
 
-	.loc_0x8C:
-	  li        r31, 0x2
-	  b         .loc_0x98
+lbl_803FEFDC:
+	li       r31, 2
+	b        lbl_803FEFE8
 
-	.loc_0x94:
-	  li        r31, 0
+lbl_803FEFE4:
+	li       r31, 0
 
-	.loc_0x98:
-	  cmpwi     r31, 0
-	  beq-      .loc_0xAC
-	  bl        0x6CB58
-	  b         .loc_0xAC
+lbl_803FEFE8:
+	cmpwi    r31, 0
+	beq      lbl_803FEFFC
+	bl       PSPause_StartMenuOff__Fv
+	b        lbl_803FEFFC
 
-	.loc_0xA8:
-	  li        r31, -0x1
+lbl_803FEFF8:
+	li       r31, -1
 
-	.loc_0xAC:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803FEFFC:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -4377,55 +4465,54 @@ void Game2DMgr::check_Contena()
 void Game2DMgr::result_Contena()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  stw       r30, 0x8(r1)
-	  li        r30, 0
-	  lwz       r3, 0x18(r3)
-	  bl        0x548F8
-	  subi      r0, r3, 0x2714
-	  cmplwi    r0, 0x3
-	  ble-      .loc_0x38
-	  cmpwi     r3, 0x2718
-	  bne-      .loc_0x70
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	stw      r30, 8(r1)
+	li       r30, 0
+	lwz      r3, 0x18(r3)
+	bl       getSceneType__Q26Screen3MgrFv
+	addi     r0, r3, -10004
+	cmplwi   r0, 3
+	ble      lbl_803FF050
+	cmpwi    r3, 0x2718
+	bne      lbl_803FF088
 
-	.loc_0x38:
-	  lwz       r3, 0x18(r31)
-	  bl        0x548C0
-	  lis       r4, 0x4F
-	  lis       r6, 0x5445
-	  lis       r5, 0x43
-	  mr        r31, r3
-	  addi      r4, r4, 0x4741
-	  addi      r6, r6, 0x4E41
-	  addi      r5, r5, 0x4F4E
-	  bl        -0xEFD58
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x8C
-	  lha       r30, 0x34(r31)
-	  b         .loc_0x8C
+lbl_803FF050:
+	lwz      r3, 0x18(r31)
+	bl       getDispMember__Q26Screen3MgrFv
+	lis      r4, 0x004F4741@ha
+	lis      r6, 0x54454E41@ha
+	lis      r5, 0x00434F4E@ha
+	mr       r31, r3
+	addi     r4, r4, 0x004F4741@l
+	addi     r6, r6, 0x54454E41@l
+	addi     r5, r5, 0x00434F4E@l
+	bl       isID__Q32og6Screen14DispMemberBaseFUlUx
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FF0A4
+	lha      r30, 0x34(r31)
+	b        lbl_803FF0A4
 
-	.loc_0x70:
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x7AF0
-	  li        r4, 0x791
-	  subi      r5, r5, 0x7A5C
-	  crclr     6, 0x6
-	  bl        -0x3D4A60
+lbl_803FF088:
+	lis      r3, lbl_80498510@ha
+	lis      r5, lbl_804985A4@ha
+	addi     r3, r3, lbl_80498510@l
+	li       r4, 0x791
+	addi     r5, r5, lbl_804985A4@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x8C:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803FF0A4:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -4437,164 +4524,163 @@ void Game2DMgr::result_Contena()
 void Game2DMgr::open_UfoMenu(og::Screen::DispMemberUfoGroup&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  stw       r0, 0x44(r1)
-	  stw       r31, 0x3C(r1)
-	  mr        r31, r4
-	  stw       r30, 0x38(r1)
-	  mr        r30, r3
-	  lwz       r3, 0x18(r3)
-	  bl        0x54940
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x34
-	  li        r3, 0
-	  b         .loc_0x22C
+	stwu     r1, -0x40(r1)
+	mflr     r0
+	stw      r0, 0x44(r1)
+	stw      r31, 0x3c(r1)
+	mr       r31, r4
+	stw      r30, 0x38(r1)
+	mr       r30, r3
+	lwz      r3, 0x18(r3)
+	bl       isAnyReservation__Q26Screen3MgrCFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FF0F4
+	li       r3, 0
+	b        lbl_803FF2EC
 
-	.loc_0x34:
-	  lfs       f1, 0x1CDC(r2)
-	  mr        r3, r30
-	  bl        0xFE0
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x50
-	  li        r3, 0
-	  b         .loc_0x22C
+lbl_803FF0F4:
+	lfs      f1, lbl_8052003C@sda21(r2)
+	mr       r3, r30
+	bl       checkDayEnd__Q26Screen9Game2DMgrCFf
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FF110
+	li       r3, 0
+	b        lbl_803FF2EC
 
-	.loc_0x50:
-	  lbz       r3, 0x88(r31)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x100
-	  lbz       r0, 0x89(r31)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x100
-	  li        r7, 0x1
-	  lis       r3, 0x804E
-	  stb       r7, 0x44(r31)
-	  lis       r4, 0x804E
-	  subi      r6, r3, 0x7B98
-	  li        r3, 0x2719
-	  stb       r7, 0x7C(r31)
-	  li        r0, 0
-	  subi      r5, r4, 0x7BA8
-	  addi      r4, r1, 0x28
-	  stw       r6, 0x28(r1)
-	  stw       r5, 0x28(r1)
-	  stw       r3, 0x2C(r1)
-	  stb       r0, 0x30(r1)
-	  stb       r7, 0x31(r1)
-	  stw       r31, 0x34(r1)
-	  lwz       r3, 0x18(r30)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x228
-	  lwz       r3, 0x18(r30)
-	  li        r4, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x228
-	  bl        0x6C7B8
-	  lwz       r3, -0x67A8(r13)
-	  li        r4, 0x1803
-	  li        r5, 0
-	  bl        -0xC6B84
-	  li        r3, 0x1
-	  b         .loc_0x22C
+lbl_803FF110:
+	lbz      r3, 0x88(r31)
+	cmplwi   r3, 0
+	beq      lbl_803FF1C0
+	lbz      r0, 0x89(r31)
+	cmplwi   r0, 0
+	beq      lbl_803FF1C0
+	li       r7, 1
+	lis      r3, __vt__Q26Screen12SceneArgBase@ha
+	stb      r7, 0x44(r31)
+	lis      r4, __vt__Q26Screen11SetSceneArg@ha
+	addi     r6, r3, __vt__Q26Screen12SceneArgBase@l
+	li       r3, 0x2719
+	stb      r7, 0x7c(r31)
+	li       r0, 0
+	addi     r5, r4, __vt__Q26Screen11SetSceneArg@l
+	addi     r4, r1, 0x28
+	stw      r6, 0x28(r1)
+	stw      r5, 0x28(r1)
+	stw      r3, 0x2c(r1)
+	stb      r0, 0x30(r1)
+	stb      r7, 0x31(r1)
+	stw      r31, 0x34(r1)
+	lwz      r3, 0x18(r30)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FF2E8
+	lwz      r3, 0x18(r30)
+	li       r4, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FF2E8
+	bl       PSPause_StartMenuOn__Fv
+	lwz      r3, spSysIF__8PSSystem@sda21(r13)
+	li       r4, 0x1803
+	li       r5, 0
+	bl       playSystemSe__Q28PSSystem5SysIFFUlUl
+	li       r3, 1
+	b        lbl_803FF2EC
 
-	.loc_0x100:
-	  cmplwi    r3, 0
-	  beq-      .loc_0x190
-	  li        r7, 0
-	  lis       r4, 0x804E
-	  stb       r7, 0x44(r31)
-	  li        r6, 0x1
-	  lis       r3, 0x804E
-	  subi      r5, r4, 0x7B98
-	  stw       r6, 0x10(r31)
-	  li        r0, 0x2717
-	  subi      r3, r3, 0x7BA8
-	  addi      r4, r1, 0x18
-	  stw       r5, 0x18(r1)
-	  stw       r3, 0x18(r1)
-	  stw       r0, 0x1C(r1)
-	  stb       r7, 0x20(r1)
-	  stb       r6, 0x21(r1)
-	  stw       r31, 0x24(r1)
-	  lwz       r3, 0x18(r30)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x228
-	  lwz       r3, 0x18(r30)
-	  li        r4, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x228
-	  bl        0x6C718
-	  li        r3, 0x1
-	  b         .loc_0x22C
+lbl_803FF1C0:
+	cmplwi   r3, 0
+	beq      lbl_803FF250
+	li       r7, 0
+	lis      r4, __vt__Q26Screen12SceneArgBase@ha
+	stb      r7, 0x44(r31)
+	li       r6, 1
+	lis      r3, __vt__Q26Screen11SetSceneArg@ha
+	addi     r5, r4, __vt__Q26Screen12SceneArgBase@l
+	stw      r6, 0x10(r31)
+	li       r0, 0x2717
+	addi     r3, r3, __vt__Q26Screen11SetSceneArg@l
+	addi     r4, r1, 0x18
+	stw      r5, 0x18(r1)
+	stw      r3, 0x18(r1)
+	stw      r0, 0x1c(r1)
+	stb      r7, 0x20(r1)
+	stb      r6, 0x21(r1)
+	stw      r31, 0x24(r1)
+	lwz      r3, 0x18(r30)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FF2E8
+	lwz      r3, 0x18(r30)
+	li       r4, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FF2E8
+	bl       PSPause_StartMenuOn__Fv
+	li       r3, 1
+	b        lbl_803FF2EC
 
-	.loc_0x190:
-	  lbz       r0, 0x89(r31)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x228
-	  li        r7, 0
-	  lis       r3, 0x804E
-	  stb       r7, 0x7C(r31)
-	  li        r0, 0x2
-	  lis       r4, 0x804E
-	  subi      r6, r3, 0x7B98
-	  stw       r0, 0x10(r31)
-	  li        r3, 0x2718
-	  li        r0, 0x1
-	  subi      r5, r4, 0x7BA8
-	  stw       r6, 0x8(r1)
-	  addi      r4, r1, 0x8
-	  stw       r5, 0x8(r1)
-	  stw       r3, 0xC(r1)
-	  stb       r7, 0x10(r1)
-	  stb       r0, 0x11(r1)
-	  stw       r31, 0x14(r1)
-	  lwz       r3, 0x18(r30)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x228
-	  lwz       r3, 0x18(r30)
-	  li        r4, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x228
-	  bl        0x6C680
-	  li        r3, 0x1
-	  b         .loc_0x22C
+lbl_803FF250:
+	lbz      r0, 0x89(r31)
+	cmplwi   r0, 0
+	beq      lbl_803FF2E8
+	li       r7, 0
+	lis      r3, __vt__Q26Screen12SceneArgBase@ha
+	stb      r7, 0x7c(r31)
+	li       r0, 2
+	lis      r4, __vt__Q26Screen11SetSceneArg@ha
+	addi     r6, r3, __vt__Q26Screen12SceneArgBase@l
+	stw      r0, 0x10(r31)
+	li       r3, 0x2718
+	li       r0, 1
+	addi     r5, r4, __vt__Q26Screen11SetSceneArg@l
+	stw      r6, 8(r1)
+	addi     r4, r1, 8
+	stw      r5, 8(r1)
+	stw      r3, 0xc(r1)
+	stb      r7, 0x10(r1)
+	stb      r0, 0x11(r1)
+	stw      r31, 0x14(r1)
+	lwz      r3, 0x18(r30)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FF2E8
+	lwz      r3, 0x18(r30)
+	li       r4, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FF2E8
+	bl       PSPause_StartMenuOn__Fv
+	li       r3, 1
+	b        lbl_803FF2EC
 
-	.loc_0x228:
-	  li        r3, 0
+lbl_803FF2E8:
+	li       r3, 0
 
-	.loc_0x22C:
-	  lwz       r0, 0x44(r1)
-	  lwz       r31, 0x3C(r1)
-	  lwz       r30, 0x38(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
+lbl_803FF2EC:
+	lwz      r0, 0x44(r1)
+	lwz      r31, 0x3c(r1)
+	lwz      r30, 0x38(r1)
+	mtlr     r0
+	addi     r1, r1, 0x40
+	blr
 	*/
 }
 
@@ -4606,109 +4692,108 @@ void Game2DMgr::open_UfoMenu(og::Screen::DispMemberUfoGroup&)
 void Game2DMgr::check_UfoMenu()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  li        r30, 0
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  lwz       r3, 0x18(r3)
-	  bl        0x545EC
-	  mr        r31, r3
-	  lwz       r3, 0x18(r29)
-	  bl        0x545FC
-	  cmpwi     r3, 0x2718
-	  beq-      .loc_0xC4
-	  bge-      .loc_0x4C
-	  cmpwi     r3, 0x2717
-	  bge-      .loc_0x74
-	  b         .loc_0x110
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	li       r30, 0
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	lwz      r3, 0x18(r3)
+	bl       getDispMember__Q26Screen3MgrFv
+	mr       r31, r3
+	lwz      r3, 0x18(r29)
+	bl       getSceneType__Q26Screen3MgrFv
+	cmpwi    r3, 0x2718
+	beq      lbl_803FF3C8
+	bge      lbl_803FF350
+	cmpwi    r3, 0x2717
+	bge      lbl_803FF378
+	b        lbl_803FF414
 
-	.loc_0x4C:
-	  cmpwi     r3, 0x271A
-	  bge-      .loc_0x110
-	  lwz       r0, 0x10(r31)
-	  cmpwi     r0, 0
-	  bne-      .loc_0x6C
-	  li        r30, 0x1
-	  bl        0x6C7E0
-	  b         .loc_0x110
+lbl_803FF350:
+	cmpwi    r3, 0x271a
+	bge      lbl_803FF414
+	lwz      r0, 0x10(r31)
+	cmpwi    r0, 0
+	bne      lbl_803FF370
+	li       r30, 1
+	bl       PSPause_StartMenuOff__Fv
+	b        lbl_803FF414
 
-	.loc_0x6C:
-	  li        r30, 0
-	  b         .loc_0x110
+lbl_803FF370:
+	li       r30, 0
+	b        lbl_803FF414
 
-	.loc_0x74:
-	  lwz       r0, 0x48(r31)
-	  cmpwi     r0, 0x4
-	  beq-      .loc_0x90
-	  bge-      .loc_0xBC
-	  cmpwi     r0, 0x3
-	  bge-      .loc_0x9C
-	  b         .loc_0xBC
+lbl_803FF378:
+	lwz      r0, 0x48(r31)
+	cmpwi    r0, 4
+	beq      lbl_803FF394
+	bge      lbl_803FF3C0
+	cmpwi    r0, 3
+	bge      lbl_803FF3A0
+	b        lbl_803FF3C0
 
-	.loc_0x90:
-	  li        r30, 0x2
-	  bl        0x6C7B0
-	  b         .loc_0x110
+lbl_803FF394:
+	li       r30, 2
+	bl       PSPause_StartMenuOff__Fv
+	b        lbl_803FF414
 
-	.loc_0x9C:
-	  lbz       r0, 0x44(r31)
-	  cmplwi    r0, 0
-	  beq-      .loc_0xB0
-	  li        r30, 0
-	  b         .loc_0x110
+lbl_803FF3A0:
+	lbz      r0, 0x44(r31)
+	cmplwi   r0, 0
+	beq      lbl_803FF3B4
+	li       r30, 0
+	b        lbl_803FF414
 
-	.loc_0xB0:
-	  li        r30, 0x1
-	  bl        0x6C790
-	  b         .loc_0x110
+lbl_803FF3B4:
+	li       r30, 1
+	bl       PSPause_StartMenuOff__Fv
+	b        lbl_803FF414
 
-	.loc_0xBC:
-	  li        r30, 0
-	  b         .loc_0x110
+lbl_803FF3C0:
+	li       r30, 0
+	b        lbl_803FF414
 
-	.loc_0xC4:
-	  lwz       r0, 0x80(r31)
-	  cmpwi     r0, 0x4
-	  beq-      .loc_0xE0
-	  bge-      .loc_0x10C
-	  cmpwi     r0, 0x3
-	  bge-      .loc_0xEC
-	  b         .loc_0x10C
+lbl_803FF3C8:
+	lwz      r0, 0x80(r31)
+	cmpwi    r0, 4
+	beq      lbl_803FF3E4
+	bge      lbl_803FF410
+	cmpwi    r0, 3
+	bge      lbl_803FF3F0
+	b        lbl_803FF410
 
-	.loc_0xE0:
-	  li        r30, 0x2
-	  bl        0x6C760
-	  b         .loc_0x110
+lbl_803FF3E4:
+	li       r30, 2
+	bl       PSPause_StartMenuOff__Fv
+	b        lbl_803FF414
 
-	.loc_0xEC:
-	  lbz       r0, 0x7C(r31)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x100
-	  li        r30, 0
-	  b         .loc_0x110
+lbl_803FF3F0:
+	lbz      r0, 0x7c(r31)
+	cmplwi   r0, 0
+	beq      lbl_803FF404
+	li       r30, 0
+	b        lbl_803FF414
 
-	.loc_0x100:
-	  li        r30, 0x1
-	  bl        0x6C740
-	  b         .loc_0x110
+lbl_803FF404:
+	li       r30, 1
+	bl       PSPause_StartMenuOff__Fv
+	b        lbl_803FF414
 
-	.loc_0x10C:
-	  li        r30, 0
+lbl_803FF410:
+	li       r30, 0
 
-	.loc_0x110:
-	  lwz       r0, 0x24(r1)
-	  mr        r3, r30
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_803FF414:
+	lwz      r0, 0x24(r1)
+	mr       r3, r30
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -4720,51 +4805,50 @@ void Game2DMgr::check_UfoMenu()
 void Game2DMgr::result_UfoMenu(int*, int*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  mr        r30, r5
-	  stw       r29, 0x14(r1)
-	  mr        r29, r4
-	  stw       r28, 0x10(r1)
-	  mr        r28, r3
-	  lwz       r3, 0x18(r3)
-	  bl        0x544B4
-	  mr        r31, r3
-	  lwz       r3, 0x18(r28)
-	  bl        0x544C4
-	  cmpwi     r3, 0x2718
-	  beq-      .loc_0x68
-	  bge-      .loc_0x78
-	  cmpwi     r3, 0x2717
-	  bge-      .loc_0x54
-	  b         .loc_0x78
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	mr       r30, r5
+	stw      r29, 0x14(r1)
+	mr       r29, r4
+	stw      r28, 0x10(r1)
+	mr       r28, r3
+	lwz      r3, 0x18(r3)
+	bl       getDispMember__Q26Screen3MgrFv
+	mr       r31, r3
+	lwz      r3, 0x18(r28)
+	bl       getSceneType__Q26Screen3MgrFv
+	cmpwi    r3, 0x2718
+	beq      lbl_803FF49C
+	bge      lbl_803FF4AC
+	cmpwi    r3, 0x2717
+	bge      lbl_803FF488
+	b        lbl_803FF4AC
 
-	.loc_0x54:
-	  lha       r3, 0x4C(r31)
-	  li        r0, 0
-	  stw       r3, 0x0(r29)
-	  stw       r0, 0x0(r30)
-	  b         .loc_0x78
+lbl_803FF488:
+	lha      r3, 0x4c(r31)
+	li       r0, 0
+	stw      r3, 0(r29)
+	stw      r0, 0(r30)
+	b        lbl_803FF4AC
 
-	.loc_0x68:
-	  li        r0, 0
-	  stw       r0, 0x0(r29)
-	  lha       r0, 0x84(r31)
-	  stw       r0, 0x0(r30)
+lbl_803FF49C:
+	li       r0, 0
+	stw      r0, 0(r29)
+	lha      r0, 0x84(r31)
+	stw      r0, 0(r30)
 
-	.loc_0x78:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_803FF4AC:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -4776,50 +4860,49 @@ void Game2DMgr::result_UfoMenu(int*, int*)
 void Game2DMgr::open_ZukanEnemy(Morimura::DispMemberZukanEnemy&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r5, 0x804E
-	  lis       r6, 0x804E
-	  stw       r0, 0x24(r1)
-	  subi      r0, r6, 0x7B98
-	  subi      r7, r5, 0x7BA8
-	  li        r6, 0x2734
-	  stw       r31, 0x1C(r1)
-	  li        r5, 0
-	  mr        r31, r3
-	  stw       r0, 0x8(r1)
-	  li        r0, 0x1
-	  stw       r4, 0x14(r1)
-	  addi      r4, r1, 0x8
-	  stw       r7, 0x8(r1)
-	  stw       r6, 0xC(r1)
-	  stb       r5, 0x10(r1)
-	  stb       r0, 0x11(r1)
-	  lwz       r3, 0x18(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x84
-	  lwz       r3, 0x18(r31)
-	  li        r4, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x88
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lis      r5, __vt__Q26Screen11SetSceneArg@ha
+	lis      r6, __vt__Q26Screen12SceneArgBase@ha
+	stw      r0, 0x24(r1)
+	addi     r0, r6, __vt__Q26Screen12SceneArgBase@l
+	addi     r7, r5, __vt__Q26Screen11SetSceneArg@l
+	li       r6, 0x2734
+	stw      r31, 0x1c(r1)
+	li       r5, 0
+	mr       r31, r3
+	stw      r0, 8(r1)
+	li       r0, 1
+	stw      r4, 0x14(r1)
+	addi     r4, r1, 8
+	stw      r7, 8(r1)
+	stw      r6, 0xc(r1)
+	stb      r5, 0x10(r1)
+	stb      r0, 0x11(r1)
+	lwz      r3, 0x18(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FF550
+	lwz      r3, 0x18(r31)
+	li       r4, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_803FF554
 
-	.loc_0x84:
-	  li        r3, 0
+lbl_803FF550:
+	li       r3, 0
 
-	.loc_0x88:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_803FF554:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -4831,50 +4914,49 @@ void Game2DMgr::open_ZukanEnemy(Morimura::DispMemberZukanEnemy&)
 void Game2DMgr::open_ZukanItem(Morimura::DispMemberZukanItem&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r5, 0x804E
-	  lis       r6, 0x804E
-	  stw       r0, 0x24(r1)
-	  subi      r0, r6, 0x7B98
-	  subi      r7, r5, 0x7BA8
-	  li        r6, 0x2735
-	  stw       r31, 0x1C(r1)
-	  li        r5, 0
-	  mr        r31, r3
-	  stw       r0, 0x8(r1)
-	  li        r0, 0x1
-	  stw       r4, 0x14(r1)
-	  addi      r4, r1, 0x8
-	  stw       r7, 0x8(r1)
-	  stw       r6, 0xC(r1)
-	  stb       r5, 0x10(r1)
-	  stb       r0, 0x11(r1)
-	  lwz       r3, 0x18(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x84
-	  lwz       r3, 0x18(r31)
-	  li        r4, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x88
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lis      r5, __vt__Q26Screen11SetSceneArg@ha
+	lis      r6, __vt__Q26Screen12SceneArgBase@ha
+	stw      r0, 0x24(r1)
+	addi     r0, r6, __vt__Q26Screen12SceneArgBase@l
+	addi     r7, r5, __vt__Q26Screen11SetSceneArg@l
+	li       r6, 0x2735
+	stw      r31, 0x1c(r1)
+	li       r5, 0
+	mr       r31, r3
+	stw      r0, 8(r1)
+	li       r0, 1
+	stw      r4, 0x14(r1)
+	addi     r4, r1, 8
+	stw      r7, 8(r1)
+	stw      r6, 0xc(r1)
+	stb      r5, 0x10(r1)
+	stb      r0, 0x11(r1)
+	lwz      r3, 0x18(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FF5EC
+	lwz      r3, 0x18(r31)
+	li       r4, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_803FF5F0
 
-	.loc_0x84:
-	  li        r3, 0
+lbl_803FF5EC:
+	li       r3, 0
 
-	.loc_0x88:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_803FF5F0:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -4886,19 +4968,18 @@ void Game2DMgr::open_ZukanItem(Morimura::DispMemberZukanItem&)
 void Game2DMgr::isZukanEnemy()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x18(r3)
-	  bl        0x5431C
-	  subfic    r0, r3, 0x2734
-	  cntlzw    r0, r0
-	  rlwinm    r3,r0,27,5,31
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r3, 0x18(r3)
+	bl       getSceneType__Q26Screen3MgrFv
+	subfic   r0, r3, 0x2734
+	cntlzw   r0, r0
+	srwi     r3, r0, 5
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -4910,19 +4991,18 @@ void Game2DMgr::isZukanEnemy()
 void Game2DMgr::isZukanItem()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x18(r3)
-	  bl        0x542EC
-	  subfic    r0, r3, 0x2735
-	  cntlzw    r0, r0
-	  rlwinm    r3,r0,27,5,31
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r3, 0x18(r3)
+	bl       getSceneType__Q26Screen3MgrFv
+	subfic   r0, r3, 0x2735
+	cntlzw   r0, r0
+	srwi     r3, r0, 5
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -4934,46 +5014,45 @@ void Game2DMgr::isZukanItem()
 void Game2DMgr::check_ZukanItemRequest(int&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  li        r31, 0
-	  stw       r30, 0x18(r1)
-	  mr        r30, r4
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  lwz       r3, 0x18(r3)
-	  bl        0x542A4
-	  cmpwi     r3, 0x2735
-	  bne-      .loc_0x64
-	  lwz       r3, 0x18(r29)
-	  lwz       r3, 0x1C(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x64
-	  lwz       r3, 0x220(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x5C
-	  mr        r4, r30
-	  bl        -0x8ADC0
-	  b         .loc_0x60
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	li       r31, 0
+	stw      r30, 0x18(r1)
+	mr       r30, r4
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	lwz      r3, 0x18(r3)
+	bl       getSceneType__Q26Screen3MgrFv
+	cmpwi    r3, 0x2735
+	bne      lbl_803FF6C8
+	lwz      r3, 0x18(r29)
+	lwz      r3, 0x1c(r3)
+	cmplwi   r3, 0
+	beq      lbl_803FF6C8
+	lwz      r3, 0x220(r3)
+	cmplwi   r3, 0
+	beq      lbl_803FF6C0
+	mr       r4, r30
+	bl       checkRequest__Q28Morimura10TZukanBaseFRi
+	b        lbl_803FF6C4
 
-	.loc_0x5C:
-	  li        r3, 0
+lbl_803FF6C0:
+	li       r3, 0
 
-	.loc_0x60:
-	  mr        r31, r3
+lbl_803FF6C4:
+	mr       r31, r3
 
-	.loc_0x64:
-	  lwz       r0, 0x24(r1)
-	  mr        r3, r31
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_803FF6C8:
+	lwz      r0, 0x24(r1)
+	mr       r3, r31
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -4985,46 +5064,45 @@ void Game2DMgr::check_ZukanItemRequest(int&)
 void Game2DMgr::check_ZukanEnemyRequest(int&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  li        r31, 0
-	  stw       r30, 0x18(r1)
-	  mr        r30, r4
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  lwz       r3, 0x18(r3)
-	  bl        0x54220
-	  cmpwi     r3, 0x2734
-	  bne-      .loc_0x64
-	  lwz       r3, 0x18(r29)
-	  lwz       r3, 0x1C(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x64
-	  lwz       r3, 0x220(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x5C
-	  mr        r4, r30
-	  bl        -0x8AE44
-	  b         .loc_0x60
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	li       r31, 0
+	stw      r30, 0x18(r1)
+	mr       r30, r4
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	lwz      r3, 0x18(r3)
+	bl       getSceneType__Q26Screen3MgrFv
+	cmpwi    r3, 0x2734
+	bne      lbl_803FF74C
+	lwz      r3, 0x18(r29)
+	lwz      r3, 0x1c(r3)
+	cmplwi   r3, 0
+	beq      lbl_803FF74C
+	lwz      r3, 0x220(r3)
+	cmplwi   r3, 0
+	beq      lbl_803FF744
+	mr       r4, r30
+	bl       checkRequest__Q28Morimura10TZukanBaseFRi
+	b        lbl_803FF748
 
-	.loc_0x5C:
-	  li        r3, 0
+lbl_803FF744:
+	li       r3, 0
 
-	.loc_0x60:
-	  mr        r31, r3
+lbl_803FF748:
+	mr       r31, r3
 
-	.loc_0x64:
-	  lwz       r0, 0x24(r1)
-	  mr        r3, r31
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_803FF74C:
+	lwz      r0, 0x24(r1)
+	mr       r3, r31
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -5036,51 +5114,50 @@ void Game2DMgr::check_ZukanEnemyRequest(int&)
 void Game2DMgr::getZukanEnemyCurrSelectId()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  li        r31, -0x1
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lwz       r3, 0x18(r3)
-	  bl        0x541A4
-	  cmpwi     r3, 0x2734
-	  bne-      .loc_0x74
-	  lwz       r3, 0x18(r30)
-	  lwz       r31, 0x1C(r3)
-	  cmplwi    r31, 0
-	  bne-      .loc_0x58
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x7AF0
-	  li        r4, 0x893
-	  subi      r5, r5, 0x7ADC
-	  crclr     6, 0x6
-	  bl        -0x3D5180
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	li       r31, -1
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lwz      r3, 0x18(r3)
+	bl       getSceneType__Q26Screen3MgrFv
+	cmpwi    r3, 0x2734
+	bne      lbl_803FF7E0
+	lwz      r3, 0x18(r30)
+	lwz      r31, 0x1c(r3)
+	cmplwi   r31, 0
+	bne      lbl_803FF7C4
+	lis      r3, lbl_80498510@ha
+	lis      r5, lbl_80498524@ha
+	addi     r3, r3, lbl_80498510@l
+	li       r4, 0x893
+	addi     r5, r5, lbl_80498524@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x58:
-	  lwz       r3, 0x220(r31)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x6C
-	  bl        -0x8AEC8
-	  b         .loc_0x70
+lbl_803FF7C4:
+	lwz      r3, 0x220(r31)
+	cmplwi   r3, 0
+	beq      lbl_803FF7D8
+	bl       getCurrSelectId__Q28Morimura10TZukanBaseFv
+	b        lbl_803FF7DC
 
-	.loc_0x6C:
-	  li        r3, -0x1
+lbl_803FF7D8:
+	li       r3, -1
 
-	.loc_0x70:
-	  mr        r31, r3
+lbl_803FF7DC:
+	mr       r31, r3
 
-	.loc_0x74:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803FF7E0:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -5092,51 +5169,50 @@ void Game2DMgr::getZukanEnemyCurrSelectId()
 void Game2DMgr::getZukanItemCurrSelectId()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  li        r31, -0x1
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lwz       r3, 0x18(r3)
-	  bl        0x54114
-	  cmpwi     r3, 0x2735
-	  bne-      .loc_0x74
-	  lwz       r3, 0x18(r30)
-	  lwz       r31, 0x1C(r3)
-	  cmplwi    r31, 0
-	  bne-      .loc_0x58
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x7AF0
-	  li        r4, 0x8A2
-	  subi      r5, r5, 0x7ADC
-	  crclr     6, 0x6
-	  bl        -0x3D5210
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	li       r31, -1
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lwz      r3, 0x18(r3)
+	bl       getSceneType__Q26Screen3MgrFv
+	cmpwi    r3, 0x2735
+	bne      lbl_803FF870
+	lwz      r3, 0x18(r30)
+	lwz      r31, 0x1c(r3)
+	cmplwi   r31, 0
+	bne      lbl_803FF854
+	lis      r3, lbl_80498510@ha
+	lis      r5, lbl_80498524@ha
+	addi     r3, r3, lbl_80498510@l
+	li       r4, 0x8a2
+	addi     r5, r5, lbl_80498524@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x58:
-	  lwz       r3, 0x220(r31)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x6C
-	  bl        -0x8AF58
-	  b         .loc_0x70
+lbl_803FF854:
+	lwz      r3, 0x220(r31)
+	cmplwi   r3, 0
+	beq      lbl_803FF868
+	bl       getCurrSelectId__Q28Morimura10TZukanBaseFv
+	b        lbl_803FF86C
 
-	.loc_0x6C:
-	  li        r3, -0x1
+lbl_803FF868:
+	li       r3, -1
 
-	.loc_0x70:
-	  mr        r31, r3
+lbl_803FF86C:
+	mr       r31, r3
 
-	.loc_0x74:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803FF870:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -5148,62 +5224,61 @@ void Game2DMgr::getZukanItemCurrSelectId()
 void Game2DMgr::requireZukanRequest()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r3, 0x18(r3)
-	  bl        0x5408C
-	  cmpwi     r3, 0x2735
-	  bne-      .loc_0x64
-	  lwz       r3, 0x18(r31)
-	  lwz       r31, 0x1C(r3)
-	  cmplwi    r31, 0
-	  bne-      .loc_0x50
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x7AF0
-	  li        r4, 0x8B3
-	  subi      r5, r5, 0x7ADC
-	  crclr     6, 0x6
-	  bl        -0x3D5298
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r3, 0x18(r3)
+	bl       getSceneType__Q26Screen3MgrFv
+	cmpwi    r3, 0x2735
+	bne      lbl_803FF8F0
+	lwz      r3, 0x18(r31)
+	lwz      r31, 0x1c(r3)
+	cmplwi   r31, 0
+	bne      lbl_803FF8DC
+	lis      r3, lbl_80498510@ha
+	lis      r5, lbl_80498524@ha
+	addi     r3, r3, lbl_80498510@l
+	li       r4, 0x8b3
+	addi     r5, r5, lbl_80498524@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x50:
-	  lwz       r3, 0x220(r31)
-	  cmplwi    r3, 0
-	  beq-      .loc_0xA8
-	  bl        -0x8B050
-	  b         .loc_0xA8
+lbl_803FF8DC:
+	lwz      r3, 0x220(r31)
+	cmplwi   r3, 0
+	beq      lbl_803FF934
+	bl       requireRequest__Q28Morimura10TZukanBaseFv
+	b        lbl_803FF934
 
-	.loc_0x64:
-	  cmpwi     r3, 0x2734
-	  bne-      .loc_0xA8
-	  lwz       r3, 0x18(r31)
-	  lwz       r31, 0x1C(r3)
-	  cmplwi    r31, 0
-	  bne-      .loc_0x98
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x7AF0
-	  li        r4, 0x8B9
-	  subi      r5, r5, 0x7ADC
-	  crclr     6, 0x6
-	  bl        -0x3D52E0
+lbl_803FF8F0:
+	cmpwi    r3, 0x2734
+	bne      lbl_803FF934
+	lwz      r3, 0x18(r31)
+	lwz      r31, 0x1c(r3)
+	cmplwi   r31, 0
+	bne      lbl_803FF924
+	lis      r3, lbl_80498510@ha
+	lis      r5, lbl_80498524@ha
+	addi     r3, r3, lbl_80498510@l
+	li       r4, 0x8b9
+	addi     r5, r5, lbl_80498524@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x98:
-	  lwz       r3, 0x220(r31)
-	  cmplwi    r3, 0
-	  beq-      .loc_0xA8
-	  bl        -0x8B098
+lbl_803FF924:
+	lwz      r3, 0x220(r31)
+	cmplwi   r3, 0
+	beq      lbl_803FF934
+	bl       requireRequest__Q28Morimura10TZukanBaseFv
 
-	.loc_0xA8:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803FF934:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -5215,62 +5290,61 @@ void Game2DMgr::requireZukanRequest()
 void Game2DMgr::requireZukanEffectOff()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r3, 0x18(r3)
-	  bl        0x53FD0
-	  cmpwi     r3, 0x2735
-	  bne-      .loc_0x64
-	  lwz       r3, 0x18(r31)
-	  lwz       r31, 0x1C(r3)
-	  cmplwi    r31, 0
-	  bne-      .loc_0x50
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x7AF0
-	  li        r4, 0x8C7
-	  subi      r5, r5, 0x7ADC
-	  crclr     6, 0x6
-	  bl        -0x3D5354
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r3, 0x18(r3)
+	bl       getSceneType__Q26Screen3MgrFv
+	cmpwi    r3, 0x2735
+	bne      lbl_803FF9AC
+	lwz      r3, 0x18(r31)
+	lwz      r31, 0x1c(r3)
+	cmplwi   r31, 0
+	bne      lbl_803FF998
+	lis      r3, lbl_80498510@ha
+	lis      r5, lbl_80498524@ha
+	addi     r3, r3, lbl_80498510@l
+	li       r4, 0x8c7
+	addi     r5, r5, lbl_80498524@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x50:
-	  lwz       r3, 0x220(r31)
-	  cmplwi    r3, 0
-	  beq-      .loc_0xA8
-	  bl        -0x8B0F4
-	  b         .loc_0xA8
+lbl_803FF998:
+	lwz      r3, 0x220(r31)
+	cmplwi   r3, 0
+	beq      lbl_803FF9F0
+	bl       requireEffectOff__Q28Morimura10TZukanBaseFv
+	b        lbl_803FF9F0
 
-	.loc_0x64:
-	  cmpwi     r3, 0x2734
-	  bne-      .loc_0xA8
-	  lwz       r3, 0x18(r31)
-	  lwz       r31, 0x1C(r3)
-	  cmplwi    r31, 0
-	  bne-      .loc_0x98
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x7AF0
-	  li        r4, 0x8CD
-	  subi      r5, r5, 0x7ADC
-	  crclr     6, 0x6
-	  bl        -0x3D539C
+lbl_803FF9AC:
+	cmpwi    r3, 0x2734
+	bne      lbl_803FF9F0
+	lwz      r3, 0x18(r31)
+	lwz      r31, 0x1c(r3)
+	cmplwi   r31, 0
+	bne      lbl_803FF9E0
+	lis      r3, lbl_80498510@ha
+	lis      r5, lbl_80498524@ha
+	addi     r3, r3, lbl_80498510@l
+	li       r4, 0x8cd
+	addi     r5, r5, lbl_80498524@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x98:
-	  lwz       r3, 0x220(r31)
-	  cmplwi    r3, 0
-	  beq-      .loc_0xA8
-	  bl        -0x8B13C
+lbl_803FF9E0:
+	lwz      r3, 0x220(r31)
+	cmplwi   r3, 0
+	beq      lbl_803FF9F0
+	bl       requireEffectOff__Q28Morimura10TZukanBaseFv
 
-	.loc_0xA8:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803FF9F0:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -5282,80 +5356,79 @@ void Game2DMgr::requireZukanEffectOff()
 void Game2DMgr::isZukanEnlargedWindow()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  li        r31, 0
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lwz       r3, 0x18(r3)
-	  bl        0x53F0C
-	  cmpwi     r3, 0x2735
-	  bne-      .loc_0x78
-	  lwz       r3, 0x18(r30)
-	  lwz       r31, 0x1C(r3)
-	  cmplwi    r31, 0
-	  bne-      .loc_0x58
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x7AF0
-	  li        r4, 0x8DE
-	  subi      r5, r5, 0x7ADC
-	  crclr     6, 0x6
-	  bl        -0x3D5418
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	li       r31, 0
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lwz      r3, 0x18(r3)
+	bl       getSceneType__Q26Screen3MgrFv
+	cmpwi    r3, 0x2735
+	bne      lbl_803FFA7C
+	lwz      r3, 0x18(r30)
+	lwz      r31, 0x1c(r3)
+	cmplwi   r31, 0
+	bne      lbl_803FFA5C
+	lis      r3, lbl_80498510@ha
+	lis      r5, lbl_80498524@ha
+	addi     r3, r3, lbl_80498510@l
+	li       r4, 0x8de
+	addi     r5, r5, lbl_80498524@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x58:
-	  lwz       r3, 0x220(r31)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x6C
-	  bl        -0x8B1AC
-	  b         .loc_0x70
+lbl_803FFA5C:
+	lwz      r3, 0x220(r31)
+	cmplwi   r3, 0
+	beq      lbl_803FFA70
+	bl       isEnlargedWindow__Q28Morimura10TZukanBaseFv
+	b        lbl_803FFA74
 
-	.loc_0x6C:
-	  li        r3, 0
+lbl_803FFA70:
+	li       r3, 0
 
-	.loc_0x70:
-	  mr        r31, r3
-	  b         .loc_0xC8
+lbl_803FFA74:
+	mr       r31, r3
+	b        lbl_803FFACC
 
-	.loc_0x78:
-	  cmpwi     r3, 0x2734
-	  bne-      .loc_0xC8
-	  lwz       r3, 0x18(r30)
-	  lwz       r31, 0x1C(r3)
-	  cmplwi    r31, 0
-	  bne-      .loc_0xAC
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x7AF0
-	  li        r4, 0x8E5
-	  subi      r5, r5, 0x7ADC
-	  crclr     6, 0x6
-	  bl        -0x3D546C
+lbl_803FFA7C:
+	cmpwi    r3, 0x2734
+	bne      lbl_803FFACC
+	lwz      r3, 0x18(r30)
+	lwz      r31, 0x1c(r3)
+	cmplwi   r31, 0
+	bne      lbl_803FFAB0
+	lis      r3, lbl_80498510@ha
+	lis      r5, lbl_80498524@ha
+	addi     r3, r3, lbl_80498510@l
+	li       r4, 0x8e5
+	addi     r5, r5, lbl_80498524@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xAC:
-	  lwz       r3, 0x220(r31)
-	  cmplwi    r3, 0
-	  beq-      .loc_0xC0
-	  bl        -0x8B200
-	  b         .loc_0xC4
+lbl_803FFAB0:
+	lwz      r3, 0x220(r31)
+	cmplwi   r3, 0
+	beq      lbl_803FFAC4
+	bl       isEnlargedWindow__Q28Morimura10TZukanBaseFv
+	b        lbl_803FFAC8
 
-	.loc_0xC0:
-	  li        r3, 0
+lbl_803FFAC4:
+	li       r3, 0
 
-	.loc_0xC4:
-	  mr        r31, r3
+lbl_803FFAC8:
+	mr       r31, r3
 
-	.loc_0xC8:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803FFACC:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -5367,80 +5440,79 @@ void Game2DMgr::isZukanEnlargedWindow()
 void Game2DMgr::isZukanMemoWindow()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  li        r31, 0
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lwz       r3, 0x18(r3)
-	  bl        0x53E28
-	  cmpwi     r3, 0x2735
-	  bne-      .loc_0x78
-	  lwz       r3, 0x18(r30)
-	  lwz       r31, 0x1C(r3)
-	  cmplwi    r31, 0
-	  bne-      .loc_0x58
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x7AF0
-	  li        r4, 0x8FA
-	  subi      r5, r5, 0x7ADC
-	  crclr     6, 0x6
-	  bl        -0x3D54FC
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	li       r31, 0
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lwz      r3, 0x18(r3)
+	bl       getSceneType__Q26Screen3MgrFv
+	cmpwi    r3, 0x2735
+	bne      lbl_803FFB60
+	lwz      r3, 0x18(r30)
+	lwz      r31, 0x1c(r3)
+	cmplwi   r31, 0
+	bne      lbl_803FFB40
+	lis      r3, lbl_80498510@ha
+	lis      r5, lbl_80498524@ha
+	addi     r3, r3, lbl_80498510@l
+	li       r4, 0x8fa
+	addi     r5, r5, lbl_80498524@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x58:
-	  lwz       r3, 0x220(r31)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x6C
-	  bl        -0x8B274
-	  b         .loc_0x70
+lbl_803FFB40:
+	lwz      r3, 0x220(r31)
+	cmplwi   r3, 0
+	beq      lbl_803FFB54
+	bl       isMemoWindow__Q28Morimura10TZukanBaseFv
+	b        lbl_803FFB58
 
-	.loc_0x6C:
-	  li        r3, 0
+lbl_803FFB54:
+	li       r3, 0
 
-	.loc_0x70:
-	  mr        r31, r3
-	  b         .loc_0xC8
+lbl_803FFB58:
+	mr       r31, r3
+	b        lbl_803FFBB0
 
-	.loc_0x78:
-	  cmpwi     r3, 0x2734
-	  bne-      .loc_0xC8
-	  lwz       r3, 0x18(r30)
-	  lwz       r31, 0x1C(r3)
-	  cmplwi    r31, 0
-	  bne-      .loc_0xAC
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x7AF0
-	  li        r4, 0x901
-	  subi      r5, r5, 0x7ADC
-	  crclr     6, 0x6
-	  bl        -0x3D5550
+lbl_803FFB60:
+	cmpwi    r3, 0x2734
+	bne      lbl_803FFBB0
+	lwz      r3, 0x18(r30)
+	lwz      r31, 0x1c(r3)
+	cmplwi   r31, 0
+	bne      lbl_803FFB94
+	lis      r3, lbl_80498510@ha
+	lis      r5, lbl_80498524@ha
+	addi     r3, r3, lbl_80498510@l
+	li       r4, 0x901
+	addi     r5, r5, lbl_80498524@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xAC:
-	  lwz       r3, 0x220(r31)
-	  cmplwi    r3, 0
-	  beq-      .loc_0xC0
-	  bl        -0x8B2C8
-	  b         .loc_0xC4
+lbl_803FFB94:
+	lwz      r3, 0x220(r31)
+	cmplwi   r3, 0
+	beq      lbl_803FFBA8
+	bl       isMemoWindow__Q28Morimura10TZukanBaseFv
+	b        lbl_803FFBAC
 
-	.loc_0xC0:
-	  li        r3, 0
+lbl_803FFBA8:
+	li       r3, 0
 
-	.loc_0xC4:
-	  mr        r31, r3
+lbl_803FFBAC:
+	mr       r31, r3
 
-	.loc_0xC8:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803FFBB0:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -5452,64 +5524,63 @@ void Game2DMgr::isZukanMemoWindow()
 void Game2DMgr::isAppearConfirmWindow()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  li        r31, 0
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lwz       r3, 0x18(r3)
-	  bl        0x53D44
-	  cmpwi     r3, 0x2735
-	  bne-      .loc_0x68
-	  lwz       r3, 0x18(r30)
-	  lwz       r31, 0x1C(r3)
-	  cmplwi    r31, 0
-	  bne-      .loc_0x58
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x7AF0
-	  li        r4, 0x929
-	  subi      r5, r5, 0x7ADC
-	  crclr     6, 0x6
-	  bl        -0x3D55E0
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	li       r31, 0
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lwz      r3, 0x18(r3)
+	bl       getSceneType__Q26Screen3MgrFv
+	cmpwi    r3, 0x2735
+	bne      lbl_803FFC34
+	lwz      r3, 0x18(r30)
+	lwz      r31, 0x1c(r3)
+	cmplwi   r31, 0
+	bne      lbl_803FFC24
+	lis      r3, lbl_80498510@ha
+	lis      r5, lbl_80498524@ha
+	addi     r3, r3, lbl_80498510@l
+	li       r4, 0x929
+	addi     r5, r5, lbl_80498524@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x58:
-	  mr        r3, r31
-	  bl        -0x8462C
-	  mr        r31, r3
-	  b         .loc_0xA8
+lbl_803FFC24:
+	mr       r3, r31
+	bl       isAppearConfirmWindow__Q28Morimura11TDItemSceneFv
+	mr       r31, r3
+	b        lbl_803FFC74
 
-	.loc_0x68:
-	  cmpwi     r3, 0x2734
-	  bne-      .loc_0xA8
-	  lwz       r3, 0x18(r30)
-	  lwz       r31, 0x1C(r3)
-	  cmplwi    r31, 0
-	  bne-      .loc_0x9C
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x7AF0
-	  li        r4, 0x930
-	  subi      r5, r5, 0x7ADC
-	  crclr     6, 0x6
-	  bl        -0x3D5624
+lbl_803FFC34:
+	cmpwi    r3, 0x2734
+	bne      lbl_803FFC74
+	lwz      r3, 0x18(r30)
+	lwz      r31, 0x1c(r3)
+	cmplwi   r31, 0
+	bne      lbl_803FFC68
+	lis      r3, lbl_80498510@ha
+	lis      r5, lbl_80498524@ha
+	addi     r3, r3, lbl_80498510@l
+	li       r4, 0x930
+	addi     r5, r5, lbl_80498524@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x9C:
-	  mr        r3, r31
-	  bl        -0x87D1C
-	  mr        r31, r3
+lbl_803FFC68:
+	mr       r3, r31
+	bl       isAppearConfirmWindow__Q28Morimura12TDEnemySceneFv
+	mr       r31, r3
 
-	.loc_0xA8:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803FFC74:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -5521,50 +5592,49 @@ void Game2DMgr::isAppearConfirmWindow()
 void Game2DMgr::open_ChallengeSelect(Morimura::DispMemberChallengeSelect&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r5, 0x804E
-	  lis       r6, 0x804E
-	  stw       r0, 0x24(r1)
-	  subi      r0, r6, 0x7B98
-	  subi      r7, r5, 0x7BA8
-	  li        r6, 0x2737
-	  stw       r31, 0x1C(r1)
-	  li        r5, 0
-	  mr        r31, r3
-	  stw       r0, 0x8(r1)
-	  li        r0, 0x1
-	  stw       r4, 0x14(r1)
-	  addi      r4, r1, 0x8
-	  stw       r7, 0x8(r1)
-	  stw       r6, 0xC(r1)
-	  stb       r5, 0x10(r1)
-	  stb       r0, 0x11(r1)
-	  lwz       r3, 0x18(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x84
-	  lwz       r3, 0x18(r31)
-	  li        r4, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x88
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lis      r5, __vt__Q26Screen11SetSceneArg@ha
+	lis      r6, __vt__Q26Screen12SceneArgBase@ha
+	stw      r0, 0x24(r1)
+	addi     r0, r6, __vt__Q26Screen12SceneArgBase@l
+	addi     r7, r5, __vt__Q26Screen11SetSceneArg@l
+	li       r6, 0x2737
+	stw      r31, 0x1c(r1)
+	li       r5, 0
+	mr       r31, r3
+	stw      r0, 8(r1)
+	li       r0, 1
+	stw      r4, 0x14(r1)
+	addi     r4, r1, 8
+	stw      r7, 8(r1)
+	stw      r6, 0xc(r1)
+	stb      r5, 0x10(r1)
+	stb      r0, 0x11(r1)
+	lwz      r3, 0x18(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FFD14
+	lwz      r3, 0x18(r31)
+	li       r4, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_803FFD18
 
-	.loc_0x84:
-	  li        r3, 0
+lbl_803FFD14:
+	li       r3, 0
 
-	.loc_0x88:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_803FFD18:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -5576,36 +5646,35 @@ void Game2DMgr::open_ChallengeSelect(Morimura::DispMemberChallengeSelect&)
 void Game2DMgr::check_ChallengeSelect(int&, int&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  li        r0, -0x1
-	  stw       r31, 0xC(r1)
-	  mr        r31, r5
-	  stw       r30, 0x8(r1)
-	  mr        r30, r4
-	  stw       r0, 0x0(r4)
-	  li        r0, 0
-	  stw       r0, 0x0(r5)
-	  lwz       r3, 0x18(r3)
-	  bl        0x53BB8
-	  lwz       r0, 0x1C(r3)
-	  cmpwi     r0, 0x3
-	  bne-      .loc_0x50
-	  lwz       r0, 0x10(r3)
-	  stw       r0, 0x0(r30)
-	  lwz       r0, 0x18(r3)
-	  stw       r0, 0x0(r31)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	li       r0, -1
+	stw      r31, 0xc(r1)
+	mr       r31, r5
+	stw      r30, 8(r1)
+	mr       r30, r4
+	stw      r0, 0(r4)
+	li       r0, 0
+	stw      r0, 0(r5)
+	lwz      r3, 0x18(r3)
+	bl       getDispMember__Q26Screen3MgrFv
+	lwz      r0, 0x1c(r3)
+	cmpwi    r0, 3
+	bne      lbl_803FFD7C
+	lwz      r0, 0x10(r3)
+	stw      r0, 0(r30)
+	lwz      r0, 0x18(r3)
+	stw      r0, 0(r31)
 
-	.loc_0x50:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r3, 0x1C(r3)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803FFD7C:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r3, 0x1c(r3)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -5617,50 +5686,49 @@ void Game2DMgr::check_ChallengeSelect(int&, int&)
 void Game2DMgr::open_ChallengeResult(Morimura::DispMemberChallengeResult&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r5, 0x804E
-	  lis       r6, 0x804E
-	  stw       r0, 0x24(r1)
-	  subi      r0, r6, 0x7B98
-	  subi      r7, r5, 0x7BA8
-	  li        r6, 0x2738
-	  stw       r31, 0x1C(r1)
-	  li        r5, 0
-	  mr        r31, r3
-	  stw       r0, 0x8(r1)
-	  li        r0, 0x1
-	  stw       r4, 0x14(r1)
-	  addi      r4, r1, 0x8
-	  stw       r7, 0x8(r1)
-	  stw       r6, 0xC(r1)
-	  stb       r5, 0x10(r1)
-	  stb       r0, 0x11(r1)
-	  lwz       r3, 0x18(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x84
-	  lwz       r3, 0x18(r31)
-	  li        r4, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x88
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lis      r5, __vt__Q26Screen11SetSceneArg@ha
+	lis      r6, __vt__Q26Screen12SceneArgBase@ha
+	stw      r0, 0x24(r1)
+	addi     r0, r6, __vt__Q26Screen12SceneArgBase@l
+	addi     r7, r5, __vt__Q26Screen11SetSceneArg@l
+	li       r6, 0x2738
+	stw      r31, 0x1c(r1)
+	li       r5, 0
+	mr       r31, r3
+	stw      r0, 8(r1)
+	li       r0, 1
+	stw      r4, 0x14(r1)
+	addi     r4, r1, 8
+	stw      r7, 8(r1)
+	stw      r6, 0xc(r1)
+	stb      r5, 0x10(r1)
+	stb      r0, 0x11(r1)
+	lwz      r3, 0x18(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FFE1C
+	lwz      r3, 0x18(r31)
+	li       r4, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_803FFE20
 
-	.loc_0x84:
-	  li        r3, 0
+lbl_803FFE1C:
+	li       r3, 0
 
-	.loc_0x88:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_803FFE20:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -5672,20 +5740,19 @@ void Game2DMgr::open_ChallengeResult(Morimura::DispMemberChallengeResult&)
 void Game2DMgr::isEndChallengeResult()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x18(r3)
-	  bl        0x53AD0
-	  lwz       r0, 0x10(r3)
-	  subfic    r0, r0, 0x2
-	  cntlzw    r0, r0
-	  rlwinm    r3,r0,27,24,31
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r3, 0x18(r3)
+	bl       getDispMember__Q26Screen3MgrFv
+	lwz      r0, 0x10(r3)
+	subfic   r0, r0, 2
+	cntlzw   r0, r0
+	rlwinm   r3, r0, 0x1b, 0x18, 0x1f
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -5697,50 +5764,49 @@ void Game2DMgr::isEndChallengeResult()
 void Game2DMgr::open_VsSelect(Morimura::DispMemberVsSelect&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r5, 0x804E
-	  lis       r6, 0x804E
-	  stw       r0, 0x24(r1)
-	  subi      r0, r6, 0x7B98
-	  subi      r7, r5, 0x7BA8
-	  li        r6, 0x2739
-	  stw       r31, 0x1C(r1)
-	  li        r5, 0
-	  mr        r31, r3
-	  stw       r0, 0x8(r1)
-	  li        r0, 0x1
-	  stw       r4, 0x14(r1)
-	  addi      r4, r1, 0x8
-	  stw       r7, 0x8(r1)
-	  stw       r6, 0xC(r1)
-	  stb       r5, 0x10(r1)
-	  stb       r0, 0x11(r1)
-	  lwz       r3, 0x18(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x84
-	  lwz       r3, 0x18(r31)
-	  li        r4, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x88
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lis      r5, __vt__Q26Screen11SetSceneArg@ha
+	lis      r6, __vt__Q26Screen12SceneArgBase@ha
+	stw      r0, 0x24(r1)
+	addi     r0, r6, __vt__Q26Screen12SceneArgBase@l
+	addi     r7, r5, __vt__Q26Screen11SetSceneArg@l
+	li       r6, 0x2739
+	stw      r31, 0x1c(r1)
+	li       r5, 0
+	mr       r31, r3
+	stw      r0, 8(r1)
+	li       r0, 1
+	stw      r4, 0x14(r1)
+	addi     r4, r1, 8
+	stw      r7, 8(r1)
+	stw      r6, 0xc(r1)
+	stb      r5, 0x10(r1)
+	stb      r0, 0x11(r1)
+	lwz      r3, 0x18(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803FFEEC
+	lwz      r3, 0x18(r31)
+	li       r4, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_803FFEF0
 
-	.loc_0x84:
-	  li        r3, 0
+lbl_803FFEEC:
+	li       r3, 0
 
-	.loc_0x88:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_803FFEF0:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -5752,39 +5818,38 @@ void Game2DMgr::open_VsSelect(Morimura::DispMemberVsSelect&)
 void Game2DMgr::check_VsSelect(int&, int&, int&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  li        r0, -0x1
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r6
-	  stw       r30, 0x18(r1)
-	  mr        r30, r5
-	  stw       r29, 0x14(r1)
-	  mr        r29, r4
-	  stw       r0, 0x0(r4)
-	  lwz       r3, 0x18(r3)
-	  bl        0x539E0
-	  lwz       r0, 0x34(r3)
-	  cmpwi     r0, 0x3
-	  bne-      .loc_0x58
-	  lwz       r0, 0x14(r3)
-	  stw       r0, 0x0(r29)
-	  lwz       r0, 0x1C(r3)
-	  stw       r0, 0x0(r30)
-	  lwz       r0, 0x20(r3)
-	  stw       r0, 0x0(r31)
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	li       r0, -1
+	stw      r31, 0x1c(r1)
+	mr       r31, r6
+	stw      r30, 0x18(r1)
+	mr       r30, r5
+	stw      r29, 0x14(r1)
+	mr       r29, r4
+	stw      r0, 0(r4)
+	lwz      r3, 0x18(r3)
+	bl       getDispMember__Q26Screen3MgrFv
+	lwz      r0, 0x34(r3)
+	cmpwi    r0, 3
+	bne      lbl_803FFF5C
+	lwz      r0, 0x14(r3)
+	stw      r0, 0(r29)
+	lwz      r0, 0x1c(r3)
+	stw      r0, 0(r30)
+	lwz      r0, 0x20(r3)
+	stw      r0, 0(r31)
 
-	.loc_0x58:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r3, 0x34(r3)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_803FFF5C:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r3, 0x34(r3)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -5796,50 +5861,49 @@ void Game2DMgr::check_VsSelect(int&, int&, int&)
 void Game2DMgr::open_HighScore(Morimura::DispMemberHighScore&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r5, 0x804E
-	  lis       r6, 0x804E
-	  stw       r0, 0x24(r1)
-	  subi      r0, r6, 0x7B98
-	  subi      r7, r5, 0x7BA8
-	  li        r6, 0x2736
-	  stw       r31, 0x1C(r1)
-	  li        r5, 0
-	  mr        r31, r3
-	  stw       r0, 0x8(r1)
-	  li        r0, 0x1
-	  stw       r4, 0x14(r1)
-	  addi      r4, r1, 0x8
-	  stw       r7, 0x8(r1)
-	  stw       r6, 0xC(r1)
-	  stb       r5, 0x10(r1)
-	  stb       r0, 0x11(r1)
-	  lwz       r3, 0x18(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x84
-	  lwz       r3, 0x18(r31)
-	  li        r4, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x88
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lis      r5, __vt__Q26Screen11SetSceneArg@ha
+	lis      r6, __vt__Q26Screen12SceneArgBase@ha
+	stw      r0, 0x24(r1)
+	addi     r0, r6, __vt__Q26Screen12SceneArgBase@l
+	addi     r7, r5, __vt__Q26Screen11SetSceneArg@l
+	li       r6, 0x2736
+	stw      r31, 0x1c(r1)
+	li       r5, 0
+	mr       r31, r3
+	stw      r0, 8(r1)
+	li       r0, 1
+	stw      r4, 0x14(r1)
+	addi     r4, r1, 8
+	stw      r7, 8(r1)
+	stw      r6, 0xc(r1)
+	stb      r5, 0x10(r1)
+	stb      r0, 0x11(r1)
+	lwz      r3, 0x18(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80400000
+	lwz      r3, 0x18(r31)
+	li       r4, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_80400004
 
-	.loc_0x84:
-	  li        r3, 0
+lbl_80400000:
+	li       r3, 0
 
-	.loc_0x88:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80400004:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -5851,33 +5915,32 @@ void Game2DMgr::open_HighScore(Morimura::DispMemberHighScore&)
 void Game2DMgr::isEndHighScore()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r3, 0x18(r3)
-	  bl        0x53900
-	  cmpwi     r3, 0x2736
-	  bne-      .loc_0x40
-	  lwz       r3, 0x18(r31)
-	  bl        0x538D4
-	  lbz       r4, 0xC(r3)
-	  li        r0, 0
-	  stb       r0, 0xC(r3)
-	  mr        r3, r4
-	  b         .loc_0x44
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r3, 0x18(r3)
+	bl       getSceneType__Q26Screen3MgrFv
+	cmpwi    r3, 0x2736
+	bne      lbl_80400058
+	lwz      r3, 0x18(r31)
+	bl       getDispMember__Q26Screen3MgrFv
+	lbz      r4, 0xc(r3)
+	li       r0, 0
+	stb      r0, 0xc(r3)
+	mr       r3, r4
+	b        lbl_8040005C
 
-	.loc_0x40:
-	  li        r3, 0
+lbl_80400058:
+	li       r3, 0
 
-	.loc_0x44:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8040005C:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -5889,40 +5952,39 @@ void Game2DMgr::isEndHighScore()
 void Game2DMgr::drawKanteiMsg(Graphics&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lwz       r3, 0x18(r3)
-	  bl        0x538A0
-	  cmpwi     r3, 0x2722
-	  bne-      .loc_0x50
-	  lwz       r3, 0x18(r30)
-	  lwz       r3, 0x1C(r3)
-	  lwz       r3, 0x220(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x48
-	  mr        r4, r31
-	  bl        -0xE6A50
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lwz      r3, 0x18(r3)
+	bl       getSceneType__Q26Screen3MgrFv
+	cmpwi    r3, 0x2722
+	bne      lbl_804000C0
+	lwz      r3, 0x18(r30)
+	lwz      r3, 0x1c(r3)
+	lwz      r3, 0x220(r3)
+	cmplwi   r3, 0
+	beq      lbl_804000B8
+	mr       r4, r31
+	bl       doDrawMsg__Q32og9newScreen9ObjKanteiFR8Graphics
 
-	.loc_0x48:
-	  li        r3, 0x1
-	  b         .loc_0x54
+lbl_804000B8:
+	li       r3, 1
+	b        lbl_804000C4
 
-	.loc_0x50:
-	  li        r3, 0
+lbl_804000C0:
+	li       r3, 0
 
-	.loc_0x54:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_804000C4:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -5934,46 +5996,45 @@ void Game2DMgr::drawKanteiMsg(Graphics&)
 void Game2DMgr::checkDayEnd(float) const
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stfd      f31, 0x10(r1)
-	  psq_st    f31,0x18(r1),0,0
-	  stw       r31, 0xC(r1)
-	  lwz       r3, -0x6C18(r13)
-	  fmr       f31, f1
-	  cmplwi    r3, 0
-	  bne-      .loc_0x30
-	  li        r3, 0
-	  b         .loc_0x70
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stfd     f31, 0x10(r1)
+	psq_st   f31, 24(r1), 0, qr0
+	stw      r31, 0xc(r1)
+	lwz      r3, gameSystem__4Game@sda21(r13)
+	fmr      f31, f1
+	cmplwi   r3, 0
+	bne      lbl_8040010C
+	li       r3, 0
+	b        lbl_8040014C
 
-	.loc_0x30:
-	  lwz       r31, 0x40(r3)
-	  mr        r3, r31
-	  bl        -0x2D8E50
-	  lfs       f4, 0x3C(r31)
-	  lfs       f2, 0x1F4(r31)
-	  lfs       f0, 0x64(r31)
-	  fsubs     f2, f2, f4
-	  lfs       f3, 0x1CE0(r2)
-	  fsubs     f0, f0, f4
-	  fsubs     f1, f3, f1
-	  fdivs     f0, f2, f0
-	  fsubs     f0, f3, f0
-	  fdivs     f0, f1, f0
-	  fcmpo     cr0, f0, f31
-	  mfcr      r0
-	  rlwinm    r3,r0,1,31,31
+lbl_8040010C:
+	lwz      r31, 0x40(r3)
+	mr       r3, r31
+	bl       getSunGaugeRatio__Q24Game7TimeMgrFv
+	lfs      f4, 0x3c(r31)
+	lfs      f2, 0x1f4(r31)
+	lfs      f0, 0x64(r31)
+	fsubs    f2, f2, f4
+	lfs      f3, lbl_80520040@sda21(r2)
+	fsubs    f0, f0, f4
+	fsubs    f1, f3, f1
+	fdivs    f0, f2, f0
+	fsubs    f0, f3, f0
+	fdivs    f0, f1, f0
+	fcmpo    cr0, f0, f31
+	mfcr     r0
+	srwi     r3, r0, 0x1f
 
-	.loc_0x70:
-	  psq_l     f31,0x18(r1),0,0
-	  lwz       r0, 0x24(r1)
-	  lfd       f31, 0x10(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8040014C:
+	psq_l    f31, 24(r1), 0, qr0
+	lwz      r0, 0x24(r1)
+	lfd      f31, 0x10(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -6044,12 +6105,11 @@ namespace Screen {
 	void DispReadyGo::getMemberID()
 	{
 		/*
-		.loc_0x0:
-		  lis       r4, 0x595F
-		  lis       r3, 0x5245
-		  addi      r4, r4, 0x474F
-		  addi      r3, r3, 0x4144
-		  blr
+	lis      r4, 0x595F474F@ha
+	lis      r3, 0x52454144@ha
+	addi     r4, r4, 0x595F474F@l
+	addi     r3, r3, 0x52454144@l
+	blr
 		*/
 	}
 
@@ -6075,12 +6135,11 @@ namespace Screen {
 	void DispFinalFloor::getMemberID()
 	{
 		/*
-		.loc_0x0:
-		  lis       r4, 0x5F46
-		  lis       r3, 0x46
-		  addi      r4, r4, 0x4C52
-		  addi      r3, r3, 0x494E
-		  blr
+	lis      r4, 0x5F464C52@ha
+	lis      r3, 0x0046494E@ha
+	addi     r4, r4, 0x5F464C52@l
+	addi     r3, r3, 0x0046494E@l
+	blr
 		*/
 	}
 } // namespace Screen

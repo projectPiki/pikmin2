@@ -1,5 +1,44 @@
 #include "types.h"
 
+/*
+    Generated from dpostproc
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__Q32og9newScreen13ChallengeBase
+    __vt__Q32og9newScreen13ChallengeBase:
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte isUseBackupSceneInfo__Q26Screen9SceneBaseFv
+        .4byte isDrawInDemo__Q26Screen9SceneBaseCFv
+        .4byte 0
+        .4byte 0
+        .4byte doUserCallBackFunc__Q26Screen9SceneBaseFPQ28Resource10MgrCommand
+        .4byte setPort__Q26Screen9SceneBaseFR8Graphics
+        .4byte doUpdateActive__Q26Screen9SceneBaseFv
+        .4byte doConfirmSetScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg
+        .4byte
+   doConfirmStartScene__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg .4byte
+   doConfirmEndScene__Q26Screen9SceneBaseFRPQ26Screen11EndSceneArg .4byte
+   doStart__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg .4byte
+   doEnd__Q26Screen9SceneBaseFPQ26Screen11EndSceneArg .4byte
+   setDefaultDispMember__Q26Screen9SceneBaseFv .4byte
+   doSetBackupScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg .4byte
+   doGetFinishState__Q26Screen9SceneBaseFv .4byte 0 .4byte 0
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_8051DF50
+    lbl_8051DF50:
+        .4byte 0x00000000
+        .4byte 0x00000000
+    .global lbl_8051DF58
+    lbl_8051DF58:
+        .4byte 0x43300000
+        .4byte 0x00000000
+*/
+
 namespace og {
 
 /*
@@ -10,24 +49,23 @@ namespace og {
 newScreen::ChallengeBase::ChallengeBase(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        0x124A4C
-	  lis       r3, 0x804E
-	  li        r0, 0
-	  subi      r4, r3, 0x5F20
-	  mr        r3, r31
-	  stw       r4, 0x0(r31)
-	  stb       r0, 0x220(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       __ct__Q26Screen9SceneBaseFv
+	lis      r3, __vt__Q32og9newScreen13ChallengeBase@ha
+	li       r0, 0
+	addi     r4, r3, __vt__Q32og9newScreen13ChallengeBase@l
+	mr       r3, r31
+	stw      r4, 0(r31)
+	stb      r0, 0x220(r31)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 

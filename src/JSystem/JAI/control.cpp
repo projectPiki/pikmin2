@@ -1,6 +1,19 @@
 #include "types.h"
 
 /*
+    Generated from dpostproc
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__Q214JStudio_JAudio13TCreateObject
+    __vt__Q214JStudio_JAudio13TCreateObject:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q214JStudio_JAudio13TCreateObjectFv
+        .4byte
+   create__Q214JStudio_JAudio13TCreateObjectFPPQ27JStudio7TObjectRCQ47JStudio3stb4data20TParse_TBlock_object
+*/
+
+/*
  * --INFO--
  * Address:	80015C44
  * Size:	0000CC
@@ -85,33 +98,32 @@ void createObject_SOUND_JAI___Q214JStudio_JAudio21 @unnamed @control_cpp
 JStudio_JAudio::TCreateObject::~TCreateObject(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x44
-	  lis       r5, 0x804A
-	  li        r4, 0
-	  subi      r0, r5, 0x608
-	  stw       r0, 0x0(r30)
-	  bl        -0x9088
-	  extsh.    r0, r31
-	  ble-      .loc_0x44
-	  mr        r3, r30
-	  bl        0xE364
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_80015D54
+	lis      r5, __vt__Q214JStudio_JAudio13TCreateObject@ha
+	li       r4, 0
+	addi     r0, r5, __vt__Q214JStudio_JAudio13TCreateObject@l
+	stw      r0, 0(r30)
+	bl       __dt__Q27JStudio13TCreateObjectFv
+	extsh.   r0, r31
+	ble      lbl_80015D54
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x44:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80015D54:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 

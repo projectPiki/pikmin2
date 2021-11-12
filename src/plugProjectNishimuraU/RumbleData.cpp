@@ -1,5 +1,9 @@
 #include "types.h"
 
+/*
+    Generated from dpostproc
+*/
+
 namespace Game {
 
 /*
@@ -32,20 +36,19 @@ RumbleDataMgr::RumbleDataMgr()
 void RumbleDataMgr::getRumbleData(int)
 {
 	/*
-	.loc_0x0:
-	  cmpwi     r4, 0
-	  blt-      .loc_0x24
-	  lwz       r0, 0x0(r3)
-	  cmpw      r4, r0
-	  bge-      .loc_0x24
-	  mulli     r0, r4, 0xC
-	  lwz       r3, 0x4(r3)
-	  add       r3, r3, r0
-	  blr
+	cmpwi    r4, 0
+	blt      lbl_802613FC
+	lwz      r0, 0(r3)
+	cmpw     r4, r0
+	bge      lbl_802613FC
+	mulli    r0, r4, 0xc
+	lwz      r3, 4(r3)
+	add      r3, r3, r0
+	blr
 
-	.loc_0x24:
-	  li        r3, 0
-	  blr
+lbl_802613FC:
+	li       r3, 0
+	blr
 	*/
 }
 
@@ -57,97 +60,96 @@ void RumbleDataMgr::getRumbleData(int)
 void RumbleDataMgr::read(Stream&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stmw      r25, 0x14(r1)
-	  mr        r31, r4
-	  mr        r30, r3
-	  mr        r3, r31
-	  bl        0x1B3670
-	  stw       r3, 0x0(r30)
-	  lwz       r26, 0x0(r30)
-	  cmpwi     r26, 0
-	  beq-      .loc_0x114
-	  mulli     r3, r26, 0xC
-	  addi      r3, r3, 0x10
-	  bl        -0x23D490
-	  lis       r4, 0x8026
-	  mr        r7, r26
-	  addi      r4, r4, 0x13C0
-	  li        r5, 0
-	  li        r6, 0xC
-	  bl        -0x19FA64
-	  stw       r3, 0x4(r30)
-	  li        r25, 0
-	  li        r26, 0
-	  b         .loc_0x108
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stmw     r25, 0x14(r1)
+	mr       r31, r4
+	mr       r30, r3
+	mr       r3, r31
+	bl       readInt__6StreamFv
+	stw      r3, 0(r30)
+	lwz      r26, 0(r30)
+	cmpwi    r26, 0
+	beq      lbl_80261518
+	mulli    r3, r26, 0xc
+	addi     r3, r3, 0x10
+	bl       __nwa__FUl
+	lis      r4, __ct__Q24Game10RumbleDataFv@ha
+	mr       r7, r26
+	addi     r4, r4, __ct__Q24Game10RumbleDataFv@l
+	li       r5, 0
+	li       r6, 0xc
+	bl       __construct_new_array
+	stw      r3, 4(r30)
+	li       r25, 0
+	li       r26, 0
+	b        lbl_8026150C
 
-	.loc_0x64:
-	  lwz       r0, 0x4(r30)
-	  mr        r3, r31
-	  add       r28, r0, r26
-	  bl        0x1B361C
-	  stw       r3, 0x0(r28)
-	  lwz       r0, 0x0(r28)
-	  cmpwi     r0, 0
-	  ble-      .loc_0x100
-	  rlwinm    r3,r0,2,0,29
-	  bl        -0x23D4E0
-	  stw       r3, 0x4(r28)
-	  lwz       r0, 0x0(r28)
-	  rlwinm    r3,r0,2,0,29
-	  bl        -0x23D4F0
-	  li        r29, 0
-	  stw       r3, 0x8(r28)
-	  mr        r27, r29
-	  b         .loc_0xC4
+lbl_80261468:
+	lwz      r0, 4(r30)
+	mr       r3, r31
+	add      r28, r0, r26
+	bl       readInt__6StreamFv
+	stw      r3, 0(r28)
+	lwz      r0, 0(r28)
+	cmpwi    r0, 0
+	ble      lbl_80261504
+	slwi     r3, r0, 2
+	bl       __nwa__FUl
+	stw      r3, 4(r28)
+	lwz      r0, 0(r28)
+	slwi     r3, r0, 2
+	bl       __nwa__FUl
+	li       r29, 0
+	stw      r3, 8(r28)
+	mr       r27, r29
+	b        lbl_802614C8
 
-	.loc_0xAC:
-	  mr        r3, r31
-	  bl        0x1B38F8
-	  lwz       r3, 0x4(r28)
-	  addi      r29, r29, 0x1
-	  stfsx     f1, r3, r27
-	  addi      r27, r27, 0x4
+lbl_802614B0:
+	mr       r3, r31
+	bl       readFloat__6StreamFv
+	lwz      r3, 4(r28)
+	addi     r29, r29, 1
+	stfsx    f1, r3, r27
+	addi     r27, r27, 4
 
-	.loc_0xC4:
-	  lwz       r0, 0x0(r28)
-	  cmpw      r29, r0
-	  blt+      .loc_0xAC
-	  li        r29, 0
-	  mr        r27, r29
-	  b         .loc_0xF4
+lbl_802614C8:
+	lwz      r0, 0(r28)
+	cmpw     r29, r0
+	blt      lbl_802614B0
+	li       r29, 0
+	mr       r27, r29
+	b        lbl_802614F8
 
-	.loc_0xDC:
-	  mr        r3, r31
-	  bl        0x1B38C8
-	  lwz       r3, 0x8(r28)
-	  addi      r29, r29, 0x1
-	  stfsx     f1, r3, r27
-	  addi      r27, r27, 0x4
+lbl_802614E0:
+	mr       r3, r31
+	bl       readFloat__6StreamFv
+	lwz      r3, 8(r28)
+	addi     r29, r29, 1
+	stfsx    f1, r3, r27
+	addi     r27, r27, 4
 
-	.loc_0xF4:
-	  lwz       r0, 0x0(r28)
-	  cmpw      r29, r0
-	  blt+      .loc_0xDC
+lbl_802614F8:
+	lwz      r0, 0(r28)
+	cmpw     r29, r0
+	blt      lbl_802614E0
 
-	.loc_0x100:
-	  addi      r26, r26, 0xC
-	  addi      r25, r25, 0x1
+lbl_80261504:
+	addi     r26, r26, 0xc
+	addi     r25, r25, 1
 
-	.loc_0x108:
-	  lwz       r0, 0x0(r30)
-	  cmpw      r25, r0
-	  blt+      .loc_0x64
+lbl_8026150C:
+	lwz      r0, 0(r30)
+	cmpw     r25, r0
+	blt      lbl_80261468
 
-	.loc_0x114:
-	  lmw       r25, 0x14(r1)
-	  lwz       r0, 0x34(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_80261518:
+	lmw      r25, 0x14(r1)
+	lwz      r0, 0x34(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 } // namespace Game

@@ -3,6 +3,199 @@
 #include "Vector3.h"
 #include "JSystem/JKR/JKRDisposer.h"
 
+/*
+    Generated from dpostproc
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_8047E548
+    lbl_8047E548:
+        .4byte 0x726F7574
+        .4byte 0x654D6772
+        .4byte 0x00000000
+    .global lbl_8047E554
+    lbl_8047E554:
+        .4byte 0x726F7574
+        .4byte 0x654D6772
+        .4byte 0x2E637070
+        .4byte 0x00000000
+    .global lbl_8047E564
+    lbl_8047E564:
+        .asciz "P2Assert"
+        .skip 3
+        .4byte 0x77617970
+        .4byte 0x6F696E74
+        .4byte 0x20256400
+        .4byte 0x09232069
+        .4byte 0x6E646578
+        .4byte 0x0D0A0000
+        .4byte 0x0923206E
+        .4byte 0x756D4C69
+        .4byte 0x6E6B730D
+        .4byte 0x0A000000
+        .4byte 0x0923206C
+        .4byte 0x696E6B20
+        .4byte 0x25640D0A
+        .4byte 0x00000000
+    .global lbl_8047E5A8
+    lbl_8047E5A8:
+        .4byte 0x526F7574
+        .4byte 0x654D6772
+        .4byte 0x00000000
+    .global lbl_8047E5B4
+    lbl_8047E5B4:
+        .4byte 0x746F6F20
+        .4byte 0x6D616E79
+        .4byte 0x20746F2D
+        .4byte 0x6C696E6B
+        .4byte 0x73202877
+        .4byte 0x70423D25
+        .4byte 0x64292028
+        .4byte 0x7770413D
+        .4byte 0x2564290A
+        .4byte 0x00000000
+    .global lbl_8047E5DC
+    lbl_8047E5DC:
+        .4byte 0x77704128
+        .4byte 0x25642920
+        .4byte 0x616E6420
+        .4byte 0x77704228
+        .4byte 0x25642920
+        .4byte 0x63617573
+        .4byte 0x65207369
+        .4byte 0x6E67756C
+        .4byte 0x61726974
+        .4byte 0x7920210A
+        .4byte 0x00000000
+        .4byte 0x0923206E
+        .4byte 0x756D5761
+        .4byte 0x79506F69
+        .4byte 0x6E74730D
+        .4byte 0x0A000000
+        .4byte 0x00000000
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__Q24Game14EditorRouteMgr
+    __vt__Q24Game14EditorRouteMgr:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q24Game14EditorRouteMgrFv
+        .4byte getChildCount__5CNodeFv
+        .4byte "getObject__27Container<Q24Game8WayPoint>FPv"
+        .4byte getNext__Q24Game14EditorRouteMgrFPv
+        .4byte getStart__Q24Game14EditorRouteMgrFv
+        .4byte getEnd__Q24Game14EditorRouteMgrFv
+        .4byte get__Q24Game14EditorRouteMgrFPv
+        .4byte "getAt__27Container<Q24Game8WayPoint>Fi"
+        .4byte "getTo__27Container<Q24Game8WayPoint>Fv"
+        .4byte getWayPoint__Q24Game14EditorRouteMgrFs
+        .4byte read__Q24Game14EditorRouteMgrFR6Stream
+        .4byte write__Q24Game8RouteMgrFR6Stream
+    .global __vt__Q34Game14EditorRouteMgr6WPNode
+    __vt__Q34Game14EditorRouteMgr6WPNode:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q34Game14EditorRouteMgr6WPNodeFv
+        .4byte getChildCount__5CNodeFv
+    .global __vt__Q24Game12GameRouteMgr
+    __vt__Q24Game12GameRouteMgr:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q24Game12GameRouteMgrFv
+        .4byte getChildCount__5CNodeFv
+        .4byte "getObject__27Container<Q24Game8WayPoint>FPv"
+        .4byte getNext__Q24Game12GameRouteMgrFPv
+        .4byte getStart__Q24Game12GameRouteMgrFv
+        .4byte getEnd__Q24Game12GameRouteMgrFv
+        .4byte get__Q24Game12GameRouteMgrFPv
+        .4byte "getAt__27Container<Q24Game8WayPoint>Fi"
+        .4byte "getTo__27Container<Q24Game8WayPoint>Fv"
+        .4byte getWayPoint__Q24Game12GameRouteMgrFs
+        .4byte read__Q24Game12GameRouteMgrFR6Stream
+        .4byte write__Q24Game8RouteMgrFR6Stream
+    .global "__vt__26Iterator<Q24Game8WayPoint>"
+    "__vt__26Iterator<Q24Game8WayPoint>":
+        .4byte 0
+        .4byte 0
+        .4byte "first__26Iterator<Q24Game8WayPoint>Fv"
+        .4byte "next__26Iterator<Q24Game8WayPoint>Fv"
+        .4byte "isDone__26Iterator<Q24Game8WayPoint>Fv"
+        .4byte "__ml__26Iterator<Q24Game8WayPoint>Fv"
+    .global __vt__Q24Game8RouteMgr
+    __vt__Q24Game8RouteMgr:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q24Game8RouteMgrFv
+        .4byte getChildCount__5CNodeFv
+        .4byte "getObject__27Container<Q24Game8WayPoint>FPv"
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte "getAt__27Container<Q24Game8WayPoint>Fi"
+        .4byte "getTo__27Container<Q24Game8WayPoint>Fv"
+        .4byte 0
+        .4byte 0
+        .4byte write__Q24Game8RouteMgrFR6Stream
+    .global "__vt__27Container<Q24Game8WayPoint>"
+    "__vt__27Container<Q24Game8WayPoint>":
+        .4byte 0
+        .4byte 0
+        .4byte "__dt__27Container<Q24Game8WayPoint>Fv"
+        .4byte getChildCount__5CNodeFv
+        .4byte "getObject__27Container<Q24Game8WayPoint>FPv"
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte "getAt__27Container<Q24Game8WayPoint>Fi"
+        .4byte "getTo__27Container<Q24Game8WayPoint>Fv"
+    .global __vt__Q24Game8WayPoint
+    __vt__Q24Game8WayPoint:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q24Game8WayPointFv
+        .4byte directDraw__Q24Game8WayPointFR8Graphics
+        .4byte directDraw_Simple__Q24Game8WayPointFR8Graphics
+    .global __vt__Q34Game8WayPoint8RoomList
+    __vt__Q34Game8WayPoint8RoomList:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q34Game8WayPoint8RoomListFv
+        .4byte getChildCount__5CNodeFv
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_80518A00
+    lbl_80518A00:
+        .float 1.0
+    .global lbl_80518A04
+    lbl_80518A04:
+        .4byte 0x0D0A0000
+    .global lbl_80518A08
+    lbl_80518A08:
+        .4byte 0x00000000
+    .global lbl_80518A0C
+    lbl_80518A0C:
+        .4byte 0x47FA0000
+    .global lbl_80518A10
+    lbl_80518A10:
+        .4byte 0xC7FA0000
+    .global lbl_80518A14
+    lbl_80518A14:
+        .4byte 0x41C80000
+    .global lbl_80518A18
+    lbl_80518A18:
+        .float 0.1
+    .global lbl_80518A1C
+    lbl_80518A1C:
+        .4byte 0x40800000
+    .global lbl_80518A20
+    lbl_80518A20:
+        .4byte 0x499C4000
+    .global lbl_80518A24
+    lbl_80518A24:
+        .4byte 0x43960000
+*/
+
 namespace Game {
 
 enum WayPointFlags {

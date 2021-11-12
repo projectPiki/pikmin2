@@ -1,5 +1,40 @@
 #include "types.h"
 
+/*
+    Generated from dpostproc
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_8048E078
+    lbl_8048E078:
+        .asciz "screenObj.h"
+    .global lbl_8048E084
+    lbl_8048E084:
+        .asciz "P2Assert"
+        .skip 3
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__Q26Screen8IObjBase
+    __vt__Q26Screen8IObjBase:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q26Screen8IObjBaseFv
+        .4byte getChildCount__5CNodeFv
+        .4byte 0
+        .4byte 0
+        .4byte "@24@__dt__Q26Screen8IObjBaseFv"
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+*/
+
 namespace og {
 
 /*
@@ -22,48 +57,47 @@ namespace Screen {
 	ObjBase::~ObjBase(void)
 	{
 		/*
-		.loc_0x0:
-		  stwu      r1, -0x10(r1)
-		  mflr      r0
-		  stw       r0, 0x14(r1)
-		  stw       r31, 0xC(r1)
-		  mr        r31, r4
-		  stw       r30, 0x8(r1)
-		  mr.       r30, r3
-		  beq-      .loc_0x78
-		  lis       r4, 0x804F
-		  subi      r4, r4, 0x28A8
-		  stw       r4, 0x0(r30)
-		  addi      r0, r4, 0x10
-		  stw       r0, 0x18(r30)
-		  beq-      .loc_0x68
-		  lis       r4, 0x804E
-		  subi      r4, r4, 0x7DC0
-		  stw       r4, 0x0(r30)
-		  addi      r0, r4, 0x10
-		  stw       r0, 0x18(r30)
-		  bl        0x103D1C
-		  addi      r3, r30, 0x18
-		  li        r4, 0
-		  bl        -0x2F088C
-		  mr        r3, r30
-		  li        r4, 0
-		  bl        0x103CBC
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_8030D8E0
+	lis      r4, __vt__Q26Screen7ObjBase@ha
+	addi     r4, r4, __vt__Q26Screen7ObjBase@l
+	stw      r4, 0(r30)
+	addi     r0, r4, 0x10
+	stw      r0, 0x18(r30)
+	beq      lbl_8030D8D0
+	lis      r4, __vt__Q26Screen8IObjBase@ha
+	addi     r4, r4, __vt__Q26Screen8IObjBase@l
+	stw      r4, 0(r30)
+	addi     r0, r4, 0x10
+	stw      r0, 0x18(r30)
+	bl       del__5CNodeFv
+	addi     r3, r30, 0x18
+	li       r4, 0
+	bl       __dt__11JKRDisposerFv
+	mr       r3, r30
+	li       r4, 0
+	bl       __dt__5CNodeFv
 
-		.loc_0x68:
-		  extsh.    r0, r31
-		  ble-      .loc_0x78
-		  mr        r3, r30
-		  bl        -0x2E9828
+lbl_8030D8D0:
+	extsh.   r0, r31
+	ble      lbl_8030D8E0
+	mr       r3, r30
+	bl       __dl__FPv
 
-		.loc_0x78:
-		  lwz       r0, 0x14(r1)
-		  mr        r3, r30
-		  lwz       r31, 0xC(r1)
-		  lwz       r30, 0x8(r1)
-		  mtlr      r0
-		  addi      r1, r1, 0x10
-		  blr
+lbl_8030D8E0:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 		*/
 	}
 
@@ -221,33 +255,32 @@ namespace Screen {
 void ObjBase::setOwner(Screen::SceneBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lwz       r0, 0x34(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x44
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  subi      r3, r3, 0x1F88
-	  li        r4, 0x81
-	  subi      r5, r5, 0x1F7C
-	  crclr     6, 0x6
-	  bl        -0x2E32FC
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lwz      r0, 0x34(r3)
+	cmplwi   r0, 0
+	beq      lbl_8030D940
+	lis      r3, lbl_8048E078@ha
+	lis      r5, lbl_8048E084@ha
+	addi     r3, r3, lbl_8048E078@l
+	li       r4, 0x81
+	addi     r5, r5, lbl_8048E084@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x44:
-	  stw       r31, 0x34(r30)
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8030D940:
+	stw      r31, 0x34(r30)
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -259,9 +292,8 @@ void ObjBase::setOwner(Screen::SceneBase*)
 void ObjBase::getOwner() const
 {
 	/*
-	.loc_0x0:
-	  lwz       r3, 0x34(r3)
-	  blr
+	lwz      r3, 0x34(r3)
+	blr
 	*/
 }
 
@@ -294,40 +326,39 @@ u32 ObjBase::doConfirmEndScene(Screen::EndSceneArg*&) { return 0x1; }
 IObjBase::~IObjBase(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x60
-	  lis       r4, 0x804E
-	  subi      r4, r4, 0x7DC0
-	  stw       r4, 0x0(r30)
-	  addi      r0, r4, 0x10
-	  stw       r0, 0x18(r30)
-	  bl        0x103C20
-	  addi      r3, r30, 0x18
-	  li        r4, 0
-	  bl        -0x2F0988
-	  mr        r3, r30
-	  li        r4, 0
-	  bl        0x103BC0
-	  extsh.    r0, r31
-	  ble-      .loc_0x60
-	  mr        r3, r30
-	  bl        -0x2E9924
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_8030D9DC
+	lis      r4, __vt__Q26Screen8IObjBase@ha
+	addi     r4, r4, __vt__Q26Screen8IObjBase@l
+	stw      r4, 0(r30)
+	addi     r0, r4, 0x10
+	stw      r0, 0x18(r30)
+	bl       del__5CNodeFv
+	addi     r3, r30, 0x18
+	li       r4, 0
+	bl       __dt__11JKRDisposerFv
+	mr       r3, r30
+	li       r4, 0
+	bl       __dt__5CNodeFv
+	extsh.   r0, r31
+	ble      lbl_8030D9DC
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x60:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8030D9DC:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -339,9 +370,8 @@ IObjBase::~IObjBase(void)
 @24 @Screen::IObjBase::~IObjBase(void)
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x18
-	  b         -0x80
+	addi     r3, r3, -24
+	b        __dt__Q26Screen8IObjBaseFv
 	*/
 }
 

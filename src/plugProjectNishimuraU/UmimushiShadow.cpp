@@ -1,6 +1,58 @@
 #include "types.h"
 
 /*
+    Generated from dpostproc
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_8048D1C0
+    lbl_8048D1C0:
+        .asciz "weak_joint1"
+    .global lbl_8048D1CC
+    lbl_8048D1CC:
+        .asciz "weak_joint2"
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__Q24Game24UmimushiSphereShadowNode
+    __vt__Q24Game24UmimushiSphereShadowNode:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q24Game24UmimushiSphereShadowNodeFv
+        .4byte getChildCount__5CNodeFv
+    .global __vt__Q24Game22UmimushiTubeShadowNode
+    __vt__Q24Game22UmimushiTubeShadowNode:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q24Game22UmimushiTubeShadowNodeFv
+        .4byte getChildCount__5CNodeFv
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_8051D180
+    lbl_8051D180:
+        .float 0.5
+    .global lbl_8051D184
+    lbl_8051D184:
+        .4byte 0x00000000
+    .global lbl_8051D188
+    lbl_8051D188:
+        .float 1.0
+    .global lbl_8051D18C
+    lbl_8051D18C:
+        .4byte 0x41C80000
+    .global lbl_8051D190
+    lbl_8051D190:
+        .4byte 0x40200000
+    .global lbl_8051D194
+    lbl_8051D194:
+        .4byte 0xC1480000
+    .global lbl_8051D198
+    lbl_8051D198:
+        .4byte 0x3FC00000
+    .global lbl_8051D19C
+    lbl_8051D19C:
+        .4byte 0x41700000
+*/
+
+/*
  * --INFO--
  * Address:	802F27DC
  * Size:	0001DC
@@ -220,62 +272,61 @@ namespace Game {
 UmiMushi::UmimushiShadowMgr::UmimushiShadowMgr(Game::UmiMushi::Obj*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  stw       r31, 0x8(r3)
-	  li        r3, 0x20
-	  bl        -0x2CEC04
-	  mr.       r0, r3
-	  beq-      .loc_0x3C
-	  mr        r4, r31
-	  bl        -0xB183C
-	  mr        r0, r3
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	stw      r31, 8(r3)
+	li       r3, 0x20
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_802F2AC0
+	mr       r4, r31
+	bl       __ct__Q24Game19JointShadowRootNodeFPQ24Game8Creature
+	mr       r0, r3
 
-	.loc_0x3C:
-	  stw       r0, 0xC(r30)
-	  li        r3, 0x24
-	  bl        -0x2CEC24
-	  mr.       r31, r3
-	  beq-      .loc_0x64
-	  li        r4, 0x2
-	  bl        -0xB17FC
-	  lis       r3, 0x804D
-	  addi      r0, r3, 0x52B8
-	  stw       r0, 0x0(r31)
+lbl_802F2AC0:
+	stw      r0, 0xc(r30)
+	li       r3, 0x24
+	bl       __nw__FUl
+	or.      r31, r3, r3
+	beq      lbl_802F2AE8
+	li       r4, 2
+	bl       __ct__Q24Game15JointShadowNodeFi
+	lis      r3, __vt__Q24Game22UmimushiTubeShadowNode@ha
+	addi     r0, r3, __vt__Q24Game22UmimushiTubeShadowNode@l
+	stw      r0, 0(r31)
 
-	.loc_0x64:
-	  stw       r31, 0x10(r30)
-	  lwz       r3, 0xC(r30)
-	  lwz       r4, 0x10(r30)
-	  bl        0x11E914
-	  li        r3, 0x24
-	  bl        -0x2CEC58
-	  mr.       r31, r3
-	  beq-      .loc_0x98
-	  li        r4, 0x2
-	  bl        -0xB1830
-	  lis       r3, 0x804D
-	  addi      r0, r3, 0x52A8
-	  stw       r0, 0x0(r31)
+lbl_802F2AE8:
+	stw      r31, 0x10(r30)
+	lwz      r3, 0xc(r30)
+	lwz      r4, 0x10(r30)
+	bl       add__5CNodeFP5CNode
+	li       r3, 0x24
+	bl       __nw__FUl
+	or.      r31, r3, r3
+	beq      lbl_802F2B1C
+	li       r4, 2
+	bl       __ct__Q24Game15JointShadowNodeFi
+	lis      r3, __vt__Q24Game24UmimushiSphereShadowNode@ha
+	addi     r0, r3, __vt__Q24Game24UmimushiSphereShadowNode@l
+	stw      r0, 0(r31)
 
-	.loc_0x98:
-	  stw       r31, 0x14(r30)
-	  lwz       r3, 0xC(r30)
-	  lwz       r4, 0x14(r30)
-	  bl        0x11E8E0
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_802F2B1C:
+	stw      r31, 0x14(r30)
+	lwz      r3, 0xc(r30)
+	lwz      r4, 0x14(r30)
+	bl       add__5CNodeFP5CNode
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -287,33 +338,32 @@ UmiMushi::UmimushiShadowMgr::UmimushiShadowMgr(Game::UmiMushi::Obj*)
 void UmiMushi::UmimushiShadowMgr::init(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lis       r3, 0x8049
-	  lwz       r5, 0x8(r30)
-	  subi      r4, r3, 0x2E40
-	  lwz       r31, 0x174(r5)
-	  mr        r3, r31
-	  bl        0x14C470
-	  bl        0x136D28
-	  lis       r4, 0x8049
-	  stw       r3, 0x0(r30)
-	  subi      r4, r4, 0x2E34
-	  mr        r3, r31
-	  bl        0x14C458
-	  bl        0x136D10
-	  stw       r3, 0x4(r30)
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lis      r3, lbl_8048D1C0@ha
+	lwz      r5, 8(r30)
+	addi     r4, r3, lbl_8048D1C0@l
+	lwz      r31, 0x174(r5)
+	mr       r3, r31
+	bl       getJoint__Q28SysShape5ModelFPc
+	bl       getWorldMatrix__Q28SysShape5JointFv
+	lis      r4, lbl_8048D1CC@ha
+	stw      r3, 0(r30)
+	addi     r4, r4, lbl_8048D1CC@l
+	mr       r3, r31
+	bl       getJoint__Q28SysShape5ModelFPc
+	bl       getWorldMatrix__Q28SysShape5JointFv
+	stw      r3, 4(r30)
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -325,98 +375,99 @@ void UmiMushi::UmimushiShadowMgr::init(void)
 void UmiMushi::UmimushiShadowMgr::update(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x60(r1)
-	  mflr      r0
-	  stw       r0, 0x64(r1)
-	  stw       r31, 0x5C(r1)
-	  mr        r31, r3
-	  addi      r3, r1, 0x8
-	  lwz       r4, 0x8(r31)
-	  lwz       r12, 0x0(r4)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f3, -0x11DC(r2)
-	  addi      r4, r1, 0x2C
-	  lfs       f1, 0x8(r1)
-	  addi      r6, r1, 0x20
-	  lfs       f0, 0xC(r1)
-	  addi      r7, r1, 0x14
-	  lfs       f4, 0x10(r1)
-	  lfs       f2, -0x11D8(r2)
-	  stfs      f1, 0x2C(r1)
-	  lfs       f1, -0x11CC(r2)
-	  stfs      f0, 0x30(r1)
-	  lfs       f0, -0x11C8(r2)
-	  stfs      f4, 0x34(r1)
-	  stfs      f3, 0x38(r1)
-	  stfs      f2, 0x3C(r1)
-	  stfs      f3, 0x40(r1)
-	  lwz       r3, 0x0(r31)
-	  lfs       f5, 0x2C(r3)
-	  lfs       f4, 0x1C(r3)
-	  lfs       f2, 0xC(r3)
-	  stfs      f2, 0x20(r1)
-	  stfs      f4, 0x24(r1)
-	  stfs      f5, 0x28(r1)
-	  stfs      f1, 0x44(r1)
-	  stfs      f3, 0x48(r1)
-	  stfs      f0, 0x4C(r1)
-	  stfs      f3, 0x50(r1)
-	  lwz       r3, 0x10(r31)
-	  lwz       r5, 0x4(r31)
-	  bl        -0x474
-	  lfs       f2, -0x11DC(r2)
-	  lfs       f1, -0x11C4(r2)
-	  lfs       f0, -0x11CC(r2)
-	  stfs      f2, 0x44(r1)
-	  stfs      f2, 0x48(r1)
-	  stfs      f1, 0x4C(r1)
-	  stfs      f0, 0x50(r1)
-	  lwz       r3, 0x8(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xA8(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r7, r3
-	  lwz       r3, 0x14(r31)
-	  lwz       r5, 0x4(r31)
-	  addi      r4, r1, 0x2C
-	  addi      r6, r1, 0x14
-	  bl        -0x2E0
-	  lwz       r3, 0x8(r31)
-	  lwz       r3, 0x17C(r3)
-	  lwz       r3, 0x4(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x130
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x204(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x130
-	  lwz       r3, 0x10(r31)
-	  lwz       r0, 0xC(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x148
-	  bl        0x11E8F8
-	  b         .loc_0x148
+	stwu     r1, -0x60(r1)
+	mflr     r0
+	stw      r0, 0x64(r1)
+	stw      r31, 0x5c(r1)
+	mr       r31, r3
+	addi     r3, r1, 8
+	lwz      r4, 8(r31)
+	lwz      r12, 0(r4)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f3, lbl_8051D184@sda21(r2)
+	addi     r4, r1, 0x2c
+	lfs      f1, 8(r1)
+	addi     r6, r1, 0x20
+	lfs      f0, 0xc(r1)
+	addi     r7, r1, 0x14
+	lfs      f4, 0x10(r1)
+	lfs      f2, lbl_8051D188@sda21(r2)
+	stfs     f1, 0x2c(r1)
+	lfs      f1, lbl_8051D194@sda21(r2)
+	stfs     f0, 0x30(r1)
+	lfs      f0, lbl_8051D198@sda21(r2)
+	stfs     f4, 0x34(r1)
+	stfs     f3, 0x38(r1)
+	stfs     f2, 0x3c(r1)
+	stfs     f3, 0x40(r1)
+	lwz      r3, 0(r31)
+	lfs      f5, 0x2c(r3)
+	lfs      f4, 0x1c(r3)
+	lfs      f2, 0xc(r3)
+	stfs     f2, 0x20(r1)
+	stfs     f4, 0x24(r1)
+	stfs     f5, 0x28(r1)
+	stfs     f1, 0x44(r1)
+	stfs     f3, 0x48(r1)
+	stfs     f0, 0x4c(r1)
+	stfs     f3, 0x50(r1)
+	lwz      r3, 0x10(r31)
+	lwz      r5, 4(r31)
+	bl
+"makeShadowSRT__Q24Game22UmimushiTubeShadowNodeFRQ24Game15JointShadowParmP7MatrixfR10Vector3<f>R10Vector3<f>"
+	lfs      f2, lbl_8051D184@sda21(r2)
+	lfs      f1, lbl_8051D19C@sda21(r2)
+	lfs      f0, lbl_8051D194@sda21(r2)
+	stfs     f2, 0x44(r1)
+	stfs     f2, 0x48(r1)
+	stfs     f1, 0x4c(r1)
+	stfs     f0, 0x50(r1)
+	lwz      r3, 8(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xa8(r12)
+	mtctr    r12
+	bctrl
+	mr       r7, r3
+	lwz      r3, 0x14(r31)
+	lwz      r5, 4(r31)
+	addi     r4, r1, 0x2c
+	addi     r6, r1, 0x14
+	bl
+"makeShadowSRT__Q24Game24UmimushiSphereShadowNodeFRQ24Game15JointShadowParmP7MatrixfR10Vector3<f>b"
+	lwz      r3, 8(r31)
+	lwz      r3, 0x17c(r3)
+	lwz      r3, 4(r3)
+	cmplwi   r3, 0
+	beq      lbl_802F2CE0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x204(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802F2CE0
+	lwz      r3, 0x10(r31)
+	lwz      r0, 0xc(r3)
+	cmplwi   r0, 0
+	beq      lbl_802F2CF8
+	bl       del__5CNodeFv
+	b        lbl_802F2CF8
 
-	.loc_0x130:
-	  lwz       r4, 0x10(r31)
-	  lwz       r0, 0xC(r4)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x148
-	  lwz       r3, 0xC(r31)
-	  bl        0x11E6CC
+lbl_802F2CE0:
+	lwz      r4, 0x10(r31)
+	lwz      r0, 0xc(r4)
+	cmplwi   r0, 0
+	bne      lbl_802F2CF8
+	lwz      r3, 0xc(r31)
+	bl       addHead__5CNodeFP5CNode
 
-	.loc_0x148:
-	  lwz       r0, 0x64(r1)
-	  lwz       r31, 0x5C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x60
-	  blr
+lbl_802F2CF8:
+	lwz      r0, 0x64(r1)
+	lwz      r31, 0x5c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x60
+	blr
 	*/
 }
 
@@ -428,39 +479,38 @@ void UmiMushi::UmimushiShadowMgr::update(void)
 UmimushiSphereShadowNode::~UmimushiSphereShadowNode(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x54
-	  lis       r4, 0x804D
-	  addi      r0, r4, 0x52A8
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x44
-	  lis       r5, 0x804C
-	  li        r4, 0
-	  addi      r0, r5, 0x1A34
-	  stw       r0, 0x0(r30)
-	  bl        0x11E83C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_802F2D60
+	lis      r4, __vt__Q24Game24UmimushiSphereShadowNode@ha
+	addi     r0, r4, __vt__Q24Game24UmimushiSphereShadowNode@l
+	stw      r0, 0(r30)
+	beq      lbl_802F2D50
+	lis      r5, __vt__Q24Game15JointShadowNode@ha
+	li       r4, 0
+	addi     r0, r5, __vt__Q24Game15JointShadowNode@l
+	stw      r0, 0(r30)
+	bl       __dt__5CNodeFv
 
-	.loc_0x44:
-	  extsh.    r0, r31
-	  ble-      .loc_0x54
-	  mr        r3, r30
-	  bl        -0x2CECA8
+lbl_802F2D50:
+	extsh.   r0, r31
+	ble      lbl_802F2D60
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x54:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_802F2D60:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -472,39 +522,38 @@ UmimushiSphereShadowNode::~UmimushiSphereShadowNode(void)
 UmimushiTubeShadowNode::~UmimushiTubeShadowNode(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x54
-	  lis       r4, 0x804D
-	  addi      r0, r4, 0x52B8
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x44
-	  lis       r5, 0x804C
-	  li        r4, 0
-	  addi      r0, r5, 0x1A34
-	  stw       r0, 0x0(r30)
-	  bl        0x11E7CC
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_802F2DD0
+	lis      r4, __vt__Q24Game22UmimushiTubeShadowNode@ha
+	addi     r0, r4, __vt__Q24Game22UmimushiTubeShadowNode@l
+	stw      r0, 0(r30)
+	beq      lbl_802F2DC0
+	lis      r5, __vt__Q24Game15JointShadowNode@ha
+	li       r4, 0
+	addi     r0, r5, __vt__Q24Game15JointShadowNode@l
+	stw      r0, 0(r30)
+	bl       __dt__5CNodeFv
 
-	.loc_0x44:
-	  extsh.    r0, r31
-	  ble-      .loc_0x54
-	  mr        r3, r30
-	  bl        -0x2CED18
+lbl_802F2DC0:
+	extsh.   r0, r31
+	ble      lbl_802F2DD0
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x54:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_802F2DD0:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 } // namespace Game

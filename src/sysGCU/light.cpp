@@ -1,6 +1,101 @@
 #include "types.h"
 
 /*
+    Generated from dpostproc
+
+    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
+        .4byte __sinit_light_cpp
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_80499EF8
+    lbl_80499EF8:
+        .4byte 0x83418393
+        .4byte 0x83728347
+        .4byte 0x83938367
+        .4byte 0x83898343
+        .4byte 0x83670000
+        .4byte 0x00000000
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global lbl_804EBE88
+    lbl_804EBE88:
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+    .global __vt__8LightMgr
+    __vt__8LightMgr:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__8LightMgrFv
+        .4byte getChildCount__5CNodeFv
+        .4byte update__8LightMgrFv
+        .4byte set__8LightMgrFR8Graphics
+        .4byte set__8LightMgrFR7Matrixf
+        .4byte drawDebugInfo__8LightMgrFR8Graphics
+    .global __vt__8LightObj
+    __vt__8LightObj:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__8LightObjFv
+        .4byte getChildCount__5CNodeFv
+        .4byte update__8LightObjFv
+        .4byte set__8LightObjFR7Matrixf
+        .4byte drawPos__8LightObjFR8Graphics
+        .4byte drawPos__8LightObjFR8GraphicsR7Matrixf
+        .4byte drawPos__8LightObjFR8GraphicsR6Camera
+
+    .section .sbss # 0x80514D80 - 0x80516360
+    .global lbl_805161B8
+    lbl_805161B8:
+        .skip 0x4
+    .global lbl_805161BC
+    lbl_805161BC:
+        .skip 0x4
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_805205A8
+    lbl_805205A8:
+        .4byte 0x00000000
+    .global lbl_805205AC
+    lbl_805205AC:
+        .4byte 0x447A0000
+    .global lbl_805205B0
+    lbl_805205B0:
+        .4byte 0xBF800000
+    .global lbl_805205B4
+    lbl_805205B4:
+        .float 1.0
+    .global lbl_805205B8
+    lbl_805205B8:
+        .4byte 0x42700000
+    .global lbl_805205BC
+    lbl_805205BC:
+        .4byte 0x41800000
+    .global lbl_805205C0
+    lbl_805205C0:
+        .4byte 0x41F00000
+    .global lbl_805205C4
+    lbl_805205C4:
+        .4byte 0x437F0000
+    .global lbl_805205C8
+    lbl_805205C8:
+        .float 0.5
+        .4byte 0x00000000
+    .global lbl_805205D0
+    lbl_805205D0:
+        .4byte 0x43300000
+        .4byte 0x00000000
+    .global lbl_805205D8
+    lbl_805205D8:
+        .4byte 0x41200000
+    .global lbl_805205DC
+    lbl_805205DC:
+        .4byte 0x83898343
+        .4byte 0x83670000
+        .4byte 0x00000000
+*/
+
+/*
  * --INFO--
  * Address:	8042B46C
  * Size:	0000C4
@@ -8,56 +103,55 @@
 LightObj::LightObj(char*, _GXLightID, ELightTypeFlag, JUtility::TColor)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stmw      r27, 0xC(r1)
-	  mr        r27, r3
-	  mr        r28, r4
-	  mr        r29, r5
-	  mr        r30, r6
-	  mr        r31, r7
-	  bl        -0x1A100
-	  lis       r3, 0x804F
-	  lfs       f6, 0x2248(r2)
-	  subi      r0, r3, 0x414C
-	  lfs       f5, 0x224C(r2)
-	  stw       r0, 0x0(r27)
-	  li        r5, 0x1
-	  lfs       f4, 0x2250(r2)
-	  li        r4, 0x3
-	  stb       r29, 0x18(r27)
-	  li        r0, 0
-	  lwz       r6, 0x0(r31)
-	  mr        r3, r27
-	  stb       r30, 0x19(r27)
-	  lfs       f3, 0x2254(r2)
-	  stfs      f6, 0x1C(r27)
-	  lfs       f2, 0x2258(r2)
-	  stfs      f5, 0x20(r27)
-	  lfs       f1, 0x225C(r2)
-	  stfs      f6, 0x24(r27)
-	  lfs       f0, 0x2260(r2)
-	  stfs      f6, 0x28(r27)
-	  stfs      f4, 0x2C(r27)
-	  stfs      f6, 0x30(r27)
-	  stw       r6, 0x34(r27)
-	  stfs      f3, 0x38(r27)
-	  stfs      f5, 0x3C(r27)
-	  stfs      f3, 0x40(r27)
-	  stfs      f2, 0x44(r27)
-	  stb       r5, 0x48(r27)
-	  stb       r4, 0x49(r27)
-	  stfs      f1, 0x4C(r27)
-	  stfs      f0, 0x50(r27)
-	  stb       r0, 0x54(r27)
-	  stw       r28, 0x14(r27)
-	  lmw       r27, 0xC(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stmw     r27, 0xc(r1)
+	mr       r27, r3
+	mr       r28, r4
+	mr       r29, r5
+	mr       r30, r6
+	mr       r31, r7
+	bl       __ct__5CNodeFv
+	lis      r3, __vt__8LightObj@ha
+	lfs      f6, lbl_805205A8@sda21(r2)
+	addi     r0, r3, __vt__8LightObj@l
+	lfs      f5, lbl_805205AC@sda21(r2)
+	stw      r0, 0(r27)
+	li       r5, 1
+	lfs      f4, lbl_805205B0@sda21(r2)
+	li       r4, 3
+	stb      r29, 0x18(r27)
+	li       r0, 0
+	lwz      r6, 0(r31)
+	mr       r3, r27
+	stb      r30, 0x19(r27)
+	lfs      f3, lbl_805205B4@sda21(r2)
+	stfs     f6, 0x1c(r27)
+	lfs      f2, lbl_805205B8@sda21(r2)
+	stfs     f5, 0x20(r27)
+	lfs      f1, lbl_805205BC@sda21(r2)
+	stfs     f6, 0x24(r27)
+	lfs      f0, lbl_805205C0@sda21(r2)
+	stfs     f6, 0x28(r27)
+	stfs     f4, 0x2c(r27)
+	stfs     f6, 0x30(r27)
+	stw      r6, 0x34(r27)
+	stfs     f3, 0x38(r27)
+	stfs     f5, 0x3c(r27)
+	stfs     f3, 0x40(r27)
+	stfs     f2, 0x44(r27)
+	stb      r5, 0x48(r27)
+	stb      r4, 0x49(r27)
+	stfs     f1, 0x4c(r27)
+	stfs     f0, 0x50(r27)
+	stb      r0, 0x54(r27)
+	stw      r28, 0x14(r27)
+	lmw      r27, 0xc(r1)
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -69,208 +163,207 @@ LightObj::LightObj(char*, _GXLightID, ELightTypeFlag, JUtility::TColor)
 void LightObj::set(Matrixf&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x140(r1)
-	  mflr      r0
-	  li        r5, -0x1
-	  lfd       f3, 0x2270(r2)
-	  stw       r0, 0x144(r1)
-	  lis       r0, 0x4330
-	  lfs       f0, 0x2264(r2)
-	  stw       r31, 0x13C(r1)
-	  mr        r31, r4
-	  stw       r30, 0x138(r1)
-	  mr        r30, r3
-	  lbz       r3, 0x34(r3)
-	  stw       r0, 0xF0(r1)
-	  lfs       f1, 0x38(r30)
-	  stw       r3, 0xF4(r1)
-	  lfd       f2, 0xF0(r1)
-	  stw       r5, 0xC(r1)
-	  fsubs     f2, f2, f3
-	  fmuls     f1, f2, f1
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x58
-	  fmr       f1, f0
+	stwu     r1, -0x140(r1)
+	mflr     r0
+	li       r5, -1
+	lfd      f3, lbl_805205D0@sda21(r2)
+	stw      r0, 0x144(r1)
+	lis      r0, 0x4330
+	lfs      f0, lbl_805205C4@sda21(r2)
+	stw      r31, 0x13c(r1)
+	mr       r31, r4
+	stw      r30, 0x138(r1)
+	mr       r30, r3
+	lbz      r3, 0x34(r3)
+	stw      r0, 0xf0(r1)
+	lfs      f1, 0x38(r30)
+	stw      r3, 0xf4(r1)
+	lfd      f2, 0xf0(r1)
+	stw      r5, 0xc(r1)
+	fsubs    f2, f2, f3
+	fmuls    f1, f2, f1
+	fcmpo    cr0, f1, f0
+	ble      lbl_8042B588
+	fmr      f1, f0
 
-	.loc_0x58:
-	  lbz       r3, 0x35(r30)
-	  lis       r0, 0x4330
-	  fctiwz    f3, f1
-	  stw       r0, 0x100(r1)
-	  lfd       f2, 0x2270(r2)
-	  stw       r3, 0x104(r1)
-	  lfs       f1, 0x38(r30)
-	  lfd       f0, 0x100(r1)
-	  stfd      f3, 0xF8(r1)
-	  fsubs     f2, f0, f2
-	  lfs       f0, 0x2264(r2)
-	  lwz       r0, 0xFC(r1)
-	  fmuls     f1, f2, f1
-	  stb       r0, 0xC(r1)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x9C
-	  fmr       f1, f0
+lbl_8042B588:
+	lbz      r3, 0x35(r30)
+	lis      r0, 0x4330
+	fctiwz   f3, f1
+	stw      r0, 0x100(r1)
+	lfd      f2, lbl_805205D0@sda21(r2)
+	stw      r3, 0x104(r1)
+	lfs      f1, 0x38(r30)
+	lfd      f0, 0x100(r1)
+	stfd     f3, 0xf8(r1)
+	fsubs    f2, f0, f2
+	lfs      f0, lbl_805205C4@sda21(r2)
+	lwz      r0, 0xfc(r1)
+	fmuls    f1, f2, f1
+	stb      r0, 0xc(r1)
+	fcmpo    cr0, f1, f0
+	ble      lbl_8042B5CC
+	fmr      f1, f0
 
-	.loc_0x9C:
-	  lbz       r3, 0x36(r30)
-	  lis       r0, 0x4330
-	  fctiwz    f3, f1
-	  stw       r0, 0x110(r1)
-	  lfd       f2, 0x2270(r2)
-	  stw       r3, 0x114(r1)
-	  lfs       f1, 0x38(r30)
-	  lfd       f0, 0x110(r1)
-	  stfd      f3, 0x108(r1)
-	  fsubs     f2, f0, f2
-	  lfs       f0, 0x2264(r2)
-	  lwz       r0, 0x10C(r1)
-	  fmuls     f1, f2, f1
-	  stb       r0, 0xD(r1)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0xE0
-	  fmr       f1, f0
+lbl_8042B5CC:
+	lbz      r3, 0x36(r30)
+	lis      r0, 0x4330
+	fctiwz   f3, f1
+	stw      r0, 0x110(r1)
+	lfd      f2, lbl_805205D0@sda21(r2)
+	stw      r3, 0x114(r1)
+	lfs      f1, 0x38(r30)
+	lfd      f0, 0x110(r1)
+	stfd     f3, 0x108(r1)
+	fsubs    f2, f0, f2
+	lfs      f0, lbl_805205C4@sda21(r2)
+	lwz      r0, 0x10c(r1)
+	fmuls    f1, f2, f1
+	stb      r0, 0xd(r1)
+	fcmpo    cr0, f1, f0
+	ble      lbl_8042B610
+	fmr      f1, f0
 
-	.loc_0xE0:
-	  lbz       r3, 0x37(r30)
-	  lis       r0, 0x4330
-	  fctiwz    f3, f1
-	  stw       r0, 0x120(r1)
-	  lfd       f2, 0x2270(r2)
-	  stw       r3, 0x124(r1)
-	  lfs       f1, 0x38(r30)
-	  lfd       f0, 0x120(r1)
-	  stfd      f3, 0x118(r1)
-	  fsubs     f2, f0, f2
-	  lfs       f0, 0x2264(r2)
-	  lwz       r0, 0x11C(r1)
-	  fmuls     f1, f2, f1
-	  stb       r0, 0xE(r1)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x124
-	  fmr       f1, f0
+lbl_8042B610:
+	lbz      r3, 0x37(r30)
+	lis      r0, 0x4330
+	fctiwz   f3, f1
+	stw      r0, 0x120(r1)
+	lfd      f2, lbl_805205D0@sda21(r2)
+	stw      r3, 0x124(r1)
+	lfs      f1, 0x38(r30)
+	lfd      f0, 0x120(r1)
+	stfd     f3, 0x118(r1)
+	fsubs    f2, f0, f2
+	lfs      f0, lbl_805205C4@sda21(r2)
+	lwz      r0, 0x11c(r1)
+	fmuls    f1, f2, f1
+	stb      r0, 0xe(r1)
+	fcmpo    cr0, f1, f0
+	ble      lbl_8042B654
+	fmr      f1, f0
 
-	.loc_0x124:
-	  fctiwz    f0, f1
-	  addi      r3, r1, 0xAC
-	  addi      r4, r1, 0x8
-	  stfd      f0, 0x128(r1)
-	  lwz       r0, 0x12C(r1)
-	  stb       r0, 0xF(r1)
-	  lwz       r0, 0xC(r1)
-	  stw       r0, 0x8(r1)
-	  bl        -0x344A78
-	  lbz       r0, 0x19(r30)
-	  cmpwi     r0, 0x3
-	  beq-      .loc_0x2B8
-	  bge-      .loc_0x168
-	  cmpwi     r0, 0x1
-	  beq-      .loc_0x174
-	  bge-      .loc_0x1A8
-	  b         .loc_0x2B8
+lbl_8042B654:
+	fctiwz   f0, f1
+	addi     r3, r1, 0xac
+	addi     r4, r1, 8
+	stfd     f0, 0x128(r1)
+	lwz      r0, 0x12c(r1)
+	stb      r0, 0xf(r1)
+	lwz      r0, 0xc(r1)
+	stw      r0, 8(r1)
+	bl       GXInitLightColor
+	lbz      r0, 0x19(r30)
+	cmpwi    r0, 3
+	beq      lbl_8042B7E8
+	bge      lbl_8042B698
+	cmpwi    r0, 1
+	beq      lbl_8042B6A4
+	bge      lbl_8042B6D8
+	b        lbl_8042B7E8
 
-	.loc_0x168:
-	  cmpwi     r0, 0x5
-	  bge-      .loc_0x2B8
-	  b         .loc_0x248
+lbl_8042B698:
+	cmpwi    r0, 5
+	bge      lbl_8042B7E8
+	b        lbl_8042B778
 
-	.loc_0x174:
-	  mr        r3, r31
-	  addi      r4, r30, 0x1C
-	  addi      r5, r1, 0x34
-	  bl        -0x340AD8
-	  lfs       f1, 0x34(r1)
-	  addi      r3, r1, 0xAC
-	  lfs       f2, 0x38(r1)
-	  lfs       f3, 0x3C(r1)
-	  stfs      f1, 0x40(r1)
-	  stfs      f2, 0x44(r1)
-	  stfs      f3, 0x48(r1)
-	  bl        -0x344BE4
-	  b         .loc_0x2B8
+lbl_8042B6A4:
+	mr       r3, r31
+	addi     r4, r30, 0x1c
+	addi     r5, r1, 0x34
+	bl       PSMTXMultVec
+	lfs      f1, 0x34(r1)
+	addi     r3, r1, 0xac
+	lfs      f2, 0x38(r1)
+	lfs      f3, 0x3c(r1)
+	stfs     f1, 0x40(r1)
+	stfs     f2, 0x44(r1)
+	stfs     f3, 0x48(r1)
+	bl       GXInitLightPos
+	b        lbl_8042B7E8
 
-	.loc_0x1A8:
-	  mr        r3, r31
-	  addi      r4, r30, 0x1C
-	  addi      r5, r1, 0x28
-	  bl        -0x340B0C
-	  lfs       f1, 0x28(r1)
-	  addi      r3, r1, 0xAC
-	  lfs       f2, 0x2C(r1)
-	  lfs       f3, 0x30(r1)
-	  stfs      f1, 0x40(r1)
-	  stfs      f2, 0x44(r1)
-	  stfs      f3, 0x48(r1)
-	  bl        -0x344C18
-	  mr        r3, r31
-	  addi      r4, r1, 0x7C
-	  bl        -0x3412F4
-	  addi      r3, r1, 0x7C
-	  addi      r4, r1, 0x4C
-	  bl        -0x341350
-	  addi      r3, r1, 0x4C
-	  addi      r4, r30, 0x28
-	  addi      r5, r1, 0x1C
-	  bl        -0x340B54
-	  lfs       f1, 0x1C(r1)
-	  addi      r3, r1, 0xAC
-	  lfs       f2, 0x20(r1)
-	  lfs       f3, 0x24(r1)
-	  stfs      f1, 0x40(r1)
-	  stfs      f2, 0x44(r1)
-	  stfs      f3, 0x48(r1)
-	  bl        -0x344C50
-	  lfs       f1, 0x44(r30)
-	  addi      r3, r1, 0xAC
-	  lbz       r4, 0x49(r30)
-	  bl        -0x344ED0
-	  lfs       f1, 0x3C(r30)
-	  addi      r3, r1, 0xAC
-	  lfs       f2, 0x40(r30)
-	  lbz       r4, 0x48(r30)
-	  bl        -0x344D54
-	  b         .loc_0x2B8
+lbl_8042B6D8:
+	mr       r3, r31
+	addi     r4, r30, 0x1c
+	addi     r5, r1, 0x28
+	bl       PSMTXMultVec
+	lfs      f1, 0x28(r1)
+	addi     r3, r1, 0xac
+	lfs      f2, 0x2c(r1)
+	lfs      f3, 0x30(r1)
+	stfs     f1, 0x40(r1)
+	stfs     f2, 0x44(r1)
+	stfs     f3, 0x48(r1)
+	bl       GXInitLightPos
+	mr       r3, r31
+	addi     r4, r1, 0x7c
+	bl       PSMTXInverse
+	addi     r3, r1, 0x7c
+	addi     r4, r1, 0x4c
+	bl       PSMTXTranspose
+	addi     r3, r1, 0x4c
+	addi     r4, r30, 0x28
+	addi     r5, r1, 0x1c
+	bl       PSMTXMultVec
+	lfs      f1, 0x1c(r1)
+	addi     r3, r1, 0xac
+	lfs      f2, 0x20(r1)
+	lfs      f3, 0x24(r1)
+	stfs     f1, 0x40(r1)
+	stfs     f2, 0x44(r1)
+	stfs     f3, 0x48(r1)
+	bl       GXInitLightDir
+	lfs      f1, 0x44(r30)
+	addi     r3, r1, 0xac
+	lbz      r4, 0x49(r30)
+	bl       GXInitLightSpot
+	lfs      f1, 0x3c(r30)
+	addi     r3, r1, 0xac
+	lfs      f2, 0x40(r30)
+	lbz      r4, 0x48(r30)
+	bl       GXInitLightDistAttn
+	b        lbl_8042B7E8
 
-	.loc_0x248:
-	  mr        r3, r31
-	  addi      r4, r1, 0x7C
-	  bl        -0x341364
-	  addi      r3, r1, 0x7C
-	  addi      r4, r1, 0x4C
-	  bl        -0x3413C0
-	  addi      r3, r1, 0x4C
-	  addi      r4, r30, 0x28
-	  addi      r5, r1, 0x10
-	  bl        -0x340BC4
-	  lfs       f1, 0x10(r1)
-	  addi      r3, r1, 0xAC
-	  lfs       f2, 0x14(r1)
-	  lfs       f3, 0x18(r1)
-	  stfs      f1, 0x40(r1)
-	  stfs      f2, 0x44(r1)
-	  stfs      f3, 0x48(r1)
-	  bl        -0x344CA4
-	  lfs       f2, 0x4C(r30)
-	  addi      r3, r1, 0xAC
-	  lfs       f0, 0x2268(r2)
-	  lfs       f1, 0x2248(r2)
-	  fmuls     f4, f2, f0
-	  lfs       f3, 0x2254(r2)
-	  fmr       f2, f1
-	  fmr       f5, f1
-	  fsubs     f6, f3, f4
-	  bl        -0x344F74
+lbl_8042B778:
+	mr       r3, r31
+	addi     r4, r1, 0x7c
+	bl       PSMTXInverse
+	addi     r3, r1, 0x7c
+	addi     r4, r1, 0x4c
+	bl       PSMTXTranspose
+	addi     r3, r1, 0x4c
+	addi     r4, r30, 0x28
+	addi     r5, r1, 0x10
+	bl       PSMTXMultVec
+	lfs      f1, 0x10(r1)
+	addi     r3, r1, 0xac
+	lfs      f2, 0x14(r1)
+	lfs      f3, 0x18(r1)
+	stfs     f1, 0x40(r1)
+	stfs     f2, 0x44(r1)
+	stfs     f3, 0x48(r1)
+	bl       GXInitSpecularDir
+	lfs      f2, 0x4c(r30)
+	addi     r3, r1, 0xac
+	lfs      f0, lbl_805205C8@sda21(r2)
+	lfs      f1, lbl_805205A8@sda21(r2)
+	fmuls    f4, f2, f0
+	lfs      f3, lbl_805205B4@sda21(r2)
+	fmr      f2, f1
+	fmr      f5, f1
+	fsubs    f6, f3, f4
+	bl       GXInitLightAttn
 
-	.loc_0x2B8:
-	  lbz       r4, 0x18(r30)
-	  addi      r3, r1, 0xAC
-	  bl        -0x344BE8
-	  lwz       r0, 0x144(r1)
-	  lwz       r31, 0x13C(r1)
-	  lwz       r30, 0x138(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x140
-	  blr
+lbl_8042B7E8:
+	lbz      r4, 0x18(r30)
+	addi     r3, r1, 0xac
+	bl       GXLoadLightObjImm
+	lwz      r0, 0x144(r1)
+	lwz      r31, 0x13c(r1)
+	lwz      r30, 0x138(r1)
+	mtlr     r0
+	addi     r1, r1, 0x140
+	blr
 	*/
 }
 
@@ -282,30 +375,29 @@ void LightObj::set(Matrixf&)
 void LightObj::drawPos(Graphics&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lwz       r3, 0x25C(r4)
-	  li        r4, 0
-	  bl        -0x66D4
-	  lwz       r12, 0x0(r30)
-	  mr        r5, r3
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lwz      r3, 0x25c(r4)
+	li       r4, 0
+	bl       getMatrix__8ViewportFb
+	lwz      r12, 0(r30)
+	mr       r5, r3
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -317,38 +409,37 @@ void LightObj::drawPos(Graphics&)
 void LightObj::drawPos(Graphics&, Camera&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r5
-	  stw       r30, 0x18(r1)
-	  mr        r30, r4
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  mr        r3, r31
-	  bl        -0x10B4C
-	  mr        r3, r31
-	  li        r4, 0
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x48(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r12, 0x0(r29)
-	  mr        r5, r3
-	  mr        r3, r29
-	  mr        r4, r30
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r5
+	stw      r30, 0x18(r1)
+	mr       r30, r4
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	mr       r3, r31
+	bl       setProjection__6CameraFv
+	mr       r3, r31
+	li       r4, 0
+	lwz      r12, 0(r31)
+	lwz      r12, 0x48(r12)
+	mtctr    r12
+	bctrl
+	lwz      r12, 0(r29)
+	mr       r5, r3
+	mr       r3, r29
+	mr       r4, r30
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -360,121 +451,120 @@ void LightObj::drawPos(Graphics&, Camera&)
 void LightObj::drawPos(Graphics&, Matrixf&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x50(r1)
-	  mflr      r0
-	  stw       r0, 0x54(r1)
-	  stw       r31, 0x4C(r1)
-	  mr        r31, r4
-	  stw       r30, 0x48(r1)
-	  mr        r30, r3
-	  lbz       r0, 0x54(r3)
-	  rlwinm.   r0,r0,0,31,31
-	  beq-      .loc_0x190
-	  mr        r3, r31
-	  mr        r4, r5
-	  bl        -0x60F8
-	  addi      r3, r1, 0x14
-	  addi      r4, r30, 0x1C
-	  bl        -0x30E0
-	  lbz       r5, 0x37(r30)
-	  lbz       r4, 0x36(r30)
-	  lbz       r3, 0x35(r30)
-	  lbz       r0, 0x34(r30)
-	  stb       r0, 0x84(r31)
-	  stb       r3, 0x85(r31)
-	  stb       r4, 0x86(r31)
-	  stb       r5, 0x87(r31)
-	  lbz       r0, 0x19(r30)
-	  cmpwi     r0, 0x3
-	  beq-      .loc_0x190
-	  bge-      .loc_0x80
-	  cmpwi     r0, 0x1
-	  beq-      .loc_0x168
-	  bge-      .loc_0xF4
-	  b         .loc_0x190
+	stwu     r1, -0x50(r1)
+	mflr     r0
+	stw      r0, 0x54(r1)
+	stw      r31, 0x4c(r1)
+	mr       r31, r4
+	stw      r30, 0x48(r1)
+	mr       r30, r3
+	lbz      r0, 0x54(r3)
+	clrlwi.  r0, r0, 0x1f
+	beq      lbl_8042BA74
+	mr       r3, r31
+	mr       r4, r5
+	bl       initPrimDraw__8GraphicsFP7Matrixf
+	addi     r3, r1, 0x14
+	addi     r4, r30, 0x1c
+	bl       "makeT__7MatrixfFR10Vector3<f>"
+	lbz      r5, 0x37(r30)
+	lbz      r4, 0x36(r30)
+	lbz      r3, 0x35(r30)
+	lbz      r0, 0x34(r30)
+	stb      r0, 0x84(r31)
+	stb      r3, 0x85(r31)
+	stb      r4, 0x86(r31)
+	stb      r5, 0x87(r31)
+	lbz      r0, 0x19(r30)
+	cmpwi    r0, 3
+	beq      lbl_8042BA74
+	bge      lbl_8042B964
+	cmpwi    r0, 1
+	beq      lbl_8042BA4C
+	bge      lbl_8042B9D8
+	b        lbl_8042BA74
 
-	.loc_0x80:
-	  cmpwi     r0, 0x5
-	  bge-      .loc_0x190
-	  lfs       f1, 0x2278(r2)
-	  mr        r3, r31
-	  lfs       f0, 0x50(r30)
-	  addi      r4, r30, 0x1C
-	  lfs       f4, 0x28(r30)
-	  addi      r5, r1, 0x8
-	  fmuls     f3, f1, f0
-	  lfs       f5, 0x2C(r30)
-	  lfs       f6, 0x30(r30)
-	  lfs       f2, 0x24(r30)
-	  fmuls     f6, f6, f3
-	  lfs       f1, 0x20(r30)
-	  fmuls     f5, f5, f3
-	  lfs       f0, 0x1C(r30)
-	  fmuls     f4, f4, f3
-	  fadds     f2, f2, f6
-	  fadds     f1, f1, f5
-	  fadds     f0, f0, f4
-	  stfs      f2, 0x10(r1)
-	  stfs      f0, 0x8(r1)
-	  stfs      f1, 0xC(r1)
-	  bl        -0x5FD8
-	  lfs       f1, 0x2278(r2)
-	  mr        r3, r31
-	  addi      r4, r1, 0x14
-	  bl        -0x598C
-	  b         .loc_0x190
+lbl_8042B964:
+	cmpwi    r0, 5
+	bge      lbl_8042BA74
+	lfs      f1, lbl_805205D8@sda21(r2)
+	mr       r3, r31
+	lfs      f0, 0x50(r30)
+	addi     r4, r30, 0x1c
+	lfs      f4, 0x28(r30)
+	addi     r5, r1, 8
+	fmuls    f3, f1, f0
+	lfs      f5, 0x2c(r30)
+	lfs      f6, 0x30(r30)
+	lfs      f2, 0x24(r30)
+	fmuls    f6, f6, f3
+	lfs      f1, 0x20(r30)
+	fmuls    f5, f5, f3
+	lfs      f0, 0x1c(r30)
+	fmuls    f4, f4, f3
+	fadds    f2, f2, f6
+	fadds    f1, f1, f5
+	fadds    f0, f0, f4
+	stfs     f2, 0x10(r1)
+	stfs     f0, 8(r1)
+	stfs     f1, 0xc(r1)
+	bl       "drawLine__8GraphicsFR10Vector3<f>R10Vector3<f>"
+	lfs      f1, lbl_805205D8@sda21(r2)
+	mr       r3, r31
+	addi     r4, r1, 0x14
+	bl       drawSphere__8GraphicsFfP7Matrixf
+	b        lbl_8042BA74
 
-	.loc_0xF4:
-	  lfs       f1, 0x2278(r2)
-	  mr        r3, r31
-	  addi      r4, r1, 0x14
-	  bl        -0x59A0
-	  lfs       f1, 0x2278(r2)
-	  mr        r3, r31
-	  lfs       f0, 0x50(r30)
-	  addi      r4, r30, 0x1C
-	  lfs       f3, 0x28(r30)
-	  addi      r5, r1, 0x8
-	  fmuls     f1, f1, f0
-	  lfs       f4, 0x2C(r30)
-	  lfs       f5, 0x30(r30)
-	  li        r6, 0x10
-	  lfs       f2, 0x24(r30)
-	  fmuls     f5, f5, f1
-	  fmuls     f3, f3, f1
-	  lfs       f0, 0x1C(r30)
-	  fmuls     f4, f4, f1
-	  lfs       f1, 0x20(r30)
-	  fadds     f2, f2, f5
-	  fadds     f0, f0, f3
-	  fadds     f1, f1, f4
-	  stfs      f2, 0x10(r1)
-	  stfs      f0, 0x8(r1)
-	  stfs      f1, 0xC(r1)
-	  lfs       f1, 0x44(r30)
-	  bl        -0x4D8C
-	  b         .loc_0x190
+lbl_8042B9D8:
+	lfs      f1, lbl_805205D8@sda21(r2)
+	mr       r3, r31
+	addi     r4, r1, 0x14
+	bl       drawSphere__8GraphicsFfP7Matrixf
+	lfs      f1, lbl_805205D8@sda21(r2)
+	mr       r3, r31
+	lfs      f0, 0x50(r30)
+	addi     r4, r30, 0x1c
+	lfs      f3, 0x28(r30)
+	addi     r5, r1, 8
+	fmuls    f1, f1, f0
+	lfs      f4, 0x2c(r30)
+	lfs      f5, 0x30(r30)
+	li       r6, 0x10
+	lfs      f2, 0x24(r30)
+	fmuls    f5, f5, f1
+	fmuls    f3, f3, f1
+	lfs      f0, 0x1c(r30)
+	fmuls    f4, f4, f1
+	lfs      f1, 0x20(r30)
+	fadds    f2, f2, f5
+	fadds    f0, f0, f3
+	fadds    f1, f1, f4
+	stfs     f2, 0x10(r1)
+	stfs     f0, 8(r1)
+	stfs     f1, 0xc(r1)
+	lfs      f1, 0x44(r30)
+	bl       "drawCone__8GraphicsFR10Vector3<f>R10Vector3<f>fi"
+	b        lbl_8042BA74
 
-	.loc_0x168:
-	  lfs       f1, 0x2278(r2)
-	  mr        r3, r31
-	  addi      r4, r1, 0x14
-	  bl        -0x5A14
-	  lfs       f1, 0x2278(r2)
-	  mr        r3, r31
-	  lfs       f0, 0x50(r30)
-	  addi      r4, r1, 0x14
-	  fmuls     f1, f1, f0
-	  bl        -0x5A2C
+lbl_8042BA4C:
+	lfs      f1, lbl_805205D8@sda21(r2)
+	mr       r3, r31
+	addi     r4, r1, 0x14
+	bl       drawSphere__8GraphicsFfP7Matrixf
+	lfs      f1, lbl_805205D8@sda21(r2)
+	mr       r3, r31
+	lfs      f0, 0x50(r30)
+	addi     r4, r1, 0x14
+	fmuls    f1, f1, f0
+	bl       drawSphere__8GraphicsFfP7Matrixf
 
-	.loc_0x190:
-	  lwz       r0, 0x54(r1)
-	  lwz       r31, 0x4C(r1)
-	  lwz       r30, 0x48(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x50
-	  blr
+lbl_8042BA74:
+	lwz      r0, 0x54(r1)
+	lwz      r31, 0x4c(r1)
+	lwz      r30, 0x48(r1)
+	mtlr     r0
+	addi     r1, r1, 0x50
+	blr
 	*/
 }
 
@@ -486,61 +576,60 @@ void LightObj::drawPos(Graphics&, Matrixf&)
 LightMgr::LightMgr(char*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r5, 0x804F
-	  lis       r7, 0x804F
-	  stw       r0, 0x14(r1)
-	  subi      r11, r5, 0x4AD8
-	  lis       r6, 0x804A
-	  li        r10, 0
-	  stw       r31, 0xC(r1)
-	  subi      r8, r6, 0x6108
-	  mr        r31, r3
-	  subi      r9, r7, 0x416C
-	  stw       r11, 0x0(r3)
-	  lis       r5, 0x804B
-	  subi      r7, r5, 0x3BA0
-	  li        r6, 0x80
-	  stw       r10, 0x10(r3)
-	  li        r5, 0xFF
-	  addi      r0, r2, 0x227C
-	  addi      r12, r31, 0x18
-	  stw       r10, 0xC(r3)
-	  stw       r10, 0x8(r3)
-	  stw       r10, 0x4(r3)
-	  stw       r4, 0x14(r3)
-	  mr        r4, r12
-	  stw       r9, 0x0(r3)
-	  stw       r11, 0x18(r3)
-	  stw       r10, 0x28(r3)
-	  stw       r10, 0x24(r3)
-	  stw       r10, 0x20(r3)
-	  stw       r10, 0x1C(r3)
-	  stw       r8, 0x2C(r3)
-	  stw       r7, 0x18(r3)
-	  stb       r6, 0x30(r3)
-	  stb       r6, 0x31(r3)
-	  stb       r6, 0x32(r3)
-	  stb       r5, 0x33(r3)
-	  stw       r11, 0x34(r3)
-	  stw       r10, 0x44(r3)
-	  stw       r10, 0x40(r3)
-	  stw       r10, 0x3C(r3)
-	  stw       r10, 0x38(r3)
-	  stw       r0, 0x48(r3)
-	  stw       r10, 0x4C(r3)
-	  bl        -0x1A734
-	  mr        r3, r31
-	  addi      r4, r31, 0x34
-	  bl        -0x1A740
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lis      r5, __vt__5CNode@ha
+	lis      r7, __vt__8LightMgr@ha
+	stw      r0, 0x14(r1)
+	addi     r11, r5, __vt__5CNode@l
+	lis      r6, lbl_80499EF8@ha
+	li       r10, 0
+	stw      r31, 0xc(r1)
+	addi     r8, r6, lbl_80499EF8@l
+	mr       r31, r3
+	addi     r9, r7, __vt__8LightMgr@l
+	stw      r11, 0(r3)
+	lis      r5, __vt__15AmbientLightObj@ha
+	addi     r7, r5, __vt__15AmbientLightObj@l
+	li       r6, 0x80
+	stw      r10, 0x10(r3)
+	li       r5, 0xff
+	addi     r0, r2, lbl_805205DC@sda21
+	addi     r12, r31, 0x18
+	stw      r10, 0xc(r3)
+	stw      r10, 8(r3)
+	stw      r10, 4(r3)
+	stw      r4, 0x14(r3)
+	mr       r4, r12
+	stw      r9, 0(r3)
+	stw      r11, 0x18(r3)
+	stw      r10, 0x28(r3)
+	stw      r10, 0x24(r3)
+	stw      r10, 0x20(r3)
+	stw      r10, 0x1c(r3)
+	stw      r8, 0x2c(r3)
+	stw      r7, 0x18(r3)
+	stb      r6, 0x30(r3)
+	stb      r6, 0x31(r3)
+	stb      r6, 0x32(r3)
+	stb      r5, 0x33(r3)
+	stw      r11, 0x34(r3)
+	stw      r10, 0x44(r3)
+	stw      r10, 0x40(r3)
+	stw      r10, 0x3c(r3)
+	stw      r10, 0x38(r3)
+	stw      r0, 0x48(r3)
+	stw      r10, 0x4c(r3)
+	bl       add__5CNodeFP5CNode
+	mr       r3, r31
+	addi     r4, r31, 0x34
+	bl       add__5CNodeFP5CNode
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -552,22 +641,21 @@ LightMgr::LightMgr(char*)
 void LightMgr::registLightObj(LightObj*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  addi      r3, r31, 0x34
-	  bl        -0x1A774
-	  lwz       r3, 0x4C(r31)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x4C(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	addi     r3, r31, 0x34
+	bl       add__5CNodeFP5CNode
+	lwz      r3, 0x4c(r31)
+	addi     r0, r3, 1
+	stw      r0, 0x4c(r31)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -579,27 +667,26 @@ void LightMgr::registLightObj(LightObj*)
 void LightMgr::set(Graphics&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r3, 0x25C(r4)
-	  li        r4, 0x1
-	  bl        -0x6A60
-	  lwz       r12, 0x0(r31)
-	  mr        r0, r3
-	  mr        r3, r31
-	  lwz       r12, 0x18(r12)
-	  mr        r4, r0
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r3, 0x25c(r4)
+	li       r4, 1
+	bl       getMatrix__8ViewportFb
+	lwz      r12, 0(r31)
+	mr       r0, r3
+	mr       r3, r31
+	lwz      r12, 0x18(r12)
+	mr       r4, r0
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -611,48 +698,47 @@ void LightMgr::set(Graphics&)
 void LightMgr::set(Matrixf&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r3
-	  stw       r30, 0x18(r1)
-	  mr        r30, r4
-	  addi      r4, r1, 0xC
-	  lbz       r7, 0x30(r3)
-	  lbz       r6, 0x31(r3)
-	  li        r3, 0x4
-	  lbz       r5, 0x32(r31)
-	  lbz       r0, 0x33(r31)
-	  stb       r7, 0x8(r1)
-	  stb       r6, 0x9(r1)
-	  stb       r5, 0xA(r1)
-	  stb       r0, 0xB(r1)
-	  lwz       r0, 0x8(r1)
-	  stw       r0, 0xC(r1)
-	  bl        -0x344FB8
-	  lwz       r31, 0x44(r31)
-	  b         .loc_0x74
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r3
+	stw      r30, 0x18(r1)
+	mr       r30, r4
+	addi     r4, r1, 0xc
+	lbz      r7, 0x30(r3)
+	lbz      r6, 0x31(r3)
+	li       r3, 4
+	lbz      r5, 0x32(r31)
+	lbz      r0, 0x33(r31)
+	stb      r7, 8(r1)
+	stb      r6, 9(r1)
+	stb      r5, 0xa(r1)
+	stb      r0, 0xb(r1)
+	lwz      r0, 8(r1)
+	stw      r0, 0xc(r1)
+	bl       GXSetChanAmbColor
+	lwz      r31, 0x44(r31)
+	b        lbl_8042BC64
 
-	.loc_0x58:
-	  mr        r3, r31
-	  mr        r4, r30
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r31, 0x4(r31)
+lbl_8042BC48:
+	mr       r3, r31
+	mr       r4, r30
+	lwz      r12, 0(r31)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	lwz      r31, 4(r31)
 
-	.loc_0x74:
-	  cmplwi    r31, 0
-	  bne+      .loc_0x58
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8042BC64:
+	cmplwi   r31, 0
+	bne      lbl_8042BC48
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -664,34 +750,33 @@ void LightMgr::set(Matrixf&)
 void LightMgr::drawDebugInfo(Graphics&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  stw       r30, 0x8(r1)
-	  mr        r30, r4
-	  lwz       r31, 0x44(r3)
-	  b         .loc_0x3C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	stw      r30, 8(r1)
+	mr       r30, r4
+	lwz      r31, 0x44(r3)
+	b        lbl_8042BCC0
 
-	.loc_0x20:
-	  mr        r3, r31
-	  mr        r4, r30
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r31, 0x4(r31)
+lbl_8042BCA4:
+	mr       r3, r31
+	mr       r4, r30
+	lwz      r12, 0(r31)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	lwz      r31, 4(r31)
 
-	.loc_0x3C:
-	  cmplwi    r31, 0
-	  bne+      .loc_0x20
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8042BCC0:
+	cmplwi   r31, 0
+	bne      lbl_8042BCA4
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -710,16 +795,15 @@ void LightMgr::update() { }
 void __sinit_light_cpp(void)
 {
 	/*
-	.loc_0x0:
-	  lis       r4, 0x8051
-	  li        r0, -0x1
-	  lfs       f0, 0x48B0(r4)
-	  lis       r3, 0x804F
-	  stw       r0, -0x64C8(r13)
-	  stfsu     f0, -0x4178(r3)
-	  stfs      f0, -0x64C4(r13)
-	  stfs      f0, 0x4(r3)
-	  stfs      f0, 0x8(r3)
-	  blr
+	lis      r4, __float_nan@ha
+	li       r0, -1
+	lfs      f0, __float_nan@l(r4)
+	lis      r3, lbl_804EBE88@ha
+	stw      r0, lbl_805161B8@sda21(r13)
+	stfsu    f0, lbl_804EBE88@l(r3)
+	stfs     f0, lbl_805161BC@sda21(r13)
+	stfs     f0, 4(r3)
+	stfs     f0, 8(r3)
+	blr
 	*/
 }

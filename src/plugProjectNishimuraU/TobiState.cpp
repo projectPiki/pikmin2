@@ -1,5 +1,277 @@
 #include "types.h"
 
+/*
+    Generated from dpostproc
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_80485B38
+    lbl_80485B38:
+        .4byte 0x6D6F7665
+        .4byte 0x73696465
+        .4byte 0x00000000
+    .global lbl_80485B44
+    lbl_80485B44:
+        .4byte 0x6D6F7665
+        .4byte 0x63656E74
+        .4byte 0x72650000
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__Q34Game4Tobi8StateEat
+    __vt__Q34Game4Tobi8StateEat:
+        .4byte 0
+        .4byte 0
+        .4byte init__Q34Game4Tobi8StateEatFPQ24Game9EnemyBasePQ24Game8StateArg
+        .4byte exec__Q34Game4Tobi8StateEatFPQ24Game9EnemyBase
+        .4byte cleanup__Q34Game4Tobi8StateEatFPQ24Game9EnemyBase
+        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game4Tobi12StateAttack2
+    __vt__Q34Game4Tobi12StateAttack2:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game4Tobi12StateAttack2FPQ24Game9EnemyBasePQ24Game8StateArg .4byte
+   exec__Q34Game4Tobi12StateAttack2FPQ24Game9EnemyBase .4byte
+   cleanup__Q34Game4Tobi12StateAttack2FPQ24Game9EnemyBase .4byte
+   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
+   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game4Tobi12StateAttack1
+    __vt__Q34Game4Tobi12StateAttack1:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game4Tobi12StateAttack1FPQ24Game9EnemyBasePQ24Game8StateArg .4byte
+   exec__Q34Game4Tobi12StateAttack1FPQ24Game9EnemyBase .4byte
+   cleanup__Q34Game4Tobi12StateAttack1FPQ24Game9EnemyBase .4byte
+   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
+   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game4Tobi8StateFly
+    __vt__Q34Game4Tobi8StateFly:
+        .4byte 0
+        .4byte 0
+        .4byte init__Q34Game4Tobi8StateFlyFPQ24Game9EnemyBasePQ24Game8StateArg
+        .4byte exec__Q34Game4Tobi8StateFlyFPQ24Game9EnemyBase
+        .4byte cleanup__Q34Game4Tobi8StateFlyFPQ24Game9EnemyBase
+        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game4Tobi11StateGoHome
+    __vt__Q34Game4Tobi11StateGoHome:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game4Tobi11StateGoHomeFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
+   exec__Q34Game4Tobi11StateGoHomeFPQ24Game9EnemyBase .4byte
+   cleanup__Q34Game4Tobi11StateGoHomeFPQ24Game9EnemyBase .4byte
+   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
+   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game4Tobi12StateMoveTop
+    __vt__Q34Game4Tobi12StateMoveTop:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game4Tobi12StateMoveTopFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
+   exec__Q34Game4Tobi12StateMoveTopFPQ24Game9EnemyBase .4byte
+   cleanup__Q34Game4Tobi12StateMoveTopFPQ24Game9EnemyBase .4byte
+   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
+   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game4Tobi15StateMoveCentre
+    __vt__Q34Game4Tobi15StateMoveCentre:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game4Tobi15StateMoveCentreFPQ24Game9EnemyBasePQ24Game8StateArg
+        .4byte exec__Q34Game4Tobi15StateMoveCentreFPQ24Game9EnemyBase
+        .4byte cleanup__Q34Game4Tobi15StateMoveCentreFPQ24Game9EnemyBase
+        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game4Tobi13StateMoveSide
+    __vt__Q34Game4Tobi13StateMoveSide:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game4Tobi13StateMoveSideFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
+   exec__Q34Game4Tobi13StateMoveSideFPQ24Game9EnemyBase .4byte
+   cleanup__Q34Game4Tobi13StateMoveSideFPQ24Game9EnemyBase .4byte
+   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
+   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game4Tobi9StateMove
+    __vt__Q34Game4Tobi9StateMove:
+        .4byte 0
+        .4byte 0
+        .4byte init__Q34Game4Tobi9StateMoveFPQ24Game9EnemyBasePQ24Game8StateArg
+        .4byte exec__Q34Game4Tobi9StateMoveFPQ24Game9EnemyBase
+        .4byte cleanup__Q34Game4Tobi9StateMoveFPQ24Game9EnemyBase
+        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game4Tobi9StateDive
+    __vt__Q34Game4Tobi9StateDive:
+        .4byte 0
+        .4byte 0
+        .4byte init__Q34Game4Tobi9StateDiveFPQ24Game9EnemyBasePQ24Game8StateArg
+        .4byte exec__Q34Game4Tobi9StateDiveFPQ24Game9EnemyBase
+        .4byte cleanup__Q34Game4Tobi9StateDiveFPQ24Game9EnemyBase
+        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game4Tobi11StateAppear
+    __vt__Q34Game4Tobi11StateAppear:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game4Tobi11StateAppearFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
+   exec__Q34Game4Tobi11StateAppearFPQ24Game9EnemyBase .4byte
+   cleanup__Q34Game4Tobi11StateAppearFPQ24Game9EnemyBase .4byte
+   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
+   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game4Tobi9StateStay
+    __vt__Q34Game4Tobi9StateStay:
+        .4byte 0
+        .4byte 0
+        .4byte init__Q34Game4Tobi9StateStayFPQ24Game9EnemyBasePQ24Game8StateArg
+        .4byte exec__Q34Game4Tobi9StateStayFPQ24Game9EnemyBase
+        .4byte cleanup__Q34Game4Tobi9StateStayFPQ24Game9EnemyBase
+        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game4Tobi10StatePress
+    __vt__Q34Game4Tobi10StatePress:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game4Tobi10StatePressFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
+   exec__Q34Game4Tobi10StatePressFPQ24Game9EnemyBase .4byte
+   cleanup__Q34Game4Tobi10StatePressFPQ24Game9EnemyBase .4byte
+   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
+   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game4Tobi9StateDead
+    __vt__Q34Game4Tobi9StateDead:
+        .4byte 0
+        .4byte 0
+        .4byte init__Q34Game4Tobi9StateDeadFPQ24Game9EnemyBasePQ24Game8StateArg
+        .4byte exec__Q34Game4Tobi9StateDeadFPQ24Game9EnemyBase
+        .4byte cleanup__Q34Game4Tobi9StateDeadFPQ24Game9EnemyBase
+        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game4Tobi5State
+    __vt__Q34Game4Tobi5State:
+        .4byte 0
+        .4byte 0
+        .4byte init__Q24Game13EnemyFSMStateFPQ24Game9EnemyBasePQ24Game8StateArg
+        .4byte exec__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte cleanup__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game4Tobi3FSM
+    __vt__Q34Game4Tobi3FSM:
+        .4byte 0
+        .4byte 0
+        .4byte init__Q34Game4Tobi3FSMFPQ24Game9EnemyBase
+        .4byte
+   start__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   exec__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase .4byte
+   transit__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseiPQ24Game8StateArg
+        .4byte
+   doDirectDraw__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseR8Graphics .4byte
+   getCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase .4byte
+   setCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBasePQ24Game13EnemyFSMState
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_8051AED8
+    lbl_8051AED8:
+        .4byte 0x64656164
+        .4byte 0x00000000
+    .global lbl_8051AEE0
+    lbl_8051AEE0:
+        .4byte 0x70726573
+        .4byte 0x73000000
+    .global lbl_8051AEE8
+    lbl_8051AEE8:
+        .4byte 0x73746179
+        .4byte 0x00000000
+    .global lbl_8051AEF0
+    lbl_8051AEF0:
+        .4byte 0x61707065
+        .4byte 0x61720000
+    .global lbl_8051AEF8
+    lbl_8051AEF8:
+        .4byte 0x64697665
+        .4byte 0x00000000
+    .global lbl_8051AF00
+    lbl_8051AF00:
+        .4byte 0x6D6F7665
+        .4byte 0x00000000
+    .global lbl_8051AF08
+    lbl_8051AF08:
+        .4byte 0x6D6F7665
+        .4byte 0x746F7000
+    .global lbl_8051AF10
+    lbl_8051AF10:
+        .4byte 0x676F686F
+        .4byte 0x6D650000
+    .global lbl_8051AF18
+    lbl_8051AF18:
+        .4byte 0x666C7900
+    .global lbl_8051AF1C
+    lbl_8051AF1C:
+        .4byte 0x61747461
+        .4byte 0x636B3100
+    .global lbl_8051AF24
+    lbl_8051AF24:
+        .4byte 0x61747461
+        .4byte 0x636B3200
+    .global lbl_8051AF2C
+    lbl_8051AF2C:
+        .4byte 0x65617400
+    .global lbl_8051AF30
+    lbl_8051AF30:
+        .4byte 0x00000000
+    .global lbl_8051AF34
+    lbl_8051AF34:
+        .4byte 0x40490FDB
+    .global lbl_8051AF38
+    lbl_8051AF38:
+        .4byte 0x3BB60B61
+    .global lbl_8051AF3C
+    lbl_8051AF3C:
+        .float 0.5
+*/
+
 namespace Game {
 
 /*
@@ -10,342 +282,341 @@ namespace Game {
 void Tobi::FSM::init(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r4, 0xE
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        -0x136D50
-	  li        r3, 0x10
-	  bl        -0x243718
-	  mr.       r4, r3
-	  beq-      .loc_0x64
-	  lis       r3, 0x804B
-	  lis       r5, 0x804C
-	  subi      r0, r3, 0x65C
-	  lis       r3, 0x804C
-	  stw       r0, 0x0(r4)
-	  li        r7, 0
-	  addi      r6, r5, 0x4D78
-	  subi      r5, r2, 0x3488
-	  stw       r7, 0x4(r4)
-	  addi      r0, r3, 0x4D54
-	  stw       r7, 0x8(r4)
-	  stw       r6, 0x0(r4)
-	  stw       r5, 0xC(r4)
-	  stw       r0, 0x0(r4)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	li       r4, 0xe
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       create__Q24Game17EnemyStateMachineFi
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_80267600
+	lis      r3, __vt__Q24Game13EnemyFSMState@ha
+	lis      r5, __vt__Q34Game4Tobi5State@ha
+	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
+	lis      r3, __vt__Q34Game4Tobi9StateDead@ha
+	stw      r0, 0(r4)
+	li       r7, 0
+	addi     r6, r5, __vt__Q34Game4Tobi5State@l
+	addi     r5, r2, lbl_8051AED8@sda21
+	stw      r7, 4(r4)
+	addi     r0, r3, __vt__Q34Game4Tobi9StateDead@l
+	stw      r7, 8(r4)
+	stw      r6, 0(r4)
+	stw      r5, 0xc(r4)
+	stw      r0, 0(r4)
 
-	.loc_0x64:
-	  mr        r3, r31
-	  bl        -0x136CFC
-	  li        r3, 0x10
-	  bl        -0x243768
-	  mr.       r4, r3
-	  beq-      .loc_0xB8
-	  lis       r3, 0x804B
-	  lis       r5, 0x804C
-	  subi      r0, r3, 0x65C
-	  lis       r3, 0x804C
-	  stw       r0, 0x0(r4)
-	  li        r0, 0x1
-	  li        r7, 0
-	  addi      r6, r5, 0x4D78
-	  stw       r0, 0x4(r4)
-	  subi      r5, r2, 0x3480
-	  addi      r0, r3, 0x4D30
-	  stw       r7, 0x8(r4)
-	  stw       r6, 0x0(r4)
-	  stw       r5, 0xC(r4)
-	  stw       r0, 0x0(r4)
+lbl_80267600:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_80267654
+	lis      r3, __vt__Q24Game13EnemyFSMState@ha
+	lis      r5, __vt__Q34Game4Tobi5State@ha
+	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
+	lis      r3, __vt__Q34Game4Tobi10StatePress@ha
+	stw      r0, 0(r4)
+	li       r0, 1
+	li       r7, 0
+	addi     r6, r5, __vt__Q34Game4Tobi5State@l
+	stw      r0, 4(r4)
+	addi     r5, r2, lbl_8051AEE0@sda21
+	addi     r0, r3, __vt__Q34Game4Tobi10StatePress@l
+	stw      r7, 8(r4)
+	stw      r6, 0(r4)
+	stw      r5, 0xc(r4)
+	stw      r0, 0(r4)
 
-	.loc_0xB8:
-	  mr        r3, r31
-	  bl        -0x136D50
-	  li        r3, 0x10
-	  bl        -0x2437BC
-	  mr.       r4, r3
-	  beq-      .loc_0x10C
-	  lis       r3, 0x804B
-	  lis       r5, 0x804C
-	  subi      r0, r3, 0x65C
-	  lis       r3, 0x804C
-	  stw       r0, 0x0(r4)
-	  li        r0, 0x2
-	  li        r7, 0
-	  addi      r6, r5, 0x4D78
-	  stw       r0, 0x4(r4)
-	  subi      r5, r2, 0x3478
-	  addi      r0, r3, 0x4D0C
-	  stw       r7, 0x8(r4)
-	  stw       r6, 0x0(r4)
-	  stw       r5, 0xC(r4)
-	  stw       r0, 0x0(r4)
+lbl_80267654:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_802676A8
+	lis      r3, __vt__Q24Game13EnemyFSMState@ha
+	lis      r5, __vt__Q34Game4Tobi5State@ha
+	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
+	lis      r3, __vt__Q34Game4Tobi9StateStay@ha
+	stw      r0, 0(r4)
+	li       r0, 2
+	li       r7, 0
+	addi     r6, r5, __vt__Q34Game4Tobi5State@l
+	stw      r0, 4(r4)
+	addi     r5, r2, lbl_8051AEE8@sda21
+	addi     r0, r3, __vt__Q34Game4Tobi9StateStay@l
+	stw      r7, 8(r4)
+	stw      r6, 0(r4)
+	stw      r5, 0xc(r4)
+	stw      r0, 0(r4)
 
-	.loc_0x10C:
-	  mr        r3, r31
-	  bl        -0x136DA4
-	  li        r3, 0x10
-	  bl        -0x243810
-	  mr.       r4, r3
-	  beq-      .loc_0x160
-	  lis       r3, 0x804B
-	  lis       r5, 0x804C
-	  subi      r0, r3, 0x65C
-	  lis       r3, 0x804C
-	  stw       r0, 0x0(r4)
-	  li        r0, 0x3
-	  li        r7, 0
-	  addi      r6, r5, 0x4D78
-	  stw       r0, 0x4(r4)
-	  subi      r5, r2, 0x3470
-	  addi      r0, r3, 0x4CE8
-	  stw       r7, 0x8(r4)
-	  stw       r6, 0x0(r4)
-	  stw       r5, 0xC(r4)
-	  stw       r0, 0x0(r4)
+lbl_802676A8:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_802676FC
+	lis      r3, __vt__Q24Game13EnemyFSMState@ha
+	lis      r5, __vt__Q34Game4Tobi5State@ha
+	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
+	lis      r3, __vt__Q34Game4Tobi11StateAppear@ha
+	stw      r0, 0(r4)
+	li       r0, 3
+	li       r7, 0
+	addi     r6, r5, __vt__Q34Game4Tobi5State@l
+	stw      r0, 4(r4)
+	addi     r5, r2, lbl_8051AEF0@sda21
+	addi     r0, r3, __vt__Q34Game4Tobi11StateAppear@l
+	stw      r7, 8(r4)
+	stw      r6, 0(r4)
+	stw      r5, 0xc(r4)
+	stw      r0, 0(r4)
 
-	.loc_0x160:
-	  mr        r3, r31
-	  bl        -0x136DF8
-	  li        r3, 0x10
-	  bl        -0x243864
-	  mr.       r4, r3
-	  beq-      .loc_0x1B4
-	  lis       r3, 0x804B
-	  lis       r5, 0x804C
-	  subi      r0, r3, 0x65C
-	  lis       r3, 0x804C
-	  stw       r0, 0x0(r4)
-	  li        r0, 0x4
-	  li        r7, 0
-	  addi      r6, r5, 0x4D78
-	  stw       r0, 0x4(r4)
-	  subi      r5, r2, 0x3468
-	  addi      r0, r3, 0x4CC4
-	  stw       r7, 0x8(r4)
-	  stw       r6, 0x0(r4)
-	  stw       r5, 0xC(r4)
-	  stw       r0, 0x0(r4)
+lbl_802676FC:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_80267750
+	lis      r3, __vt__Q24Game13EnemyFSMState@ha
+	lis      r5, __vt__Q34Game4Tobi5State@ha
+	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
+	lis      r3, __vt__Q34Game4Tobi9StateDive@ha
+	stw      r0, 0(r4)
+	li       r0, 4
+	li       r7, 0
+	addi     r6, r5, __vt__Q34Game4Tobi5State@l
+	stw      r0, 4(r4)
+	addi     r5, r2, lbl_8051AEF8@sda21
+	addi     r0, r3, __vt__Q34Game4Tobi9StateDive@l
+	stw      r7, 8(r4)
+	stw      r6, 0(r4)
+	stw      r5, 0xc(r4)
+	stw      r0, 0(r4)
 
-	.loc_0x1B4:
-	  mr        r3, r31
-	  bl        -0x136E4C
-	  li        r3, 0x10
-	  bl        -0x2438B8
-	  mr.       r4, r3
-	  beq-      .loc_0x208
-	  lis       r3, 0x804B
-	  lis       r5, 0x804C
-	  subi      r0, r3, 0x65C
-	  lis       r3, 0x804C
-	  stw       r0, 0x0(r4)
-	  li        r0, 0x5
-	  li        r7, 0
-	  addi      r6, r5, 0x4D78
-	  stw       r0, 0x4(r4)
-	  subi      r5, r2, 0x3460
-	  addi      r0, r3, 0x4CA0
-	  stw       r7, 0x8(r4)
-	  stw       r6, 0x0(r4)
-	  stw       r5, 0xC(r4)
-	  stw       r0, 0x0(r4)
+lbl_80267750:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_802677A4
+	lis      r3, __vt__Q24Game13EnemyFSMState@ha
+	lis      r5, __vt__Q34Game4Tobi5State@ha
+	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
+	lis      r3, __vt__Q34Game4Tobi9StateMove@ha
+	stw      r0, 0(r4)
+	li       r0, 5
+	li       r7, 0
+	addi     r6, r5, __vt__Q34Game4Tobi5State@l
+	stw      r0, 4(r4)
+	addi     r5, r2, lbl_8051AF00@sda21
+	addi     r0, r3, __vt__Q34Game4Tobi9StateMove@l
+	stw      r7, 8(r4)
+	stw      r6, 0(r4)
+	stw      r5, 0xc(r4)
+	stw      r0, 0(r4)
 
-	.loc_0x208:
-	  mr        r3, r31
-	  bl        -0x136EA0
-	  li        r3, 0x10
-	  bl        -0x24390C
-	  mr.       r4, r3
-	  beq-      .loc_0x260
-	  lis       r3, 0x804B
-	  lis       r6, 0x804C
-	  subi      r0, r3, 0x65C
-	  lis       r5, 0x8048
-	  stw       r0, 0x0(r4)
-	  li        r0, 0x6
-	  lis       r3, 0x804C
-	  li        r7, 0
-	  stw       r0, 0x4(r4)
-	  addi      r6, r6, 0x4D78
-	  addi      r5, r5, 0x5B38
-	  addi      r0, r3, 0x4C7C
-	  stw       r7, 0x8(r4)
-	  stw       r6, 0x0(r4)
-	  stw       r5, 0xC(r4)
-	  stw       r0, 0x0(r4)
+lbl_802677A4:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_802677FC
+	lis      r3, __vt__Q24Game13EnemyFSMState@ha
+	lis      r6, __vt__Q34Game4Tobi5State@ha
+	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
+	lis      r5, lbl_80485B38@ha
+	stw      r0, 0(r4)
+	li       r0, 6
+	lis      r3, __vt__Q34Game4Tobi13StateMoveSide@ha
+	li       r7, 0
+	stw      r0, 4(r4)
+	addi     r6, r6, __vt__Q34Game4Tobi5State@l
+	addi     r5, r5, lbl_80485B38@l
+	addi     r0, r3, __vt__Q34Game4Tobi13StateMoveSide@l
+	stw      r7, 8(r4)
+	stw      r6, 0(r4)
+	stw      r5, 0xc(r4)
+	stw      r0, 0(r4)
 
-	.loc_0x260:
-	  mr        r3, r31
-	  bl        -0x136EF8
-	  li        r3, 0x10
-	  bl        -0x243964
-	  mr.       r4, r3
-	  beq-      .loc_0x2B8
-	  lis       r3, 0x804B
-	  lis       r6, 0x804C
-	  subi      r0, r3, 0x65C
-	  lis       r5, 0x8048
-	  stw       r0, 0x0(r4)
-	  li        r0, 0x7
-	  lis       r3, 0x804C
-	  li        r7, 0
-	  stw       r0, 0x4(r4)
-	  addi      r6, r6, 0x4D78
-	  addi      r5, r5, 0x5B44
-	  addi      r0, r3, 0x4C58
-	  stw       r7, 0x8(r4)
-	  stw       r6, 0x0(r4)
-	  stw       r5, 0xC(r4)
-	  stw       r0, 0x0(r4)
+lbl_802677FC:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_80267854
+	lis      r3, __vt__Q24Game13EnemyFSMState@ha
+	lis      r6, __vt__Q34Game4Tobi5State@ha
+	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
+	lis      r5, lbl_80485B44@ha
+	stw      r0, 0(r4)
+	li       r0, 7
+	lis      r3, __vt__Q34Game4Tobi15StateMoveCentre@ha
+	li       r7, 0
+	stw      r0, 4(r4)
+	addi     r6, r6, __vt__Q34Game4Tobi5State@l
+	addi     r5, r5, lbl_80485B44@l
+	addi     r0, r3, __vt__Q34Game4Tobi15StateMoveCentre@l
+	stw      r7, 8(r4)
+	stw      r6, 0(r4)
+	stw      r5, 0xc(r4)
+	stw      r0, 0(r4)
 
-	.loc_0x2B8:
-	  mr        r3, r31
-	  bl        -0x136F50
-	  li        r3, 0x10
-	  bl        -0x2439BC
-	  mr.       r4, r3
-	  beq-      .loc_0x30C
-	  lis       r3, 0x804B
-	  lis       r5, 0x804C
-	  subi      r0, r3, 0x65C
-	  lis       r3, 0x804C
-	  stw       r0, 0x0(r4)
-	  li        r0, 0x8
-	  li        r7, 0
-	  addi      r6, r5, 0x4D78
-	  stw       r0, 0x4(r4)
-	  subi      r5, r2, 0x3458
-	  addi      r0, r3, 0x4C34
-	  stw       r7, 0x8(r4)
-	  stw       r6, 0x0(r4)
-	  stw       r5, 0xC(r4)
-	  stw       r0, 0x0(r4)
+lbl_80267854:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_802678A8
+	lis      r3, __vt__Q24Game13EnemyFSMState@ha
+	lis      r5, __vt__Q34Game4Tobi5State@ha
+	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
+	lis      r3, __vt__Q34Game4Tobi12StateMoveTop@ha
+	stw      r0, 0(r4)
+	li       r0, 8
+	li       r7, 0
+	addi     r6, r5, __vt__Q34Game4Tobi5State@l
+	stw      r0, 4(r4)
+	addi     r5, r2, lbl_8051AF08@sda21
+	addi     r0, r3, __vt__Q34Game4Tobi12StateMoveTop@l
+	stw      r7, 8(r4)
+	stw      r6, 0(r4)
+	stw      r5, 0xc(r4)
+	stw      r0, 0(r4)
 
-	.loc_0x30C:
-	  mr        r3, r31
-	  bl        -0x136FA4
-	  li        r3, 0x10
-	  bl        -0x243A10
-	  mr.       r4, r3
-	  beq-      .loc_0x360
-	  lis       r3, 0x804B
-	  lis       r5, 0x804C
-	  subi      r0, r3, 0x65C
-	  lis       r3, 0x804C
-	  stw       r0, 0x0(r4)
-	  li        r0, 0x9
-	  li        r7, 0
-	  addi      r6, r5, 0x4D78
-	  stw       r0, 0x4(r4)
-	  subi      r5, r2, 0x3450
-	  addi      r0, r3, 0x4C10
-	  stw       r7, 0x8(r4)
-	  stw       r6, 0x0(r4)
-	  stw       r5, 0xC(r4)
-	  stw       r0, 0x0(r4)
+lbl_802678A8:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_802678FC
+	lis      r3, __vt__Q24Game13EnemyFSMState@ha
+	lis      r5, __vt__Q34Game4Tobi5State@ha
+	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
+	lis      r3, __vt__Q34Game4Tobi11StateGoHome@ha
+	stw      r0, 0(r4)
+	li       r0, 9
+	li       r7, 0
+	addi     r6, r5, __vt__Q34Game4Tobi5State@l
+	stw      r0, 4(r4)
+	addi     r5, r2, lbl_8051AF10@sda21
+	addi     r0, r3, __vt__Q34Game4Tobi11StateGoHome@l
+	stw      r7, 8(r4)
+	stw      r6, 0(r4)
+	stw      r5, 0xc(r4)
+	stw      r0, 0(r4)
 
-	.loc_0x360:
-	  mr        r3, r31
-	  bl        -0x136FF8
-	  li        r3, 0x10
-	  bl        -0x243A64
-	  mr.       r4, r3
-	  beq-      .loc_0x3B4
-	  lis       r3, 0x804B
-	  lis       r5, 0x804C
-	  subi      r0, r3, 0x65C
-	  lis       r3, 0x804C
-	  stw       r0, 0x0(r4)
-	  li        r0, 0xA
-	  li        r7, 0
-	  addi      r6, r5, 0x4D78
-	  stw       r0, 0x4(r4)
-	  subi      r5, r2, 0x3448
-	  addi      r0, r3, 0x4BEC
-	  stw       r7, 0x8(r4)
-	  stw       r6, 0x0(r4)
-	  stw       r5, 0xC(r4)
-	  stw       r0, 0x0(r4)
+lbl_802678FC:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_80267950
+	lis      r3, __vt__Q24Game13EnemyFSMState@ha
+	lis      r5, __vt__Q34Game4Tobi5State@ha
+	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
+	lis      r3, __vt__Q34Game4Tobi8StateFly@ha
+	stw      r0, 0(r4)
+	li       r0, 0xa
+	li       r7, 0
+	addi     r6, r5, __vt__Q34Game4Tobi5State@l
+	stw      r0, 4(r4)
+	addi     r5, r2, lbl_8051AF18@sda21
+	addi     r0, r3, __vt__Q34Game4Tobi8StateFly@l
+	stw      r7, 8(r4)
+	stw      r6, 0(r4)
+	stw      r5, 0xc(r4)
+	stw      r0, 0(r4)
 
-	.loc_0x3B4:
-	  mr        r3, r31
-	  bl        -0x13704C
-	  li        r3, 0x10
-	  bl        -0x243AB8
-	  mr.       r4, r3
-	  beq-      .loc_0x408
-	  lis       r3, 0x804B
-	  lis       r5, 0x804C
-	  subi      r0, r3, 0x65C
-	  lis       r3, 0x804C
-	  stw       r0, 0x0(r4)
-	  li        r0, 0xB
-	  li        r7, 0
-	  addi      r6, r5, 0x4D78
-	  stw       r0, 0x4(r4)
-	  subi      r5, r2, 0x3444
-	  addi      r0, r3, 0x4BC8
-	  stw       r7, 0x8(r4)
-	  stw       r6, 0x0(r4)
-	  stw       r5, 0xC(r4)
-	  stw       r0, 0x0(r4)
+lbl_80267950:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_802679A4
+	lis      r3, __vt__Q24Game13EnemyFSMState@ha
+	lis      r5, __vt__Q34Game4Tobi5State@ha
+	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
+	lis      r3, __vt__Q34Game4Tobi12StateAttack1@ha
+	stw      r0, 0(r4)
+	li       r0, 0xb
+	li       r7, 0
+	addi     r6, r5, __vt__Q34Game4Tobi5State@l
+	stw      r0, 4(r4)
+	addi     r5, r2, lbl_8051AF1C@sda21
+	addi     r0, r3, __vt__Q34Game4Tobi12StateAttack1@l
+	stw      r7, 8(r4)
+	stw      r6, 0(r4)
+	stw      r5, 0xc(r4)
+	stw      r0, 0(r4)
 
-	.loc_0x408:
-	  mr        r3, r31
-	  bl        -0x1370A0
-	  li        r3, 0x10
-	  bl        -0x243B0C
-	  mr.       r4, r3
-	  beq-      .loc_0x45C
-	  lis       r3, 0x804B
-	  lis       r5, 0x804C
-	  subi      r0, r3, 0x65C
-	  lis       r3, 0x804C
-	  stw       r0, 0x0(r4)
-	  li        r0, 0xC
-	  li        r7, 0
-	  addi      r6, r5, 0x4D78
-	  stw       r0, 0x4(r4)
-	  subi      r5, r2, 0x343C
-	  addi      r0, r3, 0x4BA4
-	  stw       r7, 0x8(r4)
-	  stw       r6, 0x0(r4)
-	  stw       r5, 0xC(r4)
-	  stw       r0, 0x0(r4)
+lbl_802679A4:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_802679F8
+	lis      r3, __vt__Q24Game13EnemyFSMState@ha
+	lis      r5, __vt__Q34Game4Tobi5State@ha
+	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
+	lis      r3, __vt__Q34Game4Tobi12StateAttack2@ha
+	stw      r0, 0(r4)
+	li       r0, 0xc
+	li       r7, 0
+	addi     r6, r5, __vt__Q34Game4Tobi5State@l
+	stw      r0, 4(r4)
+	addi     r5, r2, lbl_8051AF24@sda21
+	addi     r0, r3, __vt__Q34Game4Tobi12StateAttack2@l
+	stw      r7, 8(r4)
+	stw      r6, 0(r4)
+	stw      r5, 0xc(r4)
+	stw      r0, 0(r4)
 
-	.loc_0x45C:
-	  mr        r3, r31
-	  bl        -0x1370F4
-	  li        r3, 0x10
-	  bl        -0x243B60
-	  mr.       r4, r3
-	  beq-      .loc_0x4B0
-	  lis       r3, 0x804B
-	  lis       r5, 0x804C
-	  subi      r0, r3, 0x65C
-	  lis       r3, 0x804C
-	  stw       r0, 0x0(r4)
-	  li        r0, 0xD
-	  li        r7, 0
-	  addi      r6, r5, 0x4D78
-	  stw       r0, 0x4(r4)
-	  subi      r5, r2, 0x3434
-	  addi      r0, r3, 0x4B80
-	  stw       r7, 0x8(r4)
-	  stw       r6, 0x0(r4)
-	  stw       r5, 0xC(r4)
-	  stw       r0, 0x0(r4)
+lbl_802679F8:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_80267A4C
+	lis      r3, __vt__Q24Game13EnemyFSMState@ha
+	lis      r5, __vt__Q34Game4Tobi5State@ha
+	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
+	lis      r3, __vt__Q34Game4Tobi8StateEat@ha
+	stw      r0, 0(r4)
+	li       r0, 0xd
+	li       r7, 0
+	addi     r6, r5, __vt__Q34Game4Tobi5State@l
+	stw      r0, 4(r4)
+	addi     r5, r2, lbl_8051AF2C@sda21
+	addi     r0, r3, __vt__Q34Game4Tobi8StateEat@l
+	stw      r7, 8(r4)
+	stw      r6, 0(r4)
+	stw      r5, 0xc(r4)
+	stw      r0, 0(r4)
 
-	.loc_0x4B0:
-	  mr        r3, r31
-	  bl        -0x137148
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80267A4C:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -357,35 +628,34 @@ void Tobi::FSM::init(Game::EnemyBase*)
 void Tobi::StateDead::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lfs       f0, -0x3430(r2)
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  mr        r3, r31
-	  stfs      f0, 0x200(r4)
-	  lwz       r0, 0x1E0(r4)
-	  rlwinm    r0,r0,0,30,28
-	  stw       r0, 0x1E0(r4)
-	  bl        -0x162374
-	  lwz       r0, 0x1E0(r31)
-	  mr        r3, r31
-	  lfs       f0, -0x3430(r2)
-	  li        r4, 0
-	  rlwinm    r0,r0,0,26,24
-	  li        r5, 0
-	  stw       r0, 0x1E0(r31)
-	  stfs      f0, 0x1D4(r31)
-	  stfs      f0, 0x1D8(r31)
-	  stfs      f0, 0x1DC(r31)
-	  bl        -0x162ABC
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lfs      f0, lbl_8051AF30@sda21(r2)
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	mr       r3, r31
+	stfs     f0, 0x200(r4)
+	lwz      r0, 0x1e0(r4)
+	rlwinm   r0, r0, 0, 0x1e, 0x1c
+	stw      r0, 0x1e0(r4)
+	bl       deathProcedure__Q24Game9EnemyBaseFv
+	lwz      r0, 0x1e0(r31)
+	mr       r3, r31
+	lfs      f0, lbl_8051AF30@sda21(r2)
+	li       r4, 0
+	rlwinm   r0, r0, 0, 0x1a, 0x18
+	li       r5, 0
+	stw      r0, 0x1e0(r31)
+	stfs     f0, 0x1d4(r31)
+	stfs     f0, 0x1d8(r31)
+	stfs     f0, 0x1dc(r31)
+	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -397,26 +667,25 @@ void Tobi::StateDead::init(Game::EnemyBase*, Game::StateArg*)
 void Tobi::StateDead::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x188(r4)
-	  lbz       r0, 0x24(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x34
-	  lwz       r0, 0x1C(r3)
-	  cmplwi    r0, 0x3E8
-	  bne-      .loc_0x34
-	  mr        r3, r4
-	  li        r4, 0
-	  bl        -0x12CA18
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r3, 0x188(r4)
+	lbz      r0, 0x24(r3)
+	cmplwi   r0, 0
+	beq      lbl_80267B0C
+	lwz      r0, 0x1c(r3)
+	cmplwi   r0, 0x3e8
+	bne      lbl_80267B0C
+	mr       r3, r4
+	li       r4, 0
+	bl       kill__Q24Game8CreatureFPQ24Game15CreatureKillArg
 
-	.loc_0x34:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80267B0C:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -435,35 +704,34 @@ void Tobi::StateDead::cleanup(Game::EnemyBase*) { }
 void Tobi::StatePress::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lfs       f0, -0x3430(r2)
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  mr        r3, r31
-	  stfs      f0, 0x200(r4)
-	  lwz       r0, 0x1E0(r4)
-	  rlwinm    r0,r0,0,30,28
-	  stw       r0, 0x1E0(r4)
-	  bl        -0x16242C
-	  lwz       r0, 0x1E0(r31)
-	  mr        r3, r31
-	  lfs       f0, -0x3430(r2)
-	  li        r4, 0x1
-	  rlwinm    r0,r0,0,26,24
-	  li        r5, 0
-	  stw       r0, 0x1E0(r31)
-	  stfs      f0, 0x1D4(r31)
-	  stfs      f0, 0x1D8(r31)
-	  stfs      f0, 0x1DC(r31)
-	  bl        -0x162B74
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lfs      f0, lbl_8051AF30@sda21(r2)
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	mr       r3, r31
+	stfs     f0, 0x200(r4)
+	lwz      r0, 0x1e0(r4)
+	rlwinm   r0, r0, 0, 0x1e, 0x1c
+	stw      r0, 0x1e0(r4)
+	bl       deathProcedure__Q24Game9EnemyBaseFv
+	lwz      r0, 0x1e0(r31)
+	mr       r3, r31
+	lfs      f0, lbl_8051AF30@sda21(r2)
+	li       r4, 1
+	rlwinm   r0, r0, 0, 0x1a, 0x18
+	li       r5, 0
+	stw      r0, 0x1e0(r31)
+	stfs     f0, 0x1d4(r31)
+	stfs     f0, 0x1d8(r31)
+	stfs     f0, 0x1dc(r31)
+	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -475,26 +743,25 @@ void Tobi::StatePress::init(Game::EnemyBase*, Game::StateArg*)
 void Tobi::StatePress::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x188(r4)
-	  lbz       r0, 0x24(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x34
-	  lwz       r0, 0x1C(r3)
-	  cmplwi    r0, 0x3E8
-	  bne-      .loc_0x34
-	  mr        r3, r4
-	  li        r4, 0
-	  bl        -0x12CAD0
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r3, 0x188(r4)
+	lbz      r0, 0x24(r3)
+	cmplwi   r0, 0
+	beq      lbl_80267BC4
+	lwz      r0, 0x1c(r3)
+	cmplwi   r0, 0x3e8
+	bne      lbl_80267BC4
+	mr       r3, r4
+	li       r4, 0
+	bl       kill__Q24Game8CreatureFPQ24Game15CreatureKillArg
 
-	.loc_0x34:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80267BC4:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -513,54 +780,53 @@ void Tobi::StatePress::cleanup(Game::EnemyBase*) { }
 void Tobi::StateStay::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  mr        r3, r31
-	  bl        0x268C
-	  mr        r3, r31
-	  li        r4, 0
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0xA4(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r4, 0x1E0(r31)
-	  li        r0, 0x1
-	  mr        r3, r31
-	  ori       r4, r4, 0x1
-	  stw       r4, 0x1E0(r31)
-	  stb       r0, 0x2C1(r31)
-	  lwz       r0, 0x1E0(r31)
-	  oris      r0, r0, 0x40
-	  stw       r0, 0x1E0(r31)
-	  bl        -0x1604B4
-	  lwz       r0, 0x1E0(r31)
-	  mr        r3, r31
-	  lfs       f0, -0x3430(r2)
-	  li        r4, 0x2
-	  rlwinm    r0,r0,0,21,19
-	  li        r5, 0
-	  stw       r0, 0x1E0(r31)
-	  lwz       r0, 0x1E0(r31)
-	  rlwinm    r0,r0,0,17,15
-	  stw       r0, 0x1E0(r31)
-	  lwz       r0, 0x1E0(r31)
-	  oris      r0, r0, 0x4000
-	  stw       r0, 0x1E0(r31)
-	  stfs      f0, 0x1D4(r31)
-	  stfs      f0, 0x1D8(r31)
-	  stfs      f0, 0x1DC(r31)
-	  bl        -0x162C70
-	  mr        r3, r31
-	  bl        -0x16099C
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	mr       r3, r31
+	bl       resetAppearCheck__Q34Game4Tobi3ObjFv
+	mr       r3, r31
+	li       r4, 0
+	lwz      r12, 0(r31)
+	lwz      r12, 0xa4(r12)
+	mtctr    r12
+	bctrl
+	lwz      r4, 0x1e0(r31)
+	li       r0, 1
+	mr       r3, r31
+	ori      r4, r4, 1
+	stw      r4, 0x1e0(r31)
+	stb      r0, 0x2c1(r31)
+	lwz      r0, 0x1e0(r31)
+	oris     r0, r0, 0x40
+	stw      r0, 0x1e0(r31)
+	bl       hardConstraintOn__Q24Game9EnemyBaseFv
+	lwz      r0, 0x1e0(r31)
+	mr       r3, r31
+	lfs      f0, lbl_8051AF30@sda21(r2)
+	li       r4, 2
+	rlwinm   r0, r0, 0, 0x15, 0x13
+	li       r5, 0
+	stw      r0, 0x1e0(r31)
+	lwz      r0, 0x1e0(r31)
+	rlwinm   r0, r0, 0, 0x11, 0xf
+	stw      r0, 0x1e0(r31)
+	lwz      r0, 0x1e0(r31)
+	oris     r0, r0, 0x4000
+	stw      r0, 0x1e0(r31)
+	stfs     f0, 0x1d4(r31)
+	stfs     f0, 0x1d8(r31)
+	stfs     f0, 0x1dc(r31)
+	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
+	mr       r3, r31
+	bl       stopMotion__Q24Game9EnemyBaseFv
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -572,55 +838,55 @@ void Tobi::StateStay::init(Game::EnemyBase*, Game::StateArg*)
 void Tobi::StateStay::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  mr        r30, r4
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  mr        r3, r30
-	  bl        0x26E0
-	  lwz       r7, 0xC0(r30)
-	  mr        r3, r30
-	  li        r4, 0
-	  li        r5, 0
-	  lfs       f1, 0x424(r7)
-	  li        r6, 0
-	  lfs       f2, 0x3D4(r7)
-	  bl        -0x154C88
-	  mr.       r31, r3
-	  bne-      .loc_0x60
-	  mr        r3, r30
-	  bl        0x2B70
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x94
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	mr       r30, r4
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	mr       r3, r30
+	bl       setBridgeSearch__Q34Game4Tobi3ObjFv
+	lwz      r7, 0xc0(r30)
+	mr       r3, r30
+	li       r4, 0
+	li       r5, 0
+	lfs      f1, 0x424(r7)
+	li       r6, 0
+	lfs      f2, 0x3d4(r7)
+	bl
+"getNearestPikminOrNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Navi>P23Condition<Q24Game4Piki>"
+	or.      r31, r3, r3
+	bne      lbl_80267CF4
+	mr       r3, r30
+	bl       isBreakBridge__Q34Game4Tobi3ObjFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80267D28
 
-	.loc_0x60:
-	  mr        r3, r30
-	  bl        0x2638
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x94
-	  stw       r31, 0x230(r30)
-	  mr        r3, r29
-	  mr        r4, r30
-	  li        r5, 0x3
-	  lwz       r12, 0x0(r29)
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_80267CF4:
+	mr       r3, r30
+	bl       isAppearCheck__Q34Game4Tobi3ObjFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80267D28
+	stw      r31, 0x230(r30)
+	mr       r3, r29
+	mr       r4, r30
+	li       r5, 3
+	lwz      r12, 0(r29)
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x94:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80267D28:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -632,40 +898,39 @@ void Tobi::StateStay::exec(Game::EnemyBase*)
 void Tobi::StateStay::cleanup(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  mr        r0, r4
-	  li        r4, 0x1
-	  stw       r31, 0xC(r1)
-	  mr        r31, r0
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0xA4(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r4, 0x1E0(r31)
-	  li        r0, 0
-	  mr        r3, r31
-	  rlwinm    r4,r4,0,0,30
-	  stw       r4, 0x1E0(r31)
-	  stb       r0, 0x2C1(r31)
-	  lwz       r0, 0x1E0(r31)
-	  rlwinm    r0,r0,0,10,8
-	  stw       r0, 0x1E0(r31)
-	  bl        -0x160604
-	  lwz       r0, 0x1E0(r31)
-	  ori       r0, r0, 0x8000
-	  stw       r0, 0x1E0(r31)
-	  lwz       r0, 0x1E0(r31)
-	  rlwinm    r0,r0,0,2,0
-	  stw       r0, 0x1E0(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	mr       r0, r4
+	li       r4, 1
+	stw      r31, 0xc(r1)
+	mr       r31, r0
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r12, 0xa4(r12)
+	mtctr    r12
+	bctrl
+	lwz      r4, 0x1e0(r31)
+	li       r0, 0
+	mr       r3, r31
+	rlwinm   r4, r4, 0, 0, 0x1e
+	stw      r4, 0x1e0(r31)
+	stb      r0, 0x2c1(r31)
+	lwz      r0, 0x1e0(r31)
+	rlwinm   r0, r0, 0, 0xa, 8
+	stw      r0, 0x1e0(r31)
+	bl       hardConstraintOff__Q24Game9EnemyBaseFv
+	lwz      r0, 0x1e0(r31)
+	ori      r0, r0, 0x8000
+	stw      r0, 0x1e0(r31)
+	lwz      r0, 0x1e0(r31)
+	rlwinm   r0, r0, 0, 2, 0
+	stw      r0, 0x1e0(r31)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -677,39 +942,38 @@ void Tobi::StateStay::cleanup(Game::EnemyBase*)
 void Tobi::StateAppear::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  mr        r3, r31
-	  bl        0x21F4
-	  mr        r3, r31
-	  bl        -0x16066C
-	  lwz       r0, 0x1E0(r31)
-	  mr        r3, r31
-	  lfs       f0, -0x3430(r2)
-	  oris      r0, r0, 0x20
-	  stw       r0, 0x1E0(r31)
-	  lwz       r0, 0x1E0(r31)
-	  ori       r0, r0, 0x800
-	  stw       r0, 0x1E0(r31)
-	  stfs      f0, 0x1D4(r31)
-	  stfs      f0, 0x1D8(r31)
-	  stfs      f0, 0x1DC(r31)
-	  bl        -0x16644C
-	  mr        r3, r31
-	  li        r4, 0x2
-	  li        r5, 0
-	  bl        -0x162E24
-	  mr        r3, r31
-	  bl        0x32CC
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	mr       r3, r31
+	bl       lifeIncrement__Q34Game4Tobi3ObjFv
+	mr       r3, r31
+	bl       hardConstraintOn__Q24Game9EnemyBaseFv
+	lwz      r0, 0x1e0(r31)
+	mr       r3, r31
+	lfs      f0, lbl_8051AF30@sda21(r2)
+	oris     r0, r0, 0x20
+	stw      r0, 0x1e0(r31)
+	lwz      r0, 0x1e0(r31)
+	ori      r0, r0, 0x800
+	stw      r0, 0x1e0(r31)
+	stfs     f0, 0x1d4(r31)
+	stfs     f0, 0x1d8(r31)
+	stfs     f0, 0x1dc(r31)
+	bl       setEmotionExcitement__Q24Game9EnemyBaseFv
+	mr       r3, r31
+	li       r4, 2
+	li       r5, 0
+	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
+	mr       r3, r31
+	bl       createAppearEffect__Q34Game4Tobi3ObjFv
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -721,43 +985,42 @@ void Tobi::StateAppear::init(Game::EnemyBase*, Game::StateArg*)
 void Tobi::StateAppear::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r5, 0x188(r4)
-	  lbz       r0, 0x24(r5)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x70
-	  lwz       r0, 0x1C(r5)
-	  cmplwi    r0, 0x3E8
-	  bne-      .loc_0x70
-	  lfs       f1, 0x200(r4)
-	  lfs       f0, -0x3430(r2)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0, 0x2
-	  bne-      .loc_0x58
-	  lwz       r12, 0x0(r3)
-	  li        r5, 0
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x70
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r5, 0x188(r4)
+	lbz      r0, 0x24(r5)
+	cmplwi   r0, 0
+	beq      lbl_80267EB8
+	lwz      r0, 0x1c(r5)
+	cmplwi   r0, 0x3e8
+	bne      lbl_80267EB8
+	lfs      f1, 0x200(r4)
+	lfs      f0, lbl_8051AF30@sda21(r2)
+	fcmpo    cr0, f1, f0
+	cror     2, 0, 2
+	bne      lbl_80267EA0
+	lwz      r12, 0(r3)
+	li       r5, 0
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_80267EB8
 
-	.loc_0x58:
-	  lwz       r12, 0x0(r3)
-	  li        r5, 0x5
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_80267EA0:
+	lwz      r12, 0(r3)
+	li       r5, 5
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x70:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80267EB8:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -769,22 +1032,21 @@ void Tobi::StateAppear::exec(Game::EnemyBase*)
 void Tobi::StateAppear::cleanup(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  mr        r3, r31
-	  bl        -0x16074C
-	  lwz       r0, 0x1E0(r31)
-	  rlwinm    r0,r0,0,11,9
-	  stw       r0, 0x1E0(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	mr       r3, r31
+	bl       hardConstraintOff__Q24Game9EnemyBaseFv
+	lwz      r0, 0x1e0(r31)
+	rlwinm   r0, r0, 0, 0xb, 9
+	stw      r0, 0x1e0(r31)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -796,34 +1058,33 @@ void Tobi::StateAppear::cleanup(Game::EnemyBase*)
 void Tobi::StateDive::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  mr        r3, r31
-	  bl        -0x1607A0
-	  lwz       r0, 0x1E0(r31)
-	  mr        r3, r31
-	  lfs       f0, -0x3430(r2)
-	  oris      r0, r0, 0x40
-	  stw       r0, 0x1E0(r31)
-	  stfs      f0, 0x1D4(r31)
-	  stfs      f0, 0x1D8(r31)
-	  stfs      f0, 0x1DC(r31)
-	  bl        -0x1665C4
-	  mr        r3, r31
-	  li        r4, 0x3
-	  li        r5, 0
-	  bl        -0x162F4C
-	  mr        r3, r31
-	  bl        0x3230
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	mr       r3, r31
+	bl       hardConstraintOn__Q24Game9EnemyBaseFv
+	lwz      r0, 0x1e0(r31)
+	mr       r3, r31
+	lfs      f0, lbl_8051AF30@sda21(r2)
+	oris     r0, r0, 0x40
+	stw      r0, 0x1e0(r31)
+	stfs     f0, 0x1d4(r31)
+	stfs     f0, 0x1d8(r31)
+	stfs     f0, 0x1dc(r31)
+	bl       setEmotionCaution__Q24Game9EnemyBaseFv
+	mr       r3, r31
+	li       r4, 3
+	li       r5, 0
+	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
+	mr       r3, r31
+	bl       createDisAppearEffect__Q34Game4Tobi3ObjFv
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -835,29 +1096,28 @@ void Tobi::StateDive::init(Game::EnemyBase*, Game::StateArg*)
 void Tobi::StateDive::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r5, 0x188(r4)
-	  lbz       r0, 0x24(r5)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x40
-	  lwz       r0, 0x1C(r5)
-	  cmplwi    r0, 0x3E8
-	  bne-      .loc_0x40
-	  lwz       r12, 0x0(r3)
-	  li        r5, 0x2
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r5, 0x188(r4)
+	lbz      r0, 0x24(r5)
+	cmplwi   r0, 0
+	beq      lbl_80267FB0
+	lwz      r0, 0x1c(r5)
+	cmplwi   r0, 0x3e8
+	bne      lbl_80267FB0
+	lwz      r12, 0(r3)
+	li       r5, 2
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x40:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80267FB0:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -869,22 +1129,21 @@ void Tobi::StateDive::exec(Game::EnemyBase*)
 void Tobi::StateDive::cleanup(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  mr        r3, r31
-	  bl        -0x160844
-	  lwz       r0, 0x1E0(r31)
-	  rlwinm    r0,r0,0,10,8
-	  stw       r0, 0x1E0(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	mr       r3, r31
+	bl       hardConstraintOff__Q24Game9EnemyBaseFv
+	lwz      r0, 0x1e0(r31)
+	rlwinm   r0, r0, 0, 0xa, 8
+	stw      r0, 0x1e0(r31)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -896,20 +1155,19 @@ void Tobi::StateDive::cleanup(Game::EnemyBase*)
 void Tobi::StateMove::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r3, r4
-	  li        r4, 0x4
-	  stw       r0, 0x14(r1)
-	  li        r0, -0x1
-	  li        r5, 0
-	  stw       r0, 0x2C4(r3)
-	  bl        -0x163018
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r3, r4
+	li       r4, 4
+	stw      r0, 0x14(r1)
+	li       r0, -1
+	li       r5, 0
+	stw      r0, 0x2c4(r3)
+	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -921,347 +1179,348 @@ void Tobi::StateMove::init(Game::EnemyBase*, Game::StateArg*)
 void Tobi::StateMove::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0xF0(r1)
-	  mflr      r0
-	  stw       r0, 0xF4(r1)
-	  stfd      f31, 0xE0(r1)
-	  psq_st    f31,0xE8(r1),0,0
-	  stfd      f30, 0xD0(r1)
-	  psq_st    f30,0xD8(r1),0,0
-	  stfd      f29, 0xC0(r1)
-	  psq_st    f29,0xC8(r1),0,0
-	  stfd      f28, 0xB0(r1)
-	  psq_st    f28,0xB8(r1),0,0
-	  stfd      f27, 0xA0(r1)
-	  psq_st    f27,0xA8(r1),0,0
-	  stfd      f26, 0x90(r1)
-	  psq_st    f26,0x98(r1),0,0
-	  stw       r31, 0x8C(r1)
-	  stw       r30, 0x88(r1)
-	  stw       r29, 0x84(r1)
-	  stw       r28, 0x80(r1)
-	  mr        r31, r4
-	  mr        r30, r3
-	  lwz       r7, 0xC0(r31)
-	  li        r4, 0
-	  mr        r3, r31
-	  li        r5, 0
-	  lfs       f1, 0x424(r7)
-	  li        r6, 0
-	  lfs       f2, 0x3D4(r7)
-	  bl        -0x155050
-	  mr.       r28, r3
-	  beq-      .loc_0x3C4
-	  stw       r28, 0x230(r31)
-	  mr        r4, r28
-	  addi      r3, r1, 0x50
-	  lwz       r12, 0x0(r28)
-	  lwz       r5, 0xC0(r31)
-	  lwz       r12, 0x8(r12)
-	  lfs       f29, 0x334(r5)
-	  lfs       f30, 0x30C(r5)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r31
-	  addi      r3, r1, 0x5C
-	  lwz       r12, 0x0(r31)
-	  lfs       f26, 0x50(r1)
-	  lwz       r12, 0x8(r12)
-	  lfs       f27, 0x58(r1)
-	  mtctr     r12
-	  bctrl
-	  lfs       f1, 0x5C(r1)
-	  lis       r3, 0x8051
-	  lfs       f0, 0x64(r1)
-	  subi      r3, r3, 0x2E20
-	  fsubs     f1, f26, f1
-	  fsubs     f2, f27, f0
-	  bl        -0x233004
-	  bl        0x1A9AC0
-	  lwz       r12, 0x0(r31)
-	  fmr       f26, f1
-	  mr        r3, r31
-	  lwz       r12, 0x64(r12)
-	  mtctr     r12
-	  bctrl
-	  fmr       f2, f1
-	  fmr       f1, f26
-	  bl        0x1A9AC8
-	  fmr       f31, f1
-	  lfs       f0, -0x3428(r2)
-	  lfs       f1, -0x342C(r2)
-	  fmuls     f0, f0, f29
-	  fmuls     f28, f31, f30
-	  fmuls     f1, f1, f0
-	  fabs      f0, f28
-	  frsp      f0, f0
-	  fcmpo     cr0, f0, f1
-	  ble-      .loc_0x148
-	  lfs       f0, -0x3430(r2)
-	  fcmpo     cr0, f28, f0
-	  ble-      .loc_0x144
-	  fmr       f28, f1
-	  b         .loc_0x148
+	stwu     r1, -0xf0(r1)
+	mflr     r0
+	stw      r0, 0xf4(r1)
+	stfd     f31, 0xe0(r1)
+	psq_st   f31, 232(r1), 0, qr0
+	stfd     f30, 0xd0(r1)
+	psq_st   f30, 216(r1), 0, qr0
+	stfd     f29, 0xc0(r1)
+	psq_st   f29, 200(r1), 0, qr0
+	stfd     f28, 0xb0(r1)
+	psq_st   f28, 184(r1), 0, qr0
+	stfd     f27, 0xa0(r1)
+	psq_st   f27, 168(r1), 0, qr0
+	stfd     f26, 0x90(r1)
+	psq_st   f26, 152(r1), 0, qr0
+	stw      r31, 0x8c(r1)
+	stw      r30, 0x88(r1)
+	stw      r29, 0x84(r1)
+	stw      r28, 0x80(r1)
+	mr       r31, r4
+	mr       r30, r3
+	lwz      r7, 0xc0(r31)
+	li       r4, 0
+	mr       r3, r31
+	li       r5, 0
+	lfs      f1, 0x424(r7)
+	li       r6, 0
+	lfs      f2, 0x3d4(r7)
+	bl
+"getNearestPikminOrNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Navi>P23Condition<Q24Game4Piki>"
+	or.      r28, r3, r3
+	beq      lbl_802683F4
+	stw      r28, 0x230(r31)
+	mr       r4, r28
+	addi     r3, r1, 0x50
+	lwz      r12, 0(r28)
+	lwz      r5, 0xc0(r31)
+	lwz      r12, 8(r12)
+	lfs      f29, 0x334(r5)
+	lfs      f30, 0x30c(r5)
+	mtctr    r12
+	bctrl
+	mr       r4, r31
+	addi     r3, r1, 0x5c
+	lwz      r12, 0(r31)
+	lfs      f26, 0x50(r1)
+	lwz      r12, 8(r12)
+	lfs      f27, 0x58(r1)
+	mtctr    r12
+	bctrl
+	lfs      f1, 0x5c(r1)
+	lis      r3, atanTable___5JMath@ha
+	lfs      f0, 0x64(r1)
+	addi     r3, r3, atanTable___5JMath@l
+	fsubs    f1, f26, f1
+	fsubs    f2, f27, f0
+	bl       "atan2___Q25JMath18TAtanTable<1024,f>CFff"
+	bl       roundAng__Ff
+	lwz      r12, 0(r31)
+	fmr      f26, f1
+	mr       r3, r31
+	lwz      r12, 0x64(r12)
+	mtctr    r12
+	bctrl
+	fmr      f2, f1
+	fmr      f1, f26
+	bl       angDist__Fff
+	fmr      f31, f1
+	lfs      f0, lbl_8051AF38@sda21(r2)
+	lfs      f1, lbl_8051AF34@sda21(r2)
+	fmuls    f0, f0, f29
+	fmuls    f28, f31, f30
+	fmuls    f1, f1, f0
+	fabs     f0, f28
+	frsp     f0, f0
+	fcmpo    cr0, f0, f1
+	ble      lbl_80268178
+	lfs      f0, lbl_8051AF30@sda21(r2)
+	fcmpo    cr0, f28, f0
+	ble      lbl_80268174
+	fmr      f28, f1
+	b        lbl_80268178
 
-	.loc_0x144:
-	  fneg      f28, f1
+lbl_80268174:
+	fneg     f28, f1
 
-	.loc_0x148:
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x64(r12)
-	  mtctr     r12
-	  bctrl
-	  fadds     f1, f28, f1
-	  bl        0x1A9A40
-	  stfs      f1, 0x1FC(r31)
-	  mr        r3, r31
-	  lfs       f0, 0x1FC(r31)
-	  stfs      f0, 0x1A8(r31)
-	  lwz       r12, 0x0(r31)
-	  lwz       r4, 0xC0(r31)
-	  lwz       r12, 0x64(r12)
-	  lfs       f29, 0x2E4(r4)
-	  mtctr     r12
-	  bctrl
-	  bl        -0x1989A0
-	  mr        r3, r31
-	  lfs       f2, 0x1D4(r31)
-	  lwz       r12, 0x0(r31)
-	  frsp      f26, f1
-	  lfs       f30, 0x1D8(r31)
-	  lfs       f0, 0x1DC(r31)
-	  lwz       r12, 0x64(r12)
-	  stfs      f2, 0x74(r1)
-	  stfs      f30, 0x78(r1)
-	  stfs      f0, 0x7C(r1)
-	  mtctr     r12
-	  bctrl
-	  bl        -0x198F3C
-	  fmuls     f0, f29, f26
-	  mr        r4, r31
-	  frsp      f1, f1
-	  addi      r3, r1, 0x14
-	  li        r29, 0
-	  stfs      f0, 0x1D4(r31)
-	  fmuls     f0, f29, f1
-	  stfs      f30, 0x1D8(r31)
-	  stfs      f0, 0x1DC(r31)
-	  lwz       r12, 0x0(r31)
-	  lwz       r5, 0xC0(r31)
-	  lwz       r12, 0x8(r12)
-	  lfs       f28, 0x58C(r5)
-	  lfs       f29, 0x564(r5)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r28
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x0(r28)
-	  lfs       f30, 0x14(r1)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r31
-	  lfs       f0, 0x8(r1)
-	  lwz       r12, 0x0(r31)
-	  addi      r3, r1, 0x2C
-	  fsubs     f26, f0, f30
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r28
-	  addi      r3, r1, 0x20
-	  lwz       r12, 0x0(r28)
-	  lfs       f30, 0x30(r1)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r31
-	  lfs       f0, 0x24(r1)
-	  lwz       r12, 0x0(r31)
-	  addi      r3, r1, 0x44
-	  fsubs     f27, f0, f30
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r28
-	  addi      r3, r1, 0x38
-	  lwz       r12, 0x0(r28)
-	  lfs       f30, 0x4C(r1)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  fmuls     f1, f27, f27
-	  lfs       f2, 0x40(r1)
-	  fmuls     f0, f29, f29
-	  fsubs     f2, f2, f30
-	  fmadds    f1, f26, f26, f1
-	  fmadds    f1, f2, f2, f1
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x2E0
-	  lfs       f0, -0x3428(r2)
-	  fabs      f2, f31
-	  lfs       f1, -0x342C(r2)
-	  fmuls     f0, f0, f28
-	  frsp      f2, f2
-	  fmuls     f0, f1, f0
-	  fcmpo     cr0, f2, f0
-	  cror      2, 0, 0x2
-	  bne-      .loc_0x2E0
-	  li        r29, 0x1
+lbl_80268178:
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r12, 0x64(r12)
+	mtctr    r12
+	bctrl
+	fadds    f1, f28, f1
+	bl       roundAng__Ff
+	stfs     f1, 0x1fc(r31)
+	mr       r3, r31
+	lfs      f0, 0x1fc(r31)
+	stfs     f0, 0x1a8(r31)
+	lwz      r12, 0(r31)
+	lwz      r4, 0xc0(r31)
+	lwz      r12, 0x64(r12)
+	lfs      f29, 0x2e4(r4)
+	mtctr    r12
+	bctrl
+	bl       sin
+	mr       r3, r31
+	lfs      f2, 0x1d4(r31)
+	lwz      r12, 0(r31)
+	frsp     f26, f1
+	lfs      f30, 0x1d8(r31)
+	lfs      f0, 0x1dc(r31)
+	lwz      r12, 0x64(r12)
+	stfs     f2, 0x74(r1)
+	stfs     f30, 0x78(r1)
+	stfs     f0, 0x7c(r1)
+	mtctr    r12
+	bctrl
+	bl       cos
+	fmuls    f0, f29, f26
+	mr       r4, r31
+	frsp     f1, f1
+	addi     r3, r1, 0x14
+	li       r29, 0
+	stfs     f0, 0x1d4(r31)
+	fmuls    f0, f29, f1
+	stfs     f30, 0x1d8(r31)
+	stfs     f0, 0x1dc(r31)
+	lwz      r12, 0(r31)
+	lwz      r5, 0xc0(r31)
+	lwz      r12, 8(r12)
+	lfs      f28, 0x58c(r5)
+	lfs      f29, 0x564(r5)
+	mtctr    r12
+	bctrl
+	mr       r4, r28
+	addi     r3, r1, 8
+	lwz      r12, 0(r28)
+	lfs      f30, 0x14(r1)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r31
+	lfs      f0, 8(r1)
+	lwz      r12, 0(r31)
+	addi     r3, r1, 0x2c
+	fsubs    f26, f0, f30
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r28
+	addi     r3, r1, 0x20
+	lwz      r12, 0(r28)
+	lfs      f30, 0x30(r1)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r31
+	lfs      f0, 0x24(r1)
+	lwz      r12, 0(r31)
+	addi     r3, r1, 0x44
+	fsubs    f27, f0, f30
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r28
+	addi     r3, r1, 0x38
+	lwz      r12, 0(r28)
+	lfs      f30, 0x4c(r1)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	fmuls    f1, f27, f27
+	lfs      f2, 0x40(r1)
+	fmuls    f0, f29, f29
+	fsubs    f2, f2, f30
+	fmadds   f1, f26, f26, f1
+	fmadds   f1, f2, f2, f1
+	fcmpo    cr0, f1, f0
+	bge      lbl_80268310
+	lfs      f0, lbl_8051AF38@sda21(r2)
+	fabs     f2, f31
+	lfs      f1, lbl_8051AF34@sda21(r2)
+	fmuls    f0, f0, f28
+	frsp     f2, f2
+	fmuls    f0, f1, f0
+	fcmpo    cr0, f2, f0
+	cror     2, 0, 2
+	bne      lbl_80268310
+	li       r29, 1
 
-	.loc_0x2E0:
-	  rlwinm.   r0,r29,0,24,31
-	  beq-      .loc_0x2FC
-	  li        r0, 0xC
-	  mr        r3, r31
-	  stw       r0, 0x2C4(r31)
-	  bl        -0x163084
-	  b         .loc_0x3FC
+lbl_80268310:
+	clrlwi.  r0, r29, 0x18
+	beq      lbl_8026832C
+	li       r0, 0xc
+	mr       r3, r31
+	stw      r0, 0x2c4(r31)
+	bl       finishMotion__Q24Game9EnemyBaseFv
+	b        lbl_8026842C
 
-	.loc_0x2FC:
-	  mr        r4, r31
-	  addi      r3, r1, 0x68
-	  lwz       r12, 0x0(r31)
-	  lfs       f26, 0x198(r31)
-	  lwz       r12, 0x8(r12)
-	  lfs       f27, 0x19C(r31)
-	  lfs       f28, 0x1A0(r31)
-	  mtctr     r12
-	  bctrl
-	  lfs       f0, 0x6C(r1)
-	  lfs       f2, 0x68(r1)
-	  fsubs     f3, f0, f27
-	  lfs       f1, 0x70(r1)
-	  fsubs     f2, f2, f26
-	  lfs       f0, -0x3430(r2)
-	  fsubs     f1, f1, f28
-	  fmuls     f3, f3, f3
-	  fmuls     f4, f1, f1
-	  fmadds    f1, f2, f2, f3
-	  fadds     f1, f4, f1
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x364
-	  ble-      .loc_0x368
-	  fsqrte    f0, f1
-	  fmuls     f1, f0, f1
-	  b         .loc_0x368
+lbl_8026832C:
+	mr       r4, r31
+	addi     r3, r1, 0x68
+	lwz      r12, 0(r31)
+	lfs      f26, 0x198(r31)
+	lwz      r12, 8(r12)
+	lfs      f27, 0x19c(r31)
+	lfs      f28, 0x1a0(r31)
+	mtctr    r12
+	bctrl
+	lfs      f0, 0x6c(r1)
+	lfs      f2, 0x68(r1)
+	fsubs    f3, f0, f27
+	lfs      f1, 0x70(r1)
+	fsubs    f2, f2, f26
+	lfs      f0, lbl_8051AF30@sda21(r2)
+	fsubs    f1, f1, f28
+	fmuls    f3, f3, f3
+	fmuls    f4, f1, f1
+	fmadds   f1, f2, f2, f3
+	fadds    f1, f4, f1
+	fcmpo    cr0, f1, f0
+	ble      lbl_80268394
+	ble      lbl_80268398
+	frsqrte  f0, f1
+	fmuls    f1, f0, f1
+	b        lbl_80268398
 
-	.loc_0x364:
-	  fmr       f1, f0
+lbl_80268394:
+	fmr      f1, f0
 
-	.loc_0x368:
-	  lwz       r4, 0xC0(r31)
-	  lfs       f0, 0x35C(r4)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x38C
-	  li        r0, 0x9
-	  mr        r3, r31
-	  stw       r0, 0x2C4(r31)
-	  bl        -0x163114
-	  b         .loc_0x3FC
+lbl_80268398:
+	lwz      r4, 0xc0(r31)
+	lfs      f0, 0x35c(r4)
+	fcmpo    cr0, f1, f0
+	ble      lbl_802683BC
+	li       r0, 9
+	mr       r3, r31
+	stw      r0, 0x2c4(r31)
+	bl       finishMotion__Q24Game9EnemyBaseFv
+	b        lbl_8026842C
 
-	.loc_0x38C:
-	  lfs       f1, 0x58C(r4)
-	  mr        r3, r31
-	  lfs       f2, 0x564(r4)
-	  li        r4, 0
-	  li        r5, 0
-	  li        r6, 0
-	  bl        -0x155384
-	  cmplwi    r3, 0
-	  beq-      .loc_0x3FC
-	  li        r0, 0xC
-	  mr        r3, r31
-	  stw       r0, 0x2C4(r31)
-	  bl        -0x16314C
-	  b         .loc_0x3FC
+lbl_802683BC:
+	lfs      f1, 0x58c(r4)
+	mr       r3, r31
+	lfs      f2, 0x564(r4)
+	li       r4, 0
+	li       r5, 0
+	li       r6, 0
+	bl
+"getNearestPikminOrNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Navi>P23Condition<Q24Game4Piki>"
+	cmplwi   r3, 0
+	beq      lbl_8026842C
+	li       r0, 0xc
+	mr       r3, r31
+	stw      r0, 0x2c4(r31)
+	bl       finishMotion__Q24Game9EnemyBaseFv
+	b        lbl_8026842C
 
-	.loc_0x3C4:
-	  mr        r3, r31
-	  bl        0x2460
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x3EC
-	  mr        r3, r31
-	  bl        0x229C
-	  stw       r3, 0x2C4(r31)
-	  mr        r3, r31
-	  bl        -0x163174
-	  b         .loc_0x3FC
+lbl_802683F4:
+	mr       r3, r31
+	bl       isBreakBridge__Q34Game4Tobi3ObjFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_8026841C
+	mr       r3, r31
+	bl       checkBreakOrMove__Q34Game4Tobi3ObjFv
+	stw      r3, 0x2c4(r31)
+	mr       r3, r31
+	bl       finishMotion__Q24Game9EnemyBaseFv
+	b        lbl_8026842C
 
-	.loc_0x3EC:
-	  li        r0, 0x9
-	  mr        r3, r31
-	  stw       r0, 0x2C4(r31)
-	  bl        -0x163188
+lbl_8026841C:
+	li       r0, 9
+	mr       r3, r31
+	stw      r0, 0x2c4(r31)
+	bl       finishMotion__Q24Game9EnemyBaseFv
 
-	.loc_0x3FC:
-	  mr        r3, r31
-	  bl        0x1DF4
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x41C
-	  li        r0, 0xA
-	  mr        r3, r31
-	  stw       r0, 0x2C4(r31)
-	  bl        -0x1631A8
+lbl_8026842C:
+	mr       r3, r31
+	bl       isFlyingLife__Q34Game4Tobi3ObjFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_8026844C
+	li       r0, 0xa
+	mr       r3, r31
+	stw      r0, 0x2c4(r31)
+	bl       finishMotion__Q24Game9EnemyBaseFv
 
-	.loc_0x41C:
-	  mr        r3, r31
-	  bl        0x1DF8
-	  lfs       f1, 0x200(r31)
-	  lfs       f0, -0x3430(r2)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0, 0x2
-	  bne-      .loc_0x45C
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x498
+lbl_8026844C:
+	mr       r3, r31
+	bl       setInWaterDamage__Q34Game4Tobi3ObjFv
+	lfs      f1, 0x200(r31)
+	lfs      f0, lbl_8051AF30@sda21(r2)
+	fcmpo    cr0, f1, f0
+	cror     2, 0, 2
+	bne      lbl_8026848C
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 0
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802684C8
 
-	.loc_0x45C:
-	  lwz       r3, 0x188(r31)
-	  lbz       r0, 0x24(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x498
-	  lwz       r0, 0x1C(r3)
-	  cmplwi    r0, 0x3E8
-	  bne-      .loc_0x498
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r6, 0
-	  lwz       r5, 0x2C4(r31)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_8026848C:
+	lwz      r3, 0x188(r31)
+	lbz      r0, 0x24(r3)
+	cmplwi   r0, 0
+	beq      lbl_802684C8
+	lwz      r0, 0x1c(r3)
+	cmplwi   r0, 0x3e8
+	bne      lbl_802684C8
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r6, 0
+	lwz      r5, 0x2c4(r31)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x498:
-	  psq_l     f31,0xE8(r1),0,0
-	  lfd       f31, 0xE0(r1)
-	  psq_l     f30,0xD8(r1),0,0
-	  lfd       f30, 0xD0(r1)
-	  psq_l     f29,0xC8(r1),0,0
-	  lfd       f29, 0xC0(r1)
-	  psq_l     f28,0xB8(r1),0,0
-	  lfd       f28, 0xB0(r1)
-	  psq_l     f27,0xA8(r1),0,0
-	  lfd       f27, 0xA0(r1)
-	  psq_l     f26,0x98(r1),0,0
-	  lfd       f26, 0x90(r1)
-	  lwz       r31, 0x8C(r1)
-	  lwz       r30, 0x88(r1)
-	  lwz       r29, 0x84(r1)
-	  lwz       r0, 0xF4(r1)
-	  lwz       r28, 0x80(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0xF0
-	  blr
+lbl_802684C8:
+	psq_l    f31, 232(r1), 0, qr0
+	lfd      f31, 0xe0(r1)
+	psq_l    f30, 216(r1), 0, qr0
+	lfd      f30, 0xd0(r1)
+	psq_l    f29, 200(r1), 0, qr0
+	lfd      f29, 0xc0(r1)
+	psq_l    f28, 184(r1), 0, qr0
+	lfd      f28, 0xb0(r1)
+	psq_l    f27, 168(r1), 0, qr0
+	lfd      f27, 0xa0(r1)
+	psq_l    f26, 152(r1), 0, qr0
+	lfd      f26, 0x90(r1)
+	lwz      r31, 0x8c(r1)
+	lwz      r30, 0x88(r1)
+	lwz      r29, 0x84(r1)
+	lwz      r0, 0xf4(r1)
+	lwz      r28, 0x80(r1)
+	mtlr     r0
+	addi     r1, r1, 0xf0
+	blr
 	*/
 }
 
@@ -1280,20 +1539,19 @@ void Tobi::StateMove::cleanup(Game::EnemyBase*) { }
 void Tobi::StateMoveSide::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r3, r4
-	  li        r4, 0x4
-	  stw       r0, 0x14(r1)
-	  li        r0, -0x1
-	  li        r5, 0
-	  stw       r0, 0x2C4(r3)
-	  bl        -0x163538
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r3, r4
+	li       r4, 4
+	stw      r0, 0x14(r1)
+	li       r0, -1
+	li       r5, 0
+	stw      r0, 0x2c4(r3)
+	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1305,103 +1563,103 @@ void Tobi::StateMoveSide::init(Game::EnemyBase*, Game::StateArg*)
 void Tobi::StateMoveSide::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r5, 0
-	  li        r6, 0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  li        r4, 0
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  mr        r3, r31
-	  lwz       r7, 0xC0(r31)
-	  lfs       f1, 0x424(r7)
-	  lfs       f2, 0x3D4(r7)
-	  bl        -0x155538
-	  cmplwi    r3, 0
-	  beq-      .loc_0x58
-	  li        r0, 0x5
-	  mr        r3, r31
-	  stw       r0, 0x2C4(r31)
-	  bl        -0x163300
-	  b         .loc_0x9C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	li       r5, 0
+	li       r6, 0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	li       r4, 0
+	stw      r30, 8(r1)
+	mr       r30, r3
+	mr       r3, r31
+	lwz      r7, 0xc0(r31)
+	lfs      f1, 0x424(r7)
+	lfs      f2, 0x3d4(r7)
+	bl
+"getNearestPikminOrNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Navi>P23Condition<Q24Game4Piki>"
+	cmplwi   r3, 0
+	beq      lbl_802685A8
+	li       r0, 5
+	mr       r3, r31
+	stw      r0, 0x2c4(r31)
+	bl       finishMotion__Q24Game9EnemyBaseFv
+	b        lbl_802685EC
 
-	.loc_0x58:
-	  mr        r3, r31
-	  bl        0x22AC
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x8C
-	  mr        r3, r31
-	  bl        0x22C4
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x9C
-	  li        r0, 0x7
-	  mr        r3, r31
-	  stw       r0, 0x2C4(r31)
-	  bl        -0x163334
-	  b         .loc_0x9C
+lbl_802685A8:
+	mr       r3, r31
+	bl       isBreakBridge__Q34Game4Tobi3ObjFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802685DC
+	mr       r3, r31
+	bl       moveBridgeSide__Q34Game4Tobi3ObjFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802685EC
+	li       r0, 7
+	mr       r3, r31
+	stw      r0, 0x2c4(r31)
+	bl       finishMotion__Q24Game9EnemyBaseFv
+	b        lbl_802685EC
 
-	.loc_0x8C:
-	  li        r0, 0x9
-	  mr        r3, r31
-	  stw       r0, 0x2C4(r31)
-	  bl        -0x163348
+lbl_802685DC:
+	li       r0, 9
+	mr       r3, r31
+	stw      r0, 0x2c4(r31)
+	bl       finishMotion__Q24Game9EnemyBaseFv
 
-	.loc_0x9C:
-	  mr        r3, r31
-	  bl        0x1C34
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xBC
-	  li        r0, 0xA
-	  mr        r3, r31
-	  stw       r0, 0x2C4(r31)
-	  bl        -0x163368
+lbl_802685EC:
+	mr       r3, r31
+	bl       isFlyingLife__Q34Game4Tobi3ObjFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_8026860C
+	li       r0, 0xa
+	mr       r3, r31
+	stw      r0, 0x2c4(r31)
+	bl       finishMotion__Q24Game9EnemyBaseFv
 
-	.loc_0xBC:
-	  mr        r3, r31
-	  bl        0x1C38
-	  lfs       f1, 0x200(r31)
-	  lfs       f0, -0x3430(r2)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0, 0x2
-	  bne-      .loc_0xFC
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x138
+lbl_8026860C:
+	mr       r3, r31
+	bl       setInWaterDamage__Q34Game4Tobi3ObjFv
+	lfs      f1, 0x200(r31)
+	lfs      f0, lbl_8051AF30@sda21(r2)
+	fcmpo    cr0, f1, f0
+	cror     2, 0, 2
+	bne      lbl_8026864C
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 0
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_80268688
 
-	.loc_0xFC:
-	  lwz       r3, 0x188(r31)
-	  lbz       r0, 0x24(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x138
-	  lwz       r0, 0x1C(r3)
-	  cmplwi    r0, 0x3E8
-	  bne-      .loc_0x138
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r6, 0
-	  lwz       r5, 0x2C4(r31)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_8026864C:
+	lwz      r3, 0x188(r31)
+	lbz      r0, 0x24(r3)
+	cmplwi   r0, 0
+	beq      lbl_80268688
+	lwz      r0, 0x1c(r3)
+	cmplwi   r0, 0x3e8
+	bne      lbl_80268688
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r6, 0
+	lwz      r5, 0x2c4(r31)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x138:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80268688:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1420,20 +1678,19 @@ void Tobi::StateMoveSide::cleanup(Game::EnemyBase*) { }
 void Tobi::StateMoveCentre::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r3, r4
-	  li        r4, 0x4
-	  stw       r0, 0x14(r1)
-	  li        r0, -0x1
-	  li        r5, 0
-	  stw       r0, 0x2C4(r3)
-	  bl        -0x1636C0
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r3, r4
+	li       r4, 4
+	stw      r0, 0x14(r1)
+	li       r0, -1
+	li       r5, 0
+	stw      r0, 0x2c4(r3)
+	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1445,103 +1702,103 @@ void Tobi::StateMoveCentre::init(Game::EnemyBase*, Game::StateArg*)
 void Tobi::StateMoveCentre::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r5, 0
-	  li        r6, 0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  li        r4, 0
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  mr        r3, r31
-	  lwz       r7, 0xC0(r31)
-	  lfs       f1, 0x424(r7)
-	  lfs       f2, 0x3D4(r7)
-	  bl        -0x1556C0
-	  cmplwi    r3, 0
-	  beq-      .loc_0x58
-	  li        r0, 0x5
-	  mr        r3, r31
-	  stw       r0, 0x2C4(r31)
-	  bl        -0x163488
-	  b         .loc_0x9C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	li       r5, 0
+	li       r6, 0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	li       r4, 0
+	stw      r30, 8(r1)
+	mr       r30, r3
+	mr       r3, r31
+	lwz      r7, 0xc0(r31)
+	lfs      f1, 0x424(r7)
+	lfs      f2, 0x3d4(r7)
+	bl
+"getNearestPikminOrNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Navi>P23Condition<Q24Game4Piki>"
+	cmplwi   r3, 0
+	beq      lbl_80268730
+	li       r0, 5
+	mr       r3, r31
+	stw      r0, 0x2c4(r31)
+	bl       finishMotion__Q24Game9EnemyBaseFv
+	b        lbl_80268774
 
-	.loc_0x58:
-	  mr        r3, r31
-	  bl        0x2124
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x8C
-	  mr        r3, r31
-	  bl        0x23E4
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x9C
-	  li        r0, 0x8
-	  mr        r3, r31
-	  stw       r0, 0x2C4(r31)
-	  bl        -0x1634BC
-	  b         .loc_0x9C
+lbl_80268730:
+	mr       r3, r31
+	bl       isBreakBridge__Q34Game4Tobi3ObjFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80268764
+	mr       r3, r31
+	bl       moveBridgeCentre__Q34Game4Tobi3ObjFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80268774
+	li       r0, 8
+	mr       r3, r31
+	stw      r0, 0x2c4(r31)
+	bl       finishMotion__Q24Game9EnemyBaseFv
+	b        lbl_80268774
 
-	.loc_0x8C:
-	  li        r0, 0x9
-	  mr        r3, r31
-	  stw       r0, 0x2C4(r31)
-	  bl        -0x1634D0
+lbl_80268764:
+	li       r0, 9
+	mr       r3, r31
+	stw      r0, 0x2c4(r31)
+	bl       finishMotion__Q24Game9EnemyBaseFv
 
-	.loc_0x9C:
-	  mr        r3, r31
-	  bl        0x1AAC
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xBC
-	  li        r0, 0xA
-	  mr        r3, r31
-	  stw       r0, 0x2C4(r31)
-	  bl        -0x1634F0
+lbl_80268774:
+	mr       r3, r31
+	bl       isFlyingLife__Q34Game4Tobi3ObjFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80268794
+	li       r0, 0xa
+	mr       r3, r31
+	stw      r0, 0x2c4(r31)
+	bl       finishMotion__Q24Game9EnemyBaseFv
 
-	.loc_0xBC:
-	  mr        r3, r31
-	  bl        0x1AB0
-	  lfs       f1, 0x200(r31)
-	  lfs       f0, -0x3430(r2)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0, 0x2
-	  bne-      .loc_0xFC
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x138
+lbl_80268794:
+	mr       r3, r31
+	bl       setInWaterDamage__Q34Game4Tobi3ObjFv
+	lfs      f1, 0x200(r31)
+	lfs      f0, lbl_8051AF30@sda21(r2)
+	fcmpo    cr0, f1, f0
+	cror     2, 0, 2
+	bne      lbl_802687D4
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 0
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_80268810
 
-	.loc_0xFC:
-	  lwz       r3, 0x188(r31)
-	  lbz       r0, 0x24(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x138
-	  lwz       r0, 0x1C(r3)
-	  cmplwi    r0, 0x3E8
-	  bne-      .loc_0x138
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r6, 0
-	  lwz       r5, 0x2C4(r31)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_802687D4:
+	lwz      r3, 0x188(r31)
+	lbz      r0, 0x24(r3)
+	cmplwi   r0, 0
+	beq      lbl_80268810
+	lwz      r0, 0x1c(r3)
+	cmplwi   r0, 0x3e8
+	bne      lbl_80268810
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r6, 0
+	lwz      r5, 0x2c4(r31)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x138:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80268810:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1560,20 +1817,19 @@ void Tobi::StateMoveCentre::cleanup(Game::EnemyBase*) { }
 void Tobi::StateMoveTop::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r3, r4
-	  li        r4, 0x4
-	  stw       r0, 0x14(r1)
-	  li        r0, -0x1
-	  li        r5, 0
-	  stw       r0, 0x2C4(r3)
-	  bl        -0x163848
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r3, r4
+	li       r4, 4
+	stw      r0, 0x14(r1)
+	li       r0, -1
+	li       r5, 0
+	stw      r0, 0x2c4(r3)
+	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1585,103 +1841,103 @@ void Tobi::StateMoveTop::init(Game::EnemyBase*, Game::StateArg*)
 void Tobi::StateMoveTop::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r5, 0
-	  li        r6, 0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  li        r4, 0
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  mr        r3, r31
-	  lwz       r7, 0xC0(r31)
-	  lfs       f1, 0x424(r7)
-	  lfs       f2, 0x3D4(r7)
-	  bl        -0x155848
-	  cmplwi    r3, 0
-	  beq-      .loc_0x58
-	  li        r0, 0x5
-	  mr        r3, r31
-	  stw       r0, 0x2C4(r31)
-	  bl        -0x163610
-	  b         .loc_0x9C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	li       r5, 0
+	li       r6, 0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	li       r4, 0
+	stw      r30, 8(r1)
+	mr       r30, r3
+	mr       r3, r31
+	lwz      r7, 0xc0(r31)
+	lfs      f1, 0x424(r7)
+	lfs      f2, 0x3d4(r7)
+	bl
+"getNearestPikminOrNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Navi>P23Condition<Q24Game4Piki>"
+	cmplwi   r3, 0
+	beq      lbl_802688B8
+	li       r0, 5
+	mr       r3, r31
+	stw      r0, 0x2c4(r31)
+	bl       finishMotion__Q24Game9EnemyBaseFv
+	b        lbl_802688FC
 
-	.loc_0x58:
-	  mr        r3, r31
-	  bl        0x1F9C
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x8C
-	  mr        r3, r31
-	  bl        0x24E4
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x9C
-	  li        r0, 0xB
-	  mr        r3, r31
-	  stw       r0, 0x2C4(r31)
-	  bl        -0x163644
-	  b         .loc_0x9C
+lbl_802688B8:
+	mr       r3, r31
+	bl       isBreakBridge__Q34Game4Tobi3ObjFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802688EC
+	mr       r3, r31
+	bl       moveBridgeTop__Q34Game4Tobi3ObjFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802688FC
+	li       r0, 0xb
+	mr       r3, r31
+	stw      r0, 0x2c4(r31)
+	bl       finishMotion__Q24Game9EnemyBaseFv
+	b        lbl_802688FC
 
-	.loc_0x8C:
-	  li        r0, 0x9
-	  mr        r3, r31
-	  stw       r0, 0x2C4(r31)
-	  bl        -0x163658
+lbl_802688EC:
+	li       r0, 9
+	mr       r3, r31
+	stw      r0, 0x2c4(r31)
+	bl       finishMotion__Q24Game9EnemyBaseFv
 
-	.loc_0x9C:
-	  mr        r3, r31
-	  bl        0x1924
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xBC
-	  li        r0, 0xA
-	  mr        r3, r31
-	  stw       r0, 0x2C4(r31)
-	  bl        -0x163678
+lbl_802688FC:
+	mr       r3, r31
+	bl       isFlyingLife__Q34Game4Tobi3ObjFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_8026891C
+	li       r0, 0xa
+	mr       r3, r31
+	stw      r0, 0x2c4(r31)
+	bl       finishMotion__Q24Game9EnemyBaseFv
 
-	.loc_0xBC:
-	  mr        r3, r31
-	  bl        0x1928
-	  lfs       f1, 0x200(r31)
-	  lfs       f0, -0x3430(r2)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0, 0x2
-	  bne-      .loc_0xFC
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x138
+lbl_8026891C:
+	mr       r3, r31
+	bl       setInWaterDamage__Q34Game4Tobi3ObjFv
+	lfs      f1, 0x200(r31)
+	lfs      f0, lbl_8051AF30@sda21(r2)
+	fcmpo    cr0, f1, f0
+	cror     2, 0, 2
+	bne      lbl_8026895C
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 0
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_80268998
 
-	.loc_0xFC:
-	  lwz       r3, 0x188(r31)
-	  lbz       r0, 0x24(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x138
-	  lwz       r0, 0x1C(r3)
-	  cmplwi    r0, 0x3E8
-	  bne-      .loc_0x138
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r6, 0
-	  lwz       r5, 0x2C4(r31)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_8026895C:
+	lwz      r3, 0x188(r31)
+	lbz      r0, 0x24(r3)
+	cmplwi   r0, 0
+	beq      lbl_80268998
+	lwz      r0, 0x1c(r3)
+	cmplwi   r0, 0x3e8
+	bne      lbl_80268998
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r6, 0
+	lwz      r5, 0x2c4(r31)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x138:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80268998:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1700,20 +1956,19 @@ void Tobi::StateMoveTop::cleanup(Game::EnemyBase*) { }
 void Tobi::StateGoHome::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r3, r4
-	  li        r4, 0x4
-	  stw       r0, 0x14(r1)
-	  li        r0, -0x1
-	  li        r5, 0
-	  stw       r0, 0x2C4(r3)
-	  bl        -0x1639D0
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r3, r4
+	li       r4, 4
+	stw      r0, 0x14(r1)
+	li       r0, -1
+	li       r5, 0
+	stw      r0, 0x2c4(r3)
+	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1725,148 +1980,142 @@ void Tobi::StateGoHome::init(Game::EnemyBase*, Game::StateArg*)
 void Tobi::StateGoHome::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x60(r1)
-	  mflr      r0
-	  stw       r0, 0x64(r1)
-	  stfd      f31, 0x50(r1)
-	  psq_st    f31,0x58(r1),0,0
-	  stfd      f30, 0x40(r1)
-	  psq_st    f30,0x48(r1),0,0
-	  stfd      f29, 0x30(r1)
-	  psq_st    f29,0x38(r1),0,0
-	  stw       r31, 0x2C(r1)
-	  stw       r30, 0x28(r1)
-	  mr        r31, r4
-	  mr        r30, r3
-	  lfs       f1, 0x19C(r31)
-	  addi      r4, r1, 0x14
-	  lfs       f2, 0x1A0(r31)
-	  mr        r3, r31
-	  lfs       f0, 0x198(r31)
-	  stfs      f0, 0x14(r1)
-	  stfs      f1, 0x18(r1)
-	  stfs      f2, 0x1C(r1)
-	  lwz       r5, 0xC0(r31)
-	  lfs       f1, 0x2E4(r5)
-	  lfs       f2, 0x30C(r5)
-	  lfs       f3, 0x334(r5)
-	  bl        -0x153470
-	  lwz       r7, 0xC0(r31)
-	  mr        r3, r31
-	  li        r4, 0
-	  li        r5, 0
-	  lfs       f1, 0x564(r7)
-	  li        r6, 0
-	  lfs       f2, 0x58C(r7)
-	  bl        -0x155A1C
-	  cmplwi    r3, 0
-	  beq-      .loc_0xA4
-	  li        r0, 0xC
-	  mr        r3, r31
-	  stw       r0, 0x2C4(r31)
-	  bl        -0x1637E4
-	  b         .loc_0x130
+	stwu     r1, -0x60(r1)
+	mflr     r0
+	stw      r0, 0x64(r1)
+	stfd     f31, 0x50(r1)
+	psq_st   f31, 88(r1), 0, qr0
+	stfd     f30, 0x40(r1)
+	psq_st   f30, 72(r1), 0, qr0
+	stfd     f29, 0x30(r1)
+	psq_st   f29, 56(r1), 0, qr0
+	stw      r31, 0x2c(r1)
+	stw      r30, 0x28(r1)
+	mr       r31, r4
+	mr       r30, r3
+	lfs      f1, 0x19c(r31)
+	addi     r4, r1, 0x14
+	lfs      f2, 0x1a0(r31)
+	mr       r3, r31
+	lfs      f0, 0x198(r31)
+	stfs     f0, 0x14(r1)
+	stfs     f1, 0x18(r1)
+	stfs     f2, 0x1c(r1)
+	lwz      r5, 0xc0(r31)
+	lfs      f1, 0x2e4(r5)
+	lfs      f2, 0x30c(r5)
+	lfs      f3, 0x334(r5)
+	bl "walkToTarget__Q24Game9EnemyFuncFPQ24Game9EnemyBaseR10Vector3<f>fff" lwz
+r7, 0xc0(r31) mr       r3, r31 li       r4, 0 li       r5, 0 lfs      f1,
+0x564(r7) li       r6, 0 lfs      f2, 0x58c(r7) bl
+"getNearestPikminOrNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Navi>P23Condition<Q24Game4Piki>"
+	cmplwi   r3, 0
+	beq      lbl_80268A8C
+	li       r0, 0xc
+	mr       r3, r31
+	stw      r0, 0x2c4(r31)
+	bl       finishMotion__Q24Game9EnemyBaseFv
+	b        lbl_80268B18
 
-	.loc_0xA4:
-	  mr        r4, r31
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x0(r31)
-	  lfs       f31, 0x198(r31)
-	  lwz       r12, 0x8(r12)
-	  lfs       f30, 0x19C(r31)
-	  lfs       f29, 0x1A0(r31)
-	  mtctr     r12
-	  bctrl
-	  lfs       f0, 0xC(r1)
-	  lfs       f2, 0x8(r1)
-	  fsubs     f3, f0, f30
-	  lfs       f1, 0x10(r1)
-	  fsubs     f2, f2, f31
-	  lfs       f0, -0x3430(r2)
-	  fsubs     f1, f1, f29
-	  fmuls     f3, f3, f3
-	  fmuls     f4, f1, f1
-	  fmadds    f1, f2, f2, f3
-	  fadds     f1, f4, f1
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x10C
-	  ble-      .loc_0x110
-	  fsqrte    f0, f1
-	  fmuls     f1, f0, f1
-	  b         .loc_0x110
+lbl_80268A8C:
+	mr       r4, r31
+	addi     r3, r1, 8
+	lwz      r12, 0(r31)
+	lfs      f31, 0x198(r31)
+	lwz      r12, 8(r12)
+	lfs      f30, 0x19c(r31)
+	lfs      f29, 0x1a0(r31)
+	mtctr    r12
+	bctrl
+	lfs      f0, 0xc(r1)
+	lfs      f2, 8(r1)
+	fsubs    f3, f0, f30
+	lfs      f1, 0x10(r1)
+	fsubs    f2, f2, f31
+	lfs      f0, lbl_8051AF30@sda21(r2)
+	fsubs    f1, f1, f29
+	fmuls    f3, f3, f3
+	fmuls    f4, f1, f1
+	fmadds   f1, f2, f2, f3
+	fadds    f1, f4, f1
+	fcmpo    cr0, f1, f0
+	ble      lbl_80268AF4
+	ble      lbl_80268AF8
+	frsqrte  f0, f1
+	fmuls    f1, f0, f1
+	b        lbl_80268AF8
 
-	.loc_0x10C:
-	  fmr       f1, f0
+lbl_80268AF4:
+	fmr      f1, f0
 
-	.loc_0x110:
-	  lwz       r3, 0xC0(r31)
-	  lfs       f0, 0x384(r3)
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x130
-	  li        r0, 0x4
-	  mr        r3, r31
-	  stw       r0, 0x2C4(r31)
-	  bl        -0x163874
+lbl_80268AF8:
+	lwz      r3, 0xc0(r31)
+	lfs      f0, 0x384(r3)
+	fcmpo    cr0, f1, f0
+	bge      lbl_80268B18
+	li       r0, 4
+	mr       r3, r31
+	stw      r0, 0x2c4(r31)
+	bl       finishMotion__Q24Game9EnemyBaseFv
 
-	.loc_0x130:
-	  mr        r3, r31
-	  bl        0x1708
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x150
-	  li        r0, 0xA
-	  mr        r3, r31
-	  stw       r0, 0x2C4(r31)
-	  bl        -0x163894
+lbl_80268B18:
+	mr       r3, r31
+	bl       isFlyingLife__Q34Game4Tobi3ObjFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80268B38
+	li       r0, 0xa
+	mr       r3, r31
+	stw      r0, 0x2c4(r31)
+	bl       finishMotion__Q24Game9EnemyBaseFv
 
-	.loc_0x150:
-	  mr        r3, r31
-	  bl        0x170C
-	  lfs       f1, 0x200(r31)
-	  lfs       f0, -0x3430(r2)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0, 0x2
-	  bne-      .loc_0x190
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x1CC
+lbl_80268B38:
+	mr       r3, r31
+	bl       setInWaterDamage__Q34Game4Tobi3ObjFv
+	lfs      f1, 0x200(r31)
+	lfs      f0, lbl_8051AF30@sda21(r2)
+	fcmpo    cr0, f1, f0
+	cror     2, 0, 2
+	bne      lbl_80268B78
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 0
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_80268BB4
 
-	.loc_0x190:
-	  lwz       r3, 0x188(r31)
-	  lbz       r0, 0x24(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x1CC
-	  lwz       r0, 0x1C(r3)
-	  cmplwi    r0, 0x3E8
-	  bne-      .loc_0x1CC
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r6, 0
-	  lwz       r5, 0x2C4(r31)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_80268B78:
+	lwz      r3, 0x188(r31)
+	lbz      r0, 0x24(r3)
+	cmplwi   r0, 0
+	beq      lbl_80268BB4
+	lwz      r0, 0x1c(r3)
+	cmplwi   r0, 0x3e8
+	bne      lbl_80268BB4
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r6, 0
+	lwz      r5, 0x2c4(r31)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x1CC:
-	  psq_l     f31,0x58(r1),0,0
-	  lfd       f31, 0x50(r1)
-	  psq_l     f30,0x48(r1),0,0
-	  lfd       f30, 0x40(r1)
-	  psq_l     f29,0x38(r1),0,0
-	  lfd       f29, 0x30(r1)
-	  lwz       r31, 0x2C(r1)
-	  lwz       r0, 0x64(r1)
-	  lwz       r30, 0x28(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x60
-	  blr
+lbl_80268BB4:
+	psq_l    f31, 88(r1), 0, qr0
+	lfd      f31, 0x50(r1)
+	psq_l    f30, 72(r1), 0, qr0
+	lfd      f30, 0x40(r1)
+	psq_l    f29, 56(r1), 0, qr0
+	lfd      f29, 0x30(r1)
+	lwz      r31, 0x2c(r1)
+	lwz      r0, 0x64(r1)
+	lwz      r30, 0x28(r1)
+	mtlr     r0
+	addi     r1, r1, 0x60
+	blr
 	*/
 }
 
@@ -1885,44 +2134,43 @@ void Tobi::StateGoHome::cleanup(Game::EnemyBase*) { }
 void Tobi::StateFly::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  addi      r3, r1, 0x8
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r4
-	  lwz       r12, 0x0(r4)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f1, 0xC(r1)
-	  mr        r3, r31
-	  lfs       f2, 0x10(r1)
-	  lfs       f0, 0x8(r1)
-	  stfs      f0, 0x2D0(r31)
-	  stfs      f1, 0x2D4(r31)
-	  stfs      f2, 0x2D8(r31)
-	  bl        0x13D8
-	  lwz       r0, 0x1E0(r31)
-	  mr        r3, r31
-	  lfs       f0, -0x3430(r2)
-	  li        r4, 0x5
-	  ori       r0, r0, 0x1
-	  li        r5, 0
-	  stw       r0, 0x1E0(r31)
-	  lwz       r0, 0x1E0(r31)
-	  ori       r0, r0, 0x4
-	  stw       r0, 0x1E0(r31)
-	  stfs      f0, 0x1D4(r31)
-	  stfs      f0, 0x1D8(r31)
-	  stfs      f0, 0x1DC(r31)
-	  bl        -0x163C60
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	addi     r3, r1, 8
+	stw      r31, 0x1c(r1)
+	mr       r31, r4
+	lwz      r12, 0(r4)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f1, 0xc(r1)
+	mr       r3, r31
+	lfs      f2, 0x10(r1)
+	lfs      f0, 8(r1)
+	stfs     f0, 0x2d0(r31)
+	stfs     f1, 0x2d4(r31)
+	stfs     f2, 0x2d8(r31)
+	bl       randomFlyingTarget__Q34Game4Tobi3ObjFv
+	lwz      r0, 0x1e0(r31)
+	mr       r3, r31
+	lfs      f0, lbl_8051AF30@sda21(r2)
+	li       r4, 5
+	ori      r0, r0, 1
+	li       r5, 0
+	stw      r0, 0x1e0(r31)
+	lwz      r0, 0x1e0(r31)
+	ori      r0, r0, 4
+	stw      r0, 0x1e0(r31)
+	stfs     f0, 0x1d4(r31)
+	stfs     f0, 0x1d8(r31)
+	stfs     f0, 0x1dc(r31)
+	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -1934,87 +2182,62 @@ void Tobi::StateFly::init(Game::EnemyBase*, Game::StateArg*)
 void Tobi::StateFly::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  stw       r0, 0x44(r1)
-	  stw       r31, 0x3C(r1)
-	  mr        r31, r4
-	  stw       r30, 0x38(r1)
-	  mr        r30, r3
-	  mr        r3, r31
-	  bl        0x1368
-	  lfs       f1, 0x2D4(r31)
-	  mr        r3, r31
-	  lfs       f2, 0x2D8(r31)
-	  addi      r4, r1, 0x20
-	  lfs       f0, 0x2D0(r31)
-	  stfs      f0, 0x20(r1)
-	  stfs      f1, 0x24(r1)
-	  stfs      f2, 0x28(r1)
-	  lwz       r5, 0xC0(r31)
-	  lfs       f1, 0x2E4(r5)
-	  lfs       f2, 0x30C(r5)
-	  lfs       f3, 0x334(r5)
-	  bl        -0x1536F4
-	  lwz       r3, 0xC0(r31)
-	  lfs       f2, 0x200(r31)
-	  lfs       f1, 0x104(r3)
-	  lfs       f0, 0x844(r3)
-	  fdivs     f1, f2, f1
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0xDC
-	  lwz       r0, 0x1E0(r31)
-	  mr        r3, r31
-	  rlwinm    r0,r0,0,30,28
-	  stw       r0, 0x1E0(r31)
-	  bl        -0x163A60
-	  mr        r4, r31
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x6C(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f2, 0xC(r1)
-	  mr        r3, r31
-	  lfs       f0, -0x3424(r2)
-	  addi      r4, r1, 0x14
-	  lfs       f3, 0x8(r1)
-	  lfs       f1, 0x10(r1)
-	  fmuls     f0, f2, f0
-	  stfs      f2, 0x18(r1)
-	  stfs      f3, 0x14(r1)
-	  stfs      f1, 0x1C(r1)
-	  stfs      f0, 0x18(r1)
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x68(r12)
-	  mtctr     r12
-	  bctrl
+	stwu     r1, -0x40(r1)
+	mflr     r0
+	stw      r0, 0x44(r1)
+	stw      r31, 0x3c(r1)
+	mr       r31, r4
+	stw      r30, 0x38(r1)
+	mr       r30, r3
+	mr       r3, r31
+	bl       randomFlyingTarget__Q34Game4Tobi3ObjFv
+	lfs      f1, 0x2d4(r31)
+	mr       r3, r31
+	lfs      f2, 0x2d8(r31)
+	addi     r4, r1, 0x20
+	lfs      f0, 0x2d0(r31)
+	stfs     f0, 0x20(r1)
+	stfs     f1, 0x24(r1)
+	stfs     f2, 0x28(r1)
+	lwz      r5, 0xc0(r31)
+	lfs      f1, 0x2e4(r5)
+	lfs      f2, 0x30c(r5)
+	lfs      f3, 0x334(r5)
+	bl "walkToTarget__Q24Game9EnemyFuncFPQ24Game9EnemyBaseR10Vector3<f>fff" lwz
+r3, 0xc0(r31) lfs      f2, 0x200(r31) lfs      f1, 0x104(r3) lfs      f0,
+0x844(r3) fdivs    f1, f2, f1 fcmpo    cr0, f1, f0 ble      lbl_80268D58 lwz r0,
+0x1e0(r31) mr       r3, r31 rlwinm   r0, r0, 0, 0x1e, 0x1c stw      r0,
+0x1e0(r31) bl       finishMotion__Q24Game9EnemyBaseFv mr       r4, r31 addi r3,
+r1, 8 lwz      r12, 0(r31) lwz      r12, 0x6c(r12) mtctr    r12 bctrl lfs f2,
+0xc(r1) mr       r3, r31 lfs      f0, lbl_8051AF3C@sda21(r2) addi     r4, r1,
+0x14 lfs      f3, 8(r1) lfs      f1, 0x10(r1) fmuls    f0, f2, f0 stfs     f2,
+0x18(r1) stfs     f3, 0x14(r1) stfs     f1, 0x1c(r1) stfs     f0, 0x18(r1) lwz
+r12, 0(r31) lwz      r12, 0x68(r12) mtctr    r12 bctrl
 
-	.loc_0xDC:
-	  lwz       r3, 0x188(r31)
-	  lbz       r0, 0x24(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x118
-	  lwz       r0, 0x1C(r3)
-	  cmplwi    r0, 0x3E8
-	  bne-      .loc_0x118
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x5
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_80268D58:
+	lwz      r3, 0x188(r31)
+	lbz      r0, 0x24(r3)
+	cmplwi   r0, 0
+	beq      lbl_80268D94
+	lwz      r0, 0x1c(r3)
+	cmplwi   r0, 0x3e8
+	bne      lbl_80268D94
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 5
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x118:
-	  lwz       r0, 0x44(r1)
-	  lwz       r31, 0x3C(r1)
-	  lwz       r30, 0x38(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
+lbl_80268D94:
+	lwz      r0, 0x44(r1)
+	lwz      r31, 0x3c(r1)
+	lwz      r30, 0x38(r1)
+	mtlr     r0
+	addi     r1, r1, 0x40
+	blr
 	*/
 }
 
@@ -2026,14 +2249,13 @@ void Tobi::StateFly::exec(Game::EnemyBase*)
 void Tobi::StateFly::cleanup(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  lwz       r0, 0x1E0(r4)
-	  rlwinm    r0,r0,0,30,28
-	  stw       r0, 0x1E0(r4)
-	  lwz       r0, 0x1E0(r4)
-	  rlwinm    r0,r0,0,0,30
-	  stw       r0, 0x1E0(r4)
-	  blr
+	lwz      r0, 0x1e0(r4)
+	rlwinm   r0, r0, 0, 0x1e, 0x1c
+	stw      r0, 0x1e0(r4)
+	lwz      r0, 0x1e0(r4)
+	rlwinm   r0, r0, 0, 0, 0x1e
+	stw      r0, 0x1e0(r4)
+	blr
 	*/
 }
 
@@ -2045,29 +2267,28 @@ void Tobi::StateFly::cleanup(Game::EnemyBase*)
 void Tobi::StateAttack1::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lfs       f0, -0x3430(r2)
-	  li        r5, 0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  li        r4, 0x6
-	  stfs      f0, 0x1D4(r31)
-	  mr        r3, r31
-	  stfs      f0, 0x1D8(r31)
-	  stfs      f0, 0x1DC(r31)
-	  bl        -0x163DF4
-	  li        r0, -0x1
-	  mr        r3, r31
-	  stw       r0, 0x2C4(r31)
-	  bl        0x240C
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lfs      f0, lbl_8051AF30@sda21(r2)
+	li       r5, 0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	li       r4, 6
+	stfs     f0, 0x1d4(r31)
+	mr       r3, r31
+	stfs     f0, 0x1d8(r31)
+	stfs     f0, 0x1dc(r31)
+	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
+	li       r0, -1
+	mr       r3, r31
+	stw      r0, 0x2c4(r31)
+	bl       createBridgeEffect__Q34Game4Tobi3ObjFv
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2079,109 +2300,109 @@ void Tobi::StateAttack1::init(Game::EnemyBase*, Game::StateArg*)
 void Tobi::StateAttack1::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r5, 0
-	  li        r6, 0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  li        r4, 0
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  mr        r3, r31
-	  lwz       r7, 0xC0(r31)
-	  lfs       f1, 0x424(r7)
-	  lfs       f2, 0x3D4(r7)
-	  bl        -0x155E08
-	  cmplwi    r3, 0
-	  beq-      .loc_0x50
-	  li        r0, 0x5
-	  stw       r0, 0x2C4(r31)
-	  b         .loc_0x90
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	li       r5, 0
+	li       r6, 0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	li       r4, 0
+	stw      r30, 8(r1)
+	mr       r30, r3
+	mr       r3, r31
+	lwz      r7, 0xc0(r31)
+	lfs      f1, 0x424(r7)
+	lfs      f2, 0x3d4(r7)
+	bl
+"getNearestPikminOrNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Navi>P23Condition<Q24Game4Piki>"
+	cmplwi   r3, 0
+	beq      lbl_80268E70
+	li       r0, 5
+	stw      r0, 0x2c4(r31)
+	b        lbl_80268EB0
 
-	.loc_0x50:
-	  mr        r3, r31
-	  bl        0x19E4
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x88
-	  mr        r3, r31
-	  bl        0x1F2C
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x7C
-	  li        r0, 0xB
-	  stw       r0, 0x2C4(r31)
-	  b         .loc_0x90
+lbl_80268E70:
+	mr       r3, r31
+	bl       isBreakBridge__Q34Game4Tobi3ObjFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80268EA8
+	mr       r3, r31
+	bl       moveBridgeTop__Q34Game4Tobi3ObjFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80268E9C
+	li       r0, 0xb
+	stw      r0, 0x2c4(r31)
+	b        lbl_80268EB0
 
-	.loc_0x7C:
-	  li        r0, 0x8
-	  stw       r0, 0x2C4(r31)
-	  b         .loc_0x90
+lbl_80268E9C:
+	li       r0, 8
+	stw      r0, 0x2c4(r31)
+	b        lbl_80268EB0
 
-	.loc_0x88:
-	  li        r0, 0x9
-	  stw       r0, 0x2C4(r31)
+lbl_80268EA8:
+	li       r0, 9
+	stw      r0, 0x2c4(r31)
 
-	.loc_0x90:
-	  mr        r3, r31
-	  bl        0x1370
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xA8
-	  li        r0, 0xA
-	  stw       r0, 0x2C4(r31)
+lbl_80268EB0:
+	mr       r3, r31
+	bl       isFlyingLife__Q34Game4Tobi3ObjFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80268EC8
+	li       r0, 0xa
+	stw      r0, 0x2c4(r31)
 
-	.loc_0xA8:
-	  lfs       f1, 0x200(r31)
-	  lfs       f0, -0x3430(r2)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0, 0x2
-	  bne-      .loc_0xE0
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x140
+lbl_80268EC8:
+	lfs      f1, 0x200(r31)
+	lfs      f0, lbl_8051AF30@sda21(r2)
+	fcmpo    cr0, f1, f0
+	cror     2, 0, 2
+	bne      lbl_80268F00
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 0
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_80268F60
 
-	.loc_0xE0:
-	  lwz       r3, 0x188(r31)
-	  lbz       r0, 0x24(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x140
-	  lwz       r0, 0x1C(r3)
-	  cmplwi    r0, 0x2
-	  bne-      .loc_0x118
-	  mr        r3, r31
-	  bl        0x1938
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x140
-	  mr        r3, r31
-	  bl        0x2170
-	  b         .loc_0x140
+lbl_80268F00:
+	lwz      r3, 0x188(r31)
+	lbz      r0, 0x24(r3)
+	cmplwi   r0, 0
+	beq      lbl_80268F60
+	lwz      r0, 0x1c(r3)
+	cmplwi   r0, 2
+	bne      lbl_80268F38
+	mr       r3, r31
+	bl       isBreakBridge__Q34Game4Tobi3ObjFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80268F60
+	mr       r3, r31
+	bl       breakTargetBridge__Q34Game4Tobi3ObjFv
+	b        lbl_80268F60
 
-	.loc_0x118:
-	  cmplwi    r0, 0x3E8
-	  bne-      .loc_0x140
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r6, 0
-	  lwz       r5, 0x2C4(r31)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_80268F38:
+	cmplwi   r0, 0x3e8
+	bne      lbl_80268F60
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r6, 0
+	lwz      r5, 0x2c4(r31)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x140:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80268F60:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2200,25 +2421,24 @@ void Tobi::StateAttack1::cleanup(Game::EnemyBase*) { }
 void Tobi::StateAttack2::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r3, r4
-	  lfs       f0, -0x3430(r2)
-	  stw       r0, 0x14(r1)
-	  li        r4, 0x7
-	  li        r5, 0
-	  lwz       r0, 0x1E0(r3)
-	  rlwinm    r0,r0,0,11,9
-	  stw       r0, 0x1E0(r3)
-	  stfs      f0, 0x1D4(r3)
-	  stfs      f0, 0x1D8(r3)
-	  stfs      f0, 0x1DC(r3)
-	  bl        -0x163FAC
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r3, r4
+	lfs      f0, lbl_8051AF30@sda21(r2)
+	stw      r0, 0x14(r1)
+	li       r4, 7
+	li       r5, 0
+	lwz      r0, 0x1e0(r3)
+	rlwinm   r0, r0, 0, 0xb, 9
+	stw      r0, 0x1e0(r3)
+	stfs     f0, 0x1d4(r3)
+	stfs     f0, 0x1d8(r3)
+	stfs     f0, 0x1dc(r3)
+	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2230,159 +2450,160 @@ void Tobi::StateAttack2::init(Game::EnemyBase*, Game::StateArg*)
 void Tobi::StateAttack2::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x50(r1)
-	  mflr      r0
-	  stw       r0, 0x54(r1)
-	  stfd      f31, 0x40(r1)
-	  psq_st    f31,0x48(r1),0,0
-	  stfd      f30, 0x30(r1)
-	  psq_st    f30,0x38(r1),0,0
-	  stfd      f29, 0x20(r1)
-	  psq_st    f29,0x28(r1),0,0
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  mr        r31, r4
-	  mr        r30, r3
-	  mr        r3, r31
-	  bl        0x124C
-	  lwz       r3, 0x188(r31)
-	  lbz       r0, 0x24(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x1E8
-	  lwz       r0, 0x1C(r3)
-	  cmplwi    r0, 0x2
-	  bne-      .loc_0x68
-	  lwz       r0, 0x1E0(r31)
-	  oris      r0, r0, 0x20
-	  stw       r0, 0x1E0(r31)
-	  b         .loc_0x1E8
+	stwu     r1, -0x50(r1)
+	mflr     r0
+	stw      r0, 0x54(r1)
+	stfd     f31, 0x40(r1)
+	psq_st   f31, 72(r1), 0, qr0
+	stfd     f30, 0x30(r1)
+	psq_st   f30, 56(r1), 0, qr0
+	stfd     f29, 0x20(r1)
+	psq_st   f29, 40(r1), 0, qr0
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	mr       r31, r4
+	mr       r30, r3
+	mr       r3, r31
+	bl       setInWaterDamage__Q34Game4Tobi3ObjFv
+	lwz      r3, 0x188(r31)
+	lbz      r0, 0x24(r3)
+	cmplwi   r0, 0
+	beq      lbl_802691AC
+	lwz      r0, 0x1c(r3)
+	cmplwi   r0, 2
+	bne      lbl_8026902C
+	lwz      r0, 0x1e0(r31)
+	oris     r0, r0, 0x20
+	stw      r0, 0x1e0(r31)
+	b        lbl_802691AC
 
-	.loc_0x68:
-	  cmplwi    r0, 0x3
-	  bne-      .loc_0x80
-	  lwz       r0, 0x1E0(r31)
-	  rlwinm    r0,r0,0,11,9
-	  stw       r0, 0x1E0(r31)
-	  b         .loc_0x1E8
+lbl_8026902C:
+	cmplwi   r0, 3
+	bne      lbl_80269044
+	lwz      r0, 0x1e0(r31)
+	rlwinm   r0, r0, 0, 0xb, 9
+	stw      r0, 0x1e0(r31)
+	b        lbl_802691AC
 
-	.loc_0x80:
-	  cmplwi    r0, 0x4
-	  bne-      .loc_0xB8
-	  lwz       r6, 0xC0(r31)
-	  mr        r3, r31
-	  li        r4, 0
-	  li        r5, 0
-	  lfs       f1, 0x5B4(r6)
-	  lfs       f2, 0x5DC(r6)
-	  lfs       f3, 0x604(r6)
-	  bl        -0x154E08
-	  mr        r3, r31
-	  li        r4, 0
-	  bl        -0x155540
-	  b         .loc_0x1E8
+lbl_80269044:
+	cmplwi   r0, 4
+	bne      lbl_8026907C
+	lwz      r6, 0xc0(r31)
+	mr       r3, r31
+	li       r4, 0
+	li       r5, 0
+	lfs      f1, 0x5b4(r6)
+	lfs      f2, 0x5dc(r6)
+	lfs      f3, 0x604(r6)
+	bl
+"attackNavi__Q24Game9EnemyFuncFPQ24Game8CreaturefffP8CollPartP23Condition<Q24Game4Navi>"
+	mr       r3, r31
+	li       r4, 0
+	bl
+"eatPikmin__Q24Game9EnemyFuncFPQ24Game9EnemyBaseP23Condition<Q24Game4Piki>" b
+lbl_802691AC
 
-	.loc_0xB8:
-	  cmplwi    r0, 0x3E8
-	  bne-      .loc_0x1E8
-	  lfs       f1, 0x200(r31)
-	  lfs       f0, -0x3430(r2)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0, 0x2
-	  bne-      .loc_0xF8
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x1E8
+lbl_8026907C:
+	cmplwi   r0, 0x3e8
+	bne      lbl_802691AC
+	lfs      f1, 0x200(r31)
+	lfs      f0, lbl_8051AF30@sda21(r2)
+	fcmpo    cr0, f1, f0
+	cror     2, 0, 2
+	bne      lbl_802690BC
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 0
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802691AC
 
-	.loc_0xF8:
-	  lwz       r0, 0x1F4(r31)
-	  cmpwi     r0, 0
-	  beq-      .loc_0x128
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0xD
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x1E8
+lbl_802690BC:
+	lwz      r0, 0x1f4(r31)
+	cmpwi    r0, 0
+	beq      lbl_802690EC
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 0xd
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802691AC
 
-	.loc_0x128:
-	  mr        r4, r31
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x0(r31)
-	  lfs       f31, 0x198(r31)
-	  lwz       r12, 0x8(r12)
-	  lfs       f30, 0x19C(r31)
-	  lfs       f29, 0x1A0(r31)
-	  mtctr     r12
-	  bctrl
-	  lfs       f0, 0xC(r1)
-	  lfs       f2, 0x8(r1)
-	  fsubs     f3, f0, f30
-	  lfs       f1, 0x10(r1)
-	  fsubs     f2, f2, f31
-	  lfs       f0, -0x3430(r2)
-	  fsubs     f1, f1, f29
-	  fmuls     f3, f3, f3
-	  fmuls     f4, f1, f1
-	  fmadds    f1, f2, f2, f3
-	  fadds     f1, f4, f1
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x190
-	  ble-      .loc_0x194
-	  fsqrte    f0, f1
-	  fmuls     f1, f0, f1
-	  b         .loc_0x194
+lbl_802690EC:
+	mr       r4, r31
+	addi     r3, r1, 8
+	lwz      r12, 0(r31)
+	lfs      f31, 0x198(r31)
+	lwz      r12, 8(r12)
+	lfs      f30, 0x19c(r31)
+	lfs      f29, 0x1a0(r31)
+	mtctr    r12
+	bctrl
+	lfs      f0, 0xc(r1)
+	lfs      f2, 8(r1)
+	fsubs    f3, f0, f30
+	lfs      f1, 0x10(r1)
+	fsubs    f2, f2, f31
+	lfs      f0, lbl_8051AF30@sda21(r2)
+	fsubs    f1, f1, f29
+	fmuls    f3, f3, f3
+	fmuls    f4, f1, f1
+	fmadds   f1, f2, f2, f3
+	fadds    f1, f4, f1
+	fcmpo    cr0, f1, f0
+	ble      lbl_80269154
+	ble      lbl_80269158
+	frsqrte  f0, f1
+	fmuls    f1, f0, f1
+	b        lbl_80269158
 
-	.loc_0x190:
-	  fmr       f1, f0
+lbl_80269154:
+	fmr      f1, f0
 
-	.loc_0x194:
-	  lwz       r3, 0xC0(r31)
-	  lfs       f0, 0x35C(r3)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x1C8
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x9
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x1E8
+lbl_80269158:
+	lwz      r3, 0xc0(r31)
+	lfs      f0, 0x35c(r3)
+	fcmpo    cr0, f1, f0
+	ble      lbl_8026918C
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 9
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802691AC
 
-	.loc_0x1C8:
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x5
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_8026918C:
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 5
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x1E8:
-	  psq_l     f31,0x48(r1),0,0
-	  lfd       f31, 0x40(r1)
-	  psq_l     f30,0x38(r1),0,0
-	  lfd       f30, 0x30(r1)
-	  psq_l     f29,0x28(r1),0,0
-	  lfd       f29, 0x20(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r0, 0x54(r1)
-	  lwz       r30, 0x18(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x50
-	  blr
+lbl_802691AC:
+	psq_l    f31, 72(r1), 0, qr0
+	lfd      f31, 0x40(r1)
+	psq_l    f30, 56(r1), 0, qr0
+	lfd      f30, 0x30(r1)
+	psq_l    f29, 40(r1), 0, qr0
+	lfd      f29, 0x20(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r0, 0x54(r1)
+	lwz      r30, 0x18(r1)
+	mtlr     r0
+	addi     r1, r1, 0x50
+	blr
 	*/
 }
 
@@ -2394,11 +2615,10 @@ void Tobi::StateAttack2::exec(Game::EnemyBase*)
 void Tobi::StateAttack2::cleanup(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  lwz       r0, 0x1E0(r4)
-	  rlwinm    r0,r0,0,11,9
-	  stw       r0, 0x1E0(r4)
-	  blr
+	lwz      r0, 0x1e0(r4)
+	rlwinm   r0, r0, 0, 0xb, 9
+	stw      r0, 0x1e0(r4)
+	blr
 	*/
 }
 
@@ -2410,22 +2630,21 @@ void Tobi::StateAttack2::cleanup(Game::EnemyBase*)
 void Tobi::StateEat::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r3, r4
-	  lfs       f0, -0x3430(r2)
-	  stw       r0, 0x14(r1)
-	  li        r4, 0x8
-	  li        r5, 0
-	  stfs      f0, 0x1D4(r3)
-	  stfs      f0, 0x1D8(r3)
-	  stfs      f0, 0x1DC(r3)
-	  bl        -0x164210
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r3, r4
+	lfs      f0, lbl_8051AF30@sda21(r2)
+	stw      r0, 0x14(r1)
+	li       r4, 8
+	li       r5, 0
+	stfs     f0, 0x1d4(r3)
+	stfs     f0, 0x1d8(r3)
+	stfs     f0, 0x1dc(r3)
+	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2437,125 +2656,125 @@ void Tobi::StateEat::init(Game::EnemyBase*, Game::StateArg*)
 void Tobi::StateEat::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x50(r1)
-	  mflr      r0
-	  stw       r0, 0x54(r1)
-	  stfd      f31, 0x40(r1)
-	  psq_st    f31,0x48(r1),0,0
-	  stfd      f30, 0x30(r1)
-	  psq_st    f30,0x38(r1),0,0
-	  stfd      f29, 0x20(r1)
-	  psq_st    f29,0x28(r1),0,0
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  mr        r31, r4
-	  mr        r30, r3
-	  mr        r3, r31
-	  bl        0xFE8
-	  lfs       f1, 0x200(r31)
-	  lfs       f0, -0x3430(r2)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0, 0x2
-	  bne-      .loc_0x74
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x178
+	stwu     r1, -0x50(r1)
+	mflr     r0
+	stw      r0, 0x54(r1)
+	stfd     f31, 0x40(r1)
+	psq_st   f31, 72(r1), 0, qr0
+	stfd     f30, 0x30(r1)
+	psq_st   f30, 56(r1), 0, qr0
+	stfd     f29, 0x20(r1)
+	psq_st   f29, 40(r1), 0, qr0
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	mr       r31, r4
+	mr       r30, r3
+	mr       r3, r31
+	bl       setInWaterDamage__Q34Game4Tobi3ObjFv
+	lfs      f1, 0x200(r31)
+	lfs      f0, lbl_8051AF30@sda21(r2)
+	fcmpo    cr0, f1, f0
+	cror     2, 0, 2
+	bne      lbl_8026929C
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 0
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802693A0
 
-	.loc_0x74:
-	  lwz       r3, 0x188(r31)
-	  lbz       r0, 0x24(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x178
-	  lwz       r0, 0x1C(r3)
-	  cmplwi    r0, 0x2
-	  bne-      .loc_0xB0
-	  lwz       r5, 0xC0(r31)
-	  mr        r3, r31
-	  li        r4, 0
-	  lfs       f1, 0x894(r5)
-	  bl        -0x155444
-	  mr        r3, r31
-	  bl        0x1FD4
-	  b         .loc_0x178
+lbl_8026929C:
+	lwz      r3, 0x188(r31)
+	lbz      r0, 0x24(r3)
+	cmplwi   r0, 0
+	beq      lbl_802693A0
+	lwz      r0, 0x1c(r3)
+	cmplwi   r0, 2
+	bne      lbl_802692D8
+	lwz      r5, 0xc0(r31)
+	mr       r3, r31
+	li       r4, 0
+	lfs      f1, 0x894(r5)
+	bl
+"swallowPikmin__Q24Game9EnemyFuncFPQ24Game8CreaturefP23Condition<Q24Game4Piki>"
+	mr       r3, r31
+	bl       createEatEffect__Q34Game4Tobi3ObjFv
+	b        lbl_802693A0
 
-	.loc_0xB0:
-	  cmplwi    r0, 0x3E8
-	  bne-      .loc_0x178
-	  mr        r4, r31
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x0(r31)
-	  lfs       f31, 0x198(r31)
-	  lwz       r12, 0x8(r12)
-	  lfs       f30, 0x19C(r31)
-	  lfs       f29, 0x1A0(r31)
-	  mtctr     r12
-	  bctrl
-	  lfs       f0, 0xC(r1)
-	  lfs       f2, 0x8(r1)
-	  fsubs     f3, f0, f30
-	  lfs       f1, 0x10(r1)
-	  fsubs     f2, f2, f31
-	  lfs       f0, -0x3430(r2)
-	  fsubs     f1, f1, f29
-	  fmuls     f3, f3, f3
-	  fmuls     f4, f1, f1
-	  fmadds    f1, f2, f2, f3
-	  fadds     f1, f4, f1
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x120
-	  ble-      .loc_0x124
-	  fsqrte    f0, f1
-	  fmuls     f1, f0, f1
-	  b         .loc_0x124
+lbl_802692D8:
+	cmplwi   r0, 0x3e8
+	bne      lbl_802693A0
+	mr       r4, r31
+	addi     r3, r1, 8
+	lwz      r12, 0(r31)
+	lfs      f31, 0x198(r31)
+	lwz      r12, 8(r12)
+	lfs      f30, 0x19c(r31)
+	lfs      f29, 0x1a0(r31)
+	mtctr    r12
+	bctrl
+	lfs      f0, 0xc(r1)
+	lfs      f2, 8(r1)
+	fsubs    f3, f0, f30
+	lfs      f1, 0x10(r1)
+	fsubs    f2, f2, f31
+	lfs      f0, lbl_8051AF30@sda21(r2)
+	fsubs    f1, f1, f29
+	fmuls    f3, f3, f3
+	fmuls    f4, f1, f1
+	fmadds   f1, f2, f2, f3
+	fadds    f1, f4, f1
+	fcmpo    cr0, f1, f0
+	ble      lbl_80269348
+	ble      lbl_8026934C
+	frsqrte  f0, f1
+	fmuls    f1, f0, f1
+	b        lbl_8026934C
 
-	.loc_0x120:
-	  fmr       f1, f0
+lbl_80269348:
+	fmr      f1, f0
 
-	.loc_0x124:
-	  lwz       r3, 0xC0(r31)
-	  lfs       f0, 0x35C(r3)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x158
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x9
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x178
+lbl_8026934C:
+	lwz      r3, 0xc0(r31)
+	lfs      f0, 0x35c(r3)
+	fcmpo    cr0, f1, f0
+	ble      lbl_80269380
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 9
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802693A0
 
-	.loc_0x158:
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x5
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_80269380:
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 5
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x178:
-	  psq_l     f31,0x48(r1),0,0
-	  lfd       f31, 0x40(r1)
-	  psq_l     f30,0x38(r1),0,0
-	  lfd       f30, 0x30(r1)
-	  psq_l     f29,0x28(r1),0,0
-	  lfd       f29, 0x20(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r0, 0x54(r1)
-	  lwz       r30, 0x18(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x50
-	  blr
+lbl_802693A0:
+	psq_l    f31, 72(r1), 0, qr0
+	lfd      f31, 0x40(r1)
+	psq_l    f30, 56(r1), 0, qr0
+	lfd      f30, 0x30(r1)
+	psq_l    f29, 40(r1), 0, qr0
+	lfd      f29, 0x20(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r0, 0x54(r1)
+	lwz      r30, 0x18(r1)
+	mtlr     r0
+	addi     r1, r1, 0x50
+	blr
 	*/
 }
 

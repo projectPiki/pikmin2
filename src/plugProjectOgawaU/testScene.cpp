@@ -1,6 +1,20 @@
 #include "types.h"
 #include "Graphics.h"
 
+/*
+    Generated from dpostproc
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__Q32og6Screen15DispMemberDummy
+    __vt__Q32og6Screen15DispMemberDummy:
+        .4byte 0
+        .4byte 0
+        .4byte getSize__Q32og6Screen15DispMemberDummyFv
+        .4byte getOwnerID__Q32og6Screen15DispMemberDummyFv
+        .4byte getMemberID__Q32og6Screen15DispMemberDummyFv
+        .4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
+*/
+
 namespace og {
 namespace Space {
 	struct SceneBase {

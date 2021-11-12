@@ -1,5 +1,372 @@
 #include "types.h"
 
+/*
+    Generated from dpostproc
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    lbl_8049CD98:
+        .asciz "damageD  "
+        .skip 2
+    lbl_8049CDA4:
+        .asciz "lifeD    "
+        .skip 2
+    lbl_8049CDB0:
+        .asciz "pikminD  "
+        .skip 2
+    lbl_8049CDBC:
+        .asciz "PSMainSide_Director.cpp"
+    lbl_8049CDD4:
+        .asciz "P2Assert"
+        .skip 3
+    lbl_8049CDE0:
+        .asciz "PSDirector.h"
+        .skip 3
+        .asciz "PSCommon.h"
+        .skip 1
+        .asciz "PSGame.h"
+        .skip 3
+        .asciz "PSScene.h"
+        .skip 2
+        .asciz "get sound scene at\ninvalid timming\n"
+        .asciz "PSMainSide_ObjSound.h"
+        .skip 2
+    lbl_8049CE50:
+        .asciz "pikatkD  "
+        .skip 2
+    lbl_8049CE5C:
+        .asciz "tentionD "
+        .skip 2
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__Q23PSM13ExiteDirector
+    __vt__Q23PSM13ExiteDirector:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q23PSM13ExiteDirectorFv
+        .4byte exec__Q28PSSystem12DirectorBaseFv
+        .4byte directOn__Q28PSSystem12DirectorBaseFv
+        .4byte directOff__Q28PSSystem12DirectorBaseFv
+        .4byte underDirection__Q28PSSystem12DirectorBaseFv
+        .4byte execInner__Q28PSSystem12DirectorBaseFv
+        .4byte
+   directOnTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase .4byte
+   directOffTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase .4byte
+   doUpdateRequest__Q28PSSystem16SwitcherDirectorFv .4byte
+   onPlayInit__Q23PSM19TrackOnDirectorBaseFP8JASTrack .4byte
+   onDirectOn__Q28PSSystem12DirectorBaseFv .4byte
+   onDirectOff__Q28PSSystem12DirectorBaseFv .global
+   __vt__Q23PSM17PikAttackDirector
+    __vt__Q23PSM17PikAttackDirector:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q23PSM17PikAttackDirectorFv
+        .4byte exec__Q28PSSystem12DirectorBaseFv
+        .4byte directOn__Q28PSSystem12DirectorBaseFv
+        .4byte directOff__Q28PSSystem12DirectorBaseFv
+        .4byte underDirection__Q28PSSystem12DirectorBaseFv
+        .4byte execInner__Q28PSSystem12DirectorBaseFv
+        .4byte
+   directOnTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase .4byte
+   directOffTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase .4byte
+   doUpdateRequest__Q28PSSystem16SwitcherDirectorFv .4byte
+   onPlayInit__Q23PSM19TrackOnDirectorBaseFP8JASTrack .4byte
+   onDirectOn__Q28PSSystem12DirectorBaseFv .4byte
+   onDirectOff__Q28PSSystem12DirectorBaseFv .global
+   __vt__Q23PSM19ActorDirector_Kehai
+    __vt__Q23PSM19ActorDirector_Kehai:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q23PSM19ActorDirector_KehaiFv
+        .4byte exec__Q28PSSystem12DirectorBaseFv
+        .4byte directOn__Q28PSSystem12DirectorBaseFv
+        .4byte directOff__Q28PSSystem12DirectorBaseFv
+        .4byte underDirection__Q23PSM19ActorDirector_EnemyFv
+        .4byte execInner__Q23PSM20ActorDirector_ScaledFv
+        .4byte
+   directOnTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase .4byte
+   directOffTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase .4byte
+   doUpdateRequest__Q28PSSystem16SwitcherDirectorFv .4byte
+   onPlayInit__Q23PSM19TrackOnDirectorBaseFP8JASTrack .4byte
+   onDirectOn__Q28PSSystem12DirectorBaseFv .4byte
+   onDirectOff__Q28PSSystem12DirectorBaseFv .4byte
+   getNearestDistance__Q23PSM20ActorDirector_ScaledFv .4byte
+   onSetMinDistObj__Q23PSM19ActorDirector_EnemyFPQ24Game8Creature .4byte
+   getVolZeroDist__Q23PSM19ActorDirector_KehaiFPQ24Game9EnemyBase .4byte
+   getVolMaxDist__Q23PSM19ActorDirector_KehaiFPQ24Game9EnemyBase .global
+   __vt__Q23PSM20ActorDirector_Battle
+    __vt__Q23PSM20ActorDirector_Battle:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q23PSM20ActorDirector_BattleFv
+        .4byte exec__Q28PSSystem12DirectorBaseFv
+        .4byte directOn__Q28PSSystem12DirectorBaseFv
+        .4byte directOff__Q28PSSystem12DirectorBaseFv
+        .4byte underDirection__Q23PSM19ActorDirector_EnemyFv
+        .4byte execInner__Q23PSM20ActorDirector_ScaledFv
+        .4byte
+   directOnTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase .4byte
+   directOffTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase .4byte
+   doUpdateRequest__Q28PSSystem16SwitcherDirectorFv .4byte
+   onPlayInit__Q23PSM19TrackOnDirectorBaseFP8JASTrack .4byte
+   onDirectOn__Q28PSSystem12DirectorBaseFv .4byte
+   onDirectOff__Q28PSSystem12DirectorBaseFv .4byte
+   getNearestDistance__Q23PSM20ActorDirector_ScaledFv .4byte
+   onSetMinDistObj__Q23PSM19ActorDirector_EnemyFPQ24Game8Creature .4byte
+   getVolZeroDist__Q23PSM20ActorDirector_BattleFPQ24Game9EnemyBase .4byte
+   getVolMaxDist__Q23PSM20ActorDirector_BattleFPQ24Game9EnemyBase .global
+   __vt__Q23PSM19ActorDirector_Enemy
+    __vt__Q23PSM19ActorDirector_Enemy:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q23PSM19ActorDirector_EnemyFv
+        .4byte exec__Q28PSSystem12DirectorBaseFv
+        .4byte directOn__Q28PSSystem12DirectorBaseFv
+        .4byte directOff__Q28PSSystem12DirectorBaseFv
+        .4byte underDirection__Q23PSM19ActorDirector_EnemyFv
+        .4byte execInner__Q23PSM20ActorDirector_ScaledFv
+        .4byte
+   directOnTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase .4byte
+   directOffTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase .4byte
+   doUpdateRequest__Q28PSSystem16SwitcherDirectorFv .4byte
+   onPlayInit__Q23PSM19TrackOnDirectorBaseFP8JASTrack .4byte
+   onDirectOn__Q28PSSystem12DirectorBaseFv .4byte
+   onDirectOff__Q28PSSystem12DirectorBaseFv .4byte
+   getNearestDistance__Q23PSM20ActorDirector_ScaledFv .4byte
+   onSetMinDistObj__Q23PSM19ActorDirector_EnemyFPQ24Game8Creature .4byte 0
+        .4byte 0
+    .global __vt__Q23PSM20ActorDirector_Scaled
+    __vt__Q23PSM20ActorDirector_Scaled:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q23PSM20ActorDirector_ScaledFv
+        .4byte exec__Q28PSSystem12DirectorBaseFv
+        .4byte directOn__Q28PSSystem12DirectorBaseFv
+        .4byte directOff__Q28PSSystem12DirectorBaseFv
+        .4byte underDirection__Q23PSM22TrackOnDirector_ScaledFv
+        .4byte execInner__Q23PSM20ActorDirector_ScaledFv
+        .4byte
+   directOnTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase .4byte
+   directOffTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase .4byte
+   doUpdateRequest__Q28PSSystem16SwitcherDirectorFv .4byte
+   onPlayInit__Q23PSM19TrackOnDirectorBaseFP8JASTrack .4byte
+   onDirectOn__Q28PSSystem12DirectorBaseFv .4byte
+   onDirectOff__Q28PSSystem12DirectorBaseFv .4byte
+   getNearestDistance__Q23PSM20ActorDirector_ScaledFv .4byte
+   onSetMinDistObj__Q23PSM20ActorDirector_ScaledFPQ24Game8Creature .global
+   __vt__Q23PSM21ActorDirector_TrackOn
+    __vt__Q23PSM21ActorDirector_TrackOn:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q23PSM21ActorDirector_TrackOnFv
+        .4byte exec__Q28PSSystem12DirectorBaseFv
+        .4byte directOn__Q28PSSystem12DirectorBaseFv
+        .4byte directOff__Q28PSSystem12DirectorBaseFv
+        .4byte underDirection__Q28PSSystem12DirectorBaseFv
+        .4byte execInner__Q23PSM21ActorDirector_TrackOnFv
+        .4byte
+   directOnTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase .4byte
+   directOffTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase .4byte
+   doUpdateRequest__Q28PSSystem16SwitcherDirectorFv .4byte
+   onPlayInit__Q23PSM19TrackOnDirectorBaseFP8JASTrack .4byte
+   onDirectOn__Q28PSSystem12DirectorBaseFv .4byte
+   onDirectOff__Q28PSSystem12DirectorBaseFv .global
+   __vt__Q23PSM17ListDirectorActor
+    __vt__Q23PSM17ListDirectorActor:
+        .4byte 0
+        .4byte 0
+        .4byte exec__Q28PSSystem17DirectorCopyActorFPQ28PSSystem12DirectorBase
+        .4byte onUpdateFromMasterD__Q23PSM17ListDirectorActorFv
+        .4byte onUpdateFromSlaveD__Q28PSSystem17DirectorCopyActorFv
+    .global __vt__Q23PSM22TrackOnDirector_Scaled
+    __vt__Q23PSM22TrackOnDirector_Scaled:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q23PSM22TrackOnDirector_ScaledFv
+        .4byte exec__Q28PSSystem12DirectorBaseFv
+        .4byte directOn__Q28PSSystem12DirectorBaseFv
+        .4byte directOff__Q28PSSystem12DirectorBaseFv
+        .4byte underDirection__Q23PSM22TrackOnDirector_ScaledFv
+        .4byte execInner__Q28PSSystem12DirectorBaseFv
+        .4byte
+   directOnTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase .4byte
+   directOffTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase .4byte
+   doUpdateRequest__Q28PSSystem16SwitcherDirectorFv .4byte
+   onPlayInit__Q23PSM19TrackOnDirectorBaseFP8JASTrack .4byte
+   onDirectOn__Q28PSSystem12DirectorBaseFv .4byte
+   onDirectOff__Q28PSSystem12DirectorBaseFv .4byte 0 .global
+   __vt__Q23PSM22TrackOnDirector_Voting
+    __vt__Q23PSM22TrackOnDirector_Voting:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q23PSM22TrackOnDirector_VotingFv
+        .4byte exec__Q28PSSystem12DirectorBaseFv
+        .4byte directOn__Q28PSSystem12DirectorBaseFv
+        .4byte directOff__Q28PSSystem12DirectorBaseFv
+        .4byte underDirection__Q28PSSystem12DirectorBaseFv
+        .4byte execInner__Q23PSM22TrackOnDirector_VotingFv
+        .4byte
+   directOnTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase .4byte
+   directOffTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase .4byte
+   doUpdateRequest__Q28PSSystem16SwitcherDirectorFv .4byte
+   onPlayInit__Q23PSM19TrackOnDirectorBaseFP8JASTrack .4byte
+   onDirectOn__Q28PSSystem12DirectorBaseFv .4byte
+   onDirectOff__Q28PSSystem12DirectorBaseFv .global
+   __vt__Q23PSM19TrackOnDirectorBase
+    __vt__Q23PSM19TrackOnDirectorBase:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q23PSM19TrackOnDirectorBaseFv
+        .4byte exec__Q28PSSystem12DirectorBaseFv
+        .4byte directOn__Q28PSSystem12DirectorBaseFv
+        .4byte directOff__Q28PSSystem12DirectorBaseFv
+        .4byte underDirection__Q28PSSystem12DirectorBaseFv
+        .4byte execInner__Q28PSSystem12DirectorBaseFv
+        .4byte
+   directOnTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase .4byte
+   directOffTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase .4byte
+   doUpdateRequest__Q28PSSystem16SwitcherDirectorFv .4byte
+   onPlayInit__Q23PSM19TrackOnDirectorBaseFP8JASTrack .4byte
+   onDirectOn__Q28PSSystem12DirectorBaseFv .4byte
+   onDirectOff__Q28PSSystem12DirectorBaseFv .global
+   __vt__Q23PSM28PikminNumberDirector_AutoBgm
+    __vt__Q23PSM28PikminNumberDirector_AutoBgm:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q23PSM28PikminNumberDirector_AutoBgmFv
+        .4byte exec__Q28PSSystem12DirectorBaseFv
+        .4byte directOn__Q28PSSystem12DirectorBaseFv
+        .4byte directOff__Q28PSSystem12DirectorBaseFv
+        .4byte underDirection__Q28PSSystem12DirectorBaseFv
+        .4byte execInner__Q23PSM20PikminNumberDirectorFv
+        .4byte
+   directOnTrack__Q23PSM28PikminNumberDirector_AutoBgmFRQ28PSSystem12SeqTrackBase
+        .4byte
+   directOffTrack__Q23PSM28PikminNumberDirector_AutoBgmFRQ28PSSystem12SeqTrackBase
+        .4byte doUpdateRequest__Q28PSSystem16SwitcherDirectorFv
+        .4byte onPlayInit__Q28PSSystem12DirectorBaseFP8JASTrack
+        .4byte onDirectOn__Q28PSSystem12DirectorBaseFv
+        .4byte onDirectOff__Q28PSSystem12DirectorBaseFv
+    .global __vt__Q23PSM20PikminNumberDirector
+    __vt__Q23PSM20PikminNumberDirector:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q23PSM20PikminNumberDirectorFv
+        .4byte exec__Q28PSSystem12DirectorBaseFv
+        .4byte directOn__Q28PSSystem12DirectorBaseFv
+        .4byte directOff__Q28PSSystem12DirectorBaseFv
+        .4byte underDirection__Q28PSSystem12DirectorBaseFv
+        .4byte execInner__Q23PSM20PikminNumberDirectorFv
+        .4byte
+   directOnTrack__Q23PSM20PikminNumberDirectorFRQ28PSSystem12SeqTrackBase .4byte
+   directOffTrack__Q23PSM20PikminNumberDirectorFRQ28PSSystem12SeqTrackBase
+        .4byte doUpdateRequest__Q28PSSystem16SwitcherDirectorFv
+        .4byte onPlayInit__Q28PSSystem12DirectorBaseFP8JASTrack
+        .4byte onDirectOn__Q28PSSystem12DirectorBaseFv
+        .4byte onDirectOff__Q28PSSystem12DirectorBaseFv
+    .global __vt__Q23PSM25ActorDirector_TempoChange
+    __vt__Q23PSM25ActorDirector_TempoChange:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q23PSM25ActorDirector_TempoChangeFv
+        .4byte exec__Q28PSSystem12DirectorBaseFv
+        .4byte directOn__Q28PSSystem12DirectorBaseFv
+        .4byte directOff__Q28PSSystem12DirectorBaseFv
+        .4byte underDirection__Q28PSSystem12DirectorBaseFv
+        .4byte execInner__Q23PSM25ActorDirector_TempoChangeFv
+        .4byte
+   directOnTrack__Q23PSM23TempoChangeDirectorBaseFRQ28PSSystem12SeqTrackBase
+        .4byte
+   directOffTrack__Q23PSM23TempoChangeDirectorBaseFRQ28PSSystem12SeqTrackBase
+        .4byte doUpdateRequest__Q28PSSystem16SwitcherDirectorFv
+        .4byte onPlayInit__Q28PSSystem12DirectorBaseFP8JASTrack
+        .4byte onDirectOn__Q28PSSystem12DirectorBaseFv
+        .4byte onDirectOff__Q28PSSystem12DirectorBaseFv
+    .global __vt__Q23PSM23TempoChangeDirectorBase
+    __vt__Q23PSM23TempoChangeDirectorBase:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q23PSM23TempoChangeDirectorBaseFv
+        .4byte exec__Q28PSSystem12DirectorBaseFv
+        .4byte directOn__Q28PSSystem12DirectorBaseFv
+        .4byte directOff__Q28PSSystem12DirectorBaseFv
+        .4byte underDirection__Q28PSSystem12DirectorBaseFv
+        .4byte execInner__Q28PSSystem12DirectorBaseFv
+        .4byte
+   directOnTrack__Q23PSM23TempoChangeDirectorBaseFRQ28PSSystem12SeqTrackBase
+        .4byte
+   directOffTrack__Q23PSM23TempoChangeDirectorBaseFRQ28PSSystem12SeqTrackBase
+        .4byte doUpdateRequest__Q28PSSystem16SwitcherDirectorFv
+        .4byte onPlayInit__Q28PSSystem12DirectorBaseFP8JASTrack
+        .4byte onDirectOn__Q28PSSystem12DirectorBaseFv
+        .4byte onDirectOff__Q28PSSystem12DirectorBaseFv
+    .global __vt__Q23PSM16SwitcherDirector
+    __vt__Q23PSM16SwitcherDirector:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q23PSM16SwitcherDirectorFv
+        .4byte exec__Q28PSSystem12DirectorBaseFv
+        .4byte directOn__Q28PSSystem12DirectorBaseFv
+        .4byte directOff__Q28PSSystem12DirectorBaseFv
+        .4byte underDirection__Q28PSSystem12DirectorBaseFv
+        .4byte execInner__Q28PSSystem12DirectorBaseFv
+        .4byte 0
+        .4byte 0
+        .4byte doUpdateRequest__Q28PSSystem16SwitcherDirectorFv
+        .4byte onPlayInit__Q28PSSystem12DirectorBaseFP8JASTrack
+        .4byte onDirectOn__Q28PSSystem12DirectorBaseFv
+        .4byte onDirectOff__Q28PSSystem12DirectorBaseFv
+    .global __vt__Q23PSM14DamageDirector
+    __vt__Q23PSM14DamageDirector:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q23PSM14DamageDirectorFv
+        .4byte exec__Q28PSSystem15OneShotDirectorFv
+        .4byte directOn__Q28PSSystem12DirectorBaseFv
+        .4byte directOff__Q28PSSystem12DirectorBaseFv
+        .4byte underDirection__Q28PSSystem12DirectorBaseFv
+        .4byte execInner__Q23PSM14DamageDirectorFv
+        .4byte directOnTrack__Q23PSM14DamageDirectorFRQ28PSSystem12SeqTrackBase
+        .4byte
+   directOffTrack__Q28PSSystem15OneShotDirectorFRQ28PSSystem12SeqTrackBase
+        .4byte doUpdateRequest__Q28PSSystem12DirectorBaseFv
+        .4byte onPlayInit__Q28PSSystem12DirectorBaseFP8JASTrack
+        .4byte onDirectOn__Q28PSSystem12DirectorBaseFv
+        .4byte onDirectOff__Q28PSSystem12DirectorBaseFv
+    .global __vt__Q23PSM15OneShotDirector
+    __vt__Q23PSM15OneShotDirector:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q23PSM15OneShotDirectorFv
+        .4byte exec__Q28PSSystem15OneShotDirectorFv
+        .4byte directOn__Q28PSSystem12DirectorBaseFv
+        .4byte directOff__Q28PSSystem12DirectorBaseFv
+        .4byte underDirection__Q28PSSystem12DirectorBaseFv
+        .4byte execInner__Q28PSSystem12DirectorBaseFv
+        .4byte 0
+        .4byte
+   directOffTrack__Q28PSSystem15OneShotDirectorFRQ28PSSystem12SeqTrackBase
+        .4byte doUpdateRequest__Q28PSSystem12DirectorBaseFv
+        .4byte onPlayInit__Q28PSSystem12DirectorBaseFP8JASTrack
+        .4byte onDirectOn__Q28PSSystem12DirectorBaseFv
+        .4byte onDirectOff__Q28PSSystem12DirectorBaseFv
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    lbl_80520C00:
+        .float 0.1
+    lbl_80520C04:
+        .float 5.0
+    lbl_80520C08:
+        .float 1.0
+    lbl_80520C0C:
+        .float 0.7
+    lbl_80520C10:
+        .float 0.0
+    lbl_80520C14:
+        .float 100000.0
+    lbl_80520C18:
+        .float 1000000.0
+*/
+
 namespace PSM {
 
 /*
@@ -10,39 +377,38 @@ namespace PSM {
 DamageDirector::DamageDirector()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r4, 0x804A
-	  stw       r0, 0x14(r1)
-	  subi      r5, r4, 0x3268
-	  li        r4, 0x1
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        -0x113C64
-	  lis       r3, 0x804E
-	  lis       r4, 0x804F
-	  subi      r0, r3, 0x4FF8
-	  lis       r3, 0x804F
-	  stw       r0, 0x0(r31)
-	  subi      r0, r4, 0x1EE0
-	  li        r5, 0
-	  subi      r4, r3, 0x1F18
-	  stw       r0, 0x0(r31)
-	  li        r0, 0xE1
-	  lfs       f1, 0x28A0(r2)
-	  mr        r3, r31
-	  stw       r5, 0x48(r31)
-	  lfs       f0, 0x28A4(r2)
-	  stw       r4, 0x0(r31)
-	  stfs      f1, 0x4C(r31)
-	  stfs      f0, 0x50(r31)
-	  stw       r0, 0x54(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lis      r4, lbl_8049CD98@ha
+	stw      r0, 0x14(r1)
+	addi     r5, r4, lbl_8049CD98@l
+	li       r4, 1
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       __ct__Q28PSSystem12DirectorBaseFiPCc
+	lis      r3, __vt__Q28PSSystem15OneShotDirector@ha
+	lis      r4, __vt__Q23PSM15OneShotDirector@ha
+	addi     r0, r3, __vt__Q28PSSystem15OneShotDirector@l
+	lis      r3, __vt__Q23PSM14DamageDirector@ha
+	stw      r0, 0(r31)
+	addi     r0, r4, __vt__Q23PSM15OneShotDirector@l
+	li       r5, 0
+	addi     r4, r3, __vt__Q23PSM14DamageDirector@l
+	stw      r0, 0(r31)
+	li       r0, 0xe1
+	lfs      f1, lbl_80520C00@sda21(r2)
+	mr       r3, r31
+	stw      r5, 0x48(r31)
+	lfs      f0, lbl_80520C04@sda21(r2)
+	stw      r4, 0(r31)
+	stfs     f1, 0x4c(r31)
+	stfs     f0, 0x50(r31)
+	stw      r0, 0x54(r31)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -54,43 +420,42 @@ DamageDirector::DamageDirector()
 OneShotDirector::~OneShotDirector()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x64
-	  lis       r4, 0x804F
-	  subi      r0, r4, 0x1EE0
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x54
-	  lis       r4, 0x804E
-	  subi      r0, r4, 0x4FF8
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x54
-	  lis       r5, 0x804E
-	  li        r4, 0
-	  subi      r0, r5, 0x4FC0
-	  stw       r0, 0x0(r30)
-	  bl        -0x39C9CC
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_80456BDC
+	lis      r4, __vt__Q23PSM15OneShotDirector@ha
+	addi     r0, r4, __vt__Q23PSM15OneShotDirector@l
+	stw      r0, 0(r30)
+	beq      lbl_80456BCC
+	lis      r4, __vt__Q28PSSystem15OneShotDirector@ha
+	addi     r0, r4, __vt__Q28PSSystem15OneShotDirector@l
+	stw      r0, 0(r30)
+	beq      lbl_80456BCC
+	lis      r5, __vt__Q28PSSystem12DirectorBase@ha
+	li       r4, 0
+	addi     r0, r5, __vt__Q28PSSystem12DirectorBase@l
+	stw      r0, 0(r30)
+	bl       __dt__10JADHioNodeFv
 
-	.loc_0x54:
-	  extsh.    r0, r31
-	  ble-      .loc_0x64
-	  mr        r3, r30
-	  bl        -0x432B24
+lbl_80456BCC:
+	extsh.   r0, r31
+	ble      lbl_80456BDC
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x64:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80456BDC:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -102,20 +467,19 @@ OneShotDirector::~OneShotDirector()
 void DamageDirector::directOnTrack(PSSystem::SeqTrackBase&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r5, r3
-	  stw       r0, 0x14(r1)
-	  lfs       f1, 0x4C(r3)
-	  mr        r3, r4
-	  lfs       f2, 0x50(r5)
-	  lwz       r4, 0x54(r5)
-	  bl        -0x114474
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r5, r3
+	stw      r0, 0x14(r1)
+	lfs      f1, 0x4c(r3)
+	mr       r3, r4
+	lfs      f2, 0x50(r5)
+	lwz      r4, 0x54(r5)
+	bl pitchModulation__Q28PSSystem12SeqTrackRootFffUlPQ28PSSystem12DirectorBase
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -127,24 +491,23 @@ void DamageDirector::directOnTrack(PSSystem::SeqTrackBase&)
 void DamageDirector::execInner()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r4, r3
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x48(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x2C
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r4, r3
+	stw      r0, 0x14(r1)
+	lwz      r3, 0x48(r3)
+	cmplwi   r3, 0
+	beq      lbl_80456C58
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x2C:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80456C58:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -156,43 +519,42 @@ void DamageDirector::execInner()
 SwitcherDirector::~SwitcherDirector()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x64
-	  lis       r4, 0x804F
-	  subi      r0, r4, 0x1F50
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x54
-	  lis       r4, 0x804E
-	  subi      r0, r4, 0x5030
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x54
-	  lis       r5, 0x804E
-	  li        r4, 0
-	  subi      r0, r5, 0x4FC0
-	  stw       r0, 0x0(r30)
-	  bl        -0x39CABC
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_80456CCC
+	lis      r4, __vt__Q23PSM16SwitcherDirector@ha
+	addi     r0, r4, __vt__Q23PSM16SwitcherDirector@l
+	stw      r0, 0(r30)
+	beq      lbl_80456CBC
+	lis      r4, __vt__Q28PSSystem16SwitcherDirector@ha
+	addi     r0, r4, __vt__Q28PSSystem16SwitcherDirector@l
+	stw      r0, 0(r30)
+	beq      lbl_80456CBC
+	lis      r5, __vt__Q28PSSystem12DirectorBase@ha
+	li       r4, 0
+	addi     r0, r5, __vt__Q28PSSystem12DirectorBase@l
+	stw      r0, 0(r30)
+	bl       __dt__10JADHioNodeFv
 
-	.loc_0x54:
-	  extsh.    r0, r31
-	  ble-      .loc_0x64
-	  mr        r3, r30
-	  bl        -0x432C14
+lbl_80456CBC:
+	extsh.   r0, r31
+	ble      lbl_80456CCC
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x64:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80456CCC:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -204,19 +566,15 @@ SwitcherDirector::~SwitcherDirector()
 void TempoChangeDirectorBase::directOnTrack(PSSystem::SeqTrackBase&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r5, r3
-	  stw       r0, 0x14(r1)
-	  lfs       f1, 0x48(r3)
-	  mr        r3, r4
-	  lwz       r4, 0x4C(r5)
-	  bl        -0x1144D8
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r5, r3
+	stw      r0, 0x14(r1)
+	lfs      f1, 0x48(r3)
+	mr       r3, r4
+	lwz      r4, 0x4c(r5)
+	bl tempoChange__Q28PSSystem12SeqTrackRootFfUlPQ28PSSystem12DirectorBase lwz
+	r0, 0x14(r1) mtlr     r0 addi     r1, r1, 0x10 blr
 	*/
 }
 
@@ -228,19 +586,15 @@ void TempoChangeDirectorBase::directOnTrack(PSSystem::SeqTrackBase&)
 void TempoChangeDirectorBase::directOffTrack(PSSystem::SeqTrackBase&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r5, r3
-	  lfs       f1, 0x28A8(r2)
-	  stw       r0, 0x14(r1)
-	  mr        r3, r4
-	  lwz       r4, 0x4C(r5)
-	  bl        -0x114508
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r5, r3
+	lfs      f1, lbl_80520C08@sda21(r2)
+	stw      r0, 0x14(r1)
+	mr       r3, r4
+	lwz      r4, 0x4c(r5)
+	bl tempoChange__Q28PSSystem12SeqTrackRootFfUlPQ28PSSystem12DirectorBase lwz
+	r0, 0x14(r1) mtlr     r0 addi     r1, r1, 0x10 blr
 	*/
 }
 
@@ -252,40 +606,39 @@ void TempoChangeDirectorBase::directOffTrack(PSSystem::SeqTrackBase&)
 ActorDirector_TempoChange::ActorDirector_TempoChange()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r4, 0x804A
-	  stw       r0, 0x14(r1)
-	  subi      r5, r4, 0x325C
-	  li        r4, 0x1
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        -0x113EB4
-	  lis       r4, 0x804E
-	  lis       r3, 0x804F
-	  subi      r0, r4, 0x5030
-	  lis       r4, 0x804F
-	  stw       r0, 0x0(r31)
-	  subi      r5, r3, 0x1F50
-	  lis       r3, 0x804F
-	  subi      r0, r4, 0x1F88
-	  stw       r5, 0x0(r31)
-	  li        r5, 0x64
-	  lfs       f0, 0x28AC(r2)
-	  li        r4, 0
-	  stw       r0, 0x0(r31)
-	  subi      r0, r3, 0x1FC0
-	  mr        r3, r31
-	  stfs      f0, 0x48(r31)
-	  stw       r5, 0x4C(r31)
-	  stw       r4, 0x50(r31)
-	  stw       r0, 0x0(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lis      r4, lbl_8049CDA4@ha
+	stw      r0, 0x14(r1)
+	addi     r5, r4, lbl_8049CDA4@l
+	li       r4, 1
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       __ct__Q28PSSystem12DirectorBaseFiPCc
+	lis      r4, __vt__Q28PSSystem16SwitcherDirector@ha
+	lis      r3, __vt__Q23PSM16SwitcherDirector@ha
+	addi     r0, r4, __vt__Q28PSSystem16SwitcherDirector@l
+	lis      r4, __vt__Q23PSM23TempoChangeDirectorBase@ha
+	stw      r0, 0(r31)
+	addi     r5, r3, __vt__Q23PSM16SwitcherDirector@l
+	lis      r3, __vt__Q23PSM25ActorDirector_TempoChange@ha
+	addi     r0, r4, __vt__Q23PSM23TempoChangeDirectorBase@l
+	stw      r5, 0(r31)
+	li       r5, 0x64
+	lfs      f0, lbl_80520C0C@sda21(r2)
+	li       r4, 0
+	stw      r0, 0(r31)
+	addi     r0, r3, __vt__Q23PSM25ActorDirector_TempoChange@l
+	mr       r3, r31
+	stfs     f0, 0x48(r31)
+	stw      r5, 0x4c(r31)
+	stw      r4, 0x50(r31)
+	stw      r0, 0(r31)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -297,47 +650,46 @@ ActorDirector_TempoChange::ActorDirector_TempoChange()
 TempoChangeDirectorBase::~TempoChangeDirectorBase()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x74
-	  lis       r4, 0x804F
-	  subi      r0, r4, 0x1F88
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x64
-	  lis       r4, 0x804F
-	  subi      r0, r4, 0x1F50
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x64
-	  lis       r4, 0x804E
-	  subi      r0, r4, 0x5030
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x64
-	  lis       r5, 0x804E
-	  li        r4, 0
-	  subi      r0, r5, 0x4FC0
-	  stw       r0, 0x0(r30)
-	  bl        -0x39CC30
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_80456E40
+	lis      r4, __vt__Q23PSM23TempoChangeDirectorBase@ha
+	addi     r0, r4, __vt__Q23PSM23TempoChangeDirectorBase@l
+	stw      r0, 0(r30)
+	beq      lbl_80456E30
+	lis      r4, __vt__Q23PSM16SwitcherDirector@ha
+	addi     r0, r4, __vt__Q23PSM16SwitcherDirector@l
+	stw      r0, 0(r30)
+	beq      lbl_80456E30
+	lis      r4, __vt__Q28PSSystem16SwitcherDirector@ha
+	addi     r0, r4, __vt__Q28PSSystem16SwitcherDirector@l
+	stw      r0, 0(r30)
+	beq      lbl_80456E30
+	lis      r5, __vt__Q28PSSystem12DirectorBase@ha
+	li       r4, 0
+	addi     r0, r5, __vt__Q28PSSystem12DirectorBase@l
+	stw      r0, 0(r30)
+	bl       __dt__10JADHioNodeFv
 
-	.loc_0x64:
-	  extsh.    r0, r31
-	  ble-      .loc_0x74
-	  mr        r3, r30
-	  bl        -0x432D88
+lbl_80456E30:
+	extsh.   r0, r31
+	ble      lbl_80456E40
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x74:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80456E40:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -349,24 +701,23 @@ TempoChangeDirectorBase::~TempoChangeDirectorBase()
 void ActorDirector_TempoChange::execInner()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r4, r3
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x50(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x2C
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r4, r3
+	stw      r0, 0x14(r1)
+	lwz      r3, 0x50(r3)
+	cmplwi   r3, 0
+	beq      lbl_80456E88
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x2C:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80456E88:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -421,26 +772,25 @@ PikminNumberDirector::PikminNumberDirector(int, unsigned char,
 void PikminNumberDirector::directOnTrack(PSSystem::SeqTrackBase&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  mr        r3, r31
-	  bl        -0x114C2C
-	  lbz       r4, 0x4C(r30)
-	  mr        r3, r31
-	  mr        r5, r30
-	  bl        -0x114180
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	mr       r3, r31
+	bl       getTaskEntryList__Q28PSSystem12SeqTrackBaseFv
+	lbz      r4, 0x4c(r30)
+	mr       r3, r31
+	mr       r5, r30
+	bl       setIdMask__Q28PSSystem13SeqTrackChildFUcPQ28PSSystem12DirectorBase
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -452,18 +802,17 @@ void PikminNumberDirector::directOnTrack(PSSystem::SeqTrackBase&)
 void PikminNumberDirector::directOffTrack(PSSystem::SeqTrackBase&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r5, r3
-	  mr        r3, r4
-	  stw       r0, 0x14(r1)
-	  li        r4, 0
-	  bl        -0x1141B4
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r5, r3
+	mr       r3, r4
+	stw      r0, 0x14(r1)
+	li       r4, 0
+	bl       setIdMask__Q28PSSystem13SeqTrackChildFUcPQ28PSSystem12DirectorBase
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -475,24 +824,23 @@ void PikminNumberDirector::directOffTrack(PSSystem::SeqTrackBase&)
 void PikminNumberDirector::execInner()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r4, r3
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x48(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x2C
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r4, r3
+	stw      r0, 0x14(r1)
+	lwz      r3, 0x48(r3)
+	cmplwi   r3, 0
+	beq      lbl_80456FB4
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x2C:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80456FB4:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -554,47 +902,46 @@ PikminNumberDirector_AutoBgm::PikminNumberDirector_AutoBgm(
 PikminNumberDirector::~PikminNumberDirector()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x74
-	  lis       r4, 0x804F
-	  subi      r0, r4, 0x1FF8
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x64
-	  lis       r4, 0x804F
-	  subi      r0, r4, 0x1F50
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x64
-	  lis       r4, 0x804E
-	  subi      r0, r4, 0x5030
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x64
-	  lis       r5, 0x804E
-	  li        r4, 0
-	  subi      r0, r5, 0x4FC0
-	  stw       r0, 0x0(r30)
-	  bl        -0x39CEBC
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_804570CC
+	lis      r4, __vt__Q23PSM20PikminNumberDirector@ha
+	addi     r0, r4, __vt__Q23PSM20PikminNumberDirector@l
+	stw      r0, 0(r30)
+	beq      lbl_804570BC
+	lis      r4, __vt__Q23PSM16SwitcherDirector@ha
+	addi     r0, r4, __vt__Q23PSM16SwitcherDirector@l
+	stw      r0, 0(r30)
+	beq      lbl_804570BC
+	lis      r4, __vt__Q28PSSystem16SwitcherDirector@ha
+	addi     r0, r4, __vt__Q28PSSystem16SwitcherDirector@l
+	stw      r0, 0(r30)
+	beq      lbl_804570BC
+	lis      r5, __vt__Q28PSSystem12DirectorBase@ha
+	li       r4, 0
+	addi     r0, r5, __vt__Q28PSSystem12DirectorBase@l
+	stw      r0, 0(r30)
+	bl       __dt__10JADHioNodeFv
 
-	.loc_0x64:
-	  extsh.    r0, r31
-	  ble-      .loc_0x74
-	  mr        r3, r30
-	  bl        -0x433014
+lbl_804570BC:
+	extsh.   r0, r31
+	ble      lbl_804570CC
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x74:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_804570CC:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -606,47 +953,46 @@ PikminNumberDirector::~PikminNumberDirector()
 void PikminNumberDirector_AutoBgm::directOnTrack(PSSystem::SeqTrackBase&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  bl        0xF8
-	  lwz       r4, 0x50(r30)
-	  li        r0, 0x1
-	  mr        r30, r3
-	  stb       r0, 0x34E(r4)
-	  lwz       r31, 0x340(r4)
-	  b         .loc_0x68
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	stw      r30, 8(r1)
+	mr       r30, r3
+	bl getTrack__Q23PSM28PikminNumberDirector_AutoBgmFRQ28PSSystem12SeqTrackBase
+	lwz      r4, 0x50(r30)
+	li       r0, 1
+	mr       r30, r3
+	stb      r0, 0x34e(r4)
+	lwz      r31, 0x340(r4)
+	b        lbl_80457150
 
-	.loc_0x34:
-	  lwz       r3, 0x0(r31)
-	  lbz       r4, 0x18(r3)
-	  neg       r0, r4
-	  or        r0, r0, r4
-	  rlwinm    r0,r0,1,31,31
-	  cmplwi    r0, 0x1
-	  bne-      .loc_0x64
-	  lwz       r12, 0x14(r3)
-	  mr        r4, r30
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
+lbl_8045711C:
+	lwz      r3, 0(r31)
+	lbz      r4, 0x18(r3)
+	neg      r0, r4
+	or       r0, r0, r4
+	srwi     r0, r0, 0x1f
+	cmplwi   r0, 1
+	bne      lbl_8045714C
+	lwz      r12, 0x14(r3)
+	mr       r4, r30
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x64:
-	  lwz       r31, 0xC(r31)
+lbl_8045714C:
+	lwz      r31, 0xc(r31)
 
-	.loc_0x68:
-	  cmplwi    r31, 0
-	  bne+      .loc_0x34
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80457150:
+	cmplwi   r31, 0
+	bne      lbl_8045711C
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -658,49 +1004,46 @@ void PikminNumberDirector_AutoBgm::directOnTrack(PSSystem::SeqTrackBase&)
 void PikminNumberDirector_AutoBgm::directOffTrack(PSSystem::SeqTrackBase&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  bl        .loc_0x88
-	  lwz       r4, 0x50(r30)
-	  li        r0, 0
-	  mr        r30, r3
-	  stb       r0, 0x34E(r4)
-	  lwz       r31, 0x340(r4)
-	  b         .loc_0x68
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	stw      r30, 8(r1)
+	mr       r30, r3
+	bl getTrack__Q23PSM28PikminNumberDirector_AutoBgmFRQ28PSSystem12SeqTrackBase
+	lwz      r4, 0x50(r30)
+	li       r0, 0
+	mr       r30, r3
+	stb      r0, 0x34e(r4)
+	lwz      r31, 0x340(r4)
+	b        lbl_804571D8
 
-	.loc_0x34:
-	  lwz       r3, 0x0(r31)
-	  lbz       r4, 0x18(r3)
-	  neg       r0, r4
-	  or        r0, r0, r4
-	  rlwinm    r0,r0,1,31,31
-	  cmplwi    r0, 0x1
-	  bne-      .loc_0x64
-	  lwz       r12, 0x14(r3)
-	  mr        r4, r30
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
+lbl_804571A4:
+	lwz      r3, 0(r31)
+	lbz      r4, 0x18(r3)
+	neg      r0, r4
+	or       r0, r0, r4
+	srwi     r0, r0, 0x1f
+	cmplwi   r0, 1
+	bne      lbl_804571D4
+	lwz      r12, 0x14(r3)
+	mr       r4, r30
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x64:
-	  lwz       r31, 0xC(r31)
+lbl_804571D4:
+	lwz      r31, 0xc(r31)
 
-	.loc_0x68:
-	  cmplwi    r31, 0
-	  bne+      .loc_0x34
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-
-	.loc_0x88:
+lbl_804571D8:
+	cmplwi   r31, 0
+	bne      lbl_804571A4
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -712,57 +1055,56 @@ void PikminNumberDirector_AutoBgm::directOffTrack(PSSystem::SeqTrackBase&)
 void PikminNumberDirector_AutoBgm::getTrack(PSSystem::SeqTrackBase&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  mr        r3, r4
-	  bl        -0x114F10
-	  lwz       r4, 0x24(r3)
-	  lwz       r3, 0x50(r30)
-	  lwz       r0, 0x348(r4)
-	  lwz       r3, 0x308(r3)
-	  rlwinm    r0,r0,0,28,31
-	  mr        r31, r0
-	  bl        -0x11A71C
-	  rlwinm    r3,r3,0,24,31
-	  rlwinm    r0,r31,0,24,31
-	  cmplw     r0, r3
-	  blt-      .loc_0x68
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x3244
-	  li        r4, 0xC2
-	  subi      r5, r5, 0x322C
-	  crclr     6, 0x6
-	  bl        -0x42CC1C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	stw      r30, 8(r1)
+	mr       r30, r3
+	mr       r3, r4
+	bl       getTaskEntryList__Q28PSSystem12SeqTrackBaseFv
+	lwz      r4, 0x24(r3)
+	lwz      r3, 0x50(r30)
+	lwz      r0, 0x348(r4)
+	lwz      r3, 0x308(r3)
+	clrlwi   r0, r0, 0x1c
+	mr       r31, r0
+	bl       "getChildNum__Q210JADUtility28PrmSetRc<Q29PSAutoBgm5Track>Fv"
+	clrlwi   r3, r3, 0x18
+	clrlwi   r0, r31, 0x18
+	cmplw    r0, r3
+	blt      lbl_80457260
+	lis      r3, lbl_8049CDBC@ha
+	lis      r5, lbl_8049CDD4@ha
+	addi     r3, r3, lbl_8049CDBC@l
+	li       r4, 0xc2
+	addi     r5, r5, lbl_8049CDD4@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x68:
-	  lwz       r3, 0x50(r30)
-	  mr        r4, r31
-	  lwz       r3, 0x308(r3)
-	  bl        -0x11A370
-	  mr.       r31, r3
-	  bne-      .loc_0x9C
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x3244
-	  li        r4, 0xC4
-	  subi      r5, r5, 0x322C
-	  crclr     6, 0x6
-	  bl        -0x42CC50
+lbl_80457260:
+	lwz      r3, 0x50(r30)
+	mr       r4, r31
+	lwz      r3, 0x308(r3)
+	bl       "getChild__Q210JADUtility28PrmSetRc<Q29PSAutoBgm5Track>FUc"
+	or.      r31, r3, r3
+	bne      lbl_80457294
+	lis      r3, lbl_8049CDBC@ha
+	lis      r5, lbl_8049CDD4@ha
+	addi     r3, r3, lbl_8049CDBC@l
+	li       r4, 0xc4
+	addi     r5, r5, lbl_8049CDD4@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x9C:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80457294:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -774,38 +1116,37 @@ void PikminNumberDirector_AutoBgm::getTrack(PSSystem::SeqTrackBase&)
 TrackOnDirectorBase::TrackOnDirectorBase(int, const char*, long, long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r7
-	  stw       r30, 0x18(r1)
-	  mr        r30, r6
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  bl        -0x114420
-	  lis       r3, 0x804E
-	  lis       r4, 0x804F
-	  subi      r0, r3, 0x5030
-	  lis       r3, 0x804F
-	  stw       r0, 0x0(r29)
-	  subi      r5, r4, 0x1F50
-	  subi      r4, r3, 0x2068
-	  li        r0, 0
-	  stw       r5, 0x0(r29)
-	  mr        r3, r29
-	  stw       r4, 0x0(r29)
-	  stw       r30, 0x48(r29)
-	  stw       r31, 0x4C(r29)
-	  stb       r0, 0x50(r29)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r7
+	stw      r30, 0x18(r1)
+	mr       r30, r6
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	bl       __ct__Q28PSSystem12DirectorBaseFiPCc
+	lis      r3, __vt__Q28PSSystem16SwitcherDirector@ha
+	lis      r4, __vt__Q23PSM16SwitcherDirector@ha
+	addi     r0, r3, __vt__Q28PSSystem16SwitcherDirector@l
+	lis      r3, __vt__Q23PSM19TrackOnDirectorBase@ha
+	stw      r0, 0(r29)
+	addi     r5, r4, __vt__Q23PSM16SwitcherDirector@l
+	addi     r4, r3, __vt__Q23PSM19TrackOnDirectorBase@l
+	li       r0, 0
+	stw      r5, 0(r29)
+	mr       r3, r29
+	stw      r4, 0(r29)
+	stw      r30, 0x48(r29)
+	stw      r31, 0x4c(r29)
+	stb      r0, 0x50(r29)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -817,20 +1158,19 @@ TrackOnDirectorBase::TrackOnDirectorBase(int, const char*, long, long)
 void TrackOnDirectorBase::onPlayInit(JASTrack*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r3, r4
-	  li        r4, 0x1
-	  stw       r0, 0x14(r1)
-	  lbz       r0, 0x358(r3)
-	  ori       r0, r0, 0x60
-	  stb       r0, 0x358(r3)
-	  bl        -0x3B6068
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r3, r4
+	li       r4, 1
+	stw      r0, 0x14(r1)
+	lbz      r0, 0x358(r3)
+	ori      r0, r0, 0x60
+	stb      r0, 0x358(r3)
+	bl       muteTrack__8JASTrackFb
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -842,31 +1182,32 @@ void TrackOnDirectorBase::onPlayInit(JASTrack*)
 void TrackOnDirectorBase::directOnTrack(PSSystem::SeqTrackBase&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r5, r3
-	  stw       r0, 0x14(r1)
-	  lbz       r0, 0x50(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x30
-	  lfs       f1, 0x28B0(r2)
-	  mr        r3, r4
-	  li        r4, 0
-	  bl        -0x114738
-	  b         .loc_0x40
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r5, r3
+	stw      r0, 0x14(r1)
+	lbz      r0, 0x50(r3)
+	cmplwi   r0, 0
+	beq      lbl_80457390
+	lfs      f1, lbl_80520C10@sda21(r2)
+	mr       r3, r4
+	li       r4, 0
+	bl
+muteOffAndFadeIn__Q28PSSystem13SeqTrackChildFfUlPQ28PSSystem12DirectorBase b
+lbl_804573A0
 
-	.loc_0x30:
-	  mr        r3, r4
-	  lfs       f1, 0x28A8(r2)
-	  lwz       r4, 0x48(r5)
-	  bl        -0x11474C
+lbl_80457390:
+	mr       r3, r4
+	lfs      f1, lbl_80520C08@sda21(r2)
+	lwz      r4, 0x48(r5)
+	bl
+muteOffAndFadeIn__Q28PSSystem13SeqTrackChildFfUlPQ28PSSystem12DirectorBase
 
-	.loc_0x40:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_804573A0:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -878,18 +1219,17 @@ void TrackOnDirectorBase::directOnTrack(PSSystem::SeqTrackBase&)
 void TrackOnDirectorBase::directOffTrack(PSSystem::SeqTrackBase&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r5, r3
-	  mr        r3, r4
-	  stw       r0, 0x14(r1)
-	  lwz       r4, 0x4C(r5)
-	  bl        -0x1146F4
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r5, r3
+	mr       r3, r4
+	stw      r0, 0x14(r1)
+	lwz      r4, 0x4c(r5)
+	bl fadeoutAndMute__Q28PSSystem13SeqTrackChildFUlPQ28PSSystem12DirectorBase
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -901,47 +1241,46 @@ void TrackOnDirectorBase::directOffTrack(PSSystem::SeqTrackBase&)
 void TrackOnDirector_Voting::execInner()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lbz       r0, 0x54(r3)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x44
-	  bl        -0x114334
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x44
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x74
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lbz      r0, 0x54(r3)
+	cmplwi   r0, 0
+	bne      lbl_80457420
+	bl       isUnderDirection__Q28PSSystem12DirectorBaseFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80457420
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_80457450
 
-	.loc_0x44:
-	  lbz       r0, 0x54(r31)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x74
-	  mr        r3, r31
-	  bl        -0x114368
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x74
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
+lbl_80457420:
+	lbz      r0, 0x54(r31)
+	cmplwi   r0, 0
+	beq      lbl_80457450
+	mr       r3, r31
+	bl       isUnderDirection__Q28PSSystem12DirectorBaseFv
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_80457450
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x74:
-	  li        r0, 0
-	  stb       r0, 0x54(r31)
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80457450:
+	li       r0, 0
+	stb      r0, 0x54(r31)
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -953,47 +1292,46 @@ void TrackOnDirector_Voting::execInner()
 TrackOnDirectorBase::~TrackOnDirectorBase()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x74
-	  lis       r4, 0x804F
-	  subi      r0, r4, 0x2068
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x64
-	  lis       r4, 0x804F
-	  subi      r0, r4, 0x1F50
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x64
-	  lis       r4, 0x804E
-	  subi      r0, r4, 0x5030
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x64
-	  lis       r5, 0x804E
-	  li        r4, 0
-	  subi      r0, r5, 0x4FC0
-	  stw       r0, 0x0(r30)
-	  bl        -0x39D2D0
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_804574E0
+	lis      r4, __vt__Q23PSM19TrackOnDirectorBase@ha
+	addi     r0, r4, __vt__Q23PSM19TrackOnDirectorBase@l
+	stw      r0, 0(r30)
+	beq      lbl_804574D0
+	lis      r4, __vt__Q23PSM16SwitcherDirector@ha
+	addi     r0, r4, __vt__Q23PSM16SwitcherDirector@l
+	stw      r0, 0(r30)
+	beq      lbl_804574D0
+	lis      r4, __vt__Q28PSSystem16SwitcherDirector@ha
+	addi     r0, r4, __vt__Q28PSSystem16SwitcherDirector@l
+	stw      r0, 0(r30)
+	beq      lbl_804574D0
+	lis      r5, __vt__Q28PSSystem12DirectorBase@ha
+	li       r4, 0
+	addi     r0, r5, __vt__Q28PSSystem12DirectorBase@l
+	stw      r0, 0(r30)
+	bl       __dt__10JADHioNodeFv
 
-	.loc_0x64:
-	  extsh.    r0, r31
-	  ble-      .loc_0x74
-	  mr        r3, r30
-	  bl        -0x433428
+lbl_804574D0:
+	extsh.   r0, r31
+	ble      lbl_804574E0
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x74:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_804574E0:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1005,78 +1343,77 @@ TrackOnDirectorBase::~TrackOnDirectorBase()
 void TrackOnDirector_Scaled::underDirection()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stfd      f31, 0x20(r1)
-	  psq_st    f31,0x28(r1),0,0
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  stw       r28, 0x10(r1)
-	  lbz       r0, -0x6778(r13)
-	  mr        r28, r3
-	  lfs       f31, 0x28A8(r2)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x6C
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x38(r12)
-	  mtctr     r12
-	  bctrl
-	  stfs      f1, 0x5C(r28)
-	  li        r3, 0
-	  lfs       f4, 0x28B0(r2)
-	  lfs       f1, 0x5C(r28)
-	  lfs       f2, 0x58(r28)
-	  lfs       f3, 0x54(r28)
-	  lfs       f5, 0x28A8(r2)
-	  bl        -0x39D31C
-	  fmr       f31, f1
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stfd     f31, 0x20(r1)
+	psq_st   f31, 40(r1), 0, qr0
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	stw      r28, 0x10(r1)
+	lbz      r0, sToolMode__Q28PSSystem12DirectorBase@sda21(r13)
+	mr       r28, r3
+	lfs      f31, lbl_80520C08@sda21(r2)
+	cmplwi   r0, 0
+	bne      lbl_80457568
+	lwz      r12, 0(r3)
+	lwz      r12, 0x38(r12)
+	mtctr    r12
+	bctrl
+	stfs     f1, 0x5c(r28)
+	li       r3, 0
+	lfs      f4, lbl_80520C10@sda21(r2)
+	lfs      f1, 0x5c(r28)
+	lfs      f2, 0x58(r28)
+	lfs      f3, 0x54(r28)
+	lfs      f5, lbl_80520C08@sda21(r2)
+	bl       linearTransform__7JALCalcFfffffb
+	fmr      f31, f1
 
-	.loc_0x6C:
-	  lis       r4, 0x804A
-	  lis       r3, 0x804A
-	  subi      r30, r4, 0x3220
-	  li        r29, 0
-	  subi      r31, r3, 0x322C
-	  b         .loc_0xC4
+lbl_80457568:
+	lis      r4, lbl_8049CDE0@ha
+	lis      r3, lbl_8049CDD4@ha
+	addi     r30, r4, lbl_8049CDE0@l
+	li       r29, 0
+	addi     r31, r3, lbl_8049CDD4@l
+	b        lbl_804575C0
 
-	.loc_0x84:
-	  rlwinm    r0,r29,0,24,31
-	  cmplw     r0, r3
-	  blt-      .loc_0xA4
-	  mr        r3, r30
-	  mr        r5, r31
-	  li        r4, 0x33
-	  crclr     6, 0x6
-	  bl        -0x42CF5C
+lbl_80457580:
+	clrlwi   r0, r29, 0x18
+	cmplw    r0, r3
+	blt      lbl_804575A0
+	mr       r3, r30
+	mr       r5, r31
+	li       r4, 0x33
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xA4:
-	  lwz       r3, 0x4(r28)
-	  rlwinm    r0,r29,2,22,29
-	  fmr       f1, f31
-	  lwz       r4, 0x60(r28)
-	  lwzx      r3, r3, r0
-	  li        r5, 0
-	  bl        -0x114870
-	  addi      r29, r29, 0x1
+lbl_804575A0:
+	lwz      r3, 4(r28)
+	rlwinm   r0, r29, 2, 0x16, 0x1d
+	fmr      f1, f31
+	lwz      r4, 0x60(r28)
+	lwzx     r3, r3, r0
+	li       r5, 0
+	bl       fade__Q28PSSystem13SeqTrackChildFfUlPQ28PSSystem12DirectorBase
+	addi     r29, r29, 1
 
-	.loc_0xC4:
-	  lbz       r3, 0x41(r28)
-	  rlwinm    r0,r29,0,24,31
-	  cmplw     r0, r3
-	  blt+      .loc_0x84
-	  psq_l     f31,0x28(r1),0,0
-	  lwz       r0, 0x34(r1)
-	  lfd       f31, 0x20(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_804575C0:
+	lbz      r3, 0x41(r28)
+	clrlwi   r0, r29, 0x18
+	cmplw    r0, r3
+	blt      lbl_80457580
+	psq_l    f31, 40(r1), 0, qr0
+	lwz      r0, 0x34(r1)
+	lfd      f31, 0x20(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -1088,46 +1425,45 @@ void TrackOnDirector_Scaled::underDirection()
 void ListDirectorActor::onUpdateFromMasterD()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r0, 0xC(r3)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x48
-	  lwz       r3, 0x4(r31)
-	  bl        -0x114554
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x48
-	  lwz       r3, 0x4(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x78
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r0, 0xc(r3)
+	cmplwi   r0, 0
+	bne      lbl_80457640
+	lwz      r3, 4(r31)
+	bl       isUnderDirection__Q28PSSystem12DirectorBaseFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80457640
+	lwz      r3, 4(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_80457670
 
-	.loc_0x48:
-	  lwz       r0, 0xC(r31)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x78
-	  lwz       r3, 0x4(r31)
-	  bl        -0x114588
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x78
-	  lwz       r3, 0x4(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
+lbl_80457640:
+	lwz      r0, 0xc(r31)
+	cmplwi   r0, 0
+	beq      lbl_80457670
+	lwz      r3, 4(r31)
+	bl       isUnderDirection__Q28PSSystem12DirectorBaseFv
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_80457670
+	lwz      r3, 4(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x78:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80457670:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1139,45 +1475,44 @@ void ListDirectorActor::onUpdateFromMasterD()
 ActorDirector_TrackOn::ActorDirector_TrackOn(const char*, int, long, long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  mr        r0, r4
-	  mr        r4, r5
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r7
-	  mr        r5, r0
-	  stw       r30, 0x18(r1)
-	  mr        r30, r6
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  bl        -0x114800
-	  lis       r4, 0x804E
-	  lis       r3, 0x804F
-	  subi      r0, r4, 0x5030
-	  lis       r4, 0x804F
-	  stw       r0, 0x0(r29)
-	  subi      r0, r3, 0x1F50
-	  lis       r3, 0x804F
-	  subi      r5, r4, 0x2068
-	  stw       r0, 0x0(r29)
-	  li        r4, 0
-	  subi      r0, r3, 0x2128
-	  mr        r3, r29
-	  stw       r5, 0x0(r29)
-	  stw       r30, 0x48(r29)
-	  stw       r31, 0x4C(r29)
-	  stb       r4, 0x50(r29)
-	  stw       r4, 0x54(r29)
-	  stw       r0, 0x0(r29)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	mr       r0, r4
+	mr       r4, r5
+	stw      r31, 0x1c(r1)
+	mr       r31, r7
+	mr       r5, r0
+	stw      r30, 0x18(r1)
+	mr       r30, r6
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	bl       __ct__Q28PSSystem12DirectorBaseFiPCc
+	lis      r4, __vt__Q28PSSystem16SwitcherDirector@ha
+	lis      r3, __vt__Q23PSM16SwitcherDirector@ha
+	addi     r0, r4, __vt__Q28PSSystem16SwitcherDirector@l
+	lis      r4, __vt__Q23PSM19TrackOnDirectorBase@ha
+	stw      r0, 0(r29)
+	addi     r0, r3, __vt__Q23PSM16SwitcherDirector@l
+	lis      r3, __vt__Q23PSM21ActorDirector_TrackOn@ha
+	addi     r5, r4, __vt__Q23PSM19TrackOnDirectorBase@l
+	stw      r0, 0(r29)
+	li       r4, 0
+	addi     r0, r3, __vt__Q23PSM21ActorDirector_TrackOn@l
+	mr       r3, r29
+	stw      r5, 0(r29)
+	stw      r30, 0x48(r29)
+	stw      r31, 0x4c(r29)
+	stb      r4, 0x50(r29)
+	stw      r4, 0x54(r29)
+	stw      r0, 0(r29)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -1189,24 +1524,23 @@ ActorDirector_TrackOn::ActorDirector_TrackOn(const char*, int, long, long)
 void ActorDirector_TrackOn::execInner()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r4, r3
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x54(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x2C
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r4, r3
+	stw      r0, 0x14(r1)
+	lwz      r3, 0x54(r3)
+	cmplwi   r3, 0
+	beq      lbl_80457748
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x2C:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80457748:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1292,51 +1626,50 @@ ActorDirector_Scaled::ActorDirector_Scaled(const char*, int, float, float, long,
 TrackOnDirector_Scaled::~TrackOnDirector_Scaled()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x84
-	  lis       r4, 0x804F
-	  subi      r0, r4, 0x20DC
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x74
-	  lis       r4, 0x804F
-	  subi      r0, r4, 0x2068
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x74
-	  lis       r4, 0x804F
-	  subi      r0, r4, 0x1F50
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x74
-	  lis       r4, 0x804E
-	  subi      r0, r4, 0x5030
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x74
-	  lis       r5, 0x804E
-	  li        r4, 0
-	  subi      r0, r5, 0x4FC0
-	  stw       r0, 0x0(r30)
-	  bl        -0x39D6C0
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_804578D0
+	lis      r4, __vt__Q23PSM22TrackOnDirector_Scaled@ha
+	addi     r0, r4, __vt__Q23PSM22TrackOnDirector_Scaled@l
+	stw      r0, 0(r30)
+	beq      lbl_804578C0
+	lis      r4, __vt__Q23PSM19TrackOnDirectorBase@ha
+	addi     r0, r4, __vt__Q23PSM19TrackOnDirectorBase@l
+	stw      r0, 0(r30)
+	beq      lbl_804578C0
+	lis      r4, __vt__Q23PSM16SwitcherDirector@ha
+	addi     r0, r4, __vt__Q23PSM16SwitcherDirector@l
+	stw      r0, 0(r30)
+	beq      lbl_804578C0
+	lis      r4, __vt__Q28PSSystem16SwitcherDirector@ha
+	addi     r0, r4, __vt__Q28PSSystem16SwitcherDirector@l
+	stw      r0, 0(r30)
+	beq      lbl_804578C0
+	lis      r5, __vt__Q28PSSystem12DirectorBase@ha
+	li       r4, 0
+	addi     r0, r5, __vt__Q28PSSystem12DirectorBase@l
+	stw      r0, 0(r30)
+	bl       __dt__10JADHioNodeFv
 
-	.loc_0x74:
-	  extsh.    r0, r31
-	  ble-      .loc_0x84
-	  mr        r3, r30
-	  bl        -0x433818
+lbl_804578C0:
+	extsh.   r0, r31
+	ble      lbl_804578D0
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x84:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_804578D0:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1348,24 +1681,23 @@ TrackOnDirector_Scaled::~TrackOnDirector_Scaled()
 void ActorDirector_Scaled::execInner()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r4, r3
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x64(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x2C
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r4, r3
+	stw      r0, 0x14(r1)
+	lwz      r3, 0x64(r3)
+	cmplwi   r3, 0
+	beq      lbl_80457918
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x2C:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80457918:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1377,432 +1709,417 @@ void ActorDirector_Scaled::execInner()
 void ActorDirector_Scaled::getNearestDistance()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x1D0(r1)
-	  mflr      r0
-	  stw       r0, 0x1D4(r1)
-	  stfd      f31, 0x1C0(r1)
-	  psq_st    f31,0x1C8(r1),0,0
-	  stfd      f30, 0x1B0(r1)
-	  psq_st    f30,0x1B8(r1),0,0
-	  stfd      f29, 0x1A0(r1)
-	  psq_st    f29,0x1A8(r1),0,0
-	  stfd      f28, 0x190(r1)
-	  psq_st    f28,0x198(r1),0,0
-	  stfd      f27, 0x180(r1)
-	  psq_st    f27,0x188(r1),0,0
-	  stfd      f26, 0x170(r1)
-	  psq_st    f26,0x178(r1),0,0
-	  stfd      f25, 0x160(r1)
-	  psq_st    f25,0x168(r1),0,0
-	  stfd      f24, 0x150(r1)
-	  psq_st    f24,0x158(r1),0,0
-	  stw       r31, 0x14C(r1)
-	  stw       r30, 0x148(r1)
-	  stw       r29, 0x144(r1)
-	  stw       r28, 0x140(r1)
-	  lwz       r0, -0x6E4C(r13)
-	  lis       r4, 0x804A
-	  mr        r30, r3
-	  cmplwi    r0, 0
-	  subi      r31, r4, 0x3268
-	  bne-      .loc_0x88
-	  addi      r3, r31, 0x58
-	  addi      r5, r31, 0x3C
-	  li        r4, 0x89
-	  crclr     6, 0x6
-	  bl        -0x42D36C
+	stwu     r1, -0x1d0(r1)
+	mflr     r0
+	stw      r0, 0x1d4(r1)
+	stfd     f31, 0x1c0(r1)
+	psq_st   f31, 456(r1), 0, qr0
+	stfd     f30, 0x1b0(r1)
+	psq_st   f30, 440(r1), 0, qr0
+	stfd     f29, 0x1a0(r1)
+	psq_st   f29, 424(r1), 0, qr0
+	stfd     f28, 0x190(r1)
+	psq_st   f28, 408(r1), 0, qr0
+	stfd     f27, 0x180(r1)
+	psq_st   f27, 392(r1), 0, qr0
+	stfd     f26, 0x170(r1)
+	psq_st   f26, 376(r1), 0, qr0
+	stfd     f25, 0x160(r1)
+	psq_st   f25, 360(r1), 0, qr0
+	stfd     f24, 0x150(r1)
+	psq_st   f24, 344(r1), 0, qr0
+	stw      r31, 0x14c(r1)
+	stw      r30, 0x148(r1)
+	stw      r29, 0x144(r1)
+	stw      r28, 0x140(r1)
+	lwz      r0,
+"sInstance__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@sda21(r13) lis r4,
+lbl_8049CD98@ha mr       r30, r3 cmplwi   r0, 0 addi     r31, r4, lbl_8049CD98@l
+	bne      lbl_804579B0
+	addi     r3, r31, 0x58
+	addi     r5, r31, 0x3c
+	li       r4, 0x89
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x88:
-	  lwz       r3, -0x6E4C(r13)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  lfs       f24, 0x28B8(r2)
-	  bne-      .loc_0x3EC
-	  lwz       r3, -0x6D20(r13)
-	  li        r4, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x24(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r0, r3
-	  lwz       r3, -0x6D20(r13)
-	  mr        r29, r0
-	  li        r4, 0x1
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x24(r12)
-	  mtctr     r12
-	  bctrl
-	  cmplwi    r29, 0
-	  mr        r28, r3
-	  li        r0, 0
-	  beq-      .loc_0xFC
-	  cmplwi    r28, 0
-	  beq-      .loc_0xFC
-	  li        r0, 0x1
+lbl_804579B0:
+	lwz      r3,
+"sInstance__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@sda21(r13) lwz r12,
+0(r3) lwz      r12, 0x18(r12) mtctr    r12 bctrl clrlwi.  r0, r3, 0x18 lfs f24,
+lbl_80520C18@sda21(r2) bne      lbl_80457D14 lwz      r3,
+naviMgr__4Game@sda21(r13) li       r4, 0 lwz      r12, 0(r3) lwz      r12,
+0x24(r12) mtctr    r12 bctrl mr       r0, r3 lwz      r3,
+naviMgr__4Game@sda21(r13) mr       r29, r0 li       r4, 1 lwz      r12, 0(r3)
+	lwz      r12, 0x24(r12)
+	mtctr    r12
+	bctrl
+	cmplwi   r29, 0
+	mr       r28, r3
+	li       r0, 0
+	beq      lbl_80457A24
+	cmplwi   r28, 0
+	beq      lbl_80457A24
+	li       r0, 1
 
-	.loc_0xFC:
-	  rlwinm.   r0,r0,0,24,31
-	  bne-      .loc_0x118
-	  addi      r3, r31, 0x24
-	  addi      r5, r31, 0x3C
-	  li        r4, 0x18A
-	  crclr     6, 0x6
-	  bl        -0x42D3FC
+lbl_80457A24:
+	clrlwi.  r0, r0, 0x18
+	bne      lbl_80457A40
+	addi     r3, r31, 0x24
+	addi     r5, r31, 0x3c
+	li       r4, 0x18a
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x118:
-	  mr        r4, r29
-	  addi      r3, r1, 0x134
-	  lwz       r12, 0x0(r29)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r28
-	  addi      r3, r1, 0x128
-	  lwz       r12, 0x0(r28)
-	  lfs       f30, 0x134(r1)
-	  lwz       r12, 0x8(r12)
-	  lfs       f29, 0x138(r1)
-	  lfs       f28, 0x13C(r1)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x64(r30)
-	  lfs       f27, 0x128(r1)
-	  cmplwi    r3, 0
-	  lfs       f26, 0x12C(r1)
-	  lfs       f25, 0x130(r1)
-	  beq-      .loc_0x170
-	  addi      r3, r3, 0xC
+lbl_80457A40:
+	mr       r4, r29
+	addi     r3, r1, 0x134
+	lwz      r12, 0(r29)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r28
+	addi     r3, r1, 0x128
+	lwz      r12, 0(r28)
+	lfs      f30, 0x134(r1)
+	lwz      r12, 8(r12)
+	lfs      f29, 0x138(r1)
+	lfs      f28, 0x13c(r1)
+	mtctr    r12
+	bctrl
+	lwz      r3, 0x64(r30)
+	lfs      f27, 0x128(r1)
+	cmplwi   r3, 0
+	lfs      f26, 0x12c(r1)
+	lfs      f25, 0x130(r1)
+	beq      lbl_80457A98
+	addi     r3, r3, 0xc
 
-	.loc_0x170:
-	  lwz       r31, 0x0(r3)
-	  lfs       f31, 0x28B0(r2)
-	  b         .loc_0x3E0
+lbl_80457A98:
+	lwz      r31, 0(r3)
+	lfs      f31, lbl_80520C10@sda21(r2)
+	b        lbl_80457D08
 
-	.loc_0x17C:
-	  lwz       r4, 0x0(r31)
-	  addi      r3, r1, 0x11C
-	  lwz       r12, 0x0(r4)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f1, 0x120(r1)
-	  lfs       f0, 0x11C(r1)
-	  stfs      f30, 0xA4(r1)
-	  lfs       f2, 0x124(r1)
-	  stfs      f29, 0xA8(r1)
-	  lwz       r0, 0xA4(r1)
-	  stfs      f0, 0xB0(r1)
-	  lwz       r6, 0xA8(r1)
-	  stfs      f1, 0xB4(r1)
-	  lwz       r4, 0xB0(r1)
-	  lwz       r3, 0xB4(r1)
-	  stfs      f28, 0xAC(r1)
-	  lfs       f0, 0x11C(r1)
-	  stfs      f2, 0xB8(r1)
-	  lwz       r5, 0xAC(r1)
-	  stw       r0, 0x104(r1)
-	  lwz       r0, 0xB8(r1)
-	  stw       r6, 0x108(r1)
-	  lfs       f5, 0x104(r1)
-	  stw       r4, 0x110(r1)
-	  lfs       f3, 0x108(r1)
-	  stw       r3, 0x114(r1)
-	  lfs       f6, 0x110(r1)
-	  lfs       f4, 0x114(r1)
-	  stw       r5, 0x10C(r1)
-	  fsubs     f6, f6, f5
-	  fsubs     f5, f4, f3
-	  stw       r0, 0x118(r1)
-	  lfs       f3, 0x10C(r1)
-	  lfs       f4, 0x118(r1)
-	  stfs      f6, 0x68(r1)
-	  fsubs     f3, f4, f3
-	  stfs      f5, 0x6C(r1)
-	  lwz       r0, 0x68(r1)
-	  lwz       r3, 0x6C(r1)
-	  stfs      f3, 0x70(r1)
-	  stw       r0, 0x50(r1)
-	  lwz       r0, 0x70(r1)
-	  stw       r3, 0x54(r1)
-	  lfs       f4, 0x50(r1)
-	  lfs       f3, 0x54(r1)
-	  stw       r0, 0x58(r1)
-	  fmuls     f5, f4, f4
-	  fmuls     f4, f3, f3
-	  lfs       f3, 0x58(r1)
-	  stfs      f5, 0x50(r1)
-	  fmuls     f3, f3, f3
-	  stfs      f4, 0x54(r1)
-	  lwz       r0, 0x50(r1)
-	  lwz       r3, 0x54(r1)
-	  stfs      f3, 0x58(r1)
-	  stw       r0, 0x5C(r1)
-	  lwz       r0, 0x58(r1)
-	  stw       r3, 0x60(r1)
-	  lfs       f4, 0x5C(r1)
-	  lfs       f3, 0x60(r1)
-	  stw       r0, 0x64(r1)
-	  fadds     f3, f4, f3
-	  lfs       f4, 0x64(r1)
-	  fadds     f4, f4, f3
-	  fcmpo     cr0, f4, f31
-	  ble-      .loc_0x294
-	  fsqrte    f3, f4
-	  fmuls     f4, f3, f4
+lbl_80457AA4:
+	lwz      r4, 0(r31)
+	addi     r3, r1, 0x11c
+	lwz      r12, 0(r4)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f1, 0x120(r1)
+	lfs      f0, 0x11c(r1)
+	stfs     f30, 0xa4(r1)
+	lfs      f2, 0x124(r1)
+	stfs     f29, 0xa8(r1)
+	lwz      r0, 0xa4(r1)
+	stfs     f0, 0xb0(r1)
+	lwz      r6, 0xa8(r1)
+	stfs     f1, 0xb4(r1)
+	lwz      r4, 0xb0(r1)
+	lwz      r3, 0xb4(r1)
+	stfs     f28, 0xac(r1)
+	lfs      f0, 0x11c(r1)
+	stfs     f2, 0xb8(r1)
+	lwz      r5, 0xac(r1)
+	stw      r0, 0x104(r1)
+	lwz      r0, 0xb8(r1)
+	stw      r6, 0x108(r1)
+	lfs      f5, 0x104(r1)
+	stw      r4, 0x110(r1)
+	lfs      f3, 0x108(r1)
+	stw      r3, 0x114(r1)
+	lfs      f6, 0x110(r1)
+	lfs      f4, 0x114(r1)
+	stw      r5, 0x10c(r1)
+	fsubs    f6, f6, f5
+	fsubs    f5, f4, f3
+	stw      r0, 0x118(r1)
+	lfs      f3, 0x10c(r1)
+	lfs      f4, 0x118(r1)
+	stfs     f6, 0x68(r1)
+	fsubs    f3, f4, f3
+	stfs     f5, 0x6c(r1)
+	lwz      r0, 0x68(r1)
+	lwz      r3, 0x6c(r1)
+	stfs     f3, 0x70(r1)
+	stw      r0, 0x50(r1)
+	lwz      r0, 0x70(r1)
+	stw      r3, 0x54(r1)
+	lfs      f4, 0x50(r1)
+	lfs      f3, 0x54(r1)
+	stw      r0, 0x58(r1)
+	fmuls    f5, f4, f4
+	fmuls    f4, f3, f3
+	lfs      f3, 0x58(r1)
+	stfs     f5, 0x50(r1)
+	fmuls    f3, f3, f3
+	stfs     f4, 0x54(r1)
+	lwz      r0, 0x50(r1)
+	lwz      r3, 0x54(r1)
+	stfs     f3, 0x58(r1)
+	stw      r0, 0x5c(r1)
+	lwz      r0, 0x58(r1)
+	stw      r3, 0x60(r1)
+	lfs      f4, 0x5c(r1)
+	lfs      f3, 0x60(r1)
+	stw      r0, 0x64(r1)
+	fadds    f3, f4, f3
+	lfs      f4, 0x64(r1)
+	fadds    f4, f4, f3
+	fcmpo    cr0, f4, f31
+	ble      lbl_80457BBC
+	frsqrte  f3, f4
+	fmuls    f4, f3, f4
 
-	.loc_0x294:
-	  stfs      f27, 0x8C(r1)
-	  stfs      f26, 0x90(r1)
-	  lwz       r0, 0x8C(r1)
-	  stfs      f0, 0x98(r1)
-	  lwz       r6, 0x90(r1)
-	  stfs      f1, 0x9C(r1)
-	  lwz       r4, 0x98(r1)
-	  lwz       r3, 0x9C(r1)
-	  stfs      f25, 0x94(r1)
-	  stfs      f2, 0xA0(r1)
-	  lwz       r5, 0x94(r1)
-	  stw       r0, 0xEC(r1)
-	  lwz       r0, 0xA0(r1)
-	  stw       r6, 0xF0(r1)
-	  lfs       f2, 0xEC(r1)
-	  stw       r4, 0xF8(r1)
-	  lfs       f0, 0xF0(r1)
-	  stw       r3, 0xFC(r1)
-	  lfs       f3, 0xF8(r1)
-	  lfs       f1, 0xFC(r1)
-	  stw       r5, 0xF4(r1)
-	  fsubs     f3, f3, f2
-	  fsubs     f2, f1, f0
-	  stw       r0, 0x100(r1)
-	  lfs       f0, 0xF4(r1)
-	  lfs       f1, 0x100(r1)
-	  stfs      f3, 0x44(r1)
-	  fsubs     f0, f1, f0
-	  stfs      f2, 0x48(r1)
-	  lwz       r0, 0x44(r1)
-	  lwz       r3, 0x48(r1)
-	  stfs      f0, 0x4C(r1)
-	  stw       r0, 0x2C(r1)
-	  lwz       r0, 0x4C(r1)
-	  stw       r3, 0x30(r1)
-	  lfs       f1, 0x2C(r1)
-	  lfs       f0, 0x30(r1)
-	  stw       r0, 0x34(r1)
-	  fmuls     f2, f1, f1
-	  fmuls     f1, f0, f0
-	  lfs       f0, 0x34(r1)
-	  stfs      f2, 0x2C(r1)
-	  fmuls     f0, f0, f0
-	  stfs      f1, 0x30(r1)
-	  lwz       r0, 0x2C(r1)
-	  lwz       r3, 0x30(r1)
-	  stfs      f0, 0x34(r1)
-	  stw       r0, 0x38(r1)
-	  lwz       r0, 0x34(r1)
-	  stw       r3, 0x3C(r1)
-	  lfs       f1, 0x38(r1)
-	  lfs       f0, 0x3C(r1)
-	  stw       r0, 0x40(r1)
-	  fadds     f0, f1, f0
-	  lfs       f1, 0x40(r1)
-	  fadds     f0, f1, f0
-	  fcmpo     cr0, f0, f31
-	  ble-      .loc_0x384
-	  fsqrte    f1, f0
-	  fmuls     f0, f1, f0
+lbl_80457BBC:
+	stfs     f27, 0x8c(r1)
+	stfs     f26, 0x90(r1)
+	lwz      r0, 0x8c(r1)
+	stfs     f0, 0x98(r1)
+	lwz      r6, 0x90(r1)
+	stfs     f1, 0x9c(r1)
+	lwz      r4, 0x98(r1)
+	lwz      r3, 0x9c(r1)
+	stfs     f25, 0x94(r1)
+	stfs     f2, 0xa0(r1)
+	lwz      r5, 0x94(r1)
+	stw      r0, 0xec(r1)
+	lwz      r0, 0xa0(r1)
+	stw      r6, 0xf0(r1)
+	lfs      f2, 0xec(r1)
+	stw      r4, 0xf8(r1)
+	lfs      f0, 0xf0(r1)
+	stw      r3, 0xfc(r1)
+	lfs      f3, 0xf8(r1)
+	lfs      f1, 0xfc(r1)
+	stw      r5, 0xf4(r1)
+	fsubs    f3, f3, f2
+	fsubs    f2, f1, f0
+	stw      r0, 0x100(r1)
+	lfs      f0, 0xf4(r1)
+	lfs      f1, 0x100(r1)
+	stfs     f3, 0x44(r1)
+	fsubs    f0, f1, f0
+	stfs     f2, 0x48(r1)
+	lwz      r0, 0x44(r1)
+	lwz      r3, 0x48(r1)
+	stfs     f0, 0x4c(r1)
+	stw      r0, 0x2c(r1)
+	lwz      r0, 0x4c(r1)
+	stw      r3, 0x30(r1)
+	lfs      f1, 0x2c(r1)
+	lfs      f0, 0x30(r1)
+	stw      r0, 0x34(r1)
+	fmuls    f2, f1, f1
+	fmuls    f1, f0, f0
+	lfs      f0, 0x34(r1)
+	stfs     f2, 0x2c(r1)
+	fmuls    f0, f0, f0
+	stfs     f1, 0x30(r1)
+	lwz      r0, 0x2c(r1)
+	lwz      r3, 0x30(r1)
+	stfs     f0, 0x34(r1)
+	stw      r0, 0x38(r1)
+	lwz      r0, 0x34(r1)
+	stw      r3, 0x3c(r1)
+	lfs      f1, 0x38(r1)
+	lfs      f0, 0x3c(r1)
+	stw      r0, 0x40(r1)
+	fadds    f0, f1, f0
+	lfs      f1, 0x40(r1)
+	fadds    f0, f1, f0
+	fcmpo    cr0, f0, f31
+	ble      lbl_80457CAC
+	frsqrte  f1, f0
+	fmuls    f0, f1, f0
 
-	.loc_0x384:
-	  fcmpo     cr0, f4, f0
-	  cror      2, 0, 0x2
-	  bne-      .loc_0x3B8
-	  fcmpo     cr0, f4, f24
-	  bge-      .loc_0x3DC
-	  mr        r3, r30
-	  fmr       f24, f4
-	  lwz       r12, 0x0(r30)
-	  lwz       r4, 0x0(r31)
-	  lwz       r12, 0x3C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x3DC
+lbl_80457CAC:
+	fcmpo    cr0, f4, f0
+	cror     2, 0, 2
+	bne      lbl_80457CE0
+	fcmpo    cr0, f4, f24
+	bge      lbl_80457D04
+	mr       r3, r30
+	fmr      f24, f4
+	lwz      r12, 0(r30)
+	lwz      r4, 0(r31)
+	lwz      r12, 0x3c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_80457D04
 
-	.loc_0x3B8:
-	  fcmpo     cr0, f0, f24
-	  bge-      .loc_0x3DC
-	  mr        r3, r30
-	  fmr       f24, f0
-	  lwz       r12, 0x0(r30)
-	  lwz       r4, 0x0(r31)
-	  lwz       r12, 0x3C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_80457CE0:
+	fcmpo    cr0, f0, f24
+	bge      lbl_80457D04
+	mr       r3, r30
+	fmr      f24, f0
+	lwz      r12, 0(r30)
+	lwz      r4, 0(r31)
+	lwz      r12, 0x3c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x3DC:
-	  lwz       r31, 0xC(r31)
+lbl_80457D04:
+	lwz      r31, 0xc(r31)
 
-	.loc_0x3E0:
-	  cmplwi    r31, 0
-	  bne+      .loc_0x17C
-	  b         .loc_0x5B0
+lbl_80457D08:
+	cmplwi   r31, 0
+	bne      lbl_80457AA4
+	b        lbl_80457ED8
 
-	.loc_0x3EC:
-	  lwz       r3, -0x6D20(r13)
-	  bl        -0x2FD0F8
-	  cmplwi    r3, 0
-	  bne-      .loc_0x438
-	  lwz       r3, -0x6E4C(r13)
-	  li        r4, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm    r0,r3,0,24,31
-	  lwz       r3, -0x7498(r13)
-	  mulli     r0, r0, 0xC
-	  lwz       r3, 0x4(r3)
-	  lwzx      r3, r3, r0
-	  lfs       f25, 0x0(r3)
-	  lfs       f26, 0x4(r3)
-	  lfs       f27, 0x8(r3)
-	  b         .loc_0x45C
+lbl_80457D14:
+	lwz      r3, naviMgr__4Game@sda21(r13)
+	bl       getActiveNavi__Q24Game7NaviMgrFv
+	cmplwi   r3, 0
+	bne      lbl_80457D60
+	lwz      r3,
+"sInstance__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@sda21(r13) li r4, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	clrlwi   r0, r3, 0x18
+	lwz      r3, msBasic__8JAIBasic@sda21(r13)
+	mulli    r0, r0, 0xc
+	lwz      r3, 4(r3)
+	lwzx     r3, r3, r0
+	lfs      f25, 0(r3)
+	lfs      f26, 4(r3)
+	lfs      f27, 8(r3)
+	b        lbl_80457D84
 
-	.loc_0x438:
-	  mr        r4, r3
-	  addi      r3, r1, 0xE0
-	  lwz       r12, 0x0(r4)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f25, 0xE0(r1)
-	  lfs       f26, 0xE4(r1)
-	  lfs       f27, 0xE8(r1)
+lbl_80457D60:
+	mr       r4, r3
+	addi     r3, r1, 0xe0
+	lwz      r12, 0(r4)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f25, 0xe0(r1)
+	lfs      f26, 0xe4(r1)
+	lfs      f27, 0xe8(r1)
 
-	.loc_0x45C:
-	  lwz       r3, 0x64(r30)
-	  lfs       f28, 0x28B0(r2)
-	  lwz       r31, 0xC(r3)
-	  b         .loc_0x5A8
+lbl_80457D84:
+	lwz      r3, 0x64(r30)
+	lfs      f28, lbl_80520C10@sda21(r2)
+	lwz      r31, 0xc(r3)
+	b        lbl_80457ED0
 
-	.loc_0x46C:
-	  lwz       r4, 0x0(r31)
-	  addi      r3, r1, 0xD4
-	  lwz       r12, 0x0(r4)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f2, 0xD4(r1)
-	  lfs       f1, 0xD8(r1)
-	  stfs      f25, 0x74(r1)
-	  lfs       f0, 0xDC(r1)
-	  stfs      f26, 0x78(r1)
-	  lwz       r0, 0x74(r1)
-	  stfs      f2, 0x80(r1)
-	  lwz       r6, 0x78(r1)
-	  stfs      f1, 0x84(r1)
-	  lwz       r4, 0x80(r1)
-	  lwz       r3, 0x84(r1)
-	  stfs      f27, 0x7C(r1)
-	  stfs      f0, 0x88(r1)
-	  lwz       r5, 0x7C(r1)
-	  stw       r0, 0xBC(r1)
-	  lwz       r0, 0x88(r1)
-	  stw       r6, 0xC0(r1)
-	  lfs       f2, 0xBC(r1)
-	  stw       r4, 0xC8(r1)
-	  lfs       f0, 0xC0(r1)
-	  stw       r3, 0xCC(r1)
-	  lfs       f3, 0xC8(r1)
-	  lfs       f1, 0xCC(r1)
-	  stw       r5, 0xC4(r1)
-	  fsubs     f3, f3, f2
-	  fsubs     f2, f1, f0
-	  stw       r0, 0xD0(r1)
-	  lfs       f0, 0xC4(r1)
-	  lfs       f1, 0xD0(r1)
-	  stfs      f3, 0x20(r1)
-	  fsubs     f0, f1, f0
-	  stfs      f2, 0x24(r1)
-	  lwz       r0, 0x20(r1)
-	  lwz       r3, 0x24(r1)
-	  stfs      f0, 0x28(r1)
-	  stw       r0, 0x8(r1)
-	  lwz       r0, 0x28(r1)
-	  stw       r3, 0xC(r1)
-	  lfs       f1, 0x8(r1)
-	  lfs       f0, 0xC(r1)
-	  stw       r0, 0x10(r1)
-	  fmuls     f2, f1, f1
-	  fmuls     f1, f0, f0
-	  lfs       f0, 0x10(r1)
-	  stfs      f2, 0x8(r1)
-	  fmuls     f0, f0, f0
-	  stfs      f1, 0xC(r1)
-	  lwz       r0, 0x8(r1)
-	  lwz       r3, 0xC(r1)
-	  stfs      f0, 0x10(r1)
-	  stw       r0, 0x14(r1)
-	  lwz       r0, 0x10(r1)
-	  stw       r3, 0x18(r1)
-	  lfs       f1, 0x14(r1)
-	  lfs       f0, 0x18(r1)
-	  stw       r0, 0x1C(r1)
-	  fadds     f0, f1, f0
-	  lfs       f1, 0x1C(r1)
-	  fadds     f0, f1, f0
-	  fcmpo     cr0, f0, f28
-	  ble-      .loc_0x580
-	  fsqrte    f1, f0
-	  fmuls     f0, f1, f0
+lbl_80457D94:
+	lwz      r4, 0(r31)
+	addi     r3, r1, 0xd4
+	lwz      r12, 0(r4)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f2, 0xd4(r1)
+	lfs      f1, 0xd8(r1)
+	stfs     f25, 0x74(r1)
+	lfs      f0, 0xdc(r1)
+	stfs     f26, 0x78(r1)
+	lwz      r0, 0x74(r1)
+	stfs     f2, 0x80(r1)
+	lwz      r6, 0x78(r1)
+	stfs     f1, 0x84(r1)
+	lwz      r4, 0x80(r1)
+	lwz      r3, 0x84(r1)
+	stfs     f27, 0x7c(r1)
+	stfs     f0, 0x88(r1)
+	lwz      r5, 0x7c(r1)
+	stw      r0, 0xbc(r1)
+	lwz      r0, 0x88(r1)
+	stw      r6, 0xc0(r1)
+	lfs      f2, 0xbc(r1)
+	stw      r4, 0xc8(r1)
+	lfs      f0, 0xc0(r1)
+	stw      r3, 0xcc(r1)
+	lfs      f3, 0xc8(r1)
+	lfs      f1, 0xcc(r1)
+	stw      r5, 0xc4(r1)
+	fsubs    f3, f3, f2
+	fsubs    f2, f1, f0
+	stw      r0, 0xd0(r1)
+	lfs      f0, 0xc4(r1)
+	lfs      f1, 0xd0(r1)
+	stfs     f3, 0x20(r1)
+	fsubs    f0, f1, f0
+	stfs     f2, 0x24(r1)
+	lwz      r0, 0x20(r1)
+	lwz      r3, 0x24(r1)
+	stfs     f0, 0x28(r1)
+	stw      r0, 8(r1)
+	lwz      r0, 0x28(r1)
+	stw      r3, 0xc(r1)
+	lfs      f1, 8(r1)
+	lfs      f0, 0xc(r1)
+	stw      r0, 0x10(r1)
+	fmuls    f2, f1, f1
+	fmuls    f1, f0, f0
+	lfs      f0, 0x10(r1)
+	stfs     f2, 8(r1)
+	fmuls    f0, f0, f0
+	stfs     f1, 0xc(r1)
+	lwz      r0, 8(r1)
+	lwz      r3, 0xc(r1)
+	stfs     f0, 0x10(r1)
+	stw      r0, 0x14(r1)
+	lwz      r0, 0x10(r1)
+	stw      r3, 0x18(r1)
+	lfs      f1, 0x14(r1)
+	lfs      f0, 0x18(r1)
+	stw      r0, 0x1c(r1)
+	fadds    f0, f1, f0
+	lfs      f1, 0x1c(r1)
+	fadds    f0, f1, f0
+	fcmpo    cr0, f0, f28
+	ble      lbl_80457EA8
+	frsqrte  f1, f0
+	fmuls    f0, f1, f0
 
-	.loc_0x580:
-	  fcmpo     cr0, f0, f24
-	  bge-      .loc_0x5A4
-	  mr        r3, r30
-	  fmr       f24, f0
-	  lwz       r12, 0x0(r30)
-	  lwz       r4, 0x0(r31)
-	  lwz       r12, 0x3C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_80457EA8:
+	fcmpo    cr0, f0, f24
+	bge      lbl_80457ECC
+	mr       r3, r30
+	fmr      f24, f0
+	lwz      r12, 0(r30)
+	lwz      r4, 0(r31)
+	lwz      r12, 0x3c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x5A4:
-	  lwz       r31, 0xC(r31)
+lbl_80457ECC:
+	lwz      r31, 0xc(r31)
 
-	.loc_0x5A8:
-	  cmplwi    r31, 0
-	  bne+      .loc_0x46C
+lbl_80457ED0:
+	cmplwi   r31, 0
+	bne      lbl_80457D94
 
-	.loc_0x5B0:
-	  fmr       f1, f24
-	  psq_l     f31,0x1C8(r1),0,0
-	  lfd       f31, 0x1C0(r1)
-	  psq_l     f30,0x1B8(r1),0,0
-	  lfd       f30, 0x1B0(r1)
-	  psq_l     f29,0x1A8(r1),0,0
-	  lfd       f29, 0x1A0(r1)
-	  psq_l     f28,0x198(r1),0,0
-	  lfd       f28, 0x190(r1)
-	  psq_l     f27,0x188(r1),0,0
-	  lfd       f27, 0x180(r1)
-	  psq_l     f26,0x178(r1),0,0
-	  lfd       f26, 0x170(r1)
-	  psq_l     f25,0x168(r1),0,0
-	  lfd       f25, 0x160(r1)
-	  psq_l     f24,0x158(r1),0,0
-	  lfd       f24, 0x150(r1)
-	  lwz       r31, 0x14C(r1)
-	  lwz       r30, 0x148(r1)
-	  lwz       r29, 0x144(r1)
-	  lwz       r0, 0x1D4(r1)
-	  lwz       r28, 0x140(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x1D0
-	  blr
+lbl_80457ED8:
+	fmr      f1, f24
+	psq_l    f31, 456(r1), 0, qr0
+	lfd      f31, 0x1c0(r1)
+	psq_l    f30, 440(r1), 0, qr0
+	lfd      f30, 0x1b0(r1)
+	psq_l    f29, 424(r1), 0, qr0
+	lfd      f29, 0x1a0(r1)
+	psq_l    f28, 408(r1), 0, qr0
+	lfd      f28, 0x190(r1)
+	psq_l    f27, 392(r1), 0, qr0
+	lfd      f27, 0x180(r1)
+	psq_l    f26, 376(r1), 0, qr0
+	lfd      f26, 0x170(r1)
+	psq_l    f25, 360(r1), 0, qr0
+	lfd      f25, 0x160(r1)
+	psq_l    f24, 344(r1), 0, qr0
+	lfd      f24, 0x150(r1)
+	lwz      r31, 0x14c(r1)
+	lwz      r30, 0x148(r1)
+	lwz      r29, 0x144(r1)
+	lwz      r0, 0x1d4(r1)
+	lwz      r28, 0x140(r1)
+	mtlr     r0
+	addi     r1, r1, 0x1d0
+	blr
 	*/
 }
 
@@ -1884,55 +2201,54 @@ ActorDirector_Enemy::ActorDirector_Enemy(const char*, int, long, long,
 ActorDirector_Scaled::~ActorDirector_Scaled()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x94
-	  lis       r4, 0x804F
-	  subi      r0, r4, 0x2168
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x84
-	  lis       r4, 0x804F
-	  subi      r0, r4, 0x20DC
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x84
-	  lis       r4, 0x804F
-	  subi      r0, r4, 0x2068
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x84
-	  lis       r4, 0x804F
-	  subi      r0, r4, 0x1F50
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x84
-	  lis       r4, 0x804E
-	  subi      r0, r4, 0x5030
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x84
-	  lis       r5, 0x804E
-	  li        r4, 0
-	  subi      r0, r5, 0x4FC0
-	  stw       r0, 0x0(r30)
-	  bl        -0x39DEA4
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_804580B4
+	lis      r4, __vt__Q23PSM20ActorDirector_Scaled@ha
+	addi     r0, r4, __vt__Q23PSM20ActorDirector_Scaled@l
+	stw      r0, 0(r30)
+	beq      lbl_804580A4
+	lis      r4, __vt__Q23PSM22TrackOnDirector_Scaled@ha
+	addi     r0, r4, __vt__Q23PSM22TrackOnDirector_Scaled@l
+	stw      r0, 0(r30)
+	beq      lbl_804580A4
+	lis      r4, __vt__Q23PSM19TrackOnDirectorBase@ha
+	addi     r0, r4, __vt__Q23PSM19TrackOnDirectorBase@l
+	stw      r0, 0(r30)
+	beq      lbl_804580A4
+	lis      r4, __vt__Q23PSM16SwitcherDirector@ha
+	addi     r0, r4, __vt__Q23PSM16SwitcherDirector@l
+	stw      r0, 0(r30)
+	beq      lbl_804580A4
+	lis      r4, __vt__Q28PSSystem16SwitcherDirector@ha
+	addi     r0, r4, __vt__Q28PSSystem16SwitcherDirector@l
+	stw      r0, 0(r30)
+	beq      lbl_804580A4
+	lis      r5, __vt__Q28PSSystem12DirectorBase@ha
+	li       r4, 0
+	addi     r0, r5, __vt__Q28PSSystem12DirectorBase@l
+	stw      r0, 0(r30)
+	bl       __dt__10JADHioNodeFv
 
-	.loc_0x84:
-	  extsh.    r0, r31
-	  ble-      .loc_0x94
-	  mr        r3, r30
-	  bl        -0x433FFC
+lbl_804580A4:
+	extsh.   r0, r31
+	ble      lbl_804580B4
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x94:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_804580B4:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1955,141 +2271,140 @@ void ActorDirector_Enemy::onSetMinDistObj(Game::Creature* a1)
 void ActorDirector_Enemy::underDirection()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stfd      f31, 0x20(r1)
-	  psq_st    f31,0x28(r1),0,0
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  li        r0, 0
-	  stw       r0, 0x68(r3)
-	  lis       r3, 0x804A
-	  lfs       f31, 0x28A8(r2)
-	  subi      r31, r3, 0x3268
-	  lbz       r0, -0x6778(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x154
-	  lwz       r0, -0x6780(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x64
-	  addi      r3, r31, 0x64
-	  addi      r5, r31, 0x3C
-	  li        r4, 0x1D3
-	  crclr     6, 0x6
-	  bl        -0x42DAF8
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stfd     f31, 0x20(r1)
+	psq_st   f31, 40(r1), 0, qr0
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	li       r0, 0
+	stw      r0, 0x68(r3)
+	lis      r3, lbl_8049CD98@ha
+	lfs      f31, lbl_80520C08@sda21(r2)
+	addi     r31, r3, lbl_8049CD98@l
+	lbz      r0, sToolMode__Q28PSSystem12DirectorBase@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_8045822C
+	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_8045813C
+	addi     r3, r31, 0x64
+	addi     r5, r31, 0x3c
+	li       r4, 0x1d3
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x64:
-	  lwz       r30, -0x6780(r13)
-	  cmplwi    r30, 0
-	  bne-      .loc_0x84
-	  addi      r3, r31, 0x64
-	  addi      r5, r31, 0x3C
-	  li        r4, 0x1DC
-	  crclr     6, 0x6
-	  bl        -0x42DB18
+lbl_8045813C:
+	lwz      r30, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r30, 0
+	bne      lbl_8045815C
+	addi     r3, r31, 0x64
+	addi     r5, r31, 0x3c
+	li       r4, 0x1dc
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x84:
-	  lwz       r0, 0x4(r30)
-	  cmplwi    r0, 0
-	  bne-      .loc_0xA4
-	  addi      r3, r31, 0x70
-	  addi      r5, r31, 0x3C
-	  li        r4, 0xCF
-	  crclr     6, 0x6
-	  bl        -0x42DB38
+lbl_8045815C:
+	lwz      r0, 4(r30)
+	cmplwi   r0, 0
+	bne      lbl_8045817C
+	addi     r3, r31, 0x70
+	addi     r5, r31, 0x3c
+	li       r4, 0xcf
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xA4:
-	  lwz       r3, 0x4(r30)
-	  lwz       r30, 0x4(r3)
-	  cmplwi    r30, 0
-	  bne-      .loc_0xC8
-	  addi      r3, r31, 0x70
-	  addi      r5, r31, 0x7C
-	  li        r4, 0xD1
-	  crclr     6, 0x6
-	  bl        -0x42DB5C
+lbl_8045817C:
+	lwz      r3, 4(r30)
+	lwz      r30, 4(r3)
+	cmplwi   r30, 0
+	bne      lbl_804581A0
+	addi     r3, r31, 0x70
+	addi     r5, r31, 0x7c
+	li       r4, 0xd1
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xC8:
-	  mr        r3, r30
-	  bl        0xF570
-	  lbz       r0, 0x6(r3)
-	  cmplwi    r0, 0xD
-	  bne-      .loc_0xE4
-	  lfs       f31, 0x28A8(r2)
-	  b         .loc_0x154
+lbl_804581A0:
+	mr       r3, r30
+	bl       getSceneInfoA__Q23PSM9SceneBaseFv
+	lbz      r0, 6(r3)
+	cmplwi   r0, 0xd
+	bne      lbl_804581BC
+	lfs      f31, lbl_80520C08@sda21(r2)
+	b        lbl_8045822C
 
-	.loc_0xE4:
-	  mr        r3, r29
-	  lwz       r12, 0x0(r29)
-	  lwz       r12, 0x38(r12)
-	  mtctr     r12
-	  bctrl
-	  stfs      f1, 0x5C(r29)
-	  mr        r3, r29
-	  lwz       r12, 0x0(r29)
-	  lwz       r4, 0x68(r29)
-	  lwz       r12, 0x40(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r12, 0x0(r29)
-	  fmr       f31, f1
-	  mr        r3, r29
-	  lwz       r4, 0x68(r29)
-	  lwz       r12, 0x44(r12)
-	  mtctr     r12
-	  bctrl
-	  fmr       f0, f1
-	  lfs       f1, 0x5C(r29)
-	  fmr       f2, f31
-	  lfs       f4, 0x28B0(r2)
-	  lfs       f5, 0x28A8(r2)
-	  li        r3, 0
-	  fmr       f3, f0
-	  bl        -0x39DFE0
-	  fmr       f31, f1
+lbl_804581BC:
+	mr       r3, r29
+	lwz      r12, 0(r29)
+	lwz      r12, 0x38(r12)
+	mtctr    r12
+	bctrl
+	stfs     f1, 0x5c(r29)
+	mr       r3, r29
+	lwz      r12, 0(r29)
+	lwz      r4, 0x68(r29)
+	lwz      r12, 0x40(r12)
+	mtctr    r12
+	bctrl
+	lwz      r12, 0(r29)
+	fmr      f31, f1
+	mr       r3, r29
+	lwz      r4, 0x68(r29)
+	lwz      r12, 0x44(r12)
+	mtctr    r12
+	bctrl
+	fmr      f0, f1
+	lfs      f1, 0x5c(r29)
+	fmr      f2, f31
+	lfs      f4, lbl_80520C10@sda21(r2)
+	lfs      f5, lbl_80520C08@sda21(r2)
+	li       r3, 0
+	fmr      f3, f0
+	bl       linearTransform__7JALCalcFfffffb
+	fmr      f31, f1
 
-	.loc_0x154:
-	  li        r30, 0
-	  b         .loc_0x19C
+lbl_8045822C:
+	li       r30, 0
+	b        lbl_80458274
 
-	.loc_0x15C:
-	  rlwinm    r0,r30,0,24,31
-	  cmplw     r0, r3
-	  blt-      .loc_0x17C
-	  addi      r3, r31, 0x48
-	  addi      r5, r31, 0x3C
-	  li        r4, 0x33
-	  crclr     6, 0x6
-	  bl        -0x42DC10
+lbl_80458234:
+	clrlwi   r0, r30, 0x18
+	cmplw    r0, r3
+	blt      lbl_80458254
+	addi     r3, r31, 0x48
+	addi     r5, r31, 0x3c
+	li       r4, 0x33
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x17C:
-	  lwz       r3, 0x4(r29)
-	  rlwinm    r0,r30,2,22,29
-	  fmr       f1, f31
-	  lwz       r4, 0x60(r29)
-	  lwzx      r3, r3, r0
-	  li        r5, 0
-	  bl        -0x115524
-	  addi      r30, r30, 0x1
+lbl_80458254:
+	lwz      r3, 4(r29)
+	rlwinm   r0, r30, 2, 0x16, 0x1d
+	fmr      f1, f31
+	lwz      r4, 0x60(r29)
+	lwzx     r3, r3, r0
+	li       r5, 0
+	bl       fade__Q28PSSystem13SeqTrackChildFfUlPQ28PSSystem12DirectorBase
+	addi     r30, r30, 1
 
-	.loc_0x19C:
-	  lbz       r3, 0x41(r29)
-	  rlwinm    r0,r30,0,24,31
-	  cmplw     r0, r3
-	  blt+      .loc_0x15C
-	  psq_l     f31,0x28(r1),0,0
-	  lwz       r0, 0x34(r1)
-	  lfd       f31, 0x20(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_80458274:
+	lbz      r3, 0x41(r29)
+	clrlwi   r0, r30, 0x18
+	cmplw    r0, r3
+	blt      lbl_80458234
+	psq_l    f31, 40(r1), 0, qr0
+	lwz      r0, 0x34(r1)
+	lfd      f31, 0x20(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -2101,24 +2416,23 @@ void ActorDirector_Enemy::underDirection()
 void ActorDirector_Battle::getVolZeroDist(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x28C(r4)
-	  lwz       r12, 0x28(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  subi      r0, r3, 0x2
-	  lis       r3, 0x804A
-	  rlwinm    r0,r0,2,0,29
-	  subi      r3, r3, 0x1E70
-	  lfsx      f1, r3, r0
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r3, 0x28c(r4)
+	lwz      r12, 0x28(r3)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	addi     r0, r3, -2
+	lis      r3, cVolZeroDist_Battle__Q23PSM11CreaturePrm@ha
+	slwi     r0, r0, 2
+	addi     r3, r3, cVolZeroDist_Battle__Q23PSM11CreaturePrm@l
+	lfsx     f1, r3, r0
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2130,24 +2444,23 @@ void ActorDirector_Battle::getVolZeroDist(Game::EnemyBase*)
 void ActorDirector_Battle::getVolMaxDist(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x28C(r4)
-	  lwz       r12, 0x28(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  subi      r0, r3, 0x2
-	  lis       r3, 0x804A
-	  rlwinm    r0,r0,2,0,29
-	  subi      r3, r3, 0x1EA8
-	  lfsx      f1, r3, r0
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r3, 0x28c(r4)
+	lwz      r12, 0x28(r3)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	addi     r0, r3, -2
+	lis      r3, cVolMaxDist_Battle__Q23PSM11CreaturePrm@ha
+	slwi     r0, r0, 2
+	addi     r3, r3, cVolMaxDist_Battle__Q23PSM11CreaturePrm@l
+	lfsx     f1, r3, r0
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2159,24 +2472,23 @@ void ActorDirector_Battle::getVolMaxDist(Game::EnemyBase*)
 void ActorDirector_Kehai::getVolZeroDist(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x28C(r4)
-	  lwz       r12, 0x28(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  subi      r0, r3, 0x2
-	  lis       r3, 0x804A
-	  rlwinm    r0,r0,2,0,29
-	  subi      r3, r3, 0x1E8C
-	  lfsx      f1, r3, r0
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r3, 0x28c(r4)
+	lwz      r12, 0x28(r3)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	addi     r0, r3, -2
+	lis      r3, cVolZeroDist_Kehai__Q23PSM11CreaturePrm@ha
+	slwi     r0, r0, 2
+	addi     r3, r3, cVolZeroDist_Kehai__Q23PSM11CreaturePrm@l
+	lfsx     f1, r3, r0
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2188,24 +2500,23 @@ void ActorDirector_Kehai::getVolZeroDist(Game::EnemyBase*)
 void ActorDirector_Kehai::getVolMaxDist(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x28C(r4)
-	  lwz       r12, 0x28(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  subi      r0, r3, 0x2
-	  lis       r3, 0x804A
-	  rlwinm    r0,r0,2,0,29
-	  subi      r3, r3, 0x1EC4
-	  lfsx      f1, r3, r0
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r3, 0x28c(r4)
+	lwz      r12, 0x28(r3)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	addi     r0, r3, -2
+	lis      r3, cVolMaxDist_Kehai__Q23PSM11CreaturePrm@ha
+	slwi     r0, r0, 2
+	addi     r3, r3, cVolMaxDist_Kehai__Q23PSM11CreaturePrm@l
+	lfsx     f1, r3, r0
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2217,38 +2528,37 @@ void ActorDirector_Kehai::getVolMaxDist(Game::EnemyBase*)
 PikAttackDirector::PikAttackDirector(int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r5, 0x804A
-	  stw       r0, 0x14(r1)
-	  subi      r5, r5, 0x31B0
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        -0x115520
-	  lis       r4, 0x804E
-	  lis       r3, 0x804F
-	  subi      r0, r4, 0x5030
-	  lis       r4, 0x804F
-	  stw       r0, 0x0(r31)
-	  subi      r0, r3, 0x1F50
-	  lis       r3, 0x804F
-	  subi      r6, r4, 0x2068
-	  stw       r0, 0x0(r31)
-	  li        r5, 0x64
-	  li        r4, 0
-	  subi      r0, r3, 0x2278
-	  stw       r6, 0x0(r31)
-	  mr        r3, r31
-	  stw       r5, 0x48(r31)
-	  stw       r5, 0x4C(r31)
-	  stb       r4, 0x50(r31)
-	  stw       r0, 0x0(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lis      r5, lbl_8049CE50@ha
+	stw      r0, 0x14(r1)
+	addi     r5, r5, lbl_8049CE50@l
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       __ct__Q28PSSystem12DirectorBaseFiPCc
+	lis      r4, __vt__Q28PSSystem16SwitcherDirector@ha
+	lis      r3, __vt__Q23PSM16SwitcherDirector@ha
+	addi     r0, r4, __vt__Q28PSSystem16SwitcherDirector@l
+	lis      r4, __vt__Q23PSM19TrackOnDirectorBase@ha
+	stw      r0, 0(r31)
+	addi     r0, r3, __vt__Q23PSM16SwitcherDirector@l
+	lis      r3, __vt__Q23PSM17PikAttackDirector@ha
+	addi     r6, r4, __vt__Q23PSM19TrackOnDirectorBase@l
+	stw      r0, 0(r31)
+	li       r5, 0x64
+	li       r4, 0
+	addi     r0, r3, __vt__Q23PSM17PikAttackDirector@l
+	stw      r6, 0(r31)
+	mr       r3, r31
+	stw      r5, 0x48(r31)
+	stw      r5, 0x4c(r31)
+	stb      r4, 0x50(r31)
+	stw      r0, 0(r31)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2260,38 +2570,37 @@ PikAttackDirector::PikAttackDirector(int)
 ExiteDirector::ExiteDirector(int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r5, 0x804A
-	  stw       r0, 0x14(r1)
-	  subi      r5, r5, 0x31A4
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        -0x11559C
-	  lis       r4, 0x804E
-	  lis       r3, 0x804F
-	  subi      r0, r4, 0x5030
-	  lis       r4, 0x804F
-	  stw       r0, 0x0(r31)
-	  subi      r0, r3, 0x1F50
-	  lis       r3, 0x804F
-	  subi      r6, r4, 0x2068
-	  stw       r0, 0x0(r31)
-	  li        r5, 0x64
-	  li        r4, 0
-	  subi      r0, r3, 0x22B0
-	  stw       r6, 0x0(r31)
-	  mr        r3, r31
-	  stw       r5, 0x48(r31)
-	  stw       r5, 0x4C(r31)
-	  stb       r4, 0x50(r31)
-	  stw       r0, 0x0(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lis      r5, lbl_8049CE5C@ha
+	stw      r0, 0x14(r1)
+	addi     r5, r5, lbl_8049CE5C@l
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       __ct__Q28PSSystem12DirectorBaseFiPCc
+	lis      r4, __vt__Q28PSSystem16SwitcherDirector@ha
+	lis      r3, __vt__Q23PSM16SwitcherDirector@ha
+	addi     r0, r4, __vt__Q28PSSystem16SwitcherDirector@l
+	lis      r4, __vt__Q23PSM19TrackOnDirectorBase@ha
+	stw      r0, 0(r31)
+	addi     r0, r3, __vt__Q23PSM16SwitcherDirector@l
+	lis      r3, __vt__Q23PSM13ExiteDirector@ha
+	addi     r6, r4, __vt__Q23PSM19TrackOnDirectorBase@l
+	stw      r0, 0(r31)
+	li       r5, 0x64
+	li       r4, 0
+	addi     r0, r3, __vt__Q23PSM13ExiteDirector@l
+	stw      r6, 0(r31)
+	mr       r3, r31
+	stw      r5, 0x48(r31)
+	stw      r5, 0x4c(r31)
+	stb      r4, 0x50(r31)
+	stw      r0, 0(r31)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2344,20 +2653,19 @@ DirectorUpdator::DirectorUpdator(PSSystem::DirectorBase*, unsigned char,
 void DirectorUpdator::directOn(unsigned char)
 {
 	/*
-	.loc_0x0:
-	  rlwinm    r0,r4,0,24,31
-	  li        r4, 0x1
-	  lbz       r5, 0x9(r3)
-	  slw       r4, r4, r0
-	  and.      r0, r5, r4
-	  bnelr-
-	  lbz       r0, 0x8(r3)
-	  or        r0, r0, r4
-	  stb       r0, 0x8(r3)
-	  lbz       r0, 0x9(r3)
-	  or        r0, r0, r4
-	  stb       r0, 0x9(r3)
-	  blr
+	clrlwi   r0, r4, 0x18
+	li       r4, 1
+	lbz      r5, 9(r3)
+	slw      r4, r4, r0
+	and.     r0, r5, r4
+	bnelr
+	lbz      r0, 8(r3)
+	or       r0, r0, r4
+	stb      r0, 8(r3)
+	lbz      r0, 9(r3)
+	or       r0, r0, r4
+	stb      r0, 9(r3)
+	blr
 	*/
 }
 
@@ -2369,20 +2677,19 @@ void DirectorUpdator::directOn(unsigned char)
 void DirectorUpdator::directOff(unsigned char)
 {
 	/*
-	.loc_0x0:
-	  rlwinm    r0,r4,0,24,31
-	  li        r4, 0x1
-	  lbz       r5, 0x9(r3)
-	  slw       r4, r4, r0
-	  and.      r0, r5, r4
-	  bnelr-
-	  lbz       r0, 0x8(r3)
-	  andc      r0, r0, r4
-	  stb       r0, 0x8(r3)
-	  lbz       r0, 0x9(r3)
-	  or        r0, r0, r4
-	  stb       r0, 0x9(r3)
-	  blr
+	clrlwi   r0, r4, 0x18
+	li       r4, 1
+	lbz      r5, 9(r3)
+	slw      r4, r4, r0
+	and.     r0, r5, r4
+	bnelr
+	lbz      r0, 8(r3)
+	andc     r0, r0, r4
+	stb      r0, 8(r3)
+	lbz      r0, 9(r3)
+	or       r0, r0, r4
+	stb      r0, 9(r3)
+	blr
 	*/
 }
 
@@ -2394,106 +2701,105 @@ void DirectorUpdator::directOff(unsigned char)
 void DirectorUpdator::frameEndWork()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r3, 0xC(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x118
-	  lwz       r0, 0x4(r31)
-	  li        r7, 0
-	  cmpwi     r0, 0x1
-	  beq-      .loc_0x80
-	  bge-      .loc_0xC0
-	  cmpwi     r0, 0
-	  bge-      .loc_0x40
-	  b         .loc_0xC0
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r3, 0xc(r3)
+	cmplwi   r3, 0
+	beq      lbl_80458698
+	lwz      r0, 4(r31)
+	li       r7, 0
+	cmpwi    r0, 1
+	beq      lbl_80458600
+	bge      lbl_80458640
+	cmpwi    r0, 0
+	bge      lbl_804585C0
+	b        lbl_80458640
 
-	.loc_0x40:
-	  lbz       r6, 0x0(r31)
-	  li        r8, 0
-	  li        r4, 0x1
-	  b         .loc_0x70
+lbl_804585C0:
+	lbz      r6, 0(r31)
+	li       r8, 0
+	li       r4, 1
+	b        lbl_804585F0
 
-	.loc_0x50:
-	  rlwinm    r0,r8,0,24,31
-	  lbz       r5, 0x8(r31)
-	  slw       r0, r4, r0
-	  and.      r0, r5, r0
-	  beq-      .loc_0x6C
-	  li        r7, 0x1
-	  b         .loc_0xC0
+lbl_804585D0:
+	clrlwi   r0, r8, 0x18
+	lbz      r5, 8(r31)
+	slw      r0, r4, r0
+	and.     r0, r5, r0
+	beq      lbl_804585EC
+	li       r7, 1
+	b        lbl_80458640
 
-	.loc_0x6C:
-	  addi      r8, r8, 0x1
+lbl_804585EC:
+	addi     r8, r8, 1
 
-	.loc_0x70:
-	  rlwinm    r0,r8,0,24,31
-	  cmplw     r0, r6
-	  blt+      .loc_0x50
-	  b         .loc_0xC0
+lbl_804585F0:
+	clrlwi   r0, r8, 0x18
+	cmplw    r0, r6
+	blt      lbl_804585D0
+	b        lbl_80458640
 
-	.loc_0x80:
-	  lbz       r6, 0x0(r31)
-	  li        r7, 0x1
-	  li        r8, 0
-	  li        r4, 0x1
-	  b         .loc_0xB4
+lbl_80458600:
+	lbz      r6, 0(r31)
+	li       r7, 1
+	li       r8, 0
+	li       r4, 1
+	b        lbl_80458634
 
-	.loc_0x94:
-	  rlwinm    r0,r8,0,24,31
-	  lbz       r5, 0x8(r31)
-	  slw       r0, r4, r0
-	  and.      r0, r5, r0
-	  bne-      .loc_0xB0
-	  li        r7, 0
-	  b         .loc_0xC0
+lbl_80458614:
+	clrlwi   r0, r8, 0x18
+	lbz      r5, 8(r31)
+	slw      r0, r4, r0
+	and.     r0, r5, r0
+	bne      lbl_80458630
+	li       r7, 0
+	b        lbl_80458640
 
-	.loc_0xB0:
-	  addi      r8, r8, 0x1
+lbl_80458630:
+	addi     r8, r8, 1
 
-	.loc_0xB4:
-	  rlwinm    r0,r8,0,24,31
-	  cmplw     r0, r6
-	  blt+      .loc_0x94
+lbl_80458634:
+	clrlwi   r0, r8, 0x18
+	cmplw    r0, r6
+	blt      lbl_80458614
 
-	.loc_0xC0:
-	  rlwinm.   r0,r7,0,24,31
-	  beq-      .loc_0xEC
-	  bl        -0x115580
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x10C
-	  lwz       r3, 0xC(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x10C
+lbl_80458640:
+	clrlwi.  r0, r7, 0x18
+	beq      lbl_8045866C
+	bl       isUnderDirection__Q28PSSystem12DirectorBaseFv
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_8045868C
+	lwz      r3, 0xc(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_8045868C
 
-	.loc_0xEC:
-	  bl        -0x1155A4
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x10C
-	  lwz       r3, 0xC(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
+lbl_8045866C:
+	bl       isUnderDirection__Q28PSSystem12DirectorBaseFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_8045868C
+	lwz      r3, 0xc(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x10C:
-	  li        r0, 0
-	  stb       r0, 0x8(r31)
-	  stb       r0, 0x9(r31)
+lbl_8045868C:
+	li       r0, 0
+	stb      r0, 8(r31)
+	stb      r0, 9(r31)
 
-	.loc_0x118:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80458698:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2507,109 +2813,108 @@ void DirectorUpdator::frameEndWork()
 void PSMGetBattleDirector(unsigned char)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r4, 0x804A
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  subi      r30, r4, 0x3268
-	  stw       r29, 0x14(r1)
-	  stw       r28, 0x10(r1)
-	  mr        r28, r3
-	  lwz       r0, -0x6780(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x48
-	  addi      r3, r30, 0x64
-	  addi      r5, r30, 0x3C
-	  li        r4, 0x1D3
-	  crclr     6, 0x6
-	  bl        -0x42E0B0
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lis      r4, lbl_8049CD98@ha
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	addi     r30, r4, lbl_8049CD98@l
+	stw      r29, 0x14(r1)
+	stw      r28, 0x10(r1)
+	mr       r28, r3
+	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_804586F4
+	addi     r3, r30, 0x64
+	addi     r5, r30, 0x3c
+	li       r4, 0x1d3
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x48:
-	  lwz       r29, -0x6780(r13)
-	  cmplwi    r29, 0
-	  bne-      .loc_0x68
-	  addi      r3, r30, 0x64
-	  addi      r5, r30, 0x3C
-	  li        r4, 0x1DC
-	  crclr     6, 0x6
-	  bl        -0x42E0D0
+lbl_804586F4:
+	lwz      r29, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r29, 0
+	bne      lbl_80458714
+	addi     r3, r30, 0x64
+	addi     r5, r30, 0x3c
+	li       r4, 0x1dc
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x68:
-	  lwz       r0, 0x4(r29)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x88
-	  addi      r3, r30, 0x70
-	  addi      r5, r30, 0x3C
-	  li        r4, 0xC7
-	  crclr     6, 0x6
-	  bl        -0x42E0F0
+lbl_80458714:
+	lwz      r0, 4(r29)
+	cmplwi   r0, 0
+	bne      lbl_80458734
+	addi     r3, r30, 0x70
+	addi     r5, r30, 0x3c
+	li       r4, 0xc7
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x88:
-	  lwz       r3, 0x4(r29)
-	  lwz       r3, 0x4(r3)
-	  cmplwi    r3, 0
-	  bne-      .loc_0xA0
-	  li        r29, 0
-	  b         .loc_0xA8
+lbl_80458734:
+	lwz      r3, 4(r29)
+	lwz      r3, 4(r3)
+	cmplwi   r3, 0
+	bne      lbl_8045874C
+	li       r29, 0
+	b        lbl_80458754
 
-	.loc_0xA0:
-	  bl        -0x1230CC
-	  mr        r29, r3
+lbl_8045874C:
+	bl       getMiddleBossBgm__Q26PSGame8PikSceneFv
+	mr       r29, r3
 
-	.loc_0xA8:
-	  cmplwi    r29, 0
-	  bne-      .loc_0xB8
-	  li        r3, 0
-	  b         .loc_0x128
+lbl_80458754:
+	cmplwi   r29, 0
+	bne      lbl_80458764
+	li       r3, 0
+	b        lbl_804587D4
 
-	.loc_0xB8:
-	  mr        r3, r29
-	  li        r31, 0
-	  lwz       r12, 0x10(r29)
-	  lwz       r12, 0x24(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm    r0,r3,0,24,31
-	  cmplwi    r0, 0x2
-	  beq-      .loc_0xFC
-	  mr        r3, r29
-	  lwz       r12, 0x10(r29)
-	  lwz       r12, 0x24(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm    r0,r3,0,24,31
-	  cmplwi    r0, 0x4
-	  bne-      .loc_0x100
+lbl_80458764:
+	mr       r3, r29
+	li       r31, 0
+	lwz      r12, 0x10(r29)
+	lwz      r12, 0x24(r12)
+	mtctr    r12
+	bctrl
+	clrlwi   r0, r3, 0x18
+	cmplwi   r0, 2
+	beq      lbl_804587A8
+	mr       r3, r29
+	lwz      r12, 0x10(r29)
+	lwz      r12, 0x24(r12)
+	mtctr    r12
+	bctrl
+	clrlwi   r0, r3, 0x18
+	cmplwi   r0, 4
+	bne      lbl_804587AC
 
-	.loc_0xFC:
-	  li        r31, 0x1
+lbl_804587A8:
+	li       r31, 1
 
-	.loc_0x100:
-	  rlwinm.   r0,r31,0,24,31
-	  bne-      .loc_0x11C
-	  addi      r3, r30, 0x24
-	  addi      r5, r30, 0x3C
-	  li        r4, 0x32A
-	  crclr     6, 0x6
-	  bl        -0x42E184
+lbl_804587AC:
+	clrlwi.  r0, r31, 0x18
+	bne      lbl_804587C8
+	addi     r3, r30, 0x24
+	addi     r5, r30, 0x3c
+	li       r4, 0x32a
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x11C:
-	  mr        r3, r29
-	  mr        r4, r28
-	  bl        -0x125C54
+lbl_804587C8:
+	mr       r3, r29
+	mr       r4, r28
+	bl       getDirectorP__Q28PSSystem11DirectedBgmFUc
 
-	.loc_0x128:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_804587D4:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -2621,89 +2926,88 @@ void PSMGetBattleDirector(unsigned char)
 void PSMGetKehaiD()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r3, 0x804A
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  subi      r31, r3, 0x3268
-	  stw       r30, 0x8(r1)
-	  lwz       r0, -0x6780(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x3C
-	  addi      r3, r31, 0x64
-	  addi      r5, r31, 0x3C
-	  li        r4, 0x1D3
-	  crclr     6, 0x6
-	  bl        -0x42E1EC
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lis      r3, lbl_8049CD98@ha
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	addi     r31, r3, lbl_8049CD98@l
+	stw      r30, 8(r1)
+	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_80458830
+	addi     r3, r31, 0x64
+	addi     r5, r31, 0x3c
+	li       r4, 0x1d3
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x3C:
-	  lwz       r30, -0x6780(r13)
-	  cmplwi    r30, 0
-	  bne-      .loc_0x5C
-	  addi      r3, r31, 0x64
-	  addi      r5, r31, 0x3C
-	  li        r4, 0x1DC
-	  crclr     6, 0x6
-	  bl        -0x42E20C
+lbl_80458830:
+	lwz      r30, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r30, 0
+	bne      lbl_80458850
+	addi     r3, r31, 0x64
+	addi     r5, r31, 0x3c
+	li       r4, 0x1dc
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x5C:
-	  lwz       r0, 0x4(r30)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x7C
-	  addi      r3, r31, 0x70
-	  addi      r5, r31, 0x3C
-	  li        r4, 0xCF
-	  crclr     6, 0x6
-	  bl        -0x42E22C
+lbl_80458850:
+	lwz      r0, 4(r30)
+	cmplwi   r0, 0
+	bne      lbl_80458870
+	addi     r3, r31, 0x70
+	addi     r5, r31, 0x3c
+	li       r4, 0xcf
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x7C:
-	  lwz       r3, 0x4(r30)
-	  lwz       r30, 0x4(r3)
-	  cmplwi    r30, 0
-	  bne-      .loc_0xA0
-	  addi      r3, r31, 0x70
-	  addi      r5, r31, 0x7C
-	  li        r4, 0xD1
-	  crclr     6, 0x6
-	  bl        -0x42E250
+lbl_80458870:
+	lwz      r3, 4(r30)
+	lwz      r30, 4(r3)
+	cmplwi   r30, 0
+	bne      lbl_80458894
+	addi     r3, r31, 0x70
+	addi     r5, r31, 0x7c
+	li       r4, 0xd1
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xA0:
-	  mr        r3, r30
-	  bl        0xEE7C
-	  lbz       r0, 0x6(r3)
-	  cmplwi    r0, 0x7
-	  bne-      .loc_0xD4
-	  bl        -0x120C00
-	  cmplwi    r3, 0
-	  beq-      .loc_0xCC
-	  li        r4, 0x1
-	  bl        -0x125D3C
-	  b         .loc_0xF0
+lbl_80458894:
+	mr       r3, r30
+	bl       getSceneInfoA__Q23PSM9SceneBaseFv
+	lbz      r0, 6(r3)
+	cmplwi   r0, 7
+	bne      lbl_804588C8
+	bl       PSGetDirectedMainBgm__Fv
+	cmplwi   r3, 0
+	beq      lbl_804588C0
+	li       r4, 1
+	bl       getDirectorP__Q28PSSystem11DirectedBgmFUc
+	b        lbl_804588E4
 
-	.loc_0xCC:
-	  li        r3, 0
-	  b         .loc_0xF0
+lbl_804588C0:
+	li       r3, 0
+	b        lbl_804588E4
 
-	.loc_0xD4:
-	  bl        -0x120C20
-	  cmplwi    r3, 0
-	  beq-      .loc_0xEC
-	  li        r4, 0x2
-	  bl        -0x125D5C
-	  b         .loc_0xF0
+lbl_804588C8:
+	bl       PSGetDirectedMainBgm__Fv
+	cmplwi   r3, 0
+	beq      lbl_804588E0
+	li       r4, 2
+	bl       getDirectorP__Q28PSSystem11DirectedBgmFUc
+	b        lbl_804588E4
 
-	.loc_0xEC:
-	  li        r3, 0
+lbl_804588E0:
+	li       r3, 0
 
-	.loc_0xF0:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_804588E4:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2715,89 +3019,88 @@ void PSMGetKehaiD()
 void PSMGetBattleD()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r3, 0x804A
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  subi      r31, r3, 0x3268
-	  stw       r30, 0x8(r1)
-	  lwz       r0, -0x6780(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x3C
-	  addi      r3, r31, 0x64
-	  addi      r5, r31, 0x3C
-	  li        r4, 0x1D3
-	  crclr     6, 0x6
-	  bl        -0x42E2F4
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lis      r3, lbl_8049CD98@ha
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	addi     r31, r3, lbl_8049CD98@l
+	stw      r30, 8(r1)
+	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_80458938
+	addi     r3, r31, 0x64
+	addi     r5, r31, 0x3c
+	li       r4, 0x1d3
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x3C:
-	  lwz       r30, -0x6780(r13)
-	  cmplwi    r30, 0
-	  bne-      .loc_0x5C
-	  addi      r3, r31, 0x64
-	  addi      r5, r31, 0x3C
-	  li        r4, 0x1DC
-	  crclr     6, 0x6
-	  bl        -0x42E314
+lbl_80458938:
+	lwz      r30, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r30, 0
+	bne      lbl_80458958
+	addi     r3, r31, 0x64
+	addi     r5, r31, 0x3c
+	li       r4, 0x1dc
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x5C:
-	  lwz       r0, 0x4(r30)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x7C
-	  addi      r3, r31, 0x70
-	  addi      r5, r31, 0x3C
-	  li        r4, 0xCF
-	  crclr     6, 0x6
-	  bl        -0x42E334
+lbl_80458958:
+	lwz      r0, 4(r30)
+	cmplwi   r0, 0
+	bne      lbl_80458978
+	addi     r3, r31, 0x70
+	addi     r5, r31, 0x3c
+	li       r4, 0xcf
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x7C:
-	  lwz       r3, 0x4(r30)
-	  lwz       r30, 0x4(r3)
-	  cmplwi    r30, 0
-	  bne-      .loc_0xA0
-	  addi      r3, r31, 0x70
-	  addi      r5, r31, 0x7C
-	  li        r4, 0xD1
-	  crclr     6, 0x6
-	  bl        -0x42E358
+lbl_80458978:
+	lwz      r3, 4(r30)
+	lwz      r30, 4(r3)
+	cmplwi   r30, 0
+	bne      lbl_8045899C
+	addi     r3, r31, 0x70
+	addi     r5, r31, 0x7c
+	li       r4, 0xd1
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xA0:
-	  mr        r3, r30
-	  bl        0xED74
-	  lbz       r0, 0x6(r3)
-	  cmplwi    r0, 0x7
-	  bne-      .loc_0xD4
-	  bl        -0x120D08
-	  cmplwi    r3, 0
-	  beq-      .loc_0xCC
-	  li        r4, 0x2
-	  bl        -0x125E44
-	  b         .loc_0xF0
+lbl_8045899C:
+	mr       r3, r30
+	bl       getSceneInfoA__Q23PSM9SceneBaseFv
+	lbz      r0, 6(r3)
+	cmplwi   r0, 7
+	bne      lbl_804589D0
+	bl       PSGetDirectedMainBgm__Fv
+	cmplwi   r3, 0
+	beq      lbl_804589C8
+	li       r4, 2
+	bl       getDirectorP__Q28PSSystem11DirectedBgmFUc
+	b        lbl_804589EC
 
-	.loc_0xCC:
-	  li        r3, 0
-	  b         .loc_0xF0
+lbl_804589C8:
+	li       r3, 0
+	b        lbl_804589EC
 
-	.loc_0xD4:
-	  bl        -0x120D28
-	  cmplwi    r3, 0
-	  beq-      .loc_0xEC
-	  li        r4, 0x3
-	  bl        -0x125E64
-	  b         .loc_0xF0
+lbl_804589D0:
+	bl       PSGetDirectedMainBgm__Fv
+	cmplwi   r3, 0
+	beq      lbl_804589E8
+	li       r4, 3
+	bl       getDirectorP__Q28PSSystem11DirectedBgmFUc
+	b        lbl_804589EC
 
-	.loc_0xEC:
-	  li        r3, 0
+lbl_804589E8:
+	li       r3, 0
 
-	.loc_0xF0:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_804589EC:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2809,89 +3112,88 @@ void PSMGetBattleD()
 void PSMGetEventD()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r3, 0x804A
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  subi      r31, r3, 0x3268
-	  stw       r30, 0x8(r1)
-	  lwz       r0, -0x6780(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x3C
-	  addi      r3, r31, 0x64
-	  addi      r5, r31, 0x3C
-	  li        r4, 0x1D3
-	  crclr     6, 0x6
-	  bl        -0x42E3FC
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lis      r3, lbl_8049CD98@ha
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	addi     r31, r3, lbl_8049CD98@l
+	stw      r30, 8(r1)
+	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_80458A40
+	addi     r3, r31, 0x64
+	addi     r5, r31, 0x3c
+	li       r4, 0x1d3
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x3C:
-	  lwz       r30, -0x6780(r13)
-	  cmplwi    r30, 0
-	  bne-      .loc_0x5C
-	  addi      r3, r31, 0x64
-	  addi      r5, r31, 0x3C
-	  li        r4, 0x1DC
-	  crclr     6, 0x6
-	  bl        -0x42E41C
+lbl_80458A40:
+	lwz      r30, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r30, 0
+	bne      lbl_80458A60
+	addi     r3, r31, 0x64
+	addi     r5, r31, 0x3c
+	li       r4, 0x1dc
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x5C:
-	  lwz       r0, 0x4(r30)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x7C
-	  addi      r3, r31, 0x70
-	  addi      r5, r31, 0x3C
-	  li        r4, 0xCF
-	  crclr     6, 0x6
-	  bl        -0x42E43C
+lbl_80458A60:
+	lwz      r0, 4(r30)
+	cmplwi   r0, 0
+	bne      lbl_80458A80
+	addi     r3, r31, 0x70
+	addi     r5, r31, 0x3c
+	li       r4, 0xcf
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x7C:
-	  lwz       r3, 0x4(r30)
-	  lwz       r30, 0x4(r3)
-	  cmplwi    r30, 0
-	  bne-      .loc_0xA0
-	  addi      r3, r31, 0x70
-	  addi      r5, r31, 0x7C
-	  li        r4, 0xD1
-	  crclr     6, 0x6
-	  bl        -0x42E460
+lbl_80458A80:
+	lwz      r3, 4(r30)
+	lwz      r30, 4(r3)
+	cmplwi   r30, 0
+	bne      lbl_80458AA4
+	addi     r3, r31, 0x70
+	addi     r5, r31, 0x7c
+	li       r4, 0xd1
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xA0:
-	  mr        r3, r30
-	  bl        0xEC6C
-	  lbz       r0, 0x6(r3)
-	  cmplwi    r0, 0x7
-	  bne-      .loc_0xD4
-	  bl        -0x120E10
-	  cmplwi    r3, 0
-	  beq-      .loc_0xCC
-	  li        r4, 0
-	  bl        -0x125F4C
-	  b         .loc_0xF0
+lbl_80458AA4:
+	mr       r3, r30
+	bl       getSceneInfoA__Q23PSM9SceneBaseFv
+	lbz      r0, 6(r3)
+	cmplwi   r0, 7
+	bne      lbl_80458AD8
+	bl       PSGetDirectedMainBgm__Fv
+	cmplwi   r3, 0
+	beq      lbl_80458AD0
+	li       r4, 0
+	bl       getDirectorP__Q28PSSystem11DirectedBgmFUc
+	b        lbl_80458AF4
 
-	.loc_0xCC:
-	  li        r3, 0
-	  b         .loc_0xF0
+lbl_80458AD0:
+	li       r3, 0
+	b        lbl_80458AF4
 
-	.loc_0xD4:
-	  bl        -0x120E30
-	  cmplwi    r3, 0
-	  beq-      .loc_0xEC
-	  li        r4, 0
-	  bl        -0x125F6C
-	  b         .loc_0xF0
+lbl_80458AD8:
+	bl       PSGetDirectedMainBgm__Fv
+	cmplwi   r3, 0
+	beq      lbl_80458AF0
+	li       r4, 0
+	bl       getDirectorP__Q28PSSystem11DirectedBgmFUc
+	b        lbl_80458AF4
 
-	.loc_0xEC:
-	  li        r3, 0
+lbl_80458AF0:
+	li       r3, 0
 
-	.loc_0xF0:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80458AF4:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2903,81 +3205,80 @@ void PSMGetEventD()
 void PSMGetOtakaraEventD()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r3, 0x804A
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  subi      r31, r3, 0x3268
-	  stw       r30, 0x8(r1)
-	  lwz       r0, -0x6780(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x3C
-	  addi      r3, r31, 0x64
-	  addi      r5, r31, 0x3C
-	  li        r4, 0x1D3
-	  crclr     6, 0x6
-	  bl        -0x42E504
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lis      r3, lbl_8049CD98@ha
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	addi     r31, r3, lbl_8049CD98@l
+	stw      r30, 8(r1)
+	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_80458B48
+	addi     r3, r31, 0x64
+	addi     r5, r31, 0x3c
+	li       r4, 0x1d3
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x3C:
-	  lwz       r30, -0x6780(r13)
-	  cmplwi    r30, 0
-	  bne-      .loc_0x5C
-	  addi      r3, r31, 0x64
-	  addi      r5, r31, 0x3C
-	  li        r4, 0x1DC
-	  crclr     6, 0x6
-	  bl        -0x42E524
+lbl_80458B48:
+	lwz      r30, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r30, 0
+	bne      lbl_80458B68
+	addi     r3, r31, 0x64
+	addi     r5, r31, 0x3c
+	li       r4, 0x1dc
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x5C:
-	  lwz       r0, 0x4(r30)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x7C
-	  addi      r3, r31, 0x70
-	  addi      r5, r31, 0x3C
-	  li        r4, 0xCF
-	  crclr     6, 0x6
-	  bl        -0x42E544
+lbl_80458B68:
+	lwz      r0, 4(r30)
+	cmplwi   r0, 0
+	bne      lbl_80458B88
+	addi     r3, r31, 0x70
+	addi     r5, r31, 0x3c
+	li       r4, 0xcf
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x7C:
-	  lwz       r3, 0x4(r30)
-	  lwz       r30, 0x4(r3)
-	  cmplwi    r30, 0
-	  bne-      .loc_0xA0
-	  addi      r3, r31, 0x70
-	  addi      r5, r31, 0x7C
-	  li        r4, 0xD1
-	  crclr     6, 0x6
-	  bl        -0x42E568
+lbl_80458B88:
+	lwz      r3, 4(r30)
+	lwz      r30, 4(r3)
+	cmplwi   r30, 0
+	bne      lbl_80458BAC
+	addi     r3, r31, 0x70
+	addi     r5, r31, 0x7c
+	li       r4, 0xd1
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xA0:
-	  mr        r3, r30
-	  bl        0xEB64
-	  lbz       r0, 0x6(r3)
-	  cmplwi    r0, 0x7
-	  beq-      .loc_0xD4
-	  bl        -0x120F18
-	  cmplwi    r3, 0
-	  beq-      .loc_0xCC
-	  li        r4, 0x1
-	  bl        -0x126054
-	  b         .loc_0xD8
+lbl_80458BAC:
+	mr       r3, r30
+	bl       getSceneInfoA__Q23PSM9SceneBaseFv
+	lbz      r0, 6(r3)
+	cmplwi   r0, 7
+	beq      lbl_80458BE0
+	bl       PSGetDirectedMainBgm__Fv
+	cmplwi   r3, 0
+	beq      lbl_80458BD8
+	li       r4, 1
+	bl       getDirectorP__Q28PSSystem11DirectedBgmFUc
+	b        lbl_80458BE4
 
-	.loc_0xCC:
-	  li        r3, 0
-	  b         .loc_0xD8
+lbl_80458BD8:
+	li       r3, 0
+	b        lbl_80458BE4
 
-	.loc_0xD4:
-	  li        r3, 0
+lbl_80458BE0:
+	li       r3, 0
 
-	.loc_0xD8:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80458BE4:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2989,130 +3290,129 @@ void PSMGetOtakaraEventD()
 void PSMGetGroundD()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r3, 0x804A
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  subi      r31, r3, 0x3268
-	  stw       r30, 0x8(r1)
-	  lwz       r0, -0x6780(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x3C
-	  addi      r3, r31, 0x64
-	  addi      r5, r31, 0x3C
-	  li        r4, 0x1D3
-	  crclr     6, 0x6
-	  bl        -0x42E5F4
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lis      r3, lbl_8049CD98@ha
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	addi     r31, r3, lbl_8049CD98@l
+	stw      r30, 8(r1)
+	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_80458C38
+	addi     r3, r31, 0x64
+	addi     r5, r31, 0x3c
+	li       r4, 0x1d3
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x3C:
-	  lwz       r30, -0x6780(r13)
-	  cmplwi    r30, 0
-	  bne-      .loc_0x5C
-	  addi      r3, r31, 0x64
-	  addi      r5, r31, 0x3C
-	  li        r4, 0x1DC
-	  crclr     6, 0x6
-	  bl        -0x42E614
+lbl_80458C38:
+	lwz      r30, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r30, 0
+	bne      lbl_80458C58
+	addi     r3, r31, 0x64
+	addi     r5, r31, 0x3c
+	li       r4, 0x1dc
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x5C:
-	  lwz       r0, 0x4(r30)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x7C
-	  addi      r3, r31, 0x70
-	  addi      r5, r31, 0x3C
-	  li        r4, 0xCF
-	  crclr     6, 0x6
-	  bl        -0x42E634
+lbl_80458C58:
+	lwz      r0, 4(r30)
+	cmplwi   r0, 0
+	bne      lbl_80458C78
+	addi     r3, r31, 0x70
+	addi     r5, r31, 0x3c
+	li       r4, 0xcf
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x7C:
-	  lwz       r3, 0x4(r30)
-	  lwz       r30, 0x4(r3)
-	  cmplwi    r30, 0
-	  bne-      .loc_0xA0
-	  addi      r3, r31, 0x70
-	  addi      r5, r31, 0x7C
-	  li        r4, 0xD1
-	  crclr     6, 0x6
-	  bl        -0x42E658
+lbl_80458C78:
+	lwz      r3, 4(r30)
+	lwz      r30, 4(r3)
+	cmplwi   r30, 0
+	bne      lbl_80458C9C
+	addi     r3, r31, 0x70
+	addi     r5, r31, 0x7c
+	li       r4, 0xd1
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xA0:
-	  mr        r3, r30
-	  bl        0xEA74
-	  lbz       r0, 0x6(r3)
-	  cmplwi    r0, 0x7
-	  beq-      .loc_0x178
-	  lwz       r0, -0x6780(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0xD4
-	  addi      r3, r31, 0x64
-	  addi      r5, r31, 0x3C
-	  li        r4, 0x1D3
-	  crclr     6, 0x6
-	  bl        -0x42E68C
+lbl_80458C9C:
+	mr       r3, r30
+	bl       getSceneInfoA__Q23PSM9SceneBaseFv
+	lbz      r0, 6(r3)
+	cmplwi   r0, 7
+	beq      lbl_80458D74
+	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_80458CD0
+	addi     r3, r31, 0x64
+	addi     r5, r31, 0x3c
+	li       r4, 0x1d3
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xD4:
-	  lwz       r30, -0x6780(r13)
-	  cmplwi    r30, 0
-	  bne-      .loc_0xF4
-	  addi      r3, r31, 0x64
-	  addi      r5, r31, 0x3C
-	  li        r4, 0x1DC
-	  crclr     6, 0x6
-	  bl        -0x42E6AC
+lbl_80458CD0:
+	lwz      r30, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r30, 0
+	bne      lbl_80458CF0
+	addi     r3, r31, 0x64
+	addi     r5, r31, 0x3c
+	li       r4, 0x1dc
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xF4:
-	  lwz       r0, 0x4(r30)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x114
-	  addi      r3, r31, 0x70
-	  addi      r5, r31, 0x3C
-	  li        r4, 0xCF
-	  crclr     6, 0x6
-	  bl        -0x42E6CC
+lbl_80458CF0:
+	lwz      r0, 4(r30)
+	cmplwi   r0, 0
+	bne      lbl_80458D10
+	addi     r3, r31, 0x70
+	addi     r5, r31, 0x3c
+	li       r4, 0xcf
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x114:
-	  lwz       r3, 0x4(r30)
-	  lwz       r30, 0x4(r3)
-	  cmplwi    r30, 0
-	  bne-      .loc_0x138
-	  addi      r3, r31, 0x70
-	  addi      r5, r31, 0x7C
-	  li        r4, 0xD1
-	  crclr     6, 0x6
-	  bl        -0x42E6F0
+lbl_80458D10:
+	lwz      r3, 4(r30)
+	lwz      r30, 4(r3)
+	cmplwi   r30, 0
+	bne      lbl_80458D34
+	addi     r3, r31, 0x70
+	addi     r5, r31, 0x7c
+	li       r4, 0xd1
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x138:
-	  mr        r3, r30
-	  bl        0xE9DC
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x178
-	  bl        -0x1210AC
-	  cmplwi    r3, 0
-	  beq-      .loc_0x170
-	  li        r4, 0x4
-	  bl        -0x1261E8
-	  b         .loc_0x17C
+lbl_80458D34:
+	mr       r3, r30
+	bl       getSceneInfoA__Q23PSM9SceneBaseFv
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_80458D74
+	bl       PSGetDirectedMainBgm__Fv
+	cmplwi   r3, 0
+	beq      lbl_80458D6C
+	li       r4, 4
+	bl       getDirectorP__Q28PSSystem11DirectedBgmFUc
+	b        lbl_80458D78
 
-	.loc_0x170:
-	  li        r3, 0
-	  b         .loc_0x17C
+lbl_80458D6C:
+	li       r3, 0
+	b        lbl_80458D78
 
-	.loc_0x178:
-	  li        r3, 0
+lbl_80458D74:
+	li       r3, 0
 
-	.loc_0x17C:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80458D78:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -3124,81 +3424,80 @@ void PSMGetGroundD()
 void PSMGetPikminNumD()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r3, 0x804A
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  subi      r31, r3, 0x3268
-	  stw       r30, 0x8(r1)
-	  lwz       r0, -0x6780(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x3C
-	  addi      r3, r31, 0x64
-	  addi      r5, r31, 0x3C
-	  li        r4, 0x1D3
-	  crclr     6, 0x6
-	  bl        -0x42E788
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lis      r3, lbl_8049CD98@ha
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	addi     r31, r3, lbl_8049CD98@l
+	stw      r30, 8(r1)
+	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_80458DCC
+	addi     r3, r31, 0x64
+	addi     r5, r31, 0x3c
+	li       r4, 0x1d3
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x3C:
-	  lwz       r30, -0x6780(r13)
-	  cmplwi    r30, 0
-	  bne-      .loc_0x5C
-	  addi      r3, r31, 0x64
-	  addi      r5, r31, 0x3C
-	  li        r4, 0x1DC
-	  crclr     6, 0x6
-	  bl        -0x42E7A8
+lbl_80458DCC:
+	lwz      r30, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r30, 0
+	bne      lbl_80458DEC
+	addi     r3, r31, 0x64
+	addi     r5, r31, 0x3c
+	li       r4, 0x1dc
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x5C:
-	  lwz       r0, 0x4(r30)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x7C
-	  addi      r3, r31, 0x70
-	  addi      r5, r31, 0x3C
-	  li        r4, 0xCF
-	  crclr     6, 0x6
-	  bl        -0x42E7C8
+lbl_80458DEC:
+	lwz      r0, 4(r30)
+	cmplwi   r0, 0
+	bne      lbl_80458E0C
+	addi     r3, r31, 0x70
+	addi     r5, r31, 0x3c
+	li       r4, 0xcf
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x7C:
-	  lwz       r3, 0x4(r30)
-	  lwz       r30, 0x4(r3)
-	  cmplwi    r30, 0
-	  bne-      .loc_0xA0
-	  addi      r3, r31, 0x70
-	  addi      r5, r31, 0x7C
-	  li        r4, 0xD1
-	  crclr     6, 0x6
-	  bl        -0x42E7EC
+lbl_80458E0C:
+	lwz      r3, 4(r30)
+	lwz      r30, 4(r3)
+	cmplwi   r30, 0
+	bne      lbl_80458E30
+	addi     r3, r31, 0x70
+	addi     r5, r31, 0x7c
+	li       r4, 0xd1
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xA0:
-	  mr        r3, r30
-	  bl        0xE8E0
-	  lbz       r0, 0x6(r3)
-	  cmplwi    r0, 0x7
-	  beq-      .loc_0xD4
-	  bl        -0x12119C
-	  cmplwi    r3, 0
-	  beq-      .loc_0xCC
-	  li        r4, 0x5
-	  bl        -0x1262D8
-	  b         .loc_0xD8
+lbl_80458E30:
+	mr       r3, r30
+	bl       getSceneInfoA__Q23PSM9SceneBaseFv
+	lbz      r0, 6(r3)
+	cmplwi   r0, 7
+	beq      lbl_80458E64
+	bl       PSGetDirectedMainBgm__Fv
+	cmplwi   r3, 0
+	beq      lbl_80458E5C
+	li       r4, 5
+	bl       getDirectorP__Q28PSSystem11DirectedBgmFUc
+	b        lbl_80458E68
 
-	.loc_0xCC:
-	  li        r3, 0
-	  b         .loc_0xD8
+lbl_80458E5C:
+	li       r3, 0
+	b        lbl_80458E68
 
-	.loc_0xD4:
-	  li        r3, 0
+lbl_80458E64:
+	li       r3, 0
 
-	.loc_0xD8:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80458E68:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -3210,81 +3509,80 @@ void PSMGetPikminNumD()
 void PSMGetDamageD()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r3, 0x804A
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  subi      r31, r3, 0x3268
-	  stw       r30, 0x8(r1)
-	  lwz       r0, -0x6780(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x3C
-	  addi      r3, r31, 0x64
-	  addi      r5, r31, 0x3C
-	  li        r4, 0x1D3
-	  crclr     6, 0x6
-	  bl        -0x42E878
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lis      r3, lbl_8049CD98@ha
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	addi     r31, r3, lbl_8049CD98@l
+	stw      r30, 8(r1)
+	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_80458EBC
+	addi     r3, r31, 0x64
+	addi     r5, r31, 0x3c
+	li       r4, 0x1d3
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x3C:
-	  lwz       r30, -0x6780(r13)
-	  cmplwi    r30, 0
-	  bne-      .loc_0x5C
-	  addi      r3, r31, 0x64
-	  addi      r5, r31, 0x3C
-	  li        r4, 0x1DC
-	  crclr     6, 0x6
-	  bl        -0x42E898
+lbl_80458EBC:
+	lwz      r30, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r30, 0
+	bne      lbl_80458EDC
+	addi     r3, r31, 0x64
+	addi     r5, r31, 0x3c
+	li       r4, 0x1dc
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x5C:
-	  lwz       r0, 0x4(r30)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x7C
-	  addi      r3, r31, 0x70
-	  addi      r5, r31, 0x3C
-	  li        r4, 0xCF
-	  crclr     6, 0x6
-	  bl        -0x42E8B8
+lbl_80458EDC:
+	lwz      r0, 4(r30)
+	cmplwi   r0, 0
+	bne      lbl_80458EFC
+	addi     r3, r31, 0x70
+	addi     r5, r31, 0x3c
+	li       r4, 0xcf
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x7C:
-	  lwz       r3, 0x4(r30)
-	  lwz       r30, 0x4(r3)
-	  cmplwi    r30, 0
-	  bne-      .loc_0xA0
-	  addi      r3, r31, 0x70
-	  addi      r5, r31, 0x7C
-	  li        r4, 0xD1
-	  crclr     6, 0x6
-	  bl        -0x42E8DC
+lbl_80458EFC:
+	lwz      r3, 4(r30)
+	lwz      r30, 4(r3)
+	cmplwi   r30, 0
+	bne      lbl_80458F20
+	addi     r3, r31, 0x70
+	addi     r5, r31, 0x7c
+	li       r4, 0xd1
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xA0:
-	  mr        r3, r30
-	  bl        0xE7F0
-	  lbz       r0, 0x6(r3)
-	  cmplwi    r0, 0x7
-	  beq-      .loc_0xD4
-	  bl        -0x12128C
-	  cmplwi    r3, 0
-	  beq-      .loc_0xCC
-	  li        r4, 0x6
-	  bl        -0x1263C8
-	  b         .loc_0xD8
+lbl_80458F20:
+	mr       r3, r30
+	bl       getSceneInfoA__Q23PSM9SceneBaseFv
+	lbz      r0, 6(r3)
+	cmplwi   r0, 7
+	beq      lbl_80458F54
+	bl       PSGetDirectedMainBgm__Fv
+	cmplwi   r3, 0
+	beq      lbl_80458F4C
+	li       r4, 6
+	bl       getDirectorP__Q28PSSystem11DirectedBgmFUc
+	b        lbl_80458F58
 
-	.loc_0xCC:
-	  li        r3, 0
-	  b         .loc_0xD8
+lbl_80458F4C:
+	li       r3, 0
+	b        lbl_80458F58
 
-	.loc_0xD4:
-	  li        r3, 0
+lbl_80458F54:
+	li       r3, 0
 
-	.loc_0xD8:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80458F58:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -3296,81 +3594,80 @@ void PSMGetDamageD()
 void PSMGetLifeD()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r3, 0x804A
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  subi      r31, r3, 0x3268
-	  stw       r30, 0x8(r1)
-	  lwz       r0, -0x6780(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x3C
-	  addi      r3, r31, 0x64
-	  addi      r5, r31, 0x3C
-	  li        r4, 0x1D3
-	  crclr     6, 0x6
-	  bl        -0x42E968
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lis      r3, lbl_8049CD98@ha
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	addi     r31, r3, lbl_8049CD98@l
+	stw      r30, 8(r1)
+	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_80458FAC
+	addi     r3, r31, 0x64
+	addi     r5, r31, 0x3c
+	li       r4, 0x1d3
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x3C:
-	  lwz       r30, -0x6780(r13)
-	  cmplwi    r30, 0
-	  bne-      .loc_0x5C
-	  addi      r3, r31, 0x64
-	  addi      r5, r31, 0x3C
-	  li        r4, 0x1DC
-	  crclr     6, 0x6
-	  bl        -0x42E988
+lbl_80458FAC:
+	lwz      r30, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r30, 0
+	bne      lbl_80458FCC
+	addi     r3, r31, 0x64
+	addi     r5, r31, 0x3c
+	li       r4, 0x1dc
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x5C:
-	  lwz       r0, 0x4(r30)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x7C
-	  addi      r3, r31, 0x70
-	  addi      r5, r31, 0x3C
-	  li        r4, 0xCF
-	  crclr     6, 0x6
-	  bl        -0x42E9A8
+lbl_80458FCC:
+	lwz      r0, 4(r30)
+	cmplwi   r0, 0
+	bne      lbl_80458FEC
+	addi     r3, r31, 0x70
+	addi     r5, r31, 0x3c
+	li       r4, 0xcf
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x7C:
-	  lwz       r3, 0x4(r30)
-	  lwz       r30, 0x4(r3)
-	  cmplwi    r30, 0
-	  bne-      .loc_0xA0
-	  addi      r3, r31, 0x70
-	  addi      r5, r31, 0x7C
-	  li        r4, 0xD1
-	  crclr     6, 0x6
-	  bl        -0x42E9CC
+lbl_80458FEC:
+	lwz      r3, 4(r30)
+	lwz      r30, 4(r3)
+	cmplwi   r30, 0
+	bne      lbl_80459010
+	addi     r3, r31, 0x70
+	addi     r5, r31, 0x7c
+	li       r4, 0xd1
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xA0:
-	  mr        r3, r30
-	  bl        0xE700
-	  lbz       r0, 0x6(r3)
-	  cmplwi    r0, 0x7
-	  beq-      .loc_0xD4
-	  bl        -0x12137C
-	  cmplwi    r3, 0
-	  beq-      .loc_0xCC
-	  li        r4, 0x7
-	  bl        -0x1264B8
-	  b         .loc_0xD8
+lbl_80459010:
+	mr       r3, r30
+	bl       getSceneInfoA__Q23PSM9SceneBaseFv
+	lbz      r0, 6(r3)
+	cmplwi   r0, 7
+	beq      lbl_80459044
+	bl       PSGetDirectedMainBgm__Fv
+	cmplwi   r3, 0
+	beq      lbl_8045903C
+	li       r4, 7
+	bl       getDirectorP__Q28PSSystem11DirectedBgmFUc
+	b        lbl_80459048
 
-	.loc_0xCC:
-	  li        r3, 0
-	  b         .loc_0xD8
+lbl_8045903C:
+	li       r3, 0
+	b        lbl_80459048
 
-	.loc_0xD4:
-	  li        r3, 0
+lbl_80459044:
+	li       r3, 0
 
-	.loc_0xD8:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80459048:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -3382,81 +3679,80 @@ void PSMGetLifeD()
 void PSMGetBeedamaForOrimerD()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r3, 0x804A
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  subi      r31, r3, 0x3268
-	  stw       r30, 0x8(r1)
-	  lwz       r0, -0x6780(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x3C
-	  addi      r3, r31, 0x64
-	  addi      r5, r31, 0x3C
-	  li        r4, 0x1D3
-	  crclr     6, 0x6
-	  bl        -0x42EA58
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lis      r3, lbl_8049CD98@ha
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	addi     r31, r3, lbl_8049CD98@l
+	stw      r30, 8(r1)
+	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_8045909C
+	addi     r3, r31, 0x64
+	addi     r5, r31, 0x3c
+	li       r4, 0x1d3
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x3C:
-	  lwz       r30, -0x6780(r13)
-	  cmplwi    r30, 0
-	  bne-      .loc_0x5C
-	  addi      r3, r31, 0x64
-	  addi      r5, r31, 0x3C
-	  li        r4, 0x1DC
-	  crclr     6, 0x6
-	  bl        -0x42EA78
+lbl_8045909C:
+	lwz      r30, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r30, 0
+	bne      lbl_804590BC
+	addi     r3, r31, 0x64
+	addi     r5, r31, 0x3c
+	li       r4, 0x1dc
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x5C:
-	  lwz       r0, 0x4(r30)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x7C
-	  addi      r3, r31, 0x70
-	  addi      r5, r31, 0x3C
-	  li        r4, 0xCF
-	  crclr     6, 0x6
-	  bl        -0x42EA98
+lbl_804590BC:
+	lwz      r0, 4(r30)
+	cmplwi   r0, 0
+	bne      lbl_804590DC
+	addi     r3, r31, 0x70
+	addi     r5, r31, 0x3c
+	li       r4, 0xcf
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x7C:
-	  lwz       r3, 0x4(r30)
-	  lwz       r30, 0x4(r3)
-	  cmplwi    r30, 0
-	  bne-      .loc_0xA0
-	  addi      r3, r31, 0x70
-	  addi      r5, r31, 0x7C
-	  li        r4, 0xD1
-	  crclr     6, 0x6
-	  bl        -0x42EABC
+lbl_804590DC:
+	lwz      r3, 4(r30)
+	lwz      r30, 4(r3)
+	cmplwi   r30, 0
+	bne      lbl_80459100
+	addi     r3, r31, 0x70
+	addi     r5, r31, 0x7c
+	li       r4, 0xd1
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xA0:
-	  mr        r3, r30
-	  bl        0xE610
-	  lbz       r0, 0x6(r3)
-	  cmplwi    r0, 0x7
-	  bne-      .loc_0xD4
-	  bl        -0x12146C
-	  cmplwi    r3, 0
-	  beq-      .loc_0xCC
-	  li        r4, 0x3
-	  bl        -0x1265A8
-	  b         .loc_0xD8
+lbl_80459100:
+	mr       r3, r30
+	bl       getSceneInfoA__Q23PSM9SceneBaseFv
+	lbz      r0, 6(r3)
+	cmplwi   r0, 7
+	bne      lbl_80459134
+	bl       PSGetDirectedMainBgm__Fv
+	cmplwi   r3, 0
+	beq      lbl_8045912C
+	li       r4, 3
+	bl       getDirectorP__Q28PSSystem11DirectedBgmFUc
+	b        lbl_80459138
 
-	.loc_0xCC:
-	  li        r3, 0
-	  b         .loc_0xD8
+lbl_8045912C:
+	li       r3, 0
+	b        lbl_80459138
 
-	.loc_0xD4:
-	  li        r3, 0
+lbl_80459134:
+	li       r3, 0
 
-	.loc_0xD8:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80459138:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -3468,81 +3764,80 @@ void PSMGetBeedamaForOrimerD()
 void PSMGetBeedamaForLugieD()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r3, 0x804A
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  subi      r31, r3, 0x3268
-	  stw       r30, 0x8(r1)
-	  lwz       r0, -0x6780(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x3C
-	  addi      r3, r31, 0x64
-	  addi      r5, r31, 0x3C
-	  li        r4, 0x1D3
-	  crclr     6, 0x6
-	  bl        -0x42EB48
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lis      r3, lbl_8049CD98@ha
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	addi     r31, r3, lbl_8049CD98@l
+	stw      r30, 8(r1)
+	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_8045918C
+	addi     r3, r31, 0x64
+	addi     r5, r31, 0x3c
+	li       r4, 0x1d3
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x3C:
-	  lwz       r30, -0x6780(r13)
-	  cmplwi    r30, 0
-	  bne-      .loc_0x5C
-	  addi      r3, r31, 0x64
-	  addi      r5, r31, 0x3C
-	  li        r4, 0x1DC
-	  crclr     6, 0x6
-	  bl        -0x42EB68
+lbl_8045918C:
+	lwz      r30, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r30, 0
+	bne      lbl_804591AC
+	addi     r3, r31, 0x64
+	addi     r5, r31, 0x3c
+	li       r4, 0x1dc
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x5C:
-	  lwz       r0, 0x4(r30)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x7C
-	  addi      r3, r31, 0x70
-	  addi      r5, r31, 0x3C
-	  li        r4, 0xCF
-	  crclr     6, 0x6
-	  bl        -0x42EB88
+lbl_804591AC:
+	lwz      r0, 4(r30)
+	cmplwi   r0, 0
+	bne      lbl_804591CC
+	addi     r3, r31, 0x70
+	addi     r5, r31, 0x3c
+	li       r4, 0xcf
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x7C:
-	  lwz       r3, 0x4(r30)
-	  lwz       r30, 0x4(r3)
-	  cmplwi    r30, 0
-	  bne-      .loc_0xA0
-	  addi      r3, r31, 0x70
-	  addi      r5, r31, 0x7C
-	  li        r4, 0xD1
-	  crclr     6, 0x6
-	  bl        -0x42EBAC
+lbl_804591CC:
+	lwz      r3, 4(r30)
+	lwz      r30, 4(r3)
+	cmplwi   r30, 0
+	bne      lbl_804591F0
+	addi     r3, r31, 0x70
+	addi     r5, r31, 0x7c
+	li       r4, 0xd1
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xA0:
-	  mr        r3, r30
-	  bl        0xE520
-	  lbz       r0, 0x6(r3)
-	  cmplwi    r0, 0x7
-	  bne-      .loc_0xD4
-	  bl        -0x12155C
-	  cmplwi    r3, 0
-	  beq-      .loc_0xCC
-	  li        r4, 0x4
-	  bl        -0x126698
-	  b         .loc_0xD8
+lbl_804591F0:
+	mr       r3, r30
+	bl       getSceneInfoA__Q23PSM9SceneBaseFv
+	lbz      r0, 6(r3)
+	cmplwi   r0, 7
+	bne      lbl_80459224
+	bl       PSGetDirectedMainBgm__Fv
+	cmplwi   r3, 0
+	beq      lbl_8045921C
+	li       r4, 4
+	bl       getDirectorP__Q28PSSystem11DirectedBgmFUc
+	b        lbl_80459228
 
-	.loc_0xCC:
-	  li        r3, 0
-	  b         .loc_0xD8
+lbl_8045921C:
+	li       r3, 0
+	b        lbl_80459228
 
-	.loc_0xD4:
-	  li        r3, 0
+lbl_80459224:
+	li       r3, 0
 
-	.loc_0xD8:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80459228:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -3554,81 +3849,80 @@ void PSMGetBeedamaForLugieD()
 void PSMGetIchouForOrimerD()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r3, 0x804A
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  subi      r31, r3, 0x3268
-	  stw       r30, 0x8(r1)
-	  lwz       r0, -0x6780(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x3C
-	  addi      r3, r31, 0x64
-	  addi      r5, r31, 0x3C
-	  li        r4, 0x1D3
-	  crclr     6, 0x6
-	  bl        -0x42EC38
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lis      r3, lbl_8049CD98@ha
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	addi     r31, r3, lbl_8049CD98@l
+	stw      r30, 8(r1)
+	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_8045927C
+	addi     r3, r31, 0x64
+	addi     r5, r31, 0x3c
+	li       r4, 0x1d3
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x3C:
-	  lwz       r30, -0x6780(r13)
-	  cmplwi    r30, 0
-	  bne-      .loc_0x5C
-	  addi      r3, r31, 0x64
-	  addi      r5, r31, 0x3C
-	  li        r4, 0x1DC
-	  crclr     6, 0x6
-	  bl        -0x42EC58
+lbl_8045927C:
+	lwz      r30, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r30, 0
+	bne      lbl_8045929C
+	addi     r3, r31, 0x64
+	addi     r5, r31, 0x3c
+	li       r4, 0x1dc
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x5C:
-	  lwz       r0, 0x4(r30)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x7C
-	  addi      r3, r31, 0x70
-	  addi      r5, r31, 0x3C
-	  li        r4, 0xCF
-	  crclr     6, 0x6
-	  bl        -0x42EC78
+lbl_8045929C:
+	lwz      r0, 4(r30)
+	cmplwi   r0, 0
+	bne      lbl_804592BC
+	addi     r3, r31, 0x70
+	addi     r5, r31, 0x3c
+	li       r4, 0xcf
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x7C:
-	  lwz       r3, 0x4(r30)
-	  lwz       r30, 0x4(r3)
-	  cmplwi    r30, 0
-	  bne-      .loc_0xA0
-	  addi      r3, r31, 0x70
-	  addi      r5, r31, 0x7C
-	  li        r4, 0xD1
-	  crclr     6, 0x6
-	  bl        -0x42EC9C
+lbl_804592BC:
+	lwz      r3, 4(r30)
+	lwz      r30, 4(r3)
+	cmplwi   r30, 0
+	bne      lbl_804592E0
+	addi     r3, r31, 0x70
+	addi     r5, r31, 0x7c
+	li       r4, 0xd1
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xA0:
-	  mr        r3, r30
-	  bl        0xE430
-	  lbz       r0, 0x6(r3)
-	  cmplwi    r0, 0x7
-	  bne-      .loc_0xD4
-	  bl        -0x12164C
-	  cmplwi    r3, 0
-	  beq-      .loc_0xCC
-	  li        r4, 0x5
-	  bl        -0x126788
-	  b         .loc_0xD8
+lbl_804592E0:
+	mr       r3, r30
+	bl       getSceneInfoA__Q23PSM9SceneBaseFv
+	lbz      r0, 6(r3)
+	cmplwi   r0, 7
+	bne      lbl_80459314
+	bl       PSGetDirectedMainBgm__Fv
+	cmplwi   r3, 0
+	beq      lbl_8045930C
+	li       r4, 5
+	bl       getDirectorP__Q28PSSystem11DirectedBgmFUc
+	b        lbl_80459318
 
-	.loc_0xCC:
-	  li        r3, 0
-	  b         .loc_0xD8
+lbl_8045930C:
+	li       r3, 0
+	b        lbl_80459318
 
-	.loc_0xD4:
-	  li        r3, 0
+lbl_80459314:
+	li       r3, 0
 
-	.loc_0xD8:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80459318:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -3640,81 +3934,80 @@ void PSMGetIchouForOrimerD()
 void PSMGetIchouForLugieD()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r3, 0x804A
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  subi      r31, r3, 0x3268
-	  stw       r30, 0x8(r1)
-	  lwz       r0, -0x6780(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x3C
-	  addi      r3, r31, 0x64
-	  addi      r5, r31, 0x3C
-	  li        r4, 0x1D3
-	  crclr     6, 0x6
-	  bl        -0x42ED28
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lis      r3, lbl_8049CD98@ha
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	addi     r31, r3, lbl_8049CD98@l
+	stw      r30, 8(r1)
+	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_8045936C
+	addi     r3, r31, 0x64
+	addi     r5, r31, 0x3c
+	li       r4, 0x1d3
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x3C:
-	  lwz       r30, -0x6780(r13)
-	  cmplwi    r30, 0
-	  bne-      .loc_0x5C
-	  addi      r3, r31, 0x64
-	  addi      r5, r31, 0x3C
-	  li        r4, 0x1DC
-	  crclr     6, 0x6
-	  bl        -0x42ED48
+lbl_8045936C:
+	lwz      r30, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r30, 0
+	bne      lbl_8045938C
+	addi     r3, r31, 0x64
+	addi     r5, r31, 0x3c
+	li       r4, 0x1dc
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x5C:
-	  lwz       r0, 0x4(r30)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x7C
-	  addi      r3, r31, 0x70
-	  addi      r5, r31, 0x3C
-	  li        r4, 0xCF
-	  crclr     6, 0x6
-	  bl        -0x42ED68
+lbl_8045938C:
+	lwz      r0, 4(r30)
+	cmplwi   r0, 0
+	bne      lbl_804593AC
+	addi     r3, r31, 0x70
+	addi     r5, r31, 0x3c
+	li       r4, 0xcf
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x7C:
-	  lwz       r3, 0x4(r30)
-	  lwz       r30, 0x4(r3)
-	  cmplwi    r30, 0
-	  bne-      .loc_0xA0
-	  addi      r3, r31, 0x70
-	  addi      r5, r31, 0x7C
-	  li        r4, 0xD1
-	  crclr     6, 0x6
-	  bl        -0x42ED8C
+lbl_804593AC:
+	lwz      r3, 4(r30)
+	lwz      r30, 4(r3)
+	cmplwi   r30, 0
+	bne      lbl_804593D0
+	addi     r3, r31, 0x70
+	addi     r5, r31, 0x7c
+	li       r4, 0xd1
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xA0:
-	  mr        r3, r30
-	  bl        0xE340
-	  lbz       r0, 0x6(r3)
-	  cmplwi    r0, 0x7
-	  bne-      .loc_0xD4
-	  bl        -0x12173C
-	  cmplwi    r3, 0
-	  beq-      .loc_0xCC
-	  li        r4, 0x6
-	  bl        -0x126878
-	  b         .loc_0xD8
+lbl_804593D0:
+	mr       r3, r30
+	bl       getSceneInfoA__Q23PSM9SceneBaseFv
+	lbz      r0, 6(r3)
+	cmplwi   r0, 7
+	bne      lbl_80459404
+	bl       PSGetDirectedMainBgm__Fv
+	cmplwi   r3, 0
+	beq      lbl_804593FC
+	li       r4, 6
+	bl       getDirectorP__Q28PSSystem11DirectedBgmFUc
+	b        lbl_80459408
 
-	.loc_0xCC:
-	  li        r3, 0
-	  b         .loc_0xD8
+lbl_804593FC:
+	li       r3, 0
+	b        lbl_80459408
 
-	.loc_0xD4:
-	  li        r3, 0
+lbl_80459404:
+	li       r3, 0
 
-	.loc_0xD8:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80459408:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -3726,81 +4019,80 @@ void PSMGetIchouForLugieD()
 void PSMGetPikiBattleD()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r3, 0x804A
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  subi      r31, r3, 0x3268
-	  stw       r30, 0x8(r1)
-	  lwz       r0, -0x6780(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x3C
-	  addi      r3, r31, 0x64
-	  addi      r5, r31, 0x3C
-	  li        r4, 0x1D3
-	  crclr     6, 0x6
-	  bl        -0x42EE18
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lis      r3, lbl_8049CD98@ha
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	addi     r31, r3, lbl_8049CD98@l
+	stw      r30, 8(r1)
+	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_8045945C
+	addi     r3, r31, 0x64
+	addi     r5, r31, 0x3c
+	li       r4, 0x1d3
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x3C:
-	  lwz       r30, -0x6780(r13)
-	  cmplwi    r30, 0
-	  bne-      .loc_0x5C
-	  addi      r3, r31, 0x64
-	  addi      r5, r31, 0x3C
-	  li        r4, 0x1DC
-	  crclr     6, 0x6
-	  bl        -0x42EE38
+lbl_8045945C:
+	lwz      r30, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r30, 0
+	bne      lbl_8045947C
+	addi     r3, r31, 0x64
+	addi     r5, r31, 0x3c
+	li       r4, 0x1dc
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x5C:
-	  lwz       r0, 0x4(r30)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x7C
-	  addi      r3, r31, 0x70
-	  addi      r5, r31, 0x3C
-	  li        r4, 0xCF
-	  crclr     6, 0x6
-	  bl        -0x42EE58
+lbl_8045947C:
+	lwz      r0, 4(r30)
+	cmplwi   r0, 0
+	bne      lbl_8045949C
+	addi     r3, r31, 0x70
+	addi     r5, r31, 0x3c
+	li       r4, 0xcf
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x7C:
-	  lwz       r3, 0x4(r30)
-	  lwz       r30, 0x4(r3)
-	  cmplwi    r30, 0
-	  bne-      .loc_0xA0
-	  addi      r3, r31, 0x70
-	  addi      r5, r31, 0x7C
-	  li        r4, 0xD1
-	  crclr     6, 0x6
-	  bl        -0x42EE7C
+lbl_8045949C:
+	lwz      r3, 4(r30)
+	lwz      r30, 4(r3)
+	cmplwi   r30, 0
+	bne      lbl_804594C0
+	addi     r3, r31, 0x70
+	addi     r5, r31, 0x7c
+	li       r4, 0xd1
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xA0:
-	  mr        r3, r30
-	  bl        0xE250
-	  lbz       r0, 0x6(r3)
-	  cmplwi    r0, 0x7
-	  bne-      .loc_0xD4
-	  bl        -0x12182C
-	  cmplwi    r3, 0
-	  beq-      .loc_0xCC
-	  li        r4, 0x7
-	  bl        -0x126968
-	  b         .loc_0xD8
+lbl_804594C0:
+	mr       r3, r30
+	bl       getSceneInfoA__Q23PSM9SceneBaseFv
+	lbz      r0, 6(r3)
+	cmplwi   r0, 7
+	bne      lbl_804594F4
+	bl       PSGetDirectedMainBgm__Fv
+	cmplwi   r3, 0
+	beq      lbl_804594EC
+	li       r4, 7
+	bl       getDirectorP__Q28PSSystem11DirectedBgmFUc
+	b        lbl_804594F8
 
-	.loc_0xCC:
-	  li        r3, 0
-	  b         .loc_0xD8
+lbl_804594EC:
+	li       r3, 0
+	b        lbl_804594F8
 
-	.loc_0xD4:
-	  li        r3, 0
+lbl_804594F4:
+	li       r3, 0
 
-	.loc_0xD8:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_804594F8:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -3814,51 +4106,50 @@ namespace PSM {
 ExiteDirector::~ExiteDirector()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x84
-	  lis       r4, 0x804F
-	  subi      r0, r4, 0x22B0
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x74
-	  lis       r4, 0x804F
-	  subi      r0, r4, 0x2068
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x74
-	  lis       r4, 0x804F
-	  subi      r0, r4, 0x1F50
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x74
-	  lis       r4, 0x804E
-	  subi      r0, r4, 0x5030
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x74
-	  lis       r5, 0x804E
-	  li        r4, 0
-	  subi      r0, r5, 0x4FC0
-	  stw       r0, 0x0(r30)
-	  bl        -0x39F384
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_80459594
+	lis      r4, __vt__Q23PSM13ExiteDirector@ha
+	addi     r0, r4, __vt__Q23PSM13ExiteDirector@l
+	stw      r0, 0(r30)
+	beq      lbl_80459584
+	lis      r4, __vt__Q23PSM19TrackOnDirectorBase@ha
+	addi     r0, r4, __vt__Q23PSM19TrackOnDirectorBase@l
+	stw      r0, 0(r30)
+	beq      lbl_80459584
+	lis      r4, __vt__Q23PSM16SwitcherDirector@ha
+	addi     r0, r4, __vt__Q23PSM16SwitcherDirector@l
+	stw      r0, 0(r30)
+	beq      lbl_80459584
+	lis      r4, __vt__Q28PSSystem16SwitcherDirector@ha
+	addi     r0, r4, __vt__Q28PSSystem16SwitcherDirector@l
+	stw      r0, 0(r30)
+	beq      lbl_80459584
+	lis      r5, __vt__Q28PSSystem12DirectorBase@ha
+	li       r4, 0
+	addi     r0, r5, __vt__Q28PSSystem12DirectorBase@l
+	stw      r0, 0(r30)
+	bl       __dt__10JADHioNodeFv
 
-	.loc_0x74:
-	  extsh.    r0, r31
-	  ble-      .loc_0x84
-	  mr        r3, r30
-	  bl        -0x4354DC
+lbl_80459584:
+	extsh.   r0, r31
+	ble      lbl_80459594
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x84:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80459594:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -3891,51 +4182,50 @@ u32 OtakaraEventLink::is2PBattle() { return 0x0; }
 PikAttackDirector::~PikAttackDirector()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x84
-	  lis       r4, 0x804F
-	  subi      r0, r4, 0x2278
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x74
-	  lis       r4, 0x804F
-	  subi      r0, r4, 0x2068
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x74
-	  lis       r4, 0x804F
-	  subi      r0, r4, 0x1F50
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x74
-	  lis       r4, 0x804E
-	  subi      r0, r4, 0x5030
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x74
-	  lis       r5, 0x804E
-	  li        r4, 0
-	  subi      r0, r5, 0x4FC0
-	  stw       r0, 0x0(r30)
-	  bl        -0x39F438
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_80459648
+	lis      r4, __vt__Q23PSM17PikAttackDirector@ha
+	addi     r0, r4, __vt__Q23PSM17PikAttackDirector@l
+	stw      r0, 0(r30)
+	beq      lbl_80459638
+	lis      r4, __vt__Q23PSM19TrackOnDirectorBase@ha
+	addi     r0, r4, __vt__Q23PSM19TrackOnDirectorBase@l
+	stw      r0, 0(r30)
+	beq      lbl_80459638
+	lis      r4, __vt__Q23PSM16SwitcherDirector@ha
+	addi     r0, r4, __vt__Q23PSM16SwitcherDirector@l
+	stw      r0, 0(r30)
+	beq      lbl_80459638
+	lis      r4, __vt__Q28PSSystem16SwitcherDirector@ha
+	addi     r0, r4, __vt__Q28PSSystem16SwitcherDirector@l
+	stw      r0, 0(r30)
+	beq      lbl_80459638
+	lis      r5, __vt__Q28PSSystem12DirectorBase@ha
+	li       r4, 0
+	addi     r0, r5, __vt__Q28PSSystem12DirectorBase@l
+	stw      r0, 0(r30)
+	bl       __dt__10JADHioNodeFv
 
-	.loc_0x74:
-	  extsh.    r0, r31
-	  ble-      .loc_0x84
-	  mr        r3, r30
-	  bl        -0x435590
+lbl_80459638:
+	extsh.   r0, r31
+	ble      lbl_80459648
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x84:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80459648:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -3947,63 +4237,62 @@ PikAttackDirector::~PikAttackDirector()
 ActorDirector_Kehai::~ActorDirector_Kehai()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r3
-	  stw       r30, 0x8(r1)
-	  mr        r30, r4
-	  beq-      .loc_0xB4
-	  lis       r4, 0x804F
-	  subi      r0, r4, 0x2240
-	  stw       r0, 0x0(r31)
-	  beq-      .loc_0xA4
-	  lis       r4, 0x804F
-	  subi      r0, r4, 0x21B0
-	  stw       r0, 0x0(r31)
-	  beq-      .loc_0xA4
-	  lis       r4, 0x804F
-	  subi      r0, r4, 0x2168
-	  stw       r0, 0x0(r31)
-	  beq-      .loc_0xA4
-	  lis       r4, 0x804F
-	  subi      r0, r4, 0x20DC
-	  stw       r0, 0x0(r31)
-	  beq-      .loc_0xA4
-	  lis       r4, 0x804F
-	  subi      r0, r4, 0x2068
-	  stw       r0, 0x0(r31)
-	  beq-      .loc_0xA4
-	  lis       r4, 0x804F
-	  subi      r0, r4, 0x1F50
-	  stw       r0, 0x0(r31)
-	  beq-      .loc_0xA4
-	  lis       r4, 0x804E
-	  subi      r0, r4, 0x5030
-	  stw       r0, 0x0(r31)
-	  beq-      .loc_0xA4
-	  lis       r5, 0x804E
-	  li        r4, 0
-	  subi      r0, r5, 0x4FC0
-	  stw       r0, 0x0(r31)
-	  bl        -0x39F508
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r3, r3
+	stw      r30, 8(r1)
+	mr       r30, r4
+	beq      lbl_80459718
+	lis      r4, __vt__Q23PSM19ActorDirector_Kehai@ha
+	addi     r0, r4, __vt__Q23PSM19ActorDirector_Kehai@l
+	stw      r0, 0(r31)
+	beq      lbl_80459708
+	lis      r4, __vt__Q23PSM19ActorDirector_Enemy@ha
+	addi     r0, r4, __vt__Q23PSM19ActorDirector_Enemy@l
+	stw      r0, 0(r31)
+	beq      lbl_80459708
+	lis      r4, __vt__Q23PSM20ActorDirector_Scaled@ha
+	addi     r0, r4, __vt__Q23PSM20ActorDirector_Scaled@l
+	stw      r0, 0(r31)
+	beq      lbl_80459708
+	lis      r4, __vt__Q23PSM22TrackOnDirector_Scaled@ha
+	addi     r0, r4, __vt__Q23PSM22TrackOnDirector_Scaled@l
+	stw      r0, 0(r31)
+	beq      lbl_80459708
+	lis      r4, __vt__Q23PSM19TrackOnDirectorBase@ha
+	addi     r0, r4, __vt__Q23PSM19TrackOnDirectorBase@l
+	stw      r0, 0(r31)
+	beq      lbl_80459708
+	lis      r4, __vt__Q23PSM16SwitcherDirector@ha
+	addi     r0, r4, __vt__Q23PSM16SwitcherDirector@l
+	stw      r0, 0(r31)
+	beq      lbl_80459708
+	lis      r4, __vt__Q28PSSystem16SwitcherDirector@ha
+	addi     r0, r4, __vt__Q28PSSystem16SwitcherDirector@l
+	stw      r0, 0(r31)
+	beq      lbl_80459708
+	lis      r5, __vt__Q28PSSystem12DirectorBase@ha
+	li       r4, 0
+	addi     r0, r5, __vt__Q28PSSystem12DirectorBase@l
+	stw      r0, 0(r31)
+	bl       __dt__10JADHioNodeFv
 
-	.loc_0xA4:
-	  extsh.    r0, r30
-	  ble-      .loc_0xB4
-	  mr        r3, r31
-	  bl        -0x435660
+lbl_80459708:
+	extsh.   r0, r30
+	ble      lbl_80459718
+	mr       r3, r31
+	bl       __dl__FPv
 
-	.loc_0xB4:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80459718:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -4015,63 +4304,62 @@ ActorDirector_Kehai::~ActorDirector_Kehai()
 ActorDirector_Battle::~ActorDirector_Battle()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r3
-	  stw       r30, 0x8(r1)
-	  mr        r30, r4
-	  beq-      .loc_0xB4
-	  lis       r4, 0x804F
-	  subi      r0, r4, 0x21F8
-	  stw       r0, 0x0(r31)
-	  beq-      .loc_0xA4
-	  lis       r4, 0x804F
-	  subi      r0, r4, 0x21B0
-	  stw       r0, 0x0(r31)
-	  beq-      .loc_0xA4
-	  lis       r4, 0x804F
-	  subi      r0, r4, 0x2168
-	  stw       r0, 0x0(r31)
-	  beq-      .loc_0xA4
-	  lis       r4, 0x804F
-	  subi      r0, r4, 0x20DC
-	  stw       r0, 0x0(r31)
-	  beq-      .loc_0xA4
-	  lis       r4, 0x804F
-	  subi      r0, r4, 0x2068
-	  stw       r0, 0x0(r31)
-	  beq-      .loc_0xA4
-	  lis       r4, 0x804F
-	  subi      r0, r4, 0x1F50
-	  stw       r0, 0x0(r31)
-	  beq-      .loc_0xA4
-	  lis       r4, 0x804E
-	  subi      r0, r4, 0x5030
-	  stw       r0, 0x0(r31)
-	  beq-      .loc_0xA4
-	  lis       r5, 0x804E
-	  li        r4, 0
-	  subi      r0, r5, 0x4FC0
-	  stw       r0, 0x0(r31)
-	  bl        -0x39F5D8
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r3, r3
+	stw      r30, 8(r1)
+	mr       r30, r4
+	beq      lbl_804597E8
+	lis      r4, __vt__Q23PSM20ActorDirector_Battle@ha
+	addi     r0, r4, __vt__Q23PSM20ActorDirector_Battle@l
+	stw      r0, 0(r31)
+	beq      lbl_804597D8
+	lis      r4, __vt__Q23PSM19ActorDirector_Enemy@ha
+	addi     r0, r4, __vt__Q23PSM19ActorDirector_Enemy@l
+	stw      r0, 0(r31)
+	beq      lbl_804597D8
+	lis      r4, __vt__Q23PSM20ActorDirector_Scaled@ha
+	addi     r0, r4, __vt__Q23PSM20ActorDirector_Scaled@l
+	stw      r0, 0(r31)
+	beq      lbl_804597D8
+	lis      r4, __vt__Q23PSM22TrackOnDirector_Scaled@ha
+	addi     r0, r4, __vt__Q23PSM22TrackOnDirector_Scaled@l
+	stw      r0, 0(r31)
+	beq      lbl_804597D8
+	lis      r4, __vt__Q23PSM19TrackOnDirectorBase@ha
+	addi     r0, r4, __vt__Q23PSM19TrackOnDirectorBase@l
+	stw      r0, 0(r31)
+	beq      lbl_804597D8
+	lis      r4, __vt__Q23PSM16SwitcherDirector@ha
+	addi     r0, r4, __vt__Q23PSM16SwitcherDirector@l
+	stw      r0, 0(r31)
+	beq      lbl_804597D8
+	lis      r4, __vt__Q28PSSystem16SwitcherDirector@ha
+	addi     r0, r4, __vt__Q28PSSystem16SwitcherDirector@l
+	stw      r0, 0(r31)
+	beq      lbl_804597D8
+	lis      r5, __vt__Q28PSSystem12DirectorBase@ha
+	li       r4, 0
+	addi     r0, r5, __vt__Q28PSSystem12DirectorBase@l
+	stw      r0, 0(r31)
+	bl       __dt__10JADHioNodeFv
 
-	.loc_0xA4:
-	  extsh.    r0, r30
-	  ble-      .loc_0xB4
-	  mr        r3, r31
-	  bl        -0x435730
+lbl_804597D8:
+	extsh.   r0, r30
+	ble      lbl_804597E8
+	mr       r3, r31
+	bl       __dl__FPv
 
-	.loc_0xB4:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_804597E8:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -4083,59 +4371,58 @@ ActorDirector_Battle::~ActorDirector_Battle()
 ActorDirector_Enemy::~ActorDirector_Enemy()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0xA4
-	  lis       r4, 0x804F
-	  subi      r0, r4, 0x21B0
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x94
-	  lis       r4, 0x804F
-	  subi      r0, r4, 0x2168
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x94
-	  lis       r4, 0x804F
-	  subi      r0, r4, 0x20DC
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x94
-	  lis       r4, 0x804F
-	  subi      r0, r4, 0x2068
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x94
-	  lis       r4, 0x804F
-	  subi      r0, r4, 0x1F50
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x94
-	  lis       r4, 0x804E
-	  subi      r0, r4, 0x5030
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x94
-	  lis       r5, 0x804E
-	  li        r4, 0
-	  subi      r0, r5, 0x4FC0
-	  stw       r0, 0x0(r30)
-	  bl        -0x39F698
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_804598A8
+	lis      r4, __vt__Q23PSM19ActorDirector_Enemy@ha
+	addi     r0, r4, __vt__Q23PSM19ActorDirector_Enemy@l
+	stw      r0, 0(r30)
+	beq      lbl_80459898
+	lis      r4, __vt__Q23PSM20ActorDirector_Scaled@ha
+	addi     r0, r4, __vt__Q23PSM20ActorDirector_Scaled@l
+	stw      r0, 0(r30)
+	beq      lbl_80459898
+	lis      r4, __vt__Q23PSM22TrackOnDirector_Scaled@ha
+	addi     r0, r4, __vt__Q23PSM22TrackOnDirector_Scaled@l
+	stw      r0, 0(r30)
+	beq      lbl_80459898
+	lis      r4, __vt__Q23PSM19TrackOnDirectorBase@ha
+	addi     r0, r4, __vt__Q23PSM19TrackOnDirectorBase@l
+	stw      r0, 0(r30)
+	beq      lbl_80459898
+	lis      r4, __vt__Q23PSM16SwitcherDirector@ha
+	addi     r0, r4, __vt__Q23PSM16SwitcherDirector@l
+	stw      r0, 0(r30)
+	beq      lbl_80459898
+	lis      r4, __vt__Q28PSSystem16SwitcherDirector@ha
+	addi     r0, r4, __vt__Q28PSSystem16SwitcherDirector@l
+	stw      r0, 0(r30)
+	beq      lbl_80459898
+	lis      r5, __vt__Q28PSSystem12DirectorBase@ha
+	li       r4, 0
+	addi     r0, r5, __vt__Q28PSSystem12DirectorBase@l
+	stw      r0, 0(r30)
+	bl       __dt__10JADHioNodeFv
 
-	.loc_0x94:
-	  extsh.    r0, r31
-	  ble-      .loc_0xA4
-	  mr        r3, r30
-	  bl        -0x4357F0
+lbl_80459898:
+	extsh.   r0, r31
+	ble      lbl_804598A8
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0xA4:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_804598A8:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -4147,51 +4434,50 @@ ActorDirector_Enemy::~ActorDirector_Enemy()
 ActorDirector_TrackOn::~ActorDirector_TrackOn()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x84
-	  lis       r4, 0x804F
-	  subi      r0, r4, 0x2128
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x74
-	  lis       r4, 0x804F
-	  subi      r0, r4, 0x2068
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x74
-	  lis       r4, 0x804F
-	  subi      r0, r4, 0x1F50
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x74
-	  lis       r4, 0x804E
-	  subi      r0, r4, 0x5030
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x74
-	  lis       r5, 0x804E
-	  li        r4, 0
-	  subi      r0, r5, 0x4FC0
-	  stw       r0, 0x0(r30)
-	  bl        -0x39F738
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_80459948
+	lis      r4, __vt__Q23PSM21ActorDirector_TrackOn@ha
+	addi     r0, r4, __vt__Q23PSM21ActorDirector_TrackOn@l
+	stw      r0, 0(r30)
+	beq      lbl_80459938
+	lis      r4, __vt__Q23PSM19TrackOnDirectorBase@ha
+	addi     r0, r4, __vt__Q23PSM19TrackOnDirectorBase@l
+	stw      r0, 0(r30)
+	beq      lbl_80459938
+	lis      r4, __vt__Q23PSM16SwitcherDirector@ha
+	addi     r0, r4, __vt__Q23PSM16SwitcherDirector@l
+	stw      r0, 0(r30)
+	beq      lbl_80459938
+	lis      r4, __vt__Q28PSSystem16SwitcherDirector@ha
+	addi     r0, r4, __vt__Q28PSSystem16SwitcherDirector@l
+	stw      r0, 0(r30)
+	beq      lbl_80459938
+	lis      r5, __vt__Q28PSSystem12DirectorBase@ha
+	li       r4, 0
+	addi     r0, r5, __vt__Q28PSSystem12DirectorBase@l
+	stw      r0, 0(r30)
+	bl       __dt__10JADHioNodeFv
 
-	.loc_0x74:
-	  extsh.    r0, r31
-	  ble-      .loc_0x84
-	  mr        r3, r30
-	  bl        -0x435890
+lbl_80459938:
+	extsh.   r0, r31
+	ble      lbl_80459948
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x84:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80459948:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -4203,51 +4489,50 @@ ActorDirector_TrackOn::~ActorDirector_TrackOn()
 TrackOnDirector_Voting::~TrackOnDirector_Voting()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x84
-	  lis       r4, 0x804F
-	  subi      r0, r4, 0x20A0
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x74
-	  lis       r4, 0x804F
-	  subi      r0, r4, 0x2068
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x74
-	  lis       r4, 0x804F
-	  subi      r0, r4, 0x1F50
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x74
-	  lis       r4, 0x804E
-	  subi      r0, r4, 0x5030
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x74
-	  lis       r5, 0x804E
-	  li        r4, 0
-	  subi      r0, r5, 0x4FC0
-	  stw       r0, 0x0(r30)
-	  bl        -0x39F7D8
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_804599E8
+	lis      r4, __vt__Q23PSM22TrackOnDirector_Voting@ha
+	addi     r0, r4, __vt__Q23PSM22TrackOnDirector_Voting@l
+	stw      r0, 0(r30)
+	beq      lbl_804599D8
+	lis      r4, __vt__Q23PSM19TrackOnDirectorBase@ha
+	addi     r0, r4, __vt__Q23PSM19TrackOnDirectorBase@l
+	stw      r0, 0(r30)
+	beq      lbl_804599D8
+	lis      r4, __vt__Q23PSM16SwitcherDirector@ha
+	addi     r0, r4, __vt__Q23PSM16SwitcherDirector@l
+	stw      r0, 0(r30)
+	beq      lbl_804599D8
+	lis      r4, __vt__Q28PSSystem16SwitcherDirector@ha
+	addi     r0, r4, __vt__Q28PSSystem16SwitcherDirector@l
+	stw      r0, 0(r30)
+	beq      lbl_804599D8
+	lis      r5, __vt__Q28PSSystem12DirectorBase@ha
+	li       r4, 0
+	addi     r0, r5, __vt__Q28PSSystem12DirectorBase@l
+	stw      r0, 0(r30)
+	bl       __dt__10JADHioNodeFv
 
-	.loc_0x74:
-	  extsh.    r0, r31
-	  ble-      .loc_0x84
-	  mr        r3, r30
-	  bl        -0x435930
+lbl_804599D8:
+	extsh.   r0, r31
+	ble      lbl_804599E8
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x84:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_804599E8:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -4259,51 +4544,50 @@ TrackOnDirector_Voting::~TrackOnDirector_Voting()
 PikminNumberDirector_AutoBgm::~PikminNumberDirector_AutoBgm()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x84
-	  lis       r4, 0x804F
-	  subi      r0, r4, 0x2030
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x74
-	  lis       r4, 0x804F
-	  subi      r0, r4, 0x1FF8
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x74
-	  lis       r4, 0x804F
-	  subi      r0, r4, 0x1F50
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x74
-	  lis       r4, 0x804E
-	  subi      r0, r4, 0x5030
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x74
-	  lis       r5, 0x804E
-	  li        r4, 0
-	  subi      r0, r5, 0x4FC0
-	  stw       r0, 0x0(r30)
-	  bl        -0x39F878
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_80459A88
+	lis      r4, __vt__Q23PSM28PikminNumberDirector_AutoBgm@ha
+	addi     r0, r4, __vt__Q23PSM28PikminNumberDirector_AutoBgm@l
+	stw      r0, 0(r30)
+	beq      lbl_80459A78
+	lis      r4, __vt__Q23PSM20PikminNumberDirector@ha
+	addi     r0, r4, __vt__Q23PSM20PikminNumberDirector@l
+	stw      r0, 0(r30)
+	beq      lbl_80459A78
+	lis      r4, __vt__Q23PSM16SwitcherDirector@ha
+	addi     r0, r4, __vt__Q23PSM16SwitcherDirector@l
+	stw      r0, 0(r30)
+	beq      lbl_80459A78
+	lis      r4, __vt__Q28PSSystem16SwitcherDirector@ha
+	addi     r0, r4, __vt__Q28PSSystem16SwitcherDirector@l
+	stw      r0, 0(r30)
+	beq      lbl_80459A78
+	lis      r5, __vt__Q28PSSystem12DirectorBase@ha
+	li       r4, 0
+	addi     r0, r5, __vt__Q28PSSystem12DirectorBase@l
+	stw      r0, 0(r30)
+	bl       __dt__10JADHioNodeFv
 
-	.loc_0x74:
-	  extsh.    r0, r31
-	  ble-      .loc_0x84
-	  mr        r3, r30
-	  bl        -0x4359D0
+lbl_80459A78:
+	extsh.   r0, r31
+	ble      lbl_80459A88
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x84:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80459A88:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -4315,51 +4599,50 @@ PikminNumberDirector_AutoBgm::~PikminNumberDirector_AutoBgm()
 ActorDirector_TempoChange::~ActorDirector_TempoChange()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x84
-	  lis       r4, 0x804F
-	  subi      r0, r4, 0x1FC0
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x74
-	  lis       r4, 0x804F
-	  subi      r0, r4, 0x1F88
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x74
-	  lis       r4, 0x804F
-	  subi      r0, r4, 0x1F50
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x74
-	  lis       r4, 0x804E
-	  subi      r0, r4, 0x5030
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x74
-	  lis       r5, 0x804E
-	  li        r4, 0
-	  subi      r0, r5, 0x4FC0
-	  stw       r0, 0x0(r30)
-	  bl        -0x39F918
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_80459B28
+	lis      r4, __vt__Q23PSM25ActorDirector_TempoChange@ha
+	addi     r0, r4, __vt__Q23PSM25ActorDirector_TempoChange@l
+	stw      r0, 0(r30)
+	beq      lbl_80459B18
+	lis      r4, __vt__Q23PSM23TempoChangeDirectorBase@ha
+	addi     r0, r4, __vt__Q23PSM23TempoChangeDirectorBase@l
+	stw      r0, 0(r30)
+	beq      lbl_80459B18
+	lis      r4, __vt__Q23PSM16SwitcherDirector@ha
+	addi     r0, r4, __vt__Q23PSM16SwitcherDirector@l
+	stw      r0, 0(r30)
+	beq      lbl_80459B18
+	lis      r4, __vt__Q28PSSystem16SwitcherDirector@ha
+	addi     r0, r4, __vt__Q28PSSystem16SwitcherDirector@l
+	stw      r0, 0(r30)
+	beq      lbl_80459B18
+	lis      r5, __vt__Q28PSSystem12DirectorBase@ha
+	li       r4, 0
+	addi     r0, r5, __vt__Q28PSSystem12DirectorBase@l
+	stw      r0, 0(r30)
+	bl       __dt__10JADHioNodeFv
 
-	.loc_0x74:
-	  extsh.    r0, r31
-	  ble-      .loc_0x84
-	  mr        r3, r30
-	  bl        -0x435A70
+lbl_80459B18:
+	extsh.   r0, r31
+	ble      lbl_80459B28
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x84:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80459B28:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -4371,47 +4654,46 @@ ActorDirector_TempoChange::~ActorDirector_TempoChange()
 DamageDirector::~DamageDirector()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x74
-	  lis       r4, 0x804F
-	  subi      r0, r4, 0x1F18
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x64
-	  lis       r4, 0x804F
-	  subi      r0, r4, 0x1EE0
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x64
-	  lis       r4, 0x804E
-	  subi      r0, r4, 0x4FF8
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x64
-	  lis       r5, 0x804E
-	  li        r4, 0
-	  subi      r0, r5, 0x4FC0
-	  stw       r0, 0x0(r30)
-	  bl        -0x39F9A8
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_80459BB8
+	lis      r4, __vt__Q23PSM14DamageDirector@ha
+	addi     r0, r4, __vt__Q23PSM14DamageDirector@l
+	stw      r0, 0(r30)
+	beq      lbl_80459BA8
+	lis      r4, __vt__Q23PSM15OneShotDirector@ha
+	addi     r0, r4, __vt__Q23PSM15OneShotDirector@l
+	stw      r0, 0(r30)
+	beq      lbl_80459BA8
+	lis      r4, __vt__Q28PSSystem15OneShotDirector@ha
+	addi     r0, r4, __vt__Q28PSSystem15OneShotDirector@l
+	stw      r0, 0(r30)
+	beq      lbl_80459BA8
+	lis      r5, __vt__Q28PSSystem12DirectorBase@ha
+	li       r4, 0
+	addi     r0, r5, __vt__Q28PSSystem12DirectorBase@l
+	stw      r0, 0(r30)
+	bl       __dt__10JADHioNodeFv
 
-	.loc_0x64:
-	  extsh.    r0, r31
-	  ble-      .loc_0x74
-	  mr        r3, r30
-	  bl        -0x435B00
+lbl_80459BA8:
+	extsh.   r0, r31
+	ble      lbl_80459BB8
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x74:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80459BB8:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 } // namespace PSM

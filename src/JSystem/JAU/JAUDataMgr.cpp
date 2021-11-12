@@ -1,6 +1,84 @@
 #include "types.h"
 
 /*
+    Generated from dpostproc
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__Q210JADUtility6StrPrm
+    __vt__Q210JADUtility6StrPrm:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q210JADUtility6StrPrmFv
+        .4byte save__Q210JADUtility6StrPrmFR21JSUMemoryOutputStream
+        .4byte load__Q210JADUtility6StrPrmFR20JSUMemoryInputStream
+    .global "__vt__Q210JADUtility10PrmHio<Pc>"
+    "__vt__Q210JADUtility10PrmHio<Pc>":
+        .4byte 0
+        .4byte 0
+        .4byte "__dt__Q210JADUtility10PrmHio<Pc>Fv"
+        .4byte "save__Q210JADUtility7Prm<Pc>FR21JSUMemoryOutputStream"
+        .4byte "load__Q210JADUtility7Prm<Pc>FR20JSUMemoryInputStream"
+    .global "__vt__Q210JADUtility7Prm<Pc>"
+    "__vt__Q210JADUtility7Prm<Pc>":
+        .4byte 0
+        .4byte 0
+        .4byte "__dt__Q210JADUtility7Prm<Pc>Fv"
+        .4byte "save__Q210JADUtility7Prm<Pc>FR21JSUMemoryOutputStream"
+        .4byte "load__Q210JADUtility7Prm<Pc>FR20JSUMemoryInputStream"
+    .global __vt__Q210JADUtility7PrmBase
+    __vt__Q210JADUtility7PrmBase:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q210JADUtility7PrmBaseFv
+        .4byte save__Q210JADUtility7PrmBaseFR21JSUMemoryOutputStream
+        .4byte load__Q210JADUtility7PrmBaseFR20JSUMemoryInputStream
+    .global __vt__Q210JADUtility11DataMgrNode
+    __vt__Q210JADUtility11DataMgrNode:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q210JADUtility11DataMgrNodeFv
+        .4byte isTempBuffaMode__Q210JADUtility15DataLoadMgrNodeFv
+        .4byte init__Q210JADUtility11DataMgrNodeFv
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte getPath__Q210JADUtility11DataMgrNodeFv
+        .4byte setPath__Q210JADUtility11DataMgrNodeFPc
+        .4byte 0
+        .4byte 0
+        .4byte "@592@28@__dt__Q210JADUtility11DataMgrNodeFv"
+        .4byte "@592@28@init__Q210JADUtility11DataMgrNodeFv"
+    .global __vt__Q210JADUtility15DataLoadMgrNode
+    __vt__Q210JADUtility15DataLoadMgrNode:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q210JADUtility15DataLoadMgrNodeFv
+        .4byte isTempBuffaMode__Q210JADUtility15DataLoadMgrNodeFv
+        .4byte init__Q210JADUtility15DataLoadMgrNodeFv
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte "@532@28@__dt__Q210JADUtility15DataLoadMgrNodeFv"
+        .4byte "@532@28@init__Q210JADUtility15DataLoadMgrNodeFv"
+    .global __vt__Q210JADUtility11DataMgrBase
+    __vt__Q210JADUtility11DataMgrBase:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q210JADUtility11DataMgrBaseFv
+        .4byte init__Q210JADUtility11DataMgrBaseFv
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_80517090
+    lbl_80517090:
+        .4byte 0x00000000
+        .4byte 0x00000000
+*/
+
+/*
  * --INFO--
  * Address:	800BA7F8
  * Size:	000044
@@ -8,24 +86,23 @@
 JADUtility::DataMgrBase::DataMgrBase(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        -0x9D840
-	  lis       r3, 0x804A
-	  li        r0, 0
-	  addi      r4, r3, 0x67F8
-	  mr        r3, r31
-	  stw       r4, 0x0(r31)
-	  stw       r0, 0x18(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       __ct__11JKRDisposerFv
+	lis      r3, __vt__Q210JADUtility11DataMgrBase@ha
+	li       r0, 0
+	addi     r4, r3, __vt__Q210JADUtility11DataMgrBase@l
+	mr       r3, r31
+	stw      r4, 0(r31)
+	stw      r0, 0x18(r31)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -37,41 +114,40 @@ JADUtility::DataMgrBase::DataMgrBase(void)
 JADUtility::DataMgrBase::~DataMgrBase(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x5C
-	  lis       r3, 0x804A
-	  addi      r0, r3, 0x67F8
-	  stw       r0, 0x0(r30)
-	  lwz       r3, 0x18(r30)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x40
-	  li        r4, 0
-	  bl        -0x9720C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_800BA898
+	lis      r3, __vt__Q210JADUtility11DataMgrBase@ha
+	addi     r0, r3, __vt__Q210JADUtility11DataMgrBase@l
+	stw      r0, 0(r30)
+	lwz      r3, 0x18(r30)
+	cmplwi   r3, 0
+	beq      lbl_800BA87C
+	li       r4, 0
+	bl       free__7JKRHeapFPvP7JKRHeap
 
-	.loc_0x40:
-	  mr        r3, r30
-	  li        r4, 0
-	  bl        -0x9D850
-	  extsh.    r0, r31
-	  ble-      .loc_0x5C
-	  mr        r3, r30
-	  bl        -0x967E0
+lbl_800BA87C:
+	mr       r3, r30
+	li       r4, 0
+	bl       __dt__11JKRDisposerFv
+	extsh.   r0, r31
+	ble      lbl_800BA898
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x5C:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_800BA898:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -93,65 +169,64 @@ JADUtility::DataLoadMgrNode::DataLoadMgrNode(void)
 JADUtility::DataLoadMgrNode::~DataLoadMgrNode(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0xAC
-	  lis       r3, 0x804A
-	  addi      r0, r30, 0x214
-	  addi      r3, r3, 0x67C4
-	  stw       r3, 0x4(r30)
-	  addi      r4, r3, 0x24
-	  lwz       r3, 0x0(r30)
-	  stw       r4, 0x0(r3)
-	  lwz       r3, 0x0(r30)
-	  sub       r0, r0, r3
-	  stw       r0, 0x1C(r3)
-	  lwz       r0, 0x8(r30)
-	  cmpwi     r0, 0x3
-	  bne-      .loc_0x60
-	  lwz       r3, 0x0(r30)
-	  li        r0, 0
-	  stw       r0, 0x18(r3)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_800BA960
+	lis      r3, __vt__Q210JADUtility15DataLoadMgrNode@ha
+	addi     r0, r30, 0x214
+	addi     r3, r3, __vt__Q210JADUtility15DataLoadMgrNode@l
+	stw      r3, 4(r30)
+	addi     r4, r3, 0x24
+	lwz      r3, 0(r30)
+	stw      r4, 0(r3)
+	lwz      r3, 0(r30)
+	subf     r0, r3, r0
+	stw      r0, 0x1c(r3)
+	lwz      r0, 8(r30)
+	cmpwi    r0, 3
+	bne      lbl_800BA914
+	lwz      r3, 0(r30)
+	li       r0, 0
+	stw      r0, 0x18(r3)
 
-	.loc_0x60:
-	  extsh.    r0, r31
-	  beq-      .loc_0x9C
-	  addic.    r0, r30, 0x214
-	  beq-      .loc_0x9C
-	  lis       r3, 0x804A
-	  addi      r0, r3, 0x67F8
-	  stw       r0, 0x214(r30)
-	  lwz       r3, 0x22C(r30)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x90
-	  li        r4, 0
-	  bl        -0x972D4
+lbl_800BA914:
+	extsh.   r0, r31
+	beq      lbl_800BA950
+	addic.   r0, r30, 0x214
+	beq      lbl_800BA950
+	lis      r3, __vt__Q210JADUtility11DataMgrBase@ha
+	addi     r0, r3, __vt__Q210JADUtility11DataMgrBase@l
+	stw      r0, 0x214(r30)
+	lwz      r3, 0x22c(r30)
+	cmplwi   r3, 0
+	beq      lbl_800BA944
+	li       r4, 0
+	bl       free__7JKRHeapFPvP7JKRHeap
 
-	.loc_0x90:
-	  addi      r3, r30, 0x214
-	  li        r4, 0
-	  bl        -0x9D918
+lbl_800BA944:
+	addi     r3, r30, 0x214
+	li       r4, 0
+	bl       __dt__11JKRDisposerFv
 
-	.loc_0x9C:
-	  extsh.    r0, r31
-	  ble-      .loc_0xAC
-	  mr        r3, r30
-	  bl        -0x968A8
+lbl_800BA950:
+	extsh.   r0, r31
+	ble      lbl_800BA960
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0xAC:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_800BA960:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -201,77 +276,74 @@ void JADUtility::DataLoadMgrNode::initInstanceExt(void)
 void JADUtility::DataLoadMgrNode::initInstanceExt(void*, long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r5
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r29, r4
-	  stw       r28, 0x10(r1)
-	  mr        r28, r3
-	  lwz       r12, 0x4(r3)
-	  lwz       r30, -0x77D4(r13)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  cmplwi    r3, 0
-	  beq-      .loc_0x5C
-	  mr        r3, r28
-	  lwz       r12, 0x4(r28)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  bl        -0x97438
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r5
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	mr       r29, r4
+	stw      r28, 0x10(r1)
+	mr       r28, r3
+	lwz      r12, 4(r3)
+	lwz      r30, sCurrentHeap__7JKRHeap@sda21(r13)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	cmplwi   r3, 0
+	beq      lbl_800BA9E0
+	mr       r3, r28
+	lwz      r12, 4(r28)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	bl       becomeCurrentHeap__7JKRHeapFv
 
-	.loc_0x5C:
-	  mr        r3, r28
-	  mr        r4, r29
-	  lwz       r12, 0x4(r28)
-	  mr        r5, r31
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r31, r3
-	  mr        r3, r28
-	  lwz       r12, 0x4(r28)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  cmplwi    r3, 0
-	  beq-      .loc_0xA0
-	  mr        r3, r30
-	  bl        -0x9747C
+lbl_800BA9E0:
+	mr       r3, r28
+	mr       r4, r29
+	lwz      r12, 4(r28)
+	mr       r5, r31
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	mr       r31, r3
+	mr       r3, r28
+	lwz      r12, 4(r28)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	cmplwi   r3, 0
+	beq      lbl_800BAA24
+	mr       r3, r30
+	bl       becomeCurrentHeap__7JKRHeapFv
 
-	.loc_0xA0:
-	  rlwinm.   r0,r31,0,24,31
-	  bne-      .loc_0xC0
-	  li        r0, 0
-	  li        r3, 0
-	  stw       r0, 0x8(r28)
-	  lwz       r4, 0x0(r28)
-	  stw       r0, 0x18(r4)
-	  b         .loc_0xD0
+lbl_800BAA24:
+	clrlwi.  r0, r31, 0x18
+	bne      lbl_800BAA44
+	li       r0, 0
+	li       r3, 0
+	stw      r0, 8(r28)
+	lwz      r4, 0(r28)
+	stw      r0, 0x18(r4)
+	b        lbl_800BAA54
 
-	.loc_0xC0:
-	  mr        r3, r28
-	  mr        r4, r29
-	  bl        .loc_0xF0
-	  li        r3, 0x1
+lbl_800BAA44:
+	mr       r3, r28
+	mr       r4, r29
+	bl       setFlagsAsExternal__Q210JADUtility15DataLoadMgrNodeFPv
+	li       r3, 1
 
-	.loc_0xD0:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-
-	.loc_0xF0:
+lbl_800BAA54:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -283,12 +355,11 @@ void JADUtility::DataLoadMgrNode::initInstanceExt(void*, long)
 void JADUtility::DataLoadMgrNode::setFlagsAsExternal(void*)
 {
 	/*
-	.loc_0x0:
-	  lwz       r5, 0x0(r3)
-	  li        r0, 0x3
-	  stw       r4, 0x18(r5)
-	  stw       r0, 0x8(r3)
-	  blr
+	lwz      r5, 0(r3)
+	li       r0, 3
+	stw      r4, 0x18(r5)
+	stw      r0, 8(r3)
+	blr
 	*/
 }
 
@@ -310,100 +381,99 @@ void JADUtility::DataLoadMgrNode::loadDvd(unsigned long*)
 JADUtility::DataMgrNode::DataMgrNode(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  extsh.    r0, r4
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  stw       r30, 0x8(r1)
-	  beq-      .loc_0x44
-	  addi      r3, r31, 0x250
-	  stw       r3, 0x0(r31)
-	  mr        r30, r3
-	  bl        -0x9DAE8
-	  lis       r3, 0x804A
-	  li        r0, 0
-	  addi      r3, r3, 0x67F8
-	  stw       r3, 0x0(r30)
-	  stw       r0, 0x18(r30)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	extsh.   r0, r4
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	stw      r30, 8(r1)
+	beq      lbl_800BAACC
+	addi     r3, r31, 0x250
+	stw      r3, 0(r31)
+	mr       r30, r3
+	bl       __ct__11JKRDisposerFv
+	lis      r3, __vt__Q210JADUtility11DataMgrBase@ha
+	li       r0, 0
+	addi     r3, r3, __vt__Q210JADUtility11DataMgrBase@l
+	stw      r3, 0(r30)
+	stw      r0, 0x18(r30)
 
-	.loc_0x44:
-	  lis       r3, 0x804A
-	  addi      r4, r31, 0x214
-	  addi      r3, r3, 0x67C4
-	  li        r0, 0
-	  stw       r3, 0x4(r31)
-	  addi      r6, r3, 0x24
-	  mr        r30, r31
-	  subi      r3, r2, 0x72D0
-	  lwz       r5, 0x0(r31)
-	  stw       r6, 0x0(r5)
-	  lwz       r5, 0x0(r31)
-	  sub       r4, r4, r5
-	  stw       r4, 0x1C(r5)
-	  stw       r0, 0x8(r31)
-	  stw       r0, 0x20C(r31)
-	  stw       r0, 0x210(r31)
-	  bl        0xFE04
-	  cmplwi    r3, 0xFF
-	  bgt-      .loc_0x9C
-	  addi      r3, r31, 0xC
-	  subi      r4, r2, 0x72D0
-	  bl        0xFD38
+lbl_800BAACC:
+	lis      r3, __vt__Q210JADUtility15DataLoadMgrNode@ha
+	addi     r4, r31, 0x214
+	addi     r3, r3, __vt__Q210JADUtility15DataLoadMgrNode@l
+	li       r0, 0
+	stw      r3, 4(r31)
+	addi     r6, r3, 0x24
+	mr       r30, r31
+	addi     r3, r2, lbl_80517090@sda21
+	lwz      r5, 0(r31)
+	stw      r6, 0(r5)
+	lwz      r5, 0(r31)
+	subf     r4, r5, r4
+	stw      r4, 0x1c(r5)
+	stw      r0, 8(r31)
+	stw      r0, 0x20c(r31)
+	stw      r0, 0x210(r31)
+	bl       strlen
+	cmplwi   r3, 0xff
+	bgt      lbl_800BAB24
+	addi     r3, r31, 0xc
+	addi     r4, r2, lbl_80517090@sda21
+	bl       strcpy
 
-	.loc_0x9C:
-	  subi      r3, r2, 0x72D0
-	  bl        0xFDE8
-	  cmplwi    r3, 0xFF
-	  bgt-      .loc_0xB8
-	  addi      r3, r30, 0x10C
-	  subi      r4, r2, 0x72D0
-	  bl        0xFD1C
+lbl_800BAB24:
+	addi     r3, r2, lbl_80517090@sda21
+	bl       strlen
+	cmplwi   r3, 0xff
+	bgt      lbl_800BAB40
+	addi     r3, r30, 0x10c
+	addi     r4, r2, lbl_80517090@sda21
+	bl       strcpy
 
-	.loc_0xB8:
-	  lis       r3, 0x804A
-	  addi      r0, r31, 0x250
-	  addi      r3, r3, 0x6788
-	  addi      r30, r31, 0x214
-	  stw       r3, 0x4(r31)
-	  addi      r5, r3, 0x2C
-	  mr        r3, r30
-	  lwz       r4, 0x0(r31)
-	  stw       r5, 0x0(r4)
-	  lwz       r4, 0x0(r31)
-	  sub       r0, r0, r4
-	  stw       r0, 0x1C(r4)
-	  bl        -0x9DBA4
-	  lis       r3, 0x804A
-	  li        r0, 0
-	  addi      r3, r3, 0x6774
-	  mr        r4, r30
-	  stw       r3, 0x0(r30)
-	  addi      r3, r30, 0x1C
-	  stb       r0, 0x18(r30)
-	  bl        -0x943D8
-	  lis       r3, 0x804A
-	  lis       r4, 0x804A
-	  addi      r0, r3, 0x6760
-	  lis       r3, 0x804A
-	  stw       r0, 0x0(r30)
-	  addi      r5, r4, 0x674C
-	  addi      r4, r3, 0x6738
-	  li        r0, 0
-	  stw       r5, 0x0(r30)
-	  mr        r3, r31
-	  stw       r4, 0x0(r30)
-	  stw       r0, 0x30(r30)
-	  stw       r0, 0x34(r30)
-	  stw       r0, 0x38(r30)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_800BAB40:
+	lis      r3, __vt__Q210JADUtility11DataMgrNode@ha
+	addi     r0, r31, 0x250
+	addi     r3, r3, __vt__Q210JADUtility11DataMgrNode@l
+	addi     r30, r31, 0x214
+	stw      r3, 4(r31)
+	addi     r5, r3, 0x2c
+	mr       r3, r30
+	lwz      r4, 0(r31)
+	stw      r5, 0(r4)
+	lwz      r4, 0(r31)
+	subf     r0, r4, r0
+	stw      r0, 0x1c(r4)
+	bl       __ct__11JKRDisposerFv
+	lis      r3, __vt__Q210JADUtility7PrmBase@ha
+	li       r0, 0
+	addi     r3, r3, __vt__Q210JADUtility7PrmBase@l
+	mr       r4, r30
+	stw      r3, 0(r30)
+	addi     r3, r30, 0x1c
+	stb      r0, 0x18(r30)
+	bl       __ct__10JSUPtrLinkFPv
+	lis      r3, "__vt__Q210JADUtility7Prm<Pc>"@ha
+	lis      r4, "__vt__Q210JADUtility10PrmHio<Pc>"@ha
+	addi     r0, r3, "__vt__Q210JADUtility7Prm<Pc>"@l
+	lis      r3, __vt__Q210JADUtility6StrPrm@ha
+	stw      r0, 0(r30)
+	addi     r5, r4, "__vt__Q210JADUtility10PrmHio<Pc>"@l
+	addi     r4, r3, __vt__Q210JADUtility6StrPrm@l
+	li       r0, 0
+	stw      r5, 0(r30)
+	mr       r3, r31
+	stw      r4, 0(r30)
+	stw      r0, 0x30(r30)
+	stw      r0, 0x34(r30)
+	stw      r0, 0x38(r30)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -415,55 +485,54 @@ JADUtility::DataMgrNode::DataMgrNode(void)
 JADUtility::StrPrm::~StrPrm(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x8C
-	  lis       r3, 0x804A
-	  addi      r0, r3, 0x6738
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x7C
-	  lis       r3, 0x804A
-	  addi      r0, r3, 0x674C
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x7C
-	  lis       r3, 0x804A
-	  addi      r0, r3, 0x6760
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x7C
-	  lis       r3, 0x804A
-	  addic.    r0, r30, 0x1C
-	  addi      r0, r3, 0x6774
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x70
-	  addi      r3, r30, 0x1C
-	  li        r4, 0
-	  bl        -0x94480
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_800BAC70
+	lis      r3, __vt__Q210JADUtility6StrPrm@ha
+	addi     r0, r3, __vt__Q210JADUtility6StrPrm@l
+	stw      r0, 0(r30)
+	beq      lbl_800BAC60
+	lis      r3, "__vt__Q210JADUtility10PrmHio<Pc>"@ha
+	addi     r0, r3, "__vt__Q210JADUtility10PrmHio<Pc>"@l
+	stw      r0, 0(r30)
+	beq      lbl_800BAC60
+	lis      r3, "__vt__Q210JADUtility7Prm<Pc>"@ha
+	addi     r0, r3, "__vt__Q210JADUtility7Prm<Pc>"@l
+	stw      r0, 0(r30)
+	beq      lbl_800BAC60
+	lis      r3, __vt__Q210JADUtility7PrmBase@ha
+	addic.   r0, r30, 0x1c
+	addi     r0, r3, __vt__Q210JADUtility7PrmBase@l
+	stw      r0, 0(r30)
+	beq      lbl_800BAC54
+	addi     r3, r30, 0x1c
+	li       r4, 0
+	bl       __dt__10JSUPtrLinkFv
 
-	.loc_0x70:
-	  mr        r3, r30
-	  li        r4, 0
-	  bl        -0x9DC28
+lbl_800BAC54:
+	mr       r3, r30
+	li       r4, 0
+	bl       __dt__11JKRDisposerFv
 
-	.loc_0x7C:
-	  extsh.    r0, r31
-	  ble-      .loc_0x8C
-	  mr        r3, r30
-	  bl        -0x96BB8
+lbl_800BAC60:
+	extsh.   r0, r31
+	ble      lbl_800BAC70
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x8C:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_800BAC70:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -475,51 +544,50 @@ JADUtility::StrPrm::~StrPrm(void)
 void __dt__Q210JADUtility10PrmHio<char*> Fv(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x7C
-	  lis       r3, 0x804A
-	  addi      r0, r3, 0x674C
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x6C
-	  lis       r3, 0x804A
-	  addi      r0, r3, 0x6760
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x6C
-	  lis       r3, 0x804A
-	  addic.    r0, r30, 0x1C
-	  addi      r0, r3, 0x6774
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x60
-	  addi      r3, r30, 0x1C
-	  li        r4, 0
-	  bl        -0x94518
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_800BAD08
+	lis      r3, "__vt__Q210JADUtility10PrmHio<Pc>"@ha
+	addi     r0, r3, "__vt__Q210JADUtility10PrmHio<Pc>"@l
+	stw      r0, 0(r30)
+	beq      lbl_800BACF8
+	lis      r3, "__vt__Q210JADUtility7Prm<Pc>"@ha
+	addi     r0, r3, "__vt__Q210JADUtility7Prm<Pc>"@l
+	stw      r0, 0(r30)
+	beq      lbl_800BACF8
+	lis      r3, __vt__Q210JADUtility7PrmBase@ha
+	addic.   r0, r30, 0x1c
+	addi     r0, r3, __vt__Q210JADUtility7PrmBase@l
+	stw      r0, 0(r30)
+	beq      lbl_800BACEC
+	addi     r3, r30, 0x1c
+	li       r4, 0
+	bl       __dt__10JSUPtrLinkFv
 
-	.loc_0x60:
-	  mr        r3, r30
-	  li        r4, 0
-	  bl        -0x9DCC0
+lbl_800BACEC:
+	mr       r3, r30
+	li       r4, 0
+	bl       __dt__11JKRDisposerFv
 
-	.loc_0x6C:
-	  extsh.    r0, r31
-	  ble-      .loc_0x7C
-	  mr        r3, r30
-	  bl        -0x96C50
+lbl_800BACF8:
+	extsh.   r0, r31
+	ble      lbl_800BAD08
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x7C:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_800BAD08:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -531,47 +599,46 @@ void __dt__Q210JADUtility10PrmHio<char*> Fv(void)
 void __dt__Q210JADUtility7Prm<char*> Fv(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x6C
-	  lis       r3, 0x804A
-	  addi      r0, r3, 0x6760
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x5C
-	  lis       r3, 0x804A
-	  addic.    r0, r30, 0x1C
-	  addi      r0, r3, 0x6774
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x50
-	  addi      r3, r30, 0x1C
-	  li        r4, 0
-	  bl        -0x945A0
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_800BAD90
+	lis      r3, "__vt__Q210JADUtility7Prm<Pc>"@ha
+	addi     r0, r3, "__vt__Q210JADUtility7Prm<Pc>"@l
+	stw      r0, 0(r30)
+	beq      lbl_800BAD80
+	lis      r3, __vt__Q210JADUtility7PrmBase@ha
+	addic.   r0, r30, 0x1c
+	addi     r0, r3, __vt__Q210JADUtility7PrmBase@l
+	stw      r0, 0(r30)
+	beq      lbl_800BAD74
+	addi     r3, r30, 0x1c
+	li       r4, 0
+	bl       __dt__10JSUPtrLinkFv
 
-	.loc_0x50:
-	  mr        r3, r30
-	  li        r4, 0
-	  bl        -0x9DD48
+lbl_800BAD74:
+	mr       r3, r30
+	li       r4, 0
+	bl       __dt__11JKRDisposerFv
 
-	.loc_0x5C:
-	  extsh.    r0, r31
-	  ble-      .loc_0x6C
-	  mr        r3, r30
-	  bl        -0x96CD8
+lbl_800BAD80:
+	extsh.   r0, r31
+	ble      lbl_800BAD90
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x6C:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_800BAD90:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -583,41 +650,40 @@ void __dt__Q210JADUtility7Prm<char*> Fv(void)
 JADUtility::PrmBase::~PrmBase(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x5C
-	  lis       r3, 0x804A
-	  addic.    r0, r30, 0x1C
-	  addi      r0, r3, 0x6774
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x40
-	  addi      r3, r30, 0x1C
-	  li        r4, 0
-	  bl        -0x94618
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_800BAE08
+	lis      r3, __vt__Q210JADUtility7PrmBase@ha
+	addic.   r0, r30, 0x1c
+	addi     r0, r3, __vt__Q210JADUtility7PrmBase@l
+	stw      r0, 0(r30)
+	beq      lbl_800BADEC
+	addi     r3, r30, 0x1c
+	li       r4, 0
+	bl       __dt__10JSUPtrLinkFv
 
-	.loc_0x40:
-	  mr        r3, r30
-	  li        r4, 0
-	  bl        -0x9DDC0
-	  extsh.    r0, r31
-	  ble-      .loc_0x5C
-	  mr        r3, r30
-	  bl        -0x96D50
+lbl_800BADEC:
+	mr       r3, r30
+	li       r4, 0
+	bl       __dt__11JKRDisposerFv
+	extsh.   r0, r31
+	ble      lbl_800BAE08
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x5C:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_800BAE08:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -719,55 +785,54 @@ JADUtility::DataLoadMgrVirNode::~DataLoadMgrVirNode(void)
 void JADUtility::StrPrm::save(JSUMemoryOutputStream&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r29, r4
-	  stw       r28, 0x10(r1)
-	  mr        r28, r3
-	  lwz       r5, 0x30(r3)
-	  cmpwi     r5, 0
-	  ble-      .loc_0x40
-	  lwz       r4, 0x2C(r28)
-	  mr        r3, r29
-	  bl        -0x94C7C
-	  b         .loc_0x4C
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	mr       r29, r4
+	stw      r28, 0x10(r1)
+	mr       r28, r3
+	lwz      r5, 0x30(r3)
+	cmpwi    r5, 0
+	ble      lbl_800BAE64
+	lwz      r4, 0x2c(r28)
+	mr       r3, r29
+	bl       write__15JSUOutputStreamFPCvl
+	b        lbl_800BAE70
 
-	.loc_0x40:
-	  lwz       r4, 0x2C(r28)
-	  mr        r3, r29
-	  bl        -0x94C34
+lbl_800BAE64:
+	lwz      r4, 0x2c(r28)
+	mr       r3, r29
+	bl       write__15JSUOutputStreamFPCc
 
-	.loc_0x4C:
-	  li        r30, 0
-	  mr        r31, r30
-	  b         .loc_0x70
+lbl_800BAE70:
+	li       r30, 0
+	mr       r31, r30
+	b        lbl_800BAE94
 
-	.loc_0x58:
-	  stb       r31, 0x8(r1)
-	  mr        r3, r29
-	  addi      r4, r1, 0x8
-	  li        r5, 0x1
-	  bl        -0x94CAC
-	  addi      r30, r30, 0x1
+lbl_800BAE7C:
+	stb      r31, 8(r1)
+	mr       r3, r29
+	addi     r4, r1, 8
+	li       r5, 1
+	bl       write__15JSUOutputStreamFPCvl
+	addi     r30, r30, 1
 
-	.loc_0x70:
-	  lbz       r0, 0x18(r28)
-	  rlwinm    r3,r30,0,24,31
-	  cmplw     r3, r0
-	  blt+      .loc_0x58
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_800BAE94:
+	lbz      r0, 0x18(r28)
+	clrlwi   r3, r30, 0x18
+	cmplw    r3, r0
+	blt      lbl_800BAE7C
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -779,55 +844,54 @@ void JADUtility::StrPrm::save(JSUMemoryOutputStream&)
 void JADUtility::StrPrm::load(JSUMemoryInputStream&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lwz       r5, 0x30(r3)
-	  cmpwi     r5, 0
-	  ble-      .loc_0x38
-	  lwz       r4, 0x2C(r30)
-	  mr        r3, r31
-	  bl        -0x94B20
-	  b         .loc_0x44
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lwz      r5, 0x30(r3)
+	cmpwi    r5, 0
+	ble      lbl_800BAEFC
+	lwz      r4, 0x2c(r30)
+	mr       r3, r31
+	bl       read__14JSUInputStreamFPvl
+	b        lbl_800BAF08
 
-	.loc_0x38:
-	  lwz       r4, 0x2C(r30)
-	  mr        r3, r31
-	  bl        -0x94AD8
+lbl_800BAEFC:
+	lwz      r4, 0x2c(r30)
+	mr       r3, r31
+	bl       read__14JSUInputStreamFPc
 
-	.loc_0x44:
-	  lbz       r4, 0x18(r30)
-	  cmplwi    r4, 0
-	  beq-      .loc_0x64
-	  lwz       r12, 0x0(r31)
-	  mr        r3, r31
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
+lbl_800BAF08:
+	lbz      r4, 0x18(r30)
+	cmplwi   r4, 0
+	beq      lbl_800BAF28
+	lwz      r12, 0(r31)
+	mr       r3, r31
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x64:
-	  lwz       r12, 0x34(r30)
-	  cmplwi    r12, 0
-	  beq-      .loc_0x88
-	  lwz       r4, 0x38(r30)
-	  cmplwi    r4, 0
-	  beq-      .loc_0x88
-	  mr        r3, r30
-	  mtctr     r12
-	  bctrl
+lbl_800BAF28:
+	lwz      r12, 0x34(r30)
+	cmplwi   r12, 0
+	beq      lbl_800BAF4C
+	lwz      r4, 0x38(r30)
+	cmplwi   r4, 0
+	beq      lbl_800BAF4C
+	mr       r3, r30
+	mtctr    r12
+	bctrl
 
-	.loc_0x88:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_800BAF4C:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -839,41 +903,40 @@ void JADUtility::StrPrm::load(JSUMemoryInputStream&)
 void JADUtility::PrmBase::save(JSUMemoryOutputStream&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  li        r31, 0
-	  stw       r30, 0x18(r1)
-	  li        r30, 0
-	  stw       r29, 0x14(r1)
-	  mr        r29, r4
-	  stw       r28, 0x10(r1)
-	  mr        r28, r3
-	  b         .loc_0x48
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	li       r31, 0
+	stw      r30, 0x18(r1)
+	li       r30, 0
+	stw      r29, 0x14(r1)
+	mr       r29, r4
+	stw      r28, 0x10(r1)
+	mr       r28, r3
+	b        lbl_800BAFAC
 
-	.loc_0x30:
-	  stb       r31, 0x8(r1)
-	  mr        r3, r29
-	  addi      r4, r1, 0x8
-	  li        r5, 0x1
-	  bl        -0x94DC4
-	  addi      r30, r30, 0x1
+lbl_800BAF94:
+	stb      r31, 8(r1)
+	mr       r3, r29
+	addi     r4, r1, 8
+	li       r5, 1
+	bl       write__15JSUOutputStreamFPCvl
+	addi     r30, r30, 1
 
-	.loc_0x48:
-	  lbz       r0, 0x18(r28)
-	  rlwinm    r3,r30,0,24,31
-	  cmplw     r3, r0
-	  blt+      .loc_0x30
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_800BAFAC:
+	lbz      r0, 0x18(r28)
+	clrlwi   r3, r30, 0x18
+	cmplw    r3, r0
+	blt      lbl_800BAF94
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -885,108 +948,107 @@ void JADUtility::PrmBase::save(JSUMemoryOutputStream&)
 JADUtility::DataMgrNode::~DataMgrNode(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x148
-	  lis       r4, 0x804A
-	  addi      r3, r30, 0x250
-	  addi      r4, r4, 0x6788
-	  addic.    r0, r30, 0x214
-	  stw       r4, 0x4(r30)
-	  addi      r0, r4, 0x2C
-	  lwz       r4, 0x0(r30)
-	  stw       r0, 0x0(r4)
-	  lwz       r4, 0x0(r30)
-	  sub       r0, r3, r4
-	  stw       r0, 0x1C(r4)
-	  beq-      .loc_0xB4
-	  lis       r3, 0x804A
-	  addic.    r0, r30, 0x214
-	  addi      r0, r3, 0x6738
-	  stw       r0, 0x214(r30)
-	  beq-      .loc_0xB4
-	  lis       r3, 0x804A
-	  addic.    r0, r30, 0x214
-	  addi      r0, r3, 0x674C
-	  stw       r0, 0x214(r30)
-	  beq-      .loc_0xB4
-	  lis       r3, 0x804A
-	  addic.    r0, r30, 0x214
-	  addi      r0, r3, 0x6760
-	  stw       r0, 0x214(r30)
-	  beq-      .loc_0xB4
-	  lis       r4, 0x804A
-	  addic.    r3, r30, 0x230
-	  addi      r0, r4, 0x6774
-	  stw       r0, 0x214(r30)
-	  beq-      .loc_0xA8
-	  li        r4, 0
-	  bl        -0x948B0
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_800BB124
+	lis      r4, __vt__Q210JADUtility11DataMgrNode@ha
+	addi     r3, r30, 0x250
+	addi     r4, r4, __vt__Q210JADUtility11DataMgrNode@l
+	addic.   r0, r30, 0x214
+	stw      r4, 4(r30)
+	addi     r0, r4, 0x2c
+	lwz      r4, 0(r30)
+	stw      r0, 0(r4)
+	lwz      r4, 0(r30)
+	subf     r0, r4, r3
+	stw      r0, 0x1c(r4)
+	beq      lbl_800BB090
+	lis      r3, __vt__Q210JADUtility6StrPrm@ha
+	addic.   r0, r30, 0x214
+	addi     r0, r3, __vt__Q210JADUtility6StrPrm@l
+	stw      r0, 0x214(r30)
+	beq      lbl_800BB090
+	lis      r3, "__vt__Q210JADUtility10PrmHio<Pc>"@ha
+	addic.   r0, r30, 0x214
+	addi     r0, r3, "__vt__Q210JADUtility10PrmHio<Pc>"@l
+	stw      r0, 0x214(r30)
+	beq      lbl_800BB090
+	lis      r3, "__vt__Q210JADUtility7Prm<Pc>"@ha
+	addic.   r0, r30, 0x214
+	addi     r0, r3, "__vt__Q210JADUtility7Prm<Pc>"@l
+	stw      r0, 0x214(r30)
+	beq      lbl_800BB090
+	lis      r4, __vt__Q210JADUtility7PrmBase@ha
+	addic.   r3, r30, 0x230
+	addi     r0, r4, __vt__Q210JADUtility7PrmBase@l
+	stw      r0, 0x214(r30)
+	beq      lbl_800BB084
+	li       r4, 0
+	bl       __dt__10JSUPtrLinkFv
 
-	.loc_0xA8:
-	  addi      r3, r30, 0x214
-	  li        r4, 0
-	  bl        -0x9E058
+lbl_800BB084:
+	addi     r3, r30, 0x214
+	li       r4, 0
+	bl       __dt__11JKRDisposerFv
 
-	.loc_0xB4:
-	  cmplwi    r30, 0
-	  beq-      .loc_0xFC
-	  lis       r3, 0x804A
-	  addi      r0, r30, 0x214
-	  addi      r3, r3, 0x67C4
-	  stw       r3, 0x4(r30)
-	  addi      r4, r3, 0x24
-	  lwz       r3, 0x0(r30)
-	  stw       r4, 0x0(r3)
-	  lwz       r3, 0x0(r30)
-	  sub       r0, r0, r3
-	  stw       r0, 0x1C(r3)
-	  lwz       r0, 0x8(r30)
-	  cmpwi     r0, 0x3
-	  bne-      .loc_0xFC
-	  lwz       r3, 0x0(r30)
-	  li        r0, 0
-	  stw       r0, 0x18(r3)
+lbl_800BB090:
+	cmplwi   r30, 0
+	beq      lbl_800BB0D8
+	lis      r3, __vt__Q210JADUtility15DataLoadMgrNode@ha
+	addi     r0, r30, 0x214
+	addi     r3, r3, __vt__Q210JADUtility15DataLoadMgrNode@l
+	stw      r3, 4(r30)
+	addi     r4, r3, 0x24
+	lwz      r3, 0(r30)
+	stw      r4, 0(r3)
+	lwz      r3, 0(r30)
+	subf     r0, r3, r0
+	stw      r0, 0x1c(r3)
+	lwz      r0, 8(r30)
+	cmpwi    r0, 3
+	bne      lbl_800BB0D8
+	lwz      r3, 0(r30)
+	li       r0, 0
+	stw      r0, 0x18(r3)
 
-	.loc_0xFC:
-	  extsh.    r0, r31
-	  beq-      .loc_0x138
-	  addic.    r0, r30, 0x250
-	  beq-      .loc_0x138
-	  lis       r3, 0x804A
-	  addi      r0, r3, 0x67F8
-	  stw       r0, 0x250(r30)
-	  lwz       r3, 0x268(r30)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x12C
-	  li        r4, 0
-	  bl        -0x97A98
+lbl_800BB0D8:
+	extsh.   r0, r31
+	beq      lbl_800BB114
+	addic.   r0, r30, 0x250
+	beq      lbl_800BB114
+	lis      r3, __vt__Q210JADUtility11DataMgrBase@ha
+	addi     r0, r3, __vt__Q210JADUtility11DataMgrBase@l
+	stw      r0, 0x250(r30)
+	lwz      r3, 0x268(r30)
+	cmplwi   r3, 0
+	beq      lbl_800BB108
+	li       r4, 0
+	bl       free__7JKRHeapFPvP7JKRHeap
 
-	.loc_0x12C:
-	  addi      r3, r30, 0x250
-	  li        r4, 0
-	  bl        -0x9E0DC
+lbl_800BB108:
+	addi     r3, r30, 0x250
+	li       r4, 0
+	bl       __dt__11JKRDisposerFv
 
-	.loc_0x138:
-	  extsh.    r0, r31
-	  ble-      .loc_0x148
-	  mr        r3, r30
-	  bl        -0x9706C
+lbl_800BB114:
+	extsh.   r0, r31
+	ble      lbl_800BB124
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x148:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_800BB124:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -998,9 +1060,8 @@ JADUtility::DataMgrNode::~DataMgrNode(void)
 void JADUtility::DataMgrNode::getPath(void)
 {
 	/*
-	.loc_0x0:
-	  addi      r3, r3, 0xC
-	  blr
+	addi     r3, r3, 0xc
+	blr
 	*/
 }
 
@@ -1012,29 +1073,28 @@ void JADUtility::DataMgrNode::getPath(void)
 void JADUtility::DataMgrNode::setPath(char*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  mr        r3, r31
-	  bl        0xF7A8
-	  cmplwi    r3, 0xFF
-	  bgt-      .loc_0x38
-	  mr        r4, r31
-	  addi      r3, r30, 0xC
-	  bl        0xF6DC
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	mr       r3, r31
+	bl       strlen
+	cmplwi   r3, 0xff
+	bgt      lbl_800BB180
+	mr       r4, r31
+	addi     r3, r30, 0xc
+	bl       strcpy
 
-	.loc_0x38:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_800BB180:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1046,24 +1106,23 @@ void JADUtility::DataMgrNode::setPath(char*)
 void JADUtility::DataMgrNode::init(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r4, 0
-	  stw       r0, 0x14(r1)
-	  li        r0, 0
-	  stw       r31, 0xC(r1)
-	  stw       r0, 0x8(r3)
-	  lwz       r31, 0x0(r3)
-	  lwz       r3, 0x18(r31)
-	  bl        -0x97B50
-	  li        r0, 0
-	  stw       r0, 0x18(r31)
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	li       r4, 0
+	stw      r0, 0x14(r1)
+	li       r0, 0
+	stw      r31, 0xc(r1)
+	stw      r0, 8(r3)
+	lwz      r31, 0(r3)
+	lwz      r3, 0x18(r31)
+	bl       free__7JKRHeapFPvP7JKRHeap
+	li       r0, 0
+	stw      r0, 0x18(r31)
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1075,24 +1134,23 @@ void JADUtility::DataMgrNode::init(void)
 void JADUtility::DataLoadMgrNode::init(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r4, 0
-	  stw       r0, 0x14(r1)
-	  li        r0, 0
-	  stw       r31, 0xC(r1)
-	  stw       r0, 0x8(r3)
-	  lwz       r31, 0x0(r3)
-	  lwz       r3, 0x18(r31)
-	  bl        -0x97B94
-	  li        r0, 0
-	  stw       r0, 0x18(r31)
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	li       r4, 0
+	stw      r0, 0x14(r1)
+	li       r0, 0
+	stw      r31, 0xc(r1)
+	stw      r0, 8(r3)
+	lwz      r31, 0(r3)
+	lwz      r3, 0x18(r31)
+	bl       free__7JKRHeapFPvP7JKRHeap
+	li       r0, 0
+	stw      r0, 0x18(r31)
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1104,22 +1162,21 @@ void JADUtility::DataLoadMgrNode::init(void)
 void JADUtility::DataMgrBase::init(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r4, 0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r3, 0x18(r3)
-	  bl        -0x97BD0
-	  li        r0, 0
-	  stw       r0, 0x18(r31)
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	li       r4, 0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r3, 0x18(r3)
+	bl       free__7JKRHeapFPvP7JKRHeap
+	li       r0, 0
+	stw      r0, 0x18(r31)
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1131,44 +1188,43 @@ void JADUtility::DataMgrBase::init(void)
 void save__Q210JADUtility7Prm<char*> FR21JSUMemoryOutputStream(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r29, r4
-	  stw       r28, 0x10(r1)
-	  mr        r28, r3
-	  lwz       r4, 0x2C(r3)
-	  mr        r3, r29
-	  bl        -0x95050
-	  li        r30, 0
-	  mr        r31, r30
-	  b         .loc_0x54
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	mr       r29, r4
+	stw      r28, 0x10(r1)
+	mr       r28, r3
+	lwz      r4, 0x2c(r3)
+	mr       r3, r29
+	bl       write__15JSUOutputStreamFPCc
+	li       r30, 0
+	mr       r31, r30
+	b        lbl_800BB2B0
 
-	.loc_0x3C:
-	  stb       r31, 0x8(r1)
-	  mr        r3, r29
-	  addi      r4, r1, 0x8
-	  li        r5, 0x1
-	  bl        -0x950C8
-	  addi      r30, r30, 0x1
+lbl_800BB298:
+	stb      r31, 8(r1)
+	mr       r3, r29
+	addi     r4, r1, 8
+	li       r5, 1
+	bl       write__15JSUOutputStreamFPCvl
+	addi     r30, r30, 1
 
-	.loc_0x54:
-	  lbz       r0, 0x18(r28)
-	  rlwinm    r3,r30,0,24,31
-	  cmplw     r3, r0
-	  blt+      .loc_0x3C
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_800BB2B0:
+	lbz      r0, 0x18(r28)
+	clrlwi   r3, r30, 0x18
+	cmplw    r3, r0
+	blt      lbl_800BB298
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -1180,33 +1236,32 @@ void save__Q210JADUtility7Prm<char*> FR21JSUMemoryOutputStream(void)
 void load__Q210JADUtility7Prm<char*> FR20JSUMemoryInputStream(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lwz       r4, 0x2C(r3)
-	  mr        r3, r31
-	  bl        -0x94ED8
-	  lbz       r4, 0x18(r30)
-	  cmplwi    r4, 0
-	  beq-      .loc_0x48
-	  lwz       r12, 0x0(r31)
-	  mr        r3, r31
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lwz      r4, 0x2c(r3)
+	mr       r3, r31
+	bl       read__14JSUInputStreamFPc
+	lbz      r4, 0x18(r30)
+	cmplwi   r4, 0
+	beq      lbl_800BB328
+	lwz      r12, 0(r31)
+	mr       r3, r31
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x48:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_800BB328:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1218,12 +1273,11 @@ void load__Q210JADUtility7Prm<char*> FR20JSUMemoryInputStream(void)
 void @532 @28 @JADUtility::DataLoadMgrNode::init(void)
 {
 	/*
-	.loc_0x0:
-	  li        r11, 0x1C
-	  lwzx      r11, r3, r11
-	  add       r3, r3, r11
-	  subi      r3, r3, 0x214
-	  b         -0x174
+	li       r11, 0x1c
+	lwzx     r11, r3, r11
+	add      r3, r3, r11
+	addi     r3, r3, -532
+	b        init__Q210JADUtility15DataLoadMgrNodeFv
 	*/
 }
 
@@ -1235,12 +1289,11 @@ void @532 @28 @JADUtility::DataLoadMgrNode::init(void)
 @532 @28 @JADUtility::DataLoadMgrNode::~DataLoadMgrNode(void)
 {
 	/*
-	.loc_0x0:
-	  li        r11, 0x1C
-	  lwzx      r11, r3, r11
-	  add       r3, r3, r11
-	  subi      r3, r3, 0x214
-	  b         -0xAB0
+	li       r11, 0x1c
+	lwzx     r11, r3, r11
+	add      r3, r3, r11
+	addi     r3, r3, -532
+	b        __dt__Q210JADUtility15DataLoadMgrNodeFv
 	*/
 }
 
@@ -1252,12 +1305,11 @@ void @532 @28 @JADUtility::DataLoadMgrNode::init(void)
 void @592 @28 @JADUtility::DataMgrNode::init(void)
 {
 	/*
-	.loc_0x0:
-	  li        r11, 0x1C
-	  lwzx      r11, r3, r11
-	  add       r3, r3, r11
-	  subi      r3, r3, 0x250
-	  b         -0x1E0
+	li       r11, 0x1c
+	lwzx     r11, r3, r11
+	add      r3, r3, r11
+	addi     r3, r3, -592
+	b        init__Q210JADUtility11DataMgrNodeFv
 	*/
 }
 
@@ -1269,12 +1321,11 @@ void @592 @28 @JADUtility::DataMgrNode::init(void)
 @592 @28 @JADUtility::DataMgrNode::~DataMgrNode(void)
 {
 	/*
-	.loc_0x0:
-	  li        r11, 0x1C
-	  lwzx      r11, r3, r11
-	  add       r3, r3, r11
-	  subi      r3, r3, 0x250
-	  b         -0x3B0
+	li       r11, 0x1c
+	lwzx     r11, r3, r11
+	add      r3, r3, r11
+	addi     r3, r3, -592
+	b        __dt__Q210JADUtility11DataMgrNodeFv
 	*/
 }
 

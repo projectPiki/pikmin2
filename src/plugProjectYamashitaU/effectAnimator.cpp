@@ -1,6 +1,311 @@
 #include "types.h"
 
 /*
+    Generated from dpostproc
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_8047C570
+    lbl_8047C570:
+        .4byte 0x65666665
+        .4byte 0x63744F62
+        .4byte 0x6A000000
+    .global lbl_8047C57C
+    lbl_8047C57C:
+        .4byte 0x65666665
+        .4byte 0x6374416E
+        .4byte 0x696D6174
+        .4byte 0x6F722E63
+        .4byte 0x70700000
+    .global lbl_8047C590
+    lbl_8047C590:
+        .asciz "P2Assert"
+        .skip 3
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global "sVibration_Move1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+    "sVibration_Move1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
+        .float 0.0
+        .float 0.0
+        .float 50.0
+        .float 0.0
+        .float -1.0
+        .float 0.0
+    .global "sBristle_Move1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+    "sBristle_Move1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
+        .float 0.0
+        .float 0.25
+        .float 8.0
+        .float 0.3
+        .float 13.0
+        .float 0.12
+        .float 22.0
+        .float 0.3
+        .float 24.0
+        .float 0.3
+        .float 29.0
+        .float 0.12
+        .float 36.0
+        .float 0.3
+        .float 50.0
+        .float 0.25
+        .float -1.0
+        .float 0.0
+    .global "sLength_Move1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+    "sLength_Move1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
+        .float 0.0
+        .float 1.0
+        .float 50.0
+        .float 1.0
+        .float -1.0
+        .float 0.0
+    .global "sMove1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+    "sMove1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
+        .4byte
+   "sVibration_Move1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@" .4byte
+   "sBristle_Move1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@" .4byte
+   "sLength_Move1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@" .global
+   "sVibration_Waitact1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+    "sVibration_Waitact1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
+        .float 0.0
+        .float 0.0
+        .float 10.0
+        .float 0.0
+        .float 14.0
+        .float 0.6
+        .float 19.0
+        .float 0.0
+        .float 25.0
+        .float 0.0
+        .float -1.0
+        .float 0.0
+    .global
+   "sBristle_Waitact1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+    "sBristle_Waitact1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
+        .float 0.0
+        .float 0.25
+        .float 25.0
+        .float 0.25
+        .float -1.0
+        .float 0.0
+    .global "sLength_Waitact1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+    "sLength_Waitact1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
+        .float 0.0
+        .float 1.0
+        .float 25.0
+        .float 1.0
+        .float -1.0
+        .float 0.0
+    .global "sWaitact1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+    "sWaitact1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
+        .4byte
+   "sVibration_Waitact1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+        .4byte
+   "sBristle_Waitact1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@" .4byte
+   "sLength_Waitact1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@" .global
+   "sVibration_Attack__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+    "sVibration_Attack__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
+        .float 0.0
+        .float 0.0
+        .float 32.0
+        .float 0.0
+        .float 45.0
+        .float 0.3
+        .float 60.0
+        .float 0.0
+        .float -1.0
+        .float 0.0
+    .global "sBristle_Attack__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+    "sBristle_Attack__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
+        .float 0.0
+        .float 0.25
+        .float 20.0
+        .float 0.15
+        .float 40.0
+        .float 0.15
+        .float 50.0
+        .float 0.85
+        .float 60.0
+        .float 0.25
+        .float -1.0
+        .float 0.0
+    .global "sLength_Attack__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+    "sLength_Attack__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
+        .float 0.0
+        .float 1.0
+        .float 60.0
+        .float 1.0
+        .float -1.0
+        .float 0.0
+    .global "sAttack__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+    "sAttack__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
+        .4byte
+   "sVibration_Attack__Q214EffectAnimator28@unnamed@effectAnimator_cpp@" .4byte
+   "sBristle_Attack__Q214EffectAnimator28@unnamed@effectAnimator_cpp@" .4byte
+   "sLength_Attack__Q214EffectAnimator28@unnamed@effectAnimator_cpp@" .global
+   "sVibration_Flick__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+    "sVibration_Flick__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
+        .float 0.0
+        .float 0.0
+        .float 10.0
+        .float 1.0
+        .float 30.0
+        .float 0.5
+        .float 40.0
+        .float 0.0
+        .float 80.0
+        .float 0.0
+        .float -1.0
+        .float 0.0
+    .global "sBristle_Flick__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+    "sBristle_Flick__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
+        .float 0.0
+        .float 0.25
+        .float 30.0
+        .float 0.15
+        .float 35.0
+        .float 1.0
+        .float 65.0
+        .float 0.4
+        .float 80.0
+        .float 0.25
+        .float -1.0
+        .float 0.0
+    .global "sLength_Flick__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+    "sLength_Flick__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
+        .float 0.0
+        .float 1.0
+        .float 30.0
+        .float 1.0
+        .float 35.0
+        .float 1.25
+        .float 55.0
+        .float 1.0
+        .float 80.0
+        .float 1.0
+        .float -1.0
+        .float 0.0
+    .global "sFlick__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+    "sFlick__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
+        .4byte
+   "sVibration_Flick__Q214EffectAnimator28@unnamed@effectAnimator_cpp@" .4byte
+   "sBristle_Flick__Q214EffectAnimator28@unnamed@effectAnimator_cpp@" .4byte
+   "sLength_Flick__Q214EffectAnimator28@unnamed@effectAnimator_cpp@" .global
+   "sVibration_Type1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+    "sVibration_Type1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
+        .float 0.0
+        .float 0.0
+        .float 15.0
+        .float 0.0
+        .float 20.0
+        .float 1.0
+        .float 40.0
+        .float 0.7
+        .float 50.0
+        .float 0.0
+        .float 102.0
+        .float 0.0
+        .float 107.0
+        .float 0.25
+        .float 125.0
+        .float 0.06
+        .float 129.0
+        .float 0.0
+        .float 180.0
+        .float 0.0
+        .float -1.0
+        .float 0.0
+    .global "sBristle_Type1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+    "sBristle_Type1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
+        .float 0.0
+        .float 0.25
+        .float 15.0
+        .float 0.2
+        .float 22.0
+        .float 2.0
+        .float 30.0
+        .float 1.8
+        .float 45.0
+        .float 0.25
+        .float 70.0
+        .float 0.12
+        .float 102.0
+        .float 0.35
+        .float 130.0
+        .float 0.12
+        .float 140.0
+        .float 0.25
+        .float 180.0
+        .float 0.25
+        .float -1.0
+        .float 0.0
+    .global "sLength_Type1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+    "sLength_Type1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
+        .float 0.0
+        .float 1.0
+        .float 180.0
+        .float 1.0
+        .float -1.0
+        .float 0.0
+    .global "sType1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+    "sType1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
+        .4byte
+   "sVibration_Type1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@" .4byte
+   "sBristle_Type1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@" .4byte
+   "sLength_Type1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@" .global
+   "sEffectAnimData__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+    "sEffectAnimData__Q214EffectAnimator28@unnamed@effectAnimator_cpp@":
+        .4byte "sAttack__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+        .4byte 0
+        .4byte "sFlick__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+        .4byte "sMove1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+        .4byte "sType1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+        .4byte 0
+        .4byte 0
+        .4byte "sWaitact1__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"
+        .4byte 0
+    .global __vt__Q214EffectAnimator9LengthObj
+    __vt__Q214EffectAnimator9LengthObj:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q214EffectAnimator9LengthObjFv
+        .4byte getChildCount__5CNodeFv
+        .4byte update__Q214EffectAnimator9LengthObjFPQ23efx13TKechappyTestf
+    .global __vt__Q214EffectAnimator10BristleObj
+    __vt__Q214EffectAnimator10BristleObj:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q214EffectAnimator10BristleObjFv
+        .4byte getChildCount__5CNodeFv
+        .4byte update__Q214EffectAnimator10BristleObjFPQ23efx13TKechappyTestf
+    .global __vt__Q214EffectAnimator12VibrationObj
+    __vt__Q214EffectAnimator12VibrationObj:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q214EffectAnimator12VibrationObjFv
+        .4byte getChildCount__5CNodeFv
+        .4byte update__Q214EffectAnimator12VibrationObjFPQ23efx13TKechappyTestf
+    .global __vt__Q214EffectAnimator3Obj
+    __vt__Q214EffectAnimator3Obj:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q214EffectAnimator3ObjFv
+        .4byte getChildCount__5CNodeFv
+        .4byte update__Q214EffectAnimator3ObjFPQ23efx13TKechappyTestf
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_805181F8
+    lbl_805181F8:
+        .4byte 0x00000000
+    .global lbl_805181FC
+    lbl_805181FC:
+        .float 0.25
+    .global lbl_80518200
+    lbl_80518200:
+        .float 1.0
+        .4byte 0x00000000
+*/
+
+/*
  * --INFO--
  * Address:	80132CB4
  * Size:	000004
@@ -15,239 +320,238 @@ void EffectAnimator::Obj::update(efx::TKechappyTest*, float) { }
 void EffectAnimator::ObjMgr::setup(EffectAnimator::ObjMgrData*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  li        r3, 0x20
-	  bl        -0x10EE34
-	  cmplwi    r3, 0
-	  beq-      .loc_0x78
-	  lis       r4, 0x804F
-	  lis       r6, 0x8048
-	  subi      r0, r4, 0x4AD8
-	  lis       r5, 0x804B
-	  stw       r0, 0x0(r3)
-	  li        r7, 0
-	  lis       r4, 0x804B
-	  subi      r6, r6, 0x3A90
-	  stw       r7, 0x10(r3)
-	  subi      r5, r5, 0x214
-	  subi      r0, r4, 0x228
-	  stw       r7, 0xC(r3)
-	  stw       r7, 0x8(r3)
-	  stw       r7, 0x4(r3)
-	  stw       r6, 0x14(r3)
-	  stw       r5, 0x0(r3)
-	  stw       r7, 0x18(r3)
-	  stw       r7, 0x1C(r3)
-	  stw       r0, 0x0(r3)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	li       r3, 0x20
+	bl       __nw__FUl
+	cmplwi   r3, 0
+	beq      lbl_80132D30
+	lis      r4, __vt__5CNode@ha
+	lis      r6, lbl_8047C570@ha
+	addi     r0, r4, __vt__5CNode@l
+	lis      r5, __vt__Q214EffectAnimator3Obj@ha
+	stw      r0, 0(r3)
+	li       r7, 0
+	lis      r4, __vt__Q214EffectAnimator12VibrationObj@ha
+	addi     r6, r6, lbl_8047C570@l
+	stw      r7, 0x10(r3)
+	addi     r5, r5, __vt__Q214EffectAnimator3Obj@l
+	addi     r0, r4, __vt__Q214EffectAnimator12VibrationObj@l
+	stw      r7, 0xc(r3)
+	stw      r7, 8(r3)
+	stw      r7, 4(r3)
+	stw      r6, 0x14(r3)
+	stw      r5, 0(r3)
+	stw      r7, 0x18(r3)
+	stw      r7, 0x1c(r3)
+	stw      r0, 0(r3)
 
-	.loc_0x78:
-	  lwz       r0, 0x0(r31)
-	  li        r5, 0
-	  lfs       f0, -0x6168(r2)
-	  mr        r4, r3
-	  stw       r5, 0x1C(r3)
-	  mr        r3, r0
-	  b         .loc_0x9C
+lbl_80132D30:
+	lwz      r0, 0(r31)
+	li       r5, 0
+	lfs      f0, lbl_805181F8@sda21(r2)
+	mr       r4, r3
+	stw      r5, 0x1c(r3)
+	mr       r3, r0
+	b        lbl_80132D54
 
-	.loc_0x94:
-	  addi      r3, r3, 0x8
-	  addi      r5, r5, 0x1
+lbl_80132D4C:
+	addi     r3, r3, 8
+	addi     r5, r5, 1
 
-	.loc_0x9C:
-	  lfs       f1, 0x0(r3)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0x1, 0x2
-	  beq+      .loc_0x94
-	  stw       r5, 0x1C(r4)
-	  li        r3, 0
-	  stw       r0, 0x18(r4)
-	  lwz       r6, 0x1C(r4)
-	  cmpwi     r6, 0
-	  ble-      .loc_0x100
-	  cmpwi     r6, 0x8
-	  subi      r5, r6, 0x8
-	  ble-      .loc_0xEC
-	  addi      r0, r5, 0x7
-	  rlwinm    r0,r0,29,3,31
-	  mtctr     r0
-	  cmpwi     r5, 0
-	  ble-      .loc_0xEC
+lbl_80132D54:
+	lfs      f1, 0(r3)
+	fcmpo    cr0, f1, f0
+	cror     2, 1, 2
+	beq      lbl_80132D4C
+	stw      r5, 0x1c(r4)
+	li       r3, 0
+	stw      r0, 0x18(r4)
+	lwz      r6, 0x1c(r4)
+	cmpwi    r6, 0
+	ble      lbl_80132DB8
+	cmpwi    r6, 8
+	addi     r5, r6, -8
+	ble      lbl_80132DA4
+	addi     r0, r5, 7
+	srwi     r0, r0, 3
+	mtctr    r0
+	cmpwi    r5, 0
+	ble      lbl_80132DA4
 
-	.loc_0xE4:
-	  addi      r3, r3, 0x8
-	  bdnz+     .loc_0xE4
+lbl_80132D9C:
+	addi     r3, r3, 8
+	bdnz     lbl_80132D9C
 
-	.loc_0xEC:
-	  sub       r0, r6, r3
-	  mtctr     r0
-	  cmpw      r3, r6
-	  bge-      .loc_0x100
+lbl_80132DA4:
+	subf     r0, r3, r6
+	mtctr    r0
+	cmpw     r3, r6
+	bge      lbl_80132DB8
 
-	.loc_0xFC:
-	  bdnz-     .loc_0xFC
+lbl_80132DB4:
+	bdnz     lbl_80132DB4
 
-	.loc_0x100:
-	  mr        r3, r30
-	  bl        0x2DE64C
-	  li        r3, 0x20
-	  bl        -0x10EF20
-	  cmplwi    r3, 0
-	  beq-      .loc_0x164
-	  lis       r4, 0x804F
-	  lis       r6, 0x8048
-	  subi      r0, r4, 0x4AD8
-	  lis       r5, 0x804B
-	  stw       r0, 0x0(r3)
-	  li        r7, 0
-	  lis       r4, 0x804B
-	  subi      r6, r6, 0x3A90
-	  stw       r7, 0x10(r3)
-	  subi      r5, r5, 0x214
-	  subi      r0, r4, 0x23C
-	  stw       r7, 0xC(r3)
-	  stw       r7, 0x8(r3)
-	  stw       r7, 0x4(r3)
-	  stw       r6, 0x14(r3)
-	  stw       r5, 0x0(r3)
-	  stw       r7, 0x18(r3)
-	  stw       r7, 0x1C(r3)
-	  stw       r0, 0x0(r3)
+lbl_80132DB8:
+	mr       r3, r30
+	bl       add__5CNodeFP5CNode
+	li       r3, 0x20
+	bl       __nw__FUl
+	cmplwi   r3, 0
+	beq      lbl_80132E1C
+	lis      r4, __vt__5CNode@ha
+	lis      r6, lbl_8047C570@ha
+	addi     r0, r4, __vt__5CNode@l
+	lis      r5, __vt__Q214EffectAnimator3Obj@ha
+	stw      r0, 0(r3)
+	li       r7, 0
+	lis      r4, __vt__Q214EffectAnimator10BristleObj@ha
+	addi     r6, r6, lbl_8047C570@l
+	stw      r7, 0x10(r3)
+	addi     r5, r5, __vt__Q214EffectAnimator3Obj@l
+	addi     r0, r4, __vt__Q214EffectAnimator10BristleObj@l
+	stw      r7, 0xc(r3)
+	stw      r7, 8(r3)
+	stw      r7, 4(r3)
+	stw      r6, 0x14(r3)
+	stw      r5, 0(r3)
+	stw      r7, 0x18(r3)
+	stw      r7, 0x1c(r3)
+	stw      r0, 0(r3)
 
-	.loc_0x164:
-	  lwz       r0, 0x4(r31)
-	  li        r5, 0
-	  lfs       f0, -0x6168(r2)
-	  mr        r4, r3
-	  stw       r5, 0x1C(r3)
-	  mr        r3, r0
-	  b         .loc_0x188
+lbl_80132E1C:
+	lwz      r0, 4(r31)
+	li       r5, 0
+	lfs      f0, lbl_805181F8@sda21(r2)
+	mr       r4, r3
+	stw      r5, 0x1c(r3)
+	mr       r3, r0
+	b        lbl_80132E40
 
-	.loc_0x180:
-	  addi      r3, r3, 0x8
-	  addi      r5, r5, 0x1
+lbl_80132E38:
+	addi     r3, r3, 8
+	addi     r5, r5, 1
 
-	.loc_0x188:
-	  lfs       f1, 0x0(r3)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0x1, 0x2
-	  beq+      .loc_0x180
-	  stw       r5, 0x1C(r4)
-	  li        r3, 0
-	  stw       r0, 0x18(r4)
-	  lwz       r6, 0x1C(r4)
-	  cmpwi     r6, 0
-	  ble-      .loc_0x1EC
-	  cmpwi     r6, 0x8
-	  subi      r5, r6, 0x8
-	  ble-      .loc_0x1D8
-	  addi      r0, r5, 0x7
-	  rlwinm    r0,r0,29,3,31
-	  mtctr     r0
-	  cmpwi     r5, 0
-	  ble-      .loc_0x1D8
+lbl_80132E40:
+	lfs      f1, 0(r3)
+	fcmpo    cr0, f1, f0
+	cror     2, 1, 2
+	beq      lbl_80132E38
+	stw      r5, 0x1c(r4)
+	li       r3, 0
+	stw      r0, 0x18(r4)
+	lwz      r6, 0x1c(r4)
+	cmpwi    r6, 0
+	ble      lbl_80132EA4
+	cmpwi    r6, 8
+	addi     r5, r6, -8
+	ble      lbl_80132E90
+	addi     r0, r5, 7
+	srwi     r0, r0, 3
+	mtctr    r0
+	cmpwi    r5, 0
+	ble      lbl_80132E90
 
-	.loc_0x1D0:
-	  addi      r3, r3, 0x8
-	  bdnz+     .loc_0x1D0
+lbl_80132E88:
+	addi     r3, r3, 8
+	bdnz     lbl_80132E88
 
-	.loc_0x1D8:
-	  sub       r0, r6, r3
-	  mtctr     r0
-	  cmpw      r3, r6
-	  bge-      .loc_0x1EC
+lbl_80132E90:
+	subf     r0, r3, r6
+	mtctr    r0
+	cmpw     r3, r6
+	bge      lbl_80132EA4
 
-	.loc_0x1E8:
-	  bdnz-     .loc_0x1E8
+lbl_80132EA0:
+	bdnz     lbl_80132EA0
 
-	.loc_0x1EC:
-	  mr        r3, r30
-	  bl        0x2DE560
-	  li        r3, 0x20
-	  bl        -0x10F00C
-	  cmplwi    r3, 0
-	  beq-      .loc_0x250
-	  lis       r4, 0x804F
-	  lis       r6, 0x8048
-	  subi      r0, r4, 0x4AD8
-	  lis       r5, 0x804B
-	  stw       r0, 0x0(r3)
-	  li        r7, 0
-	  lis       r4, 0x804B
-	  subi      r6, r6, 0x3A90
-	  stw       r7, 0x10(r3)
-	  subi      r5, r5, 0x214
-	  subi      r0, r4, 0x250
-	  stw       r7, 0xC(r3)
-	  stw       r7, 0x8(r3)
-	  stw       r7, 0x4(r3)
-	  stw       r6, 0x14(r3)
-	  stw       r5, 0x0(r3)
-	  stw       r7, 0x18(r3)
-	  stw       r7, 0x1C(r3)
-	  stw       r0, 0x0(r3)
+lbl_80132EA4:
+	mr       r3, r30
+	bl       add__5CNodeFP5CNode
+	li       r3, 0x20
+	bl       __nw__FUl
+	cmplwi   r3, 0
+	beq      lbl_80132F08
+	lis      r4, __vt__5CNode@ha
+	lis      r6, lbl_8047C570@ha
+	addi     r0, r4, __vt__5CNode@l
+	lis      r5, __vt__Q214EffectAnimator3Obj@ha
+	stw      r0, 0(r3)
+	li       r7, 0
+	lis      r4, __vt__Q214EffectAnimator9LengthObj@ha
+	addi     r6, r6, lbl_8047C570@l
+	stw      r7, 0x10(r3)
+	addi     r5, r5, __vt__Q214EffectAnimator3Obj@l
+	addi     r0, r4, __vt__Q214EffectAnimator9LengthObj@l
+	stw      r7, 0xc(r3)
+	stw      r7, 8(r3)
+	stw      r7, 4(r3)
+	stw      r6, 0x14(r3)
+	stw      r5, 0(r3)
+	stw      r7, 0x18(r3)
+	stw      r7, 0x1c(r3)
+	stw      r0, 0(r3)
 
-	.loc_0x250:
-	  lwz       r0, 0x8(r31)
-	  li        r5, 0
-	  lfs       f0, -0x6168(r2)
-	  mr        r4, r3
-	  stw       r5, 0x1C(r3)
-	  mr        r3, r0
-	  b         .loc_0x274
+lbl_80132F08:
+	lwz      r0, 8(r31)
+	li       r5, 0
+	lfs      f0, lbl_805181F8@sda21(r2)
+	mr       r4, r3
+	stw      r5, 0x1c(r3)
+	mr       r3, r0
+	b        lbl_80132F2C
 
-	.loc_0x26C:
-	  addi      r3, r3, 0x8
-	  addi      r5, r5, 0x1
+lbl_80132F24:
+	addi     r3, r3, 8
+	addi     r5, r5, 1
 
-	.loc_0x274:
-	  lfs       f1, 0x0(r3)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0x1, 0x2
-	  beq+      .loc_0x26C
-	  stw       r5, 0x1C(r4)
-	  li        r3, 0
-	  stw       r0, 0x18(r4)
-	  lwz       r6, 0x1C(r4)
-	  cmpwi     r6, 0
-	  ble-      .loc_0x2D8
-	  cmpwi     r6, 0x8
-	  subi      r5, r6, 0x8
-	  ble-      .loc_0x2C4
-	  addi      r0, r5, 0x7
-	  rlwinm    r0,r0,29,3,31
-	  mtctr     r0
-	  cmpwi     r5, 0
-	  ble-      .loc_0x2C4
+lbl_80132F2C:
+	lfs      f1, 0(r3)
+	fcmpo    cr0, f1, f0
+	cror     2, 1, 2
+	beq      lbl_80132F24
+	stw      r5, 0x1c(r4)
+	li       r3, 0
+	stw      r0, 0x18(r4)
+	lwz      r6, 0x1c(r4)
+	cmpwi    r6, 0
+	ble      lbl_80132F90
+	cmpwi    r6, 8
+	addi     r5, r6, -8
+	ble      lbl_80132F7C
+	addi     r0, r5, 7
+	srwi     r0, r0, 3
+	mtctr    r0
+	cmpwi    r5, 0
+	ble      lbl_80132F7C
 
-	.loc_0x2BC:
-	  addi      r3, r3, 0x8
-	  bdnz+     .loc_0x2BC
+lbl_80132F74:
+	addi     r3, r3, 8
+	bdnz     lbl_80132F74
 
-	.loc_0x2C4:
-	  sub       r0, r6, r3
-	  mtctr     r0
-	  cmpw      r3, r6
-	  bge-      .loc_0x2D8
+lbl_80132F7C:
+	subf     r0, r3, r6
+	mtctr    r0
+	cmpw     r3, r6
+	bge      lbl_80132F90
 
-	.loc_0x2D4:
-	  bdnz-     .loc_0x2D4
+lbl_80132F8C:
+	bdnz     lbl_80132F8C
 
-	.loc_0x2D8:
-	  mr        r3, r30
-	  bl        0x2DE474
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80132F90:
+	mr       r3, r30
+	bl       add__5CNodeFP5CNode
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -259,33 +563,32 @@ void EffectAnimator::ObjMgr::setup(EffectAnimator::ObjMgrData*)
 EffectAnimator::Obj::~Obj()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x44
-	  lis       r5, 0x804B
-	  li        r4, 0
-	  subi      r0, r5, 0x214
-	  stw       r0, 0x0(r30)
-	  bl        0x2DE5A8
-	  extsh.    r0, r31
-	  ble-      .loc_0x44
-	  mr        r3, r30
-	  bl        -0x10EF3C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_80132FF4
+	lis      r5, __vt__Q214EffectAnimator3Obj@ha
+	li       r4, 0
+	addi     r0, r5, __vt__Q214EffectAnimator3Obj@l
+	stw      r0, 0(r30)
+	bl       __dt__5CNodeFv
+	extsh.   r0, r31
+	ble      lbl_80132FF4
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x44:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80132FF4:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -308,60 +611,59 @@ EffectAnimator::Mgr::Mgr()
 void EffectAnimator::Mgr::setup()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stmw      r27, 0xC(r1)
-	  mr        r27, r3
-	  li        r3, 0x24
-	  bl        -0x10F088
-	  lis       r4, 0x804B
-	  stw       r3, 0x0(r27)
-	  subi      r30, r4, 0x274
-	  li        r28, 0
-	  li        r29, 0
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stmw     r27, 0xc(r1)
+	mr       r27, r3
+	li       r3, 0x24
+	bl       __nwa__FUl
+	lis      r4,
+"sEffectAnimData__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"@ha stw r3,
+0(r27) addi     r30, r4,
+"sEffectAnimData__Q214EffectAnimator28@unnamed@effectAnimator_cpp@"@l li r28, 0
+	li       r29, 0
 
-	.loc_0x30:
-	  lwz       r0, 0x0(r30)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x80
-	  li        r3, 0x18
-	  bl        -0x10F1B8
-	  mr.       r31, r3
-	  beq-      .loc_0x64
-	  bl        0x2DE328
-	  li        r0, 0
-	  stw       r0, 0x10(r31)
-	  stw       r0, 0xC(r31)
-	  stw       r0, 0x8(r31)
-	  stw       r0, 0x4(r31)
+lbl_8013304C:
+	lwz      r0, 0(r30)
+	cmplwi   r0, 0
+	beq      lbl_8013309C
+	li       r3, 0x18
+	bl       __nw__FUl
+	or.      r31, r3, r3
+	beq      lbl_80133080
+	bl       __ct__5CNodeFv
+	li       r0, 0
+	stw      r0, 0x10(r31)
+	stw      r0, 0xc(r31)
+	stw      r0, 8(r31)
+	stw      r0, 4(r31)
 
-	.loc_0x64:
-	  lwz       r3, 0x0(r27)
-	  stwx      r31, r3, r29
-	  lwz       r3, 0x0(r27)
-	  lwz       r4, 0x0(r30)
-	  lwzx      r3, r3, r29
-	  bl        -0x3DC
-	  b         .loc_0x8C
+lbl_80133080:
+	lwz      r3, 0(r27)
+	stwx     r31, r3, r29
+	lwz      r3, 0(r27)
+	lwz      r4, 0(r30)
+	lwzx     r3, r3, r29
+	bl       setup__Q214EffectAnimator6ObjMgrFPQ214EffectAnimator10ObjMgrData
+	b        lbl_801330A8
 
-	.loc_0x80:
-	  lwz       r3, 0x0(r27)
-	  li        r0, 0
-	  stwx      r0, r3, r29
+lbl_8013309C:
+	lwz      r3, 0(r27)
+	li       r0, 0
+	stwx     r0, r3, r29
 
-	.loc_0x8C:
-	  addi      r28, r28, 0x1
-	  addi      r29, r29, 0x4
-	  cmpwi     r28, 0x9
-	  addi      r30, r30, 0x4
-	  blt+      .loc_0x30
-	  lmw       r27, 0xC(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_801330A8:
+	addi     r28, r28, 1
+	addi     r29, r29, 4
+	cmpwi    r28, 9
+	addi     r30, r30, 4
+	blt      lbl_8013304C
+	lmw      r27, 0xc(r1)
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -373,74 +675,73 @@ void EffectAnimator::Mgr::setup()
 void EffectAnimator::Mgr::update(efx::TKechappyTest*, int, float)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stfd      f31, 0x20(r1)
-	  psq_st    f31,0x28(r1),0,0
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r31, r5
-	  fmr       f31, f1
-	  cmplwi    r31, 0x9
-	  mr        r29, r3
-	  mr        r30, r4
-	  ble-      .loc_0x54
-	  lis       r3, 0x8048
-	  lis       r5, 0x8048
-	  subi      r3, r3, 0x3A84
-	  li        r4, 0x167
-	  subi      r5, r5, 0x3A70
-	  crclr     6, 0x6
-	  bl        -0x108AE0
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stfd     f31, 0x20(r1)
+	psq_st   f31, 40(r1), 0, qr0
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	mr       r31, r5
+	fmr      f31, f1
+	cmplwi   r31, 9
+	mr       r29, r3
+	mr       r30, r4
+	ble      lbl_80133124
+	lis      r3, lbl_8047C57C@ha
+	lis      r5, lbl_8047C590@ha
+	addi     r3, r3, lbl_8047C57C@l
+	li       r4, 0x167
+	addi     r5, r5, lbl_8047C590@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x54:
-	  lwz       r3, 0x0(r29)
-	  rlwinm    r0,r31,2,0,29
-	  lwzx      r3, r3, r0
-	  cmplwi    r3, 0
-	  bne-      .loc_0x90
-	  lfs       f1, -0x6168(r2)
-	  mr        r3, r30
-	  bl        0x280A88
-	  lfs       f1, -0x6164(r2)
-	  mr        r3, r30
-	  bl        0x280A58
-	  lfs       f1, -0x6160(r2)
-	  mr        r3, r30
-	  bl        0x280A28
-	  b         .loc_0xC0
+lbl_80133124:
+	lwz      r3, 0(r29)
+	slwi     r0, r31, 2
+	lwzx     r3, r3, r0
+	cmplwi   r3, 0
+	bne      lbl_80133160
+	lfs      f1, lbl_805181F8@sda21(r2)
+	mr       r3, r30
+	bl       setSpread__Q23efx13TKechappyTestFf
+	lfs      f1, lbl_805181FC@sda21(r2)
+	mr       r3, r30
+	bl       setAwayFromCenterSpeed__Q23efx13TKechappyTestFf
+	lfs      f1, lbl_80518200@sda21(r2)
+	mr       r3, r30
+	bl       setGlobalParticleScale__Q23efx13TKechappyTestFf
+	b        lbl_80133190
 
-	.loc_0x90:
-	  lwz       r31, 0x10(r3)
-	  b         .loc_0xB8
+lbl_80133160:
+	lwz      r31, 0x10(r3)
+	b        lbl_80133188
 
-	.loc_0x98:
-	  mr        r3, r31
-	  fmr       f1, f31
-	  lwz       r12, 0x0(r31)
-	  mr        r4, r30
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r31, 0x4(r31)
+lbl_80133168:
+	mr       r3, r31
+	fmr      f1, f31
+	lwz      r12, 0(r31)
+	mr       r4, r30
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	lwz      r31, 4(r31)
 
-	.loc_0xB8:
-	  cmplwi    r31, 0
-	  bne+      .loc_0x98
+lbl_80133188:
+	cmplwi   r31, 0
+	bne      lbl_80133168
 
-	.loc_0xC0:
-	  psq_l     f31,0x28(r1),0,0
-	  lwz       r0, 0x34(r1)
-	  lfd       f31, 0x20(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_80133190:
+	psq_l    f31, 40(r1), 0, qr0
+	lwz      r0, 0x34(r1)
+	lfd      f31, 0x20(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -452,39 +753,38 @@ void EffectAnimator::Mgr::update(efx::TKechappyTest*, int, float)
 EffectAnimator::LengthObj::~LengthObj()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x54
-	  lis       r4, 0x804B
-	  subi      r0, r4, 0x250
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x44
-	  lis       r5, 0x804B
-	  li        r4, 0
-	  subi      r0, r5, 0x214
-	  stw       r0, 0x0(r30)
-	  bl        0x2DE394
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_80133208
+	lis      r4, __vt__Q214EffectAnimator9LengthObj@ha
+	addi     r0, r4, __vt__Q214EffectAnimator9LengthObj@l
+	stw      r0, 0(r30)
+	beq      lbl_801331F8
+	lis      r5, __vt__Q214EffectAnimator3Obj@ha
+	li       r4, 0
+	addi     r0, r5, __vt__Q214EffectAnimator3Obj@l
+	stw      r0, 0(r30)
+	bl       __dt__5CNodeFv
 
-	.loc_0x44:
-	  extsh.    r0, r31
-	  ble-      .loc_0x54
-	  mr        r3, r30
-	  bl        -0x10F150
+lbl_801331F8:
+	extsh.   r0, r31
+	ble      lbl_80133208
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x54:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80133208:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -496,89 +796,88 @@ EffectAnimator::LengthObj::~LengthObj()
 void EffectAnimator::LengthObj::update(efx::TKechappyTest*, float)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stfd      f31, 0x20(r1)
-	  psq_st    f31,0x28(r1),0,0
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  li        r5, 0
-	  lwz       r0, 0x1C(r3)
-	  mr        r31, r4
-	  fmr       f31, f1
-	  mr        r4, r5
-	  li        r30, -0x1
-	  mtctr     r0
-	  cmpwi     r0, 0
-	  ble-      .loc_0x70
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stfd     f31, 0x20(r1)
+	psq_st   f31, 40(r1), 0, qr0
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	li       r5, 0
+	lwz      r0, 0x1c(r3)
+	mr       r31, r4
+	fmr      f31, f1
+	mr       r4, r5
+	li       r30, -1
+	mtctr    r0
+	cmpwi    r0, 0
+	ble      lbl_80133294
 
-	.loc_0x48:
-	  lwz       r3, 0x18(r29)
-	  lfsx      f0, r3, r4
-	  fcmpo     cr0, f31, f0
-	  cror      2, 0, 0x2
-	  bne-      .loc_0x64
-	  mr        r30, r5
-	  b         .loc_0x70
+lbl_8013326C:
+	lwz      r3, 0x18(r29)
+	lfsx     f0, r3, r4
+	fcmpo    cr0, f31, f0
+	cror     2, 0, 2
+	bne      lbl_80133288
+	mr       r30, r5
+	b        lbl_80133294
 
-	.loc_0x64:
-	  addi      r4, r4, 0x8
-	  addi      r5, r5, 0x1
-	  bdnz+     .loc_0x48
+lbl_80133288:
+	addi     r4, r4, 8
+	addi     r5, r5, 1
+	bdnz     lbl_8013326C
 
-	.loc_0x70:
-	  cmpwi     r30, -0x1
-	  bne-      .loc_0x94
-	  lis       r3, 0x8048
-	  lis       r5, 0x8048
-	  subi      r3, r3, 0x3A84
-	  li        r4, 0x10B
-	  subi      r5, r5, 0x3A70
-	  crclr     6, 0x6
-	  bl        -0x108C74
+lbl_80133294:
+	cmpwi    r30, -1
+	bne      lbl_801332B8
+	lis      r3, lbl_8047C57C@ha
+	lis      r5, lbl_8047C590@ha
+	addi     r3, r3, lbl_8047C57C@l
+	li       r4, 0x10b
+	addi     r5, r5, lbl_8047C590@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x94:
-	  cmpwi     r30, 0
-	  bne-      .loc_0xB0
-	  lwz       r3, 0x18(r29)
-	  rlwinm    r0,r30,3,0,28
-	  add       r3, r3, r0
-	  lfs       f1, 0x4(r3)
-	  b         .loc_0xEC
+lbl_801332B8:
+	cmpwi    r30, 0
+	bne      lbl_801332D4
+	lwz      r3, 0x18(r29)
+	slwi     r0, r30, 3
+	add      r3, r3, r0
+	lfs      f1, 4(r3)
+	b        lbl_80133310
 
-	.loc_0xB0:
-	  subi      r0, r30, 0x1
-	  lwz       r5, 0x18(r29)
-	  rlwinm    r3,r0,3,0,28
-	  rlwinm    r0,r30,3,0,28
-	  add       r4, r5, r3
-	  add       r3, r5, r0
-	  lfs       f1, 0x0(r4)
-	  lfs       f0, 0x0(r3)
-	  fsubs     f2, f31, f1
-	  lfs       f3, 0x4(r4)
-	  fsubs     f1, f0, f1
-	  lfs       f0, 0x4(r3)
-	  fsubs     f0, f0, f3
-	  fdivs     f1, f2, f1
-	  fmadds    f1, f1, f0, f3
+lbl_801332D4:
+	addi     r0, r30, -1
+	lwz      r5, 0x18(r29)
+	slwi     r3, r0, 3
+	slwi     r0, r30, 3
+	add      r4, r5, r3
+	add      r3, r5, r0
+	lfs      f1, 0(r4)
+	lfs      f0, 0(r3)
+	fsubs    f2, f31, f1
+	lfs      f3, 4(r4)
+	fsubs    f1, f0, f1
+	lfs      f0, 4(r3)
+	fsubs    f0, f0, f3
+	fdivs    f1, f2, f1
+	fmadds   f1, f1, f0, f3
 
-	.loc_0xEC:
-	  mr        r3, r31
-	  bl        0x28086C
-	  psq_l     f31,0x28(r1),0,0
-	  lwz       r0, 0x34(r1)
-	  lfd       f31, 0x20(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_80133310:
+	mr       r3, r31
+	bl       setGlobalParticleScale__Q23efx13TKechappyTestFf
+	psq_l    f31, 40(r1), 0, qr0
+	lwz      r0, 0x34(r1)
+	lfd      f31, 0x20(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -590,39 +889,38 @@ void EffectAnimator::LengthObj::update(efx::TKechappyTest*, float)
 EffectAnimator::BristleObj::~BristleObj()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x54
-	  lis       r4, 0x804B
-	  subi      r0, r4, 0x23C
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x44
-	  lis       r5, 0x804B
-	  li        r4, 0
-	  subi      r0, r5, 0x214
-	  stw       r0, 0x0(r30)
-	  bl        0x2DE20C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_80133390
+	lis      r4, __vt__Q214EffectAnimator10BristleObj@ha
+	addi     r0, r4, __vt__Q214EffectAnimator10BristleObj@l
+	stw      r0, 0(r30)
+	beq      lbl_80133380
+	lis      r5, __vt__Q214EffectAnimator3Obj@ha
+	li       r4, 0
+	addi     r0, r5, __vt__Q214EffectAnimator3Obj@l
+	stw      r0, 0(r30)
+	bl       __dt__5CNodeFv
 
-	.loc_0x44:
-	  extsh.    r0, r31
-	  ble-      .loc_0x54
-	  mr        r3, r30
-	  bl        -0x10F2D8
+lbl_80133380:
+	extsh.   r0, r31
+	ble      lbl_80133390
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x54:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80133390:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -634,89 +932,88 @@ EffectAnimator::BristleObj::~BristleObj()
 void EffectAnimator::BristleObj::update(efx::TKechappyTest*, float)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stfd      f31, 0x20(r1)
-	  psq_st    f31,0x28(r1),0,0
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  li        r5, 0
-	  lwz       r0, 0x1C(r3)
-	  mr        r31, r4
-	  fmr       f31, f1
-	  mr        r4, r5
-	  li        r30, -0x1
-	  mtctr     r0
-	  cmpwi     r0, 0
-	  ble-      .loc_0x70
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stfd     f31, 0x20(r1)
+	psq_st   f31, 40(r1), 0, qr0
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	li       r5, 0
+	lwz      r0, 0x1c(r3)
+	mr       r31, r4
+	fmr      f31, f1
+	mr       r4, r5
+	li       r30, -1
+	mtctr    r0
+	cmpwi    r0, 0
+	ble      lbl_8013341C
 
-	.loc_0x48:
-	  lwz       r3, 0x18(r29)
-	  lfsx      f0, r3, r4
-	  fcmpo     cr0, f31, f0
-	  cror      2, 0, 0x2
-	  bne-      .loc_0x64
-	  mr        r30, r5
-	  b         .loc_0x70
+lbl_801333F4:
+	lwz      r3, 0x18(r29)
+	lfsx     f0, r3, r4
+	fcmpo    cr0, f31, f0
+	cror     2, 0, 2
+	bne      lbl_80133410
+	mr       r30, r5
+	b        lbl_8013341C
 
-	.loc_0x64:
-	  addi      r4, r4, 0x8
-	  addi      r5, r5, 0x1
-	  bdnz+     .loc_0x48
+lbl_80133410:
+	addi     r4, r4, 8
+	addi     r5, r5, 1
+	bdnz     lbl_801333F4
 
-	.loc_0x70:
-	  cmpwi     r30, -0x1
-	  bne-      .loc_0x94
-	  lis       r3, 0x8048
-	  lis       r5, 0x8048
-	  subi      r3, r3, 0x3A84
-	  li        r4, 0x10B
-	  subi      r5, r5, 0x3A70
-	  crclr     6, 0x6
-	  bl        -0x108DFC
+lbl_8013341C:
+	cmpwi    r30, -1
+	bne      lbl_80133440
+	lis      r3, lbl_8047C57C@ha
+	lis      r5, lbl_8047C590@ha
+	addi     r3, r3, lbl_8047C57C@l
+	li       r4, 0x10b
+	addi     r5, r5, lbl_8047C590@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x94:
-	  cmpwi     r30, 0
-	  bne-      .loc_0xB0
-	  lwz       r3, 0x18(r29)
-	  rlwinm    r0,r30,3,0,28
-	  add       r3, r3, r0
-	  lfs       f1, 0x4(r3)
-	  b         .loc_0xEC
+lbl_80133440:
+	cmpwi    r30, 0
+	bne      lbl_8013345C
+	lwz      r3, 0x18(r29)
+	slwi     r0, r30, 3
+	add      r3, r3, r0
+	lfs      f1, 4(r3)
+	b        lbl_80133498
 
-	.loc_0xB0:
-	  subi      r0, r30, 0x1
-	  lwz       r5, 0x18(r29)
-	  rlwinm    r3,r0,3,0,28
-	  rlwinm    r0,r30,3,0,28
-	  add       r4, r5, r3
-	  add       r3, r5, r0
-	  lfs       f1, 0x0(r4)
-	  lfs       f0, 0x0(r3)
-	  fsubs     f2, f31, f1
-	  lfs       f3, 0x4(r4)
-	  fsubs     f1, f0, f1
-	  lfs       f0, 0x4(r3)
-	  fsubs     f0, f0, f3
-	  fdivs     f1, f2, f1
-	  fmadds    f1, f1, f0, f3
+lbl_8013345C:
+	addi     r0, r30, -1
+	lwz      r5, 0x18(r29)
+	slwi     r3, r0, 3
+	slwi     r0, r30, 3
+	add      r4, r5, r3
+	add      r3, r5, r0
+	lfs      f1, 0(r4)
+	lfs      f0, 0(r3)
+	fsubs    f2, f31, f1
+	lfs      f3, 4(r4)
+	fsubs    f1, f0, f1
+	lfs      f0, 4(r3)
+	fsubs    f0, f0, f3
+	fdivs    f1, f2, f1
+	fmadds   f1, f1, f0, f3
 
-	.loc_0xEC:
-	  mr        r3, r31
-	  bl        0x280708
-	  psq_l     f31,0x28(r1),0,0
-	  lwz       r0, 0x34(r1)
-	  lfd       f31, 0x20(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_80133498:
+	mr       r3, r31
+	bl       setAwayFromCenterSpeed__Q23efx13TKechappyTestFf
+	psq_l    f31, 40(r1), 0, qr0
+	lwz      r0, 0x34(r1)
+	lfd      f31, 0x20(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -728,39 +1025,38 @@ void EffectAnimator::BristleObj::update(efx::TKechappyTest*, float)
 EffectAnimator::VibrationObj::~VibrationObj()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x54
-	  lis       r4, 0x804B
-	  subi      r0, r4, 0x228
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x44
-	  lis       r5, 0x804B
-	  li        r4, 0
-	  subi      r0, r5, 0x214
-	  stw       r0, 0x0(r30)
-	  bl        0x2DE084
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_80133518
+	lis      r4, __vt__Q214EffectAnimator12VibrationObj@ha
+	addi     r0, r4, __vt__Q214EffectAnimator12VibrationObj@l
+	stw      r0, 0(r30)
+	beq      lbl_80133508
+	lis      r5, __vt__Q214EffectAnimator3Obj@ha
+	li       r4, 0
+	addi     r0, r5, __vt__Q214EffectAnimator3Obj@l
+	stw      r0, 0(r30)
+	bl       __dt__5CNodeFv
 
-	.loc_0x44:
-	  extsh.    r0, r31
-	  ble-      .loc_0x54
-	  mr        r3, r30
-	  bl        -0x10F460
+lbl_80133508:
+	extsh.   r0, r31
+	ble      lbl_80133518
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x54:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80133518:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -772,88 +1068,87 @@ EffectAnimator::VibrationObj::~VibrationObj()
 void EffectAnimator::VibrationObj::update(efx::TKechappyTest*, float)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stfd      f31, 0x20(r1)
-	  psq_st    f31,0x28(r1),0,0
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  li        r5, 0
-	  lwz       r0, 0x1C(r3)
-	  mr        r31, r4
-	  fmr       f31, f1
-	  mr        r4, r5
-	  li        r30, -0x1
-	  mtctr     r0
-	  cmpwi     r0, 0
-	  ble-      .loc_0x70
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stfd     f31, 0x20(r1)
+	psq_st   f31, 40(r1), 0, qr0
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	li       r5, 0
+	lwz      r0, 0x1c(r3)
+	mr       r31, r4
+	fmr      f31, f1
+	mr       r4, r5
+	li       r30, -1
+	mtctr    r0
+	cmpwi    r0, 0
+	ble      lbl_801335A4
 
-	.loc_0x48:
-	  lwz       r3, 0x18(r29)
-	  lfsx      f0, r3, r4
-	  fcmpo     cr0, f31, f0
-	  cror      2, 0, 0x2
-	  bne-      .loc_0x64
-	  mr        r30, r5
-	  b         .loc_0x70
+lbl_8013357C:
+	lwz      r3, 0x18(r29)
+	lfsx     f0, r3, r4
+	fcmpo    cr0, f31, f0
+	cror     2, 0, 2
+	bne      lbl_80133598
+	mr       r30, r5
+	b        lbl_801335A4
 
-	.loc_0x64:
-	  addi      r4, r4, 0x8
-	  addi      r5, r5, 0x1
-	  bdnz+     .loc_0x48
+lbl_80133598:
+	addi     r4, r4, 8
+	addi     r5, r5, 1
+	bdnz     lbl_8013357C
 
-	.loc_0x70:
-	  cmpwi     r30, -0x1
-	  bne-      .loc_0x94
-	  lis       r3, 0x8048
-	  lis       r5, 0x8048
-	  subi      r3, r3, 0x3A84
-	  li        r4, 0x10B
-	  subi      r5, r5, 0x3A70
-	  crclr     6, 0x6
-	  bl        -0x108F84
+lbl_801335A4:
+	cmpwi    r30, -1
+	bne      lbl_801335C8
+	lis      r3, lbl_8047C57C@ha
+	lis      r5, lbl_8047C590@ha
+	addi     r3, r3, lbl_8047C57C@l
+	li       r4, 0x10b
+	addi     r5, r5, lbl_8047C590@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x94:
-	  cmpwi     r30, 0
-	  bne-      .loc_0xB0
-	  lwz       r3, 0x18(r29)
-	  rlwinm    r0,r30,3,0,28
-	  add       r3, r3, r0
-	  lfs       f1, 0x4(r3)
-	  b         .loc_0xEC
+lbl_801335C8:
+	cmpwi    r30, 0
+	bne      lbl_801335E4
+	lwz      r3, 0x18(r29)
+	slwi     r0, r30, 3
+	add      r3, r3, r0
+	lfs      f1, 4(r3)
+	b        lbl_80133620
 
-	.loc_0xB0:
-	  subi      r0, r30, 0x1
-	  lwz       r5, 0x18(r29)
-	  rlwinm    r3,r0,3,0,28
-	  rlwinm    r0,r30,3,0,28
-	  add       r4, r5, r3
-	  add       r3, r5, r0
-	  lfs       f1, 0x0(r4)
-	  lfs       f0, 0x0(r3)
-	  fsubs     f2, f31, f1
-	  lfs       f3, 0x4(r4)
-	  fsubs     f1, f0, f1
-	  lfs       f0, 0x4(r3)
-	  fsubs     f0, f0, f3
-	  fdivs     f1, f2, f1
-	  fmadds    f1, f1, f0, f3
+lbl_801335E4:
+	addi     r0, r30, -1
+	lwz      r5, 0x18(r29)
+	slwi     r3, r0, 3
+	slwi     r0, r30, 3
+	add      r4, r5, r3
+	add      r3, r5, r0
+	lfs      f1, 0(r4)
+	lfs      f0, 0(r3)
+	fsubs    f2, f31, f1
+	lfs      f3, 4(r4)
+	fsubs    f1, f0, f1
+	lfs      f0, 4(r3)
+	fsubs    f0, f0, f3
+	fdivs    f1, f2, f1
+	fmadds   f1, f1, f0, f3
 
-	.loc_0xEC:
-	  mr        r3, r31
-	  bl        0x2805A4
-	  psq_l     f31,0x28(r1),0,0
-	  lwz       r0, 0x34(r1)
-	  lfd       f31, 0x20(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_80133620:
+	mr       r3, r31
+	bl       setSpread__Q23efx13TKechappyTestFf
+	psq_l    f31, 40(r1), 0, qr0
+	lwz      r0, 0x34(r1)
+	lfd      f31, 0x20(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }

@@ -1,6 +1,63 @@
 #include "types.h"
 
 /*
+    Generated from dpostproc
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__13JAIAnimeSound
+    __vt__13JAIAnimeSound:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__13JAIAnimeSoundFv
+        .4byte startSound__Q27JAInter6ObjectFUlUl
+        .4byte startSound__Q27JAInter10ObjectBaseFUcUlUl
+        .4byte startSound__Q27JAInter10ObjectBaseFPP8JAISoundUlUl
+        .4byte stopAllSound__Q27JAInter10ObjectBaseFv
+        .4byte stopSound__Q27JAInter10ObjectBaseFUlUl
+        .4byte enable__Q27JAInter10ObjectBaseFv
+        .4byte disable__Q27JAInter6ObjectFv
+        .4byte dispose__Q27JAInter10ObjectBaseFv
+        .4byte getFreeSoundHandlePointer__Q27JAInter10ObjectBaseFv
+        .4byte getUseSoundHandlePointer__Q27JAInter10ObjectBaseFUl
+        .4byte handleStop__13JAIAnimeSoundFUcUl
+        .4byte loop__Q27JAInter6ObjectFv
+        .4byte playActorAnimSound__13JAIAnimeSoundFPQ27JAInter5ActorfUc
+        .4byte startAnimSound__13JAIAnimeSoundFUlPP8JAISoundPQ27JAInter5ActorUc
+        .4byte
+   setSpeedModifySound__13JAIAnimeSoundFP8JAISoundP22JAIAnimeFrameSoundDataf
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_80516ED8
+    lbl_80516ED8:
+        .4byte 0x00000000
+    .global lbl_80516EDC
+    lbl_80516EDC:
+        .float -1.0
+    .global lbl_80516EE0
+    lbl_80516EE0:
+        .4byte 0x42FE0000
+    .global lbl_80516EE4
+    lbl_80516EE4:
+        .float 1.0
+    .global lbl_80516EE8
+    lbl_80516EE8:
+        .4byte 0x3D000000
+        .4byte 0x00000000
+    .global lbl_80516EF0
+    lbl_80516EF0:
+        .4byte 0x43300000
+        .4byte 0x00000000
+    .global lbl_80516EF8
+    lbl_80516EF8:
+        .4byte 0x43300000
+        .4byte 0x80000000
+    .global lbl_80516F00
+    lbl_80516F00:
+        .4byte 0x40000000
+        .4byte 0x00000000
+*/
+
+/*
  * --INFO--
  * Address:	800AB0EC
  * Size:	00003C
@@ -8,22 +65,21 @@
 void JAIAnimeSound::handleStop(unsigned char, unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  rlwinm    r8,r4,0,24,31
-	  li        r7, 0
-	  stw       r0, 0x14(r1)
-	  rlwinm    r0,r4,2,22,29
-	  lwz       r6, 0x40(r3)
-	  stbx      r7, r6, r8
-	  lwz       r6, 0x44(r3)
-	  stwx      r7, r6, r0
-	  bl        0xE6C0
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	clrlwi   r8, r4, 0x18
+	li       r7, 0
+	stw      r0, 0x14(r1)
+	rlwinm   r0, r4, 2, 0x16, 0x1d
+	lwz      r6, 0x40(r3)
+	stbx     r7, r6, r8
+	lwz      r6, 0x44(r3)
+	stwx     r7, r6, r0
+	bl       handleStop__Q27JAInter10ObjectBaseFUcUl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -35,121 +91,120 @@ void JAIAnimeSound::handleStop(unsigned char, unsigned long)
 JAIAnimeSound::JAIAnimeSound(Vec*, JKRHeap*, unsigned char)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r6
-	  stw       r30, 0x18(r1)
-	  mr        r30, r3
-	  stw       r29, 0x14(r1)
-	  stw       r28, 0x10(r1)
-	  mr        r28, r5
-	  bl        0xE99C
-	  lis       r4, 0x804A
-	  li        r3, 0
-	  addi      r0, r4, 0x6200
-	  stw       r0, 0x0(r30)
-	  stw       r3, 0x48(r30)
-	  stw       r3, 0x4C(r30)
-	  stw       r3, 0x50(r30)
-	  stw       r3, 0x54(r30)
-	  lwz       r0, 0x4C(r30)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x64
-	  li        r0, 0x1
-	  stb       r0, 0x58(r30)
-	  b         .loc_0x68
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r6
+	stw      r30, 0x18(r1)
+	mr       r30, r3
+	stw      r29, 0x14(r1)
+	stw      r28, 0x10(r1)
+	mr       r28, r5
+	bl       __ct__Q27JAInter6ObjectFP3VecP7JKRHeapUc
+	lis      r4, __vt__13JAIAnimeSound@ha
+	li       r3, 0
+	addi     r0, r4, __vt__13JAIAnimeSound@l
+	stw      r0, 0(r30)
+	stw      r3, 0x48(r30)
+	stw      r3, 0x4c(r30)
+	stw      r3, 0x50(r30)
+	stw      r3, 0x54(r30)
+	lwz      r0, 0x4c(r30)
+	cmplwi   r0, 0
+	bne      lbl_800AB18C
+	li       r0, 1
+	stb      r0, 0x58(r30)
+	b        lbl_800AB190
 
-	.loc_0x64:
-	  stb       r3, 0x58(r30)
+lbl_800AB18C:
+	stb      r3, 0x58(r30)
 
-	.loc_0x68:
-	  li        r0, 0
-	  rlwinm    r29,r31,0,24,31
-	  stw       r0, 0x68(r30)
-	  mr        r3, r29
-	  mr        r4, r28
-	  li        r5, 0
-	  stw       r0, 0x6C(r30)
-	  stw       r0, 0x78(r30)
-	  bl        -0x87168
-	  stw       r3, 0x40(r30)
-	  mr        r4, r28
-	  rlwinm    r3,r29,2,0,29
-	  li        r5, 0
-	  bl        -0x8717C
-	  mr        r0, r29
-	  stw       r3, 0x44(r30)
-	  cmplwi    r0, 0
-	  li        r3, 0
-	  ble-      .loc_0x164
-	  cmplwi    r0, 0x8
-	  subi      r0, r31, 0x8
-	  ble-      .loc_0x13C
-	  rlwinm    r0,r0,0,24,31
-	  b         .loc_0x130
+lbl_800AB190:
+	li       r0, 0
+	clrlwi   r29, r31, 0x18
+	stw      r0, 0x68(r30)
+	mr       r3, r29
+	mr       r4, r28
+	li       r5, 0
+	stw      r0, 0x6c(r30)
+	stw      r0, 0x78(r30)
+	bl       __nwa__FUlP7JKRHeapi
+	stw      r3, 0x40(r30)
+	mr       r4, r28
+	slwi     r3, r29, 2
+	li       r5, 0
+	bl       __nwa__FUlP7JKRHeapi
+	mr       r0, r29
+	stw      r3, 0x44(r30)
+	cmplwi   r0, 0
+	li       r3, 0
+	ble      lbl_800AB28C
+	cmplwi   r0, 8
+	addi     r0, r31, -8
+	ble      lbl_800AB264
+	clrlwi   r0, r0, 0x18
+	b        lbl_800AB258
 
-	.loc_0xC8:
-	  lwz       r4, 0x44(r30)
-	  rlwinm    r12,r3,2,22,29
-	  li        r11, 0
-	  addi      r3, r3, 0x8
-	  stwx      r11, r4, r12
-	  addi      r4, r12, 0x4
-	  addi      r9, r12, 0x8
-	  addi      r8, r12, 0xC
-	  lwz       r10, 0x44(r30)
-	  addi      r7, r12, 0x10
-	  addi      r6, r12, 0x14
-	  addi      r5, r12, 0x18
-	  stwx      r11, r10, r4
-	  addi      r4, r12, 0x1C
-	  lwz       r10, 0x44(r30)
-	  stwx      r11, r10, r9
-	  lwz       r9, 0x44(r30)
-	  stwx      r11, r9, r8
-	  lwz       r8, 0x44(r30)
-	  stwx      r11, r8, r7
-	  lwz       r7, 0x44(r30)
-	  stwx      r11, r7, r6
-	  lwz       r6, 0x44(r30)
-	  stwx      r11, r6, r5
-	  lwz       r5, 0x44(r30)
-	  stwx      r11, r5, r4
+lbl_800AB1F0:
+	lwz      r4, 0x44(r30)
+	rlwinm   r12, r3, 2, 0x16, 0x1d
+	li       r11, 0
+	addi     r3, r3, 8
+	stwx     r11, r4, r12
+	addi     r4, r12, 4
+	addi     r9, r12, 8
+	addi     r8, r12, 0xc
+	lwz      r10, 0x44(r30)
+	addi     r7, r12, 0x10
+	addi     r6, r12, 0x14
+	addi     r5, r12, 0x18
+	stwx     r11, r10, r4
+	addi     r4, r12, 0x1c
+	lwz      r10, 0x44(r30)
+	stwx     r11, r10, r9
+	lwz      r9, 0x44(r30)
+	stwx     r11, r9, r8
+	lwz      r8, 0x44(r30)
+	stwx     r11, r8, r7
+	lwz      r7, 0x44(r30)
+	stwx     r11, r7, r6
+	lwz      r6, 0x44(r30)
+	stwx     r11, r6, r5
+	lwz      r5, 0x44(r30)
+	stwx     r11, r5, r4
 
-	.loc_0x130:
-	  rlwinm    r4,r3,0,24,31
-	  cmplw     r4, r0
-	  blt+      .loc_0xC8
+lbl_800AB258:
+	clrlwi   r4, r3, 0x18
+	cmplw    r4, r0
+	blt      lbl_800AB1F0
 
-	.loc_0x13C:
-	  rlwinm    r0,r31,0,24,31
-	  li        r6, 0
-	  b         .loc_0x158
+lbl_800AB264:
+	clrlwi   r0, r31, 0x18
+	li       r6, 0
+	b        lbl_800AB280
 
-	.loc_0x148:
-	  lwz       r5, 0x44(r30)
-	  rlwinm    r4,r3,2,22,29
-	  addi      r3, r3, 0x1
-	  stwx      r6, r5, r4
+lbl_800AB270:
+	lwz      r5, 0x44(r30)
+	rlwinm   r4, r3, 2, 0x16, 0x1d
+	addi     r3, r3, 1
+	stwx     r6, r5, r4
 
-	.loc_0x158:
-	  rlwinm    r4,r3,0,24,31
-	  cmplw     r4, r0
-	  blt+      .loc_0x148
+lbl_800AB280:
+	clrlwi   r4, r3, 0x18
+	cmplw    r4, r0
+	blt      lbl_800AB270
 
-	.loc_0x164:
-	  lwz       r0, 0x24(r1)
-	  mr        r3, r30
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_800AB28C:
+	lwz      r0, 0x24(r1)
+	mr       r3, r30
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -304,25 +359,24 @@ void JAIAnimeSound::initActorAnimSound(JAIAnimeSoundData*, unsigned long, float,
 void JAIAnimeSound::checkLoopStartCount(float)
 {
 	/*
-	.loc_0x0:
-	  lwz       r5, 0x78(r3)
-	  li        r3, 0
-	  li        r4, 0
-	  lhz       r0, 0x0(r5)
-	  mtctr     r0
-	  cmplwi    r0, 0
-	  blelr-
+	lwz      r5, 0x78(r3)
+	li       r3, 0
+	li       r4, 0
+	lhz      r0, 0(r5)
+	mtctr    r0
+	cmplwi   r0, 0
+	blelr
 
-	.loc_0x1C:
-	  addi      r0, r4, 0xC
-	  lfsx      f0, r5, r0
-	  fcmpo     cr0, f0, f1
-	  cror      2, 0x1, 0x2
-	  beqlr-
-	  addi      r4, r4, 0x20
-	  addi      r3, r3, 0x1
-	  bdnz+     .loc_0x1C
-	  blr
+lbl_800AB460:
+	addi     r0, r4, 0xc
+	lfsx     f0, r5, r0
+	fcmpo    cr0, f0, f1
+	cror     2, 1, 2
+	beqlr
+	addi     r4, r4, 0x20
+	addi     r3, r3, 1
+	bdnz     lbl_800AB460
+	blr
 	*/
 }
 
@@ -334,29 +388,28 @@ void JAIAnimeSound::checkLoopStartCount(float)
 void JAIAnimeSound::checkLoopEndCount(float)
 {
 	/*
-	.loc_0x0:
-	  lwz       r5, 0x78(r3)
-	  li        r3, 0
-	  li        r4, 0
-	  lhz       r6, 0x0(r5)
-	  mtctr     r6
-	  cmplwi    r6, 0
-	  ble-      .loc_0x38
+	lwz      r5, 0x78(r3)
+	li       r3, 0
+	li       r4, 0
+	lhz      r6, 0(r5)
+	mtctr    r6
+	cmplwi   r6, 0
+	ble      lbl_800AB4BC
 
-	.loc_0x1C:
-	  addi      r0, r4, 0xC
-	  lfsx      f0, r5, r0
-	  fcmpo     cr0, f0, f1
-	  bgt-      .loc_0x38
-	  addi      r4, r4, 0x20
-	  addi      r3, r3, 0x1
-	  bdnz+     .loc_0x1C
+lbl_800AB4A0:
+	addi     r0, r4, 0xc
+	lfsx     f0, r5, r0
+	fcmpo    cr0, f0, f1
+	bgt      lbl_800AB4BC
+	addi     r4, r4, 0x20
+	addi     r3, r3, 1
+	bdnz     lbl_800AB4A0
 
-	.loc_0x38:
-	  cmplwi    r3, 0
-	  bnelr-
-	  mr        r3, r6
-	  blr
+lbl_800AB4BC:
+	cmplwi   r3, 0
+	bnelr
+	mr       r3, r6
+	blr
 	*/
 }
 
@@ -852,189 +905,188 @@ void JAIAnimeSound::setAnimSoundActor(JAInter::Actor*, float, float,
 void JAIAnimeSound::playActorAnimSound(JAInter::Actor*, float, unsigned char)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x50(r1)
-	  mflr      r0
-	  stw       r0, 0x54(r1)
-	  stfd      f31, 0x40(r1)
-	  psq_st    f31,0x48(r1),0,0
-	  stmw      r27, 0x2C(r1)
-	  lwz       r0, 0x68(r3)
-	  mr        r29, r3
-	  lwz       r6, 0x78(r3)
-	  fmr       f31, f1
-	  rlwinm    r3,r0,5,0,26
-	  lbz       r9, 0x19(r29)
-	  addi      r31, r3, 0x8
-	  mr        r7, r5
-	  add       r31, r6, r31
-	  li        r8, 0
-	  li        r3, 0x1
-	  b         .loc_0xCC
+	stwu     r1, -0x50(r1)
+	mflr     r0
+	stw      r0, 0x54(r1)
+	stfd     f31, 0x40(r1)
+	psq_st   f31, 72(r1), 0, qr0
+	stmw     r27, 0x2c(r1)
+	lwz      r0, 0x68(r3)
+	mr       r29, r3
+	lwz      r6, 0x78(r3)
+	fmr      f31, f1
+	slwi     r3, r0, 5
+	lbz      r9, 0x19(r29)
+	addi     r31, r3, 8
+	mr       r7, r5
+	add      r31, r6, r31
+	li       r8, 0
+	li       r3, 1
+	b        lbl_800ABA9C
 
-	.loc_0x48:
-	  lwz       r6, 0x40(r29)
-	  rlwinm    r10,r8,0,24,31
-	  lbzx      r0, r6, r10
-	  cmplwi    r0, 0
-	  beq-      .loc_0xB8
-	  lwz       r5, 0x1C(r29)
-	  rlwinm    r11,r10,2,0,29
-	  lwzx      r12, r5, r11
-	  cmplwi    r12, 0
-	  beq-      .loc_0x84
-	  li        r0, 0
-	  stbx      r0, r6, r10
-	  lwz       r3, 0x44(r29)
-	  stwx      r0, r3, r11
-	  b         .loc_0xD8
+lbl_800ABA18:
+	lwz      r6, 0x40(r29)
+	clrlwi   r10, r8, 0x18
+	lbzx     r0, r6, r10
+	cmplwi   r0, 0
+	beq      lbl_800ABA88
+	lwz      r5, 0x1c(r29)
+	slwi     r11, r10, 2
+	lwzx     r12, r5, r11
+	cmplwi   r12, 0
+	beq      lbl_800ABA54
+	li       r0, 0
+	stbx     r0, r6, r10
+	lwz      r3, 0x44(r29)
+	stwx     r0, r3, r11
+	b        lbl_800ABAA8
 
-	.loc_0x84:
-	  lwz       r5, 0x0(r31)
-	  lwz       r0, 0x20(r12)
-	  cmplw     r5, r0
-	  beq-      .loc_0x9C
-	  addi      r8, r8, 0x1
-	  b         .loc_0xCC
+lbl_800ABA54:
+	lwz      r5, 0(r31)
+	lwz      r0, 0x20(r12)
+	cmplw    r5, r0
+	beq      lbl_800ABA6C
+	addi     r8, r8, 1
+	b        lbl_800ABA9C
 
-	.loc_0x9C:
-	  rlwinm.   r0,r5,0,20,21
-	  bne-      .loc_0xD8
-	  lwz       r3, 0x68(r29)
-	  lwz       r0, 0x5C(r29)
-	  add       r0, r3, r0
-	  stw       r0, 0x68(r29)
-	  b         .loc_0x264
+lbl_800ABA6C:
+	rlwinm.  r0, r5, 0, 0x14, 0x15
+	bne      lbl_800ABAA8
+	lwz      r3, 0x68(r29)
+	lwz      r0, 0x5c(r29)
+	add      r0, r3, r0
+	stw      r0, 0x68(r29)
+	b        lbl_800ABC34
 
-	.loc_0xB8:
-	  lwz       r5, 0x20(r29)
-	  slw       r0, r3, r10
-	  and.      r0, r5, r0
-	  beq-      .loc_0xD8
-	  addi      r8, r8, 0x1
+lbl_800ABA88:
+	lwz      r5, 0x20(r29)
+	slw      r0, r3, r10
+	and.     r0, r5, r0
+	beq      lbl_800ABAA8
+	addi     r8, r8, 1
 
-	.loc_0xCC:
-	  rlwinm    r0,r8,0,24,31
-	  cmplw     r0, r9
-	  blt+      .loc_0x48
+lbl_800ABA9C:
+	clrlwi   r0, r8, 0x18
+	cmplw    r0, r9
+	blt      lbl_800ABA18
 
-	.loc_0xD8:
-	  lbz       r0, 0x19(r29)
-	  rlwinm    r3,r8,0,24,31
-	  cmplw     r3, r0
-	  beq-      .loc_0x254
-	  lwz       r5, 0x10(r31)
-	  rlwinm.   r0,r5,0,28,28
-	  beq-      .loc_0x104
-	  lwz       r3, 0x6C(r29)
-	  lbz       r0, 0x16(r31)
-	  cmplw     r3, r0
-	  bne-      .loc_0x254
+lbl_800ABAA8:
+	lbz      r0, 0x19(r29)
+	clrlwi   r3, r8, 0x18
+	cmplw    r3, r0
+	beq      lbl_800ABC24
+	lwz      r5, 0x10(r31)
+	rlwinm.  r0, r5, 0, 0x1c, 0x1c
+	beq      lbl_800ABAD4
+	lwz      r3, 0x6c(r29)
+	lbz      r0, 0x16(r31)
+	cmplw    r3, r0
+	bne      lbl_800ABC24
 
-	.loc_0x104:
-	  lwz       r3, 0x5C(r29)
-	  cmplwi    r3, 0x1
-	  bne-      .loc_0x118
-	  rlwinm.   r0,r5,0,30,30
-	  beq-      .loc_0x12C
+lbl_800ABAD4:
+	lwz      r3, 0x5c(r29)
+	cmplwi   r3, 1
+	bne      lbl_800ABAE8
+	rlwinm.  r0, r5, 0, 0x1e, 0x1e
+	beq      lbl_800ABAFC
 
-	.loc_0x118:
-	  addis     r0, r3, 0x1
-	  cmplwi    r0, 0xFFFF
-	  bne-      .loc_0x254
-	  rlwinm.   r0,r5,0,31,31
-	  bne-      .loc_0x254
+lbl_800ABAE8:
+	addis    r0, r3, 1
+	cmplwi   r0, 0xffff
+	bne      lbl_800ABC24
+	clrlwi.  r0, r5, 0x1f
+	bne      lbl_800ABC24
 
-	.loc_0x12C:
-	  lwz       r12, 0x0(r29)
-	  mr        r6, r4
-	  lwz       r0, 0x1C(r29)
-	  rlwinm    r28,r8,2,22,29
-	  lwz       r12, 0x40(r12)
-	  mr        r3, r29
-	  add       r30, r0, r28
-	  rlwinm    r27,r8,0,24,31
-	  mr        r5, r30
-	  lwz       r4, 0x0(r31)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x0(r30)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x254
-	  lwz       r3, 0x44(r29)
-	  lis       r0, 0x4330
-	  li        r6, 0x1
-	  stw       r0, 0x8(r1)
-	  lfd       f2, -0x7470(r2)
-	  li        r4, 0
-	  stwx      r31, r3, r28
-	  li        r5, 0x5
-	  lfs       f0, -0x7480(r2)
-	  lwz       r3, 0x40(r29)
-	  stbx      r6, r3, r27
-	  lbz       r0, 0x14(r31)
-	  lwz       r3, 0x0(r30)
-	  stw       r0, 0xC(r1)
-	  lwz       r12, 0x10(r3)
-	  lfd       f1, 0x8(r1)
-	  lwz       r12, 0x1C(r12)
-	  fsubs     f1, f1, f2
-	  fdivs     f1, f1, f0
-	  mtctr     r12
-	  bctrl
-	  lbz       r3, 0x15(r31)
-	  lis       r0, 0x4330
-	  lfs       f0, -0x747C(r2)
-	  li        r4, 0
-	  extsb     r5, r3
-	  lwz       r3, 0x0(r30)
-	  xoris     r5, r5, 0x8000
-	  stw       r0, 0x10(r1)
-	  lwz       r12, 0x10(r3)
-	  fsubs     f2, f31, f0
-	  stw       r5, 0x14(r1)
-	  li        r5, 0x5
-	  lfd       f3, -0x7468(r2)
-	  lfd       f0, 0x10(r1)
-	  lfs       f1, -0x7478(r2)
-	  fsubs     f3, f0, f3
-	  lfs       f0, 0xC(r31)
-	  lwz       r12, 0x2C(r12)
-	  fmuls     f2, f3, f2
-	  fmadds    f1, f2, f1, f0
-	  mtctr     r12
-	  bctrl
-	  lbz       r5, 0x17(r31)
-	  lis       r0, 0x4330
-	  lwz       r3, 0x0(r30)
-	  li        r4, 0
-	  stw       r5, 0x1C(r1)
-	  li        r5, 0x5
-	  lwz       r12, 0x10(r3)
-	  stw       r0, 0x18(r1)
-	  lfd       f2, -0x7470(r2)
-	  lfd       f1, 0x18(r1)
-	  lfs       f0, -0x7480(r2)
-	  fsubs     f1, f1, f2
-	  lwz       r12, 0x24(r12)
-	  fdivs     f1, f1, f0
-	  mtctr     r12
-	  bctrl
+lbl_800ABAFC:
+	lwz      r12, 0(r29)
+	mr       r6, r4
+	lwz      r0, 0x1c(r29)
+	rlwinm   r28, r8, 2, 0x16, 0x1d
+	lwz      r12, 0x40(r12)
+	mr       r3, r29
+	add      r30, r0, r28
+	clrlwi   r27, r8, 0x18
+	mr       r5, r30
+	lwz      r4, 0(r31)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0(r30)
+	cmplwi   r0, 0
+	beq      lbl_800ABC24
+	lwz      r3, 0x44(r29)
+	lis      r0, 0x4330
+	li       r6, 1
+	stw      r0, 8(r1)
+	lfd      f2, lbl_80516EF0@sda21(r2)
+	li       r4, 0
+	stwx     r31, r3, r28
+	li       r5, 5
+	lfs      f0, lbl_80516EE0@sda21(r2)
+	lwz      r3, 0x40(r29)
+	stbx     r6, r3, r27
+	lbz      r0, 0x14(r31)
+	lwz      r3, 0(r30)
+	stw      r0, 0xc(r1)
+	lwz      r12, 0x10(r3)
+	lfd      f1, 8(r1)
+	lwz      r12, 0x1c(r12)
+	fsubs    f1, f1, f2
+	fdivs    f1, f1, f0
+	mtctr    r12
+	bctrl
+	lbz      r3, 0x15(r31)
+	lis      r0, 0x4330
+	lfs      f0, lbl_80516EE4@sda21(r2)
+	li       r4, 0
+	extsb    r5, r3
+	lwz      r3, 0(r30)
+	xoris    r5, r5, 0x8000
+	stw      r0, 0x10(r1)
+	lwz      r12, 0x10(r3)
+	fsubs    f2, f31, f0
+	stw      r5, 0x14(r1)
+	li       r5, 5
+	lfd      f3, lbl_80516EF8@sda21(r2)
+	lfd      f0, 0x10(r1)
+	lfs      f1, lbl_80516EE8@sda21(r2)
+	fsubs    f3, f0, f3
+	lfs      f0, 0xc(r31)
+	lwz      r12, 0x2c(r12)
+	fmuls    f2, f3, f2
+	fmadds   f1, f2, f1, f0
+	mtctr    r12
+	bctrl
+	lbz      r5, 0x17(r31)
+	lis      r0, 0x4330
+	lwz      r3, 0(r30)
+	li       r4, 0
+	stw      r5, 0x1c(r1)
+	li       r5, 5
+	lwz      r12, 0x10(r3)
+	stw      r0, 0x18(r1)
+	lfd      f2, lbl_80516EF0@sda21(r2)
+	lfd      f1, 0x18(r1)
+	lfs      f0, lbl_80516EE0@sda21(r2)
+	fsubs    f1, f1, f2
+	lwz      r12, 0x24(r12)
+	fdivs    f1, f1, f0
+	mtctr    r12
+	bctrl
 
-	.loc_0x254:
-	  lwz       r3, 0x68(r29)
-	  lwz       r0, 0x5C(r29)
-	  add       r0, r3, r0
-	  stw       r0, 0x68(r29)
+lbl_800ABC24:
+	lwz      r3, 0x68(r29)
+	lwz      r0, 0x5c(r29)
+	add      r0, r3, r0
+	stw      r0, 0x68(r29)
 
-	.loc_0x264:
-	  psq_l     f31,0x48(r1),0,0
-	  lfd       f31, 0x40(r1)
-	  lmw       r27, 0x2C(r1)
-	  lwz       r0, 0x54(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x50
-	  blr
+lbl_800ABC34:
+	psq_l    f31, 72(r1), 0, qr0
+	lfd      f31, 0x40(r1)
+	lmw      r27, 0x2c(r1)
+	lwz      r0, 0x54(r1)
+	mtlr     r0
+	addi     r1, r1, 0x50
+	blr
 	*/
 }
 
@@ -1178,33 +1230,32 @@ void JAIAnimeSound::setSpeedModifySound(JAISound*, JAIAnimeFrameSoundData*,
 JAIAnimeSound::~JAIAnimeSound()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x44
-	  lis       r5, 0x804A
-	  li        r4, 0
-	  addi      r0, r5, 0x6200
-	  stw       r0, 0x0(r30)
-	  bl        0xDDD8
-	  extsh.    r0, r31
-	  ble-      .loc_0x44
-	  mr        r3, r30
-	  bl        -0x87D64
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_800ABE1C
+	lis      r5, __vt__13JAIAnimeSound@ha
+	li       r4, 0
+	addi     r0, r5, __vt__13JAIAnimeSound@l
+	stw      r0, 0(r30)
+	bl       __dt__Q27JAInter6ObjectFv
+	extsh.   r0, r31
+	ble      lbl_800ABE1C
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x44:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_800ABE1C:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 

@@ -1,6 +1,48 @@
 #include "types.h"
 
 /*
+    Generated from dpostproc
+
+    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
+    .4byte __sinit_JKRDvdFile_cpp
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_80473608
+    lbl_80473608:
+        .4byte 0x4A4B5244
+        .4byte 0x76644669
+        .4byte 0x6C652E63
+        .4byte 0x70700000
+    .global lbl_80473618
+    lbl_80473618:
+        .4byte 0x63616E6E
+        .4byte 0x6F742063
+        .4byte 0x6C6F7365
+        .4byte 0x20445644
+        .4byte 0x2066696C
+        .4byte 0x650A0000
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__10JKRDvdFile
+    __vt__10JKRDvdFile:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__10JKRDvdFileFv
+        .4byte open__10JKRDvdFileFPCc
+        .4byte close__10JKRDvdFileFv
+        .4byte readData__10JKRDvdFileFPvll
+        .4byte writeData__10JKRDvdFileFPCvll
+        .4byte getFileSize__10JKRDvdFileCFv
+        .4byte open__10JKRDvdFileFl
+        .4byte 0
+
+    .section .bss  # 0x804EFC20 - 0x8051467C
+    .global sDvdList__10JKRDvdFile
+    sDvdList__10JKRDvdFile:
+        .skip 0xC
+*/
+
+/*
  * --INFO--
  * Address:	8001D0B8
  * Size:	000074
@@ -8,36 +50,35 @@
 JKRDvdFile::JKRDvdFile()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  mr        r0, r30
-	  mr        r31, r0
-	  bl        -0x10C
-	  lis       r4, 0x804A
-	  lis       r3, 0x804A
-	  subi      r0, r4, 0x458
-	  li        r5, 0
-	  stw       r0, 0x0(r31)
-	  subi      r0, r3, 0x298
-	  mr        r4, r30
-	  addi      r3, r30, 0xE4
-	  stb       r5, 0x18(r31)
-	  stw       r0, 0x0(r30)
-	  bl        0x96B4
-	  mr        r3, r30
-	  bl        0x21C
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	stw      r30, 8(r1)
+	mr       r30, r3
+	mr       r0, r30
+	mr       r31, r0
+	bl       __ct__11JKRDisposerFv
+	lis      r4, __vt__7JKRFile@ha
+	lis      r3, __vt__10JKRDvdFile@ha
+	addi     r0, r4, __vt__7JKRFile@l
+	li       r5, 0
+	stw      r0, 0(r31)
+	addi     r0, r3, __vt__10JKRDvdFile@l
+	mr       r4, r30
+	addi     r3, r30, 0xe4
+	stb      r5, 0x18(r31)
+	stw      r0, 0(r30)
+	bl       __ct__10JSUPtrLinkFPv
+	mr       r3, r30
+	bl       initiate__10JKRDvdFileFv
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -49,55 +90,54 @@ JKRDvdFile::JKRDvdFile()
 JKRDvdFile::JKRDvdFile(const char*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r4
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  mr        r0, r29
-	  mr        r30, r0
-	  bl        -0x188
-	  lis       r4, 0x804A
-	  lis       r3, 0x804A
-	  subi      r0, r4, 0x458
-	  li        r5, 0
-	  stw       r0, 0x0(r30)
-	  subi      r0, r3, 0x298
-	  mr        r4, r29
-	  addi      r3, r29, 0xE4
-	  stb       r5, 0x18(r30)
-	  stw       r0, 0x0(r29)
-	  bl        0x9638
-	  mr        r3, r29
-	  bl        0x1A0
-	  mr        r3, r29
-	  mr        r4, r31
-	  lwz       r12, 0x0(r29)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  stb       r3, 0x18(r29)
-	  lbz       r0, 0x18(r29)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x90
-	  mr        r3, r29
-	  b         .loc_0x94
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r4
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	mr       r0, r29
+	mr       r30, r0
+	bl       __ct__11JKRDisposerFv
+	lis      r4, __vt__7JKRFile@ha
+	lis      r3, __vt__10JKRDvdFile@ha
+	addi     r0, r4, __vt__7JKRFile@l
+	li       r5, 0
+	stw      r0, 0(r30)
+	addi     r0, r3, __vt__10JKRDvdFile@l
+	mr       r4, r29
+	addi     r3, r29, 0xe4
+	stb      r5, 0x18(r30)
+	stw      r0, 0(r29)
+	bl       __ct__10JSUPtrLinkFPv
+	mr       r3, r29
+	bl       initiate__10JKRDvdFileFv
+	mr       r3, r29
+	mr       r4, r31
+	lwz      r12, 0(r29)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	stb      r3, 0x18(r29)
+	lbz      r0, 0x18(r29)
+	cmplwi   r0, 0
+	beq      lbl_8001D1BC
+	mr       r3, r29
+	b        lbl_8001D1C0
 
-	.loc_0x90:
-	  mr        r3, r29
+lbl_8001D1BC:
+	mr       r3, r29
 
-	.loc_0x94:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8001D1C0:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -109,55 +149,54 @@ JKRDvdFile::JKRDvdFile(const char*)
 JKRDvdFile::JKRDvdFile(long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r4
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  mr        r0, r29
-	  mr        r30, r0
-	  bl        -0x238
-	  lis       r4, 0x804A
-	  lis       r3, 0x804A
-	  subi      r0, r4, 0x458
-	  li        r5, 0
-	  stw       r0, 0x0(r30)
-	  subi      r0, r3, 0x298
-	  mr        r4, r29
-	  addi      r3, r29, 0xE4
-	  stb       r5, 0x18(r30)
-	  stw       r0, 0x0(r29)
-	  bl        0x9588
-	  mr        r3, r29
-	  bl        0xF0
-	  mr        r3, r29
-	  mr        r4, r31
-	  lwz       r12, 0x0(r29)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  stb       r3, 0x18(r29)
-	  lbz       r0, 0x18(r29)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x90
-	  mr        r3, r29
-	  b         .loc_0x94
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r4
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	mr       r0, r29
+	mr       r30, r0
+	bl       __ct__11JKRDisposerFv
+	lis      r4, __vt__7JKRFile@ha
+	lis      r3, __vt__10JKRDvdFile@ha
+	addi     r0, r4, __vt__7JKRFile@l
+	li       r5, 0
+	stw      r0, 0(r30)
+	addi     r0, r3, __vt__10JKRDvdFile@l
+	mr       r4, r29
+	addi     r3, r29, 0xe4
+	stb      r5, 0x18(r30)
+	stw      r0, 0(r29)
+	bl       __ct__10JSUPtrLinkFPv
+	mr       r3, r29
+	bl       initiate__10JKRDvdFileFv
+	mr       r3, r29
+	mr       r4, r31
+	lwz      r12, 0(r29)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	stb      r3, 0x18(r29)
+	lbz      r0, 0x18(r29)
+	cmplwi   r0, 0
+	beq      lbl_8001D26C
+	mr       r3, r29
+	b        lbl_8001D270
 
-	.loc_0x90:
-	  mr        r3, r29
+lbl_8001D26C:
+	mr       r3, r29
 
-	.loc_0x94:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8001D270:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -169,52 +208,51 @@ JKRDvdFile::JKRDvdFile(long)
 JKRDvdFile::~JKRDvdFile()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x80
-	  lis       r4, 0x804A
-	  subi      r0, r4, 0x298
-	  stw       r0, 0x0(r30)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  addic.    r0, r30, 0xE4
-	  beq-      .loc_0x50
-	  addi      r3, r30, 0xE4
-	  li        r4, 0
-	  bl        0x94F8
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_8001D30C
+	lis      r4, __vt__10JKRDvdFile@ha
+	addi     r0, r4, __vt__10JKRDvdFile@l
+	stw      r0, 0(r30)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	addic.   r0, r30, 0xe4
+	beq      lbl_8001D2DC
+	addi     r3, r30, 0xe4
+	li       r4, 0
+	bl       __dt__10JSUPtrLinkFv
 
-	.loc_0x50:
-	  cmplwi    r30, 0
-	  beq-      .loc_0x70
-	  lis       r4, 0x804A
-	  mr        r3, r30
-	  subi      r0, r4, 0x458
-	  li        r4, 0
-	  stw       r0, 0x0(r30)
-	  bl        -0x2C4
+lbl_8001D2DC:
+	cmplwi   r30, 0
+	beq      lbl_8001D2FC
+	lis      r4, __vt__7JKRFile@ha
+	mr       r3, r30
+	addi     r0, r4, __vt__7JKRFile@l
+	li       r4, 0
+	stw      r0, 0(r30)
+	bl       __dt__11JKRDisposerFv
 
-	.loc_0x70:
-	  extsh.    r0, r31
-	  ble-      .loc_0x80
-	  mr        r3, r30
-	  bl        0x6DAC
+lbl_8001D2FC:
+	extsh.   r0, r31
+	ble      lbl_8001D30C
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x80:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8001D30C:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -226,34 +264,33 @@ JKRDvdFile::~JKRDvdFile()
 void JKRDvdFile::initiate()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  stw       r31, 0x98(r3)
-	  addi      r3, r31, 0x1C
-	  bl        0xD27EC
-	  addi      r3, r31, 0x34
-	  bl        0xD27E4
-	  addi      r3, r31, 0xC0
-	  addi      r4, r31, 0xE0
-	  li        r5, 0x1
-	  bl        0xD2160
-	  addi      r3, r31, 0x9C
-	  addi      r4, r31, 0xBC
-	  li        r5, 0x1
-	  bl        0xD2150
-	  li        r0, 0
-	  stw       r0, 0xF4(r31)
-	  stw       r0, 0x50(r31)
-	  stw       r0, 0x58(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	stw      r31, 0x98(r3)
+	addi     r3, r31, 0x1c
+	bl       OSInitMutex
+	addi     r3, r31, 0x34
+	bl       OSInitMutex
+	addi     r3, r31, 0xc0
+	addi     r4, r31, 0xe0
+	li       r5, 1
+	bl       OSInitMessageQueue
+	addi     r3, r31, 0x9c
+	addi     r4, r31, 0xbc
+	li       r5, 1
+	bl       OSInitMessageQueue
+	li       r0, 0
+	stw      r0, 0xf4(r31)
+	stw      r0, 0x50(r31)
+	stw      r0, 0x58(r31)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -265,39 +302,38 @@ void JKRDvdFile::initiate()
 void JKRDvdFile::open(const char*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lbz       r0, 0x18(r3)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x60
-	  mr        r3, r4
-	  addi      r4, r31, 0x5C
-	  bl        0xBF110
-	  neg       r0, r3
-	  or        r0, r0, r3
-	  rlwinm    r0,r0,1,31,31
-	  stb       r0, 0x18(r31)
-	  lbz       r0, 0x18(r31)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x60
-	  lis       r3, 0x8050
-	  addi      r4, r31, 0xE4
-	  addi      r3, r3, 0x6E00
-	  bl        0x94FC
-	  addi      r3, r31, 0x5C
-	  bl        0xC1974
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lbz      r0, 0x18(r3)
+	cmplwi   r0, 0
+	bne      lbl_8001D3F4
+	mr       r3, r4
+	addi     r4, r31, 0x5c
+	bl       DVDOpen
+	neg      r0, r3
+	or       r0, r0, r3
+	srwi     r0, r0, 0x1f
+	stb      r0, 0x18(r31)
+	lbz      r0, 0x18(r31)
+	cmplwi   r0, 0
+	beq      lbl_8001D3F4
+	lis      r3, sDvdList__10JKRDvdFile@ha
+	addi     r4, r31, 0xe4
+	addi     r3, r3, sDvdList__10JKRDvdFile@l
+	bl       append__10JSUPtrListFP10JSUPtrLink
+	addi     r3, r31, 0x5c
+	bl       DVDGetCommandBlockStatus
 
-	.loc_0x60:
-	  lwz       r0, 0x14(r1)
-	  lbz       r3, 0x18(r31)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8001D3F4:
+	lwz      r0, 0x14(r1)
+	lbz      r3, 0x18(r31)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -309,39 +345,38 @@ void JKRDvdFile::open(const char*)
 void JKRDvdFile::open(long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lbz       r0, 0x18(r3)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x60
-	  mr        r3, r4
-	  addi      r4, r31, 0x5C
-	  bl        0xBF024
-	  neg       r0, r3
-	  or        r0, r0, r3
-	  rlwinm    r0,r0,1,31,31
-	  stb       r0, 0x18(r31)
-	  lbz       r0, 0x18(r31)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x60
-	  lis       r3, 0x8050
-	  addi      r4, r31, 0xE4
-	  addi      r3, r3, 0x6E00
-	  bl        0x9484
-	  addi      r3, r31, 0x5C
-	  bl        0xC18FC
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lbz      r0, 0x18(r3)
+	cmplwi   r0, 0
+	bne      lbl_8001D46C
+	mr       r3, r4
+	addi     r4, r31, 0x5c
+	bl       DVDFastOpen
+	neg      r0, r3
+	or       r0, r0, r3
+	srwi     r0, r0, 0x1f
+	stb      r0, 0x18(r31)
+	lbz      r0, 0x18(r31)
+	cmplwi   r0, 0
+	beq      lbl_8001D46C
+	lis      r3, sDvdList__10JKRDvdFile@ha
+	addi     r4, r31, 0xe4
+	addi     r3, r3, sDvdList__10JKRDvdFile@l
+	bl       append__10JSUPtrListFP10JSUPtrLink
+	addi     r3, r31, 0x5c
+	bl       DVDGetCommandBlockStatus
 
-	.loc_0x60:
-	  lwz       r0, 0x14(r1)
-	  lbz       r3, 0x18(r31)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8001D46C:
+	lwz      r0, 0x14(r1)
+	lbz      r3, 0x18(r31)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -353,42 +388,41 @@ void JKRDvdFile::open(long)
 void JKRDvdFile::close()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lbz       r0, 0x18(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x68
-	  addi      r3, r31, 0x5C
-	  bl        0xBF0EC
-	  cmpwi     r3, 0
-	  beq-      .loc_0x4C
-	  li        r0, 0
-	  lis       r3, 0x8050
-	  stb       r0, 0x18(r31)
-	  addi      r3, r3, 0x6E00
-	  addi      r4, r31, 0xE4
-	  bl        0x975C
-	  b         .loc_0x68
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lbz      r0, 0x18(r3)
+	cmplwi   r0, 0
+	beq      lbl_8001D4EC
+	addi     r3, r31, 0x5c
+	bl       DVDClose
+	cmpwi    r3, 0
+	beq      lbl_8001D4D0
+	li       r0, 0
+	lis      r3, sDvdList__10JKRDvdFile@ha
+	stb      r0, 0x18(r31)
+	addi     r3, r3, sDvdList__10JKRDvdFile@l
+	addi     r4, r31, 0xe4
+	bl       remove__10JSUPtrListFP10JSUPtrLink
+	b        lbl_8001D4EC
 
-	.loc_0x4C:
-	  lis       r3, 0x8047
-	  lis       r5, 0x8047
-	  addi      r3, r3, 0x3608
-	  li        r4, 0xD5
-	  addi      r5, r5, 0x3618
-	  crclr     6, 0x6
-	  bl        0xD0284
+lbl_8001D4D0:
+	lis      r3, lbl_80473608@ha
+	lis      r5, lbl_80473618@ha
+	addi     r3, r3, lbl_80473608@l
+	li       r4, 0xd5
+	addi     r5, r5, lbl_80473618@l
+	crclr    6
+	bl       OSPanic
 
-	.loc_0x68:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8001D4EC:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -400,62 +434,61 @@ void JKRDvdFile::close()
 void JKRDvdFile::readData(void*, long, long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r6
-	  stw       r30, 0x18(r1)
-	  mr        r30, r5
-	  stw       r29, 0x14(r1)
-	  mr        r29, r4
-	  stw       r28, 0x10(r1)
-	  mr        r28, r3
-	  addi      r3, r28, 0x1C
-	  bl        0xD2638
-	  lwz       r0, 0xF4(r28)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x50
-	  addi      r3, r28, 0x1C
-	  bl        0xD2700
-	  li        r3, -0x1
-	  b         .loc_0xA4
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r6
+	stw      r30, 0x18(r1)
+	mr       r30, r5
+	stw      r29, 0x14(r1)
+	mr       r29, r4
+	stw      r28, 0x10(r1)
+	mr       r28, r3
+	addi     r3, r28, 0x1c
+	bl       OSLockMutex
+	lwz      r0, 0xf4(r28)
+	cmplwi   r0, 0
+	beq      lbl_8001D550
+	addi     r3, r28, 0x1c
+	bl       OSUnlockMutex
+	li       r3, -1
+	b        lbl_8001D5A4
 
-	.loc_0x50:
-	  bl        0xD4474
-	  lis       r4, 0x8002
-	  stw       r3, 0xF4(r28)
-	  subi      r7, r4, 0x29E0
-	  mr        r6, r31
-	  mr        r4, r29
-	  mr        r5, r30
-	  addi      r3, r28, 0x5C
-	  li        r31, -0x1
-	  li        r8, 0x2
-	  bl        0xBF418
-	  cmpwi     r3, 0
-	  beq-      .loc_0x90
-	  mr        r3, r28
-	  bl        0x44
-	  mr        r31, r3
+lbl_8001D550:
+	bl       OSGetCurrentThread
+	lis      r4, doneProcess__10JKRDvdFileFlP11DVDFileInfo@ha
+	stw      r3, 0xf4(r28)
+	addi     r7, r4, doneProcess__10JKRDvdFileFlP11DVDFileInfo@l
+	mr       r6, r31
+	mr       r4, r29
+	mr       r5, r30
+	addi     r3, r28, 0x5c
+	li       r31, -1
+	li       r8, 2
+	bl       DVDReadAsyncPrio
+	cmpwi    r3, 0
+	beq      lbl_8001D590
+	mr       r3, r28
+	bl       sync__10JKRDvdFileFv
+	mr       r31, r3
 
-	.loc_0x90:
-	  li        r0, 0
-	  addi      r3, r28, 0x1C
-	  stw       r0, 0xF4(r28)
-	  bl        0xD26A8
-	  mr        r3, r31
+lbl_8001D590:
+	li       r0, 0
+	addi     r3, r28, 0x1c
+	stw      r0, 0xf4(r28)
+	bl       OSUnlockMutex
+	mr       r3, r31
 
-	.loc_0xA4:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8001D5A4:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -474,28 +507,27 @@ s32 JKRDvdFile::writeData(const void*, long, long) { return -0x1; }
 void JKRDvdFile::sync()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r3
-	  addi      r3, r31, 0x1C
-	  bl        0xD2584
-	  addi      r3, r31, 0xC0
-	  addi      r4, r1, 0x8
-	  li        r5, 0x1
-	  bl        0xD1FF0
-	  li        r0, 0
-	  addi      r3, r31, 0x1C
-	  stw       r0, 0xF4(r31)
-	  bl        0xD2640
-	  lwz       r0, 0x24(r1)
-	  lwz       r3, 0x8(r1)
-	  lwz       r31, 0x1C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r3
+	addi     r3, r31, 0x1c
+	bl       OSLockMutex
+	addi     r3, r31, 0xc0
+	addi     r4, r1, 8
+	li       r5, 1
+	bl       OSReceiveMessage
+	li       r0, 0
+	addi     r3, r31, 0x1c
+	stw      r0, 0xf4(r31)
+	bl       OSUnlockMutex
+	lwz      r0, 0x24(r1)
+	lwz      r3, 8(r1)
+	lwz      r31, 0x1c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -507,19 +539,18 @@ void JKRDvdFile::sync()
 void JKRDvdFile::doneProcess(long, DVDFileInfo*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r5, 0
-	  stw       r0, 0x14(r1)
-	  lwz       r6, 0x3C(r4)
-	  mr        r4, r3
-	  addi      r3, r6, 0xC0
-	  bl        0xD1EE0
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	li       r5, 0
+	stw      r0, 0x14(r1)
+	lwz      r6, 0x3c(r4)
+	mr       r4, r3
+	addi     r3, r6, 0xc0
+	bl       OSSendMessage
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -531,9 +562,8 @@ void JKRDvdFile::doneProcess(long, DVDFileInfo*)
 void JKRDvdFile::getFileSize() const
 {
 	/*
-	.loc_0x0:
-	  lwz       r3, 0x90(r3)
-	  blr
+	lwz      r3, 0x90(r3)
+	blr
 	*/
 }
 
@@ -545,24 +575,23 @@ void JKRDvdFile::getFileSize() const
 void __sinit_JKRDvdFile_cpp(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r3, 0x8050
-	  stw       r0, 0x14(r1)
-	  addi      r3, r3, 0x6E00
-	  bl        0x9264
-	  lis       r3, 0x8050
-	  lis       r4, 0x8002
-	  lis       r5, 0x804F
-	  addi      r3, r3, 0x6E00
-	  subi      r4, r4, 0x2964
-	  subi      r5, r5, 0xC0
-	  bl        0xA4078
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lis      r3, sDvdList__10JKRDvdFile@ha
+	stw      r0, 0x14(r1)
+	addi     r3, r3, sDvdList__10JKRDvdFile@l
+	bl       initiate__10JSUPtrListFv
+	lis      r3, sDvdList__10JKRDvdFile@ha
+	lis      r4, "__dt__21JSUList<10JKRDvdFile>Fv"@ha
+	lis      r5, lbl_804EFF40@ha
+	addi     r3, r3, sDvdList__10JKRDvdFile@l
+	addi     r4, r4, "__dt__21JSUList<10JKRDvdFile>Fv"@l
+	addi     r5, r5, lbl_804EFF40@l
+	bl       __register_global_object
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -574,29 +603,28 @@ void __sinit_JKRDvdFile_cpp(void)
 void JSUList<JKRDvdFile>::~JSUList()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x38
-	  li        r4, 0
-	  bl        0x91A8
-	  extsh.    r0, r31
-	  ble-      .loc_0x38
-	  mr        r3, r30
-	  bl        0x69E4
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_8001D6D4
+	li       r4, 0
+	bl       __dt__10JSUPtrListFv
+	extsh.   r0, r31
+	ble      lbl_8001D6D4
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x38:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8001D6D4:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }

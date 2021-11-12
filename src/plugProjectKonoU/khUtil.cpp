@@ -1,5 +1,63 @@
 #include "types.h"
 
+/*
+    Generated from dpostproc
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_80498CB0
+    lbl_80498CB0:
+        .asciz "khUtil.cpp"
+        .skip 1
+    .global lbl_80498CBC
+    lbl_80498CBC:
+        .asciz "P2Assert"
+        .skip 3
+    .global lbl_80498CC8
+    lbl_80498CC8:
+        .asciz "khUtil.h"
+        .skip 7
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__Q32kh6Screen14khUtilColorAnm
+    __vt__Q32kh6Screen14khUtilColorAnm:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q32kh6Screen14khUtilColorAnmFv
+        .4byte getChildCount__5CNodeFv
+        .4byte update__Q32kh6Screen14khUtilColorAnmFv
+        .4byte draw__Q29P2DScreen4NodeFR8GraphicsR14J2DGrafContext
+        .4byte doInit__Q29P2DScreen4NodeFv
+        .4byte do_update__Q32kh6Screen14khUtilColorAnmFv
+    .global __vt__Q32kh6Screen14khUtilFadePane
+    __vt__Q32kh6Screen14khUtilFadePane:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q32kh6Screen14khUtilFadePaneFv
+        .4byte getChildCount__5CNodeFv
+        .4byte update__Q32kh6Screen14khUtilFadePaneFv
+        .4byte draw__Q29P2DScreen4NodeFR8GraphicsR14J2DGrafContext
+        .4byte doInit__Q29P2DScreen4NodeFv
+        .4byte fadein_finish__Q32kh6Screen14khUtilFadePaneFv
+        .4byte fadeout_finish__Q32kh6Screen14khUtilFadePaneFv
+        .4byte 0
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_80520180
+    lbl_80520180:
+        .float 0.25
+    .global lbl_80520184
+    lbl_80520184:
+        .float 1.0
+    .global lbl_80520188
+    lbl_80520188:
+        .4byte 0x43300000
+        .4byte 0x80000000
+    .global lbl_80520190
+    lbl_80520190:
+        .4byte 0x43300000
+        .4byte 0x00000000
+*/
+
 namespace kh {
 
 namespace Screen {
@@ -12,26 +70,25 @@ namespace Screen {
 	void getSerialTagName(unsigned long long, int)
 	{
 		/*
-		.loc_0x0:
-		  lis       r6, 0x6666
-		  addi      r0, r6, 0x6667
-		  mulhw     r8, r0, r5
-		  srawi     r0, r8, 0x2
-		  rlwinm    r6,r0,1,31,31
-		  add       r0, r0, r6
-		  mulli     r0, r0, 0xA
-		  sub       r7, r5, r0
-		  srawi     r6, r7, 0x1F
-		  srawi     r0, r8, 0x2
-		  rlwinm    r5,r0,1,31,31
-		  add       r0, r0, r5
-		  rlwinm    r5,r0,8,0,23
-		  srawi     r0, r5, 0x1F
-		  addc      r4, r4, r5
-		  adde      r0, r3, r0
-		  addc      r4, r7, r4
-		  adde      r3, r6, r0
-		  blr
+	lis      r6, 0x66666667@ha
+	addi     r0, r6, 0x66666667@l
+	mulhw    r8, r0, r5
+	srawi    r0, r8, 2
+	srwi     r6, r0, 0x1f
+	add      r0, r0, r6
+	mulli    r0, r0, 0xa
+	subf     r7, r0, r5
+	srawi    r6, r7, 0x1f
+	srawi    r0, r8, 2
+	srwi     r5, r0, 0x1f
+	add      r0, r0, r5
+	slwi     r5, r0, 8
+	srawi    r0, r5, 0x1f
+	addc     r4, r4, r5
+	adde     r0, r3, r0
+	addc     r4, r7, r4
+	adde     r3, r6, r0
+	blr
 		*/
 	}
 
@@ -43,27 +100,26 @@ namespace Screen {
 	void setTex(J2DScreen*, unsigned long long, const ResTIMG*)
 	{
 		/*
-		.loc_0x0:
-		  stwu      r1, -0x10(r1)
-		  mflr      r0
-		  stw       r0, 0x14(r1)
-		  stw       r31, 0xC(r1)
-		  mr        r31, r7
-		  lwz       r12, 0x0(r3)
-		  lwz       r12, 0x3C(r12)
-		  mtctr     r12
-		  bctrl
-		  lwz       r12, 0x0(r3)
-		  mr        r4, r31
-		  li        r5, 0
-		  lwz       r12, 0x110(r12)
-		  mtctr     r12
-		  bctrl
-		  lwz       r0, 0x14(r1)
-		  lwz       r31, 0xC(r1)
-		  mtlr      r0
-		  addi      r1, r1, 0x10
-		  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r7
+	lwz      r12, 0(r3)
+	lwz      r12, 0x3c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r12, 0(r3)
+	mr       r4, r31
+	li       r5, 0
+	lwz      r12, 0x110(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 		*/
 	}
 
@@ -75,27 +131,26 @@ namespace Screen {
 	void setTex(J2DScreen*, unsigned long long, const char*)
 	{
 		/*
-		.loc_0x0:
-		  stwu      r1, -0x10(r1)
-		  mflr      r0
-		  stw       r0, 0x14(r1)
-		  stw       r31, 0xC(r1)
-		  mr        r31, r7
-		  lwz       r12, 0x0(r3)
-		  lwz       r12, 0x3C(r12)
-		  mtctr     r12
-		  bctrl
-		  lwz       r12, 0x0(r3)
-		  mr        r4, r31
-		  li        r5, 0
-		  lwz       r12, 0x114(r12)
-		  mtctr     r12
-		  bctrl
-		  lwz       r0, 0x14(r1)
-		  lwz       r31, 0xC(r1)
-		  mtlr      r0
-		  addi      r1, r1, 0x10
-		  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r7
+	lwz      r12, 0(r3)
+	lwz      r12, 0x3c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r12, 0(r3)
+	mr       r4, r31
+	li       r5, 0
+	lwz      r12, 0x114(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 		*/
 	}
 
@@ -107,165 +162,164 @@ namespace Screen {
 	void setMatAnm(J2DPane*, J2DAnmBase*)
 	{
 		/*
-		.loc_0x0:
-		  stwu      r1, -0x30(r1)
-		  mflr      r0
-		  stw       r0, 0x34(r1)
-		  stmw      r25, 0x14(r1)
-		  mr        r25, r3
-		  mr        r31, r4
-		  lwz       r12, 0x0(r3)
-		  lwz       r12, 0x5C(r12)
-		  mtctr     r12
-		  bctrl
-		  lwz       r30, 0xDC(r25)
-		  cmplwi    r30, 0
-		  beq-      .loc_0x1F4
-		  subi      r30, r30, 0xC
-		  b         .loc_0x1F4
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stmw     r25, 0x14(r1)
+	mr       r25, r3
+	mr       r31, r4
+	lwz      r12, 0(r3)
+	lwz      r12, 0x5c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r30, 0xdc(r25)
+	cmplwi   r30, 0
+	beq      lbl_8040B6D4
+	addi     r30, r30, -12
+	b        lbl_8040B6D4
 
-		.loc_0x3C:
-		  lwz       r27, 0xC(r30)
-		  mr        r4, r31
-		  mr        r3, r27
-		  lwz       r12, 0x0(r27)
-		  lwz       r12, 0x5C(r12)
-		  mtctr     r12
-		  bctrl
-		  lwz       r29, 0xDC(r27)
-		  cmplwi    r29, 0
-		  beq-      .loc_0x1DC
-		  subi      r29, r29, 0xC
-		  b         .loc_0x1DC
+lbl_8040B51C:
+	lwz      r27, 0xc(r30)
+	mr       r4, r31
+	mr       r3, r27
+	lwz      r12, 0(r27)
+	lwz      r12, 0x5c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r29, 0xdc(r27)
+	cmplwi   r29, 0
+	beq      lbl_8040B6BC
+	addi     r29, r29, -12
+	b        lbl_8040B6BC
 
-		.loc_0x6C:
-		  lwz       r27, 0xC(r29)
-		  mr        r4, r31
-		  mr        r3, r27
-		  lwz       r12, 0x0(r27)
-		  lwz       r12, 0x5C(r12)
-		  mtctr     r12
-		  bctrl
-		  lwz       r28, 0xDC(r27)
-		  cmplwi    r28, 0
-		  beq-      .loc_0x1C4
-		  subi      r28, r28, 0xC
-		  b         .loc_0x1C4
+lbl_8040B54C:
+	lwz      r27, 0xc(r29)
+	mr       r4, r31
+	mr       r3, r27
+	lwz      r12, 0(r27)
+	lwz      r12, 0x5c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r28, 0xdc(r27)
+	cmplwi   r28, 0
+	beq      lbl_8040B6A4
+	addi     r28, r28, -12
+	b        lbl_8040B6A4
 
-		.loc_0x9C:
-		  lwz       r27, 0xC(r28)
-		  mr        r4, r31
-		  mr        r3, r27
-		  lwz       r12, 0x0(r27)
-		  lwz       r12, 0x5C(r12)
-		  mtctr     r12
-		  bctrl
-		  addi      r3, r27, 0xDC
-		  bl        -0x3E797C
-		  cmplwi    r3, 0
-		  beq-      .loc_0xCC
-		  subi      r3, r3, 0xC
+lbl_8040B57C:
+	lwz      r27, 0xc(r28)
+	mr       r4, r31
+	mr       r3, r27
+	lwz      r12, 0(r27)
+	lwz      r12, 0x5c(r12)
+	mtctr    r12
+	bctrl
+	addi     r3, r27, 0xdc
+	bl       getFirstLink__10JSUPtrListCFv
+	cmplwi   r3, 0
+	beq      lbl_8040B5AC
+	addi     r3, r3, -12
 
-		.loc_0xCC:
-		  mr        r25, r3
-		  b         .loc_0x1AC
+lbl_8040B5AC:
+	mr       r25, r3
+	b        lbl_8040B68C
 
-		.loc_0xD4:
-		  mr        r3, r25
-		  bl        -0x3D2C7C
-		  lwz       r12, 0x0(r3)
-		  mr        r27, r3
-		  mr        r4, r31
-		  lwz       r12, 0x5C(r12)
-		  mtctr     r12
-		  bctrl
-		  addi      r26, r27, 0xDC
-		  mr        r3, r26
-		  bl        -0x3D2CB4
-		  stw       r3, 0xC(r1)
-		  b         .loc_0x188
+lbl_8040B5B4:
+	mr       r3, r25
+	bl       "getObject__17JSUTree<7J2DPane>CFv"
+	lwz      r12, 0(r3)
+	mr       r27, r3
+	mr       r4, r31
+	lwz      r12, 0x5c(r12)
+	mtctr    r12
+	bctrl
+	addi     r26, r27, 0xdc
+	mr       r3, r26
+	bl       "getFirstChild__17JSUTree<7J2DPane>CFv"
+	stw      r3, 0xc(r1)
+	b        lbl_8040B668
 
-		.loc_0x108:
-		  addi      r3, r1, 0xC
-		  bl        -0x108104
-		  lwz       r12, 0x0(r3)
-		  mr        r27, r3
-		  mr        r4, r31
-		  lwz       r12, 0x5C(r12)
-		  mtctr     r12
-		  bctrl
-		  mr        r3, r27
-		  bl        -0x108118
-		  mr        r27, r3
-		  bl        -0x3D2CEC
-		  mr        r4, r3
-		  addi      r3, r1, 0x8
-		  bl        -0x3D2D0C
-		  b         .loc_0x160
+lbl_8040B5E8:
+	addi     r3, r1, 0xc
+	bl       "getObject__25JSUTreeIterator<7J2DPane>CFv"
+	lwz      r12, 0(r3)
+	mr       r27, r3
+	mr       r4, r31
+	lwz      r12, 0x5c(r12)
+	mtctr    r12
+	bctrl
+	mr       r3, r27
+	bl       getPaneTree__7J2DPaneFv
+	mr       r27, r3
+	bl       "getFirstChild__17JSUTree<7J2DPane>CFv"
+	mr       r4, r3
+	addi     r3, r1, 8
+	bl       "__ct__25JSUTreeIterator<7J2DPane>FP17JSUTree<7J2DPane>"
+	b        lbl_8040B640
 
-		.loc_0x148:
-		  addi      r3, r1, 0x8
-		  bl        -0x108144
-		  mr        r4, r31
-		  bl        .loc_0x0
-		  addi      r3, r1, 0x8
-		  bl        -0x3D2D44
+lbl_8040B628:
+	addi     r3, r1, 8
+	bl       "getObject__25JSUTreeIterator<7J2DPane>CFv"
+	mr       r4, r31
+	bl       setMatAnm__Q22kh6ScreenFP7J2DPaneP10J2DAnmBase
+	addi     r3, r1, 8
+	bl       "__pp__25JSUTreeIterator<7J2DPane>Fv"
 
-		.loc_0x160:
-		  mr        r3, r27
-		  bl        -0x3D2D54
-		  mr        r4, r3
-		  addi      r3, r1, 0x8
-		  bl        -0x3D2D78
-		  rlwinm.   r0,r3,0,24,31
-		  bne+      .loc_0x148
-		  lwz       r3, 0xC(r1)
-		  bl        -0x3D2D9C
-		  stw       r3, 0xC(r1)
+lbl_8040B640:
+	mr       r3, r27
+	bl       "getEndChild__17JSUTree<7J2DPane>CFv"
+	mr       r4, r3
+	addi     r3, r1, 8
+	bl       "__ne__25JSUTreeIterator<7J2DPane>CFPC17JSUTree<7J2DPane>"
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_8040B628
+	lwz      r3, 0xc(r1)
+	bl       "getNextChild__17JSUTree<7J2DPane>CFv"
+	stw      r3, 0xc(r1)
 
-		.loc_0x188:
-		  mr        r3, r26
-		  bl        -0x3D2D7C
-		  lwz       r0, 0xC(r1)
-		  cmplw     r0, r3
-		  bne+      .loc_0x108
-		  lwz       r25, 0x18(r25)
-		  cmplwi    r25, 0
-		  beq-      .loc_0x1AC
-		  subi      r25, r25, 0xC
+lbl_8040B668:
+	mr       r3, r26
+	bl       "getEndChild__17JSUTree<7J2DPane>CFv"
+	lwz      r0, 0xc(r1)
+	cmplw    r0, r3
+	bne      lbl_8040B5E8
+	lwz      r25, 0x18(r25)
+	cmplwi   r25, 0
+	beq      lbl_8040B68C
+	addi     r25, r25, -12
 
-		.loc_0x1AC:
-		  cmplwi    r25, 0
-		  bne+      .loc_0xD4
-		  lwz       r28, 0x18(r28)
-		  cmplwi    r28, 0
-		  beq-      .loc_0x1C4
-		  subi      r28, r28, 0xC
+lbl_8040B68C:
+	cmplwi   r25, 0
+	bne      lbl_8040B5B4
+	lwz      r28, 0x18(r28)
+	cmplwi   r28, 0
+	beq      lbl_8040B6A4
+	addi     r28, r28, -12
 
-		.loc_0x1C4:
-		  cmplwi    r28, 0
-		  bne+      .loc_0x9C
-		  lwz       r29, 0x18(r29)
-		  cmplwi    r29, 0
-		  beq-      .loc_0x1DC
-		  subi      r29, r29, 0xC
+lbl_8040B6A4:
+	cmplwi   r28, 0
+	bne      lbl_8040B57C
+	lwz      r29, 0x18(r29)
+	cmplwi   r29, 0
+	beq      lbl_8040B6BC
+	addi     r29, r29, -12
 
-		.loc_0x1DC:
-		  cmplwi    r29, 0
-		  bne+      .loc_0x6C
-		  lwz       r30, 0x18(r30)
-		  cmplwi    r30, 0
-		  beq-      .loc_0x1F4
-		  subi      r30, r30, 0xC
+lbl_8040B6BC:
+	cmplwi   r29, 0
+	bne      lbl_8040B54C
+	lwz      r30, 0x18(r30)
+	cmplwi   r30, 0
+	beq      lbl_8040B6D4
+	addi     r30, r30, -12
 
-		.loc_0x1F4:
-		  cmplwi    r30, 0
-		  bne+      .loc_0x3C
-		  lmw       r25, 0x14(r1)
-		  lwz       r0, 0x34(r1)
-		  mtlr      r0
-		  addi      r1, r1, 0x30
-		  blr
+lbl_8040B6D4:
+	cmplwi   r30, 0
+	bne      lbl_8040B51C
+	lmw      r25, 0x14(r1)
+	lwz      r0, 0x34(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 		*/
 	}
 
@@ -277,172 +331,171 @@ namespace Screen {
 	void setInfAlpha(J2DPane*)
 	{
 		/*
-		.loc_0x0:
-		  stwu      r1, -0x30(r1)
-		  mflr      r0
-		  li        r4, 0x1
-		  li        r5, 0
-		  stw       r0, 0x34(r1)
-		  stmw      r25, 0x14(r1)
-		  mr        r25, r3
-		  bl        -0x3D2960
-		  lwz       r31, 0xDC(r25)
-		  cmplwi    r31, 0
-		  beq-      .loc_0x200
-		  subi      r31, r31, 0xC
-		  b         .loc_0x200
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	li       r4, 1
+	li       r5, 0
+	stw      r0, 0x34(r1)
+	stmw     r25, 0x14(r1)
+	mr       r25, r3
+	bl       setInfluencedAlpha__7J2DPaneFbb
+	lwz      r31, 0xdc(r25)
+	cmplwi   r31, 0
+	beq      lbl_8040B8F0
+	addi     r31, r31, -12
+	b        lbl_8040B8F0
 
-		.loc_0x34:
-		  lwz       r27, 0xC(r31)
-		  li        r4, 0x1
-		  li        r5, 0
-		  mr        r3, r27
-		  bl        -0x3D2988
-		  lwz       r30, 0xDC(r27)
-		  cmplwi    r30, 0
-		  beq-      .loc_0x1E8
-		  subi      r30, r30, 0xC
-		  b         .loc_0x1E8
+lbl_8040B724:
+	lwz      r27, 0xc(r31)
+	li       r4, 1
+	li       r5, 0
+	mr       r3, r27
+	bl       setInfluencedAlpha__7J2DPaneFbb
+	lwz      r30, 0xdc(r27)
+	cmplwi   r30, 0
+	beq      lbl_8040B8D8
+	addi     r30, r30, -12
+	b        lbl_8040B8D8
 
-		.loc_0x5C:
-		  lwz       r27, 0xC(r30)
-		  li        r4, 0x1
-		  li        r5, 0
-		  mr        r3, r27
-		  bl        -0x3D29B0
-		  lwz       r29, 0xDC(r27)
-		  cmplwi    r29, 0
-		  beq-      .loc_0x1D0
-		  subi      r29, r29, 0xC
-		  b         .loc_0x1D0
+lbl_8040B74C:
+	lwz      r27, 0xc(r30)
+	li       r4, 1
+	li       r5, 0
+	mr       r3, r27
+	bl       setInfluencedAlpha__7J2DPaneFbb
+	lwz      r29, 0xdc(r27)
+	cmplwi   r29, 0
+	beq      lbl_8040B8C0
+	addi     r29, r29, -12
+	b        lbl_8040B8C0
 
-		.loc_0x84:
-		  lwz       r27, 0xC(r29)
-		  li        r4, 0x1
-		  li        r5, 0
-		  mr        r3, r27
-		  bl        -0x3D29D8
-		  lwz       r28, 0xDC(r27)
-		  cmplwi    r28, 0
-		  beq-      .loc_0x1B8
-		  subi      r28, r28, 0xC
-		  b         .loc_0x1B8
+lbl_8040B774:
+	lwz      r27, 0xc(r29)
+	li       r4, 1
+	li       r5, 0
+	mr       r3, r27
+	bl       setInfluencedAlpha__7J2DPaneFbb
+	lwz      r28, 0xdc(r27)
+	cmplwi   r28, 0
+	beq      lbl_8040B8A8
+	addi     r28, r28, -12
+	b        lbl_8040B8A8
 
-		.loc_0xAC:
-		  lwz       r27, 0xC(r28)
-		  li        r4, 0x1
-		  li        r5, 0
-		  mr        r3, r27
-		  bl        -0x3D2A00
-		  addi      r3, r27, 0xDC
-		  bl        -0x3E7B94
-		  cmplwi    r3, 0
-		  beq-      .loc_0xD4
-		  subi      r3, r3, 0xC
+lbl_8040B79C:
+	lwz      r27, 0xc(r28)
+	li       r4, 1
+	li       r5, 0
+	mr       r3, r27
+	bl       setInfluencedAlpha__7J2DPaneFbb
+	addi     r3, r27, 0xdc
+	bl       getFirstLink__10JSUPtrListCFv
+	cmplwi   r3, 0
+	beq      lbl_8040B7C4
+	addi     r3, r3, -12
 
-		.loc_0xD4:
-		  mr        r25, r3
-		  b         .loc_0x1A0
+lbl_8040B7C4:
+	mr       r25, r3
+	b        lbl_8040B890
 
-		.loc_0xDC:
-		  mr        r3, r25
-		  bl        -0x3D2E94
-		  mr        r27, r3
-		  li        r4, 0x1
-		  li        r5, 0
-		  bl        -0x3D2A34
-		  addi      r26, r27, 0xDC
-		  mr        r3, r26
-		  bl        -0x3D2EC4
-		  stw       r3, 0xC(r1)
-		  b         .loc_0x17C
+lbl_8040B7CC:
+	mr       r3, r25
+	bl       "getObject__17JSUTree<7J2DPane>CFv"
+	mr       r27, r3
+	li       r4, 1
+	li       r5, 0
+	bl       setInfluencedAlpha__7J2DPaneFbb
+	addi     r26, r27, 0xdc
+	mr       r3, r26
+	bl       "getFirstChild__17JSUTree<7J2DPane>CFv"
+	stw      r3, 0xc(r1)
+	b        lbl_8040B86C
 
-		.loc_0x108:
-		  addi      r3, r1, 0xC
-		  bl        -0x108314
-		  li        r4, 0x1
-		  mr        r27, r3
-		  li        r5, 0
-		  bl        -0x3D2A60
-		  mr        r3, r27
-		  bl        -0x108320
-		  mr        r27, r3
-		  bl        -0x3D2EF4
-		  mr        r4, r3
-		  addi      r3, r1, 0x8
-		  bl        -0x3D2F14
-		  b         .loc_0x154
+lbl_8040B7F8:
+	addi     r3, r1, 0xc
+	bl       "getObject__25JSUTreeIterator<7J2DPane>CFv"
+	li       r4, 1
+	mr       r27, r3
+	li       r5, 0
+	bl       setInfluencedAlpha__7J2DPaneFbb
+	mr       r3, r27
+	bl       getPaneTree__7J2DPaneFv
+	mr       r27, r3
+	bl       "getFirstChild__17JSUTree<7J2DPane>CFv"
+	mr       r4, r3
+	addi     r3, r1, 8
+	bl       "__ct__25JSUTreeIterator<7J2DPane>FP17JSUTree<7J2DPane>"
+	b        lbl_8040B844
 
-		.loc_0x140:
-		  addi      r3, r1, 0x8
-		  bl        -0x10834C
-		  bl        .loc_0x0
-		  addi      r3, r1, 0x8
-		  bl        -0x3D2F48
+lbl_8040B830:
+	addi     r3, r1, 8
+	bl       "getObject__25JSUTreeIterator<7J2DPane>CFv"
+	bl       setInfAlpha__Q22kh6ScreenFP7J2DPane
+	addi     r3, r1, 8
+	bl       "__pp__25JSUTreeIterator<7J2DPane>Fv"
 
-		.loc_0x154:
-		  mr        r3, r27
-		  bl        -0x3D2F58
-		  mr        r4, r3
-		  addi      r3, r1, 0x8
-		  bl        -0x3D2F7C
-		  rlwinm.   r0,r3,0,24,31
-		  bne+      .loc_0x140
-		  lwz       r3, 0xC(r1)
-		  bl        -0x3D2FA0
-		  stw       r3, 0xC(r1)
+lbl_8040B844:
+	mr       r3, r27
+	bl       "getEndChild__17JSUTree<7J2DPane>CFv"
+	mr       r4, r3
+	addi     r3, r1, 8
+	bl       "__ne__25JSUTreeIterator<7J2DPane>CFPC17JSUTree<7J2DPane>"
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_8040B830
+	lwz      r3, 0xc(r1)
+	bl       "getNextChild__17JSUTree<7J2DPane>CFv"
+	stw      r3, 0xc(r1)
 
-		.loc_0x17C:
-		  mr        r3, r26
-		  bl        -0x3D2F80
-		  lwz       r0, 0xC(r1)
-		  cmplw     r0, r3
-		  bne+      .loc_0x108
-		  lwz       r25, 0x18(r25)
-		  cmplwi    r25, 0
-		  beq-      .loc_0x1A0
-		  subi      r25, r25, 0xC
+lbl_8040B86C:
+	mr       r3, r26
+	bl       "getEndChild__17JSUTree<7J2DPane>CFv"
+	lwz      r0, 0xc(r1)
+	cmplw    r0, r3
+	bne      lbl_8040B7F8
+	lwz      r25, 0x18(r25)
+	cmplwi   r25, 0
+	beq      lbl_8040B890
+	addi     r25, r25, -12
 
-		.loc_0x1A0:
-		  cmplwi    r25, 0
-		  bne+      .loc_0xDC
-		  lwz       r28, 0x18(r28)
-		  cmplwi    r28, 0
-		  beq-      .loc_0x1B8
-		  subi      r28, r28, 0xC
+lbl_8040B890:
+	cmplwi   r25, 0
+	bne      lbl_8040B7CC
+	lwz      r28, 0x18(r28)
+	cmplwi   r28, 0
+	beq      lbl_8040B8A8
+	addi     r28, r28, -12
 
-		.loc_0x1B8:
-		  cmplwi    r28, 0
-		  bne+      .loc_0xAC
-		  lwz       r29, 0x18(r29)
-		  cmplwi    r29, 0
-		  beq-      .loc_0x1D0
-		  subi      r29, r29, 0xC
+lbl_8040B8A8:
+	cmplwi   r28, 0
+	bne      lbl_8040B79C
+	lwz      r29, 0x18(r29)
+	cmplwi   r29, 0
+	beq      lbl_8040B8C0
+	addi     r29, r29, -12
 
-		.loc_0x1D0:
-		  cmplwi    r29, 0
-		  bne+      .loc_0x84
-		  lwz       r30, 0x18(r30)
-		  cmplwi    r30, 0
-		  beq-      .loc_0x1E8
-		  subi      r30, r30, 0xC
+lbl_8040B8C0:
+	cmplwi   r29, 0
+	bne      lbl_8040B774
+	lwz      r30, 0x18(r30)
+	cmplwi   r30, 0
+	beq      lbl_8040B8D8
+	addi     r30, r30, -12
 
-		.loc_0x1E8:
-		  cmplwi    r30, 0
-		  bne+      .loc_0x5C
-		  lwz       r31, 0x18(r31)
-		  cmplwi    r31, 0
-		  beq-      .loc_0x200
-		  subi      r31, r31, 0xC
+lbl_8040B8D8:
+	cmplwi   r30, 0
+	bne      lbl_8040B74C
+	lwz      r31, 0x18(r31)
+	cmplwi   r31, 0
+	beq      lbl_8040B8F0
+	addi     r31, r31, -12
 
-		.loc_0x200:
-		  cmplwi    r31, 0
-		  bne+      .loc_0x34
-		  lmw       r25, 0x14(r1)
-		  lwz       r0, 0x34(r1)
-		  mtlr      r0
-		  addi      r1, r1, 0x30
-		  blr
+lbl_8040B8F0:
+	cmplwi   r31, 0
+	bne      lbl_8040B724
+	lmw      r25, 0x14(r1)
+	lwz      r0, 0x34(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 		*/
 	}
 
@@ -454,66 +507,65 @@ namespace Screen {
 	void getPaneCenterX(J2DPane*)
 	{
 		/*
-		.loc_0x0:
-		  stwu      r1, -0x70(r1)
-		  mflr      r0
-		  li        r5, 0
-		  stw       r0, 0x74(r1)
-		  stw       r31, 0x6C(r1)
-		  mr        r31, r3
-		  mr        r4, r31
-		  addi      r3, r1, 0x2C
-		  bl        -0x3D2994
-		  lwz       r5, 0x2C(r1)
-		  mr        r4, r31
-		  lwz       r6, 0x30(r1)
-		  addi      r3, r1, 0x20
-		  lwz       r0, 0x34(r1)
-		  stw       r5, 0x5C(r1)
-		  li        r5, 0x1
-		  stw       r6, 0x60(r1)
-		  stw       r0, 0x64(r1)
-		  bl        -0x3D29BC
-		  lwz       r5, 0x20(r1)
-		  mr        r4, r31
-		  lwz       r6, 0x24(r1)
-		  addi      r3, r1, 0x14
-		  lwz       r0, 0x28(r1)
-		  stw       r5, 0x50(r1)
-		  li        r5, 0x2
-		  stw       r6, 0x54(r1)
-		  stw       r0, 0x58(r1)
-		  bl        -0x3D29E4
-		  lwz       r5, 0x14(r1)
-		  mr        r4, r31
-		  lwz       r6, 0x18(r1)
-		  addi      r3, r1, 0x8
-		  lwz       r0, 0x1C(r1)
-		  stw       r5, 0x44(r1)
-		  li        r5, 0x3
-		  stw       r6, 0x48(r1)
-		  stw       r0, 0x4C(r1)
-		  bl        -0x3D2A0C
-		  lfs       f1, 0x5C(r1)
-		  lfs       f0, 0x50(r1)
-		  lwz       r0, 0x8(r1)
-		  fadds     f0, f1, f0
-		  lfs       f1, 0x44(r1)
-		  stw       r0, 0x38(r1)
-		  lwz       r3, 0xC(r1)
-		  fadds     f0, f1, f0
-		  lfs       f1, 0x38(r1)
-		  lwz       r0, 0x10(r1)
-		  lfs       f2, 0x1E20(r2)
-		  fadds     f0, f1, f0
-		  stw       r3, 0x3C(r1)
-		  stw       r0, 0x40(r1)
-		  fmuls     f1, f2, f0
-		  lwz       r31, 0x6C(r1)
-		  lwz       r0, 0x74(r1)
-		  mtlr      r0
-		  addi      r1, r1, 0x70
-		  blr
+	stwu     r1, -0x70(r1)
+	mflr     r0
+	li       r5, 0
+	stw      r0, 0x74(r1)
+	stw      r31, 0x6c(r1)
+	mr       r31, r3
+	mr       r4, r31
+	addi     r3, r1, 0x2c
+	bl       getGlbVtx__7J2DPaneCFUc
+	lwz      r5, 0x2c(r1)
+	mr       r4, r31
+	lwz      r6, 0x30(r1)
+	addi     r3, r1, 0x20
+	lwz      r0, 0x34(r1)
+	stw      r5, 0x5c(r1)
+	li       r5, 1
+	stw      r6, 0x60(r1)
+	stw      r0, 0x64(r1)
+	bl       getGlbVtx__7J2DPaneCFUc
+	lwz      r5, 0x20(r1)
+	mr       r4, r31
+	lwz      r6, 0x24(r1)
+	addi     r3, r1, 0x14
+	lwz      r0, 0x28(r1)
+	stw      r5, 0x50(r1)
+	li       r5, 2
+	stw      r6, 0x54(r1)
+	stw      r0, 0x58(r1)
+	bl       getGlbVtx__7J2DPaneCFUc
+	lwz      r5, 0x14(r1)
+	mr       r4, r31
+	lwz      r6, 0x18(r1)
+	addi     r3, r1, 8
+	lwz      r0, 0x1c(r1)
+	stw      r5, 0x44(r1)
+	li       r5, 3
+	stw      r6, 0x48(r1)
+	stw      r0, 0x4c(r1)
+	bl       getGlbVtx__7J2DPaneCFUc
+	lfs      f1, 0x5c(r1)
+	lfs      f0, 0x50(r1)
+	lwz      r0, 8(r1)
+	fadds    f0, f1, f0
+	lfs      f1, 0x44(r1)
+	stw      r0, 0x38(r1)
+	lwz      r3, 0xc(r1)
+	fadds    f0, f1, f0
+	lfs      f1, 0x38(r1)
+	lwz      r0, 0x10(r1)
+	lfs      f2, lbl_80520180@sda21(r2)
+	fadds    f0, f1, f0
+	stw      r3, 0x3c(r1)
+	stw      r0, 0x40(r1)
+	fmuls    f1, f2, f0
+	lwz      r31, 0x6c(r1)
+	lwz      r0, 0x74(r1)
+	mtlr     r0
+	addi     r1, r1, 0x70
+	blr
 		*/
 	}
 
@@ -525,66 +577,65 @@ namespace Screen {
 	void getPaneCenterY(J2DPane*)
 	{
 		/*
-		.loc_0x0:
-		  stwu      r1, -0x70(r1)
-		  mflr      r0
-		  li        r5, 0
-		  stw       r0, 0x74(r1)
-		  stw       r31, 0x6C(r1)
-		  mr        r31, r3
-		  mr        r4, r31
-		  addi      r3, r1, 0x2C
-		  bl        -0x3D2A80
-		  lwz       r5, 0x2C(r1)
-		  mr        r4, r31
-		  lwz       r6, 0x30(r1)
-		  addi      r3, r1, 0x20
-		  lwz       r0, 0x34(r1)
-		  stw       r5, 0x5C(r1)
-		  li        r5, 0x1
-		  stw       r6, 0x60(r1)
-		  stw       r0, 0x64(r1)
-		  bl        -0x3D2AA8
-		  lwz       r5, 0x20(r1)
-		  mr        r4, r31
-		  lwz       r6, 0x24(r1)
-		  addi      r3, r1, 0x14
-		  lwz       r0, 0x28(r1)
-		  stw       r5, 0x50(r1)
-		  li        r5, 0x2
-		  stw       r6, 0x54(r1)
-		  stw       r0, 0x58(r1)
-		  bl        -0x3D2AD0
-		  lwz       r5, 0x14(r1)
-		  mr        r4, r31
-		  lwz       r6, 0x18(r1)
-		  addi      r3, r1, 0x8
-		  lwz       r0, 0x1C(r1)
-		  stw       r5, 0x44(r1)
-		  li        r5, 0x3
-		  stw       r6, 0x48(r1)
-		  stw       r0, 0x4C(r1)
-		  bl        -0x3D2AF8
-		  lfs       f1, 0x60(r1)
-		  lfs       f0, 0x54(r1)
-		  lwz       r0, 0xC(r1)
-		  fadds     f0, f1, f0
-		  lfs       f1, 0x48(r1)
-		  stw       r0, 0x3C(r1)
-		  lwz       r3, 0x8(r1)
-		  fadds     f0, f1, f0
-		  lfs       f1, 0x3C(r1)
-		  lwz       r0, 0x10(r1)
-		  lfs       f2, 0x1E20(r2)
-		  fadds     f0, f1, f0
-		  stw       r3, 0x38(r1)
-		  stw       r0, 0x40(r1)
-		  fmuls     f1, f2, f0
-		  lwz       r31, 0x6C(r1)
-		  lwz       r0, 0x74(r1)
-		  mtlr      r0
-		  addi      r1, r1, 0x70
-		  blr
+	stwu     r1, -0x70(r1)
+	mflr     r0
+	li       r5, 0
+	stw      r0, 0x74(r1)
+	stw      r31, 0x6c(r1)
+	mr       r31, r3
+	mr       r4, r31
+	addi     r3, r1, 0x2c
+	bl       getGlbVtx__7J2DPaneCFUc
+	lwz      r5, 0x2c(r1)
+	mr       r4, r31
+	lwz      r6, 0x30(r1)
+	addi     r3, r1, 0x20
+	lwz      r0, 0x34(r1)
+	stw      r5, 0x5c(r1)
+	li       r5, 1
+	stw      r6, 0x60(r1)
+	stw      r0, 0x64(r1)
+	bl       getGlbVtx__7J2DPaneCFUc
+	lwz      r5, 0x20(r1)
+	mr       r4, r31
+	lwz      r6, 0x24(r1)
+	addi     r3, r1, 0x14
+	lwz      r0, 0x28(r1)
+	stw      r5, 0x50(r1)
+	li       r5, 2
+	stw      r6, 0x54(r1)
+	stw      r0, 0x58(r1)
+	bl       getGlbVtx__7J2DPaneCFUc
+	lwz      r5, 0x14(r1)
+	mr       r4, r31
+	lwz      r6, 0x18(r1)
+	addi     r3, r1, 8
+	lwz      r0, 0x1c(r1)
+	stw      r5, 0x44(r1)
+	li       r5, 3
+	stw      r6, 0x48(r1)
+	stw      r0, 0x4c(r1)
+	bl       getGlbVtx__7J2DPaneCFUc
+	lfs      f1, 0x60(r1)
+	lfs      f0, 0x54(r1)
+	lwz      r0, 0xc(r1)
+	fadds    f0, f1, f0
+	lfs      f1, 0x48(r1)
+	stw      r0, 0x3c(r1)
+	lwz      r3, 8(r1)
+	fadds    f0, f1, f0
+	lfs      f1, 0x3c(r1)
+	lwz      r0, 0x10(r1)
+	lfs      f2, lbl_80520180@sda21(r2)
+	fadds    f0, f1, f0
+	stw      r3, 0x38(r1)
+	stw      r0, 0x40(r1)
+	fmuls    f1, f2, f0
+	lwz      r31, 0x6c(r1)
+	lwz      r0, 0x74(r1)
+	mtlr     r0
+	addi     r1, r1, 0x70
+	blr
 		*/
 	}
 
@@ -660,41 +711,40 @@ namespace Screen {
 	khUtilFadePane::khUtilFadePane(unsigned char)
 	{
 		/*
-		.loc_0x0:
-		  stwu      r1, -0x10(r1)
-		  mflr      r0
-		  stw       r0, 0x14(r1)
-		  stw       r31, 0xC(r1)
-		  mr        r31, r4
-		  stw       r30, 0x8(r1)
-		  mr        r30, r3
-		  bl        0x57EC
-		  lis       r3, 0x804D
-		  lis       r5, 0x804D
-		  addi      r0, r3, 0x7B0C
-		  lis       r4, 0x804F
-		  stw       r0, 0x0(r30)
-		  li        r6, 0
-		  lis       r3, 0x804F
-		  addi      r5, r5, 0x7F2C
-		  stw       r6, 0x18(r30)
-		  subi      r4, r4, 0x4E28
-		  subi      r0, r3, 0x5AB0
-		  mr        r3, r30
-		  stw       r5, 0x0(r30)
-		  stw       r4, 0x0(r30)
-		  stw       r0, 0x1C(r30)
-		  stw       r6, 0x20(r30)
-		  stw       r6, 0x24(r30)
-		  stw       r6, 0x28(r30)
-		  stb       r6, 0x2C(r30)
-		  stb       r31, 0x2D(r30)
-		  lwz       r31, 0xC(r1)
-		  lwz       r30, 0x8(r1)
-		  lwz       r0, 0x14(r1)
-		  mtlr      r0
-		  addi      r1, r1, 0x10
-		  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	bl       __ct__5CNodeFv
+	lis      r3, __vt__Q29P2DScreen4Node@ha
+	lis      r5, __vt__Q29P2DScreen12CallBackNode@ha
+	addi     r0, r3, __vt__Q29P2DScreen4Node@l
+	lis      r4, __vt__Q32kh6Screen14khUtilFadePane@ha
+	stw      r0, 0(r30)
+	li       r6, 0
+	lis      r3, __vt__Q42kh6Screen14khUtilFadePane10khPaneNode@ha
+	addi     r5, r5, __vt__Q29P2DScreen12CallBackNode@l
+	stw      r6, 0x18(r30)
+	addi     r4, r4, __vt__Q32kh6Screen14khUtilFadePane@l
+	addi     r0, r3, __vt__Q42kh6Screen14khUtilFadePane10khPaneNode@l
+	mr       r3, r30
+	stw      r5, 0(r30)
+	stw      r4, 0(r30)
+	stw      r0, 0x1c(r30)
+	stw      r6, 0x20(r30)
+	stw      r6, 0x24(r30)
+	stw      r6, 0x28(r30)
+	stb      r6, 0x2c(r30)
+	stb      r31, 0x2d(r30)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 		*/
 	}
 
@@ -706,88 +756,87 @@ namespace Screen {
 	void khUtilFadePane::update()
 	{
 		/*
-		.loc_0x0:
-		  stwu      r1, -0x10(r1)
-		  mflr      r0
-		  stw       r0, 0x14(r1)
-		  stw       r31, 0xC(r1)
-		  stw       r30, 0x8(r1)
-		  mr        r30, r3
-		  lwz       r0, 0x28(r3)
-		  cmpwi     r0, 0x1
-		  beq-      .loc_0xC0
-		  bge-      .loc_0x34
-		  cmpwi     r0, 0
-		  bge-      .loc_0x40
-		  b         .loc_0xC0
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lwz      r0, 0x28(r3)
+	cmpwi    r0, 1
+	beq      lbl_8040BCD0
+	bge      lbl_8040BC44
+	cmpwi    r0, 0
+	bge      lbl_8040BC50
+	b        lbl_8040BCD0
 
-		.loc_0x34:
-		  cmpwi     r0, 0x3
-		  bge-      .loc_0xC0
-		  b         .loc_0x84
+lbl_8040BC44:
+	cmpwi    r0, 3
+	bge      lbl_8040BCD0
+	b        lbl_8040BC94
 
-		.loc_0x40:
-		  lbz       r5, 0x2D(r30)
-		  lbz       r4, 0x2C(r30)
-		  subfic    r0, r5, 0xFF
-		  cmpw      r4, r0
-		  ble-      .loc_0x78
-		  li        r4, 0xFF
-		  li        r0, 0x1
-		  stb       r4, 0x2C(r30)
-		  stw       r0, 0x28(r30)
-		  lwz       r12, 0x0(r3)
-		  lwz       r12, 0x1C(r12)
-		  mtctr     r12
-		  bctrl
-		  b         .loc_0xC0
+lbl_8040BC50:
+	lbz      r5, 0x2d(r30)
+	lbz      r4, 0x2c(r30)
+	subfic   r0, r5, 0xff
+	cmpw     r4, r0
+	ble      lbl_8040BC88
+	li       r4, 0xff
+	li       r0, 1
+	stb      r4, 0x2c(r30)
+	stw      r0, 0x28(r30)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_8040BCD0
 
-		.loc_0x78:
-		  add       r0, r4, r5
-		  stb       r0, 0x2C(r30)
-		  b         .loc_0xC0
+lbl_8040BC88:
+	add      r0, r4, r5
+	stb      r0, 0x2c(r30)
+	b        lbl_8040BCD0
 
-		.loc_0x84:
-		  lbz       r0, 0x2C(r30)
-		  lbz       r4, 0x2D(r30)
-		  cmplw     r0, r4
-		  bge-      .loc_0xB8
-		  li        r4, 0
-		  li        r0, 0x3
-		  stb       r4, 0x2C(r30)
-		  stw       r0, 0x28(r30)
-		  lwz       r12, 0x0(r3)
-		  lwz       r12, 0x20(r12)
-		  mtctr     r12
-		  bctrl
-		  b         .loc_0xC0
+lbl_8040BC94:
+	lbz      r0, 0x2c(r30)
+	lbz      r4, 0x2d(r30)
+	cmplw    r0, r4
+	bge      lbl_8040BCC8
+	li       r4, 0
+	li       r0, 3
+	stb      r4, 0x2c(r30)
+	stw      r0, 0x28(r30)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_8040BCD0
 
-		.loc_0xB8:
-		  sub       r0, r0, r4
-		  stb       r0, 0x2C(r30)
+lbl_8040BCC8:
+	subf     r0, r4, r0
+	stb      r0, 0x2c(r30)
 
-		.loc_0xC0:
-		  lwz       r31, 0x24(r30)
-		  b         .loc_0xE4
+lbl_8040BCD0:
+	lwz      r31, 0x24(r30)
+	b        lbl_8040BCF4
 
-		.loc_0xC8:
-		  lwz       r3, 0x4(r31)
-		  lbz       r4, 0x2C(r30)
-		  lwz       r12, 0x0(r3)
-		  lwz       r12, 0x24(r12)
-		  mtctr     r12
-		  bctrl
-		  lwz       r31, 0x8(r31)
+lbl_8040BCD8:
+	lwz      r3, 4(r31)
+	lbz      r4, 0x2c(r30)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x24(r12)
+	mtctr    r12
+	bctrl
+	lwz      r31, 8(r31)
 
-		.loc_0xE4:
-		  cmplwi    r31, 0
-		  bne+      .loc_0xC8
-		  lwz       r0, 0x14(r1)
-		  lwz       r31, 0xC(r1)
-		  lwz       r30, 0x8(r1)
-		  mtlr      r0
-		  addi      r1, r1, 0x10
-		  blr
+lbl_8040BCF4:
+	cmplwi   r31, 0
+	bne      lbl_8040BCD8
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 		*/
 	}
 
@@ -806,63 +855,62 @@ namespace Screen {
 	void khUtilFadePane::add(J2DPane*)
 	{
 		/*
-		.loc_0x0:
-		  stwu      r1, -0x20(r1)
-		  mflr      r0
-		  stw       r0, 0x24(r1)
-		  stw       r31, 0x1C(r1)
-		  stw       r30, 0x18(r1)
-		  li        r30, 0
-		  stw       r29, 0x14(r1)
-		  mr.       r29, r4
-		  beq-      .loc_0x98
-		  addi      r30, r3, 0x1C
-		  b         .loc_0x30
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	li       r30, 0
+	stw      r29, 0x14(r1)
+	or.      r29, r4, r4
+	beq      lbl_8040BDB0
+	addi     r30, r3, 0x1c
+	b        lbl_8040BD48
 
-		.loc_0x2C:
-		  mr        r30, r0
+lbl_8040BD44:
+	mr       r30, r0
 
-		.loc_0x30:
-		  lwz       r0, 0x8(r30)
-		  cmplwi    r0, 0
-		  bne+      .loc_0x2C
-		  li        r3, 0xC
-		  bl        -0x3E7EB4
-		  mr.       r31, r3
-		  beq-      .loc_0x64
-		  lis       r3, 0x804F
-		  li        r0, 0
-		  subi      r3, r3, 0x5AB0
-		  stw       r3, 0x0(r31)
-		  stw       r29, 0x4(r31)
-		  stw       r0, 0x8(r31)
+lbl_8040BD48:
+	lwz      r0, 8(r30)
+	cmplwi   r0, 0
+	bne      lbl_8040BD44
+	li       r3, 0xc
+	bl       __nw__FUl
+	or.      r31, r3, r3
+	beq      lbl_8040BD7C
+	lis      r3, __vt__Q42kh6Screen14khUtilFadePane10khPaneNode@ha
+	li       r0, 0
+	addi     r3, r3, __vt__Q42kh6Screen14khUtilFadePane10khPaneNode@l
+	stw      r3, 0(r31)
+	stw      r29, 4(r31)
+	stw      r0, 8(r31)
 
-		.loc_0x64:
-		  cmplwi    r31, 0
-		  bne-      .loc_0x88
-		  lis       r3, 0x804A
-		  lis       r5, 0x804A
-		  subi      r3, r3, 0x7338
-		  li        r4, 0x40
-		  subi      r5, r5, 0x7344
-		  crclr     6, 0x6
-		  bl        -0x3E175C
+lbl_8040BD7C:
+	cmplwi   r31, 0
+	bne      lbl_8040BDA0
+	lis      r3, lbl_80498CC8@ha
+	lis      r5, lbl_80498CBC@ha
+	addi     r3, r3, lbl_80498CC8@l
+	li       r4, 0x40
+	addi     r5, r5, lbl_80498CBC@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-		.loc_0x88:
-		  stw       r31, 0x8(r30)
-		  mr        r3, r29
-		  li        r30, 0x1
-		  bl        -0x6BC
+lbl_8040BDA0:
+	stw      r31, 8(r30)
+	mr       r3, r29
+	li       r30, 1
+	bl       setInfAlpha__Q22kh6ScreenFP7J2DPane
 
-		.loc_0x98:
-		  lwz       r0, 0x24(r1)
-		  mr        r3, r30
-		  lwz       r31, 0x1C(r1)
-		  lwz       r30, 0x18(r1)
-		  lwz       r29, 0x14(r1)
-		  mtlr      r0
-		  addi      r1, r1, 0x20
-		  blr
+lbl_8040BDB0:
+	lwz      r0, 0x24(r1)
+	mr       r3, r30
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 		*/
 	}
 
@@ -874,17 +922,16 @@ namespace Screen {
 	void khUtilFadePane::fadein()
 	{
 		/*
-		.loc_0x0:
-		  lwz       r0, 0x28(r3)
-		  cmpwi     r0, 0x2
-		  beq-      .loc_0x14
-		  cmpwi     r0, 0x3
-		  bnelr-
+	lwz      r0, 0x28(r3)
+	cmpwi    r0, 2
+	beq      lbl_8040BDE4
+	cmpwi    r0, 3
+	bnelr
 
-		.loc_0x14:
-		  li        r0, 0
-		  stw       r0, 0x28(r3)
-		  blr
+lbl_8040BDE4:
+	li       r0, 0
+	stw      r0, 0x28(r3)
+	blr
 		*/
 	}
 
@@ -896,17 +943,16 @@ namespace Screen {
 	void khUtilFadePane::fadeout()
 	{
 		/*
-		.loc_0x0:
-		  lwz       r0, 0x28(r3)
-		  cmpwi     r0, 0
-		  beq-      .loc_0x14
-		  cmpwi     r0, 0x1
-		  bnelr-
+	lwz      r0, 0x28(r3)
+	cmpwi    r0, 0
+	beq      lbl_8040BE04
+	cmpwi    r0, 1
+	bnelr
 
-		.loc_0x14:
-		  li        r0, 0x2
-		  stw       r0, 0x28(r3)
-		  blr
+lbl_8040BE04:
+	li       r0, 2
+	stw      r0, 0x28(r3)
+	blr
 		*/
 	}
 
@@ -918,35 +964,34 @@ namespace Screen {
 	void khUtilFadePane::set_init_alpha(unsigned char)
 	{
 		/*
-		.loc_0x0:
-		  stwu      r1, -0x10(r1)
-		  mflr      r0
-		  stw       r0, 0x14(r1)
-		  stw       r31, 0xC(r1)
-		  stw       r30, 0x8(r1)
-		  mr        r30, r3
-		  stb       r4, 0x2C(r3)
-		  lwz       r31, 0x24(r3)
-		  b         .loc_0x40
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	stw      r30, 8(r1)
+	mr       r30, r3
+	stb      r4, 0x2c(r3)
+	lwz      r31, 0x24(r3)
+	b        lbl_8040BE50
 
-		.loc_0x24:
-		  lwz       r3, 0x4(r31)
-		  lbz       r4, 0x2C(r30)
-		  lwz       r12, 0x0(r3)
-		  lwz       r12, 0x24(r12)
-		  mtctr     r12
-		  bctrl
-		  lwz       r31, 0x8(r31)
+lbl_8040BE34:
+	lwz      r3, 4(r31)
+	lbz      r4, 0x2c(r30)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x24(r12)
+	mtctr    r12
+	bctrl
+	lwz      r31, 8(r31)
 
-		.loc_0x40:
-		  cmplwi    r31, 0
-		  bne+      .loc_0x24
-		  lwz       r0, 0x14(r1)
-		  lwz       r31, 0xC(r1)
-		  lwz       r30, 0x8(r1)
-		  mtlr      r0
-		  addi      r1, r1, 0x10
-		  blr
+lbl_8040BE50:
+	cmplwi   r31, 0
+	bne      lbl_8040BE34
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 		*/
 	}
 
@@ -1063,146 +1108,145 @@ namespace Screen {
 	void khUtilColorAnm::update()
 	{
 		/*
-		.loc_0x0:
-		  stwu      r1, -0x90(r1)
-		  mflr      r0
-		  stw       r0, 0x94(r1)
-		  lbz       r0, 0x34(r3)
-		  cmplwi    r0, 0
-		  beq-      .loc_0x1D4
-		  lwz       r4, 0x28(r3)
-		  lis       r6, 0x4330
-		  lwz       r5, 0x30(r3)
-		  subi      r4, r4, 0x1
-		  lwz       r0, 0x2C(r3)
-		  mullw     r4, r5, r4
-		  stw       r6, 0x10(r1)
-		  xoris     r0, r0, 0x8000
-		  lfd       f3, 0x1E28(r2)
-		  stw       r0, 0x1C(r1)
-		  lwz       r8, 0x1C(r3)
-		  xoris     r0, r4, 0x8000
-		  stw       r6, 0x18(r1)
-		  lfd       f6, 0x1E30(r2)
-		  stw       r0, 0x14(r1)
-		  lfd       f0, 0x18(r1)
-		  lfd       f1, 0x10(r1)
-		  fsubs     f0, f0, f3
-		  stw       r6, 0x28(r1)
-		  fsubs     f2, f1, f3
-		  lfs       f1, 0x1E24(r2)
-		  stw       r6, 0x38(r1)
-		  fdivs     f8, f2, f0
-		  stw       r6, 0x50(r1)
-		  stw       r6, 0x30(r1)
-		  stw       r6, 0x68(r1)
-		  stw       r6, 0x48(r1)
-		  stw       r6, 0x60(r1)
-		  fctiwz    f0, f8
-		  stfd      f0, 0x20(r1)
-		  lwz       r7, 0x24(r1)
-		  addi      r0, r7, 0x1
-		  rlwinm    r5,r7,2,0,29
-		  rlwinm    r4,r0,2,0,29
-		  xoris     r0, r7, 0x8000
-		  lwzx      r4, r8, r4
-		  stw       r0, 0x2C(r1)
-		  lwzx      r0, r8, r5
-		  stw       r4, 0x8(r1)
-		  lfd       f0, 0x28(r1)
-		  stw       r0, 0xC(r1)
-		  lbz       r4, 0x8(r1)
-		  fsubs     f0, f0, f3
-		  lbz       r0, 0x9(r1)
-		  stw       r4, 0x3C(r1)
-		  lbz       r4, 0xC(r1)
-		  fsubs     f8, f8, f0
-		  stw       r0, 0x54(r1)
-		  lfd       f0, 0x38(r1)
-		  lbz       r0, 0xA(r1)
-		  fsubs     f7, f1, f8
-		  stw       r4, 0x34(r1)
-		  fsubs     f1, f0, f6
-		  lbz       r4, 0xD(r1)
-		  stw       r0, 0x6C(r1)
-		  lfd       f0, 0x50(r1)
-		  fmuls     f4, f1, f8
-		  stw       r4, 0x4C(r1)
-		  lfd       f2, 0x30(r1)
-		  fsubs     f1, f0, f6
-		  lbz       r0, 0xE(r1)
-		  lfd       f0, 0x68(r1)
-		  fsubs     f5, f2, f6
-		  stw       r0, 0x64(r1)
-		  fmuls     f2, f1, f8
-		  lfd       f3, 0x48(r1)
-		  fsubs     f0, f0, f6
-		  lfd       f1, 0x60(r1)
-		  fsubs     f3, f3, f6
-		  fmadds    f4, f5, f7, f4
-		  fsubs     f1, f1, f6
-		  fmuls     f0, f0, f8
-		  fmadds    f2, f3, f7, f2
-		  fctiwz    f3, f4
-		  fmadds    f0, f1, f7, f0
-		  fctiwz    f1, f2
-		  stfd      f3, 0x40(r1)
-		  fctiwz    f0, f0
-		  stfd      f1, 0x58(r1)
-		  lwz       r0, 0x44(r1)
-		  stfd      f0, 0x70(r1)
-		  lwz       r4, 0x5C(r1)
-		  stb       r0, 0x20(r3)
-		  lwz       r0, 0x74(r1)
-		  stb       r4, 0x21(r3)
-		  stb       r0, 0x22(r3)
-		  lbz       r0, 0xB(r1)
-		  lbz       r4, 0xF(r1)
-		  stw       r0, 0x84(r1)
-		  stw       r6, 0x80(r1)
-		  lfd       f0, 0x80(r1)
-		  stw       r4, 0x7C(r1)
-		  fsubs     f0, f0, f6
-		  stw       r6, 0x78(r1)
-		  lfd       f1, 0x78(r1)
-		  fmuls     f0, f0, f8
-		  fsubs     f1, f1, f6
-		  fmadds    f0, f1, f7, f0
-		  fctiwz    f0, f0
-		  stfd      f0, 0x88(r1)
-		  lwz       r0, 0x8C(r1)
-		  stb       r0, 0x23(r3)
-		  lwz       r4, 0x30(r3)
-		  addi      r4, r4, 0x1
-		  stw       r4, 0x30(r3)
-		  lwz       r0, 0x2C(r3)
-		  cmpw      r4, r0
-		  blt-      .loc_0x1FC
-		  li        r0, 0
-		  stw       r0, 0x30(r3)
-		  b         .loc_0x1FC
+	stwu     r1, -0x90(r1)
+	mflr     r0
+	stw      r0, 0x94(r1)
+	lbz      r0, 0x34(r3)
+	cmplwi   r0, 0
+	beq      lbl_8040C19C
+	lwz      r4, 0x28(r3)
+	lis      r6, 0x4330
+	lwz      r5, 0x30(r3)
+	addi     r4, r4, -1
+	lwz      r0, 0x2c(r3)
+	mullw    r4, r5, r4
+	stw      r6, 0x10(r1)
+	xoris    r0, r0, 0x8000
+	lfd      f3, lbl_80520188@sda21(r2)
+	stw      r0, 0x1c(r1)
+	lwz      r8, 0x1c(r3)
+	xoris    r0, r4, 0x8000
+	stw      r6, 0x18(r1)
+	lfd      f6, lbl_80520190@sda21(r2)
+	stw      r0, 0x14(r1)
+	lfd      f0, 0x18(r1)
+	lfd      f1, 0x10(r1)
+	fsubs    f0, f0, f3
+	stw      r6, 0x28(r1)
+	fsubs    f2, f1, f3
+	lfs      f1, lbl_80520184@sda21(r2)
+	stw      r6, 0x38(r1)
+	fdivs    f8, f2, f0
+	stw      r6, 0x50(r1)
+	stw      r6, 0x30(r1)
+	stw      r6, 0x68(r1)
+	stw      r6, 0x48(r1)
+	stw      r6, 0x60(r1)
+	fctiwz   f0, f8
+	stfd     f0, 0x20(r1)
+	lwz      r7, 0x24(r1)
+	addi     r0, r7, 1
+	slwi     r5, r7, 2
+	slwi     r4, r0, 2
+	xoris    r0, r7, 0x8000
+	lwzx     r4, r8, r4
+	stw      r0, 0x2c(r1)
+	lwzx     r0, r8, r5
+	stw      r4, 8(r1)
+	lfd      f0, 0x28(r1)
+	stw      r0, 0xc(r1)
+	lbz      r4, 8(r1)
+	fsubs    f0, f0, f3
+	lbz      r0, 9(r1)
+	stw      r4, 0x3c(r1)
+	lbz      r4, 0xc(r1)
+	fsubs    f8, f8, f0
+	stw      r0, 0x54(r1)
+	lfd      f0, 0x38(r1)
+	lbz      r0, 0xa(r1)
+	fsubs    f7, f1, f8
+	stw      r4, 0x34(r1)
+	fsubs    f1, f0, f6
+	lbz      r4, 0xd(r1)
+	stw      r0, 0x6c(r1)
+	lfd      f0, 0x50(r1)
+	fmuls    f4, f1, f8
+	stw      r4, 0x4c(r1)
+	lfd      f2, 0x30(r1)
+	fsubs    f1, f0, f6
+	lbz      r0, 0xe(r1)
+	lfd      f0, 0x68(r1)
+	fsubs    f5, f2, f6
+	stw      r0, 0x64(r1)
+	fmuls    f2, f1, f8
+	lfd      f3, 0x48(r1)
+	fsubs    f0, f0, f6
+	lfd      f1, 0x60(r1)
+	fsubs    f3, f3, f6
+	fmadds   f4, f5, f7, f4
+	fsubs    f1, f1, f6
+	fmuls    f0, f0, f8
+	fmadds   f2, f3, f7, f2
+	fctiwz   f3, f4
+	fmadds   f0, f1, f7, f0
+	fctiwz   f1, f2
+	stfd     f3, 0x40(r1)
+	fctiwz   f0, f0
+	stfd     f1, 0x58(r1)
+	lwz      r0, 0x44(r1)
+	stfd     f0, 0x70(r1)
+	lwz      r4, 0x5c(r1)
+	stb      r0, 0x20(r3)
+	lwz      r0, 0x74(r1)
+	stb      r4, 0x21(r3)
+	stb      r0, 0x22(r3)
+	lbz      r0, 0xb(r1)
+	lbz      r4, 0xf(r1)
+	stw      r0, 0x84(r1)
+	stw      r6, 0x80(r1)
+	lfd      f0, 0x80(r1)
+	stw      r4, 0x7c(r1)
+	fsubs    f0, f0, f6
+	stw      r6, 0x78(r1)
+	lfd      f1, 0x78(r1)
+	fmuls    f0, f0, f8
+	fsubs    f1, f1, f6
+	fmadds   f0, f1, f7, f0
+	fctiwz   f0, f0
+	stfd     f0, 0x88(r1)
+	lwz      r0, 0x8c(r1)
+	stb      r0, 0x23(r3)
+	lwz      r4, 0x30(r3)
+	addi     r4, r4, 1
+	stw      r4, 0x30(r3)
+	lwz      r0, 0x2c(r3)
+	cmpw     r4, r0
+	blt      lbl_8040C1C4
+	li       r0, 0
+	stw      r0, 0x30(r3)
+	b        lbl_8040C1C4
 
-		.loc_0x1D4:
-		  lbz       r4, 0x24(r3)
-		  li        r0, 0
-		  stb       r4, 0x20(r3)
-		  lbz       r4, 0x25(r3)
-		  stb       r4, 0x21(r3)
-		  lbz       r4, 0x26(r3)
-		  stb       r4, 0x22(r3)
-		  lbz       r4, 0x27(r3)
-		  stb       r4, 0x23(r3)
-		  stw       r0, 0x30(r3)
+lbl_8040C19C:
+	lbz      r4, 0x24(r3)
+	li       r0, 0
+	stb      r4, 0x20(r3)
+	lbz      r4, 0x25(r3)
+	stb      r4, 0x21(r3)
+	lbz      r4, 0x26(r3)
+	stb      r4, 0x22(r3)
+	lbz      r4, 0x27(r3)
+	stb      r4, 0x23(r3)
+	stw      r0, 0x30(r3)
 
-		.loc_0x1FC:
-		  lwz       r12, 0x0(r3)
-		  lwz       r12, 0x1C(r12)
-		  mtctr     r12
-		  bctrl
-		  lwz       r0, 0x94(r1)
-		  mtlr      r0
-		  addi      r1, r1, 0x90
-		  blr
+lbl_8040C1C4:
+	lwz      r12, 0(r3)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x94(r1)
+	mtlr     r0
+	addi     r1, r1, 0x90
+	blr
 		*/
 	}
 

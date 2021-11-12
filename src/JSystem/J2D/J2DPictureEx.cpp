@@ -1,6 +1,144 @@
 #include "types.h"
 
 /*
+    Generated from dpostproc
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_804785E0
+    lbl_804785E0:
+        .4byte 0x0F080A0F
+        .4byte 0x0F080A0F
+        .4byte 0x0F080E0F
+        .4byte 0x0F080E00
+        .4byte 0x0F0A000F
+        .4byte 0x0204080F
+        .4byte 0x0204080F
+        .4byte 0x0204000F
+        .4byte 0x07040507
+        .4byte 0x05070707
+        .4byte 0x07040607
+        .4byte 0x07040600
+        .4byte 0x07050007
+        .4byte 0x01020407
+        .4byte 0x07070702
+        .4byte 0x01020007
+        .4byte 0x00000001
+        .4byte 0x00000000
+        .4byte 0x01000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000001
+        .4byte 0x00000000
+        .4byte 0x01000000
+        .4byte 0x00010000
+        .4byte 0x00000000
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__12J2DPictureEx
+    __vt__12J2DPictureEx:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__12J2DPictureExFv
+        .4byte getTypeID__10J2DPictureCFv
+        .4byte move__7J2DPaneFff
+        .4byte add__7J2DPaneFff
+        .4byte resize__7J2DPaneFff
+        .4byte setCullBack__12J2DPictureExFb
+        .4byte setCullBack__12J2DPictureExF11_GXCullMode
+        .4byte setAlpha__12J2DPictureExFUc
+        .4byte setConnectParent__7J2DPaneFb
+        .4byte calcMtx__7J2DPaneFv
+        .4byte update__7J2DPaneFv
+        .4byte drawSelf__10J2DPictureFff
+        .4byte drawSelf__12J2DPictureExFffPA3_A4_f
+        .4byte search__7J2DPaneFUx
+        .4byte searchUserInfo__7J2DPaneFUx
+        .4byte makeMatrix__7J2DPaneFff
+        .4byte makeMatrix__7J2DPaneFffff
+        .4byte isUsed__12J2DPictureExFPC7ResTIMG
+        .4byte isUsed__12J2DPictureExFPC7ResFONT
+        .4byte clearAnmTransform__7J2DPaneFv
+        .4byte rewriteAlpha__12J2DPictureExFv
+        .4byte setAnimation__12J2DPictureExFP10J2DAnmBase
+        .4byte setAnimation__12J2DPictureExFP15J2DAnmTransform
+        .4byte setAnimation__12J2DPictureExFP11J2DAnmColor
+        .4byte setAnimation__12J2DPictureExFP16J2DAnmTexPattern
+        .4byte setAnimation__12J2DPictureExFP19J2DAnmTextureSRTKey
+        .4byte setAnimation__12J2DPictureExFP15J2DAnmTevRegKey
+        .4byte setAnimation__12J2DPictureExFP20J2DAnmVisibilityFull
+        .4byte setAnimation__12J2DPictureExFP14J2DAnmVtxColor
+        .4byte animationTransform__7J2DPaneFPC15J2DAnmTransform
+        .4byte setVisibileAnimation__7J2DPaneFP20J2DAnmVisibilityFull
+        .4byte setAnimationVF__7J2DPaneFP20J2DAnmVisibilityFull
+        .4byte setVtxColorAnimation__7J2DPaneFP14J2DAnmVtxColor
+        .4byte setAnimationVC__7J2DPaneFP14J2DAnmVtxColor
+        .4byte animationPane__12J2DPictureExFPC15J2DAnmTransform
+        .4byte initiate__12J2DPictureExFPC7ResTIMGPC7ResTLUT
+        .4byte prepareTexture__12J2DPictureExFUc
+        .4byte append__12J2DPictureExFPC7ResTIMGf
+        .4byte append__12J2DPictureExFPC7ResTIMGP10JUTPalettef
+        .4byte append__12J2DPictureExFPCcf
+        .4byte append__12J2DPictureExFPCcP10JUTPalettef
+        .4byte append__12J2DPictureExFP10JUTTexturef
+        .4byte prepend__12J2DPictureExFPC7ResTIMGf
+        .4byte prepend__12J2DPictureExFPC7ResTIMGP10JUTPalettef
+        .4byte prepend__12J2DPictureExFPCcf
+        .4byte prepend__12J2DPictureExFPCcP10JUTPalettef
+        .4byte prepend__12J2DPictureExFP10JUTTexturef
+        .4byte insert__12J2DPictureExFPC7ResTIMGUcf
+        .4byte insert__12J2DPictureExFPC7ResTIMGP10JUTPaletteUcf
+        .4byte insert__12J2DPictureExFPCcUcf
+        .4byte insert__12J2DPictureExFPCcP10JUTPaletteUcf
+        .4byte insert__12J2DPictureExFP10JUTTextureUcf
+        .4byte remove__12J2DPictureExFUc
+        .4byte remove__12J2DPictureExFv
+        .4byte remove__12J2DPictureExFP10JUTTexture
+        .4byte draw__12J2DPictureExFffbbb
+        .4byte draw__12J2DPictureExFffUcbbb
+        .4byte draw__12J2DPictureExFffffbbb
+        .4byte drawOut__12J2DPictureExFffffff
+        .4byte drawOut__12J2DPictureExFffffffff
+        .4byte
+   "drawOut__12J2DPictureExFRCQ29JGeometry8TBox2<f>RCQ29JGeometry8TBox2<f>"
+        .4byte load__12J2DPictureExF11_GXTexMapIDUc
+        .4byte load__12J2DPictureExFUc
+        .4byte setBlendRatio__10J2DPictureFffffffff
+        .4byte setBlendColorRatio__12J2DPictureExFffffffff
+        .4byte setBlendAlphaRatio__12J2DPictureExFffffffff
+        .4byte changeTexture__12J2DPictureExFPC7ResTIMGUc
+        .4byte changeTexture__12J2DPictureExFPCcUc
+        .4byte changeTexture__12J2DPictureExFPC7ResTIMGUcP10JUTPalette
+        .4byte changeTexture__12J2DPictureExFPCcUcP10JUTPalette
+        .4byte getTexture__12J2DPictureExCFUc
+        .4byte getTextureCount__12J2DPictureExCFv
+        .4byte setBlack__12J2DPictureExFQ28JUtility6TColor
+        .4byte setWhite__12J2DPictureExFQ28JUtility6TColor
+        .4byte
+   setBlackWhite__12J2DPictureExFQ28JUtility6TColorQ28JUtility6TColor .4byte
+   getBlack__12J2DPictureExCFv .4byte getWhite__12J2DPictureExCFv .4byte
+   getMaterial__12J2DPictureExCFv .4byte
+   drawFullSet__12J2DPictureExFffffPA3_A4_f .4byte
+   drawTexCoord__12J2DPictureExFffffssssssssPA3_A4_f .4byte
+   getUsableTlut__12J2DPictureExFUc .4byte 0
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_805168E0
+    lbl_805168E0:
+        .float 1.0
+    .global lbl_805168E4
+    lbl_805168E4:
+        .4byte 0x00000000
+    .global lbl_805168E8
+    lbl_805168E8:
+        .4byte 0x43300000
+        .4byte 0x80000000
+    .global lbl_805168F0
+    lbl_805168F0:
+        .4byte 0x437F0000
+        .4byte 0x00000000
+*/
+
+/*
  * --INFO--
  * Address:	80054AF0
  * Size:	000048
@@ -8,25 +146,24 @@
 J2DPictureEx::J2DPictureEx()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        -0x1B028
-	  lis       r4, 0x804A
-	  mr        r3, r31
-	  addi      r0, r4, 0x11B0
-	  lis       r4, 0x110
-	  stw       r0, 0x0(r31)
-	  bl        0x1A4
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       __ct__10J2DPictureFv
+	lis      r4, __vt__12J2DPictureEx@ha
+	mr       r3, r31
+	addi     r0, r4, __vt__12J2DPictureEx@l
+	lis      r4, 0x110
+	stw      r0, 0(r31)
+	bl       initialize__12J2DPictureExFUl
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -38,38 +175,37 @@ J2DPictureEx::J2DPictureEx()
 J2DPictureEx::J2DPictureEx(const ResTIMG*, unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r5
-	  stw       r30, 0x18(r1)
-	  mr        r30, r4
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  bl        -0x1B080
-	  lis       r4, 0x804A
-	  mr        r3, r29
-	  addi      r0, r4, 0x11B0
-	  mr        r4, r31
-	  stw       r0, 0x0(r29)
-	  bl        0x14C
-	  mr        r3, r29
-	  mr        r4, r30
-	  lwz       r12, 0x0(r29)
-	  lfs       f1, -0x7A80(r2)
-	  lwz       r12, 0x9C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x24(r1)
-	  mr        r3, r29
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r5
+	stw      r30, 0x18(r1)
+	mr       r30, r4
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	bl       __ct__10J2DPictureFv
+	lis      r4, __vt__12J2DPictureEx@ha
+	mr       r3, r29
+	addi     r0, r4, __vt__12J2DPictureEx@l
+	mr       r4, r31
+	stw      r0, 0(r29)
+	bl       initialize__12J2DPictureExFUl
+	mr       r3, r29
+	mr       r4, r30
+	lwz      r12, 0(r29)
+	lfs      f1, lbl_805168E0@sda21(r2)
+	lwz      r12, 0x9c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x24(r1)
+	mr       r3, r29
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -81,19 +217,18 @@ J2DPictureEx::J2DPictureEx(const ResTIMG*, unsigned long)
 void J2DPictureEx::append(const ResTIMG*, float)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r5, 0
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xA0(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	li       r5, 0
+	stw      r0, 0x14(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xa0(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -105,19 +240,18 @@ void J2DPictureEx::append(const ResTIMG*, float)
 void J2DPictureEx::append(const char*, float)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r5, 0
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xA8(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	li       r5, 0
+	stw      r0, 0x14(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xa8(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -129,52 +263,51 @@ void J2DPictureEx::append(const char*, float)
 void J2DPictureEx::initiate(const ResTIMG*, const ResTLUT*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r5
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lwz       r5, 0x168(r3)
-	  lwz       r0, 0x28(r5)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x94
-	  lwz       r12, 0x0(r3)
-	  lfs       f1, -0x7A80(r2)
-	  lwz       r12, 0x9C(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x94
-	  cmplwi    r31, 0
-	  beq-      .loc_0x94
-	  lwz       r3, 0x168(r30)
-	  li        r4, 0
-	  lwz       r3, 0x70(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xA4(r12)
-	  mtctr     r12
-	  bctrl
-	  cmplwi    r3, 0
-	  bne-      .loc_0x94
-	  lwz       r3, 0x168(r30)
-	  mr        r5, r31
-	  li        r4, 0
-	  lwz       r3, 0x70(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x98(r12)
-	  mtctr     r12
-	  bctrl
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r5
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lwz      r5, 0x168(r3)
+	lwz      r0, 0x28(r5)
+	cmplwi   r0, 0
+	bne      lbl_80054CA8
+	lwz      r12, 0(r3)
+	lfs      f1, lbl_805168E0@sda21(r2)
+	lwz      r12, 0x9c(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80054CA8
+	cmplwi   r31, 0
+	beq      lbl_80054CA8
+	lwz      r3, 0x168(r30)
+	li       r4, 0
+	lwz      r3, 0x70(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xa4(r12)
+	mtctr    r12
+	bctrl
+	cmplwi   r3, 0
+	bne      lbl_80054CA8
+	lwz      r3, 0x168(r30)
+	mr       r5, r31
+	li       r4, 0
+	lwz      r3, 0x70(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x98(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x94:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80054CA8:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -186,61 +319,60 @@ void J2DPictureEx::initiate(const ResTIMG*, const ResTLUT*)
 void J2DPictureEx::initialize(unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r5, 0x5049
-	  stw       r0, 0x14(r1)
-	  addi      r0, r5, 0x4332
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  stw       r0, 0x8(r3)
-	  li        r3, 0x88
-	  bl        -0x30E48
-	  mr.       r0, r3
-	  beq-      .loc_0x44
-	  mr        r4, r31
-	  bl        -0x2CC0
-	  mr        r0, r3
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lis      r5, 0x50494332@ha
+	stw      r0, 0x14(r1)
+	addi     r0, r5, 0x50494332@l
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	stw      r0, 8(r3)
+	li       r3, 0x88
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_80054D04
+	mr       r4, r31
+	bl       __ct__11J2DMaterialFUl
+	mr       r0, r3
 
-	.loc_0x44:
-	  stw       r0, 0x168(r30)
-	  li        r0, 0x1
-	  lis       r3, 0x1
-	  lfs       f0, -0x7A80(r2)
-	  stb       r0, 0x198(r30)
-	  subi      r0, r3, 0x1
-	  mr        r3, r30
-	  li        r4, 0
-	  sth       r0, 0x16C(r30)
-	  li        r5, 0xF
-	  li        r6, 0
-	  li        r7, 0
-	  sth       r0, 0x16E(r30)
-	  sth       r0, 0x170(r30)
-	  sth       r0, 0x172(r30)
-	  sth       r0, 0x174(r30)
-	  sth       r0, 0x176(r30)
-	  stfs      f0, 0x178(r30)
-	  stfs      f0, 0x188(r30)
-	  stfs      f0, 0x17C(r30)
-	  stfs      f0, 0x18C(r30)
-	  stfs      f0, 0x180(r30)
-	  stfs      f0, 0x190(r30)
-	  stfs      f0, 0x184(r30)
-	  stfs      f0, 0x194(r30)
-	  bl        -0x17F00
-	  li        r0, 0
-	  stw       r0, 0x19C(r30)
-	  stw       r0, 0x1A0(r30)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80054D04:
+	stw      r0, 0x168(r30)
+	li       r0, 1
+	lis      r3, 0x0000FFFF@ha
+	lfs      f0, lbl_805168E0@sda21(r2)
+	stb      r0, 0x198(r30)
+	addi     r0, r3, 0x0000FFFF@l
+	mr       r3, r30
+	li       r4, 0
+	sth      r0, 0x16c(r30)
+	li       r5, 0xf
+	li       r6, 0
+	li       r7, 0
+	sth      r0, 0x16e(r30)
+	sth      r0, 0x170(r30)
+	sth      r0, 0x172(r30)
+	sth      r0, 0x174(r30)
+	sth      r0, 0x176(r30)
+	stfs     f0, 0x178(r30)
+	stfs     f0, 0x188(r30)
+	stfs     f0, 0x17c(r30)
+	stfs     f0, 0x18c(r30)
+	stfs     f0, 0x180(r30)
+	stfs     f0, 0x190(r30)
+	stfs     f0, 0x184(r30)
+	stfs     f0, 0x194(r30)
+	bl       setTexCoord__10J2DPictureFPC10JUTTexture10J2DBinding9J2DMirrorb
+	li       r0, 0
+	stw      r0, 0x19c(r30)
+	stw      r0, 0x1a0(r30)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -602,47 +734,46 @@ J2DPictureEx::J2DPictureEx(unsigned long long, const JGeometry::TBox2<float>&,
 J2DPictureEx::~J2DPictureEx()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x74
-	  lis       r3, 0x804A
-	  addi      r0, r3, 0x11B0
-	  stw       r0, 0x0(r30)
-	  lbz       r0, 0x198(r30)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x58
-	  lwz       r3, 0x168(r30)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x58
-	  lwz       r12, 0x0(r3)
-	  li        r4, 0x1
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_800552C0
+	lis      r3, __vt__12J2DPictureEx@ha
+	addi     r0, r3, __vt__12J2DPictureEx@l
+	stw      r0, 0(r30)
+	lbz      r0, 0x198(r30)
+	cmplwi   r0, 0
+	beq      lbl_800552A4
+	lwz      r3, 0x168(r30)
+	cmplwi   r3, 0
+	beq      lbl_800552A4
+	lwz      r12, 0(r3)
+	li       r4, 1
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x58:
-	  mr        r3, r30
-	  li        r4, 0
-	  bl        -0x1A3CC
-	  extsh.    r0, r31
-	  ble-      .loc_0x74
-	  mr        r3, r30
-	  bl        -0x31208
+lbl_800552A4:
+	mr       r3, r30
+	li       r4, 0
+	bl       __dt__10J2DPictureFv
+	extsh.   r0, r31
+	ble      lbl_800552C0
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x74:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_800552C0:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -654,77 +785,76 @@ J2DPictureEx::~J2DPictureEx()
 void J2DPictureEx::prepareTexture(unsigned char)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x70(r1)
-	  mflr      r0
-	  stw       r0, 0x74(r1)
-	  stw       r31, 0x6C(r1)
-	  stw       r30, 0x68(r1)
-	  stw       r29, 0x64(r1)
-	  mr        r29, r4
-	  stw       r28, 0x60(r1)
-	  mr        r28, r3
-	  lwz       r3, 0x168(r3)
-	  lwz       r3, 0x70(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x9C(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x4C
-	  li        r3, 0
-	  b         .loc_0xD8
+	stwu     r1, -0x70(r1)
+	mflr     r0
+	stw      r0, 0x74(r1)
+	stw      r31, 0x6c(r1)
+	stw      r30, 0x68(r1)
+	stw      r29, 0x64(r1)
+	mr       r29, r4
+	stw      r28, 0x60(r1)
+	mr       r28, r3
+	lwz      r3, 0x168(r3)
+	lwz      r3, 0x70(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x9c(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_80055328
+	li       r3, 0
+	b        lbl_800553B4
 
-	.loc_0x4C:
-	  lis       r3, 0x8048
-	  rlwinm    r31,r29,0,24,31
-	  subi      r30, r3, 0x7998
-	  li        r29, 0
-	  b         .loc_0xC8
+lbl_80055328:
+	lis      r3, j2dDefaultTexMtxInfo@ha
+	clrlwi   r31, r29, 0x18
+	addi     r30, r3, j2dDefaultTexMtxInfo@l
+	li       r29, 0
+	b        lbl_800553A4
 
-	.loc_0x60:
-	  lfs       f7, 0x4(r30)
-	  rlwinm    r4,r29,0,24,31
-	  lfs       f6, 0x8(r30)
-	  addi      r5, r1, 0x8
-	  lfs       f5, 0xC(r30)
-	  lbz       r3, 0x0(r30)
-	  lbz       r0, 0x1(r30)
-	  lfs       f4, 0x10(r30)
-	  lfs       f3, 0x14(r30)
-	  lfs       f2, 0x18(r30)
-	  lfs       f1, 0x1C(r30)
-	  lfs       f0, 0x20(r30)
-	  stfs      f7, 0xC(r1)
-	  stfs      f6, 0x10(r1)
-	  stfs      f5, 0x14(r1)
-	  stb       r3, 0x8(r1)
-	  stb       r0, 0x9(r1)
-	  stfs      f4, 0x18(r1)
-	  stfs      f3, 0x1C(r1)
-	  stfs      f2, 0x20(r1)
-	  stfs      f1, 0x24(r1)
-	  stfs      f0, 0x28(r1)
-	  lwz       r3, 0x168(r28)
-	  addi      r3, r3, 0x28
-	  bl        -0xB4A8
-	  addi      r29, r29, 0x1
+lbl_8005533C:
+	lfs      f7, 4(r30)
+	clrlwi   r4, r29, 0x18
+	lfs      f6, 8(r30)
+	addi     r5, r1, 8
+	lfs      f5, 0xc(r30)
+	lbz      r3, 0(r30)
+	lbz      r0, 1(r30)
+	lfs      f4, 0x10(r30)
+	lfs      f3, 0x14(r30)
+	lfs      f2, 0x18(r30)
+	lfs      f1, 0x1c(r30)
+	lfs      f0, 0x20(r30)
+	stfs     f7, 0xc(r1)
+	stfs     f6, 0x10(r1)
+	stfs     f5, 0x14(r1)
+	stb      r3, 8(r1)
+	stb      r0, 9(r1)
+	stfs     f4, 0x18(r1)
+	stfs     f3, 0x1c(r1)
+	stfs     f2, 0x20(r1)
+	stfs     f1, 0x24(r1)
+	stfs     f0, 0x28(r1)
+	lwz      r3, 0x168(r28)
+	addi     r3, r3, 0x28
+	bl       setTexMtx__14J2DTexGenBlockFUlR9J2DTexMtx
+	addi     r29, r29, 1
 
-	.loc_0xC8:
-	  rlwinm    r0,r29,0,24,31
-	  cmplw     r0, r31
-	  blt+      .loc_0x60
-	  li        r3, 0x1
+lbl_800553A4:
+	clrlwi   r0, r29, 0x18
+	cmplw    r0, r31
+	blt      lbl_8005533C
+	li       r3, 1
 
-	.loc_0xD8:
-	  lwz       r0, 0x74(r1)
-	  lwz       r31, 0x6C(r1)
-	  lwz       r30, 0x68(r1)
-	  lwz       r29, 0x64(r1)
-	  lwz       r28, 0x60(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x70
-	  blr
+lbl_800553B4:
+	lwz      r0, 0x74(r1)
+	lwz      r31, 0x6c(r1)
+	lwz      r30, 0x68(r1)
+	lwz      r29, 0x64(r1)
+	lwz      r28, 0x60(r1)
+	mtlr     r0
+	addi     r1, r1, 0x70
+	blr
 	*/
 }
 
@@ -736,60 +866,59 @@ void J2DPictureEx::prepareTexture(unsigned char)
 void J2DPictureEx::drawSelf(float, float, float (*)[3][4])
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stfd      f31, 0x20(r1)
-	  psq_st    f31,0x28(r1),0,0
-	  stfd      f30, 0x10(r1)
-	  psq_st    f30,0x18(r1),0,0
-	  stw       r31, 0xC(r1)
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  fmr       f30, f1
-	  lwz       r3, 0x168(r3)
-	  fmr       f31, f2
-	  mr        r31, r4
-	  cmplwi    r3, 0
-	  beq-      .loc_0xA4
-	  bl        -0x31CC
-	  bl        0x8F2B8
-	  li        r3, 0x9
-	  li        r4, 0x1
-	  bl        0x8EE60
-	  li        r3, 0xB
-	  li        r4, 0x1
-	  bl        0x8EE54
-	  li        r3, 0xD
-	  li        r4, 0x1
-	  bl        0x8EE48
-	  mr        r3, r30
-	  lfs       f5, 0x28(r30)
-	  lwz       r12, 0x0(r30)
-	  fmr       f1, f30
-	  lfs       f3, 0x20(r30)
-	  fmr       f2, f31
-	  lfs       f4, 0x2C(r30)
-	  mr        r4, r31
-	  lfs       f0, 0x24(r30)
-	  lwz       r12, 0x140(r12)
-	  fsubs     f3, f5, f3
-	  fsubs     f4, f4, f0
-	  mtctr     r12
-	  bctrl
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stfd     f31, 0x20(r1)
+	psq_st   f31, 40(r1), 0, qr0
+	stfd     f30, 0x10(r1)
+	psq_st   f30, 24(r1), 0, qr0
+	stw      r31, 0xc(r1)
+	stw      r30, 8(r1)
+	mr       r30, r3
+	fmr      f30, f1
+	lwz      r3, 0x168(r3)
+	fmr      f31, f2
+	mr       r31, r4
+	cmplwi   r3, 0
+	beq      lbl_80055478
+	bl       setGX__11J2DMaterialFv
+	bl       GXClearVtxDesc
+	li       r3, 9
+	li       r4, 1
+	bl       GXSetVtxDesc
+	li       r3, 0xb
+	li       r4, 1
+	bl       GXSetVtxDesc
+	li       r3, 0xd
+	li       r4, 1
+	bl       GXSetVtxDesc
+	mr       r3, r30
+	lfs      f5, 0x28(r30)
+	lwz      r12, 0(r30)
+	fmr      f1, f30
+	lfs      f3, 0x20(r30)
+	fmr      f2, f31
+	lfs      f4, 0x2c(r30)
+	mr       r4, r31
+	lfs      f0, 0x24(r30)
+	lwz      r12, 0x140(r12)
+	fsubs    f3, f5, f3
+	fsubs    f4, f4, f0
+	mtctr    r12
+	bctrl
 
-	.loc_0xA4:
-	  psq_l     f31,0x28(r1),0,0
-	  lfd       f31, 0x20(r1)
-	  psq_l     f30,0x18(r1),0,0
-	  lfd       f30, 0x10(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x34(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_80055478:
+	psq_l    f31, 40(r1), 0, qr0
+	lfd      f31, 0x20(r1)
+	psq_l    f30, 24(r1), 0, qr0
+	lfd      f30, 0x10(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x34(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -801,30 +930,29 @@ void J2DPictureEx::drawSelf(float, float, float (*)[3][4])
 void J2DPictureEx::drawFullSet(float, float, float, float, float (*)[3][4])
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lha       r0, 0x120(r3)
-	  stw       r0, 0x8(r1)
-	  stw       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lfs       f1, 0x20(r3)
-	  lwz       r12, 0x144(r12)
-	  lfs       f2, 0x24(r3)
-	  lha       r4, 0x112(r3)
-	  lha       r5, 0x114(r3)
-	  lha       r6, 0x116(r3)
-	  lha       r7, 0x118(r3)
-	  lha       r8, 0x11A(r3)
-	  lha       r9, 0x11C(r3)
-	  lha       r10, 0x11E(r3)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lha      r0, 0x120(r3)
+	stw      r0, 8(r1)
+	stw      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lfs      f1, 0x20(r3)
+	lwz      r12, 0x144(r12)
+	lfs      f2, 0x24(r3)
+	lha      r4, 0x112(r3)
+	lha      r5, 0x114(r3)
+	lha      r6, 0x116(r3)
+	lha      r7, 0x118(r3)
+	lha      r8, 0x11a(r3)
+	lha      r9, 0x11c(r3)
+	lha      r10, 0x11e(r3)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1031,29 +1159,28 @@ void J2DPictureEx::drawTexCoord(float, float, float, float, short, short, short,
 void J2DPictureEx::append(const ResTIMG*, JUTPalette*, float)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r6, 0x168(r3)
-	  cmplwi    r6, 0
-	  bne-      .loc_0x20
-	  li        r3, 0
-	  b         .loc_0x38
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r6, 0x168(r3)
+	cmplwi   r6, 0
+	bne      lbl_800557D0
+	li       r3, 0
+	b        lbl_800557E8
 
-	.loc_0x20:
-	  lwz       r12, 0x0(r3)
-	  lwz       r0, 0x28(r6)
-	  lwz       r12, 0xC8(r12)
-	  rlwinm    r6,r0,0,24,31
-	  mtctr     r12
-	  bctrl
+lbl_800557D0:
+	lwz      r12, 0(r3)
+	lwz      r0, 0x28(r6)
+	lwz      r12, 0xc8(r12)
+	clrlwi   r6, r0, 0x18
+	mtctr    r12
+	bctrl
 
-	.loc_0x38:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_800557E8:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1065,29 +1192,28 @@ void J2DPictureEx::append(const ResTIMG*, JUTPalette*, float)
 void J2DPictureEx::append(const char*, JUTPalette*, float)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r6, 0x168(r3)
-	  cmplwi    r6, 0
-	  bne-      .loc_0x20
-	  li        r3, 0
-	  b         .loc_0x38
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r6, 0x168(r3)
+	cmplwi   r6, 0
+	bne      lbl_80055818
+	li       r3, 0
+	b        lbl_80055830
 
-	.loc_0x20:
-	  lwz       r12, 0x0(r3)
-	  lwz       r0, 0x28(r6)
-	  lwz       r12, 0xD0(r12)
-	  rlwinm    r6,r0,0,24,31
-	  mtctr     r12
-	  bctrl
+lbl_80055818:
+	lwz      r12, 0(r3)
+	lwz      r0, 0x28(r6)
+	lwz      r12, 0xd0(r12)
+	clrlwi   r6, r0, 0x18
+	mtctr    r12
+	bctrl
 
-	.loc_0x38:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80055830:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1099,29 +1225,28 @@ void J2DPictureEx::append(const char*, JUTPalette*, float)
 void J2DPictureEx::append(JUTTexture*, float)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r5, 0x168(r3)
-	  cmplwi    r5, 0
-	  bne-      .loc_0x20
-	  li        r3, 0
-	  b         .loc_0x38
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r5, 0x168(r3)
+	cmplwi   r5, 0
+	bne      lbl_80055860
+	li       r3, 0
+	b        lbl_80055878
 
-	.loc_0x20:
-	  lwz       r12, 0x0(r3)
-	  lwz       r0, 0x28(r5)
-	  lwz       r12, 0xD4(r12)
-	  rlwinm    r5,r0,0,24,31
-	  mtctr     r12
-	  bctrl
+lbl_80055860:
+	lwz      r12, 0(r3)
+	lwz      r0, 0x28(r5)
+	lwz      r12, 0xd4(r12)
+	clrlwi   r5, r0, 0x18
+	mtctr    r12
+	bctrl
 
-	.loc_0x38:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80055878:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1133,58 +1258,57 @@ void J2DPictureEx::append(JUTTexture*, float)
 void J2DPictureEx::insert(const ResTIMG*, JUTPalette*, unsigned char, float)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stfd      f31, 0x18(r1)
-	  fmr       f31, f1
-	  stw       r31, 0x14(r1)
-	  mr        r31, r6
-	  stw       r30, 0x10(r1)
-	  mr        r30, r5
-	  stw       r29, 0xC(r1)
-	  mr.       r29, r4
-	  stw       r28, 0x8(r1)
-	  mr        r28, r3
-	  bne-      .loc_0x40
-	  li        r3, 0
-	  b         .loc_0x90
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stfd     f31, 0x18(r1)
+	fmr      f31, f1
+	stw      r31, 0x14(r1)
+	mr       r31, r6
+	stw      r30, 0x10(r1)
+	mr       r30, r5
+	stw      r29, 0xc(r1)
+	or.      r29, r4, r4
+	stw      r28, 8(r1)
+	mr       r28, r3
+	bne      lbl_800558C8
+	li       r3, 0
+	b        lbl_80055918
 
-	.loc_0x40:
-	  mr        r4, r31
-	  bl        0x4C0
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x58
-	  li        r3, 0
-	  b         .loc_0x90
+lbl_800558C8:
+	mr       r4, r31
+	bl       isInsert__12J2DPictureExCFUc
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_800558E0
+	li       r3, 0
+	b        lbl_80055918
 
-	.loc_0x58:
-	  fmr       f1, f31
-	  mr        r3, r28
-	  mr        r4, r31
-	  bl        0x16C
-	  lwz       r3, 0x168(r28)
-	  mr        r5, r29
-	  mr        r6, r30
-	  rlwinm    r4,r31,0,24,31
-	  lwz       r3, 0x70(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x7C(r12)
-	  mtctr     r12
-	  bctrl
-	  li        r3, 0x1
+lbl_800558E0:
+	fmr      f1, f31
+	mr       r3, r28
+	mr       r4, r31
+	bl       insertCommon__12J2DPictureExFUcf
+	lwz      r3, 0x168(r28)
+	mr       r5, r29
+	mr       r6, r30
+	clrlwi   r4, r31, 0x18
+	lwz      r3, 0x70(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x7c(r12)
+	mtctr    r12
+	bctrl
+	li       r3, 1
 
-	.loc_0x90:
-	  lwz       r0, 0x24(r1)
-	  lfd       f31, 0x18(r1)
-	  lwz       r31, 0x14(r1)
-	  lwz       r30, 0x10(r1)
-	  lwz       r29, 0xC(r1)
-	  lwz       r28, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80055918:
+	lwz      r0, 0x24(r1)
+	lfd      f31, 0x18(r1)
+	lwz      r31, 0x14(r1)
+	lwz      r30, 0x10(r1)
+	lwz      r29, 0xc(r1)
+	lwz      r28, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -1196,37 +1320,36 @@ void J2DPictureEx::insert(const ResTIMG*, JUTPalette*, unsigned char, float)
 void J2DPictureEx::insert(const char*, JUTPalette*, unsigned char, float)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stfd      f31, 0x18(r1)
-	  fmr       f31, f1
-	  stw       r31, 0x14(r1)
-	  mr        r31, r6
-	  stw       r30, 0x10(r1)
-	  mr        r30, r5
-	  stw       r29, 0xC(r1)
-	  mr        r29, r3
-	  mr        r3, r4
-	  bl        -0x14E90
-	  lwz       r12, 0x0(r29)
-	  mr        r4, r3
-	  fmr       f1, f31
-	  mr        r3, r29
-	  lwz       r12, 0xC8(r12)
-	  mr        r5, r30
-	  mr        r6, r31
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x24(r1)
-	  lfd       f31, 0x18(r1)
-	  lwz       r31, 0x14(r1)
-	  lwz       r30, 0x10(r1)
-	  lwz       r29, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stfd     f31, 0x18(r1)
+	fmr      f31, f1
+	stw      r31, 0x14(r1)
+	mr       r31, r6
+	stw      r30, 0x10(r1)
+	mr       r30, r5
+	stw      r29, 0xc(r1)
+	mr       r29, r3
+	mr       r3, r4
+	bl       getNameResource__9J2DScreenFPCc
+	lwz      r12, 0(r29)
+	mr       r4, r3
+	fmr      f1, f31
+	mr       r3, r29
+	lwz      r12, 0xc8(r12)
+	mr       r5, r30
+	mr       r6, r31
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x24(r1)
+	lfd      f31, 0x18(r1)
+	lwz      r31, 0x14(r1)
+	lwz      r30, 0x10(r1)
+	lwz      r29, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -1238,56 +1361,53 @@ void J2DPictureEx::insert(const char*, JUTPalette*, unsigned char, float)
 void J2DPictureEx::insert(JUTTexture*, unsigned char, float)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stfd      f31, 0x18(r1)
-	  fmr       f31, f1
-	  stw       r31, 0x14(r1)
-	  mr        r31, r5
-	  stw       r30, 0x10(r1)
-	  mr.       r30, r4
-	  stw       r29, 0xC(r1)
-	  mr        r29, r3
-	  bne-      .loc_0x38
-	  li        r3, 0
-	  b         .loc_0x84
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stfd     f31, 0x18(r1)
+	fmr      f31, f1
+	stw      r31, 0x14(r1)
+	mr       r31, r5
+	stw      r30, 0x10(r1)
+	or.      r30, r4, r4
+	stw      r29, 0xc(r1)
+	mr       r29, r3
+	bne      lbl_800559EC
+	li       r3, 0
+	b        lbl_80055A38
 
-	.loc_0x38:
-	  mr        r4, r31
-	  bl        0x39C
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x50
-	  li        r3, 0
-	  b         .loc_0x84
+lbl_800559EC:
+	mr       r4, r31
+	bl       isInsert__12J2DPictureExCFUc
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_80055A04
+	li       r3, 0
+	b        lbl_80055A38
 
-	.loc_0x50:
-	  fmr       f1, f31
-	  mr        r3, r29
-	  mr        r4, r31
-	  bl        .loc_0xA4
-	  lwz       r3, 0x168(r29)
-	  mr        r5, r30
-	  rlwinm    r4,r31,0,24,31
-	  lwz       r3, 0x70(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x80(r12)
-	  mtctr     r12
-	  bctrl
-	  li        r3, 0x1
+lbl_80055A04:
+	fmr      f1, f31
+	mr       r3, r29
+	mr       r4, r31
+	bl       insertCommon__12J2DPictureExFUcf
+	lwz      r3, 0x168(r29)
+	mr       r5, r30
+	clrlwi   r4, r31, 0x18
+	lwz      r3, 0x70(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x80(r12)
+	mtctr    r12
+	bctrl
+	li       r3, 1
 
-	.loc_0x84:
-	  lwz       r0, 0x24(r1)
-	  lfd       f31, 0x18(r1)
-	  lwz       r31, 0x14(r1)
-	  lwz       r30, 0x10(r1)
-	  lwz       r29, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-
-	.loc_0xA4:
+lbl_80055A38:
+	lwz      r0, 0x24(r1)
+	lfd      f31, 0x18(r1)
+	lwz      r31, 0x14(r1)
+	lwz      r30, 0x10(r1)
+	lwz      r29, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -1299,232 +1419,231 @@ void J2DPictureEx::insert(JUTTexture*, unsigned char, float)
 void J2DPictureEx::insertCommon(unsigned char, float)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0xA0(r1)
-	  mflr      r0
-	  stw       r0, 0xA4(r1)
-	  stfd      f31, 0x90(r1)
-	  psq_st    f31,0x98(r1),0,0
-	  stmw      r25, 0x74(r1)
-	  mr        r26, r3
-	  fmr       f31, f1
-	  lwz       r5, 0x168(r3)
-	  mr        r27, r4
-	  lwz       r3, 0x70(r5)
-	  lwz       r0, 0x28(r5)
-	  lwz       r12, 0x0(r3)
-	  rlwinm    r29,r0,0,24,31
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x168(r26)
-	  lwz       r3, 0x70(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x58(r12)
-	  mtctr     r12
-	  bctrl
-	  cmplwi    r29, 0x1
-	  bgt-      .loc_0x7C
-	  rlwinm    r4,r3,0,24,31
-	  subfic    r3, r4, 0x1
-	  subi      r0, r4, 0x1
-	  or        r0, r3, r0
-	  rlwinm    r28,r0,1,31,31
-	  b         .loc_0x94
+	stwu     r1, -0xa0(r1)
+	mflr     r0
+	stw      r0, 0xa4(r1)
+	stfd     f31, 0x90(r1)
+	psq_st   f31, 152(r1), 0, qr0
+	stmw     r25, 0x74(r1)
+	mr       r26, r3
+	fmr      f31, f1
+	lwz      r5, 0x168(r3)
+	mr       r27, r4
+	lwz      r3, 0x70(r5)
+	lwz      r0, 0x28(r5)
+	lwz      r12, 0(r3)
+	clrlwi   r29, r0, 0x18
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 0x168(r26)
+	lwz      r3, 0x70(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x58(r12)
+	mtctr    r12
+	bctrl
+	cmplwi   r29, 1
+	bgt      lbl_80055AD4
+	clrlwi   r4, r3, 0x18
+	subfic   r3, r4, 1
+	addi     r0, r4, -1
+	or       r0, r3, r0
+	srwi     r28, r0, 0x1f
+	b        lbl_80055AEC
 
-	.loc_0x7C:
-	  rlwinm    r4,r3,0,24,31
-	  addi      r0, r29, 0x1
-	  sub       r3, r0, r4
-	  sub       r0, r4, r0
-	  or        r0, r3, r0
-	  rlwinm    r28,r0,1,31,31
+lbl_80055AD4:
+	clrlwi   r4, r3, 0x18
+	addi     r0, r29, 1
+	subf     r3, r4, r0
+	subf     r0, r0, r4
+	or       r0, r3, r0
+	srwi     r28, r0, 0x1f
 
-	.loc_0x94:
-	  fmr       f1, f31
-	  mr        r3, r26
-	  mr        r4, r27
-	  li        r5, 0x1
-	  li        r6, 0x1
-	  bl        0x20D0
-	  fmr       f1, f31
-	  mr        r3, r26
-	  mr        r4, r27
-	  li        r5, 0
-	  li        r6, 0x1
-	  bl        0x20B8
-	  addi      r30, r29, 0x1
-	  rlwinm    r29,r27,0,24,31
-	  rlwinm    r31,r30,0,24,31
-	  lwz       r3, 0x168(r26)
-	  subi      r10, r31, 0x1
-	  li        r7, 0x1
-	  mulli     r4, r10, 0x3
-	  stw       r31, 0x28(r3)
-	  cmpw      r10, r29
-	  addi      r3, r10, 0x1
-	  mr        r11, r10
-	  li        r6, 0x4
-	  addi      r8, r4, 0x1E
-	  sub       r3, r3, r29
-	  blt-      .loc_0x1E0
-	  rlwinm.   r0,r3,31,1,31
-	  mtctr     r0
-	  beq-      .loc_0x198
+lbl_80055AEC:
+	fmr      f1, f31
+	mr       r3, r26
+	mr       r4, r27
+	li       r5, 1
+	li       r6, 1
+	bl       shiftSetBlendRatio__12J2DPictureExFUcfbb
+	fmr      f1, f31
+	mr       r3, r26
+	mr       r4, r27
+	li       r5, 0
+	li       r6, 1
+	bl       shiftSetBlendRatio__12J2DPictureExFUcfbb
+	addi     r30, r29, 1
+	clrlwi   r29, r27, 0x18
+	clrlwi   r31, r30, 0x18
+	lwz      r3, 0x168(r26)
+	addi     r10, r31, -1
+	li       r7, 1
+	mulli    r4, r10, 3
+	stw      r31, 0x28(r3)
+	cmpw     r10, r29
+	addi     r3, r10, 1
+	mr       r11, r10
+	li       r6, 4
+	addi     r8, r4, 0x1e
+	subf     r3, r29, r3
+	blt      lbl_80055C38
+	rlwinm.  r0, r3, 0x1f, 1, 0x1f
+	mtctr    r0
+	beq      lbl_80055BF0
 
-	.loc_0x10C:
-	  stb       r8, 0xE(r1)
-	  rlwinm    r5,r11,2,22,29
-	  lwz       r0, 0x168(r26)
-	  subi      r8, r8, 0x3
-	  stb       r7, 0xC(r1)
-	  subi      r11, r11, 0x1
-	  add       r9, r0, r5
-	  stb       r6, 0xD(r1)
-	  rlwinm    r5,r11,2,22,29
-	  subi      r11, r11, 0x1
-	  lwz       r0, 0xC(r1)
-	  stw       r0, 0x8(r1)
-	  lbz       r0, 0x8(r1)
-	  lbz       r4, 0x9(r1)
-	  stb       r0, 0x2C(r9)
-	  lbz       r0, 0xA(r1)
-	  stb       r4, 0x2D(r9)
-	  stb       r0, 0x2E(r9)
-	  stb       r8, 0xE(r1)
-	  subi      r8, r8, 0x3
-	  lwz       r0, 0x168(r26)
-	  stb       r7, 0xC(r1)
-	  add       r9, r0, r5
-	  stb       r6, 0xD(r1)
-	  lwz       r0, 0xC(r1)
-	  stw       r0, 0x8(r1)
-	  lbz       r0, 0x8(r1)
-	  lbz       r4, 0x9(r1)
-	  stb       r0, 0x2C(r9)
-	  lbz       r0, 0xA(r1)
-	  stb       r4, 0x2D(r9)
-	  stb       r0, 0x2E(r9)
-	  bdnz+     .loc_0x10C
-	  andi.     r3, r3, 0x1
-	  beq-      .loc_0x1E0
+lbl_80055B64:
+	stb      r8, 0xe(r1)
+	rlwinm   r5, r11, 2, 0x16, 0x1d
+	lwz      r0, 0x168(r26)
+	addi     r8, r8, -3
+	stb      r7, 0xc(r1)
+	addi     r11, r11, -1
+	add      r9, r0, r5
+	stb      r6, 0xd(r1)
+	rlwinm   r5, r11, 2, 0x16, 0x1d
+	addi     r11, r11, -1
+	lwz      r0, 0xc(r1)
+	stw      r0, 8(r1)
+	lbz      r0, 8(r1)
+	lbz      r4, 9(r1)
+	stb      r0, 0x2c(r9)
+	lbz      r0, 0xa(r1)
+	stb      r4, 0x2d(r9)
+	stb      r0, 0x2e(r9)
+	stb      r8, 0xe(r1)
+	addi     r8, r8, -3
+	lwz      r0, 0x168(r26)
+	stb      r7, 0xc(r1)
+	add      r9, r0, r5
+	stb      r6, 0xd(r1)
+	lwz      r0, 0xc(r1)
+	stw      r0, 8(r1)
+	lbz      r0, 8(r1)
+	lbz      r4, 9(r1)
+	stb      r0, 0x2c(r9)
+	lbz      r0, 0xa(r1)
+	stb      r4, 0x2d(r9)
+	stb      r0, 0x2e(r9)
+	bdnz     lbl_80055B64
+	andi.    r3, r3, 1
+	beq      lbl_80055C38
 
-	.loc_0x198:
-	  mtctr     r3
+lbl_80055BF0:
+	mtctr    r3
 
-	.loc_0x19C:
-	  stb       r8, 0xE(r1)
-	  rlwinm    r5,r11,2,22,29
-	  lwz       r0, 0x168(r26)
-	  subi      r11, r11, 0x1
-	  stb       r7, 0xC(r1)
-	  subi      r8, r8, 0x3
-	  add       r9, r0, r5
-	  stb       r6, 0xD(r1)
-	  lwz       r0, 0xC(r1)
-	  stw       r0, 0x8(r1)
-	  lbz       r0, 0x8(r1)
-	  lbz       r4, 0x9(r1)
-	  stb       r0, 0x2C(r9)
-	  lbz       r0, 0xA(r1)
-	  stb       r4, 0x2D(r9)
-	  stb       r0, 0x2E(r9)
-	  bdnz+     .loc_0x19C
+lbl_80055BF4:
+	stb      r8, 0xe(r1)
+	rlwinm   r5, r11, 2, 0x16, 0x1d
+	lwz      r0, 0x168(r26)
+	addi     r11, r11, -1
+	stb      r7, 0xc(r1)
+	addi     r8, r8, -3
+	add      r9, r0, r5
+	stb      r6, 0xd(r1)
+	lwz      r0, 0xc(r1)
+	stw      r0, 8(r1)
+	lbz      r0, 8(r1)
+	lbz      r4, 9(r1)
+	stb      r0, 0x2c(r9)
+	lbz      r0, 0xa(r1)
+	stb      r4, 0x2d(r9)
+	stb      r0, 0x2e(r9)
+	bdnz     lbl_80055BF4
 
-	.loc_0x1E0:
-	  mr        r25, r10
-	  b         .loc_0x20C
+lbl_80055C38:
+	mr       r25, r10
+	b        lbl_80055C64
 
-	.loc_0x1E8:
-	  subi      r0, r25, 0x1
-	  lwz       r3, 0x168(r26)
-	  rlwinm    r5,r0,2,22,29
-	  rlwinm    r4,r25,0,24,31
-	  addi      r3, r3, 0x28
-	  addi      r0, r5, 0x24
-	  lwzx      r5, r3, r0
-	  bl        -0xBD68
-	  subi      r25, r25, 0x1
+lbl_80055C40:
+	addi     r0, r25, -1
+	lwz      r3, 0x168(r26)
+	rlwinm   r5, r0, 2, 0x16, 0x1d
+	clrlwi   r4, r25, 0x18
+	addi     r3, r3, 0x28
+	addi     r0, r5, 0x24
+	lwzx     r5, r3, r0
+	bl       setTexMtx__14J2DTexGenBlockFUlR9J2DTexMtx
+	addi     r25, r25, -1
 
-	.loc_0x20C:
-	  cmpw      r25, r29
-	  bgt+      .loc_0x1E8
-	  lis       r3, 0x8048
-	  rlwinm    r4,r27,0,24,31
-	  subi      r6, r3, 0x7998
-	  addi      r5, r1, 0x10
-	  lfs       f7, 0x4(r6)
-	  lfs       f6, 0x8(r6)
-	  lfs       f5, 0xC(r6)
-	  lbz       r3, 0x0(r6)
-	  lbz       r0, 0x1(r6)
-	  lfs       f4, 0x10(r6)
-	  lfs       f3, 0x14(r6)
-	  lfs       f2, 0x18(r6)
-	  lfs       f1, 0x1C(r6)
-	  lfs       f0, 0x20(r6)
-	  stfs      f7, 0x14(r1)
-	  stfs      f6, 0x18(r1)
-	  stfs      f5, 0x1C(r1)
-	  stb       r3, 0x10(r1)
-	  stb       r0, 0x11(r1)
-	  stfs      f4, 0x20(r1)
-	  stfs      f3, 0x24(r1)
-	  stfs      f2, 0x28(r1)
-	  stfs      f1, 0x2C(r1)
-	  stfs      f0, 0x30(r1)
-	  lwz       r3, 0x168(r26)
-	  addi      r3, r3, 0x28
-	  bl        -0xBDE0
-	  rlwinm    r0,r30,0,24,31
-	  cmplwi    r0, 0x1
-	  bne-      .loc_0x294
-	  li        r27, 0x1
-	  b         .loc_0x2B0
+lbl_80055C64:
+	cmpw     r25, r29
+	bgt      lbl_80055C40
+	lis      r3, j2dDefaultTexMtxInfo@ha
+	clrlwi   r4, r27, 0x18
+	addi     r6, r3, j2dDefaultTexMtxInfo@l
+	addi     r5, r1, 0x10
+	lfs      f7, 4(r6)
+	lfs      f6, 8(r6)
+	lfs      f5, 0xc(r6)
+	lbz      r3, 0(r6)
+	lbz      r0, 1(r6)
+	lfs      f4, 0x10(r6)
+	lfs      f3, 0x14(r6)
+	lfs      f2, 0x18(r6)
+	lfs      f1, 0x1c(r6)
+	lfs      f0, 0x20(r6)
+	stfs     f7, 0x14(r1)
+	stfs     f6, 0x18(r1)
+	stfs     f5, 0x1c(r1)
+	stb      r3, 0x10(r1)
+	stb      r0, 0x11(r1)
+	stfs     f4, 0x20(r1)
+	stfs     f3, 0x24(r1)
+	stfs     f2, 0x28(r1)
+	stfs     f1, 0x2c(r1)
+	stfs     f0, 0x30(r1)
+	lwz      r3, 0x168(r26)
+	addi     r3, r3, 0x28
+	bl       setTexMtx__14J2DTexGenBlockFUlR9J2DTexMtx
+	clrlwi   r0, r30, 0x18
+	cmplwi   r0, 1
+	bne      lbl_80055CEC
+	li       r27, 1
+	b        lbl_80055D08
 
-	.loc_0x294:
-	  rlwinm    r3,r28,0,24,31
-	  neg       r0, r3
-	  or        r0, r0, r3
-	  rlwinm    r3,r0,1,31,31
-	  addi      r0, r3, 0x1
-	  add       r0, r31, r0
-	  rlwinm    r27,r0,0,24,31
+lbl_80055CEC:
+	clrlwi   r3, r28, 0x18
+	neg      r0, r3
+	or       r0, r0, r3
+	srwi     r3, r0, 0x1f
+	addi     r0, r3, 1
+	add      r0, r31, r0
+	clrlwi   r27, r0, 0x18
 
-	.loc_0x2B0:
-	  lwz       r3, 0x168(r26)
-	  mr        r4, r27
-	  lwz       r3, 0x70(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x54(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r3, r26
-	  mr        r5, r27
-	  mr        r6, r28
-	  rlwinm    r4,r30,0,24,31
-	  bl        0x10E0
-	  mr        r3, r26
-	  mr        r5, r27
-	  mr        r6, r28
-	  rlwinm    r4,r30,0,24,31
-	  bl        0x12C8
-	  mr        r3, r26
-	  rlwinm    r4,r30,0,24,31
-	  bl        0x1878
-	  mr        r3, r26
-	  rlwinm    r4,r30,0,24,31
-	  bl        0x1D10
-	  mr        r3, r26
-	  rlwinm    r4,r30,0,24,31
-	  bl        0x1DB4
-	  psq_l     f31,0x98(r1),0,0
-	  lfd       f31, 0x90(r1)
-	  lmw       r25, 0x74(r1)
-	  lwz       r0, 0xA4(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0xA0
-	  blr
+lbl_80055D08:
+	lwz      r3, 0x168(r26)
+	mr       r4, r27
+	lwz      r3, 0x70(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x54(r12)
+	mtctr    r12
+	bctrl
+	mr       r3, r26
+	mr       r5, r27
+	mr       r6, r28
+	clrlwi   r4, r30, 0x18
+	bl       setTevOrder__12J2DPictureExFUcUcb
+	mr       r3, r26
+	mr       r5, r27
+	mr       r6, r28
+	clrlwi   r4, r30, 0x18
+	bl       setTevStage__12J2DPictureExFUcUcb
+	mr       r3, r26
+	clrlwi   r4, r30, 0x18
+	bl       setTevKColor__12J2DPictureExFUc
+	mr       r3, r26
+	clrlwi   r4, r30, 0x18
+	bl       setTevKColorSel__12J2DPictureExFUc
+	mr       r3, r26
+	clrlwi   r4, r30, 0x18
+	bl       setTevKAlphaSel__12J2DPictureExFUc
+	psq_l    f31, 152(r1), 0, qr0
+	lfd      f31, 0x90(r1)
+	lmw      r25, 0x74(r1)
+	lwz      r0, 0xa4(r1)
+	mtlr     r0
+	addi     r1, r1, 0xa0
+	blr
 	*/
 }
 
@@ -1536,83 +1655,82 @@ void J2DPictureEx::insertCommon(unsigned char, float)
 void J2DPictureEx::isInsert(unsigned char) const
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lwz       r5, 0x168(r3)
-	  stw       r0, 0x24(r1)
-	  cmplwi    r5, 0
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  bne-      .loc_0x30
-	  li        r3, 0
-	  b         .loc_0xDC
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lwz      r5, 0x168(r3)
+	stw      r0, 0x24(r1)
+	cmplwi   r5, 0
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	bne      lbl_80055DBC
+	li       r3, 0
+	b        lbl_80055E68
 
-	.loc_0x30:
-	  lwz       r3, 0x70(r5)
-	  cmplwi    r3, 0
-	  bne-      .loc_0x44
-	  li        r3, 0
-	  b         .loc_0xDC
+lbl_80055DBC:
+	lwz      r3, 0x70(r5)
+	cmplwi   r3, 0
+	bne      lbl_80055DD0
+	li       r3, 0
+	b        lbl_80055E68
 
-	.loc_0x44:
-	  lwz       r0, 0x28(r5)
-	  rlwinm    r30,r0,0,24,31
-	  cmplwi    r30, 0x8
-	  bge-      .loc_0x68
-	  rlwinm    r0,r4,0,24,31
-	  cmplwi    r0, 0x8
-	  bge-      .loc_0x68
-	  cmplw     r0, r30
-	  ble-      .loc_0x70
+lbl_80055DD0:
+	lwz      r0, 0x28(r5)
+	clrlwi   r30, r0, 0x18
+	cmplwi   r30, 8
+	bge      lbl_80055DF4
+	clrlwi   r0, r4, 0x18
+	cmplwi   r0, 8
+	bge      lbl_80055DF4
+	cmplw    r0, r30
+	ble      lbl_80055DFC
 
-	.loc_0x68:
-	  li        r3, 0
-	  b         .loc_0xDC
+lbl_80055DF4:
+	li       r3, 0
+	b        lbl_80055E68
 
-	.loc_0x70:
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r31, r3
-	  rlwinm    r0,r3,0,24,31
-	  cmplwi    r0, 0x2
-	  bgt-      .loc_0xA0
-	  cmplwi    r30, 0
-	  beq-      .loc_0xA0
-	  li        r3, 0
-	  b         .loc_0xDC
+lbl_80055DFC:
+	lwz      r12, 0(r3)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	mr       r31, r3
+	clrlwi   r0, r3, 0x18
+	cmplwi   r0, 2
+	bgt      lbl_80055E2C
+	cmplwi   r30, 0
+	beq      lbl_80055E2C
+	li       r3, 0
+	b        lbl_80055E68
 
-	.loc_0xA0:
-	  lwz       r3, 0x168(r29)
-	  lwz       r3, 0x70(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x58(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm    r4,r31,0,24,31
-	  rlwinm    r0,r3,0,24,31
-	  cmplw     r4, r0
-	  bne-      .loc_0xD8
-	  cmplwi    r30, 0
-	  beq-      .loc_0xD8
-	  li        r3, 0
-	  b         .loc_0xDC
+lbl_80055E2C:
+	lwz      r3, 0x168(r29)
+	lwz      r3, 0x70(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x58(r12)
+	mtctr    r12
+	bctrl
+	clrlwi   r4, r31, 0x18
+	clrlwi   r0, r3, 0x18
+	cmplw    r4, r0
+	bne      lbl_80055E64
+	cmplwi   r30, 0
+	beq      lbl_80055E64
+	li       r3, 0
+	b        lbl_80055E68
 
-	.loc_0xD8:
-	  li        r3, 0x1
+lbl_80055E64:
+	li       r3, 1
 
-	.loc_0xDC:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80055E68:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -1624,122 +1742,121 @@ void J2DPictureEx::isInsert(unsigned char) const
 void J2DPictureEx::remove(unsigned char)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  stw       r28, 0x10(r1)
-	  mr        r28, r4
-	  bl        0x2B4
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x38
-	  li        r3, 0
-	  b         .loc_0x18C
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	stw      r28, 0x10(r1)
+	mr       r28, r4
+	bl       isRemove__12J2DPictureExCFUc
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_80055EBC
+	li       r3, 0
+	b        lbl_80056010
 
-	.loc_0x38:
-	  lwz       r4, 0x168(r29)
-	  lwz       r3, 0x70(r4)
-	  lwz       r0, 0x28(r4)
-	  lwz       r12, 0x0(r3)
-	  rlwinm    r30,r0,0,24,31
-	  lwz       r12, 0x58(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm    r3,r3,0,24,31
-	  addi      r0, r30, 0x1
-	  sub       r4, r0, r3
-	  lfs       f1, -0x7A7C(r2)
-	  sub       r0, r3, r0
-	  mr        r3, r29
-	  or        r0, r4, r0
-	  mr        r4, r28
-	  rlwinm    r31,r0,1,31,31
-	  li        r5, 0x1
-	  li        r6, 0
-	  bl        0x1CC8
-	  lfs       f1, -0x7A7C(r2)
-	  mr        r3, r29
-	  mr        r4, r28
-	  li        r5, 0
-	  li        r6, 0
-	  bl        0x1CB0
-	  subi      r0, r30, 0x1
-	  lwz       r3, 0x168(r29)
-	  rlwinm    r0,r0,0,24,31
-	  rlwinm    r4,r28,0,24,31
-	  stw       r0, 0x28(r3)
-	  lwz       r3, 0x168(r29)
-	  lwz       r3, 0x70(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8C(r12)
-	  mtctr     r12
-	  bctrl
-	  subi      r0, r30, 0x1
-	  rlwinm    r4,r0,0,24,31
-	  cmplwi    r4, 0x1
-	  beq-      .loc_0xF8
-	  neg       r0, r31
-	  or        r0, r0, r31
-	  rlwinm    r3,r0,1,31,31
-	  addi      r0, r3, 0x1
-	  add       r0, r4, r0
-	  rlwinm    r28,r0,0,24,31
-	  b         .loc_0x10C
+lbl_80055EBC:
+	lwz      r4, 0x168(r29)
+	lwz      r3, 0x70(r4)
+	lwz      r0, 0x28(r4)
+	lwz      r12, 0(r3)
+	clrlwi   r30, r0, 0x18
+	lwz      r12, 0x58(r12)
+	mtctr    r12
+	bctrl
+	clrlwi   r3, r3, 0x18
+	addi     r0, r30, 1
+	subf     r4, r3, r0
+	lfs      f1, lbl_805168E4@sda21(r2)
+	subf     r0, r0, r3
+	mr       r3, r29
+	or       r0, r4, r0
+	mr       r4, r28
+	srwi     r31, r0, 0x1f
+	li       r5, 1
+	li       r6, 0
+	bl       shiftSetBlendRatio__12J2DPictureExFUcfbb
+	lfs      f1, lbl_805168E4@sda21(r2)
+	mr       r3, r29
+	mr       r4, r28
+	li       r5, 0
+	li       r6, 0
+	bl       shiftSetBlendRatio__12J2DPictureExFUcfbb
+	addi     r0, r30, -1
+	lwz      r3, 0x168(r29)
+	clrlwi   r0, r0, 0x18
+	clrlwi   r4, r28, 0x18
+	stw      r0, 0x28(r3)
+	lwz      r3, 0x168(r29)
+	lwz      r3, 0x70(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x8c(r12)
+	mtctr    r12
+	bctrl
+	addi     r0, r30, -1
+	clrlwi   r4, r0, 0x18
+	cmplwi   r4, 1
+	beq      lbl_80055F7C
+	neg      r0, r31
+	or       r0, r0, r31
+	srwi     r3, r0, 0x1f
+	addi     r0, r3, 1
+	add      r0, r4, r0
+	clrlwi   r28, r0, 0x18
+	b        lbl_80055F90
 
-	.loc_0xF8:
-	  neg       r0, r31
-	  or        r0, r0, r31
-	  rlwinm    r3,r0,1,31,31
-	  addi      r0, r3, 0x1
-	  rlwinm    r28,r0,0,24,31
+lbl_80055F7C:
+	neg      r0, r31
+	or       r0, r0, r31
+	srwi     r3, r0, 0x1f
+	addi     r0, r3, 1
+	clrlwi   r28, r0, 0x18
 
-	.loc_0x10C:
-	  lwz       r3, 0x168(r29)
-	  mr        r4, r28
-	  lwz       r3, 0x70(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x54(r12)
-	  mtctr     r12
-	  bctrl
-	  subi      r0, r30, 0x1
-	  mr        r3, r29
-	  mr        r5, r28
-	  mr        r6, r31
-	  rlwinm    r4,r0,0,24,31
-	  bl        0xE54
-	  subi      r0, r30, 0x1
-	  mr        r3, r29
-	  mr        r5, r28
-	  mr        r6, r31
-	  rlwinm    r4,r0,0,24,31
-	  bl        0x1038
-	  subi      r0, r30, 0x1
-	  mr        r3, r29
-	  rlwinm    r4,r0,0,24,31
-	  bl        0x15E4
-	  subi      r0, r30, 0x1
-	  mr        r3, r29
-	  rlwinm    r4,r0,0,24,31
-	  bl        0x1A78
-	  subi      r0, r30, 0x1
-	  mr        r3, r29
-	  rlwinm    r4,r0,0,24,31
-	  bl        0x1B18
-	  li        r3, 0x1
+lbl_80055F90:
+	lwz      r3, 0x168(r29)
+	mr       r4, r28
+	lwz      r3, 0x70(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x54(r12)
+	mtctr    r12
+	bctrl
+	addi     r0, r30, -1
+	mr       r3, r29
+	mr       r5, r28
+	mr       r6, r31
+	clrlwi   r4, r0, 0x18
+	bl       setTevOrder__12J2DPictureExFUcUcb
+	addi     r0, r30, -1
+	mr       r3, r29
+	mr       r5, r28
+	mr       r6, r31
+	clrlwi   r4, r0, 0x18
+	bl       setTevStage__12J2DPictureExFUcUcb
+	addi     r0, r30, -1
+	mr       r3, r29
+	clrlwi   r4, r0, 0x18
+	bl       setTevKColor__12J2DPictureExFUc
+	addi     r0, r30, -1
+	mr       r3, r29
+	clrlwi   r4, r0, 0x18
+	bl       setTevKColorSel__12J2DPictureExFUc
+	addi     r0, r30, -1
+	mr       r3, r29
+	clrlwi   r4, r0, 0x18
+	bl       setTevKAlphaSel__12J2DPictureExFUc
+	li       r3, 1
 
-	.loc_0x18C:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80056010:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -1751,38 +1868,37 @@ void J2DPictureEx::remove(unsigned char)
 void J2DPictureEx::remove()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r4, 0x168(r3)
-	  cmplwi    r4, 0
-	  bne-      .loc_0x20
-	  li        r3, 0
-	  b         .loc_0x54
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r4, 0x168(r3)
+	cmplwi   r4, 0
+	bne      lbl_80056050
+	li       r3, 0
+	b        lbl_80056084
 
-	.loc_0x20:
-	  lwz       r0, 0x70(r4)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x34
-	  li        r3, 0
-	  b         .loc_0x54
+lbl_80056050:
+	lwz      r0, 0x70(r4)
+	cmplwi   r0, 0
+	bne      lbl_80056064
+	li       r3, 0
+	b        lbl_80056084
 
-	.loc_0x34:
-	  lwz       r0, 0x28(r4)
-	  lwz       r12, 0x0(r3)
-	  rlwinm    r4,r0,0,24,31
-	  subi      r0, r4, 0x1
-	  lwz       r12, 0xD8(r12)
-	  rlwinm    r4,r0,0,24,31
-	  mtctr     r12
-	  bctrl
+lbl_80056064:
+	lwz      r0, 0x28(r4)
+	lwz      r12, 0(r3)
+	clrlwi   r4, r0, 0x18
+	addi     r0, r4, -1
+	lwz      r12, 0xd8(r12)
+	clrlwi   r4, r0, 0x18
+	mtctr    r12
+	bctrl
 
-	.loc_0x54:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80056084:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1794,69 +1910,68 @@ void J2DPictureEx::remove()
 void J2DPictureEx::remove(JUTTexture*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r29, r4
-	  stw       r28, 0x10(r1)
-	  mr        r28, r3
-	  lwz       r3, 0x168(r3)
-	  cmplwi    r3, 0
-	  bne-      .loc_0x38
-	  li        r3, 0
-	  b         .loc_0xA8
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	mr       r29, r4
+	stw      r28, 0x10(r1)
+	mr       r28, r3
+	lwz      r3, 0x168(r3)
+	cmplwi   r3, 0
+	bne      lbl_800560CC
+	li       r3, 0
+	b        lbl_8005613C
 
-	.loc_0x38:
-	  lwz       r0, 0x70(r3)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x4C
-	  li        r3, 0
-	  b         .loc_0xA8
+lbl_800560CC:
+	lwz      r0, 0x70(r3)
+	cmplwi   r0, 0
+	bne      lbl_800560E0
+	li       r3, 0
+	b        lbl_8005613C
 
-	.loc_0x4C:
-	  lwz       r0, 0x28(r3)
-	  li        r30, 0
-	  rlwinm    r31,r0,0,24,31
-	  b         .loc_0x84
+lbl_800560E0:
+	lwz      r0, 0x28(r3)
+	li       r30, 0
+	clrlwi   r31, r0, 0x18
+	b        lbl_80056118
 
-	.loc_0x5C:
-	  lwz       r3, 0x168(r28)
-	  rlwinm    r4,r30,0,24,31
-	  lwz       r3, 0x70(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xA0(r12)
-	  mtctr     r12
-	  bctrl
-	  cmplw     r3, r29
-	  beq-      .loc_0x90
-	  addi      r30, r30, 0x1
+lbl_800560F0:
+	lwz      r3, 0x168(r28)
+	clrlwi   r4, r30, 0x18
+	lwz      r3, 0x70(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xa0(r12)
+	mtctr    r12
+	bctrl
+	cmplw    r3, r29
+	beq      lbl_80056124
+	addi     r30, r30, 1
 
-	.loc_0x84:
-	  rlwinm    r0,r30,0,24,31
-	  cmplw     r0, r31
-	  blt+      .loc_0x5C
+lbl_80056118:
+	clrlwi   r0, r30, 0x18
+	cmplw    r0, r31
+	blt      lbl_800560F0
 
-	.loc_0x90:
-	  mr        r3, r28
-	  mr        r4, r30
-	  lwz       r12, 0x0(r28)
-	  lwz       r12, 0xD8(r12)
-	  mtctr     r12
-	  bctrl
+lbl_80056124:
+	mr       r3, r28
+	mr       r4, r30
+	lwz      r12, 0(r28)
+	lwz      r12, 0xd8(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0xA8:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8005613C:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -1868,36 +1983,35 @@ void J2DPictureEx::remove(JUTTexture*)
 void J2DPictureEx::isRemove(unsigned char) const
 {
 	/*
-	.loc_0x0:
-	  lwz       r3, 0x168(r3)
-	  cmplwi    r3, 0
-	  bne-      .loc_0x14
-	  li        r3, 0
-	  blr
+	lwz      r3, 0x168(r3)
+	cmplwi   r3, 0
+	bne      lbl_80056170
+	li       r3, 0
+	blr
 
-	.loc_0x14:
-	  lwz       r0, 0x70(r3)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x28
-	  li        r3, 0
-	  blr
+lbl_80056170:
+	lwz      r0, 0x70(r3)
+	cmplwi   r0, 0
+	bne      lbl_80056184
+	li       r3, 0
+	blr
 
-	.loc_0x28:
-	  lwz       r3, 0x28(r3)
-	  rlwinm    r0,r4,0,24,31
-	  rlwinm    r3,r3,0,24,31
-	  cmplw     r3, r0
-	  ble-      .loc_0x44
-	  cmplwi    r3, 0x1
-	  bne-      .loc_0x4C
+lbl_80056184:
+	lwz      r3, 0x28(r3)
+	clrlwi   r0, r4, 0x18
+	clrlwi   r3, r3, 0x18
+	cmplw    r3, r0
+	ble      lbl_800561A0
+	cmplwi   r3, 1
+	bne      lbl_800561A8
 
-	.loc_0x44:
-	  li        r3, 0
-	  blr
+lbl_800561A0:
+	li       r3, 0
+	blr
 
-	.loc_0x4C:
-	  li        r3, 0x1
-	  blr
+lbl_800561A8:
+	li       r3, 1
+	blr
 	*/
 }
 
@@ -1909,82 +2023,81 @@ void J2DPictureEx::isRemove(unsigned char) const
 void J2DPictureEx::draw(float, float, unsigned char, bool, bool, bool)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x50(r1)
-	  mflr      r0
-	  stw       r0, 0x54(r1)
-	  stfd      f31, 0x40(r1)
-	  psq_st    f31,0x48(r1),0,0
-	  stfd      f30, 0x30(r1)
-	  psq_st    f30,0x38(r1),0,0
-	  stw       r31, 0x2C(r1)
-	  stw       r30, 0x28(r1)
-	  stw       r29, 0x24(r1)
-	  stw       r28, 0x20(r1)
-	  mr        r28, r3
-	  fmr       f30, f1
-	  lwz       r8, 0x168(r3)
-	  fmr       f31, f2
-	  mr        r29, r5
-	  mr        r30, r6
-	  cmplwi    r8, 0
-	  mr        r31, r7
-	  beq-      .loc_0xF4
-	  lwz       r3, 0x70(r8)
-	  cmplwi    r3, 0
-	  beq-      .loc_0xF4
-	  lbz       r0, 0xB0(r28)
-	  cmplwi    r0, 0
-	  beq-      .loc_0xF4
-	  lwz       r0, 0x28(r8)
-	  rlwinm    r4,r4,0,24,31
-	  cmplw     r4, r0
-	  bge-      .loc_0xF4
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xA0(r12)
-	  mtctr     r12
-	  bctrl
-	  cmplwi    r3, 0
-	  beq-      .loc_0xF4
-	  lwz       r5, 0x20(r3)
-	  lis       r7, 0x4330
-	  mr        r3, r28
-	  stw       r7, 0x8(r1)
-	  lhz       r4, 0x2(r5)
-	  fmr       f1, f30
-	  lhz       r0, 0x4(r5)
-	  fmr       f2, f31
-	  xoris     r4, r4, 0x8000
-	  lwz       r12, 0x0(r28)
-	  xoris     r0, r0, 0x8000
-	  stw       r4, 0xC(r1)
-	  mr        r4, r29
-	  lfd       f4, -0x7A78(r2)
-	  mr        r5, r30
-	  lfd       f0, 0x8(r1)
-	  mr        r6, r31
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0xEC(r12)
-	  fsubs     f3, f0, f4
-	  stw       r7, 0x10(r1)
-	  lfd       f0, 0x10(r1)
-	  fsubs     f4, f0, f4
-	  mtctr     r12
-	  bctrl
+	stwu     r1, -0x50(r1)
+	mflr     r0
+	stw      r0, 0x54(r1)
+	stfd     f31, 0x40(r1)
+	psq_st   f31, 72(r1), 0, qr0
+	stfd     f30, 0x30(r1)
+	psq_st   f30, 56(r1), 0, qr0
+	stw      r31, 0x2c(r1)
+	stw      r30, 0x28(r1)
+	stw      r29, 0x24(r1)
+	stw      r28, 0x20(r1)
+	mr       r28, r3
+	fmr      f30, f1
+	lwz      r8, 0x168(r3)
+	fmr      f31, f2
+	mr       r29, r5
+	mr       r30, r6
+	cmplwi   r8, 0
+	mr       r31, r7
+	beq      lbl_800562A4
+	lwz      r3, 0x70(r8)
+	cmplwi   r3, 0
+	beq      lbl_800562A4
+	lbz      r0, 0xb0(r28)
+	cmplwi   r0, 0
+	beq      lbl_800562A4
+	lwz      r0, 0x28(r8)
+	clrlwi   r4, r4, 0x18
+	cmplw    r4, r0
+	bge      lbl_800562A4
+	lwz      r12, 0(r3)
+	lwz      r12, 0xa0(r12)
+	mtctr    r12
+	bctrl
+	cmplwi   r3, 0
+	beq      lbl_800562A4
+	lwz      r5, 0x20(r3)
+	lis      r7, 0x4330
+	mr       r3, r28
+	stw      r7, 8(r1)
+	lhz      r4, 2(r5)
+	fmr      f1, f30
+	lhz      r0, 4(r5)
+	fmr      f2, f31
+	xoris    r4, r4, 0x8000
+	lwz      r12, 0(r28)
+	xoris    r0, r0, 0x8000
+	stw      r4, 0xc(r1)
+	mr       r4, r29
+	lfd      f4, lbl_805168E8@sda21(r2)
+	mr       r5, r30
+	lfd      f0, 8(r1)
+	mr       r6, r31
+	stw      r0, 0x14(r1)
+	lwz      r12, 0xec(r12)
+	fsubs    f3, f0, f4
+	stw      r7, 0x10(r1)
+	lfd      f0, 0x10(r1)
+	fsubs    f4, f0, f4
+	mtctr    r12
+	bctrl
 
-	.loc_0xF4:
-	  psq_l     f31,0x48(r1),0,0
-	  lfd       f31, 0x40(r1)
-	  psq_l     f30,0x38(r1),0,0
-	  lfd       f30, 0x30(r1)
-	  lwz       r31, 0x2C(r1)
-	  lwz       r30, 0x28(r1)
-	  lwz       r29, 0x24(r1)
-	  lwz       r0, 0x54(r1)
-	  lwz       r28, 0x20(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x50
-	  blr
+lbl_800562A4:
+	psq_l    f31, 72(r1), 0, qr0
+	lfd      f31, 0x40(r1)
+	psq_l    f30, 56(r1), 0, qr0
+	lfd      f30, 0x30(r1)
+	lwz      r31, 0x2c(r1)
+	lwz      r30, 0x28(r1)
+	lwz      r29, 0x24(r1)
+	lwz      r0, 0x54(r1)
+	lwz      r28, 0x20(r1)
+	mtlr     r0
+	addi     r1, r1, 0x50
+	blr
 	*/
 }
 
@@ -1996,393 +2109,392 @@ void J2DPictureEx::draw(float, float, unsigned char, bool, bool, bool)
 void J2DPictureEx::draw(float, float, float, float, bool, bool, bool)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0xB0(r1)
-	  mflr      r0
-	  stw       r0, 0xB4(r1)
-	  stfd      f31, 0xA0(r1)
-	  psq_st    f31,0xA8(r1),0,0
-	  stfd      f30, 0x90(r1)
-	  psq_st    f30,0x98(r1),0,0
-	  stfd      f29, 0x80(r1)
-	  psq_st    f29,0x88(r1),0,0
-	  stfd      f28, 0x70(r1)
-	  psq_st    f28,0x78(r1),0,0
-	  stmw      r23, 0x4C(r1)
-	  mr        r28, r3
-	  fmr       f28, f1
-	  lbz       r0, 0xB0(r3)
-	  fmr       f29, f2
-	  fmr       f30, f3
-	  mr        r29, r4
-	  fmr       f31, f4
-	  cmplwi    r0, 0
-	  mr        r30, r5
-	  mr        r31, r6
-	  beq-      .loc_0x574
-	  lwz       r3, 0x168(r28)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x574
-	  lwz       r0, 0x70(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x574
-	  lwz       r0, 0x28(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x574
-	  bl        -0x410C
-	  mr        r3, r28
-	  lfs       f3, -0x7A7C(r2)
-	  lwz       r12, 0x0(r28)
-	  fmr       f1, f28
-	  fmr       f2, f29
-	  lwz       r12, 0x48(r12)
-	  fmr       f4, f3
-	  mtctr     r12
-	  bctrl
-	  addi      r3, r28, 0x50
-	  li        r4, 0
-	  bl        0x931F4
-	  li        r3, 0
-	  bl        0x9328C
-	  lwz       r3, 0x168(r28)
-	  lbz       r0, 0xE(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x574
-	  bl        0x8E330
-	  li        r3, 0x9
-	  li        r4, 0x1
-	  bl        0x8DED8
-	  li        r3, 0xB
-	  li        r4, 0x1
-	  bl        0x8DECC
-	  li        r3, 0xD
-	  li        r4, 0x1
-	  bl        0x8DEC0
-	  lbz       r3, 0xB2(r28)
-	  li        r0, -0x1
-	  stw       r0, 0x8(r1)
-	  stb       r3, 0xB3(r28)
-	  lwz       r3, 0x168(r28)
-	  lbz       r23, 0x150(r28)
-	  lbz       r3, 0xF(r3)
-	  lbz       r24, 0x151(r28)
-	  lbz       r25, 0x152(r28)
-	  cmpwi     r3, 0x1
-	  lbz       r26, 0x153(r28)
-	  stw       r0, 0xC(r1)
-	  lbz       r27, 0x154(r28)
-	  lbz       r12, 0x155(r28)
-	  lbz       r11, 0x156(r28)
-	  lbz       r10, 0x157(r28)
-	  stw       r0, 0x10(r1)
-	  lbz       r9, 0x158(r28)
-	  lbz       r8, 0x159(r28)
-	  lbz       r5, 0x15A(r28)
-	  lbz       r7, 0x15B(r28)
-	  stw       r0, 0x14(r1)
-	  lbz       r4, 0x15C(r28)
-	  lbz       r3, 0x15D(r28)
-	  lbz       r0, 0x15E(r28)
-	  lbz       r6, 0x15F(r28)
-	  stb       r23, 0x8(r1)
-	  stb       r24, 0x9(r1)
-	  stb       r25, 0xA(r1)
-	  stb       r26, 0xB(r1)
-	  stb       r27, 0xC(r1)
-	  stb       r12, 0xD(r1)
-	  stb       r11, 0xE(r1)
-	  stb       r10, 0xF(r1)
-	  stb       r9, 0x10(r1)
-	  stb       r8, 0x11(r1)
-	  stb       r5, 0x12(r1)
-	  stb       r7, 0x13(r1)
-	  stb       r4, 0x14(r1)
-	  stb       r3, 0x15(r1)
-	  stb       r0, 0x16(r1)
-	  stb       r6, 0x17(r1)
-	  bne-      .loc_0x21C
-	  lbz       r0, 0xB3(r28)
-	  lis       r3, 0x8081
-	  subi      r9, r3, 0x7F7F
-	  mullw     r5, r0, r26
-	  mullw     r4, r0, r7
-	  mullw     r3, r0, r10
-	  mulhw     r7, r9, r5
-	  mullw     r0, r0, r6
-	  add       r5, r7, r5
-	  srawi     r7, r5, 0x7
-	  mulhw     r6, r9, r3
-	  rlwinm    r8,r7,1,31,31
-	  add       r7, r7, r8
-	  stb       r7, 0xB(r1)
-	  mulhw     r5, r9, r4
-	  add       r3, r6, r3
-	  srawi     r6, r3, 0x7
-	  add       r4, r5, r4
-	  mulhw     r3, r9, r0
-	  rlwinm    r5,r6,1,31,31
-	  srawi     r4, r4, 0x7
-	  add       r6, r6, r5
-	  rlwinm    r5,r4,1,31,31
-	  stb       r6, 0xF(r1)
-	  add       r0, r3, r0
-	  add       r4, r4, r5
-	  srawi     r0, r0, 0x7
-	  stb       r4, 0x13(r1)
-	  rlwinm    r3,r0,1,31,31
-	  add       r0, r0, r3
-	  stb       r0, 0x17(r1)
+	stwu     r1, -0xb0(r1)
+	mflr     r0
+	stw      r0, 0xb4(r1)
+	stfd     f31, 0xa0(r1)
+	psq_st   f31, 168(r1), 0, qr0
+	stfd     f30, 0x90(r1)
+	psq_st   f30, 152(r1), 0, qr0
+	stfd     f29, 0x80(r1)
+	psq_st   f29, 136(r1), 0, qr0
+	stfd     f28, 0x70(r1)
+	psq_st   f28, 120(r1), 0, qr0
+	stmw     r23, 0x4c(r1)
+	mr       r28, r3
+	fmr      f28, f1
+	lbz      r0, 0xb0(r3)
+	fmr      f29, f2
+	fmr      f30, f3
+	mr       r29, r4
+	fmr      f31, f4
+	cmplwi   r0, 0
+	mr       r30, r5
+	mr       r31, r6
+	beq      lbl_80056848
+	lwz      r3, 0x168(r28)
+	cmplwi   r3, 0
+	beq      lbl_80056848
+	lwz      r0, 0x70(r3)
+	cmplwi   r0, 0
+	beq      lbl_80056848
+	lwz      r0, 0x28(r3)
+	cmplwi   r0, 0
+	beq      lbl_80056848
+	bl       setGX__11J2DMaterialFv
+	mr       r3, r28
+	lfs      f3, lbl_805168E4@sda21(r2)
+	lwz      r12, 0(r28)
+	fmr      f1, f28
+	fmr      f2, f29
+	lwz      r12, 0x48(r12)
+	fmr      f4, f3
+	mtctr    r12
+	bctrl
+	addi     r3, r28, 0x50
+	li       r4, 0
+	bl       GXLoadPosMtxImm
+	li       r3, 0
+	bl       GXSetCurrentMtx
+	lwz      r3, 0x168(r28)
+	lbz      r0, 0xe(r3)
+	cmplwi   r0, 0
+	beq      lbl_80056848
+	bl       GXClearVtxDesc
+	li       r3, 9
+	li       r4, 1
+	bl       GXSetVtxDesc
+	li       r3, 0xb
+	li       r4, 1
+	bl       GXSetVtxDesc
+	li       r3, 0xd
+	li       r4, 1
+	bl       GXSetVtxDesc
+	lbz      r3, 0xb2(r28)
+	li       r0, -1
+	stw      r0, 8(r1)
+	stb      r3, 0xb3(r28)
+	lwz      r3, 0x168(r28)
+	lbz      r23, 0x150(r28)
+	lbz      r3, 0xf(r3)
+	lbz      r24, 0x151(r28)
+	lbz      r25, 0x152(r28)
+	cmpwi    r3, 1
+	lbz      r26, 0x153(r28)
+	stw      r0, 0xc(r1)
+	lbz      r27, 0x154(r28)
+	lbz      r12, 0x155(r28)
+	lbz      r11, 0x156(r28)
+	lbz      r10, 0x157(r28)
+	stw      r0, 0x10(r1)
+	lbz      r9, 0x158(r28)
+	lbz      r8, 0x159(r28)
+	lbz      r5, 0x15a(r28)
+	lbz      r7, 0x15b(r28)
+	stw      r0, 0x14(r1)
+	lbz      r4, 0x15c(r28)
+	lbz      r3, 0x15d(r28)
+	lbz      r0, 0x15e(r28)
+	lbz      r6, 0x15f(r28)
+	stb      r23, 8(r1)
+	stb      r24, 9(r1)
+	stb      r25, 0xa(r1)
+	stb      r26, 0xb(r1)
+	stb      r27, 0xc(r1)
+	stb      r12, 0xd(r1)
+	stb      r11, 0xe(r1)
+	stb      r10, 0xf(r1)
+	stb      r9, 0x10(r1)
+	stb      r8, 0x11(r1)
+	stb      r5, 0x12(r1)
+	stb      r7, 0x13(r1)
+	stb      r4, 0x14(r1)
+	stb      r3, 0x15(r1)
+	stb      r0, 0x16(r1)
+	stb      r6, 0x17(r1)
+	bne      lbl_800564F0
+	lbz      r0, 0xb3(r28)
+	lis      r3, 0x80808081@ha
+	addi     r9, r3, 0x80808081@l
+	mullw    r5, r0, r26
+	mullw    r4, r0, r7
+	mullw    r3, r0, r10
+	mulhw    r7, r9, r5
+	mullw    r0, r0, r6
+	add      r5, r7, r5
+	srawi    r7, r5, 7
+	mulhw    r6, r9, r3
+	srwi     r8, r7, 0x1f
+	add      r7, r7, r8
+	stb      r7, 0xb(r1)
+	mulhw    r5, r9, r4
+	add      r3, r6, r3
+	srawi    r6, r3, 7
+	add      r4, r5, r4
+	mulhw    r3, r9, r0
+	srwi     r5, r6, 0x1f
+	srawi    r4, r4, 7
+	add      r6, r6, r5
+	srwi     r5, r4, 0x1f
+	stb      r6, 0xf(r1)
+	add      r0, r3, r0
+	add      r4, r4, r5
+	srawi    r0, r0, 7
+	stb      r4, 0x13(r1)
+	srwi     r3, r0, 0x1f
+	add      r0, r0, r3
+	stb      r0, 0x17(r1)
 
-	.loc_0x21C:
-	  li        r3, 0
-	  li        r4, 0x9
-	  li        r5, 0x1
-	  li        r6, 0x4
-	  li        r7, 0
-	  bl        0x8E204
-	  li        r3, 0x80
-	  li        r4, 0
-	  li        r5, 0x4
-	  bl        0x8F474
-	  lfs       f0, -0x7A7C(r2)
-	  lis       r6, 0xCC01
-	  lwz       r3, 0x8(r1)
-	  rlwinm.   r0,r31,0,24,31
-	  stfs      f0, -0x8000(r6)
-	  stfs      f0, -0x8000(r6)
-	  stfs      f0, -0x8000(r6)
-	  stw       r3, -0x8000(r6)
-	  bne-      .loc_0x2A4
-	  rlwinm    r5,r29,0,24,31
-	  lis       r4, 0x1
-	  neg       r0, r5
-	  rlwinm    r3,r30,0,24,31
-	  or        r5, r0, r5
-	  subi      r4, r4, 0x8000
-	  neg       r0, r3
-	  srawi     r5, r5, 0x1F
-	  and       r5, r4, r5
-	  or        r0, r0, r3
-	  srawi     r0, r0, 0x1F
-	  sth       r5, -0x8000(r6)
-	  and       r0, r4, r0
-	  sth       r0, -0x8000(r6)
-	  b         .loc_0x2DC
+lbl_800564F0:
+	li       r3, 0
+	li       r4, 9
+	li       r5, 1
+	li       r6, 4
+	li       r7, 0
+	bl       GXSetVtxAttrFmt
+	li       r3, 0x80
+	li       r4, 0
+	li       r5, 4
+	bl       GXBegin
+	lfs      f0, lbl_805168E4@sda21(r2)
+	lis      r6, 0xCC008000@ha
+	lwz      r3, 8(r1)
+	clrlwi.  r0, r31, 0x18
+	stfs     f0, 0xCC008000@l(r6)
+	stfs     f0, -0x8000(r6)
+	stfs     f0, -0x8000(r6)
+	stw      r3, -0x8000(r6)
+	bne      lbl_80056578
+	clrlwi   r5, r29, 0x18
+	lis      r4, 0x00008000@ha
+	neg      r0, r5
+	clrlwi   r3, r30, 0x18
+	or       r5, r0, r5
+	addi     r4, r4, 0x00008000@l
+	neg      r0, r3
+	srawi    r5, r5, 0x1f
+	and      r5, r4, r5
+	or       r0, r0, r3
+	srawi    r0, r0, 0x1f
+	sth      r5, -0x8000(r6)
+	and      r0, r4, r0
+	sth      r0, -0x8000(r6)
+	b        lbl_800565B0
 
-	.loc_0x2A4:
-	  rlwinm    r5,r29,0,24,31
-	  lis       r4, 0x1
-	  neg       r0, r5
-	  rlwinm    r3,r30,0,24,31
-	  or        r5, r0, r5
-	  subi      r4, r4, 0x8000
-	  neg       r0, r3
-	  srawi     r5, r5, 0x1F
-	  and       r5, r4, r5
-	  or        r0, r0, r3
-	  srawi     r0, r0, 0x1F
-	  sth       r5, -0x8000(r6)
-	  andc      r0, r4, r0
-	  sth       r0, -0x8000(r6)
+lbl_80056578:
+	clrlwi   r5, r29, 0x18
+	lis      r4, 0x00008000@ha
+	neg      r0, r5
+	clrlwi   r3, r30, 0x18
+	or       r5, r0, r5
+	addi     r4, r4, 0x00008000@l
+	neg      r0, r3
+	srawi    r5, r5, 0x1f
+	and      r5, r4, r5
+	or       r0, r0, r3
+	srawi    r0, r0, 0x1f
+	sth      r5, -0x8000(r6)
+	andc     r0, r4, r0
+	sth      r0, -0x8000(r6)
 
-	.loc_0x2DC:
-	  lis       r6, 0xCC01
-	  rlwinm.   r0,r31,0,24,31
-	  stfs      f30, -0x8000(r6)
-	  lfs       f0, -0x7A7C(r2)
-	  lwz       r0, 0xC(r1)
-	  stfs      f0, -0x8000(r6)
-	  stfs      f0, -0x8000(r6)
-	  stw       r0, -0x8000(r6)
-	  bne-      .loc_0x33C
-	  rlwinm    r5,r29,0,24,31
-	  lis       r4, 0x1
-	  neg       r0, r5
-	  rlwinm    r3,r30,0,24,31
-	  or        r5, r0, r5
-	  subi      r4, r4, 0x8000
-	  neg       r0, r3
-	  srawi     r5, r5, 0x1F
-	  andc      r5, r4, r5
-	  or        r0, r0, r3
-	  srawi     r0, r0, 0x1F
-	  sth       r5, -0x8000(r6)
-	  and       r0, r4, r0
-	  sth       r0, -0x8000(r6)
-	  b         .loc_0x374
+lbl_800565B0:
+	lis      r6, 0xCC008000@ha
+	clrlwi.  r0, r31, 0x18
+	stfs     f30, 0xCC008000@l(r6)
+	lfs      f0, lbl_805168E4@sda21(r2)
+	lwz      r0, 0xc(r1)
+	stfs     f0, -0x8000(r6)
+	stfs     f0, -0x8000(r6)
+	stw      r0, -0x8000(r6)
+	bne      lbl_80056610
+	clrlwi   r5, r29, 0x18
+	lis      r4, 0x00008000@ha
+	neg      r0, r5
+	clrlwi   r3, r30, 0x18
+	or       r5, r0, r5
+	addi     r4, r4, 0x00008000@l
+	neg      r0, r3
+	srawi    r5, r5, 0x1f
+	andc     r5, r4, r5
+	or       r0, r0, r3
+	srawi    r0, r0, 0x1f
+	sth      r5, -0x8000(r6)
+	and      r0, r4, r0
+	sth      r0, -0x8000(r6)
+	b        lbl_80056648
 
-	.loc_0x33C:
-	  rlwinm    r5,r29,0,24,31
-	  lis       r4, 0x1
-	  neg       r0, r5
-	  rlwinm    r3,r30,0,24,31
-	  or        r5, r0, r5
-	  subi      r4, r4, 0x8000
-	  neg       r0, r3
-	  srawi     r5, r5, 0x1F
-	  and       r5, r4, r5
-	  or        r0, r0, r3
-	  srawi     r0, r0, 0x1F
-	  sth       r5, -0x8000(r6)
-	  and       r0, r4, r0
-	  sth       r0, -0x8000(r6)
+lbl_80056610:
+	clrlwi   r5, r29, 0x18
+	lis      r4, 0x00008000@ha
+	neg      r0, r5
+	clrlwi   r3, r30, 0x18
+	or       r5, r0, r5
+	addi     r4, r4, 0x00008000@l
+	neg      r0, r3
+	srawi    r5, r5, 0x1f
+	and      r5, r4, r5
+	or       r0, r0, r3
+	srawi    r0, r0, 0x1f
+	sth      r5, -0x8000(r6)
+	and      r0, r4, r0
+	sth      r0, -0x8000(r6)
 
-	.loc_0x374:
-	  lis       r6, 0xCC01
-	  rlwinm.   r0,r31,0,24,31
-	  stfs      f30, -0x8000(r6)
-	  lfs       f0, -0x7A7C(r2)
-	  stfs      f31, -0x8000(r6)
-	  lwz       r0, 0x14(r1)
-	  stfs      f0, -0x8000(r6)
-	  stw       r0, -0x8000(r6)
-	  bne-      .loc_0x3D4
-	  rlwinm    r5,r29,0,24,31
-	  lis       r4, 0x1
-	  neg       r0, r5
-	  rlwinm    r3,r30,0,24,31
-	  or        r5, r0, r5
-	  subi      r4, r4, 0x8000
-	  neg       r0, r3
-	  srawi     r5, r5, 0x1F
-	  andc      r5, r4, r5
-	  or        r0, r0, r3
-	  srawi     r0, r0, 0x1F
-	  sth       r5, -0x8000(r6)
-	  andc      r0, r4, r0
-	  sth       r0, -0x8000(r6)
-	  b         .loc_0x40C
+lbl_80056648:
+	lis      r6, 0xCC008000@ha
+	clrlwi.  r0, r31, 0x18
+	stfs     f30, 0xCC008000@l(r6)
+	lfs      f0, lbl_805168E4@sda21(r2)
+	stfs     f31, -0x8000(r6)
+	lwz      r0, 0x14(r1)
+	stfs     f0, -0x8000(r6)
+	stw      r0, -0x8000(r6)
+	bne      lbl_800566A8
+	clrlwi   r5, r29, 0x18
+	lis      r4, 0x00008000@ha
+	neg      r0, r5
+	clrlwi   r3, r30, 0x18
+	or       r5, r0, r5
+	addi     r4, r4, 0x00008000@l
+	neg      r0, r3
+	srawi    r5, r5, 0x1f
+	andc     r5, r4, r5
+	or       r0, r0, r3
+	srawi    r0, r0, 0x1f
+	sth      r5, -0x8000(r6)
+	andc     r0, r4, r0
+	sth      r0, -0x8000(r6)
+	b        lbl_800566E0
 
-	.loc_0x3D4:
-	  rlwinm    r5,r29,0,24,31
-	  lis       r4, 0x1
-	  neg       r0, r5
-	  rlwinm    r3,r30,0,24,31
-	  or        r5, r0, r5
-	  subi      r4, r4, 0x8000
-	  neg       r0, r3
-	  srawi     r5, r5, 0x1F
-	  andc      r5, r4, r5
-	  or        r0, r0, r3
-	  srawi     r0, r0, 0x1F
-	  sth       r5, -0x8000(r6)
-	  and       r0, r4, r0
-	  sth       r0, -0x8000(r6)
+lbl_800566A8:
+	clrlwi   r5, r29, 0x18
+	lis      r4, 0x00008000@ha
+	neg      r0, r5
+	clrlwi   r3, r30, 0x18
+	or       r5, r0, r5
+	addi     r4, r4, 0x00008000@l
+	neg      r0, r3
+	srawi    r5, r5, 0x1f
+	andc     r5, r4, r5
+	or       r0, r0, r3
+	srawi    r0, r0, 0x1f
+	sth      r5, -0x8000(r6)
+	and      r0, r4, r0
+	sth      r0, -0x8000(r6)
 
-	.loc_0x40C:
-	  lfs       f0, -0x7A7C(r2)
-	  lis       r6, 0xCC01
-	  lwz       r3, 0x10(r1)
-	  rlwinm.   r0,r31,0,24,31
-	  stfs      f0, -0x8000(r6)
-	  stfs      f31, -0x8000(r6)
-	  stfs      f0, -0x8000(r6)
-	  stw       r3, -0x8000(r6)
-	  bne-      .loc_0x46C
-	  rlwinm    r5,r29,0,24,31
-	  lis       r4, 0x1
-	  neg       r0, r5
-	  rlwinm    r3,r30,0,24,31
-	  or        r5, r0, r5
-	  subi      r4, r4, 0x8000
-	  neg       r0, r3
-	  srawi     r5, r5, 0x1F
-	  and       r5, r4, r5
-	  or        r0, r0, r3
-	  srawi     r0, r0, 0x1F
-	  sth       r5, -0x8000(r6)
-	  andc      r0, r4, r0
-	  sth       r0, -0x8000(r6)
-	  b         .loc_0x4A4
+lbl_800566E0:
+	lfs      f0, lbl_805168E4@sda21(r2)
+	lis      r6, 0xCC008000@ha
+	lwz      r3, 0x10(r1)
+	clrlwi.  r0, r31, 0x18
+	stfs     f0, 0xCC008000@l(r6)
+	stfs     f31, -0x8000(r6)
+	stfs     f0, -0x8000(r6)
+	stw      r3, -0x8000(r6)
+	bne      lbl_80056740
+	clrlwi   r5, r29, 0x18
+	lis      r4, 0x00008000@ha
+	neg      r0, r5
+	clrlwi   r3, r30, 0x18
+	or       r5, r0, r5
+	addi     r4, r4, 0x00008000@l
+	neg      r0, r3
+	srawi    r5, r5, 0x1f
+	and      r5, r4, r5
+	or       r0, r0, r3
+	srawi    r0, r0, 0x1f
+	sth      r5, -0x8000(r6)
+	andc     r0, r4, r0
+	sth      r0, -0x8000(r6)
+	b        lbl_80056778
 
-	.loc_0x46C:
-	  rlwinm    r5,r29,0,24,31
-	  lis       r4, 0x1
-	  neg       r0, r5
-	  rlwinm    r3,r30,0,24,31
-	  or        r5, r0, r5
-	  subi      r4, r4, 0x8000
-	  neg       r0, r3
-	  srawi     r5, r5, 0x1F
-	  andc      r5, r4, r5
-	  or        r0, r0, r3
-	  srawi     r0, r0, 0x1F
-	  sth       r5, -0x8000(r6)
-	  andc      r0, r4, r0
-	  sth       r0, -0x8000(r6)
+lbl_80056740:
+	clrlwi   r5, r29, 0x18
+	lis      r4, 0x00008000@ha
+	neg      r0, r5
+	clrlwi   r3, r30, 0x18
+	or       r5, r0, r5
+	addi     r4, r4, 0x00008000@l
+	neg      r0, r3
+	srawi    r5, r5, 0x1f
+	andc     r5, r4, r5
+	or       r0, r0, r3
+	srawi    r0, r0, 0x1f
+	sth      r5, -0x8000(r6)
+	andc     r0, r4, r0
+	sth      r0, -0x8000(r6)
 
-	.loc_0x4A4:
-	  li        r3, 0
-	  li        r4, 0x9
-	  li        r5, 0x1
-	  li        r6, 0x3
-	  li        r7, 0
-	  bl        0x8DF7C
-	  li        r3, 0
-	  bl        0x8E808
-	  li        r3, 0x1
-	  bl        0x9241C
-	  li        r3, 0
-	  li        r4, 0x4
-	  bl        0x91CD4
-	  li        r3, 0
-	  li        r4, 0xFF
-	  li        r5, 0xFF
-	  li        r6, 0x4
-	  bl        0x92260
-	  li        r23, 0
+lbl_80056778:
+	li       r3, 0
+	li       r4, 9
+	li       r5, 1
+	li       r6, 3
+	li       r7, 0
+	bl       GXSetVtxAttrFmt
+	li       r3, 0
+	bl       GXSetNumTexGens
+	li       r3, 1
+	bl       GXSetNumTevStages
+	li       r3, 0
+	li       r4, 4
+	bl       GXSetTevOp
+	li       r3, 0
+	li       r4, 0xff
+	li       r5, 0xff
+	li       r6, 4
+	bl       GXSetTevOrder
+	li       r23, 0
 
-	.loc_0x4F0:
-	  mr        r3, r23
-	  li        r4, 0
-	  li        r5, 0x1
-	  li        r6, 0x2
-	  li        r7, 0x3
-	  bl        0x920F4
-	  addi      r23, r23, 0x1
-	  cmpwi     r23, 0x4
-	  blt+      .loc_0x4F0
-	  li        r3, 0
-	  bl        0x91B68
-	  li        r23, 0
+lbl_800567C4:
+	mr       r3, r23
+	li       r4, 0
+	li       r5, 1
+	li       r6, 2
+	li       r7, 3
+	bl       GXSetTevSwapModeTable
+	addi     r23, r23, 1
+	cmpwi    r23, 4
+	blt      lbl_800567C4
+	li       r3, 0
+	bl       GXSetNumIndStages
+	li       r23, 0
 
-	.loc_0x520:
-	  mr        r3, r23
-	  bl        0x91B80
-	  addi      r23, r23, 0x1
-	  cmpwi     r23, 0x10
-	  blt+      .loc_0x520
-	  addi      r3, r1, 0x18
-	  bl        0x93A94
-	  addi      r3, r1, 0x18
-	  li        r4, 0
-	  bl        0x92D60
-	  li        r3, 0x4
-	  li        r4, 0
-	  li        r5, 0
-	  li        r6, 0x1
-	  li        r7, 0
-	  li        r8, 0
-	  li        r9, 0x2
-	  bl        0x90668
-	  li        r3, 0xD
-	  li        r4, 0
-	  bl        0x8DA40
+lbl_800567F4:
+	mr       r3, r23
+	bl       GXSetTevDirect
+	addi     r23, r23, 1
+	cmpwi    r23, 0x10
+	blt      lbl_800567F4
+	addi     r3, r1, 0x18
+	bl       PSMTXIdentity
+	addi     r3, r1, 0x18
+	li       r4, 0
+	bl       GXLoadPosMtxImm
+	li       r3, 4
+	li       r4, 0
+	li       r5, 0
+	li       r6, 1
+	li       r7, 0
+	li       r8, 0
+	li       r9, 2
+	bl       GXSetChanCtrl
+	li       r3, 0xd
+	li       r4, 0
+	bl       GXSetVtxDesc
 
-	.loc_0x574:
-	  psq_l     f31,0xA8(r1),0,0
-	  lfd       f31, 0xA0(r1)
-	  psq_l     f30,0x98(r1),0,0
-	  lfd       f30, 0x90(r1)
-	  psq_l     f29,0x88(r1),0,0
-	  lfd       f29, 0x80(r1)
-	  psq_l     f28,0x78(r1),0,0
-	  lfd       f28, 0x70(r1)
-	  lmw       r23, 0x4C(r1)
-	  lwz       r0, 0xB4(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0xB0
-	  blr
+lbl_80056848:
+	psq_l    f31, 168(r1), 0, qr0
+	lfd      f31, 0xa0(r1)
+	psq_l    f30, 152(r1), 0, qr0
+	lfd      f30, 0x90(r1)
+	psq_l    f29, 136(r1), 0, qr0
+	lfd      f29, 0x80(r1)
+	psq_l    f28, 120(r1), 0, qr0
+	lfd      f28, 0x70(r1)
+	lmw      r23, 0x4c(r1)
+	lwz      r0, 0xb4(r1)
+	mtlr     r0
+	addi     r1, r1, 0xb0
+	blr
 	*/
 }
 
@@ -2394,99 +2506,98 @@ void J2DPictureEx::draw(float, float, float, float, bool, bool, bool)
 void J2DPictureEx::drawOut(float, float, float, float, float, float)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0xA0(r1)
-	  mflr      r0
-	  stw       r0, 0xA4(r1)
-	  stfd      f31, 0x90(r1)
-	  psq_st    f31,0x98(r1),0,0
-	  stfd      f30, 0x80(r1)
-	  psq_st    f30,0x88(r1),0,0
-	  stfd      f29, 0x70(r1)
-	  psq_st    f29,0x78(r1),0,0
-	  stfd      f28, 0x60(r1)
-	  psq_st    f28,0x68(r1),0,0
-	  stfd      f27, 0x50(r1)
-	  psq_st    f27,0x58(r1),0,0
-	  stfd      f26, 0x40(r1)
-	  psq_st    f26,0x48(r1),0,0
-	  stw       r31, 0x3C(r1)
-	  mr        r31, r3
-	  fmr       f26, f1
-	  lwz       r3, 0x168(r3)
-	  fmr       f27, f2
-	  fmr       f28, f3
-	  fmr       f29, f4
-	  cmplwi    r3, 0
-	  fmr       f30, f5
-	  fmr       f31, f6
-	  beq-      .loc_0x124
-	  lwz       r3, 0x70(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x124
-	  lbz       r0, 0xB0(r31)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x124
-	  lwz       r12, 0x0(r3)
-	  li        r4, 0
-	  lwz       r12, 0xA0(r12)
-	  mtctr     r12
-	  bctrl
-	  cmplwi    r3, 0
-	  beq-      .loc_0x124
-	  lwz       r3, 0x20(r3)
-	  lis       r6, 0x4330
-	  stw       r6, 0x28(r1)
-	  fadds     f1, f26, f28
-	  lhz       r4, 0x4(r3)
-	  fadds     f0, f27, f29
-	  lhz       r0, 0x2(r3)
-	  mr        r3, r31
-	  xoris     r4, r4, 0x8000
-	  xoris     r0, r0, 0x8000
-	  stw       r4, 0x2C(r1)
-	  lfd       f4, -0x7A78(r2)
-	  addi      r4, r1, 0x18
-	  lfd       f2, 0x28(r1)
-	  addi      r5, r1, 0x8
-	  stw       r0, 0x34(r1)
-	  fsubs     f3, f2, f4
-	  stw       r6, 0x30(r1)
-	  lfd       f2, 0x30(r1)
-	  fadds     f3, f31, f3
-	  stfs      f30, 0x8(r1)
-	  fsubs     f2, f2, f4
-	  stfs      f31, 0xC(r1)
-	  fadds     f2, f30, f2
-	  stfs      f3, 0x14(r1)
-	  stfs      f26, 0x18(r1)
-	  stfs      f2, 0x10(r1)
-	  stfs      f27, 0x1C(r1)
-	  stfs      f1, 0x20(r1)
-	  stfs      f0, 0x24(r1)
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0xF8(r12)
-	  mtctr     r12
-	  bctrl
+	stwu     r1, -0xa0(r1)
+	mflr     r0
+	stw      r0, 0xa4(r1)
+	stfd     f31, 0x90(r1)
+	psq_st   f31, 152(r1), 0, qr0
+	stfd     f30, 0x80(r1)
+	psq_st   f30, 136(r1), 0, qr0
+	stfd     f29, 0x70(r1)
+	psq_st   f29, 120(r1), 0, qr0
+	stfd     f28, 0x60(r1)
+	psq_st   f28, 104(r1), 0, qr0
+	stfd     f27, 0x50(r1)
+	psq_st   f27, 88(r1), 0, qr0
+	stfd     f26, 0x40(r1)
+	psq_st   f26, 72(r1), 0, qr0
+	stw      r31, 0x3c(r1)
+	mr       r31, r3
+	fmr      f26, f1
+	lwz      r3, 0x168(r3)
+	fmr      f27, f2
+	fmr      f28, f3
+	fmr      f29, f4
+	cmplwi   r3, 0
+	fmr      f30, f5
+	fmr      f31, f6
+	beq      lbl_800569A0
+	lwz      r3, 0x70(r3)
+	cmplwi   r3, 0
+	beq      lbl_800569A0
+	lbz      r0, 0xb0(r31)
+	cmplwi   r0, 0
+	beq      lbl_800569A0
+	lwz      r12, 0(r3)
+	li       r4, 0
+	lwz      r12, 0xa0(r12)
+	mtctr    r12
+	bctrl
+	cmplwi   r3, 0
+	beq      lbl_800569A0
+	lwz      r3, 0x20(r3)
+	lis      r6, 0x4330
+	stw      r6, 0x28(r1)
+	fadds    f1, f26, f28
+	lhz      r4, 4(r3)
+	fadds    f0, f27, f29
+	lhz      r0, 2(r3)
+	mr       r3, r31
+	xoris    r4, r4, 0x8000
+	xoris    r0, r0, 0x8000
+	stw      r4, 0x2c(r1)
+	lfd      f4, lbl_805168E8@sda21(r2)
+	addi     r4, r1, 0x18
+	lfd      f2, 0x28(r1)
+	addi     r5, r1, 8
+	stw      r0, 0x34(r1)
+	fsubs    f3, f2, f4
+	stw      r6, 0x30(r1)
+	lfd      f2, 0x30(r1)
+	fadds    f3, f31, f3
+	stfs     f30, 8(r1)
+	fsubs    f2, f2, f4
+	stfs     f31, 0xc(r1)
+	fadds    f2, f30, f2
+	stfs     f3, 0x14(r1)
+	stfs     f26, 0x18(r1)
+	stfs     f2, 0x10(r1)
+	stfs     f27, 0x1c(r1)
+	stfs     f1, 0x20(r1)
+	stfs     f0, 0x24(r1)
+	lwz      r12, 0(r31)
+	lwz      r12, 0xf8(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x124:
-	  psq_l     f31,0x98(r1),0,0
-	  lfd       f31, 0x90(r1)
-	  psq_l     f30,0x88(r1),0,0
-	  lfd       f30, 0x80(r1)
-	  psq_l     f29,0x78(r1),0,0
-	  lfd       f29, 0x70(r1)
-	  psq_l     f28,0x68(r1),0,0
-	  lfd       f28, 0x60(r1)
-	  psq_l     f27,0x58(r1),0,0
-	  lfd       f27, 0x50(r1)
-	  psq_l     f26,0x48(r1),0,0
-	  lfd       f26, 0x40(r1)
-	  lwz       r0, 0xA4(r1)
-	  lwz       r31, 0x3C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0xA0
-	  blr
+lbl_800569A0:
+	psq_l    f31, 152(r1), 0, qr0
+	lfd      f31, 0x90(r1)
+	psq_l    f30, 136(r1), 0, qr0
+	lfd      f30, 0x80(r1)
+	psq_l    f29, 120(r1), 0, qr0
+	lfd      f29, 0x70(r1)
+	psq_l    f28, 104(r1), 0, qr0
+	lfd      f28, 0x60(r1)
+	psq_l    f27, 88(r1), 0, qr0
+	lfd      f27, 0x50(r1)
+	psq_l    f26, 72(r1), 0, qr0
+	lfd      f26, 0x40(r1)
+	lwz      r0, 0xa4(r1)
+	lwz      r31, 0x3c(r1)
+	mtlr     r0
+	addi     r1, r1, 0xa0
+	blr
 	*/
 }
 
@@ -2769,27 +2880,26 @@ void J2DPictureEx::drawOut(const JGeometry::TBox2<float>&,
 void J2DPictureEx::load(_GXTexMapID, unsigned char)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x168(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x38
-	  lwz       r3, 0x70(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x38
-	  lwz       r12, 0x0(r3)
-	  rlwinm    r5,r5,0,24,31
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r3, 0x168(r3)
+	cmplwi   r3, 0
+	beq      lbl_80056E04
+	lwz      r3, 0x70(r3)
+	cmplwi   r3, 0
+	beq      lbl_80056E04
+	lwz      r12, 0(r3)
+	clrlwi   r5, r5, 0x18
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x38:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80056E04:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2801,158 +2911,157 @@ void J2DPictureEx::load(_GXTexMapID, unsigned char)
 void J2DPictureEx::setTevOrder(unsigned char, unsigned char, bool)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  stw       r0, 0x44(r1)
-	  rlwinm    r0,r4,0,24,31
-	  cmplwi    r0, 0x1
-	  stw       r31, 0x3C(r1)
-	  mr        r31, r3
-	  stw       r30, 0x38(r1)
-	  stw       r29, 0x34(r1)
-	  stw       r28, 0x30(r1)
-	  bne-      .loc_0x58
-	  rlwinm.   r0,r6,0,24,31
-	  bne-      .loc_0x40
-	  li        r0, 0x4
-	  sth       r0, 0x10(r1)
-	  b         .loc_0x17C
+	stwu     r1, -0x40(r1)
+	mflr     r0
+	stw      r0, 0x44(r1)
+	clrlwi   r0, r4, 0x18
+	cmplwi   r0, 1
+	stw      r31, 0x3c(r1)
+	mr       r31, r3
+	stw      r30, 0x38(r1)
+	stw      r29, 0x34(r1)
+	stw      r28, 0x30(r1)
+	bne      lbl_80056E6C
+	clrlwi.  r0, r6, 0x18
+	bne      lbl_80056E54
+	li       r0, 4
+	sth      r0, 0x10(r1)
+	b        lbl_80056F90
 
-	.loc_0x40:
-	  lis       r3, 0x1
-	  li        r4, 0xFF
-	  subi      r0, r3, 0xFC
-	  sth       r4, 0x10(r1)
-	  sth       r0, 0x12(r1)
-	  b         .loc_0x17C
+lbl_80056E54:
+	lis      r3, 0x0000FF04@ha
+	li       r4, 0xff
+	addi     r0, r3, 0x0000FF04@l
+	sth      r4, 0x10(r1)
+	sth      r0, 0x12(r1)
+	b        lbl_80056F90
 
-	.loc_0x58:
-	  cmplwi    r0, 0
-	  li        r7, 0
-	  ble-      .loc_0x13C
-	  cmplwi    r0, 0x8
-	  subi      r0, r4, 0x8
-	  ble-      .loc_0x110
-	  rlwinm    r0,r0,0,24,31
-	  b         .loc_0x104
+lbl_80056E6C:
+	cmplwi   r0, 0
+	li       r7, 0
+	ble      lbl_80056F50
+	cmplwi   r0, 8
+	addi     r0, r4, -8
+	ble      lbl_80056F24
+	clrlwi   r0, r0, 0x18
+	b        lbl_80056F18
 
-	.loc_0x78:
-	  rlwinm    r9,r7,8,16,23
-	  rlwinm    r10,r7,1,23,30
-	  addi      r3, r1, 0x10
-	  addi      r8, r7, 0x1
-	  ori       r11, r9, 0xFF
-	  addi      r9, r7, 0x2
-	  add       r3, r3, r10
-	  rlwinm    r8,r8,8,16,23
-	  ori       r10, r8, 0xFF
-	  sth       r11, 0x0(r3)
-	  rlwinm    r9,r9,8,16,23
-	  addi      r8, r7, 0x3
-	  ori       r11, r9, 0xFF
-	  sth       r10, 0x2(r3)
-	  rlwinm    r8,r8,8,16,23
-	  addi      r9, r7, 0x4
-	  ori       r10, r8, 0xFF
-	  sth       r11, 0x4(r3)
-	  rlwinm    r9,r9,8,16,23
-	  addi      r8, r7, 0x5
-	  ori       r11, r9, 0xFF
-	  sth       r10, 0x6(r3)
-	  rlwinm    r8,r8,8,16,23
-	  addi      r9, r7, 0x6
-	  ori       r10, r8, 0xFF
-	  sth       r11, 0x8(r3)
-	  addi      r8, r7, 0x7
-	  rlwinm    r9,r9,8,16,23
-	  rlwinm    r8,r8,8,16,23
-	  sth       r10, 0xA(r3)
-	  ori       r9, r9, 0xFF
-	  addi      r7, r7, 0x8
-	  sth       r9, 0xC(r3)
-	  ori       r8, r8, 0xFF
-	  sth       r8, 0xE(r3)
+lbl_80056E8C:
+	rlwinm   r9, r7, 8, 0x10, 0x17
+	rlwinm   r10, r7, 1, 0x17, 0x1e
+	addi     r3, r1, 0x10
+	addi     r8, r7, 1
+	ori      r11, r9, 0xff
+	addi     r9, r7, 2
+	add      r3, r3, r10
+	rlwinm   r8, r8, 8, 0x10, 0x17
+	ori      r10, r8, 0xff
+	sth      r11, 0(r3)
+	rlwinm   r9, r9, 8, 0x10, 0x17
+	addi     r8, r7, 3
+	ori      r11, r9, 0xff
+	sth      r10, 2(r3)
+	rlwinm   r8, r8, 8, 0x10, 0x17
+	addi     r9, r7, 4
+	ori      r10, r8, 0xff
+	sth      r11, 4(r3)
+	rlwinm   r9, r9, 8, 0x10, 0x17
+	addi     r8, r7, 5
+	ori      r11, r9, 0xff
+	sth      r10, 6(r3)
+	rlwinm   r8, r8, 8, 0x10, 0x17
+	addi     r9, r7, 6
+	ori      r10, r8, 0xff
+	sth      r11, 8(r3)
+	addi     r8, r7, 7
+	rlwinm   r9, r9, 8, 0x10, 0x17
+	rlwinm   r8, r8, 8, 0x10, 0x17
+	sth      r10, 0xa(r3)
+	ori      r9, r9, 0xff
+	addi     r7, r7, 8
+	sth      r9, 0xc(r3)
+	ori      r8, r8, 0xff
+	sth      r8, 0xe(r3)
 
-	.loc_0x104:
-	  rlwinm    r3,r7,0,24,31
-	  cmplw     r3, r0
-	  blt+      .loc_0x78
+lbl_80056F18:
+	clrlwi   r3, r7, 0x18
+	cmplw    r3, r0
+	blt      lbl_80056E8C
 
-	.loc_0x110:
-	  addi      r8, r1, 0x10
-	  rlwinm    r0,r4,0,24,31
-	  b         .loc_0x130
+lbl_80056F24:
+	addi     r8, r1, 0x10
+	clrlwi   r0, r4, 0x18
+	b        lbl_80056F44
 
-	.loc_0x11C:
-	  rlwinm    r9,r7,8,16,23
-	  rlwinm    r3,r7,1,23,30
-	  ori       r9, r9, 0xFF
-	  addi      r7, r7, 0x1
-	  sthx      r9, r8, r3
+lbl_80056F30:
+	rlwinm   r9, r7, 8, 0x10, 0x17
+	rlwinm   r3, r7, 1, 0x17, 0x1e
+	ori      r9, r9, 0xff
+	addi     r7, r7, 1
+	sthx     r9, r8, r3
 
-	.loc_0x130:
-	  rlwinm    r3,r7,0,24,31
-	  cmplw     r3, r0
-	  blt+      .loc_0x11C
+lbl_80056F44:
+	clrlwi   r3, r7, 0x18
+	cmplw    r3, r0
+	blt      lbl_80056F30
 
-	.loc_0x13C:
-	  rlwinm.   r0,r6,0,24,31
-	  bne-      .loc_0x15C
-	  lis       r3, 0x1
-	  rlwinm    r0,r4,1,23,30
-	  subi      r4, r3, 0xFC
-	  addi      r3, r1, 0x10
-	  sthx      r4, r3, r0
-	  b         .loc_0x17C
+lbl_80056F50:
+	clrlwi.  r0, r6, 0x18
+	bne      lbl_80056F70
+	lis      r3, 0x0000FF04@ha
+	rlwinm   r0, r4, 1, 0x17, 0x1e
+	addi     r4, r3, 0x0000FF04@l
+	addi     r3, r1, 0x10
+	sthx     r4, r3, r0
+	b        lbl_80056F90
 
-	.loc_0x15C:
-	  lis       r6, 0x1
-	  rlwinm    r4,r4,1,23,30
-	  subi      r0, r6, 0x1
-	  addi      r3, r1, 0x10
-	  sthx      r0, r3, r4
-	  subi      r0, r6, 0xFC
-	  addi      r3, r1, 0x12
-	  sthx      r0, r3, r4
+lbl_80056F70:
+	lis      r6, 0x0000FFFF@ha
+	rlwinm   r4, r4, 1, 0x17, 0x1e
+	addi     r0, r6, 0x0000FFFF@l
+	addi     r3, r1, 0x10
+	sthx     r0, r3, r4
+	addi     r0, r6, -252
+	addi     r3, r1, 0x12
+	sthx     r0, r3, r4
 
-	.loc_0x17C:
-	  addi      r29, r1, 0x10
-	  rlwinm    r30,r5,0,24,31
-	  li        r28, 0
-	  b         .loc_0x1D0
+lbl_80056F90:
+	addi     r29, r1, 0x10
+	clrlwi   r30, r5, 0x18
+	li       r28, 0
+	b        lbl_80056FE4
 
-	.loc_0x18C:
-	  rlwinm    r0,r28,1,23,30
-	  rlwinm    r4,r28,0,24,31
-	  lhzx      r0, r29, r0
-	  addi      r5, r1, 0x8
-	  srawi     r3, r0, 0x8
-	  stb       r0, 0xE(r1)
-	  stb       r3, 0xC(r1)
-	  stb       r3, 0xD(r1)
-	  lwz       r0, 0xC(r1)
-	  stw       r0, 0x8(r1)
-	  lwz       r3, 0x168(r31)
-	  lwz       r3, 0x70(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x2C(r12)
-	  mtctr     r12
-	  bctrl
-	  addi      r28, r28, 0x1
+lbl_80056FA0:
+	rlwinm   r0, r28, 1, 0x17, 0x1e
+	clrlwi   r4, r28, 0x18
+	lhzx     r0, r29, r0
+	addi     r5, r1, 8
+	srawi    r3, r0, 8
+	stb      r0, 0xe(r1)
+	stb      r3, 0xc(r1)
+	stb      r3, 0xd(r1)
+	lwz      r0, 0xc(r1)
+	stw      r0, 8(r1)
+	lwz      r3, 0x168(r31)
+	lwz      r3, 0x70(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x2c(r12)
+	mtctr    r12
+	bctrl
+	addi     r28, r28, 1
 
-	.loc_0x1D0:
-	  rlwinm    r0,r28,0,24,31
-	  cmplw     r0, r30
-	  blt+      .loc_0x18C
-	  lwz       r0, 0x44(r1)
-	  lwz       r31, 0x3C(r1)
-	  lwz       r30, 0x38(r1)
-	  lwz       r29, 0x34(r1)
-	  lwz       r28, 0x30(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
+lbl_80056FE4:
+	clrlwi   r0, r28, 0x18
+	cmplw    r0, r30
+	blt      lbl_80056FA0
+	lwz      r0, 0x44(r1)
+	lwz      r31, 0x3c(r1)
+	lwz      r30, 0x38(r1)
+	lwz      r29, 0x34(r1)
+	lwz      r28, 0x30(r1)
+	mtlr     r0
+	addi     r1, r1, 0x40
+	blr
 	*/
 }
 
@@ -2964,206 +3073,203 @@ void J2DPictureEx::setTevOrder(unsigned char, unsigned char, bool)
 void J2DPictureEx::setTevStage(unsigned char, unsigned char, bool)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  rlwinm    r0,r4,0,24,31
-	  cmplwi    r0, 0x1
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r3
-	  stw       r30, 0x18(r1)
-	  mr        r30, r4
-	  stw       r29, 0x14(r1)
-	  stw       r28, 0x10(r1)
-	  mr        r28, r6
-	  bne-      .loc_0x120
-	  lwz       r3, 0x168(r31)
-	  li        r4, 0
-	  lwz       r3, 0x70(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x60(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r5, 0x168(r31)
-	  mr        r29, r3
-	  li        r4, 0
-	  lwz       r3, 0x70(r5)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xA0(r12)
-	  mtctr     r12
-	  bctrl
-	  cmplwi    r3, 0
-	  li        r4, 0
-	  beq-      .loc_0xAC
-	  lwz       r3, 0x20(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0xAC
-	  lbz       r0, 0x0(r3)
-	  cmpwi     r0, 0
-	  beq-      .loc_0x9C
-	  cmpwi     r0, 0x1
-	  bne-      .loc_0xAC
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	clrlwi   r0, r4, 0x18
+	cmplwi   r0, 1
+	stw      r31, 0x1c(r1)
+	mr       r31, r3
+	stw      r30, 0x18(r1)
+	mr       r30, r4
+	stw      r29, 0x14(r1)
+	stw      r28, 0x10(r1)
+	mr       r28, r6
+	bne      lbl_80057130
+	lwz      r3, 0x168(r31)
+	li       r4, 0
+	lwz      r3, 0x70(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x60(r12)
+	mtctr    r12
+	bctrl
+	lwz      r5, 0x168(r31)
+	mr       r29, r3
+	li       r4, 0
+	lwz      r3, 0x70(r5)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xa0(r12)
+	mtctr    r12
+	bctrl
+	cmplwi   r3, 0
+	li       r4, 0
+	beq      lbl_800570BC
+	lwz      r3, 0x20(r3)
+	cmplwi   r3, 0
+	beq      lbl_800570BC
+	lbz      r0, 0(r3)
+	cmpwi    r0, 0
+	beq      lbl_800570AC
+	cmpwi    r0, 1
+	bne      lbl_800570BC
 
-	.loc_0x9C:
-	  lbz       r0, 0x1(r3)
-	  cmpwi     r0, 0
-	  bne-      .loc_0xAC
-	  li        r4, 0x1
+lbl_800570AC:
+	lbz      r0, 1(r3)
+	cmpwi    r0, 0
+	bne      lbl_800570BC
+	li       r4, 1
 
-	.loc_0xAC:
-	  rlwinm.   r0,r28,0,24,31
-	  bne-      .loc_0xD4
-	  rlwinm    r5,r4,0,24,31
-	  mr        r3, r31
-	  neg       r0, r5
-	  mr        r4, r29
-	  or        r0, r0, r5
-	  rlwinm    r5,r0,1,31,31
-	  bl        .loc_0x2BC
-	  b         .loc_0x29C
+lbl_800570BC:
+	clrlwi.  r0, r28, 0x18
+	bne      lbl_800570E4
+	clrlwi   r5, r4, 0x18
+	mr       r3, r31
+	neg      r0, r5
+	mr       r4, r29
+	or       r0, r0, r5
+	srwi     r5, r0, 0x1f
+	bl       setStage__12J2DPictureExFP11J2DTevStageQ212J2DPictureEx10stage_enum
+	b        lbl_800572AC
 
-	.loc_0xD4:
-	  rlwinm.   r0,r4,0,24,31
-	  mr        r3, r31
-	  mr        r4, r29
-	  li        r5, 0x5
-	  beq-      .loc_0xEC
-	  li        r5, 0x6
+lbl_800570E4:
+	clrlwi.  r0, r4, 0x18
+	mr       r3, r31
+	mr       r4, r29
+	li       r5, 5
+	beq      lbl_800570FC
+	li       r5, 6
 
-	.loc_0xEC:
-	  bl        .loc_0x2BC
-	  lwz       r3, 0x168(r31)
-	  li        r4, 0x1
-	  lwz       r3, 0x70(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x60(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  mr        r3, r31
-	  li        r5, 0x4
-	  bl        .loc_0x2BC
-	  b         .loc_0x29C
+lbl_800570FC:
+	bl       setStage__12J2DPictureExFP11J2DTevStageQ212J2DPictureEx10stage_enum
+	lwz      r3, 0x168(r31)
+	li       r4, 1
+	lwz      r3, 0x70(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x60(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	mr       r3, r31
+	li       r5, 4
+	bl       setStage__12J2DPictureExFP11J2DTevStageQ212J2DPictureEx10stage_enum
+	b        lbl_800572AC
 
-	.loc_0x120:
-	  rlwinm.   r0,r28,0,24,31
-	  bne-      .loc_0x1CC
-	  lwz       r3, 0x168(r31)
-	  li        r4, 0
-	  lwz       r3, 0x70(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x60(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  mr        r3, r31
-	  li        r5, 0x2
-	  bl        .loc_0x2BC
-	  rlwinm    r29,r30,0,24,31
-	  li        r30, 0x1
-	  b         .loc_0x190
+lbl_80057130:
+	clrlwi.  r0, r28, 0x18
+	bne      lbl_800571DC
+	lwz      r3, 0x168(r31)
+	li       r4, 0
+	lwz      r3, 0x70(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x60(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	mr       r3, r31
+	li       r5, 2
+	bl       setStage__12J2DPictureExFP11J2DTevStageQ212J2DPictureEx10stage_enum
+	clrlwi   r29, r30, 0x18
+	li       r30, 1
+	b        lbl_800571A0
 
-	.loc_0x160:
-	  lwz       r3, 0x168(r31)
-	  rlwinm    r4,r30,0,24,31
-	  lwz       r3, 0x70(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x60(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  mr        r3, r31
-	  li        r5, 0x3
-	  bl        .loc_0x2BC
-	  addi      r30, r30, 0x1
+lbl_80057170:
+	lwz      r3, 0x168(r31)
+	clrlwi   r4, r30, 0x18
+	lwz      r3, 0x70(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x60(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	mr       r3, r31
+	li       r5, 3
+	bl       setStage__12J2DPictureExFP11J2DTevStageQ212J2DPictureEx10stage_enum
+	addi     r30, r30, 1
 
-	.loc_0x190:
-	  rlwinm    r0,r30,0,24,31
-	  cmplw     r0, r29
-	  blt+      .loc_0x160
-	  lwz       r3, 0x168(r31)
-	  mr        r4, r29
-	  lwz       r3, 0x70(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x60(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  mr        r3, r31
-	  li        r5, 0x4
-	  bl        .loc_0x2BC
-	  b         .loc_0x29C
+lbl_800571A0:
+	clrlwi   r0, r30, 0x18
+	cmplw    r0, r29
+	blt      lbl_80057170
+	lwz      r3, 0x168(r31)
+	mr       r4, r29
+	lwz      r3, 0x70(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x60(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	mr       r3, r31
+	li       r5, 4
+	bl       setStage__12J2DPictureExFP11J2DTevStageQ212J2DPictureEx10stage_enum
+	b        lbl_800572AC
 
-	.loc_0x1CC:
-	  lwz       r3, 0x168(r31)
-	  li        r4, 0
-	  lwz       r3, 0x70(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x60(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  mr        r3, r31
-	  li        r5, 0x2
-	  bl        .loc_0x2BC
-	  rlwinm    r29,r30,0,24,31
-	  li        r28, 0x1
-	  b         .loc_0x234
+lbl_800571DC:
+	lwz      r3, 0x168(r31)
+	li       r4, 0
+	lwz      r3, 0x70(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x60(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	mr       r3, r31
+	li       r5, 2
+	bl       setStage__12J2DPictureExFP11J2DTevStageQ212J2DPictureEx10stage_enum
+	clrlwi   r29, r30, 0x18
+	li       r28, 1
+	b        lbl_80057244
 
-	.loc_0x204:
-	  lwz       r3, 0x168(r31)
-	  rlwinm    r4,r28,0,24,31
-	  lwz       r3, 0x70(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x60(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  mr        r3, r31
-	  li        r5, 0x3
-	  bl        .loc_0x2BC
-	  addi      r28, r28, 0x1
+lbl_80057214:
+	lwz      r3, 0x168(r31)
+	clrlwi   r4, r28, 0x18
+	lwz      r3, 0x70(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x60(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	mr       r3, r31
+	li       r5, 3
+	bl       setStage__12J2DPictureExFP11J2DTevStageQ212J2DPictureEx10stage_enum
+	addi     r28, r28, 1
 
-	.loc_0x234:
-	  rlwinm    r0,r28,0,24,31
-	  cmplw     r0, r29
-	  blt+      .loc_0x204
-	  lwz       r3, 0x168(r31)
-	  mr        r4, r29
-	  lwz       r3, 0x70(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x60(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  mr        r3, r31
-	  li        r5, 0x7
-	  bl        .loc_0x2BC
-	  lwz       r3, 0x168(r31)
-	  addi      r0, r30, 0x1
-	  rlwinm    r4,r0,0,24,31
-	  lwz       r3, 0x70(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x60(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  mr        r3, r31
-	  li        r5, 0x4
-	  bl        .loc_0x2BC
+lbl_80057244:
+	clrlwi   r0, r28, 0x18
+	cmplw    r0, r29
+	blt      lbl_80057214
+	lwz      r3, 0x168(r31)
+	mr       r4, r29
+	lwz      r3, 0x70(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x60(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	mr       r3, r31
+	li       r5, 7
+	bl       setStage__12J2DPictureExFP11J2DTevStageQ212J2DPictureEx10stage_enum
+	lwz      r3, 0x168(r31)
+	addi     r0, r30, 1
+	clrlwi   r4, r0, 0x18
+	lwz      r3, 0x70(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x60(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	mr       r3, r31
+	li       r5, 4
+	bl       setStage__12J2DPictureExFP11J2DTevStageQ212J2DPictureEx10stage_enum
 
-	.loc_0x29C:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-
-	.loc_0x2BC:
+lbl_800572AC:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -3175,207 +3281,206 @@ void J2DPictureEx::setTevStage(unsigned char, unsigned char, bool)
 void J2DPictureEx::setStage(J2DTevStage*, J2DPictureEx::stage_enum)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0xC0(r1)
-	  lis       r3, 0x8048
-	  stmw      r14, 0x78(r1)
-	  subi      r17, r3, 0x7A20
-	  rlwinm    r16,r5,2,0,29
-	  mulli     r15, r5, 0x5
-	  lwz       r18, 0x0(r17)
-	  lwz       r19, 0x4(r17)
-	  lwz       r20, 0x8(r17)
-	  lwz       r14, 0xC(r17)
-	  lwz       r21, 0x10(r17)
-	  lwz       r22, 0x14(r17)
-	  lwz       r23, 0x18(r17)
-	  lwz       r24, 0x1C(r17)
-	  stw       r14, 0x34(r1)
-	  addi      r14, r1, 0x28
-	  lwz       r25, 0x20(r17)
-	  lwz       r26, 0x24(r17)
-	  lwz       r27, 0x28(r17)
-	  lwz       r28, 0x2C(r17)
-	  lwz       r29, 0x30(r17)
-	  lwz       r30, 0x34(r17)
-	  lwz       r31, 0x38(r17)
-	  lwz       r12, 0x3C(r17)
-	  lwz       r11, 0x40(r17)
-	  lwz       r10, 0x44(r17)
-	  lwz       r9, 0x48(r17)
-	  lwz       r8, 0x4C(r17)
-	  lwz       r7, 0x50(r17)
-	  lwz       r6, 0x54(r17)
-	  lwz       r5, 0x58(r17)
-	  lwz       r3, 0x5C(r17)
-	  lwz       r0, 0x60(r17)
-	  lwz       r17, 0x64(r17)
-	  stw       r5, 0x60(r1)
-	  addi      r5, r1, 0x4B
-	  stw       r3, 0x64(r1)
-	  addi      r3, r1, 0x48
-	  stw       r18, 0x28(r1)
-	  stw       r19, 0x2C(r1)
-	  stw       r20, 0x30(r1)
-	  stw       r21, 0x38(r1)
-	  stw       r22, 0x3C(r1)
-	  stw       r23, 0x40(r1)
-	  stw       r24, 0x44(r1)
-	  lbzx      r20, r14, r16
-	  addi      r14, r1, 0x2A
-	  lbzx      r18, r14, r16
-	  addi      r14, r1, 0x29
-	  lbzx      r19, r14, r16
-	  rlwinm    r20,r20,4,0,27
-	  addi      r14, r1, 0x2B
-	  rlwinm    r18,r18,4,0,27
-	  or        r19, r20, r19
-	  lbzx      r14, r14, r16
-	  stw       r11, 0x48(r1)
-	  or        r11, r18, r14
-	  stb       r19, 0x2(r4)
-	  stb       r11, 0x3(r4)
-	  stw       r10, 0x4C(r1)
-	  lbz       r11, 0x1(r4)
-	  stw       r9, 0x50(r1)
-	  rlwinm    r10,r11,0,30,28
-	  stw       r8, 0x54(r1)
-	  stw       r7, 0x58(r1)
-	  stw       r6, 0x5C(r1)
-	  stw       r0, 0x68(r1)
-	  stw       r17, 0x6C(r1)
-	  lbzx      r7, r3, r15
-	  addi      r3, r1, 0x4C
-	  stw       r25, 0x8(r1)
-	  rlwinm    r0,r7,2,22,29
-	  cmplwi    r7, 0x1
-	  or        r6, r10, r0
-	  lbzx      r0, r5, r15
-	  addi      r5, r1, 0x4A
-	  stw       r26, 0xC(r1)
-	  lbzx      r9, r5, r15
-	  addi      r5, r1, 0x49
-	  lbzx      r3, r3, r15
-	  stw       r27, 0x10(r1)
-	  lbzx      r8, r5, r15
-	  stw       r28, 0x14(r1)
-	  stw       r29, 0x18(r1)
-	  stw       r30, 0x1C(r1)
-	  stw       r31, 0x20(r1)
-	  stw       r12, 0x24(r1)
-	  stb       r6, 0x1(r4)
-	  bgt-      .loc_0x18C
-	  lbz       r6, 0x1(r4)
-	  rlwinm    r5,r9,4,20,27
-	  rlwinm    r6,r6,0,28,25
-	  or        r5, r6, r5
-	  stb       r5, 0x1(r4)
-	  lbz       r5, 0x1(r4)
-	  rlwinm    r5,r5,0,0,29
-	  or        r5, r5, r8
-	  stb       r5, 0x1(r4)
-	  b         .loc_0x1A8
+	stwu     r1, -0xc0(r1)
+	lis      r3, lbl_804785E0@ha
+	stmw     r14, 0x78(r1)
+	addi     r17, r3, lbl_804785E0@l
+	slwi     r16, r5, 2
+	mulli    r15, r5, 5
+	lwz      r18, 0(r17)
+	lwz      r19, 4(r17)
+	lwz      r20, 8(r17)
+	lwz      r14, 0xc(r17)
+	lwz      r21, 0x10(r17)
+	lwz      r22, 0x14(r17)
+	lwz      r23, 0x18(r17)
+	lwz      r24, 0x1c(r17)
+	stw      r14, 0x34(r1)
+	addi     r14, r1, 0x28
+	lwz      r25, 0x20(r17)
+	lwz      r26, 0x24(r17)
+	lwz      r27, 0x28(r17)
+	lwz      r28, 0x2c(r17)
+	lwz      r29, 0x30(r17)
+	lwz      r30, 0x34(r17)
+	lwz      r31, 0x38(r17)
+	lwz      r12, 0x3c(r17)
+	lwz      r11, 0x40(r17)
+	lwz      r10, 0x44(r17)
+	lwz      r9, 0x48(r17)
+	lwz      r8, 0x4c(r17)
+	lwz      r7, 0x50(r17)
+	lwz      r6, 0x54(r17)
+	lwz      r5, 0x58(r17)
+	lwz      r3, 0x5c(r17)
+	lwz      r0, 0x60(r17)
+	lwz      r17, 0x64(r17)
+	stw      r5, 0x60(r1)
+	addi     r5, r1, 0x4b
+	stw      r3, 0x64(r1)
+	addi     r3, r1, 0x48
+	stw      r18, 0x28(r1)
+	stw      r19, 0x2c(r1)
+	stw      r20, 0x30(r1)
+	stw      r21, 0x38(r1)
+	stw      r22, 0x3c(r1)
+	stw      r23, 0x40(r1)
+	stw      r24, 0x44(r1)
+	lbzx     r20, r14, r16
+	addi     r14, r1, 0x2a
+	lbzx     r18, r14, r16
+	addi     r14, r1, 0x29
+	lbzx     r19, r14, r16
+	slwi     r20, r20, 4
+	addi     r14, r1, 0x2b
+	slwi     r18, r18, 4
+	or       r19, r20, r19
+	lbzx     r14, r14, r16
+	stw      r11, 0x48(r1)
+	or       r11, r18, r14
+	stb      r19, 2(r4)
+	stb      r11, 3(r4)
+	stw      r10, 0x4c(r1)
+	lbz      r11, 1(r4)
+	stw      r9, 0x50(r1)
+	rlwinm   r10, r11, 0, 0x1e, 0x1c
+	stw      r8, 0x54(r1)
+	stw      r7, 0x58(r1)
+	stw      r6, 0x5c(r1)
+	stw      r0, 0x68(r1)
+	stw      r17, 0x6c(r1)
+	lbzx     r7, r3, r15
+	addi     r3, r1, 0x4c
+	stw      r25, 8(r1)
+	rlwinm   r0, r7, 2, 0x16, 0x1d
+	cmplwi   r7, 1
+	or       r6, r10, r0
+	lbzx     r0, r5, r15
+	addi     r5, r1, 0x4a
+	stw      r26, 0xc(r1)
+	lbzx     r9, r5, r15
+	addi     r5, r1, 0x49
+	lbzx     r3, r3, r15
+	stw      r27, 0x10(r1)
+	lbzx     r8, r5, r15
+	stw      r28, 0x14(r1)
+	stw      r29, 0x18(r1)
+	stw      r30, 0x1c(r1)
+	stw      r31, 0x20(r1)
+	stw      r12, 0x24(r1)
+	stb      r6, 1(r4)
+	bgt      lbl_80057458
+	lbz      r6, 1(r4)
+	rlwinm   r5, r9, 4, 0x14, 0x1b
+	rlwinm   r6, r6, 0, 0x1c, 0x19
+	or       r5, r6, r5
+	stb      r5, 1(r4)
+	lbz      r5, 1(r4)
+	rlwinm   r5, r5, 0, 0, 0x1d
+	or       r5, r5, r8
+	stb      r5, 1(r4)
+	b        lbl_80057474
 
-	.loc_0x18C:
-	  lbz       r5, 0x1(r4)
-	  rlwimi    r5,r7,3,26,27
-	  stb       r5, 0x1(r4)
-	  lbz       r5, 0x1(r4)
-	  rlwinm    r5,r5,0,0,29
-	  ori       r5, r5, 0x3
-	  stb       r5, 0x1(r4)
+lbl_80057458:
+	lbz      r5, 1(r4)
+	rlwimi   r5, r7, 3, 0x1a, 0x1b
+	stb      r5, 1(r4)
+	lbz      r5, 1(r4)
+	rlwinm   r5, r5, 0, 0, 0x1d
+	ori      r5, r5, 3
+	stb      r5, 1(r4)
 
-	.loc_0x1A8:
-	  lbz       r6, 0x1(r4)
-	  rlwinm    r7,r3,6,18,25
-	  addi      r3, r1, 0x48
-	  rlwinm    r0,r0,3,21,28
-	  rlwinm    r6,r6,0,29,27
-	  lbzx      r3, r3, r15
-	  or        r6, r6, r0
-	  addi      r5, r1, 0x8
-	  stb       r6, 0x1(r4)
-	  addi      r6, r1, 0xB
-	  lbzx      r0, r5, r16
-	  addi      r5, r1, 0x9
-	  lbz       r8, 0x1(r4)
-	  cmplwi    r3, 0x1
-	  lbzx      r10, r5, r16
-	  addi      r5, r1, 0xA
-	  rlwimi    r7,r8,0,26,31
-	  lbzx      r8, r5, r16
-	  stb       r7, 0x1(r4)
-	  rlwinm    r11,r10,2,22,29
-	  rlwinm    r0,r0,5,0,26
-	  lbzx      r6, r6, r16
-	  lbz       r5, 0x6(r4)
-	  rlwinm    r9,r8,7,17,24
-	  rlwinm    r10,r8,31,25,31
-	  rlwinm    r8,r6,4,20,27
-	  rlwimi    r0,r5,0,27,31
-	  addi      r5, r1, 0x4C
-	  stb       r0, 0x6(r4)
-	  addi      r6, r1, 0x4B
-	  lbzx      r0, r6, r15
-	  addi      r6, r1, 0x4A
-	  lbz       r12, 0x6(r4)
-	  rlwinm    r7,r3,2,22,29
-	  lbzx      r14, r6, r15
-	  addi      r6, r1, 0x49
-	  rlwinm    r12,r12,0,30,26
-	  lbzx      r5, r5, r15
-	  or        r11, r12, r11
-	  lbzx      r12, r6, r15
-	  stb       r11, 0x6(r4)
-	  lbz       r6, 0x6(r4)
-	  rlwinm    r6,r6,0,0,29
-	  or        r6, r6, r10
-	  stb       r6, 0x6(r4)
-	  lbz       r6, 0x7(r4)
-	  rlwimi    r9,r6,0,25,31
-	  stb       r9, 0x7(r4)
-	  lbz       r6, 0x7(r4)
-	  rlwinm    r6,r6,0,28,24
-	  or        r6, r6, r8
-	  stb       r6, 0x7(r4)
-	  lbz       r6, 0x5(r4)
-	  rlwinm    r6,r6,0,30,28
-	  or        r6, r6, r7
-	  stb       r6, 0x5(r4)
-	  bgt-      .loc_0x2B4
-	  lbz       r6, 0x5(r4)
-	  rlwinm    r3,r14,4,20,27
-	  rlwinm    r6,r6,0,0,29
-	  or        r6, r6, r12
-	  stb       r6, 0x5(r4)
-	  lbz       r6, 0x5(r4)
-	  rlwinm    r6,r6,0,28,25
-	  or        r3, r6, r3
-	  stb       r3, 0x5(r4)
-	  b         .loc_0x2D0
+lbl_80057474:
+	lbz      r6, 1(r4)
+	rlwinm   r7, r3, 6, 0x12, 0x19
+	addi     r3, r1, 0x48
+	rlwinm   r0, r0, 3, 0x15, 0x1c
+	rlwinm   r6, r6, 0, 0x1d, 0x1b
+	lbzx     r3, r3, r15
+	or       r6, r6, r0
+	addi     r5, r1, 8
+	stb      r6, 1(r4)
+	addi     r6, r1, 0xb
+	lbzx     r0, r5, r16
+	addi     r5, r1, 9
+	lbz      r8, 1(r4)
+	cmplwi   r3, 1
+	lbzx     r10, r5, r16
+	addi     r5, r1, 0xa
+	rlwimi   r7, r8, 0, 0x1a, 0x1f
+	lbzx     r8, r5, r16
+	stb      r7, 1(r4)
+	rlwinm   r11, r10, 2, 0x16, 0x1d
+	slwi     r0, r0, 5
+	lbzx     r6, r6, r16
+	lbz      r5, 6(r4)
+	rlwinm   r9, r8, 7, 0x11, 0x18
+	rlwinm   r10, r8, 0x1f, 0x19, 0x1f
+	rlwinm   r8, r6, 4, 0x14, 0x1b
+	rlwimi   r0, r5, 0, 0x1b, 0x1f
+	addi     r5, r1, 0x4c
+	stb      r0, 6(r4)
+	addi     r6, r1, 0x4b
+	lbzx     r0, r6, r15
+	addi     r6, r1, 0x4a
+	lbz      r12, 6(r4)
+	rlwinm   r7, r3, 2, 0x16, 0x1d
+	lbzx     r14, r6, r15
+	addi     r6, r1, 0x49
+	rlwinm   r12, r12, 0, 0x1e, 0x1a
+	lbzx     r5, r5, r15
+	or       r11, r12, r11
+	lbzx     r12, r6, r15
+	stb      r11, 6(r4)
+	lbz      r6, 6(r4)
+	rlwinm   r6, r6, 0, 0, 0x1d
+	or       r6, r6, r10
+	stb      r6, 6(r4)
+	lbz      r6, 7(r4)
+	rlwimi   r9, r6, 0, 0x19, 0x1f
+	stb      r9, 7(r4)
+	lbz      r6, 7(r4)
+	rlwinm   r6, r6, 0, 0x1c, 0x18
+	or       r6, r6, r8
+	stb      r6, 7(r4)
+	lbz      r6, 5(r4)
+	rlwinm   r6, r6, 0, 0x1e, 0x1c
+	or       r6, r6, r7
+	stb      r6, 5(r4)
+	bgt      lbl_80057580
+	lbz      r6, 5(r4)
+	rlwinm   r3, r14, 4, 0x14, 0x1b
+	rlwinm   r6, r6, 0, 0, 0x1d
+	or       r6, r6, r12
+	stb      r6, 5(r4)
+	lbz      r6, 5(r4)
+	rlwinm   r6, r6, 0, 0x1c, 0x19
+	or       r3, r6, r3
+	stb      r3, 5(r4)
+	b        lbl_8005759C
 
-	.loc_0x2B4:
-	  lbz       r6, 0x5(r4)
-	  rlwimi    r6,r3,3,26,27
-	  stb       r6, 0x5(r4)
-	  lbz       r3, 0x5(r4)
-	  rlwinm    r3,r3,0,0,29
-	  ori       r3, r3, 0x3
-	  stb       r3, 0x5(r4)
+lbl_80057580:
+	lbz      r6, 5(r4)
+	rlwimi   r6, r3, 3, 0x1a, 0x1b
+	stb      r6, 5(r4)
+	lbz      r3, 5(r4)
+	rlwinm   r3, r3, 0, 0, 0x1d
+	ori      r3, r3, 3
+	stb      r3, 5(r4)
 
-	.loc_0x2D0:
-	  lbz       r6, 0x5(r4)
-	  rlwinm    r3,r5,6,18,25
-	  rlwinm    r0,r0,3,21,28
-	  rlwinm    r5,r6,0,29,27
-	  or        r0, r5, r0
-	  stb       r0, 0x5(r4)
-	  lbz       r0, 0x5(r4)
-	  rlwimi    r3,r0,0,26,31
-	  stb       r3, 0x5(r4)
-	  lmw       r14, 0x78(r1)
-	  addi      r1, r1, 0xC0
-	  blr
+lbl_8005759C:
+	lbz      r6, 5(r4)
+	rlwinm   r3, r5, 6, 0x12, 0x19
+	rlwinm   r0, r0, 3, 0x15, 0x1c
+	rlwinm   r5, r6, 0, 0x1d, 0x1b
+	or       r0, r5, r0
+	stb      r0, 5(r4)
+	lbz      r0, 5(r4)
+	rlwimi   r3, r0, 0, 0x1a, 0x1f
+	stb      r3, 5(r4)
+	lmw      r14, 0x78(r1)
+	addi     r1, r1, 0xc0
+	blr
 	*/
 }
 
@@ -3387,340 +3492,339 @@ void J2DPictureEx::setStage(J2DTevStage*, J2DPictureEx::stage_enum)
 void J2DPictureEx::setTevKColor(unsigned char)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x70(r1)
-	  mflr      r0
-	  rlwinm    r5,r4,0,24,31
-	  stw       r0, 0x74(r1)
-	  cmplwi    r5, 0x1
-	  stmw      r24, 0x50(r1)
-	  mr        r30, r3
-	  beq-      .loc_0x490
-	  lfs       f0, -0x7A7C(r2)
-	  cmplwi    r5, 0x4
-	  fmr       f1, f0
-	  bge-      .loc_0x10C
-	  cmplwi    r5, 0
-	  li        r6, 0
-	  ble-      .loc_0x21C
-	  cmplwi    r5, 0x8
-	  subi      r0, r4, 0x8
-	  ble-      .loc_0xD8
-	  rlwinm    r0,r0,0,24,31
-	  b         .loc_0xCC
+	stwu     r1, -0x70(r1)
+	mflr     r0
+	clrlwi   r5, r4, 0x18
+	stw      r0, 0x74(r1)
+	cmplwi   r5, 1
+	stmw     r24, 0x50(r1)
+	mr       r30, r3
+	beq      lbl_80057A5C
+	lfs      f0, lbl_805168E4@sda21(r2)
+	cmplwi   r5, 4
+	fmr      f1, f0
+	bge      lbl_800576D8
+	cmplwi   r5, 0
+	li       r6, 0
+	ble      lbl_800577E8
+	cmplwi   r5, 8
+	addi     r0, r4, -8
+	ble      lbl_800576A4
+	clrlwi   r0, r0, 0x18
+	b        lbl_80057698
 
-	.loc_0x50:
-	  rlwinm    r3,r6,2,22,29
-	  addi      r6, r6, 0x8
-	  add       r3, r30, r3
-	  lfs       f2, 0x124(r3)
-	  lfs       f9, 0x134(r3)
-	  fadds     f0, f0, f2
-	  lfs       f2, 0x128(r3)
-	  fadds     f1, f1, f9
-	  lfs       f8, 0x138(r3)
-	  lfs       f3, 0x12C(r3)
-	  fadds     f0, f0, f2
-	  fadds     f1, f1, f8
-	  lfs       f7, 0x13C(r3)
-	  lfs       f2, 0x130(r3)
-	  fadds     f0, f0, f3
-	  lfs       f6, 0x140(r3)
-	  fadds     f1, f1, f7
-	  lfs       f5, 0x144(r3)
-	  fadds     f0, f0, f2
-	  lfs       f4, 0x148(r3)
-	  fadds     f1, f1, f6
-	  lfs       f3, 0x14C(r3)
-	  lfs       f2, 0x150(r3)
-	  fadds     f0, f0, f9
-	  fadds     f1, f1, f5
-	  fadds     f0, f0, f8
-	  fadds     f1, f1, f4
-	  fadds     f0, f0, f7
-	  fadds     f1, f1, f3
-	  fadds     f0, f0, f6
-	  fadds     f1, f1, f2
+lbl_8005761C:
+	rlwinm   r3, r6, 2, 0x16, 0x1d
+	addi     r6, r6, 8
+	add      r3, r30, r3
+	lfs      f2, 0x124(r3)
+	lfs      f9, 0x134(r3)
+	fadds    f0, f0, f2
+	lfs      f2, 0x128(r3)
+	fadds    f1, f1, f9
+	lfs      f8, 0x138(r3)
+	lfs      f3, 0x12c(r3)
+	fadds    f0, f0, f2
+	fadds    f1, f1, f8
+	lfs      f7, 0x13c(r3)
+	lfs      f2, 0x130(r3)
+	fadds    f0, f0, f3
+	lfs      f6, 0x140(r3)
+	fadds    f1, f1, f7
+	lfs      f5, 0x144(r3)
+	fadds    f0, f0, f2
+	lfs      f4, 0x148(r3)
+	fadds    f1, f1, f6
+	lfs      f3, 0x14c(r3)
+	lfs      f2, 0x150(r3)
+	fadds    f0, f0, f9
+	fadds    f1, f1, f5
+	fadds    f0, f0, f8
+	fadds    f1, f1, f4
+	fadds    f0, f0, f7
+	fadds    f1, f1, f3
+	fadds    f0, f0, f6
+	fadds    f1, f1, f2
 
-	.loc_0xCC:
-	  rlwinm    r3,r6,0,24,31
-	  cmplw     r3, r0
-	  blt+      .loc_0x50
+lbl_80057698:
+	clrlwi   r3, r6, 0x18
+	cmplw    r3, r0
+	blt      lbl_8005761C
 
-	.loc_0xD8:
-	  rlwinm    r0,r4,0,24,31
-	  b         .loc_0xFC
+lbl_800576A4:
+	clrlwi   r0, r4, 0x18
+	b        lbl_800576C8
 
-	.loc_0xE0:
-	  rlwinm    r3,r6,2,22,29
-	  addi      r6, r6, 0x1
-	  add       r3, r30, r3
-	  lfs       f3, 0x124(r3)
-	  lfs       f2, 0x134(r3)
-	  fadds     f0, f0, f3
-	  fadds     f1, f1, f2
+lbl_800576AC:
+	rlwinm   r3, r6, 2, 0x16, 0x1d
+	addi     r6, r6, 1
+	add      r3, r30, r3
+	lfs      f3, 0x124(r3)
+	lfs      f2, 0x134(r3)
+	fadds    f0, f0, f3
+	fadds    f1, f1, f2
 
-	.loc_0xFC:
-	  rlwinm    r3,r6,0,24,31
-	  cmplw     r3, r0
-	  blt+      .loc_0xE0
-	  b         .loc_0x21C
+lbl_800576C8:
+	clrlwi   r3, r6, 0x18
+	cmplw    r3, r0
+	blt      lbl_800576AC
+	b        lbl_800577E8
 
-	.loc_0x10C:
-	  lfs       f3, 0x124(r30)
-	  subic.    r6, r5, 0x4
-	  lfs       f2, 0x134(r30)
-	  li        r7, 0
-	  fadds     f0, f0, f3
-	  lfs       f4, 0x128(r30)
-	  fadds     f1, f1, f2
-	  lfs       f3, 0x138(r30)
-	  lfs       f2, 0x12C(r30)
-	  fadds     f0, f0, f4
-	  fadds     f1, f1, f3
-	  lfs       f4, 0x13C(r30)
-	  lfs       f3, 0x130(r30)
-	  fadds     f0, f0, f2
-	  lfs       f2, 0x140(r30)
-	  fadds     f1, f1, f4
-	  fadds     f0, f0, f3
-	  fadds     f1, f1, f2
-	  ble-      .loc_0x21C
-	  cmpwi     r6, 0x8
-	  subi      r3, r5, 0xC
-	  ble-      .loc_0x210
-	  b         .loc_0x1E4
+lbl_800576D8:
+	lfs      f3, 0x124(r30)
+	addic.   r6, r5, -4
+	lfs      f2, 0x134(r30)
+	li       r7, 0
+	fadds    f0, f0, f3
+	lfs      f4, 0x128(r30)
+	fadds    f1, f1, f2
+	lfs      f3, 0x138(r30)
+	lfs      f2, 0x12c(r30)
+	fadds    f0, f0, f4
+	fadds    f1, f1, f3
+	lfs      f4, 0x13c(r30)
+	lfs      f3, 0x130(r30)
+	fadds    f0, f0, f2
+	lfs      f2, 0x140(r30)
+	fadds    f1, f1, f4
+	fadds    f0, f0, f3
+	fadds    f1, f1, f2
+	ble      lbl_800577E8
+	cmpwi    r6, 8
+	addi     r3, r5, -12
+	ble      lbl_800577DC
+	b        lbl_800577B0
 
-	.loc_0x168:
-	  rlwinm    r0,r7,2,22,29
-	  addi      r7, r7, 0x8
-	  add       r5, r30, r0
-	  lfs       f2, 0x178(r5)
-	  lfs       f9, 0x188(r5)
-	  fadds     f0, f0, f2
-	  lfs       f2, 0x17C(r5)
-	  fadds     f1, f1, f9
-	  lfs       f8, 0x18C(r5)
-	  lfs       f3, 0x180(r5)
-	  fadds     f0, f0, f2
-	  fadds     f1, f1, f8
-	  lfs       f7, 0x190(r5)
-	  lfs       f2, 0x184(r5)
-	  fadds     f0, f0, f3
-	  lfs       f6, 0x194(r5)
-	  fadds     f1, f1, f7
-	  lfs       f5, 0x198(r5)
-	  fadds     f0, f0, f2
-	  lfs       f4, 0x19C(r5)
-	  fadds     f1, f1, f6
-	  lfs       f3, 0x1A0(r5)
-	  lfs       f2, 0x1A4(r5)
-	  fadds     f0, f0, f9
-	  fadds     f1, f1, f5
-	  fadds     f0, f0, f8
-	  fadds     f1, f1, f4
-	  fadds     f0, f0, f7
-	  fadds     f1, f1, f3
-	  fadds     f0, f0, f6
-	  fadds     f1, f1, f2
+lbl_80057734:
+	rlwinm   r0, r7, 2, 0x16, 0x1d
+	addi     r7, r7, 8
+	add      r5, r30, r0
+	lfs      f2, 0x178(r5)
+	lfs      f9, 0x188(r5)
+	fadds    f0, f0, f2
+	lfs      f2, 0x17c(r5)
+	fadds    f1, f1, f9
+	lfs      f8, 0x18c(r5)
+	lfs      f3, 0x180(r5)
+	fadds    f0, f0, f2
+	fadds    f1, f1, f8
+	lfs      f7, 0x190(r5)
+	lfs      f2, 0x184(r5)
+	fadds    f0, f0, f3
+	lfs      f6, 0x194(r5)
+	fadds    f1, f1, f7
+	lfs      f5, 0x198(r5)
+	fadds    f0, f0, f2
+	lfs      f4, 0x19c(r5)
+	fadds    f1, f1, f6
+	lfs      f3, 0x1a0(r5)
+	lfs      f2, 0x1a4(r5)
+	fadds    f0, f0, f9
+	fadds    f1, f1, f5
+	fadds    f0, f0, f8
+	fadds    f1, f1, f4
+	fadds    f0, f0, f7
+	fadds    f1, f1, f3
+	fadds    f0, f0, f6
+	fadds    f1, f1, f2
 
-	.loc_0x1E4:
-	  rlwinm    r0,r7,0,24,31
-	  cmpw      r0, r3
-	  blt+      .loc_0x168
-	  b         .loc_0x210
+lbl_800577B0:
+	clrlwi   r0, r7, 0x18
+	cmpw     r0, r3
+	blt      lbl_80057734
+	b        lbl_800577DC
 
-	.loc_0x1F4:
-	  rlwinm    r0,r7,2,22,29
-	  addi      r7, r7, 0x1
-	  add       r3, r30, r0
-	  lfs       f3, 0x178(r3)
-	  lfs       f2, 0x188(r3)
-	  fadds     f0, f0, f3
-	  fadds     f1, f1, f2
+lbl_800577C0:
+	rlwinm   r0, r7, 2, 0x16, 0x1d
+	addi     r7, r7, 1
+	add      r3, r30, r0
+	lfs      f3, 0x178(r3)
+	lfs      f2, 0x188(r3)
+	fadds    f0, f0, f3
+	fadds    f1, f1, f2
 
-	.loc_0x210:
-	  rlwinm    r0,r7,0,24,31
-	  cmpw      r0, r6
-	  blt+      .loc_0x1F4
+lbl_800577DC:
+	clrlwi   r0, r7, 0x18
+	cmpw     r0, r6
+	blt      lbl_800577C0
 
-	.loc_0x21C:
-	  li        r3, 0xFF
-	  rlwinm    r0,r4,0,24,31
-	  stb       r3, 0x24(r1)
-	  li        r8, 0
-	  stb       r3, 0x1C(r1)
-	  stb       r3, 0x25(r1)
-	  stb       r3, 0x1D(r1)
-	  stb       r3, 0x26(r1)
-	  stb       r3, 0x1E(r1)
-	  stb       r3, 0x27(r1)
-	  stb       r3, 0x1F(r1)
-	  stb       r3, 0x28(r1)
-	  stb       r3, 0x20(r1)
-	  stb       r3, 0x29(r1)
-	  stb       r3, 0x21(r1)
-	  stb       r3, 0x2A(r1)
-	  stb       r3, 0x22(r1)
-	  stb       r3, 0x2B(r1)
-	  stb       r3, 0x23(r1)
-	  b         .loc_0x318
+lbl_800577E8:
+	li       r3, 0xff
+	clrlwi   r0, r4, 0x18
+	stb      r3, 0x24(r1)
+	li       r8, 0
+	stb      r3, 0x1c(r1)
+	stb      r3, 0x25(r1)
+	stb      r3, 0x1d(r1)
+	stb      r3, 0x26(r1)
+	stb      r3, 0x1e(r1)
+	stb      r3, 0x27(r1)
+	stb      r3, 0x1f(r1)
+	stb      r3, 0x28(r1)
+	stb      r3, 0x20(r1)
+	stb      r3, 0x29(r1)
+	stb      r3, 0x21(r1)
+	stb      r3, 0x2a(r1)
+	stb      r3, 0x22(r1)
+	stb      r3, 0x2b(r1)
+	stb      r3, 0x23(r1)
+	b        lbl_800578E4
 
-	.loc_0x26C:
-	  rlwinm    r7,r8,0,24,31
-	  cmplwi    r7, 0x4
-	  bge-      .loc_0x2C8
-	  rlwinm    r3,r8,2,22,29
-	  lfs       f4, -0x7A70(r2)
-	  add       r4, r30, r3
-	  addi      r5, r1, 0x24
-	  lfs       f3, 0x124(r4)
-	  addi      r3, r1, 0x1C
-	  lfs       f2, 0x134(r4)
-	  fmuls     f3, f4, f3
-	  fmuls     f2, f4, f2
-	  fdivs     f3, f3, f0
-	  fdivs     f2, f2, f1
-	  fctiwz    f3, f3
-	  fctiwz    f2, f2
-	  stfd      f3, 0x40(r1)
-	  stfd      f2, 0x48(r1)
-	  lwz       r6, 0x44(r1)
-	  lwz       r4, 0x4C(r1)
-	  stbx      r6, r5, r7
-	  stbx      r4, r3, r7
-	  b         .loc_0x314
+lbl_80057838:
+	clrlwi   r7, r8, 0x18
+	cmplwi   r7, 4
+	bge      lbl_80057894
+	rlwinm   r3, r8, 2, 0x16, 0x1d
+	lfs      f4, lbl_805168F0@sda21(r2)
+	add      r4, r30, r3
+	addi     r5, r1, 0x24
+	lfs      f3, 0x124(r4)
+	addi     r3, r1, 0x1c
+	lfs      f2, 0x134(r4)
+	fmuls    f3, f4, f3
+	fmuls    f2, f4, f2
+	fdivs    f3, f3, f0
+	fdivs    f2, f2, f1
+	fctiwz   f3, f3
+	fctiwz   f2, f2
+	stfd     f3, 0x40(r1)
+	stfd     f2, 0x48(r1)
+	lwz      r6, 0x44(r1)
+	lwz      r4, 0x4c(r1)
+	stbx     r6, r5, r7
+	stbx     r4, r3, r7
+	b        lbl_800578E0
 
-	.loc_0x2C8:
-	  rlwinm    r3,r8,2,22,29
-	  lfs       f4, -0x7A70(r2)
-	  add       r4, r30, r3
-	  addi      r5, r1, 0x24
-	  lfs       f3, 0x168(r4)
-	  addi      r3, r1, 0x1C
-	  lfs       f2, 0x178(r4)
-	  fmuls     f3, f4, f3
-	  fmuls     f2, f4, f2
-	  fdivs     f3, f3, f0
-	  fdivs     f2, f2, f1
-	  fctiwz    f3, f3
-	  fctiwz    f2, f2
-	  stfd      f3, 0x48(r1)
-	  stfd      f2, 0x40(r1)
-	  lwz       r6, 0x4C(r1)
-	  lwz       r4, 0x44(r1)
-	  stbx      r6, r5, r7
-	  stbx      r4, r3, r7
+lbl_80057894:
+	rlwinm   r3, r8, 2, 0x16, 0x1d
+	lfs      f4, lbl_805168F0@sda21(r2)
+	add      r4, r30, r3
+	addi     r5, r1, 0x24
+	lfs      f3, 0x168(r4)
+	addi     r3, r1, 0x1c
+	lfs      f2, 0x178(r4)
+	fmuls    f3, f4, f3
+	fmuls    f2, f4, f2
+	fdivs    f3, f3, f0
+	fdivs    f2, f2, f1
+	fctiwz   f3, f3
+	fctiwz   f2, f2
+	stfd     f3, 0x48(r1)
+	stfd     f2, 0x40(r1)
+	lwz      r6, 0x4c(r1)
+	lwz      r4, 0x44(r1)
+	stbx     r6, r5, r7
+	stbx     r4, r3, r7
 
-	.loc_0x314:
-	  addi      r8, r8, 0x1
+lbl_800578E0:
+	addi     r8, r8, 1
 
-	.loc_0x318:
-	  rlwinm    r3,r8,0,24,31
-	  cmplw     r3, r0
-	  blt+      .loc_0x26C
-	  lbz       r3, 0x26(r1)
-	  li        r0, -0x1
-	  lbz       r4, 0x1E(r1)
-	  addi      r29, r1, 0x2C
-	  lbz       r5, 0x2A(r1)
-	  rlwinm    r12,r3,16,0,15
-	  lbz       r3, 0x22(r1)
-	  rlwinm    r6,r4,16,0,15
-	  lbz       r7, 0x1F(r1)
-	  rlwinm    r9,r5,16,0,15
-	  lbz       r5, 0x27(r1)
-	  rlwinm    r3,r3,16,0,15
-	  lbz       r4, 0x23(r1)
-	  rlwimi    r6,r7,24,0,7
-	  lbz       r10, 0x2B(r1)
-	  rlwimi    r12,r5,24,0,7
-	  lbz       r24, 0x25(r1)
-	  rlwimi    r3,r4,24,0,7
-	  lbz       r8, 0x1D(r1)
-	  rlwimi    r9,r10,24,0,7
-	  lbz       r11, 0x29(r1)
-	  rlwimi    r12,r24,8,16,23
-	  lbz       r7, 0x24(r1)
-	  rlwimi    r6,r8,8,16,23
-	  lbz       r5, 0x21(r1)
-	  rlwimi    r9,r11,8,16,23
-	  or        r10, r7, r12
-	  lbz       r4, 0x28(r1)
-	  stw       r10, 0x18(r1)
-	  rlwimi    r3,r5,8,16,23
-	  or        r8, r4, r9
-	  lbz       r7, 0x1C(r1)
-	  stw       r8, 0x14(r1)
-	  li        r31, 0
-	  lbz       r4, 0x20(r1)
-	  or        r5, r7, r6
-	  stw       r5, 0x10(r1)
-	  or        r3, r4, r3
-	  lbz       r24, 0x18(r1)
-	  stw       r3, 0xC(r1)
-	  lbz       r25, 0x19(r1)
-	  stw       r0, 0x38(r1)
-	  lbz       r26, 0x1A(r1)
-	  lbz       r27, 0x1B(r1)
-	  stw       r0, 0x2C(r1)
-	  lbz       r6, 0xC(r1)
-	  lbz       r5, 0xD(r1)
-	  lbz       r4, 0xE(r1)
-	  lbz       r3, 0xF(r1)
-	  stw       r0, 0x30(r1)
-	  lbz       r10, 0x10(r1)
-	  lbz       r9, 0x11(r1)
-	  lbz       r8, 0x12(r1)
-	  lbz       r7, 0x13(r1)
-	  stw       r0, 0x34(r1)
-	  lbz       r28, 0x14(r1)
-	  lbz       r12, 0x15(r1)
-	  lbz       r11, 0x16(r1)
-	  lbz       r0, 0x17(r1)
-	  stb       r24, 0x38(r1)
-	  stb       r25, 0x39(r1)
-	  stb       r26, 0x3A(r1)
-	  stb       r27, 0x3B(r1)
-	  stb       r28, 0x34(r1)
-	  stb       r12, 0x35(r1)
-	  stb       r11, 0x36(r1)
-	  stb       r0, 0x37(r1)
-	  stb       r10, 0x30(r1)
-	  stb       r9, 0x31(r1)
-	  stb       r8, 0x32(r1)
-	  stb       r7, 0x33(r1)
-	  stb       r6, 0x2C(r1)
-	  stb       r5, 0x2D(r1)
-	  stb       r4, 0x2E(r1)
-	  stb       r3, 0x2F(r1)
-	  b         .loc_0x484
+lbl_800578E4:
+	clrlwi   r3, r8, 0x18
+	cmplw    r3, r0
+	blt      lbl_80057838
+	lbz      r3, 0x26(r1)
+	li       r0, -1
+	lbz      r4, 0x1e(r1)
+	addi     r29, r1, 0x2c
+	lbz      r5, 0x2a(r1)
+	slwi     r12, r3, 0x10
+	lbz      r3, 0x22(r1)
+	slwi     r6, r4, 0x10
+	lbz      r7, 0x1f(r1)
+	slwi     r9, r5, 0x10
+	lbz      r5, 0x27(r1)
+	slwi     r3, r3, 0x10
+	lbz      r4, 0x23(r1)
+	rlwimi   r6, r7, 0x18, 0, 7
+	lbz      r10, 0x2b(r1)
+	rlwimi   r12, r5, 0x18, 0, 7
+	lbz      r24, 0x25(r1)
+	rlwimi   r3, r4, 0x18, 0, 7
+	lbz      r8, 0x1d(r1)
+	rlwimi   r9, r10, 0x18, 0, 7
+	lbz      r11, 0x29(r1)
+	rlwimi   r12, r24, 8, 0x10, 0x17
+	lbz      r7, 0x24(r1)
+	rlwimi   r6, r8, 8, 0x10, 0x17
+	lbz      r5, 0x21(r1)
+	rlwimi   r9, r11, 8, 0x10, 0x17
+	or       r10, r7, r12
+	lbz      r4, 0x28(r1)
+	stw      r10, 0x18(r1)
+	rlwimi   r3, r5, 8, 0x10, 0x17
+	or       r8, r4, r9
+	lbz      r7, 0x1c(r1)
+	stw      r8, 0x14(r1)
+	li       r31, 0
+	lbz      r4, 0x20(r1)
+	or       r5, r7, r6
+	stw      r5, 0x10(r1)
+	or       r3, r4, r3
+	lbz      r24, 0x18(r1)
+	stw      r3, 0xc(r1)
+	lbz      r25, 0x19(r1)
+	stw      r0, 0x38(r1)
+	lbz      r26, 0x1a(r1)
+	lbz      r27, 0x1b(r1)
+	stw      r0, 0x2c(r1)
+	lbz      r6, 0xc(r1)
+	lbz      r5, 0xd(r1)
+	lbz      r4, 0xe(r1)
+	lbz      r3, 0xf(r1)
+	stw      r0, 0x30(r1)
+	lbz      r10, 0x10(r1)
+	lbz      r9, 0x11(r1)
+	lbz      r8, 0x12(r1)
+	lbz      r7, 0x13(r1)
+	stw      r0, 0x34(r1)
+	lbz      r28, 0x14(r1)
+	lbz      r12, 0x15(r1)
+	lbz      r11, 0x16(r1)
+	lbz      r0, 0x17(r1)
+	stb      r24, 0x38(r1)
+	stb      r25, 0x39(r1)
+	stb      r26, 0x3a(r1)
+	stb      r27, 0x3b(r1)
+	stb      r28, 0x34(r1)
+	stb      r12, 0x35(r1)
+	stb      r11, 0x36(r1)
+	stb      r0, 0x37(r1)
+	stb      r10, 0x30(r1)
+	stb      r9, 0x31(r1)
+	stb      r8, 0x32(r1)
+	stb      r7, 0x33(r1)
+	stb      r6, 0x2c(r1)
+	stb      r5, 0x2d(r1)
+	stb      r4, 0x2e(r1)
+	stb      r3, 0x2f(r1)
+	b        lbl_80057A50
 
-	.loc_0x454:
-	  rlwinm    r0,r31,2,22,29
-	  rlwinm    r4,r31,0,24,31
-	  lwzx      r0, r29, r0
-	  addi      r5, r1, 0x8
-	  stw       r0, 0x8(r1)
-	  lwz       r3, 0x168(r30)
-	  lwz       r3, 0x70(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x3C(r12)
-	  mtctr     r12
-	  bctrl
-	  addi      r31, r31, 0x1
+lbl_80057A20:
+	rlwinm   r0, r31, 2, 0x16, 0x1d
+	clrlwi   r4, r31, 0x18
+	lwzx     r0, r29, r0
+	addi     r5, r1, 8
+	stw      r0, 8(r1)
+	lwz      r3, 0x168(r30)
+	lwz      r3, 0x70(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x3c(r12)
+	mtctr    r12
+	bctrl
+	addi     r31, r31, 1
 
-	.loc_0x484:
-	  rlwinm    r0,r31,0,24,31
-	  cmplwi    r0, 0x4
-	  blt+      .loc_0x454
+lbl_80057A50:
+	clrlwi   r0, r31, 0x18
+	cmplwi   r0, 4
+	blt      lbl_80057A20
 
-	.loc_0x490:
-	  lmw       r24, 0x50(r1)
-	  lwz       r0, 0x74(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x70
-	  blr
+lbl_80057A5C:
+	lmw      r24, 0x50(r1)
+	lwz      r0, 0x74(r1)
+	mtlr     r0
+	addi     r1, r1, 0x70
+	blr
 	*/
 }
 
@@ -3732,59 +3836,58 @@ void J2DPictureEx::setTevKColor(unsigned char)
 void J2DPictureEx::setTevKColorSel(unsigned char)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  rlwinm    r31,r4,0,24,31
-	  stw       r30, 0x18(r1)
-	  li        r30, 0
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  b         .loc_0x88
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	clrlwi   r31, r4, 0x18
+	stw      r30, 0x18(r1)
+	li       r30, 0
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	b        lbl_80057AF8
 
-	.loc_0x28:
-	  rlwinm    r4,r30,0,24,31
-	  cmplwi    r4, 0x4
-	  bge-      .loc_0x5C
-	  lwz       r3, 0x168(r29)
-	  rlwinm    r0,r30,2,22,29
-	  subfic    r0, r0, 0x1F
-	  lwz       r3, 0x70(r3)
-	  rlwinm    r5,r0,0,24,31
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x44(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x84
+lbl_80057A98:
+	clrlwi   r4, r30, 0x18
+	cmplwi   r4, 4
+	bge      lbl_80057ACC
+	lwz      r3, 0x168(r29)
+	rlwinm   r0, r30, 2, 0x16, 0x1d
+	subfic   r0, r0, 0x1f
+	lwz      r3, 0x70(r3)
+	clrlwi   r5, r0, 0x18
+	lwz      r12, 0(r3)
+	lwz      r12, 0x44(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_80057AF4
 
-	.loc_0x5C:
-	  lwz       r3, 0x168(r29)
-	  subi      r0, r4, 0x4
-	  rlwinm    r0,r0,2,0,29
-	  lwz       r3, 0x70(r3)
-	  subfic    r0, r0, 0x1E
-	  rlwinm    r5,r0,0,24,31
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x44(r12)
-	  mtctr     r12
-	  bctrl
+lbl_80057ACC:
+	lwz      r3, 0x168(r29)
+	addi     r0, r4, -4
+	slwi     r0, r0, 2
+	lwz      r3, 0x70(r3)
+	subfic   r0, r0, 0x1e
+	clrlwi   r5, r0, 0x18
+	lwz      r12, 0(r3)
+	lwz      r12, 0x44(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x84:
-	  addi      r30, r30, 0x1
+lbl_80057AF4:
+	addi     r30, r30, 1
 
-	.loc_0x88:
-	  rlwinm    r0,r30,0,24,31
-	  cmplw     r0, r31
-	  blt+      .loc_0x28
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80057AF8:
+	clrlwi   r0, r30, 0x18
+	cmplw    r0, r31
+	blt      lbl_80057A98
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -3796,59 +3899,58 @@ void J2DPictureEx::setTevKColorSel(unsigned char)
 void J2DPictureEx::setTevKAlphaSel(unsigned char)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  rlwinm    r31,r4,0,24,31
-	  stw       r30, 0x18(r1)
-	  li        r30, 0
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  b         .loc_0x88
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	clrlwi   r31, r4, 0x18
+	stw      r30, 0x18(r1)
+	li       r30, 0
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	b        lbl_80057BA8
 
-	.loc_0x28:
-	  rlwinm    r4,r30,0,24,31
-	  cmplwi    r4, 0x4
-	  bge-      .loc_0x5C
-	  lwz       r3, 0x168(r29)
-	  rlwinm    r0,r30,2,22,29
-	  subfic    r0, r0, 0x1D
-	  lwz       r3, 0x70(r3)
-	  rlwinm    r5,r0,0,24,31
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x4C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x84
+lbl_80057B48:
+	clrlwi   r4, r30, 0x18
+	cmplwi   r4, 4
+	bge      lbl_80057B7C
+	lwz      r3, 0x168(r29)
+	rlwinm   r0, r30, 2, 0x16, 0x1d
+	subfic   r0, r0, 0x1d
+	lwz      r3, 0x70(r3)
+	clrlwi   r5, r0, 0x18
+	lwz      r12, 0(r3)
+	lwz      r12, 0x4c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_80057BA4
 
-	.loc_0x5C:
-	  lwz       r3, 0x168(r29)
-	  subi      r0, r4, 0x4
-	  rlwinm    r0,r0,2,0,29
-	  lwz       r3, 0x70(r3)
-	  subfic    r0, r0, 0x1C
-	  rlwinm    r5,r0,0,24,31
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x4C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_80057B7C:
+	lwz      r3, 0x168(r29)
+	addi     r0, r4, -4
+	slwi     r0, r0, 2
+	lwz      r3, 0x70(r3)
+	subfic   r0, r0, 0x1c
+	clrlwi   r5, r0, 0x18
+	lwz      r12, 0(r3)
+	lwz      r12, 0x4c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x84:
-	  addi      r30, r30, 0x1
+lbl_80057BA4:
+	addi     r30, r30, 1
 
-	.loc_0x88:
-	  rlwinm    r0,r30,0,24,31
-	  cmplw     r0, r31
-	  blt+      .loc_0x28
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80057BA8:
+	clrlwi   r0, r30, 0x18
+	cmplw    r0, r31
+	blt      lbl_80057B48
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -3860,107 +3962,106 @@ void J2DPictureEx::setTevKAlphaSel(unsigned char)
 void J2DPictureEx::shiftSetBlendRatio(unsigned char, float, bool, bool)
 {
 	/*
-	.loc_0x0:
-	  rlwinm.   r0,r5,0,24,31
-	  beq-      .loc_0x10
-	  addi      r7, r3, 0x124
-	  b         .loc_0x14
+	clrlwi.  r0, r5, 0x18
+	beq      lbl_80057BE0
+	addi     r7, r3, 0x124
+	b        lbl_80057BE4
 
-	.loc_0x10:
-	  addi      r7, r3, 0x134
+lbl_80057BE0:
+	addi     r7, r3, 0x134
 
-	.loc_0x14:
-	  rlwinm.   r0,r5,0,24,31
-	  beq-      .loc_0x24
-	  addi      r5, r3, 0x178
-	  b         .loc_0x28
+lbl_80057BE4:
+	clrlwi.  r0, r5, 0x18
+	beq      lbl_80057BF4
+	addi     r5, r3, 0x178
+	b        lbl_80057BF8
 
-	.loc_0x24:
-	  addi      r5, r3, 0x188
+lbl_80057BF4:
+	addi     r5, r3, 0x188
 
-	.loc_0x28:
-	  rlwinm.   r0,r6,0,24,31
-	  beq-      .loc_0xB4
-	  rlwinm    r8,r4,0,24,31
-	  addi      r3, r5, 0x1C
-	  subfic    r0, r8, 0x7
-	  addi      r6, r7, 0x1C
-	  li        r9, 0x7
-	  mtctr     r0
-	  cmpwi     r8, 0x7
-	  bge-      .loc_0x8C
+lbl_80057BF8:
+	clrlwi.  r0, r6, 0x18
+	beq      lbl_80057C84
+	clrlwi   r8, r4, 0x18
+	addi     r3, r5, 0x1c
+	subfic   r0, r8, 7
+	addi     r6, r7, 0x1c
+	li       r9, 7
+	mtctr    r0
+	cmpwi    r8, 7
+	bge      lbl_80057C5C
 
-	.loc_0x50:
-	  cmpwi     r9, 0x4
-	  ble-      .loc_0x64
-	  lfs       f0, -0x14(r3)
-	  stfs      f0, -0x10(r3)
-	  b         .loc_0x7C
+lbl_80057C20:
+	cmpwi    r9, 4
+	ble      lbl_80057C34
+	lfs      f0, -0x14(r3)
+	stfs     f0, -0x10(r3)
+	b        lbl_80057C4C
 
-	.loc_0x64:
-	  bne-      .loc_0x74
-	  lfs       f0, 0xC(r7)
-	  stfs      f0, 0x0(r5)
-	  b         .loc_0x7C
+lbl_80057C34:
+	bne      lbl_80057C44
+	lfs      f0, 0xc(r7)
+	stfs     f0, 0(r5)
+	b        lbl_80057C4C
 
-	.loc_0x74:
-	  lfs       f0, -0x4(r6)
-	  stfs      f0, 0x0(r6)
+lbl_80057C44:
+	lfs      f0, -4(r6)
+	stfs     f0, 0(r6)
 
-	.loc_0x7C:
-	  subi      r3, r3, 0x4
-	  subi      r6, r6, 0x4
-	  subi      r9, r9, 0x1
-	  bdnz+     .loc_0x50
+lbl_80057C4C:
+	addi     r3, r3, -4
+	addi     r6, r6, -4
+	addi     r9, r9, -1
+	bdnz     lbl_80057C20
 
-	.loc_0x8C:
-	  rlwinm    r0,r4,0,24,31
-	  cmplwi    r0, 0x4
-	  blt-      .loc_0xA8
-	  rlwinm    r0,r8,2,0,29
-	  add       r3, r5, r0
-	  stfs      f1, -0x10(r3)
-	  blr
+lbl_80057C5C:
+	clrlwi   r0, r4, 0x18
+	cmplwi   r0, 4
+	blt      lbl_80057C78
+	slwi     r0, r8, 2
+	add      r3, r5, r0
+	stfs     f1, -0x10(r3)
+	blr
 
-	.loc_0xA8:
-	  rlwinm    r0,r4,2,22,29
-	  stfsx     f1, r7, r0
-	  blr
+lbl_80057C78:
+	rlwinm   r0, r4, 2, 0x16, 0x1d
+	stfsx    f1, r7, r0
+	blr
 
-	.loc_0xB4:
-	  rlwinm    r3,r4,0,24,31
-	  addi      r6, r3, 0x1
-	  rlwinm    r4,r6,2,0,29
-	  subfic    r0, r6, 0x8
-	  add       r3, r5, r4
-	  add       r4, r7, r4
-	  mtctr     r0
-	  cmpwi     r6, 0x8
-	  bgelr-
+lbl_80057C84:
+	clrlwi   r3, r4, 0x18
+	addi     r6, r3, 1
+	slwi     r4, r6, 2
+	subfic   r0, r6, 8
+	add      r3, r5, r4
+	add      r4, r7, r4
+	mtctr    r0
+	cmpwi    r6, 8
+	bgelr
 
-	.loc_0xD8:
-	  cmpwi     r6, 0x4
-	  ble-      .loc_0xEC
-	  lfs       f0, -0x10(r3)
-	  stfs      f0, -0x14(r3)
-	  b         .loc_0x104
+lbl_80057CA8:
+	cmpwi    r6, 4
+	ble      lbl_80057CBC
+	lfs      f0, -0x10(r3)
+	stfs     f0, -0x14(r3)
+	b        lbl_80057CD4
 
-	.loc_0xEC:
-	  bne-      .loc_0xFC
-	  lfs       f0, 0x0(r5)
-	  stfs      f0, 0xC(r7)
-	  b         .loc_0x104
+lbl_80057CBC:
+	bne      lbl_80057CCC
+	lfs      f0, 0(r5)
+	stfs     f0, 0xc(r7)
+	b        lbl_80057CD4
 
-	.loc_0xFC:
-	  lfs       f0, 0x0(r4)
-	  stfs      f0, -0x4(r4)
+lbl_80057CCC:
+	lfs      f0, 0(r4)
+	stfs     f0, -4(r4)
 
-	.loc_0x104:
-	  addi      r3, r3, 0x4
-	  addi      r4, r4, 0x4
-	  addi      r6, r6, 0x1
-	  bdnz+     .loc_0xD8
-	  blr
+lbl_80057CD4:
+	addi     r3, r3, 4
+	addi     r4, r4, 4
+	addi     r6, r6, 1
+	bdnz     lbl_80057CA8
+	blr
 	*/
 }
 
@@ -4046,103 +4147,102 @@ void J2DPictureEx::setBlendAlphaRatio(float, float, float, float, float, float,
 void J2DPictureEx::changeTexture(const ResTIMG*, unsigned char)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stmw      r27, 0xC(r1)
-	  mr        r27, r3
-	  mr        r28, r4
-	  mr        r29, r5
-	  lwz       r3, 0x168(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x30
-	  cmplwi    r28, 0
-	  bne-      .loc_0x38
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stmw     r27, 0xc(r1)
+	mr       r27, r3
+	mr       r28, r4
+	mr       r29, r5
+	lwz      r3, 0x168(r3)
+	cmplwi   r3, 0
+	beq      lbl_80057DC8
+	cmplwi   r28, 0
+	bne      lbl_80057DD0
 
-	.loc_0x30:
-	  li        r3, 0
-	  b         .loc_0x12C
+lbl_80057DC8:
+	li       r3, 0
+	b        lbl_80057EC4
 
-	.loc_0x38:
-	  lwz       r31, 0x28(r3)
-	  rlwinm    r30,r29,0,24,31
-	  cmplw     r30, r31
-	  ble-      .loc_0x50
-	  li        r3, 0
-	  b         .loc_0x12C
+lbl_80057DD0:
+	lwz      r31, 0x28(r3)
+	clrlwi   r30, r29, 0x18
+	cmplw    r30, r31
+	ble      lbl_80057DE8
+	li       r3, 0
+	b        lbl_80057EC4
 
-	.loc_0x50:
-	  lwz       r3, 0x70(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm    r0,r3,0,24,31
-	  mr        r5, r30
-	  cmplwi    r0, 0x8
-	  li        r4, 0x8
-	  bgt-      .loc_0x7C
-	  mr        r4, r3
+lbl_80057DE8:
+	lwz      r3, 0x70(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	clrlwi   r0, r3, 0x18
+	mr       r5, r30
+	cmplwi   r0, 8
+	li       r4, 8
+	bgt      lbl_80057E14
+	mr       r4, r3
 
-	.loc_0x7C:
-	  rlwinm    r0,r4,0,24,31
-	  cmplw     r5, r0
-	  blt-      .loc_0x90
-	  li        r3, 0
-	  b         .loc_0x12C
+lbl_80057E14:
+	clrlwi   r0, r4, 0x18
+	cmplw    r5, r0
+	blt      lbl_80057E28
+	li       r3, 0
+	b        lbl_80057EC4
 
-	.loc_0x90:
-	  cmplw     r30, r31
-	  bge-      .loc_0x10C
-	  mr        r3, r27
-	  mr        r4, r29
-	  lwz       r12, 0x0(r27)
-	  lwz       r12, 0x120(r12)
-	  mtctr     r12
-	  bctrl
-	  lbz       r0, 0x8(r28)
-	  li        r30, 0
-	  lwz       r31, 0x20(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0xE0
-	  mr        r3, r27
-	  mr        r4, r29
-	  lwz       r12, 0x0(r27)
-	  lwz       r12, 0x148(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r30, r3
+lbl_80057E28:
+	cmplw    r30, r31
+	bge      lbl_80057EA4
+	mr       r3, r27
+	mr       r4, r29
+	lwz      r12, 0(r27)
+	lwz      r12, 0x120(r12)
+	mtctr    r12
+	bctrl
+	lbz      r0, 8(r28)
+	li       r30, 0
+	lwz      r31, 0x20(r3)
+	cmplwi   r0, 0
+	beq      lbl_80057E78
+	mr       r3, r27
+	mr       r4, r29
+	lwz      r12, 0(r27)
+	lwz      r12, 0x148(r12)
+	mtctr    r12
+	bctrl
+	mr       r30, r3
 
-	.loc_0xE0:
-	  mr        r3, r27
-	  mr        r4, r29
-	  lwz       r12, 0x0(r27)
-	  lwz       r12, 0x120(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r28
-	  mr        r5, r30
-	  bl        -0x24E14
-	  mr        r3, r31
-	  b         .loc_0x12C
+lbl_80057E78:
+	mr       r3, r27
+	mr       r4, r29
+	lwz      r12, 0(r27)
+	lwz      r12, 0x120(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r28
+	mr       r5, r30
+	bl       storeTIMG__10JUTTextureFPC7ResTIMGUc
+	mr       r3, r31
+	b        lbl_80057EC4
 
-	.loc_0x10C:
-	  mr        r3, r27
-	  mr        r4, r28
-	  lwz       r12, 0x0(r27)
-	  lfs       f1, -0x7A80(r2)
-	  lwz       r12, 0x9C(r12)
-	  mtctr     r12
-	  bctrl
-	  li        r3, 0
+lbl_80057EA4:
+	mr       r3, r27
+	mr       r4, r28
+	lwz      r12, 0(r27)
+	lfs      f1, lbl_805168E0@sda21(r2)
+	lwz      r12, 0x9c(r12)
+	mtctr    r12
+	bctrl
+	li       r3, 0
 
-	.loc_0x12C:
-	  lmw       r27, 0xC(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80057EC4:
+	lmw      r27, 0xc(r1)
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -4154,29 +4254,28 @@ void J2DPictureEx::changeTexture(const ResTIMG*, unsigned char)
 void J2DPictureEx::changeTexture(const char*, unsigned char)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r5
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  mr        r3, r4
-	  bl        -0x1741C
-	  lwz       r12, 0x0(r30)
-	  mr        r4, r3
-	  mr        r3, r30
-	  mr        r5, r31
-	  lwz       r12, 0x110(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r5
+	stw      r30, 8(r1)
+	mr       r30, r3
+	mr       r3, r4
+	bl       getNameResource__9J2DScreenFPCc
+	lwz      r12, 0(r30)
+	mr       r4, r3
+	mr       r3, r30
+	mr       r5, r31
+	lwz      r12, 0x110(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -4188,111 +4287,110 @@ void J2DPictureEx::changeTexture(const char*, unsigned char)
 void J2DPictureEx::changeTexture(const ResTIMG*, unsigned char, JUTPalette*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stmw      r26, 0x8(r1)
-	  mr        r28, r3
-	  mr        r29, r4
-	  mr        r30, r5
-	  mr        r31, r6
-	  lwz       r3, 0x168(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x34
-	  cmplwi    r29, 0
-	  bne-      .loc_0x3C
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stmw     r26, 8(r1)
+	mr       r28, r3
+	mr       r29, r4
+	mr       r30, r5
+	mr       r31, r6
+	lwz      r3, 0x168(r3)
+	cmplwi   r3, 0
+	beq      lbl_80057F64
+	cmplwi   r29, 0
+	bne      lbl_80057F6C
 
-	.loc_0x34:
-	  li        r3, 0
-	  b         .loc_0x14C
+lbl_80057F64:
+	li       r3, 0
+	b        lbl_8005807C
 
-	.loc_0x3C:
-	  lwz       r27, 0x28(r3)
-	  rlwinm    r26,r30,0,24,31
-	  cmplw     r26, r27
-	  ble-      .loc_0x54
-	  li        r3, 0
-	  b         .loc_0x14C
+lbl_80057F6C:
+	lwz      r27, 0x28(r3)
+	clrlwi   r26, r30, 0x18
+	cmplw    r26, r27
+	ble      lbl_80057F84
+	li       r3, 0
+	b        lbl_8005807C
 
-	.loc_0x54:
-	  lwz       r3, 0x70(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm    r0,r3,0,24,31
-	  mr        r5, r26
-	  cmplwi    r0, 0x8
-	  li        r4, 0x8
-	  bgt-      .loc_0x80
-	  mr        r4, r3
+lbl_80057F84:
+	lwz      r3, 0x70(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	clrlwi   r0, r3, 0x18
+	mr       r5, r26
+	cmplwi   r0, 8
+	li       r4, 8
+	bgt      lbl_80057FB0
+	mr       r4, r3
 
-	.loc_0x80:
-	  rlwinm    r0,r4,0,24,31
-	  cmplw     r5, r0
-	  blt-      .loc_0x94
-	  li        r3, 0
-	  b         .loc_0x14C
+lbl_80057FB0:
+	clrlwi   r0, r4, 0x18
+	cmplw    r5, r0
+	blt      lbl_80057FC4
+	li       r3, 0
+	b        lbl_8005807C
 
-	.loc_0x94:
-	  cmplw     r26, r27
-	  bge-      .loc_0x128
-	  mr        r3, r28
-	  mr        r4, r30
-	  lwz       r12, 0x0(r28)
-	  lwz       r12, 0x120(r12)
-	  mtctr     r12
-	  bctrl
-	  lbz       r0, 0x8(r29)
-	  li        r26, 0
-	  lwz       r27, 0x20(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0xF8
-	  mr        r3, r28
-	  mr        r4, r30
-	  lwz       r12, 0x0(r28)
-	  lwz       r12, 0x148(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r0, r3
-	  mr        r3, r28
-	  mr        r5, r0
-	  mr        r4, r29
-	  bl        -0x1AD30
-	  mr        r26, r3
+lbl_80057FC4:
+	cmplw    r26, r27
+	bge      lbl_80058058
+	mr       r3, r28
+	mr       r4, r30
+	lwz      r12, 0(r28)
+	lwz      r12, 0x120(r12)
+	mtctr    r12
+	bctrl
+	lbz      r0, 8(r29)
+	li       r26, 0
+	lwz      r27, 0x20(r3)
+	cmplwi   r0, 0
+	beq      lbl_80058028
+	mr       r3, r28
+	mr       r4, r30
+	lwz      r12, 0(r28)
+	lwz      r12, 0x148(r12)
+	mtctr    r12
+	bctrl
+	mr       r0, r3
+	mr       r3, r28
+	mr       r5, r0
+	mr       r4, r29
+	bl       getTlutID__10J2DPictureFPC7ResTIMGUc
+	mr       r26, r3
 
-	.loc_0xF8:
-	  mr        r3, r28
-	  mr        r4, r30
-	  lwz       r12, 0x0(r28)
-	  lwz       r12, 0x120(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r29
-	  mr        r5, r31
-	  mr        r6, r26
-	  bl        -0x24DE8
-	  mr        r3, r27
-	  b         .loc_0x14C
+lbl_80058028:
+	mr       r3, r28
+	mr       r4, r30
+	lwz      r12, 0(r28)
+	lwz      r12, 0x120(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r29
+	mr       r5, r31
+	mr       r6, r26
+	bl       storeTIMG__10JUTTextureFPC7ResTIMGP10JUTPalette7_GXTlut
+	mr       r3, r27
+	b        lbl_8005807C
 
-	.loc_0x128:
-	  mr        r3, r28
-	  mr        r4, r29
-	  lwz       r12, 0x0(r28)
-	  mr        r5, r31
-	  lfs       f1, -0x7A80(r2)
-	  lwz       r12, 0xA0(r12)
-	  mtctr     r12
-	  bctrl
-	  li        r3, 0
+lbl_80058058:
+	mr       r3, r28
+	mr       r4, r29
+	lwz      r12, 0(r28)
+	mr       r5, r31
+	lfs      f1, lbl_805168E0@sda21(r2)
+	lwz      r12, 0xa0(r12)
+	mtctr    r12
+	bctrl
+	li       r3, 0
 
-	.loc_0x14C:
-	  lmw       r26, 0x8(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8005807C:
+	lmw      r26, 8(r1)
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -4304,33 +4402,32 @@ void J2DPictureEx::changeTexture(const ResTIMG*, unsigned char, JUTPalette*)
 void J2DPictureEx::changeTexture(const char*, unsigned char, JUTPalette*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r6
-	  stw       r30, 0x18(r1)
-	  mr        r30, r5
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  mr        r3, r4
-	  bl        -0x175DC
-	  lwz       r12, 0x0(r29)
-	  mr        r4, r3
-	  mr        r3, r29
-	  mr        r5, r30
-	  lwz       r12, 0x118(r12)
-	  mr        r6, r31
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r6
+	stw      r30, 0x18(r1)
+	mr       r30, r5
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	mr       r3, r4
+	bl       getNameResource__9J2DScreenFPCc
+	lwz      r12, 0(r29)
+	mr       r4, r3
+	mr       r3, r29
+	mr       r5, r30
+	lwz      r12, 0x118(r12)
+	mr       r6, r31
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -4342,35 +4439,34 @@ void J2DPictureEx::changeTexture(const char*, unsigned char, JUTPalette*)
 void J2DPictureEx::getTexture(unsigned char) const
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lwz       r3, 0x168(r3)
-	  stw       r0, 0x14(r1)
-	  cmplwi    r3, 0
-	  bne-      .loc_0x20
-	  li        r3, 0
-	  b         .loc_0x48
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lwz      r3, 0x168(r3)
+	stw      r0, 0x14(r1)
+	cmplwi   r3, 0
+	bne      lbl_80058118
+	li       r3, 0
+	b        lbl_80058140
 
-	.loc_0x20:
-	  lwz       r3, 0x70(r3)
-	  cmplwi    r3, 0
-	  bne-      .loc_0x34
-	  li        r3, 0
-	  b         .loc_0x48
+lbl_80058118:
+	lwz      r3, 0x70(r3)
+	cmplwi   r3, 0
+	bne      lbl_8005812C
+	li       r3, 0
+	b        lbl_80058140
 
-	.loc_0x34:
-	  lwz       r12, 0x0(r3)
-	  rlwinm    r4,r4,0,24,31
-	  lwz       r12, 0xA0(r12)
-	  mtctr     r12
-	  bctrl
+lbl_8005812C:
+	lwz      r12, 0(r3)
+	clrlwi   r4, r4, 0x18
+	lwz      r12, 0xa0(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x48:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80058140:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -4382,17 +4478,16 @@ void J2DPictureEx::getTexture(unsigned char) const
 void J2DPictureEx::getTextureCount() const
 {
 	/*
-	.loc_0x0:
-	  lwz       r3, 0x168(r3)
-	  cmplwi    r3, 0
-	  bne-      .loc_0x14
-	  li        r3, 0
-	  blr
+	lwz      r3, 0x168(r3)
+	cmplwi   r3, 0
+	bne      lbl_80058164
+	li       r3, 0
+	blr
 
-	.loc_0x14:
-	  lwz       r0, 0x28(r3)
-	  rlwinm    r3,r0,0,24,31
-	  blr
+lbl_80058164:
+	lwz      r0, 0x28(r3)
+	clrlwi   r3, r0, 0x18
+	blr
 	*/
 }
 
@@ -4404,45 +4499,44 @@ void J2DPictureEx::getTextureCount() const
 void J2DPictureEx::setBlack(JUtility::TColor)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  li        r0, -0x1
-	  addi      r5, r1, 0x10
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r4
-	  addi      r4, r1, 0x14
-	  stw       r30, 0x18(r1)
-	  mr        r30, r3
-	  stw       r0, 0x14(r1)
-	  stw       r0, 0x10(r1)
-	  bl        0x534
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x44
-	  li        r3, 0
-	  b         .loc_0x70
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	li       r0, -1
+	addi     r5, r1, 0x10
+	stw      r31, 0x1c(r1)
+	mr       r31, r4
+	addi     r4, r1, 0x14
+	stw      r30, 0x18(r1)
+	mr       r30, r3
+	stw      r0, 0x14(r1)
+	stw      r0, 0x10(r1)
+	bl getBlackWhite__12J2DPictureExCFPQ28JUtility6TColorPQ28JUtility6TColor
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_800581B4
+	li       r3, 0
+	b        lbl_800581E0
 
-	.loc_0x44:
-	  lwz       r5, 0x10(r1)
-	  mr        r3, r30
-	  lwz       r0, 0x0(r31)
-	  addi      r4, r1, 0xC
-	  stw       r5, 0x8(r1)
-	  addi      r5, r1, 0x8
-	  stw       r0, 0xC(r1)
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x130(r12)
-	  mtctr     r12
-	  bctrl
+lbl_800581B4:
+	lwz      r5, 0x10(r1)
+	mr       r3, r30
+	lwz      r0, 0(r31)
+	addi     r4, r1, 0xc
+	stw      r5, 8(r1)
+	addi     r5, r1, 8
+	stw      r0, 0xc(r1)
+	lwz      r12, 0(r30)
+	lwz      r12, 0x130(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x70:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_800581E0:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -4454,45 +4548,44 @@ void J2DPictureEx::setBlack(JUtility::TColor)
 void J2DPictureEx::setWhite(JUtility::TColor)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  li        r0, -0x1
-	  addi      r5, r1, 0x10
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r4
-	  addi      r4, r1, 0x14
-	  stw       r30, 0x18(r1)
-	  mr        r30, r3
-	  stw       r0, 0x14(r1)
-	  stw       r0, 0x10(r1)
-	  bl        0x4AC
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x44
-	  li        r3, 0
-	  b         .loc_0x70
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	li       r0, -1
+	addi     r5, r1, 0x10
+	stw      r31, 0x1c(r1)
+	mr       r31, r4
+	addi     r4, r1, 0x14
+	stw      r30, 0x18(r1)
+	mr       r30, r3
+	stw      r0, 0x14(r1)
+	stw      r0, 0x10(r1)
+	bl getBlackWhite__12J2DPictureExCFPQ28JUtility6TColorPQ28JUtility6TColor
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_8005823C
+	li       r3, 0
+	b        lbl_80058268
 
-	.loc_0x44:
-	  lwz       r5, 0x0(r31)
-	  mr        r3, r30
-	  lwz       r0, 0x14(r1)
-	  addi      r4, r1, 0xC
-	  stw       r5, 0x8(r1)
-	  addi      r5, r1, 0x8
-	  stw       r0, 0xC(r1)
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x130(r12)
-	  mtctr     r12
-	  bctrl
+lbl_8005823C:
+	lwz      r5, 0(r31)
+	mr       r3, r30
+	lwz      r0, 0x14(r1)
+	addi     r4, r1, 0xc
+	stw      r5, 8(r1)
+	addi     r5, r1, 8
+	stw      r0, 0xc(r1)
+	lwz      r12, 0(r30)
+	lwz      r12, 0x130(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x70:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80058268:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -4504,340 +4597,339 @@ void J2DPictureEx::setWhite(JUtility::TColor)
 void J2DPictureEx::setBlackWhite(JUtility::TColor, JUtility::TColor)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x70(r1)
-	  mflr      r0
-	  stw       r0, 0x74(r1)
-	  stmw      r23, 0x4C(r1)
-	  mr        r27, r4
-	  mr        r26, r3
-	  mr        r28, r5
-	  lwz       r4, 0x168(r3)
-	  cmplwi    r4, 0
-	  bne-      .loc_0x30
-	  li        r3, 0
-	  b         .loc_0x440
+	stwu     r1, -0x70(r1)
+	mflr     r0
+	stw      r0, 0x74(r1)
+	stmw     r23, 0x4c(r1)
+	mr       r27, r4
+	mr       r26, r3
+	mr       r28, r5
+	lwz      r4, 0x168(r3)
+	cmplwi   r4, 0
+	bne      lbl_800582B0
+	li       r3, 0
+	b        lbl_800586C0
 
-	.loc_0x30:
-	  lwz       r0, 0x70(r4)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x44
-	  li        r3, 0
-	  b         .loc_0x440
+lbl_800582B0:
+	lwz      r0, 0x70(r4)
+	cmplwi   r0, 0
+	bne      lbl_800582C4
+	li       r3, 0
+	b        lbl_800586C0
 
-	.loc_0x44:
-	  lwz       r6, 0x0(r28)
-	  addi      r4, r1, 0x14
-	  lwz       r0, 0x0(r27)
-	  addi      r5, r1, 0x10
-	  stw       r6, 0x10(r1)
-	  stw       r0, 0x14(r1)
-	  bl        0x5BC
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x70
-	  li        r3, 0
-	  b         .loc_0x440
+lbl_800582C4:
+	lwz      r6, 0(r28)
+	addi     r4, r1, 0x14
+	lwz      r0, 0(r27)
+	addi     r5, r1, 0x10
+	stw      r6, 0x10(r1)
+	stw      r0, 0x14(r1)
+	bl isSetBlackWhite__12J2DPictureExCFQ28JUtility6TColorQ28JUtility6TColor
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_800582F0
+	li       r3, 0
+	b        lbl_800586C0
 
-	.loc_0x70:
-	  lwz       r4, 0x168(r26)
-	  li        r31, 0x1
-	  lwz       r0, 0x0(r27)
-	  lwz       r3, 0x28(r4)
-	  cmplwi    r0, 0
-	  rlwinm    r30,r3,0,24,31
-	  bne-      .loc_0xA0
-	  lwz       r3, 0x0(r28)
-	  addis     r0, r3, 0x1
-	  cmplwi    r0, 0xFFFF
-	  bne-      .loc_0xA0
-	  li        r31, 0
+lbl_800582F0:
+	lwz      r4, 0x168(r26)
+	li       r31, 1
+	lwz      r0, 0(r27)
+	lwz      r3, 0x28(r4)
+	cmplwi   r0, 0
+	clrlwi   r30, r3, 0x18
+	bne      lbl_80058320
+	lwz      r3, 0(r28)
+	addis    r0, r3, 1
+	cmplwi   r0, 0xffff
+	bne      lbl_80058320
+	li       r31, 0
 
-	.loc_0xA0:
-	  cmplwi    r30, 0x1
-	  bne-      .loc_0xC4
-	  rlwinm    r3,r31,0,24,31
-	  neg       r0, r3
-	  or        r0, r0, r3
-	  rlwinm    r3,r0,1,31,31
-	  addi      r0, r3, 0x1
-	  rlwinm    r29,r0,0,24,31
-	  b         .loc_0xE0
+lbl_80058320:
+	cmplwi   r30, 1
+	bne      lbl_80058344
+	clrlwi   r3, r31, 0x18
+	neg      r0, r3
+	or       r0, r0, r3
+	srwi     r3, r0, 0x1f
+	addi     r0, r3, 1
+	clrlwi   r29, r0, 0x18
+	b        lbl_80058360
 
-	.loc_0xC4:
-	  rlwinm    r3,r31,0,24,31
-	  neg       r0, r3
-	  or        r0, r0, r3
-	  rlwinm    r3,r0,1,31,31
-	  addi      r0, r3, 0x1
-	  add       r0, r30, r0
-	  rlwinm    r29,r0,0,24,31
+lbl_80058344:
+	clrlwi   r3, r31, 0x18
+	neg      r0, r3
+	or       r0, r0, r3
+	srwi     r3, r0, 0x1f
+	addi     r0, r3, 1
+	add      r0, r30, r0
+	clrlwi   r29, r0, 0x18
 
-	.loc_0xE0:
-	  lwz       r3, 0x70(r4)
-	  mr        r4, r29
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x54(r12)
-	  mtctr     r12
-	  bctrl
-	  cmplwi    r30, 0x1
-	  bne-      .loc_0x12C
-	  rlwinm.   r0,r31,0,24,31
-	  bne-      .loc_0x114
-	  li        r0, 0x4
-	  sth       r0, 0x28(r1)
-	  b         .loc_0x24C
+lbl_80058360:
+	lwz      r3, 0x70(r4)
+	mr       r4, r29
+	lwz      r12, 0(r3)
+	lwz      r12, 0x54(r12)
+	mtctr    r12
+	bctrl
+	cmplwi   r30, 1
+	bne      lbl_800583AC
+	clrlwi.  r0, r31, 0x18
+	bne      lbl_80058394
+	li       r0, 4
+	sth      r0, 0x28(r1)
+	b        lbl_800584CC
 
-	.loc_0x114:
-	  lis       r3, 0x1
-	  li        r4, 0xFF
-	  subi      r0, r3, 0xFC
-	  sth       r4, 0x28(r1)
-	  sth       r0, 0x2A(r1)
-	  b         .loc_0x24C
+lbl_80058394:
+	lis      r3, 0x0000FF04@ha
+	li       r4, 0xff
+	addi     r0, r3, 0x0000FF04@l
+	sth      r4, 0x28(r1)
+	sth      r0, 0x2a(r1)
+	b        lbl_800584CC
 
-	.loc_0x12C:
-	  cmplwi    r30, 0
-	  li        r3, 0
-	  ble-      .loc_0x20C
-	  cmplwi    r30, 0x8
-	  subi      r0, r30, 0x8
-	  ble-      .loc_0x1E4
-	  rlwinm    r0,r0,0,24,31
-	  b         .loc_0x1D8
+lbl_800583AC:
+	cmplwi   r30, 0
+	li       r3, 0
+	ble      lbl_8005848C
+	cmplwi   r30, 8
+	addi     r0, r30, -8
+	ble      lbl_80058464
+	clrlwi   r0, r0, 0x18
+	b        lbl_80058458
 
-	.loc_0x14C:
-	  rlwinm    r6,r3,8,16,23
-	  rlwinm    r7,r3,1,23,30
-	  addi      r4, r1, 0x28
-	  addi      r5, r3, 0x1
-	  ori       r8, r6, 0xFF
-	  addi      r6, r3, 0x2
-	  add       r4, r4, r7
-	  rlwinm    r5,r5,8,16,23
-	  ori       r7, r5, 0xFF
-	  sth       r8, 0x0(r4)
-	  rlwinm    r6,r6,8,16,23
-	  addi      r5, r3, 0x3
-	  ori       r8, r6, 0xFF
-	  sth       r7, 0x2(r4)
-	  rlwinm    r5,r5,8,16,23
-	  addi      r6, r3, 0x4
-	  ori       r7, r5, 0xFF
-	  sth       r8, 0x4(r4)
-	  rlwinm    r6,r6,8,16,23
-	  addi      r5, r3, 0x5
-	  ori       r8, r6, 0xFF
-	  sth       r7, 0x6(r4)
-	  rlwinm    r5,r5,8,16,23
-	  addi      r6, r3, 0x6
-	  ori       r7, r5, 0xFF
-	  sth       r8, 0x8(r4)
-	  addi      r5, r3, 0x7
-	  rlwinm    r6,r6,8,16,23
-	  rlwinm    r5,r5,8,16,23
-	  sth       r7, 0xA(r4)
-	  ori       r6, r6, 0xFF
-	  addi      r3, r3, 0x8
-	  sth       r6, 0xC(r4)
-	  ori       r5, r5, 0xFF
-	  sth       r5, 0xE(r4)
+lbl_800583CC:
+	rlwinm   r6, r3, 8, 0x10, 0x17
+	rlwinm   r7, r3, 1, 0x17, 0x1e
+	addi     r4, r1, 0x28
+	addi     r5, r3, 1
+	ori      r8, r6, 0xff
+	addi     r6, r3, 2
+	add      r4, r4, r7
+	rlwinm   r5, r5, 8, 0x10, 0x17
+	ori      r7, r5, 0xff
+	sth      r8, 0(r4)
+	rlwinm   r6, r6, 8, 0x10, 0x17
+	addi     r5, r3, 3
+	ori      r8, r6, 0xff
+	sth      r7, 2(r4)
+	rlwinm   r5, r5, 8, 0x10, 0x17
+	addi     r6, r3, 4
+	ori      r7, r5, 0xff
+	sth      r8, 4(r4)
+	rlwinm   r6, r6, 8, 0x10, 0x17
+	addi     r5, r3, 5
+	ori      r8, r6, 0xff
+	sth      r7, 6(r4)
+	rlwinm   r5, r5, 8, 0x10, 0x17
+	addi     r6, r3, 6
+	ori      r7, r5, 0xff
+	sth      r8, 8(r4)
+	addi     r5, r3, 7
+	rlwinm   r6, r6, 8, 0x10, 0x17
+	rlwinm   r5, r5, 8, 0x10, 0x17
+	sth      r7, 0xa(r4)
+	ori      r6, r6, 0xff
+	addi     r3, r3, 8
+	sth      r6, 0xc(r4)
+	ori      r5, r5, 0xff
+	sth      r5, 0xe(r4)
 
-	.loc_0x1D8:
-	  rlwinm    r4,r3,0,24,31
-	  cmplw     r4, r0
-	  blt+      .loc_0x14C
+lbl_80058458:
+	clrlwi   r4, r3, 0x18
+	cmplw    r4, r0
+	blt      lbl_800583CC
 
-	.loc_0x1E4:
-	  addi      r4, r1, 0x28
-	  b         .loc_0x200
+lbl_80058464:
+	addi     r4, r1, 0x28
+	b        lbl_80058480
 
-	.loc_0x1EC:
-	  rlwinm    r5,r3,8,16,23
-	  rlwinm    r0,r3,1,23,30
-	  ori       r5, r5, 0xFF
-	  addi      r3, r3, 0x1
-	  sthx      r5, r4, r0
+lbl_8005846C:
+	rlwinm   r5, r3, 8, 0x10, 0x17
+	rlwinm   r0, r3, 1, 0x17, 0x1e
+	ori      r5, r5, 0xff
+	addi     r3, r3, 1
+	sthx     r5, r4, r0
 
-	.loc_0x200:
-	  rlwinm    r0,r3,0,24,31
-	  cmplw     r0, r30
-	  blt+      .loc_0x1EC
+lbl_80058480:
+	clrlwi   r0, r3, 0x18
+	cmplw    r0, r30
+	blt      lbl_8005846C
 
-	.loc_0x20C:
-	  rlwinm.   r0,r31,0,24,31
-	  bne-      .loc_0x22C
-	  lis       r3, 0x1
-	  rlwinm    r0,r30,1,23,30
-	  subi      r4, r3, 0xFC
-	  addi      r3, r1, 0x28
-	  sthx      r4, r3, r0
-	  b         .loc_0x24C
+lbl_8005848C:
+	clrlwi.  r0, r31, 0x18
+	bne      lbl_800584AC
+	lis      r3, 0x0000FF04@ha
+	rlwinm   r0, r30, 1, 0x17, 0x1e
+	addi     r4, r3, 0x0000FF04@l
+	addi     r3, r1, 0x28
+	sthx     r4, r3, r0
+	b        lbl_800584CC
 
-	.loc_0x22C:
-	  lis       r5, 0x1
-	  rlwinm    r4,r30,1,23,30
-	  subi      r0, r5, 0x1
-	  addi      r3, r1, 0x28
-	  sthx      r0, r3, r4
-	  subi      r0, r5, 0xFC
-	  addi      r3, r1, 0x2A
-	  sthx      r0, r3, r4
+lbl_800584AC:
+	lis      r5, 0x0000FFFF@ha
+	rlwinm   r4, r30, 1, 0x17, 0x1e
+	addi     r0, r5, 0x0000FFFF@l
+	addi     r3, r1, 0x28
+	sthx     r0, r3, r4
+	addi     r0, r5, -252
+	addi     r3, r1, 0x2a
+	sthx     r0, r3, r4
 
-	.loc_0x24C:
-	  addi      r23, r1, 0x28
-	  rlwinm    r25,r29,0,24,31
-	  li        r24, 0
-	  b         .loc_0x2A0
+lbl_800584CC:
+	addi     r23, r1, 0x28
+	clrlwi   r25, r29, 0x18
+	li       r24, 0
+	b        lbl_80058520
 
-	.loc_0x25C:
-	  rlwinm    r0,r24,1,23,30
-	  rlwinm    r4,r24,0,24,31
-	  lhzx      r0, r23, r0
-	  addi      r5, r1, 0xC
-	  srawi     r3, r0, 0x8
-	  stb       r0, 0xA(r1)
-	  stb       r3, 0x8(r1)
-	  stb       r3, 0x9(r1)
-	  lwz       r0, 0x8(r1)
-	  stw       r0, 0xC(r1)
-	  lwz       r3, 0x168(r26)
-	  lwz       r3, 0x70(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x2C(r12)
-	  mtctr     r12
-	  bctrl
-	  addi      r24, r24, 0x1
+lbl_800584DC:
+	rlwinm   r0, r24, 1, 0x17, 0x1e
+	clrlwi   r4, r24, 0x18
+	lhzx     r0, r23, r0
+	addi     r5, r1, 0xc
+	srawi    r3, r0, 8
+	stb      r0, 0xa(r1)
+	stb      r3, 8(r1)
+	stb      r3, 9(r1)
+	lwz      r0, 8(r1)
+	stw      r0, 0xc(r1)
+	lwz      r3, 0x168(r26)
+	lwz      r3, 0x70(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x2c(r12)
+	mtctr    r12
+	bctrl
+	addi     r24, r24, 1
 
-	.loc_0x2A0:
-	  rlwinm    r0,r24,0,24,31
-	  cmplw     r0, r25
-	  blt+      .loc_0x25C
-	  mr        r3, r26
-	  mr        r4, r30
-	  mr        r5, r29
-	  mr        r6, r31
-	  bl        -0x152C
-	  mr        r3, r26
-	  mr        r4, r30
-	  bl        -0xF7C
-	  li        r24, 0
-	  b         .loc_0x334
+lbl_80058520:
+	clrlwi   r0, r24, 0x18
+	cmplw    r0, r25
+	blt      lbl_800584DC
+	mr       r3, r26
+	mr       r4, r30
+	mr       r5, r29
+	mr       r6, r31
+	bl       setTevStage__12J2DPictureExFUcUcb
+	mr       r3, r26
+	mr       r4, r30
+	bl       setTevKColor__12J2DPictureExFUc
+	li       r24, 0
+	b        lbl_800585B4
 
-	.loc_0x2D4:
-	  rlwinm    r4,r24,0,24,31
-	  cmplwi    r4, 0x4
-	  bge-      .loc_0x308
-	  lwz       r3, 0x168(r26)
-	  rlwinm    r0,r24,2,22,29
-	  subfic    r0, r0, 0x1F
-	  lwz       r3, 0x70(r3)
-	  rlwinm    r5,r0,0,24,31
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x44(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x330
+lbl_80058554:
+	clrlwi   r4, r24, 0x18
+	cmplwi   r4, 4
+	bge      lbl_80058588
+	lwz      r3, 0x168(r26)
+	rlwinm   r0, r24, 2, 0x16, 0x1d
+	subfic   r0, r0, 0x1f
+	lwz      r3, 0x70(r3)
+	clrlwi   r5, r0, 0x18
+	lwz      r12, 0(r3)
+	lwz      r12, 0x44(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_800585B0
 
-	.loc_0x308:
-	  lwz       r3, 0x168(r26)
-	  subi      r0, r4, 0x4
-	  rlwinm    r0,r0,2,0,29
-	  lwz       r3, 0x70(r3)
-	  subfic    r0, r0, 0x1E
-	  rlwinm    r5,r0,0,24,31
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x44(r12)
-	  mtctr     r12
-	  bctrl
+lbl_80058588:
+	lwz      r3, 0x168(r26)
+	addi     r0, r4, -4
+	slwi     r0, r0, 2
+	lwz      r3, 0x70(r3)
+	subfic   r0, r0, 0x1e
+	clrlwi   r5, r0, 0x18
+	lwz      r12, 0(r3)
+	lwz      r12, 0x44(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x330:
-	  addi      r24, r24, 0x1
+lbl_800585B0:
+	addi     r24, r24, 1
 
-	.loc_0x334:
-	  rlwinm    r0,r24,0,24,31
-	  cmplw     r0, r30
-	  blt+      .loc_0x2D4
-	  li        r24, 0
-	  b         .loc_0x3A8
+lbl_800585B4:
+	clrlwi   r0, r24, 0x18
+	cmplw    r0, r30
+	blt      lbl_80058554
+	li       r24, 0
+	b        lbl_80058628
 
-	.loc_0x348:
-	  rlwinm    r4,r24,0,24,31
-	  cmplwi    r4, 0x4
-	  bge-      .loc_0x37C
-	  lwz       r3, 0x168(r26)
-	  rlwinm    r0,r24,2,22,29
-	  subfic    r0, r0, 0x1D
-	  lwz       r3, 0x70(r3)
-	  rlwinm    r5,r0,0,24,31
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x4C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x3A4
+lbl_800585C8:
+	clrlwi   r4, r24, 0x18
+	cmplwi   r4, 4
+	bge      lbl_800585FC
+	lwz      r3, 0x168(r26)
+	rlwinm   r0, r24, 2, 0x16, 0x1d
+	subfic   r0, r0, 0x1d
+	lwz      r3, 0x70(r3)
+	clrlwi   r5, r0, 0x18
+	lwz      r12, 0(r3)
+	lwz      r12, 0x4c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_80058624
 
-	.loc_0x37C:
-	  lwz       r3, 0x168(r26)
-	  subi      r0, r4, 0x4
-	  rlwinm    r0,r0,2,0,29
-	  lwz       r3, 0x70(r3)
-	  subfic    r0, r0, 0x1C
-	  rlwinm    r5,r0,0,24,31
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x4C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_800585FC:
+	lwz      r3, 0x168(r26)
+	addi     r0, r4, -4
+	slwi     r0, r0, 2
+	lwz      r3, 0x70(r3)
+	subfic   r0, r0, 0x1c
+	clrlwi   r5, r0, 0x18
+	lwz      r12, 0(r3)
+	lwz      r12, 0x4c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x3A4:
-	  addi      r24, r24, 0x1
+lbl_80058624:
+	addi     r24, r24, 1
 
-	.loc_0x3A8:
-	  rlwinm    r0,r24,0,24,31
-	  cmplw     r0, r30
-	  blt+      .loc_0x348
-	  rlwinm.   r0,r31,0,24,31
-	  beq-      .loc_0x43C
-	  lbz       r3, 0x1(r27)
-	  addi      r5, r1, 0x20
-	  lbz       r6, 0x2(r27)
-	  li        r4, 0
-	  lbz       r7, 0x3(r27)
-	  lbz       r0, 0x0(r27)
-	  sth       r3, 0x22(r1)
-	  sth       r0, 0x20(r1)
-	  sth       r6, 0x24(r1)
-	  sth       r7, 0x26(r1)
-	  lwz       r3, 0x168(r26)
-	  lwz       r3, 0x70(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x34(r12)
-	  mtctr     r12
-	  bctrl
-	  lbz       r3, 0x1(r28)
-	  addi      r5, r1, 0x18
-	  lbz       r6, 0x2(r28)
-	  li        r4, 0x1
-	  lbz       r7, 0x3(r28)
-	  lbz       r0, 0x0(r28)
-	  sth       r3, 0x1A(r1)
-	  sth       r0, 0x18(r1)
-	  sth       r6, 0x1C(r1)
-	  sth       r7, 0x1E(r1)
-	  lwz       r3, 0x168(r26)
-	  lwz       r3, 0x70(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x34(r12)
-	  mtctr     r12
-	  bctrl
+lbl_80058628:
+	clrlwi   r0, r24, 0x18
+	cmplw    r0, r30
+	blt      lbl_800585C8
+	clrlwi.  r0, r31, 0x18
+	beq      lbl_800586BC
+	lbz      r3, 1(r27)
+	addi     r5, r1, 0x20
+	lbz      r6, 2(r27)
+	li       r4, 0
+	lbz      r7, 3(r27)
+	lbz      r0, 0(r27)
+	sth      r3, 0x22(r1)
+	sth      r0, 0x20(r1)
+	sth      r6, 0x24(r1)
+	sth      r7, 0x26(r1)
+	lwz      r3, 0x168(r26)
+	lwz      r3, 0x70(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x34(r12)
+	mtctr    r12
+	bctrl
+	lbz      r3, 1(r28)
+	addi     r5, r1, 0x18
+	lbz      r6, 2(r28)
+	li       r4, 1
+	lbz      r7, 3(r28)
+	lbz      r0, 0(r28)
+	sth      r3, 0x1a(r1)
+	sth      r0, 0x18(r1)
+	sth      r6, 0x1c(r1)
+	sth      r7, 0x1e(r1)
+	lwz      r3, 0x168(r26)
+	lwz      r3, 0x70(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x34(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x43C:
-	  li        r3, 0x1
+lbl_800586BC:
+	li       r3, 1
 
-	.loc_0x440:
-	  lmw       r23, 0x4C(r1)
-	  lwz       r0, 0x74(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x70
-	  blr
+lbl_800586C0:
+	lmw      r23, 0x4c(r1)
+	lwz      r0, 0x74(r1)
+	mtlr     r0
+	addi     r1, r1, 0x70
+	blr
 	*/
 }
 
@@ -4849,132 +4941,131 @@ void J2DPictureEx::setBlackWhite(JUtility::TColor, JUtility::TColor)
 void J2DPictureEx::getBlackWhite(JUtility::TColor*, JUtility::TColor*) const
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stmw      r26, 0x18(r1)
-	  mr        r30, r4
-	  lwz       r4, 0x168(r3)
-	  mr        r29, r3
-	  mr        r31, r5
-	  cmplwi    r4, 0
-	  bne-      .loc_0x30
-	  li        r3, 0
-	  b         .loc_0x1B0
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stmw     r26, 0x18(r1)
+	mr       r30, r4
+	lwz      r4, 0x168(r3)
+	mr       r29, r3
+	mr       r31, r5
+	cmplwi   r4, 0
+	bne      lbl_80058704
+	li       r3, 0
+	b        lbl_80058884
 
-	.loc_0x30:
-	  lwz       r3, 0x70(r4)
-	  cmplwi    r3, 0
-	  bne-      .loc_0x44
-	  li        r3, 0
-	  b         .loc_0x1B0
+lbl_80058704:
+	lwz      r3, 0x70(r4)
+	cmplwi   r3, 0
+	bne      lbl_80058718
+	li       r3, 0
+	b        lbl_80058884
 
-	.loc_0x44:
-	  lwz       r12, 0x0(r3)
-	  lwz       r0, 0x28(r4)
-	  lwz       r12, 0x58(r12)
-	  rlwinm    r26,r0,0,24,31
-	  mtctr     r12
-	  bctrl
-	  cmplwi    r26, 0x1
-	  bne-      .loc_0x7C
-	  rlwinm    r4,r3,0,24,31
-	  subfic    r3, r4, 0x1
-	  subi      r0, r4, 0x1
-	  or        r0, r3, r0
-	  rlwinm    r4,r0,1,31,31
-	  b         .loc_0x94
+lbl_80058718:
+	lwz      r12, 0(r3)
+	lwz      r0, 0x28(r4)
+	lwz      r12, 0x58(r12)
+	clrlwi   r26, r0, 0x18
+	mtctr    r12
+	bctrl
+	cmplwi   r26, 1
+	bne      lbl_80058750
+	clrlwi   r4, r3, 0x18
+	subfic   r3, r4, 1
+	addi     r0, r4, -1
+	or       r0, r3, r0
+	srwi     r4, r0, 0x1f
+	b        lbl_80058768
 
-	.loc_0x7C:
-	  rlwinm    r4,r3,0,24,31
-	  addi      r0, r26, 0x1
-	  sub       r3, r0, r4
-	  sub       r0, r4, r0
-	  or        r0, r3, r0
-	  rlwinm    r4,r0,1,31,31
+lbl_80058750:
+	clrlwi   r4, r3, 0x18
+	addi     r0, r26, 1
+	subf     r3, r4, r0
+	subf     r0, r0, r4
+	or       r0, r3, r0
+	srwi     r4, r0, 0x1f
 
-	.loc_0x94:
-	  li        r0, 0
-	  li        r3, -0x1
-	  stw       r0, 0x14(r1)
-	  rlwinm.   r0,r4,0,24,31
-	  lbz       r4, 0x14(r1)
-	  stw       r3, 0x10(r1)
-	  lbz       r0, 0x15(r1)
-	  stb       r4, 0x0(r30)
-	  lbz       r3, 0x16(r1)
-	  stb       r0, 0x1(r30)
-	  lbz       r0, 0x17(r1)
-	  stb       r3, 0x2(r30)
-	  lbz       r3, 0x10(r1)
-	  stb       r0, 0x3(r30)
-	  lbz       r0, 0x11(r1)
-	  stb       r3, 0x0(r31)
-	  lbz       r3, 0x12(r1)
-	  stb       r0, 0x1(r31)
-	  lbz       r0, 0x13(r1)
-	  stb       r3, 0x2(r31)
-	  stb       r0, 0x3(r31)
-	  beq-      .loc_0x1AC
-	  lwz       r3, 0x168(r29)
-	  li        r4, 0
-	  lwz       r3, 0x70(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x38(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r5, 0x168(r29)
-	  li        r4, 0x1
-	  lha       r29, 0x0(r3)
-	  lha       r28, 0x2(r3)
-	  lha       r27, 0x4(r3)
-	  lha       r26, 0x6(r3)
-	  lwz       r3, 0x70(r5)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x38(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm    r4,r28,16,8,15
-	  lha       r0, 0x2(r3)
-	  rlwimi    r4,r29,24,0,7
-	  lha       r5, 0x0(r3)
-	  rlwimi    r4,r27,8,16,23
-	  rlwinm    r0,r0,16,8,15
-	  rlwimi    r4,r26,0,24,31
-	  lha       r6, 0x4(r3)
-	  stw       r4, 0xC(r1)
-	  rlwimi    r0,r5,24,0,7
-	  lha       r7, 0x6(r3)
-	  rlwimi    r0,r6,8,16,23
-	  lbz       r3, 0xC(r1)
-	  lbz       r5, 0xD(r1)
-	  rlwimi    r0,r7,0,24,31
-	  stb       r3, 0x0(r30)
-	  lbz       r4, 0xE(r1)
-	  stb       r5, 0x1(r30)
-	  lbz       r3, 0xF(r1)
-	  stw       r0, 0x8(r1)
-	  stb       r4, 0x2(r30)
-	  lbz       r0, 0x8(r1)
-	  stb       r3, 0x3(r30)
-	  lbz       r4, 0x9(r1)
-	  stb       r0, 0x0(r31)
-	  lbz       r3, 0xA(r1)
-	  stb       r4, 0x1(r31)
-	  lbz       r0, 0xB(r1)
-	  stb       r3, 0x2(r31)
-	  stb       r0, 0x3(r31)
+lbl_80058768:
+	li       r0, 0
+	li       r3, -1
+	stw      r0, 0x14(r1)
+	clrlwi.  r0, r4, 0x18
+	lbz      r4, 0x14(r1)
+	stw      r3, 0x10(r1)
+	lbz      r0, 0x15(r1)
+	stb      r4, 0(r30)
+	lbz      r3, 0x16(r1)
+	stb      r0, 1(r30)
+	lbz      r0, 0x17(r1)
+	stb      r3, 2(r30)
+	lbz      r3, 0x10(r1)
+	stb      r0, 3(r30)
+	lbz      r0, 0x11(r1)
+	stb      r3, 0(r31)
+	lbz      r3, 0x12(r1)
+	stb      r0, 1(r31)
+	lbz      r0, 0x13(r1)
+	stb      r3, 2(r31)
+	stb      r0, 3(r31)
+	beq      lbl_80058880
+	lwz      r3, 0x168(r29)
+	li       r4, 0
+	lwz      r3, 0x70(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x38(r12)
+	mtctr    r12
+	bctrl
+	lwz      r5, 0x168(r29)
+	li       r4, 1
+	lha      r29, 0(r3)
+	lha      r28, 2(r3)
+	lha      r27, 4(r3)
+	lha      r26, 6(r3)
+	lwz      r3, 0x70(r5)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x38(r12)
+	mtctr    r12
+	bctrl
+	rlwinm   r4, r28, 0x10, 8, 0xf
+	lha      r0, 2(r3)
+	rlwimi   r4, r29, 0x18, 0, 7
+	lha      r5, 0(r3)
+	rlwimi   r4, r27, 8, 0x10, 0x17
+	rlwinm   r0, r0, 0x10, 8, 0xf
+	rlwimi   r4, r26, 0, 0x18, 0x1f
+	lha      r6, 4(r3)
+	stw      r4, 0xc(r1)
+	rlwimi   r0, r5, 0x18, 0, 7
+	lha      r7, 6(r3)
+	rlwimi   r0, r6, 8, 0x10, 0x17
+	lbz      r3, 0xc(r1)
+	lbz      r5, 0xd(r1)
+	rlwimi   r0, r7, 0, 0x18, 0x1f
+	stb      r3, 0(r30)
+	lbz      r4, 0xe(r1)
+	stb      r5, 1(r30)
+	lbz      r3, 0xf(r1)
+	stw      r0, 8(r1)
+	stb      r4, 2(r30)
+	lbz      r0, 8(r1)
+	stb      r3, 3(r30)
+	lbz      r4, 9(r1)
+	stb      r0, 0(r31)
+	lbz      r3, 0xa(r1)
+	stb      r4, 1(r31)
+	lbz      r0, 0xb(r1)
+	stb      r3, 2(r31)
+	stb      r0, 3(r31)
 
-	.loc_0x1AC:
-	  li        r3, 0x1
+lbl_80058880:
+	li       r3, 1
 
-	.loc_0x1B0:
-	  lmw       r26, 0x18(r1)
-	  lwz       r0, 0x34(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_80058884:
+	lmw      r26, 0x18(r1)
+	lwz      r0, 0x34(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -4986,72 +5077,71 @@ void J2DPictureEx::getBlackWhite(JUtility::TColor*, JUtility::TColor*) const
 void J2DPictureEx::isSetBlackWhite(JUtility::TColor, JUtility::TColor) const
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r0, 0x0(r4)
-	  stw       r31, 0xC(r1)
-	  cmplwi    r0, 0
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  bne-      .loc_0x3C
-	  lwz       r3, 0x0(r5)
-	  addis     r0, r3, 0x1
-	  cmplwi    r0, 0xFFFF
-	  bne-      .loc_0x3C
-	  li        r3, 0x1
-	  b         .loc_0xC4
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r0, 0(r4)
+	stw      r31, 0xc(r1)
+	cmplwi   r0, 0
+	stw      r30, 8(r1)
+	mr       r30, r3
+	bne      lbl_800588D4
+	lwz      r3, 0(r5)
+	addis    r0, r3, 1
+	cmplwi   r0, 0xffff
+	bne      lbl_800588D4
+	li       r3, 1
+	b        lbl_8005895C
 
-	.loc_0x3C:
-	  lwz       r4, 0x168(r30)
-	  lwz       r3, 0x70(r4)
-	  lwz       r0, 0x28(r4)
-	  lwz       r12, 0x0(r3)
-	  rlwinm    r31,r0,0,24,31
-	  lwz       r12, 0x58(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x168(r30)
-	  lwz       r3, 0x70(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm    r0,r3,0,24,31
-	  cmplwi    r0, 0x10
-	  bne-      .loc_0x88
-	  li        r3, 0x1
-	  b         .loc_0xC4
+lbl_800588D4:
+	lwz      r4, 0x168(r30)
+	lwz      r3, 0x70(r4)
+	lwz      r0, 0x28(r4)
+	lwz      r12, 0(r3)
+	clrlwi   r31, r0, 0x18
+	lwz      r12, 0x58(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 0x168(r30)
+	lwz      r3, 0x70(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	clrlwi   r0, r3, 0x18
+	cmplwi   r0, 0x10
+	bne      lbl_80058920
+	li       r3, 1
+	b        lbl_8005895C
 
-	.loc_0x88:
-	  cmplwi    r0, 0x1
-	  bne-      .loc_0x98
-	  li        r3, 0
-	  b         .loc_0xC4
+lbl_80058920:
+	cmplwi   r0, 1
+	bne      lbl_80058930
+	li       r3, 0
+	b        lbl_8005895C
 
-	.loc_0x98:
-	  cmplwi    r31, 0x1
-	  li        r0, 0x2
-	  beq-      .loc_0xA8
-	  addi      r0, r31, 0x2
+lbl_80058930:
+	cmplwi   r31, 1
+	li       r0, 2
+	beq      lbl_80058940
+	addi     r0, r31, 2
 
-	.loc_0xA8:
-	  rlwinm    r4,r0,0,24,31
-	  rlwinm    r3,r3,0,24,31
-	  sub       r0, r3, r4
-	  orc       r3, r3, r4
-	  rlwinm    r0,r0,31,1,31
-	  sub       r0, r3, r0
-	  rlwinm    r3,r0,1,31,31
+lbl_80058940:
+	clrlwi   r4, r0, 0x18
+	clrlwi   r3, r3, 0x18
+	subf     r0, r4, r3
+	orc      r3, r3, r4
+	srwi     r0, r0, 1
+	subf     r0, r0, r3
+	srwi     r3, r0, 0x1f
 
-	.loc_0xC4:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8005895C:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -5063,35 +5153,34 @@ void J2DPictureEx::isSetBlackWhite(JUtility::TColor, JUtility::TColor) const
 void J2DPictureEx::getBlack() const
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  li        r0, -0x1
-	  addi      r5, r1, 0x8
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r3
-	  mr        r3, r4
-	  addi      r4, r1, 0xC
-	  stw       r0, 0xC(r1)
-	  stw       r0, 0x8(r1)
-	  bl        -0x2CC
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x44
-	  li        r0, 0
-	  stw       r0, 0x0(r31)
-	  b         .loc_0x4C
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	li       r0, -1
+	addi     r5, r1, 8
+	stw      r31, 0x1c(r1)
+	mr       r31, r3
+	mr       r3, r4
+	addi     r4, r1, 0xc
+	stw      r0, 0xc(r1)
+	stw      r0, 8(r1)
+	bl getBlackWhite__12J2DPictureExCFPQ28JUtility6TColorPQ28JUtility6TColor
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_800589B8
+	li       r0, 0
+	stw      r0, 0(r31)
+	b        lbl_800589C0
 
-	.loc_0x44:
-	  lwz       r0, 0xC(r1)
-	  stw       r0, 0x0(r31)
+lbl_800589B8:
+	lwz      r0, 0xc(r1)
+	stw      r0, 0(r31)
 
-	.loc_0x4C:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_800589C0:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -5103,35 +5192,34 @@ void J2DPictureEx::getBlack() const
 void J2DPictureEx::getWhite() const
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  li        r0, -0x1
-	  addi      r5, r1, 0x8
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r3
-	  mr        r3, r4
-	  addi      r4, r1, 0xC
-	  stw       r0, 0xC(r1)
-	  stw       r0, 0x8(r1)
-	  bl        -0x32C
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x44
-	  li        r0, -0x1
-	  stw       r0, 0x0(r31)
-	  b         .loc_0x4C
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	li       r0, -1
+	addi     r5, r1, 8
+	stw      r31, 0x1c(r1)
+	mr       r31, r3
+	mr       r3, r4
+	addi     r4, r1, 0xc
+	stw      r0, 0xc(r1)
+	stw      r0, 8(r1)
+	bl getBlackWhite__12J2DPictureExCFPQ28JUtility6TColorPQ28JUtility6TColor
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_80058A18
+	li       r0, -1
+	stw      r0, 0(r31)
+	b        lbl_80058A20
 
-	.loc_0x44:
-	  lwz       r0, 0x8(r1)
-	  stw       r0, 0x0(r31)
+lbl_80058A18:
+	lwz      r0, 8(r1)
+	stw      r0, 0(r31)
 
-	.loc_0x4C:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80058A20:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -5143,15 +5231,14 @@ void J2DPictureEx::getWhite() const
 void J2DPictureEx::setAlpha(unsigned char)
 {
 	/*
-	.loc_0x0:
-	  stb       r4, 0xB2(r3)
-	  lwz       r3, 0x168(r3)
-	  cmplwi    r3, 0
-	  beqlr-
-	  addic.    r3, r3, 0x10
-	  beqlr-
-	  stb       r4, 0x3(r3)
-	  blr
+	stb      r4, 0xb2(r3)
+	lwz      r3, 0x168(r3)
+	cmplwi   r3, 0
+	beqlr
+	addic.   r3, r3, 0x10
+	beqlr
+	stb      r4, 3(r3)
+	blr
 	*/
 }
 
@@ -5163,22 +5250,21 @@ void J2DPictureEx::setAlpha(unsigned char)
 void J2DPictureEx::setCullBack(_GXCullMode)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stb       r4, 0xB1(r3)
-	  lwz       r5, 0x168(r3)
-	  cmplwi    r5, 0
-	  beq-      .loc_0x20
-	  stb       r4, 0x22(r5)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stb      r4, 0xb1(r3)
+	lwz      r5, 0x168(r3)
+	cmplwi   r5, 0
+	beq      lbl_80058A74
+	stb      r4, 0x22(r5)
 
-	.loc_0x20:
-	  bl        -0x1FE30
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80058A74:
+	bl       setCullBack__7J2DPaneF11_GXCullMode
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -5190,13 +5276,12 @@ void J2DPictureEx::setCullBack(_GXCullMode)
 void J2DPictureEx::rewriteAlpha()
 {
 	/*
-	.loc_0x0:
-	  lwz       r4, 0x168(r3)
-	  cmplwi    r4, 0
-	  beqlr-
-	  lbz       r0, 0x13(r4)
-	  stb       r0, 0xB2(r3)
-	  blr
+	lwz      r4, 0x168(r3)
+	cmplwi   r4, 0
+	beqlr
+	lbz      r0, 0x13(r4)
+	stb      r0, 0xb2(r3)
+	blr
 	*/
 }
 
@@ -5208,57 +5293,56 @@ void J2DPictureEx::rewriteAlpha()
 void J2DPictureEx::isUsed(const ResTIMG*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  mr        r30, r4
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  lwz       r3, 0x168(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x80
-	  lwz       r0, 0x70(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x80
-	  li        r31, 0
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	mr       r30, r4
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	lwz      r3, 0x168(r3)
+	cmplwi   r3, 0
+	beq      lbl_80058B20
+	lwz      r0, 0x70(r3)
+	cmplwi   r0, 0
+	beq      lbl_80058B20
+	li       r31, 0
 
-	.loc_0x3C:
-	  lwz       r3, 0x168(r29)
-	  mr        r4, r31
-	  lwz       r3, 0x70(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xA0(r12)
-	  mtctr     r12
-	  bctrl
-	  cmplwi    r3, 0
-	  beq-      .loc_0x74
-	  lwz       r0, 0x20(r3)
-	  cmplw     r0, r30
-	  bne-      .loc_0x74
-	  li        r3, 0x1
-	  b         .loc_0x8C
+lbl_80058ADC:
+	lwz      r3, 0x168(r29)
+	mr       r4, r31
+	lwz      r3, 0x70(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xa0(r12)
+	mtctr    r12
+	bctrl
+	cmplwi   r3, 0
+	beq      lbl_80058B14
+	lwz      r0, 0x20(r3)
+	cmplw    r0, r30
+	bne      lbl_80058B14
+	li       r3, 1
+	b        lbl_80058B2C
 
-	.loc_0x74:
-	  addi      r31, r31, 0x1
-	  cmplwi    r31, 0x8
-	  blt+      .loc_0x3C
+lbl_80058B14:
+	addi     r31, r31, 1
+	cmplwi   r31, 8
+	blt      lbl_80058ADC
 
-	.loc_0x80:
-	  mr        r3, r29
-	  mr        r4, r30
-	  bl        -0x20134
+lbl_80058B20:
+	mr       r3, r29
+	mr       r4, r30
+	bl       isUsed__7J2DPaneFPC7ResTIMG
 
-	.loc_0x8C:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80058B2C:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -5270,20 +5354,19 @@ void J2DPictureEx::isUsed(const ResTIMG*)
 void J2DPictureEx::setAnimation(J2DAnmColor*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x168(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x1C
-	  bl        -0x63D0
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r3, 0x168(r3)
+	cmplwi   r3, 0
+	beq      lbl_80058B64
+	bl       setAnimation__11J2DMaterialFP11J2DAnmColor
 
-	.loc_0x1C:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80058B64:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -5295,20 +5378,19 @@ void J2DPictureEx::setAnimation(J2DAnmColor*)
 void J2DPictureEx::setAnimation(J2DAnmTextureSRTKey*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x168(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x1C
-	  bl        -0x62B8
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r3, 0x168(r3)
+	cmplwi   r3, 0
+	beq      lbl_80058B90
+	bl       setAnimation__11J2DMaterialFP19J2DAnmTextureSRTKey
 
-	.loc_0x1C:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80058B90:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -5320,20 +5402,19 @@ void J2DPictureEx::setAnimation(J2DAnmTextureSRTKey*)
 void J2DPictureEx::setAnimation(J2DAnmTexPattern*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x168(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x1C
-	  bl        -0x6140
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r3, 0x168(r3)
+	cmplwi   r3, 0
+	beq      lbl_80058BBC
+	bl       setAnimation__11J2DMaterialFP16J2DAnmTexPattern
 
-	.loc_0x1C:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80058BBC:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -5345,20 +5426,19 @@ void J2DPictureEx::setAnimation(J2DAnmTexPattern*)
 void J2DPictureEx::setAnimation(J2DAnmTevRegKey*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x168(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x1C
-	  bl        -0x5FD8
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r3, 0x168(r3)
+	cmplwi   r3, 0
+	beq      lbl_80058BE8
+	bl       setAnimation__11J2DMaterialFP15J2DAnmTevRegKey
 
-	.loc_0x1C:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80058BE8:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -5381,81 +5461,80 @@ void J2DPictureEx::setAnimation(J2DAnmVisibilityFull* a1)
 void J2DPictureEx::setAnimation(J2DAnmVtxColor*)
 {
 	/*
-	.loc_0x0:
-	  stw       r4, 0x1A0(r3)
-	  li        r0, 0
-	  cmplwi    r4, 0
-	  stb       r0, 0x1A4(r3)
-	  beq-      .loc_0xC8
-	  lhz       r7, 0x10(r4)
-	  li        r9, 0
-	  b         .loc_0xBC
+	stw      r4, 0x1a0(r3)
+	li       r0, 0
+	cmplwi   r4, 0
+	stb      r0, 0x1a4(r3)
+	beq      lbl_80058CC8
+	lhz      r7, 0x10(r4)
+	li       r9, 0
+	b        lbl_80058CBC
 
-	.loc_0x20:
-	  rlwinm    r5,r9,1,23,30
-	  addi      r8, r5, 0x170
-	  lhzx      r0, r3, r8
-	  cmplwi    r0, 0xFFFF
-	  beq-      .loc_0xB8
-	  li        r10, 0
-	  b         .loc_0xAC
+lbl_80058C20:
+	rlwinm   r5, r9, 1, 0x17, 0x1e
+	addi     r8, r5, 0x170
+	lhzx     r0, r3, r8
+	cmplwi   r0, 0xffff
+	beq      lbl_80058CB8
+	li       r10, 0
+	b        lbl_80058CAC
 
-	.loc_0x3C:
-	  lwz       r6, 0x14(r4)
-	  rlwinm    r0,r10,3,13,28
-	  lwz       r5, 0x1C(r4)
-	  li        r12, 0
-	  add       r6, r6, r0
-	  lwz       r0, 0x4(r6)
-	  lhz       r6, 0x0(r6)
-	  rlwinm    r0,r0,1,0,30
-	  add       r11, r5, r0
-	  b         .loc_0x9C
+lbl_80058C3C:
+	lwz      r6, 0x14(r4)
+	rlwinm   r0, r10, 3, 0xd, 0x1c
+	lwz      r5, 0x1c(r4)
+	li       r12, 0
+	add      r6, r6, r0
+	lwz      r0, 4(r6)
+	lhz      r6, 0(r6)
+	slwi     r0, r0, 1
+	add      r11, r5, r0
+	b        lbl_80058C9C
 
-	.loc_0x64:
-	  rlwinm    r0,r12,1,15,30
-	  lhzx      r5, r3, r8
-	  lhzx      r0, r11, r0
-	  cmplw     r5, r0
-	  bne-      .loc_0x98
-	  stw       r4, 0x1A0(r3)
-	  rlwinm    r0,r9,0,24,31
-	  li        r5, 0x1
-	  lbz       r6, 0x1A4(r3)
-	  slw       r0, r5, r0
-	  or        r0, r6, r0
-	  stb       r0, 0x1A4(r3)
-	  b         .loc_0xB8
+lbl_80058C64:
+	rlwinm   r0, r12, 1, 0xf, 0x1e
+	lhzx     r5, r3, r8
+	lhzx     r0, r11, r0
+	cmplw    r5, r0
+	bne      lbl_80058C98
+	stw      r4, 0x1a0(r3)
+	clrlwi   r0, r9, 0x18
+	li       r5, 1
+	lbz      r6, 0x1a4(r3)
+	slw      r0, r5, r0
+	or       r0, r6, r0
+	stb      r0, 0x1a4(r3)
+	b        lbl_80058CB8
 
-	.loc_0x98:
-	  addi      r12, r12, 0x1
+lbl_80058C98:
+	addi     r12, r12, 1
 
-	.loc_0x9C:
-	  rlwinm    r0,r12,0,16,31
-	  cmplw     r0, r6
-	  blt+      .loc_0x64
-	  addi      r10, r10, 0x1
+lbl_80058C9C:
+	clrlwi   r0, r12, 0x10
+	cmplw    r0, r6
+	blt      lbl_80058C64
+	addi     r10, r10, 1
 
-	.loc_0xAC:
-	  rlwinm    r0,r10,0,16,31
-	  cmplw     r0, r7
-	  blt+      .loc_0x3C
+lbl_80058CAC:
+	clrlwi   r0, r10, 0x10
+	cmplw    r0, r7
+	blt      lbl_80058C3C
 
-	.loc_0xB8:
-	  addi      r9, r9, 0x1
+lbl_80058CB8:
+	addi     r9, r9, 1
 
-	.loc_0xBC:
-	  rlwinm    r0,r9,0,24,31
-	  cmplwi    r0, 0x4
-	  blt+      .loc_0x20
+lbl_80058CBC:
+	clrlwi   r0, r9, 0x18
+	cmplwi   r0, 4
+	blt      lbl_80058C20
 
-	.loc_0xC8:
-	  lbz       r0, 0x1A4(r3)
-	  cmplwi    r0, 0
-	  bnelr-
-	  li        r0, 0
-	  stw       r0, 0x1A0(r3)
-	  blr
+lbl_80058CC8:
+	lbz      r0, 0x1a4(r3)
+	cmplwi   r0, 0
+	bnelr
+	li       r0, 0
+	stw      r0, 0x1a0(r3)
+	blr
 	*/
 }
 
@@ -5467,118 +5546,117 @@ void J2DPictureEx::setAnimation(J2DAnmVtxColor*)
 void J2DPictureEx::animationPane(const J2DAnmTransform*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r29, r4
-	  stw       r28, 0x10(r1)
-	  mr        r28, r3
-	  lwz       r3, 0x19C(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x64
-	  lhz       r4, 0x16C(r28)
-	  cmplwi    r4, 0xFFFF
-	  beq-      .loc_0x64
-	  addi      r5, r1, 0x8
-	  bl        0x3E08
-	  lbz       r0, 0x8(r1)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x5C
-	  li        r0, 0x1
-	  stb       r0, 0xB0(r28)
-	  b         .loc_0x64
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	mr       r29, r4
+	stw      r28, 0x10(r1)
+	mr       r28, r3
+	lwz      r3, 0x19c(r3)
+	cmplwi   r3, 0
+	beq      lbl_80058D44
+	lhz      r4, 0x16c(r28)
+	cmplwi   r4, 0xffff
+	beq      lbl_80058D44
+	addi     r5, r1, 8
+	bl       getVisibility__20J2DAnmVisibilityFullCFUsPUc
+	lbz      r0, 8(r1)
+	cmplwi   r0, 0
+	beq      lbl_80058D3C
+	li       r0, 1
+	stb      r0, 0xb0(r28)
+	b        lbl_80058D44
 
-	.loc_0x5C:
-	  li        r0, 0
-	  stb       r0, 0xB0(r28)
+lbl_80058D3C:
+	li       r0, 0
+	stb      r0, 0xb0(r28)
 
-	.loc_0x64:
-	  lwz       r3, 0x1A0(r28)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x138
-	  lhz       r31, 0x10(r3)
-	  li        r30, 0
-	  b         .loc_0x12C
+lbl_80058D44:
+	lwz      r3, 0x1a0(r28)
+	cmplwi   r3, 0
+	beq      lbl_80058E18
+	lhz      r31, 0x10(r3)
+	li       r30, 0
+	b        lbl_80058E0C
 
-	.loc_0x7C:
-	  rlwinm    r7,r30,0,24,31
-	  li        r0, 0x1
-	  lbz       r3, 0x1A4(r28)
-	  slw       r0, r0, r7
-	  and.      r0, r3, r0
-	  beq-      .loc_0x128
-	  rlwinm    r3,r30,1,23,30
-	  li        r5, 0
-	  addi      r8, r3, 0x170
-	  b         .loc_0x11C
+lbl_80058D5C:
+	clrlwi   r7, r30, 0x18
+	li       r0, 1
+	lbz      r3, 0x1a4(r28)
+	slw      r0, r0, r7
+	and.     r0, r3, r0
+	beq      lbl_80058E08
+	rlwinm   r3, r30, 1, 0x17, 0x1e
+	li       r5, 0
+	addi     r8, r3, 0x170
+	b        lbl_80058DFC
 
-	.loc_0xA4:
-	  lwz       r3, 0x1A0(r28)
-	  rlwinm    r0,r5,3,13,28
-	  li        r10, 0
-	  lwz       r6, 0x14(r3)
-	  lwz       r4, 0x1C(r3)
-	  add       r6, r6, r0
-	  lwz       r0, 0x4(r6)
-	  lhz       r6, 0x0(r6)
-	  rlwinm    r0,r0,1,0,30
-	  add       r9, r4, r0
-	  b         .loc_0x10C
+lbl_80058D84:
+	lwz      r3, 0x1a0(r28)
+	rlwinm   r0, r5, 3, 0xd, 0x1c
+	li       r10, 0
+	lwz      r6, 0x14(r3)
+	lwz      r4, 0x1c(r3)
+	add      r6, r6, r0
+	lwz      r0, 4(r6)
+	lhz      r6, 0(r6)
+	slwi     r0, r0, 1
+	add      r9, r4, r0
+	b        lbl_80058DEC
 
-	.loc_0xD0:
-	  rlwinm    r0,r10,1,15,30
-	  lhzx      r4, r28, r8
-	  lhzx      r0, r9, r0
-	  cmplw     r4, r0
-	  bne-      .loc_0x108
-	  lwz       r12, 0x0(r3)
-	  rlwinm    r4,r7,2,0,29
-	  addi      r6, r4, 0x150
-	  lwz       r12, 0x10(r12)
-	  li        r4, 0
-	  add       r6, r28, r6
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x128
+lbl_80058DB0:
+	rlwinm   r0, r10, 1, 0xf, 0x1e
+	lhzx     r4, r28, r8
+	lhzx     r0, r9, r0
+	cmplw    r4, r0
+	bne      lbl_80058DE8
+	lwz      r12, 0(r3)
+	slwi     r4, r7, 2
+	addi     r6, r4, 0x150
+	lwz      r12, 0x10(r12)
+	li       r4, 0
+	add      r6, r28, r6
+	mtctr    r12
+	bctrl
+	b        lbl_80058E08
 
-	.loc_0x108:
-	  addi      r10, r10, 0x1
+lbl_80058DE8:
+	addi     r10, r10, 1
 
-	.loc_0x10C:
-	  rlwinm    r0,r10,0,16,31
-	  cmplw     r0, r6
-	  blt+      .loc_0xD0
-	  addi      r5, r5, 0x1
+lbl_80058DEC:
+	clrlwi   r0, r10, 0x10
+	cmplw    r0, r6
+	blt      lbl_80058DB0
+	addi     r5, r5, 1
 
-	.loc_0x11C:
-	  rlwinm    r0,r5,0,16,31
-	  cmplw     r0, r31
-	  blt+      .loc_0xA4
+lbl_80058DFC:
+	clrlwi   r0, r5, 0x10
+	cmplw    r0, r31
+	blt      lbl_80058D84
 
-	.loc_0x128:
-	  addi      r30, r30, 0x1
+lbl_80058E08:
+	addi     r30, r30, 1
 
-	.loc_0x12C:
-	  rlwinm    r0,r30,0,24,31
-	  cmplwi    r0, 0x4
-	  blt+      .loc_0x7C
+lbl_80058E0C:
+	clrlwi   r0, r30, 0x18
+	cmplwi   r0, 4
+	blt      lbl_80058D5C
 
-	.loc_0x138:
-	  mr        r3, r28
-	  mr        r4, r29
-	  bl        -0x1F568
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80058E18:
+	mr       r3, r28
+	mr       r4, r29
+	bl       animationPane__7J2DPaneFPC15J2DAnmTransform
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -5590,88 +5668,87 @@ void J2DPictureEx::animationPane(const J2DAnmTransform*)
 void J2DPictureEx::getUsableTlut(unsigned char)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stmw      r27, 0xC(r1)
-	  mr        r27, r3
-	  rlwinm    r31,r4,0,24,31
-	  li        r29, 0
-	  li        r28, 0
-	  lwz       r3, 0x168(r3)
-	  lwz       r30, 0x28(r3)
-	  b         .loc_0xAC
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stmw     r27, 0xc(r1)
+	mr       r27, r3
+	clrlwi   r31, r4, 0x18
+	li       r29, 0
+	li       r28, 0
+	lwz      r3, 0x168(r3)
+	lwz      r30, 0x28(r3)
+	b        lbl_80058EF0
 
-	.loc_0x2C:
-	  lwz       r3, 0x168(r27)
-	  rlwinm    r4,r28,0,24,31
-	  lwz       r3, 0x70(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xA0(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm    r0,r28,0,24,31
-	  cmplw     r0, r31
-	  beq-      .loc_0xA8
-	  cmplwi    r3, 0
-	  beq-      .loc_0xA8
-	  lwz       r4, 0x20(r3)
-	  cmplwi    r4, 0
-	  beq-      .loc_0xA8
-	  lbz       r0, 0x8(r4)
-	  cmplwi    r0, 0
-	  beq-      .loc_0xA8
-	  lbz       r3, 0x3A(r3)
-	  li        r0, 0
-	  cmpwi     r3, 0x10
-	  blt-      .loc_0x88
-	  li        r0, 0x10
+lbl_80058E70:
+	lwz      r3, 0x168(r27)
+	clrlwi   r4, r28, 0x18
+	lwz      r3, 0x70(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xa0(r12)
+	mtctr    r12
+	bctrl
+	clrlwi   r0, r28, 0x18
+	cmplw    r0, r31
+	beq      lbl_80058EEC
+	cmplwi   r3, 0
+	beq      lbl_80058EEC
+	lwz      r4, 0x20(r3)
+	cmplwi   r4, 0
+	beq      lbl_80058EEC
+	lbz      r0, 8(r4)
+	cmplwi   r0, 0
+	beq      lbl_80058EEC
+	lbz      r3, 0x3a(r3)
+	li       r0, 0
+	cmpwi    r3, 0x10
+	blt      lbl_80058ECC
+	li       r0, 0x10
 
-	.loc_0x88:
-	  sub       r0, r3, r0
-	  rlwinm    r3,r0,0,24,31
-	  cmplwi    r3, 0x8
-	  bge-      .loc_0xA8
-	  li        r0, 0x1
-	  slw       r0, r0, r3
-	  or        r0, r29, r0
-	  rlwinm    r29,r0,0,24,31
+lbl_80058ECC:
+	subf     r0, r0, r3
+	clrlwi   r3, r0, 0x18
+	cmplwi   r3, 8
+	bge      lbl_80058EEC
+	li       r0, 1
+	slw      r0, r0, r3
+	or       r0, r29, r0
+	clrlwi   r29, r0, 0x18
 
-	.loc_0xA8:
-	  addi      r28, r28, 0x1
+lbl_80058EEC:
+	addi     r28, r28, 1
 
-	.loc_0xAC:
-	  rlwinm    r0,r28,0,24,31
-	  cmplw     r0, r30
-	  blt+      .loc_0x2C
-	  rlwinm    r5,r29,0,24,31
-	  li        r3, 0
-	  li        r4, 0x1
-	  b         .loc_0xE0
+lbl_80058EF0:
+	clrlwi   r0, r28, 0x18
+	cmplw    r0, r30
+	blt      lbl_80058E70
+	clrlwi   r5, r29, 0x18
+	li       r3, 0
+	li       r4, 1
+	b        lbl_80058F24
 
-	.loc_0xC8:
-	  rlwinm    r0,r3,0,24,31
-	  slw       r0, r4, r0
-	  and.      r0, r5, r0
-	  bne-      .loc_0xDC
-	  b         .loc_0xF0
+lbl_80058F0C:
+	clrlwi   r0, r3, 0x18
+	slw      r0, r4, r0
+	and.     r0, r5, r0
+	bne      lbl_80058F20
+	b        lbl_80058F34
 
-	.loc_0xDC:
-	  addi      r3, r3, 0x1
+lbl_80058F20:
+	addi     r3, r3, 1
 
-	.loc_0xE0:
-	  rlwinm    r0,r3,0,24,31
-	  cmplwi    r0, 0x8
-	  blt+      .loc_0xC8
-	  li        r3, 0
+lbl_80058F24:
+	clrlwi   r0, r3, 0x18
+	cmplwi   r0, 8
+	blt      lbl_80058F0C
+	li       r3, 0
 
-	.loc_0xF0:
-	  lmw       r27, 0xC(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80058F34:
+	lmw      r27, 0xc(r1)
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -5683,9 +5760,8 @@ void J2DPictureEx::getUsableTlut(unsigned char)
 void J2DPictureEx::getMaterial() const
 {
 	/*
-	.loc_0x0:
-	  lwz       r3, 0x168(r3)
-	  blr
+	lwz      r3, 0x168(r3)
+	blr
 	*/
 }
 
@@ -5697,19 +5773,18 @@ void J2DPictureEx::getMaterial() const
 void J2DPictureEx::prepend(JUTTexture*, float)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r5, 0
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xD4(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	li       r5, 0
+	stw      r0, 0x14(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xd4(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -5721,19 +5796,18 @@ void J2DPictureEx::prepend(JUTTexture*, float)
 void J2DPictureEx::prepend(const char*, JUTPalette*, float)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r6, 0
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xD0(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	li       r6, 0
+	stw      r0, 0x14(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xd0(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -5745,19 +5819,18 @@ void J2DPictureEx::prepend(const char*, JUTPalette*, float)
 void J2DPictureEx::prepend(const char*, float)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r5, 0
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xCC(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	li       r5, 0
+	stw      r0, 0x14(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xcc(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -5769,19 +5842,18 @@ void J2DPictureEx::prepend(const char*, float)
 void J2DPictureEx::prepend(const ResTIMG*, JUTPalette*, float)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r6, 0
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC8(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	li       r6, 0
+	stw      r0, 0x14(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc8(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -5793,19 +5865,18 @@ void J2DPictureEx::prepend(const ResTIMG*, JUTPalette*, float)
 void J2DPictureEx::prepend(const ResTIMG*, float)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r5, 0
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC4(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	li       r5, 0
+	stw      r0, 0x14(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc4(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -5817,20 +5888,19 @@ void J2DPictureEx::prepend(const ResTIMG*, float)
 void J2DPictureEx::insert(const char*, unsigned char, float)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r6, r5
-	  li        r5, 0
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xD0(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r6, r5
+	li       r5, 0
+	stw      r0, 0x14(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xd0(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -5842,20 +5912,19 @@ void J2DPictureEx::insert(const char*, unsigned char, float)
 void J2DPictureEx::insert(const ResTIMG*, unsigned char, float)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r6, r5
-	  li        r5, 0
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC8(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r6, r5
+	li       r5, 0
+	stw      r0, 0x14(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc8(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -5867,23 +5936,22 @@ void J2DPictureEx::insert(const ResTIMG*, unsigned char, float)
 void J2DPictureEx::draw(float, float, bool, bool, bool)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r7, r6
-	  stw       r0, 0x14(r1)
-	  mr        r0, r5
-	  mr        r5, r4
-	  li        r4, 0
-	  lwz       r12, 0x0(r3)
-	  mr        r6, r0
-	  lwz       r12, 0xE8(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r7, r6
+	stw      r0, 0x14(r1)
+	mr       r0, r5
+	mr       r5, r4
+	li       r4, 0
+	lwz      r12, 0(r3)
+	mr       r6, r0
+	lwz      r12, 0xe8(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -5933,20 +6001,19 @@ void J2DPictureEx::drawOut(float, float, float, float, float, float, float,
 void J2DPictureEx::load(unsigned char)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r5, r4
-	  rlwinm    r4,r4,0,24,31
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xFC(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r5, r4
+	clrlwi   r4, r4, 0x18
+	stw      r0, 0x14(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xfc(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -5958,24 +6025,23 @@ void J2DPictureEx::load(unsigned char)
 void J2DPictureEx::setCullBack(bool)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  rlwinm.   r0,r4,0,24,31
-	  li        r4, 0
-	  beq-      .loc_0x1C
-	  li        r4, 0x2
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	clrlwi.  r0, r4, 0x18
+	li       r4, 0
+	beq      lbl_8005919C
+	li       r4, 2
 
-	.loc_0x1C:
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8005919C:
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -5987,15 +6053,14 @@ void J2DPictureEx::setCullBack(bool)
 void J2DPictureEx::isUsed(const ResFONT*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  bl        -0x2074C
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	bl       isUsed__7J2DPaneFPC7ResFONT
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -6007,15 +6072,14 @@ void J2DPictureEx::isUsed(const ResFONT*)
 void J2DPictureEx::setAnimation(J2DAnmTransform*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  bl        -0x1FBF4
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	bl       setAnimation__7J2DPaneFP15J2DAnmTransform
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -6027,14 +6091,13 @@ void J2DPictureEx::setAnimation(J2DAnmTransform*)
 void J2DPictureEx::setAnimation(J2DAnmBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  bl        -0x1FCFC
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	bl       setAnimation__7J2DPaneFP10J2DAnmBase
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }

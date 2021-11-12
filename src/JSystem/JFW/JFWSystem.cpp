@@ -1,6 +1,83 @@
 #include "types.h"
 
 /*
+    Generated from dpostproc
+
+    .section .sdata, "wa"  # 0x80514680 - 0x80514D80
+    .global maxStdHeaps__Q29JFWSystem11CSetUpParam
+    maxStdHeaps__Q29JFWSystem11CSetUpParam:
+        .4byte 2
+    .global sysHeapSize__Q29JFWSystem11CSetUpParam
+    sysHeapSize__Q29JFWSystem11CSetUpParam:
+        .4byte 0x00400000
+    .global fifoBufSize__Q29JFWSystem11CSetUpParam
+    fifoBufSize__Q29JFWSystem11CSetUpParam:
+        .4byte 0x00040000
+    .global aramAudioBufSize__Q29JFWSystem11CSetUpParam
+    aramAudioBufSize__Q29JFWSystem11CSetUpParam:
+        .4byte 0x00800000
+    .global aramGraphBufSize__Q29JFWSystem11CSetUpParam
+    aramGraphBufSize__Q29JFWSystem11CSetUpParam:
+        .4byte 0x00600000
+    .global streamPriority__Q29JFWSystem11CSetUpParam
+    streamPriority__Q29JFWSystem11CSetUpParam:
+        .4byte 0x00000008
+    .global decompPriority__Q29JFWSystem11CSetUpParam
+    decompPriority__Q29JFWSystem11CSetUpParam:
+        .4byte 0x00000007
+    .global aPiecePriority__Q29JFWSystem11CSetUpParam
+    aPiecePriority__Q29JFWSystem11CSetUpParam:
+        .4byte 0x00000006
+    .global systemFontRes__Q29JFWSystem11CSetUpParam
+    systemFontRes__Q29JFWSystem11CSetUpParam:
+        .4byte JUTResFONT_Ascfont_fix12
+    .global renderMode__Q29JFWSystem11CSetUpParam
+    renderMode__Q29JFWSystem11CSetUpParam:
+        .4byte GXNtsc480IntDf
+    .global exConsoleBufferSize__Q29JFWSystem11CSetUpParam
+    exConsoleBufferSize__Q29JFWSystem11CSetUpParam:
+        .4byte 0x000024FC
+
+    .section .sbss # 0x80514D80 - 0x80516360
+    .global rootHeap__9JFWSystem
+    rootHeap__9JFWSystem:
+        .skip 0x4
+    .global systemHeap__9JFWSystem
+    systemHeap__9JFWSystem:
+        .skip 0x4
+    .global mainThread__9JFWSystem
+    mainThread__9JFWSystem:
+        .skip 0x4
+    .global debugPrint__9JFWSystem
+    debugPrint__9JFWSystem:
+        .skip 0x4
+    .global systemFont__9JFWSystem
+    systemFont__9JFWSystem:
+        .skip 0x4
+    .global systemConsoleManager__9JFWSystem
+    systemConsoleManager__9JFWSystem:
+        .skip 0x4
+    .global systemConsole__9JFWSystem
+    systemConsole__9JFWSystem:
+        .skip 0x4
+    .global sInitCalled__9JFWSystem
+    sInitCalled__9JFWSystem:
+        .skip 0x4
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_80516B00
+    lbl_80516B00:
+        .float 0.5
+    .global lbl_80516B04
+    lbl_80516B04:
+        .4byte 0x3F59999A
+    .global lbl_80516B08
+    lbl_80516B08:
+        .4byte 0x43300000
+        .4byte 0x80000000
+*/
+
+/*
  * --INFO--
  * Address:	........
  * Size:	000048
@@ -18,232 +95,231 @@ void JFWSystem::firstInit()
 void JFWSystem::init()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stfd      f31, 0x20(r1)
-	  psq_st    f31,0x28(r1),0,0
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  lwz       r0, -0x7638(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x54
-	  bl        0x61AF8
-	  bl        0x535A4
-	  lwz       r3, -0x7F30(r13)
-	  li        r4, 0
-	  bl        -0x6994C
-	  mr        r4, r3
-	  lwz       r3, -0x7F2C(r13)
-	  stw       r4, -0x7638(r13)
-	  li        r5, 0
-	  bl        -0x698E0
-	  stw       r3, -0x7634(r13)
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stfd     f31, 0x20(r1)
+	psq_st   f31, 40(r1), 0, qr0
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	lwz      r0, rootHeap__9JFWSystem@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_800897B0
+	bl       OSInit
+	bl       DVDInit
+	lwz      r3, maxStdHeaps__Q29JFWSystem11CSetUpParam@sda21(r13)
+	li       r4, 0
+	bl       createRoot__10JKRExpHeapFib
+	mr       r4, r3
+	lwz      r3, sysHeapSize__Q29JFWSystem11CSetUpParam@sda21(r13)
+	stw      r4, rootHeap__9JFWSystem@sda21(r13)
+	li       r5, 0
+	bl       create__10JKRExpHeapFUlP7JKRHeapb
+	stw      r3, systemHeap__9JFWSystem@sda21(r13)
 
-	.loc_0x54:
-	  li        r0, 0x1
-	  lwz       r3, -0x7F24(r13)
-	  stb       r0, -0x761C(r13)
-	  lwz       r4, -0x7F20(r13)
-	  lwz       r5, -0x7F1C(r13)
-	  lwz       r6, -0x7F18(r13)
-	  lwz       r7, -0x7F14(r13)
-	  bl        -0x71DBC
-	  li        r3, 0x7C
-	  bl        -0x65930
-	  mr.       r30, r3
-	  beq-      .loc_0x9C
-	  bl        0x681E4
-	  mr        r4, r3
-	  mr        r3, r30
-	  li        r5, 0x4
-	  bl        -0x64060
-	  mr        r30, r3
+lbl_800897B0:
+	li       r0, 1
+	lwz      r3, aramAudioBufSize__Q29JFWSystem11CSetUpParam@sda21(r13)
+	stb      r0, sInitCalled__9JFWSystem@sda21(r13)
+	lwz      r4, aramGraphBufSize__Q29JFWSystem11CSetUpParam@sda21(r13)
+	lwz      r5, streamPriority__Q29JFWSystem11CSetUpParam@sda21(r13)
+	lwz      r6, decompPriority__Q29JFWSystem11CSetUpParam@sda21(r13)
+	lwz      r7, aPiecePriority__Q29JFWSystem11CSetUpParam@sda21(r13)
+	bl       create__7JKRAramFUlUllll
+	li       r3, 0x7c
+	bl       __nw__FUl
+	or.      r30, r3, r3
+	beq      lbl_800897F8
+	bl       OSGetCurrentThread
+	mr       r4, r3
+	mr       r3, r30
+	li       r5, 4
+	bl       __ct__9JKRThreadFP8OSThreadi
+	mr       r30, r3
 
-	.loc_0x9C:
-	  stw       r30, -0x7630(r13)
-	  lwz       r3, -0x7F0C(r13)
-	  bl        -0x560BC
-	  lwz       r31, -0x7F28(r13)
-	  li        r3, 0x1C
-	  bl        -0x65968
-	  cmplwi    r3, 0
-	  beq-      .loc_0xC4
-	  mr        r4, r31
-	  bl        -0x5ACE8
+lbl_800897F8:
+	stw      r30, mainThread__9JFWSystem@sda21(r13)
+	lwz      r3, renderMode__Q29JFWSystem11CSetUpParam@sda21(r13)
+	bl       createManager__8JUTVideoFPC16_GXRenderModeObj
+	lwz      r31, fifoBufSize__Q29JFWSystem11CSetUpParam@sda21(r13)
+	li       r3, 0x1c
+	bl       __nw__FUl
+	cmplwi   r3, 0
+	beq      lbl_80089820
+	mr       r4, r31
+	bl       __ct__12JUTGraphFifoFUl
 
-	.loc_0xC4:
-	  bl        -0x5C20C
-	  bl        -0x5FC58
-	  mr        r30, r3
-	  bl        -0x61A6C
-	  mr        r3, r30
-	  bl        -0x5F528
-	  li        r3, 0x70
-	  bl        -0x65998
-	  mr.       r0, r3
-	  beq-      .loc_0xFC
-	  lwz       r4, -0x7F10(r13)
-	  li        r5, 0
-	  bl        -0x58684
-	  mr        r0, r3
+lbl_80089820:
+	bl       init__10JUTGamePadFv
+	bl       start__14JUTDirectPrintFv
+	mr       r30, r3
+	bl       create__12JUTAssertionFv
+	mr       r3, r30
+	bl       create__12JUTExceptionFP14JUTDirectPrint
+	li       r3, 0x70
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_80089858
+	lwz      r4, systemFontRes__Q29JFWSystem11CSetUpParam@sda21(r13)
+	li       r5, 0
+	bl       __ct__10JUTResFontFPC7ResFONTP7JKRHeap
+	mr       r0, r3
 
-	.loc_0xFC:
-	  stw       r0, -0x7628(r13)
-	  li        r3, 0
-	  li        r4, 0
-	  bl        -0x60390
-	  stw       r3, -0x762C(r13)
-	  lwz       r4, -0x7628(r13)
-	  bl        -0x602F0
-	  li        r3, 0
-	  bl        -0x609E0
-	  stw       r3, -0x7624(r13)
-	  li        r3, 0x3C
-	  li        r4, 0xC8
-	  li        r5, 0
-	  bl        -0x617B0
-	  mr        r31, r3
-	  lwz       r3, -0x7628(r13)
-	  stw       r31, -0x7620(r13)
-	  mr        r30, r3
-	  stw       r3, 0x4C(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x24(r12)
-	  mtctr     r12
-	  bctrl
-	  xoris     r4, r3, 0x8000
-	  lis       r0, 0x4330
-	  mr        r3, r30
-	  stw       r4, 0xC(r1)
-	  lwz       r12, 0x0(r30)
-	  stw       r0, 0x8(r1)
-	  lfd       f1, -0x7858(r2)
-	  lfd       f0, 0x8(r1)
-	  lwz       r12, 0x28(r12)
-	  fsubs     f31, f0, f1
-	  mtctr     r12
-	  bctrl
-	  xoris     r3, r3, 0x8000
-	  lis       r0, 0x4330
-	  stw       r3, 0x14(r1)
-	  lfd       f1, -0x7858(r2)
-	  stw       r0, 0x10(r1)
-	  lfd       f0, 0x10(r1)
-	  fsubs     f0, f0, f1
-	  stfs      f0, 0x50(r31)
-	  stfs      f31, 0x54(r31)
-	  lwz       r3, -0x7F0C(r13)
-	  lhz       r0, 0x6(r3)
-	  cmplwi    r0, 0x12C
-	  bge-      .loc_0x250
-	  lwz       r3, -0x7628(r13)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x24(r12)
-	  mtctr     r12
-	  bctrl
-	  xoris     r3, r3, 0x8000
-	  lis       r0, 0x4330
-	  stw       r3, 0x14(r1)
-	  lwz       r3, -0x7628(r13)
-	  stw       r0, 0x10(r1)
-	  lfd       f1, -0x7858(r2)
-	  lfd       f0, 0x10(r1)
-	  lwz       r12, 0x0(r3)
-	  fsubs     f1, f0, f1
-	  lfs       f0, -0x7860(r2)
-	  lwz       r12, 0x28(r12)
-	  fmuls     f31, f0, f1
-	  mtctr     r12
-	  bctrl
-	  xoris     r0, r3, 0x8000
-	  lis       r4, 0x4330
-	  stw       r0, 0xC(r1)
-	  li        r3, 0x14
-	  lfd       f2, -0x7858(r2)
-	  li        r0, 0x19
-	  stw       r4, 0x8(r1)
-	  lfs       f0, -0x785C(r2)
-	  lfd       f1, 0x8(r1)
-	  lwz       r4, -0x7620(r13)
-	  fsubs     f1, f1, f2
-	  fmuls     f0, f0, f1
-	  stfs      f0, 0x50(r4)
-	  stfs      f31, 0x54(r4)
-	  lwz       r4, -0x7620(r13)
-	  stw       r3, 0x40(r4)
-	  stw       r0, 0x44(r4)
-	  b         .loc_0x2D0
+lbl_80089858:
+	stw      r0, systemFont__9JFWSystem@sda21(r13)
+	li       r3, 0
+	li       r4, 0
+	bl       start__10JUTDbPrintFP7JUTFontP7JKRHeap
+	stw      r3, debugPrint__9JFWSystem@sda21(r13)
+	lwz      r4, systemFont__9JFWSystem@sda21(r13)
+	bl       changeFont__10JUTDbPrintFP7JUTFont
+	li       r3, 0
+	bl       createManager__17JUTConsoleManagerFP7JKRHeap
+	stw      r3, systemConsoleManager__9JFWSystem@sda21(r13)
+	li       r3, 0x3c
+	li       r4, 0xc8
+	li       r5, 0
+	bl       create__10JUTConsoleFUiUiP7JKRHeap
+	mr       r31, r3
+	lwz      r3, systemFont__9JFWSystem@sda21(r13)
+	stw      r31, systemConsole__9JFWSystem@sda21(r13)
+	mr       r30, r3
+	stw      r3, 0x4c(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x24(r12)
+	mtctr    r12
+	bctrl
+	xoris    r4, r3, 0x8000
+	lis      r0, 0x4330
+	mr       r3, r30
+	stw      r4, 0xc(r1)
+	lwz      r12, 0(r30)
+	stw      r0, 8(r1)
+	lfd      f1, lbl_80516B08@sda21(r2)
+	lfd      f0, 8(r1)
+	lwz      r12, 0x28(r12)
+	fsubs    f31, f0, f1
+	mtctr    r12
+	bctrl
+	xoris    r3, r3, 0x8000
+	lis      r0, 0x4330
+	stw      r3, 0x14(r1)
+	lfd      f1, lbl_80516B08@sda21(r2)
+	stw      r0, 0x10(r1)
+	lfd      f0, 0x10(r1)
+	fsubs    f0, f0, f1
+	stfs     f0, 0x50(r31)
+	stfs     f31, 0x54(r31)
+	lwz      r3, renderMode__Q29JFWSystem11CSetUpParam@sda21(r13)
+	lhz      r0, 6(r3)
+	cmplwi   r0, 0x12c
+	bge      lbl_800899AC
+	lwz      r3, systemFont__9JFWSystem@sda21(r13)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x24(r12)
+	mtctr    r12
+	bctrl
+	xoris    r3, r3, 0x8000
+	lis      r0, 0x4330
+	stw      r3, 0x14(r1)
+	lwz      r3, systemFont__9JFWSystem@sda21(r13)
+	stw      r0, 0x10(r1)
+	lfd      f1, lbl_80516B08@sda21(r2)
+	lfd      f0, 0x10(r1)
+	lwz      r12, 0(r3)
+	fsubs    f1, f0, f1
+	lfs      f0, lbl_80516B00@sda21(r2)
+	lwz      r12, 0x28(r12)
+	fmuls    f31, f0, f1
+	mtctr    r12
+	bctrl
+	xoris    r0, r3, 0x8000
+	lis      r4, 0x4330
+	stw      r0, 0xc(r1)
+	li       r3, 0x14
+	lfd      f2, lbl_80516B08@sda21(r2)
+	li       r0, 0x19
+	stw      r4, 8(r1)
+	lfs      f0, lbl_80516B04@sda21(r2)
+	lfd      f1, 8(r1)
+	lwz      r4, systemConsole__9JFWSystem@sda21(r13)
+	fsubs    f1, f1, f2
+	fmuls    f0, f0, f1
+	stfs     f0, 0x50(r4)
+	stfs     f31, 0x54(r4)
+	lwz      r4, systemConsole__9JFWSystem@sda21(r13)
+	stw      r3, 0x40(r4)
+	stw      r0, 0x44(r4)
+	b        lbl_80089A2C
 
-	.loc_0x250:
-	  lwz       r3, -0x7628(r13)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x24(r12)
-	  mtctr     r12
-	  bctrl
-	  xoris     r4, r3, 0x8000
-	  lwz       r3, -0x7628(r13)
-	  lis       r0, 0x4330
-	  stw       r4, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  stw       r0, 0x10(r1)
-	  lfd       f1, -0x7858(r2)
-	  lfd       f0, 0x10(r1)
-	  lwz       r12, 0x28(r12)
-	  fsubs     f31, f0, f1
-	  mtctr     r12
-	  bctrl
-	  xoris     r0, r3, 0x8000
-	  lis       r4, 0x4330
-	  stw       r0, 0xC(r1)
-	  li        r3, 0x14
-	  lfd       f1, -0x7858(r2)
-	  li        r0, 0x32
-	  stw       r4, 0x8(r1)
-	  lwz       r4, -0x7620(r13)
-	  lfd       f0, 0x8(r1)
-	  fsubs     f0, f0, f1
-	  stfs      f0, 0x50(r4)
-	  stfs      f31, 0x54(r4)
-	  lwz       r4, -0x7620(r13)
-	  stw       r3, 0x40(r4)
-	  stw       r0, 0x44(r4)
+lbl_800899AC:
+	lwz      r3, systemFont__9JFWSystem@sda21(r13)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x24(r12)
+	mtctr    r12
+	bctrl
+	xoris    r4, r3, 0x8000
+	lwz      r3, systemFont__9JFWSystem@sda21(r13)
+	lis      r0, 0x4330
+	stw      r4, 0x14(r1)
+	lwz      r12, 0(r3)
+	stw      r0, 0x10(r1)
+	lfd      f1, lbl_80516B08@sda21(r2)
+	lfd      f0, 0x10(r1)
+	lwz      r12, 0x28(r12)
+	fsubs    f31, f0, f1
+	mtctr    r12
+	bctrl
+	xoris    r0, r3, 0x8000
+	lis      r4, 0x4330
+	stw      r0, 0xc(r1)
+	li       r3, 0x14
+	lfd      f1, lbl_80516B08@sda21(r2)
+	li       r0, 0x32
+	stw      r4, 8(r1)
+	lwz      r4, systemConsole__9JFWSystem@sda21(r13)
+	lfd      f0, 8(r1)
+	fsubs    f0, f0, f1
+	stfs     f0, 0x50(r4)
+	stfs     f31, 0x54(r4)
+	lwz      r4, systemConsole__9JFWSystem@sda21(r13)
+	stw      r3, 0x40(r4)
+	stw      r0, 0x44(r4)
 
-	.loc_0x2D0:
-	  lwz       r3, -0x7620(r13)
-	  li        r0, 0x19
-	  stw       r0, 0x48(r3)
-	  lwz       r0, 0x48(r3)
-	  lwz       r4, 0x24(r3)
-	  cmplw     r0, r4
-	  ble-      .loc_0x2F0
-	  stw       r4, 0x48(r3)
+lbl_80089A2C:
+	lwz      r3, systemConsole__9JFWSystem@sda21(r13)
+	li       r0, 0x19
+	stw      r0, 0x48(r3)
+	lwz      r0, 0x48(r3)
+	lwz      r4, 0x24(r3)
+	cmplw    r0, r4
+	ble      lbl_80089A4C
+	stw      r4, 0x48(r3)
 
-	.loc_0x2F0:
-	  lwz       r3, -0x7620(r13)
-	  li        r4, 0
-	  li        r0, 0x3
-	  stb       r4, 0x68(r3)
-	  lwz       r3, -0x7620(r13)
-	  stw       r0, 0x58(r3)
-	  lwz       r3, -0x7620(r13)
-	  bl        -0x607C4
-	  lwz       r3, -0x7620(r13)
-	  bl        -0x607BC
-	  lwz       r3, -0x7634(r13)
-	  li        r5, 0x4
-	  lwz       r4, -0x7F08(r13)
-	  bl        -0x66440
-	  lwz       r4, -0x7F08(r13)
-	  bl        -0x5CE28
-	  psq_l     f31,0x28(r1),0,0
-	  lwz       r0, 0x34(r1)
-	  lfd       f31, 0x20(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_80089A4C:
+	lwz      r3, systemConsole__9JFWSystem@sda21(r13)
+	li       r4, 0
+	li       r0, 3
+	stb      r4, 0x68(r3)
+	lwz      r3, systemConsole__9JFWSystem@sda21(r13)
+	stw      r0, 0x58(r3)
+	lwz      r3, systemConsole__9JFWSystem@sda21(r13)
+	bl       JUTSetReportConsole
+	lwz      r3, systemConsole__9JFWSystem@sda21(r13)
+	bl       JUTSetWarningConsole
+	lwz      r3, systemHeap__9JFWSystem@sda21(r13)
+	li       r5, 4
+	lwz      r4, exConsoleBufferSize__Q29JFWSystem11CSetUpParam@sda21(r13)
+	bl       alloc__7JKRHeapFUli
+	lwz      r4, exConsoleBufferSize__Q29JFWSystem11CSetUpParam@sda21(r13)
+	bl       createConsole__12JUTExceptionFPvUl
+	psq_l    f31, 40(r1), 0, qr0
+	lwz      r0, 0x34(r1)
+	lfd      f31, 0x20(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }

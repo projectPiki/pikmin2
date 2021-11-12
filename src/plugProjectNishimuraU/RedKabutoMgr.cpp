@@ -1,5 +1,98 @@
 #include "types.h"
 
+/*
+    Generated from dpostproc
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_8048D890
+    lbl_8048D890:
+        .asciz "/enemy/data/Rkabuto/babykabuto_red_s3tc.bti"
+    .global lbl_8048D8BC
+    lbl_8048D8BC:
+        .4byte 0x838C8362
+        .4byte 0x8368834A
+        .4byte 0x83758367
+        .4byte 0x837D836C
+        .4byte 0x815B8357
+        .4byte 0x83830000
+    .global lbl_8048D8D4
+    lbl_8048D8D4:
+        .asciz "RedKabutoMgr.cpp"
+        .skip 3
+    .global lbl_8048D8E8
+    lbl_8048D8E8:
+        .asciz "P2Assert"
+        .skip 3
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__Q34Game9RedKabuto3Mgr
+    __vt__Q34Game9RedKabuto3Mgr:
+        .4byte 0
+        .4byte 0
+        .4byte doAnimation__Q24Game12EnemyMgrBaseFv
+        .4byte doEntry__Q24Game12EnemyMgrBaseFv
+        .4byte doSetView__Q24Game12EnemyMgrBaseFi
+        .4byte doViewCalc__Q24Game12EnemyMgrBaseFv
+        .4byte doSimulation__Q24Game12EnemyMgrBaseFf
+        .4byte doDirectDraw__Q24Game12EnemyMgrBaseFR8Graphics
+        .4byte doSimpleDraw__16GenericObjectMgrFP8Viewport
+        .4byte loadResources__16GenericObjectMgrFv
+        .4byte resetMgr__16GenericObjectMgrFv
+        .4byte pausable__16GenericObjectMgrFv
+        .4byte frozenable__16GenericObjectMgrFv
+        .4byte getMatrixLoadType__16GenericObjectMgrFv
+        .4byte 0
+        .4byte 0
+        .4byte "@4@__dt__Q34Game9RedKabuto3MgrFv"
+        .4byte getChildCount__5CNodeFv
+        .4byte "@4@getObject__Q24Game12EnemyMgrBaseFPv"
+        .4byte "@4@getNext__Q24Game12EnemyMgrBaseFPv"
+        .4byte "@4@getStart__Q24Game12EnemyMgrBaseFv"
+        .4byte "@4@getEnd__Q24Game12EnemyMgrBaseFv"
+        .4byte __dt__Q34Game9RedKabuto3MgrFv
+        .4byte getObject__Q24Game12EnemyMgrBaseFPv
+        .4byte getNext__Q24Game12EnemyMgrBaseFPv
+        .4byte getStart__Q24Game12EnemyMgrBaseFv
+        .4byte getEnd__Q24Game12EnemyMgrBaseFv
+        .4byte alloc__Q24Game12EnemyMgrBaseFv
+        .4byte birth__Q24Game12EnemyMgrBaseFRQ24Game13EnemyBirthArg
+        .4byte getJ3DModelData__Q24Game12EnemyMgrBaseCFv
+        .4byte getGenerator__Q24Game12EnemyMgrBaseCFv
+        .4byte killAll__Q24Game12EnemyMgrBaseFPQ24Game15CreatureKillArg
+        .4byte setupSoundViewerAndBas__Q24Game12EnemyMgrBaseFv
+        .4byte setDebugParm__Q24Game12EnemyMgrBaseFUl
+        .4byte resetDebugParm__Q24Game12EnemyMgrBaseFUl
+        .4byte getMaxObjects__Q24Game12EnemyMgrBaseCFv
+        .4byte startMovie__Q24Game12EnemyMgrBaseFv
+        .4byte endMovie__Q24Game12EnemyMgrBaseFv
+        .4byte get__Q24Game12EnemyMgrBaseFPv
+        .4byte isAlwaysMovieActor__Q24Game12EnemyMgrBaseFv
+        .4byte createObj__Q34Game9RedKabuto3MgrFi
+        .4byte getEnemy__Q34Game9RedKabuto3MgrFi
+        .4byte doAlloc__Q34Game9RedKabuto3MgrFv
+        .4byte getEnemyTypeID__Q34Game9RedKabuto3MgrFv
+        .4byte createModel__Q34Game6Kabuto3MgrFv
+        .4byte initParms__Q24Game12EnemyMgrBaseFv
+        .4byte loadResource__Q24Game12EnemyMgrBaseFv
+        .4byte initObjects__Q24Game12EnemyMgrBaseFv
+        .4byte initStoneSetting__Q24Game12EnemyMgrBaseFv
+        .4byte loadModelData__Q24Game12EnemyMgrBaseFP10JKRArchive
+        .4byte loadModelData__Q34Game6Kabuto3MgrFv
+        .4byte loadAnimData__Q34Game6Kabuto3MgrFv
+        .4byte loadTexData__Q34Game9RedKabuto3MgrFv
+        .4byte doLoadBmd__Q34Game6Kabuto3MgrFPv
+        .4byte doLoadBdl__Q24Game12EnemyMgrBaseFPv
+        .4byte initGenerator__Q24Game12EnemyMgrBaseFv
+        .4byte getChangeTexture__Q34Game9RedKabuto3MgrFv
+        .4byte 0
+
+    .section .sdata, "wa"  # 0x80514680 - 0x80514D80
+    .global
+   "cKabutoChangeTexName__Q34Game9RedKabuto26@unnamed@RedKabutoMgr_cpp@"
+    "cKabutoChangeTexName__Q34Game9RedKabuto26@unnamed@RedKabutoMgr_cpp@":
+        .4byte lbl_8048D890
+*/
+
 namespace Game {
 
 /*
@@ -10,27 +103,26 @@ namespace Game {
 RedKabuto::Mgr::Mgr(int, unsigned char)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        -0x1C0B0
-	  lis       r3, 0x804D
-	  lis       r4, 0x8049
-	  addi      r5, r3, 0x6980
-	  mr        r3, r31
-	  stw       r5, 0x0(r31)
-	  addi      r5, r5, 0x38
-	  subi      r0, r4, 0x2744
-	  stw       r5, 0x4(r31)
-	  stw       r0, 0x18(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       __ct__Q34Game6Kabuto3MgrFiUc
+	lis      r3, __vt__Q34Game9RedKabuto3Mgr@ha
+	lis      r4, lbl_8048D8BC@ha
+	addi     r5, r3, __vt__Q34Game9RedKabuto3Mgr@l
+	mr       r3, r31
+	stw      r5, 0(r31)
+	addi     r5, r5, 0x38
+	addi     r0, r4, lbl_8048D8BC@l
+	stw      r5, 4(r31)
+	stw      r0, 0x18(r31)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -42,27 +134,26 @@ RedKabuto::Mgr::Mgr(int, unsigned char)
 void RedKabuto::Mgr::doAlloc()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  li        r3, 0x808
-	  bl        -0x2DBFC8
-	  mr.       r4, r3
-	  beq-      .loc_0x2C
-	  bl        -0x614
-	  mr        r4, r3
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	li       r3, 0x808
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_802FFE80
+	bl       __ct__Q34Game6Kabuto5ParmsFv
+	mr       r4, r3
 
-	.loc_0x2C:
-	  mr        r3, r31
-	  bl        -0x1D05E8
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_802FFE80:
+	mr       r3, r31
+	bl       init__Q24Game12EnemyMgrBaseFPQ24Game14EnemyParmsBase
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -74,31 +165,30 @@ void RedKabuto::Mgr::doAlloc()
 void RedKabuto::Mgr::createObj(int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  mulli     r3, r31, 0x2F4
-	  addi      r3, r3, 0x10
-	  bl        -0x2DBF14
-	  lis       r4, 0x8030
-	  lis       r5, 0x8030
-	  addi      r4, r4, 0x158
-	  mr        r7, r31
-	  subi      r5, r5, 0x104
-	  li        r6, 0x2F4
-	  bl        -0x23E4EC
-	  stw       r3, 0x48(r30)
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	mulli    r3, r31, 0x2f4
+	addi     r3, r3, 0x10
+	bl       __nwa__FUl
+	lis      r4, __ct__Q34Game9RedKabuto3ObjFv@ha
+	lis      r5, __dt__Q34Game9RedKabuto3ObjFv@ha
+	addi     r4, r4, __ct__Q34Game9RedKabuto3ObjFv@l
+	mr       r7, r31
+	addi     r5, r5, __dt__Q34Game9RedKabuto3ObjFv@l
+	li       r6, 0x2f4
+	bl       __construct_new_array
+	stw      r3, 0x48(r30)
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -110,70 +200,69 @@ void RedKabuto::Mgr::createObj(int)
 RedKabuto::Obj::~Obj()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0xD0
-	  lis       r3, 0x804D
-	  addi      r5, r30, 0x2E4
-	  addi      r4, r3, 0x6A68
-	  stw       r4, 0x0(r30)
-	  addi      r3, r4, 0x1B0
-	  addi      r0, r4, 0x31C
-	  stw       r3, 0x178(r30)
-	  lwz       r3, 0x17C(r30)
-	  stw       r0, 0x0(r3)
-	  lwz       r3, 0x17C(r30)
-	  sub       r0, r5, r3
-	  stw       r0, 0xC(r3)
-	  beq-      .loc_0xC0
-	  lis       r3, 0x804D
-	  addi      r4, r3, 0x3C54
-	  stw       r4, 0x0(r30)
-	  addi      r3, r4, 0x1B0
-	  addi      r0, r4, 0x31C
-	  stw       r3, 0x178(r30)
-	  lwz       r3, 0x17C(r30)
-	  stw       r0, 0x0(r3)
-	  lwz       r3, 0x17C(r30)
-	  sub       r0, r5, r3
-	  stw       r0, 0xC(r3)
-	  beq-      .loc_0xC0
-	  lis       r3, 0x804B
-	  addi      r0, r30, 0x2BC
-	  subi      r4, r3, 0x5CDC
-	  addi      r3, r30, 0x290
-	  stw       r4, 0x0(r30)
-	  addi      r5, r4, 0x1B0
-	  addi      r6, r4, 0x2F8
-	  li        r4, -0x1
-	  stw       r5, 0x178(r30)
-	  lwz       r5, 0x17C(r30)
-	  stw       r6, 0x0(r5)
-	  lwz       r5, 0x17C(r30)
-	  sub       r0, r0, r5
-	  stw       r0, 0xC(r5)
-	  bl        0x1115D0
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_802FFFCC
+	lis      r3, __vt__Q34Game9RedKabuto3Obj@ha
+	addi     r5, r30, 0x2e4
+	addi     r4, r3, __vt__Q34Game9RedKabuto3Obj@l
+	stw      r4, 0(r30)
+	addi     r3, r4, 0x1b0
+	addi     r0, r4, 0x31c
+	stw      r3, 0x178(r30)
+	lwz      r3, 0x17c(r30)
+	stw      r0, 0(r3)
+	lwz      r3, 0x17c(r30)
+	subf     r0, r3, r5
+	stw      r0, 0xc(r3)
+	beq      lbl_802FFFBC
+	lis      r3, __vt__Q34Game6Kabuto3Obj@ha
+	addi     r4, r3, __vt__Q34Game6Kabuto3Obj@l
+	stw      r4, 0(r30)
+	addi     r3, r4, 0x1b0
+	addi     r0, r4, 0x31c
+	stw      r3, 0x178(r30)
+	lwz      r3, 0x17c(r30)
+	stw      r0, 0(r3)
+	lwz      r3, 0x17c(r30)
+	subf     r0, r3, r5
+	stw      r0, 0xc(r3)
+	beq      lbl_802FFFBC
+	lis      r3, __vt__Q24Game9EnemyBase@ha
+	addi     r0, r30, 0x2bc
+	addi     r4, r3, __vt__Q24Game9EnemyBase@l
+	addi     r3, r30, 0x290
+	stw      r4, 0(r30)
+	addi     r5, r4, 0x1b0
+	addi     r6, r4, 0x2f8
+	li       r4, -1
+	stw      r5, 0x178(r30)
+	lwz      r5, 0x17c(r30)
+	stw      r6, 0(r5)
+	lwz      r5, 0x17c(r30)
+	subf     r0, r5, r0
+	stw      r0, 0xc(r5)
+	bl       __dt__5CNodeFv
 
-	.loc_0xC0:
-	  extsh.    r0, r31
-	  ble-      .loc_0xD0
-	  mr        r3, r30
-	  bl        -0x2DBF14
+lbl_802FFFBC:
+	extsh.   r0, r31
+	ble      lbl_802FFFCC
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0xD0:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_802FFFCC:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -185,11 +274,10 @@ RedKabuto::Obj::~Obj()
 void RedKabuto::Mgr::getEnemy(int)
 {
 	/*
-	.loc_0x0:
-	  mulli     r0, r4, 0x2F4
-	  lwz       r3, 0x48(r3)
-	  add       r3, r3, r0
-	  blr
+	mulli    r0, r4, 0x2f4
+	lwz      r3, 0x48(r3)
+	add      r3, r3, r0
+	blr
 	*/
 }
 
@@ -201,43 +289,43 @@ void RedKabuto::Mgr::getEnemy(int)
 void RedKabuto::Mgr::loadTexData()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  stw       r0, 0x44(r1)
-	  li        r0, 0
-	  stw       r31, 0x3C(r1)
-	  mr        r31, r3
-	  stw       r0, 0x44(r3)
-	  addi      r3, r1, 0x8
-	  lwz       r4, -0x7AE0(r13)
-	  bl        0x14C5BC
-	  lwz       r3, -0x63D8(r13)
-	  addi      r4, r1, 0x8
-	  bl        0x14C778
-	  cmplwi    r3, 0
-	  beq-      .loc_0x44
-	  lwz       r0, 0x30(r3)
-	  stw       r0, 0x44(r31)
+	stwu     r1, -0x40(r1)
+	mflr     r0
+	stw      r0, 0x44(r1)
+	li       r0, 0
+	stw      r31, 0x3c(r1)
+	mr       r31, r3
+	stw      r0, 0x44(r3)
+	addi     r3, r1, 8
+	lwz      r4,
+"cKabutoChangeTexName__Q34Game9RedKabuto26@unnamed@RedKabutoMgr_cpp@"@sda21(r13)
+	bl       __ct__Q212LoadResource3ArgFPCc
+	lwz      r3, gLoadResourceMgr@sda21(r13)
+	addi     r4, r1, 8
+	bl       load__Q212LoadResource3MgrFRQ212LoadResource3Arg
+	cmplwi   r3, 0
+	beq      lbl_8030003C
+	lwz      r0, 0x30(r3)
+	stw      r0, 0x44(r31)
 
-	.loc_0x44:
-	  lwz       r0, 0x44(r31)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x6C
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  subi      r3, r3, 0x272C
-	  li        r4, 0x52
-	  subi      r5, r5, 0x2718
-	  crclr     6, 0x6
-	  bl        -0x2D5A20
+lbl_8030003C:
+	lwz      r0, 0x44(r31)
+	cmplwi   r0, 0
+	bne      lbl_80300064
+	lis      r3, lbl_8048D8D4@ha
+	lis      r5, lbl_8048D8E8@ha
+	addi     r3, r3, lbl_8048D8D4@l
+	li       r4, 0x52
+	addi     r5, r5, lbl_8048D8E8@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x6C:
-	  lwz       r0, 0x44(r1)
-	  lwz       r31, 0x3C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
+lbl_80300064:
+	lwz      r0, 0x44(r1)
+	lwz      r31, 0x3c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x40
+	blr
 	*/
 }
 
@@ -249,61 +337,60 @@ void RedKabuto::Mgr::loadTexData()
 RedKabuto::Mgr::~Mgr()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0xAC
-	  lis       r3, 0x804D
-	  addi      r3, r3, 0x6980
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x38
-	  stw       r0, 0x4(r30)
-	  beq-      .loc_0x9C
-	  lis       r3, 0x804D
-	  addi      r3, r3, 0x3B58
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x38
-	  stw       r0, 0x4(r30)
-	  beq-      .loc_0x9C
-	  lis       r3, 0x804B
-	  subi      r3, r3, 0x760
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x38
-	  stw       r0, 0x4(r30)
-	  beq-      .loc_0x9C
-	  lis       r3, 0x804B
-	  addic.    r0, r30, 0x4
-	  subi      r3, r3, 0x5304
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x38
-	  stw       r0, 0x4(r30)
-	  beq-      .loc_0x9C
-	  lis       r4, 0x804B
-	  addi      r3, r30, 0x4
-	  subi      r0, r4, 0x5324
-	  li        r4, 0
-	  stw       r0, 0x4(r30)
-	  bl        0x111478
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_80300124
+	lis      r3, __vt__Q34Game9RedKabuto3Mgr@ha
+	addi     r3, r3, __vt__Q34Game9RedKabuto3Mgr@l
+	stw      r3, 0(r30)
+	addi     r0, r3, 0x38
+	stw      r0, 4(r30)
+	beq      lbl_80300114
+	lis      r3, __vt__Q34Game6Kabuto3Mgr@ha
+	addi     r3, r3, __vt__Q34Game6Kabuto3Mgr@l
+	stw      r3, 0(r30)
+	addi     r0, r3, 0x38
+	stw      r0, 4(r30)
+	beq      lbl_80300114
+	lis      r3, __vt__Q24Game12EnemyMgrBase@ha
+	addi     r3, r3, __vt__Q24Game12EnemyMgrBase@l
+	stw      r3, 0(r30)
+	addi     r0, r3, 0x38
+	stw      r0, 4(r30)
+	beq      lbl_80300114
+	lis      r3, __vt__Q24Game13IEnemyMgrBase@ha
+	addic.   r0, r30, 4
+	addi     r3, r3, __vt__Q24Game13IEnemyMgrBase@l
+	stw      r3, 0(r30)
+	addi     r0, r3, 0x38
+	stw      r0, 4(r30)
+	beq      lbl_80300114
+	lis      r4, __vt__16GenericContainer@ha
+	addi     r3, r30, 4
+	addi     r0, r4, __vt__16GenericContainer@l
+	li       r4, 0
+	stw      r0, 4(r30)
+	bl       __dt__5CNodeFv
 
-	.loc_0x9C:
-	  extsh.    r0, r31
-	  ble-      .loc_0xAC
-	  mr        r3, r30
-	  bl        -0x2DC06C
+lbl_80300114:
+	extsh.   r0, r31
+	ble      lbl_80300124
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0xAC:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80300124:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -322,9 +409,8 @@ u32 RedKabuto::Mgr::getEnemyTypeID() { return 0x5F; }
 void RedKabuto::Mgr::getChangeTexture()
 {
 	/*
-	.loc_0x0:
-	  lwz       r3, 0x44(r3)
-	  blr
+	lwz      r3, 0x44(r3)
+	blr
 	*/
 }
 
@@ -336,9 +422,8 @@ void RedKabuto::Mgr::getChangeTexture()
 RedKabuto::Mgr::@4 @~Mgr()
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x4
-	  b         -0xDC
+	addi     r3, r3, -4
+	b        __dt__Q34Game9RedKabuto3MgrFv
 	*/
 }
 } // namespace Game

@@ -1,6 +1,38 @@
 #include "types.h"
 
 /*
+    Generated from dpostproc
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__8JUTVideo
+    __vt__8JUTVideo:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__8JUTVideoFv
+        .4byte 0
+
+    .section .sbss # 0x80514D80 - 0x80516360
+    .global sManager__8JUTVideo
+    sManager__8JUTVideo:
+        .skip 0x4
+    .global sVideoLastTick__8JUTVideo
+    sVideoLastTick__8JUTVideo:
+        .skip 0x4
+    .global sVideoInterval__8JUTVideo
+    sVideoInterval__8JUTVideo:
+        .skip 0x4
+    .global sDrawWaiting
+    sDrawWaiting:
+        .skip 0x4
+    .global frameBuffer$2452
+    frameBuffer$2452:
+        .skip 0x4
+    .global init$2453
+    init$2453:
+        .skip 0x4
+*/
+
+/*
  * --INFO--
  * Address:	80033744
  * Size:	000058
@@ -8,33 +40,32 @@
 void JUTVideo::createManager(const _GXRenderModeObj*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r0, -0x76E0(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x40
-	  li        r3, 0x58
-	  bl        -0xF8C4
-	  mr.       r0, r3
-	  beq-      .loc_0x3C
-	  mr        r4, r31
-	  bl        0x6C
-	  mr        r0, r3
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r0, sManager__8JUTVideo@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_80033784
+	li       r3, 0x58
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_80033780
+	mr       r4, r31
+	bl       __ct__8JUTVideoFPC16_GXRenderModeObj
+	mr       r0, r3
 
-	.loc_0x3C:
-	  stw       r0, -0x76E0(r13)
+lbl_80033780:
+	stw      r0, sManager__8JUTVideo@sda21(r13)
 
-	.loc_0x40:
-	  lwz       r0, 0x14(r1)
-	  lwz       r3, -0x76E0(r13)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80033784:
+	lwz      r0, 0x14(r1)
+	lwz      r3, sManager__8JUTVideo@sda21(r13)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -46,29 +77,28 @@ void JUTVideo::createManager(const _GXRenderModeObj*)
 void JUTVideo::destroyManager()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r3, -0x76E0(r13)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x38
-	  beq-      .loc_0x30
-	  lwz       r12, 0x0(r3)
-	  li        r4, 0x1
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r3, sManager__8JUTVideo@sda21(r13)
+	cmplwi   r3, 0
+	beq      lbl_800337D4
+	beq      lbl_800337CC
+	lwz      r12, 0(r3)
+	li       r4, 1
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x30:
-	  li        r0, 0
-	  stw       r0, -0x76E0(r13)
+lbl_800337CC:
+	li       r0, 0
+	stw      r0, sManager__8JUTVideo@sda21(r13)
 
-	.loc_0x38:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_800337D4:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -80,68 +110,67 @@ void JUTVideo::destroyManager()
 JUTVideo::JUTVideo(const _GXRenderModeObj*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r5, 0x804A
-	  stw       r0, 0x14(r1)
-	  li        r0, 0
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  addi      r3, r5, 0x5A0
-	  stw       r30, 0x8(r1)
-	  mr        r30, r4
-	  stw       r3, 0x0(r31)
-	  stw       r0, 0x4(r31)
-	  bl        0x9D570
-	  li        r3, 0x1
-	  li        r0, 0x2
-	  stb       r3, 0x2C(r31)
-	  mr        r3, r31
-	  mr        r4, r30
-	  stw       r0, 0x30(r31)
-	  bl        0x440
-	  li        r3, 0x1
-	  bl        0x9E890
-	  bl        0x9E6E8
-	  li        r0, 0
-	  stw       r0, 0x8(r31)
-	  bl        0x9E8FC
-	  stw       r3, 0xC(r31)
-	  li        r3, 0x1
-	  li        r0, 0
-	  stw       r3, 0x10(r31)
-	  stw       r0, 0x18(r31)
-	  bl        0xBF348
-	  lis       r5, 0xA
-	  lis       r4, 0x8003
-	  addi      r0, r5, 0x3930
-	  stw       r3, -0x76DC(r13)
-	  addi      r3, r4, 0x3940
-	  stw       r0, -0x76D8(r13)
-	  bl        0x9D1E0
-	  lis       r4, 0x8003
-	  stw       r3, 0x1C(r31)
-	  addi      r3, r4, 0x3C24
-	  bl        0x9D214
-	  stw       r3, 0x20(r31)
-	  li        r0, 0
-	  addi      r3, r31, 0x38
-	  addi      r4, r31, 0x34
-	  stw       r0, 0x24(r31)
-	  li        r5, 0x1
-	  stw       r0, 0x28(r31)
-	  bl        0xBBC10
-	  lis       r3, 0x8003
-	  addi      r3, r3, 0x3B9C
-	  bl        0xB1F18
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lis      r5, __vt__8JUTVideo@ha
+	stw      r0, 0x14(r1)
+	li       r0, 0
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	addi     r3, r5, __vt__8JUTVideo@l
+	stw      r30, 8(r1)
+	mr       r30, r4
+	stw      r3, 0(r31)
+	stw      r0, 4(r31)
+	bl       VIInit
+	li       r3, 1
+	li       r0, 2
+	stb      r3, 0x2c(r31)
+	mr       r3, r31
+	mr       r4, r30
+	stw      r0, 0x30(r31)
+	bl       setRenderMode__8JUTVideoFPC16_GXRenderModeObj
+	li       r3, 1
+	bl       VISetBlack
+	bl       VIFlush
+	li       r0, 0
+	stw      r0, 8(r31)
+	bl       VIGetRetraceCount
+	stw      r3, 0xc(r31)
+	li       r3, 1
+	li       r0, 0
+	stw      r3, 0x10(r31)
+	stw      r0, 0x18(r31)
+	bl       OSGetTick
+	lis      r5, 0x000A3930@ha
+	lis      r4, preRetraceProc__8JUTVideoFUl@ha
+	addi     r0, r5, 0x000A3930@l
+	stw      r3, sVideoLastTick__8JUTVideo@sda21(r13)
+	addi     r3, r4, preRetraceProc__8JUTVideoFUl@l
+	stw      r0, sVideoInterval__8JUTVideo@sda21(r13)
+	bl       VISetPreRetraceCallback
+	lis      r4, postRetraceProc__8JUTVideoFUl@ha
+	stw      r3, 0x1c(r31)
+	addi     r3, r4, postRetraceProc__8JUTVideoFUl@l
+	bl       VISetPostRetraceCallback
+	stw      r3, 0x20(r31)
+	li       r0, 0
+	addi     r3, r31, 0x38
+	addi     r4, r31, 0x34
+	stw      r0, 0x24(r31)
+	li       r5, 1
+	stw      r0, 0x28(r31)
+	bl       OSInitMessageQueue
+	lis      r3, drawDoneCallback__8JUTVideoFv@ha
+	addi     r3, r3, drawDoneCallback__8JUTVideoFv@l
+	bl       GXSetDrawDoneCallback
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -153,35 +182,34 @@ JUTVideo::JUTVideo(const _GXRenderModeObj*)
 JUTVideo::~JUTVideo()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x4C
-	  lis       r3, 0x804A
-	  addi      r0, r3, 0x5A0
-	  stw       r0, 0x0(r30)
-	  lwz       r3, 0x1C(r30)
-	  bl        0x9D154
-	  lwz       r3, 0x20(r30)
-	  bl        0x9D190
-	  extsh.    r0, r31
-	  ble-      .loc_0x4C
-	  mr        r3, r30
-	  bl        -0xF86C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_80033924
+	lis      r3, __vt__8JUTVideo@ha
+	addi     r0, r3, __vt__8JUTVideo@l
+	stw      r0, 0(r30)
+	lwz      r3, 0x1c(r30)
+	bl       VISetPreRetraceCallback
+	lwz      r3, 0x20(r30)
+	bl       VISetPostRetraceCallback
+	extsh.   r0, r31
+	ble      lbl_80033924
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x4C:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80033924:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -193,187 +221,186 @@ JUTVideo::~JUTVideo()
 void JUTVideo::preRetraceProc(unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  lwz       r4, -0x76E0(r13)
-	  lwz       r12, 0x24(r4)
-	  cmplwi    r12, 0
-	  beq-      .loc_0x28
-	  mtctr     r12
-	  bctrl
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	lwz      r4, sManager__8JUTVideo@sda21(r13)
+	lwz      r12, 0x24(r4)
+	cmplwi   r12, 0
+	beq      lbl_80033968
+	mtctr    r12
+	bctrl
 
-	.loc_0x28:
-	  bl        0xBF240
-	  lwz       r0, -0x76DC(r13)
-	  lwz       r31, -0x76C8(r13)
-	  sub       r0, r3, r0
-	  stw       r3, -0x76DC(r13)
-	  cmplwi    r31, 0
-	  stw       r0, -0x76D8(r13)
-	  bne-      .loc_0x58
-	  li        r3, 0x1
-	  bl        0x9E73C
-	  bl        0x9E594
-	  b         .loc_0x214
+lbl_80033968:
+	bl       OSGetTick
+	lwz      r0, sVideoLastTick__8JUTVideo@sda21(r13)
+	lwz      r31, sManager__6JUTXfb@sda21(r13)
+	subf     r0, r0, r3
+	stw      r3, sVideoLastTick__8JUTVideo@sda21(r13)
+	cmplwi   r31, 0
+	stw      r0, sVideoInterval__8JUTVideo@sda21(r13)
+	bne      lbl_80033998
+	li       r3, 1
+	bl       VISetBlack
+	bl       VIFlush
+	b        lbl_80033B54
 
-	.loc_0x58:
-	  lbz       r0, -0x76CC(r13)
-	  extsb.    r0, r0
-	  bne-      .loc_0x74
-	  li        r3, 0
-	  li        r0, 0x1
-	  stw       r3, -0x76D0(r13)
-	  stb       r0, -0x76CC(r13)
+lbl_80033998:
+	lbz      r0, init$2453@sda21(r13)
+	extsb.   r0, r0
+	bne      lbl_800339B4
+	li       r3, 0
+	li       r0, 1
+	stw      r3, frameBuffer$2452@sda21(r13)
+	stb      r0, init$2453@sda21(r13)
 
-	.loc_0x74:
-	  lwz       r4, -0x76D0(r13)
-	  cmplwi    r4, 0
-	  beq-      .loc_0x98
-	  lwz       r5, -0x76E0(r13)
-	  lwz       r3, -0x7778(r13)
-	  lwz       r6, 0x4(r5)
-	  lhz       r5, 0x4(r6)
-	  lhz       r6, 0x6(r6)
-	  bl        -0x9A48
+lbl_800339B4:
+	lwz      r4, frameBuffer$2452@sda21(r13)
+	cmplwi   r4, 0
+	beq      lbl_800339D8
+	lwz      r5, sManager__8JUTVideo@sda21(r13)
+	lwz      r3, sDirectPrint__14JUTDirectPrint@sda21(r13)
+	lwz      r6, 4(r5)
+	lhz      r5, 4(r6)
+	lhz      r6, 6(r6)
+	bl       changeFrameBuffer__14JUTDirectPrintFPvUsUs
 
-	.loc_0x98:
-	  lwz       r3, -0x76E0(r13)
-	  lbz       r0, 0x2C(r3)
-	  cmplwi    r0, 0x1
-	  bne-      .loc_0xE0
-	  lwz       r4, 0x30(r3)
-	  cmpwi     r4, 0
-	  ble-      .loc_0xB8
-	  subi      r4, r4, 0x1
+lbl_800339D8:
+	lwz      r3, sManager__8JUTVideo@sda21(r13)
+	lbz      r0, 0x2c(r3)
+	cmplwi   r0, 1
+	bne      lbl_80033A20
+	lwz      r4, 0x30(r3)
+	cmpwi    r4, 0
+	ble      lbl_800339F8
+	addi     r4, r4, -1
 
-	.loc_0xB8:
-	  stw       r4, 0x30(r3)
-	  neg       r0, r4
-	  or        r0, r0, r4
-	  li        r3, 0x1
-	  lwz       r4, -0x76E0(r13)
-	  rlwinm    r0,r0,1,31,31
-	  stb       r0, 0x2C(r4)
-	  bl        0x9E6B4
-	  bl        0x9E50C
-	  b         .loc_0x214
+lbl_800339F8:
+	stw      r4, 0x30(r3)
+	neg      r0, r4
+	or       r0, r0, r4
+	li       r3, 1
+	lwz      r4, sManager__8JUTVideo@sda21(r13)
+	srwi     r0, r0, 0x1f
+	stb      r0, 0x2c(r4)
+	bl       VISetBlack
+	bl       VIFlush
+	b        lbl_80033B54
 
-	.loc_0xE0:
-	  cmplwi    r31, 0
-	  bne-      .loc_0xF8
-	  li        r3, 0x1
-	  bl        0x9E69C
-	  bl        0x9E4F4
-	  b         .loc_0x214
+lbl_80033A20:
+	cmplwi   r31, 0
+	bne      lbl_80033A38
+	li       r3, 1
+	bl       VISetBlack
+	bl       VIFlush
+	b        lbl_80033B54
 
-	.loc_0xF8:
-	  lwz       r0, 0x10(r31)
-	  cmpwi     r0, 0x3
-	  beq-      .loc_0x10C
-	  cmpwi     r0, 0x2
-	  bne-      .loc_0x188
+lbl_80033A38:
+	lwz      r0, 0x10(r31)
+	cmpwi    r0, 3
+	beq      lbl_80033A4C
+	cmpwi    r0, 2
+	bne      lbl_80033AC8
 
-	.loc_0x10C:
-	  lbz       r0, -0x76D4(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x214
-	  lha       r3, 0x16(r31)
-	  extsh.    r0, r3
-	  sth       r3, 0x18(r31)
-	  bge-      .loc_0x138
-	  li        r3, 0x1
-	  bl        0x9E65C
-	  bl        0x9E4B4
-	  b         .loc_0x214
+lbl_80033A4C:
+	lbz      r0, sDrawWaiting@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_80033B54
+	lha      r3, 0x16(r31)
+	extsh.   r0, r3
+	sth      r3, 0x18(r31)
+	bge      lbl_80033A78
+	li       r3, 1
+	bl       VISetBlack
+	bl       VIFlush
+	b        lbl_80033B54
 
-	.loc_0x138:
-	  lha       r3, 0x18(r31)
-	  extsh.    r0, r3
-	  blt-      .loc_0x150
-	  rlwinm    r0,r3,2,0,29
-	  lwzx      r3, r31, r0
-	  b         .loc_0x154
+lbl_80033A78:
+	lha      r3, 0x18(r31)
+	extsh.   r0, r3
+	blt      lbl_80033A90
+	slwi     r0, r3, 2
+	lwzx     r3, r31, r0
+	b        lbl_80033A94
 
-	.loc_0x150:
-	  li        r3, 0
+lbl_80033A90:
+	li       r3, 0
 
-	.loc_0x154:
-	  bl        0x9E5C0
-	  bl        0x9E48C
-	  li        r3, 0
-	  bl        0x9E628
-	  lha       r3, 0x18(r31)
-	  extsh.    r0, r3
-	  blt-      .loc_0x17C
-	  rlwinm    r0,r3,2,0,29
-	  lwzx      r0, r31, r0
-	  b         .loc_0x180
+lbl_80033A94:
+	bl       VISetNextFrameBuffer
+	bl       VIFlush
+	li       r3, 0
+	bl       VISetBlack
+	lha      r3, 0x18(r31)
+	extsh.   r0, r3
+	blt      lbl_80033ABC
+	slwi     r0, r3, 2
+	lwzx     r0, r31, r0
+	b        lbl_80033AC0
 
-	.loc_0x17C:
-	  li        r0, 0
+lbl_80033ABC:
+	li       r0, 0
 
-	.loc_0x180:
-	  stw       r0, -0x76D0(r13)
-	  b         .loc_0x214
+lbl_80033AC0:
+	stw      r0, frameBuffer$2452@sda21(r13)
+	b        lbl_80033B54
 
-	.loc_0x188:
-	  cmpwi     r0, 0x1
-	  bne-      .loc_0x214
-	  lwz       r0, 0x1C(r31)
-	  cmpwi     r0, 0
-	  bne-      .loc_0x210
-	  lha       r3, 0x16(r31)
-	  extsh.    r0, r3
-	  blt-      .loc_0x208
-	  sth       r3, 0x18(r31)
-	  lha       r3, 0x18(r31)
-	  extsh.    r0, r3
-	  blt-      .loc_0x1C4
-	  rlwinm    r0,r3,2,0,29
-	  lwzx      r3, r31, r0
-	  b         .loc_0x1C8
+lbl_80033AC8:
+	cmpwi    r0, 1
+	bne      lbl_80033B54
+	lwz      r0, 0x1c(r31)
+	cmpwi    r0, 0
+	bne      lbl_80033B50
+	lha      r3, 0x16(r31)
+	extsh.   r0, r3
+	blt      lbl_80033B48
+	sth      r3, 0x18(r31)
+	lha      r3, 0x18(r31)
+	extsh.   r0, r3
+	blt      lbl_80033B04
+	slwi     r0, r3, 2
+	lwzx     r3, r31, r0
+	b        lbl_80033B08
 
-	.loc_0x1C4:
-	  li        r3, 0
+lbl_80033B04:
+	li       r3, 0
 
-	.loc_0x1C8:
-	  li        r4, 0x1
-	  bl        0xB2A38
-	  bl        0xB155C
-	  li        r0, 0x2
-	  stw       r0, 0x1C(r31)
-	  lha       r3, 0x18(r31)
-	  extsh.    r0, r3
-	  blt-      .loc_0x1F4
-	  rlwinm    r0,r3,2,0,29
-	  lwzx      r0, r31, r0
-	  b         .loc_0x1F8
+lbl_80033B08:
+	li       r4, 1
+	bl       GXCopyDisp
+	bl       GXFlush
+	li       r0, 2
+	stw      r0, 0x1c(r31)
+	lha      r3, 0x18(r31)
+	extsh.   r0, r3
+	blt      lbl_80033B34
+	slwi     r0, r3, 2
+	lwzx     r0, r31, r0
+	b        lbl_80033B38
 
-	.loc_0x1F4:
-	  li        r0, 0
+lbl_80033B34:
+	li       r0, 0
 
-	.loc_0x1F8:
-	  stw       r0, -0x76D0(r13)
-	  li        r3, 0
-	  bl        0x9E588
-	  b         .loc_0x210
+lbl_80033B38:
+	stw      r0, frameBuffer$2452@sda21(r13)
+	li       r3, 0
+	bl       VISetBlack
+	b        lbl_80033B50
 
-	.loc_0x208:
-	  li        r3, 0x1
-	  bl        0x9E57C
+lbl_80033B48:
+	li       r3, 1
+	bl       VISetBlack
 
-	.loc_0x210:
-	  bl        0x9E3D4
+lbl_80033B50:
+	bl       VIFlush
 
-	.loc_0x214:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80033B54:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -385,17 +412,16 @@ void JUTVideo::preRetraceProc(unsigned long)
 void JUTVideo::drawDoneStart()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  li        r0, 0x1
-	  stb       r0, -0x76D4(r13)
-	  bl        0xB18DC
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	li       r0, 1
+	stb      r0, sDrawWaiting@sda21(r13)
+	bl       GXSetDrawDone
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -407,10 +433,9 @@ void JUTVideo::drawDoneStart()
 void JUTVideo::dummyNoDrawWait()
 {
 	/*
-	.loc_0x0:
-	  li        r0, 0
-	  stb       r0, -0x76D4(r13)
-	  blr
+	li       r0, 0
+	stb      r0, sDrawWaiting@sda21(r13)
+	blr
 	*/
 }
 
@@ -432,49 +457,48 @@ void JUTVideo::getDrawWait()
 void JUTVideo::drawDoneCallback()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r4, -0x76C8(r13)
-	  cmplwi    r4, 0
-	  beq-      .loc_0x78
-	  li        r3, 0
-	  stb       r3, -0x76D4(r13)
-	  lwz       r0, 0x10(r4)
-	  cmpwi     r0, 0x1
-	  bne-      .loc_0x78
-	  lwz       r0, 0x1C(r4)
-	  cmpwi     r0, 0x1
-	  bne-      .loc_0x78
-	  stw       r3, 0x1C(r4)
-	  lha       r5, 0x16(r4)
-	  extsh.    r0, r5
-	  blt-      .loc_0x50
-	  rlwinm    r0,r5,2,0,29
-	  lwzx      r3, r4, r0
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r4, sManager__6JUTXfb@sda21(r13)
+	cmplwi   r4, 0
+	beq      lbl_80033C14
+	li       r3, 0
+	stb      r3, sDrawWaiting@sda21(r13)
+	lwz      r0, 0x10(r4)
+	cmpwi    r0, 1
+	bne      lbl_80033C14
+	lwz      r0, 0x1c(r4)
+	cmpwi    r0, 1
+	bne      lbl_80033C14
+	stw      r3, 0x1c(r4)
+	lha      r5, 0x16(r4)
+	extsh.   r0, r5
+	blt      lbl_80033BEC
+	slwi     r0, r5, 2
+	lwzx     r3, r4, r0
 
-	.loc_0x50:
-	  cmplwi    r3, 0
-	  beq-      .loc_0x78
-	  extsh.    r0, r5
-	  blt-      .loc_0x6C
-	  rlwinm    r0,r5,2,0,29
-	  lwzx      r3, r4, r0
-	  b         .loc_0x70
+lbl_80033BEC:
+	cmplwi   r3, 0
+	beq      lbl_80033C14
+	extsh.   r0, r5
+	blt      lbl_80033C08
+	slwi     r0, r5, 2
+	lwzx     r3, r4, r0
+	b        lbl_80033C0C
 
-	.loc_0x6C:
-	  li        r3, 0
+lbl_80033C08:
+	li       r3, 0
 
-	.loc_0x70:
-	  bl        0x9E448
-	  bl        0x9E314
+lbl_80033C0C:
+	bl       VISetNextFrameBuffer
+	bl       VIFlush
 
-	.loc_0x78:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80033C14:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -486,28 +510,27 @@ void JUTVideo::drawDoneCallback()
 void JUTVideo::postRetraceProc(unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r4, -0x76E0(r13)
-	  lwz       r12, 0x28(r4)
-	  cmplwi    r12, 0
-	  beq-      .loc_0x24
-	  mtctr     r12
-	  bctrl
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r4, sManager__8JUTVideo@sda21(r13)
+	lwz      r12, 0x28(r4)
+	cmplwi   r12, 0
+	beq      lbl_80033C48
+	mtctr    r12
+	bctrl
 
-	.loc_0x24:
-	  bl        0x9E4FC
-	  lwz       r6, -0x76E0(r13)
-	  mr        r4, r3
-	  li        r5, 0
-	  addi      r3, r6, 0x38
-	  bl        0xBB8C0
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80033C48:
+	bl       VIGetRetraceCount
+	lwz      r6, sManager__8JUTVideo@sda21(r13)
+	mr       r4, r3
+	li       r5, 0
+	addi     r3, r6, 0x38
+	bl       OSSendMessage
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -519,41 +542,40 @@ void JUTVideo::postRetraceProc(unsigned long)
 void JUTVideo::setRenderMode(const _GXRenderModeObj*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r5, 0x4(r3)
-	  cmplwi    r5, 0
-	  beq-      .loc_0x40
-	  lwz       r3, 0x0(r4)
-	  lwz       r0, 0x0(r5)
-	  cmpw      r3, r0
-	  beq-      .loc_0x40
-	  li        r3, 0x1
-	  li        r0, 0x4
-	  stb       r3, 0x2C(r31)
-	  stw       r0, 0x30(r31)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r5, 4(r3)
+	cmplwi   r5, 0
+	beq      lbl_80033CB0
+	lwz      r3, 0(r4)
+	lwz      r0, 0(r5)
+	cmpw     r3, r0
+	beq      lbl_80033CB0
+	li       r3, 1
+	li       r0, 4
+	stb      r3, 0x2c(r31)
+	stw      r0, 0x30(r31)
 
-	.loc_0x40:
-	  stw       r4, 0x4(r31)
-	  lwz       r3, 0x4(r31)
-	  bl        0x9DA44
-	  bl        0x9E268
-	  lbz       r0, 0x2C(r31)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x64
-	  bl        0x9D568
-	  bl        0x9D564
+lbl_80033CB0:
+	stw      r4, 4(r31)
+	lwz      r3, 4(r31)
+	bl       VIConfigure
+	bl       VIFlush
+	lbz      r0, 0x2c(r31)
+	cmplwi   r0, 0
+	beq      lbl_80033CD4
+	bl       VIWaitForRetrace
+	bl       VIWaitForRetrace
 
-	.loc_0x64:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80033CD4:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -582,11 +604,10 @@ void JUTVideo::setPreRetraceCallback(void (*)(unsigned long))
 void JUTVideo::setPostRetraceCallback(void (*)(unsigned long))
 {
 	/*
-	.loc_0x0:
-	  lwz       r0, 0x28(r3)
-	  stw       r4, 0x28(r3)
-	  mr        r3, r0
-	  blr
+	lwz      r0, 0x28(r3)
+	stw      r4, 0x28(r3)
+	mr       r3, r0
+	blr
 	*/
 }
 

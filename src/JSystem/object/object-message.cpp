@@ -1,6 +1,25 @@
 #include "types.h"
 
 /*
+    Generated from dpostproc
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__Q216JStudio_JMessage16TAdaptor_message
+    __vt__Q216JStudio_JMessage16TAdaptor_message:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q216JStudio_JMessage16TAdaptor_messageFv
+        .4byte adaptor_do_prepare__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
+        .4byte adaptor_do_begin__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
+        .4byte adaptor_do_end__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
+        .4byte adaptor_do_update__Q27JStudio8TAdaptorFPCQ27JStudio7TObjectUl
+        .4byte
+   adaptor_do_data__Q27JStudio8TAdaptorFPCQ27JStudio7TObjectPCvUlPCvUl .4byte
+   adaptor_do_MESSAGE__Q216JStudio_JMessage16TAdaptor_messageFQ37JStudio4data15TEOperationDataPCvUl
+        .4byte 0
+*/
+
+/*
  * --INFO--
  * Address:	80014D24
  * Size:	000038
@@ -8,21 +27,20 @@
 JStudio_JMessage::TAdaptor_message::TAdaptor_message(JMessage::TControl*)
 {
 	/*
-	.loc_0x0:
-	  lis       r7, 0x804A
-	  lis       r6, 0x804A
-	  subi      r0, r7, 0xB98
-	  lis       r5, 0x804A
-	  stw       r0, 0x0(r3)
-	  li        r7, 0
-	  subi      r6, r6, 0xD70
-	  subi      r0, r5, 0x740
-	  stw       r7, 0x4(r3)
-	  stw       r7, 0x8(r3)
-	  stw       r6, 0x0(r3)
-	  stw       r0, 0x0(r3)
-	  stw       r4, 0xC(r3)
-	  blr
+	lis      r7, __vt__Q27JStudio8TAdaptor@ha
+	lis      r6, __vt__Q27JStudio16TAdaptor_message@ha
+	addi     r0, r7, __vt__Q27JStudio8TAdaptor@l
+	lis      r5, __vt__Q216JStudio_JMessage16TAdaptor_message@ha
+	stw      r0, 0(r3)
+	li       r7, 0
+	addi     r6, r6, __vt__Q27JStudio16TAdaptor_message@l
+	addi     r0, r5, __vt__Q216JStudio_JMessage16TAdaptor_message@l
+	stw      r7, 4(r3)
+	stw      r7, 8(r3)
+	stw      r6, 0(r3)
+	stw      r0, 0(r3)
+	stw      r4, 0xc(r3)
+	blr
 	*/
 }
 
@@ -34,33 +52,32 @@ JStudio_JMessage::TAdaptor_message::TAdaptor_message(JMessage::TControl*)
 JStudio_JMessage::TAdaptor_message::~TAdaptor_message()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x44
-	  lis       r5, 0x804A
-	  li        r4, 0
-	  subi      r0, r5, 0x740
-	  stw       r0, 0x0(r30)
-	  bl        -0x61BC
-	  extsh.    r0, r31
-	  ble-      .loc_0x44
-	  mr        r3, r30
-	  bl        0xF318
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_80014DA0
+	lis      r5, __vt__Q216JStudio_JMessage16TAdaptor_message@ha
+	li       r4, 0
+	addi     r0, r5, __vt__Q216JStudio_JMessage16TAdaptor_message@l
+	stw      r0, 0(r30)
+	bl       __dt__Q27JStudio16TAdaptor_messageFv
+	extsh.   r0, r31
+	ble      lbl_80014DA0
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x44:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80014DA0:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 

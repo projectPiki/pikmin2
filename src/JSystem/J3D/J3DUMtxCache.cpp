@@ -1,6 +1,16 @@
 #include "types.h"
 
 /*
+    Generated from dpostproc
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_805164C8
+    lbl_805164C8:
+        .4byte 0x43300000
+        .4byte 0x80000000
+*/
+
+/*
  * --INFO--
  * Address:	800177EC
  * Size:	00005C
@@ -8,34 +18,33 @@
 J3DUMtxAnmCacheTableBase::~J3DUMtxAnmCacheTableBase()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x40
-	  lwz       r3, 0xC(r30)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x30
-	  bl        0xC8C0
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_8001782C
+	lwz      r3, 0xc(r30)
+	cmplwi   r3, 0
+	beq      lbl_8001781C
+	bl       __dla__FPv
 
-	.loc_0x30:
-	  extsh.    r0, r31
-	  ble-      .loc_0x40
-	  mr        r3, r30
-	  bl        0xC88C
+lbl_8001781C:
+	extsh.   r0, r31
+	ble      lbl_8001782C
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x40:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8001782C:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -47,42 +56,40 @@ J3DUMtxAnmCacheTableBase::~J3DUMtxAnmCacheTableBase()
 J3DUMtxAnmCacheTable::J3DUMtxAnmCacheTable(J3DModel*, J3DAnmTransform*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r5
-	  stw       r30, 0x18(r1)
-	  mr        r30, r4
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  li        r3, 0
-	  lwz       r4, 0x4(r4)
-	  lha       r5, 0x6(r5)
-	  lhz       r6, 0x2C(r4)
-	  li        r4, 0x20
-	  mullw     r0, r5, r6
-	  stw       r3, 0x0(r29)
-	  stw       r6, 0x4(r29)
-	  stw       r5, 0x8(r29)
-	  mulli     r3, r0, 0x30
-	  bl        0xC764
-	  stw       r3, 0xC(r29)
-	  mr        r3, r30
-	  mr        r4, r31
-	  mr        r5, r29
-	  bl        .loc_0x84
-	  lwz       r0, 0x24(r1)
-	  mr        r3, r29
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-
-	.loc_0x84:
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r5
+	stw      r30, 0x18(r1)
+	mr       r30, r4
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	li       r3, 0
+	lwz      r4, 4(r4)
+	lha      r5, 6(r5)
+	lhz      r6, 0x2c(r4)
+	li       r4, 0x20
+	mullw    r0, r5, r6
+	stw      r3, 0(r29)
+	stw      r6, 4(r29)
+	stw      r5, 8(r29)
+	mulli    r3, r0, 0x30
+	bl       __nwa__FUli
+	stw      r3, 0xc(r29)
+	mr       r3, r30
+	mr       r4, r31
+	mr       r5, r29
+	bl
+	"init<20J3DUMtxAnmCacheTable>__26@unnamed@J3DUMtxCache_cpp@FP8J3DModelP15J3DAnmTransformP20J3DUMtxAnmCacheTable"
+	lwz      r0, 0x24(r1)
+	mr       r3, r29
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 

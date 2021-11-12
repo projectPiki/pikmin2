@@ -1,5 +1,72 @@
 #include "types.h"
 
+/*
+    Generated from dpostproc
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    lbl_8049DE78:
+        .asciz "PSMainSide_TrackMap.cpp"
+        .asciz "not loaded\n"
+        .asciz "endoffile"
+        .skip 2
+        .asciz "not find\ntrack map\n(%s)"
+        .asciz "basic trk over\n(%s)\n(Cur=%d)"
+        .skip 3
+        .asciz "event trk over\n(%s)\n(Cur=%d)"
+        .skip 3
+        .asciz "otakara trk over\n(%s)\n(Cur=%d)"
+        .skip 1
+        .asciz "kehai trk over\n(%s)\n(Cur=%d)"
+        .skip 3
+        .asciz "battle trk over\n(%s)\n(Cur=%d)"
+        .skip 2
+        .asciz "ground trk over\n(%s)\n(Cur=%d)"
+        .skip 2
+        .asciz "abnormal pik num\n(%s)\n(Cur=%d)"
+        .skip 1
+        .asciz "abnormal pik mask\n(%s)\n(Cur=%d)"
+        .asciz "file num over\ntrack map\n(%s)"
+        .skip 3
+        .asciz "P2Assert"
+        .skip 3
+        .asciz "not find info\n"
+        .skip 1
+        .asciz "basic trk over\n(Cur=%d)\n"
+        .skip 3
+        .asciz "event trk over\n(Cur=%d)\n"
+        .skip 3
+        .asciz "otakara trk over\n(Cur=%d)\n"
+        .skip 1
+        .asciz "kehai trk over\n(Cur=%d)\n"
+        .skip 3
+        .asciz "battle trk over\n(Cur=%d)\n"
+        .skip 2
+        .asciz "ground trk over\n(Cur=%d)\n"
+        .skip 2
+        .asciz "abnormal pik num\n(Cur=%d)\n"
+        .skip 1
+        .asciz "abnormal pik mask\n(Cur=%d)\n"
+        .asciz "file num over\n"
+        .skip 1
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__Q23PSM15BgmTrackMapFile
+    __vt__Q23PSM15BgmTrackMapFile:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q23PSM15BgmTrackMapFileFv
+        .4byte read__Q23PSM15BgmTrackMapFileFR6Stream
+        .4byte 0
+        .4byte 0
+        .4byte "@28@__dt__Q23PSM15BgmTrackMapFileFv"
+        .4byte 0
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    lbl_80520DB0:
+        .asciz ""
+        .skip 3
+*/
+
 namespace PSM {
 
 /*
@@ -10,53 +77,45 @@ namespace PSM {
 BgmTrackMapFile::BgmTrackMapFile(bool)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  bl        -0x138F6C
-	  lis       r3, 0x804F
-	  addic.    r4, r30, 0x1C
-	  subi      r0, r3, 0x68C
-	  stw       r0, 0x1C(r30)
-	  beq-      .loc_0x38
-	  subi      r4, r4, 0x1C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	bl       __ct__Q28PSSystem12TextDataBaseFv
+	lis      r3, "__vt__Q28PSSystem38SingletonBase<Q23PSM15BgmTrackMapFile>"@ha
+	addic.   r4, r30, 0x1c
+	addi     r0, r3,
+"__vt__Q28PSSystem38SingletonBase<Q23PSM15BgmTrackMapFile>"@l stw      r0,
+0x1c(r30) beq      lbl_80471908 addi     r4, r4, -28
 
-	.loc_0x38:
-	  lis       r3, 0x804F
-	  stw       r4, -0x6E40(r13)
-	  subi      r3, r3, 0x558
-	  rlwinm.   r0,r31,0,24,31
-	  stw       r3, 0x0(r30)
-	  addi      r4, r3, 0x10
-	  li        r3, 0
-	  stw       r4, 0x1C(r30)
-	  stw       r3, 0x20(r30)
-	  stw       r3, 0x24(r30)
-	  stb       r31, 0x28(r30)
-	  beq-      .loc_0x8C
-	  li        r3, 0x7D0
-	  bl        -0x44D990
-	  lis       r4, 0x8047
-	  li        r5, 0
-	  addi      r4, r4, 0x2388
-	  li        r6, 0x3E
-	  li        r7, 0x20
-	  bl        -0x3AFF64
-	  stw       r3, 0x20(r30)
+lbl_80471908:
+	lis      r3, __vt__Q23PSM15BgmTrackMapFile@ha
+	stw      r4,
+"sInstance__Q28PSSystem38SingletonBase<Q23PSM15BgmTrackMapFile>"@sda21(r13) addi
+r3, r3, __vt__Q23PSM15BgmTrackMapFile@l clrlwi.  r0, r31, 0x18 stw      r3,
+0(r30) addi     r4, r3, 0x10 li       r3, 0 stw      r4, 0x1c(r30) stw      r3,
+0x20(r30) stw      r3, 0x24(r30) stb      r31, 0x28(r30) beq      lbl_8047195C
+	li       r3, 0x7d0
+	bl       __nwa__FUl
+	lis      r4, __ct__Q23PSM11BgmTrackMapFv@ha
+	li       r5, 0
+	addi     r4, r4, __ct__Q23PSM11BgmTrackMapFv@l
+	li       r6, 0x3e
+	li       r7, 0x20
+	bl       __construct_new_array
+	stw      r3, 0x20(r30)
 
-	.loc_0x8C:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8047195C:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -68,540 +127,539 @@ BgmTrackMapFile::BgmTrackMapFile(bool)
 void BgmTrackMapFile::readTrackMap(const char*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x490(r1)
-	  mflr      r0
-	  stw       r0, 0x494(r1)
-	  stmw      r24, 0x470(r1)
-	  mr        r24, r4
-	  lis       r4, 0x804A
-	  mr        r27, r3
-	  mr        r28, r5
-	  subi      r31, r4, 0x2188
-	  lwz       r0, 0x18(r24)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x44
-	  addi      r3, r31, 0
-	  addi      r5, r31, 0x18
-	  li        r4, 0x77
-	  crclr     6, 0x6
-	  bl        -0x447378
+	stwu     r1, -0x490(r1)
+	mflr     r0
+	stw      r0, 0x494(r1)
+	stmw     r24, 0x470(r1)
+	mr       r24, r4
+	lis      r4, lbl_8049DE78@ha
+	mr       r27, r3
+	mr       r28, r5
+	addi     r31, r4, lbl_8049DE78@l
+	lwz      r0, 0x18(r24)
+	cmplwi   r0, 0
+	bne      lbl_804719BC
+	addi     r3, r31, 0
+	addi     r5, r31, 0x18
+	li       r4, 0x77
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x44:
-	  lwz       r4, 0x18(r24)
-	  addi      r3, r1, 0x48
-	  li        r5, -0x1
-	  bl        -0x5C0D0
-	  li        r0, 0x1
-	  cmpwi     r0, 0x1
-	  stw       r0, 0x54(r1)
-	  bne-      .loc_0x6C
-	  li        r0, 0
-	  stw       r0, 0x45C(r1)
+lbl_804719BC:
+	lwz      r4, 0x18(r24)
+	addi     r3, r1, 0x48
+	li       r5, -1
+	bl       __ct__9RamStreamFPvi
+	li       r0, 1
+	cmpwi    r0, 1
+	stw      r0, 0x54(r1)
+	bne      lbl_804719E4
+	li       r0, 0
+	stw      r0, 0x45c(r1)
 
-	.loc_0x6C:
-	  li        r4, 0
-	  addi      r3, r1, 0x8
-	  stb       r4, 0x28(r1)
-	  stb       r4, 0x29(r1)
-	  stb       r4, 0x2A(r1)
-	  stb       r4, 0x2B(r1)
-	  stb       r4, 0x2C(r1)
-	  stb       r4, 0x2D(r1)
-	  b         .loc_0x114
+lbl_804719E4:
+	li       r4, 0
+	addi     r3, r1, 8
+	stb      r4, 0x28(r1)
+	stb      r4, 0x29(r1)
+	stb      r4, 0x2a(r1)
+	stb      r4, 0x2b(r1)
+	stb      r4, 0x2c(r1)
+	stb      r4, 0x2d(r1)
+	b        lbl_80471A8C
 
-	.loc_0x90:
-	  rlwinm    r5,r4,0,24,31
-	  addi      r0, r4, 0x1
-	  addi      r6, r5, 0x26
-	  li        r7, 0
-	  rlwinm    r5,r0,0,24,31
-	  stbx      r7, r3, r6
-	  addi      r6, r5, 0x26
-	  addi      r0, r4, 0x2
-	  rlwinm    r5,r0,0,24,31
-	  stbx      r7, r3, r6
-	  addi      r6, r5, 0x26
-	  addi      r0, r4, 0x3
-	  rlwinm    r5,r0,0,24,31
-	  stbx      r7, r3, r6
-	  addi      r6, r5, 0x26
-	  addi      r0, r4, 0x4
-	  rlwinm    r5,r0,0,24,31
-	  stbx      r7, r3, r6
-	  addi      r6, r5, 0x26
-	  addi      r0, r4, 0x5
-	  rlwinm    r5,r0,0,24,31
-	  stbx      r7, r3, r6
-	  addi      r6, r5, 0x26
-	  addi      r0, r4, 0x6
-	  rlwinm    r5,r0,0,24,31
-	  stbx      r7, r3, r6
-	  addi      r0, r4, 0x7
-	  addi      r4, r4, 0x8
-	  addi      r6, r5, 0x26
-	  rlwinm    r5,r0,0,24,31
-	  stbx      r7, r3, r6
-	  addi      r0, r5, 0x26
-	  stbx      r7, r3, r0
+lbl_80471A08:
+	clrlwi   r5, r4, 0x18
+	addi     r0, r4, 1
+	addi     r6, r5, 0x26
+	li       r7, 0
+	clrlwi   r5, r0, 0x18
+	stbx     r7, r3, r6
+	addi     r6, r5, 0x26
+	addi     r0, r4, 2
+	clrlwi   r5, r0, 0x18
+	stbx     r7, r3, r6
+	addi     r6, r5, 0x26
+	addi     r0, r4, 3
+	clrlwi   r5, r0, 0x18
+	stbx     r7, r3, r6
+	addi     r6, r5, 0x26
+	addi     r0, r4, 4
+	clrlwi   r5, r0, 0x18
+	stbx     r7, r3, r6
+	addi     r6, r5, 0x26
+	addi     r0, r4, 5
+	clrlwi   r5, r0, 0x18
+	stbx     r7, r3, r6
+	addi     r6, r5, 0x26
+	addi     r0, r4, 6
+	clrlwi   r5, r0, 0x18
+	stbx     r7, r3, r6
+	addi     r0, r4, 7
+	addi     r4, r4, 8
+	addi     r6, r5, 0x26
+	clrlwi   r5, r0, 0x18
+	stbx     r7, r3, r6
+	addi     r0, r5, 0x26
+	stbx     r7, r3, r0
 
-	.loc_0x114:
-	  rlwinm    r0,r4,0,24,31
-	  cmplwi    r0, 0x10
-	  blt+      .loc_0x90
-	  li        r0, 0
-	  addi      r3, r1, 0x8
-	  stb       r0, 0x3E(r1)
-	  addi      r4, r2, 0x2A50
-	  stb       r0, 0x3F(r1)
-	  stb       r0, 0x40(r1)
-	  stb       r0, 0x41(r1)
-	  stb       r0, 0x42(r1)
-	  stb       r0, 0x43(r1)
-	  stb       r0, 0x44(r1)
-	  stb       r0, 0x45(r1)
-	  bl        -0x3A726C
-	  addi      r26, r1, 0x8
-	  li        r30, 0
-	  b         .loc_0x610
+lbl_80471A8C:
+	clrlwi   r0, r4, 0x18
+	cmplwi   r0, 0x10
+	blt      lbl_80471A08
+	li       r0, 0
+	addi     r3, r1, 8
+	stb      r0, 0x3e(r1)
+	addi     r4, r2, lbl_80520DB0@sda21
+	stb      r0, 0x3f(r1)
+	stb      r0, 0x40(r1)
+	stb      r0, 0x41(r1)
+	stb      r0, 0x42(r1)
+	stb      r0, 0x43(r1)
+	stb      r0, 0x44(r1)
+	stb      r0, 0x45(r1)
+	bl       strcpy
+	addi     r26, r1, 8
+	li       r30, 0
+	b        lbl_80471F88
 
-	.loc_0x15C:
-	  addi      r3, r1, 0x48
-	  li        r4, 0
-	  li        r5, 0
-	  bl        -0x5CA0C
-	  addi      r4, r31, 0x24
-	  mr        r29, r3
-	  bl        -0x3A742C
-	  cmpwi     r3, 0
-	  bne-      .loc_0x2D0
-	  mr        r6, r28
-	  addi      r3, r31, 0
-	  addi      r5, r31, 0x30
-	  li        r4, 0x87
-	  crclr     6, 0x6
-	  bl        -0x4474CC
-	  lbz       r0, 0x28(r1)
-	  addi      r8, r1, 0x8
-	  li        r9, 0
-	  stb       r0, 0x20(r27)
-	  lbz       r0, 0x29(r1)
-	  stb       r0, 0x21(r27)
-	  lbz       r0, 0x2A(r1)
-	  stb       r0, 0x22(r27)
-	  lbz       r0, 0x2B(r1)
-	  stb       r0, 0x23(r27)
-	  lbz       r0, 0x2C(r1)
-	  stb       r0, 0x24(r27)
-	  lbz       r0, 0x2D(r1)
-	  stb       r0, 0x25(r27)
-	  b         .loc_0x274
+lbl_80471AD4:
+	addi     r3, r1, 0x48
+	li       r4, 0
+	li       r5, 0
+	bl       readString__6StreamFPci
+	addi     r4, r31, 0x24
+	mr       r29, r3
+	bl       strcmp
+	cmpwi    r3, 0
+	bne      lbl_80471C48
+	mr       r6, r28
+	addi     r3, r31, 0
+	addi     r5, r31, 0x30
+	li       r4, 0x87
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
+	lbz      r0, 0x28(r1)
+	addi     r8, r1, 8
+	li       r9, 0
+	stb      r0, 0x20(r27)
+	lbz      r0, 0x29(r1)
+	stb      r0, 0x21(r27)
+	lbz      r0, 0x2a(r1)
+	stb      r0, 0x22(r27)
+	lbz      r0, 0x2b(r1)
+	stb      r0, 0x23(r27)
+	lbz      r0, 0x2c(r1)
+	stb      r0, 0x24(r27)
+	lbz      r0, 0x2d(r1)
+	stb      r0, 0x25(r27)
+	b        lbl_80471BEC
 
-	.loc_0x1D4:
-	  rlwinm    r3,r9,0,24,31
-	  addi      r4, r9, 0x1
-	  addi      r3, r3, 0x26
-	  addi      r5, r9, 0x2
-	  lbzx      r0, r8, r3
-	  addi      r6, r9, 0x3
-	  rlwinm    r6,r6,0,24,31
-	  addi      r10, r9, 0x5
-	  rlwinm    r4,r4,0,24,31
-	  stbx      r0, r27, r3
-	  addi      r3, r4, 0x26
-	  addi      r11, r9, 0x6
-	  lbzx      r0, r8, r3
-	  addi      r4, r9, 0x4
-	  addi      r12, r9, 0x7
-	  rlwinm    r5,r5,0,24,31
-	  stbx      r0, r27, r3
-	  addi      r3, r5, 0x26
-	  rlwinm    r10,r10,0,24,31
-	  addi      r7, r6, 0x26
-	  lbzx      r0, r8, r3
-	  rlwinm    r4,r4,0,24,31
-	  addi      r6, r4, 0x26
-	  rlwinm    r11,r11,0,24,31
-	  stbx      r0, r27, r3
-	  rlwinm    r12,r12,0,24,31
-	  addi      r5, r10, 0x26
-	  addi      r4, r11, 0x26
-	  lbzx      r0, r8, r7
-	  addi      r3, r12, 0x26
-	  addi      r9, r9, 0x8
-	  stbx      r0, r27, r7
-	  lbzx      r0, r8, r6
-	  stbx      r0, r27, r6
-	  lbzx      r0, r8, r5
-	  stbx      r0, r27, r5
-	  lbzx      r0, r8, r4
-	  stbx      r0, r27, r4
-	  lbzx      r0, r8, r3
-	  stbx      r0, r27, r3
+lbl_80471B4C:
+	clrlwi   r3, r9, 0x18
+	addi     r4, r9, 1
+	addi     r3, r3, 0x26
+	addi     r5, r9, 2
+	lbzx     r0, r8, r3
+	addi     r6, r9, 3
+	clrlwi   r6, r6, 0x18
+	addi     r10, r9, 5
+	clrlwi   r4, r4, 0x18
+	stbx     r0, r27, r3
+	addi     r3, r4, 0x26
+	addi     r11, r9, 6
+	lbzx     r0, r8, r3
+	addi     r4, r9, 4
+	addi     r12, r9, 7
+	clrlwi   r5, r5, 0x18
+	stbx     r0, r27, r3
+	addi     r3, r5, 0x26
+	clrlwi   r10, r10, 0x18
+	addi     r7, r6, 0x26
+	lbzx     r0, r8, r3
+	clrlwi   r4, r4, 0x18
+	addi     r6, r4, 0x26
+	clrlwi   r11, r11, 0x18
+	stbx     r0, r27, r3
+	clrlwi   r12, r12, 0x18
+	addi     r5, r10, 0x26
+	addi     r4, r11, 0x26
+	lbzx     r0, r8, r7
+	addi     r3, r12, 0x26
+	addi     r9, r9, 8
+	stbx     r0, r27, r7
+	lbzx     r0, r8, r6
+	stbx     r0, r27, r6
+	lbzx     r0, r8, r5
+	stbx     r0, r27, r5
+	lbzx     r0, r8, r4
+	stbx     r0, r27, r4
+	lbzx     r0, r8, r3
+	stbx     r0, r27, r3
 
-	.loc_0x274:
-	  rlwinm    r0,r9,0,24,31
-	  cmplwi    r0, 0x10
-	  blt+      .loc_0x1D4
-	  lbz       r0, 0x3E(r1)
-	  mr        r3, r27
-	  addi      r4, r1, 0x8
-	  stb       r0, 0x36(r27)
-	  lbz       r0, 0x3F(r1)
-	  stb       r0, 0x37(r27)
-	  lbz       r0, 0x40(r1)
-	  stb       r0, 0x38(r27)
-	  lbz       r0, 0x41(r1)
-	  stb       r0, 0x39(r27)
-	  lbz       r0, 0x42(r1)
-	  stb       r0, 0x3A(r27)
-	  lbz       r0, 0x43(r1)
-	  stb       r0, 0x3B(r27)
-	  lbz       r0, 0x44(r1)
-	  stb       r0, 0x3C(r27)
-	  lbz       r0, 0x45(r1)
-	  stb       r0, 0x3D(r27)
-	  bl        -0x3A73E8
-	  b         .loc_0x768
+lbl_80471BEC:
+	clrlwi   r0, r9, 0x18
+	cmplwi   r0, 0x10
+	blt      lbl_80471B4C
+	lbz      r0, 0x3e(r1)
+	mr       r3, r27
+	addi     r4, r1, 8
+	stb      r0, 0x36(r27)
+	lbz      r0, 0x3f(r1)
+	stb      r0, 0x37(r27)
+	lbz      r0, 0x40(r1)
+	stb      r0, 0x38(r27)
+	lbz      r0, 0x41(r1)
+	stb      r0, 0x39(r27)
+	lbz      r0, 0x42(r1)
+	stb      r0, 0x3a(r27)
+	lbz      r0, 0x43(r1)
+	stb      r0, 0x3b(r27)
+	lbz      r0, 0x44(r1)
+	stb      r0, 0x3c(r27)
+	lbz      r0, 0x45(r1)
+	stb      r0, 0x3d(r27)
+	bl       strcpy
+	b        lbl_804720E0
 
-	.loc_0x2D0:
-	  mr        r4, r29
-	  addi      r3, r1, 0x8
-	  bl        -0x3A73F8
-	  addi      r3, r1, 0x48
-	  bl        -0x5D7BC
-	  rlwinm    r0,r3,0,24,31
-	  stb       r3, 0x28(r1)
-	  cmplwi    r0, 0x10
-	  blt-      .loc_0x310
-	  mr        r6, r28
-	  addi      r3, r31, 0
-	  addi      r5, r31, 0x48
-	  rlwinm    r7,r30,0,24,31
-	  li        r4, 0x8E
-	  crclr     6, 0x6
-	  bl        -0x447644
+lbl_80471C48:
+	mr       r4, r29
+	addi     r3, r1, 8
+	bl       strcpy
+	addi     r3, r1, 0x48
+	bl       readByte__6StreamFv
+	clrlwi   r0, r3, 0x18
+	stb      r3, 0x28(r1)
+	cmplwi   r0, 0x10
+	blt      lbl_80471C88
+	mr       r6, r28
+	addi     r3, r31, 0
+	addi     r5, r31, 0x48
+	clrlwi   r7, r30, 0x18
+	li       r4, 0x8e
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x310:
-	  addi      r3, r1, 0x48
-	  bl        -0x5D7F0
-	  rlwinm    r0,r3,0,24,31
-	  stb       r3, 0x29(r1)
-	  cmplwi    r0, 0x10
-	  blt-      .loc_0x344
-	  mr        r6, r28
-	  addi      r3, r31, 0
-	  addi      r5, r31, 0x68
-	  rlwinm    r7,r30,0,24,31
-	  li        r4, 0x91
-	  crclr     6, 0x6
-	  bl        -0x447678
+lbl_80471C88:
+	addi     r3, r1, 0x48
+	bl       readByte__6StreamFv
+	clrlwi   r0, r3, 0x18
+	stb      r3, 0x29(r1)
+	cmplwi   r0, 0x10
+	blt      lbl_80471CBC
+	mr       r6, r28
+	addi     r3, r31, 0
+	addi     r5, r31, 0x68
+	clrlwi   r7, r30, 0x18
+	li       r4, 0x91
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x344:
-	  addi      r3, r1, 0x48
-	  bl        -0x5D824
-	  rlwinm    r0,r3,0,24,31
-	  stb       r3, 0x2A(r1)
-	  cmplwi    r0, 0x10
-	  blt-      .loc_0x378
-	  mr        r6, r28
-	  addi      r3, r31, 0
-	  addi      r5, r31, 0x88
-	  rlwinm    r7,r30,0,24,31
-	  li        r4, 0x94
-	  crclr     6, 0x6
-	  bl        -0x4476AC
+lbl_80471CBC:
+	addi     r3, r1, 0x48
+	bl       readByte__6StreamFv
+	clrlwi   r0, r3, 0x18
+	stb      r3, 0x2a(r1)
+	cmplwi   r0, 0x10
+	blt      lbl_80471CF0
+	mr       r6, r28
+	addi     r3, r31, 0
+	addi     r5, r31, 0x88
+	clrlwi   r7, r30, 0x18
+	li       r4, 0x94
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x378:
-	  addi      r3, r1, 0x48
-	  bl        -0x5D858
-	  rlwinm    r0,r3,0,24,31
-	  stb       r3, 0x2B(r1)
-	  cmplwi    r0, 0x10
-	  blt-      .loc_0x3AC
-	  mr        r6, r28
-	  addi      r3, r31, 0
-	  addi      r5, r31, 0xA8
-	  rlwinm    r7,r30,0,24,31
-	  li        r4, 0x97
-	  crclr     6, 0x6
-	  bl        -0x4476E0
+lbl_80471CF0:
+	addi     r3, r1, 0x48
+	bl       readByte__6StreamFv
+	clrlwi   r0, r3, 0x18
+	stb      r3, 0x2b(r1)
+	cmplwi   r0, 0x10
+	blt      lbl_80471D24
+	mr       r6, r28
+	addi     r3, r31, 0
+	addi     r5, r31, 0xa8
+	clrlwi   r7, r30, 0x18
+	li       r4, 0x97
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x3AC:
-	  addi      r3, r1, 0x48
-	  bl        -0x5D88C
-	  rlwinm    r0,r3,0,24,31
-	  stb       r3, 0x2C(r1)
-	  cmplwi    r0, 0x10
-	  blt-      .loc_0x3E0
-	  mr        r6, r28
-	  addi      r3, r31, 0
-	  addi      r5, r31, 0xC8
-	  rlwinm    r7,r30,0,24,31
-	  li        r4, 0x9A
-	  crclr     6, 0x6
-	  bl        -0x447714
+lbl_80471D24:
+	addi     r3, r1, 0x48
+	bl       readByte__6StreamFv
+	clrlwi   r0, r3, 0x18
+	stb      r3, 0x2c(r1)
+	cmplwi   r0, 0x10
+	blt      lbl_80471D58
+	mr       r6, r28
+	addi     r3, r31, 0
+	addi     r5, r31, 0xc8
+	clrlwi   r7, r30, 0x18
+	li       r4, 0x9a
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x3E0:
-	  addi      r3, r1, 0x48
-	  bl        -0x5D8C0
-	  rlwinm    r0,r3,0,24,31
-	  stb       r3, 0x2D(r1)
-	  cmplwi    r0, 0x10
-	  blt-      .loc_0x414
-	  mr        r6, r28
-	  addi      r3, r31, 0
-	  addi      r5, r31, 0xE8
-	  rlwinm    r7,r30,0,24,31
-	  li        r4, 0x9D
-	  crclr     6, 0x6
-	  bl        -0x447748
+lbl_80471D58:
+	addi     r3, r1, 0x48
+	bl       readByte__6StreamFv
+	clrlwi   r0, r3, 0x18
+	stb      r3, 0x2d(r1)
+	cmplwi   r0, 0x10
+	blt      lbl_80471D8C
+	mr       r6, r28
+	addi     r3, r31, 0
+	addi     r5, r31, 0xe8
+	clrlwi   r7, r30, 0x18
+	li       r4, 0x9d
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x414:
-	  rlwinm    r25,r30,0,24,31
-	  li        r24, 0
-	  b         .loc_0x460
+lbl_80471D8C:
+	clrlwi   r25, r30, 0x18
+	li       r24, 0
+	b        lbl_80471DD8
 
-	.loc_0x420:
-	  addi      r3, r1, 0x48
-	  bl        -0x5D900
-	  rlwinm    r4,r24,0,24,31
-	  addi      r0, r4, 0x26
-	  stbx      r3, r26, r0
-	  lbzx      r0, r26, r0
-	  cmplwi    r0, 0x1
-	  ble-      .loc_0x45C
-	  mr        r6, r28
-	  mr        r7, r25
-	  addi      r3, r31, 0
-	  addi      r5, r31, 0x108
-	  li        r4, 0xA1
-	  crclr     6, 0x6
-	  bl        -0x447790
+lbl_80471D98:
+	addi     r3, r1, 0x48
+	bl       readByte__6StreamFv
+	clrlwi   r4, r24, 0x18
+	addi     r0, r4, 0x26
+	stbx     r3, r26, r0
+	lbzx     r0, r26, r0
+	cmplwi   r0, 1
+	ble      lbl_80471DD4
+	mr       r6, r28
+	mr       r7, r25
+	addi     r3, r31, 0
+	addi     r5, r31, 0x108
+	li       r4, 0xa1
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x45C:
-	  addi      r24, r24, 0x1
+lbl_80471DD4:
+	addi     r24, r24, 1
 
-	.loc_0x460:
-	  rlwinm    r0,r24,0,24,31
-	  cmplwi    r0, 0x10
-	  blt+      .loc_0x420
-	  li        r24, 0
-	  b         .loc_0x4B4
+lbl_80471DD8:
+	clrlwi   r0, r24, 0x18
+	cmplwi   r0, 0x10
+	blt      lbl_80471D98
+	li       r24, 0
+	b        lbl_80471E2C
 
-	.loc_0x474:
-	  addi      r3, r1, 0x48
-	  bl        -0x5D954
-	  rlwinm    r4,r24,0,24,31
-	  addi      r0, r4, 0x36
-	  stbx      r3, r26, r0
-	  lbzx      r0, r26, r0
-	  cmplwi    r0, 0x1
-	  ble-      .loc_0x4B0
-	  mr        r6, r28
-	  mr        r7, r25
-	  addi      r3, r31, 0
-	  addi      r5, r31, 0x128
-	  li        r4, 0xA6
-	  crclr     6, 0x6
-	  bl        -0x4477E4
+lbl_80471DEC:
+	addi     r3, r1, 0x48
+	bl       readByte__6StreamFv
+	clrlwi   r4, r24, 0x18
+	addi     r0, r4, 0x36
+	stbx     r3, r26, r0
+	lbzx     r0, r26, r0
+	cmplwi   r0, 1
+	ble      lbl_80471E28
+	mr       r6, r28
+	mr       r7, r25
+	addi     r3, r31, 0
+	addi     r5, r31, 0x128
+	li       r4, 0xa6
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x4B0:
-	  addi      r24, r24, 0x1
+lbl_80471E28:
+	addi     r24, r24, 1
 
-	.loc_0x4B4:
-	  rlwinm    r0,r24,0,24,31
-	  cmplwi    r0, 0x8
-	  blt+      .loc_0x474
-	  mr        r3, r29
-	  mr        r4, r28
-	  bl        -0x3A7780
-	  cmpwi     r3, 0
-	  bne-      .loc_0x60C
-	  lbz       r0, 0x28(r1)
-	  addi      r8, r1, 0x8
-	  li        r9, 0
-	  stb       r0, 0x20(r27)
-	  lbz       r0, 0x29(r1)
-	  stb       r0, 0x21(r27)
-	  lbz       r0, 0x2A(r1)
-	  stb       r0, 0x22(r27)
-	  lbz       r0, 0x2B(r1)
-	  stb       r0, 0x23(r27)
-	  lbz       r0, 0x2C(r1)
-	  stb       r0, 0x24(r27)
-	  lbz       r0, 0x2D(r1)
-	  stb       r0, 0x25(r27)
-	  b         .loc_0x5B0
+lbl_80471E2C:
+	clrlwi   r0, r24, 0x18
+	cmplwi   r0, 8
+	blt      lbl_80471DEC
+	mr       r3, r29
+	mr       r4, r28
+	bl       strcmp
+	cmpwi    r3, 0
+	bne      lbl_80471F84
+	lbz      r0, 0x28(r1)
+	addi     r8, r1, 8
+	li       r9, 0
+	stb      r0, 0x20(r27)
+	lbz      r0, 0x29(r1)
+	stb      r0, 0x21(r27)
+	lbz      r0, 0x2a(r1)
+	stb      r0, 0x22(r27)
+	lbz      r0, 0x2b(r1)
+	stb      r0, 0x23(r27)
+	lbz      r0, 0x2c(r1)
+	stb      r0, 0x24(r27)
+	lbz      r0, 0x2d(r1)
+	stb      r0, 0x25(r27)
+	b        lbl_80471F28
 
-	.loc_0x510:
-	  rlwinm    r3,r9,0,24,31
-	  addi      r4, r9, 0x1
-	  addi      r3, r3, 0x26
-	  addi      r5, r9, 0x2
-	  lbzx      r0, r8, r3
-	  addi      r6, r9, 0x3
-	  rlwinm    r6,r6,0,24,31
-	  addi      r10, r9, 0x5
-	  rlwinm    r4,r4,0,24,31
-	  stbx      r0, r27, r3
-	  addi      r3, r4, 0x26
-	  addi      r11, r9, 0x6
-	  lbzx      r0, r8, r3
-	  addi      r4, r9, 0x4
-	  addi      r12, r9, 0x7
-	  rlwinm    r5,r5,0,24,31
-	  stbx      r0, r27, r3
-	  addi      r3, r5, 0x26
-	  rlwinm    r10,r10,0,24,31
-	  addi      r7, r6, 0x26
-	  lbzx      r0, r8, r3
-	  rlwinm    r4,r4,0,24,31
-	  addi      r6, r4, 0x26
-	  rlwinm    r11,r11,0,24,31
-	  stbx      r0, r27, r3
-	  rlwinm    r12,r12,0,24,31
-	  addi      r5, r10, 0x26
-	  addi      r4, r11, 0x26
-	  lbzx      r0, r8, r7
-	  addi      r3, r12, 0x26
-	  addi      r9, r9, 0x8
-	  stbx      r0, r27, r7
-	  lbzx      r0, r8, r6
-	  stbx      r0, r27, r6
-	  lbzx      r0, r8, r5
-	  stbx      r0, r27, r5
-	  lbzx      r0, r8, r4
-	  stbx      r0, r27, r4
-	  lbzx      r0, r8, r3
-	  stbx      r0, r27, r3
+lbl_80471E88:
+	clrlwi   r3, r9, 0x18
+	addi     r4, r9, 1
+	addi     r3, r3, 0x26
+	addi     r5, r9, 2
+	lbzx     r0, r8, r3
+	addi     r6, r9, 3
+	clrlwi   r6, r6, 0x18
+	addi     r10, r9, 5
+	clrlwi   r4, r4, 0x18
+	stbx     r0, r27, r3
+	addi     r3, r4, 0x26
+	addi     r11, r9, 6
+	lbzx     r0, r8, r3
+	addi     r4, r9, 4
+	addi     r12, r9, 7
+	clrlwi   r5, r5, 0x18
+	stbx     r0, r27, r3
+	addi     r3, r5, 0x26
+	clrlwi   r10, r10, 0x18
+	addi     r7, r6, 0x26
+	lbzx     r0, r8, r3
+	clrlwi   r4, r4, 0x18
+	addi     r6, r4, 0x26
+	clrlwi   r11, r11, 0x18
+	stbx     r0, r27, r3
+	clrlwi   r12, r12, 0x18
+	addi     r5, r10, 0x26
+	addi     r4, r11, 0x26
+	lbzx     r0, r8, r7
+	addi     r3, r12, 0x26
+	addi     r9, r9, 8
+	stbx     r0, r27, r7
+	lbzx     r0, r8, r6
+	stbx     r0, r27, r6
+	lbzx     r0, r8, r5
+	stbx     r0, r27, r5
+	lbzx     r0, r8, r4
+	stbx     r0, r27, r4
+	lbzx     r0, r8, r3
+	stbx     r0, r27, r3
 
-	.loc_0x5B0:
-	  rlwinm    r0,r9,0,24,31
-	  cmplwi    r0, 0x10
-	  blt+      .loc_0x510
-	  lbz       r0, 0x3E(r1)
-	  mr        r3, r27
-	  addi      r4, r1, 0x8
-	  stb       r0, 0x36(r27)
-	  lbz       r0, 0x3F(r1)
-	  stb       r0, 0x37(r27)
-	  lbz       r0, 0x40(r1)
-	  stb       r0, 0x38(r27)
-	  lbz       r0, 0x41(r1)
-	  stb       r0, 0x39(r27)
-	  lbz       r0, 0x42(r1)
-	  stb       r0, 0x3A(r27)
-	  lbz       r0, 0x43(r1)
-	  stb       r0, 0x3B(r27)
-	  lbz       r0, 0x44(r1)
-	  stb       r0, 0x3C(r27)
-	  lbz       r0, 0x45(r1)
-	  stb       r0, 0x3D(r27)
-	  bl        -0x3A7724
-	  b         .loc_0x768
+lbl_80471F28:
+	clrlwi   r0, r9, 0x18
+	cmplwi   r0, 0x10
+	blt      lbl_80471E88
+	lbz      r0, 0x3e(r1)
+	mr       r3, r27
+	addi     r4, r1, 8
+	stb      r0, 0x36(r27)
+	lbz      r0, 0x3f(r1)
+	stb      r0, 0x37(r27)
+	lbz      r0, 0x40(r1)
+	stb      r0, 0x38(r27)
+	lbz      r0, 0x41(r1)
+	stb      r0, 0x39(r27)
+	lbz      r0, 0x42(r1)
+	stb      r0, 0x3a(r27)
+	lbz      r0, 0x43(r1)
+	stb      r0, 0x3b(r27)
+	lbz      r0, 0x44(r1)
+	stb      r0, 0x3c(r27)
+	lbz      r0, 0x45(r1)
+	stb      r0, 0x3d(r27)
+	bl       strcpy
+	b        lbl_804720E0
 
-	.loc_0x60C:
-	  addi      r30, r30, 0x1
+lbl_80471F84:
+	addi     r30, r30, 1
 
-	.loc_0x610:
-	  rlwinm    r0,r30,0,24,31
-	  cmplwi    r0, 0x20
-	  blt+      .loc_0x15C
-	  mr        r6, r28
-	  addi      r3, r31, 0
-	  addi      r5, r31, 0x148
-	  li        r4, 0xB3
-	  crclr     6, 0x6
-	  bl        -0x447968
-	  lbz       r0, 0x28(r1)
-	  addi      r8, r1, 0x8
-	  li        r9, 0
-	  stb       r0, 0x20(r27)
-	  lbz       r0, 0x29(r1)
-	  stb       r0, 0x21(r27)
-	  lbz       r0, 0x2A(r1)
-	  stb       r0, 0x22(r27)
-	  lbz       r0, 0x2B(r1)
-	  stb       r0, 0x23(r27)
-	  lbz       r0, 0x2C(r1)
-	  stb       r0, 0x24(r27)
-	  lbz       r0, 0x2D(r1)
-	  stb       r0, 0x25(r27)
-	  b         .loc_0x710
+lbl_80471F88:
+	clrlwi   r0, r30, 0x18
+	cmplwi   r0, 0x20
+	blt      lbl_80471AD4
+	mr       r6, r28
+	addi     r3, r31, 0
+	addi     r5, r31, 0x148
+	li       r4, 0xb3
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
+	lbz      r0, 0x28(r1)
+	addi     r8, r1, 8
+	li       r9, 0
+	stb      r0, 0x20(r27)
+	lbz      r0, 0x29(r1)
+	stb      r0, 0x21(r27)
+	lbz      r0, 0x2a(r1)
+	stb      r0, 0x22(r27)
+	lbz      r0, 0x2b(r1)
+	stb      r0, 0x23(r27)
+	lbz      r0, 0x2c(r1)
+	stb      r0, 0x24(r27)
+	lbz      r0, 0x2d(r1)
+	stb      r0, 0x25(r27)
+	b        lbl_80472088
 
-	.loc_0x670:
-	  rlwinm    r3,r9,0,24,31
-	  addi      r4, r9, 0x1
-	  addi      r3, r3, 0x26
-	  addi      r5, r9, 0x2
-	  lbzx      r0, r8, r3
-	  addi      r6, r9, 0x3
-	  rlwinm    r6,r6,0,24,31
-	  addi      r10, r9, 0x5
-	  rlwinm    r4,r4,0,24,31
-	  stbx      r0, r27, r3
-	  addi      r3, r4, 0x26
-	  addi      r11, r9, 0x6
-	  lbzx      r0, r8, r3
-	  addi      r4, r9, 0x4
-	  addi      r12, r9, 0x7
-	  rlwinm    r5,r5,0,24,31
-	  stbx      r0, r27, r3
-	  addi      r3, r5, 0x26
-	  rlwinm    r10,r10,0,24,31
-	  addi      r7, r6, 0x26
-	  lbzx      r0, r8, r3
-	  rlwinm    r4,r4,0,24,31
-	  addi      r6, r4, 0x26
-	  rlwinm    r11,r11,0,24,31
-	  stbx      r0, r27, r3
-	  rlwinm    r12,r12,0,24,31
-	  addi      r5, r10, 0x26
-	  addi      r4, r11, 0x26
-	  lbzx      r0, r8, r7
-	  addi      r3, r12, 0x26
-	  addi      r9, r9, 0x8
-	  stbx      r0, r27, r7
-	  lbzx      r0, r8, r6
-	  stbx      r0, r27, r6
-	  lbzx      r0, r8, r5
-	  stbx      r0, r27, r5
-	  lbzx      r0, r8, r4
-	  stbx      r0, r27, r4
-	  lbzx      r0, r8, r3
-	  stbx      r0, r27, r3
+lbl_80471FE8:
+	clrlwi   r3, r9, 0x18
+	addi     r4, r9, 1
+	addi     r3, r3, 0x26
+	addi     r5, r9, 2
+	lbzx     r0, r8, r3
+	addi     r6, r9, 3
+	clrlwi   r6, r6, 0x18
+	addi     r10, r9, 5
+	clrlwi   r4, r4, 0x18
+	stbx     r0, r27, r3
+	addi     r3, r4, 0x26
+	addi     r11, r9, 6
+	lbzx     r0, r8, r3
+	addi     r4, r9, 4
+	addi     r12, r9, 7
+	clrlwi   r5, r5, 0x18
+	stbx     r0, r27, r3
+	addi     r3, r5, 0x26
+	clrlwi   r10, r10, 0x18
+	addi     r7, r6, 0x26
+	lbzx     r0, r8, r3
+	clrlwi   r4, r4, 0x18
+	addi     r6, r4, 0x26
+	clrlwi   r11, r11, 0x18
+	stbx     r0, r27, r3
+	clrlwi   r12, r12, 0x18
+	addi     r5, r10, 0x26
+	addi     r4, r11, 0x26
+	lbzx     r0, r8, r7
+	addi     r3, r12, 0x26
+	addi     r9, r9, 8
+	stbx     r0, r27, r7
+	lbzx     r0, r8, r6
+	stbx     r0, r27, r6
+	lbzx     r0, r8, r5
+	stbx     r0, r27, r5
+	lbzx     r0, r8, r4
+	stbx     r0, r27, r4
+	lbzx     r0, r8, r3
+	stbx     r0, r27, r3
 
-	.loc_0x710:
-	  rlwinm    r0,r9,0,24,31
-	  cmplwi    r0, 0x10
-	  blt+      .loc_0x670
-	  lbz       r0, 0x3E(r1)
-	  mr        r3, r27
-	  addi      r4, r1, 0x8
-	  stb       r0, 0x36(r27)
-	  lbz       r0, 0x3F(r1)
-	  stb       r0, 0x37(r27)
-	  lbz       r0, 0x40(r1)
-	  stb       r0, 0x38(r27)
-	  lbz       r0, 0x41(r1)
-	  stb       r0, 0x39(r27)
-	  lbz       r0, 0x42(r1)
-	  stb       r0, 0x3A(r27)
-	  lbz       r0, 0x43(r1)
-	  stb       r0, 0x3B(r27)
-	  lbz       r0, 0x44(r1)
-	  stb       r0, 0x3C(r27)
-	  lbz       r0, 0x45(r1)
-	  stb       r0, 0x3D(r27)
-	  bl        -0x3A7884
+lbl_80472088:
+	clrlwi   r0, r9, 0x18
+	cmplwi   r0, 0x10
+	blt      lbl_80471FE8
+	lbz      r0, 0x3e(r1)
+	mr       r3, r27
+	addi     r4, r1, 8
+	stb      r0, 0x36(r27)
+	lbz      r0, 0x3f(r1)
+	stb      r0, 0x37(r27)
+	lbz      r0, 0x40(r1)
+	stb      r0, 0x38(r27)
+	lbz      r0, 0x41(r1)
+	stb      r0, 0x39(r27)
+	lbz      r0, 0x42(r1)
+	stb      r0, 0x3a(r27)
+	lbz      r0, 0x43(r1)
+	stb      r0, 0x3b(r27)
+	lbz      r0, 0x44(r1)
+	stb      r0, 0x3c(r27)
+	lbz      r0, 0x45(r1)
+	stb      r0, 0x3d(r27)
+	bl       strcpy
 
-	.loc_0x768:
-	  lmw       r24, 0x470(r1)
-	  lwz       r0, 0x494(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x490
-	  blr
+lbl_804720E0:
+	lmw      r24, 0x470(r1)
+	lwz      r0, 0x494(r1)
+	mtlr     r0
+	addi     r1, r1, 0x490
+	blr
 	*/
 }
 
@@ -613,206 +671,205 @@ void BgmTrackMapFile::readTrackMap(const char*)
 void BgmTrackMapFile::read(Stream&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stmw      r26, 0x8(r1)
-	  mr        r27, r3
-	  lis       r3, 0x804A
-	  mr        r28, r4
-	  subi      r31, r3, 0x2188
-	  lbz       r0, 0x28(r27)
-	  cmplwi    r0, 0x1
-	  beq-      .loc_0x40
-	  addi      r3, r31, 0
-	  addi      r5, r31, 0x168
-	  li        r4, 0xCD
-	  crclr     6, 0x6
-	  bl        -0x447AF0
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stmw     r26, 8(r1)
+	mr       r27, r3
+	lis      r3, lbl_8049DE78@ha
+	mr       r28, r4
+	addi     r31, r3, lbl_8049DE78@l
+	lbz      r0, 0x28(r27)
+	cmplwi   r0, 1
+	beq      lbl_80472134
+	addi     r3, r31, 0
+	addi     r5, r31, 0x168
+	li       r4, 0xcd
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x40:
-	  li        r0, 0
-	  stw       r0, 0x24(r27)
-	  b         .loc_0x25C
+lbl_80472134:
+	li       r0, 0
+	stw      r0, 0x24(r27)
+	b        lbl_80472350
 
-	.loc_0x4C:
-	  mr        r3, r28
-	  li        r4, 0
-	  li        r5, 0
-	  bl        -0x5D078
-	  addi      r4, r31, 0x24
-	  mr        r29, r3
-	  bl        -0x3A7A98
-	  cmpwi     r3, 0
-	  bne-      .loc_0x78
-	  li        r3, 0x1
-	  b         .loc_0x280
+lbl_80472140:
+	mr       r3, r28
+	li       r4, 0
+	li       r5, 0
+	bl       readString__6StreamFPci
+	addi     r4, r31, 0x24
+	mr       r29, r3
+	bl       strcmp
+	cmpwi    r3, 0
+	bne      lbl_8047216C
+	li       r3, 1
+	b        lbl_80472374
 
-	.loc_0x78:
-	  mulli     r0, r30, 0x3E
-	  lwz       r3, 0x20(r27)
-	  mr        r4, r29
-	  add       r29, r3, r0
-	  mr        r3, r29
-	  bl        -0x3A7928
-	  mr        r3, r28
-	  bl        -0x5DCEC
-	  stb       r3, 0x20(r29)
-	  lbz       r0, 0x20(r29)
-	  cmplwi    r0, 0x10
-	  blt-      .loc_0xC0
-	  mr        r6, r30
-	  addi      r3, r31, 0
-	  addi      r5, r31, 0x184
-	  li        r4, 0xDF
-	  crclr     6, 0x6
-	  bl        -0x447B70
+lbl_8047216C:
+	mulli    r0, r30, 0x3e
+	lwz      r3, 0x20(r27)
+	mr       r4, r29
+	add      r29, r3, r0
+	mr       r3, r29
+	bl       strcpy
+	mr       r3, r28
+	bl       readByte__6StreamFv
+	stb      r3, 0x20(r29)
+	lbz      r0, 0x20(r29)
+	cmplwi   r0, 0x10
+	blt      lbl_804721B4
+	mr       r6, r30
+	addi     r3, r31, 0
+	addi     r5, r31, 0x184
+	li       r4, 0xdf
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xC0:
-	  mr        r3, r28
-	  bl        -0x5DD1C
-	  stb       r3, 0x21(r29)
-	  lbz       r0, 0x21(r29)
-	  cmplwi    r0, 0x10
-	  blt-      .loc_0xF0
-	  mr        r6, r30
-	  addi      r3, r31, 0
-	  addi      r5, r31, 0x1A0
-	  li        r4, 0xE2
-	  crclr     6, 0x6
-	  bl        -0x447BA0
+lbl_804721B4:
+	mr       r3, r28
+	bl       readByte__6StreamFv
+	stb      r3, 0x21(r29)
+	lbz      r0, 0x21(r29)
+	cmplwi   r0, 0x10
+	blt      lbl_804721E4
+	mr       r6, r30
+	addi     r3, r31, 0
+	addi     r5, r31, 0x1a0
+	li       r4, 0xe2
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xF0:
-	  mr        r3, r28
-	  bl        -0x5DD4C
-	  stb       r3, 0x22(r29)
-	  lbz       r0, 0x22(r29)
-	  cmplwi    r0, 0x10
-	  blt-      .loc_0x120
-	  mr        r6, r30
-	  addi      r3, r31, 0
-	  addi      r5, r31, 0x1BC
-	  li        r4, 0xE5
-	  crclr     6, 0x6
-	  bl        -0x447BD0
+lbl_804721E4:
+	mr       r3, r28
+	bl       readByte__6StreamFv
+	stb      r3, 0x22(r29)
+	lbz      r0, 0x22(r29)
+	cmplwi   r0, 0x10
+	blt      lbl_80472214
+	mr       r6, r30
+	addi     r3, r31, 0
+	addi     r5, r31, 0x1bc
+	li       r4, 0xe5
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x120:
-	  mr        r3, r28
-	  bl        -0x5DD7C
-	  stb       r3, 0x23(r29)
-	  lbz       r0, 0x23(r29)
-	  cmplwi    r0, 0x10
-	  blt-      .loc_0x150
-	  mr        r6, r30
-	  addi      r3, r31, 0
-	  addi      r5, r31, 0x1D8
-	  li        r4, 0xE8
-	  crclr     6, 0x6
-	  bl        -0x447C00
+lbl_80472214:
+	mr       r3, r28
+	bl       readByte__6StreamFv
+	stb      r3, 0x23(r29)
+	lbz      r0, 0x23(r29)
+	cmplwi   r0, 0x10
+	blt      lbl_80472244
+	mr       r6, r30
+	addi     r3, r31, 0
+	addi     r5, r31, 0x1d8
+	li       r4, 0xe8
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x150:
-	  mr        r3, r28
-	  bl        -0x5DDAC
-	  stb       r3, 0x24(r29)
-	  lbz       r0, 0x24(r29)
-	  cmplwi    r0, 0x10
-	  blt-      .loc_0x180
-	  mr        r6, r30
-	  addi      r3, r31, 0
-	  addi      r5, r31, 0x1F4
-	  li        r4, 0xEB
-	  crclr     6, 0x6
-	  bl        -0x447C30
+lbl_80472244:
+	mr       r3, r28
+	bl       readByte__6StreamFv
+	stb      r3, 0x24(r29)
+	lbz      r0, 0x24(r29)
+	cmplwi   r0, 0x10
+	blt      lbl_80472274
+	mr       r6, r30
+	addi     r3, r31, 0
+	addi     r5, r31, 0x1f4
+	li       r4, 0xeb
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x180:
-	  mr        r3, r28
-	  bl        -0x5DDDC
-	  stb       r3, 0x25(r29)
-	  lbz       r0, 0x25(r29)
-	  cmplwi    r0, 0x10
-	  blt-      .loc_0x1B0
-	  mr        r6, r30
-	  addi      r3, r31, 0
-	  addi      r5, r31, 0x210
-	  li        r4, 0xEE
-	  crclr     6, 0x6
-	  bl        -0x447C60
+lbl_80472274:
+	mr       r3, r28
+	bl       readByte__6StreamFv
+	stb      r3, 0x25(r29)
+	lbz      r0, 0x25(r29)
+	cmplwi   r0, 0x10
+	blt      lbl_804722A4
+	mr       r6, r30
+	addi     r3, r31, 0
+	addi     r5, r31, 0x210
+	li       r4, 0xee
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x1B0:
-	  li        r26, 0
-	  b         .loc_0x1F4
+lbl_804722A4:
+	li       r26, 0
+	b        lbl_804722E8
 
-	.loc_0x1B8:
-	  mr        r3, r28
-	  bl        -0x5DE14
-	  rlwinm    r4,r26,0,24,31
-	  addi      r0, r4, 0x26
-	  stbx      r3, r29, r0
-	  lbzx      r0, r29, r0
-	  cmplwi    r0, 0x1
-	  ble-      .loc_0x1F0
-	  mr        r6, r30
-	  addi      r3, r31, 0
-	  addi      r5, r31, 0x22C
-	  li        r4, 0xF2
-	  crclr     6, 0x6
-	  bl        -0x447CA0
+lbl_804722AC:
+	mr       r3, r28
+	bl       readByte__6StreamFv
+	clrlwi   r4, r26, 0x18
+	addi     r0, r4, 0x26
+	stbx     r3, r29, r0
+	lbzx     r0, r29, r0
+	cmplwi   r0, 1
+	ble      lbl_804722E4
+	mr       r6, r30
+	addi     r3, r31, 0
+	addi     r5, r31, 0x22c
+	li       r4, 0xf2
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x1F0:
-	  addi      r26, r26, 0x1
+lbl_804722E4:
+	addi     r26, r26, 1
 
-	.loc_0x1F4:
-	  rlwinm    r0,r26,0,24,31
-	  cmplwi    r0, 0x10
-	  blt+      .loc_0x1B8
-	  li        r26, 0
-	  b         .loc_0x244
+lbl_804722E8:
+	clrlwi   r0, r26, 0x18
+	cmplwi   r0, 0x10
+	blt      lbl_804722AC
+	li       r26, 0
+	b        lbl_80472338
 
-	.loc_0x208:
-	  mr        r3, r28
-	  bl        -0x5DE64
-	  rlwinm    r4,r26,0,24,31
-	  addi      r0, r4, 0x36
-	  stbx      r3, r29, r0
-	  lbzx      r0, r29, r0
-	  cmplwi    r0, 0x1
-	  ble-      .loc_0x240
-	  mr        r6, r30
-	  addi      r3, r31, 0
-	  addi      r5, r31, 0x248
-	  li        r4, 0xF6
-	  crclr     6, 0x6
-	  bl        -0x447CF0
+lbl_804722FC:
+	mr       r3, r28
+	bl       readByte__6StreamFv
+	clrlwi   r4, r26, 0x18
+	addi     r0, r4, 0x36
+	stbx     r3, r29, r0
+	lbzx     r0, r29, r0
+	cmplwi   r0, 1
+	ble      lbl_80472334
+	mr       r6, r30
+	addi     r3, r31, 0
+	addi     r5, r31, 0x248
+	li       r4, 0xf6
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x240:
-	  addi      r26, r26, 0x1
+lbl_80472334:
+	addi     r26, r26, 1
 
-	.loc_0x244:
-	  rlwinm    r0,r26,0,24,31
-	  cmplwi    r0, 0x8
-	  blt+      .loc_0x208
-	  lwz       r3, 0x24(r27)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x24(r27)
+lbl_80472338:
+	clrlwi   r0, r26, 0x18
+	cmplwi   r0, 8
+	blt      lbl_804722FC
+	lwz      r3, 0x24(r27)
+	addi     r0, r3, 1
+	stw      r0, 0x24(r27)
 
-	.loc_0x25C:
-	  lwz       r30, 0x24(r27)
-	  cmpwi     r30, 0x20
-	  blt+      .loc_0x4C
-	  addi      r3, r31, 0
-	  addi      r5, r31, 0x264
-	  li        r4, 0xFA
-	  crclr     6, 0x6
-	  bl        -0x447D2C
-	  li        r3, 0
+lbl_80472350:
+	lwz      r30, 0x24(r27)
+	cmpwi    r30, 0x20
+	blt      lbl_80472140
+	addi     r3, r31, 0
+	addi     r5, r31, 0x264
+	li       r4, 0xfa
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
+	li       r3, 0
 
-	.loc_0x280:
-	  lmw       r26, 0x8(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80472374:
+	lmw      r26, 8(r1)
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -824,79 +881,78 @@ void BgmTrackMapFile::read(Stream&)
 BgmTrackMap::BgmTrackMap()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r6, 0
-	  stw       r0, 0x14(r1)
-	  li        r0, 0
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  stb       r0, 0x20(r3)
-	  stb       r0, 0x21(r3)
-	  stb       r0, 0x22(r3)
-	  stb       r0, 0x23(r3)
-	  stb       r0, 0x24(r3)
-	  stb       r0, 0x25(r3)
-	  b         .loc_0xBC
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	li       r6, 0
+	stw      r0, 0x14(r1)
+	li       r0, 0
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	stb      r0, 0x20(r3)
+	stb      r0, 0x21(r3)
+	stb      r0, 0x22(r3)
+	stb      r0, 0x23(r3)
+	stb      r0, 0x24(r3)
+	stb      r0, 0x25(r3)
+	b        lbl_80472444
 
-	.loc_0x38:
-	  rlwinm    r3,r6,0,24,31
-	  addi      r0, r6, 0x1
-	  addi      r4, r3, 0x26
-	  li        r5, 0
-	  rlwinm    r3,r0,0,24,31
-	  stbx      r5, r31, r4
-	  addi      r4, r3, 0x26
-	  addi      r0, r6, 0x2
-	  rlwinm    r3,r0,0,24,31
-	  stbx      r5, r31, r4
-	  addi      r4, r3, 0x26
-	  addi      r0, r6, 0x3
-	  rlwinm    r3,r0,0,24,31
-	  stbx      r5, r31, r4
-	  addi      r4, r3, 0x26
-	  addi      r0, r6, 0x4
-	  rlwinm    r3,r0,0,24,31
-	  stbx      r5, r31, r4
-	  addi      r4, r3, 0x26
-	  addi      r0, r6, 0x5
-	  rlwinm    r3,r0,0,24,31
-	  stbx      r5, r31, r4
-	  addi      r4, r3, 0x26
-	  addi      r0, r6, 0x6
-	  rlwinm    r3,r0,0,24,31
-	  stbx      r5, r31, r4
-	  addi      r0, r6, 0x7
-	  addi      r6, r6, 0x8
-	  addi      r4, r3, 0x26
-	  rlwinm    r3,r0,0,24,31
-	  stbx      r5, r31, r4
-	  addi      r0, r3, 0x26
-	  stbx      r5, r31, r0
+lbl_804723C0:
+	clrlwi   r3, r6, 0x18
+	addi     r0, r6, 1
+	addi     r4, r3, 0x26
+	li       r5, 0
+	clrlwi   r3, r0, 0x18
+	stbx     r5, r31, r4
+	addi     r4, r3, 0x26
+	addi     r0, r6, 2
+	clrlwi   r3, r0, 0x18
+	stbx     r5, r31, r4
+	addi     r4, r3, 0x26
+	addi     r0, r6, 3
+	clrlwi   r3, r0, 0x18
+	stbx     r5, r31, r4
+	addi     r4, r3, 0x26
+	addi     r0, r6, 4
+	clrlwi   r3, r0, 0x18
+	stbx     r5, r31, r4
+	addi     r4, r3, 0x26
+	addi     r0, r6, 5
+	clrlwi   r3, r0, 0x18
+	stbx     r5, r31, r4
+	addi     r4, r3, 0x26
+	addi     r0, r6, 6
+	clrlwi   r3, r0, 0x18
+	stbx     r5, r31, r4
+	addi     r0, r6, 7
+	addi     r6, r6, 8
+	addi     r4, r3, 0x26
+	clrlwi   r3, r0, 0x18
+	stbx     r5, r31, r4
+	addi     r0, r3, 0x26
+	stbx     r5, r31, r0
 
-	.loc_0xBC:
-	  rlwinm    r0,r6,0,24,31
-	  cmplwi    r0, 0x10
-	  blt+      .loc_0x38
-	  li        r0, 0
-	  mr        r3, r31
-	  stb       r0, 0x36(r31)
-	  addi      r4, r2, 0x2A50
-	  stb       r0, 0x37(r31)
-	  stb       r0, 0x38(r31)
-	  stb       r0, 0x39(r31)
-	  stb       r0, 0x3A(r31)
-	  stb       r0, 0x3B(r31)
-	  stb       r0, 0x3C(r31)
-	  stb       r0, 0x3D(r31)
-	  bl        -0x3A7C24
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80472444:
+	clrlwi   r0, r6, 0x18
+	cmplwi   r0, 0x10
+	blt      lbl_804723C0
+	li       r0, 0
+	mr       r3, r31
+	stb      r0, 0x36(r31)
+	addi     r4, r2, lbl_80520DB0@sda21
+	stb      r0, 0x37(r31)
+	stb      r0, 0x38(r31)
+	stb      r0, 0x39(r31)
+	stb      r0, 0x3a(r31)
+	stb      r0, 0x3b(r31)
+	stb      r0, 0x3c(r31)
+	stb      r0, 0x3d(r31)
+	bl       strcpy
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -908,9 +964,8 @@ BgmTrackMap::BgmTrackMap()
 BgmTrackMapFile::@28 @~BgmTrackMapFile()
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x1C
-	  b         -0x1740
+	addi     r3, r3, -28
+	b        __dt__Q23PSM15BgmTrackMapFileFv
 	*/
 }
 } // namespace PSM

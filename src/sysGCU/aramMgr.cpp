@@ -1,6 +1,44 @@
 #include "types.h"
 
 /*
+    Generated from dpostproc
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_8049A628
+    lbl_8049A628:
+        .4byte 0x6172616D
+        .4byte 0x4D67722E
+        .4byte 0x63707000
+    .global lbl_8049A634
+    lbl_8049A634:
+        .asciz "P2Assert"
+        .skip 3
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__Q24ARAM4Node
+    __vt__Q24ARAM4Node:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q24ARAM4NodeFv
+        .4byte getChildCount__5CNodeFv
+
+    .section .sbss # 0x80514D80 - 0x80516360
+    .global gAramMgr
+    gAramMgr:
+        .skip 0x8
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_80520770
+    lbl_80520770:
+        .4byte 0x00000000
+    .global lbl_80520774
+    lbl_80520774:
+        .4byte 0x726F6F74
+        .4byte 0x00000000
+        .4byte 0x00000000
+*/
+
+/*
  * --INFO--
  * Address:	........
  * Size:	00003C
@@ -51,23 +89,20 @@ void ARAM::Node::dump(void)
 void ARAM::Mgr::init(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r3, 0x18
-	  stw       r0, 0x14(r1)
-	  bl        -0x40EC84
-	  cmplwi    r3, 0
-	  beq-      .loc_0x20
-	  bl        .loc_0x30
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	li       r3, 0x18
+	stw      r0, 0x14(r1)
+	bl       __nw__FUl
+	cmplwi   r3, 0
+	beq      lbl_80432B38
+	bl       __ct__Q24ARAM3MgrFv
 
-	.loc_0x20:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-
-	.loc_0x30:
+lbl_80432B38:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -79,41 +114,40 @@ void ARAM::Mgr::init(void)
 ARAM::Mgr::Mgr(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r4, 0x804F
-	  stw       r0, 0x14(r1)
-	  subi      r0, r4, 0x4AD8
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  li        r3, 0
-	  stw       r0, 0x0(r31)
-	  addi      r0, r2, 0x2414
-	  stw       r3, 0x10(r31)
-	  stw       r3, 0xC(r31)
-	  stw       r3, 0x8(r31)
-	  stw       r3, 0x4(r31)
-	  stw       r0, 0x14(r31)
-	  lwz       r0, -0x6458(r13)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x64
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x59D8
-	  li        r4, 0xF8
-	  subi      r5, r5, 0x59CC
-	  crclr     6, 0x6
-	  bl        -0x408568
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lis      r4, __vt__5CNode@ha
+	stw      r0, 0x14(r1)
+	addi     r0, r4, __vt__5CNode@l
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	li       r3, 0
+	stw      r0, 0(r31)
+	addi     r0, r2, lbl_80520774@sda21
+	stw      r3, 0x10(r31)
+	stw      r3, 0xc(r31)
+	stw      r3, 8(r31)
+	stw      r3, 4(r31)
+	stw      r0, 0x14(r31)
+	lwz      r0, gAramMgr@sda21(r13)
+	cmplwi   r0, 0
+	beq      lbl_80432BAC
+	lis      r3, lbl_8049A628@ha
+	lis      r5, lbl_8049A634@ha
+	addi     r3, r3, lbl_8049A628@l
+	li       r4, 0xf8
+	addi     r5, r5, lbl_8049A634@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x64:
-	  stw       r31, -0x6458(r13)
-	  mr        r3, r31
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80432BAC:
+	stw      r31, gAramMgr@sda21(r13)
+	mr       r3, r31
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -125,180 +159,179 @@ ARAM::Mgr::Mgr(void)
 void ARAM::Mgr::dvdToAram(char const*, bool)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stmw      r26, 0x8(r1)
-	  mr        r28, r3
-	  mr        r26, r4
-	  mr        r29, r5
-	  li        r30, 0
-	  bl        0x480
-	  mr.       r31, r3
-	  bne-      .loc_0x1C4
-	  lwz       r4, -0x77D8(r13)
-	  li        r3, 0x1C
-	  li        r5, 0
-	  bl        -0x40ECC0
-	  mr.       r31, r3
-	  beq-      .loc_0x7C
-	  lis       r4, 0x804F
-	  lis       r3, 0x804F
-	  subi      r0, r4, 0x4AD8
-	  li        r5, 0
-	  stw       r0, 0x0(r31)
-	  addi      r4, r2, 0x2410
-	  subi      r0, r3, 0x3C38
-	  stw       r5, 0x10(r31)
-	  stw       r5, 0xC(r31)
-	  stw       r5, 0x8(r31)
-	  stw       r5, 0x4(r31)
-	  stw       r4, 0x14(r31)
-	  stw       r0, 0x0(r31)
-	  stw       r5, 0x18(r31)
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stmw     r26, 8(r1)
+	mr       r28, r3
+	mr       r26, r4
+	mr       r29, r5
+	li       r30, 0
+	bl       search__Q24ARAM3MgrFPCc
+	or.      r31, r3, r3
+	bne      lbl_80432D8C
+	lwz      r4, sSystemHeap__7JKRHeap@sda21(r13)
+	li       r3, 0x1c
+	li       r5, 0
+	bl       __nw__FUlP7JKRHeapi
+	or.      r31, r3, r3
+	beq      lbl_80432C44
+	lis      r4, __vt__5CNode@ha
+	lis      r3, __vt__Q24ARAM4Node@ha
+	addi     r0, r4, __vt__5CNode@l
+	li       r5, 0
+	stw      r0, 0(r31)
+	addi     r4, r2, lbl_80520770@sda21
+	addi     r0, r3, __vt__Q24ARAM4Node@l
+	stw      r5, 0x10(r31)
+	stw      r5, 0xc(r31)
+	stw      r5, 8(r31)
+	stw      r5, 4(r31)
+	stw      r4, 0x14(r31)
+	stw      r0, 0(r31)
+	stw      r5, 0x18(r31)
 
-	.loc_0x7C:
-	  lwz       r27, -0x77D8(r13)
-	  mr        r3, r26
-	  bl        -0x36833C
-	  addi      r3, r3, 0x1
-	  mr        r4, r27
-	  li        r5, 0
-	  bl        -0x40EC14
-	  mr        r4, r26
-	  mr        r27, r3
-	  bl        -0x368410
-	  rlwinm.   r0,r29,0,24,31
-	  beq-      .loc_0x124
-	  cmplwi    r27, 0
-	  bne-      .loc_0xD0
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x59D8
-	  li        r4, 0x69
-	  subi      r5, r5, 0x59CC
-	  crclr     6, 0x6
-	  bl        -0x408654
+lbl_80432C44:
+	lwz      r27, sSystemHeap__7JKRHeap@sda21(r13)
+	mr       r3, r26
+	bl       strlen
+	addi     r3, r3, 1
+	mr       r4, r27
+	li       r5, 0
+	bl       __nwa__FUlP7JKRHeapi
+	mr       r4, r26
+	mr       r27, r3
+	bl       strcpy
+	clrlwi.  r0, r29, 0x18
+	beq      lbl_80432CEC
+	cmplwi   r27, 0
+	bne      lbl_80432C98
+	lis      r3, lbl_8049A628@ha
+	lis      r5, lbl_8049A634@ha
+	addi     r3, r3, lbl_8049A628@l
+	li       r4, 0x69
+	addi     r5, r5, lbl_8049A634@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xD0:
-	  stw       r27, 0x14(r31)
-	  lwz       r0, 0x18(r31)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x114
-	  rlwinm.   r0,r29,0,24,31
-	  beq-      .loc_0xF4
-	  li        r0, 0
-	  stw       r0, 0x18(r31)
-	  b         .loc_0x114
+lbl_80432C98:
+	stw      r27, 0x14(r31)
+	lwz      r0, 0x18(r31)
+	cmplwi   r0, 0
+	bne      lbl_80432CDC
+	clrlwi.  r0, r29, 0x18
+	beq      lbl_80432CBC
+	li       r0, 0
+	stw      r0, 0x18(r31)
+	b        lbl_80432CDC
 
-	.loc_0xF4:
-	  lwz       r3, 0x14(r31)
-	  li        r4, 0
-	  li        r5, 0
-	  li        r6, 0
-	  li        r7, 0
-	  li        r8, 0
-	  bl        -0x4155E4
-	  stw       r3, 0x18(r31)
+lbl_80432CBC:
+	lwz      r3, 0x14(r31)
+	li       r4, 0
+	li       r5, 0
+	li       r6, 0
+	li       r7, 0
+	li       r8, 0
+	bl       loadToAram__16JKRDvdAramRipperFPCcUl15JKRExpandSwitchUlUlPUl
+	stw      r3, 0x18(r31)
 
-	.loc_0x114:
-	  mr        r3, r28
-	  mr        r4, r31
-	  bl        -0x218DC
-	  b         .loc_0x234
+lbl_80432CDC:
+	mr       r3, r28
+	mr       r4, r31
+	bl       add__5CNodeFP5CNode
+	b        lbl_80432DFC
 
-	.loc_0x124:
-	  cmplwi    r27, 0
-	  bne-      .loc_0x148
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x59D8
-	  li        r4, 0x69
-	  subi      r5, r5, 0x59CC
-	  crclr     6, 0x6
-	  bl        -0x4086CC
+lbl_80432CEC:
+	cmplwi   r27, 0
+	bne      lbl_80432D10
+	lis      r3, lbl_8049A628@ha
+	lis      r5, lbl_8049A634@ha
+	addi     r3, r3, lbl_8049A628@l
+	li       r4, 0x69
+	addi     r5, r5, lbl_8049A634@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x148:
-	  stw       r27, 0x14(r31)
-	  lwz       r0, 0x18(r31)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x178
-	  lwz       r3, 0x14(r31)
-	  li        r4, 0
-	  li        r5, 0
-	  li        r6, 0
-	  li        r7, 0
-	  li        r8, 0
-	  bl        -0x415648
-	  stw       r3, 0x18(r31)
+lbl_80432D10:
+	stw      r27, 0x14(r31)
+	lwz      r0, 0x18(r31)
+	cmplwi   r0, 0
+	bne      lbl_80432D40
+	lwz      r3, 0x14(r31)
+	li       r4, 0
+	li       r5, 0
+	li       r6, 0
+	li       r7, 0
+	li       r8, 0
+	bl       loadToAram__16JKRDvdAramRipperFPCcUl15JKRExpandSwitchUlUlPUl
+	stw      r3, 0x18(r31)
 
-	.loc_0x178:
-	  lwz       r0, 0x18(r31)
-	  cmplwi    r0, 0
-	  mr        r30, r0
-	  beq-      .loc_0x198
-	  mr        r3, r28
-	  mr        r4, r31
-	  bl        -0x21950
-	  b         .loc_0x234
+lbl_80432D40:
+	lwz      r0, 0x18(r31)
+	cmplwi   r0, 0
+	mr       r30, r0
+	beq      lbl_80432D60
+	mr       r3, r28
+	mr       r4, r31
+	bl       add__5CNodeFP5CNode
+	b        lbl_80432DFC
 
-	.loc_0x198:
-	  mr        r3, r27
-	  bl        -0x40ECB0
-	  cmplwi    r31, 0
-	  beq-      .loc_0x234
-	  mr        r3, r31
-	  li        r4, 0x1
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x234
+lbl_80432D60:
+	mr       r3, r27
+	bl       __dl__FPv
+	cmplwi   r31, 0
+	beq      lbl_80432DFC
+	mr       r3, r31
+	li       r4, 1
+	lwz      r12, 0(r31)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_80432DFC
 
-	.loc_0x1C4:
-	  lwz       r28, 0x14(r31)
-	  cmplwi    r28, 0
-	  bne-      .loc_0x1EC
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x59D8
-	  li        r4, 0x69
-	  subi      r5, r5, 0x59CC
-	  crclr     6, 0x6
-	  bl        -0x408770
+lbl_80432D8C:
+	lwz      r28, 0x14(r31)
+	cmplwi   r28, 0
+	bne      lbl_80432DB4
+	lis      r3, lbl_8049A628@ha
+	lis      r5, lbl_8049A634@ha
+	addi     r3, r3, lbl_8049A628@l
+	li       r4, 0x69
+	addi     r5, r5, lbl_8049A634@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x1EC:
-	  stw       r28, 0x14(r31)
-	  lwz       r0, 0x18(r31)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x230
-	  rlwinm.   r0,r29,0,24,31
-	  beq-      .loc_0x210
-	  li        r0, 0
-	  stw       r0, 0x18(r31)
-	  b         .loc_0x230
+lbl_80432DB4:
+	stw      r28, 0x14(r31)
+	lwz      r0, 0x18(r31)
+	cmplwi   r0, 0
+	bne      lbl_80432DF8
+	clrlwi.  r0, r29, 0x18
+	beq      lbl_80432DD8
+	li       r0, 0
+	stw      r0, 0x18(r31)
+	b        lbl_80432DF8
 
-	.loc_0x210:
-	  lwz       r3, 0x14(r31)
-	  li        r4, 0
-	  li        r5, 0
-	  li        r6, 0
-	  li        r7, 0
-	  li        r8, 0
-	  bl        -0x415700
-	  stw       r3, 0x18(r31)
+lbl_80432DD8:
+	lwz      r3, 0x14(r31)
+	li       r4, 0
+	li       r5, 0
+	li       r6, 0
+	li       r7, 0
+	li       r8, 0
+	bl       loadToAram__16JKRDvdAramRipperFPCcUl15JKRExpandSwitchUlUlPUl
+	stw      r3, 0x18(r31)
 
-	.loc_0x230:
-	  lwz       r30, 0x18(r31)
+lbl_80432DF8:
+	lwz      r30, 0x18(r31)
 
-	.loc_0x234:
-	  mr        r3, r30
-	  lmw       r26, 0x8(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80432DFC:
+	mr       r3, r30
+	lmw      r26, 8(r1)
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -310,33 +343,32 @@ void ARAM::Mgr::dvdToAram(char const*, bool)
 ARAM::Node::~Node(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x44
-	  lis       r5, 0x804F
-	  li        r4, 0
-	  subi      r0, r5, 0x3C38
-	  stw       r0, 0x0(r30)
-	  bl        -0x218BC
-	  extsh.    r0, r31
-	  ble-      .loc_0x44
-	  mr        r3, r30
-	  bl        -0x40EDA0
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_80432E58
+	lis      r5, __vt__Q24ARAM4Node@ha
+	li       r4, 0
+	addi     r0, r5, __vt__Q24ARAM4Node@l
+	stw      r0, 0(r30)
+	bl       __dt__5CNodeFv
+	extsh.   r0, r31
+	ble      lbl_80432E58
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x44:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80432E58:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -460,59 +492,58 @@ void ARAM::Mgr::aramToMainRam(char const*, unsigned char*, unsigned long,
 void ARAM::Mgr::dump(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  li        r31, -0x1
-	  stw       r30, 0x18(r1)
-	  li        r30, 0
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  lwz       r4, -0x78E0(r13)
-	  lwz       r3, 0x94(r4)
-	  bl        -0x41962C
-	  lwz       r3, -0x78E0(r13)
-	  lwz       r3, 0x94(r3)
-	  bl        -0x419638
-	  lwz       r4, 0x10(r29)
-	  b         .loc_0x7C
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	li       r31, -1
+	stw      r30, 0x18(r1)
+	li       r30, 0
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	lwz      r4, sAramObject__7JKRAram@sda21(r13)
+	lwz      r3, 0x94(r4)
+	bl       getFreeSize__11JKRAramHeapFv
+	lwz      r3, sAramObject__7JKRAram@sda21(r13)
+	lwz      r3, 0x94(r3)
+	bl       getFreeSize__11JKRAramHeapFv
+	lwz      r4, 0x10(r29)
+	b        lbl_80433044
 
-	.loc_0x44:
-	  lwz       r3, 0x18(r4)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x58
-	  lwz       r0, 0x18(r3)
-	  b         .loc_0x5C
+lbl_8043300C:
+	lwz      r3, 0x18(r4)
+	cmplwi   r3, 0
+	beq      lbl_80433020
+	lwz      r0, 0x18(r3)
+	b        lbl_80433024
 
-	.loc_0x58:
-	  li        r0, 0
+lbl_80433020:
+	li       r0, 0
 
-	.loc_0x5C:
-	  cmplw     r31, r0
-	  ble-      .loc_0x6C
-	  mr        r31, r0
-	  b         .loc_0x78
+lbl_80433024:
+	cmplw    r31, r0
+	ble      lbl_80433034
+	mr       r31, r0
+	b        lbl_80433040
 
-	.loc_0x6C:
-	  cmplw     r30, r0
-	  bge-      .loc_0x78
-	  mr        r30, r0
+lbl_80433034:
+	cmplw    r30, r0
+	bge      lbl_80433040
+	mr       r30, r0
 
-	.loc_0x78:
-	  lwz       r4, 0x4(r4)
+lbl_80433040:
+	lwz      r4, 4(r4)
 
-	.loc_0x7C:
-	  cmplwi    r4, 0
-	  bne+      .loc_0x44
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80433044:
+	cmplwi   r4, 0
+	bne      lbl_8043300C
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -524,42 +555,41 @@ void ARAM::Mgr::dump(void)
 void ARAM::Mgr::search(char const*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  li        r31, 0
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r29, r4
-	  lwz       r30, 0x10(r3)
-	  b         .loc_0x48
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	li       r31, 0
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	mr       r29, r4
+	lwz      r30, 0x10(r3)
+	b        lbl_804330B0
 
-	.loc_0x28:
-	  lwz       r4, 0x14(r30)
-	  mr        r3, r29
-	  bl        -0x3689D8
-	  cmpwi     r3, 0
-	  bne-      .loc_0x44
-	  mr        r31, r30
-	  b         .loc_0x50
+lbl_80433090:
+	lwz      r4, 0x14(r30)
+	mr       r3, r29
+	bl       strcmp
+	cmpwi    r3, 0
+	bne      lbl_804330AC
+	mr       r31, r30
+	b        lbl_804330B8
 
-	.loc_0x44:
-	  lwz       r30, 0x4(r30)
+lbl_804330AC:
+	lwz      r30, 4(r30)
 
-	.loc_0x48:
-	  cmplwi    r30, 0
-	  bne+      .loc_0x28
+lbl_804330B0:
+	cmplwi   r30, 0
+	bne      lbl_80433090
 
-	.loc_0x50:
-	  lwz       r0, 0x24(r1)
-	  mr        r3, r31
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_804330B8:
+	lwz      r0, 0x24(r1)
+	mr       r3, r31
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }

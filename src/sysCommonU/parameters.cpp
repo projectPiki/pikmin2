@@ -5,6 +5,34 @@
 #include "BaseParm.h"
 #include "Dolphin/string.h"
 
+/*
+    Generated from dpostproc
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__8ParmEnum
+    __vt__8ParmEnum:
+        .4byte 0
+        .4byte 0
+        .4byte size__8ParmEnumFv
+        .4byte write__8ParmEnumFR6Stream
+        .4byte read__8ParmEnumFR6Stream
+    .global __vt__10ParmString
+    __vt__10ParmString:
+        .4byte 0
+        .4byte 0
+        .4byte size__10ParmStringFv
+        .4byte write__10ParmStringFR6Stream
+        .4byte read__10ParmStringFR6Stream
+    .global __vt__8BaseParm
+    __vt__8BaseParm:
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte write__8BaseParmFR6Stream
+        .4byte read__8BaseParmFR6Stream
+        .4byte 0
+*/
+
 extern
 
     /*
@@ -360,61 +388,60 @@ void ParmString::read(Stream& stream)
 ParmEnum::ParmEnum(Parameters*, char**, unsigned long, int, long, char*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  lis       r10, 0x804F
-	  stw       r0, 0x34(r1)
-	  subi      r0, r10, 0x4A88
-	  stmw      r25, 0x14(r1)
-	  mr        r25, r3
-	  mr        r26, r4
-	  mr        r27, r5
-	  mr        r28, r6
-	  mr        r29, r7
-	  mr        r30, r8
-	  mr        r31, r9
-	  stw       r0, 0x0(r3)
-	  addi      r3, r25, 0x4
-	  bl        -0xA90
-	  stw       r31, 0x14(r25)
-	  li        r3, 0
-	  lwz       r4, 0x4(r26)
-	  b         .loc_0x58
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	lis      r10, __vt__8BaseParm@ha
+	stw      r0, 0x34(r1)
+	addi     r0, r10, __vt__8BaseParm@l
+	stmw     r25, 0x14(r1)
+	mr       r25, r3
+	mr       r26, r4
+	mr       r27, r5
+	mr       r28, r6
+	mr       r29, r7
+	mr       r30, r8
+	mr       r31, r9
+	stw      r0, 0(r3)
+	addi     r3, r25, 4
+	bl       __ct__4ID32Fv
+	stw      r31, 0x14(r25)
+	li       r3, 0
+	lwz      r4, 4(r26)
+	b        lbl_80413D1C
 
-	.loc_0x50:
-	  mr        r3, r4
-	  lwz       r4, 0x10(r4)
+lbl_80413D14:
+	mr       r3, r4
+	lwz      r4, 0x10(r4)
 
-	.loc_0x58:
-	  cmplwi    r4, 0
-	  bne+      .loc_0x50
-	  cmplwi    r3, 0
-	  beq-      .loc_0x70
-	  stw       r25, 0x10(r3)
-	  b         .loc_0x74
+lbl_80413D1C:
+	cmplwi   r4, 0
+	bne      lbl_80413D14
+	cmplwi   r3, 0
+	beq      lbl_80413D34
+	stw      r25, 0x10(r3)
+	b        lbl_80413D38
 
-	.loc_0x70:
-	  stw       r25, 0x4(r26)
+lbl_80413D34:
+	stw      r25, 4(r26)
 
-	.loc_0x74:
-	  mr        r4, r30
-	  addi      r3, r25, 0x4
-	  bl        -0x93C
-	  li        r0, 0
-	  lis       r3, 0x804F
-	  stw       r0, 0x10(r25)
-	  subi      r0, r3, 0x4AB0
-	  mr        r3, r25
-	  stw       r0, 0x0(r25)
-	  stw       r28, 0x18(r25)
-	  stw       r29, 0x1C(r25)
-	  stw       r27, 0x20(r25)
-	  lmw       r25, 0x14(r1)
-	  lwz       r0, 0x34(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_80413D38:
+	mr       r4, r30
+	addi     r3, r25, 4
+	bl       __as__4ID32FUl
+	li       r0, 0
+	lis      r3, __vt__8ParmEnum@ha
+	stw      r0, 0x10(r25)
+	addi     r0, r3, __vt__8ParmEnum@l
+	mr       r3, r25
+	stw      r0, 0(r25)
+	stw      r28, 0x18(r25)
+	stw      r29, 0x1c(r25)
+	stw      r27, 0x20(r25)
+	lmw      r25, 0x14(r1)
+	lwz      r0, 0x34(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -426,18 +453,17 @@ ParmEnum::ParmEnum(Parameters*, char**, unsigned long, int, long, char*)
 void ParmEnum::write(Stream&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  mr        r0, r4
-	  lwz       r4, 0x18(r3)
-	  mr        r3, r0
-	  bl        0x1A2C
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	mr       r0, r4
+	lwz      r4, 0x18(r3)
+	mr       r3, r0
+	bl       writeInt__6StreamFi
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -449,20 +475,19 @@ void ParmEnum::write(Stream&)
 void ParmEnum::read(Stream&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  mr        r3, r4
-	  bl        0xCD0
-	  stw       r3, 0x18(r31)
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	mr       r3, r4
+	bl       readInt__6StreamFv
+	stw      r3, 0x18(r31)
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 

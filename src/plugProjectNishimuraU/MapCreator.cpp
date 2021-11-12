@@ -1,5 +1,15 @@
 #include "types.h"
 
+/*
+    Generated from dpostproc
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_8051A7F0
+    lbl_8051A7F0:
+        .4byte 0x00000000
+        .4byte 0x00000000
+*/
+
 namespace Game {
 
 /*
@@ -92,84 +102,84 @@ void RoomMapMgr::nishimuraCreateRandomMap(Game::MapUnitInterface*, int,
 void RoomMapMgr::nishimuraPlaceRooms(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x50(r1)
-	  mflr      r0
-	  stw       r0, 0x54(r1)
-	  stfd      f31, 0x40(r1)
-	  psq_st    f31,0x48(r1),0,0
-	  stmw      r27, 0x2C(r1)
-	  mr        r27, r3
-	  lwz       r3, -0x6978(r13)
-	  bl        -0x7E9C
-	  mr        r0, r3
-	  mr        r3, r27
-	  mr        r31, r0
-	  mr        r4, r31
-	  bl        -0x931BC
-	  li        r30, 0
-	  b         .loc_0xA8
+	stwu     r1, -0x50(r1)
+	mflr     r0
+	stw      r0, 0x54(r1)
+	stfd     f31, 0x40(r1)
+	psq_st   f31, 72(r1), 0, qr0
+	stmw     r27, 0x2c(r1)
+	mr       r27, r3
+	lwz      r3, randMapMgr__Q24Game4Cave@sda21(r13)
+	bl       getNumRooms__Q34Game4Cave10RandMapMgrFv
+	mr       r0, r3
+	mr       r3, r27
+	mr       r31, r0
+	mr       r4, r31
+	bl       allocRooms__Q24Game10RoomMapMgrFi
+	li       r30, 0
+	b        lbl_8024C77C
 
-	.loc_0x40:
-	  lwz       r3, -0x6978(r13)
-	  mr        r4, r30
-	  addi      r5, r1, 0x10
-	  addi      r6, r1, 0xC
-	  addi      r7, r1, 0x8
-	  bl        -0x7E60
-	  mr        r0, r3
-	  lwz       r3, -0x6978(r13)
-	  mr        r29, r0
-	  mr        r4, r30
-	  bl        -0x7DF0
-	  mr        r0, r3
-	  lwz       r3, -0x6978(r13)
-	  mr        r28, r0
-	  mr        r4, r30
-	  bl        -0x7D20
-	  lfs       f1, 0x10(r1)
-	  mr        r8, r3
-	  lfs       f2, 0xC(r1)
-	  mr        r3, r27
-	  lwz       r5, 0x8(r1)
-	  mr        r4, r29
-	  mr        r6, r30
-	  mr        r7, r28
-	  bl        -0x93034
-	  addi      r30, r30, 0x1
+lbl_8024C714:
+	lwz      r3, randMapMgr__Q24Game4Cave@sda21(r13)
+	mr       r4, r30
+	addi     r5, r1, 0x10
+	addi     r6, r1, 0xc
+	addi     r7, r1, 8
+	bl       getRoomData__Q34Game4Cave10RandMapMgrFiRfRfRi
+	mr       r0, r3
+	lwz      r3, randMapMgr__Q24Game4Cave@sda21(r13)
+	mr       r29, r0
+	mr       r4, r30
+	bl       makeRoomLink__Q34Game4Cave10RandMapMgrFi
+	mr       r0, r3
+	lwz      r3, randMapMgr__Q24Game4Cave@sda21(r13)
+	mr       r28, r0
+	mr       r4, r30
+	bl       makeObjectLayoutInfo__Q34Game4Cave10RandMapMgrFi
+	lfs      f1, 0x10(r1)
+	mr       r8, r3
+	lfs      f2, 0xc(r1)
+	mr       r3, r27
+	lwz      r5, 8(r1)
+	mr       r4, r29
+	mr       r6, r30
+	mr       r7, r28
+	bl
+makeRoom__Q24Game10RoomMapMgrFPcffiiPQ24Game8RoomLinkPQ24Game16ObjectLayoutInfo
+	addi     r30, r30, 1
 
-	.loc_0xA8:
-	  cmpw      r30, r31
-	  blt+      .loc_0x40
-	  lfs       f31, -0x3B70(r2)
-	  mr        r31, r27
-	  li        r28, 0
+lbl_8024C77C:
+	cmpw     r30, r31
+	blt      lbl_8024C714
+	lfs      f31, lbl_8051A7F0@sda21(r2)
+	mr       r31, r27
+	li       r28, 0
 
-	.loc_0xBC:
-	  stfs      f31, 0x14(r1)
-	  mr        r5, r28
-	  lwz       r3, -0x6978(r13)
-	  addi      r4, r1, 0x14
-	  stfs      f31, 0x18(r1)
-	  stfs      f31, 0x1C(r1)
-	  bl        -0x7CF4
-	  lfs       f0, 0x14(r1)
-	  addi      r28, r28, 0x1
-	  cmpwi     r28, 0x2
-	  stfs      f0, 0xFC(r31)
-	  lfs       f0, 0x18(r1)
-	  stfs      f0, 0x100(r31)
-	  lfs       f0, 0x1C(r1)
-	  stfs      f0, 0x104(r31)
-	  addi      r31, r31, 0xC
-	  blt+      .loc_0xBC
-	  psq_l     f31,0x48(r1),0,0
-	  lfd       f31, 0x40(r1)
-	  lmw       r27, 0x2C(r1)
-	  lwz       r0, 0x54(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x50
-	  blr
+lbl_8024C790:
+	stfs     f31, 0x14(r1)
+	mr       r5, r28
+	lwz      r3, randMapMgr__Q24Game4Cave@sda21(r13)
+	addi     r4, r1, 0x14
+	stfs     f31, 0x18(r1)
+	stfs     f31, 0x1c(r1)
+	bl       "getStartPosition__Q34Game4Cave10RandMapMgrFR10Vector3<f>i"
+	lfs      f0, 0x14(r1)
+	addi     r28, r28, 1
+	cmpwi    r28, 2
+	stfs     f0, 0xfc(r31)
+	lfs      f0, 0x18(r1)
+	stfs     f0, 0x100(r31)
+	lfs      f0, 0x1c(r1)
+	stfs     f0, 0x104(r31)
+	addi     r31, r31, 0xc
+	blt      lbl_8024C790
+	psq_l    f31, 72(r1), 0, qr0
+	lfd      f31, 0x40(r1)
+	lmw      r27, 0x2c(r1)
+	lwz      r0, 0x54(r1)
+	mtlr     r0
+	addi     r1, r1, 0x50
+	blr
 	*/
 }
 
@@ -181,45 +191,44 @@ void RoomMapMgr::nishimuraPlaceRooms(void)
 void RoomMapMgr::nishimuraSetTexture(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  lwz       r3, -0x6978(r13)
-	  bl        -0x7FB8
-	  mr        r31, r3
-	  li        r30, 0
-	  b         .loc_0x64
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	lwz      r3, randMapMgr__Q24Game4Cave@sda21(r13)
+	bl       getNumRooms__Q34Game4Cave10RandMapMgrFv
+	mr       r31, r3
+	li       r30, 0
+	b        lbl_8024C854
 
-	.loc_0x30:
-	  lwz       r3, -0x6978(r13)
-	  mr        r4, r30
-	  bl        -0x7F9C
-	  mr        r0, r3
-	  mr        r3, r29
-	  mr        r4, r0
-	  bl        -0x934FC
-	  mr        r0, r3
-	  lwz       r3, -0x6978(r13)
-	  mr        r5, r0
-	  mr        r4, r30
-	  bl        -0x7AE8
-	  addi      r30, r30, 0x1
+lbl_8024C820:
+	lwz      r3, randMapMgr__Q24Game4Cave@sda21(r13)
+	mr       r4, r30
+	bl       getUseUnitName__Q34Game4Cave10RandMapMgrFi
+	mr       r0, r3
+	mr       r3, r29
+	mr       r4, r0
+	bl       getTexture__Q24Game10RoomMapMgrFPc
+	mr       r0, r3
+	lwz      r3, randMapMgr__Q24Game4Cave@sda21(r13)
+	mr       r5, r0
+	mr       r4, r30
+	bl       setUnitTexture__Q34Game4Cave10RandMapMgrFiP10JUTTexture
+	addi     r30, r30, 1
 
-	.loc_0x64:
-	  cmpw      r30, r31
-	  blt+      .loc_0x30
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8024C854:
+	cmpw     r30, r31
+	blt      lbl_8024C820
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 } // namespace Game

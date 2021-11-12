@@ -1,5 +1,53 @@
 #include "types.h"
 
+/*
+    Generated from dpostproc
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_8048EB78
+    lbl_8048EB78:
+        .4byte 0x73706563
+        .4byte 0x69616C20
+        .4byte 0x6974656D
+        .4byte 0x20736372
+        .4byte 0x65656E00
+    .global lbl_8048EB8C
+    lbl_8048EB8C:
+        .4byte 0x7265735F
+        .4byte 0x73706563
+        .4byte 0x69616C5F
+        .4byte 0x6974656D
+        .4byte 0x2E737A73
+        .4byte 0x00000000
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__Q32og9newScreen11SpecialItem
+    __vt__Q32og9newScreen11SpecialItem:
+        .4byte 0
+        .4byte 0
+        .4byte getSceneType__Q32og9newScreen11SpecialItemFv
+        .4byte getOwnerID__Q32og9newScreen11SpecialItemFv
+        .4byte getMemberID__Q32og9newScreen11SpecialItemFv
+        .4byte isUseBackupSceneInfo__Q32og9newScreen11SpecialItemFv
+        .4byte isDrawInDemo__Q26Screen9SceneBaseCFv
+        .4byte getResName__Q32og9newScreen11SpecialItemCFv
+        .4byte doCreateObj__Q32og9newScreen11SpecialItemFP10JKRArchive
+        .4byte
+   doUserCallBackFunc__Q32og9newScreen11SpecialItemFPQ28Resource10MgrCommand
+        .4byte setPort__Q26Screen9SceneBaseFR8Graphics
+        .4byte doUpdateActive__Q26Screen9SceneBaseFv
+        .4byte
+   doConfirmSetScene__Q32og9newScreen11SpecialItemFRQ26Screen11SetSceneArg
+        .4byte
+   doConfirmStartScene__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg .4byte
+   doConfirmEndScene__Q26Screen9SceneBaseFRPQ26Screen11EndSceneArg .4byte
+   doStart__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg .4byte
+   doEnd__Q26Screen9SceneBaseFPQ26Screen11EndSceneArg .4byte
+   setDefaultDispMember__Q26Screen9SceneBaseFv .4byte
+   doSetBackupScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg .4byte
+   doGetFinishState__Q26Screen9SceneBaseFv
+*/
+
 namespace og {
 
 /*
@@ -10,22 +58,21 @@ namespace og {
 newScreen::SpecialItem::SpecialItem(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        0x1374DC
-	  lis       r4, 0x804E
-	  mr        r3, r31
-	  subi      r0, r4, 0x7280
-	  stw       r0, 0x0(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       __ct__Q26Screen9SceneBaseFv
+	lis      r4, __vt__Q32og9newScreen11SpecialItem@ha
+	mr       r3, r31
+	addi     r0, r4, __vt__Q32og9newScreen11SpecialItem@l
+	stw      r0, 0(r31)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -54,33 +101,32 @@ void newScreen::SpecialItem::doUserCallBackFunc(Resource::MgrCommand*) { }
 void newScreen::SpecialItem::doCreateObj(JKRArchive*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  li        r3, 0x60
-	  bl        -0x2F645C
-	  mr.       r4, r3
-	  beq-      .loc_0x3C
-	  lis       r4, 0x8049
-	  subi      r4, r4, 0x1488
-	  bl        -0x650
-	  mr        r4, r3
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	li       r3, 0x60
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_8031A31C
+	lis      r4, lbl_8048EB78@ha
+	addi     r4, r4, lbl_8048EB78@l
+	bl       __ct__Q32og9newScreen14ObjSpecialItemFPCc
+	mr       r4, r3
 
-	.loc_0x3C:
-	  mr        r3, r30
-	  mr        r5, r31
-	  bl        0x137A50
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8031A31C:
+	mr       r3, r30
+	mr       r5, r31
+	bl       registObj__Q26Screen9SceneBaseFPQ26Screen7ObjBaseP10JKRArchive
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -92,28 +138,27 @@ void newScreen::SpecialItem::doCreateObj(JKRArchive*)
 void newScreen::SpecialItem::doConfirmSetScene(Screen::SetSceneArg&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r3, r4
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  li        r31, 0
-	  lwz       r12, 0x0(r4)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  cmpwi     r3, 0x2723
-	  beq-      .loc_0x34
-	  li        r31, 0x1
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r3, r4
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	li       r31, 0
+	lwz      r12, 0(r4)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	cmpwi    r3, 0x2723
+	beq      lbl_8031A374
+	li       r31, 1
 
-	.loc_0x34:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8031A374:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -125,10 +170,9 @@ void newScreen::SpecialItem::doConfirmSetScene(Screen::SetSceneArg&)
 void newScreen::SpecialItem::getResName() const
 {
 	/*
-	.loc_0x0:
-	  lis       r3, 0x8049
-	  subi      r3, r3, 0x1474
-	  blr
+	lis      r3, lbl_8048EB8C@ha
+	addi     r3, r3, lbl_8048EB8C@l
+	blr
 	*/
 }
 
@@ -147,10 +191,9 @@ u32 newScreen::SpecialItem::getSceneType(void) { return 0x2723; }
 void newScreen::SpecialItem::getOwnerID(void)
 {
 	/*
-	.loc_0x0:
-	  lis       r3, 0x4F
-	  addi      r3, r3, 0x4741
-	  blr
+	lis      r3, 0x004F4741@ha
+	addi     r3, r3, 0x004F4741@l
+	blr
 	*/
 }
 
@@ -162,12 +205,11 @@ void newScreen::SpecialItem::getOwnerID(void)
 void newScreen::SpecialItem::getMemberID(void)
 {
 	/*
-	.loc_0x0:
-	  lis       r4, 0x4954
-	  lis       r3, 0x53
-	  addi      r4, r4, 0x454D
-	  addi      r3, r3, 0x505F
-	  blr
+	lis      r4, 0x4954454D@ha
+	lis      r3, 0x0053505F@ha
+	addi     r4, r4, 0x4954454D@l
+	addi     r3, r3, 0x0053505F@l
+	blr
 	*/
 }
 

@@ -1,5 +1,204 @@
 #include "types.h"
 
+/*
+    Generated from dpostproc
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_8049B510
+    lbl_8049B510:
+        .asciz "/thp/opening1.thp"
+        .skip 2
+    .global lbl_8049B524
+    lbl_8049B524:
+        .asciz "/thp/opening1.ini"
+        .skip 2
+    .global lbl_8049B538
+    lbl_8049B538:
+        .asciz "/thp/opening2.thp"
+        .skip 2
+    .global lbl_8049B54C
+    lbl_8049B54C:
+        .asciz "/thp/opening2.ini"
+        .skip 2
+    .global lbl_8049B560
+    lbl_8049B560:
+        .asciz "/thp/ending1.thp"
+        .skip 3
+    .global lbl_8049B574
+    lbl_8049B574:
+        .asciz "/thp/ending1.ini"
+        .skip 3
+    .global lbl_8049B588
+    lbl_8049B588:
+        .asciz "/thp/ending2.thp"
+        .skip 3
+    .global lbl_8049B59C
+    lbl_8049B59C:
+        .asciz "/thp/staffroll.thp"
+        .skip 1
+    .global lbl_8049B5B0
+    lbl_8049B5B0:
+        .asciz "/thp/play1.thp"
+        .skip 1
+    .global lbl_8049B5C0
+    lbl_8049B5C0:
+        .asciz "/thp/play2.thp"
+        .skip 1
+    .global lbl_8049B5D0
+    lbl_8049B5D0:
+        .asciz "/thp/play3.thp"
+        .skip 1
+    .global lbl_8049B5E0
+    lbl_8049B5E0:
+        .asciz "/thp/play4.thp"
+        .skip 1
+    .global lbl_8049B5F0
+    lbl_8049B5F0:
+        .asciz "/thp/play5.thp"
+        .skip 1
+    .global lbl_8049B600
+    lbl_8049B600:
+        .asciz "/thp/play6.thp"
+        .skip 1
+    .global lbl_8049B610
+    lbl_8049B610:
+        .asciz "/thp/crime.thp"
+        .skip 1
+    .global lbl_8049B620
+    lbl_8049B620:
+        .asciz "/thp/crime.ini"
+        .skip 1
+    .global "sTHPFileSettingTable__Q24Game30@unnamed@pikmin2THPPlayer_cpp@"
+    "sTHPFileSettingTable__Q24Game30@unnamed@pikmin2THPPlayer_cpp@":
+        .4byte lbl_8049B510
+        .4byte lbl_8049B524
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte lbl_8049B538
+        .4byte lbl_8049B54C
+        .4byte 0x00000000
+        .4byte 0x00000001
+        .4byte lbl_8049B560
+        .4byte lbl_8049B574
+        .4byte 0x00000000
+        .4byte 0x00000002
+        .4byte lbl_8049B588
+        .4byte lbl_80520B10
+        .4byte 0x00000000
+        .4byte 0x00000003
+        .4byte lbl_8049B59C
+        .4byte lbl_80520B10
+        .4byte 0x00000000
+        .4byte 0x00000004
+        .4byte lbl_8049B5B0
+        .4byte lbl_80520B10
+        .4byte 0x00000000
+        .4byte 0x00000005
+        .4byte lbl_8049B5C0
+        .4byte lbl_80520B10
+        .4byte 0x00000000
+        .4byte 0x00000006
+        .4byte lbl_8049B5D0
+        .4byte lbl_80520B10
+        .4byte 0x00000000
+        .4byte 0x00000007
+        .4byte lbl_8049B5E0
+        .4byte lbl_80520B10
+        .4byte 0x00000000
+        .4byte 0x00000008
+        .4byte lbl_8049B5F0
+        .4byte lbl_80520B10
+        .4byte 0x00000000
+        .4byte 0x00000009
+        .4byte lbl_8049B600
+        .4byte lbl_80520B10
+        .4byte 0x00000000
+        .4byte 0x0000000A
+        .4byte lbl_8049B610
+        .4byte lbl_8049B620
+        .4byte 0x00000000
+        .4byte 0x0000000B
+    .global lbl_8049B6F0
+    lbl_8049B6F0:
+        .asciz "THPPlayer"
+        .skip 2
+    .global lbl_8049B6FC
+    lbl_8049B6FC:
+        .asciz "pikmin2THPPlayer.cpp"
+        .skip 3
+    .global lbl_8049B714
+    lbl_8049B714:
+        .asciz "P2Assert"
+        .skip 3
+    .global lbl_8049B720
+    lbl_8049B720:
+        .asciz "THPPlayerInit failure."
+        .skip 1
+        .asciz "THPPlayer::loadResource"
+        .asciz "THPPlayer_Resource"
+        .skip 1
+        .asciz "THPPlayr_caption"
+        .skip 3
+        .asciz "fail to open the caption file\n[%s]\n"
+        .asciz "THPPlayerOpen"
+        .skip 2
+        .asciz "Fail to open the thp file\n[%s]\n"
+        .asciz "THPPlayer_prepare"
+        .skip 2
+        .asciz "THPPlayer_work"
+        .skip 1
+        .asciz "Can't allocate the memory"
+        .skip 2
+        .asciz "Fail to prepare\n"
+        .skip 3
+    .global lbl_8049B820
+    lbl_8049B820:
+        .asciz "PSSystemIF.h"
+        .skip 3
+    .global lbl_8049B830
+    lbl_8049B830:
+        .asciz "Unknown State : %d \n"
+        .skip 3
+
+    .section .data, "wa"	# 0x8049E220 - 0x804EFC20
+    .global lbl_804ED4C0
+    lbl_804ED4C0:
+        .4byte 0x00000000
+        .4byte 0xFFFFFFFF
+        .4byte loadResource__Q24Game9THPPlayerFv
+    .global __vt__Q24Game9THPPlayer
+    __vt__Q24Game9THPPlayer:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q24Game9THPPlayerFv
+        .4byte 0
+        .4byte 0
+        .4byte "@24@__dt__Q24Game9THPPlayerFv"
+        .4byte getChildCount__5CNodeFv
+        .4byte update__Q24Game9THPPlayerFv
+        .4byte draw__Q24Game9THPPlayerFR8Graphics
+        .4byte draw__Q24Game9THPPlayerFR8GraphicsllUlUl
+        .4byte draw__Q24Game9THPPlayerFR8Graphicsllf
+    .global "__vt__27Delegate<Q24Game9THPPlayer>"
+    "__vt__27Delegate<Q24Game9THPPlayer>":
+        .4byte 0
+        .4byte 0
+        .4byte "invoke__27Delegate<Q24Game9THPPlayer>Fv"
+        .4byte 0
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_80520B10
+    lbl_80520B10:
+        .4byte 0x00000000
+    .global lbl_80520B14
+    lbl_80520B14:
+        .float 127.0
+    .global lbl_80520B18
+    lbl_80520B18:
+        .4byte 0x43300000
+        .4byte 0x00000000
+*/
+
 namespace Game {
 
 /*
@@ -10,79 +209,78 @@ namespace Game {
 THPPlayer::THPPlayer(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r3
-	  bl        -0x432E38
-	  lis       r3, 0x804F
-	  lis       r4, 0x804A
-	  subi      r0, r3, 0x4AD8
-	  lis       r3, 0x804F
-	  stw       r0, 0x18(r31)
-	  li        r7, 0
-	  subi      r5, r3, 0x2B34
-	  subi      r6, r4, 0x4910
-	  stw       r7, 0x28(r31)
-	  addi      r4, r5, 0xC
-	  li        r0, -0x1
-	  addi      r3, r31, 0x5C
-	  stw       r7, 0x24(r31)
-	  stw       r7, 0x20(r31)
-	  stw       r7, 0x1C(r31)
-	  stw       r6, 0x2C(r31)
-	  stw       r5, 0x0(r31)
-	  stw       r4, 0x18(r31)
-	  stw       r7, 0x30(r31)
-	  stw       r0, 0x34(r31)
-	  stw       r7, 0x58(r31)
-	  bl        -0x2B644
-	  lis       r3, 0x804F
-	  lis       r4, 0x804B
-	  subi      r7, r3, 0x2B40
-	  lis       r3, 0x804F
-	  lwz       r9, 0x0(r7)
-	  addi      r6, r4, 0xF00
-	  lwz       r8, 0x4(r7)
-	  subi      r5, r3, 0x2B08
-	  lwz       r7, 0x8(r7)
-	  li        r4, 0
-	  li        r0, 0x1
-	  stw       r9, 0x8(r1)
-	  li        r3, 0x24
-	  stw       r6, 0xC8(r31)
-	  stw       r5, 0xC8(r31)
-	  stw       r31, 0xCC(r31)
-	  stw       r9, 0xD0(r31)
-	  stw       r8, 0xD4(r31)
-	  stw       r7, 0xD8(r31)
-	  stw       r4, 0xDC(r31)
-	  stw       r4, 0xE0(r31)
-	  stb       r4, 0xE4(r31)
-	  stw       r8, 0xC(r1)
-	  stw       r7, 0x10(r1)
-	  stb       r0, 0xE8(r31)
-	  bl        -0x42C020
-	  mr.       r0, r3
-	  beq-      .loc_0xE8
-	  bl        0xA7C
-	  mr        r0, r3
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r3
+	bl       __ct__11JKRDisposerFv
+	lis      r3, __vt__5CNode@ha
+	lis      r4, lbl_8049B6F0@ha
+	addi     r0, r3, __vt__5CNode@l
+	lis      r3, __vt__Q24Game9THPPlayer@ha
+	stw      r0, 0x18(r31)
+	li       r7, 0
+	addi     r5, r3, __vt__Q24Game9THPPlayer@l
+	addi     r6, r4, lbl_8049B6F0@l
+	stw      r7, 0x28(r31)
+	addi     r4, r5, 0xc
+	li       r0, -1
+	addi     r3, r31, 0x5c
+	stw      r7, 0x24(r31)
+	stw      r7, 0x20(r31)
+	stw      r7, 0x1c(r31)
+	stw      r6, 0x2c(r31)
+	stw      r5, 0(r31)
+	stw      r4, 0x18(r31)
+	stw      r7, 0x30(r31)
+	stw      r0, 0x34(r31)
+	stw      r7, 0x58(r31)
+	bl       __ct__16DvdThreadCommandFv
+	lis      r3, lbl_804ED4C0@ha
+	lis      r4, __vt__9IDelegate@ha
+	addi     r7, r3, lbl_804ED4C0@l
+	lis      r3, "__vt__27Delegate<Q24Game9THPPlayer>"@ha
+	lwz      r9, 0(r7)
+	addi     r6, r4, __vt__9IDelegate@l
+	lwz      r8, 4(r7)
+	addi     r5, r3, "__vt__27Delegate<Q24Game9THPPlayer>"@l
+	lwz      r7, 8(r7)
+	li       r4, 0
+	li       r0, 1
+	stw      r9, 8(r1)
+	li       r3, 0x24
+	stw      r6, 0xc8(r31)
+	stw      r5, 0xc8(r31)
+	stw      r31, 0xcc(r31)
+	stw      r9, 0xd0(r31)
+	stw      r8, 0xd4(r31)
+	stw      r7, 0xd8(r31)
+	stw      r4, 0xdc(r31)
+	stw      r4, 0xe0(r31)
+	stb      r4, 0xe4(r31)
+	stw      r8, 0xc(r1)
+	stw      r7, 0x10(r1)
+	stb      r0, 0xe8(r31)
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_8044FED8
+	bl       __ct__Q27Caption3MgrFv
+	mr       r0, r3
 
-	.loc_0xE8:
-	  stw       r0, 0x54(r31)
-	  addi      r3, r31, 0x18
-	  lwz       r4, 0x54(r31)
-	  bl        -0x3EADC
-	  li        r0, 0
-	  mr        r3, r31
-	  stb       r0, 0xE8(r31)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8044FED8:
+	stw      r0, 0x54(r31)
+	addi     r3, r31, 0x18
+	lwz      r4, 0x54(r31)
+	bl       add__5CNodeFP5CNode
+	li       r0, 0
+	mr       r3, r31
+	stb      r0, 0xe8(r31)
+	lwz      r31, 0x1c(r1)
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -94,49 +292,48 @@ THPPlayer::THPPlayer(void)
 THPPlayer::~THPPlayer(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x7C
-	  lis       r3, 0x804F
-	  subi      r3, r3, 0x2B34
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0xC
-	  stw       r0, 0x18(r30)
-	  bl        -0x14E4
-	  bl        -0x1F88
-	  addic.    r0, r30, 0x5C
-	  beq-      .loc_0x54
-	  addic.    r3, r30, 0xB8
-	  beq-      .loc_0x54
-	  li        r4, 0
-	  bl        -0x429788
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_8044FF84
+	lis      r3, __vt__Q24Game9THPPlayer@ha
+	addi     r3, r3, __vt__Q24Game9THPPlayer@l
+	stw      r3, 0(r30)
+	addi     r0, r3, 0xc
+	stw      r0, 0x18(r30)
+	bl       THPPlayerStop
+	bl       THPPlayerQuit
+	addic.   r0, r30, 0x5c
+	beq      lbl_8044FF5C
+	addic.   r3, r30, 0xb8
+	beq      lbl_8044FF5C
+	li       r4, 0
+	bl       __dt__10JSUPtrLinkFv
 
-	.loc_0x54:
-	  addi      r3, r30, 0x18
-	  li        r4, 0
-	  bl        -0x3E9DC
-	  mr        r3, r30
-	  li        r4, 0
-	  bl        -0x432F3C
-	  extsh.    r0, r31
-	  ble-      .loc_0x7C
-	  mr        r3, r30
-	  bl        -0x42BECC
+lbl_8044FF5C:
+	addi     r3, r30, 0x18
+	li       r4, 0
+	bl       __dt__5CNodeFv
+	mr       r3, r30
+	li       r4, 0
+	bl       __dt__11JKRDisposerFv
+	extsh.   r0, r31
+	ble      lbl_8044FF84
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x7C:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8044FF84:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -148,66 +345,63 @@ THPPlayer::~THPPlayer(void)
 void THPPlayer::load(Game::THPPlayer::EMovieIndex)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  li        r0, 0
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  mr.       r30, r4
-	  lis       r4, 0x804A
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  subi      r31, r4, 0x4AF0
-	  blt-      .loc_0x3C
-	  cmpwi     r30, 0xC
-	  bge-      .loc_0x3C
-	  li        r0, 0x1
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	li       r0, 0
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	or.      r30, r4, r4
+	lis      r4, lbl_8049B510@ha
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	addi     r31, r4, lbl_8049B510@l
+	blt      lbl_8044FFDC
+	cmpwi    r30, 0xc
+	bge      lbl_8044FFDC
+	li       r0, 1
 
-	.loc_0x3C:
-	  rlwinm.   r0,r0,0,24,31
-	  bne-      .loc_0x58
-	  addi      r3, r31, 0x1EC
-	  addi      r5, r31, 0x204
-	  li        r4, 0xE3
-	  crclr     6, 0x6
-	  bl        -0x4259B4
+lbl_8044FFDC:
+	clrlwi.  r0, r0, 0x18
+	bne      lbl_8044FFF8
+	addi     r3, r31, 0x1ec
+	addi     r5, r31, 0x204
+	li       r4, 0xe3
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x58:
-	  rlwinm    r0,r30,4,0,27
-	  addi      r30, r31, 0x120
-	  add       r30, r30, r0
-	  mr        r3, r29
-	  lwz       r0, 0x0(r30)
-	  lwz       r4, 0x4(r30)
-	  stw       r0, 0xDC(r29)
-	  lbz       r0, 0x8(r30)
-	  stw       r4, 0xE0(r29)
-	  stb       r0, 0xE4(r29)
-	  bl        .loc_0xCC
-	  lwz       r0, 0xC(r30)
-	  cmpwi     r0, 0xC
-	  blt-      .loc_0xA4
-	  addi      r3, r31, 0x1EC
-	  addi      r5, r31, 0x204
-	  li        r4, 0xEB
-	  crclr     6, 0x6
-	  bl        -0x425A00
+lbl_8044FFF8:
+	slwi     r0, r30, 4
+	addi     r30, r31, 0x120
+	add      r30, r30, r0
+	mr       r3, r29
+	lwz      r0, 0(r30)
+	lwz      r4, 4(r30)
+	stw      r0, 0xdc(r29)
+	lbz      r0, 8(r30)
+	stw      r4, 0xe0(r29)
+	stb      r0, 0xe4(r29)
+	bl       load__Q24Game9THPPlayerFv
+	lwz      r0, 0xc(r30)
+	cmpwi    r0, 0xc
+	blt      lbl_80450044
+	addi     r3, r31, 0x1ec
+	addi     r5, r31, 0x204
+	li       r4, 0xeb
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xA4:
-	  lwz       r4, 0xC(r30)
-	  subi      r3, r13, 0x6340
-	  bl        0x22454
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-
-	.loc_0xCC:
+lbl_80450044:
+	lwz      r4, 0xc(r30)
+	addi     r3, r13, sTHPDinamicsProc__3PSM@sda21
+	bl       setSetting__Q23PSM15THPDinamicsProcFQ23PSM6THP_ID
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -219,36 +413,35 @@ void THPPlayer::load(Game::THPPlayer::EMovieIndex)
 void THPPlayer::load(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  li        r0, 0x1
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  stw       r0, 0x30(r3)
-	  li        r3, 0
-	  bl        -0x21AC
-	  cmpwi     r3, 0
-	  bne-      .loc_0x48
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x4904
-	  li        r4, 0xF7
-	  subi      r5, r5, 0x48E0
-	  crclr     6, 0x6
-	  bl        -0x425A70
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	li       r0, 1
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	stw      r0, 0x30(r3)
+	li       r3, 0
+	bl       THPPlayerInit
+	cmpwi    r3, 0
+	bne      lbl_804500B4
+	lis      r3, lbl_8049B6FC@ha
+	lis      r5, lbl_8049B720@ha
+	addi     r3, r3, lbl_8049B6FC@l
+	li       r4, 0xf7
+	addi     r5, r5, lbl_8049B720@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x48:
-	  lwz       r3, -0x6514(r13)
-	  addi      r4, r31, 0x5C
-	  addi      r5, r31, 0xC8
-	  bl        -0x2D188
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_804500B4:
+	lwz      r3, sys@sda21(r13)
+	addi     r4, r31, 0x5c
+	addi     r5, r31, 0xc8
+	bl       dvdLoadUseCallBack__6SystemFP16DvdThreadCommandP9IDelegate
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -270,18 +463,15 @@ void THPPlayer::reset(void)
 void THPPlayer::loadResource(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  addi      r4, r3, 0xDC
-	  stw       r0, 0x14(r1)
-	  bl        .loc_0x24
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-
-	.loc_0x24:
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	addi     r4, r3, 0xdc
+	stw      r0, 0x14(r1)
+	bl       loadResource__Q24Game9THPPlayerFRCQ24Game24THPPlayerLoadResourceArg
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -293,134 +483,132 @@ void THPPlayer::loadResource(void)
 void THPPlayer::loadResource(Game::THPPlayerLoadResourceArg const&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x450(r1)
-	  mflr      r0
-	  lis       r5, 0x804A
-	  stw       r0, 0x454(r1)
-	  stmw      r27, 0x43C(r1)
-	  mr        r27, r3
-	  mr        r28, r4
-	  subi      r31, r5, 0x4AF0
-	  lwz       r30, -0x77D4(r13)
-	  bl        -0x16C8
-	  lwz       r3, 0x54(r27)
-	  bl        0xA80
-	  lwz       r3, 0x58(r27)
-	  bl        -0x42CA00
-	  lwz       r3, 0x58(r27)
-	  bl        -0x42CB94
-	  lwz       r3, -0x6514(r13)
-	  addi      r4, r31, 0x228
-	  li        r5, 0
-	  bl        -0x2CDEC
-	  lwz       r3, -0x6514(r13)
-	  addi      r4, r31, 0x240
-	  li        r5, 0
-	  bl        -0x2CDFC
-	  lwz       r3, 0x4(r28)
-	  lbz       r0, 0x0(r3)
-	  extsb.    r0, r0
-	  beq-      .loc_0x118
-	  lwz       r3, -0x6514(r13)
-	  addi      r4, r31, 0x254
-	  li        r5, 0
-	  bl        -0x2CE1C
-	  li        r0, 0
-	  lwz       r3, 0x4(r28)
-	  stw       r0, 0x8(r1)
-	  li        r4, 0
-	  li        r5, 0
-	  li        r6, 0
-	  li        r7, 0
-	  li        r8, 0x1
-	  li        r9, 0
-	  li        r10, 0
-	  bl        -0x43101C
-	  mr.       r29, r3
-	  bne-      .loc_0xCC
-	  lwz       r6, 0x4(r28)
-	  addi      r3, r31, 0x1EC
-	  addi      r5, r31, 0x268
-	  li        r4, 0x137
-	  crclr     6, 0x6
-	  bl        -0x425B84
+	stwu     r1, -0x450(r1)
+	mflr     r0
+	lis      r5, lbl_8049B510@ha
+	stw      r0, 0x454(r1)
+	stmw     r27, 0x43c(r1)
+	mr       r27, r3
+	mr       r28, r4
+	addi     r31, r5, lbl_8049B510@l
+	lwz      r30, sCurrentHeap__7JKRHeap@sda21(r13)
+	bl       THPPlayerStop
+	lwz      r3, 0x54(r27)
+	bl       reset__Q27Caption3MgrFv
+	lwz      r3, 0x58(r27)
+	bl       freeAll__7JKRHeapFv
+	lwz      r3, 0x58(r27)
+	bl       becomeCurrentHeap__7JKRHeapFv
+	lwz      r3, sys@sda21(r13)
+	addi     r4, r31, 0x228
+	li       r5, 0
+	bl       heapStatusStart__6SystemFPcP7JKRHeap
+	lwz      r3, sys@sda21(r13)
+	addi     r4, r31, 0x240
+	li       r5, 0
+	bl       heapStatusStart__6SystemFPcP7JKRHeap
+	lwz      r3, 4(r28)
+	lbz      r0, 0(r3)
+	extsb.   r0, r0
+	beq      lbl_80450214
+	lwz      r3, sys@sda21(r13)
+	addi     r4, r31, 0x254
+	li       r5, 0
+	bl       heapStatusStart__6SystemFPcP7JKRHeap
+	li       r0, 0
+	lwz      r3, 4(r28)
+	stw      r0, 8(r1)
+	li       r4, 0
+	li       r5, 0
+	li       r6, 0
+	li       r7, 0
+	li       r8, 1
+	li       r9, 0
+	li       r10, 0
+	bl
+loadToMainRAM__12JKRDvdRipperFPCcPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl
+	or.      r29, r3, r3
+	bne      lbl_804501C8
+	lwz      r6, 4(r28)
+	addi     r3, r31, 0x1ec
+	addi     r5, r31, 0x268
+	li       r4, 0x137
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xCC:
-	  mr        r4, r29
-	  addi      r3, r1, 0x10
-	  li        r5, -0x1
-	  bl        -0x3A8DC
-	  li        r0, 0x1
-	  cmpwi     r0, 0x1
-	  stw       r0, 0x1C(r1)
-	  bne-      .loc_0xF4
-	  li        r0, 0
-	  stw       r0, 0x424(r1)
+lbl_804501C8:
+	mr       r4, r29
+	addi     r3, r1, 0x10
+	li       r5, -1
+	bl       __ct__9RamStreamFPvi
+	li       r0, 1
+	cmpwi    r0, 1
+	stw      r0, 0x1c(r1)
+	bne      lbl_804501F0
+	li       r0, 0
+	stw      r0, 0x424(r1)
 
-	.loc_0xF4:
-	  lwz       r3, 0x54(r27)
-	  addi      r4, r1, 0x10
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, -0x6514(r13)
-	  addi      r4, r31, 0x254
-	  bl        -0x2CEAC
+lbl_804501F0:
+	lwz      r3, 0x54(r27)
+	addi     r4, r1, 0x10
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, sys@sda21(r13)
+	addi     r4, r31, 0x254
+	bl       heapStatusEnd__6SystemFPc
 
-	.loc_0x118:
-	  lwz       r0, 0x0(r28)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x16C
-	  lwz       r3, -0x6514(r13)
-	  addi      r4, r31, 0x28C
-	  li        r5, 0
-	  bl        -0x2CED0
-	  lwz       r3, 0x0(r28)
-	  li        r4, 0
-	  bl        -0x224C
-	  cmpwi     r3, 0
-	  bne-      .loc_0x160
-	  lwz       r6, 0x0(r28)
-	  addi      r3, r31, 0x1EC
-	  addi      r5, r31, 0x29C
-	  li        r4, 0x145
-	  crclr     6, 0x6
-	  bl        -0x425C18
+lbl_80450214:
+	lwz      r0, 0(r28)
+	cmplwi   r0, 0
+	beq      lbl_80450268
+	lwz      r3, sys@sda21(r13)
+	addi     r4, r31, 0x28c
+	li       r5, 0
+	bl       heapStatusStart__6SystemFPcP7JKRHeap
+	lwz      r3, 0(r28)
+	li       r4, 0
+	bl       THPPlayerOpen
+	cmpwi    r3, 0
+	bne      lbl_8045025C
+	lwz      r6, 0(r28)
+	addi     r3, r31, 0x1ec
+	addi     r5, r31, 0x29c
+	li       r4, 0x145
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x160:
-	  lwz       r3, -0x6514(r13)
-	  addi      r4, r31, 0x28C
-	  bl        -0x2CF00
+lbl_8045025C:
+	lwz      r3, sys@sda21(r13)
+	addi     r4, r31, 0x28c
+	bl       heapStatusEnd__6SystemFPc
 
-	.loc_0x16C:
-	  lwz       r3, -0x6514(r13)
-	  addi      r4, r31, 0x240
-	  bl        -0x2CF0C
-	  lwz       r3, -0x6514(r13)
-	  addi      r4, r31, 0x2BC
-	  li        r5, 0
-	  bl        -0x2CF24
-	  mr        r3, r27
-	  bl        .loc_0x1CC
-	  lwz       r3, -0x6514(r13)
-	  addi      r4, r31, 0x2BC
-	  bl        -0x2CF30
-	  lwz       r3, -0x6514(r13)
-	  addi      r4, r31, 0x228
-	  bl        -0x2CF3C
-	  mr        r3, r30
-	  bl        -0x42CD04
-	  mr        r3, r27
-	  bl        0x274
-	  lmw       r27, 0x43C(r1)
-	  lwz       r0, 0x454(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x450
-	  blr
-
-	.loc_0x1CC:
+lbl_80450268:
+	lwz      r3, sys@sda21(r13)
+	addi     r4, r31, 0x240
+	bl       heapStatusEnd__6SystemFPc
+	lwz      r3, sys@sda21(r13)
+	addi     r4, r31, 0x2bc
+	li       r5, 0
+	bl       heapStatusStart__6SystemFPcP7JKRHeap
+	mr       r3, r27
+	bl       prepare__Q24Game9THPPlayerFv
+	lwz      r3, sys@sda21(r13)
+	addi     r4, r31, 0x2bc
+	bl       heapStatusEnd__6SystemFPc
+	lwz      r3, sys@sda21(r13)
+	addi     r4, r31, 0x228
+	bl       heapStatusEnd__6SystemFPc
+	mr       r3, r30
+	bl       becomeCurrentHeap__7JKRHeapFv
+	mr       r3, r27
+	bl       pause__Q24Game9THPPlayerFv
+	lmw      r27, 0x43c(r1)
+	lwz      r0, 0x454(r1)
+	mtlr     r0
+	addi     r1, r1, 0x450
+	blr
 	*/
 }
 
@@ -432,76 +620,75 @@ void THPPlayer::loadResource(Game::THPPlayerLoadResourceArg const&)
 void THPPlayer::prepare(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r4, 0x804A
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  subi      r31, r4, 0x4AF0
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  stw       r28, 0x10(r1)
-	  mr        r28, r3
-	  bl        -0x2D0CC
-	  addi      r3, r28, 0x38
-	  li        r29, 0
-	  bl        -0x125C
-	  addi      r3, r28, 0x44
-	  bl        -0x121C
-	  lwz       r3, -0x6514(r13)
-	  addi      r4, r31, 0x2D0
-	  li        r5, 0
-	  bl        -0x2CFB8
-	  bl        -0x1FA4
-	  li        r4, 0x20
-	  bl        -0x42C328
-	  mr.       r30, r3
-	  bne-      .loc_0x78
-	  addi      r3, r31, 0x1EC
-	  addi      r5, r31, 0x2E0
-	  li        r4, 0x16F
-	  crclr     6, 0x6
-	  bl        -0x362BD0
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lis      r4, lbl_8049B510@ha
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	addi     r31, r4, lbl_8049B510@l
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	stw      r28, 0x10(r1)
+	mr       r28, r3
+	bl       getRenderModeObj__6SystemFv
+	addi     r3, r28, 0x38
+	li       r29, 0
+	bl       THPPlayerGetVideoInfo
+	addi     r3, r28, 0x44
+	bl       THPPlayerGetAudioInfo
+	lwz      r3, sys@sda21(r13)
+	addi     r4, r31, 0x2d0
+	li       r5, 0
+	bl       heapStatusStart__6SystemFPcP7JKRHeap
+	bl       THPPlayerCalcNeedMemory
+	li       r4, 0x20
+	bl       __nwa__FUli
+	or.      r30, r3, r3
+	bne      lbl_80450340
+	addi     r3, r31, 0x1ec
+	addi     r5, r31, 0x2e0
+	li       r4, 0x16f
+	crclr    6
+	bl       OSPanic
 
-	.loc_0x78:
-	  mr        r3, r30
-	  bl        -0x1F20
-	  lwz       r3, -0x6514(r13)
-	  addi      r4, r31, 0x2D0
-	  bl        -0x2CFEC
-	  lwz       r0, 0x50(r28)
-	  cmplwi    r0, 0x1
-	  ble-      .loc_0xB0
-	  lwz       r3, -0x6514(r13)
-	  lwz       r3, 0x60(r3)
-	  lbz       r0, 0x38(r3)
-	  cmplwi    r0, 0x2
-	  bne-      .loc_0xB0
-	  li        r29, 0x1
+lbl_80450340:
+	mr       r3, r30
+	bl       THPPlayerSetBuffer
+	lwz      r3, sys@sda21(r13)
+	addi     r4, r31, 0x2d0
+	bl       heapStatusEnd__6SystemFPc
+	lwz      r0, 0x50(r28)
+	cmplwi   r0, 1
+	ble      lbl_80450378
+	lwz      r3, sys@sda21(r13)
+	lwz      r3, 0x60(r3)
+	lbz      r0, 0x38(r3)
+	cmplwi   r0, 2
+	bne      lbl_80450378
+	li       r29, 1
 
-	.loc_0xB0:
-	  mr        r5, r29
-	  li        r3, 0
-	  li        r4, 0
-	  bl        -0x1D20
-	  cmpwi     r3, 0
-	  bne-      .loc_0xDC
-	  addi      r3, r31, 0x1EC
-	  addi      r5, r31, 0x2FC
-	  li        r4, 0x18D
-	  crclr     6, 0x6
-	  bl        -0x425D60
+lbl_80450378:
+	mr       r5, r29
+	li       r3, 0
+	li       r4, 0
+	bl       THPPlayerPrepare
+	cmpwi    r3, 0
+	bne      lbl_804503A4
+	addi     r3, r31, 0x1ec
+	addi     r5, r31, 0x2fc
+	li       r4, 0x18d
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xDC:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_804503A4:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -513,61 +700,60 @@ void THPPlayer::prepare(void)
 void THPPlayer::init(JKRHeap*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  mr        r30, r4
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  lwz       r0, 0x58(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x48
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x4904
-	  li        r4, 0x197
-	  subi      r5, r5, 0x48EC
-	  crclr     6, 0x6
-	  bl        -0x425DC8
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	mr       r30, r4
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	lwz      r0, 0x58(r3)
+	cmplwi   r0, 0
+	beq      lbl_8045040C
+	lis      r3, lbl_8049B6FC@ha
+	lis      r5, lbl_8049B714@ha
+	addi     r3, r3, lbl_8049B6FC@l
+	li       r4, 0x197
+	addi     r5, r5, lbl_8049B714@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x48:
-	  cmplwi    r30, 0
-	  lwz       r31, -0x77D4(r13)
-	  bne-      .loc_0x58
-	  mr        r30, r31
+lbl_8045040C:
+	cmplwi   r30, 0
+	lwz      r31, sCurrentHeap__7JKRHeap@sda21(r13)
+	bne      lbl_8045041C
+	mr       r30, r31
 
-	.loc_0x58:
-	  mr        r3, r30
-	  bl        -0x42CE7C
-	  mr        r4, r30
-	  lis       r3, 0x30
-	  li        r5, 0x1
-	  bl        -0x42B6C0
-	  stw       r3, 0x58(r29)
-	  lwz       r0, 0x58(r29)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x9C
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x4904
-	  li        r4, 0x1A2
-	  subi      r5, r5, 0x48EC
-	  crclr     6, 0x6
-	  bl        -0x425E1C
+lbl_8045041C:
+	mr       r3, r30
+	bl       becomeCurrentHeap__7JKRHeapFv
+	mr       r4, r30
+	lis      r3, 0x30
+	li       r5, 1
+	bl       create__12JKRSolidHeapFUlP7JKRHeapb
+	stw      r3, 0x58(r29)
+	lwz      r0, 0x58(r29)
+	cmplwi   r0, 0
+	bne      lbl_80450460
+	lis      r3, lbl_8049B6FC@ha
+	lis      r5, lbl_8049B714@ha
+	addi     r3, r3, lbl_8049B6FC@l
+	li       r4, 0x1a2
+	addi     r5, r5, lbl_8049B714@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x9C:
-	  mr        r3, r31
-	  bl        -0x42CEC0
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80450460:
+	mr       r3, r31
+	bl       becomeCurrentHeap__7JKRHeapFv
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -579,55 +765,54 @@ void THPPlayer::init(JKRHeap*)
 void THPPlayer::play(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r3
-	  bl        0x1B3D8
-	  lwz       r0, 0x30(r31)
-	  cmpwi     r0, 0x2
-	  bne-      .loc_0x88
-	  bl        -0x1AB0
-	  lwz       r0, -0x67A8(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x50
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x47E0
-	  li        r4, 0x18B
-	  subi      r5, r5, 0x48EC
-	  crclr     6, 0x6
-	  bl        -0x425E90
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r3
+	bl       PSStop2DStream__Fv
+	lwz      r0, 0x30(r31)
+	cmpwi    r0, 2
+	bne      lbl_8045050C
+	bl       THPPlayerPlay
+	lwz      r0, spSysIF__8PSSystem@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_804504D4
+	lis      r3, lbl_8049B820@ha
+	lis      r5, lbl_8049B714@ha
+	addi     r3, r3, lbl_8049B820@l
+	li       r4, 0x18b
+	addi     r5, r5, lbl_8049B714@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x50:
-	  lwz       r3, -0x67A8(r13)
-	  lfs       f1, 0x27B4(r2)
-	  lfs       f0, 0x24(r3)
-	  fmuls     f0, f1, f0
-	  fcmpo     cr0, f0, f1
-	  ble-      .loc_0x6C
-	  fmr       f0, f1
+lbl_804504D4:
+	lwz      r3, spSysIF__8PSSystem@sda21(r13)
+	lfs      f1, lbl_80520B14@sda21(r2)
+	lfs      f0, 0x24(r3)
+	fmuls    f0, f1, f0
+	fcmpo    cr0, f0, f1
+	ble      lbl_804504F0
+	fmr      f0, f1
 
-	.loc_0x6C:
-	  fctiwz    f0, f0
-	  li        r4, 0
-	  stfd      f0, 0x8(r1)
-	  lwz       r3, 0xC(r1)
-	  bl        -0x109C
-	  li        r3, 0x1
-	  b         .loc_0x8C
+lbl_804504F0:
+	fctiwz   f0, f0
+	li       r4, 0
+	stfd     f0, 8(r1)
+	lwz      r3, 0xc(r1)
+	bl       THPPlayerSetVolume
+	li       r3, 1
+	b        lbl_80450510
 
-	.loc_0x88:
-	  li        r3, 0
+lbl_8045050C:
+	li       r3, 0
 
-	.loc_0x8C:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80450510:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -639,25 +824,24 @@ void THPPlayer::play(void)
 void THPPlayer::pause(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r0, 0x30(r3)
-	  cmpwi     r0, 0x2
-	  bne-      .loc_0x24
-	  bl        -0x1A14
-	  li        r3, 0x1
-	  b         .loc_0x28
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r0, 0x30(r3)
+	cmpwi    r0, 2
+	bne      lbl_80450548
+	bl       THPPlayerPause
+	li       r3, 1
+	b        lbl_8045054C
 
-	.loc_0x24:
-	  li        r3, 0
+lbl_80450548:
+	li       r3, 0
 
-	.loc_0x28:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8045054C:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -669,17 +853,16 @@ void THPPlayer::pause(void)
 void THPPlayer::stop(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  bl        -0x1B10
-	  bl        -0x224C
-	  bl        -0x25B8
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	bl       THPPlayerStop
+	bl       THPPlayerClose
+	bl       THPPlayerQuit
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -691,54 +874,53 @@ void THPPlayer::stop(void)
 void THPPlayer::update(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r6, 0x30(r3)
-	  cmpwi     r6, 0x1
-	  beq-      .loc_0x3C
-	  bge-      .loc_0x30
-	  cmpwi     r6, 0
-	  bge-      .loc_0x80
-	  b         .loc_0x64
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r6, 0x30(r3)
+	cmpwi    r6, 1
+	beq      lbl_804505C0
+	bge      lbl_804505B4
+	cmpwi    r6, 0
+	bge      lbl_80450604
+	b        lbl_804505E8
 
-	.loc_0x30:
-	  cmpwi     r6, 0x3
-	  bge-      .loc_0x64
-	  b         .loc_0x54
+lbl_804505B4:
+	cmpwi    r6, 3
+	bge      lbl_804505E8
+	b        lbl_804505D8
 
-	.loc_0x3C:
-	  bl        0x278
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x80
-	  li        r0, 0x2
-	  stw       r0, 0x30(r31)
-	  b         .loc_0x80
+lbl_804505C0:
+	bl       isFinishLoading__Q24Game9THPPlayerFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80450604
+	li       r0, 2
+	stw      r0, 0x30(r31)
+	b        lbl_80450604
 
-	.loc_0x54:
-	  lwz       r3, 0x54(r31)
-	  lwz       r4, 0x34(r31)
-	  bl        0x698
-	  b         .loc_0x80
+lbl_804505D8:
+	lwz      r3, 0x54(r31)
+	lwz      r4, 0x34(r31)
+	bl       update__Q27Caption3MgrFl
+	b        lbl_80450604
 
-	.loc_0x64:
-	  lis       r3, 0x804A
-	  lis       r4, 0x804A
-	  subi      r5, r4, 0x47D0
-	  subi      r3, r3, 0x4904
-	  li        r4, 0x1F8
-	  crclr     6, 0x6
-	  bl        -0x425FC0
+lbl_804505E8:
+	lis      r3, lbl_8049B6FC@ha
+	lis      r4, lbl_8049B830@ha
+	addi     r5, r4, lbl_8049B830@l
+	addi     r3, r3, lbl_8049B6FC@l
+	li       r4, 0x1f8
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x80:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80450604:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -750,68 +932,67 @@ void THPPlayer::update(void)
 void THPPlayer::draw(Graphics&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  mr        r30, r4
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  lbz       r0, 0xE4(r3)
-	  cmpwi     r0, 0x1
-	  beq-      .loc_0x30
-	  b         .loc_0x70
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	mr       r30, r4
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	lbz      r0, 0xe4(r3)
+	cmpwi    r0, 1
+	beq      lbl_80450648
+	b        lbl_80450688
 
-	.loc_0x30:
-	  bl        -0x2D424
-	  lhz       r0, 0x4(r3)
-	  mr        r3, r29
-	  lwz       r7, 0x38(r29)
-	  mr        r4, r30
-	  lwz       r12, 0x0(r29)
-	  li        r6, 0x14
-	  sub       r5, r0, r7
-	  lwz       r8, 0x3C(r29)
-	  rlwinm    r0,r5,1,31,31
-	  lwz       r12, 0x24(r12)
-	  add       r0, r0, r5
-	  srawi     r5, r0, 0x1
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0xC0
+lbl_80450648:
+	bl       getRenderModeObj__6SystemFv
+	lhz      r0, 4(r3)
+	mr       r3, r29
+	lwz      r7, 0x38(r29)
+	mr       r4, r30
+	lwz      r12, 0(r29)
+	li       r6, 0x14
+	subf     r5, r7, r0
+	lwz      r8, 0x3c(r29)
+	srwi     r0, r5, 0x1f
+	lwz      r12, 0x24(r12)
+	add      r0, r0, r5
+	srawi    r5, r0, 1
+	mtctr    r12
+	bctrl
+	b        lbl_804506D8
 
-	.loc_0x70:
-	  bl        -0x2D464
-	  lhz       r31, 0x6(r3)
-	  bl        -0x2D46C
-	  lhz       r0, 0x4(r3)
-	  mr        r3, r29
-	  lwz       r7, 0x38(r29)
-	  mr        r4, r30
-	  lwz       r8, 0x3C(r29)
-	  sub       r5, r0, r7
-	  lwz       r12, 0x0(r29)
-	  rlwinm    r0,r5,1,31,31
-	  sub       r6, r31, r8
-	  add       r5, r0, r5
-	  lwz       r12, 0x24(r12)
-	  rlwinm    r0,r6,1,31,31
-	  srawi     r5, r5, 0x1
-	  add       r0, r0, r6
-	  srawi     r6, r0, 0x1
-	  mtctr     r12
-	  bctrl
+lbl_80450688:
+	bl       getRenderModeObj__6SystemFv
+	lhz      r31, 6(r3)
+	bl       getRenderModeObj__6SystemFv
+	lhz      r0, 4(r3)
+	mr       r3, r29
+	lwz      r7, 0x38(r29)
+	mr       r4, r30
+	lwz      r8, 0x3c(r29)
+	subf     r5, r7, r0
+	lwz      r12, 0(r29)
+	srwi     r0, r5, 0x1f
+	subf     r6, r8, r31
+	add      r5, r0, r5
+	lwz      r12, 0x24(r12)
+	srwi     r0, r6, 0x1f
+	srawi    r5, r5, 1
+	add      r0, r0, r6
+	srawi    r6, r0, 1
+	mtctr    r12
+	bctrl
 
-	.loc_0xC0:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_804506D8:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -823,54 +1004,53 @@ void THPPlayer::draw(Graphics&)
 void THPPlayer::draw(Graphics&, long, long, float)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  stw       r0, 0x44(r1)
-	  stfd      f31, 0x30(r1)
-	  psq_st    f31,0x38(r1),0,0
-	  stmw      r27, 0x1C(r1)
-	  mr        r27, r3
-	  lis       r0, 0x4330
-	  lwz       r3, 0x3C(r3)
-	  fmr       f31, f1
-	  stw       r0, 0x8(r1)
-	  mr        r28, r4
-	  lfd       f1, 0x27B8(r2)
-	  mr        r29, r5
-	  stw       r3, 0xC(r1)
-	  mr        r30, r6
-	  lfd       f0, 0x8(r1)
-	  fsubs     f0, f0, f1
-	  fmuls     f1, f31, f0
-	  bl        -0x38EBF4
-	  lwz       r4, 0x38(r27)
-	  lis       r0, 0x4330
-	  stw       r0, 0x10(r1)
-	  mr        r31, r3
-	  lfd       f1, 0x27B8(r2)
-	  stw       r4, 0x14(r1)
-	  lfd       f0, 0x10(r1)
-	  fsubs     f0, f0, f1
-	  fmuls     f1, f31, f0
-	  bl        -0x38EC1C
-	  lwz       r12, 0x0(r27)
-	  mr        r7, r3
-	  mr        r3, r27
-	  mr        r4, r28
-	  lwz       r12, 0x24(r12)
-	  mr        r5, r29
-	  mr        r6, r30
-	  mr        r8, r31
-	  mtctr     r12
-	  bctrl
-	  psq_l     f31,0x38(r1),0,0
-	  lfd       f31, 0x30(r1)
-	  lmw       r27, 0x1C(r1)
-	  lwz       r0, 0x44(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
+	stwu     r1, -0x40(r1)
+	mflr     r0
+	stw      r0, 0x44(r1)
+	stfd     f31, 0x30(r1)
+	psq_st   f31, 56(r1), 0, qr0
+	stmw     r27, 0x1c(r1)
+	mr       r27, r3
+	lis      r0, 0x4330
+	lwz      r3, 0x3c(r3)
+	fmr      f31, f1
+	stw      r0, 8(r1)
+	mr       r28, r4
+	lfd      f1, lbl_80520B18@sda21(r2)
+	mr       r29, r5
+	stw      r3, 0xc(r1)
+	mr       r30, r6
+	lfd      f0, 8(r1)
+	fsubs    f0, f0, f1
+	fmuls    f1, f31, f0
+	bl       __cvt_fp2unsigned
+	lwz      r4, 0x38(r27)
+	lis      r0, 0x4330
+	stw      r0, 0x10(r1)
+	mr       r31, r3
+	lfd      f1, lbl_80520B18@sda21(r2)
+	stw      r4, 0x14(r1)
+	lfd      f0, 0x10(r1)
+	fsubs    f0, f0, f1
+	fmuls    f1, f31, f0
+	bl       __cvt_fp2unsigned
+	lwz      r12, 0(r27)
+	mr       r7, r3
+	mr       r3, r27
+	mr       r4, r28
+	lwz      r12, 0x24(r12)
+	mr       r5, r29
+	mr       r6, r30
+	mr       r8, r31
+	mtctr    r12
+	bctrl
+	psq_l    f31, 56(r1), 0, qr0
+	lfd      f31, 0x30(r1)
+	lmw      r27, 0x1c(r1)
+	lwz      r0, 0x44(r1)
+	mtlr     r0
+	addi     r1, r1, 0x40
+	blr
 	*/
 }
 
@@ -882,45 +1062,42 @@ void THPPlayer::draw(Graphics&, long, long, float)
 void THPPlayer::draw(Graphics&, long, long, unsigned long, unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stmw      r26, 0x8(r1)
-	  mr        r26, r3
-	  mr        r27, r4
-	  mr        r28, r5
-	  mr        r29, r6
-	  mr        r30, r7
-	  mr        r31, r8
-	  bl        .loc_0x88
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x74
-	  addi      r3, r27, 0xBC
-	  lwz       r12, 0xBC(r27)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  bl        -0x2D5D4
-	  mr        r4, r28
-	  mr        r5, r29
-	  mr        r6, r30
-	  mr        r7, r31
-	  bl        -0x1844
-	  stw       r3, 0x34(r26)
-	  bl        -0x1670
-	  lwz       r3, 0x54(r26)
-	  mr        r4, r27
-	  bl        0x5EC
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stmw     r26, 8(r1)
+	mr       r26, r3
+	mr       r27, r4
+	mr       r28, r5
+	mr       r29, r6
+	mr       r30, r7
+	mr       r31, r8
+	bl       isFinishLoading__Q24Game9THPPlayerFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80450824
+	addi     r3, r27, 0xbc
+	lwz      r12, 0xbc(r27)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	bl       getRenderModeObj__6SystemFv
+	mr       r4, r28
+	mr       r5, r29
+	mr       r6, r30
+	mr       r7, r31
+	bl       THPPlayerDrawCurrentFrame
+	stw      r3, 0x34(r26)
+	bl       THPPlayerDrawDone
+	lwz      r3, 0x54(r26)
+	mr       r4, r27
+	bl       draw__Q27Caption3MgrFR8Graphics
 
-	.loc_0x74:
-	  lmw       r26, 0x8(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-
-	.loc_0x88:
+lbl_80450824:
+	lmw      r26, 8(r1)
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -932,34 +1109,33 @@ void THPPlayer::draw(Graphics&, long, long, unsigned long, unsigned long)
 void THPPlayer::isFinishLoading(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  li        r31, 0
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  addi      r4, r30, 0x5C
-	  lwz       r3, -0x6514(r13)
-	  bl        -0x2D288
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x3C
-	  lwz       r0, 0x30(r30)
-	  cmpwi     r0, 0
-	  bne-      .loc_0x40
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	li       r31, 0
+	stw      r30, 8(r1)
+	mr       r30, r3
+	addi     r4, r30, 0x5c
+	lwz      r3, sys@sda21(r13)
+	bl       dvdLoadSyncNoBlock__6SystemFP16DvdThreadCommand
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_80450874
+	lwz      r0, 0x30(r30)
+	cmpwi    r0, 0
+	bne      lbl_80450878
 
-	.loc_0x3C:
-	  li        r31, 0x1
+lbl_80450874:
+	li       r31, 1
 
-	.loc_0x40:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80450878:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -971,14 +1147,13 @@ void THPPlayer::isFinishLoading(void)
 void THPPlayer::isFinishPlaying(void)
 {
 	/*
-	.loc_0x0:
-	  lis       r3, 0x8051
-	  addi      r3, r3, 0x4490
-	  lbz       r0, 0xA4(r3)
-	  subfic    r0, r0, 0x3
-	  cntlzw    r0, r0
-	  rlwinm    r3,r0,27,5,31
-	  blr
+	lis      r3, ActivePlayer@ha
+	addi     r3, r3, ActivePlayer@l
+	lbz      r0, 0xa4(r3)
+	subfic   r0, r0, 3
+	cntlzw   r0, r0
+	srwi     r3, r0, 5
+	blr
 	*/
 }
 
@@ -992,19 +1167,18 @@ void THPPlayer::isFinishPlaying(void)
 void Delegate<Game::THPPlayer>::invoke()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r4, r3
-	  stw       r0, 0x14(r1)
-	  addi      r12, r4, 0x8
-	  lwz       r3, 0x4(r3)
-	  bl        -0x38EDA4
-	  nop
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r4, r3
+	stw      r0, 0x14(r1)
+	addi     r12, r4, 8
+	lwz      r3, 4(r3)
+	bl       __ptmf_scall
+	nop
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1016,8 +1190,7 @@ void Delegate<Game::THPPlayer>::invoke()
 @24 @Game::THPPlayer::~THPPlayer(void)
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x18
-	  b         -0x9DC
+	addi     r3, r3, -24
+	b        __dt__Q24Game9THPPlayerFv
 	*/
 }

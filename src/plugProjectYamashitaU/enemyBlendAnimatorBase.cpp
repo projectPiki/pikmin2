@@ -1,5 +1,50 @@
 #include "types.h"
 
+/*
+    Generated from dpostproc
+
+    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
+    .4byte __sinit_enemyBlendAnimatorBase_cpp
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__Q28SysShape14BlendLinearFun
+    __vt__Q28SysShape14BlendLinearFun:
+        .4byte 0
+        .4byte 0
+        .4byte getValue__Q28SysShape14BlendLinearFunFf
+    .global __vt__Q24Game22EnemyBlendAnimatorBase
+    __vt__Q24Game22EnemyBlendAnimatorBase:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q24Game22EnemyBlendAnimatorBaseFv
+        .4byte setAnimMgr__Q24Game22EnemyBlendAnimatorBaseFPQ28SysShape7AnimMgr
+        .4byte getAnimator__Q24Game22EnemyBlendAnimatorBaseFv
+        .4byte getAnimator__Q24Game22EnemyBlendAnimatorBaseFi
+        .4byte animate__Q24Game22EnemyBlendAnimatorBaseFf
+        .4byte animate__Q24Game22EnemyBlendAnimatorBaseFif
+        .4byte resetAnimSpeed__Q24Game17EnemyAnimatorBaseFv
+        .4byte getTypeID__Q24Game22EnemyBlendAnimatorBaseFv
+    .global __vt__Q28SysShape18BlendQuadraticFunc
+    __vt__Q28SysShape18BlendQuadraticFunc:
+        .4byte 0
+        .4byte 0
+        .4byte getValue__Q28SysShape18BlendQuadraticFuncFf
+
+    .section .sbss # 0x80514D80 - 0x80516360
+    .global sBlendLinearFun__Q24Game22EnemyBlendAnimatorBase
+    sBlendLinearFun__Q24Game22EnemyBlendAnimatorBase:
+        .skip 0x4
+    .global sBlendQuadraticFun__Q24Game22EnemyBlendAnimatorBase
+    sBlendQuadraticFun__Q24Game22EnemyBlendAnimatorBase:
+        .skip 0x4
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_80518118
+    lbl_80518118:
+        .4byte 0x00000000
+        .4byte 0x00000000
+*/
+
 namespace Game {
 
 /*
@@ -10,24 +55,23 @@ namespace Game {
 EnemyBlendAnimatorBase::EnemyBlendAnimatorBase()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        -0x6788
-	  lis       r4, 0x804B
-	  addi      r3, r31, 0x10
-	  subi      r0, r4, 0x7DC
-	  stw       r0, 0x0(r31)
-	  bl        0x2FB114
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       __ct__Q24Game17EnemyAnimatorBaseFv
+	lis      r4, __vt__Q24Game22EnemyBlendAnimatorBase@ha
+	addi     r3, r31, 0x10
+	addi     r0, r4, __vt__Q24Game22EnemyBlendAnimatorBase@l
+	stw      r0, 0(r31)
+	bl       __ct__Q28SysShape13BlendAnimatorFv
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -39,16 +83,15 @@ EnemyBlendAnimatorBase::EnemyBlendAnimatorBase()
 void EnemyBlendAnimatorBase::setAnimMgr(SysShape::AnimMgr*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  addi      r3, r3, 0x10
-	  stw       r0, 0x14(r1)
-	  bl        0x2FB168
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	addi     r3, r3, 0x10
+	stw      r0, 0x14(r1)
+	bl       setAnimMgr__Q28SysShape13BlendAnimatorFPQ28SysShape7AnimMgr
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -60,9 +103,8 @@ void EnemyBlendAnimatorBase::setAnimMgr(SysShape::AnimMgr*)
 void EnemyBlendAnimatorBase::getAnimator()
 {
 	/*
-	.loc_0x0:
-	  addi      r3, r3, 0x14
-	  blr
+	addi     r3, r3, 0x14
+	blr
 	*/
 }
 
@@ -74,12 +116,11 @@ void EnemyBlendAnimatorBase::getAnimator()
 void EnemyBlendAnimatorBase::getAnimator(int)
 {
 	/*
-	.loc_0x0:
-	  mulli     r4, r4, 0x1C
-	  mr        r0, r3
-	  addi      r3, r4, 0x14
-	  add       r3, r0, r3
-	  blr
+	mulli    r4, r4, 0x1c
+	mr       r0, r3
+	addi     r3, r4, 0x14
+	add      r3, r0, r3
+	blr
 	*/
 }
 
@@ -143,16 +184,15 @@ void EnemyBlendAnimatorBase::startBlend(int, int, SysShape::BlendFunction*,
 void EnemyBlendAnimatorBase::endBlend()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  addi      r3, r3, 0x10
-	  stw       r0, 0x14(r1)
-	  bl        0x2FB33C
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	addi     r3, r3, 0x10
+	stw      r0, 0x14(r1)
+	bl       endBlend__Q28SysShape13BlendAnimatorFv
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -199,59 +239,58 @@ void EnemyBlendAnimatorBase::animate(SysShape::BlendFunction*, float, float,
 void EnemyBlendAnimatorBase::animate(float)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r5, 0x804B
-	  lis       r4, 0x804B
-	  stw       r0, 0x14(r1)
-	  subi      r0, r5, 0x526C
-	  stw       r0, 0x8(r1)
-	  subi      r0, r4, 0x7E8
-	  stw       r0, 0x8(r1)
-	  lwz       r0, 0xC(r3)
-	  rlwinm.   r0,r0,0,31,31
-	  bne-      .loc_0x68
-	  bne-      .loc_0x4C
-	  fmr       f2, f1
-	  addi      r3, r3, 0x10
-	  fmr       f3, f1
-	  addi      r4, r1, 0x8
-	  bl        0x2FB2B4
-	  b         .loc_0xA0
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lis      r5, __vt__Q28SysShape13BlendFunction@ha
+	lis      r4, __vt__Q28SysShape14BlendLinearFun@ha
+	stw      r0, 0x14(r1)
+	addi     r0, r5, __vt__Q28SysShape13BlendFunction@l
+	stw      r0, 8(r1)
+	addi     r0, r4, __vt__Q28SysShape14BlendLinearFun@l
+	stw      r0, 8(r1)
+	lwz      r0, 0xc(r3)
+	clrlwi.  r0, r0, 0x1f
+	bne      lbl_8012E2DC
+	bne      lbl_8012E2C0
+	fmr      f2, f1
+	addi     r3, r3, 0x10
+	fmr      f3, f1
+	addi     r4, r1, 8
+	bl       animate__Q28SysShape13BlendAnimatorFPQ28SysShape13BlendFunctionfff
+	b        lbl_8012E314
 
-	.loc_0x4C:
-	  lfs       f1, -0x6248(r2)
-	  addi      r3, r3, 0x10
-	  addi      r4, r1, 0x8
-	  fmr       f2, f1
-	  fmr       f3, f1
-	  bl        0x2FB298
-	  b         .loc_0xA0
+lbl_8012E2C0:
+	lfs      f1, lbl_80518118@sda21(r2)
+	addi     r3, r3, 0x10
+	addi     r4, r1, 8
+	fmr      f2, f1
+	fmr      f3, f1
+	bl       animate__Q28SysShape13BlendAnimatorFPQ28SysShape13BlendFunctionfff
+	b        lbl_8012E314
 
-	.loc_0x68:
-	  bne-      .loc_0x88
-	  lfs       f1, -0x6248(r2)
-	  addi      r3, r3, 0x10
-	  addi      r4, r1, 0x8
-	  fmr       f2, f1
-	  fmr       f3, f1
-	  bl        0x2FB278
-	  b         .loc_0xA0
+lbl_8012E2DC:
+	bne      lbl_8012E2FC
+	lfs      f1, lbl_80518118@sda21(r2)
+	addi     r3, r3, 0x10
+	addi     r4, r1, 8
+	fmr      f2, f1
+	fmr      f3, f1
+	bl       animate__Q28SysShape13BlendAnimatorFPQ28SysShape13BlendFunctionfff
+	b        lbl_8012E314
 
-	.loc_0x88:
-	  lfs       f1, -0x6248(r2)
-	  addi      r3, r3, 0x10
-	  addi      r4, r1, 0x8
-	  fmr       f2, f1
-	  fmr       f3, f1
-	  bl        0x2FB25C
+lbl_8012E2FC:
+	lfs      f1, lbl_80518118@sda21(r2)
+	addi     r3, r3, 0x10
+	addi     r4, r1, 8
+	fmr      f2, f1
+	fmr      f3, f1
+	bl       animate__Q28SysShape13BlendAnimatorFPQ28SysShape13BlendFunctionfff
 
-	.loc_0xA0:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8012E314:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -276,14 +315,13 @@ void BlendLinearFun::getValue(float) { }
 void __sinit_enemyBlendAnimatorBase_cpp(void)
 {
 	/*
-	.loc_0x0:
-	  lis       r4, 0x804B
-	  lis       r3, 0x804B
-	  subi      r4, r4, 0x7E8
-	  subi      r0, r3, 0x7B4
-	  stw       r4, -0x6DC0(r13)
-	  stw       r0, -0x6DBC(r13)
-	  blr
+	lis      r4, __vt__Q28SysShape14BlendLinearFun@ha
+	lis      r3, __vt__Q28SysShape18BlendQuadraticFunc@ha
+	addi     r4, r4, __vt__Q28SysShape14BlendLinearFun@l
+	addi     r0, r3, __vt__Q28SysShape18BlendQuadraticFunc@l
+	stw      r4, sBlendLinearFun__Q24Game22EnemyBlendAnimatorBase@sda21(r13)
+	stw      r0, sBlendQuadraticFun__Q24Game22EnemyBlendAnimatorBase@sda21(r13)
+	blr
 	*/
 }
 
@@ -297,9 +335,8 @@ namespace SysShape {
 void BlendQuadraticFunc::getValue(float)
 {
 	/*
-	.loc_0x0:
-	  fmuls     f1, f1, f1
-	  blr
+	fmuls    f1, f1, f1
+	blr
 	*/
 }
 } // namespace SysShape

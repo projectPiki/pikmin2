@@ -1,5 +1,347 @@
 #include "types.h"
 
+/*
+    Generated from dpostproc
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_80485760
+    lbl_80485760:
+        .4byte 0x626F6479
+        .4byte 0x5F6A6E74
+        .4byte 0x32000000
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__Q23efx8TQuriHit
+    __vt__Q23efx8TQuriHit:
+        .4byte 0
+        .4byte 0
+        .4byte create__Q23efx8TSimple2FPQ23efx3Arg
+        .4byte forceKill__Q23efx8TSimple2Fv
+        .4byte fade__Q23efx8TSimple2Fv
+    .global __vt__Q23efx10TQuriDisap
+    __vt__Q23efx10TQuriDisap:
+        .4byte 0
+        .4byte 0
+        .4byte create__Q23efx5TSyncFPQ23efx3Arg
+        .4byte forceKill__Q23efx5TSyncFv
+        .4byte fade__Q23efx5TSyncFv
+        .4byte 0
+        .4byte 0
+        .4byte "@4@__dt__Q23efx10TQuriDisapFv"
+        .4byte "@4@execute__Q23efx5TSyncFP14JPABaseEmitter"
+        .4byte "@4@executeAfter__Q23efx5TSyncFP14JPABaseEmitter"
+        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
+        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+        .4byte execute__Q23efx5TSyncFP14JPABaseEmitter
+        .4byte executeAfter__Q23efx5TSyncFP14JPABaseEmitter
+        .4byte doExecuteEmitterOperation__Q23efx10TChaseMtxTFP14JPABaseEmitter
+        .4byte doExecuteAfter__Q23efx5TSyncFP14JPABaseEmitter
+        .4byte startDemoDrawOff__Q23efx5TSyncFv
+        .4byte endDemoDrawOn__Q23efx5TSyncFv
+        .4byte __dt__Q23efx10TQuriDisapFv
+    .global __vt__Q23efx8TQuriApp
+    __vt__Q23efx8TQuriApp:
+        .4byte 0
+        .4byte 0
+        .4byte create__Q23efx5TSyncFPQ23efx3Arg
+        .4byte forceKill__Q23efx5TSyncFv
+        .4byte fade__Q23efx5TSyncFv
+        .4byte 0
+        .4byte 0
+        .4byte "@4@__dt__Q23efx8TQuriAppFv"
+        .4byte "@4@execute__Q23efx5TSyncFP14JPABaseEmitter"
+        .4byte "@4@executeAfter__Q23efx5TSyncFP14JPABaseEmitter"
+        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
+        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+        .4byte execute__Q23efx5TSyncFP14JPABaseEmitter
+        .4byte executeAfter__Q23efx5TSyncFP14JPABaseEmitter
+        .4byte doExecuteEmitterOperation__Q23efx10TChaseMtxTFP14JPABaseEmitter
+        .4byte doExecuteAfter__Q23efx5TSyncFP14JPABaseEmitter
+        .4byte startDemoDrawOff__Q23efx5TSyncFv
+        .4byte endDemoDrawOn__Q23efx5TSyncFv
+        .4byte __dt__Q23efx8TQuriAppFv
+    .global __vt__Q23efx9TQuriGlow
+    __vt__Q23efx9TQuriGlow:
+        .4byte 0
+        .4byte 0
+        .4byte create__Q23efx5TSyncFPQ23efx3Arg
+        .4byte forceKill__Q23efx5TSyncFv
+        .4byte fade__Q23efx5TSyncFv
+        .4byte 0
+        .4byte 0
+        .4byte "@4@__dt__Q23efx9TQuriGlowFv"
+        .4byte "@4@execute__Q23efx5TSyncFP14JPABaseEmitter"
+        .4byte "@4@executeAfter__Q23efx5TSyncFP14JPABaseEmitter"
+        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
+        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+        .4byte execute__Q23efx5TSyncFP14JPABaseEmitter
+        .4byte executeAfter__Q23efx5TSyncFP14JPABaseEmitter
+        .4byte doExecuteEmitterOperation__Q23efx10TChaseMtxTFP14JPABaseEmitter
+        .4byte doExecuteAfter__Q23efx5TSyncFP14JPABaseEmitter
+        .4byte startDemoDrawOff__Q23efx5TSyncFv
+        .4byte endDemoDrawOn__Q23efx5TSyncFv
+        .4byte __dt__Q23efx9TQuriGlowFv
+    .global __vt__Q34Game7Qurione3Obj
+    __vt__Q34Game7Qurione3Obj:
+        .4byte 0
+        .4byte 0
+        .4byte getPosition__Q24Game9EnemyBaseFv
+        .4byte checkCollision__Q24Game8CreatureFPQ24Game10CellObject
+        .4byte getBoundingSphere__Q24Game9EnemyBaseFRQ23Sys6Sphere
+        .4byte collisionUpdatable__Q24Game8CreatureFv
+        .4byte isPiki__Q24Game8CreatureFv
+        .4byte isNavi__Q24Game8CreatureFv
+        .4byte deferPikiCollision__Q24Game10CellObjectFv
+        .4byte getTypeName__Q24Game8CreatureFv
+        .4byte getObjType__Q24Game8CreatureFv
+        .4byte constructor__Q24Game9EnemyBaseFv
+        .4byte onInit__Q34Game7Qurione3ObjFPQ24Game15CreatureInitArg
+        .4byte onKill__Q34Game7Qurione3ObjFPQ24Game15CreatureKillArg
+        .4byte onInitPost__Q24Game9EnemyBaseFPQ24Game15CreatureInitArg
+        .4byte doAnimation__Q24Game9EnemyBaseFv
+        .4byte doEntry__Q24Game9EnemyBaseFv
+        .4byte doSetView__Q24Game9EnemyBaseFi
+        .4byte doViewCalc__Q24Game9EnemyBaseFv
+        .4byte doSimulation__Q24Game9EnemyBaseFf
+        .4byte doDirectDraw__Q34Game7Qurione3ObjFR8Graphics
+        .4byte getBodyRadius__Q24Game9EnemyBaseFv
+        .4byte getCellRadius__Q24Game9EnemyBaseFv
+        .4byte "initPosition__Q24Game8CreatureFR10Vector3<f>"
+        .4byte "onInitPosition__Q24Game8CreatureFR10Vector3<f>"
+        .4byte getFaceDir__Q24Game9EnemyBaseFv
+        .4byte "setVelocity__Q24Game9EnemyBaseFR10Vector3<f>"
+        .4byte getVelocity__Q24Game9EnemyBaseFv
+        .4byte "onSetPosition__Q24Game9EnemyBaseFR10Vector3<f>"
+        .4byte "onSetPositionPost__Q24Game9EnemyBaseFR10Vector3<f>"
+        .4byte updateTrMatrix__Q24Game9EnemyBaseFv
+        .4byte isTeki__Q24Game9EnemyBaseFv
+        .4byte isPellet__Q24Game8CreatureFv
+        .4byte inWaterCallback__Q34Game7Qurione3ObjFPQ24Game8WaterBox
+        .4byte outWaterCallback__Q34Game7Qurione3ObjFv
+        .4byte inWater__Q24Game9EnemyBaseFv
+        .4byte getFlockMgr__Q24Game8CreatureFv
+        .4byte onStartCapture__Q24Game8CreatureFv
+        .4byte onUpdateCapture__Q24Game8CreatureFR7Matrixf
+        .4byte onEndCapture__Q24Game8CreatureFv
+        .4byte isAtari__Q24Game8CreatureFv
+        .4byte setAtari__Q24Game8CreatureFb
+        .4byte isAlive__Q24Game8CreatureFv
+        .4byte setAlive__Q24Game8CreatureFb
+        .4byte isCollisionFlick__Q24Game8CreatureFv
+        .4byte setCollisionFlick__Q24Game8CreatureFb
+        .4byte isMovieActor__Q24Game8CreatureFv
+        .4byte isMovieExtra__Q24Game8CreatureFv
+        .4byte isMovieMotion__Q24Game8CreatureFv
+        .4byte setMovieMotion__Q24Game8CreatureFb
+        .4byte isBuried__Q24Game8CreatureFv
+        .4byte isFlying__Q24Game9EnemyBaseFv
+        .4byte isUnderground__Q24Game8CreatureFv
+        .4byte isLivingThing__Q24Game8CreatureFv
+        .4byte isDebugCollision__Q24Game8CreatureFv
+        .4byte setDebugCollision__Q24Game8CreatureFb
+        .4byte doSave__Q24Game8CreatureFR6Stream
+        .4byte doLoad__Q24Game8CreatureFR6Stream
+        .4byte bounceCallback__Q24Game8CreatureFPQ23Sys8Triangle
+        .4byte collisionCallback__Q24Game9EnemyBaseFRQ24Game9CollEvent
+        .4byte platCallback__Q24Game8CreatureFRQ24Game9PlatEvent
+        .4byte getJAIObject__Q24Game9EnemyBaseFv
+        .4byte getPSCreature__Q24Game9EnemyBaseFv
+        .4byte getSound_AILOD__Q24Game8CreatureFv
+        .4byte getSound_PosPtr__Q24Game9EnemyBaseFv
+        .4byte sound_culling__Q24Game9EnemyBaseFv
+        .4byte getSound_CurrAnimFrame__Q24Game9EnemyBaseFv
+        .4byte getSound_CurrAnimSpeed__Q24Game9EnemyBaseFv
+        .4byte on_movie_begin__Q24Game8CreatureFb
+        .4byte on_movie_end__Q24Game8CreatureFb
+        .4byte movieStartAnimation__Q24Game8CreatureFUl
+        .4byte movieStartDemoAnimation__Q24Game8CreatureFPQ28SysShape8AnimInfo
+        .4byte movieSetAnimationLastFrame__Q24Game8CreatureFv
+        .4byte "movieSetTranslation__Q24Game8CreatureFR10Vector3<f>f"
+        .4byte movieSetFaceDir__Q24Game8CreatureFf
+        .4byte "movieGotoPosition__Q24Game8CreatureFR10Vector3<f>"
+        .4byte movieUserCommand__Q24Game8CreatureFUlPQ24Game11MoviePlayer
+        .4byte getShadowParam__Q34Game7Qurione3ObjFRQ24Game11ShadowParam
+        .4byte needShadow__Q24Game9EnemyBaseFv
+        .4byte getLifeGaugeParam__Q24Game9EnemyBaseFRQ24Game14LifeGaugeParam
+        .4byte getLODSphere__Q24Game9EnemyBaseFRQ23Sys6Sphere
+        .4byte getLODCylinder__Q24Game8CreatureFRQ23Sys8Cylinder
+        .4byte startPick__Q24Game8CreatureFv
+        .4byte endPick__Q24Game8CreatureFb
+        .4byte getMabiki__Q24Game8CreatureFv
+        .4byte getFootmarks__Q24Game8CreatureFv
+        .4byte onStickStart__Q24Game9EnemyBaseFPQ24Game8Creature
+        .4byte onStickEnd__Q24Game9EnemyBaseFPQ24Game8Creature
+        .4byte onStickStartSelf__Q24Game8CreatureFPQ24Game8Creature
+        .4byte onStickEndSelf__Q24Game8CreatureFPQ24Game8Creature
+        .4byte isSlotFree__Q24Game8CreatureFs
+        .4byte getFreeStickSlot__Q24Game8CreatureFv
+        .4byte "getNearFreeStickSlot__Q24Game8CreatureFR10Vector3<f>"
+        .4byte getRandomFreeStickSlot__Q24Game8CreatureFv
+        .4byte onSlotStickStart__Q24Game8CreatureFPQ24Game8Creatures
+        .4byte onSlotStickEnd__Q24Game8CreatureFPQ24Game8Creatures
+        .4byte "calcStickSlotGlobal__Q24Game8CreatureFsR10Vector3<f>"
+        .4byte "getVelocityAt__Q24Game9EnemyBaseFR10Vector3<f>R10Vector3<f>"
+        .4byte "getAngularEffect__Q24Game8CreatureFR10Vector3<f>R10Vector3<f>"
+        .4byte "applyImpulse__Q24Game8CreatureFR10Vector3<f>R10Vector3<f>"
+        .4byte ignoreAtari__Q24Game8CreatureFPQ24Game8Creature
+        .4byte getSuckPos__Q24Game8CreatureFv
+        .4byte getGoalPos__Q24Game8CreatureFv
+        .4byte isSuckReady__Q24Game8CreatureFv
+        .4byte isSuckArriveWait__Q24Game8CreatureFv
+        .4byte stimulate__Q24Game9EnemyBaseFRQ24Game11Interaction
+        .4byte getCreatureName__Q24Game9EnemyBaseFv
+        .4byte getCreatureID__Q24Game9EnemyBaseFv
+        .4byte 0
+        .4byte 0
+        .4byte "@376@onKeyEvent__Q24Game9EnemyBaseFRCQ28SysShape8KeyEvent"
+        .4byte __dt__Q34Game7Qurione3ObjFv
+        .4byte "birth__Q34Game7Qurione3ObjFR10Vector3<f>f"
+        .4byte
+   setInitialSetting__Q34Game7Qurione3ObjFPQ24Game21EnemyInitialParamBase .4byte
+   update__Q24Game9EnemyBaseFv .4byte doUpdate__Q34Game7Qurione3ObjFv .4byte
+   doUpdateCommon__Q24Game9EnemyBaseFv .4byte
+   doUpdateCarcass__Q24Game9EnemyBaseFv .4byte
+   doAnimationUpdateAnimator__Q24Game9EnemyBaseFv .4byte
+   doAnimationCullingOff__Q24Game9EnemyBaseFv .4byte
+   doAnimationCullingOn__Q24Game9EnemyBaseFv .4byte
+   doAnimationStick__Q24Game9EnemyBaseFv .4byte
+   doSimulationCarcass__Q24Game9EnemyBaseFf .4byte
+   doDebugDraw__Q34Game7Qurione3ObjFR8Graphics .4byte
+   doSimpleDraw__Q24Game9EnemyBaseFP8Viewport .4byte
+   doSimulationGround__Q24Game9EnemyBaseFf .4byte
+   doSimulationFlying__Q24Game9EnemyBaseFf .4byte
+   doSimulationStick__Q24Game9EnemyBaseFf .4byte
+   changeMaterial__Q24Game9EnemyBaseFv .4byte
+   "getCommonEffectPos__Q24Game9EnemyBaseFR10Vector3<f>" .4byte
+   getFitEffectPos__Q24Game9EnemyBaseFv .4byte viewGetShape__Q24Game9EnemyBaseFv
+        .4byte view_start_carrymotion__Q24Game9EnemyBaseFv
+        .4byte view_finish_carrymotion__Q24Game9EnemyBaseFv
+        .4byte viewStartPreCarryMotion__Q24Game9EnemyBaseFv
+        .4byte viewStartCarryMotion__Q24Game9EnemyBaseFv
+        .4byte viewOnPelletKilled__Q24Game9EnemyBaseFv
+        .4byte getOffsetForMapCollision__Q24Game9EnemyBaseFv
+        .4byte setParameters__Q24Game9EnemyBaseFv
+        .4byte initMouthSlots__Q24Game9EnemyBaseFv
+        .4byte initWalkSmokeEffect__Q24Game9EnemyBaseFv
+        .4byte getWalkSmokeEffectMgr__Q24Game9EnemyBaseFv
+        .4byte onKeyEvent__Q24Game9EnemyBaseFRCQ28SysShape8KeyEvent
+        .4byte injure__Q24Game9EnemyBaseFv
+        .4byte setCollEvent__Q24Game9EnemyBaseFRQ24Game9CollEvent
+        .4byte "getEfxHamonPos__Q24Game9EnemyBaseFP10Vector3<f>"
+        .4byte createInstanceEfxHamon__Q24Game9EnemyBaseFv
+        .4byte updateEfxHamon__Q24Game9EnemyBaseFv
+        .4byte createEfxHamon__Q24Game9EnemyBaseFv
+        .4byte fadeEfxHamon__Q24Game9EnemyBaseFv
+        .4byte getEnemyTypeID__Q34Game7Qurione3ObjFv
+        .4byte getMouthSlots__Q24Game9EnemyBaseFv
+        .4byte doGetLifeGaugeParam__Q24Game9EnemyBaseFRQ24Game14LifeGaugeParam
+        .4byte throwupItem__Q24Game9EnemyBaseFv
+        .4byte "getThrowupItemPosition__Q24Game9EnemyBaseFP10Vector3<f>"
+        .4byte "getThrowupItemVelocity__Q24Game9EnemyBaseFP10Vector3<f>"
+        .4byte throwupItemInDeathProcedure__Q24Game9EnemyBaseFv
+        .4byte setLODSphere__Q24Game9EnemyBaseFRQ23Sys6Sphere
+        .4byte damageCallBack__Q24Game9EnemyBaseFPQ24Game8CreaturefP8CollPart
+        .4byte pressCallBack__Q24Game9EnemyBaseFPQ24Game8CreaturefP8CollPart
+        .4byte
+   flyCollisionCallBack__Q34Game7Qurione3ObjFPQ24Game8CreaturefP8CollPart .4byte
+   hipdropCallBack__Q24Game9EnemyBaseFPQ24Game8CreaturefP8CollPart .4byte
+   dropCallBack__Q24Game9EnemyBaseFPQ24Game8Creature .4byte
+   earthquakeCallBack__Q24Game9EnemyBaseFPQ24Game8Creaturef .4byte
+   farmCallBack__Q24Game9EnemyBaseFPQ24Game8Creaturef .4byte
+   "bombCallBack__Q24Game9EnemyBaseFPQ24Game8CreatureR10Vector3<f>f" .4byte
+   eatWhitePikminCallBack__Q24Game9EnemyBaseFPQ24Game8Creaturef .4byte
+   dopeCallBack__Q24Game9EnemyBaseFPQ24Game8Creaturei .4byte
+   doDopeCallBack__Q24Game9EnemyBaseFPQ24Game8Creaturei .4byte
+   doStartStoneState__Q24Game9EnemyBaseFv .4byte
+   doFinishStoneState__Q24Game9EnemyBaseFv .4byte
+   getDamageCoeStoneState__Q24Game9EnemyBaseFv .4byte
+   doStartEarthquakeState__Q24Game9EnemyBaseFf .4byte
+   doFinishEarthquakeState__Q24Game9EnemyBaseFv .4byte
+   doStartEarthquakeFitState__Q24Game9EnemyBaseFv .4byte
+   doFinishEarthquakeFitState__Q24Game9EnemyBaseFv .4byte
+   lifeRecover__Q24Game9EnemyBaseFv .4byte
+   startCarcassMotion__Q24Game9EnemyBaseFv .4byte
+   setCarcassArg__Q24Game9EnemyBaseFRQ24Game13PelletViewArg .4byte
+   getCarcassArgHeight__Q24Game9EnemyBaseFv .4byte
+   doBecomeCarcass__Q24Game9EnemyBaseFv .4byte
+   startWaitingBirthTypeDrop__Q24Game9EnemyBaseFv .4byte
+   finishWaitingBirthTypeDrop__Q24Game9EnemyBaseFv .4byte
+   isFinishableWaitingBirthTypeDrop__Q24Game9EnemyBaseFv .4byte
+   doStartWaitingBirthTypeDrop__Q34Game7Qurione3ObjFv .4byte
+   doFinishWaitingBirthTypeDrop__Q34Game7Qurione3ObjFv .4byte
+   wallCallback__Q24Game9EnemyBaseFRCQ24Game8MoveInfo .4byte
+   getDownSmokeScale__Q24Game9EnemyBaseFv .4byte
+   doStartMovie__Q34Game7Qurione3ObjFv .4byte doEndMovie__Q34Game7Qurione3ObjFv
+        .4byte setFSM__Q34Game7Qurione3ObjFPQ34Game7Qurione3FSM
+        .4byte 0
+        .4byte 0
+        .4byte viewGetBaseScale__Q24Game10PelletViewFv
+        .4byte "@764@12@viewGetShape__Q24Game9EnemyBaseFv"
+        .4byte viewGetCollTreeJointIndex__Q24Game10PelletViewFv
+        .4byte viewGetCollTreeOffset__Q24Game10PelletViewFv
+        .4byte "@764@12@view_start_carrymotion__Q24Game9EnemyBaseFv"
+        .4byte "@764@12@view_finish_carrymotion__Q24Game9EnemyBaseFv"
+        .4byte "@764@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv"
+        .4byte "@764@12@viewStartCarryMotion__Q24Game9EnemyBaseFv"
+        .4byte "@764@12@viewOnPelletKilled__Q24Game9EnemyBaseFv"
+        .4byte "viewEntryShape__Q24Game10PelletViewFR7MatrixfR10Vector3<f>"
+        .4byte 0
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_8051ACF0
+    lbl_8051ACF0:
+        .4byte 0x43480000
+    .global lbl_8051ACF4
+    lbl_8051ACF4:
+        .4byte 0x41F00000
+    .global lbl_8051ACF8
+    lbl_8051ACF8:
+        .4byte 0x00000000
+    .global lbl_8051ACFC
+    lbl_8051ACFC:
+        .4byte 0x41C80000
+    .global lbl_8051AD00
+    lbl_8051AD00:
+        .float 1.0
+    .global lbl_8051AD04
+    lbl_8051AD04:
+        .4byte 0x40F00000
+    .global lbl_8051AD08
+    lbl_8051AD08:
+        .4byte 0xC3A2F983
+    .global lbl_8051AD0C
+    lbl_8051AD0C:
+        .4byte 0x43A2F983
+    .global lbl_8051AD10
+    lbl_8051AD10:
+        .4byte 0x3FC90FDB
+    .global lbl_8051AD14
+    lbl_8051AD14:
+        .4byte 0x40200000
+    .global lbl_8051AD18
+    lbl_8051AD18:
+        .4byte 0x40C90FDB
+    .global lbl_8051AD1C
+    lbl_8051AD1C:
+        .4byte 0x40000000
+    .global lbl_8051AD20
+    lbl_8051AD20:
+        .4byte 0x47000000
+        .4byte 0x00000000
+    .global lbl_8051AD28
+    lbl_8051AD28:
+        .4byte 0x43300000
+        .4byte 0x80000000
+    .global lbl_8051AD30
+    lbl_8051AD30:
+        .4byte 0x77617465
+        .4byte 0x72000000
+    .global lbl_8051AD38
+    lbl_8051AD38:
+        .4byte 0x3FA99999
+        .4byte 0x9999999A
+*/
+
 namespace Game {
 
 /*
@@ -10,98 +352,97 @@ namespace Game {
 Qurione::Obj::Obj()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  extsh.    r0, r4
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  stw       r30, 0x8(r1)
-	  beq-      .loc_0x40
-	  addi      r0, r31, 0x2FC
-	  lis       r3, 0x804B
-	  stw       r0, 0x17C(r31)
-	  subi      r3, r3, 0x5988
-	  li        r0, 0
-	  stw       r3, 0x2FC(r31)
-	  stw       r0, 0x300(r31)
-	  stw       r0, 0x304(r31)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	extsh.   r0, r4
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	stw      r30, 8(r1)
+	beq      lbl_802601B8
+	addi     r0, r31, 0x2fc
+	lis      r3, __vt__Q24Game10PelletView@ha
+	stw      r0, 0x17c(r31)
+	addi     r3, r3, __vt__Q24Game10PelletView@l
+	li       r0, 0
+	stw      r3, 0x2fc(r31)
+	stw      r0, 0x300(r31)
+	stw      r0, 0x304(r31)
 
-	.loc_0x40:
-	  mr        r3, r31
-	  li        r4, 0
-	  bl        -0x15EE20
-	  lis       r4, 0x804C
-	  addi      r0, r31, 0x2FC
-	  addi      r6, r4, 0x3748
-	  lis       r3, 0x8012
-	  stw       r6, 0x0(r31)
-	  addi      r5, r6, 0x1B0
-	  addi      r9, r6, 0x2FC
-	  subi      r4, r3, 0xCB8
-	  stw       r5, 0x178(r31)
-	  addi      r3, r31, 0x2D4
-	  li        r5, 0
-	  li        r6, 0xC
-	  lwz       r8, 0x17C(r31)
-	  li        r7, 0x2
-	  stw       r9, 0x0(r8)
-	  lwz       r8, 0x17C(r31)
-	  sub       r0, r0, r8
-	  stw       r0, 0xC(r8)
-	  bl        -0x19E9D0
-	  li        r3, 0x2C
-	  bl        -0x23C370
-	  mr.       r30, r3
-	  beq-      .loc_0xE8
-	  bl        -0x1388AC
-	  lis       r3, 0x804C
-	  lis       r4, 0x804B
-	  addi      r0, r3, 0x3A78
-	  lis       r3, 0x804F
-	  stw       r0, 0x0(r30)
-	  subi      r4, r4, 0x4678
-	  subi      r3, r3, 0x4200
-	  li        r0, 0
-	  stw       r4, 0x10(r30)
-	  stw       r3, 0x10(r30)
-	  stb       r0, 0x28(r30)
-	  stw       r0, 0x1C(r30)
-	  stw       r0, 0x14(r30)
-	  stb       r0, 0x28(r30)
-	  stw       r0, 0x20(r30)
+lbl_802601B8:
+	mr       r3, r31
+	li       r4, 0
+	bl       __ct__Q24Game9EnemyBaseFv
+	lis      r4, __vt__Q34Game7Qurione3Obj@ha
+	addi     r0, r31, 0x2fc
+	addi     r6, r4, __vt__Q34Game7Qurione3Obj@l
+	lis      r3, "__ct__10Vector3<f>Fv"@ha
+	stw      r6, 0(r31)
+	addi     r5, r6, 0x1b0
+	addi     r9, r6, 0x2fc
+	addi     r4, r3, "__ct__10Vector3<f>Fv"@l
+	stw      r5, 0x178(r31)
+	addi     r3, r31, 0x2d4
+	li       r5, 0
+	li       r6, 0xc
+	lwz      r8, 0x17c(r31)
+	li       r7, 2
+	stw      r9, 0(r8)
+	lwz      r8, 0x17c(r31)
+	subf     r0, r8, r0
+	stw      r0, 0xc(r8)
+	bl       __construct_array
+	li       r3, 0x2c
+	bl       __nw__FUl
+	or.      r30, r3, r3
+	beq      lbl_80260260
+	bl       __ct__Q24Game17EnemyAnimatorBaseFv
+	lis      r3, __vt__Q34Game7Qurione14ProperAnimator@ha
+	lis      r4, __vt__Q28SysShape12BaseAnimator@ha
+	addi     r0, r3, __vt__Q34Game7Qurione14ProperAnimator@l
+	lis      r3, __vt__Q28SysShape8Animator@ha
+	stw      r0, 0(r30)
+	addi     r4, r4, __vt__Q28SysShape12BaseAnimator@l
+	addi     r3, r3, __vt__Q28SysShape8Animator@l
+	li       r0, 0
+	stw      r4, 0x10(r30)
+	stw      r3, 0x10(r30)
+	stb      r0, 0x28(r30)
+	stw      r0, 0x1c(r30)
+	stw      r0, 0x14(r30)
+	stb      r0, 0x28(r30)
+	stw      r0, 0x20(r30)
 
-	.loc_0xE8:
-	  stw       r30, 0x184(r31)
-	  li        r3, 0x1C
-	  bl        -0x23C3C4
-	  mr.       r4, r3
-	  beq-      .loc_0x11C
-	  lis       r5, 0x804B
-	  lis       r3, 0x804C
-	  subi      r0, r5, 0x680
-	  li        r5, -0x1
-	  stw       r0, 0x0(r4)
-	  addi      r0, r3, 0x351C
-	  stw       r5, 0x18(r4)
-	  stw       r0, 0x0(r4)
+lbl_80260260:
+	stw      r30, 0x184(r31)
+	li       r3, 0x1c
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_80260294
+	lis      r5, __vt__Q24Game17EnemyStateMachine@ha
+	lis      r3, __vt__Q34Game7Qurione3FSM@ha
+	addi     r0, r5, __vt__Q24Game17EnemyStateMachine@l
+	li       r5, -1
+	stw      r0, 0(r4)
+	addi     r0, r3, __vt__Q34Game7Qurione3FSM@l
+	stw      r5, 0x18(r4)
+	stw      r0, 0(r4)
 
-	.loc_0x11C:
-	  lwz       r12, 0x0(r31)
-	  mr        r3, r31
-	  lwz       r12, 0x2F8(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r3, r31
-	  bl        0x9A0
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80260294:
+	lwz      r12, 0(r31)
+	mr       r3, r31
+	lwz      r12, 0x2f8(r12)
+	mtctr    r12
+	bctrl
+	mr       r3, r31
+	bl       createEffect__Q34Game7Qurione3ObjFv
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -113,30 +454,29 @@ Qurione::Obj::Obj()
 void Qurione::Obj::birth(Vector3f&, float)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r3
-	  bl        -0x15D8E0
-	  mr        r3, r31
-	  bl        0x81C
-	  lfs       f1, -0x3670(r2)
-	  mr        r3, r31
-	  lfs       f0, -0x366C(r2)
-	  addi      r4, r1, 0x8
-	  stfs      f1, 0x8(r1)
-	  stfs      f0, 0xC(r1)
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x1C4(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r3
+	bl       "birth__Q24Game9EnemyBaseFR10Vector3<f>f"
+	mr       r3, r31
+	bl       attachItem__Q34Game7Qurione3ObjFv
+	lfs      f1, lbl_8051ACF0@sda21(r2)
+	mr       r3, r31
+	lfs      f0, lbl_8051ACF4@sda21(r2)
+	addi     r4, r1, 8
+	stfs     f1, 8(r1)
+	stfs     f0, 0xc(r1)
+	lwz      r12, 0(r31)
+	lwz      r12, 0x1c4(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -148,18 +488,17 @@ void Qurione::Obj::birth(Vector3f&, float)
 void Qurione::Obj::setInitialSetting(Game::EnemyInitialParamBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lfs       f0, 0x0(r4)
-	  stfs      f0, 0x2C4(r3)
-	  lfs       f1, 0x4(r4)
-	  bl        0x374
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lfs      f0, 0(r4)
+	stfs     f0, 0x2c4(r3)
+	lfs      f1, 4(r4)
+	bl       setQurioneStartPos__Q34Game7Qurione3ObjFf
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -171,66 +510,65 @@ void Qurione::Obj::setInitialSetting(Game::EnemyInitialParamBase*)
 void Qurione::Obj::onInit(Game::CreatureInitArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        -0x15E910
-	  lwz       r4, 0x1E0(r31)
-	  li        r0, 0
-	  lfs       f0, -0x3668(r2)
-	  mr        r3, r31
-	  ori       r4, r4, 0x4
-	  stw       r4, 0x1E0(r31)
-	  lwz       r4, 0x1E0(r31)
-	  ori       r4, r4, 0x1
-	  stw       r4, 0x1E0(r31)
-	  lwz       r4, 0x1E0(r31)
-	  rlwinm    r4,r4,0,20,18
-	  stw       r4, 0x1E0(r31)
-	  lwz       r4, 0x1E0(r31)
-	  rlwinm    r4,r4,0,29,27
-	  stw       r4, 0x1E0(r31)
-	  lwz       r4, 0x1E0(r31)
-	  rlwinm    r4,r4,0,25,23
-	  stw       r4, 0x1E0(r31)
-	  lwz       r4, 0x1E0(r31)
-	  rlwinm    r4,r4,0,24,22
-	  stw       r4, 0x1E0(r31)
-	  lwz       r4, 0x1E0(r31)
-	  rlwinm    r4,r4,0,21,19
-	  stw       r4, 0x1E0(r31)
-	  lwz       r4, 0x1E0(r31)
-	  oris      r4, r4, 0x40
-	  stw       r4, 0x1E0(r31)
-	  stb       r0, 0x2B0(r31)
-	  stfs      f0, 0x2C8(r31)
-	  stw       r0, 0x2D0(r31)
-	  bl        0x5FC
-	  lfs       f0, -0x3668(r2)
-	  mr        r3, r31
-	  stfs      f0, 0x2C0(r31)
-	  bl        0xA18
-	  lwz       r3, 0x2BC(r31)
-	  mr        r4, r31
-	  li        r5, 0
-	  li        r6, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x1DC(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       onInit__Q24Game9EnemyBaseFPQ24Game15CreatureInitArg
+	lwz      r4, 0x1e0(r31)
+	li       r0, 0
+	lfs      f0, lbl_8051ACF8@sda21(r2)
+	mr       r3, r31
+	ori      r4, r4, 4
+	stw      r4, 0x1e0(r31)
+	lwz      r4, 0x1e0(r31)
+	ori      r4, r4, 1
+	stw      r4, 0x1e0(r31)
+	lwz      r4, 0x1e0(r31)
+	rlwinm   r4, r4, 0, 0x14, 0x12
+	stw      r4, 0x1e0(r31)
+	lwz      r4, 0x1e0(r31)
+	rlwinm   r4, r4, 0, 0x1d, 0x1b
+	stw      r4, 0x1e0(r31)
+	lwz      r4, 0x1e0(r31)
+	rlwinm   r4, r4, 0, 0x19, 0x17
+	stw      r4, 0x1e0(r31)
+	lwz      r4, 0x1e0(r31)
+	rlwinm   r4, r4, 0, 0x18, 0x16
+	stw      r4, 0x1e0(r31)
+	lwz      r4, 0x1e0(r31)
+	rlwinm   r4, r4, 0, 0x15, 0x13
+	stw      r4, 0x1e0(r31)
+	lwz      r4, 0x1e0(r31)
+	oris     r4, r4, 0x40
+	stw      r4, 0x1e0(r31)
+	stb      r0, 0x2b0(r31)
+	stfs     f0, 0x2c8(r31)
+	stw      r0, 0x2d0(r31)
+	bl       resetUtilityTimer__Q34Game7Qurione3ObjFv
+	lfs      f0, lbl_8051ACF8@sda21(r2)
+	mr       r3, r31
+	stfs     f0, 0x2c0(r31)
+	bl       setupEffect__Q34Game7Qurione3ObjFv
+	lwz      r3, 0x2bc(r31)
+	mr       r4, r31
+	li       r5, 0
+	li       r6, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r12, 0x1dc(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -242,24 +580,23 @@ void Qurione::Obj::onInit(Game::CreatureInitArg*)
 void Qurione::Obj::onKill(Game::CreatureKillArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  bl        0xB1C
-	  mr        r3, r30
-	  mr        r4, r31
-	  bl        -0x15E580
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	bl       finishGlowEffect__Q34Game7Qurione3ObjFv
+	mr       r3, r30
+	mr       r4, r31
+	bl       onKill__Q24Game9EnemyBaseFPQ24Game15CreatureKillArg
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -271,20 +608,19 @@ void Qurione::Obj::onKill(Game::CreatureKillArg*)
 void Qurione::Obj::doUpdate()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r4, r3
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x2BC(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r4, r3
+	stw      r0, 0x14(r1)
+	lwz      r3, 0x2bc(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -296,26 +632,25 @@ void Qurione::Obj::doUpdate()
 void Qurione::Obj::setFSM(Game::Qurione::FSM*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  stw       r4, 0x2BC(r3)
-	  mr        r4, r31
-	  lwz       r3, 0x2BC(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  li        r0, 0
-	  stw       r0, 0x2B4(r31)
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	stw      r4, 0x2bc(r3)
+	mr       r4, r31
+	lwz      r3, 0x2bc(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	li       r0, 0
+	stw      r0, 0x2b4(r31)
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -334,15 +669,14 @@ void Qurione::Obj::doDirectDraw(Graphics&) { }
 void Qurione::Obj::doDebugDraw(Graphics&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  bl        -0x15A6A8
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	bl       doDebugDraw__Q24Game9EnemyBaseFR8Graphics
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -354,30 +688,29 @@ void Qurione::Obj::doDebugDraw(Graphics&)
 void Qurione::Obj::getShadowParam(Game::ShadowParam&)
 {
 	/*
-	.loc_0x0:
-	  lfs       f0, 0x18C(r3)
-	  lfs       f1, -0x3664(r2)
-	  stfs      f0, 0x0(r4)
-	  lfs       f2, -0x3668(r2)
-	  lfs       f3, 0x190(r3)
-	  lfs       f0, -0x3660(r2)
-	  fsubs     f3, f3, f1
-	  lfs       f1, -0x365C(r2)
-	  stfs      f3, 0x4(r4)
-	  lfs       f3, 0x194(r3)
-	  stfs      f3, 0x8(r4)
-	  stfs      f2, 0xC(r4)
-	  stfs      f0, 0x10(r4)
-	  stfs      f2, 0x14(r4)
-	  lfs       f0, 0x2C0(r3)
-	  fmuls     f0, f1, f0
-	  stfs      f0, 0x1C(r4)
-	  lwz       r3, 0xC0(r3)
-	  lfs       f1, 0x81C(r3)
-	  lfs       f0, 0x86C(r3)
-	  fadds     f0, f1, f0
-	  stfs      f0, 0x18(r4)
-	  blr
+	lfs      f0, 0x18c(r3)
+	lfs      f1, lbl_8051ACFC@sda21(r2)
+	stfs     f0, 0(r4)
+	lfs      f2, lbl_8051ACF8@sda21(r2)
+	lfs      f3, 0x190(r3)
+	lfs      f0, lbl_8051AD00@sda21(r2)
+	fsubs    f3, f3, f1
+	lfs      f1, lbl_8051AD04@sda21(r2)
+	stfs     f3, 4(r4)
+	lfs      f3, 0x194(r3)
+	stfs     f3, 8(r4)
+	stfs     f2, 0xc(r4)
+	stfs     f0, 0x10(r4)
+	stfs     f2, 0x14(r4)
+	lfs      f0, 0x2c0(r3)
+	fmuls    f0, f1, f0
+	stfs     f0, 0x1c(r4)
+	lwz      r3, 0xc0(r3)
+	lfs      f1, 0x81c(r3)
+	lfs      f0, 0x86c(r3)
+	fadds    f0, f1, f0
+	stfs     f0, 0x18(r4)
+	blr
 	*/
 }
 
@@ -389,45 +722,44 @@ void Qurione::Obj::getShadowParam(Game::ShadowParam&)
 void Qurione::Obj::flyCollisionCallBack(Game::Creature*, float, CollPart*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  cmplwi    r4, 0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  beq-      .loc_0x70
-	  mr        r3, r4
-	  lwz       r12, 0x0(r4)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x70
-	  mr        r3, r31
-	  bl        -0x1591CC
-	  cmpwi     r3, 0x3
-	  bne-      .loc_0x70
-	  lwz       r3, 0x2BC(r31)
-	  mr        r4, r31
-	  li        r5, 0x4
-	  li        r6, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  li        r3, 0x1
-	  b         .loc_0x74
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	cmplwi   r4, 0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	beq      lbl_802605F4
+	mr       r3, r4
+	lwz      r12, 0(r4)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802605F4
+	mr       r3, r31
+	bl       getStateID__Q24Game9EnemyBaseFv
+	cmpwi    r3, 3
+	bne      lbl_802605F4
+	lwz      r3, 0x2bc(r31)
+	mr       r4, r31
+	li       r5, 4
+	li       r6, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	li       r3, 1
+	b        lbl_802605F8
 
-	.loc_0x70:
-	  li        r3, 0
+lbl_802605F4:
+	li       r3, 0
 
-	.loc_0x74:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_802605F8:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -439,20 +771,19 @@ void Qurione::Obj::flyCollisionCallBack(Game::Creature*, float, CollPart*)
 void Qurione::Obj::doStartWaitingBirthTypeDrop()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        -0x158C88
-	  mr        r3, r31
-	  bl        0xA4C
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       doStartWaitingBirthTypeDrop__Q24Game9EnemyBaseFv
+	mr       r3, r31
+	bl       effectDrawOff__Q34Game7Qurione3ObjFv
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -464,20 +795,19 @@ void Qurione::Obj::doStartWaitingBirthTypeDrop()
 void Qurione::Obj::doFinishWaitingBirthTypeDrop()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        -0x158C8C
-	  mr        r3, r31
-	  bl        0x9B4
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       doFinishWaitingBirthTypeDrop__Q24Game9EnemyBaseFv
+	mr       r3, r31
+	bl       effectDrawOn__Q34Game7Qurione3ObjFv
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -489,15 +819,14 @@ void Qurione::Obj::doFinishWaitingBirthTypeDrop()
 void Qurione::Obj::doStartMovie()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  bl        0x9F4
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	bl       effectDrawOff__Q34Game7Qurione3ObjFv
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -509,15 +838,14 @@ void Qurione::Obj::doStartMovie()
 void Qurione::Obj::doEndMovie()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  bl        0x970
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	bl       effectDrawOn__Q34Game7Qurione3ObjFv
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -529,117 +857,116 @@ void Qurione::Obj::doEndMovie()
 void Qurione::Obj::setQurioneStartPos(float)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  lfs       f0, -0x3668(r2)
-	  lfs       f2, 0x18C(r3)
-	  stfs      f2, 0x2D4(r3)
-	  lwz       r4, 0xC0(r3)
-	  lfs       f3, 0x190(r3)
-	  lfs       f2, 0x81C(r4)
-	  fadds     f2, f3, f2
-	  stfs      f2, 0x2D8(r3)
-	  lfs       f2, 0x194(r3)
-	  stfs      f2, 0x2DC(r3)
-	  lfs       f5, 0x1FC(r3)
-	  fcmpo     cr0, f5, f0
-	  bge-      .loc_0x64
-	  lfs       f0, -0x3658(r2)
-	  lis       r4, 0x8050
-	  addi      r4, r4, 0x71A0
-	  fmuls     f0, f5, f0
-	  fctiwz    f0, f0
-	  stfd      f0, 0x8(r1)
-	  lwz       r0, 0xC(r1)
-	  rlwinm    r0,r0,3,18,28
-	  lfsx      f0, r4, r0
-	  fneg      f2, f0
-	  b         .loc_0x88
+	stwu     r1, -0x40(r1)
+	lfs      f0, lbl_8051ACF8@sda21(r2)
+	lfs      f2, 0x18c(r3)
+	stfs     f2, 0x2d4(r3)
+	lwz      r4, 0xc0(r3)
+	lfs      f3, 0x190(r3)
+	lfs      f2, 0x81c(r4)
+	fadds    f2, f3, f2
+	stfs     f2, 0x2d8(r3)
+	lfs      f2, 0x194(r3)
+	stfs     f2, 0x2dc(r3)
+	lfs      f5, 0x1fc(r3)
+	fcmpo    cr0, f5, f0
+	bge      lbl_80260718
+	lfs      f0, lbl_8051AD08@sda21(r2)
+	lis      r4, sincosTable___5JMath@ha
+	addi     r4, r4, sincosTable___5JMath@l
+	fmuls    f0, f5, f0
+	fctiwz   f0, f0
+	stfd     f0, 8(r1)
+	lwz      r0, 0xc(r1)
+	rlwinm   r0, r0, 3, 0x12, 0x1c
+	lfsx     f0, r4, r0
+	fneg     f2, f0
+	b        lbl_8026073C
 
-	.loc_0x64:
-	  lfs       f0, -0x3654(r2)
-	  lis       r4, 0x8050
-	  addi      r4, r4, 0x71A0
-	  fmuls     f0, f5, f0
-	  fctiwz    f0, f0
-	  stfd      f0, 0x10(r1)
-	  lwz       r0, 0x14(r1)
-	  rlwinm    r0,r0,3,18,28
-	  lfsx      f2, r4, r0
+lbl_80260718:
+	lfs      f0, lbl_8051AD0C@sda21(r2)
+	lis      r4, sincosTable___5JMath@ha
+	addi     r4, r4, sincosTable___5JMath@l
+	fmuls    f0, f5, f0
+	fctiwz   f0, f0
+	stfd     f0, 0x10(r1)
+	lwz      r0, 0x14(r1)
+	rlwinm   r0, r0, 3, 0x12, 0x1c
+	lfsx     f2, r4, r0
 
-	.loc_0x88:
-	  lfs       f6, 0x2C4(r3)
-	  fmr       f4, f5
-	  lfs       f0, -0x3668(r2)
-	  fmuls     f7, f6, f2
-	  fcmpo     cr0, f5, f0
-	  bge-      .loc_0xA4
-	  fneg      f4, f5
+lbl_8026073C:
+	lfs      f6, 0x2c4(r3)
+	fmr      f4, f5
+	lfs      f0, lbl_8051ACF8@sda21(r2)
+	fmuls    f7, f6, f2
+	fcmpo    cr0, f5, f0
+	bge      lbl_80260758
+	fneg     f4, f5
 
-	.loc_0xA4:
-	  lfs       f3, -0x3654(r2)
-	  lis       r4, 0x8050
-	  lfs       f0, -0x3650(r2)
-	  addi      r4, r4, 0x71A0
-	  fmuls     f2, f4, f3
-	  addi      r5, r4, 0x4
-	  fsubs     f5, f5, f0
-	  lfs       f0, -0x3668(r2)
-	  fctiwz    f2, f2
-	  fcmpo     cr0, f5, f0
-	  stfd      f2, 0x18(r1)
-	  lwz       r0, 0x1C(r1)
-	  rlwinm    r0,r0,3,18,28
-	  lfsx      f0, r5, r0
-	  fmuls     f4, f6, f0
-	  bge-      .loc_0x108
-	  lfs       f0, -0x3658(r2)
-	  fmuls     f0, f5, f0
-	  fctiwz    f0, f0
-	  stfd      f0, 0x20(r1)
-	  lwz       r0, 0x24(r1)
-	  rlwinm    r0,r0,3,18,28
-	  lfsx      f0, r4, r0
-	  fneg      f2, f0
-	  b         .loc_0x120
+lbl_80260758:
+	lfs      f3, lbl_8051AD0C@sda21(r2)
+	lis      r4, sincosTable___5JMath@ha
+	lfs      f0, lbl_8051AD10@sda21(r2)
+	addi     r4, r4, sincosTable___5JMath@l
+	fmuls    f2, f4, f3
+	addi     r5, r4, 4
+	fsubs    f5, f5, f0
+	lfs      f0, lbl_8051ACF8@sda21(r2)
+	fctiwz   f2, f2
+	fcmpo    cr0, f5, f0
+	stfd     f2, 0x18(r1)
+	lwz      r0, 0x1c(r1)
+	rlwinm   r0, r0, 3, 0x12, 0x1c
+	lfsx     f0, r5, r0
+	fmuls    f4, f6, f0
+	bge      lbl_802607BC
+	lfs      f0, lbl_8051AD08@sda21(r2)
+	fmuls    f0, f5, f0
+	fctiwz   f0, f0
+	stfd     f0, 0x20(r1)
+	lwz      r0, 0x24(r1)
+	rlwinm   r0, r0, 3, 0x12, 0x1c
+	lfsx     f0, r4, r0
+	fneg     f2, f0
+	b        lbl_802607D4
 
-	.loc_0x108:
-	  fmuls     f0, f5, f3
-	  fctiwz    f0, f0
-	  stfd      f0, 0x28(r1)
-	  lwz       r0, 0x2C(r1)
-	  rlwinm    r0,r0,3,18,28
-	  lfsx      f2, r4, r0
+lbl_802607BC:
+	fmuls    f0, f5, f3
+	fctiwz   f0, f0
+	stfd     f0, 0x28(r1)
+	lwz      r0, 0x2c(r1)
+	rlwinm   r0, r0, 3, 0x12, 0x1c
+	lfsx     f2, r4, r0
 
-	.loc_0x120:
-	  lfs       f0, -0x3668(r2)
-	  fmr       f3, f5
-	  fmuls     f6, f1, f2
-	  fcmpo     cr0, f5, f0
-	  bge-      .loc_0x138
-	  fneg      f3, f5
+lbl_802607D4:
+	lfs      f0, lbl_8051ACF8@sda21(r2)
+	fmr      f3, f5
+	fmuls    f6, f1, f2
+	fcmpo    cr0, f5, f0
+	bge      lbl_802607EC
+	fneg     f3, f5
 
-	.loc_0x138:
-	  lfs       f2, -0x3654(r2)
-	  lfs       f0, 0x2D4(r3)
-	  fmuls     f2, f3, f2
-	  fadds     f0, f0, f7
-	  fctiwz    f2, f2
-	  fadds     f0, f6, f0
-	  stfd      f2, 0x30(r1)
-	  lwz       r0, 0x34(r1)
-	  rlwinm    r0,r0,3,18,28
-	  lfsx      f2, r5, r0
-	  stfs      f0, 0x2E0(r3)
-	  fmuls     f1, f1, f2
-	  lfs       f0, 0x2D8(r3)
-	  stfs      f0, 0x2E4(r3)
-	  lfs       f0, 0x2DC(r3)
-	  fadds     f0, f0, f4
-	  fadds     f0, f1, f0
-	  stfs      f0, 0x2E8(r3)
-	  addi      r1, r1, 0x40
-	  blr
+lbl_802607EC:
+	lfs      f2, lbl_8051AD0C@sda21(r2)
+	lfs      f0, 0x2d4(r3)
+	fmuls    f2, f3, f2
+	fadds    f0, f0, f7
+	fctiwz   f2, f2
+	fadds    f0, f6, f0
+	stfd     f2, 0x30(r1)
+	lwz      r0, 0x34(r1)
+	rlwinm   r0, r0, 3, 0x12, 0x1c
+	lfsx     f2, r5, r0
+	stfs     f0, 0x2e0(r3)
+	fmuls    f1, f1, f2
+	lfs      f0, 0x2d8(r3)
+	stfs     f0, 0x2e4(r3)
+	lfs      f0, 0x2dc(r3)
+	fadds    f0, f0, f4
+	fadds    f0, f1, f0
+	stfs     f0, 0x2e8(r3)
+	addi     r1, r1, 0x40
+	blr
 	*/
 }
 
@@ -651,104 +978,101 @@ void Qurione::Obj::setQurioneStartPos(float)
 void Qurione::Obj::moveFaceDir()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x60(r1)
-	  mflr      r0
-	  stw       r0, 0x64(r1)
-	  stfd      f31, 0x50(r1)
-	  psq_st    f31,0x58(r1),0,0
-	  stfd      f30, 0x40(r1)
-	  psq_st    f30,0x48(r1),0,0
-	  stfd      f29, 0x30(r1)
-	  psq_st    f29,0x38(r1),0,0
-	  stw       r31, 0x2C(r1)
-	  lwz       r12, 0x0(r3)
-	  mr        r31, r3
-	  lwz       r4, 0xC0(r3)
-	  lwz       r12, 0x64(r12)
-	  lfs       f30, 0x2E4(r4)
-	  mtctr     r12
-	  bctrl
-	  bl        -0x191064
-	  mr        r3, r31
-	  lfs       f2, 0x1D4(r31)
-	  lwz       r12, 0x0(r31)
-	  frsp      f29, f1
-	  lfs       f31, 0x1D8(r31)
-	  lfs       f0, 0x1DC(r31)
-	  lwz       r12, 0x64(r12)
-	  stfs      f2, 0x8(r1)
-	  stfs      f31, 0xC(r1)
-	  stfs      f0, 0x10(r1)
-	  mtctr     r12
-	  bctrl
-	  bl        -0x191600
-	  fmuls     f0, f30, f29
-	  addi      r4, r31, 0x18C
-	  frsp      f1, f1
-	  stfs      f0, 0x1D4(r31)
-	  fmuls     f0, f30, f1
-	  stfs      f31, 0x1D8(r31)
-	  stfs      f0, 0x1DC(r31)
-	  lwz       r3, -0x6CF8(r13)
-	  lwz       r12, 0x4(r3)
-	  lwz       r12, 0x28(r12)
-	  mtctr     r12
-	  bctrl
-	  fmr       f31, f1
-	  mr        r3, r31
-	  bl        .loc_0x16C
-	  lfs       f1, 0x2C8(r31)
-	  lfs       f0, -0x3668(r2)
-	  lwz       r4, 0xC0(r31)
-	  fcmpo     cr0, f1, f0
-	  lfs       f4, -0x364C(r2)
-	  lfs       f3, 0x86C(r4)
-	  bge-      .loc_0x100
-	  lfs       f0, -0x3658(r2)
-	  lis       r3, 0x8050
-	  addi      r3, r3, 0x71A0
-	  fmuls     f0, f1, f0
-	  fctiwz    f0, f0
-	  stfd      f0, 0x18(r1)
-	  lwz       r0, 0x1C(r1)
-	  rlwinm    r0,r0,3,18,28
-	  lfsx      f0, r3, r0
-	  fneg      f2, f0
-	  b         .loc_0x124
+	stwu     r1, -0x60(r1)
+	mflr     r0
+	stw      r0, 0x64(r1)
+	stfd     f31, 0x50(r1)
+	psq_st   f31, 88(r1), 0, qr0
+	stfd     f30, 0x40(r1)
+	psq_st   f30, 72(r1), 0, qr0
+	stfd     f29, 0x30(r1)
+	psq_st   f29, 56(r1), 0, qr0
+	stw      r31, 0x2c(r1)
+	lwz      r12, 0(r3)
+	mr       r31, r3
+	lwz      r4, 0xc0(r3)
+	lwz      r12, 0x64(r12)
+	lfs      f30, 0x2e4(r4)
+	mtctr    r12
+	bctrl
+	bl       sin
+	mr       r3, r31
+	lfs      f2, 0x1d4(r31)
+	lwz      r12, 0(r31)
+	frsp     f29, f1
+	lfs      f31, 0x1d8(r31)
+	lfs      f0, 0x1dc(r31)
+	lwz      r12, 0x64(r12)
+	stfs     f2, 8(r1)
+	stfs     f31, 0xc(r1)
+	stfs     f0, 0x10(r1)
+	mtctr    r12
+	bctrl
+	bl       cos
+	fmuls    f0, f30, f29
+	addi     r4, r31, 0x18c
+	frsp     f1, f1
+	stfs     f0, 0x1d4(r31)
+	fmuls    f0, f30, f1
+	stfs     f31, 0x1d8(r31)
+	stfs     f0, 0x1dc(r31)
+	lwz      r3, mapMgr__4Game@sda21(r13)
+	lwz      r12, 4(r3)
+	lwz      r12, 0x28(r12)
+	mtctr    r12
+	bctrl
+	fmr      f31, f1
+	mr       r3, r31
+	bl       addPitchRatio__Q34Game7Qurione3ObjFv
+	lfs      f1, 0x2c8(r31)
+	lfs      f0, lbl_8051ACF8@sda21(r2)
+	lwz      r4, 0xc0(r31)
+	fcmpo    cr0, f1, f0
+	lfs      f4, lbl_8051AD14@sda21(r2)
+	lfs      f3, 0x86c(r4)
+	bge      lbl_8026093C
+	lfs      f0, lbl_8051AD08@sda21(r2)
+	lis      r3, sincosTable___5JMath@ha
+	addi     r3, r3, sincosTable___5JMath@l
+	fmuls    f0, f1, f0
+	fctiwz   f0, f0
+	stfd     f0, 0x18(r1)
+	lwz      r0, 0x1c(r1)
+	rlwinm   r0, r0, 3, 0x12, 0x1c
+	lfsx     f0, r3, r0
+	fneg     f2, f0
+	b        lbl_80260960
 
-	.loc_0x100:
-	  lfs       f0, -0x3654(r2)
-	  lis       r3, 0x8050
-	  addi      r3, r3, 0x71A0
-	  fmuls     f0, f1, f0
-	  fctiwz    f0, f0
-	  stfd      f0, 0x20(r1)
-	  lwz       r0, 0x24(r1)
-	  rlwinm    r0,r0,3,18,28
-	  lfsx      f2, r3, r0
+lbl_8026093C:
+	lfs      f0, lbl_8051AD0C@sda21(r2)
+	lis      r3, sincosTable___5JMath@ha
+	addi     r3, r3, sincosTable___5JMath@l
+	fmuls    f0, f1, f0
+	fctiwz   f0, f0
+	stfd     f0, 0x20(r1)
+	lwz      r0, 0x24(r1)
+	rlwinm   r0, r0, 3, 0x12, 0x1c
+	lfsx     f2, r3, r0
 
-	.loc_0x124:
-	  lfs       f1, 0x81C(r4)
-	  lfs       f0, 0x190(r31)
-	  fmadds    f1, f3, f2, f1
-	  fadds     f1, f31, f1
-	  fsubs     f0, f1, f0
-	  fmuls     f0, f4, f0
-	  stfs      f0, 0x1CC(r31)
-	  psq_l     f31,0x58(r1),0,0
-	  lfd       f31, 0x50(r1)
-	  psq_l     f30,0x48(r1),0,0
-	  lfd       f30, 0x40(r1)
-	  psq_l     f29,0x38(r1),0,0
-	  lfd       f29, 0x30(r1)
-	  lwz       r0, 0x64(r1)
-	  lwz       r31, 0x2C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x60
-	  blr
-
-	.loc_0x16C:
+lbl_80260960:
+	lfs      f1, 0x81c(r4)
+	lfs      f0, 0x190(r31)
+	fmadds   f1, f3, f2, f1
+	fadds    f1, f31, f1
+	fsubs    f0, f1, f0
+	fmuls    f0, f4, f0
+	stfs     f0, 0x1cc(r31)
+	psq_l    f31, 88(r1), 0, qr0
+	lfd      f31, 0x50(r1)
+	psq_l    f30, 72(r1), 0, qr0
+	lfd      f30, 0x40(r1)
+	psq_l    f29, 56(r1), 0, qr0
+	lfd      f29, 0x30(r1)
+	lwz      r0, 0x64(r1)
+	lwz      r31, 0x2c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x60
+	blr
 	*/
 }
 
@@ -760,21 +1084,20 @@ void Qurione::Obj::moveFaceDir()
 void Qurione::Obj::addPitchRatio()
 {
 	/*
-	.loc_0x0:
-	  lwz       r5, 0xC0(r3)
-	  lwz       r4, -0x6514(r13)
-	  lfs       f3, 0x844(r5)
-	  lfs       f2, 0x54(r4)
-	  lfs       f1, 0x2C8(r3)
-	  lfs       f0, -0x3648(r2)
-	  fmadds    f1, f3, f2, f1
-	  stfs      f1, 0x2C8(r3)
-	  lfs       f1, 0x2C8(r3)
-	  fcmpo     cr0, f1, f0
-	  blelr-
-	  fsubs     f0, f1, f0
-	  stfs      f0, 0x2C8(r3)
-	  blr
+	lwz      r5, 0xc0(r3)
+	lwz      r4, sys@sda21(r13)
+	lfs      f3, 0x844(r5)
+	lfs      f2, 0x54(r4)
+	lfs      f1, 0x2c8(r3)
+	lfs      f0, lbl_8051AD18@sda21(r2)
+	fmadds   f1, f3, f2, f1
+	stfs     f1, 0x2c8(r3)
+	lfs      f1, 0x2c8(r3)
+	fcmpo    cr0, f1, f0
+	blelr
+	fsubs    f0, f1, f0
+	stfs     f0, 0x2c8(r3)
+	blr
 	*/
 }
 
@@ -786,45 +1109,44 @@ void Qurione::Obj::addPitchRatio()
 void Qurione::Obj::resetUtilityTimer()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r3
-	  lwz       r4, -0x6C18(r13)
-	  cmplwi    r4, 0
-	  beq-      .loc_0x6C
-	  lwz       r0, 0x44(r4)
-	  cmpwi     r0, 0x4
-	  bne-      .loc_0x6C
-	  bl        -0x19746C
-	  xoris     r3, r3, 0x8000
-	  lis       r0, 0x4330
-	  stw       r3, 0xC(r1)
-	  lfd       f3, -0x3638(r2)
-	  stw       r0, 0x8(r1)
-	  lfs       f2, -0x3644(r2)
-	  lfd       f0, 0x8(r1)
-	  lfs       f1, -0x3640(r2)
-	  fsubs     f3, f0, f3
-	  lfs       f0, -0x3660(r2)
-	  fmuls     f2, f2, f3
-	  fdivs     f1, f2, f1
-	  fsubs     f0, f0, f1
-	  stfs      f0, 0x2CC(r31)
-	  b         .loc_0x74
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r3
+	lwz      r4, gameSystem__4Game@sda21(r13)
+	cmplwi   r4, 0
+	beq      lbl_80260A4C
+	lwz      r0, 0x44(r4)
+	cmpwi    r0, 4
+	bne      lbl_80260A4C
+	bl       rand
+	xoris    r3, r3, 0x8000
+	lis      r0, 0x4330
+	stw      r3, 0xc(r1)
+	lfd      f3, lbl_8051AD28@sda21(r2)
+	stw      r0, 8(r1)
+	lfs      f2, lbl_8051AD1C@sda21(r2)
+	lfd      f0, 8(r1)
+	lfs      f1, lbl_8051AD20@sda21(r2)
+	fsubs    f3, f0, f3
+	lfs      f0, lbl_8051AD00@sda21(r2)
+	fmuls    f2, f2, f3
+	fdivs    f1, f2, f1
+	fsubs    f0, f0, f1
+	stfs     f0, 0x2cc(r31)
+	b        lbl_80260A54
 
-	.loc_0x6C:
-	  lfs       f0, -0x3668(r2)
-	  stfs      f0, 0x2CC(r31)
+lbl_80260A4C:
+	lfs      f0, lbl_8051ACF8@sda21(r2)
+	stfs     f0, 0x2cc(r31)
 
-	.loc_0x74:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80260A54:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -836,40 +1158,40 @@ void Qurione::Obj::resetUtilityTimer()
 void Qurione::Obj::isAppear()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r4, -0x6C18(r13)
-	  cmplwi    r4, 0
-	  beq-      .loc_0x2C
-	  lwz       r0, 0x44(r4)
-	  cmpwi     r0, 0x4
-	  bne-      .loc_0x2C
-	  li        r3, 0x1
-	  b         .loc_0x5C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r4, gameSystem__4Game@sda21(r13)
+	cmplwi   r4, 0
+	beq      lbl_80260A94
+	lwz      r0, 0x44(r4)
+	cmpwi    r0, 4
+	bne      lbl_80260A94
+	li       r3, 1
+	b        lbl_80260AC4
 
-	.loc_0x2C:
-	  lwz       r7, 0xC0(r3)
-	  li        r4, 0
-	  li        r5, 0
-	  li        r6, 0
-	  lfs       f1, 0x424(r7)
-	  lfs       f2, 0x3D4(r7)
-	  bl        -0x14DA5C
-	  cmplwi    r3, 0
-	  beq-      .loc_0x58
-	  li        r3, 0x1
-	  b         .loc_0x5C
+lbl_80260A94:
+	lwz      r7, 0xc0(r3)
+	li       r4, 0
+	li       r5, 0
+	li       r6, 0
+	lfs      f1, 0x424(r7)
+	lfs      f2, 0x3d4(r7)
+	bl
+"getNearestPikminOrNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffPfP23Condition<Q24Game4Navi>P23Condition<Q24Game4Piki>"
+	cmplwi   r3, 0
+	beq      lbl_80260AC0
+	li       r3, 1
+	b        lbl_80260AC4
 
-	.loc_0x58:
-	  li        r3, 0
+lbl_80260AC0:
+	li       r3, 0
 
-	.loc_0x5C:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80260AC4:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -881,23 +1203,22 @@ void Qurione::Obj::isAppear()
 void Qurione::Obj::isFlyKill()
 {
 	/*
-	.loc_0x0:
-	  lbz       r0, 0xD8(r3)
-	  rlwinm.   r0,r0,0,29,29
-	  beq-      .loc_0x20
-	  lwz       r4, 0xC0(r3)
-	  lfs       f1, 0x2CC(r3)
-	  lfs       f0, 0x8BC(r4)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x28
+	lbz      r0, 0xd8(r3)
+	rlwinm.  r0, r0, 0, 0x1d, 0x1d
+	beq      lbl_80260AF4
+	lwz      r4, 0xc0(r3)
+	lfs      f1, 0x2cc(r3)
+	lfs      f0, 0x8bc(r4)
+	fcmpo    cr0, f1, f0
+	ble      lbl_80260AFC
 
-	.loc_0x20:
-	  li        r3, 0x1
-	  blr
+lbl_80260AF4:
+	li       r3, 1
+	blr
 
-	.loc_0x28:
-	  li        r3, 0
-	  blr
+lbl_80260AFC:
+	li       r3, 0
+	blr
 	*/
 }
 
@@ -909,50 +1230,49 @@ void Qurione::Obj::isFlyKill()
 void Qurione::Obj::attachItem()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x50(r1)
-	  mflr      r0
-	  subi      r4, r2, 0x3630
-	  stw       r0, 0x54(r1)
-	  stw       r31, 0x4C(r1)
-	  stw       r30, 0x48(r1)
-	  mr        r30, r3
-	  lwz       r3, 0x174(r3)
-	  bl        0x1DE4C0
-	  bl        0x1C8D78
-	  mr        r0, r3
-	  addi      r3, r1, 0x8
-	  mr        r31, r0
-	  bl        -0x131F14
-	  lfs       f0, 0x18C(r30)
-	  addi      r5, r1, 0x8
-	  lwz       r3, -0x6E20(r13)
-	  li        r4, 0x25
-	  stfs      f0, 0x8(r1)
-	  lfs       f0, 0x190(r30)
-	  stfs      f0, 0xC(r1)
-	  lfs       f0, 0x194(r30)
-	  stfs      f0, 0x10(r1)
-	  lfs       f0, 0x1FC(r30)
-	  stfs      f0, 0x14(r1)
-	  bl        -0x1536A8
-	  stw       r3, 0x2EC(r30)
-	  lwz       r3, 0x2EC(r30)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x8C
-	  li        r4, 0
-	  bl        -0x125BB8
-	  lwz       r3, 0x2EC(r30)
-	  mr        r4, r31
-	  bl        -0xC10E4
+	stwu     r1, -0x50(r1)
+	mflr     r0
+	addi     r4, r2, lbl_8051AD30@sda21
+	stw      r0, 0x54(r1)
+	stw      r31, 0x4c(r1)
+	stw      r30, 0x48(r1)
+	mr       r30, r3
+	lwz      r3, 0x174(r3)
+	bl       getJoint__Q28SysShape5ModelFPc
+	bl       getWorldMatrix__Q28SysShape5JointFv
+	mr       r0, r3
+	addi     r3, r1, 8
+	mr       r31, r0
+	bl       __ct__Q24Game13EnemyBirthArgFv
+	lfs      f0, 0x18c(r30)
+	addi     r5, r1, 8
+	lwz      r3, generalEnemyMgr__4Game@sda21(r13)
+	li       r4, 0x25
+	stfs     f0, 8(r1)
+	lfs      f0, 0x190(r30)
+	stfs     f0, 0xc(r1)
+	lfs      f0, 0x194(r30)
+	stfs     f0, 0x10(r1)
+	lfs      f0, 0x1fc(r30)
+	stfs     f0, 0x14(r1)
+	bl       birth__Q24Game15GeneralEnemyMgrFiRQ24Game13EnemyBirthArg
+	stw      r3, 0x2ec(r30)
+	lwz      r3, 0x2ec(r30)
+	cmplwi   r3, 0
+	beq      lbl_80260B90
+	li       r4, 0
+	bl       init__Q24Game8CreatureFPQ24Game15CreatureInitArg
+	lwz      r3, 0x2ec(r30)
+	mr       r4, r31
+	bl       startCapture__Q24Game8CreatureFP7Matrixf
 
-	.loc_0x8C:
-	  lwz       r0, 0x54(r1)
-	  lwz       r31, 0x4C(r1)
-	  lwz       r30, 0x48(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x50
-	  blr
+lbl_80260B90:
+	lwz      r0, 0x54(r1)
+	lwz      r31, 0x4c(r1)
+	lwz      r30, 0x48(r1)
+	mtlr     r0
+	addi     r1, r1, 0x50
+	blr
 	*/
 }
 
@@ -964,28 +1284,27 @@ void Qurione::Obj::attachItem()
 void Qurione::Obj::dropItem()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r3, 0x2EC(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x2C
-	  bl        -0xC102C
-	  li        r0, 0
-	  stw       r0, 0x2EC(r31)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r3, 0x2ec(r3)
+	cmplwi   r3, 0
+	beq      lbl_80260BD4
+	bl       endCapture__Q24Game8CreatureFv
+	li       r0, 0
+	stw      r0, 0x2ec(r31)
 
-	.loc_0x2C:
-	  mr        r3, r31
-	  li        r4, 0
-	  bl        -0x15E2BC
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80260BD4:
+	mr       r3, r31
+	li       r4, 0
+	bl       setZukanVisible__Q24Game9EnemyBaseFb
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -997,18 +1316,17 @@ void Qurione::Obj::dropItem()
 void Qurione::Obj::addQurioneScale()
 {
 	/*
-	.loc_0x0:
-	  lfs       f2, 0x2C0(r3)
-	  lfd       f1, -0x3628(r2)
-	  lfs       f0, -0x3660(r2)
-	  fadd      f1, f2, f1
-	  frsp      f1, f1
-	  stfs      f1, 0x2C0(r3)
-	  lfs       f1, 0x2C0(r3)
-	  fcmpo     cr0, f1, f0
-	  blelr-
-	  stfs      f0, 0x2C0(r3)
-	  blr
+	lfs      f2, 0x2c0(r3)
+	lfd      f1, lbl_8051AD38@sda21(r2)
+	lfs      f0, lbl_8051AD00@sda21(r2)
+	fadd     f1, f2, f1
+	frsp     f1, f1
+	stfs     f1, 0x2c0(r3)
+	lfs      f1, 0x2c0(r3)
+	fcmpo    cr0, f1, f0
+	blelr
+	stfs     f0, 0x2c0(r3)
+	blr
 	*/
 }
 
@@ -1020,18 +1338,17 @@ void Qurione::Obj::addQurioneScale()
 void Qurione::Obj::subQurioneScale()
 {
 	/*
-	.loc_0x0:
-	  lfs       f2, 0x2C0(r3)
-	  lfd       f1, -0x3628(r2)
-	  lfs       f0, -0x3668(r2)
-	  fsub      f1, f2, f1
-	  frsp      f1, f1
-	  stfs      f1, 0x2C0(r3)
-	  lfs       f1, 0x2C0(r3)
-	  fcmpo     cr0, f1, f0
-	  bgelr-
-	  stfs      f0, 0x2C0(r3)
-	  blr
+	lfs      f2, 0x2c0(r3)
+	lfd      f1, lbl_8051AD38@sda21(r2)
+	lfs      f0, lbl_8051ACF8@sda21(r2)
+	fsub     f1, f2, f1
+	frsp     f1, f1
+	stfs     f1, 0x2c0(r3)
+	lfs      f1, 0x2c0(r3)
+	fcmpo    cr0, f1, f0
+	bgelr
+	stfs     f0, 0x2c0(r3)
+	blr
 	*/
 }
 
@@ -1043,125 +1360,124 @@ void Qurione::Obj::subQurioneScale()
 void Qurione::Obj::createEffect()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  li        r3, 0x14
-	  bl        -0x23CDC0
-	  cmplwi    r3, 0
-	  beq-      .loc_0x98
-	  lis       r4, 0x804B
-	  lis       r5, 0x804A
-	  subi      r0, r4, 0x5808
-	  lis       r4, 0x804E
-	  stw       r0, 0x0(r3)
-	  subi      r0, r5, 0x1D84
-	  addi      r5, r4, 0x698C
-	  lis       r4, 0x804E
-	  stw       r0, 0x4(r3)
-	  addi      r7, r4, 0x685C
-	  lis       r4, 0x804C
-	  addi      r0, r5, 0x14
-	  stw       r5, 0x0(r3)
-	  addi      r4, r4, 0x36FC
-	  li        r9, 0
-	  li        r8, 0x2B2
-	  stw       r0, 0x4(r3)
-	  addi      r6, r7, 0x14
-	  li        r5, 0x1A3
-	  addi      r0, r4, 0x14
-	  stw       r9, 0x8(r3)
-	  sth       r8, 0xC(r3)
-	  stb       r9, 0xE(r3)
-	  stw       r7, 0x0(r3)
-	  stw       r6, 0x4(r3)
-	  stw       r9, 0x10(r3)
-	  sth       r5, 0xC(r3)
-	  stw       r4, 0x0(r3)
-	  stw       r0, 0x4(r3)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	li       r3, 0x14
+	bl       __nw__FUl
+	cmplwi   r3, 0
+	beq      lbl_80260CE4
+	lis      r4, __vt__Q23efx5TBase@ha
+	lis      r5, __vt__18JPAEmitterCallBack@ha
+	addi     r0, r4, __vt__Q23efx5TBase@l
+	lis      r4, __vt__Q23efx5TSync@ha
+	stw      r0, 0(r3)
+	addi     r0, r5, __vt__18JPAEmitterCallBack@l
+	addi     r5, r4, __vt__Q23efx5TSync@l
+	lis      r4, __vt__Q23efx10TChaseMtxT@ha
+	stw      r0, 4(r3)
+	addi     r7, r4, __vt__Q23efx10TChaseMtxT@l
+	lis      r4, __vt__Q23efx9TQuriGlow@ha
+	addi     r0, r5, 0x14
+	stw      r5, 0(r3)
+	addi     r4, r4, __vt__Q23efx9TQuriGlow@l
+	li       r9, 0
+	li       r8, 0x2b2
+	stw      r0, 4(r3)
+	addi     r6, r7, 0x14
+	li       r5, 0x1a3
+	addi     r0, r4, 0x14
+	stw      r9, 8(r3)
+	sth      r8, 0xc(r3)
+	stb      r9, 0xe(r3)
+	stw      r7, 0(r3)
+	stw      r6, 4(r3)
+	stw      r9, 0x10(r3)
+	sth      r5, 0xc(r3)
+	stw      r4, 0(r3)
+	stw      r0, 4(r3)
 
-	.loc_0x98:
-	  stw       r3, 0x2F0(r31)
-	  li        r3, 0x14
-	  bl        -0x23CE48
-	  cmplwi    r3, 0
-	  beq-      .loc_0x120
-	  lis       r4, 0x804B
-	  lis       r5, 0x804A
-	  subi      r0, r4, 0x5808
-	  lis       r4, 0x804E
-	  stw       r0, 0x0(r3)
-	  subi      r0, r5, 0x1D84
-	  addi      r5, r4, 0x698C
-	  lis       r4, 0x804E
-	  stw       r0, 0x4(r3)
-	  addi      r7, r4, 0x685C
-	  lis       r4, 0x804C
-	  addi      r0, r5, 0x14
-	  stw       r5, 0x0(r3)
-	  addi      r4, r4, 0x36B0
-	  li        r9, 0
-	  li        r8, 0x2B2
-	  stw       r0, 0x4(r3)
-	  addi      r6, r7, 0x14
-	  li        r5, 0x1A1
-	  addi      r0, r4, 0x14
-	  stw       r9, 0x8(r3)
-	  sth       r8, 0xC(r3)
-	  stb       r9, 0xE(r3)
-	  stw       r7, 0x0(r3)
-	  stw       r6, 0x4(r3)
-	  stw       r9, 0x10(r3)
-	  sth       r5, 0xC(r3)
-	  stw       r4, 0x0(r3)
-	  stw       r0, 0x4(r3)
+lbl_80260CE4:
+	stw      r3, 0x2f0(r31)
+	li       r3, 0x14
+	bl       __nw__FUl
+	cmplwi   r3, 0
+	beq      lbl_80260D6C
+	lis      r4, __vt__Q23efx5TBase@ha
+	lis      r5, __vt__18JPAEmitterCallBack@ha
+	addi     r0, r4, __vt__Q23efx5TBase@l
+	lis      r4, __vt__Q23efx5TSync@ha
+	stw      r0, 0(r3)
+	addi     r0, r5, __vt__18JPAEmitterCallBack@l
+	addi     r5, r4, __vt__Q23efx5TSync@l
+	lis      r4, __vt__Q23efx10TChaseMtxT@ha
+	stw      r0, 4(r3)
+	addi     r7, r4, __vt__Q23efx10TChaseMtxT@l
+	lis      r4, __vt__Q23efx8TQuriApp@ha
+	addi     r0, r5, 0x14
+	stw      r5, 0(r3)
+	addi     r4, r4, __vt__Q23efx8TQuriApp@l
+	li       r9, 0
+	li       r8, 0x2b2
+	stw      r0, 4(r3)
+	addi     r6, r7, 0x14
+	li       r5, 0x1a1
+	addi     r0, r4, 0x14
+	stw      r9, 8(r3)
+	sth      r8, 0xc(r3)
+	stb      r9, 0xe(r3)
+	stw      r7, 0(r3)
+	stw      r6, 4(r3)
+	stw      r9, 0x10(r3)
+	sth      r5, 0xc(r3)
+	stw      r4, 0(r3)
+	stw      r0, 4(r3)
 
-	.loc_0x120:
-	  stw       r3, 0x2F4(r31)
-	  li        r3, 0x14
-	  bl        -0x23CED0
-	  cmplwi    r3, 0
-	  beq-      .loc_0x1A8
-	  lis       r4, 0x804B
-	  lis       r5, 0x804A
-	  subi      r0, r4, 0x5808
-	  lis       r4, 0x804E
-	  stw       r0, 0x0(r3)
-	  subi      r0, r5, 0x1D84
-	  addi      r5, r4, 0x698C
-	  lis       r4, 0x804E
-	  stw       r0, 0x4(r3)
-	  addi      r7, r4, 0x685C
-	  lis       r4, 0x804C
-	  addi      r0, r5, 0x14
-	  stw       r5, 0x0(r3)
-	  addi      r4, r4, 0x3664
-	  li        r9, 0
-	  li        r8, 0x2B2
-	  stw       r0, 0x4(r3)
-	  addi      r6, r7, 0x14
-	  li        r5, 0x1A2
-	  addi      r0, r4, 0x14
-	  stw       r9, 0x8(r3)
-	  sth       r8, 0xC(r3)
-	  stb       r9, 0xE(r3)
-	  stw       r7, 0x0(r3)
-	  stw       r6, 0x4(r3)
-	  stw       r9, 0x10(r3)
-	  sth       r5, 0xC(r3)
-	  stw       r4, 0x0(r3)
-	  stw       r0, 0x4(r3)
+lbl_80260D6C:
+	stw      r3, 0x2f4(r31)
+	li       r3, 0x14
+	bl       __nw__FUl
+	cmplwi   r3, 0
+	beq      lbl_80260DF4
+	lis      r4, __vt__Q23efx5TBase@ha
+	lis      r5, __vt__18JPAEmitterCallBack@ha
+	addi     r0, r4, __vt__Q23efx5TBase@l
+	lis      r4, __vt__Q23efx5TSync@ha
+	stw      r0, 0(r3)
+	addi     r0, r5, __vt__18JPAEmitterCallBack@l
+	addi     r5, r4, __vt__Q23efx5TSync@l
+	lis      r4, __vt__Q23efx10TChaseMtxT@ha
+	stw      r0, 4(r3)
+	addi     r7, r4, __vt__Q23efx10TChaseMtxT@l
+	lis      r4, __vt__Q23efx10TQuriDisap@ha
+	addi     r0, r5, 0x14
+	stw      r5, 0(r3)
+	addi     r4, r4, __vt__Q23efx10TQuriDisap@l
+	li       r9, 0
+	li       r8, 0x2b2
+	stw      r0, 4(r3)
+	addi     r6, r7, 0x14
+	li       r5, 0x1a2
+	addi     r0, r4, 0x14
+	stw      r9, 8(r3)
+	sth      r8, 0xc(r3)
+	stb      r9, 0xe(r3)
+	stw      r7, 0(r3)
+	stw      r6, 4(r3)
+	stw      r9, 0x10(r3)
+	sth      r5, 0xc(r3)
+	stw      r4, 0(r3)
+	stw      r0, 4(r3)
 
-	.loc_0x1A8:
-	  stw       r3, 0x2F8(r31)
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80260DF4:
+	stw      r3, 0x2f8(r31)
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1173,28 +1489,27 @@ void Qurione::Obj::createEffect()
 void Qurione::Obj::setupEffect()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lis       r3, 0x8048
-	  addi      r4, r3, 0x5760
-	  lwz       r3, 0x174(r31)
-	  bl        0x1DE1B8
-	  bl        0x1C8A70
-	  lwz       r4, 0x2F0(r31)
-	  stw       r3, 0x10(r4)
-	  lwz       r4, 0x2F4(r31)
-	  stw       r3, 0x10(r4)
-	  lwz       r4, 0x2F8(r31)
-	  stw       r3, 0x10(r4)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lis      r3, lbl_80485760@ha
+	addi     r4, r3, lbl_80485760@l
+	lwz      r3, 0x174(r31)
+	bl       getJoint__Q28SysShape5ModelFPc
+	bl       getWorldMatrix__Q28SysShape5JointFv
+	lwz      r4, 0x2f0(r31)
+	stw      r3, 0x10(r4)
+	lwz      r4, 0x2f4(r31)
+	stw      r3, 0x10(r4)
+	lwz      r4, 0x2f8(r31)
+	stw      r3, 0x10(r4)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1206,47 +1521,46 @@ void Qurione::Obj::setupEffect()
 void Qurione::Obj::createHitEffect()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  lis       r4, 0x8048
-	  stw       r0, 0x34(r1)
-	  addi      r4, r4, 0x5760
-	  lwz       r3, 0x174(r3)
-	  bl        0x1DE16C
-	  bl        0x1C8A24
-	  lis       r4, 0x804B
-	  lfs       f2, 0x2C(r3)
-	  lfs       f1, 0x1C(r3)
-	  subi      r4, r4, 0x5808
-	  lfs       f0, 0xC(r3)
-	  lis       r3, 0x804E
-	  addi      r0, r3, 0x6A64
-	  li        r5, 0
-	  stw       r4, 0x8(r1)
-	  lis       r4, 0x804B
-	  lis       r3, 0x804C
-	  li        r7, 0x1A4
-	  subi      r8, r4, 0x5814
-	  li        r6, 0x1A5
-	  stw       r0, 0x8(r1)
-	  addi      r0, r3, 0x3650
-	  addi      r3, r1, 0x8
-	  addi      r4, r1, 0x18
-	  stw       r8, 0x18(r1)
-	  stfs      f0, 0x1C(r1)
-	  stfs      f1, 0x20(r1)
-	  stfs      f2, 0x24(r1)
-	  sth       r7, 0xC(r1)
-	  sth       r6, 0xE(r1)
-	  stw       r5, 0x10(r1)
-	  stw       r5, 0x14(r1)
-	  stw       r0, 0x8(r1)
-	  bl        0x14E128
-	  lwz       r0, 0x34(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	lis      r4, lbl_80485760@ha
+	stw      r0, 0x34(r1)
+	addi     r4, r4, lbl_80485760@l
+	lwz      r3, 0x174(r3)
+	bl       getJoint__Q28SysShape5ModelFPc
+	bl       getWorldMatrix__Q28SysShape5JointFv
+	lis      r4, __vt__Q23efx5TBase@ha
+	lfs      f2, 0x2c(r3)
+	lfs      f1, 0x1c(r3)
+	addi     r4, r4, __vt__Q23efx5TBase@l
+	lfs      f0, 0xc(r3)
+	lis      r3, __vt__Q23efx8TSimple2@ha
+	addi     r0, r3, __vt__Q23efx8TSimple2@l
+	li       r5, 0
+	stw      r4, 8(r1)
+	lis      r4, __vt__Q23efx3Arg@ha
+	lis      r3, __vt__Q23efx8TQuriHit@ha
+	li       r7, 0x1a4
+	addi     r8, r4, __vt__Q23efx3Arg@l
+	li       r6, 0x1a5
+	stw      r0, 8(r1)
+	addi     r0, r3, __vt__Q23efx8TQuriHit@l
+	addi     r3, r1, 8
+	addi     r4, r1, 0x18
+	stw      r8, 0x18(r1)
+	stfs     f0, 0x1c(r1)
+	stfs     f1, 0x20(r1)
+	stfs     f2, 0x24(r1)
+	sth      r7, 0xc(r1)
+	sth      r6, 0xe(r1)
+	stw      r5, 0x10(r1)
+	stw      r5, 0x14(r1)
+	stw      r0, 8(r1)
+	bl       create__Q23efx8TSimple2FPQ23efx3Arg
+	lwz      r0, 0x34(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -1258,26 +1572,25 @@ void Qurione::Obj::createHitEffect()
 void Qurione::Obj::startGlowEffect()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r4, 0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r3, 0x2F0(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x2F0(r31)
-	  lfs       f1, -0x3668(r2)
-	  bl        0x152B50
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	li       r4, 0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r3, 0x2f0(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 0x2f0(r31)
+	lfs      f1, lbl_8051ACF8@sda21(r2)
+	bl       setGlobalScale__Q23efx9TQuriGlowFf
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1289,18 +1602,17 @@ void Qurione::Obj::startGlowEffect()
 void Qurione::Obj::setGlowEffectScale()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r4, r3
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x2F0(r3)
-	  lfs       f1, 0x2C0(r4)
-	  bl        0x152B20
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r4, r3
+	stw      r0, 0x14(r1)
+	lwz      r3, 0x2f0(r3)
+	lfs      f1, 0x2c0(r4)
+	bl       setGlobalScale__Q23efx9TQuriGlowFf
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1312,19 +1624,18 @@ void Qurione::Obj::setGlowEffectScale()
 void Qurione::Obj::finishGlowEffect()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x2F0(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r3, 0x2f0(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1336,20 +1647,19 @@ void Qurione::Obj::finishGlowEffect()
 void Qurione::Obj::createAppearEffect()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r4, 0
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x2F4(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	li       r4, 0
+	stw      r0, 0x14(r1)
+	lwz      r3, 0x2f4(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1361,20 +1671,19 @@ void Qurione::Obj::createAppearEffect()
 void Qurione::Obj::createDisppearEffect()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r4, 0
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x2F8(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	li       r4, 0
+	stw      r0, 0x14(r1)
+	lwz      r3, 0x2f8(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1386,32 +1695,31 @@ void Qurione::Obj::createDisppearEffect()
 void Qurione::Obj::effectDrawOn()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r3, 0x2F0(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x44(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x2F4(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x44(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x2F8(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x44(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r3, 0x2f0(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x44(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 0x2f4(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x44(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 0x2f8(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x44(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1423,32 +1731,31 @@ void Qurione::Obj::effectDrawOn()
 void Qurione::Obj::effectDrawOff()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r3, 0x2F0(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x40(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x2F4(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x40(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x2F8(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x40(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r3, 0x2f0(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x40(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 0x2f4(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x40(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 0x2f8(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x40(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1464,50 +1771,49 @@ namespace efx {
 TQuriDisap::~TQuriDisap()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x80
-	  lis       r3, 0x804C
-	  addi      r3, r3, 0x3664
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x14
-	  stw       r0, 0x4(r30)
-	  beq-      .loc_0x70
-	  lis       r3, 0x804E
-	  addi      r3, r3, 0x685C
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x14
-	  stw       r0, 0x4(r30)
-	  beq-      .loc_0x70
-	  lis       r4, 0x804E
-	  addi      r3, r30, 0x4
-	  addi      r5, r4, 0x698C
-	  li        r4, 0
-	  stw       r5, 0x0(r30)
-	  addi      r0, r5, 0x14
-	  stw       r0, 0x4(r30)
-	  bl        -0x1D14A8
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_80261158
+	lis      r3, __vt__Q23efx10TQuriDisap@ha
+	addi     r3, r3, __vt__Q23efx10TQuriDisap@l
+	stw      r3, 0(r30)
+	addi     r0, r3, 0x14
+	stw      r0, 4(r30)
+	beq      lbl_80261148
+	lis      r3, __vt__Q23efx10TChaseMtxT@ha
+	addi     r3, r3, __vt__Q23efx10TChaseMtxT@l
+	stw      r3, 0(r30)
+	addi     r0, r3, 0x14
+	stw      r0, 4(r30)
+	beq      lbl_80261148
+	lis      r4, __vt__Q23efx5TSync@ha
+	addi     r3, r30, 4
+	addi     r5, r4, __vt__Q23efx5TSync@l
+	li       r4, 0
+	stw      r5, 0(r30)
+	addi     r0, r5, 0x14
+	stw      r0, 4(r30)
+	bl       __dt__18JPAEmitterCallBackFv
 
-	.loc_0x70:
-	  extsh.    r0, r31
-	  ble-      .loc_0x80
-	  mr        r3, r30
-	  bl        -0x23D0A0
+lbl_80261148:
+	extsh.   r0, r31
+	ble      lbl_80261158
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x80:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80261158:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1519,50 +1825,49 @@ TQuriDisap::~TQuriDisap()
 TQuriApp::~TQuriApp()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x80
-	  lis       r3, 0x804C
-	  addi      r3, r3, 0x36B0
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x14
-	  stw       r0, 0x4(r30)
-	  beq-      .loc_0x70
-	  lis       r3, 0x804E
-	  addi      r3, r3, 0x685C
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x14
-	  stw       r0, 0x4(r30)
-	  beq-      .loc_0x70
-	  lis       r4, 0x804E
-	  addi      r3, r30, 0x4
-	  addi      r5, r4, 0x698C
-	  li        r4, 0
-	  stw       r5, 0x0(r30)
-	  addi      r0, r5, 0x14
-	  stw       r0, 0x4(r30)
-	  bl        -0x1D1544
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_802611F4
+	lis      r3, __vt__Q23efx8TQuriApp@ha
+	addi     r3, r3, __vt__Q23efx8TQuriApp@l
+	stw      r3, 0(r30)
+	addi     r0, r3, 0x14
+	stw      r0, 4(r30)
+	beq      lbl_802611E4
+	lis      r3, __vt__Q23efx10TChaseMtxT@ha
+	addi     r3, r3, __vt__Q23efx10TChaseMtxT@l
+	stw      r3, 0(r30)
+	addi     r0, r3, 0x14
+	stw      r0, 4(r30)
+	beq      lbl_802611E4
+	lis      r4, __vt__Q23efx5TSync@ha
+	addi     r3, r30, 4
+	addi     r5, r4, __vt__Q23efx5TSync@l
+	li       r4, 0
+	stw      r5, 0(r30)
+	addi     r0, r5, 0x14
+	stw      r0, 4(r30)
+	bl       __dt__18JPAEmitterCallBackFv
 
-	.loc_0x70:
-	  extsh.    r0, r31
-	  ble-      .loc_0x80
-	  mr        r3, r30
-	  bl        -0x23D13C
+lbl_802611E4:
+	extsh.   r0, r31
+	ble      lbl_802611F4
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x80:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_802611F4:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1574,50 +1879,49 @@ TQuriApp::~TQuriApp()
 TQuriGlow::~TQuriGlow()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x80
-	  lis       r3, 0x804C
-	  addi      r3, r3, 0x36FC
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x14
-	  stw       r0, 0x4(r30)
-	  beq-      .loc_0x70
-	  lis       r3, 0x804E
-	  addi      r3, r3, 0x685C
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x14
-	  stw       r0, 0x4(r30)
-	  beq-      .loc_0x70
-	  lis       r4, 0x804E
-	  addi      r3, r30, 0x4
-	  addi      r5, r4, 0x698C
-	  li        r4, 0
-	  stw       r5, 0x0(r30)
-	  addi      r0, r5, 0x14
-	  stw       r0, 0x4(r30)
-	  bl        -0x1D15E0
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_80261290
+	lis      r3, __vt__Q23efx9TQuriGlow@ha
+	addi     r3, r3, __vt__Q23efx9TQuriGlow@l
+	stw      r3, 0(r30)
+	addi     r0, r3, 0x14
+	stw      r0, 4(r30)
+	beq      lbl_80261280
+	lis      r3, __vt__Q23efx10TChaseMtxT@ha
+	addi     r3, r3, __vt__Q23efx10TChaseMtxT@l
+	stw      r3, 0(r30)
+	addi     r0, r3, 0x14
+	stw      r0, 4(r30)
+	beq      lbl_80261280
+	lis      r4, __vt__Q23efx5TSync@ha
+	addi     r3, r30, 4
+	addi     r5, r4, __vt__Q23efx5TSync@l
+	li       r4, 0
+	stw      r5, 0(r30)
+	addi     r0, r5, 0x14
+	stw      r0, 4(r30)
+	bl       __dt__18JPAEmitterCallBackFv
 
-	.loc_0x70:
-	  extsh.    r0, r31
-	  ble-      .loc_0x80
-	  mr        r3, r30
-	  bl        -0x23D1D8
+lbl_80261280:
+	extsh.   r0, r31
+	ble      lbl_80261290
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x80:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80261290:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1654,12 +1958,11 @@ u32 Qurione::Obj::getEnemyTypeID() { return 0x10; }
 void EnemyBase::@764 @12 @viewOnPelletKilled()
 {
 	/*
-	.loc_0x0:
-	  li        r11, 0xC
-	  lwzx      r11, r3, r11
-	  add       r3, r3, r11
-	  subi      r3, r3, 0x2FC
-	  b         -0x15A9B0
+	li       r11, 0xc
+	lwzx     r11, r3, r11
+	add      r3, r3, r11
+	addi     r3, r3, -764
+	b        viewOnPelletKilled__Q24Game9EnemyBaseFv
 	*/
 }
 
@@ -1671,12 +1974,11 @@ void EnemyBase::@764 @12 @viewOnPelletKilled()
 void EnemyBase::@764 @12 @viewStartCarryMotion()
 {
 	/*
-	.loc_0x0:
-	  li        r11, 0xC
-	  lwzx      r11, r3, r11
-	  add       r3, r3, r11
-	  subi      r3, r3, 0x2FC
-	  b         -0x15AC38
+	li       r11, 0xc
+	lwzx     r11, r3, r11
+	add      r3, r3, r11
+	addi     r3, r3, -764
+	b        viewStartCarryMotion__Q24Game9EnemyBaseFv
 	*/
 }
 
@@ -1688,12 +1990,11 @@ void EnemyBase::@764 @12 @viewStartCarryMotion()
 void EnemyBase::@764 @12 @viewStartPreCarryMotion()
 {
 	/*
-	.loc_0x0:
-	  li        r11, 0xC
-	  lwzx      r11, r3, r11
-	  add       r3, r3, r11
-	  subi      r3, r3, 0x2FC
-	  b         -0x15AC2C
+	li       r11, 0xc
+	lwzx     r11, r3, r11
+	add      r3, r3, r11
+	addi     r3, r3, -764
+	b        viewStartPreCarryMotion__Q24Game9EnemyBaseFv
 	*/
 }
 
@@ -1705,12 +2006,11 @@ void EnemyBase::@764 @12 @viewStartPreCarryMotion()
 void EnemyBase::@764 @12 @view_finish_carrymotion()
 {
 	/*
-	.loc_0x0:
-	  li        r11, 0xC
-	  lwzx      r11, r3, r11
-	  add       r3, r3, r11
-	  subi      r3, r3, 0x2FC
-	  b         -0x15A890
+	li       r11, 0xc
+	lwzx     r11, r3, r11
+	add      r3, r3, r11
+	addi     r3, r3, -764
+	b        view_finish_carrymotion__Q24Game9EnemyBaseFv
 	*/
 }
 
@@ -1722,12 +2022,11 @@ void EnemyBase::@764 @12 @view_finish_carrymotion()
 void EnemyBase::@764 @12 @view_start_carrymotion()
 {
 	/*
-	.loc_0x0:
-	  li        r11, 0xC
-	  lwzx      r11, r3, r11
-	  add       r3, r3, r11
-	  subi      r3, r3, 0x2FC
-	  b         -0x15A8D0
+	li       r11, 0xc
+	lwzx     r11, r3, r11
+	add      r3, r3, r11
+	addi     r3, r3, -764
+	b        view_start_carrymotion__Q24Game9EnemyBaseFv
 	*/
 }
 
@@ -1739,12 +2038,11 @@ void EnemyBase::@764 @12 @view_start_carrymotion()
 void EnemyBase::@764 @12 @viewGetShape()
 {
 	/*
-	.loc_0x0:
-	  li        r11, 0xC
-	  lwzx      r11, r3, r11
-	  add       r3, r3, r11
-	  subi      r3, r3, 0x2FC
-	  b         -0x15AC90
+	li       r11, 0xc
+	lwzx     r11, r3, r11
+	add      r3, r3, r11
+	addi     r3, r3, -764
+	b        viewGetShape__Q24Game9EnemyBaseFv
 	*/
 }
 
@@ -1758,9 +2056,8 @@ namespace efx {
 	TQuriGlow::@4 @~TQuriGlow()
 	{
 		/*
-		.loc_0x0:
-		  subi      r3, r3, 0x4
-		  b         -0x128
+	addi     r3, r3, -4
+	b        __dt__Q23efx9TQuriGlowFv
 		*/
 	}
 
@@ -1772,9 +2069,8 @@ namespace efx {
 	TQuriApp::@4 @~TQuriApp()
 	{
 		/*
-		.loc_0x0:
-		  subi      r3, r3, 0x4
-		  b         -0x1CC
+	addi     r3, r3, -4
+	b        __dt__Q23efx8TQuriAppFv
 		*/
 	}
 
@@ -1786,9 +2082,8 @@ namespace efx {
 	TQuriDisap::@4 @~TQuriDisap()
 	{
 		/*
-		.loc_0x0:
-		  subi      r3, r3, 0x4
-		  b         -0x270
+	addi     r3, r3, -4
+	b        __dt__Q23efx10TQuriDisapFv
 		*/
 	}
 } // namespace efx

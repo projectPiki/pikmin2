@@ -1,5 +1,49 @@
 #include "types.h"
 
+/*
+    Generated from dpostproc
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_8048EAB8
+    lbl_8048EAB8:
+        .4byte 0x6B616E74
+        .4byte 0x65692073
+        .4byte 0x63726565
+        .4byte 0x6E000000
+    .global lbl_8048EAC8
+    lbl_8048EAC8:
+        .4byte 0x7265735F
+        .4byte 0x6B616E74
+        .4byte 0x65692E73
+        .4byte 0x7A730000
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__Q32og9newScreen10KanteiDemo
+    __vt__Q32og9newScreen10KanteiDemo:
+        .4byte 0
+        .4byte 0
+        .4byte getSceneType__Q32og9newScreen10KanteiDemoFv
+        .4byte getOwnerID__Q32og9newScreen10KanteiDemoFv
+        .4byte getMemberID__Q32og9newScreen10KanteiDemoFv
+        .4byte isUseBackupSceneInfo__Q32og9newScreen10KanteiDemoFv
+        .4byte isDrawInDemo__Q26Screen9SceneBaseCFv
+        .4byte getResName__Q32og9newScreen10KanteiDemoCFv
+        .4byte doCreateObj__Q32og9newScreen10KanteiDemoFP10JKRArchive
+        .4byte
+   doUserCallBackFunc__Q32og9newScreen10KanteiDemoFPQ28Resource10MgrCommand
+        .4byte setPort__Q26Screen9SceneBaseFR8Graphics
+        .4byte doUpdateActive__Q26Screen9SceneBaseFv
+        .4byte doConfirmSetScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg
+        .4byte
+   doConfirmStartScene__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg .4byte
+   doConfirmEndScene__Q26Screen9SceneBaseFRPQ26Screen11EndSceneArg .4byte
+   doStart__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg .4byte
+   doEnd__Q26Screen9SceneBaseFPQ26Screen11EndSceneArg .4byte
+   setDefaultDispMember__Q26Screen9SceneBaseFv .4byte
+   doSetBackupScene__Q26Screen9SceneBaseFRQ26Screen11SetSceneArg .4byte
+   doGetFinishState__Q26Screen9SceneBaseFv
+*/
+
 namespace og {
 
 /*
@@ -10,24 +54,23 @@ namespace og {
 newScreen::KanteiDemo::KanteiDemo(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        0x137BA0
-	  lis       r3, 0x804E
-	  li        r0, 0
-	  subi      r4, r3, 0x7348
-	  mr        r3, r31
-	  stw       r4, 0x0(r31)
-	  stw       r0, 0x220(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       __ct__Q26Screen9SceneBaseFv
+	lis      r3, __vt__Q32og9newScreen10KanteiDemo@ha
+	li       r0, 0
+	addi     r4, r3, __vt__Q32og9newScreen10KanteiDemo@l
+	mr       r3, r31
+	stw      r4, 0(r31)
+	stw      r0, 0x220(r31)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -56,35 +99,34 @@ void newScreen::KanteiDemo::doUserCallBackFunc(Resource::MgrCommand*) { }
 void newScreen::KanteiDemo::doCreateObj(JKRArchive*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  li        r3, 0xF8
-	  bl        -0x2F5DA0
-	  mr.       r0, r3
-	  beq-      .loc_0x3C
-	  lis       r4, 0x8049
-	  subi      r4, r4, 0x1548
-	  bl        -0x1A14
-	  mr        r0, r3
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	li       r3, 0xf8
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_80319C60
+	lis      r4, lbl_8048EAB8@ha
+	addi     r4, r4, lbl_8048EAB8@l
+	bl       __ct__Q32og9newScreen9ObjKanteiFPCc
+	mr       r0, r3
 
-	.loc_0x3C:
-	  stw       r0, 0x220(r30)
-	  mr        r3, r30
-	  mr        r5, r31
-	  lwz       r4, 0x220(r30)
-	  bl        0x138104
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80319C60:
+	stw      r0, 0x220(r30)
+	mr       r3, r30
+	mr       r5, r31
+	lwz      r4, 0x220(r30)
+	bl       registObj__Q26Screen9SceneBaseFPQ26Screen7ObjBaseP10JKRArchive
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -96,10 +138,9 @@ void newScreen::KanteiDemo::doCreateObj(JKRArchive*)
 void newScreen::KanteiDemo::getResName() const
 {
 	/*
-	.loc_0x0:
-	  lis       r3, 0x8049
-	  subi      r3, r3, 0x1538
-	  blr
+	lis      r3, lbl_8048EAC8@ha
+	addi     r3, r3, lbl_8048EAC8@l
+	blr
 	*/
 }
 
@@ -118,10 +159,9 @@ u32 newScreen::KanteiDemo::getSceneType(void) { return 0x2722; }
 void newScreen::KanteiDemo::getOwnerID(void)
 {
 	/*
-	.loc_0x0:
-	  lis       r3, 0x4F
-	  addi      r3, r3, 0x4741
-	  blr
+	lis      r3, 0x004F4741@ha
+	addi     r3, r3, 0x004F4741@l
+	blr
 	*/
 }
 
@@ -133,11 +173,10 @@ void newScreen::KanteiDemo::getOwnerID(void)
 void newScreen::KanteiDemo::getMemberID(void)
 {
 	/*
-	.loc_0x0:
-	  lis       r4, 0x4E54
-	  li        r3, 0x4B41
-	  addi      r4, r4, 0x4549
-	  blr
+	lis      r4, 0x4E544549@ha
+	li       r3, 0x4b41
+	addi     r4, r4, 0x4E544549@l
+	blr
 	*/
 }
 

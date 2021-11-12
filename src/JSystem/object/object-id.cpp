@@ -1,5 +1,9 @@
 #include "types.h"
 
+/*
+    Generated from dpostproc
+*/
+
 namespace JStudio {
 
 /*

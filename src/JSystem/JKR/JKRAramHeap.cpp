@@ -1,6 +1,26 @@
 #include "types.h"
 
 /*
+    Generated from dpostproc
+
+    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
+    .4byte __sinit_JKRAramHeap_cpp
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__11JKRAramHeap
+    __vt__11JKRAramHeap:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__11JKRAramHeapFv
+        .4byte 0
+
+    .section .bss  # 0x804EFC20 - 0x8051467C
+    .global sAramList__11JKRAramHeap
+    sAramList__11JKRAramHeap:
+        .skip 0xC
+*/
+
+/*
  * --INFO--
  * Address:	800196C8
  * Size:	0000D8
@@ -8,63 +28,62 @@
 JKRAramHeap::JKRAramHeap(unsigned long, unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r5
-	  stw       r30, 0x18(r1)
-	  mr        r30, r4
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  bl        0x38E0
-	  lis       r4, 0x804A
-	  addi      r3, r29, 0x18
-	  subi      r0, r4, 0x3D8
-	  stw       r0, 0x0(r29)
-	  bl        0xD6430
-	  mr        r3, r29
-	  bl        0xA1EC
-	  stw       r3, 0x30(r29)
-	  rlwinm    r4,r31,0,0,26
-	  addi      r3, r30, 0x1F
-	  li        r0, 0xFF
-	  stw       r4, 0x3C(r29)
-	  rlwinm    r4,r3,0,0,26
-	  li        r3, 0x24
-	  li        r5, 0
-	  stw       r4, 0x34(r29)
-	  lwz       r6, 0x34(r29)
-	  lwz       r4, 0x3C(r29)
-	  add       r4, r6, r4
-	  stw       r4, 0x38(r29)
-	  stb       r0, 0x40(r29)
-	  lwz       r4, 0x30(r29)
-	  bl        0xA7F8
-	  mr.       r4, r3
-	  beq-      .loc_0xA8
-	  lwz       r4, 0x34(r29)
-	  li        r5, 0
-	  lwz       r6, 0x3C(r29)
-	  li        r7, 0xFF
-	  li        r8, 0
-	  bl        -0x324
-	  mr        r4, r3
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r5
+	stw      r30, 0x18(r1)
+	mr       r30, r4
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	bl       __ct__11JKRDisposerFv
+	lis      r4, __vt__11JKRAramHeap@ha
+	addi     r3, r29, 0x18
+	addi     r0, r4, __vt__11JKRAramHeap@l
+	stw      r0, 0(r29)
+	bl       OSInitMutex
+	mr       r3, r29
+	bl       findFromRoot__7JKRHeapFPv
+	stw      r3, 0x30(r29)
+	rlwinm   r4, r31, 0, 0, 0x1a
+	addi     r3, r30, 0x1f
+	li       r0, 0xff
+	stw      r4, 0x3c(r29)
+	rlwinm   r4, r3, 0, 0, 0x1a
+	li       r3, 0x24
+	li       r5, 0
+	stw      r4, 0x34(r29)
+	lwz      r6, 0x34(r29)
+	lwz      r4, 0x3c(r29)
+	add      r4, r6, r4
+	stw      r4, 0x38(r29)
+	stb      r0, 0x40(r29)
+	lwz      r4, 0x30(r29)
+	bl       __nw__FUlP7JKRHeapi
+	or.      r4, r3, r3
+	beq      lbl_80019770
+	lwz      r4, 0x34(r29)
+	li       r5, 0
+	lwz      r6, 0x3c(r29)
+	li       r7, 0xff
+	li       r8, 0
+	bl       __ct__12JKRAramBlockFUlUlUlUcb
+	mr       r4, r3
 
-	.loc_0xA8:
-	  lis       r3, 0x8050
-	  addi      r4, r4, 0x4
-	  addi      r3, r3, 0x6DB8
-	  bl        0xD168
-	  lwz       r0, 0x24(r1)
-	  mr        r3, r29
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80019770:
+	lis      r3, sAramList__11JKRAramHeap@ha
+	addi     r4, r4, 4
+	addi     r3, r3, sAramList__11JKRAramHeap@l
+	bl       append__10JSUPtrListFP10JSUPtrLink
+	lwz      r0, 0x24(r1)
+	mr       r3, r29
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -76,55 +95,54 @@ JKRAramHeap::JKRAramHeap(unsigned long, unsigned long)
 JKRAramHeap::~JKRAramHeap()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  mr        r30, r4
-	  stw       r29, 0x14(r1)
-	  mr.       r29, r3
-	  beq-      .loc_0x88
-	  lis       r4, 0x804A
-	  lis       r3, 0x8050
-	  subi      r0, r4, 0x3D8
-	  stw       r0, 0x0(r29)
-	  lwz       r31, 0x6DB8(r3)
-	  b         .loc_0x64
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	mr       r30, r4
+	stw      r29, 0x14(r1)
+	or.      r29, r3, r3
+	beq      lbl_80019828
+	lis      r4, __vt__11JKRAramHeap@ha
+	lis      r3, sAramList__11JKRAramHeap@ha
+	addi     r0, r4, __vt__11JKRAramHeap@l
+	stw      r0, 0(r29)
+	lwz      r31, sAramList__11JKRAramHeap@l(r3)
+	b        lbl_80019804
 
-	.loc_0x3C:
-	  mr        r3, r31
-	  lwz       r31, 0xC(r31)
-	  lwz       r3, 0x0(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x64
-	  lwz       r12, 0x0(r3)
-	  li        r4, 0x1
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
+lbl_800197DC:
+	mr       r3, r31
+	lwz      r31, 0xc(r31)
+	lwz      r3, 0(r3)
+	cmplwi   r3, 0
+	beq      lbl_80019804
+	lwz      r12, 0(r3)
+	li       r4, 1
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x64:
-	  cmplwi    r31, 0
-	  bne+      .loc_0x3C
-	  mr        r3, r29
-	  li        r4, 0
-	  bl        0x3820
-	  extsh.    r0, r30
-	  ble-      .loc_0x88
-	  mr        r3, r29
-	  bl        0xA890
+lbl_80019804:
+	cmplwi   r31, 0
+	bne      lbl_800197DC
+	mr       r3, r29
+	li       r4, 0
+	bl       __dt__11JKRDisposerFv
+	extsh.   r0, r30
+	ble      lbl_80019828
+	mr       r3, r29
+	bl       __dl__FPv
 
-	.loc_0x88:
-	  lwz       r0, 0x24(r1)
-	  mr        r3, r29
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80019828:
+	lwz      r0, 0x24(r1)
+	mr       r3, r29
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -136,45 +154,42 @@ JKRAramHeap::~JKRAramHeap()
 void JKRAramHeap::alloc(unsigned long, JKRAramHeap::EAllocMode)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r5
-	  stw       r30, 0x18(r1)
-	  mr        r30, r4
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  addi      r3, r29, 0x18
-	  bl        0xD62F8
-	  cmpwi     r31, 0
-	  bne-      .loc_0x48
-	  mr        r3, r29
-	  mr        r4, r30
-	  bl        .loc_0x80
-	  mr        r31, r3
-	  b         .loc_0x58
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r5
+	stw      r30, 0x18(r1)
+	mr       r30, r4
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	addi     r3, r29, 0x18
+	bl       OSLockMutex
+	cmpwi    r31, 0
+	bne      lbl_80019890
+	mr       r3, r29
+	mr       r4, r30
+	bl       allocFromHead__11JKRAramHeapFUl
+	mr       r31, r3
+	b        lbl_800198A0
 
-	.loc_0x48:
-	  mr        r3, r29
-	  mr        r4, r30
-	  bl        0xB8
-	  mr        r31, r3
+lbl_80019890:
+	mr       r3, r29
+	mr       r4, r30
+	bl       allocFromTail__11JKRAramHeapFUl
+	mr       r31, r3
 
-	.loc_0x58:
-	  addi      r3, r29, 0x18
-	  bl        0xD63A0
-	  lwz       r0, 0x24(r1)
-	  mr        r3, r31
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-
-	.loc_0x80:
+lbl_800198A0:
+	addi     r3, r29, 0x18
+	bl       OSUnlockMutex
+	lwz      r0, 0x24(r1)
+	mr       r3, r31
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -186,53 +201,52 @@ void JKRAramHeap::alloc(unsigned long, JKRAramHeap::EAllocMode)
 void JKRAramHeap::allocFromHead(unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r6, r3
-	  lis       r5, 0x8050
-	  stw       r0, 0x14(r1)
-	  addi      r0, r4, 0x1F
-	  rlwinm    r4,r0,0,0,26
-	  li        r8, -0x1
-	  lwz       r7, 0x6DB8(r5)
-	  li        r3, 0
-	  b         .loc_0x58
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r6, r3
+	lis      r5, sAramList__11JKRAramHeap@ha
+	stw      r0, 0x14(r1)
+	addi     r0, r4, 0x1f
+	rlwinm   r4, r0, 0, 0, 0x1a
+	li       r8, -1
+	lwz      r7, sAramList__11JKRAramHeap@l(r5)
+	li       r3, 0
+	b        lbl_80019920
 
-	.loc_0x2C:
-	  lwz       r5, 0x0(r7)
-	  lwz       r0, 0x1C(r5)
-	  cmplw     r0, r4
-	  blt-      .loc_0x54
-	  cmplw     r8, r0
-	  ble-      .loc_0x54
-	  cmplw     r0, r4
-	  mr        r8, r0
-	  mr        r3, r5
-	  beq-      .loc_0x60
+lbl_800198F4:
+	lwz      r5, 0(r7)
+	lwz      r0, 0x1c(r5)
+	cmplw    r0, r4
+	blt      lbl_8001991C
+	cmplw    r8, r0
+	ble      lbl_8001991C
+	cmplw    r0, r4
+	mr       r8, r0
+	mr       r3, r5
+	beq      lbl_80019928
 
-	.loc_0x54:
-	  lwz       r7, 0xC(r7)
+lbl_8001991C:
+	lwz      r7, 0xc(r7)
 
-	.loc_0x58:
-	  cmplwi    r7, 0
-	  bne+      .loc_0x2C
+lbl_80019920:
+	cmplwi   r7, 0
+	bne      lbl_800198F4
 
-	.loc_0x60:
-	  cmplwi    r3, 0
-	  beq-      .loc_0x74
-	  lbz       r5, 0x40(r6)
-	  bl        -0x3C8
-	  b         .loc_0x78
+lbl_80019928:
+	cmplwi   r3, 0
+	beq      lbl_8001993C
+	lbz      r5, 0x40(r6)
+	bl       allocHead__12JKRAramBlockFUlUcP11JKRAramHeap
+	b        lbl_80019940
 
-	.loc_0x74:
-	  li        r3, 0
+lbl_8001993C:
+	li       r3, 0
 
-	.loc_0x78:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80019940:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -244,49 +258,48 @@ void JKRAramHeap::allocFromHead(unsigned long)
 void JKRAramHeap::allocFromTail(unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r6, r3
-	  lis       r5, 0x8050
-	  stw       r0, 0x14(r1)
-	  addi      r0, r4, 0x1F
-	  addi      r4, r5, 0x6DB8
-	  li        r3, 0
-	  lwz       r7, 0x4(r4)
-	  rlwinm    r4,r0,0,0,26
-	  b         .loc_0x48
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r6, r3
+	lis      r5, sAramList__11JKRAramHeap@ha
+	stw      r0, 0x14(r1)
+	addi     r0, r4, 0x1f
+	addi     r4, r5, sAramList__11JKRAramHeap@l
+	li       r3, 0
+	lwz      r7, 4(r4)
+	rlwinm   r4, r0, 0, 0, 0x1a
+	b        lbl_80019998
 
-	.loc_0x2C:
-	  lwz       r5, 0x0(r7)
-	  lwz       r0, 0x1C(r5)
-	  cmplw     r0, r4
-	  blt-      .loc_0x44
-	  mr        r3, r5
-	  b         .loc_0x50
+lbl_8001997C:
+	lwz      r5, 0(r7)
+	lwz      r0, 0x1c(r5)
+	cmplw    r0, r4
+	blt      lbl_80019994
+	mr       r3, r5
+	b        lbl_800199A0
 
-	.loc_0x44:
-	  lwz       r7, 0x8(r7)
+lbl_80019994:
+	lwz      r7, 8(r7)
 
-	.loc_0x48:
-	  cmplwi    r7, 0
-	  bne+      .loc_0x2C
+lbl_80019998:
+	cmplwi   r7, 0
+	bne      lbl_8001997C
 
-	.loc_0x50:
-	  cmplwi    r3, 0
-	  beq-      .loc_0x64
-	  lbz       r5, 0x40(r6)
-	  bl        -0x398
-	  b         .loc_0x68
+lbl_800199A0:
+	cmplwi   r3, 0
+	beq      lbl_800199B4
+	lbz      r5, 0x40(r6)
+	bl       allocTail__12JKRAramBlockFUlUcP11JKRAramHeap
+	b        lbl_800199B8
 
-	.loc_0x64:
-	  li        r3, 0
+lbl_800199B4:
+	li       r3, 0
 
-	.loc_0x68:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_800199B8:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -298,43 +311,42 @@ void JKRAramHeap::allocFromTail(unsigned long)
 void JKRAramHeap::getFreeSize()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  li        r31, 0
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  addi      r3, r30, 0x18
-	  bl        0xD6180
-	  lis       r3, 0x8050
-	  addi      r3, r3, 0x6DB8
-	  lwz       r3, 0x0(r3)
-	  b         .loc_0x4C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	li       r31, 0
+	stw      r30, 8(r1)
+	mr       r30, r3
+	addi     r3, r30, 0x18
+	bl       OSLockMutex
+	lis      r3, sAramList__11JKRAramHeap@ha
+	addi     r3, r3, sAramList__11JKRAramHeap@l
+	lwz      r3, 0(r3)
+	b        lbl_80019A14
 
-	.loc_0x34:
-	  lwz       r4, 0x0(r3)
-	  lwz       r0, 0x1C(r4)
-	  cmplw     r0, r31
-	  ble-      .loc_0x48
-	  mr        r31, r0
+lbl_800199FC:
+	lwz      r4, 0(r3)
+	lwz      r0, 0x1c(r4)
+	cmplw    r0, r31
+	ble      lbl_80019A10
+	mr       r31, r0
 
-	.loc_0x48:
-	  lwz       r3, 0xC(r3)
+lbl_80019A10:
+	lwz      r3, 0xc(r3)
 
-	.loc_0x4C:
-	  cmplwi    r3, 0
-	  bne+      .loc_0x34
-	  addi      r3, r30, 0x18
-	  bl        0xD6224
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80019A14:
+	cmplwi   r3, 0
+	bne      lbl_800199FC
+	addi     r3, r30, 0x18
+	bl       OSUnlockMutex
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -346,24 +358,23 @@ void JKRAramHeap::getFreeSize()
 void __sinit_JKRAramHeap_cpp(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r3, 0x8050
-	  stw       r0, 0x14(r1)
-	  addi      r3, r3, 0x6DB8
-	  bl        0xCE7C
-	  lis       r3, 0x8050
-	  lis       r4, 0x8002
-	  lis       r5, 0x804F
-	  addi      r3, r3, 0x6DB8
-	  subi      r4, r4, 0x657C
-	  subi      r5, r5, 0xE0
-	  bl        0xA7C90
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lis      r3, sAramList__11JKRAramHeap@ha
+	stw      r0, 0x14(r1)
+	addi     r3, r3, sAramList__11JKRAramHeap@l
+	bl       initiate__10JSUPtrListFv
+	lis      r3, sAramList__11JKRAramHeap@ha
+	lis      r4, "__dt__23JSUList<12JKRAramBlock>Fv"@ha
+	lis      r5, lbl_804EFF20@ha
+	addi     r3, r3, sAramList__11JKRAramHeap@l
+	addi     r4, r4, "__dt__23JSUList<12JKRAramBlock>Fv"@l
+	addi     r5, r5, lbl_804EFF20@l
+	bl       __register_global_object
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -375,29 +386,28 @@ void __sinit_JKRAramHeap_cpp(void)
 void JSUList<JKRAramBlock>::~JSUList()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x38
-	  li        r4, 0
-	  bl        0xCDC0
-	  extsh.    r0, r31
-	  ble-      .loc_0x38
-	  mr        r3, r30
-	  bl        0xA5FC
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_80019ABC
+	li       r4, 0
+	bl       __dt__10JSUPtrListFv
+	extsh.   r0, r31
+	ble      lbl_80019ABC
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x38:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80019ABC:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }

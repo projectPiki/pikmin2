@@ -1,6 +1,49 @@
 #include "types.h"
 
 /*
+    Generated from dpostproc
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_80499E68
+    lbl_80499E68:
+        .4byte 0x6D6F6465
+        .4byte 0x6C4D6772
+        .4byte 0x00000000
+    .global lbl_80499E74
+    lbl_80499E74:
+        .4byte 0x6D6F6465
+        .4byte 0x6C4D6772
+        .4byte 0x2E637070
+        .4byte 0x00000000
+    .global lbl_80499E84
+    lbl_80499E84:
+        .4byte 0x736F6C69
+        .4byte 0x64206865
+        .4byte 0x61702063
+        .4byte 0x72656174
+        .4byte 0x696F6E20
+        .4byte 0x6661696C
+        .4byte 0x65642021
+        .4byte 0x0A000000
+        .asciz "P2Assert"
+        .skip 3
+        .4byte 0x736F6C69
+        .4byte 0x64486561
+        .4byte 0x70206E75
+        .4byte 0x6C6C210A
+        .4byte 0x00000000
+        .4byte 0x6661696C
+        .4byte 0x65642074
+        .4byte 0x6F206E65
+        .4byte 0x77206D6F
+        .4byte 0x64656C20
+        .4byte 0x21206964
+        .4byte 0x20256420
+        .4byte 0x69647820
+        .4byte 0x25640A00
+*/
+
+/*
 namespace SysShape {
 
  * --INFO--
@@ -157,48 +200,45 @@ void __ct__Q28SysShape8ModelMgrFiPP12J3DModelDataiUlUlP30IDelegate1<Model*>(
 void ModelMgr::calcMaximumModelSize(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  li        r31, 0
-	  stw       r30, 0x18(r1)
-	  li        r30, 0
-	  stw       r29, 0x14(r1)
-	  li        r29, 0
-	  stw       r28, 0x10(r1)
-	  mr        r28, r3
-	  b         .loc_0x54
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	li       r31, 0
+	stw      r30, 0x18(r1)
+	li       r30, 0
+	stw      r29, 0x14(r1)
+	li       r29, 0
+	stw      r28, 0x10(r1)
+	mr       r28, r3
+	b        lbl_8042AD2C
 
-	.loc_0x30:
-	  lwz       r4, 0x4(r28)
-	  mr        r3, r28
-	  lwzx      r4, r4, r31
-	  bl        .loc_0x84
-	  cmplw     r3, r30
-	  ble-      .loc_0x4C
-	  mr        r30, r3
+lbl_8042AD08:
+	lwz      r4, 4(r28)
+	mr       r3, r28
+	lwzx     r4, r4, r31
+	bl       calcModelSize__Q28SysShape8ModelMgrFP12J3DModelData
+	cmplw    r3, r30
+	ble      lbl_8042AD24
+	mr       r30, r3
 
-	.loc_0x4C:
-	  addi      r31, r31, 0x4
-	  addi      r29, r29, 0x1
+lbl_8042AD24:
+	addi     r31, r31, 4
+	addi     r29, r29, 1
 
-	.loc_0x54:
-	  lwz       r0, 0x0(r28)
-	  cmpw      r29, r0
-	  blt+      .loc_0x30
-	  lwz       r0, 0x24(r1)
-	  addi      r3, r30, 0x7C
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-
-	.loc_0x84:
+lbl_8042AD2C:
+	lwz      r0, 0(r28)
+	cmpw     r29, r0
+	blt      lbl_8042AD08
+	lwz      r0, 0x24(r1)
+	addi     r3, r30, 0x7c
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -210,55 +250,54 @@ void ModelMgr::calcMaximumModelSize(void)
 void ModelMgr::calcModelSize(J3DModelData*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  mr.       r30, r4
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  bne-      .loc_0x2C
-	  li        r3, 0
-	  b         .loc_0x84
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	or.      r30, r4, r4
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	bne      lbl_8042AD88
+	li       r3, 0
+	b        lbl_8042ADE0
 
-	.loc_0x2C:
-	  lwz       r3, -0x77D4(r13)
-	  bl        -0x4075AC
-	  mr        r31, r3
-	  li        r3, 0x14
-	  bl        -0x406EF4
-	  mr.       r4, r3
-	  beq-      .loc_0x5C
-	  lwz       r5, 0x10(r29)
-	  mr        r4, r30
-	  lwz       r6, 0x14(r29)
-	  bl        0x13428
-	  mr        r4, r3
+lbl_8042AD88:
+	lwz      r3, sCurrentHeap__7JKRHeap@sda21(r13)
+	bl       getTotalFreeSize__7JKRHeapFv
+	mr       r31, r3
+	li       r3, 0x14
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_8042ADB8
+	lwz      r5, 0x10(r29)
+	mr       r4, r30
+	lwz      r6, 0x14(r29)
+	bl       __ct__Q28SysShape5ModelFP12J3DModelDataUlUl
+	mr       r4, r3
 
-	.loc_0x5C:
-	  lwz       r3, 0x18(r29)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x78
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
+lbl_8042ADB8:
+	lwz      r3, 0x18(r29)
+	cmplwi   r3, 0
+	beq      lbl_8042ADD4
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x78:
-	  lwz       r3, -0x77D4(r13)
-	  bl        -0x4075F8
-	  sub       r3, r31, r3
+lbl_8042ADD4:
+	lwz      r3, sCurrentHeap__7JKRHeap@sda21(r13)
+	bl       getTotalFreeSize__7JKRHeapFv
+	subf     r3, r3, r31
 
-	.loc_0x84:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8042ADE0:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -270,151 +309,150 @@ void ModelMgr::calcModelSize(J3DModelData*)
 void ModelMgr::createModel(int, int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stmw      r26, 0x8(r1)
-	  mr        r27, r3
-	  rlwinm    r30,r4,2,0,29
-	  mr        r28, r4
-	  lis       r4, 0x804A
-	  mr        r29, r5
-	  subi      r31, r4, 0x6198
-	  lwz       r3, 0x4(r3)
-	  lwzx      r0, r3, r30
-	  cmplwi    r0, 0
-	  bne-      .loc_0x40
-	  li        r3, 0
-	  b         .loc_0x1B4
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stmw     r26, 8(r1)
+	mr       r27, r3
+	slwi     r30, r4, 2
+	mr       r28, r4
+	lis      r4, lbl_80499E68@ha
+	mr       r29, r5
+	addi     r31, r4, lbl_80499E68@l
+	lwz      r3, 4(r3)
+	lwzx     r0, r3, r30
+	cmplwi   r0, 0
+	bne      lbl_8042AE3C
+	li       r3, 0
+	b        lbl_8042AFB0
 
-	.loc_0x40:
-	  cmpwi     r28, 0
-	  li        r3, 0
-	  blt-      .loc_0x5C
-	  lwz       r0, 0x0(r27)
-	  cmpw      r28, r0
-	  bge-      .loc_0x5C
-	  li        r3, 0x1
+lbl_8042AE3C:
+	cmpwi    r28, 0
+	li       r3, 0
+	blt      lbl_8042AE58
+	lwz      r0, 0(r27)
+	cmpw     r28, r0
+	bge      lbl_8042AE58
+	li       r3, 1
 
-	.loc_0x5C:
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x78
-	  addi      r3, r31, 0xC
-	  addi      r5, r31, 0x3C
-	  li        r4, 0x98
-	  crclr     6, 0x6
-	  bl        -0x400830
+lbl_8042AE58:
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_8042AE74
+	addi     r3, r31, 0xc
+	addi     r5, r31, 0x3c
+	li       r4, 0x98
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x78:
-	  cmpwi     r29, 0
-	  li        r3, 0
-	  blt-      .loc_0x94
-	  lwz       r0, 0x8(r27)
-	  cmpw      r29, r0
-	  bge-      .loc_0x94
-	  li        r3, 0x1
+lbl_8042AE74:
+	cmpwi    r29, 0
+	li       r3, 0
+	blt      lbl_8042AE90
+	lwz      r0, 8(r27)
+	cmpw     r29, r0
+	bge      lbl_8042AE90
+	li       r3, 1
 
-	.loc_0x94:
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0xB0
-	  addi      r3, r31, 0xC
-	  addi      r5, r31, 0x3C
-	  li        r4, 0x99
-	  crclr     6, 0x6
-	  bl        -0x400868
+lbl_8042AE90:
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_8042AEAC
+	addi     r3, r31, 0xc
+	addi     r5, r31, 0x3c
+	li       r4, 0x99
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xB0:
-	  lwz       r4, 0xC(r27)
-	  rlwinm    r0,r29,2,0,29
-	  lwz       r3, -0x6514(r13)
-	  lwzx      r26, r4, r0
-	  mr        r4, r26
-	  bl        -0x7A78
-	  cmplwi    r26, 0
-	  beq-      .loc_0xDC
-	  mr        r3, r26
-	  bl        -0x4077A0
-	  b         .loc_0x13C
+lbl_8042AEAC:
+	lwz      r4, 0xc(r27)
+	slwi     r0, r29, 2
+	lwz      r3, sys@sda21(r13)
+	lwzx     r26, r4, r0
+	mr       r4, r26
+	bl       startChangeCurrentHeap__6SystemFP7JKRHeap
+	cmplwi   r26, 0
+	beq      lbl_8042AED8
+	mr       r3, r26
+	bl       freeAll__7JKRHeapFv
+	b        lbl_8042AF38
 
-	.loc_0xDC:
-	  lwz       r4, 0x8(r27)
-	  li        r5, 0
-	  cmpwi     r4, 0
-	  ble-      .loc_0x128
-	  cmpwi     r4, 0x8
-	  subi      r3, r4, 0x8
-	  ble-      .loc_0x114
-	  addi      r0, r3, 0x7
-	  rlwinm    r0,r0,29,3,31
-	  mtctr     r0
-	  cmpwi     r3, 0
-	  ble-      .loc_0x114
+lbl_8042AED8:
+	lwz      r4, 8(r27)
+	li       r5, 0
+	cmpwi    r4, 0
+	ble      lbl_8042AF24
+	cmpwi    r4, 8
+	addi     r3, r4, -8
+	ble      lbl_8042AF10
+	addi     r0, r3, 7
+	srwi     r0, r0, 3
+	mtctr    r0
+	cmpwi    r3, 0
+	ble      lbl_8042AF10
 
-	.loc_0x10C:
-	  addi      r5, r5, 0x8
-	  bdnz+     .loc_0x10C
+lbl_8042AF08:
+	addi     r5, r5, 8
+	bdnz     lbl_8042AF08
 
-	.loc_0x114:
-	  sub       r0, r4, r5
-	  mtctr     r0
-	  cmpw      r5, r4
-	  bge-      .loc_0x128
+lbl_8042AF10:
+	subf     r0, r5, r4
+	mtctr    r0
+	cmpw     r5, r4
+	bge      lbl_8042AF24
 
-	.loc_0x124:
-	  bdnz-     .loc_0x124
+lbl_8042AF20:
+	bdnz     lbl_8042AF20
 
-	.loc_0x128:
-	  addi      r3, r31, 0xC
-	  addi      r5, r31, 0x48
-	  li        r4, 0xAD
-	  crclr     6, 0x6
-	  bl        -0x4008F4
+lbl_8042AF24:
+	addi     r3, r31, 0xc
+	addi     r5, r31, 0x48
+	li       r4, 0xad
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x13C:
-	  li        r3, 0x14
-	  bl        -0x407098
-	  mr.       r26, r3
-	  beq-      .loc_0x164
-	  lwz       r4, 0x4(r27)
-	  lwz       r5, 0x10(r27)
-	  lwzx      r4, r4, r30
-	  lwz       r6, 0x14(r27)
-	  bl        0x13280
-	  mr        r26, r3
+lbl_8042AF38:
+	li       r3, 0x14
+	bl       __nw__FUl
+	or.      r26, r3, r3
+	beq      lbl_8042AF60
+	lwz      r4, 4(r27)
+	lwz      r5, 0x10(r27)
+	lwzx     r4, r4, r30
+	lwz      r6, 0x14(r27)
+	bl       __ct__Q28SysShape5ModelFP12J3DModelDataUlUl
+	mr       r26, r3
 
-	.loc_0x164:
-	  lwz       r3, 0x18(r27)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x184
-	  lwz       r12, 0x0(r3)
-	  mr        r4, r26
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
+lbl_8042AF60:
+	lwz      r3, 0x18(r27)
+	cmplwi   r3, 0
+	beq      lbl_8042AF80
+	lwz      r12, 0(r3)
+	mr       r4, r26
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x184:
-	  cmplwi    r26, 0
-	  bne-      .loc_0x1A8
-	  mr        r6, r28
-	  mr        r7, r29
-	  addi      r3, r31, 0xC
-	  addi      r5, r31, 0x5C
-	  li        r4, 0xB8
-	  crclr     6, 0x6
-	  bl        -0x400960
+lbl_8042AF80:
+	cmplwi   r26, 0
+	bne      lbl_8042AFA4
+	mr       r6, r28
+	mr       r7, r29
+	addi     r3, r31, 0xc
+	addi     r5, r31, 0x5c
+	li       r4, 0xb8
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x1A8:
-	  lwz       r3, -0x6514(r13)
-	  bl        -0x7AF0
-	  mr        r3, r26
+lbl_8042AFA4:
+	lwz      r3, sys@sda21(r13)
+	bl       endChangeCurrentHeap__6SystemFv
+	mr       r3, r26
 
-	.loc_0x1B4:
-	  lmw       r26, 0x8(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8042AFB0:
+	lmw      r26, 8(r1)
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 } // SysShape

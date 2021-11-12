@@ -1,6 +1,145 @@
 #include "types.h"
 
 /*
+    Generated from dpostproc
+
+    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
+    .4byte __sinit_JKRAram_cpp
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_80473480
+    lbl_80473480:
+        .4byte 0x4A4B5241
+        .4byte 0x72616D2E
+        .4byte 0x63707000
+    .global lbl_8047348C
+    lbl_8047348C:
+        .4byte 0x3A3A3A61
+        .4byte 0x64647265
+        .4byte 0x7373206E
+        .4byte 0x6F742033
+        .4byte 0x32427974
+        .4byte 0x6520616C
+        .4byte 0x69676E65
+        .4byte 0x642E0000
+        .4byte 0x3A3A3A42
+        .4byte 0x61642041
+        .4byte 0x72616D20
+        .4byte 0x426C6F63
+        .4byte 0x6B207370
+        .4byte 0x65636966
+        .4byte 0x6965642E
+        .4byte 0x0A000000
+        .4byte 0x2D2D2D2D
+        .4byte 0x2D2D2D2D
+        .4byte 0x2D2D2D2D
+        .4byte 0x2D2D2D2D
+        .4byte 0x20424144
+        .4byte 0x2053594E
+        .4byte 0x432E2079
+        .4byte 0x6F752764
+        .4byte 0x20736574
+        .4byte 0x2063616C
+        .4byte 0x6C626163
+        .4byte 0x6B2C2062
+        .4byte 0x7574206E
+        .4byte 0x6F772063
+        .4byte 0x616C6C20
+        .4byte 0x73796E63
+        .4byte 0x2E0A0000
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global sMessageBuffer__7JKRAram
+    sMessageBuffer__7JKRAram:
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+    .global sMessageQueue__7JKRAram
+    sMessageQueue__7JKRAram:
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+    .global __vt__7JKRAram
+    __vt__7JKRAram:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__7JKRAramFv
+        .4byte run__7JKRAramFv
+
+    .section .bss  # 0x804EFC20 - 0x8051467C
+    .global sAramCommandList__7JKRAram
+    sAramCommandList__7JKRAram:
+        .skip 0xC
+
+    .section .sdata, "wa"  # 0x80514680 - 0x80514D80
+    .global sSZSBufferSize__7JKRAram
+    sSZSBufferSize__7JKRAram:
+        .4byte 0x00000400
+
+    .section .sbss # 0x80514D80 - 0x80516360
+    .global sAramObject__7JKRAram
+    sAramObject__7JKRAram:
+        .skip 0x4
+    .global szpBuf
+    szpBuf:
+        .skip 0x4
+    .global szpEnd
+    szpEnd:
+        .skip 0x4
+    .global refBuf
+    refBuf:
+        .skip 0x4
+    .global refEnd
+    refEnd:
+        .skip 0x4
+    .global refCurrent
+    refCurrent:
+        .skip 0x4
+    .global srcOffset
+    srcOffset:
+        .skip 0x4
+    .global transLeft
+    transLeft:
+        .skip 0x4
+    .global srcLimit
+    srcLimit:
+        .skip 0x4
+    .global srcAddress
+    srcAddress:
+        .skip 0x4
+    .global fileOffset
+    fileOffset:
+        .skip 0x4
+    .global readCount
+    readCount:
+        .skip 0x4
+    .global maxDest
+    maxDest:
+        .skip 0x4
+    .global isInitMutex
+    isInitMutex:
+        .skip 0x4
+    .global tsPtr
+    tsPtr:
+        .skip 0x4
+    .global tsArea
+    tsArea:
+        .skip 0x4
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_805164D0
+    lbl_805164D0:
+        .4byte 0x25730000
+        .4byte 0x00000000
+*/
+
+/*
  * --INFO--
  * Address:	80017A10
  * Size:	000094
@@ -8,50 +147,47 @@
 void JKRAram::create(unsigned long, unsigned long, long, long, long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stmw      r27, 0xC(r1)
-	  mr        r27, r3
-	  mr        r28, r4
-	  mr        r29, r5
-	  mr        r30, r6
-	  mr        r31, r7
-	  lwz       r0, -0x78E0(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x60
-	  lwz       r4, -0x77D8(r13)
-	  li        r3, 0xA4
-	  li        r5, 0
-	  bl        0xC4F4
-	  mr.       r0, r3
-	  beq-      .loc_0x5C
-	  mr        r4, r27
-	  mr        r5, r28
-	  mr        r6, r31
-	  bl        .loc_0x94
-	  mr        r0, r3
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stmw     r27, 0xc(r1)
+	mr       r27, r3
+	mr       r28, r4
+	mr       r29, r5
+	mr       r30, r6
+	mr       r31, r7
+	lwz      r0, sAramObject__7JKRAram@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_80017A70
+	lwz      r4, sSystemHeap__7JKRHeap@sda21(r13)
+	li       r3, 0xa4
+	li       r5, 0
+	bl       __nw__FUlP7JKRHeapi
+	or.      r0, r3, r3
+	beq      lbl_80017A6C
+	mr       r4, r27
+	mr       r5, r28
+	mr       r6, r31
+	bl       __ct__7JKRAramFUlUll
+	mr       r0, r3
 
-	.loc_0x5C:
-	  stw       r0, -0x78E0(r13)
+lbl_80017A6C:
+	stw      r0, sAramObject__7JKRAram@sda21(r13)
 
-	.loc_0x60:
-	  mr        r3, r29
-	  bl        0x24AC
-	  mr        r3, r30
-	  bl        0x4EB8
-	  lwz       r3, -0x78E0(r13)
-	  lwz       r3, 0x2C(r3)
-	  bl        0xDAA6C
-	  lmw       r27, 0xC(r1)
-	  lwz       r0, 0x24(r1)
-	  lwz       r3, -0x78E0(r13)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-
-	.loc_0x94:
+lbl_80017A70:
+	mr       r3, r29
+	bl       create__13JKRAramStreamFl
+	mr       r3, r30
+	bl       create__9JKRDecompFl
+	lwz      r3, sAramObject__7JKRAram@sda21(r13)
+	lwz      r3, 0x2c(r3)
+	bl       OSResumeThread
+	lmw      r27, 0xc(r1)
+	lwz      r0, 0x24(r1)
+	lwz      r3, sAramObject__7JKRAram@sda21(r13)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -63,88 +199,87 @@ void JKRAram::create(unsigned long, unsigned long, long, long, long)
 JKRAram::JKRAram(unsigned long, unsigned long, long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  mr        r30, r5
-	  li        r5, 0x10
-	  stw       r29, 0x14(r1)
-	  mr        r29, r4
-	  li        r4, 0x4000
-	  stw       r28, 0x10(r1)
-	  mr        r28, r3
-	  bl        0xDB64
-	  lis       r4, 0x804A
-	  addi      r3, r28, 0x98
-	  subi      r0, r4, 0x468
-	  li        r4, 0x3
-	  stw       r0, 0x0(r28)
-	  bl        0xBAD60
-	  mr        r31, r3
-	  bl        0xBC898
-	  bl        0xBAE20
-	  addis     r0, r30, 0x1
-	  stw       r29, 0x80(r28)
-	  cmplwi    r0, 0xFFFF
-	  bne-      .loc_0x80
-	  sub       r3, r3, r29
-	  li        r0, 0
-	  sub       r3, r3, r31
-	  stw       r3, 0x88(r28)
-	  stw       r0, 0x90(r28)
-	  b         .loc_0x94
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	mr       r30, r5
+	li       r5, 0x10
+	stw      r29, 0x14(r1)
+	mr       r29, r4
+	li       r4, 0x4000
+	stw      r28, 0x10(r1)
+	mr       r28, r3
+	bl       __ct__9JKRThreadFUlii
+	lis      r4, __vt__7JKRAram@ha
+	addi     r3, r28, 0x98
+	addi     r0, r4, __vt__7JKRAram@l
+	li       r4, 3
+	stw      r0, 0(r28)
+	bl       ARInit
+	mr       r31, r3
+	bl       ARQInit
+	bl       ARGetSize
+	addis    r0, r30, 1
+	stw      r29, 0x80(r28)
+	cmplwi   r0, 0xffff
+	bne      lbl_80017B24
+	subf     r3, r29, r3
+	li       r0, 0
+	subf     r3, r31, r3
+	stw      r3, 0x88(r28)
+	stw      r0, 0x90(r28)
+	b        lbl_80017B38
 
-	.loc_0x80:
-	  add       r0, r29, r30
-	  stw       r30, 0x88(r28)
-	  sub       r0, r3, r0
-	  sub       r0, r0, r31
-	  stw       r0, 0x90(r28)
+lbl_80017B24:
+	add      r0, r29, r30
+	stw      r30, 0x88(r28)
+	subf     r0, r0, r3
+	subf     r0, r31, r0
+	stw      r0, 0x90(r28)
 
-	.loc_0x94:
-	  lwz       r3, 0x80(r28)
-	  bl        0xBACA8
-	  stw       r3, 0x7C(r28)
-	  lwz       r3, 0x88(r28)
-	  bl        0xBAC9C
-	  stw       r3, 0x84(r28)
-	  lwz       r3, 0x90(r28)
-	  cmplwi    r3, 0
-	  beq-      .loc_0xC4
-	  bl        0xBAC88
-	  stw       r3, 0x8C(r28)
-	  b         .loc_0xCC
+lbl_80017B38:
+	lwz      r3, 0x80(r28)
+	bl       ARAlloc
+	stw      r3, 0x7c(r28)
+	lwz      r3, 0x88(r28)
+	bl       ARAlloc
+	stw      r3, 0x84(r28)
+	lwz      r3, 0x90(r28)
+	cmplwi   r3, 0
+	beq      lbl_80017B68
+	bl       ARAlloc
+	stw      r3, 0x8c(r28)
+	b        lbl_80017B70
 
-	.loc_0xC4:
-	  li        r0, 0
-	  stw       r0, 0x8C(r28)
+lbl_80017B68:
+	li       r0, 0
+	stw      r0, 0x8c(r28)
 
-	.loc_0xCC:
-	  lwz       r4, -0x77D8(r13)
-	  li        r3, 0x44
-	  li        r5, 0
-	  bl        0xC3C4
-	  mr.       r0, r3
-	  beq-      .loc_0xF4
-	  lwz       r4, 0x84(r28)
-	  lwz       r5, 0x88(r28)
-	  bl        0x1B38
-	  mr        r0, r3
+lbl_80017B70:
+	lwz      r4, sSystemHeap__7JKRHeap@sda21(r13)
+	li       r3, 0x44
+	li       r5, 0
+	bl       __nw__FUlP7JKRHeapi
+	or.      r0, r3, r3
+	beq      lbl_80017B98
+	lwz      r4, 0x84(r28)
+	lwz      r5, 0x88(r28)
+	bl       __ct__11JKRAramHeapFUlUl
+	mr       r0, r3
 
-	.loc_0xF4:
-	  stw       r0, 0x94(r28)
-	  mr        r3, r28
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80017B98:
+	stw      r0, 0x94(r28)
+	mr       r3, r28
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -156,47 +291,46 @@ JKRAram::JKRAram(unsigned long, unsigned long, long)
 JKRAram::~JKRAram()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x74
-	  lis       r3, 0x804A
-	  li        r0, 0
-	  subi      r3, r3, 0x468
-	  stw       r3, 0x0(r30)
-	  stw       r0, -0x78E0(r13)
-	  lwz       r3, 0x94(r30)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x58
-	  beq-      .loc_0x58
-	  lwz       r12, 0x0(r3)
-	  li        r4, 0x1
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_80017C34
+	lis      r3, __vt__7JKRAram@ha
+	li       r0, 0
+	addi     r3, r3, __vt__7JKRAram@l
+	stw      r3, 0(r30)
+	stw      r0, sAramObject__7JKRAram@sda21(r13)
+	lwz      r3, 0x94(r30)
+	cmplwi   r3, 0
+	beq      lbl_80017C18
+	beq      lbl_80017C18
+	lwz      r12, 0(r3)
+	li       r4, 1
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x58:
-	  mr        r3, r30
-	  li        r4, 0
-	  bl        0xDC18
-	  extsh.    r0, r31
-	  ble-      .loc_0x74
-	  mr        r3, r30
-	  bl        0xC484
+lbl_80017C18:
+	mr       r3, r30
+	li       r4, 0
+	bl       __dt__9JKRThreadFv
+	extsh.   r0, r31
+	ble      lbl_80017C34
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x74:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80017C34:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -208,39 +342,38 @@ JKRAram::~JKRAram()
 void JKRAram::run()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r3, 0x804A
-	  lis       r4, 0x804A
-	  stw       r0, 0x24(r1)
-	  subi      r3, r3, 0x488
-	  li        r5, 0x4
-	  subi      r4, r4, 0x498
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  bl        0xD7840
-	  lis       r3, 0x804A
-	  subi      r31, r3, 0x488
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lis      r3, sMessageQueue__7JKRAram@ha
+	lis      r4, sMessageBuffer__7JKRAram@ha
+	stw      r0, 0x24(r1)
+	addi     r3, r3, sMessageQueue__7JKRAram@l
+	li       r5, 4
+	addi     r4, r4, sMessageBuffer__7JKRAram@l
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	bl       OSInitMessageQueue
+	lis      r3, sMessageQueue__7JKRAram@ha
+	addi     r31, r3, sMessageQueue__7JKRAram@l
 
-	.loc_0x38:
-	  mr        r3, r31
-	  addi      r4, r1, 0x8
-	  li        r5, 0x1
-	  bl        0xD7950
-	  lwz       r3, 0x8(r1)
-	  lwz       r30, 0x0(r3)
-	  lwz       r29, 0x4(r3)
-	  bl        0xC410
-	  cmpwi     r30, 0x1
-	  beq-      .loc_0x64
-	  b         .loc_0x38
+lbl_80017C88:
+	mr       r3, r31
+	addi     r4, r1, 8
+	li       r5, 1
+	bl       OSReceiveMessage
+	lwz      r3, 8(r1)
+	lwz      r30, 0(r3)
+	lwz      r29, 4(r3)
+	bl       __dl__FPv
+	cmpwi    r30, 1
+	beq      lbl_80017CB4
+	b        lbl_80017C88
 
-	.loc_0x64:
-	  mr        r3, r29
-	  bl        0x1FEC
-	  b         .loc_0x38
+lbl_80017CB4:
+	mr       r3, r29
+	bl       startDMA__12JKRAramPieceFP12JKRAMCommand
+	b        lbl_80017C88
 	*/
 }
 
@@ -929,223 +1062,222 @@ void JKRDecompressFromAramToMainRam(unsigned long, void*, unsigned long,
 void decompSZS_subroutine(unsigned char*, unsigned char*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  li        r0, 0
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  li        r30, 0
-	  stw       r29, 0x14(r1)
-	  mr        r29, r4
-	  li        r4, 0
-	  lbz       r5, 0x0(r3)
-	  cmpwi     r5, 0x59
-	  bne-      .loc_0x58
-	  lbz       r5, 0x1(r3)
-	  cmpwi     r5, 0x61
-	  bne-      .loc_0x58
-	  lbz       r5, 0x2(r3)
-	  cmpwi     r5, 0x7A
-	  bne-      .loc_0x58
-	  lbz       r5, 0x3(r3)
-	  cmpwi     r5, 0x30
-	  beq-      .loc_0x60
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	li       r0, 0
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	li       r30, 0
+	stw      r29, 0x14(r1)
+	mr       r29, r4
+	li       r4, 0
+	lbz      r5, 0(r3)
+	cmpwi    r5, 0x59
+	bne      lbl_800184F4
+	lbz      r5, 1(r3)
+	cmpwi    r5, 0x61
+	bne      lbl_800184F4
+	lbz      r5, 2(r3)
+	cmpwi    r5, 0x7a
+	bne      lbl_800184F4
+	lbz      r5, 3(r3)
+	cmpwi    r5, 0x30
+	beq      lbl_800184FC
 
-	.loc_0x58:
-	  li        r3, -0x1
-	  b         .loc_0x28C
+lbl_800184F4:
+	li       r3, -1
+	b        lbl_80018728
 
-	.loc_0x60:
-	  lwz       r7, -0x78B8(r13)
-	  lwz       r6, 0x4(r3)
-	  lwz       r5, -0x78B0(r13)
-	  sub       r6, r6, r7
-	  add       r31, r29, r6
-	  add       r5, r29, r5
-	  cmplw     r31, r5
-	  ble-      .loc_0x84
-	  mr        r31, r5
+lbl_800184FC:
+	lwz      r7, fileOffset@sda21(r13)
+	lwz      r6, 4(r3)
+	lwz      r5, maxDest@sda21(r13)
+	subf     r6, r7, r6
+	add      r31, r29, r6
+	add      r5, r29, r5
+	cmplw    r31, r5
+	ble      lbl_80018520
+	mr       r31, r5
 
-	.loc_0x84:
-	  addi      r3, r3, 0x10
+lbl_80018520:
+	addi     r3, r3, 0x10
 
-	.loc_0x88:
-	  cmpwi     r4, 0
-	  bne-      .loc_0xB8
-	  lwz       r0, -0x78C0(r13)
-	  cmplw     r3, r0
-	  ble-      .loc_0xAC
-	  lwz       r0, -0x78C4(r13)
-	  cmplwi    r0, 0
-	  beq-      .loc_0xAC
-	  bl        0x2A4
+lbl_80018524:
+	cmpwi    r4, 0
+	bne      lbl_80018554
+	lwz      r0, srcLimit@sda21(r13)
+	cmplw    r3, r0
+	ble      lbl_80018548
+	lwz      r0, transLeft@sda21(r13)
+	cmplwi   r0, 0
+	beq      lbl_80018548
+	bl       nextSrcData__FPUc
 
-	.loc_0xAC:
-	  lbz       r0, 0x0(r3)
-	  li        r4, 0x8
-	  addi      r3, r3, 0x1
+lbl_80018548:
+	lbz      r0, 0(r3)
+	li       r4, 8
+	addi     r3, r3, 1
 
-	.loc_0xB8:
-	  rlwinm.   r5,r0,0,24,24
-	  beq-      .loc_0x150
-	  lwz       r6, -0x78B8(r13)
-	  cmplwi    r6, 0
-	  beq-      .loc_0x124
-	  lwz       r5, -0x78B4(r13)
-	  cmplw     r5, r6
-	  blt-      .loc_0xF0
-	  lbz       r5, 0x0(r3)
-	  addi      r30, r30, 0x1
-	  stb       r5, 0x0(r29)
-	  addi      r29, r29, 0x1
-	  cmplw     r29, r31
-	  beq-      .loc_0x280
+lbl_80018554:
+	rlwinm.  r5, r0, 0, 0x18, 0x18
+	beq      lbl_800185EC
+	lwz      r6, fileOffset@sda21(r13)
+	cmplwi   r6, 0
+	beq      lbl_800185C0
+	lwz      r5, readCount@sda21(r13)
+	cmplw    r5, r6
+	blt      lbl_8001858C
+	lbz      r5, 0(r3)
+	addi     r30, r30, 1
+	stb      r5, 0(r29)
+	addi     r29, r29, 1
+	cmplw    r29, r31
+	beq      lbl_8001871C
 
-	.loc_0xF0:
-	  lwz       r6, -0x78CC(r13)
-	  lbz       r7, 0x0(r3)
-	  addi      r5, r6, 0x1
-	  stw       r5, -0x78CC(r13)
-	  stb       r7, 0x0(r6)
-	  lwz       r6, -0x78CC(r13)
-	  lwz       r5, -0x78D0(r13)
-	  cmplw     r6, r5
-	  bne-      .loc_0x11C
-	  lwz       r5, -0x78D4(r13)
-	  stw       r5, -0x78CC(r13)
+lbl_8001858C:
+	lwz      r6, refCurrent@sda21(r13)
+	lbz      r7, 0(r3)
+	addi     r5, r6, 1
+	stw      r5, refCurrent@sda21(r13)
+	stb      r7, 0(r6)
+	lwz      r6, refCurrent@sda21(r13)
+	lwz      r5, refEnd@sda21(r13)
+	cmplw    r6, r5
+	bne      lbl_800185B8
+	lwz      r5, refBuf@sda21(r13)
+	stw      r5, refCurrent@sda21(r13)
 
-	.loc_0x11C:
-	  addi      r3, r3, 0x1
-	  b         .loc_0x140
+lbl_800185B8:
+	addi     r3, r3, 1
+	b        lbl_800185DC
 
-	.loc_0x124:
-	  lbz       r5, 0x0(r3)
-	  addi      r3, r3, 0x1
-	  addi      r30, r30, 0x1
-	  stb       r5, 0x0(r29)
-	  addi      r29, r29, 0x1
-	  cmplw     r29, r31
-	  beq-      .loc_0x280
+lbl_800185C0:
+	lbz      r5, 0(r3)
+	addi     r3, r3, 1
+	addi     r30, r30, 1
+	stb      r5, 0(r29)
+	addi     r29, r29, 1
+	cmplw    r29, r31
+	beq      lbl_8001871C
 
-	.loc_0x140:
-	  lwz       r5, -0x78B4(r13)
-	  addi      r5, r5, 0x1
-	  stw       r5, -0x78B4(r13)
-	  b         .loc_0x270
+lbl_800185DC:
+	lwz      r5, readCount@sda21(r13)
+	addi     r5, r5, 1
+	stw      r5, readCount@sda21(r13)
+	b        lbl_8001870C
 
-	.loc_0x150:
-	  lwz       r8, -0x78B8(r13)
-	  lbz       r6, 0x0(r3)
-	  cmplwi    r8, 0
-	  lbz       r9, 0x1(r3)
-	  srawi     r5, r6, 0x4
-	  rlwimi    r9,r6,8,20,23
-	  addi      r3, r3, 0x2
-	  beq-      .loc_0x198
-	  lwz       r6, -0x78CC(r13)
-	  lwz       r7, -0x78D4(r13)
-	  sub       r6, r6, r9
-	  subi      r9, r6, 0x1
-	  cmplw     r9, r7
-	  bge-      .loc_0x1A0
-	  lwz       r6, -0x78D0(r13)
-	  sub       r6, r6, r7
-	  add       r9, r9, r6
-	  b         .loc_0x1A0
+lbl_800185EC:
+	lwz      r8, fileOffset@sda21(r13)
+	lbz      r6, 0(r3)
+	cmplwi   r8, 0
+	lbz      r9, 1(r3)
+	srawi    r5, r6, 4
+	rlwimi   r9, r6, 8, 0x14, 0x17
+	addi     r3, r3, 2
+	beq      lbl_80018634
+	lwz      r6, refCurrent@sda21(r13)
+	lwz      r7, refBuf@sda21(r13)
+	subf     r6, r9, r6
+	addi     r9, r6, -1
+	cmplw    r9, r7
+	bge      lbl_8001863C
+	lwz      r6, refEnd@sda21(r13)
+	subf     r6, r7, r6
+	add      r9, r9, r6
+	b        lbl_8001863C
 
-	.loc_0x198:
-	  sub       r6, r29, r9
-	  subi      r9, r6, 0x1
+lbl_80018634:
+	subf     r6, r9, r29
+	addi     r9, r6, -1
 
-	.loc_0x1A0:
-	  cmpwi     r5, 0
-	  bne-      .loc_0x1B8
-	  lbz       r5, 0x0(r3)
-	  addi      r3, r3, 0x1
-	  addi      r5, r5, 0x12
-	  b         .loc_0x1BC
+lbl_8001863C:
+	cmpwi    r5, 0
+	bne      lbl_80018654
+	lbz      r5, 0(r3)
+	addi     r3, r3, 1
+	addi     r5, r5, 0x12
+	b        lbl_80018658
 
-	.loc_0x1B8:
-	  addi      r5, r5, 0x2
+lbl_80018654:
+	addi     r5, r5, 2
 
-	.loc_0x1BC:
-	  cmplwi    r8, 0
-	  beq-      .loc_0x240
+lbl_80018658:
+	cmplwi   r8, 0
+	beq      lbl_800186DC
 
-	.loc_0x1C4:
-	  lwz       r7, -0x78B4(r13)
-	  lwz       r6, -0x78B8(r13)
-	  cmplw     r7, r6
-	  blt-      .loc_0x1EC
-	  lbz       r6, 0x0(r9)
-	  addi      r30, r30, 0x1
-	  stb       r6, 0x0(r29)
-	  addi      r29, r29, 0x1
-	  cmplw     r29, r31
-	  beq-      .loc_0x270
+lbl_80018660:
+	lwz      r7, readCount@sda21(r13)
+	lwz      r6, fileOffset@sda21(r13)
+	cmplw    r7, r6
+	blt      lbl_80018688
+	lbz      r6, 0(r9)
+	addi     r30, r30, 1
+	stb      r6, 0(r29)
+	addi     r29, r29, 1
+	cmplw    r29, r31
+	beq      lbl_8001870C
 
-	.loc_0x1EC:
-	  lwz       r7, -0x78CC(r13)
-	  lbz       r8, 0x0(r9)
-	  addi      r6, r7, 0x1
-	  stw       r6, -0x78CC(r13)
-	  stb       r8, 0x0(r7)
-	  lwz       r6, -0x78CC(r13)
-	  lwz       r7, -0x78D0(r13)
-	  cmplw     r6, r7
-	  bne-      .loc_0x218
-	  lwz       r6, -0x78D4(r13)
-	  stw       r6, -0x78CC(r13)
+lbl_80018688:
+	lwz      r7, refCurrent@sda21(r13)
+	lbz      r8, 0(r9)
+	addi     r6, r7, 1
+	stw      r6, refCurrent@sda21(r13)
+	stb      r8, 0(r7)
+	lwz      r6, refCurrent@sda21(r13)
+	lwz      r7, refEnd@sda21(r13)
+	cmplw    r6, r7
+	bne      lbl_800186B4
+	lwz      r6, refBuf@sda21(r13)
+	stw      r6, refCurrent@sda21(r13)
 
-	.loc_0x218:
-	  addi      r9, r9, 0x1
-	  cmplw     r9, r7
-	  bne-      .loc_0x228
-	  lwz       r9, -0x78D4(r13)
+lbl_800186B4:
+	addi     r9, r9, 1
+	cmplw    r9, r7
+	bne      lbl_800186C4
+	lwz      r9, refBuf@sda21(r13)
 
-	.loc_0x228:
-	  lwz       r6, -0x78B4(r13)
-	  subic.    r5, r5, 0x1
-	  addi      r6, r6, 0x1
-	  stw       r6, -0x78B4(r13)
-	  bne+      .loc_0x1C4
-	  b         .loc_0x270
+lbl_800186C4:
+	lwz      r6, readCount@sda21(r13)
+	addic.   r5, r5, -1
+	addi     r6, r6, 1
+	stw      r6, readCount@sda21(r13)
+	bne      lbl_80018660
+	b        lbl_8001870C
 
-	.loc_0x240:
-	  lbz       r6, 0x0(r9)
-	  addi      r30, r30, 0x1
-	  stb       r6, 0x0(r29)
-	  addi      r29, r29, 0x1
-	  cmplw     r29, r31
-	  beq-      .loc_0x270
-	  lwz       r6, -0x78B4(r13)
-	  subic.    r5, r5, 0x1
-	  addi      r9, r9, 0x1
-	  addi      r6, r6, 0x1
-	  stw       r6, -0x78B4(r13)
-	  bne+      .loc_0x240
+lbl_800186DC:
+	lbz      r6, 0(r9)
+	addi     r30, r30, 1
+	stb      r6, 0(r29)
+	addi     r29, r29, 1
+	cmplw    r29, r31
+	beq      lbl_8001870C
+	lwz      r6, readCount@sda21(r13)
+	addic.   r5, r5, -1
+	addi     r9, r9, 1
+	addi     r6, r6, 1
+	stw      r6, readCount@sda21(r13)
+	bne      lbl_800186DC
 
-	.loc_0x270:
-	  cmplw     r29, r31
-	  rlwinm    r0,r0,1,0,30
-	  subi      r4, r4, 0x1
-	  blt+      .loc_0x88
+lbl_8001870C:
+	cmplw    r29, r31
+	slwi     r0, r0, 1
+	addi     r4, r4, -1
+	blt      lbl_80018524
 
-	.loc_0x280:
-	  lwz       r4, -0x78A8(r13)
-	  li        r3, 0
-	  stw       r30, 0x0(r4)
+lbl_8001871C:
+	lwz      r4, tsPtr@sda21(r13)
+	li       r3, 0
+	stw      r30, 0(r4)
 
-	.loc_0x28C:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80018728:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -1157,52 +1289,51 @@ void decompSZS_subroutine(unsigned char*, unsigned char*)
 void firstSrcData()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  stw       r30, 0x8(r1)
-	  lwz       r4, -0x78D8(r13)
-	  lwz       r3, -0x78DC(r13)
-	  subi      r0, r4, 0x19
-	  lwz       r5, -0x78C4(r13)
-	  sub       r4, r4, r3
-	  stw       r0, -0x78C0(r13)
-	  cmplw     r5, r4
-	  mr        r30, r3
-	  mr        r31, r4
-	  bge-      .loc_0x40
-	  mr        r31, r5
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	stw      r30, 8(r1)
+	lwz      r4, szpEnd@sda21(r13)
+	lwz      r3, szpBuf@sda21(r13)
+	addi     r0, r4, -25
+	lwz      r5, transLeft@sda21(r13)
+	subf     r4, r3, r4
+	stw      r0, srcLimit@sda21(r13)
+	cmplw    r5, r4
+	mr       r30, r3
+	mr       r31, r4
+	bge      lbl_80018784
+	mr       r31, r5
 
-	.loc_0x40:
-	  lwz       r7, -0x78BC(r13)
-	  addi      r0, r31, 0x1F
-	  lwz       r4, -0x78C8(r13)
-	  mr        r5, r30
-	  rlwinm    r6,r0,0,0,26
-	  li        r3, 0x1
-	  add       r4, r7, r4
-	  li        r7, 0
-	  bl        0x1354
-	  lwz       r0, -0x78C4(r13)
-	  lwz       r3, -0x78C8(r13)
-	  sub.      r0, r0, r31
-	  add       r3, r3, r31
-	  stw       r3, -0x78C8(r13)
-	  stw       r0, -0x78C4(r13)
-	  bne-      .loc_0x88
-	  add       r0, r30, r31
-	  stw       r0, -0x78C0(r13)
+lbl_80018784:
+	lwz      r7, srcAddress@sda21(r13)
+	addi     r0, r31, 0x1f
+	lwz      r4, srcOffset@sda21(r13)
+	mr       r5, r30
+	rlwinm   r6, r0, 0, 0, 0x1a
+	li       r3, 1
+	add      r4, r7, r4
+	li       r7, 0
+	bl       orderSync__12JKRAramPieceFiUlUlUlP12JKRAramBlock
+	lwz      r0, transLeft@sda21(r13)
+	lwz      r3, srcOffset@sda21(r13)
+	subf.    r0, r31, r0
+	add      r3, r3, r31
+	stw      r3, srcOffset@sda21(r13)
+	stw      r0, transLeft@sda21(r13)
+	bne      lbl_800187CC
+	add      r0, r30, r31
+	stw      r0, srcLimit@sda21(r13)
 
-	.loc_0x88:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_800187CC:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1214,69 +1345,71 @@ void firstSrcData()
 void nextSrcData(unsigned char*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  mr        r4, r3
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  stw       r28, 0x10(r1)
-	  lwz       r0, -0x78D8(r13)
-	  sub       r29, r0, r4
-	  rlwinm.   r5,r29,0,27,31
-	  beq-      .loc_0x40
-	  lwz       r3, -0x78DC(r13)
-	  addi      r0, r3, 0x20
-	  sub       r30, r0, r5
-	  b         .loc_0x44
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	mr       r4, r3
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	.global  lbl_80018800
 
-	.loc_0x40:
-	  lwz       r30, -0x78DC(r13)
+lbl_80018800:
+	stw      r29, 0x14(r1)
+	stw      r28, 0x10(r1)
+	lwz      r0, szpEnd@sda21(r13)
+	subf     r29, r4, r0
+	clrlwi.  r5, r29, 0x1b
+	beq      lbl_80018828
+	lwz      r3, szpBuf@sda21(r13)
+	addi     r0, r3, 0x20
+	subf     r30, r5, r0
+	b        lbl_8001882C
 
-	.loc_0x44:
-	  mr        r3, r30
-	  mr        r5, r29
-	  bl        -0x13698
-	  lwz       r0, -0x78D8(r13)
-	  add       r31, r30, r29
-	  lwz       r3, -0x78C4(r13)
-	  sub       r28, r0, r31
-	  cmplw     r28, r3
-	  ble-      .loc_0x6C
-	  mr        r28, r3
+lbl_80018828:
+	lwz      r30, szpBuf@sda21(r13)
 
-	.loc_0x6C:
-	  lwz       r7, -0x78BC(r13)
-	  addi      r0, r28, 0x1F
-	  lwz       r4, -0x78C8(r13)
-	  add       r5, r30, r29
-	  rlwinm    r6,r0,0,0,26
-	  li        r3, 0x1
-	  add       r4, r7, r4
-	  li        r7, 0
-	  bl        0x1284
-	  lwz       r0, -0x78C4(r13)
-	  lwz       r3, -0x78C8(r13)
-	  sub.      r0, r0, r28
-	  add       r3, r3, r28
-	  stw       r3, -0x78C8(r13)
-	  stw       r0, -0x78C4(r13)
-	  bne-      .loc_0xB4
-	  add       r0, r31, r28
-	  stw       r0, -0x78C0(r13)
+lbl_8001882C:
+	mr       r3, r30
+	mr       r5, r29
+	bl       memcpy
+	lwz      r0, szpEnd@sda21(r13)
+	add      r31, r30, r29
+	lwz      r3, transLeft@sda21(r13)
+	subf     r28, r31, r0
+	cmplw    r28, r3
+	ble      lbl_80018854
+	mr       r28, r3
 
-	.loc_0xB4:
-	  lwz       r0, 0x24(r1)
-	  mr        r3, r30
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80018854:
+	lwz      r7, srcAddress@sda21(r13)
+	addi     r0, r28, 0x1f
+	lwz      r4, srcOffset@sda21(r13)
+	add      r5, r30, r29
+	rlwinm   r6, r0, 0, 0, 0x1a
+	li       r3, 1
+	add      r4, r7, r4
+	li       r7, 0
+	bl       orderSync__12JKRAramPieceFiUlUlUlP12JKRAramBlock
+	lwz      r0, transLeft@sda21(r13)
+	lwz      r3, srcOffset@sda21(r13)
+	subf.    r0, r28, r0
+	add      r3, r3, r28
+	stw      r3, srcOffset@sda21(r13)
+	stw      r0, transLeft@sda21(r13)
+	bne      lbl_8001889C
+	add      r0, r31, r28
+	stw      r0, srcLimit@sda21(r13)
+
+lbl_8001889C:
+	lwz      r0, 0x24(r1)
+	mr       r3, r30
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -1288,24 +1421,23 @@ void nextSrcData(unsigned char*)
 void __sinit_JKRAram_cpp(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r3, 0x8050
-	  stw       r0, 0x14(r1)
-	  addi      r3, r3, 0x6DAC
-	  bl        0xDFFC
-	  lis       r3, 0x8050
-	  lis       r4, 0x8002
-	  lis       r5, 0x804F
-	  addi      r3, r3, 0x6DAC
-	  subi      r4, r4, 0x76FC
-	  subi      r5, r5, 0x108
-	  bl        0xA8E10
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lis      r3, sAramCommandList__7JKRAram@ha
+	stw      r0, 0x14(r1)
+	addi     r3, r3, sAramCommandList__7JKRAram@l
+	bl       initiate__10JSUPtrListFv
+	lis      r3, sAramCommandList__7JKRAram@ha
+	lis      r4, "__dt__23JSUList<12JKRAMCommand>Fv"@ha
+	lis      r5, lbl_804EFEF8@ha
+	addi     r3, r3, sAramCommandList__7JKRAram@l
+	addi     r4, r4, "__dt__23JSUList<12JKRAMCommand>Fv"@l
+	addi     r5, r5, lbl_804EFEF8@l
+	bl       __register_global_object
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1317,29 +1449,28 @@ void __sinit_JKRAram_cpp(void)
 void JSUList<JKRAMCommand>::~JSUList()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x38
-	  li        r4, 0
-	  bl        0xDF40
-	  extsh.    r0, r31
-	  ble-      .loc_0x38
-	  mr        r3, r30
-	  bl        0xB77C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_8001893C
+	li       r4, 0
+	bl       __dt__10JSUPtrListFv
+	extsh.   r0, r31
+	ble      lbl_8001893C
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x38:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8001893C:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }

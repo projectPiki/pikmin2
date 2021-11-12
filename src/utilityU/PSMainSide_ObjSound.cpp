@@ -1,5 +1,1154 @@
 #include "types.h"
 
+/*
+    Generated from dpostproc
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_8049CFA0
+    lbl_8049CFA0:
+        .4byte 0x50534D61
+        .4byte 0x696E5369
+        .4byte 0x64655F4F
+        .4byte 0x626A536F
+        .4byte 0x756E642E
+        .4byte 0x63707000
+    .global lbl_8049CFB8
+    lbl_8049CFB8:
+        .asciz "P2Assert"
+        .skip 3
+    .global lbl_8049CFC4
+    lbl_8049CFC4:
+        .4byte 0x50534D61
+        .4byte 0x74682E68
+        .4byte 0x00000000
+    .global lbl_8049CFD0
+    lbl_8049CFD0:
+        .4byte 0x50534761
+        .4byte 0x6D652E68
+        .4byte 0x00000000
+        .4byte 0x50535363
+        .4byte 0x656E652E
+        .4byte 0x68000000
+    .global lbl_8049CFE8
+    lbl_8049CFE8:
+        .4byte 0x8E679770
+        .4byte 0x8BD68E7E
+        .4byte 0x8DC490B6
+        .4byte 0x8AD69094
+        .4byte 0x00000000
+    .global lbl_8049CFFC
+    lbl_8049CFFC:
+        .4byte 0x4A414941
+        .4byte 0x6E696D65
+        .4byte 0x536F756E
+        .4byte 0x643A3A70
+        .4byte 0x6C617941
+        .4byte 0x63746F72
+        .4byte 0x416E696D
+        .4byte 0x536F756E
+        .4byte 0x64202064
+        .4byte 0x61746143
+        .4byte 0x6F756E74
+        .4byte 0x657282AA
+        .4byte 0x88D98FED
+        .4byte 0x82C582B7
+        .4byte 0x81420A00
+        .4byte 0x67657420
+        .4byte 0x736F756E
+        .4byte 0x64207363
+        .4byte 0x656E6520
+        .4byte 0x61740A69
+        .4byte 0x6E76616C
+        .4byte 0x69642074
+        .4byte 0x696D6D69
+        .4byte 0x6E670A00
+    .global lbl_8049D05C
+    lbl_8049D05C:
+        .4byte 0x5053436F
+        .4byte 0x6D6D6F6E
+        .4byte 0x2E680000
+        .4byte 0x50534D61
+        .4byte 0x696E5369
+        .4byte 0x64655F4F
+        .4byte 0x626A536F
+        .4byte 0x756E642E
+        .4byte 0x68000000
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global lbl_804EE370
+    lbl_804EE370:
+        .4byte lbl_804629F8
+        .4byte lbl_80462A00
+        .4byte lbl_80462A08
+        .4byte lbl_80462A10
+        .4byte lbl_80462AB4
+        .4byte lbl_80462AB0
+        .4byte lbl_80462A70
+        .4byte lbl_80462AB0
+        .4byte lbl_80462AB0
+        .4byte lbl_80462A18
+        .4byte lbl_80462AB4
+        .4byte lbl_80462A38
+        .4byte lbl_80462AB4
+        .4byte lbl_80462AB4
+        .4byte lbl_80462AB4
+        .4byte lbl_80462AB4
+        .4byte lbl_80462A20
+        .4byte lbl_80462AB0
+        .4byte lbl_80462AB4
+        .4byte lbl_80462AB4
+        .4byte lbl_80462AB4
+        .4byte lbl_80462AB4
+        .4byte lbl_80462AB4
+        .4byte lbl_80462AB4
+        .4byte lbl_80462AB4
+        .4byte lbl_80462AB4
+        .4byte lbl_80462AB4
+        .4byte lbl_80462AB4
+        .4byte lbl_80462AB4
+        .4byte lbl_80462AB4
+        .4byte lbl_80462AB4
+        .4byte lbl_80462AB4
+        .4byte lbl_80462AB4
+        .4byte lbl_80462A50
+        .4byte lbl_80462AA0
+        .4byte lbl_80462AB0
+        .4byte lbl_80462AB0
+        .4byte lbl_80462AB0
+        .4byte lbl_80462AB0
+        .4byte lbl_80462AB0
+        .4byte lbl_80462AB0
+        .4byte lbl_80462AB0
+        .4byte lbl_80462AB0
+        .4byte lbl_80462AB0
+        .4byte lbl_80462A58
+        .4byte lbl_80462A60
+        .4byte lbl_80462A68
+        .4byte lbl_80462A28
+        .4byte lbl_80462AB4
+        .4byte lbl_80462AB4
+        .4byte lbl_80462AB4
+        .4byte lbl_80462AB0
+        .4byte lbl_80462AB4
+        .4byte lbl_80462AB4
+        .4byte lbl_80462AB4
+        .4byte lbl_80462A30
+        .4byte lbl_80462AB4
+        .4byte lbl_80462AB4
+        .4byte lbl_80462AB4
+        .4byte lbl_80462AB4
+        .4byte lbl_80462AB4
+        .4byte lbl_80462AB4
+        .4byte lbl_80462AB4
+        .4byte lbl_80462AB4
+        .4byte lbl_80462AB4
+        .4byte lbl_80462AB4
+        .4byte lbl_80462AB4
+        .4byte lbl_80462AB4
+        .4byte lbl_80462AB4
+        .4byte lbl_80462A40
+        .4byte lbl_80462A48
+        .4byte lbl_80462AB4
+        .4byte lbl_80462A30
+        .4byte lbl_80462AB4
+        .4byte lbl_80462AB4
+        .4byte lbl_80462AB4
+        .4byte lbl_80462AB4
+        .4byte lbl_80462AB0
+        .4byte lbl_80462AB4
+        .4byte lbl_80462A98
+        .4byte lbl_80462AB4
+        .4byte lbl_80462A78
+        .4byte lbl_80462A80
+        .4byte lbl_80462A88
+        .4byte lbl_80462A90
+        .4byte lbl_80462AB4
+        .4byte lbl_80462AB4
+        .4byte lbl_80462AB4
+        .4byte lbl_80462AB4
+        .4byte lbl_80462AB4
+        .4byte lbl_80462AB4
+        .4byte lbl_80462AB4
+        .4byte lbl_80462AB4
+        .4byte lbl_80462AB4
+        .4byte lbl_80462AB4
+        .4byte lbl_80462AB4
+        .4byte lbl_80462AB4
+        .4byte lbl_80462AB4
+        .4byte lbl_80462AB4
+        .4byte lbl_80462AB4
+        .4byte lbl_80462AB4
+        .4byte lbl_80462AB4
+        .4byte lbl_80462AB4
+        .4byte lbl_80462AB4
+        .4byte lbl_80462AB4
+        .4byte lbl_80462AB4
+        .4byte lbl_80462AB4
+        .4byte lbl_80462AB4
+        .4byte lbl_80462AB4
+        .4byte lbl_80462AB4
+        .4byte lbl_80462AB4
+        .4byte lbl_80462AB4
+        .4byte lbl_80462AB4
+        .4byte lbl_80462AB4
+        .4byte lbl_80462AB4
+        .4byte lbl_80462AB4
+        .4byte lbl_80462AB4
+        .4byte lbl_80462AB4
+        .4byte lbl_80462AB4
+        .4byte lbl_80462AB4
+        .4byte lbl_80462AB4
+        .4byte lbl_80462AB4
+        .4byte lbl_80462AA8
+    .global __vt__Q23PSM7Cluster
+    __vt__Q23PSM7Cluster:
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte "@16@__dt__Q23PSM7ClusterFv"
+        .4byte __dt__Q23PSM7ClusterFv
+        .4byte frameEnd_onPlaySe__Q23PSM11CreatureObjFv
+        .4byte getCastType__Q23PSM11CreatureObjFv
+        .4byte exec__Q23PSM8CreatureFv
+        .4byte getJAIObject__Q23PSM11CreatureObjFv
+        .4byte onCalcOn__Q23PSM11CreatureObjFv
+        .4byte loopCalc__Q23PSM8CreatureFRQ23PSM12FrameCalcArg
+        .4byte startSoundInner__Q23PSM8CreatureFRQ23PSM13StartSoundArg
+        .4byte judgeNearWithPlayer__Q23PSM8CreatureFRC3VecRC3Vecff
+        .4byte onPlayingSe__Q23PSM8CreatureFUlP8JAISound
+        .4byte getHandleArea__Q23PSM11CreatureObjFUc
+        .4byte 0
+        .4byte 0
+        .4byte "@48@__dt__Q23PSM7ClusterFv"
+        .4byte "@48@startSound__Q23PSM11CreatureObjFUlUl"
+        .4byte "@48@startSound__Q23PSM11CreatureObjFUcUlUl"
+        .4byte "@48@startSound__Q23PSM11CreatureObjFPP8JAISoundUlUl"
+        .4byte stopAllSound__Q27JAInter10ObjectBaseFv
+        .4byte stopSound__Q27JAInter10ObjectBaseFUlUl
+        .4byte enable__Q27JAInter10ObjectBaseFv
+        .4byte disable__Q27JAInter6ObjectFv
+        .4byte dispose__Q27JAInter10ObjectBaseFv
+        .4byte getFreeSoundHandlePointer__Q27JAInter10ObjectBaseFv
+        .4byte getUseSoundHandlePointer__Q27JAInter10ObjectBaseFUl
+        .4byte handleStop__Q27JAInter10ObjectBaseFUcUl
+        .4byte loop__Q27JAInter6ObjectFv
+        .4byte startSound__Q23PSM11CreatureObjFUlUl
+        .4byte startSound__Q23PSM11CreatureObjFUcUlUl
+        .4byte startSound__Q23PSM11CreatureObjFPP8JAISoundUlUl
+    .global __vt__Q23PSM4Navi
+    __vt__Q23PSM4Navi:
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte "@16@__dt__Q23PSM4NaviFv"
+        .4byte __dt__Q23PSM4NaviFv
+        .4byte frameEnd_onPlaySe__Q23PSM11CreatureObjFv
+        .4byte getCastType__Q23PSM4NaviFv
+        .4byte exec__Q23PSM8CreatureFv
+        .4byte getJAIObject__Q23PSM11CreatureObjFv
+        .4byte onCalcOn__Q23PSM11CreatureObjFv
+        .4byte loopCalc__Q23PSM8CreatureFRQ23PSM12FrameCalcArg
+        .4byte startSoundInner__Q23PSM8CreatureFRQ23PSM13StartSoundArg
+        .4byte judgeNearWithPlayer__Q23PSM8CreatureFRC3VecRC3Vecff
+        .4byte onPlayingSe__Q23PSM8CreatureFUlP8JAISound
+        .4byte getHandleArea__Q23PSM11CreatureObjFUc
+        .4byte 0
+        .4byte 0
+        .4byte "@48@__dt__Q23PSM4NaviFv"
+        .4byte "@48@startSound__Q23PSM4NaviFUlUl"
+        .4byte "@48@startSound__Q23PSM11CreatureObjFUcUlUl"
+        .4byte "@48@startSound__Q23PSM11CreatureObjFPP8JAISoundUlUl"
+        .4byte stopAllSound__Q27JAInter10ObjectBaseFv
+        .4byte stopSound__Q27JAInter10ObjectBaseFUlUl
+        .4byte enable__Q27JAInter10ObjectBaseFv
+        .4byte disable__Q27JAInter6ObjectFv
+        .4byte dispose__Q27JAInter10ObjectBaseFv
+        .4byte getFreeSoundHandlePointer__Q27JAInter10ObjectBaseFv
+        .4byte getUseSoundHandlePointer__Q27JAInter10ObjectBaseFUl
+        .4byte handleStop__Q27JAInter10ObjectBaseFUcUl
+        .4byte loop__Q27JAInter6ObjectFv
+        .4byte startSound__Q23PSM4NaviFUlUl
+        .4byte startSound__Q23PSM11CreatureObjFUcUlUl
+        .4byte startSound__Q23PSM11CreatureObjFPP8JAISoundUlUl
+    .global __vt__Q23PSM4Piki
+    __vt__Q23PSM4Piki:
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte "@16@__dt__Q23PSM4PikiFv"
+        .4byte __dt__Q23PSM4PikiFv
+        .4byte frameEnd_onPlaySe__Q23PSM11CreatureObjFv
+        .4byte getCastType__Q23PSM4PikiFv
+        .4byte exec__Q23PSM8CreatureFv
+        .4byte getJAIObject__Q23PSM11CreatureObjFv
+        .4byte onCalcOn__Q23PSM4PikiFv
+        .4byte loopCalc__Q23PSM8CreatureFRQ23PSM12FrameCalcArg
+        .4byte startSoundInner__Q23PSM8CreatureFRQ23PSM13StartSoundArg
+        .4byte judgeNearWithPlayer__Q23PSM8CreatureFRC3VecRC3Vecff
+        .4byte onPlayingSe__Q23PSM8CreatureFUlP8JAISound
+        .4byte getHandleArea__Q23PSM11CreatureObjFUc
+        .4byte 0
+        .4byte 0
+        .4byte "@48@__dt__Q23PSM4PikiFv"
+        .4byte "@48@startSound__Q23PSM11CreatureObjFUlUl"
+        .4byte "@48@startSound__Q23PSM11CreatureObjFUcUlUl"
+        .4byte "@48@startSound__Q23PSM11CreatureObjFPP8JAISoundUlUl"
+        .4byte stopAllSound__Q27JAInter10ObjectBaseFv
+        .4byte stopSound__Q27JAInter10ObjectBaseFUlUl
+        .4byte enable__Q27JAInter10ObjectBaseFv
+        .4byte disable__Q27JAInter6ObjectFv
+        .4byte dispose__Q27JAInter10ObjectBaseFv
+        .4byte getFreeSoundHandlePointer__Q27JAInter10ObjectBaseFv
+        .4byte getUseSoundHandlePointer__Q27JAInter10ObjectBaseFUl
+        .4byte handleStop__Q27JAInter10ObjectBaseFUcUl
+        .4byte loop__Q27JAInter6ObjectFv
+        .4byte startSound__Q23PSM11CreatureObjFUlUl
+        .4byte startSound__Q23PSM11CreatureObjFUcUlUl
+        .4byte startSound__Q23PSM11CreatureObjFPP8JAISoundUlUl
+    .global __vt__Q23PSM10PelletItem
+    __vt__Q23PSM10PelletItem:
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte "@16@__dt__Q23PSM10PelletItemFv"
+        .4byte __dt__Q23PSM10PelletItemFv
+        .4byte frameEnd_onPlaySe__Q23PSM11CreatureObjFv
+        .4byte getCastType__Q23PSM10PelletItemFv
+        .4byte exec__Q23PSM8CreatureFv
+        .4byte getJAIObject__Q23PSM11CreatureObjFv
+        .4byte onCalcOn__Q23PSM11CreatureObjFv
+        .4byte loopCalc__Q23PSM8CreatureFRQ23PSM12FrameCalcArg
+        .4byte startSoundInner__Q23PSM8CreatureFRQ23PSM13StartSoundArg
+        .4byte judgeNearWithPlayer__Q23PSM8CreatureFRC3VecRC3Vecff
+        .4byte onPlayingSe__Q23PSM8CreatureFUlP8JAISound
+        .4byte getHandleArea__Q23PSM11CreatureObjFUc
+        .4byte 0
+        .4byte 0
+        .4byte "@48@__dt__Q23PSM10PelletItemFv"
+        .4byte "@48@startSound__Q23PSM11CreatureObjFUlUl"
+        .4byte "@48@startSound__Q23PSM11CreatureObjFUcUlUl"
+        .4byte "@48@startSound__Q23PSM11CreatureObjFPP8JAISoundUlUl"
+        .4byte stopAllSound__Q27JAInter10ObjectBaseFv
+        .4byte stopSound__Q27JAInter10ObjectBaseFUlUl
+        .4byte enable__Q27JAInter10ObjectBaseFv
+        .4byte disable__Q27JAInter6ObjectFv
+        .4byte dispose__Q27JAInter10ObjectBaseFv
+        .4byte getFreeSoundHandlePointer__Q27JAInter10ObjectBaseFv
+        .4byte getUseSoundHandlePointer__Q27JAInter10ObjectBaseFUl
+        .4byte handleStop__Q27JAInter10ObjectBaseFUcUl
+        .4byte loop__Q27JAInter6ObjectFv
+        .4byte startSound__Q23PSM11CreatureObjFUlUl
+        .4byte startSound__Q23PSM11CreatureObjFUcUlUl
+        .4byte startSound__Q23PSM11CreatureObjFPP8JAISoundUlUl
+        .4byte otakaraEventStart__Q23PSM7OtakaraFv
+        .4byte otakaraEventRestart__Q23PSM7OtakaraFv
+        .4byte otakaraEventStop__Q23PSM7OtakaraFv
+        .4byte otakaraEventFinish__Q23PSM7OtakaraFv
+    .global __vt__Q23PSM13PelletOtakara
+    __vt__Q23PSM13PelletOtakara:
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte "@16@__dt__Q23PSM13PelletOtakaraFv"
+        .4byte __dt__Q23PSM13PelletOtakaraFv
+        .4byte frameEnd_onPlaySe__Q23PSM11CreatureObjFv
+        .4byte getCastType__Q23PSM13PelletOtakaraFv
+        .4byte exec__Q23PSM8CreatureFv
+        .4byte getJAIObject__Q23PSM11CreatureObjFv
+        .4byte onCalcOn__Q23PSM11CreatureObjFv
+        .4byte loopCalc__Q23PSM8CreatureFRQ23PSM12FrameCalcArg
+        .4byte startSoundInner__Q23PSM8CreatureFRQ23PSM13StartSoundArg
+        .4byte judgeNearWithPlayer__Q23PSM8CreatureFRC3VecRC3Vecff
+        .4byte onPlayingSe__Q23PSM8CreatureFUlP8JAISound
+        .4byte getHandleArea__Q23PSM11CreatureObjFUc
+        .4byte 0
+        .4byte 0
+        .4byte "@48@__dt__Q23PSM13PelletOtakaraFv"
+        .4byte "@48@startSound__Q23PSM11CreatureObjFUlUl"
+        .4byte "@48@startSound__Q23PSM11CreatureObjFUcUlUl"
+        .4byte "@48@startSound__Q23PSM11CreatureObjFPP8JAISoundUlUl"
+        .4byte stopAllSound__Q27JAInter10ObjectBaseFv
+        .4byte stopSound__Q27JAInter10ObjectBaseFUlUl
+        .4byte enable__Q27JAInter10ObjectBaseFv
+        .4byte disable__Q27JAInter6ObjectFv
+        .4byte dispose__Q27JAInter10ObjectBaseFv
+        .4byte getFreeSoundHandlePointer__Q27JAInter10ObjectBaseFv
+        .4byte getUseSoundHandlePointer__Q27JAInter10ObjectBaseFUl
+        .4byte handleStop__Q27JAInter10ObjectBaseFUcUl
+        .4byte loop__Q27JAInter6ObjectFv
+        .4byte startSound__Q23PSM11CreatureObjFUlUl
+        .4byte startSound__Q23PSM11CreatureObjFUcUlUl
+        .4byte startSound__Q23PSM11CreatureObjFPP8JAISoundUlUl
+        .4byte otakaraEventStart__Q23PSM7OtakaraFv
+        .4byte otakaraEventRestart__Q23PSM7OtakaraFv
+        .4byte otakaraEventStop__Q23PSM7OtakaraFv
+        .4byte otakaraEventFinish__Q23PSM7OtakaraFv
+    .global __vt__Q23PSM7Otakara
+    __vt__Q23PSM7Otakara:
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte "@16@__dt__Q23PSM7OtakaraFv"
+        .4byte __dt__Q23PSM7OtakaraFv
+        .4byte frameEnd_onPlaySe__Q23PSM11CreatureObjFv
+        .4byte getCastType__Q23PSM7OtakaraFv
+        .4byte exec__Q23PSM8CreatureFv
+        .4byte getJAIObject__Q23PSM11CreatureObjFv
+        .4byte onCalcOn__Q23PSM11CreatureObjFv
+        .4byte loopCalc__Q23PSM8CreatureFRQ23PSM12FrameCalcArg
+        .4byte startSoundInner__Q23PSM8CreatureFRQ23PSM13StartSoundArg
+        .4byte judgeNearWithPlayer__Q23PSM8CreatureFRC3VecRC3Vecff
+        .4byte onPlayingSe__Q23PSM8CreatureFUlP8JAISound
+        .4byte getHandleArea__Q23PSM11CreatureObjFUc
+        .4byte 0
+        .4byte 0
+        .4byte "@48@__dt__Q23PSM7OtakaraFv"
+        .4byte "@48@startSound__Q23PSM11CreatureObjFUlUl"
+        .4byte "@48@startSound__Q23PSM11CreatureObjFUcUlUl"
+        .4byte "@48@startSound__Q23PSM11CreatureObjFPP8JAISoundUlUl"
+        .4byte stopAllSound__Q27JAInter10ObjectBaseFv
+        .4byte stopSound__Q27JAInter10ObjectBaseFUlUl
+        .4byte enable__Q27JAInter10ObjectBaseFv
+        .4byte disable__Q27JAInter6ObjectFv
+        .4byte dispose__Q27JAInter10ObjectBaseFv
+        .4byte getFreeSoundHandlePointer__Q27JAInter10ObjectBaseFv
+        .4byte getUseSoundHandlePointer__Q27JAInter10ObjectBaseFUl
+        .4byte handleStop__Q27JAInter10ObjectBaseFUcUl
+        .4byte loop__Q27JAInter6ObjectFv
+        .4byte startSound__Q23PSM11CreatureObjFUlUl
+        .4byte startSound__Q23PSM11CreatureObjFUcUlUl
+        .4byte startSound__Q23PSM11CreatureObjFPP8JAISoundUlUl
+        .4byte otakaraEventStart__Q23PSM7OtakaraFv
+        .4byte otakaraEventRestart__Q23PSM7OtakaraFv
+        .4byte otakaraEventStop__Q23PSM7OtakaraFv
+        .4byte otakaraEventFinish__Q23PSM7OtakaraFv
+    .global __vt__Q23PSM8WorkItem
+    __vt__Q23PSM8WorkItem:
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte "@16@__dt__Q23PSM8WorkItemFv"
+        .4byte __dt__Q23PSM8WorkItemFv
+        .4byte frameEnd_onPlaySe__Q23PSM11CreatureObjFv
+        .4byte getCastType__Q23PSM8WorkItemFv
+        .4byte exec__Q23PSM8CreatureFv
+        .4byte getJAIObject__Q23PSM11CreatureObjFv
+        .4byte onCalcOn__Q23PSM11CreatureObjFv
+        .4byte loopCalc__Q23PSM8CreatureFRQ23PSM12FrameCalcArg
+        .4byte startSoundInner__Q23PSM8CreatureFRQ23PSM13StartSoundArg
+        .4byte judgeNearWithPlayer__Q23PSM8CreatureFRC3VecRC3Vecff
+        .4byte onPlayingSe__Q23PSM8CreatureFUlP8JAISound
+        .4byte getHandleArea__Q23PSM11CreatureObjFUc
+        .4byte 0
+        .4byte 0
+        .4byte "@48@__dt__Q23PSM8WorkItemFv"
+        .4byte "@48@startSound__Q23PSM11CreatureObjFUlUl"
+        .4byte "@48@startSound__Q23PSM11CreatureObjFUcUlUl"
+        .4byte "@48@startSound__Q23PSM11CreatureObjFPP8JAISoundUlUl"
+        .4byte stopAllSound__Q27JAInter10ObjectBaseFv
+        .4byte stopSound__Q27JAInter10ObjectBaseFUlUl
+        .4byte enable__Q27JAInter10ObjectBaseFv
+        .4byte disable__Q27JAInter6ObjectFv
+        .4byte dispose__Q27JAInter10ObjectBaseFv
+        .4byte getFreeSoundHandlePointer__Q27JAInter10ObjectBaseFv
+        .4byte getUseSoundHandlePointer__Q27JAInter10ObjectBaseFUl
+        .4byte handleStop__Q27JAInter10ObjectBaseFUcUl
+        .4byte loop__Q27JAInter6ObjectFv
+        .4byte startSound__Q23PSM11CreatureObjFUlUl
+        .4byte startSound__Q23PSM11CreatureObjFUcUlUl
+        .4byte startSound__Q23PSM11CreatureObjFPP8JAISoundUlUl
+        .4byte eventStart__Q23PSM8WorkItemFv
+        .4byte eventRestart__Q23PSM8WorkItemFv
+        .4byte eventStop__Q23PSM8WorkItemFv
+        .4byte eventFinish__Q23PSM8WorkItemFv
+    .global __vt__Q23PSM25OtakaraEventLink_2PBattle
+    __vt__Q23PSM25OtakaraEventLink_2PBattle:
+        .4byte 0
+        .4byte 0
+        .4byte getListDirectorActor__Q23PSM25OtakaraEventLink_2PBattleFv
+        .4byte eventStart__Q23PSM25OtakaraEventLink_2PBattleFv
+        .4byte eventRestart__Q23PSM25OtakaraEventLink_2PBattleFv
+        .4byte eventStop__Q23PSM25OtakaraEventLink_2PBattleFv
+        .4byte eventFinish__Q23PSM25OtakaraEventLink_2PBattleFv
+        .4byte is2PBattle__Q23PSM25OtakaraEventLink_2PBattleFv
+    .global __vt__Q23PSM16OtakaraEventLink
+    __vt__Q23PSM16OtakaraEventLink:
+        .4byte 0
+        .4byte 0
+        .4byte getListDirectorActor__Q23PSM16OtakaraEventLinkFv
+        .4byte eventStart__Q23PSM12DirectorLinkFv
+        .4byte eventRestart__Q23PSM12DirectorLinkFv
+        .4byte eventStop__Q23PSM12DirectorLinkFv
+        .4byte eventFinish__Q23PSM16OtakaraEventLinkFv
+        .4byte is2PBattle__Q23PSM16OtakaraEventLinkFv
+    .global __vt__Q23PSM9EventLink
+    __vt__Q23PSM9EventLink:
+        .4byte 0
+        .4byte 0
+        .4byte getListDirectorActor__Q23PSM9EventLinkFv
+        .4byte eventStart__Q23PSM12DirectorLinkFv
+        .4byte eventRestart__Q23PSM12DirectorLinkFv
+        .4byte eventStop__Q23PSM12DirectorLinkFv
+        .4byte eventFinish__Q23PSM12DirectorLinkFv
+    .global __vt__Q23PSM12DirectorLink
+    __vt__Q23PSM12DirectorLink:
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte eventStart__Q23PSM12DirectorLinkFv
+        .4byte eventRestart__Q23PSM12DirectorLinkFv
+        .4byte eventStop__Q23PSM12DirectorLinkFv
+        .4byte eventFinish__Q23PSM12DirectorLinkFv
+    .global __vt__Q23PSM19Enemy_SpecialChappy
+    __vt__Q23PSM19Enemy_SpecialChappy:
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte "@16@__dt__Q23PSM19Enemy_SpecialChappyFv"
+        .4byte __dt__Q23PSM19Enemy_SpecialChappyFv
+        .4byte frameEnd_onPlaySe__Q23PSM13CreatureAnimeFv
+        .4byte getCastType__Q23PSM8EnemyBigFv
+        .4byte exec__Q23PSM13CreatureAnimeFv
+        .4byte getJAIObject__Q23PSM13CreatureAnimeFv
+        .4byte onCalcOn__Q23PSM9EnemyBaseFv
+        .4byte loopCalc__Q23PSM8CreatureFRQ23PSM12FrameCalcArg
+        .4byte startSoundInner__Q23PSM9EnemyBaseFRQ23PSM13StartSoundArg
+        .4byte judgeNearWithPlayer__Q23PSM8EnemyBigFRC3VecRC3Vecff
+        .4byte onPlayingSe__Q23PSM19Enemy_SpecialChappyFUlP8JAISound
+        .4byte getHandleArea__Q23PSM13CreatureAnimeFUc
+        .4byte 0
+        .4byte 0
+        .4byte "@48@__dt__Q23PSM19Enemy_SpecialChappyFv"
+        .4byte "@48@startSound__Q23PSM13CreatureAnimeFUlUl"
+        .4byte "@48@startSound__Q23PSM13CreatureAnimeFUcUlUl"
+        .4byte "@48@startSound__Q23PSM13CreatureAnimeFPP8JAISoundUlUl"
+        .4byte stopAllSound__Q27JAInter10ObjectBaseFv
+        .4byte stopSound__Q27JAInter10ObjectBaseFUlUl
+        .4byte enable__Q27JAInter10ObjectBaseFv
+        .4byte disable__Q27JAInter6ObjectFv
+        .4byte dispose__Q27JAInter10ObjectBaseFv
+        .4byte getFreeSoundHandlePointer__Q27JAInter10ObjectBaseFv
+        .4byte getUseSoundHandlePointer__Q27JAInter10ObjectBaseFUl
+        .4byte handleStop__13JAIAnimeSoundFUcUl
+        .4byte loop__Q27JAInter6ObjectFv
+        .4byte
+   "@48@playActorAnimSound__Q23PSM13CreatureAnimeFPQ27JAInter5ActorfUc" .4byte
+   "@48@startAnimSound__Q23PSM9EnemyBaseFUlPP8JAISoundPQ27JAInter5ActorUc"
+        .4byte
+   setSpeedModifySound__13JAIAnimeSoundFP8JAISoundP22JAIAnimeFrameSoundDataf
+        .4byte startSound__Q23PSM13CreatureAnimeFUlUl
+        .4byte startSound__Q23PSM13CreatureAnimeFUcUlUl
+        .4byte startSound__Q23PSM13CreatureAnimeFPP8JAISoundUlUl
+        .4byte startAnimSound__Q23PSM9EnemyBaseFUlPP8JAISoundPQ27JAInter5ActorUc
+        .4byte playActorAnimSound__Q23PSM13CreatureAnimeFPQ27JAInter5ActorfUc
+        .4byte onCalcTurnOn__Q23PSM9EnemyBaseFv
+        .4byte onCalcTurnOff__Q23PSM9EnemyBaseFv
+        .4byte 0
+        .4byte 0
+        .4byte battleOn__Q23PSM10BattleLinkFv
+        .4byte "@184@battleOff__Q23PSM9EnemyBaseFv"
+        .4byte 0
+        .4byte 0
+        .4byte kehaiOn__Q23PSM9KehaiLinkFv
+        .4byte kehaiOff__Q23PSM9KehaiLinkFv
+        .4byte battleOff__Q23PSM9EnemyBaseFv
+        .4byte setKilled__Q23PSM9EnemyBaseFv
+        .4byte updateKehai__Q23PSM9EnemyBaseFv
+        .4byte updateBattle__Q23PSM9EnemyBaseFv
+    .global __vt__Q23PSM12EnemyBigBoss
+    __vt__Q23PSM12EnemyBigBoss:
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte "@16@__dt__Q23PSM12EnemyBigBossFv"
+        .4byte __dt__Q23PSM12EnemyBigBossFv
+        .4byte frameEnd_onPlaySe__Q23PSM13CreatureAnimeFv
+        .4byte getCastType__Q23PSM12EnemyBigBossFv
+        .4byte exec__Q23PSM9EnemyBossFv
+        .4byte getJAIObject__Q23PSM13CreatureAnimeFv
+        .4byte onCalcOn__Q23PSM12EnemyMidBossFv
+        .4byte loopCalc__Q23PSM8CreatureFRQ23PSM12FrameCalcArg
+        .4byte startSoundInner__Q23PSM9EnemyBaseFRQ23PSM13StartSoundArg
+        .4byte judgeNearWithPlayer__Q23PSM9EnemyBossFRC3VecRC3Vecff
+        .4byte onPlayingSe__Q23PSM9EnemyBossFUlP8JAISound
+        .4byte getHandleArea__Q23PSM13CreatureAnimeFUc
+        .4byte 0
+        .4byte 0
+        .4byte "@48@__dt__Q23PSM12EnemyBigBossFv"
+        .4byte "@48@startSound__Q23PSM13CreatureAnimeFUlUl"
+        .4byte "@48@startSound__Q23PSM13CreatureAnimeFUcUlUl"
+        .4byte "@48@startSound__Q23PSM13CreatureAnimeFPP8JAISoundUlUl"
+        .4byte stopAllSound__Q27JAInter10ObjectBaseFv
+        .4byte stopSound__Q27JAInter10ObjectBaseFUlUl
+        .4byte enable__Q27JAInter10ObjectBaseFv
+        .4byte disable__Q27JAInter6ObjectFv
+        .4byte dispose__Q27JAInter10ObjectBaseFv
+        .4byte getFreeSoundHandlePointer__Q27JAInter10ObjectBaseFv
+        .4byte getUseSoundHandlePointer__Q27JAInter10ObjectBaseFUl
+        .4byte handleStop__13JAIAnimeSoundFUcUl
+        .4byte loop__Q27JAInter6ObjectFv
+        .4byte
+   "@48@playActorAnimSound__Q23PSM13CreatureAnimeFPQ27JAInter5ActorfUc" .4byte
+   "@48@startAnimSound__Q23PSM9EnemyBaseFUlPP8JAISoundPQ27JAInter5ActorUc"
+        .4byte
+   setSpeedModifySound__13JAIAnimeSoundFP8JAISoundP22JAIAnimeFrameSoundDataf
+        .4byte startSound__Q23PSM13CreatureAnimeFUlUl
+        .4byte startSound__Q23PSM13CreatureAnimeFUcUlUl
+        .4byte startSound__Q23PSM13CreatureAnimeFPP8JAISoundUlUl
+        .4byte startAnimSound__Q23PSM9EnemyBaseFUlPP8JAISoundPQ27JAInter5ActorUc
+        .4byte playActorAnimSound__Q23PSM13CreatureAnimeFPQ27JAInter5ActorfUc
+        .4byte onCalcTurnOn__Q23PSM9EnemyBaseFv
+        .4byte onCalcTurnOff__Q23PSM9EnemyBaseFv
+        .4byte 0
+        .4byte 0
+        .4byte battleOn__Q23PSM10BattleLinkFv
+        .4byte "@184@battleOff__Q23PSM9EnemyBaseFv"
+        .4byte 0
+        .4byte 0
+        .4byte kehaiOn__Q23PSM9KehaiLinkFv
+        .4byte kehaiOff__Q23PSM9KehaiLinkFv
+        .4byte battleOff__Q23PSM9EnemyBaseFv
+        .4byte setKilled__Q23PSM9EnemyBossFv
+        .4byte updateKehai__Q23PSM9EnemyBaseFv
+        .4byte updateBattle__Q23PSM9EnemyBaseFv
+        .4byte jumpRequest__Q23PSM12EnemyBigBossFUs
+        .4byte postPikiAttack__Q23PSM12EnemyMidBossFb
+        .4byte updateDisappearing__Q23PSM9EnemyBossFv
+        .4byte onDeathMotionTop__Q23PSM12EnemyBigBossFv
+        .4byte onAppear__Q23PSM9EnemyBossFv
+        .4byte onAppear1st__Q23PSM12EnemyBigBossFv
+        .4byte onDisappear__Q23PSM9EnemyBossFv
+    .global __vt__Q23PSM12EnemyMidBoss
+    __vt__Q23PSM12EnemyMidBoss:
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte "@16@__dt__Q23PSM12EnemyMidBossFv"
+        .4byte __dt__Q23PSM12EnemyMidBossFv
+        .4byte frameEnd_onPlaySe__Q23PSM13CreatureAnimeFv
+        .4byte getCastType__Q23PSM12EnemyMidBossFv
+        .4byte exec__Q23PSM9EnemyBossFv
+        .4byte getJAIObject__Q23PSM13CreatureAnimeFv
+        .4byte onCalcOn__Q23PSM12EnemyMidBossFv
+        .4byte loopCalc__Q23PSM8CreatureFRQ23PSM12FrameCalcArg
+        .4byte startSoundInner__Q23PSM9EnemyBaseFRQ23PSM13StartSoundArg
+        .4byte judgeNearWithPlayer__Q23PSM9EnemyBossFRC3VecRC3Vecff
+        .4byte onPlayingSe__Q23PSM9EnemyBossFUlP8JAISound
+        .4byte getHandleArea__Q23PSM13CreatureAnimeFUc
+        .4byte 0
+        .4byte 0
+        .4byte "@48@__dt__Q23PSM12EnemyMidBossFv"
+        .4byte "@48@startSound__Q23PSM13CreatureAnimeFUlUl"
+        .4byte "@48@startSound__Q23PSM13CreatureAnimeFUcUlUl"
+        .4byte "@48@startSound__Q23PSM13CreatureAnimeFPP8JAISoundUlUl"
+        .4byte stopAllSound__Q27JAInter10ObjectBaseFv
+        .4byte stopSound__Q27JAInter10ObjectBaseFUlUl
+        .4byte enable__Q27JAInter10ObjectBaseFv
+        .4byte disable__Q27JAInter6ObjectFv
+        .4byte dispose__Q27JAInter10ObjectBaseFv
+        .4byte getFreeSoundHandlePointer__Q27JAInter10ObjectBaseFv
+        .4byte getUseSoundHandlePointer__Q27JAInter10ObjectBaseFUl
+        .4byte handleStop__13JAIAnimeSoundFUcUl
+        .4byte loop__Q27JAInter6ObjectFv
+        .4byte
+   "@48@playActorAnimSound__Q23PSM13CreatureAnimeFPQ27JAInter5ActorfUc" .4byte
+   "@48@startAnimSound__Q23PSM9EnemyBaseFUlPP8JAISoundPQ27JAInter5ActorUc"
+        .4byte
+   setSpeedModifySound__13JAIAnimeSoundFP8JAISoundP22JAIAnimeFrameSoundDataf
+        .4byte startSound__Q23PSM13CreatureAnimeFUlUl
+        .4byte startSound__Q23PSM13CreatureAnimeFUcUlUl
+        .4byte startSound__Q23PSM13CreatureAnimeFPP8JAISoundUlUl
+        .4byte startAnimSound__Q23PSM9EnemyBaseFUlPP8JAISoundPQ27JAInter5ActorUc
+        .4byte playActorAnimSound__Q23PSM13CreatureAnimeFPQ27JAInter5ActorfUc
+        .4byte onCalcTurnOn__Q23PSM9EnemyBaseFv
+        .4byte onCalcTurnOff__Q23PSM9EnemyBaseFv
+        .4byte 0
+        .4byte 0
+        .4byte battleOn__Q23PSM10BattleLinkFv
+        .4byte "@184@battleOff__Q23PSM9EnemyBaseFv"
+        .4byte 0
+        .4byte 0
+        .4byte kehaiOn__Q23PSM9KehaiLinkFv
+        .4byte kehaiOff__Q23PSM9KehaiLinkFv
+        .4byte battleOff__Q23PSM9EnemyBaseFv
+        .4byte setKilled__Q23PSM9EnemyBossFv
+        .4byte updateKehai__Q23PSM9EnemyBaseFv
+        .4byte updateBattle__Q23PSM9EnemyBaseFv
+        .4byte jumpRequest__Q23PSM12EnemyMidBossFUs
+        .4byte postPikiAttack__Q23PSM12EnemyMidBossFb
+        .4byte updateDisappearing__Q23PSM9EnemyBossFv
+        .4byte onDeathMotionTop__Q23PSM9EnemyBossFv
+        .4byte onAppear__Q23PSM9EnemyBossFv
+        .4byte onAppear1st__Q23PSM12EnemyMidBossFv
+        .4byte onDisappear__Q23PSM9EnemyBossFv
+    .global __vt__Q23PSM9EnemyBoss
+    __vt__Q23PSM9EnemyBoss:
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte "@16@__dt__Q23PSM9EnemyBossFv"
+        .4byte __dt__Q23PSM9EnemyBossFv
+        .4byte frameEnd_onPlaySe__Q23PSM13CreatureAnimeFv
+        .4byte getCastType__Q23PSM9EnemyBossFv
+        .4byte exec__Q23PSM9EnemyBossFv
+        .4byte getJAIObject__Q23PSM13CreatureAnimeFv
+        .4byte onCalcOn__Q23PSM9EnemyBossFv
+        .4byte loopCalc__Q23PSM8CreatureFRQ23PSM12FrameCalcArg
+        .4byte startSoundInner__Q23PSM9EnemyBaseFRQ23PSM13StartSoundArg
+        .4byte judgeNearWithPlayer__Q23PSM9EnemyBossFRC3VecRC3Vecff
+        .4byte onPlayingSe__Q23PSM9EnemyBossFUlP8JAISound
+        .4byte getHandleArea__Q23PSM13CreatureAnimeFUc
+        .4byte 0
+        .4byte 0
+        .4byte "@48@__dt__Q23PSM9EnemyBossFv"
+        .4byte "@48@startSound__Q23PSM13CreatureAnimeFUlUl"
+        .4byte "@48@startSound__Q23PSM13CreatureAnimeFUcUlUl"
+        .4byte "@48@startSound__Q23PSM13CreatureAnimeFPP8JAISoundUlUl"
+        .4byte stopAllSound__Q27JAInter10ObjectBaseFv
+        .4byte stopSound__Q27JAInter10ObjectBaseFUlUl
+        .4byte enable__Q27JAInter10ObjectBaseFv
+        .4byte disable__Q27JAInter6ObjectFv
+        .4byte dispose__Q27JAInter10ObjectBaseFv
+        .4byte getFreeSoundHandlePointer__Q27JAInter10ObjectBaseFv
+        .4byte getUseSoundHandlePointer__Q27JAInter10ObjectBaseFUl
+        .4byte handleStop__13JAIAnimeSoundFUcUl
+        .4byte loop__Q27JAInter6ObjectFv
+        .4byte
+   "@48@playActorAnimSound__Q23PSM13CreatureAnimeFPQ27JAInter5ActorfUc" .4byte
+   "@48@startAnimSound__Q23PSM9EnemyBaseFUlPP8JAISoundPQ27JAInter5ActorUc"
+        .4byte
+   setSpeedModifySound__13JAIAnimeSoundFP8JAISoundP22JAIAnimeFrameSoundDataf
+        .4byte startSound__Q23PSM13CreatureAnimeFUlUl
+        .4byte startSound__Q23PSM13CreatureAnimeFUcUlUl
+        .4byte startSound__Q23PSM13CreatureAnimeFPP8JAISoundUlUl
+        .4byte startAnimSound__Q23PSM9EnemyBaseFUlPP8JAISoundPQ27JAInter5ActorUc
+        .4byte playActorAnimSound__Q23PSM13CreatureAnimeFPQ27JAInter5ActorfUc
+        .4byte onCalcTurnOn__Q23PSM9EnemyBaseFv
+        .4byte onCalcTurnOff__Q23PSM9EnemyBaseFv
+        .4byte 0
+        .4byte 0
+        .4byte battleOn__Q23PSM10BattleLinkFv
+        .4byte "@184@battleOff__Q23PSM9EnemyBaseFv"
+        .4byte 0
+        .4byte 0
+        .4byte kehaiOn__Q23PSM9KehaiLinkFv
+        .4byte kehaiOff__Q23PSM9KehaiLinkFv
+        .4byte battleOff__Q23PSM9EnemyBaseFv
+        .4byte setKilled__Q23PSM9EnemyBossFv
+        .4byte updateKehai__Q23PSM9EnemyBaseFv
+        .4byte updateBattle__Q23PSM9EnemyBaseFv
+        .4byte 0
+        .4byte 0
+        .4byte updateDisappearing__Q23PSM9EnemyBossFv
+        .4byte onDeathMotionTop__Q23PSM9EnemyBossFv
+        .4byte onAppear__Q23PSM9EnemyBossFv
+        .4byte onAppear1st__Q23PSM9EnemyBossFv
+        .4byte onDisappear__Q23PSM9EnemyBossFv
+    .global __vt__Q23PSM8EnemyBig
+    __vt__Q23PSM8EnemyBig:
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte "@16@__dt__Q23PSM8EnemyBigFv"
+        .4byte __dt__Q23PSM8EnemyBigFv
+        .4byte frameEnd_onPlaySe__Q23PSM13CreatureAnimeFv
+        .4byte getCastType__Q23PSM8EnemyBigFv
+        .4byte exec__Q23PSM13CreatureAnimeFv
+        .4byte getJAIObject__Q23PSM13CreatureAnimeFv
+        .4byte onCalcOn__Q23PSM9EnemyBaseFv
+        .4byte loopCalc__Q23PSM8CreatureFRQ23PSM12FrameCalcArg
+        .4byte startSoundInner__Q23PSM9EnemyBaseFRQ23PSM13StartSoundArg
+        .4byte judgeNearWithPlayer__Q23PSM8EnemyBigFRC3VecRC3Vecff
+        .4byte onPlayingSe__Q23PSM8CreatureFUlP8JAISound
+        .4byte getHandleArea__Q23PSM13CreatureAnimeFUc
+        .4byte 0
+        .4byte 0
+        .4byte "@48@__dt__Q23PSM8EnemyBigFv"
+        .4byte "@48@startSound__Q23PSM13CreatureAnimeFUlUl"
+        .4byte "@48@startSound__Q23PSM13CreatureAnimeFUcUlUl"
+        .4byte "@48@startSound__Q23PSM13CreatureAnimeFPP8JAISoundUlUl"
+        .4byte stopAllSound__Q27JAInter10ObjectBaseFv
+        .4byte stopSound__Q27JAInter10ObjectBaseFUlUl
+        .4byte enable__Q27JAInter10ObjectBaseFv
+        .4byte disable__Q27JAInter6ObjectFv
+        .4byte dispose__Q27JAInter10ObjectBaseFv
+        .4byte getFreeSoundHandlePointer__Q27JAInter10ObjectBaseFv
+        .4byte getUseSoundHandlePointer__Q27JAInter10ObjectBaseFUl
+        .4byte handleStop__13JAIAnimeSoundFUcUl
+        .4byte loop__Q27JAInter6ObjectFv
+        .4byte
+   "@48@playActorAnimSound__Q23PSM13CreatureAnimeFPQ27JAInter5ActorfUc" .4byte
+   "@48@startAnimSound__Q23PSM9EnemyBaseFUlPP8JAISoundPQ27JAInter5ActorUc"
+        .4byte
+   setSpeedModifySound__13JAIAnimeSoundFP8JAISoundP22JAIAnimeFrameSoundDataf
+        .4byte startSound__Q23PSM13CreatureAnimeFUlUl
+        .4byte startSound__Q23PSM13CreatureAnimeFUcUlUl
+        .4byte startSound__Q23PSM13CreatureAnimeFPP8JAISoundUlUl
+        .4byte startAnimSound__Q23PSM9EnemyBaseFUlPP8JAISoundPQ27JAInter5ActorUc
+        .4byte playActorAnimSound__Q23PSM13CreatureAnimeFPQ27JAInter5ActorfUc
+        .4byte onCalcTurnOn__Q23PSM9EnemyBaseFv
+        .4byte onCalcTurnOff__Q23PSM9EnemyBaseFv
+        .4byte 0
+        .4byte 0
+        .4byte battleOn__Q23PSM10BattleLinkFv
+        .4byte "@184@battleOff__Q23PSM9EnemyBaseFv"
+        .4byte 0
+        .4byte 0
+        .4byte kehaiOn__Q23PSM9KehaiLinkFv
+        .4byte kehaiOff__Q23PSM9KehaiLinkFv
+        .4byte battleOff__Q23PSM9EnemyBaseFv
+        .4byte setKilled__Q23PSM9EnemyBaseFv
+        .4byte updateKehai__Q23PSM9EnemyBaseFv
+        .4byte updateBattle__Q23PSM9EnemyBaseFv
+    .global __vt__Q23PSM9Tsuyukusa
+    __vt__Q23PSM9Tsuyukusa:
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte "@16@__dt__Q23PSM9TsuyukusaFv"
+        .4byte __dt__Q23PSM9TsuyukusaFv
+        .4byte frameEnd_onPlaySe__Q23PSM11CreatureObjFv
+        .4byte getCastType__Q23PSM11CreatureObjFv
+        .4byte exec__Q23PSM8CreatureFv
+        .4byte getJAIObject__Q23PSM11CreatureObjFv
+        .4byte onCalcOn__Q23PSM11CreatureObjFv
+        .4byte loopCalc__Q23PSM8CreatureFRQ23PSM12FrameCalcArg
+        .4byte startSoundInner__Q23PSM8CreatureFRQ23PSM13StartSoundArg
+        .4byte judgeNearWithPlayer__Q23PSM8CreatureFRC3VecRC3Vecff
+        .4byte onPlayingSe__Q23PSM8CreatureFUlP8JAISound
+        .4byte getHandleArea__Q23PSM11CreatureObjFUc
+        .4byte 0
+        .4byte 0
+        .4byte "@48@__dt__Q23PSM9TsuyukusaFv"
+        .4byte "@48@startSound__Q23PSM11CreatureObjFUlUl"
+        .4byte "@48@startSound__Q23PSM11CreatureObjFUcUlUl"
+        .4byte "@48@startSound__Q23PSM11CreatureObjFPP8JAISoundUlUl"
+        .4byte stopAllSound__Q27JAInter10ObjectBaseFv
+        .4byte stopSound__Q27JAInter10ObjectBaseFUlUl
+        .4byte enable__Q27JAInter10ObjectBaseFv
+        .4byte disable__Q27JAInter6ObjectFv
+        .4byte dispose__Q27JAInter10ObjectBaseFv
+        .4byte getFreeSoundHandlePointer__Q27JAInter10ObjectBaseFv
+        .4byte getUseSoundHandlePointer__Q27JAInter10ObjectBaseFUl
+        .4byte handleStop__Q27JAInter10ObjectBaseFUcUl
+        .4byte loop__Q27JAInter6ObjectFv
+        .4byte startSound__Q23PSM11CreatureObjFUlUl
+        .4byte startSound__Q23PSM11CreatureObjFUcUlUl
+        .4byte startSound__Q23PSM11CreatureObjFPP8JAISoundUlUl
+    .global __vt__Q23PSM18EnemyNotAggressive
+    __vt__Q23PSM18EnemyNotAggressive:
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte "@16@__dt__Q23PSM18EnemyNotAggressiveFv"
+        .4byte __dt__Q23PSM18EnemyNotAggressiveFv
+        .4byte frameEnd_onPlaySe__Q23PSM13CreatureAnimeFv
+        .4byte getCastType__Q23PSM18EnemyNotAggressiveFv
+        .4byte exec__Q23PSM13CreatureAnimeFv
+        .4byte getJAIObject__Q23PSM13CreatureAnimeFv
+        .4byte onCalcOn__Q23PSM9EnemyBaseFv
+        .4byte loopCalc__Q23PSM8CreatureFRQ23PSM12FrameCalcArg
+        .4byte startSoundInner__Q23PSM9EnemyBaseFRQ23PSM13StartSoundArg
+        .4byte judgeNearWithPlayer__Q23PSM9EnemyBaseFRC3VecRC3Vecff
+        .4byte onPlayingSe__Q23PSM8CreatureFUlP8JAISound
+        .4byte getHandleArea__Q23PSM13CreatureAnimeFUc
+        .4byte 0
+        .4byte 0
+        .4byte "@48@__dt__Q23PSM18EnemyNotAggressiveFv"
+        .4byte "@48@startSound__Q23PSM13CreatureAnimeFUlUl"
+        .4byte "@48@startSound__Q23PSM13CreatureAnimeFUcUlUl"
+        .4byte "@48@startSound__Q23PSM13CreatureAnimeFPP8JAISoundUlUl"
+        .4byte stopAllSound__Q27JAInter10ObjectBaseFv
+        .4byte stopSound__Q27JAInter10ObjectBaseFUlUl
+        .4byte enable__Q27JAInter10ObjectBaseFv
+        .4byte disable__Q27JAInter6ObjectFv
+        .4byte dispose__Q27JAInter10ObjectBaseFv
+        .4byte getFreeSoundHandlePointer__Q27JAInter10ObjectBaseFv
+        .4byte getUseSoundHandlePointer__Q27JAInter10ObjectBaseFUl
+        .4byte handleStop__13JAIAnimeSoundFUcUl
+        .4byte loop__Q27JAInter6ObjectFv
+        .4byte
+   "@48@playActorAnimSound__Q23PSM13CreatureAnimeFPQ27JAInter5ActorfUc" .4byte
+   "@48@startAnimSound__Q23PSM9EnemyBaseFUlPP8JAISoundPQ27JAInter5ActorUc"
+        .4byte
+   setSpeedModifySound__13JAIAnimeSoundFP8JAISoundP22JAIAnimeFrameSoundDataf
+        .4byte startSound__Q23PSM13CreatureAnimeFUlUl
+        .4byte startSound__Q23PSM13CreatureAnimeFUcUlUl
+        .4byte startSound__Q23PSM13CreatureAnimeFPP8JAISoundUlUl
+        .4byte startAnimSound__Q23PSM9EnemyBaseFUlPP8JAISoundPQ27JAInter5ActorUc
+        .4byte playActorAnimSound__Q23PSM13CreatureAnimeFPQ27JAInter5ActorfUc
+        .4byte onCalcTurnOn__Q23PSM9EnemyBaseFv
+        .4byte onCalcTurnOff__Q23PSM9EnemyBaseFv
+        .4byte 0
+        .4byte 0
+        .4byte "@184@battleOn__Q23PSM18EnemyNotAggressiveFv"
+        .4byte "@184@battleOff__Q23PSM18EnemyNotAggressiveFv"
+        .4byte 0
+        .4byte 0
+        .4byte "@204@kehaiOn__Q23PSM18EnemyNotAggressiveFv"
+        .4byte "@204@kehaiOff__Q23PSM18EnemyNotAggressiveFv"
+        .4byte battleOff__Q23PSM18EnemyNotAggressiveFv
+        .4byte setKilled__Q23PSM9EnemyBaseFv
+        .4byte updateKehai__Q23PSM18EnemyNotAggressiveFv
+        .4byte updateBattle__Q23PSM18EnemyNotAggressiveFv
+        .4byte kehaiOn__Q23PSM18EnemyNotAggressiveFv
+        .4byte kehaiOff__Q23PSM18EnemyNotAggressiveFv
+        .4byte battleOn__Q23PSM18EnemyNotAggressiveFv
+    .global __vt__Q23PSM9EnemyBase
+    __vt__Q23PSM9EnemyBase:
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte "@16@__dt__Q23PSM9EnemyBaseFv"
+        .4byte __dt__Q23PSM9EnemyBaseFv
+        .4byte frameEnd_onPlaySe__Q23PSM13CreatureAnimeFv
+        .4byte getCastType__Q23PSM9EnemyBaseFv
+        .4byte exec__Q23PSM13CreatureAnimeFv
+        .4byte getJAIObject__Q23PSM13CreatureAnimeFv
+        .4byte onCalcOn__Q23PSM9EnemyBaseFv
+        .4byte loopCalc__Q23PSM8CreatureFRQ23PSM12FrameCalcArg
+        .4byte startSoundInner__Q23PSM9EnemyBaseFRQ23PSM13StartSoundArg
+        .4byte judgeNearWithPlayer__Q23PSM9EnemyBaseFRC3VecRC3Vecff
+        .4byte onPlayingSe__Q23PSM8CreatureFUlP8JAISound
+        .4byte getHandleArea__Q23PSM13CreatureAnimeFUc
+        .4byte 0
+        .4byte 0
+        .4byte "@48@__dt__Q23PSM9EnemyBaseFv"
+        .4byte "@48@startSound__Q23PSM13CreatureAnimeFUlUl"
+        .4byte "@48@startSound__Q23PSM13CreatureAnimeFUcUlUl"
+        .4byte "@48@startSound__Q23PSM13CreatureAnimeFPP8JAISoundUlUl"
+        .4byte stopAllSound__Q27JAInter10ObjectBaseFv
+        .4byte stopSound__Q27JAInter10ObjectBaseFUlUl
+        .4byte enable__Q27JAInter10ObjectBaseFv
+        .4byte disable__Q27JAInter6ObjectFv
+        .4byte dispose__Q27JAInter10ObjectBaseFv
+        .4byte getFreeSoundHandlePointer__Q27JAInter10ObjectBaseFv
+        .4byte getUseSoundHandlePointer__Q27JAInter10ObjectBaseFUl
+        .4byte handleStop__13JAIAnimeSoundFUcUl
+        .4byte loop__Q27JAInter6ObjectFv
+        .4byte
+   "@48@playActorAnimSound__Q23PSM13CreatureAnimeFPQ27JAInter5ActorfUc" .4byte
+   "@48@startAnimSound__Q23PSM9EnemyBaseFUlPP8JAISoundPQ27JAInter5ActorUc"
+        .4byte
+   setSpeedModifySound__13JAIAnimeSoundFP8JAISoundP22JAIAnimeFrameSoundDataf
+        .4byte startSound__Q23PSM13CreatureAnimeFUlUl
+        .4byte startSound__Q23PSM13CreatureAnimeFUcUlUl
+        .4byte startSound__Q23PSM13CreatureAnimeFPP8JAISoundUlUl
+        .4byte startAnimSound__Q23PSM9EnemyBaseFUlPP8JAISoundPQ27JAInter5ActorUc
+        .4byte playActorAnimSound__Q23PSM13CreatureAnimeFPQ27JAInter5ActorfUc
+        .4byte onCalcTurnOn__Q23PSM9EnemyBaseFv
+        .4byte onCalcTurnOff__Q23PSM9EnemyBaseFv
+        .4byte 0
+        .4byte 0
+        .4byte battleOn__Q23PSM10BattleLinkFv
+        .4byte "@184@battleOff__Q23PSM9EnemyBaseFv"
+        .4byte 0
+        .4byte 0
+        .4byte kehaiOn__Q23PSM9KehaiLinkFv
+        .4byte kehaiOff__Q23PSM9KehaiLinkFv
+        .4byte battleOff__Q23PSM9EnemyBaseFv
+        .4byte setKilled__Q23PSM9EnemyBaseFv
+        .4byte updateKehai__Q23PSM9EnemyBaseFv
+        .4byte updateBattle__Q23PSM9EnemyBaseFv
+    .global __vt__Q23PSM9KehaiLink
+    __vt__Q23PSM9KehaiLink:
+        .4byte 0
+        .4byte 0
+        .4byte kehaiOn__Q23PSM9KehaiLinkFv
+        .4byte kehaiOff__Q23PSM9KehaiLinkFv
+    .global __vt__Q23PSM10BattleLink
+    __vt__Q23PSM10BattleLink:
+        .4byte 0
+        .4byte 0
+        .4byte battleOn__Q23PSM10BattleLinkFv
+        .4byte battleOff__Q23PSM10BattleLinkFv
+    .global __vt__Q23PSM13CreatureAnime
+    __vt__Q23PSM13CreatureAnime:
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte "@16@__dt__Q23PSM13CreatureAnimeFv"
+        .4byte __dt__Q23PSM13CreatureAnimeFv
+        .4byte frameEnd_onPlaySe__Q23PSM13CreatureAnimeFv
+        .4byte getCastType__Q23PSM13CreatureAnimeFv
+        .4byte exec__Q23PSM13CreatureAnimeFv
+        .4byte getJAIObject__Q23PSM13CreatureAnimeFv
+        .4byte onCalcOn__Q23PSM13CreatureAnimeFv
+        .4byte loopCalc__Q23PSM8CreatureFRQ23PSM12FrameCalcArg
+        .4byte startSoundInner__Q23PSM8CreatureFRQ23PSM13StartSoundArg
+        .4byte judgeNearWithPlayer__Q23PSM8CreatureFRC3VecRC3Vecff
+        .4byte onPlayingSe__Q23PSM8CreatureFUlP8JAISound
+        .4byte getHandleArea__Q23PSM13CreatureAnimeFUc
+        .4byte 0
+        .4byte 0
+        .4byte "@48@__dt__Q23PSM13CreatureAnimeFv"
+        .4byte "@48@startSound__Q23PSM13CreatureAnimeFUlUl"
+        .4byte "@48@startSound__Q23PSM13CreatureAnimeFUcUlUl"
+        .4byte "@48@startSound__Q23PSM13CreatureAnimeFPP8JAISoundUlUl"
+        .4byte stopAllSound__Q27JAInter10ObjectBaseFv
+        .4byte stopSound__Q27JAInter10ObjectBaseFUlUl
+        .4byte enable__Q27JAInter10ObjectBaseFv
+        .4byte disable__Q27JAInter6ObjectFv
+        .4byte dispose__Q27JAInter10ObjectBaseFv
+        .4byte getFreeSoundHandlePointer__Q27JAInter10ObjectBaseFv
+        .4byte getUseSoundHandlePointer__Q27JAInter10ObjectBaseFUl
+        .4byte handleStop__13JAIAnimeSoundFUcUl
+        .4byte loop__Q27JAInter6ObjectFv
+        .4byte
+   "@48@playActorAnimSound__Q23PSM13CreatureAnimeFPQ27JAInter5ActorfUc" .4byte
+   "@48@startAnimSound__Q23PSM13CreatureAnimeFUlPP8JAISoundPQ27JAInter5ActorUc"
+        .4byte
+   setSpeedModifySound__13JAIAnimeSoundFP8JAISoundP22JAIAnimeFrameSoundDataf
+        .4byte startSound__Q23PSM13CreatureAnimeFUlUl
+        .4byte startSound__Q23PSM13CreatureAnimeFUcUlUl
+        .4byte startSound__Q23PSM13CreatureAnimeFPP8JAISoundUlUl
+        .4byte
+   startAnimSound__Q23PSM13CreatureAnimeFUlPP8JAISoundPQ27JAInter5ActorUc .4byte
+   playActorAnimSound__Q23PSM13CreatureAnimeFPQ27JAInter5ActorfUc .4byte
+   onCalcTurnOn__Q23PSM13CreatureAnimeFv .4byte
+   onCalcTurnOff__Q23PSM13CreatureAnimeFv .global __vt__Q23PSM11CreatureObj
+    __vt__Q23PSM11CreatureObj:
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte "@16@__dt__Q23PSM11CreatureObjFv"
+        .4byte __dt__Q23PSM11CreatureObjFv
+        .4byte frameEnd_onPlaySe__Q23PSM11CreatureObjFv
+        .4byte getCastType__Q23PSM11CreatureObjFv
+        .4byte exec__Q23PSM8CreatureFv
+        .4byte getJAIObject__Q23PSM11CreatureObjFv
+        .4byte onCalcOn__Q23PSM11CreatureObjFv
+        .4byte loopCalc__Q23PSM8CreatureFRQ23PSM12FrameCalcArg
+        .4byte startSoundInner__Q23PSM8CreatureFRQ23PSM13StartSoundArg
+        .4byte judgeNearWithPlayer__Q23PSM8CreatureFRC3VecRC3Vecff
+        .4byte onPlayingSe__Q23PSM8CreatureFUlP8JAISound
+        .4byte getHandleArea__Q23PSM11CreatureObjFUc
+        .4byte 0
+        .4byte 0
+        .4byte "@48@__dt__Q23PSM11CreatureObjFv"
+        .4byte "@48@startSound__Q23PSM11CreatureObjFUlUl"
+        .4byte "@48@startSound__Q23PSM11CreatureObjFUcUlUl"
+        .4byte "@48@startSound__Q23PSM11CreatureObjFPP8JAISoundUlUl"
+        .4byte stopAllSound__Q27JAInter10ObjectBaseFv
+        .4byte stopSound__Q27JAInter10ObjectBaseFUlUl
+        .4byte enable__Q27JAInter10ObjectBaseFv
+        .4byte disable__Q27JAInter6ObjectFv
+        .4byte dispose__Q27JAInter10ObjectBaseFv
+        .4byte getFreeSoundHandlePointer__Q27JAInter10ObjectBaseFv
+        .4byte getUseSoundHandlePointer__Q27JAInter10ObjectBaseFUl
+        .4byte handleStop__Q27JAInter10ObjectBaseFUcUl
+        .4byte loop__Q27JAInter6ObjectFv
+        .4byte startSound__Q23PSM11CreatureObjFUlUl
+        .4byte startSound__Q23PSM11CreatureObjFUcUlUl
+        .4byte startSound__Q23PSM11CreatureObjFPP8JAISoundUlUl
+    .global __vt__Q23PSM8Creature
+    __vt__Q23PSM8Creature:
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte "@16@__dt__Q23PSM8CreatureFv"
+        .4byte __dt__Q23PSM8CreatureFv
+        .4byte 0
+        .4byte 0
+        .4byte exec__Q23PSM8CreatureFv
+        .4byte 0
+        .4byte 0
+        .4byte loopCalc__Q23PSM8CreatureFRQ23PSM12FrameCalcArg
+        .4byte startSoundInner__Q23PSM8CreatureFRQ23PSM13StartSoundArg
+        .4byte judgeNearWithPlayer__Q23PSM8CreatureFRC3VecRC3Vecff
+        .4byte onPlayingSe__Q23PSM8CreatureFUlP8JAISound
+        .4byte 0
+    .global __vt__Q23PSM6ObjMgr
+    __vt__Q23PSM6ObjMgr:
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte "@12@__dt__Q23PSM6ObjMgrFv"
+        .4byte 0
+        .4byte 0
+        .4byte "@16@__dt__Q23PSM6ObjMgrFv"
+        .4byte __dt__Q23PSM6ObjMgrFv
+    .global __vt__Q23PSM7ObjBase
+    __vt__Q23PSM7ObjBase:
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte "@16@__dt__Q23PSM7ObjBaseFv"
+        .4byte __dt__Q23PSM7ObjBaseFv
+        .4byte 0
+        .4byte 0
+
+    .section .sbss # 0x80514D80 - 0x80516360
+    .global sBigBoss__Q23PSM12EnemyBigBoss
+    sBigBoss__Q23PSM12EnemyBigBoss:
+        .skip 0x4
+    .global sDopedPikminNum__Q23PSM4Piki
+    sDopedPikminNum__Q23PSM4Piki:
+        .skip 0x4
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_80520C50
+    lbl_80520C50:
+        .4byte 0x00000000
+    .global lbl_80520C54
+    lbl_80520C54:
+        .float 0.5
+    .global lbl_80520C58
+    lbl_80520C58:
+        .4byte 0x42FE0000
+    .global lbl_80520C5C
+    lbl_80520C5C:
+        .float 1.0
+    .global lbl_80520C60
+    lbl_80520C60:
+        .4byte 0x3D000000
+        .4byte 0x00000000
+    .global lbl_80520C68
+    lbl_80520C68:
+        .4byte 0x43300000
+        .4byte 0x00000000
+    .global lbl_80520C70
+    lbl_80520C70:
+        .4byte 0x43300000
+        .4byte 0x80000000
+    .global lbl_80520C78
+    lbl_80520C78:
+        .4byte 0x4B189680
+    .global lbl_80520C7C
+    lbl_80520C7C:
+        .4byte 0x43FA0000
+    .global lbl_80520C80
+    lbl_80520C80:
+        .4byte 0x3F4CCCCD
+    .global lbl_80520C84
+    lbl_80520C84:
+        .4byte 0x3F266666
+    .global lbl_80520C88
+    lbl_80520C88:
+        .float 0.7
+        .4byte 0x00000000
+*/
+
 namespace PSM {
 
 /*
@@ -10,43 +1159,42 @@ namespace PSM {
 ObjBase::~ObjBase()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x64
-	  lis       r4, 0x804F
-	  addi      r3, r30, 0x10
-	  subi      r5, r4, 0xDD0
-	  li        r4, 0
-	  stw       r5, 0x28(r30)
-	  addi      r0, r5, 0x8
-	  stw       r0, 0x10(r30)
-	  bl        -0x43FE6C
-	  cmplwi    r30, 0
-	  beq-      .loc_0x54
-	  mr        r3, r30
-	  li        r4, 0
-	  bl        -0x4366E4
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_8045CEC8
+	lis      r4, __vt__Q23PSM7ObjBase@ha
+	addi     r3, r30, 0x10
+	addi     r5, r4, __vt__Q23PSM7ObjBase@l
+	li       r4, 0
+	stw      r5, 0x28(r30)
+	addi     r0, r5, 8
+	stw      r0, 0x10(r30)
+	bl       __dt__11JKRDisposerFv
+	cmplwi   r30, 0
+	beq      lbl_8045CEB8
+	mr       r3, r30
+	li       r4, 0
+	bl       __dt__10JSUPtrLinkFv
 
-	.loc_0x54:
-	  extsh.    r0, r31
-	  ble-      .loc_0x64
-	  mr        r3, r30
-	  bl        -0x438E10
+lbl_8045CEB8:
+	extsh.   r0, r31
+	ble      lbl_8045CEC8
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x64:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8045CEC8:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -58,30 +1206,29 @@ ObjBase::~ObjBase()
 void ObjMgr::frameEnd_onPlaySe()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  lwz       r31, 0x0(r3)
-	  b         .loc_0x30
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	lwz      r31, 0(r3)
+	b        lbl_8045CF14
 
-	.loc_0x18:
-	  lwz       r3, 0x0(r31)
-	  lwz       r12, 0x28(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r31, 0xC(r31)
+lbl_8045CEFC:
+	lwz      r3, 0(r31)
+	lwz      r12, 0x28(r3)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	lwz      r31, 0xc(r31)
 
-	.loc_0x30:
-	  cmplwi    r31, 0
-	  bne+      .loc_0x18
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8045CF14:
+	cmplwi   r31, 0
+	bne      lbl_8045CEFC
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -93,82 +1240,82 @@ void ObjMgr::frameEnd_onPlaySe()
 ObjMgr::~ObjMgr()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  mr        r30, r4
-	  stw       r29, 0x14(r1)
-	  mr.       r29, r3
-	  beq-      .loc_0xE4
-	  lis       r3, 0x804F
-	  subi      r4, r3, 0xDF4
-	  stw       r4, 0x28(r29)
-	  addi      r3, r4, 0x8
-	  addi      r0, r4, 0x14
-	  stw       r3, 0xC(r29)
-	  stw       r0, 0x10(r29)
-	  lwz       r3, 0x2C(r29)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x84
-	  bl        0xAEE4
-	  b         .loc_0x84
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	mr       r30, r4
+	stw      r29, 0x14(r1)
+	or.      r29, r3, r3
+	beq      lbl_8045D014
+	lis      r3, __vt__Q23PSM6ObjMgr@ha
+	addi     r4, r3, __vt__Q23PSM6ObjMgr@l
+	stw      r4, 0x28(r29)
+	addi     r3, r4, 8
+	addi     r0, r4, 0x14
+	stw      r3, 0xc(r29)
+	stw      r0, 0x10(r29)
+	lwz      r3, 0x2c(r29)
+	cmplwi   r3, 0
+	beq      lbl_8045CFB4
+	bl       detachObjMgr__Q23PSM13Scene_ObjectsFv
+	b        lbl_8045CFB4
 
-	.loc_0x54:
-	  lwz       r31, 0x0(r3)
-	  mr        r3, r29
-	  mr        r4, r31
-	  bl        -0x43636C
-	  cmplwi    r31, 0
-	  beq-      .loc_0x84
-	  mr        r3, r31
-	  li        r4, 0x1
-	  lwz       r12, 0x28(r31)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
+lbl_8045CF84:
+	lwz      r31, 0(r3)
+	mr       r3, r29
+	mr       r4, r31
+	bl       remove__10JSUPtrListFP10JSUPtrLink
+	cmplwi   r31, 0
+	beq      lbl_8045CFB4
+	mr       r3, r31
+	li       r4, 1
+	lwz      r12, 0x28(r31)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x84:
-	  lwz       r3, 0x0(r29)
-	  cmplwi    r3, 0
-	  bne+      .loc_0x54
-	  li        r0, 0
-	  addi      r3, r29, 0x10
-	  stw       r0, -0x6E44(r13)
-	  li        r4, 0
-	  bl        -0x43FF9C
-	  addic.    r0, r29, 0xC
-	  beq-      .loc_0xC0
-	  lis       r3, 0x804B
-	  li        r0, 0
-	  addi      r3, r3, 0xCE0
-	  stw       r3, 0xC(r29)
-	  stw       r0, -0x6E44(r13)
+lbl_8045CFB4:
+	lwz      r3, 0(r29)
+	cmplwi   r3, 0
+	bne      lbl_8045CF84
+	li       r0, 0
+	addi     r3, r29, 0x10
+	stw      r0,
+"sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13) li       r4, 0
+	bl       __dt__11JKRDisposerFv
+	addic.   r0, r29, 0xc
+	beq      lbl_8045CFF0
+	lis      r3, "__vt__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@ha
+	li       r0, 0
+	addi     r3, r3, "__vt__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@l
+	stw      r3, 0xc(r29)
+	stw      r0,
+"sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13)
 
-	.loc_0xC0:
-	  cmplwi    r29, 0
-	  beq-      .loc_0xD4
-	  mr        r3, r29
-	  li        r4, 0
-	  bl        -0x436798
+lbl_8045CFF0:
+	cmplwi   r29, 0
+	beq      lbl_8045D004
+	mr       r3, r29
+	li       r4, 0
+	bl       __dt__10JSUPtrListFv
 
-	.loc_0xD4:
-	  extsh.    r0, r30
-	  ble-      .loc_0xE4
-	  mr        r3, r29
-	  bl        -0x438F5C
+lbl_8045D004:
+	extsh.   r0, r30
+	ble      lbl_8045D014
+	mr       r3, r29
+	bl       __dl__FPv
 
-	.loc_0xE4:
-	  lwz       r0, 0x24(r1)
-	  mr        r3, r29
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8045D014:
+	lwz      r0, 0x24(r1)
+	mr       r3, r29
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -180,31 +1327,30 @@ ObjMgr::~ObjMgr()
 void Creature::exec()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r3, 0x2C(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x104(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x44
-	  mr        r3, r31
-	  lwz       r12, 0x28(r31)
-	  lwz       r12, 0x28(r12)
-	  mtctr     r12
-	  bctrl
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r3, 0x2c(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x104(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_8045D078
+	mr       r3, r31
+	lwz      r12, 0x28(r31)
+	lwz      r12, 0x28(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x44:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8045D078:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -216,101 +1362,100 @@ void Creature::exec()
 void Creature::judgeNearWithPlayer(const Vec&, const Vec&, float, float)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stfd      f31, 0x20(r1)
-	  psq_st    f31,0x28(r1),0,0
-	  stfd      f30, 0x10(r1)
-	  psq_st    f30,0x18(r1),0,0
-	  stw       r31, 0xC(r1)
-	  stw       r30, 0x8(r1)
-	  fmr       f30, f1
-	  mr        r30, r4
-	  fmr       f31, f2
-	  mr        r31, r5
-	  fcmpo     cr0, f30, f31
-	  bgt-      .loc_0x58
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x303C
-	  li        r4, 0x2D
-	  subi      r5, r5, 0x3048
-	  crclr     6, 0x6
-	  bl        -0x432AA0
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stfd     f31, 0x20(r1)
+	psq_st   f31, 40(r1), 0, qr0
+	stfd     f30, 0x10(r1)
+	psq_st   f30, 24(r1), 0, qr0
+	stw      r31, 0xc(r1)
+	stw      r30, 8(r1)
+	fmr      f30, f1
+	mr       r30, r4
+	fmr      f31, f2
+	mr       r31, r5
+	fcmpo    cr0, f30, f31
+	bgt      lbl_8045D0E4
+	lis      r3, lbl_8049CFC4@ha
+	lis      r5, lbl_8049CFB8@ha
+	addi     r3, r3, lbl_8049CFC4@l
+	li       r4, 0x2d
+	addi     r5, r5, lbl_8049CFB8@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x58:
-	  lfs       f2, 0x0(r30)
-	  lfs       f1, 0x0(r31)
-	  lfs       f0, 0x28F0(r2)
-	  fsubs     f3, f2, f1
-	  fcmpo     cr0, f3, f0
-	  cror      2, 0x1, 0x2
-	  bne-      .loc_0x78
-	  b         .loc_0x7C
+lbl_8045D0E4:
+	lfs      f2, 0(r30)
+	lfs      f1, 0(r31)
+	lfs      f0, lbl_80520C50@sda21(r2)
+	fsubs    f3, f2, f1
+	fcmpo    cr0, f3, f0
+	cror     2, 1, 2
+	bne      lbl_8045D104
+	b        lbl_8045D108
 
-	.loc_0x78:
-	  fneg      f3, f3
+lbl_8045D104:
+	fneg     f3, f3
 
-	.loc_0x7C:
-	  lfs       f2, 0x4(r30)
-	  lfs       f1, 0x4(r31)
-	  lfs       f0, 0x28F0(r2)
-	  fsubs     f4, f2, f1
-	  fcmpo     cr0, f4, f0
-	  cror      2, 0x1, 0x2
-	  bne-      .loc_0x9C
-	  b         .loc_0xA0
+lbl_8045D108:
+	lfs      f2, 4(r30)
+	lfs      f1, 4(r31)
+	lfs      f0, lbl_80520C50@sda21(r2)
+	fsubs    f4, f2, f1
+	fcmpo    cr0, f4, f0
+	cror     2, 1, 2
+	bne      lbl_8045D128
+	b        lbl_8045D12C
 
-	.loc_0x9C:
-	  fneg      f4, f4
+lbl_8045D128:
+	fneg     f4, f4
 
-	.loc_0xA0:
-	  lfs       f2, 0x8(r30)
-	  lfs       f1, 0x8(r31)
-	  lfs       f0, 0x28F0(r2)
-	  fsubs     f1, f2, f1
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0x1, 0x2
-	  bne-      .loc_0xC0
-	  b         .loc_0xC4
+lbl_8045D12C:
+	lfs      f2, 8(r30)
+	lfs      f1, 8(r31)
+	lfs      f0, lbl_80520C50@sda21(r2)
+	fsubs    f1, f2, f1
+	fcmpo    cr0, f1, f0
+	cror     2, 1, 2
+	bne      lbl_8045D14C
+	b        lbl_8045D150
 
-	.loc_0xC0:
-	  fneg      f1, f1
+lbl_8045D14C:
+	fneg     f1, f1
 
-	.loc_0xC4:
-	  fcmpo     cr0, f3, f30
-	  bge-      .loc_0xFC
-	  fcmpo     cr0, f4, f30
-	  bge-      .loc_0xFC
-	  fcmpo     cr0, f1, f30
-	  bge-      .loc_0xFC
-	  fcmpo     cr0, f3, f31
-	  ble-      .loc_0xF4
-	  fcmpo     cr0, f4, f31
-	  ble-      .loc_0xF4
-	  fcmpo     cr0, f1, f31
-	  bgt-      .loc_0xFC
+lbl_8045D150:
+	fcmpo    cr0, f3, f30
+	bge      lbl_8045D188
+	fcmpo    cr0, f4, f30
+	bge      lbl_8045D188
+	fcmpo    cr0, f1, f30
+	bge      lbl_8045D188
+	fcmpo    cr0, f3, f31
+	ble      lbl_8045D180
+	fcmpo    cr0, f4, f31
+	ble      lbl_8045D180
+	fcmpo    cr0, f1, f31
+	bgt      lbl_8045D188
 
-	.loc_0xF4:
-	  li        r3, 0x1
-	  b         .loc_0x100
+lbl_8045D180:
+	li       r3, 1
+	b        lbl_8045D18C
 
-	.loc_0xFC:
-	  li        r3, 0
+lbl_8045D188:
+	li       r3, 0
 
-	.loc_0x100:
-	  psq_l     f31,0x28(r1),0,0
-	  lfd       f31, 0x20(r1)
-	  psq_l     f30,0x18(r1),0,0
-	  lfd       f30, 0x10(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x34(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_8045D18C:
+	psq_l    f31, 40(r1), 0, qr0
+	lfd      f31, 0x20(r1)
+	psq_l    f30, 24(r1), 0, qr0
+	lfd      f30, 0x10(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x34(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -322,47 +1467,46 @@ void Creature::judgeNearWithPlayer(const Vec&, const Vec&, float, float)
 void Creature::isNear(Game::Creature*, float)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stfd      f31, 0x10(r1)
-	  psq_st    f31,0x18(r1),0,0
-	  stw       r31, 0xC(r1)
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  fmr       f31, f1
-	  lwz       r3, 0x2C(r3)
-	  mr        r31, r4
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x100(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r0, r3
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  mr        r31, r0
-	  lwz       r12, 0x100(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r12, 0x28(r30)
-	  mr        r5, r3
-	  lfs       f0, 0x28F4(r2)
-	  fmr       f1, f31
-	  lwz       r12, 0x34(r12)
-	  mr        r3, r30
-	  fmuls     f2, f31, f0
-	  mr        r4, r31
-	  mtctr     r12
-	  bctrl
-	  psq_l     f31,0x18(r1),0,0
-	  lwz       r0, 0x24(r1)
-	  lfd       f31, 0x10(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stfd     f31, 0x10(r1)
+	psq_st   f31, 24(r1), 0, qr0
+	stw      r31, 0xc(r1)
+	stw      r30, 8(r1)
+	mr       r30, r3
+	fmr      f31, f1
+	lwz      r3, 0x2c(r3)
+	mr       r31, r4
+	lwz      r12, 0(r3)
+	lwz      r12, 0x100(r12)
+	mtctr    r12
+	bctrl
+	mr       r0, r3
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	mr       r31, r0
+	lwz      r12, 0x100(r12)
+	mtctr    r12
+	bctrl
+	lwz      r12, 0x28(r30)
+	mr       r5, r3
+	lfs      f0, lbl_80520C54@sda21(r2)
+	fmr      f1, f31
+	lwz      r12, 0x34(r12)
+	mr       r3, r30
+	fmuls    f2, f31, f0
+	mr       r4, r31
+	mtctr    r12
+	bctrl
+	psq_l    f31, 24(r1), 0, qr0
+	lwz      r0, 0x24(r1)
+	lfd      f31, 0x10(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -374,41 +1518,40 @@ void Creature::isNear(Game::Creature*, float)
 void Creature::getPlayingHandleNum()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0x28(r3)
-	  lwz       r12, 0x24(r12)
-	  mtctr     r12
-	  bctrl
-	  lbz       r5, 0x19(r3)
-	  li        r6, 0
-	  li        r7, 0
-	  b         .loc_0x50
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r12, 0x28(r3)
+	lwz      r12, 0x24(r12)
+	mtctr    r12
+	bctrl
+	lbz      r5, 0x19(r3)
+	li       r6, 0
+	li       r7, 0
+	b        lbl_8045D2A4
 
-	.loc_0x2C:
-	  lwz       r4, 0x1C(r3)
-	  rlwinm    r0,r7,2,22,29
-	  lwzx      r0, r4, r0
-	  cmplwi    r0, 0
-	  beq-      .loc_0x4C
-	  rlwinm    r4,r6,0,24,31
-	  addi      r0, r4, 0x1
-	  rlwinm    r6,r0,0,24,31
+lbl_8045D280:
+	lwz      r4, 0x1c(r3)
+	rlwinm   r0, r7, 2, 0x16, 0x1d
+	lwzx     r0, r4, r0
+	cmplwi   r0, 0
+	beq      lbl_8045D2A0
+	clrlwi   r4, r6, 0x18
+	addi     r0, r4, 1
+	clrlwi   r6, r0, 0x18
 
-	.loc_0x4C:
-	  addi      r7, r7, 0x1
+lbl_8045D2A0:
+	addi     r7, r7, 1
 
-	.loc_0x50:
-	  rlwinm    r0,r7,0,24,31
-	  cmplw     r0, r5
-	  blt+      .loc_0x2C
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r6
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8045D2A4:
+	clrlwi   r0, r7, 0x18
+	cmplw    r0, r5
+	blt      lbl_8045D280
+	lwz      r0, 0x14(r1)
+	mr       r3, r6
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -420,102 +1563,82 @@ void Creature::getPlayingHandleNum()
 void Creature::loopCalc(PSM::FrameCalcArg&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stmw      r27, 0xC(r1)
-	  mr        r27, r3
-	  mr        r28, r4
-	  lwz       r3, 0x0(r4)
-	  lwz       r12, 0x28(r3)
-	  lwz       r12, 0x24(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r31, r3
-	  lwz       r29, 0x4(r28)
-	  lwz       r0, 0x24(r3)
-	  addi      r30, r31, 0x28
-	  cmplwi    r0, 0
-	  bne-      .loc_0x60
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x3060
-	  li        r4, 0xAA
-	  subi      r5, r5, 0x3048
-	  crclr     6, 0x6
-	  bl        -0x432CE0
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stmw     r27, 0xc(r1)
+	mr       r27, r3
+	mr       r28, r4
+	lwz      r3, 0(r4)
+	lwz      r12, 0x28(r3)
+	lwz      r12, 0x24(r12)
+	mtctr    r12
+	bctrl
+	mr       r31, r3
+	lwz      r29, 4(r28)
+	lwz      r0, 0x24(r3)
+	addi     r30, r31, 0x28
+	cmplwi   r0, 0
+	bne      lbl_8045D324
+	lis      r3, lbl_8049CFA0@ha
+	lis      r5, lbl_8049CFB8@ha
+	addi     r3, r3, lbl_8049CFA0@l
+	li       r4, 0xaa
+	addi     r5, r5, lbl_8049CFB8@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x60:
-	  lwz       r3, -0x6E4C(r13)
-	  mr        r4, r27
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r27, r3
-	  lwz       r3, -0x7498(r13)
-	  rlwinm    r0,r27,0,24,31
-	  lwz       r4, 0x24(r31)
-	  mulli     r0, r0, 0xC
-	  lwz       r3, 0x4(r3)
-	  mr        r5, r30
-	  add       r3, r3, r0
-	  lwz       r3, 0x8(r3)
-	  bl        -0x372788
-	  lfs       f1, 0x0(r30)
-	  lfs       f0, 0x4(r30)
-	  fmuls     f1, f1, f1
-	  lfs       f2, 0x8(r30)
-	  fmuls     f0, f0, f0
-	  fmuls     f2, f2, f2
-	  fadds     f0, f1, f0
-	  fadds     f1, f2, f0
-	  bl        -0x4BB80
-	  stfs      f1, 0x0(r29)
-	  li        r5, 0
-	  b         .loc_0x110
+lbl_8045D324:
+	lwz      r3,
+"sInstance__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@sda21(r13) mr r4,
+r27 lwz      r12, 0(r3) lwz      r12, 0xc(r12) mtctr    r12 bctrl mr       r27,
+r3 lwz      r3, msBasic__8JAIBasic@sda21(r13) clrlwi   r0, r27, 0x18 lwz r4,
+0x24(r31) mulli    r0, r0, 0xc lwz      r3, 4(r3) mr       r5, r30 add      r3,
+r3, r0 lwz      r3, 8(r3) bl       PSMTXMultVec lfs      f1, 0(r30) lfs      f0,
+4(r30) fmuls    f1, f1, f1 lfs      f2, 8(r30) fmuls    f0, f0, f0 fmuls    f2,
+f2, f2 fadds    f0, f1, f0 fadds    f1, f2, f0 bl       pikmin2_sqrtf__Ff stfs
+f1, 0(r29) li       r5, 0 b        lbl_8045D3D4
 
-	.loc_0xD0:
-	  lwz       r3, 0x1C(r31)
-	  rlwinm    r0,r5,2,22,29
-	  lwzx      r3, r3, r0
-	  cmplwi    r3, 0
-	  beq-      .loc_0x10C
-	  lwz       r4, 0x34(r3)
-	  lfs       f0, 0x0(r30)
-	  stfs      f0, 0x0(r4)
-	  lfs       f0, 0x4(r30)
-	  stfs      f0, 0x4(r4)
-	  lfs       f0, 0x8(r30)
-	  stfs      f0, 0x8(r4)
-	  lfs       f0, 0x0(r29)
-	  stfs      f0, 0x18(r4)
-	  stb       r27, 0x49C(r3)
+lbl_8045D394:
+	lwz      r3, 0x1c(r31)
+	rlwinm   r0, r5, 2, 0x16, 0x1d
+	lwzx     r3, r3, r0
+	cmplwi   r3, 0
+	beq      lbl_8045D3D0
+	lwz      r4, 0x34(r3)
+	lfs      f0, 0(r30)
+	stfs     f0, 0(r4)
+	lfs      f0, 4(r30)
+	stfs     f0, 4(r4)
+	lfs      f0, 8(r30)
+	stfs     f0, 8(r4)
+	lfs      f0, 0(r29)
+	stfs     f0, 0x18(r4)
+	stb      r27, 0x49c(r3)
 
-	.loc_0x10C:
-	  addi      r5, r5, 0x1
+lbl_8045D3D0:
+	addi     r5, r5, 1
 
-	.loc_0x110:
-	  lbz       r0, 0x19(r31)
-	  rlwinm    r3,r5,0,24,31
-	  cmplw     r3, r0
-	  blt+      .loc_0xD0
-	  lwz       r27, 0x8(r28)
-	  mr        r3, r30
-	  lfs       f1, 0x0(r29)
-	  bl        0x1425C
-	  stfs      f1, 0x0(r27)
-	  mr        r3, r30
-	  lwz       r27, 0xC(r28)
-	  lfs       f1, 0x0(r29)
-	  bl        0x14398
-	  stfs      f1, 0x0(r27)
-	  lmw       r27, 0xC(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8045D3D4:
+	lbz      r0, 0x19(r31)
+	clrlwi   r3, r5, 0x18
+	cmplw    r3, r0
+	blt      lbl_8045D394
+	lwz      r27, 8(r28)
+	mr       r3, r30
+	lfs      f1, 0(r29)
+	bl       calcPan__Q23PSM7SeSoundFRC3Vecf
+	stfs     f1, 0(r27)
+	mr       r3, r30
+	lwz      r27, 0xc(r28)
+	lfs      f1, 0(r29)
+	bl       calcDolby__Q23PSM7SeSoundFRC3Vecf
+	stfs     f1, 0(r27)
+	lmw      r27, 0xc(r1)
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -527,267 +1650,221 @@ void Creature::loopCalc(PSM::FrameCalcArg&)
 void Creature::startSoundInner(PSM::StartSoundArg&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x50(r1)
-	  mflr      r0
-	  lis       r5, 0x804A
-	  stw       r0, 0x54(r1)
-	  stmw      r25, 0x34(r1)
-	  mr        r25, r3
-	  mr        r28, r4
-	  subi      r26, r5, 0x3060
-	  lwz       r3, 0x2C(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x104(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x44
-	  li        r3, 0
-	  b         .loc_0x36C
+	stwu     r1, -0x50(r1)
+	mflr     r0
+	lis      r5, lbl_8049CFA0@ha
+	stw      r0, 0x54(r1)
+	stmw     r25, 0x34(r1)
+	mr       r25, r3
+	mr       r28, r4
+	addi     r26, r5, lbl_8049CFA0@l
+	lwz      r3, 0x2c(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x104(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_8045D464
+	li       r3, 0
+	b        lbl_8045D78C
 
-	.loc_0x44:
-	  lwz       r0, -0x6780(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x64
-	  addi      r3, r26, 0x30
-	  addi      r5, r26, 0x18
-	  li        r4, 0x1D3
-	  crclr     6, 0x6
-	  bl        -0x432E40
+lbl_8045D464:
+	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_8045D484
+	addi     r3, r26, 0x30
+	addi     r5, r26, 0x18
+	li       r4, 0x1d3
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x64:
-	  lwz       r27, -0x6780(r13)
-	  cmplwi    r27, 0
-	  bne-      .loc_0x84
-	  addi      r3, r26, 0x30
-	  addi      r5, r26, 0x18
-	  li        r4, 0x1DC
-	  crclr     6, 0x6
-	  bl        -0x432E60
+lbl_8045D484:
+	lwz      r27, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r27, 0
+	bne      lbl_8045D4A4
+	addi     r3, r26, 0x30
+	addi     r5, r26, 0x18
+	li       r4, 0x1dc
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x84:
-	  lwz       r0, 0x8(r27)
-	  cmplwi    r0, 0
-	  bne-      .loc_0xA4
-	  addi      r3, r26, 0x3C
-	  addi      r5, r26, 0x18
-	  li        r4, 0xA1
-	  crclr     6, 0x6
-	  bl        -0x432E80
+lbl_8045D4A4:
+	lwz      r0, 8(r27)
+	cmplwi   r0, 0
+	bne      lbl_8045D4C4
+	addi     r3, r26, 0x3c
+	addi     r5, r26, 0x18
+	li       r4, 0xa1
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xA4:
-	  lwz       r3, 0x8(r27)
-	  mr        r4, r25
-	  lwz       r5, 0x4(r28)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x38(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0xD0
-	  li        r3, 0
-	  b         .loc_0x36C
+lbl_8045D4C4:
+	lwz      r3, 8(r27)
+	mr       r4, r25
+	lwz      r5, 4(r28)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x38(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_8045D4F0
+	li       r3, 0
+	b        lbl_8045D78C
 
-	.loc_0xD0:
-	  lwz       r29, 0x0(r28)
-	  lwz       r31, 0x4(r28)
-	  mr        r3, r29
-	  lwz       r30, 0x8(r28)
-	  lwz       r12, 0x28(r29)
-	  lwz       r12, 0x24(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r31,0,20,20
-	  li        r26, 0
-	  mr        r28, r3
-	  bne-      .loc_0x118
-	  lwz       r12, 0x0(r3)
-	  mr        r4, r31
-	  lwz       r12, 0x30(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r26, r3
+lbl_8045D4F0:
+	lwz      r29, 0(r28)
+	lwz      r31, 4(r28)
+	mr       r3, r29
+	lwz      r30, 8(r28)
+	lwz      r12, 0x28(r29)
+	lwz      r12, 0x24(r12)
+	mtctr    r12
+	bctrl
+	rlwinm.  r0, r31, 0, 0x14, 0x14
+	li       r26, 0
+	mr       r28, r3
+	bne      lbl_8045D538
+	lwz      r12, 0(r3)
+	mr       r4, r31
+	lwz      r12, 0x30(r12)
+	mtctr    r12
+	bctrl
+	mr       r26, r3
 
-	.loc_0x118:
-	  cmplwi    r26, 0
-	  bne-      .loc_0x138
-	  mr        r3, r28
-	  lwz       r12, 0x0(r28)
-	  lwz       r12, 0x2C(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r26, r3
+lbl_8045D538:
+	cmplwi   r26, 0
+	bne      lbl_8045D558
+	mr       r3, r28
+	lwz      r12, 0(r28)
+	lwz      r12, 0x2c(r12)
+	mtctr    r12
+	bctrl
+	mr       r26, r3
 
-	.loc_0x138:
-	  cmplwi    r26, 0
-	  beq-      .loc_0x1E4
-	  cmplwi    r29, 0
-	  lwz       r7, 0x24(r28)
-	  bne-      .loc_0x154
-	  mr        r3, r7
-	  b         .loc_0x158
+lbl_8045D558:
+	cmplwi   r26, 0
+	beq      lbl_8045D604
+	cmplwi   r29, 0
+	lwz      r7, 0x24(r28)
+	bne      lbl_8045D574
+	mr       r3, r7
+	b        lbl_8045D578
 
-	.loc_0x154:
-	  mr        r3, r29
+lbl_8045D574:
+	mr       r3, r29
 
-	.loc_0x158:
-	  li        r6, -0x1
-	  li        r5, 0
-	  li        r0, 0x1
-	  stw       r3, 0x1C(r1)
-	  lwz       r3, -0x6E4C(r13)
-	  mr        r4, r25
-	  stw       r7, 0x20(r1)
-	  stw       r6, 0x24(r1)
-	  stw       r5, 0x28(r1)
-	  stb       r0, 0x2C(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r8, r3
-	  lwz       r3, -0x7498(r13)
-	  mr        r4, r31
-	  mr        r5, r26
-	  mr        r7, r30
-	  addi      r6, r1, 0x1C
-	  bl        -0x447CFC
-	  mr        r3, r25
-	  mr        r4, r31
-	  lwz       r12, 0x28(r25)
-	  lwz       r5, 0x0(r26)
-	  lwz       r12, 0x38(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x0(r26)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x1DC
-	  li        r0, 0x1
-	  stb       r0, 0x1A(r3)
+lbl_8045D578:
+	li       r6, -1
+	li       r5, 0
+	li       r0, 1
+	stw      r3, 0x1c(r1)
+	lwz      r3,
+"sInstance__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@sda21(r13) mr r4,
+r25 stw      r7, 0x20(r1) stw      r6, 0x24(r1) stw      r5, 0x28(r1) stb r0,
+0x2c(r1) lwz      r12, 0(r3) lwz      r12, 0xc(r12) mtctr    r12 bctrl mr r8, r3
+	lwz      r3, msBasic__8JAIBasic@sda21(r13)
+	mr       r4, r31
+	mr       r5, r26
+	mr       r7, r30
+	addi     r6, r1, 0x1c
+	bl
+"startSoundActorT<8JAISound>__8JAIBasicFUlPP8JAISoundPQ27JAInter5ActorUlUc" mr
+r3, r25 mr       r4, r31 lwz      r12, 0x28(r25) lwz      r5, 0(r26) lwz r12,
+0x38(r12) mtctr    r12 bctrl lwz      r3, 0(r26) cmplwi   r3, 0 beq lbl_8045D5FC
+	li       r0, 1
+	stb      r0, 0x1a(r3)
 
-	.loc_0x1DC:
-	  lwz       r3, 0x0(r26)
-	  b         .loc_0x36C
+lbl_8045D5FC:
+	lwz      r3, 0(r26)
+	b        lbl_8045D78C
 
-	.loc_0x1E4:
-	  lbz       r6, 0x19(r28)
-	  li        r27, 0xFF
-	  li        r26, 0xFF
-	  li        r7, 0
-	  li        r5, 0x1
-	  b         .loc_0x23C
+lbl_8045D604:
+	lbz      r6, 0x19(r28)
+	li       r27, 0xff
+	li       r26, 0xff
+	li       r7, 0
+	li       r5, 1
+	b        lbl_8045D65C
 
-	.loc_0x1FC:
-	  rlwinm    r3,r7,0,24,31
-	  lwz       r0, 0x20(r28)
-	  slw       r3, r5, r3
-	  and.      r0, r3, r0
-	  bne-      .loc_0x238
-	  lwz       r4, 0x1C(r28)
-	  rlwinm    r3,r7,2,22,29
-	  rlwinm    r0,r27,0,24,31
-	  lwzx      r3, r4, r3
-	  lwz       r3, 0x44(r3)
-	  lbz       r3, 0x4(r3)
-	  cmplw     r3, r0
-	  bgt-      .loc_0x238
-	  mr        r27, r3
-	  mr        r26, r7
+lbl_8045D61C:
+	clrlwi   r3, r7, 0x18
+	lwz      r0, 0x20(r28)
+	slw      r3, r5, r3
+	and.     r0, r3, r0
+	bne      lbl_8045D658
+	lwz      r4, 0x1c(r28)
+	rlwinm   r3, r7, 2, 0x16, 0x1d
+	clrlwi   r0, r27, 0x18
+	lwzx     r3, r4, r3
+	lwz      r3, 0x44(r3)
+	lbz      r3, 4(r3)
+	cmplw    r3, r0
+	bgt      lbl_8045D658
+	mr       r27, r3
+	mr       r26, r7
 
-	.loc_0x238:
-	  addi      r7, r7, 0x1
+lbl_8045D658:
+	addi     r7, r7, 1
 
-	.loc_0x23C:
-	  rlwinm    r0,r7,0,24,31
-	  cmplw     r0, r6
-	  blt+      .loc_0x1FC
-	  rlwinm    r0,r26,0,24,31
-	  cmplwi    r0, 0xFF
-	  beq-      .loc_0x368
-	  mr        r3, r31
-	  bl        -0x3A6160
-	  lbz       r3, 0x4(r3)
-	  rlwinm    r0,r27,0,24,31
-	  cmplw     r3, r0
-	  blt-      .loc_0x368
-	  mr        r3, r28
-	  mr        r4, r26
-	  lwz       r12, 0x0(r28)
-	  li        r5, 0
-	  lwz       r12, 0x34(r12)
-	  mtctr     r12
-	  bctrl
-	  cmplwi    r29, 0
-	  lwz       r7, 0x24(r28)
-	  bne-      .loc_0x29C
-	  mr        r3, r7
-	  b         .loc_0x2A0
+lbl_8045D65C:
+	clrlwi   r0, r7, 0x18
+	cmplw    r0, r6
+	blt      lbl_8045D61C
+	clrlwi   r0, r26, 0x18
+	cmplwi   r0, 0xff
+	beq      lbl_8045D788
+	mr       r3, r31
+	bl       getInfoPointer__Q27JAInter10SoundTableFUl
+	lbz      r3, 4(r3)
+	clrlwi   r0, r27, 0x18
+	cmplw    r3, r0
+	blt      lbl_8045D788
+	mr       r3, r28
+	mr       r4, r26
+	lwz      r12, 0(r28)
+	li       r5, 0
+	lwz      r12, 0x34(r12)
+	mtctr    r12
+	bctrl
+	cmplwi   r29, 0
+	lwz      r7, 0x24(r28)
+	bne      lbl_8045D6BC
+	mr       r3, r7
+	b        lbl_8045D6C0
 
-	.loc_0x29C:
-	  mr        r3, r29
+lbl_8045D6BC:
+	mr       r3, r29
 
-	.loc_0x2A0:
-	  li        r6, -0x1
-	  li        r5, 0
-	  li        r0, 0x1
-	  stw       r3, 0x8(r1)
-	  lwz       r3, -0x6E4C(r13)
-	  mr        r4, r25
-	  stw       r7, 0xC(r1)
-	  stw       r6, 0x10(r1)
-	  stw       r5, 0x14(r1)
-	  stb       r0, 0x18(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r12, 0x28(r25)
-	  mr        r27, r3
-	  mr        r3, r25
-	  mr        r4, r26
-	  lwz       r12, 0x3C(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r5, r3
-	  lwz       r3, -0x7498(r13)
-	  mr        r4, r31
-	  mr        r7, r30
-	  mr        r8, r27
-	  addi      r6, r1, 0x8
-	  bl        -0x447E60
-	  mr        r3, r25
-	  mr        r4, r26
-	  lwz       r12, 0x28(r25)
-	  lwz       r12, 0x3C(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r5, r3
-	  mr        r3, r25
-	  lwz       r12, 0x28(r25)
-	  mr        r4, r31
-	  lwz       r5, 0x0(r5)
-	  lwz       r12, 0x38(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x1C(r28)
-	  rlwinm    r0,r26,2,22,29
-	  lwzx      r3, r3, r0
-	  cmplwi    r3, 0
-	  beq-      .loc_0x36C
-	  li        r0, 0x1
-	  stb       r0, 0x1A(r3)
-	  b         .loc_0x36C
+lbl_8045D6C0:
+	li       r6, -1
+	li       r5, 0
+	li       r0, 1
+	stw      r3, 8(r1)
+	lwz      r3,
+"sInstance__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@sda21(r13) mr r4,
+r25 stw      r7, 0xc(r1) stw      r6, 0x10(r1) stw      r5, 0x14(r1) stb r0,
+0x18(r1) lwz      r12, 0(r3) lwz      r12, 0xc(r12) mtctr    r12 bctrl lwz r12,
+0x28(r25) mr       r27, r3 mr       r3, r25 mr       r4, r26 lwz      r12,
+0x3c(r12) mtctr    r12 bctrl mr       r5, r3 lwz      r3,
+msBasic__8JAIBasic@sda21(r13) mr       r4, r31 mr       r7, r30 mr       r8, r27
+	addi     r6, r1, 8
+	bl
+"startSoundActorT<8JAISound>__8JAIBasicFUlPP8JAISoundPQ27JAInter5ActorUlUc" mr
+r3, r25 mr       r4, r26 lwz      r12, 0x28(r25) lwz      r12, 0x3c(r12) mtctr
+r12 bctrl mr       r5, r3 mr       r3, r25 lwz      r12, 0x28(r25) mr       r4,
+r31 lwz      r5, 0(r5) lwz      r12, 0x38(r12) mtctr    r12 bctrl lwz      r3,
+0x1c(r28) rlwinm   r0, r26, 2, 0x16, 0x1d lwzx     r3, r3, r0 cmplwi   r3, 0 beq
+lbl_8045D78C li       r0, 1 stb      r0, 0x1a(r3) b        lbl_8045D78C
 
-	.loc_0x368:
-	  li        r3, 0
+lbl_8045D788:
+	li       r3, 0
 
-	.loc_0x36C:
-	  lmw       r25, 0x34(r1)
-	  lwz       r0, 0x54(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x50
-	  blr
+lbl_8045D78C:
+	lmw      r25, 0x34(r1)
+	lwz      r0, 0x54(r1)
+	mtlr     r0
+	addi     r1, r1, 0x50
+	blr
 	*/
 }
 
@@ -806,78 +1883,77 @@ void Creature::onPlayingSe(unsigned long, JAISound*) { }
 CreatureObj::CreatureObj(Game::Creature*, unsigned char)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stmw      r27, 0xC(r1)
-	  mr        r29, r3
-	  mr        r30, r4
-	  mr        r31, r5
-	  mr        r4, r29
-	  mr        r27, r4
-	  mr        r28, r4
-	  bl        -0x437014
-	  addi      r3, r28, 0x10
-	  bl        -0x440808
-	  lis       r4, 0x804F
-	  lis       r3, 0x804F
-	  subi      r4, r4, 0xDD0
-	  cmplwi    r30, 0
-	  stw       r4, 0x28(r28)
-	  addi      r0, r4, 0x8
-	  subi      r3, r3, 0xE34
-	  stw       r0, 0x10(r28)
-	  addi      r0, r3, 0x8
-	  stw       r3, 0x28(r27)
-	  stw       r0, 0x10(r27)
-	  stw       r30, 0x2C(r27)
-	  bne-      .loc_0x84
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x3060
-	  li        r4, 0x61
-	  subi      r5, r5, 0x3048
-	  crclr     6, 0x6
-	  bl        -0x4331E4
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stmw     r27, 0xc(r1)
+	mr       r29, r3
+	mr       r30, r4
+	mr       r31, r5
+	mr       r4, r29
+	mr       r27, r4
+	mr       r28, r4
+	bl       __ct__10JSUPtrLinkFPv
+	addi     r3, r28, 0x10
+	bl       __ct__11JKRDisposerFv
+	lis      r4, __vt__Q23PSM7ObjBase@ha
+	lis      r3, __vt__Q23PSM8Creature@ha
+	addi     r4, r4, __vt__Q23PSM7ObjBase@l
+	cmplwi   r30, 0
+	stw      r4, 0x28(r28)
+	addi     r0, r4, 8
+	addi     r3, r3, __vt__Q23PSM8Creature@l
+	stw      r0, 0x10(r28)
+	addi     r0, r3, 8
+	stw      r3, 0x28(r27)
+	stw      r0, 0x10(r27)
+	stw      r30, 0x2c(r27)
+	bne      lbl_8045D828
+	lis      r3, lbl_8049CFA0@ha
+	lis      r5, lbl_8049CFB8@ha
+	addi     r3, r3, lbl_8049CFA0@l
+	li       r4, 0x61
+	addi     r5, r5, lbl_8049CFB8@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x84:
-	  lwz       r0, -0x6E44(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0xAC
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x3060
-	  li        r4, 0x62
-	  subi      r5, r5, 0x3048
-	  crclr     6, 0x6
-	  bl        -0x43320C
+lbl_8045D828:
+	lwz      r0,
+"sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13) cmplwi   r0, 0
+	bne      lbl_8045D850
+	lis      r3, lbl_8049CFA0@ha
+	lis      r5, lbl_8049CFB8@ha
+	addi     r3, r3, lbl_8049CFA0@l
+	li       r4, 0x62
+	addi     r5, r5, lbl_8049CFB8@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xAC:
-	  mr        r3, r30
-	  lwz       r30, -0x77D4(r13)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x100(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  mr        r5, r30
-	  mr        r6, r31
-	  addi      r3, r29, 0x30
-	  bl        -0x3A3D8C
-	  lis       r4, 0x804F
-	  mr        r3, r29
-	  subi      r5, r4, 0xEBC
-	  stw       r5, 0x28(r29)
-	  addi      r4, r5, 0x8
-	  addi      r0, r5, 0x40
-	  stw       r4, 0x10(r29)
-	  stw       r0, 0x30(r29)
-	  lmw       r27, 0xC(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8045D850:
+	mr       r3, r30
+	lwz      r30, sCurrentHeap__7JKRHeap@sda21(r13)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x100(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	mr       r5, r30
+	mr       r6, r31
+	addi     r3, r29, 0x30
+	bl       __ct__Q27JAInter6ObjectFP3VecP7JKRHeapUc
+	lis      r4, __vt__Q23PSM11CreatureObj@ha
+	mr       r3, r29
+	addi     r5, r4, __vt__Q23PSM11CreatureObj@l
+	stw      r5, 0x28(r29)
+	addi     r4, r5, 8
+	addi     r0, r5, 0x40
+	stw      r4, 0x10(r29)
+	stw      r0, 0x30(r29)
+	lmw      r27, 0xc(r1)
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -889,49 +1965,48 @@ CreatureObj::CreatureObj(Game::Creature*, unsigned char)
 Creature::~Creature()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x7C
-	  lis       r3, 0x804F
-	  subi      r3, r3, 0xE34
-	  stw       r3, 0x28(r30)
-	  addi      r0, r3, 0x8
-	  stw       r0, 0x10(r30)
-	  beq-      .loc_0x6C
-	  lis       r4, 0x804F
-	  addi      r3, r30, 0x10
-	  subi      r5, r4, 0xDD0
-	  li        r4, 0
-	  stw       r5, 0x28(r30)
-	  addi      r0, r5, 0x8
-	  stw       r0, 0x10(r30)
-	  bl        -0x4408D0
-	  cmplwi    r30, 0
-	  beq-      .loc_0x6C
-	  mr        r3, r30
-	  li        r4, 0
-	  bl        -0x437148
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_8045D92C
+	lis      r3, __vt__Q23PSM8Creature@ha
+	addi     r3, r3, __vt__Q23PSM8Creature@l
+	stw      r3, 0x28(r30)
+	addi     r0, r3, 8
+	stw      r0, 0x10(r30)
+	beq      lbl_8045D91C
+	lis      r4, __vt__Q23PSM7ObjBase@ha
+	addi     r3, r30, 0x10
+	addi     r5, r4, __vt__Q23PSM7ObjBase@l
+	li       r4, 0
+	stw      r5, 0x28(r30)
+	addi     r0, r5, 8
+	stw      r0, 0x10(r30)
+	bl       __dt__11JKRDisposerFv
+	cmplwi   r30, 0
+	beq      lbl_8045D91C
+	mr       r3, r30
+	li       r4, 0
+	bl       __dt__10JSUPtrLinkFv
 
-	.loc_0x6C:
-	  extsh.    r0, r31
-	  ble-      .loc_0x7C
-	  mr        r3, r30
-	  bl        -0x439874
+lbl_8045D91C:
+	extsh.   r0, r31
+	ble      lbl_8045D92C
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x7C:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8045D92C:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -943,22 +2018,21 @@ Creature::~Creature()
 void CreatureObj::startSound(unsigned long, unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r4, 0xC(r1)
-	  addi      r4, r1, 0x8
-	  stw       r3, 0x8(r1)
-	  stw       r5, 0x10(r1)
-	  lwz       r12, 0x28(r3)
-	  lwz       r12, 0x30(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r4, 0xc(r1)
+	addi     r4, r1, 8
+	stw      r3, 8(r1)
+	stw      r5, 0x10(r1)
+	lwz      r12, 0x28(r3)
+	lwz      r12, 0x30(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -970,42 +2044,38 @@ void CreatureObj::startSound(unsigned long, unsigned long)
 void CreatureObj::startSound(unsigned char, unsigned long, unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r6
-	  stw       r30, 0x18(r1)
-	  mr        r30, r5
-	  stw       r29, 0x14(r1)
-	  mr        r29, r4
-	  stw       r28, 0x10(r1)
-	  mr        r28, r3
-	  mr        r4, r28
-	  lwz       r3, -0x6E4C(r13)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r5, 0x4C(r28)
-	  mr        r9, r3
-	  rlwinm    r0,r29,2,22,29
-	  lwz       r3, -0x7498(r13)
-	  lwz       r6, 0x54(r28)
-	  mr        r4, r30
-	  mr        r7, r31
-	  add       r5, r5, r0
-	  li        r8, 0
-	  bl        -0x448180
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r6
+	stw      r30, 0x18(r1)
+	mr       r30, r5
+	stw      r29, 0x14(r1)
+	mr       r29, r4
+	stw      r28, 0x10(r1)
+	mr       r28, r3
+	mr       r4, r28
+	lwz      r3,
+	"sInstance__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@sda21(r13) lwz
+	r12, 0(r3) lwz      r12, 0xc(r12) mtctr    r12 bctrl lwz      r5, 0x4c(r28)
+	mr       r9, r3
+	rlwinm   r0, r29, 2, 0x16, 0x1d
+	lwz      r3, msBasic__8JAIBasic@sda21(r13)
+	lwz      r6, 0x54(r28)
+	mr       r4, r30
+	mr       r7, r31
+	add      r5, r5, r0
+	li       r8, 0
+	bl       "startSoundVecT<8JAISound>__8JAIBasicFUlPP8JAISoundP3VecUlUlUc"
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -1017,49 +2087,34 @@ void CreatureObj::startSound(unsigned char, unsigned long, unsigned long)
 void CreatureObj::startSound(JAISound**, unsigned long, unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r8, 0x804A
-	  lis       r7, 0x804A
-	  stw       r0, 0x24(r1)
-	  subi      r8, r8, 0x3060
-	  subi      r0, r7, 0x3018
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r6
-	  stw       r30, 0x18(r1)
-	  mr        r30, r5
-	  mr        r5, r0
-	  stw       r29, 0x14(r1)
-	  mr        r29, r4
-	  li        r4, 0x18B
-	  stw       r28, 0x10(r1)
-	  mr        r28, r3
-	  mr        r3, r8
-	  crclr     6, 0x6
-	  bl        -0x43341C
-	  lwz       r3, -0x6E4C(r13)
-	  mr        r4, r28
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r9, r3
-	  lwz       r3, -0x7498(r13)
-	  lwz       r6, 0x54(r28)
-	  mr        r4, r30
-	  mr        r5, r29
-	  mr        r7, r31
-	  li        r8, 0
-	  bl        -0x448228
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lis      r8, lbl_8049CFA0@ha
+	lis      r7, lbl_8049CFE8@ha
+	stw      r0, 0x24(r1)
+	addi     r8, r8, lbl_8049CFA0@l
+	addi     r0, r7, lbl_8049CFE8@l
+	stw      r31, 0x1c(r1)
+	mr       r31, r6
+	stw      r30, 0x18(r1)
+	mr       r30, r5
+	mr       r5, r0
+	stw      r29, 0x14(r1)
+	mr       r29, r4
+	li       r4, 0x18b
+	stw      r28, 0x10(r1)
+	mr       r28, r3
+	mr       r3, r8
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
+	lwz      r3,
+	"sInstance__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@sda21(r13) mr
+	r4, r28 lwz      r12, 0(r3) lwz      r12, 0xc(r12) mtctr    r12 bctrl mr r9,
+	r3 lwz      r3, msBasic__8JAIBasic@sda21(r13) lwz      r6, 0x54(r28) mr r4,
+	r30 mr       r5, r29 mr       r7, r31 li       r8, 0 bl
+	"startSoundVecT<8JAISound>__8JAIBasicFUlPP8JAISoundP3VecUlUlUc" lwz      r0,
+	0x24(r1) lwz      r31, 0x1c(r1) lwz      r30, 0x18(r1) lwz      r29,
+	0x14(r1) lwz      r28, 0x10(r1) mtlr     r0 addi     r1, r1, 0x20 blr
 	*/
 }
 
@@ -1071,26 +2126,25 @@ void CreatureObj::startSound(JAISound**, unsigned long, unsigned long)
 void CreatureObj::frameEnd_onPlaySe()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  addi      r6, r3, 0x64
-	  addi      r5, r3, 0x68
-	  stw       r0, 0x24(r1)
-	  addi      r0, r3, 0x6C
-	  addi      r4, r1, 0x8
-	  stw       r3, 0x8(r1)
-	  stw       r6, 0xC(r1)
-	  stw       r5, 0x10(r1)
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0x28(r3)
-	  lwz       r12, 0x2C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	addi     r6, r3, 0x64
+	addi     r5, r3, 0x68
+	stw      r0, 0x24(r1)
+	addi     r0, r3, 0x6c
+	addi     r4, r1, 8
+	stw      r3, 8(r1)
+	stw      r6, 0xc(r1)
+	stw      r5, 0x10(r1)
+	stw      r0, 0x14(r1)
+	lwz      r12, 0x28(r3)
+	lwz      r12, 0x2c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -1207,22 +2261,21 @@ void CreatureAnime::startAnimSound(unsigned long, JAISound**, JAInter::Actor*,
 void CreatureAnime::startSound(unsigned long, unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r4, 0xC(r1)
-	  addi      r4, r1, 0x8
-	  stw       r3, 0x8(r1)
-	  stw       r5, 0x10(r1)
-	  lwz       r12, 0x28(r3)
-	  lwz       r12, 0x30(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r4, 0xc(r1)
+	addi     r4, r1, 8
+	stw      r3, 8(r1)
+	stw      r5, 0x10(r1)
+	lwz      r12, 0x28(r3)
+	lwz      r12, 0x30(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -1234,51 +2287,35 @@ void CreatureAnime::startSound(unsigned long, unsigned long)
 void CreatureAnime::startSound(unsigned char, unsigned long, unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r8, 0x804A
-	  lis       r7, 0x804A
-	  stw       r0, 0x24(r1)
-	  subi      r8, r8, 0x3060
-	  subi      r0, r7, 0x3018
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r6
-	  stw       r30, 0x18(r1)
-	  mr        r30, r5
-	  mr        r5, r0
-	  stw       r29, 0x14(r1)
-	  mr        r29, r4
-	  li        r4, 0x1D2
-	  stw       r28, 0x10(r1)
-	  mr        r28, r3
-	  mr        r3, r8
-	  crclr     6, 0x6
-	  bl        -0x433694
-	  lwz       r3, -0x6E4C(r13)
-	  mr        r4, r28
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r5, 0x4C(r28)
-	  mr        r9, r3
-	  rlwinm    r0,r29,2,22,29
-	  lwz       r3, -0x7498(r13)
-	  lwz       r6, 0x54(r28)
-	  mr        r4, r30
-	  mr        r7, r31
-	  add       r5, r5, r0
-	  li        r8, 0
-	  bl        -0x4484A8
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lis      r8, lbl_8049CFA0@ha
+	lis      r7, lbl_8049CFE8@ha
+	stw      r0, 0x24(r1)
+	addi     r8, r8, lbl_8049CFA0@l
+	addi     r0, r7, lbl_8049CFE8@l
+	stw      r31, 0x1c(r1)
+	mr       r31, r6
+	stw      r30, 0x18(r1)
+	mr       r30, r5
+	mr       r5, r0
+	stw      r29, 0x14(r1)
+	mr       r29, r4
+	li       r4, 0x1d2
+	stw      r28, 0x10(r1)
+	mr       r28, r3
+	mr       r3, r8
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
+	lwz      r3,
+	"sInstance__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@sda21(r13) mr
+	r4, r28 lwz      r12, 0(r3) lwz      r12, 0xc(r12) mtctr    r12 bctrl lwz
+	r5, 0x4c(r28) mr       r9, r3 rlwinm   r0, r29, 2, 0x16, 0x1d lwz      r3,
+	msBasic__8JAIBasic@sda21(r13) lwz      r6, 0x54(r28) mr       r4, r30 mr r7,
+	r31 add      r5, r5, r0 li       r8, 0 bl
+	"startSoundVecT<8JAISound>__8JAIBasicFUlPP8JAISoundP3VecUlUlUc" lwz      r0,
+	0x24(r1) lwz      r31, 0x1c(r1) lwz      r30, 0x18(r1) lwz      r29,
+	0x14(r1) lwz      r28, 0x10(r1) mtlr     r0 addi     r1, r1, 0x20 blr
 	*/
 }
 
@@ -1290,49 +2327,34 @@ void CreatureAnime::startSound(unsigned char, unsigned long, unsigned long)
 void CreatureAnime::startSound(JAISound**, unsigned long, unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r8, 0x804A
-	  lis       r7, 0x804A
-	  stw       r0, 0x24(r1)
-	  subi      r8, r8, 0x3060
-	  subi      r0, r7, 0x3018
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r6
-	  stw       r30, 0x18(r1)
-	  mr        r30, r5
-	  mr        r5, r0
-	  stw       r29, 0x14(r1)
-	  mr        r29, r4
-	  li        r4, 0x1E2
-	  stw       r28, 0x10(r1)
-	  mr        r28, r3
-	  mr        r3, r8
-	  crclr     6, 0x6
-	  bl        -0x433744
-	  lwz       r3, -0x6E4C(r13)
-	  mr        r4, r28
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r9, r3
-	  lwz       r3, -0x7498(r13)
-	  lwz       r6, 0x54(r28)
-	  mr        r4, r30
-	  mr        r5, r29
-	  mr        r7, r31
-	  li        r8, 0
-	  bl        -0x448550
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lis      r8, lbl_8049CFA0@ha
+	lis      r7, lbl_8049CFE8@ha
+	stw      r0, 0x24(r1)
+	addi     r8, r8, lbl_8049CFA0@l
+	addi     r0, r7, lbl_8049CFE8@l
+	stw      r31, 0x1c(r1)
+	mr       r31, r6
+	stw      r30, 0x18(r1)
+	mr       r30, r5
+	mr       r5, r0
+	stw      r29, 0x14(r1)
+	mr       r29, r4
+	li       r4, 0x1e2
+	stw      r28, 0x10(r1)
+	mr       r28, r3
+	mr       r3, r8
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
+	lwz      r3,
+	"sInstance__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@sda21(r13) mr
+	r4, r28 lwz      r12, 0(r3) lwz      r12, 0xc(r12) mtctr    r12 bctrl mr r9,
+	r3 lwz      r3, msBasic__8JAIBasic@sda21(r13) lwz      r6, 0x54(r28) mr r4,
+	r30 mr       r5, r29 mr       r7, r31 li       r8, 0 bl
+	"startSoundVecT<8JAISound>__8JAIBasicFUlPP8JAISoundP3VecUlUlUc" lwz      r0,
+	0x24(r1) lwz      r31, 0x1c(r1) lwz      r30, 0x18(r1) lwz      r29,
+	0x14(r1) lwz      r28, 0x10(r1) mtlr     r0 addi     r1, r1, 0x20 blr
 	*/
 }
 
@@ -1344,27 +2366,26 @@ void CreatureAnime::startSound(JAISound**, unsigned long, unsigned long)
 void CreatureAnime::setAnime(JAIAnimeSoundData*, unsigned long, float, float)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r0, 0xA8(r3)
-	  cmplw     r4, r0
-	  beq-      .loc_0x30
-	  addis     r0, r4, 0x1
-	  cmplwi    r0, 0xFFFF
-	  bne-      .loc_0x28
-	  li        r4, 0
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r0, 0xa8(r3)
+	cmplw    r4, r0
+	beq      lbl_8045DE10
+	addis    r0, r4, 1
+	cmplwi   r0, 0xffff
+	bne      lbl_8045DE08
+	li       r4, 0
 
-	.loc_0x28:
-	  addi      r3, r3, 0x30
-	  bl        -0x3B2B5C
+lbl_8045DE08:
+	addi     r3, r3, 0x30
+	bl       initActorAnimSound__13JAIAnimeSoundFP17JAIAnimeSoundDataUlff
 
-	.loc_0x30:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8045DE10:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1376,234 +2397,233 @@ void CreatureAnime::setAnime(JAIAnimeSoundData*, unsigned long, float, float)
 void CreatureAnime::playActorAnimSound(JAInter::Actor*, float, unsigned char)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x50(r1)
-	  mflr      r0
-	  stw       r0, 0x54(r1)
-	  stfd      f31, 0x40(r1)
-	  psq_st    f31,0x48(r1),0,0
-	  stmw      r24, 0x20(r1)
-	  mr        r26, r3
-	  fmr       f31, f1
-	  lwz       r3, 0xA8(r3)
-	  mr        r27, r4
-	  lwz       r4, 0x98(r26)
-	  mr        r28, r5
-	  lhz       r0, 0x0(r3)
-	  li        r30, 0
-	  cmplw     r4, r0
-	  blt-      .loc_0x5C
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x3060
-	  li        r4, 0x225
-	  subi      r5, r5, 0x3004
-	  crclr     6, 0x6
-	  bl        -0x433838
+	stwu     r1, -0x50(r1)
+	mflr     r0
+	stw      r0, 0x54(r1)
+	stfd     f31, 0x40(r1)
+	psq_st   f31, 72(r1), 0, qr0
+	stmw     r24, 0x20(r1)
+	mr       r26, r3
+	fmr      f31, f1
+	lwz      r3, 0xa8(r3)
+	mr       r27, r4
+	lwz      r4, 0x98(r26)
+	mr       r28, r5
+	lhz      r0, 0(r3)
+	li       r30, 0
+	cmplw    r4, r0
+	blt      lbl_8045DE7C
+	lis      r3, lbl_8049CFA0@ha
+	lis      r5, lbl_8049CFFC@ha
+	addi     r3, r3, lbl_8049CFA0@l
+	li       r4, 0x225
+	addi     r5, r5, lbl_8049CFFC@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x5C:
-	  lwz       r0, 0x98(r26)
-	  lwz       r5, 0xA8(r26)
-	  rlwinm    r4,r0,5,0,26
-	  lbz       r3, 0x49(r26)
-	  addi      r31, r4, 0x8
-	  add       r31, r5, r31
-	  b         .loc_0x168
+lbl_8045DE7C:
+	lwz      r0, 0x98(r26)
+	lwz      r5, 0xa8(r26)
+	slwi     r4, r0, 5
+	lbz      r3, 0x49(r26)
+	addi     r31, r4, 8
+	add      r31, r5, r31
+	b        lbl_8045DF88
 
-	.loc_0x78:
-	  lwz       r6, 0x70(r26)
-	  rlwinm    r5,r30,0,24,31
-	  lbzx      r0, r6, r5
-	  cmplwi    r0, 0
-	  beq-      .loc_0xD4
-	  lwz       r4, 0x4C(r26)
-	  rlwinm    r0,r5,2,0,29
-	  lwzx      r5, r4, r0
-	  cmplwi    r5, 0
-	  beq-      .loc_0x174
-	  lwz       r4, 0x0(r31)
-	  lwz       r0, 0x20(r5)
-	  cmplw     r4, r0
-	  beq-      .loc_0xB8
-	  addi      r30, r30, 0x1
-	  b         .loc_0x168
+lbl_8045DE98:
+	lwz      r6, 0x70(r26)
+	clrlwi   r5, r30, 0x18
+	lbzx     r0, r6, r5
+	cmplwi   r0, 0
+	beq      lbl_8045DEF4
+	lwz      r4, 0x4c(r26)
+	slwi     r0, r5, 2
+	lwzx     r5, r4, r0
+	cmplwi   r5, 0
+	beq      lbl_8045DF94
+	lwz      r4, 0(r31)
+	lwz      r0, 0x20(r5)
+	cmplw    r4, r0
+	beq      lbl_8045DED8
+	addi     r30, r30, 1
+	b        lbl_8045DF88
 
-	.loc_0xB8:
-	  rlwinm.   r0,r4,0,20,21
-	  bne-      .loc_0x174
-	  lwz       r3, 0x98(r26)
-	  lwz       r0, 0x8C(r26)
-	  add       r0, r3, r0
-	  stw       r0, 0x98(r26)
-	  b         .loc_0x2E8
+lbl_8045DED8:
+	rlwinm.  r0, r4, 0, 0x14, 0x15
+	bne      lbl_8045DF94
+	lwz      r3, 0x98(r26)
+	lwz      r0, 0x8c(r26)
+	add      r0, r3, r0
+	stw      r0, 0x98(r26)
+	b        lbl_8045E108
 
-	.loc_0xD4:
-	  li        r0, 0x1
-	  lwz       r4, 0x50(r26)
-	  slw       r0, r0, r5
-	  and.      r0, r4, r0
-	  beq-      .loc_0xF0
-	  addi      r30, r30, 0x1
-	  b         .loc_0x168
+lbl_8045DEF4:
+	li       r0, 1
+	lwz      r4, 0x50(r26)
+	slw      r0, r0, r5
+	and.     r0, r4, r0
+	beq      lbl_8045DF10
+	addi     r30, r30, 1
+	b        lbl_8045DF88
 
-	.loc_0xF0:
-	  lwz       r7, 0x4C(r26)
-	  rlwinm    r0,r5,2,0,29
-	  lwzx      r0, r7, r0
-	  cmplwi    r0, 0
-	  beq-      .loc_0x174
-	  subi      r0, r3, 0x1
-	  cmpw      r5, r0
-	  bne-      .loc_0x164
-	  li        r5, 0
-	  li        r8, 0
-	  li        r9, 0
-	  b         .loc_0x150
+lbl_8045DF10:
+	lwz      r7, 0x4c(r26)
+	slwi     r0, r5, 2
+	lwzx     r0, r7, r0
+	cmplwi   r0, 0
+	beq      lbl_8045DF94
+	addi     r0, r3, -1
+	cmpw     r5, r0
+	bne      lbl_8045DF84
+	li       r5, 0
+	li       r8, 0
+	li       r9, 0
+	b        lbl_8045DF70
 
-	.loc_0x120:
-	  rlwinm    r4,r9,0,24,31
-	  lbzx      r0, r6, r4
-	  cmplwi    r0, 0
-	  bne-      .loc_0x14C
-	  rlwinm    r0,r4,2,0,29
-	  lwzx      r4, r7, r0
-	  lwz       r0, 0x2C(r4)
-	  cmplw     r5, r0
-	  bge-      .loc_0x14C
-	  mr        r5, r0
-	  mr        r8, r9
+lbl_8045DF40:
+	clrlwi   r4, r9, 0x18
+	lbzx     r0, r6, r4
+	cmplwi   r0, 0
+	bne      lbl_8045DF6C
+	slwi     r0, r4, 2
+	lwzx     r4, r7, r0
+	lwz      r0, 0x2c(r4)
+	cmplw    r5, r0
+	bge      lbl_8045DF6C
+	mr       r5, r0
+	mr       r8, r9
 
-	.loc_0x14C:
-	  addi      r9, r9, 0x1
+lbl_8045DF6C:
+	addi     r9, r9, 1
 
-	.loc_0x150:
-	  rlwinm    r0,r9,0,24,31
-	  cmplw     r0, r3
-	  blt+      .loc_0x120
-	  mr        r30, r8
-	  b         .loc_0x174
+lbl_8045DF70:
+	clrlwi   r0, r9, 0x18
+	cmplw    r0, r3
+	blt      lbl_8045DF40
+	mr       r30, r8
+	b        lbl_8045DF94
 
-	.loc_0x164:
-	  addi      r30, r30, 0x1
+lbl_8045DF84:
+	addi     r30, r30, 1
 
-	.loc_0x168:
-	  rlwinm    r0,r30,0,24,31
-	  cmplw     r0, r3
-	  blt+      .loc_0x78
+lbl_8045DF88:
+	clrlwi   r0, r30, 0x18
+	cmplw    r0, r3
+	blt      lbl_8045DE98
 
-	.loc_0x174:
-	  rlwinm    r0,r30,0,24,31
-	  cmplw     r0, r3
-	  beq-      .loc_0x2D8
-	  lwz       r4, 0x10(r31)
-	  rlwinm.   r0,r4,0,28,28
-	  beq-      .loc_0x19C
-	  lwz       r3, 0x9C(r26)
-	  lbz       r0, 0x16(r31)
-	  cmplw     r3, r0
-	  bne-      .loc_0x2D8
+lbl_8045DF94:
+	clrlwi   r0, r30, 0x18
+	cmplw    r0, r3
+	beq      lbl_8045E0F8
+	lwz      r4, 0x10(r31)
+	rlwinm.  r0, r4, 0, 0x1c, 0x1c
+	beq      lbl_8045DFBC
+	lwz      r3, 0x9c(r26)
+	lbz      r0, 0x16(r31)
+	cmplw    r3, r0
+	bne      lbl_8045E0F8
 
-	.loc_0x19C:
-	  lwz       r3, 0x8C(r26)
-	  cmplwi    r3, 0x1
-	  bne-      .loc_0x1B0
-	  rlwinm.   r0,r4,0,30,30
-	  beq-      .loc_0x1C4
+lbl_8045DFBC:
+	lwz      r3, 0x8c(r26)
+	cmplwi   r3, 1
+	bne      lbl_8045DFD0
+	rlwinm.  r0, r4, 0, 0x1e, 0x1e
+	beq      lbl_8045DFE4
 
-	.loc_0x1B0:
-	  addis     r0, r3, 0x1
-	  cmplwi    r0, 0xFFFF
-	  bne-      .loc_0x2D8
-	  rlwinm.   r0,r4,0,31,31
-	  bne-      .loc_0x2D8
+lbl_8045DFD0:
+	addis    r0, r3, 1
+	cmplwi   r0, 0xffff
+	bne      lbl_8045E0F8
+	clrlwi.  r0, r4, 0x1f
+	bne      lbl_8045E0F8
 
-	.loc_0x1C4:
-	  lwz       r0, 0x4C(r26)
-	  rlwinm    r25,r30,2,22,29
-	  rlwinm    r24,r30,0,24,31
-	  add       r29, r0, r25
-	  lwz       r0, 0x0(r29)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x1FC
-	  addi      r3, r26, 0x30
-	  mr        r4, r30
-	  lwz       r12, 0x30(r26)
-	  li        r5, 0
-	  lwz       r12, 0x34(r12)
-	  mtctr     r12
-	  bctrl
+lbl_8045DFE4:
+	lwz      r0, 0x4c(r26)
+	rlwinm   r25, r30, 2, 0x16, 0x1d
+	clrlwi   r24, r30, 0x18
+	add      r29, r0, r25
+	lwz      r0, 0(r29)
+	cmplwi   r0, 0
+	beq      lbl_8045E01C
+	addi     r3, r26, 0x30
+	mr       r4, r30
+	lwz      r12, 0x30(r26)
+	li       r5, 0
+	lwz      r12, 0x34(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x1FC:
-	  mr        r3, r26
-	  mr        r5, r29
-	  lwz       r12, 0x28(r26)
-	  mr        r6, r27
-	  mr        r7, r28
-	  lwz       r4, 0x0(r31)
-	  lwz       r12, 0x94(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x0(r29)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x2D8
-	  lwz       r3, 0x74(r26)
-	  lis       r0, 0x4330
-	  li        r6, 0x1
-	  stw       r0, 0x8(r1)
-	  lfd       f2, 0x2908(r2)
-	  li        r4, 0
-	  stwx      r31, r3, r25
-	  li        r5, 0x5
-	  lfs       f0, 0x28F8(r2)
-	  lwz       r3, 0x70(r26)
-	  stbx      r6, r3, r24
-	  lbz       r0, 0x14(r31)
-	  lwz       r3, 0x0(r29)
-	  stw       r0, 0xC(r1)
-	  lwz       r12, 0x10(r3)
-	  lfd       f1, 0x8(r1)
-	  lwz       r12, 0x1C(r12)
-	  fsubs     f1, f1, f2
-	  fdivs     f1, f1, f0
-	  mtctr     r12
-	  bctrl
-	  lbz       r3, 0x15(r31)
-	  lis       r0, 0x4330
-	  lfs       f0, 0x28FC(r2)
-	  li        r4, 0
-	  extsb     r5, r3
-	  lwz       r3, 0x0(r29)
-	  xoris     r5, r5, 0x8000
-	  stw       r0, 0x10(r1)
-	  lwz       r12, 0x10(r3)
-	  fsubs     f2, f31, f0
-	  stw       r5, 0x14(r1)
-	  li        r5, 0x5
-	  lfd       f3, 0x2910(r2)
-	  lfd       f0, 0x10(r1)
-	  lfs       f1, 0x2900(r2)
-	  fsubs     f3, f0, f3
-	  lfs       f0, 0xC(r31)
-	  lwz       r12, 0x2C(r12)
-	  fmuls     f2, f3, f2
-	  fmadds    f1, f2, f1, f0
-	  mtctr     r12
-	  bctrl
+lbl_8045E01C:
+	mr       r3, r26
+	mr       r5, r29
+	lwz      r12, 0x28(r26)
+	mr       r6, r27
+	mr       r7, r28
+	lwz      r4, 0(r31)
+	lwz      r12, 0x94(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0(r29)
+	cmplwi   r0, 0
+	beq      lbl_8045E0F8
+	lwz      r3, 0x74(r26)
+	lis      r0, 0x4330
+	li       r6, 1
+	stw      r0, 8(r1)
+	lfd      f2, lbl_80520C68@sda21(r2)
+	li       r4, 0
+	stwx     r31, r3, r25
+	li       r5, 5
+	lfs      f0, lbl_80520C58@sda21(r2)
+	lwz      r3, 0x70(r26)
+	stbx     r6, r3, r24
+	lbz      r0, 0x14(r31)
+	lwz      r3, 0(r29)
+	stw      r0, 0xc(r1)
+	lwz      r12, 0x10(r3)
+	lfd      f1, 8(r1)
+	lwz      r12, 0x1c(r12)
+	fsubs    f1, f1, f2
+	fdivs    f1, f1, f0
+	mtctr    r12
+	bctrl
+	lbz      r3, 0x15(r31)
+	lis      r0, 0x4330
+	lfs      f0, lbl_80520C5C@sda21(r2)
+	li       r4, 0
+	extsb    r5, r3
+	lwz      r3, 0(r29)
+	xoris    r5, r5, 0x8000
+	stw      r0, 0x10(r1)
+	lwz      r12, 0x10(r3)
+	fsubs    f2, f31, f0
+	stw      r5, 0x14(r1)
+	li       r5, 5
+	lfd      f3, lbl_80520C70@sda21(r2)
+	lfd      f0, 0x10(r1)
+	lfs      f1, lbl_80520C60@sda21(r2)
+	fsubs    f3, f0, f3
+	lfs      f0, 0xc(r31)
+	lwz      r12, 0x2c(r12)
+	fmuls    f2, f3, f2
+	fmadds   f1, f2, f1, f0
+	mtctr    r12
+	bctrl
 
-	.loc_0x2D8:
-	  lwz       r3, 0x98(r26)
-	  lwz       r0, 0x8C(r26)
-	  add       r0, r3, r0
-	  stw       r0, 0x98(r26)
+lbl_8045E0F8:
+	lwz      r3, 0x98(r26)
+	lwz      r0, 0x8c(r26)
+	add      r0, r3, r0
+	stw      r0, 0x98(r26)
 
-	.loc_0x2E8:
-	  psq_l     f31,0x48(r1),0,0
-	  lfd       f31, 0x40(r1)
-	  lmw       r24, 0x20(r1)
-	  lwz       r0, 0x54(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x50
-	  blr
+lbl_8045E108:
+	psq_l    f31, 72(r1), 0, qr0
+	lfd      f31, 0x40(r1)
+	lmw      r24, 0x20(r1)
+	lwz      r0, 0x54(r1)
+	mtlr     r0
+	addi     r1, r1, 0x50
+	blr
 	*/
 }
 
@@ -1615,58 +2635,57 @@ void CreatureAnime::playActorAnimSound(JAInter::Actor*, float, unsigned char)
 void CreatureAnime::exec()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lwz       r3, 0x2C(r3)
-	  lbz       r31, 0xB4(r30)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x104(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm    r0,r3,0,24,31
-	  cntlzw    r0, r0
-	  rlwinm    r0,r0,27,5,31
-	  stb       r0, 0xB4(r30)
-	  lbz       r0, 0xB4(r30)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x80
-	  cmplwi    r31, 0
-	  bne-      .loc_0x68
-	  mr        r3, r30
-	  lwz       r12, 0x28(r30)
-	  lwz       r12, 0x9C(r12)
-	  mtctr     r12
-	  bctrl
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lwz      r3, 0x2c(r3)
+	lbz      r31, 0xb4(r30)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x104(r12)
+	mtctr    r12
+	bctrl
+	clrlwi   r0, r3, 0x18
+	cntlzw   r0, r0
+	srwi     r0, r0, 5
+	stb      r0, 0xb4(r30)
+	lbz      r0, 0xb4(r30)
+	cmplwi   r0, 0
+	beq      lbl_8045E1A4
+	cmplwi   r31, 0
+	bne      lbl_8045E18C
+	mr       r3, r30
+	lwz      r12, 0x28(r30)
+	lwz      r12, 0x9c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x68:
-	  mr        r3, r30
-	  lwz       r12, 0x28(r30)
-	  lwz       r12, 0x28(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x9C
+lbl_8045E18C:
+	mr       r3, r30
+	lwz      r12, 0x28(r30)
+	lwz      r12, 0x28(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_8045E1C0
 
-	.loc_0x80:
-	  cmplwi    r31, 0x1
-	  bne-      .loc_0x9C
-	  mr        r3, r30
-	  lwz       r12, 0x28(r30)
-	  lwz       r12, 0xA0(r12)
-	  mtctr     r12
-	  bctrl
+lbl_8045E1A4:
+	cmplwi   r31, 1
+	bne      lbl_8045E1C0
+	mr       r3, r30
+	lwz      r12, 0x28(r30)
+	lwz      r12, 0xa0(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x9C:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8045E1C0:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1678,61 +2697,50 @@ void CreatureAnime::exec()
 void CreatureAnime::onCalcOn()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stfd      f31, 0x28(r1)
-	  stw       r31, 0x24(r1)
-	  stw       r30, 0x20(r1)
-	  mr.       r30, r3
-	  lwz       r7, 0x54(r3)
-	  bne-      .loc_0x2C
-	  mr        r4, r7
-	  b         .loc_0x30
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stfd     f31, 0x28(r1)
+	stw      r31, 0x24(r1)
+	stw      r30, 0x20(r1)
+	or.      r30, r3, r3
+	lwz      r7, 0x54(r3)
+	bne      lbl_8045E204
+	mr       r4, r7
+	b        lbl_8045E208
 
-	.loc_0x2C:
-	  mr        r4, r30
+lbl_8045E204:
+	mr       r4, r30
 
-	.loc_0x30:
-	  li        r6, -0x1
-	  li        r5, 0
-	  li        r0, 0x1
-	  stw       r4, 0x8(r1)
-	  lwz       r3, -0x6E4C(r13)
-	  mr        r4, r30
-	  stw       r7, 0xC(r1)
-	  stw       r6, 0x10(r1)
-	  stw       r5, 0x14(r1)
-	  stb       r0, 0x18(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r31, r3
-	  lwz       r3, 0x2C(r30)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x2C(r30)
-	  fmr       f31, f1
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x108(r12)
-	  mtctr     r12
-	  bctrl
-	  fmr       f2, f31
-	  mr        r5, r31
-	  addi      r3, r30, 0x30
-	  addi      r4, r1, 0x8
-	  bl        -0x3B2DB4
-	  lwz       r0, 0x34(r1)
-	  lfd       f31, 0x28(r1)
-	  lwz       r31, 0x24(r1)
-	  lwz       r30, 0x20(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_8045E208:
+	li       r6, -1
+	li       r5, 0
+	li       r0, 1
+	stw      r4, 8(r1)
+	lwz      r3,
+"sInstance__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@sda21(r13) mr r4,
+r30 stw      r7, 0xc(r1) stw      r6, 0x10(r1) stw      r5, 0x14(r1) stb r0,
+0x18(r1) lwz      r12, 0(r3) lwz      r12, 0xc(r12) mtctr    r12 bctrl mr r31,
+r3 lwz      r3, 0x2c(r30) lwz      r12, 0(r3) lwz      r12, 0x10c(r12) mtctr r12
+	bctrl
+	lwz      r3, 0x2c(r30)
+	fmr      f31, f1
+	lwz      r12, 0(r3)
+	lwz      r12, 0x108(r12)
+	mtctr    r12
+	bctrl
+	fmr      f2, f31
+	mr       r5, r31
+	addi     r3, r30, 0x30
+	addi     r4, r1, 8
+	bl       setAnimSoundActor__13JAIAnimeSoundFPQ27JAInter5ActorffUc
+	lwz      r0, 0x34(r1)
+	lfd      f31, 0x28(r1)
+	lwz      r31, 0x24(r1)
+	lwz      r30, 0x20(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -1744,16 +2752,15 @@ void CreatureAnime::onCalcOn()
 void CreatureAnime::onCalcTurnOn()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x2C(r3)
-	  bl        -0x3596AC
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r3, 0x2c(r3)
+	bl       setPSEnemyBaseAnime__Q24Game9EnemyBaseFv
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1772,26 +2779,25 @@ void CreatureAnime::onCalcTurnOff() { }
 void CreatureAnime::frameEnd_onPlaySe()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  addi      r6, r3, 0x64
-	  addi      r5, r3, 0x68
-	  stw       r0, 0x24(r1)
-	  addi      r0, r3, 0x6C
-	  addi      r4, r1, 0x8
-	  stw       r3, 0x8(r1)
-	  stw       r6, 0xC(r1)
-	  stw       r5, 0x10(r1)
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0x28(r3)
-	  lwz       r12, 0x2C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	addi     r6, r3, 0x64
+	addi     r5, r3, 0x68
+	stw      r0, 0x24(r1)
+	addi     r0, r3, 0x6c
+	addi     r4, r1, 8
+	stw      r3, 8(r1)
+	stw      r6, 0xc(r1)
+	stw      r5, 0x10(r1)
+	stw      r0, 0x14(r1)
+	lwz      r12, 0x28(r3)
+	lwz      r12, 0x2c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -1803,28 +2809,27 @@ void CreatureAnime::frameEnd_onPlaySe()
 void BattleLink::battleOn()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        -0x5A2C
-	  cmplwi    r3, 0
-	  beq-      .loc_0x38
-	  lwz       r3, 0x64(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x38
-	  mr        r4, r31
-	  addi      r3, r3, 0xC
-	  bl        -0x437A64
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       PSMGetBattleD__Fv
+	cmplwi   r3, 0
+	beq      lbl_8045E34C
+	lwz      r3, 0x64(r3)
+	cmplwi   r3, 0
+	beq      lbl_8045E34C
+	mr       r4, r31
+	addi     r3, r3, 0xc
+	bl       append__10JSUPtrListFP10JSUPtrLink
 
-	.loc_0x38:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8045E34C:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1836,28 +2841,27 @@ void BattleLink::battleOn()
 void BattleLink::battleOff()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        -0x5A78
-	  cmplwi    r3, 0
-	  beq-      .loc_0x38
-	  lwz       r3, 0x64(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x38
-	  mr        r4, r31
-	  addi      r3, r3, 0xC
-	  bl        -0x437770
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       PSMGetBattleD__Fv
+	cmplwi   r3, 0
+	beq      lbl_8045E398
+	lwz      r3, 0x64(r3)
+	cmplwi   r3, 0
+	beq      lbl_8045E398
+	mr       r4, r31
+	addi     r3, r3, 0xc
+	bl       remove__10JSUPtrListFP10JSUPtrLink
 
-	.loc_0x38:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8045E398:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1869,28 +2873,27 @@ void BattleLink::battleOff()
 void KehaiLink::kehaiOn()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        -0x5BCC
-	  cmplwi    r3, 0
-	  beq-      .loc_0x38
-	  lwz       r3, 0x64(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x38
-	  mr        r4, r31
-	  addi      r3, r3, 0xC
-	  bl        -0x437AFC
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       PSMGetKehaiD__Fv
+	cmplwi   r3, 0
+	beq      lbl_8045E3E4
+	lwz      r3, 0x64(r3)
+	cmplwi   r3, 0
+	beq      lbl_8045E3E4
+	mr       r4, r31
+	addi     r3, r3, 0xc
+	bl       append__10JSUPtrListFP10JSUPtrLink
 
-	.loc_0x38:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8045E3E4:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1902,28 +2905,27 @@ void KehaiLink::kehaiOn()
 void KehaiLink::kehaiOff()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        -0x5C18
-	  cmplwi    r3, 0
-	  beq-      .loc_0x38
-	  lwz       r3, 0x64(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x38
-	  mr        r4, r31
-	  addi      r3, r3, 0xC
-	  bl        -0x437808
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       PSMGetKehaiD__Fv
+	cmplwi   r3, 0
+	beq      lbl_8045E430
+	lwz      r3, 0x64(r3)
+	cmplwi   r3, 0
+	beq      lbl_8045E430
+	mr       r4, r31
+	addi     r3, r3, 0xc
+	bl       remove__10JSUPtrListFP10JSUPtrLink
 
-	.loc_0x38:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8045E430:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1935,107 +2937,106 @@ void KehaiLink::kehaiOff()
 EnemyBase::EnemyBase(Game::EnemyBase*, unsigned char)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stmw      r26, 0x8(r1)
-	  mr        r28, r3
-	  mr        r30, r4
-	  mr        r31, r5
-	  mr        r4, r28
-	  mr        r29, r4
-	  mr        r26, r4
-	  mr        r27, r4
-	  bl        -0x437CB8
-	  addi      r3, r27, 0x10
-	  bl        -0x4414AC
-	  lis       r4, 0x804F
-	  lis       r3, 0x804F
-	  subi      r4, r4, 0xDD0
-	  cmplwi    r30, 0
-	  stw       r4, 0x28(r27)
-	  addi      r0, r4, 0x8
-	  subi      r3, r3, 0xE34
-	  stw       r0, 0x10(r27)
-	  addi      r0, r3, 0x8
-	  stw       r3, 0x28(r26)
-	  stw       r0, 0x10(r26)
-	  stw       r30, 0x2C(r26)
-	  bne-      .loc_0x88
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x3060
-	  li        r4, 0x61
-	  subi      r5, r5, 0x3048
-	  crclr     6, 0x6
-	  bl        -0x433E88
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stmw     r26, 8(r1)
+	mr       r28, r3
+	mr       r30, r4
+	mr       r31, r5
+	mr       r4, r28
+	mr       r29, r4
+	mr       r26, r4
+	mr       r27, r4
+	bl       __ct__10JSUPtrLinkFPv
+	addi     r3, r27, 0x10
+	bl       __ct__11JKRDisposerFv
+	lis      r4, __vt__Q23PSM7ObjBase@ha
+	lis      r3, __vt__Q23PSM8Creature@ha
+	addi     r4, r4, __vt__Q23PSM7ObjBase@l
+	cmplwi   r30, 0
+	stw      r4, 0x28(r27)
+	addi     r0, r4, 8
+	addi     r3, r3, __vt__Q23PSM8Creature@l
+	stw      r0, 0x10(r27)
+	addi     r0, r3, 8
+	stw      r3, 0x28(r26)
+	stw      r0, 0x10(r26)
+	stw      r30, 0x2c(r26)
+	bne      lbl_8045E4CC
+	lis      r3, lbl_8049CFA0@ha
+	lis      r5, lbl_8049CFB8@ha
+	addi     r3, r3, lbl_8049CFA0@l
+	li       r4, 0x61
+	addi     r5, r5, lbl_8049CFB8@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x88:
-	  lwz       r0, -0x6E44(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0xB0
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x3060
-	  li        r4, 0x62
-	  subi      r5, r5, 0x3048
-	  crclr     6, 0x6
-	  bl        -0x433EB0
+lbl_8045E4CC:
+	lwz      r0,
+"sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13) cmplwi   r0, 0
+	bne      lbl_8045E4F4
+	lis      r3, lbl_8049CFA0@ha
+	lis      r5, lbl_8049CFB8@ha
+	addi     r3, r3, lbl_8049CFA0@l
+	li       r4, 0x62
+	addi     r5, r5, lbl_8049CFB8@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xB0:
-	  mr        r3, r30
-	  lwz       r27, -0x77D4(r13)
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x100(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  mr        r5, r27
-	  mr        r6, r31
-	  addi      r3, r29, 0x30
-	  bl        -0x3B33F4
-	  lis       r3, 0x804F
-	  addi      r26, r28, 0xB8
-	  subi      r3, r3, 0xF60
-	  lfs       f0, 0x28F0(r2)
-	  stw       r3, 0x28(r29)
-	  addi      r4, r3, 0x8
-	  addi      r0, r3, 0x40
-	  mr        r3, r26
-	  stw       r4, 0x10(r29)
-	  mr        r4, r30
-	  stw       r0, 0x30(r29)
-	  stfs      f0, 0xAC(r29)
-	  stfs      f0, 0xB0(r29)
-	  bl        -0x437D9C
-	  lis       r3, 0x804F
-	  addi      r27, r28, 0xCC
-	  subi      r0, r3, 0xF70
-	  mr        r4, r30
-	  stw       r0, 0x10(r26)
-	  mr        r3, r27
-	  bl        -0x437DB8
-	  lis       r3, 0x804F
-	  lis       r4, 0x804F
-	  subi      r0, r3, 0xF80
-	  mr        r3, r28
-	  stw       r0, 0x10(r27)
-	  subi      r7, r4, 0x1054
-	  addi      r6, r7, 0x8
-	  stw       r7, 0x28(r28)
-	  addi      r5, r7, 0x40
-	  addi      r4, r7, 0xA4
-	  addi      r0, r7, 0xB4
-	  stw       r6, 0x10(r28)
-	  stw       r5, 0x30(r28)
-	  stw       r4, 0xC8(r28)
-	  stw       r0, 0xDC(r28)
-	  lmw       r26, 0x8(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8045E4F4:
+	mr       r3, r30
+	lwz      r27, sCurrentHeap__7JKRHeap@sda21(r13)
+	lwz      r12, 0(r30)
+	lwz      r12, 0x100(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	mr       r5, r27
+	mr       r6, r31
+	addi     r3, r29, 0x30
+	bl       __ct__13JAIAnimeSoundFP3VecP7JKRHeapUc
+	lis      r3, __vt__Q23PSM13CreatureAnime@ha
+	addi     r26, r28, 0xb8
+	addi     r3, r3, __vt__Q23PSM13CreatureAnime@l
+	lfs      f0, lbl_80520C50@sda21(r2)
+	stw      r3, 0x28(r29)
+	addi     r4, r3, 8
+	addi     r0, r3, 0x40
+	mr       r3, r26
+	stw      r4, 0x10(r29)
+	mr       r4, r30
+	stw      r0, 0x30(r29)
+	stfs     f0, 0xac(r29)
+	stfs     f0, 0xb0(r29)
+	bl       __ct__10JSUPtrLinkFPv
+	lis      r3, __vt__Q23PSM10BattleLink@ha
+	addi     r27, r28, 0xcc
+	addi     r0, r3, __vt__Q23PSM10BattleLink@l
+	mr       r4, r30
+	stw      r0, 0x10(r26)
+	mr       r3, r27
+	bl       __ct__10JSUPtrLinkFPv
+	lis      r3, __vt__Q23PSM9KehaiLink@ha
+	lis      r4, __vt__Q23PSM9EnemyBase@ha
+	addi     r0, r3, __vt__Q23PSM9KehaiLink@l
+	mr       r3, r28
+	stw      r0, 0x10(r27)
+	addi     r7, r4, __vt__Q23PSM9EnemyBase@l
+	addi     r6, r7, 8
+	stw      r7, 0x28(r28)
+	addi     r5, r7, 0x40
+	addi     r4, r7, 0xa4
+	addi     r0, r7, 0xb4
+	stw      r6, 0x10(r28)
+	stw      r5, 0x30(r28)
+	stw      r4, 0xc8(r28)
+	stw      r0, 0xdc(r28)
+	lmw      r26, 8(r1)
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -2047,68 +3048,67 @@ EnemyBase::EnemyBase(Game::EnemyBase*, unsigned char)
 CreatureAnime::~CreatureAnime()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0xC0
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x30
-	  subi      r4, r3, 0xF60
-	  stw       r4, 0x28(r30)
-	  addi      r3, r4, 0x8
-	  addi      r0, r4, 0x40
-	  stw       r3, 0x10(r30)
-	  stw       r0, 0x30(r30)
-	  beq-      .loc_0x5C
-	  lis       r4, 0x804A
-	  addi      r3, r30, 0x30
-	  addi      r0, r4, 0x6200
-	  li        r4, 0
-	  stw       r0, 0x30(r30)
-	  bl        -0x3A4A3C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_8045E684
+	lis      r3, __vt__Q23PSM13CreatureAnime@ha
+	addic.   r0, r30, 0x30
+	addi     r4, r3, __vt__Q23PSM13CreatureAnime@l
+	stw      r4, 0x28(r30)
+	addi     r3, r4, 8
+	addi     r0, r4, 0x40
+	stw      r3, 0x10(r30)
+	stw      r0, 0x30(r30)
+	beq      lbl_8045E620
+	lis      r4, __vt__13JAIAnimeSound@ha
+	addi     r3, r30, 0x30
+	addi     r0, r4, __vt__13JAIAnimeSound@l
+	li       r4, 0
+	stw      r0, 0x30(r30)
+	bl       __dt__Q27JAInter6ObjectFv
 
-	.loc_0x5C:
-	  cmplwi    r30, 0
-	  beq-      .loc_0xB0
-	  lis       r3, 0x804F
-	  subi      r3, r3, 0xE34
-	  stw       r3, 0x28(r30)
-	  addi      r0, r3, 0x8
-	  stw       r0, 0x10(r30)
-	  beq-      .loc_0xB0
-	  lis       r4, 0x804F
-	  addi      r3, r30, 0x10
-	  subi      r5, r4, 0xDD0
-	  li        r4, 0
-	  stw       r5, 0x28(r30)
-	  addi      r0, r5, 0x8
-	  stw       r0, 0x10(r30)
-	  bl        -0x441628
-	  cmplwi    r30, 0
-	  beq-      .loc_0xB0
-	  mr        r3, r30
-	  li        r4, 0
-	  bl        -0x437EA0
+lbl_8045E620:
+	cmplwi   r30, 0
+	beq      lbl_8045E674
+	lis      r3, __vt__Q23PSM8Creature@ha
+	addi     r3, r3, __vt__Q23PSM8Creature@l
+	stw      r3, 0x28(r30)
+	addi     r0, r3, 8
+	stw      r0, 0x10(r30)
+	beq      lbl_8045E674
+	lis      r4, __vt__Q23PSM7ObjBase@ha
+	addi     r3, r30, 0x10
+	addi     r5, r4, __vt__Q23PSM7ObjBase@l
+	li       r4, 0
+	stw      r5, 0x28(r30)
+	addi     r0, r5, 8
+	stw      r0, 0x10(r30)
+	bl       __dt__11JKRDisposerFv
+	cmplwi   r30, 0
+	beq      lbl_8045E674
+	mr       r3, r30
+	li       r4, 0
+	bl       __dt__10JSUPtrLinkFv
 
-	.loc_0xB0:
-	  extsh.    r0, r31
-	  ble-      .loc_0xC0
-	  mr        r3, r30
-	  bl        -0x43A5CC
+lbl_8045E674:
+	extsh.   r0, r31
+	ble      lbl_8045E684
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0xC0:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8045E684:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2238,34 +3238,33 @@ void EnemyBase::startAnimSound(unsigned long, JAISound**, JAInter::Actor*,
 void EnemyBase::startSoundInner(PSM::StartSoundArg&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r5, 0x2C(r3)
-	  lwz       r0, 0x1E0(r5)
-	  rlwinm.   r0,r0,0,22,22
-	  beq-      .loc_0x48
-	  lwz       r5, 0x4(r4)
-	  cmplwi    r5, 0x50B0
-	  beq-      .loc_0x48
-	  subi      r0, r5, 0x58B1
-	  cmplwi    r0, 0x2
-	  ble-      .loc_0x48
-	  rlwinm    r0,r5,20,28,31
-	  cmplwi    r0, 0x2
-	  beq-      .loc_0x48
-	  li        r3, 0
-	  b         .loc_0x4C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r5, 0x2c(r3)
+	lwz      r0, 0x1e0(r5)
+	rlwinm.  r0, r0, 0, 0x16, 0x16
+	beq      lbl_8045E85C
+	lwz      r5, 4(r4)
+	cmplwi   r5, 0x50b0
+	beq      lbl_8045E85C
+	addi     r0, r5, -22705
+	cmplwi   r0, 2
+	ble      lbl_8045E85C
+	rlwinm   r0, r5, 0x14, 0x1c, 0x1f
+	cmplwi   r0, 2
+	beq      lbl_8045E85C
+	li       r3, 0
+	b        lbl_8045E860
 
-	.loc_0x48:
-	  bl        -0x143C
+lbl_8045E85C:
+	bl       startSoundInner__Q23PSM8CreatureFRQ23PSM13StartSoundArg
 
-	.loc_0x4C:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8045E860:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2277,24 +3276,23 @@ void EnemyBase::startSoundInner(PSM::StartSoundArg&)
 void EnemyBase::onCalcTurnOn()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r3, 0x2C(r3)
-	  bl        -0x359C84
-	  mr        r3, r31
-	  lwz       r12, 0x28(r31)
-	  lwz       r12, 0xCC(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r3, 0x2c(r3)
+	bl       setPSEnemyBaseAnime__Q24Game9EnemyBaseFv
+	mr       r3, r31
+	lwz      r12, 0x28(r31)
+	lwz      r12, 0xcc(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2306,26 +3304,25 @@ void EnemyBase::onCalcTurnOn()
 void EnemyBase::onCalcTurnOff()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r12, 0x28(r3)
-	  lwz       r12, 0xC4(r12)
-	  mtctr     r12
-	  bctrl
-	  addi      r3, r31, 0xCC
-	  lwz       r12, 0xDC(r31)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r12, 0x28(r3)
+	lwz      r12, 0xc4(r12)
+	mtctr    r12
+	bctrl
+	addi     r3, r31, 0xcc
+	lwz      r12, 0xdc(r31)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2337,71 +3334,60 @@ void EnemyBase::onCalcTurnOff()
 void EnemyBase::onCalcOn()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stfd      f31, 0x28(r1)
-	  stw       r31, 0x24(r1)
-	  stw       r30, 0x20(r1)
-	  mr.       r30, r3
-	  lwz       r7, 0x54(r3)
-	  bne-      .loc_0x2C
-	  mr        r4, r7
-	  b         .loc_0x30
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stfd     f31, 0x28(r1)
+	stw      r31, 0x24(r1)
+	stw      r30, 0x20(r1)
+	or.      r30, r3, r3
+	lwz      r7, 0x54(r3)
+	bne      lbl_8045E92C
+	mr       r4, r7
+	b        lbl_8045E930
 
-	.loc_0x2C:
-	  mr        r4, r30
+lbl_8045E92C:
+	mr       r4, r30
 
-	.loc_0x30:
-	  li        r6, -0x1
-	  li        r5, 0
-	  li        r0, 0x1
-	  stw       r4, 0x8(r1)
-	  lwz       r3, -0x6E4C(r13)
-	  mr        r4, r30
-	  stw       r7, 0xC(r1)
-	  stw       r6, 0x10(r1)
-	  stw       r5, 0x14(r1)
-	  stb       r0, 0x18(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r31, r3
-	  lwz       r3, 0x2C(r30)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x2C(r30)
-	  fmr       f31, f1
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x108(r12)
-	  mtctr     r12
-	  bctrl
-	  fmr       f2, f31
-	  mr        r5, r31
-	  addi      r3, r30, 0x30
-	  addi      r4, r1, 0x8
-	  bl        -0x3B34DC
-	  mr        r3, r30
-	  lwz       r12, 0x28(r30)
-	  lwz       r12, 0xD0(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r3, r30
-	  lwz       r12, 0x28(r30)
-	  lwz       r12, 0xCC(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x34(r1)
-	  lfd       f31, 0x28(r1)
-	  lwz       r31, 0x24(r1)
-	  lwz       r30, 0x20(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_8045E930:
+	li       r6, -1
+	li       r5, 0
+	li       r0, 1
+	stw      r4, 8(r1)
+	lwz      r3,
+"sInstance__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@sda21(r13) mr r4,
+r30 stw      r7, 0xc(r1) stw      r6, 0x10(r1) stw      r5, 0x14(r1) stb r0,
+0x18(r1) lwz      r12, 0(r3) lwz      r12, 0xc(r12) mtctr    r12 bctrl mr r31,
+r3 lwz      r3, 0x2c(r30) lwz      r12, 0(r3) lwz      r12, 0x10c(r12) mtctr r12
+	bctrl
+	lwz      r3, 0x2c(r30)
+	fmr      f31, f1
+	lwz      r12, 0(r3)
+	lwz      r12, 0x108(r12)
+	mtctr    r12
+	bctrl
+	fmr      f2, f31
+	mr       r5, r31
+	addi     r3, r30, 0x30
+	addi     r4, r1, 8
+	bl       setAnimSoundActor__13JAIAnimeSoundFPQ27JAInter5ActorffUc
+	mr       r3, r30
+	lwz      r12, 0x28(r30)
+	lwz      r12, 0xd0(r12)
+	mtctr    r12
+	bctrl
+	mr       r3, r30
+	lwz      r12, 0x28(r30)
+	lwz      r12, 0xcc(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x34(r1)
+	lfd      f31, 0x28(r1)
+	lwz      r31, 0x24(r1)
+	lwz      r30, 0x20(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -2413,33 +3399,32 @@ void EnemyBase::onCalcOn()
 void EnemyBase::battleOff()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        -0x6108
-	  cmplwi    r3, 0
-	  beq-      .loc_0x38
-	  lwz       r3, 0x64(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x38
-	  addi      r3, r3, 0xC
-	  addi      r4, r31, 0xB8
-	  bl        -0x437E00
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       PSMGetBattleD__Fv
+	cmplwi   r3, 0
+	beq      lbl_8045EA28
+	lwz      r3, 0x64(r3)
+	cmplwi   r3, 0
+	beq      lbl_8045EA28
+	addi     r3, r3, 0xc
+	addi     r4, r31, 0xb8
+	bl       remove__10JSUPtrListFP10JSUPtrLink
 
-	.loc_0x38:
-	  mr        r3, r31
-	  lwz       r12, 0x28(r31)
-	  lwz       r12, 0xCC(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8045EA28:
+	mr       r3, r31
+	lwz      r12, 0x28(r31)
+	lwz      r12, 0xcc(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2451,45 +3436,44 @@ void EnemyBase::battleOff()
 void EnemyBase::updateKehai()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        0x13C
-	  lwz       r4, 0xD0(r31)
-	  rlwinm.   r0,r3,0,24,31
-	  neg       r0, r4
-	  or        r0, r0, r4
-	  rlwinm    r4,r0,1,31,31
-	  beq-      .loc_0x50
-	  cmplwi    r4, 0
-	  bne-      .loc_0x50
-	  addi      r3, r31, 0xCC
-	  lwz       r12, 0xDC(r31)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x74
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       calcKehai__Q23PSM9EnemyBaseFv
+	lwz      r4, 0xd0(r31)
+	clrlwi.  r0, r3, 0x18
+	neg      r0, r4
+	or       r0, r0, r4
+	srwi     r4, r0, 0x1f
+	beq      lbl_8045EAA0
+	cmplwi   r4, 0
+	bne      lbl_8045EAA0
+	addi     r3, r31, 0xcc
+	lwz      r12, 0xdc(r31)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_8045EAC4
 
-	.loc_0x50:
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x74
-	  cmplwi    r4, 0
-	  beq-      .loc_0x74
-	  addi      r3, r31, 0xCC
-	  lwz       r12, 0xDC(r31)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
+lbl_8045EAA0:
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_8045EAC4
+	cmplwi   r4, 0
+	beq      lbl_8045EAC4
+	addi     r3, r31, 0xcc
+	lwz      r12, 0xdc(r31)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x74:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8045EAC4:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2501,63 +3485,62 @@ void EnemyBase::updateKehai()
 void EnemyBase::updateBattle()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r3, 0x2C(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xA8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x94
-	  lwz       r3, 0x2C(r31)
-	  lbz       r0, 0x1F0(r3)
-	  cmplwi    r0, 0x2
-	  bne-      .loc_0x64
-	  lwz       r0, 0xBC(r31)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x64
-	  addi      r3, r31, 0xB8
-	  lwz       r12, 0xC8(r31)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0xB4
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r3, 0x2c(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xa8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_8045EB6C
+	lwz      r3, 0x2c(r31)
+	lbz      r0, 0x1f0(r3)
+	cmplwi   r0, 2
+	bne      lbl_8045EB3C
+	lwz      r0, 0xbc(r31)
+	cmplwi   r0, 0
+	bne      lbl_8045EB3C
+	addi     r3, r31, 0xb8
+	lwz      r12, 0xc8(r31)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_8045EB8C
 
-	.loc_0x64:
-	  lbz       r0, 0x1F0(r3)
-	  cmplwi    r0, 0x2
-	  beq-      .loc_0xB4
-	  lwz       r0, 0xBC(r31)
-	  cmplwi    r0, 0
-	  beq-      .loc_0xB4
-	  mr        r3, r31
-	  lwz       r12, 0x28(r31)
-	  lwz       r12, 0xC4(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0xB4
+lbl_8045EB3C:
+	lbz      r0, 0x1f0(r3)
+	cmplwi   r0, 2
+	beq      lbl_8045EB8C
+	lwz      r0, 0xbc(r31)
+	cmplwi   r0, 0
+	beq      lbl_8045EB8C
+	mr       r3, r31
+	lwz      r12, 0x28(r31)
+	lwz      r12, 0xc4(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_8045EB8C
 
-	.loc_0x94:
-	  lwz       r0, 0xBC(r31)
-	  cmplwi    r0, 0
-	  beq-      .loc_0xB4
-	  mr        r3, r31
-	  lwz       r12, 0x28(r31)
-	  lwz       r12, 0xC4(r12)
-	  mtctr     r12
-	  bctrl
+lbl_8045EB6C:
+	lwz      r0, 0xbc(r31)
+	cmplwi   r0, 0
+	beq      lbl_8045EB8C
+	mr       r3, r31
+	lwz      r12, 0x28(r31)
+	lwz      r12, 0xc4(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0xB4:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8045EB8C:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2569,237 +3552,236 @@ void EnemyBase::updateBattle()
 void EnemyBase::calcKehai()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x60(r1)
-	  mflr      r0
-	  stw       r0, 0x64(r1)
-	  stfd      f31, 0x50(r1)
-	  psq_st    f31,0x58(r1),0,0
-	  stw       r31, 0x4C(r1)
-	  stw       r30, 0x48(r1)
-	  mr        r30, r3
-	  lwz       r31, 0x2C(r3)
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0xA8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x5C
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0xD0(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x64
+	stwu     r1, -0x60(r1)
+	mflr     r0
+	stw      r0, 0x64(r1)
+	stfd     f31, 0x50(r1)
+	psq_st   f31, 88(r1), 0, qr0
+	stw      r31, 0x4c(r1)
+	stw      r30, 0x48(r1)
+	mr       r30, r3
+	lwz      r31, 0x2c(r3)
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r12, 0xa8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_8045EBFC
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r12, 0xd0(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_8045EC04
 
-	.loc_0x5C:
-	  li        r3, 0
-	  b         .loc_0x318
+lbl_8045EBFC:
+	li       r3, 0
+	b        lbl_8045EEB8
 
-	.loc_0x64:
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x100(r12)
-	  mtctr     r12
-	  bctrl
-	  li        r4, 0
-	  lwz       r0, -0x6D20(r13)
-	  lis       r5, 0x804B
-	  stw       r4, 0x38(r1)
-	  subi      r5, r5, 0x434C
-	  cmplwi    r4, 0
-	  stw       r5, 0x2C(r1)
-	  mr        r31, r3
-	  stw       r4, 0x30(r1)
-	  stw       r0, 0x34(r1)
-	  bne-      .loc_0xC0
-	  mr        r3, r0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x30(r1)
-	  b         .loc_0x2F4
+lbl_8045EC04:
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r12, 0x100(r12)
+	mtctr    r12
+	bctrl
+	li       r4, 0
+	lwz      r0, naviMgr__4Game@sda21(r13)
+	lis      r5, "__vt__22Iterator<Q24Game4Navi>"@ha
+	stw      r4, 0x38(r1)
+	addi     r5, r5, "__vt__22Iterator<Q24Game4Navi>"@l
+	cmplwi   r4, 0
+	stw      r5, 0x2c(r1)
+	mr       r31, r3
+	stw      r4, 0x30(r1)
+	stw      r0, 0x34(r1)
+	bne      lbl_8045EC60
+	mr       r3, r0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x30(r1)
+	b        lbl_8045EE94
 
-	.loc_0xC0:
-	  mr        r3, r0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x30(r1)
-	  b         .loc_0x130
+lbl_8045EC60:
+	mr       r3, r0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x30(r1)
+	b        lbl_8045ECD0
 
-	.loc_0xDC:
-	  lwz       r3, 0x34(r1)
-	  lwz       r4, 0x30(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x38(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x2F4
-	  lwz       r3, 0x34(r1)
-	  lwz       r4, 0x30(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x30(r1)
+lbl_8045EC7C:
+	lwz      r3, 0x34(r1)
+	lwz      r4, 0x30(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	lwz      r3, 0x38(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_8045EE94
+	lwz      r3, 0x34(r1)
+	lwz      r4, 0x30(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x30(r1)
 
-	.loc_0x130:
-	  lwz       r12, 0x2C(r1)
-	  addi      r3, r1, 0x2C
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0xDC
-	  b         .loc_0x2F4
+lbl_8045ECD0:
+	lwz      r12, 0x2c(r1)
+	addi     r3, r1, 0x2c
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_8045EC7C
+	b        lbl_8045EE94
 
-	.loc_0x150:
-	  lwz       r3, 0x34(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x278(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x238
-	  mr        r4, r3
-	  addi      r3, r1, 0x14
-	  lwz       r12, 0x0(r4)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f2, 0x14(r1)
-	  mr        r3, r30
-	  lfs       f1, 0x18(r1)
-	  lfs       f0, 0x1C(r1)
-	  stfs      f2, 0x8(r1)
-	  stfs      f1, 0xC(r1)
-	  lwz       r5, 0x8(r1)
-	  stfs      f0, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r0, 0x10(r1)
-	  stw       r5, 0x20(r1)
-	  stw       r4, 0x24(r1)
-	  stw       r0, 0x28(r1)
-	  lwz       r12, 0x28(r30)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm    r5,r3,2,0,29
-	  mr        r3, r30
-	  lwz       r12, 0x28(r30)
-	  lis       r4, 0x804A
-	  subi      r0, r4, 0x1E54
-	  lwz       r12, 0x1C(r12)
-	  add       r4, r0, r5
-	  lfs       f31, -0x8(r4)
-	  mtctr     r12
-	  bctrl
-	  lwz       r12, 0x28(r30)
-	  lis       r4, 0x804A
-	  rlwinm    r5,r3,2,0,29
-	  fmr       f2, f31
-	  subi      r0, r4, 0x1E8C
-	  lwz       r12, 0x34(r12)
-	  add       r5, r0, r5
-	  mr        r3, r30
-	  lfs       f1, -0x8(r5)
-	  mr        r4, r31
-	  addi      r5, r1, 0x20
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x238
-	  li        r3, 0x1
-	  b         .loc_0x318
+lbl_8045ECF0:
+	lwz      r3, 0x34(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x278(r3)
+	cmplwi   r0, 0
+	beq      lbl_8045EDD8
+	mr       r4, r3
+	addi     r3, r1, 0x14
+	lwz      r12, 0(r4)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f2, 0x14(r1)
+	mr       r3, r30
+	lfs      f1, 0x18(r1)
+	lfs      f0, 0x1c(r1)
+	stfs     f2, 8(r1)
+	stfs     f1, 0xc(r1)
+	lwz      r5, 8(r1)
+	stfs     f0, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r0, 0x10(r1)
+	stw      r5, 0x20(r1)
+	stw      r4, 0x24(r1)
+	stw      r0, 0x28(r1)
+	lwz      r12, 0x28(r30)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	slwi     r5, r3, 2
+	mr       r3, r30
+	lwz      r12, 0x28(r30)
+	lis      r4, cVolZeroDist_InnerSize_Kehai__Q23PSM11CreaturePrm@ha
+	addi     r0, r4, cVolZeroDist_InnerSize_Kehai__Q23PSM11CreaturePrm@l
+	lwz      r12, 0x1c(r12)
+	add      r4, r0, r5
+	lfs      f31, -8(r4)
+	mtctr    r12
+	bctrl
+	lwz      r12, 0x28(r30)
+	lis      r4, cVolZeroDist_Kehai__Q23PSM11CreaturePrm@ha
+	slwi     r5, r3, 2
+	fmr      f2, f31
+	addi     r0, r4, cVolZeroDist_Kehai__Q23PSM11CreaturePrm@l
+	lwz      r12, 0x34(r12)
+	add      r5, r0, r5
+	mr       r3, r30
+	lfs      f1, -8(r5)
+	mr       r4, r31
+	addi     r5, r1, 0x20
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_8045EDD8
+	li       r3, 1
+	b        lbl_8045EEB8
 
-	.loc_0x238:
-	  lwz       r0, 0x38(r1)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x264
-	  lwz       r3, 0x34(r1)
-	  lwz       r4, 0x30(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x30(r1)
-	  b         .loc_0x2F4
+lbl_8045EDD8:
+	lwz      r0, 0x38(r1)
+	cmplwi   r0, 0
+	bne      lbl_8045EE04
+	lwz      r3, 0x34(r1)
+	lwz      r4, 0x30(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x30(r1)
+	b        lbl_8045EE94
 
-	.loc_0x264:
-	  lwz       r3, 0x34(r1)
-	  lwz       r4, 0x30(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x30(r1)
-	  b         .loc_0x2D8
+lbl_8045EE04:
+	lwz      r3, 0x34(r1)
+	lwz      r4, 0x30(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x30(r1)
+	b        lbl_8045EE78
 
-	.loc_0x284:
-	  lwz       r3, 0x34(r1)
-	  lwz       r4, 0x30(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x38(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x2F4
-	  lwz       r3, 0x34(r1)
-	  lwz       r4, 0x30(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x30(r1)
+lbl_8045EE24:
+	lwz      r3, 0x34(r1)
+	lwz      r4, 0x30(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	lwz      r3, 0x38(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_8045EE94
+	lwz      r3, 0x34(r1)
+	lwz      r4, 0x30(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x30(r1)
 
-	.loc_0x2D8:
-	  lwz       r12, 0x2C(r1)
-	  addi      r3, r1, 0x2C
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x284
+lbl_8045EE78:
+	lwz      r12, 0x2c(r1)
+	addi     r3, r1, 0x2c
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_8045EE24
 
-	.loc_0x2F4:
-	  lwz       r3, 0x34(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r4, 0x30(r1)
-	  cmplw     r4, r3
-	  bne+      .loc_0x150
-	  li        r3, 0
+lbl_8045EE94:
+	lwz      r3, 0x34(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r4, 0x30(r1)
+	cmplw    r4, r3
+	bne      lbl_8045ECF0
+	li       r3, 0
 
-	.loc_0x318:
-	  psq_l     f31,0x58(r1),0,0
-	  lwz       r0, 0x64(r1)
-	  lfd       f31, 0x50(r1)
-	  lwz       r31, 0x4C(r1)
-	  lwz       r30, 0x48(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x60
-	  blr
+lbl_8045EEB8:
+	psq_l    f31, 88(r1), 0, qr0
+	lwz      r0, 0x64(r1)
+	lfd      f31, 0x50(r1)
+	lwz      r31, 0x4c(r1)
+	lwz      r30, 0x48(r1)
+	mtlr     r0
+	addi     r1, r1, 0x60
+	blr
 	*/
 }
 
@@ -2811,58 +3793,57 @@ void EnemyBase::calcKehai()
 void EnemyBase::judgeNearWithPlayer(const Vec&, const Vec&, float, float)
 {
 	/*
-	.loc_0x0:
-	  lfs       f3, 0x0(r4)
-	  lfs       f2, 0x0(r5)
-	  lfs       f0, 0x28F0(r2)
-	  fsubs     f2, f3, f2
-	  fcmpo     cr0, f2, f0
-	  cror      2, 0x1, 0x2
-	  bne-      .loc_0x20
-	  b         .loc_0x24
+	lfs      f3, 0(r4)
+	lfs      f2, 0(r5)
+	lfs      f0, lbl_80520C50@sda21(r2)
+	fsubs    f2, f3, f2
+	fcmpo    cr0, f2, f0
+	cror     2, 1, 2
+	bne      lbl_8045EEF8
+	b        lbl_8045EEFC
 
-	.loc_0x20:
-	  fneg      f2, f2
+lbl_8045EEF8:
+	fneg     f2, f2
 
-	.loc_0x24:
-	  fcmpo     cr0, f2, f1
-	  bge-      .loc_0x8C
-	  lfs       f3, 0x4(r4)
-	  lfs       f2, 0x4(r5)
-	  lfs       f0, 0x28F0(r2)
-	  fsubs     f2, f3, f2
-	  fcmpo     cr0, f2, f0
-	  cror      2, 0x1, 0x2
-	  bne-      .loc_0x4C
-	  b         .loc_0x50
+lbl_8045EEFC:
+	fcmpo    cr0, f2, f1
+	bge      lbl_8045EF64
+	lfs      f3, 4(r4)
+	lfs      f2, 4(r5)
+	lfs      f0, lbl_80520C50@sda21(r2)
+	fsubs    f2, f3, f2
+	fcmpo    cr0, f2, f0
+	cror     2, 1, 2
+	bne      lbl_8045EF24
+	b        lbl_8045EF28
 
-	.loc_0x4C:
-	  fneg      f2, f2
+lbl_8045EF24:
+	fneg     f2, f2
 
-	.loc_0x50:
-	  fcmpo     cr0, f2, f1
-	  bge-      .loc_0x8C
-	  lfs       f3, 0x8(r4)
-	  lfs       f2, 0x8(r5)
-	  lfs       f0, 0x28F0(r2)
-	  fsubs     f2, f3, f2
-	  fcmpo     cr0, f2, f0
-	  cror      2, 0x1, 0x2
-	  bne-      .loc_0x78
-	  b         .loc_0x7C
+lbl_8045EF28:
+	fcmpo    cr0, f2, f1
+	bge      lbl_8045EF64
+	lfs      f3, 8(r4)
+	lfs      f2, 8(r5)
+	lfs      f0, lbl_80520C50@sda21(r2)
+	fsubs    f2, f3, f2
+	fcmpo    cr0, f2, f0
+	cror     2, 1, 2
+	bne      lbl_8045EF50
+	b        lbl_8045EF54
 
-	.loc_0x78:
-	  fneg      f2, f2
+lbl_8045EF50:
+	fneg     f2, f2
 
-	.loc_0x7C:
-	  fcmpo     cr0, f2, f1
-	  bge-      .loc_0x8C
-	  li        r3, 0x1
-	  blr
+lbl_8045EF54:
+	fcmpo    cr0, f2, f1
+	bge      lbl_8045EF64
+	li       r3, 1
+	blr
 
-	.loc_0x8C:
-	  li        r3, 0
-	  blr
+lbl_8045EF64:
+	li       r3, 0
+	blr
 	*/
 }
 
@@ -2874,118 +3855,117 @@ void EnemyBase::judgeNearWithPlayer(const Vec&, const Vec&, float, float)
 EnemyNotAggressive::EnemyNotAggressive(Game::EnemyBase*, unsigned char)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stmw      r26, 0x8(r1)
-	  mr        r28, r3
-	  mr        r30, r4
-	  mr        r31, r5
-	  mr        r29, r28
-	  mr        r26, r28
-	  mr        r27, r28
-	  mr        r4, r28
-	  bl        -0x4387E0
-	  addi      r3, r27, 0x10
-	  bl        -0x441FD4
-	  lis       r4, 0x804F
-	  lis       r3, 0x804F
-	  subi      r4, r4, 0xDD0
-	  cmplwi    r30, 0
-	  stw       r4, 0x28(r27)
-	  addi      r0, r4, 0x8
-	  subi      r3, r3, 0xE34
-	  stw       r0, 0x10(r27)
-	  addi      r0, r3, 0x8
-	  stw       r3, 0x28(r26)
-	  stw       r0, 0x10(r26)
-	  stw       r30, 0x2C(r26)
-	  bne-      .loc_0x88
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x3060
-	  li        r4, 0x61
-	  subi      r5, r5, 0x3048
-	  crclr     6, 0x6
-	  bl        -0x4349B0
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stmw     r26, 8(r1)
+	mr       r28, r3
+	mr       r30, r4
+	mr       r31, r5
+	mr       r29, r28
+	mr       r26, r28
+	mr       r27, r28
+	mr       r4, r28
+	bl       __ct__10JSUPtrLinkFPv
+	addi     r3, r27, 0x10
+	bl       __ct__11JKRDisposerFv
+	lis      r4, __vt__Q23PSM7ObjBase@ha
+	lis      r3, __vt__Q23PSM8Creature@ha
+	addi     r4, r4, __vt__Q23PSM7ObjBase@l
+	cmplwi   r30, 0
+	stw      r4, 0x28(r27)
+	addi     r0, r4, 8
+	addi     r3, r3, __vt__Q23PSM8Creature@l
+	stw      r0, 0x10(r27)
+	addi     r0, r3, 8
+	stw      r3, 0x28(r26)
+	stw      r0, 0x10(r26)
+	stw      r30, 0x2c(r26)
+	bne      lbl_8045EFF4
+	lis      r3, lbl_8049CFA0@ha
+	lis      r5, lbl_8049CFB8@ha
+	addi     r3, r3, lbl_8049CFA0@l
+	li       r4, 0x61
+	addi     r5, r5, lbl_8049CFB8@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x88:
-	  lwz       r0, -0x6E44(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0xB0
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x3060
-	  li        r4, 0x62
-	  subi      r5, r5, 0x3048
-	  crclr     6, 0x6
-	  bl        -0x4349D8
+lbl_8045EFF4:
+	lwz      r0,
+"sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13) cmplwi   r0, 0
+	bne      lbl_8045F01C
+	lis      r3, lbl_8049CFA0@ha
+	lis      r5, lbl_8049CFB8@ha
+	addi     r3, r3, lbl_8049CFA0@l
+	li       r4, 0x62
+	addi     r5, r5, lbl_8049CFB8@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xB0:
-	  mr        r3, r30
-	  lwz       r27, -0x77D4(r13)
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x100(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  mr        r5, r27
-	  mr        r6, r31
-	  addi      r3, r29, 0x30
-	  bl        -0x3B3F1C
-	  lis       r3, 0x804F
-	  addi      r26, r28, 0xB8
-	  subi      r3, r3, 0xF60
-	  lfs       f0, 0x28F0(r2)
-	  stw       r3, 0x28(r29)
-	  addi      r4, r3, 0x8
-	  addi      r0, r3, 0x40
-	  mr        r3, r26
-	  stw       r4, 0x10(r29)
-	  mr        r4, r30
-	  stw       r0, 0x30(r29)
-	  stfs      f0, 0xAC(r29)
-	  stfs      f0, 0xB0(r29)
-	  bl        -0x4388C4
-	  lis       r3, 0x804F
-	  addi      r27, r28, 0xCC
-	  subi      r0, r3, 0xF70
-	  mr        r4, r30
-	  stw       r0, 0x10(r26)
-	  mr        r3, r27
-	  bl        -0x4388E0
-	  lis       r3, 0x804F
-	  lis       r4, 0x804F
-	  subi      r0, r3, 0xF80
-	  lis       r3, 0x804F
-	  stw       r0, 0x10(r27)
-	  subi      r5, r4, 0x1054
-	  subi      r7, r3, 0x1134
-	  mr        r3, r28
-	  stw       r5, 0x28(r28)
-	  addi      r4, r5, 0x8
-	  addi      r0, r5, 0x40
-	  addi      r9, r5, 0xA4
-	  stw       r4, 0x10(r28)
-	  addi      r8, r5, 0xB4
-	  addi      r6, r7, 0x8
-	  addi      r5, r7, 0x40
-	  stw       r0, 0x30(r28)
-	  addi      r4, r7, 0xA4
-	  addi      r0, r7, 0xB4
-	  stw       r9, 0xC8(r28)
-	  stw       r8, 0xDC(r28)
-	  stw       r7, 0x28(r28)
-	  stw       r6, 0x10(r28)
-	  stw       r5, 0x30(r28)
-	  stw       r4, 0xC8(r28)
-	  stw       r0, 0xDC(r28)
-	  lmw       r26, 0x8(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8045F01C:
+	mr       r3, r30
+	lwz      r27, sCurrentHeap__7JKRHeap@sda21(r13)
+	lwz      r12, 0(r30)
+	lwz      r12, 0x100(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	mr       r5, r27
+	mr       r6, r31
+	addi     r3, r29, 0x30
+	bl       __ct__13JAIAnimeSoundFP3VecP7JKRHeapUc
+	lis      r3, __vt__Q23PSM13CreatureAnime@ha
+	addi     r26, r28, 0xb8
+	addi     r3, r3, __vt__Q23PSM13CreatureAnime@l
+	lfs      f0, lbl_80520C50@sda21(r2)
+	stw      r3, 0x28(r29)
+	addi     r4, r3, 8
+	addi     r0, r3, 0x40
+	mr       r3, r26
+	stw      r4, 0x10(r29)
+	mr       r4, r30
+	stw      r0, 0x30(r29)
+	stfs     f0, 0xac(r29)
+	stfs     f0, 0xb0(r29)
+	bl       __ct__10JSUPtrLinkFPv
+	lis      r3, __vt__Q23PSM10BattleLink@ha
+	addi     r27, r28, 0xcc
+	addi     r0, r3, __vt__Q23PSM10BattleLink@l
+	mr       r4, r30
+	stw      r0, 0x10(r26)
+	mr       r3, r27
+	bl       __ct__10JSUPtrLinkFPv
+	lis      r3, __vt__Q23PSM9KehaiLink@ha
+	lis      r4, __vt__Q23PSM9EnemyBase@ha
+	addi     r0, r3, __vt__Q23PSM9KehaiLink@l
+	lis      r3, __vt__Q23PSM18EnemyNotAggressive@ha
+	stw      r0, 0x10(r27)
+	addi     r5, r4, __vt__Q23PSM9EnemyBase@l
+	addi     r7, r3, __vt__Q23PSM18EnemyNotAggressive@l
+	mr       r3, r28
+	stw      r5, 0x28(r28)
+	addi     r4, r5, 8
+	addi     r0, r5, 0x40
+	addi     r9, r5, 0xa4
+	stw      r4, 0x10(r28)
+	addi     r8, r5, 0xb4
+	addi     r6, r7, 8
+	addi     r5, r7, 0x40
+	stw      r0, 0x30(r28)
+	addi     r4, r7, 0xa4
+	addi     r0, r7, 0xb4
+	stw      r9, 0xc8(r28)
+	stw      r8, 0xdc(r28)
+	stw      r7, 0x28(r28)
+	stw      r6, 0x10(r28)
+	stw      r5, 0x30(r28)
+	stw      r4, 0xc8(r28)
+	stw      r0, 0xdc(r28)
+	lmw      r26, 8(r1)
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -2997,101 +3977,100 @@ EnemyNotAggressive::EnemyNotAggressive(Game::EnemyBase*, unsigned char)
 Tsuyukusa::Tsuyukusa(Game::Creature*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stmw      r27, 0xC(r1)
-	  mr        r29, r3
-	  mr        r31, r4
-	  mr        r4, r29
-	  mr        r30, r4
-	  mr        r27, r4
-	  mr        r28, r4
-	  bl        -0x438988
-	  addi      r3, r28, 0x10
-	  bl        -0x44217C
-	  lis       r4, 0x804F
-	  lis       r3, 0x804F
-	  subi      r4, r4, 0xDD0
-	  cmplwi    r31, 0
-	  stw       r4, 0x28(r28)
-	  addi      r0, r4, 0x8
-	  subi      r3, r3, 0xE34
-	  stw       r0, 0x10(r28)
-	  addi      r0, r3, 0x8
-	  stw       r3, 0x28(r27)
-	  stw       r0, 0x10(r27)
-	  stw       r31, 0x2C(r27)
-	  bne-      .loc_0x84
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x3060
-	  li        r4, 0x61
-	  subi      r5, r5, 0x3048
-	  crclr     6, 0x6
-	  bl        -0x434B58
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stmw     r27, 0xc(r1)
+	mr       r29, r3
+	mr       r31, r4
+	mr       r4, r29
+	mr       r30, r4
+	mr       r27, r4
+	mr       r28, r4
+	bl       __ct__10JSUPtrLinkFPv
+	addi     r3, r28, 0x10
+	bl       __ct__11JKRDisposerFv
+	lis      r4, __vt__Q23PSM7ObjBase@ha
+	lis      r3, __vt__Q23PSM8Creature@ha
+	addi     r4, r4, __vt__Q23PSM7ObjBase@l
+	cmplwi   r31, 0
+	stw      r4, 0x28(r28)
+	addi     r0, r4, 8
+	addi     r3, r3, __vt__Q23PSM8Creature@l
+	stw      r0, 0x10(r28)
+	addi     r0, r3, 8
+	stw      r3, 0x28(r27)
+	stw      r0, 0x10(r27)
+	stw      r31, 0x2c(r27)
+	bne      lbl_8045F19C
+	lis      r3, lbl_8049CFA0@ha
+	lis      r5, lbl_8049CFB8@ha
+	addi     r3, r3, lbl_8049CFA0@l
+	li       r4, 0x61
+	addi     r5, r5, lbl_8049CFB8@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x84:
-	  lwz       r0, -0x6E44(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0xAC
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x3060
-	  li        r4, 0x62
-	  subi      r5, r5, 0x3048
-	  crclr     6, 0x6
-	  bl        -0x434B80
+lbl_8045F19C:
+	lwz      r0,
+"sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13) cmplwi   r0, 0
+	bne      lbl_8045F1C4
+	lis      r3, lbl_8049CFA0@ha
+	lis      r5, lbl_8049CFB8@ha
+	addi     r3, r3, lbl_8049CFA0@l
+	li       r4, 0x62
+	addi     r5, r5, lbl_8049CFB8@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xAC:
-	  mr        r3, r31
-	  lwz       r28, -0x77D4(r13)
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x100(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  mr        r5, r28
-	  addi      r3, r30, 0x30
-	  li        r6, 0x2
-	  bl        -0x3A5700
-	  lis       r4, 0x804F
-	  lis       r3, 0x804F
-	  subi      r5, r4, 0xEBC
-	  li        r0, 0
-	  stw       r5, 0x28(r30)
-	  subi      r7, r3, 0x11BC
-	  addi      r4, r5, 0x8
-	  addi      r3, r5, 0x40
-	  stw       r4, 0x10(r30)
-	  addi      r6, r7, 0x8
-	  addi      r5, r7, 0x40
-	  mr        r4, r31
-	  stw       r3, 0x30(r30)
-	  addi      r3, r29, 0x74
-	  stw       r7, 0x28(r29)
-	  stw       r6, 0x10(r29)
-	  stw       r5, 0x30(r29)
-	  stw       r0, 0x70(r29)
-	  bl        -0x438A80
-	  cmplwi    r31, 0
-	  bne-      .loc_0x148
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x3060
-	  li        r4, 0x436
-	  subi      r5, r5, 0x3048
-	  crclr     6, 0x6
-	  bl        -0x434C1C
+lbl_8045F1C4:
+	mr       r3, r31
+	lwz      r28, sCurrentHeap__7JKRHeap@sda21(r13)
+	lwz      r12, 0(r31)
+	lwz      r12, 0x100(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	mr       r5, r28
+	addi     r3, r30, 0x30
+	li       r6, 2
+	bl       __ct__Q27JAInter6ObjectFP3VecP7JKRHeapUc
+	lis      r4, __vt__Q23PSM11CreatureObj@ha
+	lis      r3, __vt__Q23PSM9Tsuyukusa@ha
+	addi     r5, r4, __vt__Q23PSM11CreatureObj@l
+	li       r0, 0
+	stw      r5, 0x28(r30)
+	addi     r7, r3, __vt__Q23PSM9Tsuyukusa@l
+	addi     r4, r5, 8
+	addi     r3, r5, 0x40
+	stw      r4, 0x10(r30)
+	addi     r6, r7, 8
+	addi     r5, r7, 0x40
+	mr       r4, r31
+	stw      r3, 0x30(r30)
+	addi     r3, r29, 0x74
+	stw      r7, 0x28(r29)
+	stw      r6, 0x10(r29)
+	stw      r5, 0x30(r29)
+	stw      r0, 0x70(r29)
+	bl       __ct__10JSUPtrLinkFPv
+	cmplwi   r31, 0
+	bne      lbl_8045F260
+	lis      r3, lbl_8049CFA0@ha
+	lis      r5, lbl_8049CFB8@ha
+	addi     r3, r3, lbl_8049CFA0@l
+	li       r4, 0x436
+	addi     r5, r5, lbl_8049CFB8@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x148:
-	  mr        r3, r29
-	  lmw       r27, 0xC(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8045F260:
+	mr       r3, r29
+	lmw      r27, 0xc(r1)
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -3103,59 +4082,58 @@ Tsuyukusa::Tsuyukusa(Game::Creature*)
 void Tsuyukusa::noukouFrameWork(bool)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  mr        r30, r4
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  bl        -0x669C
-	  lwz       r31, 0x64(r3)
-	  cmplwi    r31, 0
-	  bne-      .loc_0x4C
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x3060
-	  li        r4, 0x43E
-	  subi      r5, r5, 0x3048
-	  crclr     6, 0x6
-	  bl        -0x434C80
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	mr       r30, r4
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	bl       PSMGetGroundD__Fv
+	lwz      r31, 0x64(r3)
+	cmplwi   r31, 0
+	bne      lbl_8045F2C4
+	lis      r3, lbl_8049CFA0@ha
+	lis      r5, lbl_8049CFB8@ha
+	addi     r3, r3, lbl_8049CFA0@l
+	li       r4, 0x43e
+	addi     r5, r5, lbl_8049CFB8@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x4C:
-	  rlwinm    r0,r30,0,24,31
-	  cmplwi    r0, 0x1
-	  bne-      .loc_0x74
-	  lwz       r0, 0x70(r29)
-	  cmpwi     r0, 0
-	  bne-      .loc_0x74
-	  addi      r3, r31, 0xC
-	  addi      r4, r29, 0x74
-	  bl        -0x438A00
-	  b         .loc_0x94
+lbl_8045F2C4:
+	clrlwi   r0, r30, 0x18
+	cmplwi   r0, 1
+	bne      lbl_8045F2EC
+	lwz      r0, 0x70(r29)
+	cmpwi    r0, 0
+	bne      lbl_8045F2EC
+	addi     r3, r31, 0xc
+	addi     r4, r29, 0x74
+	bl       append__10JSUPtrListFP10JSUPtrLink
+	b        lbl_8045F30C
 
-	.loc_0x74:
-	  rlwinm.   r0,r30,0,24,31
-	  bne-      .loc_0x94
-	  lwz       r0, 0x70(r29)
-	  cmpwi     r0, 0x1
-	  bne-      .loc_0x94
-	  addi      r3, r31, 0xC
-	  addi      r4, r29, 0x74
-	  bl        -0x4386E4
+lbl_8045F2EC:
+	clrlwi.  r0, r30, 0x18
+	bne      lbl_8045F30C
+	lwz      r0, 0x70(r29)
+	cmpwi    r0, 1
+	bne      lbl_8045F30C
+	addi     r3, r31, 0xc
+	addi     r4, r29, 0x74
+	bl       remove__10JSUPtrListFP10JSUPtrLink
 
-	.loc_0x94:
-	  rlwinm    r0,r30,0,24,31
-	  stw       r0, 0x70(r29)
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8045F30C:
+	clrlwi   r0, r30, 0x18
+	stw      r0, 0x70(r29)
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -3167,101 +4145,100 @@ void Tsuyukusa::noukouFrameWork(bool)
 void EnemyBig::judgeNearWithPlayer(const Vec&, const Vec&, float, float)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stfd      f31, 0x20(r1)
-	  psq_st    f31,0x28(r1),0,0
-	  stfd      f30, 0x10(r1)
-	  psq_st    f30,0x18(r1),0,0
-	  stw       r31, 0xC(r1)
-	  stw       r30, 0x8(r1)
-	  fmr       f30, f1
-	  mr        r30, r4
-	  fmr       f31, f2
-	  mr        r31, r5
-	  fcmpo     cr0, f30, f31
-	  bgt-      .loc_0x58
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x303C
-	  li        r4, 0x2D
-	  subi      r5, r5, 0x3048
-	  crclr     6, 0x6
-	  bl        -0x434D44
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stfd     f31, 0x20(r1)
+	psq_st   f31, 40(r1), 0, qr0
+	stfd     f30, 0x10(r1)
+	psq_st   f30, 24(r1), 0, qr0
+	stw      r31, 0xc(r1)
+	stw      r30, 8(r1)
+	fmr      f30, f1
+	mr       r30, r4
+	fmr      f31, f2
+	mr       r31, r5
+	fcmpo    cr0, f30, f31
+	bgt      lbl_8045F388
+	lis      r3, lbl_8049CFC4@ha
+	lis      r5, lbl_8049CFB8@ha
+	addi     r3, r3, lbl_8049CFC4@l
+	li       r4, 0x2d
+	addi     r5, r5, lbl_8049CFB8@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x58:
-	  lfs       f2, 0x0(r30)
-	  lfs       f1, 0x0(r31)
-	  lfs       f0, 0x28F0(r2)
-	  fsubs     f3, f2, f1
-	  fcmpo     cr0, f3, f0
-	  cror      2, 0x1, 0x2
-	  bne-      .loc_0x78
-	  b         .loc_0x7C
+lbl_8045F388:
+	lfs      f2, 0(r30)
+	lfs      f1, 0(r31)
+	lfs      f0, lbl_80520C50@sda21(r2)
+	fsubs    f3, f2, f1
+	fcmpo    cr0, f3, f0
+	cror     2, 1, 2
+	bne      lbl_8045F3A8
+	b        lbl_8045F3AC
 
-	.loc_0x78:
-	  fneg      f3, f3
+lbl_8045F3A8:
+	fneg     f3, f3
 
-	.loc_0x7C:
-	  lfs       f2, 0x4(r30)
-	  lfs       f1, 0x4(r31)
-	  lfs       f0, 0x28F0(r2)
-	  fsubs     f4, f2, f1
-	  fcmpo     cr0, f4, f0
-	  cror      2, 0x1, 0x2
-	  bne-      .loc_0x9C
-	  b         .loc_0xA0
+lbl_8045F3AC:
+	lfs      f2, 4(r30)
+	lfs      f1, 4(r31)
+	lfs      f0, lbl_80520C50@sda21(r2)
+	fsubs    f4, f2, f1
+	fcmpo    cr0, f4, f0
+	cror     2, 1, 2
+	bne      lbl_8045F3CC
+	b        lbl_8045F3D0
 
-	.loc_0x9C:
-	  fneg      f4, f4
+lbl_8045F3CC:
+	fneg     f4, f4
 
-	.loc_0xA0:
-	  lfs       f2, 0x8(r30)
-	  lfs       f1, 0x8(r31)
-	  lfs       f0, 0x28F0(r2)
-	  fsubs     f1, f2, f1
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0x1, 0x2
-	  bne-      .loc_0xC0
-	  b         .loc_0xC4
+lbl_8045F3D0:
+	lfs      f2, 8(r30)
+	lfs      f1, 8(r31)
+	lfs      f0, lbl_80520C50@sda21(r2)
+	fsubs    f1, f2, f1
+	fcmpo    cr0, f1, f0
+	cror     2, 1, 2
+	bne      lbl_8045F3F0
+	b        lbl_8045F3F4
 
-	.loc_0xC0:
-	  fneg      f1, f1
+lbl_8045F3F0:
+	fneg     f1, f1
 
-	.loc_0xC4:
-	  fcmpo     cr0, f3, f30
-	  bge-      .loc_0xFC
-	  fcmpo     cr0, f4, f30
-	  bge-      .loc_0xFC
-	  fcmpo     cr0, f1, f30
-	  bge-      .loc_0xFC
-	  fcmpo     cr0, f3, f31
-	  ble-      .loc_0xF4
-	  fcmpo     cr0, f4, f31
-	  ble-      .loc_0xF4
-	  fcmpo     cr0, f1, f31
-	  bgt-      .loc_0xFC
+lbl_8045F3F4:
+	fcmpo    cr0, f3, f30
+	bge      lbl_8045F42C
+	fcmpo    cr0, f4, f30
+	bge      lbl_8045F42C
+	fcmpo    cr0, f1, f30
+	bge      lbl_8045F42C
+	fcmpo    cr0, f3, f31
+	ble      lbl_8045F424
+	fcmpo    cr0, f4, f31
+	ble      lbl_8045F424
+	fcmpo    cr0, f1, f31
+	bgt      lbl_8045F42C
 
-	.loc_0xF4:
-	  li        r3, 0x1
-	  b         .loc_0x100
+lbl_8045F424:
+	li       r3, 1
+	b        lbl_8045F430
 
-	.loc_0xFC:
-	  li        r3, 0
+lbl_8045F42C:
+	li       r3, 0
 
-	.loc_0x100:
-	  psq_l     f31,0x28(r1),0,0
-	  lfd       f31, 0x20(r1)
-	  psq_l     f30,0x18(r1),0,0
-	  lfd       f30, 0x10(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x34(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_8045F430:
+	psq_l    f31, 40(r1), 0, qr0
+	lfd      f31, 0x20(r1)
+	psq_l    f30, 24(r1), 0, qr0
+	lfd      f30, 0x10(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x34(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -3273,38 +4250,37 @@ void EnemyBig::judgeNearWithPlayer(const Vec&, const Vec&, float, float)
 void EnemyBoss::onPlayingSe(unsigned long, JAISound*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stw       r31, 0x2C(r1)
-	  mr.       r31, r5
-	  beq-      .loc_0x60
-	  lfs       f5, 0x28F0(r2)
-	  li        r0, 0
-	  lfs       f1, 0x28FC(r2)
-	  addi      r3, r1, 0x8
-	  stfs      f5, 0xC(r1)
-	  lfs       f2, -0x790C(r13)
-	  stfs      f1, 0x8(r1)
-	  lfs       f3, -0x7908(r13)
-	  stfs      f5, 0x10(r1)
-	  lfs       f4, -0x7904(r13)
-	  stfs      f5, 0x14(r1)
-	  stfs      f5, 0x18(r1)
-	  stb       r0, 0x1C(r1)
-	  stb       r0, 0x1D(r1)
-	  bl        -0x12A95C
-	  mr        r3, r31
-	  addi      r4, r1, 0x8
-	  bl        0x11FA4
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stw      r31, 0x2c(r1)
+	or.      r31, r5, r5
+	beq      lbl_8045F4B8
+	lfs      f5, lbl_80520C50@sda21(r2)
+	li       r0, 0
+	lfs      f1, lbl_80520C5C@sda21(r2)
+	addi     r3, r1, 8
+	stfs     f5, 0xc(r1)
+	lfs      f2, sBoss_ViewDist__3PSM@sda21(r13)
+	stfs     f1, 8(r1)
+	lfs      f3, sBoss_ViewDistVol__3PSM@sda21(r13)
+	stfs     f5, 0x10(r1)
+	lfs      f4, sBoss_DistMax__3PSM@sda21(r13)
+	stfs     f5, 0x14(r1)
+	stfs     f5, 0x18(r1)
+	stb      r0, 0x1c(r1)
+	stb      r0, 0x1d(r1)
+	bl       set__Q36PSGame10SoundTable11SePerspInfoFfffff
+	mr       r3, r31
+	addi     r4, r1, 8
+	bl specializePerspCalc__Q23PSM7SeSoundFRCQ36PSGame10SoundTable11SePerspInfo
 
-	.loc_0x60:
-	  lwz       r0, 0x34(r1)
-	  lwz       r31, 0x2C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_8045F4B8:
+	lwz      r0, 0x34(r1)
+	lwz      r31, 0x2c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -3316,12 +4292,11 @@ void EnemyBoss::onPlayingSe(unsigned long, JAISound*)
 void EnemyBoss::judgeNearWithPlayer(const Vec&, const Vec&, float, float)
 {
 	/*
-	.loc_0x0:
-	  lfs       f0, 0xE0(r3)
-	  fcmpo     cr0, f0, f1
-	  mfcr      r0
-	  rlwinm    r3,r0,1,31,31
-	  blr
+	lfs      f0, 0xe0(r3)
+	fcmpo    cr0, f0, f1
+	mfcr     r0
+	srwi     r3, r0, 0x1f
+	blr
 	*/
 }
 
@@ -3333,58 +4308,57 @@ void EnemyBoss::judgeNearWithPlayer(const Vec&, const Vec&, float, float)
 void EnemyBoss::exec()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lwz       r3, 0x2C(r3)
-	  lbz       r31, 0xB4(r30)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x104(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm    r0,r3,0,24,31
-	  cntlzw    r0, r0
-	  rlwinm    r0,r0,27,5,31
-	  stb       r0, 0xB4(r30)
-	  lbz       r0, 0xB4(r30)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x80
-	  cmplwi    r31, 0
-	  bne-      .loc_0x68
-	  mr        r3, r30
-	  lwz       r12, 0x28(r30)
-	  lwz       r12, 0x9C(r12)
-	  mtctr     r12
-	  bctrl
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lwz      r3, 0x2c(r3)
+	lbz      r31, 0xb4(r30)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x104(r12)
+	mtctr    r12
+	bctrl
+	clrlwi   r0, r3, 0x18
+	cntlzw   r0, r0
+	srwi     r0, r0, 5
+	stb      r0, 0xb4(r30)
+	lbz      r0, 0xb4(r30)
+	cmplwi   r0, 0
+	beq      lbl_8045F560
+	cmplwi   r31, 0
+	bne      lbl_8045F548
+	mr       r3, r30
+	lwz      r12, 0x28(r30)
+	lwz      r12, 0x9c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x68:
-	  mr        r3, r30
-	  lwz       r12, 0x28(r30)
-	  lwz       r12, 0x28(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x9C
+lbl_8045F548:
+	mr       r3, r30
+	lwz      r12, 0x28(r30)
+	lwz      r12, 0x28(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_8045F57C
 
-	.loc_0x80:
-	  cmplwi    r31, 0x1
-	  bne-      .loc_0x9C
-	  mr        r3, r30
-	  lwz       r12, 0x28(r30)
-	  lwz       r12, 0xA0(r12)
-	  mtctr     r12
-	  bctrl
+lbl_8045F560:
+	cmplwi   r31, 1
+	bne      lbl_8045F57C
+	mr       r3, r30
+	lwz      r12, 0x28(r30)
+	lwz      r12, 0xa0(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x9C:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8045F57C:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -3396,75 +4370,62 @@ void EnemyBoss::exec()
 void EnemyBoss::onCalcOn()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stfd      f31, 0x28(r1)
-	  stw       r31, 0x24(r1)
-	  stw       r30, 0x20(r1)
-	  mr        r30, r3
-	  bl        .loc_0xF8
-	  cmplwi    r30, 0
-	  lwz       r7, 0x54(r30)
-	  bne-      .loc_0x34
-	  mr        r4, r7
-	  b         .loc_0x38
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stfd     f31, 0x28(r1)
+	stw      r31, 0x24(r1)
+	stw      r30, 0x20(r1)
+	mr       r30, r3
+	bl       calcDistance__Q23PSM9EnemyBossFv
+	cmplwi   r30, 0
+	lwz      r7, 0x54(r30)
+	bne      lbl_8045F5C8
+	mr       r4, r7
+	b        lbl_8045F5CC
 
-	.loc_0x34:
-	  mr        r4, r30
+lbl_8045F5C8:
+	mr       r4, r30
 
-	.loc_0x38:
-	  li        r6, -0x1
-	  li        r5, 0
-	  li        r0, 0x1
-	  stw       r4, 0x8(r1)
-	  lwz       r3, -0x6E4C(r13)
-	  mr        r4, r30
-	  stw       r7, 0xC(r1)
-	  stw       r6, 0x10(r1)
-	  stw       r5, 0x14(r1)
-	  stb       r0, 0x18(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r31, r3
-	  lwz       r3, 0x2C(r30)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x2C(r30)
-	  fmr       f31, f1
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x108(r12)
-	  mtctr     r12
-	  bctrl
-	  fmr       f2, f31
-	  mr        r5, r31
-	  addi      r3, r30, 0x30
-	  addi      r4, r1, 0x8
-	  bl        -0x3B4178
-	  mr        r3, r30
-	  lwz       r12, 0x28(r30)
-	  lwz       r12, 0xD0(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r3, r30
-	  lwz       r12, 0x28(r30)
-	  lwz       r12, 0xCC(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x34(r1)
-	  lfd       f31, 0x28(r1)
-	  lwz       r31, 0x24(r1)
-	  lwz       r30, 0x20(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
-
-	.loc_0xF8:
+lbl_8045F5CC:
+	li       r6, -1
+	li       r5, 0
+	li       r0, 1
+	stw      r4, 8(r1)
+	lwz      r3,
+"sInstance__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@sda21(r13) mr r4,
+r30 stw      r7, 0xc(r1) stw      r6, 0x10(r1) stw      r5, 0x14(r1) stb r0,
+0x18(r1) lwz      r12, 0(r3) lwz      r12, 0xc(r12) mtctr    r12 bctrl mr r31,
+r3 lwz      r3, 0x2c(r30) lwz      r12, 0(r3) lwz      r12, 0x10c(r12) mtctr r12
+	bctrl
+	lwz      r3, 0x2c(r30)
+	fmr      f31, f1
+	lwz      r12, 0(r3)
+	lwz      r12, 0x108(r12)
+	mtctr    r12
+	bctrl
+	fmr      f2, f31
+	mr       r5, r31
+	addi     r3, r30, 0x30
+	addi     r4, r1, 8
+	bl       setAnimSoundActor__13JAIAnimeSoundFPQ27JAInter5ActorffUc
+	mr       r3, r30
+	lwz      r12, 0x28(r30)
+	lwz      r12, 0xd0(r12)
+	mtctr    r12
+	bctrl
+	mr       r3, r30
+	lwz      r12, 0x28(r30)
+	lwz      r12, 0xcc(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x34(r1)
+	lfd      f31, 0x28(r1)
+	lwz      r31, 0x24(r1)
+	lwz      r30, 0x20(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -3476,244 +4437,243 @@ void EnemyBoss::onCalcOn()
 void EnemyBoss::calcDistance()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0xA0(r1)
-	  mflr      r0
-	  stw       r0, 0xA4(r1)
-	  stfd      f31, 0x90(r1)
-	  psq_st    f31,0x98(r1),0,0
-	  stw       r31, 0x8C(r1)
-	  stw       r30, 0x88(r1)
-	  li        r4, 0
-	  lwz       r0, -0x6D20(r13)
-	  lis       r5, 0x804B
-	  stw       r4, 0x80(r1)
-	  subi      r5, r5, 0x434C
-	  cmplwi    r4, 0
-	  stw       r5, 0x74(r1)
-	  mr        r31, r3
-	  lfs       f31, 0x2918(r2)
-	  stw       r4, 0x78(r1)
-	  stw       r0, 0x7C(r1)
-	  bne-      .loc_0x68
-	  mr        r3, r0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x78(r1)
-	  b         .loc_0x320
+	stwu     r1, -0xa0(r1)
+	mflr     r0
+	stw      r0, 0xa4(r1)
+	stfd     f31, 0x90(r1)
+	psq_st   f31, 152(r1), 0, qr0
+	stw      r31, 0x8c(r1)
+	stw      r30, 0x88(r1)
+	li       r4, 0
+	lwz      r0, naviMgr__4Game@sda21(r13)
+	lis      r5, "__vt__22Iterator<Q24Game4Navi>"@ha
+	stw      r4, 0x80(r1)
+	addi     r5, r5, "__vt__22Iterator<Q24Game4Navi>"@l
+	cmplwi   r4, 0
+	stw      r5, 0x74(r1)
+	mr       r31, r3
+	lfs      f31, lbl_80520C78@sda21(r2)
+	stw      r4, 0x78(r1)
+	stw      r0, 0x7c(r1)
+	bne      lbl_8045F6F4
+	mr       r3, r0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x78(r1)
+	b        lbl_8045F9AC
 
-	.loc_0x68:
-	  mr        r3, r0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x78(r1)
-	  b         .loc_0xD8
+lbl_8045F6F4:
+	mr       r3, r0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x78(r1)
+	b        lbl_8045F764
 
-	.loc_0x84:
-	  lwz       r3, 0x7C(r1)
-	  lwz       r4, 0x78(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x80(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x320
-	  lwz       r3, 0x7C(r1)
-	  lwz       r4, 0x78(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x78(r1)
+lbl_8045F710:
+	lwz      r3, 0x7c(r1)
+	lwz      r4, 0x78(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	lwz      r3, 0x80(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_8045F9AC
+	lwz      r3, 0x7c(r1)
+	lwz      r4, 0x78(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x78(r1)
 
-	.loc_0xD8:
-	  lwz       r12, 0x74(r1)
-	  addi      r3, r1, 0x74
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x84
-	  b         .loc_0x320
+lbl_8045F764:
+	lwz      r12, 0x74(r1)
+	addi     r3, r1, 0x74
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_8045F710
+	b        lbl_8045F9AC
 
-	.loc_0xF8:
-	  lwz       r3, 0x7C(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x278(r3)
-	  mr        r30, r3
-	  cmplwi    r0, 0
-	  beq-      .loc_0x264
-	  lwz       r4, 0x2C(r31)
-	  addi      r3, r1, 0x44
-	  lwz       r12, 0x0(r4)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f2, 0x44(r1)
-	  mr        r4, r30
-	  lfs       f1, 0x48(r1)
-	  addi      r3, r1, 0x5C
-	  lfs       f0, 0x4C(r1)
-	  stfs      f2, 0x2C(r1)
-	  lwz       r12, 0x0(r30)
-	  stfs      f1, 0x30(r1)
-	  lwz       r6, 0x2C(r1)
-	  stfs      f0, 0x34(r1)
-	  lwz       r5, 0x30(r1)
-	  lwz       r0, 0x34(r1)
-	  lwz       r12, 0x8(r12)
-	  stw       r6, 0x50(r1)
-	  stw       r5, 0x54(r1)
-	  stw       r0, 0x58(r1)
-	  mtctr     r12
-	  bctrl
-	  lfs       f0, 0x5C(r1)
-	  lfs       f1, 0x60(r1)
-	  stfs      f0, 0x38(r1)
-	  lfs       f0, 0x64(r1)
-	  stfs      f1, 0x3C(r1)
-	  lwz       r0, 0x38(r1)
-	  lwz       r3, 0x3C(r1)
-	  stfs      f0, 0x40(r1)
-	  lfs       f0, 0x50(r1)
-	  stw       r0, 0x68(r1)
-	  lwz       r0, 0x40(r1)
-	  stw       r3, 0x6C(r1)
-	  lfs       f1, 0x68(r1)
-	  stw       r0, 0x70(r1)
-	  fsubs     f3, f1, f0
-	  lfs       f2, 0x6C(r1)
-	  lfs       f0, 0x54(r1)
-	  lfs       f1, 0x70(r1)
-	  fsubs     f2, f2, f0
-	  lfs       f0, 0x58(r1)
-	  stfs      f3, 0x20(r1)
-	  fsubs     f1, f1, f0
-	  lfs       f0, 0x28F0(r2)
-	  stfs      f2, 0x24(r1)
-	  lwz       r0, 0x20(r1)
-	  lwz       r3, 0x24(r1)
-	  stfs      f1, 0x28(r1)
-	  stw       r0, 0x8(r1)
-	  lwz       r0, 0x28(r1)
-	  stw       r3, 0xC(r1)
-	  lfs       f2, 0x8(r1)
-	  lfs       f1, 0xC(r1)
-	  stw       r0, 0x10(r1)
-	  fmuls     f3, f2, f2
-	  fmuls     f2, f1, f1
-	  lfs       f1, 0x10(r1)
-	  stfs      f3, 0x8(r1)
-	  fmuls     f1, f1, f1
-	  stfs      f2, 0xC(r1)
-	  lwz       r0, 0x8(r1)
-	  lwz       r3, 0xC(r1)
-	  stfs      f1, 0x10(r1)
-	  stw       r0, 0x14(r1)
-	  lwz       r0, 0x10(r1)
-	  stw       r3, 0x18(r1)
-	  lfs       f2, 0x14(r1)
-	  lfs       f1, 0x18(r1)
-	  stw       r0, 0x1C(r1)
-	  fadds     f1, f2, f1
-	  lfs       f2, 0x1C(r1)
-	  fadds     f1, f2, f1
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x258
-	  fsqrte    f0, f1
-	  fmuls     f1, f0, f1
+lbl_8045F784:
+	lwz      r3, 0x7c(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x278(r3)
+	mr       r30, r3
+	cmplwi   r0, 0
+	beq      lbl_8045F8F0
+	lwz      r4, 0x2c(r31)
+	addi     r3, r1, 0x44
+	lwz      r12, 0(r4)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f2, 0x44(r1)
+	mr       r4, r30
+	lfs      f1, 0x48(r1)
+	addi     r3, r1, 0x5c
+	lfs      f0, 0x4c(r1)
+	stfs     f2, 0x2c(r1)
+	lwz      r12, 0(r30)
+	stfs     f1, 0x30(r1)
+	lwz      r6, 0x2c(r1)
+	stfs     f0, 0x34(r1)
+	lwz      r5, 0x30(r1)
+	lwz      r0, 0x34(r1)
+	lwz      r12, 8(r12)
+	stw      r6, 0x50(r1)
+	stw      r5, 0x54(r1)
+	stw      r0, 0x58(r1)
+	mtctr    r12
+	bctrl
+	lfs      f0, 0x5c(r1)
+	lfs      f1, 0x60(r1)
+	stfs     f0, 0x38(r1)
+	lfs      f0, 0x64(r1)
+	stfs     f1, 0x3c(r1)
+	lwz      r0, 0x38(r1)
+	lwz      r3, 0x3c(r1)
+	stfs     f0, 0x40(r1)
+	lfs      f0, 0x50(r1)
+	stw      r0, 0x68(r1)
+	lwz      r0, 0x40(r1)
+	stw      r3, 0x6c(r1)
+	lfs      f1, 0x68(r1)
+	stw      r0, 0x70(r1)
+	fsubs    f3, f1, f0
+	lfs      f2, 0x6c(r1)
+	lfs      f0, 0x54(r1)
+	lfs      f1, 0x70(r1)
+	fsubs    f2, f2, f0
+	lfs      f0, 0x58(r1)
+	stfs     f3, 0x20(r1)
+	fsubs    f1, f1, f0
+	lfs      f0, lbl_80520C50@sda21(r2)
+	stfs     f2, 0x24(r1)
+	lwz      r0, 0x20(r1)
+	lwz      r3, 0x24(r1)
+	stfs     f1, 0x28(r1)
+	stw      r0, 8(r1)
+	lwz      r0, 0x28(r1)
+	stw      r3, 0xc(r1)
+	lfs      f2, 8(r1)
+	lfs      f1, 0xc(r1)
+	stw      r0, 0x10(r1)
+	fmuls    f3, f2, f2
+	fmuls    f2, f1, f1
+	lfs      f1, 0x10(r1)
+	stfs     f3, 8(r1)
+	fmuls    f1, f1, f1
+	stfs     f2, 0xc(r1)
+	lwz      r0, 8(r1)
+	lwz      r3, 0xc(r1)
+	stfs     f1, 0x10(r1)
+	stw      r0, 0x14(r1)
+	lwz      r0, 0x10(r1)
+	stw      r3, 0x18(r1)
+	lfs      f2, 0x14(r1)
+	lfs      f1, 0x18(r1)
+	stw      r0, 0x1c(r1)
+	fadds    f1, f2, f1
+	lfs      f2, 0x1c(r1)
+	fadds    f1, f2, f1
+	fcmpo    cr0, f1, f0
+	ble      lbl_8045F8E4
+	frsqrte  f0, f1
+	fmuls    f1, f0, f1
 
-	.loc_0x258:
-	  fcmpo     cr0, f1, f31
-	  bge-      .loc_0x264
-	  fmr       f31, f1
+lbl_8045F8E4:
+	fcmpo    cr0, f1, f31
+	bge      lbl_8045F8F0
+	fmr      f31, f1
 
-	.loc_0x264:
-	  lwz       r0, 0x80(r1)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x290
-	  lwz       r3, 0x7C(r1)
-	  lwz       r4, 0x78(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x78(r1)
-	  b         .loc_0x320
+lbl_8045F8F0:
+	lwz      r0, 0x80(r1)
+	cmplwi   r0, 0
+	bne      lbl_8045F91C
+	lwz      r3, 0x7c(r1)
+	lwz      r4, 0x78(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x78(r1)
+	b        lbl_8045F9AC
 
-	.loc_0x290:
-	  lwz       r3, 0x7C(r1)
-	  lwz       r4, 0x78(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x78(r1)
-	  b         .loc_0x304
+lbl_8045F91C:
+	lwz      r3, 0x7c(r1)
+	lwz      r4, 0x78(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x78(r1)
+	b        lbl_8045F990
 
-	.loc_0x2B0:
-	  lwz       r3, 0x7C(r1)
-	  lwz       r4, 0x78(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x80(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x320
-	  lwz       r3, 0x7C(r1)
-	  lwz       r4, 0x78(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x78(r1)
+lbl_8045F93C:
+	lwz      r3, 0x7c(r1)
+	lwz      r4, 0x78(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	lwz      r3, 0x80(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_8045F9AC
+	lwz      r3, 0x7c(r1)
+	lwz      r4, 0x78(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x78(r1)
 
-	.loc_0x304:
-	  lwz       r12, 0x74(r1)
-	  addi      r3, r1, 0x74
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x2B0
+lbl_8045F990:
+	lwz      r12, 0x74(r1)
+	addi     r3, r1, 0x74
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_8045F93C
 
-	.loc_0x320:
-	  lwz       r3, 0x7C(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r4, 0x78(r1)
-	  cmplw     r4, r3
-	  bne+      .loc_0xF8
-	  stfs      f31, 0xE0(r31)
-	  psq_l     f31,0x98(r1),0,0
-	  lwz       r0, 0xA4(r1)
-	  lfd       f31, 0x90(r1)
-	  lwz       r31, 0x8C(r1)
-	  lwz       r30, 0x88(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0xA0
-	  blr
+lbl_8045F9AC:
+	lwz      r3, 0x7c(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r4, 0x78(r1)
+	cmplw    r4, r3
+	bne      lbl_8045F784
+	stfs     f31, 0xe0(r31)
+	psq_l    f31, 152(r1), 0, qr0
+	lwz      r0, 0xa4(r1)
+	lfd      f31, 0x90(r1)
+	lwz      r31, 0x8c(r1)
+	lwz      r30, 0x88(r1)
+	mtlr     r0
+	addi     r1, r1, 0xa0
+	blr
 	*/
 }
 
@@ -3725,99 +4685,98 @@ void EnemyBoss::calcDistance()
 void EnemyBoss::setAppearFlag(bool)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r29, r4
-	  stw       r28, 0x10(r1)
-	  mr        r28, r3
-	  stb       r29, 0xFC(r3)
-	  lis       r3, 0x804A
-	  subi      r31, r3, 0x3060
-	  lwz       r0, -0x6780(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x50
-	  addi      r3, r31, 0x30
-	  addi      r5, r31, 0x18
-	  li        r4, 0x1D3
-	  crclr     6, 0x6
-	  bl        -0x4353FC
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	mr       r29, r4
+	stw      r28, 0x10(r1)
+	mr       r28, r3
+	stb      r29, 0xfc(r3)
+	lis      r3, lbl_8049CFA0@ha
+	addi     r31, r3, lbl_8049CFA0@l
+	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_8045FA40
+	addi     r3, r31, 0x30
+	addi     r5, r31, 0x18
+	li       r4, 0x1d3
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x50:
-	  lwz       r30, -0x6780(r13)
-	  cmplwi    r30, 0
-	  bne-      .loc_0x70
-	  addi      r3, r31, 0x30
-	  addi      r5, r31, 0x18
-	  li        r4, 0x1DC
-	  crclr     6, 0x6
-	  bl        -0x43541C
+lbl_8045FA40:
+	lwz      r30, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r30, 0
+	bne      lbl_8045FA60
+	addi     r3, r31, 0x30
+	addi     r5, r31, 0x18
+	li       r4, 0x1dc
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x70:
-	  lwz       r0, 0x4(r30)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x90
-	  addi      r3, r31, 0x3C
-	  addi      r5, r31, 0x18
-	  li        r4, 0xC7
-	  crclr     6, 0x6
-	  bl        -0x43543C
+lbl_8045FA60:
+	lwz      r0, 4(r30)
+	cmplwi   r0, 0
+	bne      lbl_8045FA80
+	addi     r3, r31, 0x3c
+	addi     r5, r31, 0x18
+	li       r4, 0xc7
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x90:
-	  lwz       r3, 0x4(r30)
-	  lwz       r3, 0x4(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x120
-	  lwz       r12, 0x0(r3)
-	  mr        r4, r28
-	  li        r5, 0
-	  lwz       r12, 0x38(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x120
-	  rlwinm    r0,r29,0,24,31
-	  cmplwi    r0, 0x1
-	  bne-      .loc_0x10C
-	  lbz       r0, 0xFD(r28)
-	  cmplwi    r0, 0
-	  bne-      .loc_0xF4
-	  li        r0, 0x1
-	  mr        r3, r28
-	  stb       r0, 0xFD(r28)
-	  lwz       r12, 0x28(r28)
-	  lwz       r12, 0xE8(r12)
-	  mtctr     r12
-	  bctrl
+lbl_8045FA80:
+	lwz      r3, 4(r30)
+	lwz      r3, 4(r3)
+	cmplwi   r3, 0
+	beq      lbl_8045FB10
+	lwz      r12, 0(r3)
+	mr       r4, r28
+	li       r5, 0
+	lwz      r12, 0x38(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_8045FB10
+	clrlwi   r0, r29, 0x18
+	cmplwi   r0, 1
+	bne      lbl_8045FAFC
+	lbz      r0, 0xfd(r28)
+	cmplwi   r0, 0
+	bne      lbl_8045FAE4
+	li       r0, 1
+	mr       r3, r28
+	stb      r0, 0xfd(r28)
+	lwz      r12, 0x28(r28)
+	lwz      r12, 0xe8(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0xF4:
-	  mr        r3, r28
-	  lwz       r12, 0x28(r28)
-	  lwz       r12, 0xE4(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x120
+lbl_8045FAE4:
+	mr       r3, r28
+	lwz      r12, 0x28(r28)
+	lwz      r12, 0xe4(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_8045FB10
 
-	.loc_0x10C:
-	  mr        r3, r28
-	  lwz       r12, 0x28(r28)
-	  lwz       r12, 0xEC(r12)
-	  mtctr     r12
-	  bctrl
+lbl_8045FAFC:
+	mr       r3, r28
+	lwz      r12, 0x28(r28)
+	lwz      r12, 0xec(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x120:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8045FB10:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -3829,34 +4788,33 @@ void EnemyBoss::setAppearFlag(bool)
 void EnemyBoss::dyingFrameWork()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r4, 0xE8(r3)
-	  addis     r0, r4, 0x1
-	  cmplwi    r0, 0xFFFF
-	  beq-      .loc_0x24
-	  addi      r0, r4, 0x1
-	  stw       r0, 0xE8(r3)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r4, 0xe8(r3)
+	addis    r0, r4, 1
+	cmplwi   r0, 0xffff
+	beq      lbl_8045FB54
+	addi     r0, r4, 1
+	stw      r0, 0xe8(r3)
 
-	.loc_0x24:
-	  lwz       r4, 0xE8(r3)
-	  rlwinm.   r0,r4,0,3,3
-	  beq-      .loc_0x4C
-	  rlwinm    r0,r4,0,4,31
-	  cmplwi    r0, 0xB4
-	  blt-      .loc_0x4C
-	  lwz       r12, 0x28(r3)
-	  lwz       r12, 0xC8(r12)
-	  mtctr     r12
-	  bctrl
+lbl_8045FB54:
+	lwz      r4, 0xe8(r3)
+	rlwinm.  r0, r4, 0, 3, 3
+	beq      lbl_8045FB7C
+	clrlwi   r0, r4, 4
+	cmplwi   r0, 0xb4
+	blt      lbl_8045FB7C
+	lwz      r12, 0x28(r3)
+	lwz      r12, 0xc8(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x4C:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8045FB7C:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -3868,184 +4826,178 @@ void EnemyBoss::dyingFrameWork()
 void EnemyBoss::onDeathMotionTop()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  li        r0, 0
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r3
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  stw       r0, 0xE8(r3)
-	  lis       r3, 0x804A
-	  subi      r30, r3, 0x3060
-	  lwz       r0, -0x6780(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x4C
-	  addi      r3, r30, 0x30
-	  addi      r5, r30, 0x18
-	  li        r4, 0x1D3
-	  crclr     6, 0x6
-	  bl        -0x435594
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	li       r0, 0
+	stw      r31, 0x1c(r1)
+	mr       r31, r3
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	stw      r0, 0xe8(r3)
+	lis      r3, lbl_8049CFA0@ha
+	addi     r30, r3, lbl_8049CFA0@l
+	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_8045FBD8
+	addi     r3, r30, 0x30
+	addi     r5, r30, 0x18
+	li       r4, 0x1d3
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x4C:
-	  lwz       r29, -0x6780(r13)
-	  cmplwi    r29, 0
-	  bne-      .loc_0x6C
-	  addi      r3, r30, 0x30
-	  addi      r5, r30, 0x18
-	  li        r4, 0x1DC
-	  crclr     6, 0x6
-	  bl        -0x4355B4
+lbl_8045FBD8:
+	lwz      r29, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r29, 0
+	bne      lbl_8045FBF8
+	addi     r3, r30, 0x30
+	addi     r5, r30, 0x18
+	li       r4, 0x1dc
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x6C:
-	  lwz       r0, 0x4(r29)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x8C
-	  addi      r3, r30, 0x3C
-	  addi      r5, r30, 0x18
-	  li        r4, 0xCF
-	  crclr     6, 0x6
-	  bl        -0x4355D4
+lbl_8045FBF8:
+	lwz      r0, 4(r29)
+	cmplwi   r0, 0
+	bne      lbl_8045FC18
+	addi     r3, r30, 0x3c
+	addi     r5, r30, 0x18
+	li       r4, 0xcf
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x8C:
-	  lwz       r3, 0x4(r29)
-	  lwz       r29, 0x4(r3)
-	  cmplwi    r29, 0
-	  bne-      .loc_0xB0
-	  addi      r3, r30, 0x3C
-	  addi      r5, r30, 0x98
-	  li        r4, 0xD1
-	  crclr     6, 0x6
-	  bl        -0x4355F8
+lbl_8045FC18:
+	lwz      r3, 4(r29)
+	lwz      r29, 4(r3)
+	cmplwi   r29, 0
+	bne      lbl_8045FC3C
+	addi     r3, r30, 0x3c
+	addi     r5, r30, 0x98
+	li       r4, 0xd1
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xB0:
-	  mr        r3, r29
-	  lwz       r12, 0x0(r29)
-	  lwz       r12, 0x40(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xD0
-	  b         .loc_0xD4
+lbl_8045FC3C:
+	mr       r3, r29
+	lwz      r12, 0(r29)
+	lwz      r12, 0x40(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_8045FC5C
+	b        lbl_8045FC60
 
-	.loc_0xD0:
-	  li        r29, 0
+lbl_8045FC5C:
+	li       r29, 0
 
-	.loc_0xD4:
-	  cmplwi    r29, 0
-	  beq-      .loc_0xE8
-	  addi      r3, r29, 0x38
-	  addi      r4, r31, 0xEC
-	  bl        -0x43938C
+lbl_8045FC60:
+	cmplwi   r29, 0
+	beq      lbl_8045FC74
+	addi     r3, r29, 0x38
+	addi     r4, r31, 0xec
+	bl       append__10JSUPtrListFP10JSUPtrLink
 
-	.loc_0xE8:
-	  lwz       r0, -0x6780(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x108
-	  addi      r3, r30, 0x30
-	  addi      r5, r30, 0x18
-	  li        r4, 0x1D3
-	  crclr     6, 0x6
-	  bl        -0x435650
+lbl_8045FC74:
+	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_8045FC94
+	addi     r3, r30, 0x30
+	addi     r5, r30, 0x18
+	li       r4, 0x1d3
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x108:
-	  lwz       r29, -0x6780(r13)
-	  cmplwi    r29, 0
-	  bne-      .loc_0x128
-	  addi      r3, r30, 0x30
-	  addi      r5, r30, 0x18
-	  li        r4, 0x1DC
-	  crclr     6, 0x6
-	  bl        -0x435670
+lbl_8045FC94:
+	lwz      r29, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r29, 0
+	bne      lbl_8045FCB4
+	addi     r3, r30, 0x30
+	addi     r5, r30, 0x18
+	li       r4, 0x1dc
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x128:
-	  lwz       r0, 0x4(r29)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x148
-	  addi      r3, r30, 0x3C
-	  addi      r5, r30, 0x18
-	  li        r4, 0xCF
-	  crclr     6, 0x6
-	  bl        -0x435690
+lbl_8045FCB4:
+	lwz      r0, 4(r29)
+	cmplwi   r0, 0
+	bne      lbl_8045FCD4
+	addi     r3, r30, 0x3c
+	addi     r5, r30, 0x18
+	li       r4, 0xcf
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x148:
-	  lwz       r3, 0x4(r29)
-	  lwz       r29, 0x4(r3)
-	  cmplwi    r29, 0
-	  bne-      .loc_0x16C
-	  addi      r3, r30, 0x3C
-	  addi      r5, r30, 0x98
-	  li        r4, 0xD1
-	  crclr     6, 0x6
-	  bl        -0x4356B4
+lbl_8045FCD4:
+	lwz      r3, 4(r29)
+	lwz      r29, 4(r3)
+	cmplwi   r29, 0
+	bne      lbl_8045FCF8
+	addi     r3, r30, 0x3c
+	addi     r5, r30, 0x98
+	li       r4, 0xd1
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x16C:
-	  mr        r3, r29
-	  lwz       r12, 0x0(r29)
-	  lwz       r12, 0x40(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x18C
-	  b         .loc_0x190
+lbl_8045FCF8:
+	mr       r3, r29
+	lwz      r12, 0(r29)
+	lwz      r12, 0x40(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_8045FD18
+	b        lbl_8045FD1C
 
-	.loc_0x18C:
-	  li        r29, 0
+lbl_8045FD18:
+	li       r29, 0
 
-	.loc_0x190:
-	  cmplwi    r29, 0
-	  beq-      .loc_0x218
-	  lwz       r0, -0x6E50(r13)
-	  li        r29, 0x1
-	  cmplwi    r0, 0
-	  bne-      .loc_0x1BC
-	  addi      r3, r30, 0xBC
-	  addi      r5, r30, 0x18
-	  li        r4, 0x89
-	  crclr     6, 0x6
-	  bl        -0x435704
+lbl_8045FD1C:
+	cmplwi   r29, 0
+	beq      lbl_8045FDA4
+	lwz      r0,
+"sInstance__Q28PSSystem39SingletonBase<Q33PSM12BossBgmFader3Mgr>"@sda21(r13) li
+r29, 1 cmplwi   r0, 0 bne      lbl_8045FD48 addi     r3, r30, 0xbc addi     r5,
+r30, 0x18 li       r4, 0x89 crclr    6 bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x1BC:
-	  lwz       r3, -0x6E50(r13)
-	  lwz       r4, 0x4(r3)
-	  b         .loc_0x1F0
+lbl_8045FD48:
+	lwz      r3,
+"sInstance__Q28PSSystem39SingletonBase<Q33PSM12BossBgmFader3Mgr>"@sda21(r13) lwz
+r4, 4(r3) b        lbl_8045FD7C
 
-	.loc_0x1C8:
-	  lwz       r3, 0x0(r4)
-	  lbz       r0, 0xFE(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x1EC
-	  lwz       r3, 0xE8(r3)
-	  addis     r0, r3, 0x1
-	  cmplwi    r0, 0xFFFF
-	  bne-      .loc_0x1EC
-	  li        r29, 0
+lbl_8045FD54:
+	lwz      r3, 0(r4)
+	lbz      r0, 0xfe(r3)
+	cmplwi   r0, 0
+	beq      lbl_8045FD78
+	lwz      r3, 0xe8(r3)
+	addis    r0, r3, 1
+	cmplwi   r0, 0xffff
+	bne      lbl_8045FD78
+	li       r29, 0
 
-	.loc_0x1EC:
-	  lwz       r4, 0xC(r4)
+lbl_8045FD78:
+	lwz      r4, 0xc(r4)
 
-	.loc_0x1F0:
-	  cmplwi    r4, 0
-	  bne+      .loc_0x1C8
-	  rlwinm.   r0,r29,0,24,31
-	  beq-      .loc_0x218
-	  mr        r3, r31
-	  li        r4, 0xA
-	  lwz       r12, 0x28(r31)
-	  lwz       r12, 0xD4(r12)
-	  mtctr     r12
-	  bctrl
+lbl_8045FD7C:
+	cmplwi   r4, 0
+	bne      lbl_8045FD54
+	clrlwi.  r0, r29, 0x18
+	beq      lbl_8045FDA4
+	mr       r3, r31
+	li       r4, 0xa
+	lwz      r12, 0x28(r31)
+	lwz      r12, 0xd4(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x218:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8045FDA4:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -4057,114 +5009,113 @@ void EnemyBoss::onDeathMotionTop()
 void EnemyBoss::setKilled()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  lis       r3, 0x804A
-	  lwz       r0, 0xE8(r29)
-	  subi      r31, r3, 0x3060
-	  cmplwi    r0, 0xB4
-	  bge-      .loc_0x3C
-	  oris      r0, r0, 0x1000
-	  stw       r0, 0xE8(r29)
-	  b         .loc_0x140
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	lis      r3, lbl_8049CFA0@ha
+	lwz      r0, 0xe8(r29)
+	addi     r31, r3, lbl_8049CFA0@l
+	cmplwi   r0, 0xb4
+	bge      lbl_8045FDFC
+	oris     r0, r0, 0x1000
+	stw      r0, 0xe8(r29)
+	b        lbl_8045FF00
 
-	.loc_0x3C:
-	  lwz       r0, -0x6780(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x5C
-	  addi      r3, r31, 0x30
-	  addi      r5, r31, 0x18
-	  li        r4, 0x1D3
-	  crclr     6, 0x6
-	  bl        -0x4357D8
+lbl_8045FDFC:
+	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_8045FE1C
+	addi     r3, r31, 0x30
+	addi     r5, r31, 0x18
+	li       r4, 0x1d3
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x5C:
-	  lwz       r30, -0x6780(r13)
-	  cmplwi    r30, 0
-	  bne-      .loc_0x7C
-	  addi      r3, r31, 0x30
-	  addi      r5, r31, 0x18
-	  li        r4, 0x1DC
-	  crclr     6, 0x6
-	  bl        -0x4357F8
+lbl_8045FE1C:
+	lwz      r30, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r30, 0
+	bne      lbl_8045FE3C
+	addi     r3, r31, 0x30
+	addi     r5, r31, 0x18
+	li       r4, 0x1dc
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x7C:
-	  lwz       r0, 0x4(r30)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x9C
-	  addi      r3, r31, 0x3C
-	  addi      r5, r31, 0x18
-	  li        r4, 0xCF
-	  crclr     6, 0x6
-	  bl        -0x435818
+lbl_8045FE3C:
+	lwz      r0, 4(r30)
+	cmplwi   r0, 0
+	bne      lbl_8045FE5C
+	addi     r3, r31, 0x3c
+	addi     r5, r31, 0x18
+	li       r4, 0xcf
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x9C:
-	  lwz       r3, 0x4(r30)
-	  lwz       r30, 0x4(r3)
-	  cmplwi    r30, 0
-	  bne-      .loc_0xC0
-	  addi      r3, r31, 0x3C
-	  addi      r5, r31, 0x98
-	  li        r4, 0xD1
-	  crclr     6, 0x6
-	  bl        -0x43583C
+lbl_8045FE5C:
+	lwz      r3, 4(r30)
+	lwz      r30, 4(r3)
+	cmplwi   r30, 0
+	bne      lbl_8045FE80
+	addi     r3, r31, 0x3c
+	addi     r5, r31, 0x98
+	li       r4, 0xd1
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xC0:
-	  mr        r3, r30
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x40(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xE0
-	  b         .loc_0xE4
+lbl_8045FE80:
+	mr       r3, r30
+	lwz      r12, 0(r30)
+	lwz      r12, 0x40(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_8045FEA0
+	b        lbl_8045FEA4
 
-	.loc_0xE0:
-	  li        r30, 0
+lbl_8045FEA0:
+	li       r30, 0
 
-	.loc_0xE4:
-	  cmplwi    r30, 0
-	  beq-      .loc_0xF8
-	  addi      r3, r30, 0x38
-	  addi      r4, r29, 0xEC
-	  bl        -0x439290
+lbl_8045FEA4:
+	cmplwi   r30, 0
+	beq      lbl_8045FEB8
+	addi     r3, r30, 0x38
+	addi     r4, r29, 0xec
+	bl       remove__10JSUPtrListFP10JSUPtrLink
 
-	.loc_0xF8:
-	  lbz       r0, 0xFE(r29)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x140
-	  li        r3, -0x1
-	  li        r0, 0
-	  stw       r3, 0xE8(r29)
-	  cmplwi    r30, 0
-	  stb       r0, 0xFC(r29)
-	  stb       r0, 0xFE(r29)
-	  beq-      .loc_0x138
-	  mr        r3, r30
-	  mr        r4, r29
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x60(r12)
-	  mtctr     r12
-	  bctrl
+lbl_8045FEB8:
+	lbz      r0, 0xfe(r29)
+	cmplwi   r0, 0
+	beq      lbl_8045FF00
+	li       r3, -1
+	li       r0, 0
+	stw      r3, 0xe8(r29)
+	cmplwi   r30, 0
+	stb      r0, 0xfc(r29)
+	stb      r0, 0xfe(r29)
+	beq      lbl_8045FEF8
+	mr       r3, r30
+	mr       r4, r29
+	lwz      r12, 0(r30)
+	lwz      r12, 0x60(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x138:
-	  li        r0, 0
-	  sth       r0, 0xE4(r29)
+lbl_8045FEF8:
+	li       r0, 0
+	sth      r0, 0xe4(r29)
 
-	.loc_0x140:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8045FF00:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -4176,16 +5127,15 @@ void EnemyBoss::setKilled()
 void EnemyBoss::isOnDisappearing()
 {
 	/*
-	.loc_0x0:
-	  lis       r4, 0x1
-	  lhz       r5, 0xE4(r3)
-	  subi      r0, r4, 0x1
-	  rlwinm    r0,r0,0,16,31
-	  sub       r3, r0, r5
-	  sub       r0, r5, r0
-	  or        r0, r3, r0
-	  rlwinm    r3,r0,1,31,31
-	  blr
+	lis      r4, 0x0000FFFF@ha
+	lhz      r5, 0xe4(r3)
+	addi     r0, r4, 0x0000FFFF@l
+	clrlwi   r0, r0, 0x10
+	subf     r3, r5, r0
+	subf     r0, r0, r5
+	or       r0, r3, r0
+	srwi     r3, r0, 0x1f
+	blr
 	*/
 }
 
@@ -4197,19 +5147,18 @@ void EnemyBoss::isOnDisappearing()
 void EnemyBoss::updateDisappearing()
 {
 	/*
-	.loc_0x0:
-	  lhz       r4, 0xE4(r3)
-	  cmplwi    r4, 0xFFFF
-	  beqlr-
-	  addi      r0, r4, 0x1
-	  sth       r0, 0xE4(r3)
-	  lhz       r0, 0xE4(r3)
-	  cmplwi    r0, 0x78
-	  blelr-
-	  lis       r4, 0x1
-	  subi      r0, r4, 0x1
-	  sth       r0, 0xE4(r3)
-	  blr
+	lhz      r4, 0xe4(r3)
+	cmplwi   r4, 0xffff
+	beqlr
+	addi     r0, r4, 1
+	sth      r0, 0xe4(r3)
+	lhz      r0, 0xe4(r3)
+	cmplwi   r0, 0x78
+	blelr
+	lis      r4, 0x0000FFFF@ha
+	addi     r0, r4, 0x0000FFFF@l
+	sth      r0, 0xe4(r3)
+	blr
 	*/
 }
 
@@ -4221,165 +5170,165 @@ void EnemyBoss::updateDisappearing()
 EnemyMidBoss::EnemyMidBoss(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stmw      r25, 0x14(r1)
-	  mr        r27, r3
-	  mr        r31, r4
-	  mr        r4, r27
-	  mr        r28, r4
-	  mr        r29, r4
-	  mr        r30, r4
-	  mr        r25, r4
-	  mr        r26, r28
-	  bl        -0x4397E8
-	  addi      r3, r26, 0x10
-	  bl        -0x442FDC
-	  lis       r4, 0x804F
-	  lis       r3, 0x804F
-	  subi      r4, r4, 0xDD0
-	  cmplwi    r31, 0
-	  stw       r4, 0x28(r26)
-	  addi      r0, r4, 0x8
-	  subi      r3, r3, 0xE34
-	  stw       r0, 0x10(r26)
-	  addi      r0, r3, 0x8
-	  stw       r3, 0x28(r25)
-	  stw       r0, 0x10(r25)
-	  stw       r31, 0x2C(r25)
-	  bne-      .loc_0x8C
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x3060
-	  li        r4, 0x61
-	  subi      r5, r5, 0x3048
-	  crclr     6, 0x6
-	  bl        -0x4359B8
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stmw     r25, 0x14(r1)
+	mr       r27, r3
+	mr       r31, r4
+	mr       r4, r27
+	mr       r28, r4
+	mr       r29, r4
+	mr       r30, r4
+	mr       r25, r4
+	mr       r26, r28
+	bl       __ct__10JSUPtrLinkFPv
+	addi     r3, r26, 0x10
+	bl       __ct__11JKRDisposerFv
+	lis      r4, __vt__Q23PSM7ObjBase@ha
+	lis      r3, __vt__Q23PSM8Creature@ha
+	addi     r4, r4, __vt__Q23PSM7ObjBase@l
+	cmplwi   r31, 0
+	stw      r4, 0x28(r26)
+	addi     r0, r4, 8
+	addi     r3, r3, __vt__Q23PSM8Creature@l
+	stw      r0, 0x10(r26)
+	addi     r0, r3, 8
+	stw      r3, 0x28(r25)
+	stw      r0, 0x10(r25)
+	stw      r31, 0x2c(r25)
+	bne      lbl_8045FFFC
+	lis      r3, lbl_8049CFA0@ha
+	lis      r5, lbl_8049CFB8@ha
+	addi     r3, r3, lbl_8049CFA0@l
+	li       r4, 0x61
+	addi     r5, r5, lbl_8049CFB8@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x8C:
-	  lwz       r0, -0x6E44(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0xB4
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x3060
-	  li        r4, 0x62
-	  subi      r5, r5, 0x3048
-	  crclr     6, 0x6
-	  bl        -0x4359E0
+lbl_8045FFFC:
+	lwz      r0,
+"sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13) cmplwi   r0, 0
+	bne      lbl_80460024
+	lis      r3, lbl_8049CFA0@ha
+	lis      r5, lbl_8049CFB8@ha
+	addi     r3, r3, lbl_8049CFA0@l
+	li       r4, 0x62
+	addi     r5, r5, lbl_8049CFB8@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xB4:
-	  mr        r3, r31
-	  lwz       r26, -0x77D4(r13)
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x100(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  mr        r5, r26
-	  addi      r3, r30, 0x30
-	  li        r6, 0x4
-	  bl        -0x3B4F24
-	  lis       r3, 0x804F
-	  addi      r25, r29, 0xB8
-	  subi      r3, r3, 0xF60
-	  lfs       f0, 0x28F0(r2)
-	  stw       r3, 0x28(r30)
-	  addi      r4, r3, 0x8
-	  addi      r0, r3, 0x40
-	  mr        r3, r25
-	  stw       r4, 0x10(r30)
-	  mr        r4, r31
-	  stw       r0, 0x30(r30)
-	  stfs      f0, 0xAC(r30)
-	  stfs      f0, 0xB0(r30)
-	  bl        -0x4398CC
-	  lis       r3, 0x804F
-	  addi      r26, r29, 0xCC
-	  subi      r0, r3, 0xF70
-	  mr        r4, r31
-	  stw       r0, 0x10(r25)
-	  mr        r3, r26
-	  bl        -0x4398E8
-	  lis       r3, 0x804F
-	  lis       r4, 0x804F
-	  subi      r0, r3, 0xF80
-	  lis       r3, 0x804F
-	  stw       r0, 0x10(r26)
-	  subi      r6, r4, 0x1054
-	  subi      r10, r3, 0x1380
-	  lis       r3, 0x1
-	  stw       r6, 0x28(r29)
-	  addi      r5, r6, 0x8
-	  addi      r4, r6, 0x40
-	  addi      r0, r6, 0xA4
-	  stw       r5, 0x10(r29)
-	  addi      r11, r6, 0xB4
-	  addi      r9, r10, 0x8
-	  addi      r8, r10, 0x40
-	  stw       r4, 0x30(r29)
-	  addi      r7, r10, 0xA4
-	  addi      r6, r10, 0xB4
-	  lfs       f0, 0x2918(r2)
-	  stw       r0, 0xC8(r29)
-	  subi      r5, r3, 0x1
-	  li        r0, -0x1
-	  mr        r4, r28
-	  stw       r11, 0xDC(r29)
-	  addi      r3, r28, 0xEC
-	  stw       r10, 0x28(r28)
-	  stw       r9, 0x10(r28)
-	  stw       r8, 0x30(r28)
-	  stw       r7, 0xC8(r28)
-	  stw       r6, 0xDC(r28)
-	  stfs      f0, 0xE0(r28)
-	  sth       r5, 0xE4(r28)
-	  stw       r0, 0xE8(r28)
-	  bl        -0x439974
-	  li        r4, 0
-	  lis       r3, 0x804F
-	  stb       r4, 0xFC(r28)
-	  subi      r9, r3, 0x1470
-	  lis       r3, 0x1
-	  li        r0, 0x1
-	  stb       r4, 0xFD(r28)
-	  addi      r8, r9, 0x8
-	  addi      r7, r9, 0x40
-	  addi      r6, r9, 0xA4
-	  stb       r0, 0xFE(r28)
-	  addi      r5, r9, 0xB4
-	  subi      r0, r3, 0x1
-	  lfs       f0, 0x291C(r2)
-	  stb       r4, 0xFF(r28)
-	  mr        r4, r27
-	  addi      r3, r27, 0x108
-	  stw       r9, 0x28(r27)
-	  stw       r8, 0x10(r27)
-	  stw       r7, 0x30(r27)
-	  stw       r6, 0xC8(r27)
-	  stw       r5, 0xDC(r27)
-	  stw       r0, 0x100(r27)
-	  stfs      f0, 0x104(r27)
-	  bl        -0x4399D8
-	  li        r0, 0
-	  stb       r0, 0x118(r27)
-	  lwz       r3, -0x6E50(r13)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x248
-	  lwz       r0, 0xC(r3)
-	  addi      r4, r27, 0x108
-	  stw       r0, 0x100(r27)
-	  bl        0xC804
+lbl_80460024:
+	mr       r3, r31
+	lwz      r26, sCurrentHeap__7JKRHeap@sda21(r13)
+	lwz      r12, 0(r31)
+	lwz      r12, 0x100(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	mr       r5, r26
+	addi     r3, r30, 0x30
+	li       r6, 4
+	bl       __ct__13JAIAnimeSoundFP3VecP7JKRHeapUc
+	lis      r3, __vt__Q23PSM13CreatureAnime@ha
+	addi     r25, r29, 0xb8
+	addi     r3, r3, __vt__Q23PSM13CreatureAnime@l
+	lfs      f0, lbl_80520C50@sda21(r2)
+	stw      r3, 0x28(r30)
+	addi     r4, r3, 8
+	addi     r0, r3, 0x40
+	mr       r3, r25
+	stw      r4, 0x10(r30)
+	mr       r4, r31
+	stw      r0, 0x30(r30)
+	stfs     f0, 0xac(r30)
+	stfs     f0, 0xb0(r30)
+	bl       __ct__10JSUPtrLinkFPv
+	lis      r3, __vt__Q23PSM10BattleLink@ha
+	addi     r26, r29, 0xcc
+	addi     r0, r3, __vt__Q23PSM10BattleLink@l
+	mr       r4, r31
+	stw      r0, 0x10(r25)
+	mr       r3, r26
+	bl       __ct__10JSUPtrLinkFPv
+	lis      r3, __vt__Q23PSM9KehaiLink@ha
+	lis      r4, __vt__Q23PSM9EnemyBase@ha
+	addi     r0, r3, __vt__Q23PSM9KehaiLink@l
+	lis      r3, __vt__Q23PSM9EnemyBoss@ha
+	stw      r0, 0x10(r26)
+	addi     r6, r4, __vt__Q23PSM9EnemyBase@l
+	addi     r10, r3, __vt__Q23PSM9EnemyBoss@l
+	lis      r3, 0x0000FFFF@ha
+	stw      r6, 0x28(r29)
+	addi     r5, r6, 8
+	addi     r4, r6, 0x40
+	addi     r0, r6, 0xa4
+	stw      r5, 0x10(r29)
+	addi     r11, r6, 0xb4
+	addi     r9, r10, 8
+	addi     r8, r10, 0x40
+	stw      r4, 0x30(r29)
+	addi     r7, r10, 0xa4
+	addi     r6, r10, 0xb4
+	lfs      f0, lbl_80520C78@sda21(r2)
+	stw      r0, 0xc8(r29)
+	addi     r5, r3, 0x0000FFFF@l
+	li       r0, -1
+	mr       r4, r28
+	stw      r11, 0xdc(r29)
+	addi     r3, r28, 0xec
+	stw      r10, 0x28(r28)
+	stw      r9, 0x10(r28)
+	stw      r8, 0x30(r28)
+	stw      r7, 0xc8(r28)
+	stw      r6, 0xdc(r28)
+	stfs     f0, 0xe0(r28)
+	sth      r5, 0xe4(r28)
+	stw      r0, 0xe8(r28)
+	bl       __ct__10JSUPtrLinkFPv
+	li       r4, 0
+	lis      r3, __vt__Q23PSM12EnemyMidBoss@ha
+	stb      r4, 0xfc(r28)
+	addi     r9, r3, __vt__Q23PSM12EnemyMidBoss@l
+	lis      r3, 0x0000FFFF@ha
+	li       r0, 1
+	stb      r4, 0xfd(r28)
+	addi     r8, r9, 8
+	addi     r7, r9, 0x40
+	addi     r6, r9, 0xa4
+	stb      r0, 0xfe(r28)
+	addi     r5, r9, 0xb4
+	addi     r0, r3, 0x0000FFFF@l
+	lfs      f0, lbl_80520C7C@sda21(r2)
+	stb      r4, 0xff(r28)
+	mr       r4, r27
+	addi     r3, r27, 0x108
+	stw      r9, 0x28(r27)
+	stw      r8, 0x10(r27)
+	stw      r7, 0x30(r27)
+	stw      r6, 0xc8(r27)
+	stw      r5, 0xdc(r27)
+	stw      r0, 0x100(r27)
+	stfs     f0, 0x104(r27)
+	bl       __ct__10JSUPtrLinkFPv
+	li       r0, 0
+	stb      r0, 0x118(r27)
+	lwz      r3,
+"sInstance__Q28PSSystem39SingletonBase<Q33PSM12BossBgmFader3Mgr>"@sda21(r13)
+	cmplwi   r3, 0
+	beq      lbl_804601B8
+	lwz      r0, 0xc(r3)
+	addi     r4, r27, 0x108
+	stw      r0, 0x100(r27)
+	bl "appendTarget__Q33PSM12BossBgmFader3MgrFP25JSULink<Q23PSM9EnemyBoss>"
 
-	.loc_0x248:
-	  mr        r3, r27
-	  lmw       r25, 0x14(r1)
-	  lwz       r0, 0x34(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_804601B8:
+	mr       r3, r27
+	lmw      r25, 0x14(r1)
+	lwz      r0, 0x34(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -4391,125 +5340,124 @@ EnemyMidBoss::EnemyMidBoss(Game::EnemyBase*)
 EnemyBoss::~EnemyBoss()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x18C
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0xEC
-	  subi      r5, r3, 0x1380
-	  stw       r5, 0x28(r30)
-	  addi      r0, r5, 0x8
-	  addi      r4, r5, 0x40
-	  addi      r3, r5, 0xA4
-	  stw       r0, 0x10(r30)
-	  addi      r0, r5, 0xB4
-	  stw       r4, 0x30(r30)
-	  stw       r3, 0xC8(r30)
-	  stw       r0, 0xDC(r30)
-	  beq-      .loc_0x60
-	  addi      r3, r30, 0xEC
-	  li        r4, 0
-	  bl        -0x439A5C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_8046035C
+	lis      r3, __vt__Q23PSM9EnemyBoss@ha
+	addic.   r0, r30, 0xec
+	addi     r5, r3, __vt__Q23PSM9EnemyBoss@l
+	stw      r5, 0x28(r30)
+	addi     r0, r5, 8
+	addi     r4, r5, 0x40
+	addi     r3, r5, 0xa4
+	stw      r0, 0x10(r30)
+	addi     r0, r5, 0xb4
+	stw      r4, 0x30(r30)
+	stw      r3, 0xc8(r30)
+	stw      r0, 0xdc(r30)
+	beq      lbl_80460230
+	addi     r3, r30, 0xec
+	li       r4, 0
+	bl       __dt__10JSUPtrLinkFv
 
-	.loc_0x60:
-	  cmplwi    r30, 0
-	  beq-      .loc_0x17C
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0xCC
-	  subi      r5, r3, 0x1054
-	  stw       r5, 0x28(r30)
-	  addi      r0, r5, 0x8
-	  addi      r4, r5, 0x40
-	  addi      r3, r5, 0xA4
-	  stw       r0, 0x10(r30)
-	  addi      r0, r5, 0xB4
-	  stw       r4, 0x30(r30)
-	  stw       r3, 0xC8(r30)
-	  stw       r0, 0xDC(r30)
-	  beq-      .loc_0xBC
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0xCC
-	  subi      r0, r3, 0xF80
-	  stw       r0, 0xDC(r30)
-	  beq-      .loc_0xBC
-	  addi      r3, r30, 0xCC
-	  li        r4, 0
-	  bl        -0x439AB8
+lbl_80460230:
+	cmplwi   r30, 0
+	beq      lbl_8046034C
+	lis      r3, __vt__Q23PSM9EnemyBase@ha
+	addic.   r0, r30, 0xcc
+	addi     r5, r3, __vt__Q23PSM9EnemyBase@l
+	stw      r5, 0x28(r30)
+	addi     r0, r5, 8
+	addi     r4, r5, 0x40
+	addi     r3, r5, 0xa4
+	stw      r0, 0x10(r30)
+	addi     r0, r5, 0xb4
+	stw      r4, 0x30(r30)
+	stw      r3, 0xc8(r30)
+	stw      r0, 0xdc(r30)
+	beq      lbl_8046028C
+	lis      r3, __vt__Q23PSM9KehaiLink@ha
+	addic.   r0, r30, 0xcc
+	addi     r0, r3, __vt__Q23PSM9KehaiLink@l
+	stw      r0, 0xdc(r30)
+	beq      lbl_8046028C
+	addi     r3, r30, 0xcc
+	li       r4, 0
+	bl       __dt__10JSUPtrLinkFv
 
-	.loc_0xBC:
-	  addic.    r0, r30, 0xB8
-	  beq-      .loc_0xE4
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0xB8
-	  subi      r0, r3, 0xF70
-	  stw       r0, 0xC8(r30)
-	  beq-      .loc_0xE4
-	  addi      r3, r30, 0xB8
-	  li        r4, 0
-	  bl        -0x439AE0
+lbl_8046028C:
+	addic.   r0, r30, 0xb8
+	beq      lbl_804602B4
+	lis      r3, __vt__Q23PSM10BattleLink@ha
+	addic.   r0, r30, 0xb8
+	addi     r0, r3, __vt__Q23PSM10BattleLink@l
+	stw      r0, 0xc8(r30)
+	beq      lbl_804602B4
+	addi     r3, r30, 0xb8
+	li       r4, 0
+	bl       __dt__10JSUPtrLinkFv
 
-	.loc_0xE4:
-	  cmplwi    r30, 0
-	  beq-      .loc_0x17C
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x30
-	  subi      r4, r3, 0xF60
-	  stw       r4, 0x28(r30)
-	  addi      r3, r4, 0x8
-	  addi      r0, r4, 0x40
-	  stw       r3, 0x10(r30)
-	  stw       r0, 0x30(r30)
-	  beq-      .loc_0x128
-	  lis       r4, 0x804A
-	  addi      r3, r30, 0x30
-	  addi      r0, r4, 0x6200
-	  li        r4, 0
-	  stw       r0, 0x30(r30)
-	  bl        -0x3A6714
+lbl_804602B4:
+	cmplwi   r30, 0
+	beq      lbl_8046034C
+	lis      r3, __vt__Q23PSM13CreatureAnime@ha
+	addic.   r0, r30, 0x30
+	addi     r4, r3, __vt__Q23PSM13CreatureAnime@l
+	stw      r4, 0x28(r30)
+	addi     r3, r4, 8
+	addi     r0, r4, 0x40
+	stw      r3, 0x10(r30)
+	stw      r0, 0x30(r30)
+	beq      lbl_804602F8
+	lis      r4, __vt__13JAIAnimeSound@ha
+	addi     r3, r30, 0x30
+	addi     r0, r4, __vt__13JAIAnimeSound@l
+	li       r4, 0
+	stw      r0, 0x30(r30)
+	bl       __dt__Q27JAInter6ObjectFv
 
-	.loc_0x128:
-	  cmplwi    r30, 0
-	  beq-      .loc_0x17C
-	  lis       r3, 0x804F
-	  subi      r3, r3, 0xE34
-	  stw       r3, 0x28(r30)
-	  addi      r0, r3, 0x8
-	  stw       r0, 0x10(r30)
-	  beq-      .loc_0x17C
-	  lis       r4, 0x804F
-	  addi      r3, r30, 0x10
-	  subi      r5, r4, 0xDD0
-	  li        r4, 0
-	  stw       r5, 0x28(r30)
-	  addi      r0, r5, 0x8
-	  stw       r0, 0x10(r30)
-	  bl        -0x443300
-	  cmplwi    r30, 0
-	  beq-      .loc_0x17C
-	  mr        r3, r30
-	  li        r4, 0
-	  bl        -0x439B78
+lbl_804602F8:
+	cmplwi   r30, 0
+	beq      lbl_8046034C
+	lis      r3, __vt__Q23PSM8Creature@ha
+	addi     r3, r3, __vt__Q23PSM8Creature@l
+	stw      r3, 0x28(r30)
+	addi     r0, r3, 8
+	stw      r0, 0x10(r30)
+	beq      lbl_8046034C
+	lis      r4, __vt__Q23PSM7ObjBase@ha
+	addi     r3, r30, 0x10
+	addi     r5, r4, __vt__Q23PSM7ObjBase@l
+	li       r4, 0
+	stw      r5, 0x28(r30)
+	addi     r0, r5, 8
+	stw      r0, 0x10(r30)
+	bl       __dt__11JKRDisposerFv
+	cmplwi   r30, 0
+	beq      lbl_8046034C
+	mr       r3, r30
+	li       r4, 0
+	bl       __dt__10JSUPtrLinkFv
 
-	.loc_0x17C:
-	  extsh.    r0, r31
-	  ble-      .loc_0x18C
-	  mr        r3, r30
-	  bl        -0x43C2A4
+lbl_8046034C:
+	extsh.   r0, r31
+	ble      lbl_8046035C
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x18C:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8046035C:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -4521,166 +5469,165 @@ EnemyBoss::~EnemyBoss()
 void EnemyMidBoss::onCalcOn()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r4, 0x804A
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r3
-	  stw       r30, 0x18(r1)
-	  subi      r30, r4, 0x3060
-	  stw       r29, 0x14(r1)
-	  bl        -0xE08
-	  lbz       r0, 0x118(r31)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x200
-	  lbz       r0, 0xFC(r31)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x200
-	  lwz       r0, -0x6780(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x60
-	  addi      r3, r30, 0x30
-	  addi      r5, r30, 0x18
-	  li        r4, 0x1D3
-	  crclr     6, 0x6
-	  bl        -0x435D94
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lis      r4, lbl_8049CFA0@ha
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r3
+	stw      r30, 0x18(r1)
+	addi     r30, r4, lbl_8049CFA0@l
+	stw      r29, 0x14(r1)
+	bl       onCalcOn__Q23PSM9EnemyBossFv
+	lbz      r0, 0x118(r31)
+	cmplwi   r0, 0
+	beq      lbl_80460578
+	lbz      r0, 0xfc(r31)
+	cmplwi   r0, 0
+	bne      lbl_80460578
+	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_804603D8
+	addi     r3, r30, 0x30
+	addi     r5, r30, 0x18
+	li       r4, 0x1d3
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x60:
-	  lwz       r29, -0x6780(r13)
-	  cmplwi    r29, 0
-	  bne-      .loc_0x80
-	  addi      r3, r30, 0x30
-	  addi      r5, r30, 0x18
-	  li        r4, 0x1DC
-	  crclr     6, 0x6
-	  bl        -0x435DB4
+lbl_804603D8:
+	lwz      r29, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r29, 0
+	bne      lbl_804603F8
+	addi     r3, r30, 0x30
+	addi     r5, r30, 0x18
+	li       r4, 0x1dc
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x80:
-	  lwz       r0, 0x4(r29)
-	  cmplwi    r0, 0
-	  bne-      .loc_0xA0
-	  addi      r3, r30, 0x3C
-	  addi      r5, r30, 0x18
-	  li        r4, 0xCF
-	  crclr     6, 0x6
-	  bl        -0x435DD4
+lbl_804603F8:
+	lwz      r0, 4(r29)
+	cmplwi   r0, 0
+	bne      lbl_80460418
+	addi     r3, r30, 0x3c
+	addi     r5, r30, 0x18
+	li       r4, 0xcf
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xA0:
-	  lwz       r3, 0x4(r29)
-	  lwz       r29, 0x4(r3)
-	  cmplwi    r29, 0
-	  bne-      .loc_0xC4
-	  addi      r3, r30, 0x3C
-	  addi      r5, r30, 0x98
-	  li        r4, 0xD1
-	  crclr     6, 0x6
-	  bl        -0x435DF8
+lbl_80460418:
+	lwz      r3, 4(r29)
+	lwz      r29, 4(r3)
+	cmplwi   r29, 0
+	bne      lbl_8046043C
+	addi     r3, r30, 0x3c
+	addi     r5, r30, 0x98
+	li       r4, 0xd1
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xC4:
-	  mr        r3, r29
-	  lwz       r12, 0x0(r29)
-	  lwz       r12, 0x40(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xE4
-	  b         .loc_0xE8
+lbl_8046043C:
+	mr       r3, r29
+	lwz      r12, 0(r29)
+	lwz      r12, 0x40(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_8046045C
+	b        lbl_80460460
 
-	.loc_0xE4:
-	  li        r29, 0
+lbl_8046045C:
+	li       r29, 0
 
-	.loc_0xE8:
-	  cmplwi    r29, 0
-	  beq-      .loc_0x200
-	  mr        r3, r29
-	  mr        r4, r31
-	  lwz       r12, 0x0(r29)
-	  li        r5, 0
-	  lwz       r12, 0x38(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x200
-	  lfs       f1, 0xE0(r31)
-	  lfs       f0, 0x104(r31)
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x200
-	  li        r0, 0x1
-	  stb       r0, 0xFC(r31)
-	  lwz       r0, -0x6780(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x14C
-	  addi      r3, r30, 0x30
-	  addi      r5, r30, 0x18
-	  li        r4, 0x1D3
-	  crclr     6, 0x6
-	  bl        -0x435E80
+lbl_80460460:
+	cmplwi   r29, 0
+	beq      lbl_80460578
+	mr       r3, r29
+	mr       r4, r31
+	lwz      r12, 0(r29)
+	li       r5, 0
+	lwz      r12, 0x38(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80460578
+	lfs      f1, 0xe0(r31)
+	lfs      f0, 0x104(r31)
+	fcmpo    cr0, f1, f0
+	bge      lbl_80460578
+	li       r0, 1
+	stb      r0, 0xfc(r31)
+	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_804604C4
+	addi     r3, r30, 0x30
+	addi     r5, r30, 0x18
+	li       r4, 0x1d3
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x14C:
-	  lwz       r29, -0x6780(r13)
-	  cmplwi    r29, 0
-	  bne-      .loc_0x16C
-	  addi      r3, r30, 0x30
-	  addi      r5, r30, 0x18
-	  li        r4, 0x1DC
-	  crclr     6, 0x6
-	  bl        -0x435EA0
+lbl_804604C4:
+	lwz      r29, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r29, 0
+	bne      lbl_804604E4
+	addi     r3, r30, 0x30
+	addi     r5, r30, 0x18
+	li       r4, 0x1dc
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x16C:
-	  lwz       r0, 0x4(r29)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x18C
-	  addi      r3, r30, 0x3C
-	  addi      r5, r30, 0x18
-	  li        r4, 0xC7
-	  crclr     6, 0x6
-	  bl        -0x435EC0
+lbl_804604E4:
+	lwz      r0, 4(r29)
+	cmplwi   r0, 0
+	bne      lbl_80460504
+	addi     r3, r30, 0x3c
+	addi     r5, r30, 0x18
+	li       r4, 0xc7
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x18C:
-	  lwz       r3, 0x4(r29)
-	  lwz       r3, 0x4(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x1F8
-	  lwz       r12, 0x0(r3)
-	  mr        r4, r31
-	  li        r5, 0
-	  lwz       r12, 0x38(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x1F8
-	  lbz       r0, 0xFD(r31)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x1E4
-	  li        r0, 0x1
-	  mr        r3, r31
-	  stb       r0, 0xFD(r31)
-	  lwz       r12, 0x28(r31)
-	  lwz       r12, 0xE8(r12)
-	  mtctr     r12
-	  bctrl
+lbl_80460504:
+	lwz      r3, 4(r29)
+	lwz      r3, 4(r3)
+	cmplwi   r3, 0
+	beq      lbl_80460570
+	lwz      r12, 0(r3)
+	mr       r4, r31
+	li       r5, 0
+	lwz      r12, 0x38(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80460570
+	lbz      r0, 0xfd(r31)
+	cmplwi   r0, 0
+	bne      lbl_8046055C
+	li       r0, 1
+	mr       r3, r31
+	stb      r0, 0xfd(r31)
+	lwz      r12, 0x28(r31)
+	lwz      r12, 0xe8(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x1E4:
-	  mr        r3, r31
-	  lwz       r12, 0x28(r31)
-	  lwz       r12, 0xE4(r12)
-	  mtctr     r12
-	  bctrl
+lbl_8046055C:
+	mr       r3, r31
+	lwz      r12, 0x28(r31)
+	lwz      r12, 0xe4(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x1F8:
-	  li        r0, 0
-	  stb       r0, 0x118(r31)
+lbl_80460570:
+	li       r0, 0
+	stb      r0, 0x118(r31)
 
-	.loc_0x200:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80460578:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -4692,78 +5639,77 @@ void EnemyMidBoss::onCalcOn()
 void EnemyMidBoss::jumpRequest(unsigned short)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r5, 0x804A
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  subi      r31, r5, 0x3060
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r29, r4
-	  stw       r28, 0x10(r1)
-	  mr        r28, r3
-	  lwz       r0, -0x6780(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x4C
-	  addi      r3, r31, 0x30
-	  addi      r5, r31, 0x18
-	  li        r4, 0x1D3
-	  crclr     6, 0x6
-	  bl        -0x435F9C
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lis      r5, lbl_8049CFA0@ha
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	addi     r31, r5, lbl_8049CFA0@l
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	mr       r29, r4
+	stw      r28, 0x10(r1)
+	mr       r28, r3
+	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_804605E0
+	addi     r3, r31, 0x30
+	addi     r5, r31, 0x18
+	li       r4, 0x1d3
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x4C:
-	  lwz       r30, -0x6780(r13)
-	  cmplwi    r30, 0
-	  bne-      .loc_0x6C
-	  addi      r3, r31, 0x30
-	  addi      r5, r31, 0x18
-	  li        r4, 0x1DC
-	  crclr     6, 0x6
-	  bl        -0x435FBC
+lbl_804605E0:
+	lwz      r30, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r30, 0
+	bne      lbl_80460600
+	addi     r3, r31, 0x30
+	addi     r5, r31, 0x18
+	li       r4, 0x1dc
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x6C:
-	  lwz       r0, 0x4(r30)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x8C
-	  addi      r3, r31, 0x3C
-	  addi      r5, r31, 0x18
-	  li        r4, 0xC7
-	  crclr     6, 0x6
-	  bl        -0x435FDC
+lbl_80460600:
+	lwz      r0, 4(r30)
+	cmplwi   r0, 0
+	bne      lbl_80460620
+	addi     r3, r31, 0x3c
+	addi     r5, r31, 0x18
+	li       r4, 0xc7
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x8C:
-	  lwz       r3, 0x4(r30)
-	  lwz       r3, 0x4(r3)
-	  cmplwi    r3, 0
-	  bne-      .loc_0xA4
-	  li        r3, 0
-	  b         .loc_0xA8
+lbl_80460620:
+	lwz      r3, 4(r30)
+	lwz      r3, 4(r3)
+	cmplwi   r3, 0
+	bne      lbl_80460638
+	li       r3, 0
+	b        lbl_8046063C
 
-	.loc_0xA4:
-	  bl        -0x12AFB8
+lbl_80460638:
+	bl       getMiddleBossBgm__Q26PSGame8PikSceneFv
 
-	.loc_0xA8:
-	  cmplwi    r3, 0
-	  beq-      .loc_0xCC
-	  beq-      .loc_0xCC
-	  stw       r28, 0x134(r3)
-	  mr        r4, r29
-	  lwz       r12, 0x10(r3)
-	  lwz       r12, 0x54(r12)
-	  mtctr     r12
-	  bctrl
+lbl_8046063C:
+	cmplwi   r3, 0
+	beq      lbl_80460660
+	beq      lbl_80460660
+	stw      r28, 0x134(r3)
+	mr       r4, r29
+	lwz      r12, 0x10(r3)
+	lwz      r12, 0x54(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0xCC:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80460660:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -4775,88 +5721,87 @@ void EnemyMidBoss::jumpRequest(unsigned short)
 void EnemyMidBoss::onAppear1st()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r4, 0x804A
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  subi      r31, r4, 0x3060
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  lwz       r0, -0x6780(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x44
-	  addi      r3, r31, 0x30
-	  addi      r5, r31, 0x18
-	  li        r4, 0x1D3
-	  crclr     6, 0x6
-	  bl        -0x436080
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lis      r4, lbl_8049CFA0@ha
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	addi     r31, r4, lbl_8049CFA0@l
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_804606C4
+	addi     r3, r31, 0x30
+	addi     r5, r31, 0x18
+	li       r4, 0x1d3
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x44:
-	  lwz       r30, -0x6780(r13)
-	  cmplwi    r30, 0
-	  bne-      .loc_0x64
-	  addi      r3, r31, 0x30
-	  addi      r5, r31, 0x18
-	  li        r4, 0x1DC
-	  crclr     6, 0x6
-	  bl        -0x4360A0
+lbl_804606C4:
+	lwz      r30, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r30, 0
+	bne      lbl_804606E4
+	addi     r3, r31, 0x30
+	addi     r5, r31, 0x18
+	li       r4, 0x1dc
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x64:
-	  lwz       r0, 0x4(r30)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x84
-	  addi      r3, r31, 0x3C
-	  addi      r5, r31, 0x18
-	  li        r4, 0xCF
-	  crclr     6, 0x6
-	  bl        -0x4360C0
+lbl_804606E4:
+	lwz      r0, 4(r30)
+	cmplwi   r0, 0
+	bne      lbl_80460704
+	addi     r3, r31, 0x3c
+	addi     r5, r31, 0x18
+	li       r4, 0xcf
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x84:
-	  lwz       r3, 0x4(r30)
-	  lwz       r30, 0x4(r3)
-	  cmplwi    r30, 0
-	  bne-      .loc_0xA8
-	  addi      r3, r31, 0x3C
-	  addi      r5, r31, 0x98
-	  li        r4, 0xD1
-	  crclr     6, 0x6
-	  bl        -0x4360E4
+lbl_80460704:
+	lwz      r3, 4(r30)
+	lwz      r30, 4(r3)
+	cmplwi   r30, 0
+	bne      lbl_80460728
+	addi     r3, r31, 0x3c
+	addi     r5, r31, 0x98
+	li       r4, 0xd1
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xA8:
-	  mr        r3, r30
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x40(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xC8
-	  b         .loc_0xCC
+lbl_80460728:
+	mr       r3, r30
+	lwz      r12, 0(r30)
+	lwz      r12, 0x40(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80460748
+	b        lbl_8046074C
 
-	.loc_0xC8:
-	  li        r30, 0
+lbl_80460748:
+	li       r30, 0
 
-	.loc_0xCC:
-	  cmplwi    r30, 0
-	  beq-      .loc_0xF0
-	  mr        r3, r30
-	  mr        r4, r29
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x9
-	  lwz       r12, 0x5C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_8046074C:
+	cmplwi   r30, 0
+	beq      lbl_80460770
+	mr       r3, r30
+	mr       r4, r29
+	lwz      r12, 0(r30)
+	li       r5, 9
+	lwz      r12, 0x5c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0xF0:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80460770:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -4868,35 +5813,35 @@ void EnemyMidBoss::onAppear1st()
 void EnemyMidBoss::postPikiAttack(bool)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r5, -0x6E50(r13)
-	  cmplwi    r5, 0
-	  beq-      .loc_0x50
-	  lwz       r5, 0x34(r5)
-	  cmplwi    r5, 0
-	  beq-      .loc_0x50
-	  rlwinm.   r0,r4,0,24,31
-	  beq-      .loc_0x40
-	  lwz       r0, 0x100(r3)
-	  mr        r3, r5
-	  rlwinm    r4,r0,0,24,31
-	  bl        -0x82AC
-	  b         .loc_0x50
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r5,
+"sInstance__Q28PSSystem39SingletonBase<Q33PSM12BossBgmFader3Mgr>"@sda21(r13)
+	cmplwi   r5, 0
+	beq      lbl_804607DC
+	lwz      r5, 0x34(r5)
+	cmplwi   r5, 0
+	beq      lbl_804607DC
+	clrlwi.  r0, r4, 0x18
+	beq      lbl_804607CC
+	lwz      r0, 0x100(r3)
+	mr       r3, r5
+	clrlwi   r4, r0, 0x18
+	bl       directOn__Q23PSM15DirectorUpdatorFUc
+	b        lbl_804607DC
 
-	.loc_0x40:
-	  lwz       r0, 0x100(r3)
-	  mr        r3, r5
-	  rlwinm    r4,r0,0,24,31
-	  bl        -0x828C
+lbl_804607CC:
+	lwz      r0, 0x100(r3)
+	mr       r3, r5
+	clrlwi   r4, r0, 0x18
+	bl       directOff__Q23PSM15DirectorUpdatorFUc
 
-	.loc_0x50:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_804607DC:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -4908,33 +5853,32 @@ void EnemyMidBoss::postPikiAttack(bool)
 EnemyBigBoss::EnemyBigBoss(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        -0x890
-	  lis       r3, 0x804F
-	  li        r0, 0x1
-	  subi      r7, r3, 0x1560
-	  mr        r3, r31
-	  stw       r7, 0x28(r31)
-	  addi      r4, r7, 0x8
-	  addi      r6, r7, 0x40
-	  addi      r5, r7, 0xA4
-	  stw       r4, 0x10(r31)
-	  addi      r4, r7, 0xB4
-	  stw       r6, 0x30(r31)
-	  stw       r5, 0xC8(r31)
-	  stw       r4, 0xDC(r31)
-	  sth       r0, 0x11C(r31)
-	  stw       r31, -0x6370(r13)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       __ct__Q23PSM12EnemyMidBossFPQ24Game9EnemyBase
+	lis      r3, __vt__Q23PSM12EnemyBigBoss@ha
+	li       r0, 1
+	addi     r7, r3, __vt__Q23PSM12EnemyBigBoss@l
+	mr       r3, r31
+	stw      r7, 0x28(r31)
+	addi     r4, r7, 8
+	addi     r6, r7, 0x40
+	addi     r5, r7, 0xa4
+	stw      r4, 0x10(r31)
+	addi     r4, r7, 0xb4
+	stw      r6, 0x30(r31)
+	stw      r5, 0xc8(r31)
+	stw      r4, 0xdc(r31)
+	sth      r0, 0x11c(r31)
+	stw      r31, sBigBoss__Q23PSM12EnemyBigBoss@sda21(r13)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -4946,145 +5890,144 @@ EnemyBigBoss::EnemyBigBoss(Game::EnemyBase*)
 EnemyMidBoss::~EnemyMidBoss()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x1D4
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x108
-	  subi      r5, r3, 0x1470
-	  stw       r5, 0x28(r30)
-	  addi      r0, r5, 0x8
-	  addi      r4, r5, 0x40
-	  addi      r3, r5, 0xA4
-	  stw       r0, 0x10(r30)
-	  addi      r0, r5, 0xB4
-	  stw       r4, 0x30(r30)
-	  stw       r3, 0xC8(r30)
-	  stw       r0, 0xDC(r30)
-	  beq-      .loc_0x60
-	  addi      r3, r30, 0x108
-	  li        r4, 0
-	  bl        -0x43A0E0
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_80460A28
+	lis      r3, __vt__Q23PSM12EnemyMidBoss@ha
+	addic.   r0, r30, 0x108
+	addi     r5, r3, __vt__Q23PSM12EnemyMidBoss@l
+	stw      r5, 0x28(r30)
+	addi     r0, r5, 8
+	addi     r4, r5, 0x40
+	addi     r3, r5, 0xa4
+	stw      r0, 0x10(r30)
+	addi     r0, r5, 0xb4
+	stw      r4, 0x30(r30)
+	stw      r3, 0xc8(r30)
+	stw      r0, 0xdc(r30)
+	beq      lbl_804608B4
+	addi     r3, r30, 0x108
+	li       r4, 0
+	bl       __dt__10JSUPtrLinkFv
 
-	.loc_0x60:
-	  cmplwi    r30, 0
-	  beq-      .loc_0x1C4
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0xEC
-	  subi      r5, r3, 0x1380
-	  stw       r5, 0x28(r30)
-	  addi      r0, r5, 0x8
-	  addi      r4, r5, 0x40
-	  addi      r3, r5, 0xA4
-	  stw       r0, 0x10(r30)
-	  addi      r0, r5, 0xB4
-	  stw       r4, 0x30(r30)
-	  stw       r3, 0xC8(r30)
-	  stw       r0, 0xDC(r30)
-	  beq-      .loc_0xA8
-	  addi      r3, r30, 0xEC
-	  li        r4, 0
-	  bl        -0x43A128
+lbl_804608B4:
+	cmplwi   r30, 0
+	beq      lbl_80460A18
+	lis      r3, __vt__Q23PSM9EnemyBoss@ha
+	addic.   r0, r30, 0xec
+	addi     r5, r3, __vt__Q23PSM9EnemyBoss@l
+	stw      r5, 0x28(r30)
+	addi     r0, r5, 8
+	addi     r4, r5, 0x40
+	addi     r3, r5, 0xa4
+	stw      r0, 0x10(r30)
+	addi     r0, r5, 0xb4
+	stw      r4, 0x30(r30)
+	stw      r3, 0xc8(r30)
+	stw      r0, 0xdc(r30)
+	beq      lbl_804608FC
+	addi     r3, r30, 0xec
+	li       r4, 0
+	bl       __dt__10JSUPtrLinkFv
 
-	.loc_0xA8:
-	  cmplwi    r30, 0
-	  beq-      .loc_0x1C4
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0xCC
-	  subi      r5, r3, 0x1054
-	  stw       r5, 0x28(r30)
-	  addi      r0, r5, 0x8
-	  addi      r4, r5, 0x40
-	  addi      r3, r5, 0xA4
-	  stw       r0, 0x10(r30)
-	  addi      r0, r5, 0xB4
-	  stw       r4, 0x30(r30)
-	  stw       r3, 0xC8(r30)
-	  stw       r0, 0xDC(r30)
-	  beq-      .loc_0x104
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0xCC
-	  subi      r0, r3, 0xF80
-	  stw       r0, 0xDC(r30)
-	  beq-      .loc_0x104
-	  addi      r3, r30, 0xCC
-	  li        r4, 0
-	  bl        -0x43A184
+lbl_804608FC:
+	cmplwi   r30, 0
+	beq      lbl_80460A18
+	lis      r3, __vt__Q23PSM9EnemyBase@ha
+	addic.   r0, r30, 0xcc
+	addi     r5, r3, __vt__Q23PSM9EnemyBase@l
+	stw      r5, 0x28(r30)
+	addi     r0, r5, 8
+	addi     r4, r5, 0x40
+	addi     r3, r5, 0xa4
+	stw      r0, 0x10(r30)
+	addi     r0, r5, 0xb4
+	stw      r4, 0x30(r30)
+	stw      r3, 0xc8(r30)
+	stw      r0, 0xdc(r30)
+	beq      lbl_80460958
+	lis      r3, __vt__Q23PSM9KehaiLink@ha
+	addic.   r0, r30, 0xcc
+	addi     r0, r3, __vt__Q23PSM9KehaiLink@l
+	stw      r0, 0xdc(r30)
+	beq      lbl_80460958
+	addi     r3, r30, 0xcc
+	li       r4, 0
+	bl       __dt__10JSUPtrLinkFv
 
-	.loc_0x104:
-	  addic.    r0, r30, 0xB8
-	  beq-      .loc_0x12C
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0xB8
-	  subi      r0, r3, 0xF70
-	  stw       r0, 0xC8(r30)
-	  beq-      .loc_0x12C
-	  addi      r3, r30, 0xB8
-	  li        r4, 0
-	  bl        -0x43A1AC
+lbl_80460958:
+	addic.   r0, r30, 0xb8
+	beq      lbl_80460980
+	lis      r3, __vt__Q23PSM10BattleLink@ha
+	addic.   r0, r30, 0xb8
+	addi     r0, r3, __vt__Q23PSM10BattleLink@l
+	stw      r0, 0xc8(r30)
+	beq      lbl_80460980
+	addi     r3, r30, 0xb8
+	li       r4, 0
+	bl       __dt__10JSUPtrLinkFv
 
-	.loc_0x12C:
-	  cmplwi    r30, 0
-	  beq-      .loc_0x1C4
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x30
-	  subi      r4, r3, 0xF60
-	  stw       r4, 0x28(r30)
-	  addi      r3, r4, 0x8
-	  addi      r0, r4, 0x40
-	  stw       r3, 0x10(r30)
-	  stw       r0, 0x30(r30)
-	  beq-      .loc_0x170
-	  lis       r4, 0x804A
-	  addi      r3, r30, 0x30
-	  addi      r0, r4, 0x6200
-	  li        r4, 0
-	  stw       r0, 0x30(r30)
-	  bl        -0x3A6DE0
+lbl_80460980:
+	cmplwi   r30, 0
+	beq      lbl_80460A18
+	lis      r3, __vt__Q23PSM13CreatureAnime@ha
+	addic.   r0, r30, 0x30
+	addi     r4, r3, __vt__Q23PSM13CreatureAnime@l
+	stw      r4, 0x28(r30)
+	addi     r3, r4, 8
+	addi     r0, r4, 0x40
+	stw      r3, 0x10(r30)
+	stw      r0, 0x30(r30)
+	beq      lbl_804609C4
+	lis      r4, __vt__13JAIAnimeSound@ha
+	addi     r3, r30, 0x30
+	addi     r0, r4, __vt__13JAIAnimeSound@l
+	li       r4, 0
+	stw      r0, 0x30(r30)
+	bl       __dt__Q27JAInter6ObjectFv
 
-	.loc_0x170:
-	  cmplwi    r30, 0
-	  beq-      .loc_0x1C4
-	  lis       r3, 0x804F
-	  subi      r3, r3, 0xE34
-	  stw       r3, 0x28(r30)
-	  addi      r0, r3, 0x8
-	  stw       r0, 0x10(r30)
-	  beq-      .loc_0x1C4
-	  lis       r4, 0x804F
-	  addi      r3, r30, 0x10
-	  subi      r5, r4, 0xDD0
-	  li        r4, 0
-	  stw       r5, 0x28(r30)
-	  addi      r0, r5, 0x8
-	  stw       r0, 0x10(r30)
-	  bl        -0x4439CC
-	  cmplwi    r30, 0
-	  beq-      .loc_0x1C4
-	  mr        r3, r30
-	  li        r4, 0
-	  bl        -0x43A244
+lbl_804609C4:
+	cmplwi   r30, 0
+	beq      lbl_80460A18
+	lis      r3, __vt__Q23PSM8Creature@ha
+	addi     r3, r3, __vt__Q23PSM8Creature@l
+	stw      r3, 0x28(r30)
+	addi     r0, r3, 8
+	stw      r0, 0x10(r30)
+	beq      lbl_80460A18
+	lis      r4, __vt__Q23PSM7ObjBase@ha
+	addi     r3, r30, 0x10
+	addi     r5, r4, __vt__Q23PSM7ObjBase@l
+	li       r4, 0
+	stw      r5, 0x28(r30)
+	addi     r0, r5, 8
+	stw      r0, 0x10(r30)
+	bl       __dt__11JKRDisposerFv
+	cmplwi   r30, 0
+	beq      lbl_80460A18
+	mr       r3, r30
+	li       r4, 0
+	bl       __dt__10JSUPtrLinkFv
 
-	.loc_0x1C4:
-	  extsh.    r0, r31
-	  ble-      .loc_0x1D4
-	  mr        r3, r30
-	  bl        -0x43C970
+lbl_80460A18:
+	extsh.   r0, r31
+	ble      lbl_80460A28
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x1D4:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80460A28:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -5096,43 +6039,42 @@ EnemyMidBoss::~EnemyMidBoss()
 EnemyBigBoss::~EnemyBigBoss()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x6C
-	  lis       r4, 0x804F
-	  li        r0, 0
-	  subi      r8, r4, 0x1560
-	  li        r4, 0
-	  stw       r8, 0x28(r30)
-	  addi      r5, r8, 0x8
-	  addi      r7, r8, 0x40
-	  addi      r6, r8, 0xA4
-	  stw       r5, 0x10(r30)
-	  addi      r5, r8, 0xB4
-	  stw       r7, 0x30(r30)
-	  stw       r6, 0xC8(r30)
-	  stw       r5, 0xDC(r30)
-	  stw       r0, -0x6370(r13)
-	  bl        -0x248
-	  extsh.    r0, r31
-	  ble-      .loc_0x6C
-	  mr        r3, r30
-	  bl        -0x43C9F8
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_80460AB0
+	lis      r4, __vt__Q23PSM12EnemyBigBoss@ha
+	li       r0, 0
+	addi     r8, r4, __vt__Q23PSM12EnemyBigBoss@l
+	li       r4, 0
+	stw      r8, 0x28(r30)
+	addi     r5, r8, 8
+	addi     r7, r8, 0x40
+	addi     r6, r8, 0xa4
+	stw      r5, 0x10(r30)
+	addi     r5, r8, 0xb4
+	stw      r7, 0x30(r30)
+	stw      r6, 0xc8(r30)
+	stw      r5, 0xdc(r30)
+	stw      r0, sBigBoss__Q23PSM12EnemyBigBoss@sda21(r13)
+	bl       __dt__Q23PSM12EnemyMidBossFv
+	extsh.   r0, r31
+	ble      lbl_80460AB0
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x6C:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80460AB0:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -5144,77 +6086,76 @@ EnemyBigBoss::~EnemyBigBoss()
 void EnemyBigBoss::jumpRequest(unsigned short)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r5, 0x804A
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  subi      r31, r5, 0x3060
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r29, r4
-	  stw       r28, 0x10(r1)
-	  mr        r28, r3
-	  lwz       r0, -0x6780(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x4C
-	  addi      r3, r31, 0x30
-	  addi      r5, r31, 0x18
-	  li        r4, 0x1D3
-	  crclr     6, 0x6
-	  bl        -0x4364D4
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lis      r5, lbl_8049CFA0@ha
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	addi     r31, r5, lbl_8049CFA0@l
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	mr       r29, r4
+	stw      r28, 0x10(r1)
+	mr       r28, r3
+	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_80460B18
+	addi     r3, r31, 0x30
+	addi     r5, r31, 0x18
+	li       r4, 0x1d3
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x4C:
-	  lwz       r30, -0x6780(r13)
-	  cmplwi    r30, 0
-	  bne-      .loc_0x6C
-	  addi      r3, r31, 0x30
-	  addi      r5, r31, 0x18
-	  li        r4, 0x1DC
-	  crclr     6, 0x6
-	  bl        -0x4364F4
+lbl_80460B18:
+	lwz      r30, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r30, 0
+	bne      lbl_80460B38
+	addi     r3, r31, 0x30
+	addi     r5, r31, 0x18
+	li       r4, 0x1dc
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x6C:
-	  lwz       r0, 0x4(r30)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x8C
-	  addi      r3, r31, 0x3C
-	  addi      r5, r31, 0x18
-	  li        r4, 0xC7
-	  crclr     6, 0x6
-	  bl        -0x436514
+lbl_80460B38:
+	lwz      r0, 4(r30)
+	cmplwi   r0, 0
+	bne      lbl_80460B58
+	addi     r3, r31, 0x3c
+	addi     r5, r31, 0x18
+	li       r4, 0xc7
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x8C:
-	  lwz       r3, 0x4(r30)
-	  lwz       r3, 0x4(r3)
-	  cmplwi    r3, 0
-	  bne-      .loc_0xA4
-	  li        r3, 0
-	  b         .loc_0xA8
+lbl_80460B58:
+	lwz      r3, 4(r30)
+	lwz      r3, 4(r3)
+	cmplwi   r3, 0
+	bne      lbl_80460B70
+	li       r3, 0
+	b        lbl_80460B74
 
-	.loc_0xA4:
-	  bl        -0x12B4F0
+lbl_80460B70:
+	bl       getMiddleBossBgm__Q26PSGame8PikSceneFv
 
-	.loc_0xA8:
-	  cmplwi    r3, 0
-	  beq-      .loc_0xC8
-	  stw       r28, 0x134(r3)
-	  mr        r4, r29
-	  lwz       r12, 0x10(r3)
-	  lwz       r12, 0x54(r12)
-	  mtctr     r12
-	  bctrl
+lbl_80460B74:
+	cmplwi   r3, 0
+	beq      lbl_80460B94
+	stw      r28, 0x134(r3)
+	mr       r4, r29
+	lwz      r12, 0x10(r3)
+	lwz      r12, 0x54(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0xC8:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80460B94:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -5226,21 +6167,20 @@ void EnemyBigBoss::jumpRequest(unsigned short)
 void EnemyBigBoss::onDeathMotionTop()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r4, 0xD
-	  stw       r0, 0x14(r1)
-	  li        r0, 0
-	  stw       r0, 0xE8(r3)
-	  lwz       r12, 0x28(r3)
-	  lwz       r12, 0xD4(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	li       r4, 0xd
+	stw      r0, 0x14(r1)
+	li       r0, 0
+	stw      r0, 0xe8(r3)
+	lwz      r12, 0x28(r3)
+	lwz      r12, 0xd4(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -5252,88 +6192,87 @@ void EnemyBigBoss::onDeathMotionTop()
 void EnemyBigBoss::onAppear1st()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r4, 0x804A
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  subi      r31, r4, 0x3060
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  lwz       r0, -0x6780(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x44
-	  addi      r3, r31, 0x30
-	  addi      r5, r31, 0x18
-	  li        r4, 0x1D3
-	  crclr     6, 0x6
-	  bl        -0x4365EC
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lis      r4, lbl_8049CFA0@ha
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	addi     r31, r4, lbl_8049CFA0@l
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_80460C30
+	addi     r3, r31, 0x30
+	addi     r5, r31, 0x18
+	li       r4, 0x1d3
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x44:
-	  lwz       r30, -0x6780(r13)
-	  cmplwi    r30, 0
-	  bne-      .loc_0x64
-	  addi      r3, r31, 0x30
-	  addi      r5, r31, 0x18
-	  li        r4, 0x1DC
-	  crclr     6, 0x6
-	  bl        -0x43660C
+lbl_80460C30:
+	lwz      r30, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r30, 0
+	bne      lbl_80460C50
+	addi     r3, r31, 0x30
+	addi     r5, r31, 0x18
+	li       r4, 0x1dc
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x64:
-	  lwz       r0, 0x4(r30)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x84
-	  addi      r3, r31, 0x3C
-	  addi      r5, r31, 0x18
-	  li        r4, 0xCF
-	  crclr     6, 0x6
-	  bl        -0x43662C
+lbl_80460C50:
+	lwz      r0, 4(r30)
+	cmplwi   r0, 0
+	bne      lbl_80460C70
+	addi     r3, r31, 0x3c
+	addi     r5, r31, 0x18
+	li       r4, 0xcf
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x84:
-	  lwz       r3, 0x4(r30)
-	  lwz       r30, 0x4(r3)
-	  cmplwi    r30, 0
-	  bne-      .loc_0xA8
-	  addi      r3, r31, 0x3C
-	  addi      r5, r31, 0x98
-	  li        r4, 0xD1
-	  crclr     6, 0x6
-	  bl        -0x436650
+lbl_80460C70:
+	lwz      r3, 4(r30)
+	lwz      r30, 4(r3)
+	cmplwi   r30, 0
+	bne      lbl_80460C94
+	addi     r3, r31, 0x3c
+	addi     r5, r31, 0x98
+	li       r4, 0xd1
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xA8:
-	  mr        r3, r30
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x40(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xC8
-	  b         .loc_0xCC
+lbl_80460C94:
+	mr       r3, r30
+	lwz      r12, 0(r30)
+	lwz      r12, 0x40(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80460CB4
+	b        lbl_80460CB8
 
-	.loc_0xC8:
-	  li        r30, 0
+lbl_80460CB4:
+	li       r30, 0
 
-	.loc_0xCC:
-	  cmplwi    r30, 0
-	  beq-      .loc_0xF0
-	  mr        r3, r30
-	  mr        r4, r29
-	  lwz       r12, 0x0(r30)
-	  lhz       r5, 0x11C(r29)
-	  lwz       r12, 0x5C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_80460CB8:
+	cmplwi   r30, 0
+	beq      lbl_80460CDC
+	mr       r3, r30
+	mr       r4, r29
+	lwz      r12, 0(r30)
+	lhz      r5, 0x11c(r29)
+	lwz      r12, 0x5c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0xF0:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80460CDC:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -5345,60 +6284,59 @@ void EnemyBigBoss::onAppear1st()
 void Enemy_SpecialChappy::onPlayingSe(unsigned long, JAISound*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  cmplwi    r5, 0
-	  stw       r0, 0x14(r1)
-	  beq-      .loc_0xAC
-	  cmplwi    r4, 0x5811
-	  blt-      .loc_0x58
-	  cmplwi    r4, 0x5819
-	  bgt-      .loc_0x58
-	  cmplwi    r4, 0x5818
-	  beq-      .loc_0x58
-	  cmplwi    r4, 0x5816
-	  beq-      .loc_0x58
-	  mr        r3, r5
-	  lfs       f1, 0x2920(r2)
-	  lwz       r12, 0x10(r5)
-	  li        r4, 0
-	  li        r5, 0
-	  lwz       r12, 0x2C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0xAC
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	cmplwi   r5, 0
+	stw      r0, 0x14(r1)
+	beq      lbl_80460DA4
+	cmplwi   r4, 0x5811
+	blt      lbl_80460D50
+	cmplwi   r4, 0x5819
+	bgt      lbl_80460D50
+	cmplwi   r4, 0x5818
+	beq      lbl_80460D50
+	cmplwi   r4, 0x5816
+	beq      lbl_80460D50
+	mr       r3, r5
+	lfs      f1, lbl_80520C80@sda21(r2)
+	lwz      r12, 0x10(r5)
+	li       r4, 0
+	li       r5, 0
+	lwz      r12, 0x2c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_80460DA4
 
-	.loc_0x58:
-	  cmplwi    r4, 0x5818
-	  bne-      .loc_0x84
-	  mr        r3, r5
-	  lfs       f1, 0x2924(r2)
-	  lwz       r12, 0x10(r5)
-	  li        r4, 0
-	  li        r5, 0
-	  lwz       r12, 0x2C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0xAC
+lbl_80460D50:
+	cmplwi   r4, 0x5818
+	bne      lbl_80460D7C
+	mr       r3, r5
+	lfs      f1, lbl_80520C84@sda21(r2)
+	lwz      r12, 0x10(r5)
+	li       r4, 0
+	li       r5, 0
+	lwz      r12, 0x2c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_80460DA4
 
-	.loc_0x84:
-	  cmplwi    r4, 0x5816
-	  bne-      .loc_0xAC
-	  mr        r3, r5
-	  lfs       f1, 0x2920(r2)
-	  lwz       r12, 0x10(r5)
-	  li        r4, 0x14
-	  li        r5, 0
-	  lwz       r12, 0x2C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_80460D7C:
+	cmplwi   r4, 0x5816
+	bne      lbl_80460DA4
+	mr       r3, r5
+	lfs      f1, lbl_80520C80@sda21(r2)
+	lwz      r12, 0x10(r5)
+	li       r4, 0x14
+	li       r5, 0
+	lwz      r12, 0x2c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0xAC:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80460DA4:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -5410,18 +6348,17 @@ void Enemy_SpecialChappy::onPlayingSe(unsigned long, JAISound*)
 void DirectorLink::eventStart()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0x10(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r12, 0x10(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -5433,28 +6370,27 @@ void DirectorLink::eventStart()
 void DirectorLink::eventRestart()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r12, 0x10(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  cmplwi    r3, 0
-	  beq-      .loc_0x38
-	  mr        r4, r31
-	  addi      r3, r3, 0xC
-	  bl        -0x43A530
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r12, 0x10(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	cmplwi   r3, 0
+	beq      lbl_80460E18
+	mr       r4, r31
+	addi     r3, r3, 0xc
+	bl       append__10JSUPtrListFP10JSUPtrLink
 
-	.loc_0x38:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80460E18:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -5466,28 +6402,27 @@ void DirectorLink::eventRestart()
 void DirectorLink::eventStop()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r12, 0x10(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  cmplwi    r3, 0
-	  beq-      .loc_0x38
-	  mr        r4, r31
-	  addi      r3, r3, 0xC
-	  bl        -0x43A23C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r12, 0x10(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	cmplwi   r3, 0
+	beq      lbl_80460E64
+	mr       r4, r31
+	addi     r3, r3, 0xc
+	bl       remove__10JSUPtrListFP10JSUPtrLink
 
-	.loc_0x38:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80460E64:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -5499,18 +6434,17 @@ void DirectorLink::eventStop()
 void DirectorLink::eventFinish()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0x10(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r12, 0x10(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -5522,24 +6456,23 @@ void DirectorLink::eventFinish()
 void EventLink::getListDirectorActor()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  bl        -0x84AC
-	  cmplwi    r3, 0
-	  beq-      .loc_0x20
-	  lwz       r3, 0x64(r3)
-	  b         .loc_0x24
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	bl       PSMGetEventD__Fv
+	cmplwi   r3, 0
+	beq      lbl_80460EC4
+	lwz      r3, 0x64(r3)
+	b        lbl_80460EC8
 
-	.loc_0x20:
-	  li        r3, 0
+lbl_80460EC4:
+	li       r3, 0
 
-	.loc_0x24:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80460EC8:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -5551,24 +6484,23 @@ void EventLink::getListDirectorActor()
 void OtakaraEventLink::getListDirectorActor()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  bl        -0x83D8
-	  cmplwi    r3, 0
-	  beq-      .loc_0x20
-	  lwz       r3, 0x54(r3)
-	  b         .loc_0x24
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	bl       PSMGetOtakaraEventD__Fv
+	cmplwi   r3, 0
+	beq      lbl_80460EF8
+	lwz      r3, 0x54(r3)
+	b        lbl_80460EFC
 
-	.loc_0x20:
-	  li        r3, 0
+lbl_80460EF8:
+	li       r3, 0
 
-	.loc_0x24:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80460EFC:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -5587,191 +6519,190 @@ void OtakaraEventLink::eventFinish() { }
 void OtakaraEventLink_2PBattle::getTargetDirector()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lwz       r0, 0x0(r3)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x40
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x3060
-	  li        r4, 0x6A3
-	  subi      r5, r5, 0x3048
-	  crclr     6, 0x6
-	  bl        -0x43690C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lwz      r0, 0(r3)
+	cmplwi   r0, 0
+	bne      lbl_80460F50
+	lis      r3, lbl_8049CFA0@ha
+	lis      r5, lbl_8049CFB8@ha
+	addi     r3, r3, lbl_8049CFA0@l
+	li       r4, 0x6a3
+	addi     r5, r5, lbl_8049CFB8@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x40:
-	  lwz       r3, 0x0(r30)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xF8(r12)
-	  mtctr     r12
-	  bctrl
-	  mr.       r30, r3
-	  bne-      .loc_0x78
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x3060
-	  li        r4, 0x6A5
-	  subi      r5, r5, 0x3048
-	  crclr     6, 0x6
-	  bl        -0x436944
+lbl_80460F50:
+	lwz      r3, 0(r30)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xf8(r12)
+	mtctr    r12
+	bctrl
+	or.      r30, r3, r3
+	bne      lbl_80460F88
+	lis      r3, lbl_8049CFA0@ha
+	lis      r5, lbl_8049CFB8@ha
+	addi     r3, r3, lbl_8049CFA0@l
+	li       r4, 0x6a5
+	addi     r5, r5, lbl_8049CFB8@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x78:
-	  mr        r3, r30
-	  li        r31, 0
-	  lwz       r12, 0x28(r30)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  cmpwi     r3, 0xC
-	  beq-      .loc_0xD0
-	  mr        r3, r30
-	  lwz       r12, 0x28(r30)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  cmpwi     r3, 0xD
-	  beq-      .loc_0xD0
-	  mr        r3, r30
-	  lwz       r12, 0x28(r30)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  cmpwi     r3, 0xB
-	  bne-      .loc_0xD4
+lbl_80460F88:
+	mr       r3, r30
+	li       r31, 0
+	lwz      r12, 0x28(r30)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	cmpwi    r3, 0xc
+	beq      lbl_80460FE0
+	mr       r3, r30
+	lwz      r12, 0x28(r30)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	cmpwi    r3, 0xd
+	beq      lbl_80460FE0
+	mr       r3, r30
+	lwz      r12, 0x28(r30)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	cmpwi    r3, 0xb
+	bne      lbl_80460FE4
 
-	.loc_0xD0:
-	  li        r31, 0x1
+lbl_80460FE0:
+	li       r31, 1
 
-	.loc_0xD4:
-	  rlwinm.   r0,r31,0,24,31
-	  bne-      .loc_0xF8
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x3060
-	  li        r4, 0x6AA
-	  subi      r5, r5, 0x3048
-	  crclr     6, 0x6
-	  bl        -0x4369C4
+lbl_80460FE4:
+	clrlwi.  r0, r31, 0x18
+	bne      lbl_80461008
+	lis      r3, lbl_8049CFA0@ha
+	lis      r5, lbl_8049CFB8@ha
+	addi     r3, r3, lbl_8049CFA0@l
+	li       r4, 0x6aa
+	addi     r5, r5, lbl_8049CFB8@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xF8:
-	  lwz       r0, 0x70(r30)
-	  li        r31, 0
-	  lwz       r30, 0x74(r30)
-	  cmpwi     r0, 0x2
-	  beq-      .loc_0x1FC
-	  bge-      .loc_0x120
-	  cmpwi     r0, 0
-	  beq-      .loc_0x130
-	  bge-      .loc_0x138
-	  b         .loc_0x210
+lbl_80461008:
+	lwz      r0, 0x70(r30)
+	li       r31, 0
+	lwz      r30, 0x74(r30)
+	cmpwi    r0, 2
+	beq      lbl_8046110C
+	bge      lbl_80461030
+	cmpwi    r0, 0
+	beq      lbl_80461040
+	bge      lbl_80461048
+	b        lbl_80461120
 
-	.loc_0x120:
-	  cmpwi     r0, 0x4
-	  beq-      .loc_0x18C
-	  bge-      .loc_0x210
-	  b         .loc_0x208
+lbl_80461030:
+	cmpwi    r0, 4
+	beq      lbl_8046109C
+	bge      lbl_80461120
+	b        lbl_80461118
 
-	.loc_0x130:
-	  li        r31, 0
-	  b         .loc_0x210
+lbl_80461040:
+	li       r31, 0
+	b        lbl_80461120
 
-	.loc_0x138:
-	  cmplwi    r30, 0
-	  beq-      .loc_0x210
-	  lhz       r0, 0x22E(r30)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x158
-	  bl        -0x7D2C
-	  mr        r31, r3
-	  b         .loc_0x210
+lbl_80461048:
+	cmplwi   r30, 0
+	beq      lbl_80461120
+	lhz      r0, 0x22e(r30)
+	cmplwi   r0, 0
+	bne      lbl_80461068
+	bl       PSMGetIchouForLugieD__Fv
+	mr       r31, r3
+	b        lbl_80461120
 
-	.loc_0x158:
-	  cmplwi    r0, 0x1
-	  bne-      .loc_0x16C
-	  bl        -0x7E30
-	  mr        r31, r3
-	  b         .loc_0x210
+lbl_80461068:
+	cmplwi   r0, 1
+	bne      lbl_8046107C
+	bl       PSMGetIchouForOrimerD__Fv
+	mr       r31, r3
+	b        lbl_80461120
 
-	.loc_0x16C:
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x3060
-	  li        r4, 0x6F4
-	  subi      r5, r5, 0x3048
-	  crclr     6, 0x6
-	  bl        -0x436A54
-	  b         .loc_0x210
+lbl_8046107C:
+	lis      r3, lbl_8049CFA0@ha
+	lis      r5, lbl_8049CFB8@ha
+	addi     r3, r3, lbl_8049CFA0@l
+	li       r4, 0x6f4
+	addi     r5, r5, lbl_8049CFB8@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
+	b        lbl_80461120
 
-	.loc_0x18C:
-	  cmplwi    r30, 0
-	  bne-      .loc_0x1B0
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x3060
-	  li        r4, 0x6FB
-	  subi      r5, r5, 0x3048
-	  crclr     6, 0x6
-	  bl        -0x436A7C
+lbl_8046109C:
+	cmplwi   r30, 0
+	bne      lbl_804610C0
+	lis      r3, lbl_8049CFA0@ha
+	lis      r5, lbl_8049CFB8@ha
+	addi     r3, r3, lbl_8049CFA0@l
+	li       r4, 0x6fb
+	addi     r5, r5, lbl_8049CFB8@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x1B0:
-	  lhz       r0, 0x22E(r30)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x1C8
-	  bl        -0x7F7C
-	  mr        r31, r3
-	  b         .loc_0x210
+lbl_804610C0:
+	lhz      r0, 0x22e(r30)
+	cmplwi   r0, 0
+	bne      lbl_804610D8
+	bl       PSMGetBeedamaForLugieD__Fv
+	mr       r31, r3
+	b        lbl_80461120
 
-	.loc_0x1C8:
-	  cmplwi    r0, 0x1
-	  bne-      .loc_0x1DC
-	  bl        -0x8080
-	  mr        r31, r3
-	  b         .loc_0x210
+lbl_804610D8:
+	cmplwi   r0, 1
+	bne      lbl_804610EC
+	bl       PSMGetBeedamaForOrimerD__Fv
+	mr       r31, r3
+	b        lbl_80461120
 
-	.loc_0x1DC:
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x3060
-	  li        r4, 0x702
-	  subi      r5, r5, 0x3048
-	  crclr     6, 0x6
-	  bl        -0x436AC4
-	  b         .loc_0x210
+lbl_804610EC:
+	lis      r3, lbl_8049CFA0@ha
+	lis      r5, lbl_8049CFB8@ha
+	addi     r3, r3, lbl_8049CFA0@l
+	li       r4, 0x702
+	addi     r5, r5, lbl_8049CFB8@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
+	b        lbl_80461120
 
-	.loc_0x1FC:
-	  bl        -0x7FBC
-	  mr        r31, r3
-	  b         .loc_0x210
+lbl_8046110C:
+	bl       PSMGetBeedamaForLugieD__Fv
+	mr       r31, r3
+	b        lbl_80461120
 
-	.loc_0x208:
-	  bl        -0x80B8
-	  mr        r31, r3
+lbl_80461118:
+	bl       PSMGetBeedamaForOrimerD__Fv
+	mr       r31, r3
 
-	.loc_0x210:
-	  cmplwi    r31, 0
-	  bne-      .loc_0x234
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x3060
-	  li        r4, 0x71A
-	  subi      r5, r5, 0x3048
-	  crclr     6, 0x6
-	  bl        -0x436B00
+lbl_80461120:
+	cmplwi   r31, 0
+	bne      lbl_80461144
+	lis      r3, lbl_8049CFA0@ha
+	lis      r5, lbl_8049CFB8@ha
+	addi     r3, r3, lbl_8049CFA0@l
+	li       r4, 0x71a
+	addi     r5, r5, lbl_8049CFB8@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x234:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80461144:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -5783,132 +6714,131 @@ void OtakaraEventLink_2PBattle::getTargetDirector()
 void OtakaraEventLink_2PBattle::eventStart()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r3
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  lwz       r0, 0x0(r3)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x44
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x3060
-	  li        r4, 0x6A3
-	  subi      r5, r5, 0x3048
-	  crclr     6, 0x6
-	  bl        -0x436B60
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r3
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	lwz      r0, 0(r3)
+	cmplwi   r0, 0
+	bne      lbl_804611A4
+	lis      r3, lbl_8049CFA0@ha
+	lis      r5, lbl_8049CFB8@ha
+	addi     r3, r3, lbl_8049CFA0@l
+	li       r4, 0x6a3
+	addi     r5, r5, lbl_8049CFB8@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x44:
-	  lwz       r3, 0x0(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xF8(r12)
-	  mtctr     r12
-	  bctrl
-	  mr.       r29, r3
-	  bne-      .loc_0x7C
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x3060
-	  li        r4, 0x6A5
-	  subi      r5, r5, 0x3048
-	  crclr     6, 0x6
-	  bl        -0x436B98
+lbl_804611A4:
+	lwz      r3, 0(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xf8(r12)
+	mtctr    r12
+	bctrl
+	or.      r29, r3, r3
+	bne      lbl_804611DC
+	lis      r3, lbl_8049CFA0@ha
+	lis      r5, lbl_8049CFB8@ha
+	addi     r3, r3, lbl_8049CFA0@l
+	li       r4, 0x6a5
+	addi     r5, r5, lbl_8049CFB8@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x7C:
-	  mr        r3, r29
-	  li        r30, 0
-	  lwz       r12, 0x28(r29)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  cmpwi     r3, 0xC
-	  beq-      .loc_0xD4
-	  mr        r3, r29
-	  lwz       r12, 0x28(r29)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  cmpwi     r3, 0xD
-	  beq-      .loc_0xD4
-	  mr        r3, r29
-	  lwz       r12, 0x28(r29)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  cmpwi     r3, 0xB
-	  bne-      .loc_0xD8
+lbl_804611DC:
+	mr       r3, r29
+	li       r30, 0
+	lwz      r12, 0x28(r29)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	cmpwi    r3, 0xc
+	beq      lbl_80461234
+	mr       r3, r29
+	lwz      r12, 0x28(r29)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	cmpwi    r3, 0xd
+	beq      lbl_80461234
+	mr       r3, r29
+	lwz      r12, 0x28(r29)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	cmpwi    r3, 0xb
+	bne      lbl_80461238
 
-	.loc_0xD4:
-	  li        r30, 0x1
+lbl_80461234:
+	li       r30, 1
 
-	.loc_0xD8:
-	  rlwinm.   r0,r30,0,24,31
-	  bne-      .loc_0xFC
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x3060
-	  li        r4, 0x6AA
-	  subi      r5, r5, 0x3048
-	  crclr     6, 0x6
-	  bl        -0x436C18
+lbl_80461238:
+	clrlwi.  r0, r30, 0x18
+	bne      lbl_8046125C
+	lis      r3, lbl_8049CFA0@ha
+	lis      r5, lbl_8049CFB8@ha
+	addi     r3, r3, lbl_8049CFA0@l
+	li       r4, 0x6aa
+	addi     r5, r5, lbl_8049CFB8@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xFC:
-	  lwz       r3, 0x70(r29)
-	  subi      r0, r3, 0x2
-	  cmplwi    r0, 0x1
-	  ble-      .loc_0x114
-	  cmpwi     r3, 0x4
-	  bne-      .loc_0x11C
+lbl_8046125C:
+	lwz      r3, 0x70(r29)
+	addi     r0, r3, -2
+	cmplwi   r0, 1
+	ble      lbl_80461274
+	cmpwi    r3, 4
+	bne      lbl_8046127C
 
-	.loc_0x114:
-	  li        r0, 0x1
-	  b         .loc_0x150
+lbl_80461274:
+	li       r0, 1
+	b        lbl_804612B0
 
-	.loc_0x11C:
-	  subi      r0, r3, 0x1
-	  cmplwi    r0, 0x2
-	  ble-      .loc_0x130
-	  cmpwi     r3, 0x4
-	  bne-      .loc_0x14C
+lbl_8046127C:
+	addi     r0, r3, -1
+	cmplwi   r0, 2
+	ble      lbl_80461290
+	cmpwi    r3, 4
+	bne      lbl_804612AC
 
-	.loc_0x130:
-	  lwz       r0, 0x74(r29)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x144
-	  li        r0, 0x1
-	  b         .loc_0x150
+lbl_80461290:
+	lwz      r0, 0x74(r29)
+	cmplwi   r0, 0
+	bne      lbl_804612A4
+	li       r0, 1
+	b        lbl_804612B0
 
-	.loc_0x144:
-	  li        r0, 0
-	  b         .loc_0x150
+lbl_804612A4:
+	li       r0, 0
+	b        lbl_804612B0
 
-	.loc_0x14C:
-	  li        r0, 0
+lbl_804612AC:
+	li       r0, 0
 
-	.loc_0x150:
-	  rlwinm.   r0,r0,0,24,31
-	  bne-      .loc_0x178
-	  mr        r3, r31
-	  bl        -0x3AC
-	  lwz       r3, 0x54(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x178
-	  mr        r4, r31
-	  addi      r3, r3, 0xC
-	  bl        -0x43A9F0
+lbl_804612B0:
+	clrlwi.  r0, r0, 0x18
+	bne      lbl_804612D8
+	mr       r3, r31
+	bl       getTargetDirector__Q23PSM25OtakaraEventLink_2PBattleFv
+	lwz      r3, 0x54(r3)
+	cmplwi   r3, 0
+	beq      lbl_804612D8
+	mr       r4, r31
+	addi     r3, r3, 0xc
+	bl       append__10JSUPtrListFP10JSUPtrLink
 
-	.loc_0x178:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_804612D8:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -5920,18 +6850,17 @@ void OtakaraEventLink_2PBattle::eventStart()
 void OtakaraEventLink_2PBattle::eventRestart()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0x10(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r12, 0x10(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -5943,132 +6872,131 @@ void OtakaraEventLink_2PBattle::eventRestart()
 void OtakaraEventLink_2PBattle::eventStop()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r3
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  lwz       r0, 0x0(r3)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x44
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x3060
-	  li        r4, 0x6A3
-	  subi      r5, r5, 0x3048
-	  crclr     6, 0x6
-	  bl        -0x436D20
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r3
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	lwz      r0, 0(r3)
+	cmplwi   r0, 0
+	bne      lbl_80461364
+	lis      r3, lbl_8049CFA0@ha
+	lis      r5, lbl_8049CFB8@ha
+	addi     r3, r3, lbl_8049CFA0@l
+	li       r4, 0x6a3
+	addi     r5, r5, lbl_8049CFB8@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x44:
-	  lwz       r3, 0x0(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xF8(r12)
-	  mtctr     r12
-	  bctrl
-	  mr.       r29, r3
-	  bne-      .loc_0x7C
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x3060
-	  li        r4, 0x6A5
-	  subi      r5, r5, 0x3048
-	  crclr     6, 0x6
-	  bl        -0x436D58
+lbl_80461364:
+	lwz      r3, 0(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xf8(r12)
+	mtctr    r12
+	bctrl
+	or.      r29, r3, r3
+	bne      lbl_8046139C
+	lis      r3, lbl_8049CFA0@ha
+	lis      r5, lbl_8049CFB8@ha
+	addi     r3, r3, lbl_8049CFA0@l
+	li       r4, 0x6a5
+	addi     r5, r5, lbl_8049CFB8@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x7C:
-	  mr        r3, r29
-	  li        r30, 0
-	  lwz       r12, 0x28(r29)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  cmpwi     r3, 0xC
-	  beq-      .loc_0xD4
-	  mr        r3, r29
-	  lwz       r12, 0x28(r29)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  cmpwi     r3, 0xD
-	  beq-      .loc_0xD4
-	  mr        r3, r29
-	  lwz       r12, 0x28(r29)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  cmpwi     r3, 0xB
-	  bne-      .loc_0xD8
+lbl_8046139C:
+	mr       r3, r29
+	li       r30, 0
+	lwz      r12, 0x28(r29)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	cmpwi    r3, 0xc
+	beq      lbl_804613F4
+	mr       r3, r29
+	lwz      r12, 0x28(r29)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	cmpwi    r3, 0xd
+	beq      lbl_804613F4
+	mr       r3, r29
+	lwz      r12, 0x28(r29)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	cmpwi    r3, 0xb
+	bne      lbl_804613F8
 
-	.loc_0xD4:
-	  li        r30, 0x1
+lbl_804613F4:
+	li       r30, 1
 
-	.loc_0xD8:
-	  rlwinm.   r0,r30,0,24,31
-	  bne-      .loc_0xFC
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x3060
-	  li        r4, 0x6AA
-	  subi      r5, r5, 0x3048
-	  crclr     6, 0x6
-	  bl        -0x436DD8
+lbl_804613F8:
+	clrlwi.  r0, r30, 0x18
+	bne      lbl_8046141C
+	lis      r3, lbl_8049CFA0@ha
+	lis      r5, lbl_8049CFB8@ha
+	addi     r3, r3, lbl_8049CFA0@l
+	li       r4, 0x6aa
+	addi     r5, r5, lbl_8049CFB8@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xFC:
-	  lwz       r3, 0x70(r29)
-	  subi      r0, r3, 0x2
-	  cmplwi    r0, 0x1
-	  ble-      .loc_0x114
-	  cmpwi     r3, 0x4
-	  bne-      .loc_0x11C
+lbl_8046141C:
+	lwz      r3, 0x70(r29)
+	addi     r0, r3, -2
+	cmplwi   r0, 1
+	ble      lbl_80461434
+	cmpwi    r3, 4
+	bne      lbl_8046143C
 
-	.loc_0x114:
-	  li        r0, 0x1
-	  b         .loc_0x150
+lbl_80461434:
+	li       r0, 1
+	b        lbl_80461470
 
-	.loc_0x11C:
-	  subi      r0, r3, 0x1
-	  cmplwi    r0, 0x2
-	  ble-      .loc_0x130
-	  cmpwi     r3, 0x4
-	  bne-      .loc_0x14C
+lbl_8046143C:
+	addi     r0, r3, -1
+	cmplwi   r0, 2
+	ble      lbl_80461450
+	cmpwi    r3, 4
+	bne      lbl_8046146C
 
-	.loc_0x130:
-	  lwz       r0, 0x74(r29)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x144
-	  li        r0, 0x1
-	  b         .loc_0x150
+lbl_80461450:
+	lwz      r0, 0x74(r29)
+	cmplwi   r0, 0
+	bne      lbl_80461464
+	li       r0, 1
+	b        lbl_80461470
 
-	.loc_0x144:
-	  li        r0, 0
-	  b         .loc_0x150
+lbl_80461464:
+	li       r0, 0
+	b        lbl_80461470
 
-	.loc_0x14C:
-	  li        r0, 0
+lbl_8046146C:
+	li       r0, 0
 
-	.loc_0x150:
-	  rlwinm.   r0,r0,0,24,31
-	  bne-      .loc_0x178
-	  mr        r3, r31
-	  bl        -0x56C
-	  lwz       r3, 0x54(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x178
-	  mr        r4, r31
-	  addi      r3, r3, 0xC
-	  bl        -0x43A870
+lbl_80461470:
+	clrlwi.  r0, r0, 0x18
+	bne      lbl_80461498
+	mr       r3, r31
+	bl       getTargetDirector__Q23PSM25OtakaraEventLink_2PBattleFv
+	lwz      r3, 0x54(r3)
+	cmplwi   r3, 0
+	beq      lbl_80461498
+	mr       r4, r31
+	addi     r3, r3, 0xc
+	bl       remove__10JSUPtrListFP10JSUPtrLink
 
-	.loc_0x178:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80461498:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -6080,18 +7008,17 @@ void OtakaraEventLink_2PBattle::eventStop()
 void OtakaraEventLink_2PBattle::eventFinish()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0x10(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r12, 0x10(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -6103,99 +7030,98 @@ void OtakaraEventLink_2PBattle::eventFinish()
 void OtakaraEventLink_2PBattle::getListDirectorActor()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lwz       r0, 0x0(r3)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x40
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x3060
-	  li        r4, 0x6A3
-	  subi      r5, r5, 0x3048
-	  crclr     6, 0x6
-	  bl        -0x436EDC
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lwz      r0, 0(r3)
+	cmplwi   r0, 0
+	bne      lbl_80461520
+	lis      r3, lbl_8049CFA0@ha
+	lis      r5, lbl_8049CFB8@ha
+	addi     r3, r3, lbl_8049CFA0@l
+	li       r4, 0x6a3
+	addi     r5, r5, lbl_8049CFB8@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x40:
-	  lwz       r3, 0x0(r30)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xF8(r12)
-	  mtctr     r12
-	  bctrl
-	  mr.       r30, r3
-	  bne-      .loc_0x78
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x3060
-	  li        r4, 0x6A5
-	  subi      r5, r5, 0x3048
-	  crclr     6, 0x6
-	  bl        -0x436F14
+lbl_80461520:
+	lwz      r3, 0(r30)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xf8(r12)
+	mtctr    r12
+	bctrl
+	or.      r30, r3, r3
+	bne      lbl_80461558
+	lis      r3, lbl_8049CFA0@ha
+	lis      r5, lbl_8049CFB8@ha
+	addi     r3, r3, lbl_8049CFA0@l
+	li       r4, 0x6a5
+	addi     r5, r5, lbl_8049CFB8@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x78:
-	  mr        r3, r30
-	  li        r31, 0
-	  lwz       r12, 0x28(r30)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  cmpwi     r3, 0xC
-	  beq-      .loc_0xD0
-	  mr        r3, r30
-	  lwz       r12, 0x28(r30)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  cmpwi     r3, 0xD
-	  beq-      .loc_0xD0
-	  mr        r3, r30
-	  lwz       r12, 0x28(r30)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  cmpwi     r3, 0xB
-	  bne-      .loc_0xD4
+lbl_80461558:
+	mr       r3, r30
+	li       r31, 0
+	lwz      r12, 0x28(r30)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	cmpwi    r3, 0xc
+	beq      lbl_804615B0
+	mr       r3, r30
+	lwz      r12, 0x28(r30)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	cmpwi    r3, 0xd
+	beq      lbl_804615B0
+	mr       r3, r30
+	lwz      r12, 0x28(r30)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	cmpwi    r3, 0xb
+	bne      lbl_804615B4
 
-	.loc_0xD0:
-	  li        r31, 0x1
+lbl_804615B0:
+	li       r31, 1
 
-	.loc_0xD4:
-	  rlwinm.   r0,r31,0,24,31
-	  bne-      .loc_0xF8
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x3060
-	  li        r4, 0x6AA
-	  subi      r5, r5, 0x3048
-	  crclr     6, 0x6
-	  bl        -0x436F94
+lbl_804615B4:
+	clrlwi.  r0, r31, 0x18
+	bne      lbl_804615D8
+	lis      r3, lbl_8049CFA0@ha
+	lis      r5, lbl_8049CFB8@ha
+	addi     r3, r3, lbl_8049CFA0@l
+	li       r4, 0x6aa
+	addi     r5, r5, lbl_8049CFB8@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xF8:
-	  lwz       r0, 0x70(r30)
-	  cmpwi     r0, 0
-	  beq-      .loc_0x120
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x3060
-	  li        r4, 0x763
-	  subi      r5, r5, 0x3048
-	  crclr     6, 0x6
-	  bl        -0x436FBC
+lbl_804615D8:
+	lwz      r0, 0x70(r30)
+	cmpwi    r0, 0
+	beq      lbl_80461600
+	lis      r3, lbl_8049CFA0@ha
+	lis      r5, lbl_8049CFB8@ha
+	addi     r3, r3, lbl_8049CFA0@l
+	li       r4, 0x763
+	addi     r5, r5, lbl_8049CFB8@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x120:
-	  bl        -0x8AF4
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r3, 0x54(r3)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80461600:
+	bl       PSMGetOtakaraEventD__Fv
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r3, 0x54(r3)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -6207,103 +7133,102 @@ void OtakaraEventLink_2PBattle::getListDirectorActor()
 WorkItem::WorkItem(Game::BaseItem*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stmw      r26, 0x8(r1)
-	  mr        r28, r3
-	  mr        r31, r4
-	  mr        r4, r28
-	  mr        r29, r4
-	  mr        r30, r4
-	  mr        r26, r4
-	  mr        r27, r4
-	  bl        -0x43AE94
-	  addi      r3, r27, 0x10
-	  bl        -0x444688
-	  lis       r4, 0x804F
-	  lis       r3, 0x804F
-	  subi      r4, r4, 0xDD0
-	  cmplwi    r31, 0
-	  stw       r4, 0x28(r27)
-	  addi      r0, r4, 0x8
-	  subi      r3, r3, 0xE34
-	  stw       r0, 0x10(r27)
-	  addi      r0, r3, 0x8
-	  stw       r3, 0x28(r26)
-	  stw       r0, 0x10(r26)
-	  stw       r31, 0x2C(r26)
-	  bne-      .loc_0x88
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x3060
-	  li        r4, 0x61
-	  subi      r5, r5, 0x3048
-	  crclr     6, 0x6
-	  bl        -0x437064
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stmw     r26, 8(r1)
+	mr       r28, r3
+	mr       r31, r4
+	mr       r4, r28
+	mr       r29, r4
+	mr       r30, r4
+	mr       r26, r4
+	mr       r27, r4
+	bl       __ct__10JSUPtrLinkFPv
+	addi     r3, r27, 0x10
+	bl       __ct__11JKRDisposerFv
+	lis      r4, __vt__Q23PSM7ObjBase@ha
+	lis      r3, __vt__Q23PSM8Creature@ha
+	addi     r4, r4, __vt__Q23PSM7ObjBase@l
+	cmplwi   r31, 0
+	stw      r4, 0x28(r27)
+	addi     r0, r4, 8
+	addi     r3, r3, __vt__Q23PSM8Creature@l
+	stw      r0, 0x10(r27)
+	addi     r0, r3, 8
+	stw      r3, 0x28(r26)
+	stw      r0, 0x10(r26)
+	stw      r31, 0x2c(r26)
+	bne      lbl_804616A8
+	lis      r3, lbl_8049CFA0@ha
+	lis      r5, lbl_8049CFB8@ha
+	addi     r3, r3, lbl_8049CFA0@l
+	li       r4, 0x61
+	addi     r5, r5, lbl_8049CFB8@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x88:
-	  lwz       r0, -0x6E44(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0xB0
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x3060
-	  li        r4, 0x62
-	  subi      r5, r5, 0x3048
-	  crclr     6, 0x6
-	  bl        -0x43708C
+lbl_804616A8:
+	lwz      r0,
+"sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13) cmplwi   r0, 0
+	bne      lbl_804616D0
+	lis      r3, lbl_8049CFA0@ha
+	lis      r5, lbl_8049CFB8@ha
+	addi     r3, r3, lbl_8049CFA0@l
+	li       r4, 0x62
+	addi     r5, r5, lbl_8049CFB8@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xB0:
-	  mr        r3, r31
-	  lwz       r27, -0x77D4(r13)
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x100(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  mr        r5, r27
-	  addi      r3, r30, 0x30
-	  li        r6, 0x2
-	  bl        -0x3A7C0C
-	  lis       r3, 0x804F
-	  lis       r4, 0x804B
-	  subi      r5, r3, 0xEBC
-	  lis       r3, 0x804F
-	  stw       r5, 0x28(r30)
-	  addi      r4, r4, 0x21A4
-	  addi      r0, r5, 0x8
-	  subi      r6, r3, 0x1744
-	  stw       r0, 0x10(r30)
-	  addi      r0, r5, 0x40
-	  addi      r26, r28, 0x70
-	  addi      r8, r4, 0x8
-	  stw       r0, 0x30(r30)
-	  addi      r7, r4, 0x40
-	  addi      r5, r6, 0x8
-	  addi      r0, r6, 0x40
-	  stw       r4, 0x28(r29)
-	  mr        r3, r26
-	  mr        r4, r31
-	  stw       r8, 0x10(r29)
-	  stw       r7, 0x30(r29)
-	  stw       r6, 0x28(r28)
-	  stw       r5, 0x10(r28)
-	  stw       r0, 0x30(r28)
-	  bl        -0x43AFA4
-	  lis       r3, 0x804F
-	  lis       r4, 0x804F
-	  subi      r0, r3, 0x1650
-	  mr        r3, r28
-	  stw       r0, 0x10(r26)
-	  subi      r0, r4, 0x166C
-	  stw       r0, 0x10(r26)
-	  lmw       r26, 0x8(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_804616D0:
+	mr       r3, r31
+	lwz      r27, sCurrentHeap__7JKRHeap@sda21(r13)
+	lwz      r12, 0(r31)
+	lwz      r12, 0x100(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	mr       r5, r27
+	addi     r3, r30, 0x30
+	li       r6, 2
+	bl       __ct__Q27JAInter6ObjectFP3VecP7JKRHeapUc
+	lis      r3, __vt__Q23PSM11CreatureObj@ha
+	lis      r4, __vt__Q23PSM9EventBase@ha
+	addi     r5, r3, __vt__Q23PSM11CreatureObj@l
+	lis      r3, __vt__Q23PSM8WorkItem@ha
+	stw      r5, 0x28(r30)
+	addi     r4, r4, __vt__Q23PSM9EventBase@l
+	addi     r0, r5, 8
+	addi     r6, r3, __vt__Q23PSM8WorkItem@l
+	stw      r0, 0x10(r30)
+	addi     r0, r5, 0x40
+	addi     r26, r28, 0x70
+	addi     r8, r4, 8
+	stw      r0, 0x30(r30)
+	addi     r7, r4, 0x40
+	addi     r5, r6, 8
+	addi     r0, r6, 0x40
+	stw      r4, 0x28(r29)
+	mr       r3, r26
+	mr       r4, r31
+	stw      r8, 0x10(r29)
+	stw      r7, 0x30(r29)
+	stw      r6, 0x28(r28)
+	stw      r5, 0x10(r28)
+	stw      r0, 0x30(r28)
+	bl       __ct__10JSUPtrLinkFPv
+	lis      r3, __vt__Q23PSM12DirectorLink@ha
+	lis      r4, __vt__Q23PSM9EventLink@ha
+	addi     r0, r3, __vt__Q23PSM12DirectorLink@l
+	mr       r3, r28
+	stw      r0, 0x10(r26)
+	addi     r0, r4, __vt__Q23PSM9EventLink@l
+	stw      r0, 0x10(r26)
+	lmw      r26, 8(r1)
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -6315,19 +7240,18 @@ WorkItem::WorkItem(Game::BaseItem*)
 void WorkItem::eventStart()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  addi      r3, r3, 0x70
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0x10(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	addi     r3, r3, 0x70
+	stw      r0, 0x14(r1)
+	lwz      r12, 0x10(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -6339,19 +7263,18 @@ void WorkItem::eventStart()
 void WorkItem::eventRestart()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  addi      r3, r3, 0x70
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0x10(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	addi     r3, r3, 0x70
+	stw      r0, 0x14(r1)
+	lwz      r12, 0x10(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -6363,19 +7286,18 @@ void WorkItem::eventRestart()
 void WorkItem::eventStop()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  addi      r3, r3, 0x70
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0x10(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	addi     r3, r3, 0x70
+	stw      r0, 0x14(r1)
+	lwz      r12, 0x10(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -6387,19 +7309,18 @@ void WorkItem::eventStop()
 void WorkItem::eventFinish()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  addi      r3, r3, 0x70
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0x10(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	addi     r3, r3, 0x70
+	stw      r0, 0x14(r1)
+	lwz      r12, 0x10(r3)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -6411,127 +7332,126 @@ void WorkItem::eventFinish()
 void Otakara::setGoalOnyon(Game::Creature*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r29, r4
-	  stw       r28, 0x10(r1)
-	  mr        r28, r3
-	  lis       r3, 0x804A
-	  lwz       r0, 0x70(r28)
-	  subi      r31, r3, 0x3060
-	  cmpwi     r0, 0x3
-	  beq-      .loc_0x180
-	  cmpwi     r0, 0x2
-	  beq-      .loc_0x180
-	  cmpwi     r0, 0x4
-	  bne-      .loc_0x4C
-	  b         .loc_0x180
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	mr       r29, r4
+	stw      r28, 0x10(r1)
+	mr       r28, r3
+	lis      r3, lbl_8049CFA0@ha
+	lwz      r0, 0x70(r28)
+	addi     r31, r3, lbl_8049CFA0@l
+	cmpwi    r0, 3
+	beq      lbl_804619D0
+	cmpwi    r0, 2
+	beq      lbl_804619D0
+	cmpwi    r0, 4
+	bne      lbl_8046189C
+	b        lbl_804619D0
 
-	.loc_0x4C:
-	  lwz       r30, 0x74(r28)
-	  stw       r29, 0x74(r28)
-	  lwz       r0, 0x8C(r28)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x74
-	  addi      r3, r31, 0xC8
-	  addi      r5, r31, 0x18
-	  li        r4, 0x374
-	  crclr     6, 0x6
-	  bl        -0x437280
+lbl_8046189C:
+	lwz      r30, 0x74(r28)
+	stw      r29, 0x74(r28)
+	lwz      r0, 0x8c(r28)
+	cmplwi   r0, 0
+	bne      lbl_804618C4
+	addi     r3, r31, 0xc8
+	addi     r5, r31, 0x18
+	li       r4, 0x374
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x74:
-	  lwz       r3, 0x8C(r28)
-	  lwz       r12, 0x10(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x180
-	  lwz       r0, 0x74(r28)
-	  cmplwi    r0, 0
-	  bne-      .loc_0xEC
-	  lwz       r0, 0x70(r28)
-	  cmpwi     r0, 0x3
-	  beq-      .loc_0xB0
-	  cmpwi     r0, 0x2
-	  bne-      .loc_0x180
+lbl_804618C4:
+	lwz      r3, 0x8c(r28)
+	lwz      r12, 0x10(r3)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_804619D0
+	lwz      r0, 0x74(r28)
+	cmplwi   r0, 0
+	bne      lbl_8046193C
+	lwz      r0, 0x70(r28)
+	cmpwi    r0, 3
+	beq      lbl_80461900
+	cmpwi    r0, 2
+	bne      lbl_804619D0
 
-	.loc_0xB0:
-	  lwz       r0, 0x8C(r28)
-	  cmplwi    r0, 0
-	  bne-      .loc_0xD0
-	  addi      r3, r31, 0
-	  addi      r5, r31, 0x18
-	  li        r4, 0x7DE
-	  crclr     6, 0x6
-	  bl        -0x4372DC
+lbl_80461900:
+	lwz      r0, 0x8c(r28)
+	cmplwi   r0, 0
+	bne      lbl_80461920
+	addi     r3, r31, 0
+	addi     r5, r31, 0x18
+	li       r4, 0x7de
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xD0:
-	  lwz       r3, 0x8C(r28)
-	  bl        -0xA14
-	  lwz       r3, 0x54(r3)
-	  lwz       r4, 0x8C(r28)
-	  addi      r3, r3, 0xC
-	  bl        -0x43AD10
-	  b         .loc_0x180
+lbl_80461920:
+	lwz      r3, 0x8c(r28)
+	bl       getTargetDirector__Q23PSM25OtakaraEventLink_2PBattleFv
+	lwz      r3, 0x54(r3)
+	lwz      r4, 0x8c(r28)
+	addi     r3, r3, 0xc
+	bl       remove__10JSUPtrListFP10JSUPtrLink
+	b        lbl_804619D0
 
-	.loc_0xEC:
-	  cmplwi    r30, 0
-	  beq-      .loc_0x180
-	  cmplw     r30, r0
-	  beq-      .loc_0x180
-	  lwz       r0, 0x70(r28)
-	  cmpwi     r0, 0x4
-	  bne-      .loc_0x180
-	  stw       r30, 0x74(r28)
-	  lwz       r0, 0x8C(r28)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x12C
-	  addi      r3, r31, 0
-	  addi      r5, r31, 0x18
-	  li        r4, 0x7EE
-	  crclr     6, 0x6
-	  bl        -0x437338
+lbl_8046193C:
+	cmplwi   r30, 0
+	beq      lbl_804619D0
+	cmplw    r30, r0
+	beq      lbl_804619D0
+	lwz      r0, 0x70(r28)
+	cmpwi    r0, 4
+	bne      lbl_804619D0
+	stw      r30, 0x74(r28)
+	lwz      r0, 0x8c(r28)
+	cmplwi   r0, 0
+	bne      lbl_8046197C
+	addi     r3, r31, 0
+	addi     r5, r31, 0x18
+	li       r4, 0x7ee
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x12C:
-	  lwz       r3, 0x8C(r28)
-	  bl        -0xA70
-	  lwz       r3, 0x54(r3)
-	  lwz       r4, 0x8C(r28)
-	  addi      r3, r3, 0xC
-	  bl        -0x43AD6C
-	  stw       r29, 0x74(r28)
-	  lwz       r0, 0x8C(r28)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x168
-	  addi      r3, r31, 0
-	  addi      r5, r31, 0x18
-	  li        r4, 0x7F9
-	  crclr     6, 0x6
-	  bl        -0x437374
+lbl_8046197C:
+	lwz      r3, 0x8c(r28)
+	bl       getTargetDirector__Q23PSM25OtakaraEventLink_2PBattleFv
+	lwz      r3, 0x54(r3)
+	lwz      r4, 0x8c(r28)
+	addi     r3, r3, 0xc
+	bl       remove__10JSUPtrListFP10JSUPtrLink
+	stw      r29, 0x74(r28)
+	lwz      r0, 0x8c(r28)
+	cmplwi   r0, 0
+	bne      lbl_804619B8
+	addi     r3, r31, 0
+	addi     r5, r31, 0x18
+	li       r4, 0x7f9
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x168:
-	  lwz       r3, 0x8C(r28)
-	  bl        -0xAAC
-	  lwz       r3, 0x54(r3)
-	  lwz       r4, 0x8C(r28)
-	  addi      r3, r3, 0xC
-	  bl        -0x43B0E8
+lbl_804619B8:
+	lwz      r3, 0x8c(r28)
+	bl       getTargetDirector__Q23PSM25OtakaraEventLink_2PBattleFv
+	lwz      r3, 0x54(r3)
+	lwz      r4, 0x8c(r28)
+	addi     r3, r3, 0xc
+	bl       append__10JSUPtrListFP10JSUPtrLink
 
-	.loc_0x180:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_804619D0:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -6543,72 +7463,71 @@ void Otakara::setGoalOnyon(Game::Creature*)
 void Otakara::otakaraEventStart()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r0, 0x8C(r3)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x3C
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x3060
-	  li        r4, 0x80A
-	  subi      r5, r5, 0x3048
-	  crclr     6, 0x6
-	  bl        -0x4373E8
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r0, 0x8c(r3)
+	cmplwi   r0, 0
+	bne      lbl_80461A2C
+	lis      r3, lbl_8049CFA0@ha
+	lis      r5, lbl_8049CFB8@ha
+	addi     r3, r3, lbl_8049CFA0@l
+	li       r4, 0x80a
+	addi     r5, r5, lbl_8049CFB8@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x3C:
-	  lwz       r3, 0x8C(r31)
-	  lwz       r12, 0x10(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x6C
-	  lwz       r0, 0x70(r31)
-	  cmpwi     r0, 0
-	  beq-      .loc_0x6C
-	  li        r0, 0x1
-	  b         .loc_0x70
+lbl_80461A2C:
+	lwz      r3, 0x8c(r31)
+	lwz      r12, 0x10(r3)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80461A5C
+	lwz      r0, 0x70(r31)
+	cmpwi    r0, 0
+	beq      lbl_80461A5C
+	li       r0, 1
+	b        lbl_80461A60
 
-	.loc_0x6C:
-	  li        r0, 0
+lbl_80461A5C:
+	li       r0, 0
 
-	.loc_0x70:
-	  rlwinm.   r0,r0,0,24,31
-	  bne-      .loc_0x8C
-	  addi      r3, r31, 0x78
-	  lwz       r12, 0x88(r31)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
+lbl_80461A60:
+	clrlwi.  r0, r0, 0x18
+	bne      lbl_80461A7C
+	addi     r3, r31, 0x78
+	lwz      r12, 0x88(r31)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x8C:
-	  lwz       r0, 0x8C(r31)
-	  cmplwi    r0, 0
-	  bne-      .loc_0xB4
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x3060
-	  li        r4, 0x81A
-	  subi      r5, r5, 0x3048
-	  crclr     6, 0x6
-	  bl        -0x437460
+lbl_80461A7C:
+	lwz      r0, 0x8c(r31)
+	cmplwi   r0, 0
+	bne      lbl_80461AA4
+	lis      r3, lbl_8049CFA0@ha
+	lis      r5, lbl_8049CFB8@ha
+	addi     r3, r3, lbl_8049CFA0@l
+	li       r4, 0x81a
+	addi     r5, r5, lbl_8049CFB8@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xB4:
-	  lwz       r3, 0x8C(r31)
-	  lwz       r12, 0x10(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80461AA4:
+	lwz      r3, 0x8c(r31)
+	lwz      r12, 0x10(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -6620,72 +7539,71 @@ void Otakara::otakaraEventStart()
 void Otakara::otakaraEventRestart()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r0, 0x8C(r3)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x3C
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x3060
-	  li        r4, 0x822
-	  subi      r5, r5, 0x3048
-	  crclr     6, 0x6
-	  bl        -0x4374C4
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r0, 0x8c(r3)
+	cmplwi   r0, 0
+	bne      lbl_80461B08
+	lis      r3, lbl_8049CFA0@ha
+	lis      r5, lbl_8049CFB8@ha
+	addi     r3, r3, lbl_8049CFA0@l
+	li       r4, 0x822
+	addi     r5, r5, lbl_8049CFB8@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x3C:
-	  lwz       r0, 0x8C(r31)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x64
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x3060
-	  li        r4, 0x80A
-	  subi      r5, r5, 0x3048
-	  crclr     6, 0x6
-	  bl        -0x4374EC
+lbl_80461B08:
+	lwz      r0, 0x8c(r31)
+	cmplwi   r0, 0
+	bne      lbl_80461B30
+	lis      r3, lbl_8049CFA0@ha
+	lis      r5, lbl_8049CFB8@ha
+	addi     r3, r3, lbl_8049CFA0@l
+	li       r4, 0x80a
+	addi     r5, r5, lbl_8049CFB8@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x64:
-	  lwz       r3, 0x8C(r31)
-	  lwz       r12, 0x10(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x94
-	  lwz       r0, 0x70(r31)
-	  cmpwi     r0, 0
-	  beq-      .loc_0x94
-	  li        r0, 0x1
-	  b         .loc_0x98
+lbl_80461B30:
+	lwz      r3, 0x8c(r31)
+	lwz      r12, 0x10(r3)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80461B60
+	lwz      r0, 0x70(r31)
+	cmpwi    r0, 0
+	beq      lbl_80461B60
+	li       r0, 1
+	b        lbl_80461B64
 
-	.loc_0x94:
-	  li        r0, 0
+lbl_80461B60:
+	li       r0, 0
 
-	.loc_0x98:
-	  rlwinm.   r0,r0,0,24,31
-	  bne-      .loc_0xB4
-	  addi      r3, r31, 0x78
-	  lwz       r12, 0x88(r31)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
+lbl_80461B64:
+	clrlwi.  r0, r0, 0x18
+	bne      lbl_80461B80
+	addi     r3, r31, 0x78
+	lwz      r12, 0x88(r31)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0xB4:
-	  lwz       r3, 0x8C(r31)
-	  lwz       r12, 0x10(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80461B80:
+	lwz      r3, 0x8c(r31)
+	lwz      r12, 0x10(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -6697,72 +7615,71 @@ void Otakara::otakaraEventRestart()
 void Otakara::otakaraEventStop()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r0, 0x8C(r3)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x3C
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x3060
-	  li        r4, 0x82E
-	  subi      r5, r5, 0x3048
-	  crclr     6, 0x6
-	  bl        -0x4375A0
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r0, 0x8c(r3)
+	cmplwi   r0, 0
+	bne      lbl_80461BE4
+	lis      r3, lbl_8049CFA0@ha
+	lis      r5, lbl_8049CFB8@ha
+	addi     r3, r3, lbl_8049CFA0@l
+	li       r4, 0x82e
+	addi     r5, r5, lbl_8049CFB8@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x3C:
-	  lwz       r0, 0x8C(r31)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x64
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x3060
-	  li        r4, 0x80A
-	  subi      r5, r5, 0x3048
-	  crclr     6, 0x6
-	  bl        -0x4375C8
+lbl_80461BE4:
+	lwz      r0, 0x8c(r31)
+	cmplwi   r0, 0
+	bne      lbl_80461C0C
+	lis      r3, lbl_8049CFA0@ha
+	lis      r5, lbl_8049CFB8@ha
+	addi     r3, r3, lbl_8049CFA0@l
+	li       r4, 0x80a
+	addi     r5, r5, lbl_8049CFB8@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x64:
-	  lwz       r3, 0x8C(r31)
-	  lwz       r12, 0x10(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x94
-	  lwz       r0, 0x70(r31)
-	  cmpwi     r0, 0
-	  beq-      .loc_0x94
-	  li        r0, 0x1
-	  b         .loc_0x98
+lbl_80461C0C:
+	lwz      r3, 0x8c(r31)
+	lwz      r12, 0x10(r3)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80461C3C
+	lwz      r0, 0x70(r31)
+	cmpwi    r0, 0
+	beq      lbl_80461C3C
+	li       r0, 1
+	b        lbl_80461C40
 
-	.loc_0x94:
-	  li        r0, 0
+lbl_80461C3C:
+	li       r0, 0
 
-	.loc_0x98:
-	  rlwinm.   r0,r0,0,24,31
-	  bne-      .loc_0xB4
-	  addi      r3, r31, 0x78
-	  lwz       r12, 0x88(r31)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
+lbl_80461C40:
+	clrlwi.  r0, r0, 0x18
+	bne      lbl_80461C5C
+	addi     r3, r31, 0x78
+	lwz      r12, 0x88(r31)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0xB4:
-	  lwz       r3, 0x8C(r31)
-	  lwz       r12, 0x10(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80461C5C:
+	lwz      r3, 0x8c(r31)
+	lwz      r12, 0x10(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -6774,72 +7691,71 @@ void Otakara::otakaraEventStop()
 void Otakara::otakaraEventFinish()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r0, 0x8C(r3)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x3C
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x3060
-	  li        r4, 0x83A
-	  subi      r5, r5, 0x3048
-	  crclr     6, 0x6
-	  bl        -0x43767C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r0, 0x8c(r3)
+	cmplwi   r0, 0
+	bne      lbl_80461CC0
+	lis      r3, lbl_8049CFA0@ha
+	lis      r5, lbl_8049CFB8@ha
+	addi     r3, r3, lbl_8049CFA0@l
+	li       r4, 0x83a
+	addi     r5, r5, lbl_8049CFB8@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x3C:
-	  lwz       r0, 0x8C(r31)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x64
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x3060
-	  li        r4, 0x80A
-	  subi      r5, r5, 0x3048
-	  crclr     6, 0x6
-	  bl        -0x4376A4
+lbl_80461CC0:
+	lwz      r0, 0x8c(r31)
+	cmplwi   r0, 0
+	bne      lbl_80461CE8
+	lis      r3, lbl_8049CFA0@ha
+	lis      r5, lbl_8049CFB8@ha
+	addi     r3, r3, lbl_8049CFA0@l
+	li       r4, 0x80a
+	addi     r5, r5, lbl_8049CFB8@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x64:
-	  lwz       r3, 0x8C(r31)
-	  lwz       r12, 0x10(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x94
-	  lwz       r0, 0x70(r31)
-	  cmpwi     r0, 0
-	  beq-      .loc_0x94
-	  li        r0, 0x1
-	  b         .loc_0x98
+lbl_80461CE8:
+	lwz      r3, 0x8c(r31)
+	lwz      r12, 0x10(r3)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80461D18
+	lwz      r0, 0x70(r31)
+	cmpwi    r0, 0
+	beq      lbl_80461D18
+	li       r0, 1
+	b        lbl_80461D1C
 
-	.loc_0x94:
-	  li        r0, 0
+lbl_80461D18:
+	li       r0, 0
 
-	.loc_0x98:
-	  rlwinm.   r0,r0,0,24,31
-	  bne-      .loc_0xB4
-	  addi      r3, r31, 0x78
-	  lwz       r12, 0x88(r31)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
+lbl_80461D1C:
+	clrlwi.  r0, r0, 0x18
+	bne      lbl_80461D38
+	addi     r3, r31, 0x78
+	lwz      r12, 0x88(r31)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0xB4:
-	  lwz       r3, 0x8C(r31)
-	  lwz       r12, 0x10(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80461D38:
+	lwz      r3, 0x8c(r31)
+	lwz      r12, 0x10(r3)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -6851,156 +7767,155 @@ void Otakara::otakaraEventFinish()
 PelletOtakara::PelletOtakara(Game::PelletOtakara::Object*, bool)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stmw      r25, 0x14(r1)
-	  mr        r26, r3
-	  mr        r31, r26
-	  mr        r29, r4
-	  mr        r30, r5
-	  mr        r28, r31
-	  mr        r25, r31
-	  mr        r27, r31
-	  mr        r4, r31
-	  bl        -0x43B5D8
-	  addi      r3, r27, 0x10
-	  bl        -0x444DCC
-	  lis       r4, 0x804F
-	  lis       r3, 0x804F
-	  subi      r4, r4, 0xDD0
-	  cmplwi    r29, 0
-	  stw       r4, 0x28(r27)
-	  addi      r0, r4, 0x8
-	  subi      r3, r3, 0xE34
-	  stw       r0, 0x10(r27)
-	  addi      r0, r3, 0x8
-	  stw       r3, 0x28(r25)
-	  stw       r0, 0x10(r25)
-	  stw       r29, 0x2C(r25)
-	  bne-      .loc_0x8C
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x3060
-	  li        r4, 0x61
-	  subi      r5, r5, 0x3048
-	  crclr     6, 0x6
-	  bl        -0x4377A8
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stmw     r25, 0x14(r1)
+	mr       r26, r3
+	mr       r31, r26
+	mr       r29, r4
+	mr       r30, r5
+	mr       r28, r31
+	mr       r25, r31
+	mr       r27, r31
+	mr       r4, r31
+	bl       __ct__10JSUPtrLinkFPv
+	addi     r3, r27, 0x10
+	bl       __ct__11JKRDisposerFv
+	lis      r4, __vt__Q23PSM7ObjBase@ha
+	lis      r3, __vt__Q23PSM8Creature@ha
+	addi     r4, r4, __vt__Q23PSM7ObjBase@l
+	cmplwi   r29, 0
+	stw      r4, 0x28(r27)
+	addi     r0, r4, 8
+	addi     r3, r3, __vt__Q23PSM8Creature@l
+	stw      r0, 0x10(r27)
+	addi     r0, r3, 8
+	stw      r3, 0x28(r25)
+	stw      r0, 0x10(r25)
+	stw      r29, 0x2c(r25)
+	bne      lbl_80461DEC
+	lis      r3, lbl_8049CFA0@ha
+	lis      r5, lbl_8049CFB8@ha
+	addi     r3, r3, lbl_8049CFA0@l
+	li       r4, 0x61
+	addi     r5, r5, lbl_8049CFB8@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x8C:
-	  lwz       r0, -0x6E44(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0xB4
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x3060
-	  li        r4, 0x62
-	  subi      r5, r5, 0x3048
-	  crclr     6, 0x6
-	  bl        -0x4377D0
+lbl_80461DEC:
+	lwz      r0,
+"sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13) cmplwi   r0, 0
+	bne      lbl_80461E14
+	lis      r3, lbl_8049CFA0@ha
+	lis      r5, lbl_8049CFB8@ha
+	addi     r3, r3, lbl_8049CFA0@l
+	li       r4, 0x62
+	addi     r5, r5, lbl_8049CFB8@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xB4:
-	  mr        r3, r29
-	  lwz       r27, -0x77D4(r13)
-	  lwz       r12, 0x0(r29)
-	  lwz       r12, 0x100(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  mr        r5, r27
-	  addi      r3, r31, 0x30
-	  li        r6, 0x2
-	  bl        -0x3A8350
-	  lis       r3, 0x804F
-	  lis       r4, 0x804B
-	  subi      r5, r3, 0xEBC
-	  lis       r3, 0x804F
-	  stw       r5, 0x28(r31)
-	  addi      r4, r4, 0x21A4
-	  addi      r0, r5, 0x8
-	  subi      r7, r3, 0x17DC
-	  stw       r0, 0x10(r31)
-	  addi      r0, r5, 0x40
-	  addi      r27, r28, 0x78
-	  addi      r9, r4, 0x8
-	  stw       r0, 0x30(r31)
-	  addi      r8, r4, 0x40
-	  addi      r6, r7, 0x8
-	  addi      r5, r7, 0x40
-	  stw       r4, 0x28(r31)
-	  li        r0, 0
-	  mr        r3, r27
-	  mr        r4, r29
-	  stw       r9, 0x10(r31)
-	  stw       r8, 0x30(r31)
-	  stw       r7, 0x28(r28)
-	  stw       r6, 0x10(r28)
-	  stw       r5, 0x30(r28)
-	  stw       r0, 0x70(r28)
-	  stw       r0, 0x74(r28)
-	  bl        -0x43B6F4
-	  lis       r3, 0x804F
-	  lis       r5, 0x804F
-	  subi      r0, r3, 0x1650
-	  lis       r3, 0x804F
-	  stw       r0, 0x10(r27)
-	  subi      r4, r3, 0x1874
-	  rlwinm.   r0,r30,0,24,31
-	  subi      r3, r5, 0x166C
-	  li        r5, 0
-	  stw       r3, 0x10(r27)
-	  addi      r3, r4, 0x8
-	  addi      r0, r4, 0x40
-	  stw       r5, 0x8C(r28)
-	  stw       r4, 0x28(r26)
-	  stw       r3, 0x10(r26)
-	  stw       r0, 0x30(r26)
-	  bne-      .loc_0x1CC
-	  li        r3, 0x14
-	  bl        -0x43E054
-	  mr.       r27, r3
-	  beq-      .loc_0x1C4
-	  mr        r4, r29
-	  bl        -0x43B750
-	  lis       r4, 0x804F
-	  lis       r3, 0x804F
-	  subi      r0, r4, 0x1650
-	  stw       r0, 0x10(r27)
-	  subi      r0, r3, 0x168C
-	  stw       r0, 0x10(r27)
+lbl_80461E14:
+	mr       r3, r29
+	lwz      r27, sCurrentHeap__7JKRHeap@sda21(r13)
+	lwz      r12, 0(r29)
+	lwz      r12, 0x100(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	mr       r5, r27
+	addi     r3, r31, 0x30
+	li       r6, 2
+	bl       __ct__Q27JAInter6ObjectFP3VecP7JKRHeapUc
+	lis      r3, __vt__Q23PSM11CreatureObj@ha
+	lis      r4, __vt__Q23PSM9EventBase@ha
+	addi     r5, r3, __vt__Q23PSM11CreatureObj@l
+	lis      r3, __vt__Q23PSM7Otakara@ha
+	stw      r5, 0x28(r31)
+	addi     r4, r4, __vt__Q23PSM9EventBase@l
+	addi     r0, r5, 8
+	addi     r7, r3, __vt__Q23PSM7Otakara@l
+	stw      r0, 0x10(r31)
+	addi     r0, r5, 0x40
+	addi     r27, r28, 0x78
+	addi     r9, r4, 8
+	stw      r0, 0x30(r31)
+	addi     r8, r4, 0x40
+	addi     r6, r7, 8
+	addi     r5, r7, 0x40
+	stw      r4, 0x28(r31)
+	li       r0, 0
+	mr       r3, r27
+	mr       r4, r29
+	stw      r9, 0x10(r31)
+	stw      r8, 0x30(r31)
+	stw      r7, 0x28(r28)
+	stw      r6, 0x10(r28)
+	stw      r5, 0x30(r28)
+	stw      r0, 0x70(r28)
+	stw      r0, 0x74(r28)
+	bl       __ct__10JSUPtrLinkFPv
+	lis      r3, __vt__Q23PSM12DirectorLink@ha
+	lis      r5, __vt__Q23PSM9EventLink@ha
+	addi     r0, r3, __vt__Q23PSM12DirectorLink@l
+	lis      r3, __vt__Q23PSM13PelletOtakara@ha
+	stw      r0, 0x10(r27)
+	addi     r4, r3, __vt__Q23PSM13PelletOtakara@l
+	clrlwi.  r0, r30, 0x18
+	addi     r3, r5, __vt__Q23PSM9EventLink@l
+	li       r5, 0
+	stw      r3, 0x10(r27)
+	addi     r3, r4, 8
+	addi     r0, r4, 0x40
+	stw      r5, 0x8c(r28)
+	stw      r4, 0x28(r26)
+	stw      r3, 0x10(r26)
+	stw      r0, 0x30(r26)
+	bne      lbl_80461F2C
+	li       r3, 0x14
+	bl       __nw__FUl
+	or.      r27, r3, r3
+	beq      lbl_80461F24
+	mr       r4, r29
+	bl       __ct__10JSUPtrLinkFPv
+	lis      r4, __vt__Q23PSM12DirectorLink@ha
+	lis      r3, __vt__Q23PSM16OtakaraEventLink@ha
+	addi     r0, r4, __vt__Q23PSM12DirectorLink@l
+	stw      r0, 0x10(r27)
+	addi     r0, r3, __vt__Q23PSM16OtakaraEventLink@l
+	stw      r0, 0x10(r27)
 
-	.loc_0x1C4:
-	  stw       r27, 0x8C(r26)
-	  b         .loc_0x20C
+lbl_80461F24:
+	stw      r27, 0x8c(r26)
+	b        lbl_80461F6C
 
-	.loc_0x1CC:
-	  li        r3, 0x14
-	  bl        -0x43E08C
-	  mr.       r27, r3
-	  beq-      .loc_0x208
-	  mr        r4, r29
-	  bl        -0x43B788
-	  lis       r3, 0x804F
-	  lis       r4, 0x804F
-	  subi      r0, r3, 0x1650
-	  lis       r3, 0x804F
-	  stw       r0, 0x10(r27)
-	  subi      r4, r4, 0x168C
-	  subi      r0, r3, 0x16AC
-	  stw       r4, 0x10(r27)
-	  stw       r0, 0x10(r27)
+lbl_80461F2C:
+	li       r3, 0x14
+	bl       __nw__FUl
+	or.      r27, r3, r3
+	beq      lbl_80461F68
+	mr       r4, r29
+	bl       __ct__10JSUPtrLinkFPv
+	lis      r3, __vt__Q23PSM12DirectorLink@ha
+	lis      r4, __vt__Q23PSM16OtakaraEventLink@ha
+	addi     r0, r3, __vt__Q23PSM12DirectorLink@l
+	lis      r3, __vt__Q23PSM25OtakaraEventLink_2PBattle@ha
+	stw      r0, 0x10(r27)
+	addi     r4, r4, __vt__Q23PSM16OtakaraEventLink@l
+	addi     r0, r3, __vt__Q23PSM25OtakaraEventLink_2PBattle@l
+	stw      r4, 0x10(r27)
+	stw      r0, 0x10(r27)
 
-	.loc_0x208:
-	  stw       r27, 0x8C(r26)
+lbl_80461F68:
+	stw      r27, 0x8c(r26)
 
-	.loc_0x20C:
-	  mr        r3, r26
-	  lmw       r25, 0x14(r1)
-	  lwz       r0, 0x34(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_80461F6C:
+	mr       r3, r26
+	lmw      r25, 0x14(r1)
+	lwz      r0, 0x34(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -7012,95 +7927,94 @@ PelletOtakara::PelletOtakara(Game::PelletOtakara::Object*, bool)
 Otakara::~Otakara()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x12C
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x78
-	  subi      r4, r3, 0x17DC
-	  stw       r4, 0x28(r30)
-	  addi      r3, r4, 0x8
-	  addi      r0, r4, 0x40
-	  stw       r3, 0x10(r30)
-	  stw       r0, 0x30(r30)
-	  beq-      .loc_0x78
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x78
-	  subi      r0, r3, 0x166C
-	  stw       r0, 0x88(r30)
-	  beq-      .loc_0x78
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x78
-	  subi      r0, r3, 0x1650
-	  stw       r0, 0x88(r30)
-	  beq-      .loc_0x78
-	  addi      r3, r30, 0x78
-	  li        r4, 0
-	  bl        -0x43B828
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_804620B0
+	lis      r3, __vt__Q23PSM7Otakara@ha
+	addic.   r0, r30, 0x78
+	addi     r4, r3, __vt__Q23PSM7Otakara@l
+	stw      r4, 0x28(r30)
+	addi     r3, r4, 8
+	addi     r0, r4, 0x40
+	stw      r3, 0x10(r30)
+	stw      r0, 0x30(r30)
+	beq      lbl_80461FFC
+	lis      r3, __vt__Q23PSM9EventLink@ha
+	addic.   r0, r30, 0x78
+	addi     r0, r3, __vt__Q23PSM9EventLink@l
+	stw      r0, 0x88(r30)
+	beq      lbl_80461FFC
+	lis      r3, __vt__Q23PSM12DirectorLink@ha
+	addic.   r0, r30, 0x78
+	addi     r0, r3, __vt__Q23PSM12DirectorLink@l
+	stw      r0, 0x88(r30)
+	beq      lbl_80461FFC
+	addi     r3, r30, 0x78
+	li       r4, 0
+	bl       __dt__10JSUPtrLinkFv
 
-	.loc_0x78:
-	  cmplwi    r30, 0
-	  beq-      .loc_0x11C
-	  lis       r3, 0x804B
-	  addi      r4, r3, 0x21A4
-	  stw       r4, 0x28(r30)
-	  addi      r3, r4, 0x8
-	  addi      r0, r4, 0x40
-	  stw       r3, 0x10(r30)
-	  stw       r0, 0x30(r30)
-	  beq-      .loc_0x11C
-	  lis       r4, 0x804F
-	  addi      r3, r30, 0x30
-	  subi      r6, r4, 0xEBC
-	  li        r4, 0
-	  stw       r6, 0x28(r30)
-	  addi      r5, r6, 0x8
-	  addi      r0, r6, 0x40
-	  stw       r5, 0x10(r30)
-	  stw       r0, 0x30(r30)
-	  bl        -0x3A8468
-	  cmplwi    r30, 0
-	  beq-      .loc_0x11C
-	  lis       r3, 0x804F
-	  subi      r3, r3, 0xE34
-	  stw       r3, 0x28(r30)
-	  addi      r0, r3, 0x8
-	  stw       r0, 0x10(r30)
-	  beq-      .loc_0x11C
-	  lis       r4, 0x804F
-	  addi      r3, r30, 0x10
-	  subi      r5, r4, 0xDD0
-	  li        r4, 0
-	  stw       r5, 0x28(r30)
-	  addi      r0, r5, 0x8
-	  stw       r0, 0x10(r30)
-	  bl        -0x445054
-	  cmplwi    r30, 0
-	  beq-      .loc_0x11C
-	  mr        r3, r30
-	  li        r4, 0
-	  bl        -0x43B8CC
+lbl_80461FFC:
+	cmplwi   r30, 0
+	beq      lbl_804620A0
+	lis      r3, __vt__Q23PSM9EventBase@ha
+	addi     r4, r3, __vt__Q23PSM9EventBase@l
+	stw      r4, 0x28(r30)
+	addi     r3, r4, 8
+	addi     r0, r4, 0x40
+	stw      r3, 0x10(r30)
+	stw      r0, 0x30(r30)
+	beq      lbl_804620A0
+	lis      r4, __vt__Q23PSM11CreatureObj@ha
+	addi     r3, r30, 0x30
+	addi     r6, r4, __vt__Q23PSM11CreatureObj@l
+	li       r4, 0
+	stw      r6, 0x28(r30)
+	addi     r5, r6, 8
+	addi     r0, r6, 0x40
+	stw      r5, 0x10(r30)
+	stw      r0, 0x30(r30)
+	bl       __dt__Q27JAInter6ObjectFv
+	cmplwi   r30, 0
+	beq      lbl_804620A0
+	lis      r3, __vt__Q23PSM8Creature@ha
+	addi     r3, r3, __vt__Q23PSM8Creature@l
+	stw      r3, 0x28(r30)
+	addi     r0, r3, 8
+	stw      r0, 0x10(r30)
+	beq      lbl_804620A0
+	lis      r4, __vt__Q23PSM7ObjBase@ha
+	addi     r3, r30, 0x10
+	addi     r5, r4, __vt__Q23PSM7ObjBase@l
+	li       r4, 0
+	stw      r5, 0x28(r30)
+	addi     r0, r5, 8
+	stw      r0, 0x10(r30)
+	bl       __dt__11JKRDisposerFv
+	cmplwi   r30, 0
+	beq      lbl_804620A0
+	mr       r3, r30
+	li       r4, 0
+	bl       __dt__10JSUPtrLinkFv
 
-	.loc_0x11C:
-	  extsh.    r0, r31
-	  ble-      .loc_0x12C
-	  mr        r3, r30
-	  bl        -0x43DFF8
+lbl_804620A0:
+	extsh.   r0, r31
+	ble      lbl_804620B0
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x12C:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_804620B0:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -7112,130 +8026,129 @@ Otakara::~Otakara()
 PelletItem::PelletItem(Game::PelletItem::Object*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stmw      r26, 0x8(r1)
-	  mr        r27, r3
-	  mr        r31, r27
-	  mr        r30, r4
-	  mr        r29, r31
-	  mr        r26, r31
-	  mr        r28, r31
-	  mr        r4, r31
-	  bl        -0x43B940
-	  addi      r3, r28, 0x10
-	  bl        -0x445134
-	  lis       r4, 0x804F
-	  lis       r3, 0x804F
-	  subi      r4, r4, 0xDD0
-	  cmplwi    r30, 0
-	  stw       r4, 0x28(r28)
-	  addi      r0, r4, 0x8
-	  subi      r3, r3, 0xE34
-	  stw       r0, 0x10(r28)
-	  addi      r0, r3, 0x8
-	  stw       r3, 0x28(r26)
-	  stw       r0, 0x10(r26)
-	  stw       r30, 0x2C(r26)
-	  bne-      .loc_0x88
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x3060
-	  li        r4, 0x61
-	  subi      r5, r5, 0x3048
-	  crclr     6, 0x6
-	  bl        -0x437B10
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stmw     r26, 8(r1)
+	mr       r27, r3
+	mr       r31, r27
+	mr       r30, r4
+	mr       r29, r31
+	mr       r26, r31
+	mr       r28, r31
+	mr       r4, r31
+	bl       __ct__10JSUPtrLinkFPv
+	addi     r3, r28, 0x10
+	bl       __ct__11JKRDisposerFv
+	lis      r4, __vt__Q23PSM7ObjBase@ha
+	lis      r3, __vt__Q23PSM8Creature@ha
+	addi     r4, r4, __vt__Q23PSM7ObjBase@l
+	cmplwi   r30, 0
+	stw      r4, 0x28(r28)
+	addi     r0, r4, 8
+	addi     r3, r3, __vt__Q23PSM8Creature@l
+	stw      r0, 0x10(r28)
+	addi     r0, r3, 8
+	stw      r3, 0x28(r26)
+	stw      r0, 0x10(r26)
+	stw      r30, 0x2c(r26)
+	bne      lbl_80462154
+	lis      r3, lbl_8049CFA0@ha
+	lis      r5, lbl_8049CFB8@ha
+	addi     r3, r3, lbl_8049CFA0@l
+	li       r4, 0x61
+	addi     r5, r5, lbl_8049CFB8@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x88:
-	  lwz       r0, -0x6E44(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0xB0
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x3060
-	  li        r4, 0x62
-	  subi      r5, r5, 0x3048
-	  crclr     6, 0x6
-	  bl        -0x437B38
+lbl_80462154:
+	lwz      r0,
+"sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13) cmplwi   r0, 0
+	bne      lbl_8046217C
+	lis      r3, lbl_8049CFA0@ha
+	lis      r5, lbl_8049CFB8@ha
+	addi     r3, r3, lbl_8049CFA0@l
+	li       r4, 0x62
+	addi     r5, r5, lbl_8049CFB8@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xB0:
-	  mr        r3, r30
-	  lwz       r28, -0x77D4(r13)
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x100(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  mr        r5, r28
-	  addi      r3, r31, 0x30
-	  li        r6, 0x2
-	  bl        -0x3A86B8
-	  lis       r3, 0x804F
-	  lis       r4, 0x804B
-	  subi      r5, r3, 0xEBC
-	  lis       r3, 0x804F
-	  stw       r5, 0x28(r31)
-	  addi      r4, r4, 0x21A4
-	  addi      r0, r5, 0x8
-	  subi      r7, r3, 0x17DC
-	  stw       r0, 0x10(r31)
-	  addi      r0, r5, 0x40
-	  addi      r28, r29, 0x78
-	  addi      r9, r4, 0x8
-	  stw       r0, 0x30(r31)
-	  addi      r8, r4, 0x40
-	  addi      r6, r7, 0x8
-	  addi      r5, r7, 0x40
-	  stw       r4, 0x28(r31)
-	  li        r0, 0
-	  mr        r3, r28
-	  mr        r4, r30
-	  stw       r9, 0x10(r31)
-	  stw       r8, 0x30(r31)
-	  stw       r7, 0x28(r29)
-	  stw       r6, 0x10(r29)
-	  stw       r5, 0x30(r29)
-	  stw       r0, 0x70(r29)
-	  stw       r0, 0x74(r29)
-	  bl        -0x43BA5C
-	  lis       r3, 0x804F
-	  lis       r4, 0x804F
-	  subi      r0, r3, 0x1650
-	  lis       r3, 0x804F
-	  stw       r0, 0x10(r28)
-	  subi      r5, r3, 0x190C
-	  subi      r0, r4, 0x166C
-	  li        r6, 0
-	  stw       r0, 0x10(r28)
-	  addi      r4, r5, 0x8
-	  addi      r0, r5, 0x40
-	  li        r3, 0x14
-	  stw       r6, 0x8C(r29)
-	  stw       r5, 0x28(r27)
-	  stw       r4, 0x10(r27)
-	  stw       r0, 0x30(r27)
-	  bl        -0x43E3B4
-	  mr.       r28, r3
-	  beq-      .loc_0x1B8
-	  mr        r4, r30
-	  bl        -0x43BAB0
-	  lis       r4, 0x804F
-	  lis       r3, 0x804F
-	  subi      r0, r4, 0x1650
-	  stw       r0, 0x10(r28)
-	  subi      r0, r3, 0x168C
-	  stw       r0, 0x10(r28)
+lbl_8046217C:
+	mr       r3, r30
+	lwz      r28, sCurrentHeap__7JKRHeap@sda21(r13)
+	lwz      r12, 0(r30)
+	lwz      r12, 0x100(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	mr       r5, r28
+	addi     r3, r31, 0x30
+	li       r6, 2
+	bl       __ct__Q27JAInter6ObjectFP3VecP7JKRHeapUc
+	lis      r3, __vt__Q23PSM11CreatureObj@ha
+	lis      r4, __vt__Q23PSM9EventBase@ha
+	addi     r5, r3, __vt__Q23PSM11CreatureObj@l
+	lis      r3, __vt__Q23PSM7Otakara@ha
+	stw      r5, 0x28(r31)
+	addi     r4, r4, __vt__Q23PSM9EventBase@l
+	addi     r0, r5, 8
+	addi     r7, r3, __vt__Q23PSM7Otakara@l
+	stw      r0, 0x10(r31)
+	addi     r0, r5, 0x40
+	addi     r28, r29, 0x78
+	addi     r9, r4, 8
+	stw      r0, 0x30(r31)
+	addi     r8, r4, 0x40
+	addi     r6, r7, 8
+	addi     r5, r7, 0x40
+	stw      r4, 0x28(r31)
+	li       r0, 0
+	mr       r3, r28
+	mr       r4, r30
+	stw      r9, 0x10(r31)
+	stw      r8, 0x30(r31)
+	stw      r7, 0x28(r29)
+	stw      r6, 0x10(r29)
+	stw      r5, 0x30(r29)
+	stw      r0, 0x70(r29)
+	stw      r0, 0x74(r29)
+	bl       __ct__10JSUPtrLinkFPv
+	lis      r3, __vt__Q23PSM12DirectorLink@ha
+	lis      r4, __vt__Q23PSM9EventLink@ha
+	addi     r0, r3, __vt__Q23PSM12DirectorLink@l
+	lis      r3, __vt__Q23PSM10PelletItem@ha
+	stw      r0, 0x10(r28)
+	addi     r5, r3, __vt__Q23PSM10PelletItem@l
+	addi     r0, r4, __vt__Q23PSM9EventLink@l
+	li       r6, 0
+	stw      r0, 0x10(r28)
+	addi     r4, r5, 8
+	addi     r0, r5, 0x40
+	li       r3, 0x14
+	stw      r6, 0x8c(r29)
+	stw      r5, 0x28(r27)
+	stw      r4, 0x10(r27)
+	stw      r0, 0x30(r27)
+	bl       __nw__FUl
+	or.      r28, r3, r3
+	beq      lbl_80462284
+	mr       r4, r30
+	bl       __ct__10JSUPtrLinkFPv
+	lis      r4, __vt__Q23PSM12DirectorLink@ha
+	lis      r3, __vt__Q23PSM16OtakaraEventLink@ha
+	addi     r0, r4, __vt__Q23PSM12DirectorLink@l
+	stw      r0, 0x10(r28)
+	addi     r0, r3, __vt__Q23PSM16OtakaraEventLink@l
+	stw      r0, 0x10(r28)
 
-	.loc_0x1B8:
-	  stw       r28, 0x8C(r27)
-	  mr        r3, r27
-	  lmw       r26, 0x8(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80462284:
+	stw      r28, 0x8c(r27)
+	mr       r3, r27
+	lmw      r26, 8(r1)
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -7247,93 +8160,92 @@ PelletItem::PelletItem(Game::PelletItem::Object*)
 Piki::Piki(Game::Piki*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r3
-	  stw       r30, 0x18(r1)
-	  mr        r30, r4
-	  mr        r4, r31
-	  stw       r29, 0x14(r1)
-	  mr        r29, r31
-	  stw       r28, 0x10(r1)
-	  mr        r28, r31
-	  bl        -0x43BB18
-	  addi      r3, r29, 0x10
-	  bl        -0x44530C
-	  lis       r4, 0x804F
-	  lis       r3, 0x804F
-	  subi      r4, r4, 0xDD0
-	  cmplwi    r30, 0
-	  stw       r4, 0x28(r29)
-	  addi      r0, r4, 0x8
-	  subi      r3, r3, 0xE34
-	  stw       r0, 0x10(r29)
-	  addi      r0, r3, 0x8
-	  stw       r3, 0x28(r28)
-	  stw       r0, 0x10(r28)
-	  stw       r30, 0x2C(r28)
-	  bne-      .loc_0x8C
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x3060
-	  li        r4, 0x61
-	  subi      r5, r5, 0x3048
-	  crclr     6, 0x6
-	  bl        -0x437CE8
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r3
+	stw      r30, 0x18(r1)
+	mr       r30, r4
+	mr       r4, r31
+	stw      r29, 0x14(r1)
+	mr       r29, r31
+	stw      r28, 0x10(r1)
+	mr       r28, r31
+	bl       __ct__10JSUPtrLinkFPv
+	addi     r3, r29, 0x10
+	bl       __ct__11JKRDisposerFv
+	lis      r4, __vt__Q23PSM7ObjBase@ha
+	lis      r3, __vt__Q23PSM8Creature@ha
+	addi     r4, r4, __vt__Q23PSM7ObjBase@l
+	cmplwi   r30, 0
+	stw      r4, 0x28(r29)
+	addi     r0, r4, 8
+	addi     r3, r3, __vt__Q23PSM8Creature@l
+	stw      r0, 0x10(r29)
+	addi     r0, r3, 8
+	stw      r3, 0x28(r28)
+	stw      r0, 0x10(r28)
+	stw      r30, 0x2c(r28)
+	bne      lbl_8046232C
+	lis      r3, lbl_8049CFA0@ha
+	lis      r5, lbl_8049CFB8@ha
+	addi     r3, r3, lbl_8049CFA0@l
+	li       r4, 0x61
+	addi     r5, r5, lbl_8049CFB8@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x8C:
-	  lwz       r0, -0x6E44(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0xB4
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x3060
-	  li        r4, 0x62
-	  subi      r5, r5, 0x3048
-	  crclr     6, 0x6
-	  bl        -0x437D10
+lbl_8046232C:
+	lwz      r0,
+"sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13) cmplwi   r0, 0
+	bne      lbl_80462354
+	lis      r3, lbl_8049CFA0@ha
+	lis      r5, lbl_8049CFB8@ha
+	addi     r3, r3, lbl_8049CFA0@l
+	li       r4, 0x62
+	addi     r5, r5, lbl_8049CFB8@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xB4:
-	  mr        r3, r30
-	  lwz       r30, -0x77D4(r13)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x100(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  mr        r5, r30
-	  addi      r3, r31, 0x30
-	  li        r6, 0x2
-	  bl        -0x3A8890
-	  lis       r4, 0x804F
-	  lis       r3, 0x804F
-	  subi      r4, r4, 0xEBC
-	  li        r0, -0x1
-	  stw       r4, 0x28(r31)
-	  subi      r6, r3, 0x1994
-	  addi      r3, r4, 0x8
-	  addi      r7, r4, 0x40
-	  stw       r3, 0x10(r31)
-	  addi      r5, r6, 0x8
-	  addi      r4, r6, 0x40
-	  mr        r3, r31
-	  stw       r7, 0x30(r31)
-	  stw       r6, 0x28(r31)
-	  stw       r5, 0x10(r31)
-	  stw       r4, 0x30(r31)
-	  stw       r0, 0x70(r31)
-	  stw       r0, 0x74(r31)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80462354:
+	mr       r3, r30
+	lwz      r30, sCurrentHeap__7JKRHeap@sda21(r13)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x100(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	mr       r5, r30
+	addi     r3, r31, 0x30
+	li       r6, 2
+	bl       __ct__Q27JAInter6ObjectFP3VecP7JKRHeapUc
+	lis      r4, __vt__Q23PSM11CreatureObj@ha
+	lis      r3, __vt__Q23PSM4Piki@ha
+	addi     r4, r4, __vt__Q23PSM11CreatureObj@l
+	li       r0, -1
+	stw      r4, 0x28(r31)
+	addi     r6, r3, __vt__Q23PSM4Piki@l
+	addi     r3, r4, 8
+	addi     r7, r4, 0x40
+	stw      r3, 0x10(r31)
+	addi     r5, r6, 8
+	addi     r4, r6, 0x40
+	mr       r3, r31
+	stw      r7, 0x30(r31)
+	stw      r6, 0x28(r31)
+	stw      r5, 0x10(r31)
+	stw      r4, 0x30(r31)
+	stw      r0, 0x70(r31)
+	stw      r0, 0x74(r31)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -7345,127 +8257,126 @@ Piki::Piki(Game::Piki*)
 void Piki::onCalcOn()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r4, 0x804A
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r3
-	  stw       r30, 0x18(r1)
-	  subi      r30, r4, 0x3060
-	  stw       r29, 0x14(r1)
-	  lwz       r3, 0x70(r3)
-	  cmpwi     r3, -0x1
-	  beq-      .loc_0x38
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x70(r31)
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lis      r4, lbl_8049CFA0@ha
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r3
+	stw      r30, 0x18(r1)
+	addi     r30, r4, lbl_8049CFA0@l
+	stw      r29, 0x14(r1)
+	lwz      r3, 0x70(r3)
+	cmpwi    r3, -1
+	beq      lbl_80462420
+	addi     r0, r3, 1
+	stw      r0, 0x70(r31)
 
-	.loc_0x38:
-	  lwz       r3, 0x2C(r31)
-	  lwz       r29, 0x74(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x21C(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x15C
-	  addis     r0, r29, 0x1
-	  cmplwi    r0, 0xFFFF
-	  bne-      .loc_0x70
-	  li        r0, 0
-	  stw       r0, 0x74(r31)
-	  b         .loc_0x7C
+lbl_80462420:
+	lwz      r3, 0x2c(r31)
+	lwz      r29, 0x74(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x21c(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80462544
+	addis    r0, r29, 1
+	cmplwi   r0, 0xffff
+	bne      lbl_80462458
+	li       r0, 0
+	stw      r0, 0x74(r31)
+	b        lbl_80462464
 
-	.loc_0x70:
-	  lwz       r3, 0x74(r31)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x74(r31)
+lbl_80462458:
+	lwz      r3, 0x74(r31)
+	addi     r0, r3, 1
+	stw      r0, 0x74(r31)
 
-	.loc_0x7C:
-	  lwz       r0, -0x6780(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x9C
-	  addi      r3, r30, 0x30
-	  addi      r5, r30, 0x18
-	  li        r4, 0x1D3
-	  crclr     6, 0x6
-	  bl        -0x437E40
+lbl_80462464:
+	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_80462484
+	addi     r3, r30, 0x30
+	addi     r5, r30, 0x18
+	li       r4, 0x1d3
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x9C:
-	  lwz       r29, -0x6780(r13)
-	  cmplwi    r29, 0
-	  bne-      .loc_0xBC
-	  addi      r3, r30, 0x30
-	  addi      r5, r30, 0x18
-	  li        r4, 0x1DC
-	  crclr     6, 0x6
-	  bl        -0x437E60
+lbl_80462484:
+	lwz      r29, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r29, 0
+	bne      lbl_804624A4
+	addi     r3, r30, 0x30
+	addi     r5, r30, 0x18
+	li       r4, 0x1dc
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xBC:
-	  lwz       r0, 0x4(r29)
-	  cmplwi    r0, 0
-	  bne-      .loc_0xDC
-	  addi      r3, r30, 0x3C
-	  addi      r5, r30, 0x18
-	  li        r4, 0xCF
-	  crclr     6, 0x6
-	  bl        -0x437E80
+lbl_804624A4:
+	lwz      r0, 4(r29)
+	cmplwi   r0, 0
+	bne      lbl_804624C4
+	addi     r3, r30, 0x3c
+	addi     r5, r30, 0x18
+	li       r4, 0xcf
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xDC:
-	  lwz       r3, 0x4(r29)
-	  lwz       r29, 0x4(r3)
-	  cmplwi    r29, 0
-	  bne-      .loc_0x100
-	  addi      r3, r30, 0x3C
-	  addi      r5, r30, 0x98
-	  li        r4, 0xD1
-	  crclr     6, 0x6
-	  bl        -0x437EA4
+lbl_804624C4:
+	lwz      r3, 4(r29)
+	lwz      r29, 4(r3)
+	cmplwi   r29, 0
+	bne      lbl_804624E8
+	addi     r3, r30, 0x3c
+	addi     r5, r30, 0x98
+	li       r4, 0xd1
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x100:
-	  mr        r3, r29
-	  lwz       r12, 0x0(r29)
-	  lwz       r12, 0x40(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x120
-	  b         .loc_0x124
+lbl_804624E8:
+	mr       r3, r29
+	lwz      r12, 0(r29)
+	lwz      r12, 0x40(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80462508
+	b        lbl_8046250C
 
-	.loc_0x120:
-	  li        r29, 0
+lbl_80462508:
+	li       r29, 0
 
-	.loc_0x124:
-	  cmplwi    r29, 0
-	  beq-      .loc_0x164
-	  lwz       r29, 0x54(r29)
-	  cmplwi    r29, 0
-	  bne-      .loc_0x14C
-	  addi      r3, r30, 0
-	  addi      r5, r30, 0x18
-	  li        r4, 0x884
-	  crclr     6, 0x6
-	  bl        -0x437EF0
+lbl_8046250C:
+	cmplwi   r29, 0
+	beq      lbl_8046254C
+	lwz      r29, 0x54(r29)
+	cmplwi   r29, 0
+	bne      lbl_80462534
+	addi     r3, r30, 0
+	addi     r5, r30, 0x18
+	li       r4, 0x884
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x14C:
-	  mr        r3, r29
-	  mr        r4, r31
-	  bl        0xBAB4
-	  b         .loc_0x164
+lbl_80462534:
+	mr       r3, r29
+	mr       r4, r31
+	bl       play__Q23PSM14PikiHummingMgrFPQ23PSM4Piki
+	b        lbl_8046254C
 
-	.loc_0x15C:
-	  li        r0, -0x1
-	  stw       r0, 0x74(r31)
+lbl_80462544:
+	li       r0, -1
+	stw      r0, 0x74(r31)
 
-	.loc_0x164:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8046254C:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -7499,104 +8410,103 @@ void Piki::becomeNotFree()
 void Piki::startFreePikiSound(unsigned long, unsigned long, unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r7, 0x804A
-	  stw       r0, 0x24(r1)
-	  stmw      r26, 0x8(r1)
-	  mr        r26, r3
-	  mr        r27, r4
-	  mr        r28, r5
-	  mr        r29, r6
-	  subi      r31, r7, 0x3060
-	  lwz       r0, -0x6780(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x48
-	  addi      r3, r31, 0x30
-	  addi      r5, r31, 0x18
-	  li        r4, 0x1D3
-	  crclr     6, 0x6
-	  bl        -0x437F84
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lis      r7, lbl_8049CFA0@ha
+	stw      r0, 0x24(r1)
+	stmw     r26, 8(r1)
+	mr       r26, r3
+	mr       r27, r4
+	mr       r28, r5
+	mr       r29, r6
+	addi     r31, r7, lbl_8049CFA0@l
+	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_804625C8
+	addi     r3, r31, 0x30
+	addi     r5, r31, 0x18
+	li       r4, 0x1d3
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x48:
-	  lwz       r30, -0x6780(r13)
-	  cmplwi    r30, 0
-	  bne-      .loc_0x68
-	  addi      r3, r31, 0x30
-	  addi      r5, r31, 0x18
-	  li        r4, 0x1DC
-	  crclr     6, 0x6
-	  bl        -0x437FA4
+lbl_804625C8:
+	lwz      r30, spSceneMgr__8PSSystem@sda21(r13)
+	cmplwi   r30, 0
+	bne      lbl_804625E8
+	addi     r3, r31, 0x30
+	addi     r5, r31, 0x18
+	li       r4, 0x1dc
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x68:
-	  lwz       r0, 0x8(r30)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x88
-	  addi      r3, r31, 0x3C
-	  addi      r5, r31, 0x18
-	  li        r4, 0xA1
-	  crclr     6, 0x6
-	  bl        -0x437FC4
+lbl_804625E8:
+	lwz      r0, 8(r30)
+	cmplwi   r0, 0
+	bne      lbl_80462608
+	addi     r3, r31, 0x3c
+	addi     r5, r31, 0x18
+	li       r4, 0xa1
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x88:
-	  lwz       r3, 0x8(r30)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x34(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xB4
-	  cmplwi    r27, 0x2834
-	  bne-      .loc_0xB4
-	  li        r3, 0
-	  b         .loc_0x130
+lbl_80462608:
+	lwz      r3, 8(r30)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x34(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80462634
+	cmplwi   r27, 0x2834
+	bne      lbl_80462634
+	li       r3, 0
+	b        lbl_804626B0
 
-	.loc_0xB4:
-	  mr        r3, r26
-	  mr        r4, r27
-	  bl        0x380
-	  mr        r27, r3
-	  addis     r0, r27, 0x1
-	  cmplwi    r0, 0xFFFF
-	  bne-      .loc_0xD8
-	  li        r3, 0
-	  b         .loc_0x130
+lbl_80462634:
+	mr       r3, r26
+	mr       r4, r27
+	bl       checkHappaChappySE__Q23PSM4PikiFUl
+	mr       r27, r3
+	addis    r0, r27, 1
+	cmplwi   r0, 0xffff
+	bne      lbl_80462658
+	li       r3, 0
+	b        lbl_804626B0
 
-	.loc_0xD8:
-	  lwz       r0, 0x70(r26)
-	  cmpwi     r0, -0x1
-	  bne-      .loc_0x104
-	  mr        r3, r26
-	  mr        r4, r27
-	  lwz       r12, 0x28(r26)
-	  mr        r5, r29
-	  lwz       r12, 0x7C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x130
+lbl_80462658:
+	lwz      r0, 0x70(r26)
+	cmpwi    r0, -1
+	bne      lbl_80462684
+	mr       r3, r26
+	mr       r4, r27
+	lwz      r12, 0x28(r26)
+	mr       r5, r29
+	lwz      r12, 0x7c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_804626B0
 
-	.loc_0x104:
-	  cmpw      r0, r28
-	  blt-      .loc_0x12C
-	  mr        r3, r26
-	  mr        r4, r27
-	  lwz       r12, 0x28(r26)
-	  mr        r5, r29
-	  lwz       r12, 0x7C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x130
+lbl_80462684:
+	cmpw     r0, r28
+	blt      lbl_804626AC
+	mr       r3, r26
+	mr       r4, r27
+	lwz      r12, 0x28(r26)
+	mr       r5, r29
+	lwz      r12, 0x7c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_804626B0
 
-	.loc_0x12C:
-	  li        r3, 0
+lbl_804626AC:
+	li       r3, 0
 
-	.loc_0x130:
-	  lmw       r26, 0x8(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_804626B0:
+	lmw      r26, 8(r1)
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -7608,39 +8518,38 @@ void Piki::startFreePikiSound(unsigned long, unsigned long, unsigned long)
 void Piki::startPikiSound(JAInter::Object*, unsigned long, unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r6
-	  stw       r30, 0x8(r1)
-	  mr        r30, r4
-	  mr        r4, r5
-	  bl        0x2D8
-	  mr        r5, r3
-	  addis     r0, r5, 0x1
-	  cmplwi    r0, 0xFFFF
-	  bne-      .loc_0x3C
-	  li        r3, 0
-	  b         .loc_0x58
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r6
+	stw      r30, 8(r1)
+	mr       r30, r4
+	mr       r4, r5
+	bl       checkHappaChappySE__Q23PSM4PikiFUl
+	mr       r5, r3
+	addis    r0, r5, 1
+	cmplwi   r0, 0xffff
+	bne      lbl_80462700
+	li       r3, 0
+	b        lbl_8046271C
 
-	.loc_0x3C:
-	  mr        r3, r30
-	  mr        r4, r5
-	  lwz       r12, 0x0(r30)
-	  mr        r5, r31
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
+lbl_80462700:
+	mr       r3, r30
+	mr       r4, r5
+	lwz      r12, 0(r30)
+	mr       r5, r31
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x58:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8046271C:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -7874,78 +8783,155 @@ void Piki::startFreePikiSetSound(unsigned long, PSGame::SeMgr::SetSeId,
 void Piki::checkHappaChappySE(unsigned long)
 {
 	/*
-	.loc_0x0:
-	  lwz       r3, 0x2C(r3)
-	  lbz       r0, 0x2B8(r3)
-	  cmpwi     r0, 0x5
-	  beq-      .loc_0x18
-	  mr        r3, r4
-	  blr
+	lwz      r3, 0x2c(r3)
+	lbz      r0, 0x2b8(r3)
+	cmpwi    r0, 5
+	beq      lbl_804629D4
+	mr       r3, r4
+	blr
 
-	.loc_0x18:
-	  subi      r0, r4, 0x2800
-	  cmplwi    r0, 0x7A
-	  bgt-      .loc_0xF8
-	  lis       r3, 0x804F
-	  rlwinm    r0,r0,2,0,29
-	  subi      r3, r3, 0x1C90
-	  lwzx      r0, r3, r0
-	  mtctr     r0
-	  bctr
-	  li        r4, 0x2864
-	  b         .loc_0xFC
-	  li        r4, 0x2865
-	  b         .loc_0xFC
-	  li        r4, 0x286B
-	  b         .loc_0xFC
-	  li        r4, 0x2866
-	  b         .loc_0xFC
-	  li        r4, 0x2867
-	  b         .loc_0xFC
-	  li        r4, 0x286A
-	  b         .loc_0xFC
-	  li        r4, 0x286C
-	  b         .loc_0xFC
-	  li        r4, 0x286D
-	  b         .loc_0xFC
-	  li        r4, 0x286E
-	  b         .loc_0xFC
-	  li        r4, 0x2868
-	  b         .loc_0xFC
-	  li        r4, 0x2869
-	  b         .loc_0xFC
-	  li        r4, 0x286F
-	  b         .loc_0xFC
-	  li        r4, 0x2870
-	  b         .loc_0xFC
-	  li        r4, 0x2871
-	  b         .loc_0xFC
-	  li        r4, 0x2872
-	  b         .loc_0xFC
-	  li        r4, 0x2873
-	  b         .loc_0xFC
-	  li        r4, 0x2874
-	  b         .loc_0xFC
-	  li        r4, 0x2875
-	  b         .loc_0xFC
-	  li        r4, 0x2876
-	  b         .loc_0xFC
-	  li        r4, 0x2877
-	  b         .loc_0xFC
-	  li        r4, 0x2878
-	  b         .loc_0xFC
-	  li        r4, 0x2879
-	  b         .loc_0xFC
-	  li        r4, 0x287B
-	  b         .loc_0xFC
-	  b         .loc_0xFC
+lbl_804629D4:
+	addi     r0, r4, -10240
+	cmplwi   r0, 0x7a
+	bgt      lbl_80462AB4
+	lis      r3, lbl_804EE370@ha
+	slwi     r0, r0, 2
+	addi     r3, r3, lbl_804EE370@l
+	lwzx     r0, r3, r0
+	mtctr    r0
+	bctr
 
-	.loc_0xF8:
-	  li        r4, -0x1
+lbl_804629F8:
+	li       r4, 0x2864
+	b        lbl_80462AB8
 
-	.loc_0xFC:
-	  mr        r3, r4
-	  blr
+lbl_80462A00:
+	li       r4, 0x2865
+	b        lbl_80462AB8
+
+lbl_80462A08:
+	li       r4, 0x286b
+	b        lbl_80462AB8
+
+lbl_80462A10:
+	li       r4, 0x2866
+	b        lbl_80462AB8
+
+lbl_80462A18:
+	li       r4, 0x2867
+	b        lbl_80462AB8
+
+lbl_80462A20:
+	li       r4, 0x286a
+	b        lbl_80462AB8
+
+lbl_80462A28:
+	li       r4, 0x286c
+	b        lbl_80462AB8
+
+lbl_80462A30:
+
+lbl_80462A30:
+	li       r4, 0x286d
+	b        lbl_80462AB8
+
+lbl_80462A38:
+	li       r4, 0x286e
+	b        lbl_80462AB8
+
+lbl_80462A40:
+	li       r4, 0x2868
+	b        lbl_80462AB8
+
+lbl_80462A48:
+	li       r4, 0x2869
+	b        lbl_80462AB8
+
+lbl_80462A50:
+	li       r4, 0x286f
+	b        lbl_80462AB8
+
+lbl_80462A58:
+	li       r4, 0x2870
+	b        lbl_80462AB8
+
+lbl_80462A60:
+	li       r4, 0x2871
+	b        lbl_80462AB8
+
+lbl_80462A68:
+	li       r4, 0x2872
+	b        lbl_80462AB8
+
+lbl_80462A70:
+	li       r4, 0x2873
+	b        lbl_80462AB8
+
+lbl_80462A78:
+	li       r4, 0x2874
+	b        lbl_80462AB8
+
+lbl_80462A80:
+	li       r4, 0x2875
+	b        lbl_80462AB8
+
+lbl_80462A88:
+	li       r4, 0x2876
+	b        lbl_80462AB8
+
+lbl_80462A90:
+	li       r4, 0x2877
+	b        lbl_80462AB8
+
+lbl_80462A98:
+	li       r4, 0x2878
+	b        lbl_80462AB8
+
+lbl_80462AA0:
+	li       r4, 0x2879
+	b        lbl_80462AB8
+
+lbl_80462AA8:
+	li       r4, 0x287b
+	b        lbl_80462AB8
+
+lbl_80462AB0:
+
+lbl_80462AB0:
+
+lbl_80462AB0:
+
+lbl_80462AB0:
+
+lbl_80462AB0:
+
+lbl_80462AB0:
+
+lbl_80462AB0:
+
+lbl_80462AB0:
+
+lbl_80462AB0:
+
+lbl_80462AB0:
+
+lbl_80462AB0:
+
+lbl_80462AB0:
+
+lbl_80462AB0:
+
+lbl_80462AB0:
+
+lbl_80462AB0:
+	b        lbl_80462AB8
+
+lbl_80462AB4:
+	li       r4, -1
+
+lbl_80462AB8:
+	mr       r3, r4
+	blr
 	*/
 }
 
@@ -7957,89 +8943,88 @@ void Piki::checkHappaChappySE(unsigned long)
 Navi::Navi(Game::Navi*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stmw      r27, 0xC(r1)
-	  mr        r29, r3
-	  mr        r31, r4
-	  mr        r4, r29
-	  mr        r30, r4
-	  mr        r27, r4
-	  mr        r28, r4
-	  bl        -0x43C330
-	  addi      r3, r28, 0x10
-	  bl        -0x445B24
-	  lis       r4, 0x804F
-	  lis       r3, 0x804F
-	  subi      r4, r4, 0xDD0
-	  cmplwi    r31, 0
-	  stw       r4, 0x28(r28)
-	  addi      r0, r4, 0x8
-	  subi      r3, r3, 0xE34
-	  stw       r0, 0x10(r28)
-	  addi      r0, r3, 0x8
-	  stw       r3, 0x28(r27)
-	  stw       r0, 0x10(r27)
-	  stw       r31, 0x2C(r27)
-	  bne-      .loc_0x84
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x3060
-	  li        r4, 0x61
-	  subi      r5, r5, 0x3048
-	  crclr     6, 0x6
-	  bl        -0x438500
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stmw     r27, 0xc(r1)
+	mr       r29, r3
+	mr       r31, r4
+	mr       r4, r29
+	mr       r30, r4
+	mr       r27, r4
+	mr       r28, r4
+	bl       __ct__10JSUPtrLinkFPv
+	addi     r3, r28, 0x10
+	bl       __ct__11JKRDisposerFv
+	lis      r4, __vt__Q23PSM7ObjBase@ha
+	lis      r3, __vt__Q23PSM8Creature@ha
+	addi     r4, r4, __vt__Q23PSM7ObjBase@l
+	cmplwi   r31, 0
+	stw      r4, 0x28(r28)
+	addi     r0, r4, 8
+	addi     r3, r3, __vt__Q23PSM8Creature@l
+	stw      r0, 0x10(r28)
+	addi     r0, r3, 8
+	stw      r3, 0x28(r27)
+	stw      r0, 0x10(r27)
+	stw      r31, 0x2c(r27)
+	bne      lbl_80462B44
+	lis      r3, lbl_8049CFA0@ha
+	lis      r5, lbl_8049CFB8@ha
+	addi     r3, r3, lbl_8049CFA0@l
+	li       r4, 0x61
+	addi     r5, r5, lbl_8049CFB8@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x84:
-	  lwz       r0, -0x6E44(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0xAC
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x3060
-	  li        r4, 0x62
-	  subi      r5, r5, 0x3048
-	  crclr     6, 0x6
-	  bl        -0x438528
+lbl_80462B44:
+	lwz      r0,
+"sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13) cmplwi   r0, 0
+	bne      lbl_80462B6C
+	lis      r3, lbl_8049CFA0@ha
+	lis      r5, lbl_8049CFB8@ha
+	addi     r3, r3, lbl_8049CFA0@l
+	li       r4, 0x62
+	addi     r5, r5, lbl_8049CFB8@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xAC:
-	  mr        r3, r31
-	  lwz       r31, -0x77D4(r13)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x100(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  mr        r5, r31
-	  addi      r3, r30, 0x30
-	  li        r6, 0x2
-	  bl        -0x3A90A8
-	  lis       r3, 0x804F
-	  lis       r4, 0x804F
-	  subi      r6, r3, 0xEBC
-	  addi      r3, r29, 0x70
-	  stw       r6, 0x28(r30)
-	  subi      r5, r4, 0x1A1C
-	  addi      r0, r6, 0x8
-	  addi      r6, r6, 0x40
-	  stw       r0, 0x10(r30)
-	  addi      r4, r5, 0x8
-	  addi      r0, r5, 0x40
-	  stw       r6, 0x30(r30)
-	  stw       r5, 0x28(r29)
-	  stw       r4, 0x10(r29)
-	  stw       r0, 0x30(r29)
-	  bl        -0x123710
-	  li        r0, 0
-	  mr        r3, r29
-	  stw       r0, 0x90(r29)
-	  lmw       r27, 0xC(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80462B6C:
+	mr       r3, r31
+	lwz      r31, sCurrentHeap__7JKRHeap@sda21(r13)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x100(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	mr       r5, r31
+	addi     r3, r30, 0x30
+	li       r6, 2
+	bl       __ct__Q27JAInter6ObjectFP3VecP7JKRHeapUc
+	lis      r3, __vt__Q23PSM11CreatureObj@ha
+	lis      r4, __vt__Q23PSM4Navi@ha
+	addi     r6, r3, __vt__Q23PSM11CreatureObj@l
+	addi     r3, r29, 0x70
+	stw      r6, 0x28(r30)
+	addi     r5, r4, __vt__Q23PSM4Navi@l
+	addi     r0, r6, 8
+	addi     r6, r6, 0x40
+	stw      r0, 0x10(r30)
+	addi     r4, r5, 8
+	addi     r0, r5, 0x40
+	stw      r6, 0x30(r30)
+	stw      r5, 0x28(r29)
+	stw      r4, 0x10(r29)
+	stw      r0, 0x30(r29)
+	bl       __ct__Q26PSGame5RappaFv
+	li       r0, 0
+	mr       r3, r29
+	stw      r0, 0x90(r29)
+	lmw      r27, 0xc(r1)
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -8051,16 +9036,15 @@ Navi::Navi(Game::Navi*)
 void Navi::init(unsigned short)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  addi      r3, r3, 0x70
-	  stw       r0, 0x14(r1)
-	  bl        -0x1236F4
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	addi     r3, r3, 0x70
+	stw      r0, 0x14(r1)
+	bl       init__Q26PSGame5RappaFUs
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -8072,17 +9056,16 @@ void Navi::init(unsigned short)
 void Navi::setShacho()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r4, 0x89
-	  addi      r3, r3, 0x70
-	  stw       r0, 0x14(r1)
-	  bl        -0x12367C
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	li       r4, 0x89
+	addi     r3, r3, 0x70
+	stw      r0, 0x14(r1)
+	bl       setId__Q26PSGame5RappaFUl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -8094,29 +9077,28 @@ void Navi::setShacho()
 void Navi::stopWaitVoice()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r3, 0x90(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x3C
-	  lwz       r12, 0x10(r3)
-	  li        r4, 0
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  li        r0, 0
-	  stw       r0, 0x90(r31)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r3, 0x90(r3)
+	cmplwi   r3, 0
+	beq      lbl_80462C80
+	lwz      r12, 0x10(r3)
+	li       r4, 0
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	li       r0, 0
+	stw      r0, 0x90(r31)
 
-	.loc_0x3C:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80462C80:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -8128,87 +9110,84 @@ void Navi::stopWaitVoice()
 void Navi::startSound(unsigned long, unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stw       r31, 0x2C(r1)
-	  mr        r31, r5
-	  stw       r30, 0x28(r1)
-	  mr        r30, r4
-	  cmpwi     r30, 0x897
-	  stw       r29, 0x24(r1)
-	  mr        r29, r3
-	  bge-      .loc_0x4C
-	  cmpwi     r30, 0x88D
-	  bge-      .loc_0x40
-	  cmpwi     r30, 0x80F
-	  beq-      .loc_0x8C
-	  b         .loc_0xB4
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stw      r31, 0x2c(r1)
+	mr       r31, r5
+	stw      r30, 0x28(r1)
+	mr       r30, r4
+	cmpwi    r30, 0x897
+	stw      r29, 0x24(r1)
+	mr       r29, r3
+	bge      lbl_80462CE0
+	cmpwi    r30, 0x88d
+	bge      lbl_80462CD4
+	cmpwi    r30, 0x80f
+	beq      lbl_80462D20
+	b        lbl_80462D48
 
-	.loc_0x40:
-	  cmpwi     r30, 0x893
-	  bge-      .loc_0xB4
-	  b         .loc_0x60
+lbl_80462CD4:
+	cmpwi    r30, 0x893
+	bge      lbl_80462D48
+	b        lbl_80462CF4
 
-	.loc_0x4C:
-	  cmpwi     r30, 0x89D
-	  beq-      .loc_0x60
-	  bge-      .loc_0xB4
-	  cmpwi     r30, 0x899
-	  bge-      .loc_0xB4
+lbl_80462CE0:
+	cmpwi    r30, 0x89d
+	beq      lbl_80462CF4
+	bge      lbl_80462D48
+	cmpwi    r30, 0x899
+	bge      lbl_80462D48
 
-	.loc_0x60:
-	  lwz       r3, 0x90(r29)
-	  cmplwi    r3, 0
-	  beq-      .loc_0xB4
-	  lwz       r12, 0x10(r3)
-	  li        r4, 0
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  li        r0, 0
-	  stw       r0, 0x90(r29)
-	  b         .loc_0xB4
+lbl_80462CF4:
+	lwz      r3, 0x90(r29)
+	cmplwi   r3, 0
+	beq      lbl_80462D48
+	lwz      r12, 0x10(r3)
+	li       r4, 0
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	li       r0, 0
+	stw      r0, 0x90(r29)
+	b        lbl_80462D48
 
-	.loc_0x8C:
-	  bl        .loc_0x108
-	  mr        r4, r3
-	  mr        r3, r29
-	  lwz       r12, 0x28(r29)
-	  addi      r4, r4, 0x890
-	  li        r5, 0
-	  lwz       r12, 0x7C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0xEC
+lbl_80462D20:
+	bl       getManType__Q23PSM4NaviFv
+	mr       r4, r3
+	mr       r3, r29
+	lwz      r12, 0x28(r29)
+	addi     r4, r4, 0x890
+	li       r5, 0
+	lwz      r12, 0x7c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_80462D80
 
-	.loc_0xB4:
-	  stw       r29, 0x8(r1)
-	  mr        r3, r29
-	  addi      r4, r1, 0x8
-	  stw       r30, 0xC(r1)
-	  stw       r31, 0x10(r1)
-	  lwz       r12, 0x28(r29)
-	  lwz       r12, 0x30(r12)
-	  mtctr     r12
-	  bctrl
-	  cmplwi    r30, 0x874
-	  blt-      .loc_0xEC
-	  cmplwi    r30, 0x888
-	  bgt-      .loc_0xEC
-	  stw       r3, 0x90(r29)
+lbl_80462D48:
+	stw      r29, 8(r1)
+	mr       r3, r29
+	addi     r4, r1, 8
+	stw      r30, 0xc(r1)
+	stw      r31, 0x10(r1)
+	lwz      r12, 0x28(r29)
+	lwz      r12, 0x30(r12)
+	mtctr    r12
+	bctrl
+	cmplwi   r30, 0x874
+	blt      lbl_80462D80
+	cmplwi   r30, 0x888
+	bgt      lbl_80462D80
+	stw      r3, 0x90(r29)
 
-	.loc_0xEC:
-	  lwz       r0, 0x34(r1)
-	  lwz       r31, 0x2C(r1)
-	  lwz       r30, 0x28(r1)
-	  lwz       r29, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
-
-	.loc_0x108:
+lbl_80462D80:
+	lwz      r0, 0x34(r1)
+	lwz      r31, 0x2c(r1)
+	lwz      r30, 0x28(r1)
+	lwz      r29, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -8220,19 +9199,18 @@ void Navi::startSound(unsigned long, unsigned long)
 void Navi::getManType()
 {
 	/*
-	.loc_0x0:
-	  lwz       r0, 0x88(r3)
-	  cmplwi    r0, 0xD
-	  bne-      .loc_0x14
-	  li        r3, 0
-	  blr
+	lwz      r0, 0x88(r3)
+	cmplwi   r0, 0xd
+	bne      lbl_80462DB0
+	li       r3, 0
+	blr
 
-	.loc_0x14:
-	  cmplwi    r0, 0xE
-	  li        r3, 0x2
-	  bnelr-
-	  li        r3, 0x1
-	  blr
+lbl_80462DB0:
+	cmplwi   r0, 0xe
+	li       r3, 2
+	bnelr
+	li       r3, 1
+	blr
 	*/
 }
 
@@ -8244,63 +9222,62 @@ void Navi::getManType()
 void Navi::playShugoSE()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r4, 0x88(r3)
-	  cmplwi    r4, 0xD
-	  bne-      .loc_0x20
-	  li        r0, 0
-	  b         .loc_0x34
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r4, 0x88(r3)
+	cmplwi   r4, 0xd
+	bne      lbl_80462DE4
+	li       r0, 0
+	b        lbl_80462DF8
 
-	.loc_0x20:
-	  cmplwi    r4, 0xE
-	  bne-      .loc_0x30
-	  li        r0, 0x1
-	  b         .loc_0x34
+lbl_80462DE4:
+	cmplwi   r4, 0xe
+	bne      lbl_80462DF4
+	li       r0, 1
+	b        lbl_80462DF8
 
-	.loc_0x30:
-	  li        r0, 0x2
+lbl_80462DF4:
+	li       r0, 2
 
-	.loc_0x34:
-	  cmpwi     r0, 0
-	  bne-      .loc_0x44
-	  li        r4, 0x7
-	  b         .loc_0x7C
+lbl_80462DF8:
+	cmpwi    r0, 0
+	bne      lbl_80462E08
+	li       r4, 7
+	b        lbl_80462E40
 
-	.loc_0x44:
-	  cmplwi    r4, 0xD
-	  bne-      .loc_0x54
-	  li        r5, 0
-	  b         .loc_0x68
+lbl_80462E08:
+	cmplwi   r4, 0xd
+	bne      lbl_80462E18
+	li       r5, 0
+	b        lbl_80462E2C
 
-	.loc_0x54:
-	  cmplwi    r4, 0xE
-	  bne-      .loc_0x64
-	  li        r5, 0x1
-	  b         .loc_0x68
+lbl_80462E18:
+	cmplwi   r4, 0xe
+	bne      lbl_80462E28
+	li       r5, 1
+	b        lbl_80462E2C
 
-	.loc_0x64:
-	  li        r5, 0x2
+lbl_80462E28:
+	li       r5, 2
 
-	.loc_0x68:
-	  subi      r4, r5, 0x1
-	  subfic    r0, r5, 0x1
-	  nor       r0, r4, r0
-	  srawi     r4, r0, 0x1F
-	  addi      r4, r4, 0xA0
+lbl_80462E2C:
+	addi     r4, r5, -1
+	subfic   r0, r5, 1
+	nor      r0, r4, r0
+	srawi    r4, r0, 0x1f
+	addi     r4, r4, 0xa0
 
-	.loc_0x7C:
-	  lwz       r12, 0x28(r3)
-	  li        r5, 0
-	  lwz       r12, 0x7C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80462E40:
+	lwz      r12, 0x28(r3)
+	li       r5, 0
+	lwz      r12, 0x7c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -8312,63 +9289,62 @@ void Navi::playShugoSE()
 void Navi::playKaisanSE()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r4, 0x88(r3)
-	  cmplwi    r4, 0xD
-	  bne-      .loc_0x20
-	  li        r0, 0
-	  b         .loc_0x34
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r4, 0x88(r3)
+	cmplwi   r4, 0xd
+	bne      lbl_80462E84
+	li       r0, 0
+	b        lbl_80462E98
 
-	.loc_0x20:
-	  cmplwi    r4, 0xE
-	  bne-      .loc_0x30
-	  li        r0, 0x1
-	  b         .loc_0x34
+lbl_80462E84:
+	cmplwi   r4, 0xe
+	bne      lbl_80462E94
+	li       r0, 1
+	b        lbl_80462E98
 
-	.loc_0x30:
-	  li        r0, 0x2
+lbl_80462E94:
+	li       r0, 2
 
-	.loc_0x34:
-	  cmpwi     r0, 0
-	  bne-      .loc_0x44
-	  li        r4, 0x808
-	  b         .loc_0x7C
+lbl_80462E98:
+	cmpwi    r0, 0
+	bne      lbl_80462EA8
+	li       r4, 0x808
+	b        lbl_80462EE0
 
-	.loc_0x44:
-	  cmplwi    r4, 0xD
-	  bne-      .loc_0x54
-	  li        r5, 0
-	  b         .loc_0x68
+lbl_80462EA8:
+	cmplwi   r4, 0xd
+	bne      lbl_80462EB8
+	li       r5, 0
+	b        lbl_80462ECC
 
-	.loc_0x54:
-	  cmplwi    r4, 0xE
-	  bne-      .loc_0x64
-	  li        r5, 0x1
-	  b         .loc_0x68
+lbl_80462EB8:
+	cmplwi   r4, 0xe
+	bne      lbl_80462EC8
+	li       r5, 1
+	b        lbl_80462ECC
 
-	.loc_0x64:
-	  li        r5, 0x2
+lbl_80462EC8:
+	li       r5, 2
 
-	.loc_0x68:
-	  subi      r4, r5, 0x1
-	  subfic    r0, r5, 0x1
-	  nor       r0, r4, r0
-	  srawi     r4, r0, 0x1F
-	  addi      r4, r4, 0x8A2
+lbl_80462ECC:
+	addi     r4, r5, -1
+	subfic   r0, r5, 1
+	nor      r0, r4, r0
+	srawi    r4, r0, 0x1f
+	addi     r4, r4, 0x8a2
 
-	.loc_0x7C:
-	  lwz       r12, 0x28(r3)
-	  li        r5, 0
-	  lwz       r12, 0x7C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80462EE0:
+	lwz      r12, 0x28(r3)
+	li       r5, 0
+	lwz      r12, 0x7c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -8380,97 +9356,79 @@ void Navi::playKaisanSE()
 void Navi::playWalkSound(PSM::Navi::FootType, int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  rlwinm    r5,r5,1,0,30
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  add       r30, r4, r5
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  lwz       r0, -0x6E38(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x4C
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x3030
-	  li        r4, 0x237
-	  subi      r5, r5, 0x3048
-	  crclr     6, 0x6
-	  bl        -0x43890C
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	slwi     r5, r5, 1
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	add      r30, r4, r5
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	lwz      r0,
+"sInstance__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@sda21(r13) cmplwi   r0,
+0 bne      lbl_80462F50 lis      r3, lbl_8049CFD0@ha lis      r5,
+lbl_8049CFB8@ha addi     r3, r3, lbl_8049CFD0@l li       r4, 0x237 addi     r5,
+r5, lbl_8049CFB8@l crclr    6 bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x4C:
-	  lwz       r3, 0x2C(r29)
-	  lwz       r4, -0x6E38(r13)
-	  lwz       r12, 0x0(r3)
-	  addi      r31, r4, 0x24
-	  lwz       r12, 0x21C(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x98
-	  lwz       r3, 0x90(r29)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x98
-	  lwz       r12, 0x10(r3)
-	  li        r4, 0
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  li        r0, 0
-	  stw       r0, 0x90(r29)
+lbl_80462F50:
+	lwz      r3, 0x2c(r29)
+	lwz      r4,
+"sInstance__Q28PSSystem30SingletonBase<Q26PSGame5SeMgr>"@sda21(r13) lwz r12,
+0(r3) addi     r31, r4, 0x24 lwz      r12, 0x21c(r12) mtctr    r12 bctrl clrlwi.
+r0, r3, 0x18 beq      lbl_80462F9C lwz      r3, 0x90(r29) cmplwi   r3, 0 beq
+lbl_80462F9C lwz      r12, 0x10(r3) li       r4, 0 lwz      r12, 0x14(r12) mtctr
+r12 bctrl li       r0, 0 stw      r0, 0x90(r29)
 
-	.loc_0x98:
-	  lfs       f0, 0x2928(r2)
-	  cmplwi    r29, 0
-	  mr        r4, r29
-	  stfs      f0, 0x0(r31)
-	  beq-      .loc_0xB0
-	  addi      r4, r29, 0x30
+lbl_80462F9C:
+	lfs      f0, lbl_80520C88@sda21(r2)
+	cmplwi   r29, 0
+	mr       r4, r29
+	stfs     f0, 0(r31)
+	beq      lbl_80462FB4
+	addi     r4, r29, 0x30
 
-	.loc_0xB0:
-	  mr        r3, r31
-	  mr        r5, r30
-	  li        r6, 0x2
-	  li        r7, 0
-	  bl        -0x123524
-	  lfs       f0, -0x7AB8(r13)
-	  cmplwi    r3, 0
-	  stfs      f0, 0x0(r31)
-	  beq-      .loc_0x114
-	  lwz       r0, 0x88(r29)
-	  cmplwi    r0, 0xD
-	  bne-      .loc_0xE8
-	  li        r0, 0
-	  b         .loc_0xFC
+lbl_80462FB4:
+	mr       r3, r31
+	mr       r5, r30
+	li       r6, 2
+	li       r7, 0
+	bl       startSound__Q26PSGame6RandIdFPQ27JAInter6ObjectUlUlUl
+	lfs      f0, cNotUsingMasterIdRatio__Q26PSGame6RandId@sda21(r13)
+	cmplwi   r3, 0
+	stfs     f0, 0(r31)
+	beq      lbl_80463018
+	lwz      r0, 0x88(r29)
+	cmplwi   r0, 0xd
+	bne      lbl_80462FEC
+	li       r0, 0
+	b        lbl_80463000
 
-	.loc_0xE8:
-	  cmplwi    r0, 0xE
-	  bne-      .loc_0xF8
-	  li        r0, 0x1
-	  b         .loc_0xFC
+lbl_80462FEC:
+	cmplwi   r0, 0xe
+	bne      lbl_80462FFC
+	li       r0, 1
+	b        lbl_80463000
 
-	.loc_0xF8:
-	  li        r0, 0x2
+lbl_80462FFC:
+	li       r0, 2
 
-	.loc_0xFC:
-	  lwz       r12, 0x10(r3)
-	  rlwinm    r5,r0,0,16,31
-	  li        r4, 0xA
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
+lbl_80463000:
+	lwz      r12, 0x10(r3)
+	clrlwi   r5, r0, 0x10
+	li       r4, 0xa
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x114:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80463018:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -8482,99 +9440,98 @@ void Navi::playWalkSound(PSM::Navi::FootType, int)
 Cluster::Cluster(Game::Creature*, PSSystem::ClusterSe::Factory&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stmw      r26, 0x8(r1)
-	  mr        r28, r3
-	  mr        r30, r4
-	  mr        r31, r5
-	  mr        r4, r28
-	  mr        r29, r4
-	  mr        r26, r4
-	  mr        r27, r4
-	  bl        -0x43C8A8
-	  addi      r3, r27, 0x10
-	  bl        -0x44609C
-	  lis       r4, 0x804F
-	  lis       r3, 0x804F
-	  subi      r4, r4, 0xDD0
-	  cmplwi    r30, 0
-	  stw       r4, 0x28(r27)
-	  addi      r0, r4, 0x8
-	  subi      r3, r3, 0xE34
-	  stw       r0, 0x10(r27)
-	  addi      r0, r3, 0x8
-	  stw       r3, 0x28(r26)
-	  stw       r0, 0x10(r26)
-	  stw       r30, 0x2C(r26)
-	  bne-      .loc_0x88
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x3060
-	  li        r4, 0x61
-	  subi      r5, r5, 0x3048
-	  crclr     6, 0x6
-	  bl        -0x438A78
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stmw     r26, 8(r1)
+	mr       r28, r3
+	mr       r30, r4
+	mr       r31, r5
+	mr       r4, r28
+	mr       r29, r4
+	mr       r26, r4
+	mr       r27, r4
+	bl       __ct__10JSUPtrLinkFPv
+	addi     r3, r27, 0x10
+	bl       __ct__11JKRDisposerFv
+	lis      r4, __vt__Q23PSM7ObjBase@ha
+	lis      r3, __vt__Q23PSM8Creature@ha
+	addi     r4, r4, __vt__Q23PSM7ObjBase@l
+	cmplwi   r30, 0
+	stw      r4, 0x28(r27)
+	addi     r0, r4, 8
+	addi     r3, r3, __vt__Q23PSM8Creature@l
+	stw      r0, 0x10(r27)
+	addi     r0, r3, 8
+	stw      r3, 0x28(r26)
+	stw      r0, 0x10(r26)
+	stw      r30, 0x2c(r26)
+	bne      lbl_804630BC
+	lis      r3, lbl_8049CFA0@ha
+	lis      r5, lbl_8049CFB8@ha
+	addi     r3, r3, lbl_8049CFA0@l
+	li       r4, 0x61
+	addi     r5, r5, lbl_8049CFB8@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x88:
-	  lwz       r0, -0x6E44(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0xB0
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x3060
-	  li        r4, 0x62
-	  subi      r5, r5, 0x3048
-	  crclr     6, 0x6
-	  bl        -0x438AA0
+lbl_804630BC:
+	lwz      r0,
+"sInstance__Q28PSSystem28SingletonBase<Q23PSM6ObjMgr>"@sda21(r13) cmplwi   r0, 0
+	bne      lbl_804630E4
+	lis      r3, lbl_8049CFA0@ha
+	lis      r5, lbl_8049CFB8@ha
+	addi     r3, r3, lbl_8049CFA0@l
+	li       r4, 0x62
+	addi     r5, r5, lbl_8049CFB8@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xB0:
-	  mr        r3, r30
-	  lwz       r30, -0x77D4(r13)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x100(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  mr        r5, r30
-	  addi      r3, r29, 0x30
-	  li        r6, 0x2
-	  bl        -0x3A9620
-	  lis       r3, 0x804F
-	  lis       r4, 0x804F
-	  subi      r6, r3, 0xEBC
-	  li        r3, 0x8
-	  stw       r6, 0x28(r29)
-	  subi      r5, r4, 0x1AA4
-	  addi      r0, r6, 0x8
-	  addi      r6, r6, 0x40
-	  stw       r0, 0x10(r29)
-	  addi      r4, r5, 0x8
-	  addi      r0, r5, 0x40
-	  stw       r6, 0x30(r29)
-	  stw       r5, 0x28(r28)
-	  stw       r4, 0x10(r28)
-	  stw       r0, 0x30(r28)
-	  bl        -0x43F2A8
-	  cmplwi    r3, 0
-	  beq-      .loc_0x130
-	  li        r0, 0
-	  stb       r0, 0x0(r3)
-	  stw       r0, 0x4(r3)
+lbl_804630E4:
+	mr       r3, r30
+	lwz      r30, sCurrentHeap__7JKRHeap@sda21(r13)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x100(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	mr       r5, r30
+	addi     r3, r29, 0x30
+	li       r6, 2
+	bl       __ct__Q27JAInter6ObjectFP3VecP7JKRHeapUc
+	lis      r3, __vt__Q23PSM11CreatureObj@ha
+	lis      r4, __vt__Q23PSM7Cluster@ha
+	addi     r6, r3, __vt__Q23PSM11CreatureObj@l
+	li       r3, 8
+	stw      r6, 0x28(r29)
+	addi     r5, r4, __vt__Q23PSM7Cluster@l
+	addi     r0, r6, 8
+	addi     r6, r6, 0x40
+	stw      r0, 0x10(r29)
+	addi     r4, r5, 8
+	addi     r0, r5, 0x40
+	stw      r6, 0x30(r29)
+	stw      r5, 0x28(r28)
+	stw      r4, 0x10(r28)
+	stw      r0, 0x30(r28)
+	bl       __nw__FUl
+	cmplwi   r3, 0
+	beq      lbl_80463164
+	li       r0, 0
+	stb      r0, 0(r3)
+	stw      r0, 4(r3)
 
-	.loc_0x130:
-	  stw       r3, 0x70(r28)
-	  mr        r4, r31
-	  lwz       r3, 0x70(r28)
-	  bl        -0x12214C
-	  mr        r3, r28
-	  lmw       r26, 0x8(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80463164:
+	stw      r3, 0x70(r28)
+	mr       r4, r31
+	lwz      r3, 0x70(r28)
+	bl constructParts__Q38PSSystem9ClusterSe3MgrFRQ38PSSystem9ClusterSe7Factory
+	mr       r3, r28
+	lmw      r26, 8(r1)
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -8586,33 +9543,32 @@ Cluster::Cluster(Game::Creature*, PSSystem::ClusterSe::Factory&)
 void Cluster::startClusterSound(unsigned char)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lwz       r12, 0x28(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  cmplwi    r30, 0
-	  mr        r5, r30
-	  beq-      .loc_0x3C
-	  addi      r5, r30, 0x30
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lwz      r12, 0x28(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	cmplwi   r30, 0
+	mr       r5, r30
+	beq      lbl_804631C8
+	addi     r5, r30, 0x30
 
-	.loc_0x3C:
-	  lwz       r3, 0x70(r30)
-	  mr        r4, r31
-	  bl        -0x121EF8
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_804631C8:
+	lwz      r3, 0x70(r30)
+	mr       r4, r31
+	bl       play__Q38PSSystem9ClusterSe3MgrFUcPQ27JAInter6Object
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -8626,31 +9582,22 @@ void Cluster::startClusterSound(unsigned char)
 void PSSetCurCameraNo(unsigned char)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r0, -0x6E4C(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x3C
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x2FA4
-	  li        r4, 0x89
-	  subi      r5, r5, 0x3048
-	  crclr     6, 0x6
-	  bl        -0x438BE4
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r0,
+"sInstance__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@sda21(r13) cmplwi
+r0, 0 bne      lbl_80463228 lis      r3, lbl_8049D05C@ha lis      r5,
+lbl_8049CFB8@ha addi     r3, r3, lbl_8049D05C@l li       r4, 0x89 addi     r5,
+r5, lbl_8049CFB8@l crclr    6 bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x3C:
-	  lwz       r3, -0x6E4C(r13)
-	  stb       r31, 0x8(r3)
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80463228:
+	lwz      r3,
+"sInstance__Q28PSSystem34SingletonBase<Q23PSM11ObjCalcBase>"@sda21(r13) stb r31,
+8(r3) lwz      r0, 0x14(r1) lwz      r31, 0xc(r1) mtlr     r0 addi     r1, r1,
+0x10 blr
 	*/
 }
 
@@ -8662,9 +9609,8 @@ void PSSetCurCameraNo(unsigned char)
 void PSMGetNoukouDist()
 {
 	/*
-	.loc_0x0:
-	  lfs       f1, 0x2AB8(r2)
-	  blr
+	lfs      f1, cNoukouDistance__Q23PSM11CreaturePrm@sda21(r2)
+	blr
 	*/
 }
 
@@ -8676,43 +9622,42 @@ void PSMGetNoukouDist()
 void PSSetLastBeedamaDirection(bool, bool)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  rlwinm.   r0,r3,0,24,31
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  beq-      .loc_0x24
-	  bl        -0xA208
-	  b         .loc_0x28
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	clrlwi.  r0, r3, 0x18
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	beq      lbl_80463270
+	bl       PSMGetBeedamaForOrimerD__Fv
+	b        lbl_80463274
 
-	.loc_0x24:
-	  bl        -0xA120
+lbl_80463270:
+	bl       PSMGetBeedamaForLugieD__Fv
 
-	.loc_0x28:
-	  cmplwi    r3, 0
-	  beq-      .loc_0x5C
-	  rlwinm.   r0,r31,0,24,31
-	  beq-      .loc_0x4C
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x5C
+lbl_80463274:
+	cmplwi   r3, 0
+	beq      lbl_804632A8
+	clrlwi.  r0, r31, 0x18
+	beq      lbl_80463298
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_804632A8
 
-	.loc_0x4C:
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
+lbl_80463298:
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x5C:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_804632A8:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -8726,69 +9671,68 @@ namespace PSM {
 Cluster::~Cluster()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0xCC
-	  lis       r3, 0x804F
-	  subi      r4, r3, 0x1AA4
-	  stw       r4, 0x28(r30)
-	  addi      r3, r4, 0x8
-	  addi      r0, r4, 0x40
-	  stw       r3, 0x10(r30)
-	  stw       r0, 0x30(r30)
-	  beq-      .loc_0xBC
-	  lis       r4, 0x804F
-	  addi      r3, r30, 0x30
-	  subi      r6, r4, 0xEBC
-	  li        r4, 0
-	  stw       r6, 0x28(r30)
-	  addi      r5, r6, 0x8
-	  addi      r0, r6, 0x40
-	  stw       r5, 0x10(r30)
-	  stw       r0, 0x30(r30)
-	  bl        -0x3A9740
-	  cmplwi    r30, 0
-	  beq-      .loc_0xBC
-	  lis       r3, 0x804F
-	  subi      r3, r3, 0xE34
-	  stw       r3, 0x28(r30)
-	  addi      r0, r3, 0x8
-	  stw       r0, 0x10(r30)
-	  beq-      .loc_0xBC
-	  lis       r4, 0x804F
-	  addi      r3, r30, 0x10
-	  subi      r5, r4, 0xDD0
-	  li        r4, 0
-	  stw       r5, 0x28(r30)
-	  addi      r0, r5, 0x8
-	  stw       r0, 0x10(r30)
-	  bl        -0x44632C
-	  cmplwi    r30, 0
-	  beq-      .loc_0xBC
-	  mr        r3, r30
-	  li        r4, 0
-	  bl        -0x43CBA4
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_80463388
+	lis      r3, __vt__Q23PSM7Cluster@ha
+	addi     r4, r3, __vt__Q23PSM7Cluster@l
+	stw      r4, 0x28(r30)
+	addi     r3, r4, 8
+	addi     r0, r4, 0x40
+	stw      r3, 0x10(r30)
+	stw      r0, 0x30(r30)
+	beq      lbl_80463378
+	lis      r4, __vt__Q23PSM11CreatureObj@ha
+	addi     r3, r30, 0x30
+	addi     r6, r4, __vt__Q23PSM11CreatureObj@l
+	li       r4, 0
+	stw      r6, 0x28(r30)
+	addi     r5, r6, 8
+	addi     r0, r6, 0x40
+	stw      r5, 0x10(r30)
+	stw      r0, 0x30(r30)
+	bl       __dt__Q27JAInter6ObjectFv
+	cmplwi   r30, 0
+	beq      lbl_80463378
+	lis      r3, __vt__Q23PSM8Creature@ha
+	addi     r3, r3, __vt__Q23PSM8Creature@l
+	stw      r3, 0x28(r30)
+	addi     r0, r3, 8
+	stw      r0, 0x10(r30)
+	beq      lbl_80463378
+	lis      r4, __vt__Q23PSM7ObjBase@ha
+	addi     r3, r30, 0x10
+	addi     r5, r4, __vt__Q23PSM7ObjBase@l
+	li       r4, 0
+	stw      r5, 0x28(r30)
+	addi     r0, r5, 8
+	stw      r0, 0x10(r30)
+	bl       __dt__11JKRDisposerFv
+	cmplwi   r30, 0
+	beq      lbl_80463378
+	mr       r3, r30
+	li       r4, 0
+	bl       __dt__10JSUPtrLinkFv
 
-	.loc_0xBC:
-	  extsh.    r0, r31
-	  ble-      .loc_0xCC
-	  mr        r3, r30
-	  bl        -0x43F2D0
+lbl_80463378:
+	extsh.   r0, r31
+	ble      lbl_80463388
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0xCC:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80463388:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -8842,69 +9786,68 @@ u32 Navi::getCastType() { return 0xF; }
 Piki::~Piki()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0xCC
-	  lis       r3, 0x804F
-	  subi      r4, r3, 0x1994
-	  stw       r4, 0x28(r30)
-	  addi      r3, r4, 0x8
-	  addi      r0, r4, 0x40
-	  stw       r3, 0x10(r30)
-	  stw       r0, 0x30(r30)
-	  beq-      .loc_0xBC
-	  lis       r4, 0x804F
-	  addi      r3, r30, 0x30
-	  subi      r6, r4, 0xEBC
-	  li        r4, 0
-	  stw       r6, 0x28(r30)
-	  addi      r5, r6, 0x8
-	  addi      r0, r6, 0x40
-	  stw       r5, 0x10(r30)
-	  stw       r0, 0x30(r30)
-	  bl        -0x3A984C
-	  cmplwi    r30, 0
-	  beq-      .loc_0xBC
-	  lis       r3, 0x804F
-	  subi      r3, r3, 0xE34
-	  stw       r3, 0x28(r30)
-	  addi      r0, r3, 0x8
-	  stw       r0, 0x10(r30)
-	  beq-      .loc_0xBC
-	  lis       r4, 0x804F
-	  addi      r3, r30, 0x10
-	  subi      r5, r4, 0xDD0
-	  li        r4, 0
-	  stw       r5, 0x28(r30)
-	  addi      r0, r5, 0x8
-	  stw       r0, 0x10(r30)
-	  bl        -0x446438
-	  cmplwi    r30, 0
-	  beq-      .loc_0xBC
-	  mr        r3, r30
-	  li        r4, 0
-	  bl        -0x43CCB0
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_80463494
+	lis      r3, __vt__Q23PSM4Piki@ha
+	addi     r4, r3, __vt__Q23PSM4Piki@l
+	stw      r4, 0x28(r30)
+	addi     r3, r4, 8
+	addi     r0, r4, 0x40
+	stw      r3, 0x10(r30)
+	stw      r0, 0x30(r30)
+	beq      lbl_80463484
+	lis      r4, __vt__Q23PSM11CreatureObj@ha
+	addi     r3, r30, 0x30
+	addi     r6, r4, __vt__Q23PSM11CreatureObj@l
+	li       r4, 0
+	stw      r6, 0x28(r30)
+	addi     r5, r6, 8
+	addi     r0, r6, 0x40
+	stw      r5, 0x10(r30)
+	stw      r0, 0x30(r30)
+	bl       __dt__Q27JAInter6ObjectFv
+	cmplwi   r30, 0
+	beq      lbl_80463484
+	lis      r3, __vt__Q23PSM8Creature@ha
+	addi     r3, r3, __vt__Q23PSM8Creature@l
+	stw      r3, 0x28(r30)
+	addi     r0, r3, 8
+	stw      r0, 0x10(r30)
+	beq      lbl_80463484
+	lis      r4, __vt__Q23PSM7ObjBase@ha
+	addi     r3, r30, 0x10
+	addi     r5, r4, __vt__Q23PSM7ObjBase@l
+	li       r4, 0
+	stw      r5, 0x28(r30)
+	addi     r0, r5, 8
+	stw      r0, 0x10(r30)
+	bl       __dt__11JKRDisposerFv
+	cmplwi   r30, 0
+	beq      lbl_80463484
+	mr       r3, r30
+	li       r4, 0
+	bl       __dt__10JSUPtrLinkFv
 
-	.loc_0xBC:
-	  extsh.    r0, r31
-	  ble-      .loc_0xCC
-	  mr        r3, r30
-	  bl        -0x43F3DC
+lbl_80463484:
+	extsh.   r0, r31
+	ble      lbl_80463494
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0xCC:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80463494:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -8923,103 +9866,102 @@ u32 Piki::getCastType() { return 0xE; }
 PelletItem::~PelletItem()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x14C
-	  lis       r3, 0x804F
-	  subi      r4, r3, 0x190C
-	  stw       r4, 0x28(r30)
-	  addi      r3, r4, 0x8
-	  addi      r0, r4, 0x40
-	  stw       r3, 0x10(r30)
-	  stw       r0, 0x30(r30)
-	  beq-      .loc_0x13C
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x78
-	  subi      r4, r3, 0x17DC
-	  stw       r4, 0x28(r30)
-	  addi      r3, r4, 0x8
-	  addi      r0, r4, 0x40
-	  stw       r3, 0x10(r30)
-	  stw       r0, 0x30(r30)
-	  beq-      .loc_0x98
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x78
-	  subi      r0, r3, 0x166C
-	  stw       r0, 0x88(r30)
-	  beq-      .loc_0x98
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x78
-	  subi      r0, r3, 0x1650
-	  stw       r0, 0x88(r30)
-	  beq-      .loc_0x98
-	  addi      r3, r30, 0x78
-	  li        r4, 0
-	  bl        -0x43CD7C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_80463604
+	lis      r3, __vt__Q23PSM10PelletItem@ha
+	addi     r4, r3, __vt__Q23PSM10PelletItem@l
+	stw      r4, 0x28(r30)
+	addi     r3, r4, 8
+	addi     r0, r4, 0x40
+	stw      r3, 0x10(r30)
+	stw      r0, 0x30(r30)
+	beq      lbl_804635F4
+	lis      r3, __vt__Q23PSM7Otakara@ha
+	addic.   r0, r30, 0x78
+	addi     r4, r3, __vt__Q23PSM7Otakara@l
+	stw      r4, 0x28(r30)
+	addi     r3, r4, 8
+	addi     r0, r4, 0x40
+	stw      r3, 0x10(r30)
+	stw      r0, 0x30(r30)
+	beq      lbl_80463550
+	lis      r3, __vt__Q23PSM9EventLink@ha
+	addic.   r0, r30, 0x78
+	addi     r0, r3, __vt__Q23PSM9EventLink@l
+	stw      r0, 0x88(r30)
+	beq      lbl_80463550
+	lis      r3, __vt__Q23PSM12DirectorLink@ha
+	addic.   r0, r30, 0x78
+	addi     r0, r3, __vt__Q23PSM12DirectorLink@l
+	stw      r0, 0x88(r30)
+	beq      lbl_80463550
+	addi     r3, r30, 0x78
+	li       r4, 0
+	bl       __dt__10JSUPtrLinkFv
 
-	.loc_0x98:
-	  cmplwi    r30, 0
-	  beq-      .loc_0x13C
-	  lis       r3, 0x804B
-	  addi      r4, r3, 0x21A4
-	  stw       r4, 0x28(r30)
-	  addi      r3, r4, 0x8
-	  addi      r0, r4, 0x40
-	  stw       r3, 0x10(r30)
-	  stw       r0, 0x30(r30)
-	  beq-      .loc_0x13C
-	  lis       r4, 0x804F
-	  addi      r3, r30, 0x30
-	  subi      r6, r4, 0xEBC
-	  li        r4, 0
-	  stw       r6, 0x28(r30)
-	  addi      r5, r6, 0x8
-	  addi      r0, r6, 0x40
-	  stw       r5, 0x10(r30)
-	  stw       r0, 0x30(r30)
-	  bl        -0x3A99BC
-	  cmplwi    r30, 0
-	  beq-      .loc_0x13C
-	  lis       r3, 0x804F
-	  subi      r3, r3, 0xE34
-	  stw       r3, 0x28(r30)
-	  addi      r0, r3, 0x8
-	  stw       r0, 0x10(r30)
-	  beq-      .loc_0x13C
-	  lis       r4, 0x804F
-	  addi      r3, r30, 0x10
-	  subi      r5, r4, 0xDD0
-	  li        r4, 0
-	  stw       r5, 0x28(r30)
-	  addi      r0, r5, 0x8
-	  stw       r0, 0x10(r30)
-	  bl        -0x4465A8
-	  cmplwi    r30, 0
-	  beq-      .loc_0x13C
-	  mr        r3, r30
-	  li        r4, 0
-	  bl        -0x43CE20
+lbl_80463550:
+	cmplwi   r30, 0
+	beq      lbl_804635F4
+	lis      r3, __vt__Q23PSM9EventBase@ha
+	addi     r4, r3, __vt__Q23PSM9EventBase@l
+	stw      r4, 0x28(r30)
+	addi     r3, r4, 8
+	addi     r0, r4, 0x40
+	stw      r3, 0x10(r30)
+	stw      r0, 0x30(r30)
+	beq      lbl_804635F4
+	lis      r4, __vt__Q23PSM11CreatureObj@ha
+	addi     r3, r30, 0x30
+	addi     r6, r4, __vt__Q23PSM11CreatureObj@l
+	li       r4, 0
+	stw      r6, 0x28(r30)
+	addi     r5, r6, 8
+	addi     r0, r6, 0x40
+	stw      r5, 0x10(r30)
+	stw      r0, 0x30(r30)
+	bl       __dt__Q27JAInter6ObjectFv
+	cmplwi   r30, 0
+	beq      lbl_804635F4
+	lis      r3, __vt__Q23PSM8Creature@ha
+	addi     r3, r3, __vt__Q23PSM8Creature@l
+	stw      r3, 0x28(r30)
+	addi     r0, r3, 8
+	stw      r0, 0x10(r30)
+	beq      lbl_804635F4
+	lis      r4, __vt__Q23PSM7ObjBase@ha
+	addi     r3, r30, 0x10
+	addi     r5, r4, __vt__Q23PSM7ObjBase@l
+	li       r4, 0
+	stw      r5, 0x28(r30)
+	addi     r0, r5, 8
+	stw      r0, 0x10(r30)
+	bl       __dt__11JKRDisposerFv
+	cmplwi   r30, 0
+	beq      lbl_804635F4
+	mr       r3, r30
+	li       r4, 0
+	bl       __dt__10JSUPtrLinkFv
 
-	.loc_0x13C:
-	  extsh.    r0, r31
-	  ble-      .loc_0x14C
-	  mr        r3, r30
-	  bl        -0x43F54C
+lbl_804635F4:
+	extsh.   r0, r31
+	ble      lbl_80463604
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x14C:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80463604:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -9038,103 +9980,102 @@ u32 PelletItem::getCastType() { return 0xD; }
 PelletOtakara::~PelletOtakara()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x14C
-	  lis       r3, 0x804F
-	  subi      r4, r3, 0x1874
-	  stw       r4, 0x28(r30)
-	  addi      r3, r4, 0x8
-	  addi      r0, r4, 0x40
-	  stw       r3, 0x10(r30)
-	  stw       r0, 0x30(r30)
-	  beq-      .loc_0x13C
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x78
-	  subi      r4, r3, 0x17DC
-	  stw       r4, 0x28(r30)
-	  addi      r3, r4, 0x8
-	  addi      r0, r4, 0x40
-	  stw       r3, 0x10(r30)
-	  stw       r0, 0x30(r30)
-	  beq-      .loc_0x98
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x78
-	  subi      r0, r3, 0x166C
-	  stw       r0, 0x88(r30)
-	  beq-      .loc_0x98
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x78
-	  subi      r0, r3, 0x1650
-	  stw       r0, 0x88(r30)
-	  beq-      .loc_0x98
-	  addi      r3, r30, 0x78
-	  li        r4, 0
-	  bl        -0x43CEEC
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_80463774
+	lis      r3, __vt__Q23PSM13PelletOtakara@ha
+	addi     r4, r3, __vt__Q23PSM13PelletOtakara@l
+	stw      r4, 0x28(r30)
+	addi     r3, r4, 8
+	addi     r0, r4, 0x40
+	stw      r3, 0x10(r30)
+	stw      r0, 0x30(r30)
+	beq      lbl_80463764
+	lis      r3, __vt__Q23PSM7Otakara@ha
+	addic.   r0, r30, 0x78
+	addi     r4, r3, __vt__Q23PSM7Otakara@l
+	stw      r4, 0x28(r30)
+	addi     r3, r4, 8
+	addi     r0, r4, 0x40
+	stw      r3, 0x10(r30)
+	stw      r0, 0x30(r30)
+	beq      lbl_804636C0
+	lis      r3, __vt__Q23PSM9EventLink@ha
+	addic.   r0, r30, 0x78
+	addi     r0, r3, __vt__Q23PSM9EventLink@l
+	stw      r0, 0x88(r30)
+	beq      lbl_804636C0
+	lis      r3, __vt__Q23PSM12DirectorLink@ha
+	addic.   r0, r30, 0x78
+	addi     r0, r3, __vt__Q23PSM12DirectorLink@l
+	stw      r0, 0x88(r30)
+	beq      lbl_804636C0
+	addi     r3, r30, 0x78
+	li       r4, 0
+	bl       __dt__10JSUPtrLinkFv
 
-	.loc_0x98:
-	  cmplwi    r30, 0
-	  beq-      .loc_0x13C
-	  lis       r3, 0x804B
-	  addi      r4, r3, 0x21A4
-	  stw       r4, 0x28(r30)
-	  addi      r3, r4, 0x8
-	  addi      r0, r4, 0x40
-	  stw       r3, 0x10(r30)
-	  stw       r0, 0x30(r30)
-	  beq-      .loc_0x13C
-	  lis       r4, 0x804F
-	  addi      r3, r30, 0x30
-	  subi      r6, r4, 0xEBC
-	  li        r4, 0
-	  stw       r6, 0x28(r30)
-	  addi      r5, r6, 0x8
-	  addi      r0, r6, 0x40
-	  stw       r5, 0x10(r30)
-	  stw       r0, 0x30(r30)
-	  bl        -0x3A9B2C
-	  cmplwi    r30, 0
-	  beq-      .loc_0x13C
-	  lis       r3, 0x804F
-	  subi      r3, r3, 0xE34
-	  stw       r3, 0x28(r30)
-	  addi      r0, r3, 0x8
-	  stw       r0, 0x10(r30)
-	  beq-      .loc_0x13C
-	  lis       r4, 0x804F
-	  addi      r3, r30, 0x10
-	  subi      r5, r4, 0xDD0
-	  li        r4, 0
-	  stw       r5, 0x28(r30)
-	  addi      r0, r5, 0x8
-	  stw       r0, 0x10(r30)
-	  bl        -0x446718
-	  cmplwi    r30, 0
-	  beq-      .loc_0x13C
-	  mr        r3, r30
-	  li        r4, 0
-	  bl        -0x43CF90
+lbl_804636C0:
+	cmplwi   r30, 0
+	beq      lbl_80463764
+	lis      r3, __vt__Q23PSM9EventBase@ha
+	addi     r4, r3, __vt__Q23PSM9EventBase@l
+	stw      r4, 0x28(r30)
+	addi     r3, r4, 8
+	addi     r0, r4, 0x40
+	stw      r3, 0x10(r30)
+	stw      r0, 0x30(r30)
+	beq      lbl_80463764
+	lis      r4, __vt__Q23PSM11CreatureObj@ha
+	addi     r3, r30, 0x30
+	addi     r6, r4, __vt__Q23PSM11CreatureObj@l
+	li       r4, 0
+	stw      r6, 0x28(r30)
+	addi     r5, r6, 8
+	addi     r0, r6, 0x40
+	stw      r5, 0x10(r30)
+	stw      r0, 0x30(r30)
+	bl       __dt__Q27JAInter6ObjectFv
+	cmplwi   r30, 0
+	beq      lbl_80463764
+	lis      r3, __vt__Q23PSM8Creature@ha
+	addi     r3, r3, __vt__Q23PSM8Creature@l
+	stw      r3, 0x28(r30)
+	addi     r0, r3, 8
+	stw      r0, 0x10(r30)
+	beq      lbl_80463764
+	lis      r4, __vt__Q23PSM7ObjBase@ha
+	addi     r3, r30, 0x10
+	addi     r5, r4, __vt__Q23PSM7ObjBase@l
+	li       r4, 0
+	stw      r5, 0x28(r30)
+	addi     r0, r5, 8
+	stw      r0, 0x10(r30)
+	bl       __dt__11JKRDisposerFv
+	cmplwi   r30, 0
+	beq      lbl_80463764
+	mr       r3, r30
+	li       r4, 0
+	bl       __dt__10JSUPtrLinkFv
 
-	.loc_0x13C:
-	  extsh.    r0, r31
-	  ble-      .loc_0x14C
-	  mr        r3, r30
-	  bl        -0x43F6BC
+lbl_80463764:
+	extsh.   r0, r31
+	ble      lbl_80463774
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x14C:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80463774:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -9160,95 +10101,94 @@ u32 Otakara::getCastType() { return 0xB; }
 WorkItem::~WorkItem()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x12C
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x70
-	  subi      r4, r3, 0x1744
-	  stw       r4, 0x28(r30)
-	  addi      r3, r4, 0x8
-	  addi      r0, r4, 0x40
-	  stw       r3, 0x10(r30)
-	  stw       r0, 0x30(r30)
-	  beq-      .loc_0x78
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x70
-	  subi      r0, r3, 0x166C
-	  stw       r0, 0x80(r30)
-	  beq-      .loc_0x78
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x70
-	  subi      r0, r3, 0x1650
-	  stw       r0, 0x80(r30)
-	  beq-      .loc_0x78
-	  addi      r3, r30, 0x70
-	  li        r4, 0
-	  bl        -0x43D044
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_804638CC
+	lis      r3, __vt__Q23PSM8WorkItem@ha
+	addic.   r0, r30, 0x70
+	addi     r4, r3, __vt__Q23PSM8WorkItem@l
+	stw      r4, 0x28(r30)
+	addi     r3, r4, 8
+	addi     r0, r4, 0x40
+	stw      r3, 0x10(r30)
+	stw      r0, 0x30(r30)
+	beq      lbl_80463818
+	lis      r3, __vt__Q23PSM9EventLink@ha
+	addic.   r0, r30, 0x70
+	addi     r0, r3, __vt__Q23PSM9EventLink@l
+	stw      r0, 0x80(r30)
+	beq      lbl_80463818
+	lis      r3, __vt__Q23PSM12DirectorLink@ha
+	addic.   r0, r30, 0x70
+	addi     r0, r3, __vt__Q23PSM12DirectorLink@l
+	stw      r0, 0x80(r30)
+	beq      lbl_80463818
+	addi     r3, r30, 0x70
+	li       r4, 0
+	bl       __dt__10JSUPtrLinkFv
 
-	.loc_0x78:
-	  cmplwi    r30, 0
-	  beq-      .loc_0x11C
-	  lis       r3, 0x804B
-	  addi      r4, r3, 0x21A4
-	  stw       r4, 0x28(r30)
-	  addi      r3, r4, 0x8
-	  addi      r0, r4, 0x40
-	  stw       r3, 0x10(r30)
-	  stw       r0, 0x30(r30)
-	  beq-      .loc_0x11C
-	  lis       r4, 0x804F
-	  addi      r3, r30, 0x30
-	  subi      r6, r4, 0xEBC
-	  li        r4, 0
-	  stw       r6, 0x28(r30)
-	  addi      r5, r6, 0x8
-	  addi      r0, r6, 0x40
-	  stw       r5, 0x10(r30)
-	  stw       r0, 0x30(r30)
-	  bl        -0x3A9C84
-	  cmplwi    r30, 0
-	  beq-      .loc_0x11C
-	  lis       r3, 0x804F
-	  subi      r3, r3, 0xE34
-	  stw       r3, 0x28(r30)
-	  addi      r0, r3, 0x8
-	  stw       r0, 0x10(r30)
-	  beq-      .loc_0x11C
-	  lis       r4, 0x804F
-	  addi      r3, r30, 0x10
-	  subi      r5, r4, 0xDD0
-	  li        r4, 0
-	  stw       r5, 0x28(r30)
-	  addi      r0, r5, 0x8
-	  stw       r0, 0x10(r30)
-	  bl        -0x446870
-	  cmplwi    r30, 0
-	  beq-      .loc_0x11C
-	  mr        r3, r30
-	  li        r4, 0
-	  bl        -0x43D0E8
+lbl_80463818:
+	cmplwi   r30, 0
+	beq      lbl_804638BC
+	lis      r3, __vt__Q23PSM9EventBase@ha
+	addi     r4, r3, __vt__Q23PSM9EventBase@l
+	stw      r4, 0x28(r30)
+	addi     r3, r4, 8
+	addi     r0, r4, 0x40
+	stw      r3, 0x10(r30)
+	stw      r0, 0x30(r30)
+	beq      lbl_804638BC
+	lis      r4, __vt__Q23PSM11CreatureObj@ha
+	addi     r3, r30, 0x30
+	addi     r6, r4, __vt__Q23PSM11CreatureObj@l
+	li       r4, 0
+	stw      r6, 0x28(r30)
+	addi     r5, r6, 8
+	addi     r0, r6, 0x40
+	stw      r5, 0x10(r30)
+	stw      r0, 0x30(r30)
+	bl       __dt__Q27JAInter6ObjectFv
+	cmplwi   r30, 0
+	beq      lbl_804638BC
+	lis      r3, __vt__Q23PSM8Creature@ha
+	addi     r3, r3, __vt__Q23PSM8Creature@l
+	stw      r3, 0x28(r30)
+	addi     r0, r3, 8
+	stw      r0, 0x10(r30)
+	beq      lbl_804638BC
+	lis      r4, __vt__Q23PSM7ObjBase@ha
+	addi     r3, r30, 0x10
+	addi     r5, r4, __vt__Q23PSM7ObjBase@l
+	li       r4, 0
+	stw      r5, 0x28(r30)
+	addi     r0, r5, 8
+	stw      r0, 0x10(r30)
+	bl       __dt__11JKRDisposerFv
+	cmplwi   r30, 0
+	beq      lbl_804638BC
+	mr       r3, r30
+	li       r4, 0
+	bl       __dt__10JSUPtrLinkFv
 
-	.loc_0x11C:
-	  extsh.    r0, r31
-	  ble-      .loc_0x12C
-	  mr        r3, r30
-	  bl        -0x43F814
+lbl_804638BC:
+	extsh.   r0, r31
+	ble      lbl_804638CC
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x12C:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_804638CC:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -9274,129 +10214,128 @@ u32 OtakaraEventLink_2PBattle::is2PBattle() { return 0x1; }
 Enemy_SpecialChappy::~Enemy_SpecialChappy()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x1A4
-	  lis       r3, 0x804F
-	  subi      r5, r3, 0x1634
-	  stw       r5, 0x28(r30)
-	  addi      r0, r5, 0x8
-	  addi      r4, r5, 0x40
-	  addi      r3, r5, 0xA4
-	  stw       r0, 0x10(r30)
-	  addi      r0, r5, 0xB4
-	  stw       r4, 0x30(r30)
-	  stw       r3, 0xC8(r30)
-	  stw       r0, 0xDC(r30)
-	  beq-      .loc_0x194
-	  lis       r3, 0x804F
-	  subi      r5, r3, 0x1290
-	  stw       r5, 0x28(r30)
-	  addi      r0, r5, 0x8
-	  addi      r4, r5, 0x40
-	  addi      r3, r5, 0xA4
-	  stw       r0, 0x10(r30)
-	  addi      r0, r5, 0xB4
-	  stw       r4, 0x30(r30)
-	  stw       r3, 0xC8(r30)
-	  stw       r0, 0xDC(r30)
-	  beq-      .loc_0x194
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0xCC
-	  subi      r5, r3, 0x1054
-	  stw       r5, 0x28(r30)
-	  addi      r0, r5, 0x8
-	  addi      r4, r5, 0x40
-	  addi      r3, r5, 0xA4
-	  stw       r0, 0x10(r30)
-	  addi      r0, r5, 0xB4
-	  stw       r4, 0x30(r30)
-	  stw       r3, 0xC8(r30)
-	  stw       r0, 0xDC(r30)
-	  beq-      .loc_0xD4
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0xCC
-	  subi      r0, r3, 0xF80
-	  stw       r0, 0xDC(r30)
-	  beq-      .loc_0xD4
-	  addi      r3, r30, 0xCC
-	  li        r4, 0
-	  bl        -0x43D1F8
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_80463A9C
+	lis      r3, __vt__Q23PSM19Enemy_SpecialChappy@ha
+	addi     r5, r3, __vt__Q23PSM19Enemy_SpecialChappy@l
+	stw      r5, 0x28(r30)
+	addi     r0, r5, 8
+	addi     r4, r5, 0x40
+	addi     r3, r5, 0xa4
+	stw      r0, 0x10(r30)
+	addi     r0, r5, 0xb4
+	stw      r4, 0x30(r30)
+	stw      r3, 0xc8(r30)
+	stw      r0, 0xdc(r30)
+	beq      lbl_80463A8C
+	lis      r3, __vt__Q23PSM8EnemyBig@ha
+	addi     r5, r3, __vt__Q23PSM8EnemyBig@l
+	stw      r5, 0x28(r30)
+	addi     r0, r5, 8
+	addi     r4, r5, 0x40
+	addi     r3, r5, 0xa4
+	stw      r0, 0x10(r30)
+	addi     r0, r5, 0xb4
+	stw      r4, 0x30(r30)
+	stw      r3, 0xc8(r30)
+	stw      r0, 0xdc(r30)
+	beq      lbl_80463A8C
+	lis      r3, __vt__Q23PSM9EnemyBase@ha
+	addic.   r0, r30, 0xcc
+	addi     r5, r3, __vt__Q23PSM9EnemyBase@l
+	stw      r5, 0x28(r30)
+	addi     r0, r5, 8
+	addi     r4, r5, 0x40
+	addi     r3, r5, 0xa4
+	stw      r0, 0x10(r30)
+	addi     r0, r5, 0xb4
+	stw      r4, 0x30(r30)
+	stw      r3, 0xc8(r30)
+	stw      r0, 0xdc(r30)
+	beq      lbl_804639CC
+	lis      r3, __vt__Q23PSM9KehaiLink@ha
+	addic.   r0, r30, 0xcc
+	addi     r0, r3, __vt__Q23PSM9KehaiLink@l
+	stw      r0, 0xdc(r30)
+	beq      lbl_804639CC
+	addi     r3, r30, 0xcc
+	li       r4, 0
+	bl       __dt__10JSUPtrLinkFv
 
-	.loc_0xD4:
-	  addic.    r0, r30, 0xB8
-	  beq-      .loc_0xFC
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0xB8
-	  subi      r0, r3, 0xF70
-	  stw       r0, 0xC8(r30)
-	  beq-      .loc_0xFC
-	  addi      r3, r30, 0xB8
-	  li        r4, 0
-	  bl        -0x43D220
+lbl_804639CC:
+	addic.   r0, r30, 0xb8
+	beq      lbl_804639F4
+	lis      r3, __vt__Q23PSM10BattleLink@ha
+	addic.   r0, r30, 0xb8
+	addi     r0, r3, __vt__Q23PSM10BattleLink@l
+	stw      r0, 0xc8(r30)
+	beq      lbl_804639F4
+	addi     r3, r30, 0xb8
+	li       r4, 0
+	bl       __dt__10JSUPtrLinkFv
 
-	.loc_0xFC:
-	  cmplwi    r30, 0
-	  beq-      .loc_0x194
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x30
-	  subi      r4, r3, 0xF60
-	  stw       r4, 0x28(r30)
-	  addi      r3, r4, 0x8
-	  addi      r0, r4, 0x40
-	  stw       r3, 0x10(r30)
-	  stw       r0, 0x30(r30)
-	  beq-      .loc_0x140
-	  lis       r4, 0x804A
-	  addi      r3, r30, 0x30
-	  addi      r0, r4, 0x6200
-	  li        r4, 0
-	  stw       r0, 0x30(r30)
-	  bl        -0x3A9E54
+lbl_804639F4:
+	cmplwi   r30, 0
+	beq      lbl_80463A8C
+	lis      r3, __vt__Q23PSM13CreatureAnime@ha
+	addic.   r0, r30, 0x30
+	addi     r4, r3, __vt__Q23PSM13CreatureAnime@l
+	stw      r4, 0x28(r30)
+	addi     r3, r4, 8
+	addi     r0, r4, 0x40
+	stw      r3, 0x10(r30)
+	stw      r0, 0x30(r30)
+	beq      lbl_80463A38
+	lis      r4, __vt__13JAIAnimeSound@ha
+	addi     r3, r30, 0x30
+	addi     r0, r4, __vt__13JAIAnimeSound@l
+	li       r4, 0
+	stw      r0, 0x30(r30)
+	bl       __dt__Q27JAInter6ObjectFv
 
-	.loc_0x140:
-	  cmplwi    r30, 0
-	  beq-      .loc_0x194
-	  lis       r3, 0x804F
-	  subi      r3, r3, 0xE34
-	  stw       r3, 0x28(r30)
-	  addi      r0, r3, 0x8
-	  stw       r0, 0x10(r30)
-	  beq-      .loc_0x194
-	  lis       r4, 0x804F
-	  addi      r3, r30, 0x10
-	  subi      r5, r4, 0xDD0
-	  li        r4, 0
-	  stw       r5, 0x28(r30)
-	  addi      r0, r5, 0x8
-	  stw       r0, 0x10(r30)
-	  bl        -0x446A40
-	  cmplwi    r30, 0
-	  beq-      .loc_0x194
-	  mr        r3, r30
-	  li        r4, 0
-	  bl        -0x43D2B8
+lbl_80463A38:
+	cmplwi   r30, 0
+	beq      lbl_80463A8C
+	lis      r3, __vt__Q23PSM8Creature@ha
+	addi     r3, r3, __vt__Q23PSM8Creature@l
+	stw      r3, 0x28(r30)
+	addi     r0, r3, 8
+	stw      r0, 0x10(r30)
+	beq      lbl_80463A8C
+	lis      r4, __vt__Q23PSM7ObjBase@ha
+	addi     r3, r30, 0x10
+	addi     r5, r4, __vt__Q23PSM7ObjBase@l
+	li       r4, 0
+	stw      r5, 0x28(r30)
+	addi     r0, r5, 8
+	stw      r0, 0x10(r30)
+	bl       __dt__11JKRDisposerFv
+	cmplwi   r30, 0
+	beq      lbl_80463A8C
+	mr       r3, r30
+	li       r4, 0
+	bl       __dt__10JSUPtrLinkFv
 
-	.loc_0x194:
-	  extsh.    r0, r31
-	  ble-      .loc_0x1A4
-	  mr        r3, r30
-	  bl        -0x43F9E4
+lbl_80463A8C:
+	extsh.   r0, r31
+	ble      lbl_80463A9C
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x1A4:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80463A9C:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -9436,77 +10375,76 @@ u32 EnemyBoss::getCastType() { return 0x4; }
 Tsuyukusa::~Tsuyukusa()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0xE4
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x74
-	  subi      r4, r3, 0x11BC
-	  stw       r4, 0x28(r30)
-	  addi      r3, r4, 0x8
-	  addi      r0, r4, 0x40
-	  stw       r3, 0x10(r30)
-	  stw       r0, 0x30(r30)
-	  beq-      .loc_0x50
-	  addi      r3, r30, 0x74
-	  li        r4, 0
-	  bl        -0x43D354
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_80463BBC
+	lis      r3, __vt__Q23PSM9Tsuyukusa@ha
+	addic.   r0, r30, 0x74
+	addi     r4, r3, __vt__Q23PSM9Tsuyukusa@l
+	stw      r4, 0x28(r30)
+	addi     r3, r4, 8
+	addi     r0, r4, 0x40
+	stw      r3, 0x10(r30)
+	stw      r0, 0x30(r30)
+	beq      lbl_80463B28
+	addi     r3, r30, 0x74
+	li       r4, 0
+	bl       __dt__10JSUPtrLinkFv
 
-	.loc_0x50:
-	  cmplwi    r30, 0
-	  beq-      .loc_0xD4
-	  lis       r4, 0x804F
-	  addi      r3, r30, 0x30
-	  subi      r6, r4, 0xEBC
-	  li        r4, 0
-	  stw       r6, 0x28(r30)
-	  addi      r5, r6, 0x8
-	  addi      r0, r6, 0x40
-	  stw       r5, 0x10(r30)
-	  stw       r0, 0x30(r30)
-	  bl        -0x3A9F74
-	  cmplwi    r30, 0
-	  beq-      .loc_0xD4
-	  lis       r3, 0x804F
-	  subi      r3, r3, 0xE34
-	  stw       r3, 0x28(r30)
-	  addi      r0, r3, 0x8
-	  stw       r0, 0x10(r30)
-	  beq-      .loc_0xD4
-	  lis       r4, 0x804F
-	  addi      r3, r30, 0x10
-	  subi      r5, r4, 0xDD0
-	  li        r4, 0
-	  stw       r5, 0x28(r30)
-	  addi      r0, r5, 0x8
-	  stw       r0, 0x10(r30)
-	  bl        -0x446B60
-	  cmplwi    r30, 0
-	  beq-      .loc_0xD4
-	  mr        r3, r30
-	  li        r4, 0
-	  bl        -0x43D3D8
+lbl_80463B28:
+	cmplwi   r30, 0
+	beq      lbl_80463BAC
+	lis      r4, __vt__Q23PSM11CreatureObj@ha
+	addi     r3, r30, 0x30
+	addi     r6, r4, __vt__Q23PSM11CreatureObj@l
+	li       r4, 0
+	stw      r6, 0x28(r30)
+	addi     r5, r6, 8
+	addi     r0, r6, 0x40
+	stw      r5, 0x10(r30)
+	stw      r0, 0x30(r30)
+	bl       __dt__Q27JAInter6ObjectFv
+	cmplwi   r30, 0
+	beq      lbl_80463BAC
+	lis      r3, __vt__Q23PSM8Creature@ha
+	addi     r3, r3, __vt__Q23PSM8Creature@l
+	stw      r3, 0x28(r30)
+	addi     r0, r3, 8
+	stw      r0, 0x10(r30)
+	beq      lbl_80463BAC
+	lis      r4, __vt__Q23PSM7ObjBase@ha
+	addi     r3, r30, 0x10
+	addi     r5, r4, __vt__Q23PSM7ObjBase@l
+	li       r4, 0
+	stw      r5, 0x28(r30)
+	addi     r0, r5, 8
+	stw      r0, 0x10(r30)
+	bl       __dt__11JKRDisposerFv
+	cmplwi   r30, 0
+	beq      lbl_80463BAC
+	mr       r3, r30
+	li       r4, 0
+	bl       __dt__10JSUPtrLinkFv
 
-	.loc_0xD4:
-	  extsh.    r0, r31
-	  ble-      .loc_0xE4
-	  mr        r3, r30
-	  bl        -0x43FB04
+lbl_80463BAC:
+	extsh.   r0, r31
+	ble      lbl_80463BBC
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0xE4:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80463BBC:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -9518,117 +10456,116 @@ Tsuyukusa::~Tsuyukusa()
 EnemyNotAggressive::~EnemyNotAggressive()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x174
-	  lis       r3, 0x804F
-	  subi      r5, r3, 0x1134
-	  stw       r5, 0x28(r30)
-	  addi      r0, r5, 0x8
-	  addi      r4, r5, 0x40
-	  addi      r3, r5, 0xA4
-	  stw       r0, 0x10(r30)
-	  addi      r0, r5, 0xB4
-	  stw       r4, 0x30(r30)
-	  stw       r3, 0xC8(r30)
-	  stw       r0, 0xDC(r30)
-	  beq-      .loc_0x164
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0xCC
-	  subi      r5, r3, 0x1054
-	  stw       r5, 0x28(r30)
-	  addi      r0, r5, 0x8
-	  addi      r4, r5, 0x40
-	  addi      r3, r5, 0xA4
-	  stw       r0, 0x10(r30)
-	  addi      r0, r5, 0xB4
-	  stw       r4, 0x30(r30)
-	  stw       r3, 0xC8(r30)
-	  stw       r0, 0xDC(r30)
-	  beq-      .loc_0xA4
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0xCC
-	  subi      r0, r3, 0xF80
-	  stw       r0, 0xDC(r30)
-	  beq-      .loc_0xA4
-	  addi      r3, r30, 0xCC
-	  li        r4, 0
-	  bl        -0x43D4A8
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_80463D4C
+	lis      r3, __vt__Q23PSM18EnemyNotAggressive@ha
+	addi     r5, r3, __vt__Q23PSM18EnemyNotAggressive@l
+	stw      r5, 0x28(r30)
+	addi     r0, r5, 8
+	addi     r4, r5, 0x40
+	addi     r3, r5, 0xa4
+	stw      r0, 0x10(r30)
+	addi     r0, r5, 0xb4
+	stw      r4, 0x30(r30)
+	stw      r3, 0xc8(r30)
+	stw      r0, 0xdc(r30)
+	beq      lbl_80463D3C
+	lis      r3, __vt__Q23PSM9EnemyBase@ha
+	addic.   r0, r30, 0xcc
+	addi     r5, r3, __vt__Q23PSM9EnemyBase@l
+	stw      r5, 0x28(r30)
+	addi     r0, r5, 8
+	addi     r4, r5, 0x40
+	addi     r3, r5, 0xa4
+	stw      r0, 0x10(r30)
+	addi     r0, r5, 0xb4
+	stw      r4, 0x30(r30)
+	stw      r3, 0xc8(r30)
+	stw      r0, 0xdc(r30)
+	beq      lbl_80463C7C
+	lis      r3, __vt__Q23PSM9KehaiLink@ha
+	addic.   r0, r30, 0xcc
+	addi     r0, r3, __vt__Q23PSM9KehaiLink@l
+	stw      r0, 0xdc(r30)
+	beq      lbl_80463C7C
+	addi     r3, r30, 0xcc
+	li       r4, 0
+	bl       __dt__10JSUPtrLinkFv
 
-	.loc_0xA4:
-	  addic.    r0, r30, 0xB8
-	  beq-      .loc_0xCC
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0xB8
-	  subi      r0, r3, 0xF70
-	  stw       r0, 0xC8(r30)
-	  beq-      .loc_0xCC
-	  addi      r3, r30, 0xB8
-	  li        r4, 0
-	  bl        -0x43D4D0
+lbl_80463C7C:
+	addic.   r0, r30, 0xb8
+	beq      lbl_80463CA4
+	lis      r3, __vt__Q23PSM10BattleLink@ha
+	addic.   r0, r30, 0xb8
+	addi     r0, r3, __vt__Q23PSM10BattleLink@l
+	stw      r0, 0xc8(r30)
+	beq      lbl_80463CA4
+	addi     r3, r30, 0xb8
+	li       r4, 0
+	bl       __dt__10JSUPtrLinkFv
 
-	.loc_0xCC:
-	  cmplwi    r30, 0
-	  beq-      .loc_0x164
-	  lis       r3, 0x804F
-	  addic.    r0, r30, 0x30
-	  subi      r4, r3, 0xF60
-	  stw       r4, 0x28(r30)
-	  addi      r3, r4, 0x8
-	  addi      r0, r4, 0x40
-	  stw       r3, 0x10(r30)
-	  stw       r0, 0x30(r30)
-	  beq-      .loc_0x110
-	  lis       r4, 0x804A
-	  addi      r3, r30, 0x30
-	  addi      r0, r4, 0x6200
-	  li        r4, 0
-	  stw       r0, 0x30(r30)
-	  bl        -0x3AA104
+lbl_80463CA4:
+	cmplwi   r30, 0
+	beq      lbl_80463D3C
+	lis      r3, __vt__Q23PSM13CreatureAnime@ha
+	addic.   r0, r30, 0x30
+	addi     r4, r3, __vt__Q23PSM13CreatureAnime@l
+	stw      r4, 0x28(r30)
+	addi     r3, r4, 8
+	addi     r0, r4, 0x40
+	stw      r3, 0x10(r30)
+	stw      r0, 0x30(r30)
+	beq      lbl_80463CE8
+	lis      r4, __vt__13JAIAnimeSound@ha
+	addi     r3, r30, 0x30
+	addi     r0, r4, __vt__13JAIAnimeSound@l
+	li       r4, 0
+	stw      r0, 0x30(r30)
+	bl       __dt__Q27JAInter6ObjectFv
 
-	.loc_0x110:
-	  cmplwi    r30, 0
-	  beq-      .loc_0x164
-	  lis       r3, 0x804F
-	  subi      r3, r3, 0xE34
-	  stw       r3, 0x28(r30)
-	  addi      r0, r3, 0x8
-	  stw       r0, 0x10(r30)
-	  beq-      .loc_0x164
-	  lis       r4, 0x804F
-	  addi      r3, r30, 0x10
-	  subi      r5, r4, 0xDD0
-	  li        r4, 0
-	  stw       r5, 0x28(r30)
-	  addi      r0, r5, 0x8
-	  stw       r0, 0x10(r30)
-	  bl        -0x446CF0
-	  cmplwi    r30, 0
-	  beq-      .loc_0x164
-	  mr        r3, r30
-	  li        r4, 0
-	  bl        -0x43D568
+lbl_80463CE8:
+	cmplwi   r30, 0
+	beq      lbl_80463D3C
+	lis      r3, __vt__Q23PSM8Creature@ha
+	addi     r3, r3, __vt__Q23PSM8Creature@l
+	stw      r3, 0x28(r30)
+	addi     r0, r3, 8
+	stw      r0, 0x10(r30)
+	beq      lbl_80463D3C
+	lis      r4, __vt__Q23PSM7ObjBase@ha
+	addi     r3, r30, 0x10
+	addi     r5, r4, __vt__Q23PSM7ObjBase@l
+	li       r4, 0
+	stw      r5, 0x28(r30)
+	addi     r0, r5, 8
+	stw      r0, 0x10(r30)
+	bl       __dt__11JKRDisposerFv
+	cmplwi   r30, 0
+	beq      lbl_80463D3C
+	mr       r3, r30
+	li       r4, 0
+	bl       __dt__10JSUPtrLinkFv
 
-	.loc_0x164:
-	  extsh.    r0, r31
-	  ble-      .loc_0x174
-	  mr        r3, r30
-	  bl        -0x43FC94
+lbl_80463D3C:
+	extsh.   r0, r31
+	ble      lbl_80463D4C
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x174:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80463D4C:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -9696,73 +10633,72 @@ u32 CreatureAnime::getCastType() { return 0x1; }
 Navi::~Navi()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0xDC
-	  lis       r4, 0x804F
-	  addi      r3, r30, 0x70
-	  subi      r6, r4, 0x1A1C
-	  li        r4, -0x1
-	  stw       r6, 0x28(r30)
-	  addi      r5, r6, 0x8
-	  addi      r0, r6, 0x40
-	  stw       r5, 0x10(r30)
-	  stw       r0, 0x30(r30)
-	  bl        -0x124818
-	  cmplwi    r30, 0
-	  beq-      .loc_0xCC
-	  lis       r4, 0x804F
-	  addi      r3, r30, 0x30
-	  subi      r6, r4, 0xEBC
-	  li        r4, 0
-	  stw       r6, 0x28(r30)
-	  addi      r5, r6, 0x8
-	  addi      r0, r6, 0x40
-	  stw       r5, 0x10(r30)
-	  stw       r0, 0x30(r30)
-	  bl        -0x3AA224
-	  cmplwi    r30, 0
-	  beq-      .loc_0xCC
-	  lis       r3, 0x804F
-	  subi      r3, r3, 0xE34
-	  stw       r3, 0x28(r30)
-	  addi      r0, r3, 0x8
-	  stw       r0, 0x10(r30)
-	  beq-      .loc_0xCC
-	  lis       r4, 0x804F
-	  addi      r3, r30, 0x10
-	  subi      r5, r4, 0xDD0
-	  li        r4, 0
-	  stw       r5, 0x28(r30)
-	  addi      r0, r5, 0x8
-	  stw       r0, 0x10(r30)
-	  bl        -0x446E10
-	  cmplwi    r30, 0
-	  beq-      .loc_0xCC
-	  mr        r3, r30
-	  li        r4, 0
-	  bl        -0x43D688
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_80463E6C
+	lis      r4, __vt__Q23PSM4Navi@ha
+	addi     r3, r30, 0x70
+	addi     r6, r4, __vt__Q23PSM4Navi@l
+	li       r4, -1
+	stw      r6, 0x28(r30)
+	addi     r5, r6, 8
+	addi     r0, r6, 0x40
+	stw      r5, 0x10(r30)
+	stw      r0, 0x30(r30)
+	bl       __dt__Q26PSGame5RappaFv
+	cmplwi   r30, 0
+	beq      lbl_80463E5C
+	lis      r4, __vt__Q23PSM11CreatureObj@ha
+	addi     r3, r30, 0x30
+	addi     r6, r4, __vt__Q23PSM11CreatureObj@l
+	li       r4, 0
+	stw      r6, 0x28(r30)
+	addi     r5, r6, 8
+	addi     r0, r6, 0x40
+	stw      r5, 0x10(r30)
+	stw      r0, 0x30(r30)
+	bl       __dt__Q27JAInter6ObjectFv
+	cmplwi   r30, 0
+	beq      lbl_80463E5C
+	lis      r3, __vt__Q23PSM8Creature@ha
+	addi     r3, r3, __vt__Q23PSM8Creature@l
+	stw      r3, 0x28(r30)
+	addi     r0, r3, 8
+	stw      r0, 0x10(r30)
+	beq      lbl_80463E5C
+	lis      r4, __vt__Q23PSM7ObjBase@ha
+	addi     r3, r30, 0x10
+	addi     r5, r4, __vt__Q23PSM7ObjBase@l
+	li       r4, 0
+	stw      r5, 0x28(r30)
+	addi     r0, r5, 8
+	stw      r0, 0x10(r30)
+	bl       __dt__11JKRDisposerFv
+	cmplwi   r30, 0
+	beq      lbl_80463E5C
+	mr       r3, r30
+	li       r4, 0
+	bl       __dt__10JSUPtrLinkFv
 
-	.loc_0xCC:
-	  extsh.    r0, r31
-	  ble-      .loc_0xDC
-	  mr        r3, r30
-	  bl        -0x43FDB4
+lbl_80463E5C:
+	extsh.   r0, r31
+	ble      lbl_80463E6C
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0xDC:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80463E6C:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -9774,9 +10710,8 @@ Navi::~Navi()
 ObjBase::@16 @~ObjBase()
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x10
-	  b         -0x7028
+	addi     r3, r3, -16
+	b        __dt__Q23PSM7ObjBaseFv
 	*/
 }
 
@@ -9788,9 +10723,8 @@ ObjBase::@16 @~ObjBase()
 ObjMgr::@12 @~ObjMgr()
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0xC
-	  b         -0x6F64
+	addi     r3, r3, -12
+	b        __dt__Q23PSM6ObjMgrFv
 	*/
 }
 
@@ -9802,9 +10736,8 @@ ObjMgr::@12 @~ObjMgr()
 ObjMgr::@16 @~ObjMgr()
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x10
-	  b         -0x6F6C
+	addi     r3, r3, -16
+	b        __dt__Q23PSM6ObjMgrFv
 	*/
 }
 
@@ -9816,9 +10749,8 @@ ObjMgr::@16 @~ObjMgr()
 Creature::@16 @~Creature()
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x10
-	  b         -0x65F4
+	addi     r3, r3, -16
+	b        __dt__Q23PSM8CreatureFv
 	*/
 }
 
@@ -9830,9 +10762,8 @@ Creature::@16 @~Creature()
 CreatureObj::@16 @~CreatureObj()
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x10
-	  b         -0x2FD610
+	addi     r3, r3, -16
+	b        __dt__Q23PSM11CreatureObjFv
 	*/
 }
 
@@ -9844,9 +10775,8 @@ CreatureObj::@16 @~CreatureObj()
 CreatureObj::@48 @~CreatureObj()
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x30
-	  b         -0x2FD618
+	addi     r3, r3, -48
+	b        __dt__Q23PSM11CreatureObjFv
 	*/
 }
 
@@ -9858,9 +10788,8 @@ CreatureObj::@48 @~CreatureObj()
 CreatureAnime::@16 @~CreatureAnime()
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x10
-	  b         -0x58F8
+	addi     r3, r3, -16
+	b        __dt__Q23PSM13CreatureAnimeFv
 	*/
 }
 
@@ -9872,9 +10801,8 @@ CreatureAnime::@16 @~CreatureAnime()
 CreatureAnime::@48 @~CreatureAnime()
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x30
-	  b         -0x5900
+	addi     r3, r3, -48
+	b        __dt__Q23PSM13CreatureAnimeFv
 	*/
 }
 
@@ -9901,9 +10829,8 @@ void PSM::CreatureAnime::@48
 EnemyBase::@16 @~EnemyBase()
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x10
-	  b         -0x35CE04
+	addi     r3, r3, -16
+	b        __dt__Q23PSM9EnemyBaseFv
 	*/
 }
 
@@ -9915,9 +10842,8 @@ EnemyBase::@16 @~EnemyBase()
 EnemyBase::@48 @~EnemyBase()
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x30
-	  b         -0x35CE0C
+	addi     r3, r3, -48
+	b        __dt__Q23PSM9EnemyBaseFv
 	*/
 }
 
@@ -9929,9 +10855,8 @@ EnemyBase::@48 @~EnemyBase()
 EnemyNotAggressive::@16 @~EnemyNotAggressive()
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x10
-	  b         -0x30C
+	addi     r3, r3, -16
+	b        __dt__Q23PSM18EnemyNotAggressiveFv
 	*/
 }
 
@@ -9943,9 +10868,8 @@ EnemyNotAggressive::@16 @~EnemyNotAggressive()
 EnemyNotAggressive::@48 @~EnemyNotAggressive()
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x30
-	  b         -0x314
+	addi     r3, r3, -48
+	b        __dt__Q23PSM18EnemyNotAggressiveFv
 	*/
 }
 
@@ -9957,9 +10881,8 @@ EnemyNotAggressive::@48 @~EnemyNotAggressive()
 void EnemyNotAggressive::@184 @battleOff()
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0xB8
-	  b         -0x17C
+	addi     r3, r3, -184
+	b        battleOff__Q23PSM18EnemyNotAggressiveFv
 	*/
 }
 
@@ -9971,9 +10894,8 @@ void EnemyNotAggressive::@184 @battleOff()
 void EnemyNotAggressive::@184 @battleOn()
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0xB8
-	  b         -0x180
+	addi     r3, r3, -184
+	b        battleOn__Q23PSM18EnemyNotAggressiveFv
 	*/
 }
 
@@ -9985,9 +10907,8 @@ void EnemyNotAggressive::@184 @battleOn()
 void EnemyNotAggressive::@204 @kehaiOff()
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0xCC
-	  b         -0x184
+	addi     r3, r3, -204
+	b        kehaiOff__Q23PSM18EnemyNotAggressiveFv
 	*/
 }
 
@@ -9999,9 +10920,8 @@ void EnemyNotAggressive::@204 @kehaiOff()
 void EnemyNotAggressive::@204 @kehaiOn()
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0xCC
-	  b         -0x188
+	addi     r3, r3, -204
+	b        kehaiOn__Q23PSM18EnemyNotAggressiveFv
 	*/
 }
 
@@ -10013,9 +10933,8 @@ void EnemyNotAggressive::@204 @kehaiOn()
 Tsuyukusa::@16 @~Tsuyukusa()
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x10
-	  b         -0x43C
+	addi     r3, r3, -16
+	b        __dt__Q23PSM9TsuyukusaFv
 	*/
 }
 
@@ -10027,9 +10946,8 @@ Tsuyukusa::@16 @~Tsuyukusa()
 Tsuyukusa::@48 @~Tsuyukusa()
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x30
-	  b         -0x444
+	addi     r3, r3, -48
+	b        __dt__Q23PSM9TsuyukusaFv
 	*/
 }
 
@@ -10041,9 +10959,8 @@ Tsuyukusa::@48 @~Tsuyukusa()
 EnemyBig::@16 @~EnemyBig()
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x10
-	  b         -0x35CFB8
+	addi     r3, r3, -16
+	b        __dt__Q23PSM8EnemyBigFv
 	*/
 }
 
@@ -10055,9 +10972,8 @@ EnemyBig::@16 @~EnemyBig()
 EnemyBig::@48 @~EnemyBig()
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x30
-	  b         -0x35CFC0
+	addi     r3, r3, -48
+	b        __dt__Q23PSM8EnemyBigFv
 	*/
 }
 
@@ -10069,9 +10985,8 @@ EnemyBig::@48 @~EnemyBig()
 EnemyBoss::@16 @~EnemyBoss()
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x10
-	  b         -0x3D64
+	addi     r3, r3, -16
+	b        __dt__Q23PSM9EnemyBossFv
 	*/
 }
 
@@ -10083,9 +10998,8 @@ EnemyBoss::@16 @~EnemyBoss()
 EnemyBoss::@48 @~EnemyBoss()
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x30
-	  b         -0x3D6C
+	addi     r3, r3, -48
+	b        __dt__Q23PSM9EnemyBossFv
 	*/
 }
 
@@ -10097,9 +11011,8 @@ EnemyBoss::@48 @~EnemyBoss()
 EnemyMidBoss::@16 @~EnemyMidBoss()
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x10
-	  b         -0x36F0
+	addi     r3, r3, -16
+	b        __dt__Q23PSM12EnemyMidBossFv
 	*/
 }
 
@@ -10111,9 +11024,8 @@ EnemyMidBoss::@16 @~EnemyMidBoss()
 EnemyMidBoss::@48 @~EnemyMidBoss()
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x30
-	  b         -0x36F8
+	addi     r3, r3, -48
+	b        __dt__Q23PSM12EnemyMidBossFv
 	*/
 }
 
@@ -10125,9 +11037,8 @@ EnemyMidBoss::@48 @~EnemyMidBoss()
 EnemyBigBoss::@16 @~EnemyBigBoss()
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x10
-	  b         -0x3510
+	addi     r3, r3, -16
+	b        __dt__Q23PSM12EnemyBigBossFv
 	*/
 }
 
@@ -10139,9 +11050,8 @@ EnemyBigBoss::@16 @~EnemyBigBoss()
 EnemyBigBoss::@48 @~EnemyBigBoss()
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x30
-	  b         -0x3518
+	addi     r3, r3, -48
+	b        __dt__Q23PSM12EnemyBigBossFv
 	*/
 }
 
@@ -10153,9 +11063,8 @@ EnemyBigBoss::@48 @~EnemyBigBoss()
 Enemy_SpecialChappy::@16 @~Enemy_SpecialChappy()
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x10
-	  b         -0x66C
+	addi     r3, r3, -16
+	b        __dt__Q23PSM19Enemy_SpecialChappyFv
 	*/
 }
 
@@ -10167,9 +11076,8 @@ Enemy_SpecialChappy::@16 @~Enemy_SpecialChappy()
 Enemy_SpecialChappy::@48 @~Enemy_SpecialChappy()
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x30
-	  b         -0x674
+	addi     r3, r3, -48
+	b        __dt__Q23PSM19Enemy_SpecialChappyFv
 	*/
 }
 
@@ -10181,9 +11089,8 @@ Enemy_SpecialChappy::@48 @~Enemy_SpecialChappy()
 WorkItem::@16 @~WorkItem()
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x10
-	  b         -0x7D4
+	addi     r3, r3, -16
+	b        __dt__Q23PSM8WorkItemFv
 	*/
 }
 
@@ -10195,9 +11102,8 @@ WorkItem::@16 @~WorkItem()
 WorkItem::@48 @~WorkItem()
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x30
-	  b         -0x7DC
+	addi     r3, r3, -48
+	b        __dt__Q23PSM8WorkItemFv
 	*/
 }
 
@@ -10209,9 +11115,8 @@ WorkItem::@48 @~WorkItem()
 Otakara::@16 @~Otakara()
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x10
-	  b         -0x2000
+	addi     r3, r3, -16
+	b        __dt__Q23PSM7OtakaraFv
 	*/
 }
 
@@ -10223,9 +11128,8 @@ Otakara::@16 @~Otakara()
 Otakara::@48 @~Otakara()
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x30
-	  b         -0x2008
+	addi     r3, r3, -48
+	b        __dt__Q23PSM7OtakaraFv
 	*/
 }
 
@@ -10237,9 +11141,8 @@ Otakara::@48 @~Otakara()
 PelletOtakara::@16 @~PelletOtakara()
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x10
-	  b         -0x96C
+	addi     r3, r3, -16
+	b        __dt__Q23PSM13PelletOtakaraFv
 	*/
 }
 
@@ -10251,9 +11154,8 @@ PelletOtakara::@16 @~PelletOtakara()
 PelletOtakara::@48 @~PelletOtakara()
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x30
-	  b         -0x974
+	addi     r3, r3, -48
+	b        __dt__Q23PSM13PelletOtakaraFv
 	*/
 }
 
@@ -10265,9 +11167,8 @@ PelletOtakara::@48 @~PelletOtakara()
 PelletItem::@16 @~PelletItem()
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x10
-	  b         -0xAEC
+	addi     r3, r3, -16
+	b        __dt__Q23PSM10PelletItemFv
 	*/
 }
 
@@ -10279,9 +11180,8 @@ PelletItem::@16 @~PelletItem()
 PelletItem::@48 @~PelletItem()
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x30
-	  b         -0xAF4
+	addi     r3, r3, -48
+	b        __dt__Q23PSM10PelletItemFv
 	*/
 }
 
@@ -10293,9 +11193,8 @@ PelletItem::@48 @~PelletItem()
 Piki::@16 @~Piki()
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x10
-	  b         -0xBEC
+	addi     r3, r3, -16
+	b        __dt__Q23PSM4PikiFv
 	*/
 }
 
@@ -10307,9 +11206,8 @@ Piki::@16 @~Piki()
 Piki::@48 @~Piki()
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x30
-	  b         -0xBF4
+	addi     r3, r3, -48
+	b        __dt__Q23PSM4PikiFv
 	*/
 }
 
@@ -10321,9 +11219,8 @@ Piki::@48 @~Piki()
 Navi::@16 @~Navi()
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x10
-	  b         -0x234
+	addi     r3, r3, -16
+	b        __dt__Q23PSM4NaviFv
 	*/
 }
 
@@ -10335,9 +11232,8 @@ Navi::@16 @~Navi()
 void Navi::@48 @startSound(unsigned long, unsigned long)
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x30
-	  b         -0x1338
+	addi     r3, r3, -48
+	b        startSound__Q23PSM4NaviFUlUl
 	*/
 }
 
@@ -10349,9 +11245,8 @@ void Navi::@48 @startSound(unsigned long, unsigned long)
 Navi::@48 @~Navi()
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x30
-	  b         -0x244
+	addi     r3, r3, -48
+	b        __dt__Q23PSM4NaviFv
 	*/
 }
 
@@ -10363,9 +11258,8 @@ Navi::@48 @~Navi()
 Cluster::@16 @~Cluster()
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x10
-	  b         -0xD20
+	addi     r3, r3, -16
+	b        __dt__Q23PSM7ClusterFv
 	*/
 }
 
@@ -10377,9 +11271,8 @@ Cluster::@16 @~Cluster()
 Cluster::@48 @~Cluster()
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x30
-	  b         -0xD28
+	addi     r3, r3, -48
+	b        __dt__Q23PSM7ClusterFv
 	*/
 }
 } // namespace PSM

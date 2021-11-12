@@ -1,6 +1,47 @@
 #include "types.h"
 
 /*
+    Generated from dpostproc
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global sCurrentDir__16JASWaveArcLoader
+    sCurrentDir__16JASWaveArcLoader:
+        .4byte 0x2F42616E
+        .4byte 0x6B732F00
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+    .global __vt__10JASWaveArc
+    __vt__10JASWaveArc:
+        .4byte 0
+        .4byte 0
+        .4byte onDispose__10JASWaveArcFv
+        .4byte onLoadDone__10JASWaveArcFv
+        .4byte onEraseDone__10JASWaveArcFv
+    .global __vt__11JASDisposer
+    __vt__11JASDisposer:
+        .4byte 0
+        .4byte 0
+        .4byte onDispose__11JASDisposerFv
+
+    .section .sbss # 0x80514D80 - 0x80516360
+    .global sAramHeap__16JASWaveArcLoader
+    sAramHeap__16JASWaveArcLoader:
+        .skip 0x8
+*/
+
+/*
  * --INFO--
  * Address:	8009BA08
  * Size:	00002C
@@ -8,20 +49,19 @@
 void JASWaveArcLoader::init(JASHeap*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  cmplwi    r3, 0
-	  stw       r0, 0x14(r1)
-	  bne-      .loc_0x18
-	  bl        0xBA2C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	cmplwi   r3, 0
+	stw      r0, 0x14(r1)
+	bne      lbl_8009BA20
+	bl       getAramHeap__9JASKernelFv
 
-	.loc_0x18:
-	  stw       r3, -0x75C0(r13)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8009BA20:
+	stw      r3, sAramHeap__16JASWaveArcLoader@sda21(r13)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -43,33 +83,32 @@ void JASWaveArcLoader::getRootHeap()
 void JASWaveArcLoader::setCurrentDir(const char*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r5, 0x804A
-	  mr        r4, r3
-	  stw       r0, 0x14(r1)
-	  addi      r3, r5, 0x3898
-	  bl        0x2EE0C
-	  lis       r3, 0x804A
-	  addi      r3, r3, 0x3898
-	  bl        0x2EEB8
-	  lis       r4, 0x804A
-	  addi      r6, r4, 0x3898
-	  add       r5, r6, r3
-	  lbz       r0, -0x1(r5)
-	  cmpwi     r0, 0x2F
-	  beq-      .loc_0x50
-	  li        r4, 0x2F
-	  li        r0, 0
-	  stbx      r4, r6, r3
-	  stb       r0, 0x1(r5)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lis      r5, sCurrentDir__16JASWaveArcLoader@ha
+	mr       r4, r3
+	stw      r0, 0x14(r1)
+	addi     r3, r5, sCurrentDir__16JASWaveArcLoader@l
+	bl       strcpy
+	lis      r3, sCurrentDir__16JASWaveArcLoader@ha
+	addi     r3, r3, sCurrentDir__16JASWaveArcLoader@l
+	bl       strlen
+	lis      r4, sCurrentDir__16JASWaveArcLoader@ha
+	addi     r6, r4, sCurrentDir__16JASWaveArcLoader@l
+	add      r5, r6, r3
+	lbz      r0, -1(r5)
+	cmpwi    r0, 0x2f
+	beq      lbl_8009BA84
+	li       r4, 0x2f
+	li       r0, 0
+	stbx     r4, r6, r3
+	stb      r0, 1(r5)
 
-	.loc_0x50:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8009BA84:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -91,34 +130,33 @@ void JASWaveArcLoader::getCurrentDir()
 JASWaveArc::JASWaveArc()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r4, 0x804A
-	  stw       r0, 0x14(r1)
-	  addi      r0, r4, 0x38EC
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lis       r3, 0x804A
-	  stw       r0, 0x0(r31)
-	  addi      r0, r3, 0x38D8
-	  mr        r4, r31
-	  addi      r3, r31, 0x4
-	  stw       r0, 0x0(r31)
-	  bl        0xAFD4
-	  li        r4, 0
-	  li        r0, -0x1
-	  stw       r4, 0x48(r31)
-	  mr        r3, r31
-	  stw       r4, 0x4C(r31)
-	  stw       r0, 0x50(r31)
-	  stw       r4, 0x54(r31)
-	  stw       r4, 0x58(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lis      r4, __vt__11JASDisposer@ha
+	stw      r0, 0x14(r1)
+	addi     r0, r4, __vt__11JASDisposer@l
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lis      r3, __vt__10JASWaveArc@ha
+	stw      r0, 0(r31)
+	addi     r0, r3, __vt__10JASWaveArc@l
+	mr       r4, r31
+	addi     r3, r31, 4
+	stw      r0, 0(r31)
+	bl       __ct__7JASHeapFP11JASDisposer
+	li       r4, 0
+	li       r0, -1
+	stw      r4, 0x48(r31)
+	mr       r3, r31
+	stw      r4, 0x4c(r31)
+	stw      r0, 0x50(r31)
+	stw      r4, 0x54(r31)
+	stw      r4, 0x58(r31)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -130,43 +168,42 @@ JASWaveArc::JASWaveArc()
 JASHeap::~JASHeap()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x5C
-	  beq-      .loc_0x4C
-	  addic.    r0, r30, 0xC
-	  beq-      .loc_0x38
-	  addi      r3, r30, 0xC
-	  li        r4, 0
-	  bl        -0x75364
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_8009BB5C
+	beq      lbl_8009BB4C
+	addic.   r0, r30, 0xc
+	beq      lbl_8009BB38
+	addi     r3, r30, 0xc
+	li       r4, 0
+	bl       __dt__10JSUPtrLinkFv
 
-	.loc_0x38:
-	  cmplwi    r30, 0
-	  beq-      .loc_0x4C
-	  mr        r3, r30
-	  li        r4, 0
-	  bl        -0x752E0
+lbl_8009BB38:
+	cmplwi   r30, 0
+	beq      lbl_8009BB4C
+	mr       r3, r30
+	li       r4, 0
+	bl       __dt__10JSUPtrListFv
 
-	.loc_0x4C:
-	  extsh.    r0, r31
-	  ble-      .loc_0x5C
-	  mr        r3, r30
-	  bl        -0x77AA4
+lbl_8009BB4C:
+	extsh.   r0, r31
+	ble      lbl_8009BB5C
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x5C:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8009BB5C:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -198,65 +235,64 @@ void JASWaveArc::eraseSetup()
 void JASWaveArc::loadToAramCallback(void*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  li        r5, 0
-	  li        r6, 0
-	  stw       r0, 0x24(r1)
-	  li        r7, 0
-	  li        r8, 0
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r3
-	  stw       r30, 0x18(r1)
-	  lwz       r3, 0x4(r3)
-	  lwz       r4, 0x8(r31)
-	  bl        -0x7E41C
-	  cmplwi    r3, 0
-	  beq-      .loc_0xB0
-	  lwz       r30, 0x0(r31)
-	  lwz       r31, 0xC(r31)
-	  bl        0x5307C
-	  lwz       r0, 0x58(r30)
-	  stw       r3, 0x8(r1)
-	  cmplw     r0, r31
-	  beq-      .loc_0x64
-	  bl        0x53090
-	  li        r0, 0
-	  b         .loc_0x94
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	li       r5, 0
+	li       r6, 0
+	stw      r0, 0x24(r1)
+	li       r7, 0
+	li       r8, 0
+	stw      r31, 0x1c(r1)
+	mr       r31, r3
+	stw      r30, 0x18(r1)
+	lwz      r3, 4(r3)
+	lwz      r4, 8(r31)
+	bl       loadToAram__16JKRDvdAramRipperFlUl15JKRExpandSwitchUlUlPUl
+	cmplwi   r3, 0
+	beq      lbl_8009BC28
+	lwz      r30, 0(r31)
+	lwz      r31, 0xc(r31)
+	bl       OSDisableInterrupts
+	lwz      r0, 0x58(r30)
+	stw      r3, 8(r1)
+	cmplw    r0, r31
+	beq      lbl_8009BBDC
+	bl       OSRestoreInterrupts
+	li       r0, 0
+	b        lbl_8009BC0C
 
-	.loc_0x64:
-	  lwz       r0, 0x4C(r30)
-	  cmpwi     r0, 0x1
-	  beq-      .loc_0x7C
-	  bl        0x53078
-	  li        r0, 0
-	  b         .loc_0x94
+lbl_8009BBDC:
+	lwz      r0, 0x4c(r30)
+	cmpwi    r0, 1
+	beq      lbl_8009BBF4
+	bl       OSRestoreInterrupts
+	li       r0, 0
+	b        lbl_8009BC0C
 
-	.loc_0x7C:
-	  li        r4, 0x1
-	  li        r0, 0x2
-	  stw       r4, 0x48(r30)
-	  stw       r0, 0x4C(r30)
-	  bl        0x5305C
-	  li        r0, 0x1
+lbl_8009BBF4:
+	li       r4, 1
+	li       r0, 2
+	stw      r4, 0x48(r30)
+	stw      r0, 0x4c(r30)
+	bl       OSRestoreInterrupts
+	li       r0, 1
 
-	.loc_0x94:
-	  rlwinm.   r0,r0,0,24,31
-	  beq-      .loc_0xB0
-	  mr        r3, r30
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
+lbl_8009BC0C:
+	clrlwi.  r0, r0, 0x18
+	beq      lbl_8009BC28
+	mr       r3, r30
+	lwz      r12, 0(r30)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0xB0:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8009BC28:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -288,95 +324,94 @@ void JASWaveArc::execLoad()
 void JASWaveArc::load(JASHeap*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stw       r31, 0x2C(r1)
-	  mr        r31, r4
-	  stw       r30, 0x28(r1)
-	  mr        r30, r3
-	  lwz       r0, 0x50(r3)
-	  cmpwi     r0, 0
-	  bge-      .loc_0x30
-	  li        r3, 0
-	  b         .loc_0x110
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stw      r31, 0x2c(r1)
+	mr       r31, r4
+	stw      r30, 0x28(r1)
+	mr       r30, r3
+	lwz      r0, 0x50(r3)
+	cmpwi    r0, 0
+	bge      lbl_8009BC70
+	li       r3, 0
+	b        lbl_8009BD50
 
-	.loc_0x30:
-	  bl        0x52FC8
-	  lwz       r0, 0x4C(r30)
-	  stw       r3, 0xC(r1)
-	  cmpwi     r0, 0
-	  beq-      .loc_0x50
-	  bl        0x52FDC
-	  li        r3, 0
-	  b         .loc_0x110
+lbl_8009BC70:
+	bl       OSDisableInterrupts
+	lwz      r0, 0x4c(r30)
+	stw      r3, 0xc(r1)
+	cmpwi    r0, 0
+	beq      lbl_8009BC90
+	bl       OSRestoreInterrupts
+	li       r3, 0
+	b        lbl_8009BD50
 
-	.loc_0x50:
-	  cmplwi    r31, 0
-	  bne-      .loc_0x5C
-	  lwz       r31, -0x75C0(r13)
+lbl_8009BC90:
+	cmplwi   r31, 0
+	bne      lbl_8009BC9C
+	lwz      r31, sAramHeap__16JASWaveArcLoader@sda21(r13)
 
-	.loc_0x5C:
-	  lwz       r5, 0x54(r30)
-	  mr        r4, r31
-	  addi      r3, r30, 0x4
-	  bl        0xAE68
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x84
-	  lwz       r3, 0xC(r1)
-	  bl        0x52FA8
-	  li        r3, 0
-	  b         .loc_0x110
+lbl_8009BC9C:
+	lwz      r5, 0x54(r30)
+	mr       r4, r31
+	addi     r3, r30, 4
+	bl       alloc__7JASHeapFP7JASHeapUl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_8009BCC4
+	lwz      r3, 0xc(r1)
+	bl       OSRestoreInterrupts
+	li       r3, 0
+	b        lbl_8009BD50
 
-	.loc_0x84:
-	  bl        0x52F74
-	  li        r4, 0
-	  li        r0, 0x1
-	  stw       r4, 0x48(r30)
-	  stw       r0, 0x4C(r30)
-	  stw       r30, 0x10(r1)
-	  lwz       r0, 0x50(r30)
-	  stw       r3, 0x8(r1)
-	  stw       r0, 0x14(r1)
-	  lwz       r0, 0x3C(r30)
-	  stw       r0, 0x18(r1)
-	  lwz       r3, 0x58(r30)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x58(r30)
-	  stw       r0, 0x1C(r1)
-	  bl        0xAC8C
-	  lis       r4, 0x800A
-	  addi      r5, r1, 0x10
-	  subi      r4, r4, 0x4488
-	  li        r6, 0x10
-	  bl        0xCCB4
-	  cmpwi     r3, 0
-	  bne-      .loc_0xF8
-	  addi      r3, r30, 0x4
-	  bl        0xB0A4
-	  lwz       r3, 0x8(r1)
-	  bl        0x52F34
-	  li        r31, 0
-	  b         .loc_0x104
+lbl_8009BCC4:
+	bl       OSDisableInterrupts
+	li       r4, 0
+	li       r0, 1
+	stw      r4, 0x48(r30)
+	stw      r0, 0x4c(r30)
+	stw      r30, 0x10(r1)
+	lwz      r0, 0x50(r30)
+	stw      r3, 8(r1)
+	stw      r0, 0x14(r1)
+	lwz      r0, 0x3c(r30)
+	stw      r0, 0x18(r1)
+	lwz      r3, 0x58(r30)
+	addi     r0, r3, 1
+	stw      r0, 0x58(r30)
+	stw      r0, 0x1c(r1)
+	bl       getThreadPointer__6JASDvdFv
+	lis      r4, loadToAramCallback__10JASWaveArcFPv@ha
+	addi     r5, r1, 0x10
+	addi     r4, r4, loadToAramCallback__10JASWaveArcFPv@l
+	li       r6, 0x10
+	bl       sendCmdMsg__13JASTaskThreadFPFPv_vPCvUl
+	cmpwi    r3, 0
+	bne      lbl_8009BD38
+	addi     r3, r30, 4
+	bl       free__7JASHeapFv
+	lwz      r3, 8(r1)
+	bl       OSRestoreInterrupts
+	li       r31, 0
+	b        lbl_8009BD44
 
-	.loc_0xF8:
-	  lwz       r3, 0x8(r1)
-	  bl        0x52F24
-	  li        r31, 0x1
+lbl_8009BD38:
+	lwz      r3, 8(r1)
+	bl       OSRestoreInterrupts
+	li       r31, 1
 
-	.loc_0x104:
-	  lwz       r3, 0xC(r1)
-	  bl        0x52F18
-	  mr        r3, r31
+lbl_8009BD44:
+	lwz      r3, 0xc(r1)
+	bl       OSRestoreInterrupts
+	mr       r3, r31
 
-	.loc_0x110:
-	  lwz       r0, 0x34(r1)
-	  lwz       r31, 0x2C(r1)
-	  lwz       r30, 0x28(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_8009BD50:
+	lwz      r0, 0x34(r1)
+	lwz      r31, 0x2c(r1)
+	lwz      r30, 0x28(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -388,95 +423,94 @@ void JASWaveArc::load(JASHeap*)
 void JASWaveArc::loadTail(JASHeap*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stw       r31, 0x2C(r1)
-	  mr        r31, r4
-	  stw       r30, 0x28(r1)
-	  mr        r30, r3
-	  lwz       r0, 0x50(r3)
-	  cmpwi     r0, 0
-	  bge-      .loc_0x30
-	  li        r3, 0
-	  b         .loc_0x110
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stw      r31, 0x2c(r1)
+	mr       r31, r4
+	stw      r30, 0x28(r1)
+	mr       r30, r3
+	lwz      r0, 0x50(r3)
+	cmpwi    r0, 0
+	bge      lbl_8009BD98
+	li       r3, 0
+	b        lbl_8009BE78
 
-	.loc_0x30:
-	  bl        0x52EA0
-	  lwz       r0, 0x4C(r30)
-	  stw       r3, 0xC(r1)
-	  cmpwi     r0, 0
-	  beq-      .loc_0x50
-	  bl        0x52EB4
-	  li        r3, 0
-	  b         .loc_0x110
+lbl_8009BD98:
+	bl       OSDisableInterrupts
+	lwz      r0, 0x4c(r30)
+	stw      r3, 0xc(r1)
+	cmpwi    r0, 0
+	beq      lbl_8009BDB8
+	bl       OSRestoreInterrupts
+	li       r3, 0
+	b        lbl_8009BE78
 
-	.loc_0x50:
-	  cmplwi    r31, 0
-	  bne-      .loc_0x5C
-	  lwz       r31, -0x75C0(r13)
+lbl_8009BDB8:
+	cmplwi   r31, 0
+	bne      lbl_8009BDC4
+	lwz      r31, sAramHeap__16JASWaveArcLoader@sda21(r13)
 
-	.loc_0x5C:
-	  lwz       r5, 0x54(r30)
-	  mr        r4, r31
-	  addi      r3, r30, 0x4
-	  bl        0xAF10
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x84
-	  lwz       r3, 0xC(r1)
-	  bl        0x52E80
-	  li        r3, 0
-	  b         .loc_0x110
+lbl_8009BDC4:
+	lwz      r5, 0x54(r30)
+	mr       r4, r31
+	addi     r3, r30, 4
+	bl       allocTail__7JASHeapFP7JASHeapUl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_8009BDEC
+	lwz      r3, 0xc(r1)
+	bl       OSRestoreInterrupts
+	li       r3, 0
+	b        lbl_8009BE78
 
-	.loc_0x84:
-	  bl        0x52E4C
-	  li        r4, 0
-	  li        r0, 0x1
-	  stw       r4, 0x48(r30)
-	  stw       r0, 0x4C(r30)
-	  stw       r30, 0x10(r1)
-	  lwz       r0, 0x50(r30)
-	  stw       r3, 0x8(r1)
-	  stw       r0, 0x14(r1)
-	  lwz       r0, 0x3C(r30)
-	  stw       r0, 0x18(r1)
-	  lwz       r3, 0x58(r30)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x58(r30)
-	  stw       r0, 0x1C(r1)
-	  bl        0xAB64
-	  lis       r4, 0x800A
-	  addi      r5, r1, 0x10
-	  subi      r4, r4, 0x4488
-	  li        r6, 0x10
-	  bl        0xCB8C
-	  cmpwi     r3, 0
-	  bne-      .loc_0xF8
-	  addi      r3, r30, 0x4
-	  bl        0xAF7C
-	  lwz       r3, 0x8(r1)
-	  bl        0x52E0C
-	  li        r31, 0
-	  b         .loc_0x104
+lbl_8009BDEC:
+	bl       OSDisableInterrupts
+	li       r4, 0
+	li       r0, 1
+	stw      r4, 0x48(r30)
+	stw      r0, 0x4c(r30)
+	stw      r30, 0x10(r1)
+	lwz      r0, 0x50(r30)
+	stw      r3, 8(r1)
+	stw      r0, 0x14(r1)
+	lwz      r0, 0x3c(r30)
+	stw      r0, 0x18(r1)
+	lwz      r3, 0x58(r30)
+	addi     r0, r3, 1
+	stw      r0, 0x58(r30)
+	stw      r0, 0x1c(r1)
+	bl       getThreadPointer__6JASDvdFv
+	lis      r4, loadToAramCallback__10JASWaveArcFPv@ha
+	addi     r5, r1, 0x10
+	addi     r4, r4, loadToAramCallback__10JASWaveArcFPv@l
+	li       r6, 0x10
+	bl       sendCmdMsg__13JASTaskThreadFPFPv_vPCvUl
+	cmpwi    r3, 0
+	bne      lbl_8009BE60
+	addi     r3, r30, 4
+	bl       free__7JASHeapFv
+	lwz      r3, 8(r1)
+	bl       OSRestoreInterrupts
+	li       r31, 0
+	b        lbl_8009BE6C
 
-	.loc_0xF8:
-	  lwz       r3, 0x8(r1)
-	  bl        0x52DFC
-	  li        r31, 0x1
+lbl_8009BE60:
+	lwz      r3, 8(r1)
+	bl       OSRestoreInterrupts
+	li       r31, 1
 
-	.loc_0x104:
-	  lwz       r3, 0xC(r1)
-	  bl        0x52DF0
-	  mr        r3, r31
+lbl_8009BE6C:
+	lwz      r3, 0xc(r1)
+	bl       OSRestoreInterrupts
+	mr       r3, r31
 
-	.loc_0x110:
-	  lwz       r0, 0x34(r1)
-	  lwz       r31, 0x2C(r1)
-	  lwz       r30, 0x28(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_8009BE78:
+	lwz      r0, 0x34(r1)
+	lwz      r31, 0x2c(r1)
+	lwz      r30, 0x28(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -508,16 +542,15 @@ void JASWaveArc::loadBlockTail(JASHeap*)
 void JASWaveArc::erase()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  addi      r3, r3, 0x4
-	  stw       r0, 0x14(r1)
-	  bl        0xAF28
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	addi     r3, r3, 4
+	stw      r0, 0x14(r1)
+	bl       free__7JASHeapFv
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -529,52 +562,51 @@ void JASWaveArc::erase()
 void JASWaveArc::onDispose()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r3
-	  bl        0x52D70
-	  lwz       r0, 0x4C(r31)
-	  stw       r3, 0x8(r1)
-	  cmpwi     r0, 0
-	  bne-      .loc_0x34
-	  bl        0x52D84
-	  li        r0, 0
-	  b         .loc_0x64
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r3
+	bl       OSDisableInterrupts
+	lwz      r0, 0x4c(r31)
+	stw      r3, 8(r1)
+	cmpwi    r0, 0
+	bne      lbl_8009BEE8
+	bl       OSRestoreInterrupts
+	li       r0, 0
+	b        lbl_8009BF18
 
-	.loc_0x34:
-	  cmpwi     r0, 0x1
-	  bne-      .loc_0x50
-	  li        r0, 0
-	  stw       r0, 0x4C(r31)
-	  bl        0x52D68
-	  li        r0, 0
-	  b         .loc_0x64
+lbl_8009BEE8:
+	cmpwi    r0, 1
+	bne      lbl_8009BF04
+	li       r0, 0
+	stw      r0, 0x4c(r31)
+	bl       OSRestoreInterrupts
+	li       r0, 0
+	b        lbl_8009BF18
 
-	.loc_0x50:
-	  li        r0, 0
-	  stw       r0, 0x48(r31)
-	  stw       r0, 0x4C(r31)
-	  bl        0x52D50
-	  li        r0, 0x1
+lbl_8009BF04:
+	li       r0, 0
+	stw      r0, 0x48(r31)
+	stw      r0, 0x4c(r31)
+	bl       OSRestoreInterrupts
+	li       r0, 1
 
-	.loc_0x64:
-	  rlwinm.   r0,r0,0,24,31
-	  beq-      .loc_0x80
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
+lbl_8009BF18:
+	clrlwi.  r0, r0, 0x18
+	beq      lbl_8009BF34
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x80:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8009BF34:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -596,66 +628,65 @@ void JASWaveArc::setEntryNum(long)
 void JASWaveArc::setFileName(const char*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x60(r1)
-	  mflr      r0
-	  lis       r5, 0x804A
-	  stw       r0, 0x64(r1)
-	  stw       r31, 0x5C(r1)
-	  stw       r30, 0x58(r1)
-	  stw       r29, 0x54(r1)
-	  mr        r29, r4
-	  stw       r28, 0x50(r1)
-	  mr        r28, r3
-	  addi      r3, r5, 0x3898
-	  bl        0x2E99C
-	  mr        r31, r3
-	  mr        r3, r29
-	  bl        0x2E990
-	  add       r31, r31, r3
-	  bl        0xB434
-	  mr        r4, r3
-	  addi      r3, r31, 0x1
-	  li        r5, -0x4
-	  bl        -0x77F50
-	  lis       r4, 0x804A
-	  mr        r30, r3
-	  addi      r4, r4, 0x3898
-	  bl        0x2E8B0
-	  mr        r3, r30
-	  mr        r4, r29
-	  bl        0x2E834
-	  li        r0, 0
-	  mr        r3, r30
-	  stbx      r0, r30, r31
-	  bl        0x401A0
-	  mr        r0, r3
-	  mr        r3, r30
-	  mr        r30, r0
-	  bl        -0x77EFC
-	  cmpwi     r30, 0
-	  blt-      .loc_0xC4
-	  blt-      .loc_0xC4
-	  mr        r3, r30
-	  addi      r4, r1, 0x8
-	  bl        0x4046C
-	  cmpwi     r3, 0
-	  beq-      .loc_0xC4
-	  lwz       r0, 0x3C(r1)
-	  addi      r3, r1, 0x8
-	  stw       r0, 0x54(r28)
-	  bl        0x40590
-	  stw       r30, 0x50(r28)
+	stwu     r1, -0x60(r1)
+	mflr     r0
+	lis      r5, sCurrentDir__16JASWaveArcLoader@ha
+	stw      r0, 0x64(r1)
+	stw      r31, 0x5c(r1)
+	stw      r30, 0x58(r1)
+	stw      r29, 0x54(r1)
+	mr       r29, r4
+	stw      r28, 0x50(r1)
+	mr       r28, r3
+	addi     r3, r5, sCurrentDir__16JASWaveArcLoader@l
+	bl       strlen
+	mr       r31, r3
+	mr       r3, r29
+	bl       strlen
+	add      r31, r31, r3
+	bl       getSystemHeap__9JASKernelFv
+	mr       r4, r3
+	addi     r3, r31, 1
+	li       r5, -4
+	bl       __nwa__FUlP7JKRHeapi
+	lis      r4, sCurrentDir__16JASWaveArcLoader@ha
+	mr       r30, r3
+	addi     r4, r4, sCurrentDir__16JASWaveArcLoader@l
+	bl       strcpy
+	mr       r3, r30
+	mr       r4, r29
+	bl       strcat
+	li       r0, 0
+	mr       r3, r30
+	stbx     r0, r30, r31
+	bl       DVDConvertPathToEntrynum
+	mr       r0, r3
+	mr       r3, r30
+	mr       r30, r0
+	bl       __dla__FPv
+	cmpwi    r30, 0
+	blt      lbl_8009C00C
+	blt      lbl_8009C00C
+	mr       r3, r30
+	addi     r4, r1, 8
+	bl       DVDFastOpen
+	cmpwi    r3, 0
+	beq      lbl_8009C00C
+	lwz      r0, 0x3c(r1)
+	addi     r3, r1, 8
+	stw      r0, 0x54(r28)
+	bl       DVDClose
+	stw      r30, 0x50(r28)
 
-	.loc_0xC4:
-	  lwz       r0, 0x64(r1)
-	  lwz       r31, 0x5C(r1)
-	  lwz       r30, 0x58(r1)
-	  lwz       r29, 0x54(r1)
-	  lwz       r28, 0x50(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x60
-	  blr
+lbl_8009C00C:
+	lwz      r0, 0x64(r1)
+	lwz      r31, 0x5c(r1)
+	lwz      r30, 0x58(r1)
+	lwz      r29, 0x54(r1)
+	lwz      r28, 0x50(r1)
+	mtlr     r0
+	addi     r1, r1, 0x60
+	blr
 	*/
 }
 

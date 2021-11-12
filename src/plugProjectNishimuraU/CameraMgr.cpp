@@ -1,5 +1,644 @@
 #include "types.h"
 
+/*
+    Generated from dpostproc
+
+    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
+    .4byte __sinit_CameraMgr_cpp
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_80484190
+    lbl_80484190:
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x3234362D
+        .4byte 0x43616D65
+        .4byte 0x72614D67
+        .4byte 0x72000000
+    .global lbl_804841AC
+    lbl_804841AC:
+        .4byte 0x43616D65
+        .4byte 0x72614D67
+        .4byte 0x72000000
+    .global lbl_804841B8
+    lbl_804841B8:
+        .4byte 0x2F757365
+        .4byte 0x722F4E69
+        .4byte 0x7368696D
+        .4byte 0x7572612F
+        .4byte 0x43616D65
+        .4byte 0x72612F63
+        .4byte 0x61766543
+        .4byte 0x616D6572
+        .4byte 0x61506172
+        .4byte 0x6D732E74
+        .4byte 0x78740000
+    .global lbl_804841E4
+    lbl_804841E4:
+        .4byte 0x2F757365
+        .4byte 0x722F4E69
+        .4byte 0x7368696D
+        .4byte 0x7572612F
+        .4byte 0x43616D65
+        .4byte 0x72612F67
+        .4byte 0x726F756E
+        .4byte 0x6443616D
+        .4byte 0x65726150
+        .4byte 0x61726D73
+        .4byte 0x2E747874
+        .4byte 0x00000000
+        .4byte 0x56696272
+        .4byte 0x6174696F
+        .4byte 0x6E506172
+        .4byte 0x6D730000
+        .4byte 0x454C4556
+        .4byte 0x4154494F
+        .4byte 0x4E5F4C49
+        .4byte 0x47485428
+        .4byte 0x76696229
+        .4byte 0x00000000
+        .4byte 0x454C4556
+        .4byte 0x4154494F
+        .4byte 0x4E5F4D49
+        .4byte 0x44444C45
+        .4byte 0x28766962
+        .4byte 0x29000000
+        .4byte 0x454C4556
+        .4byte 0x4154494F
+        .4byte 0x4E5F4841
+        .4byte 0x52442876
+        .4byte 0x69622900
+        .4byte 0x454C4556
+        .4byte 0x4154494F
+        .4byte 0x4E5F534C
+        .4byte 0x4F572873
+        .4byte 0x70656564
+        .4byte 0x29000000
+        .4byte 0x454C4556
+        .4byte 0x4154494F
+        .4byte 0x4E5F4D49
+        .4byte 0x44444C45
+        .4byte 0x28737065
+        .4byte 0x65642900
+        .4byte 0x454C4556
+        .4byte 0x4154494F
+        .4byte 0x4E5F4641
+        .4byte 0x53542873
+        .4byte 0x70656564
+        .4byte 0x29000000
+        .4byte 0x454C4556
+        .4byte 0x4154494F
+        .4byte 0x4E5F5348
+        .4byte 0x4F525428
+        .4byte 0x74696D65
+        .4byte 0x29000000
+        .4byte 0x454C4556
+        .4byte 0x4154494F
+        .4byte 0x4E5F4D49
+        .4byte 0x44444C45
+        .4byte 0x2874696D
+        .4byte 0x65290000
+        .4byte 0x454C4556
+        .4byte 0x4154494F
+        .4byte 0x4E5F4C4F
+        .4byte 0x4E472874
+        .4byte 0x696D6529
+        .4byte 0x00000000
+        .4byte 0x454C4556
+        .4byte 0x4154494F
+        .4byte 0x4E5F4841
+        .4byte 0x52442856
+        .4byte 0x69622900
+        .4byte 0x454C4556
+        .4byte 0x4154494F
+        .4byte 0x4E5F4841
+        .4byte 0x52442853
+        .4byte 0x70656564
+        .4byte 0x29000000
+        .4byte 0x454C4556
+        .4byte 0x4154494F
+        .4byte 0x4E5F4841
+        .4byte 0x52442854
+        .4byte 0x696D6529
+        .4byte 0x00000000
+        .4byte 0x5A4F4F4D
+        .4byte 0x5F53484F
+        .4byte 0x52542856
+        .4byte 0x69622900
+        .4byte 0x5A4F4F4D
+        .4byte 0x5F53484F
+        .4byte 0x52542853
+        .4byte 0x70656564
+        .4byte 0x29000000
+        .4byte 0x5A4F4F4D
+        .4byte 0x5F53484F
+        .4byte 0x52542854
+        .4byte 0x696D6529
+        .4byte 0x00000000
+        .4byte 0x415A494D
+        .4byte 0x5554485F
+        .4byte 0x53484F52
+        .4byte 0x54285669
+        .4byte 0x62290000
+        .4byte 0x415A494D
+        .4byte 0x5554485F
+        .4byte 0x53484F52
+        .4byte 0x54285370
+        .4byte 0x65656429
+        .4byte 0x00000000
+        .4byte 0x415A494D
+        .4byte 0x5554485F
+        .4byte 0x53484F52
+        .4byte 0x54285469
+        .4byte 0x6D652900
+        .4byte 0x56696220
+        .4byte 0x4D617820
+        .4byte 0x44697374
+        .4byte 0x616E6365
+        .4byte 0x00000000
+        .4byte 0x43616D65
+        .4byte 0x72615061
+        .4byte 0x726D7300
+        .4byte 0x4E656172
+        .4byte 0x284C6F77
+        .4byte 0x298B9797
+        .4byte 0xA3000000
+        .4byte 0x4E656172
+        .4byte 0x284C6F77
+        .4byte 0x29834183
+        .4byte 0x93834F83
+        .4byte 0x8B000000
+        .4byte 0x4E656172
+        .4byte 0x284C6F77
+        .4byte 0x29826582
+        .4byte 0x6E827500
+        .4byte 0x4E656172
+        .4byte 0x284C6F77
+        .4byte 0x29834983
+        .4byte 0x74835A83
+        .4byte 0x62836700
+        .4byte 0x4E656172
+        .4byte 0x284C6F77
+        .4byte 0x29834583
+        .4byte 0x46834383
+        .4byte 0x67000000
+        .4byte 0x4E656172
+        .4byte 0x284C6F77
+        .4byte 0x29446574
+        .4byte 0x61636865
+        .4byte 0x64000000
+        .4byte 0x4E656172
+        .4byte 0x284C6F77
+        .4byte 0x294E6561
+        .4byte 0x72000000
+        .4byte 0x4E656172
+        .4byte 0x284C6F77
+        .4byte 0x29466172
+        .4byte 0x00000000
+        .4byte 0x4D696428
+        .4byte 0x4C6F7729
+        .4byte 0x8B9797A3
+        .4byte 0x00000000
+        .4byte 0x4D696428
+        .4byte 0x4C6F7729
+        .4byte 0x83418393
+        .4byte 0x834F838B
+        .4byte 0x00000000
+        .4byte 0x4D696428
+        .4byte 0x4C6F7729
+        .4byte 0x8265826E
+        .4byte 0x82750000
+        .4byte 0x4D696428
+        .4byte 0x4C6F7729
+        .4byte 0x83498374
+        .4byte 0x835A8362
+        .4byte 0x83670000
+        .4byte 0x4D696428
+        .4byte 0x4C6F7729
+        .4byte 0x83458346
+        .4byte 0x83438367
+        .4byte 0x00000000
+        .4byte 0x4D696428
+        .4byte 0x4C6F7729
+        .4byte 0x44657461
+        .4byte 0x63686564
+        .4byte 0x00000000
+        .4byte 0x4D696428
+        .4byte 0x4C6F7729
+        .4byte 0x4E656172
+        .4byte 0x00000000
+        .4byte 0x4D696428
+        .4byte 0x4C6F7729
+        .4byte 0x46617200
+        .4byte 0x46617228
+        .4byte 0x4C6F7729
+        .4byte 0x8B9797A3
+        .4byte 0x00000000
+        .4byte 0x46617228
+        .4byte 0x4C6F7729
+        .4byte 0x83418393
+        .4byte 0x834F838B
+        .4byte 0x00000000
+        .4byte 0x46617228
+        .4byte 0x4C6F7729
+        .4byte 0x8265826E
+        .4byte 0x82750000
+        .4byte 0x46617228
+        .4byte 0x4C6F7729
+        .4byte 0x83498374
+        .4byte 0x835A8362
+        .4byte 0x83670000
+        .4byte 0x46617228
+        .4byte 0x4C6F7729
+        .4byte 0x83458346
+        .4byte 0x83438367
+        .4byte 0x00000000
+        .4byte 0x46617228
+        .4byte 0x4C6F7729
+        .4byte 0x44657461
+        .4byte 0x63686564
+        .4byte 0x00000000
+        .4byte 0x46617228
+        .4byte 0x4C6F7729
+        .4byte 0x4E656172
+        .4byte 0x00000000
+        .4byte 0x46617228
+        .4byte 0x4C6F7729
+        .4byte 0x46617200
+        .4byte 0x4E656172
+        .4byte 0x28486967
+        .4byte 0x68298B97
+        .4byte 0x97A30000
+        .4byte 0x4E656172
+        .4byte 0x28486967
+        .4byte 0x68298341
+        .4byte 0x8393834F
+        .4byte 0x838B0000
+        .4byte 0x4E656172
+        .4byte 0x28486967
+        .4byte 0x68298265
+        .4byte 0x826E8275
+        .4byte 0x00000000
+        .4byte 0x4E656172
+        .4byte 0x28486967
+        .4byte 0x68298349
+        .4byte 0x8374835A
+        .4byte 0x83628367
+        .4byte 0x00000000
+        .4byte 0x4E656172
+        .4byte 0x28486967
+        .4byte 0x68298345
+        .4byte 0x83468343
+        .4byte 0x83670000
+        .4byte 0x4E656172
+        .4byte 0x28486967
+        .4byte 0x68294465
+        .4byte 0x74616368
+        .4byte 0x65640000
+        .4byte 0x4E656172
+        .4byte 0x28486967
+        .4byte 0x68294E65
+        .4byte 0x61720000
+        .4byte 0x4E656172
+        .4byte 0x28486967
+        .4byte 0x68294661
+        .4byte 0x72000000
+        .4byte 0x4D696428
+        .4byte 0x48696768
+        .4byte 0x298B9797
+        .4byte 0xA3000000
+        .4byte 0x4D696428
+        .4byte 0x48696768
+        .4byte 0x29834183
+        .4byte 0x93834F83
+        .4byte 0x8B000000
+        .4byte 0x4D696428
+        .4byte 0x48696768
+        .4byte 0x29826582
+        .4byte 0x6E827500
+        .4byte 0x4D696428
+        .4byte 0x48696768
+        .4byte 0x29834983
+        .4byte 0x74835A83
+        .4byte 0x62836700
+        .4byte 0x4D696428
+        .4byte 0x48696768
+        .4byte 0x29834583
+        .4byte 0x46834383
+        .4byte 0x67000000
+        .4byte 0x4D696428
+        .4byte 0x48696768
+        .4byte 0x29446574
+        .4byte 0x61636865
+        .4byte 0x64000000
+        .4byte 0x4D696428
+        .4byte 0x48696768
+        .4byte 0x294E6561
+        .4byte 0x72000000
+        .4byte 0x4D696428
+        .4byte 0x48696768
+        .4byte 0x29466172
+        .4byte 0x00000000
+        .4byte 0x46617228
+        .4byte 0x48696768
+        .4byte 0x298B9797
+        .4byte 0xA3000000
+        .4byte 0x46617228
+        .4byte 0x48696768
+        .4byte 0x29834183
+        .4byte 0x93834F83
+        .4byte 0x8B000000
+        .4byte 0x46617228
+        .4byte 0x48696768
+        .4byte 0x29826582
+        .4byte 0x6E827500
+        .4byte 0x46617228
+        .4byte 0x48696768
+        .4byte 0x29834983
+        .4byte 0x74835A83
+        .4byte 0x62836700
+        .4byte 0x46617228
+        .4byte 0x48696768
+        .4byte 0x29834583
+        .4byte 0x46834383
+        .4byte 0x67000000
+        .4byte 0x46617228
+        .4byte 0x48696768
+        .4byte 0x29446574
+        .4byte 0x61636865
+        .4byte 0x64000000
+        .4byte 0x46617228
+        .4byte 0x48696768
+        .4byte 0x294E6561
+        .4byte 0x72000000
+        .4byte 0x46617228
+        .4byte 0x48696768
+        .4byte 0x29466172
+        .4byte 0x00000000
+        .4byte 0x5A4F4F4D
+        .4byte 0x208B9797
+        .4byte 0xA3000000
+        .4byte 0x5A4F4F4D
+        .4byte 0x20834183
+        .4byte 0x93834F83
+        .4byte 0x8B000000
+        .4byte 0x5A4F4F4D
+        .4byte 0x20826582
+        .4byte 0x6E827500
+        .4byte 0x8352838A
+        .4byte 0x83578387
+        .4byte 0x839394BC
+        .4byte 0x8C610000
+        .4byte 0x8352838A
+        .4byte 0x83578387
+        .4byte 0x839395E2
+        .4byte 0x8AD491AC
+        .4byte 0x93780000
+        .4byte 0x8352838A
+        .4byte 0x83578387
+        .4byte 0x839395E2
+        .4byte 0x90B38D82
+        .4byte 0x00000000
+        .4byte 0x8352838A
+        .4byte 0x83578387
+        .4byte 0x839396B3
+        .4byte 0x82B58D82
+        .4byte 0x00000000
+        .4byte 0x90DD92E8
+        .4byte 0x95CF8D58
+        .4byte 0x91AC9378
+        .4byte 0x00000000
+        .4byte 0x89F1935D
+        .4byte 0x91AC9378
+        .4byte 0x00000000
+        .4byte 0x89F1935D
+        .4byte 0x92C78F5D
+        .4byte 0x8E9E8AD4
+        .4byte 0x00000000
+        .4byte 0x89F1935D
+        .4byte 0x89C191AC
+        .4byte 0x93780000
+        .4byte 0x89F1935D
+        .4byte 0x8DC58D82
+        .4byte 0x91AC9378
+        .4byte 0x00000000
+        .4byte 0x89F1935D
+        .4byte 0x8CB8908A
+        .4byte 0x97A60000
+    .global lbl_804847FC
+    lbl_804847FC:
+        .4byte 0x43616D65
+        .4byte 0x72614D67
+        .4byte 0x722E6370
+        .4byte 0x70000000
+    .global lbl_8048480C
+    lbl_8048480C:
+        .asciz "P2Assert"
+        .skip 3
+        .4byte 0x63616D65
+        .4byte 0x72612069
+        .4byte 0x73206E6F
+        .4byte 0x6E650A00
+    .global lbl_80484828
+    lbl_80484828:
+        .4byte 0x6E6F7420
+        .4byte 0x7A756B61
+        .4byte 0x6E206D6F
+        .4byte 0x64650A00
+    .global lbl_80484838
+    lbl_80484838:
+        .4byte 0x63616D65
+        .4byte 0x72612070
+        .4byte 0x6172616D
+        .4byte 0x65746572
+        .4byte 0x206E6F6E
+        .4byte 0x650A0000
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global lbl_804C1BC8
+    lbl_804C1BC8:
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+    .global __vt__Q24Game9CameraMgr
+    __vt__Q24Game9CameraMgr:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q24Game9CameraMgrFv
+        .4byte getChildCount__5CNodeFv
+        .4byte 0
+
+    .section .sbss # 0x80514D80 - 0x80516360
+    .global lbl_80515D18
+    lbl_80515D18:
+        .skip 0x4
+    .global lbl_80515D1C
+    lbl_80515D1C:
+        .skip 0x4
+    .global cameraMgr__4Game
+    cameraMgr__4Game:
+        .skip 0x8
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_8051A898
+    lbl_8051A898:
+        .float 1.0
+    .global lbl_8051A89C
+    lbl_8051A89C:
+        .4byte 0x00000000
+    .global lbl_8051A8A0
+    lbl_8051A8A0:
+        .4byte 0x41200000
+    .global lbl_8051A8A4
+    lbl_8051A8A4:
+        .4byte 0x40400000
+    .global lbl_8051A8A8
+    lbl_8051A8A8:
+        .4byte 0x40A00000
+    .global lbl_8051A8AC
+    lbl_8051A8AC:
+        .4byte 0x41700000
+    .global lbl_8051A8B0
+    lbl_8051A8B0:
+        .4byte 0x42C80000
+    .global lbl_8051A8B4
+    lbl_8051A8B4:
+        .4byte 0x41C80000
+    .global lbl_8051A8B8
+    lbl_8051A8B8:
+        .4byte 0x420C0000
+    .global lbl_8051A8BC
+    lbl_8051A8BC:
+        .float 0.3
+    .global lbl_8051A8C0
+    lbl_8051A8C0:
+        .4byte 0x3F400000
+    .global lbl_8051A8C4
+    lbl_8051A8C4:
+        .4byte 0x3FC00000
+    .global lbl_8051A8C8
+    lbl_8051A8C8:
+        .4byte 0x41A00000
+    .global lbl_8051A8CC
+    lbl_8051A8CC:
+        .4byte 0x42480000
+    .global lbl_8051A8D0
+    lbl_8051A8D0:
+        .float 0.25
+    .global lbl_8051A8D4
+    lbl_8051A8D4:
+        .float 0.06
+    .global lbl_8051A8D8
+    lbl_8051A8D8:
+        .4byte 0x42200000
+    .global lbl_8051A8DC
+    lbl_8051A8DC:
+        .4byte 0x443B8000
+    .global lbl_8051A8E0
+    lbl_8051A8E0:
+        .4byte 0x447A0000
+    .global lbl_8051A8E4
+    lbl_8051A8E4:
+        .4byte 0x44160000
+    .global lbl_8051A8E8
+    lbl_8051A8E8:
+        .4byte 0x459C4000
+    .global lbl_8051A8EC
+    lbl_8051A8EC:
+        .4byte 0x42B40000
+    .global lbl_8051A8F0
+    lbl_8051A8F0:
+        .4byte 0x42700000
+    .global lbl_8051A8F4
+    lbl_8051A8F4:
+        .4byte 0x43FA0000
+    .global lbl_8051A8F8
+    lbl_8051A8F8:
+        .4byte 0x418C0000
+    .global lbl_8051A8FC
+    lbl_8051A8FC:
+        .4byte 0x46480000
+    .global lbl_8051A900
+    lbl_8051A900:
+        .4byte 0x41A80000
+    .global lbl_8051A904
+    lbl_8051A904:
+        .4byte 0x41B80000
+    .global lbl_8051A908
+    lbl_8051A908:
+        .4byte 0x42180000
+    .global lbl_8051A90C
+    lbl_8051A90C:
+        .4byte 0x425C0000
+    .global lbl_8051A910
+    lbl_8051A910:
+        .4byte 0x44610000
+    .global lbl_8051A914
+    lbl_8051A914:
+        .4byte 0x41D00000
+    .global lbl_8051A918
+    lbl_8051A918:
+        .4byte 0x42040000
+    .global lbl_8051A91C
+    lbl_8051A91C:
+        .4byte 0x43C80000
+    .global lbl_8051A920
+    lbl_8051A920:
+        .4byte 0x43020000
+    .global lbl_8051A924
+    lbl_8051A924:
+        .4byte 0x41DC0000
+    .global lbl_8051A928
+    lbl_8051A928:
+        .4byte 0x428C0000
+    .global lbl_8051A92C
+    lbl_8051A92C:
+        .4byte 0x42960000
+    .global lbl_8051A930
+    lbl_8051A930:
+        .4byte 0x44960000
+    .global lbl_8051A934
+    lbl_8051A934:
+        .4byte 0x41F00000
+    .global lbl_8051A938
+    lbl_8051A938:
+        .4byte 0x43480000
+    .global lbl_8051A93C
+    lbl_8051A93C:
+        .4byte 0x43250000
+    .global lbl_8051A940
+    lbl_8051A940:
+        .4byte 0x437A0000
+    .global lbl_8051A944
+    lbl_8051A944:
+        .4byte 0x41400000
+    .global lbl_8051A948
+    lbl_8051A948:
+        .4byte 0x43960000
+    .global lbl_8051A94C
+    lbl_8051A94C:
+        .4byte 0x3BA3D70A
+    .global lbl_8051A950
+    lbl_8051A950:
+        .4byte 0x3A83126F
+    .global lbl_8051A954
+    lbl_8051A954:
+        .float 0.1
+    .global lbl_8051A958
+    lbl_8051A958:
+        .4byte 0x3E4CCCCD
+    .global lbl_8051A95C
+    lbl_8051A95C:
+        .4byte 0x3F19999A
+    .global lbl_8051A960
+    lbl_8051A960:
+        .4byte 0x3F666666
+    .global lbl_8051A964
+    lbl_8051A964:
+        .4byte 0x3F59999A
+*/
+
 namespace Game {
 
 /*
@@ -10,25 +649,24 @@ namespace Game {
 CameraMgr::CameraMgr()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        0x1C09F4
-	  lis       r3, 0x804C
-	  lis       r4, 0x8048
-	  addi      r0, r3, 0x1BD4
-	  mr        r3, r31
-	  stw       r0, 0x0(r31)
-	  addi      r0, r4, 0x41AC
-	  stw       r0, 0x14(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       __ct__5CNodeFv
+	lis      r3, __vt__Q24Game9CameraMgr@ha
+	lis      r4, lbl_804841AC@ha
+	addi     r0, r3, __vt__Q24Game9CameraMgr@l
+	mr       r3, r31
+	stw      r0, 0(r31)
+	addi     r0, r4, lbl_804841AC@l
+	stw      r0, 0x14(r31)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -40,94 +678,91 @@ CameraMgr::CameraMgr()
 void CameraMgr::loadResource()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  li        r0, -0x1
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  stw       r0, 0x18(r3)
-	  li        r3, 0x8
-	  bl        -0x22CA44
-	  stw       r3, 0x1C(r31)
-	  li        r3, 0x8
-	  bl        -0x22CA50
-	  stw       r3, 0x20(r31)
-	  li        r3, 0x8
-	  bl        -0x22CA5C
-	  stw       r3, 0x24(r31)
-	  li        r3, 0x998
-	  bl        -0x22CB70
-	  mr.       r0, r3
-	  beq-      .loc_0x5C
-	  li        r4, 0x1
-	  bl        0x5A8
-	  mr        r0, r3
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	li       r0, -1
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	stw      r0, 0x18(r3)
+	li       r3, 8
+	bl       __nwa__FUl
+	stw      r3, 0x1c(r31)
+	li       r3, 8
+	bl       __nwa__FUl
+	stw      r3, 0x20(r31)
+	li       r3, 8
+	bl       __nwa__FUl
+	stw      r3, 0x24(r31)
+	li       r3, 0x998
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_80250A2C
+	li       r4, 1
+	bl       __ct__Q24Game11CameraParmsFv
+	mr       r0, r3
 
-	.loc_0x5C:
-	  stw       r0, 0x28(r31)
-	  li        r3, 0x998
-	  bl        -0x22CB90
-	  mr.       r0, r3
-	  beq-      .loc_0x7C
-	  li        r4, 0x1
-	  bl        0x588
-	  mr        r0, r3
+lbl_80250A2C:
+	stw      r0, 0x28(r31)
+	li       r3, 0x998
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_80250A4C
+	li       r4, 1
+	bl       __ct__Q24Game11CameraParmsFv
+	mr       r0, r3
 
-	.loc_0x7C:
-	  stw       r0, 0x2C(r31)
-	  li        r3, 0x308
-	  bl        -0x22CBB0
-	  mr.       r0, r3
-	  beq-      .loc_0x9C
-	  li        r4, 0x1
-	  bl        .loc_0x12C
-	  mr        r0, r3
+lbl_80250A4C:
+	stw      r0, 0x2c(r31)
+	li       r3, 0x308
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_80250A6C
+	li       r4, 1
+	bl       __ct__Q24Game14VibrationParmsFv
+	mr       r0, r3
 
-	.loc_0x9C:
-	  stw       r0, 0x30(r31)
-	  li        r0, 0
-	  stw       r0, 0x34(r31)
-	  stw       r0, 0x38(r31)
-	  lwz       r3, 0x1C(r31)
-	  stw       r0, 0x0(r3)
-	  lwz       r3, 0x20(r31)
-	  stw       r0, 0x0(r3)
-	  lwz       r3, 0x24(r31)
-	  stw       r0, 0x0(r3)
-	  lwz       r3, 0x1C(r31)
-	  stw       r0, 0x4(r3)
-	  lwz       r3, 0x20(r31)
-	  stw       r0, 0x4(r3)
-	  lwz       r3, 0x24(r31)
-	  stw       r0, 0x4(r3)
-	  lwz       r3, -0x6C18(r13)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x108
-	  lbz       r0, 0x48(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x108
-	  lis       r4, 0x8048
-	  mr        r3, r31
-	  addi      r4, r4, 0x41B8
-	  bl        0x1EAC
-	  b         .loc_0x118
+lbl_80250A6C:
+	stw      r0, 0x30(r31)
+	li       r0, 0
+	stw      r0, 0x34(r31)
+	stw      r0, 0x38(r31)
+	lwz      r3, 0x1c(r31)
+	stw      r0, 0(r3)
+	lwz      r3, 0x20(r31)
+	stw      r0, 0(r3)
+	lwz      r3, 0x24(r31)
+	stw      r0, 0(r3)
+	lwz      r3, 0x1c(r31)
+	stw      r0, 4(r3)
+	lwz      r3, 0x20(r31)
+	stw      r0, 4(r3)
+	lwz      r3, 0x24(r31)
+	stw      r0, 4(r3)
+	lwz      r3, gameSystem__4Game@sda21(r13)
+	cmplwi   r3, 0
+	beq      lbl_80250AD8
+	lbz      r0, 0x48(r3)
+	cmplwi   r0, 0
+	beq      lbl_80250AD8
+	lis      r4, lbl_804841B8@ha
+	mr       r3, r31
+	addi     r4, r4, lbl_804841B8@l
+	bl       readCameraParms__Q24Game9CameraMgrFPc
+	b        lbl_80250AE8
 
-	.loc_0x108:
-	  lis       r4, 0x8048
-	  mr        r3, r31
-	  addi      r4, r4, 0x41E4
-	  bl        0x1E98
+lbl_80250AD8:
+	lis      r4, lbl_804841E4@ha
+	mr       r3, r31
+	addi     r4, r4, lbl_804841E4@l
+	bl       readCameraParms__Q24Game9CameraMgrFPc
 
-	.loc_0x118:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-
-	.loc_0x12C:
+lbl_80250AE8:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -139,317 +774,316 @@ void CameraMgr::loadResource()
 VibrationParms::VibrationParms()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  extsh.    r0, r4
-	  lis       r4, 0x8048
-	  stw       r31, 0xC(r1)
-	  addi      r31, r4, 0x4190
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  beq-      .loc_0x30
-	  addi      r0, r30, 0x304
-	  stw       r0, 0x0(r30)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	extsh.   r0, r4
+	lis      r4, lbl_80484190@ha
+	stw      r31, 0xc(r1)
+	addi     r31, r4, lbl_80484190@l
+	stw      r30, 8(r1)
+	mr       r30, r3
+	beq      lbl_80250B2C
+	addi     r0, r30, 0x304
+	stw      r0, 0(r30)
 
-	.loc_0x30:
-	  li        r0, 0
-	  lis       r5, 0x6365
-	  stw       r0, 0x4(r30)
-	  addi      r0, r31, 0x84
-	  mr        r4, r30
-	  addi      r3, r30, 0xC
-	  stw       r0, 0x8(r30)
-	  addi      r5, r5, 0x6C76
-	  addi      r6, r31, 0x94
-	  bl        0x1C2B08
-	  lis       r3, 0x804B
-	  lis       r5, 0x6365
-	  subi      r0, r3, 0x5344
-	  lfs       f0, -0x3AC8(r2)
-	  stw       r0, 0xC(r30)
-	  mr        r4, r30
-	  lfs       f1, -0x3AC4(r2)
-	  addi      r3, r30, 0x34
-	  stfs      f0, 0x24(r30)
-	  addi      r5, r5, 0x6D76
-	  lfs       f0, -0x3AC0(r2)
-	  addi      r6, r31, 0xAC
-	  stfs      f1, 0x2C(r30)
-	  stfs      f0, 0x30(r30)
-	  bl        0x1C2ACC
-	  lis       r3, 0x804B
-	  lis       r5, 0x6365
-	  subi      r0, r3, 0x5344
-	  lfs       f0, -0x3ABC(r2)
-	  stw       r0, 0x34(r30)
-	  mr        r4, r30
-	  lfs       f1, -0x3AC4(r2)
-	  addi      r3, r30, 0x5C
-	  stfs      f0, 0x4C(r30)
-	  addi      r5, r5, 0x6876
-	  lfs       f0, -0x3AC0(r2)
-	  addi      r6, r31, 0xC4
-	  stfs      f1, 0x54(r30)
-	  stfs      f0, 0x58(r30)
-	  bl        0x1C2A90
-	  lis       r3, 0x804B
-	  lis       r5, 0x6365
-	  subi      r0, r3, 0x5344
-	  lfs       f0, -0x3AB8(r2)
-	  stw       r0, 0x5C(r30)
-	  mr        r4, r30
-	  lfs       f1, -0x3AC4(r2)
-	  addi      r3, r30, 0x84
-	  stfs      f0, 0x74(r30)
-	  addi      r5, r5, 0x7373
-	  lfs       f0, -0x3AC0(r2)
-	  addi      r6, r31, 0xD8
-	  stfs      f1, 0x7C(r30)
-	  stfs      f0, 0x80(r30)
-	  bl        0x1C2A54
-	  lis       r3, 0x804B
-	  lis       r5, 0x6365
-	  subi      r0, r3, 0x5344
-	  lfs       f0, -0x3AB4(r2)
-	  stw       r0, 0x84(r30)
-	  mr        r4, r30
-	  lfs       f1, -0x3AC4(r2)
-	  addi      r3, r30, 0xAC
-	  stfs      f0, 0x9C(r30)
-	  addi      r5, r5, 0x6D73
-	  lfs       f0, -0x3AB0(r2)
-	  addi      r6, r31, 0xF0
-	  stfs      f1, 0xA4(r30)
-	  stfs      f0, 0xA8(r30)
-	  bl        0x1C2A18
-	  lis       r3, 0x804B
-	  lis       r5, 0x6365
-	  subi      r0, r3, 0x5344
-	  lfs       f0, -0x3AAC(r2)
-	  stw       r0, 0xAC(r30)
-	  mr        r4, r30
-	  lfs       f1, -0x3AC4(r2)
-	  addi      r3, r30, 0xD4
-	  stfs      f0, 0xC4(r30)
-	  addi      r5, r5, 0x6673
-	  lfs       f0, -0x3AB0(r2)
-	  addi      r6, r31, 0x108
-	  stfs      f1, 0xCC(r30)
-	  stfs      f0, 0xD0(r30)
-	  bl        0x1C29DC
-	  lis       r3, 0x804B
-	  lis       r5, 0x6365
-	  subi      r0, r3, 0x5344
-	  lfs       f0, -0x3AA8(r2)
-	  stw       r0, 0xD4(r30)
-	  mr        r4, r30
-	  lfs       f1, -0x3AC4(r2)
-	  addi      r3, r30, 0xFC
-	  stfs      f0, 0xEC(r30)
-	  addi      r5, r5, 0x7374
-	  lfs       f0, -0x3AB0(r2)
-	  addi      r6, r31, 0x120
-	  stfs      f1, 0xF4(r30)
-	  stfs      f0, 0xF8(r30)
-	  bl        0x1C29A0
-	  lis       r3, 0x804B
-	  lis       r5, 0x6365
-	  subi      r0, r3, 0x5344
-	  lfs       f0, -0x3AA4(r2)
-	  stw       r0, 0xFC(r30)
-	  mr        r4, r30
-	  lfs       f1, -0x3AC4(r2)
-	  addi      r3, r30, 0x124
-	  stfs      f0, 0x114(r30)
-	  addi      r5, r5, 0x6D74
-	  lfs       f0, -0x3AB8(r2)
-	  addi      r6, r31, 0x138
-	  stfs      f1, 0x11C(r30)
-	  stfs      f0, 0x120(r30)
-	  bl        0x1C2964
-	  lis       r3, 0x804B
-	  lis       r5, 0x6365
-	  subi      r0, r3, 0x5344
-	  lfs       f0, -0x3AA0(r2)
-	  stw       r0, 0x124(r30)
-	  mr        r4, r30
-	  lfs       f1, -0x3AC4(r2)
-	  addi      r3, r30, 0x14C
-	  stfs      f0, 0x13C(r30)
-	  addi      r5, r5, 0x6C74
-	  lfs       f0, -0x3AB8(r2)
-	  addi      r6, r31, 0x150
-	  stfs      f1, 0x144(r30)
-	  stfs      f0, 0x148(r30)
-	  bl        0x1C2928
-	  lis       r3, 0x804B
-	  lis       r5, 0x6365
-	  subi      r0, r3, 0x5344
-	  lfs       f0, -0x3A9C(r2)
-	  stw       r0, 0x14C(r30)
-	  mr        r4, r30
-	  lfs       f1, -0x3AC4(r2)
-	  addi      r3, r30, 0x174
-	  stfs      f0, 0x164(r30)
-	  addi      r5, r5, 0x7176
-	  lfs       f0, -0x3AB8(r2)
-	  addi      r6, r31, 0x168
-	  stfs      f1, 0x16C(r30)
-	  stfs      f0, 0x170(r30)
-	  bl        0x1C28EC
-	  lis       r3, 0x804B
-	  lis       r5, 0x6365
-	  subi      r0, r3, 0x5344
-	  lfs       f0, -0x3A98(r2)
-	  stw       r0, 0x174(r30)
-	  mr        r4, r30
-	  lfs       f1, -0x3AC4(r2)
-	  addi      r3, r30, 0x19C
-	  stfs      f0, 0x18C(r30)
-	  addi      r5, r5, 0x7173
-	  lfs       f0, -0x3A94(r2)
-	  addi      r6, r31, 0x17C
-	  stfs      f1, 0x194(r30)
-	  stfs      f0, 0x198(r30)
-	  bl        0x1C28B0
-	  lis       r3, 0x804B
-	  lis       r5, 0x6365
-	  subi      r0, r3, 0x5344
-	  lfs       f0, -0x3AA8(r2)
-	  stw       r0, 0x19C(r30)
-	  mr        r4, r30
-	  lfs       f1, -0x3AC4(r2)
-	  addi      r3, r30, 0x1C4
-	  stfs      f0, 0x1B4(r30)
-	  addi      r5, r5, 0x7174
-	  lfs       f0, -0x3AB0(r2)
-	  addi      r6, r31, 0x194
-	  stfs      f1, 0x1BC(r30)
-	  stfs      f0, 0x1C0(r30)
-	  bl        0x1C2874
-	  lis       r3, 0x804B
-	  lis       r5, 0x637A
-	  subi      r0, r3, 0x5344
-	  lfs       f0, -0x3A90(r2)
-	  stw       r0, 0x1C4(r30)
-	  mr        r4, r30
-	  lfs       f1, -0x3AC4(r2)
-	  addi      r3, r30, 0x1EC
-	  stfs      f0, 0x1DC(r30)
-	  addi      r5, r5, 0x7376
-	  lfs       f0, -0x3AB8(r2)
-	  addi      r6, r31, 0x1AC
-	  stfs      f1, 0x1E4(r30)
-	  stfs      f0, 0x1E8(r30)
-	  bl        0x1C2838
-	  lis       r3, 0x804B
-	  lis       r5, 0x637A
-	  subi      r0, r3, 0x5344
-	  lfs       f0, -0x3AAC(r2)
-	  stw       r0, 0x1EC(r30)
-	  mr        r4, r30
-	  lfs       f1, -0x3AC4(r2)
-	  addi      r3, r30, 0x214
-	  stfs      f0, 0x204(r30)
-	  addi      r5, r5, 0x7373
-	  lfs       f0, -0x3AB0(r2)
-	  addi      r6, r31, 0x1BC
-	  stfs      f1, 0x20C(r30)
-	  stfs      f0, 0x210(r30)
-	  bl        0x1C27FC
-	  lis       r3, 0x804B
-	  lis       r5, 0x637A
-	  subi      r0, r3, 0x5344
-	  lfs       f0, -0x3AA8(r2)
-	  stw       r0, 0x214(r30)
-	  mr        r4, r30
-	  lfs       f1, -0x3AC4(r2)
-	  addi      r3, r30, 0x23C
-	  stfs      f0, 0x22C(r30)
-	  addi      r5, r5, 0x7374
-	  lfs       f0, -0x3A94(r2)
-	  addi      r6, r31, 0x1D0
-	  stfs      f1, 0x234(r30)
-	  stfs      f0, 0x238(r30)
-	  bl        0x1C27C0
-	  lis       r3, 0x804B
-	  lis       r5, 0x6361
-	  subi      r0, r3, 0x5344
-	  lfs       f0, -0x3AA0(r2)
-	  stw       r0, 0x23C(r30)
-	  mr        r4, r30
-	  lfs       f1, -0x3AC4(r2)
-	  addi      r3, r30, 0x264
-	  stfs      f0, 0x254(r30)
-	  addi      r5, r5, 0x7376
-	  lfs       f0, -0x3AB8(r2)
-	  addi      r6, r31, 0x1E4
-	  stfs      f1, 0x25C(r30)
-	  stfs      f0, 0x260(r30)
-	  bl        0x1C2784
-	  lis       r3, 0x804B
-	  lis       r5, 0x6361
-	  subi      r0, r3, 0x5344
-	  lfs       f0, -0x3A8C(r2)
-	  stw       r0, 0x264(r30)
-	  mr        r4, r30
-	  lfs       f1, -0x3AC4(r2)
-	  addi      r3, r30, 0x28C
-	  stfs      f0, 0x27C(r30)
-	  addi      r5, r5, 0x7373
-	  lfs       f0, -0x3AC8(r2)
-	  addi      r6, r31, 0x1F8
-	  stfs      f1, 0x284(r30)
-	  stfs      f0, 0x288(r30)
-	  bl        0x1C2748
-	  lis       r3, 0x804B
-	  lis       r5, 0x6361
-	  subi      r0, r3, 0x5344
-	  lfs       f0, -0x3A88(r2)
-	  stw       r0, 0x28C(r30)
-	  mr        r4, r30
-	  lfs       f1, -0x3AC4(r2)
-	  addi      r3, r30, 0x2B4
-	  stfs      f0, 0x2A4(r30)
-	  addi      r5, r5, 0x7374
-	  lfs       f0, -0x3A94(r2)
-	  addi      r6, r31, 0x210
-	  stfs      f1, 0x2AC(r30)
-	  stfs      f0, 0x2B0(r30)
-	  bl        0x1C270C
-	  lis       r3, 0x804B
-	  lis       r5, 0x636D
-	  subi      r0, r3, 0x5344
-	  lfs       f0, -0x3AA0(r2)
-	  stw       r0, 0x2B4(r30)
-	  mr        r4, r30
-	  lfs       f1, -0x3AC4(r2)
-	  addi      r3, r30, 0x2DC
-	  stfs      f0, 0x2CC(r30)
-	  addi      r5, r5, 0x646D
-	  lfs       f0, -0x3AB8(r2)
-	  addi      r6, r31, 0x224
-	  stfs      f1, 0x2D4(r30)
-	  stfs      f0, 0x2D8(r30)
-	  bl        0x1C26D0
-	  lis       r3, 0x804B
-	  lfs       f2, -0x3A84(r2)
-	  subi      r0, r3, 0x5344
-	  lfs       f1, -0x3AC4(r2)
-	  stw       r0, 0x2DC(r30)
-	  mr        r3, r30
-	  lfs       f0, -0x3A80(r2)
-	  stfs      f2, 0x2F4(r30)
-	  stfs      f1, 0x2FC(r30)
-	  stfs      f0, 0x300(r30)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80250B2C:
+	li       r0, 0
+	lis      r5, 0x63656C76@ha
+	stw      r0, 4(r30)
+	addi     r0, r31, 0x84
+	mr       r4, r30
+	addi     r3, r30, 0xc
+	stw      r0, 8(r30)
+	addi     r5, r5, 0x63656C76@l
+	addi     r6, r31, 0x94
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x63656D76@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_8051A898@sda21(r2)
+	stw      r0, 0xc(r30)
+	mr       r4, r30
+	lfs      f1, lbl_8051A89C@sda21(r2)
+	addi     r3, r30, 0x34
+	stfs     f0, 0x24(r30)
+	addi     r5, r5, 0x63656D76@l
+	lfs      f0, lbl_8051A8A0@sda21(r2)
+	addi     r6, r31, 0xac
+	stfs     f1, 0x2c(r30)
+	stfs     f0, 0x30(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x63656876@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_8051A8A4@sda21(r2)
+	stw      r0, 0x34(r30)
+	mr       r4, r30
+	lfs      f1, lbl_8051A89C@sda21(r2)
+	addi     r3, r30, 0x5c
+	stfs     f0, 0x4c(r30)
+	addi     r5, r5, 0x63656876@l
+	lfs      f0, lbl_8051A8A0@sda21(r2)
+	addi     r6, r31, 0xc4
+	stfs     f1, 0x54(r30)
+	stfs     f0, 0x58(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x63657373@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_8051A8A8@sda21(r2)
+	stw      r0, 0x5c(r30)
+	mr       r4, r30
+	lfs      f1, lbl_8051A89C@sda21(r2)
+	addi     r3, r30, 0x84
+	stfs     f0, 0x74(r30)
+	addi     r5, r5, 0x63657373@l
+	lfs      f0, lbl_8051A8A0@sda21(r2)
+	addi     r6, r31, 0xd8
+	stfs     f1, 0x7c(r30)
+	stfs     f0, 0x80(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x63656D73@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_8051A8AC@sda21(r2)
+	stw      r0, 0x84(r30)
+	mr       r4, r30
+	lfs      f1, lbl_8051A89C@sda21(r2)
+	addi     r3, r30, 0xac
+	stfs     f0, 0x9c(r30)
+	addi     r5, r5, 0x63656D73@l
+	lfs      f0, lbl_8051A8B0@sda21(r2)
+	addi     r6, r31, 0xf0
+	stfs     f1, 0xa4(r30)
+	stfs     f0, 0xa8(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x63656673@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_8051A8B4@sda21(r2)
+	stw      r0, 0xac(r30)
+	mr       r4, r30
+	lfs      f1, lbl_8051A89C@sda21(r2)
+	addi     r3, r30, 0xd4
+	stfs     f0, 0xc4(r30)
+	addi     r5, r5, 0x63656673@l
+	lfs      f0, lbl_8051A8B0@sda21(r2)
+	addi     r6, r31, 0x108
+	stfs     f1, 0xcc(r30)
+	stfs     f0, 0xd0(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x63657374@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_8051A8B8@sda21(r2)
+	stw      r0, 0xd4(r30)
+	mr       r4, r30
+	lfs      f1, lbl_8051A89C@sda21(r2)
+	addi     r3, r30, 0xfc
+	stfs     f0, 0xec(r30)
+	addi     r5, r5, 0x63657374@l
+	lfs      f0, lbl_8051A8B0@sda21(r2)
+	addi     r6, r31, 0x120
+	stfs     f1, 0xf4(r30)
+	stfs     f0, 0xf8(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x63656D74@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_8051A8BC@sda21(r2)
+	stw      r0, 0xfc(r30)
+	mr       r4, r30
+	lfs      f1, lbl_8051A89C@sda21(r2)
+	addi     r3, r30, 0x124
+	stfs     f0, 0x114(r30)
+	addi     r5, r5, 0x63656D74@l
+	lfs      f0, lbl_8051A8A8@sda21(r2)
+	addi     r6, r31, 0x138
+	stfs     f1, 0x11c(r30)
+	stfs     f0, 0x120(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x63656C74@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_8051A8C0@sda21(r2)
+	stw      r0, 0x124(r30)
+	mr       r4, r30
+	lfs      f1, lbl_8051A89C@sda21(r2)
+	addi     r3, r30, 0x14c
+	stfs     f0, 0x13c(r30)
+	addi     r5, r5, 0x63656C74@l
+	lfs      f0, lbl_8051A8A8@sda21(r2)
+	addi     r6, r31, 0x150
+	stfs     f1, 0x144(r30)
+	stfs     f0, 0x148(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x63657176@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_8051A8C4@sda21(r2)
+	stw      r0, 0x14c(r30)
+	mr       r4, r30
+	lfs      f1, lbl_8051A89C@sda21(r2)
+	addi     r3, r30, 0x174
+	stfs     f0, 0x164(r30)
+	addi     r5, r5, 0x63657176@l
+	lfs      f0, lbl_8051A8A8@sda21(r2)
+	addi     r6, r31, 0x168
+	stfs     f1, 0x16c(r30)
+	stfs     f0, 0x170(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x63657173@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_8051A8C8@sda21(r2)
+	stw      r0, 0x174(r30)
+	mr       r4, r30
+	lfs      f1, lbl_8051A89C@sda21(r2)
+	addi     r3, r30, 0x19c
+	stfs     f0, 0x18c(r30)
+	addi     r5, r5, 0x63657173@l
+	lfs      f0, lbl_8051A8CC@sda21(r2)
+	addi     r6, r31, 0x17c
+	stfs     f1, 0x194(r30)
+	stfs     f0, 0x198(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x63657174@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_8051A8B8@sda21(r2)
+	stw      r0, 0x19c(r30)
+	mr       r4, r30
+	lfs      f1, lbl_8051A89C@sda21(r2)
+	addi     r3, r30, 0x1c4
+	stfs     f0, 0x1b4(r30)
+	addi     r5, r5, 0x63657174@l
+	lfs      f0, lbl_8051A8B0@sda21(r2)
+	addi     r6, r31, 0x194
+	stfs     f1, 0x1bc(r30)
+	stfs     f0, 0x1c0(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x637A7376@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_8051A8D0@sda21(r2)
+	stw      r0, 0x1c4(r30)
+	mr       r4, r30
+	lfs      f1, lbl_8051A89C@sda21(r2)
+	addi     r3, r30, 0x1ec
+	stfs     f0, 0x1dc(r30)
+	addi     r5, r5, 0x637A7376@l
+	lfs      f0, lbl_8051A8A8@sda21(r2)
+	addi     r6, r31, 0x1ac
+	stfs     f1, 0x1e4(r30)
+	stfs     f0, 0x1e8(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x637A7373@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_8051A8B4@sda21(r2)
+	stw      r0, 0x1ec(r30)
+	mr       r4, r30
+	lfs      f1, lbl_8051A89C@sda21(r2)
+	addi     r3, r30, 0x214
+	stfs     f0, 0x204(r30)
+	addi     r5, r5, 0x637A7373@l
+	lfs      f0, lbl_8051A8B0@sda21(r2)
+	addi     r6, r31, 0x1bc
+	stfs     f1, 0x20c(r30)
+	stfs     f0, 0x210(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x637A7374@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_8051A8B8@sda21(r2)
+	stw      r0, 0x214(r30)
+	mr       r4, r30
+	lfs      f1, lbl_8051A89C@sda21(r2)
+	addi     r3, r30, 0x23c
+	stfs     f0, 0x22c(r30)
+	addi     r5, r5, 0x637A7374@l
+	lfs      f0, lbl_8051A8CC@sda21(r2)
+	addi     r6, r31, 0x1d0
+	stfs     f1, 0x234(r30)
+	stfs     f0, 0x238(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x63617376@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_8051A8C0@sda21(r2)
+	stw      r0, 0x23c(r30)
+	mr       r4, r30
+	lfs      f1, lbl_8051A89C@sda21(r2)
+	addi     r3, r30, 0x264
+	stfs     f0, 0x254(r30)
+	addi     r5, r5, 0x63617376@l
+	lfs      f0, lbl_8051A8A8@sda21(r2)
+	addi     r6, r31, 0x1e4
+	stfs     f1, 0x25c(r30)
+	stfs     f0, 0x260(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x63617373@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_8051A8D4@sda21(r2)
+	stw      r0, 0x264(r30)
+	mr       r4, r30
+	lfs      f1, lbl_8051A89C@sda21(r2)
+	addi     r3, r30, 0x28c
+	stfs     f0, 0x27c(r30)
+	addi     r5, r5, 0x63617373@l
+	lfs      f0, lbl_8051A898@sda21(r2)
+	addi     r6, r31, 0x1f8
+	stfs     f1, 0x284(r30)
+	stfs     f0, 0x288(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x63617374@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_8051A8D8@sda21(r2)
+	stw      r0, 0x28c(r30)
+	mr       r4, r30
+	lfs      f1, lbl_8051A89C@sda21(r2)
+	addi     r3, r30, 0x2b4
+	stfs     f0, 0x2a4(r30)
+	addi     r5, r5, 0x63617374@l
+	lfs      f0, lbl_8051A8CC@sda21(r2)
+	addi     r6, r31, 0x210
+	stfs     f1, 0x2ac(r30)
+	stfs     f0, 0x2b0(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x636D646D@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_8051A8C0@sda21(r2)
+	stw      r0, 0x2b4(r30)
+	mr       r4, r30
+	lfs      f1, lbl_8051A89C@sda21(r2)
+	addi     r3, r30, 0x2dc
+	stfs     f0, 0x2cc(r30)
+	addi     r5, r5, 0x636D646D@l
+	lfs      f0, lbl_8051A8A8@sda21(r2)
+	addi     r6, r31, 0x224
+	stfs     f1, 0x2d4(r30)
+	stfs     f0, 0x2d8(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lfs      f2, lbl_8051A8DC@sda21(r2)
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f1, lbl_8051A89C@sda21(r2)
+	stw      r0, 0x2dc(r30)
+	mr       r3, r30
+	lfs      f0, lbl_8051A8E0@sda21(r2)
+	stfs     f2, 0x2f4(r30)
+	stfs     f1, 0x2fc(r30)
+	stfs     f0, 0x300(r30)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -461,935 +1095,934 @@ VibrationParms::VibrationParms()
 CameraParms::CameraParms()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  extsh.    r0, r4
-	  lis       r4, 0x8048
-	  stw       r31, 0xC(r1)
-	  addi      r31, r4, 0x4190
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  beq-      .loc_0x30
-	  addi      r0, r30, 0x994
-	  stw       r0, 0x0(r30)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	extsh.   r0, r4
+	lis      r4, lbl_80484190@ha
+	stw      r31, 0xc(r1)
+	addi     r31, r4, lbl_80484190@l
+	stw      r30, 8(r1)
+	mr       r30, r3
+	beq      lbl_80250FFC
+	addi     r0, r30, 0x994
+	stw      r0, 0(r30)
 
-	.loc_0x30:
-	  li        r0, 0
-	  lis       r5, 0x636E
-	  stw       r0, 0x4(r30)
-	  addi      r0, r31, 0x238
-	  mr        r4, r30
-	  addi      r3, r30, 0xC
-	  stw       r0, 0x8(r30)
-	  addi      r5, r5, 0x6C64
-	  addi      r6, r31, 0x244
-	  bl        0x1C2638
-	  lis       r3, 0x804B
-	  lis       r5, 0x636E
-	  subi      r0, r3, 0x5344
-	  lfs       f0, -0x3A7C(r2)
-	  stw       r0, 0xC(r30)
-	  mr        r4, r30
-	  lfs       f1, -0x3AC0(r2)
-	  addi      r3, r30, 0x34
-	  stfs      f0, 0x24(r30)
-	  addi      r5, r5, 0x6C61
-	  lfs       f0, -0x3A78(r2)
-	  addi      r6, r31, 0x254
-	  stfs      f1, 0x2C(r30)
-	  stfs      f0, 0x30(r30)
-	  bl        0x1C25FC
-	  lis       r3, 0x804B
-	  lis       r5, 0x636E
-	  subi      r0, r3, 0x5344
-	  lfs       f0, -0x3A98(r2)
-	  stw       r0, 0x34(r30)
-	  mr        r4, r30
-	  lfs       f1, -0x3AC4(r2)
-	  addi      r3, r30, 0x5C
-	  stfs      f0, 0x4C(r30)
-	  addi      r5, r5, 0x6C66
-	  lfs       f0, -0x3A74(r2)
-	  addi      r6, r31, 0x268
-	  stfs      f1, 0x54(r30)
-	  stfs      f0, 0x58(r30)
-	  bl        0x1C25C0
-	  lis       r3, 0x804B
-	  lis       r5, 0x636E
-	  subi      r0, r3, 0x5344
-	  lfs       f0, -0x3AC0(r2)
-	  stw       r0, 0x5C(r30)
-	  mr        r4, r30
-	  lfs       f1, -0x3AC8(r2)
-	  addi      r3, r30, 0x84
-	  stfs      f0, 0x74(r30)
-	  addi      r5, r5, 0x6C6F
-	  lfs       f0, -0x3A70(r2)
-	  addi      r6, r31, 0x278
-	  stfs      f1, 0x7C(r30)
-	  stfs      f0, 0x80(r30)
-	  bl        0x1C2584
-	  lis       r3, 0x804B
-	  lis       r5, 0x636E
-	  subi      r0, r3, 0x5344
-	  lfs       f0, -0x3AAC(r2)
-	  stw       r0, 0x84(r30)
-	  mr        r4, r30
-	  lfs       f1, -0x3AC0(r2)
-	  addi      r3, r30, 0xAC
-	  stfs      f0, 0x9C(r30)
-	  addi      r5, r5, 0x6C77
-	  lfs       f0, -0x3A6C(r2)
-	  addi      r6, r31, 0x28C
-	  stfs      f1, 0xA4(r30)
-	  stfs      f0, 0xA8(r30)
-	  bl        0x1C2548
-	  lis       r3, 0x804B
-	  lis       r5, 0x6E6C
-	  subi      r0, r3, 0x5344
-	  lfs       f0, -0x3A80(r2)
-	  stw       r0, 0xAC(r30)
-	  mr        r4, r30
-	  lfs       f1, -0x3AC0(r2)
-	  addi      r3, r30, 0xD4
-	  stfs      f0, 0xC4(r30)
-	  addi      r5, r5, 0x6474
-	  lfs       f0, -0x3A78(r2)
-	  addi      r6, r31, 0x2A0
-	  stfs      f1, 0xCC(r30)
-	  stfs      f0, 0xD0(r30)
-	  bl        0x1C250C
-	  lis       r3, 0x804B
-	  lis       r5, 0x6E6C
-	  subi      r0, r3, 0x5344
-	  lfs       f0, -0x3A68(r2)
-	  stw       r0, 0xD4(r30)
-	  mr        r4, r30
-	  lfs       f1, -0x3AC4(r2)
-	  addi      r3, r30, 0xFC
-	  stfs      f0, 0xEC(r30)
-	  addi      r5, r5, 0x6E63
-	  lfs       f0, -0x3A80(r2)
-	  addi      r6, r31, 0x2B4
-	  stfs      f1, 0xF4(r30)
-	  stfs      f0, 0xF8(r30)
-	  bl        0x1C24D0
-	  lis       r3, 0x804B
-	  lis       r5, 0x6E6C
-	  subi      r0, r3, 0x5344
-	  lfs       f1, -0x3AC8(r2)
-	  stw       r0, 0xFC(r30)
-	  mr        r4, r30
-	  lfs       f0, -0x3A64(r2)
-	  addi      r3, r30, 0x124
-	  stfs      f1, 0x114(r30)
-	  addi      r5, r5, 0x6663
-	  addi      r6, r31, 0x2C4
-	  stfs      f1, 0x11C(r30)
-	  stfs      f0, 0x120(r30)
-	  bl        0x1C2498
-	  lis       r3, 0x804B
-	  lis       r5, 0x636D
-	  subi      r0, r3, 0x5344
-	  lfs       f1, -0x3A64(r2)
-	  stw       r0, 0x124(r30)
-	  mr        r4, r30
-	  lfs       f0, -0x3AC8(r2)
-	  addi      r3, r30, 0x14C
-	  stfs      f1, 0x13C(r30)
-	  addi      r5, r5, 0x6C64
-	  addi      r6, r31, 0x2D4
-	  stfs      f0, 0x144(r30)
-	  stfs      f1, 0x148(r30)
-	  bl        0x1C2460
-	  lis       r3, 0x804B
-	  lis       r5, 0x636D
-	  subi      r0, r3, 0x5344
-	  lfs       f0, -0x3A7C(r2)
-	  stw       r0, 0x14C(r30)
-	  mr        r4, r30
-	  lfs       f1, -0x3AC0(r2)
-	  addi      r3, r30, 0x174
-	  stfs      f0, 0x164(r30)
-	  addi      r5, r5, 0x6C61
-	  lfs       f0, -0x3A78(r2)
-	  addi      r6, r31, 0x2E4
-	  stfs      f1, 0x16C(r30)
-	  stfs      f0, 0x170(r30)
-	  bl        0x1C2424
-	  lis       r3, 0x804B
-	  lis       r5, 0x636D
-	  subi      r0, r3, 0x5344
-	  lfs       f0, -0x3A60(r2)
-	  stw       r0, 0x174(r30)
-	  mr        r4, r30
-	  lfs       f1, -0x3AC4(r2)
-	  addi      r3, r30, 0x19C
-	  stfs      f0, 0x18C(r30)
-	  addi      r5, r5, 0x6C66
-	  lfs       f0, -0x3A74(r2)
-	  addi      r6, r31, 0x2F8
-	  stfs      f1, 0x194(r30)
-	  stfs      f0, 0x198(r30)
-	  bl        0x1C23E8
-	  lis       r3, 0x804B
-	  lis       r5, 0x636D
-	  subi      r0, r3, 0x5344
-	  lfs       f0, -0x3A5C(r2)
-	  stw       r0, 0x19C(r30)
-	  mr        r4, r30
-	  lfs       f1, -0x3AC8(r2)
-	  addi      r3, r30, 0x1C4
-	  stfs      f0, 0x1B4(r30)
-	  addi      r5, r5, 0x6C6F
-	  lfs       f0, -0x3A70(r2)
-	  addi      r6, r31, 0x308
-	  stfs      f1, 0x1BC(r30)
-	  stfs      f0, 0x1C0(r30)
-	  bl        0x1C23AC
-	  lis       r3, 0x804B
-	  lis       r5, 0x636D
-	  subi      r0, r3, 0x5344
-	  lfs       f0, -0x3A58(r2)
-	  stw       r0, 0x1C4(r30)
-	  mr        r4, r30
-	  lfs       f1, -0x3AC0(r2)
-	  addi      r3, r30, 0x1EC
-	  stfs      f0, 0x1DC(r30)
-	  addi      r5, r5, 0x6C77
-	  lfs       f0, -0x3A6C(r2)
-	  addi      r6, r31, 0x31C
-	  stfs      f1, 0x1E4(r30)
-	  stfs      f0, 0x1E8(r30)
-	  bl        0x1C2370
-	  lis       r3, 0x804B
-	  lis       r5, 0x6D6C
-	  subi      r0, r3, 0x5344
-	  lfs       f0, -0x3A6C(r2)
-	  stw       r0, 0x1EC(r30)
-	  mr        r4, r30
-	  lfs       f1, -0x3AC0(r2)
-	  addi      r3, r30, 0x214
-	  stfs      f0, 0x204(r30)
-	  addi      r5, r5, 0x6474
-	  lfs       f0, -0x3A78(r2)
-	  addi      r6, r31, 0x330
-	  stfs      f1, 0x20C(r30)
-	  stfs      f0, 0x210(r30)
-	  bl        0x1C2334
-	  lis       r3, 0x804B
-	  lis       r5, 0x6D6C
-	  subi      r0, r3, 0x5344
-	  lfs       f0, -0x3A54(r2)
-	  stw       r0, 0x214(r30)
-	  mr        r4, r30
-	  lfs       f1, -0x3AC4(r2)
-	  addi      r3, r30, 0x23C
-	  stfs      f0, 0x22C(r30)
-	  addi      r5, r5, 0x6E63
-	  lfs       f0, -0x3A80(r2)
-	  addi      r6, r31, 0x344
-	  stfs      f1, 0x234(r30)
-	  stfs      f0, 0x238(r30)
-	  bl        0x1C22F8
-	  lis       r3, 0x804B
-	  lis       r5, 0x6D6C
-	  subi      r0, r3, 0x5344
-	  lfs       f1, -0x3AC8(r2)
-	  stw       r0, 0x23C(r30)
-	  mr        r4, r30
-	  lfs       f0, -0x3A64(r2)
-	  addi      r3, r30, 0x264
-	  stfs      f1, 0x254(r30)
-	  addi      r5, r5, 0x6663
-	  addi      r6, r31, 0x354
-	  stfs      f1, 0x25C(r30)
-	  stfs      f0, 0x260(r30)
-	  bl        0x1C22C0
-	  lis       r3, 0x804B
-	  lis       r5, 0x6366
-	  subi      r0, r3, 0x5344
-	  lfs       f1, -0x3A64(r2)
-	  stw       r0, 0x264(r30)
-	  mr        r4, r30
-	  lfs       f0, -0x3AC8(r2)
-	  addi      r3, r30, 0x28C
-	  stfs      f1, 0x27C(r30)
-	  addi      r5, r5, 0x6C64
-	  addi      r6, r31, 0x360
-	  stfs      f0, 0x284(r30)
-	  stfs      f1, 0x288(r30)
-	  bl        0x1C2288
-	  lis       r3, 0x804B
-	  lis       r5, 0x6366
-	  subi      r0, r3, 0x5344
-	  lfs       f0, -0x3A50(r2)
-	  stw       r0, 0x28C(r30)
-	  mr        r4, r30
-	  lfs       f1, -0x3AC0(r2)
-	  addi      r3, r30, 0x2B4
-	  stfs      f0, 0x2A4(r30)
-	  addi      r5, r5, 0x6C61
-	  lfs       f0, -0x3A78(r2)
-	  addi      r6, r31, 0x370
-	  stfs      f1, 0x2AC(r30)
-	  stfs      f0, 0x2B0(r30)
-	  bl        0x1C224C
-	  lis       r3, 0x804B
-	  lis       r5, 0x6366
-	  subi      r0, r3, 0x5344
-	  lfs       f0, -0x3AAC(r2)
-	  stw       r0, 0x2B4(r30)
-	  mr        r4, r30
-	  lfs       f1, -0x3AC4(r2)
-	  addi      r3, r30, 0x2DC
-	  stfs      f0, 0x2CC(r30)
-	  addi      r5, r5, 0x6C66
-	  lfs       f0, -0x3A74(r2)
-	  addi      r6, r31, 0x384
-	  stfs      f1, 0x2D4(r30)
-	  stfs      f0, 0x2D8(r30)
-	  bl        0x1C2210
-	  lis       r3, 0x804B
-	  lis       r5, 0x6366
-	  subi      r0, r3, 0x5344
-	  lfs       f0, -0x3A4C(r2)
-	  stw       r0, 0x2DC(r30)
-	  mr        r4, r30
-	  lfs       f1, -0x3AC8(r2)
-	  addi      r3, r30, 0x304
-	  stfs      f0, 0x2F4(r30)
-	  addi      r5, r5, 0x6C6F
-	  lfs       f0, -0x3A70(r2)
-	  addi      r6, r31, 0x394
-	  stfs      f1, 0x2FC(r30)
-	  stfs      f0, 0x300(r30)
-	  bl        0x1C21D4
-	  lis       r3, 0x804B
-	  lis       r5, 0x6366
-	  subi      r0, r3, 0x5344
-	  lfs       f0, -0x3A48(r2)
-	  stw       r0, 0x304(r30)
-	  mr        r4, r30
-	  lfs       f1, -0x3AC0(r2)
-	  addi      r3, r30, 0x32C
-	  stfs      f0, 0x31C(r30)
-	  addi      r5, r5, 0x6C77
-	  lfs       f0, -0x3A6C(r2)
-	  addi      r6, r31, 0x3A8
-	  stfs      f1, 0x324(r30)
-	  stfs      f0, 0x328(r30)
-	  bl        0x1C2198
-	  lis       r3, 0x804B
-	  lis       r5, 0x666C
-	  subi      r0, r3, 0x5344
-	  lfs       f0, -0x3A44(r2)
-	  stw       r0, 0x32C(r30)
-	  mr        r4, r30
-	  lfs       f1, -0x3AC0(r2)
-	  addi      r3, r30, 0x354
-	  stfs      f0, 0x344(r30)
-	  addi      r5, r5, 0x6474
-	  lfs       f0, -0x3A78(r2)
-	  addi      r6, r31, 0x3BC
-	  stfs      f1, 0x34C(r30)
-	  stfs      f0, 0x350(r30)
-	  bl        0x1C215C
-	  lis       r3, 0x804B
-	  lis       r5, 0x666C
-	  subi      r0, r3, 0x5344
-	  lfs       f0, -0x3A40(r2)
-	  stw       r0, 0x354(r30)
-	  mr        r4, r30
-	  lfs       f1, -0x3AC4(r2)
-	  addi      r3, r30, 0x37C
-	  stfs      f0, 0x36C(r30)
-	  addi      r5, r5, 0x6E63
-	  lfs       f0, -0x3A80(r2)
-	  addi      r6, r31, 0x3D0
-	  stfs      f1, 0x374(r30)
-	  stfs      f0, 0x378(r30)
-	  bl        0x1C2120
-	  lis       r3, 0x804B
-	  lis       r5, 0x666C
-	  subi      r0, r3, 0x5344
-	  lfs       f1, -0x3AC8(r2)
-	  stw       r0, 0x37C(r30)
-	  mr        r4, r30
-	  lfs       f0, -0x3A64(r2)
-	  addi      r3, r30, 0x3A4
-	  stfs      f1, 0x394(r30)
-	  addi      r5, r5, 0x6663
-	  addi      r6, r31, 0x3E0
-	  stfs      f1, 0x39C(r30)
-	  stfs      f0, 0x3A0(r30)
-	  bl        0x1C20E8
-	  lis       r3, 0x804B
-	  lis       r5, 0x636E
-	  subi      r0, r3, 0x5344
-	  lfs       f1, -0x3A64(r2)
-	  stw       r0, 0x3A4(r30)
-	  mr        r4, r30
-	  lfs       f0, -0x3AC8(r2)
-	  addi      r3, r30, 0x3CC
-	  stfs      f1, 0x3BC(r30)
-	  addi      r5, r5, 0x6864
-	  addi      r6, r31, 0x3EC
-	  stfs      f0, 0x3C4(r30)
-	  stfs      f1, 0x3C8(r30)
-	  bl        0x1C20B0
-	  lis       r3, 0x804B
-	  lis       r5, 0x636E
-	  subi      r0, r3, 0x5344
-	  lfs       f0, -0x3A50(r2)
-	  stw       r0, 0x3CC(r30)
-	  mr        r4, r30
-	  lfs       f1, -0x3AC0(r2)
-	  addi      r3, r30, 0x3F4
-	  stfs      f0, 0x3E4(r30)
-	  addi      r5, r5, 0x6861
-	  lfs       f0, -0x3A78(r2)
-	  addi      r6, r31, 0x3FC
-	  stfs      f1, 0x3EC(r30)
-	  stfs      f0, 0x3F0(r30)
-	  bl        0x1C2074
-	  lis       r3, 0x804B
-	  lis       r5, 0x636E
-	  subi      r0, r3, 0x5344
-	  lfs       f0, -0x3A70(r2)
-	  stw       r0, 0x3F4(r30)
-	  mr        r4, r30
-	  lfs       f1, -0x3AC4(r2)
-	  addi      r3, r30, 0x41C
-	  stfs      f0, 0x40C(r30)
-	  addi      r5, r5, 0x6866
-	  lfs       f0, -0x3A74(r2)
-	  addi      r6, r31, 0x410
-	  stfs      f1, 0x414(r30)
-	  stfs      f0, 0x418(r30)
-	  bl        0x1C2038
-	  lis       r3, 0x804B
-	  lis       r5, 0x636E
-	  subi      r0, r3, 0x5344
-	  lfs       f0, -0x3AC0(r2)
-	  stw       r0, 0x41C(r30)
-	  mr        r4, r30
-	  lfs       f1, -0x3AC8(r2)
-	  addi      r3, r30, 0x444
-	  stfs      f0, 0x434(r30)
-	  addi      r5, r5, 0x686F
-	  lfs       f0, -0x3A70(r2)
-	  addi      r6, r31, 0x424
-	  stfs      f1, 0x43C(r30)
-	  stfs      f0, 0x440(r30)
-	  bl        0x1C1FFC
-	  lis       r3, 0x804B
-	  lis       r5, 0x636E
-	  subi      r0, r3, 0x5344
-	  lfs       f0, -0x3A88(r2)
-	  stw       r0, 0x444(r30)
-	  mr        r4, r30
-	  lfs       f1, -0x3AC0(r2)
-	  addi      r3, r30, 0x46C
-	  stfs      f0, 0x45C(r30)
-	  addi      r5, r5, 0x6877
-	  lfs       f0, -0x3A6C(r2)
-	  addi      r6, r31, 0x43C
-	  stfs      f1, 0x464(r30)
-	  stfs      f0, 0x468(r30)
-	  bl        0x1C1FC0
-	  lis       r3, 0x804B
-	  lis       r5, 0x6E68
-	  subi      r0, r3, 0x5344
-	  lfs       f0, -0x3A80(r2)
-	  stw       r0, 0x46C(r30)
-	  mr        r4, r30
-	  lfs       f1, -0x3AC0(r2)
-	  addi      r3, r30, 0x494
-	  stfs      f0, 0x484(r30)
-	  addi      r5, r5, 0x6474
-	  lfs       f0, -0x3A78(r2)
-	  addi      r6, r31, 0x450
-	  stfs      f1, 0x48C(r30)
-	  stfs      f0, 0x490(r30)
-	  bl        0x1C1F84
-	  lis       r3, 0x804B
-	  lis       r5, 0x6E68
-	  subi      r0, r3, 0x5344
-	  lfs       f0, -0x3A3C(r2)
-	  stw       r0, 0x494(r30)
-	  mr        r4, r30
-	  lfs       f1, -0x3AC4(r2)
-	  addi      r3, r30, 0x4BC
-	  stfs      f0, 0x4AC(r30)
-	  addi      r5, r5, 0x6E63
-	  lfs       f0, -0x3A80(r2)
-	  addi      r6, r31, 0x464
-	  stfs      f1, 0x4B4(r30)
-	  stfs      f0, 0x4B8(r30)
-	  bl        0x1C1F48
-	  lis       r3, 0x804B
-	  lis       r5, 0x6E68
-	  subi      r0, r3, 0x5344
-	  lfs       f1, -0x3AC8(r2)
-	  stw       r0, 0x4BC(r30)
-	  mr        r4, r30
-	  lfs       f0, -0x3A64(r2)
-	  addi      r3, r30, 0x4E4
-	  stfs      f1, 0x4D4(r30)
-	  addi      r5, r5, 0x6663
-	  addi      r6, r31, 0x474
-	  stfs      f1, 0x4DC(r30)
-	  stfs      f0, 0x4E0(r30)
-	  bl        0x1C1F10
-	  lis       r3, 0x804B
-	  lis       r5, 0x636D
-	  subi      r0, r3, 0x5344
-	  lfs       f1, -0x3A64(r2)
-	  stw       r0, 0x4E4(r30)
-	  mr        r4, r30
-	  lfs       f0, -0x3AC8(r2)
-	  addi      r3, r30, 0x50C
-	  stfs      f1, 0x4FC(r30)
-	  addi      r5, r5, 0x6864
-	  addi      r6, r31, 0x484
-	  stfs      f0, 0x504(r30)
-	  stfs      f1, 0x508(r30)
-	  bl        0x1C1ED8
-	  lis       r3, 0x804B
-	  lis       r5, 0x636D
-	  subi      r0, r3, 0x5344
-	  lfs       f0, -0x3A50(r2)
-	  stw       r0, 0x50C(r30)
-	  mr        r4, r30
-	  lfs       f1, -0x3AC0(r2)
-	  addi      r3, r30, 0x534
-	  stfs      f0, 0x524(r30)
-	  addi      r5, r5, 0x6861
-	  lfs       f0, -0x3A78(r2)
-	  addi      r6, r31, 0x494
-	  stfs      f1, 0x52C(r30)
-	  stfs      f0, 0x530(r30)
-	  bl        0x1C1E9C
-	  lis       r3, 0x804B
-	  lis       r5, 0x636D
-	  subi      r0, r3, 0x5344
-	  lfs       f0, -0x3A70(r2)
-	  stw       r0, 0x534(r30)
-	  mr        r4, r30
-	  lfs       f1, -0x3AC4(r2)
-	  addi      r3, r30, 0x55C
-	  stfs      f0, 0x54C(r30)
-	  addi      r5, r5, 0x6866
-	  lfs       f0, -0x3A74(r2)
-	  addi      r6, r31, 0x4A8
-	  stfs      f1, 0x554(r30)
-	  stfs      f0, 0x558(r30)
-	  bl        0x1C1E60
-	  lis       r3, 0x804B
-	  lis       r5, 0x636D
-	  subi      r0, r3, 0x5344
-	  lfs       f0, -0x3A98(r2)
-	  stw       r0, 0x55C(r30)
-	  mr        r4, r30
-	  lfs       f1, -0x3AC8(r2)
-	  addi      r3, r30, 0x584
-	  stfs      f0, 0x574(r30)
-	  addi      r5, r5, 0x686F
-	  lfs       f0, -0x3A70(r2)
-	  addi      r6, r31, 0x4B8
-	  stfs      f1, 0x57C(r30)
-	  stfs      f0, 0x580(r30)
-	  bl        0x1C1E24
-	  lis       r3, 0x804B
-	  lis       r5, 0x636D
-	  subi      r0, r3, 0x5344
-	  lfs       f0, -0x3A38(r2)
-	  stw       r0, 0x584(r30)
-	  mr        r4, r30
-	  lfs       f1, -0x3AC0(r2)
-	  addi      r3, r30, 0x5AC
-	  stfs      f0, 0x59C(r30)
-	  addi      r5, r5, 0x6877
-	  lfs       f0, -0x3A6C(r2)
-	  addi      r6, r31, 0x4CC
-	  stfs      f1, 0x5A4(r30)
-	  stfs      f0, 0x5A8(r30)
-	  bl        0x1C1DE8
-	  lis       r3, 0x804B
-	  lis       r5, 0x6D68
-	  subi      r0, r3, 0x5344
-	  lfs       f0, -0x3A6C(r2)
-	  stw       r0, 0x5AC(r30)
-	  mr        r4, r30
-	  lfs       f1, -0x3AC0(r2)
-	  addi      r3, r30, 0x5D4
-	  stfs      f0, 0x5C4(r30)
-	  addi      r5, r5, 0x6474
-	  lfs       f0, -0x3A78(r2)
-	  addi      r6, r31, 0x4E0
-	  stfs      f1, 0x5CC(r30)
-	  stfs      f0, 0x5D0(r30)
-	  bl        0x1C1DAC
-	  lis       r3, 0x804B
-	  lis       r5, 0x6D68
-	  subi      r0, r3, 0x5344
-	  lfs       f0, -0x3A34(r2)
-	  stw       r0, 0x5D4(r30)
-	  mr        r4, r30
-	  lfs       f1, -0x3AC4(r2)
-	  addi      r3, r30, 0x5FC
-	  stfs      f0, 0x5EC(r30)
-	  addi      r5, r5, 0x6E63
-	  lfs       f0, -0x3A80(r2)
-	  addi      r6, r31, 0x4F4
-	  stfs      f1, 0x5F4(r30)
-	  stfs      f0, 0x5F8(r30)
-	  bl        0x1C1D70
-	  lis       r3, 0x804B
-	  lis       r5, 0x6D68
-	  subi      r0, r3, 0x5344
-	  lfs       f1, -0x3AC8(r2)
-	  stw       r0, 0x5FC(r30)
-	  mr        r4, r30
-	  lfs       f0, -0x3A64(r2)
-	  addi      r3, r30, 0x624
-	  stfs      f1, 0x614(r30)
-	  addi      r5, r5, 0x6663
-	  addi      r6, r31, 0x504
-	  stfs      f1, 0x61C(r30)
-	  stfs      f0, 0x620(r30)
-	  bl        0x1C1D38
-	  lis       r3, 0x804B
-	  lis       r5, 0x6366
-	  subi      r0, r3, 0x5344
-	  lfs       f1, -0x3A64(r2)
-	  stw       r0, 0x624(r30)
-	  mr        r4, r30
-	  lfs       f0, -0x3AC8(r2)
-	  addi      r3, r30, 0x64C
-	  stfs      f1, 0x63C(r30)
-	  addi      r5, r5, 0x6864
-	  addi      r6, r31, 0x514
-	  stfs      f0, 0x644(r30)
-	  stfs      f1, 0x648(r30)
-	  bl        0x1C1D00
-	  lis       r3, 0x804B
-	  lis       r5, 0x6366
-	  subi      r0, r3, 0x5344
-	  lfs       f0, -0x3A30(r2)
-	  stw       r0, 0x64C(r30)
-	  mr        r4, r30
-	  lfs       f1, -0x3AC0(r2)
-	  addi      r3, r30, 0x674
-	  stfs      f0, 0x664(r30)
-	  addi      r5, r5, 0x6861
-	  lfs       f0, -0x3A78(r2)
-	  addi      r6, r31, 0x524
-	  stfs      f1, 0x66C(r30)
-	  stfs      f0, 0x670(r30)
-	  bl        0x1C1CC4
-	  lis       r3, 0x804B
-	  lis       r5, 0x6366
-	  subi      r0, r3, 0x5344
-	  lfs       f0, -0x3A70(r2)
-	  stw       r0, 0x674(r30)
-	  mr        r4, r30
-	  lfs       f1, -0x3AC4(r2)
-	  addi      r3, r30, 0x69C
-	  stfs      f0, 0x68C(r30)
-	  addi      r5, r5, 0x6866
-	  lfs       f0, -0x3A74(r2)
-	  addi      r6, r31, 0x538
-	  stfs      f1, 0x694(r30)
-	  stfs      f0, 0x698(r30)
-	  bl        0x1C1C88
-	  lis       r3, 0x804B
-	  lis       r5, 0x6366
-	  subi      r0, r3, 0x5344
-	  lfs       f0, -0x3A2C(r2)
-	  stw       r0, 0x69C(r30)
-	  mr        r4, r30
-	  lfs       f1, -0x3AC8(r2)
-	  addi      r3, r30, 0x6C4
-	  stfs      f0, 0x6B4(r30)
-	  addi      r5, r5, 0x686F
-	  lfs       f0, -0x3A70(r2)
-	  addi      r6, r31, 0x548
-	  stfs      f1, 0x6BC(r30)
-	  stfs      f0, 0x6C0(r30)
-	  bl        0x1C1C4C
-	  lis       r3, 0x804B
-	  lis       r5, 0x6366
-	  subi      r0, r3, 0x5344
-	  lfs       f0, -0x3AB0(r2)
-	  stw       r0, 0x6C4(r30)
-	  mr        r4, r30
-	  lfs       f1, -0x3AC0(r2)
-	  addi      r3, r30, 0x6EC
-	  stfs      f0, 0x6DC(r30)
-	  addi      r5, r5, 0x6877
-	  lfs       f0, -0x3A6C(r2)
-	  addi      r6, r31, 0x55C
-	  stfs      f1, 0x6E4(r30)
-	  stfs      f0, 0x6E8(r30)
-	  bl        0x1C1C10
-	  lis       r3, 0x804B
-	  lis       r5, 0x6668
-	  subi      r0, r3, 0x5344
-	  lfs       f0, -0x3A28(r2)
-	  stw       r0, 0x6EC(r30)
-	  mr        r4, r30
-	  lfs       f1, -0x3AC0(r2)
-	  addi      r3, r30, 0x714
-	  stfs      f0, 0x704(r30)
-	  addi      r5, r5, 0x6474
-	  lfs       f0, -0x3A78(r2)
-	  addi      r6, r31, 0x570
-	  stfs      f1, 0x70C(r30)
-	  stfs      f0, 0x710(r30)
-	  bl        0x1C1BD4
-	  lis       r3, 0x804B
-	  lis       r5, 0x6668
-	  subi      r0, r3, 0x5344
-	  lfs       f0, -0x3A24(r2)
-	  stw       r0, 0x714(r30)
-	  mr        r4, r30
-	  lfs       f1, -0x3AC4(r2)
-	  addi      r3, r30, 0x73C
-	  stfs      f0, 0x72C(r30)
-	  addi      r5, r5, 0x6E63
-	  lfs       f0, -0x3A80(r2)
-	  addi      r6, r31, 0x584
-	  stfs      f1, 0x734(r30)
-	  stfs      f0, 0x738(r30)
-	  bl        0x1C1B98
-	  lis       r3, 0x804B
-	  lis       r5, 0x6668
-	  subi      r0, r3, 0x5344
-	  lfs       f1, -0x3AC8(r2)
-	  stw       r0, 0x73C(r30)
-	  mr        r4, r30
-	  lfs       f0, -0x3A64(r2)
-	  addi      r3, r30, 0x764
-	  stfs      f1, 0x754(r30)
-	  addi      r5, r5, 0x6663
-	  addi      r6, r31, 0x594
-	  stfs      f1, 0x75C(r30)
-	  stfs      f0, 0x760(r30)
-	  bl        0x1C1B60
-	  lis       r3, 0x804B
-	  lis       r5, 0x7A6D
-	  subi      r0, r3, 0x5344
-	  lfs       f1, -0x3A64(r2)
-	  stw       r0, 0x764(r30)
-	  mr        r4, r30
-	  lfs       f0, -0x3AC8(r2)
-	  addi      r3, r30, 0x78C
-	  stfs      f1, 0x77C(r30)
-	  addi      r5, r5, 0x6474
-	  addi      r6, r31, 0x5A4
-	  stfs      f0, 0x784(r30)
-	  stfs      f1, 0x788(r30)
-	  bl        0x1C1B28
-	  lis       r3, 0x804B
-	  lis       r5, 0x7A6D
-	  subi      r0, r3, 0x5344
-	  lfs       f0, -0x3A20(r2)
-	  stw       r0, 0x78C(r30)
-	  mr        r4, r30
-	  lfs       f1, -0x3AC0(r2)
-	  addi      r3, r30, 0x7B4
-	  stfs      f0, 0x7A4(r30)
-	  addi      r5, r5, 0x616E
-	  lfs       f0, -0x3A78(r2)
-	  addi      r6, r31, 0x5B0
-	  stfs      f1, 0x7AC(r30)
-	  stfs      f0, 0x7B0(r30)
-	  bl        0x1C1AEC
-	  lis       r3, 0x804B
-	  lis       r5, 0x7A6D
-	  subi      r0, r3, 0x5344
-	  lfs       f0, -0x3A1C(r2)
-	  stw       r0, 0x7B4(r30)
-	  mr        r4, r30
-	  lfs       f1, -0x3AC4(r2)
-	  addi      r3, r30, 0x7DC
-	  stfs      f0, 0x7CC(r30)
-	  addi      r5, r5, 0x6676
-	  lfs       f0, -0x3A74(r2)
-	  addi      r6, r31, 0x5C0
-	  stfs      f1, 0x7D4(r30)
-	  stfs      f0, 0x7D8(r30)
-	  bl        0x1C1AB0
-	  lis       r3, 0x804B
-	  lis       r5, 0x636C
-	  subi      r0, r3, 0x5344
-	  lfs       f0, -0x3AA8(r2)
-	  stw       r0, 0x7DC(r30)
-	  mr        r4, r30
-	  lfs       f1, -0x3AC8(r2)
-	  addi      r3, r30, 0x804
-	  stfs      f0, 0x7F4(r30)
-	  addi      r5, r5, 0x6372
-	  lfs       f0, -0x3A70(r2)
-	  addi      r6, r31, 0x5CC
-	  stfs      f1, 0x7FC(r30)
-	  stfs      f0, 0x800(r30)
-	  bl        0x1C1A74
-	  lis       r3, 0x804B
-	  lis       r5, 0x636C
-	  subi      r0, r3, 0x5344
-	  lfs       f0, -0x3A18(r2)
-	  stw       r0, 0x804(r30)
-	  mr        r4, r30
-	  lfs       f1, -0x3AC4(r2)
-	  addi      r3, r30, 0x82C
-	  stfs      f0, 0x81C(r30)
-	  addi      r5, r5, 0x6D73
-	  lfs       f0, -0x3A6C(r2)
-	  addi      r6, r31, 0x5DC
-	  stfs      f1, 0x824(r30)
-	  stfs      f0, 0x828(r30)
-	  bl        0x1C1A38
-	  lis       r3, 0x804B
-	  lis       r5, 0x636C
-	  subi      r0, r3, 0x5344
-	  lfs       f0, -0x3A14(r2)
-	  stw       r0, 0x82C(r30)
-	  mr        r4, r30
-	  lfs       f1, -0x3A10(r2)
-	  addi      r3, r30, 0x854
-	  stfs      f0, 0x844(r30)
-	  addi      r5, r5, 0x6D68
-	  lfs       f0, -0x3AC8(r2)
-	  addi      r6, r31, 0x5F0
-	  stfs      f1, 0x84C(r30)
-	  stfs      f0, 0x850(r30)
-	  bl        0x1C19FC
-	  lis       r3, 0x804B
-	  lis       r5, 0x636C
-	  subi      r0, r3, 0x5344
-	  lfs       f0, -0x3AB8(r2)
-	  stw       r0, 0x854(r30)
-	  mr        r4, r30
-	  lfs       f1, -0x3AC4(r2)
-	  addi      r3, r30, 0x87C
-	  stfs      f0, 0x86C(r30)
-	  addi      r5, r5, 0x6E68
-	  lfs       f0, -0x3AB0(r2)
-	  addi      r6, r31, 0x604
-	  stfs      f1, 0x874(r30)
-	  stfs      f0, 0x878(r30)
-	  bl        0x1C19C0
-	  lis       r3, 0x804B
-	  lis       r5, 0x6370
-	  subi      r0, r3, 0x5344
-	  lfs       f0, -0x3AAC(r2)
-	  stw       r0, 0x87C(r30)
-	  mr        r4, r30
-	  lfs       f1, -0x3AC4(r2)
-	  addi      r3, r30, 0x8A4
-	  stfs      f0, 0x894(r30)
-	  addi      r5, r5, 0x6D64
-	  lfs       f0, -0x3A6C(r2)
-	  addi      r6, r31, 0x618
-	  stfs      f1, 0x89C(r30)
-	  stfs      f0, 0x8A0(r30)
-	  bl        0x1C1984
-	  lis       r3, 0x804B
-	  lis       r5, 0x636D
-	  subi      r0, r3, 0x5344
-	  lfs       f0, -0x3A0C(r2)
-	  stw       r0, 0x8A4(r30)
-	  mr        r4, r30
-	  lfs       f1, -0x3AC4(r2)
-	  addi      r3, r30, 0x8CC
-	  stfs      f0, 0x8BC(r30)
-	  addi      r5, r5, 0x6D74
-	  lfs       f0, -0x3AC8(r2)
-	  addi      r6, r31, 0x628
-	  stfs      f1, 0x8C4(r30)
-	  stfs      f0, 0x8C8(r30)
-	  bl        0x1C1948
-	  lis       r3, 0x804B
-	  lis       r5, 0x636D
-	  subi      r0, r3, 0x5344
-	  lfs       f0, -0x3A08(r2)
-	  stw       r0, 0x8CC(r30)
-	  mr        r4, r30
-	  lfs       f1, -0x3AC4(r2)
-	  addi      r3, r30, 0x8F4
-	  stfs      f0, 0x8E4(r30)
-	  addi      r5, r5, 0x6674
-	  lfs       f0, -0x3AC8(r2)
-	  addi      r6, r31, 0x634
-	  stfs      f1, 0x8EC(r30)
-	  stfs      f0, 0x8F0(r30)
-	  bl        0x1C190C
-	  lis       r3, 0x804B
-	  lis       r5, 0x636D
-	  subi      r0, r3, 0x5344
-	  lfs       f0, -0x3A04(r2)
-	  stw       r0, 0x8F4(r30)
-	  mr        r4, r30
-	  lfs       f1, -0x3AC4(r2)
-	  addi      r3, r30, 0x91C
-	  stfs      f0, 0x90C(r30)
-	  addi      r5, r5, 0x7461
-	  lfs       f0, -0x3ABC(r2)
-	  addi      r6, r31, 0x644
-	  stfs      f1, 0x914(r30)
-	  stfs      f0, 0x918(r30)
-	  bl        0x1C18D0
-	  lis       r3, 0x804B
-	  lis       r5, 0x636D
-	  subi      r0, r3, 0x5344
-	  lfs       f0, -0x3A14(r2)
-	  stw       r0, 0x91C(r30)
-	  mr        r4, r30
-	  lfs       f1, -0x3AC4(r2)
-	  addi      r3, r30, 0x944
-	  stfs      f0, 0x934(r30)
-	  addi      r5, r5, 0x746D
-	  lfs       f0, -0x3AC8(r2)
-	  addi      r6, r31, 0x650
-	  stfs      f1, 0x93C(r30)
-	  stfs      f0, 0x940(r30)
-	  bl        0x1C1894
-	  lis       r3, 0x804B
-	  lis       r5, 0x636D
-	  subi      r0, r3, 0x5344
-	  lfs       f0, -0x3A00(r2)
-	  stw       r0, 0x944(r30)
-	  mr        r4, r30
-	  lfs       f1, -0x3AC4(r2)
-	  addi      r3, r30, 0x96C
-	  stfs      f0, 0x95C(r30)
-	  addi      r5, r5, 0x7462
-	  lfs       f0, -0x3AB8(r2)
-	  addi      r6, r31, 0x660
-	  stfs      f1, 0x964(r30)
-	  stfs      f0, 0x968(r30)
-	  bl        0x1C1858
-	  lis       r3, 0x804B
-	  lfs       f2, -0x39FC(r2)
-	  subi      r0, r3, 0x5344
-	  lfs       f1, -0x3AC4(r2)
-	  stw       r0, 0x96C(r30)
-	  mr        r3, r30
-	  lfs       f0, -0x3AC8(r2)
-	  stfs      f2, 0x984(r30)
-	  stfs      f1, 0x98C(r30)
-	  stfs      f0, 0x990(r30)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80250FFC:
+	li       r0, 0
+	lis      r5, 0x636E6C64@ha
+	stw      r0, 4(r30)
+	addi     r0, r31, 0x238
+	mr       r4, r30
+	addi     r3, r30, 0xc
+	stw      r0, 8(r30)
+	addi     r5, r5, 0x636E6C64@l
+	addi     r6, r31, 0x244
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x636E6C61@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_8051A8E4@sda21(r2)
+	stw      r0, 0xc(r30)
+	mr       r4, r30
+	lfs      f1, lbl_8051A8A0@sda21(r2)
+	addi     r3, r30, 0x34
+	stfs     f0, 0x24(r30)
+	addi     r5, r5, 0x636E6C61@l
+	lfs      f0, lbl_8051A8E8@sda21(r2)
+	addi     r6, r31, 0x254
+	stfs     f1, 0x2c(r30)
+	stfs     f0, 0x30(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x636E6C66@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_8051A8C8@sda21(r2)
+	stw      r0, 0x34(r30)
+	mr       r4, r30
+	lfs      f1, lbl_8051A89C@sda21(r2)
+	addi     r3, r30, 0x5c
+	stfs     f0, 0x4c(r30)
+	addi     r5, r5, 0x636E6C66@l
+	lfs      f0, lbl_8051A8EC@sda21(r2)
+	addi     r6, r31, 0x268
+	stfs     f1, 0x54(r30)
+	stfs     f0, 0x58(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x636E6C6F@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_8051A8A0@sda21(r2)
+	stw      r0, 0x5c(r30)
+	mr       r4, r30
+	lfs      f1, lbl_8051A898@sda21(r2)
+	addi     r3, r30, 0x84
+	stfs     f0, 0x74(r30)
+	addi     r5, r5, 0x636E6C6F@l
+	lfs      f0, lbl_8051A8F0@sda21(r2)
+	addi     r6, r31, 0x278
+	stfs     f1, 0x7c(r30)
+	stfs     f0, 0x80(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x636E6C77@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_8051A8B4@sda21(r2)
+	stw      r0, 0x84(r30)
+	mr       r4, r30
+	lfs      f1, lbl_8051A8A0@sda21(r2)
+	addi     r3, r30, 0xac
+	stfs     f0, 0x9c(r30)
+	addi     r5, r5, 0x636E6C77@l
+	lfs      f0, lbl_8051A8F4@sda21(r2)
+	addi     r6, r31, 0x28c
+	stfs     f1, 0xa4(r30)
+	stfs     f0, 0xa8(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x6E6C6474@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_8051A8E0@sda21(r2)
+	stw      r0, 0xac(r30)
+	mr       r4, r30
+	lfs      f1, lbl_8051A8A0@sda21(r2)
+	addi     r3, r30, 0xd4
+	stfs     f0, 0xc4(r30)
+	addi     r5, r5, 0x6E6C6474@l
+	lfs      f0, lbl_8051A8E8@sda21(r2)
+	addi     r6, r31, 0x2a0
+	stfs     f1, 0xcc(r30)
+	stfs     f0, 0xd0(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x6E6C6E63@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_8051A8F8@sda21(r2)
+	stw      r0, 0xd4(r30)
+	mr       r4, r30
+	lfs      f1, lbl_8051A89C@sda21(r2)
+	addi     r3, r30, 0xfc
+	stfs     f0, 0xec(r30)
+	addi     r5, r5, 0x6E6C6E63@l
+	lfs      f0, lbl_8051A8E0@sda21(r2)
+	addi     r6, r31, 0x2b4
+	stfs     f1, 0xf4(r30)
+	stfs     f0, 0xf8(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x6E6C6663@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f1, lbl_8051A898@sda21(r2)
+	stw      r0, 0xfc(r30)
+	mr       r4, r30
+	lfs      f0, lbl_8051A8FC@sda21(r2)
+	addi     r3, r30, 0x124
+	stfs     f1, 0x114(r30)
+	addi     r5, r5, 0x6E6C6663@l
+	addi     r6, r31, 0x2c4
+	stfs     f1, 0x11c(r30)
+	stfs     f0, 0x120(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x636D6C64@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f1, lbl_8051A8FC@sda21(r2)
+	stw      r0, 0x124(r30)
+	mr       r4, r30
+	lfs      f0, lbl_8051A898@sda21(r2)
+	addi     r3, r30, 0x14c
+	stfs     f1, 0x13c(r30)
+	addi     r5, r5, 0x636D6C64@l
+	addi     r6, r31, 0x2d4
+	stfs     f0, 0x144(r30)
+	stfs     f1, 0x148(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x636D6C61@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_8051A8E4@sda21(r2)
+	stw      r0, 0x14c(r30)
+	mr       r4, r30
+	lfs      f1, lbl_8051A8A0@sda21(r2)
+	addi     r3, r30, 0x174
+	stfs     f0, 0x164(r30)
+	addi     r5, r5, 0x636D6C61@l
+	lfs      f0, lbl_8051A8E8@sda21(r2)
+	addi     r6, r31, 0x2e4
+	stfs     f1, 0x16c(r30)
+	stfs     f0, 0x170(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x636D6C66@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_8051A900@sda21(r2)
+	stw      r0, 0x174(r30)
+	mr       r4, r30
+	lfs      f1, lbl_8051A89C@sda21(r2)
+	addi     r3, r30, 0x19c
+	stfs     f0, 0x18c(r30)
+	addi     r5, r5, 0x636D6C66@l
+	lfs      f0, lbl_8051A8EC@sda21(r2)
+	addi     r6, r31, 0x2f8
+	stfs     f1, 0x194(r30)
+	stfs     f0, 0x198(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x636D6C6F@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_8051A904@sda21(r2)
+	stw      r0, 0x19c(r30)
+	mr       r4, r30
+	lfs      f1, lbl_8051A898@sda21(r2)
+	addi     r3, r30, 0x1c4
+	stfs     f0, 0x1b4(r30)
+	addi     r5, r5, 0x636D6C6F@l
+	lfs      f0, lbl_8051A8F0@sda21(r2)
+	addi     r6, r31, 0x308
+	stfs     f1, 0x1bc(r30)
+	stfs     f0, 0x1c0(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x636D6C77@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_8051A908@sda21(r2)
+	stw      r0, 0x1c4(r30)
+	mr       r4, r30
+	lfs      f1, lbl_8051A8A0@sda21(r2)
+	addi     r3, r30, 0x1ec
+	stfs     f0, 0x1dc(r30)
+	addi     r5, r5, 0x636D6C77@l
+	lfs      f0, lbl_8051A8F4@sda21(r2)
+	addi     r6, r31, 0x31c
+	stfs     f1, 0x1e4(r30)
+	stfs     f0, 0x1e8(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x6D6C6474@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_8051A8F4@sda21(r2)
+	stw      r0, 0x1ec(r30)
+	mr       r4, r30
+	lfs      f1, lbl_8051A8A0@sda21(r2)
+	addi     r3, r30, 0x214
+	stfs     f0, 0x204(r30)
+	addi     r5, r5, 0x6D6C6474@l
+	lfs      f0, lbl_8051A8E8@sda21(r2)
+	addi     r6, r31, 0x330
+	stfs     f1, 0x20c(r30)
+	stfs     f0, 0x210(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x6D6C6E63@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_8051A90C@sda21(r2)
+	stw      r0, 0x214(r30)
+	mr       r4, r30
+	lfs      f1, lbl_8051A89C@sda21(r2)
+	addi     r3, r30, 0x23c
+	stfs     f0, 0x22c(r30)
+	addi     r5, r5, 0x6D6C6E63@l
+	lfs      f0, lbl_8051A8E0@sda21(r2)
+	addi     r6, r31, 0x344
+	stfs     f1, 0x234(r30)
+	stfs     f0, 0x238(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x6D6C6663@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f1, lbl_8051A898@sda21(r2)
+	stw      r0, 0x23c(r30)
+	mr       r4, r30
+	lfs      f0, lbl_8051A8FC@sda21(r2)
+	addi     r3, r30, 0x264
+	stfs     f1, 0x254(r30)
+	addi     r5, r5, 0x6D6C6663@l
+	addi     r6, r31, 0x354
+	stfs     f1, 0x25c(r30)
+	stfs     f0, 0x260(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x63666C64@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f1, lbl_8051A8FC@sda21(r2)
+	stw      r0, 0x264(r30)
+	mr       r4, r30
+	lfs      f0, lbl_8051A898@sda21(r2)
+	addi     r3, r30, 0x28c
+	stfs     f1, 0x27c(r30)
+	addi     r5, r5, 0x63666C64@l
+	addi     r6, r31, 0x360
+	stfs     f0, 0x284(r30)
+	stfs     f1, 0x288(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x63666C61@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_8051A910@sda21(r2)
+	stw      r0, 0x28c(r30)
+	mr       r4, r30
+	lfs      f1, lbl_8051A8A0@sda21(r2)
+	addi     r3, r30, 0x2b4
+	stfs     f0, 0x2a4(r30)
+	addi     r5, r5, 0x63666C61@l
+	lfs      f0, lbl_8051A8E8@sda21(r2)
+	addi     r6, r31, 0x370
+	stfs     f1, 0x2ac(r30)
+	stfs     f0, 0x2b0(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x63666C66@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_8051A8B4@sda21(r2)
+	stw      r0, 0x2b4(r30)
+	mr       r4, r30
+	lfs      f1, lbl_8051A89C@sda21(r2)
+	addi     r3, r30, 0x2dc
+	stfs     f0, 0x2cc(r30)
+	addi     r5, r5, 0x63666C66@l
+	lfs      f0, lbl_8051A8EC@sda21(r2)
+	addi     r6, r31, 0x384
+	stfs     f1, 0x2d4(r30)
+	stfs     f0, 0x2d8(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x63666C6F@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_8051A914@sda21(r2)
+	stw      r0, 0x2dc(r30)
+	mr       r4, r30
+	lfs      f1, lbl_8051A898@sda21(r2)
+	addi     r3, r30, 0x304
+	stfs     f0, 0x2f4(r30)
+	addi     r5, r5, 0x63666C6F@l
+	lfs      f0, lbl_8051A8F0@sda21(r2)
+	addi     r6, r31, 0x394
+	stfs     f1, 0x2fc(r30)
+	stfs     f0, 0x300(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x63666C77@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_8051A918@sda21(r2)
+	stw      r0, 0x304(r30)
+	mr       r4, r30
+	lfs      f1, lbl_8051A8A0@sda21(r2)
+	addi     r3, r30, 0x32c
+	stfs     f0, 0x31c(r30)
+	addi     r5, r5, 0x63666C77@l
+	lfs      f0, lbl_8051A8F4@sda21(r2)
+	addi     r6, r31, 0x3a8
+	stfs     f1, 0x324(r30)
+	stfs     f0, 0x328(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x666C6474@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_8051A91C@sda21(r2)
+	stw      r0, 0x32c(r30)
+	mr       r4, r30
+	lfs      f1, lbl_8051A8A0@sda21(r2)
+	addi     r3, r30, 0x354
+	stfs     f0, 0x344(r30)
+	addi     r5, r5, 0x666C6474@l
+	lfs      f0, lbl_8051A8E8@sda21(r2)
+	addi     r6, r31, 0x3bc
+	stfs     f1, 0x34c(r30)
+	stfs     f0, 0x350(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x666C6E63@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_8051A920@sda21(r2)
+	stw      r0, 0x354(r30)
+	mr       r4, r30
+	lfs      f1, lbl_8051A89C@sda21(r2)
+	addi     r3, r30, 0x37c
+	stfs     f0, 0x36c(r30)
+	addi     r5, r5, 0x666C6E63@l
+	lfs      f0, lbl_8051A8E0@sda21(r2)
+	addi     r6, r31, 0x3d0
+	stfs     f1, 0x374(r30)
+	stfs     f0, 0x378(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x666C6663@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f1, lbl_8051A898@sda21(r2)
+	stw      r0, 0x37c(r30)
+	mr       r4, r30
+	lfs      f0, lbl_8051A8FC@sda21(r2)
+	addi     r3, r30, 0x3a4
+	stfs     f1, 0x394(r30)
+	addi     r5, r5, 0x666C6663@l
+	addi     r6, r31, 0x3e0
+	stfs     f1, 0x39c(r30)
+	stfs     f0, 0x3a0(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x636E6864@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f1, lbl_8051A8FC@sda21(r2)
+	stw      r0, 0x3a4(r30)
+	mr       r4, r30
+	lfs      f0, lbl_8051A898@sda21(r2)
+	addi     r3, r30, 0x3cc
+	stfs     f1, 0x3bc(r30)
+	addi     r5, r5, 0x636E6864@l
+	addi     r6, r31, 0x3ec
+	stfs     f0, 0x3c4(r30)
+	stfs     f1, 0x3c8(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x636E6861@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_8051A910@sda21(r2)
+	stw      r0, 0x3cc(r30)
+	mr       r4, r30
+	lfs      f1, lbl_8051A8A0@sda21(r2)
+	addi     r3, r30, 0x3f4
+	stfs     f0, 0x3e4(r30)
+	addi     r5, r5, 0x636E6861@l
+	lfs      f0, lbl_8051A8E8@sda21(r2)
+	addi     r6, r31, 0x3fc
+	stfs     f1, 0x3ec(r30)
+	stfs     f0, 0x3f0(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x636E6866@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_8051A8F0@sda21(r2)
+	stw      r0, 0x3f4(r30)
+	mr       r4, r30
+	lfs      f1, lbl_8051A89C@sda21(r2)
+	addi     r3, r30, 0x41c
+	stfs     f0, 0x40c(r30)
+	addi     r5, r5, 0x636E6866@l
+	lfs      f0, lbl_8051A8EC@sda21(r2)
+	addi     r6, r31, 0x410
+	stfs     f1, 0x414(r30)
+	stfs     f0, 0x418(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x636E686F@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_8051A8A0@sda21(r2)
+	stw      r0, 0x41c(r30)
+	mr       r4, r30
+	lfs      f1, lbl_8051A898@sda21(r2)
+	addi     r3, r30, 0x444
+	stfs     f0, 0x434(r30)
+	addi     r5, r5, 0x636E686F@l
+	lfs      f0, lbl_8051A8F0@sda21(r2)
+	addi     r6, r31, 0x424
+	stfs     f1, 0x43c(r30)
+	stfs     f0, 0x440(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x636E6877@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_8051A8D8@sda21(r2)
+	stw      r0, 0x444(r30)
+	mr       r4, r30
+	lfs      f1, lbl_8051A8A0@sda21(r2)
+	addi     r3, r30, 0x46c
+	stfs     f0, 0x45c(r30)
+	addi     r5, r5, 0x636E6877@l
+	lfs      f0, lbl_8051A8F4@sda21(r2)
+	addi     r6, r31, 0x43c
+	stfs     f1, 0x464(r30)
+	stfs     f0, 0x468(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x6E686474@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_8051A8E0@sda21(r2)
+	stw      r0, 0x46c(r30)
+	mr       r4, r30
+	lfs      f1, lbl_8051A8A0@sda21(r2)
+	addi     r3, r30, 0x494
+	stfs     f0, 0x484(r30)
+	addi     r5, r5, 0x6E686474@l
+	lfs      f0, lbl_8051A8E8@sda21(r2)
+	addi     r6, r31, 0x450
+	stfs     f1, 0x48c(r30)
+	stfs     f0, 0x490(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x6E686E63@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_8051A924@sda21(r2)
+	stw      r0, 0x494(r30)
+	mr       r4, r30
+	lfs      f1, lbl_8051A89C@sda21(r2)
+	addi     r3, r30, 0x4bc
+	stfs     f0, 0x4ac(r30)
+	addi     r5, r5, 0x6E686E63@l
+	lfs      f0, lbl_8051A8E0@sda21(r2)
+	addi     r6, r31, 0x464
+	stfs     f1, 0x4b4(r30)
+	stfs     f0, 0x4b8(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x6E686663@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f1, lbl_8051A898@sda21(r2)
+	stw      r0, 0x4bc(r30)
+	mr       r4, r30
+	lfs      f0, lbl_8051A8FC@sda21(r2)
+	addi     r3, r30, 0x4e4
+	stfs     f1, 0x4d4(r30)
+	addi     r5, r5, 0x6E686663@l
+	addi     r6, r31, 0x474
+	stfs     f1, 0x4dc(r30)
+	stfs     f0, 0x4e0(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x636D6864@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f1, lbl_8051A8FC@sda21(r2)
+	stw      r0, 0x4e4(r30)
+	mr       r4, r30
+	lfs      f0, lbl_8051A898@sda21(r2)
+	addi     r3, r30, 0x50c
+	stfs     f1, 0x4fc(r30)
+	addi     r5, r5, 0x636D6864@l
+	addi     r6, r31, 0x484
+	stfs     f0, 0x504(r30)
+	stfs     f1, 0x508(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x636D6861@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_8051A910@sda21(r2)
+	stw      r0, 0x50c(r30)
+	mr       r4, r30
+	lfs      f1, lbl_8051A8A0@sda21(r2)
+	addi     r3, r30, 0x534
+	stfs     f0, 0x524(r30)
+	addi     r5, r5, 0x636D6861@l
+	lfs      f0, lbl_8051A8E8@sda21(r2)
+	addi     r6, r31, 0x494
+	stfs     f1, 0x52c(r30)
+	stfs     f0, 0x530(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x636D6866@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_8051A8F0@sda21(r2)
+	stw      r0, 0x534(r30)
+	mr       r4, r30
+	lfs      f1, lbl_8051A89C@sda21(r2)
+	addi     r3, r30, 0x55c
+	stfs     f0, 0x54c(r30)
+	addi     r5, r5, 0x636D6866@l
+	lfs      f0, lbl_8051A8EC@sda21(r2)
+	addi     r6, r31, 0x4a8
+	stfs     f1, 0x554(r30)
+	stfs     f0, 0x558(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x636D686F@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_8051A8C8@sda21(r2)
+	stw      r0, 0x55c(r30)
+	mr       r4, r30
+	lfs      f1, lbl_8051A898@sda21(r2)
+	addi     r3, r30, 0x584
+	stfs     f0, 0x574(r30)
+	addi     r5, r5, 0x636D686F@l
+	lfs      f0, lbl_8051A8F0@sda21(r2)
+	addi     r6, r31, 0x4b8
+	stfs     f1, 0x57c(r30)
+	stfs     f0, 0x580(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x636D6877@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_8051A928@sda21(r2)
+	stw      r0, 0x584(r30)
+	mr       r4, r30
+	lfs      f1, lbl_8051A8A0@sda21(r2)
+	addi     r3, r30, 0x5ac
+	stfs     f0, 0x59c(r30)
+	addi     r5, r5, 0x636D6877@l
+	lfs      f0, lbl_8051A8F4@sda21(r2)
+	addi     r6, r31, 0x4cc
+	stfs     f1, 0x5a4(r30)
+	stfs     f0, 0x5a8(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x6D686474@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_8051A8F4@sda21(r2)
+	stw      r0, 0x5ac(r30)
+	mr       r4, r30
+	lfs      f1, lbl_8051A8A0@sda21(r2)
+	addi     r3, r30, 0x5d4
+	stfs     f0, 0x5c4(r30)
+	addi     r5, r5, 0x6D686474@l
+	lfs      f0, lbl_8051A8E8@sda21(r2)
+	addi     r6, r31, 0x4e0
+	stfs     f1, 0x5cc(r30)
+	stfs     f0, 0x5d0(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x6D686E63@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_8051A92C@sda21(r2)
+	stw      r0, 0x5d4(r30)
+	mr       r4, r30
+	lfs      f1, lbl_8051A89C@sda21(r2)
+	addi     r3, r30, 0x5fc
+	stfs     f0, 0x5ec(r30)
+	addi     r5, r5, 0x6D686E63@l
+	lfs      f0, lbl_8051A8E0@sda21(r2)
+	addi     r6, r31, 0x4f4
+	stfs     f1, 0x5f4(r30)
+	stfs     f0, 0x5f8(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x6D686663@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f1, lbl_8051A898@sda21(r2)
+	stw      r0, 0x5fc(r30)
+	mr       r4, r30
+	lfs      f0, lbl_8051A8FC@sda21(r2)
+	addi     r3, r30, 0x624
+	stfs     f1, 0x614(r30)
+	addi     r5, r5, 0x6D686663@l
+	addi     r6, r31, 0x504
+	stfs     f1, 0x61c(r30)
+	stfs     f0, 0x620(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x63666864@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f1, lbl_8051A8FC@sda21(r2)
+	stw      r0, 0x624(r30)
+	mr       r4, r30
+	lfs      f0, lbl_8051A898@sda21(r2)
+	addi     r3, r30, 0x64c
+	stfs     f1, 0x63c(r30)
+	addi     r5, r5, 0x63666864@l
+	addi     r6, r31, 0x514
+	stfs     f0, 0x644(r30)
+	stfs     f1, 0x648(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x63666861@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_8051A930@sda21(r2)
+	stw      r0, 0x64c(r30)
+	mr       r4, r30
+	lfs      f1, lbl_8051A8A0@sda21(r2)
+	addi     r3, r30, 0x674
+	stfs     f0, 0x664(r30)
+	addi     r5, r5, 0x63666861@l
+	lfs      f0, lbl_8051A8E8@sda21(r2)
+	addi     r6, r31, 0x524
+	stfs     f1, 0x66c(r30)
+	stfs     f0, 0x670(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x63666866@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_8051A8F0@sda21(r2)
+	stw      r0, 0x674(r30)
+	mr       r4, r30
+	lfs      f1, lbl_8051A89C@sda21(r2)
+	addi     r3, r30, 0x69c
+	stfs     f0, 0x68c(r30)
+	addi     r5, r5, 0x63666866@l
+	lfs      f0, lbl_8051A8EC@sda21(r2)
+	addi     r6, r31, 0x538
+	stfs     f1, 0x694(r30)
+	stfs     f0, 0x698(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x6366686F@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_8051A934@sda21(r2)
+	stw      r0, 0x69c(r30)
+	mr       r4, r30
+	lfs      f1, lbl_8051A898@sda21(r2)
+	addi     r3, r30, 0x6c4
+	stfs     f0, 0x6b4(r30)
+	addi     r5, r5, 0x6366686F@l
+	lfs      f0, lbl_8051A8F0@sda21(r2)
+	addi     r6, r31, 0x548
+	stfs     f1, 0x6bc(r30)
+	stfs     f0, 0x6c0(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x63666877@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_8051A8B0@sda21(r2)
+	stw      r0, 0x6c4(r30)
+	mr       r4, r30
+	lfs      f1, lbl_8051A8A0@sda21(r2)
+	addi     r3, r30, 0x6ec
+	stfs     f0, 0x6dc(r30)
+	addi     r5, r5, 0x63666877@l
+	lfs      f0, lbl_8051A8F4@sda21(r2)
+	addi     r6, r31, 0x55c
+	stfs     f1, 0x6e4(r30)
+	stfs     f0, 0x6e8(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x66686474@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_8051A938@sda21(r2)
+	stw      r0, 0x6ec(r30)
+	mr       r4, r30
+	lfs      f1, lbl_8051A8A0@sda21(r2)
+	addi     r3, r30, 0x714
+	stfs     f0, 0x704(r30)
+	addi     r5, r5, 0x66686474@l
+	lfs      f0, lbl_8051A8E8@sda21(r2)
+	addi     r6, r31, 0x570
+	stfs     f1, 0x70c(r30)
+	stfs     f0, 0x710(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x66686E63@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_8051A93C@sda21(r2)
+	stw      r0, 0x714(r30)
+	mr       r4, r30
+	lfs      f1, lbl_8051A89C@sda21(r2)
+	addi     r3, r30, 0x73c
+	stfs     f0, 0x72c(r30)
+	addi     r5, r5, 0x66686E63@l
+	lfs      f0, lbl_8051A8E0@sda21(r2)
+	addi     r6, r31, 0x584
+	stfs     f1, 0x734(r30)
+	stfs     f0, 0x738(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x66686663@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f1, lbl_8051A898@sda21(r2)
+	stw      r0, 0x73c(r30)
+	mr       r4, r30
+	lfs      f0, lbl_8051A8FC@sda21(r2)
+	addi     r3, r30, 0x764
+	stfs     f1, 0x754(r30)
+	addi     r5, r5, 0x66686663@l
+	addi     r6, r31, 0x594
+	stfs     f1, 0x75c(r30)
+	stfs     f0, 0x760(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x7A6D6474@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f1, lbl_8051A8FC@sda21(r2)
+	stw      r0, 0x764(r30)
+	mr       r4, r30
+	lfs      f0, lbl_8051A898@sda21(r2)
+	addi     r3, r30, 0x78c
+	stfs     f1, 0x77c(r30)
+	addi     r5, r5, 0x7A6D6474@l
+	addi     r6, r31, 0x5a4
+	stfs     f0, 0x784(r30)
+	stfs     f1, 0x788(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x7A6D616E@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_8051A940@sda21(r2)
+	stw      r0, 0x78c(r30)
+	mr       r4, r30
+	lfs      f1, lbl_8051A8A0@sda21(r2)
+	addi     r3, r30, 0x7b4
+	stfs     f0, 0x7a4(r30)
+	addi     r5, r5, 0x7A6D616E@l
+	lfs      f0, lbl_8051A8E8@sda21(r2)
+	addi     r6, r31, 0x5b0
+	stfs     f1, 0x7ac(r30)
+	stfs     f0, 0x7b0(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x7A6D6676@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_8051A944@sda21(r2)
+	stw      r0, 0x7b4(r30)
+	mr       r4, r30
+	lfs      f1, lbl_8051A89C@sda21(r2)
+	addi     r3, r30, 0x7dc
+	stfs     f0, 0x7cc(r30)
+	addi     r5, r5, 0x7A6D6676@l
+	lfs      f0, lbl_8051A8EC@sda21(r2)
+	addi     r6, r31, 0x5c0
+	stfs     f1, 0x7d4(r30)
+	stfs     f0, 0x7d8(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x636C6372@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_8051A8B8@sda21(r2)
+	stw      r0, 0x7dc(r30)
+	mr       r4, r30
+	lfs      f1, lbl_8051A898@sda21(r2)
+	addi     r3, r30, 0x804
+	stfs     f0, 0x7f4(r30)
+	addi     r5, r5, 0x636C6372@l
+	lfs      f0, lbl_8051A8F0@sda21(r2)
+	addi     r6, r31, 0x5cc
+	stfs     f1, 0x7fc(r30)
+	stfs     f0, 0x800(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x636C6D73@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_8051A948@sda21(r2)
+	stw      r0, 0x804(r30)
+	mr       r4, r30
+	lfs      f1, lbl_8051A89C@sda21(r2)
+	addi     r3, r30, 0x82c
+	stfs     f0, 0x81c(r30)
+	addi     r5, r5, 0x636C6D73@l
+	lfs      f0, lbl_8051A8F4@sda21(r2)
+	addi     r6, r31, 0x5dc
+	stfs     f1, 0x824(r30)
+	stfs     f0, 0x828(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x636C6D68@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_8051A94C@sda21(r2)
+	stw      r0, 0x82c(r30)
+	mr       r4, r30
+	lfs      f1, lbl_8051A950@sda21(r2)
+	addi     r3, r30, 0x854
+	stfs     f0, 0x844(r30)
+	addi     r5, r5, 0x636C6D68@l
+	lfs      f0, lbl_8051A898@sda21(r2)
+	addi     r6, r31, 0x5f0
+	stfs     f1, 0x84c(r30)
+	stfs     f0, 0x850(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x636C6E68@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_8051A8A8@sda21(r2)
+	stw      r0, 0x854(r30)
+	mr       r4, r30
+	lfs      f1, lbl_8051A89C@sda21(r2)
+	addi     r3, r30, 0x87c
+	stfs     f0, 0x86c(r30)
+	addi     r5, r5, 0x636C6E68@l
+	lfs      f0, lbl_8051A8B0@sda21(r2)
+	addi     r6, r31, 0x604
+	stfs     f1, 0x874(r30)
+	stfs     f0, 0x878(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x63706D64@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_8051A8B4@sda21(r2)
+	stw      r0, 0x87c(r30)
+	mr       r4, r30
+	lfs      f1, lbl_8051A89C@sda21(r2)
+	addi     r3, r30, 0x8a4
+	stfs     f0, 0x894(r30)
+	addi     r5, r5, 0x63706D64@l
+	lfs      f0, lbl_8051A8F4@sda21(r2)
+	addi     r6, r31, 0x618
+	stfs     f1, 0x89c(r30)
+	stfs     f0, 0x8a0(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x636D6D74@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_8051A954@sda21(r2)
+	stw      r0, 0x8a4(r30)
+	mr       r4, r30
+	lfs      f1, lbl_8051A89C@sda21(r2)
+	addi     r3, r30, 0x8cc
+	stfs     f0, 0x8bc(r30)
+	addi     r5, r5, 0x636D6D74@l
+	lfs      f0, lbl_8051A898@sda21(r2)
+	addi     r6, r31, 0x628
+	stfs     f1, 0x8c4(r30)
+	stfs     f0, 0x8c8(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x636D6674@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_8051A958@sda21(r2)
+	stw      r0, 0x8cc(r30)
+	mr       r4, r30
+	lfs      f1, lbl_8051A89C@sda21(r2)
+	addi     r3, r30, 0x8f4
+	stfs     f0, 0x8e4(r30)
+	addi     r5, r5, 0x636D6674@l
+	lfs      f0, lbl_8051A898@sda21(r2)
+	addi     r6, r31, 0x634
+	stfs     f1, 0x8ec(r30)
+	stfs     f0, 0x8f0(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x636D7461@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_8051A95C@sda21(r2)
+	stw      r0, 0x8f4(r30)
+	mr       r4, r30
+	lfs      f1, lbl_8051A89C@sda21(r2)
+	addi     r3, r30, 0x91c
+	stfs     f0, 0x90c(r30)
+	addi     r5, r5, 0x636D7461@l
+	lfs      f0, lbl_8051A8A4@sda21(r2)
+	addi     r6, r31, 0x644
+	stfs     f1, 0x914(r30)
+	stfs     f0, 0x918(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x636D746D@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_8051A94C@sda21(r2)
+	stw      r0, 0x91c(r30)
+	mr       r4, r30
+	lfs      f1, lbl_8051A89C@sda21(r2)
+	addi     r3, r30, 0x944
+	stfs     f0, 0x934(r30)
+	addi     r5, r5, 0x636D746D@l
+	lfs      f0, lbl_8051A898@sda21(r2)
+	addi     r6, r31, 0x650
+	stfs     f1, 0x93c(r30)
+	stfs     f0, 0x940(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x636D7462@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_8051A960@sda21(r2)
+	stw      r0, 0x944(r30)
+	mr       r4, r30
+	lfs      f1, lbl_8051A89C@sda21(r2)
+	addi     r3, r30, 0x96c
+	stfs     f0, 0x95c(r30)
+	addi     r5, r5, 0x636D7462@l
+	lfs      f0, lbl_8051A8A8@sda21(r2)
+	addi     r6, r31, 0x660
+	stfs     f1, 0x964(r30)
+	stfs     f0, 0x968(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lfs      f2, lbl_8051A964@sda21(r2)
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f1, lbl_8051A89C@sda21(r2)
+	stw      r0, 0x96c(r30)
+	mr       r3, r30
+	lfs      f0, lbl_8051A898@sda21(r2)
+	stfs     f2, 0x984(r30)
+	stfs     f1, 0x98c(r30)
+	stfs     f0, 0x990(r30)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1401,53 +2034,52 @@ CameraParms::CameraParms()
 void CameraMgr::setViewport(Viewport*, int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  rlwinm    r31,r5,2,0,29
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lwz       r3, 0x20(r3)
-	  stwx      r4, r3, r31
-	  lwz       r3, 0x20(r30)
-	  lwzx      r0, r3, r31
-	  cmplwi    r0, 0
-	  bne-      .loc_0x50
-	  lis       r3, 0x8048
-	  lis       r5, 0x8048
-	  addi      r3, r3, 0x47FC
-	  li        r4, 0x52
-	  addi      r5, r5, 0x480C
-	  crclr     6, 0x6
-	  bl        -0x227850
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	slwi     r31, r5, 2
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lwz      r3, 0x20(r3)
+	stwx     r4, r3, r31
+	lwz      r3, 0x20(r30)
+	lwzx     r0, r3, r31
+	cmplwi   r0, 0
+	bne      lbl_80251E94
+	lis      r3, lbl_804847FC@ha
+	lis      r5, lbl_8048480C@ha
+	addi     r3, r3, lbl_804847FC@l
+	li       r4, 0x52
+	addi     r5, r5, lbl_8048480C@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x50:
-	  lwz       r4, 0x20(r30)
-	  lwz       r3, 0x24(r30)
-	  lwzx      r4, r4, r31
-	  lwz       r0, 0x44(r4)
-	  stwx      r0, r3, r31
-	  lwz       r3, 0x24(r30)
-	  lwzx      r0, r3, r31
-	  cmplwi    r0, 0
-	  bne-      .loc_0x90
-	  lis       r3, 0x8048
-	  lis       r5, 0x8048
-	  addi      r3, r3, 0x47FC
-	  li        r4, 0x55
-	  addi      r5, r5, 0x480C
-	  crclr     6, 0x6
-	  bl        -0x227890
+lbl_80251E94:
+	lwz      r4, 0x20(r30)
+	lwz      r3, 0x24(r30)
+	lwzx     r4, r4, r31
+	lwz      r0, 0x44(r4)
+	stwx     r0, r3, r31
+	lwz      r3, 0x24(r30)
+	lwzx     r0, r3, r31
+	cmplwi   r0, 0
+	bne      lbl_80251ED4
+	lis      r3, lbl_804847FC@ha
+	lis      r5, lbl_8048480C@ha
+	addi     r3, r3, lbl_804847FC@l
+	li       r4, 0x55
+	addi     r5, r5, lbl_8048480C@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x90:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80251ED4:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1459,106 +2091,105 @@ void CameraMgr::setViewport(Viewport*, int)
 void CameraMgr::init(int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r29, r4
-	  stw       r28, 0x10(r1)
-	  mr        r28, r3
-	  lis       r3, 0x8048
-	  lwz       r0, 0x28(r28)
-	  addi      r31, r3, 0x4190
-	  cmplwi    r0, 0
-	  bne-      .loc_0x4C
-	  addi      r3, r31, 0x66C
-	  addi      r5, r31, 0x67C
-	  li        r4, 0x5E
-	  crclr     6, 0x6
-	  bl        -0x2278F4
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	mr       r29, r4
+	stw      r28, 0x10(r1)
+	mr       r28, r3
+	lis      r3, lbl_80484190@ha
+	lwz      r0, 0x28(r28)
+	addi     r31, r3, lbl_80484190@l
+	cmplwi   r0, 0
+	bne      lbl_80251F38
+	addi     r3, r31, 0x66c
+	addi     r5, r31, 0x67c
+	li       r4, 0x5e
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x4C:
-	  lwz       r0, 0x2C(r28)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x6C
-	  addi      r3, r31, 0x66C
-	  addi      r5, r31, 0x67C
-	  li        r4, 0x5F
-	  crclr     6, 0x6
-	  bl        -0x227914
+lbl_80251F38:
+	lwz      r0, 0x2c(r28)
+	cmplwi   r0, 0
+	bne      lbl_80251F58
+	addi     r3, r31, 0x66c
+	addi     r5, r31, 0x67c
+	li       r4, 0x5f
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x6C:
-	  lwz       r0, 0x30(r28)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x8C
-	  addi      r3, r31, 0x66C
-	  addi      r5, r31, 0x67C
-	  li        r4, 0x60
-	  crclr     6, 0x6
-	  bl        -0x227934
+lbl_80251F58:
+	lwz      r0, 0x30(r28)
+	cmplwi   r0, 0
+	bne      lbl_80251F78
+	addi     r3, r31, 0x66c
+	addi     r5, r31, 0x67c
+	li       r4, 0x60
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x8C:
-	  stw       r29, 0x18(r28)
-	  li        r30, 0
-	  li        r29, 0
-	  stw       r30, 0x34(r28)
-	  stw       r30, 0x38(r28)
+lbl_80251F78:
+	stw      r29, 0x18(r28)
+	li       r30, 0
+	li       r29, 0
+	stw      r30, 0x34(r28)
+	stw      r30, 0x38(r28)
 
-	.loc_0xA0:
-	  lwz       r3, 0x1C(r28)
-	  li        r0, 0
-	  stwx      r0, r3, r30
-	  lwz       r3, 0x24(r28)
-	  lwzx      r3, r3, r30
-	  cmplwi    r3, 0
-	  beq-      .loc_0x108
-	  lwz       r0, 0x18(r28)
-	  cmpwi     r0, 0
-	  bne-      .loc_0xD4
-	  lwz       r4, 0x28(r28)
-	  bl        -0x12A90
-	  b         .loc_0xDC
+lbl_80251F8C:
+	lwz      r3, 0x1c(r28)
+	li       r0, 0
+	stwx     r0, r3, r30
+	lwz      r3, 0x24(r28)
+	lwzx     r3, r3, r30
+	cmplwi   r3, 0
+	beq      lbl_80251FF4
+	lwz      r0, 0x18(r28)
+	cmpwi    r0, 0
+	bne      lbl_80251FC0
+	lwz      r4, 0x28(r28)
+	bl       setCameraParms__Q24Game10PlayCameraFPQ24Game11CameraParms
+	b        lbl_80251FC8
 
-	.loc_0xD4:
-	  lwz       r4, 0x2C(r28)
-	  bl        -0x12A9C
+lbl_80251FC0:
+	lwz      r4, 0x2c(r28)
+	bl       setCameraParms__Q24Game10PlayCameraFPQ24Game11CameraParms
 
-	.loc_0xDC:
-	  lwz       r3, 0x24(r28)
-	  lwz       r4, 0x30(r28)
-	  lwzx      r3, r3, r30
-	  bl        -0x12AA4
-	  lwz       r3, 0x24(r28)
-	  lwzx      r3, r3, r30
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x80(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x11C
+lbl_80251FC8:
+	lwz      r3, 0x24(r28)
+	lwz      r4, 0x30(r28)
+	lwzx     r3, r3, r30
+	bl       setVibrationParms__Q24Game10PlayCameraFPQ24Game14VibrationParms
+	lwz      r3, 0x24(r28)
+	lwzx     r3, r3, r30
+	lwz      r12, 0(r3)
+	lwz      r12, 0x80(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_80252008
 
-	.loc_0x108:
-	  addi      r3, r31, 0x66C
-	  addi      r5, r31, 0x688
-	  li        r4, 0x7C
-	  crclr     6, 0x6
-	  bl        -0x2279C4
+lbl_80251FF4:
+	addi     r3, r31, 0x66c
+	addi     r5, r31, 0x688
+	li       r4, 0x7c
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x11C:
-	  addi      r29, r29, 0x1
-	  addi      r30, r30, 0x4
-	  cmpwi     r29, 0x2
-	  blt+      .loc_0xA0
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80252008:
+	addi     r29, r29, 1
+	addi     r30, r30, 4
+	cmpwi    r29, 2
+	blt      lbl_80251F8C
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -1570,52 +2201,51 @@ void CameraMgr::init(int)
 void CameraMgr::setCameraAngle(float, int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  mr        r5, r4
-	  stw       r0, 0x34(r1)
-	  addi      r4, r1, 0x8
-	  stfd      f31, 0x28(r1)
-	  fmr       f31, f1
-	  stw       r31, 0x24(r1)
-	  stw       r30, 0x20(r1)
-	  stw       r29, 0x1C(r1)
-	  mr        r29, r3
-	  bl        0x82C
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x74
-	  lwz       r0, 0x8(r1)
-	  mr        r30, r0
-	  rlwinm    r31,r0,2,0,29
-	  b         .loc_0x68
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	mr       r5, r4
+	stw      r0, 0x34(r1)
+	addi     r4, r1, 8
+	stfd     f31, 0x28(r1)
+	fmr      f31, f1
+	stw      r31, 0x24(r1)
+	stw      r30, 0x20(r1)
+	stw      r29, 0x1c(r1)
+	mr       r29, r3
+	bl       isStartAndEnd__Q24Game9CameraMgrFPii
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802520AC
+	lwz      r0, 8(r1)
+	mr       r30, r0
+	slwi     r31, r0, 2
+	b        lbl_802520A0
 
-	.loc_0x48:
-	  lwz       r3, 0x24(r29)
-	  lwzx      r3, r3, r31
-	  cmplwi    r3, 0
-	  beq-      .loc_0x60
-	  fmr       f1, f31
-	  bl        -0x129F0
+lbl_80252080:
+	lwz      r3, 0x24(r29)
+	lwzx     r3, r3, r31
+	cmplwi   r3, 0
+	beq      lbl_80252098
+	fmr      f1, f31
+	bl       setCameraAngle__Q24Game10PlayCameraFf
 
-	.loc_0x60:
-	  addi      r31, r31, 0x4
-	  addi      r30, r30, 0x1
+lbl_80252098:
+	addi     r31, r31, 4
+	addi     r30, r30, 1
 
-	.loc_0x68:
-	  lwz       r0, 0xC(r1)
-	  cmpw      r30, r0
-	  blt+      .loc_0x48
+lbl_802520A0:
+	lwz      r0, 0xc(r1)
+	cmpw     r30, r0
+	blt      lbl_80252080
 
-	.loc_0x74:
-	  lwz       r0, 0x34(r1)
-	  lfd       f31, 0x28(r1)
-	  lwz       r31, 0x24(r1)
-	  lwz       r30, 0x20(r1)
-	  lwz       r29, 0x1C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_802520AC:
+	lwz      r0, 0x34(r1)
+	lfd      f31, 0x28(r1)
+	lwz      r31, 0x24(r1)
+	lwz      r30, 0x20(r1)
+	lwz      r29, 0x1c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -1627,111 +2257,110 @@ void CameraMgr::setCameraAngle(float, int)
 void CameraMgr::update()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x80(r1)
-	  mflr      r0
-	  stw       r0, 0x84(r1)
-	  stw       r31, 0x7C(r1)
-	  mr        r31, r3
-	  stw       r30, 0x78(r1)
-	  stw       r29, 0x74(r1)
-	  bl        0x780
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x154
-	  lwz       r0, 0x18(r31)
-	  cmpwi     r0, 0x2
-	  bne-      .loc_0x5C
-	  li        r29, 0
-	  li        r30, 0
+	stwu     r1, -0x80(r1)
+	mflr     r0
+	stw      r0, 0x84(r1)
+	stw      r31, 0x7c(r1)
+	mr       r31, r3
+	stw      r30, 0x78(r1)
+	stw      r29, 0x74(r1)
+	bl       isCameraUpdateOn__Q24Game9CameraMgrFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80252220
+	lwz      r0, 0x18(r31)
+	cmpwi    r0, 2
+	bne      lbl_80252128
+	li       r29, 0
+	li       r30, 0
 
-	.loc_0x3C:
-	  lwz       r3, 0x24(r31)
-	  lwzx      r3, r3, r30
-	  bl        0x1C8CA4
-	  addi      r29, r29, 0x1
-	  addi      r30, r30, 0x4
-	  cmpwi     r29, 0x2
-	  blt+      .loc_0x3C
-	  b         .loc_0x104
+lbl_80252108:
+	lwz      r3, 0x24(r31)
+	lwzx     r3, r3, r30
+	bl       update__6CameraFv
+	addi     r29, r29, 1
+	addi     r30, r30, 4
+	cmpwi    r29, 2
+	blt      lbl_80252108
+	b        lbl_802521D0
 
-	.loc_0x5C:
-	  lwz       r3, -0x6D20(r13)
-	  bl        -0xF750C
-	  cmplwi    r3, 0
-	  beq-      .loc_0xE0
-	  lhz       r29, 0x2DC(r3)
-	  lwz       r3, 0x24(r31)
-	  rlwinm    r30,r29,2,0,29
-	  lwzx      r3, r3, r30
-	  bl        0x1C8C6C
-	  lwz       r3, 0x24(r31)
-	  addi      r4, r1, 0x38
-	  lwzx      r3, r3, r30
-	  addi      r3, r3, 0x144
-	  bl        -0x167E90
-	  lwz       r3, 0x24(r31)
-	  addi      r4, r1, 0xC
-	  lwzx      r3, r3, r30
-	  bl        -0x12A94
-	  xori      r0, r29, 0x1
-	  lwz       r4, 0x24(r31)
-	  rlwinm    r30,r0,2,0,29
-	  addi      r3, r1, 0x38
-	  lwzx      r4, r4, r30
-	  addi      r4, r4, 0x144
-	  bl        -0x167EBC
-	  lwz       r3, 0x24(r31)
-	  addi      r4, r1, 0xC
-	  lwzx      r3, r3, r30
-	  bl        -0x12A64
-	  lwz       r3, 0x24(r31)
-	  lwzx      r3, r3, r30
-	  bl        -0x12780
-	  b         .loc_0x104
+lbl_80252128:
+	lwz      r3, naviMgr__4Game@sda21(r13)
+	bl       getActiveNavi__Q24Game7NaviMgrFv
+	cmplwi   r3, 0
+	beq      lbl_802521AC
+	lhz      r29, 0x2dc(r3)
+	lwz      r3, 0x24(r31)
+	slwi     r30, r29, 2
+	lwzx     r3, r3, r30
+	bl       update__6CameraFv
+	lwz      r3, 0x24(r31)
+	addi     r4, r1, 0x38
+	lwzx     r3, r3, r30
+	addi     r3, r3, 0x144
+	bl       PSMTXCopy
+	lwz      r3, 0x24(r31)
+	addi     r4, r1, 0xc
+	lwzx     r3, r3, r30
+	bl       getCameraData__Q24Game10PlayCameraFRQ24Game10CameraData
+	xori     r0, r29, 1
+	lwz      r4, 0x24(r31)
+	slwi     r30, r0, 2
+	addi     r3, r1, 0x38
+	lwzx     r4, r4, r30
+	addi     r4, r4, 0x144
+	bl       PSMTXCopy
+	lwz      r3, 0x24(r31)
+	addi     r4, r1, 0xc
+	lwzx     r3, r3, r30
+	bl       setCameraData__Q24Game10PlayCameraFRQ24Game10CameraData
+	lwz      r3, 0x24(r31)
+	lwzx     r3, r3, r30
+	bl       noUpdate__Q24Game10PlayCameraFv
+	b        lbl_802521D0
 
-	.loc_0xE0:
-	  li        r29, 0
-	  li        r30, 0
+lbl_802521AC:
+	li       r29, 0
+	li       r30, 0
 
-	.loc_0xE8:
-	  lwz       r3, 0x24(r31)
-	  lwzx      r3, r3, r30
-	  bl        0x1C8BF8
-	  addi      r29, r29, 0x1
-	  addi      r30, r30, 0x4
-	  cmpwi     r29, 0x2
-	  blt+      .loc_0xE8
+lbl_802521B4:
+	lwz      r3, 0x24(r31)
+	lwzx     r3, r3, r30
+	bl       update__6CameraFv
+	addi     r29, r29, 1
+	addi     r30, r30, 4
+	cmpwi    r29, 2
+	blt      lbl_802521B4
 
-	.loc_0x104:
-	  lwz       r0, 0x34(r31)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x154
-	  lwz       r3, 0x24(r31)
-	  lwz       r4, 0x0(r3)
-	  lwz       r3, 0x4(r3)
-	  lwz       r4, 0x19C(r4)
-	  lwz       r0, 0x19C(r3)
-	  or.       r0, r4, r0
-	  bne-      .loc_0x154
-	  lwz       r0, 0x18(r31)
-	  addi      r4, r1, 0x8
-	  stw       r0, 0x8(r1)
-	  lwz       r3, 0x34(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  li        r0, 0
-	  stw       r0, 0x34(r31)
+lbl_802521D0:
+	lwz      r0, 0x34(r31)
+	cmplwi   r0, 0
+	beq      lbl_80252220
+	lwz      r3, 0x24(r31)
+	lwz      r4, 0(r3)
+	lwz      r3, 4(r3)
+	lwz      r4, 0x19c(r4)
+	lwz      r0, 0x19c(r3)
+	or.      r0, r4, r0
+	bne      lbl_80252220
+	lwz      r0, 0x18(r31)
+	addi     r4, r1, 8
+	stw      r0, 8(r1)
+	lwz      r3, 0x34(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	li       r0, 0
+	stw      r0, 0x34(r31)
 
-	.loc_0x154:
-	  lwz       r0, 0x84(r1)
-	  lwz       r31, 0x7C(r1)
-	  lwz       r30, 0x78(r1)
-	  lwz       r29, 0x74(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x80
-	  blr
+lbl_80252220:
+	lwz      r0, 0x84(r1)
+	lwz      r31, 0x7c(r1)
+	lwz      r30, 0x78(r1)
+	lwz      r29, 0x74(r1)
+	mtlr     r0
+	addi     r1, r1, 0x80
+	blr
 	*/
 }
 
@@ -1743,106 +2372,105 @@ void CameraMgr::update()
 void CameraMgr::startVibration(int, Vector3f&, int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  stw       r0, 0x44(r1)
-	  stmw      r27, 0x2C(r1)
-	  mr        r27, r3
-	  mr        r28, r4
-	  mr        r29, r5
-	  lwz       r0, 0x38(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x40
-	  mr        r3, r0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x7C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x140
+	stwu     r1, -0x40(r1)
+	mflr     r0
+	stw      r0, 0x44(r1)
+	stmw     r27, 0x2c(r1)
+	mr       r27, r3
+	mr       r28, r4
+	mr       r29, r5
+	lwz      r0, 0x38(r3)
+	cmplwi   r0, 0
+	beq      lbl_8025227C
+	mr       r3, r0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x7c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_8025237C
 
-	.loc_0x40:
-	  mr        r5, r6
-	  addi      r4, r1, 0x8
-	  bl        0x60C
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x140
-	  lwz       r0, 0x8(r1)
-	  mr        r30, r0
-	  rlwinm    r31,r0,2,0,29
-	  b         .loc_0x134
+lbl_8025227C:
+	mr       r5, r6
+	addi     r4, r1, 8
+	bl       isStartAndEnd__Q24Game9CameraMgrFPii
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_8025237C
+	lwz      r0, 8(r1)
+	mr       r30, r0
+	slwi     r31, r0, 2
+	b        lbl_80252370
 
-	.loc_0x64:
-	  lwz       r3, 0x20(r27)
-	  lwzx      r3, r3, r31
-	  bl        0x1D2F98
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x12C
-	  mr        r3, r27
-	  mr        r4, r28
-	  mr        r5, r30
-	  bl        0x638
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x12C
-	  lwz       r4, 0x24(r27)
-	  addi      r3, r1, 0x10
-	  lwzx      r4, r4, r31
-	  lwz       r4, 0x198(r4)
-	  lwz       r12, 0x0(r4)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f1, 0x4(r29)
-	  lfs       f0, 0x14(r1)
-	  lfs       f3, 0x0(r29)
-	  fsubs     f4, f1, f0
-	  lfs       f2, 0x10(r1)
-	  lfs       f1, 0x8(r29)
-	  lfs       f0, 0x18(r1)
-	  fsubs     f3, f3, f2
-	  fmuls     f4, f4, f4
-	  fsubs     f2, f1, f0
-	  lfs       f0, -0x3AC4(r2)
-	  fmadds    f1, f3, f3, f4
-	  fmuls     f2, f2, f2
-	  fadds     f1, f2, f1
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x100
-	  ble-      .loc_0x104
-	  fsqrte    f0, f1
-	  fmuls     f1, f0, f1
-	  b         .loc_0x104
+lbl_802522A0:
+	lwz      r3, 0x20(r27)
+	lwzx     r3, r3, r31
+	bl       viewable__8ViewportFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80252368
+	mr       r3, r27
+	mr       r4, r28
+	mr       r5, r30
+	bl       isVibrationStart__Q24Game9CameraMgrFii
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80252368
+	lwz      r4, 0x24(r27)
+	addi     r3, r1, 0x10
+	lwzx     r4, r4, r31
+	lwz      r4, 0x198(r4)
+	lwz      r12, 0(r4)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f1, 4(r29)
+	lfs      f0, 0x14(r1)
+	lfs      f3, 0(r29)
+	fsubs    f4, f1, f0
+	lfs      f2, 0x10(r1)
+	lfs      f1, 8(r29)
+	lfs      f0, 0x18(r1)
+	fsubs    f3, f3, f2
+	fmuls    f4, f4, f4
+	fsubs    f2, f1, f0
+	lfs      f0, lbl_8051A89C@sda21(r2)
+	fmadds   f1, f3, f3, f4
+	fmuls    f2, f2, f2
+	fadds    f1, f2, f1
+	fcmpo    cr0, f1, f0
+	ble      lbl_8025233C
+	ble      lbl_80252340
+	frsqrte  f0, f1
+	fmuls    f1, f0, f1
+	b        lbl_80252340
 
-	.loc_0x100:
-	  fmr       f1, f0
+lbl_8025233C:
+	fmr      f1, f0
 
-	.loc_0x104:
-	  lwz       r3, 0x30(r27)
-	  lfs       f2, 0x2F4(r3)
-	  fcmpo     cr0, f1, f2
-	  bge-      .loc_0x12C
-	  fsubs     f0, f2, f1
-	  lwz       r3, 0x24(r27)
-	  mr        r4, r28
-	  lwzx      r3, r3, r31
-	  fdivs     f1, f0, f2
-	  bl        -0x12880
+lbl_80252340:
+	lwz      r3, 0x30(r27)
+	lfs      f2, 0x2f4(r3)
+	fcmpo    cr0, f1, f2
+	bge      lbl_80252368
+	fsubs    f0, f2, f1
+	lwz      r3, 0x24(r27)
+	mr       r4, r28
+	lwzx     r3, r3, r31
+	fdivs    f1, f0, f2
+	bl       startVibration__Q24Game10PlayCameraFif
 
-	.loc_0x12C:
-	  addi      r31, r31, 0x4
-	  addi      r30, r30, 0x1
+lbl_80252368:
+	addi     r31, r31, 4
+	addi     r30, r30, 1
 
-	.loc_0x134:
-	  lwz       r0, 0xC(r1)
-	  cmpw      r30, r0
-	  blt+      .loc_0x64
+lbl_80252370:
+	lwz      r0, 0xc(r1)
+	cmpw     r30, r0
+	blt      lbl_802522A0
 
-	.loc_0x140:
-	  lmw       r27, 0x2C(r1)
-	  lwz       r0, 0x44(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
+lbl_8025237C:
+	lmw      r27, 0x2c(r1)
+	lwz      r0, 0x44(r1)
+	mtlr     r0
+	addi     r1, r1, 0x40
+	blr
 	*/
 }
 
@@ -1854,72 +2482,71 @@ void CameraMgr::startVibration(int, Vector3f&, int)
 void CameraMgr::startVibration(int, int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r29, r4
-	  stw       r28, 0x10(r1)
-	  mr        r28, r3
-	  lwz       r0, 0x38(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x48
-	  mr        r3, r0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x7C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0xBC
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	mr       r29, r4
+	stw      r28, 0x10(r1)
+	mr       r28, r3
+	lwz      r0, 0x38(r3)
+	cmplwi   r0, 0
+	beq      lbl_802523D8
+	mr       r3, r0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x7c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_8025244C
 
-	.loc_0x48:
-	  addi      r4, r1, 0x8
-	  bl        0x4B4
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xBC
-	  lwz       r0, 0x8(r1)
-	  mr        r30, r0
-	  rlwinm    r31,r0,2,0,29
-	  b         .loc_0xB0
+lbl_802523D8:
+	addi     r4, r1, 8
+	bl       isStartAndEnd__Q24Game9CameraMgrFPii
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_8025244C
+	lwz      r0, 8(r1)
+	mr       r30, r0
+	slwi     r31, r0, 2
+	b        lbl_80252440
 
-	.loc_0x68:
-	  lwz       r3, 0x20(r28)
-	  lwzx      r3, r3, r31
-	  bl        0x1D2E40
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xA8
-	  mr        r3, r28
-	  mr        r4, r29
-	  mr        r5, r30
-	  bl        0x4E0
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xA8
-	  lwz       r3, 0x24(r28)
-	  mr        r4, r29
-	  lfs       f1, -0x3AC8(r2)
-	  lwzx      r3, r3, r31
-	  bl        -0x12950
+lbl_802523F8:
+	lwz      r3, 0x20(r28)
+	lwzx     r3, r3, r31
+	bl       viewable__8ViewportFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80252438
+	mr       r3, r28
+	mr       r4, r29
+	mr       r5, r30
+	bl       isVibrationStart__Q24Game9CameraMgrFii
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80252438
+	lwz      r3, 0x24(r28)
+	mr       r4, r29
+	lfs      f1, lbl_8051A898@sda21(r2)
+	lwzx     r3, r3, r31
+	bl       startVibration__Q24Game10PlayCameraFif
 
-	.loc_0xA8:
-	  addi      r31, r31, 0x4
-	  addi      r30, r30, 0x1
+lbl_80252438:
+	addi     r31, r31, 4
+	addi     r30, r30, 1
 
-	.loc_0xB0:
-	  lwz       r0, 0xC(r1)
-	  cmpw      r30, r0
-	  blt+      .loc_0x68
+lbl_80252440:
+	lwz      r0, 0xc(r1)
+	cmpw     r30, r0
+	blt      lbl_802523F8
 
-	.loc_0xBC:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8025244C:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -1931,41 +2558,40 @@ void CameraMgr::startVibration(int, int)
 void CameraMgr::controllerLock(int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  mr        r5, r4
-	  stw       r0, 0x24(r1)
-	  addi      r4, r1, 0x8
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r3
-	  bl        0x408
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x5C
-	  lwz       r0, 0x8(r1)
-	  li        r4, 0
-	  mr        r6, r0
-	  rlwinm    r5,r0,2,0,29
-	  b         .loc_0x50
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	mr       r5, r4
+	stw      r0, 0x24(r1)
+	addi     r4, r1, 8
+	stw      r31, 0x1c(r1)
+	mr       r31, r3
+	bl       isStartAndEnd__Q24Game9CameraMgrFPii
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802524C8
+	lwz      r0, 8(r1)
+	li       r4, 0
+	mr       r6, r0
+	slwi     r5, r0, 2
+	b        lbl_802524BC
 
-	.loc_0x3C:
-	  lwz       r3, 0x24(r31)
-	  addi      r6, r6, 0x1
-	  lwzx      r3, r3, r5
-	  addi      r5, r5, 0x4
-	  stb       r4, 0x248(r3)
+lbl_802524A8:
+	lwz      r3, 0x24(r31)
+	addi     r6, r6, 1
+	lwzx     r3, r3, r5
+	addi     r5, r5, 4
+	stb      r4, 0x248(r3)
 
-	.loc_0x50:
-	  lwz       r0, 0xC(r1)
-	  cmpw      r6, r0
-	  blt+      .loc_0x3C
+lbl_802524BC:
+	lwz      r0, 0xc(r1)
+	cmpw     r6, r0
+	blt      lbl_802524A8
 
-	.loc_0x5C:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_802524C8:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -1977,41 +2603,40 @@ void CameraMgr::controllerLock(int)
 void CameraMgr::controllerUnLock(int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  mr        r5, r4
-	  stw       r0, 0x24(r1)
-	  addi      r4, r1, 0x8
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r3
-	  bl        0x398
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x5C
-	  lwz       r0, 0x8(r1)
-	  li        r4, 0x1
-	  mr        r6, r0
-	  rlwinm    r5,r0,2,0,29
-	  b         .loc_0x50
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	mr       r5, r4
+	stw      r0, 0x24(r1)
+	addi     r4, r1, 8
+	stw      r31, 0x1c(r1)
+	mr       r31, r3
+	bl       isStartAndEnd__Q24Game9CameraMgrFPii
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80252538
+	lwz      r0, 8(r1)
+	li       r4, 1
+	mr       r6, r0
+	slwi     r5, r0, 2
+	b        lbl_8025252C
 
-	.loc_0x3C:
-	  lwz       r3, 0x24(r31)
-	  addi      r6, r6, 0x1
-	  lwzx      r3, r3, r5
-	  addi      r5, r5, 0x4
-	  stb       r4, 0x248(r3)
+lbl_80252518:
+	lwz      r3, 0x24(r31)
+	addi     r6, r6, 1
+	lwzx     r3, r3, r5
+	addi     r5, r5, 4
+	stb      r4, 0x248(r3)
 
-	.loc_0x50:
-	  lwz       r0, 0xC(r1)
-	  cmpw      r6, r0
-	  blt+      .loc_0x3C
+lbl_8025252C:
+	lwz      r0, 0xc(r1)
+	cmpw     r6, r0
+	blt      lbl_80252518
 
-	.loc_0x5C:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80252538:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -2023,49 +2648,48 @@ void CameraMgr::controllerUnLock(int)
 void CameraMgr::startDemoCamera(int, int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  mr        r0, r4
-	  addi      r4, r1, 0x8
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r29, r5
-	  mr        r5, r0
-	  stw       r28, 0x10(r1)
-	  mr        r28, r3
-	  bl        0x314
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x70
-	  lwz       r0, 0x8(r1)
-	  mr        r30, r0
-	  rlwinm    r31,r0,2,0,29
-	  b         .loc_0x64
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	mr       r0, r4
+	addi     r4, r1, 8
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	mr       r29, r5
+	mr       r5, r0
+	stw      r28, 0x10(r1)
+	mr       r28, r3
+	bl       isStartAndEnd__Q24Game9CameraMgrFPii
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802525BC
+	lwz      r0, 8(r1)
+	mr       r30, r0
+	slwi     r31, r0, 2
+	b        lbl_802525B0
 
-	.loc_0x4C:
-	  lwz       r3, 0x24(r28)
-	  mr        r4, r29
-	  lwzx      r3, r3, r31
-	  bl        -0x128B8
-	  addi      r31, r31, 0x4
-	  addi      r30, r30, 0x1
+lbl_80252598:
+	lwz      r3, 0x24(r28)
+	mr       r4, r29
+	lwzx     r3, r3, r31
+	bl       startDemoCamera__Q24Game10PlayCameraFi
+	addi     r31, r31, 4
+	addi     r30, r30, 1
 
-	.loc_0x64:
-	  lwz       r0, 0xC(r1)
-	  cmpw      r30, r0
-	  blt+      .loc_0x4C
+lbl_802525B0:
+	lwz      r0, 0xc(r1)
+	cmpw     r30, r0
+	blt      lbl_80252598
 
-	.loc_0x70:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_802525BC:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -2077,44 +2701,43 @@ void CameraMgr::startDemoCamera(int, int)
 void CameraMgr::finishDemoCamera(int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  mr        r5, r4
-	  stw       r0, 0x24(r1)
-	  addi      r4, r1, 0x8
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  bl        0x290
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x60
-	  lwz       r0, 0x8(r1)
-	  mr        r30, r0
-	  rlwinm    r31,r0,2,0,29
-	  b         .loc_0x54
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	mr       r5, r4
+	stw      r0, 0x24(r1)
+	addi     r4, r1, 8
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	bl       isStartAndEnd__Q24Game9CameraMgrFPii
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_8025263C
+	lwz      r0, 8(r1)
+	mr       r30, r0
+	slwi     r31, r0, 2
+	b        lbl_80252630
 
-	.loc_0x40:
-	  lwz       r3, 0x24(r29)
-	  lwzx      r3, r3, r31
-	  bl        -0x12868
-	  addi      r31, r31, 0x4
-	  addi      r30, r30, 0x1
+lbl_8025261C:
+	lwz      r3, 0x24(r29)
+	lwzx     r3, r3, r31
+	bl       finishDemoCamera__Q24Game10PlayCameraFv
+	addi     r31, r31, 4
+	addi     r30, r30, 1
 
-	.loc_0x54:
-	  lwz       r0, 0xC(r1)
-	  cmpw      r30, r0
-	  blt+      .loc_0x40
+lbl_80252630:
+	lwz      r0, 0xc(r1)
+	cmpw     r30, r0
+	blt      lbl_8025261C
 
-	.loc_0x60:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8025263C:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -2126,109 +2749,108 @@ void CameraMgr::finishDemoCamera(int)
 void CameraMgr::changePlayerMode(int, IDelegate1<Game::CameraArg*>*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x70(r1)
-	  mflr      r0
-	  stw       r0, 0x74(r1)
-	  stw       r31, 0x6C(r1)
-	  mr        r31, r5
-	  stw       r30, 0x68(r1)
-	  mr        r30, r4
-	  cmpwi     r30, 0x1
-	  stw       r29, 0x64(r1)
-	  mr        r29, r3
-	  stw       r28, 0x60(r1)
-	  li        r28, 0
-	  beq-      .loc_0xA4
-	  bge-      .loc_0x44
-	  cmpwi     r30, 0
-	  bge-      .loc_0x50
-	  b         .loc_0x138
+	stwu     r1, -0x70(r1)
+	mflr     r0
+	stw      r0, 0x74(r1)
+	stw      r31, 0x6c(r1)
+	mr       r31, r5
+	stw      r30, 0x68(r1)
+	mr       r30, r4
+	cmpwi    r30, 1
+	stw      r29, 0x64(r1)
+	mr       r29, r3
+	stw      r28, 0x60(r1)
+	li       r28, 0
+	beq      lbl_802526FC
+	bge      lbl_8025269C
+	cmpwi    r30, 0
+	bge      lbl_802526A8
+	b        lbl_80252790
 
-	.loc_0x44:
-	  cmpwi     r30, 0x3
-	  bge-      .loc_0x138
-	  b         .loc_0xF8
+lbl_8025269C:
+	cmpwi    r30, 3
+	bge      lbl_80252790
+	b        lbl_80252750
 
-	.loc_0x50:
-	  lwz       r0, 0x18(r29)
-	  cmpwi     r0, 0x1
-	  bne-      .loc_0x80
-	  lwz       r3, 0x24(r29)
-	  addi      r4, r1, 0x34
-	  lwz       r3, 0x4(r3)
-	  bl        -0x12FE8
-	  lwz       r3, 0x24(r29)
-	  addi      r4, r1, 0x34
-	  lwz       r3, 0x0(r3)
-	  bl        -0x12F9C
-	  li        r28, 0x1
+lbl_802526A8:
+	lwz      r0, 0x18(r29)
+	cmpwi    r0, 1
+	bne      lbl_802526D8
+	lwz      r3, 0x24(r29)
+	addi     r4, r1, 0x34
+	lwz      r3, 4(r3)
+	bl       getCameraData__Q24Game10PlayCameraFRQ24Game10CameraData
+	lwz      r3, 0x24(r29)
+	addi     r4, r1, 0x34
+	lwz      r3, 0(r3)
+	bl       setCameraData__Q24Game10PlayCameraFRQ24Game10CameraData
+	li       r28, 1
 
-	.loc_0x80:
-	  lwz       r3, 0x24(r29)
-	  lwz       r4, 0x28(r29)
-	  lwz       r3, 0x0(r3)
-	  bl        -0x131BC
-	  lwz       r3, 0x24(r29)
-	  mr        r4, r28
-	  lwz       r3, 0x0(r3)
-	  bl        -0x12F64
-	  b         .loc_0x138
+lbl_802526D8:
+	lwz      r3, 0x24(r29)
+	lwz      r4, 0x28(r29)
+	lwz      r3, 0(r3)
+	bl       setCameraParms__Q24Game10PlayCameraFPQ24Game11CameraParms
+	lwz      r3, 0x24(r29)
+	mr       r4, r28
+	lwz      r3, 0(r3)
+	bl       changePlayerMode__Q24Game10PlayCameraFb
+	b        lbl_80252790
 
-	.loc_0xA4:
-	  lwz       r0, 0x18(r29)
-	  cmpwi     r0, 0
-	  bne-      .loc_0xD4
-	  lwz       r3, 0x24(r29)
-	  addi      r4, r1, 0x8
-	  lwz       r3, 0x0(r3)
-	  bl        -0x1303C
-	  lwz       r3, 0x24(r29)
-	  addi      r4, r1, 0x8
-	  lwz       r3, 0x4(r3)
-	  bl        -0x12FF0
-	  li        r28, 0x1
+lbl_802526FC:
+	lwz      r0, 0x18(r29)
+	cmpwi    r0, 0
+	bne      lbl_8025272C
+	lwz      r3, 0x24(r29)
+	addi     r4, r1, 8
+	lwz      r3, 0(r3)
+	bl       getCameraData__Q24Game10PlayCameraFRQ24Game10CameraData
+	lwz      r3, 0x24(r29)
+	addi     r4, r1, 8
+	lwz      r3, 4(r3)
+	bl       setCameraData__Q24Game10PlayCameraFRQ24Game10CameraData
+	li       r28, 1
 
-	.loc_0xD4:
-	  lwz       r3, 0x24(r29)
-	  lwz       r4, 0x28(r29)
-	  lwz       r3, 0x4(r3)
-	  bl        -0x13210
-	  lwz       r3, 0x24(r29)
-	  mr        r4, r28
-	  lwz       r3, 0x4(r3)
-	  bl        -0x12FB8
-	  b         .loc_0x138
+lbl_8025272C:
+	lwz      r3, 0x24(r29)
+	lwz      r4, 0x28(r29)
+	lwz      r3, 4(r3)
+	bl       setCameraParms__Q24Game10PlayCameraFPQ24Game11CameraParms
+	lwz      r3, 0x24(r29)
+	mr       r4, r28
+	lwz      r3, 4(r3)
+	bl       changePlayerMode__Q24Game10PlayCameraFb
+	b        lbl_80252790
 
-	.loc_0xF8:
-	  lwz       r3, 0x24(r29)
-	  lwz       r4, 0x2C(r29)
-	  lwz       r3, 0x0(r3)
-	  bl        -0x13234
-	  lwz       r3, 0x24(r29)
-	  li        r4, 0
-	  lwz       r3, 0x0(r3)
-	  bl        -0x12FDC
-	  lwz       r3, 0x24(r29)
-	  lwz       r4, 0x2C(r29)
-	  lwz       r3, 0x4(r3)
-	  bl        -0x13254
-	  lwz       r3, 0x24(r29)
-	  li        r4, 0
-	  lwz       r3, 0x4(r3)
-	  bl        -0x12FFC
+lbl_80252750:
+	lwz      r3, 0x24(r29)
+	lwz      r4, 0x2c(r29)
+	lwz      r3, 0(r3)
+	bl       setCameraParms__Q24Game10PlayCameraFPQ24Game11CameraParms
+	lwz      r3, 0x24(r29)
+	li       r4, 0
+	lwz      r3, 0(r3)
+	bl       changePlayerMode__Q24Game10PlayCameraFb
+	lwz      r3, 0x24(r29)
+	lwz      r4, 0x2c(r29)
+	lwz      r3, 4(r3)
+	bl       setCameraParms__Q24Game10PlayCameraFPQ24Game11CameraParms
+	lwz      r3, 0x24(r29)
+	li       r4, 0
+	lwz      r3, 4(r3)
+	bl       changePlayerMode__Q24Game10PlayCameraFb
 
-	.loc_0x138:
-	  stw       r30, 0x18(r29)
-	  stw       r31, 0x34(r29)
-	  lwz       r0, 0x74(r1)
-	  lwz       r31, 0x6C(r1)
-	  lwz       r30, 0x68(r1)
-	  lwz       r29, 0x64(r1)
-	  lwz       r28, 0x60(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x70
-	  blr
+lbl_80252790:
+	stw      r30, 0x18(r29)
+	stw      r31, 0x34(r29)
+	lwz      r0, 0x74(r1)
+	lwz      r31, 0x6c(r1)
+	lwz      r30, 0x68(r1)
+	lwz      r29, 0x64(r1)
+	lwz      r28, 0x60(r1)
+	mtlr     r0
+	addi     r1, r1, 0x70
+	blr
 	*/
 }
 
@@ -2240,35 +2862,34 @@ void CameraMgr::changePlayerMode(int, IDelegate1<Game::CameraArg*>*)
 void CameraMgr::isChangePlayer()
 {
 	/*
-	.loc_0x0:
-	  lwz       r0, 0x34(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x14
-	  li        r3, 0x1
-	  blr
+	lwz      r0, 0x34(r3)
+	cmplwi   r0, 0
+	beq      lbl_802527CC
+	li       r3, 1
+	blr
 
-	.loc_0x14:
-	  lwz       r4, 0x24(r3)
-	  lwz       r3, 0x0(r4)
-	  lwz       r3, 0x19C(r3)
-	  rlwinm.   r0,r3,0,31,31
-	  mr        r5, r3
-	  beq-      .loc_0x34
-	  li        r3, 0x1
-	  blr
+lbl_802527CC:
+	lwz      r4, 0x24(r3)
+	lwz      r3, 0(r4)
+	lwz      r3, 0x19c(r3)
+	clrlwi.  r0, r3, 0x1f
+	mr       r5, r3
+	beq      lbl_802527EC
+	li       r3, 1
+	blr
 
-	.loc_0x34:
-	  lwz       r3, 0x4(r4)
-	  lwz       r3, 0x19C(r3)
-	  or        r5, r5, r3
-	  rlwinm.   r0,r5,0,31,31
-	  beq-      .loc_0x50
-	  li        r3, 0x1
-	  blr
+lbl_802527EC:
+	lwz      r3, 4(r4)
+	lwz      r3, 0x19c(r3)
+	or       r5, r5, r3
+	clrlwi.  r0, r5, 0x1f
+	beq      lbl_80252808
+	li       r3, 1
+	blr
 
-	.loc_0x50:
-	  li        r3, 0
-	  blr
+lbl_80252808:
+	li       r3, 0
+	blr
 	*/
 }
 
@@ -2280,33 +2901,32 @@ void CameraMgr::isChangePlayer()
 void CameraMgr::setZukanCamera(LookAtCamera*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r5, -0x6C18(r13)
-	  cmplwi    r5, 0
-	  beq-      .loc_0x2C
-	  lwz       r0, 0x44(r5)
-	  cmpwi     r0, 0x4
-	  bne-      .loc_0x2C
-	  stw       r4, 0x38(r3)
-	  b         .loc_0x48
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r5, gameSystem__4Game@sda21(r13)
+	cmplwi   r5, 0
+	beq      lbl_8025283C
+	lwz      r0, 0x44(r5)
+	cmpwi    r0, 4
+	bne      lbl_8025283C
+	stw      r4, 0x38(r3)
+	b        lbl_80252858
 
-	.loc_0x2C:
-	  lis       r3, 0x8048
-	  lis       r5, 0x8048
-	  addi      r3, r3, 0x47FC
-	  li        r4, 0x1CF
-	  addi      r5, r5, 0x4828
-	  crclr     6, 0x6
-	  bl        -0x228214
+lbl_8025283C:
+	lis      r3, lbl_804847FC@ha
+	lis      r5, lbl_80484828@ha
+	addi     r3, r3, lbl_804847FC@l
+	li       r4, 0x1cf
+	addi     r5, r5, lbl_80484828@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x48:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80252858:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2318,19 +2938,18 @@ void CameraMgr::setZukanCamera(LookAtCamera*)
 void CameraMgr::isCameraUpdateOn()
 {
 	/*
-	.loc_0x0:
-	  lwz       r3, -0x6C18(r13)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x20
-	  lbz       r0, 0x4A(r3)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x20
-	  li        r3, 0x1
-	  blr
+	lwz      r3, gameSystem__4Game@sda21(r13)
+	cmplwi   r3, 0
+	beq      lbl_80252888
+	lbz      r0, 0x4a(r3)
+	cmplwi   r0, 0
+	bne      lbl_80252888
+	li       r3, 1
+	blr
 
-	.loc_0x20:
-	  li        r3, 0
-	  blr
+lbl_80252888:
+	li       r3, 0
+	blr
 	*/
 }
 
@@ -2342,39 +2961,38 @@ void CameraMgr::isCameraUpdateOn()
 void CameraMgr::isStartAndEnd(int*, int)
 {
 	/*
-	.loc_0x0:
-	  cmpwi     r5, 0x2
-	  bne-      .loc_0x20
-	  li        r3, 0
-	  li        r0, 0x2
-	  stw       r3, 0x0(r4)
-	  li        r3, 0x1
-	  stw       r0, 0x4(r4)
-	  blr
+	cmpwi    r5, 2
+	bne      lbl_802528B0
+	li       r3, 0
+	li       r0, 2
+	stw      r3, 0(r4)
+	li       r3, 1
+	stw      r0, 4(r4)
+	blr
 
-	.loc_0x20:
-	  cmpwi     r5, 0
-	  bne-      .loc_0x40
-	  li        r3, 0
-	  li        r0, 0x1
-	  stw       r3, 0x0(r4)
-	  li        r3, 0x1
-	  stw       r0, 0x4(r4)
-	  blr
+lbl_802528B0:
+	cmpwi    r5, 0
+	bne      lbl_802528D0
+	li       r3, 0
+	li       r0, 1
+	stw      r3, 0(r4)
+	li       r3, 1
+	stw      r0, 4(r4)
+	blr
 
-	.loc_0x40:
-	  cmpwi     r5, 0x1
-	  bne-      .loc_0x60
-	  li        r3, 0x1
-	  li        r0, 0x2
-	  stw       r3, 0x0(r4)
-	  li        r3, 0x1
-	  stw       r0, 0x4(r4)
-	  blr
+lbl_802528D0:
+	cmpwi    r5, 1
+	bne      lbl_802528F0
+	li       r3, 1
+	li       r0, 2
+	stw      r3, 0(r4)
+	li       r3, 1
+	stw      r0, 4(r4)
+	blr
 
-	.loc_0x60:
-	  li        r3, 0
-	  blr
+lbl_802528F0:
+	li       r3, 0
+	blr
 	*/
 }
 
@@ -2386,46 +3004,45 @@ void CameraMgr::isStartAndEnd(int*, int)
 void CameraMgr::isVibrationStart(int, int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  rlwinm    r31,r5,2,0,29
-	  stw       r30, 0x18(r1)
-	  mr        r30, r4
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  lwz       r3, 0x24(r3)
-	  lwzx      r3, r3, r31
-	  bl        -0x12E84
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x54
-	  lwz       r3, 0x1C(r29)
-	  lwzx      r0, r3, r31
-	  cmpw      r30, r0
-	  blt-      .loc_0x64
-	  stwx      r30, r3, r31
-	  li        r3, 0x1
-	  b         .loc_0x68
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	slwi     r31, r5, 2
+	stw      r30, 0x18(r1)
+	mr       r30, r4
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	lwz      r3, 0x24(r3)
+	lwzx     r3, r3, r31
+	bl       isVibration__Q24Game10PlayCameraFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_8025294C
+	lwz      r3, 0x1c(r29)
+	lwzx     r0, r3, r31
+	cmpw     r30, r0
+	blt      lbl_8025295C
+	stwx     r30, r3, r31
+	li       r3, 1
+	b        lbl_80252960
 
-	.loc_0x54:
-	  lwz       r4, 0x1C(r29)
-	  li        r3, 0x1
-	  stwx      r30, r4, r31
-	  b         .loc_0x68
+lbl_8025294C:
+	lwz      r4, 0x1c(r29)
+	li       r3, 1
+	stwx     r30, r4, r31
+	b        lbl_80252960
 
-	.loc_0x64:
-	  li        r3, 0
+lbl_8025295C:
+	li       r3, 0
 
-	.loc_0x68:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80252960:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -2437,55 +3054,53 @@ void CameraMgr::isVibrationStart(int, int)
 void CameraMgr::readCameraParms(char*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x440(r1)
-	  mflr      r0
-	  li        r5, 0
-	  li        r6, 0
-	  stw       r0, 0x444(r1)
-	  li        r0, 0
-	  li        r7, 0
-	  li        r8, 0x2
-	  stw       r31, 0x43C(r1)
-	  li        r9, 0
-	  li        r10, 0
-	  stw       r30, 0x438(r1)
-	  mr        r30, r3
-	  mr        r3, r4
-	  li        r4, 0
-	  stw       r0, 0x8(r1)
-	  bl        -0x233834
-	  mr.       r31, r3
-	  beq-      .loc_0x74
-	  mr        r4, r31
-	  addi      r3, r1, 0x10
-	  li        r5, -0x1
-	  bl        0x1C2F24
-	  mr        r3, r30
-	  addi      r4, r1, 0x10
-	  bl        .loc_0xA8
-	  mr        r3, r31
-	  bl        -0x22E910
-	  b         .loc_0x90
+	stwu     r1, -0x440(r1)
+	mflr     r0
+	li       r5, 0
+	li       r6, 0
+	stw      r0, 0x444(r1)
+	li       r0, 0
+	li       r7, 0
+	li       r8, 2
+	stw      r31, 0x43c(r1)
+	li       r9, 0
+	li       r10, 0
+	stw      r30, 0x438(r1)
+	mr       r30, r3
+	mr       r3, r4
+	li       r4, 0
+	stw      r0, 8(r1)
+	bl
+loadToMainRAM__12JKRDvdRipperFPCcPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl
+	or.      r31, r3, r3
+	beq      lbl_802529F0
+	mr       r4, r31
+	addi     r3, r1, 0x10
+	li       r5, -1
+	bl       __ct__9RamStreamFPvi
+	mr       r3, r30
+	addi     r4, r1, 0x10
+	bl       readParameter__Q24Game9CameraMgrFR6Stream
+	mr       r3, r31
+	bl       __dla__FPv
+	b        lbl_80252A0C
 
-	.loc_0x74:
-	  lis       r3, 0x8048
-	  lis       r5, 0x8048
-	  addi      r3, r3, 0x47FC
-	  li        r4, 0x22F
-	  addi      r5, r5, 0x4838
-	  crclr     6, 0x6
-	  bl        -0x2283C8
+lbl_802529F0:
+	lis      r3, lbl_804847FC@ha
+	lis      r5, lbl_80484838@ha
+	addi     r3, r3, lbl_804847FC@l
+	li       r4, 0x22f
+	addi     r5, r5, lbl_80484838@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x90:
-	  lwz       r0, 0x444(r1)
-	  lwz       r31, 0x43C(r1)
-	  lwz       r30, 0x438(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x440
-	  blr
-
-	.loc_0xA8:
+lbl_80252A0C:
+	lwz      r0, 0x444(r1)
+	lwz      r31, 0x43c(r1)
+	lwz      r30, 0x438(r1)
+	mtlr     r0
+	addi     r1, r1, 0x440
+	blr
 	*/
 }
 
@@ -2497,38 +3112,37 @@ void CameraMgr::readCameraParms(char*)
 void CameraMgr::readParameter(Stream&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  li        r0, 0x1
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  stw       r0, 0xC(r4)
-	  lwz       r0, 0xC(r4)
-	  cmpwi     r0, 0x1
-	  bne-      .loc_0x38
-	  li        r0, 0
-	  stw       r0, 0x414(r31)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	li       r0, 1
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	stw      r0, 0xc(r4)
+	lwz      r0, 0xc(r4)
+	cmpwi    r0, 1
+	bne      lbl_80252A5C
+	li       r0, 0
+	stw      r0, 0x414(r31)
 
-	.loc_0x38:
-	  lwz       r3, 0x28(r30)
-	  mr        r4, r31
-	  bl        0x1C0D90
-	  lwz       r3, 0x2C(r30)
-	  mr        r4, r31
-	  bl        0x1C0D84
-	  lwz       r3, 0x30(r30)
-	  mr        r4, r31
-	  bl        0x1C0D78
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80252A5C:
+	lwz      r3, 0x28(r30)
+	mr       r4, r31
+	bl       read__10ParametersFR6Stream
+	lwz      r3, 0x2c(r30)
+	mr       r4, r31
+	bl       read__10ParametersFR6Stream
+	lwz      r3, 0x30(r30)
+	mr       r4, r31
+	bl       read__10ParametersFR6Stream
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2540,33 +3154,32 @@ void CameraMgr::readParameter(Stream&)
 CameraMgr::~CameraMgr()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x44
-	  lis       r5, 0x804C
-	  li        r4, 0
-	  addi      r0, r5, 0x1BD4
-	  stw       r0, 0x0(r30)
-	  bl        0x1BEAC0
-	  extsh.    r0, r31
-	  ble-      .loc_0x44
-	  mr        r3, r30
-	  bl        -0x22EA24
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_80252ADC
+	lis      r5, __vt__Q24Game9CameraMgr@ha
+	li       r4, 0
+	addi     r0, r5, __vt__Q24Game9CameraMgr@l
+	stw      r0, 0(r30)
+	bl       __dt__5CNodeFv
+	extsh.   r0, r31
+	ble      lbl_80252ADC
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x44:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80252ADC:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2580,16 +3193,15 @@ CameraMgr::~CameraMgr()
 void __sinit_CameraMgr_cpp(void)
 {
 	/*
-	.loc_0x0:
-	  lis       r4, 0x8051
-	  li        r0, -0x1
-	  lfs       f0, 0x48B0(r4)
-	  lis       r3, 0x804C
-	  stw       r0, -0x6968(r13)
-	  stfsu     f0, 0x1BC8(r3)
-	  stfs      f0, -0x6964(r13)
-	  stfs      f0, 0x4(r3)
-	  stfs      f0, 0x8(r3)
-	  blr
+	lis      r4, __float_nan@ha
+	li       r0, -1
+	lfs      f0, __float_nan@l(r4)
+	lis      r3, lbl_804C1BC8@ha
+	stw      r0, lbl_80515D18@sda21(r13)
+	stfsu    f0, lbl_804C1BC8@l(r3)
+	stfs     f0, lbl_80515D1C@sda21(r13)
+	stfs     f0, 4(r3)
+	stfs     f0, 8(r3)
+	blr
 	*/
 }

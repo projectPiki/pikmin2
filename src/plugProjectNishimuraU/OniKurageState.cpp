@@ -1,5 +1,300 @@
 #include "types.h"
 
+/*
+    Generated from dpostproc
+
+    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
+    .4byte __sinit_OniKurageState_cpp
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_8048BD38
+    lbl_8048BD38:
+        .asciz "flyflick"
+        .skip 3
+    .global lbl_8048BD44
+    lbl_8048BD44:
+        .asciz "groundflick"
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global lbl_804D27A8
+    lbl_804D27A8:
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+    .global __vt__Q34Game9OniKurage16StateGroundFlick
+    __vt__Q34Game9OniKurage16StateGroundFlick:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game9OniKurage16StateGroundFlickFPQ24Game9EnemyBasePQ24Game8StateArg
+        .4byte exec__Q34Game9OniKurage16StateGroundFlickFPQ24Game9EnemyBase
+        .4byte cleanup__Q34Game9OniKurage16StateGroundFlickFPQ24Game9EnemyBase
+        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q23efx12TKurageFlick
+    __vt__Q23efx12TKurageFlick:
+        .4byte 0
+        .4byte 0
+        .4byte create__Q23efx8TSimple1FPQ23efx3Arg
+        .4byte forceKill__Q23efx8TSimple1Fv
+        .4byte fade__Q23efx8TSimple1Fv
+    .global __vt__Q34Game9OniKurage13StateFlyFlick
+    __vt__Q34Game9OniKurage13StateFlyFlick:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game9OniKurage13StateFlyFlickFPQ24Game9EnemyBasePQ24Game8StateArg
+        .4byte exec__Q34Game9OniKurage13StateFlyFlickFPQ24Game9EnemyBase
+        .4byte cleanup__Q34Game9OniKurage13StateFlyFlickFPQ24Game9EnemyBase
+        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game9OniKurage11StateGround
+    __vt__Q34Game9OniKurage11StateGround:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game9OniKurage11StateGroundFPQ24Game9EnemyBasePQ24Game8StateArg
+        .4byte exec__Q34Game9OniKurage11StateGroundFPQ24Game9EnemyBase
+        .4byte cleanup__Q34Game9OniKurage11StateGroundFPQ24Game9EnemyBase
+        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game9OniKurage12StateTakeOff
+    __vt__Q34Game9OniKurage12StateTakeOff:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game9OniKurage12StateTakeOffFPQ24Game9EnemyBasePQ24Game8StateArg
+        .4byte exec__Q34Game9OniKurage12StateTakeOffFPQ24Game9EnemyBase
+        .4byte cleanup__Q34Game9OniKurage12StateTakeOffFPQ24Game9EnemyBase
+        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game9OniKurage9StateLand
+    __vt__Q34Game9OniKurage9StateLand:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game9OniKurage9StateLandFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
+   exec__Q34Game9OniKurage9StateLandFPQ24Game9EnemyBase .4byte
+   cleanup__Q34Game9OniKurage9StateLandFPQ24Game9EnemyBase .4byte
+   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
+   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game9OniKurage9StateDrop
+    __vt__Q34Game9OniKurage9StateDrop:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game9OniKurage9StateDropFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
+   exec__Q34Game9OniKurage9StateDropFPQ24Game9EnemyBase .4byte
+   cleanup__Q34Game9OniKurage9StateDropFPQ24Game9EnemyBase .4byte
+   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
+   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game9OniKurage9StateFall
+    __vt__Q34Game9OniKurage9StateFall:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game9OniKurage9StateFallFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
+   exec__Q34Game9OniKurage9StateFallFPQ24Game9EnemyBase .4byte
+   cleanup__Q34Game9OniKurage9StateFallFPQ24Game9EnemyBase .4byte
+   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
+   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game9OniKurage11StateAttack
+    __vt__Q34Game9OniKurage11StateAttack:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game9OniKurage11StateAttackFPQ24Game9EnemyBasePQ24Game8StateArg
+        .4byte exec__Q34Game9OniKurage11StateAttackFPQ24Game9EnemyBase
+        .4byte cleanup__Q34Game9OniKurage11StateAttackFPQ24Game9EnemyBase
+        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game9OniKurage10StateChase
+    __vt__Q34Game9OniKurage10StateChase:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game9OniKurage10StateChaseFPQ24Game9EnemyBasePQ24Game8StateArg
+        .4byte exec__Q34Game9OniKurage10StateChaseFPQ24Game9EnemyBase
+        .4byte cleanup__Q34Game9OniKurage10StateChaseFPQ24Game9EnemyBase
+        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game9OniKurage9StateMove
+    __vt__Q34Game9OniKurage9StateMove:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game9OniKurage9StateMoveFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
+   exec__Q34Game9OniKurage9StateMoveFPQ24Game9EnemyBase .4byte
+   cleanup__Q34Game9OniKurage9StateMoveFPQ24Game9EnemyBase .4byte
+   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
+   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game9OniKurage9StateWait
+    __vt__Q34Game9OniKurage9StateWait:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game9OniKurage9StateWaitFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
+   exec__Q34Game9OniKurage9StateWaitFPQ24Game9EnemyBase .4byte
+   cleanup__Q34Game9OniKurage9StateWaitFPQ24Game9EnemyBase .4byte
+   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
+   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game9OniKurage9StateDead
+    __vt__Q34Game9OniKurage9StateDead:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game9OniKurage9StateDeadFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
+   exec__Q34Game9OniKurage9StateDeadFPQ24Game9EnemyBase .4byte
+   cleanup__Q34Game9OniKurage9StateDeadFPQ24Game9EnemyBase .4byte
+   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
+   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game9OniKurage5State
+    __vt__Q34Game9OniKurage5State:
+        .4byte 0
+        .4byte 0
+        .4byte init__Q24Game13EnemyFSMStateFPQ24Game9EnemyBasePQ24Game8StateArg
+        .4byte exec__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte cleanup__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game9OniKurage3FSM
+    __vt__Q34Game9OniKurage3FSM:
+        .4byte 0
+        .4byte 0
+        .4byte init__Q34Game9OniKurage3FSMFPQ24Game9EnemyBase
+        .4byte
+   start__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   exec__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase .4byte
+   transit__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseiPQ24Game8StateArg
+        .4byte
+   doDirectDraw__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseR8Graphics .4byte
+   getCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase .4byte
+   setCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBasePQ24Game13EnemyFSMState
+
+    .section .sbss # 0x80514D80 - 0x80516360
+    .global lbl_80515DC8
+    lbl_80515DC8:
+        .skip 0x4
+    .global lbl_80515DCC
+    lbl_80515DCC:
+        .skip 0x4
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_8051C8E8
+    lbl_8051C8E8:
+        .4byte 0x64656164
+        .4byte 0x00000000
+    .global lbl_8051C8F0
+    lbl_8051C8F0:
+        .4byte 0x77616974
+        .4byte 0x00000000
+    .global lbl_8051C8F8
+    lbl_8051C8F8:
+        .4byte 0x6D6F7665
+        .4byte 0x00000000
+    .global lbl_8051C900
+    lbl_8051C900:
+        .4byte 0x63686173
+        .4byte 0x65000000
+    .global lbl_8051C908
+    lbl_8051C908:
+        .4byte 0x61747461
+        .4byte 0x636B0000
+    .global lbl_8051C910
+    lbl_8051C910:
+        .4byte 0x66616C6C
+        .4byte 0x00000000
+    .global lbl_8051C918
+    lbl_8051C918:
+        .4byte 0x64726F70
+        .4byte 0x00000000
+    .global lbl_8051C920
+    lbl_8051C920:
+        .4byte 0x6C616E64
+        .4byte 0x00000000
+    .global lbl_8051C928
+    lbl_8051C928:
+        .4byte 0x67726F75
+        .4byte 0x6E640000
+    .global lbl_8051C930
+    lbl_8051C930:
+        .4byte 0x74616B65
+        .4byte 0x6F666600
+    .global lbl_8051C938
+    lbl_8051C938:
+        .4byte 0x00000000
+    .global lbl_8051C93C
+    lbl_8051C93C:
+        .4byte 0x41F00000
+    .global lbl_8051C940
+    lbl_8051C940:
+        .4byte 0x42820000
+    .global lbl_8051C944
+    lbl_8051C944:
+        .4byte 0x41A00000
+    .global lbl_8051C948
+    lbl_8051C948:
+        .4byte 0x41980000
+    .global lbl_8051C94C
+    lbl_8051C94C:
+        .float 1.0
+    .global lbl_8051C950
+    lbl_8051C950:
+        .4byte 0x42C80000
+    .global lbl_8051C954
+    lbl_8051C954:
+        .4byte 0xC47A0000
+    .global lbl_8051C958
+    lbl_8051C958:
+        .4byte 0x40600000
+    .global lbl_8051C95C
+    lbl_8051C95C:
+        .4byte 0x40400000
+    .global lbl_8051C960
+    lbl_8051C960:
+        .4byte 0x41200000
+    .global lbl_8051C964
+    lbl_8051C964:
+        .4byte 0x441C4000
+    .global lbl_8051C968
+    lbl_8051C968:
+        .4byte 0x41C80000
+        .4byte 0x00000000
+*/
+
 namespace Game {
 
 /*
@@ -10,296 +305,295 @@ namespace Game {
 void OniKurage::FSM::init(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r4, 0xC
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        -0x1A1294
-	  li        r3, 0x10
-	  bl        -0x2ADC5C
-	  mr.       r4, r3
-	  beq-      .loc_0x64
-	  lis       r3, 0x804B
-	  lis       r5, 0x804D
-	  subi      r0, r3, 0x65C
-	  lis       r3, 0x804D
-	  stw       r0, 0x0(r4)
-	  li        r7, 0
-	  addi      r6, r5, 0x2978
-	  subi      r5, r2, 0x1A78
-	  stw       r7, 0x4(r4)
-	  addi      r0, r3, 0x2954
-	  stw       r7, 0x8(r4)
-	  stw       r6, 0x0(r4)
-	  stw       r5, 0xC(r4)
-	  stw       r0, 0x0(r4)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	li       r4, 0xc
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       create__Q24Game17EnemyStateMachineFi
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_802D1B44
+	lis      r3, __vt__Q24Game13EnemyFSMState@ha
+	lis      r5, __vt__Q34Game9OniKurage5State@ha
+	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
+	lis      r3, __vt__Q34Game9OniKurage9StateDead@ha
+	stw      r0, 0(r4)
+	li       r7, 0
+	addi     r6, r5, __vt__Q34Game9OniKurage5State@l
+	addi     r5, r2, lbl_8051C8E8@sda21
+	stw      r7, 4(r4)
+	addi     r0, r3, __vt__Q34Game9OniKurage9StateDead@l
+	stw      r7, 8(r4)
+	stw      r6, 0(r4)
+	stw      r5, 0xc(r4)
+	stw      r0, 0(r4)
 
-	.loc_0x64:
-	  mr        r3, r31
-	  bl        -0x1A1240
-	  li        r3, 0x10
-	  bl        -0x2ADCAC
-	  mr.       r4, r3
-	  beq-      .loc_0xB8
-	  lis       r3, 0x804B
-	  lis       r5, 0x804D
-	  subi      r0, r3, 0x65C
-	  lis       r3, 0x804D
-	  stw       r0, 0x0(r4)
-	  li        r0, 0x1
-	  li        r7, 0
-	  addi      r6, r5, 0x2978
-	  stw       r0, 0x4(r4)
-	  subi      r5, r2, 0x1A70
-	  addi      r0, r3, 0x2930
-	  stw       r7, 0x8(r4)
-	  stw       r6, 0x0(r4)
-	  stw       r5, 0xC(r4)
-	  stw       r0, 0x0(r4)
+lbl_802D1B44:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_802D1B98
+	lis      r3, __vt__Q24Game13EnemyFSMState@ha
+	lis      r5, __vt__Q34Game9OniKurage5State@ha
+	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
+	lis      r3, __vt__Q34Game9OniKurage9StateWait@ha
+	stw      r0, 0(r4)
+	li       r0, 1
+	li       r7, 0
+	addi     r6, r5, __vt__Q34Game9OniKurage5State@l
+	stw      r0, 4(r4)
+	addi     r5, r2, lbl_8051C8F0@sda21
+	addi     r0, r3, __vt__Q34Game9OniKurage9StateWait@l
+	stw      r7, 8(r4)
+	stw      r6, 0(r4)
+	stw      r5, 0xc(r4)
+	stw      r0, 0(r4)
 
-	.loc_0xB8:
-	  mr        r3, r31
-	  bl        -0x1A1294
-	  li        r3, 0x10
-	  bl        -0x2ADD00
-	  mr.       r4, r3
-	  beq-      .loc_0x10C
-	  lis       r3, 0x804B
-	  lis       r5, 0x804D
-	  subi      r0, r3, 0x65C
-	  lis       r3, 0x804D
-	  stw       r0, 0x0(r4)
-	  li        r0, 0x2
-	  li        r7, 0
-	  addi      r6, r5, 0x2978
-	  stw       r0, 0x4(r4)
-	  subi      r5, r2, 0x1A68
-	  addi      r0, r3, 0x290C
-	  stw       r7, 0x8(r4)
-	  stw       r6, 0x0(r4)
-	  stw       r5, 0xC(r4)
-	  stw       r0, 0x0(r4)
+lbl_802D1B98:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_802D1BEC
+	lis      r3, __vt__Q24Game13EnemyFSMState@ha
+	lis      r5, __vt__Q34Game9OniKurage5State@ha
+	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
+	lis      r3, __vt__Q34Game9OniKurage9StateMove@ha
+	stw      r0, 0(r4)
+	li       r0, 2
+	li       r7, 0
+	addi     r6, r5, __vt__Q34Game9OniKurage5State@l
+	stw      r0, 4(r4)
+	addi     r5, r2, lbl_8051C8F8@sda21
+	addi     r0, r3, __vt__Q34Game9OniKurage9StateMove@l
+	stw      r7, 8(r4)
+	stw      r6, 0(r4)
+	stw      r5, 0xc(r4)
+	stw      r0, 0(r4)
 
-	.loc_0x10C:
-	  mr        r3, r31
-	  bl        -0x1A12E8
-	  li        r3, 0x10
-	  bl        -0x2ADD54
-	  mr.       r4, r3
-	  beq-      .loc_0x160
-	  lis       r3, 0x804B
-	  lis       r5, 0x804D
-	  subi      r0, r3, 0x65C
-	  lis       r3, 0x804D
-	  stw       r0, 0x0(r4)
-	  li        r0, 0x3
-	  li        r7, 0
-	  addi      r6, r5, 0x2978
-	  stw       r0, 0x4(r4)
-	  subi      r5, r2, 0x1A60
-	  addi      r0, r3, 0x28E8
-	  stw       r7, 0x8(r4)
-	  stw       r6, 0x0(r4)
-	  stw       r5, 0xC(r4)
-	  stw       r0, 0x0(r4)
+lbl_802D1BEC:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_802D1C40
+	lis      r3, __vt__Q24Game13EnemyFSMState@ha
+	lis      r5, __vt__Q34Game9OniKurage5State@ha
+	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
+	lis      r3, __vt__Q34Game9OniKurage10StateChase@ha
+	stw      r0, 0(r4)
+	li       r0, 3
+	li       r7, 0
+	addi     r6, r5, __vt__Q34Game9OniKurage5State@l
+	stw      r0, 4(r4)
+	addi     r5, r2, lbl_8051C900@sda21
+	addi     r0, r3, __vt__Q34Game9OniKurage10StateChase@l
+	stw      r7, 8(r4)
+	stw      r6, 0(r4)
+	stw      r5, 0xc(r4)
+	stw      r0, 0(r4)
 
-	.loc_0x160:
-	  mr        r3, r31
-	  bl        -0x1A133C
-	  li        r3, 0x10
-	  bl        -0x2ADDA8
-	  mr.       r4, r3
-	  beq-      .loc_0x1B4
-	  lis       r3, 0x804B
-	  lis       r5, 0x804D
-	  subi      r0, r3, 0x65C
-	  lis       r3, 0x804D
-	  stw       r0, 0x0(r4)
-	  li        r0, 0x4
-	  li        r7, 0
-	  addi      r6, r5, 0x2978
-	  stw       r0, 0x4(r4)
-	  subi      r5, r2, 0x1A58
-	  addi      r0, r3, 0x28C4
-	  stw       r7, 0x8(r4)
-	  stw       r6, 0x0(r4)
-	  stw       r5, 0xC(r4)
-	  stw       r0, 0x0(r4)
+lbl_802D1C40:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_802D1C94
+	lis      r3, __vt__Q24Game13EnemyFSMState@ha
+	lis      r5, __vt__Q34Game9OniKurage5State@ha
+	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
+	lis      r3, __vt__Q34Game9OniKurage11StateAttack@ha
+	stw      r0, 0(r4)
+	li       r0, 4
+	li       r7, 0
+	addi     r6, r5, __vt__Q34Game9OniKurage5State@l
+	stw      r0, 4(r4)
+	addi     r5, r2, lbl_8051C908@sda21
+	addi     r0, r3, __vt__Q34Game9OniKurage11StateAttack@l
+	stw      r7, 8(r4)
+	stw      r6, 0(r4)
+	stw      r5, 0xc(r4)
+	stw      r0, 0(r4)
 
-	.loc_0x1B4:
-	  mr        r3, r31
-	  bl        -0x1A1390
-	  li        r3, 0x10
-	  bl        -0x2ADDFC
-	  mr.       r4, r3
-	  beq-      .loc_0x208
-	  lis       r3, 0x804B
-	  lis       r5, 0x804D
-	  subi      r0, r3, 0x65C
-	  lis       r3, 0x804D
-	  stw       r0, 0x0(r4)
-	  li        r0, 0x5
-	  li        r7, 0
-	  addi      r6, r5, 0x2978
-	  stw       r0, 0x4(r4)
-	  subi      r5, r2, 0x1A50
-	  addi      r0, r3, 0x28A0
-	  stw       r7, 0x8(r4)
-	  stw       r6, 0x0(r4)
-	  stw       r5, 0xC(r4)
-	  stw       r0, 0x0(r4)
+lbl_802D1C94:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_802D1CE8
+	lis      r3, __vt__Q24Game13EnemyFSMState@ha
+	lis      r5, __vt__Q34Game9OniKurage5State@ha
+	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
+	lis      r3, __vt__Q34Game9OniKurage9StateFall@ha
+	stw      r0, 0(r4)
+	li       r0, 5
+	li       r7, 0
+	addi     r6, r5, __vt__Q34Game9OniKurage5State@l
+	stw      r0, 4(r4)
+	addi     r5, r2, lbl_8051C910@sda21
+	addi     r0, r3, __vt__Q34Game9OniKurage9StateFall@l
+	stw      r7, 8(r4)
+	stw      r6, 0(r4)
+	stw      r5, 0xc(r4)
+	stw      r0, 0(r4)
 
-	.loc_0x208:
-	  mr        r3, r31
-	  bl        -0x1A13E4
-	  li        r3, 0x10
-	  bl        -0x2ADE50
-	  mr.       r4, r3
-	  beq-      .loc_0x25C
-	  lis       r3, 0x804B
-	  lis       r5, 0x804D
-	  subi      r0, r3, 0x65C
-	  lis       r3, 0x804D
-	  stw       r0, 0x0(r4)
-	  li        r0, 0x6
-	  li        r7, 0
-	  addi      r6, r5, 0x2978
-	  stw       r0, 0x4(r4)
-	  subi      r5, r2, 0x1A48
-	  addi      r0, r3, 0x287C
-	  stw       r7, 0x8(r4)
-	  stw       r6, 0x0(r4)
-	  stw       r5, 0xC(r4)
-	  stw       r0, 0x0(r4)
+lbl_802D1CE8:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_802D1D3C
+	lis      r3, __vt__Q24Game13EnemyFSMState@ha
+	lis      r5, __vt__Q34Game9OniKurage5State@ha
+	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
+	lis      r3, __vt__Q34Game9OniKurage9StateDrop@ha
+	stw      r0, 0(r4)
+	li       r0, 6
+	li       r7, 0
+	addi     r6, r5, __vt__Q34Game9OniKurage5State@l
+	stw      r0, 4(r4)
+	addi     r5, r2, lbl_8051C918@sda21
+	addi     r0, r3, __vt__Q34Game9OniKurage9StateDrop@l
+	stw      r7, 8(r4)
+	stw      r6, 0(r4)
+	stw      r5, 0xc(r4)
+	stw      r0, 0(r4)
 
-	.loc_0x25C:
-	  mr        r3, r31
-	  bl        -0x1A1438
-	  li        r3, 0x10
-	  bl        -0x2ADEA4
-	  mr.       r4, r3
-	  beq-      .loc_0x2B0
-	  lis       r3, 0x804B
-	  lis       r5, 0x804D
-	  subi      r0, r3, 0x65C
-	  lis       r3, 0x804D
-	  stw       r0, 0x0(r4)
-	  li        r0, 0x7
-	  li        r7, 0
-	  addi      r6, r5, 0x2978
-	  stw       r0, 0x4(r4)
-	  subi      r5, r2, 0x1A40
-	  addi      r0, r3, 0x2858
-	  stw       r7, 0x8(r4)
-	  stw       r6, 0x0(r4)
-	  stw       r5, 0xC(r4)
-	  stw       r0, 0x0(r4)
+lbl_802D1D3C:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_802D1D90
+	lis      r3, __vt__Q24Game13EnemyFSMState@ha
+	lis      r5, __vt__Q34Game9OniKurage5State@ha
+	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
+	lis      r3, __vt__Q34Game9OniKurage9StateLand@ha
+	stw      r0, 0(r4)
+	li       r0, 7
+	li       r7, 0
+	addi     r6, r5, __vt__Q34Game9OniKurage5State@l
+	stw      r0, 4(r4)
+	addi     r5, r2, lbl_8051C920@sda21
+	addi     r0, r3, __vt__Q34Game9OniKurage9StateLand@l
+	stw      r7, 8(r4)
+	stw      r6, 0(r4)
+	stw      r5, 0xc(r4)
+	stw      r0, 0(r4)
 
-	.loc_0x2B0:
-	  mr        r3, r31
-	  bl        -0x1A148C
-	  li        r3, 0x10
-	  bl        -0x2ADEF8
-	  mr.       r4, r3
-	  beq-      .loc_0x304
-	  lis       r3, 0x804B
-	  lis       r5, 0x804D
-	  subi      r0, r3, 0x65C
-	  lis       r3, 0x804D
-	  stw       r0, 0x0(r4)
-	  li        r0, 0x8
-	  li        r7, 0
-	  addi      r6, r5, 0x2978
-	  stw       r0, 0x4(r4)
-	  subi      r5, r2, 0x1A38
-	  addi      r0, r3, 0x2810
-	  stw       r7, 0x8(r4)
-	  stw       r6, 0x0(r4)
-	  stw       r5, 0xC(r4)
-	  stw       r0, 0x0(r4)
+lbl_802D1D90:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_802D1DE4
+	lis      r3, __vt__Q24Game13EnemyFSMState@ha
+	lis      r5, __vt__Q34Game9OniKurage5State@ha
+	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
+	lis      r3, __vt__Q34Game9OniKurage11StateGround@ha
+	stw      r0, 0(r4)
+	li       r0, 8
+	li       r7, 0
+	addi     r6, r5, __vt__Q34Game9OniKurage5State@l
+	stw      r0, 4(r4)
+	addi     r5, r2, lbl_8051C928@sda21
+	addi     r0, r3, __vt__Q34Game9OniKurage11StateGround@l
+	stw      r7, 8(r4)
+	stw      r6, 0(r4)
+	stw      r5, 0xc(r4)
+	stw      r0, 0(r4)
 
-	.loc_0x304:
-	  mr        r3, r31
-	  bl        -0x1A14E0
-	  li        r3, 0x10
-	  bl        -0x2ADF4C
-	  mr.       r4, r3
-	  beq-      .loc_0x358
-	  lis       r3, 0x804B
-	  lis       r5, 0x804D
-	  subi      r0, r3, 0x65C
-	  lis       r3, 0x804D
-	  stw       r0, 0x0(r4)
-	  li        r0, 0x9
-	  li        r7, 0
-	  addi      r6, r5, 0x2978
-	  stw       r0, 0x4(r4)
-	  subi      r5, r2, 0x1A30
-	  addi      r0, r3, 0x2834
-	  stw       r7, 0x8(r4)
-	  stw       r6, 0x0(r4)
-	  stw       r5, 0xC(r4)
-	  stw       r0, 0x0(r4)
+lbl_802D1DE4:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_802D1E38
+	lis      r3, __vt__Q24Game13EnemyFSMState@ha
+	lis      r5, __vt__Q34Game9OniKurage5State@ha
+	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
+	lis      r3, __vt__Q34Game9OniKurage12StateTakeOff@ha
+	stw      r0, 0(r4)
+	li       r0, 9
+	li       r7, 0
+	addi     r6, r5, __vt__Q34Game9OniKurage5State@l
+	stw      r0, 4(r4)
+	addi     r5, r2, lbl_8051C930@sda21
+	addi     r0, r3, __vt__Q34Game9OniKurage12StateTakeOff@l
+	stw      r7, 8(r4)
+	stw      r6, 0(r4)
+	stw      r5, 0xc(r4)
+	stw      r0, 0(r4)
 
-	.loc_0x358:
-	  mr        r3, r31
-	  bl        -0x1A1534
-	  li        r3, 0x10
-	  bl        -0x2ADFA0
-	  mr.       r4, r3
-	  beq-      .loc_0x3B0
-	  lis       r3, 0x804B
-	  lis       r6, 0x804D
-	  subi      r0, r3, 0x65C
-	  lis       r5, 0x8049
-	  stw       r0, 0x0(r4)
-	  li        r0, 0xA
-	  lis       r3, 0x804D
-	  li        r7, 0
-	  stw       r0, 0x4(r4)
-	  addi      r6, r6, 0x2978
-	  subi      r5, r5, 0x42C8
-	  addi      r0, r3, 0x27EC
-	  stw       r7, 0x8(r4)
-	  stw       r6, 0x0(r4)
-	  stw       r5, 0xC(r4)
-	  stw       r0, 0x0(r4)
+lbl_802D1E38:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_802D1E90
+	lis      r3, __vt__Q24Game13EnemyFSMState@ha
+	lis      r6, __vt__Q34Game9OniKurage5State@ha
+	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
+	lis      r5, lbl_8048BD38@ha
+	stw      r0, 0(r4)
+	li       r0, 0xa
+	lis      r3, __vt__Q34Game9OniKurage13StateFlyFlick@ha
+	li       r7, 0
+	stw      r0, 4(r4)
+	addi     r6, r6, __vt__Q34Game9OniKurage5State@l
+	addi     r5, r5, lbl_8048BD38@l
+	addi     r0, r3, __vt__Q34Game9OniKurage13StateFlyFlick@l
+	stw      r7, 8(r4)
+	stw      r6, 0(r4)
+	stw      r5, 0xc(r4)
+	stw      r0, 0(r4)
 
-	.loc_0x3B0:
-	  mr        r3, r31
-	  bl        -0x1A158C
-	  li        r3, 0x10
-	  bl        -0x2ADFF8
-	  mr.       r4, r3
-	  beq-      .loc_0x408
-	  lis       r3, 0x804B
-	  lis       r6, 0x804D
-	  subi      r0, r3, 0x65C
-	  lis       r5, 0x8049
-	  stw       r0, 0x0(r4)
-	  li        r0, 0xB
-	  lis       r3, 0x804D
-	  li        r7, 0
-	  stw       r0, 0x4(r4)
-	  addi      r6, r6, 0x2978
-	  subi      r5, r5, 0x42BC
-	  addi      r0, r3, 0x27B4
-	  stw       r7, 0x8(r4)
-	  stw       r6, 0x0(r4)
-	  stw       r5, 0xC(r4)
-	  stw       r0, 0x0(r4)
+lbl_802D1E90:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_802D1EE8
+	lis      r3, __vt__Q24Game13EnemyFSMState@ha
+	lis      r6, __vt__Q34Game9OniKurage5State@ha
+	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
+	lis      r5, lbl_8048BD44@ha
+	stw      r0, 0(r4)
+	li       r0, 0xb
+	lis      r3, __vt__Q34Game9OniKurage16StateGroundFlick@ha
+	li       r7, 0
+	stw      r0, 4(r4)
+	addi     r6, r6, __vt__Q34Game9OniKurage5State@l
+	addi     r5, r5, lbl_8048BD44@l
+	addi     r0, r3, __vt__Q34Game9OniKurage16StateGroundFlick@l
+	stw      r7, 8(r4)
+	stw      r6, 0(r4)
+	stw      r5, 0xc(r4)
+	stw      r0, 0(r4)
 
-	.loc_0x408:
-	  mr        r3, r31
-	  bl        -0x1A15E4
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_802D1EE8:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -311,62 +605,61 @@ void OniKurage::FSM::init(Game::EnemyBase*)
 void OniKurage::StateDead::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lfs       f0, -0x1A28(r2)
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  mr        r3, r31
-	  lwz       r0, 0x1E0(r4)
-	  rlwinm    r0,r0,0,26,24
-	  stw       r0, 0x1E0(r4)
-	  lwz       r0, 0x1E0(r4)
-	  rlwinm    r0,r0,0,29,27
-	  stw       r0, 0x1E0(r4)
-	  stfs      f0, 0x1D4(r4)
-	  stfs      f0, 0x1D8(r4)
-	  stfs      f0, 0x1DC(r4)
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0xCC(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x6C
-	  mr        r3, r31
-	  li        r4, 0
-	  li        r5, 0
-	  bl        -0x1CCF64
-	  b         .loc_0x7C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lfs      f0, lbl_8051C938@sda21(r2)
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	mr       r3, r31
+	lwz      r0, 0x1e0(r4)
+	rlwinm   r0, r0, 0, 0x1a, 0x18
+	stw      r0, 0x1e0(r4)
+	lwz      r0, 0x1e0(r4)
+	rlwinm   r0, r0, 0, 0x1d, 0x1b
+	stw      r0, 0x1e0(r4)
+	stfs     f0, 0x1d4(r4)
+	stfs     f0, 0x1d8(r4)
+	stfs     f0, 0x1dc(r4)
+	lwz      r12, 0(r31)
+	lwz      r12, 0xcc(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802D1F70
+	mr       r3, r31
+	li       r4, 0
+	li       r5, 0
+	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
+	b        lbl_802D1F80
 
-	.loc_0x6C:
-	  mr        r3, r31
-	  li        r4, 0x1
-	  li        r5, 0
-	  bl        -0x1CCF78
+lbl_802D1F70:
+	mr       r3, r31
+	li       r4, 1
+	li       r5, 0
+	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
 
-	.loc_0x7C:
-	  lwz       r0, 0x1E0(r31)
-	  mr        r3, r31
-	  ori       r0, r0, 0x4
-	  stw       r0, 0x1E0(r31)
-	  bl        -0x1CC71C
-	  mr        r3, r31
-	  bl        0x4C44
-	  lfs       f1, -0x1A28(r2)
-	  mr        r3, r31
-	  bl        0x19C470
-	  lwz       r3, 0x28C(r31)
-	  lwz       r12, 0x28(r3)
-	  lwz       r12, 0xC8(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_802D1F80:
+	lwz      r0, 0x1e0(r31)
+	mr       r3, r31
+	ori      r0, r0, 4
+	stw      r0, 0x1e0(r31)
+	bl       createDeadBombEffect__Q24Game9EnemyBaseFv
+	mr       r3, r31
+	bl       finishEyeBodyEffect__Q34Game9OniKurage3ObjFv
+	lfs      f1, lbl_8051C938@sda21(r2)
+	mr       r3, r31
+	bl       PSStartEnemyFatalHitSE__FPQ24Game9EnemyBasef
+	lwz      r3, 0x28c(r31)
+	lwz      r12, 0x28(r3)
+	lwz      r12, 0xc8(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -378,116 +671,116 @@ void OniKurage::StateDead::init(Game::EnemyBase*, Game::StateArg*)
 void OniKurage::StateDead::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  stw       r0, 0x44(r1)
-	  stfd      f31, 0x30(r1)
-	  psq_st    f31,0x38(r1),0,0
-	  stw       r31, 0x2C(r1)
-	  mr        r31, r4
-	  mr        r3, r31
-	  bl        -0x1CCD84
-	  fmr       f31, f1
-	  lfs       f0, -0x1A24(r2)
-	  fcmpo     cr0, f31, f0
-	  ble-      .loc_0x40
-	  mr        r3, r31
-	  li        r4, 0x1
-	  bl        0x43B0
+	stwu     r1, -0x40(r1)
+	mflr     r0
+	stw      r0, 0x44(r1)
+	stfd     f31, 0x30(r1)
+	psq_st   f31, 56(r1), 0, qr0
+	stw      r31, 0x2c(r1)
+	mr       r31, r4
+	mr       r3, r31
+	bl       getMotionFrame__Q24Game9EnemyBaseFv
+	fmr      f31, f1
+	lfs      f0, lbl_8051C93C@sda21(r2)
+	fcmpo    cr0, f31, f0
+	ble      lbl_802D2010
+	mr       r3, r31
+	li       r4, 1
+	bl       flickStickNavi__Q34Game9OniKurage3ObjFb
 
-	.loc_0x40:
-	  lfs       f0, -0x1A20(r2)
-	  fcmpo     cr0, f31, f0
-	  ble-      .loc_0x78
-	  fsubs     f2, f31, f0
-	  lfs       f1, -0x1A24(r2)
-	  lfs       f3, -0x1A18(r2)
-	  mr        r3, r31
-	  lfs       f0, -0x1A1C(r2)
-	  fdivs     f1, f2, f1
-	  fnmsubs   f0, f3, f1, f0
-	  fctiwz    f0, f0
-	  stfd      f0, 0x20(r1)
-	  lwz       r4, 0x24(r1)
-	  bl        0x4C14
+lbl_802D2010:
+	lfs      f0, lbl_8051C940@sda21(r2)
+	fcmpo    cr0, f31, f0
+	ble      lbl_802D2048
+	fsubs    f2, f31, f0
+	lfs      f1, lbl_8051C93C@sda21(r2)
+	lfs      f3, lbl_8051C948@sda21(r2)
+	mr       r3, r31
+	lfs      f0, lbl_8051C944@sda21(r2)
+	fdivs    f1, f2, f1
+	fnmsubs  f0, f3, f1, f0
+	fctiwz   f0, f0
+	stfd     f0, 0x20(r1)
+	lwz      r4, 0x24(r1)
+	bl       setHireEffectLife__Q34Game9OniKurage3ObjFs
 
-	.loc_0x78:
-	  lwz       r3, 0x188(r31)
-	  lbz       r0, 0x24(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x170
-	  lwz       r0, 0x1C(r3)
-	  cmplwi    r0, 0x2
-	  bne-      .loc_0xB4
-	  lfs       f1, -0x1A14(r2)
-	  mr        r3, r31
-	  lfs       f2, -0x1A10(r2)
-	  li        r4, 0
-	  lfs       f3, -0x1A28(r2)
-	  lfs       f4, -0x1A0C(r2)
-	  bl        -0x1BEF60
-	  b         .loc_0x170
+lbl_802D2048:
+	lwz      r3, 0x188(r31)
+	lbz      r0, 0x24(r3)
+	cmplwi   r0, 0
+	beq      lbl_802D2140
+	lwz      r0, 0x1c(r3)
+	cmplwi   r0, 2
+	bne      lbl_802D2084
+	lfs      f1, lbl_8051C94C@sda21(r2)
+	mr       r3, r31
+	lfs      f2, lbl_8051C950@sda21(r2)
+	li       r4, 0
+	lfs      f3, lbl_8051C938@sda21(r2)
+	lfs      f4, lbl_8051C954@sda21(r2)
+	bl
+"flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
+	b        lbl_802D2140
 
-	.loc_0xB4:
-	  cmplwi    r0, 0x3
-	  bne-      .loc_0x15C
-	  mr        r3, r31
-	  bl        -0x1CC970
-	  mr        r3, r31
-	  bl        0x4BE4
-	  mr        r3, r31
-	  bl        0x4D0C
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0xF4(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r12, 0x0(r3)
-	  li        r4, 0x590A
-	  li        r5, 0
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r31
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f2, 0x8(r1)
-	  addi      r5, r1, 0x14
-	  lfs       f1, 0xC(r1)
-	  li        r4, 0x6
-	  lfs       f0, 0x10(r1)
-	  li        r6, 0x2
-	  stfs      f2, 0x14(r1)
-	  lwz       r3, -0x6960(r13)
-	  stfs      f1, 0x18(r1)
-	  stfs      f0, 0x1C(r1)
-	  bl        -0x7FED4
-	  lwz       r3, -0x6958(r13)
-	  addi      r5, r1, 0x14
-	  li        r4, 0xA
-	  li        r6, 0x2
-	  bl        -0x7E9A4
-	  b         .loc_0x170
+lbl_802D2084:
+	cmplwi   r0, 3
+	bne      lbl_802D212C
+	mr       r3, r31
+	bl       deathProcedure__Q24Game9EnemyBaseFv
+	mr       r3, r31
+	bl       finishHireEffect__Q34Game9OniKurage3ObjFv
+	mr       r3, r31
+	bl       createBodyBombEffect__Q34Game9OniKurage3ObjFv
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r12, 0xf4(r12)
+	mtctr    r12
+	bctrl
+	lwz      r12, 0(r3)
+	li       r4, 0x590a
+	li       r5, 0
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r31
+	addi     r3, r1, 8
+	lwz      r12, 0(r31)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f2, 8(r1)
+	addi     r5, r1, 0x14
+	lfs      f1, 0xc(r1)
+	li       r4, 6
+	lfs      f0, 0x10(r1)
+	li       r6, 2
+	stfs     f2, 0x14(r1)
+	lwz      r3, cameraMgr__4Game@sda21(r13)
+	stfs     f1, 0x18(r1)
+	stfs     f0, 0x1c(r1)
+	bl       "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
+	lwz      r3, rumbleMgr__4Game@sda21(r13)
+	addi     r5, r1, 0x14
+	li       r4, 0xa
+	li       r6, 2
+	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
+	b        lbl_802D2140
 
-	.loc_0x15C:
-	  cmplwi    r0, 0x3E8
-	  bne-      .loc_0x170
-	  mr        r3, r31
-	  li        r4, 0
-	  bl        -0x19704C
+lbl_802D212C:
+	cmplwi   r0, 0x3e8
+	bne      lbl_802D2140
+	mr       r3, r31
+	li       r4, 0
+	bl       kill__Q24Game8CreatureFPQ24Game15CreatureKillArg
 
-	.loc_0x170:
-	  psq_l     f31,0x38(r1),0,0
-	  lwz       r0, 0x44(r1)
-	  lfd       f31, 0x30(r1)
-	  lwz       r31, 0x2C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
+lbl_802D2140:
+	psq_l    f31, 56(r1), 0, qr0
+	lwz      r0, 0x44(r1)
+	lfd      f31, 0x30(r1)
+	lwz      r31, 0x2c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x40
+	blr
 	*/
 }
 
@@ -506,30 +799,29 @@ void OniKurage::StateDead::cleanup(Game::EnemyBase*) { }
 void OniKurage::StateWait::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lfs       f1, -0x1A28(r2)
-	  mr        r3, r4
-	  stw       r0, 0x14(r1)
-	  li        r0, -0x1
-	  lfs       f0, -0x1A08(r2)
-	  li        r5, 0
-	  stw       r0, 0x2C0(r4)
-	  li        r4, 0x5
-	  stfs      f1, 0x2C4(r3)
-	  lwz       r0, 0x1E0(r3)
-	  ori       r0, r0, 0x4
-	  stw       r0, 0x1E0(r3)
-	  stfs      f1, 0x1D4(r3)
-	  stfs      f1, 0x1D8(r3)
-	  stfs      f1, 0x1DC(r3)
-	  stfs      f0, 0x2C8(r3)
-	  bl        -0x1CD1A4
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lfs      f1, lbl_8051C938@sda21(r2)
+	mr       r3, r4
+	stw      r0, 0x14(r1)
+	li       r0, -1
+	lfs      f0, lbl_8051C958@sda21(r2)
+	li       r5, 0
+	stw      r0, 0x2c0(r4)
+	li       r4, 5
+	stfs     f1, 0x2c4(r3)
+	lwz      r0, 0x1e0(r3)
+	ori      r0, r0, 4
+	stw      r0, 0x1e0(r3)
+	stfs     f1, 0x1d4(r3)
+	stfs     f1, 0x1d8(r3)
+	stfs     f1, 0x1dc(r3)
+	stfs     f0, 0x2c8(r3)
+	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -541,99 +833,98 @@ void OniKurage::StateWait::init(Game::EnemyBase*, Game::StateArg*)
 void OniKurage::StateWait::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stfd      f31, 0x10(r1)
-	  psq_st    f31,0x18(r1),0,0
-	  stw       r31, 0xC(r1)
-	  stw       r30, 0x8(r1)
-	  mr        r31, r4
-	  mr        r30, r3
-	  mr        r3, r31
-	  bl        0x27B4
-	  lfs       f2, -0x1A28(r2)
-	  mr        r3, r31
-	  bl        0x2538
-	  fmr       f31, f1
-	  mr        r3, r31
-	  bl        0x2F10
-	  mr.       r4, r3
-	  beq-      .loc_0x88
-	  fmr       f1, f31
-	  mr        r3, r31
-	  bl        0x323C
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x74
-	  li        r0, 0x4
-	  mr        r3, r31
-	  stw       r0, 0x2C0(r31)
-	  bl        -0x1CCF88
-	  b         .loc_0xA8
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stfd     f31, 0x10(r1)
+	psq_st   f31, 24(r1), 0, qr0
+	stw      r31, 0xc(r1)
+	stw      r30, 8(r1)
+	mr       r31, r4
+	mr       r30, r3
+	mr       r3, r31
+	bl       getMovePitchOffset__Q34Game9OniKurage3ObjFv
+	lfs      f2, lbl_8051C938@sda21(r2)
+	mr       r3, r31
+	bl       setHeightVelocity__Q34Game9OniKurage3ObjFff
+	fmr      f31, f1
+	mr       r3, r31
+	bl       getSearchedTarget__Q34Game9OniKurage3ObjFf
+	or.      r4, r3, r3
+	beq      lbl_802D2244
+	fmr      f1, f31
+	mr       r3, r31
+	bl       isSuck__Q34Game9OniKurage3ObjFfPQ24Game8Creature
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802D2230
+	li       r0, 4
+	mr       r3, r31
+	stw      r0, 0x2c0(r31)
+	bl       finishMotion__Q24Game9EnemyBaseFv
+	b        lbl_802D2264
 
-	.loc_0x74:
-	  li        r0, 0x3
-	  mr        r3, r31
-	  stw       r0, 0x2C0(r31)
-	  bl        -0x1CCF9C
-	  b         .loc_0xA8
+lbl_802D2230:
+	li       r0, 3
+	mr       r3, r31
+	stw      r0, 0x2c0(r31)
+	bl       finishMotion__Q24Game9EnemyBaseFv
+	b        lbl_802D2264
 
-	.loc_0x88:
-	  lfs       f1, 0x2C4(r31)
-	  lfs       f0, -0x1A04(r2)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0xA8
-	  li        r0, 0x2
-	  mr        r3, r31
-	  stw       r0, 0x2C0(r31)
-	  bl        -0x1CCFC0
+lbl_802D2244:
+	lfs      f1, 0x2c4(r31)
+	lfs      f0, lbl_8051C95C@sda21(r2)
+	fcmpo    cr0, f1, f0
+	ble      lbl_802D2264
+	li       r0, 2
+	mr       r3, r31
+	stw      r0, 0x2c0(r31)
+	bl       finishMotion__Q24Game9EnemyBaseFv
 
-	.loc_0xA8:
-	  mr        r3, r31
-	  bl        0x2E00
-	  mr.       r5, r3
-	  blt-      .loc_0xD8
-	  lwz       r12, 0x0(r30)
-	  mr        r3, r30
-	  mr        r4, r31
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x128
+lbl_802D2264:
+	mr       r3, r31
+	bl       getFlyingNextState__Q34Game9OniKurage3ObjFv
+	or.      r5, r3, r3
+	blt      lbl_802D2294
+	lwz      r12, 0(r30)
+	mr       r3, r30
+	mr       r4, r31
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802D22E4
 
-	.loc_0xD8:
-	  lwz       r3, -0x6514(r13)
-	  lfs       f1, 0x2C4(r31)
-	  lfs       f0, 0x54(r3)
-	  fadds     f0, f1, f0
-	  stfs      f0, 0x2C4(r31)
-	  lwz       r3, 0x188(r31)
-	  lbz       r0, 0x24(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x128
-	  lwz       r0, 0x1C(r3)
-	  cmplwi    r0, 0x3E8
-	  bne-      .loc_0x128
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r6, 0
-	  lwz       r5, 0x2C0(r31)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_802D2294:
+	lwz      r3, sys@sda21(r13)
+	lfs      f1, 0x2c4(r31)
+	lfs      f0, 0x54(r3)
+	fadds    f0, f1, f0
+	stfs     f0, 0x2c4(r31)
+	lwz      r3, 0x188(r31)
+	lbz      r0, 0x24(r3)
+	cmplwi   r0, 0
+	beq      lbl_802D22E4
+	lwz      r0, 0x1c(r3)
+	cmplwi   r0, 0x3e8
+	bne      lbl_802D22E4
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r6, 0
+	lwz      r5, 0x2c0(r31)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x128:
-	  psq_l     f31,0x18(r1),0,0
-	  lwz       r0, 0x24(r1)
-	  lfd       f31, 0x10(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_802D22E4:
+	psq_l    f31, 24(r1), 0, qr0
+	lwz      r0, 0x24(r1)
+	lfd      f31, 0x10(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -652,36 +943,35 @@ void OniKurage::StateWait::cleanup(Game::EnemyBase*) { }
 void OniKurage::StateMove::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lfs       f0, -0x1A28(r2)
-	  stw       r0, 0x14(r1)
-	  li        r0, -0x1
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  mr        r3, r31
-	  stw       r0, 0x2C0(r4)
-	  stfs      f0, 0x2C4(r4)
-	  bl        0x2490
-	  lwz       r0, 0x1E0(r31)
-	  mr        r3, r31
-	  lfs       f1, -0x1A28(r2)
-	  li        r4, 0x5
-	  ori       r0, r0, 0x4
-	  lfs       f0, -0x1A08(r2)
-	  stw       r0, 0x1E0(r31)
-	  li        r5, 0
-	  stfs      f1, 0x1D4(r31)
-	  stfs      f1, 0x1D8(r31)
-	  stfs      f1, 0x1DC(r31)
-	  stfs      f0, 0x2C8(r31)
-	  bl        -0x1CD360
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lfs      f0, lbl_8051C938@sda21(r2)
+	stw      r0, 0x14(r1)
+	li       r0, -1
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	mr       r3, r31
+	stw      r0, 0x2c0(r4)
+	stfs     f0, 0x2c4(r4)
+	bl       setRandTarget__Q34Game9OniKurage3ObjFv
+	lwz      r0, 0x1e0(r31)
+	mr       r3, r31
+	lfs      f1, lbl_8051C938@sda21(r2)
+	li       r4, 5
+	ori      r0, r0, 4
+	lfs      f0, lbl_8051C958@sda21(r2)
+	stw      r0, 0x1e0(r31)
+	li       r5, 0
+	stfs     f1, 0x1d4(r31)
+	stfs     f1, 0x1d8(r31)
+	stfs     f1, 0x1dc(r31)
+	stfs     f0, 0x2c8(r31)
+	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -693,142 +983,141 @@ void OniKurage::StateMove::init(Game::EnemyBase*, Game::StateArg*)
 void OniKurage::StateMove::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  stw       r0, 0x44(r1)
-	  stfd      f31, 0x30(r1)
-	  psq_st    f31,0x38(r1),0,0
-	  stw       r31, 0x2C(r1)
-	  stw       r30, 0x28(r1)
-	  mr        r31, r4
-	  mr        r30, r3
-	  mr        r3, r31
-	  bl        0x25F4
-	  lfs       f2, -0x1A28(r2)
-	  mr        r3, r31
-	  bl        0x2378
-	  fmr       f31, f1
-	  mr        r3, r31
-	  bl        0x2D50
-	  mr.       r4, r3
-	  beq-      .loc_0x88
-	  fmr       f1, f31
-	  mr        r3, r31
-	  bl        0x307C
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x74
-	  li        r0, 0x4
-	  mr        r3, r31
-	  stw       r0, 0x2C0(r31)
-	  bl        -0x1CD148
-	  b         .loc_0x11C
+	stwu     r1, -0x40(r1)
+	mflr     r0
+	stw      r0, 0x44(r1)
+	stfd     f31, 0x30(r1)
+	psq_st   f31, 56(r1), 0, qr0
+	stw      r31, 0x2c(r1)
+	stw      r30, 0x28(r1)
+	mr       r31, r4
+	mr       r30, r3
+	mr       r3, r31
+	bl       getMovePitchOffset__Q34Game9OniKurage3ObjFv
+	lfs      f2, lbl_8051C938@sda21(r2)
+	mr       r3, r31
+	bl       setHeightVelocity__Q34Game9OniKurage3ObjFff
+	fmr      f31, f1
+	mr       r3, r31
+	bl       getSearchedTarget__Q34Game9OniKurage3ObjFf
+	or.      r4, r3, r3
+	beq      lbl_802D2404
+	fmr      f1, f31
+	mr       r3, r31
+	bl       isSuck__Q34Game9OniKurage3ObjFfPQ24Game8Creature
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802D23F0
+	li       r0, 4
+	mr       r3, r31
+	stw      r0, 0x2c0(r31)
+	bl       finishMotion__Q24Game9EnemyBaseFv
+	b        lbl_802D2498
 
-	.loc_0x74:
-	  li        r0, 0x3
-	  mr        r3, r31
-	  stw       r0, 0x2C0(r31)
-	  bl        -0x1CD15C
-	  b         .loc_0x11C
+lbl_802D23F0:
+	li       r0, 3
+	mr       r3, r31
+	stw      r0, 0x2c0(r31)
+	bl       finishMotion__Q24Game9EnemyBaseFv
+	b        lbl_802D2498
 
-	.loc_0x88:
-	  mr        r4, r31
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f1, 0x2D4(r31)
-	  lfs       f5, 0x2D8(r31)
-	  lfs       f2, 0x2D0(r31)
-	  lfs       f0, -0x1A00(r2)
-	  stfs      f2, 0x14(r1)
-	  lfs       f3, 0x8(r1)
-	  stfs      f1, 0x18(r1)
-	  lfs       f4, 0x10(r1)
-	  stfs      f5, 0x1C(r1)
-	  lfs       f1, 0x2C4(r31)
-	  fcmpo     cr0, f1, f0
-	  bgt-      .loc_0xEC
-	  fsubs     f1, f4, f5
-	  lfs       f0, -0x19FC(r2)
-	  fsubs     f2, f3, f2
-	  fmuls     f1, f1, f1
-	  fmadds    f1, f2, f2, f1
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x100
+lbl_802D2404:
+	mr       r4, r31
+	addi     r3, r1, 8
+	lwz      r12, 0(r31)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f1, 0x2d4(r31)
+	lfs      f5, 0x2d8(r31)
+	lfs      f2, 0x2d0(r31)
+	lfs      f0, lbl_8051C960@sda21(r2)
+	stfs     f2, 0x14(r1)
+	lfs      f3, 8(r1)
+	stfs     f1, 0x18(r1)
+	lfs      f4, 0x10(r1)
+	stfs     f5, 0x1c(r1)
+	lfs      f1, 0x2c4(r31)
+	fcmpo    cr0, f1, f0
+	bgt      lbl_802D2468
+	fsubs    f1, f4, f5
+	lfs      f0, lbl_8051C964@sda21(r2)
+	fsubs    f2, f3, f2
+	fmuls    f1, f1, f1
+	fmadds   f1, f2, f2, f1
+	fcmpo    cr0, f1, f0
+	bge      lbl_802D247C
 
-	.loc_0xEC:
-	  li        r0, 0x1
-	  mr        r3, r31
-	  stw       r0, 0x2C0(r31)
-	  bl        -0x1CD1D4
-	  b         .loc_0x11C
+lbl_802D2468:
+	li       r0, 1
+	mr       r3, r31
+	stw      r0, 0x2c0(r31)
+	bl       finishMotion__Q24Game9EnemyBaseFv
+	b        lbl_802D2498
 
-	.loc_0x100:
-	  lwz       r5, 0xC0(r31)
-	  mr        r3, r31
-	  addi      r4, r1, 0x14
-	  lfs       f1, 0x2E4(r5)
-	  lfs       f2, 0x30C(r5)
-	  lfs       f3, 0x334(r5)
-	  bl        -0x1BCEB8
+lbl_802D247C:
+	lwz      r5, 0xc0(r31)
+	mr       r3, r31
+	addi     r4, r1, 0x14
+	lfs      f1, 0x2e4(r5)
+	lfs      f2, 0x30c(r5)
+	lfs      f3, 0x334(r5)
+	bl "walkToTarget__Q24Game9EnemyFuncFPQ24Game9EnemyBaseR10Vector3<f>fff"
 
-	.loc_0x11C:
-	  mr        r3, r31
-	  bl        0x2BCC
-	  mr.       r5, r3
-	  blt-      .loc_0x14C
-	  lwz       r12, 0x0(r30)
-	  mr        r3, r30
-	  mr        r4, r31
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x1BC
+lbl_802D2498:
+	mr       r3, r31
+	bl       getFlyingNextState__Q34Game9OniKurage3ObjFv
+	or.      r5, r3, r3
+	blt      lbl_802D24C8
+	lwz      r12, 0(r30)
+	mr       r3, r30
+	mr       r4, r31
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802D2538
 
-	.loc_0x14C:
-	  mr        r3, r31
-	  bl        -0x1CB1CC
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x16C
-	  lfs       f0, -0x1A28(r2)
-	  stfs      f0, 0x1D4(r31)
-	  stfs      f0, 0x1D8(r31)
-	  stfs      f0, 0x1DC(r31)
+lbl_802D24C8:
+	mr       r3, r31
+	bl       isFinishMotion__Q24Game9EnemyBaseFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802D24E8
+	lfs      f0, lbl_8051C938@sda21(r2)
+	stfs     f0, 0x1d4(r31)
+	stfs     f0, 0x1d8(r31)
+	stfs     f0, 0x1dc(r31)
 
-	.loc_0x16C:
-	  lwz       r3, -0x6514(r13)
-	  lfs       f1, 0x2C4(r31)
-	  lfs       f0, 0x54(r3)
-	  fadds     f0, f1, f0
-	  stfs      f0, 0x2C4(r31)
-	  lwz       r3, 0x188(r31)
-	  lbz       r0, 0x24(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x1BC
-	  lwz       r0, 0x1C(r3)
-	  cmplwi    r0, 0x3E8
-	  bne-      .loc_0x1BC
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r6, 0
-	  lwz       r5, 0x2C0(r31)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_802D24E8:
+	lwz      r3, sys@sda21(r13)
+	lfs      f1, 0x2c4(r31)
+	lfs      f0, 0x54(r3)
+	fadds    f0, f1, f0
+	stfs     f0, 0x2c4(r31)
+	lwz      r3, 0x188(r31)
+	lbz      r0, 0x24(r3)
+	cmplwi   r0, 0
+	beq      lbl_802D2538
+	lwz      r0, 0x1c(r3)
+	cmplwi   r0, 0x3e8
+	bne      lbl_802D2538
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r6, 0
+	lwz      r5, 0x2c0(r31)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x1BC:
-	  psq_l     f31,0x38(r1),0,0
-	  lwz       r0, 0x44(r1)
-	  lfd       f31, 0x30(r1)
-	  lwz       r31, 0x2C(r1)
-	  lwz       r30, 0x28(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
+lbl_802D2538:
+	psq_l    f31, 56(r1), 0, qr0
+	lwz      r0, 0x44(r1)
+	lfd      f31, 0x30(r1)
+	lwz      r31, 0x2c(r1)
+	lwz      r30, 0x28(r1)
+	mtlr     r0
+	addi     r1, r1, 0x40
+	blr
 	*/
 }
 
@@ -847,34 +1136,33 @@ void OniKurage::StateMove::cleanup(Game::EnemyBase*) { }
 void OniKurage::StateChase::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  li        r0, -0x1
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  mr        r3, r31
-	  lwz       r4, 0x1E0(r4)
-	  ori       r4, r4, 0x4
-	  stw       r4, 0x1E0(r31)
-	  stw       r0, 0x2C0(r31)
-	  bl        -0x1D0BBC
-	  lfs       f1, -0x1A28(r2)
-	  mr        r3, r31
-	  lfs       f0, -0x1A08(r2)
-	  li        r4, 0x5
-	  stfs      f1, 0x1D4(r31)
-	  li        r5, 0
-	  stfs      f1, 0x1D8(r31)
-	  stfs      f1, 0x1DC(r31)
-	  stfs      f0, 0x2C8(r31)
-	  bl        -0x1CD5AC
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	li       r0, -1
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	mr       r3, r31
+	lwz      r4, 0x1e0(r4)
+	ori      r4, r4, 4
+	stw      r4, 0x1e0(r31)
+	stw      r0, 0x2c0(r31)
+	bl       setEmotionExcitement__Q24Game9EnemyBaseFv
+	lfs      f1, lbl_8051C938@sda21(r2)
+	mr       r3, r31
+	lfs      f0, lbl_8051C958@sda21(r2)
+	li       r4, 5
+	stfs     f1, 0x1d4(r31)
+	li       r5, 0
+	stfs     f1, 0x1d8(r31)
+	stfs     f1, 0x1dc(r31)
+	stfs     f0, 0x2c8(r31)
+	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -886,106 +1174,105 @@ void OniKurage::StateChase::init(Game::EnemyBase*, Game::StateArg*)
 void OniKurage::StateChase::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stfd      f31, 0x20(r1)
-	  psq_st    f31,0x28(r1),0,0
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r31, r4
-	  mr        r29, r3
-	  mr        r3, r31
-	  bl        0x23A4
-	  lfs       f2, -0x1A28(r2)
-	  mr        r3, r31
-	  bl        0x2128
-	  fmr       f31, f1
-	  mr        r3, r31
-	  bl        0x2B00
-	  mr.       r30, r3
-	  beq-      .loc_0x9C
-	  fmr       f1, f31
-	  mr        r3, r31
-	  mr        r4, r30
-	  bl        0x2E28
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x7C
-	  li        r0, 0x4
-	  mr        r3, r31
-	  stw       r0, 0x2C0(r31)
-	  bl        -0x1CD39C
-	  b         .loc_0xAC
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stfd     f31, 0x20(r1)
+	psq_st   f31, 40(r1), 0, qr0
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	mr       r31, r4
+	mr       r29, r3
+	mr       r3, r31
+	bl       getMovePitchOffset__Q34Game9OniKurage3ObjFv
+	lfs      f2, lbl_8051C938@sda21(r2)
+	mr       r3, r31
+	bl       setHeightVelocity__Q34Game9OniKurage3ObjFff
+	fmr      f31, f1
+	mr       r3, r31
+	bl       getSearchedTarget__Q34Game9OniKurage3ObjFf
+	or.      r30, r3, r3
+	beq      lbl_802D2664
+	fmr      f1, f31
+	mr       r3, r31
+	mr       r4, r30
+	bl       isSuck__Q34Game9OniKurage3ObjFfPQ24Game8Creature
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802D2644
+	li       r0, 4
+	mr       r3, r31
+	stw      r0, 0x2c0(r31)
+	bl       finishMotion__Q24Game9EnemyBaseFv
+	b        lbl_802D2674
 
-	.loc_0x7C:
-	  lwz       r5, 0xC0(r31)
-	  mr        r3, r31
-	  mr        r4, r30
-	  lfs       f1, 0x2E4(r5)
-	  lfs       f2, 0x30C(r5)
-	  lfs       f3, 0x334(r5)
-	  bl        -0x1BD25C
-	  b         .loc_0xAC
+lbl_802D2644:
+	lwz      r5, 0xc0(r31)
+	mr       r3, r31
+	mr       r4, r30
+	lfs      f1, 0x2e4(r5)
+	lfs      f2, 0x30c(r5)
+	lfs      f3, 0x334(r5)
+	bl walkToTarget__Q24Game9EnemyFuncFPQ24Game9EnemyBasePQ24Game8Creaturefff b
+lbl_802D2674
 
-	.loc_0x9C:
-	  li        r0, 0x2
-	  mr        r3, r31
-	  stw       r0, 0x2C0(r31)
-	  bl        -0x1CD3D0
+lbl_802D2664:
+	li       r0, 2
+	mr       r3, r31
+	stw      r0, 0x2c0(r31)
+	bl       finishMotion__Q24Game9EnemyBaseFv
 
-	.loc_0xAC:
-	  mr        r3, r31
-	  bl        0x29F0
-	  mr.       r5, r3
-	  blt-      .loc_0xDC
-	  lwz       r12, 0x0(r29)
-	  mr        r3, r29
-	  mr        r4, r31
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x138
+lbl_802D2674:
+	mr       r3, r31
+	bl       getFlyingNextState__Q34Game9OniKurage3ObjFv
+	or.      r5, r3, r3
+	blt      lbl_802D26A4
+	lwz      r12, 0(r29)
+	mr       r3, r29
+	mr       r4, r31
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802D2700
 
-	.loc_0xDC:
-	  mr        r3, r31
-	  bl        -0x1CB3A8
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xFC
-	  lfs       f0, -0x1A28(r2)
-	  stfs      f0, 0x1D4(r31)
-	  stfs      f0, 0x1D8(r31)
-	  stfs      f0, 0x1DC(r31)
+lbl_802D26A4:
+	mr       r3, r31
+	bl       isFinishMotion__Q24Game9EnemyBaseFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802D26C4
+	lfs      f0, lbl_8051C938@sda21(r2)
+	stfs     f0, 0x1d4(r31)
+	stfs     f0, 0x1d8(r31)
+	stfs     f0, 0x1dc(r31)
 
-	.loc_0xFC:
-	  lwz       r3, 0x188(r31)
-	  lbz       r0, 0x24(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x138
-	  lwz       r0, 0x1C(r3)
-	  cmplwi    r0, 0x3E8
-	  bne-      .loc_0x138
-	  mr        r3, r29
-	  mr        r4, r31
-	  lwz       r12, 0x0(r29)
-	  li        r6, 0
-	  lwz       r5, 0x2C0(r31)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_802D26C4:
+	lwz      r3, 0x188(r31)
+	lbz      r0, 0x24(r3)
+	cmplwi   r0, 0
+	beq      lbl_802D2700
+	lwz      r0, 0x1c(r3)
+	cmplwi   r0, 0x3e8
+	bne      lbl_802D2700
+	mr       r3, r29
+	mr       r4, r31
+	lwz      r12, 0(r29)
+	li       r6, 0
+	lwz      r5, 0x2c0(r31)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x138:
-	  psq_l     f31,0x28(r1),0,0
-	  lwz       r0, 0x34(r1)
-	  lfd       f31, 0x20(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_802D2700:
+	psq_l    f31, 40(r1), 0, qr0
+	lwz      r0, 0x34(r1)
+	lfd      f31, 0x20(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -997,16 +1284,15 @@ void OniKurage::StateChase::exec(Game::EnemyBase*)
 void OniKurage::StateChase::cleanup(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r3, r4
-	  stw       r0, 0x14(r1)
-	  bl        -0x1D0DB8
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r3, r4
+	stw      r0, 0x14(r1)
+	bl       setEmotionCaution__Q24Game9EnemyBaseFv
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1018,39 +1304,38 @@ void OniKurage::StateChase::cleanup(Game::EnemyBase*)
 void OniKurage::StateAttack::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r5, -0x1
-	  lfs       f0, -0x1A28(r2)
-	  stw       r0, 0x14(r1)
-	  li        r0, 0
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  mr        r3, r31
-	  lwz       r4, 0x1E0(r4)
-	  ori       r4, r4, 0x4
-	  stw       r4, 0x1E0(r31)
-	  stw       r5, 0x2C0(r31)
-	  stfs      f0, 0x2C4(r31)
-	  stw       r0, 0x2E0(r31)
-	  stb       r0, 0x2DC(r31)
-	  lwz       r0, 0x1E0(r31)
-	  rlwinm    r0,r0,0,26,24
-	  stw       r0, 0x1E0(r31)
-	  stfs      f0, 0x1D4(r31)
-	  stfs      f0, 0x1D8(r31)
-	  stfs      f0, 0x1DC(r31)
-	  bl        -0x1D0DD4
-	  mr        r3, r31
-	  li        r4, 0x9
-	  li        r5, 0
-	  bl        -0x1CD7AC
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	li       r5, -1
+	lfs      f0, lbl_8051C938@sda21(r2)
+	stw      r0, 0x14(r1)
+	li       r0, 0
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	mr       r3, r31
+	lwz      r4, 0x1e0(r4)
+	ori      r4, r4, 4
+	stw      r4, 0x1e0(r31)
+	stw      r5, 0x2c0(r31)
+	stfs     f0, 0x2c4(r31)
+	stw      r0, 0x2e0(r31)
+	stb      r0, 0x2dc(r31)
+	lwz      r0, 0x1e0(r31)
+	rlwinm   r0, r0, 0, 0x1a, 0x18
+	stw      r0, 0x1e0(r31)
+	stfs     f0, 0x1d4(r31)
+	stfs     f0, 0x1d8(r31)
+	stfs     f0, 0x1dc(r31)
+	bl       setEmotionExcitement__Q24Game9EnemyBaseFv
+	mr       r3, r31
+	li       r4, 9
+	li       r5, 0
+	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1062,233 +1347,232 @@ void OniKurage::StateAttack::init(Game::EnemyBase*, Game::StateArg*)
 void OniKurage::StateAttack::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x50(r1)
-	  mflr      r0
-	  stw       r0, 0x54(r1)
-	  stfd      f31, 0x40(r1)
-	  psq_st    f31,0x48(r1),0,0
-	  stw       r31, 0x3C(r1)
-	  stw       r30, 0x38(r1)
-	  lfs       f0, -0x1A28(r2)
-	  mr        r31, r4
-	  lfs       f1, 0x200(r4)
-	  mr        r30, r3
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0, 0x2
-	  beq-      .loc_0x48
-	  mr        r3, r31
-	  bl        0x3A90
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x84
+	stwu     r1, -0x50(r1)
+	mflr     r0
+	stw      r0, 0x54(r1)
+	stfd     f31, 0x40(r1)
+	psq_st   f31, 72(r1), 0, qr0
+	stw      r31, 0x3c(r1)
+	stw      r30, 0x38(r1)
+	lfs      f0, lbl_8051C938@sda21(r2)
+	mr       r31, r4
+	lfs      f1, 0x200(r4)
+	mr       r30, r3
+	fcmpo    cr0, f1, f0
+	cror     2, 0, 2
+	beq      lbl_802D2810
+	mr       r3, r31
+	bl       isFinishNaviSuck__Q34Game9OniKurage3ObjFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802D284C
 
-	.loc_0x48:
-	  mr        r3, r31
-	  bl        0x3B80
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x7C
-	  lwz       r3, 0xC0(r31)
-	  lfs       f1, 0x2C4(r31)
-	  lfs       f0, 0x894(r3)
-	  fcmpo     cr0, f1, f0
-	  bgt-      .loc_0x7C
-	  lfs       f1, 0x2CC(r31)
-	  lfs       f0, 0x8E4(r3)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x84
+lbl_802D2810:
+	mr       r3, r31
+	bl       isNaviSucked__Q34Game9OniKurage3ObjFv
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_802D2844
+	lwz      r3, 0xc0(r31)
+	lfs      f1, 0x2c4(r31)
+	lfs      f0, 0x894(r3)
+	fcmpo    cr0, f1, f0
+	bgt      lbl_802D2844
+	lfs      f1, 0x2cc(r31)
+	lfs      f0, 0x8e4(r3)
+	fcmpo    cr0, f1, f0
+	ble      lbl_802D284C
 
-	.loc_0x7C:
-	  mr        r3, r31
-	  bl        -0x1CD5A8
+lbl_802D2844:
+	mr       r3, r31
+	bl       finishMotion__Q24Game9EnemyBaseFv
 
-	.loc_0x84:
-	  mr        r3, r31
-	  bl        0x21EC
-	  lfs       f2, -0x1A28(r2)
-	  mr        r3, r31
-	  bl        0x1ECC
-	  lbz       r0, 0x2DC(r31)
-	  fmr       f31, f1
-	  cmplwi    r0, 0
-	  beq-      .loc_0x13C
-	  mr        r3, r31
-	  bl        0x2E10
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xD4
-	  mr        r3, r31
-	  bl        0x3A10
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xF0
-	  mr        r3, r31
-	  bl        -0x1CD5F4
-	  b         .loc_0xF0
+lbl_802D284C:
+	mr       r3, r31
+	bl       getAttackPitchOffset__Q34Game9OniKurage3ObjFv
+	lfs      f2, lbl_8051C938@sda21(r2)
+	mr       r3, r31
+	bl       setHeightVelocity__Q34Game9OniKurage3ObjFff
+	lbz      r0, 0x2dc(r31)
+	fmr      f31, f1
+	cmplwi   r0, 0
+	beq      lbl_802D2904
+	mr       r3, r31
+	bl       suckPikmin__Q34Game9OniKurage3ObjFf
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802D289C
+	mr       r3, r31
+	bl       isFinishNaviSuck__Q34Game9OniKurage3ObjFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802D28B8
+	mr       r3, r31
+	bl       finishMotion__Q24Game9EnemyBaseFv
+	b        lbl_802D28B8
 
-	.loc_0xD4:
-	  mr        r3, r31
-	  bl        -0x1CB5A0
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0xF0
-	  fmr       f1, f31
-	  mr        r3, r31
-	  bl        0x3204
+lbl_802D289C:
+	mr       r3, r31
+	bl       isFinishMotion__Q24Game9EnemyBaseFv
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_802D28B8
+	fmr      f1, f31
+	mr       r3, r31
+	bl       suckNavi__Q34Game9OniKurage3ObjFf
 
-	.loc_0xF0:
-	  mr        r4, r31
-	  addi      r3, r1, 0x14
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f1, 0x18(r1)
-	  mr        r3, r31
-	  lfs       f2, 0x14(r1)
-	  addi      r4, r1, 0x2C
-	  fsubs     f0, f1, f31
-	  stfs      f1, 0x30(r1)
-	  lfs       f1, 0x1C(r1)
-	  stfs      f2, 0x2C(r1)
-	  stfs      f1, 0x34(r1)
-	  stfs      f0, 0x30(r1)
-	  bl        0x442C
-	  mr        r3, r31
-	  bl        0x3728
+lbl_802D28B8:
+	mr       r4, r31
+	addi     r3, r1, 0x14
+	lwz      r12, 0(r31)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f1, 0x18(r1)
+	mr       r3, r31
+	lfs      f2, 0x14(r1)
+	addi     r4, r1, 0x2c
+	fsubs    f0, f1, f31
+	stfs     f1, 0x30(r1)
+	lfs      f1, 0x1c(r1)
+	stfs     f2, 0x2c(r1)
+	stfs     f1, 0x34(r1)
+	stfs     f0, 0x30(r1)
+	bl       "updateSuckEffect__Q34Game9OniKurage3ObjFR10Vector3<f>"
+	mr       r3, r31
+	bl       updateCollPartOffset__Q34Game9OniKurage3ObjFv
 
-	.loc_0x13C:
-	  lwz       r3, -0x6514(r13)
-	  lfs       f1, 0x2C4(r31)
-	  lfs       f0, 0x54(r3)
-	  fadds     f0, f1, f0
-	  stfs      f0, 0x2C4(r31)
-	  lwz       r3, 0x188(r31)
-	  lbz       r0, 0x24(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x300
-	  lwz       r0, 0x1C(r3)
-	  cmplwi    r0, 0x2
-	  bne-      .loc_0x1C8
-	  mr        r4, r31
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f1, 0xC(r1)
-	  mr        r3, r31
-	  lfs       f2, 0x8(r1)
-	  addi      r4, r1, 0x20
-	  fsubs     f0, f1, f31
-	  stfs      f1, 0x24(r1)
-	  lfs       f1, 0x10(r1)
-	  stfs      f2, 0x20(r1)
-	  stfs      f1, 0x28(r1)
-	  stfs      f0, 0x24(r1)
-	  bl        0x4358
-	  li        r0, 0x1
-	  stb       r0, 0x2DC(r31)
-	  lwz       r0, 0x1E0(r31)
-	  oris      r0, r0, 0x20
-	  stw       r0, 0x1E0(r31)
-	  b         .loc_0x300
+lbl_802D2904:
+	lwz      r3, sys@sda21(r13)
+	lfs      f1, 0x2c4(r31)
+	lfs      f0, 0x54(r3)
+	fadds    f0, f1, f0
+	stfs     f0, 0x2c4(r31)
+	lwz      r3, 0x188(r31)
+	lbz      r0, 0x24(r3)
+	cmplwi   r0, 0
+	beq      lbl_802D2AC8
+	lwz      r0, 0x1c(r3)
+	cmplwi   r0, 2
+	bne      lbl_802D2990
+	mr       r4, r31
+	addi     r3, r1, 8
+	lwz      r12, 0(r31)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f1, 0xc(r1)
+	mr       r3, r31
+	lfs      f2, 8(r1)
+	addi     r4, r1, 0x20
+	fsubs    f0, f1, f31
+	stfs     f1, 0x24(r1)
+	lfs      f1, 0x10(r1)
+	stfs     f2, 0x20(r1)
+	stfs     f1, 0x28(r1)
+	stfs     f0, 0x24(r1)
+	bl       "startSuckEffect__Q34Game9OniKurage3ObjFR10Vector3<f>"
+	li       r0, 1
+	stb      r0, 0x2dc(r31)
+	lwz      r0, 0x1e0(r31)
+	oris     r0, r0, 0x20
+	stw      r0, 0x1e0(r31)
+	b        lbl_802D2AC8
 
-	.loc_0x1C8:
-	  cmplwi    r0, 0x1
-	  bne-      .loc_0x200
-	  mr        r3, r31
-	  bl        -0x1CB69C
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x300
-	  mr        r3, r31
-	  bl        0x439C
-	  li        r0, 0
-	  stb       r0, 0x2DC(r31)
-	  lwz       r0, 0x1E0(r31)
-	  rlwinm    r0,r0,0,11,9
-	  stw       r0, 0x1E0(r31)
-	  b         .loc_0x300
+lbl_802D2990:
+	cmplwi   r0, 1
+	bne      lbl_802D29C8
+	mr       r3, r31
+	bl       isFinishMotion__Q24Game9EnemyBaseFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802D2AC8
+	mr       r3, r31
+	bl       finishSuckEffect__Q34Game9OniKurage3ObjFv
+	li       r0, 0
+	stb      r0, 0x2dc(r31)
+	lwz      r0, 0x1e0(r31)
+	rlwinm   r0, r0, 0, 0xb, 9
+	stw      r0, 0x1e0(r31)
+	b        lbl_802D2AC8
 
-	.loc_0x200:
-	  cmplwi    r0, 0x3E8
-	  bne-      .loc_0x300
-	  lfs       f1, 0x200(r31)
-	  lfs       f0, -0x1A28(r2)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0, 0x2
-	  bne-      .loc_0x240
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x300
+lbl_802D29C8:
+	cmplwi   r0, 0x3e8
+	bne      lbl_802D2AC8
+	lfs      f1, 0x200(r31)
+	lfs      f0, lbl_8051C938@sda21(r2)
+	fcmpo    cr0, f1, f0
+	cror     2, 0, 2
+	bne      lbl_802D2A08
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 0
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802D2AC8
 
-	.loc_0x240:
-	  mr        r3, r31
-	  bl        0x3988
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x274
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x6
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x300
+lbl_802D2A08:
+	mr       r3, r31
+	bl       isNaviSucked__Q34Game9OniKurage3ObjFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802D2A3C
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 6
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802D2AC8
 
-	.loc_0x274:
-	  mr        r3, r31
-	  bl        0x2628
-	  mr.       r5, r3
-	  blt-      .loc_0x2A4
-	  lwz       r12, 0x0(r30)
-	  mr        r3, r30
-	  mr        r4, r31
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x300
+lbl_802D2A3C:
+	mr       r3, r31
+	bl       getFlyingNextState__Q34Game9OniKurage3ObjFv
+	or.      r5, r3, r3
+	blt      lbl_802D2A6C
+	lwz      r12, 0(r30)
+	mr       r3, r30
+	mr       r4, r31
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802D2AC8
 
-	.loc_0x2A4:
-	  fmr       f1, f31
-	  mr        r3, r31
-	  li        r4, 0
-	  bl        0x29D4
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x2E0
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x4
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x300
+lbl_802D2A6C:
+	fmr      f1, f31
+	mr       r3, r31
+	li       r4, 0
+	bl       isSuck__Q34Game9OniKurage3ObjFfPQ24Game8Creature
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802D2AA8
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 4
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802D2AC8
 
-	.loc_0x2E0:
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x1
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_802D2AA8:
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 1
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x300:
-	  psq_l     f31,0x48(r1),0,0
-	  lwz       r0, 0x54(r1)
-	  lfd       f31, 0x40(r1)
-	  lwz       r31, 0x3C(r1)
-	  lwz       r30, 0x38(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x50
-	  blr
+lbl_802D2AC8:
+	psq_l    f31, 72(r1), 0, qr0
+	lwz      r0, 0x54(r1)
+	lfd      f31, 0x40(r1)
+	lwz      r31, 0x3c(r1)
+	lwz      r30, 0x38(r1)
+	mtlr     r0
+	addi     r1, r1, 0x50
+	blr
 	*/
 }
 
@@ -1300,24 +1584,23 @@ void OniKurage::StateAttack::exec(Game::EnemyBase*)
 void OniKurage::StateAttack::cleanup(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r3, r4
-	  stw       r0, 0x14(r1)
-	  li        r0, 0
-	  stb       r0, 0x2DC(r4)
-	  lwz       r0, 0x1E0(r4)
-	  rlwinm    r0,r0,0,11,9
-	  stw       r0, 0x1E0(r4)
-	  lwz       r0, 0x1E0(r4)
-	  ori       r0, r0, 0x40
-	  stw       r0, 0x1E0(r4)
-	  bl        -0x1D119C
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r3, r4
+	stw      r0, 0x14(r1)
+	li       r0, 0
+	stb      r0, 0x2dc(r4)
+	lwz      r0, 0x1e0(r4)
+	rlwinm   r0, r0, 0, 0xb, 9
+	stw      r0, 0x1e0(r4)
+	lwz      r0, 0x1e0(r4)
+	ori      r0, r0, 0x40
+	stw      r0, 0x1e0(r4)
+	bl       setEmotionCaution__Q24Game9EnemyBaseFv
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1329,33 +1612,32 @@ void OniKurage::StateAttack::cleanup(Game::EnemyBase*)
 void OniKurage::StateFall::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lfs       f0, -0x1A28(r2)
-	  stw       r0, 0x14(r1)
-	  li        r0, -0x1
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  mr        r3, r31
-	  stw       r0, 0x2C0(r4)
-	  stfs      f0, 0x2C4(r4)
-	  lwz       r0, 0x1E0(r4)
-	  ori       r0, r0, 0x4
-	  stw       r0, 0x1E0(r4)
-	  stfs      f0, 0x1D4(r4)
-	  stfs      f0, 0x1D8(r4)
-	  stfs      f0, 0x1DC(r4)
-	  bl        -0x1D11A0
-	  mr        r3, r31
-	  li        r4, 0x8
-	  li        r5, 0
-	  bl        -0x1CDB78
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lfs      f0, lbl_8051C938@sda21(r2)
+	stw      r0, 0x14(r1)
+	li       r0, -1
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	mr       r3, r31
+	stw      r0, 0x2c0(r4)
+	stfs     f0, 0x2c4(r4)
+	lwz      r0, 0x1e0(r4)
+	ori      r0, r0, 4
+	stw      r0, 0x1e0(r4)
+	stfs     f0, 0x1d4(r4)
+	stfs     f0, 0x1d8(r4)
+	stfs     f0, 0x1dc(r4)
+	bl       setEmotionExcitement__Q24Game9EnemyBaseFv
+	mr       r3, r31
+	li       r4, 8
+	li       r5, 0
+	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1367,109 +1649,108 @@ void OniKurage::StateFall::init(Game::EnemyBase*, Game::StateArg*)
 void OniKurage::StateFall::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  stw       r0, 0x44(r1)
-	  stfd      f31, 0x30(r1)
-	  psq_st    f31,0x38(r1),0,0
-	  stw       r31, 0x2C(r1)
-	  stw       r30, 0x28(r1)
-	  mr        r31, r4
-	  mr        r30, r3
-	  lwz       r12, 0x0(r31)
-	  mr        r3, r31
-	  lwz       r12, 0xCC(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xD8
-	  lfs       f31, 0x2C4(r31)
-	  mr        r3, r31
-	  fmr       f1, f31
-	  bl        0x22F0
-	  lfs       f2, -0x1A28(r2)
-	  mr        r3, r31
-	  bl        0x1B3C
-	  lfs       f1, -0x1A24(r2)
-	  lfs       f0, -0x1A20(r2)
-	  fmuls     f1, f31, f1
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0xD8
-	  mr        r4, r31
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x6C(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f2, 0xC(r1)
-	  mr        r3, r31
-	  lfs       f0, -0x1A10(r2)
-	  addi      r4, r1, 0x14
-	  lfs       f3, 0x8(r1)
-	  lfs       f1, 0x10(r1)
-	  fsubs     f0, f2, f0
-	  stfs      f2, 0x18(r1)
-	  stfs      f3, 0x14(r1)
-	  stfs      f1, 0x1C(r1)
-	  stfs      f0, 0x18(r1)
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x68(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x1E0(r31)
-	  mr        r3, r31
-	  rlwinm    r0,r0,0,30,28
-	  stw       r0, 0x1E0(r31)
-	  bl        -0x1CD9C8
+	stwu     r1, -0x40(r1)
+	mflr     r0
+	stw      r0, 0x44(r1)
+	stfd     f31, 0x30(r1)
+	psq_st   f31, 56(r1), 0, qr0
+	stw      r31, 0x2c(r1)
+	stw      r30, 0x28(r1)
+	mr       r31, r4
+	mr       r30, r3
+	lwz      r12, 0(r31)
+	mr       r3, r31
+	lwz      r12, 0xcc(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802D2C6C
+	lfs      f31, 0x2c4(r31)
+	mr       r3, r31
+	fmr      f1, f31
+	bl       getFallPitchOffset__Q34Game9OniKurage3ObjFf
+	lfs      f2, lbl_8051C938@sda21(r2)
+	mr       r3, r31
+	bl       setHeightVelocity__Q34Game9OniKurage3ObjFff
+	lfs      f1, lbl_8051C93C@sda21(r2)
+	lfs      f0, lbl_8051C940@sda21(r2)
+	fmuls    f1, f31, f1
+	fcmpo    cr0, f1, f0
+	ble      lbl_802D2C6C
+	mr       r4, r31
+	addi     r3, r1, 8
+	lwz      r12, 0(r31)
+	lwz      r12, 0x6c(r12)
+	mtctr    r12
+	bctrl
+	lfs      f2, 0xc(r1)
+	mr       r3, r31
+	lfs      f0, lbl_8051C950@sda21(r2)
+	addi     r4, r1, 0x14
+	lfs      f3, 8(r1)
+	lfs      f1, 0x10(r1)
+	fsubs    f0, f2, f0
+	stfs     f2, 0x18(r1)
+	stfs     f3, 0x14(r1)
+	stfs     f1, 0x1c(r1)
+	stfs     f0, 0x18(r1)
+	lwz      r12, 0(r31)
+	lwz      r12, 0x68(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x1e0(r31)
+	mr       r3, r31
+	rlwinm   r0, r0, 0, 0x1e, 0x1c
+	stw      r0, 0x1e0(r31)
+	bl       finishMotion__Q24Game9EnemyBaseFv
 
-	.loc_0xD8:
-	  lwz       r3, -0x6514(r13)
-	  lfs       f1, 0x2C4(r31)
-	  lfs       f0, 0x54(r3)
-	  fadds     f0, f1, f0
-	  stfs      f0, 0x2C4(r31)
-	  lwz       r3, 0x188(r31)
-	  lbz       r0, 0x24(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x160
-	  lwz       r0, 0x1C(r3)
-	  cmplwi    r0, 0x3E8
-	  bne-      .loc_0x160
-	  lfs       f1, 0x200(r31)
-	  lfs       f0, -0x1A28(r2)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0, 0x2
-	  bne-      .loc_0x140
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x160
+lbl_802D2C6C:
+	lwz      r3, sys@sda21(r13)
+	lfs      f1, 0x2c4(r31)
+	lfs      f0, 0x54(r3)
+	fadds    f0, f1, f0
+	stfs     f0, 0x2c4(r31)
+	lwz      r3, 0x188(r31)
+	lbz      r0, 0x24(r3)
+	cmplwi   r0, 0
+	beq      lbl_802D2CF4
+	lwz      r0, 0x1c(r3)
+	cmplwi   r0, 0x3e8
+	bne      lbl_802D2CF4
+	lfs      f1, 0x200(r31)
+	lfs      f0, lbl_8051C938@sda21(r2)
+	fcmpo    cr0, f1, f0
+	cror     2, 0, 2
+	bne      lbl_802D2CD4
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 0
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802D2CF4
 
-	.loc_0x140:
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x7
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_802D2CD4:
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 7
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x160:
-	  psq_l     f31,0x38(r1),0,0
-	  lwz       r0, 0x44(r1)
-	  lfd       f31, 0x30(r1)
-	  lwz       r31, 0x2C(r1)
-	  lwz       r30, 0x28(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
+lbl_802D2CF4:
+	psq_l    f31, 56(r1), 0, qr0
+	lwz      r0, 0x44(r1)
+	lfd      f31, 0x30(r1)
+	lwz      r31, 0x2c(r1)
+	lwz      r30, 0x28(r1)
+	mtlr     r0
+	addi     r1, r1, 0x40
+	blr
 	*/
 }
 
@@ -1481,16 +1762,15 @@ void OniKurage::StateFall::exec(Game::EnemyBase*)
 void OniKurage::StateFall::cleanup(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r3, r4
-	  stw       r0, 0x14(r1)
-	  bl        -0x1D13A8
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r3, r4
+	stw      r0, 0x14(r1)
+	bl       setEmotionCaution__Q24Game9EnemyBaseFv
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1502,44 +1782,43 @@ void OniKurage::StateFall::cleanup(Game::EnemyBase*)
 void OniKurage::StateDrop::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lfs       f0, -0x1A28(r2)
-	  stw       r0, 0x14(r1)
-	  li        r0, -0x1
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  mr        r3, r31
-	  stw       r0, 0x2C0(r4)
-	  stfs      f0, 0x2C4(r4)
-	  lwz       r0, 0x1E0(r4)
-	  rlwinm    r0,r0,0,30,28
-	  stw       r0, 0x1E0(r4)
-	  stfs      f0, 0x1D4(r4)
-	  stfs      f0, 0x1D8(r4)
-	  stfs      f0, 0x1DC(r4)
-	  bl        -0x1D13AC
-	  mr        r3, r31
-	  li        r4, 0x8
-	  li        r5, 0
-	  bl        -0x1CDD84
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0xF4(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r12, 0x0(r3)
-	  li        r4, 0x5912
-	  li        r5, 0
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lfs      f0, lbl_8051C938@sda21(r2)
+	stw      r0, 0x14(r1)
+	li       r0, -1
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	mr       r3, r31
+	stw      r0, 0x2c0(r4)
+	stfs     f0, 0x2c4(r4)
+	lwz      r0, 0x1e0(r4)
+	rlwinm   r0, r0, 0, 0x1e, 0x1c
+	stw      r0, 0x1e0(r4)
+	stfs     f0, 0x1d4(r4)
+	stfs     f0, 0x1d8(r4)
+	stfs     f0, 0x1dc(r4)
+	bl       setEmotionExcitement__Q24Game9EnemyBaseFv
+	mr       r3, r31
+	li       r4, 8
+	li       r5, 0
+	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r12, 0xf4(r12)
+	mtctr    r12
+	bctrl
+	lwz      r12, 0(r3)
+	li       r4, 0x5912
+	li       r5, 0
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1551,104 +1830,103 @@ void OniKurage::StateDrop::init(Game::EnemyBase*, Game::StateArg*)
 void OniKurage::StateDrop::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x50(r1)
-	  mflr      r0
-	  stw       r0, 0x54(r1)
-	  stfd      f31, 0x40(r1)
-	  psq_st    f31,0x48(r1),0,0
-	  stw       r31, 0x3C(r1)
-	  stw       r30, 0x38(r1)
-	  lwz       r12, 0x0(r4)
-	  mr        r30, r3
-	  addi      r3, r1, 0x14
-	  mr        r31, r4
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f2, 0x14(r1)
-	  mr        r4, r31
-	  lfs       f1, 0x18(r1)
-	  addi      r3, r1, 0x8
-	  lfs       f0, 0x1C(r1)
-	  stfs      f2, 0x20(r1)
-	  stfs      f1, 0x24(r1)
-	  stfs      f0, 0x28(r1)
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x6C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, -0x6CF8(r13)
-	  addi      r4, r1, 0x20
-	  lfs       f31, 0xC(r1)
-	  lwz       r12, 0x4(r3)
-	  lwz       r12, 0x28(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f2, 0x24(r1)
-	  lfs       f0, -0x19F8(r2)
-	  fsubs     f1, f2, f1
-	  fcmpo     cr0, f1, f0
-	  blt-      .loc_0xB4
-	  lfs       f0, -0x1A28(r2)
-	  fcmpo     cr0, f31, f0
-	  bgt-      .loc_0xB4
-	  lfs       f1, 0x2C4(r31)
-	  lfs       f0, -0x1A04(r2)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0xBC
+	stwu     r1, -0x50(r1)
+	mflr     r0
+	stw      r0, 0x54(r1)
+	stfd     f31, 0x40(r1)
+	psq_st   f31, 72(r1), 0, qr0
+	stw      r31, 0x3c(r1)
+	stw      r30, 0x38(r1)
+	lwz      r12, 0(r4)
+	mr       r30, r3
+	addi     r3, r1, 0x14
+	mr       r31, r4
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f2, 0x14(r1)
+	mr       r4, r31
+	lfs      f1, 0x18(r1)
+	addi     r3, r1, 8
+	lfs      f0, 0x1c(r1)
+	stfs     f2, 0x20(r1)
+	stfs     f1, 0x24(r1)
+	stfs     f0, 0x28(r1)
+	lwz      r12, 0(r31)
+	lwz      r12, 0x6c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, mapMgr__4Game@sda21(r13)
+	addi     r4, r1, 0x20
+	lfs      f31, 0xc(r1)
+	lwz      r12, 4(r3)
+	lwz      r12, 0x28(r12)
+	mtctr    r12
+	bctrl
+	lfs      f2, 0x24(r1)
+	lfs      f0, lbl_8051C968@sda21(r2)
+	fsubs    f1, f2, f1
+	fcmpo    cr0, f1, f0
+	blt      lbl_802D2E80
+	lfs      f0, lbl_8051C938@sda21(r2)
+	fcmpo    cr0, f31, f0
+	bgt      lbl_802D2E80
+	lfs      f1, 0x2c4(r31)
+	lfs      f0, lbl_8051C95C@sda21(r2)
+	fcmpo    cr0, f1, f0
+	ble      lbl_802D2E88
 
-	.loc_0xB4:
-	  mr        r3, r31
-	  bl        -0x1CDBE4
+lbl_802D2E80:
+	mr       r3, r31
+	bl       finishMotion__Q24Game9EnemyBaseFv
 
-	.loc_0xBC:
-	  lwz       r3, -0x6514(r13)
-	  lfs       f1, 0x2C4(r31)
-	  lfs       f0, 0x54(r3)
-	  fadds     f0, f1, f0
-	  stfs      f0, 0x2C4(r31)
-	  lwz       r3, 0x188(r31)
-	  lbz       r0, 0x24(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x144
-	  lwz       r0, 0x1C(r3)
-	  cmplwi    r0, 0x3E8
-	  bne-      .loc_0x144
-	  lfs       f1, 0x200(r31)
-	  lfs       f0, -0x1A28(r2)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0, 0x2
-	  bne-      .loc_0x124
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x144
+lbl_802D2E88:
+	lwz      r3, sys@sda21(r13)
+	lfs      f1, 0x2c4(r31)
+	lfs      f0, 0x54(r3)
+	fadds    f0, f1, f0
+	stfs     f0, 0x2c4(r31)
+	lwz      r3, 0x188(r31)
+	lbz      r0, 0x24(r3)
+	cmplwi   r0, 0
+	beq      lbl_802D2F10
+	lwz      r0, 0x1c(r3)
+	cmplwi   r0, 0x3e8
+	bne      lbl_802D2F10
+	lfs      f1, 0x200(r31)
+	lfs      f0, lbl_8051C938@sda21(r2)
+	fcmpo    cr0, f1, f0
+	cror     2, 0, 2
+	bne      lbl_802D2EF0
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 0
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802D2F10
 
-	.loc_0x124:
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x7
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_802D2EF0:
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 7
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x144:
-	  psq_l     f31,0x48(r1),0,0
-	  lwz       r0, 0x54(r1)
-	  lfd       f31, 0x40(r1)
-	  lwz       r31, 0x3C(r1)
-	  lwz       r30, 0x38(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x50
-	  blr
+lbl_802D2F10:
+	psq_l    f31, 72(r1), 0, qr0
+	lwz      r0, 0x54(r1)
+	lfd      f31, 0x40(r1)
+	lwz      r31, 0x3c(r1)
+	lwz      r30, 0x38(r1)
+	mtlr     r0
+	addi     r1, r1, 0x50
+	blr
 	*/
 }
 
@@ -1660,16 +1938,15 @@ void OniKurage::StateDrop::exec(Game::EnemyBase*)
 void OniKurage::StateDrop::cleanup(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r3, r4
-	  stw       r0, 0x14(r1)
-	  bl        -0x1D15C4
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r3, r4
+	stw      r0, 0x14(r1)
+	bl       setEmotionCaution__Q24Game9EnemyBaseFv
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1681,55 +1958,54 @@ void OniKurage::StateDrop::cleanup(Game::EnemyBase*)
 void OniKurage::StateLand::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  lfs       f0, -0x1A28(r2)
-	  stw       r0, 0x34(r1)
-	  stw       r31, 0x2C(r1)
-	  mr        r31, r4
-	  mr        r3, r31
-	  stfs      f0, 0x2C4(r4)
-	  lwz       r0, 0x1E0(r4)
-	  rlwinm    r0,r0,0,30,28
-	  stw       r0, 0x1E0(r4)
-	  stfs      f0, 0x1D4(r4)
-	  stfs      f0, 0x1D8(r4)
-	  stfs      f0, 0x1DC(r4)
-	  bl        -0x1D15C0
-	  mr        r3, r31
-	  li        r4, 0x6
-	  li        r5, 0
-	  bl        -0x1CDF98
-	  mr        r3, r31
-	  bl        0x3EA4
-	  mr        r4, r31
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f2, 0x8(r1)
-	  addi      r5, r1, 0x14
-	  lfs       f1, 0xC(r1)
-	  li        r4, 0x6
-	  lfs       f0, 0x10(r1)
-	  li        r6, 0x2
-	  stfs      f2, 0x14(r1)
-	  lwz       r3, -0x6960(r13)
-	  stfs      f1, 0x18(r1)
-	  stfs      f0, 0x1C(r1)
-	  bl        -0x80DAC
-	  lwz       r3, -0x6958(r13)
-	  addi      r5, r1, 0x14
-	  li        r4, 0x9
-	  li        r6, 0x2
-	  bl        -0x7F87C
-	  lwz       r0, 0x34(r1)
-	  lwz       r31, 0x2C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	lfs      f0, lbl_8051C938@sda21(r2)
+	stw      r0, 0x34(r1)
+	stw      r31, 0x2c(r1)
+	mr       r31, r4
+	mr       r3, r31
+	stfs     f0, 0x2c4(r4)
+	lwz      r0, 0x1e0(r4)
+	rlwinm   r0, r0, 0, 0x1e, 0x1c
+	stw      r0, 0x1e0(r4)
+	stfs     f0, 0x1d4(r4)
+	stfs     f0, 0x1d8(r4)
+	stfs     f0, 0x1dc(r4)
+	bl       setEmotionExcitement__Q24Game9EnemyBaseFv
+	mr       r3, r31
+	li       r4, 6
+	li       r5, 0
+	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
+	mr       r3, r31
+	bl       createDownEffect__Q34Game9OniKurage3ObjFv
+	mr       r4, r31
+	addi     r3, r1, 8
+	lwz      r12, 0(r31)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f2, 8(r1)
+	addi     r5, r1, 0x14
+	lfs      f1, 0xc(r1)
+	li       r4, 6
+	lfs      f0, 0x10(r1)
+	li       r6, 2
+	stfs     f2, 0x14(r1)
+	lwz      r3, cameraMgr__4Game@sda21(r13)
+	stfs     f1, 0x18(r1)
+	stfs     f0, 0x1c(r1)
+	bl       "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
+	lwz      r3, rumbleMgr__4Game@sda21(r13)
+	addi     r5, r1, 0x14
+	li       r4, 9
+	li       r6, 2
+	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
+	lwz      r0, 0x34(r1)
+	lwz      r31, 0x2c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -1741,43 +2017,42 @@ void OniKurage::StateLand::init(Game::EnemyBase*, Game::StateArg*)
 void OniKurage::StateLand::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r5, 0x188(r4)
-	  lbz       r0, 0x24(r5)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x70
-	  lwz       r0, 0x1C(r5)
-	  cmplwi    r0, 0x3E8
-	  bne-      .loc_0x70
-	  lfs       f1, 0x200(r4)
-	  lfs       f0, -0x1A28(r2)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0, 0x2
-	  bne-      .loc_0x58
-	  lwz       r12, 0x0(r3)
-	  li        r5, 0
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x70
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r5, 0x188(r4)
+	lbz      r0, 0x24(r5)
+	cmplwi   r0, 0
+	beq      lbl_802D3084
+	lwz      r0, 0x1c(r5)
+	cmplwi   r0, 0x3e8
+	bne      lbl_802D3084
+	lfs      f1, 0x200(r4)
+	lfs      f0, lbl_8051C938@sda21(r2)
+	fcmpo    cr0, f1, f0
+	cror     2, 0, 2
+	bne      lbl_802D306C
+	lwz      r12, 0(r3)
+	li       r5, 0
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802D3084
 
-	.loc_0x58:
-	  lwz       r12, 0x0(r3)
-	  li        r5, 0x8
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_802D306C:
+	lwz      r12, 0(r3)
+	li       r5, 8
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x70:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_802D3084:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1789,16 +2064,15 @@ void OniKurage::StateLand::exec(Game::EnemyBase*)
 void OniKurage::StateLand::cleanup(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r3, r4
-	  stw       r0, 0x14(r1)
-	  bl        -0x1D1728
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r3, r4
+	stw      r0, 0x14(r1)
+	bl       setEmotionCaution__Q24Game9EnemyBaseFv
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1810,33 +2084,32 @@ void OniKurage::StateLand::cleanup(Game::EnemyBase*)
 void OniKurage::StateTakeOff::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lfs       f0, -0x1A28(r2)
-	  stw       r0, 0x14(r1)
-	  li        r0, -0x1
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  mr        r3, r31
-	  stw       r0, 0x2C0(r4)
-	  stfs      f0, 0x2C4(r4)
-	  lwz       r0, 0x1E0(r4)
-	  rlwinm    r0,r0,0,30,28
-	  stw       r0, 0x1E0(r4)
-	  stfs      f0, 0x1D4(r4)
-	  stfs      f0, 0x1D8(r4)
-	  stfs      f0, 0x1DC(r4)
-	  bl        -0x1D172C
-	  mr        r3, r31
-	  li        r4, 0x7
-	  li        r5, 0
-	  bl        -0x1CE104
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lfs      f0, lbl_8051C938@sda21(r2)
+	stw      r0, 0x14(r1)
+	li       r0, -1
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	mr       r3, r31
+	stw      r0, 0x2c0(r4)
+	stfs     f0, 0x2c4(r4)
+	lwz      r0, 0x1e0(r4)
+	rlwinm   r0, r0, 0, 0x1e, 0x1c
+	stw      r0, 0x1e0(r4)
+	stfs     f0, 0x1d4(r4)
+	stfs     f0, 0x1d8(r4)
+	stfs     f0, 0x1dc(r4)
+	bl       setEmotionExcitement__Q24Game9EnemyBaseFv
+	mr       r3, r31
+	li       r4, 7
+	li       r5, 0
+	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1848,75 +2121,74 @@ void OniKurage::StateTakeOff::init(Game::EnemyBase*, Game::StateArg*)
 void OniKurage::StateTakeOff::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0xCC(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x4C
-	  mr        r3, r31
-	  bl        0x1C30
-	  lfs       f2, -0x1A28(r2)
-	  mr        r3, r31
-	  bl        0x15C0
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r12, 0xcc(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802D316C
+	mr       r3, r31
+	bl       getTakeOffPitchOffset__Q34Game9OniKurage3ObjFv
+	lfs      f2, lbl_8051C938@sda21(r2)
+	mr       r3, r31
+	bl       setHeightVelocity__Q34Game9OniKurage3ObjFff
 
-	.loc_0x4C:
-	  lwz       r3, 0x188(r31)
-	  lbz       r0, 0x24(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0xD8
-	  lwz       r0, 0x1C(r3)
-	  cmplwi    r0, 0x2
-	  bne-      .loc_0x78
-	  lwz       r0, 0x1E0(r31)
-	  ori       r0, r0, 0x4
-	  stw       r0, 0x1E0(r31)
-	  b         .loc_0xD8
+lbl_802D316C:
+	lwz      r3, 0x188(r31)
+	lbz      r0, 0x24(r3)
+	cmplwi   r0, 0
+	beq      lbl_802D31F8
+	lwz      r0, 0x1c(r3)
+	cmplwi   r0, 2
+	bne      lbl_802D3198
+	lwz      r0, 0x1e0(r31)
+	ori      r0, r0, 4
+	stw      r0, 0x1e0(r31)
+	b        lbl_802D31F8
 
-	.loc_0x78:
-	  cmplwi    r0, 0x3E8
-	  bne-      .loc_0xD8
-	  lfs       f1, 0x200(r31)
-	  lfs       f0, -0x1A28(r2)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0, 0x2
-	  bne-      .loc_0xB8
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0xD8
+lbl_802D3198:
+	cmplwi   r0, 0x3e8
+	bne      lbl_802D31F8
+	lfs      f1, 0x200(r31)
+	lfs      f0, lbl_8051C938@sda21(r2)
+	fcmpo    cr0, f1, f0
+	cror     2, 0, 2
+	bne      lbl_802D31D8
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 0
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802D31F8
 
-	.loc_0xB8:
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x1
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_802D31D8:
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 1
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0xD8:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_802D31F8:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1928,16 +2200,15 @@ void OniKurage::StateTakeOff::exec(Game::EnemyBase*)
 void OniKurage::StateTakeOff::cleanup(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r3, r4
-	  stw       r0, 0x14(r1)
-	  bl        -0x1D18A4
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r3, r4
+	stw      r0, 0x14(r1)
+	bl       setEmotionCaution__Q24Game9EnemyBaseFv
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1949,31 +2220,30 @@ void OniKurage::StateTakeOff::cleanup(Game::EnemyBase*)
 void OniKurage::StateGround::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lfs       f0, -0x1A28(r2)
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  mr        r3, r31
-	  stfs      f0, 0x2C4(r4)
-	  lwz       r0, 0x1E0(r4)
-	  rlwinm    r0,r0,0,30,28
-	  stw       r0, 0x1E0(r4)
-	  stfs      f0, 0x1D4(r4)
-	  stfs      f0, 0x1D8(r4)
-	  stfs      f0, 0x1DC(r4)
-	  bl        -0x1D18A0
-	  mr        r3, r31
-	  li        r4, 0x4
-	  li        r5, 0
-	  bl        -0x1CE278
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lfs      f0, lbl_8051C938@sda21(r2)
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	mr       r3, r31
+	stfs     f0, 0x2c4(r4)
+	lwz      r0, 0x1e0(r4)
+	rlwinm   r0, r0, 0, 0x1e, 0x1c
+	stw      r0, 0x1e0(r4)
+	stfs     f0, 0x1d4(r4)
+	stfs     f0, 0x1d8(r4)
+	stfs     f0, 0x1dc(r4)
+	bl       setEmotionExcitement__Q24Game9EnemyBaseFv
+	mr       r3, r31
+	li       r4, 4
+	li       r5, 0
+	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1985,97 +2255,96 @@ void OniKurage::StateGround::init(Game::EnemyBase*, Game::StateArg*)
 void OniKurage::StateGround::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lfs       f0, -0x1A28(r2)
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lfs       f1, 0x200(r4)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0, 0x2
-	  beq-      .loc_0x50
-	  lwz       r0, 0x1F4(r31)
-	  cmpwi     r0, 0
-	  beq-      .loc_0x50
-	  lwz       r3, 0xC0(r31)
-	  lfs       f1, 0x2C4(r31)
-	  lfs       f0, 0x86C(r3)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x58
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lfs      f0, lbl_8051C938@sda21(r2)
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lfs      f1, 0x200(r4)
+	fcmpo    cr0, f1, f0
+	cror     2, 0, 2
+	beq      lbl_802D32E4
+	lwz      r0, 0x1f4(r31)
+	cmpwi    r0, 0
+	beq      lbl_802D32E4
+	lwz      r3, 0xc0(r31)
+	lfs      f1, 0x2c4(r31)
+	lfs      f0, 0x86c(r3)
+	fcmpo    cr0, f1, f0
+	ble      lbl_802D32EC
 
-	.loc_0x50:
-	  mr        r3, r31
-	  bl        -0x1CE048
+lbl_802D32E4:
+	mr       r3, r31
+	bl       finishMotion__Q24Game9EnemyBaseFv
 
-	.loc_0x58:
-	  lwz       r3, -0x6514(r13)
-	  lfs       f1, 0x2C4(r31)
-	  lfs       f0, 0x54(r3)
-	  fadds     f0, f1, f0
-	  stfs      f0, 0x2C4(r31)
-	  lwz       r3, 0x188(r31)
-	  lbz       r0, 0x24(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x120
-	  lwz       r0, 0x1C(r3)
-	  cmplwi    r0, 0x3E8
-	  bne-      .loc_0x120
-	  lfs       f1, 0x200(r31)
-	  lfs       f0, -0x1A28(r2)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0, 0x2
-	  bne-      .loc_0xC0
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x120
+lbl_802D32EC:
+	lwz      r3, sys@sda21(r13)
+	lfs      f1, 0x2c4(r31)
+	lfs      f0, 0x54(r3)
+	fadds    f0, f1, f0
+	stfs     f0, 0x2c4(r31)
+	lwz      r3, 0x188(r31)
+	lbz      r0, 0x24(r3)
+	cmplwi   r0, 0
+	beq      lbl_802D33B4
+	lwz      r0, 0x1c(r3)
+	cmplwi   r0, 0x3e8
+	bne      lbl_802D33B4
+	lfs      f1, 0x200(r31)
+	lfs      f0, lbl_8051C938@sda21(r2)
+	fcmpo    cr0, f1, f0
+	cror     2, 0, 2
+	bne      lbl_802D3354
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 0
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802D33B4
 
-	.loc_0xC0:
-	  lwz       r0, 0x1F4(r31)
-	  cmpwi     r0, 0
-	  bne-      .loc_0xDC
-	  mr        r3, r31
-	  bl        0x3030
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x100
+lbl_802D3354:
+	lwz      r0, 0x1f4(r31)
+	cmpwi    r0, 0
+	bne      lbl_802D3370
+	mr       r3, r31
+	bl       isNaviSucked__Q34Game9OniKurage3ObjFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802D3394
 
-	.loc_0xDC:
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0xB
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x120
+lbl_802D3370:
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 0xb
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802D33B4
 
-	.loc_0x100:
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x9
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_802D3394:
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 9
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x120:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_802D33B4:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2087,16 +2356,15 @@ void OniKurage::StateGround::exec(Game::EnemyBase*)
 void OniKurage::StateGround::cleanup(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r3, r4
-	  stw       r0, 0x14(r1)
-	  bl        -0x1D1A60
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r3, r4
+	stw      r0, 0x14(r1)
+	bl       setEmotionCaution__Q24Game9EnemyBaseFv
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2108,63 +2376,62 @@ void OniKurage::StateGround::cleanup(Game::EnemyBase*)
 void OniKurage::StateFlyFlick::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  lfs       f0, -0x1A28(r2)
-	  stw       r0, 0x44(r1)
-	  li        r0, -0x1
-	  stw       r31, 0x3C(r1)
-	  mr        r31, r4
-	  mr        r3, r31
-	  lwz       r4, 0x1E0(r4)
-	  ori       r4, r4, 0x4
-	  stw       r4, 0x1E0(r31)
-	  stw       r0, 0x2C0(r31)
-	  stfs      f0, 0x1D4(r31)
-	  stfs      f0, 0x1D8(r31)
-	  stfs      f0, 0x1DC(r31)
-	  bl        -0x1D1A60
-	  mr        r3, r31
-	  li        r4, 0x2
-	  li        r5, 0
-	  bl        -0x1CE438
-	  mr        r4, r31
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lis       r4, 0x804B
-	  lis       r3, 0x804E
-	  subi      r0, r4, 0x5808
-	  lfs       f2, 0x8(r1)
-	  stw       r0, 0x14(r1)
-	  addi      r0, r3, 0x6A78
-	  lfs       f1, 0xC(r1)
-	  lis       r4, 0x804B
-	  lfs       f0, 0x10(r1)
-	  lis       r3, 0x804D
-	  subi      r4, r4, 0x5814
-	  li        r6, 0xD6
-	  li        r5, 0
-	  stw       r0, 0x14(r1)
-	  addi      r0, r3, 0x27D8
-	  addi      r3, r1, 0x14
-	  stw       r4, 0x20(r1)
-	  addi      r4, r1, 0x20
-	  stfs      f2, 0x24(r1)
-	  stfs      f1, 0x28(r1)
-	  stfs      f0, 0x2C(r1)
-	  sth       r6, 0x18(r1)
-	  stw       r5, 0x1C(r1)
-	  stw       r0, 0x14(r1)
-	  bl        0xDBACC
-	  lwz       r0, 0x44(r1)
-	  lwz       r31, 0x3C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
+	stwu     r1, -0x40(r1)
+	mflr     r0
+	lfs      f0, lbl_8051C938@sda21(r2)
+	stw      r0, 0x44(r1)
+	li       r0, -1
+	stw      r31, 0x3c(r1)
+	mr       r31, r4
+	mr       r3, r31
+	lwz      r4, 0x1e0(r4)
+	ori      r4, r4, 4
+	stw      r4, 0x1e0(r31)
+	stw      r0, 0x2c0(r31)
+	stfs     f0, 0x1d4(r31)
+	stfs     f0, 0x1d8(r31)
+	stfs     f0, 0x1dc(r31)
+	bl       setEmotionExcitement__Q24Game9EnemyBaseFv
+	mr       r3, r31
+	li       r4, 2
+	li       r5, 0
+	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
+	mr       r4, r31
+	addi     r3, r1, 8
+	lwz      r12, 0(r31)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lis      r4, __vt__Q23efx5TBase@ha
+	lis      r3, __vt__Q23efx8TSimple1@ha
+	addi     r0, r4, __vt__Q23efx5TBase@l
+	lfs      f2, 8(r1)
+	stw      r0, 0x14(r1)
+	addi     r0, r3, __vt__Q23efx8TSimple1@l
+	lfs      f1, 0xc(r1)
+	lis      r4, __vt__Q23efx3Arg@ha
+	lfs      f0, 0x10(r1)
+	lis      r3, __vt__Q23efx12TKurageFlick@ha
+	addi     r4, r4, __vt__Q23efx3Arg@l
+	li       r6, 0xd6
+	li       r5, 0
+	stw      r0, 0x14(r1)
+	addi     r0, r3, __vt__Q23efx12TKurageFlick@l
+	addi     r3, r1, 0x14
+	stw      r4, 0x20(r1)
+	addi     r4, r1, 0x20
+	stfs     f2, 0x24(r1)
+	stfs     f1, 0x28(r1)
+	stfs     f0, 0x2c(r1)
+	sth      r6, 0x18(r1)
+	stw      r5, 0x1c(r1)
+	stw      r0, 0x14(r1)
+	bl       create__Q23efx8TSimple1FPQ23efx3Arg
+	lwz      r0, 0x44(r1)
+	lwz      r31, 0x3c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x40
+	blr
 	*/
 }
 
@@ -2176,110 +2443,110 @@ void OniKurage::StateFlyFlick::init(Game::EnemyBase*, Game::StateArg*)
 void OniKurage::StateFlyFlick::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  stw       r0, 0x44(r1)
-	  stfd      f31, 0x30(r1)
-	  psq_st    f31,0x38(r1),0,0
-	  stw       r31, 0x2C(r1)
-	  stw       r30, 0x28(r1)
-	  mr        r31, r4
-	  mr        r30, r3
-	  mr        r3, r31
-	  bl        0x16EC
-	  lfs       f2, -0x1A28(r2)
-	  mr        r3, r31
-	  bl        0x1224
-	  lwz       r3, 0x188(r31)
-	  fmr       f31, f1
-	  lbz       r0, 0x24(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x15C
-	  lwz       r0, 0x1C(r3)
-	  cmplwi    r0, 0x2
-	  bne-      .loc_0xC8
-	  lwz       r5, 0xC0(r31)
-	  mr        r3, r31
-	  lfs       f4, -0x1A0C(r2)
-	  li        r4, 0
-	  lfs       f1, 0x53C(r5)
-	  lfs       f2, 0x4C4(r5)
-	  lfs       f3, 0x4EC(r5)
-	  bl        -0x1C0428
-	  lfs       f0, -0x1A28(r2)
-	  mr        r4, r31
-	  addi      r3, r1, 0x8
-	  stfs      f0, 0x20C(r31)
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f2, 0x8(r1)
-	  addi      r5, r1, 0x14
-	  lfs       f1, 0xC(r1)
-	  li        r4, 0xC
-	  lfs       f0, 0x10(r1)
-	  li        r6, 0x2
-	  stfs      f2, 0x14(r1)
-	  lwz       r3, -0x6958(r13)
-	  stfs      f1, 0x18(r1)
-	  stfs      f0, 0x1C(r1)
-	  bl        -0x7FE10
-	  b         .loc_0x15C
+	stwu     r1, -0x40(r1)
+	mflr     r0
+	stw      r0, 0x44(r1)
+	stfd     f31, 0x30(r1)
+	psq_st   f31, 56(r1), 0, qr0
+	stw      r31, 0x2c(r1)
+	stw      r30, 0x28(r1)
+	mr       r31, r4
+	mr       r30, r3
+	mr       r3, r31
+	bl       getFlickPitchOffset__Q34Game9OniKurage3ObjFv
+	lfs      f2, lbl_8051C938@sda21(r2)
+	mr       r3, r31
+	bl       setHeightVelocity__Q34Game9OniKurage3ObjFff
+	lwz      r3, 0x188(r31)
+	fmr      f31, f1
+	lbz      r0, 0x24(r3)
+	cmplwi   r0, 0
+	beq      lbl_802D362C
+	lwz      r0, 0x1c(r3)
+	cmplwi   r0, 2
+	bne      lbl_802D3598
+	lwz      r5, 0xc0(r31)
+	mr       r3, r31
+	lfs      f4, lbl_8051C954@sda21(r2)
+	li       r4, 0
+	lfs      f1, 0x53c(r5)
+	lfs      f2, 0x4c4(r5)
+	lfs      f3, 0x4ec(r5)
+	bl
+"flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
+	lfs      f0, lbl_8051C938@sda21(r2)
+	mr       r4, r31
+	addi     r3, r1, 8
+	stfs     f0, 0x20c(r31)
+	lwz      r12, 0(r31)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f2, 8(r1)
+	addi     r5, r1, 0x14
+	lfs      f1, 0xc(r1)
+	li       r4, 0xc
+	lfs      f0, 0x10(r1)
+	li       r6, 2
+	stfs     f2, 0x14(r1)
+	lwz      r3, rumbleMgr__4Game@sda21(r13)
+	stfs     f1, 0x18(r1)
+	stfs     f0, 0x1c(r1)
+	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
+	b        lbl_802D362C
 
-	.loc_0xC8:
-	  cmplwi    r0, 0x3E8
-	  bne-      .loc_0x15C
-	  mr        r3, r31
-	  bl        0x1AC4
-	  mr.       r5, r3
-	  blt-      .loc_0x100
-	  lwz       r12, 0x0(r30)
-	  mr        r3, r30
-	  mr        r4, r31
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x15C
+lbl_802D3598:
+	cmplwi   r0, 0x3e8
+	bne      lbl_802D362C
+	mr       r3, r31
+	bl       getFlyingNextState__Q34Game9OniKurage3ObjFv
+	or.      r5, r3, r3
+	blt      lbl_802D35D0
+	lwz      r12, 0(r30)
+	mr       r3, r30
+	mr       r4, r31
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802D362C
 
-	.loc_0x100:
-	  fmr       f1, f31
-	  mr        r3, r31
-	  li        r4, 0
-	  bl        0x1E70
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x13C
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x4
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x15C
+lbl_802D35D0:
+	fmr      f1, f31
+	mr       r3, r31
+	li       r4, 0
+	bl       isSuck__Q34Game9OniKurage3ObjFfPQ24Game8Creature
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802D360C
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 4
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802D362C
 
-	.loc_0x13C:
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x1
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_802D360C:
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 1
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x15C:
-	  psq_l     f31,0x38(r1),0,0
-	  lwz       r0, 0x44(r1)
-	  lfd       f31, 0x30(r1)
-	  lwz       r31, 0x2C(r1)
-	  lwz       r30, 0x28(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
+lbl_802D362C:
+	psq_l    f31, 56(r1), 0, qr0
+	lwz      r0, 0x44(r1)
+	lfd      f31, 0x30(r1)
+	lwz      r31, 0x2c(r1)
+	lwz      r30, 0x28(r1)
+	mtlr     r0
+	addi     r1, r1, 0x40
+	blr
 	*/
 }
 
@@ -2291,16 +2558,15 @@ void OniKurage::StateFlyFlick::exec(Game::EnemyBase*)
 void OniKurage::StateFlyFlick::cleanup(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r3, r4
-	  stw       r0, 0x14(r1)
-	  bl        -0x1D1CE0
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r3, r4
+	stw      r0, 0x14(r1)
+	bl       setEmotionCaution__Q24Game9EnemyBaseFv
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2312,62 +2578,61 @@ void OniKurage::StateFlyFlick::cleanup(Game::EnemyBase*)
 void OniKurage::StateGroundFlick::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  lfs       f0, -0x1A28(r2)
-	  stw       r0, 0x44(r1)
-	  stw       r31, 0x3C(r1)
-	  mr        r31, r4
-	  mr        r3, r31
-	  stfs      f0, 0x2C4(r4)
-	  lwz       r0, 0x1E0(r4)
-	  rlwinm    r0,r0,0,30,28
-	  stw       r0, 0x1E0(r4)
-	  stfs      f0, 0x1D4(r4)
-	  stfs      f0, 0x1D8(r4)
-	  stfs      f0, 0x1DC(r4)
-	  bl        -0x1D1CDC
-	  mr        r3, r31
-	  li        r4, 0x3
-	  li        r5, 0
-	  bl        -0x1CE6B4
-	  mr        r4, r31
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lis       r4, 0x804B
-	  lis       r3, 0x804E
-	  subi      r0, r4, 0x5808
-	  lfs       f2, 0x8(r1)
-	  stw       r0, 0x14(r1)
-	  addi      r0, r3, 0x6A78
-	  lfs       f1, 0xC(r1)
-	  lis       r4, 0x804B
-	  lfs       f0, 0x10(r1)
-	  lis       r3, 0x804D
-	  subi      r4, r4, 0x5814
-	  li        r6, 0xD6
-	  li        r5, 0
-	  stw       r0, 0x14(r1)
-	  addi      r0, r3, 0x27D8
-	  addi      r3, r1, 0x14
-	  stw       r4, 0x20(r1)
-	  addi      r4, r1, 0x20
-	  stfs      f2, 0x24(r1)
-	  stfs      f1, 0x28(r1)
-	  stfs      f0, 0x2C(r1)
-	  sth       r6, 0x18(r1)
-	  stw       r5, 0x1C(r1)
-	  stw       r0, 0x14(r1)
-	  bl        0xDB850
-	  lwz       r0, 0x44(r1)
-	  lwz       r31, 0x3C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
+	stwu     r1, -0x40(r1)
+	mflr     r0
+	lfs      f0, lbl_8051C938@sda21(r2)
+	stw      r0, 0x44(r1)
+	stw      r31, 0x3c(r1)
+	mr       r31, r4
+	mr       r3, r31
+	stfs     f0, 0x2c4(r4)
+	lwz      r0, 0x1e0(r4)
+	rlwinm   r0, r0, 0, 0x1e, 0x1c
+	stw      r0, 0x1e0(r4)
+	stfs     f0, 0x1d4(r4)
+	stfs     f0, 0x1d8(r4)
+	stfs     f0, 0x1dc(r4)
+	bl       setEmotionExcitement__Q24Game9EnemyBaseFv
+	mr       r3, r31
+	li       r4, 3
+	li       r5, 0
+	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
+	mr       r4, r31
+	addi     r3, r1, 8
+	lwz      r12, 0(r31)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lis      r4, __vt__Q23efx5TBase@ha
+	lis      r3, __vt__Q23efx8TSimple1@ha
+	addi     r0, r4, __vt__Q23efx5TBase@l
+	lfs      f2, 8(r1)
+	stw      r0, 0x14(r1)
+	addi     r0, r3, __vt__Q23efx8TSimple1@l
+	lfs      f1, 0xc(r1)
+	lis      r4, __vt__Q23efx3Arg@ha
+	lfs      f0, 0x10(r1)
+	lis      r3, __vt__Q23efx12TKurageFlick@ha
+	addi     r4, r4, __vt__Q23efx3Arg@l
+	li       r6, 0xd6
+	li       r5, 0
+	stw      r0, 0x14(r1)
+	addi     r0, r3, __vt__Q23efx12TKurageFlick@l
+	addi     r3, r1, 0x14
+	stw      r4, 0x20(r1)
+	addi     r4, r1, 0x20
+	stfs     f2, 0x24(r1)
+	stfs     f1, 0x28(r1)
+	stfs     f0, 0x2c(r1)
+	sth      r6, 0x18(r1)
+	stw      r5, 0x1c(r1)
+	stw      r0, 0x14(r1)
+	bl       create__Q23efx8TSimple1FPQ23efx3Arg
+	lwz      r0, 0x44(r1)
+	lwz      r31, 0x3c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x40
+	blr
 	*/
 }
 
@@ -2379,116 +2644,118 @@ void OniKurage::StateGroundFlick::init(Game::EnemyBase*, Game::StateArg*)
 void OniKurage::StateGroundFlick::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stw       r31, 0x2C(r1)
-	  mr        r31, r4
-	  stw       r30, 0x28(r1)
-	  mr        r30, r3
-	  mr        r3, r31
-	  bl        -0x1CE500
-	  lfs       f0, -0x19F8(r2)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x3C
-	  mr        r3, r31
-	  li        r4, 0
-	  bl        0x2C38
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stw      r31, 0x2c(r1)
+	mr       r31, r4
+	stw      r30, 0x28(r1)
+	mr       r30, r3
+	mr       r3, r31
+	bl       getMotionFrame__Q24Game9EnemyBaseFv
+	lfs      f0, lbl_8051C968@sda21(r2)
+	fcmpo    cr0, f1, f0
+	ble      lbl_802D3788
+	mr       r3, r31
+	li       r4, 0
+	bl       flickStickNavi__Q34Game9OniKurage3ObjFb
 
-	.loc_0x3C:
-	  lwz       r3, 0x188(r31)
-	  lbz       r0, 0x24(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x174
-	  lwz       r0, 0x1C(r3)
-	  cmplwi    r0, 0x2
-	  bne-      .loc_0xA0
-	  mr        r4, r31
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f2, 0x8(r1)
-	  addi      r5, r1, 0x14
-	  lfs       f1, 0xC(r1)
-	  li        r4, 0xC
-	  lfs       f0, 0x10(r1)
-	  li        r6, 0x2
-	  stfs      f2, 0x14(r1)
-	  lwz       r3, -0x6958(r13)
-	  stfs      f1, 0x18(r1)
-	  stfs      f0, 0x1C(r1)
-	  bl        -0x80064
-	  b         .loc_0x174
+lbl_802D3788:
+	lwz      r3, 0x188(r31)
+	lbz      r0, 0x24(r3)
+	cmplwi   r0, 0
+	beq      lbl_802D38C0
+	lwz      r0, 0x1c(r3)
+	cmplwi   r0, 2
+	bne      lbl_802D37EC
+	mr       r4, r31
+	addi     r3, r1, 8
+	lwz      r12, 0(r31)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f2, 8(r1)
+	addi     r5, r1, 0x14
+	lfs      f1, 0xc(r1)
+	li       r4, 0xc
+	lfs      f0, 0x10(r1)
+	li       r6, 2
+	stfs     f2, 0x14(r1)
+	lwz      r3, rumbleMgr__4Game@sda21(r13)
+	stfs     f1, 0x18(r1)
+	stfs     f0, 0x1c(r1)
+	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
+	b        lbl_802D38C0
 
-	.loc_0xA0:
-	  cmplwi    r0, 0x3
-	  bne-      .loc_0x114
-	  lwz       r5, 0xC0(r31)
-	  mr        r3, r31
-	  lfs       f4, -0x1A0C(r2)
-	  li        r4, 0
-	  lfs       f1, 0x514(r5)
-	  lfs       f2, 0x4C4(r5)
-	  lfs       f3, 0x4EC(r5)
-	  bl        -0x1C0080
-	  lwz       r5, 0xC0(r31)
-	  mr        r3, r31
-	  lfs       f4, -0x1A0C(r2)
-	  li        r4, 0
-	  lfs       f1, 0x514(r5)
-	  lfs       f2, 0x4C4(r5)
-	  lfs       f3, 0x4EC(r5)
-	  bl        -0x1C035C
-	  lwz       r5, 0xC0(r31)
-	  mr        r3, r31
-	  lfs       f4, -0x1A0C(r2)
-	  li        r4, 0
-	  lfs       f1, 0x53C(r5)
-	  lfs       f2, 0x4C4(r5)
-	  lfs       f3, 0x4EC(r5)
-	  bl        -0x1C0734
-	  lfs       f0, -0x1A28(r2)
-	  stfs      f0, 0x20C(r31)
-	  b         .loc_0x174
+lbl_802D37EC:
+	cmplwi   r0, 3
+	bne      lbl_802D3860
+	lwz      r5, 0xc0(r31)
+	mr       r3, r31
+	lfs      f4, lbl_8051C954@sda21(r2)
+	li       r4, 0
+	lfs      f1, 0x514(r5)
+	lfs      f2, 0x4c4(r5)
+	lfs      f3, 0x4ec(r5)
+	bl
+"flickNearbyNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Navi>"
+	lwz      r5, 0xc0(r31)
+	mr       r3, r31
+	lfs      f4, lbl_8051C954@sda21(r2)
+	li       r4, 0
+	lfs      f1, 0x514(r5)
+	lfs      f2, 0x4c4(r5)
+	lfs      f3, 0x4ec(r5)
+	bl
+"flickNearbyPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
+	lwz      r5, 0xc0(r31)
+	mr       r3, r31
+	lfs      f4, lbl_8051C954@sda21(r2)
+	li       r4, 0
+	lfs      f1, 0x53c(r5)
+	lfs      f2, 0x4c4(r5)
+	lfs      f3, 0x4ec(r5)
+	bl
+"flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
+	lfs      f0, lbl_8051C938@sda21(r2)
+	stfs     f0, 0x20c(r31)
+	b        lbl_802D38C0
 
-	.loc_0x114:
-	  cmplwi    r0, 0x3E8
-	  bne-      .loc_0x174
-	  lfs       f1, 0x200(r31)
-	  lfs       f0, -0x1A28(r2)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0, 0x2
-	  bne-      .loc_0x154
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x174
+lbl_802D3860:
+	cmplwi   r0, 0x3e8
+	bne      lbl_802D38C0
+	lfs      f1, 0x200(r31)
+	lfs      f0, lbl_8051C938@sda21(r2)
+	fcmpo    cr0, f1, f0
+	cror     2, 0, 2
+	bne      lbl_802D38A0
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 0
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802D38C0
 
-	.loc_0x154:
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x9
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_802D38A0:
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 9
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x174:
-	  lwz       r0, 0x34(r1)
-	  lwz       r31, 0x2C(r1)
-	  lwz       r30, 0x28(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_802D38C0:
+	lwz      r0, 0x34(r1)
+	lwz      r31, 0x2c(r1)
+	lwz      r30, 0x28(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -2500,16 +2767,15 @@ void OniKurage::StateGroundFlick::exec(Game::EnemyBase*)
 void OniKurage::StateGroundFlick::cleanup(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r3, r4
-	  stw       r0, 0x14(r1)
-	  bl        -0x1D1F6C
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r3, r4
+	stw      r0, 0x14(r1)
+	bl       setEmotionCaution__Q24Game9EnemyBaseFv
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2523,16 +2789,15 @@ void OniKurage::StateGroundFlick::cleanup(Game::EnemyBase*)
 void __sinit_OniKurageState_cpp(void)
 {
 	/*
-	.loc_0x0:
-	  lis       r4, 0x8051
-	  li        r0, -0x1
-	  lfs       f0, 0x48B0(r4)
-	  lis       r3, 0x804D
-	  stw       r0, -0x68B8(r13)
-	  stfsu     f0, 0x27A8(r3)
-	  stfs      f0, -0x68B4(r13)
-	  stfs      f0, 0x4(r3)
-	  stfs      f0, 0x8(r3)
-	  blr
+	lis      r4, __float_nan@ha
+	li       r0, -1
+	lfs      f0, __float_nan@l(r4)
+	lis      r3, lbl_804D27A8@ha
+	stw      r0, lbl_80515DC8@sda21(r13)
+	stfsu    f0, lbl_804D27A8@l(r3)
+	stfs     f0, lbl_80515DCC@sda21(r13)
+	stfs     f0, 4(r3)
+	stfs     f0, 8(r3)
+	blr
 	*/
 }

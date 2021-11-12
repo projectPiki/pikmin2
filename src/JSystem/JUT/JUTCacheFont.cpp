@@ -1,6 +1,76 @@
 #include "types.h"
 
 /*
+    Generated from dpostproc
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_80478420
+    lbl_80478420:
+        .4byte 0x4A555443
+        .4byte 0x61636865
+        .4byte 0x466F6E74
+        .4byte 0x3A20556E
+        .4byte 0x6B6E6F77
+        .4byte 0x6E206461
+        .4byte 0x74612062
+        .4byte 0x6C6F636B
+        .4byte 0x0A000000
+        .4byte 0x4A555443
+        .4byte 0x61636865
+        .4byte 0x466F6E74
+        .4byte 0x2E637070
+        .4byte 0x00000000
+        .4byte 0x74726F75
+        .4byte 0x626C6520
+        .4byte 0x6F636375
+        .4byte 0x72726564
+        .4byte 0x20696E20
+        .4byte 0x4A4B524D
+        .4byte 0x61696E52
+        .4byte 0x616D546F
+        .4byte 0x4172616D
+        .4byte 0x2E000000
+        .4byte 0x556E6B6E
+        .4byte 0x6F776E20
+        .4byte 0x64617461
+        .4byte 0x20626C6F
+        .4byte 0x636B0A00
+        .4byte 0x00000000
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__12JUTCacheFont
+    __vt__12JUTCacheFont:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__12JUTCacheFontFv
+        .4byte setGX__10JUTResFontFv
+        .4byte setGX__10JUTResFontFQ28JUtility6TColorQ28JUtility6TColor
+        .4byte drawChar_scale__10JUTResFontFffffib
+        .4byte getLeading__10JUTResFontCFv
+        .4byte getAscent__10JUTResFontCFv
+        .4byte getDescent__10JUTResFontCFv
+        .4byte getHeight__10JUTResFontCFv
+        .4byte getWidth__10JUTResFontCFv
+        .4byte getWidthEntry__10JUTResFontCFiPQ27JUTFont6TWidth
+        .4byte getCellWidth__10JUTResFontCFv
+        .4byte getCellHeight__10JUTResFontCFv
+        .4byte getFontType__10JUTResFontCFv
+        .4byte getResFont__10JUTResFontCFv
+        .4byte isLeadByte__10JUTResFontCFi
+        .4byte loadImage__12JUTCacheFontFi11_GXTexMapID
+        .4byte setBlock__12JUTCacheFontFv
+        .4byte 0
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_80516720
+    lbl_80516720:
+        .4byte 0x25730000
+    .global lbl_80516724
+    lbl_80516724:
+        .4byte 0x00000000
+*/
+
+/*
  * --INFO--
  * Address:	........
  * Size:	000054
@@ -28,43 +98,42 @@ JUTCacheFont::JUTCacheFont(const ResFONT*, void*, unsigned long, JKRHeap*)
 JUTCacheFont::JUTCacheFont(const ResFONT*, unsigned long, JKRHeap*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r6
-	  stw       r30, 0x18(r1)
-	  mr        r30, r5
-	  stw       r29, 0x14(r1)
-	  mr        r29, r4
-	  stw       r28, 0x10(r1)
-	  mr        r28, r3
-	  bl        -0x2E40
-	  lis       r4, 0x804A
-	  mr        r3, r28
-	  addi      r0, r4, 0x5B0
-	  stw       r0, 0x0(r28)
-	  bl        0x168
-	  mr        r3, r28
-	  bl        -0x2CEC
-	  mr        r3, r28
-	  bl        -0x6E74
-	  mr        r3, r28
-	  mr        r4, r29
-	  mr        r6, r30
-	  mr        r7, r31
-	  li        r5, 0
-	  bl        0x304
-	  lwz       r0, 0x24(r1)
-	  mr        r3, r28
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r6
+	stw      r30, 0x18(r1)
+	mr       r30, r5
+	stw      r29, 0x14(r1)
+	mr       r29, r4
+	stw      r28, 0x10(r1)
+	mr       r28, r3
+	bl       __ct__10JUTResFontFv
+	lis      r4, __vt__12JUTCacheFont@ha
+	mr       r3, r28
+	addi     r0, r4, __vt__12JUTCacheFont@l
+	stw      r0, 0(r28)
+	bl       initialize_state__12JUTCacheFontFv
+	mr       r3, r28
+	bl       initialize_state__10JUTResFontFv
+	mr       r3, r28
+	bl       initialize_state__7JUTFontFv
+	mr       r3, r28
+	mr       r4, r29
+	mr       r6, r30
+	mr       r7, r31
+	li       r5, 0
+	bl       initiate__12JUTCacheFontFPC7ResFONTPvUlP7JKRHeap
+	lwz      r0, 0x24(r1)
+	mr       r3, r28
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -76,50 +145,47 @@ JUTCacheFont::JUTCacheFont(const ResFONT*, unsigned long, JKRHeap*)
 JUTCacheFont::~JUTCacheFont()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x78
-	  lis       r4, 0x804A
-	  addi      r0, r4, 0x5B0
-	  stw       r0, 0x0(r30)
-	  lbz       r0, 0x4(r30)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x5C
-	  bl        .loc_0x94
-	  mr        r3, r30
-	  bl        0xD8
-	  mr        r3, r30
-	  bl        -0x2DA0
-	  mr        r3, r30
-	  bl        -0x2D84
-	  mr        r3, r30
-	  bl        -0x6F0C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_8003409C
+	lis      r4, __vt__12JUTCacheFont@ha
+	addi     r0, r4, __vt__12JUTCacheFont@l
+	stw      r0, 0(r30)
+	lbz      r0, 4(r30)
+	cmplwi   r0, 0
+	beq      lbl_80034080
+	bl       deleteMemBlocks_CacheFont__12JUTCacheFontFv
+	mr       r3, r30
+	bl       initialize_state__12JUTCacheFontFv
+	mr       r3, r30
+	bl       deleteMemBlocks_ResFont__10JUTResFontFv
+	mr       r3, r30
+	bl       initialize_state__10JUTResFontFv
+	mr       r3, r30
+	bl       initialize_state__7JUTFontFv
 
-	.loc_0x5C:
-	  mr        r3, r30
-	  li        r4, 0
-	  bl        -0x2E48
-	  extsh.    r0, r31
-	  ble-      .loc_0x78
-	  mr        r3, r30
-	  bl        -0xFFE4
+lbl_80034080:
+	mr       r3, r30
+	li       r4, 0
+	bl       __dt__10JUTResFontFv
+	extsh.   r0, r31
+	ble      lbl_8003409C
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x78:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-
-	.loc_0x94:
+lbl_8003409C:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -131,44 +197,43 @@ JUTCacheFont::~JUTCacheFont()
 void JUTCacheFont::deleteMemBlocks_CacheFont()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lbz       r0, 0xB0(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x28
-	  lwz       r3, 0x90(r31)
-	  bl        -0x10004
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lbz      r0, 0xb0(r3)
+	cmplwi   r0, 0
+	beq      lbl_800340E0
+	lwz      r3, 0x90(r31)
+	bl       __dla__FPv
 
-	.loc_0x28:
-	  lwz       r3, 0xAC(r31)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x48
-	  lwz       r12, 0x0(r3)
-	  li        r4, 0x1
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
+lbl_800340E0:
+	lwz      r3, 0xac(r31)
+	cmplwi   r3, 0
+	beq      lbl_80034100
+	lwz      r12, 0(r3)
+	li       r4, 1
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x48:
-	  lwz       r3, 0x4C(r31)
-	  bl        -0x10050
-	  lwz       r3, 0x50(r31)
-	  bl        -0x10058
-	  lwz       r3, 0x7C(r31)
-	  bl        -0x10060
-	  lwz       r3, 0x80(r31)
-	  bl        -0x10068
-	  lwz       r3, 0x84(r31)
-	  bl        -0x10070
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80034100:
+	lwz      r3, 0x4c(r31)
+	bl       __dl__FPv
+	lwz      r3, 0x50(r31)
+	bl       __dl__FPv
+	lwz      r3, 0x7c(r31)
+	bl       __dl__FPv
+	lwz      r3, 0x80(r31)
+	bl       __dl__FPv
+	lwz      r3, 0x84(r31)
+	bl       __dl__FPv
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -180,22 +245,21 @@ void JUTCacheFont::deleteMemBlocks_CacheFont()
 void JUTCacheFont::initialize_state()
 {
 	/*
-	.loc_0x0:
-	  li        r0, 0
-	  stb       r0, 0xB0(r3)
-	  stw       r0, 0x90(r3)
-	  stw       r0, 0xAC(r3)
-	  stw       r0, 0x4C(r3)
-	  stw       r0, 0x7C(r3)
-	  stw       r0, 0x80(r3)
-	  stw       r0, 0x84(r3)
-	  stw       r0, 0x50(r3)
-	  stw       r0, 0x8C(r3)
-	  stw       r0, 0x88(r3)
-	  stw       r0, 0x90(r3)
-	  stw       r0, 0x9C(r3)
-	  stw       r0, 0xA0(r3)
-	  blr
+	li       r0, 0
+	stb      r0, 0xb0(r3)
+	stw      r0, 0x90(r3)
+	stw      r0, 0xac(r3)
+	stw      r0, 0x4c(r3)
+	stw      r0, 0x7c(r3)
+	stw      r0, 0x80(r3)
+	stw      r0, 0x84(r3)
+	stw      r0, 0x50(r3)
+	stw      r0, 0x8c(r3)
+	stw      r0, 0x88(r3)
+	stw      r0, 0x90(r3)
+	stw      r0, 0x9c(r3)
+	stw      r0, 0xa0(r3)
+	blr
 	*/
 }
 
@@ -354,62 +418,59 @@ void JUTCacheFont::getMemorySize(const ResFONT*, unsigned short*,
 void JUTCacheFont::initiate(const ResFONT*, void*, unsigned long, JKRHeap*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        .loc_0xB4
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x9C
-	  lbz       r0, 0xB0(r31)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x34
-	  lwz       r3, 0x90(r31)
-	  bl        -0x10258
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       internal_initiate__12JUTCacheFontFPC7ResFONTPvUlP7JKRHeap
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_8003439C
+	lbz      r0, 0xb0(r31)
+	cmplwi   r0, 0
+	beq      lbl_80034334
+	lwz      r3, 0x90(r31)
+	bl       __dla__FPv
 
-	.loc_0x34:
-	  lwz       r3, 0xAC(r31)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x54
-	  lwz       r12, 0x0(r3)
-	  li        r4, 0x1
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
+lbl_80034334:
+	lwz      r3, 0xac(r31)
+	cmplwi   r3, 0
+	beq      lbl_80034354
+	lwz      r12, 0(r3)
+	li       r4, 1
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x54:
-	  lwz       r3, 0x4C(r31)
-	  bl        -0x102A4
-	  lwz       r3, 0x50(r31)
-	  bl        -0x102AC
-	  lwz       r3, 0x7C(r31)
-	  bl        -0x102B4
-	  lwz       r3, 0x80(r31)
-	  bl        -0x102BC
-	  lwz       r3, 0x84(r31)
-	  bl        -0x102C4
-	  mr        r3, r31
-	  bl        -0x30B4
-	  mr        r3, r31
-	  bl        -0x7218
-	  li        r0, 0
-	  li        r3, 0
-	  stb       r0, 0x4(r31)
-	  b         .loc_0xA0
+lbl_80034354:
+	lwz      r3, 0x4c(r31)
+	bl       __dl__FPv
+	lwz      r3, 0x50(r31)
+	bl       __dl__FPv
+	lwz      r3, 0x7c(r31)
+	bl       __dl__FPv
+	lwz      r3, 0x80(r31)
+	bl       __dl__FPv
+	lwz      r3, 0x84(r31)
+	bl       __dl__FPv
+	mr       r3, r31
+	bl       deleteMemBlocks_ResFont__10JUTResFontFv
+	mr       r3, r31
+	bl       initialize_state__7JUTFontFv
+	li       r0, 0
+	li       r3, 0
+	stb      r0, 4(r31)
+	b        lbl_800343A0
 
-	.loc_0x9C:
-	  li        r3, 0x1
+lbl_8003439C:
+	li       r3, 1
 
-	.loc_0xA0:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-
-	.loc_0xB4:
+lbl_800343A0:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -545,140 +606,139 @@ void JUTCacheFont::internal_initiate(const ResFONT*, void*, unsigned long,
 void JUTCacheFont::allocArea(void*, unsigned long, JKRHeap*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r6
-	  stw       r30, 0x18(r1)
-	  mr        r30, r5
-	  li        r5, 0
-	  stw       r29, 0x14(r1)
-	  mr        r29, r4
-	  mr        r4, r31
-	  stw       r28, 0x10(r1)
-	  mr        r28, r3
-	  li        r3, 0x20
-	  bl        -0x10630
-	  stw       r3, 0x4C(r28)
-	  lwz       r0, 0x4C(r28)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x54
-	  li        r3, 0
-	  b         .loc_0x1A4
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r6
+	stw      r30, 0x18(r1)
+	mr       r30, r5
+	li       r5, 0
+	stw      r29, 0x14(r1)
+	mr       r29, r4
+	mr       r4, r31
+	stw      r28, 0x10(r1)
+	mr       r28, r3
+	li       r3, 0x20
+	bl       __nw__FUlP7JKRHeapi
+	stw      r3, 0x4c(r28)
+	lwz      r0, 0x4c(r28)
+	cmplwi   r0, 0
+	bne      lbl_8003458C
+	li       r3, 0
+	b        lbl_800346DC
 
-	.loc_0x54:
-	  lwz       r3, 0x70(r28)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x84
-	  mr        r4, r31
-	  li        r5, 0
-	  bl        -0x10558
-	  stw       r3, 0x7C(r28)
-	  lwz       r0, 0x7C(r28)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x84
-	  li        r3, 0
-	  b         .loc_0x1A4
+lbl_8003458C:
+	lwz      r3, 0x70(r28)
+	cmplwi   r3, 0
+	beq      lbl_800345BC
+	mr       r4, r31
+	li       r5, 0
+	bl       __nwa__FUlP7JKRHeapi
+	stw      r3, 0x7c(r28)
+	lwz      r0, 0x7c(r28)
+	cmplwi   r0, 0
+	bne      lbl_800345BC
+	li       r3, 0
+	b        lbl_800346DC
 
-	.loc_0x84:
-	  lhz       r0, 0x62(r28)
-	  cmplwi    r0, 0
-	  beq-      .loc_0xF0
-	  mr        r4, r31
-	  rlwinm    r3,r0,5,11,26
-	  li        r5, 0
-	  bl        -0x1058C
-	  stw       r3, 0x80(r28)
-	  lwz       r0, 0x80(r28)
-	  cmplwi    r0, 0
-	  bne-      .loc_0xB8
-	  li        r3, 0
-	  b         .loc_0x1A4
+lbl_800345BC:
+	lhz      r0, 0x62(r28)
+	cmplwi   r0, 0
+	beq      lbl_80034628
+	mr       r4, r31
+	rlwinm   r3, r0, 5, 0xb, 0x1a
+	li       r5, 0
+	bl       __nwa__FUlP7JKRHeapi
+	stw      r3, 0x80(r28)
+	lwz      r0, 0x80(r28)
+	cmplwi   r0, 0
+	bne      lbl_800345F0
+	li       r3, 0
+	b        lbl_800346DC
 
-	.loc_0xB8:
-	  lwz       r6, -0x78E0(r13)
-	  li        r5, 0
-	  lhz       r3, 0x62(r28)
-	  lwz       r0, 0x74(r28)
-	  rlwinm    r4,r3,5,0,26
-	  lwz       r3, 0x94(r6)
-	  sub       r4, r0, r4
-	  bl        -0x1ADC4
-	  stw       r3, 0xAC(r28)
-	  lwz       r0, 0xAC(r28)
-	  cmplwi    r0, 0
-	  bne-      .loc_0xF0
-	  li        r3, 0
-	  b         .loc_0x1A4
+lbl_800345F0:
+	lwz      r6, sAramObject__7JKRAram@sda21(r13)
+	li       r5, 0
+	lhz      r3, 0x62(r28)
+	lwz      r0, 0x74(r28)
+	slwi     r4, r3, 5
+	lwz      r3, 0x94(r6)
+	subf     r4, r4, r0
+	bl       alloc__11JKRAramHeapFUlQ211JKRAramHeap10EAllocMode
+	stw      r3, 0xac(r28)
+	lwz      r0, 0xac(r28)
+	cmplwi   r0, 0
+	bne      lbl_80034628
+	li       r3, 0
+	b        lbl_800346DC
 
-	.loc_0xF0:
-	  lwz       r3, 0x78(r28)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x120
-	  mr        r4, r31
-	  li        r5, 0
-	  bl        -0x105F4
-	  stw       r3, 0x84(r28)
-	  lwz       r0, 0x84(r28)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x120
-	  li        r3, 0
-	  b         .loc_0x1A4
+lbl_80034628:
+	lwz      r3, 0x78(r28)
+	cmplwi   r3, 0
+	beq      lbl_80034658
+	mr       r4, r31
+	li       r5, 0
+	bl       __nwa__FUlP7JKRHeapi
+	stw      r3, 0x84(r28)
+	lwz      r0, 0x84(r28)
+	cmplwi   r0, 0
+	bne      lbl_80034658
+	li       r3, 0
+	b        lbl_800346DC
 
-	.loc_0x120:
-	  lwz       r3, 0x88(r28)
-	  addi      r0, r3, 0x40
-	  stw       r0, 0x94(r28)
-	  lwz       r0, 0x94(r28)
-	  divwu     r0, r30, r0
-	  stw       r0, 0x98(r28)
-	  lwz       r3, 0x98(r28)
-	  lwz       r0, 0x94(r28)
-	  cmplwi    r3, 0
-	  mullw     r3, r0, r3
-	  bne-      .loc_0x154
-	  li        r3, 0
-	  b         .loc_0x1A4
+lbl_80034658:
+	lwz      r3, 0x88(r28)
+	addi     r0, r3, 0x40
+	stw      r0, 0x94(r28)
+	lwz      r0, 0x94(r28)
+	divwu    r0, r30, r0
+	stw      r0, 0x98(r28)
+	lwz      r3, 0x98(r28)
+	lwz      r0, 0x94(r28)
+	cmplwi   r3, 0
+	mullw    r3, r0, r3
+	bne      lbl_8003468C
+	li       r3, 0
+	b        lbl_800346DC
 
-	.loc_0x154:
-	  cmplwi    r29, 0
-	  beq-      .loc_0x16C
-	  stw       r29, 0x90(r28)
-	  li        r0, 0
-	  stb       r0, 0xB0(r28)
-	  b         .loc_0x198
+lbl_8003468C:
+	cmplwi   r29, 0
+	beq      lbl_800346A4
+	stw      r29, 0x90(r28)
+	li       r0, 0
+	stb      r0, 0xb0(r28)
+	b        lbl_800346D0
 
-	.loc_0x16C:
-	  mr        r4, r31
-	  li        r5, 0x20
-	  bl        -0x10664
-	  stw       r3, 0x90(r28)
-	  lwz       r0, 0x90(r28)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x190
-	  li        r3, 0
-	  b         .loc_0x1A4
+lbl_800346A4:
+	mr       r4, r31
+	li       r5, 0x20
+	bl       __nwa__FUlP7JKRHeapi
+	stw      r3, 0x90(r28)
+	lwz      r0, 0x90(r28)
+	cmplwi   r0, 0
+	bne      lbl_800346C8
+	li       r3, 0
+	b        lbl_800346DC
 
-	.loc_0x190:
-	  li        r0, 0x1
-	  stb       r0, 0xB0(r28)
+lbl_800346C8:
+	li       r0, 1
+	stb      r0, 0xb0(r28)
 
-	.loc_0x198:
-	  mr        r3, r28
-	  bl        0x73C
-	  li        r3, 0x1
+lbl_800346D0:
+	mr       r3, r28
+	bl       invalidiateAllCache__12JUTCacheFontFv
+	li       r3, 1
 
-	.loc_0x1A4:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_800346DC:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -690,79 +750,78 @@ void JUTCacheFont::allocArea(void*, unsigned long, JKRHeap*)
 void JUTCacheFont::allocArray(JKRHeap*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r5, 0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lhz       r6, 0x64(r3)
-	  lhz       r0, 0x62(r3)
-	  lhz       r3, 0x60(r3)
-	  add       r0, r0, r6
-	  add       r0, r3, r0
-	  rlwinm    r3,r0,2,0,29
-	  bl        -0x106E4
-	  stw       r3, 0x50(r31)
-	  lwz       r3, 0x50(r31)
-	  cmplwi    r3, 0
-	  bne-      .loc_0x4C
-	  li        r3, 0
-	  b         .loc_0xD4
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	li       r5, 0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lhz      r6, 0x64(r3)
+	lhz      r0, 0x62(r3)
+	lhz      r3, 0x60(r3)
+	add      r0, r0, r6
+	add      r0, r3, r0
+	slwi     r3, r0, 2
+	bl       __nwa__FUlP7JKRHeapi
+	stw      r3, 0x50(r31)
+	lwz      r3, 0x50(r31)
+	cmplwi   r3, 0
+	bne      lbl_80034748
+	li       r3, 0
+	b        lbl_800347D0
 
-	.loc_0x4C:
-	  lhz       r0, 0x60(r31)
-	  mr        r6, r3
-	  cmplwi    r0, 0
-	  beq-      .loc_0x6C
-	  stw       r3, 0x54(r31)
-	  lhz       r0, 0x60(r31)
-	  rlwinm    r0,r0,2,0,29
-	  add       r6, r3, r0
+lbl_80034748:
+	lhz      r0, 0x60(r31)
+	mr       r6, r3
+	cmplwi   r0, 0
+	beq      lbl_80034768
+	stw      r3, 0x54(r31)
+	lhz      r0, 0x60(r31)
+	slwi     r0, r0, 2
+	add      r6, r3, r0
 
-	.loc_0x6C:
-	  lhz       r0, 0x62(r31)
-	  cmplwi    r0, 0
-	  beq-      .loc_0xC0
-	  stw       r6, 0x58(r31)
-	  li        r7, 0
-	  li        r5, 0
-	  lhz       r0, 0x62(r31)
-	  rlwinm    r0,r0,2,0,29
-	  add       r6, r6, r0
-	  b         .loc_0xB4
+lbl_80034768:
+	lhz      r0, 0x62(r31)
+	cmplwi   r0, 0
+	beq      lbl_800347BC
+	stw      r6, 0x58(r31)
+	li       r7, 0
+	li       r5, 0
+	lhz      r0, 0x62(r31)
+	slwi     r0, r0, 2
+	add      r6, r6, r0
+	b        lbl_800347B0
 
-	.loc_0x94:
-	  lwz       r0, 0x94(r31)
-	  lwz       r4, 0x90(r31)
-	  mullw     r0, r0, r7
-	  lwz       r3, 0x58(r31)
-	  addi      r7, r7, 0x1
-	  add       r0, r4, r0
-	  stwx      r0, r3, r5
-	  addi      r5, r5, 0x4
+lbl_80034790:
+	lwz      r0, 0x94(r31)
+	lwz      r4, 0x90(r31)
+	mullw    r0, r0, r7
+	lwz      r3, 0x58(r31)
+	addi     r7, r7, 1
+	add      r0, r4, r0
+	stwx     r0, r3, r5
+	addi     r5, r5, 4
 
-	.loc_0xB4:
-	  lhz       r0, 0x62(r31)
-	  cmpw      r7, r0
-	  blt+      .loc_0x94
+lbl_800347B0:
+	lhz      r0, 0x62(r31)
+	cmpw     r7, r0
+	blt      lbl_80034790
 
-	.loc_0xC0:
-	  lhz       r0, 0x64(r31)
-	  cmplwi    r0, 0
-	  beq-      .loc_0xD0
-	  stw       r6, 0x5C(r31)
+lbl_800347BC:
+	lhz      r0, 0x64(r31)
+	cmplwi   r0, 0
+	beq      lbl_800347CC
+	stw      r6, 0x5c(r31)
 
-	.loc_0xD0:
-	  li        r3, 0x1
+lbl_800347CC:
+	li       r3, 1
 
-	.loc_0xD4:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_800347D0:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -774,163 +833,162 @@ void JUTCacheFont::allocArray(JKRHeap*)
 void JUTCacheFont::setBlock()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  lis       r4, 0x1
-	  lis       r6, 0x8048
-	  stw       r0, 0x44(r1)
-	  subi      r0, r4, 0x1
-	  stmw      r20, 0x10(r1)
-	  mr        r20, r3
-	  li        r29, 0
-	  subi      r30, r6, 0x7BE0
-	  mr        r28, r29
-	  li        r21, 0
-	  mr        r27, r29
-	  lwz       r5, 0xAC(r3)
-	  lis       r3, 0x4D41
-	  lwz       r26, 0x7C(r20)
-	  addi      r31, r3, 0x5031
-	  lwz       r25, 0x80(r20)
-	  lwz       r24, 0x84(r20)
-	  lwz       r23, 0x14(r5)
-	  sth       r0, 0x68(r20)
-	  lwz       r3, 0x48(r20)
-	  addi      r22, r3, 0x20
-	  b         .loc_0x1EC
+	stwu     r1, -0x40(r1)
+	mflr     r0
+	lis      r4, 0x0000FFFF@ha
+	lis      r6, lbl_80478420@ha
+	stw      r0, 0x44(r1)
+	addi     r0, r4, 0x0000FFFF@l
+	stmw     r20, 0x10(r1)
+	mr       r20, r3
+	li       r29, 0
+	addi     r30, r6, lbl_80478420@l
+	mr       r28, r29
+	li       r21, 0
+	mr       r27, r29
+	lwz      r5, 0xac(r3)
+	lis      r3, 0x4D415031@ha
+	lwz      r26, 0x7c(r20)
+	addi     r31, r3, 0x4D415031@l
+	lwz      r25, 0x80(r20)
+	lwz      r24, 0x84(r20)
+	lwz      r23, 0x14(r5)
+	sth      r0, 0x68(r20)
+	lwz      r3, 0x48(r20)
+	addi     r22, r3, 0x20
+	b        lbl_800349D0
 
-	.loc_0x60:
-	  lwz       r4, 0x0(r22)
-	  cmpw      r4, r31
-	  beq-      .loc_0x194
-	  bge-      .loc_0x98
-	  lis       r3, 0x494E
-	  addi      r0, r3, 0x4631
-	  cmpw      r4, r0
-	  beq-      .loc_0xAC
-	  bge-      .loc_0x1D8
-	  lis       r3, 0x474C
-	  addi      r0, r3, 0x5931
-	  cmpw      r4, r0
-	  beq-      .loc_0x104
-	  b         .loc_0x1D8
+lbl_80034844:
+	lwz      r4, 0(r22)
+	cmpw     r4, r31
+	beq      lbl_80034978
+	bge      lbl_8003487C
+	lis      r3, 0x494E4631@ha
+	addi     r0, r3, 0x494E4631@l
+	cmpw     r4, r0
+	beq      lbl_80034890
+	bge      lbl_800349BC
+	lis      r3, 0x474C5931@ha
+	addi     r0, r3, 0x474C5931@l
+	cmpw     r4, r0
+	beq      lbl_800348E8
+	b        lbl_800349BC
 
-	.loc_0x98:
-	  lis       r3, 0x5749
-	  addi      r0, r3, 0x4431
-	  cmpw      r4, r0
-	  beq-      .loc_0xDC
-	  b         .loc_0x1D8
+lbl_8003487C:
+	lis      r3, 0x57494431@ha
+	addi     r0, r3, 0x57494431@l
+	cmpw     r4, r0
+	beq      lbl_800348C0
+	b        lbl_800349BC
 
-	.loc_0xAC:
-	  lwz       r3, 0x4C(r20)
-	  mr        r4, r22
-	  li        r5, 0x20
-	  bl        -0x2F700
-	  lwz       r4, 0x4C(r20)
-	  lis       r3, 0x8047
-	  addi      r0, r3, 0x4180
-	  lhz       r3, 0x8(r4)
-	  rlwinm    r3,r3,2,0,29
-	  add       r0, r0, r3
-	  stw       r0, 0x6C(r20)
-	  b         .loc_0x1E0
+lbl_80034890:
+	lwz      r3, 0x4c(r20)
+	mr       r4, r22
+	li       r5, 0x20
+	bl       memcpy
+	lwz      r4, 0x4c(r20)
+	lis      r3, saoAboutEncoding___10JUTResFont@ha
+	addi     r0, r3, saoAboutEncoding___10JUTResFont@l
+	lhz      r3, 8(r4)
+	slwi     r3, r3, 2
+	add      r0, r0, r3
+	stw      r0, 0x6c(r20)
+	b        lbl_800349C4
 
-	.loc_0xDC:
-	  lwz       r5, 0x4(r22)
-	  mr        r3, r26
-	  mr        r4, r22
-	  bl        -0x2F730
-	  lwz       r3, 0x54(r20)
-	  stwx      r26, r3, r29
-	  addi      r29, r29, 0x4
-	  lwz       r0, 0x4(r22)
-	  add       r26, r26, r0
-	  b         .loc_0x1E0
+lbl_800348C0:
+	lwz      r5, 4(r22)
+	mr       r3, r26
+	mr       r4, r22
+	bl       memcpy
+	lwz      r3, 0x54(r20)
+	stwx     r26, r3, r29
+	addi     r29, r29, 4
+	lwz      r0, 4(r22)
+	add      r26, r26, r0
+	b        lbl_800349C4
 
-	.loc_0x104:
-	  mr        r3, r25
-	  mr        r4, r22
-	  li        r5, 0x20
-	  bl        -0x2F758
-	  lwz       r5, 0x4(r22)
-	  mr        r4, r23
-	  addi      r3, r22, 0x20
-	  li        r6, 0
-	  subi      r5, r5, 0x20
-	  li        r7, 0
-	  li        r8, 0
-	  li        r9, -0x1
-	  li        r10, 0
-	  bl        -0x1CC5C
-	  cmplwi    r3, 0
-	  bne-      .loc_0x15C
-	  addi      r3, r30, 0x24
-	  addi      r6, r30, 0x38
-	  li        r4, 0x1DD
-	  subi      r5, r2, 0x7C40
-	  crclr     6, 0x6
-	  bl        -0xA2FC
+lbl_800348E8:
+	mr       r3, r25
+	mr       r4, r22
+	li       r5, 0x20
+	bl       memcpy
+	lwz      r5, 4(r22)
+	mr       r4, r23
+	addi     r3, r22, 0x20
+	li       r6, 0
+	addi     r5, r5, -32
+	li       r7, 0
+	li       r8, 0
+	li       r9, -1
+	li       r10, 0
+	bl       mainRamToAram__7JKRAramFPUcUlUl15JKRExpandSwitchUlP7JKRHeapiPUl
+	cmplwi   r3, 0
+	bne      lbl_80034940
+	addi     r3, r30, 0x24
+	addi     r6, r30, 0x38
+	li       r4, 0x1dd
+	addi     r5, r2, lbl_80516720@sda21
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x15C:
-	  stw       r23, 0x0(r25)
-	  lwz       r3, 0x10(r25)
-	  lwz       r0, 0x88(r20)
-	  cmplw     r3, r0
-	  ble-      .loc_0x174
-	  stw       r3, 0x88(r20)
+lbl_80034940:
+	stw      r23, 0(r25)
+	lwz      r3, 0x10(r25)
+	lwz      r0, 0x88(r20)
+	cmplw    r3, r0
+	ble      lbl_80034958
+	stw      r3, 0x88(r20)
 
-	.loc_0x174:
-	  lwz       r3, 0x58(r20)
-	  stwx      r25, r3, r28
-	  addi      r28, r28, 0x4
-	  addi      r25, r25, 0x20
-	  lwz       r0, 0x4(r22)
-	  add       r23, r0, r23
-	  subi      r23, r23, 0x20
-	  b         .loc_0x1E0
+lbl_80034958:
+	lwz      r3, 0x58(r20)
+	stwx     r25, r3, r28
+	addi     r28, r28, 4
+	addi     r25, r25, 0x20
+	lwz      r0, 4(r22)
+	add      r23, r0, r23
+	addi     r23, r23, -32
+	b        lbl_800349C4
 
-	.loc_0x194:
-	  lwz       r5, 0x4(r22)
-	  mr        r3, r24
-	  mr        r4, r22
-	  bl        -0x2F7E8
-	  lwz       r3, 0x5C(r20)
-	  stwx      r24, r3, r27
-	  lwz       r3, 0x5C(r20)
-	  lhz       r0, 0x68(r20)
-	  lwzx      r3, r3, r27
-	  lhz       r3, 0xA(r3)
-	  cmplw     r0, r3
-	  ble-      .loc_0x1C8
-	  sth       r3, 0x68(r20)
+lbl_80034978:
+	lwz      r5, 4(r22)
+	mr       r3, r24
+	mr       r4, r22
+	bl       memcpy
+	lwz      r3, 0x5c(r20)
+	stwx     r24, r3, r27
+	lwz      r3, 0x5c(r20)
+	lhz      r0, 0x68(r20)
+	lwzx     r3, r3, r27
+	lhz      r3, 0xa(r3)
+	cmplw    r0, r3
+	ble      lbl_800349AC
+	sth      r3, 0x68(r20)
 
-	.loc_0x1C8:
-	  lwz       r0, 0x4(r22)
-	  addi      r27, r27, 0x4
-	  add       r24, r24, r0
-	  b         .loc_0x1E0
+lbl_800349AC:
+	lwz      r0, 4(r22)
+	addi     r27, r27, 4
+	add      r24, r24, r0
+	b        lbl_800349C4
 
-	.loc_0x1D8:
-	  addi      r3, r30, 0x60
-	  bl        -0xB620
+lbl_800349BC:
+	addi     r3, r30, 0x60
+	bl       JUTReportConsole
 
-	.loc_0x1E0:
-	  lwz       r0, 0x4(r22)
-	  addi      r21, r21, 0x1
-	  add       r22, r22, r0
+lbl_800349C4:
+	lwz      r0, 4(r22)
+	addi     r21, r21, 1
+	add      r22, r22, r0
 
-	.loc_0x1EC:
-	  lwz       r3, 0x48(r20)
-	  lwz       r0, 0xC(r3)
-	  cmplw     r21, r0
-	  blt+      .loc_0x60
-	  lmw       r20, 0x10(r1)
-	  lwz       r0, 0x44(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
+lbl_800349D0:
+	lwz      r3, 0x48(r20)
+	lwz      r0, 0xc(r3)
+	cmplw    r21, r0
+	blt      lbl_80034844
+	lmw      r20, 0x10(r1)
+	lwz      r0, 0x44(r1)
+	mtlr     r0
+	addi     r1, r1, 0x40
+	blr
 	*/
 }
 
@@ -963,58 +1021,55 @@ void JUTCacheFont::getGlyphFromAram(JUTCacheFont::TGlyphCacheInfo*,
 void JUTCacheFont::loadImage(int, _GXTexMapID)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  mr        r30, r5
-	  li        r5, 0
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  stw       r4, 0x8(r1)
-	  addi      r4, r1, 0x8
-	  bl        .loc_0xBC
-	  mr.       r31, r3
-	  beq-      .loc_0xA0
-	  lwz       r6, 0x8(r1)
-	  mr        r4, r30
-	  lhz       r5, 0x16(r31)
-	  addi      r3, r31, 0x20
-	  lhz       r7, 0xC(r31)
-	  divw      r0, r6, r5
-	  mullw     r0, r0, r5
-	  sub       r0, r6, r0
-	  mullw     r0, r7, r0
-	  stw       r0, 0x1C(r29)
-	  lwz       r5, 0x8(r1)
-	  lhz       r0, 0x16(r31)
-	  lhz       r6, 0xE(r31)
-	  divw      r0, r5, r0
-	  mullw     r0, r6, r0
-	  stw       r0, 0x20(r29)
-	  bl        0xB2CA4
-	  lwz       r0, 0x8C(r29)
-	  cmpwi     r0, 0x1
-	  bne-      .loc_0xA0
-	  mr        r3, r29
-	  mr        r4, r31
-	  bl        0x414
-	  mr        r3, r29
-	  mr        r4, r31
-	  bl        0x44C
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	mr       r30, r5
+	li       r5, 0
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	stw      r4, 8(r1)
+	addi     r4, r1, 8
+	bl       loadCache_char_subroutine__12JUTCacheFontFPib
+	or.      r31, r3, r3
+	beq      lbl_80034A94
+	lwz      r6, 8(r1)
+	mr       r4, r30
+	lhz      r5, 0x16(r31)
+	addi     r3, r31, 0x20
+	lhz      r7, 0xc(r31)
+	divw     r0, r6, r5
+	mullw    r0, r0, r5
+	subf     r0, r0, r6
+	mullw    r0, r7, r0
+	stw      r0, 0x1c(r29)
+	lwz      r5, 8(r1)
+	lhz      r0, 0x16(r31)
+	lhz      r6, 0xe(r31)
+	divw     r0, r5, r0
+	mullw    r0, r6, r0
+	stw      r0, 0x20(r29)
+	bl       GXLoadTexObj
+	lwz      r0, 0x8c(r29)
+	cmpwi    r0, 1
+	bne      lbl_80034A94
+	mr       r3, r29
+	mr       r4, r31
+	bl       unlink__12JUTCacheFontFPQ212JUTCacheFont15TGlyphCacheInfo
+	mr       r3, r29
+	mr       r4, r31
+	bl       prepend__12JUTCacheFontFPQ212JUTCacheFont15TGlyphCacheInfo
 
-	.loc_0xA0:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-
-	.loc_0xBC:
+lbl_80034A94:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -1026,209 +1081,208 @@ void JUTCacheFont::loadImage(int, _GXTexMapID)
 void JUTCacheFont::loadCache_char_subroutine(int*, bool)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stmw      r24, 0x10(r1)
-	  mr        r25, r3
-	  mr        r26, r4
-	  mr        r27, r5
-	  lwz       r6, 0x9C(r3)
-	  li        r3, 0
-	  b         .loc_0x58
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stmw     r24, 0x10(r1)
+	mr       r25, r3
+	mr       r26, r4
+	mr       r27, r5
+	lwz      r6, 0x9c(r3)
+	li       r3, 0
+	b        lbl_80034B08
 
-	.loc_0x28:
-	  lhz       r5, 0x8(r6)
-	  lwz       r4, 0x0(r26)
-	  cmpw      r5, r4
-	  bgt-      .loc_0x54
-	  lhz       r0, 0xA(r6)
-	  cmpw      r4, r0
-	  bgt-      .loc_0x54
-	  sub       r0, r4, r5
-	  mr        r3, r6
-	  stw       r0, 0x0(r26)
-	  b         .loc_0x60
+lbl_80034AD8:
+	lhz      r5, 8(r6)
+	lwz      r4, 0(r26)
+	cmpw     r5, r4
+	bgt      lbl_80034B04
+	lhz      r0, 0xa(r6)
+	cmpw     r4, r0
+	bgt      lbl_80034B04
+	subf     r0, r5, r4
+	mr       r3, r6
+	stw      r0, 0(r26)
+	b        lbl_80034B10
 
-	.loc_0x54:
-	  lwz       r6, 0x4(r6)
+lbl_80034B04:
+	lwz      r6, 4(r6)
 
-	.loc_0x58:
-	  cmplwi    r6, 0
-	  bne+      .loc_0x28
+lbl_80034B08:
+	cmplwi   r6, 0
+	bne      lbl_80034AD8
 
-	.loc_0x60:
-	  cmplwi    r3, 0
-	  bne-      .loc_0x274
-	  lhz       r0, 0x62(r25)
-	  li        r28, 0
-	  li        r3, 0
-	  mtctr     r0
-	  cmpwi     r0, 0
-	  ble-      .loc_0xC8
+lbl_80034B10:
+	cmplwi   r3, 0
+	bne      lbl_80034D24
+	lhz      r0, 0x62(r25)
+	li       r28, 0
+	li       r3, 0
+	mtctr    r0
+	cmpwi    r0, 0
+	ble      lbl_80034B78
 
-	.loc_0x80:
-	  lwz       r6, 0x58(r25)
-	  lwz       r5, 0x0(r26)
-	  lwzx      r4, r6, r3
-	  lhz       r0, 0x8(r4)
-	  cmpw      r0, r5
-	  bgt-      .loc_0xBC
-	  lhz       r0, 0xA(r4)
-	  cmpw      r5, r0
-	  bgt-      .loc_0xBC
-	  rlwinm    r0,r28,2,0,29
-	  lwzx      r3, r6, r0
-	  lhz       r0, 0x8(r3)
-	  sub       r0, r5, r0
-	  stw       r0, 0x0(r26)
-	  b         .loc_0xC8
+lbl_80034B30:
+	lwz      r6, 0x58(r25)
+	lwz      r5, 0(r26)
+	lwzx     r4, r6, r3
+	lhz      r0, 8(r4)
+	cmpw     r0, r5
+	bgt      lbl_80034B6C
+	lhz      r0, 0xa(r4)
+	cmpw     r5, r0
+	bgt      lbl_80034B6C
+	slwi     r0, r28, 2
+	lwzx     r3, r6, r0
+	lhz      r0, 8(r3)
+	subf     r0, r0, r5
+	stw      r0, 0(r26)
+	b        lbl_80034B78
 
-	.loc_0xBC:
-	  addi      r3, r3, 0x4
-	  addi      r28, r28, 0x1
-	  bdnz+     .loc_0x80
+lbl_80034B6C:
+	addi     r3, r3, 4
+	addi     r28, r28, 1
+	bdnz     lbl_80034B30
 
-	.loc_0xC8:
-	  lhz       r0, 0x62(r25)
-	  cmpw      r28, r0
-	  bge-      .loc_0x26C
-	  lwz       r29, 0xA4(r25)
-	  cmplwi    r29, 0
-	  beq-      .loc_0x10C
-	  lwz       r0, 0x4(r29)
-	  stw       r0, 0xA4(r25)
-	  lwz       r3, 0x4(r29)
-	  cmplwi    r3, 0
-	  bne-      .loc_0x100
-	  li        r0, 0
-	  stw       r0, 0xA8(r25)
-	  b         .loc_0x150
+lbl_80034B78:
+	lhz      r0, 0x62(r25)
+	cmpw     r28, r0
+	bge      lbl_80034D1C
+	lwz      r29, 0xa4(r25)
+	cmplwi   r29, 0
+	beq      lbl_80034BBC
+	lwz      r0, 4(r29)
+	stw      r0, 0xa4(r25)
+	lwz      r3, 4(r29)
+	cmplwi   r3, 0
+	bne      lbl_80034BB0
+	li       r0, 0
+	stw      r0, 0xa8(r25)
+	b        lbl_80034C00
 
-	.loc_0x100:
-	  li        r0, 0
-	  stw       r0, 0x0(r3)
-	  b         .loc_0x150
+lbl_80034BB0:
+	li       r0, 0
+	stw      r0, 0(r3)
+	b        lbl_80034C00
 
-	.loc_0x10C:
-	  lwz       r29, 0xA0(r25)
-	  b         .loc_0x144
+lbl_80034BBC:
+	lwz      r29, 0xa0(r25)
+	b        lbl_80034BF4
 
-	.loc_0x114:
-	  lhz       r0, 0x1E(r29)
-	  lwz       r3, 0x0(r29)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x140
-	  mr        r3, r25
-	  mr        r4, r29
-	  bl        0x2BC
-	  lwz       r3, 0xB4(r25)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0xB4(r25)
-	  b         .loc_0x150
+lbl_80034BC4:
+	lhz      r0, 0x1e(r29)
+	lwz      r3, 0(r29)
+	cmplwi   r0, 0
+	bne      lbl_80034BF0
+	mr       r3, r25
+	mr       r4, r29
+	bl       unlink__12JUTCacheFontFPQ212JUTCacheFont15TGlyphCacheInfo
+	lwz      r3, 0xb4(r25)
+	addi     r0, r3, 1
+	stw      r0, 0xb4(r25)
+	b        lbl_80034C00
 
-	.loc_0x140:
-	  mr        r29, r3
+lbl_80034BF0:
+	mr       r29, r3
 
-	.loc_0x144:
-	  cmplwi    r29, 0
-	  bne+      .loc_0x114
-	  li        r29, 0
+lbl_80034BF4:
+	cmplwi   r29, 0
+	bne      lbl_80034BC4
+	li       r29, 0
 
-	.loc_0x150:
-	  cmplwi    r29, 0
-	  bne-      .loc_0x160
-	  li        r3, 0
-	  b         .loc_0x284
+lbl_80034C00:
+	cmplwi   r29, 0
+	bne      lbl_80034C10
+	li       r3, 0
+	b        lbl_80034D34
 
-	.loc_0x160:
-	  lwz       r4, 0x58(r25)
-	  rlwinm    r0,r28,2,0,29
-	  mr        r3, r29
-	  li        r5, 0x20
-	  lwzx      r30, r4, r0
-	  mr        r4, r30
-	  bl        -0x2FA8C
-	  mr        r3, r25
-	  mr        r4, r29
-	  bl        0x2A8
-	  lhz       r4, 0x16(r29)
-	  lhz       r3, 0x18(r29)
-	  lwz       r0, 0x0(r26)
-	  mullw     r4, r4, r3
-	  lhz       r3, 0x8(r29)
-	  divw      r31, r0, r4
-	  subi      r0, r4, 0x1
-	  mullw     r5, r31, r4
-	  add       r3, r3, r5
-	  sth       r3, 0x8(r29)
-	  lhz       r3, 0x8(r29)
-	  lhz       r4, 0xA(r29)
-	  add       r0, r3, r0
-	  rlwinm    r0,r0,0,16,31
-	  cmplw     r4, r0
-	  bge-      .loc_0x1CC
-	  mr        r0, r4
+lbl_80034C10:
+	lwz      r4, 0x58(r25)
+	slwi     r0, r28, 2
+	mr       r3, r29
+	li       r5, 0x20
+	lwzx     r30, r4, r0
+	mr       r4, r30
+	bl       memcpy
+	mr       r3, r25
+	mr       r4, r29
+	bl       prepend__12JUTCacheFontFPQ212JUTCacheFont15TGlyphCacheInfo
+	lhz      r4, 0x16(r29)
+	lhz      r3, 0x18(r29)
+	lwz      r0, 0(r26)
+	mullw    r4, r4, r3
+	lhz      r3, 8(r29)
+	divw     r31, r0, r4
+	addi     r0, r4, -1
+	mullw    r5, r31, r4
+	add      r3, r3, r5
+	sth      r3, 8(r29)
+	lhz      r3, 8(r29)
+	lhz      r4, 0xa(r29)
+	add      r0, r3, r0
+	clrlwi   r0, r0, 0x10
+	cmplw    r4, r0
+	bge      lbl_80034C7C
+	mr       r0, r4
 
-	.loc_0x1CC:
-	  sth       r0, 0xA(r29)
-	  addi      r24, r29, 0x40
-	  mr        r4, r24
-	  li        r6, 0
-	  lwz       r0, 0x0(r26)
-	  li        r7, 0
-	  li        r8, 0
-	  li        r9, -0x1
-	  sub       r0, r0, r5
-	  li        r10, 0
-	  stw       r0, 0x0(r26)
-	  lwz       r5, 0x10(r29)
-	  lwz       r3, 0x0(r30)
-	  mullw     r0, r5, r31
-	  add       r3, r3, r0
-	  bl        -0x1CD6C
-	  addi      r26, r29, 0x20
-	  lhz       r5, 0x1A(r29)
-	  lhz       r6, 0x1C(r29)
-	  mr        r3, r26
-	  lhz       r7, 0x14(r29)
-	  mr        r4, r24
-	  li        r8, 0
-	  li        r9, 0
-	  li        r10, 0
-	  bl        0xB249C
-	  lfs       f1, -0x7C3C(r2)
-	  mr        r3, r26
-	  li        r4, 0x1
-	  li        r5, 0x1
-	  fmr       f2, f1
-	  li        r6, 0
-	  fmr       f3, f1
-	  li        r7, 0
-	  li        r8, 0
-	  bl        0xB2708
-	  stw       r31, 0x44(r25)
-	  mr        r3, r29
-	  sth       r28, 0x66(r25)
-	  b         .loc_0x274
+lbl_80034C7C:
+	sth      r0, 0xa(r29)
+	addi     r24, r29, 0x40
+	mr       r4, r24
+	li       r6, 0
+	lwz      r0, 0(r26)
+	li       r7, 0
+	li       r8, 0
+	li       r9, -1
+	subf     r0, r5, r0
+	li       r10, 0
+	stw      r0, 0(r26)
+	lwz      r5, 0x10(r29)
+	lwz      r3, 0(r30)
+	mullw    r0, r5, r31
+	add      r3, r3, r0
+	bl       aramToMainRam__7JKRAramFUlPUcUl15JKRExpandSwitchUlP7JKRHeapiPUl
+	addi     r26, r29, 0x20
+	lhz      r5, 0x1a(r29)
+	lhz      r6, 0x1c(r29)
+	mr       r3, r26
+	lhz      r7, 0x14(r29)
+	mr       r4, r24
+	li       r8, 0
+	li       r9, 0
+	li       r10, 0
+	bl       GXInitTexObj
+	lfs      f1, lbl_80516724@sda21(r2)
+	mr       r3, r26
+	li       r4, 1
+	li       r5, 1
+	fmr      f2, f1
+	li       r6, 0
+	fmr      f3, f1
+	li       r7, 0
+	li       r8, 0
+	bl       GXInitTexObjLOD
+	stw      r31, 0x44(r25)
+	mr       r3, r29
+	sth      r28, 0x66(r25)
+	b        lbl_80034D24
 
-	.loc_0x26C:
-	  li        r3, 0
-	  b         .loc_0x284
+lbl_80034D1C:
+	li       r3, 0
+	b        lbl_80034D34
 
-	.loc_0x274:
-	  rlwinm.   r0,r27,0,24,31
-	  beq-      .loc_0x284
-	  li        r0, 0x1
-	  sth       r0, 0x1E(r3)
+lbl_80034D24:
+	clrlwi.  r0, r27, 0x18
+	beq      lbl_80034D34
+	li       r0, 1
+	sth      r0, 0x1e(r3)
 
-	.loc_0x284:
-	  lmw       r24, 0x10(r1)
-	  lwz       r0, 0x34(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_80034D34:
+	lmw      r24, 0x10(r1)
+	lwz      r0, 0x34(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -1250,67 +1304,66 @@ void JUTCacheFont::loadCache_char(int, bool)
 void JUTCacheFont::loadCache_string(const char*, bool)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  mr        r30, r5
-	  stw       r29, 0x14(r1)
-	  mr        r29, r4
-	  stw       r28, 0x10(r1)
-	  mr        r28, r3
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	mr       r30, r5
+	stw      r29, 0x14(r1)
+	mr       r29, r4
+	stw      r28, 0x10(r1)
+	mr       r28, r3
 
-	.loc_0x28:
-	  lwz       r12, 0x0(r28)
-	  mr        r3, r28
-	  lbz       r4, 0x0(r29)
-	  lwz       r12, 0x40(r12)
-	  mr        r31, r4
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x5C
-	  lbzu      r0, 0x1(r29)
-	  rlwinm    r3,r31,8,0,23
-	  mr        r31, r3
-	  rlwimi    r31,r0,0,24,31
+lbl_80034D70:
+	lwz      r12, 0(r28)
+	mr       r3, r28
+	lbz      r4, 0(r29)
+	lwz      r12, 0x40(r12)
+	mr       r31, r4
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80034DA4
+	lbzu     r0, 1(r29)
+	slwi     r3, r31, 8
+	mr       r31, r3
+	rlwimi   r31, r0, 0, 0x18, 0x1f
 
-	.loc_0x5C:
-	  cmpwi     r31, 0
-	  beq-      .loc_0xA4
-	  mr        r3, r28
-	  mr        r4, r31
-	  bl        -0x2CCC
-	  stw       r3, 0x8(r1)
-	  mr        r3, r28
-	  mr        r5, r30
-	  addi      r4, r1, 0x8
-	  bl        -0x318
-	  neg       r0, r3
-	  or        r0, r0, r3
-	  rlwinm.   r0,r0,1,31,31
-	  bne-      .loc_0x9C
-	  li        r3, 0
-	  b         .loc_0xA8
+lbl_80034DA4:
+	cmpwi    r31, 0
+	beq      lbl_80034DEC
+	mr       r3, r28
+	mr       r4, r31
+	bl       getFontCode__10JUTResFontCFi
+	stw      r3, 8(r1)
+	mr       r3, r28
+	mr       r5, r30
+	addi     r4, r1, 8
+	bl       loadCache_char_subroutine__12JUTCacheFontFPib
+	neg      r0, r3
+	or       r0, r0, r3
+	rlwinm.  r0, r0, 1, 0x1f, 0x1f
+	bne      lbl_80034DE4
+	li       r3, 0
+	b        lbl_80034DF0
 
-	.loc_0x9C:
-	  addi      r29, r29, 0x1
-	  b         .loc_0x28
+lbl_80034DE4:
+	addi     r29, r29, 1
+	b        lbl_80034D70
 
-	.loc_0xA4:
-	  li        r3, 0x1
+lbl_80034DEC:
+	li       r3, 1
 
-	.loc_0xA8:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80034DF0:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -1372,53 +1425,52 @@ void JUTCacheFont::unlockCache_string_size(const char*, unsigned long)
 void JUTCacheFont::invalidiateAllCache()
 {
 	/*
-	.loc_0x0:
-	  lwz       r5, 0x90(r3)
-	  li        r6, 0
-	  b         .loc_0x58
+	lwz      r5, 0x90(r3)
+	li       r6, 0
+	b        lbl_80034E68
 
-	.loc_0xC:
-	  cmpwi     r6, 0
-	  bne-      .loc_0x1C
-	  li        r0, 0
-	  b         .loc_0x24
+lbl_80034E1C:
+	cmpwi    r6, 0
+	bne      lbl_80034E2C
+	li       r0, 0
+	b        lbl_80034E34
 
-	.loc_0x1C:
-	  lwz       r0, 0x94(r3)
-	  sub       r0, r5, r0
+lbl_80034E2C:
+	lwz      r0, 0x94(r3)
+	subf     r0, r0, r5
 
-	.loc_0x24:
-	  stw       r0, 0x0(r5)
-	  lwz       r4, 0x98(r3)
-	  subi      r0, r4, 0x1
-	  cmplw     r6, r0
-	  bne-      .loc_0x40
-	  li        r0, 0
-	  b         .loc_0x48
+lbl_80034E34:
+	stw      r0, 0(r5)
+	lwz      r4, 0x98(r3)
+	addi     r0, r4, -1
+	cmplw    r6, r0
+	bne      lbl_80034E50
+	li       r0, 0
+	b        lbl_80034E58
 
-	.loc_0x40:
-	  lwz       r0, 0x94(r3)
-	  add       r0, r5, r0
+lbl_80034E50:
+	lwz      r0, 0x94(r3)
+	add      r0, r5, r0
 
-	.loc_0x48:
-	  stw       r0, 0x4(r5)
-	  addi      r6, r6, 0x1
-	  lwz       r0, 0x94(r3)
-	  add       r5, r5, r0
+lbl_80034E58:
+	stw      r0, 4(r5)
+	addi     r6, r6, 1
+	lwz      r0, 0x94(r3)
+	add      r5, r5, r0
 
-	.loc_0x58:
-	  lwz       r0, 0x98(r3)
-	  cmplw     r6, r0
-	  blt+      .loc_0xC
-	  lwz       r4, 0x94(r3)
-	  li        r0, 0
-	  sub       r4, r5, r4
-	  stw       r4, 0xA8(r3)
-	  lwz       r4, 0x90(r3)
-	  stw       r4, 0xA4(r3)
-	  stw       r0, 0x9C(r3)
-	  stw       r0, 0xA0(r3)
-	  blr
+lbl_80034E68:
+	lwz      r0, 0x98(r3)
+	cmplw    r6, r0
+	blt      lbl_80034E1C
+	lwz      r4, 0x94(r3)
+	li       r0, 0
+	subf     r4, r4, r5
+	stw      r4, 0xa8(r3)
+	lwz      r4, 0x90(r3)
+	stw      r4, 0xa4(r3)
+	stw      r0, 0x9c(r3)
+	stw      r0, 0xa0(r3)
+	blr
 	*/
 }
 
@@ -1430,30 +1482,29 @@ void JUTCacheFont::invalidiateAllCache()
 void JUTCacheFont::unlink(JUTCacheFont::TGlyphCacheInfo*)
 {
 	/*
-	.loc_0x0:
-	  lwz       r5, 0x0(r4)
-	  cmplwi    r5, 0
-	  bne-      .loc_0x18
-	  lwz       r0, 0x4(r4)
-	  stw       r0, 0x9C(r3)
-	  b         .loc_0x20
+	lwz      r5, 0(r4)
+	cmplwi   r5, 0
+	bne      lbl_80034EB0
+	lwz      r0, 4(r4)
+	stw      r0, 0x9c(r3)
+	b        lbl_80034EB8
 
-	.loc_0x18:
-	  lwz       r0, 0x4(r4)
-	  stw       r0, 0x4(r5)
+lbl_80034EB0:
+	lwz      r0, 4(r4)
+	stw      r0, 4(r5)
 
-	.loc_0x20:
-	  lwz       r5, 0x4(r4)
-	  cmplwi    r5, 0
-	  bne-      .loc_0x38
-	  lwz       r0, 0x0(r4)
-	  stw       r0, 0xA0(r3)
-	  blr
+lbl_80034EB8:
+	lwz      r5, 4(r4)
+	cmplwi   r5, 0
+	bne      lbl_80034ED0
+	lwz      r0, 0(r4)
+	stw      r0, 0xa0(r3)
+	blr
 
-	.loc_0x38:
-	  lwz       r0, 0x0(r4)
-	  stw       r0, 0x0(r5)
-	  blr
+lbl_80034ED0:
+	lwz      r0, 0(r4)
+	stw      r0, 0(r5)
+	blr
 	*/
 }
 
@@ -1465,19 +1516,18 @@ void JUTCacheFont::unlink(JUTCacheFont::TGlyphCacheInfo*)
 void JUTCacheFont::prepend(JUTCacheFont::TGlyphCacheInfo*)
 {
 	/*
-	.loc_0x0:
-	  lwz       r5, 0x9C(r3)
-	  li        r0, 0
-	  stw       r4, 0x9C(r3)
-	  cmplwi    r5, 0
-	  stw       r0, 0x0(r4)
-	  stw       r5, 0x4(r4)
-	  bne-      .loc_0x24
-	  stw       r4, 0xA0(r3)
-	  blr
+	lwz      r5, 0x9c(r3)
+	li       r0, 0
+	stw      r4, 0x9c(r3)
+	cmplwi   r5, 0
+	stw      r0, 0(r4)
+	stw      r5, 4(r4)
+	bne      lbl_80034F00
+	stw      r4, 0xa0(r3)
+	blr
 
-	.loc_0x24:
-	  stw       r4, 0x0(r5)
-	  blr
+lbl_80034F00:
+	stw      r4, 0(r5)
+	blr
 	*/
 }

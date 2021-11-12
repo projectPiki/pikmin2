@@ -1,6 +1,48 @@
 #include "types.h"
 
 /*
+    Generated from dpostproc
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__Q216JASBasicWaveBank10TWaveGroup
+    __vt__Q216JASBasicWaveBank10TWaveGroup:
+        .4byte 0
+        .4byte 0
+        .4byte onDispose__10JASWaveArcFv
+        .4byte onLoadDone__Q216JASBasicWaveBank10TWaveGroupFv
+        .4byte onEraseDone__Q216JASBasicWaveBank10TWaveGroupFv
+    .global __vt__13JASWaveHandle
+    __vt__13JASWaveHandle:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__13JASWaveHandleFv
+        .4byte 0
+        .4byte 0
+    .global __vt__Q216JASBasicWaveBank11TWaveHandle
+    __vt__Q216JASBasicWaveBank11TWaveHandle:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q216JASBasicWaveBank11TWaveHandleFv
+        .4byte getWaveInfo__Q216JASBasicWaveBank11TWaveHandleCFv
+        .4byte getWavePtr__Q216JASBasicWaveBank11TWaveHandleCFv
+    .global __vt__16JASBasicWaveBank
+    __vt__16JASBasicWaveBank:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__16JASBasicWaveBankFv
+        .4byte getWaveHandle__16JASBasicWaveBankCFUl
+        .4byte getWaveArc__16JASBasicWaveBankFi
+    .global __vt__11JASWaveBank
+    __vt__11JASWaveBank:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__11JASWaveBankFv
+        .4byte 0
+        .4byte 0
+        .4byte 0
+*/
+
+/*
  * --INFO--
  * Address:	80099E60
  * Size:	000060
@@ -8,31 +50,30 @@
 JASBasicWaveBank::JASBasicWaveBank()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r4, 0x804A
-	  stw       r0, 0x14(r1)
-	  addi      r0, r4, 0x37F8
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lis       r3, 0x804A
-	  stw       r0, 0x0(r31)
-	  addi      r4, r3, 0x37E4
-	  li        r0, 0
-	  addi      r3, r31, 0x4
-	  stw       r4, 0x0(r31)
-	  stw       r0, 0x1C(r31)
-	  stw       r0, 0x20(r31)
-	  stw       r0, 0x24(r31)
-	  stw       r0, 0x28(r31)
-	  bl        0x55C8C
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lis      r4, __vt__11JASWaveBank@ha
+	stw      r0, 0x14(r1)
+	addi     r0, r4, __vt__11JASWaveBank@l
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lis      r3, __vt__16JASBasicWaveBank@ha
+	stw      r0, 0(r31)
+	addi     r4, r3, __vt__16JASBasicWaveBank@l
+	li       r0, 0
+	addi     r3, r31, 4
+	stw      r4, 0(r31)
+	stw      r0, 0x1c(r31)
+	stw      r0, 0x20(r31)
+	stw      r0, 0x24(r31)
+	stw      r0, 0x28(r31)
+	bl       OSInitMutex
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -44,27 +85,26 @@ JASBasicWaveBank::JASBasicWaveBank()
 JASWaveBank::~JASWaveBank()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r3
-	  beq-      .loc_0x30
-	  lis       r5, 0x804A
-	  extsh.    r0, r4
-	  addi      r0, r5, 0x37F8
-	  stw       r0, 0x0(r31)
-	  ble-      .loc_0x30
-	  bl        -0x75E38
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r3, r3
+	beq      lbl_80099EF0
+	lis      r5, __vt__11JASWaveBank@ha
+	extsh.   r0, r4
+	addi     r0, r5, __vt__11JASWaveBank@l
+	stw      r0, 0(r31)
+	ble      lbl_80099EF0
+	bl       __dl__FPv
 
-	.loc_0x30:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80099EF0:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -76,62 +116,61 @@ JASWaveBank::~JASWaveBank()
 JASBasicWaveBank::~JASBasicWaveBank()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r29, r4
-	  stw       r28, 0x10(r1)
-	  mr.       r28, r3
-	  beq-      .loc_0x98
-	  lis       r3, 0x804A
-	  addi      r0, r3, 0x37E4
-	  stw       r0, 0x0(r28)
-	  lwz       r3, 0x1C(r28)
-	  bl        -0x75E68
-	  li        r30, 0
-	  li        r31, 0
-	  b         .loc_0x60
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	mr       r29, r4
+	stw      r28, 0x10(r1)
+	or.      r28, r3, r3
+	beq      lbl_80099FA0
+	lis      r3, __vt__16JASBasicWaveBank@ha
+	addi     r0, r3, __vt__16JASBasicWaveBank@l
+	stw      r0, 0(r28)
+	lwz      r3, 0x1c(r28)
+	bl       __dla__FPv
+	li       r30, 0
+	li       r31, 0
+	b        lbl_80099F68
 
-	.loc_0x48:
-	  lwz       r3, 0x24(r28)
-	  li        r4, 0x1
-	  lwzx      r3, r3, r31
-	  bl        0x260
-	  addi      r31, r31, 0x4
-	  addi      r30, r30, 0x1
+lbl_80099F50:
+	lwz      r3, 0x24(r28)
+	li       r4, 1
+	lwzx     r3, r3, r31
+	bl       __dt__Q216JASBasicWaveBank10TWaveGroupFv
+	addi     r31, r31, 4
+	addi     r30, r30, 1
 
-	.loc_0x60:
-	  lwz       r0, 0x28(r28)
-	  cmplw     r30, r0
-	  blt+      .loc_0x48
-	  lwz       r3, 0x24(r28)
-	  bl        -0x75EA0
-	  cmplwi    r28, 0
-	  beq-      .loc_0x88
-	  lis       r3, 0x804A
-	  addi      r0, r3, 0x37F8
-	  stw       r0, 0x0(r28)
+lbl_80099F68:
+	lwz      r0, 0x28(r28)
+	cmplw    r30, r0
+	blt      lbl_80099F50
+	lwz      r3, 0x24(r28)
+	bl       __dla__FPv
+	cmplwi   r28, 0
+	beq      lbl_80099F90
+	lis      r3, __vt__11JASWaveBank@ha
+	addi     r0, r3, __vt__11JASWaveBank@l
+	stw      r0, 0(r28)
 
-	.loc_0x88:
-	  extsh.    r0, r29
-	  ble-      .loc_0x98
-	  mr        r3, r28
-	  bl        -0x75EE8
+lbl_80099F90:
+	extsh.   r0, r29
+	ble      lbl_80099FA0
+	mr       r3, r28
+	bl       __dl__FPv
 
-	.loc_0x98:
-	  lwz       r0, 0x24(r1)
-	  mr        r3, r28
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80099FA0:
+	lwz      r0, 0x24(r1)
+	mr       r3, r28
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -143,18 +182,17 @@ JASBasicWaveBank::~JASBasicWaveBank()
 void JASBasicWaveBank::getWaveGroup(int)
 {
 	/*
-	.loc_0x0:
-	  lwz       r0, 0x28(r3)
-	  cmplw     r4, r0
-	  blt-      .loc_0x14
-	  li        r3, 0
-	  blr
+	lwz      r0, 0x28(r3)
+	cmplw    r4, r0
+	blt      lbl_80099FD8
+	li       r3, 0
+	blr
 
-	.loc_0x14:
-	  lwz       r3, 0x24(r3)
-	  rlwinm    r0,r4,2,0,29
-	  lwzx      r3, r3, r0
-	  blr
+lbl_80099FD8:
+	lwz      r3, 0x24(r3)
+	slwi     r0, r4, 2
+	lwzx     r3, r3, r0
+	blr
 	*/
 }
 
@@ -166,75 +204,74 @@ void JASBasicWaveBank::getWaveGroup(int)
 void JASBasicWaveBank::setGroupCount(unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  li        r31, 0
-	  stw       r30, 0x18(r1)
-	  li        r30, 0
-	  stw       r29, 0x14(r1)
-	  mr        r29, r4
-	  stw       r28, 0x10(r1)
-	  mr        r28, r3
-	  b         .loc_0x48
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	li       r31, 0
+	stw      r30, 0x18(r1)
+	li       r30, 0
+	stw      r29, 0x14(r1)
+	mr       r29, r4
+	stw      r28, 0x10(r1)
+	mr       r28, r3
+	b        lbl_8009A030
 
-	.loc_0x30:
-	  lwz       r3, 0x24(r28)
-	  li        r4, 0x1
-	  lwzx      r3, r3, r31
-	  bl        0x198
-	  addi      r31, r31, 0x4
-	  addi      r30, r30, 0x1
+lbl_8009A018:
+	lwz      r3, 0x24(r28)
+	li       r4, 1
+	lwzx     r3, r3, r31
+	bl       __dt__Q216JASBasicWaveBank10TWaveGroupFv
+	addi     r31, r31, 4
+	addi     r30, r30, 1
 
-	.loc_0x48:
-	  lwz       r0, 0x28(r28)
-	  cmplw     r30, r0
-	  blt+      .loc_0x30
-	  lwz       r3, 0x24(r28)
-	  bl        -0x75F68
-	  stw       r29, 0x28(r28)
-	  bl        0x1FE8
-	  mr        r4, r3
-	  rlwinm    r3,r29,2,0,29
-	  li        r5, 0
-	  bl        -0x76010
-	  stw       r3, 0x24(r28)
-	  li        r30, 0
-	  li        r31, 0
-	  b         .loc_0xBC
+lbl_8009A030:
+	lwz      r0, 0x28(r28)
+	cmplw    r30, r0
+	blt      lbl_8009A018
+	lwz      r3, 0x24(r28)
+	bl       __dla__FPv
+	stw      r29, 0x28(r28)
+	bl       getCurrentHeap__11JASWaveBankFv
+	mr       r4, r3
+	slwi     r3, r29, 2
+	li       r5, 0
+	bl       __nwa__FUlP7JKRHeapi
+	stw      r3, 0x24(r28)
+	li       r30, 0
+	li       r31, 0
+	b        lbl_8009A0A4
 
-	.loc_0x84:
-	  bl        0x1FC4
-	  mr        r4, r3
-	  li        r3, 0x68
-	  li        r5, 0
-	  bl        -0x7613C
-	  mr.       r0, r3
-	  beq-      .loc_0xAC
-	  mr        r4, r28
-	  bl        0xD8
-	  mr        r0, r3
+lbl_8009A06C:
+	bl       getCurrentHeap__11JASWaveBankFv
+	mr       r4, r3
+	li       r3, 0x68
+	li       r5, 0
+	bl       __nw__FUlP7JKRHeapi
+	or.      r0, r3, r3
+	beq      lbl_8009A094
+	mr       r4, r28
+	bl       __ct__Q216JASBasicWaveBank10TWaveGroupFP16JASBasicWaveBank
+	mr       r0, r3
 
-	.loc_0xAC:
-	  lwz       r3, 0x24(r28)
-	  addi      r30, r30, 0x1
-	  stwx      r0, r3, r31
-	  addi      r31, r31, 0x4
+lbl_8009A094:
+	lwz      r3, 0x24(r28)
+	addi     r30, r30, 1
+	stwx     r0, r3, r31
+	addi     r31, r31, 4
 
-	.loc_0xBC:
-	  lwz       r0, 0x28(r28)
-	  cmplw     r30, r0
-	  blt+      .loc_0x84
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8009A0A4:
+	lwz      r0, 0x28(r28)
+	cmplw    r30, r0
+	blt      lbl_8009A06C
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -246,32 +283,31 @@ void JASBasicWaveBank::setGroupCount(unsigned long)
 void JASBasicWaveBank::setWaveTableSize(unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lwz       r3, 0x1C(r3)
-	  bl        -0x76018
-	  bl        0x1F3C
-	  mr        r4, r3
-	  rlwinm    r3,r31,2,0,29
-	  li        r5, 0
-	  bl        -0x760BC
-	  stw       r3, 0x1C(r30)
-	  rlwinm    r4,r31,2,0,29
-	  lwz       r3, 0x1C(r30)
-	  bl        0xC150
-	  stw       r31, 0x20(r30)
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lwz      r3, 0x1c(r3)
+	bl       __dla__FPv
+	bl       getCurrentHeap__11JASWaveBankFv
+	mr       r4, r3
+	slwi     r3, r31, 2
+	li       r5, 0
+	bl       __nwa__FUlP7JKRHeapi
+	stw      r3, 0x1c(r30)
+	slwi     r4, r31, 2
+	lwz      r3, 0x1c(r30)
+	bl       bzero__7JASCalcFPvUl
+	stw      r31, 0x20(r30)
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -313,21 +349,20 @@ void JASBasicWaveBank::decWaveTable(const JASBasicWaveBank::TWaveGroup*)
 void JASBasicWaveBank::getWaveHandle(unsigned long) const
 {
 	/*
-	.loc_0x0:
-	  lwz       r0, 0x20(r3)
-	  cmplw     r4, r0
-	  blt-      .loc_0x14
-	  li        r3, 0
-	  blr
+	lwz      r0, 0x20(r3)
+	cmplw    r4, r0
+	blt      lbl_8009A148
+	li       r3, 0
+	blr
 
-	.loc_0x14:
-	  lwz       r3, 0x1C(r3)
-	  rlwinm    r0,r4,2,0,29
-	  lwzx      r3, r3, r0
-	  cmplwi    r3, 0
-	  bnelr-
-	  li        r3, 0
-	  blr
+lbl_8009A148:
+	lwz      r3, 0x1c(r3)
+	slwi     r0, r4, 2
+	lwzx     r3, r3, r0
+	cmplwi   r3, 0
+	bnelr
+	li       r3, 0
+	blr
 	*/
 }
 
@@ -339,29 +374,28 @@ void JASBasicWaveBank::getWaveHandle(unsigned long) const
 JASBasicWaveBank::TWaveGroup::TWaveGroup(JASBasicWaveBank*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  bl        0x1914
-	  lis       r3, 0x804A
-	  li        r0, 0
-	  addi      r4, r3, 0x37A8
-	  mr        r3, r30
-	  stw       r4, 0x0(r30)
-	  stw       r31, 0x5C(r30)
-	  stw       r0, 0x60(r30)
-	  stw       r0, 0x64(r30)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	bl       __ct__10JASWaveArcFv
+	lis      r3, __vt__Q216JASBasicWaveBank10TWaveGroup@ha
+	li       r0, 0
+	addi     r4, r3, __vt__Q216JASBasicWaveBank10TWaveGroup@l
+	mr       r3, r30
+	stw      r4, 0(r30)
+	stw      r31, 0x5c(r30)
+	stw      r0, 0x60(r30)
+	stw      r0, 0x64(r30)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -383,58 +417,57 @@ JASWaveArc::~JASWaveArc()
 JASBasicWaveBank::TWaveGroup::~TWaveGroup(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x98
-	  lis       r4, 0x804A
-	  lis       r3, 0x800A
-	  addi      r0, r4, 0x37A8
-	  stw       r0, 0x0(r30)
-	  subi      r4, r3, 0x5D90
-	  lwz       r3, 0x60(r30)
-	  bl        0x27554
-	  cmplwi    r30, 0
-	  beq-      .loc_0x88
-	  lis       r3, 0x804A
-	  addic.    r0, r30, 0x4
-	  addi      r0, r3, 0x38D8
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x88
-	  addic.    r0, r30, 0x4
-	  beq-      .loc_0x88
-	  addic.    r0, r30, 0x10
-	  beq-      .loc_0x74
-	  addi      r3, r30, 0x10
-	  li        r4, 0
-	  bl        -0x73A5C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_8009A254
+	lis      r4, __vt__Q216JASBasicWaveBank10TWaveGroup@ha
+	lis      r3, __dt__Q216JASBasicWaveBank9TWaveInfoFv@ha
+	addi     r0, r4, __vt__Q216JASBasicWaveBank10TWaveGroup@l
+	stw      r0, 0(r30)
+	addi     r4, r3, __dt__Q216JASBasicWaveBank9TWaveInfoFv@l
+	lwz      r3, 0x60(r30)
+	bl       __destroy_new_array
+	cmplwi   r30, 0
+	beq      lbl_8009A244
+	lis      r3, __vt__10JASWaveArc@ha
+	addic.   r0, r30, 4
+	addi     r0, r3, __vt__10JASWaveArc@l
+	stw      r0, 0(r30)
+	beq      lbl_8009A244
+	addic.   r0, r30, 4
+	beq      lbl_8009A244
+	addic.   r0, r30, 0x10
+	beq      lbl_8009A230
+	addi     r3, r30, 0x10
+	li       r4, 0
+	bl       __dt__10JSUPtrLinkFv
 
-	.loc_0x74:
-	  addic.    r0, r30, 0x4
-	  beq-      .loc_0x88
-	  addi      r3, r30, 0x4
-	  li        r4, 0
-	  bl        -0x739D8
+lbl_8009A230:
+	addic.   r0, r30, 4
+	beq      lbl_8009A244
+	addi     r3, r30, 4
+	li       r4, 0
+	bl       __dt__10JSUPtrListFv
 
-	.loc_0x88:
-	  extsh.    r0, r31
-	  ble-      .loc_0x98
-	  mr        r3, r30
-	  bl        -0x7619C
+lbl_8009A244:
+	extsh.   r0, r31
+	ble      lbl_8009A254
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x98:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8009A254:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -446,35 +479,34 @@ JASBasicWaveBank::TWaveGroup::~TWaveGroup(void)
 JASBasicWaveBank::TWaveInfo::~TWaveInfo(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r3
-	  beq-      .loc_0x48
-	  beq-      .loc_0x38
-	  lis       r3, 0x804A
-	  addi      r0, r3, 0x37D0
-	  stw       r0, 0x0(r31)
-	  beq-      .loc_0x38
-	  lis       r3, 0x804A
-	  addi      r0, r3, 0x37BC
-	  stw       r0, 0x0(r31)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r3, r3
+	beq      lbl_8009A2B8
+	beq      lbl_8009A2A8
+	lis      r3, __vt__Q216JASBasicWaveBank11TWaveHandle@ha
+	addi     r0, r3, __vt__Q216JASBasicWaveBank11TWaveHandle@l
+	stw      r0, 0(r31)
+	beq      lbl_8009A2A8
+	lis      r3, __vt__13JASWaveHandle@ha
+	addi     r0, r3, __vt__13JASWaveHandle@l
+	stw      r0, 0(r31)
 
-	.loc_0x38:
-	  extsh.    r0, r4
-	  ble-      .loc_0x48
-	  mr        r3, r31
-	  bl        -0x76200
+lbl_8009A2A8:
+	extsh.   r0, r4
+	ble      lbl_8009A2B8
+	mr       r3, r31
+	bl       __dl__FPv
 
-	.loc_0x48:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8009A2B8:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -486,126 +518,125 @@ JASBasicWaveBank::TWaveInfo::~TWaveInfo(void)
 void JASBasicWaveBank::TWaveGroup::setWaveCount(unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stmw      r23, 0xC(r1)
-	  mr        r30, r3
-	  lis       r3, 0x800A
-	  mr        r31, r4
-	  subi      r0, r3, 0x5D90
-	  mr        r4, r0
-	  lwz       r3, 0x60(r30)
-	  bl        0x27450
-	  stw       r31, 0x64(r30)
-	  bl        0x1D30
-	  mulli     r6, r31, 0x3C
-	  mr        r4, r3
-	  li        r5, 0
-	  addi      r3, r6, 0x10
-	  bl        -0x762CC
-	  lis       r4, 0x800A
-	  lis       r5, 0x800A
-	  subi      r4, r4, 0x5B74
-	  mr        r7, r31
-	  subi      r5, r5, 0x5D90
-	  li        r6, 0x3C
-	  bl        0x276C0
-	  cmplwi    r31, 0
-	  stw       r3, 0x60(r30)
-	  li        r5, 0
-	  ble-      .loc_0x1A8
-	  cmplwi    r31, 0x8
-	  subi      r7, r31, 0x8
-	  ble-      .loc_0x16C
-	  addi      r6, r7, 0x7
-	  addi      r3, r30, 0x4
-	  rlwinm    r6,r6,29,3,31
-	  addi      r0, r30, 0x48
-	  li        r4, 0
-	  mtctr     r6
-	  cmplwi    r7, 0
-	  ble-      .loc_0x16C
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stmw     r23, 0xc(r1)
+	mr       r30, r3
+	lis      r3, __dt__Q216JASBasicWaveBank9TWaveInfoFv@ha
+	mr       r31, r4
+	addi     r0, r3, __dt__Q216JASBasicWaveBank9TWaveInfoFv@l
+	mr       r4, r0
+	lwz      r3, 0x60(r30)
+	bl       __destroy_new_array
+	stw      r31, 0x64(r30)
+	bl       getCurrentHeap__11JASWaveBankFv
+	mulli    r6, r31, 0x3c
+	mr       r4, r3
+	li       r5, 0
+	addi     r3, r6, 0x10
+	bl       __nwa__FUlP7JKRHeapi
+	lis      r4, __ct__Q216JASBasicWaveBank9TWaveInfoFv@ha
+	lis      r5, __dt__Q216JASBasicWaveBank9TWaveInfoFv@ha
+	addi     r4, r4, __ct__Q216JASBasicWaveBank9TWaveInfoFv@l
+	mr       r7, r31
+	addi     r5, r5, __dt__Q216JASBasicWaveBank9TWaveInfoFv@l
+	li       r6, 0x3c
+	bl       __construct_new_array
+	cmplwi   r31, 0
+	stw      r3, 0x60(r30)
+	li       r5, 0
+	ble      lbl_8009A478
+	cmplwi   r31, 8
+	addi     r7, r31, -8
+	ble      lbl_8009A43C
+	addi     r6, r7, 7
+	addi     r3, r30, 4
+	srwi     r6, r6, 3
+	addi     r0, r30, 0x48
+	li       r4, 0
+	mtctr    r6
+	cmplwi   r7, 0
+	ble      lbl_8009A43C
 
-	.loc_0xA0:
-	  lwz       r9, 0x60(r30)
-	  addi      r8, r4, 0x2C
-	  addi      r7, r4, 0x28
-	  addi      r6, r4, 0x68
-	  stwx      r3, r9, r8
-	  addi      r24, r4, 0x64
-	  addi      r25, r4, 0xA4
-	  addi      r26, r4, 0xA0
-	  lwz       r8, 0x60(r30)
-	  addi      r27, r4, 0xE0
-	  addi      r28, r4, 0xDC
-	  addi      r29, r4, 0x11C
-	  stwx      r0, r8, r7
-	  addi      r12, r4, 0x118
-	  addi      r11, r4, 0x158
-	  addi      r10, r4, 0x154
-	  lwz       r23, 0x60(r30)
-	  addi      r9, r4, 0x194
-	  addi      r8, r4, 0x190
-	  addi      r7, r4, 0x1D0
-	  stwx      r3, r23, r6
-	  addi      r6, r4, 0x1CC
-	  addi      r4, r4, 0x1E0
-	  addi      r5, r5, 0x8
-	  lwz       r23, 0x60(r30)
-	  stwx      r0, r23, r24
-	  lwz       r24, 0x60(r30)
-	  stwx      r3, r24, r25
-	  lwz       r25, 0x60(r30)
-	  stwx      r0, r25, r26
-	  lwz       r26, 0x60(r30)
-	  stwx      r3, r26, r27
-	  lwz       r27, 0x60(r30)
-	  stwx      r0, r27, r28
-	  lwz       r28, 0x60(r30)
-	  stwx      r3, r28, r29
-	  lwz       r29, 0x60(r30)
-	  stwx      r0, r29, r12
-	  lwz       r12, 0x60(r30)
-	  stwx      r3, r12, r11
-	  lwz       r11, 0x60(r30)
-	  stwx      r0, r11, r10
-	  lwz       r10, 0x60(r30)
-	  stwx      r3, r10, r9
-	  lwz       r9, 0x60(r30)
-	  stwx      r0, r9, r8
-	  lwz       r8, 0x60(r30)
-	  stwx      r3, r8, r7
-	  lwz       r7, 0x60(r30)
-	  stwx      r0, r7, r6
-	  bdnz+     .loc_0xA0
+lbl_8009A370:
+	lwz      r9, 0x60(r30)
+	addi     r8, r4, 0x2c
+	addi     r7, r4, 0x28
+	addi     r6, r4, 0x68
+	stwx     r3, r9, r8
+	addi     r24, r4, 0x64
+	addi     r25, r4, 0xa4
+	addi     r26, r4, 0xa0
+	lwz      r8, 0x60(r30)
+	addi     r27, r4, 0xe0
+	addi     r28, r4, 0xdc
+	addi     r29, r4, 0x11c
+	stwx     r0, r8, r7
+	addi     r12, r4, 0x118
+	addi     r11, r4, 0x158
+	addi     r10, r4, 0x154
+	lwz      r23, 0x60(r30)
+	addi     r9, r4, 0x194
+	addi     r8, r4, 0x190
+	addi     r7, r4, 0x1d0
+	stwx     r3, r23, r6
+	addi     r6, r4, 0x1cc
+	addi     r4, r4, 0x1e0
+	addi     r5, r5, 8
+	lwz      r23, 0x60(r30)
+	stwx     r0, r23, r24
+	lwz      r24, 0x60(r30)
+	stwx     r3, r24, r25
+	lwz      r25, 0x60(r30)
+	stwx     r0, r25, r26
+	lwz      r26, 0x60(r30)
+	stwx     r3, r26, r27
+	lwz      r27, 0x60(r30)
+	stwx     r0, r27, r28
+	lwz      r28, 0x60(r30)
+	stwx     r3, r28, r29
+	lwz      r29, 0x60(r30)
+	stwx     r0, r29, r12
+	lwz      r12, 0x60(r30)
+	stwx     r3, r12, r11
+	lwz      r11, 0x60(r30)
+	stwx     r0, r11, r10
+	lwz      r10, 0x60(r30)
+	stwx     r3, r10, r9
+	lwz      r9, 0x60(r30)
+	stwx     r0, r9, r8
+	lwz      r8, 0x60(r30)
+	stwx     r3, r8, r7
+	lwz      r7, 0x60(r30)
+	stwx     r0, r7, r6
+	bdnz     lbl_8009A370
 
-	.loc_0x16C:
-	  sub       r0, r31, r5
-	  addi      r6, r30, 0x4
-	  mulli     r7, r5, 0x3C
-	  addi      r4, r30, 0x48
-	  mtctr     r0
-	  cmplw     r5, r31
-	  bge-      .loc_0x1A8
+lbl_8009A43C:
+	subf     r0, r5, r31
+	addi     r6, r30, 4
+	mulli    r7, r5, 0x3c
+	addi     r4, r30, 0x48
+	mtctr    r0
+	cmplw    r5, r31
+	bge      lbl_8009A478
 
-	.loc_0x188:
-	  lwz       r5, 0x60(r30)
-	  addi      r3, r7, 0x2C
-	  addi      r0, r7, 0x28
-	  addi      r7, r7, 0x3C
-	  stwx      r6, r5, r3
-	  lwz       r3, 0x60(r30)
-	  stwx      r4, r3, r0
-	  bdnz+     .loc_0x188
+lbl_8009A458:
+	lwz      r5, 0x60(r30)
+	addi     r3, r7, 0x2c
+	addi     r0, r7, 0x28
+	addi     r7, r7, 0x3c
+	stwx     r6, r5, r3
+	lwz      r3, 0x60(r30)
+	stwx     r4, r3, r0
+	bdnz     lbl_8009A458
 
-	.loc_0x1A8:
-	  lmw       r23, 0xC(r1)
-	  lwz       r0, 0x34(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_8009A478:
+	lmw      r23, 0xc(r1)
+	lwz      r0, 0x34(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -617,19 +648,18 @@ void JASBasicWaveBank::TWaveGroup::setWaveCount(unsigned long)
 JASBasicWaveBank::TWaveInfo::TWaveInfo(void)
 {
 	/*
-	.loc_0x0:
-	  lis       r5, 0x804A
-	  lis       r4, 0x804A
-	  addi      r5, r5, 0x37BC
-	  li        r0, 0
-	  stw       r5, 0x0(r3)
-	  addi      r4, r4, 0x37D0
-	  stw       r4, 0x0(r3)
-	  stw       r0, 0x2C(r3)
-	  stw       r0, 0x30(r3)
-	  stw       r0, 0x34(r3)
-	  stw       r0, 0x38(r3)
-	  blr
+	lis      r5, __vt__13JASWaveHandle@ha
+	lis      r4, __vt__Q216JASBasicWaveBank11TWaveHandle@ha
+	addi     r5, r5, __vt__13JASWaveHandle@l
+	li       r0, 0
+	stw      r5, 0(r3)
+	addi     r4, r4, __vt__Q216JASBasicWaveBank11TWaveHandle@l
+	stw      r4, 0(r3)
+	stw      r0, 0x2c(r3)
+	stw      r0, 0x30(r3)
+	stw      r0, 0x34(r3)
+	stw      r0, 0x38(r3)
+	blr
 	*/
 }
 
@@ -641,34 +671,33 @@ JASBasicWaveBank::TWaveInfo::TWaveInfo(void)
 JASBasicWaveBank::TWaveHandle::~TWaveHandle(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r3
-	  beq-      .loc_0x44
-	  lis       r3, 0x804A
-	  addi      r0, r3, 0x37D0
-	  stw       r0, 0x0(r31)
-	  beq-      .loc_0x34
-	  lis       r3, 0x804A
-	  addi      r0, r3, 0x37BC
-	  stw       r0, 0x0(r31)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r3, r3
+	beq      lbl_8009A500
+	lis      r3, __vt__Q216JASBasicWaveBank11TWaveHandle@ha
+	addi     r0, r3, __vt__Q216JASBasicWaveBank11TWaveHandle@l
+	stw      r0, 0(r31)
+	beq      lbl_8009A4F0
+	lis      r3, __vt__13JASWaveHandle@ha
+	addi     r0, r3, __vt__13JASWaveHandle@l
+	stw      r0, 0(r31)
 
-	.loc_0x34:
-	  extsh.    r0, r4
-	  ble-      .loc_0x44
-	  mr        r3, r31
-	  bl        -0x76448
+lbl_8009A4F0:
+	extsh.   r0, r4
+	ble      lbl_8009A500
+	mr       r3, r31
+	bl       __dl__FPv
 
-	.loc_0x44:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8009A500:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -680,27 +709,26 @@ JASBasicWaveBank::TWaveHandle::~TWaveHandle(void)
 JASWaveHandle::~JASWaveHandle()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r3
-	  beq-      .loc_0x30
-	  lis       r5, 0x804A
-	  extsh.    r0, r4
-	  addi      r0, r5, 0x37BC
-	  stw       r0, 0x0(r31)
-	  ble-      .loc_0x30
-	  bl        -0x76490
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r3, r3
+	beq      lbl_8009A548
+	lis      r5, __vt__13JASWaveHandle@ha
+	extsh.   r0, r4
+	addi     r0, r5, __vt__13JASWaveHandle@l
+	stw      r0, 0(r31)
+	ble      lbl_8009A548
+	bl       __dl__FPv
 
-	.loc_0x30:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8009A548:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -761,53 +789,52 @@ void JASBasicWaveBank::TWaveGroup::setWaveInfo(int, unsigned long,
 void JASBasicWaveBank::TWaveGroup::onLoadDone(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stmw      r27, 0x1C(r1)
-	  mr        r27, r3
-	  lwz       r29, 0x5C(r3)
-	  addi      r3, r29, 0x4
-	  stw       r3, 0x8(r1)
-	  bl        0x55558
-	  li        r30, 0
-	  mr        r28, r30
-	  mr        r31, r30
-	  b         .loc_0x78
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stmw     r27, 0x1c(r1)
+	mr       r27, r3
+	lwz      r29, 0x5c(r3)
+	addi     r3, r29, 4
+	stw      r3, 8(r1)
+	bl       OSLockMutex
+	li       r30, 0
+	mr       r28, r30
+	mr       r31, r30
+	b        lbl_8009A668
 
-	.loc_0x34:
-	  mr        r3, r27
-	  mr        r4, r30
-	  bl        0x14C
-	  lwz       r0, 0x60(r27)
-	  rlwinm    r4,r3,2,0,29
-	  lwz       r3, 0x1C(r29)
-	  add       r5, r0, r28
-	  stw       r31, 0x38(r5)
-	  lwzx      r0, r3, r4
-	  stw       r0, 0x34(r5)
-	  lwzx      r6, r3, r4
-	  cmplwi    r6, 0
-	  beq-      .loc_0x6C
-	  stw       r5, 0x38(r6)
+lbl_8009A624:
+	mr       r3, r27
+	mr       r4, r30
+	bl       getWaveID__Q216JASBasicWaveBank10TWaveGroupCFi
+	lwz      r0, 0x60(r27)
+	slwi     r4, r3, 2
+	lwz      r3, 0x1c(r29)
+	add      r5, r0, r28
+	stw      r31, 0x38(r5)
+	lwzx     r0, r3, r4
+	stw      r0, 0x34(r5)
+	lwzx     r6, r3, r4
+	cmplwi   r6, 0
+	beq      lbl_8009A65C
+	stw      r5, 0x38(r6)
 
-	.loc_0x6C:
-	  stwx      r5, r3, r4
-	  addi      r28, r28, 0x3C
-	  addi      r30, r30, 0x1
+lbl_8009A65C:
+	stwx     r5, r3, r4
+	addi     r28, r28, 0x3c
+	addi     r30, r30, 1
 
-	.loc_0x78:
-	  lwz       r0, 0x64(r27)
-	  cmplw     r30, r0
-	  blt+      .loc_0x34
-	  lwz       r3, 0x8(r1)
-	  bl        0x555CC
-	  lmw       r27, 0x1C(r1)
-	  lwz       r0, 0x34(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_8009A668:
+	lwz      r0, 0x64(r27)
+	cmplw    r30, r0
+	blt      lbl_8009A624
+	lwz      r3, 8(r1)
+	bl       OSUnlockMutex
+	lmw      r27, 0x1c(r1)
+	lwz      r0, 0x34(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -819,83 +846,80 @@ void JASBasicWaveBank::TWaveGroup::onLoadDone(void)
 void JASBasicWaveBank::TWaveGroup::onEraseDone(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  stw       r28, 0x10(r1)
-	  mr        r28, r3
-	  lwz       r30, 0x5C(r3)
-	  addi      r3, r30, 0x4
-	  stw       r3, 0x8(r1)
-	  bl        0x554AC
-	  li        r31, 0
-	  mr        r29, r31
-	  b         .loc_0xB4
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	stw      r28, 0x10(r1)
+	mr       r28, r3
+	lwz      r30, 0x5c(r3)
+	addi     r3, r30, 4
+	stw      r3, 8(r1)
+	bl       OSLockMutex
+	li       r31, 0
+	mr       r29, r31
+	b        lbl_8009A744
 
-	.loc_0x3C:
-	  mr        r3, r28
-	  mr        r4, r31
-	  bl        .loc_0xE8
-	  lwz       r4, 0x1C(r30)
-	  rlwinm    r3,r3,2,0,29
-	  lwz       r0, 0x60(r28)
-	  lwzx      r5, r4, r3
-	  add       r0, r0, r29
-	  b         .loc_0xA4
+lbl_8009A6CC:
+	mr       r3, r28
+	mr       r4, r31
+	bl       getWaveID__Q216JASBasicWaveBank10TWaveGroupCFi
+	lwz      r4, 0x1c(r30)
+	slwi     r3, r3, 2
+	lwz      r0, 0x60(r28)
+	lwzx     r5, r4, r3
+	add      r0, r0, r29
+	b        lbl_8009A734
 
-	.loc_0x60:
-	  cmplw     r5, r0
-	  bne-      .loc_0xA0
-	  lwz       r6, 0x38(r5)
-	  cmplwi    r6, 0
-	  bne-      .loc_0x80
-	  lwz       r0, 0x34(r5)
-	  stwx      r0, r4, r3
-	  b         .loc_0x88
+lbl_8009A6F0:
+	cmplw    r5, r0
+	bne      lbl_8009A730
+	lwz      r6, 0x38(r5)
+	cmplwi   r6, 0
+	bne      lbl_8009A710
+	lwz      r0, 0x34(r5)
+	stwx     r0, r4, r3
+	b        lbl_8009A718
 
-	.loc_0x80:
-	  lwz       r0, 0x34(r5)
-	  stw       r0, 0x34(r6)
+lbl_8009A710:
+	lwz      r0, 0x34(r5)
+	stw      r0, 0x34(r6)
 
-	.loc_0x88:
-	  lwz       r3, 0x34(r5)
-	  cmplwi    r3, 0
-	  beq-      .loc_0xAC
-	  lwz       r0, 0x38(r5)
-	  stw       r0, 0x38(r3)
-	  b         .loc_0xAC
+lbl_8009A718:
+	lwz      r3, 0x34(r5)
+	cmplwi   r3, 0
+	beq      lbl_8009A73C
+	lwz      r0, 0x38(r5)
+	stw      r0, 0x38(r3)
+	b        lbl_8009A73C
 
-	.loc_0xA0:
-	  lwz       r5, 0x34(r5)
+lbl_8009A730:
+	lwz      r5, 0x34(r5)
 
-	.loc_0xA4:
-	  cmplwi    r5, 0
-	  bne+      .loc_0x60
+lbl_8009A734:
+	cmplwi   r5, 0
+	bne      lbl_8009A6F0
 
-	.loc_0xAC:
-	  addi      r29, r29, 0x3C
-	  addi      r31, r31, 0x1
+lbl_8009A73C:
+	addi     r29, r29, 0x3c
+	addi     r31, r31, 1
 
-	.loc_0xB4:
-	  lwz       r0, 0x64(r28)
-	  cmplw     r31, r0
-	  blt+      .loc_0x3C
-	  lwz       r3, 0x8(r1)
-	  bl        0x554F0
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-
-	.loc_0xE8:
+lbl_8009A744:
+	lwz      r0, 0x64(r28)
+	cmplw    r31, r0
+	blt      lbl_8009A6CC
+	lwz      r3, 8(r1)
+	bl       OSUnlockMutex
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -907,12 +931,11 @@ void JASBasicWaveBank::TWaveGroup::onEraseDone(void)
 void JASBasicWaveBank::TWaveGroup::getWaveID(const(int))
 {
 	/*
-	.loc_0x0:
-	  mulli     r0, r4, 0x3C
-	  lwz       r3, 0x60(r3)
-	  add       r3, r3, r0
-	  lwz       r3, 0x30(r3)
-	  blr
+	mulli    r0, r4, 0x3c
+	lwz      r3, 0x60(r3)
+	add      r3, r3, r0
+	lwz      r3, 0x30(r3)
+	blr
 	*/
 }
 
@@ -924,9 +947,8 @@ void JASBasicWaveBank::TWaveGroup::getWaveID(const(int))
 void JASBasicWaveBank::TWaveHandle::getWaveInfo() const
 {
 	/*
-	.loc_0x0:
-	  addi      r3, r3, 0x4
-	  blr
+	addi     r3, r3, 4
+	blr
 	*/
 }
 
@@ -938,18 +960,17 @@ void JASBasicWaveBank::TWaveHandle::getWaveInfo() const
 void JASBasicWaveBank::TWaveHandle::getWavePtr() const
 {
 	/*
-	.loc_0x0:
-	  lwz       r4, 0x2C(r3)
-	  lwz       r4, 0x38(r4)
-	  cmplwi    r4, 0
-	  bne-      .loc_0x18
-	  li        r3, 0
-	  blr
+	lwz      r4, 0x2c(r3)
+	lwz      r4, 0x38(r4)
+	cmplwi   r4, 0
+	bne      lbl_8009A7AC
+	li       r3, 0
+	blr
 
-	.loc_0x18:
-	  lwz       r0, 0xC(r3)
-	  add       r3, r4, r0
-	  blr
+lbl_8009A7AC:
+	lwz      r0, 0xc(r3)
+	add      r3, r4, r0
+	blr
 	*/
 }
 
@@ -961,17 +982,16 @@ void JASBasicWaveBank::TWaveHandle::getWavePtr() const
 void JASBasicWaveBank::getWaveArc(int)
 {
 	/*
-	.loc_0x0:
-	  lwz       r0, 0x28(r3)
-	  cmplw     r4, r0
-	  blt-      .loc_0x14
-	  li        r3, 0
-	  blr
+	lwz      r0, 0x28(r3)
+	cmplw    r4, r0
+	blt      lbl_8009A7CC
+	li       r3, 0
+	blr
 
-	.loc_0x14:
-	  lwz       r3, 0x24(r3)
-	  rlwinm    r0,r4,2,0,29
-	  lwzx      r3, r3, r0
-	  blr
+lbl_8009A7CC:
+	lwz      r3, 0x24(r3)
+	slwi     r0, r4, 2
+	lwzx     r3, r3, r0
+	blr
 	*/
 }

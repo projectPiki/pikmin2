@@ -1,5 +1,1187 @@
 #include "types.h"
 
+/*
+    Generated from dpostproc
+
+    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
+    .4byte "__sinit_jstudio-object_cpp"
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global sauVariableValue_3_TRANSLATION_XYZ__Q27JStudio14TAdaptor_actor
+    sauVariableValue_3_TRANSLATION_XYZ__Q27JStudio14TAdaptor_actor:
+        .4byte 0x00000003
+        .4byte 0x00000004
+        .4byte 0x00000005
+    .global sauVariableValue_3_ROTATION_XYZ__Q27JStudio14TAdaptor_actor
+    sauVariableValue_3_ROTATION_XYZ__Q27JStudio14TAdaptor_actor:
+        .4byte 0x00000006
+        .4byte 0x00000007
+        .4byte 0x00000008
+    .global sauVariableValue_3_SCALING_XYZ__Q27JStudio14TAdaptor_actor
+    sauVariableValue_3_SCALING_XYZ__Q27JStudio14TAdaptor_actor:
+        .4byte 0x00000009
+        .4byte 0x0000000A
+        .4byte 0x0000000B
+    .global sauVariableValue_3_COLOR_RGB__Q27JStudio21TAdaptor_ambientLight
+    sauVariableValue_3_COLOR_RGB__Q27JStudio21TAdaptor_ambientLight:
+        .4byte 0x00000000
+        .4byte 0x00000001
+        .4byte 0x00000002
+    .global sauVariableValue_4_COLOR_RGBA__Q27JStudio21TAdaptor_ambientLight
+    sauVariableValue_4_COLOR_RGBA__Q27JStudio21TAdaptor_ambientLight:
+        .4byte 0x00000000
+        .4byte 0x00000001
+        .4byte 0x00000002
+        .4byte 0x00000003
+    .global sauVariableValue_3_POSITION_XYZ__Q27JStudio15TAdaptor_camera
+    sauVariableValue_3_POSITION_XYZ__Q27JStudio15TAdaptor_camera:
+        .4byte 0x00000000
+        .4byte 0x00000001
+        .4byte 0x00000002
+    .global sauVariableValue_3_TARGET_POSITION_XYZ__Q27JStudio15TAdaptor_camera
+    sauVariableValue_3_TARGET_POSITION_XYZ__Q27JStudio15TAdaptor_camera:
+        .4byte 0x00000003
+        .4byte 0x00000004
+        .4byte 0x00000005
+    .global sauVariableValue_3_COLOR_RGB__Q27JStudio12TAdaptor_fog
+    sauVariableValue_3_COLOR_RGB__Q27JStudio12TAdaptor_fog:
+        .4byte 0x00000000
+        .4byte 0x00000001
+        .4byte 0x00000002
+    .global sauVariableValue_4_COLOR_RGBA__Q27JStudio12TAdaptor_fog
+    sauVariableValue_4_COLOR_RGBA__Q27JStudio12TAdaptor_fog:
+        .4byte 0x00000000
+        .4byte 0x00000001
+        .4byte 0x00000002
+        .4byte 0x00000003
+    .global sauVariableValue_3_COLOR_RGB__Q27JStudio14TAdaptor_light
+    sauVariableValue_3_COLOR_RGB__Q27JStudio14TAdaptor_light:
+        .4byte 0x00000000
+        .4byte 0x00000001
+        .4byte 0x00000002
+    .global sauVariableValue_4_COLOR_RGBA__Q27JStudio14TAdaptor_light
+    sauVariableValue_4_COLOR_RGBA__Q27JStudio14TAdaptor_light:
+        .4byte 0x00000000
+        .4byte 0x00000001
+        .4byte 0x00000002
+        .4byte 0x00000003
+    .global sauVariableValue_3_POSITION_XYZ__Q27JStudio14TAdaptor_light
+    sauVariableValue_3_POSITION_XYZ__Q27JStudio14TAdaptor_light:
+        .4byte 0x00000004
+        .4byte 0x00000005
+        .4byte 0x00000006
+    .global sauVariableValue_3_TARGET_POSITION_XYZ__Q27JStudio14TAdaptor_light
+    sauVariableValue_3_TARGET_POSITION_XYZ__Q27JStudio14TAdaptor_light:
+        .4byte 0x00000007
+        .4byte 0x00000008
+        .4byte 0x00000009
+    .global sauVariableValue_3_TRANSLATION_XYZ__Q27JStudio17TAdaptor_particle
+    sauVariableValue_3_TRANSLATION_XYZ__Q27JStudio17TAdaptor_particle:
+        .4byte 0x00000000
+        .4byte 0x00000001
+        .4byte 0x00000002
+    .global sauVariableValue_3_ROTATION_XYZ__Q27JStudio17TAdaptor_particle
+    sauVariableValue_3_ROTATION_XYZ__Q27JStudio17TAdaptor_particle:
+        .4byte 0x00000003
+        .4byte 0x00000004
+        .4byte 0x00000005
+    .global sauVariableValue_3_SCALING_XYZ__Q27JStudio17TAdaptor_particle
+    sauVariableValue_3_SCALING_XYZ__Q27JStudio17TAdaptor_particle:
+        .4byte 0x00000006
+        .4byte 0x00000007
+        .4byte 0x00000008
+    .global sauVariableValue_3_COLOR_RGB__Q27JStudio17TAdaptor_particle
+    sauVariableValue_3_COLOR_RGB__Q27JStudio17TAdaptor_particle:
+        .4byte 0x00000009
+        .4byte 0x0000000A
+        .4byte 0x0000000B
+    .global sauVariableValue_4_COLOR_RGBA__Q27JStudio17TAdaptor_particle
+    sauVariableValue_4_COLOR_RGBA__Q27JStudio17TAdaptor_particle:
+        .4byte 0x00000009
+        .4byte 0x0000000A
+        .4byte 0x0000000B
+        .4byte 0x0000000C
+    .global sauVariableValue_3_COLOR1_RGB__Q27JStudio17TAdaptor_particle
+    sauVariableValue_3_COLOR1_RGB__Q27JStudio17TAdaptor_particle:
+        .4byte 0x00000009
+        .4byte 0x0000000A
+        .4byte 0x0000000B
+    .global sauVariableValue_4_COLOR1_RGBA__Q27JStudio17TAdaptor_particle
+    sauVariableValue_4_COLOR1_RGBA__Q27JStudio17TAdaptor_particle:
+        .4byte 0x00000009
+        .4byte 0x0000000A
+        .4byte 0x0000000B
+        .4byte 0x0000000C
+    .global sauVariableValue_3_POSITION_XYZ__Q27JStudio14TAdaptor_sound
+    sauVariableValue_3_POSITION_XYZ__Q27JStudio14TAdaptor_sound:
+        .4byte 0x00000000
+        .4byte 0x00000001
+        .4byte 0x00000002
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global lbl_8049E698
+    lbl_8049E698:
+        .4byte 0x00000000
+        .4byte 0x00000028
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000038
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000028
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000038
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000020
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x0000003C
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x0000003C
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000040
+        .4byte 0x00000000
+    .global lbl_8049E6F8
+    lbl_8049E6F8:
+        .4byte lbl_8000D254
+        .4byte lbl_8000D204
+        .4byte lbl_8000D214
+        .4byte lbl_8000D224
+        .4byte lbl_8000D254
+        .4byte lbl_8000D254
+        .4byte lbl_8000D254
+        .4byte lbl_8000D254
+        .4byte lbl_8000D254
+        .4byte lbl_8000D254
+        .4byte lbl_8000D254
+        .4byte lbl_8000D254
+        .4byte lbl_8000D254
+        .4byte lbl_8000D254
+        .4byte lbl_8000D254
+        .4byte lbl_8000D254
+        .4byte lbl_8000D234
+        .4byte lbl_8000D254
+        .4byte lbl_8000D244
+        .4byte 0x00000000
+        .4byte 0x0000003C
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000040
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000044
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000048
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x0000004C
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000020
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000024
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000028
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x0000002C
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000030
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000034
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000038
+        .4byte 0x00000000
+    .global lbl_8049E7D4
+    lbl_8049E7D4:
+        .4byte lbl_8000DCF8
+        .4byte lbl_8000DCAC
+        .4byte lbl_8000DCB8
+        .4byte lbl_8000DCC4
+        .4byte lbl_8000DCF8
+        .4byte lbl_8000DCF8
+        .4byte lbl_8000DCF8
+        .4byte lbl_8000DCF8
+        .4byte lbl_8000DCF8
+        .4byte lbl_8000DCF8
+        .4byte lbl_8000DCF8
+        .4byte lbl_8000DCF8
+        .4byte lbl_8000DCF8
+        .4byte lbl_8000DCF8
+        .4byte lbl_8000DCF8
+        .4byte lbl_8000DCF8
+        .4byte lbl_8000DCD0
+        .4byte lbl_8000DCF8
+        .4byte lbl_8000DCDC
+    .global lbl_8049E820
+    lbl_8049E820:
+        .4byte lbl_8000DC48
+        .4byte lbl_8000DBF8
+        .4byte lbl_8000DC04
+        .4byte lbl_8000DC10
+        .4byte lbl_8000DC48
+        .4byte lbl_8000DC48
+        .4byte lbl_8000DC48
+        .4byte lbl_8000DC48
+        .4byte lbl_8000DC48
+        .4byte lbl_8000DC48
+        .4byte lbl_8000DC48
+        .4byte lbl_8000DC48
+        .4byte lbl_8000DC48
+        .4byte lbl_8000DC48
+        .4byte lbl_8000DC48
+        .4byte lbl_8000DC48
+        .4byte lbl_8000DC1C
+        .4byte lbl_8000DC48
+        .4byte lbl_8000DC28
+    .global lbl_8049E86C
+    lbl_8049E86C:
+        .4byte lbl_8000DB54
+        .4byte lbl_8000DB5C
+        .4byte lbl_8000DB64
+        .4byte lbl_8000DB9C
+        .4byte lbl_8000DB6C
+        .4byte lbl_8000DB74
+        .4byte lbl_8000DB7C
+        .4byte lbl_8000DBA8
+        .4byte lbl_8000DB84
+        .4byte lbl_8000DB8C
+        .4byte lbl_8000DB94
+        .4byte lbl_8000DBB4
+        .4byte lbl_8000DBC0
+        .4byte lbl_8000DBC0
+        .4byte lbl_8000DBC0
+        .4byte lbl_8000DBC0
+        .4byte lbl_8000DBC0
+        .4byte lbl_8000DBC0
+        .4byte lbl_8000DBC0
+        .4byte lbl_8000DBC0
+        .4byte lbl_8000DBC0
+        .4byte lbl_8000DBC0
+        .4byte lbl_8000DBC0
+        .4byte lbl_8000DBC0
+        .4byte lbl_8000DBC0
+        .4byte lbl_8000DBC0
+        .4byte lbl_8000DBC0
+        .4byte lbl_8000DBC0
+        .4byte lbl_8000DBC0
+        .4byte lbl_8000DBC0
+        .4byte lbl_8000DBC0
+        .4byte lbl_8000DBC0
+        .4byte lbl_8000DBC0
+        .4byte lbl_8000DBC0
+        .4byte lbl_8000DBC0
+        .4byte lbl_8000DBC0
+        .4byte lbl_8000DBC0
+        .4byte lbl_8000DBC0
+        .4byte lbl_8000DBC0
+        .4byte lbl_8000DA60
+        .4byte lbl_8000DA7C
+        .4byte lbl_8000DA98
+        .4byte lbl_8000DAE0
+        .4byte lbl_8000DAFC
+        .4byte lbl_8000DB18
+        .4byte lbl_8000DBC0
+        .4byte lbl_8000DBC0
+        .4byte lbl_8000DBC0
+        .4byte lbl_8000D9D4
+        .4byte lbl_8000D9F0
+        .4byte lbl_8000DB44
+        .4byte lbl_8000DBC0
+        .4byte lbl_8000DBC0
+        .4byte lbl_8000DBC0
+        .4byte lbl_8000DBC0
+        .4byte lbl_8000DBC0
+        .4byte lbl_8000DBC0
+        .4byte lbl_8000DBC0
+        .4byte lbl_8000DA0C
+        .4byte lbl_8000DBC0
+        .4byte lbl_8000DBC0
+        .4byte lbl_8000DBC0
+        .4byte lbl_8000DBC0
+        .4byte lbl_8000DBC0
+        .4byte lbl_8000DBC0
+        .4byte lbl_8000DBC0
+        .4byte lbl_8000DB4C
+        .4byte lbl_8000DA28
+        .4byte lbl_8000DBC0
+        .4byte lbl_8000DA44
+        .4byte lbl_8000DBC0
+        .4byte lbl_8000DBC0
+        .4byte lbl_8000DAC4
+    .global lbl_8049E990
+    lbl_8049E990:
+        .4byte lbl_8000DFA4
+        .4byte lbl_8000DF58
+        .4byte lbl_8000DF64
+        .4byte lbl_8000DF70
+        .4byte lbl_8000DFA4
+        .4byte lbl_8000DFA4
+        .4byte lbl_8000DFA4
+        .4byte lbl_8000DFA4
+        .4byte lbl_8000DFA4
+        .4byte lbl_8000DFA4
+        .4byte lbl_8000DFA4
+        .4byte lbl_8000DFA4
+        .4byte lbl_8000DFA4
+        .4byte lbl_8000DFA4
+        .4byte lbl_8000DFA4
+        .4byte lbl_8000DFA4
+        .4byte lbl_8000DF7C
+        .4byte lbl_8000DFA4
+        .4byte lbl_8000DF88
+        .4byte 0x00000000
+        .4byte 0x00000020
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000024
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000028
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x0000002C
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000030
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000034
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000038
+        .4byte 0x00000000
+    .global lbl_8049EA30
+    lbl_8049EA30:
+        .4byte lbl_8000E434
+        .4byte lbl_8000E3E8
+        .4byte lbl_8000E3F4
+        .4byte lbl_8000E400
+        .4byte lbl_8000E434
+        .4byte lbl_8000E434
+        .4byte lbl_8000E434
+        .4byte lbl_8000E434
+        .4byte lbl_8000E434
+        .4byte lbl_8000E434
+        .4byte lbl_8000E434
+        .4byte lbl_8000E434
+        .4byte lbl_8000E434
+        .4byte lbl_8000E434
+        .4byte lbl_8000E434
+        .4byte lbl_8000E434
+        .4byte lbl_8000E40C
+        .4byte lbl_8000E434
+        .4byte lbl_8000E418
+    .global lbl_8049EA7C
+    lbl_8049EA7C:
+        .4byte lbl_8000E384
+        .4byte lbl_8000E334
+        .4byte lbl_8000E340
+        .4byte lbl_8000E34C
+        .4byte lbl_8000E384
+        .4byte lbl_8000E384
+        .4byte lbl_8000E384
+        .4byte lbl_8000E384
+        .4byte lbl_8000E384
+        .4byte lbl_8000E384
+        .4byte lbl_8000E384
+        .4byte lbl_8000E384
+        .4byte lbl_8000E384
+        .4byte lbl_8000E384
+        .4byte lbl_8000E384
+        .4byte lbl_8000E384
+        .4byte lbl_8000E358
+        .4byte lbl_8000E384
+        .4byte lbl_8000E364
+    .global lbl_8049EAC8
+    lbl_8049EAC8:
+        .4byte lbl_8000E278
+        .4byte lbl_8000E280
+        .4byte lbl_8000E288
+        .4byte lbl_8000E2C8
+        .4byte lbl_8000E290
+        .4byte lbl_8000E298
+        .4byte lbl_8000E2A0
+        .4byte lbl_8000E2DC
+        .4byte lbl_8000E2FC
+        .4byte lbl_8000E2FC
+        .4byte lbl_8000E2FC
+        .4byte lbl_8000E2FC
+        .4byte lbl_8000E2FC
+        .4byte lbl_8000E2FC
+        .4byte lbl_8000E2FC
+        .4byte lbl_8000E2FC
+        .4byte lbl_8000E2FC
+        .4byte lbl_8000E2B0
+        .4byte lbl_8000E2A8
+        .4byte lbl_8000E2B8
+        .4byte lbl_8000E2C0
+        .4byte lbl_8000E2F0
+        .4byte lbl_8000E2FC
+        .4byte lbl_8000E2FC
+        .4byte lbl_8000E2FC
+        .4byte lbl_8000E2FC
+        .4byte lbl_8000E2FC
+        .4byte lbl_8000E194
+        .4byte lbl_8000E1B0
+        .4byte lbl_8000E1CC
+        .4byte lbl_8000E2FC
+        .4byte lbl_8000E2FC
+        .4byte lbl_8000E2FC
+        .4byte lbl_8000E2FC
+        .4byte lbl_8000E2FC
+        .4byte lbl_8000E2FC
+        .4byte lbl_8000E2FC
+        .4byte lbl_8000E2FC
+        .4byte lbl_8000E2FC
+        .4byte lbl_8000E2FC
+        .4byte lbl_8000E2FC
+        .4byte lbl_8000E2FC
+        .4byte lbl_8000E2FC
+        .4byte lbl_8000E2FC
+        .4byte lbl_8000E2FC
+        .4byte lbl_8000E2FC
+        .4byte lbl_8000E2FC
+        .4byte lbl_8000E2FC
+        .4byte lbl_8000E2FC
+        .4byte lbl_8000E2FC
+        .4byte lbl_8000E2FC
+        .4byte lbl_8000E2FC
+        .4byte lbl_8000E2FC
+        .4byte lbl_8000E2FC
+        .4byte lbl_8000E2FC
+        .4byte lbl_8000E2FC
+        .4byte lbl_8000E2FC
+        .4byte lbl_8000E2FC
+        .4byte lbl_8000E2FC
+        .4byte lbl_8000E2FC
+        .4byte lbl_8000E1F8
+        .4byte lbl_8000E214
+        .4byte lbl_8000E230
+        .4byte lbl_8000E24C
+    .global lbl_8049EBC8
+    lbl_8049EBC8:
+        .4byte lbl_8000E6EC
+        .4byte lbl_8000E6A0
+        .4byte lbl_8000E6AC
+        .4byte lbl_8000E6B8
+        .4byte lbl_8000E6EC
+        .4byte lbl_8000E6EC
+        .4byte lbl_8000E6EC
+        .4byte lbl_8000E6EC
+        .4byte lbl_8000E6EC
+        .4byte lbl_8000E6EC
+        .4byte lbl_8000E6EC
+        .4byte lbl_8000E6EC
+        .4byte lbl_8000E6EC
+        .4byte lbl_8000E6EC
+        .4byte lbl_8000E6EC
+        .4byte lbl_8000E6EC
+        .4byte lbl_8000E6C4
+        .4byte lbl_8000E6EC
+        .4byte lbl_8000E6D0
+    .global lbl_8049EC14
+    lbl_8049EC14:
+        .4byte lbl_8000E618
+        .4byte lbl_8000E620
+        .4byte lbl_8000E628
+        .4byte lbl_8000E630
+        .4byte lbl_8000E648
+        .4byte lbl_8000E65C
+        .4byte lbl_8000E67C
+        .4byte lbl_8000E67C
+        .4byte lbl_8000E67C
+        .4byte lbl_8000E67C
+        .4byte lbl_8000E67C
+        .4byte lbl_8000E67C
+        .4byte lbl_8000E67C
+        .4byte lbl_8000E67C
+        .4byte lbl_8000E638
+        .4byte lbl_8000E640
+        .4byte lbl_8000E670
+    .global lbl_8049EC58
+    lbl_8049EC58:
+        .4byte 0x00000000
+        .4byte 0x00000020
+        .4byte 0x00000000
+    .global lbl_8049EC64
+    lbl_8049EC64:
+        .4byte 0x00000000
+        .4byte 0x00000024
+        .4byte 0x00000000
+    .global lbl_8049EC70
+    lbl_8049EC70:
+        .4byte lbl_8000EAFC
+        .4byte lbl_8000EAB0
+        .4byte lbl_8000EABC
+        .4byte lbl_8000EAC8
+        .4byte lbl_8000EAFC
+        .4byte lbl_8000EAFC
+        .4byte lbl_8000EAFC
+        .4byte lbl_8000EAFC
+        .4byte lbl_8000EAFC
+        .4byte lbl_8000EAFC
+        .4byte lbl_8000EAFC
+        .4byte lbl_8000EAFC
+        .4byte lbl_8000EAFC
+        .4byte lbl_8000EAFC
+        .4byte lbl_8000EAFC
+        .4byte lbl_8000EAFC
+        .4byte lbl_8000EAD4
+        .4byte lbl_8000EAFC
+        .4byte lbl_8000EAE0
+    .global lbl_8049ECBC
+    lbl_8049ECBC:
+        .4byte lbl_8000EA54
+        .4byte lbl_8000EA04
+        .4byte lbl_8000EA10
+        .4byte lbl_8000EA1C
+        .4byte lbl_8000EA54
+        .4byte lbl_8000EA54
+        .4byte lbl_8000EA54
+        .4byte lbl_8000EA54
+        .4byte lbl_8000EA54
+        .4byte lbl_8000EA54
+        .4byte lbl_8000EA54
+        .4byte lbl_8000EA54
+        .4byte lbl_8000EA54
+        .4byte lbl_8000EA54
+        .4byte lbl_8000EA54
+        .4byte lbl_8000EA54
+        .4byte lbl_8000EA28
+        .4byte lbl_8000EA54
+        .4byte lbl_8000EA34
+    .global lbl_8049ED08
+    lbl_8049ED08:
+        .4byte lbl_8000E950
+        .4byte lbl_8000E958
+        .4byte lbl_8000E960
+        .4byte lbl_8000E9A8
+        .4byte lbl_8000E968
+        .4byte lbl_8000E970
+        .4byte lbl_8000E978
+        .4byte lbl_8000E9B4
+        .4byte lbl_8000E930
+        .4byte lbl_8000E938
+        .4byte lbl_8000E940
+        .4byte lbl_8000E948
+        .4byte lbl_8000E990
+        .4byte lbl_8000E99C
+        .4byte lbl_8000E980
+        .4byte lbl_8000E988
+        .4byte lbl_8000E9C0
+        .4byte lbl_8000E9CC
+        .4byte lbl_8000E9CC
+        .4byte lbl_8000E9CC
+        .4byte lbl_8000E9CC
+        .4byte lbl_8000E9CC
+        .4byte lbl_8000E9CC
+        .4byte lbl_8000E9CC
+        .4byte lbl_8000E9CC
+        .4byte lbl_8000E9CC
+        .4byte lbl_8000E9CC
+        .4byte lbl_8000E9CC
+        .4byte lbl_8000E9CC
+        .4byte lbl_8000E9CC
+        .4byte lbl_8000E9CC
+        .4byte lbl_8000E9CC
+        .4byte lbl_8000E9CC
+        .4byte lbl_8000E8DC
+        .4byte lbl_8000E90C
+    .global lbl_8049ED94
+    lbl_8049ED94:
+        .4byte 0x00000000
+        .4byte 0x00000020
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000020
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000024
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000028
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x0000002C
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000030
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000034
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000038
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x0000003C
+        .4byte 0x00000000
+    .global lbl_8049EE00
+    lbl_8049EE00:
+        .4byte lbl_8000F144
+        .4byte lbl_8000F0F8
+        .4byte lbl_8000F104
+        .4byte lbl_8000F110
+        .4byte lbl_8000F144
+        .4byte lbl_8000F144
+        .4byte lbl_8000F144
+        .4byte lbl_8000F144
+        .4byte lbl_8000F144
+        .4byte lbl_8000F144
+        .4byte lbl_8000F144
+        .4byte lbl_8000F144
+        .4byte lbl_8000F144
+        .4byte lbl_8000F144
+        .4byte lbl_8000F144
+        .4byte lbl_8000F144
+        .4byte lbl_8000F11C
+        .4byte lbl_8000F144
+        .4byte lbl_8000F128
+    .global lbl_8049EE4C
+    lbl_8049EE4C:
+        .4byte lbl_8000F09C
+        .4byte lbl_8000F04C
+        .4byte lbl_8000F058
+        .4byte lbl_8000F064
+        .4byte lbl_8000F09C
+        .4byte lbl_8000F09C
+        .4byte lbl_8000F09C
+        .4byte lbl_8000F09C
+        .4byte lbl_8000F09C
+        .4byte lbl_8000F09C
+        .4byte lbl_8000F09C
+        .4byte lbl_8000F09C
+        .4byte lbl_8000F09C
+        .4byte lbl_8000F09C
+        .4byte lbl_8000F09C
+        .4byte lbl_8000F09C
+        .4byte lbl_8000F070
+        .4byte lbl_8000F09C
+        .4byte lbl_8000F07C
+    .global lbl_8049EE98
+    lbl_8049EE98:
+        .4byte lbl_8000EF38
+        .4byte lbl_8000EF40
+        .4byte lbl_8000EF48
+        .4byte lbl_8000EFC0
+        .4byte lbl_8000EF50
+        .4byte lbl_8000EF58
+        .4byte lbl_8000EF60
+        .4byte lbl_8000EFCC
+        .4byte lbl_8000EF68
+        .4byte lbl_8000EF70
+        .4byte lbl_8000EF78
+        .4byte lbl_8000EFD8
+        .4byte lbl_8000F014
+        .4byte lbl_8000F014
+        .4byte lbl_8000F014
+        .4byte lbl_8000F014
+        .4byte lbl_8000F014
+        .4byte lbl_8000F014
+        .4byte lbl_8000F014
+        .4byte lbl_8000F014
+        .4byte lbl_8000EF80
+        .4byte lbl_8000EF88
+        .4byte lbl_8000EF90
+        .4byte lbl_8000EF98
+        .4byte lbl_8000EFE4
+        .4byte lbl_8000EFF0
+        .4byte lbl_8000F014
+        .4byte lbl_8000F014
+        .4byte lbl_8000F014
+        .4byte lbl_8000F014
+        .4byte lbl_8000F014
+        .4byte lbl_8000F014
+        .4byte lbl_8000F014
+        .4byte lbl_8000F014
+        .4byte lbl_8000F014
+        .4byte lbl_8000F014
+        .4byte lbl_8000F014
+        .4byte lbl_8000EE84
+        .4byte lbl_8000EEBC
+        .4byte lbl_8000EED8
+        .4byte lbl_8000EEF4
+        .4byte lbl_8000EF10
+        .4byte lbl_8000F014
+        .4byte lbl_8000F014
+        .4byte lbl_8000F014
+        .4byte lbl_8000F014
+        .4byte lbl_8000F014
+        .4byte lbl_8000F014
+        .4byte lbl_8000F014
+        .4byte lbl_8000F014
+        .4byte lbl_8000F014
+        .4byte lbl_8000F014
+        .4byte lbl_8000F014
+        .4byte lbl_8000F014
+        .4byte lbl_8000F014
+        .4byte lbl_8000F014
+        .4byte lbl_8000F014
+        .4byte lbl_8000F014
+        .4byte lbl_8000F014
+        .4byte lbl_8000EE4C
+        .4byte lbl_8000EFA0
+        .4byte lbl_8000EFA8
+        .4byte lbl_8000EFB0
+        .4byte lbl_8000EFB8
+        .4byte lbl_8000EFFC
+        .4byte lbl_8000F008
+        .4byte lbl_8000F014
+        .4byte lbl_8000F014
+        .4byte lbl_8000F014
+        .4byte lbl_8000F014
+        .4byte lbl_8000EE68
+        .4byte lbl_8000EEA0
+        .4byte 0x00000000
+        .4byte 0x00000020
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000024
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000028
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x0000002C
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000030
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000034
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000038
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x0000003C
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000040
+        .4byte 0x00000000
+    .global lbl_8049F024
+    lbl_8049F024:
+        .4byte lbl_8000F5F4
+        .4byte lbl_8000F5A8
+        .4byte lbl_8000F5B4
+        .4byte lbl_8000F5C0
+        .4byte lbl_8000F5F4
+        .4byte lbl_8000F5F4
+        .4byte lbl_8000F5F4
+        .4byte lbl_8000F5F4
+        .4byte lbl_8000F5F4
+        .4byte lbl_8000F5F4
+        .4byte lbl_8000F5F4
+        .4byte lbl_8000F5F4
+        .4byte lbl_8000F5F4
+        .4byte lbl_8000F5F4
+        .4byte lbl_8000F5F4
+        .4byte lbl_8000F5F4
+        .4byte lbl_8000F5CC
+        .4byte lbl_8000F5F4
+        .4byte lbl_8000F5D8
+    .global lbl_8049F070
+    lbl_8049F070:
+        .4byte lbl_8000F544
+        .4byte lbl_8000F4F4
+        .4byte lbl_8000F500
+        .4byte lbl_8000F50C
+        .4byte lbl_8000F544
+        .4byte lbl_8000F544
+        .4byte lbl_8000F544
+        .4byte lbl_8000F544
+        .4byte lbl_8000F544
+        .4byte lbl_8000F544
+        .4byte lbl_8000F544
+        .4byte lbl_8000F544
+        .4byte lbl_8000F544
+        .4byte lbl_8000F544
+        .4byte lbl_8000F544
+        .4byte lbl_8000F544
+        .4byte lbl_8000F518
+        .4byte lbl_8000F544
+        .4byte lbl_8000F524
+    .global lbl_8049F0BC
+    lbl_8049F0BC:
+        .4byte lbl_8000F46C
+        .4byte lbl_8000F474
+        .4byte lbl_8000F47C
+        .4byte lbl_8000F4AC
+        .4byte lbl_8000F4BC
+        .4byte lbl_8000F4BC
+        .4byte lbl_8000F4BC
+        .4byte lbl_8000F4BC
+        .4byte lbl_8000F4BC
+        .4byte lbl_8000F4BC
+        .4byte lbl_8000F4BC
+        .4byte lbl_8000F4BC
+        .4byte lbl_8000F4BC
+        .4byte lbl_8000F4BC
+        .4byte lbl_8000F4BC
+        .4byte lbl_8000F4BC
+        .4byte lbl_8000F4BC
+        .4byte lbl_8000F4BC
+        .4byte lbl_8000F4BC
+        .4byte lbl_8000F4BC
+        .4byte lbl_8000F4BC
+        .4byte lbl_8000F4BC
+        .4byte lbl_8000F4BC
+        .4byte lbl_8000F4BC
+        .4byte lbl_8000F4BC
+        .4byte lbl_8000F388
+        .4byte lbl_8000F3C0
+        .4byte lbl_8000F3DC
+        .4byte lbl_8000F3F8
+        .4byte lbl_8000F414
+        .4byte lbl_8000F4BC
+        .4byte lbl_8000F4BC
+        .4byte lbl_8000F4BC
+        .4byte lbl_8000F4BC
+        .4byte lbl_8000F4BC
+        .4byte lbl_8000F440
+        .4byte lbl_8000F4BC
+        .4byte lbl_8000F4BC
+        .4byte lbl_8000F4BC
+        .4byte lbl_8000F350
+        .4byte lbl_8000F484
+        .4byte lbl_8000F48C
+        .4byte lbl_8000F494
+        .4byte lbl_8000F49C
+        .4byte lbl_8000F4A4
+        .4byte lbl_8000F4BC
+        .4byte lbl_8000F4BC
+        .4byte lbl_8000F4BC
+        .4byte lbl_8000F4BC
+        .4byte lbl_8000F4BC
+        .4byte lbl_8000F4BC
+        .4byte lbl_8000F4BC
+        .4byte lbl_8000F4BC
+        .4byte lbl_8000F4BC
+        .4byte lbl_8000F4BC
+        .4byte lbl_8000F4BC
+        .4byte lbl_8000F4BC
+        .4byte lbl_8000F4BC
+        .4byte lbl_8000F36C
+        .4byte lbl_8000F3A4
+    .global __vt__Q27JStudio13TObject_sound
+    __vt__Q27JStudio13TObject_sound:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q27JStudio13TObject_soundFv
+        .4byte do_begin__Q27JStudio7TObjectFv
+        .4byte do_end__Q27JStudio7TObjectFv
+        .4byte do_paragraph__Q27JStudio13TObject_soundFUlPCvUl
+        .4byte do_wait__Q27JStudio7TObjectFUl
+        .4byte do_data__Q27JStudio7TObjectFPCvUlPCvUl
+    .global __vt__Q27JStudio14TAdaptor_sound
+    __vt__Q27JStudio14TAdaptor_sound:
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte adaptor_do_prepare__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
+        .4byte adaptor_do_begin__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
+        .4byte adaptor_do_end__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
+        .4byte adaptor_do_update__Q27JStudio8TAdaptorFPCQ27JStudio7TObjectUl
+        .4byte
+   adaptor_do_data__Q27JStudio8TAdaptorFPCQ27JStudio7TObjectPCvUlPCvUl .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+    .global __vt__Q27JStudio16TObject_particle
+    __vt__Q27JStudio16TObject_particle:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q27JStudio16TObject_particleFv
+        .4byte do_begin__Q27JStudio7TObjectFv
+        .4byte do_end__Q27JStudio7TObjectFv
+        .4byte do_paragraph__Q27JStudio16TObject_particleFUlPCvUl
+        .4byte do_wait__Q27JStudio7TObjectFUl
+        .4byte do_data__Q27JStudio7TObjectFPCvUlPCvUl
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+    .global __vt__Q27JStudio15TObject_message
+    __vt__Q27JStudio15TObject_message:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q27JStudio15TObject_messageFv
+        .4byte do_begin__Q27JStudio7TObjectFv
+        .4byte do_end__Q27JStudio7TObjectFv
+        .4byte do_paragraph__Q27JStudio15TObject_messageFUlPCvUl
+        .4byte do_wait__Q27JStudio7TObjectFUl
+        .4byte do_data__Q27JStudio7TObjectFPCvUlPCvUl
+    .global __vt__Q27JStudio16TAdaptor_message
+    __vt__Q27JStudio16TAdaptor_message:
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte adaptor_do_prepare__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
+        .4byte adaptor_do_begin__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
+        .4byte adaptor_do_end__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
+        .4byte adaptor_do_update__Q27JStudio8TAdaptorFPCQ27JStudio7TObjectUl
+        .4byte
+   adaptor_do_data__Q27JStudio8TAdaptorFPCQ27JStudio7TObjectPCvUlPCvUl .4byte 0
+    .global __vt__Q27JStudio13TObject_light
+    __vt__Q27JStudio13TObject_light:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q27JStudio13TObject_lightFv
+        .4byte do_begin__Q27JStudio7TObjectFv
+        .4byte do_end__Q27JStudio7TObjectFv
+        .4byte do_paragraph__Q27JStudio13TObject_lightFUlPCvUl
+        .4byte do_wait__Q27JStudio7TObjectFUl
+        .4byte do_data__Q27JStudio7TObjectFPCvUlPCvUl
+    .global __vt__Q27JStudio14TAdaptor_light
+    __vt__Q27JStudio14TAdaptor_light:
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte adaptor_do_prepare__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
+        .4byte adaptor_do_begin__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
+        .4byte adaptor_do_end__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
+        .4byte adaptor_do_update__Q27JStudio8TAdaptorFPCQ27JStudio7TObjectUl
+        .4byte
+   adaptor_do_data__Q27JStudio8TAdaptorFPCQ27JStudio7TObjectPCvUlPCvUl .4byte 0
+        .4byte 0
+    .global __vt__Q27JStudio11TObject_fog
+    __vt__Q27JStudio11TObject_fog:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q27JStudio11TObject_fogFv
+        .4byte do_begin__Q27JStudio7TObjectFv
+        .4byte do_end__Q27JStudio7TObjectFv
+        .4byte do_paragraph__Q27JStudio11TObject_fogFUlPCvUl
+        .4byte do_wait__Q27JStudio7TObjectFUl
+        .4byte do_data__Q27JStudio7TObjectFPCvUlPCvUl
+    .global __vt__Q27JStudio12TAdaptor_fog
+    __vt__Q27JStudio12TAdaptor_fog:
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte adaptor_do_prepare__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
+        .4byte adaptor_do_begin__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
+        .4byte adaptor_do_end__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
+        .4byte adaptor_do_update__Q27JStudio8TAdaptorFPCQ27JStudio7TObjectUl
+        .4byte
+   adaptor_do_data__Q27JStudio8TAdaptorFPCQ27JStudio7TObjectPCvUlPCvUl .global
+   __vt__Q27JStudio14TObject_camera
+    __vt__Q27JStudio14TObject_camera:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q27JStudio14TObject_cameraFv
+        .4byte do_begin__Q27JStudio7TObjectFv
+        .4byte do_end__Q27JStudio7TObjectFv
+        .4byte do_paragraph__Q27JStudio14TObject_cameraFUlPCvUl
+        .4byte do_wait__Q27JStudio7TObjectFUl
+        .4byte do_data__Q27JStudio7TObjectFPCvUlPCvUl
+    .global __vt__Q27JStudio15TAdaptor_camera
+    __vt__Q27JStudio15TAdaptor_camera:
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte adaptor_do_prepare__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
+        .4byte adaptor_do_begin__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
+        .4byte adaptor_do_end__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
+        .4byte adaptor_do_update__Q27JStudio8TAdaptorFPCQ27JStudio7TObjectUl
+        .4byte
+   adaptor_do_data__Q27JStudio8TAdaptorFPCQ27JStudio7TObjectPCvUlPCvUl .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+    .global __vt__Q27JStudio20TObject_ambientLight
+    __vt__Q27JStudio20TObject_ambientLight:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q27JStudio20TObject_ambientLightFv
+        .4byte do_begin__Q27JStudio7TObjectFv
+        .4byte do_end__Q27JStudio7TObjectFv
+        .4byte do_paragraph__Q27JStudio20TObject_ambientLightFUlPCvUl
+        .4byte do_wait__Q27JStudio7TObjectFUl
+        .4byte do_data__Q27JStudio7TObjectFPCvUlPCvUl
+    .global __vt__Q27JStudio21TAdaptor_ambientLight
+    __vt__Q27JStudio21TAdaptor_ambientLight:
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte adaptor_do_prepare__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
+        .4byte adaptor_do_begin__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
+        .4byte adaptor_do_end__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
+        .4byte adaptor_do_update__Q27JStudio8TAdaptorFPCQ27JStudio7TObjectUl
+        .4byte
+   adaptor_do_data__Q27JStudio8TAdaptorFPCQ27JStudio7TObjectPCvUlPCvUl .global
+   __vt__Q27JStudio13TObject_actor
+    __vt__Q27JStudio13TObject_actor:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q27JStudio13TObject_actorFv
+        .4byte do_begin__Q27JStudio7TObjectFv
+        .4byte do_end__Q27JStudio7TObjectFv
+        .4byte do_paragraph__Q27JStudio13TObject_actorFUlPCvUl
+        .4byte do_wait__Q27JStudio7TObjectFUl
+        .4byte do_data__Q27JStudio7TObjectFPCvUlPCvUl
+    .global __vt__Q27JStudio14TAdaptor_actor
+    __vt__Q27JStudio14TAdaptor_actor:
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte adaptor_do_prepare__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
+        .4byte adaptor_do_begin__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
+        .4byte adaptor_do_end__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
+        .4byte adaptor_do_update__Q27JStudio8TAdaptorFPCQ27JStudio7TObjectUl
+        .4byte
+   adaptor_do_data__Q27JStudio8TAdaptorFPCQ27JStudio7TObjectPCvUlPCvUl .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+    .global __vt__Q27JStudio7TObject
+    __vt__Q27JStudio7TObject:
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte do_begin__Q27JStudio7TObjectFv
+        .4byte do_end__Q27JStudio7TObjectFv
+        .4byte 0
+        .4byte do_wait__Q27JStudio7TObjectFUl
+        .4byte do_data__Q27JStudio7TObjectFPCvUlPCvUl
+    .global __vt__Q27JStudio8TAdaptor
+    __vt__Q27JStudio8TAdaptor:
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte adaptor_do_prepare__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
+        .4byte adaptor_do_begin__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
+        .4byte adaptor_do_end__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
+        .4byte adaptor_do_update__Q27JStudio8TAdaptorFPCQ27JStudio7TObjectUl
+        .4byte
+   adaptor_do_data__Q27JStudio8TAdaptorFPCQ27JStudio7TObjectPCvUlPCvUl .global
+   __vt__Q37JStudio14TVariableValue13TOutput_none_
+    __vt__Q37JStudio14TVariableValue13TOutput_none_:
+        .4byte 0
+        .4byte 0
+        .4byte
+   __cl__Q37JStudio14TVariableValue13TOutput_none_CFfPQ27JStudio8TAdaptor .4byte
+   __dt__Q37JStudio14TVariableValue13TOutput_none_Fv .global
+   __vt__Q37JStudio14TVariableValue7TOutput
+    __vt__Q37JStudio14TVariableValue7TOutput:
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+    .global lbl_8049F4A8
+    lbl_8049F4A8:
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte
+   "__cl__Q37JStudio28@unnamed@jstudio_object_cpp@54TOutputVariableValue_BOOL_<Q27JStudio14TAdaptor_sound>CFfPQ27JStudio8TAdaptor"
+        .4byte
+   "__dt__Q37JStudio28@unnamed@jstudio_object_cpp@54TOutputVariableValue_BOOL_<Q27JStudio14TAdaptor_sound>Fv"
+    .global lbl_8049F4B8
+    lbl_8049F4B8:
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte
+   "__cl__Q37JStudio28@unnamed@jstudio_object_cpp@57TOutputVariableValue_BOOL_<Q27JStudio17TAdaptor_particle>CFfPQ27JStudio8TAdaptor"
+        .4byte
+   "__dt__Q37JStudio28@unnamed@jstudio_object_cpp@57TOutputVariableValue_BOOL_<Q27JStudio17TAdaptor_particle>Fv"
+    .global lbl_8049F4C8
+    lbl_8049F4C8:
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte
+   "__cl__Q37JStudio28@unnamed@jstudio_object_cpp@54TOutputVariableValue_BOOL_<Q27JStudio14TAdaptor_light>CFfPQ27JStudio8TAdaptor"
+        .4byte
+   "__dt__Q37JStudio28@unnamed@jstudio_object_cpp@54TOutputVariableValue_BOOL_<Q27JStudio14TAdaptor_light>Fv"
+    .global lbl_8049F4D8
+    lbl_8049F4D8:
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte
+   "__cl__Q37JStudio28@unnamed@jstudio_object_cpp@55TOutputVariableValue_BOOL_<Q27JStudio15TAdaptor_camera>CFfPQ27JStudio8TAdaptor"
+        .4byte
+   "__dt__Q37JStudio28@unnamed@jstudio_object_cpp@55TOutputVariableValue_BOOL_<Q27JStudio15TAdaptor_camera>Fv"
+    .global lbl_8049F4E8
+    lbl_8049F4E8:
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte
+   "__cl__Q37JStudio28@unnamed@jstudio_object_cpp@54TOutputVariableValue_BOOL_<Q27JStudio14TAdaptor_actor>CFfPQ27JStudio8TAdaptor"
+        .4byte
+   "__dt__Q37JStudio28@unnamed@jstudio_object_cpp@54TOutputVariableValue_BOOL_<Q27JStudio14TAdaptor_actor>Fv"
+
+    .section .sbss # 0x80514D80 - 0x80516360
+    .global soOutput_none___Q27JStudio14TVariableValue
+    soOutput_none___Q27JStudio14TVariableValue:
+        .skip 0x8
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_80516408
+    lbl_80516408:
+        .4byte 0x43300000
+        .4byte 0x00000000
+    .global lbl_80516410
+    lbl_80516410:
+        .4byte 0x00000000
+    .global lbl_80516414
+    lbl_80516414:
+        .4byte 0x437F0000
+    .global sauVariableValue_2_DISTANCE_NEAR_FAR__Q27JStudio15TAdaptor_camera
+    sauVariableValue_2_DISTANCE_NEAR_FAR__Q27JStudio15TAdaptor_camera:
+        .4byte 0x00000008
+        .4byte 0x00000009
+    .global sauVariableValue_2_RANGE_BEGIN_END__Q27JStudio12TAdaptor_fog
+    sauVariableValue_2_RANGE_BEGIN_END__Q27JStudio12TAdaptor_fog:
+        .4byte 0x00000004
+        .4byte 0x00000005
+    .global sauVariableValue_2_DIRECTION_THETA_PHI__Q27JStudio14TAdaptor_light
+    sauVariableValue_2_DIRECTION_THETA_PHI__Q27JStudio14TAdaptor_light:
+        .4byte 0x0000000A
+        .4byte 0x0000000B
+    .global lbl_80516430
+    lbl_80516430:
+        .float 0.5
+        .4byte 0x00000000
+*/
+
 namespace JStudio {
 
 /*
@@ -10,27 +1192,26 @@ namespace JStudio {
 TVariableValue::TOutput::~TOutput(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r3
-	  beq-      .loc_0x30
-	  lis       r5, 0x804A
-	  extsh.    r0, r4
-	  subi      r0, r5, 0xB68
-	  stw       r0, 0x0(r31)
-	  ble-      .loc_0x30
-	  bl        0x17020
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r3, r3
+	beq      lbl_8000D098
+	lis      r5, __vt__Q37JStudio14TVariableValue7TOutput@ha
+	extsh.   r0, r4
+	addi     r0, r5, __vt__Q37JStudio14TVariableValue7TOutput@l
+	stw      r0, 0(r31)
+	ble      lbl_8000D098
+	bl       __dl__FPv
 
-	.loc_0x30:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8000D098:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -52,12 +1233,11 @@ void TVariableValue::update(double, JStudio::TAdaptor*)
 void TVariableValue::update_immediate_(JStudio::TVariableValue*, double)
 {
 	/*
-	.loc_0x0:
-	  lfs       f0, 0xC(r3)
-	  li        r0, 0
-	  stfs      f0, 0x0(r3)
-	  stw       r0, 0x8(r3)
-	  blr
+	lfs      f0, 0xc(r3)
+	li       r0, 0
+	stfs     f0, 0(r3)
+	stw      r0, 8(r3)
+	blr
 	*/
 }
 
@@ -69,22 +1249,21 @@ void TVariableValue::update_immediate_(JStudio::TVariableValue*, double)
 void TVariableValue::update_time_(JStudio::TVariableValue*, double)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  lis       r0, 0x4330
-	  lfd       f2, -0x7F58(r2)
-	  lwz       r4, 0x4(r3)
-	  stw       r0, 0x8(r1)
-	  lfs       f3, 0xC(r3)
-	  stw       r4, 0xC(r1)
-	  lfd       f0, 0x8(r1)
-	  fsub      f0, f0, f2
-	  fmul      f0, f0, f1
-	  fmul      f0, f3, f0
-	  frsp      f0, f0
-	  stfs      f0, 0x0(r3)
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	lis      r0, 0x4330
+	lfd      f2, lbl_80516408@sda21(r2)
+	lwz      r4, 4(r3)
+	stw      r0, 8(r1)
+	lfs      f3, 0xc(r3)
+	stw      r4, 0xc(r1)
+	lfd      f0, 8(r1)
+	fsub     f0, f0, f2
+	fmul     f0, f0, f1
+	fmul     f0, f3, f0
+	frsp     f0, f0
+	stfs     f0, 0(r3)
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -96,32 +1275,31 @@ void TVariableValue::update_time_(JStudio::TVariableValue*, double)
 void TVariableValue::update_functionValue_(JStudio::TVariableValue*, double)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lfd       f2, -0x7F58(r2)
-	  stw       r0, 0x24(r1)
-	  lis       r0, 0x4330
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r3
-	  lwz       r4, 0x4(r3)
-	  lwz       r3, 0xC(r3)
-	  stw       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  stw       r0, 0x8(r1)
-	  lwz       r12, 0x1C(r12)
-	  lfd       f0, 0x8(r1)
-	  fsub      f0, f0, f2
-	  fmul      f1, f0, f1
-	  mtctr     r12
-	  bctrl
-	  frsp      f0, f1
-	  stfs      f0, 0x0(r31)
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lfd      f2, lbl_80516408@sda21(r2)
+	stw      r0, 0x24(r1)
+	lis      r0, 0x4330
+	stw      r31, 0x1c(r1)
+	mr       r31, r3
+	lwz      r4, 4(r3)
+	lwz      r3, 0xc(r3)
+	stw      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	stw      r0, 8(r1)
+	lwz      r12, 0x1c(r12)
+	lfd      f0, 8(r1)
+	fsub     f0, f0, f2
+	fmul     f1, f0, f1
+	mtctr    r12
+	bctrl
+	frsp     f0, f1
+	stfs     f0, 0(r31)
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -133,34 +1311,33 @@ void TVariableValue::update_functionValue_(JStudio::TVariableValue*, double)
 TVariableValue::TOutput_none_::~TOutput_none_(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r3
-	  beq-      .loc_0x44
-	  lis       r3, 0x804A
-	  subi      r0, r3, 0xB78
-	  stw       r0, 0x0(r31)
-	  beq-      .loc_0x34
-	  lis       r3, 0x804A
-	  subi      r0, r3, 0xB68
-	  stw       r0, 0x0(r31)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r3, r3
+	beq      lbl_8000D1A8
+	lis      r3, __vt__Q37JStudio14TVariableValue13TOutput_none_@ha
+	addi     r0, r3, __vt__Q37JStudio14TVariableValue13TOutput_none_@l
+	stw      r0, 0(r31)
+	beq      lbl_8000D198
+	lis      r3, __vt__Q37JStudio14TVariableValue7TOutput@ha
+	addi     r0, r3, __vt__Q37JStudio14TVariableValue7TOutput@l
+	stw      r0, 0(r31)
 
-	.loc_0x34:
-	  extsh.    r0, r4
-	  ble-      .loc_0x44
-	  mr        r3, r31
-	  bl        0x16F10
+lbl_8000D198:
+	extsh.   r0, r4
+	ble      lbl_8000D1A8
+	mr       r3, r31
+	bl       __dl__FPv
 
-	.loc_0x44:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8000D1A8:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -334,35 +1511,36 @@ void TAdaptor::adaptor_setVariableValue_immediate(
 void TAdaptor::adaptor_setVariableValue_Vec(unsigned long const*, Vec const&)
 {
 	/*
-	.loc_0x0:
-	  lwz       r0, 0x0(r4)
-	  lis       r7, 0x8001
-	  lwz       r6, 0x4(r4)
-	  subi      r8, r7, 0x2F50
-	  mulli     r9, r0, 0x14
-	  lwz       r10, 0x4(r3)
-	  lwz       r0, 0x8(r4)
-	  li        r7, 0
-	  lfs       f0, 0x0(r5)
-	  add       r9, r10, r9
-	  stw       r8, 0x8(r9)
-	  mulli     r4, r6, 0x14
-	  lfs       f1, 0x4(r5)
-	  stw       r7, 0x4(r9)
-	  mulli     r0, r0, 0x14
-	  lfs       f2, 0x8(r5)
-	  stfs      f0, 0xC(r9)
-	  lwz       r5, 0x4(r3)
-	  add       r4, r5, r4
-	  stw       r8, 0x8(r4)
-	  stw       r7, 0x4(r4)
-	  stfs      f1, 0xC(r4)
-	  lwz       r3, 0x4(r3)
-	  add       r3, r3, r0
-	  stw       r8, 0x8(r3)
-	  stw       r7, 0x4(r3)
-	  stfs      f2, 0xC(r3)
-	  blr
+	lwz      r0, 0(r4)
+	lis      r7,
+	update_immediate___Q27JStudio14TVariableValueFPQ27JStudio14TVariableValued@ha
+	lwz      r6, 4(r4)
+	addi     r8, r7,
+	update_immediate___Q27JStudio14TVariableValueFPQ27JStudio14TVariableValued@l
+	mulli    r9, r0, 0x14
+	lwz      r10, 4(r3)
+	lwz      r0, 8(r4)
+	li       r7, 0
+	lfs      f0, 0(r5)
+	add      r9, r10, r9
+	stw      r8, 8(r9)
+	mulli    r4, r6, 0x14
+	lfs      f1, 4(r5)
+	stw      r7, 4(r9)
+	mulli    r0, r0, 0x14
+	lfs      f2, 8(r5)
+	stfs     f0, 0xc(r9)
+	lwz      r5, 4(r3)
+	add      r4, r5, r4
+	stw      r8, 8(r4)
+	stw      r7, 4(r4)
+	stfs     f1, 0xc(r4)
+	lwz      r3, 4(r3)
+	add      r3, r3, r0
+	stw      r8, 8(r3)
+	stw      r7, 4(r3)
+	stfs     f2, 0xc(r3)
+	blr
 	*/
 }
 
@@ -374,21 +1552,20 @@ void TAdaptor::adaptor_setVariableValue_Vec(unsigned long const*, Vec const&)
 void TAdaptor::adaptor_getVariableValue_Vec(const(Vec*, unsigned long const*))
 {
 	/*
-	.loc_0x0:
-	  lwz       r0, 0x0(r5)
-	  lwz       r6, 0x4(r5)
-	  mulli     r7, r0, 0x14
-	  lwz       r8, 0x4(r3)
-	  lwz       r0, 0x8(r5)
-	  lfsx      f0, r8, r7
-	  mulli     r3, r6, 0x14
-	  stfs      f0, 0x0(r4)
-	  mulli     r0, r0, 0x14
-	  lfsx      f0, r8, r3
-	  stfs      f0, 0x4(r4)
-	  lfsx      f0, r8, r0
-	  stfs      f0, 0x8(r4)
-	  blr
+	lwz      r0, 0(r5)
+	lwz      r6, 4(r5)
+	mulli    r7, r0, 0x14
+	lwz      r8, 4(r3)
+	lwz      r0, 8(r5)
+	lfsx     f0, r8, r7
+	mulli    r3, r6, 0x14
+	stfs     f0, 0(r4)
+	mulli    r0, r0, 0x14
+	lfsx     f0, r8, r3
+	stfs     f0, 4(r4)
+	lfsx     f0, r8, r0
+	stfs     f0, 8(r4)
+	blr
 	*/
 }
 
@@ -814,24 +1991,23 @@ void TObject::forward_value(unsigned long)
 void TObject::do_begin(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r4, r3
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x34(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x2C
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r4, r3
+	stw      r0, 0x14(r1)
+	lwz      r3, 0x34(r3)
+	cmplwi   r3, 0
+	beq      lbl_8000D708
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x2C:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8000D708:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -843,24 +2019,23 @@ void TObject::do_begin(void)
 void TObject::do_end(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r4, r3
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x34(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x2C
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r4, r3
+	stw      r0, 0x14(r1)
+	lwz      r3, 0x34(r3)
+	cmplwi   r3, 0
+	beq      lbl_8000D744
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x2C:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8000D744:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -872,76 +2047,75 @@ void TObject::do_end(void)
 void TObject::do_wait(unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stfd      f31, 0x20(r1)
-	  psq_st    f31,0x28(r1),0,0
-	  stmw      r26, 0x8(r1)
-	  mr        r26, r3
-	  mr        r27, r4
-	  lwz       r31, 0x34(r3)
-	  cmplwi    r31, 0
-	  beq-      .loc_0xD0
-	  lwz       r0, 0x8(r31)
-	  lwz       r3, 0x14(r26)
-	  mulli     r0, r0, 0x14
-	  lwz       r28, 0x4(r31)
-	  lfd       f31, 0x58(r3)
-	  add       r30, r28, r0
-	  b         .loc_0xAC
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stfd     f31, 0x20(r1)
+	psq_st   f31, 40(r1), 0, qr0
+	stmw     r26, 8(r1)
+	mr       r26, r3
+	mr       r27, r4
+	lwz      r31, 0x34(r3)
+	cmplwi   r31, 0
+	beq      lbl_8000D824
+	lwz      r0, 8(r31)
+	lwz      r3, 0x14(r26)
+	mulli    r0, r0, 0x14
+	lwz      r28, 4(r31)
+	lfd      f31, 0x58(r3)
+	add      r30, r28, r0
+	b        lbl_8000D800
 
-	.loc_0x48:
-	  lwz       r3, 0x4(r28)
-	  mr        r29, r28
-	  addi      r28, r28, 0x14
-	  subfic    r0, r3, -0x1
-	  cmplw     r0, r27
-	  bgt-      .loc_0x6C
-	  li        r0, -0x1
-	  stw       r0, 0x4(r29)
-	  b         .loc_0x74
+lbl_8000D79C:
+	lwz      r3, 4(r28)
+	mr       r29, r28
+	addi     r28, r28, 0x14
+	subfic   r0, r3, -1
+	cmplw    r0, r27
+	bgt      lbl_8000D7C0
+	li       r0, -1
+	stw      r0, 4(r29)
+	b        lbl_8000D7C8
 
-	.loc_0x6C:
-	  add       r0, r3, r27
-	  stw       r0, 0x4(r29)
+lbl_8000D7C0:
+	add      r0, r3, r27
+	stw      r0, 4(r29)
 
-	.loc_0x74:
-	  lwz       r12, 0x8(r29)
-	  cmplwi    r12, 0
-	  beq-      .loc_0xAC
-	  fmr       f1, f31
-	  mr        r3, r29
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x10(r29)
-	  mr        r4, r31
-	  lfs       f1, 0x0(r29)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
+lbl_8000D7C8:
+	lwz      r12, 8(r29)
+	cmplwi   r12, 0
+	beq      lbl_8000D800
+	fmr      f1, f31
+	mr       r3, r29
+	mtctr    r12
+	bctrl
+	lwz      r3, 0x10(r29)
+	mr       r4, r31
+	lfs      f1, 0(r29)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0xAC:
-	  cmplw     r28, r30
-	  bne+      .loc_0x48
-	  mr        r3, r31
-	  mr        r4, r26
-	  lwz       r12, 0x0(r31)
-	  mr        r5, r27
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
+lbl_8000D800:
+	cmplw    r28, r30
+	bne      lbl_8000D79C
+	mr       r3, r31
+	mr       r4, r26
+	lwz      r12, 0(r31)
+	mr       r5, r27
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0xD0:
-	  psq_l     f31,0x28(r1),0,0
-	  lfd       f31, 0x20(r1)
-	  lmw       r26, 0x8(r1)
-	  lwz       r0, 0x34(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_8000D824:
+	psq_l    f31, 40(r1), 0, qr0
+	lfd      f31, 0x20(r1)
+	lmw      r26, 8(r1)
+	lwz      r0, 0x34(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -953,32 +2127,31 @@ void TObject::do_wait(unsigned long)
 void TObject::do_data(void const*, unsigned long, void const*, unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r11, r3
-	  mr        r10, r4
-	  stw       r0, 0x14(r1)
-	  mr        r9, r5
-	  mr        r0, r6
-	  mr        r8, r7
-	  lwz       r3, 0x34(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x4C
-	  lwz       r12, 0x0(r3)
-	  mr        r4, r11
-	  mr        r5, r10
-	  mr        r6, r9
-	  lwz       r12, 0x1C(r12)
-	  mr        r7, r0
-	  mtctr     r12
-	  bctrl
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r11, r3
+	mr       r10, r4
+	stw      r0, 0x14(r1)
+	mr       r9, r5
+	mr       r0, r6
+	mr       r8, r7
+	lwz      r3, 0x34(r3)
+	cmplwi   r3, 0
+	beq      lbl_8000D88C
+	lwz      r12, 0(r3)
+	mr       r4, r11
+	mr       r5, r10
+	mr       r6, r9
+	lwz      r12, 0x1c(r12)
+	mr       r7, r0
+	mtctr    r12
+	bctrl
 
-	.loc_0x4C:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8000D88C:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1012,34 +2185,33 @@ TObject::TObject(JStudio::stb::data::TParse_TBlock_object const&,
 TAdaptor_actor::~TAdaptor_actor(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r3
-	  beq-      .loc_0x44
-	  lis       r3, 0x804A
-	  subi      r0, r3, 0xC08
-	  stw       r0, 0x0(r31)
-	  beq-      .loc_0x34
-	  lis       r3, 0x804A
-	  subi      r0, r3, 0xB98
-	  stw       r0, 0x0(r31)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r3, r3
+	beq      lbl_8000D8E0
+	lis      r3, __vt__Q27JStudio14TAdaptor_actor@ha
+	addi     r0, r3, __vt__Q27JStudio14TAdaptor_actor@l
+	stw      r0, 0(r31)
+	beq      lbl_8000D8D0
+	lis      r3, __vt__Q27JStudio8TAdaptor@ha
+	addi     r0, r3, __vt__Q27JStudio8TAdaptor@l
+	stw      r0, 0(r31)
 
-	.loc_0x34:
-	  extsh.    r0, r4
-	  ble-      .loc_0x44
-	  mr        r3, r31
-	  bl        0x167D8
+lbl_8000D8D0:
+	extsh.   r0, r4
+	ble      lbl_8000D8E0
+	mr       r3, r31
+	bl       __dl__FPv
 
-	.loc_0x44:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8000D8E0:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1097,336 +2269,464 @@ TObject_actor::TObject_actor((JStudio::stb::data::TParse_TBlock_object const&,
 void TObject_actor::do_paragraph(unsigned long, void const*, unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  lis       r8, 0x8047
-	  mr        r7, r6
-	  stw       r0, 0x44(r1)
-	  mr        r0, r5
-	  addi      r10, r8, 0x3350
-	  stmw      r25, 0x24(r1)
-	  mr        r30, r3
-	  lwz       r31, 0x34(r3)
-	  lis       r3, 0x804A
-	  subi      r3, r3, 0x1968
-	  cmplwi    r31, 0
-	  beq-      .loc_0x470
-	  lis       r5, 0x8048
-	  rlwinm    r6,r4,27,5,31
-	  subi      r9, r5, 0x60F0
-	  rlwinm    r4,r4,0,27,31
-	  lwz       r5, 0x4(r9)
-	  subi      r6, r6, 0x9
-	  lwz       r8, 0x0(r9)
-	  cmplwi    r6, 0x48
-	  stw       r5, 0xC(r1)
-	  stw       r8, 0x8(r1)
-	  lwz       r5, 0x8(r9)
-	  stw       r5, 0x10(r1)
-	  bgt-      .loc_0x470
-	  lis       r5, 0x804A
-	  rlwinm    r6,r6,2,0,29
-	  subi      r5, r5, 0x1794
-	  lwzx      r5, r5, r6
-	  mtctr     r5
-	  bctr
-	  lwz       r6, 0xAC(r3)
-	  lwz       r5, 0xB0(r3)
-	  lwz       r3, 0xB4(r3)
-	  stw       r6, 0x8(r1)
-	  stw       r5, 0xC(r1)
-	  stw       r3, 0x10(r1)
-	  b         .loc_0x458
-	  lwz       r6, 0xB8(r3)
-	  lwz       r5, 0xBC(r3)
-	  lwz       r3, 0xC0(r3)
-	  stw       r6, 0x8(r1)
-	  stw       r5, 0xC(r1)
-	  stw       r3, 0x10(r1)
-	  b         .loc_0x458
-	  lwz       r6, 0xC4(r3)
-	  lwz       r5, 0xC8(r3)
-	  lwz       r3, 0xCC(r3)
-	  stw       r6, 0x8(r1)
-	  stw       r5, 0xC(r1)
-	  stw       r3, 0x10(r1)
-	  b         .loc_0x458
-	  lwz       r6, 0xD0(r3)
-	  lwz       r5, 0xD4(r3)
-	  lwz       r3, 0xD8(r3)
-	  stw       r6, 0x8(r1)
-	  stw       r5, 0xC(r1)
-	  stw       r3, 0x10(r1)
-	  b         .loc_0x458
-	  lwz       r6, 0xDC(r3)
-	  lwz       r5, 0xE0(r3)
-	  lwz       r3, 0xE4(r3)
-	  stw       r6, 0x8(r1)
-	  stw       r5, 0xC(r1)
-	  stw       r3, 0x10(r1)
-	  b         .loc_0x458
-	  lwz       r6, 0xE8(r3)
-	  lwz       r5, 0xEC(r3)
-	  lwz       r3, 0xF0(r3)
-	  stw       r6, 0x8(r1)
-	  stw       r5, 0xC(r1)
-	  stw       r3, 0x10(r1)
-	  b         .loc_0x458
-	  lwz       r6, 0xF4(r3)
-	  lwz       r5, 0xF8(r3)
-	  lwz       r3, 0xFC(r3)
-	  stw       r6, 0x8(r1)
-	  stw       r5, 0xC(r1)
-	  stw       r3, 0x10(r1)
-	  b         .loc_0x458
-	  lwz       r8, 0x100(r3)
-	  lis       r5, 0x804F
-	  lwz       r6, 0x104(r3)
-	  subi      r5, r5, 0x344
-	  lwz       r3, 0x108(r3)
-	  mr        r28, r5
-	  stw       r8, 0x8(r1)
-	  li        r29, 0xC
-	  stw       r6, 0xC(r1)
-	  stw       r3, 0x10(r1)
-	  b         .loc_0x274
-	  lwz       r6, 0x10C(r3)
-	  lwz       r5, 0x110(r3)
-	  lwz       r3, 0x114(r3)
-	  stw       r6, 0x8(r1)
-	  stw       r5, 0xC(r1)
-	  stw       r3, 0x10(r1)
-	  b         .loc_0x458
-	  lwz       r6, 0x118(r3)
-	  lwz       r5, 0x11C(r3)
-	  lwz       r3, 0x120(r3)
-	  stw       r6, 0x8(r1)
-	  stw       r5, 0xC(r1)
-	  stw       r3, 0x10(r1)
-	  b         .loc_0x458
-	  lwz       r6, 0x124(r3)
-	  lwz       r5, 0x128(r3)
-	  lwz       r3, 0x12C(r3)
-	  stw       r6, 0x8(r1)
-	  stw       r5, 0xC(r1)
-	  stw       r3, 0x10(r1)
-	  b         .loc_0x458
-	  lwz       r8, 0x130(r3)
-	  lis       r5, 0x804F
-	  lwz       r6, 0x134(r3)
-	  subi      r5, r5, 0x328
-	  lwz       r3, 0x138(r3)
-	  mr        r28, r5
-	  stw       r8, 0x8(r1)
-	  li        r29, 0xD
-	  stw       r6, 0xC(r1)
-	  stw       r3, 0x10(r1)
-	  b         .loc_0x274
-	  li        r5, 0
-	  b         .loc_0x33C
-	  li        r5, 0x1
-	  b         .loc_0x33C
-	  li        r5, 0x3
-	  b         .loc_0x33C
-	  li        r5, 0x4
-	  b         .loc_0x33C
-	  li        r5, 0x5
-	  b         .loc_0x33C
-	  li        r5, 0x6
-	  b         .loc_0x33C
-	  li        r5, 0x7
-	  b         .loc_0x33C
-	  li        r5, 0x8
-	  b         .loc_0x33C
-	  li        r5, 0x9
-	  b         .loc_0x33C
-	  li        r5, 0xA
-	  b         .loc_0x33C
-	  li        r5, 0xB
-	  b         .loc_0x33C
-	  addi      r6, r10, 0
-	  li        r5, 0x3
-	  b         .loc_0x3AC
-	  addi      r6, r10, 0xC
-	  li        r5, 0x3
-	  b         .loc_0x3AC
-	  addi      r6, r10, 0x18
-	  li        r5, 0x3
-	  b         .loc_0x3AC
-	  b         .loc_0x470
+	stwu     r1, -0x40(r1)
+	mflr     r0
+	lis      r8,
+sauVariableValue_3_TRANSLATION_XYZ__Q27JStudio14TAdaptor_actor@ha mr       r7,
+r6 stw      r0, 0x44(r1) mr       r0, r5 addi     r10, r8,
+sauVariableValue_3_TRANSLATION_XYZ__Q27JStudio14TAdaptor_actor@l stmw     r25,
+0x24(r1) mr       r30, r3 lwz      r31, 0x34(r3) lis      r3, lbl_8049E698@ha
+	addi     r3, r3, lbl_8049E698@l
+	cmplwi   r31, 0
+	beq      lbl_8000DDC0
+	lis      r5, __ptmf_null@ha
+	srwi     r6, r4, 5
+	addi     r9, r5, __ptmf_null@l
+	clrlwi   r4, r4, 0x1b
+	lwz      r5, 4(r9)
+	addi     r6, r6, -9
+	lwz      r8, 0(r9)
+	cmplwi   r6, 0x48
+	stw      r5, 0xc(r1)
+	stw      r8, 8(r1)
+	lwz      r5, 8(r9)
+	stw      r5, 0x10(r1)
+	bgt      lbl_8000DDC0
+	lis      r5, lbl_8049E86C@ha
+	slwi     r6, r6, 2
+	addi     r5, r5, lbl_8049E86C@l
+	lwzx     r5, r5, r6
+	mtctr    r5
+	bctr
+	.global  lbl_8000D9D4
 
-	.loc_0x274:
-	  cmpwi     r4, 0x13
-	  bge-      .loc_0x320
-	  cmpwi     r4, 0x10
-	  bge-      .loc_0x288
-	  b         .loc_0x320
+lbl_8000D9D4:
+	lwz      r6, 0xac(r3)
+	lwz      r5, 0xb0(r3)
+	lwz      r3, 0xb4(r3)
+	stw      r6, 8(r1)
+	stw      r5, 0xc(r1)
+	stw      r3, 0x10(r1)
+	b        lbl_8000DDA8
+	.global  lbl_8000D9F0
 
-	.loc_0x288:
-	  cmplwi    r4, 0x12
-	  bgt-      .loc_0x2F8
-	  lis       r5, 0x804A
-	  rlwinm    r3,r4,2,0,29
-	  subi      r4, r5, 0x17E0
-	  lwzx      r3, r4, r3
-	  mtctr     r3
-	  bctr
-	  lis       r3, 0x8001
-	  subi      r12, r3, 0x2A70
-	  b         .loc_0x2E0
-	  lis       r3, 0x8001
-	  subi      r12, r3, 0x2A58
-	  b         .loc_0x2E0
-	  lis       r3, 0x8001
-	  subi      r12, r3, 0x2A2C
-	  b         .loc_0x2E0
-	  lis       r3, 0x8001
-	  subi      r12, r3, 0x2A00
-	  b         .loc_0x2E0
-	  lis       r3, 0x8001
-	  subi      r12, r3, 0x2990
+lbl_8000D9F0:
+	lwz      r6, 0xb8(r3)
+	lwz      r5, 0xbc(r3)
+	lwz      r3, 0xc0(r3)
+	stw      r6, 8(r1)
+	stw      r5, 0xc(r1)
+	stw      r3, 0x10(r1)
+	b        lbl_8000DDA8
+	.global  lbl_8000DA0C
 
-	.loc_0x2E0:
-	  mr        r3, r31
-	  mr        r4, r30
-	  mr        r5, r29
-	  mr        r6, r0
-	  mtctr     r12
-	  bctrl
+lbl_8000DA0C:
+	lwz      r6, 0xc4(r3)
+	lwz      r5, 0xc8(r3)
+	lwz      r3, 0xcc(r3)
+	stw      r6, 8(r1)
+	stw      r5, 0xc(r1)
+	stw      r3, 0x10(r1)
+	b        lbl_8000DDA8
+	.global  lbl_8000DA28
 
-	.loc_0x2F8:
-	  mulli     r0, r29, 0x14
-	  lwz       r3, 0x4(r31)
-	  cmplwi    r28, 0
-	  add       r3, r3, r0
-	  beq-      .loc_0x314
-	  mr        r0, r28
-	  b         .loc_0x318
+lbl_8000DA28:
+	lwz      r6, 0xd0(r3)
+	lwz      r5, 0xd4(r3)
+	lwz      r3, 0xd8(r3)
+	stw      r6, 8(r1)
+	stw      r5, 0xc(r1)
+	stw      r3, 0x10(r1)
+	b        lbl_8000DDA8
+	.global  lbl_8000DA44
 
-	.loc_0x314:
-	  subi      r0, r13, 0x78F0
+lbl_8000DA44:
+	lwz      r6, 0xdc(r3)
+	lwz      r5, 0xe0(r3)
+	lwz      r3, 0xe4(r3)
+	stw      r6, 8(r1)
+	stw      r5, 0xc(r1)
+	stw      r3, 0x10(r1)
+	b        lbl_8000DDA8
+	.global  lbl_8000DA60
 
-	.loc_0x318:
-	  stw       r0, 0x10(r3)
-	  b         .loc_0x470
+lbl_8000DA60:
+	lwz      r6, 0xe8(r3)
+	lwz      r5, 0xec(r3)
+	lwz      r3, 0xf0(r3)
+	stw      r6, 8(r1)
+	stw      r5, 0xc(r1)
+	stw      r3, 0x10(r1)
+	b        lbl_8000DDA8
+	.global  lbl_8000DA7C
 
-	.loc_0x320:
-	  mr        r3, r31
-	  mr        r5, r0
-	  mr        r6, r7
-	  addi      r12, r1, 0x8
-	  bl        0xB3EA4
-	  nop
-	  b         .loc_0x470
+lbl_8000DA7C:
+	lwz      r6, 0xf4(r3)
+	lwz      r5, 0xf8(r3)
+	lwz      r3, 0xfc(r3)
+	stw      r6, 8(r1)
+	stw      r5, 0xc(r1)
+	stw      r3, 0x10(r1)
+	b        lbl_8000DDA8
+	.global  lbl_8000DA98
 
-	.loc_0x33C:
-	  cmplwi    r4, 0x12
-	  bgt-      .loc_0x470
-	  lis       r6, 0x804A
-	  rlwinm    r3,r4,2,0,29
-	  subi      r4, r6, 0x182C
-	  lwzx      r3, r4, r3
-	  mtctr     r3
-	  bctr
-	  lis       r3, 0x8001
-	  subi      r12, r3, 0x2A70
-	  b         .loc_0x394
-	  lis       r3, 0x8001
-	  subi      r12, r3, 0x2A58
-	  b         .loc_0x394
-	  lis       r3, 0x8001
-	  subi      r12, r3, 0x2A2C
-	  b         .loc_0x394
-	  lis       r3, 0x8001
-	  subi      r12, r3, 0x2A00
-	  b         .loc_0x394
-	  lis       r3, 0x8001
-	  subi      r12, r3, 0x2990
+lbl_8000DA98:
+	lwz      r8, 0x100(r3)
+	lis      r5,
+"soovv_actor_PARENT_ENABLE___Q27JStudio28@unnamed@jstudio_object_cpp@"@ha lwz
+r6, 0x104(r3) addi     r5, r5,
+"soovv_actor_PARENT_ENABLE___Q27JStudio28@unnamed@jstudio_object_cpp@"@l lwz r3,
+0x108(r3) mr       r28, r5 stw      r8, 8(r1) li       r29, 0xc stw      r6,
+0xc(r1) stw      r3, 0x10(r1) b        lbl_8000DBC4 .global  lbl_8000DAC4
 
-	.loc_0x394:
-	  mr        r3, r31
-	  mr        r4, r30
-	  mr        r6, r0
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x470
+lbl_8000DAC4:
+	lwz      r6, 0x10c(r3)
+	lwz      r5, 0x110(r3)
+	lwz      r3, 0x114(r3)
+	stw      r6, 8(r1)
+	stw      r5, 0xc(r1)
+	stw      r3, 0x10(r1)
+	b        lbl_8000DDA8
+	.global  lbl_8000DAE0
 
-	.loc_0x3AC:
-	  cmpwi     r4, 0x3
-	  mr        r29, r0
-	  beq-      .loc_0x3F8
-	  bge-      .loc_0x3CC
-	  cmpwi     r4, 0x1
-	  beq-      .loc_0x3D8
-	  bge-      .loc_0x3E8
-	  b         .loc_0x470
+lbl_8000DAE0:
+	lwz      r6, 0x118(r3)
+	lwz      r5, 0x11c(r3)
+	lwz      r3, 0x120(r3)
+	stw      r6, 8(r1)
+	stw      r5, 0xc(r1)
+	stw      r3, 0x10(r1)
+	b        lbl_8000DDA8
+	.global  lbl_8000DAFC
 
-	.loc_0x3CC:
-	  cmpwi     r4, 0x12
-	  beq-      .loc_0x408
-	  b         .loc_0x470
+lbl_8000DAFC:
+	lwz      r6, 0x124(r3)
+	lwz      r5, 0x128(r3)
+	lwz      r3, 0x12c(r3)
+	stw      r6, 8(r1)
+	stw      r5, 0xc(r1)
+	stw      r3, 0x10(r1)
+	b        lbl_8000DDA8
+	.global  lbl_8000DB18
 
-	.loc_0x3D8:
-	  lis       r3, 0x8001
-	  li        r27, 0
-	  subi      r28, r3, 0x2A70
-	  b         .loc_0x414
+lbl_8000DB18:
+	lwz      r8, 0x130(r3)
+	lis      r5,
+"soovv_actor_RELATION_ENABLE___Q27JStudio28@unnamed@jstudio_object_cpp@"@ha lwz
+r6, 0x134(r3) addi     r5, r5,
+"soovv_actor_RELATION_ENABLE___Q27JStudio28@unnamed@jstudio_object_cpp@"@l lwz
+r3, 0x138(r3) mr       r28, r5 stw      r8, 8(r1) li       r29, 0xd stw      r6,
+0xc(r1) stw      r3, 0x10(r1) b        lbl_8000DBC4 .global  lbl_8000DB44
 
-	.loc_0x3E8:
-	  lis       r3, 0x8001
-	  li        r27, 0x4
-	  subi      r28, r3, 0x2A58
-	  b         .loc_0x414
+lbl_8000DB44:
+	li       r5, 0
+	b        lbl_8000DC8C
+	.global  lbl_8000DB4C
 
-	.loc_0x3F8:
-	  lis       r3, 0x8001
-	  li        r27, 0x4
-	  subi      r28, r3, 0x2A2C
-	  b         .loc_0x414
+lbl_8000DB4C:
+	li       r5, 1
+	b        lbl_8000DC8C
+	.global  lbl_8000DB54
 
-	.loc_0x408:
-	  lis       r3, 0x8001
-	  li        r27, 0x4
-	  subi      r28, r3, 0x2990
+lbl_8000DB54:
+	li       r5, 3
+	b        lbl_8000DC8C
+	.global  lbl_8000DB5C
 
-	.loc_0x414:
-	  rlwinm    r0,r5,2,0,29
-	  mr        r26, r6
-	  add       r25, r6, r0
-	  b         .loc_0x44C
+lbl_8000DB5C:
+	li       r5, 4
+	b        lbl_8000DC8C
+	.global  lbl_8000DB64
 
-	.loc_0x424:
-	  mr        r12, r28
-	  mr        r3, r31
-	  mr        r4, r30
-	  mr        r6, r29
-	  mr        r7, r27
-	  lwz       r5, 0x0(r26)
-	  mtctr     r12
-	  addi      r26, r26, 0x4
-	  bctrl
-	  add       r29, r29, r27
+lbl_8000DB64:
+	li       r5, 5
+	b        lbl_8000DC8C
+	.global  lbl_8000DB6C
 
-	.loc_0x44C:
-	  cmplw     r26, r25
-	  bne+      .loc_0x424
-	  b         .loc_0x470
+lbl_8000DB6C:
+	li       r5, 6
+	b        lbl_8000DC8C
+	.global  lbl_8000DB74
 
-	.loc_0x458:
-	  mr        r3, r31
-	  mr        r5, r0
-	  mr        r6, r7
-	  addi      r12, r1, 0x8
-	  bl        0xB3D6C
-	  nop
+lbl_8000DB74:
+	li       r5, 7
+	b        lbl_8000DC8C
+	.global  lbl_8000DB7C
 
-	.loc_0x470:
-	  lmw       r25, 0x24(r1)
-	  lwz       r0, 0x44(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
+lbl_8000DB7C:
+	li       r5, 8
+	b        lbl_8000DC8C
+	.global  lbl_8000DB84
+
+lbl_8000DB84:
+	li       r5, 9
+	b        lbl_8000DC8C
+	.global  lbl_8000DB8C
+
+lbl_8000DB8C:
+	li       r5, 0xa
+	b        lbl_8000DC8C
+	.global  lbl_8000DB94
+
+lbl_8000DB94:
+	li       r5, 0xb
+	b        lbl_8000DC8C
+	.global  lbl_8000DB9C
+
+lbl_8000DB9C:
+	addi     r6, r10, 0
+	li       r5, 3
+	b        lbl_8000DCFC
+	.global  lbl_8000DBA8
+
+lbl_8000DBA8:
+	addi     r6, r10, 0xc
+	li       r5, 3
+	b        lbl_8000DCFC
+	.global  lbl_8000DBB4
+
+lbl_8000DBB4:
+	addi     r6, r10, 0x18
+	li       r5, 3
+	b        lbl_8000DCFC
+	.global  lbl_8000DBC0
+
+lbl_8000DBC0:
+	b        lbl_8000DDC0
+
+lbl_8000DBC4:
+	cmpwi    r4, 0x13
+	bge      lbl_8000DC70
+	cmpwi    r4, 0x10
+	bge      lbl_8000DBD8
+	b        lbl_8000DC70
+
+lbl_8000DBD8:
+	cmplwi   r4, 0x12
+	bgt      lbl_8000DC48
+	lis      r5, lbl_8049E820@ha
+	slwi     r3, r4, 2
+	addi     r4, r5, lbl_8049E820@l
+	lwzx     r3, r4, r3
+	mtctr    r3
+	bctr
+	.global  lbl_8000DBF8
+
+lbl_8000DBF8:
+	lis      r3,
+adaptor_setVariableValue_VOID___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
+	addi     r12, r3,
+adaptor_setVariableValue_VOID___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
+	b        lbl_8000DC30
+	.global  lbl_8000DC04
+
+lbl_8000DC04:
+	lis      r3,
+adaptor_setVariableValue_IMMEDIATE___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
+	addi     r12, r3,
+adaptor_setVariableValue_IMMEDIATE___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
+	b        lbl_8000DC30
+	.global  lbl_8000DC10
+
+lbl_8000DC10:
+	lis      r3,
+adaptor_setVariableValue_TIME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
+	addi     r12, r3,
+adaptor_setVariableValue_TIME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
+	b        lbl_8000DC30
+	.global  lbl_8000DC1C
+
+lbl_8000DC1C:
+	lis      r3,
+adaptor_setVariableValue_FVR_NAME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
+	addi     r12, r3,
+adaptor_setVariableValue_FVR_NAME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
+	b        lbl_8000DC30
+	.global  lbl_8000DC28
+
+lbl_8000DC28:
+	lis      r3,
+adaptor_setVariableValue_FVR_INDEX___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
+	addi     r12, r3,
+adaptor_setVariableValue_FVR_INDEX___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
+
+lbl_8000DC30:
+	mr       r3, r31
+	mr       r4, r30
+	mr       r5, r29
+	mr       r6, r0
+	mtctr    r12
+	bctrl
+	.global  lbl_8000DC48
+
+lbl_8000DC48:
+	mulli    r0, r29, 0x14
+	lwz      r3, 4(r31)
+	cmplwi   r28, 0
+	add      r3, r3, r0
+	beq      lbl_8000DC64
+	mr       r0, r28
+	b        lbl_8000DC68
+
+lbl_8000DC64:
+	addi     r0, r13, soOutput_none___Q27JStudio14TVariableValue@sda21
+
+lbl_8000DC68:
+	stw      r0, 0x10(r3)
+	b        lbl_8000DDC0
+
+lbl_8000DC70:
+	mr       r3, r31
+	mr       r5, r0
+	mr       r6, r7
+	addi     r12, r1, 8
+	bl       __ptmf_scall
+	nop
+	b        lbl_8000DDC0
+
+lbl_8000DC8C:
+	cmplwi   r4, 0x12
+	bgt      lbl_8000DDC0
+	lis      r6, lbl_8049E7D4@ha
+	slwi     r3, r4, 2
+	addi     r4, r6, lbl_8049E7D4@l
+	lwzx     r3, r4, r3
+	mtctr    r3
+	bctr
+	.global  lbl_8000DCAC
+
+lbl_8000DCAC:
+	lis      r3,
+adaptor_setVariableValue_VOID___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
+	addi     r12, r3,
+adaptor_setVariableValue_VOID___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
+	b        lbl_8000DCE4
+	.global  lbl_8000DCB8
+
+lbl_8000DCB8:
+	lis      r3,
+adaptor_setVariableValue_IMMEDIATE___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
+	addi     r12, r3,
+adaptor_setVariableValue_IMMEDIATE___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
+	b        lbl_8000DCE4
+	.global  lbl_8000DCC4
+
+lbl_8000DCC4:
+	lis      r3,
+adaptor_setVariableValue_TIME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
+	addi     r12, r3,
+adaptor_setVariableValue_TIME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
+	b        lbl_8000DCE4
+	.global  lbl_8000DCD0
+
+lbl_8000DCD0:
+	lis      r3,
+adaptor_setVariableValue_FVR_NAME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
+	addi     r12, r3,
+adaptor_setVariableValue_FVR_NAME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
+	b        lbl_8000DCE4
+	.global  lbl_8000DCDC
+
+lbl_8000DCDC:
+	lis      r3,
+adaptor_setVariableValue_FVR_INDEX___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
+	addi     r12, r3,
+adaptor_setVariableValue_FVR_INDEX___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
+
+lbl_8000DCE4:
+	mr       r3, r31
+	mr       r4, r30
+	mr       r6, r0
+	mtctr    r12
+	bctrl
+	.global  lbl_8000DCF8
+
+lbl_8000DCF8:
+	b        lbl_8000DDC0
+
+lbl_8000DCFC:
+	cmpwi    r4, 3
+	mr       r29, r0
+	beq      lbl_8000DD48
+	bge      lbl_8000DD1C
+	cmpwi    r4, 1
+	beq      lbl_8000DD28
+	bge      lbl_8000DD38
+	b        lbl_8000DDC0
+
+lbl_8000DD1C:
+	cmpwi    r4, 0x12
+	beq      lbl_8000DD58
+	b        lbl_8000DDC0
+
+lbl_8000DD28:
+	lis      r3,
+adaptor_setVariableValue_VOID___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
+	li       r27, 0
+	addi     r28, r3,
+adaptor_setVariableValue_VOID___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
+	b        lbl_8000DD64
+
+lbl_8000DD38:
+	lis      r3,
+adaptor_setVariableValue_IMMEDIATE___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
+	li       r27, 4
+	addi     r28, r3,
+adaptor_setVariableValue_IMMEDIATE___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
+	b        lbl_8000DD64
+
+lbl_8000DD48:
+	lis      r3,
+adaptor_setVariableValue_TIME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
+	li       r27, 4
+	addi     r28, r3,
+adaptor_setVariableValue_TIME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
+	b        lbl_8000DD64
+
+lbl_8000DD58:
+	lis      r3,
+adaptor_setVariableValue_FVR_INDEX___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
+	li       r27, 4
+	addi     r28, r3,
+adaptor_setVariableValue_FVR_INDEX___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
+
+lbl_8000DD64:
+	slwi     r0, r5, 2
+	mr       r26, r6
+	add      r25, r6, r0
+	b        lbl_8000DD9C
+
+lbl_8000DD74:
+	mr       r12, r28
+	mr       r3, r31
+	mr       r4, r30
+	mr       r6, r29
+	mr       r7, r27
+	lwz      r5, 0(r26)
+	mtctr    r12
+	addi     r26, r26, 4
+	bctrl
+	add      r29, r29, r27
+
+lbl_8000DD9C:
+	cmplw    r26, r25
+	bne      lbl_8000DD74
+	b        lbl_8000DDC0
+
+lbl_8000DDA8:
+	mr       r3, r31
+	mr       r5, r0
+	mr       r6, r7
+	addi     r12, r1, 8
+	bl       __ptmf_scall
+	nop
+
+lbl_8000DDC0:
+	lmw      r25, 0x24(r1)
+	lwz      r0, 0x44(r1)
+	mtlr     r0
+	addi     r1, r1, 0x40
+	blr
 	*/
 }
 
@@ -1438,34 +2738,33 @@ void TObject_actor::do_paragraph(unsigned long, void const*, unsigned long)
 TAdaptor_ambientLight::~TAdaptor_ambientLight(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r3
-	  beq-      .loc_0x44
-	  lis       r3, 0x804A
-	  subi      r0, r3, 0xC48
-	  stw       r0, 0x0(r31)
-	  beq-      .loc_0x34
-	  lis       r3, 0x804A
-	  subi      r0, r3, 0xB98
-	  stw       r0, 0x0(r31)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r3, r3
+	beq      lbl_8000DE18
+	lis      r3, __vt__Q27JStudio21TAdaptor_ambientLight@ha
+	addi     r0, r3, __vt__Q27JStudio21TAdaptor_ambientLight@l
+	stw      r0, 0(r31)
+	beq      lbl_8000DE08
+	lis      r3, __vt__Q27JStudio8TAdaptor@ha
+	addi     r0, r3, __vt__Q27JStudio8TAdaptor@l
+	stw      r0, 0(r31)
 
-	.loc_0x34:
-	  extsh.    r0, r4
-	  ble-      .loc_0x44
-	  mr        r3, r31
-	  bl        0x162A0
+lbl_8000DE08:
+	extsh.   r0, r4
+	ble      lbl_8000DE18
+	mr       r3, r31
+	bl       __dl__FPv
 
-	.loc_0x44:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8000DE18:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1694,34 +2993,33 @@ void TObject_ambientLight::do_paragraph(unsigned long, void const*,
 TAdaptor_camera::~TAdaptor_camera(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r3
-	  beq-      .loc_0x44
-	  lis       r3, 0x804A
-	  subi      r0, r3, 0xCA4
-	  stw       r0, 0x0(r31)
-	  beq-      .loc_0x34
-	  lis       r3, 0x804A
-	  subi      r0, r3, 0xB98
-	  stw       r0, 0x0(r31)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r3, r3
+	beq      lbl_8000E0A8
+	lis      r3, __vt__Q27JStudio15TAdaptor_camera@ha
+	addi     r0, r3, __vt__Q27JStudio15TAdaptor_camera@l
+	stw      r0, 0(r31)
+	beq      lbl_8000E098
+	lis      r3, __vt__Q27JStudio8TAdaptor@ha
+	addi     r0, r3, __vt__Q27JStudio8TAdaptor@l
+	stw      r0, 0(r31)
 
-	.loc_0x34:
-	  extsh.    r0, r4
-	  ble-      .loc_0x44
-	  mr        r3, r31
-	  bl        0x16010
+lbl_8000E098:
+	extsh.   r0, r4
+	ble      lbl_8000E0A8
+	mr       r3, r31
+	bl       __dl__FPv
 
-	.loc_0x44:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8000E0A8:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1779,301 +3077,422 @@ TObject_camera::TObject_camera(JStudio::stb::data::TParse_TBlock_object const&,
 void TObject_camera::do_paragraph(unsigned long, void const*, unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  mr        r7, r6
-	  stw       r0, 0x44(r1)
-	  mr        r0, r5
-	  stmw      r25, 0x24(r1)
-	  mr        r30, r3
-	  lis       r3, 0x804A
-	  subi      r3, r3, 0x1968
-	  lwz       r31, 0x34(r30)
-	  cmplwi    r31, 0
-	  beq-      .loc_0x3E4
-	  lis       r5, 0x8048
-	  rlwinm    r6,r4,27,5,31
-	  subi      r9, r5, 0x60F0
-	  rlwinm    r4,r4,0,27,31
-	  lwz       r5, 0x4(r9)
-	  subi      r6, r6, 0x15
-	  lwz       r8, 0x0(r9)
-	  cmplwi    r6, 0x3F
-	  stw       r5, 0xC(r1)
-	  stw       r8, 0x8(r1)
-	  lwz       r5, 0x8(r9)
-	  stw       r5, 0x10(r1)
-	  bgt-      .loc_0x3E4
-	  lis       r5, 0x804A
-	  rlwinm    r6,r6,2,0,29
-	  subi      r5, r5, 0x1538
-	  lwzx      r5, r5, r6
-	  mtctr     r5
-	  bctr
-	  lwz       r6, 0x344(r3)
-	  lwz       r5, 0x348(r3)
-	  lwz       r3, 0x34C(r3)
-	  stw       r6, 0x8(r1)
-	  stw       r5, 0xC(r1)
-	  stw       r3, 0x10(r1)
-	  b         .loc_0x3CC
-	  lwz       r6, 0x350(r3)
-	  lwz       r5, 0x354(r3)
-	  lwz       r3, 0x358(r3)
-	  stw       r6, 0x8(r1)
-	  stw       r5, 0xC(r1)
-	  stw       r3, 0x10(r1)
-	  b         .loc_0x3CC
-	  lwz       r8, 0x35C(r3)
-	  lis       r5, 0x804F
-	  lwz       r6, 0x360(r3)
-	  subi      r5, r5, 0x30C
-	  lwz       r3, 0x364(r3)
-	  mr        r28, r5
-	  stw       r8, 0x8(r1)
-	  li        r29, 0xA
-	  stw       r6, 0xC(r1)
-	  stw       r3, 0x10(r1)
-	  b         .loc_0x1E8
-	  lwz       r6, 0x368(r3)
-	  lwz       r5, 0x36C(r3)
-	  lwz       r3, 0x370(r3)
-	  stw       r6, 0x8(r1)
-	  stw       r5, 0xC(r1)
-	  stw       r3, 0x10(r1)
-	  b         .loc_0x3CC
-	  lwz       r6, 0x374(r3)
-	  lwz       r5, 0x378(r3)
-	  lwz       r3, 0x37C(r3)
-	  stw       r6, 0x8(r1)
-	  stw       r5, 0xC(r1)
-	  stw       r3, 0x10(r1)
-	  b         .loc_0x3CC
-	  lwz       r6, 0x380(r3)
-	  lwz       r5, 0x384(r3)
-	  lwz       r3, 0x388(r3)
-	  stw       r6, 0x8(r1)
-	  stw       r5, 0xC(r1)
-	  stw       r3, 0x10(r1)
-	  b         .loc_0x3CC
-	  lwz       r8, 0x38C(r3)
-	  lis       r5, 0x804F
-	  lwz       r6, 0x390(r3)
-	  subi      r5, r5, 0x2F0
-	  lwz       r3, 0x394(r3)
-	  mr        r28, r5
-	  stw       r8, 0x8(r1)
-	  li        r29, 0xB
-	  stw       r6, 0xC(r1)
-	  stw       r3, 0x10(r1)
-	  b         .loc_0x1E8
-	  li        r5, 0
-	  b         .loc_0x2B0
-	  li        r5, 0x1
-	  b         .loc_0x2B0
-	  li        r5, 0x2
-	  b         .loc_0x2B0
-	  li        r5, 0x3
-	  b         .loc_0x2B0
-	  li        r5, 0x4
-	  b         .loc_0x2B0
-	  li        r5, 0x5
-	  b         .loc_0x2B0
-	  li        r5, 0x6
-	  b         .loc_0x2B0
-	  li        r5, 0x7
-	  b         .loc_0x2B0
-	  li        r5, 0x8
-	  b         .loc_0x2B0
-	  li        r5, 0x9
-	  b         .loc_0x2B0
-	  lis       r3, 0x8047
-	  li        r5, 0x3
-	  addi      r3, r3, 0x3390
-	  mr        r6, r3
-	  b         .loc_0x320
-	  lis       r3, 0x8047
-	  li        r5, 0x3
-	  addi      r3, r3, 0x339C
-	  mr        r6, r3
-	  b         .loc_0x320
-	  subi      r6, r2, 0x7F48
-	  li        r5, 0x2
-	  b         .loc_0x320
-	  b         .loc_0x3E4
+	stwu     r1, -0x40(r1)
+	mflr     r0
+	mr       r7, r6
+	stw      r0, 0x44(r1)
+	mr       r0, r5
+	stmw     r25, 0x24(r1)
+	mr       r30, r3
+	lis      r3, lbl_8049E698@ha
+	addi     r3, r3, lbl_8049E698@l
+	lwz      r31, 0x34(r30)
+	cmplwi   r31, 0
+	beq      lbl_8000E4FC
+	lis      r5, __ptmf_null@ha
+	srwi     r6, r4, 5
+	addi     r9, r5, __ptmf_null@l
+	clrlwi   r4, r4, 0x1b
+	lwz      r5, 4(r9)
+	addi     r6, r6, -21
+	lwz      r8, 0(r9)
+	cmplwi   r6, 0x3f
+	stw      r5, 0xc(r1)
+	stw      r8, 8(r1)
+	lwz      r5, 8(r9)
+	stw      r5, 0x10(r1)
+	bgt      lbl_8000E4FC
+	lis      r5, lbl_8049EAC8@ha
+	slwi     r6, r6, 2
+	addi     r5, r5, lbl_8049EAC8@l
+	lwzx     r5, r5, r6
+	mtctr    r5
+	bctr
+	.global  lbl_8000E194
 
-	.loc_0x1E8:
-	  cmpwi     r4, 0x13
-	  bge-      .loc_0x294
-	  cmpwi     r4, 0x10
-	  bge-      .loc_0x1FC
-	  b         .loc_0x294
+lbl_8000E194:
+	lwz      r6, 0x344(r3)
+	lwz      r5, 0x348(r3)
+	lwz      r3, 0x34c(r3)
+	stw      r6, 8(r1)
+	stw      r5, 0xc(r1)
+	stw      r3, 0x10(r1)
+	b        lbl_8000E4E4
+	.global  lbl_8000E1B0
 
-	.loc_0x1FC:
-	  cmplwi    r4, 0x12
-	  bgt-      .loc_0x26C
-	  lis       r5, 0x804A
-	  rlwinm    r3,r4,2,0,29
-	  subi      r4, r5, 0x1584
-	  lwzx      r3, r4, r3
-	  mtctr     r3
-	  bctr
-	  lis       r3, 0x8001
-	  subi      r12, r3, 0x2A70
-	  b         .loc_0x254
-	  lis       r3, 0x8001
-	  subi      r12, r3, 0x2A58
-	  b         .loc_0x254
-	  lis       r3, 0x8001
-	  subi      r12, r3, 0x2A2C
-	  b         .loc_0x254
-	  lis       r3, 0x8001
-	  subi      r12, r3, 0x2A00
-	  b         .loc_0x254
-	  lis       r3, 0x8001
-	  subi      r12, r3, 0x2990
+lbl_8000E1B0:
+	lwz      r6, 0x350(r3)
+	lwz      r5, 0x354(r3)
+	lwz      r3, 0x358(r3)
+	stw      r6, 8(r1)
+	stw      r5, 0xc(r1)
+	stw      r3, 0x10(r1)
+	b        lbl_8000E4E4
+	.global  lbl_8000E1CC
 
-	.loc_0x254:
-	  mr        r3, r31
-	  mr        r4, r30
-	  mr        r5, r29
-	  mr        r6, r0
-	  mtctr     r12
-	  bctrl
+lbl_8000E1CC:
+	lwz      r8, 0x35c(r3)
+	lis      r5,
+"soovv_camera_PARENT_ENABLE___Q27JStudio28@unnamed@jstudio_object_cpp@"@ha lwz
+r6, 0x360(r3) addi     r5, r5,
+"soovv_camera_PARENT_ENABLE___Q27JStudio28@unnamed@jstudio_object_cpp@"@l lwz
+r3, 0x364(r3) mr       r28, r5 stw      r8, 8(r1) li       r29, 0xa stw      r6,
+0xc(r1) stw      r3, 0x10(r1) b        lbl_8000E300 .global  lbl_8000E1F8
 
-	.loc_0x26C:
-	  mulli     r0, r29, 0x14
-	  lwz       r3, 0x4(r31)
-	  cmplwi    r28, 0
-	  add       r3, r3, r0
-	  beq-      .loc_0x288
-	  mr        r0, r28
-	  b         .loc_0x28C
+lbl_8000E1F8:
+	lwz      r6, 0x368(r3)
+	lwz      r5, 0x36c(r3)
+	lwz      r3, 0x370(r3)
+	stw      r6, 8(r1)
+	stw      r5, 0xc(r1)
+	stw      r3, 0x10(r1)
+	b        lbl_8000E4E4
+	.global  lbl_8000E214
 
-	.loc_0x288:
-	  subi      r0, r13, 0x78F0
+lbl_8000E214:
+	lwz      r6, 0x374(r3)
+	lwz      r5, 0x378(r3)
+	lwz      r3, 0x37c(r3)
+	stw      r6, 8(r1)
+	stw      r5, 0xc(r1)
+	stw      r3, 0x10(r1)
+	b        lbl_8000E4E4
+	.global  lbl_8000E230
 
-	.loc_0x28C:
-	  stw       r0, 0x10(r3)
-	  b         .loc_0x3E4
+lbl_8000E230:
+	lwz      r6, 0x380(r3)
+	lwz      r5, 0x384(r3)
+	lwz      r3, 0x388(r3)
+	stw      r6, 8(r1)
+	stw      r5, 0xc(r1)
+	stw      r3, 0x10(r1)
+	b        lbl_8000E4E4
+	.global  lbl_8000E24C
 
-	.loc_0x294:
-	  mr        r3, r31
-	  mr        r5, r0
-	  mr        r6, r7
-	  addi      r12, r1, 0x8
-	  bl        0xB3768
-	  nop
-	  b         .loc_0x3E4
+lbl_8000E24C:
+	lwz      r8, 0x38c(r3)
+	lis      r5,
+"soovv_camera_TARGET_PARENT_ENABLE___Q27JStudio28@unnamed@jstudio_object_cpp@"@ha
+	lwz      r6, 0x390(r3)
+	addi     r5, r5,
+"soovv_camera_TARGET_PARENT_ENABLE___Q27JStudio28@unnamed@jstudio_object_cpp@"@l
+	lwz      r3, 0x394(r3)
+	mr       r28, r5
+	stw      r8, 8(r1)
+	li       r29, 0xb
+	stw      r6, 0xc(r1)
+	stw      r3, 0x10(r1)
+	b        lbl_8000E300
+	.global  lbl_8000E278
 
-	.loc_0x2B0:
-	  cmplwi    r4, 0x12
-	  bgt-      .loc_0x3E4
-	  lis       r6, 0x804A
-	  rlwinm    r3,r4,2,0,29
-	  subi      r4, r6, 0x15D0
-	  lwzx      r3, r4, r3
-	  mtctr     r3
-	  bctr
-	  lis       r3, 0x8001
-	  subi      r12, r3, 0x2A70
-	  b         .loc_0x308
-	  lis       r3, 0x8001
-	  subi      r12, r3, 0x2A58
-	  b         .loc_0x308
-	  lis       r3, 0x8001
-	  subi      r12, r3, 0x2A2C
-	  b         .loc_0x308
-	  lis       r3, 0x8001
-	  subi      r12, r3, 0x2A00
-	  b         .loc_0x308
-	  lis       r3, 0x8001
-	  subi      r12, r3, 0x2990
+lbl_8000E278:
+	li       r5, 0
+	b        lbl_8000E3C8
+	.global  lbl_8000E280
 
-	.loc_0x308:
-	  mr        r3, r31
-	  mr        r4, r30
-	  mr        r6, r0
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x3E4
+lbl_8000E280:
+	li       r5, 1
+	b        lbl_8000E3C8
+	.global  lbl_8000E288
 
-	.loc_0x320:
-	  cmpwi     r4, 0x3
-	  mr        r29, r0
-	  beq-      .loc_0x36C
-	  bge-      .loc_0x340
-	  cmpwi     r4, 0x1
-	  beq-      .loc_0x34C
-	  bge-      .loc_0x35C
-	  b         .loc_0x3E4
+lbl_8000E288:
+	li       r5, 2
+	b        lbl_8000E3C8
+	.global  lbl_8000E290
 
-	.loc_0x340:
-	  cmpwi     r4, 0x12
-	  beq-      .loc_0x37C
-	  b         .loc_0x3E4
+lbl_8000E290:
+	li       r5, 3
+	b        lbl_8000E3C8
+	.global  lbl_8000E298
 
-	.loc_0x34C:
-	  lis       r3, 0x8001
-	  li        r27, 0
-	  subi      r28, r3, 0x2A70
-	  b         .loc_0x388
+lbl_8000E298:
+	li       r5, 4
+	b        lbl_8000E3C8
+	.global  lbl_8000E2A0
 
-	.loc_0x35C:
-	  lis       r3, 0x8001
-	  li        r27, 0x4
-	  subi      r28, r3, 0x2A58
-	  b         .loc_0x388
+lbl_8000E2A0:
+	li       r5, 5
+	b        lbl_8000E3C8
+	.global  lbl_8000E2A8
 
-	.loc_0x36C:
-	  lis       r3, 0x8001
-	  li        r27, 0x4
-	  subi      r28, r3, 0x2A2C
-	  b         .loc_0x388
+lbl_8000E2A8:
+	li       r5, 6
+	b        lbl_8000E3C8
+	.global  lbl_8000E2B0
 
-	.loc_0x37C:
-	  lis       r3, 0x8001
-	  li        r27, 0x4
-	  subi      r28, r3, 0x2990
+lbl_8000E2B0:
+	li       r5, 7
+	b        lbl_8000E3C8
+	.global  lbl_8000E2B8
 
-	.loc_0x388:
-	  rlwinm    r0,r5,2,0,29
-	  mr        r26, r6
-	  add       r25, r6, r0
-	  b         .loc_0x3C0
+lbl_8000E2B8:
+	li       r5, 8
+	b        lbl_8000E3C8
+	.global  lbl_8000E2C0
 
-	.loc_0x398:
-	  mr        r12, r28
-	  mr        r3, r31
-	  mr        r4, r30
-	  mr        r6, r29
-	  mr        r7, r27
-	  lwz       r5, 0x0(r26)
-	  mtctr     r12
-	  addi      r26, r26, 0x4
-	  bctrl
-	  add       r29, r29, r27
+lbl_8000E2C0:
+	li       r5, 9
+	b        lbl_8000E3C8
+	.global  lbl_8000E2C8
 
-	.loc_0x3C0:
-	  cmplw     r26, r25
-	  bne+      .loc_0x398
-	  b         .loc_0x3E4
+lbl_8000E2C8:
+	lis      r3, sauVariableValue_3_POSITION_XYZ__Q27JStudio15TAdaptor_camera@ha
+	li       r5, 3
+	addi     r3, r3,
+sauVariableValue_3_POSITION_XYZ__Q27JStudio15TAdaptor_camera@l mr       r6, r3
+	b        lbl_8000E438
+	.global  lbl_8000E2DC
 
-	.loc_0x3CC:
-	  mr        r3, r31
-	  mr        r5, r0
-	  mr        r6, r7
-	  addi      r12, r1, 0x8
-	  bl        0xB3630
-	  nop
+lbl_8000E2DC:
+	lis      r3,
+sauVariableValue_3_TARGET_POSITION_XYZ__Q27JStudio15TAdaptor_camera@ha li r5, 3
+	addi     r3, r3,
+sauVariableValue_3_TARGET_POSITION_XYZ__Q27JStudio15TAdaptor_camera@l mr r6, r3
+	b        lbl_8000E438
+	.global  lbl_8000E2F0
 
-	.loc_0x3E4:
-	  lmw       r25, 0x24(r1)
-	  lwz       r0, 0x44(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
+lbl_8000E2F0:
+	addi     r6, r2,
+sauVariableValue_2_DISTANCE_NEAR_FAR__Q27JStudio15TAdaptor_camera@sda21 li r5, 2
+	b        lbl_8000E438
+	.global  lbl_8000E2FC
+
+lbl_8000E2FC:
+	b        lbl_8000E4FC
+
+lbl_8000E300:
+	cmpwi    r4, 0x13
+	bge      lbl_8000E3AC
+	cmpwi    r4, 0x10
+	bge      lbl_8000E314
+	b        lbl_8000E3AC
+
+lbl_8000E314:
+	cmplwi   r4, 0x12
+	bgt      lbl_8000E384
+	lis      r5, lbl_8049EA7C@ha
+	slwi     r3, r4, 2
+	addi     r4, r5, lbl_8049EA7C@l
+	lwzx     r3, r4, r3
+	mtctr    r3
+	bctr
+	.global  lbl_8000E334
+
+lbl_8000E334:
+	lis      r3,
+adaptor_setVariableValue_VOID___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
+	addi     r12, r3,
+adaptor_setVariableValue_VOID___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
+	b        lbl_8000E36C
+	.global  lbl_8000E340
+
+lbl_8000E340:
+	lis      r3,
+adaptor_setVariableValue_IMMEDIATE___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
+	addi     r12, r3,
+adaptor_setVariableValue_IMMEDIATE___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
+	b        lbl_8000E36C
+	.global  lbl_8000E34C
+
+lbl_8000E34C:
+	lis      r3,
+adaptor_setVariableValue_TIME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
+	addi     r12, r3,
+adaptor_setVariableValue_TIME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
+	b        lbl_8000E36C
+	.global  lbl_8000E358
+
+lbl_8000E358:
+	lis      r3,
+adaptor_setVariableValue_FVR_NAME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
+	addi     r12, r3,
+adaptor_setVariableValue_FVR_NAME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
+	b        lbl_8000E36C
+	.global  lbl_8000E364
+
+lbl_8000E364:
+	lis      r3,
+adaptor_setVariableValue_FVR_INDEX___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
+	addi     r12, r3,
+adaptor_setVariableValue_FVR_INDEX___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
+
+lbl_8000E36C:
+	mr       r3, r31
+	mr       r4, r30
+	mr       r5, r29
+	mr       r6, r0
+	mtctr    r12
+	bctrl
+	.global  lbl_8000E384
+
+lbl_8000E384:
+	mulli    r0, r29, 0x14
+	lwz      r3, 4(r31)
+	cmplwi   r28, 0
+	add      r3, r3, r0
+	beq      lbl_8000E3A0
+	mr       r0, r28
+	b        lbl_8000E3A4
+
+lbl_8000E3A0:
+	addi     r0, r13, soOutput_none___Q27JStudio14TVariableValue@sda21
+
+lbl_8000E3A4:
+	stw      r0, 0x10(r3)
+	b        lbl_8000E4FC
+
+lbl_8000E3AC:
+	mr       r3, r31
+	mr       r5, r0
+	mr       r6, r7
+	addi     r12, r1, 8
+	bl       __ptmf_scall
+	nop
+	b        lbl_8000E4FC
+
+lbl_8000E3C8:
+	cmplwi   r4, 0x12
+	bgt      lbl_8000E4FC
+	lis      r6, lbl_8049EA30@ha
+	slwi     r3, r4, 2
+	addi     r4, r6, lbl_8049EA30@l
+	lwzx     r3, r4, r3
+	mtctr    r3
+	bctr
+	.global  lbl_8000E3E8
+
+lbl_8000E3E8:
+	lis      r3,
+adaptor_setVariableValue_VOID___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
+	addi     r12, r3,
+adaptor_setVariableValue_VOID___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
+	b        lbl_8000E420
+	.global  lbl_8000E3F4
+
+lbl_8000E3F4:
+	lis      r3,
+adaptor_setVariableValue_IMMEDIATE___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
+	addi     r12, r3,
+adaptor_setVariableValue_IMMEDIATE___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
+	b        lbl_8000E420
+	.global  lbl_8000E400
+
+lbl_8000E400:
+	lis      r3,
+adaptor_setVariableValue_TIME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
+	addi     r12, r3,
+adaptor_setVariableValue_TIME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
+	b        lbl_8000E420
+	.global  lbl_8000E40C
+
+lbl_8000E40C:
+	lis      r3,
+adaptor_setVariableValue_FVR_NAME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
+	addi     r12, r3,
+adaptor_setVariableValue_FVR_NAME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
+	b        lbl_8000E420
+	.global  lbl_8000E418
+
+lbl_8000E418:
+	lis      r3,
+adaptor_setVariableValue_FVR_INDEX___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
+	addi     r12, r3,
+adaptor_setVariableValue_FVR_INDEX___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
+
+lbl_8000E420:
+	mr       r3, r31
+	mr       r4, r30
+	mr       r6, r0
+	mtctr    r12
+	bctrl
+	.global  lbl_8000E434
+
+lbl_8000E434:
+	b        lbl_8000E4FC
+
+lbl_8000E438:
+	cmpwi    r4, 3
+	mr       r29, r0
+	beq      lbl_8000E484
+	bge      lbl_8000E458
+	cmpwi    r4, 1
+	beq      lbl_8000E464
+	bge      lbl_8000E474
+	b        lbl_8000E4FC
+
+lbl_8000E458:
+	cmpwi    r4, 0x12
+	beq      lbl_8000E494
+	b        lbl_8000E4FC
+
+lbl_8000E464:
+	lis      r3,
+adaptor_setVariableValue_VOID___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
+	li       r27, 0
+	addi     r28, r3,
+adaptor_setVariableValue_VOID___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
+	b        lbl_8000E4A0
+
+lbl_8000E474:
+	lis      r3,
+adaptor_setVariableValue_IMMEDIATE___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
+	li       r27, 4
+	addi     r28, r3,
+adaptor_setVariableValue_IMMEDIATE___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
+	b        lbl_8000E4A0
+
+lbl_8000E484:
+	lis      r3,
+adaptor_setVariableValue_TIME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
+	li       r27, 4
+	addi     r28, r3,
+adaptor_setVariableValue_TIME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
+	b        lbl_8000E4A0
+
+lbl_8000E494:
+	lis      r3,
+adaptor_setVariableValue_FVR_INDEX___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
+	li       r27, 4
+	addi     r28, r3,
+adaptor_setVariableValue_FVR_INDEX___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
+
+lbl_8000E4A0:
+	slwi     r0, r5, 2
+	mr       r26, r6
+	add      r25, r6, r0
+	b        lbl_8000E4D8
+
+lbl_8000E4B0:
+	mr       r12, r28
+	mr       r3, r31
+	mr       r4, r30
+	mr       r6, r29
+	mr       r7, r27
+	lwz      r5, 0(r26)
+	mtctr    r12
+	addi     r26, r26, 4
+	bctrl
+	add      r29, r29, r27
+
+lbl_8000E4D8:
+	cmplw    r26, r25
+	bne      lbl_8000E4B0
+	b        lbl_8000E4FC
+
+lbl_8000E4E4:
+	mr       r3, r31
+	mr       r5, r0
+	mr       r6, r7
+	addi     r12, r1, 8
+	bl       __ptmf_scall
+	nop
+
+lbl_8000E4FC:
+	lmw      r25, 0x24(r1)
+	lwz      r0, 0x44(r1)
+	mtlr     r0
+	addi     r1, r1, 0x40
+	blr
 	*/
 }
 
@@ -2085,34 +3504,33 @@ void TObject_camera::do_paragraph(unsigned long, void const*, unsigned long)
 TAdaptor_fog::~TAdaptor_fog(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r3
-	  beq-      .loc_0x44
-	  lis       r3, 0x804A
-	  subi      r0, r3, 0xCE4
-	  stw       r0, 0x0(r31)
-	  beq-      .loc_0x34
-	  lis       r3, 0x804A
-	  subi      r0, r3, 0xB98
-	  stw       r0, 0x0(r31)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r3, r3
+	beq      lbl_8000E554
+	lis      r3, __vt__Q27JStudio12TAdaptor_fog@ha
+	addi     r0, r3, __vt__Q27JStudio12TAdaptor_fog@l
+	stw      r0, 0(r31)
+	beq      lbl_8000E544
+	lis      r3, __vt__Q27JStudio8TAdaptor@ha
+	addi     r0, r3, __vt__Q27JStudio8TAdaptor@l
+	stw      r0, 0(r31)
 
-	.loc_0x34:
-	  extsh.    r0, r4
-	  ble-      .loc_0x44
-	  mr        r3, r31
-	  bl        0x15B64
+lbl_8000E544:
+	extsh.   r0, r4
+	ble      lbl_8000E554
+	mr       r3, r31
+	bl       __dl__FPv
 
-	.loc_0x44:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8000E554:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2169,153 +3587,217 @@ TObject_fog::TObject_fog((JStudio::stb::data::TParse_TBlock_object const&,
 void TObject_fog::do_paragraph(unsigned long, void const*, unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  mr        r7, r6
-	  stw       r0, 0x34(r1)
-	  mr        r0, r5
-	  stmw      r25, 0x14(r1)
-	  mr        r30, r3
-	  lwz       r31, 0x34(r3)
-	  cmplwi    r31, 0
-	  beq-      .loc_0x1D4
-	  rlwinm    r3,r4,27,5,31
-	  rlwinm    r6,r4,0,27,31
-	  subi      r4, r3, 0x1D
-	  cmplwi    r4, 0x10
-	  bgt-      .loc_0x1D4
-	  lis       r3, 0x804A
-	  rlwinm    r4,r4,2,0,29
-	  subi      r3, r3, 0x13EC
-	  lwzx      r3, r3, r4
-	  mtctr     r3
-	  bctr
-	  li        r5, 0
-	  b         .loc_0xBC
-	  li        r5, 0x1
-	  b         .loc_0xBC
-	  li        r5, 0x2
-	  b         .loc_0xBC
-	  li        r5, 0x3
-	  b         .loc_0xBC
-	  li        r5, 0x4
-	  b         .loc_0xBC
-	  li        r5, 0x5
-	  b         .loc_0xBC
-	  lis       r3, 0x8047
-	  li        r4, 0x3
-	  addi      r3, r3, 0x33A8
-	  mr        r5, r3
-	  b         .loc_0x12C
-	  lis       r3, 0x8047
-	  li        r4, 0x4
-	  addi      r3, r3, 0x33B4
-	  mr        r5, r3
-	  b         .loc_0x12C
-	  subi      r5, r2, 0x7F40
-	  li        r4, 0x2
-	  b         .loc_0x12C
-	  b         .loc_0x1D4
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	mr       r7, r6
+	stw      r0, 0x34(r1)
+	mr       r0, r5
+	stmw     r25, 0x14(r1)
+	mr       r30, r3
+	lwz      r31, 0x34(r3)
+	cmplwi   r31, 0
+	beq      lbl_8000E798
+	srwi     r3, r4, 5
+	clrlwi   r6, r4, 0x1b
+	addi     r4, r3, -29
+	cmplwi   r4, 0x10
+	bgt      lbl_8000E798
+	lis      r3, lbl_8049EC14@ha
+	slwi     r4, r4, 2
+	addi     r3, r3, lbl_8049EC14@l
+	lwzx     r3, r3, r4
+	mtctr    r3
+	bctr
+	.global  lbl_8000E618
 
-	.loc_0xBC:
-	  cmplwi    r6, 0x12
-	  bgt-      .loc_0x1D4
-	  lis       r4, 0x804A
-	  rlwinm    r3,r6,2,0,29
-	  subi      r4, r4, 0x1438
-	  lwzx      r3, r4, r3
-	  mtctr     r3
-	  bctr
-	  lis       r3, 0x8001
-	  subi      r12, r3, 0x2A70
-	  b         .loc_0x114
-	  lis       r3, 0x8001
-	  subi      r12, r3, 0x2A58
-	  b         .loc_0x114
-	  lis       r3, 0x8001
-	  subi      r12, r3, 0x2A2C
-	  b         .loc_0x114
-	  lis       r3, 0x8001
-	  subi      r12, r3, 0x2A00
-	  b         .loc_0x114
-	  lis       r3, 0x8001
-	  subi      r12, r3, 0x2990
+lbl_8000E618:
+	li       r5, 0
+	b        lbl_8000E680
+	.global  lbl_8000E620
 
-	.loc_0x114:
-	  mr        r3, r31
-	  mr        r4, r30
-	  mr        r6, r0
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x1D4
+lbl_8000E620:
+	li       r5, 1
+	b        lbl_8000E680
+	.global  lbl_8000E628
 
-	.loc_0x12C:
-	  cmpwi     r6, 0x3
-	  mr        r28, r0
-	  beq-      .loc_0x178
-	  bge-      .loc_0x14C
-	  cmpwi     r6, 0x1
-	  beq-      .loc_0x158
-	  bge-      .loc_0x168
-	  b         .loc_0x1D4
+lbl_8000E628:
+	li       r5, 2
+	b        lbl_8000E680
+	.global  lbl_8000E630
 
-	.loc_0x14C:
-	  cmpwi     r6, 0x12
-	  beq-      .loc_0x188
-	  b         .loc_0x1D4
+lbl_8000E630:
+	li       r5, 3
+	b        lbl_8000E680
+	.global  lbl_8000E638
 
-	.loc_0x158:
-	  lis       r3, 0x8001
-	  li        r27, 0
-	  subi      r29, r3, 0x2A70
-	  b         .loc_0x194
+lbl_8000E638:
+	li       r5, 4
+	b        lbl_8000E680
+	.global  lbl_8000E640
 
-	.loc_0x168:
-	  lis       r3, 0x8001
-	  li        r27, 0x4
-	  subi      r29, r3, 0x2A58
-	  b         .loc_0x194
+lbl_8000E640:
+	li       r5, 5
+	b        lbl_8000E680
+	.global  lbl_8000E648
 
-	.loc_0x178:
-	  lis       r3, 0x8001
-	  li        r27, 0x4
-	  subi      r29, r3, 0x2A2C
-	  b         .loc_0x194
+lbl_8000E648:
+	lis      r3, sauVariableValue_3_COLOR_RGB__Q27JStudio12TAdaptor_fog@ha
+	li       r4, 3
+	addi     r3, r3, sauVariableValue_3_COLOR_RGB__Q27JStudio12TAdaptor_fog@l
+	mr       r5, r3
+	b        lbl_8000E6F0
+	.global  lbl_8000E65C
 
-	.loc_0x188:
-	  lis       r3, 0x8001
-	  li        r27, 0x4
-	  subi      r29, r3, 0x2990
+lbl_8000E65C:
+	lis      r3, sauVariableValue_4_COLOR_RGBA__Q27JStudio12TAdaptor_fog@ha
+	li       r4, 4
+	addi     r3, r3, sauVariableValue_4_COLOR_RGBA__Q27JStudio12TAdaptor_fog@l
+	mr       r5, r3
+	b        lbl_8000E6F0
+	.global  lbl_8000E670
 
-	.loc_0x194:
-	  rlwinm    r0,r4,2,0,29
-	  mr        r26, r5
-	  add       r25, r5, r0
-	  b         .loc_0x1CC
+lbl_8000E670:
+	addi     r5, r2,
+sauVariableValue_2_RANGE_BEGIN_END__Q27JStudio12TAdaptor_fog@sda21 li       r4,
+2 b        lbl_8000E6F0 .global  lbl_8000E67C
 
-	.loc_0x1A4:
-	  mr        r12, r29
-	  mr        r3, r31
-	  mr        r4, r30
-	  mr        r6, r28
-	  mr        r7, r27
-	  lwz       r5, 0x0(r26)
-	  mtctr     r12
-	  addi      r26, r26, 0x4
-	  bctrl
-	  add       r28, r28, r27
+lbl_8000E67C:
+	b        lbl_8000E798
 
-	.loc_0x1CC:
-	  cmplw     r26, r25
-	  bne+      .loc_0x1A4
+lbl_8000E680:
+	cmplwi   r6, 0x12
+	bgt      lbl_8000E798
+	lis      r4, lbl_8049EBC8@ha
+	slwi     r3, r6, 2
+	addi     r4, r4, lbl_8049EBC8@l
+	lwzx     r3, r4, r3
+	mtctr    r3
+	bctr
+	.global  lbl_8000E6A0
 
-	.loc_0x1D4:
-	  lmw       r25, 0x14(r1)
-	  lwz       r0, 0x34(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_8000E6A0:
+	lis      r3,
+adaptor_setVariableValue_VOID___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
+	addi     r12, r3,
+adaptor_setVariableValue_VOID___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
+	b        lbl_8000E6D8
+	.global  lbl_8000E6AC
+
+lbl_8000E6AC:
+	lis      r3,
+adaptor_setVariableValue_IMMEDIATE___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
+	addi     r12, r3,
+adaptor_setVariableValue_IMMEDIATE___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
+	b        lbl_8000E6D8
+	.global  lbl_8000E6B8
+
+lbl_8000E6B8:
+	lis      r3,
+adaptor_setVariableValue_TIME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
+	addi     r12, r3,
+adaptor_setVariableValue_TIME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
+	b        lbl_8000E6D8
+	.global  lbl_8000E6C4
+
+lbl_8000E6C4:
+	lis      r3,
+adaptor_setVariableValue_FVR_NAME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
+	addi     r12, r3,
+adaptor_setVariableValue_FVR_NAME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
+	b        lbl_8000E6D8
+	.global  lbl_8000E6D0
+
+lbl_8000E6D0:
+	lis      r3,
+adaptor_setVariableValue_FVR_INDEX___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
+	addi     r12, r3,
+adaptor_setVariableValue_FVR_INDEX___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
+
+lbl_8000E6D8:
+	mr       r3, r31
+	mr       r4, r30
+	mr       r6, r0
+	mtctr    r12
+	bctrl
+	.global  lbl_8000E6EC
+
+lbl_8000E6EC:
+	b        lbl_8000E798
+
+lbl_8000E6F0:
+	cmpwi    r6, 3
+	mr       r28, r0
+	beq      lbl_8000E73C
+	bge      lbl_8000E710
+	cmpwi    r6, 1
+	beq      lbl_8000E71C
+	bge      lbl_8000E72C
+	b        lbl_8000E798
+
+lbl_8000E710:
+	cmpwi    r6, 0x12
+	beq      lbl_8000E74C
+	b        lbl_8000E798
+
+lbl_8000E71C:
+	lis      r3,
+adaptor_setVariableValue_VOID___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
+	li       r27, 0
+	addi     r29, r3,
+adaptor_setVariableValue_VOID___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
+	b        lbl_8000E758
+
+lbl_8000E72C:
+	lis      r3,
+adaptor_setVariableValue_IMMEDIATE___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
+	li       r27, 4
+	addi     r29, r3,
+adaptor_setVariableValue_IMMEDIATE___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
+	b        lbl_8000E758
+
+lbl_8000E73C:
+	lis      r3,
+adaptor_setVariableValue_TIME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
+	li       r27, 4
+	addi     r29, r3,
+adaptor_setVariableValue_TIME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
+	b        lbl_8000E758
+
+lbl_8000E74C:
+	lis      r3,
+adaptor_setVariableValue_FVR_INDEX___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
+	li       r27, 4
+	addi     r29, r3,
+adaptor_setVariableValue_FVR_INDEX___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
+
+lbl_8000E758:
+	slwi     r0, r4, 2
+	mr       r26, r5
+	add      r25, r5, r0
+	b        lbl_8000E790
+
+lbl_8000E768:
+	mr       r12, r29
+	mr       r3, r31
+	mr       r4, r30
+	mr       r6, r28
+	mr       r7, r27
+	lwz      r5, 0(r26)
+	mtctr    r12
+	addi     r26, r26, 4
+	bctrl
+	add      r28, r28, r27
+
+lbl_8000E790:
+	cmplw    r26, r25
+	bne      lbl_8000E768
+
+lbl_8000E798:
+	lmw      r25, 0x14(r1)
+	lwz      r0, 0x34(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -2327,34 +3809,33 @@ void TObject_fog::do_paragraph(unsigned long, void const*, unsigned long)
 TAdaptor_light::~TAdaptor_light(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r3
-	  beq-      .loc_0x44
-	  lis       r3, 0x804A
-	  subi      r0, r3, 0xD2C
-	  stw       r0, 0x0(r31)
-	  beq-      .loc_0x34
-	  lis       r3, 0x804A
-	  subi      r0, r3, 0xB98
-	  stw       r0, 0x0(r31)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r3, r3
+	beq      lbl_8000E7F0
+	lis      r3, __vt__Q27JStudio14TAdaptor_light@ha
+	addi     r0, r3, __vt__Q27JStudio14TAdaptor_light@l
+	stw      r0, 0(r31)
+	beq      lbl_8000E7E0
+	lis      r3, __vt__Q27JStudio8TAdaptor@ha
+	addi     r0, r3, __vt__Q27JStudio8TAdaptor@l
+	stw      r0, 0(r31)
 
-	.loc_0x34:
-	  extsh.    r0, r4
-	  ble-      .loc_0x44
-	  mr        r3, r31
-	  bl        0x158C8
+lbl_8000E7E0:
+	extsh.   r0, r4
+	ble      lbl_8000E7F0
+	mr       r3, r31
+	bl       __dl__FPv
 
-	.loc_0x44:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8000E7F0:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2412,267 +3893,359 @@ TObject_light::TObject_light((JStudio::stb::data::TParse_TBlock_object const&,
 void TObject_light::do_paragraph(unsigned long, void const*, unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  mr        r7, r6
-	  stw       r0, 0x44(r1)
-	  mr        r0, r5
-	  stmw      r25, 0x24(r1)
-	  mr        r30, r3
-	  lis       r3, 0x8047
-	  addi      r11, r3, 0x3350
-	  lwz       r31, 0x34(r30)
-	  cmplwi    r31, 0
-	  beq-      .loc_0x35C
-	  lis       r3, 0x8048
-	  rlwinm    r8,r4,27,5,31
-	  subi      r10, r3, 0x60F0
-	  rlwinm    r4,r4,0,27,31
-	  lwz       r3, 0x4(r10)
-	  subi      r8, r8, 0x15
-	  lwz       r9, 0x0(r10)
-	  cmplwi    r8, 0x22
-	  stw       r3, 0xC(r1)
-	  stw       r9, 0x8(r1)
-	  lwz       r3, 0x8(r10)
-	  stw       r3, 0x10(r1)
-	  bgt-      .loc_0x35C
-	  lis       r3, 0x804A
-	  rlwinm    r8,r8,2,0,29
-	  subi      r3, r3, 0x12F8
-	  lwzx      r3, r3, r8
-	  mtctr     r3
-	  bctr
-	  lis       r5, 0x804A
-	  lis       r3, 0x804F
-	  subi      r8, r5, 0x13A8
-	  lwz       r6, 0x0(r8)
-	  subi      r3, r3, 0x2D4
-	  lwz       r5, 0x4(r8)
-	  mr        r29, r3
-	  lwz       r3, 0x8(r8)
-	  stw       r6, 0x8(r1)
-	  stw       r5, 0xC(r1)
-	  stw       r3, 0x10(r1)
-	  b         .loc_0x170
-	  lis       r3, 0x804A
-	  subi      r8, r3, 0x139C
-	  lwz       r7, 0x0(r8)
-	  lwz       r3, 0x4(r8)
-	  lwz       r0, 0x8(r8)
-	  stw       r7, 0x8(r1)
-	  stw       r3, 0xC(r1)
-	  stw       r0, 0x10(r1)
-	  b         .loc_0x34C
-	  li        r5, 0
-	  b         .loc_0x230
-	  li        r5, 0x1
-	  b         .loc_0x230
-	  li        r5, 0x2
-	  b         .loc_0x230
-	  li        r5, 0x3
-	  b         .loc_0x230
-	  li        r5, 0x4
-	  b         .loc_0x230
-	  li        r5, 0x5
-	  b         .loc_0x230
-	  li        r5, 0x6
-	  b         .loc_0x230
-	  li        r5, 0x7
-	  b         .loc_0x230
-	  li        r5, 0x8
-	  b         .loc_0x230
-	  li        r5, 0x9
-	  b         .loc_0x230
-	  li        r5, 0xA
-	  b         .loc_0x230
-	  li        r5, 0xB
-	  b         .loc_0x230
-	  addi      r6, r11, 0x74
-	  li        r5, 0x3
-	  b         .loc_0x2A0
-	  addi      r6, r11, 0x80
-	  li        r5, 0x4
-	  b         .loc_0x2A0
-	  addi      r6, r11, 0x90
-	  li        r5, 0x3
-	  b         .loc_0x2A0
-	  addi      r6, r11, 0x9C
-	  li        r5, 0x3
-	  b         .loc_0x2A0
-	  subi      r6, r2, 0x7F38
-	  li        r5, 0x2
-	  b         .loc_0x2A0
-	  b         .loc_0x35C
+	stwu     r1, -0x40(r1)
+	mflr     r0
+	mr       r7, r6
+	stw      r0, 0x44(r1)
+	mr       r0, r5
+	stmw     r25, 0x24(r1)
+	mr       r30, r3
+	lis      r3,
+sauVariableValue_3_TRANSLATION_XYZ__Q27JStudio14TAdaptor_actor@ha addi     r11,
+r3, sauVariableValue_3_TRANSLATION_XYZ__Q27JStudio14TAdaptor_actor@l lwz r31,
+0x34(r30) cmplwi   r31, 0 beq      lbl_8000EBBC lis      r3, __ptmf_null@ha srwi
+r8, r4, 5 addi     r10, r3, __ptmf_null@l clrlwi   r4, r4, 0x1b lwz      r3,
+4(r10) addi     r8, r8, -21 lwz      r9, 0(r10) cmplwi   r8, 0x22 stw      r3,
+0xc(r1) stw      r9, 8(r1) lwz      r3, 8(r10) stw      r3, 0x10(r1) bgt
+lbl_8000EBBC lis      r3, lbl_8049ED08@ha slwi     r8, r8, 2 addi     r3, r3,
+lbl_8049ED08@l lwzx     r3, r3, r8 mtctr    r3 bctr .global  lbl_8000E8DC
 
-	.loc_0x170:
-	  cmpwi     r4, 0x13
-	  bge-      .loc_0x214
-	  cmpwi     r4, 0x10
-	  bge-      .loc_0x184
-	  b         .loc_0x214
+lbl_8000E8DC:
+	lis      r5, lbl_8049EC58@ha
+	lis      r3,
+"soovv_light_ENABLE___Q27JStudio28@unnamed@jstudio_object_cpp@"@ha addi     r8,
+r5, lbl_8049EC58@l lwz      r6, 0(r8) addi     r3, r3,
+"soovv_light_ENABLE___Q27JStudio28@unnamed@jstudio_object_cpp@"@l lwz      r5,
+4(r8) mr       r29, r3 lwz      r3, 8(r8) stw      r6, 8(r1) stw      r5,
+0xc(r1) stw      r3, 0x10(r1) b        lbl_8000E9D0 .global  lbl_8000E90C
 
-	.loc_0x184:
-	  cmplwi    r4, 0x12
-	  bgt-      .loc_0x1F4
-	  lis       r5, 0x804A
-	  rlwinm    r3,r4,2,0,29
-	  subi      r4, r5, 0x1344
-	  lwzx      r3, r4, r3
-	  mtctr     r3
-	  bctr
-	  lis       r3, 0x8001
-	  subi      r12, r3, 0x2A70
-	  b         .loc_0x1DC
-	  lis       r3, 0x8001
-	  subi      r12, r3, 0x2A58
-	  b         .loc_0x1DC
-	  lis       r3, 0x8001
-	  subi      r12, r3, 0x2A2C
-	  b         .loc_0x1DC
-	  lis       r3, 0x8001
-	  subi      r12, r3, 0x2A00
-	  b         .loc_0x1DC
-	  lis       r3, 0x8001
-	  subi      r12, r3, 0x2990
+lbl_8000E90C:
+	lis      r3, lbl_8049EC64@ha
+	addi     r8, r3, lbl_8049EC64@l
+	lwz      r7, 0(r8)
+	lwz      r3, 4(r8)
+	lwz      r0, 8(r8)
+	stw      r7, 8(r1)
+	stw      r3, 0xc(r1)
+	stw      r0, 0x10(r1)
+	b        lbl_8000EBAC
+	.global  lbl_8000E930
 
-	.loc_0x1DC:
-	  mr        r3, r31
-	  mr        r4, r30
-	  mr        r6, r0
-	  li        r5, 0xC
-	  mtctr     r12
-	  bctrl
+lbl_8000E930:
+	li       r5, 0
+	b        lbl_8000EA90
+	.global  lbl_8000E938
 
-	.loc_0x1F4:
-	  cmplwi    r29, 0
-	  lwz       r3, 0x4(r31)
-	  beq-      .loc_0x208
-	  mr        r0, r29
-	  b         .loc_0x20C
+lbl_8000E938:
+	li       r5, 1
+	b        lbl_8000EA90
+	.global  lbl_8000E940
 
-	.loc_0x208:
-	  subi      r0, r13, 0x78F0
+lbl_8000E940:
+	li       r5, 2
+	b        lbl_8000EA90
+	.global  lbl_8000E948
 
-	.loc_0x20C:
-	  stw       r0, 0x100(r3)
-	  b         .loc_0x35C
+lbl_8000E948:
+	li       r5, 3
+	b        lbl_8000EA90
+	.global  lbl_8000E950
 
-	.loc_0x214:
-	  mr        r3, r31
-	  mr        r5, r0
-	  mr        r6, r7
-	  addi      r12, r1, 0x8
-	  bl        0xB30A0
-	  nop
-	  b         .loc_0x35C
+lbl_8000E950:
+	li       r5, 4
+	b        lbl_8000EA90
+	.global  lbl_8000E958
 
-	.loc_0x230:
-	  cmplwi    r4, 0x12
-	  bgt-      .loc_0x35C
-	  lis       r6, 0x804A
-	  rlwinm    r3,r4,2,0,29
-	  subi      r4, r6, 0x1390
-	  lwzx      r3, r4, r3
-	  mtctr     r3
-	  bctr
-	  lis       r3, 0x8001
-	  subi      r12, r3, 0x2A70
-	  b         .loc_0x288
-	  lis       r3, 0x8001
-	  subi      r12, r3, 0x2A58
-	  b         .loc_0x288
-	  lis       r3, 0x8001
-	  subi      r12, r3, 0x2A2C
-	  b         .loc_0x288
-	  lis       r3, 0x8001
-	  subi      r12, r3, 0x2A00
-	  b         .loc_0x288
-	  lis       r3, 0x8001
-	  subi      r12, r3, 0x2990
+lbl_8000E958:
+	li       r5, 5
+	b        lbl_8000EA90
+	.global  lbl_8000E960
 
-	.loc_0x288:
-	  mr        r3, r31
-	  mr        r4, r30
-	  mr        r6, r0
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x35C
+lbl_8000E960:
+	li       r5, 6
+	b        lbl_8000EA90
+	.global  lbl_8000E968
 
-	.loc_0x2A0:
-	  cmpwi     r4, 0x3
-	  mr        r28, r0
-	  beq-      .loc_0x2EC
-	  bge-      .loc_0x2C0
-	  cmpwi     r4, 0x1
-	  beq-      .loc_0x2CC
-	  bge-      .loc_0x2DC
-	  b         .loc_0x35C
+lbl_8000E968:
+	li       r5, 7
+	b        lbl_8000EA90
+	.global  lbl_8000E970
 
-	.loc_0x2C0:
-	  cmpwi     r4, 0x12
-	  beq-      .loc_0x2FC
-	  b         .loc_0x35C
+lbl_8000E970:
+	li       r5, 8
+	b        lbl_8000EA90
+	.global  lbl_8000E978
 
-	.loc_0x2CC:
-	  lis       r3, 0x8001
-	  li        r27, 0
-	  subi      r29, r3, 0x2A70
-	  b         .loc_0x308
+lbl_8000E978:
+	li       r5, 9
+	b        lbl_8000EA90
+	.global  lbl_8000E980
 
-	.loc_0x2DC:
-	  lis       r3, 0x8001
-	  li        r27, 0x4
-	  subi      r29, r3, 0x2A58
-	  b         .loc_0x308
+lbl_8000E980:
+	li       r5, 0xa
+	b        lbl_8000EA90
+	.global  lbl_8000E988
 
-	.loc_0x2EC:
-	  lis       r3, 0x8001
-	  li        r27, 0x4
-	  subi      r29, r3, 0x2A2C
-	  b         .loc_0x308
+lbl_8000E988:
+	li       r5, 0xb
+	b        lbl_8000EA90
+	.global  lbl_8000E990
 
-	.loc_0x2FC:
-	  lis       r3, 0x8001
-	  li        r27, 0x4
-	  subi      r29, r3, 0x2990
+lbl_8000E990:
+	addi     r6, r11, 0x74
+	li       r5, 3
+	b        lbl_8000EB00
+	.global  lbl_8000E99C
 
-	.loc_0x308:
-	  rlwinm    r0,r5,2,0,29
-	  mr        r26, r6
-	  add       r25, r6, r0
-	  b         .loc_0x340
+lbl_8000E99C:
+	addi     r6, r11, 0x80
+	li       r5, 4
+	b        lbl_8000EB00
+	.global  lbl_8000E9A8
 
-	.loc_0x318:
-	  mr        r12, r29
-	  mr        r3, r31
-	  mr        r4, r30
-	  mr        r6, r28
-	  mr        r7, r27
-	  lwz       r5, 0x0(r26)
-	  mtctr     r12
-	  addi      r26, r26, 0x4
-	  bctrl
-	  add       r28, r28, r27
+lbl_8000E9A8:
+	addi     r6, r11, 0x90
+	li       r5, 3
+	b        lbl_8000EB00
+	.global  lbl_8000E9B4
 
-	.loc_0x340:
-	  cmplw     r26, r25
-	  bne+      .loc_0x318
-	  b         .loc_0x35C
+lbl_8000E9B4:
+	addi     r6, r11, 0x9c
+	li       r5, 3
+	b        lbl_8000EB00
+	.global  lbl_8000E9C0
 
-	.loc_0x34C:
-	  mr        r3, r31
-	  addi      r12, r1, 0x8
-	  bl        0xB2F70
-	  nop
+lbl_8000E9C0:
+	addi     r6, r2,
+sauVariableValue_2_DIRECTION_THETA_PHI__Q27JStudio14TAdaptor_light@sda21 li r5,
+2 b        lbl_8000EB00 .global  lbl_8000E9CC
 
-	.loc_0x35C:
-	  lmw       r25, 0x24(r1)
-	  lwz       r0, 0x44(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
+lbl_8000E9CC:
+	b        lbl_8000EBBC
+
+lbl_8000E9D0:
+	cmpwi    r4, 0x13
+	bge      lbl_8000EA74
+	cmpwi    r4, 0x10
+	bge      lbl_8000E9E4
+	b        lbl_8000EA74
+
+lbl_8000E9E4:
+	cmplwi   r4, 0x12
+	bgt      lbl_8000EA54
+	lis      r5, lbl_8049ECBC@ha
+	slwi     r3, r4, 2
+	addi     r4, r5, lbl_8049ECBC@l
+	lwzx     r3, r4, r3
+	mtctr    r3
+	bctr
+	.global  lbl_8000EA04
+
+lbl_8000EA04:
+	lis      r3,
+adaptor_setVariableValue_VOID___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
+	addi     r12, r3,
+adaptor_setVariableValue_VOID___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
+	b        lbl_8000EA3C
+	.global  lbl_8000EA10
+
+lbl_8000EA10:
+	lis      r3,
+adaptor_setVariableValue_IMMEDIATE___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
+	addi     r12, r3,
+adaptor_setVariableValue_IMMEDIATE___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
+	b        lbl_8000EA3C
+	.global  lbl_8000EA1C
+
+lbl_8000EA1C:
+	lis      r3,
+adaptor_setVariableValue_TIME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
+	addi     r12, r3,
+adaptor_setVariableValue_TIME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
+	b        lbl_8000EA3C
+	.global  lbl_8000EA28
+
+lbl_8000EA28:
+	lis      r3,
+adaptor_setVariableValue_FVR_NAME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
+	addi     r12, r3,
+adaptor_setVariableValue_FVR_NAME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
+	b        lbl_8000EA3C
+	.global  lbl_8000EA34
+
+lbl_8000EA34:
+	lis      r3,
+adaptor_setVariableValue_FVR_INDEX___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
+	addi     r12, r3,
+adaptor_setVariableValue_FVR_INDEX___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
+
+lbl_8000EA3C:
+	mr       r3, r31
+	mr       r4, r30
+	mr       r6, r0
+	li       r5, 0xc
+	mtctr    r12
+	bctrl
+	.global  lbl_8000EA54
+
+lbl_8000EA54:
+	cmplwi   r29, 0
+	lwz      r3, 4(r31)
+	beq      lbl_8000EA68
+	mr       r0, r29
+	b        lbl_8000EA6C
+
+lbl_8000EA68:
+	addi     r0, r13, soOutput_none___Q27JStudio14TVariableValue@sda21
+
+lbl_8000EA6C:
+	stw      r0, 0x100(r3)
+	b        lbl_8000EBBC
+
+lbl_8000EA74:
+	mr       r3, r31
+	mr       r5, r0
+	mr       r6, r7
+	addi     r12, r1, 8
+	bl       __ptmf_scall
+	nop
+	b        lbl_8000EBBC
+
+lbl_8000EA90:
+	cmplwi   r4, 0x12
+	bgt      lbl_8000EBBC
+	lis      r6, lbl_8049EC70@ha
+	slwi     r3, r4, 2
+	addi     r4, r6, lbl_8049EC70@l
+	lwzx     r3, r4, r3
+	mtctr    r3
+	bctr
+
+lbl_8000EAB0:
+	lis      r3,
+adaptor_setVariableValue_VOID___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
+	addi     r12, r3,
+adaptor_setVariableValue_VOID___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
+	b        lbl_8000EAE8
+
+lbl_8000EABC:
+	lis      r3,
+adaptor_setVariableValue_IMMEDIATE___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
+	addi     r12, r3,
+adaptor_setVariableValue_IMMEDIATE___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
+	b        lbl_8000EAE8
+
+lbl_8000EAC8:
+	lis      r3,
+adaptor_setVariableValue_TIME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
+	addi     r12, r3,
+adaptor_setVariableValue_TIME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
+	b        lbl_8000EAE8
+
+lbl_8000EAD4:
+	lis      r3,
+adaptor_setVariableValue_FVR_NAME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
+	addi     r12, r3,
+adaptor_setVariableValue_FVR_NAME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
+	b        lbl_8000EAE8
+
+lbl_8000EAE0:
+	lis      r3,
+adaptor_setVariableValue_FVR_INDEX___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
+	addi     r12, r3,
+adaptor_setVariableValue_FVR_INDEX___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
+
+lbl_8000EAE8:
+	mr       r3, r31
+	mr       r4, r30
+	mr       r6, r0
+	mtctr    r12
+	bctrl
+
+lbl_8000EAFC:
+	b        lbl_8000EBBC
+
+lbl_8000EB00:
+	cmpwi    r4, 3
+	mr       r28, r0
+	beq      lbl_8000EB4C
+	bge      lbl_8000EB20
+	cmpwi    r4, 1
+	beq      lbl_8000EB2C
+	bge      lbl_8000EB3C
+	b        lbl_8000EBBC
+
+lbl_8000EB20:
+	cmpwi    r4, 0x12
+	beq      lbl_8000EB5C
+	b        lbl_8000EBBC
+
+lbl_8000EB2C:
+	lis      r3,
+adaptor_setVariableValue_VOID___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
+	li       r27, 0
+	addi     r29, r3,
+adaptor_setVariableValue_VOID___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
+	b        lbl_8000EB68
+
+lbl_8000EB3C:
+	lis      r3,
+adaptor_setVariableValue_IMMEDIATE___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
+	li       r27, 4
+	addi     r29, r3,
+adaptor_setVariableValue_IMMEDIATE___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
+	b        lbl_8000EB68
+
+lbl_8000EB4C:
+	lis      r3,
+adaptor_setVariableValue_TIME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
+	li       r27, 4
+	addi     r29, r3,
+adaptor_setVariableValue_TIME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
+	b        lbl_8000EB68
+
+lbl_8000EB5C:
+	lis      r3,
+adaptor_setVariableValue_FVR_INDEX___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
+	li       r27, 4
+	addi     r29, r3,
+adaptor_setVariableValue_FVR_INDEX___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
+
+lbl_8000EB68:
+	slwi     r0, r5, 2
+	mr       r26, r6
+	add      r25, r6, r0
+	b        lbl_8000EBA0
+
+lbl_8000EB78:
+	mr       r12, r29
+	mr       r3, r31
+	mr       r4, r30
+	mr       r6, r28
+	mr       r7, r27
+	lwz      r5, 0(r26)
+	mtctr    r12
+	addi     r26, r26, 4
+	bctrl
+	add      r28, r28, r27
+
+lbl_8000EBA0:
+	cmplw    r26, r25
+	bne      lbl_8000EB78
+	b        lbl_8000EBBC
+
+lbl_8000EBAC:
+	mr       r3, r31
+	addi     r12, r1, 8
+	bl       __ptmf_scall
+	nop
+
+lbl_8000EBBC:
+	lmw      r25, 0x24(r1)
+	lwz      r0, 0x44(r1)
+	mtlr     r0
+	addi     r1, r1, 0x40
+	blr
 	*/
 }
 
@@ -2684,34 +4257,33 @@ void TObject_light::do_paragraph(unsigned long, void const*, unsigned long)
 TAdaptor_message::~TAdaptor_message(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r3
-	  beq-      .loc_0x44
-	  lis       r3, 0x804A
-	  subi      r0, r3, 0xD70
-	  stw       r0, 0x0(r31)
-	  beq-      .loc_0x34
-	  lis       r3, 0x804A
-	  subi      r0, r3, 0xB98
-	  stw       r0, 0x0(r31)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r3, r3
+	beq      lbl_8000EC14
+	lis      r3, __vt__Q27JStudio16TAdaptor_message@ha
+	addi     r0, r3, __vt__Q27JStudio16TAdaptor_message@l
+	stw      r0, 0(r31)
+	beq      lbl_8000EC04
+	lis      r3, __vt__Q27JStudio8TAdaptor@ha
+	addi     r0, r3, __vt__Q27JStudio8TAdaptor@l
+	stw      r0, 0(r31)
 
-	.loc_0x34:
-	  extsh.    r0, r4
-	  ble-      .loc_0x44
-	  mr        r3, r31
-	  bl        0x154A4
+lbl_8000EC04:
+	extsh.   r0, r4
+	ble      lbl_8000EC14
+	mr       r3, r31
+	bl       __dl__FPv
 
-	.loc_0x44:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8000EC14:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2770,49 +4342,48 @@ TObject_message::TObject_message(
 void TObject_message::do_paragraph(unsigned long, void const*, unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  lwz       r3, 0x34(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x80
-	  lis       r7, 0x8048
-	  rlwinm    r9,r4,27,5,31
-	  subi      r8, r7, 0x60F0
-	  rlwinm    r4,r4,0,27,31
-	  lwz       r0, 0x4(r8)
-	  cmpwi     r9, 0x42
-	  lwz       r7, 0x0(r8)
-	  stw       r0, 0xC(r1)
-	  stw       r7, 0x8(r1)
-	  lwz       r0, 0x8(r8)
-	  stw       r0, 0x10(r1)
-	  beq-      .loc_0x4C
-	  b         .loc_0x80
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	lwz      r3, 0x34(r3)
+	cmplwi   r3, 0
+	beq      lbl_8000ED04
+	lis      r7, __ptmf_null@ha
+	srwi     r9, r4, 5
+	addi     r8, r7, __ptmf_null@l
+	clrlwi   r4, r4, 0x1b
+	lwz      r0, 4(r8)
+	cmpwi    r9, 0x42
+	lwz      r7, 0(r8)
+	stw      r0, 0xc(r1)
+	stw      r7, 8(r1)
+	lwz      r0, 8(r8)
+	stw      r0, 0x10(r1)
+	beq      lbl_8000ECD0
+	b        lbl_8000ED04
 
-	.loc_0x4C:
-	  lis       r7, 0x804A
-	  subi      r9, r7, 0x126C
-	  lwz       r8, 0x0(r9)
-	  lwz       r7, 0x4(r9)
-	  lwz       r0, 0x8(r9)
-	  stw       r8, 0x8(r1)
-	  stw       r7, 0xC(r1)
-	  stw       r0, 0x10(r1)
-	  b         .loc_0x74
-	  b         .loc_0x80
+lbl_8000ECD0:
+	lis      r7, lbl_8049ED94@ha
+	addi     r9, r7, lbl_8049ED94@l
+	lwz      r8, 0(r9)
+	lwz      r7, 4(r9)
+	lwz      r0, 8(r9)
+	stw      r8, 8(r1)
+	stw      r7, 0xc(r1)
+	stw      r0, 0x10(r1)
+	b        lbl_8000ECF8
+	b        lbl_8000ED04
 
-	.loc_0x74:
-	  addi      r12, r1, 0x8
-	  bl        0xB2E28
-	  nop
+lbl_8000ECF8:
+	addi     r12, r1, 8
+	bl       __ptmf_scall
+	nop
 
-	.loc_0x80:
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8000ED04:
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -2824,34 +4395,33 @@ void TObject_message::do_paragraph(unsigned long, void const*, unsigned long)
 TAdaptor_particle::~TAdaptor_particle(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r3
-	  beq-      .loc_0x44
-	  lis       r3, 0x804A
-	  subi      r0, r3, 0x1D68
-	  stw       r0, 0x0(r31)
-	  beq-      .loc_0x34
-	  lis       r3, 0x804A
-	  subi      r0, r3, 0xB98
-	  stw       r0, 0x0(r31)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r3, r3
+	beq      lbl_8000ED58
+	lis      r3, __vt__Q27JStudio17TAdaptor_particle@ha
+	addi     r0, r3, __vt__Q27JStudio17TAdaptor_particle@l
+	stw      r0, 0(r31)
+	beq      lbl_8000ED48
+	lis      r3, __vt__Q27JStudio8TAdaptor@ha
+	addi     r0, r3, __vt__Q27JStudio8TAdaptor@l
+	stw      r0, 0(r31)
 
-	.loc_0x34:
-	  extsh.    r0, r4
-	  ble-      .loc_0x44
-	  mr        r3, r31
-	  bl        0x15360
+lbl_8000ED48:
+	extsh.   r0, r4
+	ble      lbl_8000ED58
+	mr       r3, r31
+	bl       __dl__FPv
 
-	.loc_0x44:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8000ED58:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2910,325 +4480,433 @@ TObject_particle::TObject_particle(
 void TObject_particle::do_paragraph(unsigned long, void const*, unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  lis       r8, 0x8047
-	  mr        r7, r6
-	  stw       r0, 0x44(r1)
-	  mr        r0, r5
-	  addi      r10, r8, 0x3350
-	  stmw      r25, 0x24(r1)
-	  mr        r30, r3
-	  lwz       r31, 0x34(r3)
-	  lis       r3, 0x804A
-	  subi      r3, r3, 0x1968
-	  cmplwi    r31, 0
-	  beq-      .loc_0x444
-	  lis       r5, 0x8048
-	  rlwinm    r6,r4,27,5,31
-	  subi      r9, r5, 0x60F0
-	  rlwinm    r4,r4,0,27,31
-	  lwz       r5, 0x4(r9)
-	  subi      r6, r6, 0x9
-	  lwz       r8, 0x0(r9)
-	  cmplwi    r6, 0x47
-	  stw       r5, 0xC(r1)
-	  stw       r8, 0x8(r1)
-	  lwz       r5, 0x8(r9)
-	  stw       r5, 0x10(r1)
-	  bgt-      .loc_0x444
-	  lis       r5, 0x804A
-	  rlwinm    r6,r6,2,0,29
-	  subi      r5, r5, 0x1168
-	  lwzx      r5, r5, r6
-	  mtctr     r5
-	  bctr
-	  lwz       r6, 0x708(r3)
-	  lwz       r5, 0x70C(r3)
-	  lwz       r3, 0x710(r3)
-	  stw       r6, 0x8(r1)
-	  stw       r5, 0xC(r1)
-	  stw       r3, 0x10(r1)
-	  b         .loc_0x42C
-	  lwz       r6, 0x714(r3)
-	  lwz       r5, 0x718(r3)
-	  lwz       r3, 0x71C(r3)
-	  stw       r6, 0x8(r1)
-	  stw       r5, 0xC(r1)
-	  stw       r3, 0x10(r1)
-	  b         .loc_0x42C
-	  lwz       r6, 0x720(r3)
-	  lwz       r5, 0x724(r3)
-	  lwz       r3, 0x728(r3)
-	  stw       r6, 0x8(r1)
-	  stw       r5, 0xC(r1)
-	  stw       r3, 0x10(r1)
-	  b         .loc_0x42C
-	  lwz       r6, 0x72C(r3)
-	  lwz       r5, 0x730(r3)
-	  lwz       r3, 0x734(r3)
-	  stw       r6, 0x8(r1)
-	  stw       r5, 0xC(r1)
-	  stw       r3, 0x10(r1)
-	  b         .loc_0x42C
-	  lwz       r6, 0x738(r3)
-	  lwz       r5, 0x73C(r3)
-	  lwz       r3, 0x740(r3)
-	  stw       r6, 0x8(r1)
-	  stw       r5, 0xC(r1)
-	  stw       r3, 0x10(r1)
-	  b         .loc_0x42C
-	  lwz       r6, 0x744(r3)
-	  lwz       r5, 0x748(r3)
-	  lwz       r3, 0x74C(r3)
-	  stw       r6, 0x8(r1)
-	  stw       r5, 0xC(r1)
-	  stw       r3, 0x10(r1)
-	  b         .loc_0x42C
-	  lwz       r6, 0x750(r3)
-	  lwz       r5, 0x754(r3)
-	  lwz       r3, 0x758(r3)
-	  stw       r6, 0x8(r1)
-	  stw       r5, 0xC(r1)
-	  stw       r3, 0x10(r1)
-	  b         .loc_0x42C
-	  lwz       r8, 0x75C(r3)
-	  lis       r5, 0x804F
-	  lwz       r6, 0x760(r3)
-	  subi      r5, r5, 0x2B8
-	  lwz       r3, 0x764(r3)
-	  mr        r29, r5
-	  stw       r8, 0x8(r1)
-	  stw       r6, 0xC(r1)
-	  stw       r3, 0x10(r1)
-	  b         .loc_0x250
-	  li        r5, 0
-	  b         .loc_0x310
-	  li        r5, 0x1
-	  b         .loc_0x310
-	  li        r5, 0x2
-	  b         .loc_0x310
-	  li        r5, 0x3
-	  b         .loc_0x310
-	  li        r5, 0x4
-	  b         .loc_0x310
-	  li        r5, 0x5
-	  b         .loc_0x310
-	  li        r5, 0x6
-	  b         .loc_0x310
-	  li        r5, 0x7
-	  b         .loc_0x310
-	  li        r5, 0x8
-	  b         .loc_0x310
-	  li        r5, 0x9
-	  b         .loc_0x310
-	  li        r5, 0xA
-	  b         .loc_0x310
-	  li        r5, 0xB
-	  b         .loc_0x310
-	  li        r5, 0xC
-	  b         .loc_0x310
-	  li        r5, 0xD
-	  b         .loc_0x310
-	  li        r5, 0xE
-	  b         .loc_0x310
-	  li        r5, 0xF
-	  b         .loc_0x310
-	  li        r5, 0x10
-	  b         .loc_0x310
-	  addi      r6, r10, 0xA8
-	  li        r5, 0x3
-	  b         .loc_0x380
-	  addi      r6, r10, 0xB4
-	  li        r5, 0x3
-	  b         .loc_0x380
-	  addi      r6, r10, 0xC0
-	  li        r5, 0x3
-	  b         .loc_0x380
-	  addi      r6, r10, 0xCC
-	  li        r5, 0x3
-	  b         .loc_0x380
-	  addi      r6, r10, 0xD8
-	  li        r5, 0x4
-	  b         .loc_0x380
-	  addi      r6, r10, 0xE8
-	  li        r5, 0x3
-	  b         .loc_0x380
-	  addi      r6, r10, 0xF4
-	  li        r5, 0x4
-	  b         .loc_0x380
-	  b         .loc_0x444
+	stwu     r1, -0x40(r1)
+	mflr     r0
+	lis      r8,
+sauVariableValue_3_TRANSLATION_XYZ__Q27JStudio14TAdaptor_actor@ha mr       r7,
+r6 stw      r0, 0x44(r1) mr       r0, r5 addi     r10, r8,
+sauVariableValue_3_TRANSLATION_XYZ__Q27JStudio14TAdaptor_actor@l stmw     r25,
+0x24(r1) mr       r30, r3 lwz      r31, 0x34(r3) lis      r3, lbl_8049E698@ha
+	addi     r3, r3, lbl_8049E698@l
+	cmplwi   r31, 0
+	beq      lbl_8000F20C
+	lis      r5, __ptmf_null@ha
+	srwi     r6, r4, 5
+	addi     r9, r5, __ptmf_null@l
+	clrlwi   r4, r4, 0x1b
+	lwz      r5, 4(r9)
+	addi     r6, r6, -9
+	lwz      r8, 0(r9)
+	cmplwi   r6, 0x47
+	stw      r5, 0xc(r1)
+	stw      r8, 8(r1)
+	lwz      r5, 8(r9)
+	stw      r5, 0x10(r1)
+	bgt      lbl_8000F20C
+	lis      r5, lbl_8049EE98@ha
+	slwi     r6, r6, 2
+	addi     r5, r5, lbl_8049EE98@l
+	lwzx     r5, r5, r6
+	mtctr    r5
+	bctr
 
-	.loc_0x250:
-	  cmpwi     r4, 0x13
-	  bge-      .loc_0x2F4
-	  cmpwi     r4, 0x10
-	  bge-      .loc_0x264
-	  b         .loc_0x2F4
+lbl_8000EE4C:
+	lwz      r6, 0x708(r3)
+	lwz      r5, 0x70c(r3)
+	lwz      r3, 0x710(r3)
+	stw      r6, 8(r1)
+	stw      r5, 0xc(r1)
+	stw      r3, 0x10(r1)
+	b        lbl_8000F1F4
 
-	.loc_0x264:
-	  cmplwi    r4, 0x12
-	  bgt-      .loc_0x2D4
-	  lis       r5, 0x804A
-	  rlwinm    r3,r4,2,0,29
-	  subi      r4, r5, 0x11B4
-	  lwzx      r3, r4, r3
-	  mtctr     r3
-	  bctr
-	  lis       r3, 0x8001
-	  subi      r12, r3, 0x2A70
-	  b         .loc_0x2BC
-	  lis       r3, 0x8001
-	  subi      r12, r3, 0x2A58
-	  b         .loc_0x2BC
-	  lis       r3, 0x8001
-	  subi      r12, r3, 0x2A2C
-	  b         .loc_0x2BC
-	  lis       r3, 0x8001
-	  subi      r12, r3, 0x2A00
-	  b         .loc_0x2BC
-	  lis       r3, 0x8001
-	  subi      r12, r3, 0x2990
+lbl_8000EE68:
+	lwz      r6, 0x714(r3)
+	lwz      r5, 0x718(r3)
+	lwz      r3, 0x71c(r3)
+	stw      r6, 8(r1)
+	stw      r5, 0xc(r1)
+	stw      r3, 0x10(r1)
+	b        lbl_8000F1F4
 
-	.loc_0x2BC:
-	  mr        r3, r31
-	  mr        r4, r30
-	  mr        r6, r0
-	  li        r5, 0x11
-	  mtctr     r12
-	  bctrl
+lbl_8000EE84:
+	lwz      r6, 0x720(r3)
+	lwz      r5, 0x724(r3)
+	lwz      r3, 0x728(r3)
+	stw      r6, 8(r1)
+	stw      r5, 0xc(r1)
+	stw      r3, 0x10(r1)
+	b        lbl_8000F1F4
 
-	.loc_0x2D4:
-	  cmplwi    r29, 0
-	  lwz       r3, 0x4(r31)
-	  beq-      .loc_0x2E8
-	  mr        r0, r29
-	  b         .loc_0x2EC
+lbl_8000EEA0:
+	lwz      r6, 0x72c(r3)
+	lwz      r5, 0x730(r3)
+	lwz      r3, 0x734(r3)
+	stw      r6, 8(r1)
+	stw      r5, 0xc(r1)
+	stw      r3, 0x10(r1)
+	b        lbl_8000F1F4
 
-	.loc_0x2E8:
-	  subi      r0, r13, 0x78F0
+lbl_8000EEBC:
+	lwz      r6, 0x738(r3)
+	lwz      r5, 0x73c(r3)
+	lwz      r3, 0x740(r3)
+	stw      r6, 8(r1)
+	stw      r5, 0xc(r1)
+	stw      r3, 0x10(r1)
+	b        lbl_8000F1F4
 
-	.loc_0x2EC:
-	  stw       r0, 0x164(r3)
-	  b         .loc_0x444
+lbl_8000EED8:
+	lwz      r6, 0x744(r3)
+	lwz      r5, 0x748(r3)
+	lwz      r3, 0x74c(r3)
+	stw      r6, 8(r1)
+	stw      r5, 0xc(r1)
+	stw      r3, 0x10(r1)
+	b        lbl_8000F1F4
 
-	.loc_0x2F4:
-	  mr        r3, r31
-	  mr        r5, r0
-	  mr        r6, r7
-	  addi      r12, r1, 0x8
-	  bl        0xB2A58
-	  nop
-	  b         .loc_0x444
+lbl_8000EEF4:
+	lwz      r6, 0x750(r3)
+	lwz      r5, 0x754(r3)
+	lwz      r3, 0x758(r3)
+	stw      r6, 8(r1)
+	stw      r5, 0xc(r1)
+	stw      r3, 0x10(r1)
+	b        lbl_8000F1F4
 
-	.loc_0x310:
-	  cmplwi    r4, 0x12
-	  bgt-      .loc_0x444
-	  lis       r6, 0x804A
-	  rlwinm    r3,r4,2,0,29
-	  subi      r4, r6, 0x1200
-	  lwzx      r3, r4, r3
-	  mtctr     r3
-	  bctr
-	  lis       r3, 0x8001
-	  subi      r12, r3, 0x2A70
-	  b         .loc_0x368
-	  lis       r3, 0x8001
-	  subi      r12, r3, 0x2A58
-	  b         .loc_0x368
-	  lis       r3, 0x8001
-	  subi      r12, r3, 0x2A2C
-	  b         .loc_0x368
-	  lis       r3, 0x8001
-	  subi      r12, r3, 0x2A00
-	  b         .loc_0x368
-	  lis       r3, 0x8001
-	  subi      r12, r3, 0x2990
+lbl_8000EF10:
+	lwz      r8, 0x75c(r3)
+	lis      r5,
+"soovv_particle_PARENT_ENABLE___Q27JStudio28@unnamed@jstudio_object_cpp@"@ha lwz
+r6, 0x760(r3) addi     r5, r5,
+"soovv_particle_PARENT_ENABLE___Q27JStudio28@unnamed@jstudio_object_cpp@"@l lwz
+r3, 0x764(r3) mr       r29, r5 stw      r8, 8(r1) stw      r6, 0xc(r1) stw r3,
+0x10(r1) b        lbl_8000F018
 
-	.loc_0x368:
-	  mr        r3, r31
-	  mr        r4, r30
-	  mr        r6, r0
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x444
+lbl_8000EF38:
+	li       r5, 0
+	b        lbl_8000F0D8
 
-	.loc_0x380:
-	  cmpwi     r4, 0x3
-	  mr        r28, r0
-	  beq-      .loc_0x3CC
-	  bge-      .loc_0x3A0
-	  cmpwi     r4, 0x1
-	  beq-      .loc_0x3AC
-	  bge-      .loc_0x3BC
-	  b         .loc_0x444
+lbl_8000EF40:
+	li       r5, 1
+	b        lbl_8000F0D8
 
-	.loc_0x3A0:
-	  cmpwi     r4, 0x12
-	  beq-      .loc_0x3DC
-	  b         .loc_0x444
+lbl_8000EF48:
+	li       r5, 2
+	b        lbl_8000F0D8
 
-	.loc_0x3AC:
-	  lis       r3, 0x8001
-	  li        r27, 0
-	  subi      r29, r3, 0x2A70
-	  b         .loc_0x3E8
+lbl_8000EF50:
+	li       r5, 3
+	b        lbl_8000F0D8
 
-	.loc_0x3BC:
-	  lis       r3, 0x8001
-	  li        r27, 0x4
-	  subi      r29, r3, 0x2A58
-	  b         .loc_0x3E8
+lbl_8000EF58:
+	li       r5, 4
+	b        lbl_8000F0D8
 
-	.loc_0x3CC:
-	  lis       r3, 0x8001
-	  li        r27, 0x4
-	  subi      r29, r3, 0x2A2C
-	  b         .loc_0x3E8
+lbl_8000EF60:
+	li       r5, 5
+	b        lbl_8000F0D8
 
-	.loc_0x3DC:
-	  lis       r3, 0x8001
-	  li        r27, 0x4
-	  subi      r29, r3, 0x2990
+lbl_8000EF68:
+	li       r5, 6
+	b        lbl_8000F0D8
 
-	.loc_0x3E8:
-	  rlwinm    r0,r5,2,0,29
-	  mr        r26, r6
-	  add       r25, r6, r0
-	  b         .loc_0x420
+lbl_8000EF70:
+	li       r5, 7
+	b        lbl_8000F0D8
 
-	.loc_0x3F8:
-	  mr        r12, r29
-	  mr        r3, r31
-	  mr        r4, r30
-	  mr        r6, r28
-	  mr        r7, r27
-	  lwz       r5, 0x0(r26)
-	  mtctr     r12
-	  addi      r26, r26, 0x4
-	  bctrl
-	  add       r28, r28, r27
+lbl_8000EF78:
+	li       r5, 8
+	b        lbl_8000F0D8
 
-	.loc_0x420:
-	  cmplw     r26, r25
-	  bne+      .loc_0x3F8
-	  b         .loc_0x444
+lbl_8000EF80:
+	li       r5, 9
+	b        lbl_8000F0D8
 
-	.loc_0x42C:
-	  mr        r3, r31
-	  mr        r5, r0
-	  mr        r6, r7
-	  addi      r12, r1, 0x8
-	  bl        0xB2920
-	  nop
+lbl_8000EF88:
+	li       r5, 0xa
+	b        lbl_8000F0D8
 
-	.loc_0x444:
-	  lmw       r25, 0x24(r1)
-	  lwz       r0, 0x44(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
+lbl_8000EF90:
+	li       r5, 0xb
+	b        lbl_8000F0D8
+
+lbl_8000EF98:
+	li       r5, 0xc
+	b        lbl_8000F0D8
+
+lbl_8000EFA0:
+	li       r5, 0xd
+	b        lbl_8000F0D8
+
+lbl_8000EFA8:
+	li       r5, 0xe
+	b        lbl_8000F0D8
+
+lbl_8000EFB0:
+	li       r5, 0xf
+	b        lbl_8000F0D8
+
+lbl_8000EFB8:
+	li       r5, 0x10
+	b        lbl_8000F0D8
+
+lbl_8000EFC0:
+	addi     r6, r10, 0xa8
+	li       r5, 3
+	b        lbl_8000F148
+
+lbl_8000EFCC:
+	addi     r6, r10, 0xb4
+	li       r5, 3
+	b        lbl_8000F148
+
+lbl_8000EFD8:
+	addi     r6, r10, 0xc0
+	li       r5, 3
+	b        lbl_8000F148
+
+lbl_8000EFE4:
+	addi     r6, r10, 0xcc
+	li       r5, 3
+	b        lbl_8000F148
+
+lbl_8000EFF0:
+	addi     r6, r10, 0xd8
+	li       r5, 4
+	b        lbl_8000F148
+
+lbl_8000EFFC:
+	addi     r6, r10, 0xe8
+	li       r5, 3
+	b        lbl_8000F148
+
+lbl_8000F008:
+	addi     r6, r10, 0xf4
+	li       r5, 4
+	b        lbl_8000F148
+
+lbl_8000F014:
+	b        lbl_8000F20C
+
+lbl_8000F018:
+	cmpwi    r4, 0x13
+	bge      lbl_8000F0BC
+	cmpwi    r4, 0x10
+	bge      lbl_8000F02C
+	b        lbl_8000F0BC
+
+lbl_8000F02C:
+	cmplwi   r4, 0x12
+	bgt      lbl_8000F09C
+	lis      r5, lbl_8049EE4C@ha
+	slwi     r3, r4, 2
+	addi     r4, r5, lbl_8049EE4C@l
+	lwzx     r3, r4, r3
+	mtctr    r3
+	bctr
+
+lbl_8000F04C:
+	lis      r3,
+adaptor_setVariableValue_VOID___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
+	addi     r12, r3,
+adaptor_setVariableValue_VOID___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
+	b        lbl_8000F084
+
+lbl_8000F058:
+	lis      r3,
+adaptor_setVariableValue_IMMEDIATE___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
+	addi     r12, r3,
+adaptor_setVariableValue_IMMEDIATE___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
+	b        lbl_8000F084
+
+lbl_8000F064:
+	lis      r3,
+adaptor_setVariableValue_TIME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
+	addi     r12, r3,
+adaptor_setVariableValue_TIME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
+	b        lbl_8000F084
+
+lbl_8000F070:
+	lis      r3,
+adaptor_setVariableValue_FVR_NAME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
+	addi     r12, r3,
+adaptor_setVariableValue_FVR_NAME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
+	b        lbl_8000F084
+
+lbl_8000F07C:
+	lis      r3,
+adaptor_setVariableValue_FVR_INDEX___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
+	addi     r12, r3,
+adaptor_setVariableValue_FVR_INDEX___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
+
+lbl_8000F084:
+	mr       r3, r31
+	mr       r4, r30
+	mr       r6, r0
+	li       r5, 0x11
+	mtctr    r12
+	bctrl
+
+lbl_8000F09C:
+	cmplwi   r29, 0
+	lwz      r3, 4(r31)
+	beq      lbl_8000F0B0
+	mr       r0, r29
+	b        lbl_8000F0B4
+
+lbl_8000F0B0:
+	addi     r0, r13, soOutput_none___Q27JStudio14TVariableValue@sda21
+
+lbl_8000F0B4:
+	stw      r0, 0x164(r3)
+	b        lbl_8000F20C
+
+lbl_8000F0BC:
+	mr       r3, r31
+	mr       r5, r0
+	mr       r6, r7
+	addi     r12, r1, 8
+	bl       __ptmf_scall
+	nop
+	b        lbl_8000F20C
+
+lbl_8000F0D8:
+	cmplwi   r4, 0x12
+	bgt      lbl_8000F20C
+	lis      r6, lbl_8049EE00@ha
+	slwi     r3, r4, 2
+	addi     r4, r6, lbl_8049EE00@l
+	lwzx     r3, r4, r3
+	mtctr    r3
+	bctr
+
+lbl_8000F0F8:
+	lis      r3,
+adaptor_setVariableValue_VOID___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
+	addi     r12, r3,
+adaptor_setVariableValue_VOID___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
+	b        lbl_8000F130
+
+lbl_8000F104:
+	lis      r3,
+adaptor_setVariableValue_IMMEDIATE___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
+	addi     r12, r3,
+adaptor_setVariableValue_IMMEDIATE___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
+	b        lbl_8000F130
+
+lbl_8000F110:
+	lis      r3,
+adaptor_setVariableValue_TIME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
+	addi     r12, r3,
+adaptor_setVariableValue_TIME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
+	b        lbl_8000F130
+
+lbl_8000F11C:
+	lis      r3,
+adaptor_setVariableValue_FVR_NAME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
+	addi     r12, r3,
+adaptor_setVariableValue_FVR_NAME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
+	b        lbl_8000F130
+
+lbl_8000F128:
+	lis      r3,
+adaptor_setVariableValue_FVR_INDEX___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
+	addi     r12, r3,
+adaptor_setVariableValue_FVR_INDEX___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
+
+lbl_8000F130:
+	mr       r3, r31
+	mr       r4, r30
+	mr       r6, r0
+	mtctr    r12
+	bctrl
+
+lbl_8000F144:
+	b        lbl_8000F20C
+
+lbl_8000F148:
+	cmpwi    r4, 3
+	mr       r28, r0
+	beq      lbl_8000F194
+	bge      lbl_8000F168
+	cmpwi    r4, 1
+	beq      lbl_8000F174
+	bge      lbl_8000F184
+	b        lbl_8000F20C
+
+lbl_8000F168:
+	cmpwi    r4, 0x12
+	beq      lbl_8000F1A4
+	b        lbl_8000F20C
+
+lbl_8000F174:
+	lis      r3,
+adaptor_setVariableValue_VOID___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
+	li       r27, 0
+	addi     r29, r3,
+adaptor_setVariableValue_VOID___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
+	b        lbl_8000F1B0
+
+lbl_8000F184:
+	lis      r3,
+adaptor_setVariableValue_IMMEDIATE___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
+	li       r27, 4
+	addi     r29, r3,
+adaptor_setVariableValue_IMMEDIATE___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
+	b        lbl_8000F1B0
+
+lbl_8000F194:
+	lis      r3,
+adaptor_setVariableValue_TIME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
+	li       r27, 4
+	addi     r29, r3,
+adaptor_setVariableValue_TIME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
+	b        lbl_8000F1B0
+
+lbl_8000F1A4:
+	lis      r3,
+adaptor_setVariableValue_FVR_INDEX___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
+	li       r27, 4
+	addi     r29, r3,
+adaptor_setVariableValue_FVR_INDEX___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
+
+lbl_8000F1B0:
+	slwi     r0, r5, 2
+	mr       r26, r6
+	add      r25, r6, r0
+	b        lbl_8000F1E8
+
+lbl_8000F1C0:
+	mr       r12, r29
+	mr       r3, r31
+	mr       r4, r30
+	mr       r6, r28
+	mr       r7, r27
+	lwz      r5, 0(r26)
+	mtctr    r12
+	addi     r26, r26, 4
+	bctrl
+	add      r28, r28, r27
+
+lbl_8000F1E8:
+	cmplw    r26, r25
+	bne      lbl_8000F1C0
+	b        lbl_8000F20C
+
+lbl_8000F1F4:
+	mr       r3, r31
+	mr       r5, r0
+	mr       r6, r7
+	addi     r12, r1, 8
+	bl       __ptmf_scall
+	nop
+
+lbl_8000F20C:
+	lmw      r25, 0x24(r1)
+	lwz      r0, 0x44(r1)
+	mtlr     r0
+	addi     r1, r1, 0x40
+	blr
 	*/
 }
 
@@ -3240,34 +4918,33 @@ void TObject_particle::do_paragraph(unsigned long, void const*, unsigned long)
 TAdaptor_sound::~TAdaptor_sound(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r3
-	  beq-      .loc_0x44
-	  lis       r3, 0x804A
-	  subi      r0, r3, 0xE34
-	  stw       r0, 0x0(r31)
-	  beq-      .loc_0x34
-	  lis       r3, 0x804A
-	  subi      r0, r3, 0xB98
-	  stw       r0, 0x0(r31)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r3, r3
+	beq      lbl_8000F264
+	lis      r3, __vt__Q27JStudio14TAdaptor_sound@ha
+	addi     r0, r3, __vt__Q27JStudio14TAdaptor_sound@l
+	stw      r0, 0(r31)
+	beq      lbl_8000F254
+	lis      r3, __vt__Q27JStudio8TAdaptor@ha
+	addi     r0, r3, __vt__Q27JStudio8TAdaptor@l
+	stw      r0, 0(r31)
 
-	.loc_0x34:
-	  extsh.    r0, r4
-	  ble-      .loc_0x44
-	  mr        r3, r31
-	  bl        0x14E54
+lbl_8000F254:
+	extsh.   r0, r4
+	ble      lbl_8000F264
+	mr       r3, r31
+	bl       __dl__FPv
 
-	.loc_0x44:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8000F264:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -3325,301 +5002,380 @@ TObject_sound::TObject_sound((JStudio::stb::data::TParse_TBlock_object const&,
 void TObject_sound::do_paragraph(unsigned long, void const*, unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  mr        r7, r6
-	  stw       r0, 0x44(r1)
-	  mr        r0, r5
-	  stmw      r25, 0x24(r1)
-	  mr        r30, r3
-	  lis       r3, 0x804A
-	  subi      r3, r3, 0x1968
-	  lwz       r31, 0x34(r30)
-	  cmplwi    r31, 0
-	  beq-      .loc_0x3E4
-	  lis       r5, 0x8048
-	  rlwinm    r6,r4,27,5,31
-	  subi      r9, r5, 0x60F0
-	  rlwinm    r4,r4,0,27,31
-	  lwz       r5, 0x4(r9)
-	  subi      r6, r6, 0x15
-	  lwz       r8, 0x0(r9)
-	  cmplwi    r6, 0x3B
-	  stw       r5, 0xC(r1)
-	  stw       r8, 0x8(r1)
-	  lwz       r5, 0x8(r9)
-	  stw       r5, 0x10(r1)
-	  bgt-      .loc_0x3E4
-	  lis       r5, 0x804A
-	  rlwinm    r6,r6,2,0,29
-	  subi      r5, r5, 0xF44
-	  lwzx      r5, r5, r6
-	  mtctr     r5
-	  bctr
-	  lwz       r6, 0x920(r3)
-	  lwz       r5, 0x924(r3)
-	  lwz       r3, 0x928(r3)
-	  stw       r6, 0x8(r1)
-	  stw       r5, 0xC(r1)
-	  stw       r3, 0x10(r1)
-	  b         .loc_0x3CC
-	  lwz       r6, 0x92C(r3)
-	  lwz       r5, 0x930(r3)
-	  lwz       r3, 0x934(r3)
-	  stw       r6, 0x8(r1)
-	  stw       r5, 0xC(r1)
-	  stw       r3, 0x10(r1)
-	  b         .loc_0x3CC
-	  lwz       r6, 0x938(r3)
-	  lwz       r5, 0x93C(r3)
-	  lwz       r3, 0x940(r3)
-	  stw       r6, 0x8(r1)
-	  stw       r5, 0xC(r1)
-	  stw       r3, 0x10(r1)
-	  b         .loc_0x3CC
-	  lwz       r6, 0x944(r3)
-	  lwz       r5, 0x948(r3)
-	  lwz       r3, 0x94C(r3)
-	  stw       r6, 0x8(r1)
-	  stw       r5, 0xC(r1)
-	  stw       r3, 0x10(r1)
-	  b         .loc_0x3CC
-	  lwz       r6, 0x950(r3)
-	  lwz       r5, 0x954(r3)
-	  lwz       r3, 0x958(r3)
-	  stw       r6, 0x8(r1)
-	  stw       r5, 0xC(r1)
-	  stw       r3, 0x10(r1)
-	  b         .loc_0x3CC
-	  lwz       r6, 0x95C(r3)
-	  lwz       r5, 0x960(r3)
-	  lwz       r3, 0x964(r3)
-	  stw       r6, 0x8(r1)
-	  stw       r5, 0xC(r1)
-	  stw       r3, 0x10(r1)
-	  b         .loc_0x3CC
-	  lwz       r6, 0x968(r3)
-	  lwz       r5, 0x96C(r3)
-	  lwz       r3, 0x970(r3)
-	  stw       r6, 0x8(r1)
-	  stw       r5, 0xC(r1)
-	  stw       r3, 0x10(r1)
-	  b         .loc_0x3CC
-	  lwz       r8, 0x974(r3)
-	  lis       r5, 0x804F
-	  lwz       r6, 0x978(r3)
-	  subi      r5, r5, 0x29C
-	  lwz       r3, 0x97C(r3)
-	  mr        r28, r5
-	  stw       r8, 0x8(r1)
-	  li        r29, 0x3
-	  stw       r6, 0xC(r1)
-	  stw       r3, 0x10(r1)
-	  b         .loc_0x1EC
-	  lwz       r8, 0x980(r3)
-	  lis       r5, 0x804F
-	  lwz       r6, 0x984(r3)
-	  subi      r5, r5, 0x280
-	  lwz       r3, 0x988(r3)
-	  mr        r28, r5
-	  stw       r8, 0x8(r1)
-	  li        r29, 0x4
-	  stw       r6, 0xC(r1)
-	  stw       r3, 0x10(r1)
-	  b         .loc_0x1EC
-	  li        r5, 0
-	  b         .loc_0x2B4
-	  li        r5, 0x1
-	  b         .loc_0x2B4
-	  li        r5, 0x2
-	  b         .loc_0x2B4
-	  li        r5, 0x5
-	  b         .loc_0x2B4
-	  li        r5, 0x6
-	  b         .loc_0x2B4
-	  li        r5, 0x7
-	  b         .loc_0x2B4
-	  li        r5, 0x8
-	  b         .loc_0x2B4
-	  li        r5, 0x9
-	  b         .loc_0x2B4
-	  lis       r3, 0x8047
-	  addi      r3, r3, 0x3454
-	  mr        r5, r3
-	  b         .loc_0x324
-	  b         .loc_0x3E4
+	stwu     r1, -0x40(r1)
+	mflr     r0
+	mr       r7, r6
+	stw      r0, 0x44(r1)
+	mr       r0, r5
+	stmw     r25, 0x24(r1)
+	mr       r30, r3
+	lis      r3, lbl_8049E698@ha
+	addi     r3, r3, lbl_8049E698@l
+	lwz      r31, 0x34(r30)
+	cmplwi   r31, 0
+	beq      lbl_8000F6B8
+	lis      r5, __ptmf_null@ha
+	srwi     r6, r4, 5
+	addi     r9, r5, __ptmf_null@l
+	clrlwi   r4, r4, 0x1b
+	lwz      r5, 4(r9)
+	addi     r6, r6, -21
+	lwz      r8, 0(r9)
+	cmplwi   r6, 0x3b
+	stw      r5, 0xc(r1)
+	stw      r8, 8(r1)
+	lwz      r5, 8(r9)
+	stw      r5, 0x10(r1)
+	bgt      lbl_8000F6B8
+	lis      r5, lbl_8049F0BC@ha
+	slwi     r6, r6, 2
+	addi     r5, r5, lbl_8049F0BC@l
+	lwzx     r5, r5, r6
+	mtctr    r5
+	bctr
 
-	.loc_0x1EC:
-	  cmpwi     r4, 0x13
-	  bge-      .loc_0x298
-	  cmpwi     r4, 0x10
-	  bge-      .loc_0x200
-	  b         .loc_0x298
+lbl_8000F350:
+	lwz      r6, 0x920(r3)
+	lwz      r5, 0x924(r3)
+	lwz      r3, 0x928(r3)
+	stw      r6, 8(r1)
+	stw      r5, 0xc(r1)
+	stw      r3, 0x10(r1)
+	b        lbl_8000F6A0
 
-	.loc_0x200:
-	  cmplwi    r4, 0x12
-	  bgt-      .loc_0x270
-	  lis       r5, 0x804A
-	  rlwinm    r3,r4,2,0,29
-	  subi      r4, r5, 0xF90
-	  lwzx      r3, r4, r3
-	  mtctr     r3
-	  bctr
-	  lis       r3, 0x8001
-	  subi      r12, r3, 0x2A70
-	  b         .loc_0x258
-	  lis       r3, 0x8001
-	  subi      r12, r3, 0x2A58
-	  b         .loc_0x258
-	  lis       r3, 0x8001
-	  subi      r12, r3, 0x2A2C
-	  b         .loc_0x258
-	  lis       r3, 0x8001
-	  subi      r12, r3, 0x2A00
-	  b         .loc_0x258
-	  lis       r3, 0x8001
-	  subi      r12, r3, 0x2990
+lbl_8000F36C:
+	lwz      r6, 0x92c(r3)
+	lwz      r5, 0x930(r3)
+	lwz      r3, 0x934(r3)
+	stw      r6, 8(r1)
+	stw      r5, 0xc(r1)
+	stw      r3, 0x10(r1)
+	b        lbl_8000F6A0
 
-	.loc_0x258:
-	  mr        r3, r31
-	  mr        r4, r30
-	  mr        r5, r29
-	  mr        r6, r0
-	  mtctr     r12
-	  bctrl
+lbl_8000F388:
+	lwz      r6, 0x938(r3)
+	lwz      r5, 0x93c(r3)
+	lwz      r3, 0x940(r3)
+	stw      r6, 8(r1)
+	stw      r5, 0xc(r1)
+	stw      r3, 0x10(r1)
+	b        lbl_8000F6A0
 
-	.loc_0x270:
-	  mulli     r0, r29, 0x14
-	  lwz       r3, 0x4(r31)
-	  cmplwi    r28, 0
-	  add       r3, r3, r0
-	  beq-      .loc_0x28C
-	  mr        r0, r28
-	  b         .loc_0x290
+lbl_8000F3A4:
+	lwz      r6, 0x944(r3)
+	lwz      r5, 0x948(r3)
+	lwz      r3, 0x94c(r3)
+	stw      r6, 8(r1)
+	stw      r5, 0xc(r1)
+	stw      r3, 0x10(r1)
+	b        lbl_8000F6A0
 
-	.loc_0x28C:
-	  subi      r0, r13, 0x78F0
+lbl_8000F3C0:
+	lwz      r6, 0x950(r3)
+	lwz      r5, 0x954(r3)
+	lwz      r3, 0x958(r3)
+	stw      r6, 8(r1)
+	stw      r5, 0xc(r1)
+	stw      r3, 0x10(r1)
+	b        lbl_8000F6A0
 
-	.loc_0x290:
-	  stw       r0, 0x10(r3)
-	  b         .loc_0x3E4
+lbl_8000F3DC:
+	lwz      r6, 0x95c(r3)
+	lwz      r5, 0x960(r3)
+	lwz      r3, 0x964(r3)
+	stw      r6, 8(r1)
+	stw      r5, 0xc(r1)
+	stw      r3, 0x10(r1)
+	b        lbl_8000F6A0
 
-	.loc_0x298:
-	  mr        r3, r31
-	  mr        r5, r0
-	  mr        r6, r7
-	  addi      r12, r1, 0x8
-	  bl        0xB25A8
-	  nop
-	  b         .loc_0x3E4
+lbl_8000F3F8:
+	lwz      r6, 0x968(r3)
+	lwz      r5, 0x96c(r3)
+	lwz      r3, 0x970(r3)
+	stw      r6, 8(r1)
+	stw      r5, 0xc(r1)
+	stw      r3, 0x10(r1)
+	b        lbl_8000F6A0
 
-	.loc_0x2B4:
-	  cmplwi    r4, 0x12
-	  bgt-      .loc_0x3E4
-	  lis       r6, 0x804A
-	  rlwinm    r3,r4,2,0,29
-	  subi      r4, r6, 0xFDC
-	  lwzx      r3, r4, r3
-	  mtctr     r3
-	  bctr
-	  lis       r3, 0x8001
-	  subi      r12, r3, 0x2A70
-	  b         .loc_0x30C
-	  lis       r3, 0x8001
-	  subi      r12, r3, 0x2A58
-	  b         .loc_0x30C
-	  lis       r3, 0x8001
-	  subi      r12, r3, 0x2A2C
-	  b         .loc_0x30C
-	  lis       r3, 0x8001
-	  subi      r12, r3, 0x2A00
-	  b         .loc_0x30C
-	  lis       r3, 0x8001
-	  subi      r12, r3, 0x2990
+lbl_8000F414:
+	lwz      r8, 0x974(r3)
+	lis      r5,
+"soovv_sound_PARENT_ENABLE___Q27JStudio28@unnamed@jstudio_object_cpp@"@ha lwz
+r6, 0x978(r3) addi     r5, r5,
+"soovv_sound_PARENT_ENABLE___Q27JStudio28@unnamed@jstudio_object_cpp@"@l lwz r3,
+0x97c(r3) mr       r28, r5 stw      r8, 8(r1) li       r29, 3 stw      r6,
+0xc(r1) stw      r3, 0x10(r1) b        lbl_8000F4C0
 
-	.loc_0x30C:
-	  mr        r3, r31
-	  mr        r4, r30
-	  mr        r6, r0
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x3E4
+lbl_8000F440:
+	lwz      r8, 0x980(r3)
+	lis      r5,
+"soovv_sound_LOCATED___Q27JStudio28@unnamed@jstudio_object_cpp@"@ha lwz      r6,
+0x984(r3) addi     r5, r5,
+"soovv_sound_LOCATED___Q27JStudio28@unnamed@jstudio_object_cpp@"@l lwz      r3,
+0x988(r3) mr       r28, r5 stw      r8, 8(r1) li       r29, 4 stw      r6,
+0xc(r1) stw      r3, 0x10(r1) b        lbl_8000F4C0
 
-	.loc_0x324:
-	  cmpwi     r4, 0x3
-	  mr        r29, r0
-	  beq-      .loc_0x370
-	  bge-      .loc_0x344
-	  cmpwi     r4, 0x1
-	  beq-      .loc_0x350
-	  bge-      .loc_0x360
-	  b         .loc_0x3E4
+lbl_8000F46C:
+	li       r5, 0
+	b        lbl_8000F588
 
-	.loc_0x344:
-	  cmpwi     r4, 0x12
-	  beq-      .loc_0x380
-	  b         .loc_0x3E4
+lbl_8000F474:
+	li       r5, 1
+	b        lbl_8000F588
 
-	.loc_0x350:
-	  lis       r3, 0x8001
-	  li        r27, 0
-	  subi      r28, r3, 0x2A70
-	  b         .loc_0x38C
+lbl_8000F47C:
+	li       r5, 2
+	b        lbl_8000F588
 
-	.loc_0x360:
-	  lis       r3, 0x8001
-	  li        r27, 0x4
-	  subi      r28, r3, 0x2A58
-	  b         .loc_0x38C
+lbl_8000F484:
+	li       r5, 5
+	b        lbl_8000F588
 
-	.loc_0x370:
-	  lis       r3, 0x8001
-	  li        r27, 0x4
-	  subi      r28, r3, 0x2A2C
-	  b         .loc_0x38C
+lbl_8000F48C:
+	li       r5, 6
+	b        lbl_8000F588
 
-	.loc_0x380:
-	  lis       r3, 0x8001
-	  li        r27, 0x4
-	  subi      r28, r3, 0x2990
+lbl_8000F494:
+	li       r5, 7
+	b        lbl_8000F588
 
-	.loc_0x38C:
-	  mr        r26, r5
-	  addi      r25, r5, 0xC
-	  b         .loc_0x3C0
+lbl_8000F49C:
+	li       r5, 8
+	b        lbl_8000F588
 
-	.loc_0x398:
-	  mr        r12, r28
-	  mr        r3, r31
-	  mr        r4, r30
-	  mr        r6, r29
-	  mr        r7, r27
-	  lwz       r5, 0x0(r26)
-	  mtctr     r12
-	  addi      r26, r26, 0x4
-	  bctrl
-	  add       r29, r29, r27
+lbl_8000F4A4:
+	li       r5, 9
+	b        lbl_8000F588
 
-	.loc_0x3C0:
-	  cmplw     r26, r25
-	  bne+      .loc_0x398
-	  b         .loc_0x3E4
+lbl_8000F4AC:
+	lis      r3, sauVariableValue_3_POSITION_XYZ__Q27JStudio14TAdaptor_sound@ha
+	addi     r3, r3,
+sauVariableValue_3_POSITION_XYZ__Q27JStudio14TAdaptor_sound@l mr       r5, r3 b
+lbl_8000F5F8
 
-	.loc_0x3CC:
-	  mr        r3, r31
-	  mr        r5, r0
-	  mr        r6, r7
-	  addi      r12, r1, 0x8
-	  bl        0xB2474
-	  nop
+lbl_8000F4BC:
+	b        lbl_8000F6B8
 
-	.loc_0x3E4:
-	  lmw       r25, 0x24(r1)
-	  lwz       r0, 0x44(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
+lbl_8000F4C0:
+	cmpwi    r4, 0x13
+	bge      lbl_8000F56C
+	cmpwi    r4, 0x10
+	bge      lbl_8000F4D4
+	b        lbl_8000F56C
+
+lbl_8000F4D4:
+	cmplwi   r4, 0x12
+	bgt      lbl_8000F544
+	lis      r5, lbl_8049F070@ha
+	slwi     r3, r4, 2
+	addi     r4, r5, lbl_8049F070@l
+	lwzx     r3, r4, r3
+	mtctr    r3
+	bctr
+
+lbl_8000F4F4:
+	lis      r3,
+adaptor_setVariableValue_VOID___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
+	addi     r12, r3,
+adaptor_setVariableValue_VOID___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
+	b        lbl_8000F52C
+
+lbl_8000F500:
+	lis      r3,
+adaptor_setVariableValue_IMMEDIATE___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
+	addi     r12, r3,
+adaptor_setVariableValue_IMMEDIATE___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
+	b        lbl_8000F52C
+
+lbl_8000F50C:
+	lis      r3,
+adaptor_setVariableValue_TIME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
+	addi     r12, r3,
+adaptor_setVariableValue_TIME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
+	b        lbl_8000F52C
+
+lbl_8000F518:
+	lis      r3,
+adaptor_setVariableValue_FVR_NAME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
+	addi     r12, r3,
+adaptor_setVariableValue_FVR_NAME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
+	b        lbl_8000F52C
+
+lbl_8000F524:
+	lis      r3,
+adaptor_setVariableValue_FVR_INDEX___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
+	addi     r12, r3,
+adaptor_setVariableValue_FVR_INDEX___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
+
+lbl_8000F52C:
+	mr       r3, r31
+	mr       r4, r30
+	mr       r5, r29
+	mr       r6, r0
+	mtctr    r12
+	bctrl
+
+lbl_8000F544:
+	mulli    r0, r29, 0x14
+	lwz      r3, 4(r31)
+	cmplwi   r28, 0
+	add      r3, r3, r0
+	beq      lbl_8000F560
+	mr       r0, r28
+	b        lbl_8000F564
+
+lbl_8000F560:
+	addi     r0, r13, soOutput_none___Q27JStudio14TVariableValue@sda21
+
+lbl_8000F564:
+	stw      r0, 0x10(r3)
+	b        lbl_8000F6B8
+
+lbl_8000F56C:
+	mr       r3, r31
+	mr       r5, r0
+	mr       r6, r7
+	addi     r12, r1, 8
+	bl       __ptmf_scall
+	nop
+	b        lbl_8000F6B8
+
+lbl_8000F588:
+	cmplwi   r4, 0x12
+	bgt      lbl_8000F6B8
+	lis      r6, lbl_8049F024@ha
+	slwi     r3, r4, 2
+	addi     r4, r6, lbl_8049F024@l
+	lwzx     r3, r4, r3
+	mtctr    r3
+	bctr
+
+lbl_8000F5A8:
+	lis      r3,
+adaptor_setVariableValue_VOID___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
+	addi     r12, r3,
+adaptor_setVariableValue_VOID___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
+	b        lbl_8000F5E0
+
+lbl_8000F5B4:
+	lis      r3,
+adaptor_setVariableValue_IMMEDIATE___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
+	addi     r12, r3,
+adaptor_setVariableValue_IMMEDIATE___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
+	b        lbl_8000F5E0
+
+lbl_8000F5C0:
+	lis      r3,
+adaptor_setVariableValue_TIME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
+	addi     r12, r3,
+adaptor_setVariableValue_TIME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
+	b        lbl_8000F5E0
+
+lbl_8000F5CC:
+	lis      r3,
+adaptor_setVariableValue_FVR_NAME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
+	addi     r12, r3,
+adaptor_setVariableValue_FVR_NAME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
+	b        lbl_8000F5E0
+
+lbl_8000F5D8:
+	lis      r3,
+adaptor_setVariableValue_FVR_INDEX___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
+	addi     r12, r3,
+adaptor_setVariableValue_FVR_INDEX___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
+
+lbl_8000F5E0:
+	mr       r3, r31
+	mr       r4, r30
+	mr       r6, r0
+	mtctr    r12
+	bctrl
+
+lbl_8000F5F4:
+	b        lbl_8000F6B8
+
+lbl_8000F5F8:
+	cmpwi    r4, 3
+	mr       r29, r0
+	beq      lbl_8000F644
+	bge      lbl_8000F618
+	cmpwi    r4, 1
+	beq      lbl_8000F624
+	bge      lbl_8000F634
+	b        lbl_8000F6B8
+
+lbl_8000F618:
+	cmpwi    r4, 0x12
+	beq      lbl_8000F654
+	b        lbl_8000F6B8
+
+lbl_8000F624:
+	lis      r3,
+adaptor_setVariableValue_VOID___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
+	li       r27, 0
+	addi     r28, r3,
+adaptor_setVariableValue_VOID___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
+	b        lbl_8000F660
+
+lbl_8000F634:
+	lis      r3,
+adaptor_setVariableValue_IMMEDIATE___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
+	li       r27, 4
+	addi     r28, r3,
+adaptor_setVariableValue_IMMEDIATE___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
+	b        lbl_8000F660
+
+lbl_8000F644:
+	lis      r3,
+adaptor_setVariableValue_TIME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
+	li       r27, 4
+	addi     r28, r3,
+adaptor_setVariableValue_TIME___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
+	b        lbl_8000F660
+
+lbl_8000F654:
+	lis      r3,
+adaptor_setVariableValue_FVR_INDEX___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@ha
+	li       r27, 4
+	addi     r28, r3,
+adaptor_setVariableValue_FVR_INDEX___Q27JStudio8TAdaptorFPQ27JStudio8TAdaptorPQ27JStudio7TObjectUlPCvUl@l
+
+lbl_8000F660:
+	mr       r26, r5
+	addi     r25, r5, 0xc
+	b        lbl_8000F694
+
+lbl_8000F66C:
+	mr       r12, r28
+	mr       r3, r31
+	mr       r4, r30
+	mr       r6, r29
+	mr       r7, r27
+	lwz      r5, 0(r26)
+	mtctr    r12
+	addi     r26, r26, 4
+	bctrl
+	add      r29, r29, r27
+
+lbl_8000F694:
+	cmplw    r26, r25
+	bne      lbl_8000F66C
+	b        lbl_8000F6B8
+
+lbl_8000F6A0:
+	mr       r3, r31
+	mr       r5, r0
+	mr       r6, r7
+	addi     r12, r1, 8
+	bl       __ptmf_scall
+	nop
+
+lbl_8000F6B8:
+	lmw      r25, 0x24(r1)
+	lwz      r0, 0x44(r1)
+	mtlr     r0
+	addi     r1, r1, 0x40
+	blr
 	*/
 }
 
@@ -3631,50 +5387,49 @@ void TObject_sound::do_paragraph(unsigned long, void const*, unsigned long)
 TObject_sound::~TObject_sound(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x78
-	  lis       r3, 0x804A
-	  subi      r0, r3, 0xE54
-	  stw       r0, 0x8(r30)
-	  beq-      .loc_0x68
-	  lis       r3, 0x804A
-	  subi      r0, r3, 0xBB8
-	  stw       r0, 0x8(r30)
-	  lwz       r3, 0x34(r30)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x5C
-	  lwz       r12, 0x0(r3)
-	  li        r4, 0x1
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_8000F744
+	lis      r3, __vt__Q27JStudio13TObject_sound@ha
+	addi     r0, r3, __vt__Q27JStudio13TObject_sound@l
+	stw      r0, 8(r30)
+	beq      lbl_8000F734
+	lis      r3, __vt__Q27JStudio7TObject@ha
+	addi     r0, r3, __vt__Q27JStudio7TObject@l
+	stw      r0, 8(r30)
+	lwz      r3, 0x34(r30)
+	cmplwi   r3, 0
+	beq      lbl_8000F728
+	lwz      r12, 0(r3)
+	li       r4, 1
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x5C:
-	  mr        r3, r30
-	  li        r4, 0
-	  bl        0xBB8
+lbl_8000F728:
+	mr       r3, r30
+	li       r4, 0
+	bl       __dt__Q37JStudio3stb7TObjectFv
 
-	.loc_0x68:
-	  extsh.    r0, r31
-	  ble-      .loc_0x78
-	  mr        r3, r30
-	  bl        0x14974
+lbl_8000F734:
+	extsh.   r0, r31
+	ble      lbl_8000F744
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x78:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8000F744:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -3686,50 +5441,49 @@ TObject_sound::~TObject_sound(void)
 TObject_particle::~TObject_particle(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x78
-	  lis       r3, 0x804A
-	  subi      r0, r3, 0xDF0
-	  stw       r0, 0x8(r30)
-	  beq-      .loc_0x68
-	  lis       r3, 0x804A
-	  subi      r0, r3, 0xBB8
-	  stw       r0, 0x8(r30)
-	  lwz       r3, 0x34(r30)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x5C
-	  lwz       r12, 0x0(r3)
-	  li        r4, 0x1
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_8000F7D8
+	lis      r3, __vt__Q27JStudio16TObject_particle@ha
+	addi     r0, r3, __vt__Q27JStudio16TObject_particle@l
+	stw      r0, 8(r30)
+	beq      lbl_8000F7C8
+	lis      r3, __vt__Q27JStudio7TObject@ha
+	addi     r0, r3, __vt__Q27JStudio7TObject@l
+	stw      r0, 8(r30)
+	lwz      r3, 0x34(r30)
+	cmplwi   r3, 0
+	beq      lbl_8000F7BC
+	lwz      r12, 0(r3)
+	li       r4, 1
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x5C:
-	  mr        r3, r30
-	  li        r4, 0
-	  bl        0xB24
+lbl_8000F7BC:
+	mr       r3, r30
+	li       r4, 0
+	bl       __dt__Q37JStudio3stb7TObjectFv
 
-	.loc_0x68:
-	  extsh.    r0, r31
-	  ble-      .loc_0x78
-	  mr        r3, r30
-	  bl        0x148E0
+lbl_8000F7C8:
+	extsh.   r0, r31
+	ble      lbl_8000F7D8
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x78:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8000F7D8:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -3741,50 +5495,49 @@ TObject_particle::~TObject_particle(void)
 TObject_message::~TObject_message(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x78
-	  lis       r3, 0x804A
-	  subi      r0, r3, 0xD90
-	  stw       r0, 0x8(r30)
-	  beq-      .loc_0x68
-	  lis       r3, 0x804A
-	  subi      r0, r3, 0xBB8
-	  stw       r0, 0x8(r30)
-	  lwz       r3, 0x34(r30)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x5C
-	  lwz       r12, 0x0(r3)
-	  li        r4, 0x1
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_8000F86C
+	lis      r3, __vt__Q27JStudio15TObject_message@ha
+	addi     r0, r3, __vt__Q27JStudio15TObject_message@l
+	stw      r0, 8(r30)
+	beq      lbl_8000F85C
+	lis      r3, __vt__Q27JStudio7TObject@ha
+	addi     r0, r3, __vt__Q27JStudio7TObject@l
+	stw      r0, 8(r30)
+	lwz      r3, 0x34(r30)
+	cmplwi   r3, 0
+	beq      lbl_8000F850
+	lwz      r12, 0(r3)
+	li       r4, 1
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x5C:
-	  mr        r3, r30
-	  li        r4, 0
-	  bl        0xA90
+lbl_8000F850:
+	mr       r3, r30
+	li       r4, 0
+	bl       __dt__Q37JStudio3stb7TObjectFv
 
-	.loc_0x68:
-	  extsh.    r0, r31
-	  ble-      .loc_0x78
-	  mr        r3, r30
-	  bl        0x1484C
+lbl_8000F85C:
+	extsh.   r0, r31
+	ble      lbl_8000F86C
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x78:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8000F86C:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -3796,50 +5549,49 @@ TObject_message::~TObject_message(void)
 TObject_light::~TObject_light(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x78
-	  lis       r3, 0x804A
-	  subi      r0, r3, 0xD4C
-	  stw       r0, 0x8(r30)
-	  beq-      .loc_0x68
-	  lis       r3, 0x804A
-	  subi      r0, r3, 0xBB8
-	  stw       r0, 0x8(r30)
-	  lwz       r3, 0x34(r30)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x5C
-	  lwz       r12, 0x0(r3)
-	  li        r4, 0x1
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_8000F900
+	lis      r3, __vt__Q27JStudio13TObject_light@ha
+	addi     r0, r3, __vt__Q27JStudio13TObject_light@l
+	stw      r0, 8(r30)
+	beq      lbl_8000F8F0
+	lis      r3, __vt__Q27JStudio7TObject@ha
+	addi     r0, r3, __vt__Q27JStudio7TObject@l
+	stw      r0, 8(r30)
+	lwz      r3, 0x34(r30)
+	cmplwi   r3, 0
+	beq      lbl_8000F8E4
+	lwz      r12, 0(r3)
+	li       r4, 1
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x5C:
-	  mr        r3, r30
-	  li        r4, 0
-	  bl        0x9FC
+lbl_8000F8E4:
+	mr       r3, r30
+	li       r4, 0
+	bl       __dt__Q37JStudio3stb7TObjectFv
 
-	.loc_0x68:
-	  extsh.    r0, r31
-	  ble-      .loc_0x78
-	  mr        r3, r30
-	  bl        0x147B8
+lbl_8000F8F0:
+	extsh.   r0, r31
+	ble      lbl_8000F900
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x78:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8000F900:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -3851,50 +5603,49 @@ TObject_light::~TObject_light(void)
 TObject_fog::~TObject_fog(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x78
-	  lis       r3, 0x804A
-	  subi      r0, r3, 0xD04
-	  stw       r0, 0x8(r30)
-	  beq-      .loc_0x68
-	  lis       r3, 0x804A
-	  subi      r0, r3, 0xBB8
-	  stw       r0, 0x8(r30)
-	  lwz       r3, 0x34(r30)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x5C
-	  lwz       r12, 0x0(r3)
-	  li        r4, 0x1
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_8000F994
+	lis      r3, __vt__Q27JStudio11TObject_fog@ha
+	addi     r0, r3, __vt__Q27JStudio11TObject_fog@l
+	stw      r0, 8(r30)
+	beq      lbl_8000F984
+	lis      r3, __vt__Q27JStudio7TObject@ha
+	addi     r0, r3, __vt__Q27JStudio7TObject@l
+	stw      r0, 8(r30)
+	lwz      r3, 0x34(r30)
+	cmplwi   r3, 0
+	beq      lbl_8000F978
+	lwz      r12, 0(r3)
+	li       r4, 1
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x5C:
-	  mr        r3, r30
-	  li        r4, 0
-	  bl        0x968
+lbl_8000F978:
+	mr       r3, r30
+	li       r4, 0
+	bl       __dt__Q37JStudio3stb7TObjectFv
 
-	.loc_0x68:
-	  extsh.    r0, r31
-	  ble-      .loc_0x78
-	  mr        r3, r30
-	  bl        0x14724
+lbl_8000F984:
+	extsh.   r0, r31
+	ble      lbl_8000F994
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x78:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8000F994:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -3906,50 +5657,49 @@ TObject_fog::~TObject_fog(void)
 TObject_camera::~TObject_camera(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x78
-	  lis       r3, 0x804A
-	  subi      r0, r3, 0xCC4
-	  stw       r0, 0x8(r30)
-	  beq-      .loc_0x68
-	  lis       r3, 0x804A
-	  subi      r0, r3, 0xBB8
-	  stw       r0, 0x8(r30)
-	  lwz       r3, 0x34(r30)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x5C
-	  lwz       r12, 0x0(r3)
-	  li        r4, 0x1
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_8000FA28
+	lis      r3, __vt__Q27JStudio14TObject_camera@ha
+	addi     r0, r3, __vt__Q27JStudio14TObject_camera@l
+	stw      r0, 8(r30)
+	beq      lbl_8000FA18
+	lis      r3, __vt__Q27JStudio7TObject@ha
+	addi     r0, r3, __vt__Q27JStudio7TObject@l
+	stw      r0, 8(r30)
+	lwz      r3, 0x34(r30)
+	cmplwi   r3, 0
+	beq      lbl_8000FA0C
+	lwz      r12, 0(r3)
+	li       r4, 1
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x5C:
-	  mr        r3, r30
-	  li        r4, 0
-	  bl        0x8D4
+lbl_8000FA0C:
+	mr       r3, r30
+	li       r4, 0
+	bl       __dt__Q37JStudio3stb7TObjectFv
 
-	.loc_0x68:
-	  extsh.    r0, r31
-	  ble-      .loc_0x78
-	  mr        r3, r30
-	  bl        0x14690
+lbl_8000FA18:
+	extsh.   r0, r31
+	ble      lbl_8000FA28
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x78:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8000FA28:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -3961,50 +5711,49 @@ TObject_camera::~TObject_camera(void)
 TObject_ambientLight::~TObject_ambientLight(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x78
-	  lis       r3, 0x804A
-	  subi      r0, r3, 0xC68
-	  stw       r0, 0x8(r30)
-	  beq-      .loc_0x68
-	  lis       r3, 0x804A
-	  subi      r0, r3, 0xBB8
-	  stw       r0, 0x8(r30)
-	  lwz       r3, 0x34(r30)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x5C
-	  lwz       r12, 0x0(r3)
-	  li        r4, 0x1
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_8000FABC
+	lis      r3, __vt__Q27JStudio20TObject_ambientLight@ha
+	addi     r0, r3, __vt__Q27JStudio20TObject_ambientLight@l
+	stw      r0, 8(r30)
+	beq      lbl_8000FAAC
+	lis      r3, __vt__Q27JStudio7TObject@ha
+	addi     r0, r3, __vt__Q27JStudio7TObject@l
+	stw      r0, 8(r30)
+	lwz      r3, 0x34(r30)
+	cmplwi   r3, 0
+	beq      lbl_8000FAA0
+	lwz      r12, 0(r3)
+	li       r4, 1
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x5C:
-	  mr        r3, r30
-	  li        r4, 0
-	  bl        0x840
+lbl_8000FAA0:
+	mr       r3, r30
+	li       r4, 0
+	bl       __dt__Q37JStudio3stb7TObjectFv
 
-	.loc_0x68:
-	  extsh.    r0, r31
-	  ble-      .loc_0x78
-	  mr        r3, r30
-	  bl        0x145FC
+lbl_8000FAAC:
+	extsh.   r0, r31
+	ble      lbl_8000FABC
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x78:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8000FABC:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -4016,50 +5765,49 @@ TObject_ambientLight::~TObject_ambientLight(void)
 TObject_actor::~TObject_actor(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x78
-	  lis       r3, 0x804A
-	  subi      r0, r3, 0xC28
-	  stw       r0, 0x8(r30)
-	  beq-      .loc_0x68
-	  lis       r3, 0x804A
-	  subi      r0, r3, 0xBB8
-	  stw       r0, 0x8(r30)
-	  lwz       r3, 0x34(r30)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x5C
-	  lwz       r12, 0x0(r3)
-	  li        r4, 0x1
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_8000FB50
+	lis      r3, __vt__Q27JStudio13TObject_actor@ha
+	addi     r0, r3, __vt__Q27JStudio13TObject_actor@l
+	stw      r0, 8(r30)
+	beq      lbl_8000FB40
+	lis      r3, __vt__Q27JStudio7TObject@ha
+	addi     r0, r3, __vt__Q27JStudio7TObject@l
+	stw      r0, 8(r30)
+	lwz      r3, 0x34(r30)
+	cmplwi   r3, 0
+	beq      lbl_8000FB34
+	lwz      r12, 0(r3)
+	li       r4, 1
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x5C:
-	  mr        r3, r30
-	  li        r4, 0
-	  bl        0x7AC
+lbl_8000FB34:
+	mr       r3, r30
+	li       r4, 0
+	bl       __dt__Q37JStudio3stb7TObjectFv
 
-	.loc_0x68:
-	  extsh.    r0, r31
-	  ble-      .loc_0x78
-	  mr        r3, r30
-	  bl        0x14568
+lbl_8000FB40:
+	extsh.   r0, r31
+	ble      lbl_8000FB50
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x78:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8000FB50:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -4073,168 +5821,183 @@ TObject_actor::~TObject_actor(void)
 void __sinit_jstudio - object_cpp(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r5, 0x804A
-	  lis       r3, 0x804A
-	  stw       r0, 0x14(r1)
-	  lis       r4, 0x804F
-	  subi      r8, r5, 0xB18
-	  stw       r31, 0xC(r1)
-	  subi      r31, r4, 0x350
-	  lis       r4, 0x8001
-	  stw       r30, 0x8(r1)
-	  subi      r30, r3, 0x1968
-	  lis       r3, 0x804A
-	  subi      r4, r4, 0xA0
-	  subi      r9, r3, 0xB68
-	  lwz       r7, 0x0(r30)
-	  stw       r9, 0xC(r31)
-	  addi      r3, r31, 0xC
-	  lwz       r6, 0x4(r30)
-	  addi      r5, r31, 0
-	  lwz       r0, 0x8(r30)
-	  stw       r8, 0xC(r31)
-	  stw       r7, 0x4(r3)
-	  stw       r6, 0x8(r3)
-	  stw       r0, 0xC(r3)
-	  bl        0xB1B30
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r0, r3, 0xB68
-	  lis       r4, 0x8001
-	  stw       r0, 0x28(r31)
-	  subi      r5, r5, 0xB18
-	  lwz       r7, 0xC(r30)
-	  addi      r3, r31, 0x28
-	  lwz       r6, 0x10(r30)
-	  subi      r4, r4, 0xA0
-	  lwz       r0, 0x14(r30)
-	  stw       r5, 0x28(r31)
-	  addi      r5, r31, 0x1C
-	  stw       r7, 0x4(r3)
-	  stw       r6, 0x8(r3)
-	  stw       r0, 0xC(r3)
-	  bl        0xB1AEC
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r0, r3, 0xB68
-	  lis       r4, 0x8001
-	  stw       r0, 0x44(r31)
-	  subi      r5, r5, 0xB28
-	  lwz       r7, 0x18(r30)
-	  addi      r3, r31, 0x44
-	  lwz       r6, 0x1C(r30)
-	  subi      r4, r4, 0xFC
-	  lwz       r0, 0x20(r30)
-	  stw       r5, 0x44(r31)
-	  addi      r5, r31, 0x38
-	  stw       r7, 0x4(r3)
-	  stw       r6, 0x8(r3)
-	  stw       r0, 0xC(r3)
-	  bl        0xB1AA8
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r0, r3, 0xB68
-	  lis       r4, 0x8001
-	  stw       r0, 0x60(r31)
-	  subi      r5, r5, 0xB28
-	  lwz       r7, 0x24(r30)
-	  addi      r3, r31, 0x60
-	  lwz       r6, 0x28(r30)
-	  subi      r4, r4, 0xFC
-	  lwz       r0, 0x2C(r30)
-	  stw       r5, 0x60(r31)
-	  addi      r5, r31, 0x54
-	  stw       r7, 0x4(r3)
-	  stw       r6, 0x8(r3)
-	  stw       r0, 0xC(r3)
-	  bl        0xB1A64
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r0, r3, 0xB68
-	  lis       r4, 0x8001
-	  stw       r0, 0x7C(r31)
-	  subi      r5, r5, 0xB38
-	  lwz       r7, 0x30(r30)
-	  addi      r3, r31, 0x7C
-	  lwz       r6, 0x34(r30)
-	  subi      r4, r4, 0x158
-	  lwz       r0, 0x38(r30)
-	  stw       r5, 0x7C(r31)
-	  addi      r5, r31, 0x70
-	  stw       r7, 0x4(r3)
-	  stw       r6, 0x8(r3)
-	  stw       r0, 0xC(r3)
-	  bl        0xB1A20
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r0, r3, 0xB68
-	  lis       r4, 0x8001
-	  stw       r0, 0x98(r31)
-	  subi      r5, r5, 0xB48
-	  lwz       r7, 0x3C(r30)
-	  addi      r3, r31, 0x98
-	  lwz       r6, 0x40(r30)
-	  subi      r4, r4, 0x1B4
-	  lwz       r0, 0x44(r30)
-	  stw       r5, 0x98(r31)
-	  addi      r5, r31, 0x8C
-	  stw       r7, 0x4(r3)
-	  stw       r6, 0x8(r3)
-	  stw       r0, 0xC(r3)
-	  bl        0xB19DC
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r0, r3, 0xB68
-	  lis       r4, 0x8001
-	  stw       r0, 0xB4(r31)
-	  subi      r5, r5, 0xB58
-	  lwz       r7, 0x48(r30)
-	  addi      r3, r31, 0xB4
-	  lwz       r6, 0x4C(r30)
-	  subi      r4, r4, 0x210
-	  lwz       r0, 0x50(r30)
-	  stw       r5, 0xB4(r31)
-	  addi      r5, r31, 0xA8
-	  stw       r7, 0x4(r3)
-	  stw       r6, 0x8(r3)
-	  stw       r0, 0xC(r3)
-	  bl        0xB1998
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r0, r3, 0xB68
-	  lis       r4, 0x8001
-	  stw       r0, 0xD0(r31)
-	  subi      r5, r5, 0xB58
-	  lwz       r7, 0x54(r30)
-	  addi      r3, r31, 0xD0
-	  lwz       r6, 0x58(r30)
-	  subi      r4, r4, 0x210
-	  lwz       r0, 0x5C(r30)
-	  stw       r5, 0xD0(r31)
-	  addi      r5, r31, 0xC4
-	  stw       r7, 0x4(r3)
-	  stw       r6, 0x8(r3)
-	  stw       r0, 0xC(r3)
-	  bl        0xB1954
-	  lis       r4, 0x804A
-	  addi      r0, r30, 0xDF0
-	  subi      r4, r4, 0xB68
-	  lis       r3, 0x8001
-	  stw       r4, -0x78F0(r13)
-	  subi      r4, r3, 0x2E9C
-	  addi      r5, r31, 0xE0
-	  subi      r3, r13, 0x78F0
-	  stw       r0, -0x78F0(r13)
-	  bl        0xB192C
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lis      r5, lbl_8049F4E8@ha
+	lis      r3, lbl_8049E698@ha
+	stw      r0, 0x14(r1)
+	lis      r4, lbl_804EFCB0@ha
+	addi     r8, r5, lbl_8049F4E8@l
+	stw      r31, 0xc(r1)
+	addi     r31, r4, lbl_804EFCB0@l
+	lis      r4,
+	"__dt__Q37JStudio28@unnamed@jstudio_object_cpp@54TOutputVariableValue_BOOL_<Q27JStudio14TAdaptor_actor>Fv"@ha
+	stw      r30, 8(r1)
+	addi     r30, r3, lbl_8049E698@l
+	lis      r3, __vt__Q37JStudio14TVariableValue7TOutput@ha
+	addi     r4, r4,
+	"__dt__Q37JStudio28@unnamed@jstudio_object_cpp@54TOutputVariableValue_BOOL_<Q27JStudio14TAdaptor_actor>Fv"@l
+	addi     r9, r3, __vt__Q37JStudio14TVariableValue7TOutput@l
+	lwz      r7, 0(r30)
+	stw      r9, 0xc(r31)
+	addi     r3, r31, 0xc
+	lwz      r6, 4(r30)
+	addi     r5, r31, 0
+	lwz      r0, 8(r30)
+	stw      r8, 0xc(r31)
+	stw      r7, 4(r3)
+	stw      r6, 8(r3)
+	stw      r0, 0xc(r3)
+	bl       __register_global_object
+	lis      r3, __vt__Q37JStudio14TVariableValue7TOutput@ha
+	lis      r5, lbl_8049F4E8@ha
+	addi     r0, r3, __vt__Q37JStudio14TVariableValue7TOutput@l
+	lis      r4,
+	"__dt__Q37JStudio28@unnamed@jstudio_object_cpp@54TOutputVariableValue_BOOL_<Q27JStudio14TAdaptor_actor>Fv"@ha
+	stw      r0, 0x28(r31)
+	addi     r5, r5, lbl_8049F4E8@l
+	lwz      r7, 0xc(r30)
+	addi     r3, r31, 0x28
+	lwz      r6, 0x10(r30)
+	addi     r4, r4,
+	"__dt__Q37JStudio28@unnamed@jstudio_object_cpp@54TOutputVariableValue_BOOL_<Q27JStudio14TAdaptor_actor>Fv"@l
+	lwz      r0, 0x14(r30)
+	stw      r5, 0x28(r31)
+	addi     r5, r31, 0x1c
+	stw      r7, 4(r3)
+	stw      r6, 8(r3)
+	stw      r0, 0xc(r3)
+	bl       __register_global_object
+	lis      r3, __vt__Q37JStudio14TVariableValue7TOutput@ha
+	lis      r5, lbl_8049F4D8@ha
+	addi     r0, r3, __vt__Q37JStudio14TVariableValue7TOutput@l
+	lis      r4,
+	"__dt__Q37JStudio28@unnamed@jstudio_object_cpp@55TOutputVariableValue_BOOL_<Q27JStudio15TAdaptor_camera>Fv"@ha
+	stw      r0, 0x44(r31)
+	addi     r5, r5, lbl_8049F4D8@l
+	lwz      r7, 0x18(r30)
+	addi     r3, r31, 0x44
+	lwz      r6, 0x1c(r30)
+	addi     r4, r4,
+	"__dt__Q37JStudio28@unnamed@jstudio_object_cpp@55TOutputVariableValue_BOOL_<Q27JStudio15TAdaptor_camera>Fv"@l
+	lwz      r0, 0x20(r30)
+	stw      r5, 0x44(r31)
+	addi     r5, r31, 0x38
+	stw      r7, 4(r3)
+	stw      r6, 8(r3)
+	stw      r0, 0xc(r3)
+	bl       __register_global_object
+	lis      r3, __vt__Q37JStudio14TVariableValue7TOutput@ha
+	lis      r5, lbl_8049F4D8@ha
+	addi     r0, r3, __vt__Q37JStudio14TVariableValue7TOutput@l
+	lis      r4,
+	"__dt__Q37JStudio28@unnamed@jstudio_object_cpp@55TOutputVariableValue_BOOL_<Q27JStudio15TAdaptor_camera>Fv"@ha
+	stw      r0, 0x60(r31)
+	addi     r5, r5, lbl_8049F4D8@l
+	lwz      r7, 0x24(r30)
+	addi     r3, r31, 0x60
+	lwz      r6, 0x28(r30)
+	addi     r4, r4,
+	"__dt__Q37JStudio28@unnamed@jstudio_object_cpp@55TOutputVariableValue_BOOL_<Q27JStudio15TAdaptor_camera>Fv"@l
+	lwz      r0, 0x2c(r30)
+	stw      r5, 0x60(r31)
+	addi     r5, r31, 0x54
+	stw      r7, 4(r3)
+	stw      r6, 8(r3)
+	stw      r0, 0xc(r3)
+	bl       __register_global_object
+	lis      r3, __vt__Q37JStudio14TVariableValue7TOutput@ha
+	lis      r5, lbl_8049F4C8@ha
+	addi     r0, r3, __vt__Q37JStudio14TVariableValue7TOutput@l
+	lis      r4,
+	"__dt__Q37JStudio28@unnamed@jstudio_object_cpp@54TOutputVariableValue_BOOL_<Q27JStudio14TAdaptor_light>Fv"@ha
+	stw      r0, 0x7c(r31)
+	addi     r5, r5, lbl_8049F4C8@l
+	lwz      r7, 0x30(r30)
+	addi     r3, r31, 0x7c
+	lwz      r6, 0x34(r30)
+	addi     r4, r4,
+	"__dt__Q37JStudio28@unnamed@jstudio_object_cpp@54TOutputVariableValue_BOOL_<Q27JStudio14TAdaptor_light>Fv"@l
+	lwz      r0, 0x38(r30)
+	stw      r5, 0x7c(r31)
+	addi     r5, r31, 0x70
+	stw      r7, 4(r3)
+	stw      r6, 8(r3)
+	stw      r0, 0xc(r3)
+	bl       __register_global_object
+	lis      r3, __vt__Q37JStudio14TVariableValue7TOutput@ha
+	lis      r5, lbl_8049F4B8@ha
+	addi     r0, r3, __vt__Q37JStudio14TVariableValue7TOutput@l
+	lis      r4,
+	"__dt__Q37JStudio28@unnamed@jstudio_object_cpp@57TOutputVariableValue_BOOL_<Q27JStudio17TAdaptor_particle>Fv"@ha
+	stw      r0, 0x98(r31)
+	addi     r5, r5, lbl_8049F4B8@l
+	lwz      r7, 0x3c(r30)
+	addi     r3, r31, 0x98
+	lwz      r6, 0x40(r30)
+	addi     r4, r4,
+	"__dt__Q37JStudio28@unnamed@jstudio_object_cpp@57TOutputVariableValue_BOOL_<Q27JStudio17TAdaptor_particle>Fv"@l
+	lwz      r0, 0x44(r30)
+	stw      r5, 0x98(r31)
+	addi     r5, r31, 0x8c
+	stw      r7, 4(r3)
+	stw      r6, 8(r3)
+	stw      r0, 0xc(r3)
+	bl       __register_global_object
+	lis      r3, __vt__Q37JStudio14TVariableValue7TOutput@ha
+	lis      r5, lbl_8049F4A8@ha
+	addi     r0, r3, __vt__Q37JStudio14TVariableValue7TOutput@l
+	lis      r4,
+	"__dt__Q37JStudio28@unnamed@jstudio_object_cpp@54TOutputVariableValue_BOOL_<Q27JStudio14TAdaptor_sound>Fv"@ha
+	stw      r0, 0xb4(r31)
+	addi     r5, r5, lbl_8049F4A8@l
+	lwz      r7, 0x48(r30)
+	addi     r3, r31, 0xb4
+	lwz      r6, 0x4c(r30)
+	addi     r4, r4,
+	"__dt__Q37JStudio28@unnamed@jstudio_object_cpp@54TOutputVariableValue_BOOL_<Q27JStudio14TAdaptor_sound>Fv"@l
+	lwz      r0, 0x50(r30)
+	stw      r5, 0xb4(r31)
+	addi     r5, r31, 0xa8
+	stw      r7, 4(r3)
+	stw      r6, 8(r3)
+	stw      r0, 0xc(r3)
+	bl       __register_global_object
+	lis      r3, __vt__Q37JStudio14TVariableValue7TOutput@ha
+	lis      r5, lbl_8049F4A8@ha
+	addi     r0, r3, __vt__Q37JStudio14TVariableValue7TOutput@l
+	lis      r4,
+	"__dt__Q37JStudio28@unnamed@jstudio_object_cpp@54TOutputVariableValue_BOOL_<Q27JStudio14TAdaptor_sound>Fv"@ha
+	stw      r0, 0xd0(r31)
+	addi     r5, r5, lbl_8049F4A8@l
+	lwz      r7, 0x54(r30)
+	addi     r3, r31, 0xd0
+	lwz      r6, 0x58(r30)
+	addi     r4, r4,
+	"__dt__Q37JStudio28@unnamed@jstudio_object_cpp@54TOutputVariableValue_BOOL_<Q27JStudio14TAdaptor_sound>Fv"@l
+	lwz      r0, 0x5c(r30)
+	stw      r5, 0xd0(r31)
+	addi     r5, r31, 0xc4
+	stw      r7, 4(r3)
+	stw      r6, 8(r3)
+	stw      r0, 0xc(r3)
+	bl       __register_global_object
+	lis      r4, __vt__Q37JStudio14TVariableValue7TOutput@ha
+	addi     r0, r30, 0xdf0
+	addi     r4, r4, __vt__Q37JStudio14TVariableValue7TOutput@l
+	lis      r3, __dt__Q37JStudio14TVariableValue13TOutput_none_Fv@ha
+	stw      r4, soOutput_none___Q27JStudio14TVariableValue@sda21(r13)
+	addi     r4, r3, __dt__Q37JStudio14TVariableValue13TOutput_none_Fv@l
+	addi     r5, r31, 0xe0
+	addi     r3, r13, soOutput_none___Q27JStudio14TVariableValue@sda21
+	stw      r0, soOutput_none___Q27JStudio14TVariableValue@sda21(r13)
+	bl       __register_global_object
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 

@@ -3,6 +3,81 @@
 #include "Sys/TriangleTable.h"
 
 /*
+    Generated from dpostproc
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_804997B8
+    lbl_804997B8:
+        .asciz "# %d/%d\r\n"
+        .skip 0x6
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__Q37MapCode3Mgr9CodeArray
+    __vt__Q37MapCode3Mgr9CodeArray:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q37MapCode3Mgr9CodeArrayFv
+        .4byte getChildCount__5CNodeFv
+        .4byte "getObject__26Container<Q27MapCode4Code>FPv"
+        .4byte "getNext__31ArrayContainer<Q27MapCode4Code>FPv"
+        .4byte "getStart__31ArrayContainer<Q27MapCode4Code>Fv"
+        .4byte "getEnd__31ArrayContainer<Q27MapCode4Code>Fv"
+        .4byte "get__31ArrayContainer<Q27MapCode4Code>FPv"
+        .4byte "getAt__31ArrayContainer<Q27MapCode4Code>Fi"
+        .4byte "getTo__31ArrayContainer<Q27MapCode4Code>Fv"
+        .4byte writeObject__Q37MapCode3Mgr9CodeArrayFR6StreamRQ27MapCode4Code
+        .4byte readObject__Q37MapCode3Mgr9CodeArrayFR6StreamRQ27MapCode4Code
+        .4byte "write__31ArrayContainer<Q27MapCode4Code>FR6Stream"
+        .4byte "read__31ArrayContainer<Q27MapCode4Code>FR6Stream"
+        .4byte "alloc__31ArrayContainer<Q27MapCode4Code>Fi"
+        .4byte "addOne__31ArrayContainer<Q27MapCode4Code>FRQ27MapCode4Code"
+        .4byte "setArray__31ArrayContainer<Q27MapCode4Code>FPQ27MapCode4Codei"
+    .global "__vt__31ArrayContainer<Q27MapCode4Code>"
+    "__vt__31ArrayContainer<Q27MapCode4Code>":
+        .4byte 0
+        .4byte 0
+        .4byte "__dt__31ArrayContainer<Q27MapCode4Code>Fv"
+        .4byte getChildCount__5CNodeFv
+        .4byte "getObject__26Container<Q27MapCode4Code>FPv"
+        .4byte "getNext__31ArrayContainer<Q27MapCode4Code>FPv"
+        .4byte "getStart__31ArrayContainer<Q27MapCode4Code>Fv"
+        .4byte "getEnd__31ArrayContainer<Q27MapCode4Code>Fv"
+        .4byte "get__31ArrayContainer<Q27MapCode4Code>FPv"
+        .4byte "getAt__31ArrayContainer<Q27MapCode4Code>Fi"
+        .4byte "getTo__31ArrayContainer<Q27MapCode4Code>Fv"
+        .4byte
+   "writeObject__31ArrayContainer<Q27MapCode4Code>FR6StreamRQ27MapCode4Code"
+        .4byte
+   "readObject__31ArrayContainer<Q27MapCode4Code>FR6StreamRQ27MapCode4Code"
+        .4byte "write__31ArrayContainer<Q27MapCode4Code>FR6Stream"
+        .4byte "read__31ArrayContainer<Q27MapCode4Code>FR6Stream"
+        .4byte "alloc__31ArrayContainer<Q27MapCode4Code>Fi"
+        .4byte "addOne__31ArrayContainer<Q27MapCode4Code>FRQ27MapCode4Code"
+        .4byte "setArray__31ArrayContainer<Q27MapCode4Code>FPQ27MapCode4Codei"
+    .global "__vt__26Container<Q27MapCode4Code>"
+    "__vt__26Container<Q27MapCode4Code>":
+        .4byte 0
+        .4byte 0
+        .4byte "__dt__26Container<Q27MapCode4Code>Fv"
+        .4byte getChildCount__5CNodeFv
+        .4byte "getObject__26Container<Q27MapCode4Code>FPv"
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte "getAt__26Container<Q27MapCode4Code>Fi"
+        .4byte "getTo__26Container<Q27MapCode4Code>Fv"
+        .4byte 0
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_805203A8
+    lbl_805203A8:
+        .asciz "\r\n"
+        .skip 0x1
+        .4byte 0x00000000
+*/
+
+/*
  * --INFO--
  * Address:	8041C434
  * Size:	00000C
@@ -176,47 +251,46 @@ inline MapCode::Mgr::CodeArray::CodeArray()
 MapCode::Mgr::CodeArray::~CodeArray(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x74
-	  lis       r4, 0x804F
-	  subi      r0, r4, 0x46E0
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x64
-	  lis       r4, 0x804F
-	  subi      r0, r4, 0x4698
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x64
-	  lis       r4, 0x804F
-	  subi      r0, r4, 0x4650
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x64
-	  lis       r5, 0x804B
-	  li        r4, 0
-	  subi      r0, r5, 0x5324
-	  stw       r0, 0x0(r30)
-	  bl        -0xAFD0
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_8041C56C
+	lis      r4, __vt__Q37MapCode3Mgr9CodeArray@ha
+	addi     r0, r4, __vt__Q37MapCode3Mgr9CodeArray@l
+	stw      r0, 0(r30)
+	beq      lbl_8041C55C
+	lis      r4, "__vt__31ArrayContainer<Q27MapCode4Code>"@ha
+	addi     r0, r4, "__vt__31ArrayContainer<Q27MapCode4Code>"@l
+	stw      r0, 0(r30)
+	beq      lbl_8041C55C
+	lis      r4, "__vt__26Container<Q27MapCode4Code>"@ha
+	addi     r0, r4, "__vt__26Container<Q27MapCode4Code>"@l
+	stw      r0, 0(r30)
+	beq      lbl_8041C55C
+	lis      r5, __vt__16GenericContainer@ha
+	li       r4, 0
+	addi     r0, r5, __vt__16GenericContainer@l
+	stw      r0, 0(r30)
+	bl       __dt__5CNodeFv
 
-	.loc_0x64:
-	  extsh.    r0, r31
-	  ble-      .loc_0x74
-	  mr        r3, r30
-	  bl        -0x3F84B4
+lbl_8041C55C:
+	extsh.   r0, r31
+	ble      lbl_8041C56C
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x74:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8041C56C:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -228,43 +302,42 @@ MapCode::Mgr::CodeArray::~CodeArray(void)
 ArrayContainer<MapCode::Code>::~ArrayContainer()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x64
-	  lis       r4, 0x804F
-	  subi      r0, r4, 0x4698
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x54
-	  lis       r4, 0x804F
-	  subi      r0, r4, 0x4650
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x54
-	  lis       r5, 0x804B
-	  li        r4, 0
-	  subi      r0, r5, 0x5324
-	  stw       r0, 0x0(r30)
-	  bl        -0xB050
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_8041C5EC
+	lis      r4, "__vt__31ArrayContainer<Q27MapCode4Code>"@ha
+	addi     r0, r4, "__vt__31ArrayContainer<Q27MapCode4Code>"@l
+	stw      r0, 0(r30)
+	beq      lbl_8041C5DC
+	lis      r4, "__vt__26Container<Q27MapCode4Code>"@ha
+	addi     r0, r4, "__vt__26Container<Q27MapCode4Code>"@l
+	stw      r0, 0(r30)
+	beq      lbl_8041C5DC
+	lis      r5, __vt__16GenericContainer@ha
+	li       r4, 0
+	addi     r0, r5, __vt__16GenericContainer@l
+	stw      r0, 0(r30)
+	bl       __dt__5CNodeFv
 
-	.loc_0x54:
-	  extsh.    r0, r31
-	  ble-      .loc_0x64
-	  mr        r3, r30
-	  bl        -0x3F8534
+lbl_8041C5DC:
+	extsh.   r0, r31
+	ble      lbl_8041C5EC
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x64:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8041C5EC:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -276,39 +349,38 @@ ArrayContainer<MapCode::Code>::~ArrayContainer()
 Container<MapCode::Code>::~Container()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x54
-	  lis       r4, 0x804F
-	  subi      r0, r4, 0x4650
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x44
-	  lis       r5, 0x804B
-	  li        r4, 0
-	  subi      r0, r5, 0x5324
-	  stw       r0, 0x0(r30)
-	  bl        -0xB0C0
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_8041C65C
+	lis      r4, "__vt__26Container<Q27MapCode4Code>"@ha
+	addi     r0, r4, "__vt__26Container<Q27MapCode4Code>"@l
+	stw      r0, 0(r30)
+	beq      lbl_8041C64C
+	lis      r5, __vt__16GenericContainer@ha
+	li       r4, 0
+	addi     r0, r5, __vt__16GenericContainer@l
+	stw      r0, 0(r30)
+	bl       __dt__5CNodeFv
 
-	.loc_0x44:
-	  extsh.    r0, r31
-	  ble-      .loc_0x54
-	  mr        r3, r30
-	  bl        -0x3F85A4
+lbl_8041C64C:
+	extsh.   r0, r31
+	ble      lbl_8041C65C
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x54:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8041C65C:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 

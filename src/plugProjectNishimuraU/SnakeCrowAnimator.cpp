@@ -1,5 +1,24 @@
 #include "types.h"
 
+/*
+    Generated from dpostproc
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__Q34Game9SnakeCrow14ProperAnimator
+    __vt__Q34Game9SnakeCrow14ProperAnimator:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q34Game9SnakeCrow14ProperAnimatorFv
+        .4byte
+   setAnimMgr__Q34Game9SnakeCrow14ProperAnimatorFPQ28SysShape7AnimMgr .4byte
+   getAnimator__Q34Game9SnakeCrow14ProperAnimatorFv .4byte
+   getAnimator__Q34Game9SnakeCrow14ProperAnimatorFi .4byte
+   animate__Q24Game17EnemyAnimatorBaseFf .4byte
+   animate__Q24Game17EnemyAnimatorBaseFif .4byte
+   resetAnimSpeed__Q24Game17EnemyAnimatorBaseFv .4byte
+   getTypeID__Q24Game17EnemyAnimatorBaseFv
+*/
+
 namespace Game {
 
 /*
@@ -10,9 +29,8 @@ namespace Game {
 void SnakeCrow::ProperAnimator::setAnimMgr(SysShape::AnimMgr*)
 {
 	/*
-	.loc_0x0:
-	  mulli     r0, r4, 0x3
-	  lwz       r8, 0x24(r3)
+	stw      r4, 0x20(r3)
+	blr
 	*/
 }
 
@@ -24,9 +42,8 @@ void SnakeCrow::ProperAnimator::setAnimMgr(SysShape::AnimMgr*)
 void SnakeCrow::ProperAnimator::getAnimator(int)
 {
 	/*
-	.loc_0x0:
-	  addi      r3, r3, 0x10
-	  blr
+	addi     r3, r3, 0x10
+	blr
 	*/
 }
 
@@ -38,34 +55,33 @@ void SnakeCrow::ProperAnimator::getAnimator(int)
 SnakeCrow::ProperAnimator::~ProperAnimator()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r3
-	  beq-      .loc_0x44
-	  lis       r3, 0x804D
-	  subi      r0, r3, 0x4BA8
-	  stw       r0, 0x0(r31)
-	  beq-      .loc_0x34
-	  lis       r3, 0x804B
-	  subi      r0, r3, 0x23A8
-	  stw       r0, 0x0(r31)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r3, r3
+	beq      lbl_80292B7C
+	lis      r3, __vt__Q34Game9SnakeCrow14ProperAnimator@ha
+	addi     r0, r3, __vt__Q34Game9SnakeCrow14ProperAnimator@l
+	stw      r0, 0(r31)
+	beq      lbl_80292B6C
+	lis      r3, __vt__Q24Game17EnemyAnimatorBase@ha
+	addi     r0, r3, __vt__Q24Game17EnemyAnimatorBase@l
+	stw      r0, 0(r31)
 
-	.loc_0x34:
-	  extsh.    r0, r4
-	  ble-      .loc_0x44
-	  mr        r3, r31
-	  bl        -0x26EAC4
+lbl_80292B6C:
+	extsh.   r0, r4
+	ble      lbl_80292B7C
+	mr       r3, r31
+	bl       __dl__FPv
 
-	.loc_0x44:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80292B7C:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -77,9 +93,8 @@ SnakeCrow::ProperAnimator::~ProperAnimator()
 void SnakeCrow::ProperAnimator::getAnimator()
 {
 	/*
-	.loc_0x0:
-	  addi      r3, r3, 0x10
-	  blr
+	addi     r3, r3, 0x10
+	blr
 	*/
 }
 } // namespace Game

@@ -1,5 +1,389 @@
 #include "types.h"
 
+/*
+    Generated from dpostproc
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_80492170
+    lbl_80492170:
+        .4byte 0x74616D61
+        .4byte 0x676F4D75
+        .4byte 0x7368694D
+        .4byte 0x67720000
+    .global lbl_80492180
+    lbl_80492180:
+        .4byte 0x835E837D
+        .4byte 0x83538380
+        .4byte 0x8356837D
+        .4byte 0x836C815B
+        .4byte 0x83578383
+        .4byte 0x00000000
+        .4byte 0x456E656D
+        .4byte 0x79506172
+        .4byte 0x6D734261
+        .4byte 0x73650000
+        .4byte 0x90B691B6
+        .4byte 0x8E9E8AD4
+        .4byte 0x00000000
+        .4byte 0x8F6F8CBB
+        .4byte 0x94CD88CD
+        .4byte 0x00000000
+        .4byte 0x96A8838C
+        .4byte 0x815B8367
+        .4byte 0x00000000
+        .4byte 0x95E082AB
+        .4byte 0x8E9E8AD4
+        .4byte 0x8DC58FAC
+        .4byte 0x00000000
+        .4byte 0x95E082AB
+        .4byte 0x8E9E8AD4
+        .4byte 0x8DC591E5
+        .4byte 0x00000000
+        .4byte 0x8F6F8CBB
+        .4byte 0x8E9E8AD4
+        .4byte 0x8DC58FAC
+        .4byte 0x00000000
+        .4byte 0x8F6F8CBB
+        .4byte 0x8E9E8AD4
+        .4byte 0x8DC591E5
+        .4byte 0x00000000
+        .4byte 0x43726561
+        .4byte 0x74757265
+        .4byte 0x3A3A5072
+        .4byte 0x6F706572
+        .4byte 0x74790000
+        .4byte 0x66726963
+        .4byte 0x74696F6E
+        .4byte 0x286E6F74
+        .4byte 0x20757365
+        .4byte 0x64290000
+        .4byte 0x77616C6C
+        .4byte 0x5265666C
+        .4byte 0x65637469
+        .4byte 0x6F6E0000
+        .4byte 0x66616365
+        .4byte 0x44697241
+        .4byte 0x646A7573
+        .4byte 0x74000000
+        .4byte 0x626F756E
+        .4byte 0x63654661
+        .4byte 0x63746F72
+        .4byte 0x00000000
+        .4byte 0x83898343
+        .4byte 0x837482CC
+        .4byte 0x8D8282B3
+        .4byte 0x00000000
+        .4byte 0x83898343
+        .4byte 0x837489F1
+        .4byte 0x959C97A6
+        .4byte 0x00000000
+        .4byte 0x8C7889FA
+        .4byte 0x83898343
+        .4byte 0x83740000
+        .4byte 0x837D8362
+        .4byte 0x837682C6
+        .4byte 0x82CC9396
+        .4byte 0x82E80000
+        .4byte 0x837D8362
+        .4byte 0x837682C6
+        .4byte 0x82CC82A0
+        .4byte 0x82BD82E8
+        .4byte 0x837C838A
+        .4byte 0x83538393
+        .4byte 0x82CC9149
+        .4byte 0x92E80000
+        .4byte 0x8373834E
+        .4byte 0x837E8393
+        .4byte 0x82C682CC
+        .4byte 0x82A082BD
+        .4byte 0x82E80000
+        .4byte 0x835F8381
+        .4byte 0x815B8357
+        .4byte 0x83588350
+        .4byte 0x815B838B
+        .4byte 0x585A0000
+        .4byte 0x835F8381
+        .4byte 0x815B8357
+        .4byte 0x83588350
+        .4byte 0x815B838B
+        .4byte 0x59000000
+        .4byte 0x835F8381
+        .4byte 0x815B8357
+        .4byte 0x8374838C
+        .4byte 0x815B8380
+        .4byte 0x00000000
+        .4byte 0x89F1935D
+        .4byte 0x91AC9378
+        .4byte 0x97A60000
+        .4byte 0x89F1935D
+        .4byte 0x8DC591E5
+        .4byte 0x91AC9378
+        .4byte 0x00000000
+        .4byte 0x8365838A
+        .4byte 0x8367838A
+        .4byte 0x815B0000
+        .4byte 0x837A815B
+        .4byte 0x838094CD
+        .4byte 0x88CD0000
+        .4byte 0x83768389
+        .4byte 0x83438378
+        .4byte 0x815B8367
+        .4byte 0x8B9797A3
+        .4byte 0x00000000
+        .4byte 0x8E8B8A45
+        .4byte 0x8B9797A3
+        .4byte 0x00000000
+        .4byte 0x8E8B8A45
+        .4byte 0x8A709378
+        .4byte 0x00000000
+        .4byte 0x92548DF5
+        .4byte 0x8B9797A3
+        .4byte 0x00000000
+        .4byte 0x92548DF5
+        .4byte 0x8A709378
+        .4byte 0x00000000
+        .4byte 0x905582E8
+        .4byte 0x95A582A2
+        .4byte 0x97CD0000
+        .4byte 0x905582E8
+        .4byte 0x95A582A2
+        .4byte 0x835F8381
+        .4byte 0x815B8357
+        .4byte 0x00000000
+        .4byte 0x905582E8
+        .4byte 0x95A582A2
+        .4byte 0x94CD88CD
+        .4byte 0x00000000
+        .4byte 0x905582E8
+        .4byte 0x95A582A2
+        .4byte 0x97A60000
+        .4byte 0x8D558C82
+        .4byte 0x89C2945C
+        .4byte 0x94CD88CD
+        .4byte 0x00000000
+        .4byte 0x8D558C82
+        .4byte 0x89C2945C
+        .4byte 0x8A709378
+        .4byte 0x00000000
+        .4byte 0x8D558C82
+        .4byte 0x83718362
+        .4byte 0x836794CD
+        .4byte 0x88CD0000
+        .4byte 0x8D558C82
+        .4byte 0x83718362
+        .4byte 0x83678A70
+        .4byte 0x93780000
+        .4byte 0x8C7889FA
+        .4byte 0x8E9E8AD4
+        .4byte 0x00000000
+        .4byte 0x90CE89BB
+        .4byte 0x8E9E8AD4
+        .4byte 0x00000000
+        .4byte 0x83718362
+        .4byte 0x83768368
+        .4byte 0x838D8362
+        .4byte 0x8376835F
+        .4byte 0x8381815B
+        .4byte 0x83570000
+        .4byte 0x926E906B
+        .4byte 0x8B4390E2
+        .4byte 0x8A6D97A7
+        .4byte 0x00000000
+        .4byte 0x926E906B
+        .4byte 0x8B4390E2
+        .4byte 0x8E9E8AD4
+        .4byte 0x00000000
+        .4byte 0x905582E8
+        .4byte 0x95A582A2
+        .4byte 0x91C58C82
+        .4byte 0x82600000
+        .4byte 0x905582E8
+        .4byte 0x95A582A2
+        .4byte 0x92A39574
+        .4byte 0x82500000
+        .4byte 0x905582E8
+        .4byte 0x95A582A2
+        .4byte 0x91C58C82
+        .4byte 0x82610000
+        .4byte 0x905582E8
+        .4byte 0x95A582A2
+        .4byte 0x92A39574
+        .4byte 0x82510000
+        .4byte 0x905582E8
+        .4byte 0x95A582A2
+        .4byte 0x91C58C82
+        .4byte 0x82620000
+        .4byte 0x905582E8
+        .4byte 0x95A582A2
+        .4byte 0x92A39574
+        .4byte 0x82520000
+        .4byte 0x905582E8
+        .4byte 0x95A582A2
+        .4byte 0x91C58C82
+        .4byte 0x82630000
+    .global lbl_804924C4
+    lbl_804924C4:
+        .4byte 0x74616D61
+        .4byte 0x676F4D75
+        .4byte 0x7368694D
+        .4byte 0x67722E63
+        .4byte 0x70700000
+    .global lbl_804924D8
+    lbl_804924D8:
+        .asciz "P2Assert"
+        .skip 3
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__Q34Game11TamagoMushi3Mgr
+    __vt__Q34Game11TamagoMushi3Mgr:
+        .4byte 0
+        .4byte 0
+        .4byte doAnimation__Q24Game12EnemyMgrBaseFv
+        .4byte doEntry__Q24Game12EnemyMgrBaseFv
+        .4byte doSetView__Q24Game12EnemyMgrBaseFi
+        .4byte doViewCalc__Q24Game12EnemyMgrBaseFv
+        .4byte doSimulation__Q24Game12EnemyMgrBaseFf
+        .4byte doDirectDraw__Q24Game12EnemyMgrBaseFR8Graphics
+        .4byte doSimpleDraw__16GenericObjectMgrFP8Viewport
+        .4byte loadResources__16GenericObjectMgrFv
+        .4byte resetMgr__16GenericObjectMgrFv
+        .4byte pausable__16GenericObjectMgrFv
+        .4byte frozenable__16GenericObjectMgrFv
+        .4byte getMatrixLoadType__16GenericObjectMgrFv
+        .4byte 0
+        .4byte 0
+        .4byte "@4@__dt__Q34Game11TamagoMushi3MgrFv"
+        .4byte getChildCount__5CNodeFv
+        .4byte "@4@getObject__Q24Game12EnemyMgrBaseFPv"
+        .4byte "@4@getNext__Q24Game12EnemyMgrBaseFPv"
+        .4byte "@4@getStart__Q24Game12EnemyMgrBaseFv"
+        .4byte "@4@getEnd__Q24Game12EnemyMgrBaseFv"
+        .4byte __dt__Q34Game11TamagoMushi3MgrFv
+        .4byte getObject__Q24Game12EnemyMgrBaseFPv
+        .4byte getNext__Q24Game12EnemyMgrBaseFPv
+        .4byte getStart__Q24Game12EnemyMgrBaseFv
+        .4byte getEnd__Q24Game12EnemyMgrBaseFv
+        .4byte alloc__Q24Game12EnemyMgrBaseFv
+        .4byte birth__Q34Game11TamagoMushi3MgrFRQ24Game13EnemyBirthArg
+        .4byte getJ3DModelData__Q24Game12EnemyMgrBaseCFv
+        .4byte getGenerator__Q24Game12EnemyMgrBaseCFv
+        .4byte killAll__Q24Game12EnemyMgrBaseFPQ24Game15CreatureKillArg
+        .4byte setupSoundViewerAndBas__Q24Game12EnemyMgrBaseFv
+        .4byte setDebugParm__Q24Game12EnemyMgrBaseFUl
+        .4byte resetDebugParm__Q24Game12EnemyMgrBaseFUl
+        .4byte getMaxObjects__Q24Game12EnemyMgrBaseCFv
+        .4byte startMovie__Q24Game12EnemyMgrBaseFv
+        .4byte endMovie__Q24Game12EnemyMgrBaseFv
+        .4byte get__Q24Game12EnemyMgrBaseFPv
+        .4byte isAlwaysMovieActor__Q24Game12EnemyMgrBaseFv
+        .4byte createObj__Q34Game11TamagoMushi3MgrFi
+        .4byte getEnemy__Q34Game11TamagoMushi3MgrFi
+        .4byte doAlloc__Q34Game11TamagoMushi3MgrFv
+        .4byte getEnemyTypeID__Q34Game11TamagoMushi3MgrFv
+        .4byte createModel__Q24Game12EnemyMgrBaseFv
+        .4byte initParms__Q24Game12EnemyMgrBaseFv
+        .4byte loadResource__Q24Game12EnemyMgrBaseFv
+        .4byte initObjects__Q24Game12EnemyMgrBaseFv
+        .4byte initStoneSetting__Q24Game12EnemyMgrBaseFv
+        .4byte loadModelData__Q24Game12EnemyMgrBaseFP10JKRArchive
+        .4byte loadModelData__Q24Game12EnemyMgrBaseFv
+        .4byte loadAnimData__Q24Game12EnemyMgrBaseFv
+        .4byte loadTexData__Q24Game12EnemyMgrBaseFv
+        .4byte doLoadBmd__Q24Game12EnemyMgrBaseFPv
+        .4byte doLoadBdl__Q24Game12EnemyMgrBaseFPv
+        .4byte initGenerator__Q24Game12EnemyMgrBaseFv
+    .global __vt__Q34Game11TamagoMushi5Parms
+    __vt__Q34Game11TamagoMushi5Parms:
+        .4byte 0
+        .4byte 0
+        .4byte read__Q34Game11TamagoMushi5ParmsFR6Stream
+    .global "__vt__39J3DUMtxCacheRef<20J3DUMtxAnmCacheTable>"
+    "__vt__39J3DUMtxCacheRef<20J3DUMtxAnmCacheTable>":
+        .4byte 0
+        .4byte 0
+        .4byte "__dt__39J3DUMtxCacheRef<20J3DUMtxAnmCacheTable>Fv"
+        .4byte "fetch__39J3DUMtxCacheRef<20J3DUMtxAnmCacheTable>CFP8J3DModel"
+    .global __vt__16J3DUMtxCacheBase
+    __vt__16J3DUMtxCacheBase:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__16J3DUMtxCacheBaseFv
+        .4byte 0
+        .4byte 0
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_8051EA50
+    lbl_8051EA50:
+        .4byte 0x43960000
+    .global lbl_8051EA54
+    lbl_8051EA54:
+        .4byte 0x00000000
+    .global lbl_8051EA58
+    lbl_8051EA58:
+        .4byte 0x44FA0000
+    .global lbl_8051EA5C
+    lbl_8051EA5C:
+        .4byte 0x42A00000
+    .global lbl_8051EA60
+    lbl_8051EA60:
+        .4byte 0x43480000
+    .global lbl_8051EA64
+    lbl_8051EA64:
+        .float 1.0
+    .global lbl_8051EA68
+    lbl_8051EA68:
+        .4byte 0x42200000
+    .global lbl_8051EA6C
+    lbl_8051EA6C:
+        .float 0.3
+    .global lbl_8051EA70
+    lbl_8051EA70:
+        .4byte 0x41200000
+    .global lbl_8051EA74
+    lbl_8051EA74:
+        .4byte 0x3E4CCCCD
+    .global lbl_8051EA78
+    lbl_8051EA78:
+        .4byte 0x42480000
+    .global lbl_8051EA7C
+    lbl_8051EA7C:
+        .4byte 0x41F00000
+    .global lbl_8051EA80
+    lbl_8051EA80:
+        .4byte 0x43160000
+    .global lbl_8051EA84
+    lbl_8051EA84:
+        .float 0.5
+    .global lbl_8051EA88
+    lbl_8051EA88:
+        .4byte 0x42340000
+    .global lbl_8051EA8C
+    lbl_8051EA8C:
+        .4byte 0xC1200000
+    .global lbl_8051EA90
+    lbl_8051EA90:
+        .4byte 0x47000000
+    .global lbl_8051EA94
+    lbl_8051EA94:
+        .4byte 0x3F4CCCCD
+    .global lbl_8051EA98
+    lbl_8051EA98:
+        .4byte 0x40C90FDB
+    .global lbl_8051EA9C
+    lbl_8051EA9C:
+        .4byte 0xC3A2F983
+    .global lbl_8051EAA0
+    lbl_8051EAA0:
+        .4byte 0x43A2F983
+    .global lbl_8051EAA4
+    lbl_8051EAA4:
+        .4byte 0xBF800000
+    .global lbl_8051EAA8
+    lbl_8051EAA8:
+        .4byte 0x43300000
+        .4byte 0x80000000
+*/
+
 namespace Game {
 
 /*
@@ -10,27 +394,26 @@ namespace Game {
 TamagoMushi::Mgr::Mgr(int, unsigned char)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        -0x23ED08
-	  lis       r3, 0x804E
-	  lis       r4, 0x8049
-	  addi      r5, r3, 0x34D8
-	  mr        r3, r31
-	  stw       r5, 0x0(r31)
-	  addi      r5, r5, 0x38
-	  addi      r0, r4, 0x2180
-	  stw       r5, 0x4(r31)
-	  stw       r0, 0x18(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       __ct__Q24Game12EnemyMgrBaseFiUc
+	lis      r3, __vt__Q34Game11TamagoMushi3Mgr@ha
+	lis      r4, lbl_80492180@ha
+	addi     r5, r3, __vt__Q34Game11TamagoMushi3Mgr@l
+	mr       r3, r31
+	stw      r5, 0(r31)
+	addi     r5, r5, 0x38
+	addi     r0, r4, lbl_80492180@l
+	stw      r5, 4(r31)
+	stw      r0, 0x18(r31)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -42,85 +425,84 @@ TamagoMushi::Mgr::Mgr(int, unsigned char)
 void TamagoMushi::Mgr::doAlloc(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r3
-	  li        r3, 0x94C
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  stw       r28, 0x10(r1)
-	  bl        -0x349B58
-	  mr.       r4, r3
-	  beq-      .loc_0x38
-	  bl        0x128
-	  mr        r4, r3
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r3
+	li       r3, 0x94c
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	stw      r28, 0x10(r1)
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_8036DA10
+	bl       __ct__Q34Game11TamagoMushi5ParmsFv
+	mr       r4, r3
 
-	.loc_0x38:
-	  mr        r3, r31
-	  bl        -0x23E178
-	  li        r3, 0x8
-	  bl        -0x349B78
-	  mr.       r30, r3
-	  beq-      .loc_0xDC
-	  lwz       r3, 0x20(r31)
-	  lwz       r4, 0x2C(r3)
-	  b         .loc_0x70
+lbl_8036DA10:
+	mr       r3, r31
+	bl       init__Q24Game12EnemyMgrBaseFPQ24Game14EnemyParmsBase
+	li       r3, 8
+	bl       __nw__FUl
+	or.      r30, r3, r3
+	beq      lbl_8036DAB4
+	lwz      r3, 0x20(r31)
+	lwz      r4, 0x2c(r3)
+	b        lbl_8036DA48
 
-	.loc_0x5C:
-	  lha       r0, 0x20(r4)
-	  cmpwi     r0, 0x2
-	  bne-      .loc_0x6C
-	  b         .loc_0x7C
+lbl_8036DA34:
+	lha      r0, 0x20(r4)
+	cmpwi    r0, 2
+	bne      lbl_8036DA44
+	b        lbl_8036DA54
 
-	.loc_0x6C:
-	  lwz       r4, 0x4(r4)
+lbl_8036DA44:
+	lwz      r4, 4(r4)
 
-	.loc_0x70:
-	  cmplwi    r4, 0
-	  bne+      .loc_0x5C
-	  li        r4, 0
+lbl_8036DA48:
+	cmplwi   r4, 0
+	bne      lbl_8036DA34
+	li       r4, 0
 
-	.loc_0x7C:
-	  mr        r3, r31
-	  lwz       r29, 0x18(r4)
-	  lwz       r12, 0x0(r31)
-	  li        r4, 0
-	  lwz       r12, 0xA4(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r4, 0x174(r3)
-	  li        r3, 0x10
-	  lwz       r28, 0x8(r4)
-	  bl        -0x349BD8
-	  mr.       r5, r3
-	  beq-      .loc_0xC0
-	  mr        r4, r28
-	  mr        r5, r29
-	  bl        -0x356248
-	  mr        r5, r3
+lbl_8036DA54:
+	mr       r3, r31
+	lwz      r29, 0x18(r4)
+	lwz      r12, 0(r31)
+	li       r4, 0
+	lwz      r12, 0xa4(r12)
+	mtctr    r12
+	bctrl
+	lwz      r4, 0x174(r3)
+	li       r3, 0x10
+	lwz      r28, 8(r4)
+	bl       __nw__FUl
+	or.      r5, r3, r3
+	beq      lbl_8036DA98
+	mr       r4, r28
+	mr       r5, r29
+	bl       __ct__20J3DUMtxAnmCacheTableFP8J3DModelP15J3DAnmTransform
+	mr       r5, r3
 
-	.loc_0xC0:
-	  lis       r4, 0x804E
-	  lis       r3, 0x804E
-	  addi      r0, r4, 0x35D4
-	  stw       r0, 0x0(r30)
-	  addi      r0, r3, 0x35C4
-	  stw       r0, 0x0(r30)
-	  stw       r5, 0x4(r30)
+lbl_8036DA98:
+	lis      r4, __vt__16J3DUMtxCacheBase@ha
+	lis      r3, "__vt__39J3DUMtxCacheRef<20J3DUMtxAnmCacheTable>"@ha
+	addi     r0, r4, __vt__16J3DUMtxCacheBase@l
+	stw      r0, 0(r30)
+	addi     r0, r3, "__vt__39J3DUMtxCacheRef<20J3DUMtxAnmCacheTable>"@l
+	stw      r0, 0(r30)
+	stw      r5, 4(r30)
 
-	.loc_0xDC:
-	  stw       r30, 0x44(r31)
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8036DAB4:
+	stw      r30, 0x44(r31)
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -134,27 +516,26 @@ void TamagoMushi::Mgr::doAlloc(void)
 J3DUMtxCacheBase::~J3DUMtxCacheBase()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r3
-	  beq-      .loc_0x30
-	  lis       r5, 0x804E
-	  extsh.    r0, r4
-	  addi      r0, r5, 0x35D4
-	  stw       r0, 0x0(r31)
-	  ble-      .loc_0x30
-	  bl        -0x349A50
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r3, r3
+	beq      lbl_8036DB08
+	lis      r5, __vt__16J3DUMtxCacheBase@ha
+	extsh.   r0, r4
+	addi     r0, r5, __vt__16J3DUMtxCacheBase@l
+	stw      r0, 0(r31)
+	ble      lbl_8036DB08
+	bl       __dl__FPv
 
-	.loc_0x30:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8036DB08:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -168,11 +549,10 @@ namespace Game {
 void TamagoMushi::Mgr::getEnemy(int)
 {
 	/*
-	.loc_0x0:
-	  mulli     r0, r4, 0x31C
-	  lwz       r3, 0x48(r3)
-	  add       r3, r3, r0
-	  blr
+	mulli    r0, r4, 0x31c
+	lwz      r3, 0x48(r3)
+	add      r3, r3, r0
+	blr
 	*/
 }
 
@@ -184,159 +564,158 @@ void TamagoMushi::Mgr::getEnemy(int)
 TamagoMushi::Parms::Parms(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r4, 0x8049
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  addi      r31, r4, 0x2170
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  bl        -0x2643B4
-	  lis       r3, 0x804E
-	  lis       r5, 0x6670
-	  addi      r0, r3, 0x35B8
-	  addi      r4, r30, 0x91C
-	  stw       r0, 0xD8(r30)
-	  li        r7, 0
-	  addi      r0, r31, 0x28
-	  addi      r3, r30, 0x804
-	  stw       r4, 0x7F8(r30)
-	  addi      r4, r30, 0x7F8
-	  addi      r5, r5, 0x3031
-	  addi      r6, r31, 0x38
-	  stw       r7, 0x7FC(r30)
-	  stw       r0, 0x800(r30)
-	  bl        0xA5ACC
-	  lis       r3, 0x804B
-	  lis       r5, 0x6670
-	  subi      r0, r3, 0x5344
-	  lfs       f0, 0x6F0(r2)
-	  stw       r0, 0x804(r30)
-	  addi      r3, r30, 0x82C
-	  lfs       f1, 0x6F4(r2)
-	  addi      r4, r30, 0x7F8
-	  stfs      f0, 0x81C(r30)
-	  addi      r5, r5, 0x3032
-	  lfs       f0, 0x6F8(r2)
-	  addi      r6, r31, 0x44
-	  stfs      f1, 0x824(r30)
-	  stfs      f0, 0x828(r30)
-	  bl        0xA5A90
-	  lis       r3, 0x804B
-	  lis       r5, 0x6670
-	  subi      r0, r3, 0x5344
-	  lfs       f0, 0x6FC(r2)
-	  stw       r0, 0x82C(r30)
-	  addi      r3, r30, 0x854
-	  lfs       f1, 0x6F4(r2)
-	  addi      r4, r30, 0x7F8
-	  stfs      f0, 0x844(r30)
-	  addi      r5, r5, 0x3033
-	  lfs       f0, 0x700(r2)
-	  addi      r6, r31, 0x50
-	  stfs      f1, 0x84C(r30)
-	  stfs      f0, 0x850(r30)
-	  bl        0xA5A54
-	  lis       r3, 0x804B
-	  lis       r5, 0x6970
-	  subi      r0, r3, 0x5344
-	  lfs       f1, 0x704(r2)
-	  stw       r0, 0x854(r30)
-	  addi      r3, r30, 0x87C
-	  lfs       f0, 0x6F4(r2)
-	  addi      r4, r30, 0x7F8
-	  stfs      f1, 0x86C(r30)
-	  addi      r5, r5, 0x3031
-	  addi      r6, r31, 0x5C
-	  stfs      f0, 0x874(r30)
-	  stfs      f1, 0x878(r30)
-	  bl        0xA5A1C
-	  lis       r3, 0x804B
-	  lis       r5, 0x6970
-	  subi      r0, r3, 0x5370
-	  li        r4, 0x3C
-	  stw       r0, 0x87C(r30)
-	  li        r7, 0
-	  li        r0, 0x12C
-	  addi      r3, r30, 0x8A4
-	  stw       r4, 0x894(r30)
-	  addi      r4, r30, 0x7F8
-	  addi      r5, r5, 0x3032
-	  addi      r6, r31, 0x6C
-	  stw       r7, 0x89C(r30)
-	  stw       r0, 0x8A0(r30)
-	  bl        0xA59E0
-	  lis       r3, 0x804B
-	  lis       r5, 0x6970
-	  subi      r0, r3, 0x5370
-	  li        r4, 0x64
-	  stw       r0, 0x8A4(r30)
-	  li        r7, 0
-	  li        r0, 0x258
-	  addi      r3, r30, 0x8CC
-	  stw       r4, 0x8BC(r30)
-	  addi      r4, r30, 0x7F8
-	  addi      r5, r5, 0x3033
-	  addi      r6, r31, 0x7C
-	  stw       r7, 0x8C4(r30)
-	  stw       r0, 0x8C8(r30)
-	  bl        0xA59A4
-	  lis       r3, 0x804B
-	  lis       r5, 0x6970
-	  subi      r0, r3, 0x5370
-	  li        r4, 0xA
-	  stw       r0, 0x8CC(r30)
-	  li        r7, 0
-	  li        r0, 0x64
-	  addi      r3, r30, 0x8F4
-	  stw       r4, 0x8E4(r30)
-	  addi      r4, r30, 0x7F8
-	  addi      r5, r5, 0x3034
-	  addi      r6, r31, 0x8C
-	  stw       r7, 0x8EC(r30)
-	  stw       r0, 0x8F0(r30)
-	  bl        0xA5968
-	  lis       r3, 0x804B
-	  li        r5, 0x32
-	  subi      r0, r3, 0x5370
-	  li        r4, 0
-	  stw       r0, 0x8F4(r30)
-	  li        r0, 0xC8
-	  lfs       f0, 0x708(r2)
-	  mr        r3, r30
-	  stw       r5, 0x90C(r30)
-	  lfs       f7, 0x70C(r2)
-	  stw       r4, 0x914(r30)
-	  lfs       f6, 0x710(r2)
-	  stw       r0, 0x918(r30)
-	  lfs       f5, 0x714(r2)
-	  stb       r4, 0x920(r30)
-	  lfs       f4, 0x718(r2)
-	  stb       r4, 0x921(r30)
-	  lfs       f3, 0x6FC(r2)
-	  stb       r4, 0x922(r30)
-	  lfs       f2, 0x6F4(r2)
-	  stb       r4, 0x923(r30)
-	  lfs       f1, 0x71C(r2)
-	  stfs      f0, 0x924(r30)
-	  lfs       f0, 0x720(r2)
-	  stfs      f7, 0x928(r30)
-	  stfs      f6, 0x92C(r30)
-	  stfs      f5, 0x930(r30)
-	  stfs      f4, 0x934(r30)
-	  stfs      f3, 0x938(r30)
-	  stfs      f3, 0x93C(r30)
-	  stfs      f2, 0x940(r30)
-	  stfs      f1, 0x944(r30)
-	  stfs      f0, 0x948(r30)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lis      r4, lbl_80492170@ha
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	addi     r31, r4, lbl_80492170@l
+	stw      r30, 8(r1)
+	mr       r30, r3
+	bl       __ct__Q24Game14EnemyParmsBaseFv
+	lis      r3, __vt__Q34Game11TamagoMushi5Parms@ha
+	lis      r5, 0x66703031@ha
+	addi     r0, r3, __vt__Q34Game11TamagoMushi5Parms@l
+	addi     r4, r30, 0x91c
+	stw      r0, 0xd8(r30)
+	li       r7, 0
+	addi     r0, r31, 0x28
+	addi     r3, r30, 0x804
+	stw      r4, 0x7f8(r30)
+	addi     r4, r30, 0x7f8
+	addi     r5, r5, 0x66703031@l
+	addi     r6, r31, 0x38
+	stw      r7, 0x7fc(r30)
+	stw      r0, 0x800(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x66703032@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_8051EA50@sda21(r2)
+	stw      r0, 0x804(r30)
+	addi     r3, r30, 0x82c
+	lfs      f1, lbl_8051EA54@sda21(r2)
+	addi     r4, r30, 0x7f8
+	stfs     f0, 0x81c(r30)
+	addi     r5, r5, 0x66703032@l
+	lfs      f0, lbl_8051EA58@sda21(r2)
+	addi     r6, r31, 0x44
+	stfs     f1, 0x824(r30)
+	stfs     f0, 0x828(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x66703033@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f0, lbl_8051EA5C@sda21(r2)
+	stw      r0, 0x82c(r30)
+	addi     r3, r30, 0x854
+	lfs      f1, lbl_8051EA54@sda21(r2)
+	addi     r4, r30, 0x7f8
+	stfs     f0, 0x844(r30)
+	addi     r5, r5, 0x66703033@l
+	lfs      f0, lbl_8051EA60@sda21(r2)
+	addi     r6, r31, 0x50
+	stfs     f1, 0x84c(r30)
+	stfs     f0, 0x850(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lis      r5, 0x69703031@ha
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f1, lbl_8051EA64@sda21(r2)
+	stw      r0, 0x854(r30)
+	addi     r3, r30, 0x87c
+	lfs      f0, lbl_8051EA54@sda21(r2)
+	addi     r4, r30, 0x7f8
+	stfs     f1, 0x86c(r30)
+	addi     r5, r5, 0x69703031@l
+	addi     r6, r31, 0x5c
+	stfs     f0, 0x874(r30)
+	stfs     f1, 0x878(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<i>"@ha
+	lis      r5, 0x69703032@ha
+	addi     r0, r3, "__vt__7Parm<i>"@l
+	li       r4, 0x3c
+	stw      r0, 0x87c(r30)
+	li       r7, 0
+	li       r0, 0x12c
+	addi     r3, r30, 0x8a4
+	stw      r4, 0x894(r30)
+	addi     r4, r30, 0x7f8
+	addi     r5, r5, 0x69703032@l
+	addi     r6, r31, 0x6c
+	stw      r7, 0x89c(r30)
+	stw      r0, 0x8a0(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<i>"@ha
+	lis      r5, 0x69703033@ha
+	addi     r0, r3, "__vt__7Parm<i>"@l
+	li       r4, 0x64
+	stw      r0, 0x8a4(r30)
+	li       r7, 0
+	li       r0, 0x258
+	addi     r3, r30, 0x8cc
+	stw      r4, 0x8bc(r30)
+	addi     r4, r30, 0x7f8
+	addi     r5, r5, 0x69703033@l
+	addi     r6, r31, 0x7c
+	stw      r7, 0x8c4(r30)
+	stw      r0, 0x8c8(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<i>"@ha
+	lis      r5, 0x69703034@ha
+	addi     r0, r3, "__vt__7Parm<i>"@l
+	li       r4, 0xa
+	stw      r0, 0x8cc(r30)
+	li       r7, 0
+	li       r0, 0x64
+	addi     r3, r30, 0x8f4
+	stw      r4, 0x8e4(r30)
+	addi     r4, r30, 0x7f8
+	addi     r5, r5, 0x69703034@l
+	addi     r6, r31, 0x8c
+	stw      r7, 0x8ec(r30)
+	stw      r0, 0x8f0(r30)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<i>"@ha
+	li       r5, 0x32
+	addi     r0, r3, "__vt__7Parm<i>"@l
+	li       r4, 0
+	stw      r0, 0x8f4(r30)
+	li       r0, 0xc8
+	lfs      f0, lbl_8051EA68@sda21(r2)
+	mr       r3, r30
+	stw      r5, 0x90c(r30)
+	lfs      f7, lbl_8051EA6C@sda21(r2)
+	stw      r4, 0x914(r30)
+	lfs      f6, lbl_8051EA70@sda21(r2)
+	stw      r0, 0x918(r30)
+	lfs      f5, lbl_8051EA74@sda21(r2)
+	stb      r4, 0x920(r30)
+	lfs      f4, lbl_8051EA78@sda21(r2)
+	stb      r4, 0x921(r30)
+	lfs      f3, lbl_8051EA5C@sda21(r2)
+	stb      r4, 0x922(r30)
+	lfs      f2, lbl_8051EA54@sda21(r2)
+	stb      r4, 0x923(r30)
+	lfs      f1, lbl_8051EA7C@sda21(r2)
+	stfs     f0, 0x924(r30)
+	lfs      f0, lbl_8051EA80@sda21(r2)
+	stfs     f7, 0x928(r30)
+	stfs     f6, 0x92c(r30)
+	stfs     f5, 0x930(r30)
+	stfs     f4, 0x934(r30)
+	stfs     f3, 0x938(r30)
+	stfs     f3, 0x93c(r30)
+	stfs     f2, 0x940(r30)
+	stfs     f1, 0x944(r30)
+	stfs     f0, 0x948(r30)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -348,27 +727,26 @@ TamagoMushi::Parms::Parms(void)
 void TamagoMushi::Mgr::birth(Game::EnemyBirthArg&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  bl        -0x23E9D8
-	  mr.       r31, r3
-	  beq-      .loc_0x30
-	  li        r4, 0
-	  bl        -0x232DE8
-	  mr        r3, r31
-	  mr        r4, r31
-	  bl        0x242C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	bl       birth__Q24Game12EnemyMgrBaseFRQ24Game13EnemyBirthArg
+	or.      r31, r3, r3
+	beq      lbl_8036DDC0
+	li       r4, 0
+	bl       init__Q24Game8CreatureFPQ24Game15CreatureInitArg
+	mr       r3, r31
+	mr       r4, r31
+	bl       setLeader__Q34Game11TamagoMushi3ObjFPQ34Game11TamagoMushi3Obj
 
-	.loc_0x30:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8036DDC0:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -380,31 +758,30 @@ void TamagoMushi::Mgr::birth(Game::EnemyBirthArg&)
 void TamagoMushi::Mgr::fetch(J3DModel*, float)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r5, 0x44(r3)
-	  cmplwi    r5, 0
-	  beq-      .loc_0x48
-	  lfs       f0, 0x724(r2)
-	  lwz       r5, 0x4(r5)
-	  fadds     f0, f0, f1
-	  fctiwz    f0, f0
-	  stfd      f0, 0x8(r1)
-	  lwz       r0, 0xC(r1)
-	  stw       r0, 0x0(r5)
-	  lwz       r3, 0x44(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r5, 0x44(r3)
+	cmplwi   r5, 0
+	beq      lbl_8036DE20
+	lfs      f0, lbl_8051EA84@sda21(r2)
+	lwz      r5, 4(r5)
+	fadds    f0, f0, f1
+	fctiwz   f0, f0
+	stfd     f0, 8(r1)
+	lwz      r0, 0xc(r1)
+	stw      r0, 0(r5)
+	lwz      r3, 0x44(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x48:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8036DE20:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -576,268 +953,267 @@ void
 void TamagoMushi::Mgr::createGroup(Game::TamagoMushi::Obj*, int, bool)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x140(r1)
-	  mflr      r0
-	  stw       r0, 0x144(r1)
-	  stfd      f31, 0x130(r1)
-	  psq_st    f31,0x138(r1),0,0
-	  stfd      f30, 0x120(r1)
-	  psq_st    f30,0x128(r1),0,0
-	  stfd      f29, 0x110(r1)
-	  psq_st    f29,0x118(r1),0,0
-	  stfd      f28, 0x100(r1)
-	  psq_st    f28,0x108(r1),0,0
-	  stfd      f27, 0xF0(r1)
-	  psq_st    f27,0xF8(r1),0,0
-	  stfd      f26, 0xE0(r1)
-	  psq_st    f26,0xE8(r1),0,0
-	  stfd      f25, 0xD0(r1)
-	  psq_st    f25,0xD8(r1),0,0
-	  stfd      f24, 0xC0(r1)
-	  psq_st    f24,0xC8(r1),0,0
-	  stfd      f23, 0xB0(r1)
-	  psq_st    f23,0xB8(r1),0,0
-	  stmw      r22, 0x88(r1)
-	  rlwinm.   r0,r6,0,24,31
-	  lfs       f24, 0x728(r2)
-	  mr        r27, r6
-	  mr        r25, r3
-	  mr        r26, r4
-	  mr        r22, r5
-	  beq-      .loc_0x78
-	  lfs       f24, 0x72C(r2)
+	stwu     r1, -0x140(r1)
+	mflr     r0
+	stw      r0, 0x144(r1)
+	stfd     f31, 0x130(r1)
+	psq_st   f31, 312(r1), 0, qr0
+	stfd     f30, 0x120(r1)
+	psq_st   f30, 296(r1), 0, qr0
+	stfd     f29, 0x110(r1)
+	psq_st   f29, 280(r1), 0, qr0
+	stfd     f28, 0x100(r1)
+	psq_st   f28, 264(r1), 0, qr0
+	stfd     f27, 0xf0(r1)
+	psq_st   f27, 248(r1), 0, qr0
+	stfd     f26, 0xe0(r1)
+	psq_st   f26, 232(r1), 0, qr0
+	stfd     f25, 0xd0(r1)
+	psq_st   f25, 216(r1), 0, qr0
+	stfd     f24, 0xc0(r1)
+	psq_st   f24, 200(r1), 0, qr0
+	stfd     f23, 0xb0(r1)
+	psq_st   f23, 184(r1), 0, qr0
+	stmw     r22, 0x88(r1)
+	clrlwi.  r0, r6, 0x18
+	lfs      f24, lbl_8051EA88@sda21(r2)
+	mr       r27, r6
+	mr       r25, r3
+	mr       r26, r4
+	mr       r22, r5
+	beq      lbl_8036E050
+	lfs      f24, lbl_8051EA8C@sda21(r2)
 
-	.loc_0x78:
-	  cmplwi    r26, 0
-	  bne-      .loc_0x9C
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  addi      r3, r3, 0x24C4
-	  li        r4, 0xAA
-	  addi      r5, r5, 0x24D8
-	  crclr     6, 0x6
-	  bl        -0x343A30
+lbl_8036E050:
+	cmplwi   r26, 0
+	bne      lbl_8036E074
+	lis      r3, lbl_804924C4@ha
+	lis      r5, lbl_804924D8@ha
+	addi     r3, r3, lbl_804924C4@l
+	li       r4, 0xaa
+	addi     r5, r5, lbl_804924D8@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x9C:
-	  mr        r3, r26
-	  mr        r4, r26
-	  bl        0x216C
-	  addi      r3, r1, 0x2C
-	  bl        -0x23F460
-	  mr        r4, r26
-	  addi      r3, r1, 0x14
-	  lwz       r12, 0x0(r26)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f27, 0x14(r1)
-	  lfs       f26, 0x18(r1)
-	  lfs       f25, 0x1C(r1)
-	  bl        -0x2A4B0C
-	  xoris     r0, r3, 0x8000
-	  lis       r3, 0x4330
-	  stw       r0, 0x64(r1)
-	  rlwinm.   r0,r27,0,24,31
-	  lfd       f3, 0x748(r2)
-	  stw       r3, 0x60(r1)
-	  lfs       f1, 0x730(r2)
-	  lfd       f2, 0x60(r1)
-	  lfs       f0, 0x724(r2)
-	  fsubs     f2, f2, f3
-	  fdivs     f1, f2, f1
-	  fmadds    f23, f0, f1, f0
-	  beq-      .loc_0x110
-	  lfs       f23, 0x704(r2)
+lbl_8036E074:
+	mr       r3, r26
+	mr       r4, r26
+	bl       setLeader__Q34Game11TamagoMushi3ObjFPQ34Game11TamagoMushi3Obj
+	addi     r3, r1, 0x2c
+	bl       __ct__Q24Game13EnemyBirthArgFv
+	mr       r4, r26
+	addi     r3, r1, 0x14
+	lwz      r12, 0(r26)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f27, 0x14(r1)
+	lfs      f26, 0x18(r1)
+	lfs      f25, 0x1c(r1)
+	bl       rand
+	xoris    r0, r3, 0x8000
+	lis      r3, 0x4330
+	stw      r0, 0x64(r1)
+	clrlwi.  r0, r27, 0x18
+	lfd      f3, lbl_8051EAA8@sda21(r2)
+	stw      r3, 0x60(r1)
+	lfs      f1, lbl_8051EA90@sda21(r2)
+	lfd      f2, 0x60(r1)
+	lfs      f0, lbl_8051EA84@sda21(r2)
+	fsubs    f2, f2, f3
+	fdivs    f1, f2, f1
+	fmadds   f23, f0, f1, f0
+	beq      lbl_8036E0E8
+	lfs      f23, lbl_8051EA64@sda21(r2)
 
-	.loc_0x110:
-	  lfs       f0, 0x6F4(r2)
-	  mr        r3, r26
-	  stfs      f27, 0x2C(r1)
-	  addi      r4, r1, 0x2C
-	  stfs      f0, 0x38(r1)
-	  stfs      f26, 0x30(r1)
-	  stfs      f25, 0x34(r1)
-	  lwz       r12, 0x0(r26)
-	  lwz       r12, 0x70(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f0, 0x38(r1)
-	  lis       r3, 0x8050
-	  lfs       f28, 0x738(r2)
-	  rlwinm    r29,r27,0,24,31
-	  stfs      f0, 0x1FC(r26)
-	  xoris     r31, r22, 0x8000
-	  lfd       f29, 0x748(r2)
-	  addi      r23, r3, 0x71A0
-	  lfs       f0, 0x1FC(r26)
-	  subi      r24, r22, 0x1
-	  lfs       f30, 0x6F4(r2)
-	  li        r28, 0
-	  stfs      f0, 0x1A8(r26)
-	  lis       r30, 0x4330
-	  lfs       f31, 0x740(r2)
-	  b         .loc_0x348
+lbl_8036E0E8:
+	lfs      f0, lbl_8051EA54@sda21(r2)
+	mr       r3, r26
+	stfs     f27, 0x2c(r1)
+	addi     r4, r1, 0x2c
+	stfs     f0, 0x38(r1)
+	stfs     f26, 0x30(r1)
+	stfs     f25, 0x34(r1)
+	lwz      r12, 0(r26)
+	lwz      r12, 0x70(r12)
+	mtctr    r12
+	bctrl
+	lfs      f0, 0x38(r1)
+	lis      r3, sincosTable___5JMath@ha
+	lfs      f28, lbl_8051EA98@sda21(r2)
+	clrlwi   r29, r27, 0x18
+	stfs     f0, 0x1fc(r26)
+	xoris    r31, r22, 0x8000
+	lfd      f29, lbl_8051EAA8@sda21(r2)
+	addi     r23, r3, sincosTable___5JMath@l
+	lfs      f0, 0x1fc(r26)
+	addi     r24, r22, -1
+	lfs      f30, lbl_8051EA54@sda21(r2)
+	li       r28, 0
+	stfs     f0, 0x1a8(r26)
+	lis      r30, 0x4330
+	lfs      f31, lbl_8051EAA0@sda21(r2)
+	b        lbl_8036E320
 
-	.loc_0x17C:
-	  cmplwi    r29, 0
-	  bne-      .loc_0x1B8
-	  bl        -0x2A4BBC
-	  xoris     r3, r3, 0x8000
-	  lis       r0, 0x4330
-	  stw       r3, 0x64(r1)
-	  lfd       f3, 0x748(r2)
-	  stw       r0, 0x60(r1)
-	  lfs       f2, 0x730(r2)
-	  lfd       f0, 0x60(r1)
-	  lfs       f1, 0x734(r2)
-	  fsubs     f3, f0, f3
-	  lfs       f0, 0x714(r2)
-	  fdivs     f2, f3, f2
-	  fmadds    f23, f1, f2, f0
+lbl_8036E154:
+	cmplwi   r29, 0
+	bne      lbl_8036E190
+	bl       rand
+	xoris    r3, r3, 0x8000
+	lis      r0, 0x4330
+	stw      r3, 0x64(r1)
+	lfd      f3, lbl_8051EAA8@sda21(r2)
+	stw      r0, 0x60(r1)
+	lfs      f2, lbl_8051EA90@sda21(r2)
+	lfd      f0, 0x60(r1)
+	lfs      f1, lbl_8051EA94@sda21(r2)
+	fsubs    f3, f0, f3
+	lfs      f0, lbl_8051EA74@sda21(r2)
+	fdivs    f2, f3, f2
+	fmadds   f23, f1, f2, f0
 
-	.loc_0x1B8:
-	  xoris     r0, r28, 0x8000
-	  stw       r30, 0x60(r1)
-	  stw       r0, 0x64(r1)
-	  lfd       f0, 0x60(r1)
-	  stw       r31, 0x6C(r1)
-	  fsubs     f1, f0, f29
-	  stw       r30, 0x68(r1)
-	  lfd       f0, 0x68(r1)
-	  fmuls     f1, f28, f1
-	  stfs      f27, 0x2C(r1)
-	  fsubs     f0, f0, f29
-	  stfs      f26, 0x30(r1)
-	  fdivs     f1, f1, f0
-	  stfs      f25, 0x34(r1)
-	  fcmpo     cr0, f1, f30
-	  stfs      f1, 0x38(r1)
-	  bge-      .loc_0x228
-	  lfs       f0, 0x73C(r2)
-	  lis       r3, 0x8050
-	  addi      r3, r3, 0x71A0
-	  fmuls     f0, f1, f0
-	  fctiwz    f0, f0
-	  stfd      f0, 0x70(r1)
-	  lwz       r0, 0x74(r1)
-	  rlwinm    r0,r0,3,18,28
-	  lfsx      f0, r3, r0
-	  fneg      f0, f0
-	  b         .loc_0x24C
+lbl_8036E190:
+	xoris    r0, r28, 0x8000
+	stw      r30, 0x60(r1)
+	stw      r0, 0x64(r1)
+	lfd      f0, 0x60(r1)
+	stw      r31, 0x6c(r1)
+	fsubs    f1, f0, f29
+	stw      r30, 0x68(r1)
+	lfd      f0, 0x68(r1)
+	fmuls    f1, f28, f1
+	stfs     f27, 0x2c(r1)
+	fsubs    f0, f0, f29
+	stfs     f26, 0x30(r1)
+	fdivs    f1, f1, f0
+	stfs     f25, 0x34(r1)
+	fcmpo    cr0, f1, f30
+	stfs     f1, 0x38(r1)
+	bge      lbl_8036E200
+	lfs      f0, lbl_8051EA9C@sda21(r2)
+	lis      r3, sincosTable___5JMath@ha
+	addi     r3, r3, sincosTable___5JMath@l
+	fmuls    f0, f1, f0
+	fctiwz   f0, f0
+	stfd     f0, 0x70(r1)
+	lwz      r0, 0x74(r1)
+	rlwinm   r0, r0, 3, 0x12, 0x1c
+	lfsx     f0, r3, r0
+	fneg     f0, f0
+	b        lbl_8036E224
 
-	.loc_0x228:
-	  lfs       f0, 0x740(r2)
-	  lis       r3, 0x8050
-	  addi      r3, r3, 0x71A0
-	  fmuls     f0, f1, f0
-	  fctiwz    f0, f0
-	  stfd      f0, 0x78(r1)
-	  lwz       r0, 0x7C(r1)
-	  rlwinm    r0,r0,3,18,28
-	  lfsx      f0, r3, r0
+lbl_8036E200:
+	lfs      f0, lbl_8051EAA0@sda21(r2)
+	lis      r3, sincosTable___5JMath@ha
+	addi     r3, r3, sincosTable___5JMath@l
+	fmuls    f0, f1, f0
+	fctiwz   f0, f0
+	stfd     f0, 0x78(r1)
+	lwz      r0, 0x7c(r1)
+	rlwinm   r0, r0, 3, 0x12, 0x1c
+	lfsx     f0, r3, r0
 
-	.loc_0x24C:
-	  fmuls     f1, f24, f0
-	  lfs       f0, 0x2C(r1)
-	  lfs       f2, 0x38(r1)
-	  fmadds    f0, f23, f1, f0
-	  fcmpo     cr0, f2, f30
-	  stfs      f0, 0x2C(r1)
-	  bge-      .loc_0x26C
-	  fneg      f2, f2
+lbl_8036E224:
+	fmuls    f1, f24, f0
+	lfs      f0, 0x2c(r1)
+	lfs      f2, 0x38(r1)
+	fmadds   f0, f23, f1, f0
+	fcmpo    cr0, f2, f30
+	stfs     f0, 0x2c(r1)
+	bge      lbl_8036E244
+	fneg     f2, f2
 
-	.loc_0x26C:
-	  fmuls     f1, f2, f31
-	  lfs       f0, 0x34(r1)
-	  cmplwi    r29, 0
-	  fctiwz    f1, f1
-	  stfd      f1, 0x80(r1)
-	  lwz       r0, 0x84(r1)
-	  rlwinm    r0,r0,3,18,28
-	  add       r3, r23, r0
-	  lfs       f1, 0x4(r3)
-	  fmuls     f1, f24, f1
-	  fmadds    f0, f23, f1, f0
-	  stfs      f0, 0x34(r1)
-	  bne-      .loc_0x2B8
-	  rlwinm    r3,r28,1,31,31
-	  rlwinm    r0,r28,0,31,31
-	  xor       r0, r0, r3
-	  sub       r0, r0, r3
-	  cmpwi     r0, 0x1
-	  bne-      .loc_0x2C8
+lbl_8036E244:
+	fmuls    f1, f2, f31
+	lfs      f0, 0x34(r1)
+	cmplwi   r29, 0
+	fctiwz   f1, f1
+	stfd     f1, 0x80(r1)
+	lwz      r0, 0x84(r1)
+	rlwinm   r0, r0, 3, 0x12, 0x1c
+	add      r3, r23, r0
+	lfs      f1, 4(r3)
+	fmuls    f1, f24, f1
+	fmadds   f0, f23, f1, f0
+	stfs     f0, 0x34(r1)
+	bne      lbl_8036E290
+	srwi     r3, r28, 0x1f
+	clrlwi   r0, r28, 0x1f
+	xor      r0, r0, r3
+	subf     r0, r3, r0
+	cmpwi    r0, 1
+	bne      lbl_8036E2A0
 
-	.loc_0x2B8:
-	  lfs       f1, 0x38(r1)
-	  lfs       f0, 0x744(r2)
-	  fmuls     f0, f1, f0
-	  stfs      f0, 0x38(r1)
+lbl_8036E290:
+	lfs      f1, 0x38(r1)
+	lfs      f0, lbl_8051EAA4@sda21(r2)
+	fmuls    f0, f1, f0
+	stfs     f0, 0x38(r1)
 
-	.loc_0x2C8:
-	  mr        r3, r25
-	  addi      r4, r1, 0x2C
-	  bl        -0x23EEE0
-	  mr.       r0, r3
-	  beq-      .loc_0x344
-	  mr        r22, r0
-	  li        r4, 0
-	  bl        -0x2332F4
-	  rlwinm.   r0,r27,0,24,31
-	  beq-      .loc_0x338
-	  mr        r4, r26
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x0(r26)
-	  lwz       r12, 0x6C(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f2, 0x8(r1)
-	  mr        r3, r22
-	  lfs       f1, 0xC(r1)
-	  addi      r4, r1, 0x20
-	  lfs       f0, 0x10(r1)
-	  stfs      f2, 0x20(r1)
-	  stfs      f1, 0x24(r1)
-	  stfs      f0, 0x28(r1)
-	  lwz       r12, 0x0(r22)
-	  lwz       r12, 0x68(r12)
-	  mtctr     r12
-	  bctrl
+lbl_8036E2A0:
+	mr       r3, r25
+	addi     r4, r1, 0x2c
+	bl       birth__Q24Game12EnemyMgrBaseFRQ24Game13EnemyBirthArg
+	or.      r0, r3, r3
+	beq      lbl_8036E31C
+	mr       r22, r0
+	li       r4, 0
+	bl       init__Q24Game8CreatureFPQ24Game15CreatureInitArg
+	clrlwi.  r0, r27, 0x18
+	beq      lbl_8036E310
+	mr       r4, r26
+	addi     r3, r1, 8
+	lwz      r12, 0(r26)
+	lwz      r12, 0x6c(r12)
+	mtctr    r12
+	bctrl
+	lfs      f2, 8(r1)
+	mr       r3, r22
+	lfs      f1, 0xc(r1)
+	addi     r4, r1, 0x20
+	lfs      f0, 0x10(r1)
+	stfs     f2, 0x20(r1)
+	stfs     f1, 0x24(r1)
+	stfs     f0, 0x28(r1)
+	lwz      r12, 0(r22)
+	lwz      r12, 0x68(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x338:
-	  mr        r3, r22
-	  mr        r4, r26
-	  bl        0x1ED0
+lbl_8036E310:
+	mr       r3, r22
+	mr       r4, r26
+	bl       setLeader__Q34Game11TamagoMushi3ObjFPQ34Game11TamagoMushi3Obj
 
-	.loc_0x344:
-	  addi      r28, r28, 0x1
+lbl_8036E31C:
+	addi     r28, r28, 1
 
-	.loc_0x348:
-	  cmpw      r28, r24
-	  blt+      .loc_0x17C
-	  psq_l     f31,0x138(r1),0,0
-	  lfd       f31, 0x130(r1)
-	  psq_l     f30,0x128(r1),0,0
-	  lfd       f30, 0x120(r1)
-	  psq_l     f29,0x118(r1),0,0
-	  lfd       f29, 0x110(r1)
-	  psq_l     f28,0x108(r1),0,0
-	  lfd       f28, 0x100(r1)
-	  psq_l     f27,0xF8(r1),0,0
-	  lfd       f27, 0xF0(r1)
-	  psq_l     f26,0xE8(r1),0,0
-	  lfd       f26, 0xE0(r1)
-	  psq_l     f25,0xD8(r1),0,0
-	  lfd       f25, 0xD0(r1)
-	  psq_l     f24,0xC8(r1),0,0
-	  lfd       f24, 0xC0(r1)
-	  psq_l     f23,0xB8(r1),0,0
-	  lfd       f23, 0xB0(r1)
-	  lmw       r22, 0x88(r1)
-	  lwz       r0, 0x144(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x140
-	  blr
+lbl_8036E320:
+	cmpw     r28, r24
+	blt      lbl_8036E154
+	psq_l    f31, 312(r1), 0, qr0
+	lfd      f31, 0x130(r1)
+	psq_l    f30, 296(r1), 0, qr0
+	lfd      f30, 0x120(r1)
+	psq_l    f29, 280(r1), 0, qr0
+	lfd      f29, 0x110(r1)
+	psq_l    f28, 264(r1), 0, qr0
+	lfd      f28, 0x100(r1)
+	psq_l    f27, 248(r1), 0, qr0
+	lfd      f27, 0xf0(r1)
+	psq_l    f26, 232(r1), 0, qr0
+	lfd      f26, 0xe0(r1)
+	psq_l    f25, 216(r1), 0, qr0
+	lfd      f25, 0xd0(r1)
+	psq_l    f24, 200(r1), 0, qr0
+	lfd      f24, 0xc0(r1)
+	psq_l    f23, 184(r1), 0, qr0
+	lfd      f23, 0xb0(r1)
+	lmw      r22, 0x88(r1)
+	lwz      r0, 0x144(r1)
+	mtlr     r0
+	addi     r1, r1, 0x140
+	blr
 	*/
 }
 
@@ -1171,55 +1547,54 @@ void TamagoMushi::Mgr::createGroupByBigFoot(Game::TamagoMushi::Obj*, int, bool,
 TamagoMushi::Mgr::~Mgr(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x94
-	  lis       r3, 0x804E
-	  addi      r3, r3, 0x34D8
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x38
-	  stw       r0, 0x4(r30)
-	  beq-      .loc_0x84
-	  lis       r3, 0x804B
-	  subi      r3, r3, 0x760
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x38
-	  stw       r0, 0x4(r30)
-	  beq-      .loc_0x84
-	  lis       r3, 0x804B
-	  addic.    r0, r30, 0x4
-	  subi      r3, r3, 0x5304
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x38
-	  stw       r0, 0x4(r30)
-	  beq-      .loc_0x84
-	  lis       r4, 0x804B
-	  addi      r3, r30, 0x4
-	  subi      r0, r4, 0x5324
-	  li        r4, 0
-	  stw       r0, 0x4(r30)
-	  bl        0xA2D00
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_8036E89C
+	lis      r3, __vt__Q34Game11TamagoMushi3Mgr@ha
+	addi     r3, r3, __vt__Q34Game11TamagoMushi3Mgr@l
+	stw      r3, 0(r30)
+	addi     r0, r3, 0x38
+	stw      r0, 4(r30)
+	beq      lbl_8036E88C
+	lis      r3, __vt__Q24Game12EnemyMgrBase@ha
+	addi     r3, r3, __vt__Q24Game12EnemyMgrBase@l
+	stw      r3, 0(r30)
+	addi     r0, r3, 0x38
+	stw      r0, 4(r30)
+	beq      lbl_8036E88C
+	lis      r3, __vt__Q24Game13IEnemyMgrBase@ha
+	addic.   r0, r30, 4
+	addi     r3, r3, __vt__Q24Game13IEnemyMgrBase@l
+	stw      r3, 0(r30)
+	addi     r0, r3, 0x38
+	stw      r0, 4(r30)
+	beq      lbl_8036E88C
+	lis      r4, __vt__16GenericContainer@ha
+	addi     r3, r30, 4
+	addi     r0, r4, __vt__16GenericContainer@l
+	li       r4, 0
+	stw      r0, 4(r30)
+	bl       __dt__5CNodeFv
 
-	.loc_0x84:
-	  extsh.    r0, r31
-	  ble-      .loc_0x94
-	  mr        r3, r30
-	  bl        -0x34A7E4
+lbl_8036E88C:
+	extsh.   r0, r31
+	ble      lbl_8036E89C
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x94:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8036E89C:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1238,31 +1613,30 @@ u32 TamagoMushi::Mgr::getEnemyTypeID(void) { return 0x44; }
 void TamagoMushi::Mgr::createObj(int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  mulli     r3, r31, 0x31C
-	  addi      r3, r3, 0x10
-	  bl        -0x34A938
-	  lis       r4, 0x8037
-	  lis       r5, 0x8037
-	  subi      r4, r4, 0x1148
-	  mr        r7, r31
-	  subi      r5, r5, 0x16E0
-	  li        r6, 0x31C
-	  bl        -0x2ACF10
-	  stw       r3, 0x48(r30)
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	mulli    r3, r31, 0x31c
+	addi     r3, r3, 0x10
+	bl       __nwa__FUl
+	lis      r4, __ct__Q34Game11TamagoMushi3ObjFv@ha
+	lis      r5, __dt__Q34Game11TamagoMushi3ObjFv@ha
+	addi     r4, r4, __ct__Q34Game11TamagoMushi3ObjFv@l
+	mr       r7, r31
+	addi     r5, r5, __dt__Q34Game11TamagoMushi3ObjFv@l
+	li       r6, 0x31c
+	bl       __construct_new_array
+	stw      r3, 0x48(r30)
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1274,58 +1648,57 @@ void TamagoMushi::Mgr::createObj(int)
 TamagoMushi::Obj::~Obj(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r3
-	  stw       r30, 0x8(r1)
-	  mr        r30, r4
-	  beq-      .loc_0xA0
-	  lis       r3, 0x804E
-	  addi      r0, r31, 0x30C
-	  addi      r4, r3, 0x35FC
-	  stw       r4, 0x0(r31)
-	  addi      r3, r4, 0x1B0
-	  addi      r4, r4, 0x2FC
-	  stw       r3, 0x178(r31)
-	  lwz       r3, 0x17C(r31)
-	  stw       r4, 0x0(r3)
-	  lwz       r3, 0x17C(r31)
-	  sub       r0, r0, r3
-	  stw       r0, 0xC(r3)
-	  beq-      .loc_0x90
-	  lis       r3, 0x804B
-	  addi      r0, r31, 0x2BC
-	  subi      r4, r3, 0x5CDC
-	  addi      r3, r31, 0x290
-	  stw       r4, 0x0(r31)
-	  addi      r5, r4, 0x1B0
-	  addi      r6, r4, 0x2F8
-	  li        r4, -0x1
-	  stw       r5, 0x178(r31)
-	  lwz       r5, 0x17C(r31)
-	  stw       r6, 0x0(r5)
-	  lwz       r5, 0x17C(r31)
-	  sub       r0, r0, r5
-	  stw       r0, 0xC(r5)
-	  bl        0xA2BDC
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r3, r3
+	stw      r30, 8(r1)
+	mr       r30, r4
+	beq      lbl_8036E9C0
+	lis      r3, __vt__Q34Game11TamagoMushi3Obj@ha
+	addi     r0, r31, 0x30c
+	addi     r4, r3, __vt__Q34Game11TamagoMushi3Obj@l
+	stw      r4, 0(r31)
+	addi     r3, r4, 0x1b0
+	addi     r4, r4, 0x2fc
+	stw      r3, 0x178(r31)
+	lwz      r3, 0x17c(r31)
+	stw      r4, 0(r3)
+	lwz      r3, 0x17c(r31)
+	subf     r0, r3, r0
+	stw      r0, 0xc(r3)
+	beq      lbl_8036E9B0
+	lis      r3, __vt__Q24Game9EnemyBase@ha
+	addi     r0, r31, 0x2bc
+	addi     r4, r3, __vt__Q24Game9EnemyBase@l
+	addi     r3, r31, 0x290
+	stw      r4, 0(r31)
+	addi     r5, r4, 0x1b0
+	addi     r6, r4, 0x2f8
+	li       r4, -1
+	stw      r5, 0x178(r31)
+	lwz      r5, 0x17c(r31)
+	stw      r6, 0(r5)
+	lwz      r5, 0x17c(r31)
+	subf     r0, r5, r0
+	stw      r0, 0xc(r5)
+	bl       __dt__5CNodeFv
 
-	.loc_0x90:
-	  extsh.    r0, r30
-	  ble-      .loc_0xA0
-	  mr        r3, r31
-	  bl        -0x34A908
+lbl_8036E9B0:
+	extsh.   r0, r30
+	ble      lbl_8036E9C0
+	mr       r3, r31
+	bl       __dl__FPv
 
-	.loc_0xA0:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8036E9C0:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1337,27 +1710,26 @@ TamagoMushi::Obj::~Obj(void)
 void TamagoMushi::Parms::read(Stream&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  bl        0xA4DFC
-	  mr        r4, r31
-	  addi      r3, r30, 0xE0
-	  bl        0xA4DF0
-	  mr        r4, r31
-	  addi      r3, r30, 0x7F8
-	  bl        0xA4DE4
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	bl       read__10ParametersFR6Stream
+	mr       r4, r31
+	addi     r3, r30, 0xe0
+	bl       read__10ParametersFR6Stream
+	mr       r4, r31
+	addi     r3, r30, 0x7f8
+	bl       read__10ParametersFR6Stream
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1371,74 +1743,73 @@ void TamagoMushi::Parms::read(Stream&)
 void J3DUMtxCacheRef<J3DUMtxAnmCacheTable>::fetch(J3DModel*) const
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stmw      r27, 0xC(r1)
-	  mr        r30, r4
-	  lwz       r0, 0x8(r4)
-	  lwz       r4, 0x4(r4)
-	  rlwinm.   r0,r0,0,30,30
-	  lhz       r31, 0x2C(r4)
-	  beq-      .loc_0x78
-	  lwz       r29, 0x4(r3)
-	  li        r27, 0
-	  li        r28, 0
-	  b         .loc_0x6C
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stmw     r27, 0xc(r1)
+	mr       r30, r4
+	lwz      r0, 8(r4)
+	lwz      r4, 4(r4)
+	rlwinm.  r0, r0, 0, 0x1e, 0x1e
+	lhz      r31, 0x2c(r4)
+	beq      lbl_8036EAA4
+	lwz      r29, 4(r3)
+	li       r27, 0
+	li       r28, 0
+	b        lbl_8036EA98
 
-	.loc_0x38:
-	  lwz       r4, 0x0(r29)
-	  lwz       r0, 0x4(r29)
-	  lwz       r3, 0x84(r30)
-	  mullw     r5, r4, r0
-	  lwz       r6, 0xC(r29)
-	  lwz       r0, 0xC(r3)
-	  add       r4, r0, r28
-	  add       r0, r27, r5
-	  mulli     r0, r0, 0x30
-	  add       r3, r6, r0
-	  bl        -0x2847C0
-	  addi      r28, r28, 0x30
-	  addi      r27, r27, 0x1
+lbl_8036EA64:
+	lwz      r4, 0(r29)
+	lwz      r0, 4(r29)
+	lwz      r3, 0x84(r30)
+	mullw    r5, r4, r0
+	lwz      r6, 0xc(r29)
+	lwz      r0, 0xc(r3)
+	add      r4, r0, r28
+	add      r0, r27, r5
+	mulli    r0, r0, 0x30
+	add      r3, r6, r0
+	bl       PSMTXCopy
+	addi     r28, r28, 0x30
+	addi     r27, r27, 1
 
-	.loc_0x6C:
-	  cmpw      r27, r31
-	  blt+      .loc_0x38
-	  b         .loc_0xC8
+lbl_8036EA98:
+	cmpw     r27, r31
+	blt      lbl_8036EA64
+	b        lbl_8036EAF4
 
-	.loc_0x78:
-	  lwz       r29, 0x4(r3)
-	  li        r27, 0
-	  li        r28, 0
-	  b         .loc_0xC0
+lbl_8036EAA4:
+	lwz      r29, 4(r3)
+	li       r27, 0
+	li       r28, 0
+	b        lbl_8036EAEC
 
-	.loc_0x88:
-	  lwz       r5, 0x0(r29)
-	  addi      r3, r30, 0x24
-	  lwz       r0, 0x4(r29)
-	  lwz       r4, 0x84(r30)
-	  mullw     r6, r5, r0
-	  lwz       r7, 0xC(r29)
-	  lwz       r0, 0xC(r4)
-	  add       r5, r0, r28
-	  add       r0, r27, r6
-	  mulli     r0, r0, 0x30
-	  add       r4, r7, r0
-	  bl        -0x2847E0
-	  addi      r28, r28, 0x30
-	  addi      r27, r27, 0x1
+lbl_8036EAB4:
+	lwz      r5, 0(r29)
+	addi     r3, r30, 0x24
+	lwz      r0, 4(r29)
+	lwz      r4, 0x84(r30)
+	mullw    r6, r5, r0
+	lwz      r7, 0xc(r29)
+	lwz      r0, 0xc(r4)
+	add      r5, r0, r28
+	add      r0, r27, r6
+	mulli    r0, r0, 0x30
+	add      r4, r7, r0
+	bl       PSMTXConcat
+	addi     r28, r28, 0x30
+	addi     r27, r27, 1
 
-	.loc_0xC0:
-	  cmpw      r27, r31
-	  blt+      .loc_0x88
+lbl_8036EAEC:
+	cmpw     r27, r31
+	blt      lbl_8036EAB4
 
-	.loc_0xC8:
-	  lmw       r27, 0xC(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8036EAF4:
+	lmw      r27, 0xc(r1)
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -1450,51 +1821,50 @@ void J3DUMtxCacheRef<J3DUMtxAnmCacheTable>::fetch(J3DModel*) const
 void J3DUMtxCacheRef<J3DUMtxAnmCacheTable>::~J3DUMtxCacheRef()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  mr        r30, r4
-	  stw       r29, 0x14(r1)
-	  mr.       r29, r3
-	  beq-      .loc_0x78
-	  lis       r3, 0x804E
-	  addi      r0, r3, 0x35C4
-	  stw       r0, 0x0(r29)
-	  lwz       r31, 0x4(r29)
-	  cmplwi    r31, 0
-	  beq-      .loc_0x54
-	  beq-      .loc_0x54
-	  mr        r3, r31
-	  li        r4, 0
-	  bl        -0x357364
-	  mr        r3, r31
-	  bl        -0x34AAA4
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	mr       r30, r4
+	stw      r29, 0x14(r1)
+	or.      r29, r3, r3
+	beq      lbl_8036EB80
+	lis      r3, "__vt__39J3DUMtxCacheRef<20J3DUMtxAnmCacheTable>"@ha
+	addi     r0, r3, "__vt__39J3DUMtxCacheRef<20J3DUMtxAnmCacheTable>"@l
+	stw      r0, 0(r29)
+	lwz      r31, 4(r29)
+	cmplwi   r31, 0
+	beq      lbl_8036EB5C
+	beq      lbl_8036EB5C
+	mr       r3, r31
+	li       r4, 0
+	bl       __dt__24J3DUMtxAnmCacheTableBaseFv
+	mr       r3, r31
+	bl       __dl__FPv
 
-	.loc_0x54:
-	  cmplwi    r29, 0
-	  beq-      .loc_0x68
-	  lis       r3, 0x804E
-	  addi      r0, r3, 0x35D4
-	  stw       r0, 0x0(r29)
+lbl_8036EB5C:
+	cmplwi   r29, 0
+	beq      lbl_8036EB70
+	lis      r3, __vt__16J3DUMtxCacheBase@ha
+	addi     r0, r3, __vt__16J3DUMtxCacheBase@l
+	stw      r0, 0(r29)
 
-	.loc_0x68:
-	  extsh.    r0, r30
-	  ble-      .loc_0x78
-	  mr        r3, r29
-	  bl        -0x34AAC8
+lbl_8036EB70:
+	extsh.   r0, r30
+	ble      lbl_8036EB80
+	mr       r3, r29
+	bl       __dl__FPv
 
-	.loc_0x78:
-	  lwz       r0, 0x24(r1)
-	  mr        r3, r29
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8036EB80:
+	lwz      r0, 0x24(r1)
+	mr       r3, r29
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -1506,8 +1876,7 @@ void J3DUMtxCacheRef<J3DUMtxAnmCacheTable>::~J3DUMtxCacheRef()
 @4 @Game::TamagoMushi::Mgr::~Mgr(void)
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x4
-	  b         -0x39C
+	addi     r3, r3, -4
+	b        __dt__Q34Game11TamagoMushi3MgrFv
 	*/
 }

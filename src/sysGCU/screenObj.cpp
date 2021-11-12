@@ -1,5 +1,68 @@
 #include "types.h"
 
+/*
+    Generated from dpostproc
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_8049BA58
+    lbl_8049BA58:
+        .4byte 0x73637265
+        .4byte 0x656E4F62
+        .4byte 0x6A2E6370
+        .4byte 0x70000000
+    .global lbl_8049BA68
+    lbl_8049BA68:
+        .asciz "P2Assert"
+        .skip 3
+        .4byte 0x00000000
+
+    .section .data, "wa"	# 0x8049E220 - 0x804EFC20
+    .global __vt__Q26Screen7ObjBase
+    __vt__Q26Screen7ObjBase:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q26Screen7ObjBaseFv
+        .4byte getChildCount__5CNodeFv
+        .4byte 0
+        .4byte 0
+        .4byte "@24@__dt__Q26Screen7ObjBaseFv"
+        .4byte update__Q26Screen7ObjBaseFv
+        .4byte draw__Q26Screen7ObjBaseFR8Graphics
+        .4byte start__Q26Screen7ObjBaseFPCQ26Screen13StartSceneArg
+        .4byte end__Q26Screen7ObjBaseFPCQ26Screen11EndSceneArg
+        .4byte setOwner__Q26Screen7ObjBaseFPQ26Screen9SceneBase
+        .4byte getOwner__Q26Screen7ObjBaseCFv
+        .4byte create__Q26Screen7ObjBaseFP10JKRArchive
+        .4byte confirmSetScene__Q26Screen7ObjBaseFRQ26Screen11SetSceneArg
+        .4byte confirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
+        .4byte confirmEndScene__Q26Screen7ObjBaseFPQ26Screen11EndSceneArg
+        .4byte doStart__Q26Screen7ObjBaseFPCQ26Screen13StartSceneArg
+        .4byte doEnd__Q26Screen7ObjBaseFPCQ26Screen11EndSceneArg
+        .4byte doCreate__Q26Screen7ObjBaseFP10JKRArchive
+        .4byte doUpdateFadein__Q26Screen7ObjBaseFv
+        .4byte doUpdateFadeinFinish__Q26Screen7ObjBaseFv
+        .4byte doUpdate__Q26Screen7ObjBaseFv
+        .4byte doUpdateFinish__Q26Screen7ObjBaseFv
+        .4byte doUpdateFadeout__Q26Screen7ObjBaseFv
+        .4byte doUpdateFadeoutFinish__Q26Screen7ObjBaseFv
+        .4byte doDraw__Q26Screen7ObjBaseFR8Graphics
+        .4byte doConfirmSetScene__Q26Screen7ObjBaseFRQ26Screen11SetSceneArg
+        .4byte doConfirmStartScene__Q26Screen7ObjBaseFPQ26Screen13StartSceneArg
+        .4byte doConfirmEndScene__Q26Screen7ObjBaseFRPQ26Screen11EndSceneArg
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_80520B88
+    lbl_80520B88:
+        .4byte 0x4E6F204E
+        .4byte 0x616D6500
+    .global lbl_80520B90
+    lbl_80520B90:
+        .4byte 0x00000000
+    .global lbl_80520B94
+    lbl_80520B94:
+        .4byte 0x42C80000
+*/
+
 namespace Screen {
 
 /*
@@ -10,43 +73,42 @@ namespace Screen {
 ObjBase::ObjBase(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r4, 0x804F
-	  stw       r0, 0x14(r1)
-	  subi      r0, r4, 0x4AD8
-	  li        r4, 0
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  stw       r0, 0x0(r3)
-	  addi      r0, r2, 0x2828
-	  stw       r4, 0x10(r3)
-	  addi      r3, r31, 0x18
-	  stw       r4, 0xC(r31)
-	  stw       r4, 0x8(r31)
-	  stw       r4, 0x4(r31)
-	  stw       r0, 0x14(r31)
-	  bl        -0x436B5C
-	  lis       r4, 0x804E
-	  lis       r3, 0x804F
-	  subi      r4, r4, 0x7DC0
-	  li        r0, 0
-	  stw       r4, 0x0(r31)
-	  addi      r4, r4, 0x10
-	  subi      r5, r3, 0x28A8
-	  mr        r3, r31
-	  stw       r4, 0x18(r31)
-	  addi      r4, r5, 0x10
-	  stw       r5, 0x0(r31)
-	  stw       r4, 0x18(r31)
-	  stw       r0, 0x30(r31)
-	  stw       r0, 0x34(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lis      r4, __vt__5CNode@ha
+	stw      r0, 0x14(r1)
+	addi     r0, r4, __vt__5CNode@l
+	li       r4, 0
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	stw      r0, 0(r3)
+	addi     r0, r2, lbl_80520B88@sda21
+	stw      r4, 0x10(r3)
+	addi     r3, r31, 0x18
+	stw      r4, 0xc(r31)
+	stw      r4, 8(r31)
+	stw      r4, 4(r31)
+	stw      r0, 0x14(r31)
+	bl       __ct__11JKRDisposerFv
+	lis      r4, __vt__Q26Screen8IObjBase@ha
+	lis      r3, __vt__Q26Screen7ObjBase@ha
+	addi     r4, r4, __vt__Q26Screen8IObjBase@l
+	li       r0, 0
+	stw      r4, 0(r31)
+	addi     r4, r4, 0x10
+	addi     r5, r3, __vt__Q26Screen7ObjBase@l
+	mr       r3, r31
+	stw      r4, 0x18(r31)
+	addi     r4, r5, 0x10
+	stw      r5, 0(r31)
+	stw      r4, 0x18(r31)
+	stw      r0, 0x30(r31)
+	stw      r0, 0x34(r31)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -58,18 +120,17 @@ ObjBase::ObjBase(void)
 void ObjBase::create(JKRArchive*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x4C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x4c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -81,60 +142,59 @@ void ObjBase::create(JKRArchive*)
 void ObjBase::start(Screen::StartSceneArg const*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  li        r31, 0
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lwz       r0, 0x30(r3)
-	  cmpwi     r0, 0x1
-	  beq-      .loc_0x6C
-	  bge-      .loc_0x38
-	  cmpwi     r0, 0
-	  bge-      .loc_0x44
-	  b         .loc_0x74
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	li       r31, 0
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lwz      r0, 0x30(r3)
+	cmpwi    r0, 1
+	beq      lbl_80453C10
+	bge      lbl_80453BDC
+	cmpwi    r0, 0
+	bge      lbl_80453BE8
+	b        lbl_80453C18
 
-	.loc_0x38:
-	  cmpwi     r0, 0x4
-	  bge-      .loc_0x74
-	  b         .loc_0x90
+lbl_80453BDC:
+	cmpwi    r0, 4
+	bge      lbl_80453C18
+	b        lbl_80453C34
 
-	.loc_0x44:
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x44(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x90
-	  li        r0, 0x1
-	  li        r31, 0x1
-	  stw       r0, 0x30(r30)
-	  b         .loc_0x90
+lbl_80453BE8:
+	lwz      r12, 0(r3)
+	lwz      r12, 0x44(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80453C34
+	li       r0, 1
+	li       r31, 1
+	stw      r0, 0x30(r30)
+	b        lbl_80453C34
 
-	.loc_0x6C:
-	  li        r31, 0x1
-	  b         .loc_0x90
+lbl_80453C10:
+	li       r31, 1
+	b        lbl_80453C34
 
-	.loc_0x74:
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x45A8
-	  li        r4, 0x61
-	  subi      r5, r5, 0x4598
-	  crclr     6, 0x6
-	  bl        -0x4295F0
+lbl_80453C18:
+	lis      r3, lbl_8049BA58@ha
+	lis      r5, lbl_8049BA68@ha
+	addi     r3, r3, lbl_8049BA58@l
+	li       r4, 0x61
+	addi     r5, r5, lbl_8049BA68@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x90:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80453C34:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -146,103 +206,102 @@ void ObjBase::start(Screen::StartSceneArg const*)
 void ObjBase::end(Screen::EndSceneArg const*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  li        r31, 0
-	  stw       r30, 0x18(r1)
-	  mr        r30, r4
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  lwz       r0, 0x30(r3)
-	  cmpwi     r0, 0x2
-	  beq-      .loc_0x50
-	  bge-      .loc_0x44
-	  cmpwi     r0, 0
-	  beq-      .loc_0xC0
-	  bge-      .loc_0x118
-	  b         .loc_0xFC
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	li       r31, 0
+	stw      r30, 0x18(r1)
+	mr       r30, r4
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	lwz      r0, 0x30(r3)
+	cmpwi    r0, 2
+	beq      lbl_80453CA0
+	bge      lbl_80453C94
+	cmpwi    r0, 0
+	beq      lbl_80453D10
+	bge      lbl_80453D68
+	b        lbl_80453D4C
 
-	.loc_0x44:
-	  cmpwi     r0, 0x4
-	  bge-      .loc_0xFC
-	  b         .loc_0xC8
+lbl_80453C94:
+	cmpwi    r0, 4
+	bge      lbl_80453D4C
+	b        lbl_80453D18
 
-	.loc_0x50:
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x48(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x118
-	  mr        r3, r29
-	  lwz       r12, 0x0(r29)
-	  lwz       r12, 0x5C(r12)
-	  mtctr     r12
-	  bctrl
-	  cmplwi    r30, 0
-	  beq-      .loc_0xB0
-	  lbz       r0, 0x4(r30)
-	  cmplwi    r0, 0
-	  beq-      .loc_0xB0
-	  mr        r3, r29
-	  lwz       r12, 0x0(r29)
-	  lwz       r12, 0x64(r12)
-	  mtctr     r12
-	  bctrl
-	  li        r0, 0
-	  stw       r0, 0x30(r29)
-	  b         .loc_0xB8
+lbl_80453CA0:
+	lwz      r12, 0(r3)
+	lwz      r12, 0x48(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80453D68
+	mr       r3, r29
+	lwz      r12, 0(r29)
+	lwz      r12, 0x5c(r12)
+	mtctr    r12
+	bctrl
+	cmplwi   r30, 0
+	beq      lbl_80453D00
+	lbz      r0, 4(r30)
+	cmplwi   r0, 0
+	beq      lbl_80453D00
+	mr       r3, r29
+	lwz      r12, 0(r29)
+	lwz      r12, 0x64(r12)
+	mtctr    r12
+	bctrl
+	li       r0, 0
+	stw      r0, 0x30(r29)
+	b        lbl_80453D08
 
-	.loc_0xB0:
-	  li        r0, 0x3
-	  stw       r0, 0x30(r29)
+lbl_80453D00:
+	li       r0, 3
+	stw      r0, 0x30(r29)
 
-	.loc_0xB8:
-	  li        r31, 0x1
-	  b         .loc_0x118
+lbl_80453D08:
+	li       r31, 1
+	b        lbl_80453D68
 
-	.loc_0xC0:
-	  li        r31, 0x1
-	  b         .loc_0x118
+lbl_80453D10:
+	li       r31, 1
+	b        lbl_80453D68
 
-	.loc_0xC8:
-	  cmplwi    r30, 0
-	  beq-      .loc_0xF4
-	  lbz       r0, 0x4(r30)
-	  cmplwi    r0, 0
-	  beq-      .loc_0xF4
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x64(r12)
-	  mtctr     r12
-	  bctrl
-	  li        r0, 0
-	  stw       r0, 0x30(r29)
+lbl_80453D18:
+	cmplwi   r30, 0
+	beq      lbl_80453D44
+	lbz      r0, 4(r30)
+	cmplwi   r0, 0
+	beq      lbl_80453D44
+	lwz      r12, 0(r3)
+	lwz      r12, 0x64(r12)
+	mtctr    r12
+	bctrl
+	li       r0, 0
+	stw      r0, 0x30(r29)
 
-	.loc_0xF4:
-	  li        r31, 0x1
-	  b         .loc_0x118
+lbl_80453D44:
+	li       r31, 1
+	b        lbl_80453D68
 
-	.loc_0xFC:
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x45A8
-	  li        r4, 0x91
-	  subi      r5, r5, 0x4598
-	  crclr     6, 0x6
-	  bl        -0x429724
+lbl_80453D4C:
+	lis      r3, lbl_8049BA58@ha
+	lis      r5, lbl_8049BA68@ha
+	addi     r3, r3, lbl_8049BA58@l
+	li       r4, 0x91
+	addi     r5, r5, lbl_8049BA68@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x118:
-	  lwz       r0, 0x24(r1)
-	  mr        r3, r31
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80453D68:
+	lwz      r0, 0x24(r1)
+	mr       r3, r31
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -254,87 +313,86 @@ void ObjBase::end(Screen::EndSceneArg const*)
 void ObjBase::update(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  li        r31, 0
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lwz       r0, 0x30(r3)
-	  cmpwi     r0, 0x2
-	  beq-      .loc_0x88
-	  bge-      .loc_0x3C
-	  cmpwi     r0, 0
-	  beq-      .loc_0x48
-	  bge-      .loc_0x50
-	  b         .loc_0xF4
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	li       r31, 0
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lwz      r0, 0x30(r3)
+	cmpwi    r0, 2
+	beq      lbl_80453E10
+	bge      lbl_80453DC4
+	cmpwi    r0, 0
+	beq      lbl_80453DD0
+	bge      lbl_80453DD8
+	b        lbl_80453E7C
 
-	.loc_0x3C:
-	  cmpwi     r0, 0x4
-	  bge-      .loc_0xF4
-	  b         .loc_0xC0
+lbl_80453DC4:
+	cmpwi    r0, 4
+	bge      lbl_80453E7C
+	b        lbl_80453E48
 
-	.loc_0x48:
-	  li        r31, 0x1
-	  b         .loc_0xF4
+lbl_80453DD0:
+	li       r31, 1
+	b        lbl_80453E7C
 
-	.loc_0x50:
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x50(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xF4
-	  mr        r3, r30
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x54(r12)
-	  mtctr     r12
-	  bctrl
-	  li        r0, 0x2
-	  stw       r0, 0x30(r30)
-	  b         .loc_0xF4
+lbl_80453DD8:
+	lwz      r12, 0(r3)
+	lwz      r12, 0x50(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80453E7C
+	mr       r3, r30
+	lwz      r12, 0(r30)
+	lwz      r12, 0x54(r12)
+	mtctr    r12
+	bctrl
+	li       r0, 2
+	stw      r0, 0x30(r30)
+	b        lbl_80453E7C
 
-	.loc_0x88:
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x58(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xF4
-	  mr        r3, r30
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x5C(r12)
-	  mtctr     r12
-	  bctrl
-	  li        r0, 0x3
-	  stw       r0, 0x30(r30)
-	  b         .loc_0xF4
+lbl_80453E10:
+	lwz      r12, 0(r3)
+	lwz      r12, 0x58(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80453E7C
+	mr       r3, r30
+	lwz      r12, 0(r30)
+	lwz      r12, 0x5c(r12)
+	mtctr    r12
+	bctrl
+	li       r0, 3
+	stw      r0, 0x30(r30)
+	b        lbl_80453E7C
 
-	.loc_0xC0:
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x60(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xF4
-	  mr        r3, r30
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x64(r12)
-	  mtctr     r12
-	  bctrl
-	  li        r0, 0
-	  stw       r0, 0x30(r30)
+lbl_80453E48:
+	lwz      r12, 0(r3)
+	lwz      r12, 0x60(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80453E7C
+	mr       r3, r30
+	lwz      r12, 0(r30)
+	lwz      r12, 0x64(r12)
+	mtctr    r12
+	bctrl
+	li       r0, 0
+	stw      r0, 0x30(r30)
 
-	.loc_0xF4:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80453E7C:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -346,23 +404,22 @@ void ObjBase::update(void)
 void ObjBase::draw(Graphics&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r0, 0x30(r3)
-	  cmpwi     r0, 0
-	  beq-      .loc_0x28
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x68(r12)
-	  mtctr     r12
-	  bctrl
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r0, 0x30(r3)
+	cmpwi    r0, 0
+	beq      lbl_80453EC0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x68(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x28:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80453EC0:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -374,61 +431,60 @@ void ObjBase::draw(Graphics&)
 void ObjBase::doDraw(Graphics&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x80(r1)
-	  mflr      r0
-	  lfs       f1, 0x2830(r2)
-	  stw       r0, 0x84(r1)
-	  stw       r31, 0x7C(r1)
-	  mr        r31, r3
-	  addi      r3, r1, 0x18
-	  lwz       r4, -0x7628(r13)
-	  bl        -0x4167A0
-	  addi      r3, r1, 0x18
-	  bl        -0x4165A0
-	  li        r5, 0xFF
-	  lfs       f1, 0x2834(r2)
-	  stb       r5, 0x10(r1)
-	  addi      r3, r1, 0x18
-	  fmr       f2, f1
-	  stb       r5, 0x11(r1)
-	  stb       r5, 0x12(r1)
-	  stb       r5, 0x13(r1)
-	  lwz       r0, 0x10(r1)
-	  stb       r5, 0x8(r1)
-	  stw       r0, 0x14(r1)
-	  lbz       r4, 0x14(r1)
-	  lbz       r9, 0x15(r1)
-	  lbz       r8, 0x16(r1)
-	  lbz       r7, 0x17(r1)
-	  stb       r5, 0x9(r1)
-	  stb       r5, 0xA(r1)
-	  stb       r5, 0xB(r1)
-	  lwz       r0, 0x8(r1)
-	  stb       r4, 0x58(r1)
-	  stw       r0, 0xC(r1)
-	  lbz       r6, 0xC(r1)
-	  lbz       r5, 0xD(r1)
-	  lbz       r4, 0xE(r1)
-	  lbz       r0, 0xF(r1)
-	  stb       r9, 0x59(r1)
-	  stb       r8, 0x5A(r1)
-	  stb       r7, 0x5B(r1)
-	  stb       r6, 0x5C(r1)
-	  stb       r5, 0x5D(r1)
-	  stb       r4, 0x5E(r1)
-	  stb       r0, 0x5F(r1)
-	  lwz       r4, 0x14(r31)
-	  crset     6, 0x6
-	  bl        -0x41628C
-	  addi      r3, r1, 0x18
-	  li        r4, -0x1
-	  bl        -0x416680
-	  lwz       r0, 0x84(r1)
-	  lwz       r31, 0x7C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x80
-	  blr
+	stwu     r1, -0x80(r1)
+	mflr     r0
+	lfs      f1, lbl_80520B90@sda21(r2)
+	stw      r0, 0x84(r1)
+	stw      r31, 0x7c(r1)
+	mr       r31, r3
+	addi     r3, r1, 0x18
+	lwz      r4, systemFont__9JFWSystem@sda21(r13)
+	bl       __ct__8J2DPrintFP7JUTFontf
+	addi     r3, r1, 0x18
+	bl       initiate__8J2DPrintFv
+	li       r5, 0xff
+	lfs      f1, lbl_80520B94@sda21(r2)
+	stb      r5, 0x10(r1)
+	addi     r3, r1, 0x18
+	fmr      f2, f1
+	stb      r5, 0x11(r1)
+	stb      r5, 0x12(r1)
+	stb      r5, 0x13(r1)
+	lwz      r0, 0x10(r1)
+	stb      r5, 8(r1)
+	stw      r0, 0x14(r1)
+	lbz      r4, 0x14(r1)
+	lbz      r9, 0x15(r1)
+	lbz      r8, 0x16(r1)
+	lbz      r7, 0x17(r1)
+	stb      r5, 9(r1)
+	stb      r5, 0xa(r1)
+	stb      r5, 0xb(r1)
+	lwz      r0, 8(r1)
+	stb      r4, 0x58(r1)
+	stw      r0, 0xc(r1)
+	lbz      r6, 0xc(r1)
+	lbz      r5, 0xd(r1)
+	lbz      r4, 0xe(r1)
+	lbz      r0, 0xf(r1)
+	stb      r9, 0x59(r1)
+	stb      r8, 0x5a(r1)
+	stb      r7, 0x5b(r1)
+	stb      r6, 0x5c(r1)
+	stb      r5, 0x5d(r1)
+	stb      r4, 0x5e(r1)
+	stb      r0, 0x5f(r1)
+	lwz      r4, 0x14(r31)
+	crset    6
+	bl       print__8J2DPrintFffPCce
+	addi     r3, r1, 0x18
+	li       r4, -1
+	bl       __dt__8J2DPrintFv
+	lwz      r0, 0x84(r1)
+	lwz      r31, 0x7c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x80
+	blr
 	*/
 }
 
@@ -440,10 +496,9 @@ void ObjBase::doDraw(Graphics&)
 void ObjBase::getDispMember(void)
 {
 	/*
-	.loc_0x0:
-	  lwz       r3, 0x34(r3)
-	  lwz       r3, 0x21C(r3)
-	  blr
+	lwz      r3, 0x34(r3)
+	lwz      r3, 0x21c(r3)
+	blr
 	*/
 }
 
@@ -455,18 +510,17 @@ void ObjBase::getDispMember(void)
 void ObjBase::confirmSetScene(Screen::SetSceneArg&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x6C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x6c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -478,18 +532,17 @@ void ObjBase::confirmSetScene(Screen::SetSceneArg&)
 void ObjBase::confirmStartScene(Screen::StartSceneArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x70(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x70(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -501,20 +554,19 @@ void ObjBase::confirmStartScene(Screen::StartSceneArg*)
 void ObjBase::confirmEndScene(Screen::EndSceneArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r4, 0x8(r1)
-	  addi      r4, r1, 0x8
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x74(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r4, 8(r1)
+	addi     r4, r1, 8
+	lwz      r12, 0(r3)
+	lwz      r12, 0x74(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -526,19 +578,18 @@ void ObjBase::confirmEndScene(Screen::EndSceneArg*)
 void ObjBase::getGamePad() const
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x30(r12)
-	  mtctr     r12
-	  bctrl
-	  bl        -0x1E2C
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x30(r12)
+	mtctr    r12
+	bctrl
+	bl       getGamePad__Q26Screen9SceneBaseCFv
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -550,24 +601,23 @@ void ObjBase::getGamePad() const
 ObjMgrBase::ObjMgrBase(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        -0x42CF4
-	  li        r0, 0
-	  mr        r3, r31
-	  stw       r0, 0x10(r31)
-	  stw       r0, 0xC(r31)
-	  stw       r0, 0x8(r31)
-	  stw       r0, 0x4(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       __ct__5CNodeFv
+	li       r0, 0
+	mr       r3, r31
+	stw      r0, 0x10(r31)
+	stw      r0, 0xc(r31)
+	stw      r0, 8(r31)
+	stw      r0, 4(r31)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -579,29 +629,28 @@ ObjMgrBase::ObjMgrBase(void)
 void ObjMgrBase::registObj(Screen::IObjBase*, Screen::SceneBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  mr        r4, r5
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x2C(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r3, r30
-	  mr        r4, r31
-	  bl        -0x42CE8
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	mr       r4, r5
+	stw      r30, 8(r1)
+	mr       r30, r3
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r12, 0x2c(r12)
+	mtctr    r12
+	bctrl
+	mr       r3, r30
+	mr       r4, r31
+	bl       add__5CNodeFP5CNode
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -613,39 +662,38 @@ void ObjMgrBase::registObj(Screen::IObjBase*, Screen::SceneBase*)
 void ObjMgrBase::update(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  li        r31, 0x1
-	  stw       r30, 0x8(r1)
-	  lwz       r3, 0x10(r3)
-	  b         .loc_0x44
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	li       r31, 1
+	stw      r30, 8(r1)
+	lwz      r3, 0x10(r3)
+	b        lbl_80454150
 
-	.loc_0x20:
-	  lwz       r12, 0x0(r3)
-	  lwz       r30, 0x4(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x40
-	  li        r31, 0
+lbl_8045412C:
+	lwz      r12, 0(r3)
+	lwz      r30, 4(r3)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_8045414C
+	li       r31, 0
 
-	.loc_0x40:
-	  mr        r3, r30
+lbl_8045414C:
+	mr       r3, r30
 
-	.loc_0x44:
-	  cmplwi    r3, 0
-	  bne+      .loc_0x20
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80454150:
+	cmplwi   r3, 0
+	bne      lbl_8045412C
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -657,34 +705,33 @@ void ObjMgrBase::update(void)
 void ObjMgrBase::draw(Graphics&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  stw       r30, 0x8(r1)
-	  mr        r30, r4
-	  lwz       r3, 0x10(r3)
-	  b         .loc_0x3C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	stw      r30, 8(r1)
+	mr       r30, r4
+	lwz      r3, 0x10(r3)
+	b        lbl_804541B0
 
-	.loc_0x20:
-	  lwz       r12, 0x0(r3)
-	  mr        r4, r30
-	  lwz       r31, 0x4(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r3, r31
+lbl_80454194:
+	lwz      r12, 0(r3)
+	mr       r4, r30
+	lwz      r31, 4(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	mr       r3, r31
 
-	.loc_0x3C:
-	  cmplwi    r3, 0
-	  bne+      .loc_0x20
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_804541B0:
+	cmplwi   r3, 0
+	bne      lbl_80454194
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -696,53 +743,52 @@ void ObjMgrBase::draw(Graphics&)
 void ObjMgrBase::search(Screen::SceneBase*, char*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r29, r5
-	  stw       r28, 0x10(r1)
-	  mr        r28, r4
-	  lwz       r31, 0x10(r3)
-	  b         .loc_0x6C
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	mr       r29, r5
+	stw      r28, 0x10(r1)
+	mr       r28, r4
+	lwz      r31, 0x10(r3)
+	b        lbl_8045423C
 
-	.loc_0x2C:
-	  mr        r3, r31
-	  lwz       r30, 0x4(r31)
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x30(r12)
-	  mtctr     r12
-	  bctrl
-	  cmplw     r3, r28
-	  bne-      .loc_0x68
-	  lwz       r3, 0x14(r31)
-	  mr        r4, r29
-	  bl        -0x389B64
-	  cmpwi     r3, 0
-	  bne-      .loc_0x68
-	  mr        r3, r31
-	  b         .loc_0x78
+lbl_804541FC:
+	mr       r3, r31
+	lwz      r30, 4(r31)
+	lwz      r12, 0(r31)
+	lwz      r12, 0x30(r12)
+	mtctr    r12
+	bctrl
+	cmplw    r3, r28
+	bne      lbl_80454238
+	lwz      r3, 0x14(r31)
+	mr       r4, r29
+	bl       strcmp
+	cmpwi    r3, 0
+	bne      lbl_80454238
+	mr       r3, r31
+	b        lbl_80454248
 
-	.loc_0x68:
-	  mr        r31, r30
+lbl_80454238:
+	mr       r31, r30
 
-	.loc_0x6C:
-	  cmplwi    r31, 0
-	  bne+      .loc_0x2C
-	  li        r3, 0
+lbl_8045423C:
+	cmplwi   r31, 0
+	bne      lbl_804541FC
+	li       r3, 0
 
-	.loc_0x78:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80454248:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -754,43 +800,42 @@ void ObjMgrBase::search(Screen::SceneBase*, char*)
 void ObjMgrBase::start(Screen::StartSceneArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  li        r31, 0x1
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r29, r4
-	  lwz       r3, 0x10(r3)
-	  b         .loc_0x50
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	li       r31, 1
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	mr       r29, r4
+	lwz      r3, 0x10(r3)
+	b        lbl_804542B8
 
-	.loc_0x28:
-	  lwz       r12, 0x0(r3)
-	  mr        r4, r29
-	  lwz       r30, 0x4(r3)
-	  lwz       r12, 0x24(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x4C
-	  li        r31, 0
+lbl_80454290:
+	lwz      r12, 0(r3)
+	mr       r4, r29
+	lwz      r30, 4(r3)
+	lwz      r12, 0x24(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_804542B4
+	li       r31, 0
 
-	.loc_0x4C:
-	  mr        r3, r30
+lbl_804542B4:
+	mr       r3, r30
 
-	.loc_0x50:
-	  cmplwi    r3, 0
-	  bne+      .loc_0x28
-	  lwz       r0, 0x24(r1)
-	  mr        r3, r31
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_804542B8:
+	cmplwi   r3, 0
+	bne      lbl_80454290
+	lwz      r0, 0x24(r1)
+	mr       r3, r31
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -802,43 +847,42 @@ void ObjMgrBase::start(Screen::StartSceneArg*)
 void ObjMgrBase::end(Screen::EndSceneArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  li        r31, 0x1
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r29, r4
-	  lwz       r3, 0x10(r3)
-	  b         .loc_0x50
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	li       r31, 1
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	mr       r29, r4
+	lwz      r3, 0x10(r3)
+	b        lbl_80454330
 
-	.loc_0x28:
-	  lwz       r12, 0x0(r3)
-	  mr        r4, r29
-	  lwz       r30, 0x4(r3)
-	  lwz       r12, 0x28(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x4C
-	  li        r31, 0
+lbl_80454308:
+	lwz      r12, 0(r3)
+	mr       r4, r29
+	lwz      r30, 4(r3)
+	lwz      r12, 0x28(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_8045432C
+	li       r31, 0
 
-	.loc_0x4C:
-	  mr        r3, r30
+lbl_8045432C:
+	mr       r3, r30
 
-	.loc_0x50:
-	  cmplwi    r3, 0
-	  bne+      .loc_0x28
-	  lwz       r0, 0x24(r1)
-	  mr        r3, r31
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80454330:
+	cmplwi   r3, 0
+	bne      lbl_80454308
+	lwz      r0, 0x24(r1)
+	mr       r3, r31
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -850,46 +894,45 @@ void ObjMgrBase::end(Screen::EndSceneArg*)
 void ObjMgrBase::confirmSetScene(Screen::SetSceneArg&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  li        r31, 0x1
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r29, r4
-	  lwz       r3, 0x10(r3)
-	  b         .loc_0x54
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	li       r31, 1
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	mr       r29, r4
+	lwz      r3, 0x10(r3)
+	b        lbl_804543AC
 
-	.loc_0x28:
-	  lwz       r12, 0x0(r3)
-	  mr        r4, r29
-	  lwz       r30, 0x4(r3)
-	  lwz       r12, 0x38(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x50
-	  li        r31, 0
-	  b         .loc_0x5C
+lbl_80454380:
+	lwz      r12, 0(r3)
+	mr       r4, r29
+	lwz      r30, 4(r3)
+	lwz      r12, 0x38(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_804543A8
+	li       r31, 0
+	b        lbl_804543B4
 
-	.loc_0x50:
-	  mr        r3, r30
+lbl_804543A8:
+	mr       r3, r30
 
-	.loc_0x54:
-	  cmplwi    r3, 0
-	  bne+      .loc_0x28
+lbl_804543AC:
+	cmplwi   r3, 0
+	bne      lbl_80454380
 
-	.loc_0x5C:
-	  lwz       r0, 0x24(r1)
-	  mr        r3, r31
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_804543B4:
+	lwz      r0, 0x24(r1)
+	mr       r3, r31
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -901,46 +944,45 @@ void ObjMgrBase::confirmSetScene(Screen::SetSceneArg&)
 void ObjMgrBase::confirmStartScene(Screen::StartSceneArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  li        r31, 0x1
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r29, r4
-	  lwz       r3, 0x10(r3)
-	  b         .loc_0x54
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	li       r31, 1
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	mr       r29, r4
+	lwz      r3, 0x10(r3)
+	b        lbl_80454428
 
-	.loc_0x28:
-	  lwz       r12, 0x0(r3)
-	  mr        r4, r29
-	  lwz       r30, 0x4(r3)
-	  lwz       r12, 0x3C(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x50
-	  li        r31, 0
-	  b         .loc_0x5C
+lbl_804543FC:
+	lwz      r12, 0(r3)
+	mr       r4, r29
+	lwz      r30, 4(r3)
+	lwz      r12, 0x3c(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_80454424
+	li       r31, 0
+	b        lbl_80454430
 
-	.loc_0x50:
-	  mr        r3, r30
+lbl_80454424:
+	mr       r3, r30
 
-	.loc_0x54:
-	  cmplwi    r3, 0
-	  bne+      .loc_0x28
+lbl_80454428:
+	cmplwi   r3, 0
+	bne      lbl_804543FC
 
-	.loc_0x5C:
-	  lwz       r0, 0x24(r1)
-	  mr        r3, r31
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80454430:
+	lwz      r0, 0x24(r1)
+	mr       r3, r31
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -952,46 +994,45 @@ void ObjMgrBase::confirmStartScene(Screen::StartSceneArg*)
 void ObjMgrBase::confirmEndScene(Screen::EndSceneArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  li        r31, 0x1
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r29, r4
-	  lwz       r3, 0x10(r3)
-	  b         .loc_0x54
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	li       r31, 1
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	mr       r29, r4
+	lwz      r3, 0x10(r3)
+	b        lbl_804544A4
 
-	.loc_0x28:
-	  lwz       r12, 0x0(r3)
-	  mr        r4, r29
-	  lwz       r30, 0x4(r3)
-	  lwz       r12, 0x40(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x50
-	  li        r31, 0
-	  b         .loc_0x5C
+lbl_80454478:
+	lwz      r12, 0(r3)
+	mr       r4, r29
+	lwz      r30, 4(r3)
+	lwz      r12, 0x40(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_804544A0
+	li       r31, 0
+	b        lbl_804544AC
 
-	.loc_0x50:
-	  mr        r3, r30
+lbl_804544A0:
+	mr       r3, r30
 
-	.loc_0x54:
-	  cmplwi    r3, 0
-	  bne+      .loc_0x28
+lbl_804544A4:
+	cmplwi   r3, 0
+	bne      lbl_80454478
 
-	.loc_0x5C:
-	  lwz       r0, 0x24(r1)
-	  mr        r3, r31
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_804544AC:
+	lwz      r0, 0x24(r1)
+	mr       r3, r31
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -1003,9 +1044,8 @@ void ObjMgrBase::confirmEndScene(Screen::EndSceneArg*)
 @24 @Screen::ObjBase::~ObjBase(void)
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x18
-	  b         -0x146C68
+	addi     r3, r3, -24
+	b        __dt__Q26Screen7ObjBaseFv
 	*/
 }
 } // namespace Screen

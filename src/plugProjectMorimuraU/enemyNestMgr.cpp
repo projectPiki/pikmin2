@@ -1,5 +1,312 @@
 #include "types.h"
 
+/*
+    Generated from dpostproc
+
+    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
+    .4byte __sinit_enemyNestMgr_cpp
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_80491DD8
+    lbl_80491DD8:
+        .4byte 0x656E656D
+        .4byte 0x794E6573
+        .4byte 0x744D6772
+        .4byte 0x00000000
+    .global lbl_80491DE8
+    lbl_80491DE8:
+        .4byte 0x9183837D
+        .4byte 0x836C815B
+        .4byte 0x83578383
+        .4byte 0x00000000
+        .4byte 0x43726561
+        .4byte 0x74757265
+        .4byte 0x3A3A5072
+        .4byte 0x6F706572
+        .4byte 0x74790000
+        .4byte 0x66726963
+        .4byte 0x74696F6E
+        .4byte 0x286E6F74
+        .4byte 0x20757365
+        .4byte 0x64290000
+        .4byte 0x77616C6C
+        .4byte 0x5265666C
+        .4byte 0x65637469
+        .4byte 0x6F6E0000
+        .4byte 0x66616365
+        .4byte 0x44697241
+        .4byte 0x646A7573
+        .4byte 0x74000000
+        .4byte 0x626F756E
+        .4byte 0x63654661
+        .4byte 0x63746F72
+        .4byte 0x00000000
+        .4byte 0x456E656D
+        .4byte 0x79506172
+        .4byte 0x6D734261
+        .4byte 0x73650000
+        .4byte 0x83898343
+        .4byte 0x837482CC
+        .4byte 0x8D8282B3
+        .4byte 0x00000000
+        .4byte 0x83898343
+        .4byte 0x837489F1
+        .4byte 0x959C97A6
+        .4byte 0x00000000
+        .4byte 0x8C7889FA
+        .4byte 0x83898343
+        .4byte 0x83740000
+        .4byte 0x837D8362
+        .4byte 0x837682C6
+        .4byte 0x82CC9396
+        .4byte 0x82E80000
+        .4byte 0x837D8362
+        .4byte 0x837682C6
+        .4byte 0x82CC82A0
+        .4byte 0x82BD82E8
+        .4byte 0x837C838A
+        .4byte 0x83538393
+        .4byte 0x82CC9149
+        .4byte 0x92E80000
+        .4byte 0x8373834E
+        .4byte 0x837E8393
+        .4byte 0x82C682CC
+        .4byte 0x82A082BD
+        .4byte 0x82E80000
+        .4byte 0x835F8381
+        .4byte 0x815B8357
+        .4byte 0x83588350
+        .4byte 0x815B838B
+        .4byte 0x585A0000
+        .4byte 0x835F8381
+        .4byte 0x815B8357
+        .4byte 0x83588350
+        .4byte 0x815B838B
+        .4byte 0x59000000
+        .4byte 0x835F8381
+        .4byte 0x815B8357
+        .4byte 0x8374838C
+        .4byte 0x815B8380
+        .4byte 0x00000000
+        .4byte 0x89F1935D
+        .4byte 0x91AC9378
+        .4byte 0x97A60000
+        .4byte 0x89F1935D
+        .4byte 0x8DC591E5
+        .4byte 0x91AC9378
+        .4byte 0x00000000
+        .4byte 0x8365838A
+        .4byte 0x8367838A
+        .4byte 0x815B0000
+        .4byte 0x837A815B
+        .4byte 0x838094CD
+        .4byte 0x88CD0000
+        .4byte 0x83768389
+        .4byte 0x83438378
+        .4byte 0x815B8367
+        .4byte 0x8B9797A3
+        .4byte 0x00000000
+        .4byte 0x8E8B8A45
+        .4byte 0x8B9797A3
+        .4byte 0x00000000
+        .4byte 0x8E8B8A45
+        .4byte 0x8A709378
+        .4byte 0x00000000
+        .4byte 0x92548DF5
+        .4byte 0x8B9797A3
+        .4byte 0x00000000
+        .4byte 0x92548DF5
+        .4byte 0x8A709378
+        .4byte 0x00000000
+        .4byte 0x905582E8
+        .4byte 0x95A582A2
+        .4byte 0x97CD0000
+        .4byte 0x905582E8
+        .4byte 0x95A582A2
+        .4byte 0x835F8381
+        .4byte 0x815B8357
+        .4byte 0x00000000
+        .4byte 0x905582E8
+        .4byte 0x95A582A2
+        .4byte 0x94CD88CD
+        .4byte 0x00000000
+        .4byte 0x905582E8
+        .4byte 0x95A582A2
+        .4byte 0x97A60000
+        .4byte 0x8D558C82
+        .4byte 0x89C2945C
+        .4byte 0x94CD88CD
+        .4byte 0x00000000
+        .4byte 0x8D558C82
+        .4byte 0x89C2945C
+        .4byte 0x8A709378
+        .4byte 0x00000000
+        .4byte 0x8D558C82
+        .4byte 0x83718362
+        .4byte 0x836794CD
+        .4byte 0x88CD0000
+        .4byte 0x8D558C82
+        .4byte 0x83718362
+        .4byte 0x83678A70
+        .4byte 0x93780000
+        .4byte 0x8C7889FA
+        .4byte 0x8E9E8AD4
+        .4byte 0x00000000
+        .4byte 0x90CE89BB
+        .4byte 0x8E9E8AD4
+        .4byte 0x00000000
+        .4byte 0x83718362
+        .4byte 0x83768368
+        .4byte 0x838D8362
+        .4byte 0x8376835F
+        .4byte 0x8381815B
+        .4byte 0x83570000
+        .4byte 0x926E906B
+        .4byte 0x8B4390E2
+        .4byte 0x8A6D97A7
+        .4byte 0x00000000
+        .4byte 0x926E906B
+        .4byte 0x8B4390E2
+        .4byte 0x8E9E8AD4
+        .4byte 0x00000000
+        .4byte 0x905582E8
+        .4byte 0x95A582A2
+        .4byte 0x91C58C82
+        .4byte 0x82600000
+        .4byte 0x905582E8
+        .4byte 0x95A582A2
+        .4byte 0x92A39574
+        .4byte 0x82500000
+        .4byte 0x905582E8
+        .4byte 0x95A582A2
+        .4byte 0x91C58C82
+        .4byte 0x82610000
+        .4byte 0x905582E8
+        .4byte 0x95A582A2
+        .4byte 0x92A39574
+        .4byte 0x82510000
+        .4byte 0x905582E8
+        .4byte 0x95A582A2
+        .4byte 0x91C58C82
+        .4byte 0x82620000
+        .4byte 0x905582E8
+        .4byte 0x95A582A2
+        .4byte 0x92A39574
+        .4byte 0x82520000
+        .4byte 0x905582E8
+        .4byte 0x95A582A2
+        .4byte 0x91C58C82
+        .4byte 0x82630000
+        .4byte 0x656E656D
+        .4byte 0x792E626D
+        .4byte 0x64000000
+        .4byte 0x2F656E65
+        .4byte 0x6D792F64
+        .4byte 0x6174612F
+        .4byte 0x4A696775
+        .4byte 0x6D6F486F
+        .4byte 0x7573652F
+        .4byte 0x6D6F6465
+        .4byte 0x6C2E737A
+        .4byte 0x73000000
+        .4byte 0x656E656D
+        .4byte 0x794E6573
+        .4byte 0x744D6772
+        .4byte 0x2E637070
+        .4byte 0x00000000
+        .asciz "P2Assert"
+        .skip 3
+        .float 1.0
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .float 1.0
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .float 1.0
+        .4byte 0x00000000
+        .4byte 0x25732F65
+        .4byte 0x6E656D79
+        .4byte 0x436F6C6C
+        .4byte 0x2E747874
+        .4byte 0x00000000
+        .4byte 0x4A696775
+        .4byte 0x6D6F486F
+        .4byte 0x7573652F
+        .4byte 0x656E656D
+        .4byte 0x79436F6C
+        .4byte 0x6C2E7478
+        .4byte 0x74000000
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__Q34Game4Nest3Mgr
+    __vt__Q34Game4Nest3Mgr:
+        .4byte 0
+        .4byte 0
+        .4byte doAnimation__Q24Game12EnemyMgrBaseFv
+        .4byte doEntry__Q24Game12EnemyMgrBaseFv
+        .4byte doSetView__Q24Game12EnemyMgrBaseFi
+        .4byte doViewCalc__Q24Game12EnemyMgrBaseFv
+        .4byte doSimulation__Q24Game12EnemyMgrBaseFf
+        .4byte doDirectDraw__Q24Game12EnemyMgrBaseFR8Graphics
+        .4byte doSimpleDraw__Q34Game4Nest3MgrFP8Viewport
+        .4byte loadResources__16GenericObjectMgrFv
+        .4byte resetMgr__16GenericObjectMgrFv
+        .4byte pausable__16GenericObjectMgrFv
+        .4byte frozenable__16GenericObjectMgrFv
+        .4byte getMatrixLoadType__16GenericObjectMgrFv
+        .4byte 0
+        .4byte 0
+        .4byte "@4@__dt__Q34Game4Nest3MgrFv"
+        .4byte getChildCount__5CNodeFv
+        .4byte "@4@getObject__Q24Game12EnemyMgrBaseFPv"
+        .4byte "@4@getNext__Q24Game12EnemyMgrBaseFPv"
+        .4byte "@4@getStart__Q24Game12EnemyMgrBaseFv"
+        .4byte "@4@getEnd__Q24Game12EnemyMgrBaseFv"
+        .4byte __dt__Q34Game4Nest3MgrFv
+        .4byte getObject__Q24Game12EnemyMgrBaseFPv
+        .4byte getNext__Q24Game12EnemyMgrBaseFPv
+        .4byte getStart__Q24Game12EnemyMgrBaseFv
+        .4byte getEnd__Q24Game12EnemyMgrBaseFv
+        .4byte alloc__Q24Game12EnemyMgrBaseFv
+        .4byte birth__Q34Game4Nest3MgrFRQ24Game13EnemyBirthArg
+        .4byte getJ3DModelData__Q24Game12EnemyMgrBaseCFv
+        .4byte getGenerator__Q24Game12EnemyMgrBaseCFv
+        .4byte killAll__Q24Game12EnemyMgrBaseFPQ24Game15CreatureKillArg
+        .4byte setupSoundViewerAndBas__Q24Game12EnemyMgrBaseFv
+        .4byte setDebugParm__Q24Game12EnemyMgrBaseFUl
+        .4byte resetDebugParm__Q24Game12EnemyMgrBaseFUl
+        .4byte getMaxObjects__Q24Game12EnemyMgrBaseCFv
+        .4byte startMovie__Q24Game12EnemyMgrBaseFv
+        .4byte endMovie__Q24Game12EnemyMgrBaseFv
+        .4byte get__Q24Game12EnemyMgrBaseFPv
+        .4byte isAlwaysMovieActor__Q24Game12EnemyMgrBaseFv
+        .4byte createObj__Q34Game4Nest3MgrFi
+        .4byte getEnemy__Q34Game4Nest3MgrFi
+        .4byte doAlloc__Q34Game4Nest3MgrFv
+        .4byte getEnemyTypeID__Q34Game4Nest3MgrFv
+        .4byte createModel__Q24Game12EnemyMgrBaseFv
+        .4byte initParms__Q24Game12EnemyMgrBaseFv
+        .4byte loadResource__Q24Game12EnemyMgrBaseFv
+        .4byte initObjects__Q34Game4Nest3MgrFv
+        .4byte initStoneSetting__Q24Game12EnemyMgrBaseFv
+        .4byte loadModelData__Q34Game4Nest3MgrFP10JKRArchive
+        .4byte loadModelData__Q24Game12EnemyMgrBaseFv
+        .4byte loadAnimData__Q34Game4Nest3MgrFv
+        .4byte loadTexData__Q24Game12EnemyMgrBaseFv
+        .4byte doLoadBmd__Q24Game12EnemyMgrBaseFPv
+        .4byte doLoadBdl__Q24Game12EnemyMgrBaseFPv
+        .4byte initGenerator__Q24Game12EnemyMgrBaseFv
+
+    .section .sbss # 0x80514D80 - 0x80516360
+    .global mMatColor__Q24Game4Nest
+    mMatColor__Q24Game4Nest:
+        .skip 0x8
+*/
+
 namespace Game {
 
 /*
@@ -10,35 +317,34 @@ namespace Game {
 Nest::Mgr::Mgr(int, unsigned char)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        -0x23D514
-	  lis       r4, 0x804E
-	  lis       r3, 0x8049
-	  addi      r4, r4, 0x2F88
-	  li        r6, 0
-	  stw       r4, 0x0(r31)
-	  addi      r4, r4, 0x38
-	  addi      r5, r3, 0x1DE8
-	  li        r0, 0xFF
-	  stw       r4, 0x4(r31)
-	  subi      r4, r13, 0x6718
-	  mr        r3, r31
-	  stw       r6, 0x44(r31)
-	  stw       r5, 0x18(r31)
-	  sth       r0, 0x6(r4)
-	  sth       r0, 0x4(r4)
-	  sth       r0, 0x2(r4)
-	  sth       r0, -0x6718(r13)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       __ct__Q24Game12EnemyMgrBaseFiUc
+	lis      r4, __vt__Q34Game4Nest3Mgr@ha
+	lis      r3, lbl_80491DE8@ha
+	addi     r4, r4, __vt__Q34Game4Nest3Mgr@l
+	li       r6, 0
+	stw      r4, 0(r31)
+	addi     r4, r4, 0x38
+	addi     r5, r3, lbl_80491DE8@l
+	li       r0, 0xff
+	stw      r4, 4(r31)
+	addi     r4, r13, mMatColor__Q24Game4Nest@sda21
+	mr       r3, r31
+	stw      r6, 0x44(r31)
+	stw      r5, 0x18(r31)
+	sth      r0, 6(r4)
+	sth      r0, 4(r4)
+	sth      r0, 2(r4)
+	sth      r0, mMatColor__Q24Game4Nest@sda21(r13)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -50,27 +356,26 @@ Nest::Mgr::Mgr(int, unsigned char)
 void Nest::Mgr::doAlloc(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  li        r3, 0x7F8
-	  bl        -0x348378
-	  mr.       r4, r3
-	  beq-      .loc_0x2C
-	  bl        -0x262A8C
-	  mr        r4, r3
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	li       r3, 0x7f8
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_8036C230
+	bl       __ct__Q24Game14EnemyParmsBaseFv
+	mr       r4, r3
 
-	.loc_0x2C:
-	  mr        r3, r31
-	  bl        -0x23C998
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8036C230:
+	mr       r3, r31
+	bl       init__Q24Game12EnemyMgrBaseFPQ24Game14EnemyParmsBase
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -82,15 +387,14 @@ void Nest::Mgr::doAlloc(void)
 void Nest::Mgr::birth(Game::EnemyBirthArg&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  bl        -0x23CE90
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	bl       birth__Q24Game12EnemyMgrBaseFRQ24Game13EnemyBirthArg
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -102,90 +406,89 @@ void Nest::Mgr::birth(Game::EnemyBirthArg&)
 void Nest::Mgr::loadModelData(JKRArchive*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x50(r1)
-	  mflr      r0
-	  lis       r5, 0x8049
-	  stw       r0, 0x54(r1)
-	  stw       r31, 0x4C(r1)
-	  stw       r30, 0x48(r1)
-	  addi      r30, r5, 0x1DD8
-	  stw       r29, 0x44(r1)
-	  mr        r29, r3
-	  addi      r3, r30, 0x2E8
-	  bl        -0x34927C
-	  cmplwi    r3, 0
-	  beq-      .loc_0x6C
-	  lis       r4, 0x2024
-	  addi      r4, r4, 0x10
-	  bl        -0x2FCA14
-	  stw       r3, 0x1C(r29)
-	  lis       r4, 0x4
-	  lwz       r3, 0x1C(r29)
-	  bl        -0x2E89E0
-	  lis       r4, 0x8048
-	  lwz       r3, 0x1C(r29)
-	  subi      r5, r4, 0x7794
-	  li        r4, 0
-	  bl        -0x2E881C
-	  lwz       r3, 0x1C(r29)
-	  bl        -0x2E88A4
+	stwu     r1, -0x50(r1)
+	mflr     r0
+	lis      r5, lbl_80491DD8@ha
+	stw      r0, 0x54(r1)
+	stw      r31, 0x4c(r1)
+	stw      r30, 0x48(r1)
+	addi     r30, r5, lbl_80491DD8@l
+	stw      r29, 0x44(r1)
+	mr       r29, r3
+	addi     r3, r30, 0x2e8
+	bl       getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
+	cmplwi   r3, 0
+	beq      lbl_8036C2D8
+	lis      r4, 0x20240010@ha
+	addi     r4, r4, 0x20240010@l
+	bl       load__22J3DModelLoaderDataBaseFPCvUl
+	stw      r3, 0x1c(r29)
+	lis      r4, 4
+	lwz      r3, 0x1c(r29)
+	bl       newSharedDisplayList__12J3DModelDataFUl
+	lis      r4, j3dDefaultMtx@ha
+	lwz      r3, 0x1c(r29)
+	addi     r5, r4, j3dDefaultMtx@l
+	li       r4, 0
+	bl       simpleCalcMaterial__12J3DModelDataFUsPA4_f
+	lwz      r3, 0x1c(r29)
+	bl       makeSharedDL__12J3DModelDataFv
 
-	.loc_0x6C:
-	  addi      r3, r1, 0x8
-	  addi      r4, r30, 0x2F4
-	  bl        0xE033C
-	  lwz       r3, -0x63D8(r13)
-	  addi      r4, r1, 0x8
-	  bl        0xE0428
-	  mr.       r31, r3
-	  bne-      .loc_0xA0
-	  addi      r3, r30, 0x318
-	  addi      r5, r30, 0x32C
-	  li        r4, 0x49
-	  crclr     6, 0x6
-	  bl        -0x341CC8
+lbl_8036C2D8:
+	addi     r3, r1, 8
+	addi     r4, r30, 0x2f4
+	bl       __ct__Q212LoadResource11ArgAramOnlyFPCc
+	lwz      r3, gLoadResourceMgr@sda21(r13)
+	addi     r4, r1, 8
+	bl       mountArchive__Q212LoadResource3MgrFRQ212LoadResource3Arg
+	or.      r31, r3, r3
+	bne      lbl_8036C30C
+	addi     r3, r30, 0x318
+	addi     r5, r30, 0x32c
+	li       r4, 0x49
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xA0:
-	  lwz       r31, 0x34(r31)
-	  cmplwi    r31, 0
-	  bne-      .loc_0xC0
-	  addi      r3, r30, 0x318
-	  addi      r5, r30, 0x32C
-	  li        r4, 0x4B
-	  crclr     6, 0x6
-	  bl        -0x341CE8
+lbl_8036C30C:
+	lwz      r31, 0x34(r31)
+	cmplwi   r31, 0
+	bne      lbl_8036C32C
+	addi     r3, r30, 0x318
+	addi     r5, r30, 0x32c
+	li       r4, 0x4b
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xC0:
-	  mr        r4, r31
-	  addi      r3, r30, 0x2E8
-	  bl        -0x34931C
-	  cmplwi    r3, 0
-	  beq-      .loc_0x10C
-	  lis       r4, 0x2024
-	  addi      r4, r4, 0x10
-	  bl        -0x2FCAB4
-	  stw       r3, 0x44(r29)
-	  lis       r4, 0x4
-	  lwz       r3, 0x44(r29)
-	  bl        -0x2E8A80
-	  lis       r4, 0x8048
-	  lwz       r3, 0x44(r29)
-	  subi      r5, r4, 0x7794
-	  li        r4, 0
-	  bl        -0x2E88BC
-	  lwz       r3, 0x44(r29)
-	  bl        -0x2E8944
+lbl_8036C32C:
+	mr       r4, r31
+	addi     r3, r30, 0x2e8
+	bl       getGlbResource__13JKRFileLoaderFPCcP13JKRFileLoader
+	cmplwi   r3, 0
+	beq      lbl_8036C378
+	lis      r4, 0x20240010@ha
+	addi     r4, r4, 0x20240010@l
+	bl       load__22J3DModelLoaderDataBaseFPCvUl
+	stw      r3, 0x44(r29)
+	lis      r4, 4
+	lwz      r3, 0x44(r29)
+	bl       newSharedDisplayList__12J3DModelDataFUl
+	lis      r4, j3dDefaultMtx@ha
+	lwz      r3, 0x44(r29)
+	addi     r5, r4, j3dDefaultMtx@l
+	li       r4, 0
+	bl       simpleCalcMaterial__12J3DModelDataFUsPA4_f
+	lwz      r3, 0x44(r29)
+	bl       makeSharedDL__12J3DModelDataFv
 
-	.loc_0x10C:
-	  lwz       r0, 0x54(r1)
-	  lwz       r31, 0x4C(r1)
-	  lwz       r3, 0x1C(r29)
-	  lwz       r30, 0x48(r1)
-	  lwz       r29, 0x44(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x50
-	  blr
+lbl_8036C378:
+	lwz      r0, 0x54(r1)
+	lwz      r31, 0x4c(r1)
+	lwz      r3, 0x1c(r29)
+	lwz      r30, 0x48(r1)
+	lwz      r29, 0x44(r1)
+	mtlr     r0
+	addi     r1, r1, 0x50
+	blr
 	*/
 }
 
@@ -197,227 +500,226 @@ void Nest::Mgr::loadModelData(JKRArchive*)
 void Nest::Mgr::doSimpleDraw(Viewport*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0xB0(r1)
-	  mflr      r0
-	  stw       r0, 0xB4(r1)
-	  stfd      f31, 0xA0(r1)
-	  psq_st    f31,0xA8(r1),0,0
-	  stmw      r24, 0x80(r1)
-	  lis       r5, 0x8049
-	  li        r0, 0xFF
-	  addi      r30, r5, 0x1DD8
-	  lis       r5, 0x8051
-	  lwz       r29, 0x338(r30)
-	  mr        r25, r3
-	  lwz       r27, 0x33C(r30)
-	  mr        r26, r4
-	  lwz       r12, 0x340(r30)
-	  subi      r31, r5, 0xDD0
-	  lwz       r11, 0x344(r30)
-	  li        r28, 0
-	  lwz       r10, 0x348(r30)
-	  lwz       r9, 0x34C(r30)
-	  lwz       r8, 0x350(r30)
-	  lwz       r7, 0x354(r30)
-	  lwz       r6, 0x358(r30)
-	  lwz       r5, 0x35C(r30)
-	  lwz       r4, 0x360(r30)
-	  lwz       r3, 0x364(r30)
-	  stw       r29, 0x48(r1)
-	  stw       r27, 0x4C(r1)
-	  stw       r12, 0x50(r1)
-	  stw       r11, 0x54(r1)
-	  stw       r10, 0x58(r1)
-	  stw       r9, 0x5C(r1)
-	  stw       r8, 0x60(r1)
-	  stw       r7, 0x64(r1)
-	  stw       r6, 0x68(r1)
-	  stw       r5, 0x6C(r1)
-	  stw       r4, 0x70(r1)
-	  stw       r3, 0x74(r1)
-	  sth       r0, 0x16(r1)
-	  sth       r0, 0x14(r1)
-	  sth       r0, 0x12(r1)
-	  sth       r0, 0x10(r1)
-	  b         .loc_0x2E8
+	stwu     r1, -0xb0(r1)
+	mflr     r0
+	stw      r0, 0xb4(r1)
+	stfd     f31, 0xa0(r1)
+	psq_st   f31, 168(r1), 0, qr0
+	stmw     r24, 0x80(r1)
+	lis      r5, lbl_80491DD8@ha
+	li       r0, 0xff
+	addi     r30, r5, lbl_80491DD8@l
+	lis      r5, j3dSys@ha
+	lwz      r29, 0x338(r30)
+	mr       r25, r3
+	lwz      r27, 0x33c(r30)
+	mr       r26, r4
+	lwz      r12, 0x340(r30)
+	addi     r31, r5, j3dSys@l
+	lwz      r11, 0x344(r30)
+	li       r28, 0
+	lwz      r10, 0x348(r30)
+	lwz      r9, 0x34c(r30)
+	lwz      r8, 0x350(r30)
+	lwz      r7, 0x354(r30)
+	lwz      r6, 0x358(r30)
+	lwz      r5, 0x35c(r30)
+	lwz      r4, 0x360(r30)
+	lwz      r3, 0x364(r30)
+	stw      r29, 0x48(r1)
+	stw      r27, 0x4c(r1)
+	stw      r12, 0x50(r1)
+	stw      r11, 0x54(r1)
+	stw      r10, 0x58(r1)
+	stw      r9, 0x5c(r1)
+	stw      r8, 0x60(r1)
+	stw      r7, 0x64(r1)
+	stw      r6, 0x68(r1)
+	stw      r5, 0x6c(r1)
+	stw      r4, 0x70(r1)
+	stw      r3, 0x74(r1)
+	sth      r0, 0x16(r1)
+	sth      r0, 0x14(r1)
+	sth      r0, 0x12(r1)
+	sth      r0, 0x10(r1)
+	b        lbl_8036C680
 
-	.loc_0xAC:
-	  mr        r3, r25
-	  mr        r4, r28
-	  lwz       r12, 0x0(r25)
-	  lwz       r12, 0xA4(r12)
-	  mtctr     r12
-	  bctrl
-	  mr.       r27, r3
-	  bne-      .loc_0xE0
-	  addi      r3, r30, 0x318
-	  addi      r5, r30, 0x32C
-	  li        r4, 0x6F
-	  crclr     6, 0x6
-	  bl        -0x341E34
+lbl_8036C444:
+	mr       r3, r25
+	mr       r4, r28
+	lwz      r12, 0(r25)
+	lwz      r12, 0xa4(r12)
+	mtctr    r12
+	bctrl
+	or.      r27, r3, r3
+	bne      lbl_8036C478
+	addi     r3, r30, 0x318
+	addi     r5, r30, 0x32c
+	li       r4, 0x6f
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xE0:
-	  mr        r3, r27
-	  lfs       f31, 0x1F8(r27)
-	  lwz       r12, 0x0(r27)
-	  lwz       r12, 0xA8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x2E4
-	  mr        r3, r27
-	  bl        -0x268DF4
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x2E4
-	  lfs       f0, 0x198(r27)
-	  mr        r3, r26
-	  lfs       f1, 0x19C(r27)
-	  li        r4, 0x1
-	  lfs       f2, 0x1A0(r27)
-	  stfs      f31, 0x48(r1)
-	  stfs      f31, 0x5C(r1)
-	  stfs      f31, 0x70(r1)
-	  stfs      f0, 0x54(r1)
-	  stfs      f1, 0x64(r1)
-	  stfs      f2, 0x74(r1)
-	  bl        0xB8C88
-	  addi      r4, r1, 0x48
-	  addi      r5, r1, 0x18
-	  bl        -0x2821E0
-	  addi      r3, r1, 0x18
-	  li        r4, 0
-	  bl        -0x282F74
-	  addi      r3, r1, 0x18
-	  li        r4, 0
-	  bl        -0x282F30
-	  lbz       r0, 0x2EC(r27)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x178
-	  lwz       r24, 0x1C(r25)
-	  b         .loc_0x17C
+lbl_8036C478:
+	mr       r3, r27
+	lfs      f31, 0x1f8(r27)
+	lwz      r12, 0(r27)
+	lwz      r12, 0xa8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_8036C67C
+	mr       r3, r27
+	bl       isCullingOff__Q24Game9EnemyBaseFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_8036C67C
+	lfs      f0, 0x198(r27)
+	mr       r3, r26
+	lfs      f1, 0x19c(r27)
+	li       r4, 1
+	lfs      f2, 0x1a0(r27)
+	stfs     f31, 0x48(r1)
+	stfs     f31, 0x5c(r1)
+	stfs     f31, 0x70(r1)
+	stfs     f0, 0x54(r1)
+	stfs     f1, 0x64(r1)
+	stfs     f2, 0x74(r1)
+	bl       getMatrix__8ViewportFb
+	addi     r4, r1, 0x48
+	addi     r5, r1, 0x18
+	bl       PSMTXConcat
+	addi     r3, r1, 0x18
+	li       r4, 0
+	bl       GXLoadPosMtxImm
+	addi     r3, r1, 0x18
+	li       r4, 0
+	bl       GXLoadNrmMtxImm
+	lbz      r0, 0x2ec(r27)
+	cmplwi   r0, 0
+	beq      lbl_8036C510
+	lwz      r24, 0x1c(r25)
+	b        lbl_8036C514
 
-	.loc_0x178:
-	  lwz       r24, 0x44(r25)
+lbl_8036C510:
+	lwz      r24, 0x44(r25)
 
-	.loc_0x17C:
-	  lwz       r3, 0x28(r24)
-	  lwz       r29, 0x0(r3)
-	  cmplwi    r29, 0
-	  bne-      .loc_0x1A0
-	  addi      r3, r30, 0x318
-	  addi      r5, r30, 0x32C
-	  li        r4, 0x86
-	  crclr     6, 0x6
-	  bl        -0x341EF4
+lbl_8036C514:
+	lwz      r3, 0x28(r24)
+	lwz      r29, 0(r3)
+	cmplwi   r29, 0
+	bne      lbl_8036C538
+	addi     r3, r30, 0x318
+	addi     r5, r30, 0x32c
+	li       r4, 0x86
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x1A0:
-	  lwz       r29, 0x58(r29)
-	  cmplwi    r29, 0
-	  bne-      .loc_0x1C0
-	  addi      r3, r30, 0x318
-	  addi      r5, r30, 0x32C
-	  li        r4, 0x89
-	  crclr     6, 0x6
-	  bl        -0x341F14
+lbl_8036C538:
+	lwz      r29, 0x58(r29)
+	cmplwi   r29, 0
+	bne      lbl_8036C558
+	addi     r3, r30, 0x318
+	addi     r5, r30, 0x32c
+	li       r4, 0x89
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x1C0:
-	  lwz       r4, 0xA0(r24)
-	  li        r0, 0
-	  mr        r3, r29
-	  stw       r4, 0x10C(r31)
-	  lwz       r4, 0xA4(r24)
-	  stw       r4, 0x110(r31)
-	  lwz       r4, 0xAC(r24)
-	  stw       r4, 0x114(r31)
-	  stw       r0, -0x7690(r13)
-	  lwz       r12, 0x0(r29)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x8(r29)
-	  bl        -0x30B750
-	  mr        r3, r29
-	  addi      r4, r1, 0x48
-	  lwz       r12, 0x0(r29)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lha       r4, 0x2EE(r27)
-	  subi      r3, r4, 0xA
-	  sth       r4, 0x16(r1)
-	  extsh     r0, r3
-	  cmpwi     r0, -0xFF
-	  sth       r3, 0x16(r1)
-	  bge-      .loc_0x274
-	  li        r0, -0xFF
-	  mr        r3, r27
-	  sth       r0, 0x16(r1)
-	  li        r4, 0
-	  bl        -0x2314E8
-	  mr        r3, r27
-	  li        r4, 0
-	  lwz       r12, 0x0(r27)
-	  lwz       r12, 0xAC(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r3, r27
-	  li        r4, 0
-	  lwz       r12, 0x0(r27)
-	  lwz       r12, 0xA4(r12)
-	  mtctr     r12
-	  bctrl
+lbl_8036C558:
+	lwz      r4, 0xa0(r24)
+	li       r0, 0
+	mr       r3, r29
+	stw      r4, 0x10c(r31)
+	lwz      r4, 0xa4(r24)
+	stw      r4, 0x110(r31)
+	lwz      r4, 0xac(r24)
+	stw      r4, 0x114(r31)
+	stw      r0, sOldVcdVatCmd__8J3DShape@sda21(r13)
+	lwz      r12, 0(r29)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 8(r29)
+	bl       loadPreDrawSetting__8J3DShapeCFv
+	mr       r3, r29
+	addi     r4, r1, 0x48
+	lwz      r12, 0(r29)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lha      r4, 0x2ee(r27)
+	addi     r3, r4, -10
+	sth      r4, 0x16(r1)
+	extsh    r0, r3
+	cmpwi    r0, -255
+	sth      r3, 0x16(r1)
+	bge      lbl_8036C60C
+	li       r0, -255
+	mr       r3, r27
+	sth      r0, 0x16(r1)
+	li       r4, 0
+	bl       kill__Q24Game8CreatureFPQ24Game15CreatureKillArg
+	mr       r3, r27
+	li       r4, 0
+	lwz      r12, 0(r27)
+	lwz      r12, 0xac(r12)
+	mtctr    r12
+	bctrl
+	mr       r3, r27
+	li       r4, 0
+	lwz      r12, 0(r27)
+	lwz      r12, 0xa4(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x274:
-	  lwz       r3, 0x2F0(r27)
-	  lha       r4, 0x16(r1)
-	  cmpwi     r3, 0
-	  ble-      .loc_0x2B4
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x2F0(r27)
-	  lwz       r0, 0x2F0(r27)
-	  cmpwi     r0, 0x50
-	  ble-      .loc_0x2B4
-	  sth       r4, 0x2EE(r27)
-	  mr        r3, r27
-	  li        r4, 0
-	  lwz       r12, 0x0(r27)
-	  lwz       r12, 0xA4(r12)
-	  mtctr     r12
-	  bctrl
+lbl_8036C60C:
+	lwz      r3, 0x2f0(r27)
+	lha      r4, 0x16(r1)
+	cmpwi    r3, 0
+	ble      lbl_8036C64C
+	addi     r0, r3, 1
+	stw      r0, 0x2f0(r27)
+	lwz      r0, 0x2f0(r27)
+	cmpwi    r0, 0x50
+	ble      lbl_8036C64C
+	sth      r4, 0x2ee(r27)
+	mr       r3, r27
+	li       r4, 0
+	lwz      r12, 0(r27)
+	lwz      r12, 0xa4(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x2B4:
-	  lwz       r5, 0x10(r1)
-	  addi      r4, r1, 0x8
-	  lwz       r0, 0x14(r1)
-	  li        r3, 0x1
-	  stw       r5, 0x8(r1)
-	  stw       r0, 0xC(r1)
-	  bl        -0x283F88
-	  lwz       r3, 0x8(r29)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
+lbl_8036C64C:
+	lwz      r5, 0x10(r1)
+	addi     r4, r1, 8
+	lwz      r0, 0x14(r1)
+	li       r3, 1
+	stw      r5, 8(r1)
+	stw      r0, 0xc(r1)
+	bl       GXSetTevColorS10
+	lwz      r3, 8(r29)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x2E4:
-	  addi      r28, r28, 0x1
+lbl_8036C67C:
+	addi     r28, r28, 1
 
-	.loc_0x2E8:
-	  mr        r3, r25
-	  lwz       r12, 0x0(r25)
-	  lwz       r12, 0x8C(r12)
-	  mtctr     r12
-	  bctrl
-	  cmpw      r28, r3
-	  blt+      .loc_0xAC
-	  psq_l     f31,0xA8(r1),0,0
-	  lfd       f31, 0xA0(r1)
-	  lmw       r24, 0x80(r1)
-	  lwz       r0, 0xB4(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0xB0
-	  blr
+lbl_8036C680:
+	mr       r3, r25
+	lwz      r12, 0(r25)
+	lwz      r12, 0x8c(r12)
+	mtctr    r12
+	bctrl
+	cmpw     r28, r3
+	blt      lbl_8036C444
+	psq_l    f31, 168(r1), 0, qr0
+	lfd      f31, 0xa0(r1)
+	lmw      r24, 0x80(r1)
+	lwz      r0, 0xb4(r1)
+	mtlr     r0
+	addi     r1, r1, 0xb0
+	blr
 	*/
 }
 
@@ -429,11 +731,10 @@ void Nest::Mgr::doSimpleDraw(Viewport*)
 void Nest::Mgr::getEnemy(int)
 {
 	/*
-	.loc_0x0:
-	  mulli     r0, r4, 0x304
-	  lwz       r3, 0x48(r3)
-	  add       r3, r3, r0
-	  blr
+	mulli    r0, r4, 0x304
+	lwz      r3, 0x48(r3)
+	add      r3, r3, r0
+	blr
 	*/
 }
 
@@ -445,149 +746,149 @@ void Nest::Mgr::getEnemy(int)
 void Nest::Mgr::initObjects(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x120(r1)
-	  mflr      r0
-	  lis       r4, 0x8049
-	  stw       r0, 0x124(r1)
-	  stmw      r27, 0x10C(r1)
-	  mr        r31, r3
-	  addi      r29, r4, 0x1DD8
-	  bl        -0x23CF84
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x1D4
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0xAC(r12)
-	  mtctr     r12
-	  bctrl
-	  lis       r4, 0x1
-	  subi      r4, r4, 0x1
-	  bl        -0x249494
-	  lwz       r3, 0x20(r3)
-	  lbz       r0, 0x0(r3)
-	  extsb.    r0, r0
-	  bne-      .loc_0x78
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0xAC(r12)
-	  mtctr     r12
-	  bctrl
-	  lis       r4, 0x1
-	  subi      r4, r4, 0x1
-	  bl        -0x249460
+	stwu     r1, -0x120(r1)
+	mflr     r0
+	lis      r4, lbl_80491DD8@ha
+	stw      r0, 0x124(r1)
+	stmw     r27, 0x10c(r1)
+	mr       r31, r3
+	addi     r29, r4, lbl_80491DD8@l
+	bl       isValidEnemyTypeID__Q24Game12EnemyMgrBaseFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_8036C89C
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r12, 0xac(r12)
+	mtctr    r12
+	bctrl
+	lis      r4, 0x0000FFFF@ha
+	addi     r4, r4, 0x0000FFFF@l
+	bl       getEnemyInfo__Q24Game13EnemyInfoFuncFii
+	lwz      r3, 0x20(r3)
+	lbz      r0, 0(r3)
+	extsb.   r0, r0
+	bne      lbl_8036C740
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r12, 0xac(r12)
+	mtctr    r12
+	bctrl
+	lis      r4, 0x0000FFFF@ha
+	addi     r4, r4, 0x0000FFFF@l
+	bl       getEnemyName__Q24Game13EnemyInfoFuncFii
 
-	.loc_0x78:
-	  mr        r5, r3
-	  addi      r3, r1, 0x8
-	  addi      r4, r29, 0x368
-	  crclr     6, 0x6
-	  bl        -0x2A5318
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0xB0(r12)
-	  mtctr     r12
-	  bctrl
-	  li        r27, 0
-	  mr        r28, r3
-	  b         .loc_0xF0
+lbl_8036C740:
+	mr       r5, r3
+	addi     r3, r1, 8
+	addi     r4, r29, 0x368
+	crclr    6
+	bl       sprintf
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r12, 0xb0(r12)
+	mtctr    r12
+	bctrl
+	li       r27, 0
+	mr       r28, r3
+	b        lbl_8036C7B8
 
-	.loc_0xAC:
-	  mr        r3, r31
-	  mr        r4, r27
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0xA4(r12)
-	  mtctr     r12
-	  bctrl
-	  mr.       r30, r3
-	  bne-      .loc_0xE0
-	  addi      r3, r29, 0x318
-	  addi      r5, r29, 0x32C
-	  li        r4, 0xC9
-	  crclr     6, 0x6
-	  bl        -0x342164
+lbl_8036C774:
+	mr       r3, r31
+	mr       r4, r27
+	lwz      r12, 0(r31)
+	lwz      r12, 0xa4(r12)
+	mtctr    r12
+	bctrl
+	or.      r30, r3, r3
+	bne      lbl_8036C7A8
+	addi     r3, r29, 0x318
+	addi     r5, r29, 0x32c
+	li       r4, 0xc9
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xE0:
-	  stb       r27, 0x1F1(r30)
-	  addi      r27, r27, 0x1
-	  stw       r31, 0x180(r30)
-	  stw       r28, 0x174(r30)
+lbl_8036C7A8:
+	stb      r27, 0x1f1(r30)
+	addi     r27, r27, 1
+	stw      r31, 0x180(r30)
+	stw      r28, 0x174(r30)
 
-	.loc_0xF0:
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x8C(r12)
-	  mtctr     r12
-	  bctrl
-	  cmpw      r27, r3
-	  blt+      .loc_0xAC
-	  lwz       r3, -0x6E58(r13)
-	  addi      r4, r29, 0x37C
-	  bl        -0x233E98
-	  stw       r3, 0x28(r31)
-	  lwz       r0, 0x28(r31)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x13C
-	  addi      r3, r29, 0x318
-	  addi      r5, r29, 0x32C
-	  li        r4, 0xDC
-	  crclr     6, 0x6
-	  bl        -0x3421C0
+lbl_8036C7B8:
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r12, 0x8c(r12)
+	mtctr    r12
+	bctrl
+	cmpw     r27, r3
+	blt      lbl_8036C774
+	lwz      r3, gParmArc__4Game@sda21(r13)
+	addi     r4, r29, 0x37c
+	bl       load__15CollPartFactoryFP13JKRFileLoaderPc
+	stw      r3, 0x28(r31)
+	lwz      r0, 0x28(r31)
+	cmplwi   r0, 0
+	bne      lbl_8036C804
+	addi     r3, r29, 0x318
+	addi     r5, r29, 0x32c
+	li       r4, 0xdc
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x13C:
-	  li        r27, 0
-	  b         .loc_0x1B8
+lbl_8036C804:
+	li       r27, 0
+	b        lbl_8036C880
 
-	.loc_0x144:
-	  mr        r3, r31
-	  mr        r4, r27
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0xA4(r12)
-	  mtctr     r12
-	  bctrl
-	  mr.       r30, r3
-	  bne-      .loc_0x178
-	  addi      r3, r29, 0x318
-	  addi      r5, r29, 0x32C
-	  li        r4, 0xE0
-	  crclr     6, 0x6
-	  bl        -0x3421FC
+lbl_8036C80C:
+	mr       r3, r31
+	mr       r4, r27
+	lwz      r12, 0(r31)
+	lwz      r12, 0xa4(r12)
+	mtctr    r12
+	bctrl
+	or.      r30, r3, r3
+	bne      lbl_8036C840
+	addi     r3, r29, 0x318
+	addi     r5, r29, 0x32c
+	li       r4, 0xe0
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x178:
-	  li        r3, 0x8
-	  bl        -0x3489A0
-	  mr.       r0, r3
-	  beq-      .loc_0x190
-	  bl        -0x2387F4
-	  mr        r0, r3
+lbl_8036C840:
+	li       r3, 8
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_8036C858
+	bl       __ct__8CollTreeFv
+	mr       r0, r3
 
-	.loc_0x190:
-	  stw       r0, 0x114(r30)
-	  mr        r4, r28
-	  li        r6, 0
-	  lwz       r3, 0x114(r30)
-	  lwz       r5, 0x28(r31)
-	  bl        -0x238800
-	  lwz       r3, 0x114(r30)
-	  mr        r4, r28
-	  bl        -0x236DB0
-	  addi      r27, r27, 0x1
+lbl_8036C858:
+	stw      r0, 0x114(r30)
+	mr       r4, r28
+	li       r6, 0
+	lwz      r3, 0x114(r30)
+	lwz      r5, 0x28(r31)
+	bl
+createFromFactory__8CollTreeFPQ28SysShape9MtxObjectP15CollPartFactoryP11CollPartMgr
+	lwz      r3, 0x114(r30)
+	mr       r4, r28
+	bl       attachModel__8CollTreeFPQ28SysShape9MtxObject
+	addi     r27, r27, 1
 
-	.loc_0x1B8:
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x8C(r12)
-	  mtctr     r12
-	  bctrl
-	  cmpw      r27, r3
-	  blt+      .loc_0x144
+lbl_8036C880:
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r12, 0x8c(r12)
+	mtctr    r12
+	bctrl
+	cmpw     r27, r3
+	blt      lbl_8036C80C
 
-	.loc_0x1D4:
-	  lmw       r27, 0x10C(r1)
-	  lwz       r0, 0x124(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x120
-	  blr
+lbl_8036C89C:
+	lmw      r27, 0x10c(r1)
+	lwz      r0, 0x124(r1)
+	mtlr     r0
+	addi     r1, r1, 0x120
+	blr
 	*/
 }
 
@@ -606,55 +907,54 @@ u32 Nest::Mgr::getEnemyTypeID(void) { return 0x53; }
 Nest::Mgr::~Mgr(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x94
-	  lis       r3, 0x804E
-	  addi      r3, r3, 0x2F88
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x38
-	  stw       r0, 0x4(r30)
-	  beq-      .loc_0x84
-	  lis       r3, 0x804B
-	  subi      r3, r3, 0x760
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x38
-	  stw       r0, 0x4(r30)
-	  beq-      .loc_0x84
-	  lis       r3, 0x804B
-	  addic.    r0, r30, 0x4
-	  subi      r3, r3, 0x5304
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x38
-	  stw       r0, 0x4(r30)
-	  beq-      .loc_0x84
-	  lis       r4, 0x804B
-	  addi      r3, r30, 0x4
-	  subi      r0, r4, 0x5324
-	  li        r4, 0
-	  stw       r0, 0x4(r30)
-	  bl        0xA4C50
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_8036C94C
+	lis      r3, __vt__Q34Game4Nest3Mgr@ha
+	addi     r3, r3, __vt__Q34Game4Nest3Mgr@l
+	stw      r3, 0(r30)
+	addi     r0, r3, 0x38
+	stw      r0, 4(r30)
+	beq      lbl_8036C93C
+	lis      r3, __vt__Q24Game12EnemyMgrBase@ha
+	addi     r3, r3, __vt__Q24Game12EnemyMgrBase@l
+	stw      r3, 0(r30)
+	addi     r0, r3, 0x38
+	stw      r0, 4(r30)
+	beq      lbl_8036C93C
+	lis      r3, __vt__Q24Game13IEnemyMgrBase@ha
+	addic.   r0, r30, 4
+	addi     r3, r3, __vt__Q24Game13IEnemyMgrBase@l
+	stw      r3, 0(r30)
+	addi     r0, r3, 0x38
+	stw      r0, 4(r30)
+	beq      lbl_8036C93C
+	lis      r4, __vt__16GenericContainer@ha
+	addi     r3, r30, 4
+	addi     r0, r4, __vt__16GenericContainer@l
+	li       r4, 0
+	stw      r0, 4(r30)
+	bl       __dt__5CNodeFv
 
-	.loc_0x84:
-	  extsh.    r0, r31
-	  ble-      .loc_0x94
-	  mr        r3, r30
-	  bl        -0x348894
+lbl_8036C93C:
+	extsh.   r0, r31
+	ble      lbl_8036C94C
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x94:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8036C94C:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -673,31 +973,30 @@ void Nest::Mgr::loadAnimData(void) { }
 void Nest::Mgr::createObj(int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  mulli     r3, r31, 0x304
-	  addi      r3, r3, 0x10
-	  bl        -0x3489E4
-	  lis       r4, 0x8037
-	  lis       r5, 0x8037
-	  subi      r4, r4, 0x341C
-	  mr        r7, r31
-	  subi      r5, r5, 0x3634
-	  li        r6, 0x304
-	  bl        -0x2AAFBC
-	  stw       r3, 0x48(r30)
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	mulli    r3, r31, 0x304
+	addi     r3, r3, 0x10
+	bl       __nwa__FUl
+	lis      r4, __ct__Q34Game4Nest3ObjFv@ha
+	lis      r5, __dt__Q34Game4Nest3ObjFv@ha
+	addi     r4, r4, __ct__Q34Game4Nest3ObjFv@l
+	mr       r7, r31
+	addi     r5, r5, __dt__Q34Game4Nest3ObjFv@l
+	li       r6, 0x304
+	bl       __construct_new_array
+	stw      r3, 0x48(r30)
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -709,58 +1008,57 @@ void Nest::Mgr::createObj(int)
 Nest::Obj::~Obj(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r3
-	  stw       r30, 0x8(r1)
-	  mr        r30, r4
-	  beq-      .loc_0xA0
-	  lis       r3, 0x804E
-	  addi      r0, r31, 0x2F4
-	  addi      r4, r3, 0x3068
-	  stw       r4, 0x0(r31)
-	  addi      r3, r4, 0x1B0
-	  addi      r4, r4, 0x2F8
-	  stw       r3, 0x178(r31)
-	  lwz       r3, 0x17C(r31)
-	  stw       r4, 0x0(r3)
-	  lwz       r3, 0x17C(r31)
-	  sub       r0, r0, r3
-	  stw       r0, 0xC(r3)
-	  beq-      .loc_0x90
-	  lis       r3, 0x804B
-	  addi      r0, r31, 0x2BC
-	  subi      r4, r3, 0x5CDC
-	  addi      r3, r31, 0x290
-	  stw       r4, 0x0(r31)
-	  addi      r5, r4, 0x1B0
-	  addi      r6, r4, 0x2F8
-	  li        r4, -0x1
-	  stw       r5, 0x178(r31)
-	  lwz       r5, 0x17C(r31)
-	  stw       r6, 0x0(r5)
-	  lwz       r5, 0x17C(r31)
-	  sub       r0, r0, r5
-	  stw       r0, 0xC(r5)
-	  bl        0xA4B30
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r3, r3
+	stw      r30, 8(r1)
+	mr       r30, r4
+	beq      lbl_8036CA6C
+	lis      r3, __vt__Q34Game4Nest3Obj@ha
+	addi     r0, r31, 0x2f4
+	addi     r4, r3, __vt__Q34Game4Nest3Obj@l
+	stw      r4, 0(r31)
+	addi     r3, r4, 0x1b0
+	addi     r4, r4, 0x2f8
+	stw      r3, 0x178(r31)
+	lwz      r3, 0x17c(r31)
+	stw      r4, 0(r3)
+	lwz      r3, 0x17c(r31)
+	subf     r0, r3, r0
+	stw      r0, 0xc(r3)
+	beq      lbl_8036CA5C
+	lis      r3, __vt__Q24Game9EnemyBase@ha
+	addi     r0, r31, 0x2bc
+	addi     r4, r3, __vt__Q24Game9EnemyBase@l
+	addi     r3, r31, 0x290
+	stw      r4, 0(r31)
+	addi     r5, r4, 0x1b0
+	addi     r6, r4, 0x2f8
+	li       r4, -1
+	stw      r5, 0x178(r31)
+	lwz      r5, 0x17c(r31)
+	stw      r6, 0(r5)
+	lwz      r5, 0x17c(r31)
+	subf     r0, r5, r0
+	stw      r0, 0xc(r5)
+	bl       __dt__5CNodeFv
 
-	.loc_0x90:
-	  extsh.    r0, r30
-	  ble-      .loc_0xA0
-	  mr        r3, r31
-	  bl        -0x3489B4
+lbl_8036CA5C:
+	extsh.   r0, r30
+	ble      lbl_8036CA6C
+	mr       r3, r31
+	bl       __dl__FPv
 
-	.loc_0xA0:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8036CA6C:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -781,8 +1079,7 @@ void __sinit_enemyNestMgr_cpp(void) { }
 @4 @Game::Nest::Mgr::~Mgr(void)
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x4
-	  b         -0x1D8
+	addi     r3, r3, -4
+	b        __dt__Q34Game4Nest3MgrFv
 	*/
 }

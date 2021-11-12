@@ -1,5 +1,27 @@
 #include "types.h"
 
+/*
+    Generated from dpostproc
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_80483A88
+    lbl_80483A88:
+        .asciz "gamePlayCommonData.cpp"
+        .skip 1
+    .global lbl_80483AA0
+    lbl_80483AA0:
+        .asciz "P2Assert"
+        .skip 3
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__Q24Game8Lowscore
+    __vt__Q24Game8Lowscore:
+        .4byte 0
+        .4byte 0
+        .4byte do_higher__Q24Game8LowscoreFii
+        .4byte 0
+*/
+
 namespace Game {
 
 /*
@@ -10,78 +32,75 @@ namespace Game {
 PlayCommonData::PlayCommonData(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  li        r0, 0
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  stw       r28, 0x10(r1)
-	  mr        r28, r3
-	  stb       r0, 0x0(r3)
-	  addi      r3, r28, 0xC
-	  bl        0xA8C
-	  li        r3, 0x40
-	  bl        -0x210194
-	  stw       r3, 0x4(r28)
-	  li        r3, 0x40
-	  bl        -0x2101A0
-	  stw       r3, 0x8(r28)
-	  li        r29, 0
-	  li        r30, 0
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	li       r0, 0
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	stw      r28, 0x10(r1)
+	mr       r28, r3
+	stb      r0, 0(r3)
+	addi     r3, r28, 0xc
+	bl       __ct__Q24Game21PlayChallengeGameDataFv
+	li       r3, 0x40
+	bl       __nwa__FUl
+	stw      r3, 4(r28)
+	li       r3, 0x40
+	bl       __nwa__FUl
+	stw      r3, 8(r28)
+	li       r29, 0
+	li       r30, 0
 
-	.loc_0x50:
-	  li        r3, 0xC
-	  bl        -0x2102BC
-	  mr.       r31, r3
-	  beq-      .loc_0x70
-	  bl        -0x480
-	  lis       r3, 0x804C
-	  addi      r0, r3, 0x1450
-	  stw       r0, 0x0(r31)
+lbl_8023415C:
+	li       r3, 0xc
+	bl       __nw__FUl
+	or.      r31, r3, r3
+	beq      lbl_8023417C
+	bl       __ct__Q24Game9HighscoreFv
+	lis      r3, __vt__Q24Game8Lowscore@ha
+	addi     r0, r3, __vt__Q24Game8Lowscore@l
+	stw      r0, 0(r31)
 
-	.loc_0x70:
-	  lwz       r4, 0x4(r28)
-	  li        r3, 0xC
-	  stwx      r31, r4, r30
-	  bl        -0x2102E4
-	  mr.       r31, r3
-	  beq-      .loc_0x98
-	  bl        -0x4A8
-	  lis       r3, 0x804C
-	  addi      r0, r3, 0x1450
-	  stw       r0, 0x0(r31)
+lbl_8023417C:
+	lwz      r4, 4(r28)
+	li       r3, 0xc
+	stwx     r31, r4, r30
+	bl       __nw__FUl
+	or.      r31, r3, r3
+	beq      lbl_802341A4
+	bl       __ct__Q24Game9HighscoreFv
+	lis      r3, __vt__Q24Game8Lowscore@ha
+	addi     r0, r3, __vt__Q24Game8Lowscore@l
+	stw      r0, 0(r31)
 
-	.loc_0x98:
-	  lwz       r3, 0x8(r28)
-	  li        r4, 0x3
-	  stwx      r31, r3, r30
-	  lwz       r3, 0x4(r28)
-	  lwzx      r3, r3, r30
-	  bl        -0x4B0
-	  lwz       r3, 0x8(r28)
-	  li        r4, 0x3
-	  lwzx      r3, r3, r30
-	  bl        -0x4C0
-	  addi      r29, r29, 0x1
-	  addi      r30, r30, 0x4
-	  cmpwi     r29, 0x10
-	  blt+      .loc_0x50
-	  mr        r3, r28
-	  bl        .loc_0xFC
-	  lwz       r0, 0x24(r1)
-	  mr        r3, r28
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-
-	.loc_0xFC:
+lbl_802341A4:
+	lwz      r3, 8(r28)
+	li       r4, 3
+	stwx     r31, r3, r30
+	lwz      r3, 4(r28)
+	lwzx     r3, r3, r30
+	bl       allocate__Q24Game9HighscoreFi
+	lwz      r3, 8(r28)
+	li       r4, 3
+	lwzx     r3, r3, r30
+	bl       allocate__Q24Game9HighscoreFi
+	addi     r29, r29, 1
+	addi     r30, r30, 4
+	cmpwi    r29, 0x10
+	blt      lbl_8023415C
+	mr       r3, r28
+	bl       reset__Q24Game14PlayCommonDataFv
+	lwz      r0, 0x24(r1)
+	mr       r3, r28
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -93,41 +112,38 @@ PlayCommonData::PlayCommonData(void)
 void PlayCommonData::reset(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  li        r0, 0
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  stb       r0, 0x0(r3)
-	  addi      r3, r29, 0xC
-	  bl        .loc_0x78
-	  li        r30, 0
-	  li        r31, 0
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	li       r0, 0
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	stb      r0, 0(r3)
+	addi     r3, r29, 0xc
+	bl       reset__Q24Game21PlayChallengeGameDataFv
+	li       r30, 0
+	li       r31, 0
 
-	.loc_0x34:
-	  lwz       r3, 0x4(r29)
-	  lwzx      r3, r3, r31
-	  bl        -0x168
-	  lwz       r3, 0x8(r29)
-	  lwzx      r3, r3, r31
-	  bl        -0x174
-	  addi      r30, r30, 0x1
-	  addi      r31, r31, 0x4
-	  cmpwi     r30, 0x10
-	  blt+      .loc_0x34
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-
-	.loc_0x78:
+lbl_8023423C:
+	lwz      r3, 4(r29)
+	lwzx     r3, r3, r31
+	bl       clear__Q24Game9HighscoreFv
+	lwz      r3, 8(r29)
+	lwzx     r3, r3, r31
+	bl       clear__Q24Game9HighscoreFv
+	addi     r30, r30, 1
+	addi     r31, r31, 4
+	cmpwi    r30, 0x10
+	blt      lbl_8023423C
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -139,59 +155,58 @@ void PlayCommonData::reset(void)
 void PlayChallengeGameData::reset(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stmw      r27, 0xC(r1)
-	  li        r30, 0
-	  mr        r31, r3
-	  li        r27, 0
-	  mr        r28, r30
-	  stb       r30, 0x8(r3)
-	  b         .loc_0x50
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stmw     r27, 0xc(r1)
+	li       r30, 0
+	mr       r31, r3
+	li       r27, 0
+	mr       r28, r30
+	stb      r30, 8(r3)
+	b        lbl_802342D0
 
-	.loc_0x28:
-	  lwz       r0, 0x4(r31)
-	  add       r29, r0, r28
-	  addi      r3, r29, 0x4
-	  bl        -0x1D8
-	  addi      r3, r29, 0x10
-	  bl        -0x1E0
-	  stb       r30, 0x0(r29)
-	  addi      r28, r28, 0x1C
-	  addi      r27, r27, 0x1
-	  stb       r30, 0x1(r29)
+lbl_802342A8:
+	lwz      r0, 4(r31)
+	add      r29, r0, r28
+	addi     r3, r29, 4
+	bl       clear__Q24Game9HighscoreFv
+	addi     r3, r29, 0x10
+	bl       clear__Q24Game9HighscoreFv
+	stb      r30, 0(r29)
+	addi     r28, r28, 0x1c
+	addi     r27, r27, 1
+	stb      r30, 1(r29)
 
-	.loc_0x50:
-	  lwz       r0, 0x0(r31)
-	  cmpw      r27, r0
-	  blt+      .loc_0x28
-	  lwz       r3, 0x4(r31)
-	  lhz       r0, 0x0(r3)
-	  ori       r0, r0, 0x1
-	  sth       r0, 0x0(r3)
-	  lwz       r3, 0x4(r31)
-	  lhz       r0, 0x1C(r3)
-	  ori       r0, r0, 0x1
-	  sth       r0, 0x1C(r3)
-	  lwz       r3, 0x4(r31)
-	  lhz       r0, 0x38(r3)
-	  ori       r0, r0, 0x1
-	  sth       r0, 0x38(r3)
-	  lwz       r3, 0x4(r31)
-	  lhz       r0, 0x54(r3)
-	  ori       r0, r0, 0x1
-	  sth       r0, 0x54(r3)
-	  lwz       r3, 0x4(r31)
-	  lhz       r0, 0x70(r3)
-	  ori       r0, r0, 0x1
-	  sth       r0, 0x70(r3)
-	  lmw       r27, 0xC(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_802342D0:
+	lwz      r0, 0(r31)
+	cmpw     r27, r0
+	blt      lbl_802342A8
+	lwz      r3, 4(r31)
+	lhz      r0, 0(r3)
+	ori      r0, r0, 1
+	sth      r0, 0(r3)
+	lwz      r3, 4(r31)
+	lhz      r0, 0x1c(r3)
+	ori      r0, r0, 1
+	sth      r0, 0x1c(r3)
+	lwz      r3, 4(r31)
+	lhz      r0, 0x38(r3)
+	ori      r0, r0, 1
+	sth      r0, 0x38(r3)
+	lwz      r3, 4(r31)
+	lhz      r0, 0x54(r3)
+	ori      r0, r0, 1
+	sth      r0, 0x54(r3)
+	lwz      r3, 4(r31)
+	lhz      r0, 0x70(r3)
+	ori      r0, r0, 1
+	sth      r0, 0x70(r3)
+	lmw      r27, 0xc(r1)
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -203,49 +218,48 @@ void PlayChallengeGameData::reset(void)
 void PlayCommonData::write(Stream&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r29, r4
-	  li        r4, 0x2
-	  stw       r28, 0x10(r1)
-	  mr        r28, r3
-	  mr        r3, r29
-	  bl        0x1E1454
-	  mr        r3, r29
-	  lbz       r4, 0x0(r28)
-	  bl        0x1E12F8
-	  li        r30, 0
-	  li        r31, 0
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	mr       r29, r4
+	li       r4, 2
+	stw      r28, 0x10(r1)
+	mr       r28, r3
+	mr       r3, r29
+	bl       writeInt__6StreamFi
+	mr       r3, r29
+	lbz      r4, 0(r28)
+	bl       writeByte__6StreamFUc
+	li       r30, 0
+	li       r31, 0
 
-	.loc_0x44:
-	  lwz       r3, 0x4(r28)
-	  mr        r4, r29
-	  lwzx      r3, r3, r31
-	  bl        -0x328
-	  lwz       r3, 0x8(r28)
-	  mr        r4, r29
-	  lwzx      r3, r3, r31
-	  bl        -0x338
-	  addi      r30, r30, 0x1
-	  addi      r31, r31, 0x4
-	  cmpwi     r30, 0x10
-	  blt+      .loc_0x44
-	  mr        r4, r29
-	  addi      r3, r28, 0xC
-	  bl        0x9EC
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80234384:
+	lwz      r3, 4(r28)
+	mr       r4, r29
+	lwzx     r3, r3, r31
+	bl       write__Q24Game9HighscoreFR6Stream
+	lwz      r3, 8(r28)
+	mr       r4, r29
+	lwzx     r3, r3, r31
+	bl       write__Q24Game9HighscoreFR6Stream
+	addi     r30, r30, 1
+	addi     r31, r31, 4
+	cmpwi    r30, 0x10
+	blt      lbl_80234384
+	mr       r4, r29
+	addi     r3, r28, 0xc
+	bl       write__Q24Game21PlayChallengeGameDataFR6Stream
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -257,74 +271,73 @@ void PlayCommonData::write(Stream&)
 void PlayCommonData::read(Stream&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r29, r4
-	  stw       r28, 0x10(r1)
-	  mr        r28, r3
-	  mr        r3, r29
-	  bl        0x1E0688
-	  mr        r31, r3
-	  mr        r3, r29
-	  bl        0x1E0088
-	  cmplwi    r31, 0x2
-	  stb       r3, 0x0(r28)
-	  blt-      .loc_0x80
-	  li        r30, 0
-	  li        r31, 0
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	mr       r29, r4
+	stw      r28, 0x10(r1)
+	mr       r28, r3
+	mr       r3, r29
+	bl       readInt__6StreamFv
+	mr       r31, r3
+	mr       r3, r29
+	bl       readByte__6StreamFv
+	cmplwi   r31, 2
+	stb      r3, 0(r28)
+	blt      lbl_80234460
+	li       r30, 0
+	li       r31, 0
 
-	.loc_0x4C:
-	  lwz       r3, 0x4(r28)
-	  mr        r4, r29
-	  lwzx      r3, r3, r31
-	  bl        -0x488
-	  lwz       r3, 0x8(r28)
-	  mr        r4, r29
-	  lwzx      r3, r3, r31
-	  bl        -0x498
-	  addi      r30, r30, 0x1
-	  addi      r31, r31, 0x4
-	  cmpwi     r30, 0x10
-	  blt+      .loc_0x4C
-	  b         .loc_0xC0
+lbl_8023442C:
+	lwz      r3, 4(r28)
+	mr       r4, r29
+	lwzx     r3, r3, r31
+	bl       read__Q24Game9HighscoreFR6Stream
+	lwz      r3, 8(r28)
+	mr       r4, r29
+	lwzx     r3, r3, r31
+	bl       read__Q24Game9HighscoreFR6Stream
+	addi     r30, r30, 1
+	addi     r31, r31, 4
+	cmpwi    r30, 0x10
+	blt      lbl_8023442C
+	b        lbl_802344A0
 
-	.loc_0x80:
-	  cmplwi    r31, 0x1
-	  bgt-      .loc_0xC0
-	  li        r30, 0
-	  li        r31, 0
+lbl_80234460:
+	cmplwi   r31, 1
+	bgt      lbl_802344A0
+	li       r30, 0
+	li       r31, 0
 
-	.loc_0x90:
-	  lwz       r3, 0x4(r28)
-	  mr        r4, r29
-	  lwzx      r3, r3, r31
-	  bl        -0x4CC
-	  lwz       r3, 0x8(r28)
-	  mr        r4, r29
-	  lwzx      r3, r3, r31
-	  bl        -0x4DC
-	  addi      r30, r30, 0x1
-	  addi      r31, r31, 0x4
-	  cmpwi     r30, 0xF
-	  blt+      .loc_0x90
+lbl_80234470:
+	lwz      r3, 4(r28)
+	mr       r4, r29
+	lwzx     r3, r3, r31
+	bl       read__Q24Game9HighscoreFR6Stream
+	lwz      r3, 8(r28)
+	mr       r4, r29
+	lwzx     r3, r3, r31
+	bl       read__Q24Game9HighscoreFR6Stream
+	addi     r30, r30, 1
+	addi     r31, r31, 4
+	cmpwi    r30, 0xf
+	blt      lbl_80234470
 
-	.loc_0xC0:
-	  mr        r4, r29
-	  addi      r3, r28, 0xC
-	  bl        0x99C
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_802344A0:
+	mr       r4, r29
+	addi     r3, r28, 0xc
+	bl       read__Q24Game21PlayChallengeGameDataFR6Stream
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -336,41 +349,40 @@ void PlayCommonData::read(Stream&)
 void PlayCommonData::getHighscore_clear(int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  li        r0, 0
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  blt-      .loc_0x30
-	  cmpwi     r31, 0x10
-	  bge-      .loc_0x30
-	  li        r0, 0x1
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	li       r0, 0
+	stw      r31, 0xc(r1)
+	or.      r31, r4, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	blt      lbl_802344FC
+	cmpwi    r31, 0x10
+	bge      lbl_802344FC
+	li       r0, 1
 
-	.loc_0x30:
-	  rlwinm.   r0,r0,0,24,31
-	  bne-      .loc_0x54
-	  lis       r3, 0x8048
-	  lis       r5, 0x8048
-	  addi      r3, r3, 0x3A88
-	  li        r4, 0x9B
-	  addi      r5, r5, 0x3AA0
-	  crclr     6, 0x6
-	  bl        -0x209EDC
+lbl_802344FC:
+	clrlwi.  r0, r0, 0x18
+	bne      lbl_80234520
+	lis      r3, lbl_80483A88@ha
+	lis      r5, lbl_80483AA0@ha
+	addi     r3, r3, lbl_80483A88@l
+	li       r4, 0x9b
+	addi     r5, r5, lbl_80483AA0@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x54:
-	  lwz       r3, 0x4(r30)
-	  rlwinm    r0,r31,2,0,29
-	  lwzx      r3, r3, r0
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80234520:
+	lwz      r3, 4(r30)
+	slwi     r0, r31, 2
+	lwzx     r3, r3, r0
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -382,41 +394,40 @@ void PlayCommonData::getHighscore_clear(int)
 void PlayCommonData::getHighscore_complete(int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  li        r0, 0
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  blt-      .loc_0x30
-	  cmpwi     r31, 0x10
-	  bge-      .loc_0x30
-	  li        r0, 0x1
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	li       r0, 0
+	stw      r31, 0xc(r1)
+	or.      r31, r4, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	blt      lbl_80234574
+	cmpwi    r31, 0x10
+	bge      lbl_80234574
+	li       r0, 1
 
-	.loc_0x30:
-	  rlwinm.   r0,r0,0,24,31
-	  bne-      .loc_0x54
-	  lis       r3, 0x8048
-	  lis       r5, 0x8048
-	  addi      r3, r3, 0x3A88
-	  li        r4, 0xA2
-	  addi      r5, r5, 0x3AA0
-	  crclr     6, 0x6
-	  bl        -0x209F54
+lbl_80234574:
+	clrlwi.  r0, r0, 0x18
+	bne      lbl_80234598
+	lis      r3, lbl_80483A88@ha
+	lis      r5, lbl_80483AA0@ha
+	addi     r3, r3, lbl_80483A88@l
+	li       r4, 0xa2
+	addi     r5, r5, lbl_80483AA0@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x54:
-	  lwz       r3, 0x8(r30)
-	  rlwinm    r0,r31,2,0,29
-	  lwzx      r3, r3, r0
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80234598:
+	lwz      r3, 8(r30)
+	slwi     r0, r31, 2
+	lwzx     r3, r3, r0
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -428,21 +439,20 @@ void PlayCommonData::getHighscore_complete(int)
 void PlayCommonData::entryHighscores_clear(int, int*, int*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r8, r4
-	  mr        r7, r6
-	  stw       r0, 0x14(r1)
-	  mr        r0, r5
-	  mr        r5, r8
-	  lwz       r4, 0x4(r3)
-	  mr        r6, r0
-	  bl        0x4C
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r8, r4
+	mr       r7, r6
+	stw      r0, 0x14(r1)
+	mr       r0, r5
+	mr       r5, r8
+	lwz      r4, 4(r3)
+	mr       r6, r0
+	bl entryHighscores_common__Q24Game14PlayCommonDataFPPQ24Game9HighscoreiPiPi
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -454,23 +464,20 @@ void PlayCommonData::entryHighscores_clear(int, int*, int*)
 void PlayCommonData::entryHighscores_complete(int, int*, int*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r8, r4
-	  mr        r7, r6
-	  stw       r0, 0x14(r1)
-	  mr        r0, r5
-	  mr        r5, r8
-	  lwz       r4, 0x8(r3)
-	  mr        r6, r0
-	  bl        .loc_0x38
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-
-	.loc_0x38:
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r8, r4
+	mr       r7, r6
+	stw      r0, 0x14(r1)
+	mr       r0, r5
+	mr       r5, r8
+	lwz      r4, 8(r3)
+	mr       r6, r0
+	bl entryHighscores_common__Q24Game14PlayCommonDataFPPQ24Game9HighscoreiPiPi
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -482,67 +489,66 @@ void PlayCommonData::entryHighscores_complete(int, int*, int*)
 void PlayCommonData::entryHighscores_common(Game::Highscore**, int, int*, int*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stmw      r26, 0x8(r1)
-	  mr        r26, r4
-	  mr        r27, r6
-	  mr        r28, r7
-	  lwz       r3, 0x0(r4)
-	  mr        r4, r5
-	  stw       r5, 0x0(r6)
-	  bl        -0x880
-	  stw       r3, 0x0(r28)
-	  li        r30, 0
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stmw     r26, 8(r1)
+	mr       r26, r4
+	mr       r27, r6
+	mr       r28, r7
+	lwz      r3, 0(r4)
+	mr       r4, r5
+	stw      r5, 0(r6)
+	bl       entryScore__Q24Game9HighscoreFi
+	stw      r3, 0(r28)
+	li       r30, 0
 
-	.loc_0x34:
-	  addi      r0, r30, 0x1
-	  mr        r3, r30
-	  rlwinm    r31,r0,2,0,29
-	  lwzx      r29, r26, r31
-	  bl        -0x373C
-	  stwx      r3, r27, r31
-	  mr        r3, r29
-	  lwzx      r4, r27, r31
-	  bl        -0x8AC
-	  addi      r30, r30, 0x1
-	  stwx      r3, r28, r31
-	  cmpwi     r30, 0x8
-	  blt+      .loc_0x34
-	  li        r29, 0
+lbl_80234660:
+	addi     r0, r30, 1
+	mr       r3, r30
+	slwi     r31, r0, 2
+	lwzx     r29, r26, r31
+	bl       get_total__Q24Game8DeathMgrFi
+	stwx     r3, r27, r31
+	mr       r3, r29
+	lwzx     r4, r27, r31
+	bl       entryScore__Q24Game9HighscoreFi
+	addi     r30, r30, 1
+	stwx     r3, r28, r31
+	cmpwi    r30, 8
+	blt      lbl_80234660
+	li       r29, 0
 
-	.loc_0x6C:
-	  addi      r0, r29, 0x9
-	  mr        r3, r29
-	  rlwinm    r31,r0,2,0,29
-	  lwzx      r30, r26, r31
-	  bl        -0x427C
-	  stwx      r3, r27, r31
-	  mr        r3, r30
-	  lwzx      r4, r27, r31
-	  bl        -0x8E4
-	  addi      r29, r29, 0x1
-	  stwx      r3, r28, r31
-	  cmpwi     r29, 0x6
-	  blt+      .loc_0x6C
-	  lwz       r3, -0x6514(r13)
-	  lwz       r29, 0x3C(r26)
-	  lwz       r31, 0x60(r3)
-	  lwz       r3, -0x6B70(r13)
-	  bl        -0x4D784
-	  lwz       r0, 0x1C(r31)
-	  add       r4, r3, r0
-	  mr        r3, r29
-	  stw       r4, 0x3C(r27)
-	  bl        -0x91C
-	  stw       r3, 0x3C(r28)
-	  lmw       r26, 0x8(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80234698:
+	addi     r0, r29, 9
+	mr       r3, r29
+	slwi     r31, r0, 2
+	lwzx     r30, r26, r31
+	bl       get_total__Q24Game8BirthMgrFi
+	stwx     r3, r27, r31
+	mr       r3, r30
+	lwzx     r4, r27, r31
+	bl       entryScore__Q24Game9HighscoreFi
+	addi     r29, r29, 1
+	stwx     r3, r28, r31
+	cmpwi    r29, 6
+	blt      lbl_80234698
+	lwz      r3, sys@sda21(r13)
+	lwz      r29, 0x3c(r26)
+	lwz      r31, 0x60(r3)
+	lwz      r3, playData__4Game@sda21(r13)
+	bl       calcPlayMinutes__Q24Game8PlayDataFv
+	lwz      r0, 0x1c(r31)
+	add      r4, r3, r0
+	mr       r3, r29
+	stw      r4, 0x3c(r27)
+	bl       entryScore__Q24Game9HighscoreFi
+	stw      r3, 0x3c(r28)
+	lmw      r26, 8(r1)
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -554,10 +560,9 @@ void PlayCommonData::entryHighscores_common(Game::Highscore**, int, int*, int*)
 void PlayCommonData::isChallengeGamePlayable(void)
 {
 	/*
-	.loc_0x0:
-	  lbz       r0, 0x14(r3)
-	  rlwinm    r3,r0,0,31,31
-	  blr
+	lbz      r0, 0x14(r3)
+	clrlwi   r3, r0, 0x1f
+	blr
 	*/
 }
 
@@ -569,10 +574,9 @@ void PlayCommonData::isChallengeGamePlayable(void)
 void PlayCommonData::isLouieRescued(void)
 {
 	/*
-	.loc_0x0:
-	  lbz       r0, 0x14(r3)
-	  rlwinm    r3,r0,30,31,31
-	  blr
+	lbz      r0, 0x14(r3)
+	rlwinm   r3, r0, 0x1e, 0x1f, 0x1f
+	blr
 	*/
 }
 
@@ -584,52 +588,51 @@ void PlayCommonData::isLouieRescued(void)
 void PlayCommonData::isPerfectChallenge(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lbz       r0, 0x0(r3)
-	  rlwinm.   r0,r0,0,29,29
-	  beq-      .loc_0x2C
-	  li        r3, 0x1
-	  b         .loc_0x74
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lbz      r0, 0(r3)
+	rlwinm.  r0, r0, 0, 0x1d, 0x1d
+	beq      lbl_80234750
+	li       r3, 1
+	b        lbl_80234798
 
-	.loc_0x2C:
-	  li        r31, 0
-	  b         .loc_0x58
+lbl_80234750:
+	li       r31, 0
+	b        lbl_8023477C
 
-	.loc_0x34:
-	  mr        r4, r31
-	  addi      r3, r30, 0xC
-	  bl        0x5A4
-	  lhz       r0, 0x0(r3)
-	  rlwinm.   r0,r0,0,29,29
-	  bne-      .loc_0x54
-	  li        r3, 0
-	  b         .loc_0x74
+lbl_80234758:
+	mr       r4, r31
+	addi     r3, r30, 0xc
+	bl       getState__Q24Game21PlayChallengeGameDataFi
+	lhz      r0, 0(r3)
+	rlwinm.  r0, r0, 0, 0x1d, 0x1d
+	bne      lbl_80234778
+	li       r3, 0
+	b        lbl_80234798
 
-	.loc_0x54:
-	  addi      r31, r31, 0x1
+lbl_80234778:
+	addi     r31, r31, 1
 
-	.loc_0x58:
-	  lwz       r0, 0xC(r30)
-	  cmpw      r31, r0
-	  blt+      .loc_0x34
-	  lbz       r0, 0x0(r30)
-	  li        r3, 0x1
-	  ori       r0, r0, 0x4
-	  stb       r0, 0x0(r30)
+lbl_8023477C:
+	lwz      r0, 0xc(r30)
+	cmpw     r31, r0
+	blt      lbl_80234758
+	lbz      r0, 0(r30)
+	li       r3, 1
+	ori      r0, r0, 4
+	stb      r0, 0(r30)
 
-	.loc_0x74:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80234798:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -641,19 +644,18 @@ void PlayCommonData::isPerfectChallenge(void)
 void PlayCommonData::enableChallengeGame(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lbz       r0, 0x14(r3)
-	  ori       r0, r0, 0x1
-	  stb       r0, 0x14(r3)
-	  lwz       r3, -0x6514(r13)
-	  bl        0x1EE754
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lbz      r0, 0x14(r3)
+	ori      r0, r0, 1
+	stb      r0, 0x14(r3)
+	lwz      r3, sys@sda21(r13)
+	bl       setOptionBlockSaveFlag__6SystemFv
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -665,19 +667,18 @@ void PlayCommonData::enableChallengeGame(void)
 void PlayCommonData::enableLouieRescue(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lbz       r0, 0x14(r3)
-	  ori       r0, r0, 0x4
-	  stb       r0, 0x14(r3)
-	  lwz       r3, -0x6514(r13)
-	  bl        0x1EE724
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lbz      r0, 0x14(r3)
+	ori      r0, r0, 4
+	stb      r0, 0x14(r3)
+	lwz      r3, sys@sda21(r13)
+	bl       setOptionBlockSaveFlag__6SystemFv
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -689,14 +690,13 @@ void PlayCommonData::enableLouieRescue(void)
 void PlayCommonData::challenge_is_virgin(void)
 {
 	/*
-	.loc_0x0:
-	  lbz       r0, 0x14(r3)
-	  rlwinm    r4,r0,0,30,30
-	  ori       r0, r0, 0x2
-	  cntlzw    r4, r4
-	  stb       r0, 0x14(r3)
-	  rlwinm    r3,r4,27,5,31
-	  blr
+	lbz      r0, 0x14(r3)
+	rlwinm   r4, r0, 0, 0x1e, 0x1e
+	ori      r0, r0, 2
+	cntlzw   r4, r4
+	stb      r0, 0x14(r3)
+	srwi     r3, r4, 5
+	blr
 	*/
 }
 
@@ -708,12 +708,11 @@ void PlayCommonData::challenge_is_virgin(void)
 void PlayCommonData::challenge_is_virgin_check_only(void)
 {
 	/*
-	.loc_0x0:
-	  lbz       r0, 0x14(r3)
-	  rlwinm    r0,r0,0,30,30
-	  cntlzw    r0, r0
-	  rlwinm    r3,r0,27,5,31
-	  blr
+	lbz      r0, 0x14(r3)
+	rlwinm   r0, r0, 0, 0x1e, 0x1e
+	cntlzw   r0, r0
+	srwi     r3, r0, 5
+	blr
 	*/
 }
 
@@ -725,16 +724,15 @@ void PlayCommonData::challenge_is_virgin_check_only(void)
 void PlayCommonData::challenge_get_CourseState(int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  addi      r3, r3, 0xC
-	  stw       r0, 0x14(r1)
-	  bl        0x4B4
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	addi     r3, r3, 0xc
+	stw      r0, 0x14(r1)
+	bl       getState__Q24Game21PlayChallengeGameDataFi
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -756,18 +754,17 @@ void PlayCommonData::challenge_get_coursenum(void)
 void PlayCommonData::challenge_checkOpen(int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  addi      r3, r3, 0xC
-	  stw       r0, 0x14(r1)
-	  bl        0x490
-	  lhz       r0, 0x0(r3)
-	  rlwinm    r3,r0,0,31,31
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	addi     r3, r3, 0xc
+	stw      r0, 0x14(r1)
+	bl       getState__Q24Game21PlayChallengeGameDataFi
+	lhz      r0, 0(r3)
+	clrlwi   r3, r0, 0x1f
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -779,18 +776,17 @@ void PlayCommonData::challenge_checkOpen(int)
 void PlayCommonData::challenge_checkClear(int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  addi      r3, r3, 0xC
-	  stw       r0, 0x14(r1)
-	  bl        0x464
-	  lhz       r0, 0x0(r3)
-	  rlwinm    r3,r0,31,31,31
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	addi     r3, r3, 0xc
+	stw      r0, 0x14(r1)
+	bl       getState__Q24Game21PlayChallengeGameDataFi
+	lhz      r0, 0(r3)
+	rlwinm   r3, r0, 0x1f, 0x1f, 0x1f
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -802,18 +798,17 @@ void PlayCommonData::challenge_checkClear(int)
 void PlayCommonData::challenge_checkKunsho(int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  addi      r3, r3, 0xC
-	  stw       r0, 0x14(r1)
-	  bl        0x438
-	  lhz       r0, 0x0(r3)
-	  rlwinm    r3,r0,30,31,31
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	addi     r3, r3, 0xc
+	stw      r0, 0x14(r1)
+	bl       getState__Q24Game21PlayChallengeGameDataFi
+	lhz      r0, 0(r3)
+	rlwinm   r3, r0, 0x1e, 0x1f, 0x1f
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -825,30 +820,29 @@ void PlayCommonData::challenge_checkKunsho(int)
 void PlayCommonData::challenge_checkJustOpen(int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  addi      r3, r3, 0xC
-	  stw       r0, 0x14(r1)
-	  bl        0x40C
-	  lhz       r4, 0x0(r3)
-	  rlwinm.   r0,r4,0,31,31
-	  beq-      .loc_0x38
-	  rlwinm    r0,r4,0,28,28
-	  ori       r4, r4, 0x8
-	  cntlzw    r0, r0
-	  sth       r4, 0x0(r3)
-	  rlwinm    r3,r0,27,5,31
-	  b         .loc_0x3C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	addi     r3, r3, 0xc
+	stw      r0, 0x14(r1)
+	bl       getState__Q24Game21PlayChallengeGameDataFi
+	lhz      r4, 0(r3)
+	clrlwi.  r0, r4, 0x1f
+	beq      lbl_80234920
+	rlwinm   r0, r4, 0, 0x1c, 0x1c
+	ori      r4, r4, 8
+	cntlzw   r0, r0
+	sth      r4, 0(r3)
+	srwi     r3, r0, 5
+	b        lbl_80234924
 
-	.loc_0x38:
-	  li        r3, 0
+lbl_80234920:
+	li       r3, 0
 
-	.loc_0x3C:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80234924:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -860,30 +854,29 @@ void PlayCommonData::challenge_checkJustOpen(int)
 void PlayCommonData::challenge_checkJustClear(int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  addi      r3, r3, 0xC
-	  stw       r0, 0x14(r1)
-	  bl        0x3C0
-	  lhz       r4, 0x0(r3)
-	  rlwinm.   r0,r4,0,30,30
-	  beq-      .loc_0x38
-	  rlwinm    r0,r4,0,27,27
-	  ori       r4, r4, 0x10
-	  cntlzw    r0, r0
-	  sth       r4, 0x0(r3)
-	  rlwinm    r3,r0,27,5,31
-	  b         .loc_0x3C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	addi     r3, r3, 0xc
+	stw      r0, 0x14(r1)
+	bl       getState__Q24Game21PlayChallengeGameDataFi
+	lhz      r4, 0(r3)
+	rlwinm.  r0, r4, 0, 0x1e, 0x1e
+	beq      lbl_8023496C
+	rlwinm   r0, r4, 0, 0x1b, 0x1b
+	ori      r4, r4, 0x10
+	cntlzw   r0, r0
+	sth      r4, 0(r3)
+	srwi     r3, r0, 5
+	b        lbl_80234970
 
-	.loc_0x38:
-	  li        r3, 0
+lbl_8023496C:
+	li       r3, 0
 
-	.loc_0x3C:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80234970:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -895,30 +888,29 @@ void PlayCommonData::challenge_checkJustClear(int)
 void PlayCommonData::challenge_checkJustKunsho(int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  addi      r3, r3, 0xC
-	  stw       r0, 0x14(r1)
-	  bl        0x374
-	  lhz       r4, 0x0(r3)
-	  rlwinm.   r0,r4,0,29,29
-	  beq-      .loc_0x38
-	  rlwinm    r0,r4,0,26,26
-	  ori       r4, r4, 0x20
-	  cntlzw    r0, r0
-	  sth       r4, 0x0(r3)
-	  rlwinm    r3,r0,27,5,31
-	  b         .loc_0x3C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	addi     r3, r3, 0xc
+	stw      r0, 0x14(r1)
+	bl       getState__Q24Game21PlayChallengeGameDataFi
+	lhz      r4, 0(r3)
+	rlwinm.  r0, r4, 0, 0x1d, 0x1d
+	beq      lbl_802349B8
+	rlwinm   r0, r4, 0, 0x1a, 0x1a
+	ori      r4, r4, 0x20
+	cntlzw   r0, r0
+	sth      r4, 0(r3)
+	srwi     r3, r0, 5
+	b        lbl_802349BC
 
-	.loc_0x38:
-	  li        r3, 0
+lbl_802349B8:
+	li       r3, 0
 
-	.loc_0x3C:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_802349BC:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -930,54 +922,53 @@ void PlayCommonData::challenge_checkJustKunsho(int)
 void PlayCommonData::challenge_openNewCourse(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r4, 0x8051
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  addi      r3, r4, 0x41FC
-	  lwz       r0, 0x228(r3)
-	  cmpwi     r0, 0
-	  beq-      .loc_0x34
-	  li        r3, -0x1
-	  b         .loc_0x7C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lis      r4, gGameConfig__4Game@ha
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	stw      r30, 8(r1)
+	mr       r30, r3
+	addi     r3, r4, gGameConfig__4Game@l
+	lwz      r0, 0x228(r3)
+	cmpwi    r0, 0
+	beq      lbl_80234A00
+	li       r3, -1
+	b        lbl_80234A48
 
-	.loc_0x34:
-	  li        r31, 0
-	  b         .loc_0x6C
+lbl_80234A00:
+	li       r31, 0
+	b        lbl_80234A38
 
-	.loc_0x3C:
-	  mr        r4, r31
-	  addi      r3, r30, 0xC
-	  bl        0x2F4
-	  lhz       r0, 0x0(r3)
-	  rlwinm.   r0,r0,0,31,31
-	  bne-      .loc_0x68
-	  mr        r3, r30
-	  mr        r4, r31
-	  bl        0x68
-	  mr        r3, r31
-	  b         .loc_0x7C
+lbl_80234A08:
+	mr       r4, r31
+	addi     r3, r30, 0xc
+	bl       getState__Q24Game21PlayChallengeGameDataFi
+	lhz      r0, 0(r3)
+	clrlwi.  r0, r0, 0x1f
+	bne      lbl_80234A34
+	mr       r3, r30
+	mr       r4, r31
+	bl       challenge_setOpen__Q24Game14PlayCommonDataFi
+	mr       r3, r31
+	b        lbl_80234A48
 
-	.loc_0x68:
-	  addi      r31, r31, 0x1
+lbl_80234A34:
+	addi     r31, r31, 1
 
-	.loc_0x6C:
-	  lwz       r0, 0xC(r30)
-	  cmpw      r31, r0
-	  blt+      .loc_0x3C
-	  li        r3, -0x1
+lbl_80234A38:
+	lwz      r0, 0xc(r30)
+	cmpw     r31, r0
+	blt      lbl_80234A08
+	li       r3, -1
 
-	.loc_0x7C:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80234A48:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -989,19 +980,18 @@ void PlayCommonData::challenge_openNewCourse(void)
 void PlayCommonData::challenge_setClear(int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  addi      r3, r3, 0xC
-	  stw       r0, 0x14(r1)
-	  bl        0x294
-	  lhz       r0, 0x0(r3)
-	  ori       r0, r0, 0x2
-	  sth       r0, 0x0(r3)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	addi     r3, r3, 0xc
+	stw      r0, 0x14(r1)
+	bl       getState__Q24Game21PlayChallengeGameDataFi
+	lhz      r0, 0(r3)
+	ori      r0, r0, 2
+	sth      r0, 0(r3)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1013,19 +1003,18 @@ void PlayCommonData::challenge_setClear(int)
 void PlayCommonData::challenge_setOpen(int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  addi      r3, r3, 0xC
-	  stw       r0, 0x14(r1)
-	  bl        0x264
-	  lhz       r0, 0x0(r3)
-	  ori       r0, r0, 0x1
-	  sth       r0, 0x0(r3)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	addi     r3, r3, 0xc
+	stw      r0, 0x14(r1)
+	bl       getState__Q24Game21PlayChallengeGameDataFi
+	lhz      r0, 0(r3)
+	ori      r0, r0, 1
+	sth      r0, 0(r3)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1037,45 +1026,44 @@ void PlayCommonData::challenge_setOpen(int)
 void PlayCommonData::challenge_setKunsho(int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  addi      r3, r30, 0xC
-	  bl        0x228
-	  lhz       r0, 0x0(r3)
-	  li        r31, 0
-	  ori       r0, r0, 0x4
-	  sth       r0, 0x0(r3)
-	  b         .loc_0x50
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	stw      r30, 8(r1)
+	mr       r30, r3
+	addi     r3, r30, 0xc
+	bl       getState__Q24Game21PlayChallengeGameDataFi
+	lhz      r0, 0(r3)
+	li       r31, 0
+	ori      r0, r0, 4
+	sth      r0, 0(r3)
+	b        lbl_80234B10
 
-	.loc_0x34:
-	  mr        r4, r31
-	  addi      r3, r30, 0xC
-	  bl        0x208
-	  lhz       r0, 0x0(r3)
-	  rlwinm.   r0,r0,0,29,29
-	  beq-      .loc_0x68
-	  addi      r31, r31, 0x1
+lbl_80234AF4:
+	mr       r4, r31
+	addi     r3, r30, 0xc
+	bl       getState__Q24Game21PlayChallengeGameDataFi
+	lhz      r0, 0(r3)
+	rlwinm.  r0, r0, 0, 0x1d, 0x1d
+	beq      lbl_80234B28
+	addi     r31, r31, 1
 
-	.loc_0x50:
-	  lwz       r0, 0xC(r30)
-	  cmpw      r31, r0
-	  blt+      .loc_0x34
-	  lbz       r0, 0x0(r30)
-	  ori       r0, r0, 0x4
-	  stb       r0, 0x0(r30)
+lbl_80234B10:
+	lwz      r0, 0xc(r30)
+	cmpw     r31, r0
+	blt      lbl_80234AF4
+	lbz      r0, 0(r30)
+	ori      r0, r0, 4
+	stb      r0, 0(r30)
 
-	.loc_0x68:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80234B28:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1087,44 +1075,43 @@ void PlayCommonData::challenge_setKunsho(int)
 void PlayCommonData::challenge_getHighscore(int, int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  addi      r3, r3, 0xC
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  stw       r30, 0x8(r1)
-	  mr        r30, r5
-	  bl        0x1A8
-	  cmpwi     r30, 0
-	  mr        r31, r3
-	  li        r0, 0
-	  blt-      .loc_0x3C
-	  cmpwi     r30, 0x1
-	  bgt-      .loc_0x3C
-	  li        r0, 0x1
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	addi     r3, r3, 0xc
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	stw      r30, 8(r1)
+	mr       r30, r5
+	bl       getState__Q24Game21PlayChallengeGameDataFi
+	cmpwi    r30, 0
+	mr       r31, r3
+	li       r0, 0
+	blt      lbl_80234B7C
+	cmpwi    r30, 1
+	bgt      lbl_80234B7C
+	li       r0, 1
 
-	.loc_0x3C:
-	  rlwinm.   r0,r0,0,24,31
-	  bne-      .loc_0x60
-	  lis       r3, 0x8048
-	  lis       r5, 0x8048
-	  addi      r3, r3, 0x3A88
-	  li        r4, 0x191
-	  addi      r5, r5, 0x3AA0
-	  crclr     6, 0x6
-	  bl        -0x20A55C
+lbl_80234B7C:
+	clrlwi.  r0, r0, 0x18
+	bne      lbl_80234BA0
+	lis      r3, lbl_80483A88@ha
+	lis      r5, lbl_80483AA0@ha
+	addi     r3, r3, lbl_80483A88@l
+	li       r4, 0x191
+	addi     r5, r5, lbl_80483AA0@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x60:
-	  mulli     r3, r30, 0xC
-	  addi      r3, r3, 0x4
-	  add       r3, r31, r3
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80234BA0:
+	mulli    r3, r30, 0xc
+	addi     r3, r3, 4
+	add      r3, r31, r3
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1136,57 +1123,56 @@ void PlayCommonData::challenge_getHighscore(int, int)
 PlayChallengeGameData::PlayChallengeGameData(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  li        r0, 0
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  stw       r30, 0x8(r1)
-	  stb       r0, 0x8(r3)
-	  li        r0, 0x1E
-	  stw       r0, 0x0(r3)
-	  lwz       r30, 0x0(r3)
-	  mulli     r3, r30, 0x1C
-	  addi      r3, r3, 0x10
-	  bl        -0x210C4C
-	  lis       r4, 0x8023
-	  mr        r7, r30
-	  addi      r4, r4, 0x4C8C
-	  li        r5, 0
-	  li        r6, 0x1C
-	  bl        -0x173220
-	  stw       r3, 0x4(r31)
-	  li        r0, 0
-	  mr        r3, r31
-	  lwz       r5, 0x4(r31)
-	  lhz       r4, 0x0(r5)
-	  ori       r4, r4, 0x1
-	  sth       r4, 0x0(r5)
-	  lwz       r5, 0x4(r31)
-	  lhz       r4, 0x1C(r5)
-	  ori       r4, r4, 0x1
-	  sth       r4, 0x1C(r5)
-	  lwz       r5, 0x4(r31)
-	  lhz       r4, 0x38(r5)
-	  ori       r4, r4, 0x1
-	  sth       r4, 0x38(r5)
-	  lwz       r5, 0x4(r31)
-	  lhz       r4, 0x54(r5)
-	  ori       r4, r4, 0x1
-	  sth       r4, 0x54(r5)
-	  lwz       r5, 0x4(r31)
-	  lhz       r4, 0x70(r5)
-	  ori       r4, r4, 0x1
-	  sth       r4, 0x70(r5)
-	  stb       r0, 0x8(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	li       r0, 0
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	stw      r30, 8(r1)
+	stb      r0, 8(r3)
+	li       r0, 0x1e
+	stw      r0, 0(r3)
+	lwz      r30, 0(r3)
+	mulli    r3, r30, 0x1c
+	addi     r3, r3, 0x10
+	bl       __nwa__FUl
+	lis      r4, __ct__Q34Game21PlayChallengeGameData11CourseStateFv@ha
+	mr       r7, r30
+	addi     r4, r4, __ct__Q34Game21PlayChallengeGameData11CourseStateFv@l
+	li       r5, 0
+	li       r6, 0x1c
+	bl       __construct_new_array
+	stw      r3, 4(r31)
+	li       r0, 0
+	mr       r3, r31
+	lwz      r5, 4(r31)
+	lhz      r4, 0(r5)
+	ori      r4, r4, 1
+	sth      r4, 0(r5)
+	lwz      r5, 4(r31)
+	lhz      r4, 0x1c(r5)
+	ori      r4, r4, 1
+	sth      r4, 0x1c(r5)
+	lwz      r5, 4(r31)
+	lhz      r4, 0x38(r5)
+	ori      r4, r4, 1
+	sth      r4, 0x38(r5)
+	lwz      r5, 4(r31)
+	lhz      r4, 0x54(r5)
+	ori      r4, r4, 1
+	sth      r4, 0x54(r5)
+	lwz      r5, 4(r31)
+	lhz      r4, 0x70(r5)
+	ori      r4, r4, 1
+	sth      r4, 0x70(r5)
+	stb      r0, 8(r31)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1198,37 +1184,36 @@ PlayChallengeGameData::PlayChallengeGameData(void)
 PlayChallengeGameData::CourseState::CourseState(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r5, 0
-	  li        r6, 0xC
-	  stw       r0, 0x14(r1)
-	  li        r0, 0
-	  li        r7, 0x2
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  stb       r0, 0x0(r3)
-	  lis       r3, 0x8023
-	  addi      r4, r3, 0x3CEC
-	  stb       r0, 0x1(r31)
-	  addi      r3, r31, 0x4
-	  bl        -0x173488
-	  addi      r3, r31, 0x4
-	  li        r4, 0x3
-	  bl        -0xFC8
-	  addi      r3, r31, 0x10
-	  li        r4, 0x3
-	  bl        -0xFD4
-	  li        r0, 0
-	  mr        r3, r31
-	  stb       r0, 0x0(r31)
-	  stb       r0, 0x1(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	li       r5, 0
+	li       r6, 0xc
+	stw      r0, 0x14(r1)
+	li       r0, 0
+	li       r7, 2
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	stb      r0, 0(r3)
+	lis      r3, __ct__Q24Game9HighscoreFv@ha
+	addi     r4, r3, __ct__Q24Game9HighscoreFv@l
+	stb      r0, 1(r31)
+	addi     r3, r31, 4
+	bl       __construct_array
+	addi     r3, r31, 4
+	li       r4, 3
+	bl       allocate__Q24Game9HighscoreFi
+	addi     r3, r31, 0x10
+	li       r4, 3
+	bl       allocate__Q24Game9HighscoreFi
+	li       r0, 0
+	mr       r3, r31
+	stb      r0, 0(r31)
+	stb      r0, 1(r31)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1240,54 +1225,53 @@ PlayChallengeGameData::CourseState::CourseState(void)
 void PlayChallengeGameData::getState(int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  li        r3, 0
-	  blt-      .loc_0x34
-	  lwz       r0, 0x0(r30)
-	  cmpw      r31, r0
-	  bge-      .loc_0x34
-	  li        r3, 0x1
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r4, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	li       r3, 0
+	blt      lbl_80234D38
+	lwz      r0, 0(r30)
+	cmpw     r31, r0
+	bge      lbl_80234D38
+	li       r3, 1
 
-	.loc_0x34:
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x58
-	  lis       r3, 0x8048
-	  lis       r5, 0x8048
-	  addi      r3, r3, 0x3A88
-	  li        r4, 0x1AB
-	  addi      r5, r5, 0x3AA0
-	  crclr     6, 0x6
-	  bl        -0x20A718
+lbl_80234D38:
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_80234D5C
+	lis      r3, lbl_80483A88@ha
+	lis      r5, lbl_80483AA0@ha
+	addi     r3, r3, lbl_80483A88@l
+	li       r4, 0x1ab
+	addi     r5, r5, lbl_80483AA0@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x58:
-	  lwz       r0, 0x4(r30)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x80
-	  lis       r3, 0x8048
-	  lis       r5, 0x8048
-	  addi      r3, r3, 0x3A88
-	  li        r4, 0x1AC
-	  addi      r5, r5, 0x3AA0
-	  crclr     6, 0x6
-	  bl        -0x20A740
+lbl_80234D5C:
+	lwz      r0, 4(r30)
+	cmplwi   r0, 0
+	bne      lbl_80234D84
+	lis      r3, lbl_80483A88@ha
+	lis      r5, lbl_80483AA0@ha
+	addi     r3, r3, lbl_80483A88@l
+	li       r4, 0x1ac
+	addi     r5, r5, lbl_80483AA0@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x80:
-	  mulli     r0, r31, 0x1C
-	  lwz       r3, 0x4(r30)
-	  add       r3, r3, r0
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80234D84:
+	mulli    r0, r31, 0x1c
+	lwz      r3, 4(r30)
+	add      r3, r3, r0
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1299,52 +1283,51 @@ void PlayChallengeGameData::getState(int)
 void PlayChallengeGameData::write(Stream&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stmw      r25, 0x14(r1)
-	  mr        r26, r4
-	  mr        r25, r3
-	  lbz       r4, 0x8(r3)
-	  mr        r3, r26
-	  bl        0x1E08A8
-	  li        r27, 0
-	  li        r28, 0
-	  b         .loc_0x7C
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stmw     r25, 0x14(r1)
+	mr       r26, r4
+	mr       r25, r3
+	lbz      r4, 8(r3)
+	mr       r3, r26
+	bl       writeByte__6StreamFUc
+	li       r27, 0
+	li       r28, 0
+	b        lbl_80234E24
 
-	.loc_0x30:
-	  lwz       r0, 0x4(r25)
-	  li        r29, 0
-	  add       r30, r0, r28
-	  mr        r31, r30
+lbl_80234DD8:
+	lwz      r0, 4(r25)
+	li       r29, 0
+	add      r30, r0, r28
+	mr       r31, r30
 
-	.loc_0x40:
-	  lbz       r4, 0x0(r31)
-	  mr        r3, r26
-	  bl        0x1E0880
-	  addi      r29, r29, 0x1
-	  addi      r31, r31, 0x1
-	  cmplwi    r29, 0x2
-	  blt+      .loc_0x40
-	  mr        r4, r26
-	  addi      r3, r30, 0x4
-	  bl        -0xDA4
-	  mr        r4, r26
-	  addi      r3, r30, 0x10
-	  bl        -0xDB0
-	  addi      r28, r28, 0x1C
-	  addi      r27, r27, 0x1
+lbl_80234DE8:
+	lbz      r4, 0(r31)
+	mr       r3, r26
+	bl       writeByte__6StreamFUc
+	addi     r29, r29, 1
+	addi     r31, r31, 1
+	cmplwi   r29, 2
+	blt      lbl_80234DE8
+	mr       r4, r26
+	addi     r3, r30, 4
+	bl       write__Q24Game9HighscoreFR6Stream
+	mr       r4, r26
+	addi     r3, r30, 0x10
+	bl       write__Q24Game9HighscoreFR6Stream
+	addi     r28, r28, 0x1c
+	addi     r27, r27, 1
 
-	.loc_0x7C:
-	  lwz       r0, 0x0(r25)
-	  cmpw      r27, r0
-	  blt+      .loc_0x30
-	  lmw       r25, 0x14(r1)
-	  lwz       r0, 0x34(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_80234E24:
+	lwz      r0, 0(r25)
+	cmpw     r27, r0
+	blt      lbl_80234DD8
+	lmw      r25, 0x14(r1)
+	lwz      r0, 0x34(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -1356,52 +1339,51 @@ void PlayChallengeGameData::write(Stream&)
 void PlayChallengeGameData::read(Stream&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stmw      r25, 0x14(r1)
-	  mr        r26, r4
-	  mr        r25, r3
-	  mr        r3, r26
-	  bl        0x1DF63C
-	  stb       r3, 0x8(r25)
-	  li        r27, 0
-	  li        r28, 0
-	  b         .loc_0x7C
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stmw     r25, 0x14(r1)
+	mr       r26, r4
+	mr       r25, r3
+	mr       r3, r26
+	bl       readByte__6StreamFv
+	stb      r3, 8(r25)
+	li       r27, 0
+	li       r28, 0
+	b        lbl_80234EC0
 
-	.loc_0x30:
-	  lwz       r0, 0x4(r25)
-	  li        r29, 0
-	  add       r30, r0, r28
-	  mr        r31, r30
+lbl_80234E74:
+	lwz      r0, 4(r25)
+	li       r29, 0
+	add      r30, r0, r28
+	mr       r31, r30
 
-	.loc_0x40:
-	  mr        r3, r26
-	  bl        0x1DF614
-	  addi      r29, r29, 0x1
-	  stb       r3, 0x0(r31)
-	  cmplwi    r29, 0x2
-	  addi      r31, r31, 0x1
-	  blt+      .loc_0x40
-	  mr        r4, r26
-	  addi      r3, r30, 0x4
-	  bl        -0xEF8
-	  mr        r4, r26
-	  addi      r3, r30, 0x10
-	  bl        -0xF04
-	  addi      r28, r28, 0x1C
-	  addi      r27, r27, 0x1
+lbl_80234E84:
+	mr       r3, r26
+	bl       readByte__6StreamFv
+	addi     r29, r29, 1
+	stb      r3, 0(r31)
+	cmplwi   r29, 2
+	addi     r31, r31, 1
+	blt      lbl_80234E84
+	mr       r4, r26
+	addi     r3, r30, 4
+	bl       read__Q24Game9HighscoreFR6Stream
+	mr       r4, r26
+	addi     r3, r30, 0x10
+	bl       read__Q24Game9HighscoreFR6Stream
+	addi     r28, r28, 0x1c
+	addi     r27, r27, 1
 
-	.loc_0x7C:
-	  lwz       r0, 0x0(r25)
-	  cmpw      r27, r0
-	  blt+      .loc_0x30
-	  lmw       r25, 0x14(r1)
-	  lwz       r0, 0x34(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_80234EC0:
+	lwz      r0, 0(r25)
+	cmpw     r27, r0
+	blt      lbl_80234E74
+	lmw      r25, 0x14(r1)
+	lwz      r0, 0x34(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -1413,13 +1395,12 @@ void PlayChallengeGameData::read(Stream&)
 void Lowscore::do_higher(int, int)
 {
 	/*
-	.loc_0x0:
-	  xor       r0, r5, r4
-	  srawi     r3, r0, 0x1
-	  and       r0, r0, r5
-	  sub       r0, r3, r0
-	  rlwinm    r3,r0,1,31,31
-	  blr
+	xor      r0, r5, r4
+	srawi    r3, r0, 1
+	and      r0, r0, r5
+	subf     r0, r0, r3
+	srwi     r3, r0, 0x1f
+	blr
 	*/
 }
 } // namespace Game

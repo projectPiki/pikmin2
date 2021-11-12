@@ -1,5 +1,310 @@
 #include "types.h"
 
+/*
+    Generated from dpostproc
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_80486C50
+    lbl_80486C50:
+        .4byte 0x726B616D
+        .4byte 0x756A6E74
+        .4byte 0x00000000
+    .global lbl_80486C5C
+    lbl_80486C5C:
+        .4byte 0x6C6B616D
+        .4byte 0x756A6E74
+        .4byte 0x00000000
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__Q34Game5Sarai3Obj
+    __vt__Q34Game5Sarai3Obj:
+        .4byte 0
+        .4byte 0
+        .4byte getPosition__Q24Game9EnemyBaseFv
+        .4byte checkCollision__Q24Game8CreatureFPQ24Game10CellObject
+        .4byte getBoundingSphere__Q24Game9EnemyBaseFRQ23Sys6Sphere
+        .4byte collisionUpdatable__Q24Game8CreatureFv
+        .4byte isPiki__Q24Game8CreatureFv
+        .4byte isNavi__Q24Game8CreatureFv
+        .4byte deferPikiCollision__Q24Game10CellObjectFv
+        .4byte getTypeName__Q24Game8CreatureFv
+        .4byte getObjType__Q24Game8CreatureFv
+        .4byte constructor__Q24Game9EnemyBaseFv
+        .4byte onInit__Q34Game5Sarai3ObjFPQ24Game15CreatureInitArg
+        .4byte onKill__Q24Game9EnemyBaseFPQ24Game15CreatureKillArg
+        .4byte onInitPost__Q24Game9EnemyBaseFPQ24Game15CreatureInitArg
+        .4byte doAnimation__Q24Game9EnemyBaseFv
+        .4byte doEntry__Q24Game9EnemyBaseFv
+        .4byte doSetView__Q24Game9EnemyBaseFi
+        .4byte doViewCalc__Q24Game9EnemyBaseFv
+        .4byte doSimulation__Q24Game9EnemyBaseFf
+        .4byte doDirectDraw__Q34Game5Sarai3ObjFR8Graphics
+        .4byte getBodyRadius__Q24Game9EnemyBaseFv
+        .4byte getCellRadius__Q24Game9EnemyBaseFv
+        .4byte "initPosition__Q24Game8CreatureFR10Vector3<f>"
+        .4byte "onInitPosition__Q24Game8CreatureFR10Vector3<f>"
+        .4byte getFaceDir__Q24Game9EnemyBaseFv
+        .4byte "setVelocity__Q24Game9EnemyBaseFR10Vector3<f>"
+        .4byte getVelocity__Q24Game9EnemyBaseFv
+        .4byte "onSetPosition__Q24Game9EnemyBaseFR10Vector3<f>"
+        .4byte "onSetPositionPost__Q24Game9EnemyBaseFR10Vector3<f>"
+        .4byte updateTrMatrix__Q24Game9EnemyBaseFv
+        .4byte isTeki__Q24Game9EnemyBaseFv
+        .4byte isPellet__Q24Game8CreatureFv
+        .4byte inWaterCallback__Q34Game5Sarai3ObjFPQ24Game8WaterBox
+        .4byte outWaterCallback__Q34Game5Sarai3ObjFv
+        .4byte inWater__Q24Game9EnemyBaseFv
+        .4byte getFlockMgr__Q24Game8CreatureFv
+        .4byte onStartCapture__Q24Game8CreatureFv
+        .4byte onUpdateCapture__Q24Game8CreatureFR7Matrixf
+        .4byte onEndCapture__Q24Game8CreatureFv
+        .4byte isAtari__Q24Game8CreatureFv
+        .4byte setAtari__Q24Game8CreatureFb
+        .4byte isAlive__Q24Game8CreatureFv
+        .4byte setAlive__Q24Game8CreatureFb
+        .4byte isCollisionFlick__Q24Game8CreatureFv
+        .4byte setCollisionFlick__Q24Game8CreatureFb
+        .4byte isMovieActor__Q24Game8CreatureFv
+        .4byte isMovieExtra__Q24Game8CreatureFv
+        .4byte isMovieMotion__Q24Game8CreatureFv
+        .4byte setMovieMotion__Q24Game8CreatureFb
+        .4byte isBuried__Q24Game8CreatureFv
+        .4byte isFlying__Q24Game9EnemyBaseFv
+        .4byte isUnderground__Q24Game8CreatureFv
+        .4byte isLivingThing__Q24Game8CreatureFv
+        .4byte isDebugCollision__Q24Game8CreatureFv
+        .4byte setDebugCollision__Q24Game8CreatureFb
+        .4byte doSave__Q24Game8CreatureFR6Stream
+        .4byte doLoad__Q24Game8CreatureFR6Stream
+        .4byte bounceCallback__Q24Game8CreatureFPQ23Sys8Triangle
+        .4byte collisionCallback__Q24Game9EnemyBaseFRQ24Game9CollEvent
+        .4byte platCallback__Q24Game8CreatureFRQ24Game9PlatEvent
+        .4byte getJAIObject__Q24Game9EnemyBaseFv
+        .4byte getPSCreature__Q24Game9EnemyBaseFv
+        .4byte getSound_AILOD__Q24Game8CreatureFv
+        .4byte getSound_PosPtr__Q24Game9EnemyBaseFv
+        .4byte sound_culling__Q24Game9EnemyBaseFv
+        .4byte getSound_CurrAnimFrame__Q24Game9EnemyBaseFv
+        .4byte getSound_CurrAnimSpeed__Q24Game9EnemyBaseFv
+        .4byte on_movie_begin__Q24Game8CreatureFb
+        .4byte on_movie_end__Q24Game8CreatureFb
+        .4byte movieStartAnimation__Q24Game8CreatureFUl
+        .4byte movieStartDemoAnimation__Q24Game8CreatureFPQ28SysShape8AnimInfo
+        .4byte movieSetAnimationLastFrame__Q24Game8CreatureFv
+        .4byte "movieSetTranslation__Q24Game8CreatureFR10Vector3<f>f"
+        .4byte movieSetFaceDir__Q24Game8CreatureFf
+        .4byte "movieGotoPosition__Q24Game8CreatureFR10Vector3<f>"
+        .4byte movieUserCommand__Q24Game8CreatureFUlPQ24Game11MoviePlayer
+        .4byte getShadowParam__Q34Game5Sarai3ObjFRQ24Game11ShadowParam
+        .4byte needShadow__Q24Game9EnemyBaseFv
+        .4byte getLifeGaugeParam__Q24Game9EnemyBaseFRQ24Game14LifeGaugeParam
+        .4byte getLODSphere__Q24Game9EnemyBaseFRQ23Sys6Sphere
+        .4byte getLODCylinder__Q24Game8CreatureFRQ23Sys8Cylinder
+        .4byte startPick__Q24Game8CreatureFv
+        .4byte endPick__Q24Game8CreatureFb
+        .4byte getMabiki__Q24Game8CreatureFv
+        .4byte getFootmarks__Q24Game8CreatureFv
+        .4byte onStickStart__Q24Game9EnemyBaseFPQ24Game8Creature
+        .4byte onStickEnd__Q24Game9EnemyBaseFPQ24Game8Creature
+        .4byte onStickStartSelf__Q24Game8CreatureFPQ24Game8Creature
+        .4byte onStickEndSelf__Q24Game8CreatureFPQ24Game8Creature
+        .4byte isSlotFree__Q24Game8CreatureFs
+        .4byte getFreeStickSlot__Q24Game8CreatureFv
+        .4byte "getNearFreeStickSlot__Q24Game8CreatureFR10Vector3<f>"
+        .4byte getRandomFreeStickSlot__Q24Game8CreatureFv
+        .4byte onSlotStickStart__Q24Game8CreatureFPQ24Game8Creatures
+        .4byte onSlotStickEnd__Q24Game8CreatureFPQ24Game8Creatures
+        .4byte "calcStickSlotGlobal__Q24Game8CreatureFsR10Vector3<f>"
+        .4byte "getVelocityAt__Q24Game9EnemyBaseFR10Vector3<f>R10Vector3<f>"
+        .4byte "getAngularEffect__Q24Game8CreatureFR10Vector3<f>R10Vector3<f>"
+        .4byte "applyImpulse__Q24Game8CreatureFR10Vector3<f>R10Vector3<f>"
+        .4byte ignoreAtari__Q24Game8CreatureFPQ24Game8Creature
+        .4byte getSuckPos__Q24Game8CreatureFv
+        .4byte getGoalPos__Q24Game8CreatureFv
+        .4byte isSuckReady__Q24Game8CreatureFv
+        .4byte isSuckArriveWait__Q24Game8CreatureFv
+        .4byte stimulate__Q24Game9EnemyBaseFRQ24Game11Interaction
+        .4byte getCreatureName__Q24Game9EnemyBaseFv
+        .4byte getCreatureID__Q24Game9EnemyBaseFv
+        .4byte 0
+        .4byte 0
+        .4byte "@376@onKeyEvent__Q24Game9EnemyBaseFRCQ28SysShape8KeyEvent"
+        .4byte __dt__Q34Game5Sarai3ObjFv
+        .4byte "birth__Q24Game9EnemyBaseFR10Vector3<f>f"
+        .4byte
+   setInitialSetting__Q34Game5Sarai3ObjFPQ24Game21EnemyInitialParamBase .4byte
+   update__Q24Game9EnemyBaseFv .4byte doUpdate__Q34Game5Sarai3ObjFv .4byte
+   doUpdateCommon__Q24Game9EnemyBaseFv .4byte
+   doUpdateCarcass__Q24Game9EnemyBaseFv .4byte
+   doAnimationUpdateAnimator__Q24Game9EnemyBaseFv .4byte
+   doAnimationCullingOff__Q24Game9EnemyBaseFv .4byte
+   doAnimationCullingOn__Q24Game9EnemyBaseFv .4byte
+   doAnimationStick__Q24Game9EnemyBaseFv .4byte
+   doSimulationCarcass__Q24Game9EnemyBaseFf .4byte
+   doDebugDraw__Q34Game5Sarai3ObjFR8Graphics .4byte
+   doSimpleDraw__Q24Game9EnemyBaseFP8Viewport .4byte
+   doSimulationGround__Q24Game9EnemyBaseFf .4byte
+   doSimulationFlying__Q24Game9EnemyBaseFf .4byte
+   doSimulationStick__Q24Game9EnemyBaseFf .4byte
+   changeMaterial__Q24Game9EnemyBaseFv .4byte
+   "getCommonEffectPos__Q24Game9EnemyBaseFR10Vector3<f>" .4byte
+   getFitEffectPos__Q24Game9EnemyBaseFv .4byte viewGetShape__Q24Game9EnemyBaseFv
+        .4byte view_start_carrymotion__Q24Game9EnemyBaseFv
+        .4byte view_finish_carrymotion__Q24Game9EnemyBaseFv
+        .4byte viewStartPreCarryMotion__Q24Game9EnemyBaseFv
+        .4byte viewStartCarryMotion__Q24Game9EnemyBaseFv
+        .4byte viewOnPelletKilled__Q24Game9EnemyBaseFv
+        .4byte getOffsetForMapCollision__Q24Game9EnemyBaseFv
+        .4byte setParameters__Q24Game9EnemyBaseFv
+        .4byte initMouthSlots__Q34Game5Sarai3ObjFv
+        .4byte initWalkSmokeEffect__Q24Game9EnemyBaseFv
+        .4byte getWalkSmokeEffectMgr__Q24Game9EnemyBaseFv
+        .4byte onKeyEvent__Q24Game9EnemyBaseFRCQ28SysShape8KeyEvent
+        .4byte injure__Q24Game9EnemyBaseFv
+        .4byte setCollEvent__Q24Game9EnemyBaseFRQ24Game9CollEvent
+        .4byte "getEfxHamonPos__Q24Game9EnemyBaseFP10Vector3<f>"
+        .4byte createInstanceEfxHamon__Q24Game9EnemyBaseFv
+        .4byte updateEfxHamon__Q24Game9EnemyBaseFv
+        .4byte createEfxHamon__Q24Game9EnemyBaseFv
+        .4byte fadeEfxHamon__Q24Game9EnemyBaseFv
+        .4byte getEnemyTypeID__Q34Game5Sarai3ObjFv
+        .4byte getMouthSlots__Q34Game5Sarai3ObjFv
+        .4byte doGetLifeGaugeParam__Q24Game9EnemyBaseFRQ24Game14LifeGaugeParam
+        .4byte throwupItem__Q24Game9EnemyBaseFv
+        .4byte "getThrowupItemPosition__Q24Game9EnemyBaseFP10Vector3<f>"
+        .4byte "getThrowupItemVelocity__Q24Game9EnemyBaseFP10Vector3<f>"
+        .4byte throwupItemInDeathProcedure__Q24Game9EnemyBaseFv
+        .4byte setLODSphere__Q24Game9EnemyBaseFRQ23Sys6Sphere
+        .4byte damageCallBack__Q24Game9EnemyBaseFPQ24Game8CreaturefP8CollPart
+        .4byte pressCallBack__Q24Game9EnemyBaseFPQ24Game8CreaturefP8CollPart
+        .4byte
+   flyCollisionCallBack__Q24Game9EnemyBaseFPQ24Game8CreaturefP8CollPart .4byte
+   hipdropCallBack__Q24Game9EnemyBaseFPQ24Game8CreaturefP8CollPart .4byte
+   dropCallBack__Q24Game9EnemyBaseFPQ24Game8Creature .4byte
+   earthquakeCallBack__Q24Game9EnemyBaseFPQ24Game8Creaturef .4byte
+   farmCallBack__Q24Game9EnemyBaseFPQ24Game8Creaturef .4byte
+   "bombCallBack__Q24Game9EnemyBaseFPQ24Game8CreatureR10Vector3<f>f" .4byte
+   eatWhitePikminCallBack__Q24Game9EnemyBaseFPQ24Game8Creaturef .4byte
+   dopeCallBack__Q24Game9EnemyBaseFPQ24Game8Creaturei .4byte
+   doDopeCallBack__Q24Game9EnemyBaseFPQ24Game8Creaturei .4byte
+   doStartStoneState__Q34Game5Sarai3ObjFv .4byte
+   doFinishStoneState__Q34Game5Sarai3ObjFv .4byte
+   getDamageCoeStoneState__Q24Game9EnemyBaseFv .4byte
+   doStartEarthquakeState__Q24Game9EnemyBaseFf .4byte
+   doFinishEarthquakeState__Q24Game9EnemyBaseFv .4byte
+   doStartEarthquakeFitState__Q24Game9EnemyBaseFv .4byte
+   doFinishEarthquakeFitState__Q24Game9EnemyBaseFv .4byte
+   lifeRecover__Q24Game9EnemyBaseFv .4byte
+   startCarcassMotion__Q34Game5Sarai3ObjFv .4byte
+   setCarcassArg__Q24Game9EnemyBaseFRQ24Game13PelletViewArg .4byte
+   getCarcassArgHeight__Q24Game9EnemyBaseFv .4byte
+   doBecomeCarcass__Q24Game9EnemyBaseFv .4byte
+   startWaitingBirthTypeDrop__Q24Game9EnemyBaseFv .4byte
+   finishWaitingBirthTypeDrop__Q24Game9EnemyBaseFv .4byte
+   isFinishableWaitingBirthTypeDrop__Q24Game9EnemyBaseFv .4byte
+   doStartWaitingBirthTypeDrop__Q24Game9EnemyBaseFv .4byte
+   doFinishWaitingBirthTypeDrop__Q24Game9EnemyBaseFv .4byte
+   wallCallback__Q24Game9EnemyBaseFRCQ24Game8MoveInfo .4byte
+   getDownSmokeScale__Q34Game5Sarai3ObjFv .4byte
+   doStartMovie__Q24Game9EnemyBaseFv .4byte doEndMovie__Q24Game9EnemyBaseFv
+        .4byte setFSM__Q34Game5Sarai3ObjFPQ34Game5Sarai3FSM
+        .4byte getStickPikminNum__Q34Game5Sarai3ObjFv
+        .4byte getAttackableTarget__Q34Game5Sarai3ObjFv
+        .4byte catchTarget__Q34Game5Sarai3ObjFv
+        .4byte resetAttackableTimer__Q34Game5Sarai3ObjFf
+        .4byte 0
+        .4byte 0
+        .4byte viewGetBaseScale__Q24Game10PelletViewFv
+        .4byte "@728@12@viewGetShape__Q24Game9EnemyBaseFv"
+        .4byte viewGetCollTreeJointIndex__Q24Game10PelletViewFv
+        .4byte viewGetCollTreeOffset__Q24Game10PelletViewFv
+        .4byte "@728@12@view_start_carrymotion__Q24Game9EnemyBaseFv"
+        .4byte "@728@12@view_finish_carrymotion__Q24Game9EnemyBaseFv"
+        .4byte "@728@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv"
+        .4byte "@728@12@viewStartCarryMotion__Q24Game9EnemyBaseFv"
+        .4byte "@728@12@viewOnPelletKilled__Q24Game9EnemyBaseFv"
+        .4byte "viewEntryShape__Q24Game10PelletViewFR7MatrixfR10Vector3<f>"
+        .4byte 0
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_8051B1F8
+    lbl_8051B1F8:
+        .4byte 0x00000000
+    .global lbl_8051B1FC
+    lbl_8051B1FC:
+        .4byte 0x46480000
+    .global lbl_8051B200
+    lbl_8051B200:
+        .4byte 0x626F6479
+        .4byte 0x6A6E7400
+    .global lbl_8051B208
+    lbl_8051B208:
+        .4byte 0x40A00000
+    .global lbl_8051B20C
+    lbl_8051B20C:
+        .4byte 0x42C80000
+    .global lbl_8051B210
+    lbl_8051B210:
+        .4byte 0x42480000
+    .global lbl_8051B214
+    lbl_8051B214:
+        .4byte 0x41A00000
+    .global lbl_8051B218
+    lbl_8051B218:
+        .4byte 0x40200000
+    .global lbl_8051B21C
+    lbl_8051B21C:
+        .4byte 0x41C80000
+    .global lbl_8051B220
+    lbl_8051B220:
+        .float 1.0
+    .global lbl_8051B224
+    lbl_8051B224:
+        .4byte 0x41480000
+    .global lbl_8051B228
+    lbl_8051B228:
+        .4byte 0x41700000
+        .4byte 0x00000000
+    .global lbl_8051B230
+    lbl_8051B230:
+        .4byte 0x43300000
+        .4byte 0x80000000
+    .global lbl_8051B238
+    lbl_8051B238:
+        .4byte 0x47000000
+    .global lbl_8051B23C
+    lbl_8051B23C:
+        .4byte 0x40490FDB
+    .global lbl_8051B240
+    lbl_8051B240:
+        .4byte 0x3FC90FDB
+    .global lbl_8051B244
+    lbl_8051B244:
+        .4byte 0x43A2F983
+    .global lbl_8051B248
+    lbl_8051B248:
+        .4byte 0xC3A2F983
+    .global lbl_8051B24C
+    lbl_8051B24C:
+        .4byte 0x40800000
+    .global lbl_8051B250
+    lbl_8051B250:
+        .float 0.25
+    .global lbl_8051B254
+    lbl_8051B254:
+        .4byte 0x41200000
+    .global lbl_8051B258
+    lbl_8051B258:
+        .4byte 0xC47A0000
+    .global lbl_8051B25C
+    lbl_8051B25C:
+        .4byte 0x3BB60B61
+    .global lbl_8051B260
+    lbl_8051B260:
+        .4byte 0x3F266666
+        .4byte 0x00000000
+*/
+
 namespace Game {
 
 /*
@@ -10,91 +315,90 @@ namespace Game {
 Sarai::Obj::Obj()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  extsh.    r0, r4
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  stw       r30, 0x8(r1)
-	  beq-      .loc_0x40
-	  addi      r0, r31, 0x2D8
-	  lis       r3, 0x804B
-	  stw       r0, 0x17C(r31)
-	  subi      r3, r3, 0x5988
-	  li        r0, 0
-	  stw       r3, 0x2D8(r31)
-	  stw       r0, 0x2DC(r31)
-	  stw       r0, 0x2E0(r31)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	extsh.   r0, r4
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	stw      r30, 8(r1)
+	beq      lbl_80272C04
+	addi     r0, r31, 0x2d8
+	lis      r3, __vt__Q24Game10PelletView@ha
+	stw      r0, 0x17c(r31)
+	addi     r3, r3, __vt__Q24Game10PelletView@l
+	li       r0, 0
+	stw      r3, 0x2d8(r31)
+	stw      r0, 0x2dc(r31)
+	stw      r0, 0x2e0(r31)
 
-	.loc_0x40:
-	  mr        r3, r31
-	  li        r4, 0
-	  bl        -0x17186C
-	  lis       r3, 0x804C
-	  addi      r0, r31, 0x2D8
-	  addi      r5, r3, 0x65B8
-	  addi      r3, r31, 0x2C4
-	  stw       r5, 0x0(r31)
-	  addi      r4, r5, 0x1B0
-	  addi      r5, r5, 0x30C
-	  stw       r4, 0x178(r31)
-	  lwz       r4, 0x17C(r31)
-	  stw       r5, 0x0(r4)
-	  lwz       r4, 0x17C(r31)
-	  sub       r0, r0, r4
-	  stw       r0, 0xC(r4)
-	  bl        -0x13A6FC
-	  li        r3, 0x2C
-	  bl        -0x24EDA8
-	  mr.       r30, r3
-	  beq-      .loc_0xD4
-	  bl        -0x14B2E4
-	  lis       r3, 0x804C
-	  lis       r4, 0x804B
-	  addi      r0, r3, 0x64A0
-	  lis       r3, 0x804F
-	  stw       r0, 0x0(r30)
-	  subi      r4, r4, 0x4678
-	  subi      r3, r3, 0x4200
-	  li        r0, 0
-	  stw       r4, 0x10(r30)
-	  stw       r3, 0x10(r30)
-	  stb       r0, 0x28(r30)
-	  stw       r0, 0x1C(r30)
-	  stw       r0, 0x14(r30)
-	  stb       r0, 0x28(r30)
-	  stw       r0, 0x20(r30)
+lbl_80272C04:
+	mr       r3, r31
+	li       r4, 0
+	bl       __ct__Q24Game9EnemyBaseFv
+	lis      r3, __vt__Q34Game5Sarai3Obj@ha
+	addi     r0, r31, 0x2d8
+	addi     r5, r3, __vt__Q34Game5Sarai3Obj@l
+	addi     r3, r31, 0x2c4
+	stw      r5, 0(r31)
+	addi     r4, r5, 0x1b0
+	addi     r5, r5, 0x30c
+	stw      r4, 0x178(r31)
+	lwz      r4, 0x17c(r31)
+	stw      r5, 0(r4)
+	lwz      r4, 0x17c(r31)
+	subf     r0, r4, r0
+	stw      r0, 0xc(r4)
+	bl       __ct__10MouthSlotsFv
+	li       r3, 0x2c
+	bl       __nw__FUl
+	or.      r30, r3, r3
+	beq      lbl_80272C98
+	bl       __ct__Q24Game17EnemyAnimatorBaseFv
+	lis      r3, __vt__Q34Game5Sarai14ProperAnimator@ha
+	lis      r4, __vt__Q28SysShape12BaseAnimator@ha
+	addi     r0, r3, __vt__Q34Game5Sarai14ProperAnimator@l
+	lis      r3, __vt__Q28SysShape8Animator@ha
+	stw      r0, 0(r30)
+	addi     r4, r4, __vt__Q28SysShape12BaseAnimator@l
+	addi     r3, r3, __vt__Q28SysShape8Animator@l
+	li       r0, 0
+	stw      r4, 0x10(r30)
+	stw      r3, 0x10(r30)
+	stb      r0, 0x28(r30)
+	stw      r0, 0x1c(r30)
+	stw      r0, 0x14(r30)
+	stb      r0, 0x28(r30)
+	stw      r0, 0x20(r30)
 
-	.loc_0xD4:
-	  stw       r30, 0x184(r31)
-	  li        r3, 0x1C
-	  bl        -0x24EDFC
-	  mr.       r4, r3
-	  beq-      .loc_0x108
-	  lis       r5, 0x804B
-	  lis       r3, 0x804C
-	  subi      r0, r5, 0x680
-	  li        r5, -0x1
-	  stw       r0, 0x0(r4)
-	  addi      r0, r3, 0x6478
-	  stw       r5, 0x18(r4)
-	  stw       r0, 0x0(r4)
+lbl_80272C98:
+	stw      r30, 0x184(r31)
+	li       r3, 0x1c
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_80272CCC
+	lis      r5, __vt__Q24Game17EnemyStateMachine@ha
+	lis      r3, __vt__Q34Game5Sarai3FSM@ha
+	addi     r0, r5, __vt__Q24Game17EnemyStateMachine@l
+	li       r5, -1
+	stw      r0, 0(r4)
+	addi     r0, r3, __vt__Q34Game5Sarai3FSM@l
+	stw      r5, 0x18(r4)
+	stw      r0, 0(r4)
 
-	.loc_0x108:
-	  lwz       r12, 0x0(r31)
-	  mr        r3, r31
-	  lwz       r12, 0x2F8(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80272CCC:
+	lwz      r12, 0(r31)
+	mr       r3, r31
+	lwz      r12, 0x2f8(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -113,37 +417,36 @@ void Sarai::Obj::setInitialSetting(Game::EnemyInitialParamBase*) { }
 void Sarai::Obj::onInit(Game::CreatureInitArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        -0x1712BC
-	  lwz       r0, 0x1E0(r31)
-	  mr        r3, r31
-	  lfs       f0, -0x3168(r2)
-	  ori       r0, r0, 0x4
-	  lfs       f1, -0x3164(r2)
-	  stw       r0, 0x1E0(r31)
-	  stfs      f0, 0x2C0(r31)
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x308(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x2BC(r31)
-	  mr        r4, r31
-	  li        r5, 0x6
-	  li        r6, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       onInit__Q24Game9EnemyBaseFPQ24Game15CreatureInitArg
+	lwz      r0, 0x1e0(r31)
+	mr       r3, r31
+	lfs      f0, lbl_8051B1F8@sda21(r2)
+	ori      r0, r0, 4
+	lfs      f1, lbl_8051B1FC@sda21(r2)
+	stw      r0, 0x1e0(r31)
+	stfs     f0, 0x2c0(r31)
+	lwz      r12, 0(r31)
+	lwz      r12, 0x308(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 0x2bc(r31)
+	mr       r4, r31
+	li       r5, 6
+	li       r6, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -155,25 +458,24 @@ void Sarai::Obj::onInit(Game::CreatureInitArg*)
 void Sarai::Obj::doUpdate()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  mr        r4, r31
-	  lwz       r3, 0x2BC(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  addi      r3, r31, 0x2C4
-	  bl        -0x13A77C
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	mr       r4, r31
+	lwz      r3, 0x2bc(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	addi     r3, r31, 0x2c4
+	bl       update__10MouthSlotsFv
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -185,26 +487,25 @@ void Sarai::Obj::doUpdate()
 void Sarai::Obj::setFSM(Game::Sarai::FSM*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  stw       r4, 0x2BC(r3)
-	  mr        r4, r31
-	  lwz       r3, 0x2BC(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  li        r0, 0
-	  stw       r0, 0x2B4(r31)
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	stw      r4, 0x2bc(r3)
+	mr       r4, r31
+	lwz      r3, 0x2bc(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	li       r0, 0
+	stw      r0, 0x2b4(r31)
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -223,15 +524,14 @@ void Sarai::Obj::doDirectDraw(Graphics&) { }
 void Sarai::Obj::doDebugDraw(Graphics&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  bl        -0x16CFB0
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	bl       doDebugDraw__Q24Game9EnemyBaseFR8Graphics
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -243,97 +543,96 @@ void Sarai::Obj::doDebugDraw(Graphics&)
 void Sarai::Obj::getShadowParam(Game::ShadowParam&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  subi      r4, r2, 0x3160
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lwz       r3, 0x174(r3)
-	  bl        0x1CC190
-	  bl        0x1B6A48
-	  lfs       f2, 0x2C(r3)
-	  lfs       f1, 0x1C(r3)
-	  lfs       f0, 0xC(r3)
-	  mr        r3, r30
-	  stfs      f0, 0x0(r31)
-	  stfs      f1, 0x4(r31)
-	  stfs      f2, 0x8(r31)
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0xA8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xF4
-	  mr        r3, r30
-	  bl        -0x16BAA0
-	  subi      r0, r3, 0x1
-	  cmplwi    r0, 0x1
-	  ble-      .loc_0x7C
-	  cmpwi     r3, 0x3
-	  bne-      .loc_0xA4
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	addi     r4, r2, lbl_8051B200@sda21
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lwz      r3, 0x174(r3)
+	bl       getJoint__Q28SysShape5ModelFPc
+	bl       getWorldMatrix__Q28SysShape5JointFv
+	lfs      f2, 0x2c(r3)
+	lfs      f1, 0x1c(r3)
+	lfs      f0, 0xc(r3)
+	mr       r3, r30
+	stfs     f0, 0(r31)
+	stfs     f1, 4(r31)
+	stfs     f2, 8(r31)
+	lwz      r12, 0(r30)
+	lwz      r12, 0xa8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80272F24
+	mr       r3, r30
+	bl       getStateID__Q24Game9EnemyBaseFv
+	addi     r0, r3, -1
+	cmplwi   r0, 1
+	ble      lbl_80272EAC
+	cmpwi    r3, 3
+	bne      lbl_80272ED4
 
-	.loc_0x7C:
-	  lfs       f2, 0x4(r31)
-	  lfs       f0, -0x3158(r2)
-	  lfs       f1, -0x3154(r2)
-	  fsubs     f0, f2, f0
-	  stfs      f0, 0x4(r31)
-	  lwz       r3, 0xC0(r30)
-	  lfs       f0, 0x81C(r3)
-	  fadds     f0, f1, f0
-	  stfs      f0, 0x18(r31)
-	  b         .loc_0x10C
+lbl_80272EAC:
+	lfs      f2, 4(r31)
+	lfs      f0, lbl_8051B208@sda21(r2)
+	lfs      f1, lbl_8051B20C@sda21(r2)
+	fsubs    f0, f2, f0
+	stfs     f0, 4(r31)
+	lwz      r3, 0xc0(r30)
+	lfs      f0, 0x81c(r3)
+	fadds    f0, f1, f0
+	stfs     f0, 0x18(r31)
+	b        lbl_80272F3C
 
-	.loc_0xA4:
-	  lwz       r0, 0xC8(r30)
-	  cmplwi    r0, 0
-	  beq-      .loc_0xCC
-	  lfs       f2, 0x4(r31)
-	  lfs       f1, -0x3158(r2)
-	  lfs       f0, -0x3150(r2)
-	  fsubs     f1, f2, f1
-	  stfs      f1, 0x4(r31)
-	  stfs      f0, 0x18(r31)
-	  b         .loc_0x10C
+lbl_80272ED4:
+	lwz      r0, 0xc8(r30)
+	cmplwi   r0, 0
+	beq      lbl_80272EFC
+	lfs      f2, 4(r31)
+	lfs      f1, lbl_8051B208@sda21(r2)
+	lfs      f0, lbl_8051B210@sda21(r2)
+	fsubs    f1, f2, f1
+	stfs     f1, 4(r31)
+	stfs     f0, 0x18(r31)
+	b        lbl_80272F3C
 
-	.loc_0xCC:
-	  lfs       f2, 0x4(r31)
-	  lfs       f0, -0x314C(r2)
-	  lfs       f1, -0x3154(r2)
-	  fsubs     f0, f2, f0
-	  stfs      f0, 0x4(r31)
-	  lwz       r3, 0xC0(r30)
-	  lfs       f0, 0x81C(r3)
-	  fadds     f0, f1, f0
-	  stfs      f0, 0x18(r31)
-	  b         .loc_0x10C
+lbl_80272EFC:
+	lfs      f2, 4(r31)
+	lfs      f0, lbl_8051B214@sda21(r2)
+	lfs      f1, lbl_8051B20C@sda21(r2)
+	fsubs    f0, f2, f0
+	stfs     f0, 4(r31)
+	lwz      r3, 0xc0(r30)
+	lfs      f0, 0x81c(r3)
+	fadds    f0, f1, f0
+	stfs     f0, 0x18(r31)
+	b        lbl_80272F3C
 
-	.loc_0xF4:
-	  lfs       f2, -0x3148(r2)
-	  lfs       f1, 0x190(r30)
-	  lfs       f0, -0x3144(r2)
-	  fadds     f1, f2, f1
-	  stfs      f1, 0x4(r31)
-	  stfs      f0, 0x18(r31)
+lbl_80272F24:
+	lfs      f2, lbl_8051B218@sda21(r2)
+	lfs      f1, 0x190(r30)
+	lfs      f0, lbl_8051B21C@sda21(r2)
+	fadds    f1, f2, f1
+	stfs     f1, 4(r31)
+	stfs     f0, 0x18(r31)
 
-	.loc_0x10C:
-	  lfs       f2, -0x3168(r2)
-	  lfs       f1, -0x3140(r2)
-	  stfs      f2, 0xC(r31)
-	  lfs       f0, -0x313C(r2)
-	  stfs      f1, 0x10(r31)
-	  stfs      f2, 0x14(r31)
-	  stfs      f0, 0x1C(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80272F3C:
+	lfs      f2, lbl_8051B1F8@sda21(r2)
+	lfs      f1, lbl_8051B220@sda21(r2)
+	stfs     f2, 0xc(r31)
+	lfs      f0, lbl_8051B224@sda21(r2)
+	stfs     f1, 0x10(r31)
+	stfs     f2, 0x14(r31)
+	stfs     f0, 0x1c(r31)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -345,20 +644,19 @@ void Sarai::Obj::getShadowParam(Game::ShadowParam&)
 void Sarai::Obj::doStartStoneState()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        -0x170090
-	  mr        r3, r31
-	  bl        0x8D0
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       doStartStoneState__Q24Game9EnemyBaseFv
+	mr       r3, r31
+	bl       flickStickTarget__Q34Game5Sarai3ObjFv
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -370,32 +668,31 @@ void Sarai::Obj::doStartStoneState()
 void Sarai::Obj::doFinishStoneState()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        -0x1700B0
-	  mr        r3, r31
-	  bl        -0x16BBCC
-	  cmpwi     r3, 0x3
-	  blt-      .loc_0x48
-	  lwz       r3, 0x2BC(r31)
-	  mr        r4, r31
-	  li        r5, 0x3
-	  li        r6, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       doFinishStoneState__Q24Game9EnemyBaseFv
+	mr       r3, r31
+	bl       getStateID__Q24Game9EnemyBaseFv
+	cmpwi    r3, 3
+	blt      lbl_80272FEC
+	lwz      r3, 0x2bc(r31)
+	mr       r4, r31
+	li       r5, 3
+	li       r6, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x48:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80272FEC:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -407,17 +704,16 @@ void Sarai::Obj::doFinishStoneState()
 void Sarai::Obj::startCarcassMotion()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r4, 0xB
-	  li        r5, 0
-	  stw       r0, 0x14(r1)
-	  bl        -0x16E010
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	li       r4, 0xb
+	li       r5, 0
+	stw      r0, 0x14(r1)
+	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -429,53 +725,52 @@ void Sarai::Obj::startCarcassMotion()
 void Sarai::Obj::initMouthSlots()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stfd      f31, 0x10(r1)
-	  psq_st    f31,0x18(r1),0,0
-	  stw       r31, 0xC(r1)
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  li        r4, 0x2
-	  addi      r3, r30, 0x2C4
-	  bl        -0x13AAF8
-	  lis       r3, 0x8048
-	  lwz       r5, 0x174(r30)
-	  addi      r6, r3, 0x6C50
-	  li        r4, 0
-	  addi      r3, r30, 0x2C4
-	  bl        -0x13A9D8
-	  lis       r3, 0x8048
-	  lwz       r5, 0x174(r30)
-	  addi      r6, r3, 0x6C5C
-	  li        r4, 0x1
-	  addi      r3, r30, 0x2C4
-	  bl        -0x13A9F0
-	  lfs       f31, -0x3138(r2)
-	  li        r31, 0
-	  b         .loc_0x7C
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stfd     f31, 0x10(r1)
+	psq_st   f31, 24(r1), 0, qr0
+	stw      r31, 0xc(r1)
+	stw      r30, 8(r1)
+	mr       r30, r3
+	li       r4, 2
+	addi     r3, r30, 0x2c4
+	bl       alloc__10MouthSlotsFi
+	lis      r3, lbl_80486C50@ha
+	lwz      r5, 0x174(r30)
+	addi     r6, r3, lbl_80486C50@l
+	li       r4, 0
+	addi     r3, r30, 0x2c4
+	bl       setup__10MouthSlotsFiPQ28SysShape5ModelPc
+	lis      r3, lbl_80486C5C@ha
+	lwz      r5, 0x174(r30)
+	addi     r6, r3, lbl_80486C5C@l
+	li       r4, 1
+	addi     r3, r30, 0x2c4
+	bl       setup__10MouthSlotsFiPQ28SysShape5ModelPc
+	lfs      f31, lbl_8051B228@sda21(r2)
+	li       r31, 0
+	b        lbl_802730A4
 
-	.loc_0x68:
-	  mr        r4, r31
-	  addi      r3, r30, 0x2C4
-	  bl        -0x13A920
-	  stfs      f31, 0x1C(r3)
-	  addi      r31, r31, 0x1
+lbl_80273090:
+	mr       r4, r31
+	addi     r3, r30, 0x2c4
+	bl       getSlot__10MouthSlotsFi
+	stfs     f31, 0x1c(r3)
+	addi     r31, r31, 1
 
-	.loc_0x7C:
-	  lwz       r0, 0x2C4(r30)
-	  cmpw      r31, r0
-	  blt+      .loc_0x68
-	  psq_l     f31,0x18(r1),0,0
-	  lwz       r0, 0x24(r1)
-	  lfd       f31, 0x10(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_802730A4:
+	lwz      r0, 0x2c4(r30)
+	cmpw     r31, r0
+	blt      lbl_80273090
+	psq_l    f31, 24(r1), 0, qr0
+	lwz      r0, 0x24(r1)
+	lfd      f31, 0x10(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -487,81 +782,80 @@ void Sarai::Obj::initMouthSlots()
 void Sarai::Obj::setHeightVelocity()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  stw       r0, 0x44(r1)
-	  stfd      f31, 0x30(r1)
-	  psq_st    f31,0x38(r1),0,0
-	  stfd      f30, 0x20(r1)
-	  psq_st    f30,0x28(r1),0,0
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r3
-	  lwz       r3, 0x1F4(r3)
-	  cmpwi     r3, 0
-	  bge-      .loc_0x38
-	  li        r0, 0
-	  b         .loc_0x48
+	stwu     r1, -0x40(r1)
+	mflr     r0
+	stw      r0, 0x44(r1)
+	stfd     f31, 0x30(r1)
+	psq_st   f31, 56(r1), 0, qr0
+	stfd     f30, 0x20(r1)
+	psq_st   f30, 40(r1), 0, qr0
+	stw      r31, 0x1c(r1)
+	mr       r31, r3
+	lwz      r3, 0x1f4(r3)
+	cmpwi    r3, 0
+	bge      lbl_80273108
+	li       r0, 0
+	b        lbl_80273118
 
-	.loc_0x38:
-	  cmpwi     r3, 0x5
-	  li        r0, 0x5
-	  bgt-      .loc_0x48
-	  mr        r0, r3
+lbl_80273108:
+	cmpwi    r3, 5
+	li       r0, 5
+	bgt      lbl_80273118
+	mr       r0, r3
 
-	.loc_0x48:
-	  xoris     r3, r0, 0x8000
-	  lis       r0, 0x4330
-	  stw       r3, 0xC(r1)
-	  addi      r4, r31, 0x18C
-	  lwz       r5, 0xC0(r31)
-	  stw       r0, 0x8(r1)
-	  lfd       f1, -0x3130(r2)
-	  lfd       f0, 0x8(r1)
-	  lfs       f4, -0x3158(r2)
-	  fsubs     f1, f0, f1
-	  lwz       r3, -0x6CF8(r13)
-	  lfs       f0, 0x934(r5)
-	  lwz       r12, 0x4(r3)
-	  fsubs     f3, f4, f1
-	  lfs       f2, 0x90C(r5)
-	  fdivs     f1, f1, f4
-	  lwz       r12, 0x28(r12)
-	  fdivs     f3, f3, f4
-	  fmuls     f0, f1, f0
-	  fmadds    f30, f3, f2, f0
-	  mtctr     r12
-	  bctrl
-	  fmr       f31, f1
-	  mr        r3, r31
-	  bl        0x524
-	  cmpwi     r3, 0
-	  beq-      .loc_0xC0
-	  lwz       r3, 0xC0(r31)
-	  lfs       f0, 0x844(r3)
-	  b         .loc_0xC8
+lbl_80273118:
+	xoris    r3, r0, 0x8000
+	lis      r0, 0x4330
+	stw      r3, 0xc(r1)
+	addi     r4, r31, 0x18c
+	lwz      r5, 0xc0(r31)
+	stw      r0, 8(r1)
+	lfd      f1, lbl_8051B230@sda21(r2)
+	lfd      f0, 8(r1)
+	lfs      f4, lbl_8051B208@sda21(r2)
+	fsubs    f1, f0, f1
+	lwz      r3, mapMgr__4Game@sda21(r13)
+	lfs      f0, 0x934(r5)
+	lwz      r12, 4(r3)
+	fsubs    f3, f4, f1
+	lfs      f2, 0x90c(r5)
+	fdivs    f1, f1, f4
+	lwz      r12, 0x28(r12)
+	fdivs    f3, f3, f4
+	fmuls    f0, f1, f0
+	fmadds   f30, f3, f2, f0
+	mtctr    r12
+	bctrl
+	fmr      f31, f1
+	mr       r3, r31
+	bl       getCatchTargetNum__Q34Game5Sarai3ObjFv
+	cmpwi    r3, 0
+	beq      lbl_80273190
+	lwz      r3, 0xc0(r31)
+	lfs      f0, 0x844(r3)
+	b        lbl_80273198
 
-	.loc_0xC0:
-	  lwz       r3, 0xC0(r31)
-	  lfs       f0, 0x81C(r3)
+lbl_80273190:
+	lwz      r3, 0xc0(r31)
+	lfs      f0, 0x81c(r3)
 
-	.loc_0xC8:
-	  fadds     f1, f31, f0
-	  lfs       f0, 0x190(r31)
-	  fsubs     f0, f1, f0
-	  fmuls     f0, f30, f0
-	  stfs      f0, 0x1CC(r31)
-	  lfs       f0, 0x190(r31)
-	  fsubs     f1, f0, f31
-	  psq_l     f31,0x38(r1),0,0
-	  lfd       f31, 0x30(r1)
-	  psq_l     f30,0x28(r1),0,0
-	  lfd       f30, 0x20(r1)
-	  lwz       r0, 0x44(r1)
-	  lwz       r31, 0x1C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
+lbl_80273198:
+	fadds    f1, f31, f0
+	lfs      f0, 0x190(r31)
+	fsubs    f0, f1, f0
+	fmuls    f0, f30, f0
+	stfs     f0, 0x1cc(r31)
+	lfs      f0, 0x190(r31)
+	fsubs    f1, f0, f31
+	psq_l    f31, 56(r1), 0, qr0
+	lfd      f31, 0x30(r1)
+	psq_l    f30, 40(r1), 0, qr0
+	lfd      f30, 0x20(r1)
+	lwz      r0, 0x44(r1)
+	lwz      r31, 0x1c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x40
+	blr
 	*/
 }
 
@@ -573,159 +867,158 @@ void Sarai::Obj::setHeightVelocity()
 void Sarai::Obj::setRandTarget()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x50(r1)
-	  mflr      r0
-	  stw       r0, 0x54(r1)
-	  stfd      f31, 0x40(r1)
-	  psq_st    f31,0x48(r1),0,0
-	  stfd      f30, 0x30(r1)
-	  psq_st    f30,0x38(r1),0,0
-	  stw       r31, 0x2C(r1)
-	  mr        r31, r3
-	  bl        0x4A0
-	  cmpwi     r3, 0
-	  beq-      .loc_0x6C
-	  lwz       r3, 0xC0(r31)
-	  lfs       f30, 0x384(r3)
-	  bl        -0x1A9C70
-	  xoris     r3, r3, 0x8000
-	  lis       r0, 0x4330
-	  stw       r3, 0xC(r1)
-	  lfd       f2, -0x3130(r2)
-	  stw       r0, 0x8(r1)
-	  lfs       f0, -0x3128(r2)
-	  lfd       f1, 0x8(r1)
-	  fsubs     f1, f1, f2
-	  fmuls     f1, f30, f1
-	  fdivs     f0, f1, f0
-	  fmr       f31, f0
-	  b         .loc_0x104
+	stwu     r1, -0x50(r1)
+	mflr     r0
+	stw      r0, 0x54(r1)
+	stfd     f31, 0x40(r1)
+	psq_st   f31, 72(r1), 0, qr0
+	stfd     f30, 0x30(r1)
+	psq_st   f30, 56(r1), 0, qr0
+	stw      r31, 0x2c(r1)
+	mr       r31, r3
+	bl       getCatchTargetNum__Q34Game5Sarai3ObjFv
+	cmpwi    r3, 0
+	beq      lbl_80273244
+	lwz      r3, 0xc0(r31)
+	lfs      f30, 0x384(r3)
+	bl       rand
+	xoris    r3, r3, 0x8000
+	lis      r0, 0x4330
+	stw      r3, 0xc(r1)
+	lfd      f2, lbl_8051B230@sda21(r2)
+	stw      r0, 8(r1)
+	lfs      f0, lbl_8051B238@sda21(r2)
+	lfd      f1, 8(r1)
+	fsubs    f1, f1, f2
+	fmuls    f1, f30, f1
+	fdivs    f0, f1, f0
+	fmr      f31, f0
+	b        lbl_802732DC
 
-	.loc_0x6C:
-	  lwz       r3, -0x6C18(r13)
-	  cmplwi    r3, 0
-	  beq-      .loc_0xBC
-	  lbz       r0, 0x48(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0xBC
-	  bl        -0x1A9CBC
-	  xoris     r3, r3, 0x8000
-	  lis       r0, 0x4330
-	  stw       r3, 0xC(r1)
-	  lfd       f3, -0x3130(r2)
-	  stw       r0, 0x8(r1)
-	  lfs       f2, -0x3150(r2)
-	  lfd       f1, 0x8(r1)
-	  lfs       f0, -0x3128(r2)
-	  fsubs     f1, f1, f3
-	  fmuls     f1, f2, f1
-	  fdivs     f0, f1, f0
-	  fadds     f31, f2, f0
-	  b         .loc_0x104
+lbl_80273244:
+	lwz      r3, gameSystem__4Game@sda21(r13)
+	cmplwi   r3, 0
+	beq      lbl_80273294
+	lbz      r0, 0x48(r3)
+	cmplwi   r0, 0
+	beq      lbl_80273294
+	bl       rand
+	xoris    r3, r3, 0x8000
+	lis      r0, 0x4330
+	stw      r3, 0xc(r1)
+	lfd      f3, lbl_8051B230@sda21(r2)
+	stw      r0, 8(r1)
+	lfs      f2, lbl_8051B210@sda21(r2)
+	lfd      f1, 8(r1)
+	lfs      f0, lbl_8051B238@sda21(r2)
+	fsubs    f1, f1, f3
+	fmuls    f1, f2, f1
+	fdivs    f0, f1, f0
+	fadds    f31, f2, f0
+	b        lbl_802732DC
 
-	.loc_0xBC:
-	  lwz       r3, 0xC0(r31)
-	  lfs       f1, 0x35C(r3)
-	  lfs       f0, 0x384(r3)
-	  fsubs     f30, f1, f0
-	  bl        -0x1A9D04
-	  xoris     r3, r3, 0x8000
-	  lis       r0, 0x4330
-	  stw       r3, 0xC(r1)
-	  lwz       r3, 0xC0(r31)
-	  stw       r0, 0x8(r1)
-	  lfd       f2, -0x3130(r2)
-	  lfd       f0, 0x8(r1)
-	  lfs       f1, -0x3128(r2)
-	  fsubs     f2, f0, f2
-	  lfs       f0, 0x384(r3)
-	  fmuls     f2, f30, f2
-	  fdivs     f1, f2, f1
-	  fadds     f31, f0, f1
+lbl_80273294:
+	lwz      r3, 0xc0(r31)
+	lfs      f1, 0x35c(r3)
+	lfs      f0, 0x384(r3)
+	fsubs    f30, f1, f0
+	bl       rand
+	xoris    r3, r3, 0x8000
+	lis      r0, 0x4330
+	stw      r3, 0xc(r1)
+	lwz      r3, 0xc0(r31)
+	stw      r0, 8(r1)
+	lfd      f2, lbl_8051B230@sda21(r2)
+	lfd      f0, 8(r1)
+	lfs      f1, lbl_8051B238@sda21(r2)
+	fsubs    f2, f0, f2
+	lfs      f0, 0x384(r3)
+	fmuls    f2, f30, f2
+	fdivs    f1, f2, f1
+	fadds    f31, f0, f1
 
-	.loc_0x104:
-	  lfs       f3, 0x18C(r31)
-	  lis       r3, 0x8051
-	  lfs       f1, 0x198(r31)
-	  subi      r3, r3, 0x2E20
-	  lfs       f2, 0x194(r31)
-	  lfs       f0, 0x1A0(r31)
-	  fsubs     f1, f3, f1
-	  fsubs     f2, f2, f0
-	  bl        -0x23E1F4
-	  fmr       f30, f1
-	  bl        -0x1A9D64
-	  xoris     r3, r3, 0x8000
-	  lis       r0, 0x4330
-	  stw       r3, 0xC(r1)
-	  lfd       f2, -0x3130(r2)
-	  stw       r0, 0x8(r1)
-	  lfs       f3, -0x3124(r2)
-	  lfd       f0, 0x8(r1)
-	  lfs       f1, -0x3128(r2)
-	  fsubs     f4, f0, f2
-	  lfs       f2, -0x3120(r2)
-	  lfs       f0, -0x3168(r2)
-	  fmuls     f3, f3, f4
-	  fdivs     f1, f3, f1
-	  fadds     f1, f30, f1
-	  fadds     f5, f2, f1
-	  fmr       f1, f5
-	  fcmpo     cr0, f5, f0
-	  bge-      .loc_0x17C
-	  fneg      f1, f5
+lbl_802732DC:
+	lfs      f3, 0x18c(r31)
+	lis      r3, atanTable___5JMath@ha
+	lfs      f1, 0x198(r31)
+	addi     r3, r3, atanTable___5JMath@l
+	lfs      f2, 0x194(r31)
+	lfs      f0, 0x1a0(r31)
+	fsubs    f1, f3, f1
+	fsubs    f2, f2, f0
+	bl       "atan2___Q25JMath18TAtanTable<1024,f>CFff"
+	fmr      f30, f1
+	bl       rand
+	xoris    r3, r3, 0x8000
+	lis      r0, 0x4330
+	stw      r3, 0xc(r1)
+	lfd      f2, lbl_8051B230@sda21(r2)
+	stw      r0, 8(r1)
+	lfs      f3, lbl_8051B23C@sda21(r2)
+	lfd      f0, 8(r1)
+	lfs      f1, lbl_8051B238@sda21(r2)
+	fsubs    f4, f0, f2
+	lfs      f2, lbl_8051B240@sda21(r2)
+	lfs      f0, lbl_8051B1F8@sda21(r2)
+	fmuls    f3, f3, f4
+	fdivs    f1, f3, f1
+	fadds    f1, f30, f1
+	fadds    f5, f2, f1
+	fmr      f1, f5
+	fcmpo    cr0, f5, f0
+	bge      lbl_80273354
+	fneg     f1, f5
 
-	.loc_0x17C:
-	  lfs       f3, -0x311C(r2)
-	  lis       r3, 0x8050
-	  lfs       f0, -0x3168(r2)
-	  addi      r4, r3, 0x71A0
-	  fmuls     f2, f1, f3
-	  lfs       f1, 0x1A0(r31)
-	  fcmpo     cr0, f5, f0
-	  lfs       f4, 0x19C(r31)
-	  fctiwz    f0, f2
-	  stfd      f0, 0x10(r1)
-	  lwz       r0, 0x14(r1)
-	  rlwinm    r0,r0,3,18,28
-	  add       r3, r4, r0
-	  lfs       f0, 0x4(r3)
-	  fmadds    f2, f31, f0, f1
-	  bge-      .loc_0x1E0
-	  lfs       f0, -0x3118(r2)
-	  fmuls     f0, f5, f0
-	  fctiwz    f0, f0
-	  stfd      f0, 0x18(r1)
-	  lwz       r0, 0x1C(r1)
-	  rlwinm    r0,r0,3,18,28
-	  lfsx      f0, r4, r0
-	  fneg      f1, f0
-	  b         .loc_0x1F8
+lbl_80273354:
+	lfs      f3, lbl_8051B244@sda21(r2)
+	lis      r3, sincosTable___5JMath@ha
+	lfs      f0, lbl_8051B1F8@sda21(r2)
+	addi     r4, r3, sincosTable___5JMath@l
+	fmuls    f2, f1, f3
+	lfs      f1, 0x1a0(r31)
+	fcmpo    cr0, f5, f0
+	lfs      f4, 0x19c(r31)
+	fctiwz   f0, f2
+	stfd     f0, 0x10(r1)
+	lwz      r0, 0x14(r1)
+	rlwinm   r0, r0, 3, 0x12, 0x1c
+	add      r3, r4, r0
+	lfs      f0, 4(r3)
+	fmadds   f2, f31, f0, f1
+	bge      lbl_802733B8
+	lfs      f0, lbl_8051B248@sda21(r2)
+	fmuls    f0, f5, f0
+	fctiwz   f0, f0
+	stfd     f0, 0x18(r1)
+	lwz      r0, 0x1c(r1)
+	rlwinm   r0, r0, 3, 0x12, 0x1c
+	lfsx     f0, r4, r0
+	fneg     f1, f0
+	b        lbl_802733D0
 
-	.loc_0x1E0:
-	  fmuls     f0, f5, f3
-	  fctiwz    f0, f0
-	  stfd      f0, 0x20(r1)
-	  lwz       r0, 0x24(r1)
-	  rlwinm    r0,r0,3,18,28
-	  lfsx      f1, r4, r0
+lbl_802733B8:
+	fmuls    f0, f5, f3
+	fctiwz   f0, f0
+	stfd     f0, 0x20(r1)
+	lwz      r0, 0x24(r1)
+	rlwinm   r0, r0, 3, 0x12, 0x1c
+	lfsx     f1, r4, r0
 
-	.loc_0x1F8:
-	  lfs       f0, 0x198(r31)
-	  fmadds    f0, f31, f1, f0
-	  stfs      f0, 0x2CC(r31)
-	  stfs      f4, 0x2D0(r31)
-	  stfs      f2, 0x2D4(r31)
-	  psq_l     f31,0x48(r1),0,0
-	  lfd       f31, 0x40(r1)
-	  psq_l     f30,0x38(r1),0,0
-	  lfd       f30, 0x30(r1)
-	  lwz       r0, 0x54(r1)
-	  lwz       r31, 0x2C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x50
-	  blr
+lbl_802733D0:
+	lfs      f0, 0x198(r31)
+	fmadds   f0, f31, f1, f0
+	stfs     f0, 0x2cc(r31)
+	stfs     f4, 0x2d0(r31)
+	stfs     f2, 0x2d4(r31)
+	psq_l    f31, 72(r1), 0, qr0
+	lfd      f31, 0x40(r1)
+	psq_l    f30, 56(r1), 0, qr0
+	lfd      f30, 0x30(r1)
+	lwz      r0, 0x54(r1)
+	lwz      r31, 0x2c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x50
+	blr
 	*/
 }
 
@@ -737,190 +1030,189 @@ void Sarai::Obj::setRandTarget()
 void Sarai::Obj::fallMeckGround()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x60(r1)
-	  mflr      r0
-	  stw       r0, 0x64(r1)
-	  stw       r31, 0x5C(r1)
-	  mr        r31, r3
-	  addi      r3, r1, 0x30
-	  stw       r30, 0x58(r1)
-	  mr        r4, r31
-	  bl        -0xD37CC
-	  li        r0, 0
-	  lis       r3, 0x804B
-	  subi      r4, r3, 0x437C
-	  addi      r3, r1, 0x30
-	  cmplwi    r0, 0
-	  stw       r4, 0x20(r1)
-	  stw       r0, 0x2C(r1)
-	  stw       r0, 0x24(r1)
-	  stw       r3, 0x28(r1)
-	  bne-      .loc_0x64
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x24(r1)
-	  b         .loc_0x250
+	stwu     r1, -0x60(r1)
+	mflr     r0
+	stw      r0, 0x64(r1)
+	stw      r31, 0x5c(r1)
+	mr       r31, r3
+	addi     r3, r1, 0x30
+	stw      r30, 0x58(r1)
+	mr       r4, r31
+	bl       __ct__Q24Game8StickersFPQ24Game8Creature
+	li       r0, 0
+	lis      r3, "__vt__26Iterator<Q24Game8Creature>"@ha
+	addi     r4, r3, "__vt__26Iterator<Q24Game8Creature>"@l
+	addi     r3, r1, 0x30
+	cmplwi   r0, 0
+	stw      r4, 0x20(r1)
+	stw      r0, 0x2c(r1)
+	stw      r0, 0x24(r1)
+	stw      r3, 0x28(r1)
+	bne      lbl_8027346C
+	lwz      r12, 0(r3)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x24(r1)
+	b        lbl_80273658
 
-	.loc_0x64:
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x24(r1)
-	  b         .loc_0xD0
+lbl_8027346C:
+	lwz      r12, 0(r3)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x24(r1)
+	b        lbl_802734D8
 
-	.loc_0x7C:
-	  lwz       r3, 0x28(r1)
-	  lwz       r4, 0x24(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x2C(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x250
-	  lwz       r3, 0x28(r1)
-	  lwz       r4, 0x24(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x24(r1)
+lbl_80273484:
+	lwz      r3, 0x28(r1)
+	lwz      r4, 0x24(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	lwz      r3, 0x2c(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_80273658
+	lwz      r3, 0x28(r1)
+	lwz      r4, 0x24(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x24(r1)
 
-	.loc_0xD0:
-	  lwz       r12, 0x20(r1)
-	  addi      r3, r1, 0x20
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x7C
-	  b         .loc_0x250
+lbl_802734D8:
+	lwz      r12, 0x20(r1)
+	addi     r3, r1, 0x20
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80273484
+	b        lbl_80273658
 
-	.loc_0xF0:
-	  lwz       r3, 0x28(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r30, r3
-	  bl        -0xD3F88
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x194
-	  lwz       r6, 0xC0(r31)
-	  lis       r5, 0x804B
-	  lis       r4, 0x804B
-	  mr        r3, r30
-	  lfs       f0, 0x604(r6)
-	  subi      r5, r5, 0x5D00
-	  addi      r0, r4, 0x48E4
-	  addi      r4, r1, 0x14
-	  stw       r5, 0x14(r1)
-	  stw       r31, 0x18(r1)
-	  stw       r0, 0x14(r1)
-	  stfs      f0, 0x1C(r1)
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x1A4(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x194
-	  lfs       f1, -0x3168(r2)
-	  mr        r3, r30
-	  addi      r4, r1, 0x8
-	  stfs      f1, 0x8(r1)
-	  stfs      f1, 0xC(r1)
-	  stfs      f1, 0x10(r1)
-	  lwz       r5, 0xC0(r31)
-	  lfs       f0, 0xA24(r5)
-	  fsubs     f0, f1, f0
-	  stfs      f0, 0xC(r1)
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x68(r12)
-	  mtctr     r12
-	  bctrl
+lbl_802734F8:
+	lwz      r3, 0x28(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	mr       r30, r3
+	bl       isStickToMouth__Q24Game8CreatureFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_8027359C
+	lwz      r6, 0xc0(r31)
+	lis      r5, __vt__Q24Game11Interaction@ha
+	lis      r4, __vt__Q24Game16InteractFallMeck@ha
+	mr       r3, r30
+	lfs      f0, 0x604(r6)
+	addi     r5, r5, __vt__Q24Game11Interaction@l
+	addi     r0, r4, __vt__Q24Game16InteractFallMeck@l
+	addi     r4, r1, 0x14
+	stw      r5, 0x14(r1)
+	stw      r31, 0x18(r1)
+	stw      r0, 0x14(r1)
+	stfs     f0, 0x1c(r1)
+	lwz      r12, 0(r30)
+	lwz      r12, 0x1a4(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_8027359C
+	lfs      f1, lbl_8051B1F8@sda21(r2)
+	mr       r3, r30
+	addi     r4, r1, 8
+	stfs     f1, 8(r1)
+	stfs     f1, 0xc(r1)
+	stfs     f1, 0x10(r1)
+	lwz      r5, 0xc0(r31)
+	lfs      f0, 0xa24(r5)
+	fsubs    f0, f1, f0
+	stfs     f0, 0xc(r1)
+	lwz      r12, 0(r30)
+	lwz      r12, 0x68(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x194:
-	  lwz       r0, 0x2C(r1)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x1C0
-	  lwz       r3, 0x28(r1)
-	  lwz       r4, 0x24(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x24(r1)
-	  b         .loc_0x250
+lbl_8027359C:
+	lwz      r0, 0x2c(r1)
+	cmplwi   r0, 0
+	bne      lbl_802735C8
+	lwz      r3, 0x28(r1)
+	lwz      r4, 0x24(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x24(r1)
+	b        lbl_80273658
 
-	.loc_0x1C0:
-	  lwz       r3, 0x28(r1)
-	  lwz       r4, 0x24(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x24(r1)
-	  b         .loc_0x234
+lbl_802735C8:
+	lwz      r3, 0x28(r1)
+	lwz      r4, 0x24(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x24(r1)
+	b        lbl_8027363C
 
-	.loc_0x1E0:
-	  lwz       r3, 0x28(r1)
-	  lwz       r4, 0x24(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x2C(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x250
-	  lwz       r3, 0x28(r1)
-	  lwz       r4, 0x24(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x24(r1)
+lbl_802735E8:
+	lwz      r3, 0x28(r1)
+	lwz      r4, 0x24(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	lwz      r3, 0x2c(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_80273658
+	lwz      r3, 0x28(r1)
+	lwz      r4, 0x24(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x24(r1)
 
-	.loc_0x234:
-	  lwz       r12, 0x20(r1)
-	  addi      r3, r1, 0x20
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x1E0
+lbl_8027363C:
+	lwz      r12, 0x20(r1)
+	addi     r3, r1, 0x20
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802735E8
 
-	.loc_0x250:
-	  lwz       r3, 0x28(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r4, 0x24(r1)
-	  cmplw     r4, r3
-	  bne+      .loc_0xF0
-	  addi      r3, r1, 0x30
-	  li        r4, -0x1
-	  bl        -0xD391C
-	  lwz       r0, 0x64(r1)
-	  lwz       r31, 0x5C(r1)
-	  lwz       r30, 0x58(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x60
-	  blr
+lbl_80273658:
+	lwz      r3, 0x28(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r4, 0x24(r1)
+	cmplw    r4, r3
+	bne      lbl_802734F8
+	addi     r3, r1, 0x30
+	li       r4, -1
+	bl       __dt__Q24Game8StickersFv
+	lwz      r0, 0x64(r1)
+	lwz      r31, 0x5c(r1)
+	lwz      r30, 0x58(r1)
+	mtlr     r0
+	addi     r1, r1, 0x60
+	blr
 	*/
 }
 
@@ -932,44 +1224,43 @@ void Sarai::Obj::fallMeckGround()
 void Sarai::Obj::getCatchTargetNum()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  li        r30, 0
-	  stw       r29, 0x14(r1)
-	  li        r29, 0
-	  stw       r28, 0x10(r1)
-	  mr        r28, r3
-	  lwz       r31, 0x2C4(r3)
-	  b         .loc_0x50
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	li       r30, 0
+	stw      r29, 0x14(r1)
+	li       r29, 0
+	stw      r28, 0x10(r1)
+	mr       r28, r3
+	lwz      r31, 0x2c4(r3)
+	b        lbl_802736EC
 
-	.loc_0x30:
-	  mr        r4, r29
-	  addi      r3, r28, 0x2C4
-	  bl        -0x13AF5C
-	  lwz       r0, 0x64(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x4C
-	  addi      r30, r30, 0x1
+lbl_802736CC:
+	mr       r4, r29
+	addi     r3, r28, 0x2c4
+	bl       getSlot__10MouthSlotsFi
+	lwz      r0, 0x64(r3)
+	cmplwi   r0, 0
+	beq      lbl_802736E8
+	addi     r30, r30, 1
 
-	.loc_0x4C:
-	  addi      r29, r29, 0x1
+lbl_802736E8:
+	addi     r29, r29, 1
 
-	.loc_0x50:
-	  cmpw      r29, r31
-	  blt+      .loc_0x30
-	  lwz       r0, 0x24(r1)
-	  mr        r3, r30
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_802736EC:
+	cmpw     r29, r31
+	blt      lbl_802736CC
+	lwz      r0, 0x24(r1)
+	mr       r3, r30
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -981,102 +1272,101 @@ void Sarai::Obj::getCatchTargetNum()
 void Sarai::Obj::getNextStateOnHeight()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stfd      f31, 0x20(r1)
-	  psq_st    f31,0x28(r1),0,0
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  mr        r30, r3
-	  lfs       f0, -0x3168(r2)
-	  lfs       f1, 0x200(r3)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0, 0x2
-	  bne-      .loc_0x3C
-	  li        r3, 0x1
-	  b         .loc_0x124
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stfd     f31, 0x20(r1)
+	psq_st   f31, 40(r1), 0, qr0
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	mr       r30, r3
+	lfs      f0, lbl_8051B1F8@sda21(r2)
+	lfs      f1, 0x200(r3)
+	fcmpo    cr0, f1, f0
+	cror     2, 0, 2
+	bne      lbl_80273754
+	li       r3, 1
+	b        lbl_8027383C
 
-	.loc_0x3C:
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x2FC(r12)
-	  mtctr     r12
-	  bctrl
-	  mr.       r31, r3
-	  beq-      .loc_0x120
-	  mr        r3, r30
-	  li        r4, 0x3
-	  bl        -0x15E5C0
-	  cmpwi     r3, 0
-	  ble-      .loc_0x70
-	  li        r3, 0x1
-	  b         .loc_0x124
+lbl_80273754:
+	lwz      r12, 0(r3)
+	lwz      r12, 0x2fc(r12)
+	mtctr    r12
+	bctrl
+	or.      r31, r3, r3
+	beq      lbl_80273838
+	mr       r3, r30
+	li       r4, 3
+	bl       getStickPikminColorNum__Q24Game9EnemyFuncFPQ24Game8Creaturei
+	cmpwi    r3, 0
+	ble      lbl_80273788
+	li       r3, 1
+	b        lbl_8027383C
 
-	.loc_0x70:
-	  subic.    r0, r31, 0x1
-	  bge-      .loc_0x80
-	  li        r3, 0
-	  b         .loc_0x94
+lbl_80273788:
+	addic.   r0, r31, -1
+	bge      lbl_80273798
+	li       r3, 0
+	b        lbl_802737AC
 
-	.loc_0x80:
-	  subi      r0, r31, 0x1
-	  li        r3, 0x4
-	  cmpwi     r0, 0x4
-	  bgt-      .loc_0x94
-	  mr        r3, r0
+lbl_80273798:
+	addi     r0, r31, -1
+	li       r3, 4
+	cmpwi    r0, 4
+	bgt      lbl_802737AC
+	mr       r3, r0
 
-	.loc_0x94:
-	  xoris     r3, r3, 0x8000
-	  lis       r0, 0x4330
-	  stw       r3, 0xC(r1)
-	  lwz       r3, 0xC0(r30)
-	  stw       r0, 0x8(r1)
-	  lfd       f2, -0x3130(r2)
-	  lfd       f0, 0x8(r1)
-	  lfs       f1, -0x3114(r2)
-	  fsubs     f5, f0, f2
-	  lfs       f3, -0x3110(r2)
-	  lfs       f0, 0x984(r3)
-	  lfs       f2, 0x95C(r3)
-	  fsubs     f4, f1, f5
-	  fmuls     f1, f5, f3
-	  fmuls     f3, f4, f3
-	  fmuls     f0, f1, f0
-	  fmadds    f31, f3, f2, f0
-	  bl        -0x1AA250
-	  xoris     r3, r3, 0x8000
-	  lis       r0, 0x4330
-	  stw       r3, 0x14(r1)
-	  lfd       f3, -0x3130(r2)
-	  stw       r0, 0x10(r1)
-	  lfs       f1, -0x3140(r2)
-	  lfd       f2, 0x10(r1)
-	  lfs       f0, -0x3128(r2)
-	  fsubs     f2, f2, f3
-	  fmuls     f1, f1, f2
-	  fdivs     f0, f1, f0
-	  fcmpo     cr0, f0, f31
-	  bge-      .loc_0x118
-	  li        r3, 0x4
-	  b         .loc_0x124
+lbl_802737AC:
+	xoris    r3, r3, 0x8000
+	lis      r0, 0x4330
+	stw      r3, 0xc(r1)
+	lwz      r3, 0xc0(r30)
+	stw      r0, 8(r1)
+	lfd      f2, lbl_8051B230@sda21(r2)
+	lfd      f0, 8(r1)
+	lfs      f1, lbl_8051B24C@sda21(r2)
+	fsubs    f5, f0, f2
+	lfs      f3, lbl_8051B250@sda21(r2)
+	lfs      f0, 0x984(r3)
+	lfs      f2, 0x95c(r3)
+	fsubs    f4, f1, f5
+	fmuls    f1, f5, f3
+	fmuls    f3, f4, f3
+	fmuls    f0, f1, f0
+	fmadds   f31, f3, f2, f0
+	bl       rand
+	xoris    r3, r3, 0x8000
+	lis      r0, 0x4330
+	stw      r3, 0x14(r1)
+	lfd      f3, lbl_8051B230@sda21(r2)
+	stw      r0, 0x10(r1)
+	lfs      f1, lbl_8051B220@sda21(r2)
+	lfd      f2, 0x10(r1)
+	lfs      f0, lbl_8051B238@sda21(r2)
+	fsubs    f2, f2, f3
+	fmuls    f1, f1, f2
+	fdivs    f0, f1, f0
+	fcmpo    cr0, f0, f31
+	bge      lbl_80273830
+	li       r3, 4
+	b        lbl_8027383C
 
-	.loc_0x118:
-	  li        r3, 0x1
-	  b         .loc_0x124
+lbl_80273830:
+	li       r3, 1
+	b        lbl_8027383C
 
-	.loc_0x120:
-	  li        r3, -0x1
+lbl_80273838:
+	li       r3, -1
 
-	.loc_0x124:
-	  psq_l     f31,0x28(r1),0,0
-	  lwz       r0, 0x34(r1)
-	  lfd       f31, 0x20(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_8027383C:
+	psq_l    f31, 40(r1), 0, qr0
+	lwz      r0, 0x34(r1)
+	lfd      f31, 0x20(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -1088,57 +1378,56 @@ void Sarai::Obj::getNextStateOnHeight()
 void Sarai::Obj::flickStickTarget()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stw       r31, 0x2C(r1)
-	  stw       r30, 0x28(r1)
-	  li        r30, 0
-	  stw       r29, 0x24(r1)
-	  mr        r29, r3
-	  lwz       r31, 0x2C4(r3)
-	  b         .loc_0x8C
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stw      r31, 0x2c(r1)
+	stw      r30, 0x28(r1)
+	li       r30, 0
+	stw      r29, 0x24(r1)
+	mr       r29, r3
+	lwz      r31, 0x2c4(r3)
+	b        lbl_802738E8
 
-	.loc_0x28:
-	  mr        r4, r30
-	  addi      r3, r29, 0x2C4
-	  bl        -0x13B114
-	  lwz       r3, 0x64(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x88
-	  lis       r4, 0x804B
-	  lfs       f2, -0x310C(r2)
-	  subi      r0, r4, 0x5D00
-	  lfs       f1, -0x3168(r2)
-	  lfs       f0, -0x3108(r2)
-	  lis       r4, 0x804B
-	  stw       r0, 0x8(r1)
-	  addi      r0, r4, 0x4E04
-	  addi      r4, r1, 0x8
-	  stw       r29, 0xC(r1)
-	  stw       r0, 0x8(r1)
-	  stfs      f2, 0x10(r1)
-	  stfs      f1, 0x14(r1)
-	  stfs      f0, 0x18(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1A4(r12)
-	  mtctr     r12
-	  bctrl
+lbl_80273884:
+	mr       r4, r30
+	addi     r3, r29, 0x2c4
+	bl       getSlot__10MouthSlotsFi
+	lwz      r3, 0x64(r3)
+	cmplwi   r3, 0
+	beq      lbl_802738E4
+	lis      r4, __vt__Q24Game11Interaction@ha
+	lfs      f2, lbl_8051B254@sda21(r2)
+	addi     r0, r4, __vt__Q24Game11Interaction@l
+	lfs      f1, lbl_8051B1F8@sda21(r2)
+	lfs      f0, lbl_8051B258@sda21(r2)
+	lis      r4, __vt__Q24Game13InteractFlick@ha
+	stw      r0, 8(r1)
+	addi     r0, r4, __vt__Q24Game13InteractFlick@l
+	addi     r4, r1, 8
+	stw      r29, 0xc(r1)
+	stw      r0, 8(r1)
+	stfs     f2, 0x10(r1)
+	stfs     f1, 0x14(r1)
+	stfs     f0, 0x18(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x1a4(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x88:
-	  addi      r30, r30, 0x1
+lbl_802738E4:
+	addi     r30, r30, 1
 
-	.loc_0x8C:
-	  cmpw      r30, r31
-	  blt+      .loc_0x28
-	  lwz       r0, 0x34(r1)
-	  lwz       r31, 0x2C(r1)
-	  lwz       r30, 0x28(r1)
-	  lwz       r29, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_802738E8:
+	cmpw     r30, r31
+	blt      lbl_80273884
+	lwz      r0, 0x34(r1)
+	lwz      r31, 0x2c(r1)
+	lwz      r30, 0x28(r1)
+	lwz      r29, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -1150,45 +1439,44 @@ void Sarai::Obj::flickStickTarget()
 void Sarai::Obj::getStickPikminNum()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  li        r30, 0
-	  mr        r31, r30
-	  stw       r29, 0x14(r1)
-	  stw       r28, 0x10(r1)
-	  mr        r28, r3
-	  lwz       r29, 0x2C4(r3)
-	  b         .loc_0x50
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	li       r30, 0
+	mr       r31, r30
+	stw      r29, 0x14(r1)
+	stw      r28, 0x10(r1)
+	mr       r28, r3
+	lwz      r29, 0x2c4(r3)
+	b        lbl_8027395C
 
-	.loc_0x30:
-	  mr        r4, r31
-	  addi      r3, r28, 0x2C4
-	  bl        -0x13B1CC
-	  lwz       r0, 0x64(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x4C
-	  addi      r30, r30, 0x1
+lbl_8027393C:
+	mr       r4, r31
+	addi     r3, r28, 0x2c4
+	bl       getSlot__10MouthSlotsFi
+	lwz      r0, 0x64(r3)
+	cmplwi   r0, 0
+	beq      lbl_80273958
+	addi     r30, r30, 1
 
-	.loc_0x4C:
-	  addi      r31, r31, 0x1
+lbl_80273958:
+	addi     r31, r31, 1
 
-	.loc_0x50:
-	  cmpw      r31, r29
-	  blt+      .loc_0x30
-	  lwz       r0, 0x1F4(r28)
-	  lwz       r31, 0x1C(r1)
-	  sub       r3, r0, r30
-	  lwz       r0, 0x24(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8027395C:
+	cmpw     r31, r29
+	blt      lbl_8027393C
+	lwz      r0, 0x1f4(r28)
+	lwz      r31, 0x1c(r1)
+	subf     r3, r30, r0
+	lwz      r0, 0x24(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -1200,273 +1488,272 @@ void Sarai::Obj::getStickPikminNum()
 void Sarai::Obj::getAttackableTarget()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x90(r1)
-	  mflr      r0
-	  stw       r0, 0x94(r1)
-	  stfd      f31, 0x80(r1)
-	  psq_st    f31,0x88(r1),0,0
-	  stfd      f30, 0x70(r1)
-	  psq_st    f30,0x78(r1),0,0
-	  stfd      f29, 0x60(r1)
-	  psq_st    f29,0x68(r1),0,0
-	  stw       r31, 0x5C(r1)
-	  stw       r30, 0x58(r1)
-	  mr        r31, r3
-	  lfs       f1, 0x194(r3)
-	  lfs       f0, 0x1A0(r3)
-	  lwz       r4, 0xC0(r3)
-	  fsubs     f3, f1, f0
-	  lfs       f2, 0x18C(r3)
-	  lfs       f1, 0x198(r3)
-	  lfs       f0, 0x35C(r4)
-	  fsubs     f2, f2, f1
-	  fmuls     f1, f3, f3
-	  fmuls     f0, f0, f0
-	  fmadds    f1, f2, f2, f1
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x39C
-	  lfs       f2, -0x3104(r2)
-	  lis       r3, 0x804B
-	  lfs       f1, 0x424(r4)
-	  li        r0, 0
-	  lfs       f0, 0x3D4(r4)
-	  subi      r4, r3, 0x4364
-	  fmuls     f1, f2, f1
-	  lfs       f2, -0x3124(r2)
-	  lwz       r3, -0x6D0C(r13)
-	  cmplwi    r0, 0
-	  fmuls     f30, f0, f0
-	  stw       r4, 0x44(r1)
-	  fmuls     f31, f2, f1
-	  stw       r0, 0x50(r1)
-	  stw       r0, 0x48(r1)
-	  stw       r3, 0x4C(r1)
-	  bne-      .loc_0xC0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x48(r1)
-	  b         .loc_0x37C
+	stwu     r1, -0x90(r1)
+	mflr     r0
+	stw      r0, 0x94(r1)
+	stfd     f31, 0x80(r1)
+	psq_st   f31, 136(r1), 0, qr0
+	stfd     f30, 0x70(r1)
+	psq_st   f30, 120(r1), 0, qr0
+	stfd     f29, 0x60(r1)
+	psq_st   f29, 104(r1), 0, qr0
+	stw      r31, 0x5c(r1)
+	stw      r30, 0x58(r1)
+	mr       r31, r3
+	lfs      f1, 0x194(r3)
+	lfs      f0, 0x1a0(r3)
+	lwz      r4, 0xc0(r3)
+	fsubs    f3, f1, f0
+	lfs      f2, 0x18c(r3)
+	lfs      f1, 0x198(r3)
+	lfs      f0, 0x35c(r4)
+	fsubs    f2, f2, f1
+	fmuls    f1, f3, f3
+	fmuls    f0, f0, f0
+	fmadds   f1, f2, f2, f1
+	fcmpo    cr0, f1, f0
+	bge      lbl_80273D28
+	lfs      f2, lbl_8051B25C@sda21(r2)
+	lis      r3, "__vt__22Iterator<Q24Game4Piki>"@ha
+	lfs      f1, 0x424(r4)
+	li       r0, 0
+	lfs      f0, 0x3d4(r4)
+	addi     r4, r3, "__vt__22Iterator<Q24Game4Piki>"@l
+	fmuls    f1, f2, f1
+	lfs      f2, lbl_8051B23C@sda21(r2)
+	lwz      r3, pikiMgr__4Game@sda21(r13)
+	cmplwi   r0, 0
+	fmuls    f30, f0, f0
+	stw      r4, 0x44(r1)
+	fmuls    f31, f2, f1
+	stw      r0, 0x50(r1)
+	stw      r0, 0x48(r1)
+	stw      r3, 0x4c(r1)
+	bne      lbl_80273A4C
+	lwz      r12, 0(r3)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x48(r1)
+	b        lbl_80273D08
 
-	.loc_0xC0:
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x48(r1)
-	  b         .loc_0x12C
+lbl_80273A4C:
+	lwz      r12, 0(r3)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x48(r1)
+	b        lbl_80273AB8
 
-	.loc_0xD8:
-	  lwz       r3, 0x4C(r1)
-	  lwz       r4, 0x48(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x50(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x37C
-	  lwz       r3, 0x4C(r1)
-	  lwz       r4, 0x48(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x48(r1)
+lbl_80273A64:
+	lwz      r3, 0x4c(r1)
+	lwz      r4, 0x48(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	lwz      r3, 0x50(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_80273D08
+	lwz      r3, 0x4c(r1)
+	lwz      r4, 0x48(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x48(r1)
 
-	.loc_0x12C:
-	  lwz       r12, 0x44(r1)
-	  addi      r3, r1, 0x44
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0xD8
-	  b         .loc_0x37C
+lbl_80273AB8:
+	lwz      r12, 0x44(r1)
+	addi     r3, r1, 0x44
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80273A64
+	b        lbl_80273D08
 
-	.loc_0x14C:
-	  lwz       r3, 0x4C(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r12, 0x0(r3)
-	  mr        r30, r3
-	  lwz       r12, 0xA8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x2C0
-	  mr        r3, r30
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x1C0(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x2C0
-	  mr        r3, r30
-	  bl        -0xD45A0
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x2C0
-	  lwz       r0, 0xF4(r30)
-	  cmplw     r0, r31
-	  beq-      .loc_0x2C0
-	  lwz       r0, 0xC8(r30)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x2C0
-	  mr        r4, r30
-	  addi      r3, r1, 0x20
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r31
-	  lfs       f2, 0x20(r1)
-	  lwz       r12, 0x0(r31)
-	  addi      r3, r1, 0x2C
-	  lfs       f1, 0x24(r1)
-	  lfs       f0, 0x28(r1)
-	  lwz       r12, 0x8(r12)
-	  stfs      f2, 0x8(r1)
-	  stfs      f1, 0xC(r1)
-	  stfs      f0, 0x10(r1)
-	  mtctr     r12
-	  bctrl
-	  lfs       f5, 0x2C(r1)
-	  lis       r3, 0x8051
-	  lfs       f3, 0x34(r1)
-	  subi      r3, r3, 0x2E20
-	  lfs       f1, 0x8(r1)
-	  lfs       f0, 0x10(r1)
-	  lfs       f4, 0x30(r1)
-	  fsubs     f1, f1, f5
-	  fsubs     f2, f0, f3
-	  stfs      f5, 0x14(r1)
-	  stfs      f4, 0x18(r1)
-	  stfs      f3, 0x1C(r1)
-	  bl        -0x23EABC
-	  bl        0x19E008
-	  lwz       r12, 0x0(r31)
-	  fmr       f29, f1
-	  mr        r3, r31
-	  lwz       r12, 0x64(r12)
-	  mtctr     r12
-	  bctrl
-	  fmr       f2, f1
-	  fmr       f1, f29
-	  bl        0x19E010
-	  fabs      f0, f1
-	  frsp      f0, f0
-	  fcmpo     cr0, f0, f31
-	  cror      2, 0, 0x2
-	  bne-      .loc_0x2C0
-	  mr        r4, r30
-	  addi      r3, r1, 0x38
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f1, 0x194(r31)
-	  lfs       f0, 0x40(r1)
-	  lfs       f2, 0x18C(r31)
-	  fsubs     f1, f1, f0
-	  lfs       f0, 0x38(r1)
-	  fsubs     f2, f2, f0
-	  fmuls     f0, f1, f1
-	  fmadds    f0, f2, f2, f0
-	  fcmpo     cr0, f0, f30
-	  bge-      .loc_0x2C0
-	  mr        r3, r30
-	  b         .loc_0x3A0
+lbl_80273AD8:
+	lwz      r3, 0x4c(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	lwz      r12, 0(r3)
+	mr       r30, r3
+	lwz      r12, 0xa8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80273C4C
+	mr       r3, r30
+	lwz      r12, 0(r30)
+	lwz      r12, 0x1c0(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80273C4C
+	mr       r3, r30
+	bl       isStickToMouth__Q24Game8CreatureFv
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_80273C4C
+	lwz      r0, 0xf4(r30)
+	cmplw    r0, r31
+	beq      lbl_80273C4C
+	lwz      r0, 0xc8(r30)
+	cmplwi   r0, 0
+	beq      lbl_80273C4C
+	mr       r4, r30
+	addi     r3, r1, 0x20
+	lwz      r12, 0(r30)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r31
+	lfs      f2, 0x20(r1)
+	lwz      r12, 0(r31)
+	addi     r3, r1, 0x2c
+	lfs      f1, 0x24(r1)
+	lfs      f0, 0x28(r1)
+	lwz      r12, 8(r12)
+	stfs     f2, 8(r1)
+	stfs     f1, 0xc(r1)
+	stfs     f0, 0x10(r1)
+	mtctr    r12
+	bctrl
+	lfs      f5, 0x2c(r1)
+	lis      r3, atanTable___5JMath@ha
+	lfs      f3, 0x34(r1)
+	addi     r3, r3, atanTable___5JMath@l
+	lfs      f1, 8(r1)
+	lfs      f0, 0x10(r1)
+	lfs      f4, 0x30(r1)
+	fsubs    f1, f1, f5
+	fsubs    f2, f0, f3
+	stfs     f5, 0x14(r1)
+	stfs     f4, 0x18(r1)
+	stfs     f3, 0x1c(r1)
+	bl       "atan2___Q25JMath18TAtanTable<1024,f>CFff"
+	bl       roundAng__Ff
+	lwz      r12, 0(r31)
+	fmr      f29, f1
+	mr       r3, r31
+	lwz      r12, 0x64(r12)
+	mtctr    r12
+	bctrl
+	fmr      f2, f1
+	fmr      f1, f29
+	bl       angDist__Fff
+	fabs     f0, f1
+	frsp     f0, f0
+	fcmpo    cr0, f0, f31
+	cror     2, 0, 2
+	bne      lbl_80273C4C
+	mr       r4, r30
+	addi     r3, r1, 0x38
+	lwz      r12, 0(r30)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f1, 0x194(r31)
+	lfs      f0, 0x40(r1)
+	lfs      f2, 0x18c(r31)
+	fsubs    f1, f1, f0
+	lfs      f0, 0x38(r1)
+	fsubs    f2, f2, f0
+	fmuls    f0, f1, f1
+	fmadds   f0, f2, f2, f0
+	fcmpo    cr0, f0, f30
+	bge      lbl_80273C4C
+	mr       r3, r30
+	b        lbl_80273D2C
 
-	.loc_0x2C0:
-	  lwz       r0, 0x50(r1)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x2EC
-	  lwz       r3, 0x4C(r1)
-	  lwz       r4, 0x48(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x48(r1)
-	  b         .loc_0x37C
+lbl_80273C4C:
+	lwz      r0, 0x50(r1)
+	cmplwi   r0, 0
+	bne      lbl_80273C78
+	lwz      r3, 0x4c(r1)
+	lwz      r4, 0x48(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x48(r1)
+	b        lbl_80273D08
 
-	.loc_0x2EC:
-	  lwz       r3, 0x4C(r1)
-	  lwz       r4, 0x48(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x48(r1)
-	  b         .loc_0x360
+lbl_80273C78:
+	lwz      r3, 0x4c(r1)
+	lwz      r4, 0x48(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x48(r1)
+	b        lbl_80273CEC
 
-	.loc_0x30C:
-	  lwz       r3, 0x4C(r1)
-	  lwz       r4, 0x48(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x50(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x37C
-	  lwz       r3, 0x4C(r1)
-	  lwz       r4, 0x48(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x48(r1)
+lbl_80273C98:
+	lwz      r3, 0x4c(r1)
+	lwz      r4, 0x48(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	lwz      r3, 0x50(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_80273D08
+	lwz      r3, 0x4c(r1)
+	lwz      r4, 0x48(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x48(r1)
 
-	.loc_0x360:
-	  lwz       r12, 0x44(r1)
-	  addi      r3, r1, 0x44
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x30C
+lbl_80273CEC:
+	lwz      r12, 0x44(r1)
+	addi     r3, r1, 0x44
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80273C98
 
-	.loc_0x37C:
-	  lwz       r3, 0x4C(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r4, 0x48(r1)
-	  cmplw     r4, r3
-	  bne+      .loc_0x14C
+lbl_80273D08:
+	lwz      r3, 0x4c(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r4, 0x48(r1)
+	cmplw    r4, r3
+	bne      lbl_80273AD8
 
-	.loc_0x39C:
-	  li        r3, 0
+lbl_80273D28:
+	li       r3, 0
 
-	.loc_0x3A0:
-	  psq_l     f31,0x88(r1),0,0
-	  lfd       f31, 0x80(r1)
-	  psq_l     f30,0x78(r1),0,0
-	  lfd       f30, 0x70(r1)
-	  psq_l     f29,0x68(r1),0,0
-	  lfd       f29, 0x60(r1)
-	  lwz       r31, 0x5C(r1)
-	  lwz       r0, 0x94(r1)
-	  lwz       r30, 0x58(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x90
-	  blr
+lbl_80273D2C:
+	psq_l    f31, 136(r1), 0, qr0
+	lfd      f31, 0x80(r1)
+	psq_l    f30, 120(r1), 0, qr0
+	lfd      f30, 0x70(r1)
+	psq_l    f29, 104(r1), 0, qr0
+	lfd      f29, 0x60(r1)
+	lwz      r31, 0x5c(r1)
+	lwz      r0, 0x94(r1)
+	lwz      r30, 0x58(r1)
+	mtlr     r0
+	addi     r1, r1, 0x90
+	blr
 	*/
 }
 
@@ -1478,16 +1765,16 @@ void Sarai::Obj::getAttackableTarget()
 void Sarai::Obj::catchTarget()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r4, 0
-	  stw       r0, 0x14(r1)
-	  bl        -0x160238
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	li       r4, 0
+	stw      r0, 0x14(r1)
+	bl
+	"eatPikmin__Q24Game9EnemyFuncFPQ24Game9EnemyBaseP23Condition<Q24Game4Piki>"
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1499,24 +1786,23 @@ void Sarai::Obj::catchTarget()
 void Sarai::Obj::createDownEffect()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x2EC(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r3, r31
-	  addi      r4, r31, 0x18C
-	  bl        -0x17025C
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r12, 0(r3)
+	lwz      r12, 0x2ec(r12)
+	mtctr    r12
+	bctrl
+	mr       r3, r31
+	addi     r4, r31, 0x18c
+	bl       "createBounceEffect__Q24Game9EnemyBaseFRC10Vector3<f>f"
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1528,9 +1814,8 @@ void Sarai::Obj::createDownEffect()
 void Sarai::Obj::getDownSmokeScale()
 {
 	/*
-	.loc_0x0:
-	  lfs       f1, -0x3100(r2)
-	  blr
+	lfs      f1, lbl_8051B260@sda21(r2)
+	blr
 	*/
 }
 
@@ -1556,9 +1841,8 @@ void Sarai::Obj::outWaterCallback() { }
 void Sarai::Obj::getMouthSlots()
 {
 	/*
-	.loc_0x0:
-	  addi      r3, r3, 0x2C4
-	  blr
+	addi     r3, r3, 0x2c4
+	blr
 	*/
 }
 

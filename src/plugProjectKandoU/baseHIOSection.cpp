@@ -1,6 +1,99 @@
 #include "types.h"
 
 /*
+    Generated from dpostproc
+
+    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
+    .4byte __sinit_baseHIOSection_cpp
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_8047E2A0
+    lbl_8047E2A0:
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x62617365
+        .4byte 0x48494F53
+        .4byte 0x65637469
+        .4byte 0x6F6E0000
+        .4byte 0x42617365
+        .4byte 0x48494F53
+        .4byte 0x65637469
+        .4byte 0x6F6E0000
+    .global lbl_8047E2CC
+    lbl_8047E2CC:
+        .4byte 0x62617365
+        .4byte 0x48494F53
+        .4byte 0x65637469
+        .4byte 0x6F6E2E63
+        .4byte 0x70700000
+        .4byte 0x66726167
+        .4byte 0x6D656E74
+        .4byte 0x6174696F
+        .4byte 0x6E206F63
+        .4byte 0x63757272
+        .4byte 0x6564203A
+        .4byte 0x20616674
+        .4byte 0x65722073
+        .4byte 0x6F756E64
+        .4byte 0x0A000000
+    .global lbl_8047E308
+    lbl_8047E308:
+        .asciz "P2Assert"
+        .skip 3
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global lbl_804B19F0
+    lbl_804B19F0:
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+    .global __vt__Q24Game11HIORootNode
+    __vt__Q24Game11HIORootNode:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q24Game11HIORootNodeFv
+        .4byte getChildCount__5CNodeFv
+    .global __vt__Q24Game14BaseHIOSection
+    __vt__Q24Game14BaseHIOSection:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q24Game14BaseHIOSectionFv
+        .4byte run__7SectionFv
+        .4byte update__7SectionFv
+        .4byte draw__7SectionFR8Graphics
+        .4byte init__7SectionFv
+        .4byte drawInit__7SectionFR8Graphics
+        .4byte drawInit__7SectionFR8GraphicsQ27Section13EDrawInitMode
+        .4byte doExit__7SectionFv
+        .4byte forceFinish__7SectionFv
+        .4byte forceReset__7SectionFv
+        .4byte getCurrentSection__7SectionFv
+        .4byte doLoadingStart__7SectionFv
+        .4byte doLoading__7SectionFv
+        .4byte doUpdate__Q24Game14BaseHIOSectionFv
+        .4byte 0
+        .4byte isFinishable__7SectionFv
+        .4byte initHIO__Q24Game14BaseHIOSectionFPQ24Game11HIORootNode
+        .4byte refreshHIO__Q24Game14BaseHIOSectionFv
+        .4byte 0
+
+    .section .sbss # 0x80514D80 - 0x80516360
+    .global lbl_80515990
+    lbl_80515990:
+        .skip 0x4
+    .global lbl_80515994
+    lbl_80515994:
+        .skip 0x4
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_805188D8
+    lbl_805188D8:
+        .4byte 0x73797374
+        .4byte 0x656D0000
+*/
+
+/*
  * --INFO--
  * Address:	........
  * Size:	000044
@@ -20,59 +113,58 @@ namespace Game {
 BaseHIOSection::BaseHIOSection(JKRHeap*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  mr        r5, r4
-	  lis       r6, 0x8048
-	  stw       r0, 0x24(r1)
-	  li        r4, 0
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  subi      r30, r6, 0x1D60
-	  li        r6, 0
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  bl        0x2BEB54
-	  lis       r4, 0x804B
-	  addi      r3, r30, 0x1C
-	  addi      r0, r4, 0x1A0C
-	  stw       r0, 0x0(r29)
-	  bl        0x2BD6AC
-	  li        r0, 0
-	  stw       r0, 0x3C(r29)
-	  lwz       r3, -0x77D4(r13)
-	  bl        -0x141490
-	  mr        r31, r3
-	  lwz       r3, -0x77D4(r13)
-	  bl        -0x141470
-	  cmplw     r31, r3
-	  beq-      .loc_0x80
-	  addi      r3, r30, 0x2C
-	  addi      r5, r30, 0x40
-	  li        r4, 0x13A
-	  crclr     6, 0x6
-	  bl        -0x13A62C
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	mr       r5, r4
+	lis      r6, lbl_8047E2A0@ha
+	stw      r0, 0x24(r1)
+	li       r4, 0
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	addi     r30, r6, lbl_8047E2A0@l
+	li       r6, 0
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	bl       __ct__7SectionFP10JFWDisplayP7JKRHeapb
+	lis      r4, __vt__Q24Game14BaseHIOSection@ha
+	addi     r3, r30, 0x1c
+	addi     r0, r4, __vt__Q24Game14BaseHIOSection@l
+	stw      r0, 0(r29)
+	bl       assert_fragmentation__6SystemFPc
+	li       r0, 0
+	stw      r0, 0x3c(r29)
+	lwz      r3, sCurrentHeap__7JKRHeap@sda21(r13)
+	bl       getFreeSize__7JKRHeapFv
+	mr       r31, r3
+	lwz      r3, sCurrentHeap__7JKRHeap@sda21(r13)
+	bl       getTotalFreeSize__7JKRHeapFv
+	cmplw    r31, r3
+	beq      lbl_80164C70
+	addi     r3, r30, 0x2c
+	addi     r5, r30, 0x40
+	li       r4, 0x13a
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x80:
-	  li        r3, 0xB0
-	  bl        -0x140DD0
-	  mr.       r0, r3
-	  beq-      .loc_0x9C
-	  li        r4, 0x3
-	  bl        0x2C01D0
-	  mr        r0, r3
+lbl_80164C70:
+	li       r3, 0xb0
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_80164C8C
+	li       r4, 3
+	bl       __ct__10ControllerFQ210JUTGamePad8EPadPort
+	mr       r0, r3
 
-	.loc_0x9C:
-	  stw       r0, 0x44(r29)
-	  mr        r3, r29
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80164C8C:
+	stw      r0, 0x44(r29)
+	mr       r3, r29
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -84,62 +176,61 @@ BaseHIOSection::BaseHIOSection(JKRHeap*)
 BaseHIOSection::~BaseHIOSection(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0xA8
-	  lis       r3, 0x804B
-	  addi      r0, r3, 0x1A0C
-	  stw       r0, 0x0(r30)
-	  lwz       r3, 0x3C(r30)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x5C
-	  bl        0x2AC8E8
-	  lwz       r3, 0x3C(r30)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x5C
-	  lwz       r12, 0x0(r3)
-	  li        r4, 0x1
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_80164D58
+	lis      r3, __vt__Q24Game14BaseHIOSection@ha
+	addi     r0, r3, __vt__Q24Game14BaseHIOSection@l
+	stw      r0, 0(r30)
+	lwz      r3, 0x3c(r30)
+	cmplwi   r3, 0
+	beq      lbl_80164D0C
+	bl       del__5CNodeFv
+	lwz      r3, 0x3c(r30)
+	cmplwi   r3, 0
+	beq      lbl_80164D0C
+	lwz      r12, 0(r3)
+	li       r4, 1
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x5C:
-	  li        r0, 0
-	  stw       r0, 0x3C(r30)
-	  lwz       r3, 0x44(r30)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x84
-	  lwz       r12, 0x0(r3)
-	  li        r4, 0x1
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
+lbl_80164D0C:
+	li       r0, 0
+	stw      r0, 0x3c(r30)
+	lwz      r3, 0x44(r30)
+	cmplwi   r3, 0
+	beq      lbl_80164D34
+	lwz      r12, 0(r3)
+	li       r4, 1
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x84:
-	  li        r0, 0
-	  mr        r3, r30
-	  stw       r0, 0x44(r30)
-	  li        r4, 0
-	  bl        0x2BEC60
-	  extsh.    r0, r31
-	  ble-      .loc_0xA8
-	  mr        r3, r30
-	  bl        -0x140CA0
+lbl_80164D34:
+	li       r0, 0
+	mr       r3, r30
+	stw      r0, 0x44(r30)
+	li       r4, 0
+	bl       __dt__7SectionFv
+	extsh.   r0, r31
+	ble      lbl_80164D58
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0xA8:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80164D58:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -151,33 +242,32 @@ BaseHIOSection::~BaseHIOSection(void)
 HIORootNode::~HIORootNode(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x44
-	  lis       r5, 0x804B
-	  li        r4, 0
-	  addi      r0, r5, 0x19FC
-	  stw       r0, 0x0(r30)
-	  bl        0x2AC7E4
-	  extsh.    r0, r31
-	  ble-      .loc_0x44
-	  mr        r3, r30
-	  bl        -0x140D00
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_80164DB8
+	lis      r5, __vt__Q24Game11HIORootNode@ha
+	li       r4, 0
+	addi     r0, r5, __vt__Q24Game11HIORootNode@l
+	stw      r0, 0(r30)
+	bl       __dt__5CNodeFv
+	extsh.   r0, r31
+	ble      lbl_80164DB8
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x44:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80164DB8:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -189,97 +279,96 @@ HIORootNode::~HIORootNode(void)
 void BaseHIOSection::setDisplay(JFWDisplay*, int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r5
-	  stw       r30, 0x18(r1)
-	  mr        r30, r3
-	  stw       r29, 0x14(r1)
-	  mr        r29, r4
-	  lwz       r0, 0x24(r3)
-	  li        r3, 0
-	  cmplwi    r0, 0
-	  bne-      .loc_0x40
-	  cmplwi    r29, 0
-	  beq-      .loc_0x40
-	  li        r3, 0x1
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r5
+	stw      r30, 0x18(r1)
+	mr       r30, r3
+	stw      r29, 0x14(r1)
+	mr       r29, r4
+	lwz      r0, 0x24(r3)
+	li       r3, 0
+	cmplwi   r0, 0
+	bne      lbl_80164E14
+	cmplwi   r29, 0
+	beq      lbl_80164E14
+	li       r3, 1
 
-	.loc_0x40:
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x64
-	  lis       r3, 0x8048
-	  lis       r5, 0x8048
-	  subi      r3, r3, 0x1D34
-	  li        r4, 0x14D
-	  subi      r5, r5, 0x1CF8
-	  crclr     6, 0x6
-	  bl        -0x13A7F4
+lbl_80164E14:
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_80164E38
+	lis      r3, lbl_8047E2CC@ha
+	lis      r5, lbl_8047E308@ha
+	addi     r3, r3, lbl_8047E2CC@l
+	li       r4, 0x14d
+	addi     r5, r5, lbl_8047E308@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x64:
-	  stw       r29, 0x24(r30)
-	  li        r3, 0x28
-	  bl        -0x140F9C
-	  mr.       r0, r3
-	  beq-      .loc_0xB8
-	  li        r0, 0
-	  lwz       r6, -0x76E0(r13)
-	  stb       r0, 0x8(r1)
-	  addi      r8, r1, 0xC
-	  li        r4, 0
-	  li        r5, 0
-	  stb       r0, 0x9(r1)
-	  stb       r0, 0xA(r1)
-	  stb       r0, 0xB(r1)
-	  lwz       r0, 0x8(r1)
-	  stw       r0, 0xC(r1)
-	  lwz       r7, 0x4(r6)
-	  lhz       r6, 0x4(r7)
-	  lhz       r7, 0x6(r7)
-	  bl        -0x138028
-	  mr        r0, r3
+lbl_80164E38:
+	stw      r29, 0x24(r30)
+	li       r3, 0x28
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_80164E8C
+	li       r0, 0
+	lwz      r6, sManager__8JUTVideo@sda21(r13)
+	stb      r0, 8(r1)
+	addi     r8, r1, 0xc
+	li       r4, 0
+	li       r5, 0
+	stb      r0, 9(r1)
+	stb      r0, 0xa(r1)
+	stb      r0, 0xb(r1)
+	lwz      r0, 8(r1)
+	stw      r0, 0xc(r1)
+	lwz      r7, 4(r6)
+	lhz      r6, 4(r7)
+	lhz      r7, 6(r7)
+	bl       __ct__8JUTFaderFiiiiQ28JUtility6TColor
+	mr       r0, r3
 
-	.loc_0xB8:
-	  stw       r0, 0x28(r30)
-	  li        r0, 0x1
-	  lwz       r4, 0x28(r30)
-	  lwz       r3, 0x24(r30)
-	  stw       r4, 0x4(r3)
-	  stb       r0, 0x35(r30)
-	  lwz       r3, -0x6514(r13)
-	  lwz       r4, 0x24(r30)
-	  bl        0x2BE1C4
-	  lwz       r3, -0x6514(r13)
-	  mr        r4, r31
-	  bl        0x2BE674
-	  lwz       r3, -0x7618(r13)
-	  lwz       r3, 0x10(r3)
-	  lwz       r30, 0x0(r3)
-	  bl        -0x130F98
-	  mr        r4, r3
-	  mr        r3, r30
-	  bl        -0x787E8
-	  lwz       r3, -0x7618(r13)
-	  lwz       r3, 0x10(r3)
-	  lwz       r30, 0x4(r3)
-	  bl        -0x130FB4
-	  mr        r4, r3
-	  mr        r3, r30
-	  bl        -0x78804
-	  lwz       r3, -0x7708(r13)
-	  li        r0, 0
-	  stb       r0, 0x10C(r3)
-	  lwz       r3, -0x7708(r13)
-	  stb       r0, 0x130(r3)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80164E8C:
+	stw      r0, 0x28(r30)
+	li       r0, 1
+	lwz      r4, 0x28(r30)
+	lwz      r3, 0x24(r30)
+	stw      r4, 4(r3)
+	stb      r0, 0x35(r30)
+	lwz      r3, sys@sda21(r13)
+	lwz      r4, 0x24(r30)
+	bl       setCurrentDisplay__6SystemFP10JFWDisplay
+	lwz      r3, sys@sda21(r13)
+	mr       r4, r31
+	bl       setFrameRate__6SystemFi
+	lwz      r3, sManager__10JFWDisplay@sda21(r13)
+	lwz      r3, 0x10(r3)
+	lwz      r30, 0(r3)
+	bl       accumeXfbSize__6JUTXfbFv
+	mr       r4, r3
+	mr       r3, r30
+	bl       DCInvalidateRange
+	lwz      r3, sManager__10JFWDisplay@sda21(r13)
+	lwz      r3, 0x10(r3)
+	lwz      r30, 4(r3)
+	bl       accumeXfbSize__6JUTXfbFv
+	mr       r4, r3
+	mr       r3, r30
+	bl       DCInvalidateRange
+	lwz      r3, sManager__10JUTProcBar@sda21(r13)
+	li       r0, 0
+	stb      r0, 0x10c(r3)
+	lwz      r3, sManager__10JUTProcBar@sda21(r13)
+	stb      r0, 0x130(r3)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -291,47 +380,46 @@ void BaseHIOSection::setDisplay(JFWDisplay*, int)
 void BaseHIOSection::initHIO(Game::HIORootNode*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  cmplwi    r4, 0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bne-      .loc_0x40
-	  li        r3, 0x1C
-	  bl        -0x1410A0
-	  mr.       r0, r3
-	  beq-      .loc_0x38
-	  mr        r4, r31
-	  bl        0x84
-	  mr        r0, r3
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	cmplwi   r4, 0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bne      lbl_80164F64
+	li       r3, 0x1c
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_80164F5C
+	mr       r4, r31
+	bl       __ct__Q24Game11HIORootNodeFP7Section
+	mr       r0, r3
 
-	.loc_0x38:
-	  stw       r0, 0x3C(r31)
-	  b         .loc_0x44
+lbl_80164F5C:
+	stw      r0, 0x3c(r31)
+	b        lbl_80164F68
 
-	.loc_0x40:
-	  stw       r4, 0x3C(r31)
+lbl_80164F64:
+	stw      r4, 0x3c(r31)
 
-	.loc_0x44:
-	  lwz       r3, -0x6514(r13)
-	  lwz       r4, 0x3C(r31)
-	  bl        0x2BE5B0
-	  lwz       r3, -0x7708(r13)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x6C
-	  li        r0, 0
-	  stb       r0, 0x10C(r3)
-	  lwz       r3, -0x7708(r13)
-	  stb       r0, 0x130(r3)
+lbl_80164F68:
+	lwz      r3, sys@sda21(r13)
+	lwz      r4, 0x3c(r31)
+	bl       addGenNode__6SystemFP5CNode
+	lwz      r3, sManager__10JUTProcBar@sda21(r13)
+	cmplwi   r3, 0
+	beq      lbl_80164F90
+	li       r0, 0
+	stb      r0, 0x10c(r3)
+	lwz      r3, sManager__10JUTProcBar@sda21(r13)
+	stb      r0, 0x130(r3)
 
-	.loc_0x6C:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80164F90:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -357,16 +445,15 @@ u32 BaseHIOSection::doUpdate(void) { return 0x1; }
 void BaseHIOSection::addGenNode(CNode*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x3C(r3)
-	  bl        0x2AC448
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r3, 0x3c(r3)
+	bl       add__5CNodeFP5CNode
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -385,28 +472,27 @@ void BaseHIOSection::refreshHIO(void) { }
 HIORootNode::HIORootNode(Section*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  bl        0x2AC39C
-	  lis       r3, 0x804B
-	  subi      r0, r2, 0x5A88
-	  addi      r4, r3, 0x19FC
-	  mr        r3, r30
-	  stw       r4, 0x0(r30)
-	  stw       r31, 0x18(r30)
-	  stw       r0, 0x14(r30)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	bl       __ct__5CNodeFv
+	lis      r3, __vt__Q24Game11HIORootNode@ha
+	addi     r0, r2, lbl_805188D8@sda21
+	addi     r4, r3, __vt__Q24Game11HIORootNode@l
+	mr       r3, r30
+	stw      r4, 0(r30)
+	stw      r31, 0x18(r30)
+	stw      r0, 0x14(r30)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -420,18 +506,17 @@ HIORootNode::HIORootNode(Section*)
 void Section::drawInit(Graphics&, Section::EDrawInitMode)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -450,16 +535,15 @@ u32 Section::forceFinish() { return 0x0; }
 void __sinit_baseHIOSection_cpp(void)
 {
 	/*
-	.loc_0x0:
-	  lis       r4, 0x8051
-	  li        r0, -0x1
-	  lfs       f0, 0x48B0(r4)
-	  lis       r3, 0x804B
-	  stw       r0, -0x6CF0(r13)
-	  stfsu     f0, 0x19F0(r3)
-	  stfs      f0, -0x6CEC(r13)
-	  stfs      f0, 0x4(r3)
-	  stfs      f0, 0x8(r3)
-	  blr
+	lis      r4, __float_nan@ha
+	li       r0, -1
+	lfs      f0, __float_nan@l(r4)
+	lis      r3, lbl_804B19F0@ha
+	stw      r0, lbl_80515990@sda21(r13)
+	stfsu    f0, lbl_804B19F0@l(r3)
+	stfs     f0, lbl_80515994@sda21(r13)
+	stfs     f0, 4(r3)
+	stfs     f0, 8(r3)
+	blr
 	*/
 }

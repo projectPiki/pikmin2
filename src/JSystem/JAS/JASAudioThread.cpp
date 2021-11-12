@@ -1,6 +1,49 @@
 #include "types.h"
 
 /*
+    Generated from dpostproc
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_804795D8
+    lbl_804795D8:
+        .4byte 0x55504441
+        .4byte 0x54452D44
+        .4byte 0x41430000
+        .4byte 0x00000000
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__14JASAudioThread
+    __vt__14JASAudioThread:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__14JASAudioThreadFv
+        .4byte run__14JASAudioThreadFv
+
+    .section .sbss # 0x80514D80 - 0x80516360
+    .global sAudioThread__14JASAudioThread
+    sAudioThread__14JASAudioThread:
+        .skip 0x4
+    .global sThreadQueue__14JASAudioThread
+    sThreadQueue__14JASAudioThread:
+        .skip 0x8
+    .global sVFrameCounter__14JASAudioThread
+    sVFrameCounter__14JASAudioThread:
+        .skip 0x4
+    .global snIntCount__14JASAudioThread
+    snIntCount__14JASAudioThread:
+        .skip 0x4
+    .global sbPauseFlag__14JASAudioThread
+    sbPauseFlag__14JASAudioThread:
+        .skip 0x4
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_80516E60
+    lbl_80516E60:
+        .4byte 0x5346525F
+        .4byte 0x44535000
+*/
+
+/*
  * --INFO--
  * Address:	........
  * Size:	000050
@@ -18,38 +61,37 @@ JASAudioThread::JASAudioThread(int, int, unsigned long)
 void JASAudioThread::create(long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r5, 0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  li        r3, 0x7C
-	  lwz       r4, -0x7548(r13)
-	  bl        -0x81C6C
-	  mr.       r31, r3
-	  beq-      .loc_0x50
-	  lwz       r4, -0x7548(r13)
-	  mr        r7, r30
-	  li        r5, 0x1000
-	  li        r6, 0x10
-	  bl        -0x804D8
-	  lis       r3, 0x804A
-	  addi      r0, r3, 0x4458
-	  stw       r0, 0x0(r31)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	li       r5, 0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	stw      r30, 8(r1)
+	mr       r30, r3
+	li       r3, 0x7c
+	lwz      r4, JASDram@sda21(r13)
+	bl       __nw__FUlP7JKRHeapi
+	or.      r31, r3, r3
+	beq      lbl_800A5BD8
+	lwz      r4, JASDram@sda21(r13)
+	mr       r7, r30
+	li       r5, 0x1000
+	li       r6, 0x10
+	bl       __ct__9JKRThreadFP7JKRHeapUlii
+	lis      r3, __vt__14JASAudioThread@ha
+	addi     r0, r3, __vt__14JASAudioThread@l
+	stw      r0, 0(r31)
 
-	.loc_0x50:
-	  stw       r31, -0x7568(r13)
-	  lwz       r3, 0x2C(r31)
-	  bl        0x4C914
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_800A5BD8:
+	stw      r31, sAudioThread__14JASAudioThread@sda21(r13)
+	lwz      r3, 0x2c(r31)
+	bl       OSResumeThread
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -61,23 +103,22 @@ void JASAudioThread::create(long)
 void JASAudioThread::stop()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r3, -0x7568(r13)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x28
-	  addi      r3, r3, 0x30
-	  li        r4, 0x2
-	  li        r5, 0x1
-	  bl        0x49AA0
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r3, sAudioThread__14JASAudioThread@sda21(r13)
+	cmplwi   r3, 0
+	beq      lbl_800A5C24
+	addi     r3, r3, 0x30
+	li       r4, 2
+	li       r5, 1
+	bl       OSJamMessage
 
-	.loc_0x28:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_800A5C24:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -99,122 +140,125 @@ void JASAudioThread::pause(bool)
 void JASAudioThread::run()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  mr        r30, r3
-	  li        r3, 0x4
-	  oris      r3, r3, 0x4
-	  mtspr     914, r3
-	  li        r3, 0x5
-	  oris      r3, r3, 0x5
-	  mtspr     915, r3
-	  li        r3, 0x6
-	  oris      r3, r3, 0x6
-	  mtspr     916, r3
-	  li        r3, 0x7
-	  oris      r3, r3, 0x7
-	  mtspr     917, r3
-	  lis       r4, 0x800A
-	  addi      r3, r4, 0x5DB0
-	  bl        0x1CE4
-	  lis       r4, 0x800A
-	  addi      r3, r4, 0x5DF8
-	  bl        -0x980
-	  bl        -0x874
-	  bl        -0x107C
-	  lwz       r0, -0x75DC(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0xB0
-	  bl        0x48F90
-	  lwz       r0, -0x75DC(r13)
-	  stw       r3, 0x8(r1)
-	  cmplwi    r0, 0
-	  bne-      .loc_0xA8
-	  lwz       r4, -0x7548(r13)
-	  li        r3, 0xC
-	  li        r5, 0
-	  bl        -0x81D88
-	  mr.       r31, r3
-	  beq-      .loc_0xA4
-	  bl        0x14B0
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	mr       r30, r3
+	li       r3, 4
+	oris     r3, r3, 4
+	mtspr    0x392, r3
+	li       r3, 5
+	oris     r3, r3, 5
+	mtspr    0x393, r3
+	li       r3, 6
+	oris     r3, r3, 6
+	mtspr    0x394, r3
+	li       r3, 7
+	oris     r3, r3, 7
+	mtspr    0x395, r3
+	lis      r4, DMACallback__14JASAudioThreadFv@ha
+	addi     r3, r4, DMACallback__14JASAudioThreadFv@l
+	bl       initAI__9JASDriverFPFv_v
+	lis      r4, DSPCallback__14JASAudioThreadFPv@ha
+	addi     r3, r4, DSPCallback__14JASAudioThreadFPv@l
+	bl       boot__6JASDspFPFPv_v
+	bl       initBuffer__6JASDspFv
+	bl       initAll__13JASDSPChannelFv
+	lwz      r0,
+"sInstance__123JASSingletonHolder<62JASMemPool<10JASChannel,Q217JASThreadingModel14SingleThreaded>,Q217JASCreationPolicy15NewFromRootHeap>"@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_800A5CE4
+	bl       OSDisableInterrupts
+	lwz      r0,
+"sInstance__123JASSingletonHolder<62JASMemPool<10JASChannel,Q217JASThreadingModel14SingleThreaded>,Q217JASCreationPolicy15NewFromRootHeap>"@sda21(r13)
+	stw      r3, 8(r1)
+	cmplwi   r0, 0
+	bne      lbl_800A5CDC
+	lwz      r4, JASDram@sda21(r13)
+	li       r3, 0xc
+	li       r5, 0
+	bl       __nw__FUlP7JKRHeapi
+	or.      r31, r3, r3
+	beq      lbl_800A5CD8
+	bl       __ct__17JASGenericMemPoolFv
 
-	.loc_0xA4:
-	  stw       r31, -0x75DC(r13)
+lbl_800A5CD8:
+	stw      r31,
+"sInstance__123JASSingletonHolder<62JASMemPool<10JASChannel,Q217JASThreadingModel14SingleThreaded>,Q217JASCreationPolicy15NewFromRootHeap>"@sda21(r13)
 
-	.loc_0xA8:
-	  lwz       r3, 0x8(r1)
-	  bl        0x48F80
+lbl_800A5CDC:
+	lwz      r3, 8(r1)
+	bl       OSRestoreInterrupts
 
-	.loc_0xB0:
-	  lwz       r3, -0x75DC(r13)
-	  li        r4, 0x118
-	  li        r5, 0x48
-	  bl        0x14A8
-	  bl        0x1DB0
+lbl_800A5CE4:
+	lwz      r3,
+"sInstance__123JASSingletonHolder<62JASMemPool<10JASChannel,Q217JASThreadingModel14SingleThreaded>,Q217JASCreationPolicy15NewFromRootHeap>"@sda21(r13)
+	li       r4, 0x118
+	li       r5, 0x48
+	bl       newMemPool__17JASGenericMemPoolFUli
+	bl       startDMA__9JASDriverFv
 
-	.loc_0xC4:
-	  addi      r3, r30, 0x30
-	  addi      r4, r1, 0xC
-	  li        r5, 0x1
-	  bl        0x498E0
-	  lwz       r0, 0xC(r1)
-	  cmpwi     r0, 0x1
-	  beq-      .loc_0x12C
-	  bge-      .loc_0xF0
-	  cmpwi     r0, 0
-	  bge-      .loc_0xFC
-	  b         .loc_0xC4
+lbl_800A5CF8:
+	addi     r3, r30, 0x30
+	addi     r4, r1, 0xc
+	li       r5, 1
+	bl       OSReceiveMessage
+	lwz      r0, 0xc(r1)
+	cmpwi    r0, 1
+	beq      lbl_800A5D60
+	bge      lbl_800A5D24
+	cmpwi    r0, 0
+	bge      lbl_800A5D30
+	b        lbl_800A5CF8
 
-	.loc_0xF0:
-	  cmpwi     r0, 0x3
-	  bge+      .loc_0xC4
-	  b         .loc_0x170
+lbl_800A5D24:
+	cmpwi    r0, 3
+	bge      lbl_800A5CF8
+	b        lbl_800A5DA4
 
-	.loc_0xFC:
-	  lbz       r0, -0x7554(r13)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x114
-	  bl        0x1D88
-	  subi      r3, r13, 0x7564
-	  bl        0x4CBA8
+lbl_800A5D30:
+	lbz      r0, sbPauseFlag__14JASAudioThread@sda21(r13)
+	cmplwi   r0, 0
+	beq      lbl_800A5D48
+	bl       stopDMA__9JASDriverFv
+	addi     r3, r13, sThreadQueue__14JASAudioThread@sda21
+	bl       OSSleepThread
 
-	.loc_0x114:
-	  lwz       r4, -0x755C(r13)
-	  addi      r0, r4, 0x1
-	  stw       r0, -0x755C(r13)
-	  bl        0x1D90
-	  bl        -0x12C8
-	  b         .loc_0xC4
+lbl_800A5D48:
+	lwz      r4, sVFrameCounter__14JASAudioThread@sda21(r13)
+	addi     r0, r4, 1
+	stw      r0, sVFrameCounter__14JASAudioThread@sda21(r13)
+	bl       updateDac__9JASDriverFv
+	bl       updateDacCallback__9JASDriverFv
+	b        lbl_800A5CF8
 
-	.loc_0x12C:
-	  lwz       r4, -0x7558(r13)
-	  subi      r0, r4, 0x1
-	  stw       r0, -0x7558(r13)
-	  lwz       r0, -0x7558(r13)
-	  cmpwi     r0, 0
-	  bne-      .loc_0x154
-	  li        r3, 0x7
-	  bl        0x17B8
-	  bl        0x22C0
-	  b         .loc_0xC4
+lbl_800A5D60:
+	lwz      r4, snIntCount__14JASAudioThread@sda21(r13)
+	addi     r0, r4, -1
+	stw      r0, snIntCount__14JASAudioThread@sda21(r13)
+	lwz      r0, snIntCount__14JASAudioThread@sda21(r13)
+	cmpwi    r0, 0
+	bne      lbl_800A5D88
+	li       r3, 7
+	bl       probeFinish__9JASKernelFl
+	bl       finishDSPFrame__9JASDriverFv
+	b        lbl_800A5CF8
 
-	.loc_0x154:
-	  li        r3, 0x2
-	  subi      r4, r2, 0x7500
-	  bl        0x1744
-	  bl        0x1EAC
-	  li        r3, 0x2
-	  bl        0x1798
-	  b         .loc_0xC4
+lbl_800A5D88:
+	li       r3, 2
+	addi     r4, r2, lbl_80516E60@sda21
+	bl       probeStart__9JASKernelFlPc
+	bl       updateDSP__9JASDriverFv
+	li       r3, 2
+	bl       probeFinish__9JASKernelFl
+	b        lbl_800A5CF8
 
-	.loc_0x170:
-	  li        r3, 0
-	  bl        0x4C40C
-	  b         .loc_0xC4
+lbl_800A5DA4:
+	li       r3, 0
+	bl       OSExitThread
+	b        lbl_800A5CF8
 	*/
 }
 
@@ -226,25 +270,24 @@ void JASAudioThread::run()
 void JASAudioThread::DMACallback()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r3, 0x4
-	  stw       r0, 0x14(r1)
-	  bl        0x1774
-	  lis       r4, 0x8048
-	  li        r3, 0x4
-	  subi      r4, r4, 0x6A28
-	  bl        0x1704
-	  lwz       r3, -0x7568(r13)
-	  li        r4, 0
-	  li        r5, 0
-	  addi      r3, r3, 0x30
-	  bl        0x49738
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	li       r3, 4
+	stw      r0, 0x14(r1)
+	bl       probeFinish__9JASKernelFl
+	lis      r4, lbl_804795D8@ha
+	li       r3, 4
+	addi     r4, r4, lbl_804795D8@l
+	bl       probeStart__9JASKernelFlPc
+	lwz      r3, sAudioThread__14JASAudioThread@sda21(r13)
+	li       r4, 0
+	li       r5, 0
+	addi     r3, r3, 0x30
+	bl       OSSendMessage
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -256,38 +299,37 @@ void JASAudioThread::DMACallback()
 void JASAudioThread::DSPCallback(void*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
 
-	.loc_0xC:
-	  bl        0x34EBC
-	  cmplwi    r3, 0
-	  beq+      .loc_0xC
-	  bl        0x34EC0
-	  rlwinm    r0,r3,16,16,31
-	  cmplwi    r0, 0xF355
-	  bne-      .loc_0x54
-	  rlwinm    r0,r3,0,16,23
-	  cmplwi    r0, 0xFF00
-	  bne-      .loc_0x4C
-	  lwz       r3, -0x7568(r13)
-	  li        r4, 0x1
-	  li        r5, 0
-	  addi      r3, r3, 0x30
-	  bl        0x496E0
-	  b         .loc_0x54
+lbl_800A5E04:
+	bl       DSPCheckMailFromDSP
+	cmplwi   r3, 0
+	beq      lbl_800A5E04
+	bl       DSPReadMailFromDSP
+	srwi     r0, r3, 0x10
+	cmplwi   r0, 0xf355
+	bne      lbl_800A5E4C
+	rlwinm   r0, r3, 0, 0x10, 0x17
+	cmplwi   r0, 0xff00
+	bne      lbl_800A5E44
+	lwz      r3, sAudioThread__14JASAudioThread@sda21(r13)
+	li       r4, 1
+	li       r5, 0
+	addi     r3, r3, 0x30
+	bl       OSSendMessage
+	b        lbl_800A5E4C
 
-	.loc_0x4C:
-	  rlwinm    r3,r3,0,16,31
-	  bl        -0xACC
+lbl_800A5E44:
+	clrlwi   r3, r3, 0x10
+	bl       finishWork__6JASDspFUs
 
-	.loc_0x54:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_800A5E4C:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -319,32 +361,31 @@ void JASAudioThread::getCurrentVCounter()
 JASAudioThread::~JASAudioThread()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x44
-	  lis       r5, 0x804A
-	  li        r4, 0
-	  addi      r0, r5, 0x4458
-	  stw       r0, 0x0(r30)
-	  bl        -0x80654
-	  extsh.    r0, r31
-	  ble-      .loc_0x44
-	  mr        r3, r30
-	  bl        -0x81DE8
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_800A5EA0
+	lis      r5, __vt__14JASAudioThread@ha
+	li       r4, 0
+	addi     r0, r5, __vt__14JASAudioThread@l
+	stw      r0, 0(r30)
+	bl       __dt__9JKRThreadFv
+	extsh.   r0, r31
+	ble      lbl_800A5EA0
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x44:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_800A5EA0:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }

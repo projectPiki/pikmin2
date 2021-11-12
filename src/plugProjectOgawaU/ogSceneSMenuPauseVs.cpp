@@ -1,5 +1,70 @@
 #include "types.h"
 
+/*
+    Generated from dpostproc
+
+    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
+    .4byte __sinit_ogSceneSMenuPauseVs_cpp
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_8048F520
+    lbl_8048F520:
+        .4byte 0x534D656E
+        .4byte 0x75506175
+        .4byte 0x73655653
+        .4byte 0x20736372
+        .4byte 0x65656E00
+    .global lbl_8048F534
+    lbl_8048F534:
+        .4byte 0x7265735F
+        .4byte 0x735F6D65
+        .4byte 0x6E755F70
+        .4byte 0x61757365
+        .4byte 0x5F56532E
+        .4byte 0x737A7300
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global lbl_804D9CA0
+    lbl_804D9CA0:
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+    .global __vt__Q32og9newScreen12SMenuPauseVS
+    __vt__Q32og9newScreen12SMenuPauseVS:
+        .4byte 0
+        .4byte 0
+        .4byte getSceneType__Q32og9newScreen12SMenuPauseVSFv
+        .4byte getOwnerID__Q32og9newScreen12SMenuPauseVSFv
+        .4byte getMemberID__Q32og9newScreen12SMenuPauseVSFv
+        .4byte isUseBackupSceneInfo__Q32og9newScreen12SMenuPauseVSFv
+        .4byte isDrawInDemo__Q26Screen9SceneBaseCFv
+        .4byte getResName__Q32og9newScreen12SMenuPauseVSCFv
+        .4byte doCreateObj__Q32og9newScreen12SMenuPauseVSFP10JKRArchive
+        .4byte
+   doUserCallBackFunc__Q32og9newScreen12SMenuPauseVSFPQ28Resource10MgrCommand
+        .4byte setPort__Q26Screen9SceneBaseFR8Graphics
+        .4byte doUpdateActive__Q32og9newScreen12SMenuPauseVSFv
+        .4byte
+   doConfirmSetScene__Q32og9newScreen12SMenuPauseVSFRQ26Screen11SetSceneArg
+        .4byte
+   doConfirmStartScene__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg .4byte
+   doConfirmEndScene__Q26Screen9SceneBaseFRPQ26Screen11EndSceneArg .4byte
+   doStart__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg .4byte
+   doEnd__Q26Screen9SceneBaseFPQ26Screen11EndSceneArg .4byte
+   setDefaultDispMember__Q26Screen9SceneBaseFv .4byte
+   doSetBackupScene__Q32og9newScreen12SMenuPauseVSFRQ26Screen11SetSceneArg
+        .4byte doGetFinishState__Q32og9newScreen12SMenuPauseVSFv
+        .4byte 0
+
+    .section .sbss # 0x80514D80 - 0x80516360
+    .global lbl_80515E98
+    lbl_80515E98:
+        .skip 0x4
+    .global lbl_80515E9C
+    lbl_80515E9C:
+        .skip 0x4
+*/
+
 namespace og {
 
 /*
@@ -10,22 +75,21 @@ namespace og {
 newScreen::SMenuPauseVS::SMenuPauseVS(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        0x127A80
-	  lis       r4, 0x804E
-	  mr        r3, r31
-	  subi      r0, r4, 0x6354
-	  stw       r0, 0x0(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       __ct__Q26Screen9SceneBaseFv
+	lis      r4, __vt__Q32og9newScreen12SMenuPauseVS@ha
+	mr       r3, r31
+	addi     r0, r4, __vt__Q32og9newScreen12SMenuPauseVS@l
+	stw      r0, 0(r31)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -54,39 +118,38 @@ void newScreen::SMenuPauseVS::doUserCallBackFunc(Resource::MgrCommand*) { }
 void newScreen::SMenuPauseVS::doCreateObj(JKRArchive*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  li        r3, 0xCC
-	  bl        -0x305EB8
-	  mr.       r4, r3
-	  beq-      .loc_0x3C
-	  lis       r4, 0x8049
-	  subi      r4, r4, 0xAE0
-	  bl        -0xBE0
-	  mr        r4, r3
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	li       r3, 0xcc
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_80329D78
+	lis      r4, lbl_8048F520@ha
+	addi     r4, r4, lbl_8048F520@l
+	bl       __ct__Q32og9newScreen15ObjSMenuPauseVSFPCc
+	mr       r4, r3
 
-	.loc_0x3C:
-	  mr        r3, r30
-	  mr        r5, r31
-	  bl        0x127FF4
-	  mr        r3, r30
-	  li        r4, 0
-	  li        r5, 0
-	  li        r6, 0
-	  li        r7, 0xB4
-	  bl        0x1284EC
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80329D78:
+	mr       r3, r30
+	mr       r5, r31
+	bl       registObj__Q26Screen9SceneBaseFPQ26Screen7ObjBaseP10JKRArchive
+	mr       r3, r30
+	li       r4, 0
+	li       r5, 0
+	li       r6, 0
+	li       r7, 0xb4
+	bl       setColorBG__Q26Screen9SceneBaseFUcUcUcUc
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -98,43 +161,42 @@ void newScreen::SMenuPauseVS::doCreateObj(JKRArchive*)
 void newScreen::SMenuPauseVS::doGetFinishState(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r4, 0x4F
-	  lis       r5, 0x5F41
-	  stw       r0, 0x14(r1)
-	  addi      r6, r5, 0x4C4C
-	  addi      r4, r4, 0x4741
-	  li        r5, 0x534D
-	  stw       r31, 0xC(r1)
-	  stw       r30, 0x8(r1)
-	  li        r30, 0
-	  lwz       r31, 0x21C(r3)
-	  mr        r3, r31
-	  bl        -0x1AACC
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x6C
-	  lis       r4, 0x4F
-	  lis       r6, 0x535F
-	  lis       r5, 0x534D
-	  mr        r3, r31
-	  addi      r4, r4, 0x4741
-	  addi      r6, r6, 0x5653
-	  addi      r5, r5, 0x5F50
-	  bl        -0x1A950
-	  cmplwi    r3, 0
-	  beq-      .loc_0x6C
-	  lwz       r30, 0x8(r3)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lis      r4, 0x004F4741@ha
+	lis      r5, 0x5F414C4C@ha
+	stw      r0, 0x14(r1)
+	addi     r6, r5, 0x5F414C4C@l
+	addi     r4, r4, 0x004F4741@l
+	li       r5, 0x534d
+	stw      r31, 0xc(r1)
+	stw      r30, 8(r1)
+	li       r30, 0
+	lwz      r31, 0x21c(r3)
+	mr       r3, r31
+	bl       isID__Q32og6Screen14DispMemberBaseFUlUx
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80329E20
+	lis      r4, 0x004F4741@ha
+	lis      r6, 0x535F5653@ha
+	lis      r5, 0x534D5F50@ha
+	mr       r3, r31
+	addi     r4, r4, 0x004F4741@l
+	addi     r6, r6, 0x535F5653@l
+	addi     r5, r5, 0x534D5F50@l
+	bl       getSubMember__Q32og6Screen14DispMemberBaseFUlUx
+	cmplwi   r3, 0
+	beq      lbl_80329E20
+	lwz      r30, 8(r3)
 
-	.loc_0x6C:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80329E20:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -153,39 +215,38 @@ void newScreen::SMenuPauseVS::doUpdateActive(void) { }
 void newScreen::SMenuPauseVS::doConfirmSetScene(Screen::SetSceneArg&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r3, r4
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  li        r31, 0
-	  lwz       r12, 0x0(r4)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  cmpwi     r3, 0x2724
-	  beq-      .loc_0x4C
-	  bge-      .loc_0x40
-	  cmpwi     r3, 0x2712
-	  beq-      .loc_0x4C
-	  b         .loc_0x50
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r3, r4
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	li       r31, 0
+	lwz      r12, 0(r4)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	cmpwi    r3, 0x2724
+	beq      lbl_80329E8C
+	bge      lbl_80329E80
+	cmpwi    r3, 0x2712
+	beq      lbl_80329E8C
+	b        lbl_80329E90
 
-	.loc_0x40:
-	  cmpwi     r3, 0x2727
-	  beq-      .loc_0x4C
-	  b         .loc_0x50
+lbl_80329E80:
+	cmpwi    r3, 0x2727
+	beq      lbl_80329E8C
+	b        lbl_80329E90
 
-	.loc_0x4C:
-	  li        r31, 0x1
+lbl_80329E8C:
+	li       r31, 1
 
-	.loc_0x50:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80329E90:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -197,10 +258,9 @@ void newScreen::SMenuPauseVS::doConfirmSetScene(Screen::SetSceneArg&)
 void newScreen::SMenuPauseVS::doSetBackupScene(Screen::SetSceneArg&)
 {
 	/*
-	.loc_0x0:
-	  li        r0, 0
-	  stb       r0, 0x9(r4)
-	  blr
+	li       r0, 0
+	stb      r0, 9(r4)
+	blr
 	*/
 }
 
@@ -212,10 +272,9 @@ void newScreen::SMenuPauseVS::doSetBackupScene(Screen::SetSceneArg&)
 void newScreen::SMenuPauseVS::getResName() const
 {
 	/*
-	.loc_0x0:
-	  lis       r3, 0x8049
-	  subi      r3, r3, 0xACC
-	  blr
+	lis      r3, lbl_8048F534@ha
+	addi     r3, r3, lbl_8048F534@l
+	blr
 	*/
 }
 
@@ -234,10 +293,9 @@ u32 newScreen::SMenuPauseVS::getSceneType(void) { return 0x2728; }
 void newScreen::SMenuPauseVS::getOwnerID(void)
 {
 	/*
-	.loc_0x0:
-	  lis       r3, 0x4F
-	  addi      r3, r3, 0x4741
-	  blr
+	lis      r3, 0x004F4741@ha
+	addi     r3, r3, 0x004F4741@l
+	blr
 	*/
 }
 
@@ -249,12 +307,11 @@ void newScreen::SMenuPauseVS::getOwnerID(void)
 void newScreen::SMenuPauseVS::getMemberID(void)
 {
 	/*
-	.loc_0x0:
-	  lis       r4, 0x535F
-	  lis       r3, 0x534D
-	  addi      r4, r4, 0x5653
-	  addi      r3, r3, 0x5F50
-	  blr
+	lis      r4, 0x535F5653@ha
+	lis      r3, 0x534D5F50@ha
+	addi     r4, r4, 0x535F5653@l
+	addi     r3, r3, 0x534D5F50@l
+	blr
 	*/
 }
 
@@ -275,16 +332,15 @@ u32 newScreen::SMenuPauseVS::isUseBackupSceneInfo(void) { return 0x1; }
 void __sinit_ogSceneSMenuPauseVs_cpp(void)
 {
 	/*
-	.loc_0x0:
-	  lis       r4, 0x8051
-	  li        r0, -0x1
-	  lfs       f0, 0x48B0(r4)
-	  lis       r3, 0x804E
-	  stw       r0, -0x67E8(r13)
-	  stfsu     f0, -0x6360(r3)
-	  stfs      f0, -0x67E4(r13)
-	  stfs      f0, 0x4(r3)
-	  stfs      f0, 0x8(r3)
-	  blr
+	lis      r4, __float_nan@ha
+	li       r0, -1
+	lfs      f0, __float_nan@l(r4)
+	lis      r3, lbl_804D9CA0@ha
+	stw      r0, lbl_80515E98@sda21(r13)
+	stfsu    f0, lbl_804D9CA0@l(r3)
+	stfs     f0, lbl_80515E9C@sda21(r13)
+	stfs     f0, 4(r3)
+	stfs     f0, 8(r3)
+	blr
 	*/
 }

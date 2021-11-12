@@ -1,6 +1,10 @@
 #include "types.h"
 #include "Dolphin/string.h"
 
+/*
+    Generated from dpostproc
+*/
+
 struct DataElement {
 	u32 m_index;         // _00
 	const char* m_name;  // _04

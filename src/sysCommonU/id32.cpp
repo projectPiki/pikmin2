@@ -3,6 +3,18 @@
 #include "id32.h"
 
 /*
+    Generated from dpostproc
+
+    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
+        .4byte __sinit_id32_cpp
+
+    .section .bss  # 0x804EFC20 - 0x8051467C
+    .global eof__4ID32
+    eof__4ID32:
+        .skip 0xC
+*/
+
+/*
  * --INFO--
  * Address:	80413254
  * Size:	00001C
@@ -202,21 +214,20 @@ void ID32::sprint(char* str)
 // void __sinit_id32_cpp(void)
 
 /*
-.loc_0x0:
-  lis       r4, 0x5F65
-  lis       r3, 0x8051
-  addi      r4, r4, 0x6F66
-  li        r0, 0
-  addi      r7, r3, 0x41F0
-  stw       r4, 0x8(r7)
-  lbz       r6, 0x8(r7)
-  lbz       r5, 0x9(r7)
-  lbz       r4, 0xA(r7)
-  lbz       r3, 0xB(r7)
-  stb       r6, 0x0(r7)
-  stb       r5, 0x1(r7)
-  stb       r4, 0x2(r7)
-  stb       r3, 0x3(r7)
-  stb       r0, 0x4(r7)
-  blr
+    lis      r4, 0x5F656F66@ha
+    lis      r3, eof__4ID32@ha
+    addi     r4, r4, 0x5F656F66@l
+    li       r0, 0
+    addi     r7, r3, eof__4ID32@l
+    stw      r4, 8(r7)
+    lbz      r6, 8(r7)
+    lbz      r5, 9(r7)
+    lbz      r4, 0xa(r7)
+    lbz      r3, 0xb(r7)
+    stb      r6, 0(r7)
+    stb      r5, 1(r7)
+    stb      r4, 2(r7)
+    stb      r3, 3(r7)
+    stb      r0, 4(r7)
+    blr
 */

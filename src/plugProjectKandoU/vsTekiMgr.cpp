@@ -3,6 +3,34 @@
 #include "Game/enemyInfo.h"
 #include "Game/generalEnemyMgr.h"
 
+/*
+    Generated from dpostproc
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__Q34Game6VsGame8TekiNode
+    __vt__Q34Game6VsGame8TekiNode:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q34Game6VsGame8TekiNodeFv
+        .4byte getChildCount__5CNodeFv
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_8051A3C0
+    lbl_8051A3C0:
+        .4byte 0x47000000
+    .global lbl_8051A3C4
+    lbl_8051A3C4:
+        .4byte 0x40C90FDB
+    .global lbl_8051A3C8
+    lbl_8051A3C8:
+        .4byte 0x42480000
+        .4byte 0x00000000
+    .global lbl_8051A3D0
+    lbl_8051A3D0:
+        .4byte 0x43300000
+        .4byte 0x80000000
+*/
+
 namespace Game {
 namespace VsGame {
 	struct TekiNode : public CNode {

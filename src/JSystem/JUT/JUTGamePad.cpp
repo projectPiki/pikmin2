@@ -1,6 +1,149 @@
 #include "types.h"
 
 /*
+    Generated from dpostproc
+
+    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
+    .4byte __sinit_JUTGamePad_cpp
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global sChannelMask__Q210JUTGamePad7CRumble
+    sChannelMask__Q210JUTGamePad7CRumble:
+        .4byte 0x80000000
+        .4byte 0x40000000
+        .4byte 0x20000000
+        .4byte 0x10000000
+    .global channel_mask
+    channel_mask:
+        .4byte 0x80000000
+        .4byte 0x40000000
+        .4byte 0x20000000
+        .4byte 0x10000000
+    .global __vt__10JUTGamePad
+    __vt__10JUTGamePad:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__10JUTGamePadFv
+        .4byte 0
+
+    .section .bss  # 0x804EFC20 - 0x8051467C
+    .global mPadList__10JUTGamePad
+    mPadList__10JUTGamePad:
+        .skip 0x188
+    .global mPadStatus__10JUTGamePad
+    mPadStatus__10JUTGamePad:
+        .skip 0x30
+    .global mPadButton__10JUTGamePad
+    mPadButton__10JUTGamePad:
+        .skip 0xC0
+    .global mPadMStick__10JUTGamePad
+    mPadMStick__10JUTGamePad:
+        .skip 0x40
+    .global mPadSStick__10JUTGamePad
+    mPadSStick__10JUTGamePad:
+        .skip 0x40
+    .global sPatternList__19JUTGamePadLongPress
+    sPatternList__19JUTGamePadLongPress:
+        .skip 0x28
+
+    .section .sdata, "wa"  # 0x80514680 - 0x80514D80
+    .global sStickMode__10JUTGamePad
+    sStickMode__10JUTGamePad:
+        .4byte 1
+    .global sClampMode__10JUTGamePad
+    sClampMode__10JUTGamePad:
+        .4byte 1
+    .global sPressPoint__Q210JUTGamePad6CStick
+    sPressPoint__Q210JUTGamePad6CStick:
+        .float 0.5
+    .global sReleasePoint__Q210JUTGamePad6CStick
+    sReleasePoint__Q210JUTGamePad6CStick:
+        .float 0.25
+    .global sResetPattern__Q210JUTGamePad13C3ButtonReset
+    sResetPattern__Q210JUTGamePad13C3ButtonReset:
+        .4byte 0x00001600
+    .global sResetMaskPattern__Q210JUTGamePad13C3ButtonReset
+    sResetMaskPattern__Q210JUTGamePad13C3ButtonReset:
+        .4byte 0x0000ffff
+
+    .section .sbss # 0x80514D80 - 0x80516360
+    .global mListInitialized__10JUTGamePad
+    mListInitialized__10JUTGamePad:
+        .skip 0x4
+    .global mPadAssign__10JUTGamePad
+    mPadAssign__10JUTGamePad:
+        .skip 0x4
+    .global sSuppressPadReset__10JUTGamePad
+    sSuppressPadReset__10JUTGamePad:
+        .skip 0x4
+    .global sAnalogMode__10JUTGamePad
+    sAnalogMode__10JUTGamePad:
+        .skip 0x4
+    .global sRumbleSupported__10JUTGamePad
+    sRumbleSupported__10JUTGamePad:
+        .skip 0x4
+    .global mStatus__Q210JUTGamePad7CRumble
+    mStatus__Q210JUTGamePad7CRumble:
+        .skip 0x4
+    .global mEnabled__Q210JUTGamePad7CRumble
+    mEnabled__Q210JUTGamePad7CRumble:
+        .skip 0x4
+    .global sCallback__Q210JUTGamePad13C3ButtonReset
+    sCallback__Q210JUTGamePad13C3ButtonReset:
+        .skip 0x4
+    .global sCallbackArg__Q210JUTGamePad13C3ButtonReset
+    sCallbackArg__Q210JUTGamePad13C3ButtonReset:
+        .skip 0x8
+    .global sThreshold__Q210JUTGamePad13C3ButtonReset
+    sThreshold__Q210JUTGamePad13C3ButtonReset:
+        .skip 0x4
+    .global lbl_80514F5C
+    lbl_80514F5C:
+        .skip 0x4
+    .global sResetSwitchPushing__Q210JUTGamePad13C3ButtonReset
+    sResetSwitchPushing__Q210JUTGamePad13C3ButtonReset:
+        .skip 0x1
+    .global sResetOccurred__Q210JUTGamePad13C3ButtonReset
+    sResetOccurred__Q210JUTGamePad13C3ButtonReset:
+        .skip 0x3
+    .global sResetOccurredPort__Q210JUTGamePad13C3ButtonReset
+    sResetOccurredPort__Q210JUTGamePad13C3ButtonReset:
+        .skip 0x4
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_80516660
+    lbl_80516660:
+        .4byte 0x43160000
+        .4byte 0x00000000
+    .global lbl_80516668
+    lbl_80516668:
+        .4byte 0x43300000
+        .4byte 0x80000000
+    .global lbl_80516670
+    lbl_80516670:
+        .4byte 0x00000000
+        .4byte 0x00000000
+    .global lbl_80516678
+    lbl_80516678:
+        .4byte 0x3FE00000
+        .4byte 0x00000000
+    .global lbl_80516680
+    lbl_80516680:
+        .4byte 0x40080000
+        .4byte 0x00000000
+    .global lbl_80516688
+    lbl_80516688:
+        .4byte 0x00000000
+        .4byte 0x00000000
+    .global lbl_80516690
+    lbl_80516690:
+        .float 1.0
+    .global lbl_80516694
+    lbl_80516694:
+        .4byte 0x4622F984
+*/
+
+/*
  * --INFO--
  * Address:	8002D458
  * Size:	0000D4
@@ -8,62 +151,61 @@
 JUTGamePad::JUTGamePad(JUTGamePad::EPadPort)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  bl        -0x104A8
-	  lis       r4, 0x804A
-	  addi      r3, r30, 0x18
-	  addi      r0, r4, 0x4C0
-	  stw       r0, 0x0(r30)
-	  bl        0x98C
-	  addi      r3, r30, 0x48
-	  bl        0xB50
-	  addi      r3, r30, 0x58
-	  bl        0xB48
-	  mr        r4, r30
-	  addi      r3, r30, 0x68
-	  bl        0xEC4
-	  mr        r4, r30
-	  addi      r3, r30, 0x80
-	  bl        -0x6CF8
-	  li        r0, 0
-	  mr        r3, r30
-	  stb       r0, 0x98(r30)
-	  sth       r31, 0x7C(r30)
-	  lha       r0, 0x7C(r30)
-	  cmpwi     r0, 0
-	  blt-      .loc_0x88
-	  subi      r5, r13, 0x774C
-	  lbzx      r4, r5, r31
-	  addi      r0, r4, 0x1
-	  stbx      r0, r5, r31
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	bl       __ct__11JKRDisposerFv
+	lis      r4, __vt__10JUTGamePad@ha
+	addi     r3, r30, 0x18
+	addi     r0, r4, __vt__10JUTGamePad@l
+	stw      r0, 0(r30)
+	bl       clear__Q210JUTGamePad7CButtonFv
+	addi     r3, r30, 0x48
+	bl       clear__Q210JUTGamePad6CStickFv
+	addi     r3, r30, 0x58
+	bl       clear__Q210JUTGamePad6CStickFv
+	mr       r4, r30
+	addi     r3, r30, 0x68
+	bl       clear__Q210JUTGamePad7CRumbleFP10JUTGamePad
+	mr       r4, r30
+	addi     r3, r30, 0x80
+	bl       __ct__10JSUPtrLinkFPv
+	li       r0, 0
+	mr       r3, r30
+	stb      r0, 0x98(r30)
+	sth      r31, 0x7c(r30)
+	lha      r0, 0x7c(r30)
+	cmpwi    r0, 0
+	blt      lbl_8002D4E0
+	addi     r5, r13, mPadAssign__10JUTGamePad@sda21
+	lbzx     r4, r5, r31
+	addi     r0, r4, 1
+	stbx     r0, r5, r31
 
-	.loc_0x88:
-	  bl        0xF8
-	  lis       r3, 0x8050
-	  addi      r4, r30, 0x80
-	  addi      r3, r3, 0x6E80
-	  bl        -0x6C0C
-	  mr        r3, r30
-	  bl        0x544
-	  li        r0, 0
-	  mr        r3, r30
-	  stw       r0, 0x90(r30)
-	  stw       r0, 0x94(r30)
-	  bl        0x140
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8002D4E0:
+	bl       initList__10JUTGamePadFv
+	lis      r3, mPadList__10JUTGamePad@ha
+	addi     r4, r30, 0x80
+	addi     r3, r3, mPadList__10JUTGamePad@l
+	bl       append__10JSUPtrListFP10JSUPtrLink
+	mr       r3, r30
+	bl       update__10JUTGamePadFv
+	li       r0, 0
+	mr       r3, r30
+	stw      r0, 0x90(r30)
+	stw      r0, 0x94(r30)
+	bl       clear__10JUTGamePadFv
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -95,56 +237,55 @@ JUTGamePad::JUTGamePad()
 JUTGamePad::~JUTGamePad()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x90
-	  lis       r3, 0x804A
-	  addi      r0, r3, 0x4C0
-	  stw       r0, 0x0(r30)
-	  lha       r5, 0x7C(r30)
-	  extsh.    r0, r5
-	  blt-      .loc_0x50
-	  subi      r4, r13, 0x774C
-	  li        r0, -0x1
-	  lbzx      r3, r4, r5
-	  subi      r3, r3, 0x1
-	  stbx      r3, r4, r5
-	  sth       r0, 0x7C(r30)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_8002D5BC
+	lis      r3, __vt__10JUTGamePad@ha
+	addi     r0, r3, __vt__10JUTGamePad@l
+	stw      r0, 0(r30)
+	lha      r5, 0x7c(r30)
+	extsh.   r0, r5
+	blt      lbl_8002D57C
+	addi     r4, r13, mPadAssign__10JUTGamePad@sda21
+	li       r0, -1
+	lbzx     r3, r4, r5
+	addi     r3, r3, -1
+	stbx     r3, r4, r5
+	sth      r0, 0x7c(r30)
 
-	.loc_0x50:
-	  lis       r3, 0x8050
-	  addi      r4, r30, 0x80
-	  addi      r3, r3, 0x6E80
-	  bl        -0x6964
-	  addic.    r0, r30, 0x80
-	  beq-      .loc_0x74
-	  addi      r3, r30, 0x80
-	  li        r4, 0
-	  bl        -0x6DCC
+lbl_8002D57C:
+	lis      r3, mPadList__10JUTGamePad@ha
+	addi     r4, r30, 0x80
+	addi     r3, r3, mPadList__10JUTGamePad@l
+	bl       remove__10JSUPtrListFP10JSUPtrLink
+	addic.   r0, r30, 0x80
+	beq      lbl_8002D5A0
+	addi     r3, r30, 0x80
+	li       r4, 0
+	bl       __dt__10JSUPtrLinkFv
 
-	.loc_0x74:
-	  mr        r3, r30
-	  li        r4, 0
-	  bl        -0x10574
-	  extsh.    r0, r31
-	  ble-      .loc_0x90
-	  mr        r3, r30
-	  bl        -0x9504
+lbl_8002D5A0:
+	mr       r3, r30
+	li       r4, 0
+	bl       __dt__11JKRDisposerFv
+	extsh.   r0, r31
+	ble      lbl_8002D5BC
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x90:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8002D5BC:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -156,24 +297,23 @@ JUTGamePad::~JUTGamePad()
 void JUTGamePad::initList()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lbz       r0, -0x7750(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x2C
-	  lis       r3, 0x8050
-	  addi      r3, r3, 0x6E80
-	  bl        -0x6D28
-	  li        r0, 0x1
-	  stb       r0, -0x7750(r13)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lbz      r0, mListInitialized__10JUTGamePad@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_8002D604
+	lis      r3, mPadList__10JUTGamePad@ha
+	addi     r3, r3, mPadList__10JUTGamePad@l
+	bl       initiate__10JSUPtrListFv
+	li       r0, 1
+	stb      r0, mListInitialized__10JUTGamePad@sda21(r13)
 
-	.loc_0x2C:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8002D604:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -185,21 +325,20 @@ void JUTGamePad::initList()
 void JUTGamePad::init()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r3, 0x5
-	  stw       r0, 0x14(r1)
-	  bl        0xC6EC0
-	  li        r0, 0x3
-	  li        r3, 0x3
-	  stw       r0, -0x7744(r13)
-	  bl        0xC7668
-	  bl        0xC69A4
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	li       r3, 5
+	stw      r0, 0x14(r1)
+	bl       PADSetSpec
+	li       r0, 3
+	li       r3, 3
+	stw      r0, sAnalogMode__10JUTGamePad@sda21(r13)
+	bl       PADSetAnalogMode
+	bl       PADInit
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -211,12 +350,11 @@ void JUTGamePad::init()
 void JUTGamePad::clear()
 {
 	/*
-	.loc_0x0:
-	  li        r4, 0
-	  li        r0, 0x1
-	  stb       r4, 0x98(r3)
-	  stb       r0, 0xA8(r3)
-	  blr
+	li       r4, 0
+	li       r0, 1
+	stb      r4, 0x98(r3)
+	stb      r0, 0xa8(r3)
+	blr
 	*/
 }
 
@@ -228,215 +366,218 @@ void JUTGamePad::clear()
 void JUTGamePad::read()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  lis       r3, 0x8050
-	  stw       r0, 0x44(r1)
-	  addi      r3, r3, 0x7008
-	  stmw      r24, 0x20(r1)
-	  bl        0xC6AB4
-	  lwz       r0, -0x7FC4(r13)
-	  stw       r3, -0x7740(r13)
-	  cmpwi     r0, 0x2
-	  beq-      .loc_0x4C
-	  bge-      .loc_0x58
-	  cmpwi     r0, 0x1
-	  bge-      .loc_0x3C
-	  b         .loc_0x58
+	stwu     r1, -0x40(r1)
+	mflr     r0
+	lis      r3, mPadStatus__10JUTGamePad@ha
+	stw      r0, 0x44(r1)
+	addi     r3, r3, mPadStatus__10JUTGamePad@l
+	stmw     r24, 0x20(r1)
+	bl       PADRead
+	lwz      r0, sClampMode__10JUTGamePad@sda21(r13)
+	stw      r3, sRumbleSupported__10JUTGamePad@sda21(r13)
+	cmpwi    r0, 2
+	beq      lbl_8002D6AC
+	bge      lbl_8002D6B8
+	cmpwi    r0, 1
+	bge      lbl_8002D69C
+	b        lbl_8002D6B8
 
-	.loc_0x3C:
-	  lis       r3, 0x8050
-	  addi      r3, r3, 0x7008
-	  bl        0xC5C7C
-	  b         .loc_0x58
+lbl_8002D69C:
+	lis      r3, mPadStatus__10JUTGamePad@ha
+	addi     r3, r3, mPadStatus__10JUTGamePad@l
+	bl       PADClamp
+	b        lbl_8002D6B8
 
-	.loc_0x4C:
-	  lis       r3, 0x8050
-	  addi      r3, r3, 0x7008
-	  bl        0xC5D80
+lbl_8002D6AC:
+	lis      r3, mPadStatus__10JUTGamePad@ha
+	addi     r3, r3, mPadStatus__10JUTGamePad@l
+	bl       PADClampCircle
 
-	.loc_0x58:
-	  lis       r6, 0x8050
-	  lis       r5, 0x8050
-	  lis       r4, 0x8050
-	  lis       r3, 0x8050
-	  addi      r29, r6, 0x7008
-	  addi      r28, r5, 0x7038
-	  addi      r27, r4, 0x70F8
-	  addi      r26, r3, 0x7138
-	  li        r31, 0
-	  li        r24, 0
-	  lis       r30, 0x8000
+lbl_8002D6B8:
+	lis      r6, mPadStatus__10JUTGamePad@ha
+	lis      r5, mPadButton__10JUTGamePad@ha
+	lis      r4, mPadMStick__10JUTGamePad@ha
+	lis      r3, mPadSStick__10JUTGamePad@ha
+	addi     r29, r6, mPadStatus__10JUTGamePad@l
+	addi     r28, r5, mPadButton__10JUTGamePad@l
+	addi     r27, r4, mPadMStick__10JUTGamePad@l
+	addi     r26, r3, mPadSStick__10JUTGamePad@l
+	li       r31, 0
+	li       r24, 0
+	lis      r30, 0x8000
 
-	.loc_0x84:
-	  lbz       r3, 0xA(r29)
-	  srw       r25, r30, r24
-	  extsb.    r0, r3
-	  bne-      .loc_0xEC
-	  lbz       r4, 0x2(r29)
-	  mr        r3, r27
-	  lbz       r5, 0x3(r29)
-	  li        r7, 0
-	  lwz       r6, -0x7FC8(r13)
-	  lwz       r8, 0x0(r28)
-	  bl        0x8F0
-	  lbz       r4, 0x4(r29)
-	  rlwinm    r25,r3,24,0,7
-	  lbz       r5, 0x5(r29)
-	  mr        r3, r26
-	  lwz       r6, -0x7FC8(r13)
-	  li        r7, 0x1
-	  lwz       r8, 0x0(r28)
-	  bl        0x8D0
-	  rlwinm    r0,r3,16,0,15
-	  mr        r3, r28
-	  or        r25, r25, r0
-	  mr        r4, r29
-	  mr        r5, r25
-	  bl        0x70C
-	  b         .loc_0x164
+lbl_8002D6E4:
+	lbz      r3, 0xa(r29)
+	srw      r25, r30, r24
+	extsb.   r0, r3
+	bne      lbl_8002D74C
+	lbz      r4, 2(r29)
+	mr       r3, r27
+	lbz      r5, 3(r29)
+	li       r7, 0
+	lwz      r6, sStickMode__10JUTGamePad@sda21(r13)
+	lwz      r8, 0(r28)
+	bl
+update__Q210JUTGamePad6CStickFScScQ210JUTGamePad10EStickModeQ210JUTGamePad11EWhichStickUl
+	lbz      r4, 4(r29)
+	slwi     r25, r3, 0x18
+	lbz      r5, 5(r29)
+	mr       r3, r26
+	lwz      r6, sStickMode__10JUTGamePad@sda21(r13)
+	li       r7, 1
+	lwz      r8, 0(r28)
+	bl
+update__Q210JUTGamePad6CStickFScScQ210JUTGamePad10EStickModeQ210JUTGamePad11EWhichStickUl
+	slwi     r0, r3, 0x10
+	mr       r3, r28
+	or       r25, r25, r0
+	mr       r4, r29
+	mr       r5, r25
+	bl       update__Q210JUTGamePad7CButtonFPC9PADStatusUl
+	b        lbl_8002D7C4
 
-	.loc_0xEC:
-	  extsb     r0, r3
-	  cmpwi     r0, -0x1
-	  bne-      .loc_0x154
-	  lwz       r6, -0x7FC8(r13)
-	  mr        r3, r27
-	  li        r4, 0
-	  li        r5, 0
-	  li        r7, 0
-	  li        r8, 0
-	  bl        0x88C
-	  lwz       r6, -0x7FC8(r13)
-	  mr        r3, r26
-	  li        r4, 0
-	  li        r5, 0
-	  li        r7, 0x1
-	  li        r8, 0
-	  bl        0x870
-	  mr        r3, r28
-	  li        r4, 0
-	  li        r5, 0
-	  bl        0x6B4
-	  lwz       r0, -0x7748(r13)
-	  and.      r0, r0, r25
-	  bne-      .loc_0x164
-	  or        r31, r31, r25
-	  b         .loc_0x164
+lbl_8002D74C:
+	extsb    r0, r3
+	cmpwi    r0, -1
+	bne      lbl_8002D7B4
+	lwz      r6, sStickMode__10JUTGamePad@sda21(r13)
+	mr       r3, r27
+	li       r4, 0
+	li       r5, 0
+	li       r7, 0
+	li       r8, 0
+	bl
+update__Q210JUTGamePad6CStickFScScQ210JUTGamePad10EStickModeQ210JUTGamePad11EWhichStickUl
+	lwz      r6, sStickMode__10JUTGamePad@sda21(r13)
+	mr       r3, r26
+	li       r4, 0
+	li       r5, 0
+	li       r7, 1
+	li       r8, 0
+	bl
+update__Q210JUTGamePad6CStickFScScQ210JUTGamePad10EStickModeQ210JUTGamePad11EWhichStickUl
+	mr       r3, r28
+	li       r4, 0
+	li       r5, 0
+	bl       update__Q210JUTGamePad7CButtonFPC9PADStatusUl
+	lwz      r0, sSuppressPadReset__10JUTGamePad@sda21(r13)
+	and.     r0, r0, r25
+	bne      lbl_8002D7C4
+	or       r31, r31, r25
+	b        lbl_8002D7C4
 
-	.loc_0x154:
-	  li        r0, 0
-	  stw       r0, 0x4(r28)
-	  stw       r0, 0x8(r28)
-	  stw       r0, 0x18(r28)
+lbl_8002D7B4:
+	li       r0, 0
+	stw      r0, 4(r28)
+	stw      r0, 8(r28)
+	stw      r0, 0x18(r28)
 
-	.loc_0x164:
-	  addi      r24, r24, 0x1
-	  addi      r28, r28, 0x30
-	  cmpwi     r24, 0x4
-	  addi      r27, r27, 0x10
-	  addi      r26, r26, 0x10
-	  addi      r29, r29, 0xC
-	  blt+      .loc_0x84
-	  lis       r3, 0x8050
-	  lwz       r30, 0x6E80(r3)
-	  b         .loc_0x294
+lbl_8002D7C4:
+	addi     r24, r24, 1
+	addi     r28, r28, 0x30
+	cmpwi    r24, 4
+	addi     r27, r27, 0x10
+	addi     r26, r26, 0x10
+	addi     r29, r29, 0xc
+	blt      lbl_8002D6E4
+	lis      r3, mPadList__10JUTGamePad@ha
+	lwz      r30, mPadList__10JUTGamePad@l(r3)
+	b        lbl_8002D8F4
 
-	.loc_0x18C:
-	  lwz       r4, 0x0(r30)
-	  lwz       r3, 0x94(r4)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x220
-	  lbz       r0, 0x4(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x220
-	  lwz       r12, 0x0(r3)
-	  addi      r4, r1, 0x8
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r8, 0x0(r30)
-	  li        r7, 0
-	  lbz       r4, 0xA(r1)
-	  lbz       r5, 0xB(r1)
-	  addi      r3, r8, 0x48
-	  lwz       r6, -0x7FC8(r13)
-	  lwz       r8, 0x18(r8)
-	  bl        0x7C4
-	  lwz       r8, 0x0(r30)
-	  rlwinm    r24,r3,24,0,7
-	  lbz       r4, 0xC(r1)
-	  li        r7, 0x1
-	  lbz       r5, 0xD(r1)
-	  addi      r3, r8, 0x58
-	  lwz       r6, -0x7FC8(r13)
-	  lwz       r8, 0x18(r8)
-	  bl        0x7A0
-	  rlwinm    r0,r3,16,0,15
-	  lwz       r3, 0x0(r30)
-	  or        r24, r24, r0
-	  addi      r4, r1, 0x8
-	  mr        r5, r24
-	  addi      r3, r3, 0x18
-	  bl        0x5D8
-	  b         .loc_0x23C
+lbl_8002D7EC:
+	lwz      r4, 0(r30)
+	lwz      r3, 0x94(r4)
+	cmplwi   r3, 0
+	beq      lbl_8002D880
+	lbz      r0, 4(r3)
+	cmplwi   r0, 0
+	beq      lbl_8002D880
+	lwz      r12, 0(r3)
+	addi     r4, r1, 8
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	lwz      r8, 0(r30)
+	li       r7, 0
+	lbz      r4, 0xa(r1)
+	lbz      r5, 0xb(r1)
+	addi     r3, r8, 0x48
+	lwz      r6, sStickMode__10JUTGamePad@sda21(r13)
+	lwz      r8, 0x18(r8)
+	bl
+update__Q210JUTGamePad6CStickFScScQ210JUTGamePad10EStickModeQ210JUTGamePad11EWhichStickUl
+	lwz      r8, 0(r30)
+	slwi     r24, r3, 0x18
+	lbz      r4, 0xc(r1)
+	li       r7, 1
+	lbz      r5, 0xd(r1)
+	addi     r3, r8, 0x58
+	lwz      r6, sStickMode__10JUTGamePad@sda21(r13)
+	lwz      r8, 0x18(r8)
+	bl
+update__Q210JUTGamePad6CStickFScScQ210JUTGamePad10EStickModeQ210JUTGamePad11EWhichStickUl
+	slwi     r0, r3, 0x10
+	lwz      r3, 0(r30)
+	or       r24, r24, r0
+	addi     r4, r1, 8
+	mr       r5, r24
+	addi     r3, r3, 0x18
+	bl       update__Q210JUTGamePad7CButtonFPC9PADStatusUl
+	b        lbl_8002D89C
 
-	.loc_0x220:
-	  lha       r0, 0x7C(r4)
-	  cmpwi     r0, -0x1
-	  bne-      .loc_0x234
-	  mr        r3, r4
-	  bl        .loc_0x2C8
+lbl_8002D880:
+	lha      r0, 0x7c(r4)
+	cmpwi    r0, -1
+	bne      lbl_8002D894
+	mr       r3, r4
+	bl       assign__10JUTGamePadFv
 
-	.loc_0x234:
-	  lwz       r3, 0x0(r30)
-	  bl        0x1A4
+lbl_8002D894:
+	lwz      r3, 0(r30)
+	bl       update__10JUTGamePadFv
 
-	.loc_0x23C:
-	  lwz       r4, 0x0(r30)
-	  lwz       r3, 0x90(r4)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x290
-	  lbz       r0, 0x4(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x290
-	  lha       r4, 0x7C(r4)
-	  extsh.    r0, r4
-	  blt-      .loc_0x290
-	  mulli     r5, r4, 0xC
-	  lis       r4, 0x8050
-	  addi      r0, r4, 0x7008
-	  add       r4, r0, r5
-	  lbz       r0, 0xA(r4)
-	  extsb.    r0, r0
-	  bne-      .loc_0x290
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
+lbl_8002D89C:
+	lwz      r4, 0(r30)
+	lwz      r3, 0x90(r4)
+	cmplwi   r3, 0
+	beq      lbl_8002D8F0
+	lbz      r0, 4(r3)
+	cmplwi   r0, 0
+	beq      lbl_8002D8F0
+	lha      r4, 0x7c(r4)
+	extsh.   r0, r4
+	blt      lbl_8002D8F0
+	mulli    r5, r4, 0xc
+	lis      r4, mPadStatus__10JUTGamePad@ha
+	addi     r0, r4, mPadStatus__10JUTGamePad@l
+	add      r4, r0, r5
+	lbz      r0, 0xa(r4)
+	extsb.   r0, r0
+	bne      lbl_8002D8F0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x290:
-	  lwz       r30, 0xC(r30)
+lbl_8002D8F0:
+	lwz      r30, 0xc(r30)
 
-	.loc_0x294:
-	  cmplwi    r30, 0
-	  bne+      .loc_0x18C
-	  cmplwi    r31, 0
-	  beq-      .loc_0x2AC
-	  mr        r3, r31
-	  bl        0xC64B0
+lbl_8002D8F4:
+	cmplwi   r30, 0
+	bne      lbl_8002D7EC
+	cmplwi   r31, 0
+	beq      lbl_8002D90C
+	mr       r3, r31
+	bl       PADReset
 
-	.loc_0x2AC:
-	  bl        0x45C
-	  lmw       r24, 0x20(r1)
-	  lwz       r0, 0x44(r1)
-	  lwz       r3, -0x7740(r13)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
-
-	.loc_0x2C8:
+lbl_8002D90C:
+	bl       checkResetSwitch__10JUTGamePadFv
+	lmw      r24, 0x20(r1)
+	lwz      r0, 0x44(r1)
+	lwz      r3, sRumbleSupported__10JUTGamePad@sda21(r13)
+	mtlr     r0
+	addi     r1, r1, 0x40
+	blr
 	*/
 }
 
@@ -491,55 +632,54 @@ void JUTGamePad::setStatus_sticks_subroutine(PADStatus*)
 void JUTGamePad::assign()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r4, 0x8050
-	  li        r5, 0
-	  stw       r0, 0x14(r1)
-	  li        r0, 0x4
-	  addi      r4, r4, 0x7008
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  subi      r3, r13, 0x774C
-	  mtctr     r0
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lis      r4, mPadStatus__10JUTGamePad@ha
+	li       r5, 0
+	stw      r0, 0x14(r1)
+	li       r0, 4
+	addi     r4, r4, mPadStatus__10JUTGamePad@l
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	addi     r3, r13, mPadAssign__10JUTGamePad@sda21
+	mtctr    r0
 
-	.loc_0x2C:
-	  lbz       r0, 0xA(r4)
-	  extsb.    r0, r0
-	  bne-      .loc_0x84
-	  lbz       r0, 0x0(r3)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x84
-	  sth       r5, 0x7C(r31)
-	  li        r0, 0x1
-	  subi      r4, r13, 0x774C
-	  lis       r3, 0x8050
-	  stbx      r0, r4, r5
-	  mulli     r6, r5, 0x30
-	  addi      r0, r3, 0x7038
-	  lwz       r4, 0x3C(r31)
-	  add       r3, r0, r6
-	  lwz       r5, 0x40(r31)
-	  lwz       r6, 0x44(r31)
-	  bl        0xE34
-	  mr        r4, r31
-	  addi      r3, r31, 0x68
-	  bl        0x9C4
-	  b         .loc_0x94
+lbl_8002D954:
+	lbz      r0, 0xa(r4)
+	extsb.   r0, r0
+	bne      lbl_8002D9AC
+	lbz      r0, 0(r3)
+	cmplwi   r0, 0
+	bne      lbl_8002D9AC
+	sth      r5, 0x7c(r31)
+	li       r0, 1
+	addi     r4, r13, mPadAssign__10JUTGamePad@sda21
+	lis      r3, mPadButton__10JUTGamePad@ha
+	stbx     r0, r4, r5
+	mulli    r6, r5, 0x30
+	addi     r0, r3, mPadButton__10JUTGamePad@l
+	lwz      r4, 0x3c(r31)
+	add      r3, r0, r6
+	lwz      r5, 0x40(r31)
+	lwz      r6, 0x44(r31)
+	bl       setRepeat__Q210JUTGamePad7CButtonFUlUlUl
+	mr       r4, r31
+	addi     r3, r31, 0x68
+	bl       clear__Q210JUTGamePad7CRumbleFP10JUTGamePad
+	b        lbl_8002D9BC
 
-	.loc_0x84:
-	  addi      r4, r4, 0xC
-	  addi      r3, r3, 0x1
-	  addi      r5, r5, 0x1
-	  bdnz+     .loc_0x2C
+lbl_8002D9AC:
+	addi     r4, r4, 0xc
+	addi     r3, r3, 1
+	addi     r5, r5, 1
+	bdnz     lbl_8002D954
 
-	.loc_0x94:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8002D9BC:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -551,36 +691,35 @@ void JUTGamePad::assign()
 void JUTGamePad::checkResetCallback(long long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  xoris     r5, r5, 0x8000
-	  stw       r0, 0x14(r1)
-	  lwz       r0, -0x7728(r13)
-	  lwz       r7, -0x7724(r13)
-	  xoris     r4, r0, 0x8000
-	  subc      r0, r6, r7
-	  subfe     r4, r4, r5
-	  subfe     r4, r5, r5
-	  neg.      r4, r4
-	  bne-      .loc_0x5C
-	  li        r0, 0x1
-	  lwz       r12, -0x7734(r13)
-	  stb       r0, -0x771F(r13)
-	  cmplwi    r12, 0
-	  lha       r0, 0x7C(r3)
-	  stw       r0, -0x771C(r13)
-	  beq-      .loc_0x5C
-	  lha       r3, 0x7C(r3)
-	  lwz       r4, -0x7730(r13)
-	  mtctr     r12
-	  bctrl
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	xoris    r5, r5, 0x8000
+	stw      r0, 0x14(r1)
+	lwz      r0, sThreshold__Q210JUTGamePad13C3ButtonReset@sda21(r13)
+	lwz      r7, lbl_80514F5C@sda21(r13)
+	xoris    r4, r0, 0x8000
+	subfc    r0, r7, r6
+	subfe    r4, r4, r5
+	subfe    r4, r5, r5
+	neg.     r4, r4
+	bne      lbl_8002DA2C
+	li       r0, 1
+	lwz      r12, sCallback__Q210JUTGamePad13C3ButtonReset@sda21(r13)
+	stb      r0, sResetOccurred__Q210JUTGamePad13C3ButtonReset@sda21(r13)
+	cmplwi   r12, 0
+	lha      r0, 0x7c(r3)
+	stw      r0, sResetOccurredPort__Q210JUTGamePad13C3ButtonReset@sda21(r13)
+	beq      lbl_8002DA2C
+	lha      r3, 0x7c(r3)
+	lwz      r4, sCallbackArg__Q210JUTGamePad13C3ButtonReset@sda21(r13)
+	mtctr    r12
+	bctrl
 
-	.loc_0x5C:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8002DA2C:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -592,232 +731,231 @@ void JUTGamePad::checkResetCallback(long long)
 void JUTGamePad::update()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  mr        r30, r3
-	  stw       r29, 0x14(r1)
-	  stw       r28, 0x10(r1)
-	  lha       r3, 0x7C(r3)
-	  cmpwi     r3, -0x1
-	  beq-      .loc_0x30C
-	  extsh.    r0, r3
-	  blt-      .loc_0x168
-	  cmpwi     r3, 0x4
-	  bge-      .loc_0x168
-	  mulli     r4, r3, 0x30
-	  lis       r3, 0x8050
-	  lis       r5, 0x8050
-	  addi      r0, r3, 0x7038
-	  add       r7, r0, r4
-	  lis       r4, 0x8050
-	  lwz       r6, 0x0(r7)
-	  lis       r3, 0x8050
-	  addi      r5, r5, 0x70F8
-	  addi      r0, r4, 0x7138
-	  stw       r6, 0x18(r30)
-	  addi      r3, r3, 0x7008
-	  lwz       r4, 0x4(r7)
-	  stw       r4, 0x1C(r30)
-	  lwz       r4, 0x8(r7)
-	  stw       r4, 0x20(r30)
-	  lbz       r4, 0xC(r7)
-	  stb       r4, 0x24(r30)
-	  lbz       r4, 0xD(r7)
-	  stb       r4, 0x25(r30)
-	  lbz       r4, 0xE(r7)
-	  stb       r4, 0x26(r30)
-	  lbz       r4, 0xF(r7)
-	  stb       r4, 0x27(r30)
-	  lfs       f0, 0x10(r7)
-	  stfs      f0, 0x28(r30)
-	  lfs       f0, 0x14(r7)
-	  stfs      f0, 0x2C(r30)
-	  lwz       r4, 0x18(r7)
-	  stw       r4, 0x30(r30)
-	  lwz       r4, 0x1C(r7)
-	  stw       r4, 0x34(r30)
-	  lwz       r4, 0x20(r7)
-	  stw       r4, 0x38(r30)
-	  lwz       r4, 0x24(r7)
-	  stw       r4, 0x3C(r30)
-	  lwz       r4, 0x28(r7)
-	  stw       r4, 0x40(r30)
-	  lwz       r4, 0x2C(r7)
-	  stw       r4, 0x44(r30)
-	  lha       r4, 0x7C(r30)
-	  rlwinm    r4,r4,4,0,27
-	  add       r5, r5, r4
-	  lfs       f0, 0x0(r5)
-	  stfs      f0, 0x48(r30)
-	  lfs       f0, 0x4(r5)
-	  stfs      f0, 0x4C(r30)
-	  lfs       f0, 0x8(r5)
-	  stfs      f0, 0x50(r30)
-	  lha       r4, 0xC(r5)
-	  sth       r4, 0x54(r30)
-	  lbz       r4, 0xE(r5)
-	  stb       r4, 0x56(r30)
-	  lbz       r4, 0xF(r5)
-	  stb       r4, 0x57(r30)
-	  lha       r4, 0x7C(r30)
-	  rlwinm    r4,r4,4,0,27
-	  add       r4, r0, r4
-	  lfs       f0, 0x0(r4)
-	  stfs      f0, 0x58(r30)
-	  lfs       f0, 0x4(r4)
-	  stfs      f0, 0x5C(r30)
-	  lfs       f0, 0x8(r4)
-	  stfs      f0, 0x60(r30)
-	  lha       r0, 0xC(r4)
-	  sth       r0, 0x64(r30)
-	  lbz       r0, 0xE(r4)
-	  stb       r0, 0x66(r30)
-	  lbz       r0, 0xF(r4)
-	  stb       r0, 0x67(r30)
-	  lha       r0, 0x7C(r30)
-	  mulli     r0, r0, 0xC
-	  add       r3, r3, r0
-	  lbz       r0, 0xA(r3)
-	  stb       r0, 0x7E(r30)
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	mr       r30, r3
+	stw      r29, 0x14(r1)
+	stw      r28, 0x10(r1)
+	lha      r3, 0x7c(r3)
+	cmpwi    r3, -1
+	beq      lbl_8002DD48
+	extsh.   r0, r3
+	blt      lbl_8002DBA4
+	cmpwi    r3, 4
+	bge      lbl_8002DBA4
+	mulli    r4, r3, 0x30
+	lis      r3, mPadButton__10JUTGamePad@ha
+	lis      r5, mPadMStick__10JUTGamePad@ha
+	addi     r0, r3, mPadButton__10JUTGamePad@l
+	add      r7, r0, r4
+	lis      r4, mPadSStick__10JUTGamePad@ha
+	lwz      r6, 0(r7)
+	lis      r3, mPadStatus__10JUTGamePad@ha
+	addi     r5, r5, mPadMStick__10JUTGamePad@l
+	addi     r0, r4, mPadSStick__10JUTGamePad@l
+	stw      r6, 0x18(r30)
+	addi     r3, r3, mPadStatus__10JUTGamePad@l
+	lwz      r4, 4(r7)
+	stw      r4, 0x1c(r30)
+	lwz      r4, 8(r7)
+	stw      r4, 0x20(r30)
+	lbz      r4, 0xc(r7)
+	stb      r4, 0x24(r30)
+	lbz      r4, 0xd(r7)
+	stb      r4, 0x25(r30)
+	lbz      r4, 0xe(r7)
+	stb      r4, 0x26(r30)
+	lbz      r4, 0xf(r7)
+	stb      r4, 0x27(r30)
+	lfs      f0, 0x10(r7)
+	stfs     f0, 0x28(r30)
+	lfs      f0, 0x14(r7)
+	stfs     f0, 0x2c(r30)
+	lwz      r4, 0x18(r7)
+	stw      r4, 0x30(r30)
+	lwz      r4, 0x1c(r7)
+	stw      r4, 0x34(r30)
+	lwz      r4, 0x20(r7)
+	stw      r4, 0x38(r30)
+	lwz      r4, 0x24(r7)
+	stw      r4, 0x3c(r30)
+	lwz      r4, 0x28(r7)
+	stw      r4, 0x40(r30)
+	lwz      r4, 0x2c(r7)
+	stw      r4, 0x44(r30)
+	lha      r4, 0x7c(r30)
+	slwi     r4, r4, 4
+	add      r5, r5, r4
+	lfs      f0, 0(r5)
+	stfs     f0, 0x48(r30)
+	lfs      f0, 4(r5)
+	stfs     f0, 0x4c(r30)
+	lfs      f0, 8(r5)
+	stfs     f0, 0x50(r30)
+	lha      r4, 0xc(r5)
+	sth      r4, 0x54(r30)
+	lbz      r4, 0xe(r5)
+	stb      r4, 0x56(r30)
+	lbz      r4, 0xf(r5)
+	stb      r4, 0x57(r30)
+	lha      r4, 0x7c(r30)
+	slwi     r4, r4, 4
+	add      r4, r0, r4
+	lfs      f0, 0(r4)
+	stfs     f0, 0x58(r30)
+	lfs      f0, 4(r4)
+	stfs     f0, 0x5c(r30)
+	lfs      f0, 8(r4)
+	stfs     f0, 0x60(r30)
+	lha      r0, 0xc(r4)
+	sth      r0, 0x64(r30)
+	lbz      r0, 0xe(r4)
+	stb      r0, 0x66(r30)
+	lbz      r0, 0xf(r4)
+	stb      r0, 0x67(r30)
+	lha      r0, 0x7c(r30)
+	mulli    r0, r0, 0xc
+	add      r3, r3, r0
+	lbz      r0, 0xa(r3)
+	stb      r0, 0x7e(r30)
 
-	.loc_0x168:
-	  lbz       r0, 0xA8(r30)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x18C
-	  lwz       r3, 0x18(r30)
-	  lwz       r0, -0x7FB4(r13)
-	  lwz       r4, -0x7FB8(r13)
-	  and       r0, r3, r0
-	  cmplw     r4, r0
-	  beq-      .loc_0x198
+lbl_8002DBA4:
+	lbz      r0, 0xa8(r30)
+	cmplwi   r0, 0
+	beq      lbl_8002DBC8
+	lwz      r3, 0x18(r30)
+	lwz      r0, sResetMaskPattern__Q210JUTGamePad13C3ButtonReset@sda21(r13)
+	lwz      r4, sResetPattern__Q210JUTGamePad13C3ButtonReset@sda21(r13)
+	and      r0, r3, r0
+	cmplw    r4, r0
+	beq      lbl_8002DBD4
 
-	.loc_0x18C:
-	  li        r0, 0
-	  stb       r0, 0x98(r30)
-	  b         .loc_0x22C
+lbl_8002DBC8:
+	li       r0, 0
+	stb      r0, 0x98(r30)
+	b        lbl_8002DC68
 
-	.loc_0x198:
-	  lbz       r0, -0x771F(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x22C
-	  lbz       r0, 0x98(r30)
-	  cmplwi    r0, 0x1
-	  bne-      .loc_0x218
-	  bl        0xC4FA4
-	  lwz       r0, 0xA4(r30)
-	  lwz       r5, 0xA0(r30)
-	  subc      r6, r4, r0
-	  lwz       r0, -0x7728(r13)
-	  subfe     r3, r5, r3
-	  lwz       r5, -0x7724(r13)
-	  xoris     r4, r3, 0x8000
-	  xoris     r3, r0, 0x8000
-	  subc      r0, r6, r5
-	  subfe     r3, r3, r4
-	  subfe     r3, r4, r4
-	  neg.      r3, r3
-	  bne-      .loc_0x22C
-	  li        r0, 0x1
-	  lwz       r12, -0x7734(r13)
-	  stb       r0, -0x771F(r13)
-	  cmplwi    r12, 0
-	  lha       r0, 0x7C(r30)
-	  stw       r0, -0x771C(r13)
-	  beq-      .loc_0x22C
-	  lha       r3, 0x7C(r30)
-	  lwz       r4, -0x7730(r13)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x22C
+lbl_8002DBD4:
+	lbz      r0, sResetOccurred__Q210JUTGamePad13C3ButtonReset@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_8002DC68
+	lbz      r0, 0x98(r30)
+	cmplwi   r0, 1
+	bne      lbl_8002DC54
+	bl       OSGetTime
+	lwz      r0, 0xa4(r30)
+	lwz      r5, 0xa0(r30)
+	subfc    r6, r0, r4
+	lwz      r0, sThreshold__Q210JUTGamePad13C3ButtonReset@sda21(r13)
+	subfe    r3, r5, r3
+	lwz      r5, lbl_80514F5C@sda21(r13)
+	xoris    r4, r3, 0x8000
+	xoris    r3, r0, 0x8000
+	subfc    r0, r5, r6
+	subfe    r3, r3, r4
+	subfe    r3, r4, r4
+	neg.     r3, r3
+	bne      lbl_8002DC68
+	li       r0, 1
+	lwz      r12, sCallback__Q210JUTGamePad13C3ButtonReset@sda21(r13)
+	stb      r0, sResetOccurred__Q210JUTGamePad13C3ButtonReset@sda21(r13)
+	cmplwi   r12, 0
+	lha      r0, 0x7c(r30)
+	stw      r0, sResetOccurredPort__Q210JUTGamePad13C3ButtonReset@sda21(r13)
+	beq      lbl_8002DC68
+	lha      r3, 0x7c(r30)
+	lwz      r4, sCallbackArg__Q210JUTGamePad13C3ButtonReset@sda21(r13)
+	mtctr    r12
+	bctrl
+	b        lbl_8002DC68
 
-	.loc_0x218:
-	  li        r0, 0x1
-	  stb       r0, 0x98(r30)
-	  bl        0xC4F34
-	  stw       r4, 0xA4(r30)
-	  stw       r3, 0xA0(r30)
+lbl_8002DC54:
+	li       r0, 1
+	stb      r0, 0x98(r30)
+	bl       OSGetTime
+	stw      r4, 0xa4(r30)
+	stw      r3, 0xa0(r30)
 
-	.loc_0x22C:
-	  lis       r3, 0x8050
-	  lwz       r31, 0x7178(r3)
-	  b         .loc_0x2E8
+lbl_8002DC68:
+	lis      r3, sPatternList__19JUTGamePadLongPress@ha
+	lwz      r31, sPatternList__19JUTGamePadLongPress@l(r3)
+	b        lbl_8002DD24
 
-	.loc_0x238:
-	  lwz       r28, 0x0(r31)
-	  lbz       r0, 0x10(r28)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x2E4
-	  lha       r29, 0x7C(r30)
-	  extsh.    r0, r29
-	  blt-      .loc_0x2E4
-	  cmpwi     r29, 0x4
-	  bge-      .loc_0x2E4
-	  lwz       r4, 0x18(r30)
-	  lwz       r3, 0x18(r28)
-	  lwz       r0, 0x14(r28)
-	  and       r3, r4, r3
-	  cmplw     r3, r0
-	  bne-      .loc_0x2D8
-	  addi      r3, r29, 0x20
-	  lbzx      r0, r28, r3
-	  cmplwi    r0, 0x1
-	  bne-      .loc_0x2AC
-	  bl        0xC4ED0
-	  rlwinm    r5,r29,3,0,28
-	  lwz       r3, 0x0(r31)
-	  addi      r0, r5, 0x28
-	  add       r5, r28, r0
-	  lwz       r5, 0x4(r5)
-	  subc      r5, r4, r5
-	  lha       r4, 0x7C(r30)
-	  bl        0xBE0
-	  b         .loc_0x2E4
+lbl_8002DC74:
+	lwz      r28, 0(r31)
+	lbz      r0, 0x10(r28)
+	cmplwi   r0, 0
+	beq      lbl_8002DD20
+	lha      r29, 0x7c(r30)
+	extsh.   r0, r29
+	blt      lbl_8002DD20
+	cmpwi    r29, 4
+	bge      lbl_8002DD20
+	lwz      r4, 0x18(r30)
+	lwz      r3, 0x18(r28)
+	lwz      r0, 0x14(r28)
+	and      r3, r4, r3
+	cmplw    r3, r0
+	bne      lbl_8002DD14
+	addi     r3, r29, 0x20
+	lbzx     r0, r28, r3
+	cmplwi   r0, 1
+	bne      lbl_8002DCE8
+	bl       OSGetTime
+	slwi     r5, r29, 3
+	lwz      r3, 0(r31)
+	addi     r0, r5, 0x28
+	add      r5, r28, r0
+	lwz      r5, 4(r5)
+	subfc    r5, r5, r4
+	lha      r4, 0x7c(r30)
+	bl       checkCallback__19JUTGamePadLongPressFiUl
+	b        lbl_8002DD20
 
-	.loc_0x2AC:
-	  li        r0, 0x1
-	  stbx      r0, r28, r3
-	  lwz       r29, 0x0(r31)
-	  bl        0xC4E9C
-	  lha       r0, 0x7C(r30)
-	  rlwinm    r5,r0,3,0,28
-	  addi      r0, r5, 0x28
-	  add       r5, r29, r0
-	  stw       r4, 0x4(r5)
-	  stw       r3, 0x0(r5)
-	  b         .loc_0x2E4
+lbl_8002DCE8:
+	li       r0, 1
+	stbx     r0, r28, r3
+	lwz      r29, 0(r31)
+	bl       OSGetTime
+	lha      r0, 0x7c(r30)
+	slwi     r5, r0, 3
+	addi     r0, r5, 0x28
+	add      r5, r29, r0
+	stw      r4, 4(r5)
+	stw      r3, 0(r5)
+	b        lbl_8002DD20
 
-	.loc_0x2D8:
-	  addi      r0, r29, 0x20
-	  li        r3, 0
-	  stbx      r3, r28, r0
+lbl_8002DD14:
+	addi     r0, r29, 0x20
+	li       r3, 0
+	stbx     r3, r28, r0
 
-	.loc_0x2E4:
-	  lwz       r31, 0xC(r31)
+lbl_8002DD20:
+	lwz      r31, 0xc(r31)
 
-	.loc_0x2E8:
-	  cmplwi    r31, 0
-	  bne+      .loc_0x238
-	  lha       r4, 0x7C(r30)
-	  extsh.    r0, r4
-	  blt-      .loc_0x30C
-	  cmpwi     r4, 0x4
-	  bge-      .loc_0x30C
-	  addi      r3, r30, 0x68
-	  bl        0x708
+lbl_8002DD24:
+	cmplwi   r31, 0
+	bne      lbl_8002DC74
+	lha      r4, 0x7c(r30)
+	extsh.   r0, r4
+	blt      lbl_8002DD48
+	cmpwi    r4, 4
+	bge      lbl_8002DD48
+	addi     r3, r30, 0x68
+	bl       update__Q210JUTGamePad7CRumbleFs
 
-	.loc_0x30C:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8002DD48:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -829,45 +967,44 @@ void JUTGamePad::update()
 void JUTGamePad::checkResetSwitch()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lbz       r0, -0x771F(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x70
-	  bl        0xC2CDC
-	  cmpwi     r3, 0
-	  beq-      .loc_0x30
-	  li        r0, 0x1
-	  stb       r0, -0x7720(r13)
-	  b         .loc_0x70
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lbz      r0, sResetOccurred__Q210JUTGamePad13C3ButtonReset@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_8002DDD8
+	bl       OSGetResetSwitchState
+	cmpwi    r3, 0
+	beq      lbl_8002DD98
+	li       r0, 1
+	stb      r0, sResetSwitchPushing__Q210JUTGamePad13C3ButtonReset@sda21(r13)
+	b        lbl_8002DDD8
 
-	.loc_0x30:
-	  lbz       r0, -0x7720(r13)
-	  cmplwi    r0, 0x1
-	  bne-      .loc_0x68
-	  lwz       r12, -0x7734(r13)
-	  li        r3, 0x1
-	  li        r0, -0x1
-	  stb       r3, -0x771F(r13)
-	  cmplwi    r12, 0
-	  stw       r0, -0x771C(r13)
-	  beq-      .loc_0x68
-	  lwz       r4, -0x7730(r13)
-	  li        r3, -0x1
-	  mtctr     r12
-	  bctrl
+lbl_8002DD98:
+	lbz      r0, sResetSwitchPushing__Q210JUTGamePad13C3ButtonReset@sda21(r13)
+	cmplwi   r0, 1
+	bne      lbl_8002DDD0
+	lwz      r12, sCallback__Q210JUTGamePad13C3ButtonReset@sda21(r13)
+	li       r3, 1
+	li       r0, -1
+	stb      r3, sResetOccurred__Q210JUTGamePad13C3ButtonReset@sda21(r13)
+	cmplwi   r12, 0
+	stw      r0, sResetOccurredPort__Q210JUTGamePad13C3ButtonReset@sda21(r13)
+	beq      lbl_8002DDD0
+	lwz      r4, sCallbackArg__Q210JUTGamePad13C3ButtonReset@sda21(r13)
+	li       r3, -1
+	mtctr    r12
+	bctrl
 
-	.loc_0x68:
-	  li        r0, 0
-	  stb       r0, -0x7720(r13)
+lbl_8002DDD0:
+	li       r0, 0
+	stb      r0, sResetSwitchPushing__Q210JUTGamePad13C3ButtonReset@sda21(r13)
 
-	.loc_0x70:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8002DDD8:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -879,18 +1016,17 @@ void JUTGamePad::checkResetSwitch()
 void JUTGamePad::clearForReset()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r3, 0
-	  stw       r0, 0x14(r1)
-	  bl        0x8B0
-	  lis       r3, 0xF000
-	  bl        0xA34
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	li       r3, 0
+	stw      r0, 0x14(r1)
+	bl       setEnabled__Q210JUTGamePad7CRumbleFUl
+	lis      r3, 0xf000
+	bl       recalibrate__10JUTGamePadFUl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -902,22 +1038,21 @@ void JUTGamePad::clearForReset()
 void JUTGamePad::CButton::clear(void)
 {
 	/*
-	.loc_0x0:
-	  li        r0, 0
-	  stw       r0, 0x0(r3)
-	  stw       r0, 0x4(r3)
-	  stw       r0, 0x8(r3)
-	  stw       r0, 0x18(r3)
-	  stb       r0, 0xC(r3)
-	  stb       r0, 0xD(r3)
-	  stb       r0, 0xE(r3)
-	  stb       r0, 0xF(r3)
-	  stw       r0, 0x1C(r3)
-	  stw       r0, 0x20(r3)
-	  stw       r0, 0x24(r3)
-	  stw       r0, 0x28(r3)
-	  stw       r0, 0x2C(r3)
-	  blr
+	li       r0, 0
+	stw      r0, 0(r3)
+	stw      r0, 4(r3)
+	stw      r0, 8(r3)
+	stw      r0, 0x18(r3)
+	stb      r0, 0xc(r3)
+	stb      r0, 0xd(r3)
+	stb      r0, 0xe(r3)
+	stb      r0, 0xf(r3)
+	stw      r0, 0x1c(r3)
+	stw      r0, 0x20(r3)
+	stw      r0, 0x24(r3)
+	stw      r0, 0x28(r3)
+	stw      r0, 0x2c(r3)
+	blr
 	*/
 }
 
@@ -929,123 +1064,122 @@ void JUTGamePad::CButton::clear(void)
 void JUTGamePad::CButton::update(PADStatus const*, unsigned long)
 {
 	/*
-	.loc_0x0:
-	  cmplwi    r4, 0
-	  stwu      r1, -0x20(r1)
-	  beq-      .loc_0x14
-	  lhz       r0, 0x0(r4)
-	  b         .loc_0x18
+	cmplwi   r4, 0
+	stwu     r1, -0x20(r1)
+	beq      lbl_8002DE64
+	lhz      r0, 0(r4)
+	b        lbl_8002DE68
 
-	.loc_0x14:
-	  li        r0, 0
+lbl_8002DE64:
+	li       r0, 0
 
-	.loc_0x18:
-	  li        r6, 0
-	  or        r7, r5, r0
-	  stw       r6, 0x18(r3)
-	  lwz       r0, 0x28(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0xB8
-	  lwz       r0, 0x24(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0xB8
-	  and.      r8, r7, r0
-	  stw       r6, 0x18(r3)
-	  bne-      .loc_0x54
-	  stw       r6, 0x20(r3)
-	  stw       r6, 0x1C(r3)
-	  b         .loc_0xB8
+lbl_8002DE68:
+	li       r6, 0
+	or       r7, r5, r0
+	stw      r6, 0x18(r3)
+	lwz      r0, 0x28(r3)
+	cmplwi   r0, 0
+	beq      lbl_8002DF08
+	lwz      r0, 0x24(r3)
+	cmplwi   r0, 0
+	beq      lbl_8002DF08
+	and.     r8, r7, r0
+	stw      r6, 0x18(r3)
+	bne      lbl_8002DEA4
+	stw      r6, 0x20(r3)
+	stw      r6, 0x1c(r3)
+	b        lbl_8002DF08
 
-	.loc_0x54:
-	  lwz       r5, 0x20(r3)
-	  cmplw     r5, r8
-	  bne-      .loc_0xA0
-	  lwz       r5, 0x1C(r3)
-	  addi      r0, r5, 0x1
-	  stw       r0, 0x1C(r3)
-	  lwz       r6, 0x1C(r3)
-	  lwz       r0, 0x28(r3)
-	  cmplw     r6, r0
-	  beq-      .loc_0x98
-	  ble-      .loc_0xB8
-	  lwz       r5, 0x2C(r3)
-	  sub       r6, r6, r0
-	  divwu     r0, r6, r5
-	  mullw     r0, r0, r5
-	  sub.      r0, r6, r0
-	  bne-      .loc_0xB8
+lbl_8002DEA4:
+	lwz      r5, 0x20(r3)
+	cmplw    r5, r8
+	bne      lbl_8002DEF0
+	lwz      r5, 0x1c(r3)
+	addi     r0, r5, 1
+	stw      r0, 0x1c(r3)
+	lwz      r6, 0x1c(r3)
+	lwz      r0, 0x28(r3)
+	cmplw    r6, r0
+	beq      lbl_8002DEE8
+	ble      lbl_8002DF08
+	lwz      r5, 0x2c(r3)
+	subf     r6, r0, r6
+	divwu    r0, r6, r5
+	mullw    r0, r0, r5
+	subf.    r0, r0, r6
+	bne      lbl_8002DF08
 
-	.loc_0x98:
-	  stw       r8, 0x18(r3)
-	  b         .loc_0xB8
+lbl_8002DEE8:
+	stw      r8, 0x18(r3)
+	b        lbl_8002DF08
 
-	.loc_0xA0:
-	  li        r0, -0x1
-	  xor       r0, r5, r0
-	  and       r0, r8, r0
-	  stw       r0, 0x18(r3)
-	  stw       r8, 0x20(r3)
-	  stw       r6, 0x1C(r3)
+lbl_8002DEF0:
+	li       r0, -1
+	xor      r0, r5, r0
+	and      r0, r8, r0
+	stw      r0, 0x18(r3)
+	stw      r8, 0x20(r3)
+	stw      r6, 0x1c(r3)
 
-	.loc_0xB8:
-	  lwz       r0, 0x0(r3)
-	  li        r5, -0x1
-	  cmplwi    r4, 0
-	  xor       r0, r7, r0
-	  and       r0, r7, r0
-	  stw       r0, 0x4(r3)
-	  lwz       r6, 0x0(r3)
-	  xor       r0, r7, r6
-	  and       r0, r6, r0
-	  stw       r0, 0x8(r3)
-	  stw       r7, 0x0(r3)
-	  lwz       r6, 0x24(r3)
-	  lwz       r0, 0x4(r3)
-	  xor       r5, r6, r5
-	  lwz       r6, 0x18(r3)
-	  and       r0, r5, r0
-	  or        r0, r6, r0
-	  stw       r0, 0x18(r3)
-	  beq-      .loc_0x128
-	  lbz       r0, 0x8(r4)
-	  stb       r0, 0xC(r3)
-	  lbz       r0, 0x9(r4)
-	  stb       r0, 0xD(r3)
-	  lbz       r0, 0x6(r4)
-	  stb       r0, 0xE(r3)
-	  lbz       r0, 0x7(r4)
-	  stb       r0, 0xF(r3)
-	  b         .loc_0x13C
+lbl_8002DF08:
+	lwz      r0, 0(r3)
+	li       r5, -1
+	cmplwi   r4, 0
+	xor      r0, r7, r0
+	and      r0, r7, r0
+	stw      r0, 4(r3)
+	lwz      r6, 0(r3)
+	xor      r0, r7, r6
+	and      r0, r6, r0
+	stw      r0, 8(r3)
+	stw      r7, 0(r3)
+	lwz      r6, 0x24(r3)
+	lwz      r0, 4(r3)
+	xor      r5, r6, r5
+	lwz      r6, 0x18(r3)
+	and      r0, r5, r0
+	or       r0, r6, r0
+	stw      r0, 0x18(r3)
+	beq      lbl_8002DF78
+	lbz      r0, 8(r4)
+	stb      r0, 0xc(r3)
+	lbz      r0, 9(r4)
+	stb      r0, 0xd(r3)
+	lbz      r0, 6(r4)
+	stb      r0, 0xe(r3)
+	lbz      r0, 7(r4)
+	stb      r0, 0xf(r3)
+	b        lbl_8002DF8C
 
-	.loc_0x128:
-	  li        r0, 0
-	  stb       r0, 0xC(r3)
-	  stb       r0, 0xD(r3)
-	  stb       r0, 0xE(r3)
-	  stb       r0, 0xF(r3)
+lbl_8002DF78:
+	li       r0, 0
+	stb      r0, 0xc(r3)
+	stb      r0, 0xd(r3)
+	stb      r0, 0xe(r3)
+	stb      r0, 0xf(r3)
 
-	.loc_0x13C:
-	  lbz       r4, 0xE(r3)
-	  lis       r0, 0x4330
-	  stw       r0, 0x8(r1)
-	  xoris     r4, r4, 0x8000
-	  lfd       f2, -0x7CF8(r2)
-	  stw       r4, 0xC(r1)
-	  lfs       f1, -0x7D00(r2)
-	  lfd       f0, 0x8(r1)
-	  stw       r0, 0x10(r1)
-	  fsubs     f0, f0, f2
-	  fdivs     f0, f0, f1
-	  stfs      f0, 0x10(r3)
-	  lbz       r0, 0xF(r3)
-	  xoris     r0, r0, 0x8000
-	  stw       r0, 0x14(r1)
-	  lfd       f0, 0x10(r1)
-	  fsubs     f0, f0, f2
-	  fdivs     f0, f0, f1
-	  stfs      f0, 0x14(r3)
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8002DF8C:
+	lbz      r4, 0xe(r3)
+	lis      r0, 0x4330
+	stw      r0, 8(r1)
+	xoris    r4, r4, 0x8000
+	lfd      f2, lbl_80516668@sda21(r2)
+	stw      r4, 0xc(r1)
+	lfs      f1, lbl_80516660@sda21(r2)
+	lfd      f0, 8(r1)
+	stw      r0, 0x10(r1)
+	fsubs    f0, f0, f2
+	fdivs    f0, f0, f1
+	stfs     f0, 0x10(r3)
+	lbz      r0, 0xf(r3)
+	xoris    r0, r0, 0x8000
+	stw      r0, 0x14(r1)
+	lfd      f0, 0x10(r1)
+	fsubs    f0, f0, f2
+	fdivs    f0, f0, f1
+	stfs     f0, 0x14(r3)
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -1057,14 +1191,13 @@ void JUTGamePad::CButton::update(PADStatus const*, unsigned long)
 void JUTGamePad::CStick::clear(void)
 {
 	/*
-	.loc_0x0:
-	  lfs       f0, -0x7CF0(r2)
-	  li        r0, 0
-	  stfs      f0, 0x0(r3)
-	  stfs      f0, 0x4(r3)
-	  stfs      f0, 0x8(r3)
-	  sth       r0, 0xC(r3)
-	  blr
+	lfs      f0, lbl_80516670@sda21(r2)
+	li       r0, 0
+	stfs     f0, 0(r3)
+	stfs     f0, 4(r3)
+	stfs     f0, 8(r3)
+	sth      r0, 0xc(r3)
+	blr
 	*/
 }
 
@@ -1304,64 +1437,63 @@ void JUTGamePad::CStick::update(signed char, signed char,
 void JUTGamePad::CStick::getButton(unsigned long)
 {
 	/*
-	.loc_0x0:
-	  lfs       f1, -0x7FBC(r13)
-	  rlwinm    r0,r4,0,28,31
-	  lfs       f2, 0x0(r3)
-	  fneg      f4, f1
-	  fcmpo     cr0, f4, f2
-	  bge-      .loc_0x28
-	  fcmpo     cr0, f2, f1
-	  bge-      .loc_0x28
-	  rlwinm    r0,r0,0,0,29
-	  b         .loc_0x5C
+	lfs      f1, sReleasePoint__Q210JUTGamePad6CStick@sda21(r13)
+	clrlwi   r0, r4, 0x1c
+	lfs      f2, 0(r3)
+	fneg     f4, f1
+	fcmpo    cr0, f4, f2
+	bge      lbl_8002E2DC
+	fcmpo    cr0, f2, f1
+	bge      lbl_8002E2DC
+	rlwinm   r0, r0, 0, 0, 0x1d
+	b        lbl_8002E310
 
-	.loc_0x28:
-	  lfs       f3, -0x7FC0(r13)
-	  fneg      f0, f3
-	  fcmpo     cr0, f2, f0
-	  cror      2, 0, 0x2
-	  bne-      .loc_0x48
-	  rlwinm    r0,r0,0,31,29
-	  ori       r0, r0, 0x1
-	  b         .loc_0x5C
+lbl_8002E2DC:
+	lfs      f3, sPressPoint__Q210JUTGamePad6CStick@sda21(r13)
+	fneg     f0, f3
+	fcmpo    cr0, f2, f0
+	cror     2, 0, 2
+	bne      lbl_8002E2FC
+	rlwinm   r0, r0, 0, 0x1f, 0x1d
+	ori      r0, r0, 1
+	b        lbl_8002E310
 
-	.loc_0x48:
-	  fcmpo     cr0, f2, f3
-	  cror      2, 0x1, 0x2
-	  bne-      .loc_0x5C
-	  rlwinm    r0,r0,0,0,30
-	  ori       r0, r0, 0x2
+lbl_8002E2FC:
+	fcmpo    cr0, f2, f3
+	cror     2, 1, 2
+	bne      lbl_8002E310
+	rlwinm   r0, r0, 0, 0, 0x1e
+	ori      r0, r0, 2
 
-	.loc_0x5C:
-	  lfs       f2, 0x4(r3)
-	  fcmpo     cr0, f4, f2
-	  bge-      .loc_0x78
-	  fcmpo     cr0, f2, f1
-	  bge-      .loc_0x78
-	  rlwinm    r0,r0,0,30,27
-	  b         .loc_0xAC
+lbl_8002E310:
+	lfs      f2, 4(r3)
+	fcmpo    cr0, f4, f2
+	bge      lbl_8002E32C
+	fcmpo    cr0, f2, f1
+	bge      lbl_8002E32C
+	rlwinm   r0, r0, 0, 0x1e, 0x1b
+	b        lbl_8002E360
 
-	.loc_0x78:
-	  lfs       f1, -0x7FC0(r13)
-	  fneg      f0, f1
-	  fcmpo     cr0, f2, f0
-	  cror      2, 0, 0x2
-	  bne-      .loc_0x98
-	  rlwinm    r0,r0,0,29,27
-	  ori       r0, r0, 0x4
-	  b         .loc_0xAC
+lbl_8002E32C:
+	lfs      f1, sPressPoint__Q210JUTGamePad6CStick@sda21(r13)
+	fneg     f0, f1
+	fcmpo    cr0, f2, f0
+	cror     2, 0, 2
+	bne      lbl_8002E34C
+	rlwinm   r0, r0, 0, 0x1d, 0x1b
+	ori      r0, r0, 4
+	b        lbl_8002E360
 
-	.loc_0x98:
-	  fcmpo     cr0, f2, f1
-	  cror      2, 0x1, 0x2
-	  bne-      .loc_0xAC
-	  rlwinm    r0,r0,0,30,28
-	  ori       r0, r0, 0x8
+lbl_8002E34C:
+	fcmpo    cr0, f2, f1
+	cror     2, 1, 2
+	bne      lbl_8002E360
+	rlwinm   r0, r0, 0, 0x1e, 0x1c
+	ori      r0, r0, 8
 
-	.loc_0xAC:
-	  mr        r3, r0
-	  blr
+lbl_8002E360:
+	mr       r3, r0
+	blr
 	*/
 }
 
@@ -1383,40 +1515,37 @@ void JUTGamePad::CRumble::clear(void)
 void JUTGamePad::CRumble::clear(JUTGamePad*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lha       r5, 0x7C(r4)
-	  extsh.    r0, r5
-	  blt-      .loc_0x40
-	  cmpwi     r5, 0x4
-	  bge-      .loc_0x40
-	  li        r0, 0
-	  subi      r3, r13, 0x773C
-	  stbx      r0, r3, r5
-	  lha       r3, 0x7C(r4)
-	  li        r4, 0x1
-	  bl        .loc_0x74
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lha      r5, 0x7c(r4)
+	extsh.   r0, r5
+	blt      lbl_8002E3A8
+	cmpwi    r5, 4
+	bge      lbl_8002E3A8
+	li       r0, 0
+	addi     r3, r13, mStatus__Q210JUTGamePad7CRumble@sda21
+	stbx     r0, r3, r5
+	lha      r3, 0x7c(r4)
+	li       r4, 1
+	bl       stopMotor__Q210JUTGamePad7CRumbleFib
 
-	.loc_0x40:
-	  li        r3, 0
-	  lis       r0, 0xF000
-	  stw       r3, 0x0(r31)
-	  stw       r3, 0x4(r31)
-	  stw       r3, 0x8(r31)
-	  stw       r3, 0xC(r31)
-	  stw       r3, 0x10(r31)
-	  stw       r0, -0x7738(r13)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-
-	.loc_0x74:
+lbl_8002E3A8:
+	li       r3, 0
+	lis      r0, 0xf000
+	stw      r3, 0(r31)
+	stw      r3, 4(r31)
+	stw      r3, 8(r31)
+	stw      r3, 0xc(r31)
+	stw      r3, 0x10(r31)
+	stw      r0, mEnabled__Q210JUTGamePad7CRumble@sda21(r13)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1438,37 +1567,36 @@ void JUTGamePad::CRumble::startMotor(int)
 void JUTGamePad::CRumble::stopMotor(int, bool)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r5, 0x804A
-	  stw       r0, 0x14(r1)
-	  rlwinm    r0,r3,2,0,29
-	  addi      r5, r5, 0x4A0
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r6, -0x7738(r13)
-	  lwzx      r0, r5, r0
-	  and.      r0, r6, r0
-	  beq-      .loc_0x5C
-	  rlwinm    r5,r4,0,24,31
-	  li        r0, 0x2
-	  neg       r4, r5
-	  or        r4, r4, r5
-	  srawi     r4, r4, 0x1F
-	  and       r0, r0, r4
-	  rlwinm    r4,r0,0,24,31
-	  bl        0xC6004
-	  li        r0, 0
-	  subi      r3, r13, 0x773C
-	  stbx      r0, r3, r31
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lis      r5, sChannelMask__Q210JUTGamePad7CRumble@ha
+	stw      r0, 0x14(r1)
+	slwi     r0, r3, 2
+	addi     r5, r5, sChannelMask__Q210JUTGamePad7CRumble@l
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r6, mEnabled__Q210JUTGamePad7CRumble@sda21(r13)
+	lwzx     r0, r5, r0
+	and.     r0, r6, r0
+	beq      lbl_8002E438
+	clrlwi   r5, r4, 0x18
+	li       r0, 2
+	neg      r4, r5
+	or       r4, r4, r5
+	srawi    r4, r4, 0x1f
+	and      r0, r0, r4
+	clrlwi   r4, r0, 0x18
+	bl       PADControlMotor
+	li       r0, 0
+	addi     r3, r13, mStatus__Q210JUTGamePad7CRumble@sda21
+	stbx     r0, r3, r31
 
-	.loc_0x5C:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8002E438:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1490,176 +1618,175 @@ void getNumBit(unsigned char*, int)
 void JUTGamePad::CRumble::update(short)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r5, 0x804A
-	  stw       r0, 0x14(r1)
-	  addi      r5, r5, 0x4A0
-	  stw       r31, 0xC(r1)
-	  extsh     r31, r4
-	  rlwinm    r0,r31,2,0,29
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lwz       r6, -0x7738(r13)
-	  lwzx      r3, r5, r0
-	  and       r6, r6, r3
-	  neg       r3, r6
-	  or        r3, r3, r6
-	  rlwinm.   r3,r3,1,31,31
-	  bne-      .loc_0x5C
-	  li        r3, 0
-	  stw       r3, 0x0(r30)
-	  stw       r3, 0x4(r30)
-	  stw       r3, 0x8(r30)
-	  stw       r3, 0xC(r30)
-	  stw       r3, 0x10(r30)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lis      r5, sChannelMask__Q210JUTGamePad7CRumble@ha
+	stw      r0, 0x14(r1)
+	addi     r5, r5, sChannelMask__Q210JUTGamePad7CRumble@l
+	stw      r31, 0xc(r1)
+	extsh    r31, r4
+	slwi     r0, r31, 2
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lwz      r6, mEnabled__Q210JUTGamePad7CRumble@sda21(r13)
+	lwzx     r3, r5, r0
+	and      r6, r6, r3
+	neg      r3, r6
+	or       r3, r3, r6
+	rlwinm.  r3, r3, 1, 0x1f, 0x1f
+	bne      lbl_8002E4A8
+	li       r3, 0
+	stw      r3, 0(r30)
+	stw      r3, 4(r30)
+	stw      r3, 8(r30)
+	stw      r3, 0xc(r30)
+	stw      r3, 0x10(r30)
 
-	.loc_0x5C:
-	  lwz       r3, 0x4(r30)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x244
-	  lwz       r10, 0x0(r30)
-	  cmplw     r10, r3
-	  blt-      .loc_0xA8
-	  lwz       r3, -0x7738(r13)
-	  lwzx      r0, r5, r0
-	  and.      r0, r3, r0
-	  beq-      .loc_0x9C
-	  mr        r3, r31
-	  li        r4, 0x2
-	  bl        0xC5F54
-	  li        r0, 0
-	  subi      r3, r13, 0x773C
-	  stbx      r0, r3, r31
+lbl_8002E4A8:
+	lwz      r3, 4(r30)
+	cmplwi   r3, 0
+	beq      lbl_8002E690
+	lwz      r10, 0(r30)
+	cmplw    r10, r3
+	blt      lbl_8002E4F4
+	lwz      r3, mEnabled__Q210JUTGamePad7CRumble@sda21(r13)
+	lwzx     r0, r5, r0
+	and.     r0, r3, r0
+	beq      lbl_8002E4E8
+	mr       r3, r31
+	li       r4, 2
+	bl       PADControlMotor
+	li       r0, 0
+	addi     r3, r13, mStatus__Q210JUTGamePad7CRumble@sda21
+	stbx     r0, r3, r31
 
-	.loc_0x9C:
-	  li        r0, 0
-	  stw       r0, 0x4(r30)
-	  b         .loc_0x238
+lbl_8002E4E8:
+	li       r0, 0
+	stw      r0, 4(r30)
+	b        lbl_8002E684
 
-	.loc_0xA8:
-	  lwz       r9, 0xC(r30)
-	  cmplwi    r9, 0
-	  bne-      .loc_0xF4
-	  extsh     r4, r4
-	  subi      r3, r13, 0x773C
-	  lbzx      r3, r3, r4
-	  cmplwi    r3, 0
-	  bne-      .loc_0x244
-	  lwz       r3, -0x7738(r13)
-	  lwzx      r0, r5, r0
-	  and.      r0, r3, r0
-	  beq-      .loc_0x244
-	  mr        r3, r31
-	  li        r4, 0x1
-	  bl        0xC5F00
-	  li        r0, 0x1
-	  subi      r3, r13, 0x773C
-	  stbx      r0, r3, r31
-	  b         .loc_0x244
+lbl_8002E4F4:
+	lwz      r9, 0xc(r30)
+	cmplwi   r9, 0
+	bne      lbl_8002E540
+	extsh    r4, r4
+	addi     r3, r13, mStatus__Q210JUTGamePad7CRumble@sda21
+	lbzx     r3, r3, r4
+	cmplwi   r3, 0
+	bne      lbl_8002E690
+	lwz      r3, mEnabled__Q210JUTGamePad7CRumble@sda21(r13)
+	lwzx     r0, r5, r0
+	and.     r0, r3, r0
+	beq      lbl_8002E690
+	mr       r3, r31
+	li       r4, 1
+	bl       PADControlMotor
+	li       r0, 1
+	addi     r3, r13, mStatus__Q210JUTGamePad7CRumble@sda21
+	stbx     r0, r3, r31
+	b        lbl_8002E690
 
-	.loc_0xF4:
-	  divwu     r6, r10, r9
-	  extsh     r4, r4
-	  subi      r3, r13, 0x773C
-	  lwz       r7, 0x8(r30)
-	  lbzx      r4, r3, r4
-	  li        r8, 0x80
-	  mullw     r9, r6, r9
-	  neg       r3, r4
-	  or        r3, r3, r4
-	  rlwinm    r6,r3,1,31,31
-	  sub       r9, r10, r9
-	  rlwinm    r3,r9,0,29,31
-	  sraw      r4, r8, r3
-	  srawi     r3, r9, 0x3
-	  lbzx      r3, r7, r3
-	  and       r3, r4, r3
-	  rlwinm    r4,r3,0,24,31
-	  neg       r3, r4
-	  or        r3, r3, r4
-	  rlwinm.   r3,r3,1,31,31
-	  beq-      .loc_0x17C
-	  cmplwi    r6, 0
-	  bne-      .loc_0x17C
-	  lwz       r3, -0x7738(r13)
-	  lwzx      r0, r5, r0
-	  and.      r0, r3, r0
-	  beq-      .loc_0x238
-	  mr        r3, r31
-	  li        r4, 0x1
-	  bl        0xC5E78
-	  li        r0, 0x1
-	  subi      r3, r13, 0x773C
-	  stbx      r0, r3, r31
-	  b         .loc_0x238
+lbl_8002E540:
+	divwu    r6, r10, r9
+	extsh    r4, r4
+	addi     r3, r13, mStatus__Q210JUTGamePad7CRumble@sda21
+	lwz      r7, 8(r30)
+	lbzx     r4, r3, r4
+	li       r8, 0x80
+	mullw    r9, r6, r9
+	neg      r3, r4
+	or       r3, r3, r4
+	srwi     r6, r3, 0x1f
+	subf     r9, r9, r10
+	clrlwi   r3, r9, 0x1d
+	sraw     r4, r8, r3
+	srawi    r3, r9, 3
+	lbzx     r3, r7, r3
+	and      r3, r4, r3
+	clrlwi   r4, r3, 0x18
+	neg      r3, r4
+	or       r3, r3, r4
+	rlwinm.  r3, r3, 1, 0x1f, 0x1f
+	beq      lbl_8002E5C8
+	cmplwi   r6, 0
+	bne      lbl_8002E5C8
+	lwz      r3, mEnabled__Q210JUTGamePad7CRumble@sda21(r13)
+	lwzx     r0, r5, r0
+	and.     r0, r3, r0
+	beq      lbl_8002E684
+	mr       r3, r31
+	li       r4, 1
+	bl       PADControlMotor
+	li       r0, 1
+	addi     r3, r13, mStatus__Q210JUTGamePad7CRumble@sda21
+	stbx     r0, r3, r31
+	b        lbl_8002E684
 
-	.loc_0x17C:
-	  cmplwi    r3, 0
-	  bne-      .loc_0x238
-	  lwz       r7, 0x10(r30)
-	  li        r4, 0
-	  cmplwi    r7, 0
-	  beq-      .loc_0x1BC
-	  rlwinm    r3,r9,0,29,31
-	  li        r4, 0x80
-	  sraw      r4, r4, r3
-	  srawi     r3, r9, 0x3
-	  lbzx      r3, r7, r3
-	  and       r3, r4, r3
-	  rlwinm    r4,r3,0,24,31
-	  neg       r3, r4
-	  or        r3, r3, r4
-	  rlwinm    r4,r3,1,31,31
+lbl_8002E5C8:
+	cmplwi   r3, 0
+	bne      lbl_8002E684
+	lwz      r7, 0x10(r30)
+	li       r4, 0
+	cmplwi   r7, 0
+	beq      lbl_8002E608
+	clrlwi   r3, r9, 0x1d
+	li       r4, 0x80
+	sraw     r4, r4, r3
+	srawi    r3, r9, 3
+	lbzx     r3, r7, r3
+	and      r3, r4, r3
+	clrlwi   r4, r3, 0x18
+	neg      r3, r4
+	or       r3, r3, r4
+	srwi     r4, r3, 0x1f
 
-	.loc_0x1BC:
-	  cmplwi    r6, 0
-	  beq-      .loc_0x208
-	  lwz       r3, -0x7738(r13)
-	  lwzx      r0, r5, r0
-	  and.      r0, r3, r0
-	  beq-      .loc_0x238
-	  rlwinm    r5,r4,0,24,31
-	  li        r0, 0x2
-	  neg       r4, r5
-	  mr        r3, r31
-	  or        r4, r4, r5
-	  srawi     r4, r4, 0x1F
-	  and       r0, r0, r4
-	  rlwinm    r4,r0,0,24,31
-	  bl        0xC5DEC
-	  li        r0, 0
-	  subi      r3, r13, 0x773C
-	  stbx      r0, r3, r31
-	  b         .loc_0x238
+lbl_8002E608:
+	cmplwi   r6, 0
+	beq      lbl_8002E654
+	lwz      r3, mEnabled__Q210JUTGamePad7CRumble@sda21(r13)
+	lwzx     r0, r5, r0
+	and.     r0, r3, r0
+	beq      lbl_8002E684
+	clrlwi   r5, r4, 0x18
+	li       r0, 2
+	neg      r4, r5
+	mr       r3, r31
+	or       r4, r4, r5
+	srawi    r4, r4, 0x1f
+	and      r0, r0, r4
+	clrlwi   r4, r0, 0x18
+	bl       PADControlMotor
+	li       r0, 0
+	addi     r3, r13, mStatus__Q210JUTGamePad7CRumble@sda21
+	stbx     r0, r3, r31
+	b        lbl_8002E684
 
-	.loc_0x208:
-	  rlwinm.   r3,r4,0,24,31
-	  beq-      .loc_0x238
-	  lwz       r3, -0x7738(r13)
-	  lwzx      r0, r5, r0
-	  and.      r0, r3, r0
-	  beq-      .loc_0x238
-	  mr        r3, r31
-	  li        r4, 0x2
-	  bl        0xC5DB8
-	  li        r0, 0
-	  subi      r3, r13, 0x773C
-	  stbx      r0, r3, r31
+lbl_8002E654:
+	clrlwi.  r3, r4, 0x18
+	beq      lbl_8002E684
+	lwz      r3, mEnabled__Q210JUTGamePad7CRumble@sda21(r13)
+	lwzx     r0, r5, r0
+	and.     r0, r3, r0
+	beq      lbl_8002E684
+	mr       r3, r31
+	li       r4, 2
+	bl       PADControlMotor
+	li       r0, 0
+	addi     r3, r13, mStatus__Q210JUTGamePad7CRumble@sda21
+	stbx     r0, r3, r31
 
-	.loc_0x238:
-	  lwz       r3, 0x0(r30)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x0(r30)
+lbl_8002E684:
+	lwz      r3, 0(r30)
+	addi     r0, r3, 1
+	stw      r0, 0(r30)
 
-	.loc_0x244:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8002E690:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1733,94 +1860,93 @@ void JUTGamePad::getGamePad(int)
 void JUTGamePad::CRumble::setEnabled(unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r5, 0x804A
-	  lis       r4, 0x804A
-	  stw       r0, 0x24(r1)
-	  stmw      r26, 0x8(r1)
-	  addi      r31, r5, 0x4B0
-	  mr        r26, r3
-	  addi      r29, r4, 0x4A0
-	  li        r27, 0
-	  subi      r30, r13, 0x773C
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lis      r5, channel_mask@ha
+	lis      r4, sChannelMask__Q210JUTGamePad7CRumble@ha
+	stw      r0, 0x24(r1)
+	stmw     r26, 8(r1)
+	addi     r31, r5, channel_mask@l
+	mr       r26, r3
+	addi     r29, r4, sChannelMask__Q210JUTGamePad7CRumble@l
+	li       r27, 0
+	addi     r30, r13, mStatus__Q210JUTGamePad7CRumble@sda21
 
-	.loc_0x2C:
-	  lwz       r3, -0x7738(r13)
-	  lwz       r0, 0x0(r31)
-	  and.      r0, r3, r0
-	  bne-      .loc_0xF0
-	  lbz       r0, 0x0(r30)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x68
-	  lwz       r0, 0x0(r29)
-	  and.      r0, r3, r0
-	  beq-      .loc_0x68
-	  mr        r3, r27
-	  li        r4, 0
-	  bl        0xC5D28
-	  li        r0, 0
-	  stb       r0, 0x0(r30)
+lbl_8002E6D4:
+	lwz      r3, mEnabled__Q210JUTGamePad7CRumble@sda21(r13)
+	lwz      r0, 0(r31)
+	and.     r0, r3, r0
+	bne      lbl_8002E798
+	lbz      r0, 0(r30)
+	cmplwi   r0, 0
+	beq      lbl_8002E710
+	lwz      r0, 0(r29)
+	and.     r0, r3, r0
+	beq      lbl_8002E710
+	mr       r3, r27
+	li       r4, 0
+	bl       PADControlMotor
+	li       r0, 0
+	stb      r0, 0(r30)
 
-	.loc_0x68:
-	  lis       r3, 0x8050
-	  addi      r3, r3, 0x6E80
-	  lwz       r3, 0x0(r3)
-	  b         .loc_0x90
+lbl_8002E710:
+	lis      r3, mPadList__10JUTGamePad@ha
+	addi     r3, r3, mPadList__10JUTGamePad@l
+	lwz      r3, 0(r3)
+	b        lbl_8002E738
 
-	.loc_0x78:
-	  lwz       r4, 0x0(r3)
-	  lha       r0, 0x7C(r4)
-	  cmpw      r27, r0
-	  bne-      .loc_0x8C
-	  b         .loc_0x9C
+lbl_8002E720:
+	lwz      r4, 0(r3)
+	lha      r0, 0x7c(r4)
+	cmpw     r27, r0
+	bne      lbl_8002E734
+	b        lbl_8002E744
 
-	.loc_0x8C:
-	  lwz       r3, 0xC(r3)
+lbl_8002E734:
+	lwz      r3, 0xc(r3)
 
-	.loc_0x90:
-	  cmplwi    r3, 0
-	  bne+      .loc_0x78
-	  li        r4, 0
+lbl_8002E738:
+	cmplwi   r3, 0
+	bne      lbl_8002E720
+	li       r4, 0
 
-	.loc_0x9C:
-	  cmplwi    r4, 0
-	  beq-      .loc_0xF0
-	  lha       r28, 0x7C(r4)
-	  li        r0, 0
-	  lis       r3, 0x804A
-	  stw       r0, 0x6C(r4)
-	  rlwinm    r0,r28,2,0,29
-	  addi      r3, r3, 0x4A0
-	  lwz       r4, -0x7738(r13)
-	  lwzx      r0, r3, r0
-	  and       r3, r4, r0
-	  neg       r0, r3
-	  or        r0, r0, r3
-	  rlwinm.   r0,r0,1,31,31
-	  beq-      .loc_0xF0
-	  mr        r3, r28
-	  li        r4, 0x2
-	  bl        0xC5CA4
-	  li        r0, 0
-	  subi      r3, r13, 0x773C
-	  stbx      r0, r3, r28
+lbl_8002E744:
+	cmplwi   r4, 0
+	beq      lbl_8002E798
+	lha      r28, 0x7c(r4)
+	li       r0, 0
+	lis      r3, sChannelMask__Q210JUTGamePad7CRumble@ha
+	stw      r0, 0x6c(r4)
+	slwi     r0, r28, 2
+	addi     r3, r3, sChannelMask__Q210JUTGamePad7CRumble@l
+	lwz      r4, mEnabled__Q210JUTGamePad7CRumble@sda21(r13)
+	lwzx     r0, r3, r0
+	and      r3, r4, r0
+	neg      r0, r3
+	or       r0, r0, r3
+	rlwinm.  r0, r0, 1, 0x1f, 0x1f
+	beq      lbl_8002E798
+	mr       r3, r28
+	li       r4, 2
+	bl       PADControlMotor
+	li       r0, 0
+	addi     r3, r13, mStatus__Q210JUTGamePad7CRumble@sda21
+	stbx     r0, r3, r28
 
-	.loc_0xF0:
-	  addi      r27, r27, 0x1
-	  addi      r30, r30, 0x1
-	  cmpwi     r27, 0x4
-	  addi      r29, r29, 0x4
-	  addi      r31, r31, 0x4
-	  blt+      .loc_0x2C
-	  rlwinm    r0,r26,0,0,3
-	  stw       r0, -0x7738(r13)
-	  lmw       r26, 0x8(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8002E798:
+	addi     r27, r27, 1
+	addi     r30, r30, 1
+	cmpwi    r27, 4
+	addi     r29, r29, 4
+	addi     r31, r31, 4
+	blt      lbl_8002E6D4
+	rlwinm   r0, r26, 0, 0, 3
+	stw      r0, mEnabled__Q210JUTGamePad7CRumble@sda21(r13)
+	lmw      r26, 8(r1)
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -1832,14 +1958,13 @@ void JUTGamePad::CRumble::setEnabled(unsigned long)
 void JUTGamePad::CButton::setRepeat(unsigned long, unsigned long, unsigned long)
 {
 	/*
-	.loc_0x0:
-	  li        r0, 0
-	  stw       r0, 0x20(r3)
-	  stw       r0, 0x1C(r3)
-	  stw       r4, 0x24(r3)
-	  stw       r5, 0x28(r3)
-	  stw       r6, 0x2C(r3)
-	  blr
+	li       r0, 0
+	stw      r0, 0x20(r3)
+	stw      r0, 0x1c(r3)
+	stw      r4, 0x24(r3)
+	stw      r5, 0x28(r3)
+	stw      r6, 0x2c(r3)
+	blr
 	*/
 }
 
@@ -1851,26 +1976,25 @@ void JUTGamePad::CButton::setRepeat(unsigned long, unsigned long, unsigned long)
 void JUTGamePad::setButtonRepeat(unsigned long, unsigned long, unsigned long)
 {
 	/*
-	.loc_0x0:
-	  li        r8, 0
-	  stw       r8, 0x38(r3)
-	  stw       r8, 0x34(r3)
-	  stw       r4, 0x3C(r3)
-	  stw       r5, 0x40(r3)
-	  stw       r6, 0x44(r3)
-	  lha       r3, 0x7C(r3)
-	  extsh.    r0, r3
-	  bltlr-
-	  mulli     r7, r3, 0x30
-	  lis       r3, 0x8050
-	  addi      r0, r3, 0x7038
-	  add       r3, r0, r7
-	  stw       r8, 0x20(r3)
-	  stw       r8, 0x1C(r3)
-	  stw       r4, 0x24(r3)
-	  stw       r5, 0x28(r3)
-	  stw       r6, 0x2C(r3)
-	  blr
+	li       r8, 0
+	stw      r8, 0x38(r3)
+	stw      r8, 0x34(r3)
+	stw      r4, 0x3c(r3)
+	stw      r5, 0x40(r3)
+	stw      r6, 0x44(r3)
+	lha      r3, 0x7c(r3)
+	extsh.   r0, r3
+	bltlr
+	mulli    r7, r3, 0x30
+	lis      r3, mPadButton__10JUTGamePad@ha
+	addi     r0, r3, mPadButton__10JUTGamePad@l
+	add      r3, r0, r7
+	stw      r8, 0x20(r3)
+	stw      r8, 0x1c(r3)
+	stw      r4, 0x24(r3)
+	stw      r5, 0x28(r3)
+	stw      r6, 0x2c(r3)
+	blr
 	*/
 }
 
@@ -1922,50 +2046,49 @@ void JUTGamePad::clearButtonRepeat(bool)
 void JUTGamePad::recalibrate(unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r4, 0x804A
-	  stw       r0, 0x14(r1)
-	  addi      r5, r4, 0x4B0
-	  li        r0, -0x1
-	  lwz       r6, -0x7748(r13)
-	  lwz       r7, 0x0(r5)
-	  and.      r4, r6, r7
-	  beq-      .loc_0x30
-	  xor       r4, r7, r0
-	  and       r3, r3, r4
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lis      r4, channel_mask@ha
+	stw      r0, 0x14(r1)
+	addi     r5, r4, channel_mask@l
+	li       r0, -1
+	lwz      r6, sSuppressPadReset__10JUTGamePad@sda21(r13)
+	lwz      r7, 0(r5)
+	and.     r4, r6, r7
+	beq      lbl_8002E864
+	xor      r4, r7, r0
+	and      r3, r3, r4
 
-	.loc_0x30:
-	  lwzu      r7, 0x4(r5)
-	  and.      r4, r6, r7
-	  beq-      .loc_0x44
-	  xor       r4, r7, r0
-	  and       r3, r3, r4
+lbl_8002E864:
+	lwzu     r7, 4(r5)
+	and.     r4, r6, r7
+	beq      lbl_8002E878
+	xor      r4, r7, r0
+	and      r3, r3, r4
 
-	.loc_0x44:
-	  lwzu      r7, 0x4(r5)
-	  and.      r4, r6, r7
-	  beq-      .loc_0x58
-	  xor       r4, r7, r0
-	  and       r3, r3, r4
+lbl_8002E878:
+	lwzu     r7, 4(r5)
+	and.     r4, r6, r7
+	beq      lbl_8002E88C
+	xor      r4, r7, r0
+	and      r3, r3, r4
 
-	.loc_0x58:
-	  lwz       r7, 0x4(r5)
-	  and.      r4, r6, r7
-	  beq-      .loc_0x6C
-	  xor       r4, r7, r0
-	  and       r3, r3, r4
+lbl_8002E88C:
+	lwz      r7, 4(r5)
+	and.     r4, r6, r7
+	beq      lbl_8002E8A0
+	xor      r4, r7, r0
+	and      r3, r3, r4
 
-	.loc_0x6C:
-	  bl        0xC5628
-	  neg       r0, r3
-	  or        r0, r0, r3
-	  rlwinm    r3,r0,1,31,31
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8002E8A0:
+	bl       PADRecalibrate
+	neg      r0, r3
+	or       r0, r0, r3
+	srwi     r3, r0, 0x1f
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2019,34 +2142,33 @@ void JUTGamePadLongPress::remove(JUTGamePadLongPress*)
 void JUTGamePadLongPress::checkCallback(int, unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  cmpwi     r4, 0
-	  mr        r6, r3
-	  stw       r0, 0x14(r1)
-	  blt-      .loc_0x54
-	  lwz       r0, 0x1C(r6)
-	  cmplw     r5, r0
-	  blt-      .loc_0x54
-	  li        r0, 0x1
-	  add       r3, r6, r4
-	  stb       r0, 0x11(r6)
-	  stb       r0, 0x48(r3)
-	  lwz       r12, 0x4C(r6)
-	  cmplwi    r12, 0
-	  beq-      .loc_0x54
-	  mr        r3, r4
-	  mr        r4, r6
-	  lwz       r5, 0x50(r6)
-	  mtctr     r12
-	  bctrl
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	cmpwi    r4, 0
+	mr       r6, r3
+	stw      r0, 0x14(r1)
+	blt      lbl_8002E914
+	lwz      r0, 0x1c(r6)
+	cmplw    r5, r0
+	blt      lbl_8002E914
+	li       r0, 1
+	add      r3, r6, r4
+	stb      r0, 0x11(r6)
+	stb      r0, 0x48(r3)
+	lwz      r12, 0x4c(r6)
+	cmplwi   r12, 0
+	beq      lbl_8002E914
+	mr       r3, r4
+	mr       r4, r6
+	lwz      r5, 0x50(r6)
+	mtctr    r12
+	bctrl
 
-	.loc_0x54:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8002E914:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2228,75 +2350,74 @@ JUTGamePadRecord::~JUTGamePadRecord()
 void __sinit_JUTGamePad_cpp(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r3, 0x8050
-	  li        r4, 0
-	  stw       r0, 0x14(r1)
-	  addi      r3, r3, 0x6E80
-	  bl        -0x810C
-	  lis       r3, 0x8050
-	  lis       r4, 0x8003
-	  lis       r5, 0x804F
-	  addi      r3, r3, 0x6E80
-	  subi      r4, r4, 0x1520
-	  addi      r5, r5, 0x3F0
-	  bl        0x92DA8
-	  lis       r3, 0x8050
-	  lis       r4, 0x8003
-	  addi      r3, r3, 0x7038
-	  li        r5, 0
-	  subi      r4, r4, 0x155C
-	  li        r6, 0x30
-	  li        r7, 0x4
-	  bl        0x92EC4
-	  lis       r3, 0x8050
-	  lis       r4, 0x8003
-	  addi      r3, r3, 0x70F8
-	  li        r5, 0
-	  subi      r4, r4, 0x1578
-	  li        r6, 0x10
-	  li        r7, 0x4
-	  bl        0x92EA4
-	  lis       r3, 0x8050
-	  lis       r4, 0x8003
-	  addi      r3, r3, 0x7138
-	  li        r5, 0
-	  subi      r4, r4, 0x1578
-	  li        r6, 0x10
-	  li        r7, 0x4
-	  bl        0x92E84
-	  lis       r3, 0x8000
-	  lis       r4, 0x8889
-	  lwz       r0, 0xF8(r3)
-	  subi      r5, r4, 0x7777
-	  lis       r3, 0x8050
-	  rlwinm    r4,r0,30,2,31
-	  li        r0, 0x1E
-	  mulhwu    r6, r5, r4
-	  li        r5, 0
-	  addi      r3, r3, 0x7178
-	  li        r4, 0
-	  mullw     r5, r5, r0
-	  rlwinm    r6,r6,27,5,31
-	  mulhwu    r0, r6, r0
-	  mulli     r6, r6, 0x1E
-	  add       r0, r0, r5
-	  stw       r0, -0x7728(r13)
-	  stw       r6, -0x7724(r13)
-	  bl        -0x81D4
-	  lis       r3, 0x8050
-	  lis       r4, 0x8003
-	  lis       r5, 0x804F
-	  addi      r3, r3, 0x7178
-	  subi      r4, r4, 0x15CC
-	  addi      r5, r5, 0x3FC
-	  bl        0x92CE0
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lis      r3, mPadList__10JUTGamePad@ha
+	li       r4, 0
+	stw      r0, 0x14(r1)
+	addi     r3, r3, mPadList__10JUTGamePad@l
+	bl       __ct__10JSUPtrListFb
+	lis      r3, mPadList__10JUTGamePad@ha
+	lis      r4, "__dt__21JSUList<10JUTGamePad>Fv"@ha
+	lis      r5, lbl_804F03F0@ha
+	addi     r3, r3, mPadList__10JUTGamePad@l
+	addi     r4, r4, "__dt__21JSUList<10JUTGamePad>Fv"@l
+	addi     r5, r5, lbl_804F03F0@l
+	bl       __register_global_object
+	lis      r3, mPadButton__10JUTGamePad@ha
+	lis      r4, __ct__Q210JUTGamePad7CButtonFv@ha
+	addi     r3, r3, mPadButton__10JUTGamePad@l
+	li       r5, 0
+	addi     r4, r4, __ct__Q210JUTGamePad7CButtonFv@l
+	li       r6, 0x30
+	li       r7, 4
+	bl       __construct_array
+	lis      r3, mPadMStick__10JUTGamePad@ha
+	lis      r4, __ct__Q210JUTGamePad6CStickFv@ha
+	addi     r3, r3, mPadMStick__10JUTGamePad@l
+	li       r5, 0
+	addi     r4, r4, __ct__Q210JUTGamePad6CStickFv@l
+	li       r6, 0x10
+	li       r7, 4
+	bl       __construct_array
+	lis      r3, mPadSStick__10JUTGamePad@ha
+	lis      r4, __ct__Q210JUTGamePad6CStickFv@ha
+	addi     r3, r3, mPadSStick__10JUTGamePad@l
+	li       r5, 0
+	addi     r4, r4, __ct__Q210JUTGamePad6CStickFv@l
+	li       r6, 0x10
+	li       r7, 4
+	bl       __construct_array
+	lis      r3, 0x800000F8@ha
+	lis      r4, 0x88888889@ha
+	lwz      r0, 0x800000F8@l(r3)
+	addi     r5, r4, 0x88888889@l
+	lis      r3, sPatternList__19JUTGamePadLongPress@ha
+	srwi     r4, r0, 2
+	li       r0, 0x1e
+	mulhwu   r6, r5, r4
+	li       r5, 0
+	addi     r3, r3, sPatternList__19JUTGamePadLongPress@l
+	li       r4, 0
+	mullw    r5, r5, r0
+	srwi     r6, r6, 5
+	mulhwu   r0, r6, r0
+	mulli    r6, r6, 0x1e
+	add      r0, r0, r5
+	stw      r0, sThreshold__Q210JUTGamePad13C3ButtonReset@sda21(r13)
+	stw      r6, lbl_80514F5C@sda21(r13)
+	bl       __ct__10JSUPtrListFb
+	lis      r3, sPatternList__19JUTGamePadLongPress@ha
+	lis      r4, "__dt__30JSUList<19JUTGamePadLongPress>Fv"@ha
+	lis      r5, lbl_804F03FC@ha
+	addi     r3, r3, sPatternList__19JUTGamePadLongPress@l
+	addi     r4, r4, "__dt__30JSUList<19JUTGamePadLongPress>Fv"@l
+	addi     r5, r5, lbl_804F03FC@l
+	bl       __register_global_object
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2308,30 +2429,29 @@ void __sinit_JUTGamePad_cpp(void)
 void JSUList<JUTGamePadLongPress>::~JSUList()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x38
-	  li        r4, 0
-	  bl        -0x81F0
-	  extsh.    r0, r31
-	  ble-      .loc_0x38
-	  mr        r3, r30
-	  bl        -0xA9B4
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_8002EA6C
+	li       r4, 0
+	bl       __dt__10JSUPtrListFv
+	extsh.   r0, r31
+	ble      lbl_8002EA6C
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x38:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8002EA6C:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2343,14 +2463,13 @@ void JSUList<JUTGamePadLongPress>::~JSUList()
 JUTGamePad::CStick::CStick(void)
 {
 	/*
-	.loc_0x0:
-	  lfs       f0, -0x7CF0(r2)
-	  li        r0, 0
-	  stfs      f0, 0x0(r3)
-	  stfs      f0, 0x4(r3)
-	  stfs      f0, 0x8(r3)
-	  sth       r0, 0xC(r3)
-	  blr
+	lfs      f0, lbl_80516670@sda21(r2)
+	li       r0, 0
+	stfs     f0, 0(r3)
+	stfs     f0, 4(r3)
+	stfs     f0, 8(r3)
+	sth      r0, 0xc(r3)
+	blr
 	*/
 }
 
@@ -2362,22 +2481,21 @@ JUTGamePad::CStick::CStick(void)
 JUTGamePad::CButton::CButton(void)
 {
 	/*
-	.loc_0x0:
-	  li        r0, 0
-	  stw       r0, 0x0(r3)
-	  stw       r0, 0x4(r3)
-	  stw       r0, 0x8(r3)
-	  stw       r0, 0x18(r3)
-	  stb       r0, 0xC(r3)
-	  stb       r0, 0xD(r3)
-	  stb       r0, 0xE(r3)
-	  stb       r0, 0xF(r3)
-	  stw       r0, 0x1C(r3)
-	  stw       r0, 0x20(r3)
-	  stw       r0, 0x24(r3)
-	  stw       r0, 0x28(r3)
-	  stw       r0, 0x2C(r3)
-	  blr
+	li       r0, 0
+	stw      r0, 0(r3)
+	stw      r0, 4(r3)
+	stw      r0, 8(r3)
+	stw      r0, 0x18(r3)
+	stb      r0, 0xc(r3)
+	stb      r0, 0xd(r3)
+	stb      r0, 0xe(r3)
+	stb      r0, 0xf(r3)
+	stw      r0, 0x1c(r3)
+	stw      r0, 0x20(r3)
+	stw      r0, 0x24(r3)
+	stw      r0, 0x28(r3)
+	stw      r0, 0x2c(r3)
+	blr
 	*/
 }
 
@@ -2389,29 +2507,28 @@ JUTGamePad::CButton::CButton(void)
 void JSUList<JUTGamePad>::~JSUList()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x38
-	  li        r4, 0
-	  bl        -0x829C
-	  extsh.    r0, r31
-	  ble-      .loc_0x38
-	  mr        r3, r30
-	  bl        -0xAA60
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_8002EB18
+	li       r4, 0
+	bl       __dt__10JSUPtrListFv
+	extsh.   r0, r31
+	ble      lbl_8002EB18
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x38:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8002EB18:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }

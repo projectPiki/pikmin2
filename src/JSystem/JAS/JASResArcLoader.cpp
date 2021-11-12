@@ -1,6 +1,10 @@
 #include "types.h"
 
 /*
+    Generated from dpostproc
+*/
+
+/*
  * --INFO--
  * Address:	800A7670
  * Size:	000034
@@ -8,24 +12,23 @@
 void JASResArcLoader::getResSize(JKRArchive*, unsigned short)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  bl        -0x8C7C8
-	  cmplwi    r3, 0
-	  bne-      .loc_0x20
-	  li        r3, 0
-	  b         .loc_0x24
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	bl       findIdResource__10JKRArchiveCFUs
+	cmplwi   r3, 0
+	bne      lbl_800A7690
+	li       r3, 0
+	b        lbl_800A7694
 
-	.loc_0x20:
-	  lwz       r3, 0xC(r3)
+lbl_800A7690:
+	lwz      r3, 0xc(r3)
 
-	.loc_0x24:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_800A7694:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -37,52 +40,51 @@ void JASResArcLoader::getResSize(JKRArchive*, unsigned short)
 void JASResArcLoader::loadResourceCallback(void*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lwz       r3, 0x0(r3)
-	  lwz       r4, 0x8(r30)
-	  lwz       r5, 0xC(r30)
-	  lhz       r6, 0x4(r30)
-	  bl        -0x8BE30
-	  lwz       r12, 0x10(r30)
-	  mr        r31, r3
-	  cmplwi    r12, 0
-	  beq-      .loc_0x48
-	  lwz       r4, 0x14(r30)
-	  mtctr     r12
-	  bctrl
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lwz      r3, 0(r3)
+	lwz      r4, 8(r30)
+	lwz      r5, 0xc(r30)
+	lhz      r6, 4(r30)
+	bl       readResource__10JKRArchiveFPvUlUs
+	lwz      r12, 0x10(r30)
+	mr       r31, r3
+	cmplwi   r12, 0
+	beq      lbl_800A76EC
+	lwz      r4, 0x14(r30)
+	mtctr    r12
+	bctrl
 
-	.loc_0x48:
-	  cmplwi    r31, 0
-	  bne-      .loc_0x6C
-	  lwz       r3, 0x18(r30)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x84
-	  li        r4, -0x1
-	  li        r5, 0x1
-	  bl        0x47E14
-	  b         .loc_0x84
+lbl_800A76EC:
+	cmplwi   r31, 0
+	bne      lbl_800A7710
+	lwz      r3, 0x18(r30)
+	cmplwi   r3, 0
+	beq      lbl_800A7728
+	li       r4, -1
+	li       r5, 1
+	bl       OSSendMessage
+	b        lbl_800A7728
 
-	.loc_0x6C:
-	  lwz       r3, 0x18(r30)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x84
-	  li        r4, 0
-	  li        r5, 0x1
-	  bl        0x47DF8
+lbl_800A7710:
+	lwz      r3, 0x18(r30)
+	cmplwi   r3, 0
+	beq      lbl_800A7728
+	li       r4, 0
+	li       r5, 1
+	bl       OSSendMessage
 
-	.loc_0x84:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_800A7728:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 

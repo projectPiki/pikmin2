@@ -1,5 +1,425 @@
 #include "types.h"
 
+/*
+    Generated from dpostproc
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_80496F18
+    lbl_80496F18:
+        .4byte 0x65626953
+        .4byte 0x63726565
+        .4byte 0x6E46696C
+        .4byte 0x6553656C
+        .4byte 0x6563745F
+        .4byte 0x4D677200
+        .4byte 0x4F70656E
+        .4byte 0x5363656E
+        .4byte 0x65000000
+        .4byte 0x43686563
+        .4byte 0x6B446174
+        .4byte 0x61000000
+        .4byte 0x44656369
+        .4byte 0x64654461
+        .4byte 0x74610000
+        .4byte 0x53656C65
+        .4byte 0x63744461
+        .4byte 0x74610000
+        .4byte 0x44617461
+        .4byte 0x42726F6B
+        .4byte 0x656E0000
+        .4byte 0x4E6F7744
+        .4byte 0x656C6574
+        .4byte 0x65000000
+        .4byte 0x446F596F
+        .4byte 0x7544656C
+        .4byte 0x65746500
+        .4byte 0x57686963
+        .4byte 0x68446174
+        .4byte 0x61446F59
+        .4byte 0x6F75436F
+        .4byte 0x7079546F
+        .4byte 0x00000000
+        .4byte 0x4661696C
+        .4byte 0x546F4465
+        .4byte 0x6C657465
+        .4byte 0x00000000
+        .4byte 0x46696E69
+        .4byte 0x73684465
+        .4byte 0x6C657465
+        .4byte 0x00000000
+        .4byte 0x446F596F
+        .4byte 0x754F7665
+        .4byte 0x72777269
+        .4byte 0x74650000
+        .4byte 0x4661696C
+        .4byte 0x546F436F
+        .4byte 0x70790000
+        .4byte 0x46696E69
+        .4byte 0x7368436F
+        .4byte 0x70790000
+    .global lbl_80496FE4
+    lbl_80496FE4:
+        .4byte 0x65626953
+        .4byte 0x63726565
+        .4byte 0x6E46696C
+        .4byte 0x6553656C
+        .4byte 0x6563745F
+        .4byte 0x4D67722E
+        .4byte 0x63707000
+    .global lbl_80497000
+    lbl_80497000:
+        .asciz "P2Assert"
+        .skip 3
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global "__vt__Q24Game28StateMachine<Q33ebi2FS4TMgr>"
+    "__vt__Q24Game28StateMachine<Q33ebi2FS4TMgr>":
+        .4byte 0
+        .4byte 0
+        .4byte "init__Q24Game28StateMachine<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgr"
+        .4byte
+   "start__Q24Game28StateMachine<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgriPQ24Game8StateArg"
+        .4byte "exec__Q24Game28StateMachine<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgr"
+        .4byte
+   "transit__Q24Game28StateMachine<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgriPQ24Game8StateArg"
+    .global __vt__Q33ebi2FS31FSMState04_WhichDataDoYouCopyTo
+    __vt__Q33ebi2FS31FSMState04_WhichDataDoYouCopyTo:
+        .4byte 0
+        .4byte 0
+        .4byte init__Q33ebi2FS8FSMStateFPQ33ebi2FS4TMgrPQ24Game8StateArg
+        .4byte exec__Q33ebi2FS8FSMStateFPQ33ebi2FS4TMgr
+        .4byte "cleanup__Q24Game24FSMState<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgr"
+        .4byte "resume__Q24Game24FSMState<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgr"
+        .4byte "restart__Q24Game24FSMState<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgr"
+        .4byte
+   "transit__Q24Game24FSMState<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgriPQ24Game8StateArg"
+        .4byte
+   do_init__Q33ebi2FS31FSMState04_WhichDataDoYouCopyToFPQ33ebi2FS4TMgrPQ24Game8StateArg
+        .4byte
+   do_exec__Q33ebi2FS31FSMState04_WhichDataDoYouCopyToFPQ33ebi2FS4TMgr .global
+   __vt__Q33ebi2FS22FSMState00c_DecideData
+    __vt__Q33ebi2FS22FSMState00c_DecideData:
+        .4byte 0
+        .4byte 0
+        .4byte init__Q33ebi2FS8FSMStateFPQ33ebi2FS4TMgrPQ24Game8StateArg
+        .4byte exec__Q33ebi2FS8FSMStateFPQ33ebi2FS4TMgr
+        .4byte "cleanup__Q24Game24FSMState<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgr"
+        .4byte "resume__Q24Game24FSMState<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgr"
+        .4byte "restart__Q24Game24FSMState<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgr"
+        .4byte
+   "transit__Q24Game24FSMState<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgriPQ24Game8StateArg"
+        .4byte
+   do_init__Q33ebi2FS22FSMState00c_DecideDataFPQ33ebi2FS4TMgrPQ24Game8StateArg
+        .4byte do_exec__Q33ebi2FS22FSMState00c_DecideDataFPQ33ebi2FS4TMgr
+    .global __vt__Q33ebi2FS21FSMState00b_CheckData
+    __vt__Q33ebi2FS21FSMState00b_CheckData:
+        .4byte 0
+        .4byte 0
+        .4byte init__Q33ebi2FS8FSMStateFPQ33ebi2FS4TMgrPQ24Game8StateArg
+        .4byte exec__Q33ebi2FS8FSMStateFPQ33ebi2FS4TMgr
+        .4byte "cleanup__Q24Game24FSMState<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgr"
+        .4byte "resume__Q24Game24FSMState<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgr"
+        .4byte "restart__Q24Game24FSMState<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgr"
+        .4byte
+   "transit__Q24Game24FSMState<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgriPQ24Game8StateArg"
+        .4byte
+   do_init__Q33ebi2FS21FSMState00b_CheckDataFPQ33ebi2FS4TMgrPQ24Game8StateArg
+        .4byte do_exec__Q33ebi2FS21FSMState00b_CheckDataFPQ33ebi2FS4TMgr
+    .global __vt__Q33ebi2FS21FSMState00_SelectData
+    __vt__Q33ebi2FS21FSMState00_SelectData:
+        .4byte 0
+        .4byte 0
+        .4byte init__Q33ebi2FS8FSMStateFPQ33ebi2FS4TMgrPQ24Game8StateArg
+        .4byte exec__Q33ebi2FS8FSMStateFPQ33ebi2FS4TMgr
+        .4byte "cleanup__Q24Game24FSMState<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgr"
+        .4byte "resume__Q24Game24FSMState<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgr"
+        .4byte "restart__Q24Game24FSMState<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgr"
+        .4byte
+   "transit__Q24Game24FSMState<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgriPQ24Game8StateArg"
+        .4byte
+   do_init__Q33ebi2FS21FSMState00_SelectDataFPQ33ebi2FS4TMgrPQ24Game8StateArg
+        .4byte do_exec__Q33ebi2FS21FSMState00_SelectDataFPQ33ebi2FS4TMgr
+    .global __vt__Q33ebi2FS21FSMState00a_OpenScene
+    __vt__Q33ebi2FS21FSMState00a_OpenScene:
+        .4byte 0
+        .4byte 0
+        .4byte init__Q33ebi2FS8FSMStateFPQ33ebi2FS4TMgrPQ24Game8StateArg
+        .4byte exec__Q33ebi2FS8FSMStateFPQ33ebi2FS4TMgr
+        .4byte "cleanup__Q24Game24FSMState<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgr"
+        .4byte "resume__Q24Game24FSMState<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgr"
+        .4byte "restart__Q24Game24FSMState<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgr"
+        .4byte
+   "transit__Q24Game24FSMState<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgriPQ24Game8StateArg"
+        .4byte
+   do_init__Q33ebi2FS21FSMState00a_OpenSceneFPQ33ebi2FS4TMgrPQ24Game8StateArg
+        .4byte do_exec__Q33ebi2FS21FSMState00a_OpenSceneFPQ33ebi2FS4TMgr
+    .global __vt__Q33ebi2FS18FSMState09_NowCopy
+    __vt__Q33ebi2FS18FSMState09_NowCopy:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q33ebi2FS17FSMState_CardTaskFPQ33ebi2FS4TMgrPQ24Game8StateArg .4byte
+   exec__Q33ebi2FS17FSMState_CardTaskFPQ33ebi2FS4TMgr .4byte
+   cleanup__Q33ebi2FS18FSMState09_NowCopyFPQ33ebi2FS4TMgr .4byte
+   "resume__Q24Game24FSMState<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgr" .4byte
+   "restart__Q24Game24FSMState<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgr" .4byte
+   "transit__Q24Game24FSMState<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgriPQ24Game8StateArg"
+        .4byte
+   do_init__Q33ebi2FS18FSMState09_NowCopyFPQ33ebi2FS4TMgrPQ24Game8StateArg
+        .4byte do_exec__Q33ebi2FS8FSMStateFPQ33ebi2FS4TMgr
+        .4byte do_cardRequest__Q33ebi2FS18FSMState09_NowCopyFPQ33ebi2FS4TMgr
+        .4byte
+   do_transitCardReady__Q33ebi2FS18FSMState09_NowCopyFPQ33ebi2FS4TMgr .4byte
+   do_transitCardNoCard__Q33ebi2FS18FSMState09_NowCopyFPQ33ebi2FS4TMgr .4byte
+   do_transitCardIOError__Q33ebi2FS18FSMState09_NowCopyFPQ33ebi2FS4TMgr .4byte
+   do_transitCardPlayerDataBroken__Q33ebi2FS17FSMState_CardTaskFPQ33ebi2FS4TMgr
+        .4byte do_close__Q33ebi2FS18FSMState09_NowCopyFPQ33ebi2FS4TMgr
+    .global __vt__Q33ebi2FS20FSMState02_NowDelete
+    __vt__Q33ebi2FS20FSMState02_NowDelete:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q33ebi2FS17FSMState_CardTaskFPQ33ebi2FS4TMgrPQ24Game8StateArg .4byte
+   exec__Q33ebi2FS17FSMState_CardTaskFPQ33ebi2FS4TMgr .4byte
+   cleanup__Q33ebi2FS20FSMState02_NowDeleteFPQ33ebi2FS4TMgr .4byte
+   "resume__Q24Game24FSMState<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgr" .4byte
+   "restart__Q24Game24FSMState<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgr" .4byte
+   "transit__Q24Game24FSMState<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgriPQ24Game8StateArg"
+        .4byte
+   do_init__Q33ebi2FS20FSMState02_NowDeleteFPQ33ebi2FS4TMgrPQ24Game8StateArg
+        .4byte do_exec__Q33ebi2FS8FSMStateFPQ33ebi2FS4TMgr
+        .4byte do_cardRequest__Q33ebi2FS20FSMState02_NowDeleteFPQ33ebi2FS4TMgr
+        .4byte
+   do_transitCardReady__Q33ebi2FS20FSMState02_NowDeleteFPQ33ebi2FS4TMgr .4byte
+   do_transitCardNoCard__Q33ebi2FS20FSMState02_NowDeleteFPQ33ebi2FS4TMgr .4byte
+   do_transitCardIOError__Q33ebi2FS20FSMState02_NowDeleteFPQ33ebi2FS4TMgr .4byte
+   do_transitCardPlayerDataBroken__Q33ebi2FS17FSMState_CardTaskFPQ33ebi2FS4TMgr
+        .4byte do_close__Q33ebi2FS20FSMState02_NowDeleteFPQ33ebi2FS4TMgr
+    .global __vt__Q33ebi2FS17FSMState_CardTask
+    __vt__Q33ebi2FS17FSMState_CardTask:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q33ebi2FS17FSMState_CardTaskFPQ33ebi2FS4TMgrPQ24Game8StateArg .4byte
+   exec__Q33ebi2FS17FSMState_CardTaskFPQ33ebi2FS4TMgr .4byte
+   "cleanup__Q24Game24FSMState<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgr" .4byte
+   "resume__Q24Game24FSMState<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgr" .4byte
+   "restart__Q24Game24FSMState<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgr" .4byte
+   "transit__Q24Game24FSMState<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgriPQ24Game8StateArg"
+        .4byte
+   do_init__Q33ebi2FS17FSMState_CardTaskFPQ33ebi2FS4TMgrPQ24Game8StateArg .4byte
+   do_exec__Q33ebi2FS8FSMStateFPQ33ebi2FS4TMgr .4byte 0 .4byte 0 .4byte 0 .4byte
+   0 .4byte
+   do_transitCardPlayerDataBroken__Q33ebi2FS17FSMState_CardTaskFPQ33ebi2FS4TMgr
+        .4byte do_close__Q33ebi2FS17FSMState_CardTaskFPQ33ebi2FS4TMgr
+    .global __vt__Q33ebi2FS21FSMState10_FinishCopy
+    __vt__Q33ebi2FS21FSMState10_FinishCopy:
+        .4byte 0
+        .4byte 0
+        .4byte init__Q33ebi2FS8FSMStateFPQ33ebi2FS4TMgrPQ24Game8StateArg
+        .4byte exec__Q33ebi2FS8FSMStateFPQ33ebi2FS4TMgr
+        .4byte "cleanup__Q24Game24FSMState<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgr"
+        .4byte "resume__Q24Game24FSMState<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgr"
+        .4byte "restart__Q24Game24FSMState<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgr"
+        .4byte
+   "transit__Q24Game24FSMState<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgriPQ24Game8StateArg"
+        .4byte
+   do_init__Q33ebi2FS16FSMState_WarningFPQ33ebi2FS4TMgrPQ24Game8StateArg .4byte
+   do_exec__Q33ebi2FS16FSMState_WarningFPQ33ebi2FS4TMgr .4byte
+   do_open__Q33ebi2FS21FSMState10_FinishCopyFPQ33ebi2FS4TMgr .4byte
+   do_transit__Q33ebi2FS21FSMState10_FinishCopyFPQ33ebi2FS4TMgr .global
+   __vt__Q33ebi2FS21FSMState08_FailToCopy
+    __vt__Q33ebi2FS21FSMState08_FailToCopy:
+        .4byte 0
+        .4byte 0
+        .4byte init__Q33ebi2FS8FSMStateFPQ33ebi2FS4TMgrPQ24Game8StateArg
+        .4byte exec__Q33ebi2FS8FSMStateFPQ33ebi2FS4TMgr
+        .4byte "cleanup__Q24Game24FSMState<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgr"
+        .4byte "resume__Q24Game24FSMState<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgr"
+        .4byte "restart__Q24Game24FSMState<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgr"
+        .4byte
+   "transit__Q24Game24FSMState<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgriPQ24Game8StateArg"
+        .4byte
+   do_init__Q33ebi2FS16FSMState_WarningFPQ33ebi2FS4TMgrPQ24Game8StateArg .4byte
+   do_exec__Q33ebi2FS16FSMState_WarningFPQ33ebi2FS4TMgr .4byte
+   do_open__Q33ebi2FS21FSMState08_FailToCopyFPQ33ebi2FS4TMgr .4byte
+   do_transit__Q33ebi2FS21FSMState08_FailToCopyFPQ33ebi2FS4TMgr .global
+   __vt__Q33ebi2FS23FSMState06_FinishDelete
+    __vt__Q33ebi2FS23FSMState06_FinishDelete:
+        .4byte 0
+        .4byte 0
+        .4byte init__Q33ebi2FS8FSMStateFPQ33ebi2FS4TMgrPQ24Game8StateArg
+        .4byte exec__Q33ebi2FS8FSMStateFPQ33ebi2FS4TMgr
+        .4byte "cleanup__Q24Game24FSMState<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgr"
+        .4byte "resume__Q24Game24FSMState<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgr"
+        .4byte "restart__Q24Game24FSMState<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgr"
+        .4byte
+   "transit__Q24Game24FSMState<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgriPQ24Game8StateArg"
+        .4byte
+   do_init__Q33ebi2FS16FSMState_WarningFPQ33ebi2FS4TMgrPQ24Game8StateArg .4byte
+   do_exec__Q33ebi2FS16FSMState_WarningFPQ33ebi2FS4TMgr .4byte
+   do_open__Q33ebi2FS23FSMState06_FinishDeleteFPQ33ebi2FS4TMgr .4byte
+   do_transit__Q33ebi2FS23FSMState06_FinishDeleteFPQ33ebi2FS4TMgr .global
+   __vt__Q33ebi2FS23FSMState05_FailToDelete
+    __vt__Q33ebi2FS23FSMState05_FailToDelete:
+        .4byte 0
+        .4byte 0
+        .4byte init__Q33ebi2FS8FSMStateFPQ33ebi2FS4TMgrPQ24Game8StateArg
+        .4byte exec__Q33ebi2FS8FSMStateFPQ33ebi2FS4TMgr
+        .4byte "cleanup__Q24Game24FSMState<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgr"
+        .4byte "resume__Q24Game24FSMState<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgr"
+        .4byte "restart__Q24Game24FSMState<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgr"
+        .4byte
+   "transit__Q24Game24FSMState<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgriPQ24Game8StateArg"
+        .4byte
+   do_init__Q33ebi2FS16FSMState_WarningFPQ33ebi2FS4TMgrPQ24Game8StateArg .4byte
+   do_exec__Q33ebi2FS16FSMState_WarningFPQ33ebi2FS4TMgr .4byte
+   do_open__Q33ebi2FS23FSMState05_FailToDeleteFPQ33ebi2FS4TMgr .4byte
+   do_transit__Q33ebi2FS23FSMState05_FailToDeleteFPQ33ebi2FS4TMgr .global
+   __vt__Q33ebi2FS16FSMState_Warning
+    __vt__Q33ebi2FS16FSMState_Warning:
+        .4byte 0
+        .4byte 0
+        .4byte init__Q33ebi2FS8FSMStateFPQ33ebi2FS4TMgrPQ24Game8StateArg
+        .4byte exec__Q33ebi2FS8FSMStateFPQ33ebi2FS4TMgr
+        .4byte "cleanup__Q24Game24FSMState<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgr"
+        .4byte "resume__Q24Game24FSMState<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgr"
+        .4byte "restart__Q24Game24FSMState<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgr"
+        .4byte
+   "transit__Q24Game24FSMState<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgriPQ24Game8StateArg"
+        .4byte
+   do_init__Q33ebi2FS16FSMState_WarningFPQ33ebi2FS4TMgrPQ24Game8StateArg .4byte
+   do_exec__Q33ebi2FS16FSMState_WarningFPQ33ebi2FS4TMgr .4byte 0 .4byte 0
+    .global __vt__Q33ebi2FS25FSMState07_DoYouOverwrite
+    __vt__Q33ebi2FS25FSMState07_DoYouOverwrite:
+        .4byte 0
+        .4byte 0
+        .4byte init__Q33ebi2FS8FSMStateFPQ33ebi2FS4TMgrPQ24Game8StateArg
+        .4byte exec__Q33ebi2FS8FSMStateFPQ33ebi2FS4TMgr
+        .4byte "cleanup__Q24Game24FSMState<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgr"
+        .4byte "resume__Q24Game24FSMState<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgr"
+        .4byte "restart__Q24Game24FSMState<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgr"
+        .4byte
+   "transit__Q24Game24FSMState<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgriPQ24Game8StateArg"
+        .4byte
+   do_init__Q33ebi2FS20FSMState_SelectYesNoFPQ33ebi2FS4TMgrPQ24Game8StateArg
+        .4byte do_exec__Q33ebi2FS20FSMState_SelectYesNoFPQ33ebi2FS4TMgr
+        .4byte
+   do_set__Q33ebi2FS25FSMState07_DoYouOverwriteFPQ33ebi2FS4TMgrPQ24Game8StateArg
+        .4byte do_decide__Q33ebi2FS25FSMState07_DoYouOverwriteFPQ33ebi2FS4TMgr
+    .global __vt__Q33ebi2FS22FSMState03_DoYouDelete
+    __vt__Q33ebi2FS22FSMState03_DoYouDelete:
+        .4byte 0
+        .4byte 0
+        .4byte init__Q33ebi2FS8FSMStateFPQ33ebi2FS4TMgrPQ24Game8StateArg
+        .4byte exec__Q33ebi2FS8FSMStateFPQ33ebi2FS4TMgr
+        .4byte "cleanup__Q24Game24FSMState<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgr"
+        .4byte "resume__Q24Game24FSMState<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgr"
+        .4byte "restart__Q24Game24FSMState<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgr"
+        .4byte
+   "transit__Q24Game24FSMState<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgriPQ24Game8StateArg"
+        .4byte
+   do_init__Q33ebi2FS20FSMState_SelectYesNoFPQ33ebi2FS4TMgrPQ24Game8StateArg
+        .4byte do_exec__Q33ebi2FS20FSMState_SelectYesNoFPQ33ebi2FS4TMgr
+        .4byte
+   do_set__Q33ebi2FS22FSMState03_DoYouDeleteFPQ33ebi2FS4TMgrPQ24Game8StateArg
+        .4byte do_decide__Q33ebi2FS22FSMState03_DoYouDeleteFPQ33ebi2FS4TMgr
+    .global __vt__Q33ebi2FS21FSMState01_DataBroken
+    __vt__Q33ebi2FS21FSMState01_DataBroken:
+        .4byte 0
+        .4byte 0
+        .4byte init__Q33ebi2FS8FSMStateFPQ33ebi2FS4TMgrPQ24Game8StateArg
+        .4byte exec__Q33ebi2FS8FSMStateFPQ33ebi2FS4TMgr
+        .4byte "cleanup__Q24Game24FSMState<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgr"
+        .4byte "resume__Q24Game24FSMState<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgr"
+        .4byte "restart__Q24Game24FSMState<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgr"
+        .4byte
+   "transit__Q24Game24FSMState<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgriPQ24Game8StateArg"
+        .4byte
+   do_init__Q33ebi2FS20FSMState_SelectYesNoFPQ33ebi2FS4TMgrPQ24Game8StateArg
+        .4byte do_exec__Q33ebi2FS20FSMState_SelectYesNoFPQ33ebi2FS4TMgr
+        .4byte
+   do_set__Q33ebi2FS21FSMState01_DataBrokenFPQ33ebi2FS4TMgrPQ24Game8StateArg
+        .4byte do_decide__Q33ebi2FS20FSMState_SelectYesNoFPQ33ebi2FS4TMgr
+    .global __vt__Q33ebi2FS20FSMState_SelectYesNo
+    __vt__Q33ebi2FS20FSMState_SelectYesNo:
+        .4byte 0
+        .4byte 0
+        .4byte init__Q33ebi2FS8FSMStateFPQ33ebi2FS4TMgrPQ24Game8StateArg
+        .4byte exec__Q33ebi2FS8FSMStateFPQ33ebi2FS4TMgr
+        .4byte "cleanup__Q24Game24FSMState<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgr"
+        .4byte "resume__Q24Game24FSMState<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgr"
+        .4byte "restart__Q24Game24FSMState<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgr"
+        .4byte
+   "transit__Q24Game24FSMState<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgriPQ24Game8StateArg"
+        .4byte
+   do_init__Q33ebi2FS20FSMState_SelectYesNoFPQ33ebi2FS4TMgrPQ24Game8StateArg
+        .4byte do_exec__Q33ebi2FS20FSMState_SelectYesNoFPQ33ebi2FS4TMgr
+        .4byte 0
+        .4byte do_decide__Q33ebi2FS20FSMState_SelectYesNoFPQ33ebi2FS4TMgr
+    .global __vt__Q33ebi2FS8FSMState
+    __vt__Q33ebi2FS8FSMState:
+        .4byte 0
+        .4byte 0
+        .4byte init__Q33ebi2FS8FSMStateFPQ33ebi2FS4TMgrPQ24Game8StateArg
+        .4byte exec__Q33ebi2FS8FSMStateFPQ33ebi2FS4TMgr
+        .4byte "cleanup__Q24Game24FSMState<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgr"
+        .4byte "resume__Q24Game24FSMState<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgr"
+        .4byte "restart__Q24Game24FSMState<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgr"
+        .4byte
+   "transit__Q24Game24FSMState<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgriPQ24Game8StateArg"
+        .4byte do_init__Q33ebi2FS8FSMStateFPQ33ebi2FS4TMgrPQ24Game8StateArg
+        .4byte do_exec__Q33ebi2FS8FSMStateFPQ33ebi2FS4TMgr
+    .global "__vt__Q24Game24FSMState<Q33ebi2FS4TMgr>"
+    "__vt__Q24Game24FSMState<Q33ebi2FS4TMgr>":
+        .4byte 0
+        .4byte 0
+        .4byte
+   "init__Q24Game24FSMState<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgrPQ24Game8StateArg"
+        .4byte "exec__Q24Game24FSMState<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgr"
+        .4byte "cleanup__Q24Game24FSMState<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgr"
+        .4byte "resume__Q24Game24FSMState<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgr"
+        .4byte "restart__Q24Game24FSMState<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgr"
+        .4byte
+   "transit__Q24Game24FSMState<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgriPQ24Game8StateArg"
+    .global __vt__Q33ebi2FS15FSMStateMachine
+    __vt__Q33ebi2FS15FSMStateMachine:
+        .4byte 0
+        .4byte 0
+        .4byte init__Q33ebi2FS15FSMStateMachineFPQ33ebi2FS4TMgr
+        .4byte
+   "start__Q24Game28StateMachine<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgriPQ24Game8StateArg"
+        .4byte "exec__Q24Game28StateMachine<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgr"
+        .4byte
+   "transit__Q24Game28StateMachine<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgriPQ24Game8StateArg"
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_8051FBF8
+    lbl_8051FBF8:
+        .4byte 0x5374616E
+        .4byte 0x64627900
+    .global lbl_8051FC00
+    lbl_8051FC00:
+        .4byte 0x4E6F7743
+        .4byte 0x6F707900
+    .global lbl_8051FC08
+    lbl_8051FC08:
+        .float 0.5
+    .global lbl_8051FC0C
+    lbl_8051FC0C:
+        .4byte 0xBF000000
+    .global lbl_8051FC10
+    lbl_8051FC10:
+        .4byte 0x40400000
+    .global lbl_8051FC14
+    lbl_8051FC14:
+        .float 1.0
+    .global lbl_8051FC18
+    lbl_8051FC18:
+        .4byte 0x5374616E
+        .4byte 0x64627900
+*/
+
 namespace ebi {
 
 /*
@@ -10,401 +430,415 @@ namespace ebi {
 void FS::FSMStateMachine::init(ebi::FS::TMgr*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r4, 0x8049
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  stw       r30, 0x8(r1)
-	  addi      r30, r4, 0x6F18
-	  li        r4, 0xF
-	  bl        0x2E78
-	  li        r3, 0x10
-	  bl        -0x3BA448
-	  mr.       r4, r3
-	  beq-      .loc_0x64
-	  lis       r5, 0x804F
-	  lis       r3, 0x804F
-	  subi      r0, r5, 0x69C0
-	  li        r5, 0
-	  stw       r0, 0x0(r4)
-	  subi      r3, r3, 0x69E8
-	  addi      r0, r2, 0x1898
-	  stw       r5, 0x4(r4)
-	  stw       r5, 0x8(r4)
-	  stw       r3, 0x0(r4)
-	  stw       r0, 0xC(r4)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lis      r4, lbl_80496F18@ha
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	stw      r30, 8(r1)
+	addi     r30, r4, lbl_80496F18@l
+	li       r4, 0xf
+	bl       "create__Q24Game28StateMachine<Q33ebi2FS4TMgr>Fi"
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_803DE324
+	lis      r5, "__vt__Q24Game24FSMState<Q33ebi2FS4TMgr>"@ha
+	lis      r3, __vt__Q33ebi2FS8FSMState@ha
+	addi     r0, r5, "__vt__Q24Game24FSMState<Q33ebi2FS4TMgr>"@l
+	li       r5, 0
+	stw      r0, 0(r4)
+	addi     r3, r3, __vt__Q33ebi2FS8FSMState@l
+	addi     r0, r2, lbl_8051FBF8@sda21
+	stw      r5, 4(r4)
+	stw      r5, 8(r4)
+	stw      r3, 0(r4)
+	stw      r0, 0xc(r4)
 
-	.loc_0x64:
-	  mr        r3, r31
-	  bl        0x2F34
-	  li        r3, 0x10
-	  bl        -0x3BA48C
-	  mr.       r4, r3
-	  beq-      .loc_0xB8
-	  lis       r3, 0x804F
-	  lis       r5, 0x804F
-	  subi      r0, r3, 0x69C0
-	  lis       r3, 0x804F
-	  stw       r0, 0x0(r4)
-	  li        r0, 0x1
-	  li        r7, 0
-	  subi      r6, r5, 0x69E8
-	  stw       r0, 0x4(r4)
-	  addi      r5, r30, 0x18
-	  subi      r0, r3, 0x6C80
-	  stw       r7, 0x8(r4)
-	  stw       r6, 0x0(r4)
-	  stw       r5, 0xC(r4)
-	  stw       r0, 0x0(r4)
+lbl_803DE324:
+	mr       r3, r31
+	bl
+"registerState__Q24Game28StateMachine<Q33ebi2FS4TMgr>FPQ24Game24FSMState<Q33ebi2FS4TMgr>"
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_803DE378
+	lis      r3, "__vt__Q24Game24FSMState<Q33ebi2FS4TMgr>"@ha
+	lis      r5, __vt__Q33ebi2FS8FSMState@ha
+	addi     r0, r3, "__vt__Q24Game24FSMState<Q33ebi2FS4TMgr>"@l
+	lis      r3, __vt__Q33ebi2FS21FSMState00a_OpenScene@ha
+	stw      r0, 0(r4)
+	li       r0, 1
+	li       r7, 0
+	addi     r6, r5, __vt__Q33ebi2FS8FSMState@l
+	stw      r0, 4(r4)
+	addi     r5, r30, 0x18
+	addi     r0, r3, __vt__Q33ebi2FS21FSMState00a_OpenScene@l
+	stw      r7, 8(r4)
+	stw      r6, 0(r4)
+	stw      r5, 0xc(r4)
+	stw      r0, 0(r4)
 
-	.loc_0xB8:
-	  mr        r3, r31
-	  bl        0x2EE0
-	  li        r3, 0x18
-	  bl        -0x3BA4E0
-	  mr.       r4, r3
-	  beq-      .loc_0x10C
-	  lis       r3, 0x804F
-	  lis       r5, 0x804F
-	  subi      r0, r3, 0x69C0
-	  lis       r3, 0x804F
-	  stw       r0, 0x0(r4)
-	  li        r0, 0x2
-	  li        r7, 0
-	  subi      r6, r5, 0x69E8
-	  stw       r0, 0x4(r4)
-	  addi      r5, r30, 0x24
-	  subi      r0, r3, 0x6CD0
-	  stw       r7, 0x8(r4)
-	  stw       r6, 0x0(r4)
-	  stw       r5, 0xC(r4)
-	  stw       r0, 0x0(r4)
+lbl_803DE378:
+	mr       r3, r31
+	bl
+"registerState__Q24Game28StateMachine<Q33ebi2FS4TMgr>FPQ24Game24FSMState<Q33ebi2FS4TMgr>"
+	li       r3, 0x18
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_803DE3CC
+	lis      r3, "__vt__Q24Game24FSMState<Q33ebi2FS4TMgr>"@ha
+	lis      r5, __vt__Q33ebi2FS8FSMState@ha
+	addi     r0, r3, "__vt__Q24Game24FSMState<Q33ebi2FS4TMgr>"@l
+	lis      r3, __vt__Q33ebi2FS21FSMState00b_CheckData@ha
+	stw      r0, 0(r4)
+	li       r0, 2
+	li       r7, 0
+	addi     r6, r5, __vt__Q33ebi2FS8FSMState@l
+	stw      r0, 4(r4)
+	addi     r5, r30, 0x24
+	addi     r0, r3, __vt__Q33ebi2FS21FSMState00b_CheckData@l
+	stw      r7, 8(r4)
+	stw      r6, 0(r4)
+	stw      r5, 0xc(r4)
+	stw      r0, 0(r4)
 
-	.loc_0x10C:
-	  mr        r3, r31
-	  bl        0x2E8C
-	  li        r3, 0x10
-	  bl        -0x3BA534
-	  mr.       r4, r3
-	  beq-      .loc_0x160
-	  lis       r3, 0x804F
-	  lis       r5, 0x804F
-	  subi      r0, r3, 0x69C0
-	  lis       r3, 0x804F
-	  stw       r0, 0x0(r4)
-	  li        r0, 0x3
-	  li        r7, 0
-	  subi      r6, r5, 0x69E8
-	  stw       r0, 0x4(r4)
-	  addi      r5, r30, 0x30
-	  subi      r0, r3, 0x6CF8
-	  stw       r7, 0x8(r4)
-	  stw       r6, 0x0(r4)
-	  stw       r5, 0xC(r4)
-	  stw       r0, 0x0(r4)
+lbl_803DE3CC:
+	mr       r3, r31
+	bl
+"registerState__Q24Game28StateMachine<Q33ebi2FS4TMgr>FPQ24Game24FSMState<Q33ebi2FS4TMgr>"
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_803DE420
+	lis      r3, "__vt__Q24Game24FSMState<Q33ebi2FS4TMgr>"@ha
+	lis      r5, __vt__Q33ebi2FS8FSMState@ha
+	addi     r0, r3, "__vt__Q24Game24FSMState<Q33ebi2FS4TMgr>"@l
+	lis      r3, __vt__Q33ebi2FS22FSMState00c_DecideData@ha
+	stw      r0, 0(r4)
+	li       r0, 3
+	li       r7, 0
+	addi     r6, r5, __vt__Q33ebi2FS8FSMState@l
+	stw      r0, 4(r4)
+	addi     r5, r30, 0x30
+	addi     r0, r3, __vt__Q33ebi2FS22FSMState00c_DecideData@l
+	stw      r7, 8(r4)
+	stw      r6, 0(r4)
+	stw      r5, 0xc(r4)
+	stw      r0, 0(r4)
 
-	.loc_0x160:
-	  mr        r3, r31
-	  bl        0x2E38
-	  li        r3, 0x1C
-	  bl        -0x3BA588
-	  mr.       r4, r3
-	  beq-      .loc_0x1BC
-	  lis       r3, 0x804F
-	  lis       r5, 0x804F
-	  subi      r0, r3, 0x69C0
-	  lis       r3, 0x804F
-	  stw       r0, 0x0(r4)
-	  li        r0, 0x4
-	  li        r7, 0
-	  subi      r6, r5, 0x69E8
-	  stw       r0, 0x4(r4)
-	  addi      r5, r30, 0x3C
-	  subi      r0, r3, 0x6CA8
-	  stw       r7, 0x8(r4)
-	  stw       r6, 0x0(r4)
-	  stw       r5, 0xC(r4)
-	  stw       r0, 0x0(r4)
-	  stw       r7, 0x14(r4)
-	  stw       r7, 0x18(r4)
+lbl_803DE420:
+	mr       r3, r31
+	bl
+"registerState__Q24Game28StateMachine<Q33ebi2FS4TMgr>FPQ24Game24FSMState<Q33ebi2FS4TMgr>"
+	li       r3, 0x1c
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_803DE47C
+	lis      r3, "__vt__Q24Game24FSMState<Q33ebi2FS4TMgr>"@ha
+	lis      r5, __vt__Q33ebi2FS8FSMState@ha
+	addi     r0, r3, "__vt__Q24Game24FSMState<Q33ebi2FS4TMgr>"@l
+	lis      r3, __vt__Q33ebi2FS21FSMState00_SelectData@ha
+	stw      r0, 0(r4)
+	li       r0, 4
+	li       r7, 0
+	addi     r6, r5, __vt__Q33ebi2FS8FSMState@l
+	stw      r0, 4(r4)
+	addi     r5, r30, 0x3c
+	addi     r0, r3, __vt__Q33ebi2FS21FSMState00_SelectData@l
+	stw      r7, 8(r4)
+	stw      r6, 0(r4)
+	stw      r5, 0xc(r4)
+	stw      r0, 0(r4)
+	stw      r7, 0x14(r4)
+	stw      r7, 0x18(r4)
 
-	.loc_0x1BC:
-	  mr        r3, r31
-	  bl        0x2DDC
-	  li        r3, 0x24
-	  bl        -0x3BA5E4
-	  mr.       r4, r3
-	  beq-      .loc_0x21C
-	  lis       r3, 0x804F
-	  lis       r6, 0x804F
-	  subi      r0, r3, 0x69C0
-	  lis       r5, 0x804F
-	  stw       r0, 0x0(r4)
-	  li        r7, 0x5
-	  lis       r3, 0x804F
-	  li        r0, 0
-	  stw       r7, 0x4(r4)
-	  subi      r7, r6, 0x69E8
-	  addi      r6, r30, 0x48
-	  subi      r5, r5, 0x6A18
-	  stw       r0, 0x8(r4)
-	  subi      r0, r3, 0x6A48
-	  stw       r7, 0x0(r4)
-	  stw       r6, 0xC(r4)
-	  stw       r5, 0x0(r4)
-	  stw       r0, 0x0(r4)
+lbl_803DE47C:
+	mr       r3, r31
+	bl
+"registerState__Q24Game28StateMachine<Q33ebi2FS4TMgr>FPQ24Game24FSMState<Q33ebi2FS4TMgr>"
+	li       r3, 0x24
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_803DE4DC
+	lis      r3, "__vt__Q24Game24FSMState<Q33ebi2FS4TMgr>"@ha
+	lis      r6, __vt__Q33ebi2FS8FSMState@ha
+	addi     r0, r3, "__vt__Q24Game24FSMState<Q33ebi2FS4TMgr>"@l
+	lis      r5, __vt__Q33ebi2FS20FSMState_SelectYesNo@ha
+	stw      r0, 0(r4)
+	li       r7, 5
+	lis      r3, __vt__Q33ebi2FS21FSMState01_DataBroken@ha
+	li       r0, 0
+	stw      r7, 4(r4)
+	addi     r7, r6, __vt__Q33ebi2FS8FSMState@l
+	addi     r6, r30, 0x48
+	addi     r5, r5, __vt__Q33ebi2FS20FSMState_SelectYesNo@l
+	stw      r0, 8(r4)
+	addi     r0, r3, __vt__Q33ebi2FS21FSMState01_DataBroken@l
+	stw      r7, 0(r4)
+	stw      r6, 0xc(r4)
+	stw      r5, 0(r4)
+	stw      r0, 0(r4)
 
-	.loc_0x21C:
-	  mr        r3, r31
-	  bl        0x2D7C
-	  li        r3, 0x18
-	  bl        -0x3BA644
-	  mr.       r4, r3
-	  beq-      .loc_0x27C
-	  lis       r3, 0x804F
-	  lis       r6, 0x804F
-	  subi      r0, r3, 0x69C0
-	  lis       r5, 0x804F
-	  stw       r0, 0x0(r4)
-	  li        r7, 0x6
-	  lis       r3, 0x804F
-	  li        r0, 0
-	  stw       r7, 0x4(r4)
-	  subi      r7, r6, 0x69E8
-	  addi      r6, r30, 0x54
-	  subi      r5, r5, 0x6BD8
-	  stw       r0, 0x8(r4)
-	  subi      r0, r3, 0x6C18
-	  stw       r7, 0x0(r4)
-	  stw       r6, 0xC(r4)
-	  stw       r5, 0x0(r4)
-	  stw       r0, 0x0(r4)
+lbl_803DE4DC:
+	mr       r3, r31
+	bl
+"registerState__Q24Game28StateMachine<Q33ebi2FS4TMgr>FPQ24Game24FSMState<Q33ebi2FS4TMgr>"
+	li       r3, 0x18
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_803DE53C
+	lis      r3, "__vt__Q24Game24FSMState<Q33ebi2FS4TMgr>"@ha
+	lis      r6, __vt__Q33ebi2FS8FSMState@ha
+	addi     r0, r3, "__vt__Q24Game24FSMState<Q33ebi2FS4TMgr>"@l
+	lis      r5, __vt__Q33ebi2FS17FSMState_CardTask@ha
+	stw      r0, 0(r4)
+	li       r7, 6
+	lis      r3, __vt__Q33ebi2FS20FSMState02_NowDelete@ha
+	li       r0, 0
+	stw      r7, 4(r4)
+	addi     r7, r6, __vt__Q33ebi2FS8FSMState@l
+	addi     r6, r30, 0x54
+	addi     r5, r5, __vt__Q33ebi2FS17FSMState_CardTask@l
+	stw      r0, 8(r4)
+	addi     r0, r3, __vt__Q33ebi2FS20FSMState02_NowDelete@l
+	stw      r7, 0(r4)
+	stw      r6, 0xc(r4)
+	stw      r5, 0(r4)
+	stw      r0, 0(r4)
 
-	.loc_0x27C:
-	  mr        r3, r31
-	  bl        0x2D1C
-	  li        r3, 0x24
-	  bl        -0x3BA6A4
-	  mr.       r4, r3
-	  beq-      .loc_0x2DC
-	  lis       r3, 0x804F
-	  lis       r6, 0x804F
-	  subi      r0, r3, 0x69C0
-	  lis       r5, 0x804F
-	  stw       r0, 0x0(r4)
-	  li        r7, 0x7
-	  lis       r3, 0x804F
-	  li        r0, 0
-	  stw       r7, 0x4(r4)
-	  subi      r7, r6, 0x69E8
-	  addi      r6, r30, 0x60
-	  subi      r5, r5, 0x6A18
-	  stw       r0, 0x8(r4)
-	  subi      r0, r3, 0x6A78
-	  stw       r7, 0x0(r4)
-	  stw       r6, 0xC(r4)
-	  stw       r5, 0x0(r4)
-	  stw       r0, 0x0(r4)
+lbl_803DE53C:
+	mr       r3, r31
+	bl
+"registerState__Q24Game28StateMachine<Q33ebi2FS4TMgr>FPQ24Game24FSMState<Q33ebi2FS4TMgr>"
+	li       r3, 0x24
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_803DE59C
+	lis      r3, "__vt__Q24Game24FSMState<Q33ebi2FS4TMgr>"@ha
+	lis      r6, __vt__Q33ebi2FS8FSMState@ha
+	addi     r0, r3, "__vt__Q24Game24FSMState<Q33ebi2FS4TMgr>"@l
+	lis      r5, __vt__Q33ebi2FS20FSMState_SelectYesNo@ha
+	stw      r0, 0(r4)
+	li       r7, 7
+	lis      r3, __vt__Q33ebi2FS22FSMState03_DoYouDelete@ha
+	li       r0, 0
+	stw      r7, 4(r4)
+	addi     r7, r6, __vt__Q33ebi2FS8FSMState@l
+	addi     r6, r30, 0x60
+	addi     r5, r5, __vt__Q33ebi2FS20FSMState_SelectYesNo@l
+	stw      r0, 8(r4)
+	addi     r0, r3, __vt__Q33ebi2FS22FSMState03_DoYouDelete@l
+	stw      r7, 0(r4)
+	stw      r6, 0xc(r4)
+	stw      r5, 0(r4)
+	stw      r0, 0(r4)
 
-	.loc_0x2DC:
-	  mr        r3, r31
-	  bl        0x2CBC
-	  li        r3, 0x18
-	  bl        -0x3BA704
-	  mr.       r4, r3
-	  beq-      .loc_0x330
-	  lis       r3, 0x804F
-	  lis       r5, 0x804F
-	  subi      r0, r3, 0x69C0
-	  lis       r3, 0x804F
-	  stw       r0, 0x0(r4)
-	  li        r0, 0x8
-	  li        r7, 0
-	  subi      r6, r5, 0x69E8
-	  stw       r0, 0x4(r4)
-	  addi      r5, r30, 0x6C
-	  subi      r0, r3, 0x6D20
-	  stw       r7, 0x8(r4)
-	  stw       r6, 0x0(r4)
-	  stw       r5, 0xC(r4)
-	  stw       r0, 0x0(r4)
+lbl_803DE59C:
+	mr       r3, r31
+	bl
+"registerState__Q24Game28StateMachine<Q33ebi2FS4TMgr>FPQ24Game24FSMState<Q33ebi2FS4TMgr>"
+	li       r3, 0x18
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_803DE5F0
+	lis      r3, "__vt__Q24Game24FSMState<Q33ebi2FS4TMgr>"@ha
+	lis      r5, __vt__Q33ebi2FS8FSMState@ha
+	addi     r0, r3, "__vt__Q24Game24FSMState<Q33ebi2FS4TMgr>"@l
+	lis      r3, __vt__Q33ebi2FS31FSMState04_WhichDataDoYouCopyTo@ha
+	stw      r0, 0(r4)
+	li       r0, 8
+	li       r7, 0
+	addi     r6, r5, __vt__Q33ebi2FS8FSMState@l
+	stw      r0, 4(r4)
+	addi     r5, r30, 0x6c
+	addi     r0, r3, __vt__Q33ebi2FS31FSMState04_WhichDataDoYouCopyTo@l
+	stw      r7, 8(r4)
+	stw      r6, 0(r4)
+	stw      r5, 0xc(r4)
+	stw      r0, 0(r4)
 
-	.loc_0x330:
-	  mr        r3, r31
-	  bl        0x2C68
-	  li        r3, 0x1C
-	  bl        -0x3BA758
-	  mr.       r4, r3
-	  beq-      .loc_0x398
-	  lis       r3, 0x804F
-	  lis       r6, 0x804F
-	  subi      r0, r3, 0x69C0
-	  lis       r5, 0x804F
-	  stw       r0, 0x0(r4)
-	  li        r0, 0x9
-	  lis       r3, 0x804F
-	  li        r8, 0
-	  stw       r0, 0x4(r4)
-	  subi      r7, r6, 0x69E8
-	  addi      r6, r30, 0x84
-	  subi      r5, r5, 0x6AD8
-	  stw       r8, 0x8(r4)
-	  subi      r0, r3, 0x6B08
-	  stw       r7, 0x0(r4)
-	  stw       r6, 0xC(r4)
-	  stw       r5, 0x0(r4)
-	  stw       r8, 0x14(r4)
-	  stw       r8, 0x18(r4)
-	  stw       r0, 0x0(r4)
+lbl_803DE5F0:
+	mr       r3, r31
+	bl
+"registerState__Q24Game28StateMachine<Q33ebi2FS4TMgr>FPQ24Game24FSMState<Q33ebi2FS4TMgr>"
+	li       r3, 0x1c
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_803DE658
+	lis      r3, "__vt__Q24Game24FSMState<Q33ebi2FS4TMgr>"@ha
+	lis      r6, __vt__Q33ebi2FS8FSMState@ha
+	addi     r0, r3, "__vt__Q24Game24FSMState<Q33ebi2FS4TMgr>"@l
+	lis      r5, __vt__Q33ebi2FS16FSMState_Warning@ha
+	stw      r0, 0(r4)
+	li       r0, 9
+	lis      r3, __vt__Q33ebi2FS23FSMState05_FailToDelete@ha
+	li       r8, 0
+	stw      r0, 4(r4)
+	addi     r7, r6, __vt__Q33ebi2FS8FSMState@l
+	addi     r6, r30, 0x84
+	addi     r5, r5, __vt__Q33ebi2FS16FSMState_Warning@l
+	stw      r8, 8(r4)
+	addi     r0, r3, __vt__Q33ebi2FS23FSMState05_FailToDelete@l
+	stw      r7, 0(r4)
+	stw      r6, 0xc(r4)
+	stw      r5, 0(r4)
+	stw      r8, 0x14(r4)
+	stw      r8, 0x18(r4)
+	stw      r0, 0(r4)
 
-	.loc_0x398:
-	  mr        r3, r31
-	  bl        0x2C00
-	  li        r3, 0x1C
-	  bl        -0x3BA7C0
-	  mr.       r4, r3
-	  beq-      .loc_0x400
-	  lis       r3, 0x804F
-	  lis       r6, 0x804F
-	  subi      r0, r3, 0x69C0
-	  lis       r5, 0x804F
-	  stw       r0, 0x0(r4)
-	  li        r0, 0xA
-	  lis       r3, 0x804F
-	  li        r8, 0
-	  stw       r0, 0x4(r4)
-	  subi      r7, r6, 0x69E8
-	  addi      r6, r30, 0x94
-	  subi      r5, r5, 0x6AD8
-	  stw       r8, 0x8(r4)
-	  subi      r0, r3, 0x6B38
-	  stw       r7, 0x0(r4)
-	  stw       r6, 0xC(r4)
-	  stw       r5, 0x0(r4)
-	  stw       r8, 0x14(r4)
-	  stw       r8, 0x18(r4)
-	  stw       r0, 0x0(r4)
+lbl_803DE658:
+	mr       r3, r31
+	bl
+"registerState__Q24Game28StateMachine<Q33ebi2FS4TMgr>FPQ24Game24FSMState<Q33ebi2FS4TMgr>"
+	li       r3, 0x1c
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_803DE6C0
+	lis      r3, "__vt__Q24Game24FSMState<Q33ebi2FS4TMgr>"@ha
+	lis      r6, __vt__Q33ebi2FS8FSMState@ha
+	addi     r0, r3, "__vt__Q24Game24FSMState<Q33ebi2FS4TMgr>"@l
+	lis      r5, __vt__Q33ebi2FS16FSMState_Warning@ha
+	stw      r0, 0(r4)
+	li       r0, 0xa
+	lis      r3, __vt__Q33ebi2FS23FSMState06_FinishDelete@ha
+	li       r8, 0
+	stw      r0, 4(r4)
+	addi     r7, r6, __vt__Q33ebi2FS8FSMState@l
+	addi     r6, r30, 0x94
+	addi     r5, r5, __vt__Q33ebi2FS16FSMState_Warning@l
+	stw      r8, 8(r4)
+	addi     r0, r3, __vt__Q33ebi2FS23FSMState06_FinishDelete@l
+	stw      r7, 0(r4)
+	stw      r6, 0xc(r4)
+	stw      r5, 0(r4)
+	stw      r8, 0x14(r4)
+	stw      r8, 0x18(r4)
+	stw      r0, 0(r4)
 
-	.loc_0x400:
-	  mr        r3, r31
-	  bl        0x2B98
-	  li        r3, 0x24
-	  bl        -0x3BA828
-	  mr.       r4, r3
-	  beq-      .loc_0x460
-	  lis       r3, 0x804F
-	  lis       r6, 0x804F
-	  subi      r0, r3, 0x69C0
-	  lis       r5, 0x804F
-	  stw       r0, 0x0(r4)
-	  li        r7, 0xB
-	  lis       r3, 0x804F
-	  li        r0, 0
-	  stw       r7, 0x4(r4)
-	  subi      r7, r6, 0x69E8
-	  addi      r6, r30, 0xA4
-	  subi      r5, r5, 0x6A18
-	  stw       r0, 0x8(r4)
-	  subi      r0, r3, 0x6AA8
-	  stw       r7, 0x0(r4)
-	  stw       r6, 0xC(r4)
-	  stw       r5, 0x0(r4)
-	  stw       r0, 0x0(r4)
+lbl_803DE6C0:
+	mr       r3, r31
+	bl
+"registerState__Q24Game28StateMachine<Q33ebi2FS4TMgr>FPQ24Game24FSMState<Q33ebi2FS4TMgr>"
+	li       r3, 0x24
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_803DE720
+	lis      r3, "__vt__Q24Game24FSMState<Q33ebi2FS4TMgr>"@ha
+	lis      r6, __vt__Q33ebi2FS8FSMState@ha
+	addi     r0, r3, "__vt__Q24Game24FSMState<Q33ebi2FS4TMgr>"@l
+	lis      r5, __vt__Q33ebi2FS20FSMState_SelectYesNo@ha
+	stw      r0, 0(r4)
+	li       r7, 0xb
+	lis      r3, __vt__Q33ebi2FS25FSMState07_DoYouOverwrite@ha
+	li       r0, 0
+	stw      r7, 4(r4)
+	addi     r7, r6, __vt__Q33ebi2FS8FSMState@l
+	addi     r6, r30, 0xa4
+	addi     r5, r5, __vt__Q33ebi2FS20FSMState_SelectYesNo@l
+	stw      r0, 8(r4)
+	addi     r0, r3, __vt__Q33ebi2FS25FSMState07_DoYouOverwrite@l
+	stw      r7, 0(r4)
+	stw      r6, 0xc(r4)
+	stw      r5, 0(r4)
+	stw      r0, 0(r4)
 
-	.loc_0x460:
-	  mr        r3, r31
-	  bl        0x2B38
-	  li        r3, 0x1C
-	  bl        -0x3BA888
-	  mr.       r4, r3
-	  beq-      .loc_0x4C8
-	  lis       r3, 0x804F
-	  lis       r6, 0x804F
-	  subi      r0, r3, 0x69C0
-	  lis       r5, 0x804F
-	  stw       r0, 0x0(r4)
-	  li        r0, 0xC
-	  lis       r3, 0x804F
-	  li        r8, 0
-	  stw       r0, 0x4(r4)
-	  subi      r7, r6, 0x69E8
-	  addi      r6, r30, 0xB4
-	  subi      r5, r5, 0x6AD8
-	  stw       r8, 0x8(r4)
-	  subi      r0, r3, 0x6B68
-	  stw       r7, 0x0(r4)
-	  stw       r6, 0xC(r4)
-	  stw       r5, 0x0(r4)
-	  stw       r8, 0x14(r4)
-	  stw       r8, 0x18(r4)
-	  stw       r0, 0x0(r4)
+lbl_803DE720:
+	mr       r3, r31
+	bl
+"registerState__Q24Game28StateMachine<Q33ebi2FS4TMgr>FPQ24Game24FSMState<Q33ebi2FS4TMgr>"
+	li       r3, 0x1c
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_803DE788
+	lis      r3, "__vt__Q24Game24FSMState<Q33ebi2FS4TMgr>"@ha
+	lis      r6, __vt__Q33ebi2FS8FSMState@ha
+	addi     r0, r3, "__vt__Q24Game24FSMState<Q33ebi2FS4TMgr>"@l
+	lis      r5, __vt__Q33ebi2FS16FSMState_Warning@ha
+	stw      r0, 0(r4)
+	li       r0, 0xc
+	lis      r3, __vt__Q33ebi2FS21FSMState08_FailToCopy@ha
+	li       r8, 0
+	stw      r0, 4(r4)
+	addi     r7, r6, __vt__Q33ebi2FS8FSMState@l
+	addi     r6, r30, 0xb4
+	addi     r5, r5, __vt__Q33ebi2FS16FSMState_Warning@l
+	stw      r8, 8(r4)
+	addi     r0, r3, __vt__Q33ebi2FS21FSMState08_FailToCopy@l
+	stw      r7, 0(r4)
+	stw      r6, 0xc(r4)
+	stw      r5, 0(r4)
+	stw      r8, 0x14(r4)
+	stw      r8, 0x18(r4)
+	stw      r0, 0(r4)
 
-	.loc_0x4C8:
-	  mr        r3, r31
-	  bl        0x2AD0
-	  li        r3, 0x18
-	  bl        -0x3BA8F0
-	  mr.       r4, r3
-	  beq-      .loc_0x528
-	  lis       r3, 0x804F
-	  lis       r6, 0x804F
-	  subi      r0, r3, 0x69C0
-	  lis       r5, 0x804F
-	  stw       r0, 0x0(r4)
-	  li        r7, 0xD
-	  lis       r3, 0x804F
-	  li        r0, 0
-	  stw       r7, 0x4(r4)
-	  subi      r7, r6, 0x69E8
-	  addi      r6, r2, 0x18A0
-	  subi      r5, r5, 0x6BD8
-	  stw       r0, 0x8(r4)
-	  subi      r0, r3, 0x6C58
-	  stw       r7, 0x0(r4)
-	  stw       r6, 0xC(r4)
-	  stw       r5, 0x0(r4)
-	  stw       r0, 0x0(r4)
+lbl_803DE788:
+	mr       r3, r31
+	bl
+"registerState__Q24Game28StateMachine<Q33ebi2FS4TMgr>FPQ24Game24FSMState<Q33ebi2FS4TMgr>"
+	li       r3, 0x18
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_803DE7E8
+	lis      r3, "__vt__Q24Game24FSMState<Q33ebi2FS4TMgr>"@ha
+	lis      r6, __vt__Q33ebi2FS8FSMState@ha
+	addi     r0, r3, "__vt__Q24Game24FSMState<Q33ebi2FS4TMgr>"@l
+	lis      r5, __vt__Q33ebi2FS17FSMState_CardTask@ha
+	stw      r0, 0(r4)
+	li       r7, 0xd
+	lis      r3, __vt__Q33ebi2FS18FSMState09_NowCopy@ha
+	li       r0, 0
+	stw      r7, 4(r4)
+	addi     r7, r6, __vt__Q33ebi2FS8FSMState@l
+	addi     r6, r2, lbl_8051FC00@sda21
+	addi     r5, r5, __vt__Q33ebi2FS17FSMState_CardTask@l
+	stw      r0, 8(r4)
+	addi     r0, r3, __vt__Q33ebi2FS18FSMState09_NowCopy@l
+	stw      r7, 0(r4)
+	stw      r6, 0xc(r4)
+	stw      r5, 0(r4)
+	stw      r0, 0(r4)
 
-	.loc_0x528:
-	  mr        r3, r31
-	  bl        0x2A70
-	  li        r3, 0x1C
-	  bl        -0x3BA950
-	  mr.       r4, r3
-	  beq-      .loc_0x590
-	  lis       r3, 0x804F
-	  lis       r6, 0x804F
-	  subi      r0, r3, 0x69C0
-	  lis       r5, 0x804F
-	  stw       r0, 0x0(r4)
-	  li        r0, 0xE
-	  lis       r3, 0x804F
-	  li        r8, 0
-	  stw       r0, 0x4(r4)
-	  subi      r7, r6, 0x69E8
-	  addi      r6, r30, 0xC0
-	  subi      r5, r5, 0x6AD8
-	  stw       r8, 0x8(r4)
-	  subi      r0, r3, 0x6B98
-	  stw       r7, 0x0(r4)
-	  stw       r6, 0xC(r4)
-	  stw       r5, 0x0(r4)
-	  stw       r8, 0x14(r4)
-	  stw       r8, 0x18(r4)
-	  stw       r0, 0x0(r4)
+lbl_803DE7E8:
+	mr       r3, r31
+	bl
+"registerState__Q24Game28StateMachine<Q33ebi2FS4TMgr>FPQ24Game24FSMState<Q33ebi2FS4TMgr>"
+	li       r3, 0x1c
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_803DE850
+	lis      r3, "__vt__Q24Game24FSMState<Q33ebi2FS4TMgr>"@ha
+	lis      r6, __vt__Q33ebi2FS8FSMState@ha
+	addi     r0, r3, "__vt__Q24Game24FSMState<Q33ebi2FS4TMgr>"@l
+	lis      r5, __vt__Q33ebi2FS16FSMState_Warning@ha
+	stw      r0, 0(r4)
+	li       r0, 0xe
+	lis      r3, __vt__Q33ebi2FS21FSMState10_FinishCopy@ha
+	li       r8, 0
+	stw      r0, 4(r4)
+	addi     r7, r6, __vt__Q33ebi2FS8FSMState@l
+	addi     r6, r30, 0xc0
+	addi     r5, r5, __vt__Q33ebi2FS16FSMState_Warning@l
+	stw      r8, 8(r4)
+	addi     r0, r3, __vt__Q33ebi2FS21FSMState10_FinishCopy@l
+	stw      r7, 0(r4)
+	stw      r6, 0xc(r4)
+	stw      r5, 0(r4)
+	stw      r8, 0x14(r4)
+	stw      r8, 0x18(r4)
+	stw      r0, 0(r4)
 
-	.loc_0x590:
-	  mr        r3, r31
-	  bl        0x2A08
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803DE850:
+	mr       r3, r31
+	bl
+"registerState__Q24Game28StateMachine<Q33ebi2FS4TMgr>FPQ24Game24FSMState<Q33ebi2FS4TMgr>"
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -416,18 +850,17 @@ void FS::FSMStateMachine::init(ebi::FS::TMgr*)
 void FS::FSMState::init(ebi::FS::TMgr*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -439,18 +872,17 @@ void FS::FSMState::init(ebi::FS::TMgr*, Game::StateArg*)
 void FS::FSMState::exec(ebi::FS::TMgr*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x24(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x24(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -462,35 +894,34 @@ void FS::FSMState::exec(ebi::FS::TMgr*)
 void FS::FSMState_SelectYesNo::do_init(ebi::FS::TMgr*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x28(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r4, 0x14(r30)
-	  mr        r3, r31
-	  bl        -0x66D4
-	  mr        r3, r31
-	  bl        -0x60D4
-	  lbz       r4, 0x10(r30)
-	  mr        r3, r31
-	  bl        -0x63C0
-	  li        r0, 0
-	  stb       r0, 0x21(r30)
-	  stb       r0, 0x20(r30)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lwz      r12, 0(r3)
+	lwz      r12, 0x28(r12)
+	mtctr    r12
+	bctrl
+	lwz      r4, 0x14(r30)
+	mr       r3, r31
+	bl       openMSG__Q43ebi6Screen10FileSelect11TMainScreenFl
+	mr       r3, r31
+	bl       outCopyErase__Q43ebi6Screen10FileSelect11TMainScreenFv
+	lbz      r4, 0x10(r30)
+	mr       r3, r31
+	bl       setYesNo__Q43ebi6Screen10FileSelect11TMainScreenFb
+	li       r0, 0
+	stb      r0, 0x21(r30)
+	stb      r0, 0x20(r30)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -502,162 +933,161 @@ void FS::FSMState_SelectYesNo::do_init(ebi::FS::TMgr*, Game::StateArg*)
 void FS::FSMState_SelectYesNo::do_exec(ebi::FS::TMgr*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lbz       r0, 0x21(r3)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x148
-	  lwz       r3, 0xC00(r31)
-	  lwz       r0, 0x18(r3)
-	  rlwinm.   r0,r0,0,28,28
-	  bne-      .loc_0x48
-	  lfs       f1, 0x4C(r3)
-	  lfs       f0, 0x18A8(r2)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x50
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lbz      r0, 0x21(r3)
+	cmplwi   r0, 0
+	bne      lbl_803DEA80
+	lwz      r3, 0xc00(r31)
+	lwz      r0, 0x18(r3)
+	rlwinm.  r0, r0, 0, 0x1c, 0x1c
+	bne      lbl_803DE980
+	lfs      f1, 0x4c(r3)
+	lfs      f0, lbl_8051FC08@sda21(r2)
+	fcmpo    cr0, f1, f0
+	ble      lbl_803DE988
 
-	.loc_0x48:
-	  li        r0, 0x1
-	  b         .loc_0x54
+lbl_803DE980:
+	li       r0, 1
+	b        lbl_803DE98C
 
-	.loc_0x50:
-	  li        r0, 0
+lbl_803DE988:
+	li       r0, 0
 
-	.loc_0x54:
-	  rlwinm.   r0,r0,0,24,31
-	  beq-      .loc_0x90
-	  lbz       r0, 0x10(r30)
-	  cmplwi    r0, 0
-	  bne-      .loc_0xF0
-	  mr        r3, r31
-	  li        r4, 0x1
-	  bl        -0x6458
-	  li        r0, 0x1
-	  li        r4, 0x1802
-	  stb       r0, 0x10(r30)
-	  li        r5, 0
-	  lwz       r3, -0x67A8(r13)
-	  bl        -0xA6390
-	  b         .loc_0xF0
+lbl_803DE98C:
+	clrlwi.  r0, r0, 0x18
+	beq      lbl_803DE9C8
+	lbz      r0, 0x10(r30)
+	cmplwi   r0, 0
+	bne      lbl_803DEA28
+	mr       r3, r31
+	li       r4, 1
+	bl       setYesNo__Q43ebi6Screen10FileSelect11TMainScreenFb
+	li       r0, 1
+	li       r4, 0x1802
+	stb      r0, 0x10(r30)
+	li       r5, 0
+	lwz      r3, spSysIF__8PSSystem@sda21(r13)
+	bl       playSystemSe__Q28PSSystem5SysIFFUlUl
+	b        lbl_803DEA28
 
-	.loc_0x90:
-	  lwz       r0, 0x18(r3)
-	  rlwinm.   r0,r0,0,29,29
-	  bne-      .loc_0xAC
-	  lfs       f1, 0x4C(r3)
-	  lfs       f0, 0x18AC(r2)
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0xB4
+lbl_803DE9C8:
+	lwz      r0, 0x18(r3)
+	rlwinm.  r0, r0, 0, 0x1d, 0x1d
+	bne      lbl_803DE9E4
+	lfs      f1, 0x4c(r3)
+	lfs      f0, lbl_8051FC0C@sda21(r2)
+	fcmpo    cr0, f1, f0
+	bge      lbl_803DE9EC
 
-	.loc_0xAC:
-	  li        r0, 0x1
-	  b         .loc_0xB8
+lbl_803DE9E4:
+	li       r0, 1
+	b        lbl_803DE9F0
 
-	.loc_0xB4:
-	  li        r0, 0
+lbl_803DE9EC:
+	li       r0, 0
 
-	.loc_0xB8:
-	  rlwinm.   r0,r0,0,24,31
-	  beq-      .loc_0xF0
-	  lbz       r0, 0x10(r30)
-	  cmplwi    r0, 0x1
-	  bne-      .loc_0xF0
-	  mr        r3, r31
-	  li        r4, 0
-	  bl        -0x64BC
-	  li        r0, 0
-	  li        r4, 0x1802
-	  stb       r0, 0x10(r30)
-	  li        r5, 0
-	  lwz       r3, -0x67A8(r13)
-	  bl        -0xA63F4
+lbl_803DE9F0:
+	clrlwi.  r0, r0, 0x18
+	beq      lbl_803DEA28
+	lbz      r0, 0x10(r30)
+	cmplwi   r0, 1
+	bne      lbl_803DEA28
+	mr       r3, r31
+	li       r4, 0
+	bl       setYesNo__Q43ebi6Screen10FileSelect11TMainScreenFb
+	li       r0, 0
+	li       r4, 0x1802
+	stb      r0, 0x10(r30)
+	li       r5, 0
+	lwz      r3, spSysIF__8PSSystem@sda21(r13)
+	bl       playSystemSe__Q28PSSystem5SysIFFUlUl
 
-	.loc_0xF0:
-	  lwz       r3, 0xC00(r31)
-	  lwz       r3, 0x1C(r3)
-	  rlwinm.   r0,r3,0,23,23
-	  beq-      .loc_0x11C
-	  li        r0, 0x1
-	  li        r4, 0x1800
-	  stb       r0, 0x21(r30)
-	  li        r5, 0
-	  lwz       r3, -0x67A8(r13)
-	  bl        -0xA641C
-	  b         .loc_0x174
+lbl_803DEA28:
+	lwz      r3, 0xc00(r31)
+	lwz      r3, 0x1c(r3)
+	rlwinm.  r0, r3, 0, 0x17, 0x17
+	beq      lbl_803DEA54
+	li       r0, 1
+	li       r4, 0x1800
+	stb      r0, 0x21(r30)
+	li       r5, 0
+	lwz      r3, spSysIF__8PSSystem@sda21(r13)
+	bl       playSystemSe__Q28PSSystem5SysIFFUlUl
+	b        lbl_803DEAAC
 
-	.loc_0x11C:
-	  rlwinm.   r0,r3,0,22,22
-	  beq-      .loc_0x174
-	  li        r3, 0
-	  li        r0, 0x1
-	  stb       r3, 0x10(r30)
-	  li        r4, 0x1801
-	  li        r5, 0
-	  stb       r0, 0x21(r30)
-	  lwz       r3, -0x67A8(r13)
-	  bl        -0xA6448
-	  b         .loc_0x174
+lbl_803DEA54:
+	rlwinm.  r0, r3, 0, 0x16, 0x16
+	beq      lbl_803DEAAC
+	li       r3, 0
+	li       r0, 1
+	stb      r3, 0x10(r30)
+	li       r4, 0x1801
+	li       r5, 0
+	stb      r0, 0x21(r30)
+	lwz      r3, spSysIF__8PSSystem@sda21(r13)
+	bl       playSystemSe__Q28PSSystem5SysIFFUlUl
+	b        lbl_803DEAAC
 
-	.loc_0x148:
-	  lbz       r0, 0x20(r30)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x174
-	  li        r0, 0x1
-	  stb       r0, 0x20(r30)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x2C(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r3, r31
-	  bl        -0x65E0
+lbl_803DEA80:
+	lbz      r0, 0x20(r30)
+	cmplwi   r0, 0
+	bne      lbl_803DEAAC
+	li       r0, 1
+	stb      r0, 0x20(r30)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x2c(r12)
+	mtctr    r12
+	bctrl
+	mr       r3, r31
+	bl       closeMSG__Q43ebi6Screen10FileSelect11TMainScreenFv
 
-	.loc_0x174:
-	  mr        r3, r31
-	  bl        -0x6588
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x1EC
-	  lbz       r0, 0x21(r30)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x1EC
-	  lbz       r0, 0x20(r30)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x1EC
-	  lbz       r0, 0x10(r30)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x1CC
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r6, 0
-	  lwz       r5, 0x18(r30)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x1EC
+lbl_803DEAAC:
+	mr       r3, r31
+	bl       isFinishCloseMSG__Q43ebi6Screen10FileSelect11TMainScreenFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803DEB24
+	lbz      r0, 0x21(r30)
+	cmplwi   r0, 0
+	beq      lbl_803DEB24
+	lbz      r0, 0x20(r30)
+	cmplwi   r0, 0
+	beq      lbl_803DEB24
+	lbz      r0, 0x10(r30)
+	cmplwi   r0, 0
+	beq      lbl_803DEB04
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r6, 0
+	lwz      r5, 0x18(r30)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_803DEB24
 
-	.loc_0x1CC:
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r6, 0
-	  lwz       r5, 0x1C(r30)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_803DEB04:
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r6, 0
+	lwz      r5, 0x1c(r30)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x1EC:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803DEB24:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -669,31 +1099,30 @@ void FS::FSMState_SelectYesNo::do_exec(ebi::FS::TMgr*)
 void FS::FSMState01_DataBroken::do_set(ebi::FS::TMgr*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r6, 0
-	  li        r5, 0x6
-	  stw       r0, 0x14(r1)
-	  li        r0, 0x1
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r0, 0x14(r3)
-	  li        r0, 0x4
-	  stb       r6, 0x10(r3)
-	  stw       r5, 0x18(r3)
-	  stw       r0, 0x1C(r3)
-	  mr        r3, r31
-	  lwz       r4, 0xC30(r4)
-	  bl        -0x5D94
-	  lwz       r4, 0xC30(r31)
-	  mr        r3, r31
-	  bl        -0x6D70
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	li       r6, 0
+	li       r5, 6
+	stw      r0, 0x14(r1)
+	li       r0, 1
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r0, 0x14(r3)
+	li       r0, 4
+	stb      r6, 0x10(r3)
+	stw      r5, 0x18(r3)
+	stw      r0, 0x1c(r3)
+	mr       r3, r31
+	lwz      r4, 0xc30(r4)
+	bl       setDataBallBroken__Q43ebi6Screen10FileSelect11TMainScreenFl
+	lwz      r4, 0xc30(r31)
+	mr       r3, r31
+	bl       openDataWindow__Q43ebi6Screen10FileSelect11TMainScreenFl
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -705,16 +1134,15 @@ void FS::FSMState01_DataBroken::do_set(ebi::FS::TMgr*, Game::StateArg*)
 void FS::FSMState03_DoYouDelete::do_set(ebi::FS::TMgr*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  li        r0, 0x3
-	  li        r5, 0
-	  stw       r0, 0x14(r3)
-	  li        r4, 0x6
-	  li        r0, 0x4
-	  stb       r5, 0x10(r3)
-	  stw       r4, 0x18(r3)
-	  stw       r0, 0x1C(r3)
-	  blr
+	li       r0, 3
+	li       r5, 0
+	stw      r0, 0x14(r3)
+	li       r4, 6
+	li       r0, 4
+	stb      r5, 0x10(r3)
+	stw      r4, 0x18(r3)
+	stw      r0, 0x1c(r3)
+	blr
 	*/
 }
 
@@ -726,16 +1154,15 @@ void FS::FSMState03_DoYouDelete::do_set(ebi::FS::TMgr*, Game::StateArg*)
 void FS::FSMState03_DoYouDelete::do_decide(ebi::FS::TMgr*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r3, r4
-	  stw       r0, 0x14(r1)
-	  bl        -0x6AA4
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r3, r4
+	stw      r0, 0x14(r1)
+	bl       closeDataWindow__Q43ebi6Screen10FileSelect11TMainScreenFv
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -747,16 +1174,15 @@ void FS::FSMState03_DoYouDelete::do_decide(ebi::FS::TMgr*)
 void FS::FSMState07_DoYouOverwrite::do_set(ebi::FS::TMgr*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  li        r0, 0x7
-	  li        r5, 0
-	  stw       r0, 0x14(r3)
-	  li        r4, 0xD
-	  li        r0, 0x4
-	  stb       r5, 0x10(r3)
-	  stw       r4, 0x18(r3)
-	  stw       r0, 0x1C(r3)
-	  blr
+	li       r0, 7
+	li       r5, 0
+	stw      r0, 0x14(r3)
+	li       r4, 0xd
+	li       r0, 4
+	stb      r5, 0x10(r3)
+	stw      r4, 0x18(r3)
+	stw      r0, 0x1c(r3)
+	blr
 	*/
 }
 
@@ -768,21 +1194,20 @@ void FS::FSMState07_DoYouOverwrite::do_set(ebi::FS::TMgr*, Game::StateArg*)
 void FS::FSMState07_DoYouOverwrite::do_decide(ebi::FS::TMgr*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  mr        r3, r31
-	  bl        -0x7224
-	  mr        r3, r31
-	  bl        -0x6AFC
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	mr       r3, r31
+	bl       fadeCopyCursor__Q43ebi6Screen10FileSelect11TMainScreenFv
+	mr       r3, r31
+	bl       closeDataWindow__Q43ebi6Screen10FileSelect11TMainScreenFv
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -794,31 +1219,30 @@ void FS::FSMState07_DoYouOverwrite::do_decide(ebi::FS::TMgr*)
 void FS::FSMState_Warning::do_init(ebi::FS::TMgr*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x28(r12)
-	  mtctr     r12
-	  bctrl
-	  li        r0, 0
-	  lfs       f1, 0x18B0(r2)
-	  stb       r0, 0x11(r31)
-	  stb       r0, 0x10(r31)
-	  lwz       r3, -0x6514(r13)
-	  lfs       f0, 0x54(r3)
-	  fdivs     f1, f1, f0
-	  bl        -0x31D134
-	  stw       r3, 0x14(r31)
-	  stw       r3, 0x18(r31)
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r12, 0(r3)
+	lwz      r12, 0x28(r12)
+	mtctr    r12
+	bctrl
+	li       r0, 0
+	lfs      f1, lbl_8051FC10@sda21(r2)
+	stb      r0, 0x11(r31)
+	stb      r0, 0x10(r31)
+	lwz      r3, sys@sda21(r13)
+	lfs      f0, 0x54(r3)
+	fdivs    f1, f1, f0
+	bl       __cvt_fp2unsigned
+	stw      r3, 0x14(r31)
+	stw      r3, 0x18(r31)
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -830,64 +1254,63 @@ void FS::FSMState_Warning::do_init(ebi::FS::TMgr*, Game::StateArg*)
 void FS::FSMState_Warning::do_exec(ebi::FS::TMgr*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lwz       r3, 0x14(r3)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x30
-	  subi      r0, r3, 0x1
-	  stw       r0, 0x14(r30)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lwz      r3, 0x14(r3)
+	cmplwi   r3, 0
+	beq      lbl_803DECD0
+	addi     r0, r3, -1
+	stw      r0, 0x14(r30)
 
-	.loc_0x30:
-	  lbz       r0, 0x11(r30)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x5C
-	  lwz       r0, 0x14(r30)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x78
-	  mr        r3, r31
-	  bl        -0x6824
-	  li        r0, 0x1
-	  stb       r0, 0x11(r30)
-	  b         .loc_0x78
+lbl_803DECD0:
+	lbz      r0, 0x11(r30)
+	cmplwi   r0, 0
+	bne      lbl_803DECFC
+	lwz      r0, 0x14(r30)
+	cmplwi   r0, 0
+	bne      lbl_803DED18
+	mr       r3, r31
+	bl       closeMSG__Q43ebi6Screen10FileSelect11TMainScreenFv
+	li       r0, 1
+	stb      r0, 0x11(r30)
+	b        lbl_803DED18
 
-	.loc_0x5C:
-	  lbz       r0, 0x10(r30)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x78
-	  li        r0, 0x1
-	  mr        r3, r31
-	  stb       r0, 0x10(r30)
-	  bl        -0x684C
+lbl_803DECFC:
+	lbz      r0, 0x10(r30)
+	cmplwi   r0, 0
+	bne      lbl_803DED18
+	li       r0, 1
+	mr       r3, r31
+	stb      r0, 0x10(r30)
+	bl       closeMSG__Q43ebi6Screen10FileSelect11TMainScreenFv
 
-	.loc_0x78:
-	  mr        r3, r31
-	  bl        -0x67F4
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xAC
-	  lbz       r0, 0x11(r30)
-	  cmplwi    r0, 0
-	  beq-      .loc_0xAC
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x2C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_803DED18:
+	mr       r3, r31
+	bl       isFinishCloseMSG__Q43ebi6Screen10FileSelect11TMainScreenFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803DED4C
+	lbz      r0, 0x11(r30)
+	cmplwi   r0, 0
+	beq      lbl_803DED4C
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	lwz      r12, 0x2c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0xAC:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803DED4C:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -899,17 +1322,16 @@ void FS::FSMState_Warning::do_exec(ebi::FS::TMgr*)
 void FS::FSMState05_FailToDelete::do_open(ebi::FS::TMgr*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r3, r4
-	  li        r4, 0x5
-	  stw       r0, 0x14(r1)
-	  bl        -0x6B50
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r3, r4
+	li       r4, 5
+	stw      r0, 0x14(r1)
+	bl       openMSG__Q43ebi6Screen10FileSelect11TMainScreenFl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -921,28 +1343,27 @@ void FS::FSMState05_FailToDelete::do_open(ebi::FS::TMgr*)
 void FS::FSMState05_FailToDelete::do_transit(ebi::FS::TMgr*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lbz       r0, 0xC3C(r4)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x28
-	  mr        r3, r4
-	  li        r4, 0x1
-	  bl        0x156C
-	  b         .loc_0x34
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lbz      r0, 0xc3c(r4)
+	cmplwi   r0, 0
+	bne      lbl_803DEDB4
+	mr       r3, r4
+	li       r4, 1
+	bl       goEnd___Q33ebi2FS4TMgrFQ43ebi2FS4TMgr7enumEnd
+	b        lbl_803DEDC0
 
-	.loc_0x28:
-	  mr        r3, r4
-	  li        r4, 0x2
-	  bl        0x155C
+lbl_803DEDB4:
+	mr       r3, r4
+	li       r4, 2
+	bl       goEnd___Q33ebi2FS4TMgrFQ43ebi2FS4TMgr7enumEnd
 
-	.loc_0x34:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803DEDC0:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -954,17 +1375,16 @@ void FS::FSMState05_FailToDelete::do_transit(ebi::FS::TMgr*)
 void FS::FSMState06_FinishDelete::do_open(ebi::FS::TMgr*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r3, r4
-	  li        r4, 0x6
-	  stw       r0, 0x14(r1)
-	  bl        -0x6BBC
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r3, r4
+	li       r4, 6
+	stw      r0, 0x14(r1)
+	bl       openMSG__Q43ebi6Screen10FileSelect11TMainScreenFl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -976,20 +1396,19 @@ void FS::FSMState06_FinishDelete::do_open(ebi::FS::TMgr*)
 void FS::FSMState06_FinishDelete::do_transit(ebi::FS::TMgr*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r5, 0x4
-	  li        r6, 0
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	li       r5, 4
+	li       r6, 0
+	stw      r0, 0x14(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1001,17 +1420,16 @@ void FS::FSMState06_FinishDelete::do_transit(ebi::FS::TMgr*)
 void FS::FSMState08_FailToCopy::do_open(ebi::FS::TMgr*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r3, r4
-	  li        r4, 0x8
-	  stw       r0, 0x14(r1)
-	  bl        -0x6C18
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r3, r4
+	li       r4, 8
+	stw      r0, 0x14(r1)
+	bl       openMSG__Q43ebi6Screen10FileSelect11TMainScreenFl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1023,28 +1441,27 @@ void FS::FSMState08_FailToCopy::do_open(ebi::FS::TMgr*)
 void FS::FSMState08_FailToCopy::do_transit(ebi::FS::TMgr*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lbz       r0, 0xC3C(r4)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x28
-	  mr        r3, r4
-	  li        r4, 0x1
-	  bl        0x14A4
-	  b         .loc_0x34
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lbz      r0, 0xc3c(r4)
+	cmplwi   r0, 0
+	bne      lbl_803DEE7C
+	mr       r3, r4
+	li       r4, 1
+	bl       goEnd___Q33ebi2FS4TMgrFQ43ebi2FS4TMgr7enumEnd
+	b        lbl_803DEE88
 
-	.loc_0x28:
-	  mr        r3, r4
-	  li        r4, 0x2
-	  bl        0x1494
+lbl_803DEE7C:
+	mr       r3, r4
+	li       r4, 2
+	bl       goEnd___Q33ebi2FS4TMgrFQ43ebi2FS4TMgr7enumEnd
 
-	.loc_0x34:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803DEE88:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1056,17 +1473,16 @@ void FS::FSMState08_FailToCopy::do_transit(ebi::FS::TMgr*)
 void FS::FSMState10_FinishCopy::do_open(ebi::FS::TMgr*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r3, r4
-	  li        r4, 0xA
-	  stw       r0, 0x14(r1)
-	  bl        -0x6C84
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r3, r4
+	li       r4, 0xa
+	stw      r0, 0x14(r1)
+	bl       openMSG__Q43ebi6Screen10FileSelect11TMainScreenFl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1078,20 +1494,19 @@ void FS::FSMState10_FinishCopy::do_open(ebi::FS::TMgr*)
 void FS::FSMState10_FinishCopy::do_transit(ebi::FS::TMgr*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r5, 0x4
-	  li        r6, 0
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	li       r5, 4
+	li       r6, 0
+	stw      r0, 0x14(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1103,34 +1518,33 @@ void FS::FSMState10_FinishCopy::do_transit(ebi::FS::TMgr*)
 void FS::FSMState_CardTask::init(ebi::FS::TMgr*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, -0x6514(r13)
-	  lfs       f1, 0x18B0(r2)
-	  lfs       f0, 0x54(r3)
-	  fdivs     f1, f1, f0
-	  bl        -0x31D3E4
-	  stw       r3, 0xBF8(r31)
-	  li        r0, 0
-	  stw       r3, 0xBFC(r31)
-	  stw       r0, 0x14(r30)
-	  stb       r0, 0xC3C(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, sys@sda21(r13)
+	lfs      f1, lbl_8051FC10@sda21(r2)
+	lfs      f0, 0x54(r3)
+	fdivs    f1, f1, f0
+	bl       __cvt_fp2unsigned
+	stw      r3, 0xbf8(r31)
+	li       r0, 0
+	stw      r3, 0xbfc(r31)
+	stw      r0, 0x14(r30)
+	stb      r0, 0xc3c(r31)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1142,221 +1556,220 @@ void FS::FSMState_CardTask::init(ebi::FS::TMgr*, Game::StateArg*)
 void FS::FSMState_CardTask::exec(ebi::FS::TMgr*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r4
-	  stw       r30, 0x18(r1)
-	  mr        r30, r3
-	  stw       r29, 0x14(r1)
-	  li        r29, 0
-	  lwz       r5, -0x6514(r13)
-	  lwz       r3, 0x5C(r5)
-	  lwz       r0, 0xA8(r3)
-	  cmpwi     r0, 0
-	  bne-      .loc_0x48
-	  bl        0x62024
-	  cmplwi    r3, 0xB
-	  beq-      .loc_0x48
-	  li        r29, 0x1
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r4
+	stw      r30, 0x18(r1)
+	mr       r30, r3
+	stw      r29, 0x14(r1)
+	li       r29, 0
+	lwz      r5, sys@sda21(r13)
+	lwz      r3, 0x5c(r5)
+	lwz      r0, 0xa8(r3)
+	cmpwi    r0, 0
+	bne      lbl_803DEFA8
+	bl       checkStatus__13MemoryCardMgrFv
+	cmplwi   r3, 0xb
+	beq      lbl_803DEFA8
+	li       r29, 1
 
-	.loc_0x48:
-	  rlwinm.   r0,r29,0,24,31
-	  beq-      .loc_0x6C
-	  lwz       r3, -0x6514(r13)
-	  lwz       r3, 0x5C(r3)
-	  bl        0x66B54
-	  cmpwi     r3, 0
-	  bne-      .loc_0x6C
-	  li        r0, 0x1
-	  b         .loc_0x70
+lbl_803DEFA8:
+	clrlwi.  r0, r29, 0x18
+	beq      lbl_803DEFCC
+	lwz      r3, sys@sda21(r13)
+	lwz      r3, 0x5c(r3)
+	bl       getCardStatus__Q34Game10MemoryCard3MgrFv
+	cmpwi    r3, 0
+	bne      lbl_803DEFCC
+	li       r0, 1
+	b        lbl_803DEFD0
 
-	.loc_0x6C:
-	  li        r0, 0
+lbl_803DEFCC:
+	li       r0, 0
 
-	.loc_0x70:
-	  rlwinm.   r0,r0,0,24,31
-	  beq-      .loc_0x90
-	  li        r3, 0
-	  li        r0, 0x3
-	  stw       r3, 0x10(r30)
-	  mr        r3, r31
-	  stw       r0, 0x14(r30)
-	  bl        -0x6B24
+lbl_803DEFD0:
+	clrlwi.  r0, r0, 0x18
+	beq      lbl_803DEFF0
+	li       r3, 0
+	li       r0, 3
+	stw      r3, 0x10(r30)
+	mr       r3, r31
+	stw      r0, 0x14(r30)
+	bl       closeMSG__Q43ebi6Screen10FileSelect11TMainScreenFv
 
-	.loc_0x90:
-	  lwz       r0, 0x14(r30)
-	  cmpwi     r0, 0x2
-	  beq-      .loc_0x18C
-	  bge-      .loc_0xB0
-	  cmpwi     r0, 0
-	  beq-      .loc_0xBC
-	  bge-      .loc_0x134
-	  b         .loc_0x2A4
+lbl_803DEFF0:
+	lwz      r0, 0x14(r30)
+	cmpwi    r0, 2
+	beq      lbl_803DF0EC
+	bge      lbl_803DF010
+	cmpwi    r0, 0
+	beq      lbl_803DF01C
+	bge      lbl_803DF094
+	b        lbl_803DF204
 
-	.loc_0xB0:
-	  cmpwi     r0, 0x4
-	  bge-      .loc_0x2A4
-	  b         .loc_0x1C4
+lbl_803DF010:
+	cmpwi    r0, 4
+	bge      lbl_803DF204
+	b        lbl_803DF124
 
-	.loc_0xBC:
-	  lwz       r3, -0x6514(r13)
-	  li        r29, 0
-	  lwz       r3, 0x5C(r3)
-	  lwz       r0, 0xA8(r3)
-	  cmpwi     r0, 0
-	  bne-      .loc_0xE4
-	  bl        0x61F88
-	  cmplwi    r3, 0xB
-	  beq-      .loc_0xE4
-	  li        r29, 0x1
+lbl_803DF01C:
+	lwz      r3, sys@sda21(r13)
+	li       r29, 0
+	lwz      r3, 0x5c(r3)
+	lwz      r0, 0xa8(r3)
+	cmpwi    r0, 0
+	bne      lbl_803DF044
+	bl       checkStatus__13MemoryCardMgrFv
+	cmplwi   r3, 0xb
+	beq      lbl_803DF044
+	li       r29, 1
 
-	.loc_0xE4:
-	  rlwinm.   r0,r29,0,24,31
-	  beq-      .loc_0x2A4
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x28(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x128
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  addi      r3, r3, 0x6FE4
-	  li        r4, 0x131
-	  addi      r5, r5, 0x7000
-	  crclr     6, 0x6
-	  bl        -0x3B4A44
+lbl_803DF044:
+	clrlwi.  r0, r29, 0x18
+	beq      lbl_803DF204
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	lwz      r12, 0x28(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_803DF088
+	lis      r3, lbl_80496FE4@ha
+	lis      r5, lbl_80497000@ha
+	addi     r3, r3, lbl_80496FE4@l
+	li       r4, 0x131
+	addi     r5, r5, lbl_80497000@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x128:
-	  li        r0, 0x1
-	  stw       r0, 0x14(r30)
-	  b         .loc_0x2A4
+lbl_803DF088:
+	li       r0, 1
+	stw      r0, 0x14(r30)
+	b        lbl_803DF204
 
-	.loc_0x134:
-	  lwz       r3, -0x6514(r13)
-	  li        r31, 0
-	  lwz       r3, 0x5C(r3)
-	  lwz       r0, 0xA8(r3)
-	  cmpwi     r0, 0
-	  bne-      .loc_0x15C
-	  bl        0x61F10
-	  cmplwi    r3, 0xB
-	  beq-      .loc_0x15C
-	  li        r31, 0x1
+lbl_803DF094:
+	lwz      r3, sys@sda21(r13)
+	li       r31, 0
+	lwz      r3, 0x5c(r3)
+	lwz      r0, 0xa8(r3)
+	cmpwi    r0, 0
+	bne      lbl_803DF0BC
+	bl       checkStatus__13MemoryCardMgrFv
+	cmplwi   r3, 0xb
+	beq      lbl_803DF0BC
+	li       r31, 1
 
-	.loc_0x15C:
-	  rlwinm.   r0,r31,0,24,31
-	  beq-      .loc_0x2A4
-	  lwz       r3, -0x6514(r13)
-	  lwz       r3, 0x5C(r3)
-	  bl        0x66A40
-	  stw       r3, 0x10(r30)
-	  lwz       r3, -0x6514(r13)
-	  lwz       r3, 0x5C(r3)
-	  bl        0x66A30
-	  li        r0, 0x2
-	  stw       r0, 0x14(r30)
-	  b         .loc_0x2A4
+lbl_803DF0BC:
+	clrlwi.  r0, r31, 0x18
+	beq      lbl_803DF204
+	lwz      r3, sys@sda21(r13)
+	lwz      r3, 0x5c(r3)
+	bl       getCardStatus__Q34Game10MemoryCard3MgrFv
+	stw      r3, 0x10(r30)
+	lwz      r3, sys@sda21(r13)
+	lwz      r3, 0x5c(r3)
+	bl       getCardStatus__Q34Game10MemoryCard3MgrFv
+	li       r0, 2
+	stw      r0, 0x14(r30)
+	b        lbl_803DF204
 
-	.loc_0x18C:
-	  lwz       r0, 0xBF8(r31)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x2A4
-	  mr        r3, r31
-	  bl        -0x6C34
-	  li        r0, 0x3
-	  mr        r3, r30
-	  stw       r0, 0x14(r30)
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x3C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x2A4
+lbl_803DF0EC:
+	lwz      r0, 0xbf8(r31)
+	cmplwi   r0, 0
+	bne      lbl_803DF204
+	mr       r3, r31
+	bl       closeMSG__Q43ebi6Screen10FileSelect11TMainScreenFv
+	li       r0, 3
+	mr       r3, r30
+	stw      r0, 0x14(r30)
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	lwz      r12, 0x3c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_803DF204
 
-	.loc_0x1C4:
-	  mr        r3, r31
-	  bl        -0x6C00
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x2A4
-	  lwz       r0, 0x10(r30)
-	  cmpwi     r0, 0x2
-	  beq-      .loc_0x1F0
-	  lwz       r3, -0x67A8(r13)
-	  li        r4, 0x180D
-	  li        r5, 0
-	  bl        -0xA6B1C
+lbl_803DF124:
+	mr       r3, r31
+	bl       isFinishCloseMSG__Q43ebi6Screen10FileSelect11TMainScreenFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803DF204
+	lwz      r0, 0x10(r30)
+	cmpwi    r0, 2
+	beq      lbl_803DF150
+	lwz      r3, spSysIF__8PSSystem@sda21(r13)
+	li       r4, 0x180d
+	li       r5, 0
+	bl       playSystemSe__Q28PSSystem5SysIFFUlUl
 
-	.loc_0x1F0:
-	  lwz       r0, 0x10(r30)
-	  cmpwi     r0, 0x2
-	  beq-      .loc_0x218
-	  bge-      .loc_0x20C
-	  cmpwi     r0, 0
-	  beq-      .loc_0x260
-	  b         .loc_0x284
+lbl_803DF150:
+	lwz      r0, 0x10(r30)
+	cmpwi    r0, 2
+	beq      lbl_803DF178
+	bge      lbl_803DF16C
+	cmpwi    r0, 0
+	beq      lbl_803DF1C0
+	b        lbl_803DF1E4
 
-	.loc_0x20C:
-	  cmpwi     r0, 0xD
-	  beq-      .loc_0x23C
-	  b         .loc_0x284
+lbl_803DF16C:
+	cmpwi    r0, 0xd
+	beq      lbl_803DF19C
+	b        lbl_803DF1E4
 
-	.loc_0x218:
-	  li        r0, 0x1
-	  mr        r3, r30
-	  stb       r0, 0xC3C(r31)
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x2C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x2A4
+lbl_803DF178:
+	li       r0, 1
+	mr       r3, r30
+	stb      r0, 0xc3c(r31)
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	lwz      r12, 0x2c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_803DF204
 
-	.loc_0x23C:
-	  li        r0, 0x1
-	  mr        r3, r30
-	  stb       r0, 0xC3C(r31)
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x38(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x2A4
+lbl_803DF19C:
+	li       r0, 1
+	mr       r3, r30
+	stb      r0, 0xc3c(r31)
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	lwz      r12, 0x38(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_803DF204
 
-	.loc_0x260:
-	  li        r0, 0
-	  mr        r3, r30
-	  stb       r0, 0xC3C(r31)
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x30(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x2A4
+lbl_803DF1C0:
+	li       r0, 0
+	mr       r3, r30
+	stb      r0, 0xc3c(r31)
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	lwz      r12, 0x30(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_803DF204
 
-	.loc_0x284:
-	  li        r0, 0x1
-	  mr        r3, r30
-	  stb       r0, 0xC3C(r31)
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x34(r12)
-	  mtctr     r12
-	  bctrl
+lbl_803DF1E4:
+	li       r0, 1
+	mr       r3, r30
+	stb      r0, 0xc3c(r31)
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	lwz      r12, 0x34(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x2A4:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_803DF204:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -1368,20 +1781,19 @@ void FS::FSMState_CardTask::exec(ebi::FS::TMgr*)
 void FS::FSMState_CardTask::do_transitCardPlayerDataBroken(ebi::FS::TMgr*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r5, 0x5
-	  li        r6, 0
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	li       r5, 5
+	li       r6, 0
+	stw      r0, 0x14(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1393,23 +1805,22 @@ void FS::FSMState_CardTask::do_transitCardPlayerDataBroken(ebi::FS::TMgr*)
 void FS::FSMState02_NowDelete::do_init(ebi::FS::TMgr*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  li        r4, 0x2
-	  mr        r3, r31
-	  bl        -0x7048
-	  lwz       r4, 0xC30(r31)
-	  mr        r3, r31
-	  bl        -0x75D8
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	li       r4, 2
+	mr       r3, r31
+	bl       openMSG__Q43ebi6Screen10FileSelect11TMainScreenFl
+	lwz      r4, 0xc30(r31)
+	mr       r3, r31
+	bl       createFiledeletingEffect__Q43ebi6Screen10FileSelect11TMainScreenFl
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1421,16 +1832,15 @@ void FS::FSMState02_NowDelete::do_init(ebi::FS::TMgr*, Game::StateArg*)
 void FS::FSMState02_NowDelete::do_close(ebi::FS::TMgr*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r3, r4
-	  stw       r0, 0x14(r1)
-	  bl        -0x74E8
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r3, r4
+	stw      r0, 0x14(r1)
+	bl       fadeFiledeletingEffect__Q43ebi6Screen10FileSelect11TMainScreenFv
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1442,18 +1852,17 @@ void FS::FSMState02_NowDelete::do_close(ebi::FS::TMgr*)
 void FS::FSMState02_NowDelete::do_cardRequest(ebi::FS::TMgr*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r3, -0x6514(r13)
-	  lwz       r4, 0xC30(r4)
-	  lwz       r3, 0x5C(r3)
-	  bl        0x640E0
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r3, sys@sda21(r13)
+	lwz      r4, 0xc30(r4)
+	lwz      r3, 0x5c(r3)
+	bl       deletePlayer__Q34Game10MemoryCard3MgrFi
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1465,31 +1874,30 @@ void FS::FSMState02_NowDelete::do_cardRequest(ebi::FS::TMgr*)
 void FS::FSMState02_NowDelete::do_transitCardReady(ebi::FS::TMgr*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  mr        r3, r31
-	  lwz       r4, 0xC30(r4)
-	  bl        -0x6774
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0xA
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	mr       r3, r31
+	lwz      r4, 0xc30(r4)
+	bl       setDataBallNew__Q43ebi6Screen10FileSelect11TMainScreenFl
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 0xa
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1501,20 +1909,19 @@ void FS::FSMState02_NowDelete::do_transitCardReady(ebi::FS::TMgr*)
 void FS::FSMState02_NowDelete::do_transitCardNoCard(ebi::FS::TMgr*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r5, 0x9
-	  li        r6, 0
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	li       r5, 9
+	li       r6, 0
+	stw      r0, 0x14(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1526,20 +1933,19 @@ void FS::FSMState02_NowDelete::do_transitCardNoCard(ebi::FS::TMgr*)
 void FS::FSMState02_NowDelete::do_transitCardIOError(ebi::FS::TMgr*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r5, 0x9
-	  li        r6, 0
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	li       r5, 9
+	li       r6, 0
+	stw      r0, 0x14(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1551,16 +1957,15 @@ void FS::FSMState02_NowDelete::do_transitCardIOError(ebi::FS::TMgr*)
 void FS::FSMState02_NowDelete::cleanup(ebi::FS::TMgr*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r3, r4
-	  stw       r0, 0x14(r1)
-	  bl        -0x7600
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r3, r4
+	stw      r0, 0x14(r1)
+	bl       fadeFiledeletingEffect__Q43ebi6Screen10FileSelect11TMainScreenFv
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1572,24 +1977,23 @@ void FS::FSMState02_NowDelete::cleanup(ebi::FS::TMgr*)
 void FS::FSMState09_NowCopy::do_init(ebi::FS::TMgr*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  li        r4, 0x9
-	  mr        r3, r31
-	  bl        -0x71C4
-	  lwz       r4, 0xC30(r31)
-	  mr        r3, r31
-	  lwz       r5, 0xC34(r31)
-	  bl        -0x7990
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	li       r4, 9
+	mr       r3, r31
+	bl       openMSG__Q43ebi6Screen10FileSelect11TMainScreenFl
+	lwz      r4, 0xc30(r31)
+	mr       r3, r31
+	lwz      r5, 0xc34(r31)
+	bl       createFilecopyEffect__Q43ebi6Screen10FileSelect11TMainScreenFll
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1601,16 +2005,15 @@ void FS::FSMState09_NowCopy::do_init(ebi::FS::TMgr*, Game::StateArg*)
 void FS::FSMState09_NowCopy::do_close(ebi::FS::TMgr*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r3, r4
-	  stw       r0, 0x14(r1)
-	  bl        -0x77D8
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r3, r4
+	stw      r0, 0x14(r1)
+	bl       fadeFilecopyEffect__Q43ebi6Screen10FileSelect11TMainScreenFv
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1622,20 +2025,19 @@ void FS::FSMState09_NowCopy::do_close(ebi::FS::TMgr*)
 void FS::FSMState09_NowCopy::do_cardRequest(ebi::FS::TMgr*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r5, r4
-	  stw       r0, 0x14(r1)
-	  lwz       r3, -0x6514(r13)
-	  lwz       r4, 0xC30(r4)
-	  lwz       r3, 0x5C(r3)
-	  lwz       r5, 0xC34(r5)
-	  bl        0x6407C
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r5, r4
+	stw      r0, 0x14(r1)
+	lwz      r3, sys@sda21(r13)
+	lwz      r4, 0xc30(r4)
+	lwz      r3, 0x5c(r3)
+	lwz      r5, 0xc34(r5)
+	bl       copyPlayer__Q34Game10MemoryCard3MgrFii
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1647,32 +2049,31 @@ void FS::FSMState09_NowCopy::do_cardRequest(ebi::FS::TMgr*)
 void FS::FSMState09_NowCopy::do_transitCardReady(ebi::FS::TMgr*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  mr        r3, r31
-	  lwz       r4, 0xC30(r4)
-	  lwz       r5, 0xC34(r31)
-	  bl        -0x6AC0
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0xE
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	mr       r3, r31
+	lwz      r4, 0xc30(r4)
+	lwz      r5, 0xc34(r31)
+	bl       setDataBallCopyResult__Q43ebi6Screen10FileSelect11TMainScreenFll
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 0xe
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1684,20 +2085,19 @@ void FS::FSMState09_NowCopy::do_transitCardReady(ebi::FS::TMgr*)
 void FS::FSMState09_NowCopy::do_transitCardNoCard(ebi::FS::TMgr*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r5, 0xC
-	  li        r6, 0
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	li       r5, 0xc
+	li       r6, 0
+	stw      r0, 0x14(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1709,20 +2109,19 @@ void FS::FSMState09_NowCopy::do_transitCardNoCard(ebi::FS::TMgr*)
 void FS::FSMState09_NowCopy::do_transitCardIOError(ebi::FS::TMgr*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r5, 0xC
-	  li        r6, 0
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	li       r5, 0xc
+	li       r6, 0
+	stw      r0, 0x14(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1734,16 +2133,15 @@ void FS::FSMState09_NowCopy::do_transitCardIOError(ebi::FS::TMgr*)
 void FS::FSMState09_NowCopy::cleanup(ebi::FS::TMgr*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r3, r4
-	  stw       r0, 0x14(r1)
-	  bl        -0x78FC
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r3, r4
+	stw      r0, 0x14(r1)
+	bl       fadeFilecopyEffect__Q43ebi6Screen10FileSelect11TMainScreenFv
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1755,26 +2153,25 @@ void FS::FSMState09_NowCopy::cleanup(ebi::FS::TMgr*)
 void FS::FSMState00a_OpenScene::do_init(ebi::FS::TMgr*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  li        r4, 0
-	  lwz       r12, 0x0(r31)
-	  mr        r3, r31
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  li        r0, 0
-	  stw       r0, 0xC30(r31)
-	  stw       r0, 0xC38(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	li       r4, 0
+	lwz      r12, 0(r31)
+	mr       r3, r31
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	li       r0, 0
+	stw      r0, 0xc30(r31)
+	stw      r0, 0xc38(r31)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1786,34 +2183,33 @@ void FS::FSMState00a_OpenScene::do_init(ebi::FS::TMgr*, Game::StateArg*)
 void FS::FSMState00a_OpenScene::do_exec(ebi::FS::TMgr*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  mr        r3, r31
-	  bl        -0xBC30
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x4C
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x4
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	mr       r3, r31
+	bl       isWaitScreen__Q33ebi6Screen11TScreenBaseFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803DF5F4
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 4
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x4C:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803DF5F4:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1825,54 +2221,53 @@ void FS::FSMState00a_OpenScene::do_exec(ebi::FS::TMgr*)
 void FS::FSMState00_SelectData::do_init(ebi::FS::TMgr*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  mr        r3, r31
-	  lwz       r4, 0xC30(r4)
-	  bl        -0x81A4
-	  lwz       r4, 0xC30(r31)
-	  mr        r3, r31
-	  bl        -0x7828
-	  mr        r3, r31
-	  li        r4, 0
-	  bl        -0x7420
-	  lwz       r0, 0xC30(r31)
-	  mulli     r3, r0, 0x34
-	  addi      r3, r3, 0xB00
-	  add       r3, r31, r3
-	  lbz       r0, 0x1(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x68
-	  lbz       r0, 0x0(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x70
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	mr       r3, r31
+	lwz      r4, 0xc30(r4)
+	bl       inDataBall__Q43ebi6Screen10FileSelect11TMainScreenFl
+	lwz      r4, 0xc30(r31)
+	mr       r3, r31
+	bl       openDataWindow__Q43ebi6Screen10FileSelect11TMainScreenFl
+	mr       r3, r31
+	li       r4, 0
+	bl       openMSG__Q43ebi6Screen10FileSelect11TMainScreenFl
+	lwz      r0, 0xc30(r31)
+	mulli    r3, r0, 0x34
+	addi     r3, r3, 0xb00
+	add      r3, r31, r3
+	lbz      r0, 1(r3)
+	cmplwi   r0, 0
+	beq      lbl_803DF674
+	lbz      r0, 0(r3)
+	cmplwi   r0, 0
+	beq      lbl_803DF67C
 
-	.loc_0x68:
-	  mr        r3, r31
-	  bl        -0x6ED4
+lbl_803DF674:
+	mr       r3, r31
+	bl       inCopyErase__Q43ebi6Screen10FileSelect11TMainScreenFv
 
-	.loc_0x70:
-	  li        r0, 0
-	  lfs       f1, 0x18A8(r2)
-	  stb       r0, 0x10(r30)
-	  lwz       r3, -0x6514(r13)
-	  lfs       f0, 0x54(r3)
-	  fdivs     f1, f1, f0
-	  bl        -0x31DB48
-	  stw       r3, 0x14(r30)
-	  stw       r3, 0x18(r30)
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803DF67C:
+	li       r0, 0
+	lfs      f1, lbl_8051FC08@sda21(r2)
+	stb      r0, 0x10(r30)
+	lwz      r3, sys@sda21(r13)
+	lfs      f0, 0x54(r3)
+	fdivs    f1, f1, f0
+	bl       __cvt_fp2unsigned
+	stw      r3, 0x14(r30)
+	stw      r3, 0x18(r30)
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1884,178 +2279,177 @@ void FS::FSMState00_SelectData::do_init(ebi::FS::TMgr*, Game::StateArg*)
 void FS::FSMState00_SelectData::do_exec(ebi::FS::TMgr*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stmw      r27, 0xC(r1)
-	  mr        r31, r4
-	  mr        r30, r3
-	  mr        r3, r31
-	  bl        -0xBD3C
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x218
-	  lwz       r3, 0x14(r30)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x3C
-	  subi      r0, r3, 0x1
-	  stw       r0, 0x14(r30)
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stmw     r27, 0xc(r1)
+	mr       r31, r4
+	mr       r30, r3
+	mr       r3, r31
+	bl       isWaitScreen__Q33ebi6Screen11TScreenBaseFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803DF8D0
+	lwz      r3, 0x14(r30)
+	cmplwi   r3, 0
+	beq      lbl_803DF6F4
+	addi     r0, r3, -1
+	stw      r0, 0x14(r30)
 
-	.loc_0x3C:
-	  lwz       r28, 0xC00(r31)
-	  addi      r3, r31, 0xC04
-	  lwz       r27, 0xC30(r31)
-	  bl        -0x1DC64
-	  lwz       r0, 0xC30(r31)
-	  li        r29, 0x1
-	  mulli     r3, r0, 0x34
-	  addi      r3, r3, 0xB00
-	  add       r3, r31, r3
-	  lbz       r0, 0x1(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x7C
-	  lbz       r0, 0x0(r3)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x7C
-	  li        r29, 0
+lbl_803DF6F4:
+	lwz      r28, 0xc00(r31)
+	addi     r3, r31, 0xc04
+	lwz      r27, 0xc30(r31)
+	bl       update__Q23ebi24EUTPadInterface_countNumFv
+	lwz      r0, 0xc30(r31)
+	li       r29, 1
+	mulli    r3, r0, 0x34
+	addi     r3, r3, 0xb00
+	add      r3, r31, r3
+	lbz      r0, 1(r3)
+	cmplwi   r0, 0
+	beq      lbl_803DF734
+	lbz      r0, 0(r3)
+	cmplwi   r0, 0
+	bne      lbl_803DF734
+	li       r29, 0
 
-	.loc_0x7C:
-	  lwz       r0, 0xC30(r31)
-	  cmpw      r27, r0
-	  beq-      .loc_0xDC
-	  mr        r3, r31
-	  mr        r4, r27
-	  bl        -0x810C
-	  mr        r3, r31
-	  bl        -0x7624
-	  lwz       r4, 0xC30(r31)
-	  mr        r3, r31
-	  bl        -0x82D0
-	  rlwinm.   r0,r29,0,24,31
-	  beq-      .loc_0xBC
-	  mr        r3, r31
-	  bl        -0x6FC8
-	  b         .loc_0xC4
+lbl_803DF734:
+	lwz      r0, 0xc30(r31)
+	cmpw     r27, r0
+	beq      lbl_803DF794
+	mr       r3, r31
+	mr       r4, r27
+	bl       outDataBall__Q43ebi6Screen10FileSelect11TMainScreenFl
+	mr       r3, r31
+	bl       closeDataWindow__Q43ebi6Screen10FileSelect11TMainScreenFv
+	lwz      r4, 0xc30(r31)
+	mr       r3, r31
+	bl       inDataBall__Q43ebi6Screen10FileSelect11TMainScreenFl
+	clrlwi.  r0, r29, 0x18
+	beq      lbl_803DF774
+	mr       r3, r31
+	bl       inCopyErase__Q43ebi6Screen10FileSelect11TMainScreenFv
+	b        lbl_803DF77C
 
-	.loc_0xBC:
-	  mr        r3, r31
-	  bl        -0x6F48
+lbl_803DF774:
+	mr       r3, r31
+	bl       outCopyErase__Q43ebi6Screen10FileSelect11TMainScreenFv
 
-	.loc_0xC4:
-	  li        r0, 0x1
-	  li        r4, 0x1802
-	  stb       r0, 0x10(r30)
-	  li        r5, 0
-	  lwz       r3, -0x67A8(r13)
-	  bl        -0xA7160
+lbl_803DF77C:
+	li       r0, 1
+	li       r4, 0x1802
+	stb      r0, 0x10(r30)
+	li       r5, 0
+	lwz      r3, spSysIF__8PSSystem@sda21(r13)
+	bl       playSystemSe__Q28PSSystem5SysIFFUlUl
 
-	.loc_0xDC:
-	  mr        r3, r31
-	  bl        -0x7594
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x10C
-	  lbz       r0, 0x10(r30)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x10C
-	  li        r0, 0
-	  mr        r3, r31
-	  stb       r0, 0x10(r30)
-	  lwz       r4, 0xC30(r31)
-	  bl        -0x79AC
+lbl_803DF794:
+	mr       r3, r31
+	bl       isFinishCloseDataWindow__Q43ebi6Screen10FileSelect11TMainScreenFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803DF7C4
+	lbz      r0, 0x10(r30)
+	cmplwi   r0, 0
+	beq      lbl_803DF7C4
+	li       r0, 0
+	mr       r3, r31
+	stb      r0, 0x10(r30)
+	lwz      r4, 0xc30(r31)
+	bl       openDataWindow__Q43ebi6Screen10FileSelect11TMainScreenFl
 
-	.loc_0x10C:
-	  lwz       r0, 0x14(r30)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x218
-	  lwz       r3, 0x1C(r28)
-	  rlwinm.   r0,r3,0,23,23
-	  beq-      .loc_0x158
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x2
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, -0x67A8(r13)
-	  li        r4, 0x1800
-	  li        r5, 0
-	  bl        -0xA71D8
-	  b         .loc_0x218
+lbl_803DF7C4:
+	lwz      r0, 0x14(r30)
+	cmplwi   r0, 0
+	bne      lbl_803DF8D0
+	lwz      r3, 0x1c(r28)
+	rlwinm.  r0, r3, 0, 0x17, 0x17
+	beq      lbl_803DF810
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 2
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, spSysIF__8PSSystem@sda21(r13)
+	li       r4, 0x1800
+	li       r5, 0
+	bl       playSystemSe__Q28PSSystem5SysIFFUlUl
+	b        lbl_803DF8D0
 
-	.loc_0x158:
-	  rlwinm.   r0,r3,0,20,20
-	  beq-      .loc_0x1A4
-	  rlwinm.   r0,r29,0,24,31
-	  beq-      .loc_0x218
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x8
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r3, r31
-	  bl        -0x7718
-	  lwz       r3, -0x67A8(r13)
-	  li        r4, 0x1800
-	  li        r5, 0
-	  bl        -0xA7224
-	  b         .loc_0x218
+lbl_803DF810:
+	rlwinm.  r0, r3, 0, 0x14, 0x14
+	beq      lbl_803DF85C
+	clrlwi.  r0, r29, 0x18
+	beq      lbl_803DF8D0
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 8
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	mr       r3, r31
+	bl       closeDataWindow__Q43ebi6Screen10FileSelect11TMainScreenFv
+	lwz      r3, spSysIF__8PSSystem@sda21(r13)
+	li       r4, 0x1800
+	li       r5, 0
+	bl       playSystemSe__Q28PSSystem5SysIFFUlUl
+	b        lbl_803DF8D0
 
-	.loc_0x1A4:
-	  rlwinm.   r0,r3,0,21,21
-	  beq-      .loc_0x1E8
-	  rlwinm.   r0,r29,0,24,31
-	  beq-      .loc_0x218
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x7
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, -0x67A8(r13)
-	  li        r4, 0x1800
-	  li        r5, 0
-	  bl        -0xA7268
-	  b         .loc_0x218
+lbl_803DF85C:
+	rlwinm.  r0, r3, 0, 0x15, 0x15
+	beq      lbl_803DF8A0
+	clrlwi.  r0, r29, 0x18
+	beq      lbl_803DF8D0
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 7
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, spSysIF__8PSSystem@sda21(r13)
+	li       r4, 0x1800
+	li       r5, 0
+	bl       playSystemSe__Q28PSSystem5SysIFFUlUl
+	b        lbl_803DF8D0
 
-	.loc_0x1E8:
-	  rlwinm.   r0,r3,0,22,22
-	  beq-      .loc_0x218
-	  mr        r3, r31
-	  li        r4, 0
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, -0x67A8(r13)
-	  li        r4, 0x1801
-	  li        r5, 0
-	  bl        -0xA729C
+lbl_803DF8A0:
+	rlwinm.  r0, r3, 0, 0x16, 0x16
+	beq      lbl_803DF8D0
+	mr       r3, r31
+	li       r4, 0
+	lwz      r12, 0(r31)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, spSysIF__8PSSystem@sda21(r13)
+	li       r4, 0x1801
+	li       r5, 0
+	bl       playSystemSe__Q28PSSystem5SysIFFUlUl
 
-	.loc_0x218:
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x240
-	  mr        r3, r31
-	  li        r4, 0x5
-	  bl        0xA24
+lbl_803DF8D0:
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803DF8F8
+	mr       r3, r31
+	li       r4, 5
+	bl       goEnd___Q33ebi2FS4TMgrFQ43ebi2FS4TMgr7enumEnd
 
-	.loc_0x240:
-	  lmw       r27, 0xC(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_803DF8F8:
+	lmw      r27, 0xc(r1)
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -2067,32 +2461,31 @@ void FS::FSMState00_SelectData::do_exec(ebi::FS::TMgr*)
 void FS::FSMState00b_CheckData::do_init(ebi::FS::TMgr*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  mr        r3, r31
-	  bl        -0x7464
-	  mr        r3, r31
-	  bl        -0x7104
-	  lwz       r4, 0xC30(r31)
-	  mr        r3, r31
-	  bl        -0x8304
-	  lwz       r4, 0xC30(r31)
-	  mr        r3, r31
-	  bl        -0x81C8
-	  li        r0, 0
-	  stw       r0, 0x10(r30)
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	mr       r3, r31
+	bl       closeMSG__Q43ebi6Screen10FileSelect11TMainScreenFv
+	mr       r3, r31
+	bl       outCopyErase__Q43ebi6Screen10FileSelect11TMainScreenFv
+	lwz      r4, 0xc30(r31)
+	mr       r3, r31
+	bl       outDataBall__Q43ebi6Screen10FileSelect11TMainScreenFl
+	lwz      r4, 0xc30(r31)
+	mr       r3, r31
+	bl       createFiledecide__Q43ebi6Screen10FileSelect11TMainScreenFl
+	li       r0, 0
+	stw      r0, 0x10(r30)
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2104,149 +2497,148 @@ void FS::FSMState00b_CheckData::do_init(ebi::FS::TMgr*, Game::StateArg*)
 void FS::FSMState00b_CheckData::do_exec(ebi::FS::TMgr*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r3
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r29, r4
-	  lwz       r0, 0x10(r3)
-	  cmpwi     r0, 0x1
-	  beq-      .loc_0xB8
-	  bge-      .loc_0x3C
-	  cmpwi     r0, 0
-	  bge-      .loc_0x48
-	  b         .loc_0x1C4
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r3
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	mr       r29, r4
+	lwz      r0, 0x10(r3)
+	cmpwi    r0, 1
+	beq      lbl_803DFA28
+	bge      lbl_803DF9AC
+	cmpwi    r0, 0
+	bge      lbl_803DF9B8
+	b        lbl_803DFB34
 
-	.loc_0x3C:
-	  cmpwi     r0, 0x3
-	  bge-      .loc_0x1C4
-	  b         .loc_0x104
+lbl_803DF9AC:
+	cmpwi    r0, 3
+	bge      lbl_803DFB34
+	b        lbl_803DFA74
 
-	.loc_0x48:
-	  lwz       r3, -0x6514(r13)
-	  li        r30, 0
-	  lwz       r3, 0x5C(r3)
-	  lwz       r0, 0xA8(r3)
-	  cmpwi     r0, 0
-	  bne-      .loc_0x70
-	  bl        0x615EC
-	  cmplwi    r3, 0xB
-	  beq-      .loc_0x70
-	  li        r30, 0x1
+lbl_803DF9B8:
+	lwz      r3, sys@sda21(r13)
+	li       r30, 0
+	lwz      r3, 0x5c(r3)
+	lwz      r0, 0xa8(r3)
+	cmpwi    r0, 0
+	bne      lbl_803DF9E0
+	bl       checkStatus__13MemoryCardMgrFv
+	cmplwi   r3, 0xb
+	beq      lbl_803DF9E0
+	li       r30, 1
 
-	.loc_0x70:
-	  rlwinm.   r0,r30,0,24,31
-	  beq-      .loc_0x1C4
-	  lwz       r3, -0x6514(r13)
-	  lwz       r4, 0xC30(r29)
-	  lwz       r3, 0x5C(r3)
-	  bl        0x63898
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0xAC
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  addi      r3, r3, 0x6FE4
-	  li        r4, 0x271
-	  addi      r5, r5, 0x7000
-	  crclr     6, 0x6
-	  bl        -0x3B53D8
+lbl_803DF9E0:
+	clrlwi.  r0, r30, 0x18
+	beq      lbl_803DFB34
+	lwz      r3, sys@sda21(r13)
+	lwz      r4, 0xc30(r29)
+	lwz      r3, 0x5c(r3)
+	bl       loadPlayer__Q34Game10MemoryCard3MgrFi
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_803DFA1C
+	lis      r3, lbl_80496FE4@ha
+	lis      r5, lbl_80497000@ha
+	addi     r3, r3, lbl_80496FE4@l
+	li       r4, 0x271
+	addi     r5, r5, lbl_80497000@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xAC:
-	  li        r0, 0x1
-	  stw       r0, 0x10(r31)
-	  b         .loc_0x1C4
+lbl_803DFA1C:
+	li       r0, 1
+	stw      r0, 0x10(r31)
+	b        lbl_803DFB34
 
-	.loc_0xB8:
-	  lwz       r3, -0x6514(r13)
-	  li        r30, 0
-	  lwz       r3, 0x5C(r3)
-	  lwz       r0, 0xA8(r3)
-	  cmpwi     r0, 0
-	  bne-      .loc_0xE0
-	  bl        0x6157C
-	  cmplwi    r3, 0xB
-	  beq-      .loc_0xE0
-	  li        r30, 0x1
+lbl_803DFA28:
+	lwz      r3, sys@sda21(r13)
+	li       r30, 0
+	lwz      r3, 0x5c(r3)
+	lwz      r0, 0xa8(r3)
+	cmpwi    r0, 0
+	bne      lbl_803DFA50
+	bl       checkStatus__13MemoryCardMgrFv
+	cmplwi   r3, 0xb
+	beq      lbl_803DFA50
+	li       r30, 1
 
-	.loc_0xE0:
-	  rlwinm.   r0,r30,0,24,31
-	  beq-      .loc_0x1C4
-	  lwz       r3, -0x6514(r13)
-	  lwz       r3, 0x5C(r3)
-	  bl        0x660AC
-	  stw       r3, 0x14(r31)
-	  li        r0, 0x2
-	  stw       r0, 0x10(r31)
-	  b         .loc_0x1C4
+lbl_803DFA50:
+	clrlwi.  r0, r30, 0x18
+	beq      lbl_803DFB34
+	lwz      r3, sys@sda21(r13)
+	lwz      r3, 0x5c(r3)
+	bl       getCardStatus__Q34Game10MemoryCard3MgrFv
+	stw      r3, 0x14(r31)
+	li       r0, 2
+	stw      r0, 0x10(r31)
+	b        lbl_803DFB34
 
-	.loc_0x104:
-	  mr        r3, r29
-	  bl        -0x7550
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x1C4
-	  lwz       r4, 0xC30(r29)
-	  mr        r3, r29
-	  bl        -0x81E4
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x1C4
-	  lwz       r0, 0x14(r31)
-	  cmpwi     r0, 0xD
-	  beq-      .loc_0x168
-	  bge-      .loc_0x198
-	  cmpwi     r0, 0x2
-	  beq-      .loc_0x144
-	  b         .loc_0x198
+lbl_803DFA74:
+	mr       r3, r29
+	bl       isFinishCloseMSG__Q43ebi6Screen10FileSelect11TMainScreenFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803DFB34
+	lwz      r4, 0xc30(r29)
+	mr       r3, r29
+	bl       isFinishOutDataBall__Q43ebi6Screen10FileSelect11TMainScreenFl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803DFB34
+	lwz      r0, 0x14(r31)
+	cmpwi    r0, 0xd
+	beq      lbl_803DFAD8
+	bge      lbl_803DFB08
+	cmpwi    r0, 2
+	beq      lbl_803DFAB4
+	b        lbl_803DFB08
 
-	.loc_0x144:
-	  mr        r3, r31
-	  mr        r4, r29
-	  lwz       r12, 0x0(r31)
-	  li        r5, 0x3
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x1C4
+lbl_803DFAB4:
+	mr       r3, r31
+	mr       r4, r29
+	lwz      r12, 0(r31)
+	li       r5, 3
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_803DFB34
 
-	.loc_0x168:
-	  lwz       r4, 0xC30(r29)
-	  mr        r3, r29
-	  bl        -0x8654
-	  mr        r3, r31
-	  mr        r4, r29
-	  lwz       r12, 0x0(r31)
-	  li        r5, 0x5
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x1C4
+lbl_803DFAD8:
+	lwz      r4, 0xc30(r29)
+	mr       r3, r29
+	bl       inDataBall__Q43ebi6Screen10FileSelect11TMainScreenFl
+	mr       r3, r31
+	mr       r4, r29
+	lwz      r12, 0(r31)
+	li       r5, 5
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_803DFB34
 
-	.loc_0x198:
-	  lwz       r4, 0xC30(r29)
-	  mr        r3, r29
-	  bl        -0x8684
-	  mr        r3, r31
-	  mr        r4, r29
-	  lwz       r12, 0x0(r31)
-	  li        r5, 0x5
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_803DFB08:
+	lwz      r4, 0xc30(r29)
+	mr       r3, r29
+	bl       inDataBall__Q43ebi6Screen10FileSelect11TMainScreenFl
+	mr       r3, r31
+	mr       r4, r29
+	lwz      r12, 0(r31)
+	li       r5, 5
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x1C4:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_803DFB34:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -2258,22 +2650,21 @@ void FS::FSMState00b_CheckData::do_exec(ebi::FS::TMgr*)
 void FS::FSMState00c_DecideData::do_init(ebi::FS::TMgr*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  mr        r3, r31
-	  lwz       r4, 0xC30(r4)
-	  bl        -0x848C
-	  mr        r3, r31
-	  bl        -0x79DC
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	mr       r3, r31
+	lwz      r4, 0xc30(r4)
+	bl       decideDataBall__Q43ebi6Screen10FileSelect11TMainScreenFl
+	mr       r3, r31
+	bl       decideDataWindow__Q43ebi6Screen10FileSelect11TMainScreenFv
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2285,58 +2676,57 @@ void FS::FSMState00c_DecideData::do_init(ebi::FS::TMgr*, Game::StateArg*)
 void FS::FSMState00c_DecideData::do_exec(ebi::FS::TMgr*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  mr        r3, r31
-	  bl        -0xC20C
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x50
-	  lwz       r4, 0xC30(r31)
-	  mr        r3, r31
-	  bl        -0x82E0
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x50
-	  mr        r3, r31
-	  li        r4, 0
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	mr       r3, r31
+	bl       isWaitScreen__Q33ebi6Screen11TScreenBaseFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803DFBDC
+	lwz      r4, 0xc30(r31)
+	mr       r3, r31
+	bl       isFinishDecideDataBall__Q43ebi6Screen10FileSelect11TMainScreenFl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803DFBDC
+	mr       r3, r31
+	li       r4, 0
+	lwz      r12, 0(r31)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x50:
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xA0
-	  lwz       r0, 0xC30(r31)
-	  mulli     r3, r0, 0x34
-	  addi      r0, r3, 0xB01
-	  lbzx      r0, r31, r0
-	  cmplwi    r0, 0
-	  beq-      .loc_0x94
-	  mr        r3, r31
-	  li        r4, 0x4
-	  bl        0x700
-	  b         .loc_0xA0
+lbl_803DFBDC:
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803DFC2C
+	lwz      r0, 0xc30(r31)
+	mulli    r3, r0, 0x34
+	addi     r0, r3, 0xb01
+	lbzx     r0, r31, r0
+	cmplwi   r0, 0
+	beq      lbl_803DFC20
+	mr       r3, r31
+	li       r4, 4
+	bl       goEnd___Q33ebi2FS4TMgrFQ43ebi2FS4TMgr7enumEnd
+	b        lbl_803DFC2C
 
-	.loc_0x94:
-	  mr        r3, r31
-	  li        r4, 0x3
-	  bl        0x6F0
+lbl_803DFC20:
+	mr       r3, r31
+	li       r4, 3
+	bl       goEnd___Q33ebi2FS4TMgrFQ43ebi2FS4TMgr7enumEnd
 
-	.loc_0xA0:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803DFC2C:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2415,220 +2805,219 @@ void FS::FSMState04_WhichDataDoYouCopyTo::do_init(ebi::FS::TMgr*,
 void FS::FSMState04_WhichDataDoYouCopyTo::do_exec(ebi::FS::TMgr*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  mr        r30, r4
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  lwz       r0, 0x14(r3)
-	  cmpwi     r0, 0x1
-	  beq-      .loc_0x220
-	  bge-      .loc_0x280
-	  cmpwi     r0, 0
-	  bge-      .loc_0x3C
-	  b         .loc_0x280
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	mr       r30, r4
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	lwz      r0, 0x14(r3)
+	cmpwi    r0, 1
+	beq      lbl_803DFF10
+	bge      lbl_803DFF70
+	cmpwi    r0, 0
+	bge      lbl_803DFD2C
+	b        lbl_803DFF70
 
-	.loc_0x3C:
-	  lwz       r3, 0xC00(r30)
-	  lwz       r31, 0xC34(r30)
-	  lwz       r0, 0x18(r3)
-	  rlwinm.   r0,r0,0,30,30
-	  bne-      .loc_0x60
-	  lfs       f1, 0x48(r3)
-	  lfs       f0, 0x18A8(r2)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x68
+lbl_803DFD2C:
+	lwz      r3, 0xc00(r30)
+	lwz      r31, 0xc34(r30)
+	lwz      r0, 0x18(r3)
+	rlwinm.  r0, r0, 0, 0x1e, 0x1e
+	bne      lbl_803DFD50
+	lfs      f1, 0x48(r3)
+	lfs      f0, lbl_8051FC08@sda21(r2)
+	fcmpo    cr0, f1, f0
+	ble      lbl_803DFD58
 
-	.loc_0x60:
-	  li        r0, 0x1
-	  b         .loc_0x6C
+lbl_803DFD50:
+	li       r0, 1
+	b        lbl_803DFD5C
 
-	.loc_0x68:
-	  li        r0, 0
+lbl_803DFD58:
+	li       r0, 0
 
-	.loc_0x6C:
-	  rlwinm.   r0,r0,0,24,31
-	  beq-      .loc_0xC8
-	  mr        r3, r30
-	  bl        -0x830C
-	  lwz       r0, 0xC30(r30)
-	  cmpwi     r0, 0x1
-	  beq-      .loc_0xB0
-	  bge-      .loc_0x98
-	  cmpwi     r0, 0
-	  bge-      .loc_0xA4
-	  b         .loc_0x148
+lbl_803DFD5C:
+	clrlwi.  r0, r0, 0x18
+	beq      lbl_803DFDB8
+	mr       r3, r30
+	bl       moveRightCopyCursor__Q43ebi6Screen10FileSelect11TMainScreenFv
+	lwz      r0, 0xc30(r30)
+	cmpwi    r0, 1
+	beq      lbl_803DFDA0
+	bge      lbl_803DFD88
+	cmpwi    r0, 0
+	bge      lbl_803DFD94
+	b        lbl_803DFE38
 
-	.loc_0x98:
-	  cmpwi     r0, 0x3
-	  bge-      .loc_0x148
-	  b         .loc_0xBC
+lbl_803DFD88:
+	cmpwi    r0, 3
+	bge      lbl_803DFE38
+	b        lbl_803DFDAC
 
-	.loc_0xA4:
-	  li        r0, 0x2
-	  stw       r0, 0xC34(r30)
-	  b         .loc_0x148
+lbl_803DFD94:
+	li       r0, 2
+	stw      r0, 0xc34(r30)
+	b        lbl_803DFE38
 
-	.loc_0xB0:
-	  li        r0, 0x2
-	  stw       r0, 0xC34(r30)
-	  b         .loc_0x148
+lbl_803DFDA0:
+	li       r0, 2
+	stw      r0, 0xc34(r30)
+	b        lbl_803DFE38
 
-	.loc_0xBC:
-	  li        r0, 0x1
-	  stw       r0, 0xC34(r30)
-	  b         .loc_0x148
+lbl_803DFDAC:
+	li       r0, 1
+	stw      r0, 0xc34(r30)
+	b        lbl_803DFE38
 
-	.loc_0xC8:
-	  lwz       r0, 0x18(r3)
-	  rlwinm.   r0,r0,0,31,31
-	  bne-      .loc_0xE4
-	  lfs       f1, 0x48(r3)
-	  lfs       f0, 0x18AC(r2)
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0xEC
+lbl_803DFDB8:
+	lwz      r0, 0x18(r3)
+	clrlwi.  r0, r0, 0x1f
+	bne      lbl_803DFDD4
+	lfs      f1, 0x48(r3)
+	lfs      f0, lbl_8051FC0C@sda21(r2)
+	fcmpo    cr0, f1, f0
+	bge      lbl_803DFDDC
 
-	.loc_0xE4:
-	  li        r0, 0x1
-	  b         .loc_0xF0
+lbl_803DFDD4:
+	li       r0, 1
+	b        lbl_803DFDE0
 
-	.loc_0xEC:
-	  li        r0, 0
+lbl_803DFDDC:
+	li       r0, 0
 
-	.loc_0xF0:
-	  rlwinm.   r0,r0,0,24,31
-	  beq-      .loc_0x148
-	  mr        r3, r30
-	  bl        -0x83A0
-	  lwz       r0, 0xC30(r30)
-	  cmpwi     r0, 0x1
-	  beq-      .loc_0x134
-	  bge-      .loc_0x11C
-	  cmpwi     r0, 0
-	  bge-      .loc_0x128
-	  b         .loc_0x148
+lbl_803DFDE0:
+	clrlwi.  r0, r0, 0x18
+	beq      lbl_803DFE38
+	mr       r3, r30
+	bl       moveLeftCopyCursor__Q43ebi6Screen10FileSelect11TMainScreenFv
+	lwz      r0, 0xc30(r30)
+	cmpwi    r0, 1
+	beq      lbl_803DFE24
+	bge      lbl_803DFE0C
+	cmpwi    r0, 0
+	bge      lbl_803DFE18
+	b        lbl_803DFE38
 
-	.loc_0x11C:
-	  cmpwi     r0, 0x3
-	  bge-      .loc_0x148
-	  b         .loc_0x140
+lbl_803DFE0C:
+	cmpwi    r0, 3
+	bge      lbl_803DFE38
+	b        lbl_803DFE30
 
-	.loc_0x128:
-	  li        r0, 0x1
-	  stw       r0, 0xC34(r30)
-	  b         .loc_0x148
+lbl_803DFE18:
+	li       r0, 1
+	stw      r0, 0xc34(r30)
+	b        lbl_803DFE38
 
-	.loc_0x134:
-	  li        r0, 0
-	  stw       r0, 0xC34(r30)
-	  b         .loc_0x148
+lbl_803DFE24:
+	li       r0, 0
+	stw      r0, 0xc34(r30)
+	b        lbl_803DFE38
 
-	.loc_0x140:
-	  li        r0, 0
-	  stw       r0, 0xC34(r30)
+lbl_803DFE30:
+	li       r0, 0
+	stw      r0, 0xc34(r30)
 
-	.loc_0x148:
-	  lwz       r0, 0xC34(r30)
-	  cmpw      r31, r0
-	  beq-      .loc_0x174
-	  mr        r3, r30
-	  bl        -0x7D1C
-	  li        r0, 0x1
-	  li        r4, 0x1802
-	  stb       r0, 0x11(r29)
-	  li        r5, 0
-	  lwz       r3, -0x67A8(r13)
-	  bl        -0xA7830
+lbl_803DFE38:
+	lwz      r0, 0xc34(r30)
+	cmpw     r31, r0
+	beq      lbl_803DFE64
+	mr       r3, r30
+	bl       closeDataWindow__Q43ebi6Screen10FileSelect11TMainScreenFv
+	li       r0, 1
+	li       r4, 0x1802
+	stb      r0, 0x11(r29)
+	li       r5, 0
+	lwz      r3, spSysIF__8PSSystem@sda21(r13)
+	bl       playSystemSe__Q28PSSystem5SysIFFUlUl
 
-	.loc_0x174:
-	  mr        r3, r30
-	  bl        -0x7C64
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x1A4
-	  lbz       r0, 0x11(r29)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x1A4
-	  li        r0, 0
-	  mr        r3, r30
-	  stb       r0, 0x11(r29)
-	  lwz       r4, 0xC34(r30)
-	  bl        -0x807C
+lbl_803DFE64:
+	mr       r3, r30
+	bl       isFinishCloseDataWindow__Q43ebi6Screen10FileSelect11TMainScreenFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803DFE94
+	lbz      r0, 0x11(r29)
+	cmplwi   r0, 0
+	beq      lbl_803DFE94
+	li       r0, 0
+	mr       r3, r30
+	stb      r0, 0x11(r29)
+	lwz      r4, 0xc34(r30)
+	bl       openDataWindow__Q43ebi6Screen10FileSelect11TMainScreenFl
 
-	.loc_0x1A4:
-	  lwz       r3, 0xC00(r30)
-	  lwz       r3, 0x1C(r3)
-	  rlwinm.   r0,r3,0,23,23
-	  beq-      .loc_0x1E0
-	  mr        r3, r30
-	  bl        -0x79E0
-	  li        r3, 0x1
-	  li        r0, 0
-	  stw       r3, 0x14(r29)
-	  li        r4, 0x1800
-	  li        r5, 0
-	  stb       r0, 0x10(r29)
-	  lwz       r3, -0x67A8(r13)
-	  bl        -0xA7898
-	  b         .loc_0x280
+lbl_803DFE94:
+	lwz      r3, 0xc00(r30)
+	lwz      r3, 0x1c(r3)
+	rlwinm.  r0, r3, 0, 0x17, 0x17
+	beq      lbl_803DFED0
+	mr       r3, r30
+	bl       closeMSG__Q43ebi6Screen10FileSelect11TMainScreenFv
+	li       r3, 1
+	li       r0, 0
+	stw      r3, 0x14(r29)
+	li       r4, 0x1800
+	li       r5, 0
+	stb      r0, 0x10(r29)
+	lwz      r3, spSysIF__8PSSystem@sda21(r13)
+	bl       playSystemSe__Q28PSSystem5SysIFFUlUl
+	b        lbl_803DFF70
 
-	.loc_0x1E0:
-	  rlwinm.   r0,r3,0,22,22
-	  beq-      .loc_0x280
-	  mr        r3, r30
-	  bl        -0x7A14
-	  mr        r3, r30
-	  bl        -0x84E8
-	  li        r0, 0x1
-	  mr        r3, r30
-	  stw       r0, 0x14(r29)
-	  stb       r0, 0x10(r29)
-	  bl        -0x7DCC
-	  lwz       r3, -0x67A8(r13)
-	  li        r4, 0x1801
-	  li        r5, 0
-	  bl        -0xA78D8
-	  b         .loc_0x280
+lbl_803DFED0:
+	rlwinm.  r0, r3, 0, 0x16, 0x16
+	beq      lbl_803DFF70
+	mr       r3, r30
+	bl       closeMSG__Q43ebi6Screen10FileSelect11TMainScreenFv
+	mr       r3, r30
+	bl       fadeCopyCursor__Q43ebi6Screen10FileSelect11TMainScreenFv
+	li       r0, 1
+	mr       r3, r30
+	stw      r0, 0x14(r29)
+	stb      r0, 0x10(r29)
+	bl       closeDataWindow__Q43ebi6Screen10FileSelect11TMainScreenFv
+	lwz      r3, spSysIF__8PSSystem@sda21(r13)
+	li       r4, 0x1801
+	li       r5, 0
+	bl       playSystemSe__Q28PSSystem5SysIFFUlUl
+	b        lbl_803DFF70
 
-	.loc_0x220:
-	  mr        r3, r30
-	  bl        -0x79EC
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x280
-	  lbz       r0, 0x10(r29)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x260
-	  mr        r3, r29
-	  mr        r4, r30
-	  lwz       r12, 0x0(r29)
-	  li        r5, 0x4
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x280
+lbl_803DFF10:
+	mr       r3, r30
+	bl       isFinishCloseMSG__Q43ebi6Screen10FileSelect11TMainScreenFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_803DFF70
+	lbz      r0, 0x10(r29)
+	cmplwi   r0, 0
+	beq      lbl_803DFF50
+	mr       r3, r29
+	mr       r4, r30
+	lwz      r12, 0(r29)
+	li       r5, 4
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_803DFF70
 
-	.loc_0x260:
-	  mr        r3, r29
-	  mr        r4, r30
-	  lwz       r12, 0x0(r29)
-	  li        r5, 0xB
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_803DFF50:
+	mr       r3, r29
+	mr       r4, r30
+	lwz      r12, 0(r29)
+	li       r5, 0xb
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x280:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_803DFF70:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -2640,48 +3029,47 @@ void FS::FSMState04_WhichDataDoYouCopyTo::do_exec(ebi::FS::TMgr*)
 FS::TMgr::TMgr(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        -0xBB08
-	  li        r7, 0
-	  lis       r4, 0x804F
-	  stw       r7, 0xBF8(r31)
-	  lis       r3, 0x804F
-	  subi      r6, r4, 0x6D38
-	  li        r5, -0x1
-	  stw       r7, 0xBFC(r31)
-	  subi      r0, r3, 0x69A0
-	  addi      r3, r31, 0xC40
-	  mr        r4, r31
-	  stw       r7, 0xC08(r31)
-	  stw       r7, 0xC0C(r31)
-	  stw       r6, 0xC40(r31)
-	  stw       r5, 0xC58(r31)
-	  stw       r0, 0xC40(r31)
-	  lwz       r12, 0xC40(r31)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  addi      r3, r31, 0xC40
-	  mr        r4, r31
-	  lwz       r12, 0xC40(r31)
-	  li        r5, 0
-	  li        r6, 0
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  li        r0, 0
-	  mr        r3, r31
-	  stw       r0, 0xC30(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       __ct__Q43ebi6Screen10FileSelect11TMainScreenFv
+	li       r7, 0
+	lis      r4, "__vt__Q24Game28StateMachine<Q33ebi2FS4TMgr>"@ha
+	stw      r7, 0xbf8(r31)
+	lis      r3, __vt__Q33ebi2FS15FSMStateMachine@ha
+	addi     r6, r4, "__vt__Q24Game28StateMachine<Q33ebi2FS4TMgr>"@l
+	li       r5, -1
+	stw      r7, 0xbfc(r31)
+	addi     r0, r3, __vt__Q33ebi2FS15FSMStateMachine@l
+	addi     r3, r31, 0xc40
+	mr       r4, r31
+	stw      r7, 0xc08(r31)
+	stw      r7, 0xc0c(r31)
+	stw      r6, 0xc40(r31)
+	stw      r5, 0xc58(r31)
+	stw      r0, 0xc40(r31)
+	lwz      r12, 0xc40(r31)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	addi     r3, r31, 0xc40
+	mr       r4, r31
+	lwz      r12, 0xc40(r31)
+	li       r5, 0
+	li       r6, 0
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	li       r0, 0
+	mr       r3, r31
+	stw      r0, 0xc30(r31)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2693,25 +3081,25 @@ FS::TMgr::TMgr(void)
 void FS::TMgr::setController(Controller*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lfs       f1, 0x18B4(r2)
-	  mr        r5, r3
-	  stw       r0, 0x14(r1)
-	  addi      r7, r5, 0xC30
-	  fmr       f2, f1
-	  li        r6, 0x2
-	  stw       r4, 0xC00(r3)
-	  addi      r3, r5, 0xC04
-	  li        r8, 0x1
-	  lwz       r4, 0xC00(r5)
-	  li        r5, 0
-	  bl        -0x1E628
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lfs      f1, lbl_8051FC14@sda21(r2)
+	mr       r5, r3
+	stw      r0, 0x14(r1)
+	addi     r7, r5, 0xc30
+	fmr      f2, f1
+	li       r6, 2
+	stw      r4, 0xc00(r3)
+	addi     r3, r5, 0xc04
+	li       r8, 1
+	lwz      r4, 0xc00(r5)
+	li       r5, 0
+	bl
+	init__Q23ebi24EUTPadInterface_countNumFP10ControllerllPlQ33ebi24EUTPadInterface_countNum8enumModeff
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2723,72 +3111,71 @@ void FS::TMgr::setController(Controller*)
 void FS::TMgr::perseInfo(Game::MemoryCard::PlayerFileInfo&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x60(r1)
-	  mflr      r0
-	  lis       r5, 0x8889
-	  stw       r0, 0x64(r1)
-	  stmw      r14, 0x18(r1)
-	  mr        r30, r4
-	  li        r31, 0
-	  mr        r16, r3
-	  subi      r29, r5, 0x7777
+	stwu     r1, -0x60(r1)
+	mflr     r0
+	lis      r5, 0x88888889@ha
+	stw      r0, 0x64(r1)
+	stmw     r14, 0x18(r1)
+	mr       r30, r4
+	li       r31, 0
+	mr       r16, r3
+	addi     r29, r5, 0x88888889@l
 
-	.loc_0x24:
-	  mr        r3, r30
-	  mr        r4, r31
-	  bl        0x62888
-	  mr        r28, r3
-	  mr        r3, r30
-	  mr        r4, r31
-	  bl        0x628EC
-	  lwz       r15, 0x30(r28)
-	  mr        r14, r3
-	  lwz       r18, 0x2C(r28)
-	  mr        r3, r30
-	  mulhwu    r0, r29, r15
-	  lwz       r19, 0x28(r28)
-	  lwz       r20, 0x24(r28)
-	  mr        r4, r31
-	  lwz       r21, 0x20(r28)
-	  lwz       r22, 0x18(r28)
-	  rlwinm    r0,r0,27,5,31
-	  lwz       r23, 0x1C(r28)
-	  mulli     r0, r0, 0x3C
-	  lwz       r24, 0x14(r28)
-	  lwz       r25, 0xC(r28)
-	  lwz       r26, 0x10(r28)
-	  lwz       r27, 0x8(r28)
-	  sub       r17, r15, r0
-	  bl        0x62920
-	  stb       r3, 0xB01(r16)
-	  mulhwu    r0, r29, r15
-	  addi      r4, r1, 0x8
-	  stw       r27, 0xB04(r16)
-	  stw       r26, 0xB08(r16)
-	  stw       r25, 0xB0C(r16)
-	  rlwinm    r0,r0,27,5,31
-	  stw       r24, 0xB10(r16)
-	  stw       r23, 0xB18(r16)
-	  stw       r22, 0xB14(r16)
-	  stw       r21, 0xB1C(r16)
-	  stw       r20, 0xB20(r16)
-	  stw       r19, 0xB24(r16)
-	  stw       r18, 0xB28(r16)
-	  stw       r0, 0xB2C(r16)
-	  stw       r17, 0xB30(r16)
-	  stb       r14, 0xB00(r16)
-	  lwz       r3, 0x28(r28)
-	  bl        -0x1E294
-	  addi      r31, r31, 0x1
-	  addi      r16, r16, 0x34
-	  cmpwi     r31, 0x3
-	  blt+      .loc_0x24
-	  lmw       r14, 0x18(r1)
-	  lwz       r0, 0x64(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x60
-	  blr
+lbl_803E009C:
+	mr       r3, r30
+	mr       r4, r31
+	bl       getPlayer__Q34Game10MemoryCard14PlayerFileInfoFi
+	mr       r28, r3
+	mr       r3, r30
+	mr       r4, r31
+	bl       isBrokenFile__Q34Game10MemoryCard14PlayerFileInfoFi
+	lwz      r15, 0x30(r28)
+	mr       r14, r3
+	lwz      r18, 0x2c(r28)
+	mr       r3, r30
+	mulhwu   r0, r29, r15
+	lwz      r19, 0x28(r28)
+	lwz      r20, 0x24(r28)
+	mr       r4, r31
+	lwz      r21, 0x20(r28)
+	lwz      r22, 0x18(r28)
+	srwi     r0, r0, 5
+	lwz      r23, 0x1c(r28)
+	mulli    r0, r0, 0x3c
+	lwz      r24, 0x14(r28)
+	lwz      r25, 0xc(r28)
+	lwz      r26, 0x10(r28)
+	lwz      r27, 8(r28)
+	subf     r17, r0, r15
+	bl       isNewFile__Q34Game10MemoryCard14PlayerFileInfoFi
+	stb      r3, 0xb01(r16)
+	mulhwu   r0, r29, r15
+	addi     r4, r1, 8
+	stw      r27, 0xb04(r16)
+	stw      r26, 0xb08(r16)
+	stw      r25, 0xb0c(r16)
+	srwi     r0, r0, 5
+	stw      r24, 0xb10(r16)
+	stw      r23, 0xb18(r16)
+	stw      r22, 0xb14(r16)
+	stw      r21, 0xb1c(r16)
+	stw      r20, 0xb20(r16)
+	stw      r19, 0xb24(r16)
+	stw      r18, 0xb28(r16)
+	stw      r0, 0xb2c(r16)
+	stw      r17, 0xb30(r16)
+	stb      r14, 0xb00(r16)
+	lwz      r3, 0x28(r28)
+	bl       EUTDebug_Tag32ToName__3ebiFUlPc
+	addi     r31, r31, 1
+	addi     r16, r16, 0x34
+	cmpwi    r31, 3
+	blt      lbl_803E009C
+	lmw      r14, 0x18(r1)
+	lwz      r0, 0x64(r1)
+	mtlr     r0
+	addi     r1, r1, 0x60
+	blr
 	*/
 }
 
@@ -2800,47 +3187,46 @@ void FS::TMgr::perseInfo(Game::MemoryCard::PlayerFileInfo&)
 void FS::TMgr::update(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  addi      r3, r31, 0xC40
-	  lwz       r12, 0xC40(r31)
-	  mr        r4, r31
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r3, r31
-	  bl        0x2A4
-	  cmpwi     r3, 0
-	  beq-      .loc_0x84
-	  lwz       r3, -0x6514(r13)
-	  lwz       r3, 0x5C(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r3, r31
-	  bl        0x1AC
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0xBF8(r31)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x84
-	  subi      r0, r3, 0x1
-	  stw       r0, 0xBF8(r31)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	addi     r3, r31, 0xc40
+	lwz      r12, 0xc40(r31)
+	mr       r4, r31
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	mr       r3, r31
+	bl       getStateID__Q33ebi2FS4TMgrFv
+	cmpwi    r3, 0
+	beq      lbl_803E01F8
+	lwz      r3, sys@sda21(r13)
+	lwz      r3, 0x5c(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	mr       r3, r31
+	bl       checkAndTransitNoCard___Q33ebi2FS4TMgrFv
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 0xbf8(r31)
+	cmplwi   r3, 0
+	beq      lbl_803E01F8
+	addi     r0, r3, -1
+	stw      r0, 0xbf8(r31)
 
-	.loc_0x84:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803E01F8:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2852,27 +3238,26 @@ void FS::TMgr::update(void)
 void FS::TMgr::draw(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        0x228
-	  cmpwi     r3, 0
-	  beq-      .loc_0x34
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       getStateID__Q33ebi2FS4TMgrFv
+	cmpwi    r3, 0
+	beq      lbl_803E0240
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x34:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803E0240:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2884,24 +3269,23 @@ void FS::TMgr::draw(void)
 void FS::TMgr::startSeq(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r4, r3
-	  li        r5, 0x1
-	  stw       r0, 0x14(r1)
-	  li        r0, 0x1
-	  li        r6, 0
-	  stb       r0, 0xC3C(r3)
-	  addi      r3, r4, 0xC40
-	  lwz       r12, 0xC40(r4)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r4, r3
+	li       r5, 1
+	stw      r0, 0x14(r1)
+	li       r0, 1
+	li       r6, 0
+	stb      r0, 0xc3c(r3)
+	addi     r3, r4, 0xc40
+	lwz      r12, 0xc40(r4)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2913,29 +3297,28 @@ void FS::TMgr::startSeq(void)
 void FS::TMgr::forceQuitSeq(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  addi      r3, r31, 0xC40
-	  mr        r4, r31
-	  lwz       r12, 0xC40(r31)
-	  li        r5, 0
-	  li        r6, 0
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	addi     r3, r31, 0xc40
+	mr       r4, r31
+	lwz      r12, 0xc40(r31)
+	li       r5, 0
+	li       r6, 0
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2947,17 +3330,16 @@ void FS::TMgr::forceQuitSeq(void)
 void FS::TMgr::isFinish(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  bl        0x14C
-	  cntlzw    r0, r3
-	  rlwinm    r3,r0,27,24,31
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	bl       getStateID__Q33ebi2FS4TMgrFv
+	cntlzw   r0, r3
+	rlwinm   r3, r0, 0x1b, 0x18, 0x1f
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2969,31 +3351,30 @@ void FS::TMgr::isFinish(void)
 void FS::TMgr::goEnd_(ebi::FS::TMgr::enumEnd)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r5, 0
-	  li        r6, 0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  stw       r4, 0xC38(r3)
-	  addi      r3, r31, 0xC40
-	  mr        r4, r31
-	  lwz       r12, 0xC40(r31)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	li       r5, 0
+	li       r6, 0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	stw      r4, 0xc38(r3)
+	addi     r3, r31, 0xc40
+	mr       r4, r31
+	lwz      r12, 0xc40(r31)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -3005,67 +3386,66 @@ void FS::TMgr::goEnd_(ebi::FS::TMgr::enumEnd)
 void FS::TMgr::checkAndTransitNoCard_(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lbz       r0, 0xC3C(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0xB8
-	  lwz       r3, -0x6514(r13)
-	  li        r31, 0
-	  lwz       r3, 0x5C(r3)
-	  lwz       r0, 0xA8(r3)
-	  cmpwi     r0, 0
-	  bne-      .loc_0x4C
-	  bl        0x60C08
-	  cmplwi    r3, 0xB
-	  beq-      .loc_0x4C
-	  li        r31, 0x1
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lbz      r0, 0xc3c(r3)
+	cmplwi   r0, 0
+	beq      lbl_803E0430
+	lwz      r3, sys@sda21(r13)
+	li       r31, 0
+	lwz      r3, 0x5c(r3)
+	lwz      r0, 0xa8(r3)
+	cmpwi    r0, 0
+	bne      lbl_803E03C4
+	bl       checkStatus__13MemoryCardMgrFv
+	cmplwi   r3, 0xb
+	beq      lbl_803E03C4
+	li       r31, 1
 
-	.loc_0x4C:
-	  rlwinm.   r0,r31,0,24,31
-	  beq-      .loc_0x70
-	  lwz       r3, -0x6514(r13)
-	  lwz       r3, 0x5C(r3)
-	  bl        0x65738
-	  cmpwi     r3, 0
-	  bne-      .loc_0x70
-	  li        r0, 0x1
-	  b         .loc_0x74
+lbl_803E03C4:
+	clrlwi.  r0, r31, 0x18
+	beq      lbl_803E03E8
+	lwz      r3, sys@sda21(r13)
+	lwz      r3, 0x5c(r3)
+	bl       getCardStatus__Q34Game10MemoryCard3MgrFv
+	cmpwi    r3, 0
+	bne      lbl_803E03E8
+	li       r0, 1
+	b        lbl_803E03EC
 
-	.loc_0x70:
-	  li        r0, 0
+lbl_803E03E8:
+	li       r0, 0
 
-	.loc_0x74:
-	  rlwinm.   r0,r0,0,24,31
-	  beq-      .loc_0xB8
-	  li        r0, 0x1
-	  addi      r3, r30, 0xC40
-	  stw       r0, 0xC38(r30)
-	  mr        r4, r30
-	  li        r5, 0
-	  li        r6, 0
-	  lwz       r12, 0xC40(r30)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r3, r30
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
+lbl_803E03EC:
+	clrlwi.  r0, r0, 0x18
+	beq      lbl_803E0430
+	li       r0, 1
+	addi     r3, r30, 0xc40
+	stw      r0, 0xc38(r30)
+	mr       r4, r30
+	li       r5, 0
+	li       r6, 0
+	lwz      r12, 0xc40(r30)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	mr       r3, r30
+	lwz      r12, 0(r30)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0xB8:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803E0430:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -3077,31 +3457,30 @@ void FS::TMgr::checkAndTransitNoCard_(void)
 void FS::TMgr::getStateID(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r0, 0xC5C(r3)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x3C
-	  lis       r3, 0x8049
-	  lis       r5, 0x8049
-	  addi      r3, r3, 0x6FE4
-	  li        r4, 0x3DC
-	  addi      r5, r5, 0x7000
-	  crclr     6, 0x6
-	  bl        -0x3B5E40
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r0, 0xc5c(r3)
+	cmplwi   r0, 0
+	bne      lbl_803E0484
+	lis      r3, lbl_80496FE4@ha
+	lis      r5, lbl_80497000@ha
+	addi     r3, r3, lbl_80496FE4@l
+	li       r4, 0x3dc
+	addi     r5, r5, lbl_80497000@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x3C:
-	  lwz       r3, 0xC5C(r31)
-	  lwz       r0, 0x14(r1)
-	  lwz       r3, 0x4(r3)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803E0484:
+	lwz      r3, 0xc5c(r31)
+	lwz      r0, 0x14(r1)
+	lwz      r3, 4(r3)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -3201,864 +3580,863 @@ namespace Screen {
 	FileSelect::TMainScreen::~TMainScreen(void)
 	{
 		/*
-		.loc_0x0:
-		  stwu      r1, -0x10(r1)
-		  mflr      r0
-		  stw       r0, 0x14(r1)
-		  stw       r31, 0xC(r1)
-		  mr        r31, r4
-		  stw       r30, 0x8(r1)
-		  mr.       r30, r3
-		  beq-      .loc_0xBD8
-		  lis       r3, 0x804F
-		  addic.    r0, r30, 0xAB0
-		  subi      r0, r3, 0x7274
-		  stw       r0, 0x0(r30)
-		  beq-      .loc_0x70
-		  lis       r3, 0x804F
-		  addic.    r0, r30, 0xAB0
-		  subi      r3, r3, 0x71B0
-		  stw       r3, 0xAB0(r30)
-		  addi      r0, r3, 0x18
-		  stw       r0, 0xAB8(r30)
-		  beq-      .loc_0x70
-		  lis       r4, 0x804E
-		  addi      r3, r30, 0xAB8
-		  addi      r5, r4, 0x7420
-		  li        r4, 0
-		  stw       r5, 0xAB0(r30)
-		  addi      r0, r5, 0x18
-		  stw       r0, 0xAB8(r30)
-		  bl        -0x3508E8
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_803E10F0
+	lis      r3, __vt__Q43ebi6Screen10FileSelect11TMainScreen@ha
+	addic.   r0, r30, 0xab0
+	addi     r0, r3, __vt__Q43ebi6Screen10FileSelect11TMainScreen@l
+	stw      r0, 0(r30)
+	beq      lbl_803E0588
+	lis      r3, __vt__Q35efx2d10FileSelect16T2DFiledeletingM@ha
+	addic.   r0, r30, 0xab0
+	addi     r3, r3, __vt__Q35efx2d10FileSelect16T2DFiledeletingM@l
+	stw      r3, 0xab0(r30)
+	addi     r0, r3, 0x18
+	stw      r0, 0xab8(r30)
+	beq      lbl_803E0588
+	lis      r4, __vt__Q25efx2d8TForever@ha
+	addi     r3, r30, 0xab8
+	addi     r5, r4, __vt__Q25efx2d8TForever@l
+	li       r4, 0
+	stw      r5, 0xab0(r30)
+	addi     r0, r5, 0x18
+	stw      r0, 0xab8(r30)
+	bl       __dt__18JPAEmitterCallBackFv
 
-		.loc_0x70:
-		  addic.    r0, r30, 0xA9C
-		  beq-      .loc_0xB4
-		  lis       r3, 0x804F
-		  addic.    r0, r30, 0xA9C
-		  subi      r3, r3, 0x7178
-		  stw       r3, 0xA9C(r30)
-		  addi      r0, r3, 0x18
-		  stw       r0, 0xAA4(r30)
-		  beq-      .loc_0xB4
-		  lis       r4, 0x804E
-		  addi      r3, r30, 0xAA4
-		  addi      r5, r4, 0x7420
-		  li        r4, 0
-		  stw       r5, 0xA9C(r30)
-		  addi      r0, r5, 0x18
-		  stw       r0, 0xAA4(r30)
-		  bl        -0x35092C
+lbl_803E0588:
+	addic.   r0, r30, 0xa9c
+	beq      lbl_803E05CC
+	lis      r3, __vt__Q35efx2d10FileSelect15T2DFiledeleting@ha
+	addic.   r0, r30, 0xa9c
+	addi     r3, r3, __vt__Q35efx2d10FileSelect15T2DFiledeleting@l
+	stw      r3, 0xa9c(r30)
+	addi     r0, r3, 0x18
+	stw      r0, 0xaa4(r30)
+	beq      lbl_803E05CC
+	lis      r4, __vt__Q25efx2d8TForever@ha
+	addi     r3, r30, 0xaa4
+	addi     r5, r4, __vt__Q25efx2d8TForever@l
+	li       r4, 0
+	stw      r5, 0xa9c(r30)
+	addi     r0, r5, 0x18
+	stw      r0, 0xaa4(r30)
+	bl       __dt__18JPAEmitterCallBackFv
 
-		.loc_0xB4:
-		  addic.    r0, r30, 0xA70
-		  beq-      .loc_0x114
-		  lis       r3, 0x804F
-		  addic.    r0, r30, 0xA70
-		  subi      r3, r3, 0x7140
-		  stw       r3, 0xA70(r30)
-		  addi      r0, r3, 0x18
-		  stw       r0, 0xA78(r30)
-		  beq-      .loc_0x114
-		  lis       r3, 0x804E
-		  addic.    r0, r30, 0xA70
-		  addi      r3, r3, 0x7560
-		  stw       r3, 0xA70(r30)
-		  addi      r0, r3, 0x18
-		  stw       r0, 0xA78(r30)
-		  beq-      .loc_0x114
-		  lis       r4, 0x804E
-		  addi      r3, r30, 0xA78
-		  addi      r5, r4, 0x7420
-		  li        r4, 0
-		  stw       r5, 0xA70(r30)
-		  addi      r0, r5, 0x18
-		  stw       r0, 0xA78(r30)
-		  bl        -0x35098C
+lbl_803E05CC:
+	addic.   r0, r30, 0xa70
+	beq      lbl_803E062C
+	lis      r3, __vt__Q35efx2d10FileSelect12T2DFilecopyM@ha
+	addic.   r0, r30, 0xa70
+	addi     r3, r3, __vt__Q35efx2d10FileSelect12T2DFilecopyM@l
+	stw      r3, 0xa70(r30)
+	addi     r0, r3, 0x18
+	stw      r0, 0xa78(r30)
+	beq      lbl_803E062C
+	lis      r3, __vt__Q35efx2d10FileSelect15T2DFilecopyBase@ha
+	addic.   r0, r30, 0xa70
+	addi     r3, r3, __vt__Q35efx2d10FileSelect15T2DFilecopyBase@l
+	stw      r3, 0xa70(r30)
+	addi     r0, r3, 0x18
+	stw      r0, 0xa78(r30)
+	beq      lbl_803E062C
+	lis      r4, __vt__Q25efx2d8TForever@ha
+	addi     r3, r30, 0xa78
+	addi     r5, r4, __vt__Q25efx2d8TForever@l
+	li       r4, 0
+	stw      r5, 0xa70(r30)
+	addi     r0, r5, 0x18
+	stw      r0, 0xa78(r30)
+	bl       __dt__18JPAEmitterCallBackFv
 
-		.loc_0x114:
-		  addic.    r0, r30, 0xA5C
-		  beq-      .loc_0x174
-		  lis       r3, 0x804F
-		  addic.    r0, r30, 0xA5C
-		  subi      r3, r3, 0x7108
-		  stw       r3, 0xA5C(r30)
-		  addi      r0, r3, 0x18
-		  stw       r0, 0xA64(r30)
-		  beq-      .loc_0x174
-		  lis       r3, 0x804E
-		  addic.    r0, r30, 0xA5C
-		  addi      r3, r3, 0x7560
-		  stw       r3, 0xA5C(r30)
-		  addi      r0, r3, 0x18
-		  stw       r0, 0xA64(r30)
-		  beq-      .loc_0x174
-		  lis       r4, 0x804E
-		  addi      r3, r30, 0xA64
-		  addi      r5, r4, 0x7420
-		  li        r4, 0
-		  stw       r5, 0xA5C(r30)
-		  addi      r0, r5, 0x18
-		  stw       r0, 0xA64(r30)
-		  bl        -0x3509EC
+lbl_803E062C:
+	addic.   r0, r30, 0xa5c
+	beq      lbl_803E068C
+	lis      r3, __vt__Q35efx2d10FileSelect11T2DFilecopy@ha
+	addic.   r0, r30, 0xa5c
+	addi     r3, r3, __vt__Q35efx2d10FileSelect11T2DFilecopy@l
+	stw      r3, 0xa5c(r30)
+	addi     r0, r3, 0x18
+	stw      r0, 0xa64(r30)
+	beq      lbl_803E068C
+	lis      r3, __vt__Q35efx2d10FileSelect15T2DFilecopyBase@ha
+	addic.   r0, r30, 0xa5c
+	addi     r3, r3, __vt__Q35efx2d10FileSelect15T2DFilecopyBase@l
+	stw      r3, 0xa5c(r30)
+	addi     r0, r3, 0x18
+	stw      r0, 0xa64(r30)
+	beq      lbl_803E068C
+	lis      r4, __vt__Q25efx2d8TForever@ha
+	addi     r3, r30, 0xa64
+	addi     r5, r4, __vt__Q25efx2d8TForever@l
+	li       r4, 0
+	stw      r5, 0xa5c(r30)
+	addi     r0, r5, 0x18
+	stw      r0, 0xa64(r30)
+	bl       __dt__18JPAEmitterCallBackFv
 
-		.loc_0x174:
-		  addic.    r0, r30, 0xA24
-		  beq-      .loc_0x1DC
-		  addic.    r0, r30, 0xA24
-		  beq-      .loc_0x1DC
-		  lis       r3, 0x804E
-		  addic.    r0, r30, 0xA24
-		  addi      r3, r3, 0x7648
-		  stw       r3, 0xA24(r30)
-		  addi      r0, r3, 0x18
-		  stw       r0, 0xA2C(r30)
-		  beq-      .loc_0x1DC
-		  lis       r3, 0x804E
-		  addic.    r0, r30, 0xA24
-		  addi      r3, r3, 0x73CC
-		  stw       r3, 0xA24(r30)
-		  addi      r0, r3, 0x18
-		  stw       r0, 0xA2C(r30)
-		  beq-      .loc_0x1DC
-		  lis       r4, 0x804E
-		  addi      r3, r30, 0xA2C
-		  addi      r5, r4, 0x7420
-		  li        r4, 0
-		  stw       r5, 0xA24(r30)
-		  addi      r0, r5, 0x18
-		  stw       r0, 0xA2C(r30)
-		  bl        -0x350A54
+lbl_803E068C:
+	addic.   r0, r30, 0xa24
+	beq      lbl_803E06F4
+	addic.   r0, r30, 0xa24
+	beq      lbl_803E06F4
+	lis      r3, __vt__Q25efx2d9T2DCursor@ha
+	addic.   r0, r30, 0xa24
+	addi     r3, r3, __vt__Q25efx2d9T2DCursor@l
+	stw      r3, 0xa24(r30)
+	addi     r0, r3, 0x18
+	stw      r0, 0xa2c(r30)
+	beq      lbl_803E06F4
+	lis      r3, __vt__Q25efx2d9TChasePos@ha
+	addic.   r0, r30, 0xa24
+	addi     r3, r3, __vt__Q25efx2d9TChasePos@l
+	stw      r3, 0xa24(r30)
+	addi     r0, r3, 0x18
+	stw      r0, 0xa2c(r30)
+	beq      lbl_803E06F4
+	lis      r4, __vt__Q25efx2d8TForever@ha
+	addi     r3, r30, 0xa2c
+	addi     r5, r4, __vt__Q25efx2d8TForever@l
+	li       r4, 0
+	stw      r5, 0xa24(r30)
+	addi     r0, r5, 0x18
+	stw      r0, 0xa2c(r30)
+	bl       __dt__18JPAEmitterCallBackFv
 
-		.loc_0x1DC:
-		  addic.    r0, r30, 0x9EC
-		  beq-      .loc_0x244
-		  addic.    r0, r30, 0x9EC
-		  beq-      .loc_0x244
-		  lis       r3, 0x804E
-		  addic.    r0, r30, 0x9EC
-		  addi      r3, r3, 0x7648
-		  stw       r3, 0x9EC(r30)
-		  addi      r0, r3, 0x18
-		  stw       r0, 0x9F4(r30)
-		  beq-      .loc_0x244
-		  lis       r3, 0x804E
-		  addic.    r0, r30, 0x9EC
-		  addi      r3, r3, 0x73CC
-		  stw       r3, 0x9EC(r30)
-		  addi      r0, r3, 0x18
-		  stw       r0, 0x9F4(r30)
-		  beq-      .loc_0x244
-		  lis       r4, 0x804E
-		  addi      r3, r30, 0x9F4
-		  addi      r5, r4, 0x7420
-		  li        r4, 0
-		  stw       r5, 0x9EC(r30)
-		  addi      r0, r5, 0x18
-		  stw       r0, 0x9F4(r30)
-		  bl        -0x350ABC
+lbl_803E06F4:
+	addic.   r0, r30, 0x9ec
+	beq      lbl_803E075C
+	addic.   r0, r30, 0x9ec
+	beq      lbl_803E075C
+	lis      r3, __vt__Q25efx2d9T2DCursor@ha
+	addic.   r0, r30, 0x9ec
+	addi     r3, r3, __vt__Q25efx2d9T2DCursor@l
+	stw      r3, 0x9ec(r30)
+	addi     r0, r3, 0x18
+	stw      r0, 0x9f4(r30)
+	beq      lbl_803E075C
+	lis      r3, __vt__Q25efx2d9TChasePos@ha
+	addic.   r0, r30, 0x9ec
+	addi     r3, r3, __vt__Q25efx2d9TChasePos@l
+	stw      r3, 0x9ec(r30)
+	addi     r0, r3, 0x18
+	stw      r0, 0x9f4(r30)
+	beq      lbl_803E075C
+	lis      r4, __vt__Q25efx2d8TForever@ha
+	addi     r3, r30, 0x9f4
+	addi     r5, r4, __vt__Q25efx2d8TForever@l
+	li       r4, 0
+	stw      r5, 0x9ec(r30)
+	addi     r0, r5, 0x18
+	stw      r0, 0x9f4(r30)
+	bl       __dt__18JPAEmitterCallBackFv
 
-		.loc_0x244:
-		  lis       r4, 0x803D
-		  addi      r3, r30, 0x954
-		  subi      r4, r4, 0x81C
-		  li        r5, 0x40
-		  li        r6, 0x2
-		  bl        -0x31EFAC
-		  addic.    r0, r30, 0x908
-		  beq-      .loc_0x2B8
-		  lis       r3, 0x804F
-		  addic.    r0, r30, 0x908
-		  subi      r0, r3, 0x75AC
-		  stw       r0, 0x908(r30)
-		  beq-      .loc_0x2B8
-		  lis       r3, 0x804F
-		  addic.    r0, r30, 0x908
-		  subi      r0, r3, 0x77D0
-		  stw       r0, 0x908(r30)
-		  beq-      .loc_0x2B8
-		  lis       r3, 0x804D
-		  addic.    r0, r30, 0x908
-		  addi      r0, r3, 0x7F2C
-		  stw       r0, 0x908(r30)
-		  beq-      .loc_0x2B8
-		  lis       r4, 0x804D
-		  addi      r3, r30, 0x908
-		  addi      r0, r4, 0x7B0C
-		  li        r4, 0
-		  stw       r0, 0x908(r30)
-		  bl        0x30DBC
+lbl_803E075C:
+	lis      r4, __dt__Q23ebi20E2DCallBack_PurupuruFv@ha
+	addi     r3, r30, 0x954
+	addi     r4, r4, __dt__Q23ebi20E2DCallBack_PurupuruFv@l
+	li       r5, 0x40
+	li       r6, 2
+	bl       __destroy_arr
+	addic.   r0, r30, 0x908
+	beq      lbl_803E07D0
+	lis      r3, __vt__Q23ebi26E2DCallBack_BlinkFontColor@ha
+	addic.   r0, r30, 0x908
+	addi     r0, r3, __vt__Q23ebi26E2DCallBack_BlinkFontColor@l
+	stw      r0, 0x908(r30)
+	beq      lbl_803E07D0
+	lis      r3, __vt__Q23ebi16E2DCallBack_Base@ha
+	addic.   r0, r30, 0x908
+	addi     r0, r3, __vt__Q23ebi16E2DCallBack_Base@l
+	stw      r0, 0x908(r30)
+	beq      lbl_803E07D0
+	lis      r3, __vt__Q29P2DScreen12CallBackNode@ha
+	addic.   r0, r30, 0x908
+	addi     r0, r3, __vt__Q29P2DScreen12CallBackNode@l
+	stw      r0, 0x908(r30)
+	beq      lbl_803E07D0
+	lis      r4, __vt__Q29P2DScreen4Node@ha
+	addi     r3, r30, 0x908
+	addi     r0, r4, __vt__Q29P2DScreen4Node@l
+	li       r4, 0
+	stw      r0, 0x908(r30)
+	bl       __dt__5CNodeFv
 
-		.loc_0x2B8:
-		  addic.    r0, r30, 0x8BC
-		  beq-      .loc_0x314
-		  lis       r3, 0x804F
-		  addic.    r0, r30, 0x8BC
-		  subi      r0, r3, 0x75AC
-		  stw       r0, 0x8BC(r30)
-		  beq-      .loc_0x314
-		  lis       r3, 0x804F
-		  addic.    r0, r30, 0x8BC
-		  subi      r0, r3, 0x77D0
-		  stw       r0, 0x8BC(r30)
-		  beq-      .loc_0x314
-		  lis       r3, 0x804D
-		  addic.    r0, r30, 0x8BC
-		  addi      r0, r3, 0x7F2C
-		  stw       r0, 0x8BC(r30)
-		  beq-      .loc_0x314
-		  lis       r4, 0x804D
-		  addi      r3, r30, 0x8BC
-		  addi      r0, r4, 0x7B0C
-		  li        r4, 0
-		  stw       r0, 0x8BC(r30)
-		  bl        0x30D60
+lbl_803E07D0:
+	addic.   r0, r30, 0x8bc
+	beq      lbl_803E082C
+	lis      r3, __vt__Q23ebi26E2DCallBack_BlinkFontColor@ha
+	addic.   r0, r30, 0x8bc
+	addi     r0, r3, __vt__Q23ebi26E2DCallBack_BlinkFontColor@l
+	stw      r0, 0x8bc(r30)
+	beq      lbl_803E082C
+	lis      r3, __vt__Q23ebi16E2DCallBack_Base@ha
+	addic.   r0, r30, 0x8bc
+	addi     r0, r3, __vt__Q23ebi16E2DCallBack_Base@l
+	stw      r0, 0x8bc(r30)
+	beq      lbl_803E082C
+	lis      r3, __vt__Q29P2DScreen12CallBackNode@ha
+	addic.   r0, r30, 0x8bc
+	addi     r0, r3, __vt__Q29P2DScreen12CallBackNode@l
+	stw      r0, 0x8bc(r30)
+	beq      lbl_803E082C
+	lis      r4, __vt__Q29P2DScreen4Node@ha
+	addi     r3, r30, 0x8bc
+	addi     r0, r4, __vt__Q29P2DScreen4Node@l
+	li       r4, 0
+	stw      r0, 0x8bc(r30)
+	bl       __dt__5CNodeFv
 
-		.loc_0x314:
-		  addic.    r0, r30, 0x89C
-		  beq-      .loc_0x370
-		  lis       r3, 0x804F
-		  addic.    r0, r30, 0x89C
-		  subi      r0, r3, 0x77F4
-		  stw       r0, 0x89C(r30)
-		  beq-      .loc_0x370
-		  lis       r3, 0x804F
-		  addic.    r0, r30, 0x89C
-		  subi      r0, r3, 0x77D0
-		  stw       r0, 0x89C(r30)
-		  beq-      .loc_0x370
-		  lis       r3, 0x804D
-		  addic.    r0, r30, 0x89C
-		  addi      r0, r3, 0x7F2C
-		  stw       r0, 0x89C(r30)
-		  beq-      .loc_0x370
-		  lis       r4, 0x804D
-		  addi      r3, r30, 0x89C
-		  addi      r0, r4, 0x7B0C
-		  li        r4, 0
-		  stw       r0, 0x89C(r30)
-		  bl        0x30D04
+lbl_803E082C:
+	addic.   r0, r30, 0x89c
+	beq      lbl_803E0888
+	lis      r3, __vt__Q23ebi25E2DCallBack_CalcAnimation@ha
+	addic.   r0, r30, 0x89c
+	addi     r0, r3, __vt__Q23ebi25E2DCallBack_CalcAnimation@l
+	stw      r0, 0x89c(r30)
+	beq      lbl_803E0888
+	lis      r3, __vt__Q23ebi16E2DCallBack_Base@ha
+	addic.   r0, r30, 0x89c
+	addi     r0, r3, __vt__Q23ebi16E2DCallBack_Base@l
+	stw      r0, 0x89c(r30)
+	beq      lbl_803E0888
+	lis      r3, __vt__Q29P2DScreen12CallBackNode@ha
+	addic.   r0, r30, 0x89c
+	addi     r0, r3, __vt__Q29P2DScreen12CallBackNode@l
+	stw      r0, 0x89c(r30)
+	beq      lbl_803E0888
+	lis      r4, __vt__Q29P2DScreen4Node@ha
+	addi     r3, r30, 0x89c
+	addi     r0, r4, __vt__Q29P2DScreen4Node@l
+	li       r4, 0
+	stw      r0, 0x89c(r30)
+	bl       __dt__5CNodeFv
 
-		.loc_0x370:
-		  addic.    r0, r30, 0x860
-		  beq-      .loc_0x3E0
-		  lis       r3, 0x804F
-		  addic.    r0, r30, 0x880
-		  subi      r0, r3, 0x75F4
-		  stw       r0, 0x860(r30)
-		  beq-      .loc_0x398
-		  lis       r3, 0x804E
-		  addi      r0, r3, 0x798C
-		  stw       r0, 0x880(r30)
+lbl_803E0888:
+	addic.   r0, r30, 0x860
+	beq      lbl_803E08F8
+	lis      r3, __vt__Q23ebi19E2DCallBack_AnmBase@ha
+	addic.   r0, r30, 0x880
+	addi     r0, r3, __vt__Q23ebi19E2DCallBack_AnmBase@l
+	stw      r0, 0x860(r30)
+	beq      lbl_803E08B0
+	lis      r3, __vt__12J3DFrameCtrl@ha
+	addi     r0, r3, __vt__12J3DFrameCtrl@l
+	stw      r0, 0x880(r30)
 
-		.loc_0x398:
-		  addic.    r0, r30, 0x860
-		  beq-      .loc_0x3E0
-		  lis       r3, 0x804F
-		  addic.    r0, r30, 0x860
-		  subi      r0, r3, 0x77D0
-		  stw       r0, 0x860(r30)
-		  beq-      .loc_0x3E0
-		  lis       r3, 0x804D
-		  addic.    r0, r30, 0x860
-		  addi      r0, r3, 0x7F2C
-		  stw       r0, 0x860(r30)
-		  beq-      .loc_0x3E0
-		  lis       r4, 0x804D
-		  addi      r3, r30, 0x860
-		  addi      r0, r4, 0x7B0C
-		  li        r4, 0
-		  stw       r0, 0x860(r30)
-		  bl        0x30C94
+lbl_803E08B0:
+	addic.   r0, r30, 0x860
+	beq      lbl_803E08F8
+	lis      r3, __vt__Q23ebi16E2DCallBack_Base@ha
+	addic.   r0, r30, 0x860
+	addi     r0, r3, __vt__Q23ebi16E2DCallBack_Base@l
+	stw      r0, 0x860(r30)
+	beq      lbl_803E08F8
+	lis      r3, __vt__Q29P2DScreen12CallBackNode@ha
+	addic.   r0, r30, 0x860
+	addi     r0, r3, __vt__Q29P2DScreen12CallBackNode@l
+	stw      r0, 0x860(r30)
+	beq      lbl_803E08F8
+	lis      r4, __vt__Q29P2DScreen4Node@ha
+	addi     r3, r30, 0x860
+	addi     r0, r4, __vt__Q29P2DScreen4Node@l
+	li       r4, 0
+	stw      r0, 0x860(r30)
+	bl       __dt__5CNodeFv
 
-		.loc_0x3E0:
-		  addic.    r0, r30, 0x824
-		  beq-      .loc_0x450
-		  lis       r3, 0x804F
-		  addic.    r0, r30, 0x844
-		  subi      r0, r3, 0x75F4
-		  stw       r0, 0x824(r30)
-		  beq-      .loc_0x408
-		  lis       r3, 0x804E
-		  addi      r0, r3, 0x798C
-		  stw       r0, 0x844(r30)
+lbl_803E08F8:
+	addic.   r0, r30, 0x824
+	beq      lbl_803E0968
+	lis      r3, __vt__Q23ebi19E2DCallBack_AnmBase@ha
+	addic.   r0, r30, 0x844
+	addi     r0, r3, __vt__Q23ebi19E2DCallBack_AnmBase@l
+	stw      r0, 0x824(r30)
+	beq      lbl_803E0920
+	lis      r3, __vt__12J3DFrameCtrl@ha
+	addi     r0, r3, __vt__12J3DFrameCtrl@l
+	stw      r0, 0x844(r30)
 
-		.loc_0x408:
-		  addic.    r0, r30, 0x824
-		  beq-      .loc_0x450
-		  lis       r3, 0x804F
-		  addic.    r0, r30, 0x824
-		  subi      r0, r3, 0x77D0
-		  stw       r0, 0x824(r30)
-		  beq-      .loc_0x450
-		  lis       r3, 0x804D
-		  addic.    r0, r30, 0x824
-		  addi      r0, r3, 0x7F2C
-		  stw       r0, 0x824(r30)
-		  beq-      .loc_0x450
-		  lis       r4, 0x804D
-		  addi      r3, r30, 0x824
-		  addi      r0, r4, 0x7B0C
-		  li        r4, 0
-		  stw       r0, 0x824(r30)
-		  bl        0x30C24
+lbl_803E0920:
+	addic.   r0, r30, 0x824
+	beq      lbl_803E0968
+	lis      r3, __vt__Q23ebi16E2DCallBack_Base@ha
+	addic.   r0, r30, 0x824
+	addi     r0, r3, __vt__Q23ebi16E2DCallBack_Base@l
+	stw      r0, 0x824(r30)
+	beq      lbl_803E0968
+	lis      r3, __vt__Q29P2DScreen12CallBackNode@ha
+	addic.   r0, r30, 0x824
+	addi     r0, r3, __vt__Q29P2DScreen12CallBackNode@l
+	stw      r0, 0x824(r30)
+	beq      lbl_803E0968
+	lis      r4, __vt__Q29P2DScreen4Node@ha
+	addi     r3, r30, 0x824
+	addi     r0, r4, __vt__Q29P2DScreen4Node@l
+	li       r4, 0
+	stw      r0, 0x824(r30)
+	bl       __dt__5CNodeFv
 
-		.loc_0x450:
-		  addic.    r0, r30, 0x7E8
-		  beq-      .loc_0x4C0
-		  lis       r3, 0x804F
-		  addic.    r0, r30, 0x808
-		  subi      r0, r3, 0x75F4
-		  stw       r0, 0x7E8(r30)
-		  beq-      .loc_0x478
-		  lis       r3, 0x804E
-		  addi      r0, r3, 0x798C
-		  stw       r0, 0x808(r30)
+lbl_803E0968:
+	addic.   r0, r30, 0x7e8
+	beq      lbl_803E09D8
+	lis      r3, __vt__Q23ebi19E2DCallBack_AnmBase@ha
+	addic.   r0, r30, 0x808
+	addi     r0, r3, __vt__Q23ebi19E2DCallBack_AnmBase@l
+	stw      r0, 0x7e8(r30)
+	beq      lbl_803E0990
+	lis      r3, __vt__12J3DFrameCtrl@ha
+	addi     r0, r3, __vt__12J3DFrameCtrl@l
+	stw      r0, 0x808(r30)
 
-		.loc_0x478:
-		  addic.    r0, r30, 0x7E8
-		  beq-      .loc_0x4C0
-		  lis       r3, 0x804F
-		  addic.    r0, r30, 0x7E8
-		  subi      r0, r3, 0x77D0
-		  stw       r0, 0x7E8(r30)
-		  beq-      .loc_0x4C0
-		  lis       r3, 0x804D
-		  addic.    r0, r30, 0x7E8
-		  addi      r0, r3, 0x7F2C
-		  stw       r0, 0x7E8(r30)
-		  beq-      .loc_0x4C0
-		  lis       r4, 0x804D
-		  addi      r3, r30, 0x7E8
-		  addi      r0, r4, 0x7B0C
-		  li        r4, 0
-		  stw       r0, 0x7E8(r30)
-		  bl        0x30BB4
+lbl_803E0990:
+	addic.   r0, r30, 0x7e8
+	beq      lbl_803E09D8
+	lis      r3, __vt__Q23ebi16E2DCallBack_Base@ha
+	addic.   r0, r30, 0x7e8
+	addi     r0, r3, __vt__Q23ebi16E2DCallBack_Base@l
+	stw      r0, 0x7e8(r30)
+	beq      lbl_803E09D8
+	lis      r3, __vt__Q29P2DScreen12CallBackNode@ha
+	addic.   r0, r30, 0x7e8
+	addi     r0, r3, __vt__Q29P2DScreen12CallBackNode@l
+	stw      r0, 0x7e8(r30)
+	beq      lbl_803E09D8
+	lis      r4, __vt__Q29P2DScreen4Node@ha
+	addi     r3, r30, 0x7e8
+	addi     r0, r4, __vt__Q29P2DScreen4Node@l
+	li       r4, 0
+	stw      r0, 0x7e8(r30)
+	bl       __dt__5CNodeFv
 
-		.loc_0x4C0:
-		  addic.    r0, r30, 0x7AC
-		  beq-      .loc_0x530
-		  lis       r3, 0x804F
-		  addic.    r0, r30, 0x7CC
-		  subi      r0, r3, 0x75F4
-		  stw       r0, 0x7AC(r30)
-		  beq-      .loc_0x4E8
-		  lis       r3, 0x804E
-		  addi      r0, r3, 0x798C
-		  stw       r0, 0x7CC(r30)
+lbl_803E09D8:
+	addic.   r0, r30, 0x7ac
+	beq      lbl_803E0A48
+	lis      r3, __vt__Q23ebi19E2DCallBack_AnmBase@ha
+	addic.   r0, r30, 0x7cc
+	addi     r0, r3, __vt__Q23ebi19E2DCallBack_AnmBase@l
+	stw      r0, 0x7ac(r30)
+	beq      lbl_803E0A00
+	lis      r3, __vt__12J3DFrameCtrl@ha
+	addi     r0, r3, __vt__12J3DFrameCtrl@l
+	stw      r0, 0x7cc(r30)
 
-		.loc_0x4E8:
-		  addic.    r0, r30, 0x7AC
-		  beq-      .loc_0x530
-		  lis       r3, 0x804F
-		  addic.    r0, r30, 0x7AC
-		  subi      r0, r3, 0x77D0
-		  stw       r0, 0x7AC(r30)
-		  beq-      .loc_0x530
-		  lis       r3, 0x804D
-		  addic.    r0, r30, 0x7AC
-		  addi      r0, r3, 0x7F2C
-		  stw       r0, 0x7AC(r30)
-		  beq-      .loc_0x530
-		  lis       r4, 0x804D
-		  addi      r3, r30, 0x7AC
-		  addi      r0, r4, 0x7B0C
-		  li        r4, 0
-		  stw       r0, 0x7AC(r30)
-		  bl        0x30B44
+lbl_803E0A00:
+	addic.   r0, r30, 0x7ac
+	beq      lbl_803E0A48
+	lis      r3, __vt__Q23ebi16E2DCallBack_Base@ha
+	addic.   r0, r30, 0x7ac
+	addi     r0, r3, __vt__Q23ebi16E2DCallBack_Base@l
+	stw      r0, 0x7ac(r30)
+	beq      lbl_803E0A48
+	lis      r3, __vt__Q29P2DScreen12CallBackNode@ha
+	addic.   r0, r30, 0x7ac
+	addi     r0, r3, __vt__Q29P2DScreen12CallBackNode@l
+	stw      r0, 0x7ac(r30)
+	beq      lbl_803E0A48
+	lis      r4, __vt__Q29P2DScreen4Node@ha
+	addi     r3, r30, 0x7ac
+	addi     r0, r4, __vt__Q29P2DScreen4Node@l
+	li       r4, 0
+	stw      r0, 0x7ac(r30)
+	bl       __dt__5CNodeFv
 
-		.loc_0x530:
-		  addic.    r0, r30, 0x770
-		  beq-      .loc_0x5A0
-		  lis       r3, 0x804F
-		  addic.    r0, r30, 0x790
-		  subi      r0, r3, 0x75F4
-		  stw       r0, 0x770(r30)
-		  beq-      .loc_0x558
-		  lis       r3, 0x804E
-		  addi      r0, r3, 0x798C
-		  stw       r0, 0x790(r30)
+lbl_803E0A48:
+	addic.   r0, r30, 0x770
+	beq      lbl_803E0AB8
+	lis      r3, __vt__Q23ebi19E2DCallBack_AnmBase@ha
+	addic.   r0, r30, 0x790
+	addi     r0, r3, __vt__Q23ebi19E2DCallBack_AnmBase@l
+	stw      r0, 0x770(r30)
+	beq      lbl_803E0A70
+	lis      r3, __vt__12J3DFrameCtrl@ha
+	addi     r0, r3, __vt__12J3DFrameCtrl@l
+	stw      r0, 0x790(r30)
 
-		.loc_0x558:
-		  addic.    r0, r30, 0x770
-		  beq-      .loc_0x5A0
-		  lis       r3, 0x804F
-		  addic.    r0, r30, 0x770
-		  subi      r0, r3, 0x77D0
-		  stw       r0, 0x770(r30)
-		  beq-      .loc_0x5A0
-		  lis       r3, 0x804D
-		  addic.    r0, r30, 0x770
-		  addi      r0, r3, 0x7F2C
-		  stw       r0, 0x770(r30)
-		  beq-      .loc_0x5A0
-		  lis       r4, 0x804D
-		  addi      r3, r30, 0x770
-		  addi      r0, r4, 0x7B0C
-		  li        r4, 0
-		  stw       r0, 0x770(r30)
-		  bl        0x30AD4
+lbl_803E0A70:
+	addic.   r0, r30, 0x770
+	beq      lbl_803E0AB8
+	lis      r3, __vt__Q23ebi16E2DCallBack_Base@ha
+	addic.   r0, r30, 0x770
+	addi     r0, r3, __vt__Q23ebi16E2DCallBack_Base@l
+	stw      r0, 0x770(r30)
+	beq      lbl_803E0AB8
+	lis      r3, __vt__Q29P2DScreen12CallBackNode@ha
+	addic.   r0, r30, 0x770
+	addi     r0, r3, __vt__Q29P2DScreen12CallBackNode@l
+	stw      r0, 0x770(r30)
+	beq      lbl_803E0AB8
+	lis      r4, __vt__Q29P2DScreen4Node@ha
+	addi     r3, r30, 0x770
+	addi     r0, r4, __vt__Q29P2DScreen4Node@l
+	li       r4, 0
+	stw      r0, 0x770(r30)
+	bl       __dt__5CNodeFv
 
-		.loc_0x5A0:
-		  addic.    r0, r30, 0x734
-		  beq-      .loc_0x610
-		  lis       r3, 0x804F
-		  addic.    r0, r30, 0x754
-		  subi      r0, r3, 0x75F4
-		  stw       r0, 0x734(r30)
-		  beq-      .loc_0x5C8
-		  lis       r3, 0x804E
-		  addi      r0, r3, 0x798C
-		  stw       r0, 0x754(r30)
+lbl_803E0AB8:
+	addic.   r0, r30, 0x734
+	beq      lbl_803E0B28
+	lis      r3, __vt__Q23ebi19E2DCallBack_AnmBase@ha
+	addic.   r0, r30, 0x754
+	addi     r0, r3, __vt__Q23ebi19E2DCallBack_AnmBase@l
+	stw      r0, 0x734(r30)
+	beq      lbl_803E0AE0
+	lis      r3, __vt__12J3DFrameCtrl@ha
+	addi     r0, r3, __vt__12J3DFrameCtrl@l
+	stw      r0, 0x754(r30)
 
-		.loc_0x5C8:
-		  addic.    r0, r30, 0x734
-		  beq-      .loc_0x610
-		  lis       r3, 0x804F
-		  addic.    r0, r30, 0x734
-		  subi      r0, r3, 0x77D0
-		  stw       r0, 0x734(r30)
-		  beq-      .loc_0x610
-		  lis       r3, 0x804D
-		  addic.    r0, r30, 0x734
-		  addi      r0, r3, 0x7F2C
-		  stw       r0, 0x734(r30)
-		  beq-      .loc_0x610
-		  lis       r4, 0x804D
-		  addi      r3, r30, 0x734
-		  addi      r0, r4, 0x7B0C
-		  li        r4, 0
-		  stw       r0, 0x734(r30)
-		  bl        0x30A64
+lbl_803E0AE0:
+	addic.   r0, r30, 0x734
+	beq      lbl_803E0B28
+	lis      r3, __vt__Q23ebi16E2DCallBack_Base@ha
+	addic.   r0, r30, 0x734
+	addi     r0, r3, __vt__Q23ebi16E2DCallBack_Base@l
+	stw      r0, 0x734(r30)
+	beq      lbl_803E0B28
+	lis      r3, __vt__Q29P2DScreen12CallBackNode@ha
+	addic.   r0, r30, 0x734
+	addi     r0, r3, __vt__Q29P2DScreen12CallBackNode@l
+	stw      r0, 0x734(r30)
+	beq      lbl_803E0B28
+	lis      r4, __vt__Q29P2DScreen4Node@ha
+	addi     r3, r30, 0x734
+	addi     r0, r4, __vt__Q29P2DScreen4Node@l
+	li       r4, 0
+	stw      r0, 0x734(r30)
+	bl       __dt__5CNodeFv
 
-		.loc_0x610:
-		  addic.    r0, r30, 0x6F8
-		  beq-      .loc_0x680
-		  lis       r3, 0x804F
-		  addic.    r0, r30, 0x718
-		  subi      r0, r3, 0x75F4
-		  stw       r0, 0x6F8(r30)
-		  beq-      .loc_0x638
-		  lis       r3, 0x804E
-		  addi      r0, r3, 0x798C
-		  stw       r0, 0x718(r30)
+lbl_803E0B28:
+	addic.   r0, r30, 0x6f8
+	beq      lbl_803E0B98
+	lis      r3, __vt__Q23ebi19E2DCallBack_AnmBase@ha
+	addic.   r0, r30, 0x718
+	addi     r0, r3, __vt__Q23ebi19E2DCallBack_AnmBase@l
+	stw      r0, 0x6f8(r30)
+	beq      lbl_803E0B50
+	lis      r3, __vt__12J3DFrameCtrl@ha
+	addi     r0, r3, __vt__12J3DFrameCtrl@l
+	stw      r0, 0x718(r30)
 
-		.loc_0x638:
-		  addic.    r0, r30, 0x6F8
-		  beq-      .loc_0x680
-		  lis       r3, 0x804F
-		  addic.    r0, r30, 0x6F8
-		  subi      r0, r3, 0x77D0
-		  stw       r0, 0x6F8(r30)
-		  beq-      .loc_0x680
-		  lis       r3, 0x804D
-		  addic.    r0, r30, 0x6F8
-		  addi      r0, r3, 0x7F2C
-		  stw       r0, 0x6F8(r30)
-		  beq-      .loc_0x680
-		  lis       r4, 0x804D
-		  addi      r3, r30, 0x6F8
-		  addi      r0, r4, 0x7B0C
-		  li        r4, 0
-		  stw       r0, 0x6F8(r30)
-		  bl        0x309F4
+lbl_803E0B50:
+	addic.   r0, r30, 0x6f8
+	beq      lbl_803E0B98
+	lis      r3, __vt__Q23ebi16E2DCallBack_Base@ha
+	addic.   r0, r30, 0x6f8
+	addi     r0, r3, __vt__Q23ebi16E2DCallBack_Base@l
+	stw      r0, 0x6f8(r30)
+	beq      lbl_803E0B98
+	lis      r3, __vt__Q29P2DScreen12CallBackNode@ha
+	addic.   r0, r30, 0x6f8
+	addi     r0, r3, __vt__Q29P2DScreen12CallBackNode@l
+	stw      r0, 0x6f8(r30)
+	beq      lbl_803E0B98
+	lis      r4, __vt__Q29P2DScreen4Node@ha
+	addi     r3, r30, 0x6f8
+	addi     r0, r4, __vt__Q29P2DScreen4Node@l
+	li       r4, 0
+	stw      r0, 0x6f8(r30)
+	bl       __dt__5CNodeFv
 
-		.loc_0x680:
-		  addic.    r0, r30, 0x6BC
-		  beq-      .loc_0x6F0
-		  lis       r3, 0x804F
-		  addic.    r0, r30, 0x6DC
-		  subi      r0, r3, 0x75F4
-		  stw       r0, 0x6BC(r30)
-		  beq-      .loc_0x6A8
-		  lis       r3, 0x804E
-		  addi      r0, r3, 0x798C
-		  stw       r0, 0x6DC(r30)
+lbl_803E0B98:
+	addic.   r0, r30, 0x6bc
+	beq      lbl_803E0C08
+	lis      r3, __vt__Q23ebi19E2DCallBack_AnmBase@ha
+	addic.   r0, r30, 0x6dc
+	addi     r0, r3, __vt__Q23ebi19E2DCallBack_AnmBase@l
+	stw      r0, 0x6bc(r30)
+	beq      lbl_803E0BC0
+	lis      r3, __vt__12J3DFrameCtrl@ha
+	addi     r0, r3, __vt__12J3DFrameCtrl@l
+	stw      r0, 0x6dc(r30)
 
-		.loc_0x6A8:
-		  addic.    r0, r30, 0x6BC
-		  beq-      .loc_0x6F0
-		  lis       r3, 0x804F
-		  addic.    r0, r30, 0x6BC
-		  subi      r0, r3, 0x77D0
-		  stw       r0, 0x6BC(r30)
-		  beq-      .loc_0x6F0
-		  lis       r3, 0x804D
-		  addic.    r0, r30, 0x6BC
-		  addi      r0, r3, 0x7F2C
-		  stw       r0, 0x6BC(r30)
-		  beq-      .loc_0x6F0
-		  lis       r4, 0x804D
-		  addi      r3, r30, 0x6BC
-		  addi      r0, r4, 0x7B0C
-		  li        r4, 0
-		  stw       r0, 0x6BC(r30)
-		  bl        0x30984
+lbl_803E0BC0:
+	addic.   r0, r30, 0x6bc
+	beq      lbl_803E0C08
+	lis      r3, __vt__Q23ebi16E2DCallBack_Base@ha
+	addic.   r0, r30, 0x6bc
+	addi     r0, r3, __vt__Q23ebi16E2DCallBack_Base@l
+	stw      r0, 0x6bc(r30)
+	beq      lbl_803E0C08
+	lis      r3, __vt__Q29P2DScreen12CallBackNode@ha
+	addic.   r0, r30, 0x6bc
+	addi     r0, r3, __vt__Q29P2DScreen12CallBackNode@l
+	stw      r0, 0x6bc(r30)
+	beq      lbl_803E0C08
+	lis      r4, __vt__Q29P2DScreen4Node@ha
+	addi     r3, r30, 0x6bc
+	addi     r0, r4, __vt__Q29P2DScreen4Node@l
+	li       r4, 0
+	stw      r0, 0x6bc(r30)
+	bl       __dt__5CNodeFv
 
-		.loc_0x6F0:
-		  addic.    r0, r30, 0x680
-		  beq-      .loc_0x760
-		  lis       r3, 0x804F
-		  addic.    r0, r30, 0x6A0
-		  subi      r0, r3, 0x75F4
-		  stw       r0, 0x680(r30)
-		  beq-      .loc_0x718
-		  lis       r3, 0x804E
-		  addi      r0, r3, 0x798C
-		  stw       r0, 0x6A0(r30)
+lbl_803E0C08:
+	addic.   r0, r30, 0x680
+	beq      lbl_803E0C78
+	lis      r3, __vt__Q23ebi19E2DCallBack_AnmBase@ha
+	addic.   r0, r30, 0x6a0
+	addi     r0, r3, __vt__Q23ebi19E2DCallBack_AnmBase@l
+	stw      r0, 0x680(r30)
+	beq      lbl_803E0C30
+	lis      r3, __vt__12J3DFrameCtrl@ha
+	addi     r0, r3, __vt__12J3DFrameCtrl@l
+	stw      r0, 0x6a0(r30)
 
-		.loc_0x718:
-		  addic.    r0, r30, 0x680
-		  beq-      .loc_0x760
-		  lis       r3, 0x804F
-		  addic.    r0, r30, 0x680
-		  subi      r0, r3, 0x77D0
-		  stw       r0, 0x680(r30)
-		  beq-      .loc_0x760
-		  lis       r3, 0x804D
-		  addic.    r0, r30, 0x680
-		  addi      r0, r3, 0x7F2C
-		  stw       r0, 0x680(r30)
-		  beq-      .loc_0x760
-		  lis       r4, 0x804D
-		  addi      r3, r30, 0x680
-		  addi      r0, r4, 0x7B0C
-		  li        r4, 0
-		  stw       r0, 0x680(r30)
-		  bl        0x30914
+lbl_803E0C30:
+	addic.   r0, r30, 0x680
+	beq      lbl_803E0C78
+	lis      r3, __vt__Q23ebi16E2DCallBack_Base@ha
+	addic.   r0, r30, 0x680
+	addi     r0, r3, __vt__Q23ebi16E2DCallBack_Base@l
+	stw      r0, 0x680(r30)
+	beq      lbl_803E0C78
+	lis      r3, __vt__Q29P2DScreen12CallBackNode@ha
+	addic.   r0, r30, 0x680
+	addi     r0, r3, __vt__Q29P2DScreen12CallBackNode@l
+	stw      r0, 0x680(r30)
+	beq      lbl_803E0C78
+	lis      r4, __vt__Q29P2DScreen4Node@ha
+	addi     r3, r30, 0x680
+	addi     r0, r4, __vt__Q29P2DScreen4Node@l
+	li       r4, 0
+	stw      r0, 0x680(r30)
+	bl       __dt__5CNodeFv
 
-		.loc_0x760:
-		  addic.    r0, r30, 0x644
-		  beq-      .loc_0x7D0
-		  lis       r3, 0x804F
-		  addic.    r0, r30, 0x664
-		  subi      r0, r3, 0x75F4
-		  stw       r0, 0x644(r30)
-		  beq-      .loc_0x788
-		  lis       r3, 0x804E
-		  addi      r0, r3, 0x798C
-		  stw       r0, 0x664(r30)
+lbl_803E0C78:
+	addic.   r0, r30, 0x644
+	beq      lbl_803E0CE8
+	lis      r3, __vt__Q23ebi19E2DCallBack_AnmBase@ha
+	addic.   r0, r30, 0x664
+	addi     r0, r3, __vt__Q23ebi19E2DCallBack_AnmBase@l
+	stw      r0, 0x644(r30)
+	beq      lbl_803E0CA0
+	lis      r3, __vt__12J3DFrameCtrl@ha
+	addi     r0, r3, __vt__12J3DFrameCtrl@l
+	stw      r0, 0x664(r30)
 
-		.loc_0x788:
-		  addic.    r0, r30, 0x644
-		  beq-      .loc_0x7D0
-		  lis       r3, 0x804F
-		  addic.    r0, r30, 0x644
-		  subi      r0, r3, 0x77D0
-		  stw       r0, 0x644(r30)
-		  beq-      .loc_0x7D0
-		  lis       r3, 0x804D
-		  addic.    r0, r30, 0x644
-		  addi      r0, r3, 0x7F2C
-		  stw       r0, 0x644(r30)
-		  beq-      .loc_0x7D0
-		  lis       r4, 0x804D
-		  addi      r3, r30, 0x644
-		  addi      r0, r4, 0x7B0C
-		  li        r4, 0
-		  stw       r0, 0x644(r30)
-		  bl        0x308A4
+lbl_803E0CA0:
+	addic.   r0, r30, 0x644
+	beq      lbl_803E0CE8
+	lis      r3, __vt__Q23ebi16E2DCallBack_Base@ha
+	addic.   r0, r30, 0x644
+	addi     r0, r3, __vt__Q23ebi16E2DCallBack_Base@l
+	stw      r0, 0x644(r30)
+	beq      lbl_803E0CE8
+	lis      r3, __vt__Q29P2DScreen12CallBackNode@ha
+	addic.   r0, r30, 0x644
+	addi     r0, r3, __vt__Q29P2DScreen12CallBackNode@l
+	stw      r0, 0x644(r30)
+	beq      lbl_803E0CE8
+	lis      r4, __vt__Q29P2DScreen4Node@ha
+	addi     r3, r30, 0x644
+	addi     r0, r4, __vt__Q29P2DScreen4Node@l
+	li       r4, 0
+	stw      r0, 0x644(r30)
+	bl       __dt__5CNodeFv
 
-		.loc_0x7D0:
-		  addic.    r0, r30, 0x608
-		  beq-      .loc_0x840
-		  lis       r3, 0x804F
-		  addic.    r0, r30, 0x628
-		  subi      r0, r3, 0x75F4
-		  stw       r0, 0x608(r30)
-		  beq-      .loc_0x7F8
-		  lis       r3, 0x804E
-		  addi      r0, r3, 0x798C
-		  stw       r0, 0x628(r30)
+lbl_803E0CE8:
+	addic.   r0, r30, 0x608
+	beq      lbl_803E0D58
+	lis      r3, __vt__Q23ebi19E2DCallBack_AnmBase@ha
+	addic.   r0, r30, 0x628
+	addi     r0, r3, __vt__Q23ebi19E2DCallBack_AnmBase@l
+	stw      r0, 0x608(r30)
+	beq      lbl_803E0D10
+	lis      r3, __vt__12J3DFrameCtrl@ha
+	addi     r0, r3, __vt__12J3DFrameCtrl@l
+	stw      r0, 0x628(r30)
 
-		.loc_0x7F8:
-		  addic.    r0, r30, 0x608
-		  beq-      .loc_0x840
-		  lis       r3, 0x804F
-		  addic.    r0, r30, 0x608
-		  subi      r0, r3, 0x77D0
-		  stw       r0, 0x608(r30)
-		  beq-      .loc_0x840
-		  lis       r3, 0x804D
-		  addic.    r0, r30, 0x608
-		  addi      r0, r3, 0x7F2C
-		  stw       r0, 0x608(r30)
-		  beq-      .loc_0x840
-		  lis       r4, 0x804D
-		  addi      r3, r30, 0x608
-		  addi      r0, r4, 0x7B0C
-		  li        r4, 0
-		  stw       r0, 0x608(r30)
-		  bl        0x30834
+lbl_803E0D10:
+	addic.   r0, r30, 0x608
+	beq      lbl_803E0D58
+	lis      r3, __vt__Q23ebi16E2DCallBack_Base@ha
+	addic.   r0, r30, 0x608
+	addi     r0, r3, __vt__Q23ebi16E2DCallBack_Base@l
+	stw      r0, 0x608(r30)
+	beq      lbl_803E0D58
+	lis      r3, __vt__Q29P2DScreen12CallBackNode@ha
+	addic.   r0, r30, 0x608
+	addi     r0, r3, __vt__Q29P2DScreen12CallBackNode@l
+	stw      r0, 0x608(r30)
+	beq      lbl_803E0D58
+	lis      r4, __vt__Q29P2DScreen4Node@ha
+	addi     r3, r30, 0x608
+	addi     r0, r4, __vt__Q29P2DScreen4Node@l
+	li       r4, 0
+	stw      r0, 0x608(r30)
+	bl       __dt__5CNodeFv
 
-		.loc_0x840:
-		  addic.    r0, r30, 0x5CC
-		  beq-      .loc_0x8B0
-		  lis       r3, 0x804F
-		  addic.    r0, r30, 0x5EC
-		  subi      r0, r3, 0x75F4
-		  stw       r0, 0x5CC(r30)
-		  beq-      .loc_0x868
-		  lis       r3, 0x804E
-		  addi      r0, r3, 0x798C
-		  stw       r0, 0x5EC(r30)
+lbl_803E0D58:
+	addic.   r0, r30, 0x5cc
+	beq      lbl_803E0DC8
+	lis      r3, __vt__Q23ebi19E2DCallBack_AnmBase@ha
+	addic.   r0, r30, 0x5ec
+	addi     r0, r3, __vt__Q23ebi19E2DCallBack_AnmBase@l
+	stw      r0, 0x5cc(r30)
+	beq      lbl_803E0D80
+	lis      r3, __vt__12J3DFrameCtrl@ha
+	addi     r0, r3, __vt__12J3DFrameCtrl@l
+	stw      r0, 0x5ec(r30)
 
-		.loc_0x868:
-		  addic.    r0, r30, 0x5CC
-		  beq-      .loc_0x8B0
-		  lis       r3, 0x804F
-		  addic.    r0, r30, 0x5CC
-		  subi      r0, r3, 0x77D0
-		  stw       r0, 0x5CC(r30)
-		  beq-      .loc_0x8B0
-		  lis       r3, 0x804D
-		  addic.    r0, r30, 0x5CC
-		  addi      r0, r3, 0x7F2C
-		  stw       r0, 0x5CC(r30)
-		  beq-      .loc_0x8B0
-		  lis       r4, 0x804D
-		  addi      r3, r30, 0x5CC
-		  addi      r0, r4, 0x7B0C
-		  li        r4, 0
-		  stw       r0, 0x5CC(r30)
-		  bl        0x307C4
+lbl_803E0D80:
+	addic.   r0, r30, 0x5cc
+	beq      lbl_803E0DC8
+	lis      r3, __vt__Q23ebi16E2DCallBack_Base@ha
+	addic.   r0, r30, 0x5cc
+	addi     r0, r3, __vt__Q23ebi16E2DCallBack_Base@l
+	stw      r0, 0x5cc(r30)
+	beq      lbl_803E0DC8
+	lis      r3, __vt__Q29P2DScreen12CallBackNode@ha
+	addic.   r0, r30, 0x5cc
+	addi     r0, r3, __vt__Q29P2DScreen12CallBackNode@l
+	stw      r0, 0x5cc(r30)
+	beq      lbl_803E0DC8
+	lis      r4, __vt__Q29P2DScreen4Node@ha
+	addi     r3, r30, 0x5cc
+	addi     r0, r4, __vt__Q29P2DScreen4Node@l
+	li       r4, 0
+	stw      r0, 0x5cc(r30)
+	bl       __dt__5CNodeFv
 
-		.loc_0x8B0:
-		  lis       r4, 0x803D
-		  addi      r3, r30, 0x518
-		  subi      r4, r4, 0x6C
-		  li        r5, 0x3C
-		  li        r6, 0x3
-		  bl        -0x31F618
-		  lis       r4, 0x803D
-		  addi      r3, r30, 0x464
-		  subi      r4, r4, 0x6C
-		  li        r5, 0x3C
-		  li        r6, 0x3
-		  bl        -0x31F630
-		  lis       r4, 0x803D
-		  addi      r3, r30, 0x3B0
-		  subi      r4, r4, 0x6C
-		  li        r5, 0x3C
-		  li        r6, 0x3
-		  bl        -0x31F648
-		  addic.    r0, r30, 0x374
-		  beq-      .loc_0x968
-		  lis       r3, 0x804F
-		  addic.    r0, r30, 0x394
-		  subi      r0, r3, 0x75F4
-		  stw       r0, 0x374(r30)
-		  beq-      .loc_0x920
-		  lis       r3, 0x804E
-		  addi      r0, r3, 0x798C
-		  stw       r0, 0x394(r30)
+lbl_803E0DC8:
+	lis      r4, __dt__Q23ebi19E2DCallBack_AnmBaseFv@ha
+	addi     r3, r30, 0x518
+	addi     r4, r4, __dt__Q23ebi19E2DCallBack_AnmBaseFv@l
+	li       r5, 0x3c
+	li       r6, 3
+	bl       __destroy_arr
+	lis      r4, __dt__Q23ebi19E2DCallBack_AnmBaseFv@ha
+	addi     r3, r30, 0x464
+	addi     r4, r4, __dt__Q23ebi19E2DCallBack_AnmBaseFv@l
+	li       r5, 0x3c
+	li       r6, 3
+	bl       __destroy_arr
+	lis      r4, __dt__Q23ebi19E2DCallBack_AnmBaseFv@ha
+	addi     r3, r30, 0x3b0
+	addi     r4, r4, __dt__Q23ebi19E2DCallBack_AnmBaseFv@l
+	li       r5, 0x3c
+	li       r6, 3
+	bl       __destroy_arr
+	addic.   r0, r30, 0x374
+	beq      lbl_803E0E80
+	lis      r3, __vt__Q23ebi19E2DCallBack_AnmBase@ha
+	addic.   r0, r30, 0x394
+	addi     r0, r3, __vt__Q23ebi19E2DCallBack_AnmBase@l
+	stw      r0, 0x374(r30)
+	beq      lbl_803E0E38
+	lis      r3, __vt__12J3DFrameCtrl@ha
+	addi     r0, r3, __vt__12J3DFrameCtrl@l
+	stw      r0, 0x394(r30)
 
-		.loc_0x920:
-		  addic.    r0, r30, 0x374
-		  beq-      .loc_0x968
-		  lis       r3, 0x804F
-		  addic.    r0, r30, 0x374
-		  subi      r0, r3, 0x77D0
-		  stw       r0, 0x374(r30)
-		  beq-      .loc_0x968
-		  lis       r3, 0x804D
-		  addic.    r0, r30, 0x374
-		  addi      r0, r3, 0x7F2C
-		  stw       r0, 0x374(r30)
-		  beq-      .loc_0x968
-		  lis       r4, 0x804D
-		  addi      r3, r30, 0x374
-		  addi      r0, r4, 0x7B0C
-		  li        r4, 0
-		  stw       r0, 0x374(r30)
-		  bl        0x3070C
+lbl_803E0E38:
+	addic.   r0, r30, 0x374
+	beq      lbl_803E0E80
+	lis      r3, __vt__Q23ebi16E2DCallBack_Base@ha
+	addic.   r0, r30, 0x374
+	addi     r0, r3, __vt__Q23ebi16E2DCallBack_Base@l
+	stw      r0, 0x374(r30)
+	beq      lbl_803E0E80
+	lis      r3, __vt__Q29P2DScreen12CallBackNode@ha
+	addic.   r0, r30, 0x374
+	addi     r0, r3, __vt__Q29P2DScreen12CallBackNode@l
+	stw      r0, 0x374(r30)
+	beq      lbl_803E0E80
+	lis      r4, __vt__Q29P2DScreen4Node@ha
+	addi     r3, r30, 0x374
+	addi     r0, r4, __vt__Q29P2DScreen4Node@l
+	li       r4, 0
+	stw      r0, 0x374(r30)
+	bl       __dt__5CNodeFv
 
-		.loc_0x968:
-		  addic.    r0, r30, 0x338
-		  beq-      .loc_0x9D8
-		  lis       r3, 0x804F
-		  addic.    r0, r30, 0x358
-		  subi      r0, r3, 0x75F4
-		  stw       r0, 0x338(r30)
-		  beq-      .loc_0x990
-		  lis       r3, 0x804E
-		  addi      r0, r3, 0x798C
-		  stw       r0, 0x358(r30)
+lbl_803E0E80:
+	addic.   r0, r30, 0x338
+	beq      lbl_803E0EF0
+	lis      r3, __vt__Q23ebi19E2DCallBack_AnmBase@ha
+	addic.   r0, r30, 0x358
+	addi     r0, r3, __vt__Q23ebi19E2DCallBack_AnmBase@l
+	stw      r0, 0x338(r30)
+	beq      lbl_803E0EA8
+	lis      r3, __vt__12J3DFrameCtrl@ha
+	addi     r0, r3, __vt__12J3DFrameCtrl@l
+	stw      r0, 0x358(r30)
 
-		.loc_0x990:
-		  addic.    r0, r30, 0x338
-		  beq-      .loc_0x9D8
-		  lis       r3, 0x804F
-		  addic.    r0, r30, 0x338
-		  subi      r0, r3, 0x77D0
-		  stw       r0, 0x338(r30)
-		  beq-      .loc_0x9D8
-		  lis       r3, 0x804D
-		  addic.    r0, r30, 0x338
-		  addi      r0, r3, 0x7F2C
-		  stw       r0, 0x338(r30)
-		  beq-      .loc_0x9D8
-		  lis       r4, 0x804D
-		  addi      r3, r30, 0x338
-		  addi      r0, r4, 0x7B0C
-		  li        r4, 0
-		  stw       r0, 0x338(r30)
-		  bl        0x3069C
+lbl_803E0EA8:
+	addic.   r0, r30, 0x338
+	beq      lbl_803E0EF0
+	lis      r3, __vt__Q23ebi16E2DCallBack_Base@ha
+	addic.   r0, r30, 0x338
+	addi     r0, r3, __vt__Q23ebi16E2DCallBack_Base@l
+	stw      r0, 0x338(r30)
+	beq      lbl_803E0EF0
+	lis      r3, __vt__Q29P2DScreen12CallBackNode@ha
+	addic.   r0, r30, 0x338
+	addi     r0, r3, __vt__Q29P2DScreen12CallBackNode@l
+	stw      r0, 0x338(r30)
+	beq      lbl_803E0EF0
+	lis      r4, __vt__Q29P2DScreen4Node@ha
+	addi     r3, r30, 0x338
+	addi     r0, r4, __vt__Q29P2DScreen4Node@l
+	li       r4, 0
+	stw      r0, 0x338(r30)
+	bl       __dt__5CNodeFv
 
-		.loc_0x9D8:
-		  addic.    r0, r30, 0x2FC
-		  beq-      .loc_0xA48
-		  lis       r3, 0x804F
-		  addic.    r0, r30, 0x31C
-		  subi      r0, r3, 0x75F4
-		  stw       r0, 0x2FC(r30)
-		  beq-      .loc_0xA00
-		  lis       r3, 0x804E
-		  addi      r0, r3, 0x798C
-		  stw       r0, 0x31C(r30)
+lbl_803E0EF0:
+	addic.   r0, r30, 0x2fc
+	beq      lbl_803E0F60
+	lis      r3, __vt__Q23ebi19E2DCallBack_AnmBase@ha
+	addic.   r0, r30, 0x31c
+	addi     r0, r3, __vt__Q23ebi19E2DCallBack_AnmBase@l
+	stw      r0, 0x2fc(r30)
+	beq      lbl_803E0F18
+	lis      r3, __vt__12J3DFrameCtrl@ha
+	addi     r0, r3, __vt__12J3DFrameCtrl@l
+	stw      r0, 0x31c(r30)
 
-		.loc_0xA00:
-		  addic.    r0, r30, 0x2FC
-		  beq-      .loc_0xA48
-		  lis       r3, 0x804F
-		  addic.    r0, r30, 0x2FC
-		  subi      r0, r3, 0x77D0
-		  stw       r0, 0x2FC(r30)
-		  beq-      .loc_0xA48
-		  lis       r3, 0x804D
-		  addic.    r0, r30, 0x2FC
-		  addi      r0, r3, 0x7F2C
-		  stw       r0, 0x2FC(r30)
-		  beq-      .loc_0xA48
-		  lis       r4, 0x804D
-		  addi      r3, r30, 0x2FC
-		  addi      r0, r4, 0x7B0C
-		  li        r4, 0
-		  stw       r0, 0x2FC(r30)
-		  bl        0x3062C
+lbl_803E0F18:
+	addic.   r0, r30, 0x2fc
+	beq      lbl_803E0F60
+	lis      r3, __vt__Q23ebi16E2DCallBack_Base@ha
+	addic.   r0, r30, 0x2fc
+	addi     r0, r3, __vt__Q23ebi16E2DCallBack_Base@l
+	stw      r0, 0x2fc(r30)
+	beq      lbl_803E0F60
+	lis      r3, __vt__Q29P2DScreen12CallBackNode@ha
+	addic.   r0, r30, 0x2fc
+	addi     r0, r3, __vt__Q29P2DScreen12CallBackNode@l
+	stw      r0, 0x2fc(r30)
+	beq      lbl_803E0F60
+	lis      r4, __vt__Q29P2DScreen4Node@ha
+	addi     r3, r30, 0x2fc
+	addi     r0, r4, __vt__Q29P2DScreen4Node@l
+	li       r4, 0
+	stw      r0, 0x2fc(r30)
+	bl       __dt__5CNodeFv
 
-		.loc_0xA48:
-		  addic.    r0, r30, 0x2C0
-		  beq-      .loc_0xAB8
-		  lis       r3, 0x804F
-		  addic.    r0, r30, 0x2E0
-		  subi      r0, r3, 0x75F4
-		  stw       r0, 0x2C0(r30)
-		  beq-      .loc_0xA70
-		  lis       r3, 0x804E
-		  addi      r0, r3, 0x798C
-		  stw       r0, 0x2E0(r30)
+lbl_803E0F60:
+	addic.   r0, r30, 0x2c0
+	beq      lbl_803E0FD0
+	lis      r3, __vt__Q23ebi19E2DCallBack_AnmBase@ha
+	addic.   r0, r30, 0x2e0
+	addi     r0, r3, __vt__Q23ebi19E2DCallBack_AnmBase@l
+	stw      r0, 0x2c0(r30)
+	beq      lbl_803E0F88
+	lis      r3, __vt__12J3DFrameCtrl@ha
+	addi     r0, r3, __vt__12J3DFrameCtrl@l
+	stw      r0, 0x2e0(r30)
 
-		.loc_0xA70:
-		  addic.    r0, r30, 0x2C0
-		  beq-      .loc_0xAB8
-		  lis       r3, 0x804F
-		  addic.    r0, r30, 0x2C0
-		  subi      r0, r3, 0x77D0
-		  stw       r0, 0x2C0(r30)
-		  beq-      .loc_0xAB8
-		  lis       r3, 0x804D
-		  addic.    r0, r30, 0x2C0
-		  addi      r0, r3, 0x7F2C
-		  stw       r0, 0x2C0(r30)
-		  beq-      .loc_0xAB8
-		  lis       r4, 0x804D
-		  addi      r3, r30, 0x2C0
-		  addi      r0, r4, 0x7B0C
-		  li        r4, 0
-		  stw       r0, 0x2C0(r30)
-		  bl        0x305BC
+lbl_803E0F88:
+	addic.   r0, r30, 0x2c0
+	beq      lbl_803E0FD0
+	lis      r3, __vt__Q23ebi16E2DCallBack_Base@ha
+	addic.   r0, r30, 0x2c0
+	addi     r0, r3, __vt__Q23ebi16E2DCallBack_Base@l
+	stw      r0, 0x2c0(r30)
+	beq      lbl_803E0FD0
+	lis      r3, __vt__Q29P2DScreen12CallBackNode@ha
+	addic.   r0, r30, 0x2c0
+	addi     r0, r3, __vt__Q29P2DScreen12CallBackNode@l
+	stw      r0, 0x2c0(r30)
+	beq      lbl_803E0FD0
+	lis      r4, __vt__Q29P2DScreen4Node@ha
+	addi     r3, r30, 0x2c0
+	addi     r0, r4, __vt__Q29P2DScreen4Node@l
+	li       r4, 0
+	stw      r0, 0x2c0(r30)
+	bl       __dt__5CNodeFv
 
-		.loc_0xAB8:
-		  lis       r4, 0x803D
-		  addi      r3, r30, 0x20C
-		  subi      r4, r4, 0x6C
-		  li        r5, 0x3C
-		  li        r6, 0x3
-		  bl        -0x31F820
-		  lis       r4, 0x803D
-		  addi      r3, r30, 0x158
-		  subi      r4, r4, 0x6C
-		  li        r5, 0x3C
-		  li        r6, 0x3
-		  bl        -0x31F838
-		  addic.    r0, r30, 0x11C
-		  beq-      .loc_0xB58
-		  lis       r3, 0x804F
-		  addic.    r0, r30, 0x13C
-		  subi      r0, r3, 0x75F4
-		  stw       r0, 0x11C(r30)
-		  beq-      .loc_0xB10
-		  lis       r3, 0x804E
-		  addi      r0, r3, 0x798C
-		  stw       r0, 0x13C(r30)
+lbl_803E0FD0:
+	lis      r4, __dt__Q23ebi19E2DCallBack_AnmBaseFv@ha
+	addi     r3, r30, 0x20c
+	addi     r4, r4, __dt__Q23ebi19E2DCallBack_AnmBaseFv@l
+	li       r5, 0x3c
+	li       r6, 3
+	bl       __destroy_arr
+	lis      r4, __dt__Q23ebi19E2DCallBack_AnmBaseFv@ha
+	addi     r3, r30, 0x158
+	addi     r4, r4, __dt__Q23ebi19E2DCallBack_AnmBaseFv@l
+	li       r5, 0x3c
+	li       r6, 3
+	bl       __destroy_arr
+	addic.   r0, r30, 0x11c
+	beq      lbl_803E1070
+	lis      r3, __vt__Q23ebi19E2DCallBack_AnmBase@ha
+	addic.   r0, r30, 0x13c
+	addi     r0, r3, __vt__Q23ebi19E2DCallBack_AnmBase@l
+	stw      r0, 0x11c(r30)
+	beq      lbl_803E1028
+	lis      r3, __vt__12J3DFrameCtrl@ha
+	addi     r0, r3, __vt__12J3DFrameCtrl@l
+	stw      r0, 0x13c(r30)
 
-		.loc_0xB10:
-		  addic.    r0, r30, 0x11C
-		  beq-      .loc_0xB58
-		  lis       r3, 0x804F
-		  addic.    r0, r30, 0x11C
-		  subi      r0, r3, 0x77D0
-		  stw       r0, 0x11C(r30)
-		  beq-      .loc_0xB58
-		  lis       r3, 0x804D
-		  addic.    r0, r30, 0x11C
-		  addi      r0, r3, 0x7F2C
-		  stw       r0, 0x11C(r30)
-		  beq-      .loc_0xB58
-		  lis       r4, 0x804D
-		  addi      r3, r30, 0x11C
-		  addi      r0, r4, 0x7B0C
-		  li        r4, 0
-		  stw       r0, 0x11C(r30)
-		  bl        0x3051C
+lbl_803E1028:
+	addic.   r0, r30, 0x11c
+	beq      lbl_803E1070
+	lis      r3, __vt__Q23ebi16E2DCallBack_Base@ha
+	addic.   r0, r30, 0x11c
+	addi     r0, r3, __vt__Q23ebi16E2DCallBack_Base@l
+	stw      r0, 0x11c(r30)
+	beq      lbl_803E1070
+	lis      r3, __vt__Q29P2DScreen12CallBackNode@ha
+	addic.   r0, r30, 0x11c
+	addi     r0, r3, __vt__Q29P2DScreen12CallBackNode@l
+	stw      r0, 0x11c(r30)
+	beq      lbl_803E1070
+	lis      r4, __vt__Q29P2DScreen4Node@ha
+	addi     r3, r30, 0x11c
+	addi     r0, r4, __vt__Q29P2DScreen4Node@l
+	li       r4, 0
+	stw      r0, 0x11c(r30)
+	bl       __dt__5CNodeFv
 
-		.loc_0xB58:
-		  addic.    r0, r30, 0xE0
-		  beq-      .loc_0xBC8
-		  lis       r3, 0x804F
-		  addic.    r0, r30, 0x100
-		  subi      r0, r3, 0x75F4
-		  stw       r0, 0xE0(r30)
-		  beq-      .loc_0xB80
-		  lis       r3, 0x804E
-		  addi      r0, r3, 0x798C
-		  stw       r0, 0x100(r30)
+lbl_803E1070:
+	addic.   r0, r30, 0xe0
+	beq      lbl_803E10E0
+	lis      r3, __vt__Q23ebi19E2DCallBack_AnmBase@ha
+	addic.   r0, r30, 0x100
+	addi     r0, r3, __vt__Q23ebi19E2DCallBack_AnmBase@l
+	stw      r0, 0xe0(r30)
+	beq      lbl_803E1098
+	lis      r3, __vt__12J3DFrameCtrl@ha
+	addi     r0, r3, __vt__12J3DFrameCtrl@l
+	stw      r0, 0x100(r30)
 
-		.loc_0xB80:
-		  addic.    r0, r30, 0xE0
-		  beq-      .loc_0xBC8
-		  lis       r3, 0x804F
-		  addic.    r0, r30, 0xE0
-		  subi      r0, r3, 0x77D0
-		  stw       r0, 0xE0(r30)
-		  beq-      .loc_0xBC8
-		  lis       r3, 0x804D
-		  addic.    r0, r30, 0xE0
-		  addi      r0, r3, 0x7F2C
-		  stw       r0, 0xE0(r30)
-		  beq-      .loc_0xBC8
-		  lis       r4, 0x804D
-		  addi      r3, r30, 0xE0
-		  addi      r0, r4, 0x7B0C
-		  li        r4, 0
-		  stw       r0, 0xE0(r30)
-		  bl        0x304AC
+lbl_803E1098:
+	addic.   r0, r30, 0xe0
+	beq      lbl_803E10E0
+	lis      r3, __vt__Q23ebi16E2DCallBack_Base@ha
+	addic.   r0, r30, 0xe0
+	addi     r0, r3, __vt__Q23ebi16E2DCallBack_Base@l
+	stw      r0, 0xe0(r30)
+	beq      lbl_803E10E0
+	lis      r3, __vt__Q29P2DScreen12CallBackNode@ha
+	addic.   r0, r30, 0xe0
+	addi     r0, r3, __vt__Q29P2DScreen12CallBackNode@l
+	stw      r0, 0xe0(r30)
+	beq      lbl_803E10E0
+	lis      r4, __vt__Q29P2DScreen4Node@ha
+	addi     r3, r30, 0xe0
+	addi     r0, r4, __vt__Q29P2DScreen4Node@l
+	li       r4, 0
+	stw      r0, 0xe0(r30)
+	bl       __dt__5CNodeFv
 
-		.loc_0xBC8:
-		  extsh.    r0, r31
-		  ble-      .loc_0xBD8
-		  mr        r3, r30
-		  bl        -0x3BD038
+lbl_803E10E0:
+	extsh.   r0, r31
+	ble      lbl_803E10F0
+	mr       r3, r30
+	bl       __dl__FPv
 
-		.loc_0xBD8:
-		  lwz       r0, 0x14(r1)
-		  mr        r3, r30
-		  lwz       r31, 0xC(r1)
-		  lwz       r30, 0x8(r1)
-		  mtlr      r0
-		  addi      r1, r1, 0x10
-		  blr
+lbl_803E10F0:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 		*/
 	}
 
@@ -4119,23 +4497,22 @@ void init__Q24Game28StateMachine<ebi::FS::TMgr> FPQ33ebi2FS4TMgr(void) { }
 void exec__Q24Game28StateMachine<ebi::FS::TMgr> FPQ33ebi2FS4TMgr(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0xC5C(r4)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x28
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r3, 0xc5c(r4)
+	cmplwi   r3, 0
+	beq      lbl_803E114C
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x28:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803E114C:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -4147,32 +4524,31 @@ void exec__Q24Game28StateMachine<ebi::FS::TMgr> FPQ33ebi2FS4TMgr(void)
 void create__Q24Game28StateMachine<ebi::FS::TMgr> Fi(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  li        r0, 0
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  stw       r4, 0xC(r3)
-	  stw       r0, 0x8(r3)
-	  lwz       r0, 0xC(r3)
-	  rlwinm    r3,r0,2,0,29
-	  bl        -0x3BD1D8
-	  stw       r3, 0x4(r31)
-	  lwz       r0, 0xC(r31)
-	  rlwinm    r3,r0,2,0,29
-	  bl        -0x3BD1E8
-	  stw       r3, 0x10(r31)
-	  lwz       r0, 0xC(r31)
-	  rlwinm    r3,r0,2,0,29
-	  bl        -0x3BD1F8
-	  stw       r3, 0x14(r31)
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	li       r0, 0
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	stw      r4, 0xc(r3)
+	stw      r0, 8(r3)
+	lwz      r0, 0xc(r3)
+	slwi     r3, r0, 2
+	bl       __nwa__FUl
+	stw      r3, 4(r31)
+	lwz      r0, 0xc(r31)
+	slwi     r3, r0, 2
+	bl       __nwa__FUl
+	stw      r3, 0x10(r31)
+	lwz      r0, 0xc(r31)
+	slwi     r3, r0, 2
+	bl       __nwa__FUl
+	stw      r3, 0x14(r31)
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 

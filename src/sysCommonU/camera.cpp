@@ -1,200 +1,200 @@
 #include "types.h"
 
 /*
-	Generated from dpostproc
+    Generated from dpostproc
 
-	.section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-		.4byte __sinit_camera_cpp
+    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
+        .4byte __sinit_camera_cpp
 
-	.section .data, "wa"  # 0x8049E220 - 0x804EFC20
-	.global lbl_804EB718
-	lbl_804EB718:
-		.4byte 0x00000000
-		.4byte 0x00000000
-		.4byte 0x00000000
-	.global __vt__11BlendCamera
-	__vt__11BlendCamera:
-		.4byte 0
-		.4byte 0
-		.4byte __dt__11BlendCameraFv
-		.4byte getChildCount__5CNodeFv
-		.4byte "getObject__17Container<5Plane>FPv"
-		.4byte "getNext__22ArrayContainer<5Plane>FPv"
-		.4byte "getStart__22ArrayContainer<5Plane>Fv"
-		.4byte "getEnd__22ArrayContainer<5Plane>Fv"
-		.4byte "get__22ArrayContainer<5Plane>FPv"
-		.4byte "getAt__22ArrayContainer<5Plane>Fi"
-		.4byte "getTo__22ArrayContainer<5Plane>Fv"
-		.4byte writeObject__9CullPlaneFR6StreamR5Plane
-		.4byte readObject__9CullPlaneFR6StreamR5Plane
-		.4byte "write__22ArrayContainer<5Plane>FR6Stream"
-		.4byte "read__22ArrayContainer<5Plane>FR6Stream"
-		.4byte "alloc__22ArrayContainer<5Plane>Fi"
-		.4byte "addOne__22ArrayContainer<5Plane>FR5Plane"
-		.4byte "setArray__22ArrayContainer<5Plane>FP5Planei"
-		.4byte getViewMatrix__6CameraFb
-		.4byte getPosition__6CameraFv
-		.4byte updatePlanes__6CameraFv
-		.4byte updateScreenConstants__6CameraFv
-		.4byte getLookAtPosition___6CameraFv
-		.4byte getTargetDistance__6CameraFv
-		.4byte getPositionPtr__6CameraFv
-		.4byte on_getPositionPtr__6CameraFv
-		.4byte getSoundPositionPtr__6CameraFv
-		.4byte getSoundMatrixPtr__6CameraFv
-		.4byte isSpecialCamera__6CameraFv
-		.4byte updateMatrix__6CameraFv
-		.4byte doUpdate__11BlendCameraFv
-	.global __vt__12LookAtCamera
-	__vt__12LookAtCamera:
-		.4byte 0
-		.4byte 0
-		.4byte __dt__12LookAtCameraFv
-		.4byte getChildCount__5CNodeFv
-		.4byte "getObject__17Container<5Plane>FPv"
-		.4byte "getNext__22ArrayContainer<5Plane>FPv"
-		.4byte "getStart__22ArrayContainer<5Plane>Fv"
-		.4byte "getEnd__22ArrayContainer<5Plane>Fv"
-		.4byte "get__22ArrayContainer<5Plane>FPv"
-		.4byte "getAt__22ArrayContainer<5Plane>Fi"
-		.4byte "getTo__22ArrayContainer<5Plane>Fv"
-		.4byte writeObject__9CullPlaneFR6StreamR5Plane
-		.4byte readObject__9CullPlaneFR6StreamR5Plane
-		.4byte "write__22ArrayContainer<5Plane>FR6Stream"
-		.4byte "read__22ArrayContainer<5Plane>FR6Stream"
-		.4byte "alloc__22ArrayContainer<5Plane>Fi"
-		.4byte "addOne__22ArrayContainer<5Plane>FR5Plane"
-		.4byte "setArray__22ArrayContainer<5Plane>FP5Planei"
-		.4byte getViewMatrix__6CameraFb
-		.4byte getPosition__6CameraFv
-		.4byte updatePlanes__6CameraFv
-		.4byte updateScreenConstants__6CameraFv
-		.4byte getLookAtPosition___12LookAtCameraFv
-		.4byte getTargetDistance__6CameraFv
-		.4byte getPositionPtr__6CameraFv
-		.4byte on_getPositionPtr__12LookAtCameraFv
-		.4byte getSoundPositionPtr__6CameraFv
-		.4byte getSoundMatrixPtr__6CameraFv
-		.4byte isSpecialCamera__6CameraFv
-		.4byte updateMatrix__12LookAtCameraFv
-		.4byte doUpdate__6CameraFv
-		.4byte startVibration__12LookAtCameraFi
-	.global __vt__6Camera
-	__vt__6Camera:
-		.4byte 0
-		.4byte 0
-		.4byte __dt__6CameraFv
-		.4byte getChildCount__5CNodeFv
-		.4byte "getObject__17Container<5Plane>FPv"
-		.4byte "getNext__22ArrayContainer<5Plane>FPv"
-		.4byte "getStart__22ArrayContainer<5Plane>Fv"
-		.4byte "getEnd__22ArrayContainer<5Plane>Fv"
-		.4byte "get__22ArrayContainer<5Plane>FPv"
-		.4byte "getAt__22ArrayContainer<5Plane>Fi"
-		.4byte "getTo__22ArrayContainer<5Plane>Fv"
-		.4byte writeObject__9CullPlaneFR6StreamR5Plane
-		.4byte readObject__9CullPlaneFR6StreamR5Plane
-		.4byte "write__22ArrayContainer<5Plane>FR6Stream"
-		.4byte "read__22ArrayContainer<5Plane>FR6Stream"
-		.4byte "alloc__22ArrayContainer<5Plane>Fi"
-		.4byte "addOne__22ArrayContainer<5Plane>FR5Plane"
-		.4byte "setArray__22ArrayContainer<5Plane>FP5Planei"
-		.4byte getViewMatrix__6CameraFb
-		.4byte getPosition__6CameraFv
-		.4byte updatePlanes__6CameraFv
-		.4byte updateScreenConstants__6CameraFv
-		.4byte getLookAtPosition___6CameraFv
-		.4byte getTargetDistance__6CameraFv
-		.4byte getPositionPtr__6CameraFv
-		.4byte on_getPositionPtr__6CameraFv
-		.4byte getSoundPositionPtr__6CameraFv
-		.4byte getSoundMatrixPtr__6CameraFv
-		.4byte isSpecialCamera__6CameraFv
-		.4byte updateMatrix__6CameraFv
-		.4byte doUpdate__6CameraFv
-	.global __vt__11CullFrustum
-	__vt__11CullFrustum:
-		.4byte 0
-		.4byte 0
-		.4byte __dt__11CullFrustumFv
-		.4byte getChildCount__5CNodeFv
-		.4byte "getObject__17Container<5Plane>FPv"
-		.4byte "getNext__22ArrayContainer<5Plane>FPv"
-		.4byte "getStart__22ArrayContainer<5Plane>Fv"
-		.4byte "getEnd__22ArrayContainer<5Plane>Fv"
-		.4byte "get__22ArrayContainer<5Plane>FPv"
-		.4byte "getAt__22ArrayContainer<5Plane>Fi"
-		.4byte "getTo__22ArrayContainer<5Plane>Fv"
-		.4byte writeObject__9CullPlaneFR6StreamR5Plane
-		.4byte readObject__9CullPlaneFR6StreamR5Plane
-		.4byte "write__22ArrayContainer<5Plane>FR6Stream"
-		.4byte "read__22ArrayContainer<5Plane>FR6Stream"
-		.4byte "alloc__22ArrayContainer<5Plane>Fi"
-		.4byte "addOne__22ArrayContainer<5Plane>FR5Plane"
-		.4byte "setArray__22ArrayContainer<5Plane>FP5Planei"
-		.4byte getViewMatrix__11CullFrustumFb
-		.4byte getPosition__11CullFrustumFv
-		.4byte updatePlanes__11CullFrustumFv
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global lbl_804EB718
+    lbl_804EB718:
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+    .global __vt__11BlendCamera
+    __vt__11BlendCamera:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__11BlendCameraFv
+        .4byte getChildCount__5CNodeFv
+        .4byte "getObject__17Container<5Plane>FPv"
+        .4byte "getNext__22ArrayContainer<5Plane>FPv"
+        .4byte "getStart__22ArrayContainer<5Plane>Fv"
+        .4byte "getEnd__22ArrayContainer<5Plane>Fv"
+        .4byte "get__22ArrayContainer<5Plane>FPv"
+        .4byte "getAt__22ArrayContainer<5Plane>Fi"
+        .4byte "getTo__22ArrayContainer<5Plane>Fv"
+        .4byte writeObject__9CullPlaneFR6StreamR5Plane
+        .4byte readObject__9CullPlaneFR6StreamR5Plane
+        .4byte "write__22ArrayContainer<5Plane>FR6Stream"
+        .4byte "read__22ArrayContainer<5Plane>FR6Stream"
+        .4byte "alloc__22ArrayContainer<5Plane>Fi"
+        .4byte "addOne__22ArrayContainer<5Plane>FR5Plane"
+        .4byte "setArray__22ArrayContainer<5Plane>FP5Planei"
+        .4byte getViewMatrix__6CameraFb
+        .4byte getPosition__6CameraFv
+        .4byte updatePlanes__6CameraFv
+        .4byte updateScreenConstants__6CameraFv
+        .4byte getLookAtPosition___6CameraFv
+        .4byte getTargetDistance__6CameraFv
+        .4byte getPositionPtr__6CameraFv
+        .4byte on_getPositionPtr__6CameraFv
+        .4byte getSoundPositionPtr__6CameraFv
+        .4byte getSoundMatrixPtr__6CameraFv
+        .4byte isSpecialCamera__6CameraFv
+        .4byte updateMatrix__6CameraFv
+        .4byte doUpdate__11BlendCameraFv
+    .global __vt__12LookAtCamera
+    __vt__12LookAtCamera:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__12LookAtCameraFv
+        .4byte getChildCount__5CNodeFv
+        .4byte "getObject__17Container<5Plane>FPv"
+        .4byte "getNext__22ArrayContainer<5Plane>FPv"
+        .4byte "getStart__22ArrayContainer<5Plane>Fv"
+        .4byte "getEnd__22ArrayContainer<5Plane>Fv"
+        .4byte "get__22ArrayContainer<5Plane>FPv"
+        .4byte "getAt__22ArrayContainer<5Plane>Fi"
+        .4byte "getTo__22ArrayContainer<5Plane>Fv"
+        .4byte writeObject__9CullPlaneFR6StreamR5Plane
+        .4byte readObject__9CullPlaneFR6StreamR5Plane
+        .4byte "write__22ArrayContainer<5Plane>FR6Stream"
+        .4byte "read__22ArrayContainer<5Plane>FR6Stream"
+        .4byte "alloc__22ArrayContainer<5Plane>Fi"
+        .4byte "addOne__22ArrayContainer<5Plane>FR5Plane"
+        .4byte "setArray__22ArrayContainer<5Plane>FP5Planei"
+        .4byte getViewMatrix__6CameraFb
+        .4byte getPosition__6CameraFv
+        .4byte updatePlanes__6CameraFv
+        .4byte updateScreenConstants__6CameraFv
+        .4byte getLookAtPosition___12LookAtCameraFv
+        .4byte getTargetDistance__6CameraFv
+        .4byte getPositionPtr__6CameraFv
+        .4byte on_getPositionPtr__12LookAtCameraFv
+        .4byte getSoundPositionPtr__6CameraFv
+        .4byte getSoundMatrixPtr__6CameraFv
+        .4byte isSpecialCamera__6CameraFv
+        .4byte updateMatrix__12LookAtCameraFv
+        .4byte doUpdate__6CameraFv
+        .4byte startVibration__12LookAtCameraFi
+    .global __vt__6Camera
+    __vt__6Camera:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__6CameraFv
+        .4byte getChildCount__5CNodeFv
+        .4byte "getObject__17Container<5Plane>FPv"
+        .4byte "getNext__22ArrayContainer<5Plane>FPv"
+        .4byte "getStart__22ArrayContainer<5Plane>Fv"
+        .4byte "getEnd__22ArrayContainer<5Plane>Fv"
+        .4byte "get__22ArrayContainer<5Plane>FPv"
+        .4byte "getAt__22ArrayContainer<5Plane>Fi"
+        .4byte "getTo__22ArrayContainer<5Plane>Fv"
+        .4byte writeObject__9CullPlaneFR6StreamR5Plane
+        .4byte readObject__9CullPlaneFR6StreamR5Plane
+        .4byte "write__22ArrayContainer<5Plane>FR6Stream"
+        .4byte "read__22ArrayContainer<5Plane>FR6Stream"
+        .4byte "alloc__22ArrayContainer<5Plane>Fi"
+        .4byte "addOne__22ArrayContainer<5Plane>FR5Plane"
+        .4byte "setArray__22ArrayContainer<5Plane>FP5Planei"
+        .4byte getViewMatrix__6CameraFb
+        .4byte getPosition__6CameraFv
+        .4byte updatePlanes__6CameraFv
+        .4byte updateScreenConstants__6CameraFv
+        .4byte getLookAtPosition___6CameraFv
+        .4byte getTargetDistance__6CameraFv
+        .4byte getPositionPtr__6CameraFv
+        .4byte on_getPositionPtr__6CameraFv
+        .4byte getSoundPositionPtr__6CameraFv
+        .4byte getSoundMatrixPtr__6CameraFv
+        .4byte isSpecialCamera__6CameraFv
+        .4byte updateMatrix__6CameraFv
+        .4byte doUpdate__6CameraFv
+    .global __vt__11CullFrustum
+    __vt__11CullFrustum:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__11CullFrustumFv
+        .4byte getChildCount__5CNodeFv
+        .4byte "getObject__17Container<5Plane>FPv"
+        .4byte "getNext__22ArrayContainer<5Plane>FPv"
+        .4byte "getStart__22ArrayContainer<5Plane>Fv"
+        .4byte "getEnd__22ArrayContainer<5Plane>Fv"
+        .4byte "get__22ArrayContainer<5Plane>FPv"
+        .4byte "getAt__22ArrayContainer<5Plane>Fi"
+        .4byte "getTo__22ArrayContainer<5Plane>Fv"
+        .4byte writeObject__9CullPlaneFR6StreamR5Plane
+        .4byte readObject__9CullPlaneFR6StreamR5Plane
+        .4byte "write__22ArrayContainer<5Plane>FR6Stream"
+        .4byte "read__22ArrayContainer<5Plane>FR6Stream"
+        .4byte "alloc__22ArrayContainer<5Plane>Fi"
+        .4byte "addOne__22ArrayContainer<5Plane>FR5Plane"
+        .4byte "setArray__22ArrayContainer<5Plane>FP5Planei"
+        .4byte getViewMatrix__11CullFrustumFb
+        .4byte getPosition__11CullFrustumFv
+        .4byte updatePlanes__11CullFrustumFv
 
-	.section .sbss # 0x80514D80 - 0x80516360
-	.global lbl_80516158
-	lbl_80516158:
-		.skip 0x4
-	.global lbl_8051615C
-	lbl_8051615C:
-		.skip 0x4
+    .section .sbss # 0x80514D80 - 0x80516360
+    .global lbl_80516158
+    lbl_80516158:
+        .skip 0x4
+    .global lbl_8051615C
+    lbl_8051615C:
+        .skip 0x4
 
-	.section .sdata2, "a"     # 0x80516360 - 0x80520E40
-	.global lbl_80520358
-	lbl_80520358:
-		.4byte 0x00000000
-	.global lbl_8052035C
-	lbl_8052035C:
-		.float 1.0
-	.global lbl_80520360
-	lbl_80520360:
-		.4byte 0x42700000
-		.4byte 0x00000000
-	.global lbl_80520368
-	lbl_80520368:
-		.4byte 0x43300000
-		.4byte 0x80000000
-	.global lbl_80520370
-	lbl_80520370:
-		.4byte 0x40490FDB
-	.global lbl_80520374
-	lbl_80520374:
-		.4byte 0x43B40000
-	.global lbl_80520378
-	lbl_80520378:
-		.4byte 0x47FA0000
-	.global lbl_8052037C
-	lbl_8052037C:
-		.float 0.7
-	.global lbl_80520380
-	lbl_80520380:
-		.4byte 0x42C80000
-	.global lbl_80520384
-	lbl_80520384:
-		.4byte 0x3C23D70A
-	.global lbl_80520388
-	lbl_80520388:
-		.float 0.5
-	.global lbl_8052038C
-	lbl_8052038C:
-		.4byte 0x43340000
-	.global lbl_80520390
-	lbl_80520390:
-		.4byte 0x43A2F983
-	.global lbl_80520394
-	lbl_80520394:
-		.4byte 0xC3A2F983
-	.global lbl_80520398
-	lbl_80520398:
-		.4byte 0x40000000
-	.global lbl_8052039C
-	lbl_8052039C:
-		.4byte 0x447A0000
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_80520358
+    lbl_80520358:
+        .4byte 0x00000000
+    .global lbl_8052035C
+    lbl_8052035C:
+        .float 1.0
+    .global lbl_80520360
+    lbl_80520360:
+        .4byte 0x42700000
+        .4byte 0x00000000
+    .global lbl_80520368
+    lbl_80520368:
+        .4byte 0x43300000
+        .4byte 0x80000000
+    .global lbl_80520370
+    lbl_80520370:
+        .4byte 0x40490FDB
+    .global lbl_80520374
+    lbl_80520374:
+        .4byte 0x43B40000
+    .global lbl_80520378
+    lbl_80520378:
+        .4byte 0x47FA0000
+    .global lbl_8052037C
+    lbl_8052037C:
+        .float 0.7
+    .global lbl_80520380
+    lbl_80520380:
+        .4byte 0x42C80000
+    .global lbl_80520384
+    lbl_80520384:
+        .4byte 0x3C23D70A
+    .global lbl_80520388
+    lbl_80520388:
+        .float 0.5
+    .global lbl_8052038C
+    lbl_8052038C:
+        .4byte 0x43340000
+    .global lbl_80520390
+    lbl_80520390:
+        .4byte 0x43A2F983
+    .global lbl_80520394
+    lbl_80520394:
+        .4byte 0xC3A2F983
+    .global lbl_80520398
+    lbl_80520398:
+        .4byte 0x40000000
+    .global lbl_8052039C
+    lbl_8052039C:
+        .4byte 0x447A0000
 */
 
 /*

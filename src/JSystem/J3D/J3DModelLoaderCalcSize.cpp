@@ -1,6 +1,10 @@
 #include "types.h"
 
 /*
+    Generated from dpostproc
+*/
+
+/*
  * --INFO--
  * Address:	80087900
  * Size:	000040
@@ -8,29 +12,28 @@
 void J3DModelLoader::countMaterialNum(const void*)
 {
 	/*
-	.loc_0x0:
-	  lwz       r0, 0xC(r4)
-	  addi      r4, r4, 0x20
-	  mtctr     r0
-	  cmplwi    r0, 0
-	  ble-      .loc_0x38
+	lwz      r0, 0xc(r4)
+	addi     r4, r4, 0x20
+	mtctr    r0
+	cmplwi   r0, 0
+	ble      lbl_80087938
 
-	.loc_0x14:
-	  lwz       r3, 0x0(r4)
-	  subis     r0, r3, 0x4D41
-	  cmplwi    r0, 0x5433
-	  bne-      .loc_0x2C
-	  lhz       r3, 0x8(r4)
-	  blr
+lbl_80087914:
+	lwz      r3, 0(r4)
+	addis    r0, r3, 0xb2bf
+	cmplwi   r0, 0x5433
+	bne      lbl_8008792C
+	lhz      r3, 8(r4)
+	blr
 
-	.loc_0x2C:
-	  lwz       r0, 0x4(r4)
-	  add       r4, r4, r0
-	  bdnz+     .loc_0x14
+lbl_8008792C:
+	lwz      r0, 4(r4)
+	add      r4, r4, r0
+	bdnz     lbl_80087914
 
-	.loc_0x38:
-	  li        r3, 0
-	  blr
+lbl_80087938:
+	li       r3, 0
+	blr
 	*/
 }
 
@@ -42,141 +45,140 @@ void J3DModelLoader::countMaterialNum(const void*)
 void J3DModelLoader::calcLoadSize(const void*, unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  lis       r6, 0x4D41
-	  stw       r0, 0x34(r1)
-	  stmw      r25, 0x14(r1)
-	  mr        r26, r3
-	  lwz       r25, 0xC(r4)
-	  mr        r27, r5
-	  addi      r29, r4, 0x20
-	  addi      r31, r6, 0x5432
-	  li        r28, 0
-	  li        r30, 0xE4
-	  b         .loc_0x190
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	lis      r6, 0x4D415432@ha
+	stw      r0, 0x34(r1)
+	stmw     r25, 0x14(r1)
+	mr       r26, r3
+	lwz      r25, 0xc(r4)
+	mr       r27, r5
+	addi     r29, r4, 0x20
+	addi     r31, r6, 0x4D415432@l
+	li       r28, 0
+	li       r30, 0xe4
+	b        lbl_80087AD0
 
-	.loc_0x34:
-	  lwz       r4, 0x0(r29)
-	  cmpw      r4, r31
-	  beq-      .loc_0x184
-	  bge-      .loc_0x94
-	  lis       r3, 0x494E
-	  addi      r0, r3, 0x4631
-	  cmpw      r4, r0
-	  beq-      .loc_0xE4
-	  bge-      .loc_0x80
-	  lis       r3, 0x4556
-	  addi      r0, r3, 0x5031
-	  cmpw      r4, r0
-	  beq-      .loc_0x160
-	  bge-      .loc_0x184
-	  lis       r3, 0x4452
-	  addi      r0, r3, 0x5731
-	  cmpw      r4, r0
-	  beq-      .loc_0x174
-	  b         .loc_0x184
+lbl_80087974:
+	lwz      r4, 0(r29)
+	cmpw     r4, r31
+	beq      lbl_80087AC4
+	bge      lbl_800879D4
+	lis      r3, 0x494E4631@ha
+	addi     r0, r3, 0x494E4631@l
+	cmpw     r4, r0
+	beq      lbl_80087A24
+	bge      lbl_800879C0
+	lis      r3, 0x45565031@ha
+	addi     r0, r3, 0x45565031@l
+	cmpw     r4, r0
+	beq      lbl_80087AA0
+	bge      lbl_80087AC4
+	lis      r3, 0x44525731@ha
+	addi     r0, r3, 0x44525731@l
+	cmpw     r4, r0
+	beq      lbl_80087AB4
+	b        lbl_80087AC4
 
-	.loc_0x80:
-	  lis       r3, 0x4A4E
-	  addi      r0, r3, 0x5431
-	  cmpw      r4, r0
-	  beq-      .loc_0xFC
-	  b         .loc_0x184
+lbl_800879C0:
+	lis      r3, 0x4A4E5431@ha
+	addi     r0, r3, 0x4A4E5431@l
+	cmpw     r4, r0
+	beq      lbl_80087A3C
+	b        lbl_80087AC4
 
-	.loc_0x94:
-	  lis       r3, 0x5445
-	  addi      r0, r3, 0x5831
-	  cmpw      r4, r0
-	  beq-      .loc_0x14C
-	  bge-      .loc_0xD0
-	  lis       r3, 0x5348
-	  addi      r0, r3, 0x5031
-	  cmpw      r4, r0
-	  beq-      .loc_0x134
-	  bge-      .loc_0x184
-	  lis       r3, 0x4D41
-	  addi      r0, r3, 0x5434
-	  cmpw      r4, r0
-	  bge-      .loc_0x184
-	  b         .loc_0x110
+lbl_800879D4:
+	lis      r3, 0x54455831@ha
+	addi     r0, r3, 0x54455831@l
+	cmpw     r4, r0
+	beq      lbl_80087A8C
+	bge      lbl_80087A10
+	lis      r3, 0x53485031@ha
+	addi     r0, r3, 0x53485031@l
+	cmpw     r4, r0
+	beq      lbl_80087A74
+	bge      lbl_80087AC4
+	lis      r3, 0x4D415434@ha
+	addi     r0, r3, 0x4D415434@l
+	cmpw     r4, r0
+	bge      lbl_80087AC4
+	b        lbl_80087A50
 
-	.loc_0xD0:
-	  lis       r3, 0x5654
-	  addi      r0, r3, 0x5831
-	  cmpw      r4, r0
-	  beq-      .loc_0x184
-	  b         .loc_0x184
+lbl_80087A10:
+	lis      r3, 0x56545831@ha
+	addi     r0, r3, 0x56545831@l
+	cmpw     r4, r0
+	beq      lbl_80087AC4
+	b        lbl_80087AC4
 
-	.loc_0xE4:
-	  mr        r3, r26
-	  mr        r4, r29
-	  mr        r5, r27
-	  bl        0x39C
-	  add       r30, r30, r3
-	  b         .loc_0x184
+lbl_80087A24:
+	mr       r3, r26
+	mr       r4, r29
+	mr       r5, r27
+	bl       calcSizeInformation__14J3DModelLoaderFPC17J3DModelInfoBlockUl
+	add      r30, r30, r3
+	b        lbl_80087AC4
 
-	.loc_0xFC:
-	  mr        r3, r26
-	  mr        r4, r29
-	  bl        0x418
-	  add       r30, r30, r3
-	  b         .loc_0x184
+lbl_80087A3C:
+	mr       r3, r26
+	mr       r4, r29
+	bl       calcSizeJoint__14J3DModelLoaderFPC13J3DJointBlock
+	add      r30, r30, r3
+	b        lbl_80087AC4
 
-	.loc_0x110:
-	  mr        r3, r26
-	  mr        r4, r29
-	  lwz       r12, 0x0(r26)
-	  mr        r5, r27
-	  lwz       r12, 0x3C(r12)
-	  mtctr     r12
-	  bctrl
-	  add       r30, r30, r3
-	  b         .loc_0x184
+lbl_80087A50:
+	mr       r3, r26
+	mr       r4, r29
+	lwz      r12, 0(r26)
+	mr       r5, r27
+	lwz      r12, 0x3c(r12)
+	mtctr    r12
+	bctrl
+	add      r30, r30, r3
+	b        lbl_80087AC4
 
-	.loc_0x134:
-	  mr        r3, r26
-	  mr        r4, r29
-	  mr        r5, r27
-	  bl        0x510
-	  add       r30, r30, r3
-	  b         .loc_0x184
+lbl_80087A74:
+	mr       r3, r26
+	mr       r4, r29
+	mr       r5, r27
+	bl       calcSizeShape__14J3DModelLoaderFPC13J3DShapeBlockUl
+	add      r30, r30, r3
+	b        lbl_80087AC4
 
-	.loc_0x14C:
-	  mr        r3, r26
-	  mr        r4, r29
-	  bl        0x5B0
-	  add       r30, r30, r3
-	  b         .loc_0x184
+lbl_80087A8C:
+	mr       r3, r26
+	mr       r4, r29
+	bl       calcSizeTexture__14J3DModelLoaderFPC15J3DTextureBlock
+	add      r30, r30, r3
+	b        lbl_80087AC4
 
-	.loc_0x160:
-	  mr        r3, r26
-	  mr        r4, r29
-	  bl        0x3E0
-	  add       r30, r30, r3
-	  b         .loc_0x184
+lbl_80087AA0:
+	mr       r3, r26
+	mr       r4, r29
+	bl       calcSizeEnvelope__14J3DModelLoaderFPC16J3DEnvelopeBlock
+	add      r30, r30, r3
+	b        lbl_80087AC4
 
-	.loc_0x174:
-	  mr        r3, r26
-	  mr        r4, r29
-	  bl        0x3DC
-	  add       r30, r30, r3
+lbl_80087AB4:
+	mr       r3, r26
+	mr       r4, r29
+	bl       calcSizeDraw__14J3DModelLoaderFPC12J3DDrawBlock
+	add      r30, r30, r3
 
-	.loc_0x184:
-	  lwz       r0, 0x4(r29)
-	  addi      r28, r28, 0x1
-	  add       r29, r29, r0
+lbl_80087AC4:
+	lwz      r0, 4(r29)
+	addi     r28, r28, 1
+	add      r29, r29, r0
 
-	.loc_0x190:
-	  cmplw     r28, r25
-	  blt+      .loc_0x34
-	  mr        r3, r30
-	  lmw       r25, 0x14(r1)
-	  lwz       r0, 0x34(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_80087AD0:
+	cmplw    r28, r25
+	blt      lbl_80087974
+	mr       r3, r30
+	lmw      r25, 0x14(r1)
+	lwz      r0, 0x34(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -188,72 +190,71 @@ void J3DModelLoader::calcLoadSize(const void*, unsigned long)
 void J3DModelLoader::calcLoadMaterialTableSize(const void*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  lis       r5, 0x4D41
-	  stw       r0, 0x34(r1)
-	  stmw      r25, 0x14(r1)
-	  mr        r25, r3
-	  lwz       r31, 0xC(r4)
-	  addi      r28, r4, 0x20
-	  addi      r30, r5, 0x5433
-	  li        r27, 0
-	  li        r26, 0
-	  li        r29, 0x20
-	  b         .loc_0xA0
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	lis      r5, 0x4D415433@ha
+	stw      r0, 0x34(r1)
+	stmw     r25, 0x14(r1)
+	mr       r25, r3
+	lwz      r31, 0xc(r4)
+	addi     r28, r4, 0x20
+	addi     r30, r5, 0x4D415433@l
+	li       r27, 0
+	li       r26, 0
+	li       r29, 0x20
+	b        lbl_80087B90
 
-	.loc_0x34:
-	  lwz       r4, 0x0(r28)
-	  cmpw      r4, r30
-	  beq-      .loc_0x5C
-	  bge-      .loc_0x48
-	  b         .loc_0x94
+lbl_80087B24:
+	lwz      r4, 0(r28)
+	cmpw     r4, r30
+	beq      lbl_80087B4C
+	bge      lbl_80087B38
+	b        lbl_80087B84
 
-	.loc_0x48:
-	  lis       r3, 0x5445
-	  addi      r0, r3, 0x5831
-	  cmpw      r4, r0
-	  beq-      .loc_0x80
-	  b         .loc_0x94
+lbl_80087B38:
+	lis      r3, 0x54455831@ha
+	addi     r0, r3, 0x54455831@l
+	cmpw     r4, r0
+	beq      lbl_80087B70
+	b        lbl_80087B84
 
-	.loc_0x5C:
-	  mr        r3, r25
-	  mr        r4, r28
-	  lwz       r12, 0x0(r25)
-	  lis       r5, 0x5110
-	  lwz       r12, 0x40(r12)
-	  mtctr     r12
-	  bctrl
-	  add       r29, r29, r3
-	  b         .loc_0x94
+lbl_80087B4C:
+	mr       r3, r25
+	mr       r4, r28
+	lwz      r12, 0(r25)
+	lis      r5, 0x5110
+	lwz      r12, 0x40(r12)
+	mtctr    r12
+	bctrl
+	add      r29, r29, r3
+	b        lbl_80087B84
 
-	.loc_0x80:
-	  mr        r3, r25
-	  mr        r4, r28
-	  bl        0x588
-	  add       r29, r29, r3
-	  li        r27, 0x1
+lbl_80087B70:
+	mr       r3, r25
+	mr       r4, r28
+	bl       calcSizeTextureTable__14J3DModelLoaderFPC15J3DTextureBlock
+	add      r29, r29, r3
+	li       r27, 1
 
-	.loc_0x94:
-	  lwz       r0, 0x4(r28)
-	  addi      r26, r26, 0x1
-	  add       r28, r28, r0
+lbl_80087B84:
+	lwz      r0, 4(r28)
+	addi     r26, r26, 1
+	add      r28, r28, r0
 
-	.loc_0xA0:
-	  cmplw     r26, r31
-	  blt+      .loc_0x34
-	  rlwinm.   r0,r27,0,24,31
-	  bne-      .loc_0xB4
-	  addi      r29, r29, 0xC
+lbl_80087B90:
+	cmplw    r26, r31
+	blt      lbl_80087B24
+	clrlwi.  r0, r27, 0x18
+	bne      lbl_80087BA4
+	addi     r29, r29, 0xc
 
-	.loc_0xB4:
-	  mr        r3, r29
-	  lmw       r25, 0x14(r1)
-	  lwz       r0, 0x34(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_80087BA4:
+	mr       r3, r29
+	lmw      r25, 0x14(r1)
+	lwz      r0, 0x34(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -265,171 +266,168 @@ void J3DModelLoader::calcLoadMaterialTableSize(const void*)
 void J3DModelLoader::calcLoadBinaryDisplayListSize(const void*, unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stmw      r23, 0xC(r1)
-	  mr        r25, r5
-	  lis       r5, 0x4D41
-	  lwz       r23, 0xC(r4)
-	  mr        r24, r3
-	  addi      r27, r4, 0x20
-	  rlwinm    r30,r25,0,6,7
-	  rlwinm    r29,r25,0,18,19
-	  addi      r31, r5, 0x5433
-	  li        r26, 0
-	  li        r28, 0xE4
-	  b         .loc_0x1F0
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stmw     r23, 0xc(r1)
+	mr       r25, r5
+	lis      r5, 0x4D415433@ha
+	lwz      r23, 0xc(r4)
+	mr       r24, r3
+	addi     r27, r4, 0x20
+	rlwinm   r30, r25, 0, 6, 7
+	rlwinm   r29, r25, 0, 0x12, 0x13
+	addi     r31, r5, 0x4D415433@l
+	li       r26, 0
+	li       r28, 0xe4
+	b        lbl_80087DAC
 
-	.loc_0x3C:
-	  lwz       r4, 0x0(r27)
-	  cmpw      r4, r31
-	  beq-      .loc_0x160
-	  bge-      .loc_0xA0
-	  lis       r3, 0x494E
-	  addi      r0, r3, 0x4631
-	  cmpw      r4, r0
-	  beq-      .loc_0xF0
-	  bge-      .loc_0x88
-	  lis       r3, 0x4556
-	  addi      r0, r3, 0x5031
-	  cmpw      r4, r0
-	  beq-      .loc_0x1C0
-	  bge-      .loc_0x1E4
-	  lis       r3, 0x4452
-	  addi      r0, r3, 0x5731
-	  cmpw      r4, r0
-	  beq-      .loc_0x1D4
-	  b         .loc_0x1E4
+lbl_80087BF8:
+	lwz      r4, 0(r27)
+	cmpw     r4, r31
+	beq      lbl_80087D1C
+	bge      lbl_80087C5C
+	lis      r3, 0x494E4631@ha
+	addi     r0, r3, 0x494E4631@l
+	cmpw     r4, r0
+	beq      lbl_80087CAC
+	bge      lbl_80087C44
+	lis      r3, 0x45565031@ha
+	addi     r0, r3, 0x45565031@l
+	cmpw     r4, r0
+	beq      lbl_80087D7C
+	bge      lbl_80087DA0
+	lis      r3, 0x44525731@ha
+	addi     r0, r3, 0x44525731@l
+	cmpw     r4, r0
+	beq      lbl_80087D90
+	b        lbl_80087DA0
 
-	.loc_0x88:
-	  lis       r3, 0x4A4E
-	  addi      r0, r3, 0x5431
-	  cmpw      r4, r0
-	  beq-      .loc_0x108
-	  blt-      .loc_0x1E4
-	  b         .loc_0x1E4
+lbl_80087C44:
+	lis      r3, 0x4A4E5431@ha
+	addi     r0, r3, 0x4A4E5431@l
+	cmpw     r4, r0
+	beq      lbl_80087CC4
+	blt      lbl_80087DA0
+	b        lbl_80087DA0
 
-	.loc_0xA0:
-	  lis       r3, 0x5445
-	  addi      r0, r3, 0x5831
-	  cmpw      r4, r0
-	  beq-      .loc_0x134
-	  bge-      .loc_0xDC
-	  lis       r3, 0x5348
-	  addi      r0, r3, 0x5031
-	  cmpw      r4, r0
-	  beq-      .loc_0x11C
-	  bge-      .loc_0x1E4
-	  lis       r3, 0x4D44
-	  addi      r0, r3, 0x4C33
-	  cmpw      r4, r0
-	  beq-      .loc_0x148
-	  b         .loc_0x1E4
+lbl_80087C5C:
+	lis      r3, 0x54455831@ha
+	addi     r0, r3, 0x54455831@l
+	cmpw     r4, r0
+	beq      lbl_80087CF0
+	bge      lbl_80087C98
+	lis      r3, 0x53485031@ha
+	addi     r0, r3, 0x53485031@l
+	cmpw     r4, r0
+	beq      lbl_80087CD8
+	bge      lbl_80087DA0
+	lis      r3, 0x4D444C33@ha
+	addi     r0, r3, 0x4D444C33@l
+	cmpw     r4, r0
+	beq      lbl_80087D04
+	b        lbl_80087DA0
 
-	.loc_0xDC:
-	  lis       r3, 0x5654
-	  addi      r0, r3, 0x5831
-	  cmpw      r4, r0
-	  beq-      .loc_0x1E4
-	  b         .loc_0x1E4
+lbl_80087C98:
+	lis      r3, 0x56545831@ha
+	addi     r0, r3, 0x56545831@l
+	cmpw     r4, r0
+	beq      lbl_80087DA0
+	b        lbl_80087DA0
 
-	.loc_0xF0:
-	  mr        r3, r24
-	  mr        r4, r27
-	  mr        r5, r25
-	  bl        .loc_0x210
-	  add       r28, r28, r3
-	  b         .loc_0x1E4
+lbl_80087CAC:
+	mr       r3, r24
+	mr       r4, r27
+	mr       r5, r25
+	bl       calcSizeInformation__14J3DModelLoaderFPC17J3DModelInfoBlockUl
+	add      r28, r28, r3
+	b        lbl_80087DA0
 
-	.loc_0x108:
-	  mr        r3, r24
-	  mr        r4, r27
-	  bl        0x190
-	  add       r28, r28, r3
-	  b         .loc_0x1E4
+lbl_80087CC4:
+	mr       r3, r24
+	mr       r4, r27
+	bl       calcSizeJoint__14J3DModelLoaderFPC13J3DJointBlock
+	add      r28, r28, r3
+	b        lbl_80087DA0
 
-	.loc_0x11C:
-	  mr        r3, r24
-	  mr        r4, r27
-	  mr        r5, r25
-	  bl        0x2AC
-	  add       r28, r28, r3
-	  b         .loc_0x1E4
+lbl_80087CD8:
+	mr       r3, r24
+	mr       r4, r27
+	mr       r5, r25
+	bl       calcSizeShape__14J3DModelLoaderFPC13J3DShapeBlockUl
+	add      r28, r28, r3
+	b        lbl_80087DA0
 
-	.loc_0x134:
-	  mr        r3, r24
-	  mr        r4, r27
-	  bl        0x34C
-	  add       r28, r28, r3
-	  b         .loc_0x1E4
+lbl_80087CF0:
+	mr       r3, r24
+	mr       r4, r27
+	bl       calcSizeTexture__14J3DModelLoaderFPC15J3DTextureBlock
+	add      r28, r28, r3
+	b        lbl_80087DA0
 
-	.loc_0x148:
-	  mr        r3, r24
-	  mr        r4, r27
-	  mr        r5, r25
-	  bl        0x4AC
-	  add       r28, r28, r3
-	  b         .loc_0x1E4
+lbl_80087D04:
+	mr       r3, r24
+	mr       r4, r27
+	mr       r5, r25
+	bl       calcSizeMaterialDL__14J3DModelLoaderFPC18J3DMaterialDLBlockUl
+	add      r28, r28, r3
+	b        lbl_80087DA0
 
-	.loc_0x160:
-	  cmplwi    r29, 0
-	  lis       r5, 0x5010
-	  stw       r27, 0x10(r24)
-	  or        r5, r5, r30
-	  bne-      .loc_0x19C
-	  li        r0, 0x1
-	  mr        r3, r24
-	  stb       r0, 0x18(r24)
-	  mr        r4, r27
-	  lwz       r12, 0x0(r24)
-	  lwz       r12, 0x3C(r12)
-	  mtctr     r12
-	  bctrl
-	  add       r28, r28, r3
-	  b         .loc_0x1E4
+lbl_80087D1C:
+	cmplwi   r29, 0
+	lis      r5, 0x5010
+	stw      r27, 0x10(r24)
+	or       r5, r5, r30
+	bne      lbl_80087D58
+	li       r0, 1
+	mr       r3, r24
+	stb      r0, 0x18(r24)
+	mr       r4, r27
+	lwz      r12, 0(r24)
+	lwz      r12, 0x3c(r12)
+	mtctr    r12
+	bctrl
+	add      r28, r28, r3
+	b        lbl_80087DA0
 
-	.loc_0x19C:
-	  cmplwi    r29, 0x2000
-	  bne-      .loc_0x1E4
-	  li        r0, 0x1
-	  mr        r3, r24
-	  stb       r0, 0x18(r24)
-	  mr        r4, r27
-	  bl        0x3AC
-	  add       r28, r28, r3
-	  b         .loc_0x1E4
+lbl_80087D58:
+	cmplwi   r29, 0x2000
+	bne      lbl_80087DA0
+	li       r0, 1
+	mr       r3, r24
+	stb      r0, 0x18(r24)
+	mr       r4, r27
+	bl       calcSizePatchedMaterial__14J3DModelLoaderFPC16J3DMaterialBlockUl
+	add      r28, r28, r3
+	b        lbl_80087DA0
 
-	.loc_0x1C0:
-	  mr        r3, r24
-	  mr        r4, r27
-	  bl        0x104
-	  add       r28, r28, r3
-	  b         .loc_0x1E4
+lbl_80087D7C:
+	mr       r3, r24
+	mr       r4, r27
+	bl       calcSizeEnvelope__14J3DModelLoaderFPC16J3DEnvelopeBlock
+	add      r28, r28, r3
+	b        lbl_80087DA0
 
-	.loc_0x1D4:
-	  mr        r3, r24
-	  mr        r4, r27
-	  bl        0x100
-	  add       r28, r28, r3
+lbl_80087D90:
+	mr       r3, r24
+	mr       r4, r27
+	bl       calcSizeDraw__14J3DModelLoaderFPC12J3DDrawBlock
+	add      r28, r28, r3
 
-	.loc_0x1E4:
-	  lwz       r0, 0x4(r27)
-	  addi      r26, r26, 0x1
-	  add       r27, r27, r0
+lbl_80087DA0:
+	lwz      r0, 4(r27)
+	addi     r26, r26, 1
+	add      r27, r27, r0
 
-	.loc_0x1F0:
-	  cmplw     r26, r23
-	  blt+      .loc_0x3C
-	  mr        r3, r28
-	  lmw       r23, 0xC(r1)
-	  lwz       r0, 0x34(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
-
-	.loc_0x210:
+lbl_80087DAC:
+	cmplw    r26, r23
+	blt      lbl_80087BF8
+	mr       r3, r28
+	lmw      r23, 0xc(r1)
+	lwz      r0, 0x34(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -500,20 +498,19 @@ void J3DModelLoader::calcSizeInformation(const J3DModelInfoBlock*,
 void J3DModelLoader::calcSizeJoint(const J3DJointBlock*)
 {
 	/*
-	.loc_0x0:
-	  lwz       r0, 0x14(r4)
-	  li        r3, 0
-	  cmplwi    r0, 0
-	  beq-      .loc_0x14
-	  li        r3, 0x10
+	lwz      r0, 0x14(r4)
+	li       r3, 0
+	cmplwi   r0, 0
+	beq      lbl_80087E70
+	li       r3, 0x10
 
-	.loc_0x14:
-	  lhz       r4, 0x8(r4)
-	  mulli     r0, r4, 0x5C
-	  rlwinm    r4,r4,2,0,29
-	  add       r3, r3, r4
-	  add       r3, r3, r0
-	  blr
+lbl_80087E70:
+	lhz      r4, 8(r4)
+	mulli    r0, r4, 0x5c
+	slwi     r4, r4, 2
+	add      r3, r3, r4
+	add      r3, r3, r0
+	blr
 	*/
 }
 
@@ -525,11 +522,10 @@ void J3DModelLoader::calcSizeJoint(const J3DJointBlock*)
 void J3DModelLoader::calcSizeEnvelope(const J3DEnvelopeBlock*)
 {
 	/*
-	.loc_0x0:
-	  lhz       r0, 0x8(r4)
-	  sth       r0, 0x1A(r3)
-	  li        r3, 0
-	  blr
+	lhz      r0, 8(r4)
+	sth      r0, 0x1a(r3)
+	li       r3, 0
+	blr
 	*/
 }
 
@@ -541,12 +537,11 @@ void J3DModelLoader::calcSizeEnvelope(const J3DEnvelopeBlock*)
 void J3DModelLoader::calcSizeDraw(const J3DDrawBlock*)
 {
 	/*
-	.loc_0x0:
-	  lhz       r3, 0x1A(r3)
-	  lhz       r0, 0x8(r4)
-	  sub       r0, r0, r3
-	  rlwinm    r3,r0,1,0,30
-	  blr
+	lhz      r3, 0x1a(r3)
+	lhz      r0, 8(r4)
+	subf     r0, r3, r0
+	slwi     r3, r0, 1
+	blr
 	*/
 }
 
@@ -642,60 +637,59 @@ void J3DModelLoader_v26::calcSizeMaterial(const J3DMaterialBlock*,
 void J3DModelLoader::calcSizeShape(const J3DShapeBlock*, unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  stw       r0, 0x44(r1)
-	  stw       r31, 0x3C(r1)
-	  li        r31, 0
-	  stw       r30, 0x38(r1)
-	  mr        r30, r4
-	  stw       r29, 0x34(r1)
-	  mr        r29, r5
-	  stw       r28, 0x30(r1)
-	  mr        r28, r3
-	  addi      r3, r1, 0x8
-	  bl        -0x162B0
-	  lwz       r0, 0x14(r30)
-	  lhz       r4, 0x8(r30)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x48
-	  li        r31, 0x10
+	stwu     r1, -0x40(r1)
+	mflr     r0
+	stw      r0, 0x44(r1)
+	stw      r31, 0x3c(r1)
+	li       r31, 0
+	stw      r30, 0x38(r1)
+	mr       r30, r4
+	stw      r29, 0x34(r1)
+	mr       r29, r5
+	stw      r28, 0x30(r1)
+	mr       r28, r3
+	addi     r3, r1, 8
+	bl       __ct__15J3DShapeFactoryFRC13J3DShapeBlock
+	lwz      r0, 0x14(r30)
+	lhz      r4, 8(r30)
+	cmplwi   r0, 0
+	beq      lbl_80087FD8
+	li       r31, 0x10
 
-	.loc_0x48:
-	  rlwinm    r0,r4,2,0,29
-	  addi      r3, r1, 0x8
-	  add       r31, r31, r0
-	  bl        -0x15B5C
-	  lwz       r30, 0x14(r28)
-	  add       r31, r31, r3
-	  b         .loc_0x84
+lbl_80087FD8:
+	slwi     r0, r4, 2
+	addi     r3, r1, 8
+	add      r31, r31, r0
+	bl       calcSizeVcdVatCmdBuffer__15J3DShapeFactoryFUl
+	lwz      r30, 0x14(r28)
+	add      r31, r31, r3
+	b        lbl_80088014
 
-	.loc_0x64:
-	  cmplwi    r0, 0x12
-	  bne-      .loc_0x80
-	  lhz       r4, 0x2(r30)
-	  mr        r5, r29
-	  addi      r3, r1, 0x8
-	  bl        -0x15C0C
-	  add       r31, r31, r3
+lbl_80087FF4:
+	cmplwi   r0, 0x12
+	bne      lbl_80088010
+	lhz      r4, 2(r30)
+	mr       r5, r29
+	addi     r3, r1, 8
+	bl       calcSize__15J3DShapeFactoryFiUl
+	add      r31, r31, r3
 
-	.loc_0x80:
-	  addi      r30, r30, 0x4
+lbl_80088010:
+	addi     r30, r30, 4
 
-	.loc_0x84:
-	  lhz       r0, 0x0(r30)
-	  cmplwi    r0, 0
-	  bne+      .loc_0x64
-	  lwz       r0, 0x44(r1)
-	  mr        r3, r31
-	  lwz       r31, 0x3C(r1)
-	  lwz       r30, 0x38(r1)
-	  lwz       r29, 0x34(r1)
-	  lwz       r28, 0x30(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
+lbl_80088014:
+	lhz      r0, 0(r30)
+	cmplwi   r0, 0
+	bne      lbl_80087FF4
+	lwz      r0, 0x44(r1)
+	mr       r3, r31
+	lwz      r31, 0x3c(r1)
+	lwz      r30, 0x38(r1)
+	lwz      r29, 0x34(r1)
+	lwz      r28, 0x30(r1)
+	mtlr     r0
+	addi     r1, r1, 0x40
+	blr
 	*/
 }
 
@@ -707,16 +701,15 @@ void J3DModelLoader::calcSizeShape(const J3DShapeBlock*, unsigned long)
 void J3DModelLoader::calcSizeTexture(const J3DTextureBlock*)
 {
 	/*
-	.loc_0x0:
-	  lwz       r0, 0x10(r4)
-	  li        r3, 0
-	  cmplwi    r0, 0
-	  beq-      .loc_0x14
-	  li        r3, 0x10
+	lwz      r0, 0x10(r4)
+	li       r3, 0
+	cmplwi   r0, 0
+	beq      lbl_80088058
+	li       r3, 0x10
 
-	.loc_0x14:
-	  addi      r3, r3, 0xC
-	  blr
+lbl_80088058:
+	addi     r3, r3, 0xc
+	blr
 	*/
 }
 
@@ -787,16 +780,15 @@ void J3DModelLoader_v26::calcSizeMaterialTable(const J3DMaterialBlock*,
 void J3DModelLoader::calcSizeTextureTable(const J3DTextureBlock*)
 {
 	/*
-	.loc_0x0:
-	  lwz       r0, 0x10(r4)
-	  li        r3, 0
-	  cmplwi    r0, 0
-	  beq-      .loc_0x14
-	  li        r3, 0x10
+	lwz      r0, 0x10(r4)
+	li       r3, 0
+	cmplwi   r0, 0
+	beq      lbl_80088114
+	li       r3, 0x10
 
-	.loc_0x14:
-	  addi      r3, r3, 0xC
-	  blr
+lbl_80088114:
+	addi     r3, r3, 0xc
+	blr
 	*/
 }
 

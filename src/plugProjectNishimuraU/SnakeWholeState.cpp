@@ -1,5 +1,276 @@
 #include "types.h"
 
+/*
+    Generated from dpostproc
+
+    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
+    .4byte __sinit_SnakeWholeState_cpp
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_8048B7F0
+    lbl_8048B7F0:
+        .4byte 0x64697361
+        .4byte 0x70706561
+        .4byte 0x72000000
+    .global lbl_8048B7FC
+    lbl_8048B7FC:
+        .4byte 0x73747275
+        .4byte 0x67676C65
+        .4byte 0x00000000
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global lbl_804D2150
+    lbl_804D2150:
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+    .global __vt__Q34Game10SnakeWhole13StateStruggle
+    __vt__Q34Game10SnakeWhole13StateStruggle:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game10SnakeWhole13StateStruggleFPQ24Game9EnemyBasePQ24Game8StateArg
+        .4byte exec__Q34Game10SnakeWhole13StateStruggleFPQ24Game9EnemyBase
+        .4byte cleanup__Q34Game10SnakeWhole13StateStruggleFPQ24Game9EnemyBase
+        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game10SnakeWhole8StateEat
+    __vt__Q34Game10SnakeWhole8StateEat:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game10SnakeWhole8StateEatFPQ24Game9EnemyBasePQ24Game8StateArg .4byte
+   exec__Q34Game10SnakeWhole8StateEatFPQ24Game9EnemyBase .4byte
+   cleanup__Q34Game10SnakeWhole8StateEatFPQ24Game9EnemyBase .4byte
+   resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
+   restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game10SnakeWhole11StateAttack
+    __vt__Q34Game10SnakeWhole11StateAttack:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game10SnakeWhole11StateAttackFPQ24Game9EnemyBasePQ24Game8StateArg
+        .4byte exec__Q34Game10SnakeWhole11StateAttackFPQ24Game9EnemyBase
+        .4byte cleanup__Q34Game10SnakeWhole11StateAttackFPQ24Game9EnemyBase
+        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game10SnakeWhole9StateHome
+    __vt__Q34Game10SnakeWhole9StateHome:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game10SnakeWhole9StateHomeFPQ24Game9EnemyBasePQ24Game8StateArg
+        .4byte exec__Q34Game10SnakeWhole9StateHomeFPQ24Game9EnemyBase
+        .4byte cleanup__Q34Game10SnakeWhole9StateHomeFPQ24Game9EnemyBase
+        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game10SnakeWhole9StateWalk
+    __vt__Q34Game10SnakeWhole9StateWalk:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game10SnakeWhole9StateWalkFPQ24Game9EnemyBasePQ24Game8StateArg
+        .4byte exec__Q34Game10SnakeWhole9StateWalkFPQ24Game9EnemyBase
+        .4byte cleanup__Q34Game10SnakeWhole9StateWalkFPQ24Game9EnemyBase
+        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game10SnakeWhole9StateWait
+    __vt__Q34Game10SnakeWhole9StateWait:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game10SnakeWhole9StateWaitFPQ24Game9EnemyBasePQ24Game8StateArg
+        .4byte exec__Q34Game10SnakeWhole9StateWaitFPQ24Game9EnemyBase
+        .4byte cleanup__Q34Game10SnakeWhole9StateWaitFPQ24Game9EnemyBase
+        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game10SnakeWhole14StateDisappear
+    __vt__Q34Game10SnakeWhole14StateDisappear:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game10SnakeWhole14StateDisappearFPQ24Game9EnemyBasePQ24Game8StateArg
+        .4byte exec__Q34Game10SnakeWhole14StateDisappearFPQ24Game9EnemyBase
+        .4byte cleanup__Q34Game10SnakeWhole14StateDisappearFPQ24Game9EnemyBase
+        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game10SnakeWhole12StateAppear2
+    __vt__Q34Game10SnakeWhole12StateAppear2:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game10SnakeWhole12StateAppear2FPQ24Game9EnemyBasePQ24Game8StateArg
+        .4byte exec__Q34Game10SnakeWhole12StateAppear2FPQ24Game9EnemyBase
+        .4byte cleanup__Q34Game10SnakeWhole12StateAppear2FPQ24Game9EnemyBase
+        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game10SnakeWhole12StateAppear1
+    __vt__Q34Game10SnakeWhole12StateAppear1:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game10SnakeWhole12StateAppear1FPQ24Game9EnemyBasePQ24Game8StateArg
+        .4byte exec__Q34Game10SnakeWhole12StateAppear1FPQ24Game9EnemyBase
+        .4byte cleanup__Q34Game10SnakeWhole12StateAppear1FPQ24Game9EnemyBase
+        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game10SnakeWhole9StateStay
+    __vt__Q34Game10SnakeWhole9StateStay:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game10SnakeWhole9StateStayFPQ24Game9EnemyBasePQ24Game8StateArg
+        .4byte exec__Q34Game10SnakeWhole9StateStayFPQ24Game9EnemyBase
+        .4byte cleanup__Q34Game10SnakeWhole9StateStayFPQ24Game9EnemyBase
+        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game10SnakeWhole9StateDead
+    __vt__Q34Game10SnakeWhole9StateDead:
+        .4byte 0
+        .4byte 0
+        .4byte
+   init__Q34Game10SnakeWhole9StateDeadFPQ24Game9EnemyBasePQ24Game8StateArg
+        .4byte exec__Q34Game10SnakeWhole9StateDeadFPQ24Game9EnemyBase
+        .4byte cleanup__Q34Game10SnakeWhole9StateDeadFPQ24Game9EnemyBase
+        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game10SnakeWhole5State
+    __vt__Q34Game10SnakeWhole5State:
+        .4byte 0
+        .4byte 0
+        .4byte init__Q24Game13EnemyFSMStateFPQ24Game9EnemyBasePQ24Game8StateArg
+        .4byte exec__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte cleanup__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+        .4byte
+   transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics .global
+   __vt__Q34Game10SnakeWhole3FSM
+    __vt__Q34Game10SnakeWhole3FSM:
+        .4byte 0
+        .4byte 0
+        .4byte init__Q34Game10SnakeWhole3FSMFPQ24Game9EnemyBase
+        .4byte
+   start__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   exec__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase .4byte
+   transit__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseiPQ24Game8StateArg
+        .4byte
+   doDirectDraw__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseR8Graphics .4byte
+   getCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase .4byte
+   setCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBasePQ24Game13EnemyFSMState
+
+    .section .sbss # 0x80514D80 - 0x80516360
+    .global lbl_80515DB8
+    lbl_80515DB8:
+        .skip 0x4
+    .global lbl_80515DBC
+    lbl_80515DBC:
+        .skip 0x4
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_8051C7D0
+    lbl_8051C7D0:
+        .4byte 0x64656164
+        .4byte 0x00000000
+    .global lbl_8051C7D8
+    lbl_8051C7D8:
+        .4byte 0x73746179
+        .4byte 0x00000000
+    .global lbl_8051C7E0
+    lbl_8051C7E0:
+        .4byte 0x61707065
+        .4byte 0x61723100
+    .global lbl_8051C7E8
+    lbl_8051C7E8:
+        .4byte 0x61707065
+        .4byte 0x61723200
+    .global lbl_8051C7F0
+    lbl_8051C7F0:
+        .4byte 0x77616974
+        .4byte 0x00000000
+    .global lbl_8051C7F8
+    lbl_8051C7F8:
+        .4byte 0x77616C6B
+        .4byte 0x00000000
+    .global lbl_8051C800
+    lbl_8051C800:
+        .4byte 0x686F6D65
+        .4byte 0x00000000
+    .global lbl_8051C808
+    lbl_8051C808:
+        .4byte 0x61747461
+        .4byte 0x636B0000
+    .global lbl_8051C810
+    lbl_8051C810:
+        .4byte 0x65617400
+    .global lbl_8051C814
+    lbl_8051C814:
+        .4byte 0x00000000
+    .global lbl_8051C818
+    lbl_8051C818:
+        .4byte 0x3F666666
+    .global lbl_8051C81C
+    lbl_8051C81C:
+        .4byte 0x3F400000
+    .global lbl_8051C820
+    lbl_8051C820:
+        .4byte 0x481C4000
+    .global lbl_8051C824
+    lbl_8051C824:
+        .float 1.0
+    .global lbl_8051C828
+    lbl_8051C828:
+        .4byte 0x47000000
+        .4byte 0x00000000
+    .global lbl_8051C830
+    lbl_8051C830:
+        .4byte 0x43300000
+        .4byte 0x80000000
+    .global lbl_8051C838
+    lbl_8051C838:
+        .4byte 0xC47A0000
+    .global lbl_8051C83C
+    lbl_8051C83C:
+        .4byte 0x41200000
+    .global lbl_8051C840
+    lbl_8051C840:
+        .4byte 0x3FC00000
+        .4byte 0x00000000
+*/
+
 namespace Game {
 
 /*
@@ -10,273 +281,272 @@ namespace Game {
 void SnakeWhole::FSM::init(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r4, 0xB
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        -0x19B100
-	  li        r3, 0x10
-	  bl        -0x2A7AC8
-	  mr.       r4, r3
-	  beq-      .loc_0x64
-	  lis       r3, 0x804B
-	  lis       r5, 0x804D
-	  subi      r0, r3, 0x65C
-	  lis       r3, 0x804D
-	  stw       r0, 0x0(r4)
-	  li        r7, 0
-	  addi      r6, r5, 0x22E8
-	  subi      r5, r2, 0x1B90
-	  stw       r7, 0x4(r4)
-	  addi      r0, r3, 0x22C4
-	  stw       r7, 0x8(r4)
-	  stw       r6, 0x0(r4)
-	  stw       r5, 0xC(r4)
-	  stw       r0, 0x0(r4)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	li       r4, 0xb
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       create__Q24Game17EnemyStateMachineFi
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_802CB9B0
+	lis      r3, __vt__Q24Game13EnemyFSMState@ha
+	lis      r5, __vt__Q34Game10SnakeWhole5State@ha
+	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
+	lis      r3, __vt__Q34Game10SnakeWhole9StateDead@ha
+	stw      r0, 0(r4)
+	li       r7, 0
+	addi     r6, r5, __vt__Q34Game10SnakeWhole5State@l
+	addi     r5, r2, lbl_8051C7D0@sda21
+	stw      r7, 4(r4)
+	addi     r0, r3, __vt__Q34Game10SnakeWhole9StateDead@l
+	stw      r7, 8(r4)
+	stw      r6, 0(r4)
+	stw      r5, 0xc(r4)
+	stw      r0, 0(r4)
 
-	.loc_0x64:
-	  mr        r3, r31
-	  bl        -0x19B0AC
-	  li        r3, 0x10
-	  bl        -0x2A7B18
-	  mr.       r4, r3
-	  beq-      .loc_0xB8
-	  lis       r3, 0x804B
-	  lis       r5, 0x804D
-	  subi      r0, r3, 0x65C
-	  lis       r3, 0x804D
-	  stw       r0, 0x0(r4)
-	  li        r0, 0x1
-	  li        r7, 0
-	  addi      r6, r5, 0x22E8
-	  stw       r0, 0x4(r4)
-	  subi      r5, r2, 0x1B88
-	  addi      r0, r3, 0x22A0
-	  stw       r7, 0x8(r4)
-	  stw       r6, 0x0(r4)
-	  stw       r5, 0xC(r4)
-	  stw       r0, 0x0(r4)
+lbl_802CB9B0:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_802CBA04
+	lis      r3, __vt__Q24Game13EnemyFSMState@ha
+	lis      r5, __vt__Q34Game10SnakeWhole5State@ha
+	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
+	lis      r3, __vt__Q34Game10SnakeWhole9StateStay@ha
+	stw      r0, 0(r4)
+	li       r0, 1
+	li       r7, 0
+	addi     r6, r5, __vt__Q34Game10SnakeWhole5State@l
+	stw      r0, 4(r4)
+	addi     r5, r2, lbl_8051C7D8@sda21
+	addi     r0, r3, __vt__Q34Game10SnakeWhole9StateStay@l
+	stw      r7, 8(r4)
+	stw      r6, 0(r4)
+	stw      r5, 0xc(r4)
+	stw      r0, 0(r4)
 
-	.loc_0xB8:
-	  mr        r3, r31
-	  bl        -0x19B100
-	  li        r3, 0x10
-	  bl        -0x2A7B6C
-	  mr.       r4, r3
-	  beq-      .loc_0x10C
-	  lis       r3, 0x804B
-	  lis       r5, 0x804D
-	  subi      r0, r3, 0x65C
-	  lis       r3, 0x804D
-	  stw       r0, 0x0(r4)
-	  li        r0, 0x2
-	  li        r7, 0
-	  addi      r6, r5, 0x22E8
-	  stw       r0, 0x4(r4)
-	  subi      r5, r2, 0x1B80
-	  addi      r0, r3, 0x227C
-	  stw       r7, 0x8(r4)
-	  stw       r6, 0x0(r4)
-	  stw       r5, 0xC(r4)
-	  stw       r0, 0x0(r4)
+lbl_802CBA04:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_802CBA58
+	lis      r3, __vt__Q24Game13EnemyFSMState@ha
+	lis      r5, __vt__Q34Game10SnakeWhole5State@ha
+	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
+	lis      r3, __vt__Q34Game10SnakeWhole12StateAppear1@ha
+	stw      r0, 0(r4)
+	li       r0, 2
+	li       r7, 0
+	addi     r6, r5, __vt__Q34Game10SnakeWhole5State@l
+	stw      r0, 4(r4)
+	addi     r5, r2, lbl_8051C7E0@sda21
+	addi     r0, r3, __vt__Q34Game10SnakeWhole12StateAppear1@l
+	stw      r7, 8(r4)
+	stw      r6, 0(r4)
+	stw      r5, 0xc(r4)
+	stw      r0, 0(r4)
 
-	.loc_0x10C:
-	  mr        r3, r31
-	  bl        -0x19B154
-	  li        r3, 0x10
-	  bl        -0x2A7BC0
-	  mr.       r4, r3
-	  beq-      .loc_0x160
-	  lis       r3, 0x804B
-	  lis       r5, 0x804D
-	  subi      r0, r3, 0x65C
-	  lis       r3, 0x804D
-	  stw       r0, 0x0(r4)
-	  li        r0, 0x3
-	  li        r7, 0
-	  addi      r6, r5, 0x22E8
-	  stw       r0, 0x4(r4)
-	  subi      r5, r2, 0x1B78
-	  addi      r0, r3, 0x2258
-	  stw       r7, 0x8(r4)
-	  stw       r6, 0x0(r4)
-	  stw       r5, 0xC(r4)
-	  stw       r0, 0x0(r4)
+lbl_802CBA58:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_802CBAAC
+	lis      r3, __vt__Q24Game13EnemyFSMState@ha
+	lis      r5, __vt__Q34Game10SnakeWhole5State@ha
+	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
+	lis      r3, __vt__Q34Game10SnakeWhole12StateAppear2@ha
+	stw      r0, 0(r4)
+	li       r0, 3
+	li       r7, 0
+	addi     r6, r5, __vt__Q34Game10SnakeWhole5State@l
+	stw      r0, 4(r4)
+	addi     r5, r2, lbl_8051C7E8@sda21
+	addi     r0, r3, __vt__Q34Game10SnakeWhole12StateAppear2@l
+	stw      r7, 8(r4)
+	stw      r6, 0(r4)
+	stw      r5, 0xc(r4)
+	stw      r0, 0(r4)
 
-	.loc_0x160:
-	  mr        r3, r31
-	  bl        -0x19B1A8
-	  li        r3, 0x10
-	  bl        -0x2A7C14
-	  mr.       r4, r3
-	  beq-      .loc_0x1B8
-	  lis       r3, 0x804B
-	  lis       r6, 0x804D
-	  subi      r0, r3, 0x65C
-	  lis       r5, 0x8049
-	  stw       r0, 0x0(r4)
-	  li        r0, 0x4
-	  lis       r3, 0x804D
-	  li        r7, 0
-	  stw       r0, 0x4(r4)
-	  addi      r6, r6, 0x22E8
-	  subi      r5, r5, 0x4810
-	  addi      r0, r3, 0x2234
-	  stw       r7, 0x8(r4)
-	  stw       r6, 0x0(r4)
-	  stw       r5, 0xC(r4)
-	  stw       r0, 0x0(r4)
+lbl_802CBAAC:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_802CBB04
+	lis      r3, __vt__Q24Game13EnemyFSMState@ha
+	lis      r6, __vt__Q34Game10SnakeWhole5State@ha
+	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
+	lis      r5, lbl_8048B7F0@ha
+	stw      r0, 0(r4)
+	li       r0, 4
+	lis      r3, __vt__Q34Game10SnakeWhole14StateDisappear@ha
+	li       r7, 0
+	stw      r0, 4(r4)
+	addi     r6, r6, __vt__Q34Game10SnakeWhole5State@l
+	addi     r5, r5, lbl_8048B7F0@l
+	addi     r0, r3, __vt__Q34Game10SnakeWhole14StateDisappear@l
+	stw      r7, 8(r4)
+	stw      r6, 0(r4)
+	stw      r5, 0xc(r4)
+	stw      r0, 0(r4)
 
-	.loc_0x1B8:
-	  mr        r3, r31
-	  bl        -0x19B200
-	  li        r3, 0x10
-	  bl        -0x2A7C6C
-	  mr.       r4, r3
-	  beq-      .loc_0x20C
-	  lis       r3, 0x804B
-	  lis       r5, 0x804D
-	  subi      r0, r3, 0x65C
-	  lis       r3, 0x804D
-	  stw       r0, 0x0(r4)
-	  li        r0, 0x5
-	  li        r7, 0
-	  addi      r6, r5, 0x22E8
-	  stw       r0, 0x4(r4)
-	  subi      r5, r2, 0x1B70
-	  addi      r0, r3, 0x2210
-	  stw       r7, 0x8(r4)
-	  stw       r6, 0x0(r4)
-	  stw       r5, 0xC(r4)
-	  stw       r0, 0x0(r4)
+lbl_802CBB04:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_802CBB58
+	lis      r3, __vt__Q24Game13EnemyFSMState@ha
+	lis      r5, __vt__Q34Game10SnakeWhole5State@ha
+	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
+	lis      r3, __vt__Q34Game10SnakeWhole9StateWait@ha
+	stw      r0, 0(r4)
+	li       r0, 5
+	li       r7, 0
+	addi     r6, r5, __vt__Q34Game10SnakeWhole5State@l
+	stw      r0, 4(r4)
+	addi     r5, r2, lbl_8051C7F0@sda21
+	addi     r0, r3, __vt__Q34Game10SnakeWhole9StateWait@l
+	stw      r7, 8(r4)
+	stw      r6, 0(r4)
+	stw      r5, 0xc(r4)
+	stw      r0, 0(r4)
 
-	.loc_0x20C:
-	  mr        r3, r31
-	  bl        -0x19B254
-	  li        r3, 0x10
-	  bl        -0x2A7CC0
-	  mr.       r4, r3
-	  beq-      .loc_0x260
-	  lis       r3, 0x804B
-	  lis       r5, 0x804D
-	  subi      r0, r3, 0x65C
-	  lis       r3, 0x804D
-	  stw       r0, 0x0(r4)
-	  li        r0, 0x6
-	  li        r7, 0
-	  addi      r6, r5, 0x22E8
-	  stw       r0, 0x4(r4)
-	  subi      r5, r2, 0x1B68
-	  addi      r0, r3, 0x21EC
-	  stw       r7, 0x8(r4)
-	  stw       r6, 0x0(r4)
-	  stw       r5, 0xC(r4)
-	  stw       r0, 0x0(r4)
+lbl_802CBB58:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_802CBBAC
+	lis      r3, __vt__Q24Game13EnemyFSMState@ha
+	lis      r5, __vt__Q34Game10SnakeWhole5State@ha
+	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
+	lis      r3, __vt__Q34Game10SnakeWhole9StateWalk@ha
+	stw      r0, 0(r4)
+	li       r0, 6
+	li       r7, 0
+	addi     r6, r5, __vt__Q34Game10SnakeWhole5State@l
+	stw      r0, 4(r4)
+	addi     r5, r2, lbl_8051C7F8@sda21
+	addi     r0, r3, __vt__Q34Game10SnakeWhole9StateWalk@l
+	stw      r7, 8(r4)
+	stw      r6, 0(r4)
+	stw      r5, 0xc(r4)
+	stw      r0, 0(r4)
 
-	.loc_0x260:
-	  mr        r3, r31
-	  bl        -0x19B2A8
-	  li        r3, 0x10
-	  bl        -0x2A7D14
-	  mr.       r4, r3
-	  beq-      .loc_0x2B4
-	  lis       r3, 0x804B
-	  lis       r5, 0x804D
-	  subi      r0, r3, 0x65C
-	  lis       r3, 0x804D
-	  stw       r0, 0x0(r4)
-	  li        r0, 0x7
-	  li        r7, 0
-	  addi      r6, r5, 0x22E8
-	  stw       r0, 0x4(r4)
-	  subi      r5, r2, 0x1B60
-	  addi      r0, r3, 0x21C8
-	  stw       r7, 0x8(r4)
-	  stw       r6, 0x0(r4)
-	  stw       r5, 0xC(r4)
-	  stw       r0, 0x0(r4)
+lbl_802CBBAC:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_802CBC00
+	lis      r3, __vt__Q24Game13EnemyFSMState@ha
+	lis      r5, __vt__Q34Game10SnakeWhole5State@ha
+	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
+	lis      r3, __vt__Q34Game10SnakeWhole9StateHome@ha
+	stw      r0, 0(r4)
+	li       r0, 7
+	li       r7, 0
+	addi     r6, r5, __vt__Q34Game10SnakeWhole5State@l
+	stw      r0, 4(r4)
+	addi     r5, r2, lbl_8051C800@sda21
+	addi     r0, r3, __vt__Q34Game10SnakeWhole9StateHome@l
+	stw      r7, 8(r4)
+	stw      r6, 0(r4)
+	stw      r5, 0xc(r4)
+	stw      r0, 0(r4)
 
-	.loc_0x2B4:
-	  mr        r3, r31
-	  bl        -0x19B2FC
-	  li        r3, 0x10
-	  bl        -0x2A7D68
-	  mr.       r4, r3
-	  beq-      .loc_0x308
-	  lis       r3, 0x804B
-	  lis       r5, 0x804D
-	  subi      r0, r3, 0x65C
-	  lis       r3, 0x804D
-	  stw       r0, 0x0(r4)
-	  li        r0, 0x8
-	  li        r7, 0
-	  addi      r6, r5, 0x22E8
-	  stw       r0, 0x4(r4)
-	  subi      r5, r2, 0x1B58
-	  addi      r0, r3, 0x21A4
-	  stw       r7, 0x8(r4)
-	  stw       r6, 0x0(r4)
-	  stw       r5, 0xC(r4)
-	  stw       r0, 0x0(r4)
+lbl_802CBC00:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_802CBC54
+	lis      r3, __vt__Q24Game13EnemyFSMState@ha
+	lis      r5, __vt__Q34Game10SnakeWhole5State@ha
+	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
+	lis      r3, __vt__Q34Game10SnakeWhole11StateAttack@ha
+	stw      r0, 0(r4)
+	li       r0, 8
+	li       r7, 0
+	addi     r6, r5, __vt__Q34Game10SnakeWhole5State@l
+	stw      r0, 4(r4)
+	addi     r5, r2, lbl_8051C808@sda21
+	addi     r0, r3, __vt__Q34Game10SnakeWhole11StateAttack@l
+	stw      r7, 8(r4)
+	stw      r6, 0(r4)
+	stw      r5, 0xc(r4)
+	stw      r0, 0(r4)
 
-	.loc_0x308:
-	  mr        r3, r31
-	  bl        -0x19B350
-	  li        r3, 0x10
-	  bl        -0x2A7DBC
-	  mr.       r4, r3
-	  beq-      .loc_0x35C
-	  lis       r3, 0x804B
-	  lis       r5, 0x804D
-	  subi      r0, r3, 0x65C
-	  lis       r3, 0x804D
-	  stw       r0, 0x0(r4)
-	  li        r0, 0x9
-	  li        r7, 0
-	  addi      r6, r5, 0x22E8
-	  stw       r0, 0x4(r4)
-	  subi      r5, r2, 0x1B50
-	  addi      r0, r3, 0x2180
-	  stw       r7, 0x8(r4)
-	  stw       r6, 0x0(r4)
-	  stw       r5, 0xC(r4)
-	  stw       r0, 0x0(r4)
+lbl_802CBC54:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_802CBCA8
+	lis      r3, __vt__Q24Game13EnemyFSMState@ha
+	lis      r5, __vt__Q34Game10SnakeWhole5State@ha
+	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
+	lis      r3, __vt__Q34Game10SnakeWhole8StateEat@ha
+	stw      r0, 0(r4)
+	li       r0, 9
+	li       r7, 0
+	addi     r6, r5, __vt__Q34Game10SnakeWhole5State@l
+	stw      r0, 4(r4)
+	addi     r5, r2, lbl_8051C810@sda21
+	addi     r0, r3, __vt__Q34Game10SnakeWhole8StateEat@l
+	stw      r7, 8(r4)
+	stw      r6, 0(r4)
+	stw      r5, 0xc(r4)
+	stw      r0, 0(r4)
 
-	.loc_0x35C:
-	  mr        r3, r31
-	  bl        -0x19B3A4
-	  li        r3, 0x10
-	  bl        -0x2A7E10
-	  mr.       r4, r3
-	  beq-      .loc_0x3B4
-	  lis       r3, 0x804B
-	  lis       r6, 0x804D
-	  subi      r0, r3, 0x65C
-	  lis       r5, 0x8049
-	  stw       r0, 0x0(r4)
-	  li        r0, 0xA
-	  lis       r3, 0x804D
-	  li        r7, 0
-	  stw       r0, 0x4(r4)
-	  addi      r6, r6, 0x22E8
-	  subi      r5, r5, 0x4804
-	  addi      r0, r3, 0x215C
-	  stw       r7, 0x8(r4)
-	  stw       r6, 0x0(r4)
-	  stw       r5, 0xC(r4)
-	  stw       r0, 0x0(r4)
+lbl_802CBCA8:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	li       r3, 0x10
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_802CBD00
+	lis      r3, __vt__Q24Game13EnemyFSMState@ha
+	lis      r6, __vt__Q34Game10SnakeWhole5State@ha
+	addi     r0, r3, __vt__Q24Game13EnemyFSMState@l
+	lis      r5, lbl_8048B7FC@ha
+	stw      r0, 0(r4)
+	li       r0, 0xa
+	lis      r3, __vt__Q34Game10SnakeWhole13StateStruggle@ha
+	li       r7, 0
+	stw      r0, 4(r4)
+	addi     r6, r6, __vt__Q34Game10SnakeWhole5State@l
+	addi     r5, r5, lbl_8048B7FC@l
+	addi     r0, r3, __vt__Q34Game10SnakeWhole13StateStruggle@l
+	stw      r7, 8(r4)
+	stw      r6, 0(r4)
+	stw      r5, 0xc(r4)
+	stw      r0, 0(r4)
 
-	.loc_0x3B4:
-	  mr        r3, r31
-	  bl        -0x19B3FC
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_802CBD00:
+	mr       r3, r31
+	bl       registerState__Q24Game17EnemyStateMachineFPQ24Game13EnemyFSMState
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -288,56 +558,55 @@ void SnakeWhole::FSM::init(Game::EnemyBase*)
 void SnakeWhole::StateDead::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stw       r31, 0x2C(r1)
-	  mr        r31, r4
-	  mr        r3, r31
-	  bl        -0x1C6614
-	  lwz       r0, 0x1E0(r31)
-	  mr        r3, r31
-	  lfs       f0, -0x1B4C(r2)
-	  rlwinm    r0,r0,0,26,24
-	  stw       r0, 0x1E0(r31)
-	  stfs      f0, 0x1D4(r31)
-	  stfs      f0, 0x1D8(r31)
-	  stfs      f0, 0x1DC(r31)
-	  bl        -0x1CA3DC
-	  mr        r3, r31
-	  li        r4, 0
-	  li        r5, 0
-	  bl        -0x1C6D64
-	  mr        r3, r31
-	  bl        0x5614
-	  mr        r4, r31
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f2, 0x8(r1)
-	  addi      r5, r1, 0x14
-	  lfs       f1, 0xC(r1)
-	  li        r4, 0
-	  lfs       f0, 0x10(r1)
-	  li        r6, 0x2
-	  stfs      f2, 0x14(r1)
-	  lwz       r3, -0x6960(r13)
-	  stfs      f1, 0x18(r1)
-	  stfs      f0, 0x1C(r1)
-	  bl        -0x79B78
-	  lwz       r3, -0x6958(r13)
-	  addi      r5, r1, 0x14
-	  li        r4, 0xD
-	  li        r6, 0x2
-	  bl        -0x78648
-	  lwz       r0, 0x34(r1)
-	  lwz       r31, 0x2C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stw      r31, 0x2c(r1)
+	mr       r31, r4
+	mr       r3, r31
+	bl       deathProcedure__Q24Game9EnemyBaseFv
+	lwz      r0, 0x1e0(r31)
+	mr       r3, r31
+	lfs      f0, lbl_8051C814@sda21(r2)
+	rlwinm   r0, r0, 0, 0x1a, 0x18
+	stw      r0, 0x1e0(r31)
+	stfs     f0, 0x1d4(r31)
+	stfs     f0, 0x1d8(r31)
+	stfs     f0, 0x1dc(r31)
+	bl       setEmotionCaution__Q24Game9EnemyBaseFv
+	mr       r3, r31
+	li       r4, 0
+	li       r5, 0
+	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
+	mr       r3, r31
+	bl       createDeadStartEffect__Q34Game10SnakeWhole3ObjFv
+	mr       r4, r31
+	addi     r3, r1, 8
+	lwz      r12, 0(r31)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f2, 8(r1)
+	addi     r5, r1, 0x14
+	lfs      f1, 0xc(r1)
+	li       r4, 0
+	lfs      f0, 0x10(r1)
+	li       r6, 2
+	stfs     f2, 0x14(r1)
+	lwz      r3, cameraMgr__4Game@sda21(r13)
+	stfs     f1, 0x18(r1)
+	stfs     f0, 0x1c(r1)
+	bl       "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
+	lwz      r3, rumbleMgr__4Game@sda21(r13)
+	addi     r5, r1, 0x14
+	li       r4, 0xd
+	li       r6, 2
+	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
+	lwz      r0, 0x34(r1)
+	lwz      r31, 0x2c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -349,129 +618,128 @@ void SnakeWhole::StateDead::init(Game::EnemyBase*, Game::StateArg*)
 void SnakeWhole::StateDead::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x60(r1)
-	  mflr      r0
-	  stw       r0, 0x64(r1)
-	  stw       r31, 0x5C(r1)
-	  mr        r31, r4
-	  lwz       r3, 0x188(r4)
-	  lbz       r0, 0x24(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x1AC
-	  lwz       r0, 0x1C(r3)
-	  cmplwi    r0, 0x2
-	  bne-      .loc_0x58
-	  mr        r3, r31
-	  bl        0x4E3C
-	  mr        r3, r31
-	  bl        0x559C
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x264(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x1AC
+	stwu     r1, -0x60(r1)
+	mflr     r0
+	stw      r0, 0x64(r1)
+	stw      r31, 0x5c(r1)
+	mr       r31, r4
+	lwz      r3, 0x188(r4)
+	lbz      r0, 0x24(r3)
+	cmplwi   r0, 0
+	beq      lbl_802CBF8C
+	lwz      r0, 0x1c(r3)
+	cmplwi   r0, 2
+	bne      lbl_802CBE38
+	mr       r3, r31
+	bl       deleteJointShadow__Q34Game10SnakeWhole3ObjFv
+	mr       r3, r31
+	bl       createDeadFinishEffect__Q34Game10SnakeWhole3ObjFv
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r12, 0x264(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802CBF8C
 
-	.loc_0x58:
-	  cmplwi    r0, 0x3
-	  bne-      .loc_0xC8
-	  lfs       f1, -0x1B48(r2)
-	  mr        r3, r31
-	  bl        0x5604
-	  mr        r4, r31
-	  addi      r3, r1, 0x20
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f2, 0x20(r1)
-	  addi      r5, r1, 0x44
-	  lfs       f1, 0x24(r1)
-	  li        r4, 0x3
-	  lfs       f0, 0x28(r1)
-	  li        r6, 0x2
-	  stfs      f2, 0x44(r1)
-	  lwz       r3, -0x6960(r13)
-	  stfs      f1, 0x48(r1)
-	  stfs      f0, 0x4C(r1)
-	  bl        -0x79C50
-	  lwz       r3, -0x6958(r13)
-	  addi      r5, r1, 0x44
-	  li        r4, 0xB
-	  li        r6, 0x2
-	  bl        -0x78720
-	  b         .loc_0x1AC
+lbl_802CBE38:
+	cmplwi   r0, 3
+	bne      lbl_802CBEA8
+	lfs      f1, lbl_8051C818@sda21(r2)
+	mr       r3, r31
+	bl       createWalkSmokeEffect__Q34Game10SnakeWhole3ObjFf
+	mr       r4, r31
+	addi     r3, r1, 0x20
+	lwz      r12, 0(r31)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f2, 0x20(r1)
+	addi     r5, r1, 0x44
+	lfs      f1, 0x24(r1)
+	li       r4, 3
+	lfs      f0, 0x28(r1)
+	li       r6, 2
+	stfs     f2, 0x44(r1)
+	lwz      r3, cameraMgr__4Game@sda21(r13)
+	stfs     f1, 0x48(r1)
+	stfs     f0, 0x4c(r1)
+	bl       "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
+	lwz      r3, rumbleMgr__4Game@sda21(r13)
+	addi     r5, r1, 0x44
+	li       r4, 0xb
+	li       r6, 2
+	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
+	b        lbl_802CBF8C
 
-	.loc_0xC8:
-	  cmplwi    r0, 0x4
-	  bne-      .loc_0x138
-	  lfs       f1, -0x1B44(r2)
-	  mr        r3, r31
-	  bl        0x5594
-	  mr        r4, r31
-	  addi      r3, r1, 0x14
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f2, 0x14(r1)
-	  addi      r5, r1, 0x38
-	  lfs       f1, 0x18(r1)
-	  li        r4, 0x3
-	  lfs       f0, 0x1C(r1)
-	  li        r6, 0x2
-	  stfs      f2, 0x38(r1)
-	  lwz       r3, -0x6960(r13)
-	  stfs      f1, 0x3C(r1)
-	  stfs      f0, 0x40(r1)
-	  bl        -0x79CC0
-	  lwz       r3, -0x6958(r13)
-	  addi      r5, r1, 0x38
-	  li        r4, 0xB
-	  li        r6, 0x2
-	  bl        -0x78790
-	  b         .loc_0x1AC
+lbl_802CBEA8:
+	cmplwi   r0, 4
+	bne      lbl_802CBF18
+	lfs      f1, lbl_8051C81C@sda21(r2)
+	mr       r3, r31
+	bl       createWalkSmokeEffect__Q34Game10SnakeWhole3ObjFf
+	mr       r4, r31
+	addi     r3, r1, 0x14
+	lwz      r12, 0(r31)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f2, 0x14(r1)
+	addi     r5, r1, 0x38
+	lfs      f1, 0x18(r1)
+	li       r4, 3
+	lfs      f0, 0x1c(r1)
+	li       r6, 2
+	stfs     f2, 0x38(r1)
+	lwz      r3, cameraMgr__4Game@sda21(r13)
+	stfs     f1, 0x3c(r1)
+	stfs     f0, 0x40(r1)
+	bl       "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
+	lwz      r3, rumbleMgr__4Game@sda21(r13)
+	addi     r5, r1, 0x38
+	li       r4, 0xb
+	li       r6, 2
+	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
+	b        lbl_802CBF8C
 
-	.loc_0x138:
-	  cmplwi    r0, 0x5
-	  bne-      .loc_0x198
-	  lwz       r12, 0x0(r4)
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f2, 0x8(r1)
-	  addi      r5, r1, 0x2C
-	  lfs       f1, 0xC(r1)
-	  li        r4, 0x8
-	  lfs       f0, 0x10(r1)
-	  li        r6, 0x2
-	  stfs      f2, 0x2C(r1)
-	  lwz       r3, -0x6960(r13)
-	  stfs      f1, 0x30(r1)
-	  stfs      f0, 0x34(r1)
-	  bl        -0x79D20
-	  lwz       r3, -0x6958(r13)
-	  addi      r5, r1, 0x2C
-	  li        r4, 0xD
-	  li        r6, 0x2
-	  bl        -0x787F0
-	  b         .loc_0x1AC
+lbl_802CBF18:
+	cmplwi   r0, 5
+	bne      lbl_802CBF78
+	lwz      r12, 0(r4)
+	addi     r3, r1, 8
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f2, 8(r1)
+	addi     r5, r1, 0x2c
+	lfs      f1, 0xc(r1)
+	li       r4, 8
+	lfs      f0, 0x10(r1)
+	li       r6, 2
+	stfs     f2, 0x2c(r1)
+	lwz      r3, cameraMgr__4Game@sda21(r13)
+	stfs     f1, 0x30(r1)
+	stfs     f0, 0x34(r1)
+	bl       "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
+	lwz      r3, rumbleMgr__4Game@sda21(r13)
+	addi     r5, r1, 0x2c
+	li       r4, 0xd
+	li       r6, 2
+	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
+	b        lbl_802CBF8C
 
-	.loc_0x198:
-	  cmplwi    r0, 0x3E8
-	  bne-      .loc_0x1AC
-	  mr        r3, r31
-	  li        r4, 0
-	  bl        -0x190E98
+lbl_802CBF78:
+	cmplwi   r0, 0x3e8
+	bne      lbl_802CBF8C
+	mr       r3, r31
+	li       r4, 0
+	bl       kill__Q24Game8CreatureFPQ24Game15CreatureKillArg
 
-	.loc_0x1AC:
-	  lwz       r0, 0x64(r1)
-	  lwz       r31, 0x5C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x60
-	  blr
+lbl_802CBF8C:
+	lwz      r0, 0x64(r1)
+	lwz      r31, 0x5c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x60
+	blr
 	*/
 }
 
@@ -490,84 +758,83 @@ void SnakeWhole::StateDead::cleanup(Game::EnemyBase*) { }
 void SnakeWhole::StateStay::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  lfs       f0, -0x1B4C(r2)
-	  stw       r0, 0x34(r1)
-	  stw       r31, 0x2C(r1)
-	  mr        r31, r4
-	  mr        r3, r31
-	  stfs      f0, 0x2C4(r4)
-	  bl        0x4C68
-	  mr        r4, r31
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f2, 0x8(r1)
-	  mr        r3, r31
-	  lfs       f1, 0xC(r1)
-	  addi      r4, r1, 0x14
-	  lfs       f0, 0x10(r1)
-	  stfs      f2, 0x14(r1)
-	  stfs      f1, 0x18(r1)
-	  stfs      f0, 0x1C(r1)
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x70(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r3, r31
-	  li        r4, 0
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0xA4(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r4, 0x1E0(r31)
-	  li        r0, 0x1
-	  mr        r3, r31
-	  ori       r4, r4, 0x1
-	  stw       r4, 0x1E0(r31)
-	  stb       r0, 0x2C0(r31)
-	  lwz       r0, 0x1E0(r31)
-	  oris      r0, r0, 0x40
-	  stw       r0, 0x1E0(r31)
-	  bl        -0x1C48D0
-	  lwz       r0, 0x1E0(r31)
-	  mr        r3, r31
-	  lfs       f0, -0x1B4C(r2)
-	  li        r4, 0x1
-	  rlwinm    r0,r0,0,17,15
-	  li        r5, 0
-	  stw       r0, 0x1E0(r31)
-	  lwz       r0, 0x1E0(r31)
-	  oris      r0, r0, 0x4000
-	  stw       r0, 0x1E0(r31)
-	  lwz       r0, 0x1E0(r31)
-	  rlwinm    r0,r0,0,21,19
-	  stw       r0, 0x1E0(r31)
-	  stfs      f0, 0x1D4(r31)
-	  stfs      f0, 0x1D8(r31)
-	  stfs      f0, 0x1DC(r31)
-	  bl        -0x1C708C
-	  mr        r3, r31
-	  bl        -0x1C4DB8
-	  lwz       r0, 0x280(r31)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x118
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x254(r12)
-	  mtctr     r12
-	  bctrl
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	lfs      f0, lbl_8051C814@sda21(r2)
+	stw      r0, 0x34(r1)
+	stw      r31, 0x2c(r1)
+	mr       r31, r4
+	mr       r3, r31
+	stfs     f0, 0x2c4(r4)
+	bl       finishJointShadow__Q34Game10SnakeWhole3ObjFv
+	mr       r4, r31
+	addi     r3, r1, 8
+	lwz      r12, 0(r31)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f2, 8(r1)
+	mr       r3, r31
+	lfs      f1, 0xc(r1)
+	addi     r4, r1, 0x14
+	lfs      f0, 0x10(r1)
+	stfs     f2, 0x14(r1)
+	stfs     f1, 0x18(r1)
+	stfs     f0, 0x1c(r1)
+	lwz      r12, 0(r31)
+	lwz      r12, 0x70(r12)
+	mtctr    r12
+	bctrl
+	mr       r3, r31
+	li       r4, 0
+	lwz      r12, 0(r31)
+	lwz      r12, 0xa4(r12)
+	mtctr    r12
+	bctrl
+	lwz      r4, 0x1e0(r31)
+	li       r0, 1
+	mr       r3, r31
+	ori      r4, r4, 1
+	stw      r4, 0x1e0(r31)
+	stb      r0, 0x2c0(r31)
+	lwz      r0, 0x1e0(r31)
+	oris     r0, r0, 0x40
+	stw      r0, 0x1e0(r31)
+	bl       hardConstraintOn__Q24Game9EnemyBaseFv
+	lwz      r0, 0x1e0(r31)
+	mr       r3, r31
+	lfs      f0, lbl_8051C814@sda21(r2)
+	li       r4, 1
+	rlwinm   r0, r0, 0, 0x11, 0xf
+	li       r5, 0
+	stw      r0, 0x1e0(r31)
+	lwz      r0, 0x1e0(r31)
+	oris     r0, r0, 0x4000
+	stw      r0, 0x1e0(r31)
+	lwz      r0, 0x1e0(r31)
+	rlwinm   r0, r0, 0, 0x15, 0x13
+	stw      r0, 0x1e0(r31)
+	stfs     f0, 0x1d4(r31)
+	stfs     f0, 0x1d8(r31)
+	stfs     f0, 0x1dc(r31)
+	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
+	mr       r3, r31
+	bl       stopMotion__Q24Game9EnemyBaseFv
+	lwz      r0, 0x280(r31)
+	cmplwi   r0, 0
+	beq      lbl_802CC0BC
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r12, 0x254(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x118:
-	  lwz       r0, 0x34(r1)
-	  lwz       r31, 0x2C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_802CC0BC:
+	lwz      r0, 0x34(r1)
+	lwz      r31, 0x2c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -579,447 +846,446 @@ void SnakeWhole::StateStay::init(Game::EnemyBase*, Game::StateArg*)
 void SnakeWhole::StateStay::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0xA0(r1)
-	  mflr      r0
-	  stw       r0, 0xA4(r1)
-	  stfd      f31, 0x90(r1)
-	  psq_st    f31,0x98(r1),0,0
-	  stfd      f30, 0x80(r1)
-	  psq_st    f30,0x88(r1),0,0
-	  stfd      f29, 0x70(r1)
-	  psq_st    f29,0x78(r1),0,0
-	  stfd      f28, 0x60(r1)
-	  psq_st    f28,0x68(r1),0,0
-	  stmw      r27, 0x4C(r1)
-	  mr        r28, r3
-	  lwz       r3, 0xC0(r4)
-	  lfs       f1, 0x2C4(r4)
-	  mr        r31, r4
-	  lfs       f0, 0x86C(r3)
-	  li        r30, 0
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x52C
-	  lfs       f0, 0x35C(r3)
-	  lis       r3, 0x804B
-	  li        r0, 0
-	  lfs       f31, 0x198(r31)
-	  lfs       f30, 0x19C(r31)
-	  cmplwi    r0, 0
-	  lfs       f29, 0x1A0(r31)
-	  subi      r4, r3, 0x4364
-	  lwz       r3, -0x6D0C(r13)
-	  fmuls     f28, f0, f0
-	  stw       r4, 0x30(r1)
-	  li        r29, 0x1
-	  stw       r0, 0x3C(r1)
-	  stw       r0, 0x34(r1)
-	  stw       r3, 0x38(r1)
-	  bne-      .loc_0xA8
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x34(r1)
-	  b         .loc_0x2B4
+	stwu     r1, -0xa0(r1)
+	mflr     r0
+	stw      r0, 0xa4(r1)
+	stfd     f31, 0x90(r1)
+	psq_st   f31, 152(r1), 0, qr0
+	stfd     f30, 0x80(r1)
+	psq_st   f30, 136(r1), 0, qr0
+	stfd     f29, 0x70(r1)
+	psq_st   f29, 120(r1), 0, qr0
+	stfd     f28, 0x60(r1)
+	psq_st   f28, 104(r1), 0, qr0
+	stmw     r27, 0x4c(r1)
+	mr       r28, r3
+	lwz      r3, 0xc0(r4)
+	lfs      f1, 0x2c4(r4)
+	mr       r31, r4
+	lfs      f0, 0x86c(r3)
+	li       r30, 0
+	fcmpo    cr0, f1, f0
+	ble      lbl_802CC5FC
+	lfs      f0, 0x35c(r3)
+	lis      r3, "__vt__22Iterator<Q24Game4Piki>"@ha
+	li       r0, 0
+	lfs      f31, 0x198(r31)
+	lfs      f30, 0x19c(r31)
+	cmplwi   r0, 0
+	lfs      f29, 0x1a0(r31)
+	addi     r4, r3, "__vt__22Iterator<Q24Game4Piki>"@l
+	lwz      r3, pikiMgr__4Game@sda21(r13)
+	fmuls    f28, f0, f0
+	stw      r4, 0x30(r1)
+	li       r29, 1
+	stw      r0, 0x3c(r1)
+	stw      r0, 0x34(r1)
+	stw      r3, 0x38(r1)
+	bne      lbl_802CC178
+	lwz      r12, 0(r3)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x34(r1)
+	b        lbl_802CC384
 
-	.loc_0xA8:
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x34(r1)
-	  b         .loc_0x114
+lbl_802CC178:
+	lwz      r12, 0(r3)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x34(r1)
+	b        lbl_802CC1E4
 
-	.loc_0xC0:
-	  lwz       r3, 0x38(r1)
-	  lwz       r4, 0x34(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x3C(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x2B4
-	  lwz       r3, 0x38(r1)
-	  lwz       r4, 0x34(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x34(r1)
+lbl_802CC190:
+	lwz      r3, 0x38(r1)
+	lwz      r4, 0x34(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	lwz      r3, 0x3c(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_802CC384
+	lwz      r3, 0x38(r1)
+	lwz      r4, 0x34(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x34(r1)
 
-	.loc_0x114:
-	  lwz       r12, 0x30(r1)
-	  addi      r3, r1, 0x30
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0xC0
-	  b         .loc_0x2B4
+lbl_802CC1E4:
+	lwz      r12, 0x30(r1)
+	addi     r3, r1, 0x30
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802CC190
+	b        lbl_802CC384
 
-	.loc_0x134:
-	  lwz       r3, 0x38(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r12, 0x0(r3)
-	  mr        r27, r3
-	  lwz       r12, 0xA8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x1F0
-	  mr        r3, r27
-	  lwz       r12, 0x0(r27)
-	  lwz       r12, 0x1C0(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x1F0
-	  mr        r3, r27
-	  bl        -0x12CCCC
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x1F0
-	  mr        r4, r27
-	  addi      r3, r1, 0x14
-	  lwz       r12, 0x0(r27)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f0, 0x18(r1)
-	  lfs       f1, 0x14(r1)
-	  fsubs     f2, f30, f0
-	  lfs       f0, 0x1C(r1)
-	  fsubs     f3, f31, f1
-	  fsubs     f1, f29, f0
-	  fmuls     f0, f2, f2
-	  fmadds    f0, f3, f3, f0
-	  fmadds    f1, f1, f1, f0
-	  fcmpo     cr0, f1, f28
-	  bge-      .loc_0x1E0
-	  mr        r30, r27
-	  li        r29, 0
-	  b         .loc_0x1F0
+lbl_802CC204:
+	lwz      r3, 0x38(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	lwz      r12, 0(r3)
+	mr       r27, r3
+	lwz      r12, 0xa8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802CC2C0
+	mr       r3, r27
+	lwz      r12, 0(r27)
+	lwz      r12, 0x1c0(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802CC2C0
+	mr       r3, r27
+	bl       isStickToMouth__Q24Game8CreatureFv
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_802CC2C0
+	mr       r4, r27
+	addi     r3, r1, 0x14
+	lwz      r12, 0(r27)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f0, 0x18(r1)
+	lfs      f1, 0x14(r1)
+	fsubs    f2, f30, f0
+	lfs      f0, 0x1c(r1)
+	fsubs    f3, f31, f1
+	fsubs    f1, f29, f0
+	fmuls    f0, f2, f2
+	fmadds   f0, f3, f3, f0
+	fmadds   f1, f1, f1, f0
+	fcmpo    cr0, f1, f28
+	bge      lbl_802CC2B0
+	mr       r30, r27
+	li       r29, 0
+	b        lbl_802CC2C0
 
-	.loc_0x1E0:
-	  lfs       f0, -0x1B40(r2)
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x1F0
-	  li        r29, 0
+lbl_802CC2B0:
+	lfs      f0, lbl_8051C820@sda21(r2)
+	fcmpo    cr0, f1, f0
+	bge      lbl_802CC2C0
+	li       r29, 0
 
-	.loc_0x1F0:
-	  cmplwi    r30, 0
-	  bne-      .loc_0x2D4
-	  lwz       r0, 0x3C(r1)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x224
-	  lwz       r3, 0x38(r1)
-	  lwz       r4, 0x34(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x34(r1)
-	  b         .loc_0x2B4
+lbl_802CC2C0:
+	cmplwi   r30, 0
+	bne      lbl_802CC3A4
+	lwz      r0, 0x3c(r1)
+	cmplwi   r0, 0
+	bne      lbl_802CC2F4
+	lwz      r3, 0x38(r1)
+	lwz      r4, 0x34(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x34(r1)
+	b        lbl_802CC384
 
-	.loc_0x224:
-	  lwz       r3, 0x38(r1)
-	  lwz       r4, 0x34(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x34(r1)
-	  b         .loc_0x298
+lbl_802CC2F4:
+	lwz      r3, 0x38(r1)
+	lwz      r4, 0x34(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x34(r1)
+	b        lbl_802CC368
 
-	.loc_0x244:
-	  lwz       r3, 0x38(r1)
-	  lwz       r4, 0x34(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x3C(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x2B4
-	  lwz       r3, 0x38(r1)
-	  lwz       r4, 0x34(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x34(r1)
+lbl_802CC314:
+	lwz      r3, 0x38(r1)
+	lwz      r4, 0x34(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	lwz      r3, 0x3c(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_802CC384
+	lwz      r3, 0x38(r1)
+	lwz      r4, 0x34(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x34(r1)
 
-	.loc_0x298:
-	  lwz       r12, 0x30(r1)
-	  addi      r3, r1, 0x30
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x244
+lbl_802CC368:
+	lwz      r12, 0x30(r1)
+	addi     r3, r1, 0x30
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802CC314
 
-	.loc_0x2B4:
-	  lwz       r3, 0x38(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r4, 0x34(r1)
-	  cmplw     r4, r3
-	  bne+      .loc_0x134
+lbl_802CC384:
+	lwz      r3, 0x38(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r4, 0x34(r1)
+	cmplw    r4, r3
+	bne      lbl_802CC204
 
-	.loc_0x2D4:
-	  cmplwi    r30, 0
-	  bne-      .loc_0x51C
-	  li        r0, 0
-	  lwz       r3, -0x6D20(r13)
-	  lis       r4, 0x804B
-	  stw       r0, 0x2C(r1)
-	  subi      r4, r4, 0x434C
-	  cmplwi    r0, 0
-	  stw       r4, 0x20(r1)
-	  stw       r0, 0x24(r1)
-	  stw       r3, 0x28(r1)
-	  bne-      .loc_0x31C
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x24(r1)
-	  b         .loc_0x4FC
+lbl_802CC3A4:
+	cmplwi   r30, 0
+	bne      lbl_802CC5EC
+	li       r0, 0
+	lwz      r3, naviMgr__4Game@sda21(r13)
+	lis      r4, "__vt__22Iterator<Q24Game4Navi>"@ha
+	stw      r0, 0x2c(r1)
+	addi     r4, r4, "__vt__22Iterator<Q24Game4Navi>"@l
+	cmplwi   r0, 0
+	stw      r4, 0x20(r1)
+	stw      r0, 0x24(r1)
+	stw      r3, 0x28(r1)
+	bne      lbl_802CC3EC
+	lwz      r12, 0(r3)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x24(r1)
+	b        lbl_802CC5CC
 
-	.loc_0x31C:
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x24(r1)
-	  b         .loc_0x388
+lbl_802CC3EC:
+	lwz      r12, 0(r3)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x24(r1)
+	b        lbl_802CC458
 
-	.loc_0x334:
-	  lwz       r3, 0x28(r1)
-	  lwz       r4, 0x24(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x2C(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x4FC
-	  lwz       r3, 0x28(r1)
-	  lwz       r4, 0x24(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x24(r1)
+lbl_802CC404:
+	lwz      r3, 0x28(r1)
+	lwz      r4, 0x24(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	lwz      r3, 0x2c(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_802CC5CC
+	lwz      r3, 0x28(r1)
+	lwz      r4, 0x24(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x24(r1)
 
-	.loc_0x388:
-	  lwz       r12, 0x20(r1)
-	  addi      r3, r1, 0x20
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x334
-	  b         .loc_0x4FC
+lbl_802CC458:
+	lwz      r12, 0x20(r1)
+	addi     r3, r1, 0x20
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802CC404
+	b        lbl_802CC5CC
 
-	.loc_0x3A8:
-	  lwz       r3, 0x28(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r12, 0x0(r3)
-	  mr        r27, r3
-	  lwz       r12, 0xA8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x438
-	  mr        r4, r27
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x0(r27)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f0, 0xC(r1)
-	  lfs       f1, 0x8(r1)
-	  fsubs     f2, f30, f0
-	  lfs       f0, 0x10(r1)
-	  fsubs     f3, f31, f1
-	  fsubs     f1, f29, f0
-	  fmuls     f0, f2, f2
-	  fmadds    f0, f3, f3, f0
-	  fmadds    f1, f1, f1, f0
-	  fcmpo     cr0, f1, f28
-	  bge-      .loc_0x428
-	  mr        r30, r27
-	  li        r29, 0
-	  b         .loc_0x438
+lbl_802CC478:
+	lwz      r3, 0x28(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	lwz      r12, 0(r3)
+	mr       r27, r3
+	lwz      r12, 0xa8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802CC508
+	mr       r4, r27
+	addi     r3, r1, 8
+	lwz      r12, 0(r27)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f0, 0xc(r1)
+	lfs      f1, 8(r1)
+	fsubs    f2, f30, f0
+	lfs      f0, 0x10(r1)
+	fsubs    f3, f31, f1
+	fsubs    f1, f29, f0
+	fmuls    f0, f2, f2
+	fmadds   f0, f3, f3, f0
+	fmadds   f1, f1, f1, f0
+	fcmpo    cr0, f1, f28
+	bge      lbl_802CC4F8
+	mr       r30, r27
+	li       r29, 0
+	b        lbl_802CC508
 
-	.loc_0x428:
-	  lfs       f0, -0x1B40(r2)
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x438
-	  li        r29, 0
+lbl_802CC4F8:
+	lfs      f0, lbl_8051C820@sda21(r2)
+	fcmpo    cr0, f1, f0
+	bge      lbl_802CC508
+	li       r29, 0
 
-	.loc_0x438:
-	  cmplwi    r30, 0
-	  bne-      .loc_0x51C
-	  lwz       r0, 0x2C(r1)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x46C
-	  lwz       r3, 0x28(r1)
-	  lwz       r4, 0x24(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x24(r1)
-	  b         .loc_0x4FC
+lbl_802CC508:
+	cmplwi   r30, 0
+	bne      lbl_802CC5EC
+	lwz      r0, 0x2c(r1)
+	cmplwi   r0, 0
+	bne      lbl_802CC53C
+	lwz      r3, 0x28(r1)
+	lwz      r4, 0x24(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x24(r1)
+	b        lbl_802CC5CC
 
-	.loc_0x46C:
-	  lwz       r3, 0x28(r1)
-	  lwz       r4, 0x24(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x24(r1)
-	  b         .loc_0x4E0
+lbl_802CC53C:
+	lwz      r3, 0x28(r1)
+	lwz      r4, 0x24(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x24(r1)
+	b        lbl_802CC5B0
 
-	.loc_0x48C:
-	  lwz       r3, 0x28(r1)
-	  lwz       r4, 0x24(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x2C(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x4FC
-	  lwz       r3, 0x28(r1)
-	  lwz       r4, 0x24(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x24(r1)
+lbl_802CC55C:
+	lwz      r3, 0x28(r1)
+	lwz      r4, 0x24(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	lwz      r3, 0x2c(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_802CC5CC
+	lwz      r3, 0x28(r1)
+	lwz      r4, 0x24(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x24(r1)
 
-	.loc_0x4E0:
-	  lwz       r12, 0x20(r1)
-	  addi      r3, r1, 0x20
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x48C
+lbl_802CC5B0:
+	lwz      r12, 0x20(r1)
+	addi     r3, r1, 0x20
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802CC55C
 
-	.loc_0x4FC:
-	  lwz       r3, 0x28(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r4, 0x24(r1)
-	  cmplw     r4, r3
-	  bne+      .loc_0x3A8
+lbl_802CC5CC:
+	lwz      r3, 0x28(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r4, 0x24(r1)
+	cmplw    r4, r3
+	bne      lbl_802CC478
 
-	.loc_0x51C:
-	  rlwinm.   r0,r29,0,24,31
-	  beq-      .loc_0x52C
-	  mr        r3, r31
-	  bl        0x493C
+lbl_802CC5EC:
+	clrlwi.  r0, r29, 0x18
+	beq      lbl_802CC5FC
+	mr       r3, r31
+	bl       resetBossAppearBGM__Q34Game10SnakeWhole3ObjFv
 
-	.loc_0x52C:
-	  lwz       r3, -0x6514(r13)
-	  cmplwi    r30, 0
-	  lfs       f1, 0x2C4(r31)
-	  lfs       f0, 0x54(r3)
-	  fadds     f0, f1, f0
-	  stfs      f0, 0x2C4(r31)
-	  beq-      .loc_0x5E4
-	  stw       r30, 0x230(r31)
-	  mr        r3, r31
-	  mr        r4, r30
-	  bl        0x2C5C
-	  mr        r3, r31
-	  bl        0x49D8
-	  lwz       r29, 0xC0(r31)
-	  bl        -0x203094
-	  xoris     r3, r3, 0x8000
-	  lis       r0, 0x4330
-	  stw       r3, 0x44(r1)
-	  lfd       f3, -0x1B30(r2)
-	  stw       r0, 0x40(r1)
-	  lfs       f2, -0x1B3C(r2)
-	  lfd       f0, 0x40(r1)
-	  lfs       f1, -0x1B38(r2)
-	  fsubs     f3, f0, f3
-	  lfs       f0, 0x81C(r29)
-	  fmuls     f2, f2, f3
-	  fdivs     f1, f2, f1
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x5C4
-	  mr        r3, r28
-	  mr        r4, r31
-	  lwz       r12, 0x0(r28)
-	  li        r5, 0x2
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x5E4
+lbl_802CC5FC:
+	lwz      r3, sys@sda21(r13)
+	cmplwi   r30, 0
+	lfs      f1, 0x2c4(r31)
+	lfs      f0, 0x54(r3)
+	fadds    f0, f1, f0
+	stfs     f0, 0x2c4(r31)
+	beq      lbl_802CC6B4
+	stw      r30, 0x230(r31)
+	mr       r3, r31
+	mr       r4, r30
+	bl       appearNearByTarget__Q34Game10SnakeWhole3ObjFPQ24Game8Creature
+	mr       r3, r31
+	bl       setBossAppearBGM__Q34Game10SnakeWhole3ObjFv
+	lwz      r29, 0xc0(r31)
+	bl       rand
+	xoris    r3, r3, 0x8000
+	lis      r0, 0x4330
+	stw      r3, 0x44(r1)
+	lfd      f3, lbl_8051C830@sda21(r2)
+	stw      r0, 0x40(r1)
+	lfs      f2, lbl_8051C824@sda21(r2)
+	lfd      f0, 0x40(r1)
+	lfs      f1, lbl_8051C828@sda21(r2)
+	fsubs    f3, f0, f3
+	lfs      f0, 0x81c(r29)
+	fmuls    f2, f2, f3
+	fdivs    f1, f2, f1
+	fcmpo    cr0, f1, f0
+	bge      lbl_802CC694
+	mr       r3, r28
+	mr       r4, r31
+	lwz      r12, 0(r28)
+	li       r5, 2
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802CC6B4
 
-	.loc_0x5C4:
-	  mr        r3, r28
-	  mr        r4, r31
-	  lwz       r12, 0x0(r28)
-	  li        r5, 0x3
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_802CC694:
+	mr       r3, r28
+	mr       r4, r31
+	lwz      r12, 0(r28)
+	li       r5, 3
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x5E4:
-	  psq_l     f31,0x98(r1),0,0
-	  lfd       f31, 0x90(r1)
-	  psq_l     f30,0x88(r1),0,0
-	  lfd       f30, 0x80(r1)
-	  psq_l     f29,0x78(r1),0,0
-	  lfd       f29, 0x70(r1)
-	  psq_l     f28,0x68(r1),0,0
-	  lfd       f28, 0x60(r1)
-	  lmw       r27, 0x4C(r1)
-	  lwz       r0, 0xA4(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0xA0
-	  blr
+lbl_802CC6B4:
+	psq_l    f31, 152(r1), 0, qr0
+	lfd      f31, 0x90(r1)
+	psq_l    f30, 136(r1), 0, qr0
+	lfd      f30, 0x80(r1)
+	psq_l    f29, 120(r1), 0, qr0
+	lfd      f29, 0x70(r1)
+	psq_l    f28, 104(r1), 0, qr0
+	lfd      f28, 0x60(r1)
+	lmw      r27, 0x4c(r1)
+	lwz      r0, 0xa4(r1)
+	mtlr     r0
+	addi     r1, r1, 0xa0
+	blr
 	*/
 }
 
@@ -1031,45 +1297,44 @@ void SnakeWhole::StateStay::exec(Game::EnemyBase*)
 void SnakeWhole::StateStay::cleanup(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  mr        r0, r4
-	  li        r4, 0x1
-	  stw       r31, 0xC(r1)
-	  mr        r31, r0
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0xA4(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r4, 0x1E0(r31)
-	  li        r0, 0
-	  mr        r3, r31
-	  rlwinm    r4,r4,0,0,30
-	  stw       r4, 0x1E0(r31)
-	  stb       r0, 0x2C0(r31)
-	  lwz       r0, 0x1E0(r31)
-	  rlwinm    r0,r0,0,10,8
-	  stw       r0, 0x1E0(r31)
-	  bl        -0x1C4FA8
-	  lwz       r0, 0x1E0(r31)
-	  mr        r3, r31
-	  ori       r0, r0, 0x8000
-	  stw       r0, 0x1E0(r31)
-	  lwz       r0, 0x1E0(r31)
-	  rlwinm    r0,r0,0,2,0
-	  stw       r0, 0x1E0(r31)
-	  lwz       r0, 0x1E0(r31)
-	  ori       r0, r0, 0x800
-	  stw       r0, 0x1E0(r31)
-	  bl        0x43D0
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	mr       r0, r4
+	li       r4, 1
+	stw      r31, 0xc(r1)
+	mr       r31, r0
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r12, 0xa4(r12)
+	mtctr    r12
+	bctrl
+	lwz      r4, 0x1e0(r31)
+	li       r0, 0
+	mr       r3, r31
+	rlwinm   r4, r4, 0, 0, 0x1e
+	stw      r4, 0x1e0(r31)
+	stb      r0, 0x2c0(r31)
+	lwz      r0, 0x1e0(r31)
+	rlwinm   r0, r0, 0, 0xa, 8
+	stw      r0, 0x1e0(r31)
+	bl       hardConstraintOff__Q24Game9EnemyBaseFv
+	lwz      r0, 0x1e0(r31)
+	mr       r3, r31
+	ori      r0, r0, 0x8000
+	stw      r0, 0x1e0(r31)
+	lwz      r0, 0x1e0(r31)
+	rlwinm   r0, r0, 0, 2, 0
+	stw      r0, 0x1e0(r31)
+	lwz      r0, 0x1e0(r31)
+	ori      r0, r0, 0x800
+	stw      r0, 0x1e0(r31)
+	bl       lifeIncrement__Q34Game10SnakeWhole3ObjFv
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1081,60 +1346,59 @@ void SnakeWhole::StateStay::cleanup(Game::EnemyBase*)
 void SnakeWhole::StateAppear1::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stw       r31, 0x2C(r1)
-	  mr        r31, r4
-	  mr        r3, r31
-	  lwz       r0, 0x1E0(r4)
-	  oris      r0, r0, 0x20
-	  stw       r0, 0x1E0(r4)
-	  lwz       r0, 0x1E0(r4)
-	  rlwinm    r0,r0,0,26,24
-	  stw       r0, 0x1E0(r4)
-	  bl        -0x1C5034
-	  lfs       f0, -0x1B4C(r2)
-	  mr        r3, r31
-	  stfs      f0, 0x1D4(r31)
-	  stfs      f0, 0x1D8(r31)
-	  stfs      f0, 0x1DC(r31)
-	  bl        -0x1CADFC
-	  mr        r3, r31
-	  li        r4, 0x1
-	  li        r5, 0
-	  bl        -0x1C77D4
-	  mr        r3, r31
-	  li        r4, 0
-	  bl        0x49CC
-	  mr        r4, r31
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f2, 0x8(r1)
-	  addi      r5, r1, 0x14
-	  lfs       f1, 0xC(r1)
-	  li        r4, 0x6
-	  lfs       f0, 0x10(r1)
-	  li        r6, 0x2
-	  stfs      f2, 0x14(r1)
-	  lwz       r3, -0x6960(r13)
-	  stfs      f1, 0x18(r1)
-	  stfs      f0, 0x1C(r1)
-	  bl        -0x7A5EC
-	  lwz       r3, -0x6958(r13)
-	  addi      r5, r1, 0x14
-	  li        r4, 0xF
-	  li        r6, 0x2
-	  bl        -0x790BC
-	  lwz       r0, 0x34(r1)
-	  lwz       r31, 0x2C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stw      r31, 0x2c(r1)
+	mr       r31, r4
+	mr       r3, r31
+	lwz      r0, 0x1e0(r4)
+	oris     r0, r0, 0x20
+	stw      r0, 0x1e0(r4)
+	lwz      r0, 0x1e0(r4)
+	rlwinm   r0, r0, 0, 0x1a, 0x18
+	stw      r0, 0x1e0(r4)
+	bl       hardConstraintOn__Q24Game9EnemyBaseFv
+	lfs      f0, lbl_8051C814@sda21(r2)
+	mr       r3, r31
+	stfs     f0, 0x1d4(r31)
+	stfs     f0, 0x1d8(r31)
+	stfs     f0, 0x1dc(r31)
+	bl       setEmotionExcitement__Q24Game9EnemyBaseFv
+	mr       r3, r31
+	li       r4, 1
+	li       r5, 0
+	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
+	mr       r3, r31
+	li       r4, 0
+	bl       createAppearEffect__Q34Game10SnakeWhole3ObjFi
+	mr       r4, r31
+	addi     r3, r1, 8
+	lwz      r12, 0(r31)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f2, 8(r1)
+	addi     r5, r1, 0x14
+	lfs      f1, 0xc(r1)
+	li       r4, 6
+	lfs      f0, 0x10(r1)
+	li       r6, 2
+	stfs     f2, 0x14(r1)
+	lwz      r3, cameraMgr__4Game@sda21(r13)
+	stfs     f1, 0x18(r1)
+	stfs     f0, 0x1c(r1)
+	bl       "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
+	lwz      r3, rumbleMgr__4Game@sda21(r13)
+	addi     r5, r1, 0x14
+	li       r4, 0xf
+	li       r6, 2
+	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
+	lwz      r0, 0x34(r1)
+	lwz      r31, 0x2c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -1146,219 +1410,218 @@ void SnakeWhole::StateAppear1::init(Game::EnemyBase*, Game::StateArg*)
 void SnakeWhole::StateAppear1::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x60(r1)
-	  mflr      r0
-	  stw       r0, 0x64(r1)
-	  stw       r31, 0x5C(r1)
-	  mr        r31, r4
-	  stw       r30, 0x58(r1)
-	  mr        r30, r3
-	  lwz       r3, 0x188(r4)
-	  lbz       r0, 0x24(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x2E0
-	  lwz       r0, 0x1C(r3)
-	  cmplwi    r0, 0x2
-	  bne-      .loc_0x50
-	  lwz       r0, 0x1E0(r31)
-	  mr        r3, r31
-	  rlwinm    r0,r0,0,11,9
-	  stw       r0, 0x1E0(r31)
-	  bl        0x436C
-	  b         .loc_0x288
+	stwu     r1, -0x60(r1)
+	mflr     r0
+	stw      r0, 0x64(r1)
+	stw      r31, 0x5c(r1)
+	mr       r31, r4
+	stw      r30, 0x58(r1)
+	mr       r30, r3
+	lwz      r3, 0x188(r4)
+	lbz      r0, 0x24(r3)
+	cmplwi   r0, 0
+	beq      lbl_802CCB34
+	lwz      r0, 0x1c(r3)
+	cmplwi   r0, 2
+	bne      lbl_802CC8A4
+	lwz      r0, 0x1e0(r31)
+	mr       r3, r31
+	rlwinm   r0, r0, 0, 0xb, 9
+	stw      r0, 0x1e0(r31)
+	bl       startJointShadow__Q34Game10SnakeWhole3ObjFv
+	b        lbl_802CCADC
 
-	.loc_0x50:
-	  cmplwi    r0, 0x3
-	  bne-      .loc_0xC8
-	  lwz       r0, 0x1E0(r31)
-	  mr        r3, r31
-	  oris      r0, r0, 0x20
-	  stw       r0, 0x1E0(r31)
-	  bl        0x43D4
-	  mr        r4, r31
-	  addi      r3, r1, 0x20
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f2, 0x20(r1)
-	  addi      r5, r1, 0x44
-	  lfs       f1, 0x24(r1)
-	  li        r4, 0x6
-	  lfs       f0, 0x28(r1)
-	  li        r6, 0x2
-	  stfs      f2, 0x44(r1)
-	  lwz       r3, -0x6960(r13)
-	  stfs      f1, 0x48(r1)
-	  stfs      f0, 0x4C(r1)
-	  bl        -0x7A6C4
-	  lwz       r3, -0x6958(r13)
-	  addi      r5, r1, 0x44
-	  li        r4, 0xE
-	  li        r6, 0x2
-	  bl        -0x79194
-	  b         .loc_0x288
+lbl_802CC8A4:
+	cmplwi   r0, 3
+	bne      lbl_802CC91C
+	lwz      r0, 0x1e0(r31)
+	mr       r3, r31
+	oris     r0, r0, 0x20
+	stw      r0, 0x1e0(r31)
+	bl       startBossAttackBGM__Q34Game10SnakeWhole3ObjFv
+	mr       r4, r31
+	addi     r3, r1, 0x20
+	lwz      r12, 0(r31)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f2, 0x20(r1)
+	addi     r5, r1, 0x44
+	lfs      f1, 0x24(r1)
+	li       r4, 6
+	lfs      f0, 0x28(r1)
+	li       r6, 2
+	stfs     f2, 0x44(r1)
+	lwz      r3, cameraMgr__4Game@sda21(r13)
+	stfs     f1, 0x48(r1)
+	stfs     f0, 0x4c(r1)
+	bl       "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
+	lwz      r3, rumbleMgr__4Game@sda21(r13)
+	addi     r5, r1, 0x44
+	li       r4, 0xe
+	li       r6, 2
+	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
+	b        lbl_802CCADC
 
-	.loc_0xC8:
-	  cmplwi    r0, 0x4
-	  bne-      .loc_0x134
-	  lwz       r0, 0x1E0(r31)
-	  addi      r3, r1, 0x14
-	  rlwinm    r0,r0,0,11,9
-	  stw       r0, 0x1E0(r31)
-	  lwz       r12, 0x0(r4)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f2, 0x14(r1)
-	  addi      r5, r1, 0x38
-	  lfs       f1, 0x18(r1)
-	  li        r4, 0x6
-	  lfs       f0, 0x1C(r1)
-	  li        r6, 0x2
-	  stfs      f2, 0x38(r1)
-	  lwz       r3, -0x6960(r13)
-	  stfs      f1, 0x3C(r1)
-	  stfs      f0, 0x40(r1)
-	  bl        -0x7A730
-	  lwz       r3, -0x6958(r13)
-	  addi      r5, r1, 0x38
-	  li        r4, 0xE
-	  li        r6, 0x2
-	  bl        -0x79200
-	  b         .loc_0x288
+lbl_802CC91C:
+	cmplwi   r0, 4
+	bne      lbl_802CC988
+	lwz      r0, 0x1e0(r31)
+	addi     r3, r1, 0x14
+	rlwinm   r0, r0, 0, 0xb, 9
+	stw      r0, 0x1e0(r31)
+	lwz      r12, 0(r4)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f2, 0x14(r1)
+	addi     r5, r1, 0x38
+	lfs      f1, 0x18(r1)
+	li       r4, 6
+	lfs      f0, 0x1c(r1)
+	li       r6, 2
+	stfs     f2, 0x38(r1)
+	lwz      r3, cameraMgr__4Game@sda21(r13)
+	stfs     f1, 0x3c(r1)
+	stfs     f0, 0x40(r1)
+	bl       "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
+	lwz      r3, rumbleMgr__4Game@sda21(r13)
+	addi     r5, r1, 0x38
+	li       r4, 0xe
+	li       r6, 2
+	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
+	b        lbl_802CCADC
 
-	.loc_0x134:
-	  cmplwi    r0, 0x3E8
-	  bne-      .loc_0x288
-	  mr        r3, r31
-	  bl        0x2E1C
-	  lfs       f1, 0x200(r31)
-	  lfs       f0, -0x1B4C(r2)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0, 0x2
-	  bne-      .loc_0x17C
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x288
+lbl_802CC988:
+	cmplwi   r0, 0x3e8
+	bne      lbl_802CCADC
+	mr       r3, r31
+	bl       setAttackPosition__Q34Game10SnakeWhole3ObjFv
+	lfs      f1, 0x200(r31)
+	lfs      f0, lbl_8051C814@sda21(r2)
+	fcmpo    cr0, f1, f0
+	cror     2, 0, 2
+	bne      lbl_802CC9D0
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 0
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802CCADC
 
-	.loc_0x17C:
-	  mr        r3, r31
-	  li        r4, 0
-	  bl        -0x1B8380
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x1B4
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x4
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x288
+lbl_802CC9D0:
+	mr       r3, r31
+	li       r4, 0
+	bl       isStartFlick__Q24Game9EnemyFuncFPQ24Game9EnemyBaseb
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802CCA08
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 4
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802CCADC
 
-	.loc_0x1B4:
-	  mr        r3, r31
-	  li        r4, 0x5
-	  bl        0x2FAC
-	  cmplwi    r3, 0
-	  bne-      .loc_0x1DC
-	  mr        r3, r31
-	  li        r4, 0x5
-	  bl        0x358C
-	  cmplwi    r3, 0
-	  beq-      .loc_0x234
+lbl_802CCA08:
+	mr       r3, r31
+	li       r4, 5
+	bl       getAttackPiki__Q34Game10SnakeWhole3ObjFi
+	cmplwi   r3, 0
+	bne      lbl_802CCA30
+	mr       r3, r31
+	li       r4, 5
+	bl       getAttackNavi__Q34Game10SnakeWhole3ObjFi
+	cmplwi   r3, 0
+	beq      lbl_802CCA88
 
-	.loc_0x1DC:
-	  mr        r3, r31
-	  bl        0x3C68
-	  cmpwi     r3, 0
-	  beq-      .loc_0x210
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0xA
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x288
+lbl_802CCA30:
+	mr       r3, r31
+	bl       getStickHeadPikmin__Q34Game10SnakeWhole3ObjFv
+	cmpwi    r3, 0
+	beq      lbl_802CCA64
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 0xa
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802CCADC
 
-	.loc_0x210:
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x8
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x288
+lbl_802CCA64:
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 8
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802CCADC
 
-	.loc_0x234:
-	  mr        r3, r31
-	  bl        0x3AEC
-	  cmplwi    r3, 0
-	  beq-      .loc_0x268
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x6
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x288
+lbl_802CCA88:
+	mr       r3, r31
+	bl       getSearchedTarget__Q34Game10SnakeWhole3ObjFv
+	cmplwi   r3, 0
+	beq      lbl_802CCABC
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 6
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802CCADC
 
-	.loc_0x268:
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x5
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_802CCABC:
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 5
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x288:
-	  mr        r4, r31
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f2, 0x8(r1)
-	  addi      r5, r1, 0x2C
-	  lfs       f1, 0xC(r1)
-	  li        r4, 0x3
-	  lfs       f0, 0x10(r1)
-	  li        r6, 0x2
-	  stfs      f2, 0x2C(r1)
-	  lwz       r3, -0x6960(r13)
-	  stfs      f1, 0x30(r1)
-	  stfs      f0, 0x34(r1)
-	  bl        -0x7A8E0
-	  lwz       r3, -0x6958(r13)
-	  addi      r5, r1, 0x2C
-	  li        r4, 0x8
-	  li        r6, 0x2
-	  bl        -0x793B0
+lbl_802CCADC:
+	mr       r4, r31
+	addi     r3, r1, 8
+	lwz      r12, 0(r31)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f2, 8(r1)
+	addi     r5, r1, 0x2c
+	lfs      f1, 0xc(r1)
+	li       r4, 3
+	lfs      f0, 0x10(r1)
+	li       r6, 2
+	stfs     f2, 0x2c(r1)
+	lwz      r3, cameraMgr__4Game@sda21(r13)
+	stfs     f1, 0x30(r1)
+	stfs     f0, 0x34(r1)
+	bl       "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
+	lwz      r3, rumbleMgr__4Game@sda21(r13)
+	addi     r5, r1, 0x2c
+	li       r4, 8
+	li       r6, 2
+	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
 
-	.loc_0x2E0:
-	  lwz       r0, 0x64(r1)
-	  lwz       r31, 0x5C(r1)
-	  lwz       r30, 0x58(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x60
-	  blr
+lbl_802CCB34:
+	lwz      r0, 0x64(r1)
+	lwz      r31, 0x5c(r1)
+	lwz      r30, 0x58(r1)
+	mtlr     r0
+	addi     r1, r1, 0x60
+	blr
 	*/
 }
 
@@ -1370,35 +1633,34 @@ void SnakeWhole::StateAppear1::exec(Game::EnemyBase*)
 void SnakeWhole::StateAppear1::cleanup(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  mr        r3, r31
-	  lwz       r0, 0x1E0(r4)
-	  rlwinm    r0,r0,0,11,9
-	  stw       r0, 0x1E0(r4)
-	  lwz       r0, 0x1E0(r4)
-	  ori       r0, r0, 0x40
-	  stw       r0, 0x1E0(r4)
-	  bl        -0x1C53E8
-	  lwz       r0, 0x280(r31)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x54
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x250(r12)
-	  mtctr     r12
-	  bctrl
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	mr       r3, r31
+	lwz      r0, 0x1e0(r4)
+	rlwinm   r0, r0, 0, 0xb, 9
+	stw      r0, 0x1e0(r4)
+	lwz      r0, 0x1e0(r4)
+	ori      r0, r0, 0x40
+	stw      r0, 0x1e0(r4)
+	bl       hardConstraintOff__Q24Game9EnemyBaseFv
+	lwz      r0, 0x280(r31)
+	cmplwi   r0, 0
+	beq      lbl_802CCBA0
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r12, 0x250(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x54:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_802CCBA0:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1410,60 +1672,59 @@ void SnakeWhole::StateAppear1::cleanup(Game::EnemyBase*)
 void SnakeWhole::StateAppear2::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stw       r31, 0x2C(r1)
-	  mr        r31, r4
-	  mr        r3, r31
-	  lwz       r0, 0x1E0(r4)
-	  oris      r0, r0, 0x20
-	  stw       r0, 0x1E0(r4)
-	  lwz       r0, 0x1E0(r4)
-	  rlwinm    r0,r0,0,26,24
-	  stw       r0, 0x1E0(r4)
-	  bl        -0x1C5468
-	  lfs       f0, -0x1B4C(r2)
-	  mr        r3, r31
-	  stfs      f0, 0x1D4(r31)
-	  stfs      f0, 0x1D8(r31)
-	  stfs      f0, 0x1DC(r31)
-	  bl        -0x1CB230
-	  mr        r3, r31
-	  li        r4, 0x2
-	  li        r5, 0
-	  bl        -0x1C7C08
-	  mr        r3, r31
-	  li        r4, 0x1
-	  bl        0x4598
-	  mr        r4, r31
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f2, 0x8(r1)
-	  addi      r5, r1, 0x14
-	  lfs       f1, 0xC(r1)
-	  li        r4, 0x8
-	  lfs       f0, 0x10(r1)
-	  li        r6, 0x2
-	  stfs      f2, 0x14(r1)
-	  lwz       r3, -0x6960(r13)
-	  stfs      f1, 0x18(r1)
-	  stfs      f0, 0x1C(r1)
-	  bl        -0x7AA20
-	  lwz       r3, -0x6958(r13)
-	  addi      r5, r1, 0x14
-	  li        r4, 0xC
-	  li        r6, 0x2
-	  bl        -0x794F0
-	  lwz       r0, 0x34(r1)
-	  lwz       r31, 0x2C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stw      r31, 0x2c(r1)
+	mr       r31, r4
+	mr       r3, r31
+	lwz      r0, 0x1e0(r4)
+	oris     r0, r0, 0x20
+	stw      r0, 0x1e0(r4)
+	lwz      r0, 0x1e0(r4)
+	rlwinm   r0, r0, 0, 0x1a, 0x18
+	stw      r0, 0x1e0(r4)
+	bl       hardConstraintOn__Q24Game9EnemyBaseFv
+	lfs      f0, lbl_8051C814@sda21(r2)
+	mr       r3, r31
+	stfs     f0, 0x1d4(r31)
+	stfs     f0, 0x1d8(r31)
+	stfs     f0, 0x1dc(r31)
+	bl       setEmotionExcitement__Q24Game9EnemyBaseFv
+	mr       r3, r31
+	li       r4, 2
+	li       r5, 0
+	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
+	mr       r3, r31
+	li       r4, 1
+	bl       createAppearEffect__Q34Game10SnakeWhole3ObjFi
+	mr       r4, r31
+	addi     r3, r1, 8
+	lwz      r12, 0(r31)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f2, 8(r1)
+	addi     r5, r1, 0x14
+	lfs      f1, 0xc(r1)
+	li       r4, 8
+	lfs      f0, 0x10(r1)
+	li       r6, 2
+	stfs     f2, 0x14(r1)
+	lwz      r3, cameraMgr__4Game@sda21(r13)
+	stfs     f1, 0x18(r1)
+	stfs     f0, 0x1c(r1)
+	bl       "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
+	lwz      r3, rumbleMgr__4Game@sda21(r13)
+	addi     r5, r1, 0x14
+	li       r4, 0xc
+	li       r6, 2
+	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
+	lwz      r0, 0x34(r1)
+	lwz      r31, 0x2c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -1475,229 +1736,228 @@ void SnakeWhole::StateAppear2::init(Game::EnemyBase*, Game::StateArg*)
 void SnakeWhole::StateAppear2::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x60(r1)
-	  mflr      r0
-	  stw       r0, 0x64(r1)
-	  stw       r31, 0x5C(r1)
-	  mr        r31, r4
-	  stw       r30, 0x58(r1)
-	  mr        r30, r3
-	  lwz       r3, 0x188(r4)
-	  lbz       r0, 0x24(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x300
-	  lwz       r0, 0x1C(r3)
-	  cmplwi    r0, 0x2
-	  bne-      .loc_0x50
-	  lwz       r0, 0x1E0(r31)
-	  mr        r3, r31
-	  rlwinm    r0,r0,0,11,9
-	  stw       r0, 0x1E0(r31)
-	  bl        0x3F38
-	  b         .loc_0x300
+	stwu     r1, -0x60(r1)
+	mflr     r0
+	stw      r0, 0x64(r1)
+	stw      r31, 0x5c(r1)
+	mr       r31, r4
+	stw      r30, 0x58(r1)
+	mr       r30, r3
+	lwz      r3, 0x188(r4)
+	lbz      r0, 0x24(r3)
+	cmplwi   r0, 0
+	beq      lbl_802CCF88
+	lwz      r0, 0x1c(r3)
+	cmplwi   r0, 2
+	bne      lbl_802CCCD8
+	lwz      r0, 0x1e0(r31)
+	mr       r3, r31
+	rlwinm   r0, r0, 0, 0xb, 9
+	stw      r0, 0x1e0(r31)
+	bl       startJointShadow__Q34Game10SnakeWhole3ObjFv
+	b        lbl_802CCF88
 
-	.loc_0x50:
-	  cmplwi    r0, 0x3
-	  bne-      .loc_0x64
-	  mr        r3, r31
-	  bl        0x3FAC
-	  b         .loc_0x300
+lbl_802CCCD8:
+	cmplwi   r0, 3
+	bne      lbl_802CCCEC
+	mr       r3, r31
+	bl       startBossAttackBGM__Q34Game10SnakeWhole3ObjFv
+	b        lbl_802CCF88
 
-	.loc_0x64:
-	  cmplwi    r0, 0x4
-	  bne-      .loc_0xD4
-	  mr        r3, r31
-	  li        r4, 0x2
-	  bl        0x44B4
-	  mr        r4, r31
-	  addi      r3, r1, 0x20
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f2, 0x20(r1)
-	  addi      r5, r1, 0x44
-	  lfs       f1, 0x24(r1)
-	  li        r4, 0x3
-	  lfs       f0, 0x28(r1)
-	  li        r6, 0x2
-	  stfs      f2, 0x44(r1)
-	  lwz       r3, -0x6960(r13)
-	  stfs      f1, 0x48(r1)
-	  stfs      f0, 0x4C(r1)
-	  bl        -0x7AB04
-	  lwz       r3, -0x6958(r13)
-	  addi      r5, r1, 0x44
-	  li        r4, 0xB
-	  li        r6, 0x2
-	  bl        -0x795D4
-	  b         .loc_0x300
+lbl_802CCCEC:
+	cmplwi   r0, 4
+	bne      lbl_802CCD5C
+	mr       r3, r31
+	li       r4, 2
+	bl       createAppearEffect__Q34Game10SnakeWhole3ObjFi
+	mr       r4, r31
+	addi     r3, r1, 0x20
+	lwz      r12, 0(r31)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f2, 0x20(r1)
+	addi     r5, r1, 0x44
+	lfs      f1, 0x24(r1)
+	li       r4, 3
+	lfs      f0, 0x28(r1)
+	li       r6, 2
+	stfs     f2, 0x44(r1)
+	lwz      r3, cameraMgr__4Game@sda21(r13)
+	stfs     f1, 0x48(r1)
+	stfs     f0, 0x4c(r1)
+	bl       "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
+	lwz      r3, rumbleMgr__4Game@sda21(r13)
+	addi     r5, r1, 0x44
+	li       r4, 0xb
+	li       r6, 2
+	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
+	b        lbl_802CCF88
 
-	.loc_0xD4:
-	  cmplwi    r0, 0x5
-	  bne-      .loc_0x140
-	  lwz       r0, 0x1E0(r31)
-	  addi      r3, r1, 0x14
-	  oris      r0, r0, 0x20
-	  stw       r0, 0x1E0(r31)
-	  lwz       r12, 0x0(r4)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f2, 0x14(r1)
-	  addi      r5, r1, 0x38
-	  lfs       f1, 0x18(r1)
-	  li        r4, 0x3
-	  lfs       f0, 0x1C(r1)
-	  li        r6, 0x2
-	  stfs      f2, 0x38(r1)
-	  lwz       r3, -0x6960(r13)
-	  stfs      f1, 0x3C(r1)
-	  stfs      f0, 0x40(r1)
-	  bl        -0x7AB70
-	  lwz       r3, -0x6958(r13)
-	  addi      r5, r1, 0x38
-	  li        r4, 0xB
-	  li        r6, 0x2
-	  bl        -0x79640
-	  b         .loc_0x300
+lbl_802CCD5C:
+	cmplwi   r0, 5
+	bne      lbl_802CCDC8
+	lwz      r0, 0x1e0(r31)
+	addi     r3, r1, 0x14
+	oris     r0, r0, 0x20
+	stw      r0, 0x1e0(r31)
+	lwz      r12, 0(r4)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f2, 0x14(r1)
+	addi     r5, r1, 0x38
+	lfs      f1, 0x18(r1)
+	li       r4, 3
+	lfs      f0, 0x1c(r1)
+	li       r6, 2
+	stfs     f2, 0x38(r1)
+	lwz      r3, cameraMgr__4Game@sda21(r13)
+	stfs     f1, 0x3c(r1)
+	stfs     f0, 0x40(r1)
+	bl       "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
+	lwz      r3, rumbleMgr__4Game@sda21(r13)
+	addi     r5, r1, 0x38
+	li       r4, 0xb
+	li       r6, 2
+	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
+	b        lbl_802CCF88
 
-	.loc_0x140:
-	  cmplwi    r0, 0x6
-	  bne-      .loc_0x1AC
-	  lwz       r0, 0x1E0(r31)
-	  addi      r3, r1, 0x8
-	  rlwinm    r0,r0,0,11,9
-	  stw       r0, 0x1E0(r31)
-	  lwz       r12, 0x0(r4)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f2, 0x8(r1)
-	  addi      r5, r1, 0x2C
-	  lfs       f1, 0xC(r1)
-	  li        r4, 0x6
-	  lfs       f0, 0x10(r1)
-	  li        r6, 0x2
-	  stfs      f2, 0x2C(r1)
-	  lwz       r3, -0x6960(r13)
-	  stfs      f1, 0x30(r1)
-	  stfs      f0, 0x34(r1)
-	  bl        -0x7ABDC
-	  lwz       r3, -0x6958(r13)
-	  addi      r5, r1, 0x2C
-	  li        r4, 0xE
-	  li        r6, 0x2
-	  bl        -0x796AC
-	  b         .loc_0x300
+lbl_802CCDC8:
+	cmplwi   r0, 6
+	bne      lbl_802CCE34
+	lwz      r0, 0x1e0(r31)
+	addi     r3, r1, 8
+	rlwinm   r0, r0, 0, 0xb, 9
+	stw      r0, 0x1e0(r31)
+	lwz      r12, 0(r4)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f2, 8(r1)
+	addi     r5, r1, 0x2c
+	lfs      f1, 0xc(r1)
+	li       r4, 6
+	lfs      f0, 0x10(r1)
+	li       r6, 2
+	stfs     f2, 0x2c(r1)
+	lwz      r3, cameraMgr__4Game@sda21(r13)
+	stfs     f1, 0x30(r1)
+	stfs     f0, 0x34(r1)
+	bl       "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
+	lwz      r3, rumbleMgr__4Game@sda21(r13)
+	addi     r5, r1, 0x2c
+	li       r4, 0xe
+	li       r6, 2
+	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
+	b        lbl_802CCF88
 
-	.loc_0x1AC:
-	  cmplwi    r0, 0x3E8
-	  bne-      .loc_0x300
-	  mr        r3, r31
-	  bl        0x2970
-	  lfs       f1, 0x200(r31)
-	  lfs       f0, -0x1B4C(r2)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0, 0x2
-	  bne-      .loc_0x1F4
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x300
+lbl_802CCE34:
+	cmplwi   r0, 0x3e8
+	bne      lbl_802CCF88
+	mr       r3, r31
+	bl       setAttackPosition__Q34Game10SnakeWhole3ObjFv
+	lfs      f1, 0x200(r31)
+	lfs      f0, lbl_8051C814@sda21(r2)
+	fcmpo    cr0, f1, f0
+	cror     2, 0, 2
+	bne      lbl_802CCE7C
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 0
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802CCF88
 
-	.loc_0x1F4:
-	  mr        r3, r31
-	  li        r4, 0
-	  bl        -0x1B882C
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x22C
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x4
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x300
+lbl_802CCE7C:
+	mr       r3, r31
+	li       r4, 0
+	bl       isStartFlick__Q24Game9EnemyFuncFPQ24Game9EnemyBaseb
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802CCEB4
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 4
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802CCF88
 
-	.loc_0x22C:
-	  mr        r3, r31
-	  li        r4, 0x5
-	  bl        0x2B00
-	  cmplwi    r3, 0
-	  bne-      .loc_0x254
-	  mr        r3, r31
-	  li        r4, 0x5
-	  bl        0x30E0
-	  cmplwi    r3, 0
-	  beq-      .loc_0x2AC
+lbl_802CCEB4:
+	mr       r3, r31
+	li       r4, 5
+	bl       getAttackPiki__Q34Game10SnakeWhole3ObjFi
+	cmplwi   r3, 0
+	bne      lbl_802CCEDC
+	mr       r3, r31
+	li       r4, 5
+	bl       getAttackNavi__Q34Game10SnakeWhole3ObjFi
+	cmplwi   r3, 0
+	beq      lbl_802CCF34
 
-	.loc_0x254:
-	  mr        r3, r31
-	  bl        0x37BC
-	  cmpwi     r3, 0
-	  beq-      .loc_0x288
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0xA
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x300
+lbl_802CCEDC:
+	mr       r3, r31
+	bl       getStickHeadPikmin__Q34Game10SnakeWhole3ObjFv
+	cmpwi    r3, 0
+	beq      lbl_802CCF10
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 0xa
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802CCF88
 
-	.loc_0x288:
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x8
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x300
+lbl_802CCF10:
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 8
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802CCF88
 
-	.loc_0x2AC:
-	  mr        r3, r31
-	  bl        0x3640
-	  cmplwi    r3, 0
-	  beq-      .loc_0x2E0
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x6
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x300
+lbl_802CCF34:
+	mr       r3, r31
+	bl       getSearchedTarget__Q34Game10SnakeWhole3ObjFv
+	cmplwi   r3, 0
+	beq      lbl_802CCF68
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 6
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802CCF88
 
-	.loc_0x2E0:
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x5
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_802CCF68:
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 5
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x300:
-	  lwz       r0, 0x64(r1)
-	  lwz       r31, 0x5C(r1)
-	  lwz       r30, 0x58(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x60
-	  blr
+lbl_802CCF88:
+	lwz      r0, 0x64(r1)
+	lwz      r31, 0x5c(r1)
+	lwz      r30, 0x58(r1)
+	mtlr     r0
+	addi     r1, r1, 0x60
+	blr
 	*/
 }
 
@@ -1709,35 +1969,34 @@ void SnakeWhole::StateAppear2::exec(Game::EnemyBase*)
 void SnakeWhole::StateAppear2::cleanup(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  mr        r3, r31
-	  lwz       r0, 0x1E0(r4)
-	  rlwinm    r0,r0,0,11,9
-	  stw       r0, 0x1E0(r4)
-	  lwz       r0, 0x1E0(r4)
-	  ori       r0, r0, 0x40
-	  stw       r0, 0x1E0(r4)
-	  bl        -0x1C583C
-	  lwz       r0, 0x280(r31)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x54
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x250(r12)
-	  mtctr     r12
-	  bctrl
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	mr       r3, r31
+	lwz      r0, 0x1e0(r4)
+	rlwinm   r0, r0, 0, 0xb, 9
+	stw      r0, 0x1e0(r4)
+	lwz      r0, 0x1e0(r4)
+	ori      r0, r0, 0x40
+	stw      r0, 0x1e0(r4)
+	bl       hardConstraintOff__Q24Game9EnemyBaseFv
+	lwz      r0, 0x280(r31)
+	cmplwi   r0, 0
+	beq      lbl_802CCFF4
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r12, 0x250(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x54:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_802CCFF4:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1749,32 +2008,31 @@ void SnakeWhole::StateAppear2::cleanup(Game::EnemyBase*)
 void SnakeWhole::StateDisappear::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  mr        r3, r31
-	  bl        -0x1C58A4
-	  lwz       r0, 0x1E0(r31)
-	  mr        r3, r31
-	  lfs       f0, -0x1B4C(r2)
-	  rlwinm    r0,r0,0,26,24
-	  stw       r0, 0x1E0(r31)
-	  stfs      f0, 0x1D4(r31)
-	  stfs      f0, 0x1D8(r31)
-	  stfs      f0, 0x1DC(r31)
-	  bl        -0x1CB6C8
-	  mr        r3, r31
-	  li        r4, 0x3
-	  li        r5, 0
-	  bl        -0x1C8050
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	mr       r3, r31
+	bl       hardConstraintOn__Q24Game9EnemyBaseFv
+	lwz      r0, 0x1e0(r31)
+	mr       r3, r31
+	lfs      f0, lbl_8051C814@sda21(r2)
+	rlwinm   r0, r0, 0, 0x1a, 0x18
+	stw      r0, 0x1e0(r31)
+	stfs     f0, 0x1d4(r31)
+	stfs     f0, 0x1d8(r31)
+	stfs     f0, 0x1dc(r31)
+	bl       setEmotionCaution__Q24Game9EnemyBaseFv
+	mr       r3, r31
+	li       r4, 3
+	li       r5, 0
+	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1786,150 +2044,152 @@ void SnakeWhole::StateDisappear::init(Game::EnemyBase*, Game::StateArg*)
 void SnakeWhole::StateDisappear::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x60(r1)
-	  mflr      r0
-	  stw       r0, 0x64(r1)
-	  stw       r31, 0x5C(r1)
-	  mr        r31, r4
-	  lwz       r5, 0x188(r4)
-	  lbz       r0, 0x24(r5)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x200
-	  lwz       r0, 0x1C(r5)
-	  cmplwi    r0, 0x2
-	  bne-      .loc_0xA8
-	  lwz       r5, 0xC0(r31)
-	  mr        r3, r31
-	  lfs       f4, -0x1B28(r2)
-	  li        r4, 0
-	  lfs       f1, 0x514(r5)
-	  lfs       f2, 0x4C4(r5)
-	  lfs       f3, 0x4EC(r5)
-	  bl        -0x1B9928
-	  lwz       r5, 0xC0(r31)
-	  mr        r3, r31
-	  lfs       f4, -0x1B28(r2)
-	  li        r4, 0
-	  lfs       f1, 0x514(r5)
-	  lfs       f2, 0x4C4(r5)
-	  lfs       f3, 0x4EC(r5)
-	  bl        -0x1B9C04
-	  lwz       r5, 0xC0(r31)
-	  mr        r3, r31
-	  lfs       f4, -0x1B28(r2)
-	  li        r4, 0
-	  lfs       f1, 0x53C(r5)
-	  lfs       f2, 0x4C4(r5)
-	  lfs       f3, 0x4EC(r5)
-	  bl        -0x1B9FDC
-	  lwz       r0, 0x1E0(r31)
-	  mr        r3, r31
-	  oris      r0, r0, 0x20
-	  stw       r0, 0x1E0(r31)
-	  bl        0x3C64
-	  b         .loc_0x200
+	stwu     r1, -0x60(r1)
+	mflr     r0
+	stw      r0, 0x64(r1)
+	stw      r31, 0x5c(r1)
+	mr       r31, r4
+	lwz      r5, 0x188(r4)
+	lbz      r0, 0x24(r5)
+	cmplwi   r0, 0
+	beq      lbl_802CD26C
+	lwz      r0, 0x1c(r5)
+	cmplwi   r0, 2
+	bne      lbl_802CD114
+	lwz      r5, 0xc0(r31)
+	mr       r3, r31
+	lfs      f4, lbl_8051C838@sda21(r2)
+	li       r4, 0
+	lfs      f1, 0x514(r5)
+	lfs      f2, 0x4c4(r5)
+	lfs      f3, 0x4ec(r5)
+	bl
+"flickNearbyNavi__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Navi>"
+	lwz      r5, 0xc0(r31)
+	mr       r3, r31
+	lfs      f4, lbl_8051C838@sda21(r2)
+	li       r4, 0
+	lfs      f1, 0x514(r5)
+	lfs      f2, 0x4c4(r5)
+	lfs      f3, 0x4ec(r5)
+	bl
+"flickNearbyPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
+	lwz      r5, 0xc0(r31)
+	mr       r3, r31
+	lfs      f4, lbl_8051C838@sda21(r2)
+	li       r4, 0
+	lfs      f1, 0x53c(r5)
+	lfs      f2, 0x4c4(r5)
+	lfs      f3, 0x4ec(r5)
+	bl
+"flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
+	lwz      r0, 0x1e0(r31)
+	mr       r3, r31
+	oris     r0, r0, 0x20
+	stw      r0, 0x1e0(r31)
+	bl       startBossFlickBGM__Q34Game10SnakeWhole3ObjFv
+	b        lbl_802CD26C
 
-	.loc_0xA8:
-	  cmplwi    r0, 0x3
-	  bne-      .loc_0xC0
-	  lwz       r0, 0x1E0(r31)
-	  rlwinm    r0,r0,0,11,9
-	  stw       r0, 0x1E0(r31)
-	  b         .loc_0x200
+lbl_802CD114:
+	cmplwi   r0, 3
+	bne      lbl_802CD12C
+	lwz      r0, 0x1e0(r31)
+	rlwinm   r0, r0, 0, 0xb, 9
+	stw      r0, 0x1e0(r31)
+	b        lbl_802CD26C
 
-	.loc_0xC0:
-	  cmplwi    r0, 0x4
-	  bne-      .loc_0x1B0
-	  lwz       r12, 0x0(r4)
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lis       r3, 0x804B
-	  li        r6, 0
-	  subi      r0, r3, 0x5808
-	  lfs       f2, 0x8(r1)
-	  lis       r3, 0x804E
-	  stw       r0, 0x30(r1)
-	  addi      r0, r3, 0x6A3C
-	  lfs       f1, 0xC(r1)
-	  lis       r3, 0x804E
-	  stw       r0, 0x30(r1)
-	  addi      r0, r3, 0x6E30
-	  lfs       f0, 0x10(r1)
-	  lis       r4, 0x804B
-	  lis       r3, 0x804D
-	  subi      r11, r4, 0x5814
-	  li        r10, 0xA0
-	  li        r9, 0xA1
-	  li        r8, 0xA2
-	  li        r7, 0xA3
-	  li        r5, 0x1E
-	  stw       r0, 0x30(r1)
-	  subi      r0, r3, 0x4CBC
-	  addi      r3, r1, 0x30
-	  addi      r4, r1, 0x14
-	  stfs      f2, 0x24(r1)
-	  stfs      f1, 0x28(r1)
-	  stfs      f0, 0x2C(r1)
-	  stw       r11, 0x14(r1)
-	  stfs      f2, 0x18(r1)
-	  stfs      f1, 0x1C(r1)
-	  stfs      f0, 0x20(r1)
-	  sth       r10, 0x34(r1)
-	  sth       r9, 0x36(r1)
-	  sth       r8, 0x38(r1)
-	  sth       r7, 0x3A(r1)
-	  stw       r6, 0x3C(r1)
-	  stw       r6, 0x40(r1)
-	  stw       r6, 0x44(r1)
-	  stw       r6, 0x48(r1)
-	  stw       r5, 0x4C(r1)
-	  stw       r0, 0x30(r1)
-	  bl        0xE68BC
-	  lwz       r3, -0x6960(r13)
-	  addi      r5, r1, 0x24
-	  li        r4, 0x6
-	  li        r6, 0x2
-	  bl        -0x7AFC4
-	  lwz       r3, -0x6958(r13)
-	  addi      r5, r1, 0x24
-	  li        r4, 0xF
-	  li        r6, 0x2
-	  bl        -0x79A94
-	  b         .loc_0x200
+lbl_802CD12C:
+	cmplwi   r0, 4
+	bne      lbl_802CD21C
+	lwz      r12, 0(r4)
+	addi     r3, r1, 8
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lis      r3, __vt__Q23efx5TBase@ha
+	li       r6, 0
+	addi     r0, r3, __vt__Q23efx5TBase@l
+	lfs      f2, 8(r1)
+	lis      r3, __vt__Q23efx8TSimple4@ha
+	stw      r0, 0x30(r1)
+	addi     r0, r3, __vt__Q23efx8TSimple4@l
+	lfs      f1, 0xc(r1)
+	lis      r3, __vt__Q23efx14THebiAphd_base@ha
+	stw      r0, 0x30(r1)
+	addi     r0, r3, __vt__Q23efx14THebiAphd_base@l
+	lfs      f0, 0x10(r1)
+	lis      r4, __vt__Q23efx3Arg@ha
+	lis      r3, __vt__Q23efx14THebiAphd_dive@ha
+	addi     r11, r4, __vt__Q23efx3Arg@l
+	li       r10, 0xa0
+	li       r9, 0xa1
+	li       r8, 0xa2
+	li       r7, 0xa3
+	li       r5, 0x1e
+	stw      r0, 0x30(r1)
+	addi     r0, r3, __vt__Q23efx14THebiAphd_dive@l
+	addi     r3, r1, 0x30
+	addi     r4, r1, 0x14
+	stfs     f2, 0x24(r1)
+	stfs     f1, 0x28(r1)
+	stfs     f0, 0x2c(r1)
+	stw      r11, 0x14(r1)
+	stfs     f2, 0x18(r1)
+	stfs     f1, 0x1c(r1)
+	stfs     f0, 0x20(r1)
+	sth      r10, 0x34(r1)
+	sth      r9, 0x36(r1)
+	sth      r8, 0x38(r1)
+	sth      r7, 0x3a(r1)
+	stw      r6, 0x3c(r1)
+	stw      r6, 0x40(r1)
+	stw      r6, 0x44(r1)
+	stw      r6, 0x48(r1)
+	stw      r5, 0x4c(r1)
+	stw      r0, 0x30(r1)
+	bl       create__Q23efx14THebiAphd_baseFPQ23efx3Arg
+	lwz      r3, cameraMgr__4Game@sda21(r13)
+	addi     r5, r1, 0x24
+	li       r4, 6
+	li       r6, 2
+	bl       "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
+	lwz      r3, rumbleMgr__4Game@sda21(r13)
+	addi     r5, r1, 0x24
+	li       r4, 0xf
+	li       r6, 2
+	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
+	b        lbl_802CD26C
 
-	.loc_0x1B0:
-	  cmplwi    r0, 0x5
-	  bne-      .loc_0x1E0
-	  li        r0, 0x1
-	  lfs       f0, -0x1B4C(r2)
-	  stb       r0, 0x2C0(r31)
-	  mr        r3, r31
-	  lwz       r0, 0x1E0(r31)
-	  oris      r0, r0, 0x40
-	  stw       r0, 0x1E0(r31)
-	  stfs      f0, 0x20C(r31)
-	  bl        0x39E8
-	  b         .loc_0x200
+lbl_802CD21C:
+	cmplwi   r0, 5
+	bne      lbl_802CD24C
+	li       r0, 1
+	lfs      f0, lbl_8051C814@sda21(r2)
+	stb      r0, 0x2c0(r31)
+	mr       r3, r31
+	lwz      r0, 0x1e0(r31)
+	oris     r0, r0, 0x40
+	stw      r0, 0x1e0(r31)
+	stfs     f0, 0x20c(r31)
+	bl       finishJointShadow__Q34Game10SnakeWhole3ObjFv
+	b        lbl_802CD26C
 
-	.loc_0x1E0:
-	  cmplwi    r0, 0x3E8
-	  bne-      .loc_0x200
-	  lwz       r12, 0x0(r3)
-	  li        r5, 0x1
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_802CD24C:
+	cmplwi   r0, 0x3e8
+	bne      lbl_802CD26C
+	lwz      r12, 0(r3)
+	li       r5, 1
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x200:
-	  lwz       r0, 0x64(r1)
-	  lwz       r31, 0x5C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x60
-	  blr
+lbl_802CD26C:
+	lwz      r0, 0x64(r1)
+	lwz      r31, 0x5c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x60
+	blr
 	*/
 }
 
@@ -1941,37 +2201,37 @@ void SnakeWhole::StateDisappear::exec(Game::EnemyBase*)
 void SnakeWhole::StateDisappear::cleanup(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lfs       f1, -0x1B3C(r2)
-	  stw       r0, 0x14(r1)
-	  lfs       f2, -0x1B24(r2)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  lfs       f3, -0x1B4C(r2)
-	  mr        r3, r31
-	  lfs       f4, -0x1B28(r2)
-	  li        r4, 0
-	  bl        -0x1BA190
-	  li        r0, 0
-	  mr        r3, r31
-	  stb       r0, 0x2C0(r31)
-	  lwz       r0, 0x1E0(r31)
-	  rlwinm    r0,r0,0,10,8
-	  stw       r0, 0x1E0(r31)
-	  lwz       r0, 0x1E0(r31)
-	  rlwinm    r0,r0,0,11,9
-	  stw       r0, 0x1E0(r31)
-	  lwz       r0, 0x1E0(r31)
-	  ori       r0, r0, 0x40
-	  stw       r0, 0x1E0(r31)
-	  bl        -0x1C5B4C
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lfs      f1, lbl_8051C824@sda21(r2)
+	stw      r0, 0x14(r1)
+	lfs      f2, lbl_8051C83C@sda21(r2)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	lfs      f3, lbl_8051C814@sda21(r2)
+	mr       r3, r31
+	lfs      f4, lbl_8051C838@sda21(r2)
+	li       r4, 0
+	bl
+	"flickStickPikmin__Q24Game9EnemyFuncFPQ24Game8CreatureffffP23Condition<Q24Game4Piki>"
+	li       r0, 0
+	mr       r3, r31
+	stb      r0, 0x2c0(r31)
+	lwz      r0, 0x1e0(r31)
+	rlwinm   r0, r0, 0, 0xa, 8
+	stw      r0, 0x1e0(r31)
+	lwz      r0, 0x1e0(r31)
+	rlwinm   r0, r0, 0, 0xb, 9
+	stw      r0, 0x1e0(r31)
+	lwz      r0, 0x1e0(r31)
+	ori      r0, r0, 0x40
+	stw      r0, 0x1e0(r31)
+	bl       hardConstraintOff__Q24Game9EnemyBaseFv
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1983,33 +2243,32 @@ void SnakeWhole::StateDisappear::cleanup(Game::EnemyBase*)
 void SnakeWhole::StateWait::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lfs       f0, -0x1B4C(r2)
-	  stw       r0, 0x14(r1)
-	  li        r0, -0x1
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  mr        r3, r31
-	  stfs      f0, 0x2C4(r4)
-	  stw       r0, 0x2CC(r4)
-	  bl        0x2490
-	  li        r0, 0
-	  lfs       f0, -0x1B4C(r2)
-	  stw       r0, 0x230(r31)
-	  mr        r3, r31
-	  li        r4, 0x9
-	  li        r5, 0
-	  stfs      f0, 0x1D4(r31)
-	  stfs      f0, 0x1D8(r31)
-	  stfs      f0, 0x1DC(r31)
-	  bl        -0x1C8344
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lfs      f0, lbl_8051C814@sda21(r2)
+	stw      r0, 0x14(r1)
+	li       r0, -1
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	mr       r3, r31
+	stfs     f0, 0x2c4(r4)
+	stw      r0, 0x2cc(r4)
+	bl       setAttackPosition__Q34Game10SnakeWhole3ObjFv
+	li       r0, 0
+	lfs      f0, lbl_8051C814@sda21(r2)
+	stw      r0, 0x230(r31)
+	mr       r3, r31
+	li       r4, 9
+	li       r5, 0
+	stfs     f0, 0x1d4(r31)
+	stfs     f0, 0x1d8(r31)
+	stfs     f0, 0x1dc(r31)
+	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2021,129 +2280,128 @@ void SnakeWhole::StateWait::init(Game::EnemyBase*, Game::StateArg*)
 void SnakeWhole::StateWait::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lfs       f0, -0x1B4C(r2)
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lfs       f1, 0x200(r4)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0, 0x2
-	  bne-      .loc_0x44
-	  li        r0, 0
-	  mr        r3, r31
-	  stw       r0, 0x2CC(r31)
-	  bl        -0x1C80FC
-	  b         .loc_0x10C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lfs      f0, lbl_8051C814@sda21(r2)
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lfs      f1, 0x200(r4)
+	fcmpo    cr0, f1, f0
+	cror     2, 0, 2
+	bne      lbl_802CD3A4
+	li       r0, 0
+	mr       r3, r31
+	stw      r0, 0x2cc(r31)
+	bl       finishMotion__Q24Game9EnemyBaseFv
+	b        lbl_802CD46C
 
-	.loc_0x44:
-	  mr        r3, r31
-	  li        r4, 0
-	  bl        -0x1B8D54
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x6C
-	  lwz       r3, 0xC0(r31)
-	  lfs       f1, 0x2C4(r31)
-	  lfs       f0, 0x844(r3)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x80
+lbl_802CD3A4:
+	mr       r3, r31
+	li       r4, 0
+	bl       isStartFlick__Q24Game9EnemyFuncFPQ24Game9EnemyBaseb
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_802CD3CC
+	lwz      r3, 0xc0(r31)
+	lfs      f1, 0x2c4(r31)
+	lfs      f0, 0x844(r3)
+	fcmpo    cr0, f1, f0
+	ble      lbl_802CD3E0
 
-	.loc_0x6C:
-	  li        r0, 0x4
-	  mr        r3, r31
-	  stw       r0, 0x2CC(r31)
-	  bl        -0x1C8138
-	  b         .loc_0x10C
+lbl_802CD3CC:
+	li       r0, 4
+	mr       r3, r31
+	stw      r0, 0x2cc(r31)
+	bl       finishMotion__Q24Game9EnemyBaseFv
+	b        lbl_802CD46C
 
-	.loc_0x80:
-	  mr        r3, r31
-	  bl        0x1A80
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xA4
-	  li        r0, 0x7
-	  mr        r3, r31
-	  stw       r0, 0x2CC(r31)
-	  bl        -0x1C815C
-	  b         .loc_0x10C
+lbl_802CD3E0:
+	mr       r3, r31
+	bl       isOutTerritory__Q34Game10SnakeWhole3ObjFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802CD404
+	li       r0, 7
+	mr       r3, r31
+	stw      r0, 0x2cc(r31)
+	bl       finishMotion__Q24Game9EnemyBaseFv
+	b        lbl_802CD46C
 
-	.loc_0xA4:
-	  mr        r3, r31
-	  li        r4, 0x5
-	  bl        0x25B0
-	  cmplwi    r3, 0
-	  bne-      .loc_0xCC
-	  mr        r3, r31
-	  li        r4, 0x5
-	  bl        0x2B90
-	  cmplwi    r3, 0
-	  beq-      .loc_0xE0
+lbl_802CD404:
+	mr       r3, r31
+	li       r4, 5
+	bl       getAttackPiki__Q34Game10SnakeWhole3ObjFi
+	cmplwi   r3, 0
+	bne      lbl_802CD42C
+	mr       r3, r31
+	li       r4, 5
+	bl       getAttackNavi__Q34Game10SnakeWhole3ObjFi
+	cmplwi   r3, 0
+	beq      lbl_802CD440
 
-	.loc_0xCC:
-	  li        r0, 0x8
-	  mr        r3, r31
-	  stw       r0, 0x2CC(r31)
-	  bl        -0x1C8198
-	  b         .loc_0x10C
+lbl_802CD42C:
+	li       r0, 8
+	mr       r3, r31
+	stw      r0, 0x2cc(r31)
+	bl       finishMotion__Q24Game9EnemyBaseFv
+	b        lbl_802CD46C
 
-	.loc_0xE0:
-	  mr        r3, r31
-	  bl        0x3134
-	  cmplwi    r3, 0
-	  beq-      .loc_0x104
-	  li        r0, 0x6
-	  mr        r3, r31
-	  stw       r0, 0x2CC(r31)
-	  bl        -0x1C81BC
-	  b         .loc_0x10C
+lbl_802CD440:
+	mr       r3, r31
+	bl       getSearchedTarget__Q34Game10SnakeWhole3ObjFv
+	cmplwi   r3, 0
+	beq      lbl_802CD464
+	li       r0, 6
+	mr       r3, r31
+	stw      r0, 0x2cc(r31)
+	bl       finishMotion__Q24Game9EnemyBaseFv
+	b        lbl_802CD46C
 
-	.loc_0x104:
-	  li        r0, 0x5
-	  stw       r0, 0x2CC(r31)
+lbl_802CD464:
+	li       r0, 5
+	stw      r0, 0x2cc(r31)
 
-	.loc_0x10C:
-	  lwz       r3, -0x6514(r13)
-	  lfs       f1, 0x2C4(r31)
-	  lfs       f0, 0x54(r3)
-	  fadds     f0, f1, f0
-	  stfs      f0, 0x2C4(r31)
-	  lwz       r3, 0x188(r31)
-	  lbz       r0, 0x24(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x180
-	  lwz       r0, 0x1C(r3)
-	  cmplwi    r0, 0x3E8
-	  bne-      .loc_0x180
-	  lwz       r0, 0x2CC(r31)
-	  cmpwi     r0, 0x8
-	  bne-      .loc_0x160
-	  mr        r3, r31
-	  bl        0x31F0
-	  cmpwi     r3, 0
-	  beq-      .loc_0x160
-	  li        r0, 0xA
-	  stw       r0, 0x2CC(r31)
+lbl_802CD46C:
+	lwz      r3, sys@sda21(r13)
+	lfs      f1, 0x2c4(r31)
+	lfs      f0, 0x54(r3)
+	fadds    f0, f1, f0
+	stfs     f0, 0x2c4(r31)
+	lwz      r3, 0x188(r31)
+	lbz      r0, 0x24(r3)
+	cmplwi   r0, 0
+	beq      lbl_802CD4E0
+	lwz      r0, 0x1c(r3)
+	cmplwi   r0, 0x3e8
+	bne      lbl_802CD4E0
+	lwz      r0, 0x2cc(r31)
+	cmpwi    r0, 8
+	bne      lbl_802CD4C0
+	mr       r3, r31
+	bl       getStickHeadPikmin__Q34Game10SnakeWhole3ObjFv
+	cmpwi    r3, 0
+	beq      lbl_802CD4C0
+	li       r0, 0xa
+	stw      r0, 0x2cc(r31)
 
-	.loc_0x160:
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r6, 0
-	  lwz       r5, 0x2CC(r31)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_802CD4C0:
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r6, 0
+	lwz      r5, 0x2cc(r31)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x180:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_802CD4E0:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2162,25 +2420,24 @@ void SnakeWhole::StateWait::cleanup(Game::EnemyBase*) { }
 void SnakeWhole::StateWalk::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lfs       f0, -0x1B4C(r2)
-	  mr        r3, r4
-	  stw       r0, 0x14(r1)
-	  li        r0, 0
-	  li        r5, 0
-	  stb       r0, 0x2C1(r4)
-	  li        r4, 0xC
-	  stfs      f0, 0x2C8(r3)
-	  stfs      f0, 0x1D4(r3)
-	  stfs      f0, 0x1D8(r3)
-	  stfs      f0, 0x1DC(r3)
-	  bl        -0x1C852C
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lfs      f0, lbl_8051C814@sda21(r2)
+	mr       r3, r4
+	stw      r0, 0x14(r1)
+	li       r0, 0
+	li       r5, 0
+	stb      r0, 0x2c1(r4)
+	li       r4, 0xc
+	stfs     f0, 0x2c8(r3)
+	stfs     f0, 0x1d4(r3)
+	stfs     f0, 0x1d8(r3)
+	stfs     f0, 0x1dc(r3)
+	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2192,195 +2449,194 @@ void SnakeWhole::StateWalk::init(Game::EnemyBase*, Game::StateArg*)
 void SnakeWhole::StateWalk::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  stw       r0, 0x44(r1)
-	  stw       r31, 0x3C(r1)
-	  mr        r31, r4
-	  stw       r30, 0x38(r1)
-	  mr        r30, r3
-	  mr        r3, r31
-	  bl        0x224C
-	  lfs       f1, 0x200(r31)
-	  lfs       f0, -0x1B4C(r2)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0, 0x2
-	  bne-      .loc_0x4C
-	  li        r0, 0
-	  mr        r3, r31
-	  stw       r0, 0x2CC(r31)
-	  bl        -0x1C82E8
-	  b         .loc_0xD0
+	stwu     r1, -0x40(r1)
+	mflr     r0
+	stw      r0, 0x44(r1)
+	stw      r31, 0x3c(r1)
+	mr       r31, r4
+	stw      r30, 0x38(r1)
+	mr       r30, r3
+	mr       r3, r31
+	bl       setAttackPosition__Q34Game10SnakeWhole3ObjFv
+	lfs      f1, 0x200(r31)
+	lfs      f0, lbl_8051C814@sda21(r2)
+	fcmpo    cr0, f1, f0
+	cror     2, 0, 2
+	bne      lbl_802CD590
+	li       r0, 0
+	mr       r3, r31
+	stw      r0, 0x2cc(r31)
+	bl       finishMotion__Q24Game9EnemyBaseFv
+	b        lbl_802CD614
 
-	.loc_0x4C:
-	  mr        r3, r31
-	  li        r4, 0
-	  bl        -0x1B8F40
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x74
-	  li        r0, 0x4
-	  mr        r3, r31
-	  stw       r0, 0x2CC(r31)
-	  bl        -0x1C8310
-	  b         .loc_0xD0
+lbl_802CD590:
+	mr       r3, r31
+	li       r4, 0
+	bl       isStartFlick__Q24Game9EnemyFuncFPQ24Game9EnemyBaseb
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802CD5B8
+	li       r0, 4
+	mr       r3, r31
+	stw      r0, 0x2cc(r31)
+	bl       finishMotion__Q24Game9EnemyBaseFv
+	b        lbl_802CD614
 
-	.loc_0x74:
-	  mr        r3, r31
-	  bl        0x18A8
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x98
-	  li        r0, 0x7
-	  mr        r3, r31
-	  stw       r0, 0x2CC(r31)
-	  bl        -0x1C8334
-	  b         .loc_0xD0
+lbl_802CD5B8:
+	mr       r3, r31
+	bl       isOutTerritory__Q34Game10SnakeWhole3ObjFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802CD5DC
+	li       r0, 7
+	mr       r3, r31
+	stw      r0, 0x2cc(r31)
+	bl       finishMotion__Q24Game9EnemyBaseFv
+	b        lbl_802CD614
 
-	.loc_0x98:
-	  mr        r3, r31
-	  li        r4, 0x5
-	  bl        0x23D8
-	  cmplwi    r3, 0
-	  bne-      .loc_0xC0
-	  mr        r3, r31
-	  li        r4, 0x5
-	  bl        0x29B8
-	  cmplwi    r3, 0
-	  beq-      .loc_0xD0
+lbl_802CD5DC:
+	mr       r3, r31
+	li       r4, 5
+	bl       getAttackPiki__Q34Game10SnakeWhole3ObjFi
+	cmplwi   r3, 0
+	bne      lbl_802CD604
+	mr       r3, r31
+	li       r4, 5
+	bl       getAttackNavi__Q34Game10SnakeWhole3ObjFi
+	cmplwi   r3, 0
+	beq      lbl_802CD614
 
-	.loc_0xC0:
-	  li        r0, 0x8
-	  mr        r3, r31
-	  stw       r0, 0x2CC(r31)
-	  bl        -0x1C8370
+lbl_802CD604:
+	li       r0, 8
+	mr       r3, r31
+	stw      r0, 0x2cc(r31)
+	bl       finishMotion__Q24Game9EnemyBaseFv
 
-	.loc_0xD0:
-	  lbz       r0, 0x2C1(r31)
-	  cmplwi    r0, 0
-	  beq-      .loc_0xE8
-	  mr        r3, r31
-	  bl        0x1B64
-	  b         .loc_0xF8
+lbl_802CD614:
+	lbz      r0, 0x2c1(r31)
+	cmplwi   r0, 0
+	beq      lbl_802CD62C
+	mr       r3, r31
+	bl       updateFace__Q34Game10SnakeWhole3ObjFv
+	b        lbl_802CD63C
 
-	.loc_0xE8:
-	  lfs       f0, -0x1B4C(r2)
-	  stfs      f0, 0x1D4(r31)
-	  stfs      f0, 0x1D8(r31)
-	  stfs      f0, 0x1DC(r31)
+lbl_802CD62C:
+	lfs      f0, lbl_8051C814@sda21(r2)
+	stfs     f0, 0x1d4(r31)
+	stfs     f0, 0x1d8(r31)
+	stfs     f0, 0x1dc(r31)
 
-	.loc_0xF8:
-	  lwz       r3, 0x188(r31)
-	  lbz       r0, 0x24(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x270
-	  lwz       r0, 0x1C(r3)
-	  cmplwi    r0, 0x2
-	  bne-      .loc_0x1A0
-	  lwz       r4, 0x1E0(r31)
-	  li        r0, 0x1
-	  lfs       f0, -0x1B4C(r2)
-	  mr        r3, r31
-	  oris      r4, r4, 0x20
-	  stw       r4, 0x1E0(r31)
-	  stb       r0, 0x2C1(r31)
-	  stfs      f0, 0x2C8(r31)
-	  bl        0x2F00
-	  cmplwi    r3, 0
-	  beq-      .loc_0x180
-	  mr        r4, r3
-	  addi      r3, r1, 0x14
-	  lwz       r12, 0x0(r4)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f2, 0x14(r1)
-	  mr        r3, r31
-	  lfs       f1, 0x18(r1)
-	  addi      r4, r1, 0x2C
-	  lfs       f0, 0x1C(r1)
-	  stfs      f2, 0x2C(r1)
-	  stfs      f1, 0x30(r1)
-	  stfs      f0, 0x34(r1)
-	  bl        0x1820
-	  b         .loc_0x190
+lbl_802CD63C:
+	lwz      r3, 0x188(r31)
+	lbz      r0, 0x24(r3)
+	cmplwi   r0, 0
+	beq      lbl_802CD7B4
+	lwz      r0, 0x1c(r3)
+	cmplwi   r0, 2
+	bne      lbl_802CD6E4
+	lwz      r4, 0x1e0(r31)
+	li       r0, 1
+	lfs      f0, lbl_8051C814@sda21(r2)
+	mr       r3, r31
+	oris     r4, r4, 0x20
+	stw      r4, 0x1e0(r31)
+	stb      r0, 0x2c1(r31)
+	stfs     f0, 0x2c8(r31)
+	bl       getSearchedTarget__Q34Game10SnakeWhole3ObjFv
+	cmplwi   r3, 0
+	beq      lbl_802CD6C4
+	mr       r4, r3
+	addi     r3, r1, 0x14
+	lwz      r12, 0(r4)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f2, 0x14(r1)
+	mr       r3, r31
+	lfs      f1, 0x18(r1)
+	addi     r4, r1, 0x2c
+	lfs      f0, 0x1c(r1)
+	stfs     f2, 0x2c(r1)
+	stfs     f1, 0x30(r1)
+	stfs     f0, 0x34(r1)
+	bl       "setJumpMove__Q34Game10SnakeWhole3ObjFR10Vector3<f>"
+	b        lbl_802CD6D4
 
-	.loc_0x180:
-	  li        r0, 0x5
-	  mr        r3, r31
-	  stw       r0, 0x2CC(r31)
-	  bl        -0x1C8430
+lbl_802CD6C4:
+	li       r0, 5
+	mr       r3, r31
+	stw      r0, 0x2cc(r31)
+	bl       finishMotion__Q24Game9EnemyBaseFv
 
-	.loc_0x190:
-	  lfs       f1, -0x1B44(r2)
-	  mr        r3, r31
-	  bl        0x3D70
-	  b         .loc_0x270
+lbl_802CD6D4:
+	lfs      f1, lbl_8051C81C@sda21(r2)
+	mr       r3, r31
+	bl       createWalkSmokeEffect__Q34Game10SnakeWhole3ObjFf
+	b        lbl_802CD7B4
 
-	.loc_0x1A0:
-	  cmplwi    r0, 0x3
-	  bne-      .loc_0x224
-	  lwz       r4, 0x1E0(r31)
-	  li        r0, 0
-	  lfs       f1, -0x1B44(r2)
-	  mr        r3, r31
-	  rlwinm    r4,r4,0,11,9
-	  stw       r4, 0x1E0(r31)
-	  stb       r0, 0x2C1(r31)
-	  bl        0x3D44
-	  mr        r4, r31
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f2, 0x8(r1)
-	  addi      r5, r1, 0x20
-	  lfs       f1, 0xC(r1)
-	  li        r4, 0x6
-	  lfs       f0, 0x10(r1)
-	  li        r6, 0x2
-	  stfs      f2, 0x20(r1)
-	  lwz       r3, -0x6960(r13)
-	  stfs      f1, 0x24(r1)
-	  stfs      f0, 0x28(r1)
-	  bl        -0x7B510
-	  lwz       r3, -0x6958(r13)
-	  addi      r5, r1, 0x20
-	  li        r4, 0xE
-	  li        r6, 0x2
-	  bl        -0x79FE0
-	  b         .loc_0x270
+lbl_802CD6E4:
+	cmplwi   r0, 3
+	bne      lbl_802CD768
+	lwz      r4, 0x1e0(r31)
+	li       r0, 0
+	lfs      f1, lbl_8051C81C@sda21(r2)
+	mr       r3, r31
+	rlwinm   r4, r4, 0, 0xb, 9
+	stw      r4, 0x1e0(r31)
+	stb      r0, 0x2c1(r31)
+	bl       createWalkSmokeEffect__Q34Game10SnakeWhole3ObjFf
+	mr       r4, r31
+	addi     r3, r1, 8
+	lwz      r12, 0(r31)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f2, 8(r1)
+	addi     r5, r1, 0x20
+	lfs      f1, 0xc(r1)
+	li       r4, 6
+	lfs      f0, 0x10(r1)
+	li       r6, 2
+	stfs     f2, 0x20(r1)
+	lwz      r3, cameraMgr__4Game@sda21(r13)
+	stfs     f1, 0x24(r1)
+	stfs     f0, 0x28(r1)
+	bl       "startVibration__Q24Game9CameraMgrFiR10Vector3<f>i"
+	lwz      r3, rumbleMgr__4Game@sda21(r13)
+	addi     r5, r1, 0x20
+	li       r4, 0xe
+	li       r6, 2
+	bl       "startRumble__Q24Game9RumbleMgrFiR10Vector3<f>i"
+	b        lbl_802CD7B4
 
-	.loc_0x224:
-	  cmplwi    r0, 0x3E8
-	  bne-      .loc_0x270
-	  lwz       r0, 0x2CC(r31)
-	  cmpwi     r0, 0x8
-	  bne-      .loc_0x250
-	  mr        r3, r31
-	  bl        0x2F1C
-	  cmpwi     r3, 0
-	  beq-      .loc_0x250
-	  li        r0, 0xA
-	  stw       r0, 0x2CC(r31)
+lbl_802CD768:
+	cmplwi   r0, 0x3e8
+	bne      lbl_802CD7B4
+	lwz      r0, 0x2cc(r31)
+	cmpwi    r0, 8
+	bne      lbl_802CD794
+	mr       r3, r31
+	bl       getStickHeadPikmin__Q34Game10SnakeWhole3ObjFv
+	cmpwi    r3, 0
+	beq      lbl_802CD794
+	li       r0, 0xa
+	stw      r0, 0x2cc(r31)
 
-	.loc_0x250:
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r6, 0
-	  lwz       r5, 0x2CC(r31)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_802CD794:
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r6, 0
+	lwz      r5, 0x2cc(r31)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x270:
-	  lwz       r0, 0x44(r1)
-	  lwz       r31, 0x3C(r1)
-	  lwz       r30, 0x38(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
+lbl_802CD7B4:
+	lwz      r0, 0x44(r1)
+	lwz      r31, 0x3c(r1)
+	lwz      r30, 0x38(r1)
+	mtlr     r0
+	addi     r1, r1, 0x40
+	blr
 	*/
 }
 
@@ -2392,11 +2648,10 @@ void SnakeWhole::StateWalk::exec(Game::EnemyBase*)
 void SnakeWhole::StateWalk::cleanup(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  lwz       r0, 0x1E0(r4)
-	  rlwinm    r0,r0,0,11,9
-	  stw       r0, 0x1E0(r4)
-	  blr
+	lwz      r0, 0x1e0(r4)
+	rlwinm   r0, r0, 0, 0xb, 9
+	stw      r0, 0x1e0(r4)
+	blr
 	*/
 }
 
@@ -2408,25 +2663,24 @@ void SnakeWhole::StateWalk::cleanup(Game::EnemyBase*)
 void SnakeWhole::StateHome::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lfs       f0, -0x1B4C(r2)
-	  mr        r3, r4
-	  stw       r0, 0x14(r1)
-	  li        r0, 0
-	  li        r5, 0
-	  stb       r0, 0x2C1(r4)
-	  li        r4, 0xC
-	  stfs      f0, 0x2C8(r3)
-	  stfs      f0, 0x1D4(r3)
-	  stfs      f0, 0x1D8(r3)
-	  stfs      f0, 0x1DC(r3)
-	  bl        -0x1C880C
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lfs      f0, lbl_8051C814@sda21(r2)
+	mr       r3, r4
+	stw      r0, 0x14(r1)
+	li       r0, 0
+	li       r5, 0
+	stb      r0, 0x2c1(r4)
+	li       r4, 0xc
+	stfs     f0, 0x2c8(r3)
+	stfs     f0, 0x1d4(r3)
+	stfs     f0, 0x1d8(r3)
+	stfs     f0, 0x1dc(r3)
+	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2438,128 +2692,127 @@ void SnakeWhole::StateHome::init(Game::EnemyBase*, Game::StateArg*)
 void SnakeWhole::StateHome::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r4
-	  stw       r30, 0x18(r1)
-	  mr        r30, r3
-	  mr        r3, r31
-	  bl        0x1F6C
-	  lfs       f1, 0x200(r31)
-	  lfs       f0, -0x1B4C(r2)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0, 0x2
-	  bne-      .loc_0x4C
-	  li        r0, 0
-	  mr        r3, r31
-	  stw       r0, 0x2CC(r31)
-	  bl        -0x1C85C8
-	  b         .loc_0xA4
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r4
+	stw      r30, 0x18(r1)
+	mr       r30, r3
+	mr       r3, r31
+	bl       setAttackPosition__Q34Game10SnakeWhole3ObjFv
+	lfs      f1, 0x200(r31)
+	lfs      f0, lbl_8051C814@sda21(r2)
+	fcmpo    cr0, f1, f0
+	cror     2, 0, 2
+	bne      lbl_802CD870
+	li       r0, 0
+	mr       r3, r31
+	stw      r0, 0x2cc(r31)
+	bl       finishMotion__Q24Game9EnemyBaseFv
+	b        lbl_802CD8C8
 
-	.loc_0x4C:
-	  mr        r3, r31
-	  li        r4, 0
-	  bl        -0x1B9220
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x74
-	  li        r0, 0x4
-	  mr        r3, r31
-	  stw       r0, 0x2CC(r31)
-	  bl        -0x1C85F0
-	  b         .loc_0xA4
+lbl_802CD870:
+	mr       r3, r31
+	li       r4, 0
+	bl       isStartFlick__Q24Game9EnemyFuncFPQ24Game9EnemyBaseb
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802CD898
+	li       r0, 4
+	mr       r3, r31
+	stw      r0, 0x2cc(r31)
+	bl       finishMotion__Q24Game9EnemyBaseFv
+	b        lbl_802CD8C8
 
-	.loc_0x74:
-	  mr        r3, r31
-	  bl        0x1604
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xA4
-	  lfs       f0, -0x1B4C(r2)
-	  li        r0, 0x5
-	  mr        r3, r31
-	  stfs      f0, 0x1D4(r31)
-	  stfs      f0, 0x1D8(r31)
-	  stfs      f0, 0x1DC(r31)
-	  stw       r0, 0x2CC(r31)
-	  bl        -0x1C8624
+lbl_802CD898:
+	mr       r3, r31
+	bl       isInHomeRange__Q34Game10SnakeWhole3ObjFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802CD8C8
+	lfs      f0, lbl_8051C814@sda21(r2)
+	li       r0, 5
+	mr       r3, r31
+	stfs     f0, 0x1d4(r31)
+	stfs     f0, 0x1d8(r31)
+	stfs     f0, 0x1dc(r31)
+	stw      r0, 0x2cc(r31)
+	bl       finishMotion__Q24Game9EnemyBaseFv
 
-	.loc_0xA4:
-	  lbz       r0, 0x2C1(r31)
-	  cmplwi    r0, 0
-	  beq-      .loc_0xBC
-	  mr        r3, r31
-	  bl        0x18B0
-	  b         .loc_0xCC
+lbl_802CD8C8:
+	lbz      r0, 0x2c1(r31)
+	cmplwi   r0, 0
+	beq      lbl_802CD8E0
+	mr       r3, r31
+	bl       updateFace__Q34Game10SnakeWhole3ObjFv
+	b        lbl_802CD8F0
 
-	.loc_0xBC:
-	  lfs       f0, -0x1B4C(r2)
-	  stfs      f0, 0x1D4(r31)
-	  stfs      f0, 0x1D8(r31)
-	  stfs      f0, 0x1DC(r31)
+lbl_802CD8E0:
+	lfs      f0, lbl_8051C814@sda21(r2)
+	stfs     f0, 0x1d4(r31)
+	stfs     f0, 0x1d8(r31)
+	stfs     f0, 0x1dc(r31)
 
-	.loc_0xCC:
-	  lwz       r3, 0x188(r31)
-	  lbz       r0, 0x24(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x18C
-	  lwz       r0, 0x1C(r3)
-	  cmplwi    r0, 0x2
-	  bne-      .loc_0x138
-	  lwz       r4, 0x1E0(r31)
-	  li        r0, 0x1
-	  lfs       f0, -0x1B4C(r2)
-	  mr        r3, r31
-	  oris      r5, r4, 0x20
-	  addi      r4, r1, 0x8
-	  stw       r5, 0x1E0(r31)
-	  stb       r0, 0x2C1(r31)
-	  stfs      f0, 0x2C8(r31)
-	  lfs       f1, 0x19C(r31)
-	  lfs       f2, 0x1A0(r31)
-	  lfs       f0, 0x198(r31)
-	  stfs      f0, 0x8(r1)
-	  stfs      f1, 0xC(r1)
-	  stfs      f2, 0x10(r1)
-	  bl        0x1594
-	  lfs       f1, -0x1B44(r2)
-	  mr        r3, r31
-	  bl        0x3AF8
-	  b         .loc_0x18C
+lbl_802CD8F0:
+	lwz      r3, 0x188(r31)
+	lbz      r0, 0x24(r3)
+	cmplwi   r0, 0
+	beq      lbl_802CD9B0
+	lwz      r0, 0x1c(r3)
+	cmplwi   r0, 2
+	bne      lbl_802CD95C
+	lwz      r4, 0x1e0(r31)
+	li       r0, 1
+	lfs      f0, lbl_8051C814@sda21(r2)
+	mr       r3, r31
+	oris     r5, r4, 0x20
+	addi     r4, r1, 8
+	stw      r5, 0x1e0(r31)
+	stb      r0, 0x2c1(r31)
+	stfs     f0, 0x2c8(r31)
+	lfs      f1, 0x19c(r31)
+	lfs      f2, 0x1a0(r31)
+	lfs      f0, 0x198(r31)
+	stfs     f0, 8(r1)
+	stfs     f1, 0xc(r1)
+	stfs     f2, 0x10(r1)
+	bl       "setJumpMove__Q34Game10SnakeWhole3ObjFR10Vector3<f>"
+	lfs      f1, lbl_8051C81C@sda21(r2)
+	mr       r3, r31
+	bl       createWalkSmokeEffect__Q34Game10SnakeWhole3ObjFf
+	b        lbl_802CD9B0
 
-	.loc_0x138:
-	  cmplwi    r0, 0x3
-	  bne-      .loc_0x164
-	  lwz       r4, 0x1E0(r31)
-	  li        r0, 0
-	  lfs       f1, -0x1B44(r2)
-	  mr        r3, r31
-	  rlwinm    r4,r4,0,11,9
-	  stw       r4, 0x1E0(r31)
-	  stb       r0, 0x2C1(r31)
-	  bl        0x3ACC
-	  b         .loc_0x18C
+lbl_802CD95C:
+	cmplwi   r0, 3
+	bne      lbl_802CD988
+	lwz      r4, 0x1e0(r31)
+	li       r0, 0
+	lfs      f1, lbl_8051C81C@sda21(r2)
+	mr       r3, r31
+	rlwinm   r4, r4, 0, 0xb, 9
+	stw      r4, 0x1e0(r31)
+	stb      r0, 0x2c1(r31)
+	bl       createWalkSmokeEffect__Q34Game10SnakeWhole3ObjFf
+	b        lbl_802CD9B0
 
-	.loc_0x164:
-	  cmplwi    r0, 0x3E8
-	  bne-      .loc_0x18C
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r6, 0
-	  lwz       r5, 0x2CC(r31)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_802CD988:
+	cmplwi   r0, 0x3e8
+	bne      lbl_802CD9B0
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r6, 0
+	lwz      r5, 0x2cc(r31)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x18C:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_802CD9B0:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -2571,11 +2824,10 @@ void SnakeWhole::StateHome::exec(Game::EnemyBase*)
 void SnakeWhole::StateHome::cleanup(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  lwz       r0, 0x1E0(r4)
-	  rlwinm    r0,r0,0,11,9
-	  stw       r0, 0x1E0(r4)
-	  blr
+	lwz      r0, 0x1e0(r4)
+	rlwinm   r0, r0, 0, 0xb, 9
+	stw      r0, 0x1e0(r4)
+	blr
 	*/
 }
 
@@ -2587,26 +2839,25 @@ void SnakeWhole::StateHome::cleanup(Game::EnemyBase*)
 void SnakeWhole::StateAttack::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lfs       f0, -0x1B4C(r2)
-	  mr        r3, r4
-	  stw       r0, 0x14(r1)
-	  li        r5, 0
-	  lwz       r0, 0x1E0(r4)
-	  rlwinm    r0,r0,0,26,24
-	  stw       r0, 0x1E0(r4)
-	  stfs      f0, 0x1D4(r4)
-	  stfs      f0, 0x1D8(r4)
-	  stfs      f0, 0x1DC(r4)
-	  lwz       r4, 0x2E4(r4)
-	  addi      r4, r4, 0x4
-	  bl        -0x1C8A0C
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lfs      f0, lbl_8051C814@sda21(r2)
+	mr       r3, r4
+	stw      r0, 0x14(r1)
+	li       r5, 0
+	lwz      r0, 0x1e0(r4)
+	rlwinm   r0, r0, 0, 0x1a, 0x18
+	stw      r0, 0x1e0(r4)
+	stfs     f0, 0x1d4(r4)
+	stfs     f0, 0x1d8(r4)
+	stfs     f0, 0x1dc(r4)
+	lwz      r4, 0x2e4(r4)
+	addi     r4, r4, 4
+	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2618,291 +2869,290 @@ void SnakeWhole::StateAttack::init(Game::EnemyBase*, Game::StateArg*)
 void SnakeWhole::StateAttack::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  stw       r0, 0x44(r1)
-	  stw       r31, 0x3C(r1)
-	  mr        r31, r4
-	  stw       r30, 0x38(r1)
-	  stw       r29, 0x34(r1)
-	  mr        r29, r3
-	  mr        r3, r31
-	  bl        -0x1C6748
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x38
-	  mr        r3, r31
-	  bl        0x1D58
+	stwu     r1, -0x40(r1)
+	mflr     r0
+	stw      r0, 0x44(r1)
+	stw      r31, 0x3c(r1)
+	mr       r31, r4
+	stw      r30, 0x38(r1)
+	stw      r29, 0x34(r1)
+	mr       r29, r3
+	mr       r3, r31
+	bl       isFinishMotion__Q24Game9EnemyBaseFv
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_802CDA5C
+	mr       r3, r31
+	bl       setAttackPosition__Q34Game10SnakeWhole3ObjFv
 
-	.loc_0x38:
-	  lfs       f1, 0x200(r31)
-	  lfs       f0, -0x1B4C(r2)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0, 0x2
-	  bne-      .loc_0x54
-	  mr        r3, r31
-	  bl        -0x1C87D4
+lbl_802CDA5C:
+	lfs      f1, 0x200(r31)
+	lfs      f0, lbl_8051C814@sda21(r2)
+	fcmpo    cr0, f1, f0
+	cror     2, 0, 2
+	bne      lbl_802CDA78
+	mr       r3, r31
+	bl       finishMotion__Q24Game9EnemyBaseFv
 
-	.loc_0x54:
-	  lwz       r3, 0x188(r31)
-	  lbz       r0, 0x24(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x3B4
-	  lwz       r0, 0x1C(r3)
-	  cmplwi    r0, 0x2
-	  bne-      .loc_0x7C
-	  mr        r3, r31
-	  bl        0x2F04
-	  b         .loc_0x3B4
+lbl_802CDA78:
+	lwz      r3, 0x188(r31)
+	lbz      r0, 0x24(r3)
+	cmplwi   r0, 0
+	beq      lbl_802CDDD8
+	lwz      r0, 0x1c(r3)
+	cmplwi   r0, 2
+	bne      lbl_802CDAA0
+	mr       r3, r31
+	bl       startJointCallBack__Q34Game10SnakeWhole3ObjFv
+	b        lbl_802CDDD8
 
-	.loc_0x7C:
-	  cmplwi    r0, 0x3
-	  bne-      .loc_0x168
-	  lwz       r30, 0x2E4(r31)
-	  mr        r3, r31
-	  mr        r4, r30
-	  bl        0x1F08
-	  mr.       r29, r3
-	  beq-      .loc_0xFC
-	  mr        r3, r31
-	  bl        0x2B04
-	  lis       r5, 0x804B
-	  lis       r4, 0x804B
-	  subi      r0, r5, 0x5D00
-	  lfs       f0, -0x1B3C(r2)
-	  stw       r0, 0x18(r1)
-	  addi      r5, r4, 0x4DE0
-	  lis       r4, 0x804B
-	  li        r0, 0
-	  stw       r5, 0x18(r1)
-	  addi      r5, r4, 0x4DBC
-	  addi      r4, r1, 0x18
-	  stw       r3, 0x24(r1)
-	  mr        r3, r29
-	  stw       r31, 0x1C(r1)
-	  stfs      f0, 0x20(r1)
-	  stw       r5, 0x18(r1)
-	  stw       r0, 0x28(r1)
-	  lwz       r12, 0x0(r29)
-	  lwz       r12, 0x1A4(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x15C
+lbl_802CDAA0:
+	cmplwi   r0, 3
+	bne      lbl_802CDB8C
+	lwz      r30, 0x2e4(r31)
+	mr       r3, r31
+	mr       r4, r30
+	bl       getAttackPiki__Q34Game10SnakeWhole3ObjFi
+	or.      r29, r3, r3
+	beq      lbl_802CDB20
+	mr       r3, r31
+	bl       getSwallowSlot__Q34Game10SnakeWhole3ObjFv
+	lis      r5, __vt__Q24Game11Interaction@ha
+	lis      r4, __vt__Q24Game14InteractAttack@ha
+	addi     r0, r5, __vt__Q24Game11Interaction@l
+	lfs      f0, lbl_8051C824@sda21(r2)
+	stw      r0, 0x18(r1)
+	addi     r5, r4, __vt__Q24Game14InteractAttack@l
+	lis      r4, __vt__Q24Game15InteractSwallow@ha
+	li       r0, 0
+	stw      r5, 0x18(r1)
+	addi     r5, r4, __vt__Q24Game15InteractSwallow@l
+	addi     r4, r1, 0x18
+	stw      r3, 0x24(r1)
+	mr       r3, r29
+	stw      r31, 0x1c(r1)
+	stfs     f0, 0x20(r1)
+	stw      r5, 0x18(r1)
+	stw      r0, 0x28(r1)
+	lwz      r12, 0(r29)
+	lwz      r12, 0x1a4(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802CDB80
 
-	.loc_0xFC:
-	  mr        r3, r31
-	  mr        r4, r30
-	  bl        0x2488
-	  cmplwi    r3, 0
-	  beq-      .loc_0x154
-	  lwz       r6, 0xC0(r31)
-	  lis       r5, 0x804B
-	  lis       r4, 0x804B
-	  li        r0, 0
-	  lfs       f0, 0x604(r6)
-	  subi      r6, r5, 0x5D00
-	  addi      r5, r4, 0x4DE0
-	  addi      r4, r1, 0x8
-	  stw       r6, 0x8(r1)
-	  stw       r31, 0xC(r1)
-	  stw       r5, 0x8(r1)
-	  stfs      f0, 0x10(r1)
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1A4(r12)
-	  mtctr     r12
-	  bctrl
+lbl_802CDB20:
+	mr       r3, r31
+	mr       r4, r30
+	bl       getAttackNavi__Q34Game10SnakeWhole3ObjFi
+	cmplwi   r3, 0
+	beq      lbl_802CDB78
+	lwz      r6, 0xc0(r31)
+	lis      r5, __vt__Q24Game11Interaction@ha
+	lis      r4, __vt__Q24Game14InteractAttack@ha
+	li       r0, 0
+	lfs      f0, 0x604(r6)
+	addi     r6, r5, __vt__Q24Game11Interaction@l
+	addi     r5, r4, __vt__Q24Game14InteractAttack@l
+	addi     r4, r1, 8
+	stw      r6, 8(r1)
+	stw      r31, 0xc(r1)
+	stw      r5, 8(r1)
+	stfs     f0, 0x10(r1)
+	stw      r0, 0x14(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x1a4(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x154:
-	  mr        r3, r31
-	  bl        -0x1C88DC
+lbl_802CDB78:
+	mr       r3, r31
+	bl       finishMotion__Q24Game9EnemyBaseFv
 
-	.loc_0x15C:
-	  mr        r3, r31
-	  bl        0x2ED0
-	  b         .loc_0x3B4
+lbl_802CDB80:
+	mr       r3, r31
+	bl       returnJointCallBack__Q34Game10SnakeWhole3ObjFv
+	b        lbl_802CDDD8
 
-	.loc_0x168:
-	  cmplwi    r0, 0x4
-	  bne-      .loc_0x200
-	  mr        r3, r31
-	  bl        -0x1C6898
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x1F4
-	  mr        r3, r31
-	  bl        0x2A20
-	  cmplwi    r3, 0
-	  beq-      .loc_0x1F4
-	  mr        r3, r31
-	  li        r4, 0x5
-	  bl        0x1E00
-	  cmplwi    r3, 0
-	  bne-      .loc_0x1B8
-	  mr        r3, r31
-	  li        r4, 0x5
-	  bl        0x23E0
-	  cmplwi    r3, 0
-	  beq-      .loc_0x1E8
+lbl_802CDB8C:
+	cmplwi   r0, 4
+	bne      lbl_802CDC24
+	mr       r3, r31
+	bl       isFinishMotion__Q24Game9EnemyBaseFv
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_802CDC18
+	mr       r3, r31
+	bl       getSwallowSlot__Q34Game10SnakeWhole3ObjFv
+	cmplwi   r3, 0
+	beq      lbl_802CDC18
+	mr       r3, r31
+	li       r4, 5
+	bl       getAttackPiki__Q34Game10SnakeWhole3ObjFi
+	cmplwi   r3, 0
+	bne      lbl_802CDBDC
+	mr       r3, r31
+	li       r4, 5
+	bl       getAttackNavi__Q34Game10SnakeWhole3ObjFi
+	cmplwi   r3, 0
+	beq      lbl_802CDC0C
 
-	.loc_0x1B8:
-	  lwz       r4, 0x2E4(r31)
-	  mr        r3, r31
-	  li        r5, 0
-	  addi      r4, r4, 0x4
-	  bl        -0x1C8BE8
-	  mr        r3, r31
-	  bl        -0x1C697C
-	  mr        r3, r31
-	  bl        -0x1C89D4
-	  mr        r3, r31
-	  bl        0x2D98
-	  b         .loc_0x3B4
+lbl_802CDBDC:
+	lwz      r4, 0x2e4(r31)
+	mr       r3, r31
+	li       r5, 0
+	addi     r4, r4, 4
+	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
+	mr       r3, r31
+	bl       getFirstKeyFrame__Q24Game9EnemyBaseFv
+	mr       r3, r31
+	bl       setMotionFrame__Q24Game9EnemyBaseFf
+	mr       r3, r31
+	bl       startJointCallBack__Q34Game10SnakeWhole3ObjFv
+	b        lbl_802CDDD8
 
-	.loc_0x1E8:
-	  mr        r3, r31
-	  bl        0x2ECC
-	  b         .loc_0x3B4
+lbl_802CDC0C:
+	mr       r3, r31
+	bl       finishJointCallBack__Q34Game10SnakeWhole3ObjFv
+	b        lbl_802CDDD8
 
-	.loc_0x1F4:
-	  mr        r3, r31
-	  bl        0x2EC0
-	  b         .loc_0x3B4
+lbl_802CDC18:
+	mr       r3, r31
+	bl       finishJointCallBack__Q34Game10SnakeWhole3ObjFv
+	b        lbl_802CDDD8
 
-	.loc_0x200:
-	  cmplwi    r0, 0x3E8
-	  bne-      .loc_0x3B4
-	  lfs       f1, 0x200(r31)
-	  lfs       f0, -0x1B4C(r2)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0, 0x2
-	  bne-      .loc_0x240
-	  mr        r3, r29
-	  mr        r4, r31
-	  lwz       r12, 0x0(r29)
-	  li        r5, 0
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x3B4
+lbl_802CDC24:
+	cmplwi   r0, 0x3e8
+	bne      lbl_802CDDD8
+	lfs      f1, 0x200(r31)
+	lfs      f0, lbl_8051C814@sda21(r2)
+	fcmpo    cr0, f1, f0
+	cror     2, 0, 2
+	bne      lbl_802CDC64
+	mr       r3, r29
+	mr       r4, r31
+	lwz      r12, 0(r29)
+	li       r5, 0
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802CDDD8
 
-	.loc_0x240:
-	  mr        r3, r31
-	  bl        0x29C8
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x274
-	  mr        r3, r29
-	  mr        r4, r31
-	  lwz       r12, 0x0(r29)
-	  li        r5, 0x9
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x3B4
+lbl_802CDC64:
+	mr       r3, r31
+	bl       isSwallowPikmin__Q34Game10SnakeWhole3ObjFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802CDC98
+	mr       r3, r29
+	mr       r4, r31
+	lwz      r12, 0(r29)
+	li       r5, 9
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802CDDD8
 
-	.loc_0x274:
-	  mr        r3, r31
-	  li        r4, 0
-	  bl        -0x1B9648
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x2AC
-	  mr        r3, r29
-	  mr        r4, r31
-	  lwz       r12, 0x0(r29)
-	  li        r5, 0x4
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x3B4
+lbl_802CDC98:
+	mr       r3, r31
+	li       r4, 0
+	bl       isStartFlick__Q24Game9EnemyFuncFPQ24Game9EnemyBaseb
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802CDCD0
+	mr       r3, r29
+	mr       r4, r31
+	lwz      r12, 0(r29)
+	li       r5, 4
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802CDDD8
 
-	.loc_0x2AC:
-	  mr        r3, r31
-	  li        r4, 0x5
-	  bl        0x1CE4
-	  cmplwi    r3, 0
-	  bne-      .loc_0x2D4
-	  mr        r3, r31
-	  li        r4, 0x5
-	  bl        0x22C4
-	  cmplwi    r3, 0
-	  beq-      .loc_0x32C
+lbl_802CDCD0:
+	mr       r3, r31
+	li       r4, 5
+	bl       getAttackPiki__Q34Game10SnakeWhole3ObjFi
+	cmplwi   r3, 0
+	bne      lbl_802CDCF8
+	mr       r3, r31
+	li       r4, 5
+	bl       getAttackNavi__Q34Game10SnakeWhole3ObjFi
+	cmplwi   r3, 0
+	beq      lbl_802CDD50
 
-	.loc_0x2D4:
-	  mr        r3, r31
-	  bl        0x29A0
-	  cmpwi     r3, 0
-	  beq-      .loc_0x308
-	  mr        r3, r29
-	  mr        r4, r31
-	  lwz       r12, 0x0(r29)
-	  li        r5, 0xA
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x3B4
+lbl_802CDCF8:
+	mr       r3, r31
+	bl       getStickHeadPikmin__Q34Game10SnakeWhole3ObjFv
+	cmpwi    r3, 0
+	beq      lbl_802CDD2C
+	mr       r3, r29
+	mr       r4, r31
+	lwz      r12, 0(r29)
+	li       r5, 0xa
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802CDDD8
 
-	.loc_0x308:
-	  mr        r3, r29
-	  mr        r4, r31
-	  lwz       r12, 0x0(r29)
-	  li        r5, 0x8
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x3B4
+lbl_802CDD2C:
+	mr       r3, r29
+	mr       r4, r31
+	lwz      r12, 0(r29)
+	li       r5, 8
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802CDDD8
 
-	.loc_0x32C:
-	  mr        r3, r31
-	  bl        0x1110
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x360
-	  mr        r3, r29
-	  mr        r4, r31
-	  lwz       r12, 0x0(r29)
-	  li        r5, 0x7
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x3B4
+lbl_802CDD50:
+	mr       r3, r31
+	bl       isOutTerritory__Q34Game10SnakeWhole3ObjFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802CDD84
+	mr       r3, r29
+	mr       r4, r31
+	lwz      r12, 0(r29)
+	li       r5, 7
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802CDDD8
 
-	.loc_0x360:
-	  mr        r3, r31
-	  bl        0x27F0
-	  cmplwi    r3, 0
-	  beq-      .loc_0x394
-	  mr        r3, r29
-	  mr        r4, r31
-	  lwz       r12, 0x0(r29)
-	  li        r5, 0x6
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x3B4
+lbl_802CDD84:
+	mr       r3, r31
+	bl       getSearchedTarget__Q34Game10SnakeWhole3ObjFv
+	cmplwi   r3, 0
+	beq      lbl_802CDDB8
+	mr       r3, r29
+	mr       r4, r31
+	lwz      r12, 0(r29)
+	li       r5, 6
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802CDDD8
 
-	.loc_0x394:
-	  mr        r3, r29
-	  mr        r4, r31
-	  lwz       r12, 0x0(r29)
-	  li        r5, 0x5
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_802CDDB8:
+	mr       r3, r29
+	mr       r4, r31
+	lwz      r12, 0(r29)
+	li       r5, 5
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x3B4:
-	  lwz       r0, 0x44(r1)
-	  lwz       r31, 0x3C(r1)
-	  lwz       r30, 0x38(r1)
-	  lwz       r29, 0x34(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
+lbl_802CDDD8:
+	lwz      r0, 0x44(r1)
+	lwz      r31, 0x3c(r1)
+	lwz      r30, 0x38(r1)
+	lwz      r29, 0x34(r1)
+	mtlr     r0
+	addi     r1, r1, 0x40
+	blr
 	*/
 }
 
@@ -2914,11 +3164,10 @@ void SnakeWhole::StateAttack::exec(Game::EnemyBase*)
 void SnakeWhole::StateAttack::cleanup(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  lwz       r0, 0x1E0(r4)
-	  ori       r0, r0, 0x40
-	  stw       r0, 0x1E0(r4)
-	  blr
+	lwz      r0, 0x1e0(r4)
+	ori      r0, r0, 0x40
+	stw      r0, 0x1e0(r4)
+	blr
 	*/
 }
 
@@ -2930,22 +3179,21 @@ void SnakeWhole::StateAttack::cleanup(Game::EnemyBase*)
 void SnakeWhole::StateEat::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r3, r4
-	  lfs       f0, -0x1B4C(r2)
-	  stw       r0, 0x14(r1)
-	  li        r4, 0xA
-	  li        r5, 0
-	  stfs      f0, 0x1D4(r3)
-	  stfs      f0, 0x1D8(r3)
-	  stfs      f0, 0x1DC(r3)
-	  bl        -0x1C8E28
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r3, r4
+	lfs      f0, lbl_8051C814@sda21(r2)
+	stw      r0, 0x14(r1)
+	li       r4, 0xa
+	li       r5, 0
+	stfs     f0, 0x1d4(r3)
+	stfs     f0, 0x1d8(r3)
+	stfs     f0, 0x1dc(r3)
+	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2957,149 +3205,149 @@ void SnakeWhole::StateEat::init(Game::EnemyBase*, Game::StateArg*)
 void SnakeWhole::StateEat::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lwz       r3, 0x188(r4)
-	  lbz       r0, 0x24(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x1D8
-	  lwz       r0, 0x1C(r3)
-	  cmplwi    r0, 0x2
-	  bne-      .loc_0x50
-	  lwz       r5, 0xC0(r31)
-	  mr        r3, r31
-	  li        r4, 0
-	  lfs       f1, 0x894(r5)
-	  bl        -0x1BA004
-	  b         .loc_0x1D8
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lwz      r3, 0x188(r4)
+	lbz      r0, 0x24(r3)
+	cmplwi   r0, 0
+	beq      lbl_802CE018
+	lwz      r0, 0x1c(r3)
+	cmplwi   r0, 2
+	bne      lbl_802CDE90
+	lwz      r5, 0xc0(r31)
+	mr       r3, r31
+	li       r4, 0
+	lfs      f1, 0x894(r5)
+	bl
+"swallowPikmin__Q24Game9EnemyFuncFPQ24Game8CreaturefP23Condition<Q24Game4Piki>"
+	b        lbl_802CE018
 
-	.loc_0x50:
-	  cmplwi    r0, 0x3E8
-	  bne-      .loc_0x1D8
-	  mr        r3, r31
-	  bl        0x1914
-	  lfs       f1, 0x200(r31)
-	  lfs       f0, -0x1B4C(r2)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0, 0x2
-	  bne-      .loc_0x98
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x1D8
+lbl_802CDE90:
+	cmplwi   r0, 0x3e8
+	bne      lbl_802CE018
+	mr       r3, r31
+	bl       setAttackPosition__Q34Game10SnakeWhole3ObjFv
+	lfs      f1, 0x200(r31)
+	lfs      f0, lbl_8051C814@sda21(r2)
+	fcmpo    cr0, f1, f0
+	cror     2, 0, 2
+	bne      lbl_802CDED8
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 0
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802CE018
 
-	.loc_0x98:
-	  mr        r3, r31
-	  li        r4, 0
-	  bl        -0x1B9888
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xD0
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x4
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x1D8
+lbl_802CDED8:
+	mr       r3, r31
+	li       r4, 0
+	bl       isStartFlick__Q24Game9EnemyFuncFPQ24Game9EnemyBaseb
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802CDF10
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 4
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802CE018
 
-	.loc_0xD0:
-	  mr        r3, r31
-	  li        r4, 0x5
-	  bl        0x1AA4
-	  cmplwi    r3, 0
-	  bne-      .loc_0xF8
-	  mr        r3, r31
-	  li        r4, 0x5
-	  bl        0x2084
-	  cmplwi    r3, 0
-	  beq-      .loc_0x150
+lbl_802CDF10:
+	mr       r3, r31
+	li       r4, 5
+	bl       getAttackPiki__Q34Game10SnakeWhole3ObjFi
+	cmplwi   r3, 0
+	bne      lbl_802CDF38
+	mr       r3, r31
+	li       r4, 5
+	bl       getAttackNavi__Q34Game10SnakeWhole3ObjFi
+	cmplwi   r3, 0
+	beq      lbl_802CDF90
 
-	.loc_0xF8:
-	  mr        r3, r31
-	  bl        0x2760
-	  cmpwi     r3, 0
-	  beq-      .loc_0x12C
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0xA
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x1D8
+lbl_802CDF38:
+	mr       r3, r31
+	bl       getStickHeadPikmin__Q34Game10SnakeWhole3ObjFv
+	cmpwi    r3, 0
+	beq      lbl_802CDF6C
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 0xa
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802CE018
 
-	.loc_0x12C:
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x8
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x1D8
+lbl_802CDF6C:
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 8
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802CE018
 
-	.loc_0x150:
-	  mr        r3, r31
-	  bl        0xED0
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x184
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x7
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x1D8
+lbl_802CDF90:
+	mr       r3, r31
+	bl       isOutTerritory__Q34Game10SnakeWhole3ObjFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802CDFC4
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 7
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802CE018
 
-	.loc_0x184:
-	  mr        r3, r31
-	  bl        0x25B0
-	  cmplwi    r3, 0
-	  beq-      .loc_0x1B8
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x6
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x1D8
+lbl_802CDFC4:
+	mr       r3, r31
+	bl       getSearchedTarget__Q34Game10SnakeWhole3ObjFv
+	cmplwi   r3, 0
+	beq      lbl_802CDFF8
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 6
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802CE018
 
-	.loc_0x1B8:
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x5
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_802CDFF8:
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 5
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x1D8:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_802CE018:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -3118,23 +3366,22 @@ void SnakeWhole::StateEat::cleanup(Game::EnemyBase*) { }
 void SnakeWhole::StateStruggle::init(Game::EnemyBase*, Game::StateArg*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r3, r4
-	  lfs       f0, -0x1B4C(r2)
-	  stw       r0, 0x14(r1)
-	  li        r4, 0xB
-	  li        r5, 0
-	  stfs      f0, 0x2C4(r3)
-	  stfs      f0, 0x1D4(r3)
-	  stfs      f0, 0x1D8(r3)
-	  stfs      f0, 0x1DC(r3)
-	  bl        -0x1C905C
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r3, r4
+	lfs      f0, lbl_8051C814@sda21(r2)
+	stw      r0, 0x14(r1)
+	li       r4, 0xb
+	li       r5, 0
+	stfs     f0, 0x2c4(r3)
+	stfs     f0, 0x1d4(r3)
+	stfs     f0, 0x1d8(r3)
+	stfs     f0, 0x1dc(r3)
+	bl       startMotion__Q24Game9EnemyBaseFiPQ28SysShape14MotionListener
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -3146,137 +3393,136 @@ void SnakeWhole::StateStruggle::init(Game::EnemyBase*, Game::StateArg*)
 void SnakeWhole::StateStruggle::exec(Game::EnemyBase*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lfs       f0, -0x1B20(r2)
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lfs       f1, 0x2C4(r4)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x34
-	  mr        r3, r31
-	  bl        -0x1C8E04
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lfs      f0, lbl_8051C840@sda21(r2)
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lfs      f1, 0x2c4(r4)
+	fcmpo    cr0, f1, f0
+	ble      lbl_802CE0A8
+	mr       r3, r31
+	bl       finishMotion__Q24Game9EnemyBaseFv
 
-	.loc_0x34:
-	  lwz       r3, -0x6514(r13)
-	  lfs       f1, 0x2C4(r31)
-	  lfs       f0, 0x54(r3)
-	  fadds     f0, f1, f0
-	  stfs      f0, 0x2C4(r31)
-	  lwz       r3, 0x188(r31)
-	  lbz       r0, 0x24(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x1B0
-	  lwz       r0, 0x1C(r3)
-	  cmplwi    r0, 0x3E8
-	  bne-      .loc_0x1B0
-	  mr        r3, r31
-	  bl        0x16D4
-	  lfs       f1, 0x200(r31)
-	  lfs       f0, -0x1B4C(r2)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0, 0x2
-	  bne-      .loc_0xA4
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x1B0
+lbl_802CE0A8:
+	lwz      r3, sys@sda21(r13)
+	lfs      f1, 0x2c4(r31)
+	lfs      f0, 0x54(r3)
+	fadds    f0, f1, f0
+	stfs     f0, 0x2c4(r31)
+	lwz      r3, 0x188(r31)
+	lbz      r0, 0x24(r3)
+	cmplwi   r0, 0
+	beq      lbl_802CE224
+	lwz      r0, 0x1c(r3)
+	cmplwi   r0, 0x3e8
+	bne      lbl_802CE224
+	mr       r3, r31
+	bl       setAttackPosition__Q34Game10SnakeWhole3ObjFv
+	lfs      f1, 0x200(r31)
+	lfs      f0, lbl_8051C814@sda21(r2)
+	fcmpo    cr0, f1, f0
+	cror     2, 0, 2
+	bne      lbl_802CE118
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 0
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802CE224
 
-	.loc_0xA4:
-	  mr        r3, r31
-	  li        r4, 0
-	  bl        -0x1B9AC8
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0xDC
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x4
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x1B0
+lbl_802CE118:
+	mr       r3, r31
+	li       r4, 0
+	bl       isStartFlick__Q24Game9EnemyFuncFPQ24Game9EnemyBaseb
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802CE150
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 4
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802CE224
 
-	.loc_0xDC:
-	  mr        r3, r31
-	  li        r4, 0x5
-	  bl        0x1864
-	  cmplwi    r3, 0
-	  bne-      .loc_0x104
-	  mr        r3, r31
-	  li        r4, 0x5
-	  bl        0x1E44
-	  cmplwi    r3, 0
-	  beq-      .loc_0x128
+lbl_802CE150:
+	mr       r3, r31
+	li       r4, 5
+	bl       getAttackPiki__Q34Game10SnakeWhole3ObjFi
+	cmplwi   r3, 0
+	bne      lbl_802CE178
+	mr       r3, r31
+	li       r4, 5
+	bl       getAttackNavi__Q34Game10SnakeWhole3ObjFi
+	cmplwi   r3, 0
+	beq      lbl_802CE19C
 
-	.loc_0x104:
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x8
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x1B0
+lbl_802CE178:
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 8
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802CE224
 
-	.loc_0x128:
-	  mr        r3, r31
-	  bl        0xCC4
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x15C
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x7
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x1B0
+lbl_802CE19C:
+	mr       r3, r31
+	bl       isOutTerritory__Q34Game10SnakeWhole3ObjFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802CE1D0
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 7
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802CE224
 
-	.loc_0x15C:
-	  mr        r3, r31
-	  bl        0x23A4
-	  cmplwi    r3, 0
-	  beq-      .loc_0x190
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x6
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x1B0
+lbl_802CE1D0:
+	mr       r3, r31
+	bl       getSearchedTarget__Q34Game10SnakeWhole3ObjFv
+	cmplwi   r3, 0
+	beq      lbl_802CE204
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 6
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_802CE224
 
-	.loc_0x190:
-	  mr        r3, r30
-	  mr        r4, r31
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x5
-	  li        r6, 0
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_802CE204:
+	mr       r3, r30
+	mr       r4, r31
+	lwz      r12, 0(r30)
+	li       r5, 5
+	li       r6, 0
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x1B0:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_802CE224:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -3297,16 +3543,15 @@ void SnakeWhole::StateStruggle::cleanup(Game::EnemyBase*) { }
 void __sinit_SnakeWholeState_cpp(void)
 {
 	/*
-	.loc_0x0:
-	  lis       r4, 0x8051
-	  li        r0, -0x1
-	  lfs       f0, 0x48B0(r4)
-	  lis       r3, 0x804D
-	  stw       r0, -0x68C8(r13)
-	  stfsu     f0, 0x2150(r3)
-	  stfs      f0, -0x68C4(r13)
-	  stfs      f0, 0x4(r3)
-	  stfs      f0, 0x8(r3)
-	  blr
+	lis      r4, __float_nan@ha
+	li       r0, -1
+	lfs      f0, __float_nan@l(r4)
+	lis      r3, lbl_804D2150@ha
+	stw      r0, lbl_80515DB8@sda21(r13)
+	stfsu    f0, lbl_804D2150@l(r3)
+	stfs     f0, lbl_80515DBC@sda21(r13)
+	stfs     f0, 4(r3)
+	stfs     f0, 8(r3)
+	blr
 	*/
 }

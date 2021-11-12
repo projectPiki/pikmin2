@@ -1,5 +1,108 @@
 #include "types.h"
 
+/*
+    Generated from dpostproc
+
+    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
+    .4byte __sinit_enemyAction_cpp
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_8047AE88
+    lbl_8047AE88:
+        .asciz "teki-srch"
+        .skip 2
+    .global lbl_8047AE94
+    lbl_8047AE94:
+        .asciz "g2B_white_poison"
+        .skip 3
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global lbl_804ABC48
+    lbl_804ABC48:
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000000
+    .global __vt__Q34Game9EnemyFunc25EatPikminDefaultCondition
+    __vt__Q34Game9EnemyFunc25EatPikminDefaultCondition:
+        .4byte 0
+        .4byte 0
+        .4byte
+   satisfy__Q34Game9EnemyFunc25EatPikminDefaultConditionFPQ24Game4Piki .global
+   "__vt__23Condition<Q24Game4Piki>"
+    "__vt__23Condition<Q24Game4Piki>":
+        .4byte 0
+        .4byte 0
+        .4byte 0
+    .global __vt__Q34Game9EnemyFunc21ConditionPikminNearby
+    __vt__Q34Game9EnemyFunc21ConditionPikminNearby:
+        .4byte 0
+        .4byte 0
+        .4byte
+   satisfy__Q34Game9EnemyFunc21ConditionPikminNearbyFPQ24Game8Creature .global
+   "__vt__27Condition<Q24Game8Creature>"
+    "__vt__27Condition<Q24Game8Creature>":
+        .4byte 0
+        .4byte 0
+        .4byte 0
+    .global "__vt__26Iterator<Q24Game8Creature>"
+    "__vt__26Iterator<Q24Game8Creature>":
+        .4byte 0
+        .4byte 0
+        .4byte "first__26Iterator<Q24Game8Creature>Fv"
+        .4byte "next__26Iterator<Q24Game8Creature>Fv"
+        .4byte "isDone__26Iterator<Q24Game8Creature>Fv"
+        .4byte "__ml__26Iterator<Q24Game8Creature>Fv"
+    .global "__vt__22Iterator<Q24Game4Piki>"
+    "__vt__22Iterator<Q24Game4Piki>":
+        .4byte 0
+        .4byte 0
+        .4byte "first__22Iterator<Q24Game4Piki>Fv"
+        .4byte "next__22Iterator<Q24Game4Piki>Fv"
+        .4byte "isDone__22Iterator<Q24Game4Piki>Fv"
+        .4byte "__ml__22Iterator<Q24Game4Piki>Fv"
+    .global "__vt__22Iterator<Q24Game4Navi>"
+    "__vt__22Iterator<Q24Game4Navi>":
+        .4byte 0
+        .4byte 0
+        .4byte "first__22Iterator<Q24Game4Navi>Fv"
+        .4byte "next__22Iterator<Q24Game4Navi>Fv"
+        .4byte "isDone__22Iterator<Q24Game4Navi>Fv"
+        .4byte "__ml__22Iterator<Q24Game4Navi>Fv"
+        .4byte 0
+
+    .section .sbss # 0x80514D80 - 0x80516360
+    .global lbl_80515878
+    lbl_80515878:
+        .skip 0x4
+    .global lbl_8051587C
+    lbl_8051587C:
+        .skip 0x4
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_80517A78
+    lbl_80517A78:
+        .4byte 0x40490FDB
+    .global lbl_80517A7C
+    lbl_80517A7C:
+        .4byte 0x3BB60B61
+    .global lbl_80517A80
+    lbl_80517A80:
+        .4byte 0x00000000
+    .global lbl_80517A84
+    lbl_80517A84:
+        .4byte 0x47000000
+    .global lbl_80517A88
+    lbl_80517A88:
+        .4byte 0x43300000
+        .4byte 0x80000000
+    .global lbl_80517A90
+    lbl_80517A90:
+        .float 1.0
+    .global lbl_80517A94
+    lbl_80517A94:
+        .float 0.5
+*/
+
 namespace Game {
 
 /*
@@ -320,26 +423,25 @@ void EnemyFunc::getNearestNavi(Game::Creature*, float, float, float*,
 void Iterator<Game::Navi>::isDone()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r3, 0x8(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x4(r31)
-	  sub       r0, r3, r0
-	  cntlzw    r0, r0
-	  rlwinm    r3,r0,27,5,31
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r3, 8(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 4(r31)
+	subf     r0, r0, r3
+	cntlzw   r0, r0
+	srwi     r3, r0, 5
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -687,14 +789,13 @@ void EnemyFunc::getNearestPikmin(Game::Creature*, float, float, float*,
 void FakePiki::getPosition()
 {
 	/*
-	.loc_0x0:
-	  lfs       f0, 0x20C(r4)
-	  stfs      f0, 0x0(r3)
-	  lfs       f0, 0x210(r4)
-	  stfs      f0, 0x4(r3)
-	  lfs       f0, 0x214(r4)
-	  stfs      f0, 0x8(r3)
-	  blr
+	lfs      f0, 0x20c(r4)
+	stfs     f0, 0(r3)
+	lfs      f0, 0x210(r4)
+	stfs     f0, 4(r3)
+	lfs      f0, 0x214(r4)
+	stfs     f0, 8(r3)
+	blr
 	*/
 }
 
@@ -708,26 +809,25 @@ void FakePiki::getPosition()
 void Iterator<Game::Piki>::isDone()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r3, 0x8(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x4(r31)
-	  sub       r0, r3, r0
-	  cntlzw    r0, r0
-	  rlwinm    r3,r0,27,5,31
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r3, 8(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 4(r31)
+	subf     r0, r0, r3
+	cntlzw   r0, r0
+	srwi     r3, r0, 5
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1071,26 +1171,25 @@ void EnemyFunc::flickStickPikmin(Game::Creature*, float, float, float, float,
 void Iterator<Game::Creature>::isDone()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r3, 0x8(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x4(r31)
-	  sub       r0, r3, r0
-	  cntlzw    r0, r0
-	  rlwinm    r3,r0,27,5,31
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r3, 8(r3)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 4(r31)
+	subf     r0, r0, r3
+	cntlzw   r0, r0
+	srwi     r3, r0, 5
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1574,251 +1673,250 @@ void EnemyFunc::flickNearbyNavi(Game::Creature*, float, float, float, float,
 void EnemyFunc::eatPikmin(Game::EnemyBase*, Condition<Game::Piki>*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x70(r1)
-	  mflr      r0
-	  stw       r0, 0x74(r1)
-	  stmw      r26, 0x58(r1)
-	  mr        r29, r3
-	  mr        r26, r4
-	  li        r31, 0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x25C(r12)
-	  mtctr     r12
-	  bctrl
-	  lis       r5, 0x804B
-	  lis       r4, 0x804B
-	  subi      r0, r5, 0x43A0
-	  cmplwi    r26, 0
-	  stw       r0, 0x8(r1)
-	  subi      r0, r4, 0x43AC
-	  mr        r30, r3
-	  stw       r0, 0x8(r1)
-	  stw       r29, 0xC(r1)
-	  bne-      .loc_0x58
-	  addi      r26, r1, 0x8
+	stwu     r1, -0x70(r1)
+	mflr     r0
+	stw      r0, 0x74(r1)
+	stmw     r26, 0x58(r1)
+	mr       r29, r3
+	mr       r26, r4
+	li       r31, 0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x25c(r12)
+	mtctr    r12
+	bctrl
+	lis      r5, "__vt__23Condition<Q24Game4Piki>"@ha
+	lis      r4, __vt__Q34Game9EnemyFunc25EatPikminDefaultCondition@ha
+	addi     r0, r5, "__vt__23Condition<Q24Game4Piki>"@l
+	cmplwi   r26, 0
+	stw      r0, 8(r1)
+	addi     r0, r4, __vt__Q34Game9EnemyFunc25EatPikminDefaultCondition@l
+	mr       r30, r3
+	stw      r0, 8(r1)
+	stw      r29, 0xc(r1)
+	bne      lbl_80113B8C
+	addi     r26, r1, 8
 
-	.loc_0x58:
-	  cmplwi    r30, 0
-	  beq-      .loc_0x338
-	  lwz       r3, -0x6D0C(r13)
-	  lis       r4, 0x804B
-	  subi      r4, r4, 0x4364
-	  li        r0, 0
-	  cmplwi    r26, 0
-	  stw       r4, 0x28(r1)
-	  stw       r26, 0x34(r1)
-	  stw       r0, 0x2C(r1)
-	  stw       r3, 0x30(r1)
-	  bne-      .loc_0xA0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x2C(r1)
-	  b         .loc_0x318
+lbl_80113B8C:
+	cmplwi   r30, 0
+	beq      lbl_80113E6C
+	lwz      r3, pikiMgr__4Game@sda21(r13)
+	lis      r4, "__vt__22Iterator<Q24Game4Piki>"@ha
+	addi     r4, r4, "__vt__22Iterator<Q24Game4Piki>"@l
+	li       r0, 0
+	cmplwi   r26, 0
+	stw      r4, 0x28(r1)
+	stw      r26, 0x34(r1)
+	stw      r0, 0x2c(r1)
+	stw      r3, 0x30(r1)
+	bne      lbl_80113BD4
+	lwz      r12, 0(r3)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x2c(r1)
+	b        lbl_80113E4C
 
-	.loc_0xA0:
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x2C(r1)
-	  b         .loc_0x10C
+lbl_80113BD4:
+	lwz      r12, 0(r3)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x2c(r1)
+	b        lbl_80113C40
 
-	.loc_0xB8:
-	  lwz       r3, 0x30(r1)
-	  lwz       r4, 0x2C(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x34(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x318
-	  lwz       r3, 0x30(r1)
-	  lwz       r4, 0x2C(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x2C(r1)
+lbl_80113BEC:
+	lwz      r3, 0x30(r1)
+	lwz      r4, 0x2c(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	lwz      r3, 0x34(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_80113E4C
+	lwz      r3, 0x30(r1)
+	lwz      r4, 0x2c(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x2c(r1)
 
-	.loc_0x10C:
-	  lwz       r12, 0x28(r1)
-	  addi      r3, r1, 0x28
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0xB8
-	  b         .loc_0x318
+lbl_80113C40:
+	lwz      r12, 0x28(r1)
+	addi     r3, r1, 0x28
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80113BEC
+	b        lbl_80113E4C
 
-	.loc_0x12C:
-	  lwz       r3, 0x30(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  li        r26, 0
-	  mr        r27, r3
-	  b         .loc_0x250
+lbl_80113C60:
+	lwz      r3, 0x30(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	li       r26, 0
+	mr       r27, r3
+	b        lbl_80113D84
 
-	.loc_0x14C:
-	  mr        r3, r30
-	  mr        r4, r26
-	  bl        0x24AF0
-	  mr        r28, r3
-	  lwz       r0, 0x64(r3)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x24C
-	  addi      r4, r1, 0x1C
-	  bl        0x24828
-	  mr        r4, r27
-	  addi      r3, r1, 0x10
-	  lwz       r12, 0x0(r27)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f1, 0x20(r1)
-	  lfs       f0, 0x14(r1)
-	  lfs       f3, 0x1C(r1)
-	  fsubs     f4, f1, f0
-	  lfs       f2, 0x10(r1)
-	  lfs       f1, 0x24(r1)
-	  lfs       f0, 0x18(r1)
-	  fsubs     f3, f3, f2
-	  fmuls     f4, f4, f4
-	  fsubs     f2, f1, f0
-	  lfs       f0, -0x68E0(r2)
-	  fmadds    f1, f3, f3, f4
-	  fmuls     f2, f2, f2
-	  fadds     f1, f2, f1
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x1D8
-	  ble-      .loc_0x1DC
-	  fsqrte    f0, f1
-	  fmuls     f1, f0, f1
-	  b         .loc_0x1DC
+lbl_80113C80:
+	mr       r3, r30
+	mr       r4, r26
+	bl       getSlot__10MouthSlotsFi
+	mr       r28, r3
+	lwz      r0, 0x64(r3)
+	cmplwi   r0, 0
+	bne      lbl_80113D80
+	addi     r4, r1, 0x1c
+	bl       "getPosition__13MouthCollPartFR10Vector3<f>"
+	mr       r4, r27
+	addi     r3, r1, 0x10
+	lwz      r12, 0(r27)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f1, 0x20(r1)
+	lfs      f0, 0x14(r1)
+	lfs      f3, 0x1c(r1)
+	fsubs    f4, f1, f0
+	lfs      f2, 0x10(r1)
+	lfs      f1, 0x24(r1)
+	lfs      f0, 0x18(r1)
+	fsubs    f3, f3, f2
+	fmuls    f4, f4, f4
+	fsubs    f2, f1, f0
+	lfs      f0, lbl_80517A80@sda21(r2)
+	fmadds   f1, f3, f3, f4
+	fmuls    f2, f2, f2
+	fadds    f1, f2, f1
+	fcmpo    cr0, f1, f0
+	ble      lbl_80113D0C
+	ble      lbl_80113D10
+	frsqrte  f0, f1
+	fmuls    f1, f0, f1
+	b        lbl_80113D10
 
-	.loc_0x1D8:
-	  fmr       f1, f0
+lbl_80113D0C:
+	fmr      f1, f0
 
-	.loc_0x1DC:
-	  lfs       f0, 0x1C(r28)
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x24C
-	  lis       r4, 0x804B
-	  lis       r3, 0x804B
-	  subi      r0, r4, 0x5D00
-	  lfs       f0, -0x68D0(r2)
-	  stw       r0, 0x38(r1)
-	  addi      r4, r3, 0x4DE0
-	  lis       r3, 0x804B
-	  li        r0, 0
-	  stw       r4, 0x38(r1)
-	  addi      r5, r3, 0x4DBC
-	  mr        r3, r27
-	  addi      r4, r1, 0x38
-	  stw       r29, 0x3C(r1)
-	  stfs      f0, 0x40(r1)
-	  stw       r28, 0x44(r1)
-	  stw       r5, 0x38(r1)
-	  stw       r0, 0x48(r1)
-	  lwz       r12, 0x0(r27)
-	  lwz       r12, 0x1A4(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x25C
-	  addi      r31, r31, 0x1
-	  b         .loc_0x25C
+lbl_80113D10:
+	lfs      f0, 0x1c(r28)
+	fcmpo    cr0, f1, f0
+	bge      lbl_80113D80
+	lis      r4, __vt__Q24Game11Interaction@ha
+	lis      r3, __vt__Q24Game14InteractAttack@ha
+	addi     r0, r4, __vt__Q24Game11Interaction@l
+	lfs      f0, lbl_80517A90@sda21(r2)
+	stw      r0, 0x38(r1)
+	addi     r4, r3, __vt__Q24Game14InteractAttack@l
+	lis      r3, __vt__Q24Game15InteractSwallow@ha
+	li       r0, 0
+	stw      r4, 0x38(r1)
+	addi     r5, r3, __vt__Q24Game15InteractSwallow@l
+	mr       r3, r27
+	addi     r4, r1, 0x38
+	stw      r29, 0x3c(r1)
+	stfs     f0, 0x40(r1)
+	stw      r28, 0x44(r1)
+	stw      r5, 0x38(r1)
+	stw      r0, 0x48(r1)
+	lwz      r12, 0(r27)
+	lwz      r12, 0x1a4(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80113D90
+	addi     r31, r31, 1
+	b        lbl_80113D90
 
-	.loc_0x24C:
-	  addi      r26, r26, 0x1
+lbl_80113D80:
+	addi     r26, r26, 1
 
-	.loc_0x250:
-	  lwz       r0, 0x0(r30)
-	  cmpw      r26, r0
-	  blt+      .loc_0x14C
+lbl_80113D84:
+	lwz      r0, 0(r30)
+	cmpw     r26, r0
+	blt      lbl_80113C80
 
-	.loc_0x25C:
-	  lwz       r0, 0x34(r1)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x288
-	  lwz       r3, 0x30(r1)
-	  lwz       r4, 0x2C(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x2C(r1)
-	  b         .loc_0x318
+lbl_80113D90:
+	lwz      r0, 0x34(r1)
+	cmplwi   r0, 0
+	bne      lbl_80113DBC
+	lwz      r3, 0x30(r1)
+	lwz      r4, 0x2c(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x2c(r1)
+	b        lbl_80113E4C
 
-	.loc_0x288:
-	  lwz       r3, 0x30(r1)
-	  lwz       r4, 0x2C(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x2C(r1)
-	  b         .loc_0x2FC
+lbl_80113DBC:
+	lwz      r3, 0x30(r1)
+	lwz      r4, 0x2c(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x2c(r1)
+	b        lbl_80113E30
 
-	.loc_0x2A8:
-	  lwz       r3, 0x30(r1)
-	  lwz       r4, 0x2C(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x34(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x318
-	  lwz       r3, 0x30(r1)
-	  lwz       r4, 0x2C(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x2C(r1)
+lbl_80113DDC:
+	lwz      r3, 0x30(r1)
+	lwz      r4, 0x2c(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	lwz      r3, 0x34(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_80113E4C
+	lwz      r3, 0x30(r1)
+	lwz      r4, 0x2c(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x2c(r1)
 
-	.loc_0x2FC:
-	  lwz       r12, 0x28(r1)
-	  addi      r3, r1, 0x28
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x2A8
+lbl_80113E30:
+	lwz      r12, 0x28(r1)
+	addi     r3, r1, 0x28
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80113DDC
 
-	.loc_0x318:
-	  lwz       r3, 0x30(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r4, 0x2C(r1)
-	  cmplw     r4, r3
-	  bne+      .loc_0x12C
+lbl_80113E4C:
+	lwz      r3, 0x30(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r4, 0x2c(r1)
+	cmplw    r4, r3
+	bne      lbl_80113C60
 
-	.loc_0x338:
-	  mr        r3, r31
-	  lmw       r26, 0x58(r1)
-	  lwz       r0, 0x74(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x70
-	  blr
+lbl_80113E6C:
+	mr       r3, r31
+	lmw      r26, 0x58(r1)
+	lwz      r0, 0x74(r1)
+	mtlr     r0
+	addi     r1, r1, 0x70
+	blr
 	*/
 }
 
@@ -1830,274 +1928,273 @@ void EnemyFunc::eatPikmin(Game::EnemyBase*, Condition<Game::Piki>*)
 void EnemyFunc::swallowPikmin(Game::Creature*, float, Condition<Game::Piki>*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0xA0(r1)
-	  mflr      r0
-	  stw       r0, 0xA4(r1)
-	  stfd      f31, 0x90(r1)
-	  psq_st    f31,0x98(r1),0,0
-	  stw       r31, 0x8C(r1)
-	  stw       r30, 0x88(r1)
-	  stw       r29, 0x84(r1)
-	  fmr       f31, f1
-	  mr        r30, r3
-	  mr        r31, r4
-	  addi      r3, r1, 0x30
-	  mr        r4, r30
-	  bl        0x8BDA4
-	  li        r0, 0
-	  lis       r3, 0x804B
-	  subi      r4, r3, 0x437C
-	  addi      r3, r1, 0x30
-	  cmplwi    r0, 0
-	  stw       r4, 0x20(r1)
-	  stw       r0, 0x2C(r1)
-	  stw       r0, 0x24(r1)
-	  stw       r3, 0x28(r1)
-	  bne-      .loc_0x78
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x24(r1)
-	  b         .loc_0x38C
+	stwu     r1, -0xa0(r1)
+	mflr     r0
+	stw      r0, 0xa4(r1)
+	stfd     f31, 0x90(r1)
+	psq_st   f31, 152(r1), 0, qr0
+	stw      r31, 0x8c(r1)
+	stw      r30, 0x88(r1)
+	stw      r29, 0x84(r1)
+	fmr      f31, f1
+	mr       r30, r3
+	mr       r31, r4
+	addi     r3, r1, 0x30
+	mr       r4, r30
+	bl       __ct__Q24Game8StickersFPQ24Game8Creature
+	li       r0, 0
+	lis      r3, "__vt__26Iterator<Q24Game8Creature>"@ha
+	addi     r4, r3, "__vt__26Iterator<Q24Game8Creature>"@l
+	addi     r3, r1, 0x30
+	cmplwi   r0, 0
+	stw      r4, 0x20(r1)
+	stw      r0, 0x2c(r1)
+	stw      r0, 0x24(r1)
+	stw      r3, 0x28(r1)
+	bne      lbl_80113EFC
+	lwz      r12, 0(r3)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x24(r1)
+	b        lbl_80114210
 
-	.loc_0x78:
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x24(r1)
-	  b         .loc_0xE4
+lbl_80113EFC:
+	lwz      r12, 0(r3)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x24(r1)
+	b        lbl_80113F68
 
-	.loc_0x90:
-	  lwz       r3, 0x28(r1)
-	  lwz       r4, 0x24(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x2C(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x38C
-	  lwz       r3, 0x28(r1)
-	  lwz       r4, 0x24(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x24(r1)
+lbl_80113F14:
+	lwz      r3, 0x28(r1)
+	lwz      r4, 0x24(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	lwz      r3, 0x2c(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_80114210
+	lwz      r3, 0x28(r1)
+	lwz      r4, 0x24(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x24(r1)
 
-	.loc_0xE4:
-	  lwz       r12, 0x20(r1)
-	  addi      r3, r1, 0x20
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x90
-	  b         .loc_0x38C
+lbl_80113F68:
+	lwz      r12, 0x20(r1)
+	addi     r3, r1, 0x20
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80113F14
+	b        lbl_80114210
 
-	.loc_0x104:
-	  lwz       r3, 0x28(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x2D0
-	  lwz       r3, 0x28(r1)
-	  lwz       r4, 0x24(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  cmplwi    r31, 0
-	  mr        r29, r3
-	  beq-      .loc_0x178
-	  beq-      .loc_0x2D0
-	  mr        r3, r31
-	  mr        r4, r29
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x2D0
+lbl_80113F88:
+	lwz      r3, 0x28(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	lwz      r12, 0(r3)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80114154
+	lwz      r3, 0x28(r1)
+	lwz      r4, 0x24(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	cmplwi   r31, 0
+	mr       r29, r3
+	beq      lbl_80113FFC
+	beq      lbl_80114154
+	mr       r3, r31
+	mr       r4, r29
+	lwz      r12, 0(r31)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80114154
 
-	.loc_0x178:
-	  mr        r3, r29
-	  bl        0x8B588
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x2D0
-	  lis       r4, 0x804B
-	  lis       r3, 0x804B
-	  subi      r4, r4, 0x5D00
-	  li        r0, 0
-	  stw       r4, 0x14(r1)
-	  addi      r5, r3, 0x4D98
-	  mr        r3, r29
-	  addi      r4, r1, 0x14
-	  stw       r30, 0x18(r1)
-	  stw       r5, 0x14(r1)
-	  stw       r0, 0x1C(r1)
-	  lwz       r12, 0x0(r29)
-	  lwz       r12, 0x1A4(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x2D0
-	  lbz       r0, 0x2B8(r29)
-	  cmpwi     r0, 0x4
-	  bne-      .loc_0x2D0
-	  mr        r3, r30
-	  fmr       f1, f31
-	  lwz       r12, 0x0(r30)
-	  mr        r4, r29
-	  lwz       r12, 0x298(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, -0x6C18(r13)
-	  lbz       r0, 0x3C(r3)
-	  rlwinm.   r0,r0,0,26,26
-	  beq-      .loc_0x2D0
-	  lwz       r3, -0x6B70(r13)
-	  li        r4, 0xC
-	  bl        0xD3350
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x2D0
-	  lwz       r0, -0x64AC(r13)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x2D0
-	  lfs       f0, -0x68E0(r2)
-	  lis       r3, 0x8048
-	  li        r0, 0
-	  mr        r4, r30
-	  subi      r5, r3, 0x516C
-	  stw       r0, 0x50(r1)
-	  addi      r3, r1, 0x8
-	  stw       r5, 0x4C(r1)
-	  stw       r0, 0x58(r1)
-	  stfs      f0, 0x64(r1)
-	  stfs      f0, 0x68(r1)
-	  stfs      f0, 0x6C(r1)
-	  stfs      f0, 0x70(r1)
-	  stw       r0, 0x74(r1)
-	  stw       r0, 0x5C(r1)
-	  stw       r0, 0x54(r1)
-	  stw       r0, 0x78(r1)
-	  stw       r0, 0x60(r1)
-	  stw       r0, 0x7C(r1)
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f2, 0x8(r1)
-	  mr        r3, r30
-	  lfs       f1, 0xC(r1)
-	  lfs       f0, 0x10(r1)
-	  stfs      f2, 0x64(r1)
-	  stfs      f1, 0x68(r1)
-	  stfs      f0, 0x6C(r1)
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x64(r12)
-	  mtctr     r12
-	  bctrl
-	  stfs      f1, 0x70(r1)
-	  addi      r4, r1, 0x4C
-	  lwz       r3, -0x64AC(r13)
-	  stw       r30, 0x194(r3)
-	  lwz       r3, -0x64AC(r13)
-	  bl        0x31888C
-	  lwz       r3, -0x6B70(r13)
-	  li        r4, 0xC
-	  bl        0xD3254
+lbl_80113FFC:
+	mr       r3, r29
+	bl       isStickToMouth__Q24Game8CreatureFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80114154
+	lis      r4, __vt__Q24Game11Interaction@ha
+	lis      r3, __vt__Q24Game12InteractKill@ha
+	addi     r4, r4, __vt__Q24Game11Interaction@l
+	li       r0, 0
+	stw      r4, 0x14(r1)
+	addi     r5, r3, __vt__Q24Game12InteractKill@l
+	mr       r3, r29
+	addi     r4, r1, 0x14
+	stw      r30, 0x18(r1)
+	stw      r5, 0x14(r1)
+	stw      r0, 0x1c(r1)
+	lwz      r12, 0(r29)
+	lwz      r12, 0x1a4(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80114154
+	lbz      r0, 0x2b8(r29)
+	cmpwi    r0, 4
+	bne      lbl_80114154
+	mr       r3, r30
+	fmr      f1, f31
+	lwz      r12, 0(r30)
+	mr       r4, r29
+	lwz      r12, 0x298(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, gameSystem__4Game@sda21(r13)
+	lbz      r0, 0x3c(r3)
+	rlwinm.  r0, r0, 0, 0x1a, 0x1a
+	beq      lbl_80114154
+	lwz      r3, playData__4Game@sda21(r13)
+	li       r4, 0xc
+	bl       isDemoFlag__Q24Game8PlayDataFi
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_80114154
+	lwz      r0, moviePlayer__4Game@sda21(r13)
+	cmplwi   r0, 0
+	beq      lbl_80114154
+	lfs      f0, lbl_80517A80@sda21(r2)
+	lis      r3, lbl_8047AE94@ha
+	li       r0, 0
+	mr       r4, r30
+	addi     r5, r3, lbl_8047AE94@l
+	stw      r0, 0x50(r1)
+	addi     r3, r1, 8
+	stw      r5, 0x4c(r1)
+	stw      r0, 0x58(r1)
+	stfs     f0, 0x64(r1)
+	stfs     f0, 0x68(r1)
+	stfs     f0, 0x6c(r1)
+	stfs     f0, 0x70(r1)
+	stw      r0, 0x74(r1)
+	stw      r0, 0x5c(r1)
+	stw      r0, 0x54(r1)
+	stw      r0, 0x78(r1)
+	stw      r0, 0x60(r1)
+	stw      r0, 0x7c(r1)
+	lwz      r12, 0(r30)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f2, 8(r1)
+	mr       r3, r30
+	lfs      f1, 0xc(r1)
+	lfs      f0, 0x10(r1)
+	stfs     f2, 0x64(r1)
+	stfs     f1, 0x68(r1)
+	stfs     f0, 0x6c(r1)
+	lwz      r12, 0(r30)
+	lwz      r12, 0x64(r12)
+	mtctr    r12
+	bctrl
+	stfs     f1, 0x70(r1)
+	addi     r4, r1, 0x4c
+	lwz      r3, moviePlayer__4Game@sda21(r13)
+	stw      r30, 0x194(r3)
+	lwz      r3, moviePlayer__4Game@sda21(r13)
+	bl       play__Q24Game11MoviePlayerFRQ24Game12MoviePlayArg
+	lwz      r3, playData__4Game@sda21(r13)
+	li       r4, 0xc
+	bl       setDemoFlag__Q24Game8PlayDataFi
 
-	.loc_0x2D0:
-	  lwz       r0, 0x2C(r1)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x2FC
-	  lwz       r3, 0x28(r1)
-	  lwz       r4, 0x24(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x24(r1)
-	  b         .loc_0x38C
+lbl_80114154:
+	lwz      r0, 0x2c(r1)
+	cmplwi   r0, 0
+	bne      lbl_80114180
+	lwz      r3, 0x28(r1)
+	lwz      r4, 0x24(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x24(r1)
+	b        lbl_80114210
 
-	.loc_0x2FC:
-	  lwz       r3, 0x28(r1)
-	  lwz       r4, 0x24(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x24(r1)
-	  b         .loc_0x370
+lbl_80114180:
+	lwz      r3, 0x28(r1)
+	lwz      r4, 0x24(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x24(r1)
+	b        lbl_801141F4
 
-	.loc_0x31C:
-	  lwz       r3, 0x28(r1)
-	  lwz       r4, 0x24(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x2C(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x38C
-	  lwz       r3, 0x28(r1)
-	  lwz       r4, 0x24(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x24(r1)
+lbl_801141A0:
+	lwz      r3, 0x28(r1)
+	lwz      r4, 0x24(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	lwz      r3, 0x2c(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_80114210
+	lwz      r3, 0x28(r1)
+	lwz      r4, 0x24(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x24(r1)
 
-	.loc_0x370:
-	  lwz       r12, 0x20(r1)
-	  addi      r3, r1, 0x20
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x31C
+lbl_801141F4:
+	lwz      r12, 0x20(r1)
+	addi     r3, r1, 0x20
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_801141A0
 
-	.loc_0x38C:
-	  lwz       r3, 0x28(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r4, 0x24(r1)
-	  cmplw     r4, r3
-	  bne+      .loc_0x104
-	  addi      r3, r1, 0x30
-	  li        r4, -0x1
-	  bl        0x8BB2C
-	  psq_l     f31,0x98(r1),0,0
-	  lwz       r0, 0xA4(r1)
-	  lfd       f31, 0x90(r1)
-	  lwz       r31, 0x8C(r1)
-	  lwz       r30, 0x88(r1)
-	  lwz       r29, 0x84(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0xA0
-	  blr
+lbl_80114210:
+	lwz      r3, 0x28(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r4, 0x24(r1)
+	cmplw    r4, r3
+	bne      lbl_80113F88
+	addi     r3, r1, 0x30
+	li       r4, -1
+	bl       __dt__Q24Game8StickersFv
+	psq_l    f31, 152(r1), 0, qr0
+	lwz      r0, 0xa4(r1)
+	lfd      f31, 0x90(r1)
+	lwz      r31, 0x8c(r1)
+	lwz      r30, 0x88(r1)
+	lwz      r29, 0x84(r1)
+	mtlr     r0
+	addi     r1, r1, 0xa0
+	blr
 	*/
 }
 
@@ -2400,76 +2497,75 @@ void EnemyFunc::attackNavi(Game::Creature*, float, float, float, CollPart*,
 void EnemyFunc::isStartFlick(Game::EnemyBase*, bool)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  li        r7, 0
-	  lfs       f0, -0x68E0(r2)
-	  lfs       f1, 0x20C(r3)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0x1, 0x2
-	  bne-      .loc_0x28
-	  lfs       f0, -0x68CC(r2)
-	  fadds     f0, f0, f1
-	  b         .loc_0x30
+	stwu     r1, -0x10(r1)
+	li       r7, 0
+	lfs      f0, lbl_80517A80@sda21(r2)
+	lfs      f1, 0x20c(r3)
+	fcmpo    cr0, f1, f0
+	cror     2, 1, 2
+	bne      lbl_80114680
+	lfs      f0, lbl_80517A94@sda21(r2)
+	fadds    f0, f0, f1
+	b        lbl_80114688
 
-	.loc_0x28:
-	  lfs       f0, -0x68CC(r2)
-	  fsubs     f0, f1, f0
+lbl_80114680:
+	lfs      f0, lbl_80517A94@sda21(r2)
+	fsubs    f0, f1, f0
 
-	.loc_0x30:
-	  fctiwz    f0, f0
-	  lwz       r6, 0xC0(r3)
-	  lwz       r5, 0x1F4(r3)
-	  lwz       r0, 0x71C(r6)
-	  stfd      f0, 0x8(r1)
-	  cmpw      r5, r0
-	  lwz       r0, 0xC(r1)
-	  rlwinm    r8,r0,0,24,31
-	  bge-      .loc_0x68
-	  lwz       r0, 0x6F4(r6)
-	  cmpw      r8, r0
-	  ble-      .loc_0xB8
-	  li        r7, 0x1
-	  b         .loc_0xB8
+lbl_80114688:
+	fctiwz   f0, f0
+	lwz      r6, 0xc0(r3)
+	lwz      r5, 0x1f4(r3)
+	lwz      r0, 0x71c(r6)
+	stfd     f0, 8(r1)
+	cmpw     r5, r0
+	lwz      r0, 0xc(r1)
+	clrlwi   r8, r0, 0x18
+	bge      lbl_801146C0
+	lwz      r0, 0x6f4(r6)
+	cmpw     r8, r0
+	ble      lbl_80114710
+	li       r7, 1
+	b        lbl_80114710
 
-	.loc_0x68:
-	  lwz       r0, 0x76C(r6)
-	  cmpw      r5, r0
-	  bge-      .loc_0x88
-	  lwz       r0, 0x744(r6)
-	  cmpw      r8, r0
-	  ble-      .loc_0xB8
-	  li        r7, 0x1
-	  b         .loc_0xB8
+lbl_801146C0:
+	lwz      r0, 0x76c(r6)
+	cmpw     r5, r0
+	bge      lbl_801146E0
+	lwz      r0, 0x744(r6)
+	cmpw     r8, r0
+	ble      lbl_80114710
+	li       r7, 1
+	b        lbl_80114710
 
-	.loc_0x88:
-	  lwz       r0, 0x7BC(r6)
-	  cmpw      r5, r0
-	  bge-      .loc_0xA8
-	  lwz       r0, 0x794(r6)
-	  cmpw      r8, r0
-	  ble-      .loc_0xB8
-	  li        r7, 0x1
-	  b         .loc_0xB8
+lbl_801146E0:
+	lwz      r0, 0x7bc(r6)
+	cmpw     r5, r0
+	bge      lbl_80114700
+	lwz      r0, 0x794(r6)
+	cmpw     r8, r0
+	ble      lbl_80114710
+	li       r7, 1
+	b        lbl_80114710
 
-	.loc_0xA8:
-	  lwz       r0, 0x7E4(r6)
-	  cmpw      r8, r0
-	  ble-      .loc_0xB8
-	  li        r7, 0x1
+lbl_80114700:
+	lwz      r0, 0x7e4(r6)
+	cmpw     r8, r0
+	ble      lbl_80114710
+	li       r7, 1
 
-	.loc_0xB8:
-	  rlwinm.   r0,r7,0,24,31
-	  beq-      .loc_0xD0
-	  rlwinm.   r0,r4,0,24,31
-	  beq-      .loc_0xD0
-	  lfs       f0, -0x68E0(r2)
-	  stfs      f0, 0x20C(r3)
+lbl_80114710:
+	clrlwi.  r0, r7, 0x18
+	beq      lbl_80114728
+	clrlwi.  r0, r4, 0x18
+	beq      lbl_80114728
+	lfs      f0, lbl_80517A80@sda21(r2)
+	stfs     f0, 0x20c(r3)
 
-	.loc_0xD0:
-	  mr        r3, r7
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80114728:
+	mr       r3, r7
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -2481,256 +2577,255 @@ void EnemyFunc::isStartFlick(Game::EnemyBase*, bool)
 void EnemyFunc::isTherePikmin(Game::Creature*, float, Condition<Game::Piki>*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0xD0(r1)
-	  mflr      r0
-	  stw       r0, 0xD4(r1)
-	  stfd      f31, 0xC0(r1)
-	  psq_st    f31,0xC8(r1),0,0
-	  stfd      f30, 0xB0(r1)
-	  psq_st    f30,0xB8(r1),0,0
-	  stfd      f29, 0xA0(r1)
-	  psq_st    f29,0xA8(r1),0,0
-	  stfd      f28, 0x90(r1)
-	  psq_st    f28,0x98(r1),0,0
-	  stfd      f27, 0x80(r1)
-	  psq_st    f27,0x88(r1),0,0
-	  stfd      f26, 0x70(r1)
-	  psq_st    f26,0x78(r1),0,0
-	  stw       r31, 0x6C(r1)
-	  stw       r30, 0x68(r1)
-	  stw       r29, 0x64(r1)
-	  lwz       r0, -0x6D0C(r13)
-	  lis       r5, 0x804B
-	  subi      r6, r5, 0x4364
-	  li        r5, 0
-	  cmplwi    r4, 0
-	  fmuls     f26, f1, f1
-	  stw       r6, 0x50(r1)
-	  mr        r31, r3
-	  stw       r4, 0x5C(r1)
-	  stw       r5, 0x54(r1)
-	  stw       r0, 0x58(r1)
-	  bne-      .loc_0x94
-	  mr        r3, r0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x54(r1)
-	  b         .loc_0x31C
+	stwu     r1, -0xd0(r1)
+	mflr     r0
+	stw      r0, 0xd4(r1)
+	stfd     f31, 0xc0(r1)
+	psq_st   f31, 200(r1), 0, qr0
+	stfd     f30, 0xb0(r1)
+	psq_st   f30, 184(r1), 0, qr0
+	stfd     f29, 0xa0(r1)
+	psq_st   f29, 168(r1), 0, qr0
+	stfd     f28, 0x90(r1)
+	psq_st   f28, 152(r1), 0, qr0
+	stfd     f27, 0x80(r1)
+	psq_st   f27, 136(r1), 0, qr0
+	stfd     f26, 0x70(r1)
+	psq_st   f26, 120(r1), 0, qr0
+	stw      r31, 0x6c(r1)
+	stw      r30, 0x68(r1)
+	stw      r29, 0x64(r1)
+	lwz      r0, pikiMgr__4Game@sda21(r13)
+	lis      r5, "__vt__22Iterator<Q24Game4Piki>"@ha
+	addi     r6, r5, "__vt__22Iterator<Q24Game4Piki>"@l
+	li       r5, 0
+	cmplwi   r4, 0
+	fmuls    f26, f1, f1
+	stw      r6, 0x50(r1)
+	mr       r31, r3
+	stw      r4, 0x5c(r1)
+	stw      r5, 0x54(r1)
+	stw      r0, 0x58(r1)
+	bne      lbl_801147C8
+	mr       r3, r0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x54(r1)
+	b        lbl_80114A50
 
-	.loc_0x94:
-	  mr        r3, r0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x54(r1)
-	  b         .loc_0x104
+lbl_801147C8:
+	mr       r3, r0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x54(r1)
+	b        lbl_80114838
 
-	.loc_0xB0:
-	  lwz       r3, 0x58(r1)
-	  lwz       r4, 0x54(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x5C(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x31C
-	  lwz       r3, 0x58(r1)
-	  lwz       r4, 0x54(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x54(r1)
+lbl_801147E4:
+	lwz      r3, 0x58(r1)
+	lwz      r4, 0x54(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	lwz      r3, 0x5c(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_80114A50
+	lwz      r3, 0x58(r1)
+	lwz      r4, 0x54(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x54(r1)
 
-	.loc_0x104:
-	  lwz       r12, 0x50(r1)
-	  addi      r3, r1, 0x50
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0xB0
-	  b         .loc_0x31C
+lbl_80114838:
+	lwz      r12, 0x50(r1)
+	addi     r3, r1, 0x50
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_801147E4
+	b        lbl_80114A50
 
-	.loc_0x124:
-	  lwz       r3, 0x58(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r12, 0x0(r3)
-	  mr        r29, r3
-	  li        r30, 0
-	  lwz       r12, 0x1C0(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x188
-	  mr        r3, r29
-	  lwz       r12, 0x0(r29)
-	  lwz       r12, 0xA8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x188
-	  mr        r3, r29
-	  bl        0x8ACDC
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x188
-	  li        r30, 0x1
+lbl_80114858:
+	lwz      r3, 0x58(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	lwz      r12, 0(r3)
+	mr       r29, r3
+	li       r30, 0
+	lwz      r12, 0x1c0(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_801148BC
+	mr       r3, r29
+	lwz      r12, 0(r29)
+	lwz      r12, 0xa8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_801148BC
+	mr       r3, r29
+	bl       isStickToMouth__Q24Game8CreatureFv
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_801148BC
+	li       r30, 1
 
-	.loc_0x188:
-	  rlwinm.   r0,r30,0,24,31
-	  beq-      .loc_0x260
-	  mr        r4, r31
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r31
-	  addi      r3, r1, 0x14
-	  lwz       r12, 0x0(r31)
-	  lfs       f27, 0x10(r1)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r31
-	  addi      r3, r1, 0x20
-	  lwz       r12, 0x0(r31)
-	  lfs       f28, 0x18(r1)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r29
-	  addi      r3, r1, 0x2C
-	  lwz       r12, 0x0(r29)
-	  lfs       f29, 0x20(r1)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r29
-	  addi      r3, r1, 0x38
-	  lwz       r12, 0x0(r29)
-	  lfs       f30, 0x34(r1)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r29
-	  addi      r3, r1, 0x44
-	  lwz       r12, 0x0(r29)
-	  lfs       f31, 0x3C(r1)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  fsubs     f0, f31, f28
-	  lfs       f2, 0x44(r1)
-	  fsubs     f1, f30, f27
-	  fsubs     f2, f2, f29
-	  fmuls     f0, f0, f0
-	  fmadds    f0, f2, f2, f0
-	  fmadds    f0, f1, f1, f0
-	  fcmpo     cr0, f0, f26
-	  bge-      .loc_0x260
-	  li        r3, 0x1
-	  b         .loc_0x340
+lbl_801148BC:
+	clrlwi.  r0, r30, 0x18
+	beq      lbl_80114994
+	mr       r4, r31
+	addi     r3, r1, 8
+	lwz      r12, 0(r31)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r31
+	addi     r3, r1, 0x14
+	lwz      r12, 0(r31)
+	lfs      f27, 0x10(r1)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r31
+	addi     r3, r1, 0x20
+	lwz      r12, 0(r31)
+	lfs      f28, 0x18(r1)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r29
+	addi     r3, r1, 0x2c
+	lwz      r12, 0(r29)
+	lfs      f29, 0x20(r1)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r29
+	addi     r3, r1, 0x38
+	lwz      r12, 0(r29)
+	lfs      f30, 0x34(r1)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r29
+	addi     r3, r1, 0x44
+	lwz      r12, 0(r29)
+	lfs      f31, 0x3c(r1)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	fsubs    f0, f31, f28
+	lfs      f2, 0x44(r1)
+	fsubs    f1, f30, f27
+	fsubs    f2, f2, f29
+	fmuls    f0, f0, f0
+	fmadds   f0, f2, f2, f0
+	fmadds   f0, f1, f1, f0
+	fcmpo    cr0, f0, f26
+	bge      lbl_80114994
+	li       r3, 1
+	b        lbl_80114A74
 
-	.loc_0x260:
-	  lwz       r0, 0x5C(r1)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x28C
-	  lwz       r3, 0x58(r1)
-	  lwz       r4, 0x54(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x54(r1)
-	  b         .loc_0x31C
+lbl_80114994:
+	lwz      r0, 0x5c(r1)
+	cmplwi   r0, 0
+	bne      lbl_801149C0
+	lwz      r3, 0x58(r1)
+	lwz      r4, 0x54(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x54(r1)
+	b        lbl_80114A50
 
-	.loc_0x28C:
-	  lwz       r3, 0x58(r1)
-	  lwz       r4, 0x54(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x54(r1)
-	  b         .loc_0x300
+lbl_801149C0:
+	lwz      r3, 0x58(r1)
+	lwz      r4, 0x54(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x54(r1)
+	b        lbl_80114A34
 
-	.loc_0x2AC:
-	  lwz       r3, 0x58(r1)
-	  lwz       r4, 0x54(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x5C(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x31C
-	  lwz       r3, 0x58(r1)
-	  lwz       r4, 0x54(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x54(r1)
+lbl_801149E0:
+	lwz      r3, 0x58(r1)
+	lwz      r4, 0x54(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	lwz      r3, 0x5c(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_80114A50
+	lwz      r3, 0x58(r1)
+	lwz      r4, 0x54(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x54(r1)
 
-	.loc_0x300:
-	  lwz       r12, 0x50(r1)
-	  addi      r3, r1, 0x50
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x2AC
+lbl_80114A34:
+	lwz      r12, 0x50(r1)
+	addi     r3, r1, 0x50
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_801149E0
 
-	.loc_0x31C:
-	  lwz       r3, 0x58(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r4, 0x54(r1)
-	  cmplw     r4, r3
-	  bne+      .loc_0x124
-	  li        r3, 0
+lbl_80114A50:
+	lwz      r3, 0x58(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r4, 0x54(r1)
+	cmplw    r4, r3
+	bne      lbl_80114858
+	li       r3, 0
 
-	.loc_0x340:
-	  psq_l     f31,0xC8(r1),0,0
-	  lfd       f31, 0xC0(r1)
-	  psq_l     f30,0xB8(r1),0,0
-	  lfd       f30, 0xB0(r1)
-	  psq_l     f29,0xA8(r1),0,0
-	  lfd       f29, 0xA0(r1)
-	  psq_l     f28,0x98(r1),0,0
-	  lfd       f28, 0x90(r1)
-	  psq_l     f27,0x88(r1),0,0
-	  lfd       f27, 0x80(r1)
-	  psq_l     f26,0x78(r1),0,0
-	  lfd       f26, 0x70(r1)
-	  lwz       r31, 0x6C(r1)
-	  lwz       r30, 0x68(r1)
-	  lwz       r0, 0xD4(r1)
-	  lwz       r29, 0x64(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0xD0
-	  blr
+lbl_80114A74:
+	psq_l    f31, 200(r1), 0, qr0
+	lfd      f31, 0xc0(r1)
+	psq_l    f30, 184(r1), 0, qr0
+	lfd      f30, 0xb0(r1)
+	psq_l    f29, 168(r1), 0, qr0
+	lfd      f29, 0xa0(r1)
+	psq_l    f28, 152(r1), 0, qr0
+	lfd      f28, 0x90(r1)
+	psq_l    f27, 136(r1), 0, qr0
+	lfd      f27, 0x80(r1)
+	psq_l    f26, 120(r1), 0, qr0
+	lfd      f26, 0x70(r1)
+	lwz      r31, 0x6c(r1)
+	lwz      r30, 0x68(r1)
+	lwz      r0, 0xd4(r1)
+	lwz      r29, 0x64(r1)
+	mtlr     r0
+	addi     r1, r1, 0xd0
+	blr
 	*/
 }
 
@@ -2742,231 +2837,230 @@ void EnemyFunc::isTherePikmin(Game::Creature*, float, Condition<Game::Piki>*)
 void EnemyFunc::isThereOlimar(Game::Creature*, float, Condition<Game::Navi>*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0xD0(r1)
-	  mflr      r0
-	  stw       r0, 0xD4(r1)
-	  stfd      f31, 0xC0(r1)
-	  psq_st    f31,0xC8(r1),0,0
-	  stfd      f30, 0xB0(r1)
-	  psq_st    f30,0xB8(r1),0,0
-	  stfd      f29, 0xA0(r1)
-	  psq_st    f29,0xA8(r1),0,0
-	  stfd      f28, 0x90(r1)
-	  psq_st    f28,0x98(r1),0,0
-	  stfd      f27, 0x80(r1)
-	  psq_st    f27,0x88(r1),0,0
-	  stfd      f26, 0x70(r1)
-	  psq_st    f26,0x78(r1),0,0
-	  stw       r31, 0x6C(r1)
-	  stw       r30, 0x68(r1)
-	  lwz       r0, -0x6D20(r13)
-	  lis       r5, 0x804B
-	  subi      r6, r5, 0x434C
-	  li        r5, 0
-	  cmplwi    r4, 0
-	  fmuls     f26, f1, f1
-	  stw       r6, 0x50(r1)
-	  mr        r30, r3
-	  stw       r4, 0x5C(r1)
-	  stw       r5, 0x54(r1)
-	  stw       r0, 0x58(r1)
-	  bne-      .loc_0x90
-	  mr        r3, r0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x54(r1)
-	  b         .loc_0x2C4
+	stwu     r1, -0xd0(r1)
+	mflr     r0
+	stw      r0, 0xd4(r1)
+	stfd     f31, 0xc0(r1)
+	psq_st   f31, 200(r1), 0, qr0
+	stfd     f30, 0xb0(r1)
+	psq_st   f30, 184(r1), 0, qr0
+	stfd     f29, 0xa0(r1)
+	psq_st   f29, 168(r1), 0, qr0
+	stfd     f28, 0x90(r1)
+	psq_st   f28, 152(r1), 0, qr0
+	stfd     f27, 0x80(r1)
+	psq_st   f27, 136(r1), 0, qr0
+	stfd     f26, 0x70(r1)
+	psq_st   f26, 120(r1), 0, qr0
+	stw      r31, 0x6c(r1)
+	stw      r30, 0x68(r1)
+	lwz      r0, naviMgr__4Game@sda21(r13)
+	lis      r5, "__vt__22Iterator<Q24Game4Navi>"@ha
+	addi     r6, r5, "__vt__22Iterator<Q24Game4Navi>"@l
+	li       r5, 0
+	cmplwi   r4, 0
+	fmuls    f26, f1, f1
+	stw      r6, 0x50(r1)
+	mr       r30, r3
+	stw      r4, 0x5c(r1)
+	stw      r5, 0x54(r1)
+	stw      r0, 0x58(r1)
+	bne      lbl_80114B50
+	mr       r3, r0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x54(r1)
+	b        lbl_80114D84
 
-	.loc_0x90:
-	  mr        r3, r0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x54(r1)
-	  b         .loc_0x100
+lbl_80114B50:
+	mr       r3, r0
+	lwz      r12, 0(r3)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x54(r1)
+	b        lbl_80114BC0
 
-	.loc_0xAC:
-	  lwz       r3, 0x58(r1)
-	  lwz       r4, 0x54(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x5C(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x2C4
-	  lwz       r3, 0x58(r1)
-	  lwz       r4, 0x54(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x54(r1)
+lbl_80114B6C:
+	lwz      r3, 0x58(r1)
+	lwz      r4, 0x54(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	lwz      r3, 0x5c(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_80114D84
+	lwz      r3, 0x58(r1)
+	lwz      r4, 0x54(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x54(r1)
 
-	.loc_0x100:
-	  lwz       r12, 0x50(r1)
-	  addi      r3, r1, 0x50
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0xAC
-	  b         .loc_0x2C4
+lbl_80114BC0:
+	lwz      r12, 0x50(r1)
+	addi     r3, r1, 0x50
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80114B6C
+	b        lbl_80114D84
 
-	.loc_0x120:
-	  lwz       r3, 0x58(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r12, 0x0(r30)
-	  mr        r31, r3
-	  mr        r4, r30
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r30
-	  addi      r3, r1, 0x14
-	  lwz       r12, 0x0(r30)
-	  lfs       f27, 0x10(r1)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r30
-	  addi      r3, r1, 0x20
-	  lwz       r12, 0x0(r30)
-	  lfs       f28, 0x18(r1)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r31
-	  addi      r3, r1, 0x2C
-	  lwz       r12, 0x0(r31)
-	  lfs       f29, 0x20(r1)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r31
-	  addi      r3, r1, 0x38
-	  lwz       r12, 0x0(r31)
-	  lfs       f30, 0x34(r1)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r31
-	  addi      r3, r1, 0x44
-	  lwz       r12, 0x0(r31)
-	  lfs       f31, 0x3C(r1)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  fsubs     f0, f31, f28
-	  lfs       f2, 0x44(r1)
-	  fsubs     f1, f30, f27
-	  fsubs     f2, f2, f29
-	  fmuls     f0, f0, f0
-	  fmadds    f0, f2, f2, f0
-	  fmadds    f0, f1, f1, f0
-	  fcmpo     cr0, f0, f26
-	  bge-      .loc_0x208
-	  li        r3, 0x1
-	  b         .loc_0x2E8
+lbl_80114BE0:
+	lwz      r3, 0x58(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	lwz      r12, 0(r30)
+	mr       r31, r3
+	mr       r4, r30
+	addi     r3, r1, 8
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r30
+	addi     r3, r1, 0x14
+	lwz      r12, 0(r30)
+	lfs      f27, 0x10(r1)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r30
+	addi     r3, r1, 0x20
+	lwz      r12, 0(r30)
+	lfs      f28, 0x18(r1)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r31
+	addi     r3, r1, 0x2c
+	lwz      r12, 0(r31)
+	lfs      f29, 0x20(r1)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r31
+	addi     r3, r1, 0x38
+	lwz      r12, 0(r31)
+	lfs      f30, 0x34(r1)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r31
+	addi     r3, r1, 0x44
+	lwz      r12, 0(r31)
+	lfs      f31, 0x3c(r1)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	fsubs    f0, f31, f28
+	lfs      f2, 0x44(r1)
+	fsubs    f1, f30, f27
+	fsubs    f2, f2, f29
+	fmuls    f0, f0, f0
+	fmadds   f0, f2, f2, f0
+	fmadds   f0, f1, f1, f0
+	fcmpo    cr0, f0, f26
+	bge      lbl_80114CC8
+	li       r3, 1
+	b        lbl_80114DA8
 
-	.loc_0x208:
-	  lwz       r0, 0x5C(r1)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x234
-	  lwz       r3, 0x58(r1)
-	  lwz       r4, 0x54(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x54(r1)
-	  b         .loc_0x2C4
+lbl_80114CC8:
+	lwz      r0, 0x5c(r1)
+	cmplwi   r0, 0
+	bne      lbl_80114CF4
+	lwz      r3, 0x58(r1)
+	lwz      r4, 0x54(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x54(r1)
+	b        lbl_80114D84
 
-	.loc_0x234:
-	  lwz       r3, 0x58(r1)
-	  lwz       r4, 0x54(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x54(r1)
-	  b         .loc_0x2A8
+lbl_80114CF4:
+	lwz      r3, 0x58(r1)
+	lwz      r4, 0x54(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x54(r1)
+	b        lbl_80114D68
 
-	.loc_0x254:
-	  lwz       r3, 0x58(r1)
-	  lwz       r4, 0x54(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x5C(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x2C4
-	  lwz       r3, 0x58(r1)
-	  lwz       r4, 0x54(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x54(r1)
+lbl_80114D14:
+	lwz      r3, 0x58(r1)
+	lwz      r4, 0x54(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	lwz      r3, 0x5c(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_80114D84
+	lwz      r3, 0x58(r1)
+	lwz      r4, 0x54(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0x54(r1)
 
-	.loc_0x2A8:
-	  lwz       r12, 0x50(r1)
-	  addi      r3, r1, 0x50
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x254
+lbl_80114D68:
+	lwz      r12, 0x50(r1)
+	addi     r3, r1, 0x50
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80114D14
 
-	.loc_0x2C4:
-	  lwz       r3, 0x58(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r4, 0x54(r1)
-	  cmplw     r4, r3
-	  bne+      .loc_0x120
-	  li        r3, 0
+lbl_80114D84:
+	lwz      r3, 0x58(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r4, 0x54(r1)
+	cmplw    r4, r3
+	bne      lbl_80114BE0
+	li       r3, 0
 
-	.loc_0x2E8:
-	  psq_l     f31,0xC8(r1),0,0
-	  lfd       f31, 0xC0(r1)
-	  psq_l     f30,0xB8(r1),0,0
-	  lfd       f30, 0xB0(r1)
-	  psq_l     f29,0xA8(r1),0,0
-	  lfd       f29, 0xA0(r1)
-	  psq_l     f28,0x98(r1),0,0
-	  lfd       f28, 0x90(r1)
-	  psq_l     f27,0x88(r1),0,0
-	  lfd       f27, 0x80(r1)
-	  psq_l     f26,0x78(r1),0,0
-	  lfd       f26, 0x70(r1)
-	  lwz       r31, 0x6C(r1)
-	  lwz       r0, 0xD4(r1)
-	  lwz       r30, 0x68(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0xD0
-	  blr
+lbl_80114DA8:
+	psq_l    f31, 200(r1), 0, qr0
+	lfd      f31, 0xc0(r1)
+	psq_l    f30, 184(r1), 0, qr0
+	lfd      f30, 0xb0(r1)
+	psq_l    f29, 168(r1), 0, qr0
+	lfd      f29, 0xa0(r1)
+	psq_l    f28, 152(r1), 0, qr0
+	lfd      f28, 0x90(r1)
+	psq_l    f27, 136(r1), 0, qr0
+	lfd      f27, 0x80(r1)
+	psq_l    f26, 120(r1), 0, qr0
+	lfd      f26, 0x70(r1)
+	lwz      r31, 0x6c(r1)
+	lwz      r0, 0xd4(r1)
+	lwz      r30, 0x68(r1)
+	mtlr     r0
+	addi     r1, r1, 0xd0
+	blr
 	*/
 }
 
@@ -3252,172 +3346,171 @@ void EnemyFunc::getSurroundPikminNum(Game::Creature*, float,
 void EnemyFunc::getStickPikminColorNum(Game::Creature*, int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  stw       r0, 0x44(r1)
-	  stw       r31, 0x3C(r1)
-	  li        r31, 0
-	  stw       r30, 0x38(r1)
-	  mr        r30, r4
-	  mr        r4, r3
-	  addi      r3, r1, 0x18
-	  bl        0x8AA84
-	  li        r0, 0
-	  lis       r3, 0x804B
-	  subi      r4, r3, 0x437C
-	  addi      r3, r1, 0x18
-	  cmplwi    r0, 0
-	  stw       r4, 0x8(r1)
-	  stw       r0, 0x14(r1)
-	  stw       r0, 0xC(r1)
-	  stw       r3, 0x10(r1)
-	  bne-      .loc_0x68
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0x204
+	stwu     r1, -0x40(r1)
+	mflr     r0
+	stw      r0, 0x44(r1)
+	stw      r31, 0x3c(r1)
+	li       r31, 0
+	stw      r30, 0x38(r1)
+	mr       r30, r4
+	mr       r4, r3
+	addi     r3, r1, 0x18
+	bl       __ct__Q24Game8StickersFPQ24Game8Creature
+	li       r0, 0
+	lis      r3, "__vt__26Iterator<Q24Game8Creature>"@ha
+	addi     r4, r3, "__vt__26Iterator<Q24Game8Creature>"@l
+	addi     r3, r1, 0x18
+	cmplwi   r0, 0
+	stw      r4, 8(r1)
+	stw      r0, 0x14(r1)
+	stw      r0, 0xc(r1)
+	stw      r3, 0x10(r1)
+	bne      lbl_8011521C
+	lwz      r12, 0(r3)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
+	b        lbl_801153B8
 
-	.loc_0x68:
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0xD4
+lbl_8011521C:
+	lwz      r12, 0(r3)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
+	b        lbl_80115288
 
-	.loc_0x80:
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x204
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
+lbl_80115234:
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	lwz      r3, 0x14(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_801153B8
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
 
-	.loc_0xD4:
-	  lwz       r12, 0x8(r1)
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x80
-	  b         .loc_0x204
+lbl_80115288:
+	lwz      r12, 8(r1)
+	addi     r3, r1, 8
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80115234
+	b        lbl_801153B8
 
-	.loc_0xF4:
-	  lwz       r3, 0x10(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x148
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  lbz       r0, 0x2B8(r3)
-	  cmpw      r30, r0
-	  bne-      .loc_0x148
-	  addi      r31, r31, 0x1
+lbl_801152A8:
+	lwz      r3, 0x10(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	lwz      r12, 0(r3)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_801152FC
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	lbz      r0, 0x2b8(r3)
+	cmpw     r30, r0
+	bne      lbl_801152FC
+	addi     r31, r31, 1
 
-	.loc_0x148:
-	  lwz       r0, 0x14(r1)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x174
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0x204
+lbl_801152FC:
+	lwz      r0, 0x14(r1)
+	cmplwi   r0, 0
+	bne      lbl_80115328
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
+	b        lbl_801153B8
 
-	.loc_0x174:
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
-	  b         .loc_0x1E8
+lbl_80115328:
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
+	b        lbl_8011539C
 
-	.loc_0x194:
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x204
-	  lwz       r3, 0x10(r1)
-	  lwz       r4, 0xC(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0xC(r1)
+lbl_80115348:
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	lwz      r3, 0x14(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_801153B8
+	lwz      r3, 0x10(r1)
+	lwz      r4, 0xc(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 0xc(r1)
 
-	.loc_0x1E8:
-	  lwz       r12, 0x8(r1)
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x194
+lbl_8011539C:
+	lwz      r12, 8(r1)
+	addi     r3, r1, 8
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80115348
 
-	.loc_0x204:
-	  lwz       r3, 0x10(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r4, 0xC(r1)
-	  cmplw     r4, r3
-	  bne+      .loc_0xF4
-	  addi      r3, r1, 0x18
-	  li        r4, -0x1
-	  bl        0x8A984
-	  lwz       r0, 0x44(r1)
-	  mr        r3, r31
-	  lwz       r31, 0x3C(r1)
-	  lwz       r30, 0x38(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
+lbl_801153B8:
+	lwz      r3, 0x10(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r4, 0xc(r1)
+	cmplw    r4, r3
+	bne      lbl_801152A8
+	addi     r3, r1, 0x18
+	li       r4, -1
+	bl       __dt__Q24Game8StickersFv
+	lwz      r0, 0x44(r1)
+	mr       r3, r31
+	lwz      r31, 0x3c(r1)
+	lwz      r30, 0x38(r1)
+	mtlr     r0
+	addi     r1, r1, 0x40
+	blr
 	*/
 }
 
@@ -3565,122 +3658,121 @@ void EnemyFunc::walkToTarget(Game::EnemyBase*, Game::Creature*, float, float,
 void EnemyFunc::walkToTarget(Game::EnemyBase*, Vector3f&, float, float, float)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x80(r1)
-	  mflr      r0
-	  stw       r0, 0x84(r1)
-	  stfd      f31, 0x70(r1)
-	  psq_st    f31,0x78(r1),0,0
-	  stfd      f30, 0x60(r1)
-	  psq_st    f30,0x68(r1),0,0
-	  stfd      f29, 0x50(r1)
-	  psq_st    f29,0x58(r1),0,0
-	  stfd      f28, 0x40(r1)
-	  psq_st    f28,0x48(r1),0,0
-	  stw       r31, 0x3C(r1)
-	  stw       r30, 0x38(r1)
-	  mr        r30, r3
-	  mr        r31, r4
-	  mr        r4, r30
-	  fmr       f31, f1
-	  lwz       r12, 0x0(r30)
-	  fmr       f28, f2
-	  fmr       f29, f3
-	  addi      r3, r1, 0x14
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f5, 0x14(r1)
-	  lis       r3, 0x8051
-	  lfs       f3, 0x1C(r1)
-	  subi      r3, r3, 0x2E20
-	  lfs       f1, 0x0(r31)
-	  lfs       f0, 0x8(r31)
-	  lfs       f4, 0x18(r1)
-	  fsubs     f1, f1, f5
-	  fsubs     f2, f0, f3
-	  stfs      f5, 0x8(r1)
-	  stfs      f4, 0xC(r1)
-	  stfs      f3, 0x10(r1)
-	  bl        -0xE0564
-	  bl        0x2FC560
-	  lwz       r12, 0x0(r30)
-	  fmr       f30, f1
-	  mr        r3, r30
-	  lwz       r12, 0x64(r12)
-	  mtctr     r12
-	  bctrl
-	  fmr       f2, f1
-	  fmr       f1, f30
-	  bl        0x2FC568
-	  fmuls     f30, f1, f28
-	  lfs       f0, -0x68E4(r2)
-	  lfs       f1, -0x68E8(r2)
-	  fmuls     f0, f0, f29
-	  fabs      f2, f30
-	  fmuls     f1, f1, f0
-	  frsp      f0, f2
-	  fcmpo     cr0, f0, f1
-	  ble-      .loc_0xF8
-	  lfs       f0, -0x68E0(r2)
-	  fcmpo     cr0, f30, f0
-	  ble-      .loc_0xF4
-	  fmr       f30, f1
-	  b         .loc_0xF8
+	stwu     r1, -0x80(r1)
+	mflr     r0
+	stw      r0, 0x84(r1)
+	stfd     f31, 0x70(r1)
+	psq_st   f31, 120(r1), 0, qr0
+	stfd     f30, 0x60(r1)
+	psq_st   f30, 104(r1), 0, qr0
+	stfd     f29, 0x50(r1)
+	psq_st   f29, 88(r1), 0, qr0
+	stfd     f28, 0x40(r1)
+	psq_st   f28, 72(r1), 0, qr0
+	stw      r31, 0x3c(r1)
+	stw      r30, 0x38(r1)
+	mr       r30, r3
+	mr       r31, r4
+	mr       r4, r30
+	fmr      f31, f1
+	lwz      r12, 0(r30)
+	fmr      f28, f2
+	fmr      f29, f3
+	addi     r3, r1, 0x14
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f5, 0x14(r1)
+	lis      r3, atanTable___5JMath@ha
+	lfs      f3, 0x1c(r1)
+	addi     r3, r3, atanTable___5JMath@l
+	lfs      f1, 0(r31)
+	lfs      f0, 8(r31)
+	lfs      f4, 0x18(r1)
+	fsubs    f1, f1, f5
+	fsubs    f2, f0, f3
+	stfs     f5, 8(r1)
+	stfs     f4, 0xc(r1)
+	stfs     f3, 0x10(r1)
+	bl       "atan2___Q25JMath18TAtanTable<1024,f>CFff"
+	bl       roundAng__Ff
+	lwz      r12, 0(r30)
+	fmr      f30, f1
+	mr       r3, r30
+	lwz      r12, 0x64(r12)
+	mtctr    r12
+	bctrl
+	fmr      f2, f1
+	fmr      f1, f30
+	bl       angDist__Fff
+	fmuls    f30, f1, f28
+	lfs      f0, lbl_80517A7C@sda21(r2)
+	lfs      f1, lbl_80517A78@sda21(r2)
+	fmuls    f0, f0, f29
+	fabs     f2, f30
+	fmuls    f1, f1, f0
+	frsp     f0, f2
+	fcmpo    cr0, f0, f1
+	ble      lbl_801156D4
+	lfs      f0, lbl_80517A80@sda21(r2)
+	fcmpo    cr0, f30, f0
+	ble      lbl_801156D0
+	fmr      f30, f1
+	b        lbl_801156D4
 
-	.loc_0xF4:
-	  fneg      f30, f1
+lbl_801156D0:
+	fneg     f30, f1
 
-	.loc_0xF8:
-	  mr        r3, r30
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x64(r12)
-	  mtctr     r12
-	  bctrl
-	  fadds     f1, f30, f1
-	  bl        0x2FC4E4
-	  stfs      f1, 0x1FC(r30)
-	  mr        r3, r30
-	  lfs       f0, 0x1FC(r30)
-	  stfs      f0, 0x1A8(r30)
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x64(r12)
-	  mtctr     r12
-	  bctrl
-	  bl        -0x45EF4
-	  mr        r3, r30
-	  lfs       f2, 0x1D4(r30)
-	  lwz       r12, 0x0(r30)
-	  frsp      f29, f1
-	  lfs       f30, 0x1D8(r30)
-	  lfs       f0, 0x1DC(r30)
-	  lwz       r12, 0x64(r12)
-	  stfs      f2, 0x20(r1)
-	  stfs      f30, 0x24(r1)
-	  stfs      f0, 0x28(r1)
-	  mtctr     r12
-	  bctrl
-	  bl        -0x46490
-	  fmuls     f0, f31, f29
-	  frsp      f1, f1
-	  stfs      f0, 0x1D4(r30)
-	  fmuls     f0, f31, f1
-	  stfs      f30, 0x1D8(r30)
-	  stfs      f0, 0x1DC(r30)
-	  psq_l     f31,0x78(r1),0,0
-	  lfd       f31, 0x70(r1)
-	  psq_l     f30,0x68(r1),0,0
-	  lfd       f30, 0x60(r1)
-	  psq_l     f29,0x58(r1),0,0
-	  lfd       f29, 0x50(r1)
-	  psq_l     f28,0x48(r1),0,0
-	  lfd       f28, 0x40(r1)
-	  lwz       r31, 0x3C(r1)
-	  lwz       r0, 0x84(r1)
-	  lwz       r30, 0x38(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x80
-	  blr
+lbl_801156D4:
+	mr       r3, r30
+	lwz      r12, 0(r30)
+	lwz      r12, 0x64(r12)
+	mtctr    r12
+	bctrl
+	fadds    f1, f30, f1
+	bl       roundAng__Ff
+	stfs     f1, 0x1fc(r30)
+	mr       r3, r30
+	lfs      f0, 0x1fc(r30)
+	stfs     f0, 0x1a8(r30)
+	lwz      r12, 0(r30)
+	lwz      r12, 0x64(r12)
+	mtctr    r12
+	bctrl
+	bl       sin
+	mr       r3, r30
+	lfs      f2, 0x1d4(r30)
+	lwz      r12, 0(r30)
+	frsp     f29, f1
+	lfs      f30, 0x1d8(r30)
+	lfs      f0, 0x1dc(r30)
+	lwz      r12, 0x64(r12)
+	stfs     f2, 0x20(r1)
+	stfs     f30, 0x24(r1)
+	stfs     f0, 0x28(r1)
+	mtctr    r12
+	bctrl
+	bl       cos
+	fmuls    f0, f31, f29
+	frsp     f1, f1
+	stfs     f0, 0x1d4(r30)
+	fmuls    f0, f31, f1
+	stfs     f30, 0x1d8(r30)
+	stfs     f0, 0x1dc(r30)
+	psq_l    f31, 120(r1), 0, qr0
+	lfd      f31, 0x70(r1)
+	psq_l    f30, 104(r1), 0, qr0
+	lfd      f30, 0x60(r1)
+	psq_l    f29, 88(r1), 0, qr0
+	lfd      f29, 0x50(r1)
+	psq_l    f28, 72(r1), 0, qr0
+	lfd      f28, 0x40(r1)
+	lwz      r31, 0x3c(r1)
+	lwz      r0, 0x84(r1)
+	lwz      r30, 0x38(r1)
+	mtlr     r0
+	addi     r1, r1, 0x80
+	blr
 	*/
 }
 
@@ -3692,41 +3784,40 @@ void EnemyFunc::walkToTarget(Game::EnemyBase*, Vector3f&, float, float, float)
 void EnemyFunc::EatPikminDefaultCondition::satisfy(Game::Piki*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  li        r31, 0
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r29, r4
-	  lwz       r12, 0x0(r29)
-	  lwz       r30, 0x4(r3)
-	  mr        r3, r29
-	  lwz       r12, 0x1C0(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x60
-	  lwz       r0, 0xF4(r29)
-	  cmplw     r0, r30
-	  beq-      .loc_0x60
-	  mr        r3, r29
-	  bl        0x89DA0
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x60
-	  li        r31, 0x1
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	li       r31, 0
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	mr       r29, r4
+	lwz      r12, 0(r29)
+	lwz      r30, 4(r3)
+	mr       r3, r29
+	lwz      r12, 0x1c0(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_801157F8
+	lwz      r0, 0xf4(r29)
+	cmplw    r0, r30
+	beq      lbl_801157F8
+	mr       r3, r29
+	bl       isStickToMouth__Q24Game8CreatureFv
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_801157F8
+	li       r31, 1
 
-	.loc_0x60:
-	  lwz       r0, 0x24(r1)
-	  mr        r3, r31
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_801157F8:
+	lwz      r0, 0x24(r1)
+	mr       r3, r31
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -3738,101 +3829,100 @@ void EnemyFunc::EatPikminDefaultCondition::satisfy(Game::Piki*)
 void EnemyFunc::ConditionPikminNearby::satisfy(Game::Creature*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0xB0(r1)
-	  mflr      r0
-	  stw       r0, 0xB4(r1)
-	  stfd      f31, 0xA0(r1)
-	  psq_st    f31,0xA8(r1),0,0
-	  stfd      f30, 0x90(r1)
-	  psq_st    f30,0x98(r1),0,0
-	  stfd      f29, 0x80(r1)
-	  psq_st    f29,0x88(r1),0,0
-	  stfd      f28, 0x70(r1)
-	  psq_st    f28,0x78(r1),0,0
-	  stfd      f27, 0x60(r1)
-	  psq_st    f27,0x68(r1),0,0
-	  stw       r31, 0x5C(r1)
-	  stw       r30, 0x58(r1)
-	  mr        r30, r3
-	  mr        r31, r4
-	  lwz       r3, 0xF4(r4)
-	  lwz       r0, 0x4(r30)
-	  cmplw     r3, r0
-	  beq-      .loc_0x124
-	  lwz       r12, 0x0(r4)
-	  addi      r3, r1, 0x8
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r31
-	  addi      r3, r1, 0x14
-	  lwz       r12, 0x0(r31)
-	  lfs       f27, 0x10(r1)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r31
-	  addi      r3, r1, 0x20
-	  lwz       r12, 0x0(r31)
-	  lfs       f28, 0x18(r1)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r4, 0x4(r30)
-	  addi      r3, r1, 0x2C
-	  lfs       f29, 0x20(r1)
-	  lwz       r12, 0x0(r4)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r4, 0x4(r30)
-	  addi      r3, r1, 0x38
-	  lfs       f30, 0x34(r1)
-	  lwz       r12, 0x0(r4)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r4, 0x4(r30)
-	  addi      r3, r1, 0x44
-	  lfs       f31, 0x3C(r1)
-	  lwz       r12, 0x0(r4)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  fsubs     f1, f31, f28
-	  lfs       f3, 0x44(r1)
-	  fsubs     f2, f30, f27
-	  lfs       f0, 0x8(r30)
-	  fsubs     f3, f3, f29
-	  fmuls     f1, f1, f1
-	  fmadds    f1, f3, f3, f1
-	  fmadds    f1, f2, f2, f1
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x124
-	  li        r3, 0x1
-	  b         .loc_0x128
+	stwu     r1, -0xb0(r1)
+	mflr     r0
+	stw      r0, 0xb4(r1)
+	stfd     f31, 0xa0(r1)
+	psq_st   f31, 168(r1), 0, qr0
+	stfd     f30, 0x90(r1)
+	psq_st   f30, 152(r1), 0, qr0
+	stfd     f29, 0x80(r1)
+	psq_st   f29, 136(r1), 0, qr0
+	stfd     f28, 0x70(r1)
+	psq_st   f28, 120(r1), 0, qr0
+	stfd     f27, 0x60(r1)
+	psq_st   f27, 104(r1), 0, qr0
+	stw      r31, 0x5c(r1)
+	stw      r30, 0x58(r1)
+	mr       r30, r3
+	mr       r31, r4
+	lwz      r3, 0xf4(r4)
+	lwz      r0, 4(r30)
+	cmplw    r3, r0
+	beq      lbl_8011593C
+	lwz      r12, 0(r4)
+	addi     r3, r1, 8
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r31
+	addi     r3, r1, 0x14
+	lwz      r12, 0(r31)
+	lfs      f27, 0x10(r1)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r31
+	addi     r3, r1, 0x20
+	lwz      r12, 0(r31)
+	lfs      f28, 0x18(r1)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lwz      r4, 4(r30)
+	addi     r3, r1, 0x2c
+	lfs      f29, 0x20(r1)
+	lwz      r12, 0(r4)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lwz      r4, 4(r30)
+	addi     r3, r1, 0x38
+	lfs      f30, 0x34(r1)
+	lwz      r12, 0(r4)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lwz      r4, 4(r30)
+	addi     r3, r1, 0x44
+	lfs      f31, 0x3c(r1)
+	lwz      r12, 0(r4)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	fsubs    f1, f31, f28
+	lfs      f3, 0x44(r1)
+	fsubs    f2, f30, f27
+	lfs      f0, 8(r30)
+	fsubs    f3, f3, f29
+	fmuls    f1, f1, f1
+	fmadds   f1, f3, f3, f1
+	fmadds   f1, f2, f2, f1
+	fcmpo    cr0, f1, f0
+	bge      lbl_8011593C
+	li       r3, 1
+	b        lbl_80115940
 
-	.loc_0x124:
-	  li        r3, 0
+lbl_8011593C:
+	li       r3, 0
 
-	.loc_0x128:
-	  psq_l     f31,0xA8(r1),0,0
-	  lfd       f31, 0xA0(r1)
-	  psq_l     f30,0x98(r1),0,0
-	  lfd       f30, 0x90(r1)
-	  psq_l     f29,0x88(r1),0,0
-	  lfd       f29, 0x80(r1)
-	  psq_l     f28,0x78(r1),0,0
-	  lfd       f28, 0x70(r1)
-	  psq_l     f27,0x68(r1),0,0
-	  lfd       f27, 0x60(r1)
-	  lwz       r31, 0x5C(r1)
-	  lwz       r0, 0xB4(r1)
-	  lwz       r30, 0x58(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0xB0
-	  blr
+lbl_80115940:
+	psq_l    f31, 168(r1), 0, qr0
+	lfd      f31, 0xa0(r1)
+	psq_l    f30, 152(r1), 0, qr0
+	lfd      f30, 0x90(r1)
+	psq_l    f29, 136(r1), 0, qr0
+	lfd      f29, 0x80(r1)
+	psq_l    f28, 120(r1), 0, qr0
+	lfd      f28, 0x70(r1)
+	psq_l    f27, 104(r1), 0, qr0
+	lfd      f27, 0x60(r1)
+	lwz      r31, 0x5c(r1)
+	lwz      r0, 0xb4(r1)
+	lwz      r30, 0x58(r1)
+	mtlr     r0
+	addi     r1, r1, 0xb0
+	blr
 	*/
 }
 
@@ -3846,21 +3936,20 @@ void EnemyFunc::ConditionPikminNearby::satisfy(Game::Creature*)
 void Iterator<Game::Creature>::operator*()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r4, r3
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x8(r3)
-	  lwz       r4, 0x4(r4)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r4, r3
+	stw      r0, 0x14(r1)
+	lwz      r3, 8(r3)
+	lwz      r4, 4(r4)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -3872,72 +3961,71 @@ void Iterator<Game::Creature>::operator*()
 void Iterator<Game::Creature>::next()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r0, 0xC(r3)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x40
-	  lwz       r3, 0x8(r31)
-	  lwz       r4, 0x4(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x4(r31)
-	  b         .loc_0xD0
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r0, 0xc(r3)
+	cmplwi   r0, 0
+	bne      lbl_801159F8
+	lwz      r3, 8(r31)
+	lwz      r4, 4(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 4(r31)
+	b        lbl_80115A88
 
-	.loc_0x40:
-	  lwz       r3, 0x8(r31)
-	  lwz       r4, 0x4(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x4(r31)
-	  b         .loc_0xB4
+lbl_801159F8:
+	lwz      r3, 8(r31)
+	lwz      r4, 4(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 4(r31)
+	b        lbl_80115A6C
 
-	.loc_0x60:
-	  lwz       r3, 0x8(r31)
-	  lwz       r4, 0x4(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0xC(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0xD0
-	  lwz       r3, 0x8(r31)
-	  lwz       r4, 0x4(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x4(r31)
+lbl_80115A18:
+	lwz      r3, 8(r31)
+	lwz      r4, 4(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	lwz      r3, 0xc(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_80115A88
+	lwz      r3, 8(r31)
+	lwz      r4, 4(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 4(r31)
 
-	.loc_0xB4:
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x60
+lbl_80115A6C:
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80115A18
 
-	.loc_0xD0:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80115A88:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -3949,70 +4037,69 @@ void Iterator<Game::Creature>::next()
 void Iterator<Game::Creature>::first()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r0, 0xC(r3)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x3C
-	  lwz       r3, 0x8(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x4(r31)
-	  b         .loc_0xC8
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r0, 0xc(r3)
+	cmplwi   r0, 0
+	bne      lbl_80115AD8
+	lwz      r3, 8(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 4(r31)
+	b        lbl_80115B64
 
-	.loc_0x3C:
-	  lwz       r3, 0x8(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x4(r31)
-	  b         .loc_0xAC
+lbl_80115AD8:
+	lwz      r3, 8(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 4(r31)
+	b        lbl_80115B48
 
-	.loc_0x58:
-	  lwz       r3, 0x8(r31)
-	  lwz       r4, 0x4(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0xC(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0xC8
-	  lwz       r3, 0x8(r31)
-	  lwz       r4, 0x4(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x4(r31)
+lbl_80115AF4:
+	lwz      r3, 8(r31)
+	lwz      r4, 4(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	lwz      r3, 0xc(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_80115B64
+	lwz      r3, 8(r31)
+	lwz      r4, 4(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 4(r31)
 
-	.loc_0xAC:
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x58
+lbl_80115B48:
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80115AF4
 
-	.loc_0xC8:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80115B64:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -4024,21 +4111,20 @@ void Iterator<Game::Creature>::first()
 void Iterator<Game::Piki>::operator*()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r4, r3
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x8(r3)
-	  lwz       r4, 0x4(r4)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r4, r3
+	stw      r0, 0x14(r1)
+	lwz      r3, 8(r3)
+	lwz      r4, 4(r4)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -4050,72 +4136,71 @@ void Iterator<Game::Piki>::operator*()
 void Iterator<Game::Piki>::next()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r0, 0xC(r3)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x40
-	  lwz       r3, 0x8(r31)
-	  lwz       r4, 0x4(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x4(r31)
-	  b         .loc_0xD0
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r0, 0xc(r3)
+	cmplwi   r0, 0
+	bne      lbl_80115BF0
+	lwz      r3, 8(r31)
+	lwz      r4, 4(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 4(r31)
+	b        lbl_80115C80
 
-	.loc_0x40:
-	  lwz       r3, 0x8(r31)
-	  lwz       r4, 0x4(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x4(r31)
-	  b         .loc_0xB4
+lbl_80115BF0:
+	lwz      r3, 8(r31)
+	lwz      r4, 4(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 4(r31)
+	b        lbl_80115C64
 
-	.loc_0x60:
-	  lwz       r3, 0x8(r31)
-	  lwz       r4, 0x4(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0xC(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0xD0
-	  lwz       r3, 0x8(r31)
-	  lwz       r4, 0x4(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x4(r31)
+lbl_80115C10:
+	lwz      r3, 8(r31)
+	lwz      r4, 4(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	lwz      r3, 0xc(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_80115C80
+	lwz      r3, 8(r31)
+	lwz      r4, 4(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 4(r31)
 
-	.loc_0xB4:
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x60
+lbl_80115C64:
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80115C10
 
-	.loc_0xD0:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80115C80:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -4127,70 +4212,69 @@ void Iterator<Game::Piki>::next()
 void Iterator<Game::Piki>::first()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r0, 0xC(r3)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x3C
-	  lwz       r3, 0x8(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x4(r31)
-	  b         .loc_0xC8
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r0, 0xc(r3)
+	cmplwi   r0, 0
+	bne      lbl_80115CD0
+	lwz      r3, 8(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 4(r31)
+	b        lbl_80115D5C
 
-	.loc_0x3C:
-	  lwz       r3, 0x8(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x4(r31)
-	  b         .loc_0xAC
+lbl_80115CD0:
+	lwz      r3, 8(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 4(r31)
+	b        lbl_80115D40
 
-	.loc_0x58:
-	  lwz       r3, 0x8(r31)
-	  lwz       r4, 0x4(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0xC(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0xC8
-	  lwz       r3, 0x8(r31)
-	  lwz       r4, 0x4(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x4(r31)
+lbl_80115CEC:
+	lwz      r3, 8(r31)
+	lwz      r4, 4(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	lwz      r3, 0xc(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_80115D5C
+	lwz      r3, 8(r31)
+	lwz      r4, 4(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 4(r31)
 
-	.loc_0xAC:
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x58
+lbl_80115D40:
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80115CEC
 
-	.loc_0xC8:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80115D5C:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -4202,21 +4286,20 @@ void Iterator<Game::Piki>::first()
 void Iterator<Game::Navi>::operator*()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r4, r3
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x8(r3)
-	  lwz       r4, 0x4(r4)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r4, r3
+	stw      r0, 0x14(r1)
+	lwz      r3, 8(r3)
+	lwz      r4, 4(r4)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -4228,72 +4311,71 @@ void Iterator<Game::Navi>::operator*()
 void Iterator<Game::Navi>::next()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r0, 0xC(r3)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x40
-	  lwz       r3, 0x8(r31)
-	  lwz       r4, 0x4(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x4(r31)
-	  b         .loc_0xD0
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r0, 0xc(r3)
+	cmplwi   r0, 0
+	bne      lbl_80115DE8
+	lwz      r3, 8(r31)
+	lwz      r4, 4(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 4(r31)
+	b        lbl_80115E78
 
-	.loc_0x40:
-	  lwz       r3, 0x8(r31)
-	  lwz       r4, 0x4(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x4(r31)
-	  b         .loc_0xB4
+lbl_80115DE8:
+	lwz      r3, 8(r31)
+	lwz      r4, 4(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 4(r31)
+	b        lbl_80115E5C
 
-	.loc_0x60:
-	  lwz       r3, 0x8(r31)
-	  lwz       r4, 0x4(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0xC(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0xD0
-	  lwz       r3, 0x8(r31)
-	  lwz       r4, 0x4(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x4(r31)
+lbl_80115E08:
+	lwz      r3, 8(r31)
+	lwz      r4, 4(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	lwz      r3, 0xc(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_80115E78
+	lwz      r3, 8(r31)
+	lwz      r4, 4(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 4(r31)
 
-	.loc_0xB4:
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x60
+lbl_80115E5C:
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80115E08
 
-	.loc_0xD0:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80115E78:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -4305,70 +4387,69 @@ void Iterator<Game::Navi>::next()
 void Iterator<Game::Navi>::first()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r0, 0xC(r3)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x3C
-	  lwz       r3, 0x8(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x4(r31)
-	  b         .loc_0xC8
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r0, 0xc(r3)
+	cmplwi   r0, 0
+	bne      lbl_80115EC8
+	lwz      r3, 8(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 4(r31)
+	b        lbl_80115F54
 
-	.loc_0x3C:
-	  lwz       r3, 0x8(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x4(r31)
-	  b         .loc_0xAC
+lbl_80115EC8:
+	lwz      r3, 8(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 4(r31)
+	b        lbl_80115F38
 
-	.loc_0x58:
-	  lwz       r3, 0x8(r31)
-	  lwz       r4, 0x4(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r3
-	  lwz       r3, 0xC(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0xC8
-	  lwz       r3, 0x8(r31)
-	  lwz       r4, 0x4(r31)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
-	  stw       r3, 0x4(r31)
+lbl_80115EE4:
+	lwz      r3, 8(r31)
+	lwz      r4, 4(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r3
+	lwz      r3, 0xc(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_80115F54
+	lwz      r3, 8(r31)
+	lwz      r4, 4(r31)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
+	stw      r3, 4(r31)
 
-	.loc_0xAC:
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x58
+lbl_80115F38:
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80115EE4
 
-	.loc_0xC8:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80115F54:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -4380,16 +4461,15 @@ void Iterator<Game::Navi>::first()
 void __sinit_enemyAction_cpp(void)
 {
 	/*
-	.loc_0x0:
-	  lis       r4, 0x8051
-	  li        r0, -0x1
-	  lfs       f0, 0x48B0(r4)
-	  lis       r3, 0x804B
-	  stw       r0, -0x6E08(r13)
-	  stfsu     f0, -0x43B8(r3)
-	  stfs      f0, -0x6E04(r13)
-	  stfs      f0, 0x4(r3)
-	  stfs      f0, 0x8(r3)
-	  blr
+	lis      r4, __float_nan@ha
+	li       r0, -1
+	lfs      f0, __float_nan@l(r4)
+	lis      r3, lbl_804ABC48@ha
+	stw      r0, lbl_80515878@sda21(r13)
+	stfsu    f0, lbl_804ABC48@l(r3)
+	stfs     f0, lbl_8051587C@sda21(r13)
+	stfs     f0, 4(r3)
+	stfs     f0, 8(r3)
+	blr
 	*/
 }

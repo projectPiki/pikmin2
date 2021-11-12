@@ -1,6 +1,15 @@
 #include "types.h"
 
 /*
+    Generated from dpostproc
+
+    .section .sbss # 0x80514D80 - 0x80516360
+    .global sManager__6JUTXfb
+    sManager__6JUTXfb:
+        .skip 0x8
+*/
+
+/*
  * --INFO--
  * Address:	80033CFC
  * Size:	000014
@@ -8,12 +17,11 @@
 void JUTXfb::clearIndex()
 {
 	/*
-	.loc_0x0:
-	  li        r0, -0x1
-	  sth       r0, 0x14(r3)
-	  sth       r0, 0x16(r3)
-	  sth       r0, 0x18(r3)
-	  blr
+	li       r0, -1
+	sth      r0, 0x14(r3)
+	sth      r0, 0x16(r3)
+	sth      r0, 0x18(r3)
+	blr
 	*/
 }
 
@@ -146,53 +154,52 @@ void JUTXfb::createManager(const _GXRenderModeObj*, void*, void*, void*)
 void JUTXfb::createManager(JKRHeap*, JUTXfb::EXfbNumber)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stmw      r27, 0xC(r1)
-	  mr        r27, r3
-	  mr        r28, r4
-	  lwz       r0, -0x76C8(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x90
-	  li        r3, 0x20
-	  bl        -0xFE94
-	  mr.       r31, r3
-	  beq-      .loc_0x8C
-	  stw       r28, 0x10(r31)
-	  li        r3, -0x1
-	  li        r0, 0x63
-	  sth       r3, 0x14(r31)
-	  sth       r3, 0x16(r31)
-	  sth       r3, 0x18(r31)
-	  stw       r0, 0x1C(r31)
-	  lwz       r3, -0x76E0(r13)
-	  lwz       r3, 0x4(r3)
-	  lhz       r30, 0x6(r3)
-	  lhz       r29, 0x4(r3)
-	  lhz       r4, 0x8(r3)
-	  mr        r3, r30
-	  bl        0xB2234
-	  mr        r3, r30
-	  bl        0xB219C
-	  mr        r5, r3
-	  mr        r3, r31
-	  mr        r4, r29
-	  mr        r6, r27
-	  mr        r7, r28
-	  bl        0xB0
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stmw     r27, 0xc(r1)
+	mr       r27, r3
+	mr       r28, r4
+	lwz      r0, sManager__6JUTXfb@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_80033DA0
+	li       r3, 0x20
+	bl       __nw__FUl
+	or.      r31, r3, r3
+	beq      lbl_80033D9C
+	stw      r28, 0x10(r31)
+	li       r3, -1
+	li       r0, 0x63
+	sth      r3, 0x14(r31)
+	sth      r3, 0x16(r31)
+	sth      r3, 0x18(r31)
+	stw      r0, 0x1c(r31)
+	lwz      r3, sManager__8JUTVideo@sda21(r13)
+	lwz      r3, 4(r3)
+	lhz      r30, 6(r3)
+	lhz      r29, 4(r3)
+	lhz      r4, 8(r3)
+	mr       r3, r30
+	bl       GXGetYScaleFactor
+	mr       r3, r30
+	bl       GXGetNumXfbLines
+	mr       r5, r3
+	mr       r3, r31
+	mr       r4, r29
+	mr       r6, r27
+	mr       r7, r28
+	bl       initiate__6JUTXfbFUsUsP7JKRHeapQ26JUTXfb10EXfbNumber
 
-	.loc_0x8C:
-	  stw       r31, -0x76C8(r13)
+lbl_80033D9C:
+	stw      r31, sManager__6JUTXfb@sda21(r13)
 
-	.loc_0x90:
-	  lmw       r27, 0xC(r1)
-	  lwz       r0, 0x24(r1)
-	  lwz       r3, -0x76C8(r13)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80033DA0:
+	lmw      r27, 0xc(r1)
+	lwz      r0, 0x24(r1)
+	lwz      r3, sManager__6JUTXfb@sda21(r13)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -234,49 +241,48 @@ void JUTXfb::createManager(void*, void*, void*)
 void JUTXfb::destroyManager()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  lwz       r29, -0x76C8(r13)
-	  cmplwi    r29, 0
-	  beq-      .loc_0x6C
-	  li        r31, 0
-	  mr        r30, r29
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	lwz      r29, sManager__6JUTXfb@sda21(r13)
+	cmplwi   r29, 0
+	beq      lbl_80033E24
+	li       r31, 0
+	mr       r30, r29
 
-	.loc_0x2C:
-	  addi      r0, r31, 0xC
-	  lbzx      r0, r29, r0
-	  cmplwi    r0, 0
-	  beq-      .loc_0x4C
-	  lwz       r3, 0x0(r30)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x4C
-	  bl        -0xFD4C
+lbl_80033DE4:
+	addi     r0, r31, 0xc
+	lbzx     r0, r29, r0
+	cmplwi   r0, 0
+	beq      lbl_80033E04
+	lwz      r3, 0(r30)
+	cmplwi   r3, 0
+	beq      lbl_80033E04
+	bl       __dl__FPv
 
-	.loc_0x4C:
-	  addi      r31, r31, 0x1
-	  addi      r30, r30, 0x4
-	  cmpwi     r31, 0x3
-	  blt+      .loc_0x2C
-	  li        r0, 0
-	  mr        r3, r29
-	  stw       r0, -0x76C8(r13)
-	  bl        -0xFD6C
+lbl_80033E04:
+	addi     r31, r31, 1
+	addi     r30, r30, 4
+	cmpwi    r31, 3
+	blt      lbl_80033DE4
+	li       r0, 0
+	mr       r3, r29
+	stw      r0, sManager__6JUTXfb@sda21(r13)
+	bl       __dl__FPv
 
-	.loc_0x6C:
-	  li        r0, 0
-	  stw       r0, -0x76C8(r13)
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80033E24:
+	li       r0, 0
+	stw      r0, sManager__6JUTXfb@sda21(r13)
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -379,32 +385,31 @@ void JUTXfb::initiate(void*, void*, void*, JUTXfb::EXfbNumber)
 void JUTXfb::accumeXfbSize()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  stw       r30, 0x8(r1)
-	  lwz       r3, -0x76E0(r13)
-	  lwz       r3, 0x4(r3)
-	  lhz       r30, 0x6(r3)
-	  lhz       r31, 0x4(r3)
-	  lhz       r4, 0x8(r3)
-	  mr        r3, r30
-	  bl        0xB2050
-	  mr        r3, r30
-	  bl        0xB1FB8
-	  addi      r4, r31, 0xF
-	  rlwinm    r0,r3,0,16,31
-	  rlwinm    r3,r4,0,16,27
-	  lwz       r31, 0xC(r1)
-	  mullw     r0, r3, r0
-	  lwz       r30, 0x8(r1)
-	  rlwinm    r3,r0,1,0,30
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	stw      r30, 8(r1)
+	lwz      r3, sManager__8JUTVideo@sda21(r13)
+	lwz      r3, 4(r3)
+	lhz      r30, 6(r3)
+	lhz      r31, 4(r3)
+	lhz      r4, 8(r3)
+	mr       r3, r30
+	bl       GXGetYScaleFactor
+	mr       r3, r30
+	bl       GXGetNumXfbLines
+	addi     r4, r31, 0xf
+	clrlwi   r0, r3, 0x10
+	rlwinm   r3, r4, 0, 0x10, 0x1b
+	lwz      r31, 0xc(r1)
+	mullw    r0, r3, r0
+	lwz      r30, 8(r1)
+	slwi     r3, r0, 1
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 

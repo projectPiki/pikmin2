@@ -1,5 +1,108 @@
 #include "types.h"
 
+/*
+    Generated from dpostproc
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_80484868
+    lbl_80484868:
+        .4byte 0x3234362D
+        .4byte 0x52756D62
+        .4byte 0x6C654D67
+        .4byte 0x72000000
+    .global lbl_80484878
+    lbl_80484878:
+        .4byte 0x52756D62
+        .4byte 0x6C654D67
+        .4byte 0x72000000
+        .4byte 0x52756D62
+        .4byte 0x6C655061
+        .4byte 0x726D7300
+        .4byte 0x4D617820
+        .4byte 0x44697374
+        .4byte 0x616E6365
+        .4byte 0x00000000
+        .4byte 0x2F757365
+        .4byte 0x722F4E69
+        .4byte 0x7368696D
+        .4byte 0x7572612F
+        .4byte 0x52756D62
+        .4byte 0x6C652F72
+        .4byte 0x756D626C
+        .4byte 0x65506172
+        .4byte 0x6D732E74
+        .4byte 0x78740000
+        .4byte 0x2F757365
+        .4byte 0x722F4E69
+        .4byte 0x7368696D
+        .4byte 0x7572612F
+        .4byte 0x52756D62
+        .4byte 0x6C652F72
+        .4byte 0x756D626C
+        .4byte 0x65446174
+        .4byte 0x612E7478
+        .4byte 0x74000000
+    .global lbl_804848F0
+    lbl_804848F0:
+        .4byte 0x52756D62
+        .4byte 0x6C654D67
+        .4byte 0x722E6370
+        .4byte 0x70000000
+    .global lbl_80484900
+    lbl_80484900:
+        .4byte 0x6E6F7420
+        .4byte 0x7A756B61
+        .4byte 0x6E206D6F
+        .4byte 0x64650A00
+    .global lbl_80484910
+    lbl_80484910:
+        .4byte 0x72756D62
+        .4byte 0x6C652070
+        .4byte 0x6172616D
+        .4byte 0x65746572
+        .4byte 0x206E6F6E
+        .4byte 0x650A0000
+    .global lbl_80484928
+    lbl_80484928:
+        .4byte 0x72756D62
+        .4byte 0x6C652064
+        .4byte 0x61746120
+        .4byte 0x6E6F6E65
+        .4byte 0x0A000000
+        .4byte 0x00000000
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__Q24Game9RumbleMgr
+    __vt__Q24Game9RumbleMgr:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q24Game9RumbleMgrFv
+        .4byte getChildCount__5CNodeFv
+
+    .section .sbss # 0x80514D80 - 0x80516360
+    .global rumbleMgr__4Game
+    rumbleMgr__4Game:
+        .skip 0x8
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_8051A978
+    lbl_8051A978:
+        .4byte 0x443B8000
+    .global lbl_8051A97C
+    lbl_8051A97C:
+        .4byte 0x00000000
+    .global lbl_8051A980
+    lbl_8051A980:
+        .4byte 0x447A0000
+    .global lbl_8051A984
+    lbl_8051A984:
+        .4byte 0x40000000
+    .global lbl_8051A988
+    lbl_8051A988:
+        .float 1.0
+        .4byte 0x00000000
+*/
+
 namespace Game {
 
 /*
@@ -10,25 +113,24 @@ namespace Game {
 RumbleMgr::RumbleMgr()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        0x1BE078
-	  lis       r3, 0x804C
-	  lis       r4, 0x8048
-	  addi      r0, r3, 0x1BF8
-	  mr        r3, r31
-	  stw       r0, 0x0(r31)
-	  addi      r0, r4, 0x4878
-	  stw       r0, 0x14(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       __ct__5CNodeFv
+	lis      r3, __vt__Q24Game9RumbleMgr@ha
+	lis      r4, lbl_80484878@ha
+	addi     r0, r3, __vt__Q24Game9RumbleMgr@l
+	mr       r3, r31
+	stw      r0, 0(r31)
+	addi     r0, r4, lbl_80484878@l
+	stw      r0, 0x14(r31)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -40,101 +142,100 @@ RumbleMgr::RumbleMgr()
 void RumbleMgr::loadResource()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r4, 0x8048
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r3
-	  li        r3, 0x38
-	  stw       r30, 0x18(r1)
-	  addi      r30, r4, 0x4868
-	  stw       r29, 0x14(r1)
-	  stw       r28, 0x10(r1)
-	  bl        -0x22F4D4
-	  mr.       r29, r3
-	  beq-      .loc_0x8C
-	  addi      r0, r29, 0x34
-	  lis       r5, 0x7272
-	  stw       r0, 0x0(r29)
-	  li        r3, 0
-	  addi      r0, r30, 0x1C
-	  mr        r4, r29
-	  stw       r3, 0x4(r29)
-	  addi      r3, r29, 0xC
-	  addi      r5, r5, 0x646D
-	  addi      r6, r30, 0x28
-	  stw       r0, 0x8(r29)
-	  bl        0x1C02A8
-	  lis       r3, 0x804B
-	  lfs       f2, -0x39E8(r2)
-	  subi      r0, r3, 0x5344
-	  lfs       f1, -0x39E4(r2)
-	  stw       r0, 0xC(r29)
-	  lfs       f0, -0x39E0(r2)
-	  stfs      f2, 0x24(r29)
-	  stfs      f1, 0x2C(r29)
-	  stfs      f0, 0x30(r29)
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lis      r4, lbl_80484868@ha
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r3
+	li       r3, 0x38
+	stw      r30, 0x18(r1)
+	addi     r30, r4, lbl_80484868@l
+	stw      r29, 0x14(r1)
+	stw      r28, 0x10(r1)
+	bl       __nw__FUl
+	or.      r29, r3, r3
+	beq      lbl_802533D8
+	addi     r0, r29, 0x34
+	lis      r5, 0x7272646D@ha
+	stw      r0, 0(r29)
+	li       r3, 0
+	addi     r0, r30, 0x1c
+	mr       r4, r29
+	stw      r3, 4(r29)
+	addi     r3, r29, 0xc
+	addi     r5, r5, 0x7272646D@l
+	addi     r6, r30, 0x28
+	stw      r0, 8(r29)
+	bl       __ct__8BaseParmFP10ParametersUlPc
+	lis      r3, "__vt__7Parm<f>"@ha
+	lfs      f2, lbl_8051A978@sda21(r2)
+	addi     r0, r3, "__vt__7Parm<f>"@l
+	lfs      f1, lbl_8051A97C@sda21(r2)
+	stw      r0, 0xc(r29)
+	lfs      f0, lbl_8051A980@sda21(r2)
+	stfs     f2, 0x24(r29)
+	stfs     f1, 0x2c(r29)
+	stfs     f0, 0x30(r29)
 
-	.loc_0x8C:
-	  stw       r29, 0x24(r31)
-	  mr        r3, r31
-	  addi      r4, r30, 0x38
-	  bl        0x854
-	  li        r3, 0x8
-	  bl        -0x22F548
-	  mr.       r0, r3
-	  beq-      .loc_0xB4
-	  bl        0xDFD4
-	  mr        r0, r3
+lbl_802533D8:
+	stw      r29, 0x24(r31)
+	mr       r3, r31
+	addi     r4, r30, 0x38
+	bl       readRumbleParms__Q24Game9RumbleMgrFPc
+	li       r3, 8
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_80253400
+	bl       __ct__Q24Game13RumbleDataMgrFv
+	mr       r0, r3
 
-	.loc_0xB4:
-	  stw       r0, 0x28(r31)
-	  mr        r3, r31
-	  addi      r4, r30, 0x60
-	  bl        0x8EC
-	  li        r0, 0x1
-	  li        r3, 0x8
-	  stb       r0, 0x18(r31)
-	  bl        -0x22F470
-	  stw       r3, 0x20(r31)
-	  li        r3, 0x8
-	  bl        -0x22F47C
-	  stw       r3, 0x1C(r31)
-	  li        r30, 0
-	  mr        r29, r30
-	  li        r28, 0
-	  stw       r30, 0x2C(r31)
-	  stw       r30, 0x30(r31)
+lbl_80253400:
+	stw      r0, 0x28(r31)
+	mr       r3, r31
+	addi     r4, r30, 0x60
+	bl       readRumbleData__Q24Game9RumbleMgrFPc
+	li       r0, 1
+	li       r3, 8
+	stb      r0, 0x18(r31)
+	bl       __nwa__FUl
+	stw      r3, 0x20(r31)
+	li       r3, 8
+	bl       __nwa__FUl
+	stw      r3, 0x1c(r31)
+	li       r30, 0
+	mr       r29, r30
+	li       r28, 0
+	stw      r30, 0x2c(r31)
+	stw      r30, 0x30(r31)
 
-	.loc_0xF8:
-	  li        r3, 0x20
-	  bl        -0x22F5A4
-	  mr.       r0, r3
-	  beq-      .loc_0x118
-	  mr        r4, r28
-	  li        r5, 0x8
-	  bl        -0x93C
-	  mr        r0, r3
+lbl_80253444:
+	li       r3, 0x20
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_80253464
+	mr       r4, r28
+	li       r5, 8
+	bl       __ct__Q24Game10ContRumbleFii
+	mr       r0, r3
 
-	.loc_0x118:
-	  lwz       r3, 0x20(r31)
-	  addi      r28, r28, 0x1
-	  cmpwi     r28, 0x2
-	  stwx      r0, r3, r29
-	  lwz       r3, 0x1C(r31)
-	  stwx      r30, r3, r29
-	  addi      r29, r29, 0x4
-	  blt+      .loc_0xF8
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80253464:
+	lwz      r3, 0x20(r31)
+	addi     r28, r28, 1
+	cmpwi    r28, 2
+	stwx     r0, r3, r29
+	lwz      r3, 0x1c(r31)
+	stwx     r30, r3, r29
+	addi     r29, r29, 4
+	blt      lbl_80253444
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -146,83 +247,82 @@ void RumbleMgr::loadResource()
 void RumbleMgr::init()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r3
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  stw       r28, 0x10(r1)
-	  lwz       r4, -0x6514(r13)
-	  lwz       r3, 0x60(r4)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x48
-	  lbz       r3, 0x3B(r3)
-	  neg       r0, r3
-	  or        r0, r0, r3
-	  rlwinm    r0,r0,1,31,31
-	  stb       r0, 0x18(r31)
-	  b         .loc_0x50
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r3
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	stw      r28, 0x10(r1)
+	lwz      r4, sys@sda21(r13)
+	lwz      r3, 0x60(r4)
+	cmplwi   r3, 0
+	beq      lbl_802534EC
+	lbz      r3, 0x3b(r3)
+	neg      r0, r3
+	or       r0, r0, r3
+	srwi     r0, r0, 0x1f
+	stb      r0, 0x18(r31)
+	b        lbl_802534F4
 
-	.loc_0x48:
-	  li        r0, 0x1
-	  stb       r0, 0x18(r31)
+lbl_802534EC:
+	li       r0, 1
+	stb      r0, 0x18(r31)
 
-	.loc_0x50:
-	  li        r30, 0
-	  li        r28, 0
-	  stw       r30, 0x2C(r31)
-	  mr        r29, r30
-	  stw       r30, 0x30(r31)
+lbl_802534F4:
+	li       r30, 0
+	li       r28, 0
+	stw      r30, 0x2c(r31)
+	mr       r29, r30
+	stw      r30, 0x30(r31)
 
-	.loc_0x64:
-	  lwz       r3, 0x20(r31)
-	  lwz       r0, 0x28(r31)
-	  lwzx      r3, r3, r29
-	  stw       r0, 0x1C(r3)
-	  lwz       r3, 0x20(r31)
-	  lwzx      r3, r3, r29
-	  bl        -0x8A8
-	  lwz       r3, 0x1C(r31)
-	  addi      r28, r28, 0x1
-	  cmpwi     r28, 0x2
-	  stwx      r30, r3, r29
-	  addi      r29, r29, 0x4
-	  blt+      .loc_0x64
-	  lwz       r3, -0x6C18(r13)
-	  cmplwi    r3, 0
-	  beq-      .loc_0xE8
-	  lwz       r0, 0x44(r3)
-	  cmpwi     r0, 0x4
-	  beq-      .loc_0xE8
-	  li        r28, 0
-	  li        r29, 0
+lbl_80253508:
+	lwz      r3, 0x20(r31)
+	lwz      r0, 0x28(r31)
+	lwzx     r3, r3, r29
+	stw      r0, 0x1c(r3)
+	lwz      r3, 0x20(r31)
+	lwzx     r3, r3, r29
+	bl       init__Q24Game10ContRumbleFv
+	lwz      r3, 0x1c(r31)
+	addi     r28, r28, 1
+	cmpwi    r28, 2
+	stwx     r30, r3, r29
+	addi     r29, r29, 4
+	blt      lbl_80253508
+	lwz      r3, gameSystem__4Game@sda21(r13)
+	cmplwi   r3, 0
+	beq      lbl_8025358C
+	lwz      r0, 0x44(r3)
+	cmpwi    r0, 4
+	beq      lbl_8025358C
+	li       r28, 0
+	li       r29, 0
 
-	.loc_0xB8:
-	  lwz       r3, -0x6D20(r13)
-	  mr        r4, r28
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x24(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r4, 0x1C(r31)
-	  addi      r28, r28, 0x1
-	  cmpwi     r28, 0x2
-	  stwx      r3, r4, r29
-	  addi      r29, r29, 0x4
-	  blt+      .loc_0xB8
+lbl_8025355C:
+	lwz      r3, naviMgr__4Game@sda21(r13)
+	mr       r4, r28
+	lwz      r12, 0(r3)
+	lwz      r12, 0x24(r12)
+	mtctr    r12
+	bctrl
+	lwz      r4, 0x1c(r31)
+	addi     r28, r28, 1
+	cmpwi    r28, 2
+	stwx     r3, r4, r29
+	addi     r29, r29, 4
+	blt      lbl_8025355C
 
-	.loc_0xE8:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8025358C:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -234,146 +334,145 @@ void RumbleMgr::init()
 void RumbleMgr::update()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r3
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  stw       r28, 0x10(r1)
-	  bl        0x52C
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x1B4
-	  lwz       r3, -0x6C18(r13)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x134
-	  lwz       r3, 0x44(r3)
-	  li        r0, 0
-	  cmpwi     r3, 0x1
-	  beq-      .loc_0x50
-	  cmpwi     r3, 0x3
-	  bne-      .loc_0x54
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r3
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	stw      r28, 0x10(r1)
+	bl       isRumbleUpdateOn__Q24Game9RumbleMgrFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80253760
+	lwz      r3, gameSystem__4Game@sda21(r13)
+	cmplwi   r3, 0
+	beq      lbl_802536E0
+	lwz      r3, 0x44(r3)
+	li       r0, 0
+	cmpwi    r3, 1
+	beq      lbl_802535FC
+	cmpwi    r3, 3
+	bne      lbl_80253600
 
-	.loc_0x50:
-	  li        r0, 0x1
+lbl_802535FC:
+	li       r0, 1
 
-	.loc_0x54:
-	  rlwinm.   r0,r0,0,24,31
-	  bne-      .loc_0x134
-	  lwz       r0, 0x2C(r31)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x9C
-	  lwz       r3, 0x20(r31)
-	  li        r4, 0x1
-	  lwz       r3, 0x0(r3)
-	  bl        -0x68C
-	  lwz       r4, 0x2C(r31)
-	  lwz       r3, 0x20(r31)
-	  lha       r0, 0x7C(r4)
-	  lwz       r3, 0x0(r3)
-	  stw       r0, 0x4(r3)
-	  lwz       r3, 0x20(r31)
-	  lwz       r3, 0x0(r3)
-	  bl        -0x93C
-	  b         .loc_0x1B4
+lbl_80253600:
+	clrlwi.  r0, r0, 0x18
+	bne      lbl_802536E0
+	lwz      r0, 0x2c(r31)
+	cmplwi   r0, 0
+	beq      lbl_80253648
+	lwz      r3, 0x20(r31)
+	li       r4, 1
+	lwz      r3, 0(r3)
+	bl       setController__Q24Game10ContRumbleFb
+	lwz      r4, 0x2c(r31)
+	lwz      r3, 0x20(r31)
+	lha      r0, 0x7c(r4)
+	lwz      r3, 0(r3)
+	stw      r0, 4(r3)
+	lwz      r3, 0x20(r31)
+	lwz      r3, 0(r3)
+	bl       update__Q24Game10ContRumbleFv
+	b        lbl_80253760
 
-	.loc_0x9C:
-	  lwz       r3, -0x6D20(r13)
-	  bl        -0xF8A2C
-	  mr        r30, r3
-	  li        r28, 0
-	  li        r29, 0
+lbl_80253648:
+	lwz      r3, naviMgr__4Game@sda21(r13)
+	bl       getActiveNavi__Q24Game7NaviMgrFv
+	mr       r30, r3
+	li       r28, 0
+	li       r29, 0
 
-	.loc_0xB0:
-	  lwz       r3, 0x1C(r31)
-	  lwzx      r3, r3, r29
-	  cmplwi    r3, 0
-	  beq-      .loc_0x104
-	  lwz       r0, 0x278(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x104
-	  cmplw     r3, r30
-	  bne-      .loc_0x104
-	  lwz       r3, 0x20(r31)
-	  li        r4, 0x1
-	  lwzx      r3, r3, r29
-	  bl        -0x6F8
-	  lwz       r4, 0x1C(r31)
-	  lwz       r3, 0x20(r31)
-	  lwzx      r4, r4, r29
-	  lwzx      r3, r3, r29
-	  lwz       r4, 0x278(r4)
-	  lha       r0, 0x7C(r4)
-	  stw       r0, 0x4(r3)
-	  b         .loc_0x114
+lbl_8025365C:
+	lwz      r3, 0x1c(r31)
+	lwzx     r3, r3, r29
+	cmplwi   r3, 0
+	beq      lbl_802536B0
+	lwz      r0, 0x278(r3)
+	cmplwi   r0, 0
+	beq      lbl_802536B0
+	cmplw    r3, r30
+	bne      lbl_802536B0
+	lwz      r3, 0x20(r31)
+	li       r4, 1
+	lwzx     r3, r3, r29
+	bl       setController__Q24Game10ContRumbleFb
+	lwz      r4, 0x1c(r31)
+	lwz      r3, 0x20(r31)
+	lwzx     r4, r4, r29
+	lwzx     r3, r3, r29
+	lwz      r4, 0x278(r4)
+	lha      r0, 0x7c(r4)
+	stw      r0, 4(r3)
+	b        lbl_802536C0
 
-	.loc_0x104:
-	  lwz       r3, 0x20(r31)
-	  li        r4, 0
-	  lwzx      r3, r3, r29
-	  bl        -0x728
+lbl_802536B0:
+	lwz      r3, 0x20(r31)
+	li       r4, 0
+	lwzx     r3, r3, r29
+	bl       setController__Q24Game10ContRumbleFb
 
-	.loc_0x114:
-	  lwz       r3, 0x20(r31)
-	  lwzx      r3, r3, r29
-	  bl        -0x9C4
-	  addi      r28, r28, 0x1
-	  addi      r29, r29, 0x4
-	  cmpwi     r28, 0x2
-	  blt+      .loc_0xB0
-	  b         .loc_0x1B4
+lbl_802536C0:
+	lwz      r3, 0x20(r31)
+	lwzx     r3, r3, r29
+	bl       update__Q24Game10ContRumbleFv
+	addi     r28, r28, 1
+	addi     r29, r29, 4
+	cmpwi    r28, 2
+	blt      lbl_8025365C
+	b        lbl_80253760
 
-	.loc_0x134:
-	  li        r28, 0
-	  li        r29, 0
+lbl_802536E0:
+	li       r28, 0
+	li       r29, 0
 
-	.loc_0x13C:
-	  lwz       r3, 0x1C(r31)
-	  lwzx      r3, r3, r29
-	  cmplwi    r3, 0
-	  beq-      .loc_0x188
-	  lwz       r0, 0x278(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x188
-	  lwz       r3, 0x20(r31)
-	  li        r4, 0x1
-	  lwzx      r3, r3, r29
-	  bl        -0x77C
-	  lwz       r4, 0x1C(r31)
-	  lwz       r3, 0x20(r31)
-	  lwzx      r4, r4, r29
-	  lwzx      r3, r3, r29
-	  lwz       r4, 0x278(r4)
-	  lha       r0, 0x7C(r4)
-	  stw       r0, 0x4(r3)
-	  b         .loc_0x198
+lbl_802536E8:
+	lwz      r3, 0x1c(r31)
+	lwzx     r3, r3, r29
+	cmplwi   r3, 0
+	beq      lbl_80253734
+	lwz      r0, 0x278(r3)
+	cmplwi   r0, 0
+	beq      lbl_80253734
+	lwz      r3, 0x20(r31)
+	li       r4, 1
+	lwzx     r3, r3, r29
+	bl       setController__Q24Game10ContRumbleFb
+	lwz      r4, 0x1c(r31)
+	lwz      r3, 0x20(r31)
+	lwzx     r4, r4, r29
+	lwzx     r3, r3, r29
+	lwz      r4, 0x278(r4)
+	lha      r0, 0x7c(r4)
+	stw      r0, 4(r3)
+	b        lbl_80253744
 
-	.loc_0x188:
-	  lwz       r3, 0x20(r31)
-	  li        r4, 0
-	  lwzx      r3, r3, r29
-	  bl        -0x7AC
+lbl_80253734:
+	lwz      r3, 0x20(r31)
+	li       r4, 0
+	lwzx     r3, r3, r29
+	bl       setController__Q24Game10ContRumbleFb
 
-	.loc_0x198:
-	  lwz       r3, 0x20(r31)
-	  lwzx      r3, r3, r29
-	  bl        -0xA48
-	  addi      r28, r28, 0x1
-	  addi      r29, r29, 0x4
-	  cmpwi     r28, 0x2
-	  blt+      .loc_0x13C
+lbl_80253744:
+	lwz      r3, 0x20(r31)
+	lwzx     r3, r3, r29
+	bl       update__Q24Game10ContRumbleFv
+	addi     r28, r28, 1
+	addi     r29, r29, 4
+	cmpwi    r28, 2
+	blt      lbl_802536E8
 
-	.loc_0x1B4:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80253760:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -385,130 +484,129 @@ void RumbleMgr::update()
 void RumbleMgr::startRumble(int, Vector3f&, int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  stw       r0, 0x44(r1)
-	  stmw      r27, 0x2C(r1)
-	  mr        r27, r3
-	  mr        r28, r4
-	  mr        r29, r5
-	  lbz       r0, 0x18(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x190
-	  lwz       r4, 0x30(r27)
-	  cmplwi    r4, 0
-	  beq-      .loc_0xB8
-	  lfs       f1, 0x4(r4)
-	  lfs       f0, 0x4(r29)
-	  lfs       f3, 0x0(r4)
-	  fsubs     f4, f1, f0
-	  lfs       f2, 0x0(r29)
-	  lfs       f1, 0x8(r4)
-	  lfs       f0, 0x8(r29)
-	  fsubs     f3, f3, f2
-	  fmuls     f4, f4, f4
-	  fsubs     f2, f1, f0
-	  lfs       f0, -0x39E4(r2)
-	  fmadds    f1, f3, f3, f4
-	  fmuls     f2, f2, f2
-	  fadds     f1, f2, f1
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x84
-	  ble-      .loc_0x88
-	  fsqrte    f0, f1
-	  fmuls     f1, f0, f1
-	  b         .loc_0x88
+	stwu     r1, -0x40(r1)
+	mflr     r0
+	stw      r0, 0x44(r1)
+	stmw     r27, 0x2c(r1)
+	mr       r27, r3
+	mr       r28, r4
+	mr       r29, r5
+	lbz      r0, 0x18(r3)
+	cmplwi   r0, 0
+	beq      lbl_80253910
+	lwz      r4, 0x30(r27)
+	cmplwi   r4, 0
+	beq      lbl_80253838
+	lfs      f1, 4(r4)
+	lfs      f0, 4(r29)
+	lfs      f3, 0(r4)
+	fsubs    f4, f1, f0
+	lfs      f2, 0(r29)
+	lfs      f1, 8(r4)
+	lfs      f0, 8(r29)
+	fsubs    f3, f3, f2
+	fmuls    f4, f4, f4
+	fsubs    f2, f1, f0
+	lfs      f0, lbl_8051A97C@sda21(r2)
+	fmadds   f1, f3, f3, f4
+	fmuls    f2, f2, f2
+	fadds    f1, f2, f1
+	fcmpo    cr0, f1, f0
+	ble      lbl_80253804
+	ble      lbl_80253808
+	frsqrte  f0, f1
+	fmuls    f1, f0, f1
+	b        lbl_80253808
 
-	.loc_0x84:
-	  fmr       f1, f0
+lbl_80253804:
+	fmr      f1, f0
 
-	.loc_0x88:
-	  lfs       f2, -0x39E0(r2)
-	  fcmpo     cr0, f1, f2
-	  bge-      .loc_0x190
-	  fsubs     f0, f2, f1
-	  lwz       r3, 0x20(r27)
-	  lfs       f1, -0x39DC(r2)
-	  mr        r4, r28
-	  lwz       r3, 0x0(r3)
-	  fdivs     f0, f0, f2
-	  fmuls     f1, f1, f0
-	  bl        -0x844
-	  b         .loc_0x190
+lbl_80253808:
+	lfs      f2, lbl_8051A980@sda21(r2)
+	fcmpo    cr0, f1, f2
+	bge      lbl_80253910
+	fsubs    f0, f2, f1
+	lwz      r3, 0x20(r27)
+	lfs      f1, lbl_8051A984@sda21(r2)
+	mr       r4, r28
+	lwz      r3, 0(r3)
+	fdivs    f0, f0, f2
+	fmuls    f1, f1, f0
+	bl       startRumble__Q24Game10ContRumbleFif
+	b        lbl_80253910
 
-	.loc_0xB8:
-	  mr        r5, r6
-	  addi      r4, r1, 0x8
-	  bl        0x390
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x190
-	  lwz       r0, 0x8(r1)
-	  mr        r30, r0
-	  rlwinm    r31,r0,2,0,29
-	  b         .loc_0x184
+lbl_80253838:
+	mr       r5, r6
+	addi     r4, r1, 8
+	bl       isStartAndEnd__Q24Game9RumbleMgrFPii
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80253910
+	lwz      r0, 8(r1)
+	mr       r30, r0
+	slwi     r31, r0, 2
+	b        lbl_80253904
 
-	.loc_0xDC:
-	  lwz       r3, 0x1C(r27)
-	  lwzx      r4, r3, r31
-	  cmplwi    r4, 0
-	  beq-      .loc_0x17C
-	  lwz       r12, 0x0(r4)
-	  addi      r3, r1, 0x10
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f1, 0x4(r29)
-	  lfs       f0, 0x14(r1)
-	  lfs       f3, 0x0(r29)
-	  fsubs     f4, f1, f0
-	  lfs       f2, 0x10(r1)
-	  lfs       f1, 0x8(r29)
-	  lfs       f0, 0x18(r1)
-	  fsubs     f3, f3, f2
-	  fmuls     f4, f4, f4
-	  fsubs     f2, f1, f0
-	  lfs       f0, -0x39E4(r2)
-	  fmadds    f1, f3, f3, f4
-	  fmuls     f2, f2, f2
-	  fadds     f1, f2, f1
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x150
-	  ble-      .loc_0x154
-	  fsqrte    f0, f1
-	  fmuls     f1, f0, f1
-	  b         .loc_0x154
+lbl_8025385C:
+	lwz      r3, 0x1c(r27)
+	lwzx     r4, r3, r31
+	cmplwi   r4, 0
+	beq      lbl_802538FC
+	lwz      r12, 0(r4)
+	addi     r3, r1, 0x10
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lfs      f1, 4(r29)
+	lfs      f0, 0x14(r1)
+	lfs      f3, 0(r29)
+	fsubs    f4, f1, f0
+	lfs      f2, 0x10(r1)
+	lfs      f1, 8(r29)
+	lfs      f0, 0x18(r1)
+	fsubs    f3, f3, f2
+	fmuls    f4, f4, f4
+	fsubs    f2, f1, f0
+	lfs      f0, lbl_8051A97C@sda21(r2)
+	fmadds   f1, f3, f3, f4
+	fmuls    f2, f2, f2
+	fadds    f1, f2, f1
+	fcmpo    cr0, f1, f0
+	ble      lbl_802538D0
+	ble      lbl_802538D4
+	frsqrte  f0, f1
+	fmuls    f1, f0, f1
+	b        lbl_802538D4
 
-	.loc_0x150:
-	  fmr       f1, f0
+lbl_802538D0:
+	fmr      f1, f0
 
-	.loc_0x154:
-	  lwz       r3, 0x24(r27)
-	  lfs       f2, 0x24(r3)
-	  fcmpo     cr0, f1, f2
-	  bge-      .loc_0x17C
-	  fsubs     f0, f2, f1
-	  lwz       r3, 0x20(r27)
-	  mr        r4, r28
-	  lwzx      r3, r3, r31
-	  fdivs     f1, f0, f2
-	  bl        -0x90C
+lbl_802538D4:
+	lwz      r3, 0x24(r27)
+	lfs      f2, 0x24(r3)
+	fcmpo    cr0, f1, f2
+	bge      lbl_802538FC
+	fsubs    f0, f2, f1
+	lwz      r3, 0x20(r27)
+	mr       r4, r28
+	lwzx     r3, r3, r31
+	fdivs    f1, f0, f2
+	bl       startRumble__Q24Game10ContRumbleFif
 
-	.loc_0x17C:
-	  addi      r31, r31, 0x4
-	  addi      r30, r30, 0x1
+lbl_802538FC:
+	addi     r31, r31, 4
+	addi     r30, r30, 1
 
-	.loc_0x184:
-	  lwz       r0, 0xC(r1)
-	  cmpw      r30, r0
-	  blt+      .loc_0xDC
+lbl_80253904:
+	lwz      r0, 0xc(r1)
+	cmpw     r30, r0
+	blt      lbl_8025385C
 
-	.loc_0x190:
-	  lmw       r27, 0x2C(r1)
-	  lwz       r0, 0x44(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
+lbl_80253910:
+	lmw      r27, 0x2c(r1)
+	lwz      r0, 0x44(r1)
+	mtlr     r0
+	addi     r1, r1, 0x40
+	blr
 	*/
 }
 
@@ -520,61 +618,60 @@ void RumbleMgr::startRumble(int, Vector3f&, int)
 void RumbleMgr::startRumble(int, int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r29, r4
-	  stw       r28, 0x10(r1)
-	  mr        r28, r3
-	  lbz       r0, 0x18(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x98
-	  lwz       r0, 0x30(r28)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x50
-	  lwz       r3, 0x20(r28)
-	  lfs       f1, -0x39D8(r2)
-	  lwz       r3, 0x0(r3)
-	  bl        -0x980
-	  b         .loc_0x98
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	mr       r29, r4
+	stw      r28, 0x10(r1)
+	mr       r28, r3
+	lbz      r0, 0x18(r3)
+	cmplwi   r0, 0
+	beq      lbl_802539BC
+	lwz      r0, 0x30(r28)
+	cmplwi   r0, 0
+	beq      lbl_80253974
+	lwz      r3, 0x20(r28)
+	lfs      f1, lbl_8051A988@sda21(r2)
+	lwz      r3, 0(r3)
+	bl       startRumble__Q24Game10ContRumbleFif
+	b        lbl_802539BC
 
-	.loc_0x50:
-	  addi      r4, r1, 0x8
-	  bl        0x258
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x98
-	  lwz       r0, 0x8(r1)
-	  mr        r30, r0
-	  rlwinm    r31,r0,2,0,29
-	  b         .loc_0x8C
+lbl_80253974:
+	addi     r4, r1, 8
+	bl       isStartAndEnd__Q24Game9RumbleMgrFPii
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_802539BC
+	lwz      r0, 8(r1)
+	mr       r30, r0
+	slwi     r31, r0, 2
+	b        lbl_802539B0
 
-	.loc_0x70:
-	  lwz       r3, 0x20(r28)
-	  mr        r4, r29
-	  lfs       f1, -0x39D8(r2)
-	  lwzx      r3, r3, r31
-	  bl        -0x9B8
-	  addi      r31, r31, 0x4
-	  addi      r30, r30, 0x1
+lbl_80253994:
+	lwz      r3, 0x20(r28)
+	mr       r4, r29
+	lfs      f1, lbl_8051A988@sda21(r2)
+	lwzx     r3, r3, r31
+	bl       startRumble__Q24Game10ContRumbleFif
+	addi     r31, r31, 4
+	addi     r30, r30, 1
 
-	.loc_0x8C:
-	  lwz       r0, 0xC(r1)
-	  cmpw      r30, r0
-	  blt+      .loc_0x70
+lbl_802539B0:
+	lwz      r0, 0xc(r1)
+	cmpw     r30, r0
+	blt      lbl_80253994
 
-	.loc_0x98:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_802539BC:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -586,50 +683,49 @@ void RumbleMgr::startRumble(int, int)
 void RumbleMgr::stopRumble(int, int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r29, r4
-	  stw       r28, 0x10(r1)
-	  mr        r28, r3
-	  lbz       r0, 0x18(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x74
-	  addi      r4, r1, 0x8
-	  bl        0x1C0
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x74
-	  lwz       r0, 0x8(r1)
-	  mr        r30, r0
-	  rlwinm    r31,r0,2,0,29
-	  b         .loc_0x68
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	mr       r29, r4
+	stw      r28, 0x10(r1)
+	mr       r28, r3
+	lbz      r0, 0x18(r3)
+	cmplwi   r0, 0
+	beq      lbl_80253A50
+	addi     r4, r1, 8
+	bl       isStartAndEnd__Q24Game9RumbleMgrFPii
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80253A50
+	lwz      r0, 8(r1)
+	mr       r30, r0
+	slwi     r31, r0, 2
+	b        lbl_80253A44
 
-	.loc_0x50:
-	  lwz       r3, 0x20(r28)
-	  mr        r4, r29
-	  lwzx      r3, r3, r31
-	  bl        -0x8C0
-	  addi      r31, r31, 0x4
-	  addi      r30, r30, 0x1
+lbl_80253A2C:
+	lwz      r3, 0x20(r28)
+	mr       r4, r29
+	lwzx     r3, r3, r31
+	bl       rumbleStop__Q24Game10ContRumbleFi
+	addi     r31, r31, 4
+	addi     r30, r30, 1
 
-	.loc_0x68:
-	  lwz       r0, 0xC(r1)
-	  cmpw      r30, r0
-	  blt+      .loc_0x50
+lbl_80253A44:
+	lwz      r0, 0xc(r1)
+	cmpw     r30, r0
+	blt      lbl_80253A2C
 
-	.loc_0x74:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80253A50:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -641,47 +737,46 @@ void RumbleMgr::stopRumble(int, int)
 void RumbleMgr::stopRumble(int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  lbz       r0, 0x18(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x6C
-	  mr        r5, r4
-	  addi      r4, r1, 0x8
-	  bl        0x130
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x6C
-	  lwz       r0, 0x8(r1)
-	  mr        r30, r0
-	  rlwinm    r31,r0,2,0,29
-	  b         .loc_0x60
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	lbz      r0, 0x18(r3)
+	cmplwi   r0, 0
+	beq      lbl_80253ADC
+	mr       r5, r4
+	addi     r4, r1, 8
+	bl       isStartAndEnd__Q24Game9RumbleMgrFPii
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80253ADC
+	lwz      r0, 8(r1)
+	mr       r30, r0
+	slwi     r31, r0, 2
+	b        lbl_80253AD0
 
-	.loc_0x4C:
-	  lwz       r3, 0x20(r29)
-	  lwzx      r3, r3, r31
-	  bl        -0x9D4
-	  addi      r31, r31, 0x4
-	  addi      r30, r30, 0x1
+lbl_80253ABC:
+	lwz      r3, 0x20(r29)
+	lwzx     r3, r3, r31
+	bl       rumbleStop__Q24Game10ContRumbleFv
+	addi     r31, r31, 4
+	addi     r30, r30, 1
 
-	.loc_0x60:
-	  lwz       r0, 0xC(r1)
-	  cmpw      r30, r0
-	  blt+      .loc_0x4C
+lbl_80253AD0:
+	lwz      r0, 0xc(r1)
+	cmpw     r30, r0
+	blt      lbl_80253ABC
 
-	.loc_0x6C:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80253ADC:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -693,44 +788,43 @@ void RumbleMgr::stopRumble(int)
 void RumbleMgr::isRumbleUpdateOn()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  lbz       r0, 0x18(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x48
-	  lwz       r3, -0x6C18(r13)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x48
-	  lbz       r0, 0x4A(r3)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x48
-	  bl        -0x9EB64
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x48
-	  li        r3, 0x1
-	  b         .loc_0x68
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	lbz      r0, 0x18(r3)
+	cmplwi   r0, 0
+	beq      lbl_80253B40
+	lwz      r3, gameSystem__4Game@sda21(r13)
+	cmplwi   r3, 0
+	beq      lbl_80253B40
+	lbz      r0, 0x4a(r3)
+	cmplwi   r0, 0
+	bne      lbl_80253B40
+	bl       paused__Q24Game10GameSystemFv
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_80253B40
+	li       r3, 1
+	b        lbl_80253B60
 
-	.loc_0x48:
-	  li        r31, 0
+lbl_80253B40:
+	li       r31, 0
 
-	.loc_0x4C:
-	  mr        r3, r31
-	  li        r4, 0x2
-	  bl        -0x15F720
-	  addi      r31, r31, 0x1
-	  cmpwi     r31, 0x4
-	  blt+      .loc_0x4C
-	  li        r3, 0
+lbl_80253B44:
+	mr       r3, r31
+	li       r4, 2
+	bl       PADControlMotor
+	addi     r31, r31, 1
+	cmpwi    r31, 4
+	blt      lbl_80253B44
+	li       r3, 0
 
-	.loc_0x68:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80253B60:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -742,34 +836,33 @@ void RumbleMgr::isRumbleUpdateOn()
 void RumbleMgr::setZukanRumble(Controller*, Vector3f*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r6, -0x6C18(r13)
-	  cmplwi    r6, 0
-	  beq-      .loc_0x30
-	  lwz       r0, 0x44(r6)
-	  cmpwi     r0, 0x4
-	  bne-      .loc_0x30
-	  stw       r4, 0x2C(r3)
-	  stw       r5, 0x30(r3)
-	  b         .loc_0x4C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r6, gameSystem__4Game@sda21(r13)
+	cmplwi   r6, 0
+	beq      lbl_80253BA4
+	lwz      r0, 0x44(r6)
+	cmpwi    r0, 4
+	bne      lbl_80253BA4
+	stw      r4, 0x2c(r3)
+	stw      r5, 0x30(r3)
+	b        lbl_80253BC0
 
-	.loc_0x30:
-	  lis       r3, 0x8048
-	  lis       r5, 0x8048
-	  addi      r3, r3, 0x48F0
-	  li        r4, 0x15E
-	  addi      r5, r5, 0x4900
-	  crclr     6, 0x6
-	  bl        -0x22957C
+lbl_80253BA4:
+	lis      r3, lbl_804848F0@ha
+	lis      r5, lbl_80484900@ha
+	addi     r3, r3, lbl_804848F0@l
+	li       r4, 0x15e
+	addi     r5, r5, lbl_80484900@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x4C:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80253BC0:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -781,39 +874,38 @@ void RumbleMgr::setZukanRumble(Controller*, Vector3f*)
 void RumbleMgr::isStartAndEnd(int*, int)
 {
 	/*
-	.loc_0x0:
-	  cmpwi     r5, 0x2
-	  bne-      .loc_0x20
-	  li        r3, 0
-	  li        r0, 0x2
-	  stw       r3, 0x0(r4)
-	  li        r3, 0x1
-	  stw       r0, 0x4(r4)
-	  blr
+	cmpwi    r5, 2
+	bne      lbl_80253BF0
+	li       r3, 0
+	li       r0, 2
+	stw      r3, 0(r4)
+	li       r3, 1
+	stw      r0, 4(r4)
+	blr
 
-	.loc_0x20:
-	  cmpwi     r5, 0
-	  bne-      .loc_0x40
-	  li        r3, 0
-	  li        r0, 0x1
-	  stw       r3, 0x0(r4)
-	  li        r3, 0x1
-	  stw       r0, 0x4(r4)
-	  blr
+lbl_80253BF0:
+	cmpwi    r5, 0
+	bne      lbl_80253C10
+	li       r3, 0
+	li       r0, 1
+	stw      r3, 0(r4)
+	li       r3, 1
+	stw      r0, 4(r4)
+	blr
 
-	.loc_0x40:
-	  cmpwi     r5, 0x1
-	  bne-      .loc_0x60
-	  li        r3, 0x1
-	  li        r0, 0x2
-	  stw       r3, 0x0(r4)
-	  li        r3, 0x1
-	  stw       r0, 0x4(r4)
-	  blr
+lbl_80253C10:
+	cmpwi    r5, 1
+	bne      lbl_80253C30
+	li       r3, 1
+	li       r0, 2
+	stw      r3, 0(r4)
+	li       r3, 1
+	stw      r0, 4(r4)
+	blr
 
-	.loc_0x60:
-	  li        r3, 0
-	  blr
+lbl_80253C30:
+	li       r3, 0
+	blr
 	*/
 }
 
@@ -825,61 +917,61 @@ void RumbleMgr::isStartAndEnd(int*, int)
 void RumbleMgr::readRumbleParms(char*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x440(r1)
-	  mflr      r0
-	  li        r5, 0
-	  li        r6, 0
-	  stw       r0, 0x444(r1)
-	  li        r0, 0
-	  li        r7, 0
-	  li        r8, 0x2
-	  stw       r31, 0x43C(r1)
-	  li        r9, 0
-	  li        r10, 0
-	  stw       r30, 0x438(r1)
-	  mr        r30, r3
-	  mr        r3, r4
-	  li        r4, 0
-	  stw       r0, 0x8(r1)
-	  bl        -0x234AF0
-	  mr.       r31, r3
-	  beq-      .loc_0x8C
-	  mr        r4, r31
-	  addi      r3, r1, 0x10
-	  li        r5, -0x1
-	  bl        0x1C1C68
-	  li        r0, 0x1
-	  cmpwi     r0, 0x1
-	  stw       r0, 0x1C(r1)
-	  bne-      .loc_0x74
-	  li        r0, 0
-	  stw       r0, 0x424(r1)
+	stwu     r1, -0x440(r1)
+	mflr     r0
+	li       r5, 0
+	li       r6, 0
+	stw      r0, 0x444(r1)
+	li       r0, 0
+	li       r7, 0
+	li       r8, 2
+	stw      r31, 0x43c(r1)
+	li       r9, 0
+	li       r10, 0
+	stw      r30, 0x438(r1)
+	mr       r30, r3
+	mr       r3, r4
+	li       r4, 0
+	stw      r0, 8(r1)
+	bl
+loadToMainRAM__12JKRDvdRipperFPCcPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl
+	or.      r31, r3, r3
+	beq      lbl_80253CC4
+	mr       r4, r31
+	addi     r3, r1, 0x10
+	li       r5, -1
+	bl       __ct__9RamStreamFPvi
+	li       r0, 1
+	cmpwi    r0, 1
+	stw      r0, 0x1c(r1)
+	bne      lbl_80253CAC
+	li       r0, 0
+	stw      r0, 0x424(r1)
 
-	.loc_0x74:
-	  lwz       r3, 0x24(r30)
-	  addi      r4, r1, 0x10
-	  bl        0x1BFB40
-	  mr        r3, r31
-	  bl        -0x22FBE4
-	  b         .loc_0xA8
+lbl_80253CAC:
+	lwz      r3, 0x24(r30)
+	addi     r4, r1, 0x10
+	bl       read__10ParametersFR6Stream
+	mr       r3, r31
+	bl       __dla__FPv
+	b        lbl_80253CE0
 
-	.loc_0x8C:
-	  lis       r3, 0x8048
-	  lis       r5, 0x8048
-	  addi      r3, r3, 0x48F0
-	  li        r4, 0x199
-	  addi      r5, r5, 0x4910
-	  crclr     6, 0x6
-	  bl        -0x22969C
+lbl_80253CC4:
+	lis      r3, lbl_804848F0@ha
+	lis      r5, lbl_80484910@ha
+	addi     r3, r3, lbl_804848F0@l
+	li       r4, 0x199
+	addi     r5, r5, lbl_80484910@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xA8:
-	  lwz       r0, 0x444(r1)
-	  lwz       r31, 0x43C(r1)
-	  lwz       r30, 0x438(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x440
-	  blr
+lbl_80253CE0:
+	lwz      r0, 0x444(r1)
+	lwz      r31, 0x43c(r1)
+	lwz      r30, 0x438(r1)
+	mtlr     r0
+	addi     r1, r1, 0x440
+	blr
 	*/
 }
 
@@ -891,61 +983,61 @@ void RumbleMgr::readRumbleParms(char*)
 void RumbleMgr::readRumbleData(char*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x440(r1)
-	  mflr      r0
-	  li        r5, 0
-	  li        r6, 0
-	  stw       r0, 0x444(r1)
-	  li        r0, 0
-	  li        r7, 0
-	  li        r8, 0x2
-	  stw       r31, 0x43C(r1)
-	  li        r9, 0
-	  li        r10, 0
-	  stw       r30, 0x438(r1)
-	  mr        r30, r3
-	  mr        r3, r4
-	  li        r4, 0
-	  stw       r0, 0x8(r1)
-	  bl        -0x234BB0
-	  mr.       r31, r3
-	  beq-      .loc_0x8C
-	  mr        r4, r31
-	  addi      r3, r1, 0x10
-	  li        r5, -0x1
-	  bl        0x1C1BA8
-	  li        r0, 0x1
-	  cmpwi     r0, 0x1
-	  stw       r0, 0x1C(r1)
-	  bne-      .loc_0x74
-	  li        r0, 0
-	  stw       r0, 0x424(r1)
+	stwu     r1, -0x440(r1)
+	mflr     r0
+	li       r5, 0
+	li       r6, 0
+	stw      r0, 0x444(r1)
+	li       r0, 0
+	li       r7, 0
+	li       r8, 2
+	stw      r31, 0x43c(r1)
+	li       r9, 0
+	li       r10, 0
+	stw      r30, 0x438(r1)
+	mr       r30, r3
+	mr       r3, r4
+	li       r4, 0
+	stw      r0, 8(r1)
+	bl
+loadToMainRAM__12JKRDvdRipperFPCcPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl
+	or.      r31, r3, r3
+	beq      lbl_80253D84
+	mr       r4, r31
+	addi     r3, r1, 0x10
+	li       r5, -1
+	bl       __ct__9RamStreamFPvi
+	li       r0, 1
+	cmpwi    r0, 1
+	stw      r0, 0x1c(r1)
+	bne      lbl_80253D6C
+	li       r0, 0
+	stw      r0, 0x424(r1)
 
-	.loc_0x74:
-	  lwz       r3, 0x28(r30)
-	  addi      r4, r1, 0x10
-	  bl        0xD690
-	  mr        r3, r31
-	  bl        -0x22FCA4
-	  b         .loc_0xA8
+lbl_80253D6C:
+	lwz      r3, 0x28(r30)
+	addi     r4, r1, 0x10
+	bl       read__Q24Game13RumbleDataMgrFR6Stream
+	mr       r3, r31
+	bl       __dla__FPv
+	b        lbl_80253DA0
 
-	.loc_0x8C:
-	  lis       r3, 0x8048
-	  lis       r5, 0x8048
-	  addi      r3, r3, 0x48F0
-	  li        r4, 0x1B8
-	  addi      r5, r5, 0x4928
-	  crclr     6, 0x6
-	  bl        -0x22975C
+lbl_80253D84:
+	lis      r3, lbl_804848F0@ha
+	lis      r5, lbl_80484928@ha
+	addi     r3, r3, lbl_804848F0@l
+	li       r4, 0x1b8
+	addi     r5, r5, lbl_80484928@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xA8:
-	  lwz       r0, 0x444(r1)
-	  lwz       r31, 0x43C(r1)
-	  lwz       r30, 0x438(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x440
-	  blr
+lbl_80253DA0:
+	lwz      r0, 0x444(r1)
+	lwz      r31, 0x43c(r1)
+	lwz      r30, 0x438(r1)
+	mtlr     r0
+	addi     r1, r1, 0x440
+	blr
 	*/
 }
 
@@ -957,33 +1049,32 @@ void RumbleMgr::readRumbleData(char*)
 RumbleMgr::~RumbleMgr()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x44
-	  lis       r5, 0x804C
-	  li        r4, 0
-	  addi      r0, r5, 0x1BF8
-	  stw       r0, 0x0(r30)
-	  bl        0x1BD7A0
-	  extsh.    r0, r31
-	  ble-      .loc_0x44
-	  mr        r3, r30
-	  bl        -0x22FD44
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_80253DFC
+	lis      r5, __vt__Q24Game9RumbleMgr@ha
+	li       r4, 0
+	addi     r0, r5, __vt__Q24Game9RumbleMgr@l
+	stw      r0, 0(r30)
+	bl       __dt__5CNodeFv
+	extsh.   r0, r31
+	ble      lbl_80253DFC
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x44:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80253DFC:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 } // namespace Game

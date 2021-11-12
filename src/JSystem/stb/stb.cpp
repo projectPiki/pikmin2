@@ -1,5 +1,63 @@
 #include "types.h"
 
+/*
+    Generated from dpostproc
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__Q37JStudio3stb6TParse
+    __vt__Q37JStudio3stb6TParse:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q37JStudio3stb6TParseFv
+        .4byte parseHeader_next__Q37JStudio3stb6TParseFPPCvPUlUl
+        .4byte parseBlock_next__Q37JStudio3stb6TParseFPPCvPUlUl
+        .4byte
+   parseHeader__Q37JStudio3stb6TParseFRCQ47JStudio3stb4data14TParse_THeaderUl
+        .4byte
+   parseBlock_block__Q37JStudio3stb6TParseFRCQ47JStudio3stb4data13TParse_TBlockUl
+        .4byte
+   parseBlock_object__Q37JStudio3stb6TParseFRCQ47JStudio3stb4data20TParse_TBlock_objectUl
+    .global __vt__Q37JStudio3stb8TFactory
+    __vt__Q37JStudio3stb8TFactory:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q37JStudio3stb8TFactoryFv
+        .4byte
+   create__Q37JStudio3stb8TFactoryFRCQ47JStudio3stb4data20TParse_TBlock_object
+        .4byte destroy__Q37JStudio3stb8TFactoryFPQ37JStudio3stb7TObject
+    .global __vt__Q37JStudio3stb8TControl
+    __vt__Q37JStudio3stb8TControl:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q37JStudio3stb8TControlFv
+    .global __vt__Q37JStudio3stb15TObject_control
+    __vt__Q37JStudio3stb15TObject_control:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q37JStudio3stb15TObject_controlFv
+        .4byte do_begin__Q37JStudio3stb7TObjectFv
+        .4byte do_end__Q37JStudio3stb7TObjectFv
+        .4byte do_paragraph__Q37JStudio3stb7TObjectFUlPCvUl
+        .4byte do_wait__Q37JStudio3stb7TObjectFUl
+        .4byte do_data__Q37JStudio3stb7TObjectFPCvUlPCvUl
+    .global __vt__Q37JStudio3stb7TObject
+    __vt__Q37JStudio3stb7TObject:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q37JStudio3stb7TObjectFv
+        .4byte do_begin__Q37JStudio3stb7TObjectFv
+        .4byte do_end__Q37JStudio3stb7TObjectFv
+        .4byte do_paragraph__Q37JStudio3stb7TObjectFUlPCvUl
+        .4byte do_wait__Q37JStudio3stb7TObjectFUl
+        .4byte do_data__Q37JStudio3stb7TObjectFPCvUlPCvUl
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global gu32Mask_TSequence_value_signExpansion__Q37JStudio3stb4data
+    gu32Mask_TSequence_value_signExpansion__Q37JStudio3stb4data:
+        .4byte 0xFF000000
+        .4byte 0x00000000
+*/
+
 namespace JStudio {
 
 /*
@@ -30,35 +88,34 @@ stb::TObject::TObject(unsigned long, void const*, unsigned long)
 stb::TObject::TObject((JStudio::stb::data::TParse_TBlock_object const&))
 {
 	/*
-	.loc_0x0:
-	  lwz       r8, 0x0(r4)
-	  lis       r4, 0x804A
-	  subi      r0, r4, 0xAA8
-	  li        r5, 0
-	  lhz       r7, 0xA(r8)
-	  addi      r6, r8, 0xC
-	  stw       r6, 0x0(r3)
-	  stw       r7, 0x4(r3)
-	  stw       r0, 0x8(r3)
-	  stw       r5, 0xC(r3)
-	  stw       r5, 0x10(r3)
-	  stw       r5, 0x14(r3)
-	  lwz       r0, 0x4(r8)
-	  stw       r0, 0x18(r3)
-	  lhz       r0, 0x8(r8)
-	  sth       r0, 0x1C(r3)
-	  stb       r5, 0x1E(r3)
-	  stw       r5, 0x20(r3)
-	  stw       r5, 0x24(r3)
-	  lhz       r4, 0xA(r8)
-	  addi      r0, r4, 0x3
-	  rlwinm    r4,r0,0,0,29
-	  addi      r0, r4, 0xC
-	  add       r0, r8, r0
-	  stw       r0, 0x28(r3)
-	  stw       r5, 0x2C(r3)
-	  stw       r5, 0x30(r3)
-	  blr
+	lwz      r8, 0(r4)
+	lis      r4, __vt__Q37JStudio3stb7TObject@ha
+	addi     r0, r4, __vt__Q37JStudio3stb7TObject@l
+	li       r5, 0
+	lhz      r7, 0xa(r8)
+	addi     r6, r8, 0xc
+	stw      r6, 0(r3)
+	stw      r7, 4(r3)
+	stw      r0, 8(r3)
+	stw      r5, 0xc(r3)
+	stw      r5, 0x10(r3)
+	stw      r5, 0x14(r3)
+	lwz      r0, 4(r8)
+	stw      r0, 0x18(r3)
+	lhz      r0, 8(r8)
+	sth      r0, 0x1c(r3)
+	stb      r5, 0x1e(r3)
+	stw      r5, 0x20(r3)
+	stw      r5, 0x24(r3)
+	lhz      r4, 0xa(r8)
+	addi     r0, r4, 3
+	rlwinm   r4, r0, 0, 0, 0x1d
+	addi     r0, r4, 0xc
+	add      r0, r8, r0
+	stw      r0, 0x28(r3)
+	stw      r5, 0x2c(r3)
+	stw      r5, 0x30(r3)
+	blr
 	*/
 }
 
@@ -70,27 +127,26 @@ stb::TObject::TObject((JStudio::stb::data::TParse_TBlock_object const&))
 stb::TObject::~TObject(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r3
-	  beq-      .loc_0x30
-	  lis       r5, 0x804A
-	  extsh.    r0, r4
-	  subi      r0, r5, 0xAA8
-	  stw       r0, 0x8(r31)
-	  ble-      .loc_0x30
-	  bl        0x13DA0
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r3, r3
+	beq      lbl_80010318
+	lis      r5, __vt__Q37JStudio3stb7TObject@ha
+	extsh.   r0, r4
+	addi     r0, r5, __vt__Q37JStudio3stb7TObject@l
+	stw      r0, 8(r31)
+	ble      lbl_80010318
+	bl       __dl__FPv
 
-	.loc_0x30:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80010318:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -122,183 +178,182 @@ void stb::TObject::reset(void const*)
 void stb::TObject::forward(unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r4
-	  stw       r30, 0x18(r1)
-	  mr        r30, r3
-	  stw       r29, 0x14(r1)
-	  li        r29, 0
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r4
+	stw      r30, 0x18(r1)
+	mr       r30, r3
+	stw      r29, 0x14(r1)
+	li       r29, 0
 
-	.loc_0x24:
-	  lhz       r0, 0x1C(r30)
-	  rlwinm.   r0,r0,0,16,16
-	  beq-      .loc_0x8C
-	  lwz       r0, 0x30(r30)
-	  cmpwi     r0, 0x4
-	  beq-      .loc_0x5C
-	  bge-      .loc_0x50
-	  cmpwi     r0, 0x2
-	  beq-      .loc_0x5C
-	  bge-      .loc_0x84
-	  b         .loc_0x84
+lbl_80010354:
+	lhz      r0, 0x1c(r30)
+	rlwinm.  r0, r0, 0, 0x10, 0x10
+	beq      lbl_800103BC
+	lwz      r0, 0x30(r30)
+	cmpwi    r0, 4
+	beq      lbl_8001038C
+	bge      lbl_80010380
+	cmpwi    r0, 2
+	beq      lbl_8001038C
+	bge      lbl_800103B4
+	b        lbl_800103B4
 
-	.loc_0x50:
-	  cmpwi     r0, 0x8
-	  beq-      .loc_0x84
-	  b         .loc_0x84
+lbl_80010380:
+	cmpwi    r0, 8
+	beq      lbl_800103B4
+	b        lbl_800103B4
 
-	.loc_0x5C:
-	  li        r0, 0x8
-	  stw       r0, 0x30(r30)
-	  lbz       r0, 0x1E(r30)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x84
-	  mr        r3, r30
-	  lwz       r12, 0x8(r30)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
+lbl_8001038C:
+	li       r0, 8
+	stw      r0, 0x30(r30)
+	lbz      r0, 0x1e(r30)
+	cmplwi   r0, 0
+	beq      lbl_800103B4
+	mr       r3, r30
+	lwz      r12, 8(r30)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x84:
-	  li        r3, 0x1
-	  b         .loc_0x21C
+lbl_800103B4:
+	li       r3, 1
+	b        lbl_8001054C
 
-	.loc_0x8C:
-	  lwz       r0, 0x30(r30)
-	  cmpwi     r0, 0x8
-	  bne-      .loc_0xB4
-	  mr        r3, r30
-	  lwz       r12, 0x8(r30)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  li        r0, 0x2
-	  stw       r0, 0x30(r30)
+lbl_800103BC:
+	lwz      r0, 0x30(r30)
+	cmpwi    r0, 8
+	bne      lbl_800103E4
+	mr       r3, r30
+	lwz      r12, 8(r30)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	li       r0, 2
+	stw      r0, 0x30(r30)
 
-	.loc_0xB4:
-	  lwz       r3, 0x14(r30)
-	  cmplwi    r3, 0
-	  beq-      .loc_0xCC
-	  lwz       r0, 0x54(r3)
-	  cmpwi     r0, 0
-	  bgt-      .loc_0xD8
+lbl_800103E4:
+	lwz      r3, 0x14(r30)
+	cmplwi   r3, 0
+	beq      lbl_800103FC
+	lwz      r0, 0x54(r3)
+	cmpwi    r0, 0
+	bgt      lbl_80010408
 
-	.loc_0xCC:
-	  lwz       r0, 0x20(r30)
-	  cmpwi     r0, 0
-	  ble-      .loc_0x10C
+lbl_800103FC:
+	lwz      r0, 0x20(r30)
+	cmpwi    r0, 0
+	ble      lbl_8001043C
 
-	.loc_0xD8:
-	  lbz       r0, 0x1E(r30)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x104
-	  li        r0, 0x4
-	  mr        r3, r30
-	  stw       r0, 0x30(r30)
-	  mr        r4, r31
-	  lwz       r12, 0x8(r30)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
+lbl_80010408:
+	lbz      r0, 0x1e(r30)
+	cmplwi   r0, 0
+	beq      lbl_80010434
+	li       r0, 4
+	mr       r3, r30
+	stw      r0, 0x30(r30)
+	mr       r4, r31
+	lwz      r12, 8(r30)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x104:
-	  li        r3, 0x1
-	  b         .loc_0x21C
+lbl_80010434:
+	li       r3, 1
+	b        lbl_8001054C
 
-	.loc_0x10C:
-	  lwz       r0, 0x28(r30)
-	  cmplwi    r0, 0
-	  stw       r0, 0x24(r30)
-	  bne-      .loc_0x174
-	  lbz       r0, 0x1E(r30)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x16C
-	  rlwinm.   r0,r29,0,24,31
-	  bne-      .loc_0x148
-	  mr        r3, r30
-	  li        r4, 0
-	  lwz       r12, 0x8(r30)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
+lbl_8001043C:
+	lwz      r0, 0x28(r30)
+	cmplwi   r0, 0
+	stw      r0, 0x24(r30)
+	bne      lbl_800104A4
+	lbz      r0, 0x1e(r30)
+	cmplwi   r0, 0
+	beq      lbl_8001049C
+	clrlwi.  r0, r29, 0x18
+	bne      lbl_80010478
+	mr       r3, r30
+	li       r4, 0
+	lwz      r12, 8(r30)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x148:
-	  li        r3, 0
-	  li        r0, 0x1
-	  stb       r3, 0x1E(r30)
-	  mr        r3, r30
-	  stw       r0, 0x30(r30)
-	  lwz       r12, 0x8(r30)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
+lbl_80010478:
+	li       r3, 0
+	li       r0, 1
+	stb      r3, 0x1e(r30)
+	mr       r3, r30
+	stw      r0, 0x30(r30)
+	lwz      r12, 8(r30)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x16C:
-	  li        r3, 0
-	  b         .loc_0x21C
+lbl_8001049C:
+	li       r3, 0
+	b        lbl_8001054C
 
-	.loc_0x174:
-	  lbz       r0, 0x1E(r30)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x19C
-	  li        r0, 0x1
-	  mr        r3, r30
-	  stb       r0, 0x1E(r30)
-	  lwz       r12, 0x8(r30)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
+lbl_800104A4:
+	lbz      r0, 0x1e(r30)
+	cmplwi   r0, 0
+	bne      lbl_800104CC
+	li       r0, 1
+	mr       r3, r30
+	stb      r0, 0x1e(r30)
+	lwz      r12, 8(r30)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x19C:
-	  li        r0, 0x2
-	  stw       r0, 0x30(r30)
-	  lwz       r0, 0x2C(r30)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x1C4
-	  mr        r3, r30
-	  bl        0x98
-	  lwz       r0, 0x2C(r30)
-	  cmplwi    r0, 0
-	  beq+      .loc_0x24
+lbl_800104CC:
+	li       r0, 2
+	stw      r0, 0x30(r30)
+	lwz      r0, 0x2c(r30)
+	cmplwi   r0, 0
+	bne      lbl_800104F4
+	mr       r3, r30
+	bl       process_sequence___Q37JStudio3stb7TObjectFv
+	lwz      r0, 0x2c(r30)
+	cmplwi   r0, 0
+	beq      lbl_80010354
 
-	.loc_0x1C4:
-	  lwz       r4, 0x2C(r30)
-	  li        r29, 0x1
-	  cmplw     r31, r4
-	  blt-      .loc_0x1F8
-	  li        r0, 0
-	  mr        r3, r30
-	  stw       r0, 0x2C(r30)
-	  sub       r31, r31, r4
-	  lwz       r12, 0x8(r30)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x10C
+lbl_800104F4:
+	lwz      r4, 0x2c(r30)
+	li       r29, 1
+	cmplw    r31, r4
+	blt      lbl_80010528
+	li       r0, 0
+	mr       r3, r30
+	stw      r0, 0x2c(r30)
+	subf     r31, r4, r31
+	lwz      r12, 8(r30)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	b        lbl_8001043C
 
-	.loc_0x1F8:
-	  sub       r0, r4, r31
-	  mr        r3, r30
-	  stw       r0, 0x2C(r30)
-	  mr        r4, r31
-	  lwz       r12, 0x8(r30)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  li        r3, 0x1
+lbl_80010528:
+	subf     r0, r31, r4
+	mr       r3, r30
+	stw      r0, 0x2c(r30)
+	mr       r4, r31
+	lwz      r12, 8(r30)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	li       r3, 1
 
-	.loc_0x21C:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8001054C:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -348,148 +403,149 @@ void stb::TObject::do_data(void const*, unsigned long, void const*,
 void stb::TObject::process_sequence_(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  stw       r0, 0x44(r1)
-	  addi      r4, r1, 0x20
-	  stw       r31, 0x3C(r1)
-	  mr        r31, r3
-	  addi      r3, r1, 0xC
-	  stw       r30, 0x38(r1)
-	  lwz       r0, 0x24(r31)
-	  stw       r0, 0xC(r1)
-	  bl        -0x7C68
-	  lbz       r0, 0x20(r1)
-	  lwz       r4, 0x24(r1)
-	  lwz       r3, 0x28(r1)
-	  cmpwi     r0, 0x3
-	  lwz       r30, 0x2C(r1)
-	  stw       r30, 0x28(r31)
-	  beq-      .loc_0xE0
-	  bge-      .loc_0x5C
-	  cmpwi     r0, 0x1
-	  beq-      .loc_0x74
-	  bge-      .loc_0xD8
-	  b         .loc_0x18C
+	stwu     r1, -0x40(r1)
+	mflr     r0
+	stw      r0, 0x44(r1)
+	addi     r4, r1, 0x20
+	stw      r31, 0x3c(r1)
+	mr       r31, r3
+	addi     r3, r1, 0xc
+	stw      r30, 0x38(r1)
+	lwz      r0, 0x24(r31)
+	stw      r0, 0xc(r1)
+	bl
+getData__Q47JStudio3stb4data16TParse_TSequenceCFPQ57JStudio3stb4data16TParse_TSequence5TData
+	lbz      r0, 0x20(r1)
+	lwz      r4, 0x24(r1)
+	lwz      r3, 0x28(r1)
+	cmpwi    r0, 3
+	lwz      r30, 0x2c(r1)
+	stw      r30, 0x28(r31)
+	beq      lbl_8001065C
+	bge      lbl_800105D8
+	cmpwi    r0, 1
+	beq      lbl_800105F0
+	bge      lbl_80010654
+	b        lbl_80010708
 
-	.loc_0x5C:
-	  cmpwi     r0, 0x80
-	  beq-      .loc_0x128
-	  bge-      .loc_0x18C
-	  cmpwi     r0, 0x5
-	  bge-      .loc_0x18C
-	  b         .loc_0x104
+lbl_800105D8:
+	cmpwi    r0, 0x80
+	beq      lbl_800106A4
+	bge      lbl_80010708
+	cmpwi    r0, 5
+	bge      lbl_80010708
+	b        lbl_80010680
 
-	.loc_0x74:
-	  rlwinm    r0,r4,16,24,31
-	  cmpwi     r0, 0x2
-	  beq-      .loc_0xB0
-	  bge-      .loc_0x90
-	  cmpwi     r0, 0x1
-	  bge-      .loc_0x9C
-	  b         .loc_0x18C
+lbl_800105F0:
+	rlwinm   r0, r4, 0x10, 0x18, 0x1f
+	cmpwi    r0, 2
+	beq      lbl_8001062C
+	bge      lbl_8001060C
+	cmpwi    r0, 1
+	bge      lbl_80010618
+	b        lbl_80010708
 
-	.loc_0x90:
-	  cmpwi     r0, 0x4
-	  bge-      .loc_0x18C
-	  b         .loc_0xC4
+lbl_8001060C:
+	cmpwi    r0, 4
+	bge      lbl_80010708
+	b        lbl_80010640
 
-	.loc_0x9C:
-	  lhz       r3, 0x1C(r31)
-	  rlwinm    r0,r4,0,16,31
-	  or        r0, r3, r0
-	  sth       r0, 0x1C(r31)
-	  b         .loc_0x18C
+lbl_80010618:
+	lhz      r3, 0x1c(r31)
+	clrlwi   r0, r4, 0x10
+	or       r0, r3, r0
+	sth      r0, 0x1c(r31)
+	b        lbl_80010708
 
-	.loc_0xB0:
-	  lhz       r3, 0x1C(r31)
-	  rlwinm    r0,r4,0,16,31
-	  and       r0, r3, r0
-	  sth       r0, 0x1C(r31)
-	  b         .loc_0x18C
+lbl_8001062C:
+	lhz      r3, 0x1c(r31)
+	clrlwi   r0, r4, 0x10
+	and      r0, r3, r0
+	sth      r0, 0x1c(r31)
+	b        lbl_80010708
 
-	.loc_0xC4:
-	  lhz       r3, 0x1C(r31)
-	  rlwinm    r0,r4,0,16,31
-	  xor       r0, r3, r0
-	  sth       r0, 0x1C(r31)
-	  b         .loc_0x18C
+lbl_80010640:
+	lhz      r3, 0x1c(r31)
+	clrlwi   r0, r4, 0x10
+	xor      r0, r3, r0
+	sth      r0, 0x1c(r31)
+	b        lbl_80010708
 
-	.loc_0xD8:
-	  stw       r4, 0x2C(r31)
-	  b         .loc_0x18C
+lbl_80010654:
+	stw      r4, 0x2c(r31)
+	b        lbl_80010708
 
-	.loc_0xE0:
-	  rlwinm.   r0,r4,0,8,8
-	  mr        r3, r4
-	  beq-      .loc_0xF4
-	  lwz       r0, -0x7F28(r2)
-	  or        r3, r4, r0
+lbl_8001065C:
+	rlwinm.  r0, r4, 0, 8, 8
+	mr       r3, r4
+	beq      lbl_80010670
+	lwz      r0,
+gu32Mask_TSequence_value_signExpansion__Q37JStudio3stb4data@sda21(r2) or r3, r4,
+r0
 
-	.loc_0xF4:
-	  lwz       r0, 0x24(r31)
-	  add       r0, r0, r3
-	  stw       r0, 0x28(r31)
-	  b         .loc_0x18C
+lbl_80010670:
+	lwz      r0, 0x24(r31)
+	add      r0, r0, r3
+	stw      r0, 0x28(r31)
+	b        lbl_80010708
 
-	.loc_0x104:
-	  rlwinm.   r0,r4,0,8,8
-	  mr        r3, r4
-	  beq-      .loc_0x118
-	  lwz       r0, -0x7F28(r2)
-	  or        r3, r4, r0
+lbl_80010680:
+	rlwinm.  r0, r4, 0, 8, 8
+	mr       r3, r4
+	beq      lbl_80010694
+	lwz      r0,
+gu32Mask_TSequence_value_signExpansion__Q37JStudio3stb4data@sda21(r2) or r3, r4,
+r0
 
-	.loc_0x118:
-	  lwz       r0, 0x20(r31)
-	  add       r0, r0, r3
-	  stw       r0, 0x20(r31)
-	  b         .loc_0x18C
+lbl_80010694:
+	lwz      r0, 0x20(r31)
+	add      r0, r0, r3
+	stw      r0, 0x20(r31)
+	b        lbl_80010708
 
-	.loc_0x128:
-	  li        r0, 0
-	  stw       r0, 0x8(r1)
-	  b         .loc_0x184
+lbl_800106A4:
+	li       r0, 0
+	stw      r0, 8(r1)
+	b        lbl_80010700
 
-	.loc_0x134:
-	  stw       r3, 0x8(r1)
-	  addi      r3, r1, 0x8
-	  addi      r4, r1, 0x10
-	  bl        -0x7D34
-	  lwz       r4, 0x10(r1)
-	  cmplwi    r4, 0xFF
-	  bgt-      .loc_0x164
-	  lwz       r5, 0x18(r1)
-	  mr        r3, r31
-	  lwz       r6, 0x14(r1)
-	  bl        .loc_0x1A4
-	  b         .loc_0x180
+lbl_800106B0:
+	stw      r3, 8(r1)
+	addi     r3, r1, 8
+	addi     r4, r1, 0x10
+	bl
+getData__Q47JStudio3stb4data17TParse_TParagraphCFPQ57JStudio3stb4data17TParse_TParagraph5TData
+	lwz      r4, 0x10(r1)
+	cmplwi   r4, 0xff
+	bgt      lbl_800106E0
+	lwz      r5, 0x18(r1)
+	mr       r3, r31
+	lwz      r6, 0x14(r1)
+	bl       process_paragraph_reserved___Q37JStudio3stb7TObjectFUlPCvUl
+	b        lbl_800106FC
 
-	.loc_0x164:
-	  lwz       r12, 0x8(r31)
-	  mr        r3, r31
-	  lwz       r5, 0x18(r1)
-	  lwz       r12, 0x14(r12)
-	  lwz       r6, 0x14(r1)
-	  mtctr     r12
-	  bctrl
+lbl_800106E0:
+	lwz      r12, 8(r31)
+	mr       r3, r31
+	lwz      r5, 0x18(r1)
+	lwz      r12, 0x14(r12)
+	lwz      r6, 0x14(r1)
+	mtctr    r12
+	bctrl
 
-	.loc_0x180:
-	  lwz       r3, 0x1C(r1)
+lbl_800106FC:
+	lwz      r3, 0x1c(r1)
 
-	.loc_0x184:
-	  cmplw     r3, r30
-	  blt+      .loc_0x134
+lbl_80010700:
+	cmplw    r3, r30
+	blt      lbl_800106B0
 
-	.loc_0x18C:
-	  lwz       r0, 0x44(r1)
-	  lwz       r31, 0x3C(r1)
-	  lwz       r30, 0x38(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
-
-	.loc_0x1A4:
+lbl_80010708:
+	lwz      r0, 0x44(r1)
+	lwz      r31, 0x3c(r1)
+	lwz      r30, 0x38(r1)
+	mtlr     r0
+	addi     r1, r1, 0x40
+	blr
 	*/
 }
 
@@ -638,44 +694,43 @@ stb::TObject_control::TObject_control(
 stb::TControl::TControl(void)
 {
 	/*
-	.loc_0x0:
-	  lis       r4, 0x804A
-	  lis       r5, 0x804A
-	  subi      r0, r4, 0xAD4
-	  li        r8, 0
-	  stw       r0, 0x0(r3)
-	  subi      r6, r5, 0xAA8
-	  lis       r4, 0x804A
-	  addi      r7, r3, 0x14
-	  stw       r8, 0x4(r3)
-	  li        r5, -0x1
-	  subi      r0, r4, 0xAC8
-	  stw       r8, 0x8(r3)
-	  stw       r8, 0xC(r3)
-	  stw       r8, 0x14(r3)
-	  stw       r8, 0x18(r3)
-	  stw       r8, 0x10(r3)
-	  stw       r7, 0x14(r3)
-	  stw       r7, 0x18(r3)
-	  stw       r8, 0x20(r3)
-	  stw       r8, 0x24(r3)
-	  stw       r6, 0x28(r3)
-	  stw       r8, 0x2C(r3)
-	  stw       r8, 0x30(r3)
-	  stw       r8, 0x34(r3)
-	  stw       r5, 0x38(r3)
-	  sth       r8, 0x3C(r3)
-	  stb       r8, 0x3E(r3)
-	  stw       r8, 0x40(r3)
-	  stw       r8, 0x44(r3)
-	  stw       r8, 0x48(r3)
-	  stw       r8, 0x4C(r3)
-	  stw       r8, 0x50(r3)
-	  stw       r0, 0x28(r3)
-	  stw       r8, 0x54(r3)
-	  stw       r8, 0x1C(r3)
-	  stw       r3, 0x34(r3)
-	  blr
+	lis      r4, __vt__Q37JStudio3stb8TControl@ha
+	lis      r5, __vt__Q37JStudio3stb7TObject@ha
+	addi     r0, r4, __vt__Q37JStudio3stb8TControl@l
+	li       r8, 0
+	stw      r0, 0(r3)
+	addi     r6, r5, __vt__Q37JStudio3stb7TObject@l
+	lis      r4, __vt__Q37JStudio3stb15TObject_control@ha
+	addi     r7, r3, 0x14
+	stw      r8, 4(r3)
+	li       r5, -1
+	addi     r0, r4, __vt__Q37JStudio3stb15TObject_control@l
+	stw      r8, 8(r3)
+	stw      r8, 0xc(r3)
+	stw      r8, 0x14(r3)
+	stw      r8, 0x18(r3)
+	stw      r8, 0x10(r3)
+	stw      r7, 0x14(r3)
+	stw      r7, 0x18(r3)
+	stw      r8, 0x20(r3)
+	stw      r8, 0x24(r3)
+	stw      r6, 0x28(r3)
+	stw      r8, 0x2c(r3)
+	stw      r8, 0x30(r3)
+	stw      r8, 0x34(r3)
+	stw      r5, 0x38(r3)
+	sth      r8, 0x3c(r3)
+	stb      r8, 0x3e(r3)
+	stw      r8, 0x40(r3)
+	stw      r8, 0x44(r3)
+	stw      r8, 0x48(r3)
+	stw      r8, 0x4c(r3)
+	stw      r8, 0x50(r3)
+	stw      r0, 0x28(r3)
+	stw      r8, 0x54(r3)
+	stw      r8, 0x1c(r3)
+	stw      r3, 0x34(r3)
+	blr
 	*/
 }
 
@@ -687,34 +742,33 @@ stb::TControl::TControl(void)
 stb::TObject_control::~TObject_control(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r3
-	  beq-      .loc_0x44
-	  lis       r3, 0x804A
-	  subi      r0, r3, 0xAC8
-	  stw       r0, 0x8(r31)
-	  beq-      .loc_0x34
-	  lis       r3, 0x804A
-	  subi      r0, r3, 0xAA8
-	  stw       r0, 0x8(r31)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r3, r3
+	beq      lbl_80010934
+	lis      r3, __vt__Q37JStudio3stb15TObject_control@ha
+	addi     r0, r3, __vt__Q37JStudio3stb15TObject_control@l
+	stw      r0, 8(r31)
+	beq      lbl_80010924
+	lis      r3, __vt__Q37JStudio3stb7TObject@ha
+	addi     r0, r3, __vt__Q37JStudio3stb7TObject@l
+	stw      r0, 8(r31)
 
-	.loc_0x34:
-	  extsh.    r0, r4
-	  ble-      .loc_0x44
-	  mr        r3, r31
-	  bl        0x13784
+lbl_80010924:
+	extsh.   r0, r4
+	ble      lbl_80010934
+	mr       r3, r31
+	bl       __dl__FPv
 
-	.loc_0x44:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80010934:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -740,52 +794,51 @@ namespace JStudio {
 stb::TControl::~TControl(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x80
-	  lis       r3, 0x804A
-	  addic.    r0, r30, 0x20
-	  subi      r3, r3, 0xAD4
-	  li        r0, 0
-	  stw       r3, 0x0(r30)
-	  stw       r0, 0x34(r30)
-	  beq-      .loc_0x5C
-	  lis       r3, 0x804A
-	  addic.    r0, r30, 0x20
-	  subi      r0, r3, 0xAC8
-	  stw       r0, 0x28(r30)
-	  beq-      .loc_0x5C
-	  lis       r3, 0x804A
-	  subi      r0, r3, 0xAA8
-	  stw       r0, 0x28(r30)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_800109CC
+	lis      r3, __vt__Q37JStudio3stb8TControl@ha
+	addic.   r0, r30, 0x20
+	addi     r3, r3, __vt__Q37JStudio3stb8TControl@l
+	li       r0, 0
+	stw      r3, 0(r30)
+	stw      r0, 0x34(r30)
+	beq      lbl_800109A8
+	lis      r3, __vt__Q37JStudio3stb15TObject_control@ha
+	addic.   r0, r30, 0x20
+	addi     r0, r3, __vt__Q37JStudio3stb15TObject_control@l
+	stw      r0, 0x28(r30)
+	beq      lbl_800109A8
+	lis      r3, __vt__Q37JStudio3stb7TObject@ha
+	addi     r0, r3, __vt__Q37JStudio3stb7TObject@l
+	stw      r0, 0x28(r30)
 
-	.loc_0x5C:
-	  addic.    r0, r30, 0x10
-	  beq-      .loc_0x70
-	  addi      r3, r30, 0x10
-	  li        r4, 0
-	  bl        0x1692C
+lbl_800109A8:
+	addic.   r0, r30, 0x10
+	beq      lbl_800109BC
+	addi     r3, r30, 0x10
+	li       r4, 0
+	bl       __dt__Q27JGadget13TNodeLinkListFv
 
-	.loc_0x70:
-	  extsh.    r0, r31
-	  ble-      .loc_0x80
-	  mr        r3, r30
-	  bl        0x136EC
+lbl_800109BC:
+	extsh.   r0, r31
+	ble      lbl_800109CC
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x80:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_800109CC:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -847,46 +900,44 @@ void stb::TControl::destroyObject_all(void)
 void stb::TControl::getObject(void const*, unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x50(r1)
-	  mflr      r0
-	  stw       r0, 0x54(r1)
-	  addi      r0, r3, 0x14
-	  addi      r6, r1, 0x40
-	  lwz       r7, 0x14(r3)
-	  addi      r3, r1, 0x30
-	  stw       r0, 0x14(r1)
-	  stw       r4, 0x40(r1)
-	  addi      r4, r1, 0x2C
-	  stw       r5, 0x44(r1)
-	  addi      r5, r1, 0x28
-	  stw       r7, 0x1C(r1)
-	  stw       r7, 0x18(r1)
-	  stw       r7, 0x3C(r1)
-	  stw       r0, 0x10(r1)
-	  stw       r0, 0x38(r1)
-	  stw       r0, 0x28(r1)
-	  stw       r7, 0x2C(r1)
-	  bl        .loc_0x94
-	  lwz       r6, 0x30(r1)
-	  lwz       r5, 0x38(r1)
-	  stw       r6, 0x34(r1)
-	  subi      r0, r6, 0xC
-	  sub       r4, r6, r5
-	  sub       r3, r5, r6
-	  or        r3, r4, r3
-	  stw       r5, 0x24(r1)
-	  srawi     r3, r3, 0x1F
-	  stw       r6, 0x20(r1)
-	  and       r3, r0, r3
-	  stw       r5, 0xC(r1)
-	  stw       r6, 0x8(r1)
-	  lwz       r0, 0x54(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x50
-	  blr
-
-	.loc_0x94:
+	stwu     r1, -0x50(r1)
+	mflr     r0
+	stw      r0, 0x54(r1)
+	addi     r0, r3, 0x14
+	addi     r6, r1, 0x40
+	lwz      r7, 0x14(r3)
+	addi     r3, r1, 0x30
+	stw      r0, 0x14(r1)
+	stw      r4, 0x40(r1)
+	addi     r4, r1, 0x2c
+	stw      r5, 0x44(r1)
+	addi     r5, r1, 0x28
+	stw      r7, 0x1c(r1)
+	stw      r7, 0x18(r1)
+	stw      r7, 0x3c(r1)
+	stw      r0, 0x10(r1)
+	stw      r0, 0x38(r1)
+	stw      r0, 0x28(r1)
+	stw      r7, 0x2c(r1)
+	bl
+	"find_if<Q37JGadget37TLinkList<Q37JStudio3stb7TObject,-12>8iterator,Q37JStudio6object18TPRObject_ID_equal>__3stdFQ37JGadget37TLinkList<Q37JStudio3stb7TObject,-12>8iteratorQ37JGadget37TLinkList<Q37JStudio3stb7TObject,-12>8iteratorQ37JStudio6object18TPRObject_ID_equal"
+	lwz      r6, 0x30(r1)
+	lwz      r5, 0x38(r1)
+	stw      r6, 0x34(r1)
+	addi     r0, r6, -12
+	subf     r4, r5, r6
+	subf     r3, r6, r5
+	or       r3, r4, r3
+	stw      r5, 0x24(r1)
+	srawi    r3, r3, 0x1f
+	stw      r6, 0x20(r1)
+	and      r3, r0, r3
+	stw      r5, 0xc(r1)
+	stw      r6, 8(r1)
+	lwz      r0, 0x54(r1)
+	mtlr     r0
+	addi     r1, r1, 0x50
+	blr
 	*/
 }
 
@@ -979,75 +1030,74 @@ void stb::TControl::reset(void)
 void stb::TControl::forward(unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x60(r1)
-	  mflr      r0
-	  stw       r0, 0x64(r1)
-	  stmw      r25, 0x44(r1)
-	  mr        r30, r3
-	  mr        r31, r4
-	  lwz       r0, 0x40(r3)
-	  addi      r3, r30, 0x20
-	  stw       r0, 0x54(r30)
-	  bl        -0x80C
-	  lwz       r0, 0x14(r30)
-	  addi      r4, r30, 0x14
-	  stw       r4, 0x24(r1)
-	  mr        r27, r3
-	  li        r26, 0xF
-	  li        r25, 0
-	  stw       r4, 0x20(r1)
-	  stw       r4, 0x34(r1)
-	  stw       r4, 0x30(r1)
-	  stw       r0, 0x1C(r1)
-	  stw       r0, 0x18(r1)
-	  stw       r0, 0x2C(r1)
-	  stw       r0, 0x28(r1)
-	  stw       r0, 0x38(r1)
-	  stw       r4, 0x3C(r1)
-	  b         .loc_0xAC
+	stwu     r1, -0x60(r1)
+	mflr     r0
+	stw      r0, 0x64(r1)
+	stmw     r25, 0x44(r1)
+	mr       r30, r3
+	mr       r31, r4
+	lwz      r0, 0x40(r3)
+	addi     r3, r30, 0x20
+	stw      r0, 0x54(r30)
+	bl       forward__Q37JStudio3stb7TObjectFUl
+	lwz      r0, 0x14(r30)
+	addi     r4, r30, 0x14
+	stw      r4, 0x24(r1)
+	mr       r27, r3
+	li       r26, 0xf
+	li       r25, 0
+	stw      r4, 0x20(r1)
+	stw      r4, 0x34(r1)
+	stw      r4, 0x30(r1)
+	stw      r0, 0x1c(r1)
+	stw      r0, 0x18(r1)
+	stw      r0, 0x2c(r1)
+	stw      r0, 0x28(r1)
+	stw      r0, 0x38(r1)
+	stw      r4, 0x3c(r1)
+	b        lbl_80010BC4
 
-	.loc_0x68:
-	  lwz       r3, 0x38(r1)
-	  mr        r4, r31
-	  li        r29, 0
-	  lwz       r0, 0x0(r3)
-	  subi      r28, r3, 0xC
-	  mr        r3, r28
-	  stw       r0, 0x38(r1)
-	  bl        -0x86C
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x98
-	  rlwinm.   r0,r27,0,24,31
-	  beq-      .loc_0x9C
+lbl_80010B80:
+	lwz      r3, 0x38(r1)
+	mr       r4, r31
+	li       r29, 0
+	lwz      r0, 0(r3)
+	addi     r28, r3, -12
+	mr       r3, r28
+	stw      r0, 0x38(r1)
+	bl       forward__Q37JStudio3stb7TObjectFUl
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_80010BB0
+	clrlwi.  r0, r27, 0x18
+	beq      lbl_80010BB4
 
-	.loc_0x98:
-	  li        r29, 0x1
+lbl_80010BB0:
+	li       r29, 1
 
-	.loc_0x9C:
-	  lwz       r0, 0x30(r28)
-	  mr        r27, r29
-	  and       r26, r26, r0
-	  or        r25, r25, r0
+lbl_80010BB4:
+	lwz      r0, 0x30(r28)
+	mr       r27, r29
+	and      r26, r26, r0
+	or       r25, r25, r0
 
-	.loc_0xAC:
-	  lwz       r3, 0x3C(r1)
-	  lwz       r0, 0x38(r1)
-	  stw       r3, 0x14(r1)
-	  cmplw     r0, r3
-	  stw       r0, 0x10(r1)
-	  stw       r3, 0xC(r1)
-	  stw       r0, 0x8(r1)
-	  bne+      .loc_0x68
-	  rlwinm    r0,r25,16,0,15
-	  mr        r3, r27
-	  or        r0, r26, r0
-	  stw       r0, 0x1C(r30)
-	  lmw       r25, 0x44(r1)
-	  lwz       r0, 0x64(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x60
-	  blr
+lbl_80010BC4:
+	lwz      r3, 0x3c(r1)
+	lwz      r0, 0x38(r1)
+	stw      r3, 0x14(r1)
+	cmplw    r0, r3
+	stw      r0, 0x10(r1)
+	stw      r3, 0xc(r1)
+	stw      r0, 8(r1)
+	bne      lbl_80010B80
+	slwi     r0, r25, 0x10
+	mr       r3, r27
+	or       r0, r26, r0
+	stw      r0, 0x1c(r30)
+	lmw      r25, 0x44(r1)
+	lwz      r0, 0x64(r1)
+	mtlr     r0
+	addi     r1, r1, 0x60
+	blr
 	*/
 }
 
@@ -1059,27 +1109,26 @@ void stb::TControl::forward(unsigned long)
 stb::TFactory::~TFactory(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r3
-	  beq-      .loc_0x30
-	  lis       r5, 0x804A
-	  extsh.    r0, r4
-	  subi      r0, r5, 0xAE8
-	  stw       r0, 0x0(r31)
-	  ble-      .loc_0x30
-	  bl        0x13480
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r3, r3
+	beq      lbl_80010C38
+	lis      r5, __vt__Q37JStudio3stb8TFactory@ha
+	extsh.   r0, r4
+	addi     r0, r5, __vt__Q37JStudio3stb8TFactory@l
+	stw      r0, 0(r31)
+	ble      lbl_80010C38
+	bl       __dl__FPv
 
-	.loc_0x30:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80010C38:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1101,24 +1150,23 @@ void stb::TFactory::create(JStudio::stb::data::TParse_TBlock_object const&)
 void stb::TFactory::destroy(JStudio::stb::TObject*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  cmplwi    r4, 0
-	  stw       r0, 0x14(r1)
-	  beq-      .loc_0x2C
-	  mr        r3, r4
-	  li        r4, 0x1
-	  lwz       r12, 0x8(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	cmplwi   r4, 0
+	stw      r0, 0x14(r1)
+	beq      lbl_80010C84
+	mr       r3, r4
+	li       r4, 1
+	lwz      r12, 8(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x2C:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80010C84:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1130,15 +1178,14 @@ void stb::TFactory::destroy(JStudio::stb::TObject*)
 stb::TParse::TParse(JStudio::stb::TControl*)
 {
 	/*
-	.loc_0x0:
-	  lis       r6, 0x804A
-	  lis       r5, 0x804A
-	  subi      r6, r6, 0x1CE0
-	  stw       r6, 0x0(r3)
-	  subi      r0, r5, 0xB08
-	  stw       r0, 0x0(r3)
-	  stw       r4, 0x4(r3)
-	  blr
+	lis      r6, __vt__Q37JGadget6binary19TParse_header_block@ha
+	lis      r5, __vt__Q37JStudio3stb6TParse@ha
+	addi     r6, r6, __vt__Q37JGadget6binary19TParse_header_block@l
+	stw      r6, 0(r3)
+	addi     r0, r5, __vt__Q37JStudio3stb6TParse@l
+	stw      r0, 0(r3)
+	stw      r4, 4(r3)
+	blr
 	*/
 }
 
@@ -1150,33 +1197,32 @@ stb::TParse::TParse(JStudio::stb::TControl*)
 stb::TParse::~TParse(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x44
-	  lis       r5, 0x804A
-	  li        r4, 0
-	  subi      r0, r5, 0xB08
-	  stw       r0, 0x0(r30)
-	  bl        0x164AC
-	  extsh.    r0, r31
-	  ble-      .loc_0x44
-	  mr        r3, r30
-	  bl        0x133C0
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_80010CF8
+	lis      r5, __vt__Q37JStudio3stb6TParse@ha
+	li       r4, 0
+	addi     r0, r5, __vt__Q37JStudio3stb6TParse@l
+	stw      r0, 0(r30)
+	bl       __dt__Q37JGadget6binary19TParse_header_blockFv
+	extsh.   r0, r31
+	ble      lbl_80010CF8
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x44:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80010CF8:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1188,67 +1234,66 @@ stb::TParse::~TParse(void)
 void stb::TParse::parseHeader_next(void const**, unsigned long*, unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r6
-	  stw       r30, 0x18(r1)
-	  mr        r30, r3
-	  lwz       r7, 0x0(r4)
-	  stw       r7, 0x8(r1)
-	  addi      r0, r7, 0x20
-	  stw       r0, 0x0(r4)
-	  subi      r4, r2, 0x7F20
-	  lwz       r3, 0x8(r1)
-	  lwz       r0, 0xC(r3)
-	  stw       r0, 0x0(r5)
-	  li        r5, 0x4
-	  lwz       r3, 0x8(r1)
-	  bl        0xB6290
-	  cmpwi     r3, 0
-	  beq-      .loc_0x58
-	  li        r3, 0
-	  b         .loc_0xB0
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r6
+	stw      r30, 0x18(r1)
+	mr       r30, r3
+	lwz      r7, 0(r4)
+	stw      r7, 8(r1)
+	addi     r0, r7, 0x20
+	stw      r0, 0(r4)
+	addi     r4, r2, ga4cSignature__Q37JStudio3stb4data@sda21
+	lwz      r3, 8(r1)
+	lwz      r0, 0xc(r3)
+	stw      r0, 0(r5)
+	li       r5, 4
+	lwz      r3, 8(r1)
+	bl       memcmp
+	cmpwi    r3, 0
+	beq      lbl_80010D6C
+	li       r3, 0
+	b        lbl_80010DC4
 
-	.loc_0x58:
-	  lwz       r3, 0x8(r1)
-	  lhz       r0, 0x4(r3)
-	  cmplwi    r0, 0xFEFF
-	  beq-      .loc_0x70
-	  li        r3, 0
-	  b         .loc_0xB0
+lbl_80010D6C:
+	lwz      r3, 8(r1)
+	lhz      r0, 4(r3)
+	cmplwi   r0, 0xfeff
+	beq      lbl_80010D84
+	li       r3, 0
+	b        lbl_80010DC4
 
-	.loc_0x70:
-	  lhz       r0, 0x6(r3)
-	  cmplwi    r0, 0x1
-	  bge-      .loc_0x84
-	  li        r3, 0
-	  b         .loc_0xB0
+lbl_80010D84:
+	lhz      r0, 6(r3)
+	cmplwi   r0, 1
+	bge      lbl_80010D98
+	li       r3, 0
+	b        lbl_80010DC4
 
-	.loc_0x84:
-	  cmplwi    r0, 0x3
-	  ble-      .loc_0x94
-	  li        r3, 0
-	  b         .loc_0xB0
+lbl_80010D98:
+	cmplwi   r0, 3
+	ble      lbl_80010DA8
+	li       r3, 0
+	b        lbl_80010DC4
 
-	.loc_0x94:
-	  mr        r3, r30
-	  mr        r5, r31
-	  lwz       r12, 0x0(r30)
-	  addi      r4, r1, 0x8
-	  lwz       r12, 0x14(r12)
-	  mtctr     r12
-	  bctrl
+lbl_80010DA8:
+	mr       r3, r30
+	mr       r5, r31
+	lwz      r12, 0(r30)
+	addi     r4, r1, 8
+	lwz      r12, 0x14(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0xB0:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80010DC4:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -1260,28 +1305,27 @@ void stb::TParse::parseHeader_next(void const**, unsigned long*, unsigned long)
 void stb::TParse::parseBlock_next(void const**, unsigned long*, unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r7, 0x0(r4)
-	  stw       r7, 0x8(r1)
-	  lwz       r0, 0x0(r7)
-	  add       r0, r7, r0
-	  stw       r0, 0x0(r4)
-	  addi      r4, r1, 0x8
-	  lwz       r7, 0x8(r1)
-	  lwz       r0, 0x0(r7)
-	  stw       r0, 0x0(r5)
-	  mr        r5, r6
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r7, 0(r4)
+	stw      r7, 8(r1)
+	lwz      r0, 0(r7)
+	add      r0, r7, r0
+	stw      r0, 0(r4)
+	addi     r4, r1, 8
+	lwz      r7, 8(r1)
+	lwz      r0, 0(r7)
+	stw      r0, 0(r5)
+	mr       r5, r6
+	lwz      r12, 0(r3)
+	lwz      r12, 0x18(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 

@@ -1,5 +1,167 @@
 #include "types.h"
 
+/*
+    Generated from dpostproc
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_804997A8
+    lbl_804997A8:
+        .asciz "# %d/%d\r\n"
+        .skip 0x6
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__Q23Sys11VertexTable
+    __vt__Q23Sys11VertexTable:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q23Sys11VertexTableFv
+        .4byte getChildCount__5CNodeFv
+        .4byte "getObject__23Container<10Vector3<f>>FPv"
+        .4byte "getNext__28ArrayContainer<10Vector3<f>>FPv"
+        .4byte "getStart__28ArrayContainer<10Vector3<f>>Fv"
+        .4byte "getEnd__28ArrayContainer<10Vector3<f>>Fv"
+        .4byte "get__28ArrayContainer<10Vector3<f>>FPv"
+        .4byte "getAt__28ArrayContainer<10Vector3<f>>Fi"
+        .4byte "getTo__28ArrayContainer<10Vector3<f>>Fv"
+        .4byte "writeObject__Q23Sys11VertexTableFR6StreamR10Vector3<f>"
+        .4byte "readObject__Q23Sys11VertexTableFR6StreamR10Vector3<f>"
+        .4byte write__Q23Sys11VertexTableFR6Stream
+        .4byte "read__28ArrayContainer<10Vector3<f>>FR6Stream"
+        .4byte "alloc__28ArrayContainer<10Vector3<f>>Fi"
+        .4byte "addOne__Q23Sys11VertexTableFR10Vector3<f>"
+        .4byte "setArray__28ArrayContainer<10Vector3<f>>FP10Vector3<f>i"
+    .global __vt__Q23Sys13TriangleTable
+    __vt__Q23Sys13TriangleTable:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q23Sys13TriangleTableFv
+        .4byte getChildCount__5CNodeFv
+        .4byte "getObject__26Container<Q23Sys8Triangle>FPv"
+        .4byte "getNext__31ArrayContainer<Q23Sys8Triangle>FPv"
+        .4byte "getStart__31ArrayContainer<Q23Sys8Triangle>Fv"
+        .4byte "getEnd__31ArrayContainer<Q23Sys8Triangle>Fv"
+        .4byte "get__31ArrayContainer<Q23Sys8Triangle>FPv"
+        .4byte "getAt__31ArrayContainer<Q23Sys8Triangle>Fi"
+        .4byte "getTo__31ArrayContainer<Q23Sys8Triangle>Fv"
+        .4byte writeObject__Q23Sys13TriangleTableFR6StreamRQ23Sys8Triangle
+        .4byte readObject__Q23Sys13TriangleTableFR6StreamRQ23Sys8Triangle
+        .4byte "write__31ArrayContainer<Q23Sys8Triangle>FR6Stream"
+        .4byte "read__31ArrayContainer<Q23Sys8Triangle>FR6Stream"
+        .4byte "alloc__31ArrayContainer<Q23Sys8Triangle>Fi"
+        .4byte "addOne__31ArrayContainer<Q23Sys8Triangle>FRQ23Sys8Triangle"
+        .4byte "setArray__31ArrayContainer<Q23Sys8Triangle>FPQ23Sys8Trianglei"
+    .global "__vt__31ArrayContainer<Q23Sys8Triangle>"
+    "__vt__31ArrayContainer<Q23Sys8Triangle>":
+        .4byte 0
+        .4byte 0
+        .4byte "__dt__31ArrayContainer<Q23Sys8Triangle>Fv"
+        .4byte getChildCount__5CNodeFv
+        .4byte "getObject__26Container<Q23Sys8Triangle>FPv"
+        .4byte "getNext__31ArrayContainer<Q23Sys8Triangle>FPv"
+        .4byte "getStart__31ArrayContainer<Q23Sys8Triangle>Fv"
+        .4byte "getEnd__31ArrayContainer<Q23Sys8Triangle>Fv"
+        .4byte "get__31ArrayContainer<Q23Sys8Triangle>FPv"
+        .4byte "getAt__31ArrayContainer<Q23Sys8Triangle>Fi"
+        .4byte "getTo__31ArrayContainer<Q23Sys8Triangle>Fv"
+        .4byte
+   "writeObject__31ArrayContainer<Q23Sys8Triangle>FR6StreamRQ23Sys8Triangle"
+        .4byte
+   "readObject__31ArrayContainer<Q23Sys8Triangle>FR6StreamRQ23Sys8Triangle"
+        .4byte "write__31ArrayContainer<Q23Sys8Triangle>FR6Stream"
+        .4byte "read__31ArrayContainer<Q23Sys8Triangle>FR6Stream"
+        .4byte "alloc__31ArrayContainer<Q23Sys8Triangle>Fi"
+        .4byte "addOne__31ArrayContainer<Q23Sys8Triangle>FRQ23Sys8Triangle"
+        .4byte "setArray__31ArrayContainer<Q23Sys8Triangle>FPQ23Sys8Trianglei"
+    .global "__vt__26Container<Q23Sys8Triangle>"
+    "__vt__26Container<Q23Sys8Triangle>":
+        .4byte 0
+        .4byte 0
+        .4byte "__dt__26Container<Q23Sys8Triangle>Fv"
+        .4byte getChildCount__5CNodeFv
+        .4byte "getObject__26Container<Q23Sys8Triangle>FPv"
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte "getAt__26Container<Q23Sys8Triangle>Fi"
+        .4byte "getTo__26Container<Q23Sys8Triangle>Fv"
+    .global __vt__Q23Sys11GridDivider
+    __vt__Q23Sys11GridDivider:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q23Sys11GridDividerFv
+        .4byte getChildCount__5CNodeFv
+        .4byte "getMinY__Q23Sys11GridDividerFR10Vector3<f>"
+        .4byte findTriLists__Q23Sys11GridDividerFRQ23Sys6Sphere
+        .4byte read__Q23Sys11GridDividerFR6Stream
+        .4byte getCurrTri__Q23Sys11GridDividerFRQ24Game11CurrTriInfo
+        .4byte createTriangles__Q23Sys11GridDividerFRQ23Sys17CreateTriangleArg
+        .4byte getBoundBox__Q23Sys11GridDividerFR8BoundBox
+        .4byte clone__Q23Sys10TriDividerFR7Matrixf
+        .4byte
+   do_clone__Q23Sys11GridDividerFR7MatrixfPQ23Sys11VertexTablePQ23Sys13TriangleTable
+        .4byte 0
+
+    .section .sbss # 0x80514D80 - 0x80516360
+    .global debug__Q23Sys8Triangle
+    debug__Q23Sys8Triangle:
+        .skip 0x8
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_80520308
+    lbl_80520308:
+        .4byte 0x00000000
+    .global lbl_8052030C
+    lbl_8052030C:
+        .float 1.0
+    .global lbl_80520310
+    lbl_80520310:
+        .float 0.5
+    .global lbl_80520314
+    lbl_80520314:
+        .4byte 0x3EAAAAAB
+    .global lbl_80520318
+    lbl_80520318:
+        .4byte 0x4B435000
+    .global lbl_8052031C
+    lbl_8052031C:
+        .4byte 0xCB435000
+    .global lbl_80520320
+    lbl_80520320:
+        .4byte 0x3C23D70A
+    .global lbl_80520324
+    lbl_80520324:
+        .4byte 0xBDCCCCCD
+    .global lbl_80520328
+    lbl_80520328:
+        .4byte 0x48A02800
+    .global lbl_8052032C
+    lbl_8052032C:
+        .4byte 0xC8A02800
+    .global lbl_80520330
+    lbl_80520330:
+        .4byte 0x43300000
+        .4byte 0x80000000
+    .global lbl_80520338
+    lbl_80520338:
+        .4byte 0x0D0A0000
+    .global lbl_8052033C
+    lbl_8052033C:
+        .4byte 0x47000000
+    .global lbl_80520340
+    lbl_80520340:
+        .4byte 0xC7000000
+    .global lbl_80520344
+    lbl_80520344:
+        .4byte 0x501502F9
+    .global lbl_80520348
+    lbl_80520348:
+        .4byte 0xD01502F9
+    .global lbl_8052034C
+    lbl_8052034C:
+        .4byte 0x40400000
+*/
+
 namespace Sys {
 
 /*
@@ -20,54 +182,53 @@ void Edge::calcNearestEdgePoint(Vector3f&, Vector3f&)
 void Tube::getAxisVector(Vector3f&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  lfs       f1, 0xC(r3)
-	  lfs       f0, 0x0(r3)
-	  lfs       f3, 0x10(r3)
-	  lfs       f2, 0x4(r3)
-	  fsubs     f0, f1, f0
-	  lfs       f4, 0x14(r3)
-	  lfs       f1, 0x8(r3)
-	  fsubs     f2, f3, f2
-	  stfs      f0, 0x0(r4)
-	  fsubs     f0, f4, f1
-	  stfs      f2, 0x4(r4)
-	  stfs      f0, 0x8(r4)
-	  lfs       f1, 0x0(r4)
-	  lfs       f0, 0x4(r4)
-	  lfs       f2, 0x8(r4)
-	  fmuls     f1, f1, f1
-	  fmuls     f0, f0, f0
-	  fmuls     f2, f2, f2
-	  fadds     f0, f1, f0
-	  fadds     f1, f2, f0
-	  bl        -0x4304
-	  lfs       f0, 0x1FA8(r2)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0xA0
-	  lfs       f2, 0x1FAC(r2)
-	  lfs       f0, 0x0(r31)
-	  fdivs     f1, f2, f1
-	  fmuls     f0, f0, f1
-	  stfs      f0, 0x0(r31)
-	  lfs       f0, 0x4(r31)
-	  fmuls     f0, f0, f1
-	  stfs      f0, 0x4(r31)
-	  lfs       f0, 0x8(r31)
-	  fmuls     f0, f0, f1
-	  stfs      f0, 0x8(r31)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	lfs      f1, 0xc(r3)
+	lfs      f0, 0(r3)
+	lfs      f3, 0x10(r3)
+	lfs      f2, 4(r3)
+	fsubs    f0, f1, f0
+	lfs      f4, 0x14(r3)
+	lfs      f1, 8(r3)
+	fsubs    f2, f3, f2
+	stfs     f0, 0(r4)
+	fsubs    f0, f4, f1
+	stfs     f2, 4(r4)
+	stfs     f0, 8(r4)
+	lfs      f1, 0(r4)
+	lfs      f0, 4(r4)
+	lfs      f2, 8(r4)
+	fmuls    f1, f1, f1
+	fmuls    f0, f0, f0
+	fmuls    f2, f2, f2
+	fadds    f0, f1, f0
+	fadds    f1, f2, f0
+	bl       pikmin2_sqrtf__Ff
+	lfs      f0, lbl_80520308@sda21(r2)
+	fcmpo    cr0, f1, f0
+	ble      lbl_80415B44
+	lfs      f2, lbl_8052030C@sda21(r2)
+	lfs      f0, 0(r31)
+	fdivs    f1, f2, f1
+	fmuls    f0, f0, f1
+	stfs     f0, 0(r31)
+	lfs      f0, 4(r31)
+	fmuls    f0, f0, f1
+	stfs     f0, 4(r31)
+	lfs      f0, 8(r31)
+	fmuls    f0, f0, f1
+	stfs     f0, 8(r31)
 
-	.loc_0xA0:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80415B44:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -89,178 +250,177 @@ void Tube::getYRatio(float)
 void Tube::collide(Sys::Sphere&, Vector3f&, float&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x80(r1)
-	  mflr      r0
-	  stw       r0, 0x84(r1)
-	  stfd      f31, 0x70(r1)
-	  psq_st    f31,0x78(r1),0,0
-	  stfd      f30, 0x60(r1)
-	  psq_st    f30,0x68(r1),0,0
-	  stfd      f29, 0x50(r1)
-	  psq_st    f29,0x58(r1),0,0
-	  stfd      f28, 0x40(r1)
-	  psq_st    f28,0x48(r1),0,0
-	  stfd      f27, 0x30(r1)
-	  psq_st    f27,0x38(r1),0,0
-	  stfd      f26, 0x20(r1)
-	  psq_st    f26,0x28(r1),0,0
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  stw       r28, 0x10(r1)
-	  mr        r28, r3
-	  mr        r29, r4
-	  lfs       f2, 0x10(r3)
-	  mr        r30, r5
-	  lfs       f0, 0x4(r3)
-	  mr        r31, r6
-	  lfs       f1, 0xC(r3)
-	  fsubs     f30, f2, f0
-	  lfs       f0, 0x0(r3)
-	  lfs       f2, 0x14(r3)
-	  fsubs     f31, f1, f0
-	  lfs       f1, 0x8(r3)
-	  fmuls     f0, f30, f30
-	  fsubs     f29, f2, f1
-	  fmr       f28, f31
-	  fmadds    f0, f31, f31, f0
-	  fmr       f27, f30
-	  fmr       f26, f29
-	  fmadds    f1, f29, f29, f0
-	  bl        -0x43EC
-	  lfs       f0, 0x1FA8(r2)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0xC0
-	  lfs       f0, 0x1FAC(r2)
-	  fdivs     f0, f0, f1
-	  fmuls     f28, f28, f0
-	  fmuls     f27, f27, f0
-	  fmuls     f26, f26, f0
-	  b         .loc_0xC4
+	stwu     r1, -0x80(r1)
+	mflr     r0
+	stw      r0, 0x84(r1)
+	stfd     f31, 0x70(r1)
+	psq_st   f31, 120(r1), 0, qr0
+	stfd     f30, 0x60(r1)
+	psq_st   f30, 104(r1), 0, qr0
+	stfd     f29, 0x50(r1)
+	psq_st   f29, 88(r1), 0, qr0
+	stfd     f28, 0x40(r1)
+	psq_st   f28, 72(r1), 0, qr0
+	stfd     f27, 0x30(r1)
+	psq_st   f27, 56(r1), 0, qr0
+	stfd     f26, 0x20(r1)
+	psq_st   f26, 40(r1), 0, qr0
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	stw      r28, 0x10(r1)
+	mr       r28, r3
+	mr       r29, r4
+	lfs      f2, 0x10(r3)
+	mr       r30, r5
+	lfs      f0, 4(r3)
+	mr       r31, r6
+	lfs      f1, 0xc(r3)
+	fsubs    f30, f2, f0
+	lfs      f0, 0(r3)
+	lfs      f2, 0x14(r3)
+	fsubs    f31, f1, f0
+	lfs      f1, 8(r3)
+	fmuls    f0, f30, f30
+	fsubs    f29, f2, f1
+	fmr      f28, f31
+	fmadds   f0, f31, f31, f0
+	fmr      f27, f30
+	fmr      f26, f29
+	fmadds   f1, f29, f29, f0
+	bl       pikmin2_sqrtf__Ff
+	lfs      f0, lbl_80520308@sda21(r2)
+	fcmpo    cr0, f1, f0
+	ble      lbl_80415C18
+	lfs      f0, lbl_8052030C@sda21(r2)
+	fdivs    f0, f0, f1
+	fmuls    f28, f28, f0
+	fmuls    f27, f27, f0
+	fmuls    f26, f26, f0
+	b        lbl_80415C1C
 
-	.loc_0xC0:
-	  fmr       f1, f0
+lbl_80415C18:
+	fmr      f1, f0
 
-	.loc_0xC4:
-	  lfs       f0, 0x1FA8(r2)
-	  fcmpu     cr0, f0, f1
-	  bne-      .loc_0xD8
-	  li        r3, 0
-	  b         .loc_0x22C
+lbl_80415C1C:
+	lfs      f0, lbl_80520308@sda21(r2)
+	fcmpu    cr0, f0, f1
+	bne      lbl_80415C30
+	li       r3, 0
+	b        lbl_80415D84
 
-	.loc_0xD8:
-	  lfs       f4, 0x4(r29)
-	  lfs       f2, 0x4(r28)
-	  lfs       f6, 0x0(r29)
-	  fsubs     f0, f4, f2
-	  lfs       f5, 0x0(r28)
-	  lfs       f9, 0x8(r29)
-	  fsubs     f3, f6, f5
-	  lfs       f8, 0x8(r28)
-	  fmuls     f0, f27, f0
-	  fsubs     f7, f9, f8
-	  fmadds    f0, f28, f3, f0
-	  fmadds    f0, f26, f7, f0
-	  fdivs     f27, f0, f1
-	  fmuls     f1, f30, f27
-	  fmuls     f3, f31, f27
-	  fmuls     f0, f29, f27
-	  fadds     f2, f1, f2
-	  fadds     f3, f3, f5
-	  fadds     f1, f0, f8
-	  fsubs     f26, f2, f4
-	  fsubs     f29, f3, f6
-	  fsubs     f30, f1, f9
-	  fmuls     f0, f26, f26
-	  fmadds    f0, f29, f29, f0
-	  fmadds    f1, f30, f30, f0
-	  bl        -0x4490
-	  lfs       f5, 0x1FAC(r2)
-	  lfs       f2, 0x1C(r28)
-	  fsubs     f4, f5, f27
-	  lfs       f0, 0x1FA8(r2)
-	  fmuls     f2, f2, f27
-	  lfs       f3, 0x18(r28)
-	  lfs       f6, 0xC(r29)
-	  fcmpo     cr0, f27, f0
-	  fmadds    f2, f4, f3, f2
-	  fadds     f2, f6, f2
-	  fsubs     f28, f2, f1
-	  cror      2, 0x1, 0x2
-	  bne-      .loc_0x228
-	  fcmpo     cr0, f27, f5
-	  cror      2, 0, 0x2
-	  bne-      .loc_0x228
-	  fcmpo     cr0, f28, f0
-	  cror      2, 0x1, 0x2
-	  bne-      .loc_0x228
-	  stfs      f29, 0x0(r30)
-	  stfs      f26, 0x4(r30)
-	  stfs      f30, 0x8(r30)
-	  lfs       f1, 0x0(r30)
-	  lfs       f0, 0x4(r30)
-	  fmuls     f1, f1, f1
-	  lfs       f2, 0x8(r30)
-	  fmuls     f0, f0, f0
-	  fmuls     f2, f2, f2
-	  fadds     f0, f1, f0
-	  fadds     f1, f2, f0
-	  bl        -0x450C
-	  lfs       f0, 0x1FA8(r2)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x1F4
-	  lfs       f2, 0x1FAC(r2)
-	  lfs       f0, 0x0(r30)
-	  fdivs     f1, f2, f1
-	  fmuls     f0, f0, f1
-	  stfs      f0, 0x0(r30)
-	  lfs       f0, 0x4(r30)
-	  fmuls     f0, f0, f1
-	  stfs      f0, 0x4(r30)
-	  lfs       f0, 0x8(r30)
-	  fmuls     f0, f0, f1
-	  stfs      f0, 0x8(r30)
+lbl_80415C30:
+	lfs      f4, 4(r29)
+	lfs      f2, 4(r28)
+	lfs      f6, 0(r29)
+	fsubs    f0, f4, f2
+	lfs      f5, 0(r28)
+	lfs      f9, 8(r29)
+	fsubs    f3, f6, f5
+	lfs      f8, 8(r28)
+	fmuls    f0, f27, f0
+	fsubs    f7, f9, f8
+	fmadds   f0, f28, f3, f0
+	fmadds   f0, f26, f7, f0
+	fdivs    f27, f0, f1
+	fmuls    f1, f30, f27
+	fmuls    f3, f31, f27
+	fmuls    f0, f29, f27
+	fadds    f2, f1, f2
+	fadds    f3, f3, f5
+	fadds    f1, f0, f8
+	fsubs    f26, f2, f4
+	fsubs    f29, f3, f6
+	fsubs    f30, f1, f9
+	fmuls    f0, f26, f26
+	fmadds   f0, f29, f29, f0
+	fmadds   f1, f30, f30, f0
+	bl       pikmin2_sqrtf__Ff
+	lfs      f5, lbl_8052030C@sda21(r2)
+	lfs      f2, 0x1c(r28)
+	fsubs    f4, f5, f27
+	lfs      f0, lbl_80520308@sda21(r2)
+	fmuls    f2, f2, f27
+	lfs      f3, 0x18(r28)
+	lfs      f6, 0xc(r29)
+	fcmpo    cr0, f27, f0
+	fmadds   f2, f4, f3, f2
+	fadds    f2, f6, f2
+	fsubs    f28, f2, f1
+	cror     2, 1, 2
+	bne      lbl_80415D80
+	fcmpo    cr0, f27, f5
+	cror     2, 0, 2
+	bne      lbl_80415D80
+	fcmpo    cr0, f28, f0
+	cror     2, 1, 2
+	bne      lbl_80415D80
+	stfs     f29, 0(r30)
+	stfs     f26, 4(r30)
+	stfs     f30, 8(r30)
+	lfs      f1, 0(r30)
+	lfs      f0, 4(r30)
+	fmuls    f1, f1, f1
+	lfs      f2, 8(r30)
+	fmuls    f0, f0, f0
+	fmuls    f2, f2, f2
+	fadds    f0, f1, f0
+	fadds    f1, f2, f0
+	bl       pikmin2_sqrtf__Ff
+	lfs      f0, lbl_80520308@sda21(r2)
+	fcmpo    cr0, f1, f0
+	ble      lbl_80415D4C
+	lfs      f2, lbl_8052030C@sda21(r2)
+	lfs      f0, 0(r30)
+	fdivs    f1, f2, f1
+	fmuls    f0, f0, f1
+	stfs     f0, 0(r30)
+	lfs      f0, 4(r30)
+	fmuls    f0, f0, f1
+	stfs     f0, 4(r30)
+	lfs      f0, 8(r30)
+	fmuls    f0, f0, f1
+	stfs     f0, 8(r30)
 
-	.loc_0x1F4:
-	  fneg      f3, f28
-	  lfs       f0, 0x0(r30)
-	  lfs       f1, 0x4(r30)
-	  li        r3, 0x1
-	  lfs       f2, 0x8(r30)
-	  fmuls     f0, f0, f3
-	  fmuls     f1, f1, f3
-	  fmuls     f2, f2, f3
-	  stfs      f0, 0x0(r30)
-	  stfs      f1, 0x4(r30)
-	  stfs      f2, 0x8(r30)
-	  stfs      f27, 0x0(r31)
-	  b         .loc_0x22C
+lbl_80415D4C:
+	fneg     f3, f28
+	lfs      f0, 0(r30)
+	lfs      f1, 4(r30)
+	li       r3, 1
+	lfs      f2, 8(r30)
+	fmuls    f0, f0, f3
+	fmuls    f1, f1, f3
+	fmuls    f2, f2, f3
+	stfs     f0, 0(r30)
+	stfs     f1, 4(r30)
+	stfs     f2, 8(r30)
+	stfs     f27, 0(r31)
+	b        lbl_80415D84
 
-	.loc_0x228:
-	  li        r3, 0
+lbl_80415D80:
+	li       r3, 0
 
-	.loc_0x22C:
-	  psq_l     f31,0x78(r1),0,0
-	  lfd       f31, 0x70(r1)
-	  psq_l     f30,0x68(r1),0,0
-	  lfd       f30, 0x60(r1)
-	  psq_l     f29,0x58(r1),0,0
-	  lfd       f29, 0x50(r1)
-	  psq_l     f28,0x48(r1),0,0
-	  lfd       f28, 0x40(r1)
-	  psq_l     f27,0x38(r1),0,0
-	  lfd       f27, 0x30(r1)
-	  psq_l     f26,0x28(r1),0,0
-	  lfd       f26, 0x20(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r0, 0x84(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x80
-	  blr
+lbl_80415D84:
+	psq_l    f31, 120(r1), 0, qr0
+	lfd      f31, 0x70(r1)
+	psq_l    f30, 104(r1), 0, qr0
+	lfd      f30, 0x60(r1)
+	psq_l    f29, 88(r1), 0, qr0
+	lfd      f29, 0x50(r1)
+	psq_l    f28, 72(r1), 0, qr0
+	lfd      f28, 0x40(r1)
+	psq_l    f27, 56(r1), 0, qr0
+	lfd      f27, 0x30(r1)
+	psq_l    f26, 40(r1), 0, qr0
+	lfd      f26, 0x20(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r0, 0x84(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x80
+	blr
 	*/
 }
 
@@ -272,72 +432,71 @@ void Tube::collide(Sys::Sphere&, Vector3f&, float&)
 void Tube::getPosRatio(const Vector3f&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  stw       r0, 0x44(r1)
-	  stfd      f31, 0x30(r1)
-	  psq_st    f31,0x38(r1),0,0
-	  stfd      f30, 0x20(r1)
-	  psq_st    f30,0x28(r1),0,0
-	  stfd      f29, 0x10(r1)
-	  psq_st    f29,0x18(r1),0,0
-	  stw       r31, 0xC(r1)
-	  stw       r30, 0x8(r1)
-	  lfs       f2, 0x10(r3)
-	  mr        r30, r3
-	  lfs       f0, 0x4(r3)
-	  mr        r31, r4
-	  lfs       f1, 0xC(r3)
-	  fsubs     f30, f2, f0
-	  lfs       f0, 0x0(r3)
-	  lfs       f2, 0x14(r3)
-	  fsubs     f31, f1, f0
-	  lfs       f1, 0x8(r3)
-	  fmuls     f0, f30, f30
-	  fsubs     f29, f2, f1
-	  fmadds    f0, f31, f31, f0
-	  fmadds    f1, f29, f29, f0
-	  bl        -0x4634
-	  lfs       f0, 0x1FA8(r2)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x8C
-	  lfs       f0, 0x1FAC(r2)
-	  fdivs     f0, f0, f1
-	  fmuls     f31, f31, f0
-	  fmuls     f30, f30, f0
-	  fmuls     f29, f29, f0
-	  b         .loc_0x90
+	stwu     r1, -0x40(r1)
+	mflr     r0
+	stw      r0, 0x44(r1)
+	stfd     f31, 0x30(r1)
+	psq_st   f31, 56(r1), 0, qr0
+	stfd     f30, 0x20(r1)
+	psq_st   f30, 40(r1), 0, qr0
+	stfd     f29, 0x10(r1)
+	psq_st   f29, 24(r1), 0, qr0
+	stw      r31, 0xc(r1)
+	stw      r30, 8(r1)
+	lfs      f2, 0x10(r3)
+	mr       r30, r3
+	lfs      f0, 4(r3)
+	mr       r31, r4
+	lfs      f1, 0xc(r3)
+	fsubs    f30, f2, f0
+	lfs      f0, 0(r3)
+	lfs      f2, 0x14(r3)
+	fsubs    f31, f1, f0
+	lfs      f1, 8(r3)
+	fmuls    f0, f30, f30
+	fsubs    f29, f2, f1
+	fmadds   f0, f31, f31, f0
+	fmadds   f1, f29, f29, f0
+	bl       pikmin2_sqrtf__Ff
+	lfs      f0, lbl_80520308@sda21(r2)
+	fcmpo    cr0, f1, f0
+	ble      lbl_80415E60
+	lfs      f0, lbl_8052030C@sda21(r2)
+	fdivs    f0, f0, f1
+	fmuls    f31, f31, f0
+	fmuls    f30, f30, f0
+	fmuls    f29, f29, f0
+	b        lbl_80415E64
 
-	.loc_0x8C:
-	  fmr       f1, f0
+lbl_80415E60:
+	fmr      f1, f0
 
-	.loc_0x90:
-	  lfs       f2, 0x4(r31)
-	  lfs       f0, 0x4(r30)
-	  lfs       f3, 0x0(r31)
-	  fsubs     f0, f2, f0
-	  lfs       f2, 0x0(r30)
-	  lfs       f4, 0x8(r31)
-	  fsubs     f2, f3, f2
-	  lfs       f3, 0x8(r30)
-	  fmuls     f0, f30, f0
-	  fsubs     f3, f4, f3
-	  fmadds    f0, f31, f2, f0
-	  fmadds    f0, f29, f3, f0
-	  fdivs     f1, f0, f1
-	  psq_l     f31,0x38(r1),0,0
-	  lfd       f31, 0x30(r1)
-	  psq_l     f30,0x28(r1),0,0
-	  lfd       f30, 0x20(r1)
-	  psq_l     f29,0x18(r1),0,0
-	  lfd       f29, 0x10(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x44(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
+lbl_80415E64:
+	lfs      f2, 4(r31)
+	lfs      f0, 4(r30)
+	lfs      f3, 0(r31)
+	fsubs    f0, f2, f0
+	lfs      f2, 0(r30)
+	lfs      f4, 8(r31)
+	fsubs    f2, f3, f2
+	lfs      f3, 8(r30)
+	fmuls    f0, f30, f0
+	fsubs    f3, f4, f3
+	fmadds   f0, f31, f2, f0
+	fmadds   f0, f29, f3, f0
+	fdivs    f1, f0, f1
+	psq_l    f31, 56(r1), 0, qr0
+	lfd      f31, 0x30(r1)
+	psq_l    f30, 40(r1), 0, qr0
+	lfd      f30, 0x20(r1)
+	psq_l    f29, 24(r1), 0, qr0
+	lfd      f29, 0x10(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x44(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x40
+	blr
 	*/
 }
 
@@ -369,26 +528,25 @@ void Tube::getPosGradient(Vector3f&, float, Vector3f&, Vector3f&)
 void Tube::setPos(float)
 {
 	/*
-	.loc_0x0:
-	  lfs       f6, 0x0(r4)
-	  lfs       f0, 0xC(r4)
-	  lfs       f5, 0x4(r4)
-	  fsubs     f0, f0, f6
-	  lfs       f2, 0x10(r4)
-	  lfs       f4, 0x8(r4)
-	  fsubs     f2, f2, f5
-	  lfs       f3, 0x14(r4)
-	  fmuls     f0, f0, f1
-	  fsubs     f3, f3, f4
-	  fmuls     f2, f2, f1
-	  fadds     f0, f6, f0
-	  fmuls     f1, f3, f1
-	  fadds     f2, f5, f2
-	  stfs      f0, 0x0(r3)
-	  fadds     f0, f4, f1
-	  stfs      f2, 0x4(r3)
-	  stfs      f0, 0x8(r3)
-	  blr
+	lfs      f6, 0(r4)
+	lfs      f0, 0xc(r4)
+	lfs      f5, 4(r4)
+	fsubs    f0, f0, f6
+	lfs      f2, 0x10(r4)
+	lfs      f4, 8(r4)
+	fsubs    f2, f2, f5
+	lfs      f3, 0x14(r4)
+	fmuls    f0, f0, f1
+	fsubs    f3, f3, f4
+	fmuls    f2, f2, f1
+	fadds    f0, f6, f0
+	fmuls    f1, f3, f1
+	fadds    f2, f5, f2
+	stfs     f0, 0(r3)
+	fadds    f0, f4, f1
+	stfs     f2, 4(r3)
+	stfs     f0, 8(r3)
+	blr
 	*/
 }
 
@@ -400,29 +558,28 @@ void Tube::setPos(float)
 void Sphere::intersect(Sys::Sphere&)
 {
 	/*
-	.loc_0x0:
-	  lfs       f2, 0x4(r4)
-	  lfs       f0, 0x4(r3)
-	  lfs       f1, 0x0(r4)
-	  fsubs     f3, f2, f0
-	  lfs       f0, 0x0(r3)
-	  lfs       f2, 0x8(r4)
-	  fsubs     f4, f1, f0
-	  lfs       f1, 0x8(r3)
-	  fmuls     f0, f3, f3
-	  fsubs     f5, f2, f1
-	  lfs       f3, 0xC(r4)
-	  lfs       f2, 0xC(r3)
-	  fmadds    f1, f4, f4, f0
-	  lfs       f0, 0x1FA8(r2)
-	  fadds     f2, f3, f2
-	  fmadds    f1, f5, f5, f1
-	  fnmsubs   f1, f2, f2, f1
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0, 0x2
-	  mfcr      r0
-	  rlwinm    r3,r0,3,31,31
-	  blr
+	lfs      f2, 4(r4)
+	lfs      f0, 4(r3)
+	lfs      f1, 0(r4)
+	fsubs    f3, f2, f0
+	lfs      f0, 0(r3)
+	lfs      f2, 8(r4)
+	fsubs    f4, f1, f0
+	lfs      f1, 8(r3)
+	fmuls    f0, f3, f3
+	fsubs    f5, f2, f1
+	lfs      f3, 0xc(r4)
+	lfs      f2, 0xc(r3)
+	fmadds   f1, f4, f4, f0
+	lfs      f0, lbl_80520308@sda21(r2)
+	fadds    f2, f3, f2
+	fmadds   f1, f5, f5, f1
+	fnmsubs  f1, f2, f2, f1
+	fcmpo    cr0, f1, f0
+	cror     2, 0, 2
+	mfcr     r0
+	rlwinm   r3, r0, 3, 0x1f, 0x1f
+	blr
 	*/
 }
 
@@ -434,87 +591,86 @@ void Sphere::intersect(Sys::Sphere&)
 void Sphere::intersect(Sys::Sphere&, Vector3f&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r5
-	  stw       r30, 0x18(r1)
-	  mr        r30, r4
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  lfs       f1, 0x0(r4)
-	  lfs       f0, 0x0(r3)
-	  lfs       f3, 0x4(r4)
-	  lfs       f2, 0x4(r3)
-	  fsubs     f0, f1, f0
-	  lfs       f4, 0x8(r4)
-	  lfs       f1, 0x8(r3)
-	  fsubs     f2, f3, f2
-	  stfs      f0, 0x0(r5)
-	  fsubs     f0, f4, f1
-	  stfs      f2, 0x4(r5)
-	  stfs      f0, 0x8(r5)
-	  lfs       f1, 0x0(r5)
-	  lfs       f0, 0x4(r5)
-	  lfs       f2, 0x8(r5)
-	  fmuls     f1, f1, f1
-	  fmuls     f0, f0, f0
-	  fmuls     f2, f2, f2
-	  fadds     f0, f1, f0
-	  fadds     f1, f2, f0
-	  bl        -0x47DC
-	  lfs       f0, 0x1FA8(r2)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0xB4
-	  lfs       f2, 0x1FAC(r2)
-	  lfs       f0, 0x0(r31)
-	  fdivs     f2, f2, f1
-	  fmuls     f0, f0, f2
-	  stfs      f0, 0x0(r31)
-	  lfs       f0, 0x4(r31)
-	  fmuls     f0, f0, f2
-	  stfs      f0, 0x4(r31)
-	  lfs       f0, 0x8(r31)
-	  fmuls     f0, f0, f2
-	  stfs      f0, 0x8(r31)
-	  b         .loc_0xB8
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r5
+	stw      r30, 0x18(r1)
+	mr       r30, r4
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	lfs      f1, 0(r4)
+	lfs      f0, 0(r3)
+	lfs      f3, 4(r4)
+	lfs      f2, 4(r3)
+	fsubs    f0, f1, f0
+	lfs      f4, 8(r4)
+	lfs      f1, 8(r3)
+	fsubs    f2, f3, f2
+	stfs     f0, 0(r5)
+	fsubs    f0, f4, f1
+	stfs     f2, 4(r5)
+	stfs     f0, 8(r5)
+	lfs      f1, 0(r5)
+	lfs      f0, 4(r5)
+	lfs      f2, 8(r5)
+	fmuls    f1, f1, f1
+	fmuls    f0, f0, f0
+	fmuls    f2, f2, f2
+	fadds    f0, f1, f0
+	fadds    f1, f2, f0
+	bl       pikmin2_sqrtf__Ff
+	lfs      f0, lbl_80520308@sda21(r2)
+	fcmpo    cr0, f1, f0
+	ble      lbl_80416020
+	lfs      f2, lbl_8052030C@sda21(r2)
+	lfs      f0, 0(r31)
+	fdivs    f2, f2, f1
+	fmuls    f0, f0, f2
+	stfs     f0, 0(r31)
+	lfs      f0, 4(r31)
+	fmuls    f0, f0, f2
+	stfs     f0, 4(r31)
+	lfs      f0, 8(r31)
+	fmuls    f0, f0, f2
+	stfs     f0, 8(r31)
+	b        lbl_80416024
 
-	.loc_0xB4:
-	  fmr       f1, f0
+lbl_80416020:
+	fmr      f1, f0
 
-	.loc_0xB8:
-	  lfs       f3, 0xC(r30)
-	  lfs       f2, 0xC(r29)
-	  lfs       f0, 0x1FA8(r2)
-	  fadds     f2, f3, f2
-	  fsubs     f3, f1, f2
-	  fcmpo     cr0, f3, f0
-	  ble-      .loc_0xDC
-	  li        r3, 0
-	  b         .loc_0x104
+lbl_80416024:
+	lfs      f3, 0xc(r30)
+	lfs      f2, 0xc(r29)
+	lfs      f0, lbl_80520308@sda21(r2)
+	fadds    f2, f3, f2
+	fsubs    f3, f1, f2
+	fcmpo    cr0, f3, f0
+	ble      lbl_80416048
+	li       r3, 0
+	b        lbl_80416070
 
-	.loc_0xDC:
-	  lfs       f0, 0x0(r31)
-	  li        r3, 0x1
-	  lfs       f1, 0x4(r31)
-	  fmuls     f0, f0, f3
-	  lfs       f2, 0x8(r31)
-	  fmuls     f1, f1, f3
-	  fmuls     f2, f2, f3
-	  stfs      f0, 0x0(r31)
-	  stfs      f1, 0x4(r31)
-	  stfs      f2, 0x8(r31)
+lbl_80416048:
+	lfs      f0, 0(r31)
+	li       r3, 1
+	lfs      f1, 4(r31)
+	fmuls    f0, f0, f3
+	lfs      f2, 8(r31)
+	fmuls    f1, f1, f3
+	fmuls    f2, f2, f3
+	stfs     f0, 0(r31)
+	stfs     f1, 4(r31)
+	stfs     f2, 8(r31)
 
-	.loc_0x104:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80416070:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -526,150 +682,149 @@ void Sphere::intersect(Sys::Sphere&, Vector3f&)
 void Sphere::intersect(Sys::Edge&, float&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x50(r1)
-	  mflr      r0
-	  stw       r0, 0x54(r1)
-	  stfd      f31, 0x40(r1)
-	  psq_st    f31,0x48(r1),0,0
-	  stfd      f30, 0x30(r1)
-	  psq_st    f30,0x38(r1),0,0
-	  stfd      f29, 0x20(r1)
-	  psq_st    f29,0x28(r1),0,0
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  mr        r30, r4
-	  lfs       f2, 0x4(r4)
-	  mr        r31, r5
-	  lfs       f0, 0x4(r3)
-	  lfs       f1, 0x0(r4)
-	  fsubs     f4, f2, f0
-	  lfs       f0, 0x0(r3)
-	  lfs       f2, 0x8(r4)
-	  fsubs     f3, f1, f0
-	  lfs       f1, 0x8(r3)
-	  fmuls     f0, f4, f4
-	  fsubs     f1, f2, f1
-	  fmadds    f0, f3, f3, f0
-	  fmadds    f1, f1, f1, f0
-	  bl        -0x48F4
-	  lfs       f0, 0xC(r29)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0, 0x2
-	  bne-      .loc_0x90
-	  lfs       f0, 0x1FA8(r2)
-	  li        r3, 0x1
-	  stfs      f0, 0x0(r31)
-	  b         .loc_0x1D0
+	stwu     r1, -0x50(r1)
+	mflr     r0
+	stw      r0, 0x54(r1)
+	stfd     f31, 0x40(r1)
+	psq_st   f31, 72(r1), 0, qr0
+	stfd     f30, 0x30(r1)
+	psq_st   f30, 56(r1), 0, qr0
+	stfd     f29, 0x20(r1)
+	psq_st   f29, 40(r1), 0, qr0
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	mr       r30, r4
+	lfs      f2, 4(r4)
+	mr       r31, r5
+	lfs      f0, 4(r3)
+	lfs      f1, 0(r4)
+	fsubs    f4, f2, f0
+	lfs      f0, 0(r3)
+	lfs      f2, 8(r4)
+	fsubs    f3, f1, f0
+	lfs      f1, 8(r3)
+	fmuls    f0, f4, f4
+	fsubs    f1, f2, f1
+	fmadds   f0, f3, f3, f0
+	fmadds   f1, f1, f1, f0
+	bl       pikmin2_sqrtf__Ff
+	lfs      f0, 0xc(r29)
+	fcmpo    cr0, f1, f0
+	cror     2, 0, 2
+	bne      lbl_8041611C
+	lfs      f0, lbl_80520308@sda21(r2)
+	li       r3, 1
+	stfs     f0, 0(r31)
+	b        lbl_8041625C
 
-	.loc_0x90:
-	  lfs       f2, 0x10(r30)
-	  lfs       f0, 0x4(r29)
-	  lfs       f1, 0xC(r30)
-	  fsubs     f4, f2, f0
-	  lfs       f0, 0x0(r29)
-	  lfs       f2, 0x14(r30)
-	  fsubs     f3, f1, f0
-	  lfs       f1, 0x8(r29)
-	  fmuls     f0, f4, f4
-	  fsubs     f1, f2, f1
-	  fmadds    f0, f3, f3, f0
-	  fmadds    f1, f1, f1, f0
-	  bl        -0x4948
-	  lfs       f0, 0xC(r29)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0, 0x2
-	  bne-      .loc_0xE4
-	  lfs       f0, 0x1FAC(r2)
-	  li        r3, 0x1
-	  stfs      f0, 0x0(r31)
-	  b         .loc_0x1D0
+lbl_8041611C:
+	lfs      f2, 0x10(r30)
+	lfs      f0, 4(r29)
+	lfs      f1, 0xc(r30)
+	fsubs    f4, f2, f0
+	lfs      f0, 0(r29)
+	lfs      f2, 0x14(r30)
+	fsubs    f3, f1, f0
+	lfs      f1, 8(r29)
+	fmuls    f0, f4, f4
+	fsubs    f1, f2, f1
+	fmadds   f0, f3, f3, f0
+	fmadds   f1, f1, f1, f0
+	bl       pikmin2_sqrtf__Ff
+	lfs      f0, 0xc(r29)
+	fcmpo    cr0, f1, f0
+	cror     2, 0, 2
+	bne      lbl_80416170
+	lfs      f0, lbl_8052030C@sda21(r2)
+	li       r3, 1
+	stfs     f0, 0(r31)
+	b        lbl_8041625C
 
-	.loc_0xE4:
-	  lfs       f2, 0x10(r30)
-	  lfs       f0, 0x4(r30)
-	  lfs       f1, 0xC(r30)
-	  fsubs     f30, f2, f0
-	  lfs       f0, 0x0(r30)
-	  lfs       f2, 0x14(r30)
-	  fsubs     f31, f1, f0
-	  lfs       f1, 0x8(r30)
-	  fmuls     f0, f30, f30
-	  fsubs     f29, f2, f1
-	  fmadds    f0, f31, f31, f0
-	  fmadds    f1, f29, f29, f0
-	  bl        -0x499C
-	  lfs       f0, 0x1FA8(r2)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x13C
-	  lfs       f0, 0x1FAC(r2)
-	  fdivs     f0, f0, f1
-	  fmuls     f31, f31, f0
-	  fmuls     f30, f30, f0
-	  fmuls     f29, f29, f0
-	  b         .loc_0x140
+lbl_80416170:
+	lfs      f2, 0x10(r30)
+	lfs      f0, 4(r30)
+	lfs      f1, 0xc(r30)
+	fsubs    f30, f2, f0
+	lfs      f0, 0(r30)
+	lfs      f2, 0x14(r30)
+	fsubs    f31, f1, f0
+	lfs      f1, 8(r30)
+	fmuls    f0, f30, f30
+	fsubs    f29, f2, f1
+	fmadds   f0, f31, f31, f0
+	fmadds   f1, f29, f29, f0
+	bl       pikmin2_sqrtf__Ff
+	lfs      f0, lbl_80520308@sda21(r2)
+	fcmpo    cr0, f1, f0
+	ble      lbl_804161C8
+	lfs      f0, lbl_8052030C@sda21(r2)
+	fdivs    f0, f0, f1
+	fmuls    f31, f31, f0
+	fmuls    f30, f30, f0
+	fmuls    f29, f29, f0
+	b        lbl_804161CC
 
-	.loc_0x13C:
-	  fmr       f1, f0
+lbl_804161C8:
+	fmr      f1, f0
 
-	.loc_0x140:
-	  lfs       f3, 0x4(r29)
-	  lfs       f0, 0x4(r30)
-	  lfs       f2, 0x0(r29)
-	  fsubs     f5, f3, f0
-	  lfs       f0, 0x0(r30)
-	  lfs       f3, 0x8(r29)
-	  fsubs     f4, f2, f0
-	  lfs       f0, 0x8(r30)
-	  fmuls     f2, f5, f30
-	  fsubs     f3, f3, f0
-	  lfs       f0, 0x1FA8(r2)
-	  fmadds    f2, f4, f31, f2
-	  fmadds    f2, f3, f29, f2
-	  stfs      f2, 0x0(r31)
-	  lfs       f2, 0x0(r31)
-	  fcmpo     cr0, f2, f0
-	  blt-      .loc_0x18C
-	  fcmpo     cr0, f2, f1
-	  ble-      .loc_0x194
+lbl_804161CC:
+	lfs      f3, 4(r29)
+	lfs      f0, 4(r30)
+	lfs      f2, 0(r29)
+	fsubs    f5, f3, f0
+	lfs      f0, 0(r30)
+	lfs      f3, 8(r29)
+	fsubs    f4, f2, f0
+	lfs      f0, 8(r30)
+	fmuls    f2, f5, f30
+	fsubs    f3, f3, f0
+	lfs      f0, lbl_80520308@sda21(r2)
+	fmadds   f2, f4, f31, f2
+	fmadds   f2, f3, f29, f2
+	stfs     f2, 0(r31)
+	lfs      f2, 0(r31)
+	fcmpo    cr0, f2, f0
+	blt      lbl_80416218
+	fcmpo    cr0, f2, f1
+	ble      lbl_80416220
 
-	.loc_0x18C:
-	  li        r3, 0
-	  b         .loc_0x1D0
+lbl_80416218:
+	li       r3, 0
+	b        lbl_8041625C
 
-	.loc_0x194:
-	  fmuls     f1, f30, f2
-	  fmuls     f0, f31, f2
-	  fmuls     f2, f29, f2
-	  fsubs     f5, f5, f1
-	  fsubs     f1, f4, f0
-	  fsubs     f2, f3, f2
-	  fmuls     f0, f5, f5
-	  fmadds    f0, f1, f1, f0
-	  fmadds    f1, f2, f2, f0
-	  bl        -0x4A40
-	  lfs       f0, 0xC(r29)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0, 0x2
-	  mfcr      r0
-	  rlwinm    r3,r0,3,31,31
+lbl_80416220:
+	fmuls    f1, f30, f2
+	fmuls    f0, f31, f2
+	fmuls    f2, f29, f2
+	fsubs    f5, f5, f1
+	fsubs    f1, f4, f0
+	fsubs    f2, f3, f2
+	fmuls    f0, f5, f5
+	fmadds   f0, f1, f1, f0
+	fmadds   f1, f2, f2, f0
+	bl       pikmin2_sqrtf__Ff
+	lfs      f0, 0xc(r29)
+	fcmpo    cr0, f1, f0
+	cror     2, 0, 2
+	mfcr     r0
+	rlwinm   r3, r0, 3, 0x1f, 0x1f
 
-	.loc_0x1D0:
-	  psq_l     f31,0x48(r1),0,0
-	  lfd       f31, 0x40(r1)
-	  psq_l     f30,0x38(r1),0,0
-	  lfd       f30, 0x30(r1)
-	  psq_l     f29,0x28(r1),0,0
-	  lfd       f29, 0x20(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r0, 0x54(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x50
-	  blr
+lbl_8041625C:
+	psq_l    f31, 72(r1), 0, qr0
+	lfd      f31, 0x40(r1)
+	psq_l    f30, 56(r1), 0, qr0
+	lfd      f30, 0x30(r1)
+	psq_l    f29, 40(r1), 0, qr0
+	lfd      f29, 0x20(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r0, 0x54(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x50
+	blr
 	*/
 }
 
@@ -681,184 +836,183 @@ void Sphere::intersect(Sys::Edge&, float&)
 void Sphere::intersect(Sys::Edge&, float&, Vector3f&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x60(r1)
-	  mflr      r0
-	  stw       r0, 0x64(r1)
-	  stfd      f31, 0x50(r1)
-	  psq_st    f31,0x58(r1),0,0
-	  stfd      f30, 0x40(r1)
-	  psq_st    f30,0x48(r1),0,0
-	  stfd      f29, 0x30(r1)
-	  psq_st    f29,0x38(r1),0,0
-	  stfd      f28, 0x20(r1)
-	  psq_st    f28,0x28(r1),0,0
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  stw       r28, 0x10(r1)
-	  mr        r28, r3
-	  mr        r29, r4
-	  lfs       f2, 0x4(r4)
-	  mr        r30, r5
-	  lfs       f0, 0x4(r3)
-	  mr        r31, r6
-	  lfs       f1, 0x0(r4)
-	  fsubs     f4, f2, f0
-	  lfs       f0, 0x0(r3)
-	  lfs       f2, 0x8(r4)
-	  fsubs     f3, f1, f0
-	  lfs       f1, 0x8(r3)
-	  fmuls     f0, f4, f4
-	  fsubs     f1, f2, f1
-	  fmadds    f0, f3, f3, f0
-	  fmadds    f1, f1, f1, f0
-	  bl        -0x4B08
-	  lfs       f0, 0xC(r28)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0, 0x2
-	  bne-      .loc_0xB8
-	  lfs       f0, 0x1FA8(r2)
-	  li        r3, 0x1
-	  stfs      f0, 0x0(r30)
-	  lfs       f0, 0x0(r29)
-	  stfs      f0, 0x0(r31)
-	  lfs       f0, 0x4(r29)
-	  stfs      f0, 0x4(r31)
-	  lfs       f0, 0x8(r29)
-	  stfs      f0, 0x8(r31)
-	  b         .loc_0x24C
+	stwu     r1, -0x60(r1)
+	mflr     r0
+	stw      r0, 0x64(r1)
+	stfd     f31, 0x50(r1)
+	psq_st   f31, 88(r1), 0, qr0
+	stfd     f30, 0x40(r1)
+	psq_st   f30, 72(r1), 0, qr0
+	stfd     f29, 0x30(r1)
+	psq_st   f29, 56(r1), 0, qr0
+	stfd     f28, 0x20(r1)
+	psq_st   f28, 40(r1), 0, qr0
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	stw      r28, 0x10(r1)
+	mr       r28, r3
+	mr       r29, r4
+	lfs      f2, 4(r4)
+	mr       r30, r5
+	lfs      f0, 4(r3)
+	mr       r31, r6
+	lfs      f1, 0(r4)
+	fsubs    f4, f2, f0
+	lfs      f0, 0(r3)
+	lfs      f2, 8(r4)
+	fsubs    f3, f1, f0
+	lfs      f1, 8(r3)
+	fmuls    f0, f4, f4
+	fsubs    f1, f2, f1
+	fmadds   f0, f3, f3, f0
+	fmadds   f1, f1, f1, f0
+	bl       pikmin2_sqrtf__Ff
+	lfs      f0, 0xc(r28)
+	fcmpo    cr0, f1, f0
+	cror     2, 0, 2
+	bne      lbl_80416348
+	lfs      f0, lbl_80520308@sda21(r2)
+	li       r3, 1
+	stfs     f0, 0(r30)
+	lfs      f0, 0(r29)
+	stfs     f0, 0(r31)
+	lfs      f0, 4(r29)
+	stfs     f0, 4(r31)
+	lfs      f0, 8(r29)
+	stfs     f0, 8(r31)
+	b        lbl_804164DC
 
-	.loc_0xB8:
-	  lfs       f2, 0x10(r29)
-	  lfs       f0, 0x4(r28)
-	  lfs       f1, 0xC(r29)
-	  fsubs     f4, f2, f0
-	  lfs       f0, 0x0(r28)
-	  lfs       f2, 0x14(r29)
-	  fsubs     f3, f1, f0
-	  lfs       f1, 0x8(r28)
-	  fmuls     f0, f4, f4
-	  fsubs     f1, f2, f1
-	  fmadds    f0, f3, f3, f0
-	  fmadds    f1, f1, f1, f0
-	  bl        -0x4B74
-	  lfs       f0, 0xC(r28)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0, 0x2
-	  bne-      .loc_0x124
-	  lfs       f0, 0x1FAC(r2)
-	  li        r3, 0x1
-	  stfs      f0, 0x0(r30)
-	  lfs       f0, 0xC(r29)
-	  stfs      f0, 0x0(r31)
-	  lfs       f0, 0x10(r29)
-	  stfs      f0, 0x4(r31)
-	  lfs       f0, 0x14(r29)
-	  stfs      f0, 0x8(r31)
-	  b         .loc_0x24C
+lbl_80416348:
+	lfs      f2, 0x10(r29)
+	lfs      f0, 4(r28)
+	lfs      f1, 0xc(r29)
+	fsubs    f4, f2, f0
+	lfs      f0, 0(r28)
+	lfs      f2, 0x14(r29)
+	fsubs    f3, f1, f0
+	lfs      f1, 8(r28)
+	fmuls    f0, f4, f4
+	fsubs    f1, f2, f1
+	fmadds   f0, f3, f3, f0
+	fmadds   f1, f1, f1, f0
+	bl       pikmin2_sqrtf__Ff
+	lfs      f0, 0xc(r28)
+	fcmpo    cr0, f1, f0
+	cror     2, 0, 2
+	bne      lbl_804163B4
+	lfs      f0, lbl_8052030C@sda21(r2)
+	li       r3, 1
+	stfs     f0, 0(r30)
+	lfs      f0, 0xc(r29)
+	stfs     f0, 0(r31)
+	lfs      f0, 0x10(r29)
+	stfs     f0, 4(r31)
+	lfs      f0, 0x14(r29)
+	stfs     f0, 8(r31)
+	b        lbl_804164DC
 
-	.loc_0x124:
-	  lfs       f2, 0x10(r29)
-	  lfs       f0, 0x4(r29)
-	  lfs       f1, 0xC(r29)
-	  fsubs     f29, f2, f0
-	  lfs       f0, 0x0(r29)
-	  lfs       f2, 0x14(r29)
-	  fsubs     f30, f1, f0
-	  lfs       f1, 0x8(r29)
-	  fmuls     f0, f29, f29
-	  fsubs     f28, f2, f1
-	  fmadds    f0, f30, f30, f0
-	  fmadds    f1, f28, f28, f0
-	  bl        -0x4BE0
-	  lfs       f31, 0x1FA8(r2)
-	  fcmpo     cr0, f1, f31
-	  ble-      .loc_0x17C
-	  lfs       f0, 0x1FAC(r2)
-	  fmr       f31, f1
-	  fdivs     f0, f0, f1
-	  fmuls     f30, f30, f0
-	  fmuls     f29, f29, f0
-	  fmuls     f28, f28, f0
+lbl_804163B4:
+	lfs      f2, 0x10(r29)
+	lfs      f0, 4(r29)
+	lfs      f1, 0xc(r29)
+	fsubs    f29, f2, f0
+	lfs      f0, 0(r29)
+	lfs      f2, 0x14(r29)
+	fsubs    f30, f1, f0
+	lfs      f1, 8(r29)
+	fmuls    f0, f29, f29
+	fsubs    f28, f2, f1
+	fmadds   f0, f30, f30, f0
+	fmadds   f1, f28, f28, f0
+	bl       pikmin2_sqrtf__Ff
+	lfs      f31, lbl_80520308@sda21(r2)
+	fcmpo    cr0, f1, f31
+	ble      lbl_8041640C
+	lfs      f0, lbl_8052030C@sda21(r2)
+	fmr      f31, f1
+	fdivs    f0, f0, f1
+	fmuls    f30, f30, f0
+	fmuls    f29, f29, f0
+	fmuls    f28, f28, f0
 
-	.loc_0x17C:
-	  lfs       f2, 0x4(r31)
-	  lfs       f0, 0x4(r29)
-	  lfs       f1, 0x0(r31)
-	  fsubs     f4, f2, f0
-	  lfs       f0, 0x0(r29)
-	  lfs       f2, 0x8(r31)
-	  fsubs     f3, f1, f0
-	  lfs       f0, 0x8(r29)
-	  fmuls     f1, f4, f29
-	  fsubs     f5, f2, f0
-	  lfs       f0, 0x1FA8(r2)
-	  fmadds    f1, f3, f30, f1
-	  fmadds    f1, f5, f28, f1
-	  stfs      f1, 0x0(r30)
-	  lfs       f2, 0x0(r30)
-	  fcmpo     cr0, f2, f0
-	  blt-      .loc_0x1C8
-	  fcmpo     cr0, f2, f31
-	  ble-      .loc_0x1D0
+lbl_8041640C:
+	lfs      f2, 4(r31)
+	lfs      f0, 4(r29)
+	lfs      f1, 0(r31)
+	fsubs    f4, f2, f0
+	lfs      f0, 0(r29)
+	lfs      f2, 8(r31)
+	fsubs    f3, f1, f0
+	lfs      f0, 8(r29)
+	fmuls    f1, f4, f29
+	fsubs    f5, f2, f0
+	lfs      f0, lbl_80520308@sda21(r2)
+	fmadds   f1, f3, f30, f1
+	fmadds   f1, f5, f28, f1
+	stfs     f1, 0(r30)
+	lfs      f2, 0(r30)
+	fcmpo    cr0, f2, f0
+	blt      lbl_80416458
+	fcmpo    cr0, f2, f31
+	ble      lbl_80416460
 
-	.loc_0x1C8:
-	  li        r3, 0
-	  b         .loc_0x24C
+lbl_80416458:
+	li       r3, 0
+	b        lbl_804164DC
 
-	.loc_0x1D0:
-	  fmuls     f1, f29, f2
-	  fmuls     f0, f30, f2
-	  fmuls     f2, f28, f2
-	  fsubs     f4, f4, f1
-	  fsubs     f1, f3, f0
-	  fsubs     f2, f5, f2
-	  fmuls     f0, f4, f4
-	  fmadds    f0, f1, f1, f0
-	  fmadds    f1, f2, f2, f0
-	  bl        -0x4C80
-	  lfs       f0, 0xC(r28)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0, 0x2
-	  bne-      .loc_0x248
-	  lfs       f0, 0x0(r30)
-	  li        r3, 0x1
-	  lfs       f1, 0x0(r29)
-	  fmuls     f4, f0, f31
-	  lfs       f3, 0x4(r29)
-	  lfs       f5, 0x8(r29)
-	  fmuls     f0, f30, f4
-	  fmuls     f2, f29, f4
-	  fmuls     f4, f28, f4
-	  fadds     f0, f1, f0
-	  fadds     f1, f3, f2
-	  fadds     f2, f5, f4
-	  stfs      f0, 0x0(r31)
-	  stfs      f1, 0x4(r31)
-	  stfs      f2, 0x8(r31)
-	  b         .loc_0x24C
+lbl_80416460:
+	fmuls    f1, f29, f2
+	fmuls    f0, f30, f2
+	fmuls    f2, f28, f2
+	fsubs    f4, f4, f1
+	fsubs    f1, f3, f0
+	fsubs    f2, f5, f2
+	fmuls    f0, f4, f4
+	fmadds   f0, f1, f1, f0
+	fmadds   f1, f2, f2, f0
+	bl       pikmin2_sqrtf__Ff
+	lfs      f0, 0xc(r28)
+	fcmpo    cr0, f1, f0
+	cror     2, 0, 2
+	bne      lbl_804164D8
+	lfs      f0, 0(r30)
+	li       r3, 1
+	lfs      f1, 0(r29)
+	fmuls    f4, f0, f31
+	lfs      f3, 4(r29)
+	lfs      f5, 8(r29)
+	fmuls    f0, f30, f4
+	fmuls    f2, f29, f4
+	fmuls    f4, f28, f4
+	fadds    f0, f1, f0
+	fadds    f1, f3, f2
+	fadds    f2, f5, f4
+	stfs     f0, 0(r31)
+	stfs     f1, 4(r31)
+	stfs     f2, 8(r31)
+	b        lbl_804164DC
 
-	.loc_0x248:
-	  li        r3, 0
+lbl_804164D8:
+	li       r3, 0
 
-	.loc_0x24C:
-	  psq_l     f31,0x58(r1),0,0
-	  lfd       f31, 0x50(r1)
-	  psq_l     f30,0x48(r1),0,0
-	  lfd       f30, 0x40(r1)
-	  psq_l     f29,0x38(r1),0,0
-	  lfd       f29, 0x30(r1)
-	  psq_l     f28,0x28(r1),0,0
-	  lfd       f28, 0x20(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r0, 0x64(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x60
-	  blr
+lbl_804164DC:
+	psq_l    f31, 88(r1), 0, qr0
+	lfd      f31, 0x50(r1)
+	psq_l    f30, 72(r1), 0, qr0
+	lfd      f30, 0x40(r1)
+	psq_l    f29, 56(r1), 0, qr0
+	lfd      f29, 0x30(r1)
+	psq_l    f28, 40(r1), 0, qr0
+	lfd      f28, 0x20(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r0, 0x64(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x60
+	blr
 	*/
 }
 
@@ -870,286 +1024,285 @@ void Sphere::intersect(Sys::Edge&, float&, Vector3f&)
 void Sphere::intersect(Sys::Edge&, float&, Vector3f&, float&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x50(r1)
-	  mflr      r0
-	  stw       r0, 0x54(r1)
-	  stfd      f31, 0x40(r1)
-	  psq_st    f31,0x48(r1),0,0
-	  stfd      f30, 0x30(r1)
-	  psq_st    f30,0x38(r1),0,0
-	  stfd      f29, 0x20(r1)
-	  psq_st    f29,0x28(r1),0,0
-	  stmw      r27, 0xC(r1)
-	  lfs       f2, 0x10(r4)
-	  mr        r28, r4
-	  lfs       f0, 0x4(r4)
-	  mr        r27, r3
-	  lfs       f1, 0xC(r4)
-	  mr        r29, r5
-	  fsubs     f30, f2, f0
-	  lfs       f0, 0x0(r4)
-	  lfs       f2, 0x14(r4)
-	  mr        r30, r6
-	  fsubs     f31, f1, f0
-	  lfs       f1, 0x8(r4)
-	  fmuls     f0, f30, f30
-	  mr        r31, r7
-	  fsubs     f29, f2, f1
-	  fmadds    f0, f31, f31, f0
-	  fmadds    f1, f29, f29, f0
-	  bl        -0x4D84
-	  lfs       f0, 0x1FA8(r2)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x94
-	  lfs       f0, 0x1FAC(r2)
-	  fdivs     f0, f0, f1
-	  fmuls     f31, f31, f0
-	  fmuls     f30, f30, f0
-	  fmuls     f29, f29, f0
-	  b         .loc_0x98
+	stwu     r1, -0x50(r1)
+	mflr     r0
+	stw      r0, 0x54(r1)
+	stfd     f31, 0x40(r1)
+	psq_st   f31, 72(r1), 0, qr0
+	stfd     f30, 0x30(r1)
+	psq_st   f30, 56(r1), 0, qr0
+	stfd     f29, 0x20(r1)
+	psq_st   f29, 40(r1), 0, qr0
+	stmw     r27, 0xc(r1)
+	lfs      f2, 0x10(r4)
+	mr       r28, r4
+	lfs      f0, 4(r4)
+	mr       r27, r3
+	lfs      f1, 0xc(r4)
+	mr       r29, r5
+	fsubs    f30, f2, f0
+	lfs      f0, 0(r4)
+	lfs      f2, 0x14(r4)
+	mr       r30, r6
+	fsubs    f31, f1, f0
+	lfs      f1, 8(r4)
+	fmuls    f0, f30, f30
+	mr       r31, r7
+	fsubs    f29, f2, f1
+	fmadds   f0, f31, f31, f0
+	fmadds   f1, f29, f29, f0
+	bl       pikmin2_sqrtf__Ff
+	lfs      f0, lbl_80520308@sda21(r2)
+	fcmpo    cr0, f1, f0
+	ble      lbl_804165B0
+	lfs      f0, lbl_8052030C@sda21(r2)
+	fdivs    f0, f0, f1
+	fmuls    f31, f31, f0
+	fmuls    f30, f30, f0
+	fmuls    f29, f29, f0
+	b        lbl_804165B4
 
-	.loc_0x94:
-	  fmr       f1, f0
+lbl_804165B0:
+	fmr      f1, f0
 
-	.loc_0x98:
-	  lfs       f3, 0x4(r27)
-	  lfs       f0, 0x4(r28)
-	  lfs       f2, 0x0(r27)
-	  fsubs     f5, f3, f0
-	  lfs       f0, 0x0(r28)
-	  lfs       f3, 0x8(r27)
-	  fsubs     f4, f2, f0
-	  lfs       f0, 0x8(r28)
-	  fmuls     f2, f5, f30
-	  fsubs     f3, f3, f0
-	  lfs       f0, 0x1FA8(r2)
-	  fmadds    f2, f4, f31, f2
-	  fmadds    f2, f3, f29, f2
-	  stfs      f2, 0x0(r29)
-	  lfs       f2, 0x0(r29)
-	  fcmpo     cr0, f2, f0
-	  blt-      .loc_0xE4
-	  fcmpo     cr0, f2, f1
-	  ble-      .loc_0x304
+lbl_804165B4:
+	lfs      f3, 4(r27)
+	lfs      f0, 4(r28)
+	lfs      f2, 0(r27)
+	fsubs    f5, f3, f0
+	lfs      f0, 0(r28)
+	lfs      f3, 8(r27)
+	fsubs    f4, f2, f0
+	lfs      f0, 8(r28)
+	fmuls    f2, f5, f30
+	fsubs    f3, f3, f0
+	lfs      f0, lbl_80520308@sda21(r2)
+	fmadds   f2, f4, f31, f2
+	fmadds   f2, f3, f29, f2
+	stfs     f2, 0(r29)
+	lfs      f2, 0(r29)
+	fcmpo    cr0, f2, f0
+	blt      lbl_80416600
+	fcmpo    cr0, f2, f1
+	ble      lbl_80416820
 
-	.loc_0xE4:
-	  lfs       f2, 0x4(r28)
-	  lfs       f0, 0x4(r27)
-	  lfs       f1, 0x0(r28)
-	  fsubs     f4, f2, f0
-	  lfs       f0, 0x0(r27)
-	  lfs       f2, 0x8(r28)
-	  fsubs     f3, f1, f0
-	  lfs       f1, 0x8(r27)
-	  fmuls     f0, f4, f4
-	  fsubs     f1, f2, f1
-	  fmadds    f0, f3, f3, f0
-	  fmadds    f1, f1, f1, f0
-	  bl        -0x4E2C
-	  lfs       f0, 0xC(r27)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0, 0x2
-	  bne-      .loc_0x1F0
-	  lfs       f0, 0x1FA8(r2)
-	  stfs      f0, 0x0(r29)
-	  lfs       f1, 0x0(r27)
-	  lfs       f0, 0x0(r28)
-	  lfs       f3, 0x4(r27)
-	  lfs       f2, 0x4(r28)
-	  fsubs     f0, f1, f0
-	  lfs       f4, 0x8(r27)
-	  lfs       f1, 0x8(r28)
-	  fsubs     f2, f3, f2
-	  stfs      f0, 0x0(r30)
-	  fsubs     f0, f4, f1
-	  stfs      f2, 0x4(r30)
-	  stfs      f0, 0x8(r30)
-	  lfs       f1, 0x0(r30)
-	  lfs       f0, 0x4(r30)
-	  lfs       f2, 0x8(r30)
-	  fmuls     f1, f1, f1
-	  fmuls     f0, f0, f0
-	  fmuls     f2, f2, f2
-	  fadds     f0, f1, f0
-	  fadds     f1, f2, f0
-	  bl        -0x4E98
-	  lfs       f0, 0x1FA8(r2)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x1C0
-	  lfs       f2, 0x1FAC(r2)
-	  lfs       f0, 0x0(r30)
-	  fdivs     f2, f2, f1
-	  fmuls     f0, f0, f2
-	  stfs      f0, 0x0(r30)
-	  lfs       f0, 0x4(r30)
-	  fmuls     f0, f0, f2
-	  stfs      f0, 0x4(r30)
-	  lfs       f0, 0x8(r30)
-	  fmuls     f0, f0, f2
-	  stfs      f0, 0x8(r30)
-	  b         .loc_0x1C4
+lbl_80416600:
+	lfs      f2, 4(r28)
+	lfs      f0, 4(r27)
+	lfs      f1, 0(r28)
+	fsubs    f4, f2, f0
+	lfs      f0, 0(r27)
+	lfs      f2, 8(r28)
+	fsubs    f3, f1, f0
+	lfs      f1, 8(r27)
+	fmuls    f0, f4, f4
+	fsubs    f1, f2, f1
+	fmadds   f0, f3, f3, f0
+	fmadds   f1, f1, f1, f0
+	bl       pikmin2_sqrtf__Ff
+	lfs      f0, 0xc(r27)
+	fcmpo    cr0, f1, f0
+	cror     2, 0, 2
+	bne      lbl_8041670C
+	lfs      f0, lbl_80520308@sda21(r2)
+	stfs     f0, 0(r29)
+	lfs      f1, 0(r27)
+	lfs      f0, 0(r28)
+	lfs      f3, 4(r27)
+	lfs      f2, 4(r28)
+	fsubs    f0, f1, f0
+	lfs      f4, 8(r27)
+	lfs      f1, 8(r28)
+	fsubs    f2, f3, f2
+	stfs     f0, 0(r30)
+	fsubs    f0, f4, f1
+	stfs     f2, 4(r30)
+	stfs     f0, 8(r30)
+	lfs      f1, 0(r30)
+	lfs      f0, 4(r30)
+	lfs      f2, 8(r30)
+	fmuls    f1, f1, f1
+	fmuls    f0, f0, f0
+	fmuls    f2, f2, f2
+	fadds    f0, f1, f0
+	fadds    f1, f2, f0
+	bl       pikmin2_sqrtf__Ff
+	lfs      f0, lbl_80520308@sda21(r2)
+	fcmpo    cr0, f1, f0
+	ble      lbl_804166DC
+	lfs      f2, lbl_8052030C@sda21(r2)
+	lfs      f0, 0(r30)
+	fdivs    f2, f2, f1
+	fmuls    f0, f0, f2
+	stfs     f0, 0(r30)
+	lfs      f0, 4(r30)
+	fmuls    f0, f0, f2
+	stfs     f0, 4(r30)
+	lfs      f0, 8(r30)
+	fmuls    f0, f0, f2
+	stfs     f0, 8(r30)
+	b        lbl_804166E0
 
-	.loc_0x1C0:
-	  fmr       f1, f0
+lbl_804166DC:
+	fmr      f1, f0
 
-	.loc_0x1C4:
-	  lfs       f2, 0xC(r27)
-	  lfs       f0, 0x1FA8(r2)
-	  fsubs     f2, f2, f1
-	  fcmpu     cr0, f0, f1
-	  stfs      f2, 0x0(r31)
-	  bne-      .loc_0x1E8
-	  stfs      f0, 0x0(r30)
-	  stfs      f0, 0x4(r30)
-	  stfs      f0, 0x8(r30)
+lbl_804166E0:
+	lfs      f2, 0xc(r27)
+	lfs      f0, lbl_80520308@sda21(r2)
+	fsubs    f2, f2, f1
+	fcmpu    cr0, f0, f1
+	stfs     f2, 0(r31)
+	bne      lbl_80416704
+	stfs     f0, 0(r30)
+	stfs     f0, 4(r30)
+	stfs     f0, 8(r30)
 
-	.loc_0x1E8:
-	  li        r3, 0x1
-	  b         .loc_0x3A8
+lbl_80416704:
+	li       r3, 1
+	b        lbl_804168C4
 
-	.loc_0x1F0:
-	  lfs       f2, 0x10(r28)
-	  lfs       f0, 0x4(r27)
-	  lfs       f1, 0xC(r28)
-	  fsubs     f4, f2, f0
-	  lfs       f0, 0x0(r27)
-	  lfs       f2, 0x14(r28)
-	  fsubs     f3, f1, f0
-	  lfs       f1, 0x8(r27)
-	  fmuls     f0, f4, f4
-	  fsubs     f1, f2, f1
-	  fmadds    f0, f3, f3, f0
-	  fmadds    f1, f1, f1, f0
-	  bl        -0x4F38
-	  lfs       f0, 0xC(r27)
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0, 0x2
-	  bne-      .loc_0x2FC
-	  lfs       f0, 0x1FAC(r2)
-	  stfs      f0, 0x0(r29)
-	  lfs       f1, 0x0(r27)
-	  lfs       f0, 0xC(r28)
-	  lfs       f3, 0x4(r27)
-	  lfs       f2, 0x10(r28)
-	  fsubs     f0, f1, f0
-	  lfs       f4, 0x8(r27)
-	  lfs       f1, 0x14(r28)
-	  fsubs     f2, f3, f2
-	  stfs      f0, 0x0(r30)
-	  fsubs     f0, f4, f1
-	  stfs      f2, 0x4(r30)
-	  stfs      f0, 0x8(r30)
-	  lfs       f1, 0x0(r30)
-	  lfs       f0, 0x4(r30)
-	  lfs       f2, 0x8(r30)
-	  fmuls     f1, f1, f1
-	  fmuls     f0, f0, f0
-	  fmuls     f2, f2, f2
-	  fadds     f0, f1, f0
-	  fadds     f1, f2, f0
-	  bl        -0x4FA4
-	  lfs       f0, 0x1FA8(r2)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x2CC
-	  lfs       f2, 0x1FAC(r2)
-	  lfs       f0, 0x0(r30)
-	  fdivs     f2, f2, f1
-	  fmuls     f0, f0, f2
-	  stfs      f0, 0x0(r30)
-	  lfs       f0, 0x4(r30)
-	  fmuls     f0, f0, f2
-	  stfs      f0, 0x4(r30)
-	  lfs       f0, 0x8(r30)
-	  fmuls     f0, f0, f2
-	  stfs      f0, 0x8(r30)
-	  b         .loc_0x2D0
+lbl_8041670C:
+	lfs      f2, 0x10(r28)
+	lfs      f0, 4(r27)
+	lfs      f1, 0xc(r28)
+	fsubs    f4, f2, f0
+	lfs      f0, 0(r27)
+	lfs      f2, 0x14(r28)
+	fsubs    f3, f1, f0
+	lfs      f1, 8(r27)
+	fmuls    f0, f4, f4
+	fsubs    f1, f2, f1
+	fmadds   f0, f3, f3, f0
+	fmadds   f1, f1, f1, f0
+	bl       pikmin2_sqrtf__Ff
+	lfs      f0, 0xc(r27)
+	fcmpo    cr0, f1, f0
+	cror     2, 0, 2
+	bne      lbl_80416818
+	lfs      f0, lbl_8052030C@sda21(r2)
+	stfs     f0, 0(r29)
+	lfs      f1, 0(r27)
+	lfs      f0, 0xc(r28)
+	lfs      f3, 4(r27)
+	lfs      f2, 0x10(r28)
+	fsubs    f0, f1, f0
+	lfs      f4, 8(r27)
+	lfs      f1, 0x14(r28)
+	fsubs    f2, f3, f2
+	stfs     f0, 0(r30)
+	fsubs    f0, f4, f1
+	stfs     f2, 4(r30)
+	stfs     f0, 8(r30)
+	lfs      f1, 0(r30)
+	lfs      f0, 4(r30)
+	lfs      f2, 8(r30)
+	fmuls    f1, f1, f1
+	fmuls    f0, f0, f0
+	fmuls    f2, f2, f2
+	fadds    f0, f1, f0
+	fadds    f1, f2, f0
+	bl       pikmin2_sqrtf__Ff
+	lfs      f0, lbl_80520308@sda21(r2)
+	fcmpo    cr0, f1, f0
+	ble      lbl_804167E8
+	lfs      f2, lbl_8052030C@sda21(r2)
+	lfs      f0, 0(r30)
+	fdivs    f2, f2, f1
+	fmuls    f0, f0, f2
+	stfs     f0, 0(r30)
+	lfs      f0, 4(r30)
+	fmuls    f0, f0, f2
+	stfs     f0, 4(r30)
+	lfs      f0, 8(r30)
+	fmuls    f0, f0, f2
+	stfs     f0, 8(r30)
+	b        lbl_804167EC
 
-	.loc_0x2CC:
-	  fmr       f1, f0
+lbl_804167E8:
+	fmr      f1, f0
 
-	.loc_0x2D0:
-	  lfs       f2, 0xC(r27)
-	  lfs       f0, 0x1FA8(r2)
-	  fsubs     f2, f2, f1
-	  fcmpu     cr0, f0, f1
-	  stfs      f2, 0x0(r31)
-	  bne-      .loc_0x2F4
-	  stfs      f0, 0x0(r30)
-	  stfs      f0, 0x4(r30)
-	  stfs      f0, 0x8(r30)
+lbl_804167EC:
+	lfs      f2, 0xc(r27)
+	lfs      f0, lbl_80520308@sda21(r2)
+	fsubs    f2, f2, f1
+	fcmpu    cr0, f0, f1
+	stfs     f2, 0(r31)
+	bne      lbl_80416810
+	stfs     f0, 0(r30)
+	stfs     f0, 4(r30)
+	stfs     f0, 8(r30)
 
-	.loc_0x2F4:
-	  li        r3, 0x1
-	  b         .loc_0x3A8
+lbl_80416810:
+	li       r3, 1
+	b        lbl_804168C4
 
-	.loc_0x2FC:
-	  li        r3, 0
-	  b         .loc_0x3A8
+lbl_80416818:
+	li       r3, 0
+	b        lbl_804168C4
 
-	.loc_0x304:
-	  fmuls     f1, f30, f2
-	  fmuls     f0, f31, f2
-	  fmuls     f2, f29, f2
-	  fsubs     f30, f5, f1
-	  fsubs     f29, f4, f0
-	  fsubs     f31, f3, f2
-	  fmuls     f0, f30, f30
-	  fmadds    f0, f29, f29, f0
-	  fmadds    f1, f31, f31, f0
-	  bl        -0x5040
-	  lfs       f0, 0x1FA8(r2)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x350
-	  lfs       f0, 0x1FAC(r2)
-	  fdivs     f0, f0, f1
-	  fmuls     f29, f29, f0
-	  fmuls     f30, f30, f0
-	  fmuls     f31, f31, f0
-	  b         .loc_0x354
+lbl_80416820:
+	fmuls    f1, f30, f2
+	fmuls    f0, f31, f2
+	fmuls    f2, f29, f2
+	fsubs    f30, f5, f1
+	fsubs    f29, f4, f0
+	fsubs    f31, f3, f2
+	fmuls    f0, f30, f30
+	fmadds   f0, f29, f29, f0
+	fmadds   f1, f31, f31, f0
+	bl       pikmin2_sqrtf__Ff
+	lfs      f0, lbl_80520308@sda21(r2)
+	fcmpo    cr0, f1, f0
+	ble      lbl_8041686C
+	lfs      f0, lbl_8052030C@sda21(r2)
+	fdivs    f0, f0, f1
+	fmuls    f29, f29, f0
+	fmuls    f30, f30, f0
+	fmuls    f31, f31, f0
+	b        lbl_80416870
 
-	.loc_0x350:
-	  fmr       f1, f0
+lbl_8041686C:
+	fmr      f1, f0
 
-	.loc_0x354:
-	  lfs       f2, 0xC(r27)
-	  fcmpo     cr0, f1, f2
-	  bge-      .loc_0x3A4
-	  lfs       f0, 0x1FA8(r2)
-	  fcmpu     cr0, f0, f1
-	  bne-      .loc_0x388
-	  stfs      f0, 0x0(r30)
-	  li        r3, 0x1
-	  stfs      f0, 0x4(r30)
-	  stfs      f0, 0x8(r30)
-	  lfs       f0, 0xC(r27)
-	  stfs      f0, 0x0(r31)
-	  b         .loc_0x3A8
+lbl_80416870:
+	lfs      f2, 0xc(r27)
+	fcmpo    cr0, f1, f2
+	bge      lbl_804168C0
+	lfs      f0, lbl_80520308@sda21(r2)
+	fcmpu    cr0, f0, f1
+	bne      lbl_804168A4
+	stfs     f0, 0(r30)
+	li       r3, 1
+	stfs     f0, 4(r30)
+	stfs     f0, 8(r30)
+	lfs      f0, 0xc(r27)
+	stfs     f0, 0(r31)
+	b        lbl_804168C4
 
-	.loc_0x388:
-	  fsubs     f0, f2, f1
-	  li        r3, 0x1
-	  stfs      f0, 0x0(r31)
-	  stfs      f29, 0x0(r30)
-	  stfs      f30, 0x4(r30)
-	  stfs      f31, 0x8(r30)
-	  b         .loc_0x3A8
+lbl_804168A4:
+	fsubs    f0, f2, f1
+	li       r3, 1
+	stfs     f0, 0(r31)
+	stfs     f29, 0(r30)
+	stfs     f30, 4(r30)
+	stfs     f31, 8(r30)
+	b        lbl_804168C4
 
-	.loc_0x3A4:
-	  li        r3, 0
+lbl_804168C0:
+	li       r3, 0
 
-	.loc_0x3A8:
-	  psq_l     f31,0x48(r1),0,0
-	  lfd       f31, 0x40(r1)
-	  psq_l     f30,0x38(r1),0,0
-	  lfd       f30, 0x30(r1)
-	  psq_l     f29,0x28(r1),0,0
-	  lfd       f29, 0x20(r1)
-	  lmw       r27, 0xC(r1)
-	  lwz       r0, 0x54(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x50
-	  blr
+lbl_804168C4:
+	psq_l    f31, 72(r1), 0, qr0
+	lfd      f31, 0x40(r1)
+	psq_l    f30, 56(r1), 0, qr0
+	lfd      f30, 0x30(r1)
+	psq_l    f29, 40(r1), 0, qr0
+	lfd      f29, 0x20(r1)
+	lmw      r27, 0xc(r1)
+	lwz      r0, 0x54(r1)
+	mtlr     r0
+	addi     r1, r1, 0x50
+	blr
 	*/
 }
 
@@ -1171,33 +1324,32 @@ void Sphere::intersectRay(Vector3f&, Vector3f&)
 Triangle::Triangle(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lfs       f1, 0x1FA8(r2)
-	  li        r5, 0
-	  stw       r0, 0x14(r1)
-	  li        r6, 0x10
-	  lfs       f0, 0x1FAC(r2)
-	  li        r7, 0x3
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lis       r3, 0x8015
-	  stfs      f1, 0xC(r31)
-	  addi      r4, r3, 0x1C68
-	  addi      r3, r31, 0x1C
-	  stfs      f0, 0x10(r31)
-	  stfs      f1, 0x14(r31)
-	  stfs      f1, 0x18(r31)
-	  bl        -0x3550F8
-	  li        r0, 0
-	  mr        r3, r31
-	  stb       r0, 0x5C(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lfs      f1, lbl_80520308@sda21(r2)
+	li       r5, 0
+	stw      r0, 0x14(r1)
+	li       r6, 0x10
+	lfs      f0, lbl_8052030C@sda21(r2)
+	li       r7, 3
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lis      r3, __ct__5PlaneFv@ha
+	stfs     f1, 0xc(r31)
+	addi     r4, r3, __ct__5PlaneFv@l
+	addi     r3, r31, 0x1c
+	stfs     f0, 0x10(r31)
+	stfs     f1, 0x14(r31)
+	stfs     f1, 0x18(r31)
+	bl       __construct_array
+	li       r0, 0
+	mr       r3, r31
+	stb      r0, 0x5c(r31)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1219,101 +1371,100 @@ void Triangle::findNearestPoint(Sys::VertexTable&, Vector3f&, Vector3f&)
 void Triangle::createSphere(Sys::VertexTable&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x60(r1)
-	  mflr      r0
-	  stw       r0, 0x64(r1)
-	  stfd      f31, 0x50(r1)
-	  psq_st    f31,0x58(r1),0,0
-	  stfd      f30, 0x40(r1)
-	  psq_st    f30,0x48(r1),0,0
-	  stfd      f29, 0x30(r1)
-	  psq_st    f29,0x38(r1),0,0
-	  stfd      f28, 0x20(r1)
-	  psq_st    f28,0x28(r1),0,0
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  stw       r28, 0x10(r1)
-	  mr        r28, r3
-	  mr        r29, r4
-	  lwz       r3, 0x4(r3)
-	  mr        r31, r28
-	  lwz       r0, 0x0(r28)
-	  li        r30, 0
-	  mulli     r3, r3, 0xC
-	  lwz       r5, 0x24(r4)
-	  lwz       r4, 0x8(r28)
-	  lfs       f4, 0x1FB4(r2)
-	  add       r3, r5, r3
-	  lfs       f31, 0x1FA8(r2)
-	  mulli     r0, r0, 0xC
-	  lfs       f5, 0x0(r3)
-	  lfs       f2, 0x4(r3)
-	  lfs       f0, 0x8(r3)
-	  add       r3, r5, r0
-	  mulli     r0, r4, 0xC
-	  lfs       f6, 0x0(r3)
-	  lfs       f3, 0x4(r3)
-	  lfs       f1, 0x8(r3)
-	  fadds     f6, f6, f5
-	  add       r3, r5, r0
-	  lfs       f5, 0x0(r3)
-	  fadds     f3, f3, f2
-	  lfs       f2, 0x4(r3)
-	  fadds     f1, f1, f0
-	  lfs       f0, 0x8(r3)
-	  fadds     f5, f6, f5
-	  fadds     f2, f3, f2
-	  fadds     f0, f1, f0
-	  fmuls     f30, f5, f4
-	  fmuls     f29, f2, f4
-	  fmuls     f28, f0, f4
+	stwu     r1, -0x60(r1)
+	mflr     r0
+	stw      r0, 0x64(r1)
+	stfd     f31, 0x50(r1)
+	psq_st   f31, 88(r1), 0, qr0
+	stfd     f30, 0x40(r1)
+	psq_st   f30, 72(r1), 0, qr0
+	stfd     f29, 0x30(r1)
+	psq_st   f29, 56(r1), 0, qr0
+	stfd     f28, 0x20(r1)
+	psq_st   f28, 40(r1), 0, qr0
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	stw      r28, 0x10(r1)
+	mr       r28, r3
+	mr       r29, r4
+	lwz      r3, 4(r3)
+	mr       r31, r28
+	lwz      r0, 0(r28)
+	li       r30, 0
+	mulli    r3, r3, 0xc
+	lwz      r5, 0x24(r4)
+	lwz      r4, 8(r28)
+	lfs      f4, lbl_80520314@sda21(r2)
+	add      r3, r5, r3
+	lfs      f31, lbl_80520308@sda21(r2)
+	mulli    r0, r0, 0xc
+	lfs      f5, 0(r3)
+	lfs      f2, 4(r3)
+	lfs      f0, 8(r3)
+	add      r3, r5, r0
+	mulli    r0, r4, 0xc
+	lfs      f6, 0(r3)
+	lfs      f3, 4(r3)
+	lfs      f1, 8(r3)
+	fadds    f6, f6, f5
+	add      r3, r5, r0
+	lfs      f5, 0(r3)
+	fadds    f3, f3, f2
+	lfs      f2, 4(r3)
+	fadds    f1, f1, f0
+	lfs      f0, 8(r3)
+	fadds    f5, f6, f5
+	fadds    f2, f3, f2
+	fadds    f0, f1, f0
+	fmuls    f30, f5, f4
+	fmuls    f29, f2, f4
+	fmuls    f28, f0, f4
 
-	.loc_0xC4:
-	  lwz       r0, 0x0(r31)
-	  lwz       r3, 0x24(r29)
-	  mulli     r0, r0, 0xC
-	  add       r3, r3, r0
-	  lfs       f1, 0x4(r3)
-	  lfs       f0, 0x0(r3)
-	  fsubs     f3, f1, f29
-	  lfs       f1, 0x8(r3)
-	  fsubs     f2, f0, f30
-	  fsubs     f1, f1, f28
-	  fmuls     f0, f3, f3
-	  fmadds    f0, f2, f2, f0
-	  fmadds    f1, f1, f1, f0
-	  bl        -0x524C
-	  fcmpo     cr0, f1, f31
-	  ble-      .loc_0x108
-	  fmr       f31, f1
+lbl_80416A1C:
+	lwz      r0, 0(r31)
+	lwz      r3, 0x24(r29)
+	mulli    r0, r0, 0xc
+	add      r3, r3, r0
+	lfs      f1, 4(r3)
+	lfs      f0, 0(r3)
+	fsubs    f3, f1, f29
+	lfs      f1, 8(r3)
+	fsubs    f2, f0, f30
+	fsubs    f1, f1, f28
+	fmuls    f0, f3, f3
+	fmadds   f0, f2, f2, f0
+	fmadds   f1, f1, f1, f0
+	bl       pikmin2_sqrtf__Ff
+	fcmpo    cr0, f1, f31
+	ble      lbl_80416A60
+	fmr      f31, f1
 
-	.loc_0x108:
-	  addi      r30, r30, 0x1
-	  addi      r31, r31, 0x4
-	  cmpwi     r30, 0x3
-	  blt+      .loc_0xC4
-	  stfs      f31, 0x58(r28)
-	  stfs      f30, 0x4C(r28)
-	  stfs      f29, 0x50(r28)
-	  stfs      f28, 0x54(r28)
-	  psq_l     f31,0x58(r1),0,0
-	  lfd       f31, 0x50(r1)
-	  psq_l     f30,0x48(r1),0,0
-	  lfd       f30, 0x40(r1)
-	  psq_l     f29,0x38(r1),0,0
-	  lfd       f29, 0x30(r1)
-	  psq_l     f28,0x28(r1),0,0
-	  lfd       f28, 0x20(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r0, 0x64(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x60
-	  blr
+lbl_80416A60:
+	addi     r30, r30, 1
+	addi     r31, r31, 4
+	cmpwi    r30, 3
+	blt      lbl_80416A1C
+	stfs     f31, 0x58(r28)
+	stfs     f30, 0x4c(r28)
+	stfs     f29, 0x50(r28)
+	stfs     f28, 0x54(r28)
+	psq_l    f31, 88(r1), 0, qr0
+	lfd      f31, 0x50(r1)
+	psq_l    f30, 72(r1), 0, qr0
+	lfd      f30, 0x40(r1)
+	psq_l    f29, 56(r1), 0, qr0
+	lfd      f29, 0x30(r1)
+	psq_l    f28, 40(r1), 0, qr0
+	lfd      f28, 0x20(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r0, 0x64(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x60
+	blr
 	*/
 }
 
@@ -1325,40 +1476,39 @@ void Triangle::createSphere(Sys::VertexTable&)
 void Triangle::fastIntersect(Sys::Sphere&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lfs       f1, 0x4(r4)
-	  lfs       f0, 0x50(r3)
-	  lfs       f3, 0x0(r4)
-	  fsubs     f4, f1, f0
-	  lfs       f0, 0x4C(r3)
-	  lfs       f2, 0x8(r4)
-	  fsubs     f3, f3, f0
-	  lfs       f1, 0x54(r3)
-	  fmuls     f0, f4, f4
-	  fsubs     f1, f2, f1
-	  fmadds    f0, f3, f3, f0
-	  fmadds    f1, f1, f1, f0
-	  bl        -0x5308
-	  lfs       f2, 0xC(r31)
-	  lfs       f0, 0x58(r30)
-	  fadds     f0, f2, f0
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0, 0x2
-	  mfcr      r0
-	  rlwinm    r3,r0,3,31,31
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lfs      f1, 4(r4)
+	lfs      f0, 0x50(r3)
+	lfs      f3, 0(r4)
+	fsubs    f4, f1, f0
+	lfs      f0, 0x4c(r3)
+	lfs      f2, 8(r4)
+	fsubs    f3, f3, f0
+	lfs      f1, 0x54(r3)
+	fmuls    f0, f4, f4
+	fsubs    f1, f2, f1
+	fmadds   f0, f3, f3, f0
+	fmadds   f1, f1, f1, f0
+	bl       pikmin2_sqrtf__Ff
+	lfs      f2, 0xc(r31)
+	lfs      f0, 0x58(r30)
+	fadds    f0, f2, f0
+	fcmpo    cr0, f1, f0
+	cror     2, 0, 2
+	mfcr     r0
+	rlwinm   r3, r0, 3, 0x1f, 0x1f
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1410,88 +1560,87 @@ void Triangle::draw(Graphics&, Sys::VertexTable&, bool)
 void Triangle::calcDist(Plane&, Sys::VertexTable&)
 {
 	/*
-	.loc_0x0:
-	  lwz       r0, 0x0(r3)
-	  lwz       r6, 0x4(r3)
-	  mulli     r7, r0, 0xC
-	  lwz       r8, 0x24(r5)
-	  lwz       r0, 0x8(r3)
-	  lfs       f6, 0x4(r4)
-	  add       r5, r8, r7
-	  lfs       f7, 0x0(r4)
-	  mulli     r3, r6, 0xC
-	  lfs       f0, 0x4(r5)
-	  lfs       f4, 0x0(r5)
-	  fmuls     f3, f0, f6
-	  lfs       f5, 0x8(r5)
-	  add       r3, r8, r3
-	  mulli     r0, r0, 0xC
-	  lfs       f0, 0x4(r3)
-	  lfs       f2, 0x0(r3)
-	  fmuls     f1, f0, f6
-	  lfs       f8, 0x8(r4)
-	  add       r5, r8, r0
-	  lfs       f0, 0x4(r5)
-	  fmadds    f4, f4, f7, f3
-	  fmadds    f2, f2, f7, f1
-	  lfs       f3, 0x8(r3)
-	  fmuls     f0, f0, f6
-	  lfs       f1, 0x0(r5)
-	  fmadds    f4, f5, f8, f4
-	  lfs       f5, 0xC(r4)
-	  fmadds    f3, f3, f8, f2
-	  lfs       f2, 0x8(r5)
-	  fmadds    f0, f1, f7, f0
-	  fsubs     f4, f4, f5
-	  fsubs     f3, f3, f5
-	  fmadds    f0, f2, f8, f0
-	  fcmpo     cr0, f4, f3
-	  fsubs     f0, f0, f5
-	  bge-      .loc_0xAC
-	  fcmpo     cr0, f4, f0
-	  bge-      .loc_0xA4
-	  fmr       f1, f4
-	  b         .loc_0xC0
+	lwz      r0, 0(r3)
+	lwz      r6, 4(r3)
+	mulli    r7, r0, 0xc
+	lwz      r8, 0x24(r5)
+	lwz      r0, 8(r3)
+	lfs      f6, 4(r4)
+	add      r5, r8, r7
+	lfs      f7, 0(r4)
+	mulli    r3, r6, 0xc
+	lfs      f0, 4(r5)
+	lfs      f4, 0(r5)
+	fmuls    f3, f0, f6
+	lfs      f5, 8(r5)
+	add      r3, r8, r3
+	mulli    r0, r0, 0xc
+	lfs      f0, 4(r3)
+	lfs      f2, 0(r3)
+	fmuls    f1, f0, f6
+	lfs      f8, 8(r4)
+	add      r5, r8, r0
+	lfs      f0, 4(r5)
+	fmadds   f4, f4, f7, f3
+	fmadds   f2, f2, f7, f1
+	lfs      f3, 8(r3)
+	fmuls    f0, f0, f6
+	lfs      f1, 0(r5)
+	fmadds   f4, f5, f8, f4
+	lfs      f5, 0xc(r4)
+	fmadds   f3, f3, f8, f2
+	lfs      f2, 8(r5)
+	fmadds   f0, f1, f7, f0
+	fsubs    f4, f4, f5
+	fsubs    f3, f3, f5
+	fmadds   f0, f2, f8, f0
+	fcmpo    cr0, f4, f3
+	fsubs    f0, f0, f5
+	bge      lbl_80416BF0
+	fcmpo    cr0, f4, f0
+	bge      lbl_80416BE8
+	fmr      f1, f4
+	b        lbl_80416C04
 
-	.loc_0xA4:
-	  fmr       f1, f0
-	  b         .loc_0xC0
+lbl_80416BE8:
+	fmr      f1, f0
+	b        lbl_80416C04
 
-	.loc_0xAC:
-	  fcmpo     cr0, f3, f0
-	  bge-      .loc_0xBC
-	  fmr       f1, f3
-	  b         .loc_0xC0
+lbl_80416BF0:
+	fcmpo    cr0, f3, f0
+	bge      lbl_80416C00
+	fmr      f1, f3
+	b        lbl_80416C04
 
-	.loc_0xBC:
-	  fmr       f1, f0
+lbl_80416C00:
+	fmr      f1, f0
 
-	.loc_0xC0:
-	  fcmpo     cr0, f4, f3
-	  bge-      .loc_0xDC
-	  fcmpo     cr0, f3, f0
-	  bge-      .loc_0xD4
-	  b         .loc_0xEC
+lbl_80416C04:
+	fcmpo    cr0, f4, f3
+	bge      lbl_80416C20
+	fcmpo    cr0, f3, f0
+	bge      lbl_80416C18
+	b        lbl_80416C30
 
-	.loc_0xD4:
-	  fmr       f0, f3
-	  b         .loc_0xEC
+lbl_80416C18:
+	fmr      f0, f3
+	b        lbl_80416C30
 
-	.loc_0xDC:
-	  fcmpo     cr0, f4, f0
-	  bge-      .loc_0xE8
-	  b         .loc_0xEC
+lbl_80416C20:
+	fcmpo    cr0, f4, f0
+	bge      lbl_80416C2C
+	b        lbl_80416C30
 
-	.loc_0xE8:
-	  fmr       f0, f4
+lbl_80416C2C:
+	fmr      f0, f4
 
-	.loc_0xEC:
-	  fmuls     f2, f1, f0
-	  lfs       f0, 0x1FA8(r2)
-	  fcmpo     cr0, f2, f0
-	  bgtlr-
-	  fmr       f1, f0
-	  blr
+lbl_80416C30:
+	fmuls    f2, f1, f0
+	lfs      f0, lbl_80520308@sda21(r2)
+	fcmpo    cr0, f2, f0
+	bgtlr
+	fmr      f1, f0
+	blr
 	*/
 }
 
@@ -1523,236 +1672,235 @@ void Triangle::intersect(Sys::Edge&, Vector3f&)
 void Triangle::intersect(Sys::Edge&, float, Vector3f&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x60(r1)
-	  mflr      r0
-	  stw       r0, 0x64(r1)
-	  stfd      f31, 0x50(r1)
-	  psq_st    f31,0x58(r1),0,0
-	  stfd      f30, 0x40(r1)
-	  psq_st    f30,0x48(r1),0,0
-	  stfd      f29, 0x30(r1)
-	  psq_st    f29,0x38(r1),0,0
-	  stfd      f28, 0x20(r1)
-	  psq_st    f28,0x28(r1),0,0
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r30, r4
-	  fmr       f28, f1
-	  lfs       f2, 0x10(r4)
-	  mr        r29, r3
-	  lfs       f0, 0x4(r4)
-	  mr        r31, r5
-	  lfs       f1, 0xC(r4)
-	  fsubs     f30, f2, f0
-	  lfs       f0, 0x0(r4)
-	  lfs       f2, 0x14(r4)
-	  fsubs     f31, f1, f0
-	  lfs       f1, 0x8(r4)
-	  fmuls     f0, f30, f30
-	  fsubs     f29, f2, f1
-	  fmadds    f0, f31, f31, f0
-	  fmadds    f1, f29, f29, f0
-	  bl        -0x54BC
-	  lfs       f3, 0x10(r29)
-	  lfs       f0, 0x1FA8(r2)
-	  fmuls     f2, f3, f30
-	  lfs       f6, 0xC(r29)
-	  lfs       f7, 0x14(r29)
-	  fcmpu     cr0, f0, f1
-	  fmadds    f0, f6, f31, f2
-	  fmadds    f4, f7, f29, f0
-	  bne-      .loc_0xA8
-	  li        r3, 0
-	  b         .loc_0x2F8
+	stwu     r1, -0x60(r1)
+	mflr     r0
+	stw      r0, 0x64(r1)
+	stfd     f31, 0x50(r1)
+	psq_st   f31, 88(r1), 0, qr0
+	stfd     f30, 0x40(r1)
+	psq_st   f30, 72(r1), 0, qr0
+	stfd     f29, 0x30(r1)
+	psq_st   f29, 56(r1), 0, qr0
+	stfd     f28, 0x20(r1)
+	psq_st   f28, 40(r1), 0, qr0
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	mr       r30, r4
+	fmr      f28, f1
+	lfs      f2, 0x10(r4)
+	mr       r29, r3
+	lfs      f0, 4(r4)
+	mr       r31, r5
+	lfs      f1, 0xc(r4)
+	fsubs    f30, f2, f0
+	lfs      f0, 0(r4)
+	lfs      f2, 0x14(r4)
+	fsubs    f31, f1, f0
+	lfs      f1, 8(r4)
+	fmuls    f0, f30, f30
+	fsubs    f29, f2, f1
+	fmadds   f0, f31, f31, f0
+	fmadds   f1, f29, f29, f0
+	bl       pikmin2_sqrtf__Ff
+	lfs      f3, 0x10(r29)
+	lfs      f0, lbl_80520308@sda21(r2)
+	fmuls    f2, f3, f30
+	lfs      f6, 0xc(r29)
+	lfs      f7, 0x14(r29)
+	fcmpu    cr0, f0, f1
+	fmadds   f0, f6, f31, f2
+	fmadds   f4, f7, f29, f0
+	bne      lbl_80416CF0
+	li       r3, 0
+	b        lbl_80416F40
 
-	.loc_0xA8:
-	  fdivs     f2, f28, f1
-	  lfs       f0, 0x1FC0(r2)
-	  fabs      f1, f4
-	  frsp      f1, f1
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x1EC
-	  lfs       f1, 0x4(r30)
-	  lfs       f4, 0x0(r30)
-	  fmuls     f3, f1, f3
-	  lfs       f5, 0x8(r30)
-	  lfs       f1, 0x18(r29)
-	  fmadds    f3, f4, f6, f3
-	  fmadds    f3, f5, f7, f3
-	  fsubs     f1, f3, f1
-	  fabs      f1, f1
-	  frsp      f1, f1
-	  fcmpo     cr0, f1, f28
-	  cror      2, 0, 0x2
-	  bne-      .loc_0x1DC
-	  lfs       f3, 0x1FAC(r2)
-	  fneg      f1, f2
-	  li        r0, 0x3
-	  mr        r3, r29
-	  fadds     f2, f3, f2
-	  mtctr     r0
+lbl_80416CF0:
+	fdivs    f2, f28, f1
+	lfs      f0, lbl_80520320@sda21(r2)
+	fabs     f1, f4
+	frsp     f1, f1
+	fcmpo    cr0, f1, f0
+	bge      lbl_80416E34
+	lfs      f1, 4(r30)
+	lfs      f4, 0(r30)
+	fmuls    f3, f1, f3
+	lfs      f5, 8(r30)
+	lfs      f1, 0x18(r29)
+	fmadds   f3, f4, f6, f3
+	fmadds   f3, f5, f7, f3
+	fsubs    f1, f3, f1
+	fabs     f1, f1
+	frsp     f1, f1
+	fcmpo    cr0, f1, f28
+	cror     2, 0, 2
+	bne      lbl_80416E24
+	lfs      f3, lbl_8052030C@sda21(r2)
+	fneg     f1, f2
+	li       r0, 3
+	mr       r3, r29
+	fadds    f2, f3, f2
+	mtctr    r0
 
-	.loc_0x10C:
-	  lfs       f4, 0x20(r3)
-	  lfs       f5, 0x1C(r3)
-	  fmuls     f3, f4, f30
-	  lfs       f6, 0x24(r3)
-	  fmadds    f3, f5, f31, f3
-	  fmadds    f7, f6, f29, f3
-	  fabs      f3, f7
-	  frsp      f3, f3
-	  fcmpo     cr0, f3, f0
-	  ble-      .loc_0x1D0
-	  lfs       f9, 0x4(r30)
-	  lfs       f10, 0x0(r30)
-	  fmuls     f3, f4, f9
-	  lfs       f8, 0x8(r30)
-	  lfs       f4, 0x28(r3)
-	  fmadds    f3, f5, f10, f3
-	  fmadds    f3, f6, f8, f3
-	  fsubs     f3, f4, f3
-	  fdivs     f3, f3, f7
-	  fcmpo     cr0, f3, f1
-	  ble-      .loc_0x1D0
-	  fcmpo     cr0, f3, f2
-	  bge-      .loc_0x1D0
-	  fmuls     f5, f31, f3
-	  fmuls     f4, f30, f3
-	  fmuls     f3, f29, f3
-	  fadds     f5, f10, f5
-	  fadds     f4, f9, f4
-	  fadds     f3, f8, f3
-	  stfs      f5, 0x0(r31)
-	  stfs      f4, 0x4(r31)
-	  stfs      f3, 0x8(r31)
-	  lfs       f4, 0x4(r31)
-	  lfs       f3, 0x10(r29)
-	  lfs       f5, 0x0(r31)
-	  fmuls     f3, f4, f3
-	  lfs       f4, 0xC(r29)
-	  lfs       f7, 0x8(r31)
-	  lfs       f6, 0x14(r29)
-	  fmadds    f4, f5, f4, f3
-	  lfs       f3, 0x18(r29)
-	  fmadds    f4, f7, f6, f4
-	  fsubs     f3, f4, f3
-	  fabs      f3, f3
-	  frsp      f3, f3
-	  fcmpo     cr0, f3, f28
-	  bge-      .loc_0x1D0
-	  li        r3, 0x1
-	  b         .loc_0x2F8
+lbl_80416D54:
+	lfs      f4, 0x20(r3)
+	lfs      f5, 0x1c(r3)
+	fmuls    f3, f4, f30
+	lfs      f6, 0x24(r3)
+	fmadds   f3, f5, f31, f3
+	fmadds   f7, f6, f29, f3
+	fabs     f3, f7
+	frsp     f3, f3
+	fcmpo    cr0, f3, f0
+	ble      lbl_80416E18
+	lfs      f9, 4(r30)
+	lfs      f10, 0(r30)
+	fmuls    f3, f4, f9
+	lfs      f8, 8(r30)
+	lfs      f4, 0x28(r3)
+	fmadds   f3, f5, f10, f3
+	fmadds   f3, f6, f8, f3
+	fsubs    f3, f4, f3
+	fdivs    f3, f3, f7
+	fcmpo    cr0, f3, f1
+	ble      lbl_80416E18
+	fcmpo    cr0, f3, f2
+	bge      lbl_80416E18
+	fmuls    f5, f31, f3
+	fmuls    f4, f30, f3
+	fmuls    f3, f29, f3
+	fadds    f5, f10, f5
+	fadds    f4, f9, f4
+	fadds    f3, f8, f3
+	stfs     f5, 0(r31)
+	stfs     f4, 4(r31)
+	stfs     f3, 8(r31)
+	lfs      f4, 4(r31)
+	lfs      f3, 0x10(r29)
+	lfs      f5, 0(r31)
+	fmuls    f3, f4, f3
+	lfs      f4, 0xc(r29)
+	lfs      f7, 8(r31)
+	lfs      f6, 0x14(r29)
+	fmadds   f4, f5, f4, f3
+	lfs      f3, 0x18(r29)
+	fmadds   f4, f7, f6, f4
+	fsubs    f3, f4, f3
+	fabs     f3, f3
+	frsp     f3, f3
+	fcmpo    cr0, f3, f28
+	bge      lbl_80416E18
+	li       r3, 1
+	b        lbl_80416F40
 
-	.loc_0x1D0:
-	  addi      r3, r3, 0x10
-	  bdnz+     .loc_0x10C
-	  b         .loc_0x1E4
+lbl_80416E18:
+	addi     r3, r3, 0x10
+	bdnz     lbl_80416D54
+	b        lbl_80416E2C
 
-	.loc_0x1DC:
-	  li        r3, 0
-	  b         .loc_0x2F8
+lbl_80416E24:
+	li       r3, 0
+	b        lbl_80416F40
 
-	.loc_0x1E4:
-	  li        r3, 0
-	  b         .loc_0x2F8
+lbl_80416E2C:
+	li       r3, 0
+	b        lbl_80416F40
 
-	.loc_0x1EC:
-	  lfs       f8, 0x4(r30)
-	  fneg      f0, f2
-	  lfs       f9, 0x0(r30)
-	  fmuls     f1, f3, f8
-	  lfs       f5, 0x8(r30)
-	  lfs       f3, 0x18(r29)
-	  fmadds    f1, f6, f9, f1
-	  fmadds    f1, f7, f5, f1
-	  fsubs     f1, f3, f1
-	  fdivs     f3, f1, f4
-	  fcmpo     cr0, f3, f0
-	  blt-      .loc_0x22C
-	  lfs       f0, 0x1FAC(r2)
-	  fadds     f0, f0, f2
-	  fcmpo     cr0, f3, f0
-	  ble-      .loc_0x234
+lbl_80416E34:
+	lfs      f8, 4(r30)
+	fneg     f0, f2
+	lfs      f9, 0(r30)
+	fmuls    f1, f3, f8
+	lfs      f5, 8(r30)
+	lfs      f3, 0x18(r29)
+	fmadds   f1, f6, f9, f1
+	fmadds   f1, f7, f5, f1
+	fsubs    f1, f3, f1
+	fdivs    f3, f1, f4
+	fcmpo    cr0, f3, f0
+	blt      lbl_80416E74
+	lfs      f0, lbl_8052030C@sda21(r2)
+	fadds    f0, f0, f2
+	fcmpo    cr0, f3, f0
+	ble      lbl_80416E7C
 
-	.loc_0x22C:
-	  li        r3, 0
-	  b         .loc_0x2F8
+lbl_80416E74:
+	li       r3, 0
+	b        lbl_80416F40
 
-	.loc_0x234:
-	  fmuls     f2, f31, f3
-	  fmuls     f1, f30, f3
-	  fmuls     f0, f29, f3
-	  fadds     f2, f9, f2
-	  fadds     f1, f8, f1
-	  fadds     f0, f5, f0
-	  stfs      f2, 0x0(r31)
-	  stfs      f1, 0x4(r31)
-	  stfs      f0, 0x8(r31)
-	  lfs       f2, 0x4(r31)
-	  lfs       f0, 0x20(r29)
-	  lfs       f4, 0x0(r31)
-	  fmuls     f1, f2, f0
-	  lfs       f3, 0x1C(r29)
-	  lfs       f6, 0x8(r31)
-	  lfs       f5, 0x24(r29)
-	  fmadds    f1, f4, f3, f1
-	  lfs       f0, 0x28(r29)
-	  fmadds    f1, f6, f5, f1
-	  fsubs     f0, f1, f0
-	  fcmpo     cr0, f0, f28
-	  ble-      .loc_0x294
-	  li        r3, 0
-	  b         .loc_0x2F8
+lbl_80416E7C:
+	fmuls    f2, f31, f3
+	fmuls    f1, f30, f3
+	fmuls    f0, f29, f3
+	fadds    f2, f9, f2
+	fadds    f1, f8, f1
+	fadds    f0, f5, f0
+	stfs     f2, 0(r31)
+	stfs     f1, 4(r31)
+	stfs     f0, 8(r31)
+	lfs      f2, 4(r31)
+	lfs      f0, 0x20(r29)
+	lfs      f4, 0(r31)
+	fmuls    f1, f2, f0
+	lfs      f3, 0x1c(r29)
+	lfs      f6, 8(r31)
+	lfs      f5, 0x24(r29)
+	fmadds   f1, f4, f3, f1
+	lfs      f0, 0x28(r29)
+	fmadds   f1, f6, f5, f1
+	fsubs    f0, f1, f0
+	fcmpo    cr0, f0, f28
+	ble      lbl_80416EDC
+	li       r3, 0
+	b        lbl_80416F40
 
-	.loc_0x294:
-	  lfs       f0, 0x30(r29)
-	  lfs       f3, 0x2C(r29)
-	  fmuls     f1, f2, f0
-	  lfs       f5, 0x34(r29)
-	  lfs       f0, 0x38(r29)
-	  fmadds    f1, f4, f3, f1
-	  fmadds    f1, f6, f5, f1
-	  fsubs     f0, f1, f0
-	  fcmpo     cr0, f0, f28
-	  ble-      .loc_0x2C4
-	  li        r3, 0
-	  b         .loc_0x2F8
+lbl_80416EDC:
+	lfs      f0, 0x30(r29)
+	lfs      f3, 0x2c(r29)
+	fmuls    f1, f2, f0
+	lfs      f5, 0x34(r29)
+	lfs      f0, 0x38(r29)
+	fmadds   f1, f4, f3, f1
+	fmadds   f1, f6, f5, f1
+	fsubs    f0, f1, f0
+	fcmpo    cr0, f0, f28
+	ble      lbl_80416F0C
+	li       r3, 0
+	b        lbl_80416F40
 
-	.loc_0x2C4:
-	  lfs       f0, 0x40(r29)
-	  lfs       f3, 0x3C(r29)
-	  fmuls     f1, f2, f0
-	  lfs       f5, 0x44(r29)
-	  lfs       f0, 0x48(r29)
-	  fmadds    f1, f4, f3, f1
-	  fmadds    f1, f6, f5, f1
-	  fsubs     f0, f1, f0
-	  fcmpo     cr0, f0, f28
-	  ble-      .loc_0x2F4
-	  li        r3, 0
-	  b         .loc_0x2F8
+lbl_80416F0C:
+	lfs      f0, 0x40(r29)
+	lfs      f3, 0x3c(r29)
+	fmuls    f1, f2, f0
+	lfs      f5, 0x44(r29)
+	lfs      f0, 0x48(r29)
+	fmadds   f1, f4, f3, f1
+	fmadds   f1, f6, f5, f1
+	fsubs    f0, f1, f0
+	fcmpo    cr0, f0, f28
+	ble      lbl_80416F3C
+	li       r3, 0
+	b        lbl_80416F40
 
-	.loc_0x2F4:
-	  li        r3, 0x1
+lbl_80416F3C:
+	li       r3, 1
 
-	.loc_0x2F8:
-	  psq_l     f31,0x58(r1),0,0
-	  lfd       f31, 0x50(r1)
-	  psq_l     f30,0x48(r1),0,0
-	  lfd       f30, 0x40(r1)
-	  psq_l     f29,0x38(r1),0,0
-	  lfd       f29, 0x30(r1)
-	  psq_l     f28,0x28(r1),0,0
-	  lfd       f28, 0x20(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r0, 0x64(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x60
-	  blr
+lbl_80416F40:
+	psq_l    f31, 88(r1), 0, qr0
+	lfd      f31, 0x50(r1)
+	psq_l    f30, 72(r1), 0, qr0
+	lfd      f30, 0x40(r1)
+	psq_l    f29, 56(r1), 0, qr0
+	lfd      f29, 0x30(r1)
+	psq_l    f28, 40(r1), 0, qr0
+	lfd      f28, 0x20(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r0, 0x64(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x60
+	blr
 	*/
 }
 
@@ -1764,251 +1912,250 @@ void Triangle::intersect(Sys::Edge&, float, Vector3f&)
 void Triangle::intersect(Sys::Edge&, float, Vector3f&, float&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x60(r1)
-	  mflr      r0
-	  stw       r0, 0x64(r1)
-	  stfd      f31, 0x50(r1)
-	  psq_st    f31,0x58(r1),0,0
-	  stfd      f30, 0x40(r1)
-	  psq_st    f30,0x48(r1),0,0
-	  stfd      f29, 0x30(r1)
-	  psq_st    f29,0x38(r1),0,0
-	  stfd      f28, 0x20(r1)
-	  psq_st    f28,0x28(r1),0,0
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  stw       r28, 0x10(r1)
-	  mr        r29, r4
-	  fmr       f28, f1
-	  lfs       f2, 0x10(r4)
-	  mr        r28, r3
-	  lfs       f0, 0x4(r4)
-	  mr        r30, r5
-	  lfs       f1, 0xC(r4)
-	  fsubs     f30, f2, f0
-	  lfs       f0, 0x0(r4)
-	  lfs       f2, 0x14(r4)
-	  mr        r31, r6
-	  fsubs     f31, f1, f0
-	  lfs       f1, 0x8(r4)
-	  fmuls     f0, f30, f30
-	  fsubs     f29, f2, f1
-	  fmadds    f0, f31, f31, f0
-	  fmadds    f1, f29, f29, f0
-	  bl        -0x57F8
-	  lfs       f3, 0x10(r28)
-	  lfs       f0, 0x1FA8(r2)
-	  fmuls     f2, f3, f30
-	  lfs       f6, 0xC(r28)
-	  lfs       f7, 0x14(r28)
-	  fcmpu     cr0, f0, f1
-	  fmadds    f0, f6, f31, f2
-	  fmadds    f4, f7, f29, f0
-	  bne-      .loc_0xB0
-	  li        r3, 0
-	  b         .loc_0x330
+	stwu     r1, -0x60(r1)
+	mflr     r0
+	stw      r0, 0x64(r1)
+	stfd     f31, 0x50(r1)
+	psq_st   f31, 88(r1), 0, qr0
+	stfd     f30, 0x40(r1)
+	psq_st   f30, 72(r1), 0, qr0
+	stfd     f29, 0x30(r1)
+	psq_st   f29, 56(r1), 0, qr0
+	stfd     f28, 0x20(r1)
+	psq_st   f28, 40(r1), 0, qr0
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	stw      r28, 0x10(r1)
+	mr       r29, r4
+	fmr      f28, f1
+	lfs      f2, 0x10(r4)
+	mr       r28, r3
+	lfs      f0, 4(r4)
+	mr       r30, r5
+	lfs      f1, 0xc(r4)
+	fsubs    f30, f2, f0
+	lfs      f0, 0(r4)
+	lfs      f2, 0x14(r4)
+	mr       r31, r6
+	fsubs    f31, f1, f0
+	lfs      f1, 8(r4)
+	fmuls    f0, f30, f30
+	fsubs    f29, f2, f1
+	fmadds   f0, f31, f31, f0
+	fmadds   f1, f29, f29, f0
+	bl       pikmin2_sqrtf__Ff
+	lfs      f3, 0x10(r28)
+	lfs      f0, lbl_80520308@sda21(r2)
+	fmuls    f2, f3, f30
+	lfs      f6, 0xc(r28)
+	lfs      f7, 0x14(r28)
+	fcmpu    cr0, f0, f1
+	fmadds   f0, f6, f31, f2
+	fmadds   f4, f7, f29, f0
+	bne      lbl_8041702C
+	li       r3, 0
+	b        lbl_804172AC
 
-	.loc_0xB0:
-	  fdivs     f2, f28, f1
-	  lfs       f0, 0x1FC0(r2)
-	  fabs      f1, f4
-	  frsp      f1, f1
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x1FC
-	  lfs       f1, 0x4(r29)
-	  lfs       f4, 0x0(r29)
-	  fmuls     f3, f1, f3
-	  lfs       f5, 0x8(r29)
-	  lfs       f1, 0x18(r28)
-	  fmadds    f3, f4, f6, f3
-	  fmadds    f3, f5, f7, f3
-	  fsubs     f1, f3, f1
-	  fabs      f1, f1
-	  frsp      f1, f1
-	  fcmpo     cr0, f1, f28
-	  cror      2, 0, 0x2
-	  bne-      .loc_0x1EC
-	  lfs       f3, 0x1FAC(r2)
-	  fneg      f1, f2
-	  li        r0, 0x3
-	  mr        r3, r28
-	  fadds     f2, f3, f2
-	  mtctr     r0
+lbl_8041702C:
+	fdivs    f2, f28, f1
+	lfs      f0, lbl_80520320@sda21(r2)
+	fabs     f1, f4
+	frsp     f1, f1
+	fcmpo    cr0, f1, f0
+	bge      lbl_80417178
+	lfs      f1, 4(r29)
+	lfs      f4, 0(r29)
+	fmuls    f3, f1, f3
+	lfs      f5, 8(r29)
+	lfs      f1, 0x18(r28)
+	fmadds   f3, f4, f6, f3
+	fmadds   f3, f5, f7, f3
+	fsubs    f1, f3, f1
+	fabs     f1, f1
+	frsp     f1, f1
+	fcmpo    cr0, f1, f28
+	cror     2, 0, 2
+	bne      lbl_80417168
+	lfs      f3, lbl_8052030C@sda21(r2)
+	fneg     f1, f2
+	li       r0, 3
+	mr       r3, r28
+	fadds    f2, f3, f2
+	mtctr    r0
 
-	.loc_0x114:
-	  lfs       f4, 0x20(r3)
-	  lfs       f5, 0x1C(r3)
-	  fmuls     f3, f4, f30
-	  lfs       f6, 0x24(r3)
-	  fmadds    f3, f5, f31, f3
-	  fmadds    f7, f6, f29, f3
-	  fabs      f3, f7
-	  frsp      f3, f3
-	  fcmpo     cr0, f3, f0
-	  ble-      .loc_0x1E0
-	  lfs       f9, 0x4(r29)
-	  lfs       f10, 0x0(r29)
-	  fmuls     f3, f4, f9
-	  lfs       f8, 0x8(r29)
-	  lfs       f4, 0x28(r3)
-	  fmadds    f3, f5, f10, f3
-	  fmadds    f3, f6, f8, f3
-	  fsubs     f3, f4, f3
-	  fdivs     f3, f3, f7
-	  fcmpo     cr0, f3, f1
-	  ble-      .loc_0x1E0
-	  fcmpo     cr0, f3, f2
-	  bge-      .loc_0x1E0
-	  fmuls     f5, f31, f3
-	  fmuls     f4, f30, f3
-	  fmuls     f3, f29, f3
-	  fadds     f5, f10, f5
-	  fadds     f4, f9, f4
-	  fadds     f3, f8, f3
-	  stfs      f5, 0x0(r30)
-	  stfs      f4, 0x4(r30)
-	  stfs      f3, 0x8(r30)
-	  lfs       f4, 0x4(r30)
-	  lfs       f3, 0x10(r28)
-	  lfs       f5, 0x0(r30)
-	  fmuls     f3, f4, f3
-	  lfs       f4, 0xC(r28)
-	  lfs       f7, 0x8(r30)
-	  lfs       f6, 0x14(r28)
-	  fmadds    f4, f5, f4, f3
-	  lfs       f3, 0x18(r28)
-	  fmadds    f4, f7, f6, f4
-	  fsubs     f4, f4, f3
-	  fabs      f3, f4
-	  frsp      f3, f3
-	  fcmpo     cr0, f3, f28
-	  bge-      .loc_0x1E0
-	  fsubs     f0, f28, f4
-	  li        r3, 0x1
-	  stfs      f0, 0x0(r31)
-	  b         .loc_0x330
+lbl_80417090:
+	lfs      f4, 0x20(r3)
+	lfs      f5, 0x1c(r3)
+	fmuls    f3, f4, f30
+	lfs      f6, 0x24(r3)
+	fmadds   f3, f5, f31, f3
+	fmadds   f7, f6, f29, f3
+	fabs     f3, f7
+	frsp     f3, f3
+	fcmpo    cr0, f3, f0
+	ble      lbl_8041715C
+	lfs      f9, 4(r29)
+	lfs      f10, 0(r29)
+	fmuls    f3, f4, f9
+	lfs      f8, 8(r29)
+	lfs      f4, 0x28(r3)
+	fmadds   f3, f5, f10, f3
+	fmadds   f3, f6, f8, f3
+	fsubs    f3, f4, f3
+	fdivs    f3, f3, f7
+	fcmpo    cr0, f3, f1
+	ble      lbl_8041715C
+	fcmpo    cr0, f3, f2
+	bge      lbl_8041715C
+	fmuls    f5, f31, f3
+	fmuls    f4, f30, f3
+	fmuls    f3, f29, f3
+	fadds    f5, f10, f5
+	fadds    f4, f9, f4
+	fadds    f3, f8, f3
+	stfs     f5, 0(r30)
+	stfs     f4, 4(r30)
+	stfs     f3, 8(r30)
+	lfs      f4, 4(r30)
+	lfs      f3, 0x10(r28)
+	lfs      f5, 0(r30)
+	fmuls    f3, f4, f3
+	lfs      f4, 0xc(r28)
+	lfs      f7, 8(r30)
+	lfs      f6, 0x14(r28)
+	fmadds   f4, f5, f4, f3
+	lfs      f3, 0x18(r28)
+	fmadds   f4, f7, f6, f4
+	fsubs    f4, f4, f3
+	fabs     f3, f4
+	frsp     f3, f3
+	fcmpo    cr0, f3, f28
+	bge      lbl_8041715C
+	fsubs    f0, f28, f4
+	li       r3, 1
+	stfs     f0, 0(r31)
+	b        lbl_804172AC
 
-	.loc_0x1E0:
-	  addi      r3, r3, 0x10
-	  bdnz+     .loc_0x114
-	  b         .loc_0x1F4
+lbl_8041715C:
+	addi     r3, r3, 0x10
+	bdnz     lbl_80417090
+	b        lbl_80417170
 
-	.loc_0x1EC:
-	  li        r3, 0
-	  b         .loc_0x330
+lbl_80417168:
+	li       r3, 0
+	b        lbl_804172AC
 
-	.loc_0x1F4:
-	  li        r3, 0
-	  b         .loc_0x330
+lbl_80417170:
+	li       r3, 0
+	b        lbl_804172AC
 
-	.loc_0x1FC:
-	  lfs       f8, 0x4(r29)
-	  fneg      f0, f2
-	  lfs       f9, 0x0(r29)
-	  fmuls     f1, f3, f8
-	  lfs       f5, 0x8(r29)
-	  lfs       f3, 0x18(r28)
-	  fmadds    f1, f6, f9, f1
-	  fmadds    f1, f7, f5, f1
-	  fsubs     f1, f3, f1
-	  fdivs     f3, f1, f4
-	  fcmpo     cr0, f3, f0
-	  blt-      .loc_0x23C
-	  lfs       f0, 0x1FAC(r2)
-	  fadds     f0, f0, f2
-	  fcmpo     cr0, f3, f0
-	  ble-      .loc_0x244
+lbl_80417178:
+	lfs      f8, 4(r29)
+	fneg     f0, f2
+	lfs      f9, 0(r29)
+	fmuls    f1, f3, f8
+	lfs      f5, 8(r29)
+	lfs      f3, 0x18(r28)
+	fmadds   f1, f6, f9, f1
+	fmadds   f1, f7, f5, f1
+	fsubs    f1, f3, f1
+	fdivs    f3, f1, f4
+	fcmpo    cr0, f3, f0
+	blt      lbl_804171B8
+	lfs      f0, lbl_8052030C@sda21(r2)
+	fadds    f0, f0, f2
+	fcmpo    cr0, f3, f0
+	ble      lbl_804171C0
 
-	.loc_0x23C:
-	  li        r3, 0
-	  b         .loc_0x330
+lbl_804171B8:
+	li       r3, 0
+	b        lbl_804172AC
 
-	.loc_0x244:
-	  fmuls     f2, f31, f3
-	  fmuls     f1, f30, f3
-	  fmuls     f0, f29, f3
-	  fadds     f2, f9, f2
-	  fadds     f1, f8, f1
-	  fadds     f0, f5, f0
-	  stfs      f2, 0x0(r30)
-	  stfs      f1, 0x4(r30)
-	  stfs      f0, 0x8(r30)
-	  lfs       f3, 0x4(r30)
-	  lfs       f0, 0x20(r28)
-	  lfs       f4, 0x0(r30)
-	  fmuls     f1, f3, f0
-	  lfs       f2, 0x1C(r28)
-	  lfs       f6, 0x8(r30)
-	  lfs       f5, 0x24(r28)
-	  fmadds    f1, f4, f2, f1
-	  lfs       f0, 0x28(r28)
-	  fmadds    f1, f6, f5, f1
-	  fsubs     f0, f1, f0
-	  fcmpo     cr0, f0, f28
-	  ble-      .loc_0x2A4
-	  li        r3, 0
-	  b         .loc_0x330
+lbl_804171C0:
+	fmuls    f2, f31, f3
+	fmuls    f1, f30, f3
+	fmuls    f0, f29, f3
+	fadds    f2, f9, f2
+	fadds    f1, f8, f1
+	fadds    f0, f5, f0
+	stfs     f2, 0(r30)
+	stfs     f1, 4(r30)
+	stfs     f0, 8(r30)
+	lfs      f3, 4(r30)
+	lfs      f0, 0x20(r28)
+	lfs      f4, 0(r30)
+	fmuls    f1, f3, f0
+	lfs      f2, 0x1c(r28)
+	lfs      f6, 8(r30)
+	lfs      f5, 0x24(r28)
+	fmadds   f1, f4, f2, f1
+	lfs      f0, 0x28(r28)
+	fmadds   f1, f6, f5, f1
+	fsubs    f0, f1, f0
+	fcmpo    cr0, f0, f28
+	ble      lbl_80417220
+	li       r3, 0
+	b        lbl_804172AC
 
-	.loc_0x2A4:
-	  lfs       f0, 0x30(r28)
-	  lfs       f2, 0x2C(r28)
-	  fmuls     f1, f3, f0
-	  lfs       f5, 0x34(r28)
-	  lfs       f0, 0x38(r28)
-	  fmadds    f1, f4, f2, f1
-	  fmadds    f1, f6, f5, f1
-	  fsubs     f0, f1, f0
-	  fcmpo     cr0, f0, f28
-	  ble-      .loc_0x2D4
-	  li        r3, 0
-	  b         .loc_0x330
+lbl_80417220:
+	lfs      f0, 0x30(r28)
+	lfs      f2, 0x2c(r28)
+	fmuls    f1, f3, f0
+	lfs      f5, 0x34(r28)
+	lfs      f0, 0x38(r28)
+	fmadds   f1, f4, f2, f1
+	fmadds   f1, f6, f5, f1
+	fsubs    f0, f1, f0
+	fcmpo    cr0, f0, f28
+	ble      lbl_80417250
+	li       r3, 0
+	b        lbl_804172AC
 
-	.loc_0x2D4:
-	  lfs       f0, 0x40(r28)
-	  lfs       f2, 0x3C(r28)
-	  fmuls     f1, f3, f0
-	  lfs       f5, 0x44(r28)
-	  lfs       f0, 0x48(r28)
-	  fmadds    f1, f4, f2, f1
-	  fmadds    f1, f6, f5, f1
-	  fsubs     f0, f1, f0
-	  fcmpo     cr0, f0, f28
-	  ble-      .loc_0x304
-	  li        r3, 0
-	  b         .loc_0x330
+lbl_80417250:
+	lfs      f0, 0x40(r28)
+	lfs      f2, 0x3c(r28)
+	fmuls    f1, f3, f0
+	lfs      f5, 0x44(r28)
+	lfs      f0, 0x48(r28)
+	fmadds   f1, f4, f2, f1
+	fmadds   f1, f6, f5, f1
+	fsubs    f0, f1, f0
+	fcmpo    cr0, f0, f28
+	ble      lbl_80417280
+	li       r3, 0
+	b        lbl_804172AC
 
-	.loc_0x304:
-	  lfs       f0, 0x10(r28)
-	  li        r3, 0x1
-	  lfs       f2, 0xC(r28)
-	  fmuls     f1, f3, f0
-	  lfs       f3, 0x14(r28)
-	  lfs       f0, 0x18(r28)
-	  fmadds    f1, f4, f2, f1
-	  fmadds    f1, f6, f3, f1
-	  fsubs     f0, f1, f0
-	  fsubs     f0, f28, f0
-	  stfs      f0, 0x0(r31)
+lbl_80417280:
+	lfs      f0, 0x10(r28)
+	li       r3, 1
+	lfs      f2, 0xc(r28)
+	fmuls    f1, f3, f0
+	lfs      f3, 0x14(r28)
+	lfs      f0, 0x18(r28)
+	fmadds   f1, f4, f2, f1
+	fmadds   f1, f6, f3, f1
+	fsubs    f0, f1, f0
+	fsubs    f0, f28, f0
+	stfs     f0, 0(r31)
 
-	.loc_0x330:
-	  psq_l     f31,0x58(r1),0,0
-	  lfd       f31, 0x50(r1)
-	  psq_l     f30,0x48(r1),0,0
-	  lfd       f30, 0x40(r1)
-	  psq_l     f29,0x38(r1),0,0
-	  lfd       f29, 0x30(r1)
-	  psq_l     f28,0x28(r1),0,0
-	  lfd       f28, 0x20(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r0, 0x64(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x60
-	  blr
+lbl_804172AC:
+	psq_l    f31, 88(r1), 0, qr0
+	lfd      f31, 0x50(r1)
+	psq_l    f30, 72(r1), 0, qr0
+	lfd      f30, 0x40(r1)
+	psq_l    f29, 56(r1), 0, qr0
+	lfd      f29, 0x30(r1)
+	psq_l    f28, 40(r1), 0, qr0
+	lfd      f28, 0x20(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r0, 0x64(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x60
+	blr
 	*/
 }
 
@@ -2020,200 +2167,199 @@ void Triangle::intersect(Sys::Edge&, float, Vector3f&, float&)
 void Triangle::intersect(Sys::VertexTable&, Sys::Sphere&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  stw       r0, 0x44(r1)
-	  stw       r31, 0x3C(r1)
-	  mr        r31, r5
-	  stw       r30, 0x38(r1)
-	  mr        r30, r4
-	  stw       r29, 0x34(r1)
-	  mr        r29, r3
-	  lfs       f5, 0x4(r5)
-	  lfs       f0, 0x10(r3)
-	  lfs       f6, 0x0(r5)
-	  fmuls     f0, f5, f0
-	  lfs       f1, 0xC(r3)
-	  lfs       f7, 0x8(r5)
-	  lfs       f2, 0x14(r3)
-	  fmadds    f1, f6, f1, f0
-	  lfs       f0, 0x18(r3)
-	  lfs       f4, 0xC(r5)
-	  fmadds    f1, f7, f2, f1
-	  fsubs     f0, f1, f0
-	  fabs      f0, f0
-	  frsp      f0, f0
-	  fcmpo     cr0, f0, f4
-	  ble-      .loc_0x6C
-	  li        r3, 0
-	  b         .loc_0x290
+	stwu     r1, -0x40(r1)
+	mflr     r0
+	stw      r0, 0x44(r1)
+	stw      r31, 0x3c(r1)
+	mr       r31, r5
+	stw      r30, 0x38(r1)
+	mr       r30, r4
+	stw      r29, 0x34(r1)
+	mr       r29, r3
+	lfs      f5, 4(r5)
+	lfs      f0, 0x10(r3)
+	lfs      f6, 0(r5)
+	fmuls    f0, f5, f0
+	lfs      f1, 0xc(r3)
+	lfs      f7, 8(r5)
+	lfs      f2, 0x14(r3)
+	fmadds   f1, f6, f1, f0
+	lfs      f0, 0x18(r3)
+	lfs      f4, 0xc(r5)
+	fmadds   f1, f7, f2, f1
+	fsubs    f0, f1, f0
+	fabs     f0, f0
+	frsp     f0, f0
+	fcmpo    cr0, f0, f4
+	ble      lbl_80417358
+	li       r3, 0
+	b        lbl_8041757C
 
-	.loc_0x6C:
-	  lfs       f0, 0x20(r29)
-	  lfs       f2, 0x1C(r29)
-	  fmuls     f1, f5, f0
-	  lfs       f3, 0x24(r29)
-	  lfs       f0, 0x28(r29)
-	  fmadds    f1, f6, f2, f1
-	  fmadds    f1, f7, f3, f1
-	  fsubs     f8, f1, f0
-	  fcmpo     cr0, f8, f4
-	  ble-      .loc_0x9C
-	  li        r3, 0
-	  b         .loc_0x290
+lbl_80417358:
+	lfs      f0, 0x20(r29)
+	lfs      f2, 0x1c(r29)
+	fmuls    f1, f5, f0
+	lfs      f3, 0x24(r29)
+	lfs      f0, 0x28(r29)
+	fmadds   f1, f6, f2, f1
+	fmadds   f1, f7, f3, f1
+	fsubs    f8, f1, f0
+	fcmpo    cr0, f8, f4
+	ble      lbl_80417388
+	li       r3, 0
+	b        lbl_8041757C
 
-	.loc_0x9C:
-	  lfs       f0, 0x30(r29)
-	  lfs       f2, 0x2C(r29)
-	  fmuls     f1, f5, f0
-	  lfs       f3, 0x34(r29)
-	  lfs       f0, 0x38(r29)
-	  stfs      f8, 0xC(r1)
-	  fmadds    f1, f6, f2, f1
-	  fmadds    f1, f7, f3, f1
-	  fsubs     f8, f1, f0
-	  fcmpo     cr0, f8, f4
-	  ble-      .loc_0xD0
-	  li        r3, 0
-	  b         .loc_0x290
+lbl_80417388:
+	lfs      f0, 0x30(r29)
+	lfs      f2, 0x2c(r29)
+	fmuls    f1, f5, f0
+	lfs      f3, 0x34(r29)
+	lfs      f0, 0x38(r29)
+	stfs     f8, 0xc(r1)
+	fmadds   f1, f6, f2, f1
+	fmadds   f1, f7, f3, f1
+	fsubs    f8, f1, f0
+	fcmpo    cr0, f8, f4
+	ble      lbl_804173BC
+	li       r3, 0
+	b        lbl_8041757C
 
-	.loc_0xD0:
-	  lfs       f0, 0x40(r29)
-	  lfs       f2, 0x3C(r29)
-	  fmuls     f1, f5, f0
-	  lfs       f3, 0x44(r29)
-	  lfs       f0, 0x48(r29)
-	  stfs      f8, 0x10(r1)
-	  fmadds    f1, f6, f2, f1
-	  fmadds    f1, f7, f3, f1
-	  fsubs     f8, f1, f0
-	  fcmpo     cr0, f8, f4
-	  ble-      .loc_0x104
-	  li        r3, 0
-	  b         .loc_0x290
+lbl_804173BC:
+	lfs      f0, 0x40(r29)
+	lfs      f2, 0x3c(r29)
+	fmuls    f1, f5, f0
+	lfs      f3, 0x44(r29)
+	lfs      f0, 0x48(r29)
+	stfs     f8, 0x10(r1)
+	fmadds   f1, f6, f2, f1
+	fmadds   f1, f7, f3, f1
+	fsubs    f8, f1, f0
+	fcmpo    cr0, f8, f4
+	ble      lbl_804173F0
+	li       r3, 0
+	b        lbl_8041757C
 
-	.loc_0x104:
-	  lwz       r0, 0x0(r29)
-	  mr        r3, r31
-	  lwz       r6, 0x4(r29)
-	  addi      r4, r1, 0x18
-	  mulli     r0, r0, 0xC
-	  lwz       r8, 0x24(r30)
-	  stfs      f8, 0x14(r1)
-	  addi      r5, r1, 0x8
-	  add       r7, r8, r0
-	  lfs       f0, 0x0(r7)
-	  mulli     r0, r6, 0xC
-	  stfs      f0, 0x18(r1)
-	  add       r6, r8, r0
-	  lfs       f0, 0x4(r7)
-	  stfs      f0, 0x1C(r1)
-	  lfs       f0, 0x8(r7)
-	  stfs      f0, 0x20(r1)
-	  lfs       f0, 0x0(r6)
-	  stfs      f0, 0x24(r1)
-	  lfs       f0, 0x4(r6)
-	  stfs      f0, 0x28(r1)
-	  lfs       f0, 0x8(r6)
-	  stfs      f0, 0x2C(r1)
-	  bl        -0x13C0
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x174
-	  li        r3, 0x1
-	  b         .loc_0x290
+lbl_804173F0:
+	lwz      r0, 0(r29)
+	mr       r3, r31
+	lwz      r6, 4(r29)
+	addi     r4, r1, 0x18
+	mulli    r0, r0, 0xc
+	lwz      r8, 0x24(r30)
+	stfs     f8, 0x14(r1)
+	addi     r5, r1, 8
+	add      r7, r8, r0
+	lfs      f0, 0(r7)
+	mulli    r0, r6, 0xc
+	stfs     f0, 0x18(r1)
+	add      r6, r8, r0
+	lfs      f0, 4(r7)
+	stfs     f0, 0x1c(r1)
+	lfs      f0, 8(r7)
+	stfs     f0, 0x20(r1)
+	lfs      f0, 0(r6)
+	stfs     f0, 0x24(r1)
+	lfs      f0, 4(r6)
+	stfs     f0, 0x28(r1)
+	lfs      f0, 8(r6)
+	stfs     f0, 0x2c(r1)
+	bl       intersect__Q23Sys6SphereFRQ23Sys4EdgeRf
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80417460
+	li       r3, 1
+	b        lbl_8041757C
 
-	.loc_0x174:
-	  lwz       r0, 0x4(r29)
-	  mr        r3, r31
-	  lwz       r6, 0x8(r29)
-	  addi      r4, r1, 0x18
-	  mulli     r0, r0, 0xC
-	  lwz       r8, 0x24(r30)
-	  addi      r5, r1, 0x8
-	  add       r7, r8, r0
-	  lfs       f0, 0x0(r7)
-	  mulli     r0, r6, 0xC
-	  stfs      f0, 0x18(r1)
-	  add       r6, r8, r0
-	  lfs       f0, 0x4(r7)
-	  stfs      f0, 0x1C(r1)
-	  lfs       f0, 0x8(r7)
-	  stfs      f0, 0x20(r1)
-	  lfs       f0, 0x0(r6)
-	  stfs      f0, 0x24(r1)
-	  lfs       f0, 0x4(r6)
-	  stfs      f0, 0x28(r1)
-	  lfs       f0, 0x8(r6)
-	  stfs      f0, 0x2C(r1)
-	  bl        -0x142C
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x1E0
-	  li        r3, 0x1
-	  b         .loc_0x290
+lbl_80417460:
+	lwz      r0, 4(r29)
+	mr       r3, r31
+	lwz      r6, 8(r29)
+	addi     r4, r1, 0x18
+	mulli    r0, r0, 0xc
+	lwz      r8, 0x24(r30)
+	addi     r5, r1, 8
+	add      r7, r8, r0
+	lfs      f0, 0(r7)
+	mulli    r0, r6, 0xc
+	stfs     f0, 0x18(r1)
+	add      r6, r8, r0
+	lfs      f0, 4(r7)
+	stfs     f0, 0x1c(r1)
+	lfs      f0, 8(r7)
+	stfs     f0, 0x20(r1)
+	lfs      f0, 0(r6)
+	stfs     f0, 0x24(r1)
+	lfs      f0, 4(r6)
+	stfs     f0, 0x28(r1)
+	lfs      f0, 8(r6)
+	stfs     f0, 0x2c(r1)
+	bl       intersect__Q23Sys6SphereFRQ23Sys4EdgeRf
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_804174CC
+	li       r3, 1
+	b        lbl_8041757C
 
-	.loc_0x1E0:
-	  lwz       r0, 0x8(r29)
-	  mr        r3, r31
-	  lwz       r6, 0x0(r29)
-	  addi      r4, r1, 0x18
-	  mulli     r0, r0, 0xC
-	  lwz       r8, 0x24(r30)
-	  addi      r5, r1, 0x8
-	  add       r7, r8, r0
-	  lfs       f0, 0x0(r7)
-	  mulli     r0, r6, 0xC
-	  stfs      f0, 0x18(r1)
-	  add       r6, r8, r0
-	  lfs       f0, 0x4(r7)
-	  stfs      f0, 0x1C(r1)
-	  lfs       f0, 0x8(r7)
-	  stfs      f0, 0x20(r1)
-	  lfs       f0, 0x0(r6)
-	  stfs      f0, 0x24(r1)
-	  lfs       f0, 0x4(r6)
-	  stfs      f0, 0x28(r1)
-	  lfs       f0, 0x8(r6)
-	  stfs      f0, 0x2C(r1)
-	  bl        -0x1498
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x24C
-	  li        r3, 0x1
-	  b         .loc_0x290
+lbl_804174CC:
+	lwz      r0, 8(r29)
+	mr       r3, r31
+	lwz      r6, 0(r29)
+	addi     r4, r1, 0x18
+	mulli    r0, r0, 0xc
+	lwz      r8, 0x24(r30)
+	addi     r5, r1, 8
+	add      r7, r8, r0
+	lfs      f0, 0(r7)
+	mulli    r0, r6, 0xc
+	stfs     f0, 0x18(r1)
+	add      r6, r8, r0
+	lfs      f0, 4(r7)
+	stfs     f0, 0x1c(r1)
+	lfs      f0, 8(r7)
+	stfs     f0, 0x20(r1)
+	lfs      f0, 0(r6)
+	stfs     f0, 0x24(r1)
+	lfs      f0, 4(r6)
+	stfs     f0, 0x28(r1)
+	lfs      f0, 8(r6)
+	stfs     f0, 0x2c(r1)
+	bl       intersect__Q23Sys6SphereFRQ23Sys4EdgeRf
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80417538
+	li       r3, 1
+	b        lbl_8041757C
 
-	.loc_0x24C:
-	  lfs       f0, 0x1FA8(r2)
-	  lfs       f1, 0xC(r1)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x264
-	  li        r3, 0
-	  b         .loc_0x290
+lbl_80417538:
+	lfs      f0, lbl_80520308@sda21(r2)
+	lfs      f1, 0xc(r1)
+	fcmpo    cr0, f1, f0
+	ble      lbl_80417550
+	li       r3, 0
+	b        lbl_8041757C
 
-	.loc_0x264:
-	  lfs       f1, 0x10(r1)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x278
-	  li        r3, 0
-	  b         .loc_0x290
+lbl_80417550:
+	lfs      f1, 0x10(r1)
+	fcmpo    cr0, f1, f0
+	ble      lbl_80417564
+	li       r3, 0
+	b        lbl_8041757C
 
-	.loc_0x278:
-	  lfs       f1, 0x14(r1)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x28C
-	  li        r3, 0
-	  b         .loc_0x290
+lbl_80417564:
+	lfs      f1, 0x14(r1)
+	fcmpo    cr0, f1, f0
+	ble      lbl_80417578
+	li       r3, 0
+	b        lbl_8041757C
 
-	.loc_0x28C:
-	  li        r3, 0x1
+lbl_80417578:
+	li       r3, 1
 
-	.loc_0x290:
-	  lwz       r0, 0x44(r1)
-	  lwz       r31, 0x3C(r1)
-	  lwz       r30, 0x38(r1)
-	  lwz       r29, 0x34(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
+lbl_8041757C:
+	lwz      r0, 0x44(r1)
+	lwz      r31, 0x3c(r1)
+	lwz      r30, 0x38(r1)
+	lwz      r29, 0x34(r1)
+	mtlr     r0
+	addi     r1, r1, 0x40
+	blr
 	*/
 }
 
@@ -2225,213 +2371,212 @@ void Triangle::intersect(Sys::VertexTable&, Sys::Sphere&)
 void Triangle::intersect(Sys::VertexTable&, Sys::Sphere&, Vector3f&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  stw       r0, 0x44(r1)
-	  stw       r31, 0x3C(r1)
-	  mr        r31, r6
-	  stw       r30, 0x38(r1)
-	  mr        r30, r5
-	  stw       r29, 0x34(r1)
-	  mr        r29, r4
-	  stw       r28, 0x30(r1)
-	  mr        r28, r3
-	  lfs       f8, 0x4(r5)
-	  lfs       f4, 0x10(r3)
-	  lfs       f10, 0x0(r5)
-	  fmuls     f3, f8, f4
-	  lfs       f9, 0xC(r3)
-	  lfs       f12, 0x8(r5)
-	  lfs       f11, 0x14(r3)
-	  fmadds    f2, f10, f9, f3
-	  lfs       f1, 0x18(r3)
-	  lfs       f0, 0xC(r5)
-	  fmadds    f2, f12, f11, f2
-	  fsubs     f1, f2, f1
-	  fabs      f1, f1
-	  frsp      f1, f1
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x74
-	  li        r3, 0
-	  b         .loc_0x2D8
+	stwu     r1, -0x40(r1)
+	mflr     r0
+	stw      r0, 0x44(r1)
+	stw      r31, 0x3c(r1)
+	mr       r31, r6
+	stw      r30, 0x38(r1)
+	mr       r30, r5
+	stw      r29, 0x34(r1)
+	mr       r29, r4
+	stw      r28, 0x30(r1)
+	mr       r28, r3
+	lfs      f8, 4(r5)
+	lfs      f4, 0x10(r3)
+	lfs      f10, 0(r5)
+	fmuls    f3, f8, f4
+	lfs      f9, 0xc(r3)
+	lfs      f12, 8(r5)
+	lfs      f11, 0x14(r3)
+	fmadds   f2, f10, f9, f3
+	lfs      f1, 0x18(r3)
+	lfs      f0, 0xc(r5)
+	fmadds   f2, f12, f11, f2
+	fsubs    f1, f2, f1
+	fabs     f1, f1
+	frsp     f1, f1
+	fcmpo    cr0, f1, f0
+	ble      lbl_8041760C
+	li       r3, 0
+	b        lbl_80417870
 
-	.loc_0x74:
-	  fmadds    f1, f9, f10, f3
-	  lwz       r0, 0x0(r28)
-	  lwz       r4, 0x4(r28)
-	  mr        r3, r30
-	  lfs       f0, 0x18(r28)
-	  mulli     r0, r0, 0xC
-	  fmadds    f1, f11, f12, f1
-	  lwz       r5, 0x24(r29)
-	  mulli     r4, r4, 0xC
-	  lfs       f5, 0x20(r28)
-	  add       r8, r5, r0
-	  lfs       f6, 0x1C(r28)
-	  fsubs     f2, f1, f0
-	  lfs       f7, 0x24(r28)
-	  lfs       f1, 0x28(r28)
-	  add       r7, r5, r4
-	  lfs       f0, 0x0(r8)
-	  addi      r4, r1, 0x18
-	  fmuls     f3, f4, f2
-	  addi      r5, r1, 0x8
-	  fmuls     f4, f9, f2
-	  fmuls     f2, f11, f2
-	  fsubs     f9, f8, f3
-	  fsubs     f8, f10, f4
-	  fsubs     f10, f12, f2
-	  fmuls     f4, f9, f5
-	  lfs       f5, 0x30(r28)
-	  fmadds    f3, f8, f6, f4
-	  lfs       f6, 0x2C(r28)
-	  fmuls     f4, f9, f5
-	  lfs       f5, 0x40(r28)
-	  fmadds    f2, f10, f7, f3
-	  lfs       f7, 0x34(r28)
-	  fmadds    f3, f8, f6, f4
-	  lfs       f6, 0x3C(r28)
-	  fmuls     f4, f9, f5
-	  fsubs     f5, f2, f1
-	  fmadds    f2, f10, f7, f3
-	  lfs       f1, 0x38(r28)
-	  lfs       f7, 0x44(r28)
-	  fmadds    f3, f8, f6, f4
-	  stfs      f5, 0xC(r1)
-	  fsubs     f5, f2, f1
-	  lfs       f1, 0x48(r28)
-	  fmadds    f2, f10, f7, f3
-	  stfs      f0, 0x18(r1)
-	  lfs       f0, 0x4(r8)
-	  stfs      f5, 0x10(r1)
-	  fsubs     f5, f2, f1
-	  stfs      f0, 0x1C(r1)
-	  lfs       f0, 0x8(r8)
-	  stfs      f5, 0x14(r1)
-	  stfs      f0, 0x20(r1)
-	  lfs       f0, 0x0(r7)
-	  stfs      f0, 0x24(r1)
-	  lfs       f0, 0x4(r7)
-	  stfs      f0, 0x28(r1)
-	  lfs       f0, 0x8(r7)
-	  stfs      f0, 0x2C(r1)
-	  bl        -0x1468
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x174
-	  li        r3, 0x1
-	  b         .loc_0x2D8
+lbl_8041760C:
+	fmadds   f1, f9, f10, f3
+	lwz      r0, 0(r28)
+	lwz      r4, 4(r28)
+	mr       r3, r30
+	lfs      f0, 0x18(r28)
+	mulli    r0, r0, 0xc
+	fmadds   f1, f11, f12, f1
+	lwz      r5, 0x24(r29)
+	mulli    r4, r4, 0xc
+	lfs      f5, 0x20(r28)
+	add      r8, r5, r0
+	lfs      f6, 0x1c(r28)
+	fsubs    f2, f1, f0
+	lfs      f7, 0x24(r28)
+	lfs      f1, 0x28(r28)
+	add      r7, r5, r4
+	lfs      f0, 0(r8)
+	addi     r4, r1, 0x18
+	fmuls    f3, f4, f2
+	addi     r5, r1, 8
+	fmuls    f4, f9, f2
+	fmuls    f2, f11, f2
+	fsubs    f9, f8, f3
+	fsubs    f8, f10, f4
+	fsubs    f10, f12, f2
+	fmuls    f4, f9, f5
+	lfs      f5, 0x30(r28)
+	fmadds   f3, f8, f6, f4
+	lfs      f6, 0x2c(r28)
+	fmuls    f4, f9, f5
+	lfs      f5, 0x40(r28)
+	fmadds   f2, f10, f7, f3
+	lfs      f7, 0x34(r28)
+	fmadds   f3, f8, f6, f4
+	lfs      f6, 0x3c(r28)
+	fmuls    f4, f9, f5
+	fsubs    f5, f2, f1
+	fmadds   f2, f10, f7, f3
+	lfs      f1, 0x38(r28)
+	lfs      f7, 0x44(r28)
+	fmadds   f3, f8, f6, f4
+	stfs     f5, 0xc(r1)
+	fsubs    f5, f2, f1
+	lfs      f1, 0x48(r28)
+	fmadds   f2, f10, f7, f3
+	stfs     f0, 0x18(r1)
+	lfs      f0, 4(r8)
+	stfs     f5, 0x10(r1)
+	fsubs    f5, f2, f1
+	stfs     f0, 0x1c(r1)
+	lfs      f0, 8(r8)
+	stfs     f5, 0x14(r1)
+	stfs     f0, 0x20(r1)
+	lfs      f0, 0(r7)
+	stfs     f0, 0x24(r1)
+	lfs      f0, 4(r7)
+	stfs     f0, 0x28(r1)
+	lfs      f0, 8(r7)
+	stfs     f0, 0x2c(r1)
+	bl       "intersect__Q23Sys6SphereFRQ23Sys4EdgeRfR10Vector3<f>"
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_8041770C
+	li       r3, 1
+	b        lbl_80417870
 
-	.loc_0x174:
-	  lwz       r0, 0x4(r28)
-	  mr        r3, r30
-	  lwz       r7, 0x8(r28)
-	  mr        r6, r31
-	  mulli     r0, r0, 0xC
-	  lwz       r9, 0x24(r29)
-	  addi      r4, r1, 0x18
-	  addi      r5, r1, 0x8
-	  add       r8, r9, r0
-	  lfs       f0, 0x0(r8)
-	  mulli     r0, r7, 0xC
-	  stfs      f0, 0x18(r1)
-	  add       r7, r9, r0
-	  lfs       f0, 0x4(r8)
-	  stfs      f0, 0x1C(r1)
-	  lfs       f0, 0x8(r8)
-	  stfs      f0, 0x20(r1)
-	  lfs       f0, 0x0(r7)
-	  stfs      f0, 0x24(r1)
-	  lfs       f0, 0x4(r7)
-	  stfs      f0, 0x28(r1)
-	  lfs       f0, 0x8(r7)
-	  stfs      f0, 0x2C(r1)
-	  bl        -0x14D8
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x1E4
-	  li        r3, 0x1
-	  b         .loc_0x2D8
+lbl_8041770C:
+	lwz      r0, 4(r28)
+	mr       r3, r30
+	lwz      r7, 8(r28)
+	mr       r6, r31
+	mulli    r0, r0, 0xc
+	lwz      r9, 0x24(r29)
+	addi     r4, r1, 0x18
+	addi     r5, r1, 8
+	add      r8, r9, r0
+	lfs      f0, 0(r8)
+	mulli    r0, r7, 0xc
+	stfs     f0, 0x18(r1)
+	add      r7, r9, r0
+	lfs      f0, 4(r8)
+	stfs     f0, 0x1c(r1)
+	lfs      f0, 8(r8)
+	stfs     f0, 0x20(r1)
+	lfs      f0, 0(r7)
+	stfs     f0, 0x24(r1)
+	lfs      f0, 4(r7)
+	stfs     f0, 0x28(r1)
+	lfs      f0, 8(r7)
+	stfs     f0, 0x2c(r1)
+	bl       "intersect__Q23Sys6SphereFRQ23Sys4EdgeRfR10Vector3<f>"
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_8041777C
+	li       r3, 1
+	b        lbl_80417870
 
-	.loc_0x1E4:
-	  lwz       r0, 0x8(r28)
-	  mr        r3, r30
-	  lwz       r7, 0x0(r28)
-	  mr        r6, r31
-	  mulli     r0, r0, 0xC
-	  lwz       r9, 0x24(r29)
-	  addi      r4, r1, 0x18
-	  addi      r5, r1, 0x8
-	  add       r8, r9, r0
-	  lfs       f0, 0x0(r8)
-	  mulli     r0, r7, 0xC
-	  stfs      f0, 0x18(r1)
-	  add       r7, r9, r0
-	  lfs       f0, 0x4(r8)
-	  stfs      f0, 0x1C(r1)
-	  lfs       f0, 0x8(r8)
-	  stfs      f0, 0x20(r1)
-	  lfs       f0, 0x0(r7)
-	  stfs      f0, 0x24(r1)
-	  lfs       f0, 0x4(r7)
-	  stfs      f0, 0x28(r1)
-	  lfs       f0, 0x8(r7)
-	  stfs      f0, 0x2C(r1)
-	  bl        -0x1548
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x254
-	  li        r3, 0x1
-	  b         .loc_0x2D8
+lbl_8041777C:
+	lwz      r0, 8(r28)
+	mr       r3, r30
+	lwz      r7, 0(r28)
+	mr       r6, r31
+	mulli    r0, r0, 0xc
+	lwz      r9, 0x24(r29)
+	addi     r4, r1, 0x18
+	addi     r5, r1, 8
+	add      r8, r9, r0
+	lfs      f0, 0(r8)
+	mulli    r0, r7, 0xc
+	stfs     f0, 0x18(r1)
+	add      r7, r9, r0
+	lfs      f0, 4(r8)
+	stfs     f0, 0x1c(r1)
+	lfs      f0, 8(r8)
+	stfs     f0, 0x20(r1)
+	lfs      f0, 0(r7)
+	stfs     f0, 0x24(r1)
+	lfs      f0, 4(r7)
+	stfs     f0, 0x28(r1)
+	lfs      f0, 8(r7)
+	stfs     f0, 0x2c(r1)
+	bl       "intersect__Q23Sys6SphereFRQ23Sys4EdgeRfR10Vector3<f>"
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_804177EC
+	li       r3, 1
+	b        lbl_80417870
 
-	.loc_0x254:
-	  lfs       f0, 0x1FA8(r2)
-	  lfs       f1, 0xC(r1)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x26C
-	  li        r3, 0
-	  b         .loc_0x2D8
+lbl_804177EC:
+	lfs      f0, lbl_80520308@sda21(r2)
+	lfs      f1, 0xc(r1)
+	fcmpo    cr0, f1, f0
+	ble      lbl_80417804
+	li       r3, 0
+	b        lbl_80417870
 
-	.loc_0x26C:
-	  lfs       f1, 0x10(r1)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x280
-	  li        r3, 0
-	  b         .loc_0x2D8
+lbl_80417804:
+	lfs      f1, 0x10(r1)
+	fcmpo    cr0, f1, f0
+	ble      lbl_80417818
+	li       r3, 0
+	b        lbl_80417870
 
-	.loc_0x280:
-	  lfs       f1, 0x14(r1)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x294
-	  li        r3, 0
-	  b         .loc_0x2D8
+lbl_80417818:
+	lfs      f1, 0x14(r1)
+	fcmpo    cr0, f1, f0
+	ble      lbl_8041782C
+	li       r3, 0
+	b        lbl_80417870
 
-	.loc_0x294:
-	  lfs       f6, 0xC(r30)
-	  li        r3, 0x1
-	  lfs       f0, 0xC(r28)
-	  lfs       f2, 0x10(r28)
-	  fmuls     f0, f0, f6
-	  lfs       f1, 0x0(r30)
-	  lfs       f4, 0x14(r28)
-	  fmuls     f2, f2, f6
-	  lfs       f3, 0x4(r30)
-	  fsubs     f0, f1, f0
-	  lfs       f5, 0x8(r30)
-	  fmuls     f1, f4, f6
-	  fsubs     f2, f3, f2
-	  stfs      f0, 0x0(r31)
-	  fsubs     f0, f5, f1
-	  stfs      f2, 0x4(r31)
-	  stfs      f0, 0x8(r31)
+lbl_8041782C:
+	lfs      f6, 0xc(r30)
+	li       r3, 1
+	lfs      f0, 0xc(r28)
+	lfs      f2, 0x10(r28)
+	fmuls    f0, f0, f6
+	lfs      f1, 0(r30)
+	lfs      f4, 0x14(r28)
+	fmuls    f2, f2, f6
+	lfs      f3, 4(r30)
+	fsubs    f0, f1, f0
+	lfs      f5, 8(r30)
+	fmuls    f1, f4, f6
+	fsubs    f2, f3, f2
+	stfs     f0, 0(r31)
+	fsubs    f0, f5, f1
+	stfs     f2, 4(r31)
+	stfs     f0, 8(r31)
 
-	.loc_0x2D8:
-	  lwz       r0, 0x44(r1)
-	  lwz       r31, 0x3C(r1)
-	  lwz       r30, 0x38(r1)
-	  lwz       r29, 0x34(r1)
-	  lwz       r28, 0x30(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
+lbl_80417870:
+	lwz      r0, 0x44(r1)
+	lwz      r31, 0x3c(r1)
+	lwz      r30, 0x38(r1)
+	lwz      r29, 0x34(r1)
+	lwz      r28, 0x30(r1)
+	mtlr     r0
+	addi     r1, r1, 0x40
+	blr
 	*/
 }
 
@@ -2443,219 +2588,218 @@ void Triangle::intersect(Sys::VertexTable&, Sys::Sphere&, Vector3f&)
 void Triangle::intersectHard(Sys::VertexTable&, Sys::Sphere&, Vector3f&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  stw       r0, 0x44(r1)
-	  stw       r31, 0x3C(r1)
-	  mr        r31, r6
-	  stw       r30, 0x38(r1)
-	  mr        r30, r5
-	  stw       r29, 0x34(r1)
-	  mr        r29, r4
-	  stw       r28, 0x30(r1)
-	  mr        r28, r3
-	  lfs       f5, 0x4(r5)
-	  lfs       f0, 0x10(r3)
-	  lfs       f6, 0x0(r5)
-	  fmuls     f0, f5, f0
-	  lfs       f1, 0xC(r3)
-	  lfs       f7, 0x8(r5)
-	  lfs       f2, 0x14(r3)
-	  fmadds    f1, f6, f1, f0
-	  lfs       f0, 0x18(r3)
-	  lfs       f4, 0xC(r5)
-	  fmadds    f1, f7, f2, f1
-	  fsubs     f0, f1, f0
-	  fcmpo     cr0, f0, f4
-	  ble-      .loc_0x6C
-	  li        r3, 0
-	  b         .loc_0x2D8
+	stwu     r1, -0x40(r1)
+	mflr     r0
+	stw      r0, 0x44(r1)
+	stw      r31, 0x3c(r1)
+	mr       r31, r6
+	stw      r30, 0x38(r1)
+	mr       r30, r5
+	stw      r29, 0x34(r1)
+	mr       r29, r4
+	stw      r28, 0x30(r1)
+	mr       r28, r3
+	lfs      f5, 4(r5)
+	lfs      f0, 0x10(r3)
+	lfs      f6, 0(r5)
+	fmuls    f0, f5, f0
+	lfs      f1, 0xc(r3)
+	lfs      f7, 8(r5)
+	lfs      f2, 0x14(r3)
+	fmadds   f1, f6, f1, f0
+	lfs      f0, 0x18(r3)
+	lfs      f4, 0xc(r5)
+	fmadds   f1, f7, f2, f1
+	fsubs    f0, f1, f0
+	fcmpo    cr0, f0, f4
+	ble      lbl_804178FC
+	li       r3, 0
+	b        lbl_80417B68
 
-	.loc_0x6C:
-	  lfs       f0, 0x20(r28)
-	  lfs       f2, 0x1C(r28)
-	  fmuls     f1, f5, f0
-	  lfs       f3, 0x24(r28)
-	  lfs       f0, 0x28(r28)
-	  fmadds    f1, f6, f2, f1
-	  fmadds    f1, f7, f3, f1
-	  fsubs     f8, f1, f0
-	  fcmpo     cr0, f8, f4
-	  ble-      .loc_0x9C
-	  li        r3, 0
-	  b         .loc_0x2D8
+lbl_804178FC:
+	lfs      f0, 0x20(r28)
+	lfs      f2, 0x1c(r28)
+	fmuls    f1, f5, f0
+	lfs      f3, 0x24(r28)
+	lfs      f0, 0x28(r28)
+	fmadds   f1, f6, f2, f1
+	fmadds   f1, f7, f3, f1
+	fsubs    f8, f1, f0
+	fcmpo    cr0, f8, f4
+	ble      lbl_8041792C
+	li       r3, 0
+	b        lbl_80417B68
 
-	.loc_0x9C:
-	  lfs       f0, 0x30(r28)
-	  lfs       f2, 0x2C(r28)
-	  fmuls     f1, f5, f0
-	  lfs       f3, 0x34(r28)
-	  lfs       f0, 0x38(r28)
-	  stfs      f8, 0xC(r1)
-	  fmadds    f1, f6, f2, f1
-	  fmadds    f1, f7, f3, f1
-	  fsubs     f8, f1, f0
-	  fcmpo     cr0, f8, f4
-	  ble-      .loc_0xD0
-	  li        r3, 0
-	  b         .loc_0x2D8
+lbl_8041792C:
+	lfs      f0, 0x30(r28)
+	lfs      f2, 0x2c(r28)
+	fmuls    f1, f5, f0
+	lfs      f3, 0x34(r28)
+	lfs      f0, 0x38(r28)
+	stfs     f8, 0xc(r1)
+	fmadds   f1, f6, f2, f1
+	fmadds   f1, f7, f3, f1
+	fsubs    f8, f1, f0
+	fcmpo    cr0, f8, f4
+	ble      lbl_80417960
+	li       r3, 0
+	b        lbl_80417B68
 
-	.loc_0xD0:
-	  lfs       f0, 0x40(r28)
-	  lfs       f2, 0x3C(r28)
-	  fmuls     f1, f5, f0
-	  lfs       f3, 0x44(r28)
-	  lfs       f0, 0x48(r28)
-	  stfs      f8, 0x10(r1)
-	  fmadds    f1, f6, f2, f1
-	  fmadds    f1, f7, f3, f1
-	  fsubs     f8, f1, f0
-	  fcmpo     cr0, f8, f4
-	  ble-      .loc_0x104
-	  li        r3, 0
-	  b         .loc_0x2D8
+lbl_80417960:
+	lfs      f0, 0x40(r28)
+	lfs      f2, 0x3c(r28)
+	fmuls    f1, f5, f0
+	lfs      f3, 0x44(r28)
+	lfs      f0, 0x48(r28)
+	stfs     f8, 0x10(r1)
+	fmadds   f1, f6, f2, f1
+	fmadds   f1, f7, f3, f1
+	fsubs    f8, f1, f0
+	fcmpo    cr0, f8, f4
+	ble      lbl_80417994
+	li       r3, 0
+	b        lbl_80417B68
 
-	.loc_0x104:
-	  lwz       r0, 0x0(r28)
-	  mr        r3, r30
-	  lwz       r7, 0x4(r28)
-	  addi      r4, r1, 0x18
-	  mulli     r0, r0, 0xC
-	  lwz       r9, 0x24(r29)
-	  stfs      f8, 0x14(r1)
-	  addi      r5, r1, 0x8
-	  add       r8, r9, r0
-	  lfs       f0, 0x0(r8)
-	  mulli     r0, r7, 0xC
-	  stfs      f0, 0x18(r1)
-	  add       r7, r9, r0
-	  lfs       f0, 0x4(r8)
-	  stfs      f0, 0x1C(r1)
-	  lfs       f0, 0x8(r8)
-	  stfs      f0, 0x20(r1)
-	  lfs       f0, 0x0(r7)
-	  stfs      f0, 0x24(r1)
-	  lfs       f0, 0x4(r7)
-	  stfs      f0, 0x28(r1)
-	  lfs       f0, 0x8(r7)
-	  stfs      f0, 0x2C(r1)
-	  bl        -0x1760
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x174
-	  li        r3, 0x1
-	  b         .loc_0x2D8
+lbl_80417994:
+	lwz      r0, 0(r28)
+	mr       r3, r30
+	lwz      r7, 4(r28)
+	addi     r4, r1, 0x18
+	mulli    r0, r0, 0xc
+	lwz      r9, 0x24(r29)
+	stfs     f8, 0x14(r1)
+	addi     r5, r1, 8
+	add      r8, r9, r0
+	lfs      f0, 0(r8)
+	mulli    r0, r7, 0xc
+	stfs     f0, 0x18(r1)
+	add      r7, r9, r0
+	lfs      f0, 4(r8)
+	stfs     f0, 0x1c(r1)
+	lfs      f0, 8(r8)
+	stfs     f0, 0x20(r1)
+	lfs      f0, 0(r7)
+	stfs     f0, 0x24(r1)
+	lfs      f0, 4(r7)
+	stfs     f0, 0x28(r1)
+	lfs      f0, 8(r7)
+	stfs     f0, 0x2c(r1)
+	bl       "intersect__Q23Sys6SphereFRQ23Sys4EdgeRfR10Vector3<f>"
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80417A04
+	li       r3, 1
+	b        lbl_80417B68
 
-	.loc_0x174:
-	  lwz       r0, 0x4(r28)
-	  mr        r3, r30
-	  lwz       r7, 0x8(r28)
-	  mr        r6, r31
-	  mulli     r0, r0, 0xC
-	  lwz       r9, 0x24(r29)
-	  addi      r4, r1, 0x18
-	  addi      r5, r1, 0x8
-	  add       r8, r9, r0
-	  lfs       f0, 0x0(r8)
-	  mulli     r0, r7, 0xC
-	  stfs      f0, 0x18(r1)
-	  add       r7, r9, r0
-	  lfs       f0, 0x4(r8)
-	  stfs      f0, 0x1C(r1)
-	  lfs       f0, 0x8(r8)
-	  stfs      f0, 0x20(r1)
-	  lfs       f0, 0x0(r7)
-	  stfs      f0, 0x24(r1)
-	  lfs       f0, 0x4(r7)
-	  stfs      f0, 0x28(r1)
-	  lfs       f0, 0x8(r7)
-	  stfs      f0, 0x2C(r1)
-	  bl        -0x17D0
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x1E4
-	  li        r3, 0x1
-	  b         .loc_0x2D8
+lbl_80417A04:
+	lwz      r0, 4(r28)
+	mr       r3, r30
+	lwz      r7, 8(r28)
+	mr       r6, r31
+	mulli    r0, r0, 0xc
+	lwz      r9, 0x24(r29)
+	addi     r4, r1, 0x18
+	addi     r5, r1, 8
+	add      r8, r9, r0
+	lfs      f0, 0(r8)
+	mulli    r0, r7, 0xc
+	stfs     f0, 0x18(r1)
+	add      r7, r9, r0
+	lfs      f0, 4(r8)
+	stfs     f0, 0x1c(r1)
+	lfs      f0, 8(r8)
+	stfs     f0, 0x20(r1)
+	lfs      f0, 0(r7)
+	stfs     f0, 0x24(r1)
+	lfs      f0, 4(r7)
+	stfs     f0, 0x28(r1)
+	lfs      f0, 8(r7)
+	stfs     f0, 0x2c(r1)
+	bl       "intersect__Q23Sys6SphereFRQ23Sys4EdgeRfR10Vector3<f>"
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80417A74
+	li       r3, 1
+	b        lbl_80417B68
 
-	.loc_0x1E4:
-	  lwz       r0, 0x8(r28)
-	  mr        r3, r30
-	  lwz       r7, 0x0(r28)
-	  mr        r6, r31
-	  mulli     r0, r0, 0xC
-	  lwz       r9, 0x24(r29)
-	  addi      r4, r1, 0x18
-	  addi      r5, r1, 0x8
-	  add       r8, r9, r0
-	  lfs       f0, 0x0(r8)
-	  mulli     r0, r7, 0xC
-	  stfs      f0, 0x18(r1)
-	  add       r7, r9, r0
-	  lfs       f0, 0x4(r8)
-	  stfs      f0, 0x1C(r1)
-	  lfs       f0, 0x8(r8)
-	  stfs      f0, 0x20(r1)
-	  lfs       f0, 0x0(r7)
-	  stfs      f0, 0x24(r1)
-	  lfs       f0, 0x4(r7)
-	  stfs      f0, 0x28(r1)
-	  lfs       f0, 0x8(r7)
-	  stfs      f0, 0x2C(r1)
-	  bl        -0x1840
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x254
-	  li        r3, 0x1
-	  b         .loc_0x2D8
+lbl_80417A74:
+	lwz      r0, 8(r28)
+	mr       r3, r30
+	lwz      r7, 0(r28)
+	mr       r6, r31
+	mulli    r0, r0, 0xc
+	lwz      r9, 0x24(r29)
+	addi     r4, r1, 0x18
+	addi     r5, r1, 8
+	add      r8, r9, r0
+	lfs      f0, 0(r8)
+	mulli    r0, r7, 0xc
+	stfs     f0, 0x18(r1)
+	add      r7, r9, r0
+	lfs      f0, 4(r8)
+	stfs     f0, 0x1c(r1)
+	lfs      f0, 8(r8)
+	stfs     f0, 0x20(r1)
+	lfs      f0, 0(r7)
+	stfs     f0, 0x24(r1)
+	lfs      f0, 4(r7)
+	stfs     f0, 0x28(r1)
+	lfs      f0, 8(r7)
+	stfs     f0, 0x2c(r1)
+	bl       "intersect__Q23Sys6SphereFRQ23Sys4EdgeRfR10Vector3<f>"
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80417AE4
+	li       r3, 1
+	b        lbl_80417B68
 
-	.loc_0x254:
-	  lfs       f0, 0x1FA8(r2)
-	  lfs       f1, 0xC(r1)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x26C
-	  li        r3, 0
-	  b         .loc_0x2D8
+lbl_80417AE4:
+	lfs      f0, lbl_80520308@sda21(r2)
+	lfs      f1, 0xc(r1)
+	fcmpo    cr0, f1, f0
+	ble      lbl_80417AFC
+	li       r3, 0
+	b        lbl_80417B68
 
-	.loc_0x26C:
-	  lfs       f1, 0x10(r1)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x280
-	  li        r3, 0
-	  b         .loc_0x2D8
+lbl_80417AFC:
+	lfs      f1, 0x10(r1)
+	fcmpo    cr0, f1, f0
+	ble      lbl_80417B10
+	li       r3, 0
+	b        lbl_80417B68
 
-	.loc_0x280:
-	  lfs       f1, 0x14(r1)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x294
-	  li        r3, 0
-	  b         .loc_0x2D8
+lbl_80417B10:
+	lfs      f1, 0x14(r1)
+	fcmpo    cr0, f1, f0
+	ble      lbl_80417B24
+	li       r3, 0
+	b        lbl_80417B68
 
-	.loc_0x294:
-	  lfs       f6, 0xC(r30)
-	  li        r3, 0x1
-	  lfs       f0, 0xC(r28)
-	  lfs       f2, 0x10(r28)
-	  fmuls     f0, f0, f6
-	  lfs       f1, 0x0(r30)
-	  lfs       f4, 0x14(r28)
-	  fmuls     f2, f2, f6
-	  lfs       f3, 0x4(r30)
-	  fsubs     f0, f1, f0
-	  lfs       f5, 0x8(r30)
-	  fmuls     f1, f4, f6
-	  fsubs     f2, f3, f2
-	  stfs      f0, 0x0(r31)
-	  fsubs     f0, f5, f1
-	  stfs      f2, 0x4(r31)
-	  stfs      f0, 0x8(r31)
+lbl_80417B24:
+	lfs      f6, 0xc(r30)
+	li       r3, 1
+	lfs      f0, 0xc(r28)
+	lfs      f2, 0x10(r28)
+	fmuls    f0, f0, f6
+	lfs      f1, 0(r30)
+	lfs      f4, 0x14(r28)
+	fmuls    f2, f2, f6
+	lfs      f3, 4(r30)
+	fsubs    f0, f1, f0
+	lfs      f5, 8(r30)
+	fmuls    f1, f4, f6
+	fsubs    f2, f3, f2
+	stfs     f0, 0(r31)
+	fsubs    f0, f5, f1
+	stfs     f2, 4(r31)
+	stfs     f0, 8(r31)
 
-	.loc_0x2D8:
-	  lwz       r0, 0x44(r1)
-	  lwz       r31, 0x3C(r1)
-	  lwz       r30, 0x38(r1)
-	  lwz       r29, 0x34(r1)
-	  lwz       r28, 0x30(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
+lbl_80417B68:
+	lwz      r0, 0x44(r1)
+	lwz      r31, 0x3c(r1)
+	lwz      r30, 0x38(r1)
+	lwz      r29, 0x34(r1)
+	lwz      r28, 0x30(r1)
+	mtlr     r0
+	addi     r1, r1, 0x40
+	blr
 	*/
 }
 
@@ -2677,74 +2821,73 @@ void Triangle::intersectOptimistic(Sys::Sphere&, Vector3f&)
 void Triangle::insideXZ(Vector3f&)
 {
 	/*
-	.loc_0x0:
-	  lfs       f4, 0x10(r3)
-	  lfs       f7, 0x1FA8(r2)
-	  fcmpo     cr0, f4, f7
-	  cror      2, 0, 0x2
-	  bne-      .loc_0x1C
-	  li        r3, 0
-	  blr
+	lfs      f4, 0x10(r3)
+	lfs      f7, lbl_80520308@sda21(r2)
+	fcmpo    cr0, f4, f7
+	cror     2, 0, 2
+	bne      lbl_80417BA4
+	li       r3, 0
+	blr
 
-	.loc_0x1C:
-	  lfs       f1, 0x14(r3)
-	  lfs       f0, 0x8(r4)
-	  lfs       f2, 0xC(r3)
-	  fmuls     f0, f1, f0
-	  lfs       f1, 0x0(r4)
-	  lfs       f3, 0x18(r3)
-	  fmadds    f0, f2, f1, f0
-	  fsubs     f0, f3, f0
-	  fdivs     f0, f0, f4
-	  stfs      f0, 0x4(r4)
-	  lfs       f2, 0x4(r4)
-	  lfs       f0, 0x20(r3)
-	  lfs       f4, 0x0(r4)
-	  fmuls     f1, f2, f0
-	  lfs       f3, 0x1C(r3)
-	  lfs       f6, 0x8(r4)
-	  lfs       f5, 0x24(r3)
-	  fmadds    f1, f4, f3, f1
-	  lfs       f0, 0x28(r3)
-	  fmadds    f1, f6, f5, f1
-	  fsubs     f0, f1, f0
-	  fcmpo     cr0, f0, f7
-	  ble-      .loc_0x80
-	  li        r3, 0
-	  blr
+lbl_80417BA4:
+	lfs      f1, 0x14(r3)
+	lfs      f0, 8(r4)
+	lfs      f2, 0xc(r3)
+	fmuls    f0, f1, f0
+	lfs      f1, 0(r4)
+	lfs      f3, 0x18(r3)
+	fmadds   f0, f2, f1, f0
+	fsubs    f0, f3, f0
+	fdivs    f0, f0, f4
+	stfs     f0, 4(r4)
+	lfs      f2, 4(r4)
+	lfs      f0, 0x20(r3)
+	lfs      f4, 0(r4)
+	fmuls    f1, f2, f0
+	lfs      f3, 0x1c(r3)
+	lfs      f6, 8(r4)
+	lfs      f5, 0x24(r3)
+	fmadds   f1, f4, f3, f1
+	lfs      f0, 0x28(r3)
+	fmadds   f1, f6, f5, f1
+	fsubs    f0, f1, f0
+	fcmpo    cr0, f0, f7
+	ble      lbl_80417C08
+	li       r3, 0
+	blr
 
-	.loc_0x80:
-	  lfs       f0, 0x30(r3)
-	  lfs       f3, 0x2C(r3)
-	  fmuls     f1, f2, f0
-	  lfs       f5, 0x34(r3)
-	  lfs       f0, 0x38(r3)
-	  fmadds    f1, f4, f3, f1
-	  fmadds    f1, f6, f5, f1
-	  fsubs     f0, f1, f0
-	  fcmpo     cr0, f0, f7
-	  ble-      .loc_0xB0
-	  li        r3, 0
-	  blr
+lbl_80417C08:
+	lfs      f0, 0x30(r3)
+	lfs      f3, 0x2c(r3)
+	fmuls    f1, f2, f0
+	lfs      f5, 0x34(r3)
+	lfs      f0, 0x38(r3)
+	fmadds   f1, f4, f3, f1
+	fmadds   f1, f6, f5, f1
+	fsubs    f0, f1, f0
+	fcmpo    cr0, f0, f7
+	ble      lbl_80417C38
+	li       r3, 0
+	blr
 
-	.loc_0xB0:
-	  addi      r3, r3, 0x20
-	  lfs       f0, 0x20(r3)
-	  lfs       f3, 0x1C(r3)
-	  fmuls     f1, f2, f0
-	  lfs       f5, 0x24(r3)
-	  lfs       f0, 0x28(r3)
-	  fmadds    f1, f4, f3, f1
-	  fmadds    f1, f6, f5, f1
-	  fsubs     f0, f1, f0
-	  fcmpo     cr0, f0, f7
-	  ble-      .loc_0xE4
-	  li        r3, 0
-	  blr
+lbl_80417C38:
+	addi     r3, r3, 0x20
+	lfs      f0, 0x20(r3)
+	lfs      f3, 0x1c(r3)
+	fmuls    f1, f2, f0
+	lfs      f5, 0x24(r3)
+	lfs      f0, 0x28(r3)
+	fmadds   f1, f4, f3, f1
+	fmadds   f1, f6, f5, f1
+	fsubs    f0, f1, f0
+	fcmpo    cr0, f0, f7
+	ble      lbl_80417C6C
+	li       r3, 0
+	blr
 
-	.loc_0xE4:
-	  li        r3, 0x1
-	  blr
+lbl_80417C6C:
+	li       r3, 1
+	blr
 	*/
 }
 
@@ -2756,321 +2899,320 @@ void Triangle::insideXZ(Vector3f&)
 void Triangle::makePlanes(Sys::VertexTable&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x140(r1)
-	  mflr      r0
-	  stw       r0, 0x144(r1)
-	  stfd      f31, 0x130(r1)
-	  psq_st    f31,0x138(r1),0,0
-	  stfd      f30, 0x120(r1)
-	  psq_st    f30,0x128(r1),0,0
-	  stfd      f29, 0x110(r1)
-	  psq_st    f29,0x118(r1),0,0
-	  stfd      f28, 0x100(r1)
-	  psq_st    f28,0x108(r1),0,0
-	  stfd      f27, 0xF0(r1)
-	  psq_st    f27,0xF8(r1),0,0
-	  stfd      f26, 0xE0(r1)
-	  psq_st    f26,0xE8(r1),0,0
-	  stfd      f25, 0xD0(r1)
-	  psq_st    f25,0xD8(r1),0,0
-	  stfd      f24, 0xC0(r1)
-	  psq_st    f24,0xC8(r1),0,0
-	  stfd      f23, 0xB0(r1)
-	  psq_st    f23,0xB8(r1),0,0
-	  stfd      f22, 0xA0(r1)
-	  psq_st    f22,0xA8(r1),0,0
-	  stfd      f21, 0x90(r1)
-	  psq_st    f21,0x98(r1),0,0
-	  stfd      f20, 0x80(r1)
-	  psq_st    f20,0x88(r1),0,0
-	  stfd      f19, 0x70(r1)
-	  psq_st    f19,0x78(r1),0,0
-	  stfd      f18, 0x60(r1)
-	  psq_st    f18,0x68(r1),0,0
-	  stw       r31, 0x5C(r1)
-	  mr        r31, r3
-	  lwz       r5, 0x24(r4)
-	  lwz       r4, 0x0(r3)
-	  lwz       r3, 0x4(r3)
-	  lwz       r0, 0x8(r31)
-	  mulli     r4, r4, 0xC
-	  add       r4, r5, r4
-	  mulli     r3, r3, 0xC
-	  lfs       f31, 0x0(r4)
-	  lfs       f30, 0x4(r4)
-	  lfs       f29, 0x8(r4)
-	  add       r3, r5, r3
-	  mulli     r0, r0, 0xC
-	  lfs       f27, 0x4(r3)
-	  lfs       f26, 0x8(r3)
-	  lfs       f28, 0x0(r3)
-	  fsubs     f4, f27, f30
-	  add       r3, r5, r0
-	  lfs       f25, 0x0(r3)
-	  fsubs     f5, f26, f29
-	  lfs       f23, 0x8(r3)
-	  fsubs     f3, f28, f31
-	  fsubs     f18, f25, f31
-	  lfs       f24, 0x4(r3)
-	  fsubs     f20, f23, f29
-	  fsubs     f19, f24, f30
-	  fmuls     f2, f18, f5
-	  stfs      f18, 0x44(r1)
-	  fmuls     f0, f20, f4
-	  fmuls     f1, f19, f3
-	  stfs      f19, 0x48(r1)
-	  fmsubs    f2, f20, f3, f2
-	  fmsubs    f3, f19, f5, f0
-	  stfs      f20, 0x4C(r1)
-	  fmsubs    f4, f18, f4, f1
-	  fmuls     f0, f2, f2
-	  stfs      f2, 0x48(r1)
-	  fmuls     f1, f3, f3
-	  fmuls     f2, f4, f4
-	  stfs      f3, 0x44(r1)
-	  fadds     f0, f1, f0
-	  stfs      f4, 0x4C(r1)
-	  fadds     f1, f2, f0
-	  bl        -0x659C
-	  lfs       f0, 0x1FA8(r2)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x168
-	  lfs       f0, 0x1FAC(r2)
-	  lfs       f2, 0x44(r1)
-	  fdivs     f3, f0, f1
-	  lfs       f1, 0x48(r1)
-	  lfs       f0, 0x4C(r1)
-	  fmuls     f2, f2, f3
-	  fmuls     f1, f1, f3
-	  fmuls     f0, f0, f3
-	  stfs      f2, 0x44(r1)
-	  stfs      f1, 0x48(r1)
-	  stfs      f0, 0x4C(r1)
+	stwu     r1, -0x140(r1)
+	mflr     r0
+	stw      r0, 0x144(r1)
+	stfd     f31, 0x130(r1)
+	psq_st   f31, 312(r1), 0, qr0
+	stfd     f30, 0x120(r1)
+	psq_st   f30, 296(r1), 0, qr0
+	stfd     f29, 0x110(r1)
+	psq_st   f29, 280(r1), 0, qr0
+	stfd     f28, 0x100(r1)
+	psq_st   f28, 264(r1), 0, qr0
+	stfd     f27, 0xf0(r1)
+	psq_st   f27, 248(r1), 0, qr0
+	stfd     f26, 0xe0(r1)
+	psq_st   f26, 232(r1), 0, qr0
+	stfd     f25, 0xd0(r1)
+	psq_st   f25, 216(r1), 0, qr0
+	stfd     f24, 0xc0(r1)
+	psq_st   f24, 200(r1), 0, qr0
+	stfd     f23, 0xb0(r1)
+	psq_st   f23, 184(r1), 0, qr0
+	stfd     f22, 0xa0(r1)
+	psq_st   f22, 168(r1), 0, qr0
+	stfd     f21, 0x90(r1)
+	psq_st   f21, 152(r1), 0, qr0
+	stfd     f20, 0x80(r1)
+	psq_st   f20, 136(r1), 0, qr0
+	stfd     f19, 0x70(r1)
+	psq_st   f19, 120(r1), 0, qr0
+	stfd     f18, 0x60(r1)
+	psq_st   f18, 104(r1), 0, qr0
+	stw      r31, 0x5c(r1)
+	mr       r31, r3
+	lwz      r5, 0x24(r4)
+	lwz      r4, 0(r3)
+	lwz      r3, 4(r3)
+	lwz      r0, 8(r31)
+	mulli    r4, r4, 0xc
+	add      r4, r5, r4
+	mulli    r3, r3, 0xc
+	lfs      f31, 0(r4)
+	lfs      f30, 4(r4)
+	lfs      f29, 8(r4)
+	add      r3, r5, r3
+	mulli    r0, r0, 0xc
+	lfs      f27, 4(r3)
+	lfs      f26, 8(r3)
+	lfs      f28, 0(r3)
+	fsubs    f4, f27, f30
+	add      r3, r5, r0
+	lfs      f25, 0(r3)
+	fsubs    f5, f26, f29
+	lfs      f23, 8(r3)
+	fsubs    f3, f28, f31
+	fsubs    f18, f25, f31
+	lfs      f24, 4(r3)
+	fsubs    f20, f23, f29
+	fsubs    f19, f24, f30
+	fmuls    f2, f18, f5
+	stfs     f18, 0x44(r1)
+	fmuls    f0, f20, f4
+	fmuls    f1, f19, f3
+	stfs     f19, 0x48(r1)
+	fmsubs   f2, f20, f3, f2
+	fmsubs   f3, f19, f5, f0
+	stfs     f20, 0x4c(r1)
+	fmsubs   f4, f18, f4, f1
+	fmuls    f0, f2, f2
+	stfs     f2, 0x48(r1)
+	fmuls    f1, f3, f3
+	fmuls    f2, f4, f4
+	stfs     f3, 0x44(r1)
+	fadds    f0, f1, f0
+	stfs     f4, 0x4c(r1)
+	fadds    f1, f2, f0
+	bl       pikmin2_sqrtf__Ff
+	lfs      f0, lbl_80520308@sda21(r2)
+	fcmpo    cr0, f1, f0
+	ble      lbl_80417DDC
+	lfs      f0, lbl_8052030C@sda21(r2)
+	lfs      f2, 0x44(r1)
+	fdivs    f3, f0, f1
+	lfs      f1, 0x48(r1)
+	lfs      f0, 0x4c(r1)
+	fmuls    f2, f2, f3
+	fmuls    f1, f1, f3
+	fmuls    f0, f0, f3
+	stfs     f2, 0x44(r1)
+	stfs     f1, 0x48(r1)
+	stfs     f0, 0x4c(r1)
 
-	.loc_0x168:
-	  lwz       r0, 0x44(r1)
-	  fsubs     f3, f31, f28
-	  lwz       r3, 0x48(r1)
-	  fsubs     f5, f29, f26
-	  stw       r0, 0x2C(r1)
-	  fsubs     f6, f30, f27
-	  lwz       r0, 0x4C(r1)
-	  stw       r3, 0x30(r1)
-	  lfs       f0, 0x2C(r1)
-	  stw       r0, 0x34(r1)
-	  lfs       f2, 0x30(r1)
-	  stfs      f0, 0xC(r31)
-	  lfs       f21, 0x4C(r1)
-	  lfs       f22, 0x48(r1)
-	  lfs       f7, 0x44(r1)
-	  fmuls     f0, f3, f21
-	  fmuls     f1, f5, f22
-	  stfs      f2, 0x10(r31)
-	  lfs       f4, 0x34(r1)
-	  fmuls     f2, f6, f7
-	  fmsubs    f0, f5, f7, f0
-	  stfs      f4, 0x14(r31)
-	  fmsubs    f4, f6, f21, f1
-	  lfs       f7, 0x10(r31)
-	  fmsubs    f10, f3, f22, f2
-	  lfs       f8, 0xC(r31)
-	  fmuls     f1, f0, f0
-	  fmuls     f7, f7, f30
-	  fmuls     f2, f4, f4
-	  lfs       f9, 0x14(r31)
-	  stfs      f3, 0x38(r1)
-	  fmuls     f3, f10, f10
-	  fmadds    f7, f8, f31, f7
-	  fadds     f1, f2, f1
-	  stfs      f6, 0x3C(r1)
-	  fmadds    f2, f9, f29, f7
-	  stfs      f5, 0x40(r1)
-	  fadds     f1, f3, f1
-	  stfs      f2, 0x18(r31)
-	  stfs      f4, 0x38(r1)
-	  stfs      f0, 0x3C(r1)
-	  stfs      f10, 0x40(r1)
-	  bl        -0x6680
-	  lfs       f0, 0x1FA8(r2)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x24C
-	  lfs       f0, 0x1FAC(r2)
-	  lfs       f2, 0x38(r1)
-	  fdivs     f3, f0, f1
-	  lfs       f1, 0x3C(r1)
-	  lfs       f0, 0x40(r1)
-	  fmuls     f2, f2, f3
-	  fmuls     f1, f1, f3
-	  fmuls     f0, f0, f3
-	  stfs      f2, 0x38(r1)
-	  stfs      f1, 0x3C(r1)
-	  stfs      f0, 0x40(r1)
+lbl_80417DDC:
+	lwz      r0, 0x44(r1)
+	fsubs    f3, f31, f28
+	lwz      r3, 0x48(r1)
+	fsubs    f5, f29, f26
+	stw      r0, 0x2c(r1)
+	fsubs    f6, f30, f27
+	lwz      r0, 0x4c(r1)
+	stw      r3, 0x30(r1)
+	lfs      f0, 0x2c(r1)
+	stw      r0, 0x34(r1)
+	lfs      f2, 0x30(r1)
+	stfs     f0, 0xc(r31)
+	lfs      f21, 0x4c(r1)
+	lfs      f22, 0x48(r1)
+	lfs      f7, 0x44(r1)
+	fmuls    f0, f3, f21
+	fmuls    f1, f5, f22
+	stfs     f2, 0x10(r31)
+	lfs      f4, 0x34(r1)
+	fmuls    f2, f6, f7
+	fmsubs   f0, f5, f7, f0
+	stfs     f4, 0x14(r31)
+	fmsubs   f4, f6, f21, f1
+	lfs      f7, 0x10(r31)
+	fmsubs   f10, f3, f22, f2
+	lfs      f8, 0xc(r31)
+	fmuls    f1, f0, f0
+	fmuls    f7, f7, f30
+	fmuls    f2, f4, f4
+	lfs      f9, 0x14(r31)
+	stfs     f3, 0x38(r1)
+	fmuls    f3, f10, f10
+	fmadds   f7, f8, f31, f7
+	fadds    f1, f2, f1
+	stfs     f6, 0x3c(r1)
+	fmadds   f2, f9, f29, f7
+	stfs     f5, 0x40(r1)
+	fadds    f1, f3, f1
+	stfs     f2, 0x18(r31)
+	stfs     f4, 0x38(r1)
+	stfs     f0, 0x3c(r1)
+	stfs     f10, 0x40(r1)
+	bl       pikmin2_sqrtf__Ff
+	lfs      f0, lbl_80520308@sda21(r2)
+	fcmpo    cr0, f1, f0
+	ble      lbl_80417EC0
+	lfs      f0, lbl_8052030C@sda21(r2)
+	lfs      f2, 0x38(r1)
+	fdivs    f3, f0, f1
+	lfs      f1, 0x3c(r1)
+	lfs      f0, 0x40(r1)
+	fmuls    f2, f2, f3
+	fmuls    f1, f1, f3
+	fmuls    f0, f0, f3
+	stfs     f2, 0x38(r1)
+	stfs     f1, 0x3c(r1)
+	stfs     f0, 0x40(r1)
 
-	.loc_0x24C:
-	  lwz       r0, 0x38(r1)
-	  fsubs     f6, f28, f25
-	  lwz       r3, 0x3C(r1)
-	  fsubs     f4, f26, f23
-	  stw       r0, 0x20(r1)
-	  fsubs     f5, f27, f24
-	  lwz       r0, 0x40(r1)
-	  stw       r3, 0x24(r1)
-	  fmuls     f0, f4, f22
-	  lfs       f7, 0x20(r1)
-	  fmuls     f2, f6, f21
-	  stw       r0, 0x28(r1)
-	  lfs       f1, 0x24(r1)
-	  fmsubs    f3, f5, f21, f0
-	  stfs      f7, 0x1C(r31)
-	  lfs       f0, 0x28(r1)
-	  stfs      f1, 0x20(r31)
-	  fmuls     f1, f3, f3
-	  lfs       f7, 0x44(r1)
-	  stfs      f0, 0x24(r31)
-	  fmsubs    f8, f4, f7, f2
-	  lfs       f2, 0x20(r31)
-	  fmuls     f0, f5, f7
-	  lfs       f7, 0x1C(r31)
-	  fmuls     f2, f2, f30
-	  stfs      f6, 0x38(r1)
-	  fmsubs    f9, f6, f22, f0
-	  lfs       f6, 0x24(r31)
-	  fmuls     f0, f8, f8
-	  stfs      f5, 0x3C(r1)
-	  fmadds    f5, f7, f31, f2
-	  stfs      f4, 0x40(r1)
-	  fmuls     f2, f9, f9
-	  fadds     f0, f1, f0
-	  stfs      f3, 0x38(r1)
-	  fmadds    f3, f6, f29, f5
-	  stfs      f8, 0x3C(r1)
-	  fadds     f1, f2, f0
-	  stfs      f3, 0x28(r31)
-	  stfs      f9, 0x40(r1)
-	  bl        -0x675C
-	  lfs       f0, 0x1FA8(r2)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x328
-	  lfs       f0, 0x1FAC(r2)
-	  lfs       f2, 0x38(r1)
-	  fdivs     f3, f0, f1
-	  lfs       f1, 0x3C(r1)
-	  lfs       f0, 0x40(r1)
-	  fmuls     f2, f2, f3
-	  fmuls     f1, f1, f3
-	  fmuls     f0, f0, f3
-	  stfs      f2, 0x38(r1)
-	  stfs      f1, 0x3C(r1)
-	  stfs      f0, 0x40(r1)
+lbl_80417EC0:
+	lwz      r0, 0x38(r1)
+	fsubs    f6, f28, f25
+	lwz      r3, 0x3c(r1)
+	fsubs    f4, f26, f23
+	stw      r0, 0x20(r1)
+	fsubs    f5, f27, f24
+	lwz      r0, 0x40(r1)
+	stw      r3, 0x24(r1)
+	fmuls    f0, f4, f22
+	lfs      f7, 0x20(r1)
+	fmuls    f2, f6, f21
+	stw      r0, 0x28(r1)
+	lfs      f1, 0x24(r1)
+	fmsubs   f3, f5, f21, f0
+	stfs     f7, 0x1c(r31)
+	lfs      f0, 0x28(r1)
+	stfs     f1, 0x20(r31)
+	fmuls    f1, f3, f3
+	lfs      f7, 0x44(r1)
+	stfs     f0, 0x24(r31)
+	fmsubs   f8, f4, f7, f2
+	lfs      f2, 0x20(r31)
+	fmuls    f0, f5, f7
+	lfs      f7, 0x1c(r31)
+	fmuls    f2, f2, f30
+	stfs     f6, 0x38(r1)
+	fmsubs   f9, f6, f22, f0
+	lfs      f6, 0x24(r31)
+	fmuls    f0, f8, f8
+	stfs     f5, 0x3c(r1)
+	fmadds   f5, f7, f31, f2
+	stfs     f4, 0x40(r1)
+	fmuls    f2, f9, f9
+	fadds    f0, f1, f0
+	stfs     f3, 0x38(r1)
+	fmadds   f3, f6, f29, f5
+	stfs     f8, 0x3c(r1)
+	fadds    f1, f2, f0
+	stfs     f3, 0x28(r31)
+	stfs     f9, 0x40(r1)
+	bl       pikmin2_sqrtf__Ff
+	lfs      f0, lbl_80520308@sda21(r2)
+	fcmpo    cr0, f1, f0
+	ble      lbl_80417F9C
+	lfs      f0, lbl_8052030C@sda21(r2)
+	lfs      f2, 0x38(r1)
+	fdivs    f3, f0, f1
+	lfs      f1, 0x3c(r1)
+	lfs      f0, 0x40(r1)
+	fmuls    f2, f2, f3
+	fmuls    f1, f1, f3
+	fmuls    f0, f0, f3
+	stfs     f2, 0x38(r1)
+	stfs     f1, 0x3c(r1)
+	stfs     f0, 0x40(r1)
 
-	.loc_0x328:
-	  lwz       r0, 0x38(r1)
-	  fmuls     f0, f20, f22
-	  lwz       r3, 0x3C(r1)
-	  fmuls     f2, f18, f21
-	  stw       r0, 0x14(r1)
-	  lwz       r0, 0x40(r1)
-	  fmsubs    f3, f19, f21, f0
-	  stw       r3, 0x18(r1)
-	  lfs       f0, 0x14(r1)
-	  stw       r0, 0x1C(r1)
-	  fmuls     f1, f3, f3
-	  lfs       f4, 0x18(r1)
-	  stfs      f0, 0x2C(r31)
-	  lfs       f0, 0x1C(r1)
-	  stfs      f4, 0x30(r31)
-	  lfs       f4, 0x44(r1)
-	  stfs      f0, 0x34(r31)
-	  fmsubs    f6, f20, f4, f2
-	  lfs       f2, 0x30(r31)
-	  fmuls     f0, f19, f4
-	  lfs       f4, 0x2C(r31)
-	  fmuls     f2, f2, f27
-	  stfs      f18, 0x38(r1)
-	  fmsubs    f7, f18, f22, f0
-	  lfs       f5, 0x34(r31)
-	  fmuls     f0, f6, f6
-	  stfs      f19, 0x3C(r1)
-	  fmadds    f4, f4, f28, f2
-	  stfs      f20, 0x40(r1)
-	  fmuls     f2, f7, f7
-	  fadds     f0, f1, f0
-	  stfs      f3, 0x38(r1)
-	  fmadds    f3, f5, f26, f4
-	  stfs      f6, 0x3C(r1)
-	  fadds     f1, f2, f0
-	  stfs      f3, 0x38(r31)
-	  stfs      f7, 0x40(r1)
-	  bl        -0x682C
-	  lfs       f0, 0x1FA8(r2)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x3F8
-	  lfs       f0, 0x1FAC(r2)
-	  lfs       f2, 0x38(r1)
-	  fdivs     f3, f0, f1
-	  lfs       f1, 0x3C(r1)
-	  lfs       f0, 0x40(r1)
-	  fmuls     f2, f2, f3
-	  fmuls     f1, f1, f3
-	  fmuls     f0, f0, f3
-	  stfs      f2, 0x38(r1)
-	  stfs      f1, 0x3C(r1)
-	  stfs      f0, 0x40(r1)
+lbl_80417F9C:
+	lwz      r0, 0x38(r1)
+	fmuls    f0, f20, f22
+	lwz      r3, 0x3c(r1)
+	fmuls    f2, f18, f21
+	stw      r0, 0x14(r1)
+	lwz      r0, 0x40(r1)
+	fmsubs   f3, f19, f21, f0
+	stw      r3, 0x18(r1)
+	lfs      f0, 0x14(r1)
+	stw      r0, 0x1c(r1)
+	fmuls    f1, f3, f3
+	lfs      f4, 0x18(r1)
+	stfs     f0, 0x2c(r31)
+	lfs      f0, 0x1c(r1)
+	stfs     f4, 0x30(r31)
+	lfs      f4, 0x44(r1)
+	stfs     f0, 0x34(r31)
+	fmsubs   f6, f20, f4, f2
+	lfs      f2, 0x30(r31)
+	fmuls    f0, f19, f4
+	lfs      f4, 0x2c(r31)
+	fmuls    f2, f2, f27
+	stfs     f18, 0x38(r1)
+	fmsubs   f7, f18, f22, f0
+	lfs      f5, 0x34(r31)
+	fmuls    f0, f6, f6
+	stfs     f19, 0x3c(r1)
+	fmadds   f4, f4, f28, f2
+	stfs     f20, 0x40(r1)
+	fmuls    f2, f7, f7
+	fadds    f0, f1, f0
+	stfs     f3, 0x38(r1)
+	fmadds   f3, f5, f26, f4
+	stfs     f6, 0x3c(r1)
+	fadds    f1, f2, f0
+	stfs     f3, 0x38(r31)
+	stfs     f7, 0x40(r1)
+	bl       pikmin2_sqrtf__Ff
+	lfs      f0, lbl_80520308@sda21(r2)
+	fcmpo    cr0, f1, f0
+	ble      lbl_8041806C
+	lfs      f0, lbl_8052030C@sda21(r2)
+	lfs      f2, 0x38(r1)
+	fdivs    f3, f0, f1
+	lfs      f1, 0x3c(r1)
+	lfs      f0, 0x40(r1)
+	fmuls    f2, f2, f3
+	fmuls    f1, f1, f3
+	fmuls    f0, f0, f3
+	stfs     f2, 0x38(r1)
+	stfs     f1, 0x3c(r1)
+	stfs     f0, 0x40(r1)
 
-	.loc_0x3F8:
-	  lwz       r0, 0x38(r1)
-	  lwz       r3, 0x3C(r1)
-	  stw       r0, 0x8(r1)
-	  lwz       r0, 0x40(r1)
-	  stw       r3, 0xC(r1)
-	  lfs       f0, 0x8(r1)
-	  stw       r0, 0x10(r1)
-	  lfs       f1, 0xC(r1)
-	  stfs      f0, 0x3C(r31)
-	  lfs       f0, 0x10(r1)
-	  stfs      f1, 0x40(r31)
-	  stfs      f0, 0x44(r31)
-	  lfs       f0, 0x40(r31)
-	  lfs       f1, 0x3C(r31)
-	  fmuls     f0, f0, f24
-	  lfs       f2, 0x44(r31)
-	  fmadds    f0, f1, f25, f0
-	  fmadds    f0, f2, f23, f0
-	  stfs      f0, 0x48(r31)
-	  psq_l     f31,0x138(r1),0,0
-	  lfd       f31, 0x130(r1)
-	  psq_l     f30,0x128(r1),0,0
-	  lfd       f30, 0x120(r1)
-	  psq_l     f29,0x118(r1),0,0
-	  lfd       f29, 0x110(r1)
-	  psq_l     f28,0x108(r1),0,0
-	  lfd       f28, 0x100(r1)
-	  psq_l     f27,0xF8(r1),0,0
-	  lfd       f27, 0xF0(r1)
-	  psq_l     f26,0xE8(r1),0,0
-	  lfd       f26, 0xE0(r1)
-	  psq_l     f25,0xD8(r1),0,0
-	  lfd       f25, 0xD0(r1)
-	  psq_l     f24,0xC8(r1),0,0
-	  lfd       f24, 0xC0(r1)
-	  psq_l     f23,0xB8(r1),0,0
-	  lfd       f23, 0xB0(r1)
-	  psq_l     f22,0xA8(r1),0,0
-	  lfd       f22, 0xA0(r1)
-	  psq_l     f21,0x98(r1),0,0
-	  lfd       f21, 0x90(r1)
-	  psq_l     f20,0x88(r1),0,0
-	  lfd       f20, 0x80(r1)
-	  psq_l     f19,0x78(r1),0,0
-	  lfd       f19, 0x70(r1)
-	  psq_l     f18,0x68(r1),0,0
-	  lfd       f18, 0x60(r1)
-	  lwz       r0, 0x144(r1)
-	  lwz       r31, 0x5C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x140
-	  blr
+lbl_8041806C:
+	lwz      r0, 0x38(r1)
+	lwz      r3, 0x3c(r1)
+	stw      r0, 8(r1)
+	lwz      r0, 0x40(r1)
+	stw      r3, 0xc(r1)
+	lfs      f0, 8(r1)
+	stw      r0, 0x10(r1)
+	lfs      f1, 0xc(r1)
+	stfs     f0, 0x3c(r31)
+	lfs      f0, 0x10(r1)
+	stfs     f1, 0x40(r31)
+	stfs     f0, 0x44(r31)
+	lfs      f0, 0x40(r31)
+	lfs      f1, 0x3c(r31)
+	fmuls    f0, f0, f24
+	lfs      f2, 0x44(r31)
+	fmadds   f0, f1, f25, f0
+	fmadds   f0, f2, f23, f0
+	stfs     f0, 0x48(r31)
+	psq_l    f31, 312(r1), 0, qr0
+	lfd      f31, 0x130(r1)
+	psq_l    f30, 296(r1), 0, qr0
+	lfd      f30, 0x120(r1)
+	psq_l    f29, 280(r1), 0, qr0
+	lfd      f29, 0x110(r1)
+	psq_l    f28, 264(r1), 0, qr0
+	lfd      f28, 0x100(r1)
+	psq_l    f27, 248(r1), 0, qr0
+	lfd      f27, 0xf0(r1)
+	psq_l    f26, 232(r1), 0, qr0
+	lfd      f26, 0xe0(r1)
+	psq_l    f25, 216(r1), 0, qr0
+	lfd      f25, 0xd0(r1)
+	psq_l    f24, 200(r1), 0, qr0
+	lfd      f24, 0xc0(r1)
+	psq_l    f23, 184(r1), 0, qr0
+	lfd      f23, 0xb0(r1)
+	psq_l    f22, 168(r1), 0, qr0
+	lfd      f22, 0xa0(r1)
+	psq_l    f21, 152(r1), 0, qr0
+	lfd      f21, 0x90(r1)
+	psq_l    f20, 136(r1), 0, qr0
+	lfd      f20, 0x80(r1)
+	psq_l    f19, 120(r1), 0, qr0
+	lfd      f19, 0x70(r1)
+	psq_l    f18, 104(r1), 0, qr0
+	lfd      f18, 0x60(r1)
+	lwz      r0, 0x144(r1)
+	lwz      r31, 0x5c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x140
+	blr
 	*/
 }
 
@@ -3082,27 +3224,26 @@ void Triangle::makePlanes(Sys::VertexTable&)
 void RayIntersectInfo::condition(Sys::Triangle&)
 {
 	/*
-	.loc_0x0:
-	  lbz       r0, 0x1C(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x38
-	  lfs       f1, 0x10(r4)
-	  lfs       f0, 0x1FB0(r2)
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x30
-	  lfs       f0, 0x1FC4(r2)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x30
-	  li        r3, 0x1
-	  blr
+	lbz      r0, 0x1c(r3)
+	cmplwi   r0, 0
+	beq      lbl_80418174
+	lfs      f1, 0x10(r4)
+	lfs      f0, lbl_80520310@sda21(r2)
+	fcmpo    cr0, f1, f0
+	bge      lbl_8041816C
+	lfs      f0, lbl_80520324@sda21(r2)
+	fcmpo    cr0, f1, f0
+	ble      lbl_8041816C
+	li       r3, 1
+	blr
 
-	.loc_0x30:
-	  li        r3, 0
-	  blr
+lbl_8041816C:
+	li       r3, 0
+	blr
 
-	.loc_0x38:
-	  li        r3, 0x1
-	  blr
+lbl_80418174:
+	li       r3, 1
+	blr
 	*/
 }
 
@@ -3114,297 +3255,296 @@ void RayIntersectInfo::condition(Sys::Triangle&)
 void GridDivider::createTriangles(Sys::CreateTriangleArg&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x1440(r1)
-	  mflr      r0
-	  stw       r0, 0x1444(r1)
-	  li        r0, 0x1438
-	  stfd      f31, 0x1430(r1)
-	  vpkuhum   v31, v1, v0
-	  stmw      r26, 0x1418(r1)
-	  li        r0, 0
-	  mr        r31, r3
-	  stw       r0, 0x18(r4)
-	  mr        r28, r4
-	  lis       r4, 0x8012
-	  addi      r3, r1, 0x208
-	  stw       r0, 0x1C(r28)
-	  subi      r4, r4, 0xCB8
-	  li        r5, 0
-	  li        r6, 0xC
-	  li        r7, 0x180
-	  bl        -0x356988
-	  lfs       f2, 0x0(r28)
-	  li        r29, 0
-	  lfs       f1, 0x2C(r31)
-	  li        r3, 0
-	  lfs       f3, 0x8(r28)
-	  lfs       f0, 0x34(r31)
-	  fsubs     f2, f2, f1
-	  lfs       f1, 0x44(r31)
-	  fsubs     f3, f3, f0
-	  lfs       f0, 0x48(r31)
-	  fdivs     f1, f2, f1
-	  fdivs     f0, f3, f0
-	  fctiwz    f1, f1
-	  fctiwz    f0, f0
-	  stfd      f1, 0x1408(r1)
-	  lwz       r4, 0x140C(r1)
-	  stfd      f0, 0x1410(r1)
-	  cmpwi     r4, 0
-	  lwz       r9, 0x1414(r1)
-	  blt-      .loc_0xC0
-	  cmpwi     r9, 0
-	  blt-      .loc_0xC0
-	  lwz       r0, 0x20(r31)
-	  cmpw      r4, r0
-	  bge-      .loc_0xC0
-	  lwz       r0, 0x24(r31)
-	  cmpw      r9, r0
-	  bge-      .loc_0xC0
-	  li        r3, 0x1
+	stwu     r1, -0x1440(r1)
+	mflr     r0
+	stw      r0, 0x1444(r1)
+	li       r0, 0x1438
+	stfd     f31, 0x1430(r1)
+	psq_stx  f31, r1, r0, 0, qr0
+	stmw     r26, 0x1418(r1)
+	li       r0, 0
+	mr       r31, r3
+	stw      r0, 0x18(r4)
+	mr       r28, r4
+	lis      r4, "__ct__10Vector3<f>Fv"@ha
+	addi     r3, r1, 0x208
+	stw      r0, 0x1c(r28)
+	addi     r4, r4, "__ct__10Vector3<f>Fv"@l
+	li       r5, 0
+	li       r6, 0xc
+	li       r7, 0x180
+	bl       __construct_array
+	lfs      f2, 0(r28)
+	li       r29, 0
+	lfs      f1, 0x2c(r31)
+	li       r3, 0
+	lfs      f3, 8(r28)
+	lfs      f0, 0x34(r31)
+	fsubs    f2, f2, f1
+	lfs      f1, 0x44(r31)
+	fsubs    f3, f3, f0
+	lfs      f0, 0x48(r31)
+	fdivs    f1, f2, f1
+	fdivs    f0, f3, f0
+	fctiwz   f1, f1
+	fctiwz   f0, f0
+	stfd     f1, 0x1408(r1)
+	lwz      r4, 0x140c(r1)
+	stfd     f0, 0x1410(r1)
+	cmpwi    r4, 0
+	lwz      r9, 0x1414(r1)
+	blt      lbl_8041823C
+	cmpwi    r9, 0
+	blt      lbl_8041823C
+	lwz      r0, 0x20(r31)
+	cmpw     r4, r0
+	bge      lbl_8041823C
+	lwz      r0, 0x24(r31)
+	cmpw     r9, r0
+	bge      lbl_8041823C
+	li       r3, 1
 
-	.loc_0xC0:
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x408
-	  lwz       r3, 0x24(r31)
-	  addi      r0, r1, 0x8
-	  addi      r30, r1, 0x208
-	  lwz       r8, 0x28(r31)
-	  mullw     r3, r4, r3
-	  mr        r5, r0
-	  mr        r6, r30
-	  li        r7, 0
-	  li        r4, 0
-	  add       r3, r9, r3
-	  mulli     r3, r3, 0x28
-	  add       r12, r8, r3
-	  b         .loc_0x228
+lbl_8041823C:
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80418584
+	lwz      r3, 0x24(r31)
+	addi     r0, r1, 8
+	addi     r30, r1, 0x208
+	lwz      r8, 0x28(r31)
+	mullw    r3, r4, r3
+	mr       r5, r0
+	mr       r6, r30
+	li       r7, 0
+	li       r4, 0
+	add      r3, r9, r3
+	mulli    r3, r3, 0x28
+	add      r12, r8, r3
+	b        lbl_804183A4
 
-	.loc_0xFC:
-	  lwz       r9, 0x24(r12)
-	  mr        r3, r0
-	  lwz       r11, 0x1C(r31)
-	  li        r8, 0
-	  lwzx      r10, r9, r4
-	  lwz       r9, 0x18(r31)
-	  mulli     r10, r10, 0x60
-	  lwz       r11, 0x24(r11)
-	  lwz       r26, 0x24(r9)
-	  add       r27, r11, r10
-	  lwz       r11, 0x0(r27)
-	  lwz       r10, 0x4(r27)
-	  lwz       r9, 0x8(r27)
-	  mulli     r11, r11, 0xC
-	  add       r11, r26, r11
-	  mulli     r10, r10, 0xC
-	  lfs       f1, 0x0(r11)
-	  lfs       f3, 0x4(r11)
-	  lfs       f4, 0x8(r11)
-	  add       r10, r26, r10
-	  mulli     r9, r9, 0xC
-	  lfs       f5, 0x0(r10)
-	  lfs       f6, 0x4(r10)
-	  lfs       f7, 0x8(r10)
-	  add       r9, r26, r9
-	  lfs       f8, 0x0(r9)
-	  lfs       f9, 0x4(r9)
-	  lfs       f10, 0x8(r9)
-	  mtctr     r29
-	  cmpwi     r29, 0
-	  ble-      .loc_0x190
+lbl_80418278:
+	lwz      r9, 0x24(r12)
+	mr       r3, r0
+	lwz      r11, 0x1c(r31)
+	li       r8, 0
+	lwzx     r10, r9, r4
+	lwz      r9, 0x18(r31)
+	mulli    r10, r10, 0x60
+	lwz      r11, 0x24(r11)
+	lwz      r26, 0x24(r9)
+	add      r27, r11, r10
+	lwz      r11, 0(r27)
+	lwz      r10, 4(r27)
+	lwz      r9, 8(r27)
+	mulli    r11, r11, 0xc
+	add      r11, r26, r11
+	mulli    r10, r10, 0xc
+	lfs      f1, 0(r11)
+	lfs      f3, 4(r11)
+	lfs      f4, 8(r11)
+	add      r10, r26, r10
+	mulli    r9, r9, 0xc
+	lfs      f5, 0(r10)
+	lfs      f6, 4(r10)
+	lfs      f7, 8(r10)
+	add      r9, r26, r9
+	lfs      f8, 0(r9)
+	lfs      f9, 4(r9)
+	lfs      f10, 8(r9)
+	mtctr    r29
+	cmpwi    r29, 0
+	ble      lbl_8041830C
 
-	.loc_0x178:
-	  lwz       r9, 0x0(r3)
-	  cmplw     r27, r9
-	  bne-      .loc_0x188
-	  li        r8, 0x1
+lbl_804182F4:
+	lwz      r9, 0(r3)
+	cmplw    r27, r9
+	bne      lbl_80418304
+	li       r8, 1
 
-	.loc_0x188:
-	  addi      r3, r3, 0x4
-	  bdnz+     .loc_0x178
+lbl_80418304:
+	addi     r3, r3, 4
+	bdnz     lbl_804182F4
 
-	.loc_0x190:
-	  rlwinm.   r3,r8,0,24,31
-	  bne-      .loc_0x220
-	  cmpwi     r29, 0x80
-	  bge-      .loc_0x220
-	  lfs       f11, 0x10(r27)
-	  lfs       f0, 0x14(r28)
-	  lfs       f2, 0xC(r27)
-	  fcmpo     cr0, f11, f0
-	  lfs       f0, 0x14(r27)
-	  ble-      .loc_0x220
-	  lfs       f31, 0x10(r28)
-	  addi      r29, r29, 0x1
-	  stw       r27, 0x0(r5)
-	  addi      r5, r5, 0x4
-	  fmuls     f13, f2, f31
-	  fmuls     f12, f11, f31
-	  fmuls     f11, f0, f31
-	  fadds     f2, f1, f13
-	  fadds     f1, f3, f12
-	  fadds     f0, f4, f11
-	  stfs      f2, 0x0(r6)
-	  fadds     f5, f5, f13
-	  fadds     f4, f6, f12
-	  stfs      f1, 0x4(r6)
-	  fadds     f3, f7, f11
-	  fadds     f2, f8, f13
-	  stfs      f0, 0x8(r6)
-	  fadds     f1, f9, f12
-	  fadds     f0, f10, f11
-	  stfs      f5, 0xC(r6)
-	  stfs      f4, 0x10(r6)
-	  stfs      f3, 0x14(r6)
-	  stfs      f2, 0x18(r6)
-	  stfs      f1, 0x1C(r6)
-	  stfs      f0, 0x20(r6)
-	  addi      r6, r6, 0x24
+lbl_8041830C:
+	clrlwi.  r3, r8, 0x18
+	bne      lbl_8041839C
+	cmpwi    r29, 0x80
+	bge      lbl_8041839C
+	lfs      f11, 0x10(r27)
+	lfs      f0, 0x14(r28)
+	lfs      f2, 0xc(r27)
+	fcmpo    cr0, f11, f0
+	lfs      f0, 0x14(r27)
+	ble      lbl_8041839C
+	lfs      f31, 0x10(r28)
+	addi     r29, r29, 1
+	stw      r27, 0(r5)
+	addi     r5, r5, 4
+	fmuls    f13, f2, f31
+	fmuls    f12, f11, f31
+	fmuls    f11, f0, f31
+	fadds    f2, f1, f13
+	fadds    f1, f3, f12
+	fadds    f0, f4, f11
+	stfs     f2, 0(r6)
+	fadds    f5, f5, f13
+	fadds    f4, f6, f12
+	stfs     f1, 4(r6)
+	fadds    f3, f7, f11
+	fadds    f2, f8, f13
+	stfs     f0, 8(r6)
+	fadds    f1, f9, f12
+	fadds    f0, f10, f11
+	stfs     f5, 0xc(r6)
+	stfs     f4, 0x10(r6)
+	stfs     f3, 0x14(r6)
+	stfs     f2, 0x18(r6)
+	stfs     f1, 0x1c(r6)
+	stfs     f0, 0x20(r6)
+	addi     r6, r6, 0x24
 
-	.loc_0x220:
-	  addi      r4, r4, 0x4
-	  addi      r7, r7, 0x1
+lbl_8041839C:
+	addi     r4, r4, 4
+	addi     r7, r7, 1
 
-	.loc_0x228:
-	  lwz       r3, 0x1C(r12)
-	  cmpw      r7, r3
-	  blt+      .loc_0xFC
-	  mulli     r31, r29, 0x3
-	  mulli     r3, r31, 0xC
-	  addi      r3, r3, 0x10
-	  bl        -0x3F4410
-	  lis       r4, 0x8012
-	  mr        r7, r31
-	  subi      r4, r4, 0xCB8
-	  li        r5, 0
-	  li        r6, 0xC
-	  bl        -0x3569E4
-	  cmpwi     r31, 0
-	  stw       r3, 0x18(r28)
-	  li        r3, 0
-	  ble-      .loc_0x404
-	  cmpwi     r31, 0x8
-	  subi      r4, r31, 0x8
-	  ble-      .loc_0x3BC
-	  addi      r0, r4, 0x7
-	  li        r5, 0
-	  rlwinm    r0,r0,29,3,31
-	  mtctr     r0
-	  cmpwi     r4, 0
-	  ble-      .loc_0x3BC
+lbl_804183A4:
+	lwz      r3, 0x1c(r12)
+	cmpw     r7, r3
+	blt      lbl_80418278
+	mulli    r31, r29, 3
+	mulli    r3, r31, 0xc
+	addi     r3, r3, 0x10
+	bl       __nwa__FUl
+	lis      r4, "__ct__10Vector3<f>Fv"@ha
+	mr       r7, r31
+	addi     r4, r4, "__ct__10Vector3<f>Fv"@l
+	li       r5, 0
+	li       r6, 0xc
+	bl       __construct_new_array
+	cmpwi    r31, 0
+	stw      r3, 0x18(r28)
+	li       r3, 0
+	ble      lbl_80418580
+	cmpwi    r31, 8
+	addi     r4, r31, -8
+	ble      lbl_80418538
+	addi     r0, r4, 7
+	li       r5, 0
+	srwi     r0, r0, 3
+	mtctr    r0
+	cmpwi    r4, 0
+	ble      lbl_80418538
 
-	.loc_0x290:
-	  lwz       r0, 0x18(r28)
-	  addi      r12, r5, 0xC
-	  lfs       f0, 0x0(r30)
-	  addi      r11, r5, 0x18
-	  add       r4, r0, r5
-	  addi      r10, r5, 0x24
-	  stfs      f0, 0x0(r4)
-	  addi      r9, r5, 0x30
-	  addi      r8, r5, 0x3C
-	  addi      r7, r5, 0x48
-	  lfs       f0, 0x4(r30)
-	  addi      r6, r5, 0x54
-	  addi      r5, r5, 0x60
-	  addi      r3, r3, 0x8
-	  stfs      f0, 0x4(r4)
-	  lfs       f0, 0x8(r30)
-	  stfs      f0, 0x8(r4)
-	  lwz       r0, 0x18(r28)
-	  lfs       f0, 0xC(r30)
-	  add       r12, r0, r12
-	  stfs      f0, 0x0(r12)
-	  lfs       f0, 0x10(r30)
-	  stfs      f0, 0x4(r12)
-	  lfs       f0, 0x14(r30)
-	  stfs      f0, 0x8(r12)
-	  lwz       r0, 0x18(r28)
-	  lfs       f0, 0x18(r30)
-	  add       r11, r0, r11
-	  stfs      f0, 0x0(r11)
-	  lfs       f0, 0x1C(r30)
-	  stfs      f0, 0x4(r11)
-	  lfs       f0, 0x20(r30)
-	  stfs      f0, 0x8(r11)
-	  lwz       r0, 0x18(r28)
-	  lfs       f0, 0x24(r30)
-	  add       r10, r0, r10
-	  stfs      f0, 0x0(r10)
-	  lfs       f0, 0x28(r30)
-	  stfs      f0, 0x4(r10)
-	  lfs       f0, 0x2C(r30)
-	  stfs      f0, 0x8(r10)
-	  lwz       r0, 0x18(r28)
-	  lfs       f0, 0x30(r30)
-	  add       r9, r0, r9
-	  stfs      f0, 0x0(r9)
-	  lfs       f0, 0x34(r30)
-	  stfs      f0, 0x4(r9)
-	  lfs       f0, 0x38(r30)
-	  stfs      f0, 0x8(r9)
-	  lwz       r0, 0x18(r28)
-	  lfs       f0, 0x3C(r30)
-	  add       r8, r0, r8
-	  stfs      f0, 0x0(r8)
-	  lfs       f0, 0x40(r30)
-	  stfs      f0, 0x4(r8)
-	  lfs       f0, 0x44(r30)
-	  stfs      f0, 0x8(r8)
-	  lwz       r0, 0x18(r28)
-	  lfs       f0, 0x48(r30)
-	  add       r7, r0, r7
-	  stfs      f0, 0x0(r7)
-	  lfs       f0, 0x4C(r30)
-	  stfs      f0, 0x4(r7)
-	  lfs       f0, 0x50(r30)
-	  stfs      f0, 0x8(r7)
-	  lwz       r0, 0x18(r28)
-	  lfs       f0, 0x54(r30)
-	  add       r6, r0, r6
-	  stfs      f0, 0x0(r6)
-	  lfs       f0, 0x58(r30)
-	  stfs      f0, 0x4(r6)
-	  lfs       f0, 0x5C(r30)
-	  addi      r30, r30, 0x60
-	  stfs      f0, 0x8(r6)
-	  bdnz+     .loc_0x290
+lbl_8041840C:
+	lwz      r0, 0x18(r28)
+	addi     r12, r5, 0xc
+	lfs      f0, 0(r30)
+	addi     r11, r5, 0x18
+	add      r4, r0, r5
+	addi     r10, r5, 0x24
+	stfs     f0, 0(r4)
+	addi     r9, r5, 0x30
+	addi     r8, r5, 0x3c
+	addi     r7, r5, 0x48
+	lfs      f0, 4(r30)
+	addi     r6, r5, 0x54
+	addi     r5, r5, 0x60
+	addi     r3, r3, 8
+	stfs     f0, 4(r4)
+	lfs      f0, 8(r30)
+	stfs     f0, 8(r4)
+	lwz      r0, 0x18(r28)
+	lfs      f0, 0xc(r30)
+	add      r12, r0, r12
+	stfs     f0, 0(r12)
+	lfs      f0, 0x10(r30)
+	stfs     f0, 4(r12)
+	lfs      f0, 0x14(r30)
+	stfs     f0, 8(r12)
+	lwz      r0, 0x18(r28)
+	lfs      f0, 0x18(r30)
+	add      r11, r0, r11
+	stfs     f0, 0(r11)
+	lfs      f0, 0x1c(r30)
+	stfs     f0, 4(r11)
+	lfs      f0, 0x20(r30)
+	stfs     f0, 8(r11)
+	lwz      r0, 0x18(r28)
+	lfs      f0, 0x24(r30)
+	add      r10, r0, r10
+	stfs     f0, 0(r10)
+	lfs      f0, 0x28(r30)
+	stfs     f0, 4(r10)
+	lfs      f0, 0x2c(r30)
+	stfs     f0, 8(r10)
+	lwz      r0, 0x18(r28)
+	lfs      f0, 0x30(r30)
+	add      r9, r0, r9
+	stfs     f0, 0(r9)
+	lfs      f0, 0x34(r30)
+	stfs     f0, 4(r9)
+	lfs      f0, 0x38(r30)
+	stfs     f0, 8(r9)
+	lwz      r0, 0x18(r28)
+	lfs      f0, 0x3c(r30)
+	add      r8, r0, r8
+	stfs     f0, 0(r8)
+	lfs      f0, 0x40(r30)
+	stfs     f0, 4(r8)
+	lfs      f0, 0x44(r30)
+	stfs     f0, 8(r8)
+	lwz      r0, 0x18(r28)
+	lfs      f0, 0x48(r30)
+	add      r7, r0, r7
+	stfs     f0, 0(r7)
+	lfs      f0, 0x4c(r30)
+	stfs     f0, 4(r7)
+	lfs      f0, 0x50(r30)
+	stfs     f0, 8(r7)
+	lwz      r0, 0x18(r28)
+	lfs      f0, 0x54(r30)
+	add      r6, r0, r6
+	stfs     f0, 0(r6)
+	lfs      f0, 0x58(r30)
+	stfs     f0, 4(r6)
+	lfs      f0, 0x5c(r30)
+	addi     r30, r30, 0x60
+	stfs     f0, 8(r6)
+	bdnz     lbl_8041840C
 
-	.loc_0x3BC:
-	  mulli     r5, r3, 0xC
-	  addi      r4, r1, 0x208
-	  sub       r0, r31, r3
-	  add       r4, r4, r5
-	  mtctr     r0
-	  cmpw      r3, r31
-	  bge-      .loc_0x404
+lbl_80418538:
+	mulli    r5, r3, 0xc
+	addi     r4, r1, 0x208
+	subf     r0, r3, r31
+	add      r4, r4, r5
+	mtctr    r0
+	cmpw     r3, r31
+	bge      lbl_80418580
 
-	.loc_0x3D8:
-	  lwz       r0, 0x18(r28)
-	  lfs       f0, 0x0(r4)
-	  add       r3, r0, r5
-	  addi      r5, r5, 0xC
-	  stfs      f0, 0x0(r3)
-	  lfs       f0, 0x4(r4)
-	  stfs      f0, 0x4(r3)
-	  lfs       f0, 0x8(r4)
-	  addi      r4, r4, 0xC
-	  stfs      f0, 0x8(r3)
-	  bdnz+     .loc_0x3D8
+lbl_80418554:
+	lwz      r0, 0x18(r28)
+	lfs      f0, 0(r4)
+	add      r3, r0, r5
+	addi     r5, r5, 0xc
+	stfs     f0, 0(r3)
+	lfs      f0, 4(r4)
+	stfs     f0, 4(r3)
+	lfs      f0, 8(r4)
+	addi     r4, r4, 0xc
+	stfs     f0, 8(r3)
+	bdnz     lbl_80418554
 
-	.loc_0x404:
-	  stw       r29, 0x1C(r28)
+lbl_80418580:
+	stw      r29, 0x1c(r28)
 
-	.loc_0x408:
-	  li        r0, 0x1438
-	  vmrghb    v31, v1, v0
-	  lfd       f31, 0x1430(r1)
-	  lmw       r26, 0x1418(r1)
-	  lwz       r0, 0x1444(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x1440
-	  blr
+lbl_80418584:
+	li       r0, 0x1438
+	psq_lx   f31, r1, r0, 0, qr0
+	lfd      f31, 0x1430(r1)
+	lmw      r26, 0x1418(r1)
+	lwz      r0, 0x1444(r1)
+	mtlr     r0
+	addi     r1, r1, 0x1440
+	blr
 	*/
 }
 
@@ -3416,149 +3556,148 @@ void GridDivider::createTriangles(Sys::CreateTriangleArg&)
 void GridDivider::getMinY(Vector3f&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  li        r5, 0
-	  lfs       f9, 0x0(r4)
-	  lfs       f1, 0x2C(r3)
-	  lfs       f10, 0x8(r4)
-	  fsubs     f2, f9, f1
-	  lfs       f0, 0x34(r3)
-	  lfs       f1, 0x44(r3)
-	  fsubs     f3, f10, f0
-	  lfs       f0, 0x48(r3)
-	  fdivs     f1, f2, f1
-	  fdivs     f0, f3, f0
-	  fctiwz    f1, f1
-	  fctiwz    f0, f0
-	  stfd      f1, 0x8(r1)
-	  lwz       r6, 0xC(r1)
-	  stfd      f0, 0x10(r1)
-	  cmpwi     r6, 0
-	  lwz       r8, 0x14(r1)
-	  blt-      .loc_0x74
-	  cmpwi     r8, 0
-	  blt-      .loc_0x74
-	  lwz       r0, 0x20(r3)
-	  cmpw      r6, r0
-	  bge-      .loc_0x74
-	  lwz       r0, 0x24(r3)
-	  cmpw      r8, r0
-	  bge-      .loc_0x74
-	  li        r5, 0x1
+	stwu     r1, -0x20(r1)
+	li       r5, 0
+	lfs      f9, 0(r4)
+	lfs      f1, 0x2c(r3)
+	lfs      f10, 8(r4)
+	fsubs    f2, f9, f1
+	lfs      f0, 0x34(r3)
+	lfs      f1, 0x44(r3)
+	fsubs    f3, f10, f0
+	lfs      f0, 0x48(r3)
+	fdivs    f1, f2, f1
+	fdivs    f0, f3, f0
+	fctiwz   f1, f1
+	fctiwz   f0, f0
+	stfd     f1, 8(r1)
+	lwz      r6, 0xc(r1)
+	stfd     f0, 0x10(r1)
+	cmpwi    r6, 0
+	lwz      r8, 0x14(r1)
+	blt      lbl_80418618
+	cmpwi    r8, 0
+	blt      lbl_80418618
+	lwz      r0, 0x20(r3)
+	cmpw     r6, r0
+	bge      lbl_80418618
+	lwz      r0, 0x24(r3)
+	cmpw     r8, r0
+	bge      lbl_80418618
+	li       r5, 1
 
-	.loc_0x74:
-	  rlwinm.   r0,r5,0,24,31
-	  bne-      .loc_0x84
-	  lfs       f1, 0x1FA8(r2)
-	  b         .loc_0x1D0
+lbl_80418618:
+	clrlwi.  r0, r5, 0x18
+	bne      lbl_80418628
+	lfs      f1, lbl_80520308@sda21(r2)
+	b        lbl_80418774
 
-	.loc_0x84:
-	  lwz       r0, 0x24(r3)
-	  li        r9, 0
-	  lwz       r5, 0x28(r3)
-	  li        r7, 0
-	  mullw     r0, r6, r0
-	  lfs       f1, 0x1FC8(r2)
-	  lfs       f6, 0x4(r4)
-	  lfs       f8, 0x1FA8(r2)
-	  add       r0, r8, r0
-	  mulli     r0, r0, 0x28
-	  add       r6, r5, r0
-	  lwz       r0, 0x1C(r6)
-	  mtctr     r0
-	  cmpwi     r0, 0
-	  ble-      .loc_0x1C0
+lbl_80418628:
+	lwz      r0, 0x24(r3)
+	li       r9, 0
+	lwz      r5, 0x28(r3)
+	li       r7, 0
+	mullw    r0, r6, r0
+	lfs      f1, lbl_80520328@sda21(r2)
+	lfs      f6, 4(r4)
+	lfs      f8, lbl_80520308@sda21(r2)
+	add      r0, r8, r0
+	mulli    r0, r0, 0x28
+	add      r6, r5, r0
+	lwz      r0, 0x1c(r6)
+	mtctr    r0
+	cmpwi    r0, 0
+	ble      lbl_80418764
 
-	.loc_0xC0:
-	  lwz       r4, 0x24(r6)
-	  lwz       r5, 0x1C(r3)
-	  lwzx      r0, r4, r7
-	  lwz       r4, 0x24(r5)
-	  mulli     r0, r0, 0x60
-	  add       r4, r4, r0
-	  lfs       f11, 0x10(r4)
-	  fcmpo     cr0, f11, f8
-	  cror      2, 0, 0x2
-	  bne-      .loc_0xF0
-	  li        r0, 0
-	  b         .loc_0x1A0
+lbl_80418664:
+	lwz      r4, 0x24(r6)
+	lwz      r5, 0x1c(r3)
+	lwzx     r0, r4, r7
+	lwz      r4, 0x24(r5)
+	mulli    r0, r0, 0x60
+	add      r4, r4, r0
+	lfs      f11, 0x10(r4)
+	fcmpo    cr0, f11, f8
+	cror     2, 0, 2
+	bne      lbl_80418694
+	li       r0, 0
+	b        lbl_80418744
 
-	.loc_0xF0:
-	  lfs       f0, 0x14(r4)
-	  li        r0, 0
-	  lfs       f2, 0xC(r4)
-	  fmuls     f0, f0, f10
-	  lfs       f7, 0x18(r4)
-	  lfs       f3, 0x20(r4)
-	  lfs       f4, 0x1C(r4)
-	  fmadds    f6, f2, f9, f0
-	  lfs       f5, 0x24(r4)
-	  lfs       f2, 0x28(r4)
-	  lfs       f0, 0x1FA8(r2)
-	  fsubs     f6, f7, f6
-	  fdivs     f6, f6, f11
-	  fmuls     f3, f6, f3
-	  fmadds    f3, f9, f4, f3
-	  fmadds    f3, f10, f5, f3
-	  fsubs     f2, f3, f2
-	  fcmpo     cr0, f2, f0
-	  ble-      .loc_0x140
-	  b         .loc_0x1A0
+lbl_80418694:
+	lfs      f0, 0x14(r4)
+	li       r0, 0
+	lfs      f2, 0xc(r4)
+	fmuls    f0, f0, f10
+	lfs      f7, 0x18(r4)
+	lfs      f3, 0x20(r4)
+	lfs      f4, 0x1c(r4)
+	fmadds   f6, f2, f9, f0
+	lfs      f5, 0x24(r4)
+	lfs      f2, 0x28(r4)
+	lfs      f0, lbl_80520308@sda21(r2)
+	fsubs    f6, f7, f6
+	fdivs    f6, f6, f11
+	fmuls    f3, f6, f3
+	fmadds   f3, f9, f4, f3
+	fmadds   f3, f10, f5, f3
+	fsubs    f2, f3, f2
+	fcmpo    cr0, f2, f0
+	ble      lbl_804186E4
+	b        lbl_80418744
 
-	.loc_0x140:
-	  lfs       f3, 0x30(r4)
-	  lfs       f4, 0x2C(r4)
-	  fmuls     f3, f6, f3
-	  lfs       f5, 0x34(r4)
-	  lfs       f2, 0x38(r4)
-	  fmadds    f3, f9, f4, f3
-	  fmadds    f3, f10, f5, f3
-	  fsubs     f2, f3, f2
-	  fcmpo     cr0, f2, f0
-	  ble-      .loc_0x16C
-	  b         .loc_0x1A0
+lbl_804186E4:
+	lfs      f3, 0x30(r4)
+	lfs      f4, 0x2c(r4)
+	fmuls    f3, f6, f3
+	lfs      f5, 0x34(r4)
+	lfs      f2, 0x38(r4)
+	fmadds   f3, f9, f4, f3
+	fmadds   f3, f10, f5, f3
+	fsubs    f2, f3, f2
+	fcmpo    cr0, f2, f0
+	ble      lbl_80418710
+	b        lbl_80418744
 
-	.loc_0x16C:
-	  addi      r4, r4, 0x20
-	  lfs       f3, 0x20(r4)
-	  lfs       f4, 0x1C(r4)
-	  fmuls     f3, f6, f3
-	  lfs       f5, 0x24(r4)
-	  lfs       f2, 0x28(r4)
-	  fmadds    f3, f9, f4, f3
-	  fmadds    f3, f10, f5, f3
-	  fsubs     f2, f3, f2
-	  fcmpo     cr0, f2, f0
-	  ble-      .loc_0x19C
-	  b         .loc_0x1A0
+lbl_80418710:
+	addi     r4, r4, 0x20
+	lfs      f3, 0x20(r4)
+	lfs      f4, 0x1c(r4)
+	fmuls    f3, f6, f3
+	lfs      f5, 0x24(r4)
+	lfs      f2, 0x28(r4)
+	fmadds   f3, f9, f4, f3
+	fmadds   f3, f10, f5, f3
+	fsubs    f2, f3, f2
+	fcmpo    cr0, f2, f0
+	ble      lbl_80418740
+	b        lbl_80418744
 
-	.loc_0x19C:
-	  li        r0, 0x1
+lbl_80418740:
+	li       r0, 1
 
-	.loc_0x1A0:
-	  rlwinm.   r0,r0,0,24,31
-	  beq-      .loc_0x1B8
-	  fcmpo     cr0, f1, f6
-	  ble-      .loc_0x1B8
-	  fmr       f1, f6
-	  li        r9, 0x1
+lbl_80418744:
+	clrlwi.  r0, r0, 0x18
+	beq      lbl_8041875C
+	fcmpo    cr0, f1, f6
+	ble      lbl_8041875C
+	fmr      f1, f6
+	li       r9, 1
 
-	.loc_0x1B8:
-	  addi      r7, r7, 0x4
-	  bdnz+     .loc_0xC0
+lbl_8041875C:
+	addi     r7, r7, 4
+	bdnz     lbl_80418664
 
-	.loc_0x1C0:
-	  rlwinm.   r0,r9,0,24,31
-	  beq-      .loc_0x1CC
-	  b         .loc_0x1D0
+lbl_80418764:
+	clrlwi.  r0, r9, 0x18
+	beq      lbl_80418770
+	b        lbl_80418774
 
-	.loc_0x1CC:
-	  lfs       f1, 0x1FA8(r2)
+lbl_80418770:
+	lfs      f1, lbl_80520308@sda21(r2)
 
-	.loc_0x1D0:
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80418774:
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -3570,170 +3709,169 @@ void GridDivider::getMinY(Vector3f&)
 void GridDivider::getCurrTri(Game::CurrTriInfo&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  li        r5, 0
-	  lfs       f0, 0x0(r4)
-	  lfs       f3, 0x2C(r3)
-	  lfs       f1, 0x8(r4)
-	  fsubs     f4, f0, f3
-	  lfs       f2, 0x34(r3)
-	  lfs       f3, 0x44(r3)
-	  fsubs     f5, f1, f2
-	  lfs       f2, 0x48(r3)
-	  fdivs     f3, f4, f3
-	  fdivs     f2, f5, f2
-	  fctiwz    f3, f3
-	  fctiwz    f2, f2
-	  stfd      f3, 0x8(r1)
-	  lwz       r6, 0xC(r1)
-	  stfd      f2, 0x10(r1)
-	  cmpwi     r6, 0
-	  lwz       r7, 0x14(r1)
-	  blt-      .loc_0x74
-	  cmpwi     r7, 0
-	  blt-      .loc_0x74
-	  lwz       r0, 0x20(r3)
-	  cmpw      r6, r0
-	  bge-      .loc_0x74
-	  lwz       r0, 0x24(r3)
-	  cmpw      r7, r0
-	  bge-      .loc_0x74
-	  li        r5, 0x1
+	stwu     r1, -0x20(r1)
+	li       r5, 0
+	lfs      f0, 0(r4)
+	lfs      f3, 0x2c(r3)
+	lfs      f1, 8(r4)
+	fsubs    f4, f0, f3
+	lfs      f2, 0x34(r3)
+	lfs      f3, 0x44(r3)
+	fsubs    f5, f1, f2
+	lfs      f2, 0x48(r3)
+	fdivs    f3, f4, f3
+	fdivs    f2, f5, f2
+	fctiwz   f3, f3
+	fctiwz   f2, f2
+	stfd     f3, 8(r1)
+	lwz      r6, 0xc(r1)
+	stfd     f2, 0x10(r1)
+	cmpwi    r6, 0
+	lwz      r7, 0x14(r1)
+	blt      lbl_804187F0
+	cmpwi    r7, 0
+	blt      lbl_804187F0
+	lwz      r0, 0x20(r3)
+	cmpw     r6, r0
+	bge      lbl_804187F0
+	lwz      r0, 0x24(r3)
+	cmpw     r7, r0
+	bge      lbl_804187F0
+	li       r5, 1
 
-	.loc_0x74:
-	  rlwinm.   r0,r5,0,24,31
-	  beq-      .loc_0x22C
-	  lwz       r0, 0x24(r3)
-	  li        r9, 0
-	  lwz       r5, 0x28(r3)
-	  li        r10, 0
-	  mullw     r0, r6, r0
-	  lfs       f11, 0x1FC8(r2)
-	  lfs       f12, 0x1FCC(r2)
-	  li        r8, 0
-	  lfs       f7, 0x4(r4)
-	  lfs       f9, 0x1FA8(r2)
-	  add       r0, r7, r0
-	  mulli     r0, r0, 0x28
-	  add       r7, r5, r0
-	  b         .loc_0x210
+lbl_804187F0:
+	clrlwi.  r0, r5, 0x18
+	beq      lbl_804189A8
+	lwz      r0, 0x24(r3)
+	li       r9, 0
+	lwz      r5, 0x28(r3)
+	li       r10, 0
+	mullw    r0, r6, r0
+	lfs      f11, lbl_80520328@sda21(r2)
+	lfs      f12, lbl_8052032C@sda21(r2)
+	li       r8, 0
+	lfs      f7, 4(r4)
+	lfs      f9, lbl_80520308@sda21(r2)
+	add      r0, r7, r0
+	mulli    r0, r0, 0x28
+	add      r7, r5, r0
+	b        lbl_8041898C
 
-	.loc_0xB4:
-	  lwz       r5, 0x24(r7)
-	  lwz       r6, 0x1C(r3)
-	  lwzx      r0, r5, r8
-	  lwz       r5, 0x24(r6)
-	  mulli     r0, r0, 0x60
-	  add       r5, r5, r0
-	  lfs       f10, 0x10(r5)
-	  fcmpo     cr0, f10, f9
-	  cror      2, 0, 0x2
-	  bne-      .loc_0xE4
-	  li        r0, 0
-	  b         .loc_0x190
+lbl_80418830:
+	lwz      r5, 0x24(r7)
+	lwz      r6, 0x1c(r3)
+	lwzx     r0, r5, r8
+	lwz      r5, 0x24(r6)
+	mulli    r0, r0, 0x60
+	add      r5, r5, r0
+	lfs      f10, 0x10(r5)
+	fcmpo    cr0, f10, f9
+	cror     2, 0, 2
+	bne      lbl_80418860
+	li       r0, 0
+	b        lbl_8041890C
 
-	.loc_0xE4:
-	  lfs       f2, 0x14(r5)
-	  li        r0, 0
-	  lfs       f3, 0xC(r5)
-	  fmuls     f2, f2, f1
-	  lfs       f8, 0x18(r5)
-	  lfs       f4, 0x20(r5)
-	  lfs       f5, 0x1C(r5)
-	  fmadds    f7, f3, f0, f2
-	  lfs       f6, 0x24(r5)
-	  lfs       f3, 0x28(r5)
-	  lfs       f2, 0x1FA8(r2)
-	  fsubs     f7, f8, f7
-	  fdivs     f7, f7, f10
-	  fmuls     f4, f7, f4
-	  fmadds    f4, f0, f5, f4
-	  fmadds    f4, f1, f6, f4
-	  fsubs     f3, f4, f3
-	  fcmpo     cr0, f3, f2
-	  ble-      .loc_0x134
-	  b         .loc_0x190
+lbl_80418860:
+	lfs      f2, 0x14(r5)
+	li       r0, 0
+	lfs      f3, 0xc(r5)
+	fmuls    f2, f2, f1
+	lfs      f8, 0x18(r5)
+	lfs      f4, 0x20(r5)
+	lfs      f5, 0x1c(r5)
+	fmadds   f7, f3, f0, f2
+	lfs      f6, 0x24(r5)
+	lfs      f3, 0x28(r5)
+	lfs      f2, lbl_80520308@sda21(r2)
+	fsubs    f7, f8, f7
+	fdivs    f7, f7, f10
+	fmuls    f4, f7, f4
+	fmadds   f4, f0, f5, f4
+	fmadds   f4, f1, f6, f4
+	fsubs    f3, f4, f3
+	fcmpo    cr0, f3, f2
+	ble      lbl_804188B0
+	b        lbl_8041890C
 
-	.loc_0x134:
-	  lfs       f4, 0x30(r5)
-	  lfs       f5, 0x2C(r5)
-	  fmuls     f4, f7, f4
-	  lfs       f6, 0x34(r5)
-	  lfs       f3, 0x38(r5)
-	  fmadds    f4, f0, f5, f4
-	  fmadds    f4, f1, f6, f4
-	  fsubs     f3, f4, f3
-	  fcmpo     cr0, f3, f2
-	  ble-      .loc_0x160
-	  b         .loc_0x190
+lbl_804188B0:
+	lfs      f4, 0x30(r5)
+	lfs      f5, 0x2c(r5)
+	fmuls    f4, f7, f4
+	lfs      f6, 0x34(r5)
+	lfs      f3, 0x38(r5)
+	fmadds   f4, f0, f5, f4
+	fmadds   f4, f1, f6, f4
+	fsubs    f3, f4, f3
+	fcmpo    cr0, f3, f2
+	ble      lbl_804188DC
+	b        lbl_8041890C
 
-	.loc_0x160:
-	  lfs       f4, 0x40(r5)
-	  lfs       f5, 0x3C(r5)
-	  fmuls     f4, f7, f4
-	  lfs       f6, 0x44(r5)
-	  lfs       f3, 0x48(r5)
-	  fmadds    f4, f0, f5, f4
-	  fmadds    f4, f1, f6, f4
-	  fsubs     f3, f4, f3
-	  fcmpo     cr0, f3, f2
-	  ble-      .loc_0x18C
-	  b         .loc_0x190
+lbl_804188DC:
+	lfs      f4, 0x40(r5)
+	lfs      f5, 0x3c(r5)
+	fmuls    f4, f7, f4
+	lfs      f6, 0x44(r5)
+	lfs      f3, 0x48(r5)
+	fmadds   f4, f0, f5, f4
+	fmadds   f4, f1, f6, f4
+	fsubs    f3, f4, f3
+	fcmpo    cr0, f3, f2
+	ble      lbl_80418908
+	b        lbl_8041890C
 
-	.loc_0x18C:
-	  li        r0, 0x1
+lbl_80418908:
+	li       r0, 1
 
-	.loc_0x190:
-	  rlwinm.   r0,r0,0,24,31
-	  beq-      .loc_0x208
-	  fcmpo     cr0, f11, f7
-	  ble-      .loc_0x1D0
-	  lbz       r0, 0xC(r4)
-	  fmr       f11, f7
-	  cmplwi    r0, 0
-	  beq-      .loc_0x1D0
-	  lfs       f2, 0xC(r5)
-	  li        r9, 0x1
-	  stfs      f2, 0x20(r4)
-	  lfs       f2, 0x10(r5)
-	  stfs      f2, 0x24(r4)
-	  lfs       f2, 0x14(r5)
-	  stfs      f2, 0x28(r4)
-	  stw       r5, 0x14(r4)
+lbl_8041890C:
+	clrlwi.  r0, r0, 0x18
+	beq      lbl_80418984
+	fcmpo    cr0, f11, f7
+	ble      lbl_8041894C
+	lbz      r0, 0xc(r4)
+	fmr      f11, f7
+	cmplwi   r0, 0
+	beq      lbl_8041894C
+	lfs      f2, 0xc(r5)
+	li       r9, 1
+	stfs     f2, 0x20(r4)
+	lfs      f2, 0x10(r5)
+	stfs     f2, 0x24(r4)
+	lfs      f2, 0x14(r5)
+	stfs     f2, 0x28(r4)
+	stw      r5, 0x14(r4)
 
-	.loc_0x1D0:
-	  fcmpo     cr0, f7, f12
-	  ble-      .loc_0x208
-	  lbz       r0, 0xC(r4)
-	  fmr       f12, f7
-	  cmplwi    r0, 0
-	  bne-      .loc_0x208
-	  lfs       f2, 0xC(r5)
-	  li        r9, 0x1
-	  stfs      f2, 0x20(r4)
-	  lfs       f2, 0x10(r5)
-	  stfs      f2, 0x24(r4)
-	  lfs       f2, 0x14(r5)
-	  stfs      f2, 0x28(r4)
-	  stw       r5, 0x14(r4)
+lbl_8041894C:
+	fcmpo    cr0, f7, f12
+	ble      lbl_80418984
+	lbz      r0, 0xc(r4)
+	fmr      f12, f7
+	cmplwi   r0, 0
+	bne      lbl_80418984
+	lfs      f2, 0xc(r5)
+	li       r9, 1
+	stfs     f2, 0x20(r4)
+	lfs      f2, 0x10(r5)
+	stfs     f2, 0x24(r4)
+	lfs      f2, 0x14(r5)
+	stfs     f2, 0x28(r4)
+	stw      r5, 0x14(r4)
 
-	.loc_0x208:
-	  addi      r8, r8, 0x4
-	  addi      r10, r10, 0x1
+lbl_80418984:
+	addi     r8, r8, 4
+	addi     r10, r10, 1
 
-	.loc_0x210:
-	  lwz       r0, 0x1C(r7)
-	  cmpw      r10, r0
-	  blt+      .loc_0xB4
-	  rlwinm.   r0,r9,0,24,31
-	  beq-      .loc_0x22C
-	  stfs      f11, 0x18(r4)
-	  stfs      f12, 0x1C(r4)
+lbl_8041898C:
+	lwz      r0, 0x1c(r7)
+	cmpw     r10, r0
+	blt      lbl_80418830
+	clrlwi.  r0, r9, 0x18
+	beq      lbl_804189A8
+	stfs     f11, 0x18(r4)
+	stfs     f12, 0x1c(r4)
 
-	.loc_0x22C:
-	  addi      r1, r1, 0x20
-	  blr
+lbl_804189A8:
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -3745,185 +3883,184 @@ void GridDivider::getCurrTri(Game::CurrTriInfo&)
 void GridDivider::findTriLists(Sys::Sphere&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x50(r1)
-	  mflr      r0
-	  stw       r0, 0x54(r1)
-	  stmw      r24, 0x30(r1)
-	  mr        r24, r3
-	  li        r28, 0
-	  lfs       f1, 0x0(r4)
-	  lfs       f4, 0xC(r4)
-	  lfs       f3, 0x8(r4)
-	  fsubs     f0, f1, f4
-	  lfs       f5, 0x2C(r3)
-	  fadds     f2, f1, f4
-	  lfs       f6, 0x44(r3)
-	  fsubs     f1, f3, f4
-	  lfs       f7, 0x34(r3)
-	  fsubs     f0, f0, f5
-	  lfs       f8, 0x48(r3)
-	  fadds     f4, f3, f4
-	  fsubs     f1, f1, f7
-	  fdivs     f3, f0, f6
-	  fsubs     f5, f2, f5
-	  fdivs     f2, f1, f8
-	  fsubs     f0, f4, f7
-	  fdivs     f1, f5, f6
-	  fdivs     f0, f0, f8
-	  fctiwz    f3, f3
-	  fctiwz    f2, f2
-	  fctiwz    f1, f1
-	  stfd      f3, 0x8(r1)
-	  fctiwz    f0, f0
-	  lwz       r0, 0xC(r1)
-	  stfd      f2, 0x10(r1)
-	  cmpwi     r0, 0
-	  stfd      f1, 0x18(r1)
-	  lwz       r4, 0x14(r1)
-	  stfd      f0, 0x20(r1)
-	  lwz       r5, 0x1C(r1)
-	  lwz       r6, 0x24(r1)
-	  bge-      .loc_0xA4
-	  li        r0, 0
-	  b         .loc_0xB4
+	stwu     r1, -0x50(r1)
+	mflr     r0
+	stw      r0, 0x54(r1)
+	stmw     r24, 0x30(r1)
+	mr       r24, r3
+	li       r28, 0
+	lfs      f1, 0(r4)
+	lfs      f4, 0xc(r4)
+	lfs      f3, 8(r4)
+	fsubs    f0, f1, f4
+	lfs      f5, 0x2c(r3)
+	fadds    f2, f1, f4
+	lfs      f6, 0x44(r3)
+	fsubs    f1, f3, f4
+	lfs      f7, 0x34(r3)
+	fsubs    f0, f0, f5
+	lfs      f8, 0x48(r3)
+	fadds    f4, f3, f4
+	fsubs    f1, f1, f7
+	fdivs    f3, f0, f6
+	fsubs    f5, f2, f5
+	fdivs    f2, f1, f8
+	fsubs    f0, f4, f7
+	fdivs    f1, f5, f6
+	fdivs    f0, f0, f8
+	fctiwz   f3, f3
+	fctiwz   f2, f2
+	fctiwz   f1, f1
+	stfd     f3, 8(r1)
+	fctiwz   f0, f0
+	lwz      r0, 0xc(r1)
+	stfd     f2, 0x10(r1)
+	cmpwi    r0, 0
+	stfd     f1, 0x18(r1)
+	lwz      r4, 0x14(r1)
+	stfd     f0, 0x20(r1)
+	lwz      r5, 0x1c(r1)
+	lwz      r6, 0x24(r1)
+	bge      lbl_80418A54
+	li       r0, 0
+	b        lbl_80418A64
 
-	.loc_0xA4:
-	  lwz       r3, 0x20(r24)
-	  cmpw      r0, r3
-	  blt-      .loc_0xB4
-	  subi      r0, r3, 0x1
+lbl_80418A54:
+	lwz      r3, 0x20(r24)
+	cmpw     r0, r3
+	blt      lbl_80418A64
+	addi     r0, r3, -1
 
-	.loc_0xB4:
-	  cmpwi     r4, 0
-	  bge-      .loc_0xC4
-	  li        r31, 0
-	  b         .loc_0xDC
+lbl_80418A64:
+	cmpwi    r4, 0
+	bge      lbl_80418A74
+	li       r31, 0
+	b        lbl_80418A8C
 
-	.loc_0xC4:
-	  lwz       r3, 0x24(r24)
-	  cmpw      r4, r3
-	  blt-      .loc_0xD8
-	  subi      r31, r3, 0x1
-	  b         .loc_0xDC
+lbl_80418A74:
+	lwz      r3, 0x24(r24)
+	cmpw     r4, r3
+	blt      lbl_80418A88
+	addi     r31, r3, -1
+	b        lbl_80418A8C
 
-	.loc_0xD8:
-	  mr        r31, r4
+lbl_80418A88:
+	mr       r31, r4
 
-	.loc_0xDC:
-	  cmpwi     r5, 0
-	  bge-      .loc_0xEC
-	  li        r30, 0
-	  b         .loc_0x104
+lbl_80418A8C:
+	cmpwi    r5, 0
+	bge      lbl_80418A9C
+	li       r30, 0
+	b        lbl_80418AB4
 
-	.loc_0xEC:
-	  lwz       r3, 0x20(r24)
-	  cmpw      r5, r3
-	  blt-      .loc_0x100
-	  subi      r30, r3, 0x1
-	  b         .loc_0x104
+lbl_80418A9C:
+	lwz      r3, 0x20(r24)
+	cmpw     r5, r3
+	blt      lbl_80418AB0
+	addi     r30, r3, -1
+	b        lbl_80418AB4
 
-	.loc_0x100:
-	  mr        r30, r5
+lbl_80418AB0:
+	mr       r30, r5
 
-	.loc_0x104:
-	  cmpwi     r6, 0
-	  bge-      .loc_0x114
-	  li        r29, 0
-	  b         .loc_0x12C
+lbl_80418AB4:
+	cmpwi    r6, 0
+	bge      lbl_80418AC4
+	li       r29, 0
+	b        lbl_80418ADC
 
-	.loc_0x114:
-	  lwz       r3, 0x24(r24)
-	  cmpw      r6, r3
-	  blt-      .loc_0x128
-	  subi      r29, r3, 0x1
-	  b         .loc_0x12C
+lbl_80418AC4:
+	lwz      r3, 0x24(r24)
+	cmpw     r6, r3
+	blt      lbl_80418AD8
+	addi     r29, r3, -1
+	b        lbl_80418ADC
 
-	.loc_0x128:
-	  mr        r29, r6
+lbl_80418AD8:
+	mr       r29, r6
 
-	.loc_0x12C:
-	  mr        r26, r0
-	  li        r27, 0
-	  b         .loc_0x200
+lbl_80418ADC:
+	mr       r26, r0
+	li       r27, 0
+	b        lbl_80418BB0
 
-	.loc_0x138:
-	  mr        r25, r31
-	  b         .loc_0x1F4
+lbl_80418AE8:
+	mr       r25, r31
+	b        lbl_80418BA4
 
-	.loc_0x140:
-	  cmpwi     r26, 0
-	  li        r3, 0
-	  blt-      .loc_0x170
-	  cmpwi     r25, 0
-	  blt-      .loc_0x170
-	  lwz       r0, 0x20(r24)
-	  cmpw      r26, r0
-	  bge-      .loc_0x170
-	  lwz       r0, 0x24(r24)
-	  cmpw      r25, r0
-	  bge-      .loc_0x170
-	  li        r3, 0x1
+lbl_80418AF0:
+	cmpwi    r26, 0
+	li       r3, 0
+	blt      lbl_80418B20
+	cmpwi    r25, 0
+	blt      lbl_80418B20
+	lwz      r0, 0x20(r24)
+	cmpw     r26, r0
+	bge      lbl_80418B20
+	lwz      r0, 0x24(r24)
+	cmpw     r25, r0
+	bge      lbl_80418B20
+	li       r3, 1
 
-	.loc_0x170:
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x1F0
-	  cmplwi    r27, 0
-	  beq-      .loc_0x1BC
-	  lwz       r4, 0x24(r24)
-	  li        r0, 0
-	  lwz       r5, 0x28(r24)
-	  mr        r3, r27
-	  mullw     r4, r26, r4
-	  add       r4, r25, r4
-	  mulli     r4, r4, 0x28
-	  add       r4, r5, r4
-	  stw       r0, 0x10(r4)
-	  stw       r0, 0xC(r4)
-	  stw       r0, 0x8(r4)
-	  stw       r0, 0x4(r4)
-	  bl        -0x7688
-	  addi      r28, r28, 0x1
-	  b         .loc_0x1F0
+lbl_80418B20:
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80418BA0
+	cmplwi   r27, 0
+	beq      lbl_80418B6C
+	lwz      r4, 0x24(r24)
+	li       r0, 0
+	lwz      r5, 0x28(r24)
+	mr       r3, r27
+	mullw    r4, r26, r4
+	add      r4, r25, r4
+	mulli    r4, r4, 0x28
+	add      r4, r5, r4
+	stw      r0, 0x10(r4)
+	stw      r0, 0xc(r4)
+	stw      r0, 8(r4)
+	stw      r0, 4(r4)
+	bl       concat__5CNodeFP5CNode
+	addi     r28, r28, 1
+	b        lbl_80418BA0
 
-	.loc_0x1BC:
-	  lwz       r3, 0x24(r24)
-	  li        r0, 0
-	  lwz       r4, 0x28(r24)
-	  addi      r28, r28, 0x1
-	  mullw     r3, r26, r3
-	  add       r3, r25, r3
-	  mulli     r3, r3, 0x28
-	  add       r3, r4, r3
-	  stw       r0, 0x10(r3)
-	  mr        r27, r3
-	  stw       r0, 0xC(r3)
-	  stw       r0, 0x8(r3)
-	  stw       r0, 0x4(r3)
+lbl_80418B6C:
+	lwz      r3, 0x24(r24)
+	li       r0, 0
+	lwz      r4, 0x28(r24)
+	addi     r28, r28, 1
+	mullw    r3, r26, r3
+	add      r3, r25, r3
+	mulli    r3, r3, 0x28
+	add      r3, r4, r3
+	stw      r0, 0x10(r3)
+	mr       r27, r3
+	stw      r0, 0xc(r3)
+	stw      r0, 8(r3)
+	stw      r0, 4(r3)
 
-	.loc_0x1F0:
-	  addi      r25, r25, 0x1
+lbl_80418BA0:
+	addi     r25, r25, 1
 
-	.loc_0x1F4:
-	  cmpw      r25, r29
-	  ble+      .loc_0x140
-	  addi      r26, r26, 0x1
+lbl_80418BA4:
+	cmpw     r25, r29
+	ble      lbl_80418AF0
+	addi     r26, r26, 1
 
-	.loc_0x200:
-	  cmpw      r26, r30
-	  ble+      .loc_0x138
-	  cmpwi     r28, 0x32
-	  ble-      .loc_0x218
-	  mr        r3, r27
-	  bl        -0x770C
+lbl_80418BB0:
+	cmpw     r26, r30
+	ble      lbl_80418AE8
+	cmpwi    r28, 0x32
+	ble      lbl_80418BC8
+	mr       r3, r27
+	bl       calcNextCount__5CNodeFv
 
-	.loc_0x218:
-	  mr        r3, r27
-	  lmw       r24, 0x30(r1)
-	  lwz       r0, 0x54(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x50
-	  blr
+lbl_80418BC8:
+	mr       r3, r27
+	lmw      r24, 0x30(r1)
+	lwz      r0, 0x54(r1)
+	mtlr     r0
+	addi     r1, r1, 0x50
+	blr
 	*/
 }
 
@@ -4297,41 +4434,40 @@ void GridDivider::create(BoundBox&, int, int, Sys::VertexTable*,
 TriIndexList::TriIndexList(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        -0x7CC0
-	  lis       r4, 0x804B
-	  lis       r3, 0x804B
-	  subi      r0, r4, 0x5324
-	  lis       r5, 0x804B
-	  stw       r0, 0x0(r31)
-	  subi      r0, r3, 0x120
-	  lis       r4, 0x804B
-	  lis       r3, 0x804B
-	  stw       r0, 0x0(r31)
-	  li        r7, 0
-	  subi      r6, r5, 0xF4
-	  li        r5, 0x1
-	  stb       r7, 0x18(r31)
-	  subi      r4, r4, 0xAC
-	  subi      r0, r3, 0x64
-	  mr        r3, r31
-	  stw       r6, 0x0(r31)
-	  stb       r5, 0x18(r31)
-	  stw       r7, 0x20(r31)
-	  stw       r7, 0x1C(r31)
-	  stw       r7, 0x24(r31)
-	  stw       r4, 0x0(r31)
-	  stw       r0, 0x0(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       __ct__5CNodeFv
+	lis      r4, __vt__16GenericContainer@ha
+	lis      r3, "__vt__12Container<i>"@ha
+	addi     r0, r4, __vt__16GenericContainer@l
+	lis      r5, "__vt__17ArrayContainer<i>"@ha
+	stw      r0, 0(r31)
+	addi     r0, r3, "__vt__12Container<i>"@l
+	lis      r4, __vt__Q23Sys9IndexList@ha
+	lis      r3, __vt__Q23Sys12TriIndexList@ha
+	stw      r0, 0(r31)
+	li       r7, 0
+	addi     r6, r5, "__vt__17ArrayContainer<i>"@l
+	li       r5, 1
+	stb      r7, 0x18(r31)
+	addi     r4, r4, __vt__Q23Sys9IndexList@l
+	addi     r0, r3, __vt__Q23Sys12TriIndexList@l
+	mr       r3, r31
+	stw      r6, 0(r31)
+	stb      r5, 0x18(r31)
+	stw      r7, 0x20(r31)
+	stw      r7, 0x1c(r31)
+	stw      r7, 0x24(r31)
+	stw      r4, 0(r31)
+	stw      r0, 0(r31)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -4355,64 +4491,63 @@ void GridDivider::write(Stream&)
 void ArrayContainer<Sys::Triangle>::write(Stream&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stmw      r27, 0xC(r1)
-	  mr        r28, r4
-	  mr        r27, r3
-	  lwz       r4, 0x14(r3)
-	  mr        r3, r28
-	  bl        -0x50C8
-	  lwz       r4, 0x414(r28)
-	  mr        r3, r28
-	  bl        -0x4CBC
-	  lwz       r4, 0x20(r27)
-	  mr        r3, r28
-	  bl        -0x393C
-	  mr        r3, r28
-	  addi      r4, r2, 0x1FD8
-	  crclr     6, 0x6
-	  bl        -0x4F30
-	  lis       r3, 0x804A
-	  li        r29, 0
-	  subi      r31, r3, 0x6858
-	  li        r30, 0
-	  b         .loc_0xAC
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stmw     r27, 0xc(r1)
+	mr       r28, r4
+	mr       r27, r3
+	lwz      r4, 0x14(r3)
+	mr       r3, r28
+	bl       textBeginGroup__6StreamFPc
+	lwz      r4, 0x414(r28)
+	mr       r3, r28
+	bl       textWriteTab__6StreamFi
+	lwz      r4, 0x20(r27)
+	mr       r3, r28
+	bl       writeInt__6StreamFi
+	mr       r3, r28
+	addi     r4, r2, lbl_80520338@sda21
+	crclr    6
+	bl       textWriteText__6StreamFPce
+	lis      r3, lbl_804997A8@ha
+	li       r29, 0
+	addi     r31, r3, lbl_804997A8@l
+	li       r30, 0
+	b        lbl_80419170
 
-	.loc_0x60:
-	  lwz       r4, 0x414(r28)
-	  mr        r3, r28
-	  bl        -0x4CF8
-	  mr        r3, r27
-	  lwz       r0, 0x24(r27)
-	  lwz       r12, 0x0(r27)
-	  mr        r4, r28
-	  add       r5, r0, r30
-	  lwz       r12, 0x2C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r6, 0x20(r27)
-	  mr        r3, r28
-	  mr        r4, r31
-	  mr        r5, r29
-	  crclr     6, 0x6
-	  bl        -0x4F88
-	  addi      r30, r30, 0x60
-	  addi      r29, r29, 0x1
+lbl_80419124:
+	lwz      r4, 0x414(r28)
+	mr       r3, r28
+	bl       textWriteTab__6StreamFi
+	mr       r3, r27
+	lwz      r0, 0x24(r27)
+	lwz      r12, 0(r27)
+	mr       r4, r28
+	add      r5, r0, r30
+	lwz      r12, 0x2c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r6, 0x20(r27)
+	mr       r3, r28
+	mr       r4, r31
+	mr       r5, r29
+	crclr    6
+	bl       textWriteText__6StreamFPce
+	addi     r30, r30, 0x60
+	addi     r29, r29, 1
 
-	.loc_0xAC:
-	  lwz       r0, 0x20(r27)
-	  cmpw      r29, r0
-	  blt+      .loc_0x60
-	  mr        r3, r28
-	  bl        -0x50E0
-	  lmw       r27, 0xC(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80419170:
+	lwz      r0, 0x20(r27)
+	cmpw     r29, r0
+	blt      lbl_80419124
+	mr       r3, r28
+	bl       textEndGroup__6StreamFv
+	lmw      r27, 0xc(r1)
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -4443,161 +4578,160 @@ void GridInfo::write(Stream&)
 void GridDivider::read(Stream&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stmw      r27, 0x1C(r1)
-	  mr        r30, r3
-	  mr        r31, r4
-	  li        r3, 0x50
-	  bl        -0x3F5314
-	  mr.       r29, r3
-	  beq-      .loc_0x98
-	  bl        -0x7E34
-	  lis       r4, 0x804B
-	  lis       r3, 0x804B
-	  subi      r0, r4, 0x5324
-	  lis       r4, 0x804B
-	  stw       r0, 0x0(r29)
-	  addi      r0, r3, 0x2C
-	  lis       r3, 0x804F
-	  li        r6, 0
-	  stw       r0, 0x0(r29)
-	  subi      r5, r4, 0x1C
-	  li        r4, 0x1
-	  subi      r0, r3, 0x4A40
-	  stb       r6, 0x18(r29)
-	  lfs       f1, 0x1FDC(r2)
-	  stw       r5, 0x0(r29)
-	  lfs       f0, 0x1FE0(r2)
-	  stb       r4, 0x18(r29)
-	  stw       r6, 0x20(r29)
-	  stw       r6, 0x1C(r29)
-	  stw       r6, 0x24(r29)
-	  stw       r0, 0x0(r29)
-	  stfs      f1, 0x28(r29)
-	  stfs      f1, 0x2C(r29)
-	  stfs      f1, 0x30(r29)
-	  stfs      f0, 0x34(r29)
-	  stfs      f0, 0x38(r29)
-	  stfs      f0, 0x3C(r29)
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stmw     r27, 0x1c(r1)
+	mr       r30, r3
+	mr       r31, r4
+	li       r3, 0x50
+	bl       __nw__FUl
+	or.      r29, r3, r3
+	beq      lbl_80419234
+	bl       __ct__5CNodeFv
+	lis      r4, __vt__16GenericContainer@ha
+	lis      r3, "__vt__23Container<10Vector3<f>>"@ha
+	addi     r0, r4, __vt__16GenericContainer@l
+	lis      r4, "__vt__28ArrayContainer<10Vector3<f>>"@ha
+	stw      r0, 0(r29)
+	addi     r0, r3, "__vt__23Container<10Vector3<f>>"@l
+	lis      r3, __vt__Q23Sys11VertexTable@ha
+	li       r6, 0
+	stw      r0, 0(r29)
+	addi     r5, r4, "__vt__28ArrayContainer<10Vector3<f>>"@l
+	li       r4, 1
+	addi     r0, r3, __vt__Q23Sys11VertexTable@l
+	stb      r6, 0x18(r29)
+	lfs      f1, lbl_8052033C@sda21(r2)
+	stw      r5, 0(r29)
+	lfs      f0, lbl_80520340@sda21(r2)
+	stb      r4, 0x18(r29)
+	stw      r6, 0x20(r29)
+	stw      r6, 0x1c(r29)
+	stw      r6, 0x24(r29)
+	stw      r0, 0(r29)
+	stfs     f1, 0x28(r29)
+	stfs     f1, 0x2c(r29)
+	stfs     f1, 0x30(r29)
+	stfs     f0, 0x34(r29)
+	stfs     f0, 0x38(r29)
+	stfs     f0, 0x3c(r29)
 
-	.loc_0x98:
-	  stw       r29, 0x18(r30)
-	  mr        r4, r31
-	  lwz       r3, 0x18(r30)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x38(r12)
-	  mtctr     r12
-	  bctrl
-	  li        r3, 0x28
-	  bl        -0x3F53B0
-	  mr.       r0, r3
-	  beq-      .loc_0xCC
-	  bl        0x71C
-	  mr        r0, r3
+lbl_80419234:
+	stw      r29, 0x18(r30)
+	mr       r4, r31
+	lwz      r3, 0x18(r30)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x38(r12)
+	mtctr    r12
+	bctrl
+	li       r3, 0x28
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_80419268
+	bl       __ct__Q23Sys13TriangleTableFv
+	mr       r0, r3
 
-	.loc_0xCC:
-	  stw       r0, 0x1C(r30)
-	  mr        r4, r31
-	  lwz       r3, 0x1C(r30)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x38(r12)
-	  mtctr     r12
-	  bctrl
-	  mr        r4, r31
-	  addi      r3, r30, 0x2C
-	  bl        -0x7940
-	  mr        r3, r31
-	  bl        -0x4804
-	  stw       r3, 0x20(r30)
-	  mr        r3, r31
-	  bl        -0x4810
-	  stw       r3, 0x24(r30)
-	  mr        r3, r31
-	  bl        -0x4500
-	  stfs      f1, 0x44(r30)
-	  mr        r3, r31
-	  bl        -0x450C
-	  stfs      f1, 0x48(r30)
-	  lwz       r27, 0x24(r30)
-	  lwz       r28, 0x20(r30)
-	  mullw     r29, r28, r27
-	  mulli     r3, r29, 0x28
-	  addi      r3, r3, 0x10
-	  bl        -0x3F5328
-	  lis       r4, 0x8042
-	  lis       r5, 0x8013
-	  subi      r4, r4, 0x6FC4
-	  mr        r7, r29
-	  addi      r5, r5, 0x3E64
-	  li        r6, 0x28
-	  bl        -0x357900
-	  stw       r3, 0x28(r30)
-	  lis       r3, 0x4330
-	  xoris     r4, r28, 0x8000
-	  xoris     r0, r27, 0x8000
-	  lfs       f0, 0x2C(r30)
-	  li        r29, 0
-	  stw       r4, 0xC(r1)
-	  mr        r27, r29
-	  lfd       f2, 0x1FD0(r2)
-	  stfs      f0, 0x2C(r30)
-	  lfs       f0, 0x30(r30)
-	  stw       r3, 0x8(r1)
-	  stfs      f0, 0x30(r30)
-	  lfd       f0, 0x8(r1)
-	  lfs       f3, 0x34(r30)
-	  fsubs     f1, f0, f2
-	  stw       r0, 0x14(r1)
-	  stfs      f3, 0x34(r30)
-	  lfs       f0, 0x38(r30)
-	  stw       r3, 0x10(r1)
-	  stfs      f0, 0x38(r30)
-	  lfd       f0, 0x10(r1)
-	  lfs       f3, 0x38(r30)
-	  fsubs     f0, f0, f2
-	  lfs       f2, 0x2C(r30)
-	  fsubs     f2, f3, f2
-	  fabs      f2, f2
-	  frsp      f2, f2
-	  fdivs     f1, f2, f1
-	  stfs      f1, 0x44(r30)
-	  lfs       f2, 0x40(r30)
-	  lfs       f1, 0x34(r30)
-	  fsubs     f1, f2, f1
-	  fabs      f1, f1
-	  frsp      f1, f1
-	  fdivs     f0, f1, f0
-	  stfs      f0, 0x48(r30)
-	  b         .loc_0x214
+lbl_80419268:
+	stw      r0, 0x1c(r30)
+	mr       r4, r31
+	lwz      r3, 0x1c(r30)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x38(r12)
+	mtctr    r12
+	bctrl
+	mr       r4, r31
+	addi     r3, r30, 0x2c
+	bl       read__8BoundBoxFR6Stream
+	mr       r3, r31
+	bl       readInt__6StreamFv
+	stw      r3, 0x20(r30)
+	mr       r3, r31
+	bl       readInt__6StreamFv
+	stw      r3, 0x24(r30)
+	mr       r3, r31
+	bl       readFloat__6StreamFv
+	stfs     f1, 0x44(r30)
+	mr       r3, r31
+	bl       readFloat__6StreamFv
+	stfs     f1, 0x48(r30)
+	lwz      r27, 0x24(r30)
+	lwz      r28, 0x20(r30)
+	mullw    r29, r28, r27
+	mulli    r3, r29, 0x28
+	addi     r3, r3, 0x10
+	bl       __nwa__FUl
+	lis      r4, __ct__Q23Sys12TriIndexListFv@ha
+	lis      r5, __dt__Q23Sys12TriIndexListFv@ha
+	addi     r4, r4, __ct__Q23Sys12TriIndexListFv@l
+	mr       r7, r29
+	addi     r5, r5, __dt__Q23Sys12TriIndexListFv@l
+	li       r6, 0x28
+	bl       __construct_new_array
+	stw      r3, 0x28(r30)
+	lis      r3, 0x4330
+	xoris    r4, r28, 0x8000
+	xoris    r0, r27, 0x8000
+	lfs      f0, 0x2c(r30)
+	li       r29, 0
+	stw      r4, 0xc(r1)
+	mr       r27, r29
+	lfd      f2, lbl_80520330@sda21(r2)
+	stfs     f0, 0x2c(r30)
+	lfs      f0, 0x30(r30)
+	stw      r3, 8(r1)
+	stfs     f0, 0x30(r30)
+	lfd      f0, 8(r1)
+	lfs      f3, 0x34(r30)
+	fsubs    f1, f0, f2
+	stw      r0, 0x14(r1)
+	stfs     f3, 0x34(r30)
+	lfs      f0, 0x38(r30)
+	stw      r3, 0x10(r1)
+	stfs     f0, 0x38(r30)
+	lfd      f0, 0x10(r1)
+	lfs      f3, 0x38(r30)
+	fsubs    f0, f0, f2
+	lfs      f2, 0x2c(r30)
+	fsubs    f2, f3, f2
+	fabs     f2, f2
+	frsp     f2, f2
+	fdivs    f1, f2, f1
+	stfs     f1, 0x44(r30)
+	lfs      f2, 0x40(r30)
+	lfs      f1, 0x34(r30)
+	fsubs    f1, f2, f1
+	fabs     f1, f1
+	frsp     f1, f1
+	fdivs    f0, f1, f0
+	stfs     f0, 0x48(r30)
+	b        lbl_804193B0
 
-	.loc_0x1F0:
-	  lwz       r0, 0x28(r30)
-	  mr        r4, r31
-	  add       r3, r0, r27
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x38(r12)
-	  mtctr     r12
-	  bctrl
-	  addi      r27, r27, 0x28
-	  addi      r29, r29, 0x1
+lbl_8041938C:
+	lwz      r0, 0x28(r30)
+	mr       r4, r31
+	add      r3, r0, r27
+	lwz      r12, 0(r3)
+	lwz      r12, 0x38(r12)
+	mtctr    r12
+	bctrl
+	addi     r27, r27, 0x28
+	addi     r29, r29, 1
 
-	.loc_0x214:
-	  lwz       r3, 0x20(r30)
-	  lwz       r0, 0x24(r30)
-	  mullw     r0, r3, r0
-	  cmpw      r29, r0
-	  blt+      .loc_0x1F0
-	  lwz       r3, 0x1C(r30)
-	  lwz       r4, 0x18(r30)
-	  bl        0xCC
-	  lmw       r27, 0x1C(r1)
-	  lwz       r0, 0x34(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_804193B0:
+	lwz      r3, 0x20(r30)
+	lwz      r0, 0x24(r30)
+	mullw    r0, r3, r0
+	cmpw     r29, r0
+	blt      lbl_8041938C
+	lwz      r3, 0x1c(r30)
+	lwz      r4, 0x18(r30)
+	bl       createTriangleSphere__Q23Sys13TriangleTableFRQ23Sys11VertexTable
+	lmw      r27, 0x1c(r1)
+	lwz      r0, 0x34(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -4611,55 +4745,54 @@ void GridDivider::read(Stream&)
 void ArrayContainer<Sys::Triangle>::read(Stream&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r29, r4
-	  stw       r28, 0x10(r1)
-	  mr        r28, r3
-	  mr        r3, r29
-	  bl        -0x497C
-	  stw       r3, 0x20(r28)
-	  mr        r3, r28
-	  lwz       r12, 0x0(r28)
-	  lwz       r4, 0x20(r28)
-	  lwz       r12, 0x3C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x20(r28)
-	  li        r30, 0
-	  li        r31, 0
-	  stw       r0, 0x1C(r28)
-	  b         .loc_0x84
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	mr       r29, r4
+	stw      r28, 0x10(r1)
+	mr       r28, r3
+	mr       r3, r29
+	bl       readInt__6StreamFv
+	stw      r3, 0x20(r28)
+	mr       r3, r28
+	lwz      r12, 0(r28)
+	lwz      r4, 0x20(r28)
+	lwz      r12, 0x3c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x20(r28)
+	li       r30, 0
+	li       r31, 0
+	stw      r0, 0x1c(r28)
+	b        lbl_80419468
 
-	.loc_0x5C:
-	  mr        r3, r28
-	  lwz       r0, 0x24(r28)
-	  lwz       r12, 0x0(r28)
-	  mr        r4, r29
-	  add       r5, r0, r31
-	  lwz       r12, 0x30(r12)
-	  mtctr     r12
-	  bctrl
-	  addi      r31, r31, 0x60
-	  addi      r30, r30, 0x1
+lbl_80419440:
+	mr       r3, r28
+	lwz      r0, 0x24(r28)
+	lwz      r12, 0(r28)
+	mr       r4, r29
+	add      r5, r0, r31
+	lwz      r12, 0x30(r12)
+	mtctr    r12
+	bctrl
+	addi     r31, r31, 0x60
+	addi     r30, r30, 1
 
-	.loc_0x84:
-	  lwz       r0, 0x20(r28)
-	  cmpw      r30, r0
-	  blt+      .loc_0x5C
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80419468:
+	lwz      r0, 0x20(r28)
+	cmpw     r30, r0
+	blt      lbl_80419440
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -4680,40 +4813,39 @@ namespace Sys {
 void TriangleTable::createTriangleSphere(Sys::VertexTable&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  li        r31, 0
-	  stw       r30, 0x18(r1)
-	  li        r30, 0
-	  stw       r29, 0x14(r1)
-	  mr        r29, r4
-	  stw       r28, 0x10(r1)
-	  mr        r28, r3
-	  b         .loc_0x48
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	li       r31, 0
+	stw      r30, 0x18(r1)
+	li       r30, 0
+	stw      r29, 0x14(r1)
+	mr       r29, r4
+	stw      r28, 0x10(r1)
+	mr       r28, r3
+	b        lbl_804194E0
 
-	.loc_0x30:
-	  lwz       r0, 0x24(r28)
-	  mr        r4, r29
-	  add       r3, r0, r31
-	  bl        -0x2B7C
-	  addi      r31, r31, 0x60
-	  addi      r30, r30, 0x1
+lbl_804194C8:
+	lwz      r0, 0x24(r28)
+	mr       r4, r29
+	add      r3, r0, r31
+	bl       createSphere__Q23Sys8TriangleFRQ23Sys11VertexTable
+	addi     r31, r31, 0x60
+	addi     r30, r30, 1
 
-	.loc_0x48:
-	  lwz       r0, 0x20(r28)
-	  cmpw      r30, r0
-	  blt+      .loc_0x30
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_804194E0:
+	lwz      r0, 0x20(r28)
+	cmpw     r30, r0
+	blt      lbl_804194C8
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -4725,45 +4857,44 @@ void TriangleTable::createTriangleSphere(Sys::VertexTable&)
 void TriIndexList::constructClone(Sys::TriangleTable&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r4
-	  stw       r30, 0x18(r1)
-	  mr        r30, r3
-	  lwz       r12, 0x0(r3)
-	  lwz       r4, 0x1C(r4)
-	  lwz       r12, 0x3C(r12)
-	  mtctr     r12
-	  bctrl
-	  li        r0, 0
-	  stw       r0, 0x8(r1)
-	  b         .loc_0x60
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r4
+	stw      r30, 0x18(r1)
+	mr       r30, r3
+	lwz      r12, 0(r3)
+	lwz      r4, 0x1c(r4)
+	lwz      r12, 0x3c(r12)
+	mtctr    r12
+	bctrl
+	li       r0, 0
+	stw      r0, 8(r1)
+	b        lbl_8041956C
 
-	.loc_0x3C:
-	  mr        r3, r30
-	  addi      r4, r1, 0x8
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x40(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x8(r1)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x8(r1)
+lbl_80419548:
+	mr       r3, r30
+	addi     r4, r1, 8
+	lwz      r12, 0(r30)
+	lwz      r12, 0x40(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 8(r1)
+	addi     r0, r3, 1
+	stw      r0, 8(r1)
 
-	.loc_0x60:
-	  lwz       r3, 0x8(r1)
-	  lwz       r0, 0x1C(r31)
-	  cmpw      r3, r0
-	  blt+      .loc_0x3C
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8041956C:
+	lwz      r3, 8(r1)
+	lwz      r0, 0x1c(r31)
+	cmpw     r3, r0
+	blt      lbl_80419548
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -5081,38 +5212,37 @@ void TriIndexList::draw(Graphics&, Sys::VertexTable&, Sys::TriangleTable&, bool)
 TriangleTable::TriangleTable(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        -0x8600
-	  lis       r4, 0x804B
-	  lis       r3, 0x804F
-	  subi      r0, r4, 0x5324
-	  lis       r4, 0x804F
-	  stw       r0, 0x0(r31)
-	  subi      r0, r3, 0x4968
-	  lis       r3, 0x804F
-	  li        r6, 0
-	  stw       r0, 0x0(r31)
-	  subi      r5, r4, 0x49B0
-	  li        r4, 0x1
-	  subi      r0, r3, 0x49F8
-	  stb       r6, 0x18(r31)
-	  mr        r3, r31
-	  stw       r5, 0x0(r31)
-	  stb       r4, 0x18(r31)
-	  stw       r6, 0x20(r31)
-	  stw       r6, 0x1C(r31)
-	  stw       r6, 0x24(r31)
-	  stw       r0, 0x0(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       __ct__5CNodeFv
+	lis      r4, __vt__16GenericContainer@ha
+	lis      r3, "__vt__26Container<Q23Sys8Triangle>"@ha
+	addi     r0, r4, __vt__16GenericContainer@l
+	lis      r4, "__vt__31ArrayContainer<Q23Sys8Triangle>"@ha
+	stw      r0, 0(r31)
+	addi     r0, r3, "__vt__26Container<Q23Sys8Triangle>"@l
+	lis      r3, __vt__Q23Sys13TriangleTable@ha
+	li       r6, 0
+	stw      r0, 0(r31)
+	addi     r5, r4, "__vt__31ArrayContainer<Q23Sys8Triangle>"@l
+	li       r4, 1
+	addi     r0, r3, __vt__Q23Sys13TriangleTable@l
+	stb      r6, 0x18(r31)
+	mr       r3, r31
+	stw      r5, 0(r31)
+	stb      r4, 0x18(r31)
+	stw      r6, 0x20(r31)
+	stw      r6, 0x1c(r31)
+	stw      r6, 0x24(r31)
+	stw      r0, 0(r31)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -5126,43 +5256,42 @@ TriangleTable::TriangleTable(void)
 void ArrayContainer<Sys::Triangle>::~ArrayContainer()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x64
-	  lis       r4, 0x804F
-	  subi      r0, r4, 0x49B0
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x54
-	  lis       r4, 0x804F
-	  subi      r0, r4, 0x4968
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x54
-	  lis       r5, 0x804B
-	  li        r4, 0
-	  subi      r0, r5, 0x5324
-	  stw       r0, 0x0(r30)
-	  bl        -0x84C0
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_80419A5C
+	lis      r4, "__vt__31ArrayContainer<Q23Sys8Triangle>"@ha
+	addi     r0, r4, "__vt__31ArrayContainer<Q23Sys8Triangle>"@l
+	stw      r0, 0(r30)
+	beq      lbl_80419A4C
+	lis      r4, "__vt__26Container<Q23Sys8Triangle>"@ha
+	addi     r0, r4, "__vt__26Container<Q23Sys8Triangle>"@l
+	stw      r0, 0(r30)
+	beq      lbl_80419A4C
+	lis      r5, __vt__16GenericContainer@ha
+	li       r4, 0
+	addi     r0, r5, __vt__16GenericContainer@l
+	stw      r0, 0(r30)
+	bl       __dt__5CNodeFv
 
-	.loc_0x54:
-	  extsh.    r0, r31
-	  ble-      .loc_0x64
-	  mr        r3, r30
-	  bl        -0x3F59A4
+lbl_80419A4C:
+	extsh.   r0, r31
+	ble      lbl_80419A5C
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x64:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80419A5C:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -5174,39 +5303,38 @@ void ArrayContainer<Sys::Triangle>::~ArrayContainer()
 void Container<Sys::Triangle>::~Container()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x54
-	  lis       r4, 0x804F
-	  subi      r0, r4, 0x4968
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x44
-	  lis       r5, 0x804B
-	  li        r4, 0
-	  subi      r0, r5, 0x5324
-	  stw       r0, 0x0(r30)
-	  bl        -0x8530
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_80419ACC
+	lis      r4, "__vt__26Container<Q23Sys8Triangle>"@ha
+	addi     r0, r4, "__vt__26Container<Q23Sys8Triangle>"@l
+	stw      r0, 0(r30)
+	beq      lbl_80419ABC
+	lis      r5, __vt__16GenericContainer@ha
+	li       r4, 0
+	addi     r0, r5, __vt__16GenericContainer@l
+	stw      r0, 0(r30)
+	bl       __dt__5CNodeFv
 
-	.loc_0x44:
-	  extsh.    r0, r31
-	  ble-      .loc_0x54
-	  mr        r3, r30
-	  bl        -0x3F5A14
+lbl_80419ABC:
+	extsh.   r0, r31
+	ble      lbl_80419ACC
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x54:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80419ACC:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -5230,106 +5358,105 @@ void TriangleTable::findMaxVertexIndex(void)
 void VertexTable::transform(Matrixf&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stmw      r27, 0x1C(r1)
-	  mr        r27, r3
-	  mr        r28, r4
-	  li        r30, 0
-	  li        r31, 0
-	  b         .loc_0x5C
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stmw     r27, 0x1c(r1)
+	mr       r27, r3
+	mr       r28, r4
+	li       r30, 0
+	li       r31, 0
+	b        lbl_80419B44
 
-	.loc_0x24:
-	  lwz       r0, 0x24(r27)
-	  mr        r3, r28
-	  addi      r5, r1, 0x8
-	  add       r29, r0, r31
-	  mr        r4, r29
-	  bl        -0x32EF48
-	  lfs       f1, 0xC(r1)
-	  addi      r31, r31, 0xC
-	  lfs       f2, 0x10(r1)
-	  addi      r30, r30, 0x1
-	  lfs       f0, 0x8(r1)
-	  stfs      f0, 0x0(r29)
-	  stfs      f1, 0x4(r29)
-	  stfs      f2, 0x8(r29)
+lbl_80419B0C:
+	lwz      r0, 0x24(r27)
+	mr       r3, r28
+	addi     r5, r1, 8
+	add      r29, r0, r31
+	mr       r4, r29
+	bl       PSMTXMultVec
+	lfs      f1, 0xc(r1)
+	addi     r31, r31, 0xc
+	lfs      f2, 0x10(r1)
+	addi     r30, r30, 1
+	lfs      f0, 8(r1)
+	stfs     f0, 0(r29)
+	stfs     f1, 4(r29)
+	stfs     f2, 8(r29)
 
-	.loc_0x5C:
-	  lwz       r0, 0x1C(r27)
-	  cmpw      r30, r0
-	  blt+      .loc_0x24
-	  lfs       f1, 0x1FDC(r2)
-	  li        r3, 0
-	  lfs       f0, 0x1FE0(r2)
-	  mr        r5, r3
-	  stfs      f1, 0x28(r27)
-	  stfs      f1, 0x2C(r27)
-	  stfs      f1, 0x30(r27)
-	  stfs      f0, 0x34(r27)
-	  stfs      f0, 0x38(r27)
-	  stfs      f0, 0x3C(r27)
-	  b         .loc_0x11C
+lbl_80419B44:
+	lwz      r0, 0x1c(r27)
+	cmpw     r30, r0
+	blt      lbl_80419B0C
+	lfs      f1, lbl_8052033C@sda21(r2)
+	li       r3, 0
+	lfs      f0, lbl_80520340@sda21(r2)
+	mr       r5, r3
+	stfs     f1, 0x28(r27)
+	stfs     f1, 0x2c(r27)
+	stfs     f1, 0x30(r27)
+	stfs     f0, 0x34(r27)
+	stfs     f0, 0x38(r27)
+	stfs     f0, 0x3c(r27)
+	b        lbl_80419C04
 
-	.loc_0x94:
-	  lwz       r0, 0x24(r27)
-	  lfs       f0, 0x28(r27)
-	  add       r4, r0, r5
-	  lfs       f1, 0x0(r4)
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0xB0
-	  stfs      f1, 0x28(r27)
+lbl_80419B7C:
+	lwz      r0, 0x24(r27)
+	lfs      f0, 0x28(r27)
+	add      r4, r0, r5
+	lfs      f1, 0(r4)
+	fcmpo    cr0, f1, f0
+	bge      lbl_80419B98
+	stfs     f1, 0x28(r27)
 
-	.loc_0xB0:
-	  lfs       f1, 0x4(r4)
-	  lfs       f0, 0x2C(r27)
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0xC4
-	  stfs      f1, 0x2C(r27)
+lbl_80419B98:
+	lfs      f1, 4(r4)
+	lfs      f0, 0x2c(r27)
+	fcmpo    cr0, f1, f0
+	bge      lbl_80419BAC
+	stfs     f1, 0x2c(r27)
 
-	.loc_0xC4:
-	  lfs       f1, 0x8(r4)
-	  lfs       f0, 0x30(r27)
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0xD8
-	  stfs      f1, 0x30(r27)
+lbl_80419BAC:
+	lfs      f1, 8(r4)
+	lfs      f0, 0x30(r27)
+	fcmpo    cr0, f1, f0
+	bge      lbl_80419BC0
+	stfs     f1, 0x30(r27)
 
-	.loc_0xD8:
-	  lfs       f1, 0x0(r4)
-	  lfs       f0, 0x34(r27)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0xEC
-	  stfs      f1, 0x34(r27)
+lbl_80419BC0:
+	lfs      f1, 0(r4)
+	lfs      f0, 0x34(r27)
+	fcmpo    cr0, f1, f0
+	ble      lbl_80419BD4
+	stfs     f1, 0x34(r27)
 
-	.loc_0xEC:
-	  lfs       f1, 0x4(r4)
-	  lfs       f0, 0x38(r27)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x100
-	  stfs      f1, 0x38(r27)
+lbl_80419BD4:
+	lfs      f1, 4(r4)
+	lfs      f0, 0x38(r27)
+	fcmpo    cr0, f1, f0
+	ble      lbl_80419BE8
+	stfs     f1, 0x38(r27)
 
-	.loc_0x100:
-	  lfs       f1, 0x8(r4)
-	  lfs       f0, 0x3C(r27)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x114
-	  stfs      f1, 0x3C(r27)
+lbl_80419BE8:
+	lfs      f1, 8(r4)
+	lfs      f0, 0x3c(r27)
+	fcmpo    cr0, f1, f0
+	ble      lbl_80419BFC
+	stfs     f1, 0x3c(r27)
 
-	.loc_0x114:
-	  addi      r5, r5, 0xC
-	  addi      r3, r3, 0x1
+lbl_80419BFC:
+	addi     r5, r5, 0xc
+	addi     r3, r3, 1
 
-	.loc_0x11C:
-	  lwz       r0, 0x1C(r27)
-	  cmpw      r3, r0
-	  blt+      .loc_0x94
-	  lmw       r27, 0x1C(r1)
-	  lwz       r0, 0x34(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_80419C04:
+	lwz      r0, 0x1c(r27)
+	cmpw     r3, r0
+	blt      lbl_80419B7C
+	lmw      r27, 0x1c(r1)
+	lwz      r0, 0x34(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -5341,64 +5468,63 @@ void VertexTable::transform(Matrixf&)
 void VertexTable::write(Stream&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stmw      r27, 0xC(r1)
-	  mr        r28, r4
-	  mr        r27, r3
-	  lwz       r4, 0x14(r3)
-	  mr        r3, r28
-	  bl        -0x5C28
-	  lwz       r4, 0x414(r28)
-	  mr        r3, r28
-	  bl        -0x581C
-	  lwz       r4, 0x20(r27)
-	  mr        r3, r28
-	  bl        -0x449C
-	  mr        r3, r28
-	  addi      r4, r2, 0x1FD8
-	  crclr     6, 0x6
-	  bl        -0x5A90
-	  lis       r3, 0x804A
-	  li        r29, 0
-	  subi      r31, r3, 0x6858
-	  li        r30, 0
-	  b         .loc_0xAC
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stmw     r27, 0xc(r1)
+	mr       r28, r4
+	mr       r27, r3
+	lwz      r4, 0x14(r3)
+	mr       r3, r28
+	bl       textBeginGroup__6StreamFPc
+	lwz      r4, 0x414(r28)
+	mr       r3, r28
+	bl       textWriteTab__6StreamFi
+	lwz      r4, 0x20(r27)
+	mr       r3, r28
+	bl       writeInt__6StreamFi
+	mr       r3, r28
+	addi     r4, r2, lbl_80520338@sda21
+	crclr    6
+	bl       textWriteText__6StreamFPce
+	lis      r3, lbl_804997A8@ha
+	li       r29, 0
+	addi     r31, r3, lbl_804997A8@l
+	li       r30, 0
+	b        lbl_80419CD0
 
-	.loc_0x60:
-	  lwz       r4, 0x414(r28)
-	  mr        r3, r28
-	  bl        -0x5858
-	  mr        r3, r27
-	  lwz       r0, 0x24(r27)
-	  lwz       r12, 0x0(r27)
-	  mr        r4, r28
-	  add       r5, r0, r30
-	  lwz       r12, 0x2C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r6, 0x20(r27)
-	  mr        r3, r28
-	  mr        r4, r31
-	  mr        r5, r29
-	  crclr     6, 0x6
-	  bl        -0x5AE8
-	  addi      r30, r30, 0xC
-	  addi      r29, r29, 0x1
+lbl_80419C84:
+	lwz      r4, 0x414(r28)
+	mr       r3, r28
+	bl       textWriteTab__6StreamFi
+	mr       r3, r27
+	lwz      r0, 0x24(r27)
+	lwz      r12, 0(r27)
+	mr       r4, r28
+	add      r5, r0, r30
+	lwz      r12, 0x2c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r6, 0x20(r27)
+	mr       r3, r28
+	mr       r4, r31
+	mr       r5, r29
+	crclr    6
+	bl       textWriteText__6StreamFPce
+	addi     r30, r30, 0xc
+	addi     r29, r29, 1
 
-	.loc_0xAC:
-	  lwz       r0, 0x20(r27)
-	  cmpw      r29, r0
-	  blt+      .loc_0x60
-	  mr        r3, r28
-	  bl        -0x5C40
-	  lmw       r27, 0xC(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80419CD0:
+	lwz      r0, 0x20(r27)
+	cmpw     r29, r0
+	blt      lbl_80419C84
+	mr       r3, r28
+	bl       textEndGroup__6StreamFv
+	lmw      r27, 0xc(r1)
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -5410,16 +5536,15 @@ void VertexTable::write(Stream&)
 void VertexTable::writeObject(Stream&, Vector3f&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r3, r5
-	  stw       r0, 0x14(r1)
-	  bl        -0x8320
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r3, r5
+	stw      r0, 0x14(r1)
+	bl       "write__10Vector3<f>FR6Stream"
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -5431,47 +5556,46 @@ void VertexTable::writeObject(Stream&, Vector3f&)
 VertexTable::~VertexTable(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x74
-	  lis       r4, 0x804F
-	  subi      r0, r4, 0x4A40
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x64
-	  lis       r4, 0x804B
-	  subi      r0, r4, 0x1C
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x64
-	  lis       r4, 0x804B
-	  addi      r0, r4, 0x2C
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x64
-	  lis       r5, 0x804B
-	  li        r4, 0
-	  subi      r0, r5, 0x5324
-	  stw       r0, 0x0(r30)
-	  bl        -0x87F4
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_80419D90
+	lis      r4, __vt__Q23Sys11VertexTable@ha
+	addi     r0, r4, __vt__Q23Sys11VertexTable@l
+	stw      r0, 0(r30)
+	beq      lbl_80419D80
+	lis      r4, "__vt__28ArrayContainer<10Vector3<f>>"@ha
+	addi     r0, r4, "__vt__28ArrayContainer<10Vector3<f>>"@l
+	stw      r0, 0(r30)
+	beq      lbl_80419D80
+	lis      r4, "__vt__23Container<10Vector3<f>>"@ha
+	addi     r0, r4, "__vt__23Container<10Vector3<f>>"@l
+	stw      r0, 0(r30)
+	beq      lbl_80419D80
+	lis      r5, __vt__16GenericContainer@ha
+	li       r4, 0
+	addi     r0, r5, __vt__16GenericContainer@l
+	stw      r0, 0(r30)
+	bl       __dt__5CNodeFv
 
-	.loc_0x64:
-	  extsh.    r0, r31
-	  ble-      .loc_0x74
-	  mr        r3, r30
-	  bl        -0x3F5CD8
+lbl_80419D80:
+	extsh.   r0, r31
+	ble      lbl_80419D90
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x74:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80419D90:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -5483,16 +5607,15 @@ VertexTable::~VertexTable(void)
 void VertexTable::readObject(Stream&, Vector3f&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r3, r5
-	  stw       r0, 0x14(r1)
-	  bl        -0x842C
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r3, r5
+	stw      r0, 0x14(r1)
+	bl       "read__10Vector3<f>FR6Stream"
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -5504,47 +5627,46 @@ void VertexTable::readObject(Stream&, Vector3f&)
 TriangleTable::~TriangleTable(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x74
-	  lis       r4, 0x804F
-	  subi      r0, r4, 0x49F8
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x64
-	  lis       r4, 0x804F
-	  subi      r0, r4, 0x49B0
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x64
-	  lis       r4, 0x804F
-	  subi      r0, r4, 0x4968
-	  stw       r0, 0x0(r30)
-	  beq-      .loc_0x64
-	  lis       r5, 0x804B
-	  li        r4, 0
-	  subi      r0, r5, 0x5324
-	  stw       r0, 0x0(r30)
-	  bl        -0x88A8
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_80419E44
+	lis      r4, __vt__Q23Sys13TriangleTable@ha
+	addi     r0, r4, __vt__Q23Sys13TriangleTable@l
+	stw      r0, 0(r30)
+	beq      lbl_80419E34
+	lis      r4, "__vt__31ArrayContainer<Q23Sys8Triangle>"@ha
+	addi     r0, r4, "__vt__31ArrayContainer<Q23Sys8Triangle>"@l
+	stw      r0, 0(r30)
+	beq      lbl_80419E34
+	lis      r4, "__vt__26Container<Q23Sys8Triangle>"@ha
+	addi     r0, r4, "__vt__26Container<Q23Sys8Triangle>"@l
+	stw      r0, 0(r30)
+	beq      lbl_80419E34
+	lis      r5, __vt__16GenericContainer@ha
+	li       r4, 0
+	addi     r0, r5, __vt__16GenericContainer@l
+	stw      r0, 0(r30)
+	bl       __dt__5CNodeFv
 
-	.loc_0x64:
-	  extsh.    r0, r31
-	  ble-      .loc_0x74
-	  mr        r3, r30
-	  bl        -0x3F5D8C
+lbl_80419E34:
+	extsh.   r0, r31
+	ble      lbl_80419E44
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x74:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80419E44:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -5556,41 +5678,40 @@ TriangleTable::~TriangleTable(void)
 void TriangleTable::readObject(Stream&, Sys::Triangle&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r5
-	  stw       r30, 0x8(r1)
-	  mr        r30, r4
-	  mr        r3, r30
-	  bl        -0x53F0
-	  stw       r3, 0x0(r31)
-	  mr        r3, r30
-	  bl        -0x53FC
-	  stw       r3, 0x4(r31)
-	  mr        r3, r30
-	  bl        -0x5408
-	  stw       r3, 0x8(r31)
-	  mr        r4, r30
-	  addi      r3, r31, 0xC
-	  bl        -0x8404
-	  mr        r4, r30
-	  addi      r3, r31, 0x1C
-	  bl        -0x8410
-	  mr        r4, r30
-	  addi      r3, r31, 0x2C
-	  bl        -0x841C
-	  mr        r4, r30
-	  addi      r3, r31, 0x3C
-	  bl        -0x8428
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r5
+	stw      r30, 8(r1)
+	mr       r30, r4
+	mr       r3, r30
+	bl       readInt__6StreamFv
+	stw      r3, 0(r31)
+	mr       r3, r30
+	bl       readInt__6StreamFv
+	stw      r3, 4(r31)
+	mr       r3, r30
+	bl       readInt__6StreamFv
+	stw      r3, 8(r31)
+	mr       r4, r30
+	addi     r3, r31, 0xc
+	bl       read__5PlaneFR6Stream
+	mr       r4, r30
+	addi     r3, r31, 0x1c
+	bl       read__5PlaneFR6Stream
+	mr       r4, r30
+	addi     r3, r31, 0x2c
+	bl       read__5PlaneFR6Stream
+	mr       r4, r30
+	addi     r3, r31, 0x3c
+	bl       read__5PlaneFR6Stream
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -5602,41 +5723,40 @@ void TriangleTable::readObject(Stream&, Sys::Triangle&)
 void TriangleTable::writeObject(Stream&, Sys::Triangle&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r5
-	  stw       r30, 0x8(r1)
-	  mr        r30, r4
-	  mr        r3, r30
-	  lwz       r4, 0x0(r5)
-	  bl        -0x474C
-	  lwz       r4, 0x4(r31)
-	  mr        r3, r30
-	  bl        -0x4758
-	  lwz       r4, 0x8(r31)
-	  mr        r3, r30
-	  bl        -0x4764
-	  mr        r4, r30
-	  addi      r3, r31, 0xC
-	  bl        -0x84F0
-	  mr        r4, r30
-	  addi      r3, r31, 0x1C
-	  bl        -0x84FC
-	  mr        r4, r30
-	  addi      r3, r31, 0x2C
-	  bl        -0x8508
-	  mr        r4, r30
-	  addi      r3, r31, 0x3C
-	  bl        -0x8514
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r5
+	stw      r30, 8(r1)
+	mr       r30, r4
+	mr       r3, r30
+	lwz      r4, 0(r5)
+	bl       writeInt__6StreamFi
+	lwz      r4, 4(r31)
+	mr       r3, r30
+	bl       writeInt__6StreamFi
+	lwz      r4, 8(r31)
+	mr       r3, r30
+	bl       writeInt__6StreamFi
+	mr       r4, r30
+	addi     r3, r31, 0xc
+	bl       write__5PlaneFR6Stream
+	mr       r4, r30
+	addi     r3, r31, 0x1c
+	bl       write__5PlaneFR6Stream
+	mr       r4, r30
+	addi     r3, r31, 0x2c
+	bl       write__5PlaneFR6Stream
+	mr       r4, r30
+	addi     r3, r31, 0x3c
+	bl       write__5PlaneFR6Stream
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -5648,20 +5768,19 @@ void TriangleTable::writeObject(Stream&, Sys::Triangle&)
 void GridDivider::getBoundBox(BoundBox&)
 {
 	/*
-	.loc_0x0:
-	  lfs       f0, 0x2C(r3)
-	  stfs      f0, 0x0(r4)
-	  lfs       f0, 0x30(r3)
-	  stfs      f0, 0x4(r4)
-	  lfs       f0, 0x34(r3)
-	  stfs      f0, 0x8(r4)
-	  lfs       f0, 0x38(r3)
-	  stfs      f0, 0xC(r4)
-	  lfs       f0, 0x3C(r3)
-	  stfs      f0, 0x10(r4)
-	  lfs       f0, 0x40(r3)
-	  stfs      f0, 0x14(r4)
-	  blr
+	lfs      f0, 0x2c(r3)
+	stfs     f0, 0(r4)
+	lfs      f0, 0x30(r3)
+	stfs     f0, 4(r4)
+	lfs      f0, 0x34(r3)
+	stfs     f0, 8(r4)
+	lfs      f0, 0x38(r3)
+	stfs     f0, 0xc(r4)
+	lfs      f0, 0x3c(r3)
+	stfs     f0, 0x10(r4)
+	lfs      f0, 0x40(r3)
+	stfs     f0, 0x14(r4)
+	blr
 	*/
 }
 
@@ -5675,11 +5794,10 @@ void GridDivider::getBoundBox(BoundBox&)
 void ArrayContainer<Sys::Triangle>::setArray(Sys::Triangle*, int)
 {
 	/*
-	.loc_0x0:
-	  stw       r4, 0x24(r3)
-	  stw       r5, 0x20(r3)
-	  stw       r5, 0x1C(r3)
-	  blr
+	stw      r4, 0x24(r3)
+	stw      r5, 0x20(r3)
+	stw      r5, 0x1c(r3)
+	blr
 	*/
 }
 
@@ -5691,11 +5809,10 @@ void ArrayContainer<Sys::Triangle>::setArray(Sys::Triangle*, int)
 void ArrayContainer<Sys::Triangle>::get(void*)
 {
 	/*
-	.loc_0x0:
-	  mulli     r0, r4, 0x60
-	  lwz       r3, 0x24(r3)
-	  add       r3, r3, r0
-	  blr
+	mulli    r0, r4, 0x60
+	lwz      r3, 0x24(r3)
+	add      r3, r3, r0
+	blr
 	*/
 }
 
@@ -5707,9 +5824,8 @@ void ArrayContainer<Sys::Triangle>::get(void*)
 void ArrayContainer<Sys::Triangle>::getNext(void*)
 {
 	/*
-	.loc_0x0:
-	  addi      r3, r4, 0x1
-	  blr
+	addi     r3, r4, 1
+	blr
 	*/
 }
 
@@ -5728,9 +5844,8 @@ u32 ArrayContainer<Sys::Triangle>::getStart() { return 0x0; }
 void ArrayContainer<Sys::Triangle>::getEnd()
 {
 	/*
-	.loc_0x0:
-	  lwz       r3, 0x1C(r3)
-	  blr
+	lwz      r3, 0x1c(r3)
+	blr
 	*/
 }
 
@@ -5742,11 +5857,10 @@ void ArrayContainer<Sys::Triangle>::getEnd()
 void ArrayContainer<Sys::Triangle>::getAt(int)
 {
 	/*
-	.loc_0x0:
-	  mulli     r0, r4, 0x60
-	  lwz       r3, 0x24(r3)
-	  add       r3, r3, r0
-	  blr
+	mulli    r0, r4, 0x60
+	lwz      r3, 0x24(r3)
+	add      r3, r3, r0
+	blr
 	*/
 }
 
@@ -5758,9 +5872,8 @@ void ArrayContainer<Sys::Triangle>::getAt(int)
 void ArrayContainer<Sys::Triangle>::getTo()
 {
 	/*
-	.loc_0x0:
-	  lwz       r3, 0x20(r3)
-	  blr
+	lwz      r3, 0x20(r3)
+	blr
 	*/
 }
 
@@ -5772,18 +5885,17 @@ void ArrayContainer<Sys::Triangle>::getTo()
 void Container<Sys::Triangle>::getObject(void*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x20(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x20(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 

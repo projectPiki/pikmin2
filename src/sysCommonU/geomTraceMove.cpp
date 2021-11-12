@@ -1,5 +1,15 @@
 #include "types.h"
 
+/*
+    Generated from dpostproc
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_805203E0
+    lbl_805203E0:
+        .float 1.0
+        .4byte 0x00000000
+*/
+
 namespace Sys {
 
 /*
@@ -10,125 +20,125 @@ namespace Sys {
 void OBBTree::traceMove_new(Matrixf&, Matrixf&, Game::MoveInfo&, float)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x130(r1)
-	  mflr      r0
-	  stw       r0, 0x134(r1)
-	  stfd      f31, 0x120(r1)
-	  psq_st    f31,0x128(r1),0,0
-	  stmw      r27, 0x10C(r1)
-	  li        r7, 0
-	  lbz       r0, -0x7BA8(r13)
-	  stw       r7, 0x10(r1)
-	  mr        r30, r6
-	  cmplwi    r0, 0x2
-	  mr        r27, r3
-	  lwz       r31, 0x0(r6)
-	  mr        r28, r4
-	  mr        r29, r5
-	  lfs       f31, 0xC(r31)
-	  blt-      .loc_0xB8
-	  lfs       f5, 0x120(r27)
-	  addi      r3, r1, 0x58
-	  addi      r4, r1, 0x48
-	  stfs      f5, 0x58(r1)
-	  lfs       f4, 0x124(r27)
-	  stfs      f4, 0x5C(r1)
-	  lfs       f3, 0x128(r27)
-	  stfs      f3, 0x60(r1)
-	  lfs       f0, 0x12C(r27)
-	  stfs      f0, 0x64(r1)
-	  lfs       f0, 0x0(r31)
-	  stfs      f0, 0x48(r1)
-	  lfs       f0, 0x4(r31)
-	  stfs      f0, 0x4C(r1)
-	  lfs       f0, 0x8(r31)
-	  stfs      f0, 0x50(r1)
-	  stfs      f31, 0x54(r1)
-	  lfs       f2, 0x2C(r28)
-	  lfs       f1, 0x1C(r28)
-	  lfs       f0, 0xC(r28)
-	  fadds     f2, f3, f2
-	  fadds     f1, f4, f1
-	  fadds     f0, f5, f0
-	  stfs      f2, 0x60(r1)
-	  stfs      f0, 0x58(r1)
-	  stfs      f1, 0x5C(r1)
-	  bl        -0xA140
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x1A4
+	stwu     r1, -0x130(r1)
+	mflr     r0
+	stw      r0, 0x134(r1)
+	stfd     f31, 0x120(r1)
+	psq_st   f31, 296(r1), 0, qr0
+	stmw     r27, 0x10c(r1)
+	li       r7, 0
+	lbz      r0, mTraceMoveOptLevel__Q24Game6MapMgr@sda21(r13)
+	stw      r7, 0x10(r1)
+	mr       r30, r6
+	cmplwi   r0, 2
+	mr       r27, r3
+	lwz      r31, 0(r6)
+	mr       r28, r4
+	mr       r29, r5
+	lfs      f31, 0xc(r31)
+	blt      lbl_80420060
+	lfs      f5, 0x120(r27)
+	addi     r3, r1, 0x58
+	addi     r4, r1, 0x48
+	stfs     f5, 0x58(r1)
+	lfs      f4, 0x124(r27)
+	stfs     f4, 0x5c(r1)
+	lfs      f3, 0x128(r27)
+	stfs     f3, 0x60(r1)
+	lfs      f0, 0x12c(r27)
+	stfs     f0, 0x64(r1)
+	lfs      f0, 0(r31)
+	stfs     f0, 0x48(r1)
+	lfs      f0, 4(r31)
+	stfs     f0, 0x4c(r1)
+	lfs      f0, 8(r31)
+	stfs     f0, 0x50(r1)
+	stfs     f31, 0x54(r1)
+	lfs      f2, 0x2c(r28)
+	lfs      f1, 0x1c(r28)
+	lfs      f0, 0xc(r28)
+	fadds    f2, f3, f2
+	fadds    f1, f4, f1
+	fadds    f0, f5, f0
+	stfs     f2, 0x60(r1)
+	stfs     f0, 0x58(r1)
+	stfs     f1, 0x5c(r1)
+	bl       intersect__Q23Sys6SphereFRQ23Sys6Sphere
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_8042014C
 
-	.loc_0xB8:
-	  mr        r3, r29
-	  mr        r4, r31
-	  addi      r5, r1, 0x2C
-	  bl        -0x335494
-	  lfs       f1, 0x30(r1)
-	  lfs       f2, 0x34(r1)
-	  lfs       f0, 0x2C(r1)
-	  stfs      f0, 0x0(r31)
-	  stfs      f1, 0x4(r31)
-	  stfs      f2, 0x8(r31)
-	  lfs       f0, 0x0(r31)
-	  lbz       r0, -0x7BA8(r13)
-	  stfs      f0, 0x38(r1)
-	  cmplwi    r0, 0x2
-	  lfs       f0, 0x4(r31)
-	  stfs      f0, 0x3C(r1)
-	  lfs       f0, 0x8(r31)
-	  stfs      f0, 0x40(r1)
-	  stfs      f31, 0x44(r1)
-	  bge-      .loc_0x148
-	  addi      r3, r27, 0x120
-	  addi      r4, r1, 0x38
-	  bl        -0xA1A4
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x148
-	  mr        r3, r28
-	  mr        r4, r31
-	  addi      r5, r1, 0x20
-	  bl        -0x3354F8
-	  lfs       f1, 0x24(r1)
-	  lfs       f2, 0x28(r1)
-	  lfs       f0, 0x20(r1)
-	  stfs      f0, 0x0(r31)
-	  stfs      f1, 0x4(r31)
-	  stfs      f2, 0x8(r31)
-	  b         .loc_0x1A4
+lbl_80420060:
+	mr       r3, r29
+	mr       r4, r31
+	addi     r5, r1, 0x2c
+	bl       PSMTXMultVec
+	lfs      f1, 0x30(r1)
+	lfs      f2, 0x34(r1)
+	lfs      f0, 0x2c(r1)
+	stfs     f0, 0(r31)
+	stfs     f1, 4(r31)
+	stfs     f2, 8(r31)
+	lfs      f0, 0(r31)
+	lbz      r0, mTraceMoveOptLevel__Q24Game6MapMgr@sda21(r13)
+	stfs     f0, 0x38(r1)
+	cmplwi   r0, 2
+	lfs      f0, 4(r31)
+	stfs     f0, 0x3c(r1)
+	lfs      f0, 8(r31)
+	stfs     f0, 0x40(r1)
+	stfs     f31, 0x44(r1)
+	bge      lbl_804200F0
+	addi     r3, r27, 0x120
+	addi     r4, r1, 0x38
+	bl       intersect__Q23Sys6SphereFRQ23Sys6Sphere
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_804200F0
+	mr       r3, r28
+	mr       r4, r31
+	addi     r5, r1, 0x20
+	bl       PSMTXMultVec
+	lfs      f1, 0x24(r1)
+	lfs      f2, 0x28(r1)
+	lfs      f0, 0x20(r1)
+	stfs     f0, 0(r31)
+	stfs     f1, 4(r31)
+	stfs     f2, 8(r31)
+	b        lbl_8042014C
 
-	.loc_0x148:
-	  addi      r3, r1, 0x68
-	  addi      r0, r1, 0xA8
-	  stw       r3, 0x8(r1)
-	  mr        r4, r30
-	  mr        r7, r28
-	  mr        r8, r29
-	  stw       r0, 0xC(r1)
-	  addi      r3, r27, 0x20
-	  addi      r9, r1, 0x10
-	  addi      r10, r1, 0x88
-	  lwz       r5, 0x18(r27)
-	  lwz       r6, 0x1C(r27)
-	  bl        0x344
-	  mr        r3, r28
-	  mr        r4, r31
-	  addi      r5, r1, 0x14
-	  bl        -0x335558
-	  lfs       f1, 0x18(r1)
-	  lfs       f2, 0x1C(r1)
-	  lfs       f0, 0x14(r1)
-	  stfs      f0, 0x0(r31)
-	  stfs      f1, 0x4(r31)
-	  stfs      f2, 0x8(r31)
+lbl_804200F0:
+	addi     r3, r1, 0x68
+	addi     r0, r1, 0xa8
+	stw      r3, 8(r1)
+	mr       r4, r30
+	mr       r7, r28
+	mr       r8, r29
+	stw      r0, 0xc(r1)
+	addi     r3, r27, 0x20
+	addi     r9, r1, 0x10
+	addi     r10, r1, 0x88
+	lwz      r5, 0x18(r27)
+	lwz      r6, 0x1c(r27)
+	bl
+"traceMove_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableR7MatrixfR7MatrixfRiPPQ23Sys8TrianglePfP10Vector3<f>"
+	mr       r3, r28
+	mr       r4, r31
+	addi     r5, r1, 0x14
+	bl       PSMTXMultVec
+	lfs      f1, 0x18(r1)
+	lfs      f2, 0x1c(r1)
+	lfs      f0, 0x14(r1)
+	stfs     f0, 0(r31)
+	stfs     f1, 4(r31)
+	stfs     f2, 8(r31)
 
-	.loc_0x1A4:
-	  psq_l     f31,0x128(r1),0,0
-	  lfd       f31, 0x120(r1)
-	  lmw       r27, 0x10C(r1)
-	  lwz       r0, 0x134(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x130
-	  blr
+lbl_8042014C:
+	psq_l    f31, 296(r1), 0, qr0
+	lfd      f31, 0x120(r1)
+	lmw      r27, 0x10c(r1)
+	lwz      r0, 0x134(r1)
+	mtlr     r0
+	addi     r1, r1, 0x130
+	blr
 	*/
 }
 
@@ -947,47 +957,47 @@ void traceMove_new__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13Tri
 void OBBTree::traceMove_new_global(Game::MoveInfo&, float)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0xD0(r1)
-	  mflr      r0
-	  stw       r0, 0xD4(r1)
-	  li        r0, 0
-	  stw       r31, 0xCC(r1)
-	  mr        r31, r4
-	  addi      r4, r1, 0xC
-	  stw       r30, 0xC8(r1)
-	  mr        r30, r3
-	  addi      r3, r30, 0x120
-	  stw       r0, 0x8(r1)
-	  lwz       r5, 0x0(r31)
-	  lfs       f1, 0xC(r5)
-	  lfs       f0, 0x0(r5)
-	  stfs      f0, 0xC(r1)
-	  lfs       f0, 0x4(r5)
-	  stfs      f0, 0x10(r1)
-	  lfs       f0, 0x8(r5)
-	  stfs      f0, 0x14(r1)
-	  stfs      f1, 0x18(r1)
-	  bl        -0xAD90
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x80
-	  lwz       r5, 0x18(r30)
-	  mr        r4, r31
-	  lwz       r6, 0x1C(r30)
-	  addi      r3, r30, 0x20
-	  addi      r7, r1, 0x8
-	  addi      r8, r1, 0x3C
-	  addi      r9, r1, 0x1C
-	  addi      r10, r1, 0x5C
-	  bl        0x268
+	stwu     r1, -0xd0(r1)
+	mflr     r0
+	stw      r0, 0xd4(r1)
+	li       r0, 0
+	stw      r31, 0xcc(r1)
+	mr       r31, r4
+	addi     r4, r1, 0xc
+	stw      r30, 0xc8(r1)
+	mr       r30, r3
+	addi     r3, r30, 0x120
+	stw      r0, 8(r1)
+	lwz      r5, 0(r31)
+	lfs      f1, 0xc(r5)
+	lfs      f0, 0(r5)
+	stfs     f0, 0xc(r1)
+	lfs      f0, 4(r5)
+	stfs     f0, 0x10(r1)
+	lfs      f0, 8(r5)
+	stfs     f0, 0x14(r1)
+	stfs     f1, 0x18(r1)
+	bl       intersect__Q23Sys6SphereFRQ23Sys6Sphere
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80420CD4
+	lwz      r5, 0x18(r30)
+	mr       r4, r31
+	lwz      r6, 0x1c(r30)
+	addi     r3, r30, 0x20
+	addi     r7, r1, 8
+	addi     r8, r1, 0x3c
+	addi     r9, r1, 0x1c
+	addi     r10, r1, 0x5c
+	bl
+"traceMove_new_global__Q23Sys3OBBFRQ24Game8MoveInfoRQ23Sys11VertexTableRQ23Sys13TriangleTableRiPPQ23Sys8TrianglePfP10Vector3<f>"
 
-	.loc_0x80:
-	  lwz       r0, 0xD4(r1)
-	  lwz       r31, 0xCC(r1)
-	  lwz       r30, 0xC8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0xD0
-	  blr
+lbl_80420CD4:
+	lwz      r0, 0xd4(r1)
+	lwz      r31, 0xcc(r1)
+	lwz      r30, 0xc8(r1)
+	mtlr     r0
+	addi     r1, r1, 0xd0
+	blr
 	*/
 }
 

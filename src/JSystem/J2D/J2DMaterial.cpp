@@ -1,6 +1,50 @@
 #include "types.h"
 
 /*
+    Generated from dpostproc
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__15J2DIndBlockNull
+    __vt__15J2DIndBlockNull:
+        .4byte 0
+        .4byte 0
+        .4byte initialize__11J2DIndBlockFv
+        .4byte setGX__15J2DIndBlockNullFv
+        .4byte getType__15J2DIndBlockNullFv
+        .4byte setIndTexStageNum__11J2DIndBlockFUc
+        .4byte getIndTexStageNum__11J2DIndBlockCFv
+        .4byte setIndTexOrder__11J2DIndBlockFUl14J2DIndTexOrder
+        .4byte getIndTexOrder__11J2DIndBlockFUl
+        .4byte setIndTexMtx__11J2DIndBlockFUl12J2DIndTexMtx
+        .4byte getIndTexMtx__11J2DIndBlockFUl
+        .4byte setIndTexCoordScale__11J2DIndBlockFUl19J2DIndTexCoordScale
+        .4byte getIndTexCoordScale__11J2DIndBlockFUl
+        .4byte __dt__15J2DIndBlockNullFv
+    .global __vt__11J2DMaterial
+    __vt__11J2DMaterial:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__11J2DMaterialFv
+    .global __vt__13J2DColorBlock
+    __vt__13J2DColorBlock:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__13J2DColorBlockFv
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_805168C8
+    lbl_805168C8:
+        .4byte 0x43B40000
+    .global lbl_805168CC
+    lbl_805168CC:
+        .4byte 0x477FFF00
+    .global lbl_805168D0
+    lbl_805168D0:
+        .4byte 0x43300000
+        .4byte 0x00000000
+*/
+
+/*
  * --INFO--
  * Address:	80051EA4
  * Size:	000120
@@ -8,79 +52,78 @@
 J2DMaterial::J2DMaterial()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r4, 0x804A
-	  li        r5, 0
-	  stw       r0, 0x14(r1)
-	  addi      r0, r4, 0x1198
-	  lis       r4, 0x8004
-	  li        r6, 0x4
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lis       r3, 0x804A
-	  subi      r4, r4, 0x646C
-	  stw       r0, 0x0(r31)
-	  addi      r0, r3, 0x11A4
-	  addi      r3, r31, 0x10
-	  li        r7, 0x2
-	  stw       r0, 0x24(r31)
-	  bl        0x6F954
-	  lis       r4, 0x8005
-	  addi      r3, r31, 0x1A
-	  addi      r4, r4, 0x202C
-	  li        r5, 0
-	  li        r6, 0x2
-	  li        r7, 0x4
-	  bl        0x6F938
-	  addi      r3, r31, 0x10
-	  bl        -0x83EC
-	  lis       r3, 0x804A
-	  lis       r4, 0x8005
-	  addi      r0, r3, 0x1150
-	  li        r5, 0
-	  stw       r0, 0x6C(r31)
-	  addi      r3, r31, 0x2C
-	  addi      r4, r4, 0x1FC4
-	  li        r6, 0x4
-	  li        r7, 0x8
-	  bl        0x6F908
-	  addi      r3, r31, 0x28
-	  bl        -0x827C
-	  lhz       r5, -0x7A22(r2)
-	  li        r0, 0
-	  subi      r4, r2, 0x7A30
-	  addi      r3, r31, 0x78
-	  sth       r5, 0x78(r31)
-	  stb       r0, 0x7A(r31)
-	  stb       r0, 0x7B(r31)
-	  lbz       r0, -0x7A30(r2)
-	  stb       r0, 0x7C(r31)
-	  lbz       r0, 0x1(r4)
-	  stb       r0, 0x7D(r31)
-	  lbz       r0, 0x2(r4)
-	  stb       r0, 0x7E(r31)
-	  lbz       r0, 0x3(r4)
-	  stb       r0, 0x7F(r31)
-	  bl        -0x118C
-	  li        r5, 0
-	  lis       r3, 0x1
-	  stw       r5, 0x4(r31)
-	  subi      r4, r3, 0x1
-	  li        r0, 0x1
-	  mr        r3, r31
-	  sth       r4, 0xC(r31)
-	  stw       r5, 0x70(r31)
-	  stw       r5, 0x74(r31)
-	  stw       r5, 0x84(r31)
-	  stw       r0, 0x8(r31)
-	  stb       r0, 0xE(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lis      r4, __vt__11J2DMaterial@ha
+	li       r5, 0
+	stw      r0, 0x14(r1)
+	addi     r0, r4, __vt__11J2DMaterial@l
+	lis      r4, __ct__Q28JUtility6TColorFv@ha
+	li       r6, 4
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lis      r3, __vt__13J2DColorBlock@ha
+	addi     r4, r4, __ct__Q28JUtility6TColorFv@l
+	stw      r0, 0(r31)
+	addi     r0, r3, __vt__13J2DColorBlock@l
+	addi     r3, r31, 0x10
+	li       r7, 2
+	stw      r0, 0x24(r31)
+	bl       __construct_array
+	lis      r4, __ct__12J2DColorChanFv@ha
+	addi     r3, r31, 0x1a
+	addi     r4, r4, __ct__12J2DColorChanFv@l
+	li       r5, 0
+	li       r6, 2
+	li       r7, 4
+	bl       __construct_array
+	addi     r3, r31, 0x10
+	bl       initialize__13J2DColorBlockFv
+	lis      r3, __vt__14J2DTexGenBlock@ha
+	lis      r4, __ct__11J2DTexCoordFv@ha
+	addi     r0, r3, __vt__14J2DTexGenBlock@l
+	li       r5, 0
+	stw      r0, 0x6c(r31)
+	addi     r3, r31, 0x2c
+	addi     r4, r4, __ct__11J2DTexCoordFv@l
+	li       r6, 4
+	li       r7, 8
+	bl       __construct_array
+	addi     r3, r31, 0x28
+	bl       initialize__14J2DTexGenBlockFv
+	lhz      r5, j2dDefaultAlphaCmp@sda21(r2)
+	li       r0, 0
+	addi     r4, r2, j2dDefaultBlendInfo@sda21
+	addi     r3, r31, 0x78
+	sth      r5, 0x78(r31)
+	stb      r0, 0x7a(r31)
+	stb      r0, 0x7b(r31)
+	lbz      r0, j2dDefaultBlendInfo@sda21(r2)
+	stb      r0, 0x7c(r31)
+	lbz      r0, 1(r4)
+	stb      r0, 0x7d(r31)
+	lbz      r0, 2(r4)
+	stb      r0, 0x7e(r31)
+	lbz      r0, 3(r4)
+	stb      r0, 0x7f(r31)
+	bl       initialize__10J2DPEBlockFv
+	li       r5, 0
+	lis      r3, 0x0000FFFF@ha
+	stw      r5, 4(r31)
+	addi     r4, r3, 0x0000FFFF@l
+	li       r0, 1
+	mr       r3, r31
+	sth      r4, 0xc(r31)
+	stw      r5, 0x70(r31)
+	stw      r5, 0x74(r31)
+	stw      r5, 0x84(r31)
+	stw      r0, 8(r31)
+	stb      r0, 0xe(r31)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -92,15 +135,14 @@ J2DMaterial::J2DMaterial()
 J2DTexCoord::J2DTexCoord()
 {
 	/*
-	.loc_0x0:
-	  lis       r4, 0x8048
-	  lbzu      r0, -0x79B8(r4)
-	  stb       r0, 0x0(r3)
-	  lbz       r0, 0x1(r4)
-	  stb       r0, 0x1(r3)
-	  lbz       r0, 0x2(r4)
-	  stb       r0, 0x2(r3)
-	  blr
+	lis      r4, j2dDefaultTexCoordInfo@ha
+	lbzu     r0, j2dDefaultTexCoordInfo@l(r4)
+	stb      r0, 0(r3)
+	lbz      r0, 1(r4)
+	stb      r0, 1(r3)
+	lbz      r0, 2(r4)
+	stb      r0, 2(r3)
+	blr
 	*/
 }
 
@@ -112,27 +154,26 @@ J2DTexCoord::J2DTexCoord()
 J2DColorBlock::~J2DColorBlock()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r3
-	  beq-      .loc_0x30
-	  lis       r5, 0x804A
-	  extsh.    r0, r4
-	  addi      r0, r5, 0x11A4
-	  stw       r0, 0x14(r31)
-	  ble-      .loc_0x30
-	  bl        -0x2DF5C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r3, r3
+	beq      lbl_80052014
+	lis      r5, __vt__13J2DColorBlock@ha
+	extsh.   r0, r4
+	addi     r0, r5, __vt__13J2DColorBlock@l
+	stw      r0, 0x14(r31)
+	ble      lbl_80052014
+	bl       __dl__FPv
 
-	.loc_0x30:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80052014:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -144,11 +185,10 @@ J2DColorBlock::~J2DColorBlock()
 J2DColorChan::J2DColorChan()
 {
 	/*
-	.loc_0x0:
-	  subi      r4, r2, 0x7A28
-	  lbz       r0, 0x1(r4)
-	  sth       r0, 0x0(r3)
-	  blr
+	addi     r4, r2, j2dDefaultColorChanInfo@sda21
+	lbz      r0, 1(r4)
+	sth      r0, 0(r3)
+	blr
 	*/
 }
 
@@ -160,90 +200,89 @@ J2DColorChan::J2DColorChan()
 J2DMaterial::J2DMaterial(unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  lis       r5, 0x804A
-	  li        r6, 0x4
-	  stw       r0, 0x14(r1)
-	  addi      r0, r5, 0x1198
-	  li        r5, 0
-	  li        r7, 0x2
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lis       r3, 0x804A
-	  stw       r0, 0x0(r30)
-	  addi      r0, r3, 0x11A4
-	  lis       r3, 0x8004
-	  stw       r0, 0x24(r30)
-	  subi      r4, r3, 0x646C
-	  addi      r3, r30, 0x10
-	  bl        0x6F7B4
-	  lis       r4, 0x8005
-	  addi      r3, r30, 0x1A
-	  addi      r4, r4, 0x202C
-	  li        r5, 0
-	  li        r6, 0x2
-	  li        r7, 0x4
-	  bl        0x6F798
-	  addi      r3, r30, 0x10
-	  bl        -0x858C
-	  lis       r3, 0x804A
-	  lis       r4, 0x8005
-	  addi      r0, r3, 0x1150
-	  li        r5, 0
-	  stw       r0, 0x6C(r30)
-	  addi      r3, r30, 0x2C
-	  addi      r4, r4, 0x1FC4
-	  li        r6, 0x4
-	  li        r7, 0x8
-	  bl        0x6F768
-	  addi      r3, r30, 0x28
-	  bl        -0x841C
-	  lhz       r5, -0x7A22(r2)
-	  li        r0, 0
-	  subi      r4, r2, 0x7A30
-	  addi      r3, r30, 0x78
-	  sth       r5, 0x78(r30)
-	  stb       r0, 0x7A(r30)
-	  stb       r0, 0x7B(r30)
-	  lbz       r0, -0x7A30(r2)
-	  stb       r0, 0x7C(r30)
-	  lbz       r0, 0x1(r4)
-	  stb       r0, 0x7D(r30)
-	  lbz       r0, 0x2(r4)
-	  stb       r0, 0x7E(r30)
-	  lbz       r0, 0x3(r4)
-	  stb       r0, 0x7F(r30)
-	  bl        -0x132C
-	  li        r0, 0
-	  lis       r3, 0x1
-	  stw       r0, 0x4(r30)
-	  subi      r0, r3, 0x1
-	  rlwinm    r3,r31,16,27,31
-	  li        r4, 0x1
-	  sth       r0, 0xC(r30)
-	  bl        0x190
-	  stw       r3, 0x70(r30)
-	  rlwinm    r3,r31,8,31,31
-	  li        r4, 0x1
-	  bl        0x334
-	  stw       r3, 0x74(r30)
-	  li        r4, 0
-	  li        r0, 0x1
-	  mr        r3, r30
-	  stw       r4, 0x84(r30)
-	  stw       r0, 0x8(r30)
-	  stb       r0, 0xE(r30)
-	  stb       r0, 0xF(r30)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	lis      r5, __vt__11J2DMaterial@ha
+	li       r6, 4
+	stw      r0, 0x14(r1)
+	addi     r0, r5, __vt__11J2DMaterial@l
+	li       r5, 0
+	li       r7, 2
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lis      r3, __vt__13J2DColorBlock@ha
+	stw      r0, 0(r30)
+	addi     r0, r3, __vt__13J2DColorBlock@l
+	lis      r3, __ct__Q28JUtility6TColorFv@ha
+	stw      r0, 0x24(r30)
+	addi     r4, r3, __ct__Q28JUtility6TColorFv@l
+	addi     r3, r30, 0x10
+	bl       __construct_array
+	lis      r4, __ct__12J2DColorChanFv@ha
+	addi     r3, r30, 0x1a
+	addi     r4, r4, __ct__12J2DColorChanFv@l
+	li       r5, 0
+	li       r6, 2
+	li       r7, 4
+	bl       __construct_array
+	addi     r3, r30, 0x10
+	bl       initialize__13J2DColorBlockFv
+	lis      r3, __vt__14J2DTexGenBlock@ha
+	lis      r4, __ct__11J2DTexCoordFv@ha
+	addi     r0, r3, __vt__14J2DTexGenBlock@l
+	li       r5, 0
+	stw      r0, 0x6c(r30)
+	addi     r3, r30, 0x2c
+	addi     r4, r4, __ct__11J2DTexCoordFv@l
+	li       r6, 4
+	li       r7, 8
+	bl       __construct_array
+	addi     r3, r30, 0x28
+	bl       initialize__14J2DTexGenBlockFv
+	lhz      r5, j2dDefaultAlphaCmp@sda21(r2)
+	li       r0, 0
+	addi     r4, r2, j2dDefaultBlendInfo@sda21
+	addi     r3, r30, 0x78
+	sth      r5, 0x78(r30)
+	stb      r0, 0x7a(r30)
+	stb      r0, 0x7b(r30)
+	lbz      r0, j2dDefaultBlendInfo@sda21(r2)
+	stb      r0, 0x7c(r30)
+	lbz      r0, 1(r4)
+	stb      r0, 0x7d(r30)
+	lbz      r0, 2(r4)
+	stb      r0, 0x7e(r30)
+	lbz      r0, 3(r4)
+	stb      r0, 0x7f(r30)
+	bl       initialize__10J2DPEBlockFv
+	li       r0, 0
+	lis      r3, 0x0000FFFF@ha
+	stw      r0, 4(r30)
+	addi     r0, r3, 0x0000FFFF@l
+	rlwinm   r3, r31, 0x10, 0x1b, 0x1f
+	li       r4, 1
+	sth      r0, 0xc(r30)
+	bl       createTevBlock__11J2DMaterialFib
+	stw      r3, 0x70(r30)
+	rlwinm   r3, r31, 8, 0x1f, 0x1f
+	li       r4, 1
+	bl       createIndBlock__11J2DMaterialFib
+	stw      r3, 0x74(r30)
+	li       r4, 0
+	li       r0, 1
+	mr       r3, r30
+	stw      r4, 0x84(r30)
+	stw      r0, 8(r30)
+	stb      r0, 0xe(r30)
+	stb      r0, 0xf(r30)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -255,63 +294,62 @@ J2DMaterial::J2DMaterial(unsigned long)
 J2DMaterial::~J2DMaterial()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0xA4
-	  lis       r3, 0x804A
-	  addi      r0, r3, 0x1198
-	  stw       r0, 0x0(r30)
-	  lwz       r3, 0x70(r30)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x4C
-	  lwz       r12, 0x0(r3)
-	  li        r4, 0x1
-	  lwz       r12, 0xB8(r12)
-	  mtctr     r12
-	  bctrl
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_8005222C
+	lis      r3, __vt__11J2DMaterial@ha
+	addi     r0, r3, __vt__11J2DMaterial@l
+	stw      r0, 0(r30)
+	lwz      r3, 0x70(r30)
+	cmplwi   r3, 0
+	beq      lbl_800521D4
+	lwz      r12, 0(r3)
+	li       r4, 1
+	lwz      r12, 0xb8(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x4C:
-	  lwz       r3, 0x74(r30)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x6C
-	  lwz       r12, 0x0(r3)
-	  li        r4, 0x1
-	  lwz       r12, 0x34(r12)
-	  mtctr     r12
-	  bctrl
+lbl_800521D4:
+	lwz      r3, 0x74(r30)
+	cmplwi   r3, 0
+	beq      lbl_800521F4
+	lwz      r12, 0(r3)
+	li       r4, 1
+	lwz      r12, 0x34(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x6C:
-	  lwz       r3, 0x84(r30)
-	  bl        -0x2E144
-	  addi      r3, r30, 0x28
-	  li        r4, -0x1
-	  bl        -0x83A0
-	  addic.    r0, r30, 0x10
-	  beq-      .loc_0x94
-	  lis       r3, 0x804A
-	  addi      r0, r3, 0x11A4
-	  stw       r0, 0x24(r30)
+lbl_800521F4:
+	lwz      r3, 0x84(r30)
+	bl       __dl__FPv
+	addi     r3, r30, 0x28
+	li       r4, -1
+	bl       __dt__14J2DTexGenBlockFv
+	addic.   r0, r30, 0x10
+	beq      lbl_8005221C
+	lis      r3, __vt__13J2DColorBlock@ha
+	addi     r0, r3, __vt__13J2DColorBlock@l
+	stw      r0, 0x24(r30)
 
-	.loc_0x94:
-	  extsh.    r0, r31
-	  ble-      .loc_0xA4
-	  mr        r3, r30
-	  bl        -0x2E174
+lbl_8005221C:
+	extsh.   r0, r31
+	ble      lbl_8005222C
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0xA4:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8005222C:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -323,46 +361,45 @@ J2DMaterial::~J2DMaterial()
 void J2DMaterial::setGX()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lbz       r0, 0xE(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x70
-	  addi      r3, r31, 0x10
-	  bl        -0x86A0
-	  addi      r3, r31, 0x28
-	  bl        -0x84C4
-	  lwz       r3, 0x70(r31)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x4C
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lbz      r0, 0xe(r3)
+	cmplwi   r0, 0
+	beq      lbl_800522B8
+	addi     r3, r31, 0x10
+	bl       setGX__13J2DColorBlockFv
+	addi     r3, r31, 0x28
+	bl       setGX__14J2DTexGenBlockFv
+	lwz      r3, 0x70(r31)
+	cmplwi   r3, 0
+	beq      lbl_80052294
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x4C:
-	  lwz       r3, 0x74(r31)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x68
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
+lbl_80052294:
+	lwz      r3, 0x74(r31)
+	cmplwi   r3, 0
+	beq      lbl_800522B0
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x68:
-	  addi      r3, r31, 0x78
-	  bl        -0x1480
+lbl_800522B0:
+	addi     r3, r31, 0x78
+	bl       setGX__10J2DPEBlockFv
 
-	.loc_0x70:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_800522B8:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -374,156 +411,155 @@ void J2DMaterial::setGX()
 void J2DMaterial::createTevBlock(int, bool)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  rlwinm.   r0,r4,0,24,31
-	  beq-      .loc_0xD4
-	  cmpwi     r3, 0x1
-	  bgt-      .loc_0x3C
-	  li        r3, 0x60
-	  bl        -0x2E448
-	  mr.       r0, r3
-	  beq-      .loc_0x34
-	  bl        -0x81E4
-	  mr        r0, r3
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	clrlwi.  r0, r4, 0x18
+	beq      lbl_800523A0
+	cmpwi    r3, 1
+	bgt      lbl_80052308
+	li       r3, 0x60
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_80052300
+	bl       __ct__12J2DTevBlock1Fv
+	mr       r0, r3
 
-	.loc_0x34:
-	  mr        r3, r0
-	  b         .loc_0x1A4
+lbl_80052300:
+	mr       r3, r0
+	b        lbl_80052470
 
-	.loc_0x3C:
-	  cmpwi     r3, 0x2
-	  bne-      .loc_0x64
-	  li        r3, 0x7C
-	  bl        -0x2E470
-	  mr.       r0, r3
-	  beq-      .loc_0x5C
-	  bl        -0x72E4
-	  mr        r0, r3
+lbl_80052308:
+	cmpwi    r3, 2
+	bne      lbl_80052330
+	li       r3, 0x7c
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_80052328
+	bl       __ct__12J2DTevBlock2Fv
+	mr       r0, r3
 
-	.loc_0x5C:
-	  mr        r3, r0
-	  b         .loc_0x1A4
+lbl_80052328:
+	mr       r3, r0
+	b        lbl_80052470
 
-	.loc_0x64:
-	  cmpwi     r3, 0x4
-	  bgt-      .loc_0x8C
-	  li        r3, 0xB4
-	  bl        -0x2E498
-	  mr.       r0, r3
-	  beq-      .loc_0x84
-	  bl        -0x5F64
-	  mr        r0, r3
+lbl_80052330:
+	cmpwi    r3, 4
+	bgt      lbl_80052358
+	li       r3, 0xb4
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_80052350
+	bl       __ct__12J2DTevBlock4Fv
+	mr       r0, r3
 
-	.loc_0x84:
-	  mr        r3, r0
-	  b         .loc_0x1A4
+lbl_80052350:
+	mr       r3, r0
+	b        lbl_80052470
 
-	.loc_0x8C:
-	  cmpwi     r3, 0x8
-	  bgt-      .loc_0xB4
-	  li        r3, 0x124
-	  bl        -0x2E4C0
-	  mr.       r0, r3
-	  beq-      .loc_0xAC
-	  bl        -0x4864
-	  mr        r0, r3
+lbl_80052358:
+	cmpwi    r3, 8
+	bgt      lbl_80052380
+	li       r3, 0x124
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_80052378
+	bl       __ct__12J2DTevBlock8Fv
+	mr       r0, r3
 
-	.loc_0xAC:
-	  mr        r3, r0
-	  b         .loc_0x1A4
+lbl_80052378:
+	mr       r3, r0
+	b        lbl_80052470
 
-	.loc_0xB4:
-	  li        r3, 0x1B4
-	  bl        -0x2E4E0
-	  mr.       r0, r3
-	  beq-      .loc_0xCC
-	  bl        -0x3074
-	  mr        r0, r3
+lbl_80052380:
+	li       r3, 0x1b4
+	bl       __nw__FUl
+	or.      r0, r3, r3
+	beq      lbl_80052398
+	bl       __ct__13J2DTevBlock16Fv
+	mr       r0, r3
 
-	.loc_0xCC:
-	  mr        r3, r0
-	  b         .loc_0x1A4
+lbl_80052398:
+	mr       r3, r0
+	b        lbl_80052470
 
-	.loc_0xD4:
-	  cmpwi     r3, 0x1
-	  bgt-      .loc_0x100
-	  li        r3, 0x60
-	  li        r4, -0x4
-	  bl        -0x2E4C0
-	  mr.       r0, r3
-	  beq-      .loc_0xF8
-	  bl        -0x82A8
-	  mr        r0, r3
+lbl_800523A0:
+	cmpwi    r3, 1
+	bgt      lbl_800523CC
+	li       r3, 0x60
+	li       r4, -4
+	bl       __nw__FUli
+	or.      r0, r3, r3
+	beq      lbl_800523C4
+	bl       __ct__12J2DTevBlock1Fv
+	mr       r0, r3
 
-	.loc_0xF8:
-	  mr        r3, r0
-	  b         .loc_0x1A4
+lbl_800523C4:
+	mr       r3, r0
+	b        lbl_80052470
 
-	.loc_0x100:
-	  cmpwi     r3, 0x2
-	  bne-      .loc_0x12C
-	  li        r3, 0x7C
-	  li        r4, -0x4
-	  bl        -0x2E4EC
-	  mr.       r0, r3
-	  beq-      .loc_0x124
-	  bl        -0x73AC
-	  mr        r0, r3
+lbl_800523CC:
+	cmpwi    r3, 2
+	bne      lbl_800523F8
+	li       r3, 0x7c
+	li       r4, -4
+	bl       __nw__FUli
+	or.      r0, r3, r3
+	beq      lbl_800523F0
+	bl       __ct__12J2DTevBlock2Fv
+	mr       r0, r3
 
-	.loc_0x124:
-	  mr        r3, r0
-	  b         .loc_0x1A4
+lbl_800523F0:
+	mr       r3, r0
+	b        lbl_80052470
 
-	.loc_0x12C:
-	  cmpwi     r3, 0x4
-	  bgt-      .loc_0x158
-	  li        r3, 0xB4
-	  li        r4, -0x4
-	  bl        -0x2E518
-	  mr.       r0, r3
-	  beq-      .loc_0x150
-	  bl        -0x6030
-	  mr        r0, r3
+lbl_800523F8:
+	cmpwi    r3, 4
+	bgt      lbl_80052424
+	li       r3, 0xb4
+	li       r4, -4
+	bl       __nw__FUli
+	or.      r0, r3, r3
+	beq      lbl_8005241C
+	bl       __ct__12J2DTevBlock4Fv
+	mr       r0, r3
 
-	.loc_0x150:
-	  mr        r3, r0
-	  b         .loc_0x1A4
+lbl_8005241C:
+	mr       r3, r0
+	b        lbl_80052470
 
-	.loc_0x158:
-	  cmpwi     r3, 0x8
-	  bgt-      .loc_0x184
-	  li        r3, 0x124
-	  li        r4, -0x4
-	  bl        -0x2E544
-	  mr.       r0, r3
-	  beq-      .loc_0x17C
-	  bl        -0x4934
-	  mr        r0, r3
+lbl_80052424:
+	cmpwi    r3, 8
+	bgt      lbl_80052450
+	li       r3, 0x124
+	li       r4, -4
+	bl       __nw__FUli
+	or.      r0, r3, r3
+	beq      lbl_80052448
+	bl       __ct__12J2DTevBlock8Fv
+	mr       r0, r3
 
-	.loc_0x17C:
-	  mr        r3, r0
-	  b         .loc_0x1A4
+lbl_80052448:
+	mr       r3, r0
+	b        lbl_80052470
 
-	.loc_0x184:
-	  li        r3, 0x1B4
-	  li        r4, -0x4
-	  bl        -0x2E568
-	  mr.       r0, r3
-	  beq-      .loc_0x1A0
-	  bl        -0x3148
-	  mr        r0, r3
+lbl_80052450:
+	li       r3, 0x1b4
+	li       r4, -4
+	bl       __nw__FUli
+	or.      r0, r3, r3
+	beq      lbl_8005246C
+	bl       __ct__13J2DTevBlock16Fv
+	mr       r0, r3
 
-	.loc_0x1A0:
-	  mr        r3, r0
+lbl_8005246C:
+	mr       r3, r0
 
-	.loc_0x1A4:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80052470:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -535,137 +571,136 @@ void J2DMaterial::createTevBlock(int, bool)
 void J2DMaterial::createIndBlock(int, bool)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  rlwinm.   r0,r4,0,24,31
-	  stw       r31, 0xC(r1)
-	  beq-      .loc_0xEC
-	  cmpwi     r3, 0
-	  beq-      .loc_0xC0
-	  li        r3, 0x6C
-	  bl        -0x2E600
-	  mr.       r31, r3
-	  beq-      .loc_0xB8
-	  lis       r4, 0x804A
-	  lis       r3, 0x804A
-	  addi      r0, r4, 0xCB0
-	  li        r5, 0
-	  stw       r0, 0x0(r31)
-	  addi      r0, r3, 0xC78
-	  lis       r4, 0x8005
-	  addi      r3, r31, 0x5
-	  stw       r0, 0x0(r31)
-	  addi      r4, r4, 0x26B0
-	  li        r6, 0x2
-	  li        r7, 0x4
-	  bl        0x6F35C
-	  lis       r3, 0x8005
-	  lis       r5, 0x8005
-	  addi      r4, r3, 0x2670
-	  li        r6, 0x1C
-	  addi      r3, r31, 0x10
-	  addi      r5, r5, 0x1004
-	  li        r7, 0x3
-	  bl        0x6F33C
-	  lis       r3, 0x8005
-	  lis       r5, 0x8005
-	  addi      r4, r3, 0x2658
-	  li        r6, 0x2
-	  addi      r3, r31, 0x64
-	  addi      r5, r5, 0x1040
-	  li        r7, 0x4
-	  bl        0x6F31C
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	clrlwi.  r0, r4, 0x18
+	stw      r31, 0xc(r1)
+	beq      lbl_8005256C
+	cmpwi    r3, 0
+	beq      lbl_80052540
+	li       r3, 0x6c
+	bl       __nw__FUl
+	or.      r31, r3, r3
+	beq      lbl_80052538
+	lis      r4, __vt__11J2DIndBlock@ha
+	lis      r3, __vt__15J2DIndBlockFull@ha
+	addi     r0, r4, __vt__11J2DIndBlock@l
+	li       r5, 0
+	stw      r0, 0(r31)
+	addi     r0, r3, __vt__15J2DIndBlockFull@l
+	lis      r4, __ct__14J2DIndTexOrderFv@ha
+	addi     r3, r31, 5
+	stw      r0, 0(r31)
+	addi     r4, r4, __ct__14J2DIndTexOrderFv@l
+	li       r6, 2
+	li       r7, 4
+	bl       __construct_array
+	lis      r3, __ct__12J2DIndTexMtxFv@ha
+	lis      r5, __dt__12J2DIndTexMtxFv@ha
+	addi     r4, r3, __ct__12J2DIndTexMtxFv@l
+	li       r6, 0x1c
+	addi     r3, r31, 0x10
+	addi     r5, r5, __dt__12J2DIndTexMtxFv@l
+	li       r7, 3
+	bl       __construct_array
+	lis      r3, __ct__19J2DIndTexCoordScaleFv@ha
+	lis      r5, __dt__19J2DIndTexCoordScaleFv@ha
+	addi     r4, r3, __ct__19J2DIndTexCoordScaleFv@l
+	li       r6, 2
+	addi     r3, r31, 0x64
+	addi     r5, r5, __dt__19J2DIndTexCoordScaleFv@l
+	li       r7, 4
+	bl       __construct_array
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0xB8:
-	  mr        r3, r31
-	  b         .loc_0x1C4
+lbl_80052538:
+	mr       r3, r31
+	b        lbl_80052644
 
-	.loc_0xC0:
-	  li        r3, 0x4
-	  bl        -0x2E6A0
-	  cmplwi    r3, 0
-	  beq-      .loc_0x1C4
-	  lis       r5, 0x804A
-	  lis       r4, 0x804A
-	  addi      r0, r5, 0xCB0
-	  stw       r0, 0x0(r3)
-	  addi      r0, r4, 0x1160
-	  stw       r0, 0x0(r3)
-	  b         .loc_0x1C4
+lbl_80052540:
+	li       r3, 4
+	bl       __nw__FUl
+	cmplwi   r3, 0
+	beq      lbl_80052644
+	lis      r5, __vt__11J2DIndBlock@ha
+	lis      r4, __vt__15J2DIndBlockNull@ha
+	addi     r0, r5, __vt__11J2DIndBlock@l
+	stw      r0, 0(r3)
+	addi     r0, r4, __vt__15J2DIndBlockNull@l
+	stw      r0, 0(r3)
+	b        lbl_80052644
 
-	.loc_0xEC:
-	  cmpwi     r3, 0
-	  beq-      .loc_0x198
-	  li        r3, 0x6C
-	  li        r4, -0x4
-	  bl        -0x2E68C
-	  mr.       r31, r3
-	  beq-      .loc_0x190
-	  lis       r4, 0x804A
-	  lis       r3, 0x804A
-	  addi      r0, r4, 0xCB0
-	  li        r5, 0
-	  stw       r0, 0x0(r31)
-	  addi      r0, r3, 0xC78
-	  lis       r4, 0x8005
-	  addi      r3, r31, 0x5
-	  stw       r0, 0x0(r31)
-	  addi      r4, r4, 0x26B0
-	  li        r6, 0x2
-	  li        r7, 0x4
-	  bl        0x6F284
-	  lis       r3, 0x8005
-	  lis       r5, 0x8005
-	  addi      r4, r3, 0x2670
-	  li        r6, 0x1C
-	  addi      r3, r31, 0x10
-	  addi      r5, r5, 0x1004
-	  li        r7, 0x3
-	  bl        0x6F264
-	  lis       r3, 0x8005
-	  lis       r5, 0x8005
-	  addi      r4, r3, 0x2658
-	  li        r6, 0x2
-	  addi      r3, r31, 0x64
-	  addi      r5, r5, 0x1040
-	  li        r7, 0x4
-	  bl        0x6F244
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
+lbl_8005256C:
+	cmpwi    r3, 0
+	beq      lbl_80052618
+	li       r3, 0x6c
+	li       r4, -4
+	bl       __nw__FUli
+	or.      r31, r3, r3
+	beq      lbl_80052610
+	lis      r4, __vt__11J2DIndBlock@ha
+	lis      r3, __vt__15J2DIndBlockFull@ha
+	addi     r0, r4, __vt__11J2DIndBlock@l
+	li       r5, 0
+	stw      r0, 0(r31)
+	addi     r0, r3, __vt__15J2DIndBlockFull@l
+	lis      r4, __ct__14J2DIndTexOrderFv@ha
+	addi     r3, r31, 5
+	stw      r0, 0(r31)
+	addi     r4, r4, __ct__14J2DIndTexOrderFv@l
+	li       r6, 2
+	li       r7, 4
+	bl       __construct_array
+	lis      r3, __ct__12J2DIndTexMtxFv@ha
+	lis      r5, __dt__12J2DIndTexMtxFv@ha
+	addi     r4, r3, __ct__12J2DIndTexMtxFv@l
+	li       r6, 0x1c
+	addi     r3, r31, 0x10
+	addi     r5, r5, __dt__12J2DIndTexMtxFv@l
+	li       r7, 3
+	bl       __construct_array
+	lis      r3, __ct__19J2DIndTexCoordScaleFv@ha
+	lis      r5, __dt__19J2DIndTexCoordScaleFv@ha
+	addi     r4, r3, __ct__19J2DIndTexCoordScaleFv@l
+	li       r6, 2
+	addi     r3, r31, 0x64
+	addi     r5, r5, __dt__19J2DIndTexCoordScaleFv@l
+	li       r7, 4
+	bl       __construct_array
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x190:
-	  mr        r3, r31
-	  b         .loc_0x1C4
+lbl_80052610:
+	mr       r3, r31
+	b        lbl_80052644
 
-	.loc_0x198:
-	  li        r3, 0x4
-	  li        r4, -0x4
-	  bl        -0x2E730
-	  cmplwi    r3, 0
-	  beq-      .loc_0x1C4
-	  lis       r5, 0x804A
-	  lis       r4, 0x804A
-	  addi      r0, r5, 0xCB0
-	  stw       r0, 0x0(r3)
-	  addi      r0, r4, 0x1160
-	  stw       r0, 0x0(r3)
+lbl_80052618:
+	li       r3, 4
+	li       r4, -4
+	bl       __nw__FUli
+	cmplwi   r3, 0
+	beq      lbl_80052644
+	lis      r5, __vt__11J2DIndBlock@ha
+	lis      r4, __vt__15J2DIndBlockNull@ha
+	addi     r0, r5, __vt__11J2DIndBlock@l
+	stw      r0, 0(r3)
+	addi     r0, r4, __vt__15J2DIndBlockNull@l
+	stw      r0, 0(r3)
 
-	.loc_0x1C4:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80052644:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -677,13 +712,12 @@ void J2DMaterial::createIndBlock(int, bool)
 J2DIndTexCoordScale::J2DIndTexCoordScale()
 {
 	/*
-	.loc_0x0:
-	  lbz       r0, -0x7A40(r2)
-	  subi      r4, r2, 0x7A40
-	  stb       r0, 0x0(r3)
-	  lbz       r0, 0x1(r4)
-	  stb       r0, 0x1(r3)
-	  blr
+	lbz      r0, j2dDefaultIndTexCoordScaleInfo@sda21(r2)
+	addi     r4, r2, j2dDefaultIndTexCoordScaleInfo@sda21
+	stb      r0, 0(r3)
+	lbz      r0, 1(r4)
+	stb      r0, 1(r3)
+	blr
 	*/
 }
 
@@ -695,23 +729,22 @@ J2DIndTexCoordScale::J2DIndTexCoordScale()
 J2DIndTexMtx::J2DIndTexMtx()
 {
 	/*
-	.loc_0x0:
-	  lis       r4, 0x8048
-	  lfsu      f0, -0x7974(r4)
-	  stfs      f0, 0x0(r3)
-	  lfs       f0, 0x4(r4)
-	  stfs      f0, 0x4(r3)
-	  lfs       f0, 0x8(r4)
-	  stfs      f0, 0x8(r3)
-	  lfs       f0, 0xC(r4)
-	  stfs      f0, 0xC(r3)
-	  lfs       f0, 0x10(r4)
-	  stfs      f0, 0x10(r3)
-	  lfs       f0, 0x14(r4)
-	  stfs      f0, 0x14(r3)
-	  lbz       r0, 0x18(r4)
-	  stb       r0, 0x18(r3)
-	  blr
+	lis      r4, j2dDefaultIndTexMtxInfo@ha
+	lfsu     f0, j2dDefaultIndTexMtxInfo@l(r4)
+	stfs     f0, 0(r3)
+	lfs      f0, 4(r4)
+	stfs     f0, 4(r3)
+	lfs      f0, 8(r4)
+	stfs     f0, 8(r3)
+	lfs      f0, 0xc(r4)
+	stfs     f0, 0xc(r3)
+	lfs      f0, 0x10(r4)
+	stfs     f0, 0x10(r3)
+	lfs      f0, 0x14(r4)
+	stfs     f0, 0x14(r3)
+	lbz      r0, 0x18(r4)
+	stb      r0, 0x18(r3)
+	blr
 	*/
 }
 
@@ -723,13 +756,12 @@ J2DIndTexMtx::J2DIndTexMtx()
 J2DIndTexOrder::J2DIndTexOrder()
 {
 	/*
-	.loc_0x0:
-	  lbz       r0, -0x7A4C(r2)
-	  subi      r4, r2, 0x7A4C
-	  stb       r0, 0x0(r3)
-	  lbz       r0, 0x1(r4)
-	  stb       r0, 0x1(r3)
-	  blr
+	lbz      r0, j2dDefaultIndTexOrderNull@sda21(r2)
+	addi     r4, r2, j2dDefaultIndTexOrderNull@sda21
+	stb      r0, 0(r3)
+	lbz      r0, 1(r4)
+	stb      r0, 1(r3)
+	blr
 	*/
 }
 
@@ -741,61 +773,60 @@ J2DIndTexOrder::J2DIndTexOrder()
 void J2DMaterial::makeAnmPointer()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r0, 0x84(r3)
-	  cmplwi    r0, 0
-	  bne-      .loc_0xB4
-	  li        r3, 0x44
-	  bl        -0x2E848
-	  cmplwi    r3, 0
-	  beq-      .loc_0xB0
-	  li        r5, 0
-	  lis       r4, 0x1
-	  stw       r5, 0x0(r3)
-	  subi      r0, r4, 0x1
-	  sth       r0, 0x10(r3)
-	  stw       r5, 0x4(r3)
-	  sth       r0, 0x12(r3)
-	  sth       r0, 0x14(r3)
-	  sth       r0, 0x16(r3)
-	  sth       r0, 0x18(r3)
-	  sth       r0, 0x1A(r3)
-	  sth       r0, 0x1C(r3)
-	  sth       r0, 0x1E(r3)
-	  sth       r0, 0x20(r3)
-	  stw       r5, 0x8(r3)
-	  sth       r0, 0x22(r3)
-	  sth       r0, 0x24(r3)
-	  sth       r0, 0x26(r3)
-	  sth       r0, 0x28(r3)
-	  sth       r0, 0x2A(r3)
-	  sth       r0, 0x2C(r3)
-	  sth       r0, 0x2E(r3)
-	  sth       r0, 0x30(r3)
-	  stw       r5, 0xC(r3)
-	  sth       r0, 0x32(r3)
-	  sth       r0, 0x34(r3)
-	  sth       r0, 0x36(r3)
-	  sth       r0, 0x38(r3)
-	  sth       r0, 0x3A(r3)
-	  sth       r0, 0x3C(r3)
-	  sth       r0, 0x3E(r3)
-	  sth       r0, 0x40(r3)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r0, 0x84(r3)
+	cmplwi   r0, 0
+	bne      lbl_8005277C
+	li       r3, 0x44
+	bl       __nw__FUl
+	cmplwi   r3, 0
+	beq      lbl_80052778
+	li       r5, 0
+	lis      r4, 0x0000FFFF@ha
+	stw      r5, 0(r3)
+	addi     r0, r4, 0x0000FFFF@l
+	sth      r0, 0x10(r3)
+	stw      r5, 4(r3)
+	sth      r0, 0x12(r3)
+	sth      r0, 0x14(r3)
+	sth      r0, 0x16(r3)
+	sth      r0, 0x18(r3)
+	sth      r0, 0x1a(r3)
+	sth      r0, 0x1c(r3)
+	sth      r0, 0x1e(r3)
+	sth      r0, 0x20(r3)
+	stw      r5, 8(r3)
+	sth      r0, 0x22(r3)
+	sth      r0, 0x24(r3)
+	sth      r0, 0x26(r3)
+	sth      r0, 0x28(r3)
+	sth      r0, 0x2a(r3)
+	sth      r0, 0x2c(r3)
+	sth      r0, 0x2e(r3)
+	sth      r0, 0x30(r3)
+	stw      r5, 0xc(r3)
+	sth      r0, 0x32(r3)
+	sth      r0, 0x34(r3)
+	sth      r0, 0x36(r3)
+	sth      r0, 0x38(r3)
+	sth      r0, 0x3a(r3)
+	sth      r0, 0x3c(r3)
+	sth      r0, 0x3e(r3)
+	sth      r0, 0x40(r3)
 
-	.loc_0xB0:
-	  stw       r3, 0x84(r31)
+lbl_80052778:
+	stw      r3, 0x84(r31)
 
-	.loc_0xB4:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8005277C:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -807,102 +838,101 @@ void J2DMaterial::makeAnmPointer()
 void J2DMaterial::setAnimation(J2DAnmColor*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  bne-      .loc_0x2C
-	  lwz       r0, 0x84(r30)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x12C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r4, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	bne      lbl_800527BC
+	lwz      r0, 0x84(r30)
+	cmplwi   r0, 0
+	beq      lbl_800528BC
 
-	.loc_0x2C:
-	  lwz       r0, 0x84(r30)
-	  cmplwi    r0, 0
-	  bne-      .loc_0xCC
-	  li        r3, 0x44
-	  bl        -0x2E928
-	  cmplwi    r3, 0
-	  beq-      .loc_0xC8
-	  li        r5, 0
-	  lis       r4, 0x1
-	  stw       r5, 0x0(r3)
-	  subi      r0, r4, 0x1
-	  sth       r0, 0x10(r3)
-	  stw       r5, 0x4(r3)
-	  sth       r0, 0x12(r3)
-	  sth       r0, 0x14(r3)
-	  sth       r0, 0x16(r3)
-	  sth       r0, 0x18(r3)
-	  sth       r0, 0x1A(r3)
-	  sth       r0, 0x1C(r3)
-	  sth       r0, 0x1E(r3)
-	  sth       r0, 0x20(r3)
-	  stw       r5, 0x8(r3)
-	  sth       r0, 0x22(r3)
-	  sth       r0, 0x24(r3)
-	  sth       r0, 0x26(r3)
-	  sth       r0, 0x28(r3)
-	  sth       r0, 0x2A(r3)
-	  sth       r0, 0x2C(r3)
-	  sth       r0, 0x2E(r3)
-	  sth       r0, 0x30(r3)
-	  stw       r5, 0xC(r3)
-	  sth       r0, 0x32(r3)
-	  sth       r0, 0x34(r3)
-	  sth       r0, 0x36(r3)
-	  sth       r0, 0x38(r3)
-	  sth       r0, 0x3A(r3)
-	  sth       r0, 0x3C(r3)
-	  sth       r0, 0x3E(r3)
-	  sth       r0, 0x40(r3)
+lbl_800527BC:
+	lwz      r0, 0x84(r30)
+	cmplwi   r0, 0
+	bne      lbl_8005285C
+	li       r3, 0x44
+	bl       __nw__FUl
+	cmplwi   r3, 0
+	beq      lbl_80052858
+	li       r5, 0
+	lis      r4, 0x0000FFFF@ha
+	stw      r5, 0(r3)
+	addi     r0, r4, 0x0000FFFF@l
+	sth      r0, 0x10(r3)
+	stw      r5, 4(r3)
+	sth      r0, 0x12(r3)
+	sth      r0, 0x14(r3)
+	sth      r0, 0x16(r3)
+	sth      r0, 0x18(r3)
+	sth      r0, 0x1a(r3)
+	sth      r0, 0x1c(r3)
+	sth      r0, 0x1e(r3)
+	sth      r0, 0x20(r3)
+	stw      r5, 8(r3)
+	sth      r0, 0x22(r3)
+	sth      r0, 0x24(r3)
+	sth      r0, 0x26(r3)
+	sth      r0, 0x28(r3)
+	sth      r0, 0x2a(r3)
+	sth      r0, 0x2c(r3)
+	sth      r0, 0x2e(r3)
+	sth      r0, 0x30(r3)
+	stw      r5, 0xc(r3)
+	sth      r0, 0x32(r3)
+	sth      r0, 0x34(r3)
+	sth      r0, 0x36(r3)
+	sth      r0, 0x38(r3)
+	sth      r0, 0x3a(r3)
+	sth      r0, 0x3c(r3)
+	sth      r0, 0x3e(r3)
+	sth      r0, 0x40(r3)
 
-	.loc_0xC8:
-	  stw       r3, 0x84(r30)
+lbl_80052858:
+	stw      r3, 0x84(r30)
 
-	.loc_0xCC:
-	  lwz       r4, 0x84(r30)
-	  lis       r3, 0x1
-	  cmplwi    r31, 0
-	  stw       r31, 0x0(r4)
-	  subi      r0, r3, 0x1
-	  lwz       r3, 0x84(r30)
-	  sth       r0, 0x10(r3)
-	  beq-      .loc_0x12C
-	  lhz       r4, 0x18(r31)
-	  li        r6, 0
-	  lhz       r5, 0xC(r30)
-	  b         .loc_0x120
+lbl_8005285C:
+	lwz      r4, 0x84(r30)
+	lis      r3, 0x0000FFFF@ha
+	cmplwi   r31, 0
+	stw      r31, 0(r4)
+	addi     r0, r3, 0x0000FFFF@l
+	lwz      r3, 0x84(r30)
+	sth      r0, 0x10(r3)
+	beq      lbl_800528BC
+	lhz      r4, 0x18(r31)
+	li       r6, 0
+	lhz      r5, 0xc(r30)
+	b        lbl_800528B0
 
-	.loc_0xFC:
-	  lwz       r3, 0x1C(r31)
-	  rlwinm    r0,r6,1,15,30
-	  lhzx      r0, r3, r0
-	  cmplw     r5, r0
-	  bne-      .loc_0x11C
-	  lwz       r3, 0x84(r30)
-	  sth       r6, 0x10(r3)
-	  b         .loc_0x12C
+lbl_8005288C:
+	lwz      r3, 0x1c(r31)
+	rlwinm   r0, r6, 1, 0xf, 0x1e
+	lhzx     r0, r3, r0
+	cmplw    r5, r0
+	bne      lbl_800528AC
+	lwz      r3, 0x84(r30)
+	sth      r6, 0x10(r3)
+	b        lbl_800528BC
 
-	.loc_0x11C:
-	  addi      r6, r6, 0x1
+lbl_800528AC:
+	addi     r6, r6, 1
 
-	.loc_0x120:
-	  rlwinm    r0,r6,0,16,31
-	  cmplw     r0, r4
-	  blt+      .loc_0xFC
+lbl_800528B0:
+	clrlwi   r0, r6, 0x10
+	cmplw    r0, r4
+	blt      lbl_8005288C
 
-	.loc_0x12C:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_800528BC:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -914,126 +944,125 @@ void J2DMaterial::setAnimation(J2DAnmColor*)
 void J2DMaterial::setAnimation(J2DAnmTextureSRTKey*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  bne-      .loc_0x2C
-	  lwz       r0, 0x84(r30)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x18C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r4, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	bne      lbl_80052900
+	lwz      r0, 0x84(r30)
+	cmplwi   r0, 0
+	beq      lbl_80052A60
 
-	.loc_0x2C:
-	  lwz       r0, 0x84(r30)
-	  cmplwi    r0, 0
-	  bne-      .loc_0xCC
-	  li        r3, 0x44
-	  bl        -0x2EA6C
-	  cmplwi    r3, 0
-	  beq-      .loc_0xC8
-	  li        r5, 0
-	  lis       r4, 0x1
-	  stw       r5, 0x0(r3)
-	  subi      r0, r4, 0x1
-	  sth       r0, 0x10(r3)
-	  stw       r5, 0x4(r3)
-	  sth       r0, 0x12(r3)
-	  sth       r0, 0x14(r3)
-	  sth       r0, 0x16(r3)
-	  sth       r0, 0x18(r3)
-	  sth       r0, 0x1A(r3)
-	  sth       r0, 0x1C(r3)
-	  sth       r0, 0x1E(r3)
-	  sth       r0, 0x20(r3)
-	  stw       r5, 0x8(r3)
-	  sth       r0, 0x22(r3)
-	  sth       r0, 0x24(r3)
-	  sth       r0, 0x26(r3)
-	  sth       r0, 0x28(r3)
-	  sth       r0, 0x2A(r3)
-	  sth       r0, 0x2C(r3)
-	  sth       r0, 0x2E(r3)
-	  sth       r0, 0x30(r3)
-	  stw       r5, 0xC(r3)
-	  sth       r0, 0x32(r3)
-	  sth       r0, 0x34(r3)
-	  sth       r0, 0x36(r3)
-	  sth       r0, 0x38(r3)
-	  sth       r0, 0x3A(r3)
-	  sth       r0, 0x3C(r3)
-	  sth       r0, 0x3E(r3)
-	  sth       r0, 0x40(r3)
+lbl_80052900:
+	lwz      r0, 0x84(r30)
+	cmplwi   r0, 0
+	bne      lbl_800529A0
+	li       r3, 0x44
+	bl       __nw__FUl
+	cmplwi   r3, 0
+	beq      lbl_8005299C
+	li       r5, 0
+	lis      r4, 0x0000FFFF@ha
+	stw      r5, 0(r3)
+	addi     r0, r4, 0x0000FFFF@l
+	sth      r0, 0x10(r3)
+	stw      r5, 4(r3)
+	sth      r0, 0x12(r3)
+	sth      r0, 0x14(r3)
+	sth      r0, 0x16(r3)
+	sth      r0, 0x18(r3)
+	sth      r0, 0x1a(r3)
+	sth      r0, 0x1c(r3)
+	sth      r0, 0x1e(r3)
+	sth      r0, 0x20(r3)
+	stw      r5, 8(r3)
+	sth      r0, 0x22(r3)
+	sth      r0, 0x24(r3)
+	sth      r0, 0x26(r3)
+	sth      r0, 0x28(r3)
+	sth      r0, 0x2a(r3)
+	sth      r0, 0x2c(r3)
+	sth      r0, 0x2e(r3)
+	sth      r0, 0x30(r3)
+	stw      r5, 0xc(r3)
+	sth      r0, 0x32(r3)
+	sth      r0, 0x34(r3)
+	sth      r0, 0x36(r3)
+	sth      r0, 0x38(r3)
+	sth      r0, 0x3a(r3)
+	sth      r0, 0x3c(r3)
+	sth      r0, 0x3e(r3)
+	sth      r0, 0x40(r3)
 
-	.loc_0xC8:
-	  stw       r3, 0x84(r30)
+lbl_8005299C:
+	stw      r3, 0x84(r30)
 
-	.loc_0xCC:
-	  lwz       r4, 0x84(r30)
-	  lis       r3, 0x1
-	  subi      r0, r3, 0x1
-	  cmplwi    r31, 0
-	  stw       r31, 0x4(r4)
-	  lwz       r3, 0x84(r30)
-	  sth       r0, 0x12(r3)
-	  lwz       r3, 0x84(r30)
-	  sth       r0, 0x14(r3)
-	  lwz       r3, 0x84(r30)
-	  sth       r0, 0x16(r3)
-	  lwz       r3, 0x84(r30)
-	  sth       r0, 0x18(r3)
-	  lwz       r3, 0x84(r30)
-	  sth       r0, 0x1A(r3)
-	  lwz       r3, 0x84(r30)
-	  sth       r0, 0x1C(r3)
-	  lwz       r3, 0x84(r30)
-	  sth       r0, 0x1E(r3)
-	  lwz       r3, 0x84(r30)
-	  sth       r0, 0x20(r3)
-	  beq-      .loc_0x18C
-	  lis       r3, 0x5555
-	  lhz       r0, 0x14(r31)
-	  addi      r3, r3, 0x5556
-	  lhz       r6, 0xC(r30)
-	  mulhw     r3, r3, r0
-	  li        r8, 0
-	  rlwinm    r0,r3,1,31,31
-	  add       r0, r3, r0
-	  rlwinm    r5,r0,0,16,31
-	  b         .loc_0x180
+lbl_800529A0:
+	lwz      r4, 0x84(r30)
+	lis      r3, 0x0000FFFF@ha
+	addi     r0, r3, 0x0000FFFF@l
+	cmplwi   r31, 0
+	stw      r31, 4(r4)
+	lwz      r3, 0x84(r30)
+	sth      r0, 0x12(r3)
+	lwz      r3, 0x84(r30)
+	sth      r0, 0x14(r3)
+	lwz      r3, 0x84(r30)
+	sth      r0, 0x16(r3)
+	lwz      r3, 0x84(r30)
+	sth      r0, 0x18(r3)
+	lwz      r3, 0x84(r30)
+	sth      r0, 0x1a(r3)
+	lwz      r3, 0x84(r30)
+	sth      r0, 0x1c(r3)
+	lwz      r3, 0x84(r30)
+	sth      r0, 0x1e(r3)
+	lwz      r3, 0x84(r30)
+	sth      r0, 0x20(r3)
+	beq      lbl_80052A60
+	lis      r3, 0x55555556@ha
+	lhz      r0, 0x14(r31)
+	addi     r3, r3, 0x55555556@l
+	lhz      r6, 0xc(r30)
+	mulhw    r3, r3, r0
+	li       r8, 0
+	srwi     r0, r3, 0x1f
+	add      r0, r3, r0
+	clrlwi   r5, r0, 0x10
+	b        lbl_80052A54
 
-	.loc_0x14C:
-	  lwz       r3, 0x34(r31)
-	  rlwinm    r0,r8,1,15,30
-	  rlwinm    r7,r8,0,16,31
-	  lhzx      r0, r3, r0
-	  cmplw     r6, r0
-	  bne-      .loc_0x17C
-	  lwz       r3, 0x30(r31)
-	  lwz       r4, 0x84(r30)
-	  lbzx      r0, r3, r7
-	  rlwinm    r3,r0,1,0,30
-	  addi      r0, r3, 0x12
-	  sthx      r8, r4, r0
+lbl_80052A20:
+	lwz      r3, 0x34(r31)
+	rlwinm   r0, r8, 1, 0xf, 0x1e
+	clrlwi   r7, r8, 0x10
+	lhzx     r0, r3, r0
+	cmplw    r6, r0
+	bne      lbl_80052A50
+	lwz      r3, 0x30(r31)
+	lwz      r4, 0x84(r30)
+	lbzx     r0, r3, r7
+	slwi     r3, r0, 1
+	addi     r0, r3, 0x12
+	sthx     r8, r4, r0
 
-	.loc_0x17C:
-	  addi      r8, r8, 0x1
+lbl_80052A50:
+	addi     r8, r8, 1
 
-	.loc_0x180:
-	  rlwinm    r0,r8,0,16,31
-	  cmplw     r0, r5
-	  blt+      .loc_0x14C
+lbl_80052A54:
+	clrlwi   r0, r8, 0x10
+	cmplw    r0, r5
+	blt      lbl_80052A20
 
-	.loc_0x18C:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80052A60:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1045,122 +1074,121 @@ void J2DMaterial::setAnimation(J2DAnmTextureSRTKey*)
 void J2DMaterial::setAnimation(J2DAnmTexPattern*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  bne-      .loc_0x2C
-	  lwz       r0, 0x84(r30)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x17C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r4, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	bne      lbl_80052AA4
+	lwz      r0, 0x84(r30)
+	cmplwi   r0, 0
+	beq      lbl_80052BF4
 
-	.loc_0x2C:
-	  lwz       r0, 0x84(r30)
-	  cmplwi    r0, 0
-	  bne-      .loc_0xCC
-	  li        r3, 0x44
-	  bl        -0x2EC10
-	  cmplwi    r3, 0
-	  beq-      .loc_0xC8
-	  li        r5, 0
-	  lis       r4, 0x1
-	  stw       r5, 0x0(r3)
-	  subi      r0, r4, 0x1
-	  sth       r0, 0x10(r3)
-	  stw       r5, 0x4(r3)
-	  sth       r0, 0x12(r3)
-	  sth       r0, 0x14(r3)
-	  sth       r0, 0x16(r3)
-	  sth       r0, 0x18(r3)
-	  sth       r0, 0x1A(r3)
-	  sth       r0, 0x1C(r3)
-	  sth       r0, 0x1E(r3)
-	  sth       r0, 0x20(r3)
-	  stw       r5, 0x8(r3)
-	  sth       r0, 0x22(r3)
-	  sth       r0, 0x24(r3)
-	  sth       r0, 0x26(r3)
-	  sth       r0, 0x28(r3)
-	  sth       r0, 0x2A(r3)
-	  sth       r0, 0x2C(r3)
-	  sth       r0, 0x2E(r3)
-	  sth       r0, 0x30(r3)
-	  stw       r5, 0xC(r3)
-	  sth       r0, 0x32(r3)
-	  sth       r0, 0x34(r3)
-	  sth       r0, 0x36(r3)
-	  sth       r0, 0x38(r3)
-	  sth       r0, 0x3A(r3)
-	  sth       r0, 0x3C(r3)
-	  sth       r0, 0x3E(r3)
-	  sth       r0, 0x40(r3)
+lbl_80052AA4:
+	lwz      r0, 0x84(r30)
+	cmplwi   r0, 0
+	bne      lbl_80052B44
+	li       r3, 0x44
+	bl       __nw__FUl
+	cmplwi   r3, 0
+	beq      lbl_80052B40
+	li       r5, 0
+	lis      r4, 0x0000FFFF@ha
+	stw      r5, 0(r3)
+	addi     r0, r4, 0x0000FFFF@l
+	sth      r0, 0x10(r3)
+	stw      r5, 4(r3)
+	sth      r0, 0x12(r3)
+	sth      r0, 0x14(r3)
+	sth      r0, 0x16(r3)
+	sth      r0, 0x18(r3)
+	sth      r0, 0x1a(r3)
+	sth      r0, 0x1c(r3)
+	sth      r0, 0x1e(r3)
+	sth      r0, 0x20(r3)
+	stw      r5, 8(r3)
+	sth      r0, 0x22(r3)
+	sth      r0, 0x24(r3)
+	sth      r0, 0x26(r3)
+	sth      r0, 0x28(r3)
+	sth      r0, 0x2a(r3)
+	sth      r0, 0x2c(r3)
+	sth      r0, 0x2e(r3)
+	sth      r0, 0x30(r3)
+	stw      r5, 0xc(r3)
+	sth      r0, 0x32(r3)
+	sth      r0, 0x34(r3)
+	sth      r0, 0x36(r3)
+	sth      r0, 0x38(r3)
+	sth      r0, 0x3a(r3)
+	sth      r0, 0x3c(r3)
+	sth      r0, 0x3e(r3)
+	sth      r0, 0x40(r3)
 
-	.loc_0xC8:
-	  stw       r3, 0x84(r30)
+lbl_80052B40:
+	stw      r3, 0x84(r30)
 
-	.loc_0xCC:
-	  lwz       r4, 0x84(r30)
-	  lis       r3, 0x1
-	  subi      r0, r3, 0x1
-	  cmplwi    r31, 0
-	  stw       r31, 0x8(r4)
-	  lwz       r3, 0x84(r30)
-	  sth       r0, 0x22(r3)
-	  lwz       r3, 0x84(r30)
-	  sth       r0, 0x24(r3)
-	  lwz       r3, 0x84(r30)
-	  sth       r0, 0x26(r3)
-	  lwz       r3, 0x84(r30)
-	  sth       r0, 0x28(r3)
-	  lwz       r3, 0x84(r30)
-	  sth       r0, 0x2A(r3)
-	  lwz       r3, 0x84(r30)
-	  sth       r0, 0x2C(r3)
-	  lwz       r3, 0x84(r30)
-	  sth       r0, 0x2E(r3)
-	  lwz       r3, 0x84(r30)
-	  sth       r0, 0x30(r3)
-	  beq-      .loc_0x17C
-	  lhz       r5, 0x1A(r31)
-	  li        r8, 0
-	  lhz       r6, 0xC(r30)
-	  lwz       r7, 0x14(r31)
-	  b         .loc_0x170
+lbl_80052B44:
+	lwz      r4, 0x84(r30)
+	lis      r3, 0x0000FFFF@ha
+	addi     r0, r3, 0x0000FFFF@l
+	cmplwi   r31, 0
+	stw      r31, 8(r4)
+	lwz      r3, 0x84(r30)
+	sth      r0, 0x22(r3)
+	lwz      r3, 0x84(r30)
+	sth      r0, 0x24(r3)
+	lwz      r3, 0x84(r30)
+	sth      r0, 0x26(r3)
+	lwz      r3, 0x84(r30)
+	sth      r0, 0x28(r3)
+	lwz      r3, 0x84(r30)
+	sth      r0, 0x2a(r3)
+	lwz      r3, 0x84(r30)
+	sth      r0, 0x2c(r3)
+	lwz      r3, 0x84(r30)
+	sth      r0, 0x2e(r3)
+	lwz      r3, 0x84(r30)
+	sth      r0, 0x30(r3)
+	beq      lbl_80052BF4
+	lhz      r5, 0x1a(r31)
+	li       r8, 0
+	lhz      r6, 0xc(r30)
+	lwz      r7, 0x14(r31)
+	b        lbl_80052BE8
 
-	.loc_0x138:
-	  lwz       r3, 0x1C(r31)
-	  rlwinm    r0,r8,1,15,30
-	  rlwinm    r4,r8,0,16,31
-	  lhzx      r0, r3, r0
-	  cmplw     r6, r0
-	  bne-      .loc_0x16C
-	  rlwinm    r3,r4,3,0,28
-	  lwz       r4, 0x84(r30)
-	  addi      r0, r3, 0x4
-	  lbzx      r0, r7, r0
-	  rlwinm    r3,r0,1,0,30
-	  addi      r0, r3, 0x22
-	  sthx      r8, r4, r0
+lbl_80052BB0:
+	lwz      r3, 0x1c(r31)
+	rlwinm   r0, r8, 1, 0xf, 0x1e
+	clrlwi   r4, r8, 0x10
+	lhzx     r0, r3, r0
+	cmplw    r6, r0
+	bne      lbl_80052BE4
+	slwi     r3, r4, 3
+	lwz      r4, 0x84(r30)
+	addi     r0, r3, 4
+	lbzx     r0, r7, r0
+	slwi     r3, r0, 1
+	addi     r0, r3, 0x22
+	sthx     r8, r4, r0
 
-	.loc_0x16C:
-	  addi      r8, r8, 0x1
+lbl_80052BE4:
+	addi     r8, r8, 1
 
-	.loc_0x170:
-	  rlwinm    r0,r8,0,16,31
-	  cmplw     r0, r5
-	  blt+      .loc_0x138
+lbl_80052BE8:
+	clrlwi   r0, r8, 0x10
+	cmplw    r0, r5
+	blt      lbl_80052BB0
 
-	.loc_0x17C:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80052BF4:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1172,156 +1200,155 @@ void J2DMaterial::setAnimation(J2DAnmTexPattern*)
 void J2DMaterial::setAnimation(J2DAnmTevRegKey*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  bne-      .loc_0x2C
-	  lwz       r0, 0x84(r30)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x1E4
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r4, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	bne      lbl_80052C38
+	lwz      r0, 0x84(r30)
+	cmplwi   r0, 0
+	beq      lbl_80052DF0
 
-	.loc_0x2C:
-	  lwz       r0, 0x84(r30)
-	  cmplwi    r0, 0
-	  bne-      .loc_0xCC
-	  li        r3, 0x44
-	  bl        -0x2EDA4
-	  cmplwi    r3, 0
-	  beq-      .loc_0xC8
-	  li        r5, 0
-	  lis       r4, 0x1
-	  stw       r5, 0x0(r3)
-	  subi      r0, r4, 0x1
-	  sth       r0, 0x10(r3)
-	  stw       r5, 0x4(r3)
-	  sth       r0, 0x12(r3)
-	  sth       r0, 0x14(r3)
-	  sth       r0, 0x16(r3)
-	  sth       r0, 0x18(r3)
-	  sth       r0, 0x1A(r3)
-	  sth       r0, 0x1C(r3)
-	  sth       r0, 0x1E(r3)
-	  sth       r0, 0x20(r3)
-	  stw       r5, 0x8(r3)
-	  sth       r0, 0x22(r3)
-	  sth       r0, 0x24(r3)
-	  sth       r0, 0x26(r3)
-	  sth       r0, 0x28(r3)
-	  sth       r0, 0x2A(r3)
-	  sth       r0, 0x2C(r3)
-	  sth       r0, 0x2E(r3)
-	  sth       r0, 0x30(r3)
-	  stw       r5, 0xC(r3)
-	  sth       r0, 0x32(r3)
-	  sth       r0, 0x34(r3)
-	  sth       r0, 0x36(r3)
-	  sth       r0, 0x38(r3)
-	  sth       r0, 0x3A(r3)
-	  sth       r0, 0x3C(r3)
-	  sth       r0, 0x3E(r3)
-	  sth       r0, 0x40(r3)
+lbl_80052C38:
+	lwz      r0, 0x84(r30)
+	cmplwi   r0, 0
+	bne      lbl_80052CD8
+	li       r3, 0x44
+	bl       __nw__FUl
+	cmplwi   r3, 0
+	beq      lbl_80052CD4
+	li       r5, 0
+	lis      r4, 0x0000FFFF@ha
+	stw      r5, 0(r3)
+	addi     r0, r4, 0x0000FFFF@l
+	sth      r0, 0x10(r3)
+	stw      r5, 4(r3)
+	sth      r0, 0x12(r3)
+	sth      r0, 0x14(r3)
+	sth      r0, 0x16(r3)
+	sth      r0, 0x18(r3)
+	sth      r0, 0x1a(r3)
+	sth      r0, 0x1c(r3)
+	sth      r0, 0x1e(r3)
+	sth      r0, 0x20(r3)
+	stw      r5, 8(r3)
+	sth      r0, 0x22(r3)
+	sth      r0, 0x24(r3)
+	sth      r0, 0x26(r3)
+	sth      r0, 0x28(r3)
+	sth      r0, 0x2a(r3)
+	sth      r0, 0x2c(r3)
+	sth      r0, 0x2e(r3)
+	sth      r0, 0x30(r3)
+	stw      r5, 0xc(r3)
+	sth      r0, 0x32(r3)
+	sth      r0, 0x34(r3)
+	sth      r0, 0x36(r3)
+	sth      r0, 0x38(r3)
+	sth      r0, 0x3a(r3)
+	sth      r0, 0x3c(r3)
+	sth      r0, 0x3e(r3)
+	sth      r0, 0x40(r3)
 
-	.loc_0xC8:
-	  stw       r3, 0x84(r30)
+lbl_80052CD4:
+	stw      r3, 0x84(r30)
 
-	.loc_0xCC:
-	  lwz       r4, 0x84(r30)
-	  lis       r3, 0x1
-	  subi      r0, r3, 0x1
-	  cmplwi    r31, 0
-	  stw       r31, 0xC(r4)
-	  lwz       r3, 0x84(r30)
-	  sth       r0, 0x32(r3)
-	  lwz       r3, 0x84(r30)
-	  sth       r0, 0x34(r3)
-	  lwz       r3, 0x84(r30)
-	  sth       r0, 0x36(r3)
-	  lwz       r3, 0x84(r30)
-	  sth       r0, 0x38(r3)
-	  beq-      .loc_0x15C
-	  lhz       r6, 0x10(r31)
-	  li        r8, 0
-	  lhz       r7, 0xC(r30)
-	  b         .loc_0x150
+lbl_80052CD8:
+	lwz      r4, 0x84(r30)
+	lis      r3, 0x0000FFFF@ha
+	addi     r0, r3, 0x0000FFFF@l
+	cmplwi   r31, 0
+	stw      r31, 0xc(r4)
+	lwz      r3, 0x84(r30)
+	sth      r0, 0x32(r3)
+	lwz      r3, 0x84(r30)
+	sth      r0, 0x34(r3)
+	lwz      r3, 0x84(r30)
+	sth      r0, 0x36(r3)
+	lwz      r3, 0x84(r30)
+	sth      r0, 0x38(r3)
+	beq      lbl_80052D68
+	lhz      r6, 0x10(r31)
+	li       r8, 0
+	lhz      r7, 0xc(r30)
+	b        lbl_80052D5C
 
-	.loc_0x114:
-	  lwz       r3, 0x24(r31)
-	  rlwinm    r0,r8,1,15,30
-	  rlwinm    r4,r8,0,16,31
-	  lhzx      r0, r3, r0
-	  cmplw     r7, r0
-	  bne-      .loc_0x14C
-	  mulli     r3, r4, 0x1C
-	  lwz       r4, 0x4C(r31)
-	  lwz       r5, 0x84(r30)
-	  addi      r0, r3, 0x18
-	  lbzx      r0, r4, r0
-	  rlwinm    r3,r0,1,0,30
-	  addi      r0, r3, 0x32
-	  sthx      r8, r5, r0
+lbl_80052D20:
+	lwz      r3, 0x24(r31)
+	rlwinm   r0, r8, 1, 0xf, 0x1e
+	clrlwi   r4, r8, 0x10
+	lhzx     r0, r3, r0
+	cmplw    r7, r0
+	bne      lbl_80052D58
+	mulli    r3, r4, 0x1c
+	lwz      r4, 0x4c(r31)
+	lwz      r5, 0x84(r30)
+	addi     r0, r3, 0x18
+	lbzx     r0, r4, r0
+	slwi     r3, r0, 1
+	addi     r0, r3, 0x32
+	sthx     r8, r5, r0
 
-	.loc_0x14C:
-	  addi      r8, r8, 0x1
+lbl_80052D58:
+	addi     r8, r8, 1
 
-	.loc_0x150:
-	  rlwinm    r0,r8,0,16,31
-	  cmplw     r0, r6
-	  blt+      .loc_0x114
+lbl_80052D5C:
+	clrlwi   r0, r8, 0x10
+	cmplw    r0, r6
+	blt      lbl_80052D20
 
-	.loc_0x15C:
-	  lis       r4, 0x1
-	  lwz       r3, 0x84(r30)
-	  subi      r0, r4, 0x1
-	  cmplwi    r31, 0
-	  sth       r0, 0x3A(r3)
-	  lwz       r3, 0x84(r30)
-	  sth       r0, 0x3C(r3)
-	  lwz       r3, 0x84(r30)
-	  sth       r0, 0x3E(r3)
-	  lwz       r3, 0x84(r30)
-	  sth       r0, 0x40(r3)
-	  beq-      .loc_0x1E4
-	  lhz       r6, 0x12(r31)
-	  li        r8, 0
-	  lhz       r7, 0xC(r30)
-	  b         .loc_0x1D8
+lbl_80052D68:
+	lis      r4, 0x0000FFFF@ha
+	lwz      r3, 0x84(r30)
+	addi     r0, r4, 0x0000FFFF@l
+	cmplwi   r31, 0
+	sth      r0, 0x3a(r3)
+	lwz      r3, 0x84(r30)
+	sth      r0, 0x3c(r3)
+	lwz      r3, 0x84(r30)
+	sth      r0, 0x3e(r3)
+	lwz      r3, 0x84(r30)
+	sth      r0, 0x40(r3)
+	beq      lbl_80052DF0
+	lhz      r6, 0x12(r31)
+	li       r8, 0
+	lhz      r7, 0xc(r30)
+	b        lbl_80052DE4
 
-	.loc_0x19C:
-	  lwz       r3, 0x38(r31)
-	  rlwinm    r0,r8,1,15,30
-	  rlwinm    r4,r8,0,16,31
-	  lhzx      r0, r3, r0
-	  cmplw     r7, r0
-	  bne-      .loc_0x1D4
-	  mulli     r3, r4, 0x1C
-	  lwz       r4, 0x50(r31)
-	  lwz       r5, 0x84(r30)
-	  addi      r0, r3, 0x18
-	  lbzx      r0, r4, r0
-	  rlwinm    r3,r0,1,0,30
-	  addi      r0, r3, 0x3A
-	  sthx      r8, r5, r0
+lbl_80052DA8:
+	lwz      r3, 0x38(r31)
+	rlwinm   r0, r8, 1, 0xf, 0x1e
+	clrlwi   r4, r8, 0x10
+	lhzx     r0, r3, r0
+	cmplw    r7, r0
+	bne      lbl_80052DE0
+	mulli    r3, r4, 0x1c
+	lwz      r4, 0x50(r31)
+	lwz      r5, 0x84(r30)
+	addi     r0, r3, 0x18
+	lbzx     r0, r4, r0
+	slwi     r3, r0, 1
+	addi     r0, r3, 0x3a
+	sthx     r8, r5, r0
 
-	.loc_0x1D4:
-	  addi      r8, r8, 0x1
+lbl_80052DE0:
+	addi     r8, r8, 1
 
-	.loc_0x1D8:
-	  rlwinm    r0,r8,0,16,31
-	  cmplw     r0, r6
-	  blt+      .loc_0x19C
+lbl_80052DE4:
+	clrlwi   r0, r8, 0x10
+	cmplw    r0, r6
+	blt      lbl_80052DA8
 
-	.loc_0x1E4:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80052DF0:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1333,327 +1360,326 @@ void J2DMaterial::setAnimation(J2DAnmTevRegKey*)
 void J2DMaterial::animation()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x110(r1)
-	  mflr      r0
-	  stw       r0, 0x114(r1)
-	  stfd      f31, 0x100(r1)
-	  psq_st    f31,0x108(r1),0,0
-	  stfd      f30, 0xF0(r1)
-	  psq_st    f30,0xF8(r1),0,0
-	  stfd      f29, 0xE0(r1)
-	  psq_st    f29,0xE8(r1),0,0
-	  stfd      f28, 0xD0(r1)
-	  psq_st    f28,0xD8(r1),0,0
-	  stfd      f27, 0xC0(r1)
-	  psq_st    f27,0xC8(r1),0,0
-	  stmw      r26, 0xA8(r1)
-	  mr        r28, r3
-	  lwz       r4, 0x84(r3)
-	  cmplwi    r4, 0
-	  beq-      .loc_0x434
-	  lwz       r3, 0x0(r4)
-	  cmplwi    r3, 0
-	  beq-      .loc_0xC4
-	  lhz       r4, 0x10(r4)
-	  cmplwi    r4, 0xFFFF
-	  beq-      .loc_0xC4
-	  lwz       r12, 0x0(r3)
-	  addi      r5, r1, 0x20
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x20(r1)
-	  stw       r0, 0xC(r1)
-	  lbz       r5, 0xC(r1)
-	  lbz       r4, 0xD(r1)
-	  lbz       r3, 0xE(r1)
-	  lbz       r0, 0xF(r1)
-	  stb       r5, 0x14(r1)
-	  stb       r4, 0x15(r1)
-	  stb       r3, 0x16(r1)
-	  stb       r0, 0x17(r1)
-	  lwz       r0, 0x14(r1)
-	  stw       r0, 0x18(r1)
-	  lbz       r3, 0x18(r1)
-	  lbz       r0, 0x19(r1)
-	  stb       r3, 0x10(r28)
-	  lbz       r3, 0x1A(r1)
-	  stb       r0, 0x11(r28)
-	  lbz       r0, 0x1B(r1)
-	  stb       r3, 0x12(r28)
-	  stb       r0, 0x13(r28)
+	stwu     r1, -0x110(r1)
+	mflr     r0
+	stw      r0, 0x114(r1)
+	stfd     f31, 0x100(r1)
+	psq_st   f31, 264(r1), 0, qr0
+	stfd     f30, 0xf0(r1)
+	psq_st   f30, 248(r1), 0, qr0
+	stfd     f29, 0xe0(r1)
+	psq_st   f29, 232(r1), 0, qr0
+	stfd     f28, 0xd0(r1)
+	psq_st   f28, 216(r1), 0, qr0
+	stfd     f27, 0xc0(r1)
+	psq_st   f27, 200(r1), 0, qr0
+	stmw     r26, 0xa8(r1)
+	mr       r28, r3
+	lwz      r4, 0x84(r3)
+	cmplwi   r4, 0
+	beq      lbl_8005323C
+	lwz      r3, 0(r4)
+	cmplwi   r3, 0
+	beq      lbl_80052ECC
+	lhz      r4, 0x10(r4)
+	cmplwi   r4, 0xffff
+	beq      lbl_80052ECC
+	lwz      r12, 0(r3)
+	addi     r5, r1, 0x20
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x20(r1)
+	stw      r0, 0xc(r1)
+	lbz      r5, 0xc(r1)
+	lbz      r4, 0xd(r1)
+	lbz      r3, 0xe(r1)
+	lbz      r0, 0xf(r1)
+	stb      r5, 0x14(r1)
+	stb      r4, 0x15(r1)
+	stb      r3, 0x16(r1)
+	stb      r0, 0x17(r1)
+	lwz      r0, 0x14(r1)
+	stw      r0, 0x18(r1)
+	lbz      r3, 0x18(r1)
+	lbz      r0, 0x19(r1)
+	stb      r3, 0x10(r28)
+	lbz      r3, 0x1a(r1)
+	stb      r0, 0x11(r28)
+	lbz      r0, 0x1b(r1)
+	stb      r3, 0x12(r28)
+	stb      r0, 0x13(r28)
 
-	.loc_0xC4:
-	  lwz       r3, 0x84(r28)
-	  lwz       r0, 0x4(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x204
-	  lis       r3, 0x8048
-	  li        r30, 0
-	  subi      r31, r3, 0x7998
-	  li        r29, 0
-	  b         .loc_0x1F8
+lbl_80052ECC:
+	lwz      r3, 0x84(r28)
+	lwz      r0, 4(r3)
+	cmplwi   r0, 0
+	beq      lbl_8005300C
+	lis      r3, j2dDefaultTexMtxInfo@ha
+	li       r30, 0
+	addi     r31, r3, j2dDefaultTexMtxInfo@l
+	li       r29, 0
+	b        lbl_80053000
 
-	.loc_0xE8:
-	  rlwinm    r3,r30,1,23,30
-	  lwz       r5, 0x84(r28)
-	  addi      r0, r3, 0x12
-	  rlwinm    r27,r30,0,24,31
-	  lhzx      r4, r5, r0
-	  cmplwi    r4, 0xFFFF
-	  beq-      .loc_0x1F0
-	  lwz       r3, 0x4(r5)
-	  addi      r5, r1, 0x34
-	  lfs       f1, 0x8(r3)
-	  bl        0x9464
-	  lha       r4, 0x3C(r1)
-	  lis       r0, 0x4330
-	  lis       r3, 0x8048
-	  lfs       f7, 0x4(r31)
-	  rlwinm    r4,r4,0,16,31
-	  lfs       f6, 0x8(r31)
-	  stw       r4, 0xA4(r1)
-	  subi      r6, r3, 0x7998
-	  lfs       f5, 0xC(r31)
-	  mr        r4, r27
-	  stw       r0, 0xA0(r1)
-	  addi      r3, r28, 0x28
-	  lfd       f1, -0x7A90(r2)
-	  addi      r5, r1, 0x48
-	  lfd       f0, 0xA0(r1)
-	  lfs       f2, -0x7A98(r2)
-	  fsubs     f1, f0, f1
-	  lbz       r6, 0x0(r6)
-	  lbz       r0, 0x1(r31)
-	  lfs       f0, -0x7A94(r2)
-	  fmuls     f1, f2, f1
-	  lfs       f4, 0x10(r31)
-	  lfs       f3, 0x14(r31)
-	  lfs       f2, 0x18(r31)
-	  fdivs     f29, f1, f0
-	  lfs       f1, 0x1C(r31)
-	  lfs       f0, 0x20(r31)
-	  stfs      f7, 0x4C(r1)
-	  lfs       f31, 0x34(r1)
-	  stfs      f6, 0x50(r1)
-	  stfs      f5, 0x54(r1)
-	  lfs       f30, 0x38(r1)
-	  stb       r6, 0x48(r1)
-	  lfs       f28, 0x40(r1)
-	  stb       r0, 0x49(r1)
-	  lfs       f27, 0x44(r1)
-	  stfs      f4, 0x58(r1)
-	  stfs      f3, 0x5C(r1)
-	  stfs      f2, 0x60(r1)
-	  stfs      f1, 0x64(r1)
-	  stfs      f0, 0x68(r1)
-	  bl        -0x8F74
-	  stfs      f31, 0x58(r1)
-	  mr        r4, r27
-	  addi      r3, r28, 0x28
-	  addi      r5, r1, 0x48
-	  stfs      f30, 0x5C(r1)
-	  stfs      f29, 0x60(r1)
-	  stfs      f28, 0x64(r1)
-	  stfs      f27, 0x68(r1)
-	  bl        -0x90F0
-	  rlwinm    r0,r27,2,0,29
-	  addi      r4, r29, 0x1E
-	  add       r3, r28, r0
-	  stb       r4, 0x2E(r3)
+lbl_80052EF0:
+	rlwinm   r3, r30, 1, 0x17, 0x1e
+	lwz      r5, 0x84(r28)
+	addi     r0, r3, 0x12
+	clrlwi   r27, r30, 0x18
+	lhzx     r4, r5, r0
+	cmplwi   r4, 0xffff
+	beq      lbl_80052FF8
+	lwz      r3, 4(r5)
+	addi     r5, r1, 0x34
+	lfs      f1, 8(r3)
+	bl       calcTransform__19J2DAnmTextureSRTKeyCFfUsP17J3DTextureSRTInfo
+	lha      r4, 0x3c(r1)
+	lis      r0, 0x4330
+	lis      r3, j2dDefaultTexMtxInfo@ha
+	lfs      f7, 4(r31)
+	clrlwi   r4, r4, 0x10
+	lfs      f6, 8(r31)
+	stw      r4, 0xa4(r1)
+	addi     r6, r3, j2dDefaultTexMtxInfo@l
+	lfs      f5, 0xc(r31)
+	mr       r4, r27
+	stw      r0, 0xa0(r1)
+	addi     r3, r28, 0x28
+	lfd      f1, lbl_805168D0@sda21(r2)
+	addi     r5, r1, 0x48
+	lfd      f0, 0xa0(r1)
+	lfs      f2, lbl_805168C8@sda21(r2)
+	fsubs    f1, f0, f1
+	lbz      r6, 0(r6)
+	lbz      r0, 1(r31)
+	lfs      f0, lbl_805168CC@sda21(r2)
+	fmuls    f1, f2, f1
+	lfs      f4, 0x10(r31)
+	lfs      f3, 0x14(r31)
+	lfs      f2, 0x18(r31)
+	fdivs    f29, f1, f0
+	lfs      f1, 0x1c(r31)
+	lfs      f0, 0x20(r31)
+	stfs     f7, 0x4c(r1)
+	lfs      f31, 0x34(r1)
+	stfs     f6, 0x50(r1)
+	stfs     f5, 0x54(r1)
+	lfs      f30, 0x38(r1)
+	stb      r6, 0x48(r1)
+	lfs      f28, 0x40(r1)
+	stb      r0, 0x49(r1)
+	lfs      f27, 0x44(r1)
+	stfs     f4, 0x58(r1)
+	stfs     f3, 0x5c(r1)
+	stfs     f2, 0x60(r1)
+	stfs     f1, 0x64(r1)
+	stfs     f0, 0x68(r1)
+	bl       getTexMtx__14J2DTexGenBlockFUlR9J2DTexMtx
+	stfs     f31, 0x58(r1)
+	mr       r4, r27
+	addi     r3, r28, 0x28
+	addi     r5, r1, 0x48
+	stfs     f30, 0x5c(r1)
+	stfs     f29, 0x60(r1)
+	stfs     f28, 0x64(r1)
+	stfs     f27, 0x68(r1)
+	bl       setTexMtx__14J2DTexGenBlockFUlR9J2DTexMtx
+	slwi     r0, r27, 2
+	addi     r4, r29, 0x1e
+	add      r3, r28, r0
+	stb      r4, 0x2e(r3)
 
-	.loc_0x1F0:
-	  addi      r30, r30, 0x1
-	  addi      r29, r29, 0x3
+lbl_80052FF8:
+	addi     r30, r30, 1
+	addi     r29, r29, 3
 
-	.loc_0x1F8:
-	  rlwinm    r0,r30,0,24,31
-	  cmplwi    r0, 0x8
-	  blt+      .loc_0xE8
+lbl_80053000:
+	clrlwi   r0, r30, 0x18
+	cmplwi   r0, 8
+	blt      lbl_80052EF0
 
-	.loc_0x204:
-	  lwz       r0, 0x70(r28)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x32C
-	  lwz       r3, 0x84(r28)
-	  lwz       r0, 0x8(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x32C
-	  li        r30, 0
-	  b         .loc_0x320
+lbl_8005300C:
+	lwz      r0, 0x70(r28)
+	cmplwi   r0, 0
+	beq      lbl_80053134
+	lwz      r3, 0x84(r28)
+	lwz      r0, 8(r3)
+	cmplwi   r0, 0
+	beq      lbl_80053134
+	li       r30, 0
+	b        lbl_80053128
 
-	.loc_0x228:
-	  rlwinm    r29,r30,1,23,30
-	  lwz       r3, 0x84(r28)
-	  addi      r0, r29, 0x22
-	  rlwinm    r27,r30,0,24,31
-	  lhzx      r0, r3, r0
-	  cmplwi    r0, 0xFFFF
-	  beq-      .loc_0x31C
-	  lwz       r3, 0x70(r28)
-	  mr        r4, r27
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xA0(r12)
-	  mtctr     r12
-	  bctrl
-	  mr.       r31, r3
-	  beq-      .loc_0x31C
-	  lwz       r3, 0x84(r28)
-	  addi      r0, r29, 0x22
-	  addi      r5, r1, 0x8
-	  lhzx      r26, r3, r0
-	  lwz       r3, 0x8(r3)
-	  mr        r4, r26
-	  bl        0x9864
-	  lwz       r3, 0x70(r28)
-	  mr        r4, r27
-	  lhz       r5, 0x8(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x1C(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x84(r28)
-	  mr        r4, r26
-	  lwz       r3, 0x8(r3)
-	  bl        0x98EC
-	  lwz       r0, 0x20(r31)
-	  mr        r29, r3
-	  cmplw     r0, r29
-	  beq-      .loc_0x31C
-	  lbz       r0, 0x8(r29)
-	  li        r5, 0
-	  li        r6, 0
-	  cmplwi    r0, 0
-	  beq-      .loc_0x310
-	  lwz       r3, 0x84(r28)
-	  mr        r4, r26
-	  lwz       r3, 0x8(r3)
-	  bl        0x997C
-	  lhz       r0, 0x14(r3)
-	  mr        r5, r3
-	  cmplwi    r0, 0x100
-	  ble-      .loc_0x30C
-	  rlwinm    r0,r30,30,0,1
-	  rlwinm    r3,r27,1,31,31
-	  sub       r0, r0, r3
-	  rlwinm    r0,r0,2,0,31
-	  add       r3, r0, r3
-	  addi      r6, r3, 0x10
-	  b         .loc_0x310
+lbl_80053030:
+	rlwinm   r29, r30, 1, 0x17, 0x1e
+	lwz      r3, 0x84(r28)
+	addi     r0, r29, 0x22
+	clrlwi   r27, r30, 0x18
+	lhzx     r0, r3, r0
+	cmplwi   r0, 0xffff
+	beq      lbl_80053124
+	lwz      r3, 0x70(r28)
+	mr       r4, r27
+	lwz      r12, 0(r3)
+	lwz      r12, 0xa0(r12)
+	mtctr    r12
+	bctrl
+	or.      r31, r3, r3
+	beq      lbl_80053124
+	lwz      r3, 0x84(r28)
+	addi     r0, r29, 0x22
+	addi     r5, r1, 8
+	lhzx     r26, r3, r0
+	lwz      r3, 8(r3)
+	mr       r4, r26
+	bl       getTexNo__16J2DAnmTexPatternCFUsPUs
+	lwz      r3, 0x70(r28)
+	mr       r4, r27
+	lhz      r5, 8(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x1c(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 0x84(r28)
+	mr       r4, r26
+	lwz      r3, 8(r3)
+	bl       getResTIMG__16J2DAnmTexPatternCFUs
+	lwz      r0, 0x20(r31)
+	mr       r29, r3
+	cmplw    r0, r29
+	beq      lbl_80053124
+	lbz      r0, 8(r29)
+	li       r5, 0
+	li       r6, 0
+	cmplwi   r0, 0
+	beq      lbl_80053118
+	lwz      r3, 0x84(r28)
+	mr       r4, r26
+	lwz      r3, 8(r3)
+	bl       getPalette__16J2DAnmTexPatternCFUs
+	lhz      r0, 0x14(r3)
+	mr       r5, r3
+	cmplwi   r0, 0x100
+	ble      lbl_80053114
+	slwi     r0, r30, 0x1e
+	srwi     r3, r27, 0x1f
+	subf     r0, r3, r0
+	rotlwi   r0, r0, 2
+	add      r3, r0, r3
+	addi     r6, r3, 0x10
+	b        lbl_80053118
 
-	.loc_0x30C:
-	  mr        r6, r27
+lbl_80053114:
+	mr       r6, r27
 
-	.loc_0x310:
-	  mr        r3, r31
-	  mr        r4, r29
-	  bl        -0x1FEBC
+lbl_80053118:
+	mr       r3, r31
+	mr       r4, r29
+	bl       storeTIMG__10JUTTextureFPC7ResTIMGP10JUTPalette7_GXTlut
 
-	.loc_0x31C:
-	  addi      r30, r30, 0x1
+lbl_80053124:
+	addi     r30, r30, 1
 
-	.loc_0x320:
-	  rlwinm    r0,r30,0,24,31
-	  cmplwi    r0, 0x8
-	  blt+      .loc_0x228
+lbl_80053128:
+	clrlwi   r0, r30, 0x18
+	cmplwi   r0, 8
+	blt      lbl_80053030
 
-	.loc_0x32C:
-	  lwz       r0, 0x70(r28)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x434
-	  lwz       r3, 0x84(r28)
-	  lwz       r0, 0xC(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x434
-	  li        r26, 0
-	  b         .loc_0x3B8
+lbl_80053134:
+	lwz      r0, 0x70(r28)
+	cmplwi   r0, 0
+	beq      lbl_8005323C
+	lwz      r3, 0x84(r28)
+	lwz      r0, 0xc(r3)
+	cmplwi   r0, 0
+	beq      lbl_8005323C
+	li       r26, 0
+	b        lbl_800531C0
 
-	.loc_0x350:
-	  rlwinm    r3,r26,1,23,30
-	  lwz       r5, 0x84(r28)
-	  addi      r0, r3, 0x32
-	  rlwinm    r27,r26,0,24,31
-	  lhzx      r4, r5, r0
-	  cmplwi    r4, 0xFFFF
-	  beq-      .loc_0x3B4
-	  lwz       r3, 0xC(r5)
-	  addi      r5, r1, 0x2C
-	  bl        0x9A54
-	  lha       r7, 0x2C(r1)
-	  mr        r4, r27
-	  lha       r6, 0x2E(r1)
-	  addi      r5, r1, 0x24
-	  lha       r3, 0x30(r1)
-	  lha       r0, 0x32(r1)
-	  sth       r7, 0x24(r1)
-	  sth       r6, 0x26(r1)
-	  sth       r3, 0x28(r1)
-	  sth       r0, 0x2A(r1)
-	  lwz       r3, 0x70(r28)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x34(r12)
-	  mtctr     r12
-	  bctrl
+lbl_80053158:
+	rlwinm   r3, r26, 1, 0x17, 0x1e
+	lwz      r5, 0x84(r28)
+	addi     r0, r3, 0x32
+	clrlwi   r27, r26, 0x18
+	lhzx     r4, r5, r0
+	cmplwi   r4, 0xffff
+	beq      lbl_800531BC
+	lwz      r3, 0xc(r5)
+	addi     r5, r1, 0x2c
+	bl       getTevColorReg__15J2DAnmTevRegKeyCFUsP11_GXColorS10
+	lha      r7, 0x2c(r1)
+	mr       r4, r27
+	lha      r6, 0x2e(r1)
+	addi     r5, r1, 0x24
+	lha      r3, 0x30(r1)
+	lha      r0, 0x32(r1)
+	sth      r7, 0x24(r1)
+	sth      r6, 0x26(r1)
+	sth      r3, 0x28(r1)
+	sth      r0, 0x2a(r1)
+	lwz      r3, 0x70(r28)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x34(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x3B4:
-	  addi      r26, r26, 0x1
+lbl_800531BC:
+	addi     r26, r26, 1
 
-	.loc_0x3B8:
-	  rlwinm    r0,r26,0,24,31
-	  cmplwi    r0, 0x4
-	  blt+      .loc_0x350
-	  li        r26, 0
-	  b         .loc_0x428
+lbl_800531C0:
+	clrlwi   r0, r26, 0x18
+	cmplwi   r0, 4
+	blt      lbl_80053158
+	li       r26, 0
+	b        lbl_80053230
 
-	.loc_0x3CC:
-	  rlwinm    r3,r26,1,23,30
-	  lwz       r4, 0x84(r28)
-	  addi      r0, r3, 0x3A
-	  rlwinm    r27,r26,0,24,31
-	  lhzx      r4, r4, r0
-	  cmplwi    r4, 0xFFFF
-	  beq-      .loc_0x424
-	  li        r0, -0x1
-	  addi      r5, r1, 0x1C
-	  stw       r0, 0x1C(r1)
-	  lwz       r3, 0x84(r28)
-	  lwz       r3, 0xC(r3)
-	  bl        0x9C98
-	  lwz       r0, 0x1C(r1)
-	  mr        r4, r27
-	  addi      r5, r1, 0x10
-	  stw       r0, 0x10(r1)
-	  lwz       r3, 0x70(r28)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x3C(r12)
-	  mtctr     r12
-	  bctrl
+lbl_800531D4:
+	rlwinm   r3, r26, 1, 0x17, 0x1e
+	lwz      r4, 0x84(r28)
+	addi     r0, r3, 0x3a
+	clrlwi   r27, r26, 0x18
+	lhzx     r4, r4, r0
+	cmplwi   r4, 0xffff
+	beq      lbl_8005322C
+	li       r0, -1
+	addi     r5, r1, 0x1c
+	stw      r0, 0x1c(r1)
+	lwz      r3, 0x84(r28)
+	lwz      r3, 0xc(r3)
+	bl       getTevKonstReg__15J2DAnmTevRegKeyCFUsP8_GXColor
+	lwz      r0, 0x1c(r1)
+	mr       r4, r27
+	addi     r5, r1, 0x10
+	stw      r0, 0x10(r1)
+	lwz      r3, 0x70(r28)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x3c(r12)
+	mtctr    r12
+	bctrl
 
-	.loc_0x424:
-	  addi      r26, r26, 0x1
+lbl_8005322C:
+	addi     r26, r26, 1
 
-	.loc_0x428:
-	  rlwinm    r0,r26,0,24,31
-	  cmplwi    r0, 0x4
-	  blt+      .loc_0x3CC
+lbl_80053230:
+	clrlwi   r0, r26, 0x18
+	cmplwi   r0, 4
+	blt      lbl_800531D4
 
-	.loc_0x434:
-	  psq_l     f31,0x108(r1),0,0
-	  lfd       f31, 0x100(r1)
-	  psq_l     f30,0xF8(r1),0,0
-	  lfd       f30, 0xF0(r1)
-	  psq_l     f29,0xE8(r1),0,0
-	  lfd       f29, 0xE0(r1)
-	  psq_l     f28,0xD8(r1),0,0
-	  lfd       f28, 0xD0(r1)
-	  psq_l     f27,0xC8(r1),0,0
-	  lfd       f27, 0xC0(r1)
-	  lmw       r26, 0xA8(r1)
-	  lwz       r0, 0x114(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x110
-	  blr
+lbl_8005323C:
+	psq_l    f31, 264(r1), 0, qr0
+	lfd      f31, 0x100(r1)
+	psq_l    f30, 248(r1), 0, qr0
+	lfd      f30, 0xf0(r1)
+	psq_l    f29, 232(r1), 0, qr0
+	lfd      f29, 0xe0(r1)
+	psq_l    f28, 216(r1), 0, qr0
+	lfd      f28, 0xd0(r1)
+	psq_l    f27, 200(r1), 0, qr0
+	lfd      f27, 0xc0(r1)
+	lmw      r26, 0xa8(r1)
+	lwz      r0, 0x114(r1)
+	mtlr     r0
+	addi     r1, r1, 0x110
+	blr
 	*/
 }
 
@@ -1679,10 +1705,9 @@ void J2DIndBlockNull::setGX() { }
 void J2DIndBlockNull::getType()
 {
 	/*
-	.loc_0x0:
-	  lis       r3, 0x4942
-	  addi      r3, r3, 0x4C4E
-	  blr
+	lis      r3, 0x49424C4E@ha
+	addi     r3, r3, 0x49424C4E@l
+	blr
 	*/
 }
 
@@ -1694,33 +1719,32 @@ void J2DIndBlockNull::getType()
 J2DIndBlockNull::~J2DIndBlockNull()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r3
-	  beq-      .loc_0x44
-	  lis       r3, 0x804A
-	  addi      r0, r3, 0x1160
-	  stw       r0, 0x0(r31)
-	  beq-      .loc_0x34
-	  lis       r3, 0x804A
-	  addi      r0, r3, 0xCB0
-	  stw       r0, 0x0(r31)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r3, r3
+	beq      lbl_800532D0
+	lis      r3, __vt__15J2DIndBlockNull@ha
+	addi     r0, r3, __vt__15J2DIndBlockNull@l
+	stw      r0, 0(r31)
+	beq      lbl_800532C0
+	lis      r3, __vt__11J2DIndBlock@ha
+	addi     r0, r3, __vt__11J2DIndBlock@l
+	stw      r0, 0(r31)
 
-	.loc_0x34:
-	  extsh.    r0, r4
-	  ble-      .loc_0x44
-	  mr        r3, r31
-	  bl        -0x2F218
+lbl_800532C0:
+	extsh.   r0, r4
+	ble      lbl_800532D0
+	mr       r3, r31
+	bl       __dl__FPv
 
-	.loc_0x44:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_800532D0:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }

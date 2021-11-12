@@ -4,6 +4,10 @@
 #include "JSystem/JSU/JSUPtrList.h"
 
 /*
+    Generated from dpostproc
+*/
+
+/*
  * Decompilation of this file is derived from https://github.com/shibbo/Petari
  */
 

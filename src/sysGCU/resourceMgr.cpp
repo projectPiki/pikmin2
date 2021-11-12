@@ -1,6 +1,81 @@
 #include "types.h"
 
 /*
+    Generated from dpostproc
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_8049A640
+    lbl_8049A640:
+        .4byte 0x7265736F
+        .4byte 0x75726365
+        .4byte 0x4D67722E
+        .4byte 0x63707000
+    .global lbl_8049A650
+    lbl_8049A650:
+        .asciz "P2Assert"
+        .skip 3
+    .global lbl_8049A65C
+    lbl_8049A65C:
+        .4byte 0x974C82E8
+        .4byte 0x82A682C8
+        .4byte 0x82A28FF3
+        .4byte 0x91D482C5
+        .4byte 0x82B282B4
+        .4byte 0x82A282DC
+        .4byte 0x82B7200A
+        .4byte 0x00000000
+        .4byte 0x00000000
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global lbl_804EC3D8
+    lbl_804EC3D8:
+        .4byte 0x00000000
+        .4byte 0x0000001C
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000020
+        .4byte 0x00000000
+        .4byte 0x00000000
+        .4byte 0x00000024
+        .4byte 0x00000000
+    .global __vt__Q28Resource3Mgr
+    __vt__Q28Resource3Mgr:
+        .4byte 0
+        .4byte 0
+        .4byte drawDump__Q28Resource3MgrFR8Graphicsii
+    .global __vt__Q28Resource10MgrCommand
+    __vt__Q28Resource10MgrCommand:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q28Resource10MgrCommandFv
+        .4byte getChildCount__5CNodeFv
+        .4byte 0
+        .4byte 0
+        .4byte "@24@__dt__Q28Resource10MgrCommandFv"
+        .4byte memoryCallBackFunc__Q28Resource10MgrCommandFv
+        .4byte dvdLoadCallBackFunc__Q28Resource10MgrCommandFv
+        .4byte aramLoadCallBackFunc__Q28Resource10MgrCommandFv
+    .global "__vt__33Delegate<Q28Resource10MgrCommand>"
+    "__vt__33Delegate<Q28Resource10MgrCommand>":
+        .4byte 0
+        .4byte 0
+        .4byte "invoke__33Delegate<Q28Resource10MgrCommand>Fv"
+        .4byte 0
+        .4byte 0
+        .4byte 0
+    .global __vt__Q28Resource4Node
+    __vt__Q28Resource4Node:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q28Resource4NodeFv
+        .4byte getChildCount__5CNodeFv
+        .4byte 0
+        .4byte 0
+        .4byte "@24@__dt__Q28Resource4NodeFv"
+        .4byte 0
+*/
+
+/*
  * --INFO--
  * Address:	........
  * Size:	00007C
@@ -18,68 +93,67 @@ Resource::Node::Node(char const*)
 Resource::Node::~Node(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0xC0
-	  lis       r3, 0x804F
-	  subi      r3, r3, 0x3BB8
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x10
-	  stw       r0, 0x18(r30)
-	  lwz       r0, 0x3C(r30)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x5C
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x59C0
-	  li        r4, 0x63
-	  subi      r5, r5, 0x59B0
-	  crclr     6, 0x6
-	  bl        -0x408AF0
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_80433198
+	lis      r3, __vt__Q28Resource4Node@ha
+	addi     r3, r3, __vt__Q28Resource4Node@l
+	stw      r3, 0(r30)
+	addi     r0, r3, 0x10
+	stw      r0, 0x18(r30)
+	lwz      r0, 0x3c(r30)
+	cmplwi   r0, 0
+	bne      lbl_80433134
+	lis      r3, lbl_8049A640@ha
+	lis      r5, lbl_8049A650@ha
+	addi     r3, r3, lbl_8049A640@l
+	li       r4, 0x63
+	addi     r5, r5, lbl_8049A650@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x5C:
-	  lwz       r3, 0x3C(r30)
-	  lwz       r0, 0x38(r3)
-	  cmplw     r0, r30
-	  beq-      .loc_0x88
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x59C0
-	  li        r4, 0x65
-	  subi      r5, r5, 0x59B0
-	  crclr     6, 0x6
-	  bl        -0x408B1C
+lbl_80433134:
+	lwz      r3, 0x3c(r30)
+	lwz      r0, 0x38(r3)
+	cmplw    r0, r30
+	beq      lbl_80433160
+	lis      r3, lbl_8049A640@ha
+	lis      r5, lbl_8049A650@ha
+	addi     r3, r3, lbl_8049A640@l
+	li       r4, 0x65
+	addi     r5, r5, lbl_8049A650@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x88:
-	  lwz       r3, 0x3C(r30)
-	  bl        0x344
-	  mr        r3, r30
-	  bl        -0x21B9C
-	  addi      r3, r30, 0x18
-	  li        r4, 0
-	  bl        -0x416144
-	  mr        r3, r30
-	  li        r4, 0
-	  bl        -0x21BFC
-	  extsh.    r0, r31
-	  ble-      .loc_0xC0
-	  mr        r3, r30
-	  bl        -0x40F0E0
+lbl_80433160:
+	lwz      r3, 0x3c(r30)
+	bl       setModeInvalid__Q28Resource10MgrCommandFv
+	mr       r3, r30
+	bl       del__5CNodeFv
+	addi     r3, r30, 0x18
+	li       r4, 0
+	bl       __dt__11JKRDisposerFv
+	mr       r3, r30
+	li       r4, 0
+	bl       __dt__5CNodeFv
+	extsh.   r0, r31
+	ble      lbl_80433198
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0xC0:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80433198:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -131,85 +205,84 @@ void Resource::Node::destroy(Resource::Node*)
 Resource::MgrCommand::MgrCommand(char*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  mflr      r0
-	  lis       r5, 0x804F
-	  stw       r0, 0x44(r1)
-	  subi      r0, r5, 0x4AD8
-	  stw       r31, 0x3C(r1)
-	  stw       r30, 0x38(r1)
-	  mr        r30, r3
-	  lis       r3, 0x804F
-	  stw       r0, 0x0(r30)
-	  li        r0, 0
-	  subi      r31, r3, 0x3C28
-	  addi      r3, r30, 0x18
-	  stw       r0, 0x10(r30)
-	  stw       r0, 0xC(r30)
-	  stw       r0, 0x8(r30)
-	  stw       r0, 0x4(r30)
-	  stw       r4, 0x14(r30)
-	  bl        -0x416230
-	  lis       r4, 0x804F
-	  addi      r3, r30, 0x3C
-	  subi      r4, r4, 0x3BF8
-	  stw       r4, 0x0(r30)
-	  addi      r0, r4, 0x10
-	  stw       r0, 0x18(r30)
-	  bl        -0xEA00
-	  li        r0, 0
-	  lis       r3, 0x804B
-	  stw       r0, 0xAC(r30)
-	  lis       r4, 0x804F
-	  addi      r10, r3, 0xF00
-	  mr        r3, r30
-	  stw       r0, 0xB0(r30)
-	  subi      r9, r4, 0x3BD0
-	  lwz       r4, 0x0(r31)
-	  lwz       r0, 0x4(r31)
-	  lwz       r11, 0x8(r31)
-	  stw       r4, 0x20(r1)
-	  stw       r10, 0xB4(r30)
-	  stw       r9, 0xB4(r30)
-	  stw       r30, 0xB8(r30)
-	  stw       r4, 0xBC(r30)
-	  stw       r0, 0xC0(r30)
-	  stw       r11, 0xC4(r30)
-	  lwz       r8, 0xC(r31)
-	  lwz       r7, 0x10(r31)
-	  lwz       r6, 0x14(r31)
-	  stw       r0, 0x24(r1)
-	  stw       r10, 0xC8(r30)
-	  stw       r9, 0xC8(r30)
-	  stw       r30, 0xCC(r30)
-	  stw       r8, 0xD0(r30)
-	  stw       r7, 0xD4(r30)
-	  stw       r6, 0xD8(r30)
-	  lwz       r5, 0x18(r31)
-	  lwz       r4, 0x1C(r31)
-	  lwz       r0, 0x20(r31)
-	  stw       r11, 0x28(r1)
-	  stw       r10, 0xDC(r30)
-	  stw       r9, 0xDC(r30)
-	  stw       r30, 0xE0(r30)
-	  stw       r5, 0xE4(r30)
-	  stw       r4, 0xE8(r30)
-	  stw       r8, 0x14(r1)
-	  stw       r7, 0x18(r1)
-	  stw       r6, 0x1C(r1)
-	  stw       r5, 0x8(r1)
-	  stw       r4, 0xC(r1)
-	  stw       r0, 0x10(r1)
-	  stw       r0, 0xEC(r30)
-	  bl        0x1DC
-	  lwz       r0, 0x44(r1)
-	  mr        r3, r30
-	  lwz       r31, 0x3C(r1)
-	  lwz       r30, 0x38(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x40
-	  blr
+	stwu     r1, -0x40(r1)
+	mflr     r0
+	lis      r5, __vt__5CNode@ha
+	stw      r0, 0x44(r1)
+	addi     r0, r5, __vt__5CNode@l
+	stw      r31, 0x3c(r1)
+	stw      r30, 0x38(r1)
+	mr       r30, r3
+	lis      r3, lbl_804EC3D8@ha
+	stw      r0, 0(r30)
+	li       r0, 0
+	addi     r31, r3, lbl_804EC3D8@l
+	addi     r3, r30, 0x18
+	stw      r0, 0x10(r30)
+	stw      r0, 0xc(r30)
+	stw      r0, 8(r30)
+	stw      r0, 4(r30)
+	stw      r4, 0x14(r30)
+	bl       __ct__11JKRDisposerFv
+	lis      r4, __vt__Q28Resource10MgrCommand@ha
+	addi     r3, r30, 0x3c
+	addi     r4, r4, __vt__Q28Resource10MgrCommand@l
+	stw      r4, 0(r30)
+	addi     r0, r4, 0x10
+	stw      r0, 0x18(r30)
+	bl       __ct__16DvdThreadCommandFv
+	li       r0, 0
+	lis      r3, __vt__9IDelegate@ha
+	stw      r0, 0xac(r30)
+	lis      r4, "__vt__33Delegate<Q28Resource10MgrCommand>"@ha
+	addi     r10, r3, __vt__9IDelegate@l
+	mr       r3, r30
+	stw      r0, 0xb0(r30)
+	addi     r9, r4, "__vt__33Delegate<Q28Resource10MgrCommand>"@l
+	lwz      r4, 0(r31)
+	lwz      r0, 4(r31)
+	lwz      r11, 8(r31)
+	stw      r4, 0x20(r1)
+	stw      r10, 0xb4(r30)
+	stw      r9, 0xb4(r30)
+	stw      r30, 0xb8(r30)
+	stw      r4, 0xbc(r30)
+	stw      r0, 0xc0(r30)
+	stw      r11, 0xc4(r30)
+	lwz      r8, 0xc(r31)
+	lwz      r7, 0x10(r31)
+	lwz      r6, 0x14(r31)
+	stw      r0, 0x24(r1)
+	stw      r10, 0xc8(r30)
+	stw      r9, 0xc8(r30)
+	stw      r30, 0xcc(r30)
+	stw      r8, 0xd0(r30)
+	stw      r7, 0xd4(r30)
+	stw      r6, 0xd8(r30)
+	lwz      r5, 0x18(r31)
+	lwz      r4, 0x1c(r31)
+	lwz      r0, 0x20(r31)
+	stw      r11, 0x28(r1)
+	stw      r10, 0xdc(r30)
+	stw      r9, 0xdc(r30)
+	stw      r30, 0xe0(r30)
+	stw      r5, 0xe4(r30)
+	stw      r4, 0xe8(r30)
+	stw      r8, 0x14(r1)
+	stw      r7, 0x18(r1)
+	stw      r6, 0x1c(r1)
+	stw      r5, 8(r1)
+	stw      r4, 0xc(r1)
+	stw      r0, 0x10(r1)
+	stw      r0, 0xec(r30)
+	bl       setModeInvalid__Q28Resource10MgrCommandFv
+	lwz      r0, 0x44(r1)
+	mr       r3, r30
+	lwz      r31, 0x3c(r1)
+	lwz      r30, 0x38(r1)
+	mtlr     r0
+	addi     r1, r1, 0x40
+	blr
 	*/
 }
 
@@ -231,59 +304,58 @@ void __dt__Q38Resource10MgrCommand26 @class$2436resourceMgr_cppFv(void)
 Resource::MgrCommand::~MgrCommand(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x9C
-	  lis       r3, 0x804F
-	  subi      r3, r3, 0x3BF8
-	  stw       r3, 0x0(r30)
-	  addi      r0, r3, 0x10
-	  stw       r0, 0x18(r30)
-	  lwz       r4, 0x38(r30)
-	  cmplwi    r4, 0
-	  beq-      .loc_0x4C
-	  lwz       r3, 0x30(r4)
-	  lbz       r4, 0x34(r4)
-	  bl        -0x412B04
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_80433388
+	lis      r3, __vt__Q28Resource10MgrCommand@ha
+	addi     r3, r3, __vt__Q28Resource10MgrCommand@l
+	stw      r3, 0(r30)
+	addi     r0, r3, 0x10
+	stw      r0, 0x18(r30)
+	lwz      r4, 0x38(r30)
+	cmplwi   r4, 0
+	beq      lbl_80433338
+	lwz      r3, 0x30(r4)
+	lbz      r4, 0x34(r4)
+	bl       freeGroup__10JKRExpHeapFUc
 
-	.loc_0x4C:
-	  mr        r3, r30
-	  bl        -0x21D6C
-	  addic.    r0, r30, 0x34
-	  beq-      .loc_0x74
-	  addic.    r3, r30, 0x3C
-	  beq-      .loc_0x74
-	  addic.    r3, r3, 0x5C
-	  beq-      .loc_0x74
-	  li        r4, 0
-	  bl        -0x40CB8C
+lbl_80433338:
+	mr       r3, r30
+	bl       del__5CNodeFv
+	addic.   r0, r30, 0x34
+	beq      lbl_80433360
+	addic.   r3, r30, 0x3c
+	beq      lbl_80433360
+	addic.   r3, r3, 0x5c
+	beq      lbl_80433360
+	li       r4, 0
+	bl       __dt__10JSUPtrLinkFv
 
-	.loc_0x74:
-	  addi      r3, r30, 0x18
-	  li        r4, 0
-	  bl        -0x416334
-	  mr        r3, r30
-	  li        r4, 0
-	  bl        -0x21DEC
-	  extsh.    r0, r31
-	  ble-      .loc_0x9C
-	  mr        r3, r30
-	  bl        -0x40F2D0
+lbl_80433360:
+	addi     r3, r30, 0x18
+	li       r4, 0
+	bl       __dt__11JKRDisposerFv
+	mr       r3, r30
+	li       r4, 0
+	bl       __dt__5CNodeFv
+	extsh.   r0, r31
+	ble      lbl_80433388
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x9C:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80433388:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -295,37 +367,36 @@ Resource::MgrCommand::~MgrCommand(void)
 void Resource::MgrCommand::becomeCurrentHeap(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r0, 0x30(r3)
-	  cmpwi     r0, -0x1
-	  bne-      .loc_0x3C
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x59C0
-	  li        r4, 0xBB
-	  subi      r5, r5, 0x59B0
-	  crclr     6, 0x6
-	  bl        -0x408D9C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r0, 0x30(r3)
+	cmpwi    r0, -1
+	bne      lbl_804333E0
+	lis      r3, lbl_8049A640@ha
+	lis      r5, lbl_8049A650@ha
+	addi     r3, r3, lbl_8049A640@l
+	li       r4, 0xbb
+	addi     r5, r5, lbl_8049A650@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x3C:
-	  lwz       r0, -0x77D4(r13)
-	  stw       r0, 0xAC(r31)
-	  lwz       r31, 0x38(r31)
-	  lwz       r3, 0x30(r31)
-	  bl        -0x40FE4C
-	  lwz       r3, 0x30(r31)
-	  lbz       r4, 0x34(r31)
-	  bl        -0x40FBF0
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_804333E0:
+	lwz      r0, sCurrentHeap__7JKRHeap@sda21(r13)
+	stw      r0, 0xac(r31)
+	lwz      r31, 0x38(r31)
+	lwz      r3, 0x30(r31)
+	bl       becomeCurrentHeap__7JKRHeapFv
+	lwz      r3, 0x30(r31)
+	lbz      r4, 0x34(r31)
+	bl       changeGroupID__7JKRHeapFUc
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -337,45 +408,44 @@ void Resource::MgrCommand::becomeCurrentHeap(void)
 void Resource::MgrCommand::releaseCurrentHeap(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r0, 0x30(r3)
-	  cmpwi     r0, -0x1
-	  bne-      .loc_0x3C
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x59C0
-	  li        r4, 0xC7
-	  subi      r5, r5, 0x59B0
-	  crclr     6, 0x6
-	  bl        -0x408E0C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r0, 0x30(r3)
+	cmpwi    r0, -1
+	bne      lbl_80433450
+	lis      r3, lbl_8049A640@ha
+	lis      r5, lbl_8049A650@ha
+	addi     r3, r3, lbl_8049A640@l
+	li       r4, 0xc7
+	addi     r5, r5, lbl_8049A650@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x3C:
-	  lwz       r0, 0xAC(r31)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x64
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x59C0
-	  li        r4, 0xC9
-	  subi      r5, r5, 0x59B0
-	  crclr     6, 0x6
-	  bl        -0x408E34
+lbl_80433450:
+	lwz      r0, 0xac(r31)
+	cmplwi   r0, 0
+	bne      lbl_80433478
+	lis      r3, lbl_8049A640@ha
+	lis      r5, lbl_8049A650@ha
+	addi     r3, r3, lbl_8049A640@l
+	li       r4, 0xc9
+	addi     r5, r5, lbl_8049A650@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x64:
-	  lwz       r3, 0xAC(r31)
-	  bl        -0x40FED8
-	  li        r0, 0
-	  stw       r0, 0xAC(r31)
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80433478:
+	lwz      r3, 0xac(r31)
+	bl       becomeCurrentHeap__7JKRHeapFv
+	li       r0, 0
+	stw      r0, 0xac(r31)
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -397,10 +467,9 @@ void Resource::MgrCommand::isFinish(void)
 void Resource::MgrCommand::getResource(void)
 {
 	/*
-	.loc_0x0:
-	  lwz       r3, 0x38(r3)
-	  lwz       r3, 0x38(r3)
-	  blr
+	lwz      r3, 0x38(r3)
+	lwz      r3, 0x38(r3)
+	blr
 	*/
 }
 
@@ -442,14 +511,13 @@ void Resource::MgrCommand::setModeDvd(Resource::Node*)
 void Resource::MgrCommand::setModeInvalid(void)
 {
 	/*
-	.loc_0x0:
-	  li        r4, -0x1
-	  li        r0, 0
-	  stw       r4, 0x30(r3)
-	  stw       r0, 0x38(r3)
-	  stb       r0, 0x34(r3)
-	  stw       r0, 0xB0(r3)
-	  blr
+	li       r4, -1
+	li       r0, 0
+	stw      r4, 0x30(r3)
+	stw      r0, 0x38(r3)
+	stb      r0, 0x34(r3)
+	stw      r0, 0xb0(r3)
+	blr
 	*/
 }
 
@@ -461,25 +529,24 @@ void Resource::MgrCommand::setModeInvalid(void)
 void Resource::MgrCommand::memoryCallBackFunc(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r4, 0x38(r3)
-	  lwz       r3, 0x30(r4)
-	  lbz       r4, 0x34(r4)
-	  bl        -0x40FCD0
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x59C0
-	  li        r4, 0x157
-	  subi      r5, r5, 0x59A4
-	  crclr     6, 0x6
-	  bl        -0x408EB8
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r4, 0x38(r3)
+	lwz      r3, 0x30(r4)
+	lbz      r4, 0x34(r4)
+	bl       changeGroupID__7JKRHeapFUc
+	lis      r3, lbl_8049A640@ha
+	lis      r5, lbl_8049A65C@ha
+	addi     r3, r3, lbl_8049A640@l
+	li       r4, 0x157
+	addi     r5, r5, lbl_8049A65C@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -491,46 +558,46 @@ void Resource::MgrCommand::memoryCallBackFunc(void)
 void Resource::MgrCommand::aramLoadCallBackFunc(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r3
-	  lwz       r4, 0x38(r3)
-	  lwz       r3, 0x30(r4)
-	  lbz       r4, 0x34(r4)
-	  bl        -0x40FD20
-	  li        r0, 0x1
-	  li        r3, -0x1
-	  stw       r0, 0x8(r1)
-	  li        r0, 0
-	  li        r5, 0
-	  li        r6, 0
-	  stw       r3, 0xC(r1)
-	  li        r7, 0
-	  li        r8, 0x1
-	  li        r9, 0
-	  stw       r0, 0x10(r1)
-	  lwz       r4, 0xA8(r31)
-	  lwz       r10, 0x38(r31)
-	  lwz       r3, -0x6458(r13)
-	  lwz       r4, 0x14(r4)
-	  lwz       r10, 0x30(r10)
-	  bl        -0x6FC
-	  cmplwi    r3, 0
-	  beq-      .loc_0x80
-	  lwz       r4, 0x38(r31)
-	  stw       r3, 0x38(r4)
-	  mr        r3, r31
-	  bl        0xD4
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r3
+	lwz      r4, 0x38(r3)
+	lwz      r3, 0x30(r4)
+	lbz      r4, 0x34(r4)
+	bl       changeGroupID__7JKRHeapFUc
+	li       r0, 1
+	li       r3, -1
+	stw      r0, 8(r1)
+	li       r0, 0
+	li       r5, 0
+	li       r6, 0
+	stw      r3, 0xc(r1)
+	li       r7, 0
+	li       r8, 1
+	li       r9, 0
+	stw      r0, 0x10(r1)
+	lwz      r4, 0xa8(r31)
+	lwz      r10, 0x38(r31)
+	lwz      r3, gAramMgr@sda21(r13)
+	lwz      r4, 0x14(r4)
+	lwz      r10, 0x30(r10)
+	bl
+aramToMainRam__Q24ARAM3MgrFPCcPUcUlUl15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectioniPUl
+	cmplwi   r3, 0
+	beq      lbl_8043358C
+	lwz      r4, 0x38(r31)
+	stw      r3, 0x38(r4)
+	mr       r3, r31
+	bl       userCallBackInvoke__Q28Resource10MgrCommandFv
 
-	.loc_0x80:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8043358C:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -542,62 +609,60 @@ void Resource::MgrCommand::aramLoadCallBackFunc(void)
 void Resource::MgrCommand::dvdLoadCallBackFunc(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stw       r31, 0x2C(r1)
-	  stw       r30, 0x28(r1)
-	  li        r30, 0x1
-	  stw       r29, 0x24(r1)
-	  mr        r29, r3
-	  lwz       r4, 0x38(r3)
-	  lwz       r31, 0x14(r4)
-	  lwz       r3, 0x30(r4)
-	  lbz       r4, 0x34(r4)
-	  bl        -0x40FDC4
-	  lbz       r0, 0x0(r31)
-	  extsb.    r0, r0
-	  beq-      .loc_0x90
-	  addi      r0, r1, 0x10
-	  mr        r3, r31
-	  stw       r0, 0x8(r1)
-	  li        r4, 0
-	  li        r5, 0x1
-	  li        r6, 0
-	  lwz       r7, 0x38(r29)
-	  li        r8, 0x1
-	  li        r9, 0
-	  li        r10, 0
-	  lwz       r7, 0x30(r7)
-	  bl        -0x414484
-	  mr.       r31, r3
-	  beq-      .loc_0x8C
-	  lwz       r4, 0x10(r1)
-	  bl        -0x346F04
-	  lwz       r3, 0x38(r29)
-	  stw       r31, 0x38(r3)
-	  b         .loc_0x90
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	stw      r0, 0x34(r1)
+	stw      r31, 0x2c(r1)
+	stw      r30, 0x28(r1)
+	li       r30, 1
+	stw      r29, 0x24(r1)
+	mr       r29, r3
+	lwz      r4, 0x38(r3)
+	lwz      r31, 0x14(r4)
+	lwz      r3, 0x30(r4)
+	lbz      r4, 0x34(r4)
+	bl       changeGroupID__7JKRHeapFUc
+	lbz      r0, 0(r31)
+	extsb.   r0, r0
+	beq      lbl_80433630
+	addi     r0, r1, 0x10
+	mr       r3, r31
+	stw      r0, 8(r1)
+	li       r4, 0
+	li       r5, 1
+	li       r6, 0
+	lwz      r7, 0x38(r29)
+	li       r8, 1
+	li       r9, 0
+	li       r10, 0
+	lwz      r7, 0x30(r7)
+	bl
+loadToMainRAM__12JKRDvdRipperFPCcPUc15JKRExpandSwitchUlP7JKRHeapQ212JKRDvdRipper15EAllocDirectionUlPiPUl
+	or.      r31, r3, r3
+	beq      lbl_8043362C
+	lwz      r4, 0x10(r1)
+	bl       DCFlushRange
+	lwz      r3, 0x38(r29)
+	stw      r31, 0x38(r3)
+	b        lbl_80433630
 
-	.loc_0x8C:
-	  li        r30, 0
+lbl_8043362C:
+	li       r30, 0
 
-	.loc_0x90:
-	  rlwinm.   r0,r30,0,24,31
-	  beq-      .loc_0xA0
-	  mr        r3, r29
-	  bl        .loc_0xBC
+lbl_80433630:
+	clrlwi.  r0, r30, 0x18
+	beq      lbl_80433640
+	mr       r3, r29
+	bl       userCallBackInvoke__Q28Resource10MgrCommandFv
 
-	.loc_0xA0:
-	  lwz       r0, 0x34(r1)
-	  lwz       r31, 0x2C(r1)
-	  lwz       r30, 0x28(r1)
-	  lwz       r29, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
-
-	.loc_0xBC:
+lbl_80433640:
+	lwz      r0, 0x34(r1)
+	lwz      r31, 0x2c(r1)
+	lwz      r30, 0x28(r1)
+	lwz      r29, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -609,38 +674,37 @@ void Resource::MgrCommand::dvdLoadCallBackFunc(void)
 void Resource::MgrCommand::userCallBackInvoke(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lwz       r0, 0xB0(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x5C
-	  lwz       r3, 0x38(r30)
-	  lwz       r31, -0x77D4(r13)
-	  lwz       r3, 0x30(r3)
-	  bl        -0x4100E8
-	  lwz       r3, 0xB0(r30)
-	  mr        r4, r30
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  li        r0, 0
-	  mr        r3, r31
-	  stw       r0, 0xB0(r30)
-	  bl        -0x410110
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lwz      r0, 0xb0(r3)
+	cmplwi   r0, 0
+	beq      lbl_804336B8
+	lwz      r3, 0x38(r30)
+	lwz      r31, sCurrentHeap__7JKRHeap@sda21(r13)
+	lwz      r3, 0x30(r3)
+	bl       becomeCurrentHeap__7JKRHeapFv
+	lwz      r3, 0xb0(r30)
+	mr       r4, r30
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	li       r0, 0
+	mr       r3, r31
+	stw      r0, 0xb0(r30)
+	bl       becomeCurrentHeap__7JKRHeapFv
 
-	.loc_0x5C:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_804336B8:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -662,78 +726,77 @@ void Resource::MgrCommand::destroy(void)
 Resource::Mgr::Mgr(JKRHeap*, unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r6, 0x804F
-	  stw       r0, 0x24(r1)
-	  li        r0, 0
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  mr        r30, r5
-	  stw       r29, 0x14(r1)
-	  mr        r29, r4
-	  stw       r28, 0x10(r1)
-	  mr        r28, r3
-	  subi      r3, r6, 0x3C04
-	  stw       r3, 0x0(r28)
-	  addi      r3, r28, 0x10
-	  stw       r0, 0x4(r28)
-	  stw       r0, 0x8(r28)
-	  stw       r0, 0xC(r28)
-	  bl        -0x22388
-	  addi      r3, r28, 0x28
-	  bl        -0x22390
-	  li        r0, 0
-	  cmplwi    r29, 0
-	  stb       r0, 0x40(r28)
-	  stb       r0, 0x41(r28)
-	  stb       r0, 0x42(r28)
-	  stb       r0, 0x43(r28)
-	  lwz       r31, -0x77D4(r13)
-	  bne-      .loc_0x78
-	  mr        r29, r31
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lis      r6, __vt__Q28Resource3Mgr@ha
+	stw      r0, 0x24(r1)
+	li       r0, 0
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	mr       r30, r5
+	stw      r29, 0x14(r1)
+	mr       r29, r4
+	stw      r28, 0x10(r1)
+	mr       r28, r3
+	addi     r3, r6, __vt__Q28Resource3Mgr@l
+	stw      r3, 0(r28)
+	addi     r3, r28, 0x10
+	stw      r0, 4(r28)
+	stw      r0, 8(r28)
+	stw      r0, 0xc(r28)
+	bl       __ct__5CNodeFv
+	addi     r3, r28, 0x28
+	bl       __ct__5CNodeFv
+	li       r0, 0
+	cmplwi   r29, 0
+	stb      r0, 0x40(r28)
+	stb      r0, 0x41(r28)
+	stb      r0, 0x42(r28)
+	stb      r0, 0x43(r28)
+	lwz      r31, sCurrentHeap__7JKRHeap@sda21(r13)
+	bne      lbl_80433748
+	mr       r29, r31
 
-	.loc_0x78:
-	  mr        r3, r30
-	  mr        r4, r29
-	  li        r5, 0x1
-	  bl        -0x41388C
-	  stw       r3, 0x4(r28)
-	  lwz       r0, 0x4(r28)
-	  cmplwi    r0, 0
-	  bne-      .loc_0xB4
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x59C0
-	  li        r4, 0x1E7
-	  subi      r5, r5, 0x59B0
-	  crclr     6, 0x6
-	  bl        -0x409140
+lbl_80433748:
+	mr       r3, r30
+	mr       r4, r29
+	li       r5, 1
+	bl       create__10JKRExpHeapFUlP7JKRHeapb
+	stw      r3, 4(r28)
+	lwz      r0, 4(r28)
+	cmplwi   r0, 0
+	bne      lbl_80433784
+	lis      r3, lbl_8049A640@ha
+	lis      r5, lbl_8049A650@ha
+	addi     r3, r3, lbl_8049A640@l
+	li       r4, 0x1e7
+	addi     r5, r5, lbl_8049A650@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xB4:
-	  stw       r30, 0x8(r28)
-	  li        r0, 0
-	  mr        r3, r31
-	  lwz       r4, 0x8(r28)
-	  stw       r4, 0xC(r28)
-	  stb       r0, 0x40(r28)
-	  stb       r0, 0x41(r28)
-	  stb       r0, 0x42(r28)
-	  stb       r0, 0x43(r28)
-	  lwz       r0, 0x40(r28)
-	  rlwinm    r0,r0,0,0,30
-	  stw       r0, 0x40(r28)
-	  bl        -0x410210
-	  lwz       r0, 0x24(r1)
-	  mr        r3, r28
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80433784:
+	stw      r30, 8(r28)
+	li       r0, 0
+	mr       r3, r31
+	lwz      r4, 8(r28)
+	stw      r4, 0xc(r28)
+	stb      r0, 0x40(r28)
+	stb      r0, 0x41(r28)
+	stb      r0, 0x42(r28)
+	stb      r0, 0x43(r28)
+	lwz      r0, 0x40(r28)
+	rlwinm   r0, r0, 0, 0, 0x1e
+	stw      r0, 0x40(r28)
+	bl       becomeCurrentHeap__7JKRHeapFv
+	lwz      r0, 0x24(r1)
+	mr       r3, r28
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -772,134 +835,133 @@ void Resource::Mgr::drawDump(Graphics&, int, int) { }
 void Resource::Mgr::createNewNode(char const*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x130(r1)
-	  mflr      r0
-	  stw       r0, 0x134(r1)
-	  stmw      r23, 0x10C(r1)
-	  mr        r29, r3
-	  mr        r30, r4
-	  lwz       r3, 0x4(r3)
-	  bl        -0x40FFBC
-	  li        r0, 0x8
-	  mr        r31, r3
-	  addi      r4, r1, 0x8
-	  li        r24, 0
-	  li        r3, 0
-	  mtctr     r0
+	stwu     r1, -0x130(r1)
+	mflr     r0
+	stw      r0, 0x134(r1)
+	stmw     r23, 0x10c(r1)
+	mr       r29, r3
+	mr       r30, r4
+	lwz      r3, 4(r3)
+	bl       getCurrentGroupId__7JKRHeapFv
+	li       r0, 8
+	mr       r31, r3
+	addi     r4, r1, 8
+	li       r24, 0
+	li       r3, 0
+	mtctr    r0
 
-	.loc_0x38:
-	  stw       r3, 0x0(r4)
-	  stw       r3, 0x4(r4)
-	  stw       r3, 0x8(r4)
-	  stw       r3, 0xC(r4)
-	  stw       r3, 0x10(r4)
-	  stw       r3, 0x14(r4)
-	  stw       r3, 0x18(r4)
-	  stw       r3, 0x1C(r4)
-	  addi      r4, r4, 0x20
-	  bdnz+     .loc_0x38
-	  lis       r4, 0x804A
-	  lis       r3, 0x804A
-	  lwz       r23, 0x20(r29)
-	  addi      r25, r1, 0x8
-	  subi      r27, r4, 0x59C0
-	  subi      r28, r3, 0x59B0
-	  li        r26, 0x1
-	  b         .loc_0xB4
+lbl_80433818:
+	stw      r3, 0(r4)
+	stw      r3, 4(r4)
+	stw      r3, 8(r4)
+	stw      r3, 0xc(r4)
+	stw      r3, 0x10(r4)
+	stw      r3, 0x14(r4)
+	stw      r3, 0x18(r4)
+	stw      r3, 0x1c(r4)
+	addi     r4, r4, 0x20
+	bdnz     lbl_80433818
+	lis      r4, lbl_8049A640@ha
+	lis      r3, lbl_8049A650@ha
+	lwz      r23, 0x20(r29)
+	addi     r25, r1, 8
+	addi     r27, r4, lbl_8049A640@l
+	addi     r28, r3, lbl_8049A650@l
+	li       r26, 1
+	b        lbl_80433894
 
-	.loc_0x80:
-	  lbz       r3, 0x34(r23)
-	  lbzx      r0, r25, r3
-	  cmplwi    r0, 0
-	  bne-      .loc_0x98
-	  stbx      r26, r25, r3
-	  b         .loc_0xAC
+lbl_80433860:
+	lbz      r3, 0x34(r23)
+	lbzx     r0, r25, r3
+	cmplwi   r0, 0
+	bne      lbl_80433878
+	stbx     r26, r25, r3
+	b        lbl_8043388C
 
-	.loc_0x98:
-	  mr        r3, r27
-	  mr        r5, r28
-	  li        r4, 0x26F
-	  crclr     6, 0x6
-	  bl        -0x409248
+lbl_80433878:
+	mr       r3, r27
+	mr       r5, r28
+	li       r4, 0x26f
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xAC:
-	  lwz       r23, 0x4(r23)
-	  addi      r24, r24, 0x1
+lbl_8043388C:
+	lwz      r23, 4(r23)
+	addi     r24, r24, 1
 
-	.loc_0xB4:
-	  cmplwi    r23, 0
-	  bne+      .loc_0x80
-	  cmpwi     r24, 0xFF
-	  blt-      .loc_0xE0
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x59C0
-	  li        r4, 0x275
-	  subi      r5, r5, 0x59B0
-	  crclr     6, 0x6
-	  bl        -0x40927C
+lbl_80433894:
+	cmplwi   r23, 0
+	bne      lbl_80433860
+	cmpwi    r24, 0xff
+	blt      lbl_804338C0
+	lis      r3, lbl_8049A640@ha
+	lis      r5, lbl_8049A650@ha
+	addi     r3, r3, lbl_8049A640@l
+	li       r4, 0x275
+	addi     r5, r5, lbl_8049A650@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xE0:
-	  addi      r3, r1, 0x8
-	  b         .loc_0xFC
+lbl_804338C0:
+	addi     r3, r1, 8
+	b        lbl_804338DC
 
-	.loc_0xE8:
-	  subi      r31, r31, 0x1
-	  rlwinm    r0,r31,0,24,31
-	  cmplwi    r0, 0x1
-	  bge-      .loc_0xFC
-	  li        r31, 0xFF
+lbl_804338C8:
+	addi     r31, r31, -1
+	clrlwi   r0, r31, 0x18
+	cmplwi   r0, 1
+	bge      lbl_804338DC
+	li       r31, 0xff
 
-	.loc_0xFC:
-	  rlwinm    r0,r31,0,24,31
-	  lbzx      r0, r3, r0
-	  cmplwi    r0, 0
-	  bne+      .loc_0xE8
-	  lwz       r3, 0x4(r29)
-	  mr        r4, r31
-	  bl        -0x4100E8
-	  lwz       r4, 0x4(r29)
-	  li        r3, 0x40
-	  li        r5, 0
-	  bl        -0x40F9C4
-	  mr.       r26, r3
-	  beq-      .loc_0x184
-	  lis       r3, 0x804F
-	  mr        r23, r26
-	  subi      r3, r3, 0x4AD8
-	  li        r0, 0
-	  stw       r3, 0x0(r26)
-	  addi      r3, r23, 0x18
-	  stw       r0, 0x10(r26)
-	  stw       r0, 0xC(r26)
-	  stw       r0, 0x8(r26)
-	  stw       r0, 0x4(r26)
-	  stw       r30, 0x14(r26)
-	  bl        -0x416970
-	  lis       r3, 0x804F
-	  li        r0, 0
-	  subi      r3, r3, 0x3BB8
-	  stw       r3, 0x0(r23)
-	  addi      r3, r3, 0x10
-	  stw       r3, 0x18(r23)
-	  stw       r0, 0x30(r23)
-	  stb       r0, 0x34(r23)
-	  stw       r0, 0x38(r23)
+lbl_804338DC:
+	clrlwi   r0, r31, 0x18
+	lbzx     r0, r3, r0
+	cmplwi   r0, 0
+	bne      lbl_804338C8
+	lwz      r3, 4(r29)
+	mr       r4, r31
+	bl       changeGroupID__7JKRHeapFUc
+	lwz      r4, 4(r29)
+	li       r3, 0x40
+	li       r5, 0
+	bl       __nw__FUlP7JKRHeapi
+	or.      r26, r3, r3
+	beq      lbl_80433964
+	lis      r3, __vt__5CNode@ha
+	mr       r23, r26
+	addi     r3, r3, __vt__5CNode@l
+	li       r0, 0
+	stw      r3, 0(r26)
+	addi     r3, r23, 0x18
+	stw      r0, 0x10(r26)
+	stw      r0, 0xc(r26)
+	stw      r0, 8(r26)
+	stw      r0, 4(r26)
+	stw      r30, 0x14(r26)
+	bl       __ct__11JKRDisposerFv
+	lis      r3, __vt__Q28Resource4Node@ha
+	li       r0, 0
+	addi     r3, r3, __vt__Q28Resource4Node@l
+	stw      r3, 0(r23)
+	addi     r3, r3, 0x10
+	stw      r3, 0x18(r23)
+	stw      r0, 0x30(r23)
+	stb      r0, 0x34(r23)
+	stw      r0, 0x38(r23)
 
-	.loc_0x184:
-	  stb       r31, 0x34(r26)
-	  mr        r4, r26
-	  addi      r3, r29, 0x10
-	  lwz       r0, 0x4(r29)
-	  stw       r0, 0x30(r26)
-	  bl        -0x22570
-	  mr        r3, r26
-	  lmw       r23, 0x10C(r1)
-	  lwz       r0, 0x134(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x130
-	  blr
+lbl_80433964:
+	stb      r31, 0x34(r26)
+	mr       r4, r26
+	addi     r3, r29, 0x10
+	lwz      r0, 4(r29)
+	stw      r0, 0x30(r26)
+	bl       add__5CNodeFP5CNode
+	mr       r3, r26
+	lmw      r23, 0x10c(r1)
+	lwz      r0, 0x134(r1)
+	mtlr     r0
+	addi     r1, r1, 0x130
+	blr
 	*/
 }
 
@@ -911,121 +973,120 @@ void Resource::Mgr::createNewNode(char const*)
 void Resource::Mgr::loadResource(Resource::MgrCommand*, char const*, bool)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stmw      r27, 0xC(r1)
-	  mr        r31, r4
-	  mr        r30, r3
-	  mr        r27, r5
-	  lwz       r0, 0x30(r4)
-	  cmpwi     r0, -0x1
-	  bne-      .loc_0x174
-	  bl        0x414
-	  mr        r3, r30
-	  mr        r4, r31
-	  bl        0x538
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x5C
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x59C0
-	  li        r4, 0x2A2
-	  subi      r5, r5, 0x59B0
-	  crclr     6, 0x6
-	  bl        -0x4093AC
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stmw     r27, 0xc(r1)
+	mr       r31, r4
+	mr       r30, r3
+	mr       r27, r5
+	lwz      r0, 0x30(r4)
+	cmpwi    r0, -1
+	bne      lbl_80433B08
+	bl       delFinishCommand__Q28Resource3MgrFv
+	mr       r3, r30
+	mr       r4, r31
+	bl       searchCommand__Q28Resource3MgrFPQ28Resource10MgrCommand
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_804339F0
+	lis      r3, lbl_8049A640@ha
+	lis      r5, lbl_8049A650@ha
+	addi     r3, r3, lbl_8049A640@l
+	li       r4, 0x2a2
+	addi     r5, r5, lbl_8049A650@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x5C:
-	  lwz       r29, 0x20(r30)
-	  li        r28, 0
-	  b         .loc_0x84
+lbl_804339F0:
+	lwz      r29, 0x20(r30)
+	li       r28, 0
+	b        lbl_80433A18
 
-	.loc_0x68:
-	  lwz       r4, 0x14(r29)
-	  mr        r3, r27
-	  bl        -0x369344
-	  cmpwi     r3, 0
-	  bne-      .loc_0x80
-	  mr        r28, r29
+lbl_804339FC:
+	lwz      r4, 0x14(r29)
+	mr       r3, r27
+	bl       strcmp
+	cmpwi    r3, 0
+	bne      lbl_80433A14
+	mr       r28, r29
 
-	.loc_0x80:
-	  lwz       r29, 0x4(r29)
+lbl_80433A14:
+	lwz      r29, 4(r29)
 
-	.loc_0x84:
-	  cmplwi    r29, 0
-	  bne+      .loc_0x68
-	  cmplwi    r28, 0
-	  beq-      .loc_0xC4
-	  li        r3, 0
-	  li        r0, 0x1
-	  stw       r3, 0x30(r31)
-	  addi      r4, r31, 0x3C
-	  addi      r5, r31, 0xB4
-	  stw       r28, 0x38(r31)
-	  stb       r0, 0x34(r31)
-	  lwz       r3, -0x6514(r13)
-	  bl        -0x10B10
-	  mr        r4, r31
-	  addi      r3, r30, 0x28
-	  bl        -0x2264C
+lbl_80433A18:
+	cmplwi   r29, 0
+	bne      lbl_804339FC
+	cmplwi   r28, 0
+	beq      lbl_80433A58
+	li       r3, 0
+	li       r0, 1
+	stw      r3, 0x30(r31)
+	addi     r4, r31, 0x3c
+	addi     r5, r31, 0xb4
+	stw      r28, 0x38(r31)
+	stb      r0, 0x34(r31)
+	lwz      r3, sys@sda21(r13)
+	bl       dvdLoadUseCallBack__6SystemFP16DvdThreadCommandP9IDelegate
+	mr       r4, r31
+	addi     r3, r30, 0x28
+	bl       add__5CNodeFP5CNode
 
-	.loc_0xC4:
-	  cmplwi    r28, 0
-	  bne-      .loc_0x120
-	  lwz       r3, -0x6458(r13)
-	  mr        r4, r27
-	  bl        -0xA00
-	  mr.       r29, r3
-	  beq-      .loc_0x120
-	  mr        r3, r30
-	  mr        r4, r27
-	  bl        -0x29C
-	  li        r0, 0x1
-	  mr        r28, r3
-	  stw       r0, 0x30(r31)
-	  addi      r4, r31, 0x3C
-	  addi      r5, r31, 0xDC
-	  stw       r28, 0x38(r31)
-	  stb       r0, 0x34(r31)
-	  stw       r29, 0xA8(r31)
-	  lwz       r3, -0x6514(r13)
-	  bl        -0x10B6C
-	  mr        r4, r31
-	  addi      r3, r30, 0x28
-	  bl        -0x226A8
+lbl_80433A58:
+	cmplwi   r28, 0
+	bne      lbl_80433AB4
+	lwz      r3, gAramMgr@sda21(r13)
+	mr       r4, r27
+	bl       search__Q24ARAM3MgrFPCc
+	or.      r29, r3, r3
+	beq      lbl_80433AB4
+	mr       r3, r30
+	mr       r4, r27
+	bl       createNewNode__Q28Resource3MgrFPCc
+	li       r0, 1
+	mr       r28, r3
+	stw      r0, 0x30(r31)
+	addi     r4, r31, 0x3c
+	addi     r5, r31, 0xdc
+	stw      r28, 0x38(r31)
+	stb      r0, 0x34(r31)
+	stw      r29, 0xa8(r31)
+	lwz      r3, sys@sda21(r13)
+	bl       dvdLoadUseCallBack__6SystemFP16DvdThreadCommandP9IDelegate
+	mr       r4, r31
+	addi     r3, r30, 0x28
+	bl       add__5CNodeFP5CNode
 
-	.loc_0x120:
-	  cmplwi    r28, 0
-	  bne-      .loc_0x168
-	  mr        r3, r30
-	  mr        r4, r27
-	  bl        -0x2E4
-	  li        r0, 0x2
-	  mr        r28, r3
-	  stw       r0, 0x30(r31)
-	  li        r0, 0x1
-	  addi      r4, r31, 0x3C
-	  addi      r5, r31, 0xC8
-	  stw       r28, 0x38(r31)
-	  stb       r0, 0x34(r31)
-	  lwz       r3, -0x6514(r13)
-	  bl        -0x10BB4
-	  mr        r4, r31
-	  addi      r3, r30, 0x28
-	  bl        -0x226F0
+lbl_80433AB4:
+	cmplwi   r28, 0
+	bne      lbl_80433AFC
+	mr       r3, r30
+	mr       r4, r27
+	bl       createNewNode__Q28Resource3MgrFPCc
+	li       r0, 2
+	mr       r28, r3
+	stw      r0, 0x30(r31)
+	li       r0, 1
+	addi     r4, r31, 0x3c
+	addi     r5, r31, 0xc8
+	stw      r28, 0x38(r31)
+	stb      r0, 0x34(r31)
+	lwz      r3, sys@sda21(r13)
+	bl       dvdLoadUseCallBack__6SystemFP16DvdThreadCommandP9IDelegate
+	mr       r4, r31
+	addi     r3, r30, 0x28
+	bl       add__5CNodeFP5CNode
 
-	.loc_0x168:
-	  cmplwi    r28, 0
-	  beq-      .loc_0x174
-	  stw       r31, 0x3C(r28)
+lbl_80433AFC:
+	cmplwi   r28, 0
+	beq      lbl_80433B08
+	stw      r31, 0x3c(r28)
 
-	.loc_0x174:
-	  lmw       r27, 0xC(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80433B08:
+	lmw      r27, 0xc(r1)
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -1037,39 +1098,38 @@ void Resource::Mgr::loadResource(Resource::MgrCommand*, char const*, bool)
 void Resource::Mgr::destroy(Resource::MgrCommand*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r3, 0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  lwz       r0, 0x30(r4)
-	  cmpwi     r0, -0x1
-	  beq-      .loc_0x5C
-	  lwz       r4, 0x38(r31)
-	  cmplwi    r4, 0
-	  beq-      .loc_0x5C
-	  beq-      .loc_0x40
-	  lwz       r3, 0x30(r4)
-	  lbz       r4, 0x34(r4)
-	  bl        -0x413328
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	li       r3, 0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	lwz      r0, 0x30(r4)
+	cmpwi    r0, -1
+	beq      lbl_80433B78
+	lwz      r4, 0x38(r31)
+	cmplwi   r4, 0
+	beq      lbl_80433B78
+	beq      lbl_80433B5C
+	lwz      r3, 0x30(r4)
+	lbz      r4, 0x34(r4)
+	bl       freeGroup__10JKRExpHeapFUc
 
-	.loc_0x40:
-	  li        r3, -0x1
-	  li        r0, 0
-	  stw       r3, 0x30(r31)
-	  li        r3, 0x1
-	  stw       r0, 0x38(r31)
-	  stb       r0, 0x34(r31)
-	  stw       r0, 0xB0(r31)
+lbl_80433B5C:
+	li       r3, -1
+	li       r0, 0
+	stw      r3, 0x30(r31)
+	li       r3, 1
+	stw      r0, 0x38(r31)
+	stb      r0, 0x34(r31)
+	stw      r0, 0xb0(r31)
 
-	.loc_0x5C:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80433B78:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1081,38 +1141,37 @@ void Resource::Mgr::destroy(Resource::MgrCommand*)
 void Resource::Mgr::destroyAll(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lwz       r4, 0x20(r3)
-	  b         .loc_0x3C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lwz      r4, 0x20(r3)
+	b        lbl_80433BC8
 
-	.loc_0x20:
-	  cmplwi    r4, 0
-	  lwz       r31, 0x4(r4)
-	  beq-      .loc_0x38
-	  lwz       r3, 0x30(r4)
-	  lbz       r4, 0x34(r4)
-	  bl        -0x413390
+lbl_80433BAC:
+	cmplwi   r4, 0
+	lwz      r31, 4(r4)
+	beq      lbl_80433BC4
+	lwz      r3, 0x30(r4)
+	lbz      r4, 0x34(r4)
+	bl       freeGroup__10JKRExpHeapFUc
 
-	.loc_0x38:
-	  mr        r4, r31
+lbl_80433BC4:
+	mr       r4, r31
 
-	.loc_0x3C:
-	  cmplwi    r4, 0
-	  bne+      .loc_0x20
-	  lwz       r3, 0x4(r30)
-	  bl        -0x4104A4
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80433BC8:
+	cmplwi   r4, 0
+	bne      lbl_80433BAC
+	lwz      r3, 4(r30)
+	bl       freeAll__7JKRHeapFv
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1124,169 +1183,168 @@ void Resource::Mgr::destroyAll(void)
 void Resource::Mgr::sync(Resource::MgrCommand*, bool)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  rlwinm.   r0,r5,0,24,31
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  li        r30, 0
-	  beq-      .loc_0xF4
-	  b         .loc_0xE8
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	clrlwi.  r0, r5, 0x18
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	li       r30, 0
+	beq      lbl_80433CE4
+	b        lbl_80433CD8
 
-	.loc_0x28:
-	  lwz       r0, 0x30(r31)
-	  li        r30, 0
-	  cmpwi     r0, 0x1
-	  beq-      .loc_0x7C
-	  bge-      .loc_0x48
-	  cmpwi     r0, 0
-	  bge-      .loc_0x54
-	  b         .loc_0xCC
+lbl_80433C18:
+	lwz      r0, 0x30(r31)
+	li       r30, 0
+	cmpwi    r0, 1
+	beq      lbl_80433C6C
+	bge      lbl_80433C38
+	cmpwi    r0, 0
+	bge      lbl_80433C44
+	b        lbl_80433CBC
 
-	.loc_0x48:
-	  cmpwi     r0, 0x3
-	  bge-      .loc_0xCC
-	  b         .loc_0xA4
+lbl_80433C38:
+	cmpwi    r0, 3
+	bge      lbl_80433CBC
+	b        lbl_80433C94
 
-	.loc_0x54:
-	  lbz       r0, 0x34(r31)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x74
-	  lwz       r0, 0x54(r31)
-	  subfic    r0, r0, 0x2
-	  cntlzw    r0, r0
-	  rlwinm    r30,r0,27,5,31
-	  b         .loc_0xE8
+lbl_80433C44:
+	lbz      r0, 0x34(r31)
+	cmplwi   r0, 0
+	beq      lbl_80433C64
+	lwz      r0, 0x54(r31)
+	subfic   r0, r0, 2
+	cntlzw   r0, r0
+	srwi     r30, r0, 5
+	b        lbl_80433CD8
 
-	.loc_0x74:
-	  li        r30, 0x1
-	  b         .loc_0xE8
+lbl_80433C64:
+	li       r30, 1
+	b        lbl_80433CD8
 
-	.loc_0x7C:
-	  lbz       r0, 0x34(r31)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x9C
-	  lwz       r0, 0x54(r31)
-	  subfic    r0, r0, 0x2
-	  cntlzw    r0, r0
-	  rlwinm    r30,r0,27,5,31
-	  b         .loc_0xE8
+lbl_80433C6C:
+	lbz      r0, 0x34(r31)
+	cmplwi   r0, 0
+	beq      lbl_80433C8C
+	lwz      r0, 0x54(r31)
+	subfic   r0, r0, 2
+	cntlzw   r0, r0
+	srwi     r30, r0, 5
+	b        lbl_80433CD8
 
-	.loc_0x9C:
-	  li        r30, 0x1
-	  b         .loc_0xE8
+lbl_80433C8C:
+	li       r30, 1
+	b        lbl_80433CD8
 
-	.loc_0xA4:
-	  lbz       r0, 0x34(r31)
-	  cmplwi    r0, 0
-	  beq-      .loc_0xC4
-	  lwz       r0, 0x54(r31)
-	  subfic    r0, r0, 0x2
-	  cntlzw    r0, r0
-	  rlwinm    r30,r0,27,5,31
-	  b         .loc_0xE8
+lbl_80433C94:
+	lbz      r0, 0x34(r31)
+	cmplwi   r0, 0
+	beq      lbl_80433CB4
+	lwz      r0, 0x54(r31)
+	subfic   r0, r0, 2
+	cntlzw   r0, r0
+	srwi     r30, r0, 5
+	b        lbl_80433CD8
 
-	.loc_0xC4:
-	  li        r30, 0x1
-	  b         .loc_0xE8
+lbl_80433CB4:
+	li       r30, 1
+	b        lbl_80433CD8
 
-	.loc_0xCC:
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x59C0
-	  li        r4, 0xFC
-	  subi      r5, r5, 0x59B0
-	  crclr     6, 0x6
-	  bl        -0x409694
+lbl_80433CBC:
+	lis      r3, lbl_8049A640@ha
+	lis      r5, lbl_8049A650@ha
+	addi     r3, r3, lbl_8049A640@l
+	li       r4, 0xfc
+	addi     r5, r5, lbl_8049A650@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xE8:
-	  rlwinm.   r0,r30,0,24,31
-	  beq+      .loc_0x28
-	  b         .loc_0x1B4
+lbl_80433CD8:
+	clrlwi.  r0, r30, 0x18
+	beq      lbl_80433C18
+	b        lbl_80433DA4
 
-	.loc_0xF4:
-	  lwz       r0, 0x30(r31)
-	  li        r30, 0
-	  cmpwi     r0, 0x1
-	  beq-      .loc_0x148
-	  bge-      .loc_0x114
-	  cmpwi     r0, 0
-	  bge-      .loc_0x120
-	  b         .loc_0x198
+lbl_80433CE4:
+	lwz      r0, 0x30(r31)
+	li       r30, 0
+	cmpwi    r0, 1
+	beq      lbl_80433D38
+	bge      lbl_80433D04
+	cmpwi    r0, 0
+	bge      lbl_80433D10
+	b        lbl_80433D88
 
-	.loc_0x114:
-	  cmpwi     r0, 0x3
-	  bge-      .loc_0x198
-	  b         .loc_0x170
+lbl_80433D04:
+	cmpwi    r0, 3
+	bge      lbl_80433D88
+	b        lbl_80433D60
 
-	.loc_0x120:
-	  lbz       r0, 0x34(r31)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x140
-	  lwz       r0, 0x54(r31)
-	  subfic    r0, r0, 0x2
-	  cntlzw    r0, r0
-	  rlwinm    r30,r0,27,5,31
-	  b         .loc_0x1B4
+lbl_80433D10:
+	lbz      r0, 0x34(r31)
+	cmplwi   r0, 0
+	beq      lbl_80433D30
+	lwz      r0, 0x54(r31)
+	subfic   r0, r0, 2
+	cntlzw   r0, r0
+	srwi     r30, r0, 5
+	b        lbl_80433DA4
 
-	.loc_0x140:
-	  li        r30, 0x1
-	  b         .loc_0x1B4
+lbl_80433D30:
+	li       r30, 1
+	b        lbl_80433DA4
 
-	.loc_0x148:
-	  lbz       r0, 0x34(r31)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x168
-	  lwz       r0, 0x54(r31)
-	  subfic    r0, r0, 0x2
-	  cntlzw    r0, r0
-	  rlwinm    r30,r0,27,5,31
-	  b         .loc_0x1B4
+lbl_80433D38:
+	lbz      r0, 0x34(r31)
+	cmplwi   r0, 0
+	beq      lbl_80433D58
+	lwz      r0, 0x54(r31)
+	subfic   r0, r0, 2
+	cntlzw   r0, r0
+	srwi     r30, r0, 5
+	b        lbl_80433DA4
 
-	.loc_0x168:
-	  li        r30, 0x1
-	  b         .loc_0x1B4
+lbl_80433D58:
+	li       r30, 1
+	b        lbl_80433DA4
 
-	.loc_0x170:
-	  lbz       r0, 0x34(r31)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x190
-	  lwz       r0, 0x54(r31)
-	  subfic    r0, r0, 0x2
-	  cntlzw    r0, r0
-	  rlwinm    r30,r0,27,5,31
-	  b         .loc_0x1B4
+lbl_80433D60:
+	lbz      r0, 0x34(r31)
+	cmplwi   r0, 0
+	beq      lbl_80433D80
+	lwz      r0, 0x54(r31)
+	subfic   r0, r0, 2
+	cntlzw   r0, r0
+	srwi     r30, r0, 5
+	b        lbl_80433DA4
 
-	.loc_0x190:
-	  li        r30, 0x1
-	  b         .loc_0x1B4
+lbl_80433D80:
+	li       r30, 1
+	b        lbl_80433DA4
 
-	.loc_0x198:
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x59C0
-	  li        r4, 0xFC
-	  subi      r5, r5, 0x59B0
-	  crclr     6, 0x6
-	  bl        -0x409760
+lbl_80433D88:
+	lis      r3, lbl_8049A640@ha
+	lis      r5, lbl_8049A650@ha
+	addi     r3, r3, lbl_8049A640@l
+	li       r4, 0xfc
+	addi     r5, r5, lbl_8049A650@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x1B4:
-	  rlwinm.   r0,r30,0,24,31
-	  beq-      .loc_0x1C4
-	  mr        r3, r31
-	  bl        -0x227E0
+lbl_80433DA4:
+	clrlwi.  r0, r30, 0x18
+	beq      lbl_80433DB4
+	mr       r3, r31
+	bl       del__5CNodeFv
 
-	.loc_0x1C4:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80433DB4:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1308,109 +1366,108 @@ void Resource::Mgr::syncAll(bool)
 void Resource::Mgr::delFinishCommand(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  lwz       r3, 0x38(r3)
-	  b         .loc_0x10C
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	lwz      r3, 0x38(r3)
+	b        lbl_80433EDC
 
-	.loc_0x20:
-	  lwz       r0, 0x30(r3)
-	  mr        r30, r3
-	  lwz       r31, 0x4(r3)
-	  cmpwi     r0, -0x1
-	  bne-      .loc_0x3C
-	  bl        -0x22834
-	  b         .loc_0x108
+lbl_80433DF0:
+	lwz      r0, 0x30(r3)
+	mr       r30, r3
+	lwz      r31, 4(r3)
+	cmpwi    r0, -1
+	bne      lbl_80433E0C
+	bl       del__5CNodeFv
+	b        lbl_80433ED8
 
-	.loc_0x3C:
-	  cmpwi     r0, 0x1
-	  li        r29, 0
-	  beq-      .loc_0x8C
-	  bge-      .loc_0x58
-	  cmpwi     r0, 0
-	  bge-      .loc_0x64
-	  b         .loc_0xDC
+lbl_80433E0C:
+	cmpwi    r0, 1
+	li       r29, 0
+	beq      lbl_80433E5C
+	bge      lbl_80433E28
+	cmpwi    r0, 0
+	bge      lbl_80433E34
+	b        lbl_80433EAC
 
-	.loc_0x58:
-	  cmpwi     r0, 0x3
-	  bge-      .loc_0xDC
-	  b         .loc_0xB4
+lbl_80433E28:
+	cmpwi    r0, 3
+	bge      lbl_80433EAC
+	b        lbl_80433E84
 
-	.loc_0x64:
-	  lbz       r0, 0x34(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x84
-	  lwz       r0, 0x54(r3)
-	  subfic    r0, r0, 0x2
-	  cntlzw    r0, r0
-	  rlwinm    r29,r0,27,5,31
-	  b         .loc_0xF8
+lbl_80433E34:
+	lbz      r0, 0x34(r3)
+	cmplwi   r0, 0
+	beq      lbl_80433E54
+	lwz      r0, 0x54(r3)
+	subfic   r0, r0, 2
+	cntlzw   r0, r0
+	srwi     r29, r0, 5
+	b        lbl_80433EC8
 
-	.loc_0x84:
-	  li        r29, 0x1
-	  b         .loc_0xF8
+lbl_80433E54:
+	li       r29, 1
+	b        lbl_80433EC8
 
-	.loc_0x8C:
-	  lbz       r0, 0x34(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0xAC
-	  lwz       r0, 0x54(r3)
-	  subfic    r0, r0, 0x2
-	  cntlzw    r0, r0
-	  rlwinm    r29,r0,27,5,31
-	  b         .loc_0xF8
+lbl_80433E5C:
+	lbz      r0, 0x34(r3)
+	cmplwi   r0, 0
+	beq      lbl_80433E7C
+	lwz      r0, 0x54(r3)
+	subfic   r0, r0, 2
+	cntlzw   r0, r0
+	srwi     r29, r0, 5
+	b        lbl_80433EC8
 
-	.loc_0xAC:
-	  li        r29, 0x1
-	  b         .loc_0xF8
+lbl_80433E7C:
+	li       r29, 1
+	b        lbl_80433EC8
 
-	.loc_0xB4:
-	  lbz       r0, 0x34(r3)
-	  cmplwi    r0, 0
-	  beq-      .loc_0xD4
-	  lwz       r0, 0x54(r3)
-	  subfic    r0, r0, 0x2
-	  cntlzw    r0, r0
-	  rlwinm    r29,r0,27,5,31
-	  b         .loc_0xF8
+lbl_80433E84:
+	lbz      r0, 0x34(r3)
+	cmplwi   r0, 0
+	beq      lbl_80433EA4
+	lwz      r0, 0x54(r3)
+	subfic   r0, r0, 2
+	cntlzw   r0, r0
+	srwi     r29, r0, 5
+	b        lbl_80433EC8
 
-	.loc_0xD4:
-	  li        r29, 0x1
-	  b         .loc_0xF8
+lbl_80433EA4:
+	li       r29, 1
+	b        lbl_80433EC8
 
-	.loc_0xDC:
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x59C0
-	  li        r4, 0xFC
-	  subi      r5, r5, 0x59B0
-	  crclr     6, 0x6
-	  bl        -0x409884
+lbl_80433EAC:
+	lis      r3, lbl_8049A640@ha
+	lis      r5, lbl_8049A650@ha
+	addi     r3, r3, lbl_8049A640@l
+	li       r4, 0xfc
+	addi     r5, r5, lbl_8049A650@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0xF8:
-	  rlwinm.   r0,r29,0,24,31
-	  beq-      .loc_0x108
-	  mr        r3, r30
-	  bl        -0x22904
+lbl_80433EC8:
+	clrlwi.  r0, r29, 0x18
+	beq      lbl_80433ED8
+	mr       r3, r30
+	bl       del__5CNodeFv
 
-	.loc_0x108:
-	  mr        r3, r31
+lbl_80433ED8:
+	mr       r3, r31
 
-	.loc_0x10C:
-	  cmplwi    r3, 0
-	  bne+      .loc_0x20
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80433EDC:
+	cmplwi   r3, 0
+	bne      lbl_80433DF0
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -1422,25 +1479,24 @@ void Resource::Mgr::delFinishCommand(void)
 void Resource::Mgr::searchCommand(Resource::MgrCommand*)
 {
 	/*
-	.loc_0x0:
-	  lwz       r5, 0x38(r3)
-	  li        r3, 0
-	  b         .loc_0x24
+	lwz      r5, 0x38(r3)
+	li       r3, 0
+	b        lbl_80433F24
 
-	.loc_0xC:
-	  cmplw     r4, r5
-	  lwz       r0, 0x4(r5)
-	  bne-      .loc_0x20
-	  li        r3, 0x1
-	  blr
+lbl_80433F0C:
+	cmplw    r4, r5
+	lwz      r0, 4(r5)
+	bne      lbl_80433F20
+	li       r3, 1
+	blr
 
-	.loc_0x20:
-	  mr        r5, r0
+lbl_80433F20:
+	mr       r5, r0
 
-	.loc_0x24:
-	  cmplwi    r5, 0
-	  bne+      .loc_0xC
-	  blr
+lbl_80433F24:
+	cmplwi   r5, 0
+	bne      lbl_80433F0C
+	blr
 	*/
 }
 
@@ -1462,19 +1518,18 @@ void Resource::Mgr::watchHeap(void)
 void Delegate<Resource::MgrCommand>::invoke()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r4, r3
-	  stw       r0, 0x14(r1)
-	  addi      r12, r4, 0x8
-	  lwz       r3, 0x4(r3)
-	  bl        -0x372424
-	  nop
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r4, r3
+	stw      r0, 0x14(r1)
+	addi     r12, r4, 8
+	lwz      r3, 4(r3)
+	bl       __ptmf_scall
+	nop
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -1486,9 +1541,8 @@ void Delegate<Resource::MgrCommand>::invoke()
 @24 @Resource::Node::~Node(void)
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x18
-	  b         -0xE8C
+	addi     r3, r3, -24
+	b        __dt__Q28Resource4NodeFv
 	*/
 }
 
@@ -1500,8 +1554,7 @@ void Delegate<Resource::MgrCommand>::invoke()
 @24 @Resource::MgrCommand::~MgrCommand(void)
 {
 	/*
-	.loc_0x0:
-	  subi      r3, r3, 0x18
-	  b         -0xC80
+	addi     r3, r3, -24
+	b        __dt__Q28Resource10MgrCommandFv
 	*/
 }

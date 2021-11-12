@@ -1,6 +1,55 @@
 #include "types.h"
 
 /*
+    Generated from dpostproc
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global sapfnIsLeadByte___Q28JMessage18TResourceContainer
+    sapfnIsLeadByte___Q28JMessage18TResourceContainer:
+        .4byte 0x00000000
+        .4byte isLeadByte_1Byte__7JUTFontFi
+        .4byte isLeadByte_2Byte__7JUTFontFi
+        .4byte isLeadByte_ShiftJIS__7JUTFontFi
+    .global __vt__Q28JMessage12TParse_color
+    __vt__Q28JMessage12TParse_color:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q28JMessage12TParse_colorFv
+        .4byte parseHeader_next__Q28JMessage12TParse_colorFPPCvPUlUl
+        .4byte parseBlock_next__Q28JMessage12TParse_colorFPPCvPUlUl
+    .global __vt__Q28JMessage6TParse
+    __vt__Q28JMessage6TParse:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q28JMessage6TParseFv
+        .4byte parseHeader_next__Q28JMessage6TParseFPPCvPUlUl
+        .4byte parseBlock_next__Q28JMessage6TParseFPPCvPUlUl
+    .global __vt__Q37JGadget6binary19TParse_header_block
+    __vt__Q37JGadget6binary19TParse_header_block:
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+    .global __vt__Q38JMessage18TResourceContainer10TCResource
+    __vt__Q38JMessage18TResourceContainer10TCResource:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q38JMessage18TResourceContainer10TCResourceFv
+        .4byte Do_create__Q38JMessage18TResourceContainer10TCResourceFv
+        .4byte
+   Do_destroy__Q38JMessage18TResourceContainer10TCResourceFPQ28JMessage9TResource
+    .global "__vt__Q27JGadget42TLinkList_factory<Q28JMessage9TResource,0>"
+    "__vt__Q27JGadget42TLinkList_factory<Q28JMessage9TResource,0>":
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+*/
+
+/*
  * --INFO--
  * Address:	800063C4
  * Size:	0001E4
@@ -194,40 +243,38 @@ void JMessage::TResource::toMessageIndex_messageID(unsigned long, unsigned long,
 JMessage::TResourceContainer::TCResource::~TCResource()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x58
-	  lis       r4, 0x804A
-	  subi      r0, r4, 0x1CCC
-	  stw       r0, 0xC(r30)
-	  beq-      .loc_0x48
-	  lis       r4, 0x804A
-	  subi      r0, r4, 0x1CB8
-	  stw       r0, 0xC(r30)
-	  beq-      .loc_0x48
-	  li        r4, 0
-	  bl        0x20CF8
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_80006600
+	lis      r4, __vt__Q38JMessage18TResourceContainer10TCResource@ha
+	addi     r0, r4, __vt__Q38JMessage18TResourceContainer10TCResource@l
+	stw      r0, 0xc(r30)
+	beq      lbl_800065F0
+	lis      r4,
+"__vt__Q27JGadget42TLinkList_factory<Q28JMessage9TResource,0>"@ha addi     r0,
+r4, "__vt__Q27JGadget42TLinkList_factory<Q28JMessage9TResource,0>"@l stw r0,
+0xc(r30) beq      lbl_800065F0 li       r4, 0 bl
+__dt__Q27JGadget13TNodeLinkListFv
 
-	.loc_0x48:
-	  extsh.    r0, r31
-	  ble-      .loc_0x58
-	  mr        r3, r30
-	  bl        0x1DAB8
+lbl_800065F0:
+	extsh.   r0, r31
+	ble      lbl_80006600
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x58:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80006600:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -239,48 +286,47 @@ JMessage::TResourceContainer::TCResource::~TCResource()
 void JMessage::TResourceContainer::TCResource::Get_groupID(unsigned short)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x40(r1)
-	  lwzu      r0, 0x4(r3)
-	  stw       r3, 0x24(r1)
-	  stw       r3, 0x20(r1)
-	  stw       r3, 0x34(r1)
-	  stw       r3, 0x30(r1)
-	  stw       r0, 0x1C(r1)
-	  stw       r0, 0x18(r1)
-	  stw       r0, 0x2C(r1)
-	  stw       r0, 0x28(r1)
-	  stw       r0, 0x38(r1)
-	  stw       r3, 0x3C(r1)
-	  b         .loc_0x54
+	stwu     r1, -0x40(r1)
+	lwzu     r0, 4(r3)
+	stw      r3, 0x24(r1)
+	stw      r3, 0x20(r1)
+	stw      r3, 0x34(r1)
+	stw      r3, 0x30(r1)
+	stw      r0, 0x1c(r1)
+	stw      r0, 0x18(r1)
+	stw      r0, 0x2c(r1)
+	stw      r0, 0x28(r1)
+	stw      r0, 0x38(r1)
+	stw      r3, 0x3c(r1)
+	b        lbl_80006670
 
-	.loc_0x34:
-	  lwz       r3, 0x38(r1)
-	  lwz       r4, 0xC(r3)
-	  lwz       r6, 0x0(r3)
-	  lhz       r0, 0xC(r4)
-	  stw       r6, 0x38(r1)
-	  cmplw     r5, r0
-	  bne-      .loc_0x58
-	  b         .loc_0x7C
+lbl_80006650:
+	lwz      r3, 0x38(r1)
+	lwz      r4, 0xc(r3)
+	lwz      r6, 0(r3)
+	lhz      r0, 0xc(r4)
+	stw      r6, 0x38(r1)
+	cmplw    r5, r0
+	bne      lbl_80006674
+	b        lbl_80006698
 
-	.loc_0x54:
-	  rlwinm    r5,r4,0,16,31
+lbl_80006670:
+	clrlwi   r5, r4, 0x10
 
-	.loc_0x58:
-	  lwz       r3, 0x3C(r1)
-	  lwz       r0, 0x38(r1)
-	  stw       r3, 0x14(r1)
-	  cmplw     r0, r3
-	  stw       r0, 0x10(r1)
-	  stw       r3, 0xC(r1)
-	  stw       r0, 0x8(r1)
-	  bne+      .loc_0x34
-	  li        r3, 0
+lbl_80006674:
+	lwz      r3, 0x3c(r1)
+	lwz      r0, 0x38(r1)
+	stw      r3, 0x14(r1)
+	cmplw    r0, r3
+	stw      r0, 0x10(r1)
+	stw      r3, 0xc(r1)
+	stw      r0, 8(r1)
+	bne      lbl_80006650
+	li       r3, 0
 
-	.loc_0x7C:
-	  addi      r1, r1, 0x40
-	  blr
+lbl_80006698:
+	addi     r1, r1, 0x40
+	blr
 	*/
 }
 
@@ -292,28 +338,27 @@ void JMessage::TResourceContainer::TCResource::Get_groupID(unsigned short)
 void JMessage::TResourceContainer::TCResource::Do_create()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  li        r3, 0x1C
-	  stw       r0, 0x14(r1)
-	  bl        0x1D7F4
-	  cmplwi    r3, 0
-	  beq-      .loc_0x3C
-	  li        r0, 0
-	  stw       r0, 0x0(r3)
-	  stw       r0, 0x4(r3)
-	  stw       r0, 0x8(r3)
-	  stw       r0, 0xC(r3)
-	  stw       r0, 0x10(r3)
-	  stw       r0, 0x14(r3)
-	  stw       r0, 0x18(r3)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	li       r3, 0x1c
+	stw      r0, 0x14(r1)
+	bl       __nw__FUl
+	cmplwi   r3, 0
+	beq      lbl_800066DC
+	li       r0, 0
+	stw      r0, 0(r3)
+	stw      r0, 4(r3)
+	stw      r0, 8(r3)
+	stw      r0, 0xc(r3)
+	stw      r0, 0x10(r3)
+	stw      r0, 0x14(r3)
+	stw      r0, 0x18(r3)
 
-	.loc_0x3C:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_800066DC:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -325,16 +370,15 @@ void JMessage::TResourceContainer::TCResource::Do_create()
 void JMessage::TResourceContainer::TCResource::Do_destroy(JMessage::TResource*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r3, r4
-	  stw       r0, 0x14(r1)
-	  bl        0x1D9B8
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r3, r4
+	stw      r0, 0x14(r1)
+	bl       __dl__FPv
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -346,25 +390,23 @@ void JMessage::TResourceContainer::TCResource::Do_destroy(JMessage::TResource*)
 JMessage::TResourceContainer::TResourceContainer()
 {
 	/*
-	.loc_0x0:
-	  li        r7, 0
-	  lis       r5, 0x804A
-	  stb       r7, 0x0(r3)
-	  lis       r4, 0x804A
-	  addi      r6, r3, 0xC
-	  subi      r5, r5, 0x1CB8
-	  stw       r7, 0x4(r3)
-	  subi      r0, r4, 0x1CCC
-	  stw       r7, 0xC(r3)
-	  stw       r7, 0x10(r3)
-	  stw       r7, 0x8(r3)
-	  stw       r6, 0xC(r3)
-	  stw       r6, 0x10(r3)
-	  stw       r5, 0x14(r3)
-	  stw       r0, 0x14(r3)
-	  stw       r7, 0x18(r3)
-	  stw       r7, 0x1C(r3)
-	  blr
+	li       r7, 0
+	lis      r5,
+	"__vt__Q27JGadget42TLinkList_factory<Q28JMessage9TResource,0>"@ha stb r7,
+	0(r3) lis      r4, __vt__Q38JMessage18TResourceContainer10TCResource@ha addi
+	r6, r3, 0xc addi     r5, r5,
+	"__vt__Q27JGadget42TLinkList_factory<Q28JMessage9TResource,0>"@l stw r7,
+	4(r3) addi     r0, r4, __vt__Q38JMessage18TResourceContainer10TCResource@l
+	stw      r7, 0xc(r3)
+	stw      r7, 0x10(r3)
+	stw      r7, 8(r3)
+	stw      r6, 0xc(r3)
+	stw      r6, 0x10(r3)
+	stw      r5, 0x14(r3)
+	stw      r0, 0x14(r3)
+	stw      r7, 0x18(r3)
+	stw      r7, 0x1c(r3)
+	blr
 	*/
 }
 
@@ -390,25 +432,24 @@ u32 JUTFont::isLeadByte_2Byte(int) { return 0x1; }
 void JUTFont::isLeadByte_ShiftJIS(int)
 {
 	/*
-	.loc_0x0:
-	  cmpwi     r3, 0x81
-	  li        r0, 0
-	  blt-      .loc_0x14
-	  cmpwi     r3, 0x9F
-	  ble-      .loc_0x24
+	cmpwi    r3, 0x81
+	li       r0, 0
+	blt      lbl_8000677C
+	cmpwi    r3, 0x9f
+	ble      lbl_8000678C
 
-	.loc_0x14:
-	  cmpwi     r3, 0xE0
-	  blt-      .loc_0x28
-	  cmpwi     r3, 0xFC
-	  bgt-      .loc_0x28
+lbl_8000677C:
+	cmpwi    r3, 0xe0
+	blt      lbl_80006790
+	cmpwi    r3, 0xfc
+	bgt      lbl_80006790
 
-	.loc_0x24:
-	  li        r0, 0x1
+lbl_8000678C:
+	li       r0, 1
 
-	.loc_0x28:
-	  mr        r3, r0
-	  blr
+lbl_80006790:
+	mr       r3, r0
+	blr
 	*/
 }
 
@@ -420,17 +461,16 @@ void JUTFont::isLeadByte_ShiftJIS(int)
 JMessage::TParse::TParse(JMessage::TResourceContainer*)
 {
 	/*
-	.loc_0x0:
-	  lis       r6, 0x804A
-	  lis       r5, 0x804A
-	  subi      r6, r6, 0x1CE0
-	  li        r0, 0
-	  stw       r6, 0x0(r3)
-	  subi      r5, r5, 0x1CF4
-	  stw       r5, 0x0(r3)
-	  stw       r4, 0x4(r3)
-	  stw       r0, 0x8(r3)
-	  blr
+	lis      r6, __vt__Q37JGadget6binary19TParse_header_block@ha
+	lis      r5, __vt__Q28JMessage6TParse@ha
+	addi     r6, r6, __vt__Q37JGadget6binary19TParse_header_block@l
+	li       r0, 0
+	stw      r6, 0(r3)
+	addi     r5, r5, __vt__Q28JMessage6TParse@l
+	stw      r5, 0(r3)
+	stw      r4, 4(r3)
+	stw      r0, 8(r3)
+	blr
 	*/
 }
 
@@ -442,33 +482,32 @@ JMessage::TParse::TParse(JMessage::TResourceContainer*)
 JMessage::TParse::~TParse()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x44
-	  lis       r5, 0x804A
-	  li        r4, 0
-	  subi      r0, r5, 0x1CF4
-	  stw       r0, 0x0(r30)
-	  bl        0x209A0
-	  extsh.    r0, r31
-	  ble-      .loc_0x44
-	  mr        r3, r30
-	  bl        0x1D8B4
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_80006804
+	lis      r5, __vt__Q28JMessage6TParse@ha
+	li       r4, 0
+	addi     r0, r5, __vt__Q28JMessage6TParse@l
+	stw      r0, 0(r30)
+	bl       __dt__Q37JGadget6binary19TParse_header_blockFv
+	extsh.   r0, r31
+	ble      lbl_80006804
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x44:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80006804:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -744,15 +783,14 @@ void JMessage::TParse::parseBlock_next(const void**, unsigned long*,
 JMessage::TParse_color::TParse_color(JMessage::TResourceContainer*)
 {
 	/*
-	.loc_0x0:
-	  lis       r6, 0x804A
-	  lis       r5, 0x804A
-	  subi      r6, r6, 0x1CE0
-	  stw       r6, 0x0(r3)
-	  subi      r0, r5, 0x1D08
-	  stw       r0, 0x0(r3)
-	  stw       r4, 0x4(r3)
-	  blr
+	lis      r6, __vt__Q37JGadget6binary19TParse_header_block@ha
+	lis      r5, __vt__Q28JMessage12TParse_color@ha
+	addi     r6, r6, __vt__Q37JGadget6binary19TParse_header_block@l
+	stw      r6, 0(r3)
+	addi     r0, r5, __vt__Q28JMessage12TParse_color@l
+	stw      r0, 0(r3)
+	stw      r4, 4(r3)
+	blr
 	*/
 }
 
@@ -764,33 +802,32 @@ JMessage::TParse_color::TParse_color(JMessage::TResourceContainer*)
 JMessage::TParse_color::~TParse_color()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr.       r30, r3
-	  beq-      .loc_0x44
-	  lis       r5, 0x804A
-	  li        r4, 0
-	  subi      r0, r5, 0x1D08
-	  stw       r0, 0x0(r30)
-	  bl        0x20618
-	  extsh.    r0, r31
-	  ble-      .loc_0x44
-	  mr        r3, r30
-	  bl        0x1D52C
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	or.      r30, r3, r3
+	beq      lbl_80006B8C
+	lis      r5, __vt__Q28JMessage12TParse_color@ha
+	li       r4, 0
+	addi     r0, r5, __vt__Q28JMessage12TParse_color@l
+	stw      r0, 0(r30)
+	bl       __dt__Q37JGadget6binary19TParse_header_blockFv
+	extsh.   r0, r31
+	ble      lbl_80006B8C
+	mr       r3, r30
+	bl       __dl__FPv
 
-	.loc_0x44:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r30
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80006B8C:
+	lwz      r0, 0x14(r1)
+	mr       r3, r30
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 

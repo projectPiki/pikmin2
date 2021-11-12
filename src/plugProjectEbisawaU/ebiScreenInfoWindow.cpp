@@ -2,6 +2,10 @@
 
 #include "ebi/P2DScreen/Mgr.h"
 
+/*
+    Generated from dpostproc
+*/
+
 // Whole file is #ifdef'd out because it was meant
 // for a UI based on Windows, not for the GC
 

@@ -1,6 +1,82 @@
 #include "types.h"
 
 /*
+    Generated from dpostproc
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_80499D20
+    lbl_80499D20:
+        .4byte 0x09838183
+        .4byte 0x82838A81
+        .4byte 0x5B834A81
+        .4byte 0x5B83688F
+        .4byte 0x9182AB8D
+        .4byte 0x9E82DD8F
+        .4byte 0x4997B991
+        .4byte 0xD282BF0A
+        .4byte 0x00000000
+        .4byte 0x09834981
+        .4byte 0x5B836683
+        .4byte 0x4283498F
+        .4byte 0x4997B991
+        .4byte 0xD282BF0A
+        .4byte 0x00000000
+        .4byte 0x0947508F
+        .4byte 0x88979D8F
+        .4byte 0x4997B991
+        .4byte 0xD282BF0A
+        .4byte 0x00000000
+        .4byte 0x09838A83
+        .4byte 0x5A836283
+        .4byte 0x67837B83
+        .4byte 0x5E839382
+        .4byte 0xAA899F82
+        .4byte 0xB382EA82
+        .4byte 0xC482A282
+        .4byte 0xE90A0000
+        .4byte 0x8B9689C2
+        .4byte 0x82AA8F6F
+        .4byte 0x82C482A2
+        .4byte 0x82C882A2
+        .4byte 0x0A000000
+        .4byte 0x00000000
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__12ResetManager
+    __vt__12ResetManager:
+        .4byte 0
+        .4byte 0
+        .4byte draw__12ResetManagerFv
+        .4byte updateStatusEffects__12ResetManagerFv
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_80520548
+    lbl_80520548:
+        .4byte 0x00000000
+        .4byte 0x00000000
+    .global lbl_80520550
+    lbl_80520550:
+        .4byte 0x43300000
+        .4byte 0x00000000
+    .global lbl_80520558
+    lbl_80520558:
+        .float 0.25
+    .global lbl_8052055C
+    lbl_8052055C:
+        .4byte 0xBF800000
+    .global lbl_80520560
+    lbl_80520560:
+        .float 1.0
+    .global lbl_80520564
+    lbl_80520564:
+        .4byte 0x437F0000
+    .global lbl_80520568
+    lbl_80520568:
+        .float 0.5
+        .4byte 0x00000000
+*/
+
+/*
  * --INFO--
  * Address:	80429DB0
  * Size:	0000C8
@@ -8,57 +84,56 @@
 ResetManager::ResetManager(float)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r5, 0x804F
-	  li        r4, 0
-	  stw       r0, 0x24(r1)
-	  lis       r0, 0x4330
-	  subi      r5, r5, 0x41F0
-	  lfd       f2, 0x21F0(r2)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r3
-	  lis       r3, 0x8000
-	  stw       r5, 0x0(r31)
-	  stb       r4, 0xC(r31)
-	  stb       r4, 0xD(r31)
-	  stb       r4, 0xE(r31)
-	  stb       r4, 0xF(r31)
-	  lwz       r3, 0xF8(r3)
-	  stw       r0, 0x8(r1)
-	  rlwinm    r0,r3,30,2,31
-	  stw       r0, 0xC(r1)
-	  lfd       f0, 0x8(r1)
-	  fsubs     f0, f0, f2
-	  fmuls     f1, f0, f1
-	  bl        -0x367C14
-	  stw       r3, -0x7728(r13)
-	  li        r5, 0
-	  lfs       f0, 0x21E8(r2)
-	  mr        r3, r31
-	  stw       r4, -0x7724(r13)
-	  stb       r5, 0xC(r31)
-	  stb       r5, 0xD(r31)
-	  stb       r5, 0xE(r31)
-	  stb       r5, 0xF(r31)
-	  lwz       r0, 0xC(r31)
-	  rlwinm    r0,r0,0,0,30
-	  stw       r0, 0xC(r31)
-	  lwz       r0, 0xC(r31)
-	  rlwinm    r0,r0,0,29,27
-	  stw       r0, 0xC(r31)
-	  lwz       r0, 0xC(r31)
-	  rlwinm    r0,r0,0,31,29
-	  stw       r0, 0xC(r31)
-	  stw       r5, 0x4(r31)
-	  stfs      f0, 0x8(r31)
-	  stw       r5, 0x10(r31)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lis      r5, __vt__12ResetManager@ha
+	li       r4, 0
+	stw      r0, 0x24(r1)
+	lis      r0, 0x4330
+	addi     r5, r5, __vt__12ResetManager@l
+	lfd      f2, lbl_80520550@sda21(r2)
+	stw      r31, 0x1c(r1)
+	mr       r31, r3
+	lis      r3, 0x800000F8@ha
+	stw      r5, 0(r31)
+	stb      r4, 0xc(r31)
+	stb      r4, 0xd(r31)
+	stb      r4, 0xe(r31)
+	stb      r4, 0xf(r31)
+	lwz      r3, 0x800000F8@l(r3)
+	stw      r0, 8(r1)
+	srwi     r0, r3, 2
+	stw      r0, 0xc(r1)
+	lfd      f0, 8(r1)
+	fsubs    f0, f0, f2
+	fmuls    f1, f0, f1
+	bl       __cvt_dbl_usll
+	stw      r3, sThreshold__Q210JUTGamePad13C3ButtonReset@sda21(r13)
+	li       r5, 0
+	lfs      f0, lbl_80520548@sda21(r2)
+	mr       r3, r31
+	stw      r4, lbl_80514F5C@sda21(r13)
+	stb      r5, 0xc(r31)
+	stb      r5, 0xd(r31)
+	stb      r5, 0xe(r31)
+	stb      r5, 0xf(r31)
+	lwz      r0, 0xc(r31)
+	rlwinm   r0, r0, 0, 0, 0x1e
+	stw      r0, 0xc(r31)
+	lwz      r0, 0xc(r31)
+	rlwinm   r0, r0, 0, 0x1d, 0x1b
+	stw      r0, 0xc(r31)
+	lwz      r0, 0xc(r31)
+	rlwinm   r0, r0, 0, 0x1f, 0x1d
+	stw      r0, 0xc(r31)
+	stw      r5, 4(r31)
+	stfs     f0, 8(r31)
+	stw      r5, 0x10(r31)
+	lwz      r31, 0x1c(r1)
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -70,214 +145,213 @@ ResetManager::ResetManager(float)
 void ResetManager::update()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r4, 0x804A
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  subi      r31, r4, 0x62E0
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  bl        -0x34B0EC
-	  cmpwi     r3, -0x1
-	  beq-      .loc_0x298
-	  lwz       r0, 0xC(r29)
-	  li        r30, 0x1
-	  rlwinm.   r0,r0,0,3,3
-	  bne-      .loc_0x54
-	  lwz       r3, -0x6514(r13)
-	  bl        -0x6ACC
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x54
-	  li        r30, 0
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lis      r4, lbl_80499D20@ha
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	addi     r31, r4, lbl_80499D20@l
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	bl       DVDGetDriveStatus
+	cmpwi    r3, -1
+	beq      lbl_8042A110
+	lwz      r0, 0xc(r29)
+	li       r30, 1
+	rlwinm.  r0, r0, 0, 3, 3
+	bne      lbl_80429ECC
+	lwz      r3, sys@sda21(r13)
+	bl       isDvdErrorOccured__6SystemFv
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_80429ECC
+	li       r30, 0
 
-	.loc_0x54:
-	  lwz       r0, 0x4(r29)
-	  cmpwi     r0, 0
-	  beq-      .loc_0x1D8
-	  mr        r3, r29
-	  bl        0x3E0
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x140
-	  mr        r3, r29
-	  bl        0x3E4
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x140
-	  lwz       r0, 0xC(r29)
-	  rlwinm.   r0,r0,0,30,30
-	  bne-      .loc_0x140
-	  rlwinm.   r0,r30,0,24,31
-	  beq-      .loc_0x140
-	  lwz       r0, 0x4(r29)
-	  cmpwi     r0, 0x2
-	  beq-      .loc_0xD8
-	  bge-      .loc_0x298
-	  cmpwi     r0, 0x1
-	  bge-      .loc_0xB0
-	  b         .loc_0x298
+lbl_80429ECC:
+	lwz      r0, 4(r29)
+	cmpwi    r0, 0
+	beq      lbl_8042A050
+	mr       r3, r29
+	bl       isWritingMemoryCard__12ResetManagerFv
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_80429FB8
+	mr       r3, r29
+	bl       isSoundSystemStopped__12ResetManagerFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80429FB8
+	lwz      r0, 0xc(r29)
+	rlwinm.  r0, r0, 0, 0x1e, 0x1e
+	bne      lbl_80429FB8
+	clrlwi.  r0, r30, 0x18
+	beq      lbl_80429FB8
+	lwz      r0, 4(r29)
+	cmpwi    r0, 2
+	beq      lbl_80429F50
+	bge      lbl_8042A110
+	cmpwi    r0, 1
+	bge      lbl_80429F28
+	b        lbl_8042A110
 
-	.loc_0xB0:
-	  mr        r3, r29
-	  lwz       r12, 0x0(r29)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x298
-	  li        r0, 0x2
-	  stw       r0, 0x4(r29)
-	  b         .loc_0x298
+lbl_80429F28:
+	mr       r3, r29
+	lwz      r12, 0(r29)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_8042A110
+	li       r0, 2
+	stw      r0, 4(r29)
+	b        lbl_8042A110
 
-	.loc_0xD8:
-	  bl        -0x3FC168
-	  lwz       r3, -0x6514(r13)
-	  bl        -0x6FC8
-	  bl        -0x39EF78
-	  lwz       r0, 0xC(r29)
-	  rlwinm.   r0,r0,0,28,28
-	  beq-      .loc_0x108
-	  li        r3, 0x1
-	  li        r4, 0
-	  li        r5, 0x1
-	  bl        -0x339B98
-	  b         .loc_0x298
+lbl_80429F50:
+	bl       clearForReset__10JUTGamePadFv
+	lwz      r3, sys@sda21(r13)
+	bl       deleteThreads__6SystemFv
+	bl       setForOSResetSystem__10JFWDisplayFv
+	lwz      r0, 0xc(r29)
+	rlwinm.  r0, r0, 0, 0x1c, 0x1c
+	beq      lbl_80429F80
+	li       r3, 1
+	li       r4, 0
+	li       r5, 1
+	bl       OSResetSystem
+	b        lbl_8042A110
 
-	.loc_0x108:
-	  lis       r3, 0x7661
-	  lis       r5, 0x8070
-	  addi      r0, r3, 0x6C64
-	  stw       r0, 0x0(r5)
-	  lis       r3, 0x8070
-	  addi      r4, r5, 0x8
-	  lwz       r0, -0x6518(r13)
-	  stb       r0, 0x4(r5)
-	  bl        -0x339D08
-	  li        r3, 0
-	  li        r4, 0
-	  li        r5, 0
-	  bl        -0x339BD0
-	  b         .loc_0x298
+lbl_80429F80:
+	lis      r3, 0x76616C64@ha
+	lis      r5, 0x80700000@ha
+	addi     r0, r3, 0x76616C64@l
+	stw      r0, 0x80700000@l(r5)
+	lis      r3, 0x8070
+	addi     r4, r5, 8
+	lwz      r0, mRenderMode__6System@sda21(r13)
+	stb      r0, 4(r5)
+	bl       OSSetSaveRegion
+	li       r3, 0
+	li       r4, 0
+	li       r5, 0
+	bl       OSResetSystem
+	b        lbl_8042A110
 
-	.loc_0x140:
-	  mr        r3, r29
-	  bl        0x300
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x15C
-	  addi      r3, r31, 0
-	  crclr     6, 0x6
-	  bl        -0x33C8E4
+lbl_80429FB8:
+	mr       r3, r29
+	bl       isWritingMemoryCard__12ResetManagerFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80429FD4
+	addi     r3, r31, 0
+	crclr    6
+	bl       OSReport
 
-	.loc_0x15C:
-	  mr        r3, r29
-	  bl        0x2F8
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x190
-	  lwz       r3, 0x10(r29)
-	  addi      r0, r3, 0x1
-	  cmpwi     r0, 0x3
-	  stw       r0, 0x10(r29)
-	  bne-      .loc_0x184
-	  bl        0x24A60
+lbl_80429FD4:
+	mr       r3, r29
+	bl       isSoundSystemStopped__12ResetManagerFv
+	clrlwi.  r0, r3, 0x18
+	bne      lbl_8042A008
+	lwz      r3, 0x10(r29)
+	addi     r0, r3, 1
+	cmpwi    r0, 3
+	stw      r0, 0x10(r29)
+	bne      lbl_80429FFC
+	bl       THPPlayerStop
 
-	.loc_0x184:
-	  addi      r3, r31, 0x24
-	  crclr     6, 0x6
-	  bl        -0x33C918
+lbl_80429FFC:
+	addi     r3, r31, 0x24
+	crclr    6
+	bl       OSReport
 
-	.loc_0x190:
-	  lwz       r0, 0xC(r29)
-	  rlwinm.   r0,r0,0,30,30
-	  beq-      .loc_0x1A8
-	  addi      r3, r31, 0x3C
-	  crclr     6, 0x6
-	  bl        -0x33C930
+lbl_8042A008:
+	lwz      r0, 0xc(r29)
+	rlwinm.  r0, r0, 0, 0x1e, 0x1e
+	beq      lbl_8042A020
+	addi     r3, r31, 0x3c
+	crclr    6
+	bl       OSReport
 
-	.loc_0x1A8:
-	  bl        -0x3395C4
-	  cmpwi     r3, 0
-	  beq-      .loc_0x1C0
-	  addi      r3, r31, 0x50
-	  crclr     6, 0x6
-	  bl        -0x33C948
+lbl_8042A020:
+	bl       OSGetResetSwitchState
+	cmpwi    r3, 0
+	beq      lbl_8042A038
+	addi     r3, r31, 0x50
+	crclr    6
+	bl       OSReport
 
-	.loc_0x1C0:
-	  rlwinm.   r0,r30,0,24,31
-	  bne-      .loc_0x298
-	  addi      r3, r31, 0x70
-	  crclr     6, 0x6
-	  bl        -0x33C95C
-	  b         .loc_0x298
+lbl_8042A038:
+	clrlwi.  r0, r30, 0x18
+	bne      lbl_8042A110
+	addi     r3, r31, 0x70
+	crclr    6
+	bl       OSReport
+	b        lbl_8042A110
 
-	.loc_0x1D8:
-	  addic.    r0, r1, 0x8
-	  beq-      .loc_0x1E8
-	  lwz       r0, -0x771C(r13)
-	  stw       r0, 0x8(r1)
+lbl_8042A050:
+	addic.   r0, r1, 8
+	beq      lbl_8042A060
+	lwz      r0, sResetOccurredPort__Q210JUTGamePad13C3ButtonReset@sda21(r13)
+	stw      r0, 8(r1)
 
-	.loc_0x1E8:
-	  lbz       r0, -0x771F(r13)
-	  cmplwi    r0, 0
-	  bne-      .loc_0x200
-	  lwz       r0, 0xC(r29)
-	  rlwinm.   r0,r0,0,31,31
-	  beq-      .loc_0x298
+lbl_8042A060:
+	lbz      r0, sResetOccurred__Q210JUTGamePad13C3ButtonReset@sda21(r13)
+	cmplwi   r0, 0
+	bne      lbl_8042A078
+	lwz      r0, 0xc(r29)
+	clrlwi.  r0, r0, 0x1f
+	beq      lbl_8042A110
 
-	.loc_0x200:
-	  bl        -0x33961C
-	  cmpwi     r3, 0
-	  bne-      .loc_0x298
-	  lwz       r0, 0xC(r29)
-	  li        r3, 0x1
-	  rlwinm.   r0,r0,0,31,31
-	  bne-      .loc_0x234
-	  lwz       r0, 0x8(r1)
-	  cmpwi     r0, -0x1
-	  beq-      .loc_0x234
-	  cmplwi    r0, 0x1
-	  ble-      .loc_0x234
-	  li        r3, 0
+lbl_8042A078:
+	bl       OSGetResetSwitchState
+	cmpwi    r3, 0
+	bne      lbl_8042A110
+	lwz      r0, 0xc(r29)
+	li       r3, 1
+	clrlwi.  r0, r0, 0x1f
+	bne      lbl_8042A0AC
+	lwz      r0, 8(r1)
+	cmpwi    r0, -1
+	beq      lbl_8042A0AC
+	cmplwi   r0, 1
+	ble      lbl_8042A0AC
+	li       r3, 0
 
-	.loc_0x234:
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x278
-	  rlwinm.   r0,r30,0,24,31
-	  beq-      .loc_0x278
-	  lwz       r3, -0x67A8(r13)
-	  cmplwi    r3, 0
-	  beq-      .loc_0x254
-	  bl        -0xF1B78
+lbl_8042A0AC:
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_8042A0F0
+	clrlwi.  r0, r30, 0x18
+	beq      lbl_8042A0F0
+	lwz      r3, spSysIF__8PSSystem@sda21(r13)
+	cmplwi   r3, 0
+	beq      lbl_8042A0CC
+	bl       stopSoundSystem__Q28PSSystem5SysIFFv
 
-	.loc_0x254:
-	  li        r3, 0
-	  li        r4, 0x78
-	  bl        0x25390
-	  lwz       r3, 0xC(r29)
-	  li        r0, 0x1
-	  ori       r3, r3, 0x1
-	  stw       r3, 0xC(r29)
-	  stw       r0, 0x4(r29)
-	  b         .loc_0x298
+lbl_8042A0CC:
+	li       r3, 0
+	li       r4, 0x78
+	bl       THPPlayerSetVolume
+	lwz      r3, 0xc(r29)
+	li       r0, 1
+	ori      r3, r3, 1
+	stw      r3, 0xc(r29)
+	stw      r0, 4(r29)
+	b        lbl_8042A110
 
-	.loc_0x278:
-	  lwz       r3, 0xC(r29)
-	  li        r0, 0
-	  rlwinm    r3,r3,0,0,30
-	  stw       r3, 0xC(r29)
-	  lwz       r3, 0xC(r29)
-	  rlwinm    r3,r3,0,29,27
-	  stw       r3, 0xC(r29)
-	  stb       r0, -0x771F(r13)
+lbl_8042A0F0:
+	lwz      r3, 0xc(r29)
+	li       r0, 0
+	rlwinm   r3, r3, 0, 0, 0x1e
+	stw      r3, 0xc(r29)
+	lwz      r3, 0xc(r29)
+	rlwinm   r3, r3, 0, 0x1d, 0x1b
+	stw      r3, 0xc(r29)
+	stb      r0, sResetOccurred__Q210JUTGamePad13C3ButtonReset@sda21(r13)
 
-	.loc_0x298:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_8042A110:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -289,23 +363,22 @@ void ResetManager::update()
 void ResetManager::updateStatusEffects()
 {
 	/*
-	.loc_0x0:
-	  lwz       r4, -0x6514(r13)
-	  li        r0, 0
-	  lfs       f2, 0x8(r3)
-	  lfs       f1, 0x54(r4)
-	  lfs       f0, 0x21F8(r2)
-	  fadds     f1, f2, f1
-	  stfs      f1, 0x8(r3)
-	  lfs       f1, 0x8(r3)
-	  fcmpo     cr0, f1, f0
-	  ble-      .loc_0x30
-	  stfs      f0, 0x8(r3)
-	  li        r0, 0x1
+	lwz      r4, sys@sda21(r13)
+	li       r0, 0
+	lfs      f2, 8(r3)
+	lfs      f1, 0x54(r4)
+	lfs      f0, lbl_80520558@sda21(r2)
+	fadds    f1, f2, f1
+	stfs     f1, 8(r3)
+	lfs      f1, 8(r3)
+	fcmpo    cr0, f1, f0
+	ble      lbl_8042A15C
+	stfs     f0, 8(r3)
+	li       r0, 1
 
-	.loc_0x30:
-	  mr        r3, r0
-	  blr
+lbl_8042A15C:
+	mr       r3, r0
+	blr
 	*/
 }
 
@@ -317,99 +390,98 @@ void ResetManager::updateStatusEffects()
 void ResetManager::draw()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x120(r1)
-	  mflr      r0
-	  stw       r0, 0x124(r1)
-	  stw       r31, 0x11C(r1)
-	  mr        r31, r3
-	  lwz       r0, 0x4(r3)
-	  cmpwi     r0, 0
-	  beq-      .loc_0x144
-	  bl        -0x34B3D4
-	  cmpwi     r3, -0x1
-	  beq-      .loc_0x144
-	  lwz       r5, -0x76E0(r13)
-	  lis       r4, 0x4330
-	  lfs       f1, 0x21E8(r2)
-	  addi      r3, r1, 0x10
-	  lwz       r6, 0x4(r5)
-	  stw       r4, 0xE8(r1)
-	  fmr       f2, f1
-	  lhz       r5, 0x4(r6)
-	  lhz       r0, 0x6(r6)
-	  stw       r5, 0xEC(r1)
-	  lfd       f4, 0x21F0(r2)
-	  lfd       f0, 0xE8(r1)
-	  stw       r0, 0xF4(r1)
-	  fsubs     f3, f0, f4
-	  lfs       f5, 0x21FC(r2)
-	  stw       r4, 0xF0(r1)
-	  lfs       f6, 0x2200(r2)
-	  lfd       f0, 0xF0(r1)
-	  fsubs     f4, f0, f4
-	  bl        -0x3F4C04
-	  addi      r3, r1, 0x10
-	  bl        -0x3F4B28
-	  lfs       f2, 0x2204(r2)
-	  lfs       f0, 0x8(r31)
-	  lfs       f1, 0x21F8(r2)
-	  fmuls     f2, f2, f0
-	  lfs       f0, 0x21E8(r2)
-	  fdivs     f1, f2, f1
-	  fcmpo     cr0, f1, f0
-	  cror      2, 0x1, 0x2
-	  bne-      .loc_0xB4
-	  lfs       f0, 0x2208(r2)
-	  fadds     f0, f0, f1
-	  b         .loc_0xBC
+	stwu     r1, -0x120(r1)
+	mflr     r0
+	stw      r0, 0x124(r1)
+	stw      r31, 0x11c(r1)
+	mr       r31, r3
+	lwz      r0, 4(r3)
+	cmpwi    r0, 0
+	beq      lbl_8042A2A8
+	bl       DVDGetDriveStatus
+	cmpwi    r3, -1
+	beq      lbl_8042A2A8
+	lwz      r5, sManager__8JUTVideo@sda21(r13)
+	lis      r4, 0x4330
+	lfs      f1, lbl_80520548@sda21(r2)
+	addi     r3, r1, 0x10
+	lwz      r6, 4(r5)
+	stw      r4, 0xe8(r1)
+	fmr      f2, f1
+	lhz      r5, 4(r6)
+	lhz      r0, 6(r6)
+	stw      r5, 0xec(r1)
+	lfd      f4, lbl_80520550@sda21(r2)
+	lfd      f0, 0xe8(r1)
+	stw      r0, 0xf4(r1)
+	fsubs    f3, f0, f4
+	lfs      f5, lbl_8052055C@sda21(r2)
+	stw      r4, 0xf0(r1)
+	lfs      f6, lbl_80520560@sda21(r2)
+	lfd      f0, 0xf0(r1)
+	fsubs    f4, f0, f4
+	bl       __ct__13J2DOrthoGraphFffffff
+	addi     r3, r1, 0x10
+	bl       setPort__13J2DOrthoGraphFv
+	lfs      f2, lbl_80520564@sda21(r2)
+	lfs      f0, 8(r31)
+	lfs      f1, lbl_80520558@sda21(r2)
+	fmuls    f2, f2, f0
+	lfs      f0, lbl_80520548@sda21(r2)
+	fdivs    f1, f2, f1
+	fcmpo    cr0, f1, f0
+	cror     2, 1, 2
+	bne      lbl_8042A218
+	lfs      f0, lbl_80520568@sda21(r2)
+	fadds    f0, f0, f1
+	b        lbl_8042A220
 
-	.loc_0xB4:
-	  lfs       f0, 0x2208(r2)
-	  fsubs     f0, f1, f0
+lbl_8042A218:
+	lfs      f0, lbl_80520568@sda21(r2)
+	fsubs    f0, f1, f0
 
-	.loc_0xBC:
-	  fctiwz    f0, f0
-	  li        r6, 0
-	  lis       r0, 0x4330
-	  lfs       f1, 0x21E8(r2)
-	  stb       r6, 0x8(r1)
-	  addi      r3, r1, 0xC
-	  stfd      f0, 0xF8(r1)
-	  fmr       f2, f1
-	  lwz       r4, -0x76E0(r13)
-	  lwz       r5, 0xFC(r1)
-	  stb       r6, 0x9(r1)
-	  lfd       f4, 0x21F0(r2)
-	  stb       r6, 0xA(r1)
-	  stb       r5, 0xB(r1)
-	  lwz       r5, 0x8(r1)
-	  stw       r0, 0x100(r1)
-	  stw       r5, 0xC(r1)
-	  lwz       r5, 0x4(r4)
-	  stw       r0, 0x108(r1)
-	  lhz       r4, 0x4(r5)
-	  lhz       r0, 0x6(r5)
-	  stw       r4, 0x104(r1)
-	  stw       r0, 0x10C(r1)
-	  lfd       f3, 0x100(r1)
-	  lfd       f0, 0x108(r1)
-	  fsubs     f3, f3, f4
-	  fsubs     f4, f0, f4
-	  bl        -0x3F4894
-	  lis       r4, 0x804A
-	  lis       r3, 0x804A
-	  addi      r0, r4, 0x600
-	  stw       r0, 0x10(r1)
-	  addi      r0, r3, 0x650
-	  stw       r0, 0x10(r1)
+lbl_8042A220:
+	fctiwz   f0, f0
+	li       r6, 0
+	lis      r0, 0x4330
+	lfs      f1, lbl_80520548@sda21(r2)
+	stb      r6, 8(r1)
+	addi     r3, r1, 0xc
+	stfd     f0, 0xf8(r1)
+	fmr      f2, f1
+	lwz      r4, sManager__8JUTVideo@sda21(r13)
+	lwz      r5, 0xfc(r1)
+	stb      r6, 9(r1)
+	lfd      f4, lbl_80520550@sda21(r2)
+	stb      r6, 0xa(r1)
+	stb      r5, 0xb(r1)
+	lwz      r5, 8(r1)
+	stw      r0, 0x100(r1)
+	stw      r5, 0xc(r1)
+	lwz      r5, 4(r4)
+	stw      r0, 0x108(r1)
+	lhz      r4, 4(r5)
+	lhz      r0, 6(r5)
+	stw      r4, 0x104(r1)
+	stw      r0, 0x10c(r1)
+	lfd      f3, 0x100(r1)
+	lfd      f0, 0x108(r1)
+	fsubs    f3, f3, f4
+	fsubs    f4, f0, f4
+	bl       J2DFillBox__FffffQ28JUtility6TColor
+	lis      r4, __vt__13J2DOrthoGraph@ha
+	lis      r3, __vt__14J2DGrafContext@ha
+	addi     r0, r4, __vt__13J2DOrthoGraph@l
+	stw      r0, 0x10(r1)
+	addi     r0, r3, __vt__14J2DGrafContext@l
+	stw      r0, 0x10(r1)
 
-	.loc_0x144:
-	  lwz       r0, 0x124(r1)
-	  lwz       r31, 0x11C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x120
-	  blr
+lbl_8042A2A8:
+	lwz      r0, 0x124(r1)
+	lwz      r31, 0x11c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x120
+	blr
 	*/
 }
 
@@ -421,12 +493,11 @@ void ResetManager::draw()
 void ResetManager::isWritingMemoryCard()
 {
 	/*
-	.loc_0x0:
-	  lwz       r3, -0x6514(r13)
-	  lwz       r3, 0x5C(r3)
-	  lwz       r0, 0xE4(r3)
-	  rlwinm    r3,r0,0,31,31
-	  blr
+	lwz      r3, sys@sda21(r13)
+	lwz      r3, 0x5c(r3)
+	lwz      r0, 0xe4(r3)
+	clrlwi   r3, r0, 0x1f
+	blr
 	*/
 }
 
@@ -438,27 +509,26 @@ void ResetManager::isWritingMemoryCard()
 void ResetManager::isSoundSystemStopped()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r0, -0x67A8(r13)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x30
-	  bl        -0x37D2C0
-	  rlwinm    r0,r3,0,24,31
-	  subfic    r0, r0, 0x2
-	  cntlzw    r0, r0
-	  rlwinm    r3,r0,27,5,31
-	  b         .loc_0x34
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r0, spSysIF__8PSSystem@sda21(r13)
+	cmplwi   r0, 0
+	beq      lbl_8042A300
+	bl       checkAudioStopStatus__8JAIBasicFv
+	clrlwi   r0, r3, 0x18
+	subfic   r0, r0, 2
+	cntlzw   r0, r0
+	srwi     r3, r0, 5
+	b        lbl_8042A304
 
-	.loc_0x30:
-	  li        r3, 0x1
+lbl_8042A300:
+	li       r3, 1
 
-	.loc_0x34:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8042A304:
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }

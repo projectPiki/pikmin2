@@ -1,6 +1,32 @@
 #include "types.h"
 
 /*
+    Generated from dpostproc
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__7JUTFont
+    __vt__7JUTFont:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__7JUTFontFv
+        .4byte 0
+        .4byte setGX__7JUTFontFQ28JUtility6TColorQ28JUtility6TColor
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte getCellWidth__7JUTFontCFv
+        .4byte getCellHeight__7JUTFontCFv
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+*/
+
+/*
  * --INFO--
  * Address:	8002D144
  * Size:	00002C
@@ -8,18 +34,17 @@
 JUTFont::JUTFont()
 {
 	/*
-	.loc_0x0:
-	  lis       r5, 0x804A
-	  li        r4, -0x1
-	  addi      r5, r5, 0x458
-	  li        r0, 0
-	  stw       r5, 0x0(r3)
-	  stw       r4, 0xC(r3)
-	  stw       r4, 0x10(r3)
-	  stw       r4, 0x14(r3)
-	  stw       r4, 0x18(r3)
-	  stb       r0, 0x4(r3)
-	  blr
+	lis      r5, __vt__7JUTFont@ha
+	li       r4, -1
+	addi     r5, r5, __vt__7JUTFont@l
+	li       r0, 0
+	stw      r5, 0(r3)
+	stw      r4, 0xc(r3)
+	stw      r4, 0x10(r3)
+	stw      r4, 0x14(r3)
+	stw      r4, 0x18(r3)
+	stb      r0, 4(r3)
+	blr
 	*/
 }
 
@@ -31,28 +56,25 @@ JUTFont::JUTFont()
 void JUTFont::initialize_state()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  li        r0, -0x1
-	  addi      r4, r1, 0xC
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r3
-	  stw       r0, 0x8(r1)
-	  stw       r0, 0xC(r1)
-	  bl        .loc_0x4C
-	  li        r0, 0
-	  stb       r0, 0x5(r31)
-	  stw       r0, 0x8(r31)
-	  stb       r0, 0x4(r31)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-
-	.loc_0x4C:
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	li       r0, -1
+	addi     r4, r1, 0xc
+	stw      r31, 0x1c(r1)
+	mr       r31, r3
+	stw      r0, 8(r1)
+	stw      r0, 0xc(r1)
+	bl       setCharColor__7JUTFontFQ28JUtility6TColor
+	li       r0, 0
+	stb      r0, 5(r31)
+	stw      r0, 8(r31)
+	stb      r0, 4(r31)
+	lwz      r31, 0x1c(r1)
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -64,28 +86,27 @@ void JUTFont::initialize_state()
 void JUTFont::setCharColor(JUtility::TColor)
 {
 	/*
-	.loc_0x0:
-	  lbz       r7, 0x0(r4)
-	  lbz       r6, 0x1(r4)
-	  stb       r7, 0xC(r3)
-	  lbz       r5, 0x2(r4)
-	  stb       r6, 0xD(r3)
-	  lbz       r0, 0x3(r4)
-	  stb       r5, 0xE(r3)
-	  stb       r0, 0xF(r3)
-	  stb       r7, 0x10(r3)
-	  stb       r6, 0x11(r3)
-	  stb       r5, 0x12(r3)
-	  stb       r0, 0x13(r3)
-	  stb       r7, 0x14(r3)
-	  stb       r6, 0x15(r3)
-	  stb       r5, 0x16(r3)
-	  stb       r0, 0x17(r3)
-	  stb       r7, 0x18(r3)
-	  stb       r6, 0x19(r3)
-	  stb       r5, 0x1A(r3)
-	  stb       r0, 0x1B(r3)
-	  blr
+	lbz      r7, 0(r4)
+	lbz      r6, 1(r4)
+	stb      r7, 0xc(r3)
+	lbz      r5, 2(r4)
+	stb      r6, 0xd(r3)
+	lbz      r0, 3(r4)
+	stb      r5, 0xe(r3)
+	stb      r0, 0xf(r3)
+	stb      r7, 0x10(r3)
+	stb      r6, 0x11(r3)
+	stb      r5, 0x12(r3)
+	stb      r0, 0x13(r3)
+	stb      r7, 0x14(r3)
+	stb      r6, 0x15(r3)
+	stb      r5, 0x16(r3)
+	stb      r0, 0x17(r3)
+	stb      r7, 0x18(r3)
+	stb      r6, 0x19(r3)
+	stb      r5, 0x1a(r3)
+	stb      r0, 0x1b(r3)
+	blr
 	*/
 }
 
@@ -97,32 +118,31 @@ void JUTFont::setCharColor(JUtility::TColor)
 void JUTFont::setGradColor(JUtility::TColor, JUtility::TColor)
 {
 	/*
-	.loc_0x0:
-	  lbz       r10, 0x0(r4)
-	  lbz       r0, 0x1(r4)
-	  stb       r10, 0xC(r3)
-	  lbz       r9, 0x2(r4)
-	  stb       r0, 0xD(r3)
-	  lbz       r8, 0x3(r4)
-	  stb       r9, 0xE(r3)
-	  lbz       r7, 0x0(r5)
-	  stb       r8, 0xF(r3)
-	  lbz       r6, 0x1(r5)
-	  stb       r10, 0x10(r3)
-	  lbz       r4, 0x2(r5)
-	  stb       r0, 0x11(r3)
-	  lbz       r0, 0x3(r5)
-	  stb       r9, 0x12(r3)
-	  stb       r8, 0x13(r3)
-	  stb       r7, 0x14(r3)
-	  stb       r6, 0x15(r3)
-	  stb       r4, 0x16(r3)
-	  stb       r0, 0x17(r3)
-	  stb       r7, 0x18(r3)
-	  stb       r6, 0x19(r3)
-	  stb       r4, 0x1A(r3)
-	  stb       r0, 0x1B(r3)
-	  blr
+	lbz      r10, 0(r4)
+	lbz      r0, 1(r4)
+	stb      r10, 0xc(r3)
+	lbz      r9, 2(r4)
+	stb      r0, 0xd(r3)
+	lbz      r8, 3(r4)
+	stb      r9, 0xe(r3)
+	lbz      r7, 0(r5)
+	stb      r8, 0xf(r3)
+	lbz      r6, 1(r5)
+	stb      r10, 0x10(r3)
+	lbz      r4, 2(r5)
+	stb      r0, 0x11(r3)
+	lbz      r0, 3(r5)
+	stb      r9, 0x12(r3)
+	stb      r8, 0x13(r3)
+	stb      r7, 0x14(r3)
+	stb      r6, 0x15(r3)
+	stb      r4, 0x16(r3)
+	stb      r0, 0x17(r3)
+	stb      r7, 0x18(r3)
+	stb      r6, 0x19(r3)
+	stb      r4, 0x1a(r3)
+	stb      r0, 0x1b(r3)
+	blr
 	*/
 }
 
@@ -223,27 +243,26 @@ void JUTFont::drawString_size_scale(float, float, float, float, const char*,
 JUTFont::~JUTFont()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr.       r31, r3
-	  beq-      .loc_0x30
-	  lis       r5, 0x804A
-	  extsh.    r0, r4
-	  addi      r0, r5, 0x458
-	  stw       r0, 0x0(r31)
-	  ble-      .loc_0x30
-	  bl        -0x9304
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	or.      r31, r3, r3
+	beq      lbl_8002D3BC
+	lis      r5, __vt__7JUTFont@ha
+	extsh.   r0, r4
+	addi     r0, r5, __vt__7JUTFont@l
+	stw      r0, 0(r31)
+	ble      lbl_8002D3BC
+	bl       __dl__FPv
 
-	.loc_0x30:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8002D3BC:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -255,18 +274,17 @@ JUTFont::~JUTFont()
 void JUTFont::setGX(JUtility::TColor, JUtility::TColor)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -278,18 +296,17 @@ void JUTFont::setGX(JUtility::TColor, JUtility::TColor)
 void JUTFont::getCellWidth() const
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x28(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x28(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -301,17 +318,16 @@ void JUTFont::getCellWidth() const
 void JUTFont::getCellHeight() const
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x24(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	lwz      r12, 0(r3)
+	lwz      r12, 0x24(r12)
+	mtctr    r12
+	bctrl
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }

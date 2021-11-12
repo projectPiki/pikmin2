@@ -1,6 +1,98 @@
 #include "types.h"
 
 /*
+    Generated from dpostproc
+
+    .section .rodata  # 0x804732E0 - 0x8049E220
+    .global lbl_80499660
+    lbl_80499660:
+        .asciz "stream.cpp"
+        .skip 0x1
+    .global lbl_8049966C
+    lbl_8049966C:
+        .asciz "Reached EOF\n"
+        .skip 0x3
+    .global readByteTokErr
+    readByteTokErr:
+        .asciz "readByte:Token Error\n"
+        .skip 0x2
+    .global readShortTokErr
+    readShortTokErr:
+        .asciz "readShort:Token Error\n"
+        .skip 0x1
+    .global readIntTokErr
+    readIntTokErr:
+        .asciz "readInt:Token Error\n"
+        .skip 0x3
+    .global readFloatTokErr
+    readFloatTokErr:
+        .asciz "readFloat:Token Error\n"
+        .skip 0x1
+    .global "assert@3391"
+    "assert@3391":
+        .asciz "P2Assert"
+        .skip 0x3
+        .asciz "can not use readFixedString in text mode\n"
+        .skip 0x2
+        .asciz "can not use writeFixedString in text mode\n"
+        .skip 0x1
+    .global lbl_80499740
+    lbl_80499740:
+        .asciz "RamStream::read out of bounds (pos=%d,bound=%d)\n"
+        .skip 0x3
+    .global lbl_80499774
+    lbl_80499774:
+        .asciz "RamStream::write out of bounds (pos=%d,bound=%d)\n"
+        .skip 0x2
+
+    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .global __vt__9RamStream
+    __vt__9RamStream:
+        .4byte 0
+        .4byte 0
+        .4byte read__9RamStreamFPvi
+        .4byte write__9RamStreamFPvi
+        .4byte eof__9RamStreamFv
+        .4byte getPending__6StreamFv
+    .global __vt__6Stream
+    __vt__6Stream:
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte eof__6StreamFv
+        .4byte getPending__6StreamFv
+
+    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
+    .global lbl_805202E0
+    lbl_805202E0:
+        .4byte 0x23202573
+        .4byte 0x0D0A0000
+    .global lbl_805202E8
+    lbl_805202E8:
+        .4byte 0x7B0D0A00
+    .global lbl_805202EC
+    lbl_805202EC:
+        .4byte 0x7D0D0A00
+    .global lbl_805202F0
+    lbl_805202F0:
+        .4byte 0x25640000
+    .global lbl_805202F4
+    lbl_805202F4:
+        .4byte 0x25660000
+    .global lbl_805202F8
+    lbl_805202F8:
+        .4byte 0x20000000
+    .global lbl_805202FC
+    lbl_805202FC:
+        .4byte 0x25642000
+    .global lbl_80520300
+    lbl_80520300:
+        .4byte 0x25662000
+        .4byte 0x00000000
+*/
+
+/*
  * --INFO--
  * Address:	........
  * Size:	000034
@@ -75,183 +167,182 @@ void Stream::copyToTextBuffer()
 void Stream::getNextToken()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  stw       r30, 0x8(r1)
-	  lwz       r0, 0xC(r3)
-	  cmpwi     r0, 0
-	  bne-      .loc_0x2C
-	  li        r3, 0
-	  b         .loc_0x210
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	stw      r30, 8(r1)
+	lwz      r0, 0xc(r3)
+	cmpwi    r0, 0
+	bne      lbl_80413E20
+	li       r3, 0
+	b        lbl_80414004
 
-	.loc_0x2C:
-	  li        r30, 0
-	  stw       r30, 0x10(r31)
-	  lwz       r0, 0xC(r31)
-	  cmpwi     r0, 0x1
-	  bne-      .loc_0xE8
-	  b         .loc_0xCC
+lbl_80413E20:
+	li       r30, 0
+	stw      r30, 0x10(r31)
+	lwz      r0, 0xc(r31)
+	cmpwi    r0, 1
+	bne      lbl_80413EDC
+	b        lbl_80413EC0
 
-	.loc_0x44:
-	  mr        r3, r31
-	  bl        0x8D8
-	  rlwinm.   r0,r30,0,24,31
-	  extsb     r4, r3
-	  beq-      .loc_0x70
-	  cmpwi     r4, 0xD
-	  beq-      .loc_0x68
-	  cmpwi     r4, 0xA
-	  bne-      .loc_0xCC
+lbl_80413E38:
+	mr       r3, r31
+	bl       _readByte__6StreamFv
+	clrlwi.  r0, r30, 0x18
+	extsb    r4, r3
+	beq      lbl_80413E64
+	cmpwi    r4, 0xd
+	beq      lbl_80413E5C
+	cmpwi    r4, 0xa
+	bne      lbl_80413EC0
 
-	.loc_0x68:
-	  li        r30, 0
-	  b         .loc_0xCC
+lbl_80413E5C:
+	li       r30, 0
+	b        lbl_80413EC0
 
-	.loc_0x70:
-	  cmpwi     r4, 0x23
-	  bne-      .loc_0x80
-	  li        r30, 0x1
-	  b         .loc_0xCC
+lbl_80413E64:
+	cmpwi    r4, 0x23
+	bne      lbl_80413E74
+	li       r30, 1
+	b        lbl_80413EC0
 
-	.loc_0x80:
-	  cmpwi     r4, 0xD
-	  li        r0, 0
-	  beq-      .loc_0xBC
-	  cmpwi     r4, 0x20
-	  beq-      .loc_0xBC
-	  cmpwi     r4, 0xA
-	  beq-      .loc_0xBC
-	  cmpwi     r4, 0x9
-	  beq-      .loc_0xBC
-	  cmpwi     r4, 0x23
-	  beq-      .loc_0xBC
-	  cmpwi     r4, 0x7B
-	  beq-      .loc_0xBC
-	  cmpwi     r4, 0x7D
-	  bne-      .loc_0xC0
+lbl_80413E74:
+	cmpwi    r4, 0xd
+	li       r0, 0
+	beq      lbl_80413EB0
+	cmpwi    r4, 0x20
+	beq      lbl_80413EB0
+	cmpwi    r4, 0xa
+	beq      lbl_80413EB0
+	cmpwi    r4, 9
+	beq      lbl_80413EB0
+	cmpwi    r4, 0x23
+	beq      lbl_80413EB0
+	cmpwi    r4, 0x7b
+	beq      lbl_80413EB0
+	cmpwi    r4, 0x7d
+	bne      lbl_80413EB4
 
-	.loc_0xBC:
-	  li        r0, 0x1
+lbl_80413EB0:
+	li       r0, 1
 
-	.loc_0xC0:
-	  rlwinm.   r0,r0,0,24,31
-	  bne-      .loc_0xCC
-	  b         .loc_0xEC
+lbl_80413EB4:
+	clrlwi.  r0, r0, 0x18
+	bne      lbl_80413EC0
+	b        lbl_80413EE0
 
-	.loc_0xCC:
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x44
+lbl_80413EC0:
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80413E38
 
-	.loc_0xE8:
-	  li        r4, 0
+lbl_80413EDC:
+	li       r4, 0
 
-	.loc_0xEC:
-	  lwz       r3, 0x10(r31)
-	  addi      r0, r3, 0x1
-	  add       r3, r31, r3
-	  stw       r0, 0x10(r31)
-	  stb       r4, 0x14(r3)
-	  b         .loc_0x1D4
+lbl_80413EE0:
+	lwz      r3, 0x10(r31)
+	addi     r0, r3, 1
+	add      r3, r31, r3
+	stw      r0, 0x10(r31)
+	stb      r4, 0x14(r3)
+	b        lbl_80413FC8
 
-	.loc_0x104:
-	  mr        r3, r31
-	  bl        0x818
-	  extsb     r5, r3
-	  li        r0, 0
-	  cmpwi     r5, 0xD
-	  beq-      .loc_0x14C
-	  cmpwi     r5, 0x20
-	  beq-      .loc_0x14C
-	  cmpwi     r5, 0xA
-	  beq-      .loc_0x14C
-	  cmpwi     r5, 0x9
-	  beq-      .loc_0x14C
-	  cmpwi     r5, 0x23
-	  beq-      .loc_0x14C
-	  cmpwi     r5, 0x7B
-	  beq-      .loc_0x14C
-	  cmpwi     r5, 0x7D
-	  bne-      .loc_0x150
+lbl_80413EF8:
+	mr       r3, r31
+	bl       _readByte__6StreamFv
+	extsb    r5, r3
+	li       r0, 0
+	cmpwi    r5, 0xd
+	beq      lbl_80413F40
+	cmpwi    r5, 0x20
+	beq      lbl_80413F40
+	cmpwi    r5, 0xa
+	beq      lbl_80413F40
+	cmpwi    r5, 9
+	beq      lbl_80413F40
+	cmpwi    r5, 0x23
+	beq      lbl_80413F40
+	cmpwi    r5, 0x7b
+	beq      lbl_80413F40
+	cmpwi    r5, 0x7d
+	bne      lbl_80413F44
 
-	.loc_0x14C:
-	  li        r0, 0x1
+lbl_80413F40:
+	li       r0, 1
 
-	.loc_0x150:
-	  rlwinm.   r0,r0,0,24,31
-	  beq-      .loc_0x1B8
-	  lwz       r3, 0x10(r31)
-	  cmpwi     r5, 0x23
-	  li        r4, 0
-	  addi      r0, r3, 0x1
-	  add       r3, r31, r3
-	  stw       r0, 0x10(r31)
-	  stb       r4, 0x14(r3)
-	  bne-      .loc_0x20C
-	  b         .loc_0x198
+lbl_80413F44:
+	clrlwi.  r0, r0, 0x18
+	beq      lbl_80413FAC
+	lwz      r3, 0x10(r31)
+	cmpwi    r5, 0x23
+	li       r4, 0
+	addi     r0, r3, 1
+	add      r3, r31, r3
+	stw      r0, 0x10(r31)
+	stb      r4, 0x14(r3)
+	bne      lbl_80414000
+	b        lbl_80413F8C
 
-	.loc_0x17C:
-	  mr        r3, r31
-	  bl        0x7A0
-	  extsb     r0, r3
-	  cmpwi     r0, 0xD
-	  beq-      .loc_0x20C
-	  cmpwi     r0, 0xA
-	  beq-      .loc_0x20C
+lbl_80413F70:
+	mr       r3, r31
+	bl       _readByte__6StreamFv
+	extsb    r0, r3
+	cmpwi    r0, 0xd
+	beq      lbl_80414000
+	cmpwi    r0, 0xa
+	beq      lbl_80414000
 
-	.loc_0x198:
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x17C
-	  b         .loc_0x20C
+lbl_80413F8C:
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80413F70
+	b        lbl_80414000
 
-	.loc_0x1B8:
-	  lwz       r4, 0x10(r31)
-	  extsb.    r0, r5
-	  addi      r3, r4, 0x1
-	  addi      r0, r4, 0x14
-	  stw       r3, 0x10(r31)
-	  stbx      r5, r31, r0
-	  beq-      .loc_0x20C
+lbl_80413FAC:
+	lwz      r4, 0x10(r31)
+	extsb.   r0, r5
+	addi     r3, r4, 1
+	addi     r0, r4, 0x14
+	stw      r3, 0x10(r31)
+	stbx     r5, r31, r0
+	beq      lbl_80414000
 
-	.loc_0x1D4:
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x104
-	  lis       r3, 0x804A
-	  lis       r5, 0x804A
-	  subi      r3, r3, 0x69A0
-	  li        r4, 0x62
-	  subi      r5, r5, 0x6994
-	  crclr     6, 0x6
-	  bl        -0x3E99BC
+lbl_80413FC8:
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80413EF8
+	lis      r3, lbl_80499660@ha
+	lis      r5, lbl_8049966C@ha
+	addi     r3, r3, lbl_80499660@l
+	li       r4, 0x62
+	addi     r5, r5, lbl_8049966C@l
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x20C:
-	  addi      r3, r31, 0x14
+lbl_80414000:
+	addi     r3, r31, 0x14
 
-	.loc_0x210:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80414004:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -263,42 +354,41 @@ void Stream::getNextToken()
 void Stream::textBeginGroup(char*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  lwz       r0, 0xC(r3)
-	  cmpwi     r0, 0
-	  beq-      .loc_0x6C
-	  lwz       r4, 0x414(r30)
-	  bl        0x3EC
-	  mr        r3, r30
-	  mr        r5, r31
-	  addi      r4, r2, 0x1F80
-	  crclr     6, 0x6
-	  bl        0x180
-	  lwz       r4, 0x414(r30)
-	  mr        r3, r30
-	  bl        0x3CC
-	  mr        r3, r30
-	  addi      r4, r2, 0x1F88
-	  crclr     6, 0x6
-	  bl        0x164
-	  lwz       r3, 0x414(r30)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x414(r30)
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	lwz      r0, 0xc(r3)
+	cmpwi    r0, 0
+	beq      lbl_80414088
+	lwz      r4, 0x414(r30)
+	bl       textWriteTab__6StreamFi
+	mr       r3, r30
+	mr       r5, r31
+	addi     r4, r2, lbl_805202E0@sda21
+	crclr    6
+	bl       textWriteText__6StreamFPce
+	lwz      r4, 0x414(r30)
+	mr       r3, r30
+	bl       textWriteTab__6StreamFi
+	mr       r3, r30
+	addi     r4, r2, lbl_805202E8@sda21
+	crclr    6
+	bl       textWriteText__6StreamFPce
+	lwz      r3, 0x414(r30)
+	addi     r0, r3, 1
+	stw      r0, 0x414(r30)
 
-	.loc_0x6C:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80414088:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -310,31 +400,30 @@ void Stream::textBeginGroup(char*)
 void Stream::textEndGroup()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r0, 0xC(r3)
-	  cmpwi     r0, 0
-	  beq-      .loc_0x44
-	  lwz       r4, 0x414(r31)
-	  subi      r0, r4, 0x1
-	  stw       r0, 0x414(r31)
-	  lwz       r4, 0x414(r31)
-	  bl        0x364
-	  mr        r3, r31
-	  addi      r4, r2, 0x1F8C
-	  crclr     6, 0x6
-	  bl        0xFC
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r0, 0xc(r3)
+	cmpwi    r0, 0
+	beq      lbl_804140E4
+	lwz      r4, 0x414(r31)
+	addi     r0, r4, -1
+	stw      r0, 0x414(r31)
+	lwz      r4, 0x414(r31)
+	bl       textWriteTab__6StreamFi
+	mr       r3, r31
+	addi     r4, r2, lbl_805202EC@sda21
+	crclr    6
+	bl       textWriteText__6StreamFPce
 
-	.loc_0x44:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_804140E4:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -346,72 +435,71 @@ void Stream::textEndGroup()
 void Stream::printf(char*, ...)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x490(r1)
-	  mflr      r0
-	  stw       r0, 0x494(r1)
-	  stw       r31, 0x48C(r1)
-	  stw       r30, 0x488(r1)
-	  stw       r29, 0x484(r1)
-	  stw       r28, 0x480(r1)
-	  mr        r28, r3
-	  bne-      cr1, .loc_0x44
-	  stfd      f1, 0x28(r1)
-	  stfd      f2, 0x30(r1)
-	  stfd      f3, 0x38(r1)
-	  stfd      f4, 0x40(r1)
-	  stfd      f5, 0x48(r1)
-	  stfd      f6, 0x50(r1)
-	  stfd      f7, 0x58(r1)
-	  stfd      f8, 0x60(r1)
+	stwu     r1, -0x490(r1)
+	mflr     r0
+	stw      r0, 0x494(r1)
+	stw      r31, 0x48c(r1)
+	stw      r30, 0x488(r1)
+	stw      r29, 0x484(r1)
+	stw      r28, 0x480(r1)
+	mr       r28, r3
+	bne      cr1, lbl_8041413C
+	stfd     f1, 0x28(r1)
+	stfd     f2, 0x30(r1)
+	stfd     f3, 0x38(r1)
+	stfd     f4, 0x40(r1)
+	stfd     f5, 0x48(r1)
+	stfd     f6, 0x50(r1)
+	stfd     f7, 0x58(r1)
+	stfd     f8, 0x60(r1)
 
-	.loc_0x44:
-	  addi      r11, r1, 0x498
-	  addi      r0, r1, 0x8
-	  lis       r12, 0x200
-	  stw       r3, 0x8(r1)
-	  addi      r31, r1, 0x68
-	  addi      r3, r1, 0x74
-	  stw       r5, 0x10(r1)
-	  mr        r5, r31
-	  stw       r4, 0xC(r1)
-	  stw       r6, 0x14(r1)
-	  stw       r7, 0x18(r1)
-	  stw       r8, 0x1C(r1)
-	  stw       r9, 0x20(r1)
-	  stw       r10, 0x24(r1)
-	  stw       r12, 0x68(r1)
-	  stw       r11, 0x6C(r1)
-	  stw       r0, 0x70(r1)
-	  bl        -0x34CB94
-	  addi      r3, r1, 0x74
-	  bl        -0x349878
-	  mr.       r31, r3
-	  ble-      .loc_0xC4
-	  addi      r30, r1, 0x74
-	  li        r29, 0
-	  b         .loc_0xBC
+lbl_8041413C:
+	addi     r11, r1, 0x498
+	addi     r0, r1, 8
+	lis      r12, 0x200
+	stw      r3, 8(r1)
+	addi     r31, r1, 0x68
+	addi     r3, r1, 0x74
+	stw      r5, 0x10(r1)
+	mr       r5, r31
+	stw      r4, 0xc(r1)
+	stw      r6, 0x14(r1)
+	stw      r7, 0x18(r1)
+	stw      r8, 0x1c(r1)
+	stw      r9, 0x20(r1)
+	stw      r10, 0x24(r1)
+	stw      r12, 0x68(r1)
+	stw      r11, 0x6c(r1)
+	stw      r0, 0x70(r1)
+	bl       vsprintf
+	addi     r3, r1, 0x74
+	bl       strlen
+	or.      r31, r3, r3
+	ble      lbl_804141BC
+	addi     r30, r1, 0x74
+	li       r29, 0
+	b        lbl_804141B4
 
-	.loc_0xA8:
-	  lbz       r4, 0x0(r30)
-	  mr        r3, r28
-	  bl        0x1538
-	  addi      r30, r30, 0x1
-	  addi      r29, r29, 0x1
+lbl_804141A0:
+	lbz      r4, 0(r30)
+	mr       r3, r28
+	bl       _writeByte__6StreamFUc
+	addi     r30, r30, 1
+	addi     r29, r29, 1
 
-	.loc_0xBC:
-	  cmpw      r29, r31
-	  blt+      .loc_0xA8
+lbl_804141B4:
+	cmpw     r29, r31
+	blt      lbl_804141A0
 
-	.loc_0xC4:
-	  lwz       r0, 0x494(r1)
-	  lwz       r31, 0x48C(r1)
-	  lwz       r30, 0x488(r1)
-	  lwz       r29, 0x484(r1)
-	  lwz       r28, 0x480(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x490
-	  blr
+lbl_804141BC:
+	lwz      r0, 0x494(r1)
+	lwz      r31, 0x48c(r1)
+	lwz      r30, 0x488(r1)
+	lwz      r29, 0x484(r1)
+	lwz      r28, 0x480(r1)
+	mtlr     r0
+	addi     r1, r1, 0x490
+	blr
 	*/
 }
 
@@ -423,74 +511,73 @@ void Stream::printf(char*, ...)
 void Stream::textWriteText(char*, ...)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x490(r1)
-	  mflr      r0
-	  stw       r0, 0x494(r1)
-	  stw       r31, 0x48C(r1)
-	  stw       r30, 0x488(r1)
-	  stw       r29, 0x484(r1)
-	  stw       r28, 0x480(r1)
-	  mr        r28, r3
-	  bne-      cr1, .loc_0x44
-	  stfd      f1, 0x28(r1)
-	  stfd      f2, 0x30(r1)
-	  stfd      f3, 0x38(r1)
-	  stfd      f4, 0x40(r1)
-	  stfd      f5, 0x48(r1)
-	  stfd      f6, 0x50(r1)
-	  stfd      f7, 0x58(r1)
-	  stfd      f8, 0x60(r1)
+	stwu     r1, -0x490(r1)
+	mflr     r0
+	stw      r0, 0x494(r1)
+	stw      r31, 0x48c(r1)
+	stw      r30, 0x488(r1)
+	stw      r29, 0x484(r1)
+	stw      r28, 0x480(r1)
+	mr       r28, r3
+	bne      cr1, lbl_80414220
+	stfd     f1, 0x28(r1)
+	stfd     f2, 0x30(r1)
+	stfd     f3, 0x38(r1)
+	stfd     f4, 0x40(r1)
+	stfd     f5, 0x48(r1)
+	stfd     f6, 0x50(r1)
+	stfd     f7, 0x58(r1)
+	stfd     f8, 0x60(r1)
 
-	.loc_0x44:
-	  stw       r3, 0x8(r1)
-	  stw       r4, 0xC(r1)
-	  stw       r5, 0x10(r1)
-	  stw       r6, 0x14(r1)
-	  stw       r7, 0x18(r1)
-	  stw       r8, 0x1C(r1)
-	  stw       r9, 0x20(r1)
-	  stw       r10, 0x24(r1)
-	  lwz       r0, 0xC(r28)
-	  cmpwi     r0, 0
-	  beq-      .loc_0xCC
-	  addi      r6, r1, 0x498
-	  addi      r0, r1, 0x8
-	  lis       r3, 0x200
-	  stw       r6, 0x6C(r1)
-	  addi      r5, r1, 0x68
-	  stw       r3, 0x68(r1)
-	  addi      r3, r1, 0x74
-	  stw       r0, 0x70(r1)
-	  bl        -0x34CC80
-	  addi      r3, r1, 0x74
-	  bl        -0x349964
-	  mr.       r31, r3
-	  ble-      .loc_0xCC
-	  addi      r30, r1, 0x74
-	  li        r29, 0
-	  b         .loc_0xC4
+lbl_80414220:
+	stw      r3, 8(r1)
+	stw      r4, 0xc(r1)
+	stw      r5, 0x10(r1)
+	stw      r6, 0x14(r1)
+	stw      r7, 0x18(r1)
+	stw      r8, 0x1c(r1)
+	stw      r9, 0x20(r1)
+	stw      r10, 0x24(r1)
+	lwz      r0, 0xc(r28)
+	cmpwi    r0, 0
+	beq      lbl_804142A8
+	addi     r6, r1, 0x498
+	addi     r0, r1, 8
+	lis      r3, 0x200
+	stw      r6, 0x6c(r1)
+	addi     r5, r1, 0x68
+	stw      r3, 0x68(r1)
+	addi     r3, r1, 0x74
+	stw      r0, 0x70(r1)
+	bl       vsprintf
+	addi     r3, r1, 0x74
+	bl       strlen
+	or.      r31, r3, r3
+	ble      lbl_804142A8
+	addi     r30, r1, 0x74
+	li       r29, 0
+	b        lbl_804142A0
 
-	.loc_0xB0:
-	  lbz       r4, 0x0(r30)
-	  mr        r3, r28
-	  bl        0x144C
-	  addi      r30, r30, 0x1
-	  addi      r29, r29, 0x1
+lbl_8041428C:
+	lbz      r4, 0(r30)
+	mr       r3, r28
+	bl       _writeByte__6StreamFUc
+	addi     r30, r30, 1
+	addi     r29, r29, 1
 
-	.loc_0xC4:
-	  cmpw      r29, r31
-	  blt+      .loc_0xB0
+lbl_804142A0:
+	cmpw     r29, r31
+	blt      lbl_8041428C
 
-	.loc_0xCC:
-	  lwz       r0, 0x494(r1)
-	  lwz       r31, 0x48C(r1)
-	  lwz       r30, 0x488(r1)
-	  lwz       r29, 0x484(r1)
-	  lwz       r28, 0x480(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x490
-	  blr
+lbl_804142A8:
+	lwz      r0, 0x494(r1)
+	lwz      r31, 0x48c(r1)
+	lwz      r30, 0x488(r1)
+	lwz      r29, 0x484(r1)
+	lwz      r28, 0x480(r1)
+	mtlr     r0
+	addi     r1, r1, 0x490
+	blr
 	*/
 }
 
@@ -522,68 +609,67 @@ void Stream::skipPadding(unsigned long)
 void Stream::skipReading(unsigned long)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  mr        r30, r4
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  lwz       r0, 0xC(r3)
-	  cmpwi     r0, 0x1
-	  bne-      .loc_0x70
-	  b         .loc_0x50
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	mr       r30, r4
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	lwz      r0, 0xc(r3)
+	cmpwi    r0, 1
+	bne      lbl_80414338
+	b        lbl_80414318
 
-	.loc_0x30:
-	  mr        r3, r29
-	  bl        0x418
-	  extsb     r0, r3
-	  cmpwi     r0, 0xD
-	  beq-      .loc_0xA8
-	  cmpwi     r0, 0xA
-	  bne-      .loc_0x50
-	  b         .loc_0xA8
+lbl_804142F8:
+	mr       r3, r29
+	bl       _readByte__6StreamFv
+	extsb    r0, r3
+	cmpwi    r0, 0xd
+	beq      lbl_80414370
+	cmpwi    r0, 0xa
+	bne      lbl_80414318
+	b        lbl_80414370
 
-	.loc_0x50:
-	  mr        r3, r29
-	  lwz       r12, 0x0(r29)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x30
-	  b         .loc_0xA8
+lbl_80414318:
+	mr       r3, r29
+	lwz      r12, 0(r29)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_804142F8
+	b        lbl_80414370
 
-	.loc_0x70:
-	  li        r31, 0
-	  b         .loc_0x84
+lbl_80414338:
+	li       r31, 0
+	b        lbl_8041434C
 
-	.loc_0x78:
-	  mr        r3, r29
-	  bl        0x158
-	  addi      r31, r31, 0x1
+lbl_80414340:
+	mr       r3, r29
+	bl       readByte__6StreamFv
+	addi     r31, r31, 1
 
-	.loc_0x84:
-	  cmplw     r31, r30
-	  bge-      .loc_0xA8
-	  mr        r3, r29
-	  lwz       r12, 0x0(r29)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x78
+lbl_8041434C:
+	cmplw    r31, r30
+	bge      lbl_80414370
+	mr       r3, r29
+	lwz      r12, 0(r29)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80414340
 
-	.loc_0xA8:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80414370:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -595,59 +681,58 @@ void Stream::skipReading(unsigned long)
 void Stream::skipReadingText()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r0, 0xC(r3)
-	  cmpwi     r0, 0x1
-	  bne-      .loc_0x78
-	  b         .loc_0x44
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	lwz      r0, 0xc(r3)
+	cmpwi    r0, 1
+	bne      lbl_80414404
+	b        lbl_804143D0
 
-	.loc_0x24:
-	  mr        r3, r31
-	  bl        0x360
-	  extsb     r0, r3
-	  cmpwi     r0, 0xD
-	  beq-      .loc_0x94
-	  cmpwi     r0, 0xA
-	  bne-      .loc_0x44
-	  b         .loc_0x94
+lbl_804143B0:
+	mr       r3, r31
+	bl       _readByte__6StreamFv
+	extsb    r0, r3
+	cmpwi    r0, 0xd
+	beq      lbl_80414420
+	cmpwi    r0, 0xa
+	bne      lbl_804143D0
+	b        lbl_80414420
 
-	.loc_0x44:
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x24
-	  b         .loc_0x94
-	  b         .loc_0x78
+lbl_804143D0:
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_804143B0
+	b        lbl_80414420
+	b        lbl_80414404
 
-	.loc_0x68:
-	  mr        r3, r31
-	  bl        0xA4
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x94
+lbl_804143F4:
+	mr       r3, r31
+	bl       readByte__6StreamFv
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80414420
 
-	.loc_0x78:
-	  mr        r3, r31
-	  lwz       r12, 0x0(r31)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x68
+lbl_80414404:
+	mr       r3, r31
+	lwz      r12, 0(r31)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_804143F4
 
-	.loc_0x94:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_80414420:
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -679,39 +764,38 @@ void Stream::_write(void*, int)
 void Stream::textWriteTab(int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  mr        r30, r4
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  lwz       r0, 0xC(r3)
-	  cmpwi     r0, 0x1
-	  bne-      .loc_0x4C
-	  li        r31, 0
-	  b         .loc_0x44
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	mr       r30, r4
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	lwz      r0, 0xc(r3)
+	cmpwi    r0, 1
+	bne      lbl_80414480
+	li       r31, 0
+	b        lbl_80414478
 
-	.loc_0x34:
-	  mr        r3, r29
-	  li        r4, 0x9
-	  bl        0x1270
-	  addi      r31, r31, 0x1
+lbl_80414468:
+	mr       r3, r29
+	li       r4, 9
+	bl       _writeByte__6StreamFUc
+	addi     r31, r31, 1
 
-	.loc_0x44:
-	  cmpw      r31, r30
-	  blt+      .loc_0x34
+lbl_80414478:
+	cmpw     r31, r30
+	blt      lbl_80414468
 
-	.loc_0x4C:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80414480:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -723,211 +807,208 @@ void Stream::textWriteTab(int)
 void Stream::readByte()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r4, 0x804A
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  subi      r31, r4, 0x69A0
-	  stw       r30, 0x18(r1)
-	  mr        r30, r3
-	  stw       r29, 0x14(r1)
-	  lwz       r0, 0xC(r3)
-	  cmpwi     r0, 0x1
-	  bne-      .loc_0x258
-	  cmpwi     r0, 0
-	  bne-      .loc_0x40
-	  li        r30, 0
-	  b         .loc_0x21C
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lis      r4, lbl_80499660@ha
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	addi     r31, r4, lbl_80499660@l
+	stw      r30, 0x18(r1)
+	mr       r30, r3
+	stw      r29, 0x14(r1)
+	lwz      r0, 0xc(r3)
+	cmpwi    r0, 1
+	bne      lbl_804146F4
+	cmpwi    r0, 0
+	bne      lbl_804144DC
+	li       r30, 0
+	b        lbl_804146B8
 
-	.loc_0x40:
-	  li        r29, 0
-	  stw       r29, 0x10(r30)
-	  lwz       r0, 0xC(r30)
-	  cmpwi     r0, 0x1
-	  bne-      .loc_0xFC
-	  b         .loc_0xE0
+lbl_804144DC:
+	li       r29, 0
+	stw      r29, 0x10(r30)
+	lwz      r0, 0xc(r30)
+	cmpwi    r0, 1
+	bne      lbl_80414598
+	b        lbl_8041457C
 
-	.loc_0x58:
-	  mr        r3, r30
-	  bl        .loc_0x278
-	  rlwinm.   r0,r29,0,24,31
-	  extsb     r4, r3
-	  beq-      .loc_0x84
-	  cmpwi     r4, 0xD
-	  beq-      .loc_0x7C
-	  cmpwi     r4, 0xA
-	  bne-      .loc_0xE0
+lbl_804144F4:
+	mr       r3, r30
+	bl       _readByte__6StreamFv
+	clrlwi.  r0, r29, 0x18
+	extsb    r4, r3
+	beq      lbl_80414520
+	cmpwi    r4, 0xd
+	beq      lbl_80414518
+	cmpwi    r4, 0xa
+	bne      lbl_8041457C
 
-	.loc_0x7C:
-	  li        r29, 0
-	  b         .loc_0xE0
+lbl_80414518:
+	li       r29, 0
+	b        lbl_8041457C
 
-	.loc_0x84:
-	  cmpwi     r4, 0x23
-	  bne-      .loc_0x94
-	  li        r29, 0x1
-	  b         .loc_0xE0
+lbl_80414520:
+	cmpwi    r4, 0x23
+	bne      lbl_80414530
+	li       r29, 1
+	b        lbl_8041457C
 
-	.loc_0x94:
-	  cmpwi     r4, 0xD
-	  li        r0, 0
-	  beq-      .loc_0xD0
-	  cmpwi     r4, 0x20
-	  beq-      .loc_0xD0
-	  cmpwi     r4, 0xA
-	  beq-      .loc_0xD0
-	  cmpwi     r4, 0x9
-	  beq-      .loc_0xD0
-	  cmpwi     r4, 0x23
-	  beq-      .loc_0xD0
-	  cmpwi     r4, 0x7B
-	  beq-      .loc_0xD0
-	  cmpwi     r4, 0x7D
-	  bne-      .loc_0xD4
+lbl_80414530:
+	cmpwi    r4, 0xd
+	li       r0, 0
+	beq      lbl_8041456C
+	cmpwi    r4, 0x20
+	beq      lbl_8041456C
+	cmpwi    r4, 0xa
+	beq      lbl_8041456C
+	cmpwi    r4, 9
+	beq      lbl_8041456C
+	cmpwi    r4, 0x23
+	beq      lbl_8041456C
+	cmpwi    r4, 0x7b
+	beq      lbl_8041456C
+	cmpwi    r4, 0x7d
+	bne      lbl_80414570
 
-	.loc_0xD0:
-	  li        r0, 0x1
+lbl_8041456C:
+	li       r0, 1
 
-	.loc_0xD4:
-	  rlwinm.   r0,r0,0,24,31
-	  bne-      .loc_0xE0
-	  b         .loc_0x100
+lbl_80414570:
+	clrlwi.  r0, r0, 0x18
+	bne      lbl_8041457C
+	b        lbl_8041459C
 
-	.loc_0xE0:
-	  mr        r3, r30
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x58
+lbl_8041457C:
+	mr       r3, r30
+	lwz      r12, 0(r30)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_804144F4
 
-	.loc_0xFC:
-	  li        r4, 0
+lbl_80414598:
+	li       r4, 0
 
-	.loc_0x100:
-	  lwz       r3, 0x10(r30)
-	  addi      r0, r3, 0x1
-	  add       r3, r30, r3
-	  stw       r0, 0x10(r30)
-	  stb       r4, 0x14(r3)
-	  b         .loc_0x1E8
+lbl_8041459C:
+	lwz      r3, 0x10(r30)
+	addi     r0, r3, 1
+	add      r3, r30, r3
+	stw      r0, 0x10(r30)
+	stb      r4, 0x14(r3)
+	b        lbl_80414684
 
-	.loc_0x118:
-	  mr        r3, r30
-	  bl        .loc_0x278
-	  extsb     r5, r3
-	  li        r0, 0
-	  cmpwi     r5, 0xD
-	  beq-      .loc_0x160
-	  cmpwi     r5, 0x20
-	  beq-      .loc_0x160
-	  cmpwi     r5, 0xA
-	  beq-      .loc_0x160
-	  cmpwi     r5, 0x9
-	  beq-      .loc_0x160
-	  cmpwi     r5, 0x23
-	  beq-      .loc_0x160
-	  cmpwi     r5, 0x7B
-	  beq-      .loc_0x160
-	  cmpwi     r5, 0x7D
-	  bne-      .loc_0x164
+lbl_804145B4:
+	mr       r3, r30
+	bl       _readByte__6StreamFv
+	extsb    r5, r3
+	li       r0, 0
+	cmpwi    r5, 0xd
+	beq      lbl_804145FC
+	cmpwi    r5, 0x20
+	beq      lbl_804145FC
+	cmpwi    r5, 0xa
+	beq      lbl_804145FC
+	cmpwi    r5, 9
+	beq      lbl_804145FC
+	cmpwi    r5, 0x23
+	beq      lbl_804145FC
+	cmpwi    r5, 0x7b
+	beq      lbl_804145FC
+	cmpwi    r5, 0x7d
+	bne      lbl_80414600
 
-	.loc_0x160:
-	  li        r0, 0x1
+lbl_804145FC:
+	li       r0, 1
 
-	.loc_0x164:
-	  rlwinm.   r0,r0,0,24,31
-	  beq-      .loc_0x1CC
-	  lwz       r3, 0x10(r30)
-	  cmpwi     r5, 0x23
-	  li        r4, 0
-	  addi      r0, r3, 0x1
-	  add       r3, r30, r3
-	  stw       r0, 0x10(r30)
-	  stb       r4, 0x14(r3)
-	  bne-      .loc_0x218
-	  b         .loc_0x1AC
+lbl_80414600:
+	clrlwi.  r0, r0, 0x18
+	beq      lbl_80414668
+	lwz      r3, 0x10(r30)
+	cmpwi    r5, 0x23
+	li       r4, 0
+	addi     r0, r3, 1
+	add      r3, r30, r3
+	stw      r0, 0x10(r30)
+	stb      r4, 0x14(r3)
+	bne      lbl_804146B4
+	b        lbl_80414648
 
-	.loc_0x190:
-	  mr        r3, r30
-	  bl        .loc_0x278
-	  extsb     r0, r3
-	  cmpwi     r0, 0xD
-	  beq-      .loc_0x218
-	  cmpwi     r0, 0xA
-	  beq-      .loc_0x218
+lbl_8041462C:
+	mr       r3, r30
+	bl       _readByte__6StreamFv
+	extsb    r0, r3
+	cmpwi    r0, 0xd
+	beq      lbl_804146B4
+	cmpwi    r0, 0xa
+	beq      lbl_804146B4
 
-	.loc_0x1AC:
-	  mr        r3, r30
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x190
-	  b         .loc_0x218
+lbl_80414648:
+	mr       r3, r30
+	lwz      r12, 0(r30)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_8041462C
+	b        lbl_804146B4
 
-	.loc_0x1CC:
-	  lwz       r4, 0x10(r30)
-	  extsb.    r0, r5
-	  addi      r3, r4, 0x1
-	  addi      r0, r4, 0x14
-	  stw       r3, 0x10(r30)
-	  stbx      r5, r30, r0
-	  beq-      .loc_0x218
+lbl_80414668:
+	lwz      r4, 0x10(r30)
+	extsb.   r0, r5
+	addi     r3, r4, 1
+	addi     r0, r4, 0x14
+	stw      r3, 0x10(r30)
+	stbx     r5, r30, r0
+	beq      lbl_804146B4
 
-	.loc_0x1E8:
-	  mr        r3, r30
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x118
-	  addi      r3, r31, 0
-	  addi      r5, r31, 0xC
-	  li        r4, 0x62
-	  crclr     6, 0x6
-	  bl        -0x3EA070
+lbl_80414684:
+	mr       r3, r30
+	lwz      r12, 0(r30)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_804145B4
+	addi     r3, r31, 0
+	addi     r5, r31, 0xc
+	li       r4, 0x62
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x218:
-	  addi      r30, r30, 0x14
+lbl_804146B4:
+	addi     r30, r30, 0x14
 
-	.loc_0x21C:
-	  cmplwi    r30, 0
-	  bne-      .loc_0x238
-	  addi      r3, r31, 0
-	  addi      r5, r31, 0x1C
-	  li        r4, 0x104
-	  crclr     6, 0x6
-	  bl        -0x3EA090
+lbl_804146B8:
+	cmplwi   r30, 0
+	bne      lbl_804146D4
+	addi     r3, r31, 0
+	addi     r5, r31, 0x1c
+	li       r4, 0x104
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x238:
-	  mr        r3, r30
-	  addi      r5, r1, 0x8
-	  addi      r4, r2, 0x1F90
-	  crclr     6, 0x6
-	  bl        -0x34B124
-	  lwz       r0, 0x8(r1)
-	  rlwinm    r3,r0,0,24,31
-	  b         .loc_0x25C
+lbl_804146D4:
+	mr       r3, r30
+	addi     r5, r1, 8
+	addi     r4, r2, lbl_805202F0@sda21
+	crclr    6
+	bl       sscanf
+	lwz      r0, 8(r1)
+	clrlwi   r3, r0, 0x18
+	b        lbl_804146F8
 
-	.loc_0x258:
-	  bl        .loc_0x278
+lbl_804146F4:
+	bl       _readByte__6StreamFv
 
-	.loc_0x25C:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-
-	.loc_0x278:
+lbl_804146F8:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -939,27 +1020,26 @@ void Stream::readByte()
 void Stream::_readByte()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  li        r5, 0x1
-	  stw       r0, 0x24(r1)
-	  addi      r4, r1, 0x8
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r3
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x8(r31)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x8(r31)
-	  lbz       r3, 0x8(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	li       r5, 1
+	stw      r0, 0x24(r1)
+	addi     r4, r1, 8
+	stw      r31, 0x1c(r1)
+	mr       r31, r3
+	lwz      r12, 0(r3)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 8(r31)
+	addi     r0, r3, 1
+	stw      r0, 8(r31)
+	lbz      r3, 8(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -971,256 +1051,255 @@ void Stream::_readByte()
 void Stream::readShort()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  lis       r4, 0x804A
-	  stw       r0, 0x34(r1)
-	  stw       r31, 0x2C(r1)
-	  subi      r31, r4, 0x69A0
-	  stw       r30, 0x28(r1)
-	  mr        r30, r3
-	  stw       r29, 0x24(r1)
-	  lwz       r0, 0xC(r3)
-	  cmpwi     r0, 0x1
-	  bne-      .loc_0x2CC
-	  cmpwi     r0, 0
-	  bne-      .loc_0x40
-	  li        r30, 0
-	  b         .loc_0x288
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	lis      r4, lbl_80499660@ha
+	stw      r0, 0x34(r1)
+	stw      r31, 0x2c(r1)
+	addi     r31, r4, lbl_80499660@l
+	stw      r30, 0x28(r1)
+	mr       r30, r3
+	stw      r29, 0x24(r1)
+	lwz      r0, 0xc(r3)
+	cmpwi    r0, 1
+	bne      lbl_80414A30
+	cmpwi    r0, 0
+	bne      lbl_804147A4
+	li       r30, 0
+	b        lbl_804149EC
 
-	.loc_0x40:
-	  li        r29, 0
-	  stw       r29, 0x10(r30)
-	  lwz       r0, 0xC(r30)
-	  cmpwi     r0, 0x1
-	  bne-      .loc_0x120
-	  b         .loc_0x104
+lbl_804147A4:
+	li       r29, 0
+	stw      r29, 0x10(r30)
+	lwz      r0, 0xc(r30)
+	cmpwi    r0, 1
+	bne      lbl_80414884
+	b        lbl_80414868
 
-	.loc_0x58:
-	  mr        r3, r30
-	  addi      r4, r1, 0x8
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x1
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x8(r30)
-	  rlwinm.   r0,r29,0,24,31
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x8(r30)
-	  lbz       r0, 0x8(r1)
-	  extsb     r4, r0
-	  beq-      .loc_0xA8
-	  cmpwi     r4, 0xD
-	  beq-      .loc_0xA0
-	  cmpwi     r4, 0xA
-	  bne-      .loc_0x104
+lbl_804147BC:
+	mr       r3, r30
+	addi     r4, r1, 8
+	lwz      r12, 0(r30)
+	li       r5, 1
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 8(r30)
+	clrlwi.  r0, r29, 0x18
+	addi     r0, r3, 1
+	stw      r0, 8(r30)
+	lbz      r0, 8(r1)
+	extsb    r4, r0
+	beq      lbl_8041480C
+	cmpwi    r4, 0xd
+	beq      lbl_80414804
+	cmpwi    r4, 0xa
+	bne      lbl_80414868
 
-	.loc_0xA0:
-	  li        r29, 0
-	  b         .loc_0x104
+lbl_80414804:
+	li       r29, 0
+	b        lbl_80414868
 
-	.loc_0xA8:
-	  cmpwi     r4, 0x23
-	  bne-      .loc_0xB8
-	  li        r29, 0x1
-	  b         .loc_0x104
+lbl_8041480C:
+	cmpwi    r4, 0x23
+	bne      lbl_8041481C
+	li       r29, 1
+	b        lbl_80414868
 
-	.loc_0xB8:
-	  cmpwi     r4, 0xD
-	  li        r0, 0
-	  beq-      .loc_0xF4
-	  cmpwi     r4, 0x20
-	  beq-      .loc_0xF4
-	  cmpwi     r4, 0xA
-	  beq-      .loc_0xF4
-	  cmpwi     r4, 0x9
-	  beq-      .loc_0xF4
-	  cmpwi     r4, 0x23
-	  beq-      .loc_0xF4
-	  cmpwi     r4, 0x7B
-	  beq-      .loc_0xF4
-	  cmpwi     r4, 0x7D
-	  bne-      .loc_0xF8
+lbl_8041481C:
+	cmpwi    r4, 0xd
+	li       r0, 0
+	beq      lbl_80414858
+	cmpwi    r4, 0x20
+	beq      lbl_80414858
+	cmpwi    r4, 0xa
+	beq      lbl_80414858
+	cmpwi    r4, 9
+	beq      lbl_80414858
+	cmpwi    r4, 0x23
+	beq      lbl_80414858
+	cmpwi    r4, 0x7b
+	beq      lbl_80414858
+	cmpwi    r4, 0x7d
+	bne      lbl_8041485C
 
-	.loc_0xF4:
-	  li        r0, 0x1
+lbl_80414858:
+	li       r0, 1
 
-	.loc_0xF8:
-	  rlwinm.   r0,r0,0,24,31
-	  bne-      .loc_0x104
-	  b         .loc_0x124
+lbl_8041485C:
+	clrlwi.  r0, r0, 0x18
+	bne      lbl_80414868
+	b        lbl_80414888
 
-	.loc_0x104:
-	  mr        r3, r30
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x58
+lbl_80414868:
+	mr       r3, r30
+	lwz      r12, 0(r30)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_804147BC
 
-	.loc_0x120:
-	  li        r4, 0
+lbl_80414884:
+	li       r4, 0
 
-	.loc_0x124:
-	  lwz       r3, 0x10(r30)
-	  addi      r0, r3, 0x1
-	  add       r3, r30, r3
-	  stw       r0, 0x10(r30)
-	  stb       r4, 0x14(r3)
-	  b         .loc_0x254
+lbl_80414888:
+	lwz      r3, 0x10(r30)
+	addi     r0, r3, 1
+	add      r3, r30, r3
+	stw      r0, 0x10(r30)
+	stb      r4, 0x14(r3)
+	b        lbl_804149B8
 
-	.loc_0x13C:
-	  mr        r3, r30
-	  addi      r4, r1, 0xA
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x1
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x8(r30)
-	  li        r0, 0
-	  addi      r3, r3, 0x1
-	  stw       r3, 0x8(r30)
-	  lbz       r3, 0xA(r1)
-	  extsb     r5, r3
-	  cmpwi     r5, 0xD
-	  beq-      .loc_0x1A8
-	  cmpwi     r5, 0x20
-	  beq-      .loc_0x1A8
-	  cmpwi     r5, 0xA
-	  beq-      .loc_0x1A8
-	  cmpwi     r5, 0x9
-	  beq-      .loc_0x1A8
-	  cmpwi     r5, 0x23
-	  beq-      .loc_0x1A8
-	  cmpwi     r5, 0x7B
-	  beq-      .loc_0x1A8
-	  cmpwi     r5, 0x7D
-	  bne-      .loc_0x1AC
+lbl_804148A0:
+	mr       r3, r30
+	addi     r4, r1, 0xa
+	lwz      r12, 0(r30)
+	li       r5, 1
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 8(r30)
+	li       r0, 0
+	addi     r3, r3, 1
+	stw      r3, 8(r30)
+	lbz      r3, 0xa(r1)
+	extsb    r5, r3
+	cmpwi    r5, 0xd
+	beq      lbl_8041490C
+	cmpwi    r5, 0x20
+	beq      lbl_8041490C
+	cmpwi    r5, 0xa
+	beq      lbl_8041490C
+	cmpwi    r5, 9
+	beq      lbl_8041490C
+	cmpwi    r5, 0x23
+	beq      lbl_8041490C
+	cmpwi    r5, 0x7b
+	beq      lbl_8041490C
+	cmpwi    r5, 0x7d
+	bne      lbl_80414910
 
-	.loc_0x1A8:
-	  li        r0, 0x1
+lbl_8041490C:
+	li       r0, 1
 
-	.loc_0x1AC:
-	  rlwinm.   r0,r0,0,24,31
-	  beq-      .loc_0x238
-	  lwz       r3, 0x10(r30)
-	  cmpwi     r5, 0x23
-	  li        r4, 0
-	  addi      r0, r3, 0x1
-	  add       r3, r30, r3
-	  stw       r0, 0x10(r30)
-	  stb       r4, 0x14(r3)
-	  bne-      .loc_0x284
-	  b         .loc_0x218
+lbl_80414910:
+	clrlwi.  r0, r0, 0x18
+	beq      lbl_8041499C
+	lwz      r3, 0x10(r30)
+	cmpwi    r5, 0x23
+	li       r4, 0
+	addi     r0, r3, 1
+	add      r3, r30, r3
+	stw      r0, 0x10(r30)
+	stb      r4, 0x14(r3)
+	bne      lbl_804149E8
+	b        lbl_8041497C
 
-	.loc_0x1D8:
-	  mr        r3, r30
-	  addi      r4, r1, 0x9
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x1
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x8(r30)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x8(r30)
-	  lbz       r0, 0x9(r1)
-	  extsb     r0, r0
-	  cmpwi     r0, 0xD
-	  beq-      .loc_0x284
-	  cmpwi     r0, 0xA
-	  beq-      .loc_0x284
+lbl_8041493C:
+	mr       r3, r30
+	addi     r4, r1, 9
+	lwz      r12, 0(r30)
+	li       r5, 1
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 8(r30)
+	addi     r0, r3, 1
+	stw      r0, 8(r30)
+	lbz      r0, 9(r1)
+	extsb    r0, r0
+	cmpwi    r0, 0xd
+	beq      lbl_804149E8
+	cmpwi    r0, 0xa
+	beq      lbl_804149E8
 
-	.loc_0x218:
-	  mr        r3, r30
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x1D8
-	  b         .loc_0x284
+lbl_8041497C:
+	mr       r3, r30
+	lwz      r12, 0(r30)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_8041493C
+	b        lbl_804149E8
 
-	.loc_0x238:
-	  lwz       r4, 0x10(r30)
-	  extsb.    r0, r5
-	  addi      r3, r4, 0x1
-	  addi      r0, r4, 0x14
-	  stw       r3, 0x10(r30)
-	  stbx      r5, r30, r0
-	  beq-      .loc_0x284
+lbl_8041499C:
+	lwz      r4, 0x10(r30)
+	extsb.   r0, r5
+	addi     r3, r4, 1
+	addi     r0, r4, 0x14
+	stw      r3, 0x10(r30)
+	stbx     r5, r30, r0
+	beq      lbl_804149E8
 
-	.loc_0x254:
-	  mr        r3, r30
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x13C
-	  addi      r3, r31, 0
-	  addi      r5, r31, 0xC
-	  li        r4, 0x62
-	  crclr     6, 0x6
-	  bl        -0x3EA3A4
+lbl_804149B8:
+	mr       r3, r30
+	lwz      r12, 0(r30)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_804148A0
+	addi     r3, r31, 0
+	addi     r5, r31, 0xc
+	li       r4, 0x62
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x284:
-	  addi      r30, r30, 0x14
+lbl_804149E8:
+	addi     r30, r30, 0x14
 
-	.loc_0x288:
-	  cmplwi    r30, 0
-	  bne-      .loc_0x2A4
-	  addi      r3, r31, 0
-	  addi      r5, r31, 0x34
-	  li        r4, 0x11C
-	  crclr     6, 0x6
-	  bl        -0x3EA3C4
+lbl_804149EC:
+	cmplwi   r30, 0
+	bne      lbl_80414A08
+	addi     r3, r31, 0
+	addi     r5, r31, 0x34
+	li       r4, 0x11c
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x2A4:
-	  mr        r3, r30
-	  addi      r5, r1, 0x10
-	  addi      r4, r2, 0x1F90
-	  crclr     6, 0x6
-	  bl        -0x34B458
-	  lwz       r3, 0x10(r1)
-	  rlwinm    r0,r3,0,16,31
-	  sth       r3, 0xC(r1)
-	  extsh     r3, r0
-	  b         .loc_0x310
+lbl_80414A08:
+	mr       r3, r30
+	addi     r5, r1, 0x10
+	addi     r4, r2, lbl_805202F0@sda21
+	crclr    6
+	bl       sscanf
+	lwz      r3, 0x10(r1)
+	clrlwi   r0, r3, 0x10
+	sth      r3, 0xc(r1)
+	extsh    r3, r0
+	b        lbl_80414A74
 
-	.loc_0x2CC:
-	  lwz       r12, 0x0(r3)
-	  addi      r4, r1, 0xC
-	  li        r5, 0x2
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x8(r30)
-	  addi      r0, r3, 0x2
-	  stw       r0, 0x8(r30)
-	  lwz       r0, 0x4(r30)
-	  cmpwi     r0, 0x1
-	  beq-      .loc_0x308
-	  lhz       r3, 0xC(r1)
-	  addi      r0, r1, 0xC
-	  sthbrx    r3, r0, r0
+lbl_80414A30:
+	lwz      r12, 0(r3)
+	addi     r4, r1, 0xc
+	li       r5, 2
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 8(r30)
+	addi     r0, r3, 2
+	stw      r0, 8(r30)
+	lwz      r0, 4(r30)
+	cmpwi    r0, 1
+	beq      lbl_80414A6C
+	lhz      r3, 0xc(r1)
+	addi     r0, r1, 0xc
+	sthbrx   r3, 0, r0
 
-	.loc_0x308:
-	  lhz       r0, 0xC(r1)
-	  extsh     r3, r0
+lbl_80414A6C:
+	lhz      r0, 0xc(r1)
+	extsh    r3, r0
 
-	.loc_0x310:
-	  lwz       r0, 0x34(r1)
-	  lwz       r31, 0x2C(r1)
-	  lwz       r30, 0x28(r1)
-	  lwz       r29, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_80414A74:
+	lwz      r0, 0x34(r1)
+	lwz      r31, 0x2c(r1)
+	lwz      r30, 0x28(r1)
+	lwz      r29, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -1232,252 +1311,251 @@ void Stream::readShort()
 void Stream::readInt()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r4, 0x804A
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  subi      r31, r4, 0x69A0
-	  stw       r30, 0x18(r1)
-	  mr        r30, r3
-	  stw       r29, 0x14(r1)
-	  lwz       r0, 0xC(r3)
-	  cmpwi     r0, 0x1
-	  bne-      .loc_0x2C0
-	  cmpwi     r0, 0
-	  bne-      .loc_0x40
-	  li        r30, 0
-	  b         .loc_0x288
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	lis      r4, lbl_80499660@ha
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	addi     r31, r4, lbl_80499660@l
+	stw      r30, 0x18(r1)
+	mr       r30, r3
+	stw      r29, 0x14(r1)
+	lwz      r0, 0xc(r3)
+	cmpwi    r0, 1
+	bne      lbl_80414D50
+	cmpwi    r0, 0
+	bne      lbl_80414AD0
+	li       r30, 0
+	b        lbl_80414D18
 
-	.loc_0x40:
-	  li        r29, 0
-	  stw       r29, 0x10(r30)
-	  lwz       r0, 0xC(r30)
-	  cmpwi     r0, 0x1
-	  bne-      .loc_0x120
-	  b         .loc_0x104
+lbl_80414AD0:
+	li       r29, 0
+	stw      r29, 0x10(r30)
+	lwz      r0, 0xc(r30)
+	cmpwi    r0, 1
+	bne      lbl_80414BB0
+	b        lbl_80414B94
 
-	.loc_0x58:
-	  mr        r3, r30
-	  addi      r4, r1, 0x8
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x1
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x8(r30)
-	  rlwinm.   r0,r29,0,24,31
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x8(r30)
-	  lbz       r0, 0x8(r1)
-	  extsb     r4, r0
-	  beq-      .loc_0xA8
-	  cmpwi     r4, 0xD
-	  beq-      .loc_0xA0
-	  cmpwi     r4, 0xA
-	  bne-      .loc_0x104
+lbl_80414AE8:
+	mr       r3, r30
+	addi     r4, r1, 8
+	lwz      r12, 0(r30)
+	li       r5, 1
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 8(r30)
+	clrlwi.  r0, r29, 0x18
+	addi     r0, r3, 1
+	stw      r0, 8(r30)
+	lbz      r0, 8(r1)
+	extsb    r4, r0
+	beq      lbl_80414B38
+	cmpwi    r4, 0xd
+	beq      lbl_80414B30
+	cmpwi    r4, 0xa
+	bne      lbl_80414B94
 
-	.loc_0xA0:
-	  li        r29, 0
-	  b         .loc_0x104
+lbl_80414B30:
+	li       r29, 0
+	b        lbl_80414B94
 
-	.loc_0xA8:
-	  cmpwi     r4, 0x23
-	  bne-      .loc_0xB8
-	  li        r29, 0x1
-	  b         .loc_0x104
+lbl_80414B38:
+	cmpwi    r4, 0x23
+	bne      lbl_80414B48
+	li       r29, 1
+	b        lbl_80414B94
 
-	.loc_0xB8:
-	  cmpwi     r4, 0xD
-	  li        r0, 0
-	  beq-      .loc_0xF4
-	  cmpwi     r4, 0x20
-	  beq-      .loc_0xF4
-	  cmpwi     r4, 0xA
-	  beq-      .loc_0xF4
-	  cmpwi     r4, 0x9
-	  beq-      .loc_0xF4
-	  cmpwi     r4, 0x23
-	  beq-      .loc_0xF4
-	  cmpwi     r4, 0x7B
-	  beq-      .loc_0xF4
-	  cmpwi     r4, 0x7D
-	  bne-      .loc_0xF8
+lbl_80414B48:
+	cmpwi    r4, 0xd
+	li       r0, 0
+	beq      lbl_80414B84
+	cmpwi    r4, 0x20
+	beq      lbl_80414B84
+	cmpwi    r4, 0xa
+	beq      lbl_80414B84
+	cmpwi    r4, 9
+	beq      lbl_80414B84
+	cmpwi    r4, 0x23
+	beq      lbl_80414B84
+	cmpwi    r4, 0x7b
+	beq      lbl_80414B84
+	cmpwi    r4, 0x7d
+	bne      lbl_80414B88
 
-	.loc_0xF4:
-	  li        r0, 0x1
+lbl_80414B84:
+	li       r0, 1
 
-	.loc_0xF8:
-	  rlwinm.   r0,r0,0,24,31
-	  bne-      .loc_0x104
-	  b         .loc_0x124
+lbl_80414B88:
+	clrlwi.  r0, r0, 0x18
+	bne      lbl_80414B94
+	b        lbl_80414BB4
 
-	.loc_0x104:
-	  mr        r3, r30
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x58
+lbl_80414B94:
+	mr       r3, r30
+	lwz      r12, 0(r30)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80414AE8
 
-	.loc_0x120:
-	  li        r4, 0
+lbl_80414BB0:
+	li       r4, 0
 
-	.loc_0x124:
-	  lwz       r3, 0x10(r30)
-	  addi      r0, r3, 0x1
-	  add       r3, r30, r3
-	  stw       r0, 0x10(r30)
-	  stb       r4, 0x14(r3)
-	  b         .loc_0x254
+lbl_80414BB4:
+	lwz      r3, 0x10(r30)
+	addi     r0, r3, 1
+	add      r3, r30, r3
+	stw      r0, 0x10(r30)
+	stb      r4, 0x14(r3)
+	b        lbl_80414CE4
 
-	.loc_0x13C:
-	  mr        r3, r30
-	  addi      r4, r1, 0xA
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x1
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x8(r30)
-	  li        r0, 0
-	  addi      r3, r3, 0x1
-	  stw       r3, 0x8(r30)
-	  lbz       r3, 0xA(r1)
-	  extsb     r5, r3
-	  cmpwi     r5, 0xD
-	  beq-      .loc_0x1A8
-	  cmpwi     r5, 0x20
-	  beq-      .loc_0x1A8
-	  cmpwi     r5, 0xA
-	  beq-      .loc_0x1A8
-	  cmpwi     r5, 0x9
-	  beq-      .loc_0x1A8
-	  cmpwi     r5, 0x23
-	  beq-      .loc_0x1A8
-	  cmpwi     r5, 0x7B
-	  beq-      .loc_0x1A8
-	  cmpwi     r5, 0x7D
-	  bne-      .loc_0x1AC
+lbl_80414BCC:
+	mr       r3, r30
+	addi     r4, r1, 0xa
+	lwz      r12, 0(r30)
+	li       r5, 1
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 8(r30)
+	li       r0, 0
+	addi     r3, r3, 1
+	stw      r3, 8(r30)
+	lbz      r3, 0xa(r1)
+	extsb    r5, r3
+	cmpwi    r5, 0xd
+	beq      lbl_80414C38
+	cmpwi    r5, 0x20
+	beq      lbl_80414C38
+	cmpwi    r5, 0xa
+	beq      lbl_80414C38
+	cmpwi    r5, 9
+	beq      lbl_80414C38
+	cmpwi    r5, 0x23
+	beq      lbl_80414C38
+	cmpwi    r5, 0x7b
+	beq      lbl_80414C38
+	cmpwi    r5, 0x7d
+	bne      lbl_80414C3C
 
-	.loc_0x1A8:
-	  li        r0, 0x1
+lbl_80414C38:
+	li       r0, 1
 
-	.loc_0x1AC:
-	  rlwinm.   r0,r0,0,24,31
-	  beq-      .loc_0x238
-	  lwz       r3, 0x10(r30)
-	  cmpwi     r5, 0x23
-	  li        r4, 0
-	  addi      r0, r3, 0x1
-	  add       r3, r30, r3
-	  stw       r0, 0x10(r30)
-	  stb       r4, 0x14(r3)
-	  bne-      .loc_0x284
-	  b         .loc_0x218
+lbl_80414C3C:
+	clrlwi.  r0, r0, 0x18
+	beq      lbl_80414CC8
+	lwz      r3, 0x10(r30)
+	cmpwi    r5, 0x23
+	li       r4, 0
+	addi     r0, r3, 1
+	add      r3, r30, r3
+	stw      r0, 0x10(r30)
+	stb      r4, 0x14(r3)
+	bne      lbl_80414D14
+	b        lbl_80414CA8
 
-	.loc_0x1D8:
-	  mr        r3, r30
-	  addi      r4, r1, 0x9
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x1
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x8(r30)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x8(r30)
-	  lbz       r0, 0x9(r1)
-	  extsb     r0, r0
-	  cmpwi     r0, 0xD
-	  beq-      .loc_0x284
-	  cmpwi     r0, 0xA
-	  beq-      .loc_0x284
+lbl_80414C68:
+	mr       r3, r30
+	addi     r4, r1, 9
+	lwz      r12, 0(r30)
+	li       r5, 1
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 8(r30)
+	addi     r0, r3, 1
+	stw      r0, 8(r30)
+	lbz      r0, 9(r1)
+	extsb    r0, r0
+	cmpwi    r0, 0xd
+	beq      lbl_80414D14
+	cmpwi    r0, 0xa
+	beq      lbl_80414D14
 
-	.loc_0x218:
-	  mr        r3, r30
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x1D8
-	  b         .loc_0x284
+lbl_80414CA8:
+	mr       r3, r30
+	lwz      r12, 0(r30)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80414C68
+	b        lbl_80414D14
 
-	.loc_0x238:
-	  lwz       r4, 0x10(r30)
-	  extsb.    r0, r5
-	  addi      r3, r4, 0x1
-	  addi      r0, r4, 0x14
-	  stw       r3, 0x10(r30)
-	  stbx      r5, r30, r0
-	  beq-      .loc_0x284
+lbl_80414CC8:
+	lwz      r4, 0x10(r30)
+	extsb.   r0, r5
+	addi     r3, r4, 1
+	addi     r0, r4, 0x14
+	stw      r3, 0x10(r30)
+	stbx     r5, r30, r0
+	beq      lbl_80414D14
 
-	.loc_0x254:
-	  mr        r3, r30
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x13C
-	  addi      r3, r31, 0
-	  addi      r5, r31, 0xC
-	  li        r4, 0x62
-	  crclr     6, 0x6
-	  bl        -0x3EA6D0
+lbl_80414CE4:
+	mr       r3, r30
+	lwz      r12, 0(r30)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80414BCC
+	addi     r3, r31, 0
+	addi     r5, r31, 0xc
+	li       r4, 0x62
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x284:
-	  addi      r30, r30, 0x14
+lbl_80414D14:
+	addi     r30, r30, 0x14
 
-	.loc_0x288:
-	  cmplwi    r30, 0
-	  bne-      .loc_0x2A4
-	  addi      r3, r31, 0
-	  addi      r5, r31, 0x4C
-	  li        r4, 0x132
-	  crclr     6, 0x6
-	  bl        -0x3EA6F0
+lbl_80414D18:
+	cmplwi   r30, 0
+	bne      lbl_80414D34
+	addi     r3, r31, 0
+	addi     r5, r31, 0x4c
+	li       r4, 0x132
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x2A4:
-	  mr        r3, r30
-	  addi      r5, r1, 0xC
-	  addi      r4, r2, 0x1F90
-	  crclr     6, 0x6
-	  bl        -0x34B784
-	  lwz       r3, 0xC(r1)
-	  b         .loc_0x300
+lbl_80414D34:
+	mr       r3, r30
+	addi     r5, r1, 0xc
+	addi     r4, r2, lbl_805202F0@sda21
+	crclr    6
+	bl       sscanf
+	lwz      r3, 0xc(r1)
+	b        lbl_80414D90
 
-	.loc_0x2C0:
-	  lwz       r12, 0x0(r3)
-	  addi      r4, r1, 0xC
-	  li        r5, 0x4
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x8(r30)
-	  addi      r0, r3, 0x4
-	  stw       r0, 0x8(r30)
-	  lwz       r0, 0x4(r30)
-	  cmpwi     r0, 0x1
-	  beq-      .loc_0x2FC
-	  lwz       r3, 0xC(r1)
-	  addi      r0, r1, 0xC
-	  stwbrx    r3, r0, r0
+lbl_80414D50:
+	lwz      r12, 0(r3)
+	addi     r4, r1, 0xc
+	li       r5, 4
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 8(r30)
+	addi     r0, r3, 4
+	stw      r0, 8(r30)
+	lwz      r0, 4(r30)
+	cmpwi    r0, 1
+	beq      lbl_80414D8C
+	lwz      r3, 0xc(r1)
+	addi     r0, r1, 0xc
+	stwbrx   r3, 0, r0
 
-	.loc_0x2FC:
-	  lwz       r3, 0xC(r1)
+lbl_80414D8C:
+	lwz      r3, 0xc(r1)
 
-	.loc_0x300:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80414D90:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -1489,255 +1567,254 @@ void Stream::readInt()
 void Stream::readFloat()
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  lis       r4, 0x804A
-	  stw       r0, 0x34(r1)
-	  stw       r31, 0x2C(r1)
-	  subi      r31, r4, 0x69A0
-	  stw       r30, 0x28(r1)
-	  mr        r30, r3
-	  stw       r29, 0x24(r1)
-	  lwz       r0, 0xC(r3)
-	  cmpwi     r0, 0x1
-	  bne-      .loc_0x2C0
-	  cmpwi     r0, 0
-	  bne-      .loc_0x40
-	  li        r30, 0
-	  b         .loc_0x288
+	stwu     r1, -0x30(r1)
+	mflr     r0
+	lis      r4, lbl_80499660@ha
+	stw      r0, 0x34(r1)
+	stw      r31, 0x2c(r1)
+	addi     r31, r4, lbl_80499660@l
+	stw      r30, 0x28(r1)
+	mr       r30, r3
+	stw      r29, 0x24(r1)
+	lwz      r0, 0xc(r3)
+	cmpwi    r0, 1
+	bne      lbl_8041506C
+	cmpwi    r0, 0
+	bne      lbl_80414DEC
+	li       r30, 0
+	b        lbl_80415034
 
-	.loc_0x40:
-	  li        r29, 0
-	  stw       r29, 0x10(r30)
-	  lwz       r0, 0xC(r30)
-	  cmpwi     r0, 0x1
-	  bne-      .loc_0x120
-	  b         .loc_0x104
+lbl_80414DEC:
+	li       r29, 0
+	stw      r29, 0x10(r30)
+	lwz      r0, 0xc(r30)
+	cmpwi    r0, 1
+	bne      lbl_80414ECC
+	b        lbl_80414EB0
 
-	.loc_0x58:
-	  mr        r3, r30
-	  addi      r4, r1, 0x8
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x1
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x8(r30)
-	  rlwinm.   r0,r29,0,24,31
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x8(r30)
-	  lbz       r0, 0x8(r1)
-	  extsb     r4, r0
-	  beq-      .loc_0xA8
-	  cmpwi     r4, 0xD
-	  beq-      .loc_0xA0
-	  cmpwi     r4, 0xA
-	  bne-      .loc_0x104
+lbl_80414E04:
+	mr       r3, r30
+	addi     r4, r1, 8
+	lwz      r12, 0(r30)
+	li       r5, 1
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 8(r30)
+	clrlwi.  r0, r29, 0x18
+	addi     r0, r3, 1
+	stw      r0, 8(r30)
+	lbz      r0, 8(r1)
+	extsb    r4, r0
+	beq      lbl_80414E54
+	cmpwi    r4, 0xd
+	beq      lbl_80414E4C
+	cmpwi    r4, 0xa
+	bne      lbl_80414EB0
 
-	.loc_0xA0:
-	  li        r29, 0
-	  b         .loc_0x104
+lbl_80414E4C:
+	li       r29, 0
+	b        lbl_80414EB0
 
-	.loc_0xA8:
-	  cmpwi     r4, 0x23
-	  bne-      .loc_0xB8
-	  li        r29, 0x1
-	  b         .loc_0x104
+lbl_80414E54:
+	cmpwi    r4, 0x23
+	bne      lbl_80414E64
+	li       r29, 1
+	b        lbl_80414EB0
 
-	.loc_0xB8:
-	  cmpwi     r4, 0xD
-	  li        r0, 0
-	  beq-      .loc_0xF4
-	  cmpwi     r4, 0x20
-	  beq-      .loc_0xF4
-	  cmpwi     r4, 0xA
-	  beq-      .loc_0xF4
-	  cmpwi     r4, 0x9
-	  beq-      .loc_0xF4
-	  cmpwi     r4, 0x23
-	  beq-      .loc_0xF4
-	  cmpwi     r4, 0x7B
-	  beq-      .loc_0xF4
-	  cmpwi     r4, 0x7D
-	  bne-      .loc_0xF8
+lbl_80414E64:
+	cmpwi    r4, 0xd
+	li       r0, 0
+	beq      lbl_80414EA0
+	cmpwi    r4, 0x20
+	beq      lbl_80414EA0
+	cmpwi    r4, 0xa
+	beq      lbl_80414EA0
+	cmpwi    r4, 9
+	beq      lbl_80414EA0
+	cmpwi    r4, 0x23
+	beq      lbl_80414EA0
+	cmpwi    r4, 0x7b
+	beq      lbl_80414EA0
+	cmpwi    r4, 0x7d
+	bne      lbl_80414EA4
 
-	.loc_0xF4:
-	  li        r0, 0x1
+lbl_80414EA0:
+	li       r0, 1
 
-	.loc_0xF8:
-	  rlwinm.   r0,r0,0,24,31
-	  bne-      .loc_0x104
-	  b         .loc_0x124
+lbl_80414EA4:
+	clrlwi.  r0, r0, 0x18
+	bne      lbl_80414EB0
+	b        lbl_80414ED0
 
-	.loc_0x104:
-	  mr        r3, r30
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x58
+lbl_80414EB0:
+	mr       r3, r30
+	lwz      r12, 0(r30)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80414E04
 
-	.loc_0x120:
-	  li        r4, 0
+lbl_80414ECC:
+	li       r4, 0
 
-	.loc_0x124:
-	  lwz       r3, 0x10(r30)
-	  addi      r0, r3, 0x1
-	  add       r3, r30, r3
-	  stw       r0, 0x10(r30)
-	  stb       r4, 0x14(r3)
-	  b         .loc_0x254
+lbl_80414ED0:
+	lwz      r3, 0x10(r30)
+	addi     r0, r3, 1
+	add      r3, r30, r3
+	stw      r0, 0x10(r30)
+	stb      r4, 0x14(r3)
+	b        lbl_80415000
 
-	.loc_0x13C:
-	  mr        r3, r30
-	  addi      r4, r1, 0xA
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x1
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x8(r30)
-	  li        r0, 0
-	  addi      r3, r3, 0x1
-	  stw       r3, 0x8(r30)
-	  lbz       r3, 0xA(r1)
-	  extsb     r5, r3
-	  cmpwi     r5, 0xD
-	  beq-      .loc_0x1A8
-	  cmpwi     r5, 0x20
-	  beq-      .loc_0x1A8
-	  cmpwi     r5, 0xA
-	  beq-      .loc_0x1A8
-	  cmpwi     r5, 0x9
-	  beq-      .loc_0x1A8
-	  cmpwi     r5, 0x23
-	  beq-      .loc_0x1A8
-	  cmpwi     r5, 0x7B
-	  beq-      .loc_0x1A8
-	  cmpwi     r5, 0x7D
-	  bne-      .loc_0x1AC
+lbl_80414EE8:
+	mr       r3, r30
+	addi     r4, r1, 0xa
+	lwz      r12, 0(r30)
+	li       r5, 1
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 8(r30)
+	li       r0, 0
+	addi     r3, r3, 1
+	stw      r3, 8(r30)
+	lbz      r3, 0xa(r1)
+	extsb    r5, r3
+	cmpwi    r5, 0xd
+	beq      lbl_80414F54
+	cmpwi    r5, 0x20
+	beq      lbl_80414F54
+	cmpwi    r5, 0xa
+	beq      lbl_80414F54
+	cmpwi    r5, 9
+	beq      lbl_80414F54
+	cmpwi    r5, 0x23
+	beq      lbl_80414F54
+	cmpwi    r5, 0x7b
+	beq      lbl_80414F54
+	cmpwi    r5, 0x7d
+	bne      lbl_80414F58
 
-	.loc_0x1A8:
-	  li        r0, 0x1
+lbl_80414F54:
+	li       r0, 1
 
-	.loc_0x1AC:
-	  rlwinm.   r0,r0,0,24,31
-	  beq-      .loc_0x238
-	  lwz       r3, 0x10(r30)
-	  cmpwi     r5, 0x23
-	  li        r4, 0
-	  addi      r0, r3, 0x1
-	  add       r3, r30, r3
-	  stw       r0, 0x10(r30)
-	  stb       r4, 0x14(r3)
-	  bne-      .loc_0x284
-	  b         .loc_0x218
+lbl_80414F58:
+	clrlwi.  r0, r0, 0x18
+	beq      lbl_80414FE4
+	lwz      r3, 0x10(r30)
+	cmpwi    r5, 0x23
+	li       r4, 0
+	addi     r0, r3, 1
+	add      r3, r30, r3
+	stw      r0, 0x10(r30)
+	stb      r4, 0x14(r3)
+	bne      lbl_80415030
+	b        lbl_80414FC4
 
-	.loc_0x1D8:
-	  mr        r3, r30
-	  addi      r4, r1, 0x9
-	  lwz       r12, 0x0(r30)
-	  li        r5, 0x1
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x8(r30)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x8(r30)
-	  lbz       r0, 0x9(r1)
-	  extsb     r0, r0
-	  cmpwi     r0, 0xD
-	  beq-      .loc_0x284
-	  cmpwi     r0, 0xA
-	  beq-      .loc_0x284
+lbl_80414F84:
+	mr       r3, r30
+	addi     r4, r1, 9
+	lwz      r12, 0(r30)
+	li       r5, 1
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 8(r30)
+	addi     r0, r3, 1
+	stw      r0, 8(r30)
+	lbz      r0, 9(r1)
+	extsb    r0, r0
+	cmpwi    r0, 0xd
+	beq      lbl_80415030
+	cmpwi    r0, 0xa
+	beq      lbl_80415030
 
-	.loc_0x218:
-	  mr        r3, r30
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x1D8
-	  b         .loc_0x284
+lbl_80414FC4:
+	mr       r3, r30
+	lwz      r12, 0(r30)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80414F84
+	b        lbl_80415030
 
-	.loc_0x238:
-	  lwz       r4, 0x10(r30)
-	  extsb.    r0, r5
-	  addi      r3, r4, 0x1
-	  addi      r0, r4, 0x14
-	  stw       r3, 0x10(r30)
-	  stbx      r5, r30, r0
-	  beq-      .loc_0x284
+lbl_80414FE4:
+	lwz      r4, 0x10(r30)
+	extsb.   r0, r5
+	addi     r3, r4, 1
+	addi     r0, r4, 0x14
+	stw      r3, 0x10(r30)
+	stbx     r5, r30, r0
+	beq      lbl_80415030
 
-	.loc_0x254:
-	  mr        r3, r30
-	  lwz       r12, 0x0(r30)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x13C
-	  addi      r3, r31, 0
-	  addi      r5, r31, 0xC
-	  li        r4, 0x62
-	  crclr     6, 0x6
-	  bl        -0x3EA9EC
+lbl_80415000:
+	mr       r3, r30
+	lwz      r12, 0(r30)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80414EE8
+	addi     r3, r31, 0
+	addi     r5, r31, 0xc
+	li       r4, 0x62
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x284:
-	  addi      r30, r30, 0x14
+lbl_80415030:
+	addi     r30, r30, 0x14
 
-	.loc_0x288:
-	  cmplwi    r30, 0
-	  bne-      .loc_0x2A4
-	  addi      r3, r31, 0
-	  addi      r5, r31, 0x64
-	  li        r4, 0x144
-	  crclr     6, 0x6
-	  bl        -0x3EAA0C
+lbl_80415034:
+	cmplwi   r30, 0
+	bne      lbl_80415050
+	addi     r3, r31, 0
+	addi     r5, r31, 0x64
+	li       r4, 0x144
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x2A4:
-	  mr        r3, r30
-	  addi      r5, r1, 0x10
-	  addi      r4, r2, 0x1F94
-	  crclr     6, 0x6
-	  bl        -0x34BAA0
-	  lfs       f1, 0x10(r1)
-	  b         .loc_0x30C
+lbl_80415050:
+	mr       r3, r30
+	addi     r5, r1, 0x10
+	addi     r4, r2, lbl_805202F4@sda21
+	crclr    6
+	bl       sscanf
+	lfs      f1, 0x10(r1)
+	b        lbl_804150B8
 
-	.loc_0x2C0:
-	  lwz       r12, 0x0(r3)
-	  addi      r4, r1, 0x10
-	  li        r5, 0x4
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x8(r30)
-	  addi      r0, r3, 0x4
-	  stw       r0, 0x8(r30)
-	  lwz       r0, 0x4(r30)
-	  cmpwi     r0, 0x1
-	  beq-      .loc_0x308
-	  lwz       r3, 0x10(r1)
-	  addi      r0, r1, 0xC
-	  stw       r3, 0xC(r1)
-	  stwbrx    r3, r0, r0
-	  lfs       f0, 0xC(r1)
-	  stfs      f0, 0x10(r1)
+lbl_8041506C:
+	lwz      r12, 0(r3)
+	addi     r4, r1, 0x10
+	li       r5, 4
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 8(r30)
+	addi     r0, r3, 4
+	stw      r0, 8(r30)
+	lwz      r0, 4(r30)
+	cmpwi    r0, 1
+	beq      lbl_804150B4
+	lwz      r3, 0x10(r1)
+	addi     r0, r1, 0xc
+	stw      r3, 0xc(r1)
+	stwbrx   r3, 0, r0
+	lfs      f0, 0xc(r1)
+	stfs     f0, 0x10(r1)
 
-	.loc_0x308:
-	  lfs       f1, 0x10(r1)
+lbl_804150B4:
+	lfs      f1, 0x10(r1)
 
-	.loc_0x30C:
-	  lwz       r0, 0x34(r1)
-	  lwz       r31, 0x2C(r1)
-	  lwz       r30, 0x28(r1)
-	  lwz       r29, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
+lbl_804150B8:
+	lwz      r0, 0x34(r1)
+	lwz      r31, 0x2c(r1)
+	lwz      r30, 0x28(r1)
+	lwz      r29, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x30
+	blr
 	*/
 }
 
@@ -1749,399 +1826,398 @@ void Stream::readFloat()
 void Stream::readString(char*, int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x430(r1)
-	  mflr      r0
-	  stw       r0, 0x434(r1)
-	  stmw      r24, 0x410(r1)
-	  mr        r26, r3
-	  lis       r3, 0x804A
-	  mr        r27, r4
-	  mr        r28, r5
-	  subi      r31, r3, 0x69A0
-	  lwz       r0, 0xC(r26)
-	  cmpwi     r0, 0x1
-	  bne-      .loc_0x37C
-	  cmpwi     r0, 0
-	  bne-      .loc_0x40
-	  li        r30, 0
-	  b         .loc_0x288
+	stwu     r1, -0x430(r1)
+	mflr     r0
+	stw      r0, 0x434(r1)
+	stmw     r24, 0x410(r1)
+	mr       r26, r3
+	lis      r3, lbl_80499660@ha
+	mr       r27, r4
+	mr       r28, r5
+	addi     r31, r3, lbl_80499660@l
+	lwz      r0, 0xc(r26)
+	cmpwi    r0, 1
+	bne      lbl_80415450
+	cmpwi    r0, 0
+	bne      lbl_80415114
+	li       r30, 0
+	b        lbl_8041535C
 
-	.loc_0x40:
-	  li        r29, 0
-	  stw       r29, 0x10(r26)
-	  lwz       r0, 0xC(r26)
-	  cmpwi     r0, 0x1
-	  bne-      .loc_0x120
-	  b         .loc_0x104
+lbl_80415114:
+	li       r29, 0
+	stw      r29, 0x10(r26)
+	lwz      r0, 0xc(r26)
+	cmpwi    r0, 1
+	bne      lbl_804151F4
+	b        lbl_804151D8
 
-	.loc_0x58:
-	  mr        r3, r26
-	  addi      r4, r1, 0x8
-	  lwz       r12, 0x0(r26)
-	  li        r5, 0x1
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x8(r26)
-	  rlwinm.   r0,r29,0,24,31
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x8(r26)
-	  lbz       r0, 0x8(r1)
-	  extsb     r4, r0
-	  beq-      .loc_0xA8
-	  cmpwi     r4, 0xD
-	  beq-      .loc_0xA0
-	  cmpwi     r4, 0xA
-	  bne-      .loc_0x104
+lbl_8041512C:
+	mr       r3, r26
+	addi     r4, r1, 8
+	lwz      r12, 0(r26)
+	li       r5, 1
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 8(r26)
+	clrlwi.  r0, r29, 0x18
+	addi     r0, r3, 1
+	stw      r0, 8(r26)
+	lbz      r0, 8(r1)
+	extsb    r4, r0
+	beq      lbl_8041517C
+	cmpwi    r4, 0xd
+	beq      lbl_80415174
+	cmpwi    r4, 0xa
+	bne      lbl_804151D8
 
-	.loc_0xA0:
-	  li        r29, 0
-	  b         .loc_0x104
+lbl_80415174:
+	li       r29, 0
+	b        lbl_804151D8
 
-	.loc_0xA8:
-	  cmpwi     r4, 0x23
-	  bne-      .loc_0xB8
-	  li        r29, 0x1
-	  b         .loc_0x104
+lbl_8041517C:
+	cmpwi    r4, 0x23
+	bne      lbl_8041518C
+	li       r29, 1
+	b        lbl_804151D8
 
-	.loc_0xB8:
-	  cmpwi     r4, 0xD
-	  li        r0, 0
-	  beq-      .loc_0xF4
-	  cmpwi     r4, 0x20
-	  beq-      .loc_0xF4
-	  cmpwi     r4, 0xA
-	  beq-      .loc_0xF4
-	  cmpwi     r4, 0x9
-	  beq-      .loc_0xF4
-	  cmpwi     r4, 0x23
-	  beq-      .loc_0xF4
-	  cmpwi     r4, 0x7B
-	  beq-      .loc_0xF4
-	  cmpwi     r4, 0x7D
-	  bne-      .loc_0xF8
+lbl_8041518C:
+	cmpwi    r4, 0xd
+	li       r0, 0
+	beq      lbl_804151C8
+	cmpwi    r4, 0x20
+	beq      lbl_804151C8
+	cmpwi    r4, 0xa
+	beq      lbl_804151C8
+	cmpwi    r4, 9
+	beq      lbl_804151C8
+	cmpwi    r4, 0x23
+	beq      lbl_804151C8
+	cmpwi    r4, 0x7b
+	beq      lbl_804151C8
+	cmpwi    r4, 0x7d
+	bne      lbl_804151CC
 
-	.loc_0xF4:
-	  li        r0, 0x1
+lbl_804151C8:
+	li       r0, 1
 
-	.loc_0xF8:
-	  rlwinm.   r0,r0,0,24,31
-	  bne-      .loc_0x104
-	  b         .loc_0x124
+lbl_804151CC:
+	clrlwi.  r0, r0, 0x18
+	bne      lbl_804151D8
+	b        lbl_804151F8
 
-	.loc_0x104:
-	  mr        r3, r26
-	  lwz       r12, 0x0(r26)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x58
+lbl_804151D8:
+	mr       r3, r26
+	lwz      r12, 0(r26)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_8041512C
 
-	.loc_0x120:
-	  li        r4, 0
+lbl_804151F4:
+	li       r4, 0
 
-	.loc_0x124:
-	  lwz       r3, 0x10(r26)
-	  addi      r0, r3, 0x1
-	  add       r3, r26, r3
-	  stw       r0, 0x10(r26)
-	  stb       r4, 0x14(r3)
-	  b         .loc_0x254
+lbl_804151F8:
+	lwz      r3, 0x10(r26)
+	addi     r0, r3, 1
+	add      r3, r26, r3
+	stw      r0, 0x10(r26)
+	stb      r4, 0x14(r3)
+	b        lbl_80415328
 
-	.loc_0x13C:
-	  mr        r3, r26
-	  addi      r4, r1, 0xA
-	  lwz       r12, 0x0(r26)
-	  li        r5, 0x1
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x8(r26)
-	  li        r0, 0
-	  addi      r3, r3, 0x1
-	  stw       r3, 0x8(r26)
-	  lbz       r3, 0xA(r1)
-	  extsb     r5, r3
-	  cmpwi     r5, 0xD
-	  beq-      .loc_0x1A8
-	  cmpwi     r5, 0x20
-	  beq-      .loc_0x1A8
-	  cmpwi     r5, 0xA
-	  beq-      .loc_0x1A8
-	  cmpwi     r5, 0x9
-	  beq-      .loc_0x1A8
-	  cmpwi     r5, 0x23
-	  beq-      .loc_0x1A8
-	  cmpwi     r5, 0x7B
-	  beq-      .loc_0x1A8
-	  cmpwi     r5, 0x7D
-	  bne-      .loc_0x1AC
+lbl_80415210:
+	mr       r3, r26
+	addi     r4, r1, 0xa
+	lwz      r12, 0(r26)
+	li       r5, 1
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 8(r26)
+	li       r0, 0
+	addi     r3, r3, 1
+	stw      r3, 8(r26)
+	lbz      r3, 0xa(r1)
+	extsb    r5, r3
+	cmpwi    r5, 0xd
+	beq      lbl_8041527C
+	cmpwi    r5, 0x20
+	beq      lbl_8041527C
+	cmpwi    r5, 0xa
+	beq      lbl_8041527C
+	cmpwi    r5, 9
+	beq      lbl_8041527C
+	cmpwi    r5, 0x23
+	beq      lbl_8041527C
+	cmpwi    r5, 0x7b
+	beq      lbl_8041527C
+	cmpwi    r5, 0x7d
+	bne      lbl_80415280
 
-	.loc_0x1A8:
-	  li        r0, 0x1
+lbl_8041527C:
+	li       r0, 1
 
-	.loc_0x1AC:
-	  rlwinm.   r0,r0,0,24,31
-	  beq-      .loc_0x238
-	  lwz       r3, 0x10(r26)
-	  cmpwi     r5, 0x23
-	  li        r4, 0
-	  addi      r0, r3, 0x1
-	  add       r3, r26, r3
-	  stw       r0, 0x10(r26)
-	  stb       r4, 0x14(r3)
-	  bne-      .loc_0x284
-	  b         .loc_0x218
+lbl_80415280:
+	clrlwi.  r0, r0, 0x18
+	beq      lbl_8041530C
+	lwz      r3, 0x10(r26)
+	cmpwi    r5, 0x23
+	li       r4, 0
+	addi     r0, r3, 1
+	add      r3, r26, r3
+	stw      r0, 0x10(r26)
+	stb      r4, 0x14(r3)
+	bne      lbl_80415358
+	b        lbl_804152EC
 
-	.loc_0x1D8:
-	  mr        r3, r26
-	  addi      r4, r1, 0x9
-	  lwz       r12, 0x0(r26)
-	  li        r5, 0x1
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x8(r26)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x8(r26)
-	  lbz       r0, 0x9(r1)
-	  extsb     r0, r0
-	  cmpwi     r0, 0xD
-	  beq-      .loc_0x284
-	  cmpwi     r0, 0xA
-	  beq-      .loc_0x284
+lbl_804152AC:
+	mr       r3, r26
+	addi     r4, r1, 9
+	lwz      r12, 0(r26)
+	li       r5, 1
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 8(r26)
+	addi     r0, r3, 1
+	stw      r0, 8(r26)
+	lbz      r0, 9(r1)
+	extsb    r0, r0
+	cmpwi    r0, 0xd
+	beq      lbl_80415358
+	cmpwi    r0, 0xa
+	beq      lbl_80415358
 
-	.loc_0x218:
-	  mr        r3, r26
-	  lwz       r12, 0x0(r26)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x1D8
-	  b         .loc_0x284
+lbl_804152EC:
+	mr       r3, r26
+	lwz      r12, 0(r26)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_804152AC
+	b        lbl_80415358
 
-	.loc_0x238:
-	  lwz       r4, 0x10(r26)
-	  extsb.    r0, r5
-	  addi      r3, r4, 0x1
-	  addi      r0, r4, 0x14
-	  stw       r3, 0x10(r26)
-	  stbx      r5, r26, r0
-	  beq-      .loc_0x284
+lbl_8041530C:
+	lwz      r4, 0x10(r26)
+	extsb.   r0, r5
+	addi     r3, r4, 1
+	addi     r0, r4, 0x14
+	stw      r3, 0x10(r26)
+	stbx     r5, r26, r0
+	beq      lbl_80415358
 
-	.loc_0x254:
-	  mr        r3, r26
-	  lwz       r12, 0x0(r26)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x13C
-	  addi      r3, r31, 0
-	  addi      r5, r31, 0xC
-	  li        r4, 0x62
-	  crclr     6, 0x6
-	  bl        -0x3EAD14
+lbl_80415328:
+	mr       r3, r26
+	lwz      r12, 0(r26)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80415210
+	addi     r3, r31, 0
+	addi     r5, r31, 0xc
+	li       r4, 0x62
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x284:
-	  addi      r30, r26, 0x14
+lbl_80415358:
+	addi     r30, r26, 0x14
 
-	.loc_0x288:
-	  mr        r3, r30
-	  bl        -0x34AA50
-	  cmplwi    r27, 0
-	  mr        r26, r3
-	  beq-      .loc_0x2C0
-	  cmpw      r28, r26
-	  bge-      .loc_0x2B8
-	  addi      r3, r31, 0
-	  addi      r5, r31, 0x7C
-	  li        r4, 0x160
-	  crclr     6, 0x6
-	  bl        -0x3EAD48
+lbl_8041535C:
+	mr       r3, r30
+	bl       strlen
+	cmplwi   r27, 0
+	mr       r26, r3
+	beq      lbl_80415394
+	cmpw     r28, r26
+	bge      lbl_8041538C
+	addi     r3, r31, 0
+	addi     r5, r31, 0x7c
+	li       r4, 0x160
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x2B8:
-	  mr        r3, r27
-	  b         .loc_0x2C8
+lbl_8041538C:
+	mr       r3, r27
+	b        lbl_8041539C
 
-	.loc_0x2C0:
-	  addi      r3, r26, 0x1
-	  bl        -0x3F13EC
+lbl_80415394:
+	addi     r3, r26, 1
+	bl       __nwa__FUl
 
-	.loc_0x2C8:
-	  addic.    r0, r26, 0x1
-	  li        r7, 0
-	  ble-      .loc_0x4E4
-	  addi      r0, r26, 0x1
-	  subi      r4, r26, 0x7
-	  cmpwi     r0, 0x8
-	  ble-      .loc_0x348
-	  addi      r0, r4, 0x7
-	  rlwinm    r0,r0,29,3,31
-	  mtctr     r0
-	  cmpwi     r4, 0
-	  ble-      .loc_0x348
+lbl_8041539C:
+	addic.   r0, r26, 1
+	li       r7, 0
+	ble      lbl_804155B8
+	addi     r0, r26, 1
+	addi     r4, r26, -7
+	cmpwi    r0, 8
+	ble      lbl_8041541C
+	addi     r0, r4, 7
+	srwi     r0, r0, 3
+	mtctr    r0
+	cmpwi    r4, 0
+	ble      lbl_8041541C
 
-	.loc_0x2F8:
-	  add       r4, r30, r7
-	  add       r5, r3, r7
-	  lbz       r0, 0x0(r4)
-	  addi      r7, r7, 0x8
-	  stb       r0, 0x0(r5)
-	  lbz       r0, 0x1(r4)
-	  stb       r0, 0x1(r5)
-	  lbz       r0, 0x2(r4)
-	  stb       r0, 0x2(r5)
-	  lbz       r0, 0x3(r4)
-	  stb       r0, 0x3(r5)
-	  lbz       r0, 0x4(r4)
-	  stb       r0, 0x4(r5)
-	  lbz       r0, 0x5(r4)
-	  stb       r0, 0x5(r5)
-	  lbz       r0, 0x6(r4)
-	  stb       r0, 0x6(r5)
-	  lbz       r0, 0x7(r4)
-	  stb       r0, 0x7(r5)
-	  bdnz+     .loc_0x2F8
+lbl_804153CC:
+	add      r4, r30, r7
+	add      r5, r3, r7
+	lbz      r0, 0(r4)
+	addi     r7, r7, 8
+	stb      r0, 0(r5)
+	lbz      r0, 1(r4)
+	stb      r0, 1(r5)
+	lbz      r0, 2(r4)
+	stb      r0, 2(r5)
+	lbz      r0, 3(r4)
+	stb      r0, 3(r5)
+	lbz      r0, 4(r4)
+	stb      r0, 4(r5)
+	lbz      r0, 5(r4)
+	stb      r0, 5(r5)
+	lbz      r0, 6(r4)
+	stb      r0, 6(r5)
+	lbz      r0, 7(r4)
+	stb      r0, 7(r5)
+	bdnz     lbl_804153CC
 
-	.loc_0x348:
-	  addi      r6, r26, 0x1
-	  add       r5, r30, r7
-	  sub       r0, r6, r7
-	  add       r4, r3, r7
-	  mtctr     r0
-	  cmpw      r7, r6
-	  bge-      .loc_0x4E4
+lbl_8041541C:
+	addi     r6, r26, 1
+	add      r5, r30, r7
+	subf     r0, r7, r6
+	add      r4, r3, r7
+	mtctr    r0
+	cmpw     r7, r6
+	bge      lbl_804155B8
 
-	.loc_0x364:
-	  lbz       r0, 0x0(r5)
-	  addi      r5, r5, 0x1
-	  stb       r0, 0x0(r4)
-	  addi      r4, r4, 0x1
-	  bdnz+     .loc_0x364
-	  b         .loc_0x4E4
+lbl_80415438:
+	lbz      r0, 0(r5)
+	addi     r5, r5, 1
+	stb      r0, 0(r4)
+	addi     r4, r4, 1
+	bdnz     lbl_80415438
+	b        lbl_804155B8
 
-	.loc_0x37C:
-	  addi      r30, r1, 0xC
-	  li        r29, 0
-	  mr        r25, r30
-	  li        r24, 0
-	  b         .loc_0x3D8
+lbl_80415450:
+	addi     r30, r1, 0xc
+	li       r29, 0
+	mr       r25, r30
+	li       r24, 0
+	b        lbl_804154AC
 
-	.loc_0x390:
-	  mr        r3, r26
-	  addi      r4, r1, 0xB
-	  lwz       r12, 0x0(r26)
-	  li        r5, 0x1
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x8(r26)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x8(r26)
-	  lbz       r0, 0xB(r1)
-	  stb       r0, 0x0(r25)
-	  lbz       r0, 0x0(r25)
-	  extsb.    r0, r0
-	  beq-      .loc_0x3FC
-	  addi      r29, r29, 0x1
-	  addi      r25, r25, 0x1
-	  addi      r24, r24, 0x1
+lbl_80415464:
+	mr       r3, r26
+	addi     r4, r1, 0xb
+	lwz      r12, 0(r26)
+	li       r5, 1
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 8(r26)
+	addi     r0, r3, 1
+	stw      r0, 8(r26)
+	lbz      r0, 0xb(r1)
+	stb      r0, 0(r25)
+	lbz      r0, 0(r25)
+	extsb.   r0, r0
+	beq      lbl_804154D0
+	addi     r29, r29, 1
+	addi     r25, r25, 1
+	addi     r24, r24, 1
 
-	.loc_0x3D8:
-	  cmpwi     r24, 0x400
-	  blt+      .loc_0x390
-	  mr        r3, r26
-	  lwz       r12, 0x0(r26)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq+      .loc_0x390
+lbl_804154AC:
+	cmpwi    r24, 0x400
+	blt      lbl_80415464
+	mr       r3, r26
+	lwz      r12, 0(r26)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80415464
 
-	.loc_0x3FC:
-	  cmplwi    r27, 0
-	  beq-      .loc_0x428
-	  cmpw      r28, r29
-	  bge-      .loc_0x420
-	  addi      r3, r31, 0
-	  addi      r5, r31, 0x7C
-	  li        r4, 0x174
-	  crclr     6, 0x6
-	  bl        -0x3EAEB0
+lbl_804154D0:
+	cmplwi   r27, 0
+	beq      lbl_804154FC
+	cmpw     r28, r29
+	bge      lbl_804154F4
+	addi     r3, r31, 0
+	addi     r5, r31, 0x7c
+	li       r4, 0x174
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x420:
-	  mr        r3, r27
-	  b         .loc_0x430
+lbl_804154F4:
+	mr       r3, r27
+	b        lbl_80415504
 
-	.loc_0x428:
-	  addi      r3, r29, 0x1
-	  bl        -0x3F1554
+lbl_804154FC:
+	addi     r3, r29, 1
+	bl       __nwa__FUl
 
-	.loc_0x430:
-	  cmpwi     r29, 0
-	  mr        r6, r3
-	  li        r5, 0
-	  ble-      .loc_0x4DC
-	  cmpwi     r29, 0x8
-	  subi      r4, r29, 0x8
-	  ble-      .loc_0x4B0
-	  addi      r0, r4, 0x7
-	  rlwinm    r0,r0,29,3,31
-	  mtctr     r0
-	  cmpwi     r4, 0
-	  ble-      .loc_0x4B0
+lbl_80415504:
+	cmpwi    r29, 0
+	mr       r6, r3
+	li       r5, 0
+	ble      lbl_804155B0
+	cmpwi    r29, 8
+	addi     r4, r29, -8
+	ble      lbl_80415584
+	addi     r0, r4, 7
+	srwi     r0, r0, 3
+	mtctr    r0
+	cmpwi    r4, 0
+	ble      lbl_80415584
 
-	.loc_0x460:
-	  lbz       r4, 0x0(r30)
-	  addi      r5, r5, 0x8
-	  lbz       r0, 0x1(r30)
-	  stb       r4, 0x0(r6)
-	  lbz       r4, 0x2(r30)
-	  stb       r0, 0x1(r6)
-	  lbz       r0, 0x3(r30)
-	  stb       r4, 0x2(r6)
-	  lbz       r4, 0x4(r30)
-	  stb       r0, 0x3(r6)
-	  lbz       r0, 0x5(r30)
-	  stb       r4, 0x4(r6)
-	  lbz       r4, 0x6(r30)
-	  stb       r0, 0x5(r6)
-	  lbz       r0, 0x7(r30)
-	  addi      r30, r30, 0x8
-	  stb       r4, 0x6(r6)
-	  stb       r0, 0x7(r6)
-	  addi      r6, r6, 0x8
-	  bdnz+     .loc_0x460
+lbl_80415534:
+	lbz      r4, 0(r30)
+	addi     r5, r5, 8
+	lbz      r0, 1(r30)
+	stb      r4, 0(r6)
+	lbz      r4, 2(r30)
+	stb      r0, 1(r6)
+	lbz      r0, 3(r30)
+	stb      r4, 2(r6)
+	lbz      r4, 4(r30)
+	stb      r0, 3(r6)
+	lbz      r0, 5(r30)
+	stb      r4, 4(r6)
+	lbz      r4, 6(r30)
+	stb      r0, 5(r6)
+	lbz      r0, 7(r30)
+	addi     r30, r30, 8
+	stb      r4, 6(r6)
+	stb      r0, 7(r6)
+	addi     r6, r6, 8
+	bdnz     lbl_80415534
 
-	.loc_0x4B0:
-	  addi      r4, r1, 0xC
-	  sub       r0, r29, r5
-	  add       r4, r4, r5
-	  mtctr     r0
-	  cmpw      r5, r29
-	  bge-      .loc_0x4DC
+lbl_80415584:
+	addi     r4, r1, 0xc
+	subf     r0, r5, r29
+	add      r4, r4, r5
+	mtctr    r0
+	cmpw     r5, r29
+	bge      lbl_804155B0
 
-	.loc_0x4C8:
-	  lbz       r0, 0x0(r4)
-	  addi      r4, r4, 0x1
-	  stb       r0, 0x0(r6)
-	  addi      r6, r6, 0x1
-	  bdnz+     .loc_0x4C8
+lbl_8041559C:
+	lbz      r0, 0(r4)
+	addi     r4, r4, 1
+	stb      r0, 0(r6)
+	addi     r6, r6, 1
+	bdnz     lbl_8041559C
 
-	.loc_0x4DC:
-	  li        r0, 0
-	  stb       r0, 0x0(r6)
+lbl_804155B0:
+	li       r0, 0
+	stb      r0, 0(r6)
 
-	.loc_0x4E4:
-	  lmw       r24, 0x410(r1)
-	  lwz       r0, 0x434(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x430
-	  blr
+lbl_804155B8:
+	lmw      r24, 0x410(r1)
+	lwz      r0, 0x434(r1)
+	mtlr     r0
+	addi     r1, r1, 0x430
+	blr
 	*/
 }
 
@@ -2163,56 +2239,55 @@ void Stream::readFixedString()
 void Stream::writeString(char*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  stw       r30, 0x18(r1)
-	  stw       r29, 0x14(r1)
-	  mr        r29, r4
-	  stw       r28, 0x10(r1)
-	  mr        r28, r3
-	  mr        r3, r29
-	  bl        -0x34ACE4
-	  mr        r30, r3
-	  mr        r31, r29
-	  li        r29, 0
-	  b         .loc_0x50
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	stw      r30, 0x18(r1)
+	stw      r29, 0x14(r1)
+	mr       r29, r4
+	stw      r28, 0x10(r1)
+	mr       r28, r3
+	mr       r3, r29
+	bl       strlen
+	mr       r30, r3
+	mr       r31, r29
+	li       r29, 0
+	b        lbl_8041561C
 
-	.loc_0x3C:
-	  lbz       r4, 0x0(r31)
-	  mr        r3, r28
-	  bl        0xD0
-	  addi      r29, r29, 0x1
-	  addi      r31, r31, 0x1
+lbl_80415608:
+	lbz      r4, 0(r31)
+	mr       r3, r28
+	bl       _writeByte__6StreamFUc
+	addi     r29, r29, 1
+	addi     r31, r31, 1
 
-	.loc_0x50:
-	  cmpw      r29, r30
-	  blt+      .loc_0x3C
-	  lwz       r0, 0xC(r28)
-	  cmpwi     r0, 0x1
-	  bne-      .loc_0x78
-	  mr        r3, r28
-	  addi      r4, r2, 0x1F98
-	  crclr     6, 0x6
-	  bl        -0x1544
-	  b         .loc_0x84
+lbl_8041561C:
+	cmpw     r29, r30
+	blt      lbl_80415608
+	lwz      r0, 0xc(r28)
+	cmpwi    r0, 1
+	bne      lbl_80415644
+	mr       r3, r28
+	addi     r4, r2, lbl_805202F8@sda21
+	crclr    6
+	bl       printf__6StreamFPce
+	b        lbl_80415650
 
-	.loc_0x78:
-	  mr        r3, r28
-	  li        r4, 0
-	  bl        0x94
+lbl_80415644:
+	mr       r3, r28
+	li       r4, 0
+	bl       _writeByte__6StreamFUc
 
-	.loc_0x84:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  lwz       r28, 0x10(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80415650:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	lwz      r28, 0x10(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -2234,39 +2309,38 @@ void Stream::writeFixedString(char*)
 void Stream::writeByte(unsigned char)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r3
-	  stb       r4, 0x8(r1)
-	  lwz       r0, 0xC(r3)
-	  cmpwi     r0, 0x1
-	  bne-      .loc_0x38
-	  rlwinm    r5,r4,0,24,31
-	  addi      r4, r2, 0x1F9C
-	  crclr     6, 0x6
-	  bl        -0x15A8
-	  b         .loc_0x5C
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r3
+	stb      r4, 8(r1)
+	lwz      r0, 0xc(r3)
+	cmpwi    r0, 1
+	bne      lbl_804156A8
+	clrlwi   r5, r4, 0x18
+	addi     r4, r2, lbl_805202FC@sda21
+	crclr    6
+	bl       printf__6StreamFPce
+	b        lbl_804156CC
 
-	.loc_0x38:
-	  lwz       r12, 0x0(r3)
-	  addi      r4, r1, 0x8
-	  li        r5, 0x1
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x8(r31)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x8(r31)
+lbl_804156A8:
+	lwz      r12, 0(r3)
+	addi     r4, r1, 8
+	li       r5, 1
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 8(r31)
+	addi     r0, r3, 1
+	stw      r0, 8(r31)
 
-	.loc_0x5C:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_804156CC:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -2278,27 +2352,26 @@ void Stream::writeByte(unsigned char)
 void Stream::_writeByte(unsigned char)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  li        r5, 0x1
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r3
-	  stb       r4, 0x8(r1)
-	  addi      r4, r1, 0x8
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x8(r31)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x8(r31)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	li       r5, 1
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r3
+	stb      r4, 8(r1)
+	addi     r4, r1, 8
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 8(r31)
+	addi     r0, r3, 1
+	stw      r0, 8(r31)
+	lwz      r31, 0x1c(r1)
+	lwz      r0, 0x24(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -2310,49 +2383,48 @@ void Stream::_writeByte(unsigned char)
 void Stream::writeShort(short)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r3
-	  sth       r4, 0x8(r1)
-	  lwz       r0, 0xC(r3)
-	  cmpwi     r0, 0x1
-	  bne-      .loc_0x38
-	  extsh     r5, r4
-	  addi      r4, r2, 0x1F9C
-	  crclr     6, 0x6
-	  bl        -0x1668
-	  b         .loc_0x7C
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r3
+	sth      r4, 8(r1)
+	lwz      r0, 0xc(r3)
+	cmpwi    r0, 1
+	bne      lbl_80415768
+	extsh    r5, r4
+	addi     r4, r2, lbl_805202FC@sda21
+	crclr    6
+	bl       printf__6StreamFPce
+	b        lbl_804157AC
 
-	.loc_0x38:
-	  lwz       r0, 0x4(r31)
-	  cmpwi     r0, 0x1
-	  beq-      .loc_0x54
-	  extsh     r3, r4
-	  rlwinm    r0,r3,24,24,31
-	  rlwimi    r0,r3,8,16,23
-	  sth       r0, 0x8(r1)
+lbl_80415768:
+	lwz      r0, 4(r31)
+	cmpwi    r0, 1
+	beq      lbl_80415784
+	extsh    r3, r4
+	rlwinm   r0, r3, 0x18, 0x18, 0x1f
+	rlwimi   r0, r3, 8, 0x10, 0x17
+	sth      r0, 8(r1)
 
-	.loc_0x54:
-	  mr        r3, r31
-	  addi      r4, r1, 0x8
-	  lwz       r12, 0x0(r31)
-	  li        r5, 0x2
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x8(r31)
-	  addi      r0, r3, 0x2
-	  stw       r0, 0x8(r31)
+lbl_80415784:
+	mr       r3, r31
+	addi     r4, r1, 8
+	lwz      r12, 0(r31)
+	li       r5, 2
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 8(r31)
+	addi     r0, r3, 2
+	stw      r0, 8(r31)
 
-	.loc_0x7C:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_804157AC:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -2364,47 +2436,46 @@ void Stream::writeShort(short)
 void Stream::writeInt(int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r3
-	  stw       r4, 0x8(r1)
-	  lwz       r0, 0xC(r3)
-	  cmpwi     r0, 0x1
-	  bne-      .loc_0x38
-	  mr        r5, r4
-	  addi      r4, r2, 0x1F9C
-	  crclr     6, 0x6
-	  bl        -0x16F8
-	  b         .loc_0x74
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r3
+	stw      r4, 8(r1)
+	lwz      r0, 0xc(r3)
+	cmpwi    r0, 1
+	bne      lbl_804157F8
+	mr       r5, r4
+	addi     r4, r2, lbl_805202FC@sda21
+	crclr    6
+	bl       printf__6StreamFPce
+	b        lbl_80415834
 
-	.loc_0x38:
-	  lwz       r0, 0x4(r31)
-	  cmpwi     r0, 0x1
-	  beq-      .loc_0x4C
-	  addi      r0, r1, 0x8
-	  stwbrx    r4, r0, r0
+lbl_804157F8:
+	lwz      r0, 4(r31)
+	cmpwi    r0, 1
+	beq      lbl_8041580C
+	addi     r0, r1, 8
+	stwbrx   r4, 0, r0
 
-	.loc_0x4C:
-	  mr        r3, r31
-	  addi      r4, r1, 0x8
-	  lwz       r12, 0x0(r31)
-	  li        r5, 0x4
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x8(r31)
-	  addi      r0, r3, 0x4
-	  stw       r0, 0x8(r31)
+lbl_8041580C:
+	mr       r3, r31
+	addi     r4, r1, 8
+	lwz      r12, 0(r31)
+	li       r5, 4
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 8(r31)
+	addi     r0, r3, 4
+	stw      r0, 8(r31)
 
-	.loc_0x74:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80415834:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -2416,57 +2487,56 @@ void Stream::writeInt(int)
 void Stream::writeFloat(float)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r3
-	  stfs      f1, 0x8(r1)
-	  lwz       r0, 0xC(r3)
-	  cmpwi     r0, 0x1
-	  bne-      .loc_0x38
-	  frsp      f1, f1
-	  addi      r4, r2, 0x1FA0
-	  crset     6, 0x6
-	  bl        -0x1780
-	  b         .loc_0x9C
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r3
+	stfs     f1, 8(r1)
+	lwz      r0, 0xc(r3)
+	cmpwi    r0, 1
+	bne      lbl_80415880
+	frsp     f1, f1
+	addi     r4, r2, lbl_80520300@sda21
+	crset    6
+	bl       printf__6StreamFPce
+	b        lbl_804158E4
 
-	.loc_0x38:
-	  lwz       r0, 0x4(r31)
-	  cmpwi     r0, 0x1
-	  beq-      .loc_0x78
-	  lwz       r6, 0x8(r1)
-	  addi      r0, r1, 0xC
-	  addi      r4, r1, 0xC
-	  li        r5, 0x4
-	  stwbrx    r6, r0, r0
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x8(r31)
-	  addi      r0, r3, 0x4
-	  stw       r0, 0x8(r31)
-	  b         .loc_0x9C
+lbl_80415880:
+	lwz      r0, 4(r31)
+	cmpwi    r0, 1
+	beq      lbl_804158C0
+	lwz      r6, 8(r1)
+	addi     r0, r1, 0xc
+	addi     r4, r1, 0xc
+	li       r5, 4
+	stwbrx   r6, 0, r0
+	lwz      r12, 0(r3)
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 8(r31)
+	addi     r0, r3, 4
+	stw      r0, 8(r31)
+	b        lbl_804158E4
 
-	.loc_0x78:
-	  lwz       r12, 0x0(r3)
-	  addi      r4, r1, 0x8
-	  li        r5, 0x4
-	  lwz       r12, 0xC(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r3, 0x8(r31)
-	  addi      r0, r3, 0x4
-	  stw       r0, 0x8(r31)
+lbl_804158C0:
+	lwz      r12, 0(r3)
+	addi     r4, r1, 8
+	li       r5, 4
+	lwz      r12, 0xc(r12)
+	mtctr    r12
+	bctrl
+	lwz      r3, 8(r31)
+	addi     r0, r3, 4
+	stw      r0, 8(r31)
 
-	.loc_0x9C:
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_804158E4:
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -2478,29 +2548,28 @@ void Stream::writeFloat(float)
 RamStream::RamStream(void*, int)
 {
 	/*
-	.loc_0x0:
-	  lis       r6, 0x804F
-	  li        r0, 0x1
-	  subi      r6, r6, 0x4A58
-	  stw       r6, 0x0(r3)
-	  li        r6, 0
-	  stw       r0, 0x4(r3)
-	  stw       r6, 0x8(r3)
-	  stw       r6, 0xC(r3)
-	  lwz       r0, 0xC(r3)
-	  cmpwi     r0, 0x1
-	  bne-      .loc_0x30
-	  stw       r6, 0x414(r3)
+	lis      r6, __vt__6Stream@ha
+	li       r0, 1
+	addi     r6, r6, __vt__6Stream@l
+	stw      r6, 0(r3)
+	li       r6, 0
+	stw      r0, 4(r3)
+	stw      r6, 8(r3)
+	stw      r6, 0xc(r3)
+	lwz      r0, 0xc(r3)
+	cmpwi    r0, 1
+	bne      lbl_80415928
+	stw      r6, 0x414(r3)
 
-	.loc_0x30:
-	  lis       r6, 0x804F
-	  li        r0, 0
-	  subi      r6, r6, 0x4A70
-	  stw       r6, 0x0(r3)
-	  stw       r4, 0x418(r3)
-	  stw       r5, 0x41C(r3)
-	  stw       r0, 0x8(r3)
-	  blr
+lbl_80415928:
+	lis      r6, __vt__9RamStream@ha
+	li       r0, 0
+	addi     r6, r6, __vt__9RamStream@l
+	stw      r6, 0(r3)
+	stw      r4, 0x418(r3)
+	stw      r5, 0x41c(r3)
+	stw      r0, 8(r3)
+	blr
 	*/
 }
 
@@ -2522,46 +2591,45 @@ void RamStream::set(unsigned char*, int)
 void RamStream::read(void*, int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r5
-	  stw       r30, 0x18(r1)
-	  mr        r30, r4
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x60
-	  lis       r3, 0x804A
-	  lis       r4, 0x804A
-	  subi      r5, r4, 0x68C0
-	  lwz       r6, 0x8(r29)
-	  lwz       r7, 0x41C(r29)
-	  subi      r3, r3, 0x69A0
-	  li        r4, 0x20B
-	  crclr     6, 0x6
-	  bl        -0x3EB364
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r5
+	stw      r30, 0x18(r1)
+	mr       r30, r4
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_804159A8
+	lis      r3, lbl_80499660@ha
+	lis      r4, lbl_80499740@ha
+	addi     r5, r4, lbl_80499740@l
+	lwz      r6, 8(r29)
+	lwz      r7, 0x41c(r29)
+	addi     r3, r3, lbl_80499660@l
+	li       r4, 0x20b
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x60:
-	  lwz       r4, 0x418(r29)
-	  mr        r3, r30
-	  lwz       r0, 0x8(r29)
-	  mr        r5, r31
-	  add       r4, r4, r0
-	  bl        -0x410820
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_804159A8:
+	lwz      r4, 0x418(r29)
+	mr       r3, r30
+	lwz      r0, 8(r29)
+	mr       r5, r31
+	add      r4, r4, r0
+	bl       memcpy
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -2573,46 +2641,45 @@ void RamStream::read(void*, int)
 void RamStream::write(void*, int)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r5
-	  stw       r30, 0x18(r1)
-	  mr        r30, r4
-	  stw       r29, 0x14(r1)
-	  mr        r29, r3
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x60
-	  lis       r3, 0x804A
-	  lis       r4, 0x804A
-	  subi      r5, r4, 0x688C
-	  lwz       r6, 0x8(r29)
-	  lwz       r7, 0x41C(r29)
-	  subi      r3, r3, 0x69A0
-	  li        r4, 0x216
-	  crclr     6, 0x6
-	  bl        -0x3EB3F8
+	stwu     r1, -0x20(r1)
+	mflr     r0
+	stw      r0, 0x24(r1)
+	stw      r31, 0x1c(r1)
+	mr       r31, r5
+	stw      r30, 0x18(r1)
+	mr       r30, r4
+	stw      r29, 0x14(r1)
+	mr       r29, r3
+	lwz      r12, 0(r3)
+	lwz      r12, 0x10(r12)
+	mtctr    r12
+	bctrl
+	clrlwi.  r0, r3, 0x18
+	beq      lbl_80415A3C
+	lis      r3, lbl_80499660@ha
+	lis      r4, lbl_80499774@ha
+	addi     r5, r4, lbl_80499774@l
+	lwz      r6, 8(r29)
+	lwz      r7, 0x41c(r29)
+	addi     r3, r3, lbl_80499660@l
+	li       r4, 0x216
+	crclr    6
+	bl       panic_f__12JUTExceptionFPCciPCce
 
-	.loc_0x60:
-	  lwz       r3, 0x418(r29)
-	  mr        r4, r30
-	  lwz       r0, 0x8(r29)
-	  mr        r5, r31
-	  add       r3, r3, r0
-	  bl        -0x4108B4
-	  lwz       r0, 0x24(r1)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r30, 0x18(r1)
-	  lwz       r29, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
+lbl_80415A3C:
+	lwz      r3, 0x418(r29)
+	mr       r4, r30
+	lwz      r0, 8(r29)
+	mr       r5, r31
+	add      r3, r3, r0
+	bl       memcpy
+	lwz      r0, 0x24(r1)
+	lwz      r31, 0x1c(r1)
+	lwz      r30, 0x18(r1)
+	lwz      r29, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x20
+	blr
 	*/
 }
 
@@ -2624,20 +2691,19 @@ void RamStream::write(void*, int)
 void RamStream::eof()
 {
 	/*
-	.loc_0x0:
-	  lwz       r5, 0x41C(r3)
-	  cmpwi     r5, -0x1
-	  beq-      .loc_0x24
-	  lwz       r0, 0x8(r3)
-	  rlwinm    r3,r5,1,31,31
-	  srawi     r4, r0, 0x1F
-	  subc      r0, r0, r5
-	  adde      r3, r4, r3
-	  blr
+	lwz      r5, 0x41c(r3)
+	cmpwi    r5, -1
+	beq      lbl_80415A94
+	lwz      r0, 8(r3)
+	srwi     r3, r5, 0x1f
+	srawi    r4, r0, 0x1f
+	subfc    r0, r5, r0
+	adde     r3, r4, r3
+	blr
 
-	.loc_0x24:
-	  li        r3, 0
-	  blr
+lbl_80415A94:
+	li       r3, 0
+	blr
 	*/
 }
 

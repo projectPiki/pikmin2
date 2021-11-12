@@ -1,5 +1,9 @@
 #include "types.h"
 
+/*
+    Generated from dpostproc
+*/
+
 namespace og {
 
 /*
@@ -10,27 +14,26 @@ namespace og {
 newScreen::SMenuCont::SMenuCont(void)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  bl        0x12128C
-	  lis       r4, 0x804E
-	  lis       r3, 0x804E
-	  subi      r0, r4, 0x7A14
-	  li        r4, 0x1
-	  stw       r0, 0x0(r31)
-	  subi      r0, r3, 0x5C78
-	  mr        r3, r31
-	  stw       r4, 0x220(r31)
-	  stw       r0, 0x0(r31)
-	  lwz       r31, 0xC(r1)
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r3
+	bl       __ct__Q26Screen9SceneBaseFv
+	lis      r4, __vt__Q32og9newScreen14SceneSMenuBase@ha
+	lis      r3, __vt__Q32og9newScreen9SMenuCont@ha
+	addi     r0, r4, __vt__Q32og9newScreen14SceneSMenuBase@l
+	li       r4, 1
+	stw      r0, 0(r31)
+	addi     r0, r3, __vt__Q32og9newScreen9SMenuCont@l
+	mr       r3, r31
+	stw      r4, 0x220(r31)
+	stw      r0, 0(r31)
+	lwz      r31, 0xc(r1)
+	lwz      r0, 0x14(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -52,35 +55,38 @@ newScreen::SMenuCont::~SMenuCont(void)
 void newScreen::SMenuCont::doConfirmSetScene(Screen::SetSceneArg&)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r3, r4
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  li        r31, 0
-	  lwz       r12, 0x0(r4)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  subi      r0, r3, 0x2710
-	  cmplwi    r0, 0x17
-	  bgt-      .loc_0x50
-	  lis       r3, 0x804E
-	  rlwinm    r0,r0,2,0,29
-	  subi      r3, r3, 0x5CD8
-	  lwzx      r0, r3, r0
-	  mtctr     r0
-	  bctr
-	  li        r31, 0x1
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	mr       r3, r4
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	li       r31, 0
+	lwz      r12, 0(r4)
+	lwz      r12, 8(r12)
+	mtctr    r12
+	bctrl
+	addi     r0, r3, -10000
+	cmplwi   r0, 0x17
+	bgt      lbl_80330590
+	lis      r3, lbl_804DA328@ha
+	slwi     r0, r0, 2
+	addi     r3, r3, lbl_804DA328@l
+	lwzx     r0, r3, r0
+	mtctr    r0
+	bctr
+	.global  lbl_8033058C
 
-	.loc_0x50:
-	  lwz       r0, 0x14(r1)
-	  mr        r3, r31
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_8033058C:
+	li       r31, 1
+	.global  lbl_80330590
+
+lbl_80330590:
+	lwz      r0, 0x14(r1)
+	mr       r3, r31
+	lwz      r31, 0xc(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -92,10 +98,9 @@ void newScreen::SMenuCont::doConfirmSetScene(Screen::SetSceneArg&)
 void newScreen::SMenuCont::doSetBackupScene(Screen::SetSceneArg&)
 {
 	/*
-	.loc_0x0:
-	  li        r0, 0
-	  stb       r0, 0x9(r4)
-	  blr
+	li       r0, 0
+	stb      r0, 9(r4)
+	blr
 	*/
 }
 
@@ -114,33 +119,32 @@ void newScreen::SMenuCont::doUserCallBackFunc(Resource::MgrCommand*) { }
 void newScreen::SMenuCont::doCreateObj(JKRArchive*)
 {
 	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r4
-	  stw       r30, 0x8(r1)
-	  mr        r30, r3
-	  li        r3, 0xBC
-	  bl        -0x30C734
-	  mr.       r4, r3
-	  beq-      .loc_0x3C
-	  lis       r4, 0x8049
-	  subi      r4, r4, 0x860
-	  bl        0x6C
-	  mr        r4, r3
+	stwu     r1, -0x10(r1)
+	mflr     r0
+	stw      r0, 0x14(r1)
+	stw      r31, 0xc(r1)
+	mr       r31, r4
+	stw      r30, 8(r1)
+	mr       r30, r3
+	li       r3, 0xbc
+	bl       __nw__FUl
+	or.      r4, r3, r3
+	beq      lbl_803305F4
+	lis      r4, lbl_8048F7A0@ha
+	addi     r4, r4, lbl_8048F7A0@l
+	bl       __ct__Q32og9newScreen12ObjSMenuContFPCc
+	mr       r4, r3
 
-	.loc_0x3C:
-	  mr        r3, r30
-	  mr        r5, r31
-	  bl        0x121778
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
+lbl_803305F4:
+	mr       r3, r30
+	mr       r5, r31
+	bl       registObj__Q26Screen9SceneBaseFPQ26Screen7ObjBaseP10JKRArchive
+	lwz      r0, 0x14(r1)
+	lwz      r31, 0xc(r1)
+	lwz      r30, 8(r1)
+	mtlr     r0
+	addi     r1, r1, 0x10
+	blr
 	*/
 }
 
@@ -159,10 +163,9 @@ void newScreen::SMenuCont::doUpdateActive(void) { }
 void newScreen::SMenuCont::getResName() const
 {
 	/*
-	.loc_0x0:
-	  lis       r3, 0x8049
-	  subi      r3, r3, 0x84C
-	  blr
+	lis      r3, lbl_8048F7B4@ha
+	addi     r3, r3, lbl_8048F7B4@l
+	blr
 	*/
 }
 
@@ -181,10 +184,9 @@ u32 newScreen::SMenuCont::getSceneType(void) { return 0x272B; }
 void newScreen::SMenuCont::getOwnerID(void)
 {
 	/*
-	.loc_0x0:
-	  lis       r3, 0x4F
-	  addi      r3, r3, 0x4741
-	  blr
+	lis      r3, 0x004F4741@ha
+	addi     r3, r3, 0x004F4741@l
+	blr
 	*/
 }
 
@@ -196,12 +198,11 @@ void newScreen::SMenuCont::getOwnerID(void)
 void newScreen::SMenuCont::getMemberID(void)
 {
 	/*
-	.loc_0x0:
-	  lis       r4, 0x434F
-	  lis       r3, 0x53
-	  addi      r4, r4, 0x4E54
-	  addi      r3, r3, 0x4D5F
-	  blr
+	lis      r4, 0x434F4E54@ha
+	lis      r3, 0x00534D5F@ha
+	addi     r4, r4, 0x434F4E54@l
+	addi     r3, r3, 0x00534D5F@l
+	blr
 	*/
 }
 
