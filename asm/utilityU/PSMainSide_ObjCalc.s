@@ -3,26 +3,27 @@
 .balign 0x8
 .global lbl_8049E1C8
 lbl_8049E1C8:
-	.4byte 0x50534D61
-	.4byte 0x696E5369
-	.4byte 0x64655F4F
-	.4byte 0x626A4361
-	.4byte 0x6C632E63
-	.4byte 0x70700000
+	.asciz "PSMainSide_ObjCalc.cpp"
+	.skip 1
 .global lbl_8049E1E0
 lbl_8049E1E0:
 	.asciz "P2Assert"
 	.skip 3
+.global lbl_8049E1EC
+lbl_8049E1EC:
 	.4byte 0x82A082E8
 	.4byte 0x82A682C8
 	.4byte 0x82A28350
 	.4byte 0x815B8358
-	.4byte 0x31000000
+    .asciz "1"
+	.skip 2
+.global lbl_8049E200
+lbl_8049E200:
 	.4byte 0x82A082E8
 	.4byte 0x82A682C8
 	.4byte 0x82A28350
 	.4byte 0x815B8358
-    .byte 0x32, 0x00
+    .asciz "2"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 0x8
