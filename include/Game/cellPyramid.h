@@ -171,6 +171,46 @@ struct CellPyramid : public SweepPrune::World {
 	static u8 sSpeedUpResolveColl;
 	static bool disableAICulling;
 };
+
+struct CellIteratorArg {
+	CellIteratorArg();
+	CellIteratorArg(Sys::Sphere& sphere);
+
+	Sys::Sphere m_sphere;   // _00
+	u32 _10;                // _10
+	u32 _14;                // _14
+	CellPyramid* m_cellMgr; // _18
+	u8 _1C;                 // _1C
+	u8 _1D;                 // _1D
+};
+
+struct CellIterator {
+	CellIterator(CellIteratorArg&);
+
+	void calcExtent();
+	void dump();
+	void find();
+	void first();
+	void getCellObject();
+	void isDone();
+	void next();
+	// void operator*();
+	void satisfy();
+	void step();
+
+	CellLeg* _00;          // _00
+	u32 _04;               // _04
+	u32 _08;               // _08
+	u32 _0C;               // _0C
+	u32 _10;               // _10
+	u32 _14;               // _14
+	u32 _18;               // _18
+	u32 _1C;               // _1C
+	u32 m_passID;          // _20
+	CellIteratorArg m_arg; // _24
+};
+
+extern CellPyramid* cellMgr;
 } // namespace Game
 
 #endif

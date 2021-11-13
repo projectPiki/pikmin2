@@ -8,6 +8,14 @@ template <typename T> struct Vector3 {
 	inline Vector3() {};
 	Vector3(const Vector3<T>&);
 
+	inline Vector3& operator=(Vector3& other)
+	{
+		x = other.x;
+		y = other.y;
+		z = other.z;
+		return *this;
+	}
+
 	void operator=(const Vector3<T>&);
 	inline T distance(Vector3<T>&);
 	void length() const;

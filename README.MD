@@ -128,12 +128,14 @@ When compiling the project, this patch is automatically applied, if it fails to 
 	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/sysGCU/THPDraw.c">sysGCU/THPDraw.c</a>
 - sysCommonU
 	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/sysCommonU/id32.cpp">sysCommonU/id32.cpp</a>
+	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/sysCommonU/mapCollision.cpp">sysCommonU/mapCollision.cpp</a>
 	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/sysCommonU/node.cpp">sysCommonU/node.cpp</a>
 	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/sysCommonU/parameters.cpp">sysCommonU/parameters.cpp</a>
 	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/sysCommonU/sysMath.cpp">sysCommonU/sysMath.cpp</a>
 - utilityU
 - plugProjectKonoU
 - plugProjectOgawaU
+	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/plugProjectOgawaU/DispMemberBase.cpp">plugProjectOgawaU/DispMemberBase.cpp</a>
 - plugProjectKandoU
 	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/plugProjectKandoU/aiBattle.cpp">plugProjectKandoU/aiBattle.cpp</a>
 	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/plugProjectKandoU/gamePlatMgr.cpp">plugProjectKandoU/gamePlatMgr.cpp</a>
