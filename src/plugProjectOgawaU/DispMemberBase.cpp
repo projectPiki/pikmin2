@@ -1,8 +1,5 @@
 #include "types.h"
-
-/*
-    Generated from dpostproc
-*/
+#include "og/Screen/ogScreen.h"
 
 namespace og {
 
@@ -13,46 +10,14 @@ namespace Screen {
 	 * Address:	8030F31C
 	 * Size:	000080
 	 */
-	void DispMemberBase::isID(unsigned long, unsigned long long)
+	bool DispMemberBase::isID(ulong ownerID, ulonglong memberID)
 	{
-		/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stmw     r27, 0xc(r1)
-	mr       r27, r3
-	mr       r28, r4
-	mr       r30, r5
-	mr       r29, r6
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	mr       r31, r3
-	mr       r3, r27
-	lwz      r12, 0(r27)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	cmplw    r28, r31
-	bne      lbl_8030F384
-	xor      r4, r29, r4
-	xor      r0, r30, r3
-	or.      r0, r4, r0
-	bne      lbl_8030F384
-	li       r3, 1
-	b        lbl_8030F388
-
-lbl_8030F384:
-	li       r3, 0
-
-lbl_8030F388:
-	lmw      r27, 0xc(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-		*/
+		ulong thisOwnerID = getOwnerID();
+		ulonglong thisMemberID = getMemberID();
+		if ((ownerID == thisOwnerID) && (memberID == thisMemberID)) {
+			return true;
+		}
+		return false;
 	}
 
 	/*
@@ -60,26 +25,9 @@ lbl_8030F388:
 	 * Address:	8030F39C
 	 * Size:	000040
 	 */
-	void DispMemberBase::getMemberName(char*)
+	void DispMemberBase::getMemberName(char* outName)
 	{
-		/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	mr       r5, r31
-	bl       TagToName__Q22og6ScreenFUxPc
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-		*/
+		og::Screen::TagToName(getMemberID(), outName);
 	}
 
 	/*
@@ -87,82 +35,78 @@ lbl_8030F388:
 	 * Address:	8030F3DC
 	 * Size:	0000E4
 	 */
-	void DispMemberBase::setSubMember(og::Screen::DispMemberBase*)
+	bool DispMemberBase::setSubMember(og::Screen::DispMemberBase* newSubMember)
 	{
-		/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	li       r0, 0
-	stw      r31, 0x3c(r1)
-	mr       r31, r3
-	stw      r30, 0x38(r1)
-	mr       r30, r4
-	stw      r0, 4(r4)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	addi     r5, r1, 0x2c
-	li       r3, 0
-	bl       TagToName__Q22og6ScreenFUxPc
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	addi     r5, r1, 0x20
-	bl       TagToName__Q22og6ScreenFUxPc
-	li       r0, 0xa
-	mtctr    r0
-
-lbl_8030F444:
-	lwz      r0, 4(r31)
-	cmplwi   r0, 0
-	bne      lbl_8030F49C
-	stw      r30, 4(r31)
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r3
-	addi     r5, r1, 0x14
-	li       r3, 0
-	bl       TagToName__Q22og6ScreenFUxPc
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	addi     r5, r1, 8
-	bl       TagToName__Q22og6ScreenFUxPc
-	li       r3, 1
-	b        lbl_8030F4A8
-
-lbl_8030F49C:
-	mr       r31, r0
-	bdnz     lbl_8030F444
-	li       r3, 0
-
-lbl_8030F4A8:
-	lwz      r0, 0x44(r1)
-	lwz      r31, 0x3c(r1)
-	lwz      r30, 0x38(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-		*/
+		char ownerName[12];
+		char memberName[12];
+		char subMemberOwnerName[12];
+		char subMemberMemberName[12];
+		DispMemberBase* potentialParent = this;
+		newSubMember->m_subMember = nullptr;
+		og::Screen::TagToName(getOwnerID(), ownerName);
+		og::Screen::TagToName(getMemberID(), memberName);
+		for (int i = 10; i != 0; i--) {
+			if (potentialParent->m_subMember == nullptr) {
+				potentialParent->m_subMember = newSubMember;
+				og::Screen::TagToName(newSubMember->getOwnerID(), subMemberOwnerName);
+				og::Screen::TagToName(newSubMember->getMemberID(), subMemberMemberName);
+				return true;
+			}
+			potentialParent = potentialParent->m_subMember;
+		}
+		return false;
 	}
 
+#if NOPE
 	/*
 	 * --INFO--
 	 * Address:	8030F4C0
 	 * Size:	00010C
 	 */
-	void DispMemberBase::getSubMember(unsigned long, unsigned long long)
+	DispMemberBase* DispMemberBase::getSubMember(ulong ownerID, ulonglong memberID)
 	{
+		// int i = 0;
+		// TODO: m_subMember is only fetched once. How does it pull that off?
+		// TODO: Recursion?!?
+		DispMemberBase* member = m_subMember;
+		for (int i = 0; 10 > i; member = member->m_subMember, i++) {
+			if (member == nullptr) {
+				break;
+			}
+			ulong mo = member->getOwnerID();
+			ulonglong mm = member->getMemberID();
+			char ownerName[12];
+			TagToName(mo, ownerName);
+			char memberName[12];
+			TagToName(mm, memberName);
+			// getMemberName(memberName);
+			if (member->isID(ownerID, memberID)) {
+				return member;
+			}
+		}
+		return nullptr;
+		// int i = 0;
+		// ulong memberOwnerID;
+		// ulonglong memberMemberID;
+		// DispMemberBase* member = this;
+		// do {
+		// 	member = member->m_subMember;
+		// // for (DispMemberBase* member = m_subMember; i < 10; i++, member = member->m_subMember) {
+		// 	if (member == nullptr) {
+		// 		break;
+		// 	}
+		// 	char ownerName[12];
+		// 	char memberName[12];
+		// 	memberOwnerID = member->getOwnerID();
+		// 	memberMemberID = member->getMemberID();
+		// 	TagToName(memberOwnerID, ownerName);
+		// 	TagToName(memberMemberID, memberName);
+		// 	// getMemberName(memberName);
+		// 	if (member->isID(ownerID, memberID)) {
+		// 		return member;
+		// 	}
+		// } while (++i < 10);
+		// return nullptr;
 		/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -253,21 +197,12 @@ lbl_8030F5B8:
 	 */
 	void DispMemberBase::setSubMemberAll(void)
 	{
-		/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stw      r0, 4(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-		*/
+		m_subMember = nullptr;
+		doSetSubMemberAll();
 	}
+#endif
+
 } // namespace Screen
 } // namespace og
+
+#pragma auto_inline reset
