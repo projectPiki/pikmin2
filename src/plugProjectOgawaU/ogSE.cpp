@@ -1,4 +1,7 @@
 #include "types.h"
+#include "og/Sound.h"
+#include "PSSystem/SysIF.h"
+#include "SoundID.h"
 
 /*
     Generated from dpostproc
@@ -21,26 +24,16 @@
 */
 
 namespace og {
+Sound ogSound;
 
 /*
  * --INFO--
  * Address:	8030C9B0
  * Size:	000028
  */
-void Sound::setSE(unsigned long)
+void Sound::setSE(ulong soundID)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	lwz      r3, spSysIF__8PSSystem@sda21(r13)
-	bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	PSSystem::spSysIF->playSystemSe(soundID, 0);
 }
 
 /*
@@ -50,19 +43,7 @@ void Sound::setSE(unsigned long)
  */
 void Sound::setLifeDanger(void)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 0x1819
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	lwz      r3, spSysIF__8PSSystem@sda21(r13)
-	bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	PSSystem::spSysIF->playSystemSe(PSSE_SY_LIFE_DANGER, 0);
 }
 
 /*
@@ -156,19 +137,7 @@ lbl_8030CAD8:
  */
 void Sound::setChime(void)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 0x1815
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	lwz      r3, spSysIF__8PSSystem@sda21(r13)
-	bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	PSSystem::spSysIF->playSystemSe(PSSE_SY_TIME_SIGNAL_SMALL, 0);
 }
 
 /*
@@ -178,19 +147,7 @@ void Sound::setChime(void)
  */
 void Sound::setDecide(void)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 0x1800
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	lwz      r3, spSysIF__8PSSystem@sda21(r13)
-	bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_DECIDE, 0);
 }
 
 /*
@@ -200,19 +157,7 @@ void Sound::setDecide(void)
  */
 void Sound::setCancel(void)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 0x1801
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	lwz      r3, spSysIF__8PSSystem@sda21(r13)
-	bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CANCEL, 0);
 }
 
 /*
@@ -222,19 +167,7 @@ void Sound::setCancel(void)
  */
 void Sound::setCursor(void)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 0x1802
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	lwz      r3, spSysIF__8PSSystem@sda21(r13)
-	bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CURSOR, 0);
 }
 
 /*
@@ -244,19 +177,7 @@ void Sound::setCursor(void)
  */
 void Sound::setOpen(void)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 0x1803
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	lwz      r3, spSysIF__8PSSystem@sda21(r13)
-	bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_OPEN, 0);
 }
 
 /*
@@ -266,19 +187,7 @@ void Sound::setOpen(void)
  */
 void Sound::setClose(void)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 0x1804
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	lwz      r3, spSysIF__8PSSystem@sda21(r13)
-	bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_CLOSE, 0);
 }
 
 /*
@@ -296,32 +205,13 @@ void Sound::setPause(void)
  * Address:	8030CC00
  * Size:	000048
  */
-void Sound::setPlusMinus(bool)
+void Sound::setPlusMinus(bool isRepeat)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	clrlwi.  r0, r4, 0x18
-	beq      lbl_8030CC28
-	lwz      r3, spSysIF__8PSSystem@sda21(r13)
-	li       r4, 0x1020
-	li       r5, 0
-	bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-	b        lbl_8030CC38
-
-lbl_8030CC28:
-	lwz      r3, spSysIF__8PSSystem@sda21(r13)
-	li       r4, 0x1806
-	li       r5, 0
-	bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-
-lbl_8030CC38:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (isRepeat) {
+		PSSystem::spSysIF->playSystemSe(PSSE_SY_PLUS_MINUS_REPEAT, 0);
+	} else {
+		PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_PLUS_MINUS, 0);
+	}
 }
 
 /*
@@ -331,19 +221,7 @@ lbl_8030CC38:
  */
 void Sound::setSMenuLR(void)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 0x1806
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	lwz      r3, spSysIF__8PSSystem@sda21(r13)
-	bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_PLUS_MINUS, 0);
 }
 
 /*
@@ -353,19 +231,7 @@ void Sound::setSMenuLR(void)
  */
 void Sound::setError(void)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 0x1807
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	lwz      r3, spSysIF__8PSSystem@sda21(r13)
-	bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_ERROR, 0);
 }
 
 /*
@@ -375,19 +241,7 @@ void Sound::setError(void)
  */
 void Sound::setZoomIn(void)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 0x1008
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	lwz      r3, spSysIF__8PSSystem@sda21(r13)
-	bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_ZOOMIN, 0);
 }
 
 /*
@@ -397,19 +251,7 @@ void Sound::setZoomIn(void)
  */
 void Sound::setZoomOut(void)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 0x1009
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	lwz      r3, spSysIF__8PSSystem@sda21(r13)
-	bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_ZOOMOUT, 0);
 }
 
 /*
@@ -419,19 +261,7 @@ void Sound::setZoomOut(void)
  */
 void Sound::setScroll(void)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 0x100a
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	lwz      r3, spSysIF__8PSSystem@sda21(r13)
-	bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	PSSystem::spSysIF->playSystemSe(PSSE_SY_MENU_SCROLL, 0);
 }
 
 /*
@@ -441,19 +271,7 @@ void Sound::setScroll(void)
  */
 void Sound::setOpenDoukutu(void)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 0x1811
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	lwz      r3, spSysIF__8PSSystem@sda21(r13)
-	bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	PSSystem::spSysIF->playSystemSe(PSSE_SY_MESSAGE_EXIT, 0);
 }
 
 /*
@@ -463,19 +281,7 @@ void Sound::setOpenDoukutu(void)
  */
 void Sound::setSaveCave(void)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 0x4006
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	lwz      r3, spSysIF__8PSSystem@sda21(r13)
-	bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	PSSystem::spSysIF->playSystemSe(PSSE_SAVESELECTPAD, 0);
 }
 
 /*
@@ -485,19 +291,7 @@ void Sound::setSaveCave(void)
  */
 void Sound::setOpenWMapMenu(void)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 0x1811
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	lwz      r3, spSysIF__8PSSystem@sda21(r13)
-	bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	PSSystem::spSysIF->playSystemSe(PSSE_SY_MESSAGE_EXIT, 0);
 }
 
 /*
@@ -507,19 +301,7 @@ void Sound::setOpenWMapMenu(void)
  */
 void Sound::setOpenTotalPoko(void)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 0x1813
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	lwz      r3, spSysIF__8PSSystem@sda21(r13)
-	bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	PSSystem::spSysIF->playSystemSe(PSSE_SY_REGI_DRAWER_OPEN, 0);
 }
 
 /*
@@ -529,19 +311,7 @@ void Sound::setOpenTotalPoko(void)
  */
 void Sound::setCloseTotalPoko(void)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 0x181d
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	lwz      r3, spSysIF__8PSSystem@sda21(r13)
-	bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	PSSystem::spSysIF->playSystemSe(PSSE_SY_REGI_RECEIPT, 0);
 }
 
 /*
@@ -551,19 +321,7 @@ void Sound::setCloseTotalPoko(void)
  */
 void Sound::setPlusTotalPoko(void)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 0x1814
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	lwz      r3, spSysIF__8PSSystem@sda21(r13)
-	bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	PSSystem::spSysIF->playSystemSe(PSSE_SY_REGI_SUM_UP, 0);
 }
 
 /*
@@ -573,19 +331,7 @@ void Sound::setPlusTotalPoko(void)
  */
 void Sound::setOpenFinalMsg(void)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 0x1811
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	lwz      r3, spSysIF__8PSSystem@sda21(r13)
-	bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	PSSystem::spSysIF->playSystemSe(PSSE_SY_MESSAGE_EXIT, 0);
 }
 
 /*
@@ -595,19 +341,7 @@ void Sound::setOpenFinalMsg(void)
  */
 void Sound::setSprayAdd(void)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 0x1832
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	lwz      r3, spSysIF__8PSSystem@sda21(r13)
-	bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	PSSystem::spSysIF->playSystemSe(PSSE_SY_STORED_SPRAY, 0);
 }
 
 /*
@@ -617,19 +351,7 @@ void Sound::setSprayAdd(void)
  */
 void Sound::setTimeCarry(void)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 0x1829
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	lwz      r3, spSysIF__8PSSystem@sda21(r13)
-	bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	PSSystem::spSysIF->playSystemSe(PSSE_SY_PIKI_INCRE_SUM, 0);
 }
 
 /*
@@ -649,19 +371,7 @@ void Sound::setSensorSE(void)
  */
 void Sound::setGetSensor(void)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 0x187e
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	lwz      r3, spSysIF__8PSSystem@sda21(r13)
-	bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	PSSystem::spSysIF->playSystemSe(PSSE_SY_EQUIP_LADER, 0);
 }
 
 /*
@@ -671,19 +381,7 @@ void Sound::setGetSensor(void)
  */
 void Sound::setFloorComplete(void)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 0x1886
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	lwz      r3, spSysIF__8PSSystem@sda21(r13)
-	bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	PSSystem::spSysIF->playSystemSe(PSSE_SY_FLOOR_COMPLETE, 0);
 }
 
 /*
@@ -693,19 +391,7 @@ void Sound::setFloorComplete(void)
  */
 void Sound::setGraySensor(void)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 0x1881
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	lwz      r3, spSysIF__8PSSystem@sda21(r13)
-	bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	PSSystem::spSysIF->playSystemSe(PSSE_SY_LADER_TURN_GRAY, 0);
 }
 
 /*
@@ -715,19 +401,7 @@ void Sound::setGraySensor(void)
  */
 void Sound::setGetSpray(void)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 0x1880
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	lwz      r3, spSysIF__8PSSystem@sda21(r13)
-	bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	PSSystem::spSysIF->playSystemSe(PSSE_SY_EQUIP_SPLAY, 0);
 }
 
 /*
@@ -747,19 +421,7 @@ void Sound::setItemName(void)
  */
 void Sound::setKanteiExit(void)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 0x1892
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	lwz      r3, spSysIF__8PSSystem@sda21(r13)
-	bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	PSSystem::spSysIF->playSystemSe(PSSE_SY_KANTEI_OUT, 0);
 }
 
 /*
@@ -776,19 +438,7 @@ void Sound::setFloorTitle(void) { }
  */
 void Sound::setVsTitle(void)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 0x108b
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	lwz      r3, spSysIF__8PSSystem@sda21(r13)
-	bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	PSSystem::spSysIF->playSystemSe(PSSE_SY_2P_RULE_WAIT, 0);
 }
 
 /*
@@ -798,19 +448,7 @@ void Sound::setVsTitle(void)
  */
 void Sound::setBdamaGet(void)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 0x1889
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	lwz      r3, spSysIF__8PSSystem@sda21(r13)
-	bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	PSSystem::spSysIF->playSystemSe(PSSE_SY_2P_MARBLE_COUNT, 0);
 }
 
 /*
@@ -847,6 +485,8 @@ void Sound::stopSound(void)
  */
 void Sound::setVsWin1P(void)
 {
+	// PSStart2DStream(0xc0011043)
+	// stopSound();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -922,6 +562,8 @@ lbl_8030D098:
  */
 void Sound::setVsWin2P(void)
 {
+	// PSStart2DStream(0xc0011044)
+	// stopSound();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -997,6 +639,8 @@ lbl_8030D178:
  */
 void Sound::setVsDraw(void)
 {
+	// PSStart2DStream(0xc0011045)
+	// stopSound();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1072,18 +716,6 @@ lbl_8030D258:
  */
 void Sound::setWarning(void)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 0x1893
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	lwz      r3, spSysIF__8PSSystem@sda21(r13)
-	bl       playSystemSe__Q28PSSystem5SysIFFUlUl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	PSSystem::spSysIF->playSystemSe(PSSE_SY_MESSAGE_WARNING, 0);
 }
 } // namespace og
