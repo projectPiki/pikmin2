@@ -89,7 +89,7 @@ ASFLAGS := -mgekko -I include/
 # LDFLAGS := -fp hard -nodefaults
 # this set of LDFLAGS is faster, but does not generate a mapfile. Generates no warnings.
 LDFLAGS := -fp hard -nodefaults -w off
-CFLAGS  := -Cpp_exceptions off -proc gekko -RTTI off -fp hard -fp_contract on -rostr -O4,p -use_lmw_stmw on -sdata 8 -sdata2 8 -nodefaults -msgstyle gcc $(INCLUDES)
+CFLAGS  := -Cpp_exceptions off -inline auto -proc gekko -RTTI off -fp hard -fp_contract on -rostr -O4,p -use_lmw_stmw on -sdata 8 -sdata2 8 -nodefaults -msgstyle gcc $(INCLUDES)
 
 # for postprocess.py
 # PROCFLAGS := -fsymbol-fixup
