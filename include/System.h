@@ -18,6 +18,15 @@ struct CommonSaveData {
 } // namespace Game
 
 struct System {
+	enum LanguageID {
+		LANG_ENGLISH = 0,
+		LANG_FRENCH,
+		LANG_GERMAN,
+		LANG_HOL_UNUSED,
+		LANG_ITALIAN,
+		LANG_JAPANESE,
+		LANG_SPANISH
+	};
 	struct FragmentationChecker {
 		FragmentationChecker(char*, bool);
 		~FragmentationChecker();

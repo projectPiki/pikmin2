@@ -6,6 +6,7 @@
 
 struct JKRHeap;
 
+// Size: 0x18
 struct JKRDisposer {
 	JKRDisposer();
 	virtual ~JKRDisposer();

@@ -1,4 +1,9 @@
 #include "types.h"
+#include "Sys/Cylinder.h"
+#include "Vector3.h"
+#include "sysMath.h"
+
+namespace Sys {
 
 /*
     Generated from dpostproc
@@ -21,9 +26,11 @@
  * Address:	........
  * Size:	000104
  */
-void __ct__Q23Sys8CylinderFRC10Vector3f RC10Vector3f f(void)
+// void __ct__Q23Sys8CylinderFRC10Vector3f RC10Vector3f f(void)
+Cylinder::Cylinder(const Vector3f& p1, const Vector3f& p2, float p3)
 {
 	// UNUSED FUNCTION
+	set(p1, p2, p3);
 }
 
 /*
@@ -31,7 +38,8 @@ void __ct__Q23Sys8CylinderFRC10Vector3f RC10Vector3f f(void)
  * Address:	80421628
  * Size:	00003C
  */
-void __ct__Q23Sys8CylinderFRC10Vector3f RC10Vector3f ff(void)
+// void __ct__Q23Sys8CylinderFRC10Vector3f RC10Vector3f ff(void)
+Cylinder::Cylinder(const Vector3f& p1, const Vector3f& p2, float p3, float p4)
 {
 	/*
 	lfs      f3, 0(r4)
@@ -57,8 +65,27 @@ void __ct__Q23Sys8CylinderFRC10Vector3f RC10Vector3f ff(void)
  * Address:	80421664
  * Size:	000100
  */
-void set__Q23Sys8CylinderFRC10Vector3f RC10Vector3f f(void)
+// void set__Q23Sys8CylinderFRC10Vector3f RC10Vector3f f(void)
+void Cylinder::set(const Vector3f& p1, const Vector3f& p2, float p3)
 {
+	_00.x = (p1.x + p2.x) * 0.5f;
+	_00.y = (p1.y + p2.y) * 0.5f;
+	_00.z = (p1.z + p2.z) * 0.5f;
+	_0C.x = p2.x - p1.x;
+	_0C.y = p2.y - p1.y;
+	_0C.z = p2.z - p1.z;
+	float root = pikmin2_sqrtf(_0C.z*_0C.z + _0C.x*_0C.x + _0C.y*_0C.y);
+	if (root > 0.0f) {
+		_0C.x *= 1.0f / root;
+		_0C.y *= 1.0f / root;
+		_0C.z *= 1.0f / root;
+		// Suspicious assignment to reg here. Maybe inlined Vector3f::multiply?
+		// Never mind. Ghidra isn't handling the branches correctly...
+	} else {
+		root = p3;
+	}
+	_18 = root;
+	_1C = p3;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -131,14 +158,13 @@ lbl_80421740:
 	*/
 }
 
-namespace Sys {
 
 /*
  * --INFO--
  * Address:	........
  * Size:	000188
  */
-void Cylinder::intersect(Plane const&)
+bool Cylinder::intersect(Plane const& plane)
 {
 	// UNUSED FUNCTION
 }
@@ -148,7 +174,7 @@ void Cylinder::intersect(Plane const&)
  * Address:	80421764
  * Size:	000190
  */
-void Cylinder::culled(Plane const&)
+bool Cylinder::culled(Plane const& plane)
 {
 	/*
 	stwu     r1, -0xa0(r1)
@@ -265,7 +291,7 @@ lbl_80421894:
  * Address:	804218F4
  * Size:	0001D8
  */
-void Cylinder::intersect(Sys::Triangle const&, float&)
+bool Cylinder::intersect(Triangle const& triangle, float& p2)
 {
 	/*
 	stwu     r1, -0xb0(r1)
@@ -406,7 +432,7 @@ lbl_80421A70:
  * Address:	........
  * Size:	0004A0
  */
-void Cylinder::draw(Graphics&)
+void Cylinder::draw(Graphics& graphics)
 {
 	// UNUSED FUNCTION
 }

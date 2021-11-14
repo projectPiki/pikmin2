@@ -536,7 +536,7 @@ lbl_801A3AA8:
  * Address:	801A3AD0
  * Size:	000098
  */
-void Pathfinder::check(unsigned long)
+uchar Pathfinder::check(ulong)
 {
 	/*
 	stwu     r1, -0x10(r1)

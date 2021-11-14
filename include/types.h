@@ -1,6 +1,8 @@
 #ifndef _TYPES_H
 #define _TYPES_H
 
+#include "BuildSettings.h"
+
 // r2 is  8051E360
 // r13 is 8051C680
 

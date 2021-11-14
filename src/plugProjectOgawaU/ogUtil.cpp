@@ -1,4 +1,9 @@
 #include "types.h"
+#include "Dolphin/stl.h"
+#include "Game/MoviePlayer.h"
+#include "Graphics.h"
+#include "System.h"
+#include "nans.h"
 
 /*
     Generated from dpostproc
@@ -73,25 +78,16 @@
 */
 
 namespace og {
+namespace newScreen {
 
 /*
  * --INFO--
  * Address:	80317F28
  * Size:	000024
  */
-void newScreen::checkMovieActive(void)
+bool checkMovieActive()
 {
-	/*
-	lwz      r4, moviePlayer__4Game@sda21(r13)
-	li       r3, 0
-	cmplwi   r4, 0
-	beqlr
-	lwz      r0, 0x1f0(r4)
-	clrlwi.  r0, r0, 0x1f
-	beqlr
-	li       r3, 1
-	blr
-	*/
+	return ((Game::moviePlayer != nullptr) && (Game::moviePlayer->m_flags & Game::MoviePlayer::IS_ACTIVE));
 }
 
 /*
@@ -99,19 +95,49 @@ void newScreen::checkMovieActive(void)
  * Address:	........
  * Size:	000004
  */
-void newScreen::drawObjName(Graphics&, char*)
+void drawObjName(Graphics&, char*)
 {
 	// UNUSED FUNCTION
 }
 
 /*
+ * TODO: This is currently slightly too small.
+ *
  * --INFO--
  * Address:	........
  * Size:	000084
  */
-void newScreen::getLanguageDir(char*)
+inline void getLanguageDir(char*& path)
 {
 	// UNUSED FUNCTION
+	if (LOCALIZED) {
+		switch (sys->m_region) {
+			case System::LANG_ENGLISH:
+				path = "eng/";
+				break;
+			case System::LANG_FRENCH:
+				path = "fra/";
+				break;
+			case System::LANG_GERMAN:
+				path = "ger/";
+				break;
+			case System::LANG_ITALIAN:
+				path = "ita/";
+				break;
+			case System::LANG_JAPANESE:
+				path = "jpn/";
+				break;
+			case System::LANG_SPANISH:
+				path = "spa/";
+				break;
+			case System::LANG_HOL_UNUSED:
+			default:
+				path = "";
+				break;
+		}
+	} else {
+		path = "";
+	}
 }
 
 /*
@@ -119,8 +145,49 @@ void newScreen::getLanguageDir(char*)
  * Address:	80317F4C
  * Size:	0000DC
  */
-void newScreen::makeLanguageResName(char*, char const*)
+void makeLanguageResName(char* languageResName, char const* path)
 {
+	char* langDir = nullptr;
+	char langDirBuffer[16];
+
+	if (*path != '/') {
+		// TODO: Perhaps this is inlined from some path normalization func?
+		// It's currently putting %s before the subdirs in rodata, when it should be afterwards.
+		sprintf(languageResName, "%s", path);
+		return;
+	}
+
+	getLanguageDir(langDir);
+	// if (LOCALIZED) {
+	// 	switch (sys->m_region) {
+	// 		case System::LANG_ENGLISH:
+	// 			langDir = "eng/";
+	// 			break;;
+	// 		case System::LANG_FRENCH:
+	// 			langDir = "fra/";
+	// 			break;
+	// 		case System::LANG_GERMAN:
+	// 			langDir = "ger/";
+	// 			break;
+	// 		case System::LANG_ITALIAN:
+	// 			langDir = "ita/";
+	// 			break;
+	// 		case System::LANG_JAPANESE:
+	// 			langDir = "jpn/";
+	// 			break;
+	// 		case System::LANG_SPANISH:
+	// 			langDir = "spa/";
+	// 			break;
+	// 		case System::LANG_HOL_UNUSED:
+	// 		default:
+	// 			langDir = "";
+	// 			break;
+	// 	}
+	// } else {
+	// 	langDir = "";
+	// }
+	sprintf(langDirBuffer, "%s", langDir);
+	sprintf(languageResName, "/new_screen/%s%s", langDirBuffer, path);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -206,7 +273,7 @@ lbl_80318010:
 	blr
 	*/
 }
-
+} // namespace newScreen
 } // namespace og
 
 /*

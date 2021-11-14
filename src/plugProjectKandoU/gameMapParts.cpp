@@ -1,3 +1,5 @@
+#include "Vector3.h"
+#include "Game/mapParts.h"
 #include "types.h"
 
 /*
@@ -669,7 +671,7 @@ namespace Game {
  * Address:	801B6468
  * Size:	000024
  */
-void MapUnitInterface::getDoor(int idx)
+Door* MapUnitInterface::getDoor(int idx)
 {
 	return this->_118.getChildAt(idx)
 	/*
@@ -709,7 +711,7 @@ void MapUnitInterface::getCellSize(int&, int&)
  * Address:	801B64A8
  * Size:	000024
  */
-void Door::getLink(int)
+DoorLink* Door::getLink(int)
 {
 	/*
 	stwu     r1, -0x10(r1)

@@ -3,6 +3,7 @@
 
 struct JSUPtrList;
 
+// Size: 0x10
 struct JSUPtrLink {
 	JSUPtrLink(void*);
 	~JSUPtrLink();

@@ -1,4 +1,5 @@
 #include "types.h"
+#include "Game/PartsView.h"
 
 /*
     Generated from dpostproc

@@ -11,6 +11,11 @@ extern "C" {
 void OSReport(const char*, ...);
 void OSPanic(const char* file, int line, const char* message, ...);
 #define OSError(...) OSPanic(__FILE__, __LINE__, __VA_ARGS__)
+#ifndef MATCHING
+#define OSErrorLine(line, ...) OSError(__VA_ARGS__)
+#else
+#define OSErrorLine(line, ...) OSPanic(__FILE__, line, __VA_ARGS__)
+#endif
 
 // TODO: fill these structs
 typedef struct OSContext {
@@ -35,7 +40,11 @@ typedef struct OSMessageQueue {
 } OSMessageQueue;
 typedef void* OSMessage;
 
+#define MSG_QUEUE_SHOULD_BLOCK 1
+
+void OSInitMessageQueue(OSMessageQueue* queue, OSMessage* msgSlots, int slotCount);
 BOOL OSSendMessage(OSMessageQueue* queue, OSMessage message, int flags);
+BOOL OSReceiveMessage(OSMessageQueue* queue, OSMessage* msg, int flags);
 
 // OSArena
 extern void* __OSArenaHi;
@@ -61,7 +70,7 @@ typedef struct OSMutexObject {
 
 extern void OSInitMutex(OSMutexObject*);
 extern void OSLockMutex(OSMutexObject*);
-extern void OSUnlockMutex(OSMutexObject*);
+extern BOOL OSUnlockMutex(OSMutexObject*);
 extern void __OSUnlockAllMutex(OSThread*);
 extern BOOL OSTryLockMutex(OSMutexObject*);
 extern void OSInitCond(OSThreadQueue*);
@@ -74,6 +83,12 @@ void __OSModuleInit(void);
 // targsupp
 extern void func_800BFA40(void);
 extern void func_800BFA50(void);
+
+typedef struct OSFstEntry {
+	int m_entryNum;
+	int m_nextEntryNum;
+	char* m_fileNameMaybe;
+} OSFstEntry;
 
 #ifdef __cplusplus
 };
