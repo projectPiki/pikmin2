@@ -669,7 +669,7 @@ NISHIMURA:=\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/QurioneMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/Qurione.o\
 	$(BUILD_DIR)/src/plugProjectNishimuraU/QurioneAnimator.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/RumbleData.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/RumbleData.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/MaroFrogMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/MaroFrog.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/RockState.o\
