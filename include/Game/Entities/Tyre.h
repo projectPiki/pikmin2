@@ -1,5 +1,5 @@
-#ifndef _GAME_TYRE_PROPERANIMATOR_H
-#define _GAME_TYRE_PROPERANIMATOR_H
+#ifndef _GAME_ENTITIES_TYRE_H
+#define _GAME_ENTITIES_TYRE_H
 
 #include "Game/EnemyAnimatorBase.h"
 

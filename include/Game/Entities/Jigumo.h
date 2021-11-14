@@ -1,5 +1,5 @@
-#ifndef _GAME_JIGUMO_PROPERANIMATOR_H
-#define _GAME_JIGUMO_PROPERANIMATOR_H
+#ifndef _GAME_ENTITIES_JIGUMO_H
+#define _GAME_ENTITIES_JIGUMO_H
 
 #include "Game/EnemyAnimatorBase.h"
 

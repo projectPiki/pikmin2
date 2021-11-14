@@ -1,5 +1,5 @@
-#ifndef _EBI_P2TITLECOORDMGR_H
-#define _EBI_P2TITLECOORDMGR_H
+#ifndef _EBI_TITLE_EBIP2TITLECOORDMGR_H
+#define _EBI_TITLE_EBIP2TITLECOORDMGR_H
 
 // this needs cleanup; it's a ghidra export
 #include "types.h"

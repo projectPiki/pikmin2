@@ -1,5 +1,5 @@
-#ifndef _JSYSTEM_J3DJOINT_H
-#define _JSYSTEM_J3DJOINT_H
+#ifndef _JSYSTEM_J3D_J3DJOINT_H
+#define _JSYSTEM_J3D_J3DJOINT_H
 
 #include "types.h"
 #include "Quat.h"

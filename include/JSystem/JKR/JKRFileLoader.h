@@ -1,5 +1,5 @@
-#ifndef _JSYSTEM_JKRFILELOADER_H
-#define _JSYSTEM_JKRFILELOADER_H
+#ifndef _JSYSTEM_JKR_JKRFILELOADER_H
+#define _JSYSTEM_JKR_JKRFILELOADER_H
 
 #include "JSystem/JKR/JKRHeap.h"
 #include "JSystem/JKR/JKRArchive.h"

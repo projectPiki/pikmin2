@@ -1,5 +1,5 @@
-#ifndef _JSYSTEM_JSUTREE_H
-#define _JSYSTEM_JSUTREE_H
+#ifndef _JSYSTEM_JSU_JSUTREE_H
+#define _JSYSTEM_JSU_JSUTREE_H
 
 #include "JSystem/JSU/JSUPtrLink.h"
 #include "JSystem/JSU/JSUPtrList.h"

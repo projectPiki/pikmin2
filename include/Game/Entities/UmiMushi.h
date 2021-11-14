@@ -1,5 +1,5 @@
-#ifndef _GAME_UMIMUSHI_PROPERANIMATOR_H
-#define _GAME_UMIMUSHI_PROPERANIMATOR_H
+#ifndef _GAME_ENTITIES_UMIMUSHI_H
+#define _GAME_ENTITIES_UMIMUSHI_H
 
 #include "Game/EnemyAnimatorBase.h"
 

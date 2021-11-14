@@ -1,5 +1,5 @@
-#ifndef _JSYSTEM_JKRDECOMP_H
-#define _JSYSTEM_JKRDECOMP_H
+#ifndef _JSYSTEM_JKR_JKRDECOMP_H
+#define _JSYSTEM_JKR_JKRDECOMP_H
 
 #include "types.h"
 

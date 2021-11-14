@@ -1,5 +1,5 @@
-#ifndef _JSYSTEM_J3DANMBASE_H
-#define _JSYSTEM_J3DANMBASE_H
+#ifndef _JSYSTEM_J3D_J3DANMBASE_H
+#define _JSYSTEM_J3D_J3DANMBASE_H
 
 #include "types.h"
 

@@ -1,5 +1,5 @@
-#ifndef _JSYSTEM_JKRHEAP_H
-#define _JSYSTEM_JKRHEAP_H
+#ifndef _JSYSTEM_JKR_JKRHEAP_H
+#define _JSYSTEM_JKR_JKRHEAP_H
 
 #include "types.h"
 #include "Dolphin/os.h"

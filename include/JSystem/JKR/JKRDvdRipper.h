@@ -1,5 +1,5 @@
-#ifndef _JSYSTEM_JKRDVDRIPPER_H
-#define _JSYSTEM_JKRDVDRIPPER_H
+#ifndef _JSYSTEM_JKR_JKRDVDRIPPER_H
+#define _JSYSTEM_JKR_JKRDVDRIPPER_H
 
 #include "types.h"
 #include "JSystem/JKR/JKRExpandSwitch.h"

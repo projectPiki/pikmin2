@@ -1,5 +1,5 @@
-#ifndef _GAME_BLACKMAN_PROPERANIMATOR_H
-#define _GAME_BLACKMAN_PROPERANIMATOR_H
+#ifndef _GAME_ENTITIES_BLACKMAN_H
+#define _GAME_ENTITIES_BLACKMAN_H
 
 #include "Game/EnemyAnimatorBase.h"
 

@@ -1,5 +1,5 @@
-#ifndef _DOLPHIN_TARGETOPTIONS_H
-#define _DOLPHIN_TARGETOPTIONS_H
+#ifndef _DOLPHIN_TARGET_OPTIONS_H
+#define _DOLPHIN_TARGET_OPTIONS_H
 
 #include "types.h"
 

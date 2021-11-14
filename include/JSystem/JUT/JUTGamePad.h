@@ -1,5 +1,5 @@
-#ifndef _JSYSTEM_JUTGAMEPAD_H
-#define _JSYSTEM_JUTGAMEPAD_H
+#ifndef _JSYSTEM_JUT_JUTGAMEPAD_H
+#define _JSYSTEM_JUT_JUTGAMEPAD_H
 
 #include "types.h"
 

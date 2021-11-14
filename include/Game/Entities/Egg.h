@@ -1,5 +1,5 @@
-#ifndef _GAME_EGG_PROPERANIMATOR_H
-#define _GAME_EGG_PROPERANIMATOR_H
+#ifndef _GAME_ENTITIES_EGG_H
+#define _GAME_ENTITIES_EGG_H
 
 #include "Game/EnemyAnimatorBase.h"
 

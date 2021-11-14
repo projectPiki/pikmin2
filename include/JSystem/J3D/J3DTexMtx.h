@@ -1,5 +1,5 @@
-#ifndef _JSYSTEM_J3DTEXMTX_H
-#define _JSYSTEM_J3DTEXMTX_H
+#ifndef _JSYSTEM_J3D_J3DTEXMTX_H
+#define _JSYSTEM_J3D_J3DTEXMTX_H
 
 #include "types.h"
 #include "Matrixf.h"

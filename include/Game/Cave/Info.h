@@ -1,5 +1,5 @@
-#ifndef _GAME_CAVE_TEKIINFO_H
-#define _GAME_CAVE_TEKIINFO_H
+#ifndef _GAME_CAVE_INFO_H
+#define _GAME_CAVE_INFO_H
 
 #include "CNode.h"
 #include "Game/enemyInfo.h"

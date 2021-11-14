@@ -1,5 +1,5 @@
-#ifndef _JSYSTEM_J3DTEXNOANM_H
-#define _JSYSTEM_J3DTEXNOANM_H
+#ifndef _JSYSTEM_J3D_J3DTEXNOANM_H
+#define _JSYSTEM_J3D_J3DTEXNOANM_H
 
 #include "types.h"
 

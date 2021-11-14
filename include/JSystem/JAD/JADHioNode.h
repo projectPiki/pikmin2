@@ -1,5 +1,5 @@
-#ifndef _JSYSTEM_JADHIONODE_H
-#define _JSYSTEM_JADHIONODE_H
+#ifndef _JSYSTEM_JAD_JADHIONODE_H
+#define _JSYSTEM_JAD_JADHIONODE_H
 
 struct JADHioNode {
 	JADHioNode(const char*);

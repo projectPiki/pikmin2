@@ -1,5 +1,5 @@
-#ifndef _JSYSTEM_J3DJOINTTREE_H
-#define _JSYSTEM_J3DJOINTTREE_H
+#ifndef _JSYSTEM_J3D_J3DJOINTTREE_H
+#define _JSYSTEM_J3D_J3DJOINTTREE_H
 
 #include "types.h"
 #include "Quat.h"

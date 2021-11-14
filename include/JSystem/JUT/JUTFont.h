@@ -1,5 +1,5 @@
-#ifndef _JSYSTEM_JUTFONT_H
-#define _JSYSTEM_JUTFONT_H
+#ifndef _JSYSTEM_JUT_JUTFONT_H
+#define _JSYSTEM_JUT_JUTFONT_H
 
 struct JUTFont {
 };

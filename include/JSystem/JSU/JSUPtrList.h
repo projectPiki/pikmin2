@@ -1,5 +1,5 @@
-#ifndef _JSYSTEM_JSUPTRLIST_H
-#define _JSYSTEM_JSUPTRLIST_H
+#ifndef _JSYSTEM_JSU_JSUPTRLIST_H
+#define _JSYSTEM_JSU_JSUPTRLIST_H
 
 #include "types.h"
 

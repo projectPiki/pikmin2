@@ -1,5 +1,5 @@
-#ifndef _JSYSTEM_JGADGET_TEBIT_H
-#define _JSYSTEM_JGADGET_TEBIT_H
+#ifndef _JSYSTEM_JGADGET_BINARY_H
+#define _JSYSTEM_JGADGET_BINARY_H
 
 #include "types.h"
 

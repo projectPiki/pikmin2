@@ -1,5 +1,5 @@
-#ifndef _GAME_MIULIN_PROPERANIMATOR_H
-#define _GAME_MIULIN_PROPERANIMATOR_H
+#ifndef _GAME_ENTITIES_MIULIN_H
+#define _GAME_ENTITIES_MIULIN_H
 
 #include "Game/EnemyAnimatorBase.h"
 

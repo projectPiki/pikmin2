@@ -1,5 +1,5 @@
-#ifndef _JSYSTEM_JKRARCHIVE_H
-#define _JSYSTEM_JKRARCHIVE_H
+#ifndef _JSYSTEM_JKR_JKRARCHIVE_H
+#define _JSYSTEM_JKR_JKRARCHIVE_H
 
 #include "JSystem/JKR/JKRHeap.h"
 #include "types.h"

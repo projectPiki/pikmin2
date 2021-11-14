@@ -1,5 +1,5 @@
-#ifndef _JSYSTEM_JKRTHREAD_H
-#define _JSYSTEM_JKRTHREAD_H
+#ifndef _JSYSTEM_JKR_JKRTHREAD_H
+#define _JSYSTEM_JKR_JKRTHREAD_H
 
 #include "types.h"
 

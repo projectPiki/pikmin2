@@ -1,5 +1,5 @@
-#ifndef GAME_ENEMYINFO_H
-#define GAME_ENEMYINFO_H
+#ifndef _GAME_ENEMYINFO_H
+#define _GAME_ENEMYINFO_H
 
 #include "types.h"
 

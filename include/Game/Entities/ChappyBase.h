@@ -1,5 +1,5 @@
-#ifndef _GAME_CHAPPYBASE_H
-#define _GAME_CHAPPYBASE_H
+#ifndef _GAME_ENTITIES_CHAPPYBASE_H
+#define _GAME_ENTITIES_CHAPPYBASE_H
 
 #include "Game/EnemyAnimatorBase.h"
 

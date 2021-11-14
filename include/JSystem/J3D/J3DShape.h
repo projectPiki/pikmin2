@@ -1,5 +1,5 @@
-#ifndef _JSYSTEM_J3DSHAPE_H
-#define _JSYSTEM_J3DSHAPE_H
+#ifndef _JSYSTEM_J3D_J3DSHAPE_H
+#define _JSYSTEM_J3D_J3DSHAPE_H
 
 #include "types.h"
 

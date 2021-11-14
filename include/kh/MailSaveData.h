@@ -1,5 +1,5 @@
-#ifndef _KH_SCREEN_MAILSAVEDATA_H
-#define _KH_SCREEN_MAILSAVEDATA_H
+#ifndef _KH_MAILSAVEDATA_H
+#define _KH_MAILSAVEDATA_H
 
 #include "types.h"
 
