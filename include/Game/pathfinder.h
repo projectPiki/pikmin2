@@ -1,9 +1,10 @@
 #ifndef _GAME_PATHFINDER_H
 #define _GAME_PATHFINDER_H
 
-// TODO: Rename this file to pathfinder.h
-#include "Graphics.h"
 #include "types.h"
+
+struct Graphics;
+
 namespace Game {
 	struct RouteMgr;
 }

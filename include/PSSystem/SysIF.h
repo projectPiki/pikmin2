@@ -7,7 +7,7 @@
 #include "PSSystem/FxMgr.h"
 
 namespace PSSystem {
-struct SetupArg;
+	struct SetupArg;
 }
 
 namespace PSSystem {

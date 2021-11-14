@@ -1,11 +1,10 @@
 #ifndef _GAME_PARTSVIEW_H
 #define _GAME_PARTSVIEW_H
 
-#include "Graphics.h"
 #include "types.h"
 #include "CNode.h"
 #include "Game/routeMgr.h"
-#include "Game/Pathfinder.h"
+#include "Game/pathfinder.h"
 
 struct Graphics;
 struct Stream;

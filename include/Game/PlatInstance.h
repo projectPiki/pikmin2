@@ -1,23 +1,22 @@
 #ifndef _GAME_PLATINSTANCE_H
 #define _GAME_PLATINSTANCE_H
 
-#include "Graphics.h"
 #include "ObjectMgr.h"
 #include "types.h"
 #include "Game/cellPyramid.h"
 #include "Matrixf.h"
-#include "Sys/Sphere.h"
-#include "SysShape/Model.h"
-#include "Vector3.h"
 #include "id32.h"
 
+struct Graphics;
 struct Platform;
 struct PlatAttacher;
 namespace Sys {
 	struct Sphere;
 	struct RayIntersectInfo;
 }
-
+namespace SysShape {
+	struct Model;
+}
 namespace Game {
 	struct BaseItem;
 	struct Creature;

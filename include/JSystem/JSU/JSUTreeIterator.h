@@ -2,8 +2,6 @@
 #define _JSYSTEM_JSU_JSUTREEITERATOR_H
 
 #include "JSystem/JSU/JSUTree.h"
-#include "JSystem/JSU/JSUPtrLink.h"
-#include "JSystem/JSU/JSUPtrList.h"
 
 template <typename T> struct JSUTreeIterator {
 	bool operator!=(const JSUTree<T>*) const;

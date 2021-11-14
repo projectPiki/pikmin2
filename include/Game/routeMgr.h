@@ -1,9 +1,10 @@
 #ifndef _GAME_ROUTEMGR_H
 #define _GAME_ROUTEMGR_H
 
-#include "Graphics.h"
 #include "types.h"
 #include "Container.h"
+
+struct Graphics;
 
 namespace Game {
 struct WPSearchArg {

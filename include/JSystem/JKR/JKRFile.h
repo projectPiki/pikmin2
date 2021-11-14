@@ -59,25 +59,10 @@ struct JKRDvdFile : public JKRFile {
 
 	}
 	inline int writeDataAsync(const void*, long, long) { return -1; }
+
 	void initiate();
 	long sync();
 	static BOOL doneProcess(long, DVDFileInfo*);
-	bool check() {
-		if (_18) {
-			while (false);
-#ifdef SOMETHING
-			OSError("HELP");
-#endif
-			return true;
-		}  else {
-			while (false);
-#ifdef SOMETHING
-			OSReport("No help needed");
-#endif
-			return false;
-		}
-	}
-
 
 	OSMutexObject _1C;                 // _1C
 	OSMutexObject _34;                 // _34

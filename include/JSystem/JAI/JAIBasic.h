@@ -2,10 +2,12 @@
 #define _JSYSTEM_JAI_JAIBASIC_H
 
 #include "types.h"
-#include "JSystem/JAI/JAInter.h"
 
 struct JKRHeap;
 struct JAISound;
+namespace JAInter {
+	struct Camera;
+}
 
 struct JAIBasic {
 	virtual void makeSequence();               // _00

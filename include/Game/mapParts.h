@@ -1,26 +1,37 @@
 #ifndef _GAME_MAPPARTS_H
 #define _GAME_MAPPARTS_H
 
-#include "ObjectMgr.h"
-#include "Sys/Sphere.h"
-#include "types.h"
 #include "BoundBox.h"
+#include "types.h"
 #include "CNode.h"
 #include "cellPyramid.h"
-#include "Game/Cave/Info.h"
 #include "Game/Cave/RandMapUnit.h"
-#include "Game/itemMgr.h"
-#include "Game/mapCollision.h"
 #include "Game/PartsView.h"
 #include "Game/routeMgr.h"
 #include "Game/seaMgr.h"
-#include "JSystem/JUT/JUTTexture.h"
+#include "MapCollision.h"
 #include "MapMgr.h"
-#include "Sys/Cylinder.h"
-#include "Sys/MatLoopAnimator.h"
-#include "Sys/MatTexAnimation.h"
+#include "Matrixf.h"
 #include "ObjectMgr.h"
+#include "Sys/Cylinder.h"
+#include "Sys/Sphere.h"
 #include "Vector3.h"
+
+struct Graphics;
+struct J3DModelData;
+struct JUTTexture;
+struct ResTIMG;
+namespace Game {
+	struct RoomLink;
+	namespace Cave {
+		struct EditMapUnit;
+		struct FloorInfo;
+	}
+}
+namespace Sys {
+	struct MatLoopAnimator;
+	struct MatTexAnimation;
+}
 
 namespace Game {
 	// Size: 0x24
