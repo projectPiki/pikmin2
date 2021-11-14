@@ -645,7 +645,7 @@ NISHIMURA:=\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/RandItemUnit.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/GateUnit.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/RandGateUnit.o\
-	$(BUILD_DIR)/asm/plugProjectNishimuraU/ObjectLayout.o\
+	$(BUILD_DIR)/src/plugProjectNishimuraU/ObjectLayout.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/CameraMgr.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/ContRumble.o\
 	$(BUILD_DIR)/asm/plugProjectNishimuraU/RumbleMgr.o\
