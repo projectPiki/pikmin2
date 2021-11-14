@@ -1,4 +1,4 @@
-#include "Game/BlackMan.h"
+#include "Game/Entities/BlackMan.h"
 
 namespace Game {
 namespace BlackMan {

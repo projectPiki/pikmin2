@@ -1,4 +1,4 @@
-#include "Game/TamagoMushi.h"
+#include "Game/Entities/TamagoMushi.h"
 
 namespace Game {
 namespace TamagoMushi {

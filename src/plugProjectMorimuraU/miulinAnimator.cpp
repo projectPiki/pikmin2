@@ -1,4 +1,4 @@
-#include "Game/Miulin.h"
+#include "Game/Entities/Miulin.h"
 
 namespace Game {
 namespace Miulin {

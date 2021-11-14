@@ -1,4 +1,4 @@
-#include "Game/Bomb.h"
+#include "Game/Entities/Bomb.h"
 
 namespace Game {
 namespace Bomb {

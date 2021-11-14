@@ -1,4 +1,4 @@
-#include "Game/Tyre.h"
+#include "Game/Entities/Tyre.h"
 
 namespace Game {
 namespace Tyre {

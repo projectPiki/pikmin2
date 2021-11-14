@@ -1,4 +1,4 @@
-#include "Game/PanModokiBase.h"
+#include "Game/Entities/PanModokiBase.h"
 
 namespace Game {
 namespace PanModokiBase {

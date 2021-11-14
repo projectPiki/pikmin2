@@ -1,6 +1,6 @@
 #include "types.h"
 
-#include "Game/ChappyBase.h"
+#include "Game/Entities/ChappyBase.h"
 
 namespace Game {
 namespace ChappyBase {

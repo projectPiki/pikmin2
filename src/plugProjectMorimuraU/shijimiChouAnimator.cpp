@@ -1,4 +1,4 @@
-#include "Game/ShijimiChou.h"
+#include "Game/Entities/ShijimiChou.h"
 
 namespace Game {
 namespace ShijimiChou {

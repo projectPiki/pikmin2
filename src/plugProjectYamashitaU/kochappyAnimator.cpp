@@ -1,6 +1,4 @@
-#include "types.h"
-
-#include "Game/KochappyBase.h"
+#include "Game/Entities/KochappyBase.h"
 
 namespace Game {
 namespace KochappyBase {

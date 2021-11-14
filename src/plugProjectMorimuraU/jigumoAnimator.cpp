@@ -1,4 +1,4 @@
-#include "Game/Jigumo.h"
+#include "Game/Entities/Jigumo.h"
 
 namespace Game {
 namespace Jigumo {
