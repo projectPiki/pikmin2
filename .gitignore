@@ -19,6 +19,10 @@
 *.dump
 *.7z
 *.bat
+*.sln
+*.filters
+*.vcxproj
+*.user
 include/*.s
 
 build/
@@ -26,3 +30,6 @@ tools/mwcc_compiler/
 decomp/
 errors.txt
 output.asm
+Debug/
+.vs/
+
