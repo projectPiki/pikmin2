@@ -2,10 +2,8 @@
 #define _PSSYSTEM_FXMGR_H
 
 namespace PSSystem {
-	struct FxMgr {
-	};
-}
-
-
+struct FxMgr {
+};
+} // namespace PSSystem
 
 #endif

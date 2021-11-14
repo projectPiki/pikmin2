@@ -15,16 +15,17 @@ struct CreateTriangleArg;
 struct Sphere;
 
 struct GridDivider : public TriDivider {
-	GridDivider() {
+	GridDivider()
+	{
 		m_boundingBox.m_min.x = 32768.0f;
 		m_boundingBox.m_min.y = 32768.0f;
 		m_boundingBox.m_min.z = 32768.0f;
 		m_boundingBox.m_max.x = -32768.0f;
 		m_boundingBox.m_max.y = -32768.0f;
 		m_boundingBox.m_max.z = -32768.0f;
-		m_triIndexLists = nullptr;
-		_24 = 0;
-		_20 = 0;
+		m_triIndexLists       = nullptr;
+		_24                   = 0;
+		_20                   = 0;
 	}
 	~GridDivider();
 

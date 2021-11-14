@@ -9,7 +9,7 @@ struct ResTIMG;
 struct J2DGrafContext;
 struct JKRArchive;
 namespace JUtility {
-	struct TColor;
+struct TColor;
 }
 
 namespace og {
@@ -30,8 +30,8 @@ namespace Screen {
 	void drawPaneFrame(J2DGrafContext&, J2DPane*, JUtility::TColor&);
 
 	struct DispMemberBase {
-		virtual uint getSize() = 0;          // _00
-		virtual ulong getOwnerID() = 0;      // _04
+		virtual uint getSize()          = 0; // _00
+		virtual ulong getOwnerID()      = 0; // _04
 		virtual ulonglong getMemberID() = 0; // _08
 		virtual void doSetSubMemberAll();    // _10
 
@@ -50,7 +50,6 @@ namespace Screen {
 		// 	getOwnerName(owner);
 		// 	getMemberName(member);
 		// }
-
 
 		// _00 VTBL
 		DispMemberBase* m_subMember; // _04

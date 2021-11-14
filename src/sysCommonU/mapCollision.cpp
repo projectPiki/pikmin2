@@ -56,7 +56,7 @@ void MapCollision::read(Stream& input)
 MapCollision* MapCollision::clone(Matrixf& matrix)
 {
 	MapCollision* clone = new MapCollision();
-	clone->m_divider = (Sys::GridDivider*)m_divider->clone(matrix);
+	clone->m_divider    = (Sys::GridDivider*)m_divider->clone(matrix);
 	return clone;
 }
 

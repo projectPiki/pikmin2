@@ -12,7 +12,7 @@ namespace Screen {
 	 */
 	bool DispMemberBase::isID(ulong ownerID, ulonglong memberID)
 	{
-		ulong thisOwnerID = getOwnerID();
+		ulong thisOwnerID      = getOwnerID();
 		ulonglong thisMemberID = getMemberID();
 		if ((ownerID == thisOwnerID) && (memberID == thisMemberID)) {
 			return true;
@@ -42,14 +42,16 @@ namespace Screen {
 		char subMemberOwnerName[12];
 		char subMemberMemberName[12];
 		DispMemberBase* potentialParent = this;
-		newSubMember->m_subMember = nullptr;
+		newSubMember->m_subMember       = nullptr;
 		og::Screen::TagToName(getOwnerID(), ownerName);
 		og::Screen::TagToName(getMemberID(), memberName);
 		for (int i = 10; i != 0; i--) {
 			if (potentialParent->m_subMember == nullptr) {
 				potentialParent->m_subMember = newSubMember;
-				og::Screen::TagToName(newSubMember->getOwnerID(), subMemberOwnerName);
-				og::Screen::TagToName(newSubMember->getMemberID(), subMemberMemberName);
+				og::Screen::TagToName(newSubMember->getOwnerID(),
+				                      subMemberOwnerName);
+				og::Screen::TagToName(newSubMember->getMemberID(),
+				                      subMemberMemberName);
 				return true;
 			}
 			potentialParent = potentialParent->m_subMember;
@@ -63,7 +65,8 @@ namespace Screen {
 	 * Address:	8030F4C0
 	 * Size:	00010C
 	 */
-	DispMemberBase* DispMemberBase::getSubMember(ulong ownerID, ulonglong memberID)
+	DispMemberBase* DispMemberBase::getSubMember(ulong ownerID,
+	                                             ulonglong memberID)
 	{
 		// int i = 0;
 		// TODO: m_subMember is only fetched once. How does it pull that off?
@@ -73,7 +76,7 @@ namespace Screen {
 			if (member == nullptr) {
 				break;
 			}
-			ulong mo = member->getOwnerID();
+			ulong mo     = member->getOwnerID();
 			ulonglong mm = member->getMemberID();
 			char ownerName[12];
 			TagToName(mo, ownerName);
@@ -91,9 +94,8 @@ namespace Screen {
 		// DispMemberBase* member = this;
 		// do {
 		// 	member = member->m_subMember;
-		// // for (DispMemberBase* member = m_subMember; i < 10; i++, member = member->m_subMember) {
-		// 	if (member == nullptr) {
-		// 		break;
+		// // for (DispMemberBase* member = m_subMember; i < 10; i++, member =
+		// member->m_subMember) { 	if (member == nullptr) { 		break;
 		// 	}
 		// 	char ownerName[12];
 		// 	char memberName[12];
