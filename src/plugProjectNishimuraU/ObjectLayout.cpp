@@ -10,15 +10,15 @@ namespace Cave {
 	 */
 	ObjectLayout::ObjectLayout(MapNode* node)
 	{
-		_04 = new ObjectLayoutNode*[8];
+		m_nodeList = new ObjectLayoutNode*[8];
 		for (int i = 0; i < 8; i++) {
-			_04[i] = 0;
+			m_nodeList[i] = nullptr;
 		}
 
 		if (node) {
-			_04[0] = node->m_enemyNode;
-			_04[1] = node->m_itemNode;
-			_04[2] = node->m_gateNode;
+			m_nodeList[0] = node->m_enemyNode;
+			m_nodeList[1] = node->m_itemNode;
+			m_nodeList[2] = node->m_gateNode;
 		}
 	}
 
@@ -29,7 +29,7 @@ namespace Cave {
 	 */
 	void ObjectLayout::setNode(int idx, ObjectLayoutNode* layoutNode)
 	{
-		_04[idx] = layoutNode;
+		m_nodeList[idx] = layoutNode;
 	}
 
 	/*
@@ -39,7 +39,7 @@ namespace Cave {
 	 */
 	s32 ObjectLayout::getCount(int idx)
 	{
-		ObjectLayoutNode* node = _04[idx];
+		ObjectLayoutNode* node = m_nodeList[idx];
 		return node ? node->getChildCount() : 0;
 	}
 
@@ -50,7 +50,7 @@ namespace Cave {
 	 */
 	CNode* ObjectLayout::getNode(int idx, int at)
 	{
-		ObjectLayoutNode* node = _04[idx];
+		ObjectLayoutNode* node = m_nodeList[idx];
 		return node ? node->getChildAt(at) : nullptr;
 	}
 } // namespace Cave

@@ -41,7 +41,7 @@ namespace Cave {
 		void setNode(int, Game::ObjectLayoutNode*);
 
 		// _00, VTBL
-		ObjectLayoutNode** _04; // _04
+		ObjectLayoutNode** m_nodeList; // _04
 	};
 } // namespace Cave
 } // namespace Game
