@@ -9,7 +9,7 @@ struct Highscore {
 	Highscore();
 	void allocate(int);
 	int getScore(int);
-	int newRecord(int);
+	void newRecord(int);
 	int entryScore(int);
 	bool higher(int, int);
 	virtual bool do_higher(int, int);

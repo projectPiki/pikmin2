@@ -607,7 +607,7 @@ KANDO:=\
 	$(BUILD_DIR)/asm/plugProjectKandoU/singleGS_Ending.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/gameIconTexture.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/gameTekiStat.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/gameHighscore.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/gameHighscore.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/gamePlayCommonData.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/pelletCarry.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/gameChallenge2D.o\
