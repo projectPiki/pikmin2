@@ -1,4 +1,7 @@
+#include "stream.h"
 #include "types.h"
+#include "Game/Highscore.h"
+#include "JSystem/JUT/JUTException.h"
 
 /*
     Generated from dpostproc
@@ -25,21 +28,16 @@
 namespace Game {
 
 /*
+ * __ct
+ *
  * --INFO--
  * Address:	80233CEC
  * Size:	00001C
  */
 Highscore::Highscore(void)
 {
-	/*
-	lis      r4, __vt__Q24Game9Highscore@ha
-	li       r0, 0
-	addi     r4, r4, __vt__Q24Game9Highscore@l
-	stw      r4, 0(r3)
-	stw      r0, 8(r3)
-	stw      r0, 4(r3)
-	blr
-	*/
+	m_scoreCount = 0;
+	m_scores = nullptr;
 }
 
 /*
@@ -47,27 +45,11 @@ Highscore::Highscore(void)
  * Address:	80233D08
  * Size:	000044
  */
-void Highscore::allocate(int)
+void Highscore::allocate(int count)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r4, 8(r3)
-	lwz      r0, 8(r3)
-	slwi     r3, r0, 2
-	bl       __nwa__FUl
-	stw      r3, 4(r31)
-	mr       r3, r31
-	bl       clear__Q24Game9HighscoreFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_scoreCount = count;
+	m_scores = new int[m_scoreCount];
+	clear();
 }
 
 /*
@@ -75,58 +57,138 @@ void Highscore::allocate(int)
  * Address:	80233D4C
  * Size:	000088
  */
-void Highscore::getScore(int)
+int Highscore::getScore(int index)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r4, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	li       r3, 0
-	blt      lbl_80233D8C
-	lwz      r0, 8(r30)
-	cmpw     r31, r0
-	bge      lbl_80233D8C
-	lwz      r0, 4(r30)
-	cmplwi   r0, 0
-	beq      lbl_80233D8C
-	li       r3, 1
-
-lbl_80233D8C:
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80233DB0
-	lis      r3, lbl_80483A68@ha
-	lis      r5, lbl_80483A7C@ha
-	addi     r3, r3, lbl_80483A68@l
-	li       r4, 0x17
-	addi     r5, r5, lbl_80483A7C@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80233DB0:
-	lwz      r3, 4(r30)
-	slwi     r0, r31, 2
-	lwzx     r3, r3, r0
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	bool check = (0 <= index && index < m_scoreCount && m_scores);
+	P2ASSERTLINE(23, check);
+	return m_scores[index];
 }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	00008C
+ *          35(dec) instructions
  */
-void Highscore::newRecord(int)
+inline int Highscore::newRecord(int newScore)
+// void Highscore::newRecord(int newIndex)
 {
 	// UNUSED FUNCTION
+	// int newIndex = -1;
+	// for (; newIndex+1 < m_scoreCount && !higher(newScore, m_scores[newIndex+1]); newIndex++) {
+	// }
+	// return newIndex;
+
+	// int newIndex = -1;
+	// while (newIndex+1 < m_scoreCount && !higher(newScore, m_scores[++newIndex])) {
+	// }
+	// return newIndex;
+
+	// int nextIndex = 0;
+	// int newIndex = -1;
+	// while (nextIndex < m_scoreCount) {
+	// 	newIndex = nextIndex++;
+	// 	if (higher(newScore, m_scores[newIndex])) {
+	// 		break;
+	// 	}
+	// }
+	// return newIndex;
+
+	// int nextIndex = 0;
+	// int newIndex = -1;
+	// while (nextIndex < m_scoreCount) {
+	// 	newIndex = nextIndex;
+	// 	if (higher(newScore, m_scores[nextIndex++])) {
+	// 		return newIndex;
+	// 	}
+	// }
+	// return newIndex;
+
+	// int nextIndex = 0;
+	// int newIndex = -1;
+	// while (nextIndex < m_scoreCount) {
+	// 	newIndex = nextIndex;
+	// 	bool check = higher(newScore, m_scores[nextIndex]);
+	// 	if (check) {
+	// 		return newIndex;
+	// 	}
+	// 	nextIndex++;
+	// }
+	// return newIndex;
+
+	int nextIndex = 0;
+	int newIndex = -1;
+	while (nextIndex < m_scoreCount) {
+		newIndex = nextIndex;
+		if (higher(newScore, m_scores[newIndex])) {
+			return nextIndex;
+		}
+		nextIndex++;
+	}
+	return newIndex;
+
+	// int nextIndex = 0;
+	// int newIndex = -1;
+	// while (nextIndex < m_scoreCount) {
+	// 	// newIndex = nextIndex;
+	// 	if (higher(newScore, m_scores[nextIndex])) {
+	// 		return nextIndex;
+	// 	}
+	// 	newIndex = nextIndex++;
+	// }
+	// return newIndex;
+
+	// int nextIndex = 0;
+	// int newIndex = -1;
+	// bool isHigher;
+	// while (
+	// 	nextIndex < m_scoreCount &&
+	// 	(isHigher = higher(newScore, m_scores[nextIndex]), newIndex = nextIndex, !isHigher)
+	// ) {
+	// 	nextIndex++;
+	// }
+	// return newIndex;
+
+
+	// int newIndex = -1;
+	// while (newIndex+1 < m_scoreCount) {
+	// 	if (higher(newScore, m_scores[++newIndex])) {
+	// 		break;
+	// 	}
+	// }
+	// return newIndex;
+
+	// int newIndex = 0;
+	// for (;higher(newScore, m_scores[newIndex]) == false && newIndex < m_scoreCount; newIndex++) {
+	// }
+	// return newIndex-1;
+
+	// int newIndex = -1;
+	// while (newIndex+1 < m_scoreCount) {
+	// 	if (higher(newScore, m_scores[++newIndex])) {
+	// 		break;
+	// 	}
+	// }
+	// return newIndex;
+
+	// int newIndex = -1;
+	// while (newIndex+1 < m_scoreCount && !higher(newScore,m_scores[newIndex+1])) {
+	// 	newIndex++;
+	// }
+	// return newIndex;
+	// int newIndex = -1;
+	// while (true) {
+	// 	if (!higher(newScore, m_scores[newIndex+1]) && newIndex+1 < m_scoreCount) {
+	// 		return newIndex;
+	// 	}
+	// 	newIndex++;
+	// }
+
+	// if (newIndex < m_scoreCount-1) {
+	// 	for (int i = m_scoreCount-1; i > newIndex; i--) {
+	// 		m_scores[i] = m_scores[i-1];
+	// 	}
+	// }
 }
 
 /*
@@ -134,8 +196,19 @@ void Highscore::newRecord(int)
  * Address:	80233DD4
  * Size:	000178
  */
-void Highscore::entryScore(int)
+int Highscore::entryScore(int newScore)
 {
+	// int newIndex = -1;
+	// for (; newIndex+1 < m_scoreCount && !higher(newScore, m_scores[newIndex+1]); newIndex++) {
+	// }
+	int newIndex = newRecord(newScore);
+	if (newIndex != -1) {
+		for (int i = m_scoreCount-1; i > newIndex; i--) {
+			m_scores[i] = m_scores[i-1];
+		}
+		m_scores[newIndex] = newScore;
+	}
+	return newIndex;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -257,35 +330,15 @@ lbl_80233F34:
  * Address:	80233F4C
  * Size:	00004C
  */
-void Highscore::higher(int, int)
+bool Highscore::higher(int a, int b)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	cmpwi    r5, -1
-	stw      r0, 0x14(r1)
-	bne      lbl_80233F68
-	li       r3, 1
-	b        lbl_80233F88
-
-lbl_80233F68:
-	cmpwi    r4, -1
-	bne      lbl_80233F78
-	li       r3, 0
-	b        lbl_80233F88
-
-lbl_80233F78:
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80233F88:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (b == -1) {
+		return true;
+	}
+	if (a == -1) {
+		return false;
+	}
+	return do_higher(a, b);
 }
 
 /*
@@ -293,16 +346,9 @@ lbl_80233F88:
  * Address:	80233F98
  * Size:	000018
  */
-void Highscore::do_higher(int, int)
+bool Highscore::do_higher(int a, int b)
 {
-	/*
-	xor      r0, r4, r5
-	srawi    r3, r0, 1
-	and      r0, r0, r4
-	subf     r0, r0, r3
-	srwi     r3, r0, 0x1f
-	blr
-	*/
+	return a > b;
 }
 
 /*
@@ -310,64 +356,13 @@ void Highscore::do_higher(int, int)
  * Address:	80233FB0
  * Size:	0000B8
  */
-void Highscore::read(Stream&)
+void Highscore::read(Stream& input)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	lwz      r0, 8(r3)
-	li       r3, 0
-	cmpwi    r0, 0
-	ble      lbl_80233FF4
-	lwz      r0, 4(r28)
-	cmplwi   r0, 0
-	beq      lbl_80233FF4
-	li       r3, 1
-
-lbl_80233FF4:
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80234018
-	lis      r3, lbl_80483A68@ha
-	lis      r5, lbl_80483A7C@ha
-	addi     r3, r3, lbl_80483A68@l
-	li       r4, 0x3f
-	addi     r5, r5, lbl_80483A7C@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80234018:
-	li       r30, 0
-	li       r31, 0
-	b        lbl_8023403C
-
-lbl_80234024:
-	mr       r3, r29
-	bl       readInt__6StreamFv
-	lwz      r4, 4(r28)
-	addi     r30, r30, 1
-	stwx     r3, r4, r31
-	addi     r31, r31, 4
-
-lbl_8023403C:
-	lwz      r0, 8(r28)
-	cmpw     r30, r0
-	blt      lbl_80234024
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	bool test = (0 < m_scoreCount && m_scores);
+	P2ASSERTLINE(63, test);
+	for (int i = 0; i < m_scoreCount; i++) {
+		m_scores[i] = input.readInt();
+	}
 }
 
 /*
@@ -375,43 +370,11 @@ lbl_8023403C:
  * Address:	80234068
  * Size:	000074
  */
-void Highscore::write(Stream&)
+void Highscore::write(Stream& output)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	li       r31, 0
-	stw      r30, 0x18(r1)
-	li       r30, 0
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	b        lbl_802340B0
-
-lbl_80234098:
-	lwz      r4, 4(r28)
-	mr       r3, r29
-	lwzx     r4, r4, r31
-	bl       writeInt__6StreamFi
-	addi     r31, r31, 4
-	addi     r30, r30, 1
-
-lbl_802340B0:
-	lwz      r0, 8(r28)
-	cmpw     r30, r0
-	blt      lbl_80234098
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	for (int i = 0; i < m_scoreCount; i++) {
+		output.writeInt(m_scores[i]);
+	}
 }
 
 /*
@@ -421,23 +384,8 @@ lbl_802340B0:
  */
 void Highscore::clear(void)
 {
-	/*
-	li       r7, 0
-	li       r6, 0
-	li       r5, -1
-	b        lbl_802340FC
-
-lbl_802340EC:
-	lwz      r4, 4(r3)
-	addi     r7, r7, 1
-	stwx     r5, r4, r6
-	addi     r6, r6, 4
-
-lbl_802340FC:
-	lwz      r0, 8(r3)
-	cmpw     r7, r0
-	blt      lbl_802340EC
-	blr
-	*/
+	for (int i = 0; i < m_scoreCount; i++) {
+		m_scores[i] = -1;
+	}
 }
 } // namespace Game
