@@ -35,15 +35,16 @@ namespace title {
 
 	void TTitleCameraMgr::update()
 	{
-		float178 += float1BC;
-		float18C = 0.0f;
-		float190 = 0.0f;
-		float194 = -1.0f;
-		float180 = float174;
-		float184 = float178;
-		float188 = float17C;
-		float184 -= 1.0f;
-		float28 = float1E4;
+		_174.y += m_parms.m_cam1.m_value;
+		_18C.x = 0.0f;
+		_18C.y = 0.0f;
+		_18C.z = -1.0f;
+		m_lookAtPosition = _174;
+		// m_lookAtPosition.x = float174;
+		// m_lookAtPosition.y = float178;
+		// m_lookAtPosition.z = float17C;
+		m_lookAtPosition.y -= 1.0f;
+		_28 = m_parms.m_cam2.m_value;
 		Camera::update();
 	}
 
