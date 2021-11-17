@@ -153,7 +153,6 @@ struct CellPyramid : public SweepPrune::World {
 	void drawCell(Graphics&);
 	void dumpCount(int&, int&);
 
-	u8 _24[4];
 	int m_memoryUsageMaybe; // _28
 	int m_layerCount;       // _2C
 	CellLayer* m_layers;    // _30

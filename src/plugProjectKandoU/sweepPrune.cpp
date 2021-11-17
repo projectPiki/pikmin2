@@ -1,4 +1,5 @@
 #include "types.h"
+#include "SweepPrune.h"
 
 /*
     Generated from dpostproc
@@ -15,9 +16,19 @@
  * Address:	........
  * Size:	000028
  */
-void SweepPrune::Node::insertBefore(SweepPrune::Node*)
+inline void SweepPrune::Node::insertBefore(SweepPrune::Node* prev)
 {
 	// UNUSED FUNCTION
+	Node* next = prev->m_next;
+	m_prev = prev;
+	m_next = next;
+	if (next != nullptr) {
+		next->m_prev = this;
+	}
+	// This function kind of assumes prev is nonnull earlier...
+	if (prev != nullptr) {
+		prev->m_next = this;
+	}
 }
 
 /*
@@ -25,231 +36,156 @@ void SweepPrune::Node::insertBefore(SweepPrune::Node*)
  * Address:	........
  * Size:	000020
  */
-void SweepPrune::Node::insertAfter(SweepPrune::Node*)
+inline void SweepPrune::Node::insertAfter(SweepPrune::Node* next)
 {
 	// UNUSED FUNCTION
+	Node* prev = next->m_prev;
+	next->m_prev = this;
+	m_prev = prev;
+	m_next = next;
+	if (prev != nullptr) {
+		prev->m_next = this;
+	}
 }
 
 /*
+ * Inserts `this` into the node chain `chain` according to its
+ * radius. The chain is assumed to be pre-sorted as such.
+ *
  * --INFO--
  * Address:	8023C5B0
  * Size:	0001C8
  */
-void SweepPrune::Node::insertSort(SweepPrune::Node&)
+void SweepPrune::Node::insertSort(SweepPrune::Node& chain)
 {
-	/*
-	lwz      r5, 8(r3)
-	cmplwi   r5, 0
-	beq      lbl_8023C6D8
-	lfs      f0, 0(r5)
-	lfs      f1, 0(r3)
-	fcmpo    cr0, f0, f1
-	ble      lbl_8023C644
-	mr       r6, r5
-	b        lbl_8023C638
-
-lbl_8023C5D4:
-	lfs      f0, 0(r6)
-	fcmpo    cr0, f0, f1
-	cror     2, 0, 2
-	bne      lbl_8023C634
-	cmplwi   r5, 0
-	beq      lbl_8023C5F4
-	lwz      r0, 4(r3)
-	stw      r0, 4(r5)
-
-lbl_8023C5F4:
-	lwz      r4, 4(r3)
-	cmplwi   r4, 0
-	beq      lbl_8023C608
-	lwz      r0, 8(r3)
-	stw      r0, 8(r4)
-
-lbl_8023C608:
-	li       r0, 0
-	stw      r0, 8(r3)
-	stw      r0, 4(r3)
-	lwz      r4, 4(r6)
-	stw      r3, 4(r6)
-	cmplwi   r4, 0
-	stw      r4, 4(r3)
-	stw      r6, 8(r3)
-	beqlr
-	stw      r3, 8(r4)
-	blr
-
-lbl_8023C634:
-	lwz      r6, 8(r6)
-
-lbl_8023C638:
-	cmplwi   r6, 0
-	bne      lbl_8023C5D4
-	blr
-
-lbl_8023C644:
-	lwz      r4, 4(r3)
-	cmplwi   r4, 0
-	beqlr
-	lfs      f0, 0(r4)
-	fcmpo    cr0, f0, f1
-	bgelr
-	mr       r6, r4
-	b        lbl_8023C6CC
-
-lbl_8023C664:
-	lfs      f0, 0(r6)
-	fcmpo    cr0, f0, f1
-	cror     2, 1, 2
-	bne      lbl_8023C6C8
-	cmplwi   r5, 0
-	beq      lbl_8023C680
-	stw      r4, 4(r5)
-
-lbl_8023C680:
-	lwz      r4, 4(r3)
-	cmplwi   r4, 0
-	beq      lbl_8023C694
-	lwz      r0, 8(r3)
-	stw      r0, 8(r4)
-
-lbl_8023C694:
-	li       r0, 0
-	stw      r0, 8(r3)
-	stw      r0, 4(r3)
-	lwz      r4, 8(r6)
-	stw      r6, 4(r3)
-	cmplwi   r4, 0
-	stw      r4, 8(r3)
-	beq      lbl_8023C6B8
-	stw      r3, 4(r4)
-
-lbl_8023C6B8:
-	cmplwi   r6, 0
-	beqlr
-	stw      r3, 8(r6)
-	blr
-
-lbl_8023C6C8:
-	lwz      r6, 4(r6)
-
-lbl_8023C6CC:
-	cmplwi   r6, 0
-	bne      lbl_8023C664
-	blr
-
-lbl_8023C6D8:
-	lwz      r5, 4(r4)
-	cmplwi   r5, 0
-	bne      lbl_8023C6FC
-	stw      r3, 4(r4)
-	stw      r5, 4(r3)
-	stw      r4, 8(r3)
-	beqlr
-	stw      r3, 8(r5)
-	blr
-
-lbl_8023C6FC:
-	mr       r6, r5
-	li       r5, 0
-	b        lbl_8023C748
-
-lbl_8023C708:
-	lfs      f1, 0(r6)
-	mr       r5, r6
-	lfs      f0, 0(r3)
-	fcmpo    cr0, f1, f0
-	ble      lbl_8023C744
-	lwz      r4, 8(r6)
-	stw      r6, 4(r3)
-	cmplwi   r4, 0
-	stw      r4, 8(r3)
-	beq      lbl_8023C734
-	stw      r3, 4(r4)
-
-lbl_8023C734:
-	cmplwi   r6, 0
-	beqlr
-	stw      r3, 8(r6)
-	blr
-
-lbl_8023C744:
-	lwz      r6, 4(r6)
-
-lbl_8023C748:
-	cmplwi   r6, 0
-	bne      lbl_8023C708
-	cmplwi   r5, 0
-	beqlr
-	lwz      r4, 4(r5)
-	stw      r3, 4(r5)
-	cmplwi   r4, 0
-	stw      r4, 4(r3)
-	stw      r5, 8(r3)
-	beqlr
-	stw      r3, 8(r4)
-	blr
-	*/
+	if (m_next != nullptr) {
+		if (m_next->m_radius > m_radius) {
+			for (Node* iNode = m_next; iNode != nullptr; iNode = iNode->m_next) {
+				if (iNode->m_radius <= m_radius) {
+					if (m_next != nullptr) {
+						m_next->m_prev = m_prev;
+					}
+					if (m_prev != nullptr) {
+						m_prev->m_next = m_next;
+					}
+					m_next = nullptr;
+					m_prev = nullptr;
+					insertAfter(iNode);
+					return;
+				}
+			}
+			return;
+			// Interesting differences between the above loop and this one:
+			// Node* iNode = m_next;
+			// while (true) {
+			// 	if (iNode == nullptr) {
+			// 		return;
+			// 	}
+			// 	if (iNode->m_radius <= m_radius) break;
+			// 	iNode = iNode->m_next;
+			// }
+			// if (m_next != nullptr) {
+			// 	m_next->m_prev = m_prev;
+			// }
+			// if (m_prev != nullptr) {
+			// 	m_prev->m_next = m_next;
+			// }
+			// m_next = nullptr;
+			// m_prev = nullptr;
+			// insertAfter(iNode);
+			// return;
+		}
+		if (m_prev == nullptr) {
+			return;
+		}
+		if (m_prev->m_radius < m_radius) {
+			for (Node* iNode = m_prev; iNode != nullptr; iNode = iNode->m_prev) {
+				if (iNode->m_radius >= m_radius) {
+					if (m_next != nullptr) {
+						m_next->m_prev = m_prev;
+					}
+					if (m_prev != nullptr) {
+						m_prev->m_next = m_next;
+					}
+					m_next = nullptr;
+					m_prev = nullptr;
+					insertBefore(iNode);
+					return;
+				}
+			}
+		}
+		return;
+	}
+	if (chain.m_prev == nullptr) {
+		insertAfter(&chain);
+		return;
+	}
+	Node* next = nullptr;
+	for (Node* prev = chain.m_prev; prev != nullptr; prev = prev->m_prev) {
+		next = prev;
+		if (prev->m_radius > m_radius) {
+			insertBefore(prev);
+			return;
+		}
+	}
+	if (next == nullptr) {
+		return;
+	}
+	insertAfter(next);
 }
 
 /*
+ * __ct
+ *
  * --INFO--
  * Address:	8023C778
  * Size:	000070
  */
-SweepPrune::Object::Object(void)
+SweepPrune::Object::Object()
 {
-	/*
-	lfs      f0, lbl_8051A5D0@sda21(r2)
-	li       r4, 0
-	li       r0, 1
-	stfs     f0, 0(r3)
-	stw      r4, 0xc(r3)
-	stw      r4, 8(r3)
-	stw      r4, 4(r3)
-	stfs     f0, 0x14(r3)
-	stw      r4, 0x20(r3)
-	stw      r4, 0x1c(r3)
-	stw      r4, 0x18(r3)
-	stfs     f0, 0x28(r3)
-	stw      r4, 0x34(r3)
-	stw      r4, 0x30(r3)
-	stw      r4, 0x2c(r3)
-	stfs     f0, 0x3c(r3)
-	stw      r4, 0x48(r3)
-	stw      r4, 0x44(r3)
-	stw      r4, 0x40(r3)
-	stb      r4, 0x10(r3)
-	stb      r0, 0x24(r3)
-	stb      r4, 0x38(r3)
-	stb      r0, 0x4c(r3)
-	stw      r3, 0x48(r3)
-	stw      r3, 0x34(r3)
-	stw      r3, 0x20(r3)
-	stw      r3, 0xc(r3)
-	blr
-	*/
+	m_minX.m_radius = 0.0f;
+	m_minX.m_object = nullptr;
+	m_minX.m_next = nullptr;
+	m_minX.m_prev = nullptr;
+	m_maxX.m_radius = 0.0f;
+	m_maxX.m_object = nullptr;
+	m_maxX.m_next = nullptr;
+	m_maxX.m_prev = nullptr;
+	m_minZ.m_radius = 0.0f;
+	m_minZ.m_object = nullptr;
+	m_minZ.m_next = nullptr;
+	m_minZ.m_prev = nullptr;
+	m_maxZ.m_radius = 0.0f;
+	m_maxZ.m_object = nullptr;
+	m_maxZ.m_next = nullptr;
+	m_maxZ.m_prev = nullptr;
+	m_minX.m_flags = 0;
+	m_maxX.m_flags = 1;
+	m_minZ.m_flags = 0;
+	m_maxZ.m_flags = 1;
+	m_maxZ.m_object = this;
+	m_minZ.m_object = this;
+	m_maxX.m_object = this;
+	m_minX.m_object = this;
 }
 
 /*
+ * __ct__Q210SweepPrune5WorldFv
+ *
  * --INFO--
  * Address:	8023C7E8
  * Size:	00002C
  */
-SweepPrune::World::World(void)
+SweepPrune::World::World()
 {
-	/*
-	lfs      f0, lbl_8051A5D0@sda21(r2)
-	li       r0, 0
-	stfs     f0, 0(r3)
-	stw      r0, 0xc(r3)
-	stw      r0, 8(r3)
-	stw      r0, 4(r3)
-	stfs     f0, 0x14(r3)
-	stw      r0, 0x20(r3)
-	stw      r0, 0x1c(r3)
-	stw      r0, 0x18(r3)
-	blr
-	*/
+	_00.m_radius = 0.0f;
+	_00.m_object = nullptr;
+	_00.m_next = nullptr;
+	_00.m_prev = nullptr;
+	_14.m_radius = 0.0f;
+	_14.m_object = nullptr;
+	_14.m_next = nullptr;
+	_14.m_prev = nullptr;
 }
 
 /*
@@ -257,7 +193,7 @@ SweepPrune::World::World(void)
  * Address:	........
  * Size:	00003C
  */
-SweepPrune::World::~World(void)
+SweepPrune::World::~World()
 {
 	// UNUSED FUNCTION
 }
@@ -267,116 +203,42 @@ SweepPrune::World::~World(void)
  * Address:	8023C814
  * Size:	000148
  */
-void SweepPrune::World::resolve(SweepPrune::World::ResolveArg&)
+void SweepPrune::World::resolve(SweepPrune::World::ResolveArg& arg)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	li       r0, 0
-	stmw     r27, 0xc(r1)
-	mr       r27, r4
-	stw      r0, 8(r4)
-	stw      r0, 4(r4)
-	lwz      r30, 4(r3)
-	b        lbl_8023C940
+	arg._08 = 0;
+	arg._04 = 0;
 
-lbl_8023C83C:
-	lwz      r31, 0xc(r30)
-	li       r29, 0
-	lwz      r28, 4(r30)
-	b        lbl_8023C920
+	Object* o1;
+	Node* n1 = _00.m_prev;
+	Node* prev;
 
-lbl_8023C84C:
-	lwz      r3, 4(r27)
-	addi     r0, r3, 1
-	stw      r0, 4(r27)
-	lwz      r5, 0xc(r28)
-	cmplw    r31, r5
-	bne      lbl_8023C870
-	lbz      r0, 0x10(r28)
-	cmplwi   r0, 1
-	beq      lbl_8023C928
-
-lbl_8023C870:
-	lbz      r0, 0x10(r28)
-	cmplwi   r0, 0
-	bne      lbl_8023C91C
-	cmplwi   r29, 0
-	bne      lbl_8023C888
-	mr       r29, r28
-
-lbl_8023C888:
-	lfs      f0, 0x28(r31)
-	lfs      f2, 0x28(r5)
-	lfs      f1, 0x3c(r31)
-	fcmpo    cr0, f0, f2
-	lfs      f3, 0x3c(r5)
-	cror     2, 0, 2
-	bne      lbl_8023C8B0
-	fcmpo    cr0, f2, f1
-	cror     2, 0, 2
-	beq      lbl_8023C8F8
-
-lbl_8023C8B0:
-	fcmpo    cr0, f0, f3
-	cror     2, 0, 2
-	bne      lbl_8023C8C8
-	fcmpo    cr0, f3, f1
-	cror     2, 0, 2
-	beq      lbl_8023C8F8
-
-lbl_8023C8C8:
-	fcmpo    cr0, f2, f0
-	cror     2, 0, 2
-	bne      lbl_8023C8E0
-	fcmpo    cr0, f0, f3
-	cror     2, 0, 2
-	beq      lbl_8023C8F8
-
-lbl_8023C8E0:
-	fcmpo    cr0, f2, f1
-	cror     2, 0, 2
-	bne      lbl_8023C91C
-	fcmpo    cr0, f1, f3
-	cror     2, 0, 2
-	bne      lbl_8023C91C
-
-lbl_8023C8F8:
-	lwz      r3, 0(r27)
-	mr       r4, r31
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 8(r27)
-	addi     r0, r3, 1
-	stw      r0, 8(r27)
-
-lbl_8023C91C:
-	lwz      r28, 4(r28)
-
-lbl_8023C920:
-	cmplwi   r28, 0
-	bne      lbl_8023C84C
-
-lbl_8023C928:
-	cmplwi   r29, 0
-	bne      lbl_8023C934
-	lwz      r30, 4(r30)
-
-lbl_8023C934:
-	cmplwi   r29, 0
-	beq      lbl_8023C940
-	mr       r30, r29
-
-lbl_8023C940:
-	cmplwi   r30, 0
-	bne      lbl_8023C83C
-	lmw      r27, 0xc(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	while (n1 != nullptr) {
+		prev = nullptr;
+		o1 = n1->m_object;
+		for (Node* n2 = n1->m_prev; n2 != nullptr; n2 = n2->m_prev) {
+			arg._04++;
+			Object* o2 = n2->m_object;
+			if ((o1 == o2) && (n2->m_flags == 1)) break;
+			if (n2->m_flags == 0) {
+				if (prev == nullptr) {
+					prev = n2;
+				}
+				float min1 = o1->m_minZ.m_radius;
+				float max1 = o1->m_maxZ.m_radius;
+				float min2 = o2->m_minZ.m_radius;
+				float max2 = o2->m_maxZ.m_radius;
+				if (((((min1 <= min2) && (min2 <= max1)) || ((min1 <= max2 && (max2 <= max1)))) ||
+				((min2 <= min1 && (min1 <= max2)))) || ((min2 <= max1 && (max1 <= max2)))) {
+					arg.m_callback->invoke(o1, o2);
+					arg._08++;
+				}
+			}
+		}
+		if (prev == nullptr) {
+			n1 = n1->m_prev;
+		}
+		if (prev != nullptr) {
+			n1 = prev;
+		}
+	}
 }

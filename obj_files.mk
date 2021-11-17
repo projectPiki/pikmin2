@@ -618,7 +618,7 @@ KANDO:=\
 	$(BUILD_DIR)/asm/plugProjectKandoU/singleGS_Load.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/singleGS_DayEnd.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/baseGameSectionKantei.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/sweepPrune.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/sweepPrune.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/texCaster.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/vsCoinOtakaraName.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/pelletBirthBuffer.o\
