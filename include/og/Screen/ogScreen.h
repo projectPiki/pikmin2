@@ -1,7 +1,7 @@
 #ifndef _OG_SCREEN_OGSCREEN_H
 #define _OG_SCREEN_OGSCREEN_H
 
-#include "JSystem/J2D/J2DScreen.h"
+#include "JSystem/J2D/J2DPane.h"
 #include "types.h"
 
 struct J2DPane;

@@ -1,7 +1,7 @@
 #ifndef _EBI_P2DSCREEN_MGR_H
 #define _EBI_P2DSCREEN_MGR_H
 
-#include "JSystem/J2DScreen.h"
+#include "JSystem/J2D/J2DPane.h"
 #include "CNode.h"
 
 namespace P2DScreen {

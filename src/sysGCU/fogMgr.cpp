@@ -1,4 +1,12 @@
+#include "FogMgr.h"
+#include "Camera.h"
+#include "Dolphin/gx.h"
+#include "Dolphin/vi.h"
+#include "Graphics.h"
+#include "System.h"
 #include "types.h"
+#include "Viewport.h"
+// #include "nans.h"
 
 /*
     Generated from dpostproc
@@ -46,43 +54,19 @@
 */
 
 /*
+ * __ct
+ *
  * --INFO--
  * Address:	80432948
  * Size:	000074
  */
 FogMgr::FogMgr()
+	: CNode("フォグマネージャ")
+	, m_type(GX_FOG_LINEAR)
+	, m_nearZ(640.0f)
+	, m_farZ(3024.0f)
+	, m_color(0xAD, 0xB1, 0xFC, 0xFF)
 {
-	/*
-	lis      r6, __vt__5CNode@ha
-	lis      r5, lbl_8049A610@ha
-	addi     r0, r6, __vt__5CNode@l
-	lis      r4, __vt__6FogMgr@ha
-	stw      r0, 0(r3)
-	li       r10, 0
-	addi     r9, r5, lbl_8049A610@l
-	addi     r8, r4, __vt__6FogMgr@l
-	stw      r10, 0x10(r3)
-	li       r7, 2
-	lfs      f1, lbl_80520760@sda21(r2)
-	li       r6, 0xad
-	stw      r10, 0xc(r3)
-	li       r5, 0xb1
-	lfs      f0, lbl_80520764@sda21(r2)
-	li       r4, 0xfc
-	stw      r10, 8(r3)
-	li       r0, 0xff
-	stw      r10, 4(r3)
-	stw      r9, 0x14(r3)
-	stw      r8, 0(r3)
-	stw      r7, 0x18(r3)
-	stfs     f1, 0x1c(r3)
-	stfs     f0, 0x20(r3)
-	stb      r6, 0x24(r3)
-	stb      r5, 0x25(r3)
-	stb      r4, 0x26(r3)
-	stb      r0, 0x27(r3)
-	blr
-	*/
 }
 
 /*
@@ -92,6 +76,7 @@ FogMgr::FogMgr()
  */
 void FogMgr::off(Graphics&)
 {
+	GXSetFog(GX_FOG_NONE, &m_color, 0.0f, 0.0f, 0.0f, 0.0f);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -117,8 +102,22 @@ void FogMgr::off(Graphics&)
  * Address:	804329FC
  * Size:	0000AC
  */
-void FogMgr::set(Graphics&)
+void FogMgr::set(Graphics& graphics)
 {
+	void *color = &m_color;
+	GXFogAdjTable table;
+	Camera* cam = graphics._25C->m_camera;
+	_GXRenderModeObj *obj;
+	// float far = cam->getFar();
+	// float near = cam->getNear();
+	// GXSetFog(m_type, color, m_nearZ, m_farZ, near, far);
+	GXSetFog(m_type, color, m_nearZ, m_farZ, cam->getNear(), cam->getFar());
+	// GXInitFogAdjTable(&table, System::getRenderModeObj()->efbHeight, cam->_B4);
+	obj = System::getRenderModeObj();
+	GXInitFogAdjTable(&table, obj->efbHeight, cam->_B4);
+	// GXSetFogRangeAdj(TRUE, System::getRenderModeObj()->efbHeight / 2, &table);
+	obj = System::getRenderModeObj();
+	GXSetFogRangeAdj(TRUE, (ushort)(obj->efbHeight / 2), &table);
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -171,19 +170,9 @@ void FogMgr::set(Graphics&)
  * Address:	80432AA8
  * Size:	000024
  */
-void FogMgr::setColor(Color4&)
+void FogMgr::setColor(Color4& color)
 {
-	/*
-	lbz      r0, 0(r4)
-	stb      r0, 0x24(r3)
-	lbz      r0, 1(r4)
-	stb      r0, 0x25(r3)
-	lbz      r0, 2(r4)
-	stb      r0, 0x26(r3)
-	lbz      r0, 3(r4)
-	stb      r0, 0x27(r3)
-	blr
-	*/
+	m_color = color;
 }
 
 /*
@@ -191,19 +180,9 @@ void FogMgr::setColor(Color4&)
  * Address:	80432ACC
  * Size:	000024
  */
-void FogMgr::getColor(Color4&)
+void FogMgr::getColor(Color4& color)
 {
-	/*
-	lbz      r0, 0x24(r3)
-	stb      r0, 0(r4)
-	lbz      r0, 0x25(r3)
-	stb      r0, 1(r4)
-	lbz      r0, 0x26(r3)
-	stb      r0, 2(r4)
-	lbz      r0, 0x27(r3)
-	stb      r0, 3(r4)
-	blr
-	*/
+	color = m_color;
 }
 
 /*

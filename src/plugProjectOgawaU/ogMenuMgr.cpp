@@ -1,4 +1,6 @@
+#include "og/Screen/MenuMgr.h"
 #include "types.h"
+#include "Vector2.h"
 
 /*
     Generated from dpostproc
@@ -31,7 +33,7 @@ namespace Screen {
 	 * Address:	80309E28
 	 * Size:	0001E8
 	 */
-	MenuMgr::MenuMgr(void)
+	MenuMgr::MenuMgr()
 	{
 		/*
 	stwu     r1, -0x10(r1)
@@ -1120,34 +1122,30 @@ lbl_8030ABDC:
 		*/
 	}
 
-} // namespace Screen
+	/*
+	 * --INFO--
+	 * Address:	........
+	 * Size:	0000AC
+	 */
+	// TODO: Confirm this is correctly demangled.
+	// void calcCenter__Q32og6Screen7MenuMgrFP7J2DPaneP10Vector2<float>(void)
+	void MenuMgr::calcCenter(J2DPane*, Vector2f*)
+	{
+		// UNUSED FUNCTION
+	}
 
-} // namespace og
-
-/*
- * --INFO--
- * Address:	........
- * Size:	0000AC
- */
-void calcCenter__Q32og6Screen7MenuMgrFP7J2DPaneP10Vector2<float>(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000034
- */
-void calcPoint__Q32og6Screen7MenuMgrFR10Vector2<float> R10Vector2<float>
-fP10Vector2<float>(void)
-{
-	// UNUSED FUNCTION
-}
-
-namespace og {
-
-namespace Screen {
+	/*
+	 * --INFO--
+	 * Address:	........
+	 * Size:	000034
+	 */
+	// TODO: Confirm this is correctly demangled.
+	// void calcPoint__Q32og6Screen7MenuMgrFR10Vector2<float> R10Vector2<float>
+	// fP10Vector2<float>(void)
+	void MenuMgr::calcPoint(Vector2f*, Vector2f*, float, Vector2f*)
+	{
+		// UNUSED FUNCTION
+	}
 
 	/*
 	 * --INFO--

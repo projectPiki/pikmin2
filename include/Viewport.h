@@ -36,7 +36,7 @@ struct Viewport {
 	f32 m_y2;                      // _38
 	s8 m_flags;                    // _3C
 	struct Matrixf* m_viewMat;     // _40
-	struct CullPlane* m_cullPlane; // _44
+	struct Camera* m_camera;       // _44
 	f32 _48;                       // _48
 	f32 m_vpScaleY;                // _4C
 	f32 port;                      // _50

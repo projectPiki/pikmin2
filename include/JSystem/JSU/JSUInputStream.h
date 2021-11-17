@@ -30,6 +30,8 @@ struct JSUMemoryInputStream : public JSUInputStream {
 };
 
 struct JSURandomInputStream : public JSUMemoryInputStream {
+
+	void seek(long, JSUStreamSeekFrom);
 };
 
 // Size: 0x10

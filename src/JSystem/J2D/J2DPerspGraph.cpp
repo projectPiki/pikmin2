@@ -1,4 +1,8 @@
 #include "types.h"
+#include "JSystem/J2D/J2DGrafContext.h"
+#include "fdlibm.h"
+#include "Dolphin/math.h"
+#include "Dolphin/gx.h"
 
 /*
     Generated from dpostproc
@@ -43,33 +47,15 @@
 */
 
 /*
+ * __ct
+ *
  * --INFO--
  * Address:	80035DC8
  * Size:	00004C
  */
 J2DPerspGraph::J2DPerspGraph()
+	: J2DGrafContext(0.0f, 0.0f, 0.0f, 0.0f)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f1, lbl_80516788@sda21(r2)
-	stw      r0, 0x14(r1)
-	fmr      f2, f1
-	stw      r31, 0xc(r1)
-	fmr      f3, f1
-	fmr      f4, f1
-	mr       r31, r3
-	bl       __ct__14J2DGrafContextFffff
-	lis      r4, __vt__13J2DPerspGraph@ha
-	mr       r3, r31
-	addi     r0, r4, __vt__13J2DPerspGraph@l
-	stw      r0, 0(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -77,34 +63,12 @@ J2DPerspGraph::J2DPerspGraph()
  * Address:	80035E14
  * Size:	000060
  */
-void J2DPerspGraph::set(float, float, float)
+void J2DPerspGraph::set(float fovY, float f2, float f3)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stfd     f31, 0x18(r1)
-	fmr      f31, f3
-	stfd     f30, 0x10(r1)
-	fmr      f30, f2
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       setFovy__13J2DPerspGraphFf
-	stfs     f30, 0xc0(r31)
-	mr       r3, r31
-	stfs     f31, 0xc4(r31)
-	lwz      r12, 0(r31)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x24(r1)
-	lfd      f31, 0x18(r1)
-	lfd      f30, 0x10(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	setFovy(fovY);
+	_C0 = f2;
+	_C4 = f3;
+	setLookat();
 }
 
 /*
@@ -112,23 +76,14 @@ void J2DPerspGraph::set(float, float, float)
  * Address:	80035E74
  * Size:	00002C
  */
-void J2DPerspGraph::setFovy(float)
+void J2DPerspGraph::setFovy(float fovY)
 {
-	/*
-	lfs      f0, lbl_8051678C@sda21(r2)
-	stfs     f1, 0xbc(r3)
-	fcmpo    cr0, f1, f0
-	bge      lbl_80035E8C
-	stfs     f0, 0xbc(r3)
-	blr
-
-lbl_80035E8C:
-	lfs      f0, lbl_80516790@sda21(r2)
-	fcmpo    cr0, f1, f0
-	blelr
-	stfs     f0, 0xbc(r3)
-	blr
-	*/
+	m_fovY = fovY;
+	if (fovY < 1.0f) {
+		m_fovY = 1.0f;
+	} else if (fovY > 179.0f) {
+		m_fovY = 179.0f;
+	}
 }
 
 /*
@@ -138,34 +93,9 @@ lbl_80035E8C:
  */
 void J2DPerspGraph::setPort()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       setPort__14J2DGrafContextFv
-	lfs      f3, 0xc(r31)
-	addi     r3, r31, 0x40
-	lfs      f1, 4(r31)
-	lfs      f2, 0x10(r31)
-	lfs      f0, 8(r31)
-	fsubs    f5, f3, f1
-	lfs      f1, 0xbc(r31)
-	fsubs    f0, f2, f0
-	lfs      f3, 0xc0(r31)
-	lfs      f4, 0xc4(r31)
-	fdivs    f2, f5, f0
-	bl       C_MTXPerspective
-	addi     r3, r31, 0x40
-	li       r4, 0
-	bl       GXSetProjection
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	J2DGrafContext::setPort();
+	C_MTXPerspective(m_fovY, (_0C - _04) / (_10 - _08), _C0, _C4, _40);
+	GXSetProjection(_40, 0);
 }
 
 /*
@@ -175,6 +105,8 @@ void J2DPerspGraph::setPort()
  */
 void J2DPerspGraph::setLookat()
 {
+	_C8 = ((_10 - _08) * 0.5) / tan((m_fovY * PI) / 360.0f);
+	makeLookat();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0

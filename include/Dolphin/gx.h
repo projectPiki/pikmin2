@@ -8,6 +8,7 @@ extern "C" {
 #endif // ifdef __cplusplus
 
 #include "Dolphin/vi.h"
+#include "Dolphin/mtx.h"
 
 typedef u8 GXBool;
 
@@ -17,6 +18,9 @@ typedef u8 GXBool;
 #define GX_ENABLE  ((GXBool)1)
 #define GX_DISABLE ((GXBool)0)
 
+typedef uint GXCullMode;
+typedef uint GXTexMapID;
+
 // Names are guessed
 typedef enum _SDK_GXFogType {
 	GX_FOG_NONE       = 0,
@@ -24,7 +28,8 @@ typedef enum _SDK_GXFogType {
 	GX_FOG_EXPONENT   = 4,
 	GX_FOG_EXPONENT2  = 5,
 	GX_FOG_REVERSEEXP = 6,
-	GX_FOG_REVERSEXP2 = 7
+	GX_FOG_REVERSEXP2 = 7,
+	_FORCE_UINT = 0xFFFFFFFF
 } GXFogType;
 
 typedef struct _SDK_GXColor {
@@ -172,6 +177,8 @@ void GXSetCPUFifo(GXFifoObj* fifo);
 void GXSetGPFifo(GXFifoObj* fifo);
 void GXSaveCPUFifo(GXFifoObj* fifo);
 void GXSaveGPFifo(GXFifoObj* fifo);
+
+void GXSetProjection(PSMatrix, u32);
 
 #ifdef __cplusplus
 };
