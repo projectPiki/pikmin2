@@ -20,4 +20,3 @@ double PSVECCrossProduct(PSVector, PSVector, PSVector);
 #endif
 
 #endif
-

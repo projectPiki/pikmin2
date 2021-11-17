@@ -7,10 +7,10 @@ struct CNode {
 	CNode();
 	inline CNode(char* name)
 	{
-		_10 = nullptr;
-		_0C = nullptr;
-		_08 = nullptr;
-		_04 = nullptr;
+		_10    = nullptr;
+		_0C    = nullptr;
+		_08    = nullptr;
+		_04    = nullptr;
 		m_name = name;
 	};
 	virtual ~CNode();

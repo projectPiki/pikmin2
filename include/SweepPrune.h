@@ -12,11 +12,11 @@ struct Node {
 	void insertAfter(Node*);
 	void insertSort(Node&);
 
-	float m_radius;    // _00
-	Node* m_prev;      // _04
-	Node* m_next;      // _08
-	Object* m_object;  // _0C
-	u8 m_flags;        // _10
+	float m_radius;   // _00
+	Node* m_prev;     // _04
+	Node* m_next;     // _08
+	Object* m_object; // _0C
+	u8 m_flags;       // _10
 };
 
 struct Object {

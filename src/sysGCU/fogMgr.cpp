@@ -61,11 +61,11 @@
  * Size:	000074
  */
 FogMgr::FogMgr()
-	: CNode("フォグマネージャ")
-	, m_type(GX_FOG_LINEAR)
-	, m_nearZ(640.0f)
-	, m_farZ(3024.0f)
-	, m_color(0xAD, 0xB1, 0xFC, 0xFF)
+    : CNode("フォグマネージャ")
+    , m_type(GX_FOG_LINEAR)
+    , m_nearZ(640.0f)
+    , m_farZ(3024.0f)
+    , m_color(0xAD, 0xB1, 0xFC, 0xFF)
 {
 }
 
@@ -104,18 +104,20 @@ void FogMgr::off(Graphics&)
  */
 void FogMgr::set(Graphics& graphics)
 {
-	void *color = &m_color;
+	void* color = &m_color;
 	GXFogAdjTable table;
 	Camera* cam = graphics._25C->m_camera;
-	_GXRenderModeObj *obj;
+	_GXRenderModeObj* obj;
 	// float far = cam->getFar();
 	// float near = cam->getNear();
 	// GXSetFog(m_type, color, m_nearZ, m_farZ, near, far);
 	GXSetFog(m_type, color, m_nearZ, m_farZ, cam->getNear(), cam->getFar());
-	// GXInitFogAdjTable(&table, System::getRenderModeObj()->efbHeight, cam->_B4);
+	// GXInitFogAdjTable(&table, System::getRenderModeObj()->efbHeight,
+	// cam->_B4);
 	obj = System::getRenderModeObj();
 	GXInitFogAdjTable(&table, obj->efbHeight, cam->_B4);
-	// GXSetFogRangeAdj(TRUE, System::getRenderModeObj()->efbHeight / 2, &table);
+	// GXSetFogRangeAdj(TRUE, System::getRenderModeObj()->efbHeight / 2,
+	// &table);
 	obj = System::getRenderModeObj();
 	GXSetFogRangeAdj(TRUE, (ushort)(obj->efbHeight / 2), &table);
 	/*
@@ -170,20 +172,14 @@ void FogMgr::set(Graphics& graphics)
  * Address:	80432AA8
  * Size:	000024
  */
-void FogMgr::setColor(Color4& color)
-{
-	m_color = color;
-}
+void FogMgr::setColor(Color4& color) { m_color = color; }
 
 /*
  * --INFO--
  * Address:	80432ACC
  * Size:	000024
  */
-void FogMgr::getColor(Color4& color)
-{
-	color = m_color;
-}
+void FogMgr::getColor(Color4& color) { color = m_color; }
 
 /*
  * --INFO--

@@ -36,9 +36,9 @@ namespace title {
 	void TTitleCameraMgr::update()
 	{
 		_174.y += m_parms.m_cam1.m_value;
-		_18C.x = 0.0f;
-		_18C.y = 0.0f;
-		_18C.z = -1.0f;
+		_18C.x           = 0.0f;
+		_18C.y           = 0.0f;
+		_18C.z           = -1.0f;
 		m_lookAtPosition = _174;
 		// m_lookAtPosition.x = float174;
 		// m_lookAtPosition.y = float178;

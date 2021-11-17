@@ -4,7 +4,9 @@
 namespace JGeometry {
 template <typename T> struct TVec2 {
 	inline TVec2();
-	inline TVec2(T inX, T inY) : x(inX), y(inY) {};
+	inline TVec2(T inX, T inY)
+	    : x(inX)
+	    , y(inY) {};
 	T x;
 	T y;
 };
@@ -12,10 +14,9 @@ template <typename T> struct TVec2 {
 template <typename T> struct TVec3 {
 	inline TVec3();
 	inline TVec3(T inX, T inY, T inZ)
-		: x(inX)
-		, y(inY)
-		, z(inZ)
-		{};
+	    : x(inX)
+	    , y(inY)
+	    , z(inZ) {};
 	T x;
 	T y;
 	T z;
@@ -25,17 +26,15 @@ template <typename T> struct TVec3 {
 template <typename T> struct TBox2 {
 	inline TBox2();
 	inline TBox2(T x1, T y1, T x2, T y2)
-		: minX(x1)
-		, minY(y1)
-		, maxX(x2)
-		, maxY(y2)
-		{};
+	    : minX(x1)
+	    , minY(y1)
+	    , maxX(x2)
+	    , maxY(y2) {};
 	inline TBox2(TVec2<T> max, TVec2<T> min)
-		: maxX(max.x)
-		, maxY(max.y)
-		, minX(min.x)
-		, minY(min.y)
-		{};
+	    : maxX(max.x)
+	    , maxY(max.y)
+	    , minX(min.x)
+	    , minY(min.y) {};
 	T minX;
 	T minY;
 	T maxX;

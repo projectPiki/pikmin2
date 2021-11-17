@@ -8,13 +8,13 @@ struct J2DGrafContext;
 struct J2DPane;
 struct J2DScreen;
 namespace efx2d {
-	struct T2DCursor;
+struct T2DCursor;
 }
 namespace og {
-	namespace Screen {
-		struct ScaleMgr;
-	}
+namespace Screen {
+	struct ScaleMgr;
 }
+} // namespace og
 
 namespace og {
 namespace Screen {
@@ -24,15 +24,13 @@ namespace Screen {
 		void calcCenter(J2DPane*, Vector2f*);
 		void calcPoint(Vector2f*, Vector2f*, float, Vector2f*);
 		void draw(J2DGrafContext*);
-		void init(J2DScreen*, ushort,    ulonglong, ulonglong,
-		          ulonglong);
-		void init(J2DScreen*, ushort,    ulonglong, ulonglong,
-		          ulonglong,  ulonglong, ulonglong);
-		void init2taku(J2DScreen*, ulonglong, ulonglong, ulonglong,
-		               ulonglong,  ulonglong, ulonglong, ulonglong,
-		               ulonglong);
+		void init(J2DScreen*, ushort, ulonglong, ulonglong, ulonglong);
+		void init(J2DScreen*, ushort, ulonglong, ulonglong, ulonglong,
+		          ulonglong, ulonglong);
+		void init2taku(J2DScreen*, ulonglong, ulonglong, ulonglong, ulonglong,
+		               ulonglong, ulonglong, ulonglong, ulonglong);
 		void init2takuTitle(J2DScreen*, ulonglong, ulonglong, ulonglong,
-		                    ulonglong,  ulonglong, ulonglong, ulonglong,
+		                    ulonglong, ulonglong, ulonglong, ulonglong,
 		                    ulonglong);
 		void initCommon();
 		void initSub(J2DScreen*, ushort, ulonglong, ulonglong, ulonglong);
@@ -43,7 +41,6 @@ namespace Screen {
 		void selectSub(ushort);
 		void update();
 		void MenuOnOff();
-
 
 		int _00;                        // _00
 		float _04;                      // _04

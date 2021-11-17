@@ -6,9 +6,8 @@
 
 template <typename T> struct JSUTree {
 	inline JSUTree(void* owner)
-		: m_list(true)
-		, m_link(owner)
-		{};
+	    : m_list(true)
+	    , m_link(owner) {};
 	T* getNextChild() const;
 	T* getEndChild() const;
 	int getNumChildren() const;

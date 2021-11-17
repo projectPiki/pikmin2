@@ -33,7 +33,7 @@ enum J2DAnmType {
 #pragma enumalwaysint reset
 
 struct J2DAnmBase {
-	virtual ~J2DAnmBase();                      // _00
+	virtual ~J2DAnmBase();                           // _00
 	virtual void searchUpdateMaterialID(J2DScreen*); // _04
 
 	// VTBL _00
@@ -78,13 +78,13 @@ struct J2DAnmColorKey : public J2DAnmColor {
 
 // Size: 0x74
 struct J2DAnmTevRegKey : public J2DAnmBase {
-	ushort _10;              // _10 /* element count of _24? see J2DScreen::setAnimation */
-	ushort _12;              // _12 /* element count of _38? see J2DScreen::setAnimation */
-	u8 _14[0x10];            // _14
-	ushort* _24;             // _24 /* material index? see J2DScreen::setAnimation */
-	JUTNameTab _28;          // _28
-	ushort* _38;             // _38 /* material index? see J2DScreen::setAnimation */
-	JUTNameTab _3C;          // _3C
+	ushort _10;   // _10 /* element count of _24? see J2DScreen::setAnimation */
+	ushort _12;   // _12 /* element count of _38? see J2DScreen::setAnimation */
+	u8 _14[0x10]; // _14
+	ushort* _24;  // _24 /* material index? see J2DScreen::setAnimation */
+	JUTNameTab _28; // _28
+	ushort* _38;    // _38 /* material index? see J2DScreen::setAnimation */
+	JUTNameTab _3C; // _3C
 	J3DAnmCRegKeyTable* _4C; // _4C
 	J3DAnmKRegKeyTable* _50; // _50
 	short* _54;              // _54
@@ -198,6 +198,5 @@ struct J2DAnmVtxColorKey : public J2DAnmVtxColor {
 	short* _34;               // _34
 	short* _38;               // _38
 };
-
 
 #endif

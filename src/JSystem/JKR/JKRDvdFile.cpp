@@ -53,8 +53,8 @@
  * Size:	000074
  */
 JKRDvdFile::JKRDvdFile()
-	: JKRFile()
-	, _E4(this)
+    : JKRFile()
+    , _E4(this)
 {
 	initiate();
 }
@@ -67,8 +67,8 @@ JKRDvdFile::JKRDvdFile()
  * Size:	0000B0
  */
 JKRDvdFile::JKRDvdFile(const char* path)
-	: JKRFile()
-	, _E4(this)
+    : JKRFile()
+    , _E4(this)
 {
 	initiate();
 	_18 = open(path);
@@ -138,8 +138,8 @@ lbl_8001D1C0:
  * Size:	0000B0
  */
 JKRDvdFile::JKRDvdFile(long fileNumber)
-	: JKRFile()
-	, _E4(this)
+    : JKRFile()
+    , _E4(this)
 {
 	initiate();
 	_18 = open(fileNumber);
@@ -330,7 +330,8 @@ void JKRDvdFile::close()
  * Address:	8001D500
  * Size:	0000C4
  */
-int JKRDvdFile::readData(void* buffer, long byteCount, long startOffset) {
+int JKRDvdFile::readData(void* buffer, long byteCount, long startOffset)
+{
 	return readDataAsync(buffer, byteCount, startOffset);
 }
 
@@ -339,7 +340,8 @@ int JKRDvdFile::readData(void* buffer, long byteCount, long startOffset) {
  * Address:	........
  * Size:	0000C4
  */
-// inline int JKRDvdFile::readDataAsync(void* buffer, long byteCount, long startOffset)
+// inline int JKRDvdFile::readDataAsync(void* buffer, long byteCount, long
+// startOffset)
 // {
 // 	long result;
 // 	OSLockMutex(&_1C);
@@ -349,9 +351,9 @@ int JKRDvdFile::readData(void* buffer, long byteCount, long startOffset) {
 // 	} else {
 // 		_F4 = OSGetCurrentThread();
 // 		result = -1;
-// 		if (DVDReadAsyncPrio(&m_dvdPlayer, buffer, byteCount, startOffset, (DVDDoneReadCallback*)doneProcess, 2)) {
-// 			result = (long)this;
-// 			sync();
+// 		if (DVDReadAsyncPrio(&m_dvdPlayer, buffer, byteCount, startOffset,
+// (DVDDoneReadCallback*)doneProcess, 2)) { 			result = (long)this;
+// sync();
 // 		}
 // 		_F4 = nullptr;
 // 		OSUnlockMutex(&_1C);
@@ -421,7 +423,8 @@ int JKRDvdFile::readData(void* buffer, long byteCount, long startOffset) {
  * Address:	8001D5C4
  * Size:	000008
  */
-int JKRDvdFile::writeData(const void* p1, long p2, long p3) {
+int JKRDvdFile::writeData(const void* p1, long p2, long p3)
+{
 	return writeDataAsync(p1, p2, p3);
 }
 
@@ -447,7 +450,8 @@ long JKRDvdFile::sync()
  */
 BOOL JKRDvdFile::doneProcess(long p1, DVDFileInfo* info)
 {
-	return OSSendMessage(&(reinterpret_cast<JKRDvdFile*>(info->_3C))->_C0, (OSMessage)p1, 0);
+	return OSSendMessage(&(reinterpret_cast<JKRDvdFile*>(info->_3C))->_C0,
+	                     (OSMessage)p1, 0);
 }
 
 /*

@@ -8,16 +8,15 @@
 #include "Plane.h"
 
 namespace Game {
-	namespace P2JST {
-		struct ObjectCamera;
-	}
+namespace P2JST {
+	struct ObjectCamera;
 }
+} // namespace Game
 namespace Sys {
 struct Sphere;
 } // namespace Sys
 
 struct CullPlane : public ArrayContainer<Plane> {
-
 };
 
 struct CullFrustum : public CullPlane {
@@ -63,27 +62,28 @@ struct Camera : public CullFrustum {
 	void updateSoundCamera(float);
 
 	// CullFrustum _00 - _34
-	Matrixf _34;                              // _034
-	float m_nearMaybe;                        // _064
-	float m_farMaybe;                         // _068
-	bool _6C;                                 // _06C
-	float m_projectionNearMaybe;              // _070
-	float m_projectionFarMaybe;               // _074
-	Vector3f m_soundPosition;                 // _078
-	Matrixf m_soundMatrix;                    // _084
-	float _B4[4][4];                          // _0B4
-	float _F4[4][4];                          // _0F4
-	float _134;                               // _134
-	float _138;                               // _138
-	float _13C;                               // _13C
-	Game::P2JST::ObjectCamera* m_jstObject;   // _140
+	Matrixf _34;                            // _034
+	float m_nearMaybe;                      // _064
+	float m_farMaybe;                       // _068
+	bool _6C;                               // _06C
+	float m_projectionNearMaybe;            // _070
+	float m_projectionFarMaybe;             // _074
+	Vector3f m_soundPosition;               // _078
+	Matrixf m_soundMatrix;                  // _084
+	float _B4[4][4];                        // _0B4
+	float _F4[4][4];                        // _0F4
+	float _134;                             // _134
+	float _138;                             // _138
+	float _13C;                             // _13C
+	Game::P2JST::ObjectCamera* m_jstObject; // _140
 };
 
 struct LookAtCamera : public Camera {
-	virtual void startVibration(int);          // _74
+	virtual void startVibration(int); // _74
 
-	Matrixf _144;              // _144
-	Vector3f _174;             // _174 /* Sodium called this `position`, PikDecomp called it `angle`. :shrug: */
+	Matrixf _144;  // _144
+	Vector3f _174; // _174 /* Sodium called this `position`, PikDecomp called it
+	               // `angle`. :shrug: */
 	Vector3f m_lookAtPosition; // _180 /* PikDecomp called this `position`. */
 	Vector3f _18C;             // _18C
 };

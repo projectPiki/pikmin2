@@ -38,7 +38,6 @@ struct Graphics : public _GraphicsParent {
 	// _GraphicsParent _000
 	// VTBL _26C
 	u8 _270[0x30]; // _270
-
 };
 
 #endif

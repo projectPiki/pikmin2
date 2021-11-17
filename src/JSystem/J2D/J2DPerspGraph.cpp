@@ -54,7 +54,7 @@
  * Size:	00004C
  */
 J2DPerspGraph::J2DPerspGraph()
-	: J2DGrafContext(0.0f, 0.0f, 0.0f, 0.0f)
+    : J2DGrafContext(0.0f, 0.0f, 0.0f, 0.0f)
 {
 }
 

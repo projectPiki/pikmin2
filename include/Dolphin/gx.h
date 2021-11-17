@@ -29,7 +29,7 @@ typedef enum _SDK_GXFogType {
 	GX_FOG_EXPONENT2  = 5,
 	GX_FOG_REVERSEEXP = 6,
 	GX_FOG_REVERSEXP2 = 7,
-	_FORCE_UINT = 0xFFFFFFFF
+	_FORCE_UINT       = 0xFFFFFFFF
 } GXFogType;
 
 typedef struct _SDK_GXColor {
