@@ -1,4 +1,8 @@
 #include "types.h"
+#include "JSystem/JSU/JSUTreeIterator.h"
+#include "og/Screen/AlphaMgr.h"
+#include "og/Screen/ogScreen.h"
+#include "P2DScreen.h"
 
 /*
     Generated from dpostproc
@@ -883,7 +887,7 @@ lbl_80302174:
 	 * Address:	8030269C
 	 * Size:	0000C8
 	 */
-	void calcSmooth0to1(float, float)
+	float calcSmooth0to1(float, float)
 	{
 		/*
 	fdivs    f1, f1, f2
@@ -951,68 +955,61 @@ lbl_8030275C:
 		*/
 	}
 
-} // namespace Screen
-
-} // namespace og
-
-/*
- * --INFO--
- * Address:	80302764
- * Size:	0000B0
- */
-void calcGlbCenter__Q22og6ScreenFP7J2DPaneP10Vector2<float>(void)
-{
 	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	li       r5, 0
-	stw      r0, 0x44(r1)
-	stw      r31, 0x3c(r1)
-	mr       r31, r4
-	stw      r30, 0x38(r1)
-	mr       r30, r3
-	addi     r3, r1, 0x14
-	mr       r4, r30
-	bl       getGlbVtx__7J2DPaneCFUc
-	lwz      r5, 0x14(r1)
-	mr       r4, r30
-	lwz      r6, 0x18(r1)
-	addi     r3, r1, 8
-	lwz      r0, 0x1c(r1)
-	stw      r5, 0x2c(r1)
-	li       r5, 3
-	stw      r6, 0x30(r1)
-	stw      r0, 0x34(r1)
-	bl       getGlbVtx__7J2DPaneCFUc
-	lwz      r0, 8(r1)
-	lwz      r3, 0xc(r1)
-	stw      r0, 0x20(r1)
-	lwz      r0, 0x10(r1)
-	stw      r3, 0x24(r1)
-	lfs      f3, 0x2c(r1)
-	lfs      f2, 0x20(r1)
-	lfs      f1, 0x30(r1)
-	lfs      f0, 0x24(r1)
-	fadds    f3, f3, f2
-	lfs      f2, lbl_8051D520@sda21(r2)
-	fadds    f0, f1, f0
-	stw      r0, 0x28(r1)
-	fmuls    f1, f3, f2
-	fmuls    f0, f0, f2
-	stfs     f1, 0(r31)
-	stfs     f0, 4(r31)
-	lwz      r31, 0x3c(r1)
-	lwz      r30, 0x38(r1)
-	lwz      r0, 0x44(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
-}
-
-namespace og {
-
-namespace Screen {
+	 * --INFO--
+	 * Address:	80302764
+	 * Size:	0000B0
+	 */
+	// void calcGlbCenter__Q22og6ScreenFP7J2DPaneP10Vector2<float>(void)
+	void calcGlbCenter(J2DPane*, Vector2f*)
+	{
+		/*
+		stwu     r1, -0x40(r1)
+		mflr     r0
+		li       r5, 0
+		stw      r0, 0x44(r1)
+		stw      r31, 0x3c(r1)
+		mr       r31, r4
+		stw      r30, 0x38(r1)
+		mr       r30, r3
+		addi     r3, r1, 0x14
+		mr       r4, r30
+		bl       getGlbVtx__7J2DPaneCFUc
+		lwz      r5, 0x14(r1)
+		mr       r4, r30
+		lwz      r6, 0x18(r1)
+		addi     r3, r1, 8
+		lwz      r0, 0x1c(r1)
+		stw      r5, 0x2c(r1)
+		li       r5, 3
+		stw      r6, 0x30(r1)
+		stw      r0, 0x34(r1)
+		bl       getGlbVtx__7J2DPaneCFUc
+		lwz      r0, 8(r1)
+		lwz      r3, 0xc(r1)
+		stw      r0, 0x20(r1)
+		lwz      r0, 0x10(r1)
+		stw      r3, 0x24(r1)
+		lfs      f3, 0x2c(r1)
+		lfs      f2, 0x20(r1)
+		lfs      f1, 0x30(r1)
+		lfs      f0, 0x24(r1)
+		fadds    f3, f3, f2
+		lfs      f2, lbl_8051D520@sda21(r2)
+		fadds    f0, f1, f0
+		stw      r0, 0x28(r1)
+		fmuls    f1, f3, f2
+		fmuls    f0, f0, f2
+		stfs     f1, 0(r31)
+		stfs     f0, 4(r31)
+		lwz      r31, 0x3c(r1)
+		lwz      r30, 0x38(r1)
+		lwz      r0, 0x44(r1)
+		mtlr     r0
+		addi     r1, r1, 0x40
+		blr
+		*/
+	}
 
 	/*
 	 * --INFO--
@@ -1039,7 +1036,7 @@ namespace Screen {
 	 * Address:	80302814
 	 * Size:	00010C
 	 */
-	void maskTag2(unsigned long long, unsigned short)
+	ulonglong maskTag2(ulonglong, ushort)
 	{
 		/*
 	stwu     r1, -0x50(r1)
@@ -1119,7 +1116,7 @@ lbl_80302860:
 	 * Address:	80302920
 	 * Size:	0000A0
 	 */
-	void maskTag(unsigned long long, unsigned short, unsigned short)
+	ulonglong maskTag(ulonglong, ushort, ushort)
 	{
 		/*
 	stwu     r1, -0x20(r1)
@@ -1178,7 +1175,7 @@ lbl_803029AC:
 	 * Address:	803029C0
 	 * Size:	0000B4
 	 */
-	void CalcKeta(unsigned long)
+	uint CalcKeta(ulong)
 	{
 		/*
 	stwu     r1, -0x40(r1)
@@ -1347,7 +1344,7 @@ lbl_80302BA0:
 	 * Address:	80302BCC
 	 * Size:	000158
 	 */
-	void TagToName(unsigned long long, char*)
+	void TagToName(ulonglong, char*)
 	{
 		/*
 	li       r8, 0xff
@@ -1474,7 +1471,7 @@ lbl_80302D1C:
 	 * Address:	........
 	 * Size:	000134
 	 */
-	void NameToTag(char*)
+	ulonglong NameToTag(char*)
 	{
 		// UNUSED FUNCTION
 	}
@@ -1484,7 +1481,7 @@ lbl_80302D1C:
 	 * Address:	80302D24
 	 * Size:	0000F4
 	 */
-	void CharCodeToTag(char*)
+	ulonglong CharCodeToTag(char*)
 	{
 		/*
 	stwu     r1, -0x20(r1)
@@ -1556,7 +1553,7 @@ lbl_80302D1C:
 	 * Address:	80302E18
 	 * Size:	000094
 	 */
-	void TagToHex(unsigned long long, char*)
+	void TagToHex(ulonglong, char*)
 	{
 		/*
 	stwu     r1, -0x30(r1)
@@ -1608,7 +1605,7 @@ lbl_80302E78:
 	 * Address:	80302EAC
 	 * Size:	00018C
 	 */
-	void TagSearch(J2DScreen*, unsigned long long)
+	J2DPane* TagSearch(J2DScreen* parentScreen, ulonglong tag)
 	{
 		/*
 	stwu     r1, -0x430(r1)
@@ -1888,7 +1885,7 @@ lbl_80303174:
 	 * Address:	80303184
 	 * Size:	000190
 	 */
-	void AlphaMgr::calc(void)
+	uchar AlphaMgr::calc()
 	{
 		/*
 	stwu     r1, -0x10(r1)
@@ -2189,8 +2186,9 @@ void JSUTreeIterator<J2DPane>::getObject() const
  * Address:	803034F4
  * Size:	000008
  */
-void J2DPane::getPaneTree()
+JSUTree<J2DPane> J2DPane::getPaneTree()
 {
+	return m_tree;
 	/*
 	addi     r3, r3, 0xdc
 	blr
@@ -2212,7 +2210,7 @@ void printPaneTree__Q22og6ScreenFP7J2DPane25JSUTreeIterator<J2DPane>(void)
  * Address:	........
  * Size:	000008
  */
-void J2DPane::getTranslateY() const
+float J2DPane::getTranslateY() const
 {
 	// UNUSED FUNCTION
 }
@@ -2222,7 +2220,7 @@ void J2DPane::getTranslateY() const
  * Address:	........
  * Size:	000008
  */
-void J2DPane::getTranslateX() const
+float J2DPane::getTranslateX() const
 {
 	// UNUSED FUNCTION
 }
@@ -2232,8 +2230,9 @@ void J2DPane::getTranslateX() const
  * Address:	803034FC
  * Size:	000010
  */
-void J2DPane::getTagName() const
+ulonglong J2DPane::getTagName() const
 {
+	return m_tag;
 	/*
 	mr       r4, r3
 	lwz      r3, 0x10(r3)

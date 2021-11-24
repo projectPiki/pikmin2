@@ -1,6 +1,14 @@
 #include "types.h"
-
 #include "GameFlow.h"
+#include "BootSection.h"
+#include "Demo.h"
+#include "Game/SingleGameSection.h"
+#include "Game/VsGameSection.h"
+#include "JSystem/JKR/JKRHeap.h"
+#include "JSystem/JUT/JUTException.h"
+#include "RootMenuSection.h"
+#include "Title.h"
+#include "nans.h"
 
 /*
     Generated from dpostproc
@@ -230,9 +238,10 @@
 */
 
 // TODO: Finish
-struct {
+// NOTE: Fabricated name.
+struct SectionInfo {
 	char* name;
-	u32 _04;
+	u32 id;
 } sSectionInfo[] = {
 	{ "Root Menu", 0x00000000 },         { "Object Editor", 0x01010000 },
 	{ "Single Game", 0x02010000 },       { "Challenge Game", 0x03010000 },
@@ -281,6 +290,18 @@ GameFlow::~GameFlow()
  */
 void GameFlow::run()
 {
+	do {
+		JKRHeap* parentHeap = JKRHeap::sCurrentHeap;
+		JKRHeap::TState state(nullptr, 0xffffffff, true);
+		JKRExpHeap* expHeap
+		    = JKRExpHeap::create(parentHeap->getFreeSize(), parentHeap, true);
+		setSection();
+		m_section->init();
+		m_section->run();
+		m_section->exit();
+		expHeap->destroy();
+		parentHeap->becomeCurrentHeap();
+	} while (true);
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -349,6 +370,17 @@ lbl_804241EC:
  */
 void GameFlow::setSection()
 {
+	ulong freeSize = JKRHeap::sCurrentHeap->getFreeSize();
+	if (mActiveSectionFlag == 0x15) {
+		m_section          = new BootSection(JKRHeap::sCurrentHeap);
+		mActiveSectionFlag = 0;
+	} else {
+		JUT_ASSERTLINE(188,
+		               (0x14 >= mActiveSectionFlag || mActiveSectionFlag == 0),
+		               "Unknown SectionFlag. %d \n", mActiveSectionFlag);
+		m_section          = new RootMenuSection(JKRHeap::sCurrentHeap);
+		mActiveSectionFlag = 0x16;
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -418,8 +450,16 @@ lbl_80424358:
  * Address:	8042436C
  * Size:	0000B0
  */
-void GameFlow::getSectionInfo(int)
+SectionInfo* GameFlow::getSectionInfo(int id)
 {
+	P2ASSERTLINE(201, (-1 < id && id < 0x23));
+	int i = 0x23;
+	do {
+		if (id == sSectionInfo[i].id) {
+			return &sSectionInfo[i];
+		}
+	} while (--i != 0);
+	return nullptr;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -483,8 +523,31 @@ lbl_80424400:
  * Address:	8042441C
  * Size:	000148
  */
-void GameFlow::createSection(JKRHeap*)
+ISection* GameFlow::createSection(JKRHeap* heap)
 {
+	ISection* section;
+	switch (mActiveSectionFlag) {
+	case 0x16:
+		section = new Title::Section(heap);
+		break;
+	case 0x3:
+		section = new Game::VsGameSection(heap, false);
+		break;
+	case 0x2:
+		section = new Game::SingleGameSection(heap);
+		break;
+	case 0x1E:
+		section = new Game::VsGameSection(heap, true);
+		break;
+	case 0x17:
+		section = new Demo::Section(heap);
+		break;
+	default:
+		section = new Title::Section(heap);
+		break;
+	}
+	mActiveSectionFlag = 0x16;
+	return section;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -602,8 +665,9 @@ lbl_80424548:
  * Address:	80424564
  * Size:	000040
  */
-void GameFlow::getCurrentSection()
+ISection* GameFlow::getCurrentSection()
 {
+	return (m_section) ? m_section->getCurrentSection() : nullptr;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0

@@ -1,4 +1,6 @@
 #include "types.h"
+#include "Graphics.h"
+#include "Viewport.h"
 
 /*
     Generated from dpostproc
@@ -430,7 +432,7 @@ lbl_804251BC:
  * Address:	804251CC
  * Size:	000074
  */
-void Graphics::getNumActiveViewports()
+int Graphics::getNumActiveViewports()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -486,7 +488,7 @@ void Viewport::getAspect()
  * Address:	80425240
  * Size:	000050
  */
-void Viewport::viewable()
+bool Viewport::viewable()
 {
 	/*
 	lbz      r0, 0x3c(r3)
@@ -869,7 +871,7 @@ void Graphics::addViewport(Viewport*)
  * Address:	804255F0
  * Size:	000010
  */
-void Graphics::getViewport(int)
+Viewport* Graphics::getViewport(int)
 {
 	/*
 	lwz      r3, 0x268(r3)
@@ -995,7 +997,7 @@ void Graphics::updateJ3D()
  * Address:	804256E0
  * Size:	000030
  */
-void graphicsTokenCallback(unsigned short)
+void graphicsTokenCallback(ushort)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1063,7 +1065,7 @@ lbl_80425770:
  * Address:	80425788
  * Size:	000010
  */
-void Graphics::getTokenName(unsigned short)
+char* Graphics::getTokenName(unsigned short)
 {
 	/*
 	rlwinm   r0, r4, 2, 0xe, 0x1d
@@ -1078,7 +1080,7 @@ void Graphics::getTokenName(unsigned short)
  * Address:	........
  * Size:	000038
  */
-void Graphics::getToken()
+ushort Graphics::getToken()
 {
 	// UNUSED FUNCTION
 }
@@ -1088,7 +1090,7 @@ void Graphics::getToken()
  * Address:	80425798
  * Size:	000084
  */
-void Graphics::findTokenIndex(char*)
+int Graphics::findTokenIndex(char*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1280,7 +1282,7 @@ void Graphics::drawPoint(Vector3f&)
  * Address:	........
  * Size:	00012C
  */
-void Graphics::drawPoint(Vector3f*, unsigned short)
+void Graphics::drawPoint(Vector3f*, ushort)
 {
 	// UNUSED FUNCTION
 }
@@ -2445,7 +2447,7 @@ void Graphics::drawMarker(float, Matrixf*)
  * Address:	........
  * Size:	0001EC
  */
-void Graphics::drawRect(Rect<float>&, Color4&)
+void Graphics::drawRect(Rectf&, Color4&)
 {
 	// UNUSED FUNCTION
 }
@@ -2455,7 +2457,7 @@ void Graphics::drawRect(Rect<float>&, Color4&)
  * Address:	........
  * Size:	0001B8
  */
-void Graphics::drawRect(Rect<float>&, JUTTexture*)
+void Graphics::drawRect(Rectf&, JUTTexture*)
 {
 	// UNUSED FUNCTION
 }

@@ -1,4 +1,6 @@
 #include "types.h"
+#include "stream.h"
+#include "Dolphin/string.h"
 
 /*
     Generated from dpostproc
@@ -127,7 +129,7 @@ void Stream::differentEndian()
  * Address:	........
  * Size:	000048
  */
-void Stream::isSpace(char)
+bool Stream::isSpace(char)
 {
 	// UNUSED FUNCTION
 }
@@ -147,7 +149,7 @@ void Stream::skipSpace()
  * Address:	80413DEC
  * Size:	000008
  */
-u32 Stream::eof() { return 0x0; }
+bool Stream::eof() { return false; }
 
 /*
  * --INFO--
@@ -164,7 +166,7 @@ void Stream::copyToTextBuffer()
  * Address:	80413DF4
  * Size:	000228
  */
-void Stream::getNextToken()
+char* Stream::getNextToken()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -351,45 +353,15 @@ lbl_80414004:
  * Address:	8041401C
  * Size:	000084
  */
-void Stream::textBeginGroup(char*)
+void Stream::textBeginGroup(char* groupName)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r0, 0xc(r3)
-	cmpwi    r0, 0
-	beq      lbl_80414088
-	lwz      r4, 0x414(r30)
-	bl       textWriteTab__6StreamFi
-	mr       r3, r30
-	mr       r5, r31
-	addi     r4, r2, lbl_805202E0@sda21
-	crclr    6
-	bl       textWriteText__6StreamFPce
-	lwz      r4, 0x414(r30)
-	mr       r3, r30
-	bl       textWriteTab__6StreamFi
-	mr       r3, r30
-	addi     r4, r2, lbl_805202E8@sda21
-	crclr    6
-	bl       textWriteText__6StreamFPce
-	lwz      r3, 0x414(r30)
-	addi     r0, r3, 1
-	stw      r0, 0x414(r30)
-
-lbl_80414088:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (m_isTextMode) {
+		textWriteTab(m_tabCount);
+		textWriteText("# %s\r\n", groupName);
+		textWriteTab(m_tabCount);
+		textWriteText("{\r\n");
+		m_tabCount++;
+	}
 }
 
 /*
@@ -399,32 +371,11 @@ lbl_80414088:
  */
 void Stream::textEndGroup()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r0, 0xc(r3)
-	cmpwi    r0, 0
-	beq      lbl_804140E4
-	lwz      r4, 0x414(r31)
-	addi     r0, r4, -1
-	stw      r0, 0x414(r31)
-	lwz      r4, 0x414(r31)
-	bl       textWriteTab__6StreamFi
-	mr       r3, r31
-	addi     r4, r2, lbl_805202EC@sda21
-	crclr    6
-	bl       textWriteText__6StreamFPce
-
-lbl_804140E4:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (m_isTextMode) {
+		m_tabCount--;
+		textWriteTab(m_tabCount);
+		textWriteText("}\r\n");
+	}
 }
 
 /*
@@ -586,7 +537,7 @@ lbl_804142A8:
  * Address:	........
  * Size:	000070
  */
-void Stream::writePadding(unsigned long)
+void Stream::writePadding(ulong)
 {
 	// UNUSED FUNCTION
 }
@@ -596,7 +547,7 @@ void Stream::writePadding(unsigned long)
  * Address:	........
  * Size:	00006C
  */
-void Stream::skipPadding(unsigned long)
+void Stream::skipPadding(ulong)
 {
 	// UNUSED FUNCTION
 }
@@ -606,8 +557,20 @@ void Stream::skipPadding(unsigned long)
  * Address:	804142C8
  * Size:	0000C4
  */
-void Stream::skipReading(unsigned long)
+void Stream::skipReading(ulong byteCount)
 {
+	if (m_isTextMode == true) {
+		while (!eof()) {
+			uchar next = _readByte();
+			if (next == '\r' || next == '\n') {
+				return;
+			}
+		}
+	} else {
+		for (int i = 0; i < byteCount && !eof(); i++) {
+			readByte();
+		}
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -761,42 +724,13 @@ void Stream::_write(void*, int)
  * Address:	80414434
  * Size:	000068
  */
-void Stream::textWriteTab(int)
+void Stream::textWriteTab(int tabCount)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	lwz      r0, 0xc(r3)
-	cmpwi    r0, 1
-	bne      lbl_80414480
-	li       r31, 0
-	b        lbl_80414478
-
-lbl_80414468:
-	mr       r3, r29
-	li       r4, 9
-	bl       _writeByte__6StreamFUc
-	addi     r31, r31, 1
-
-lbl_80414478:
-	cmpw     r31, r30
-	blt      lbl_80414468
-
-lbl_80414480:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (m_isTextMode == 1) {
+		for (int i = 0; i < tabCount; i++) {
+			_writeByte('\t');
+		}
+	}
 }
 
 /*
@@ -804,7 +738,7 @@ lbl_80414480:
  * Address:	8041449C
  * Size:	000278
  */
-void Stream::readByte()
+uchar Stream::readByte()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1017,8 +951,12 @@ lbl_804146F8:
  * Address:	80414714
  * Size:	000050
  */
-void Stream::_readByte()
+uchar Stream::_readByte()
 {
+	char buffer[1];
+	read(buffer, 1);
+	m_position++;
+	return buffer[0];
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -1048,7 +986,7 @@ void Stream::_readByte()
  * Address:	80414764
  * Size:	00032C
  */
-void Stream::readShort()
+short Stream::readShort()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -1308,7 +1246,7 @@ lbl_80414A74:
  * Address:	80414A90
  * Size:	00031C
  */
-void Stream::readInt()
+int Stream::readInt()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1564,7 +1502,7 @@ lbl_80414D90:
  * Address:	80414DAC
  * Size:	000328
  */
-void Stream::readFloat()
+float Stream::readFloat()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -1823,7 +1761,7 @@ lbl_804150B8:
  * Address:	804150D4
  * Size:	0004F8
  */
-void Stream::readString(char*, int)
+char* Stream::readString(char*, int)
 {
 	/*
 	stwu     r1, -0x430(r1)
@@ -2226,7 +2164,7 @@ lbl_804155B8:
  * Address:	........
  * Size:	00064C
  */
-void Stream::readFixedString()
+char* Stream::readFixedString()
 {
 	// UNUSED FUNCTION
 }
@@ -2236,8 +2174,18 @@ void Stream::readFixedString()
  * Address:	804155CC
  * Size:	0000A4
  */
-void Stream::writeString(char*)
+void Stream::writeString(char* string)
 {
+	int length = strlen(string);
+	for (int i = 0; i < length; i++) {
+		_writeByte(*string);
+		string++;
+	}
+	if (m_isTextMode == 1) {
+		printf(" ");
+	} else {
+		_writeByte('\0');
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -2306,42 +2254,15 @@ void Stream::writeFixedString(char*)
  * Address:	80415670
  * Size:	000070
  */
-void Stream::writeByte(unsigned char)
+void Stream::writeByte(uchar c)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	stb      r4, 8(r1)
-	lwz      r0, 0xc(r3)
-	cmpwi    r0, 1
-	bne      lbl_804156A8
-	clrlwi   r5, r4, 0x18
-	addi     r4, r2, lbl_805202FC@sda21
-	crclr    6
-	bl       printf__6StreamFPce
-	b        lbl_804156CC
-
-lbl_804156A8:
-	lwz      r12, 0(r3)
-	addi     r4, r1, 8
-	li       r5, 1
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 8(r31)
-	addi     r0, r3, 1
-	stw      r0, 8(r31)
-
-lbl_804156CC:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	uchar buffer = c;
+	if (m_isTextMode == 1) {
+		printf("%d ", c);
+	} else {
+		write(&buffer, 1);
+		m_position++;
+	}
 }
 
 /*
@@ -2349,30 +2270,11 @@ lbl_804156CC:
  * Address:	804156E0
  * Size:	000050
  */
-void Stream::_writeByte(unsigned char)
+void Stream::_writeByte(uchar c)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	li       r5, 1
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	stb      r4, 8(r1)
-	addi     r4, r1, 8
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 8(r31)
-	addi     r0, r3, 1
-	stw      r0, 8(r31)
-	lwz      r31, 0x1c(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	uchar buffer = c;
+	write(&buffer, 1);
+	m_position++;
 }
 
 /*
@@ -2578,7 +2480,7 @@ lbl_80415928:
  * Address:	........
  * Size:	000014
  */
-void RamStream::set(unsigned char*, int)
+void RamStream::set(uchar*, int)
 {
 	// UNUSED FUNCTION
 }
@@ -2688,7 +2590,7 @@ lbl_80415A3C:
  * Address:	80415A70
  * Size:	00002C
  */
-void RamStream::eof()
+bool RamStream::eof()
 {
 	/*
 	lwz      r5, 0x41c(r3)

@@ -1,4 +1,7 @@
+#include "System.h"
 #include "types.h"
+#include "P2DScreen.h"
+#include "JSystem/JUT/JUTException.h"
 
 /*
     Generated from dpostproc
@@ -137,12 +140,15 @@
         .4byte 0x00000000
 */
 
-/*
+/* __ct
  * --INFO--
  * Address:	80434AC0
  * Size:	000064
  */
-P2DScreen::Mgr::Mgr(void)
+P2DScreen::Mgr::Mgr()
+    : J2DScreen()
+    , _118()
+    , _130(0)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -178,8 +184,18 @@ P2DScreen::Mgr::Mgr(void)
  * Address:	80434B24
  * Size:	000138
  */
-void P2DScreen::Mgr::addCallBack(unsigned long long, P2DScreen::Node*)
+J2DPane* P2DScreen::Mgr::addCallBack(ulonglong tag, P2DScreen::Node* node)
 {
+	P2ASSERTLINE(73, (node != nullptr));
+	J2DPane* pane = search(tag);
+	if (pane != nullptr) {
+		node->_18 = pane;
+		node->doInit();
+		_118.add(node);
+	} else {
+		// TODO: There's stuff here... of some sort, at least.
+	}
+	return pane;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -287,45 +303,12 @@ lbl_80434C3C:
  * Address:	80434C5C
  * Size:	000084
  */
-void P2DScreen::Mgr::addCallBackPane(J2DPane*, P2DScreen::Node*)
+void P2DScreen::Mgr::addCallBackPane(J2DPane* pane, P2DScreen::Node* node)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	or.      r31, r5, r5
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	bne      lbl_80434CA0
-	lis      r3, lbl_8049A6C0@ha
-	lis      r5, lbl_8049A6D0@ha
-	addi     r3, r3, lbl_8049A6C0@l
-	li       r4, 0x61
-	addi     r5, r5, lbl_8049A6D0@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80434CA0:
-	stw      r30, 0x18(r31)
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	mr       r4, r31
-	addi     r3, r29, 0x118
-	bl       add__5CNodeFP5CNode
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	P2ASSERTLINE(97, (node != nullptr));
+	node->_18 = pane;
+	node->doInit();
+	_118.add(node);
 }
 
 /*
@@ -335,31 +318,10 @@ lbl_80434CA0:
  */
 void P2DScreen::Mgr::update(void)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	lwz      r31, 0x128(r3)
-	b        lbl_80434D10
-
-lbl_80434CF8:
-	mr       r3, r31
-	lwz      r12, 0(r31)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r31, 4(r31)
-
-lbl_80434D10:
-	cmplwi   r31, 0
-	bne      lbl_80434CF8
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	for (Node* node = (Node*)_118._10; node != nullptr;
+	     node       = (Node*)node->_04) {
+		node->update();
+	}
 }
 
 /*
@@ -367,46 +329,13 @@ lbl_80434D10:
  * Address:	80434D2C
  * Size:	000080
  */
-void P2DScreen::Mgr::draw(Graphics&, J2DGrafContext&)
+void P2DScreen::Mgr::draw(Graphics& gfx, J2DGrafContext& context)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lfs      f1, lbl_80520790@sda21(r2)
-	stw      r0, 0x24(r1)
-	fmr      f2, f1
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	stw      r30, 0x18(r1)
-	mr       r30, r5
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	mr       r4, r30
-	bl       draw__9J2DScreenFffPC14J2DGrafContext
-	lwz      r31, 0x128(r31)
-	b        lbl_80434D88
-
-lbl_80434D68:
-	mr       r3, r31
-	mr       r4, r29
-	lwz      r12, 0(r31)
-	mr       r5, r30
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lwz      r31, 4(r31)
-
-lbl_80434D88:
-	cmplwi   r31, 0
-	bne      lbl_80434D68
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	J2DScreen::draw(0.0f, 0.0f, &context);
+	for (Node* node = (Node*)_118._10; node != nullptr;
+	     node       = (Node*)node->_04) {
+		node->draw(gfx, context);
+	}
 }
 
 /*
@@ -415,6 +344,11 @@ lbl_80434D88:
  * Size:	000088
  */
 P2DScreen::Mgr_tuning::Mgr_tuning(void)
+    : Mgr()
+    , m_widthMaybe(0.95f)
+    , m_heightMaybe(0.95f)
+    , m_someX(-15.2f)
+    , m_someY(-15.2f)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -454,13 +388,24 @@ P2DScreen::Mgr_tuning::Mgr_tuning(void)
 	*/
 }
 
-/*
+/* draw__Q29P2DScreen10Mgr_tuningFR8GraphicsR14J2DGrafContext
  * --INFO--
  * Address:	80434E34
  * Size:	000128
  */
-void P2DScreen::Mgr_tuning::draw(Graphics&, J2DGrafContext&)
+void P2DScreen::Mgr_tuning::draw(Graphics& gfx, J2DGrafContext& context)
 {
+	float xfb = (float)System::getRenderModeObj()->xfbHeight;
+	float efb = (float)System::getRenderModeObj()->efbHeight;
+	rotate(xfb * 0.5f, efb * 0.5f, 0x7A, 0.0f);
+	m_widthScale  = m_widthMaybe;
+	m_heightScale = m_heightMaybe;
+	calcMtx();
+	_0D4[0] = m_someX;
+	_0D4[1] = m_someY;
+	calcMtx();
+	Mgr::draw(gfx, context);
+
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0

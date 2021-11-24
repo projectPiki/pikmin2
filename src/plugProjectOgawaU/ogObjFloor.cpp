@@ -1,4 +1,20 @@
+#include "JSystem/JGeometry.h"
+#include "JSystem/JUtility.h"
 #include "types.h"
+#include "og/Floor.h"
+#include "Dolphin/string.h"
+#include "Dolphin/stl.h"
+#include "Graphics.h"
+#include "JSystem/JUT/JUTException.h"
+#include "JSystem/J3D/J3DSys.h"
+#include "og/newScreen/TitleMsg.h"
+#include "og/Screen/AlphaMgr.h"
+#include "og/Screen/anime.h"
+#include "og/Screen/callbackNodes.h"
+#include "og/Screen/ogScreen.h"
+#include "P2DScreen.h"
+#include "System.h"
+#include "TParticle2dMgr.h"
 
 /*
     Generated from dpostproc
@@ -410,75 +426,113 @@
         .4byte 0x41200000
 */
 
-namespace og {
+const ulonglong og::newScreen::vsRuleMsgId[6]
+    = { '2021_00', '2022_00', '2023_00', '2024_00', '2025_00', '2026_00' };
 
+inline og::newScreen::ObjFloor::StaticValues::StaticValues()
+    : _00(0.30f)
+    , _04(1.00f)
+    , _08(0.20f)
+    , _0C(3.00f)
+    , _10(0.00f)
+    , _14(-15.00f)
+    , _18(1.00f)
+    , _1C(30.00f)
+    , _20(0.00f)
+    , _24(-50.00f)
+    , _28(1.00f)
+    , _2C(-15.00f)
+    , _30(0.00f)
+    , _34(1.50f)
+    , _38(0.00f)
+    , _3C(15.00f)
+    , _40(0.12f)
+    , _44(7.00f)
+    , _48(1.50f)
+    , _4C(0.06f)
+    , _50(10.00f)
+    , _54(0.00f)
+    , _58(3.00f)
+    , _5C()
+    , _68()
+    // , _68 {
+    // 	JUtility::TColor(0x00, 0x00, 0x32, 0x00),
+    // 	JUtility::TColor(0x64, 0x64, 0x00, 0x00),
+    // 	JUtility::TColor(0xFF, 0xFF, 0x00, 0x00)
+    // }
+    , m_ruleMsgIndex(0)
+    , _78(0)
+    , m_shouldNotRandomizeRuleMsgMaybe(false)
+{
+	_5C[0] = JUtility::TColor(0xFF, 0xFF, 0xC8, 0xFF);
+	_5C[1] = JUtility::TColor(0xFF, 0xFF, 0xFF, 0xFF);
+	_5C[2] = JUtility::TColor(0xFF, 0xFF, 0x9C, 0xFF);
+};
+
+og::newScreen::ObjFloor::StaticValues og::newScreen::ObjFloor::msVal
+    = og::newScreen::ObjFloor::StaticValues();
+
+// float _00 =   0.3f;                    // _00
+// float _04 =   1.0f;                    // _04
+// float _08 =   0.2f;                    // _08
+// float _0C =   3.0f;                    // _0C
+// float _10 =   0.0f;                    // _10
+// float _14 = -15.0f;                    // _14
+// float _18 =   1.0f;                    // _18
+// float _1C =  30.0f;                    // _1C
+// float _20 =   0.0f;                    // _20
+// float _24 = -50.0f;                    // _24
+// float _28 =   1.0f;                    // _28
+// float _2C = -15.0f;                    // _2C
+// float _30 =   0.0f;                    // _30
+// float _34 =   1.5f;                    // _34
+// float _38 =   0.0f;                    // _38
+// float _3C =  15.0f;                    // _3C
+// float _40 =   0.12f;                   // _40
+// float _44 =   7.0f;                    // _44
+// float _48 =   1.5f;                    // _48
+// float _4C =   0.06f;                   // _4C
+// float _50 =  10.0f;                    // _50
+// float _54 =   0.0f;                    // _54
+// float _58 =   3.0f;                    // _58
+
+namespace og {
 /*
+ * __ct
  * --INFO--
  * Address:	8031A3C8
  * Size:	0000E8
  */
-newScreen::ObjFloor::ObjFloor(char const*)
+newScreen::ObjFloor::ObjFloor(char const* name)
+    : ::Screen::ObjBase()
+    , _58(0.0f)
+    , _5C(0.0f)
+    , _68(0xFFFFFFFF)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bl       __ct__Q26Screen7ObjBaseFv
-	lis      r4, __vt__Q32og9newScreen8ObjFloor@ha
-	lis      r3, msVal__Q32og9newScreen8ObjFloor@ha
-	addi     r4, r4, __vt__Q32og9newScreen8ObjFloor@l
-	lfs      f2, lbl_8051D998@sda21(r2)
-	stw      r4, 0(r30)
-	addi     r0, r4, 0x10
-	li       r7, -1
-	li       r6, 0
-	stw      r0, 0x18(r30)
-	addi     r5, r3, msVal__Q32og9newScreen8ObjFloor@l
-	li       r0, 0xff
-	lfs      f0, lbl_8051D99C@sda21(r2)
-	stfs     f2, 0x58(r30)
-	addi     r3, r30, 0x3c
-	addi     r4, r2, lbl_8051D9A0@sda21
-	stfs     f2, 0x5c(r30)
-	stw      r7, 0x68(r30)
-	stw      r31, 0x14(r30)
-	stw      r6, 0x38(r30)
-	stw      r6, 0x48(r30)
-	stw      r6, 0x4c(r30)
-	stw      r6, 0x7c(r30)
-	lfs      f1, 0xc(r5)
-	stfs     f1, 0x60(r30)
-	stb      r6, 0x64(r30)
-	stb      r6, 0x68(r30)
-	stb      r6, 0x69(r30)
-	stb      r6, 0x6a(r30)
-	stb      r0, 0x6b(r30)
-	stb      r6, 0x6c(r30)
-	stfs     f2, 0x70(r30)
-	stfs     f2, 0x80(r30)
-	stfs     f2, 0x84(r30)
-	stw      r6, 0x54(r30)
-	stw      r6, 0x88(r30)
-	stw      r6, 0x50(r30)
-	stw      r6, 0x8c(r30)
-	stb      r6, 0xa8(r30)
-	stw      r6, 0xac(r30)
-	stw      r6, 0xb0(r30)
-	stfs     f0, 0xb8(r30)
-	crclr    6
-	bl       sprintf
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_name         = const_cast<char*>(name);
+	m_dispMember   = nullptr;
+	_48            = nullptr;
+	_4C            = nullptr;
+	_7C            = nullptr;
+	_60            = msVal._0C;
+	_64            = 0;
+	_68.channels.r = 0;
+	_68.channels.g = 0;
+	_68.channels.b = 0;
+	_68.channels.a = 0xFF;
+	_6C            = 0;
+	_70            = 0.0f;
+	_80            = 0.0f;
+	_84            = 0.0f;
+	_54            = nullptr;
+	_88            = nullptr;
+	_50            = nullptr;
+	m_rulePane     = nullptr;
+	_A8            = 0;
+	m_buttonPane   = nullptr;
+	m_loadingPane  = nullptr;
+	_B8            = 1.0f;
+	sprintf(m_textTag, "");
 }
 
 /*
@@ -544,7 +598,7 @@ lbl_8031A540:
  * Address:	........
  * Size:	000090
  */
-void newScreen::ObjFloor::isFLOOR(void)
+bool newScreen::ObjFloor::isFLOOR(void)
 {
 	// UNUSED FUNCTION
 }
@@ -554,7 +608,7 @@ void newScreen::ObjFloor::isFLOOR(void)
  * Address:	........
  * Size:	00007C
  */
-void newScreen::ObjFloor::isCHALLENGE(void)
+bool newScreen::ObjFloor::isCHALLENGE(void)
 {
 	// UNUSED FUNCTION
 }
@@ -564,9 +618,11 @@ void newScreen::ObjFloor::isCHALLENGE(void)
  * Address:	........
  * Size:	000030
  */
-void newScreen::ObjFloor::isVS(void)
+inline bool newScreen::ObjFloor::isVS(void)
 {
 	// UNUSED FUNCTION
+	return (((Screen::DispMemberFloor*)m_dispMember)->m_caveID < 'vs0:'
+	        && 'vs0/' < ((Screen::DispMemberFloor*)m_dispMember)->m_caveID);
 }
 
 /*
@@ -574,7 +630,7 @@ void newScreen::ObjFloor::isVS(void)
  * Address:	8031A55C
  * Size:	000460
  */
-void newScreen::ObjFloor::setCaveMsgID(unsigned long caveid, char* buffer)
+void newScreen::ObjFloor::setCaveMsgID(ulong caveid, char* buffer)
 {
 	char* cave_msg;
 	switch (caveid) {
@@ -754,8 +810,79 @@ void newScreen::ObjFloor::setCaveMsgID(unsigned long caveid, char* buffer)
  * Address:	8031A9BC
  * Size:	0008C0
  */
-void newScreen::ObjFloor::doCreate(JKRArchive*)
+void newScreen::ObjFloor::doCreate(JKRArchive* archive)
 {
+	Screen::DispMemberBase* disp = getDispMember();
+	if (disp->isID(OWNER_OGA, MEMBER_FLOOR) == false) {
+		if (disp->isID(OWNER_OGA, MEMBER_DUMMY) == false) {
+			JUT_PANICLINE(452, "ERR! in ObjFloor Create���s�I\n");
+		}
+		disp         = new Screen::DispMemberFloor();
+		m_dispMember = disp;
+	} else {
+		m_dispMember = disp;
+	}
+	_4C = new P2DScreen::Mgr_tuning();
+	if (sys->m_region == System::LANG_JAPANESE) {
+		_4C->set("new_font_0.blo", 0x1040000, archive);
+	} else {
+		_4C->set("new_font_0_eng_pal.blo", 0x1040000, archive);
+	}
+	_48 = new P2DScreen::Mgr_tuning();
+	_48->set("font_name.blo", 0x1040000, archive);
+	if (isVS()) {
+		_50 = new P2DScreen::Mgr_tuning();
+		_50->set("vs_title_rule_window.blo", 0x1040000, archive);
+		m_rulePane                 = Screen::TagSearch(_50, 'Trule_m5');
+		m_buttonPane               = Screen::TagSearch(_50, 'Pabutton');
+		m_loadingPane              = Screen::TagSearch(_50, 'Tloading');
+		m_buttonPane->m_isVisible  = false;
+		m_loadingPane->m_isVisible = true;
+		for (int i = 0; i < 6; i++) {
+			// TODO: What even?
+		}
+		int ruleMsgIndex = msVal.m_ruleMsgIndex;
+		if (msVal.m_shouldNotRandomizeRuleMsgMaybe) {
+			// TODO: Rand macro when not lazy.
+		}
+		m_rulePane->m_messageID        = vsRuleMsgId[ruleMsgIndex];
+		_90[ruleMsgIndex]->m_isVisible = true;
+		m_alphaMgr                     = new Screen::AlphaMgr();
+	} else {
+		_50        = nullptr;
+		m_rulePane = nullptr;
+	}
+	if (_48 != nullptr) {
+		J2DPane* fc_c = _48->search('fc_c');
+		if (fc_c->getParentPane() != nullptr) {
+			fc_c->getParentPane()->removeChild(fc_c);
+		}
+		_54 = og::Screen::setCallBack_CounterRV(
+		    _48, 'fc_r', 'fc_l', 'fc_l',
+		    (ulong*)&((Screen::DispMemberFloor*)m_dispMember)->_08, 3, 2, false,
+		    archive);
+	}
+	// TODO: Remove magic number
+	_54->setCenteringMode(Screen::CallBack_CounterRV::ECM_UNKNOWN_2);
+	Screen::setAlphaScreen(_48);
+	if (_50 != nullptr) {
+		Screen::setAlphaScreen(_50);
+	}
+	if (_50 != nullptr) {
+		Screen::setCallBackMessage(_50);
+	}
+	if (_50 != nullptr) {
+		_88 = new Screen::AnimGroup(2);
+		registAnimGroupScreen(_88, archive, _50, "vs_title_rule_window.btk",
+		                      1.0f);
+		registAnimGroupScreen(_88, archive, _50, "vs_title_rule_window_02.btk",
+		                      1.0f);
+		_88->setFrame(0.0f);
+		_88->setRepeat(true);
+		_88->setSpeed(1.0f);
+		_88->start();
+	}
+
 	/*
 	stwu     r1, -0x50(r1)
 	mflr     r0
@@ -1429,14 +1556,14 @@ setCentering__Q32og9newScreen8TitleMsgFQ42og9newScreen8TitleMsg13EnumCentering
  * Address:	8031B27C
  * Size:	000004
  */
-void newScreen::TitleMsg::init(void) { }
+void newScreen::TitleMsg::init() { }
 
 /*
  * --INFO--
  * Address:	8031B280
  * Size:	000598
  */
-void newScreen::ObjFloor::commonUpdate(void)
+bool newScreen::ObjFloor::commonUpdate(void)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -1865,22 +1992,23 @@ lbl_8031B800:
  * Address:	8031B818
  * Size:	000004
  */
-void newScreen::TitleMsg::end(void) { }
+void newScreen::TitleMsg::end() { }
 
 /*
  * --INFO--
  * Address:	8031B81C
  * Size:	000004
  */
-void newScreen::TitleMsg::update(void) { }
+void newScreen::TitleMsg::update() { }
 
 /*
  * --INFO--
  * Address:	8031B820
  * Size:	000020
  */
-void newScreen::ObjFloor::doUpdate(void)
+bool newScreen::ObjFloor::doUpdate()
 {
+	return commonUpdate();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1898,8 +2026,26 @@ void newScreen::ObjFloor::doUpdate(void)
  * Address:	8031B840
  * Size:	00019C
  */
-void newScreen::ObjFloor::doDraw(Graphics&)
+void newScreen::ObjFloor::doDraw(Graphics& graphics)
 {
+	j3dSys.reinitGX();
+	drawBG(graphics);
+	if (_50 != nullptr) {
+		_50->setAlpha(_5C * 255.0f);
+		_50->draw(graphics, graphics.m_perspGraph);
+	}
+	graphics.m_perspGraph.setPort();
+	particle2dMgr->draw(2, 0);
+	_48->setAlpha(_5C * 255.0f);
+	_48->draw(graphics, graphics.m_perspGraph);
+	graphics.m_perspGraph.setPort();
+	if (isVS()) {
+		_7C->m_isVisible = false;
+	} else {
+		_7C->m_isVisible = true;
+	}
+	graphics.m_perspGraph.setPort();
+	j3dSys.reinitGX();
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -2022,23 +2168,12 @@ lbl_8031B9A0:
  * Address:	8031B9DC
  * Size:	000034
  */
-void newScreen::ObjFloor::doStart(Screen::StartSceneArg const*)
+bool newScreen::ObjFloor::doStart(::Screen::StartSceneArg const* arg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051D998@sda21(r2)
-	stw      r0, 0x14(r1)
-	stfs     f0, 0x58(r3)
-	stfs     f0, 0x5c(r3)
-	lwz      r3, particle2dMgr@sda21(r13)
-	bl       killAll__14TParticle2dMgrFv
-	lwz      r0, 0x14(r1)
-	li       r3, 1
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	_58 = 0.0f;
+	_5C = 0.0f;
+	particle2dMgr->killAll();
+	return true;
 }
 
 /*
@@ -2046,14 +2181,10 @@ void newScreen::ObjFloor::doStart(Screen::StartSceneArg const*)
  * Address:	8031BA10
  * Size:	000010
  */
-void newScreen::ObjFloor::doEnd(Screen::EndSceneArg const*)
+bool newScreen::ObjFloor::doEnd(::Screen::EndSceneArg const* arg)
 {
-	/*
-	lfs      f0, lbl_8051D998@sda21(r2)
-	stfs     f0, 0x58(r3)
-	li       r3, 1
-	blr
-	*/
+	_58 = 0.0f;
+	return true;
 }
 
 /*
@@ -2061,7 +2192,7 @@ void newScreen::ObjFloor::doEnd(Screen::EndSceneArg const*)
  * Address:	8031BA20
  * Size:	000004
  */
-void newScreen::ObjFloor::doUpdateFadeinFinish(void) { }
+void newScreen::ObjFloor::doUpdateFadeinFinish() { }
 
 /*
  * --INFO--
@@ -2070,20 +2201,8 @@ void newScreen::ObjFloor::doUpdateFadeinFinish(void) { }
  */
 void newScreen::ObjFloor::doUpdateFinish(void)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051D998@sda21(r2)
-	li       r4, 2
-	stw      r0, 0x14(r1)
-	stfs     f0, 0x58(r3)
-	lwz      r3, particle2dMgr@sda21(r13)
-	bl       killGroup__14TParticle2dMgrFUc
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	_58 = 0.0f;
+	particle2dMgr->killGroup(2);
 }
 
 /*
@@ -2098,8 +2217,16 @@ void newScreen::ObjFloor::doUpdateFadeoutFinish(void) { }
  * Address:	8031BA58
  * Size:	000074
  */
-void newScreen::ObjFloor::doUpdateFadein(void)
+bool newScreen::ObjFloor::doUpdateFadein(void)
 {
+	_58 += sys->m_secondsPerFrame;
+	bool result = ObjFloor::msVal._04 < _58;
+	if (result) {
+		_58 = ObjFloor::msVal._04;
+	}
+	_5C = _58 / ObjFloor::msVal._04;
+	commonUpdate();
+	return result;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -2140,8 +2267,19 @@ lbl_8031BAA0:
  * Address:	8031BACC
  * Size:	000088
  */
-void newScreen::ObjFloor::doUpdateFadeout(void)
+bool newScreen::ObjFloor::doUpdateFadeout()
 {
+	_58 += sys->m_secondsPerFrame;
+	bool result = ObjFloor::msVal._08 < _58;
+	if (result) {
+		_58 = ObjFloor::msVal._08;
+		if (_6C != 0) {
+			result = false;
+		}
+	}
+	_5C = 1.0f - _58 / ObjFloor::msVal._08;
+	commonUpdate();
+	return result;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -2187,8 +2325,31 @@ lbl_8031BB20:
  * Address:	8031BB54
  * Size:	000168
  */
-void newScreen::ObjFloor::drawBG(Graphics&)
+void newScreen::ObjFloor::drawBG(Graphics& gfx)
 {
+	if (_6C != 0) {
+		_70 += sys->m_secondsPerFrame;
+		float flt = 1.0f - _70 / ObjFloor::msVal._00;
+		if (flt <= 0.0f) {
+			_68.channels.a = 0;
+			_6C            = 0;
+		} else {
+			_68.channels.a = (u8)(flt * 255.0f);
+		}
+	}
+	if (_68.channels.a != 0) {
+		gfx.m_perspGraph.setPort();
+		uint v1 = System::getRenderModeObj()->efbHeight;
+		uint v2 = System::getRenderModeObj()->xfbHeight;
+		gfx.m_perspGraph.setColor(_68, _68, _68, _68);
+		GXSetAlphaUpdate(GX_FALSE);
+		JGeometry::TBox2f box(0.0f, 0.0f, v1, v2);
+		// box.maxX = v1;
+		// box.minX = 0.0f;
+		// box.minY = 0.0f;
+		// box.maxY = v2;
+		gfx.m_perspGraph.fillBox(box);
+	}
 	/*
 	stwu     r1, -0x50(r1)
 	mflr     r0
@@ -2403,18 +2564,5 @@ void __sinit_ogObjFloor_cpp(void)
 	mtlr     r0
 	addi     r1, r1, 0x10
 	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8031BE58
- * Size:	000008
- */
-@24 @og::newScreen::ObjFloor::~ObjFloor(void)
-{
-	/*
-	addi     r3, r3, -24
-	b        __dt__Q32og9newScreen8ObjFloorFv
 	*/
 }

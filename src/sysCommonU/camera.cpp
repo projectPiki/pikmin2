@@ -1,4 +1,6 @@
+#include "Vector3.h"
 #include "types.h"
+#include "Camera.h"
 
 /*
     Generated from dpostproc
@@ -212,7 +214,7 @@ CullPlane::CullPlane(int)
  * Address:	........
  * Size:	00006C
  */
-void CullPlane::isPointVisible(Vector3f&, float)
+bool CullPlane::isPointVisible(Vector3f&, float)
 {
 	// UNUSED FUNCTION
 }
@@ -222,7 +224,7 @@ void CullPlane::isPointVisible(Vector3f&, float)
  * Address:	8041A190
  * Size:	000070
  */
-void CullPlane::isVisible(Sys::Sphere&)
+bool CullPlane::isVisible(Sys::Sphere&)
 {
 	/*
 	lfs      f0, 0xc(r4)
@@ -268,7 +270,7 @@ lbl_8041A1F8:
  * Address:	8041A200
  * Size:	000088
  */
-void CullPlane::isCylinderVisible(Sys::Cylinder&)
+bool CullPlane::isCylinderVisible(Sys::Cylinder&)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -322,7 +324,8 @@ lbl_8041A268:
  * Address:	........
  * Size:	0000F8
  */
-CullFrustum::CullFrustum(int)
+CullFrustum::CullFrustum(int a)
+    : CullPlane(a)
 {
 	// UNUSED FUNCTION
 }
@@ -332,7 +335,7 @@ CullFrustum::CullFrustum(int)
  * Address:	8041A288
  * Size:	000020
  */
-void CullFrustum::getUpVector()
+Vector3f CullFrustum::getUpVector()
 {
 	/*
 	lwz      r4, 0x30(r4)
@@ -352,7 +355,7 @@ void CullFrustum::getUpVector()
  * Address:	8041A2A8
  * Size:	00002C
  */
-void CullFrustum::getSideVector()
+Vector3f CullFrustum::getSideVector()
 {
 	/*
 	lwz      r4, 0x30(r4)
@@ -375,7 +378,7 @@ void CullFrustum::getSideVector()
  * Address:	8041A2D4
  * Size:	00002C
  */
-void CullFrustum::getViewVector()
+Vector3f CullFrustum::getViewVector()
 {
 	/*
 	lwz      r4, 0x30(r4)
@@ -398,7 +401,7 @@ void CullFrustum::getViewVector()
  * Address:	8041A300
  * Size:	000074
  */
-void CullFrustum::getPosition()
+Vector3f CullFrustum::getPosition()
 {
 	/*
 	lwz      r4, 0x30(r4)
@@ -976,7 +979,7 @@ void Camera::updatePlanes()
  * Address:	8041AA98
  * Size:	0000B0
  */
-void Camera::getLookAtPosition()
+Vector3f Camera::getLookAtPosition()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1038,8 +1041,10 @@ lbl_8041AB2C:
  * Address:	8041AB48
  * Size:	000020
  */
-void Camera::getLookAtPosition_()
+Vector3f Camera::getLookAtPosition_()
 {
+	Vector3f result = Vector3f::zero;
+	return result;
 	/*
 	lis      r4, "zero__10Vector3<f>"@ha
 	lfsu     f0, "zero__10Vector3<f>"@l(r4)
@@ -1049,7 +1054,6 @@ void Camera::getLookAtPosition_()
 	lfs      f0, 8(r4)
 	stfs     f0, 8(r3)
 	blr
-
 	*/
 }
 
@@ -1076,7 +1080,7 @@ void P2JST::ObjectCamera::isRunning(void)
  * Address:	8041AB70
  * Size:	000108
  */
-void Camera::getPosition()
+Vector3f Camera::getPosition()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1160,7 +1164,7 @@ lbl_8041AC5C:
  * Address:	8041AC78
  * Size:	00008C
  */
-void Camera::getPositionPtr()
+Vector3f* Camera::getPositionPtr()
 {
 	/*
 	stwu     r1, -0x10(r1)

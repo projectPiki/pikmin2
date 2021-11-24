@@ -1,4 +1,5 @@
 #include "types.h"
+#include "og/Screen/ogScreen.h"
 
 /*
     Generated from dpostproc
@@ -21,7 +22,7 @@ namespace Screen {
 	 * Address:	8030E958
 	 * Size:	0002F8
 	 */
-	void CopyPicture(J2DPictureEx*, unsigned long long)
+	J2DPictureEx* CopyPicture(J2DPictureEx*, unsigned long long)
 	{
 		/*
 	stwu     r1, -0xa0(r1)
@@ -226,8 +227,8 @@ lbl_8030EC38:
 	 * Address:	8030EC50
 	 * Size:	000338
 	 */
-	void CopyPictureToPane(J2DPictureEx*, J2DPane*, float, float,
-	                       unsigned long long)
+	J2DPictureEx* CopyPictureToPane(J2DPictureEx*, J2DPane*, float, float,
+	                                ulonglong)
 	{
 		/*
 		.loc_0x0:
