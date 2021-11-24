@@ -28,9 +28,9 @@ struct JUTException {
 	JUTException::panic_f(__FILE__, line, __VA_ARGS__)
 #endif
 
-#define JUT_ASSERTLINE(line, cond, string_ref) \
-	if (!(cond))                               \
-	JUT_PANICLINE(line, string_ref)
+#define JUT_ASSERTLINE(line, cond, ...) \
+	if (!(cond))                        \
+	JUT_PANICLINE(line, __VA_ARGS__)
 
 #define P2ASSERTLINE(line, cond) JUT_ASSERTLINE(line, cond, "P2Assert")
 

@@ -121,6 +121,82 @@ struct JKRHeap : public JKRDisposer {
 	static u32 mMemorySize;
 };
 
+struct JKRExpHeap : public JKRHeap {
+	struct CMemBlock {
+		ushort m_usageHeader; // _00
+
+		/// This &'d with 0x7f is called "aln" by JKRExpHeap::dump
+		uchar _02; // _02
+
+		/// Called "gid" by JKRExpHeap::dump
+		uchar m_groupID; // _03
+
+		/// Called "size" by JKRExpHeap::dump
+		ulong m_allocatedSpace; // _04
+
+		/*
+		 * Called "prev_ptr" by JKRExpHeap::dump.
+		 * Sodium called this "headwards".
+		 */
+		CMemBlock* m_prevPtr; // _08
+
+		/*
+		 * Called "next_ptr" by JKRExpHeap::dump.
+		 * Sodium called this "tailwards".
+		 */
+		CMemBlock* m_nextPtr; // _0C
+
+		u32 allocBack(ulong, uchar, uchar, uchar, uchar);
+		u32 allocFore(ulong, uchar, uchar, uchar, uchar);
+		void free(JKRExpHeap*);
+		static u32 getHeapBlock(void*);
+		void initiate(CMemBlock*, CMemBlock*, ulong, uchar, uchar);
+	};
+
+	JKRExpHeap(void*, ulong, JKRHeap*, bool);
+
+	virtual ~JKRExpHeap();                 // _00
+	virtual u32 getHeapType();             // _08
+	virtual bool check();                  // _0C
+	virtual bool dump_sort();              // _10
+	virtual bool dump();                   // _14
+	virtual void do_destroy();             // _18
+	virtual void* do_alloc(ulong, int);    // _1C
+	virtual void do_free(void*);           // _20
+	virtual void do_freeAll();             // _24
+	virtual void do_freeTail();            // _28
+	virtual void do_fillFreeArea();        // _2C
+	virtual int do_resize(void*, ulong);   // _30
+	virtual int do_getSize(void*);         // _34
+	virtual ulong do_getFreeSize();        // _38
+	virtual void* do_getMaxFreeBlock();    // _3C
+	virtual ulong do_getTotalFreeSize();   // _40
+	virtual uchar do_changeGroupID(uchar); // _44
+	virtual uchar do_getCurrentGroupId();  // _48
+
+	u32 allocFromHead(ulong, int);
+	u32 allocFromHead(ulong);
+	u32 allocFromTail(ulong, int);
+	u32 allocFromTail(ulong);
+	u32 appendUsedList(CMemBlock*);
+	static JKRExpHeap* create(ulong, JKRHeap*, bool);
+	static JKRExpHeap* createRoot(int, bool);
+	int freeGroup(uchar);
+	void joinTwoBlocks(CMemBlock*);
+	void recycleFreeBlock(CMemBlock*);
+	void removeFreeBlock(CMemBlock*);
+	void setFreeBlock(CMemBlock*, CMemBlock*, CMemBlock*);
+
+	u8 _6C;                    // _6C
+	u8 m_currentGroupID;       // _6D
+	u8 _6E;                    // _6E
+	u8 _70[8];                 // _70
+	CMemBlock* m_head;         // _78
+	CMemBlock* m_tail;         // _7C
+	CMemBlock* m_headUsedList; // _80
+	CMemBlock* m_tailUsedList; // _84
+};
+
 void JKRDefaultMemoryErrorRoutine(void*, ulong, int);
 
 void* operator new(size_t, JKRHeap*, int);

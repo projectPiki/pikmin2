@@ -102,10 +102,14 @@ struct J2DPane {
 	JGeometry::TBox2f* getBounds();
 	JGeometry::TVec3f getGlbVtx(uchar) const;
 	void* getPointer(JSURandomInputStream*, ulong, JKRArchive*);
+	ulonglong getTagName() const;
+	float getTranslateX() const;
+	float getTranslateY() const;
 
 	J2DPane* getFirstChildPane();
 	J2DPane* getNextChildPane();
 	J2DPane* getParentPane();
+	JSUTree<J2DPane> getPaneTree();
 
 	void initiate();
 	void initialize(J2DPane*, bool, ulonglong, const JGeometry::TBox2f&);
@@ -167,12 +171,45 @@ struct J2DPane {
 };
 
 struct J2DScreen : public J2DPane {
-	virtual ~J2DScreen();
+	virtual ~J2DScreen();                                 // _00
+	virtual void calcMtx();                               // _24
+	virtual void drawSelf(float, float, float (*)[3][4]); // _30
+	virtual J2DPane* search(ulonglong);                   // _34
+	virtual J2DPane* searchUserInfo(ulonglong);           // _38
+	virtual bool isUsed(const ResTIMG*);                  // _44
+	virtual bool isUsed(const ResFONT*);                  // _48
+	virtual void clearAnmTransform();                     // _4C
+	virtual void setAnimation(J2DAnmBase*);               // _54
+	virtual void setAnimation(J2DAnmTransform*);          // _58
+	virtual void setAnimation(J2DAnmColor*);              // _5C
+	virtual void setAnimation(J2DAnmTexPattern*);         // _60
+	virtual void setAnimation(J2DAnmTextureSRTKey*);      // _64
+	virtual void setAnimation(J2DAnmTevRegKey*);          // _68
+	virtual void setAnimation(J2DAnmVisibilityFull*);     // _6C
+	virtual void setAnimation(J2DAnmVtxColor*);           // _70
+	virtual void setAnimationVF(J2DAnmVisibilityFull*);   // _7C
+	virtual void setAnimationVC(J2DAnmVtxColor*);         // _84
 	virtual void createPane(const J2DScrnBlockHeader&, JSURandomInputStream*,
 	                        J2DPane*, ulong); // _8C
 	virtual void createPane(const J2DScrnBlockHeader&, JSURandomInputStream*,
 	                        J2DPane*, ulong, JKRArchive*); // _90
-	virtual void _94() = 0;                                // _94
+	// virtual void _94() = 0;                                // _94
+
+	void animation();
+	bool checkSignature(JSURandomInputStream*);
+	void clean();
+	bool createMaterial(JSURandomInputStream*, ulong, JKRArchive*);
+	void draw(float, float, const J2DGrafContext*);
+	u32 gather(J2DPane**, ulonglong, ulonglong, int);
+	J2DMaterial* getMaterial(ushort);
+	void* getResReference(JSURandomInputStream*, ulong);
+	bool getScreenInformation(JSURandomInputStream*);
+	u32 makeHierarchyPanes(J2DPane*, JSURandomInputStream*, ulong, JKRArchive*);
+	bool set(const char*, ulong, JKRArchive*);
+	bool set(JSURandomInputStream*, ulong);
+	bool private_set(JSURandomInputStream*, ulong, JKRArchive*);
+
+	static void* getNameResource(char*);
 
 	// J2DPane _000
 	bool _100;                // _100
@@ -182,6 +219,8 @@ struct J2DScreen : public J2DPane {
 	void* _10C;               // _10C
 	JUTNameTab* m_nameTab;    // _110
 	int _114;                 // _114
+
+	static void* mDataManage; // unknown type
 };
 
 // Size: 0x168

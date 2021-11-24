@@ -8,6 +8,8 @@
 namespace JGeometry {
 template <typename T> struct TBox2;
 typedef TBox2<float> TBox2f;
+template <typename T> struct TVec2;
+typedef TVec2<float> TVec2f;
 } // namespace JGeometry
 
 // TODO: These matrix members wouldn't actually be Matrixf, because this is in a
@@ -22,6 +24,14 @@ struct J2DGrafContext {
 	virtual void setScissor();                      // _14
 	virtual u32 getGrafType() const;                // _18
 	virtual void setLookat();                       // _1C
+
+	void drawFrame(const JGeometry::TBox2f&);
+	void fillBox(const JGeometry::TBox2f&);
+	void lineTo(JGeometry::TVec2f&);
+	void scissor(const JGeometry::TBox2f&);
+	void setColor(JUtility::TColor, JUtility::TColor, JUtility::TColor,
+	              JUtility::TColor);
+	void setLineWidth(uchar);
 
 	// VTBL _00
 	float _04;            // _04

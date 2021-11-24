@@ -1,15 +1,9 @@
 #ifndef _JSYSTEM_JKR_JKRARCHIVE_H
 #define _JSYSTEM_JKR_JKRARCHIVE_H
 
+#include "JSystem/JKR/JKRFileLoader.h"
 #include "JSystem/JKR/JKRHeap.h"
 #include "types.h"
-
-struct JKRFileLoader {
-	virtual ~JKRFileLoader() = 0; // _00
-	virtual void unmount()   = 0; // _04
-
-	// _00 VTBL
-};
 
 struct JKRArchive : public JKRFileLoader {
 	enum EMountMode { EMM_Unk0 = 0, EMM_Unk1, EMM_Unk2 };

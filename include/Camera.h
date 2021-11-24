@@ -10,24 +10,30 @@
 namespace Game {
 namespace P2JST {
 	struct ObjectCamera;
-}
+} // namespace P2JST
 } // namespace Game
 namespace Sys {
 struct Sphere;
+struct Cylinder;
 } // namespace Sys
 
 struct CullPlane : public ArrayContainer<Plane> {
+	CullPlane(int);
+	bool isPointVisible(Vector3f&, float);
+	bool isVisible(Sys::Sphere&);
+	bool isCylinderVisible(Sys::Cylinder&);
 };
 
 struct CullFrustum : public CullPlane {
+	CullFrustum(int);
 	virtual ~CullFrustum();               // _00
 	virtual Matrixf* getViewMatrix(bool); // _40
 	virtual Vector3f getPosition();       // _44
 	virtual void updatePlanes();          // _48
 
-	void getSideVector();
-	void getUpVector();
-	void getViewVector();
+	Vector3f getSideVector();
+	Vector3f getUpVector();
+	Vector3f getViewVector();
 
 	float _28;             // _28
 	float _2C;             // _2C
@@ -53,7 +59,7 @@ struct Camera : public CullFrustum {
 	void calcScreenSize(Sys::Sphere&);
 	void copyFrom(Camera*);
 	float getFar();
-	void getLookAtPosition();
+	Vector3f getLookAtPosition();
 	float getNear();
 	void setFixNearFar(bool, float, float);
 	void setProjection();

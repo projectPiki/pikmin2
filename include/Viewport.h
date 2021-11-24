@@ -4,18 +4,24 @@
 #include "Rect.h"
 #include "types.h"
 
+struct J2DGrafContext;
+struct J2DOrthoGraph;
+
 struct Viewport {
 	Viewport();
 	~Viewport();
 
+	void draw2dframe(J2DGrafContext&);
+	void getAspect();
 	void getMatrix(bool);
 	void refresh();
 	void setJ3DViewMtx(bool);
+	void setOrthoGraph2d(J2DOrthoGraph&);
 	void setProjection();
 	void setRect(Rectf&);
 	void setViewport();
 	void updateCameraAspect();
-	void viewable();
+	bool viewable();
 
 	Viewport* m_list;          // _00
 	int* _04;                  // _04

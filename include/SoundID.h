@@ -473,7 +473,8 @@ enum SoundID {
 	PSSE_SY_ZUKAN_SCRIPT_LOUIE  = 6199,
 	PSSE_SY_ZUKAN_SCRIPT_ORIMA  = 6198,
 	PSSE_SY_ZUKAN_SCRIPT_POD    = 6200,
-	dropItem                    = 22544
+	dropItem                    = 22544,
+	_PSSE_FORCE_UINT            = 0xFFFFFFFF
 };
 
 #endif

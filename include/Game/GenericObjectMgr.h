@@ -2,8 +2,9 @@
 #define _GAME_GENERICOBJECTMGR_H
 
 #include "types.h"
-#include "Graphics.h"
-#include "Viewport.h"
+
+struct Graphics;
+struct Viewport;
 
 struct GenericObjectMgr {
 	virtual void doAnimation();

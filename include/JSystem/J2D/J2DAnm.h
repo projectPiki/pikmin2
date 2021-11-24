@@ -199,4 +199,8 @@ struct J2DAnmVtxColorKey : public J2DAnmVtxColor {
 	short* _38;               // _38
 };
 
+struct J2DAnmLoaderDataBase {
+	static J2DAnmBase* load(void*);
+};
+
 #endif
