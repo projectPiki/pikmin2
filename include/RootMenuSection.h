@@ -8,7 +8,7 @@ struct MenuSection : public Section {
 	virtual ~MenuSection() { }
 
 	virtual void run();
-	virtual void getCurrentSection();
+	virtual Section* getCurrentSection();
 };
 
 struct RootMenuSection : public MenuSection {

@@ -3,26 +3,31 @@
 
 #include "types.h"
 
+struct SectionInfo;
+struct ISection;
+struct Section;
+struct JKRHeap;
+
 struct ISectionMgr {
 	ISectionMgr() { }
 
 	virtual void run() = 0;
-	virtual void getCurrentSection();
+	virtual ISection* getCurrentSection();
 };
 
 struct GameFlow : public ISectionMgr {
 	GameFlow();
 
 	virtual void run();
-	virtual void getCurrentSection();
+	virtual ISection* getCurrentSection();
 
 	void setSection();
-	void getSectionInfo(int);
+	SectionInfo* getSectionInfo(int);
 
-	static void createSection(struct JKRHeap*);
+	static ISection* createSection(JKRHeap*);
 	static u32 mActiveSectionFlag;
 
-	struct Section* m_section; // _04
+	Section* m_section; // _04
 };
 
 #endif

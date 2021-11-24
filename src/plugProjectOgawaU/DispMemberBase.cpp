@@ -1,3 +1,4 @@
+#include "Screen/Enums.h"
 #include "types.h"
 #include "og/Screen/ogScreen.h"
 

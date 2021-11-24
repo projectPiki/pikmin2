@@ -1,4 +1,5 @@
 #include "types.h"
+#include "JSystem/JUT/JUTFont.h"
 
 /*
     Generated from dpostproc
@@ -152,7 +153,7 @@ void JUTFont::setGradColor(JUtility::TColor, JUtility::TColor)
  * Size:	000118
  */
 void JUTFont::drawString_size_scale(float, float, float, float, const char*,
-                                    unsigned long, bool)
+                                    ulong, bool)
 {
 	/*
 	.loc_0x0:
@@ -293,7 +294,7 @@ void JUTFont::setGX(JUtility::TColor, JUtility::TColor)
  * Address:	8002D400
  * Size:	00002C
  */
-void JUTFont::getCellWidth() const
+float JUTFont::getCellWidth() const
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -315,7 +316,7 @@ void JUTFont::getCellWidth() const
  * Address:	8002D42C
  * Size:	00002C
  */
-void JUTFont::getCellHeight() const
+float JUTFont::getCellHeight() const
 {
 	/*
 	stwu     r1, -0x10(r1)

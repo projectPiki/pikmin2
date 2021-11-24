@@ -1,4 +1,5 @@
 #include "types.h"
+#include "JSystem/JSU/JSUStream.h"
 
 /*
     Generated from dpostproc
@@ -218,7 +219,7 @@ lbl_80026544:
  * Address:	80026564
  * Size:	00008C
  */
-void JSURandomInputStream::align(long)
+uint JSURandomInputStream::align(long)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -266,8 +267,11 @@ lbl_800265D4:
  * Address:	800265F0
  * Size:	00005C
  */
-void JSURandomInputStream::skip(long)
+void JSURandomInputStream::skip(long offset)
 {
+	if (seekPos(offset, SEEK_CUR) != offset) {
+		m_isEOFMaybe |= 1;
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -302,8 +306,17 @@ lbl_80026634:
  * Address:	8002664C
  * Size:	0000BC
  */
-void JSURandomInputStream::peek(void*, long)
+size_t JSURandomInputStream::peek(void* buffer, long byteCount)
 {
+	int position   = getPosition();
+	int dataLength = readData(buffer, byteCount);
+	if (dataLength != byteCount) {
+		m_isEOFMaybe |= 1;
+	}
+	if (dataLength != 0) {
+		seekPos(position, SEEK_SET);
+	}
+	return dataLength;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -364,27 +377,10 @@ lbl_800266E4:
  * Address:	80026708
  * Size:	000044
  */
-void JSURandomInputStream::seek(long, JSUStreamSeekFrom)
+void JSURandomInputStream::seek(long offset, JSUStreamSeekFrom mode)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lbz      r0, 4(r31)
-	rlwinm   r0, r0, 0, 0x18, 0x1e
-	stb      r0, 4(r31)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	seekPos(offset, mode);
+	m_isEOFMaybe &= ~1;
 }
 
 /*

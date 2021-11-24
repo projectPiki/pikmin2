@@ -22,23 +22,23 @@ namespace Screen {
 	};
 
 	struct TScreenBase {
-		virtual void setArchive(JKRArchive*);
-		virtual bool openScreen(ArgOpen*);
-		virtual bool closeScreen(ArgClose*);
-		virtual void killScreen();
-		virtual void update();
-		virtual void draw();
-		virtual u8 isFinishScreen();
-		virtual void doSetArchive(JKRArchive*);
-		virtual void doOpenScreen(ArgOpen*);
-		virtual void doCloseScreen(ArgClose*);
-		virtual void doKillScreen();
-		virtual void doInitWaitState();
-		virtual bool doUpdateStateOpen();
-		virtual bool doUpdateStateWait();
-		virtual bool doUpdateStateClose();
-		virtual void doDraw();
-		virtual char* getName();
+		virtual void setArchive(JKRArchive*);   // _00
+		virtual bool openScreen(ArgOpen*);      // _04
+		virtual bool closeScreen(ArgClose*);    // _08
+		virtual void killScreen();              // _0C
+		virtual void update();                  // _10
+		virtual void draw();                    // _14
+		virtual u8 isFinishScreen();            // _18
+		virtual void doSetArchive(JKRArchive*); // _1C
+		virtual void doOpenScreen(ArgOpen*);    // _20
+		virtual void doCloseScreen(ArgClose*);  // _24
+		virtual void doKillScreen();            // _28
+		virtual void doInitWaitState();         // _2C
+		virtual bool doUpdateStateOpen();       // _30
+		virtual bool doUpdateStateWait();       // _34
+		virtual bool doUpdateStateClose();      // _38
+		virtual void doDraw();                  // _3C
+		virtual char* getName();                // _40
 
 		u8 isOpenScreen(void);
 		u8 isWaitScreen(void);

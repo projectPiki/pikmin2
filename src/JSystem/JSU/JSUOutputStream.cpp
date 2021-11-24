@@ -1,4 +1,5 @@
 #include "types.h"
+#include "JSystem/JSU/JSUStream.h"
 
 /*
     Generated from dpostproc
@@ -17,8 +18,11 @@
  * Address:	800261E0
  * Size:	000058
  */
-void JSUOutputStream::write(const void*, long)
+void JSUOutputStream::write(const void* data, long length)
 {
+	if (length != writeData(data, length)) {
+		m_isEOFMaybe |= 1;
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0

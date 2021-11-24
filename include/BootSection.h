@@ -1,12 +1,41 @@
 #ifndef _BOOTSECTION_H
 #define _BOOTSECTION_H
 
-struct BootSection {
-	BootSection(struct JKRHeap*);
+#include "DvdThreadCommand.h"
+#include "Game/BaseHIOSection.h"
+
+struct Graphics;
+template <typename T> struct IDelegate1;
+struct JKRHeap;
+struct JUTTexture;
+struct TinyPikmin;
+
+namespace ebi {
+struct TScreenProgre;
+}
+
+struct BootSection : public Game::BaseHIOSection {
+	typedef bool RunWaitCallback(const void*, void*);
+
+	enum StateID {
+		SID_LOAD_RESOURCE_FIRST = 0,
+		SID_LOAD_MEMORY_CARD,
+		SID_INIT_NINTENDO_LOGO_MAYBE,
+		SID_UNUSED_3,
+		SID_NINTENDO_LOGO,
+		SID_WAIT_PROGRESSIVE,
+		SID_SET_INTERLACE,
+		SID_SET_PROGRESSIVE,
+		SID_DOLBY_LOGO_1,
+		SID_DOLBY_LOGO_2,
+		_FORCE_UINT = 0xFFFFFFFF
+	};
+
+	BootSection(JKRHeap*);
 	~BootSection();
 
-	void doDraw(struct Graphics&);
-	void doUpdate();
+	void doDraw(Graphics&);
+	virtual bool doUpdate();
 
 	void drawDolbyLogo(Graphics&);
 	void drawEpilepsy(Graphics&);
@@ -15,7 +44,7 @@ struct BootSection {
 	void drawSetInterlace(Graphics&);
 	void drawSetProgressive(Graphics&);
 
-	void forceReset();
+	virtual bool forceReset();
 	void init();
 
 	void load2DResource();
@@ -23,7 +52,7 @@ struct BootSection {
 	void loadResident();
 
 	void run();
-	void runWait(BootSection, bool(const void*, void*));
+	void runWait(RunWaitCallback);
 
 	void setMode(int);
 	void setModeEpilepsy();
@@ -34,6 +63,22 @@ struct BootSection {
 	void updateProgressive();
 	void updateWaitProgressive();
 	void waitLoadResource();
+
+	StateID m_stateID;                      // _48
+	int _4C;                                // _4C
+	float _50;                              // _50
+	JUTTexture* m_warningTexture;           // _54
+	JUTTexture* m_warningPressStartTexture; // _58
+	JUTTexture* m_nintendoLogoTexture;      // _5C
+	JUTTexture* m_dolbyMarkTexture;         // _60
+	DvdThreadCommand m_threadCommand;       // _64
+	IDelegate1<BootSection>* _D0;           // _D0
+	Controller* _D4;                        // _D4
+	ebi::TScreenProgre* _D8;                // _D8
+	bool m_inProgreSet;                     // _DC
+	u8 _DD;                                 // _DD
+	TinyPikmin* m_tinyPikis;                // _E0
+	float m_unknownScaleE4;                 // _E4
 };
 
 #endif

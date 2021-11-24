@@ -1,4 +1,5 @@
 #include "types.h"
+#include "JSystem/JUT/JUTNameTab.h"
 
 /*
     Generated from dpostproc
@@ -165,7 +166,7 @@ lbl_8002EE08:
  * Address:	8002EE1C
  * Size:	000030
  */
-void JUTNameTab::getName(unsigned short) const
+char* JUTNameTab::getName(ushort) const
 {
 	/*
 	lhz      r0, 0xc(r3)

@@ -18,8 +18,16 @@ typedef u8 GXBool;
 #define GX_ENABLE  ((GXBool)1)
 #define GX_DISABLE ((GXBool)0)
 
+// TODO: Replace(?) this block of typedefs. They're just placeholders for now.
 typedef uint GXCullMode;
 typedef uint GXTexMapID;
+typedef uint _GXAttr;
+typedef uint _GXAttrType;
+typedef uint _GXVtxFmt;
+typedef uint _GXVtxFmt;
+typedef uint _GXCompCnt;
+typedef uint _GXCompType;
+
 
 // Names are guessed
 typedef enum _SDK_GXFogType {

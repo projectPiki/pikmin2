@@ -1,4 +1,6 @@
 #include "types.h"
+#include "JSystem/JKR/JKRFile.h"
+#include "JSystem/JSU/JSUStream.h"
 
 /*
     Generated from dpostproc
@@ -19,12 +21,17 @@
 */
 
 /*
+ * __ct
+ *
  * --INFO--
  * Address:	80026EE4
  * Size:	000044
  */
-JSUFileInputStream::JSUFileInputStream(JKRFile*)
+JSUFileInputStream::JSUFileInputStream(JKRFile* file)
+    : JSURandomInputStream()
 {
+	m_object = file;
+	m_length = 0;
 	/*
 	lis      r5, __vt__10JSUIosBase@ha
 	lis      r7, __vt__14JSUInputStream@ha
@@ -51,74 +58,25 @@ JSUFileInputStream::JSUFileInputStream(JKRFile*)
  * Address:	80026F28
  * Size:	0000E0
  */
-void JSUFileInputStream::readData(void*, long)
+size_t JSUFileInputStream::readData(void* buffer, long byteCount)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	li       r31, 0
-	stw      r30, 0x18(r1)
-	mr       r30, r5
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	lwz      r3, 8(r3)
-	lbz      r0, 0x18(r3)
-	cmplwi   r0, 0
-	beq      lbl_80026FE4
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0xc(r28)
-	add      r0, r0, r30
-	cmplw    r0, r3
-	ble      lbl_80026FA0
-	lwz      r3, 8(r28)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0xc(r28)
-	subf     r30, r0, r3
-
-lbl_80026FA0:
-	cmpwi    r30, 0
-	ble      lbl_80026FE4
-	lwz      r3, 8(r28)
-	mr       r4, r29
-	mr       r5, r30
-	lwz      r6, 0xc(r28)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	or.      r31, r3, r3
-	bge      lbl_80026FD8
-	li       r3, 0
-	b        lbl_80026FE8
-
-lbl_80026FD8:
-	lwz      r0, 0xc(r28)
-	add      r0, r0, r31
-	stw      r0, 0xc(r28)
-
-lbl_80026FE4:
-	mr       r3, r31
-
-lbl_80026FE8:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	int readBytes = 0;
+	if (((JKRFile*)m_object)->_18) {
+		if ((ulong)(m_length + byteCount)
+		    > ((JKRFile*)m_object)->getFileSize()) {
+			byteCount = ((JKRFile*)m_object)->getFileSize() - m_length;
+		}
+		if (byteCount > 0) {
+			readBytes
+			    = ((JKRFile*)m_object)->readData(buffer, byteCount, m_length);
+			if (readBytes < 0) {
+				return 0;
+			} else {
+				m_length += readBytes;
+			}
+		}
+	}
+	return readBytes;
 }
 
 /*
@@ -126,82 +84,29 @@ lbl_80026FE8:
  * Address:	80027008
  * Size:	0000E8
  */
-void JSUFileInputStream::seekPos(long, JSUStreamSeekFrom)
+int JSUFileInputStream::seekPos(long offset, JSUStreamSeekFrom mode)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	cmpwi    r5, 1
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	lwz      r31, 0xc(r3)
-	beq      lbl_80027078
-	bge      lbl_80027044
-	cmpwi    r5, 0
-	bge      lbl_80027050
-	b        lbl_80027080
-
-lbl_80027044:
-	cmpwi    r5, 3
-	bge      lbl_80027080
-	b        lbl_80027058
-
-lbl_80027050:
-	stw      r30, 0xc(r29)
-	b        lbl_80027080
-
-lbl_80027058:
-	lwz      r3, 8(r29)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	subf     r0, r30, r3
-	stw      r0, 0xc(r29)
-	b        lbl_80027080
-
-lbl_80027078:
-	add      r0, r31, r30
-	stw      r0, 0xc(r29)
-
-lbl_80027080:
-	lwz      r0, 0xc(r29)
-	cmpwi    r0, 0
-	bge      lbl_80027094
-	li       r0, 0
-	stw      r0, 0xc(r29)
-
-lbl_80027094:
-	lwz      r3, 8(r29)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0xc(r29)
-	cmpw     r0, r3
-	ble      lbl_800270CC
-	lwz      r3, 8(r29)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	stw      r3, 0xc(r29)
-
-lbl_800270CC:
-	lwz      r0, 0xc(r29)
-	subf     r3, r31, r0
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	ulong originalLength = m_length;
+	switch (mode) {
+	case SEEK_SET:
+		m_length = offset;
+		break;
+	case SEEK_END:
+		m_length = ((JKRFile*)m_object)->getFileSize() - offset;
+		break;
+	case SEEK_CUR:
+		m_length += offset;
+		break;
+	default:
+		break;
+	}
+	if (0 > m_length) {
+		m_length = 0;
+	}
+	if (m_length > ((JKRFile*)m_object)->getFileSize()) {
+		m_length = ((JKRFile*)m_object)->getFileSize();
+	}
+	return m_length - originalLength;
 }
 
 /*
@@ -209,22 +114,9 @@ lbl_800270CC:
  * Address:	800270F0
  * Size:	000030
  */
-void JSUFileInputStream::getLength() const
+int JSUFileInputStream::getLength() const
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lwz      r3, 8(r3)
-	stw      r0, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return ((JKRFile*)m_object)->getFileSize();
 }
 
 /*
@@ -232,10 +124,4 @@ void JSUFileInputStream::getLength() const
  * Address:	80027120
  * Size:	000008
  */
-void JSUFileInputStream::getPosition() const
-{
-	/*
-	lwz      r3, 0xc(r3)
-	blr
-	*/
-}
+int JSUFileInputStream::getPosition() const { return m_length; }

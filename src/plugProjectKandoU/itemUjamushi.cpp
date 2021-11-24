@@ -1,4 +1,5 @@
 #include "types.h"
+#include "Vector3.h"
 
 /*
     Generated from dpostproc
@@ -3955,7 +3956,7 @@ lbl_80207DCC:
  * Address:	80207DE0
  * Size:	000090
  */
-void Vector3f::normalise()
+template<> inline void Vector3f::normalise()
 {
 	/*
 	lfs      f3, 0(r3)

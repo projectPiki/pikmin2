@@ -1,4 +1,157 @@
 #include "types.h"
+#include "CollInfo.h"
+#include "Dolphin/mtx.h"
+#include "Game/Creature.h"
+#include "Game/cellPyramid.h"
+#include "Game/gameGenerator.h"
+#include "Game/GameSystem.h"
+#include "Game/shadowMgr.h"
+#include "IDelegate.h"
+#include "JSystem/J3D/J3DModel.h"
+#include "ObjectTypes.h"
+#include "SysShape/Model.h"
+#include "Sys/Sphere.h"
+#include "Vector3.h"
+
+// inline float _sqrt(register float x) {
+// 	register float fthis;
+// 	asm {
+// 		frsqrte fthis, x
+// 		fmuls x, fthis, x
+// 	}
+// 	return x;
+// }
+
+// inline float pikmin2_sqrtf__(float x)
+// {
+// 	if (!(x > 0.0f)) { // if x <= 0
+// 		return x;
+// 	}
+// 	return _sqrt(x);
+// 	// asm {
+// 	// 	lfs f0, 0.0f
+// 	// 	fcmpo cr0, x, f0
+// 	// 	blelr
+// 	// 	frsqrte f0, x
+// 	// 	fmuls x, f0, x
+// 	// }
+// 	// return x;
+// 	// asm {
+// 	// 	opword 0xc0021f10
+// 	// 	opword 0xfc010040
+// 	// 	opword 0x4c810020
+// 	// 	opword 0xfc000834
+// 	// 	opword 0xec200072
+// 	// 	opword 0x4e800020
+// 	// };
+// 	// lfs f0, lbl_80520270
+// 	// fcmpo cr0, f1, f0
+// 	// blelr
+// 	// frsqrte f0, f1
+// 	// fmuls f1, f0, f1
+// 	// blr
+// 	// if (!(x > 0.0f)) { // if x <= 0
+// 	// 	return x;
+// 	// }
+
+// 	// register float reg1 = x;
+// 	// register float reg2 = 0.0f;
+// 	// register float result;
+
+// 	// asm {
+//     //   frsqrte reg2, reg1
+//     //   fmuls result, reg2, reg1
+// 	// }
+
+// 	// return result;
+// 	// return (x > 0.0f) ? x : __frsqrte(x) * (double)x;
+// }
+
+// inline float pikmin2_sqrtf_(float x)
+// {
+// 	if (!(x > 0.0f)) { // if x <= 0
+// 		return x;
+// 	}
+
+// 	register float reg1 = x;
+// 	register float reg2 = 0.0f;
+// 	register float result;
+
+// 	asm {
+//       frsqrte reg2, reg1
+//       fmuls result, reg2, reg1
+// 	}
+
+// 	return result;
+// }
+
+// template<> float Vector3f::normalise() {
+// 	register float que;
+// 	asm {
+// 		lfs f3, 0(r3)
+// 		lfs que, 4(r3)
+// 		fmuls f0,f3,f3
+// 		lfs f4, 8(r3)
+// 		fmuls que,que,que
+// 		fadds f0,f0,que
+// 		fadds f0,f4,f0
+// 		fcmpo cr0,f0,f2
+// 		ble LAB_80207E28
+// 		fmadds f0,f3,f3,que
+// 		fadds que,f4,f0
+// 		fcmpo cr0,que,f2
+// 		ble LAB_80207E2C
+// 		frsqrte f0,que
+// 		fmuls que,f0,que
+// 		b LAB_80207E2C
+// LAB_80207E28:
+// 		fmr que,f2
+// LAB_80207E2C:
+// 		// lfs f0,-0x45CC(r2)
+// 		// fcmpo cr0,que,f0
+// 		// ble LAB_80207E68
+// 		// lfs f2,-0x45C0(r2)
+// 		// lfs f0,0(r3)
+// 		// fdivs f2,f2,que
+// 	};
+// 	if (que <= 0.0f) {
+// 		return 0.0f;
+// 	}
+// 	this->x *= 1.0f / que;
+// 	this->y *= 1.0f / que;
+// 	this->z *= 1.0f / que;
+// 	return que;
+// }
+
+// TODO: replace with definition in itemUjamushi when we get there.
+inline template <> float Vector3f::normalise()
+{
+	// float f2 = 0.0f;
+	// if ((x*x + y*y + z*z > 0.0f)) {
+	float f2 = ((x * x + y * y + z * z > 0.0f))
+	               ? pikmin2_sqrtf__(z * z + (x * x + y * y))
+	               : 0.0f;
+	// if (f2 = x*x + y*y + z*z, f2 > 0.0f) {
+	// float x2 = x*x;
+	// float z2 = z*z;
+	// float y2 = y*y;
+	// if (x2 + y2 + z2 > 0.0f) {
+	// 	if (f2 = y2 + x2 + z2, f2 > 0.0f) {
+	// float f2 = x*x + y*y + z*z;
+	// if ((f2 > 0.0f) && (f2 > 0.0f)) {
+	// f2 *= (float)SQRT((float)f2);
+	// }
+	// f2 = pikmin2_sqrtf__(z*z + (x*x + y*y));
+	// }
+	if (f2 > 0.0f) {
+		// float f1 = 1.0f / f2;
+		x *= 1.0f / f2;
+		y *= 1.0f / f2;
+		z *= 1.0f / f2;
+		return f2;
+	}
+	return 0.0f;
+}
 
 /*
     Generated from dpostproc
@@ -223,6 +376,7 @@
 
 namespace Game {
 
+#ifdef NOPE
 /*
  * --INFO--
  * Address:	8013AE84
@@ -230,6 +384,7 @@ namespace Game {
  */
 Creature::Creature()
 {
+
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -308,6 +463,7 @@ Creature::Creature()
 	blr
 	*/
 }
+#endif
 
 /*
  * --INFO--
@@ -316,6 +472,10 @@ Creature::Creature()
  */
 CellLeg::CellLeg()
 {
+	m_prev   = nullptr;
+	m_next   = nullptr;
+	m_object = nullptr;
+	m_cell   = nullptr;
 	/*
 	li       r0, 0
 	stw      r0, 4(r3)
@@ -331,84 +491,36 @@ CellLeg::CellLeg()
  * Address:	8013AFC8
  * Size:	000120
  */
-void Creature::init(Game::CreatureInitArg*)
+void Creature::init(Game::CreatureInitArg* arg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	stw      r0, 0xdc(r3)
-	stw      r0, 0xe0(r3)
-	stw      r0, 0xe4(r3)
-	stw      r0, 0xe8(r3)
-	stw      r0, 0xec(r3)
-	stb      r0, 0xbc(r3)
-	stb      r0, 0xbd(r3)
-	stb      r0, 0xbe(r3)
-	stb      r0, 0xbf(r3)
-	lwz      r0, 0xbc(r3)
-	ori      r0, r0, 7
-	stw      r0, 0xbc(r3)
-	bl       clearStick__Q24Game8CreatureFv
-	lwz      r4, collisionUpdateMgr__4Game@sda21(r13)
-	addi     r3, r30, 0x12c
-	bl       init__Q24Game13UpdateContextFPQ24Game9UpdateMgr
-	lfs      f0, lbl_80518288@sda21(r2)
-	mr       r3, r30
-	stfs     f0, 0x11c(r30)
-	stfs     f0, 0x120(r30)
-	stfs     f0, 0x124(r30)
-	bl       clearCapture__Q24Game8CreatureFv
-	li       r0, 0
-	lfs      f1, lbl_80518288@sda21(r2)
-	stw      r0, 0xc8(r30)
-	mr       r3, r30
-	lfs      f0, lbl_80518284@sda21(r2)
-	stfs     f1, 0xcc(r30)
-	stfs     f0, 0xd0(r30)
-	stfs     f1, 0xd4(r30)
-	bl       clearCapture__Q24Game8CreatureFv
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x150(r12)
-	mtctr    r12
-	bctrl
-	cmplwi   r3, 0
-	beq      lbl_8013B0A0
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x150(r12)
-	mtctr    r12
-	bctrl
-	li       r0, 0
-	stw      r0, 4(r3)
-	stw      r0, 0(r3)
-
-lbl_8013B0A0:
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	lwz      r12, 0x30(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	lwz      r12, 0x38(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_cellLayerIndex    = 0;
+	m_cellRect.p1.x     = 0;
+	m_cellRect.p1.y     = 0;
+	m_cellRect.p2.x     = 0;
+	m_cellRect.p2.y     = 0;
+	m_flags.byteView[0] = 0;
+	m_flags.byteView[1] = 0;
+	m_flags.byteView[2] = 0;
+	m_flags.byteView[3] = 0;
+	m_flags.intView |= 7;
+	clearStick();
+	m_updateContext.init(Game::collisionUpdateMgr);
+	_11C.x = 0.0f;
+	_11C.y = 0.0f;
+	_11C.z = 0.0f;
+	clearCapture();
+	_0C8                  = 0;
+	m_collisionPosition.x = 0.0f;
+	m_collisionPosition.y = 1.0f;
+	m_collisionPosition.z = 0.0f;
+	clearCapture();
+	if (getMabiki()) {
+		u32* mabiki = getMabiki();
+		mabiki[1]   = 0;
+		mabiki[0]   = 0;
+	}
+	onInit(arg);
+	onInitPost(arg);
 }
 
 /*
@@ -430,57 +542,21 @@ void Creature::onInit(Game::CreatureInitArg*) { }
  * Address:	8013B0F0
  * Size:	0000B4
  */
-void Creature::kill(Game::CreatureKillArg*)
+void Creature::kill(Game::CreatureKillArg* arg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bl       endStick__Q24Game8CreatureFv
-	mr       r3, r30
-	li       r4, 0
-	lwz      r12, 0(r30)
-	lwz      r12, 0xac(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, cellMgr__4Game@sda21(r13)
-	mr       r3, r30
-	stw      r0, sCurrCellMgr__Q24Game4Cell@sda21(r13)
-	bl       exitCell__Q24Game10CellObjectFv
-	li       r0, 0
-	addi     r3, r30, 0x12c
-	stw      r0, sCurrCellMgr__Q24Game4Cell@sda21(r13)
-	bl       exit__Q24Game13UpdateContextFv
-	mr       r3, r30
-	bl       releaseAllStickers__Q24Game8CreatureFv
-	mr       r3, r30
-	bl       clearCapture__Q24Game8CreatureFv
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	lwz      r12, 0x34(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0xc4(r30)
-	cmplwi   r3, 0
-	beq      lbl_8013B18C
-	mr       r4, r30
-	bl       informDeath__Q24Game9GeneratorFPQ24Game8Creature
-	li       r0, 0
-	stw      r0, 0xc4(r30)
-
-lbl_8013B18C:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	endStick();
+	setAlive(false);
+	Cell::sCurrCellMgr = Game::cellMgr;
+	exitCell();
+	Cell::sCurrCellMgr = nullptr;
+	m_updateContext.exit();
+	releaseAllStickers();
+	clearCapture();
+	onKill(arg);
+	if (m_generator) {
+		m_generator->informDeath(this);
+		m_generator = nullptr;
+	}
 }
 
 /*
@@ -488,71 +564,30 @@ lbl_8013B18C:
  * Address:	8013B1A4
  * Size:	000004
  */
-void Creature::onKill(Game::CreatureKillArg*) { }
+void Creature::onKill(Game::CreatureKillArg* arg) { }
 
 /*
+ * TODO: Conditionally inlined. This might need to not have "inline" marked.
+ *
  * --INFO--
  * Address:	8013B1A8
  * Size:	0000C8
  */
-void Creature::setPosition(Vector3f&, bool)
+inline void Creature::setPosition(Vector3f& position, bool skipProcessing)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r5
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	lwz      r12, 0(r3)
-	lwz      r12, 0x70(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r31, 0x18
-	bne      lbl_8013B254
-	mr       r3, r29
-	lwz      r12, 0(r29)
-	lwz      r12, 0x78(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x174(r29)
-	cmplwi   r3, 0
-	beq      lbl_8013B23C
-	lwz      r4, 8(r3)
-	addi     r3, r29, 0x138
-	addi     r4, r4, 0x24
-	bl       PSMTXCopy
-	lwz      r3, 0x174(r29)
-	lwz      r3, 8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x114(r29)
-	cmplwi   r3, 0
-	beq      lbl_8013B23C
-	bl       update__8CollTreeFv
-
-lbl_8013B23C:
-	mr       r3, r29
-	mr       r4, r30
-	lwz      r12, 0(r29)
-	lwz      r12, 0x74(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8013B254:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	onSetPosition(position);
+	if (!skipProcessing) {
+		updateTrMatrix();
+		if (m_model != nullptr) {
+			PSMTXCopy(m_mainMatrix.m_matrix.arrayView,
+			          m_model->m_j3dModel->_24);
+			m_model->m_j3dModel->calc();
+			if (m_collTree != nullptr) {
+				m_collTree->update();
+			}
+		}
+		onSetPositionPost(position);
+	}
 }
 
 /*
@@ -567,63 +602,19 @@ void Creature::onSetPositionPost(Vector3f&) { }
  * Address:	8013B274
  * Size:	0000CC
  */
-void Creature::initPosition(Vector3f&)
+void Creature::initPosition(Vector3f& position)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r12, 0(r3)
-	lwz      r12, 0x70(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x78(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x174(r30)
-	cmplwi   r3, 0
-	beq      lbl_8013B2F8
-	lwz      r4, 8(r3)
-	addi     r3, r30, 0x138
-	addi     r4, r4, 0x24
-	bl       PSMTXCopy
-	lwz      r3, 0x174(r30)
-	lwz      r3, 8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x114(r30)
-	cmplwi   r3, 0
-	beq      lbl_8013B2F8
-	bl       update__8CollTreeFv
-
-lbl_8013B2F8:
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	lwz      r12, 0x74(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	lwz      r12, 0x60(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	onSetPosition(position);
+	updateTrMatrix();
+	if (m_model != nullptr) {
+		PSMTXCopy(m_mainMatrix.m_matrix.mtxView, m_model->m_j3dModel->_24);
+		m_model->m_j3dModel->calc();
+		if (m_collTree != nullptr) {
+			m_collTree->update();
+		}
+	}
+	onSetPositionPost(position);
+	onInitPosition(position);
 }
 
 /*
@@ -631,8 +622,12 @@ lbl_8013B2F8:
  * Address:	8013B340
  * Size:	0000A0
  */
-void Creature::getYVector(Vector3f&)
+void Creature::getYVector(Vector3f& outVector)
 {
+	outVector.x = m_mainMatrix.m_matrix.structView.yx;
+	outVector.y = m_mainMatrix.m_matrix.structView.yy;
+	outVector.z = m_mainMatrix.m_matrix.structView.yz;
+	outVector.normalise();
 	/*
 	lfs      f0, 0x13c(r3)
 	lfs      f1, lbl_80518288@sda21(r2)
@@ -686,23 +681,11 @@ lbl_8013B3A4:
  * Address:	8013B3E0
  * Size:	000034
  */
-void Creature::getBodyRadius()
+float Creature::getBodyRadius()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	addi     r4, r1, 8
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x24(r1)
-	lfs      f1, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	Sys::Sphere boundingSphere;
+	getBoundingSphere(boundingSphere);
+	return boundingSphere.m_radius;
 }
 
 /*
@@ -710,23 +693,11 @@ void Creature::getBodyRadius()
  * Address:	8013B414
  * Size:	000034
  */
-void Creature::getCellRadius()
+float Creature::getCellRadius()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	addi     r4, r1, 8
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x24(r1)
-	lfs      f1, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	Sys::Sphere boundingSphere;
+	getBoundingSphere(boundingSphere);
+	return boundingSphere.m_radius;
 }
 
 /*
@@ -734,65 +705,22 @@ void Creature::getCellRadius()
  * Address:	8013B448
  * Size:	000024
  */
-void Creature::getTypeName()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lhz      r3, 0x128(r3)
-	bl       getName__Q24Game7ObjTypeFUs
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+char* Creature::getTypeName() { return ObjType::getName(m_objectTypeID); }
 
 /*
  * --INFO--
  * Address:	8013B46C
  * Size:	00008C
  */
-void Creature::getShadowParam(Game::ShadowParam&)
+void Creature::getShadowParam(Game::ShadowParam& param)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r4
-	mr       r4, r3
-	addi     r3, r1, 8
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, 8(r1)
-	lfs      f4, lbl_8051828C@sda21(r2)
-	stfs     f0, 0(r31)
-	lfs      f3, lbl_80518290@sda21(r2)
-	lfs      f0, 0xc(r1)
-	lfs      f2, lbl_80518294@sda21(r2)
-	stfs     f0, 4(r31)
-	lfs      f1, lbl_80518288@sda21(r2)
-	lfs      f5, 0x10(r1)
-	lfs      f0, lbl_80518284@sda21(r2)
-	stfs     f5, 8(r31)
-	lfs      f5, 4(r31)
-	fadds    f4, f5, f4
-	stfs     f4, 4(r31)
-	stfs     f3, 0x18(r31)
-	stfs     f2, 0x1c(r31)
-	stfs     f1, 0xc(r31)
-	stfs     f0, 0x10(r31)
-	stfs     f1, 0x14(r31)
-	lwz      r31, 0x1c(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	param.m_position = getPosition();
+	param.m_position.y += 0.5f;
+	param.m_height = 10.0f;
+	param.m_radius = 4.0f;
+	param._0C      = 0.0f;
+	param._10      = 1.0f;
+	param._14      = 0.0f;
 }
 
 /*
@@ -800,52 +728,19 @@ void Creature::getShadowParam(Game::ShadowParam&)
  * Address:	8013B4F8
  * Size:	00000C
  */
-void Creature::needShadow()
-{
-	/*
-	lbz      r0, 0xd8(r3)
-	rlwinm   r3, r0, 0x1e, 0x1f, 0x1f
-	blr
-	*/
-}
+bool Creature::needShadow() { return m_lod.m_flags & AILOD::FLAG_NEED_SHADOW; }
 
 /*
  * --INFO--
  * Address:	8013B504
  * Size:	000070
  */
-void Creature::getLifeGaugeParam(Game::LifeGaugeParam&)
+void Creature::getLifeGaugeParam(Game::LifeGaugeParam& param)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r4
-	mr       r4, r3
-	addi     r3, r1, 8
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f0, 8(r1)
-	li       r0, 1
-	lfs      f1, lbl_80518284@sda21(r2)
-	stfs     f0, 0(r31)
-	lfs      f0, lbl_80518290@sda21(r2)
-	lfs      f2, 0xc(r1)
-	stfs     f2, 4(r31)
-	lfs      f2, 0x10(r1)
-	stfs     f2, 8(r31)
-	stfs     f1, 0xc(r31)
-	stfs     f0, 0x10(r31)
-	stb      r0, 0x14(r31)
-	lwz      r31, 0x1c(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	param._00 = getPosition();
+	param._0C = 1.0f;
+	param._10 = 10.0f;
+	param._14 = 1;
 }
 
 /*
@@ -853,48 +748,13 @@ void Creature::getLifeGaugeParam(Game::LifeGaugeParam&)
  * Address:	8013B574
  * Size:	000090
  */
-void Creature::save(Stream&, unsigned char)
+void Creature::save(Stream& output, uchar flags)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	clrlwi.  r0, r5, 0x1f
-	stw      r31, 0x2c(r1)
-	mr       r31, r4
-	stw      r30, 0x28(r1)
-	mr       r30, r3
-	beq      lbl_8013B5D4
-	mr       r4, r30
-	addi     r3, r1, 8
-	lwz      r12, 0(r30)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lfs      f2, 8(r1)
-	mr       r4, r31
-	lfs      f1, 0xc(r1)
-	addi     r3, r1, 0x14
-	lfs      f0, 0x10(r1)
-	stfs     f2, 0x14(r1)
-	stfs     f1, 0x18(r1)
-	stfs     f0, 0x1c(r1)
-	bl       "write__10Vector3<f>FR6Stream"
-
-lbl_8013B5D4:
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	lwz      r12, 0xe0(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	if (flags & 1) {
+		Vector3f position = getPosition();
+		position.write(output);
+	}
+	doSave(output);
 }
 
 /*
@@ -902,71 +762,14 @@ lbl_8013B5D4:
  * Address:	8013B604
  * Size:	0000E4
  */
-void Creature::load(Stream&, unsigned char)
+void Creature::load(Stream& input, uchar flags)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	clrlwi.  r0, r5, 0x1f
-	stw      r31, 0x1c(r1)
-	mr       r31, r4
-	stw      r30, 0x18(r1)
-	mr       r30, r3
-	beq      lbl_8013B6B8
-	addi     r3, r1, 8
-	bl       "read__10Vector3<f>FR6Stream"
-	mr       r3, r30
-	addi     r4, r1, 8
-	lwz      r12, 0(r30)
-	lwz      r12, 0x70(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0x78(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x174(r30)
-	cmplwi   r3, 0
-	beq      lbl_8013B6A0
-	lwz      r4, 8(r3)
-	addi     r3, r30, 0x138
-	addi     r4, r4, 0x24
-	bl       PSMTXCopy
-	lwz      r3, 0x174(r30)
-	lwz      r3, 8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x114(r30)
-	cmplwi   r3, 0
-	beq      lbl_8013B6A0
-	bl       update__8CollTreeFv
-
-lbl_8013B6A0:
-	mr       r3, r30
-	addi     r4, r1, 8
-	lwz      r12, 0(r30)
-	lwz      r12, 0x74(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8013B6B8:
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	lwz      r12, 0xe4(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	if (flags & 1) {
+		Vector3f position;
+		position.read(input);
+		setPosition(position, false);
+	}
+	doLoad(input);
 }
 
 /*
@@ -1100,25 +903,9 @@ void Creature::applyAirDrag(float, float, float)
  */
 void Creature::doAnimation()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x174(r3)
-	cmplwi   r3, 0
-	beq      lbl_8013B89C
-	lwz      r3, 8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8013B89C:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (m_model != nullptr) {
+		m_model->m_j3dModel->calc();
+	}
 }
 
 /*
@@ -1224,21 +1011,9 @@ lbl_8013B9A0:
  */
 void Creature::doViewCalc()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x174(r3)
-	cmplwi   r3, 0
-	beq      lbl_8013B9D4
-	bl       viewCalc__Q28SysShape5ModelFv
-
-lbl_8013B9D4:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (m_model != nullptr) {
+		m_model->viewCalc();
+	}
 }
 
 /*
@@ -1246,81 +1021,38 @@ lbl_8013B9D4:
  * Address:	8013B9E4
  * Size:	000010
  */
-void Creature::isPiki()
-{
-	/*
-	lhz      r0, 0x128(r3)
-	cntlzw   r0, r0
-	srwi     r3, r0, 5
-	blr
-	*/
-}
+bool Creature::isPiki() { return m_objectTypeID == OBJTYPE_Piki; }
 
 /*
  * --INFO--
  * Address:	8013B9F4
  * Size:	000014
  */
-void Creature::isNavi()
-{
-	/*
-	lhz      r0, 0x128(r3)
-	subfic   r0, r0, 1
-	cntlzw   r0, r0
-	srwi     r3, r0, 5
-	blr
-	*/
-}
+bool Creature::isNavi() { return m_objectTypeID == OBJTYPE_Navi; }
 
 /*
  * --INFO--
  * Address:	8013BA08
  * Size:	000014
  */
-void Creature::isTeki()
-{
-	/*
-	lhz      r0, 0x128(r3)
-	subfic   r0, r0, 2
-	cntlzw   r0, r0
-	srwi     r3, r0, 5
-	blr
-	*/
-}
+bool Creature::isTeki() { return m_objectTypeID == OBJTYPE_Teki; }
 
 /*
  * --INFO--
  * Address:	8013BA1C
  * Size:	000014
  */
-void Creature::isPellet()
-{
-	/*
-	lhz      r0, 0x128(r3)
-	subfic   r0, r0, 0x401
-	cntlzw   r0, r0
-	srwi     r3, r0, 5
-	blr
-	*/
-}
+bool Creature::isPellet() { return m_objectTypeID == OBJTYPE_Pellet; }
 
 /*
  * --INFO--
  * Address:	8013BA30
  * Size:	000020
  */
-void Creature::sound_culling()
+bool Creature::sound_culling()
 {
-	/*
-	lbz      r4, 0xd8(r3)
-	li       r3, 0
-	rlwinm.  r0, r4, 0, 0x1c, 0x1c
-	bnelr
-	rlwinm.  r0, r4, 0, 0x1d, 0x1d
-	bnelr
-	li       r3, 1
-	blr
-	*/
+	return !((m_lod.m_flags & AILOD::FLAG_UNKNOWN4)
+	         || (m_lod.m_flags & AILOD::FLAG_NEED_SHADOW));
 }
 
 /*
@@ -1328,84 +1060,33 @@ void Creature::sound_culling()
  * Address:	8013BA50
  * Size:	00009C
  */
-void Creature::movie_begin(bool)
+void Creature::movie_begin(bool required)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	clrlwi.  r0, r31, 0x18
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r4, 0xbc(r3)
-	ori      r0, r4, 0x10
-	stw      r0, 0xbc(r3)
-	bne      lbl_8013BAA0
-	lwz      r0, 0xbc(r30)
-	ori      r0, r0, 0x40
-	stw      r0, 0xbc(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_8013BABC
-
-lbl_8013BAA0:
-	lwz      r0, 0xbc(r30)
-	rlwinm   r0, r0, 0, 0x1a, 0x18
-	stw      r0, 0xbc(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x18(r12)
-	mtctr    r12
-	bctrl
-
-lbl_8013BABC:
-	mr       r3, r30
-	mr       r4, r31
-	lwz      r12, 0(r30)
-	lwz      r12, 0x110(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	// m_flags.m_isMovieActor = TRUE;
+	m_flags.intView |= CF_IS_MOVIE_ACTOR;
+	if (required == false) {
+		// 	m_flags.m_isMovieExtra = TRUE;
+		m_flags.intView |= CF_IS_MOVIE_EXTRA;
+		isPiki();
+	} else {
+		// 	m_flags.m_isMovieExtra = FALSE;
+		m_flags.intView &= ~CF_IS_MOVIE_EXTRA;
+		isPiki();
+	}
+	on_movie_begin(required);
 }
 
 /*
+ * TODO: Determine if param really should be named "required".
  * --INFO--
  * Address:	8013BAEC
  * Size:	000050
  */
-void Creature::movie_end(bool)
+void Creature::movie_end(bool required)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r12, 0(r3)
-	lwz      r12, 0x114(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0xbc(r31)
-	rlwinm   r0, r0, 0, 0x1c, 0x1a
-	stw      r0, 0xbc(r31)
-	lwz      r0, 0xbc(r31)
-	rlwinm   r0, r0, 0, 0x1a, 0x18
-	stw      r0, 0xbc(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	on_movie_end(required);
+	m_flags.intView &= ~CF_IS_MOVIE_ACTOR;
+	m_flags.intView &= ~CF_IS_MOVIE_EXTRA;
 }
 
 /*
@@ -1413,8 +1094,28 @@ void Creature::movie_end(bool)
  * Address:	8013BB3C
  * Size:	0000E0
  */
-void Creature::checkWater(Game::WaterBox*, Sys::Sphere&)
+void Creature::checkWater(Game::WaterBox* waterBox, Sys::Sphere& sphere)
 {
+	// if (waterBox == nullptr) {
+	// 	waterBox = nullptr;
+	// 	if (Game::mapMgr != nullptr) {
+	// 		waterBox = Game::mapMgr->findWater(sphere);
+	// 	}
+	// 	if (waterBox != nullptr) {
+	// 		inWaterCallback(waterBox);
+	// 	}
+	// } else {
+	// 	if (!waterBox->inWater(sphere)) {
+	// 		if (Game::mapMgr != nullptr) {
+	// 			waterBox = Game::mapMgr->findWater(sphere);
+	// 		}
+	// 		if (waterBox == nullptr) {
+	// 			outWaterCallback();
+	// 			waterBox = nullptr;
+	// 		}
+	// 	}
+	// }
+	// return waterBox;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -1502,7 +1203,7 @@ void Creature::outWaterCallback() { }
  * Address:	8013BC24
  * Size:	000144
  */
-void Creature::checkHell(Game::Creature::CheckHellArg&)
+void Creature::checkHell(Creature::CheckHellArg&)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1604,6 +1305,23 @@ lbl_8013BD50:
  */
 void Creature::updateCell()
 {
+	if ((Game::gameSystem == nullptr) || !(Game::gameSystem->_3C & 4)) {
+		m_passID = -1;
+		Sys::Sphere collision;
+		collision.m_position               = getPosition();
+		float radius                       = getCellRadius();
+		collision.m_radius                 = radius;
+		m_sweepPruneObject.m_minX.m_radius = collision.m_position.x - radius;
+		m_sweepPruneObject.m_maxX.m_radius
+		    = collision.m_position.x + collision.m_radius;
+		m_sweepPruneObject.m_minZ.m_radius
+		    = collision.m_position.z - collision.m_radius;
+		m_sweepPruneObject.m_maxZ.m_radius
+		    = collision.m_position.z + collision.m_radius;
+	}
+	// TODO: I think the rest is an inline function of something that takes a
+	// CellObject*? Didn't find any candidates in the symbol map though.
+
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -1721,31 +1439,12 @@ s32 Creature::getCreatureID() { return -0x1; }
  * Address:	8013BEE8
  * Size:	000044
  */
-void Creature::getCellPikiCount()
+int Creature::getCellPikiCount()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r5, r3
-	stw      r0, 0x14(r1)
-	lwz      r0, cellMgr__4Game@sda21(r13)
-	cmplwi   r0, 0
-	beq      lbl_8013BF18
-	lwz      r4, 0xdc(r5)
-	mr       r3, r0
-	addi     r5, r5, 0xe0
-	bl       "getPikiCount__Q24Game11CellPyramidFiR7Rect<i>"
-	b        lbl_8013BF1C
-
-lbl_8013BF18:
-	li       r3, 0
-
-lbl_8013BF1C:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (Game::cellMgr != nullptr) {
+		return Game::cellMgr->getPikiCount(m_cellLayerIndex, m_cellRect);
+	}
+	return 0;
 }
 
 /*
@@ -1753,8 +1452,17 @@ lbl_8013BF1C:
  * Address:	8013BF2C
  * Size:	0000B0
  */
-void Creature::applyImpulse(Vector3f&, Vector3f&)
+void Creature::applyImpulse(Vector3f& unused, Vector3f& impulse)
 {
+	Vector3f newVelocity;
+	Vector3f oldVelocity = getVelocity();
+	// TODO: Check if vector3 had helper functions for multiplying and addition.
+	// Those might've been used here, which would explain seperate operations in
+	// sets of 3. i.e. 3 stfs, 3 lfs, 3 fmuls, 3 fadds, 3 stfs
+	newVelocity.x = oldVelocity.x + impulse.x * _118;
+	newVelocity.y = oldVelocity.y + impulse.y * _118;
+	newVelocity.z = oldVelocity.z + impulse.z * _118;
+	setVelocity(newVelocity);
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -2658,6 +2366,7 @@ void Creature::collisionCallback(Game::CollEvent&) { }
  * Address:	8013CB90
  * Size:	000030
  */
+template <>
 void Delegate3<Game::Creature, CollPart*, CollPart*, Vector3f&>::invoke(
     CollPart*, CollPart*, Vector3f&)
 {
@@ -2699,75 +2408,51 @@ void Creature::doSimulation(float) { }
  * Address:	8013CBC8
  * Size:	000008
  */
-u32 Creature::inWater() { return 0x0; }
+bool Creature::inWater() { return false; }
 
 /*
  * --INFO--
  * Address:	8013CBD0
  * Size:	000008
  */
-u32 Creature::isFlying() { return 0x0; }
+bool Creature::isFlying() { return false; }
 
 /*
  * --INFO--
  * Address:	8013CBD8
  * Size:	000008
  */
-u32 Creature::getPSCreature() { return 0x0; }
+PSM::Creature* Creature::getPSCreature() { return nullptr; }
 
 /*
  * --INFO--
  * Address:	8013CBE0
  * Size:	000008
  */
-u32 Creature::getSound_PosPtr() { return 0x0; }
+Vector3f* Creature::getSound_PosPtr() { return nullptr; }
 
 /*
  * --INFO--
  * Address:	8013CBE8
  * Size:	000008
  */
-void Creature::getSound_CurrAnimFrame()
-{
-	/*
-	lfs      f1, lbl_80518288@sda21(r2)
-	blr
-	*/
-}
+float Creature::getSound_CurrAnimFrame() { return 0.0f; }
 
 /*
  * --INFO--
  * Address:	8013CBF0
  * Size:	000008
  */
-void Creature::getSound_CurrAnimSpeed()
-{
-	/*
-	lfs      f1, lbl_80518288@sda21(r2)
-	blr
-	*/
-}
+float Creature::getSound_CurrAnimSpeed() { return 0.0f; }
 
 /*
  * --INFO--
  * Address:	8013CBF8
  * Size:	00002C
  */
-void Creature::getLODSphere(Sys::Sphere&)
+void Creature::getLODSphere(Sys::Sphere& sphere)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return getBoundingSphere(sphere);
 }
 
 /*
@@ -2796,14 +2481,14 @@ void CellObject::checkCollision(Game::CellObject*) { }
  * Address:	8013CC30
  * Size:	000008
  */
-u32 CellObject::isPiki() { return 0x0; }
+bool CellObject::isPiki() { return false; }
 
 /*
  * --INFO--
  * Address:	8013CC38
  * Size:	000008
  */
-u32 CellObject::isNavi() { return 0x0; }
+bool CellObject::isNavi() { return false; }
 
 } // namespace Game
 

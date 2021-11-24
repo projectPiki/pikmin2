@@ -25,20 +25,32 @@ struct GameSystem : public NodeObjectMgr<GenericObjectMgr> {
 	GameSystem(Game::BaseGameSection*);
 	~GameSystem();
 
+	virtual void doAnimation();           // _00
+	virtual void doEntry();               // _04
+	virtual void doSetView(int);          // _08
+	virtual void doViewCalc();            // _0C
+	virtual void doSimulation(float);     // _10
+	virtual void doDirectDraw(Graphics&); // _14
+	virtual void doSimpleDraw(Viewport*); // _18
+	virtual void loadResources();         // _1C
+	virtual void resetMgr();              // _20
+	virtual bool pausable();              // _24
+	virtual bool frozenable();            // _28
+	virtual u32 getMatrixLoadType();      // _2C
+	virtual void startFrame();            // _78
+	virtual void endFrame();              // _7C
+	virtual void directDraw(Graphics&);   // _84
+	virtual void startFadeout(float);     // _88
+	virtual void startFadein(float);      // _8C
+	virtual void startFadeoutin(float);   // _90
+	virtual void startFadeblack();        // _94
+	virtual void startFadewhite();        // _98
+
 	void addObjectMgr_reuse(TObjectNode<GenericObjectMgr>*);
 	void addObjectMgr(GenericObjectMgr*);
 	s32 calcFrameDist(int);
 	void detachObjectMgr_reuse(GenericObjectMgr*);
 	void detachObjectMgr(GenericObjectMgr*);
-	void directDraw(Graphics&);
-	void doAnimation();
-	void doDirectDraw(Graphics&);
-	void doEntry();
-	void doSetView(int);
-	void doSimpleDraw(Viewport*);
-	void doSimulation(float);
-	void doViewCalc();
-	void endFrame();
 	void getLightMgr();
 	void init();
 	void isZukanMode();
@@ -48,12 +60,6 @@ struct GameSystem : public NodeObjectMgr<GenericObjectMgr> {
 	void setFrozen(bool, char*);
 	void setMoviePause(bool, char*);
 	void setPause(bool, char*, int);
-	void startFadeblack();
-	void startFadein(float);
-	void startFadeout(float);
-	void startFadeoutin(float);
-	void startFadewhite();
-	void startFrame();
 	void startPause(bool, int, char*);
 
 	u8 _3C;                     // _3C /* bitfield */

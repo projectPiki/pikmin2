@@ -1,17 +1,12 @@
 #ifndef _GAME_BASEGAMESECTION_H
 #define _GAME_BASEGAMESECTION_H
 
+#include "Game/BaseHIOSection.h"
 #include "Vector3.h"
 #include "Rect.h"
 
 // NOTE, EVERYTHING UP UNTIL THE ACTUAL "STRUCT"
 // DECLARATION ARE JUST FORWARD DECLARATIONS!
-
-// TODO: replace with Section struct when implemented
-namespace Section {
-typedef int EDrawInitMode;
-} // namespace Section
-
 namespace PSGame {
 struct SceneInfo;
 }
@@ -35,7 +30,7 @@ struct Piki;
 struct CourseInfo;
 struct GameMessage;
 
-struct BaseGameSection {
+struct BaseGameSection : public BaseHIOSection {
 	struct ZoomCamera {
 		~ZoomCamera();
 
@@ -68,7 +63,7 @@ struct BaseGameSection {
 	void doSetView(int);
 	void doSimpleDraw(Viewport*);
 	void doSimulation(float);
-	void doUpdate();
+	virtual bool doUpdate();
 	void doViewCalc();
 	void draw_Ogawa2D(Graphics&);
 	void draw2D(Graphics&);
@@ -79,7 +74,7 @@ struct BaseGameSection {
 	void dvdloadGameSystem();
 	void enableAllocHalt();
 	void enableTimer(float, unsigned long);
-	void forceFinish();
+	virtual bool forceFinish();
 	void getCaveFilename();
 	void getCaveID();
 	void getCurrentCourseInfo();

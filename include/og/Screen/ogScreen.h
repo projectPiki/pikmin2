@@ -105,10 +105,10 @@ namespace Screen {
 		virtual ulonglong getMemberID() = 0; // _08
 		virtual void doSetSubMemberAll();    // _10
 
-		bool isID(ScreenOwnerID, ScreenMemberID);
+		bool isID(ulong, ulonglong);
 		void getMemberName(char*);
 		bool setSubMember(DispMemberBase*);
-		DispMemberBase* getSubMember(ScreenOwnerID, ScreenMemberID);
+		DispMemberBase* getSubMember(ulong, ulonglong);
 		void setSubMemberAll();
 
 		// inline void getOwnerName(char* outName) {

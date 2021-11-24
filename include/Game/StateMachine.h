@@ -1,8 +1,9 @@
-#ifndef _STATEMACHINE_H
-#define _STATEMACHINE_H
+#ifndef _GAME_STATEMACHINE_H
+#define _GAME_STATEMACHINE_H
 
 #include "types.h"
 
+namespace Game {
 template <typename T> struct StateMachine;
 
 struct StateArg {
@@ -45,5 +46,6 @@ template <typename T> struct StateMachine {
 	// ID of current (active) state.
 	int m_currentID; // _18
 };
+} // namespace Game
 
 #endif

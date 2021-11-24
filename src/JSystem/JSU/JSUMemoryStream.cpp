@@ -1,4 +1,5 @@
 #include "types.h"
+#include "JSystem/JSU/JSUStream.h"
 
 /*
     Generated from dpostproc
@@ -23,15 +24,11 @@
  * Address:	80026D5C
  * Size:	000014
  */
-void JSUMemoryInputStream::setBuffer(const void*, long)
+void JSUMemoryInputStream::setBuffer(const void* buffer, long length)
 {
-	/*
-	stw      r4, 8(r3)
-	li       r0, 0
-	stw      r5, 0xc(r3)
-	stw      r0, 0x10(r3)
-	blr
-	*/
+	m_object   = const_cast<void*>(buffer);
+	m_length   = length;
+	m_position = 0;
 }
 
 /*
@@ -39,7 +36,7 @@ void JSUMemoryInputStream::setBuffer(const void*, long)
  * Address:	80026D70
  * Size:	000078
  */
-void JSUMemoryInputStream::readData(void*, long)
+size_t JSUMemoryInputStream::readData(void*, long)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -84,55 +81,29 @@ lbl_80026DCC:
  * Address:	80026DE8
  * Size:	00007C
  */
-void JSUMemoryInputStream::seekPos(long, JSUStreamSeekFrom)
+int JSUMemoryInputStream::seekPos(long offset, JSUStreamSeekFrom mode)
 {
-	/*
-	cmpwi    r5, 1
-	lwz      r6, 0x10(r3)
-	beq      lbl_80026E28
-	bge      lbl_80026E04
-	cmpwi    r5, 0
-	bge      lbl_80026E10
-	b        lbl_80026E30
-
-lbl_80026E04:
-	cmpwi    r5, 3
-	bge      lbl_80026E30
-	b        lbl_80026E18
-
-lbl_80026E10:
-	stw      r4, 0x10(r3)
-	b        lbl_80026E30
-
-lbl_80026E18:
-	lwz      r0, 0xc(r3)
-	subf     r0, r4, r0
-	stw      r0, 0x10(r3)
-	b        lbl_80026E30
-
-lbl_80026E28:
-	add      r0, r6, r4
-	stw      r0, 0x10(r3)
-
-lbl_80026E30:
-	lwz      r0, 0x10(r3)
-	cmpwi    r0, 0
-	bge      lbl_80026E44
-	li       r0, 0
-	stw      r0, 0x10(r3)
-
-lbl_80026E44:
-	lwz      r0, 0x10(r3)
-	lwz      r4, 0xc(r3)
-	cmpw     r0, r4
-	ble      lbl_80026E58
-	stw      r4, 0x10(r3)
-
-lbl_80026E58:
-	lwz      r0, 0x10(r3)
-	subf     r3, r6, r0
-	blr
-	*/
+	ulong originalPosition = m_position;
+	switch (mode) {
+	case SEEK_SET:
+		m_position = offset;
+		break;
+	case SEEK_END:
+		m_position = m_length - offset;
+		break;
+	case SEEK_CUR:
+		m_position += offset;
+		break;
+	default:
+		break;
+	}
+	if (0 > m_position) {
+		m_position = 0;
+	}
+	if (m_position > m_length) {
+		m_position = m_length;
+	}
+	return m_position - originalPosition;
 }
 
 /*
@@ -183,23 +154,11 @@ lbl_80026EB8:
  * Address:	80026ED4
  * Size:	000008
  */
-void JSUMemoryInputStream::getLength() const
-{
-	/*
-	lwz      r3, 0xc(r3)
-	blr
-	*/
-}
+int JSUMemoryInputStream::getLength() const { return m_length; }
 
 /*
  * --INFO--
  * Address:	80026EDC
  * Size:	000008
  */
-void JSUMemoryInputStream::getPosition() const
-{
-	/*
-	lwz      r3, 0x10(r3)
-	blr
-	*/
-}
+int JSUMemoryInputStream::getPosition() const { return m_position; }

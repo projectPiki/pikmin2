@@ -1,4 +1,11 @@
 #include "types.h"
+#include "og/Screen/anime.h"
+#include "JSystem/J2D/J2DPane.h"
+#include "JSystem/J2D/J2DAnm.h"
+#include "JSystem/JUT/JUTException.h"
+#include "JSystem/JKR/JKRArchive.h"
+#include "og/Screen/ogScreen.h"
+#include "System.h"
 
 /*
     Generated from dpostproc
@@ -55,13 +62,34 @@ namespace og {
 namespace Screen {
 
 	/*
+	 * __ct__Q32og6Screen12AnimBaseBaseFv
+	 *
 	 * --INFO--
 	 * Address:	........
 	 * Size:	000088
 	 */
-	AnimBaseBase::AnimBaseBase(void)
+	inline AnimBaseBase::AnimBaseBase()
 	{
 		// UNUSED FUNCTION
+		_04         = 0;
+		m_frame     = 0.0f;
+		m_lastFrame = 1.0f;
+		_20         = 1.0f;
+		_24         = 1.0f;
+		_38         = true;
+		_39         = false;
+		_2C         = 0.0f;
+		_30         = 1.0f;
+		_34         = _30 - _2C;
+		// TODO: Could this calculation be an inlined function of System?
+		_28            = sys->m_secondsPerFrame / 0.016666668f;
+		m_anm          = nullptr;
+		m_resourcePath = nullptr;
+		_08            = false;
+		_0C            = 0.0f;
+		_10            = 1;
+		_11            = 0xFF;
+		_12            = 0;
 	}
 
 	/*
@@ -69,19 +97,40 @@ namespace Screen {
 	 * Address:	........
 	 * Size:	000020
 	 */
-	void AnimBaseBase::setArea(float, float)
+	void AnimBaseBase::setArea(float frame, float p2)
 	{
 		// UNUSED FUNCTION
+		_2C     = frame;
+		_30     = p2;
+		_34     = p2 - frame;
+		m_frame = frame;
+		_10     = 1;
 	}
 
 	/*
+	 * init__Q32og6Screen12AnimBaseBaseFP10JKRArchivePc
+	 *
 	 * --INFO--
 	 * Address:	........
 	 * Size:	00010C
 	 */
-	void AnimBaseBase::init(JKRArchive*, char*)
+	void AnimBaseBase::init(JKRArchive* archive, char* resourcePath)
 	{
-		// UNUSED FUNCTION
+		// This is currently only 54 instructions long.
+		// The issue appears to be that vanilla sets GQRs here... why or how,
+		// IDK. UNUSED FUNCTION
+		m_resourcePath = resourcePath;
+		void* resource = JKRFileLoader::getGlbResource(resourcePath, archive);
+		JUT_ASSERTLINE(87, (resource != nullptr), "no name resource (%s) \n",
+		               resourcePath);
+		m_anm       = J2DAnmLoaderDataBase::load(resource);
+		m_lastFrame = m_anm->m_maxFrame;
+		_2C         = 0.0f;
+		_30         = m_lastFrame;
+		_34         = _30 - _2C;
+		_08         = false;
+		_0C         = 0.0f;
+		_10         = 1;
 	}
 
 	/*
@@ -89,14 +138,10 @@ namespace Screen {
 	 * Address:	80304CB0
 	 * Size:	000010
 	 */
-	void AnimBaseBase::start(float)
+	void AnimBaseBase::start(float p1)
 	{
-		/*
-	li       r0, 1
-	stb      r0, 8(r3)
-	stfs     f1, 0xc(r3)
-	blr
-		*/
+		_08 = true;
+		_0C = p1;
 	}
 
 	/*
@@ -114,166 +159,82 @@ namespace Screen {
 	 * Address:	80304CC0
 	 * Size:	000150
 	 */
-	void AnimBaseBase::updateSub(void)
+	bool AnimBaseBase::updateSub()
 	{
-		/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	li       r31, 1
-	stw      r30, 8(r1)
-	mr       r30, r3
-	stb      r4, 0x39(r3)
-	lbz      r0, 0x10(r3)
-	cmplwi   r0, 0
-	beq      lbl_80304CF8
-	stb      r4, 0x10(r30)
-	b        lbl_80304DD8
-
-lbl_80304CF8:
-	lfs      f1, 0x20(r30)
-	lfs      f0, 0x28(r30)
-	lfs      f2, 0x24(r30)
-	fmuls    f1, f1, f0
-	lfs      f0, 0x18(r30)
-	fmadds   f0, f2, f1, f0
-	stfs     f0, 0x18(r30)
-	lfs      f0, 0x18(r30)
-	lfs      f1, 0x30(r30)
-	fcmpo    cr0, f0, f1
-	ble      lbl_80304D7C
-	lbz      r0, 0x38(r30)
-	cmplwi   r0, 0
-	beq      lbl_80304D60
-	fsubs    f1, f0, f1
-	lfs      f0, 0x34(r30)
-	fcmpo    cr0, f1, f0
-	cror     2, 1, 2
-	bne      lbl_80304D48
-	lfs      f1, lbl_8051D598@sda21(r2)
-
-lbl_80304D48:
-	lfs      f0, 0x2c(r30)
-	li       r0, 1
-	fadds    f0, f0, f1
-	stfs     f0, 0x18(r30)
-	stb      r0, 0x39(r30)
-	b        lbl_80304DD8
-
-lbl_80304D60:
-	stfs     f1, 0x18(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	li       r31, 0
-	b        lbl_80304DD8
-
-lbl_80304D7C:
-	lfs      f2, 0x2c(r30)
-	fcmpo    cr0, f0, f2
-	bge      lbl_80304DD8
-	lbz      r0, 0x38(r30)
-	cmplwi   r0, 0
-	beq      lbl_80304DC0
-	fsubs    f2, f2, f0
-	lfs      f0, 0x34(r30)
-	fcmpo    cr0, f2, f0
-	cror     2, 1, 2
-	bne      lbl_80304DAC
-	lfs      f2, lbl_8051D598@sda21(r2)
-
-lbl_80304DAC:
-	fsubs    f0, f1, f2
-	li       r0, 1
-	stfs     f0, 0x18(r30)
-	stb      r0, 0x39(r30)
-	b        lbl_80304DD8
-
-lbl_80304DC0:
-	stfs     f2, 0x18(r30)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-	li       r31, 0
-
-lbl_80304DD8:
-	clrlwi.  r0, r31, 0x18
-	beq      lbl_80304DF4
-	mr       r3, r30
-	lwz      r12, 0(r30)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80304DF4:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-		*/
+		bool result = true;
+		_39         = false;
+		if (_10 != 0) {
+			_10 = 0;
+		} else {
+			m_frame += _20 * _28 * _24;
+			if (m_frame > _30) {
+				if (_38) {
+					float temp = m_frame - _30;
+					if (temp >= _34) {
+						temp = 0.0f;
+					}
+					m_frame = _2C + temp;
+					_39     = true;
+				} else {
+					m_frame = _30;
+					moveAnim();
+					result = false;
+				}
+			} else {
+				if (m_frame < _2C) {
+					if (_38) {
+						float temp = _2C - m_frame;
+						if (temp >= _34) {
+							temp = 0.0f;
+						}
+						m_frame = _30 - temp;
+						_39     = true;
+					} else {
+						m_frame = _2C;
+						moveAnim();
+						result = false;
+					}
+				}
+			}
+		}
+		if (result) {
+			moveAnim();
+		}
+		return result;
 	}
 
 	/*
+	 * update__Q32og6Screen12AnimBaseBaseFv
+	 *
 	 * --INFO--
 	 * Address:	80304E10
 	 * Size:	000078
 	 */
-	void AnimBaseBase::update(void)
+	bool AnimBaseBase::update(void)
 	{
-		/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lbz      r0, 8(r3)
-	cmplwi   r0, 0
-	beq      lbl_80304E74
-	lwz      r4, sys@sda21(r13)
-	lfs      f2, 0xc(r3)
-	lfs      f1, 0x54(r4)
-	lfs      f0, lbl_8051D598@sda21(r2)
-	fsubs    f1, f2, f1
-	stfs     f1, 0xc(r3)
-	lfs      f1, 0xc(r3)
-	fcmpo    cr0, f1, f0
-	cror     2, 0, 2
-	bne      lbl_80304E6C
-	li       r0, 0
-	stb      r0, 8(r3)
-	stfs     f0, 0xc(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80304E6C:
-	li       r3, 1
-	b        lbl_80304E78
-
-lbl_80304E74:
-	bl       updateSub__Q32og6Screen12AnimBaseBaseFv
-
-lbl_80304E78:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-		*/
+		if (_08) {
+			_0C -= sys->m_secondsPerFrame;
+			if (_0C <= 0.0f) {
+				_08 = false;
+				_0C = 0.0f;
+				start();
+			}
+			return true;
+		}
+		return updateSub();
 	}
 
 	/*
+	 * __ct__Q32og6Screen10AnimScreenFv
+	 *
 	 * --INFO--
 	 * Address:	80304E88
 	 * Size:	00009C
 	 */
-	AnimScreen::AnimScreen(void)
+	AnimScreen::AnimScreen()
 	{
+		m_screen = nullptr;
+		_04      = 1;
 		/*
 	lis      r5, __vt__Q32og6Screen12AnimBaseBase@ha
 	lis      r4, __vt__Q32og6Screen10AnimScreen@ha
@@ -318,12 +279,20 @@ lbl_80304E78:
 	}
 
 	/*
+	 * init__Q32og6Screen10AnimScreenFP10JKRArchiveP9J2DScreenPc
+	 *
 	 * --INFO--
 	 * Address:	80304F24
 	 * Size:	000164
 	 */
-	void AnimScreen::init(JKRArchive*, J2DScreen*, char*)
+	void AnimScreen::init(JKRArchive* archive, J2DScreen* screen,
+	                      char* resourcePath)
 	{
+		AnimBaseBase::init(archive, resourcePath);
+		m_screen = screen;
+		m_screen->setAnimation(m_anm);
+		m_anm->searchUpdateMaterialID(screen);
+		moveAnim();
 		/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -420,54 +389,20 @@ lbl_80304F80:
 	}
 
 	/*
+	 * start__Q32og6Screen10AnimScreenFv
+	 *
 	 * --INFO--
 	 * Address:	80305088
 	 * Size:	000090
 	 */
-	void AnimScreen::start(void)
+	void AnimScreen::start()
 	{
-		/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r0, 0x40(r3)
-	cmplwi   r0, 0
-	beq      lbl_80305108
-	li       r5, 0
-	lfs      f2, lbl_8051D598@sda21(r2)
-	stb      r5, 8(r3)
-	li       r0, 1
-	stfs     f2, 0xc(r3)
-	stb      r0, 0x10(r3)
-	lbz      r0, 8(r3)
-	cmplwi   r0, 0
-	beq      lbl_80305104
-	lwz      r4, sys@sda21(r13)
-	lfs      f1, 0xc(r3)
-	lfs      f0, 0x54(r4)
-	fsubs    f0, f1, f0
-	stfs     f0, 0xc(r3)
-	lfs      f0, 0xc(r3)
-	fcmpo    cr0, f0, f2
-	cror     2, 0, 2
-	bne      lbl_80305108
-	stb      r5, 8(r3)
-	stfs     f2, 0xc(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80305108
-
-lbl_80305104:
-	bl       updateSub__Q32og6Screen12AnimBaseBaseFv
-
-lbl_80305108:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-		*/
+		if (m_screen != nullptr) {
+			_08 = false;
+			_0C = 0.0f;
+			_10 = 1;
+			update();
+		}
 	}
 
 	/*
@@ -475,45 +410,26 @@ lbl_80305108:
 	 * Address:	80305118
 	 * Size:	000060
 	 */
-	void AnimScreen::moveAnim(void)
+	void AnimScreen::moveAnim()
 	{
-		/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lfs      f0, 0x18(r3)
-	lwz      r3, 0x14(r3)
-	stfs     f0, 8(r3)
-	lwz      r3, 0x40(r31)
-	bl       animation__9J2DScreenFv
-	lbz      r0, 0x12(r31)
-	cmplwi   r0, 0
-	beq      lbl_80305164
-	lwz      r3, 0x40(r31)
-	lbz      r4, 0x11(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80305164:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-		*/
+		m_anm->m_currentFrame = m_frame;
+		m_screen->animation();
+		if (_12 != 0) {
+			m_screen->setAlpha(_11);
+		}
 	}
 
 	/*
+	 * __ct__Q32og6Screen8AnimPaneFv
+	 *
 	 * --INFO--
 	 * Address:	80305178
 	 * Size:	0000A0
 	 */
 	AnimPane::AnimPane(void)
 	{
+		m_pane = nullptr;
+		_04    = 2;
 		/*
 	lis      r5, __vt__Q32og6Screen12AnimBaseBase@ha
 	lis      r4, __vt__Q32og6Screen8AnimPane@ha
@@ -559,12 +475,19 @@ lbl_80305164:
 	}
 
 	/*
+	 * init__Q32og6Screen8AnimPaneFP10JKRArchiveP9J2DScreenUxPc
+	 *
 	 * --INFO--
 	 * Address:	80305218
 	 * Size:	000150
 	 */
-	void AnimPane::init(JKRArchive*, J2DScreen*, unsigned long long, char*)
+	void AnimPane::init(JKRArchive* archive, J2DScreen* parentScreen,
+	                    ulonglong tag, char* resourcePath)
 	{
+		AnimBaseBase::init(archive, resourcePath);
+		m_pane = TagSearch(parentScreen, tag);
+		m_pane->setAnimation(m_anm);
+		m_anm->searchUpdateMaterialID(parentScreen);
 		/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -656,161 +579,108 @@ lbl_80305270:
 	}
 
 	/*
+	 * start__Q32og6Screen8AnimPaneFv
+	 *
 	 * --INFO--
 	 * Address:	80305368
 	 * Size:	000090
 	 */
-	void AnimPane::start(void)
+	void AnimPane::start()
 	{
-		/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r0, 0x40(r3)
-	cmplwi   r0, 0
-	beq      lbl_803053E8
-	li       r5, 0
-	lfs      f2, lbl_8051D598@sda21(r2)
-	stb      r5, 8(r3)
-	li       r0, 1
-	stfs     f2, 0xc(r3)
-	stb      r0, 0x10(r3)
-	lbz      r0, 8(r3)
-	cmplwi   r0, 0
-	beq      lbl_803053E4
-	lwz      r4, sys@sda21(r13)
-	lfs      f1, 0xc(r3)
-	lfs      f0, 0x54(r4)
-	fsubs    f0, f1, f0
-	stfs     f0, 0xc(r3)
-	lfs      f0, 0xc(r3)
-	fcmpo    cr0, f0, f2
-	cror     2, 0, 2
-	bne      lbl_803053E8
-	stb      r5, 8(r3)
-	stfs     f2, 0xc(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_803053E8
-
-lbl_803053E4:
-	bl       updateSub__Q32og6Screen12AnimBaseBaseFv
-
-lbl_803053E8:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-		*/
+		if (m_pane != nullptr) {
+			_08 = false;
+			_0C = 0.0f;
+			_10 = 1;
+			update();
+		}
 	}
 
 	/*
+	 * moveAnim__Q32og6Screen8AnimPaneFv
+	 *
 	 * --INFO--
 	 * Address:	803053F8
 	 * Size:	000060
 	 */
-	void AnimPane::moveAnim(void)
+	void AnimPane::moveAnim()
 	{
-		/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lfs      f0, 0x18(r3)
-	lwz      r3, 0x14(r3)
-	stfs     f0, 8(r3)
-	lwz      r3, 0x40(r31)
-	bl       animationTransform__7J2DPaneFv
-	lbz      r0, 0x12(r31)
-	cmplwi   r0, 0
-	beq      lbl_80305444
-	lwz      r3, 0x40(r31)
-	lbz      r4, 0x11(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80305444:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-		*/
+		m_anm->m_currentFrame = m_frame;
+		m_pane->animationTransform();
+		if (_12 != 0) {
+			m_pane->setAlpha(_11);
+		}
 	}
 
 	/*
+	 * __ct__Q32og6Screen9AnimGroupFi
+	 *
 	 * --INFO--
 	 * Address:	80305458
 	 * Size:	000090
 	 */
-	AnimGroup::AnimGroup(int)
+	AnimGroup::AnimGroup(int limit)
 	{
-		/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	slwi     r3, r4, 2
-	bl       __nwa__FUl
-	stw      r3, 0(r30)
-	li       r4, 0
-	mr       r5, r4
-	li       r6, 0
-	stw      r4, 4(r30)
-	stw      r31, 8(r30)
-	b        lbl_803054A8
-
-lbl_80305498:
-	lwz      r3, 0(r30)
-	addi     r6, r6, 1
-	stwx     r4, r3, r5
-	addi     r5, r5, 4
-
-lbl_803054A8:
-	lwz      r0, 8(r30)
-	cmpw     r6, r0
-	blt      lbl_80305498
-	li       r0, 0
-	lfs      f0, lbl_8051D598@sda21(r2)
-	stb      r0, 0xc(r30)
-	mr       r3, r30
-	stfs     f0, 0x10(r30)
-	stfs     f0, 0x14(r30)
-	stfs     f0, 0x18(r30)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-		*/
+		m_animPanes = new AnimBaseBase*[limit];
+		m_paneCount = 0;
+		m_paneLimit = limit;
+		for (int i = 0; i < m_paneLimit; i++) {
+			m_animPanes[i] = nullptr;
+		}
+		_0C = 0;
+		_10 = 0.0f;
+		_14 = 0.0f;
+		_18 = 0.0f;
 	}
 
-	/*
+	/* setAnim__Q32og6Screen9AnimGroup
 	 * --INFO--
 	 * Address:	........
 	 * Size:	000064
 	 */
-	void AnimGroup::setAnim(og::Screen::AnimBaseBase*)
+	void AnimGroup::setAnim(og::Screen::AnimBaseBase* newAnim)
 	{
 		// UNUSED FUNCTION
+		JUT_ASSERTLINE(323, (m_paneCount < m_paneLimit),
+		               "anim group is overflow!!\n");
+		m_animPanes[m_paneCount] = newAnim;
+		m_paneCount++;
 	}
 
 	/*
+	 * update__Q32og6Screen9AnimGroupFv
+	 *
 	 * --INFO--
 	 * Address:	803054E8
 	 * Size:	0001C0
 	 */
-	void AnimGroup::update(void)
+	bool AnimGroup::update()
 	{
+		bool anyUpdated = false;
+		for (int i = 0; i < m_paneLimit; i++) {
+			if (m_animPanes[i] != nullptr) {
+				bool updateResult = true;
+				switch (m_animPanes[i]->_04) {
+				case 1:
+					updateResult = m_animPanes[i]->update();
+					break;
+				case 2:
+					updateResult = m_animPanes[i]->update();
+					break;
+				default:
+					break;
+				}
+				if (updateResult) {
+					anyUpdated = true;
+				}
+			}
+		}
+		// TODO: Fix ordering of params for second condition here
+		if (_0C != 0 && ((int)getFrame() == (int)_10)) {
+			setArea(_14, _18);
+			start();
+			_0C = 0;
+		}
+		return anyUpdated;
 		/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -958,43 +828,22 @@ lbl_80305684:
 	 * Address:	803056A8
 	 * Size:	00005C
 	 */
-	void AnimGroup::setSpeed(float)
+	void AnimGroup::setSpeed(float speed)
 	{
-		/*
-	li       r6, 0
-	li       r5, 0
-	b        lbl_803056F4
-
-lbl_803056B4:
-	lwz      r4, 0(r3)
-	lwzx     r4, r4, r5
-	cmplwi   r4, 0
-	beq      lbl_803056EC
-	lwz      r0, 4(r4)
-	cmpwi    r0, 2
-	beq      lbl_803056E8
-	bge      lbl_803056EC
-	cmpwi    r0, 1
-	bge      lbl_803056E0
-	b        lbl_803056EC
-
-lbl_803056E0:
-	stfs     f1, 0x20(r4)
-	b        lbl_803056EC
-
-lbl_803056E8:
-	stfs     f1, 0x20(r4)
-
-lbl_803056EC:
-	addi     r5, r5, 4
-	addi     r6, r6, 1
-
-lbl_803056F4:
-	lwz      r0, 8(r3)
-	cmpw     r6, r0
-	blt      lbl_803056B4
-	blr
-		*/
+		for (int i = 0; i < m_paneLimit; i++) {
+			if (m_animPanes[i] != nullptr) {
+				switch (m_animPanes[i]->_04) {
+				case 1:
+					m_animPanes[i]->_20 = speed;
+					break;
+				case 2:
+					m_animPanes[i]->_20 = speed;
+					break;
+				default:
+					break;
+				}
+			}
+		}
 	}
 
 	/*
@@ -1002,43 +851,22 @@ lbl_803056F4:
 	 * Address:	80305704
 	 * Size:	00005C
 	 */
-	void AnimGroup::setRepeat(bool)
+	void AnimGroup::setRepeat(bool repeat)
 	{
-		/*
-	li       r7, 0
-	li       r6, 0
-	b        lbl_80305750
-
-lbl_80305710:
-	lwz      r5, 0(r3)
-	lwzx     r5, r5, r6
-	cmplwi   r5, 0
-	beq      lbl_80305748
-	lwz      r0, 4(r5)
-	cmpwi    r0, 2
-	beq      lbl_80305744
-	bge      lbl_80305748
-	cmpwi    r0, 1
-	bge      lbl_8030573C
-	b        lbl_80305748
-
-lbl_8030573C:
-	stb      r4, 0x38(r5)
-	b        lbl_80305748
-
-lbl_80305744:
-	stb      r4, 0x38(r5)
-
-lbl_80305748:
-	addi     r6, r6, 4
-	addi     r7, r7, 1
-
-lbl_80305750:
-	lwz      r0, 8(r3)
-	cmpw     r7, r0
-	blt      lbl_80305710
-	blr
-		*/
+		for (int i = 0; i < m_paneLimit; i++) {
+			if (m_animPanes[i] != nullptr) {
+				switch (m_animPanes[i]->_04) {
+				case 1:
+					m_animPanes[i]->_38 = repeat;
+					break;
+				case 2:
+					m_animPanes[i]->_38 = repeat;
+					break;
+				default:
+					break;
+				}
+			}
+		}
 	}
 
 	/*
@@ -1046,43 +874,22 @@ lbl_80305750:
 	 * Address:	80305760
 	 * Size:	00005C
 	 */
-	void AnimGroup::setFrame(float)
+	void AnimGroup::setFrame(float frame)
 	{
-		/*
-	li       r6, 0
-	li       r5, 0
-	b        lbl_803057AC
-
-lbl_8030576C:
-	lwz      r4, 0(r3)
-	lwzx     r4, r4, r5
-	cmplwi   r4, 0
-	beq      lbl_803057A4
-	lwz      r0, 4(r4)
-	cmpwi    r0, 2
-	beq      lbl_803057A0
-	bge      lbl_803057A4
-	cmpwi    r0, 1
-	bge      lbl_80305798
-	b        lbl_803057A4
-
-lbl_80305798:
-	stfs     f1, 0x18(r4)
-	b        lbl_803057A4
-
-lbl_803057A0:
-	stfs     f1, 0x18(r4)
-
-lbl_803057A4:
-	addi     r5, r5, 4
-	addi     r6, r6, 1
-
-lbl_803057AC:
-	lwz      r0, 8(r3)
-	cmpw     r6, r0
-	blt      lbl_8030576C
-	blr
-		*/
+		for (int i = 0; i < m_paneLimit; i++) {
+			if (m_animPanes[i] != nullptr) {
+				switch (m_animPanes[i]->_04) {
+				case 1:
+					m_animPanes[i]->m_frame = frame;
+					break;
+				case 2:
+					m_animPanes[i]->m_frame = frame;
+					break;
+				default:
+					break;
+				}
+			}
+		}
 	}
 
 	/*
@@ -1090,47 +897,34 @@ lbl_803057AC:
 	 * Address:	........
 	 * Size:	000040
 	 */
-	void AnimGroup::setAlpha(unsigned char)
+	void AnimGroup::setAlpha(uchar alpha)
 	{
 		// UNUSED FUNCTION
+		// TODO: Confirm size.
+		for (int i = 0; i < m_paneLimit; i++) {
+			if (m_animPanes[i] != nullptr) {
+				m_animPanes[i]->_11 = alpha;
+			}
+		}
 	}
 
 	/*
+	 * setAllArea__Q32og6Screen9AnimGroupFv
+	 *
 	 * --INFO--
 	 * Address:	803057BC
 	 * Size:	000054
 	 */
-	void AnimGroup::setAllArea(void)
+	void AnimGroup::setAllArea()
 	{
-		/*
-	lfs      f2, lbl_8051D598@sda21(r2)
-	li       r6, 0
-	li       r5, 0
-	b        lbl_80305800
-
-lbl_803057CC:
-	lwz      r4, 0(r3)
-	lwzx     r4, r4, r5
-	cmplwi   r4, 0
-	beq      lbl_803057F8
-	stfs     f2, 0x2c(r4)
-	lfs      f0, 0x1c(r4)
-	stfs     f0, 0x30(r4)
-	lfs      f1, 0x30(r4)
-	lfs      f0, 0x2c(r4)
-	fsubs    f0, f1, f0
-	stfs     f0, 0x34(r4)
-
-lbl_803057F8:
-	addi     r5, r5, 4
-	addi     r6, r6, 1
-
-lbl_80305800:
-	lwz      r0, 8(r3)
-	cmpw     r6, r0
-	blt      lbl_803057CC
-	blr
-		*/
+		for (int i = 0; i < m_paneLimit; i++) {
+			AnimBaseBase* pane = m_animPanes[i];
+			if (pane != nullptr) {
+				pane->_2C = 0.0f;
+				pane->_30 = pane->m_lastFrame;
+				pane->_34 = pane->_30 - pane->_2C;
+			}
+		}
 	}
 
 	/*
@@ -1138,136 +932,74 @@ lbl_80305800:
 	 * Address:	80305810
 	 * Size:	000020
 	 */
-	void AnimGroup::getFrame(void)
+	float AnimGroup::getFrame()
 	{
-		/*
-	lwz      r0, 4(r3)
-	lfs      f1, lbl_8051D598@sda21(r2)
-	cmpwi    r0, 0
-	blelr
-	lwz      r3, 0(r3)
-	lwz      r3, 0(r3)
-	lfs      f1, 0x18(r3)
-	blr
-		*/
+		// if (0 >= m_paneCount) {
+		// 	return 0.0f;
+		// } else {
+		// 	return m_animPanes[0]->m_frame;
+		// }
+		float result = 0.0f;
+		if (m_paneCount > 0) {
+			result = m_animPanes[0]->m_frame;
+		}
+		return result;
+		// return (m_paneCount <= 0) ? 0.0f : m_animPanes[0]->m_frame;
+		// return (0 >= m_paneCount) ? 0.0f : m_animPanes[0]->m_frame;
+		// if (m_paneCount > 0) {
+		// 	return m_animPanes[0]->m_frame;
+		// }
+		// return 0.0f;
 	}
 
 	/*
+	 * setArea__Q32og6Screen9AnimGroupFff
+	 *
 	 * --INFO--
 	 * Address:	80305830
 	 * Size:	000088
 	 */
-	void AnimGroup::setArea(float, float)
+	void AnimGroup::setArea(float frame, float p2)
 	{
-		/*
-	fsubs    f0, f2, f1
-	li       r6, 0
-	li       r5, 0
-	b        lbl_803058A8
-
-lbl_80305840:
-	lwz      r4, 0(r3)
-	lwzx     r4, r4, r5
-	cmplwi   r4, 0
-	beq      lbl_803058A0
-	lwz      r0, 4(r4)
-	cmpwi    r0, 2
-	beq      lbl_80305888
-	bge      lbl_803058A0
-	cmpwi    r0, 1
-	bge      lbl_8030586C
-	b        lbl_803058A0
-
-lbl_8030586C:
-	stfs     f1, 0x2c(r4)
-	li       r0, 1
-	stfs     f2, 0x30(r4)
-	stfs     f0, 0x34(r4)
-	stfs     f1, 0x18(r4)
-	stb      r0, 0x10(r4)
-	b        lbl_803058A0
-
-lbl_80305888:
-	stfs     f1, 0x2c(r4)
-	li       r0, 1
-	stfs     f2, 0x30(r4)
-	stfs     f0, 0x34(r4)
-	stfs     f1, 0x18(r4)
-	stb      r0, 0x10(r4)
-
-lbl_803058A0:
-	addi     r5, r5, 4
-	addi     r6, r6, 1
-
-lbl_803058A8:
-	lwz      r0, 8(r3)
-	cmpw     r6, r0
-	blt      lbl_80305840
-	blr
-		*/
+		for (int i = 0; i < m_paneLimit; i++) {
+			if (m_animPanes[i] != nullptr) {
+				switch (m_animPanes[i]->_04) {
+				case 1:
+					m_animPanes[i]->setArea(frame, p2);
+					break;
+				case 2:
+					m_animPanes[i]->setArea(frame, p2);
+					break;
+				default:
+					break;
+				}
+			}
+		}
 	}
 
 	/*
+	 * start__Q32og6Screen9AnimGroupFv
+	 *
 	 * --INFO--
 	 * Address:	803058B8
 	 * Size:	0000A8
 	 */
 	void AnimGroup::start(void)
 	{
-		/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	li       r31, 0
-	stw      r30, 0x18(r1)
-	li       r30, 0
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	b        lbl_80305938
-
-lbl_803058E0:
-	lwz      r3, 0(r29)
-	lwzx     r3, r3, r31
-	cmplwi   r3, 0
-	beq      lbl_80305930
-	lwz      r0, 4(r3)
-	cmpwi    r0, 2
-	beq      lbl_80305920
-	bge      lbl_80305930
-	cmpwi    r0, 1
-	bge      lbl_8030590C
-	b        lbl_80305930
-
-lbl_8030590C:
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80305930
-
-lbl_80305920:
-	lwz      r12, 0(r3)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-
-lbl_80305930:
-	addi     r31, r31, 4
-	addi     r30, r30, 1
-
-lbl_80305938:
-	lwz      r0, 8(r29)
-	cmpw     r30, r0
-	blt      lbl_803058E0
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-		*/
+		for (int i = 0; i < m_paneLimit; i++) {
+			if (m_animPanes[i] != nullptr) {
+				switch (m_animPanes[i]->_04) {
+				case 1:
+					m_animPanes[i]->start();
+					break;
+				case 2:
+					m_animPanes[i]->start();
+					break;
+				default:
+					break;
+				}
+			}
+		}
 	}
 
 	/*
@@ -1275,16 +1007,12 @@ lbl_80305938:
 	 * Address:	80305960
 	 * Size:	000018
 	 */
-	void AnimGroup::reservAnim(float, float, float)
+	void AnimGroup::reservAnim(float p1, float p2, float p3)
 	{
-		/*
-	li       r0, 1
-	stb      r0, 0xc(r3)
-	stfs     f1, 0x10(r3)
-	stfs     f2, 0x14(r3)
-	stfs     f3, 0x18(r3)
-	blr
-		*/
+		_0C = 1;
+		_10 = p1;
+		_14 = p2;
+		_18 = p3;
 	}
 
 	/*
@@ -1292,18 +1020,13 @@ lbl_80305938:
 	 * Address:	80305978
 	 * Size:	000020
 	 */
-	void AnimGroup::getLastFrame(void)
+	float AnimGroup::getLastFrame()
 	{
-		/*
-	lwz      r0, 4(r3)
-	lfs      f1, lbl_8051D598@sda21(r2)
-	cmpwi    r0, 0
-	blelr
-	lwz      r3, 0(r3)
-	lwz      r3, 0(r3)
-	lfs      f1, 0x1c(r3)
-	blr
-		*/
+		float result = 0.0f;
+		if (m_paneCount > 0) {
+			result = m_animPanes[0]->m_lastFrame;
+		}
+		return result;
 	}
 
 	/*
@@ -1311,9 +1034,13 @@ lbl_80305938:
 	 * Address:	80305998
 	 * Size:	000254
 	 */
-	void registAnimGroupScreen(og::Screen::AnimGroup*, JKRArchive*, J2DScreen*,
-	                           char*, float)
+	void registAnimGroupScreen(AnimGroup* group, JKRArchive* archive,
+	                           J2DScreen* screen, char* resourcePath, float p5)
 	{
+		AnimScreen* newGroupPane = new AnimScreen();
+		newGroupPane->init(archive, screen, resourcePath);
+		newGroupPane->_24 = p5;
+		group->setAnim(newGroupPane);
 		/*
 		.loc_0x0:
 		  stwu      r1, -0x40(r1)
@@ -1481,9 +1208,18 @@ lbl_80305938:
 	 * Address:	80305BEC
 	 * Size:	00025C
 	 */
-	void registAnimGroupPane(og::Screen::AnimGroup*, JKRArchive*, J2DScreen*,
-	                         unsigned long long, char*, float)
+	void registAnimGroupPane(AnimGroup* group, JKRArchive* archive,
+	                         J2DScreen* parentScreen, ulonglong tag,
+	                         char* resourcePath, float p6)
 	{
+		AnimPane* newGroupPane = new AnimPane();
+		newGroupPane->init(archive, parentScreen, tag, resourcePath);
+		newGroupPane->_24 = p6;
+		JUT_ASSERTLINE(323, (group->m_paneCount < group->m_paneLimit),
+		               "anim group is overflow!!\n");
+		group->m_animPanes[group->m_paneCount] = newGroupPane;
+		group->m_paneCount++;
+
 		/*
 		.loc_0x0:
 		  stwu      r1, -0x40(r1)
@@ -1653,7 +1389,7 @@ lbl_80305938:
 	 * Address:	........
 	 * Size:	000058
 	 */
-	AnimList::AnimList(unsigned short)
+	AnimList::AnimList(ushort)
 	{
 		// UNUSED FUNCTION
 	}
@@ -1673,7 +1409,7 @@ lbl_80305938:
 	 * Address:	........
 	 * Size:	000014
 	 */
-	void AnimList::start(void)
+	void AnimList::start()
 	{
 		// UNUSED FUNCTION
 	}
@@ -1693,7 +1429,7 @@ lbl_80305938:
 	 * Address:	........
 	 * Size:	000114
 	 */
-	void AnimList::update(void)
+	void AnimList::update()
 	{
 		// UNUSED FUNCTION
 	}

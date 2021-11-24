@@ -1,6 +1,6 @@
 #include "types.h"
 
-#include "cellPyramid.h"
+#include "Game/cellPyramid.h"
 #include "BaseParm.h"
 #include "CellMgrParms.h"
 #include "Dolphin/math.h"
@@ -450,23 +450,23 @@ inline void Cell::dump()
 // 	return 0.0f;
 // }
 
-inline float pikmin2_sqrtf(float x)
-{
-	if (!(x > 0.0f)) { // if x <= 0
-		return x;
-	}
+// inline float pikmin2_sqrtf(float x)
+// {
+// 	if (!(x > 0.0f)) { // if x <= 0
+// 		return x;
+// 	}
 
-	register float reg1 = x;
-	register float reg2 = 0.0f;
-	register float result;
+// 	register float reg1 = x;
+// 	register float reg2 = 0.0f;
+// 	register float result;
 
-	asm {
-      frsqrte reg2, reg1
-      fmuls result, reg2, reg1
-	}
+// 	asm {
+//       frsqrte reg2, reg1
+//       fmuls result, reg2, reg1
+// 	}
 
-	return result;
-}
+// 	return result;
+// }
 
 /*
  * --INFO--
@@ -2534,14 +2534,15 @@ void CellPyramid::entry(CellObject* param_1, Sys::Sphere& param_2, int& param_3,
 			cell->exit(&param_1->m_cellLegs.arrayView[iVar9], bVar5);
 			// 			if (cell->_1C == &param_1.m_cellLegs.arrayView[iVar9]) {
 			// 				cell->_1C =
-			// param_1.m_cellLegs.arrayView[iVar9].m_next; 				if (cell->_1C
+			// param_1.m_cellLegs.arrayView[iVar9].m_next; 				if
+			// (cell->_1C
 			// != nullptr) { 					cell->_1C->m_prev = nullptr;
 			// 				}
 			// 			}
 			// 			if ((bVar5) && (cell->_14 != 0)) {
 			// 				cell->_14--;
-			// 				for (Cell* iCell = cell->_10; iCell != nullptr; iCell
-			// = iCell->_10) { 					iCell->_16--;
+			// 				for (Cell* iCell = cell->_10; iCell != nullptr;
+			// iCell = iCell->_10) { 					iCell->_16--;
 			// 				}
 			// 			}
 			// 			cell->_18--;

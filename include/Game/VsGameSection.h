@@ -2,11 +2,28 @@
 #define _GAME_VSGAMESECTION_H
 
 #include "types.h"
+#include "Game/BaseGameSection.h"
+#include "Vector3.h"
 
 namespace Game {
-struct VsGameSection {
+struct PikiContainer;
+struct MovieConfig;
+
+namespace ItemHole {
+	struct Item;
+} // namespace ItemHole
+
+namespace ItemBigFountain {
+	struct Item;
+} // namespace ItemBigFountain
+
+struct VsGameSection : public BaseGameSection {
+	struct DropCardArg {
+	};
+
 	VsGameSection(JKRHeap*, bool);
-	~VsGameSection();
+
+	virtual ~VsGameSection();
 
 	void addChallengeScore(int);
 	void calcVsScores();
@@ -14,13 +31,13 @@ struct VsGameSection {
 	void clearCaveMenus();
 	void clearGetCherryCount();
 	void clearGetDopeCount();
-	void createFallPikmins(Game::PikiContainer&, int);
-	void createRedBlueBedamas(Vector3<float>&);
+	void createFallPikmins(PikiContainer&, int);
+	void createRedBlueBedamas(Vector3f&);
 	void createVsPikmins();
 	void createYellowBedamas(int);
 	void doDraw(Graphics&);
-	void doUpdate();
-	void dropCard(void DropCardArg&);
+	virtual bool doUpdate();
+	void dropCard(DropCardArg&);
 	void getCaveFilename();
 	void getCurrFloor();
 	void getEditorFilename();
@@ -28,7 +45,7 @@ struct VsGameSection {
 	void getVsEditNumber();
 	void gmOrimaDown(int);
 	void gmPikminZero();
-	void goNextFloor(Game::ItemHole::Item*);
+	void goNextFloor(ItemHole::Item*);
 	void initCardGeneration();
 	void initCardPellets();
 	void initPlayData();
@@ -36,17 +53,17 @@ struct VsGameSection {
 	void loadVsStageList();
 	void onClearHeap();
 	void onInit();
-	void onMovieDone(Game::MovieConfig*, unsigned long, unsigned long);
-	void onMovieStart(Game::MovieConfig*, unsigned long, unsigned long);
+	void onMovieDone(MovieConfig*, ulong, ulong);
+	void onMovieStart(MovieConfig*, ulong, ulong);
 	void onSetSoundScene();
 	void onSetupFloatMemory();
-	void openCaveMoreMenu(Game::ItemHole::Item*, Controller*);
-	void openKanketuMenu(Game::ItemBigFountain::Item*, Controller*);
+	void openCaveMoreMenu(ItemHole::Item*, Controller*);
+	void openKanketuMenu(ItemBigFountain::Item*, Controller*);
 	void player2enabled();
 	void postSetupFloatMemory();
 	void pre2dDraw(Graphics&);
 	void section_fadeout();
-	void sendMessage(Game::GameMessage&);
+	void sendMessage(GameMessage&);
 	void startMainBgm();
 	void updateCardGeneration();
 	void updateCaveMenus();

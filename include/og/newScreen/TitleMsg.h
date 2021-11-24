@@ -10,6 +10,7 @@ namespace newScreen {
 		virtual void end();    // _0C
 
 		// _00 VTBL
+		// TODO: non-virtual functions and data members
 	};
 } // namespace newScreen
 } // namespace og
