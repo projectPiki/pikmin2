@@ -811,6 +811,7 @@ lbl_80498758:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
+.balign 4
 lbl_80498764:
 	.asciz "khFinalFloor.cpp"
 .balign 4

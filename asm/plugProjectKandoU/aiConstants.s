@@ -1,58 +1,5 @@
 .include "macros.inc"
-.section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
-.global lbl_8047FC28
-lbl_8047FC28:
-	.4byte 0x6169436F
-	.4byte 0x6E737461
-	.4byte 0x6E747300
-	.4byte 0x646F7065
-	.4byte 0x636F756E
-	.4byte 0x74000000
-	.4byte 0x63616D65
-	.4byte 0x72615F61
-	.4byte 0x6E676C65
-	.4byte 0x00000000
-	.4byte 0x2F757365
-	.4byte 0x722F4B61
-	.4byte 0x6E646F2F
-	.4byte 0x6169436F
-	.4byte 0x6E737461
-	.4byte 0x6E74732E
-	.4byte 0x74787400
-	.4byte 0x00000000
-
-.section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
-.global __vt__Q24Game11AIConstants
-__vt__Q24Game11AIConstants:
-	.4byte 0
-	.4byte 0
-	.4byte __dt__Q24Game11AIConstantsFv
-	.4byte getChildCount__5CNodeFv
-
-.section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
-.global _aiConstants__4Game
-_aiConstants__4Game:
-	.skip 0x8
-
-.section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
-.global lbl_80519428
-lbl_80519428:
-	.4byte 0x67726176
-	.4byte 0x69747900
-.global lbl_80519430
-lbl_80519430:
-	.4byte 0x64656274
-	.4byte 0x00000000
-.global lbl_80519438
-lbl_80519438:
-	.4byte 0x43340000
-	.4byte 0x00000000
-
-.section .text, "ax"  # 0x800056C0 - 0x80472F00
+.section .text, "ax" # 0x800056C0 - 0x80472F00
 .global __ct__Q24Game11AIConstantsFv
 __ct__Q24Game11AIConstantsFv:
 /* 801B62B0 001B31F0  94 21 FB C0 */	stwu r1, -0x440(r1)
@@ -172,3 +119,43 @@ lbl_801B644C:
 /* 801B645C 001B339C  7C 08 03 A6 */	mtlr r0
 /* 801B6460 001B33A0  38 21 00 10 */	addi r1, r1, 0x10
 /* 801B6464 001B33A4  4E 80 00 20 */	blr 
+
+.section .rodata # 0x804732E0 - 0x8049E220
+.balign 8
+lbl_8047FC28:
+	.asciz "aiConstants"
+.balign 4
+lbl_8047FC34:
+	.asciz "dopecount"
+.balign 4
+lbl_8047FC40:
+	.asciz "camera_angle"
+.balign 4
+lbl_8047FC50:
+	.asciz "/user/Kando/aiConstants.txt"
+
+.section .data, "wa" # 0x8049E220 - 0x804EFC20
+.balign 0x8
+.global __vt__Q24Game11AIConstants
+__vt__Q24Game11AIConstants:
+	.4byte 0
+	.4byte 0
+	.4byte __dt__Q24Game11AIConstantsFv
+	.4byte getChildCount__5CNodeFv
+
+.section .sbss # 0x80514D80 - 0x80516360
+.balign 8
+.global _aiConstants__4Game
+_aiConstants__4Game:
+	.skip 8
+
+.section .sdata2, "a" # 0x80516360 - 0x80520E40
+.balign 8
+lbl_80519428:
+	.asciz "gravity"
+.balign 4
+lbl_80519430:
+	.asciz "debt"
+.balign 4
+lbl_80519438:
+	.float 180.0
