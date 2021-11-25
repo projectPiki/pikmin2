@@ -11,18 +11,18 @@ struct Graphics;
 struct Platform;
 struct PlatAttacher;
 namespace Sys {
-	struct Sphere;
-	struct RayIntersectInfo;
-}
+struct Sphere;
+struct RayIntersectInfo;
+} // namespace Sys
 namespace SysShape {
-	struct Model;
+struct Model;
 }
 namespace Game {
-	struct BaseItem;
-	struct Creature;
-	struct CurrTriInfo;
-	struct MoveInfo;
-}
+struct BaseItem;
+struct Creature;
+struct CurrTriInfo;
+struct MoveInfo;
+} // namespace Game
 
 namespace Game {
 struct PlatAddInstanceArg {
@@ -54,9 +54,9 @@ struct PlatInstance : public CellObject {
 	BaseItem* _F4;
 	ID32 m_id;
 	u32 _104;
-	u8 _108;       // _108
-	u8 _109[3];    // _109, manual padding
-	u8 _10C;       // _10C // I don't think this should be here...
+	u8 _108;    // _108
+	u8 _109[3]; // _109, manual padding
+	u8 _10C;    // _10C // I don't think this should be here...
 };
 
 struct PlatInstanceAttacher {
@@ -71,10 +71,10 @@ struct PlatInstanceAttacher {
 	void setCollision(bool, ushort);
 	void setShapeVisibility();
 
-	int m_instanceCount;             // _00
-	PlatInstance** m_platInstances;  // _04
-	PlatAttacher* m_attacher;        // _08
-	SysShape::Model* m_model;        // _0C
+	int m_instanceCount;            // _00
+	PlatInstance** m_platInstances; // _04
+	PlatAttacher* m_attacher;       // _08
+	SysShape::Model* m_model;       // _0C
 };
 
 struct PlatMgr : public NodeObjectMgr<PlatInstance> {

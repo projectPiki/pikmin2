@@ -68,13 +68,13 @@ Cylinder::Cylinder(const Vector3f& p1, const Vector3f& p2, float p3, float p4)
 // void set__Q23Sys8CylinderFRC10Vector3f RC10Vector3f f(void)
 void Cylinder::set(const Vector3f& p1, const Vector3f& p2, float p3)
 {
-	_00.x = (p1.x + p2.x) * 0.5f;
-	_00.y = (p1.y + p2.y) * 0.5f;
-	_00.z = (p1.z + p2.z) * 0.5f;
-	_0C.x = p2.x - p1.x;
-	_0C.y = p2.y - p1.y;
-	_0C.z = p2.z - p1.z;
-	float root = pikmin2_sqrtf(_0C.z*_0C.z + _0C.x*_0C.x + _0C.y*_0C.y);
+	_00.x      = (p1.x + p2.x) * 0.5f;
+	_00.y      = (p1.y + p2.y) * 0.5f;
+	_00.z      = (p1.z + p2.z) * 0.5f;
+	_0C.x      = p2.x - p1.x;
+	_0C.y      = p2.y - p1.y;
+	_0C.z      = p2.z - p1.z;
+	float root = pikmin2_sqrtf(_0C.z * _0C.z + _0C.x * _0C.x + _0C.y * _0C.y);
 	if (root > 0.0f) {
 		_0C.x *= 1.0f / root;
 		_0C.y *= 1.0f / root;
@@ -157,7 +157,6 @@ lbl_80421740:
 	blr
 	*/
 }
-
 
 /*
  * --INFO--

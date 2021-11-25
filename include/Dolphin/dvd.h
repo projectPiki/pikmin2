@@ -41,8 +41,10 @@ extern BOOL DVDFastOpen(long, DVDPlayer*);
 extern BOOL DVDClose(DVDPlayer*);
 extern int DVDCancel(DVDPlayer*); // Definitely int; returns -1 on failure.
 extern BOOL DVDResume();
-extern BOOL DVDReadAsyncPrio(DVDPlayer*, void*, long, long, DVDDoneReadCallback*, int);
-extern BOOL DVDReadAbsAsyncPrio(DVDPlayer*, void*, long, u8*, DVDDoneReadCallback*, int);
+extern BOOL DVDReadAsyncPrio(DVDPlayer*, void*, long, long,
+                             DVDDoneReadCallback*, int);
+extern BOOL DVDReadAbsAsyncPrio(DVDPlayer*, void*, long, u8*,
+                                DVDDoneReadCallback*, int);
 
 extern BOOL DVDConvertEntrynumToPath(int, char*);
 extern int DVDConvertPathToEntrynum(char*);
@@ -50,7 +52,8 @@ extern int DVDConvertPathToEntrynum(char*);
 extern BOOL DVDOpenDir(char*, OSFstEntry*);
 extern BOOL DVDReadDir(OSFstEntry*, OSFstEntry*);
 extern BOOL DVDCloseDir(OSFstEntry*);
-extern int DVDChangeDir(char*); // this might be a BOOL, but the problem there is it's treated as 4 bytes...
+extern int DVDChangeDir(char*); // this might be a BOOL, but the problem there
+                                // is it's treated as 4 bytes...
 
 extern int DVDGetDriveStatus();
 extern int DVDGetCommandBlockStatus(DVDPlayer*);

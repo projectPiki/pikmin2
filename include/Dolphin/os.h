@@ -42,7 +42,8 @@ typedef void* OSMessage;
 
 #define MSG_QUEUE_SHOULD_BLOCK 1
 
-void OSInitMessageQueue(OSMessageQueue* queue, OSMessage* msgSlots, int slotCount);
+void OSInitMessageQueue(OSMessageQueue* queue, OSMessage* msgSlots,
+                        int slotCount);
 BOOL OSSendMessage(OSMessageQueue* queue, OSMessage message, int flags);
 BOOL OSReceiveMessage(OSMessageQueue* queue, OSMessage* msg, int flags);
 

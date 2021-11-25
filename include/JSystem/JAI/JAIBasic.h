@@ -6,7 +6,7 @@
 struct JKRHeap;
 struct JAISound;
 namespace JAInter {
-	struct Camera;
+struct Camera;
 }
 
 struct JAIBasic {

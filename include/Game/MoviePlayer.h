@@ -12,31 +12,31 @@ struct JPAResourceManager;
 struct Pikmin_TCreateObject_JAudio;
 struct Viewport;
 namespace Game {
-	struct Creature;
-	struct MovieConfig;
-	struct Navi;
-	struct PlayCamera;
-	namespace P2JST {
-		struct ObjectSystem;
-	}
+struct Creature;
+struct MovieConfig;
+struct Navi;
+struct PlayCamera;
+namespace P2JST {
+	struct ObjectSystem;
 }
+} // namespace Game
 namespace JStudio {
-	struct TControl;
-	struct TFactory;
-}
+struct TControl;
+struct TFactory;
+} // namespace JStudio
 namespace JStudio_JParticle {
-	struct TCreateObject;
+struct TCreateObject;
 }
 namespace JStudio_JStage {
-	struct TCreateObject;
+struct TCreateObject;
 }
 namespace P2JME {
-	namespace Movie {
-		struct TControl;
-	}
+namespace Movie {
+	struct TControl;
 }
+} // namespace P2JME
 namespace PSM {
-	struct Demo;
+struct Demo;
 }
 
 namespace Game {
@@ -46,13 +46,14 @@ struct MoviePlayArg {
 	char* m_courseName;                          // _04
 	char* _08;                                   // _08
 	IDelegate3<MovieConfig*, ulong, ulong>* _0C; // _0C
-	IDelegate3<MovieConfig*, void*, ulong>* _10; // _10 /* Second type is unknown. */
-	u32 _14;                                     // _14
-	Vector3f m_origin;                           // _18 /* previously called m_itemPosition */
-	float m_angle;                               // _24 /* previously called m_itemFaceDirection */
-	ulong m_naviID;                              // _28
-	uint m_streamID;                             // _2C
-	Vector3f* m_soundPosition;                   // _30
+	IDelegate3<MovieConfig*, void*, ulong>*
+	    _10;           // _10 /* Second type is unknown. */
+	u32 _14;           // _14
+	Vector3f m_origin; // _18 /* previously called m_itemPosition */
+	float m_angle;     // _24 /* previously called m_itemFaceDirection */
+	ulong m_naviID;    // _28
+	uint m_streamID;   // _2C
+	Vector3f* m_soundPosition; // _30
 };
 
 // Size: 0x5C
@@ -117,11 +118,7 @@ struct MoviePlayer {
 	P2JME::Movie::TControl* m_movieControl;
 	u32 m_counter;
 	void* m_stbFile;
-	enum {
-		IS_ACTIVE = 1,
-		_1F0_UNKNOWN_2 = 2,
-		_FORCE_INT = 0xFFFFFFFF
-	} m_flags;
+	enum { IS_ACTIVE = 1, _1F0_UNKNOWN_2 = 2, _FORCE_INT = 0xFFFFFFFF } m_flags;
 	// uint m_isActive : 1, m_1F0_Unknown : 1;
 	JPAResourceManager* m_resourceManager;
 };

@@ -10,7 +10,7 @@ struct TriangleTable : public ArrayContainer<Sys::Triangle> {
 };
 
 struct VertexTable : public ArrayContainer<Vector3f> {
-	virtual void addOne(Vector3<float> &);
+	virtual void addOne(Vector3<float>&);
 };
 } // namespace Sys
 

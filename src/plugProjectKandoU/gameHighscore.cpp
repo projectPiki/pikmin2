@@ -37,7 +37,7 @@ namespace Game {
 Highscore::Highscore(void)
 {
 	m_scoreCount = 0;
-	m_scores = nullptr;
+	m_scores     = nullptr;
 }
 
 /*
@@ -48,7 +48,7 @@ Highscore::Highscore(void)
 void Highscore::allocate(int count)
 {
 	m_scoreCount = count;
-	m_scores = new int[m_scoreCount];
+	m_scores     = new int[m_scoreCount];
 	clear();
 }
 
@@ -82,7 +82,7 @@ inline void Highscore::newRecord(int)
  */
 int Highscore::entryScore(int newScore)
 {
-	int newIndex = -1;
+	int newIndex  = -1;
 	int nextIndex = 0;
 	while (nextIndex < m_scoreCount) {
 		if (higher(newScore, m_scores[nextIndex])) {
@@ -92,8 +92,8 @@ int Highscore::entryScore(int newScore)
 		nextIndex++;
 	}
 	if (newIndex != -1) {
-		for (int i = m_scoreCount-1; i > newIndex; i--) {
-			m_scores[i] = m_scores[i-1];
+		for (int i = m_scoreCount - 1; i > newIndex; i--) {
+			m_scores[i] = m_scores[i - 1];
 		}
 		m_scores[newIndex] = newScore;
 	}
@@ -121,10 +121,7 @@ bool Highscore::higher(int a, int b)
  * Address:	80233F98
  * Size:	000018
  */
-bool Highscore::do_higher(int a, int b)
-{
-	return a > b;
-}
+bool Highscore::do_higher(int a, int b) { return a > b; }
 
 /*
  * --INFO--

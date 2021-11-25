@@ -6,7 +6,7 @@
 struct Graphics;
 
 namespace Game {
-	struct RouteMgr;
+struct RouteMgr;
 }
 namespace Game {
 struct PathfindRequest {
@@ -51,9 +51,9 @@ struct AStarPathfinder {
 	AStarContext* m_context; // _00
 };
 struct Pathfinder {
-	u32 _00;                                 // _00
-	s32 m_clientCount;                       // _04
-	s32 aStarContextCount;                   // _08
+	u32 _00;                          // _00
+	s32 m_clientCount;                // _04
+	s32 aStarContextCount;            // _08
 	AStarContext* aStarContexts;      // _0C
 	AStarPathfinder* aStarPathfinder; // _10
 

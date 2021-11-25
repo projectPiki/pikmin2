@@ -37,10 +37,11 @@ void OSInitMessageQueue(void)
 }
 
 /*
- * When (`shouldBlock` & 1), then this function blocks execution of the current thread
- * if `msgQueue` is full, until such a time that it is no longer full.
- * When not (`shouldBlock` & 1), this function returns `false` immediately if `msgQueue` is full.
- * This function returns `true` when the message is successfully queued.
+ * When (`shouldBlock` & 1), then this function blocks execution of the current
+ * thread if `msgQueue` is full, until such a time that it is no longer full.
+ * When not (`shouldBlock` & 1), this function returns `false` immediately if
+ * `msgQueue` is full. This function returns `true` when the message is
+ * successfully queued.
  * --INFO--
  * Address:	800EF51C
  * Size:	0000C8

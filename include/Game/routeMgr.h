@@ -28,7 +28,6 @@ struct RouteMgr : public Container<WayPoint> {
 	void openRoom(short);
 	void sonarCheck(SonarArg&);
 	void directDraw(Graphics&, WayPoint*, WayPoint*);
-
 };
 
 struct EditorRouteMgr : public RouteMgr {

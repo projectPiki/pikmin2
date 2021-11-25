@@ -28,7 +28,6 @@ typedef uint _GXVtxFmt;
 typedef uint _GXCompCnt;
 typedef uint _GXCompType;
 
-
 // Names are guessed
 typedef enum _SDK_GXFogType {
 	GX_FOG_NONE       = 0,

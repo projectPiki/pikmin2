@@ -692,8 +692,7 @@ PlatInstanceAttacher::PlatInstanceAttacher()
  * Address:	801C51BC
  * Size:	0001B0
  */
-void Game::PlatInstanceAttacher::addToMgr(Creature*, ID32&,
-                                           PlatAttacher*, bool)
+void Game::PlatInstanceAttacher::addToMgr(Creature*, ID32&, PlatAttacher*, bool)
 {
 	/*
 	.loc_0x0:
@@ -1571,9 +1570,7 @@ void PlatMgr::addInstance(PlatAddInstanceArg&)
  * Address:	801C5B94
  * Size:	000004
  */
-void PlatInstance::constructor()
-{
-}
+void PlatInstance::constructor() { }
 
 /*
  * --INFO--
@@ -2456,9 +2453,7 @@ void PlatMgr::resetOnCount(void)
  * Address:	801C666C
  * Size:	000004
  */
-void PlatMgr::doDirectDraw(Graphics&)
-{
-}
+void PlatMgr::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
@@ -2717,63 +2712,49 @@ void Iterator<Game::PlatInstance>::first()
  * Address:	801C6948
  * Size:	000004
  */
-void Game::PlatInstance::checkCollision(Game::CellObject*)
-{
-}
+void Game::PlatInstance::checkCollision(Game::CellObject*) { }
 
 /*
  * --INFO--
  * Address:	801C694C
  * Size:	000004
  */
-void Game::PlatInstance::doAnimation()
-{
-}
+void Game::PlatInstance::doAnimation() { }
 
 /*
  * --INFO--
  * Address:	801C6950
  * Size:	000004
  */
-void Game::PlatInstance::doEntry()
-{
-}
+void Game::PlatInstance::doEntry() { }
 
 /*
  * --INFO--
  * Address:	801C6954
  * Size:	000004
  */
-void Game::PlatInstance::doSetView(int)
-{
-}
+void Game::PlatInstance::doSetView(int) { }
 
 /*
  * --INFO--
  * Address:	801C6958
  * Size:	000004
  */
-void Game::PlatInstance::doViewCalc(void)
-{
-}
+void Game::PlatInstance::doViewCalc(void) { }
 
 /*
  * --INFO--
  * Address:	801C695C
  * Size:	000004
  */
-void Game::PlatInstance::doSimulation(float)
-{
-}
+void Game::PlatInstance::doSimulation(float) { }
 
 /*
  * --INFO--
  * Address:	801C6960
  * Size:	000004
  */
-void Game::PlatInstance::doDirectDraw(Graphics&)
-{
-}
+void Game::PlatInstance::doDirectDraw(Graphics&) { }
 
 /*
  * --INFO--
