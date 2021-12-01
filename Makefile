@@ -15,29 +15,16 @@ VERSION := usa
 
 BUILD_DIR := build/$(NAME).$(VERSION)
 
-SRC_DIRS := src src/Dolphin src/JSystem src/sysBootupU src/sysCommonU src/sysGCU \
-			src/plugProjectEbisawaU src/plugProjectHikinoU src/plugProjectKandoU \
-			src/plugProjectKonoU src/plugProjectMorimuraU src/plugProjectNishimuraU \
-			src/plugProjectOgawaU src/plugProjectYamashitaU src/utilityU src/Dolphin/ddh \
-			src/JSystem/dsp src/JSystem/fvb src/JSystem/J2D src/JSystem/J3D src/JSystem/JAD \
-			src/JSystem/JAI src/JSystem/JAL src/JSystem/JAS src/JSystem/JAU \
-			src/JSystem/JFW src/JSystem/JKR src/JSystem/JMath src/JSystem/JPA \
-			src/JSystem/JSG src/JSystem/jstudio src/JSystem/JSU src/JSystem/JUT \
-			src/JSystem/object src/JSystem/stb src/JSystem/std
-			
-ASM_DIRS := asm asm/Dolphin asm/JSystem asm/sysCommonU asm/sysGCU \
-			asm/plugProjectEbisawaU asm/plugProjectHikinoU asm/plugProjectKandoU \
-			asm/plugProjectKonoU asm/plugProjectMorimuraU asm/plugProjectNishimuraU \
-			asm/plugProjectOgawaU asm/plugProjectYamashitaU asm/utilityU asm/Dolphin/ddh \
-			asm/JSystem/dsp asm/JSystem/fvb asm/JSystem/J2D asm/JSystem/J3D \
-			asm/JSystem/JAI asm/JSystem/JAL asm/JSystem/JAS asm/JSystem/JAU \
-			asm/JSystem/JFW asm/JSystem/JKR asm/JSystem/JMath asm/JSystem/JPA \
-			asm/JSystem/JSG asm/JSystem/jstudio asm/JSystem/JSU asm/JSystem/JUT \
-			asm/JSystem/object asm/JSystem/stb asm/JSystem/std
+SRC_DIRS := $(shell find src/ -type f -name '*.c')
+SRC_DIRS += $(shell find src/ -type f -name '*.cp')
+SRC_DIRS += $(shell find src/ -type f -name '*.cpp')
+ASM_DIRS := $(shell find asm/ -type f -name '*.s')
+
 # Inputs
 S_FILES := $(wildcard asm/*.s)
 C_FILES := $(wildcard src/*.c)
 CPP_FILES := $(wildcard src/*.cpp)
+CPP_FILES += $(wildcard src/*.cp)
 LDSCRIPT := $(BUILD_DIR)/ldscript.lcf
 READMEGEN := tools/UpdateReadme.exe
 
