@@ -204,8 +204,8 @@ void TagParameters::read(Stream& stream)
 	while (true) {
 		char* str  = stream.readString(nullptr, 0);
 		s32 strLen = strlen("end");
-
-		if (__cntlzw(strncmp("end", str, strLen)) >> 5 & 0xff) // needs refining
+		bool is_end = ((strncmp("end", str, strLen)) == 0);
+		if (is_end)
 			break;
 
 		for (TagParm* node = this->m_head; node; node = node->m_next) {
