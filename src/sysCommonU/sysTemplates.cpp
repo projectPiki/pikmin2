@@ -95,69 +95,33 @@ void BitFlags::all_one() { set_all(0xFF); }
  * Address:	8041C39C
  * Size:	000030
  */
-// TODO: Finish this function
-// clang-format off
-asm void BitFlags::setFlag(u16 idx)
+void BitFlags::setFlag(u16 input)
 {
-    // m_flagArr[r4 >> 3] |= 1 << (u8)(r4 - (r4 & 0xFFF8) & 0xFFFF);
-    nofralloc
-    rlwinm    r5,r4,0,16,31
-    rlwinm    r0,r4,0,16,28
-    sub       r0, r5, r0
-    lwz       r5, 0x0(r3)
-    rlwinm    r6,r4,29,19,31
-    li        r3, 0x1
-    rlwinm    r0,r0,0,16,31
-    lbzx      r4, r5, r6
-    slw       r0, r3, r0
-    or        r0, r4, r0
-    stbx      r0, r5, r6
-    blr
+	u16 foo = input >> 3;
+	input   = (input - (input & ~7));
+	m_flagArr[foo] |= 1 << input;
 }
 
 /*
-* --INFO--
-* Address:	8041C3CC
-* Size:	000030
-*/
-asm void BitFlags::resetFlag(u16 idx)
+ * --INFO--
+ * Address:	8041C3CC
+ * Size:	000030
+ */
+void BitFlags::resetFlag(u16 input)
 {
-    nofralloc
-    rlwinm    r5,r4,0,16,31
-    rlwinm    r0,r4,0,16,28
-    sub       r0, r5, r0
-    lwz       r5, 0x0(r3)
-    rlwinm    r6,r4,29,19,31
-    li        r3, 0x1
-    rlwinm    r0,r0,0,16,31
-    lbzx      r4, r5, r6
-    slw       r0, r3, r0
-    andc      r0, r4, r0
-    stbx      r0, r5, r6
-    blr
+	u16 foo = input >> 3;
+	input   = (input - (input & ~7));
+	m_flagArr[foo] &= ~(1 << input);
 }
 
 /*
-* --INFO--
-* Address:	8041C3FC
-* Size:	000038
-*/
-asm bool BitFlags::isFlag(u16 idx)
+ * --INFO--
+ * Address:	8041C3FC
+ * Size:	000038
+ */
+bool BitFlags::isFlag(u16 input)
 {
-    nofralloc
-    rlwinm    r5,r4,0,16,31
-    rlwinm    r0,r4,0,16,28
-    sub       r0, r5, r0
-    lwz       r3, 0x0(r3)
-    rlwinm    r6,r4,29,19,31
-    li        r5, 0x1
-    rlwinm    r4,r0,0,16,31
-    lbzx      r0, r3, r6
-    slw       r3, r5, r4
-    and       r3, r3, r0
-    neg       r0, r3
-    or        r0, r0, r3
-    rlwinm    r3,r0,1,31,31
-    blr
+	u16 foo = input >> 3;
+	input   = (input - (input & ~7));
+	return (m_flagArr[foo] & (1 << input)) != 0;
 }
-// clang-format on

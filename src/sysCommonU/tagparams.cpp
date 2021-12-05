@@ -202,8 +202,8 @@ void TagParameters::read(Stream& stream)
 {
 	// More cleanup
 	while (true) {
-		char* str  = stream.readString(nullptr, 0);
-		s32 strLen = strlen("end");
+		char* str   = stream.readString(nullptr, 0);
+		s32 strLen  = strlen("end");
 		bool is_end = ((strncmp("end", str, strLen)) == 0);
 		if (is_end)
 			break;
