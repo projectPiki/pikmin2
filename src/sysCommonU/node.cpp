@@ -60,7 +60,7 @@ extern const char lbl_80520260[8];  // CNode
  * Address:	80411204
  * Size:	000004
  */
-Node* Node::init() { return this; }
+void Node::init() { }
 
 /*
  * --INFO--

@@ -12,7 +12,7 @@ struct Node {
 	Node* m_current;  // _0C
 	u32 m_flags;      // _10
 
-	Node* init();
+	void init();
 	void displayInfo(int);
 	void update();
 	void draw(Graphics&);
