@@ -97,9 +97,9 @@ void BitFlags::all_one() { set_all(0xFF); }
  */
 void BitFlags::setFlag(u16 input)
 {
-	u16 foo = input >> 3;
+	u16 index = input >> 3;
 	input   = (input - (input & ~7));
-	m_flagArr[foo] |= 1 << input;
+	m_flagArr[index] |= 1 << input;
 }
 
 /*
@@ -109,9 +109,9 @@ void BitFlags::setFlag(u16 input)
  */
 void BitFlags::resetFlag(u16 input)
 {
-	u16 foo = input >> 3;
+	u16 index = input >> 3;
 	input   = (input - (input & ~7));
-	m_flagArr[foo] &= ~(1 << input);
+	m_flagArr[index] &= ~(1 << input);
 }
 
 /*
@@ -121,7 +121,7 @@ void BitFlags::resetFlag(u16 input)
  */
 bool BitFlags::isFlag(u16 input)
 {
-	u16 foo = input >> 3;
+	u16 index = input >> 3;
 	input   = (input - (input & ~7));
-	return (m_flagArr[foo] & (1 << input)) != 0;
+	return (m_flagArr[index] & (1 << input)) != 0;
 }
