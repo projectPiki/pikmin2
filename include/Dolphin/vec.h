@@ -9,6 +9,12 @@ typedef float PSVector[3];
 extern "C" {
 #endif // ifdef __cplusplus
 
+typedef struct Vec {
+	float x;
+	float y;
+	float z;
+} Vec;
+
 void PSVECAdd(PSVector, PSVector, PSVector);
 void PSVECSubtract(PSVector, PSVector, PSVector);
 void PSVECNormalize(PSVector, PSVector);
