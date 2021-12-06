@@ -57,11 +57,11 @@ namespace Screen {
 		virtual void doDraw();                  // _3C
 		virtual char* getName();                // _40
 
-		void hidePanes() const;
-		void openFromCardE() const;
-		void openFromMovie() const;
+		void hidePanes_() const;
+		void openFromCardE_() const;
+		void openFromMovie_() const;
 		void setController(Controller*);
-		void showPanes() const;
+		void showPanes_() const;
 
 		// TODO: Data members.
 		u8 _0C[0x454];
@@ -142,12 +142,16 @@ namespace Omake {
 	};
 
 	struct TMgr {
+		TMgr();
+
 		void draw();
+		void forceQuit();
 		int getMovieID();
 		int getStateID();
-		void goEnd() const;
+		void goEnd_();
 		bool isFinish();
 		bool isMovieState();
+		bool isTouchAnyKey_();
 		void loadResource();
 		void newCardEMgrAndTask();
 		void restartFromMovieState();

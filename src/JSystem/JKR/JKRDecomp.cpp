@@ -1,3 +1,6 @@
+#include "JSystem/JKR/JKRDecomp.h"
+#include "JSystem/JKR/Aram.h"
+#include "JSystem/JKR/JKRHeap.h"
 #include "types.h"
 
 /*
@@ -38,8 +41,14 @@
  * Address:	8001C934
  * Size:	000060
  */
-void JKRDecomp::create(long)
+JKRDecomp* JKRDecomp::create(long p1)
 {
+	JKRDecomp* thread = sDecompObject;
+	if (sDecompObject == nullptr) {
+		thread = new JKRDecomp(p1);
+	}
+	sDecompObject = thread;
+	return sDecompObject;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -77,8 +86,10 @@ lbl_8001C97C:
  * Address:	8001C994
  * Size:	000050
  */
-JKRDecomp::JKRDecomp(long)
+JKRDecomp::JKRDecomp(long p1)
+    : JKRThread(0x4000, 0x10, p1)
 {
+	OSResumeThread(m_osThread);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -147,66 +158,36 @@ lbl_8001CA28:
  */
 void JKRDecomp::run()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	lis      r3, sMessageQueue__9JKRDecomp@ha
-	lis      r4, sMessageBuffer__9JKRDecomp@ha
-	stw      r0, 0x24(r1)
-	addi     r3, r3, sMessageQueue__9JKRDecomp@l
-	li       r5, 4
-	addi     r4, r4, sMessageBuffer__9JKRDecomp@l
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	bl       OSInitMessageQueue
-	lis      r3, sMessageQueue__9JKRDecomp@ha
-	addi     r31, r3, sMessageQueue__9JKRDecomp@l
-
-lbl_8001CA78:
-	mr       r3, r31
-	addi     r4, r1, 8
-	li       r5, 1
-	bl       OSReceiveMessage
-	lwz      r30, 8(r1)
-	lwz      r3, 4(r30)
-	lwz      r4, 8(r30)
-	lwz      r5, 0xc(r30)
-	lwz      r6, 0x10(r30)
-	bl       decode__9JKRDecompFPUcPUcUlUl
-	lwz      r0, 0x20(r30)
-	cmpwi    r0, 0
-	beq      lbl_8001CAC0
-	cmpwi    r0, 1
-	bne      lbl_8001CA78
-	lwz      r3, 0x24(r30)
-	bl       sendCommand__12JKRAramPieceFP12JKRAMCommand
-	b        lbl_8001CA78
-
-lbl_8001CAC0:
-	lwz      r12, 0x14(r30)
-	cmplwi   r12, 0
-	beq      lbl_8001CADC
-	mr       r3, r30
-	mtctr    r12
-	bctrl
-	b        lbl_8001CA78
-
-lbl_8001CADC:
-	lwz      r3, 0x1c(r30)
-	cmplwi   r3, 0
-	beq      lbl_8001CAF8
-	li       r4, 1
-	li       r5, 0
-	bl       OSSendMessage
-	b        lbl_8001CA78
-
-lbl_8001CAF8:
-	addi     r3, r30, 0x28
-	li       r4, 1
-	li       r5, 0
-	bl       OSSendMessage
-	b        lbl_8001CA78
-	*/
+	void* inputBuffer[1];
+	JKRDecompCommand* command;
+	// int outMessage;
+	OSInitMessageQueue(&sMessageQueue, sMessageBuffer, 4);
+	while (true) {
+		while (true) {
+			while (true) {
+				OSReceiveMessage(&sMessageQueue, inputBuffer, TRUE);
+				command = static_cast<JKRDecompCommand*>(inputBuffer[0]);
+				decode(command->_04, command->_08, command->_0C, command->_10);
+				if (command->_20 == 0) {
+					break;
+				}
+				if (command->_20 == 1) {
+					JKRAramPiece::sendCommand(command->_24);
+				}
+			}
+			if (command->m_callback == nullptr) {
+				break;
+			}
+			command->m_callback(command);
+		}
+		if (command->_1C != nullptr) {
+			// outMessage = 1;
+			OSSendMessage(command->_1C, (void*)1, FALSE);
+		} else {
+			// outMessage = 1;
+			OSSendMessage(&command->_28, (void*)1, FALSE);
+		}
+	}
 }
 
 /*
@@ -214,22 +195,9 @@ lbl_8001CAF8:
  * Address:	8001CB0C
  * Size:	000030
  */
-void JKRDecomp::sendCommand(JKRDecompCommand*)
+BOOL JKRDecomp::sendCommand(JKRDecompCommand* command)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r5, sMessageQueue__9JKRDecomp@ha
-	mr       r4, r3
-	stw      r0, 0x14(r1)
-	addi     r3, r5, sMessageQueue__9JKRDecomp@l
-	li       r5, 1
-	bl       OSSendMessage
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return OSSendMessage(&sMessageQueue, command, TRUE);
 }
 
 /*
@@ -237,54 +205,20 @@ void JKRDecomp::sendCommand(JKRDecompCommand*)
  * Address:	8001CB3C
  * Size:	0000A0
  */
-void JKRDecomp::orderSync(unsigned char*, unsigned char*, unsigned long,
-                          unsigned long)
+bool JKRDecomp::orderSync(uchar* p1, uchar* p2, ulong p3, ulong p4)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stmw      r27, 0x1C(r1)
-	  mr        r28, r4
-	  mr        r27, r3
-	  mr        r29, r5
-	  mr        r30, r6
-	  li        r3, 0x4C
-	  li        r5, -0x4
-	  lwz       r4, -0x77D8(r13)
-	  bl        0x73D8
-	  mr.       r31, r3
-	  beq-      .loc_0x40
-	  bl        0x3CC
-	  mr        r31, r3
-
-	.loc_0x40:
-	  stw       r27, 0x4(r31)
-	  lis       r3, 0x804A
-	  li        r0, 0
-	  mr        r4, r31
-	  stw       r28, 0x8(r31)
-	  subi      r3, r3, 0x2D8
-	  li        r5, 0x1
-	  stw       r29, 0xC(r31)
-	  stw       r30, 0x10(r31)
-	  stw       r0, 0x14(r31)
-	  bl        0xD2978
-	  addi      r3, r31, 0x28
-	  addi      r4, r1, 0x8
-	  li        r5, 0x1
-	  bl        0xD2A30
-	  mr        r3, r31
-	  li        r4, 0x1
-	  bl        0x3D0
-	  lmw       r27, 0x1C(r1)
-	  li        r3, 0x1
-	  lwz       r0, 0x34(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
-	*/
+	JKRDecompCommand* command
+	    = new (JKRHeap::sSystemHeap, -4) JKRDecompCommand();
+	command->_04        = p1;
+	command->_08        = p2;
+	command->_0C        = p3;
+	command->_10        = p4;
+	command->m_callback = nullptr;
+	OSSendMessage(&sMessageQueue, command, TRUE);
+	void* inputBuffer[1];
+	OSReceiveMessage(&command->_28, inputBuffer, TRUE);
+	delete command;
+	return true;
 }
 
 /*
@@ -292,9 +226,16 @@ void JKRDecomp::orderSync(unsigned char*, unsigned char*, unsigned long,
  * Address:	8001CBDC
  * Size:	00008C
  */
-void JKRDecomp::decode(unsigned char*, unsigned char*, unsigned long,
-                       unsigned long)
+void JKRDecomp::decode(uchar* p1, uchar* p2, ulong p3, ulong p4)
 {
+	switch (checkCompressed(p1)) {
+	case YAY0:
+		decodeSZP(p1, p2, p3, p4);
+		break;
+	case YAZ0:
+		decodeSZS(p1, p2, p3, p4);
+		break;
+	}
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x20(r1)
@@ -341,14 +282,96 @@ void JKRDecomp::decode(unsigned char*, unsigned char*, unsigned long,
 	*/
 }
 
+#ifdef EXTRACT_TO_UINT
+#error EXTRACT_TO_UINT already defined.
+#else
+/* Args are array variable, followed by indices of bytes from least- to
+ * most-significant. */
+#define EXTRACT_TO_UINT(array, i1, i2, i3, i4)                      \
+	((uint)array[i1] | (uint)array[i2] << 8 | (uint)array[i3] << 16 \
+	 | (uint)array[i4] << 24)
+
 /*
  * --INFO--
  * Address:	8001CC68
  * Size:	0001A4
  */
-void JKRDecomp::decodeSZP(unsigned char*, unsigned char*, unsigned long,
-                          unsigned long)
+void JKRDecomp::decodeSZP(uchar* p1, uchar* p2, ulong p3, ulong p4)
 {
+	// uint v5 = (uint)p1[11] | (uint)p1[10] << 8 | (uint)p1[9] << 16 |
+	// (uint)p1[8] << 24; uint v2 = (uint)p1[7]  | (uint)p1[6]  << 8 |
+	// (uint)p1[5] << 16 | (uint)p1[4] << 24;
+	uint v5 = EXTRACT_TO_UINT(p1, 11, 10, 9, 8);
+	uint v2 = EXTRACT_TO_UINT(p1, 7, 6, 5, 4);
+	int v4  = 0;
+	int v6  = 0;
+	int v3  = 0x10;
+	uint vr;
+	if (p3 != 0 && p4 <= v2) {
+		// uchar* v7 = p1 + ((uint)p1[15] | (uint)p1[14] << 8 | (uint)p1[13] <<
+		// 16 | (uint)p1[12] << 24)
+		uchar* v7  = p1 + EXTRACT_TO_UINT(p1, 15, 14, 13, 12);
+		uchar* v13 = p2;
+		do {
+			if (v6 == 0) {
+				uchar* v9 = p1 + v3;
+				v6        = 0x20;
+				v3 += 4;
+				vr = EXTRACT_TO_UINT(v9, 3, 2, 1, 0);
+			}
+			if ((vr & 0x80000000)) {
+				if (p4 == 0) {
+					p3--;
+					*v13 = *v7;
+					if (p3 == 0) {
+						return;
+					}
+				} else {
+					p4--;
+				}
+				v4++;
+				v13++;
+				v7++;
+			} else {
+				ushort* v10 = reinterpret_cast<ushort*>(p1 + v5);
+				v5 += 2;
+				int v8 = v4 - ((reinterpret_cast<uchar*>(v10)[0] & 0xF) << 8)
+				         | (reinterpret_cast<uchar*>(v10)[1]);
+				uchar v1;
+				int v11;
+				if ((int)*v10 >> 0xC == 0) {
+					v1 = *v7;
+					v7++;
+					v11 = v1 + 0x12;
+				} else {
+					v11 = ((int)*v10 >> 0xC) + 2;
+				}
+				if (v11 > v2 - v4) {
+					v11 = v2 - v4;
+				}
+				uchar* v12 = p2 + v4;
+				if (0 < v11) {
+					do {
+						if (p4 == 0) {
+							p3--;
+							*v12 = p2[v8 - 1];
+							if (p3 == 0) {
+								return;
+							}
+						} else {
+							p4--;
+						}
+						v4++;
+						v13++;
+						v12++;
+						v8++;
+					} while (--v11 != 0);
+				}
+			}
+			vr <<= 1;
+			v6--;
+		} while (v4 < v2);
+	}
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x20(r1)
@@ -484,6 +507,8 @@ void JKRDecomp::decodeSZP(unsigned char*, unsigned char*, unsigned long,
 	  blr
 	*/
 }
+#undef EXTRACT_TO_UINT
+#endif
 
 /*
  * --INFO--
@@ -580,7 +605,7 @@ void JKRDecomp::decodeSZS(unsigned char*, unsigned char*, unsigned long,
  * Address:	8001CEF0
  * Size:	000050
  */
-void JKRDecomp::checkCompressed(unsigned char*)
+JKRDecomp::CompressionMode JKRDecomp::checkCompressed(uchar*)
 {
 	/*
 	lbz      r0, 0(r3)

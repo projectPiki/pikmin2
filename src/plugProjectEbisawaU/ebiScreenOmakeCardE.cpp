@@ -1,3 +1,4 @@
+#include "ebi/Omake.h"
 #include "types.h"
 
 /*
@@ -556,7 +557,7 @@ lbl_803F06B8:
 	 * Address:	803F0930
 	 * Size:	000054
 	 */
-	void TOmakeCardE::doUpdateStateOpen(void)
+	bool TOmakeCardE::doUpdateStateOpen(void)
 	{
 		/*
 	stwu     r1, -0x10(r1)
@@ -588,7 +589,7 @@ lbl_803F06B8:
 	 * Address:	803F0984
 	 * Size:	00029C
 	 */
-	void TOmakeCardE::doUpdateStateWait(void)
+	bool TOmakeCardE::doUpdateStateWait(void)
 	{
 		/*
 	stwu     r1, -0x20(r1)
@@ -800,7 +801,7 @@ lbl_803F0C08:
 	 * Address:	803F0C20
 	 * Size:	000054
 	 */
-	void TOmakeCardE::doUpdateStateClose(void)
+	bool TOmakeCardE::doUpdateStateClose(void)
 	{
 		/*
 	stwu     r1, -0x10(r1)
@@ -872,7 +873,7 @@ lbl_803F0C08:
 	 * Address:	803F0CE8
 	 * Size:	00000C
 	 */
-	void TOmakeCardE::getName(void)
+	char* TOmakeCardE::getName(void)
 	{
 		/*
 	lis      r3, lbl_80497BDC@ha

@@ -15,7 +15,7 @@ namespace Screen {
 			DONT_USE_2 = 0xFFFFFFFF
 		};
 
-		~ScaleMgr() { }
+		~ScaleMgr(); // { }
 		ScaleMgr();
 		void up();
 		void down();

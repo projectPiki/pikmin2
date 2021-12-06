@@ -1,3 +1,4 @@
+#include "JSystem/JKR/Aram.h"
 #include "types.h"
 
 /*

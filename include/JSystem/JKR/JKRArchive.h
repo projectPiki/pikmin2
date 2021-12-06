@@ -9,29 +9,64 @@ struct JKRArchive : public JKRFileLoader {
 	enum EMountMode { EMM_Unk0 = 0, EMM_Unk1, EMM_Unk2 };
 	enum EMountDirection { EMD_Unk0 = 0, EMD_Unk1, EMD_Unk2 };
 
-	virtual ~JKRArchive();                                        // _00
-	virtual void unmount();                                       // _04
+	struct CArcName {
+		CArcName(const char**, char);
+
+		const char* getString() const;
+		ushort getHash() const;
+		void store(const char*);
+		char* store(const char*, char);
+
+		ushort m_hash;      // _00
+		short _02;          // _02
+		char m_string[256]; // _04
+	};
+
+	struct SDIFileEntry {
+		u8 _00[2];     // _00
+		ushort m_hash; // _02
+		uint _04;      // _04
+		int _08;       // _08
+		int m_size;    // _0C
+		int _10;       // _10
+	};
+
+	JKRArchive(long, EMountMode);
+
+	virtual ~JKRArchive(); // _00
+	// virtual void unmount();                                       // _04
 	virtual void becomeCurrent(const char*);                      // _08
 	virtual void* getResource(const char*);                       // _0C
 	virtual void* getResource(unsigned long, const char*);        // _10
 	virtual void readResource(void*, unsigned long, const char*); // _14
 	virtual void readResource(void*, unsigned long, unsigned long,
-	                          const char*);                          // _18
-	virtual void removeResourceAll();                                // _1C
-	virtual void removeResource(void*);                              // _20
-	virtual void detachResource(void*);                              // _24
-	virtual void getResSize(const void*) const;                      // _28
-	virtual void countFile(const char*) const;                       // _2C
-	virtual void getFirstFile(const char*) const;                    // _30
-	virtual void getExpandedResSize(const void*) const;              // _34
-	virtual void _38() = 0;                                          // _38
-	virtual void _3C() = 0;                                          // _3C
-	virtual void setExpandSize(struct SDIFileEntry*, unsigned long); // _40
-	virtual void getExpandSize(struct SDIFileEntry*) const;          // _44
+	                          const char*);                               // _18
+	virtual void removeResourceAll();                                     // _1C
+	virtual void removeResource(void*);                                   // _20
+	virtual void detachResource(void*);                                   // _24
+	virtual void getResSize(const void*) const;                           // _28
+	virtual void countFile(const char*) const;                            // _2C
+	virtual void getFirstFile(const char*) const;                         // _30
+	virtual void getExpandedResSize(const void*) const;                   // _34
+	virtual u32 fetchResource(SDIFileEntry*, ulong*)                 = 0; // _38
+	virtual void* fetchResource(void*, ulong, SDIFileEntry*, ulong*) = 0; // _3C
+	virtual void setExpandSize(SDIFileEntry*, unsigned long);             // _40
+	virtual void getExpandSize(SDIFileEntry*) const;                      // _44
 
-	// TODO: determine return type
-	static u32* mount(char const*, JKRArchive::EMountMode, JKRHeap*,
-	                  JKRArchive::EMountDirection);
+	u32 findDirectory(const char*, ulong) const;
+	SDIFileEntry* findFsResource(const char*, ulong) const;
+	SDIFileEntry* findIdResource(ushort) const;
+	SDIFileEntry* findIdxResource(ulong) const;
+	SDIFileEntry* findNameResource(const char*) const;
+	SDIFileEntry* findPtrResource(const void*) const;
+	SDIFileEntry* findTypeResource(ulong, const char*) const;
+	bool isSameName(CArcName&, ulong, ushort) const;
+
+	static JKRArchive* mount(char const*, JKRArchive::EMountMode, JKRHeap*,
+	                         JKRArchive::EMountDirection);
+};
+
+struct JKRMemArchive : public JKRArchive {
 };
 
 #endif

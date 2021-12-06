@@ -1,3 +1,4 @@
+#include "JSystem/J2D/J2DAnm.h"
 #include "types.h"
 
 /*
@@ -930,7 +931,7 @@ lbl_8005B928:
  * Address:	8005B944
  * Size:	000238
  */
-void J2DAnmColorFull::getColor(unsigned short, _GXColor*) const
+void J2DAnmColorFull::getColor(unsigned short, GXColor*) const
 {
 	/*
 	lwz      r6, 0x40(r3)
@@ -1107,7 +1108,7 @@ lbl_8005BB74:
  * Address:	8005BB7C
  * Size:	0002CC
  */
-void J2DAnmColorKey::getColor(unsigned short, _GXColor*) const
+void J2DAnmColorKey::getColor(unsigned short, GXColor*) const
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -1345,8 +1346,8 @@ lbl_8005BE24:
  * Address:	8005BE48
  * Size:	000240
  */
-void J2DAnmVtxColorFull::getColor(unsigned char, unsigned short,
-                                  _GXColor*) const
+void J2DAnmVtxColorFull::getColor(uchar, ushort,
+                                  GXColor*) const
 {
 	/*
 	.loc_0x0:
@@ -1526,7 +1527,7 @@ void J2DAnmVtxColorFull::getColor(unsigned char, unsigned short,
  * Address:	8005C088
  * Size:	0002F4
  */
-void J2DAnmVtxColorKey::getColor(unsigned char, unsigned short, _GXColor*) const
+void J2DAnmVtxColorKey::getColor(uchar, ushort, GXColor*) const
 {
 	/*
 	stwu     r1, -0x40(r1)

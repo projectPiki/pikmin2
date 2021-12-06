@@ -3,18 +3,29 @@
 
 #include "types.h"
 #include "CNode.h"
-#include "Game/GenericObjectMgr.h"
+#include "GenericObjectMgr.h"
 #include "JSystem/JKR/JKRHeap.h"
 #include "Game/enemyInfo.h"
 
 namespace Game {
 struct EnemyMgrNode : public CNode, GenericObjectMgr {
-	virtual void killAll();
-	virtual void setupSoundViewerAndBas();
-	virtual void setDebugParm(ulong);
-	virtual void resetDebugParm();
-	virtual void startMovie();
-	virtual void endMovie();
+	// vtable 1
+	virtual void doAnimation();           // _00
+	virtual void doEntry();               // _04
+	virtual void doSetView(int);          // _08
+	virtual void doViewCalc();            // _0C
+	virtual void doSimulation(float);     // _10
+	virtual void doDirectDraw(Graphics&); // _14
+	virtual void doSimpleDraw(Viewport*); // _18
+	// vtable 2
+	virtual ~EnemyMgrNode();               // _00
+	virtual void killAll();                // _4C
+	virtual void setupSoundViewerAndBas(); // _50
+	virtual void setDebugParm(ulong);      // _54
+	virtual void resetDebugParm();         // _58
+	virtual void startMovie();             // _5C
+	virtual void endMovie();               // _60
+	virtual u32 getMatrixLoadType();       // _64
 
 	// GenericObjectMgr+EnemyMgrNode VT = _18
 	EEnemyTypeID m_enemyID;     // _1C

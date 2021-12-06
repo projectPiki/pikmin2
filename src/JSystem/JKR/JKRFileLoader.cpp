@@ -1,3 +1,4 @@
+#include "JSystem/JKR/JKRFileLoader.h"
 #include "types.h"
 
 /*
@@ -172,7 +173,7 @@ lbl_80022FBC:
  * Address:	80022FCC
  * Size:	00004C
  */
-void JKRFileLoader::getGlbResource(const char*)
+void* JKRFileLoader::getGlbResource(const char*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -206,7 +207,7 @@ lbl_80023008:
  * Address:	80023018
  * Size:	000098
  */
-void JKRFileLoader::getGlbResource(const char*, JKRFileLoader*)
+void* JKRFileLoader::getGlbResource(const char*, JKRFileLoader*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -263,7 +264,7 @@ lbl_80023098:
  * Address:	800230B0
  * Size:	00008C
  */
-void JKRFileLoader::findVolume(const char**)
+JKRArchive* JKRFileLoader::findVolume(const char**)
 {
 	/*
 	stwu     r1, -0x120(r1)

@@ -1,15 +1,19 @@
 #ifndef _PARAMETERS_H
 #define _PARAMETERS_H
 
-#include "id32.h"
-#include "stream.h"
+#include "types.h"
 
-typedef struct BaseParm BaseParm;
+struct BaseParm;
+struct Stream;
 
-struct Parameters {
-	inline Parameters(void* end, BaseParm* head, char* name)
-	    : m_endAddress(end)
-	    , m_parmsHead(head)
+// @fabricatedName
+struct IParameters {
+	// void* m_endAddress; // _00
+};
+
+struct Parameters : virtual IParameters {
+	Parameters(BaseParm* head, char* name)
+	    : m_parmsHead(head)
 	    , m_name(name)
 	{
 	}
@@ -17,7 +21,6 @@ struct Parameters {
 	void read(Stream&);
 	BaseParm* findParm(ulong);
 
-	void* m_endAddress;    // _00
 	BaseParm* m_parmsHead; // _04
 	char* m_name;          // _08
 };

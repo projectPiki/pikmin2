@@ -1,3 +1,4 @@
+#include "JSystem/JKR/Aram.h"
 #include "types.h"
 
 /*
@@ -144,7 +145,7 @@
  * Address:	80017A10
  * Size:	000094
  */
-void JKRAram::create(unsigned long, unsigned long, long, long, long)
+JKRAram* JKRAram::create(ulong, ulong, long, long, long)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -196,7 +197,7 @@ lbl_80017A70:
  * Address:	80017AA4
  * Size:	00011C
  */
-JKRAram::JKRAram(unsigned long, unsigned long, long)
+JKRAram::JKRAram(ulong, ulong, long)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -382,9 +383,10 @@ lbl_80017CB4:
  * Address:	80017CC0
  * Size:	00028C
  */
-void JKRAram::mainRamToAram(unsigned char*, unsigned long, unsigned long,
-                            JKRExpandSwitch, unsigned long, JKRHeap*, int,
-                            unsigned long*)
+JKRAramBlock* JKRAram::mainRamToAram(unsigned char*, unsigned long,
+                                     unsigned long, JKRExpandSwitch,
+                                     unsigned long, JKRHeap*, int,
+                                     unsigned long*)
 {
 	/*
 	.loc_0x0:
@@ -607,9 +609,8 @@ void JKRAram::mainRamToAram(unsigned char*, unsigned long, unsigned long,
  * Address:	80017F4C
  * Size:	0002DC
  */
-void JKRAram::aramToMainRam(unsigned long, unsigned char*, unsigned long,
-                            JKRExpandSwitch, unsigned long, JKRHeap*, int,
-                            unsigned long*)
+uchar* JKRAram::aramToMainRam(ulong, uchar*, ulong, JKRExpandSwitch, ulong,
+                              JKRHeap*, int, ulong*)
 {
 	/*
 	.loc_0x0:

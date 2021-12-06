@@ -1,9 +1,8 @@
-#include "types.h"
-
-#include "System.h"
 #include "Dolphin/os.h"
 #include "JSystem/JKR/JKRHeap.h"
-#include "JSystem/JUTException.h"
+#include "JSystem/JUT/JUTException.h"
+#include "System.h"
+#include "types.h"
 
 /*
     Generated from dpostproc

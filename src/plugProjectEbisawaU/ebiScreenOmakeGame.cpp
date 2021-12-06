@@ -1,3 +1,4 @@
+#include "ebi/Omake.h"
 #include "types.h"
 
 /*
@@ -664,7 +665,7 @@ lbl_803F1430:
 	 * Address:	803F1530
 	 * Size:	000054
 	 */
-	void TOmakeGame::doUpdateStateOpen(void)
+	bool TOmakeGame::doUpdateStateOpen(void)
 	{
 		/*
 	stwu     r1, -0x10(r1)
@@ -696,7 +697,7 @@ lbl_803F1430:
 	 * Address:	803F1584
 	 * Size:	000258
 	 */
-	void TOmakeGame::doUpdateStateWait(void)
+	bool TOmakeGame::doUpdateStateWait(void)
 	{
 		/*
 	stwu     r1, -0x20(r1)
@@ -867,7 +868,7 @@ lbl_803F17C4:
 	 * Address:	803F17DC
 	 * Size:	000054
 	 */
-	void TOmakeGame::doUpdateStateClose(void)
+	bool TOmakeGame::doUpdateStateClose(void)
 	{
 		/*
 	stwu     r1, -0x10(r1)
@@ -968,7 +969,7 @@ lbl_803F17C4:
 	 * Address:	803F18E8
 	 * Size:	000048
 	 */
-	void TOmakeGame::isDelegateControl(void)
+	bool TOmakeGame::isDelegateControl(void)
 	{
 		/*
 	stwu     r1, -0x10(r1)
@@ -1025,7 +1026,7 @@ lbl_803F1918:
 	 * Address:	803F196C
 	 * Size:	000108
 	 */
-	void TOmakeGame::openMsg(long)
+	bool TOmakeGame::openMsg(long)
 	{
 		/*
 	cmpwi    r4, 2
@@ -1126,7 +1127,7 @@ lbl_803F1A54:
 	 * Address:	803F1A74
 	 * Size:	00000C
 	 */
-	void TOmakeGame::getName(void)
+	char* TOmakeGame::getName(void)
 	{
 		/*
 	lis      r3, lbl_80497C64@ha

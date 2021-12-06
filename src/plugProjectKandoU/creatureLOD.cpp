@@ -1,4 +1,16 @@
+#include "Camera.h"
+#include "Game/AILOD.h"
+#include "Game/AILODParm.h"
+#include "Game/Creature.h"
+#include "Game/GameSystem.h"
+#include "Graphics.h"
+#include "JSystem/JFW/JFWSystem.h"
+#include "JSystem/JUT/JUTException.h"
+#include "Sys/Sphere.h"
 #include "types.h"
+#include "System.h"
+#include "Sys/Cylinder.h"
+#include "Viewport.h"
 
 /*
     Generated from dpostproc
@@ -91,6 +103,9 @@ namespace Game {
  * Size:	00001C
  */
 AILODParm::AILODParm()
+    : m_far(0.07f)
+    , m_close(0.02f)
+    , m_isCylinder(false)
 {
 	/*
 	lfs      f1, lbl_80519750@sda21(r2)
@@ -109,7 +124,10 @@ AILODParm::AILODParm()
  * Size:	000018
  */
 AILOD::AILOD()
+    : m_flags(FLAG_NONE)
+    , m_sndVpId(0)
 {
+	m_flags = VisibleOnViewport0;
 	/*
 	li       r4, 0
 	li       r0, 0x10
@@ -125,8 +143,106 @@ AILOD::AILOD()
  * Address:	801D783C
  * Size:	0003A8
  */
-void Creature::updateLOD(Game::AILODParm&)
+void Creature::updateLOD(Game::AILODParm& parm)
 {
+	Sys::Sphere lodSphere;
+	Sys::Cylinder lodCylinder;
+	getLODSphere(lodSphere);
+	if (parm.m_isCylinder) {
+		getLODCylinder(lodCylinder);
+	}
+	int iStack[2];
+	int* pi           = iStack;
+	bool shouldCull   = true; // set to false if visible on any viewport
+	int v11           = 2;
+	int viewportCount = sys->m_gfx->m_viewportCount;
+	for (int i = 0; i < viewportCount; i++) {
+		Viewport* vp = sys->m_gfx->getViewport(i);
+		if (!vp->viewable()) {
+			*pi = 2;
+		} else {
+			Camera* camera = vp->m_camera;
+			if (parm.m_isCylinder) {
+				if (camera->isCylinderVisible(lodCylinder)) {
+					shouldCull = false;
+					m_lod.m_flags |= (AILOD::VisibleOnViewport0 << i);
+				}
+			} else {
+				if (camera->isVisible(lodSphere)) {
+					shouldCull = false;
+					m_lod.m_flags |= (AILOD::VisibleOnViewport0 << i);
+				}
+			}
+			float screenSize = camera->calcScreenSize(lodSphere);
+			if (screenSize <= parm.m_far) {
+				if (screenSize <= parm.m_close) {
+					*pi = 2;
+				} else {
+					*pi = 1;
+				}
+			} else {
+				*pi = 0;
+			}
+			if (*pi < v11) {
+				v11 = *pi;
+			}
+		}
+		pi++;
+	}
+	// TODO: This smells of inlining.
+	bool isMultiplayer
+	    = (Game::gameSystem->m_mode == GSM_VERSUS_MODE
+	       || Game::gameSystem->m_mode == GSM_TWO_PLAYER_CHALLENGE);
+	if (!(isMultiplayer && (2 <= viewportCount))) {
+		m_lod.m_sndVpId = 0;
+	} else {
+		Viewport* vp0 = sys->m_gfx->getViewport(0);
+		Viewport* vp1 = sys->m_gfx->getViewport(1);
+		if (!vp0->viewable()) {
+			m_lod.m_sndVpId = 1;
+		} else {
+			if (!vp1->viewable()) {
+				m_lod.m_sndVpId = 0;
+			} else {
+				P2ASSERTLINE(175, (vp0->m_camera != nullptr));
+				P2ASSERTLINE(176, (vp1->m_camera != nullptr));
+				Vector3f* pos0 = vp0->m_camera->getSoundPositionPtr();
+				Vector3f* pos1 = vp1->m_camera->getSoundPositionPtr();
+				// TODO: Possible inlining?
+				float y0 = pos0->y - lodSphere.m_position.y;
+				float y1 = pos1->y - lodSphere.m_position.y;
+				float x0 = pos0->x - lodSphere.m_position.x;
+				float x1 = pos1->x - lodSphere.m_position.x;
+				float z0 = pos0->z - lodSphere.m_position.z;
+				float z1 = pos1->z - lodSphere.m_position.z;
+				if (SQUARE(z1) + SQUARE(x1) + SQUARE(y1)
+				    // (SQUARE(pos1->x - lodSphere.m_position.x)
+				    // + SQUARE(pos1->y - lodSphere.m_position.y)
+				    // + SQUARE(pos1->z - lodSphere.m_position.z))
+				    <= SQUARE(z0) + SQUARE(x0) + SQUARE(y0)
+				    // (SQUARE(pos0->x - lodSphere.m_position.x)
+				    // + SQUARE(pos0->y - lodSphere.m_position.y)
+				    // + SQUARE(pos0->z - lodSphere.m_position.z))
+				) {
+					m_lod.m_sndVpId = 1;
+				} else {
+					m_lod.m_sndVpId = 0;
+				}
+			}
+		}
+	}
+	for (int i = 0; i < viewportCount; i++) {
+		sys->m_gfx->getViewport(i)->viewable();
+	}
+	m_lod.m_flags |= (u8)v11;
+	if (!shouldCull) {
+		m_lod.m_flags |= AILOD::FLAG_NEED_SHADOW;
+	} else {
+		m_lod.m_flags = AILOD::IsFar;
+	}
+	if (0 < getCellPikiCount()) {
+		m_lod.m_flags |= AILOD::FLAG_UNKNOWN4;
+	}
 	/*
 	stwu     r1, -0xa0(r1)
 	mflr     r0
@@ -420,8 +536,88 @@ lbl_801D7BB8:
  * Address:	801D7BE4
  * Size:	000258
  */
-void Creature::drawLODInfo(Graphics&, Vector3f&)
+void Creature::drawLODInfo(Graphics& gfx, Vector3f& position)
 {
+	if (AILOD::drawInfo) {
+		PerspPrintfInfo info;
+		info.m_font = JFWSystem::systemFont;
+		info._04    = 0;
+		info._08    = 0;
+		info._0C    = 0;
+		info._10    = 1.0f;
+		info._14.r  = 0x66;
+		info._14.g  = 0x99;
+		info._14.b  = 0xFF;
+		info._14.a  = 0xFF;
+		info._18.r  = 0x00;
+		info._18.g  = 0x66;
+		info._18.b  = 0xFF;
+		info._18.a  = 0xFF;
+		gfx.initPerspPrintf(gfx._25C);
+		const char* nearnessLabels[] = { "near", "mid", "far" };
+		// nearnessLabels[0] = "near";
+		// nearnessLabels[1] = "mid";
+		// nearnessLabels[2] = "far";
+
+		u8 nearness = m_lod.m_flags & (AILOD::IsMid | AILOD::IsFar);
+		switch (nearness) {
+		case AILOD::FLAG_NONE:
+			if (true) {
+				info._14.r = 0x00;
+				info._14.g = 0x0A;
+				info._14.b = 0xFF;
+				info._14.a = 0xFF;
+				info._18.r = 0xC8;
+				info._18.g = 0xC8;
+				info._18.b = 0xC8;
+				info._18.a = 0xFF;
+			}
+			break;
+		case AILOD::IsMid:
+			info._14.r = 0xC8;
+			info._14.g = 0xC8;
+			info._14.b = 0x00;
+			info._14.a = 0xFF;
+			info._18.r = 0xC8;
+			info._18.g = 0xC8;
+			info._18.b = 0xC8;
+			info._18.a = 0xFF;
+			break;
+		case AILOD::IsFar:
+			info._14.r = 0xFF;
+			info._14.g = 0x0A;
+			info._14.b = 0x00;
+			info._14.a = 0xFF;
+			info._18.r = 0xC8;
+			info._18.g = 0xC8;
+			info._18.b = 0xC8;
+			info._18.a = 0xFF;
+			break;
+		}
+		const char* flag4Text = "_";
+		if (m_lod.m_flags & AILOD::FLAG_UNKNOWN4) {
+			flag4Text = "p";
+		}
+		const char* vp1VisibilityText = "x";
+		if (m_lod.m_flags & AILOD::VisibleOnViewport1) {
+			vp1VisibilityText = "v";
+		}
+		const char* vp0VisibilityText = "x";
+		if (m_lod.m_flags & AILOD::VisibleOnViewport0) {
+			vp0VisibilityText = "v";
+		}
+		gfx.perspPrintf(info, position, "[%s%s %s %s]", vp0VisibilityText,
+		                vp1VisibilityText, flag4Text, nearnessLabels[nearness]);
+		Camera* camera0 = sys->m_gfx->getViewport(0)->m_camera;
+		Vector3f sizeOnScreenTextPosition;
+		sizeOnScreenTextPosition.x = position.x;
+		sizeOnScreenTextPosition.y = position.y + 15.0f;
+		sizeOnScreenTextPosition.z = position.z;
+		Sys::Sphere lodSphere;
+		getLODSphere(lodSphere);
+		gfx.perspPrintf(info, sizeOnScreenTextPosition, "<%f>",
+		                camera0->calcScreenSize(lodSphere));
+	}
 	/*
 	stwu     r1, -0x60(r1)
 	mflr     r0

@@ -105,6 +105,7 @@ struct J2DPane {
 	ulonglong getTagName() const;
 	float getTranslateX() const;
 	float getTranslateY() const;
+	ulonglong getUserInfo() const;
 
 	J2DPane* getFirstChildPane();
 	J2DPane* getNextChildPane();
@@ -120,6 +121,8 @@ struct J2DPane {
 	void rotate(float, float, J2DRotateAxis, float);
 	void rotate(float);
 	void updateTransform(const J2DAnmTransform*);
+	void show();
+	void hide();
 
 	void setBasePosition(J2DBasePosition);
 	void setInfluencedAlpha(bool, bool);
@@ -225,6 +228,18 @@ struct J2DScreen : public J2DPane {
 
 // Size: 0x168
 struct J2DPicture : public J2DPane {
+	J2DPicture();
+	J2DPicture(J2DPane*, JSURandomInputStream*, JKRArchive*);
+	J2DPicture(J2DPane*, JSURandomInputStream*, J2DMaterial*);
+	J2DPicture(const ResTIMG*);
+	J2DPicture(const char*);
+	J2DPicture(JUTTexture*);
+	J2DPicture(ulonglong, const JGeometry::TBox2f&);
+
+	virtual ~J2DPicture();                                           // _00
+	virtual uint getTypeID() const;                                  // _04
+	virtual void drawSelf(float, float);                             // _2C
+	virtual void drawSelf(float, float, float (*)[3][4]);            // _30
 	virtual void initiate(const ResTIMG*, const ResTLUT*);           // _8C
 	virtual void prepareTexture(uchar);                              // _90
 	virtual bool append(const ResTIMG*, float);                      // _94
@@ -281,6 +296,10 @@ struct J2DPicture : public J2DPane {
 	virtual uchar getUsableTlut(uchar);         // _140
 	virtual void _144() = 0;                    // _144
 
+	void initinfo();
+	void private_readStream(J2DPane*, JSURandomInputStream*, JKRArchive*);
+	void private_initiate(const ResTIMG*, const ResTLUT*);
+
 	// J2DPane _000
 	JUTTexture* m_textures[4]; // _100
 	uchar m_textureCount;      // _110
@@ -300,6 +319,82 @@ struct J2DPicture : public J2DPane {
 
 // Size: 0x1A8
 struct J2DPictureEx : public J2DPicture {
+	J2DPictureEx();
+	J2DPictureEx(const ResTIMG*, ulong);
+	J2DPictureEx(J2DPane*, JSURandomInputStream*, ulong, JKRArchive*);
+	J2DPictureEx(ulonglong, const JGeometry::TBox2f&, const ResTIMG*, ulong);
+	J2DPictureEx(ulonglong, const JGeometry::TBox2f&, const char*, ulong);
+
+	virtual ~J2DPictureEx();                                         // _00
+	virtual void setCullBack(bool);                                  // _14
+	virtual void setCullBack(GXCullMode);                            // _18
+	virtual void setAlpha(uchar);                                    // _1C
+	virtual void drawSelf(float, float, float (*)[3][4]);            // _30
+	virtual bool isUsed(const ResTIMG*);                             // _44
+	virtual bool isUsed(const ResFONT*);                             // _48
+	virtual void rewriteAlpha();                                     // _50
+	virtual void setAnimation(J2DAnmBase*);                          // _54
+	virtual void setAnimation(J2DAnmTransform*);                     // _58
+	virtual void setAnimation(J2DAnmColor*);                         // _5C
+	virtual void setAnimation(J2DAnmTexPattern*);                    // _60
+	virtual void setAnimation(J2DAnmTextureSRTKey*);                 // _64
+	virtual void setAnimation(J2DAnmTevRegKey*);                     // _68
+	virtual void setAnimation(J2DAnmVisibilityFull*);                // _6C
+	virtual void setAnimation(J2DAnmVtxColor*);                      // _70
+	virtual void animationPane(const J2DAnmTransform*);              // _88
+	virtual void initiate(const ResTIMG*, const ResTLUT*);           // _8C
+	virtual void prepareTexture(uchar);                              // _90
+	virtual bool append(const ResTIMG*, float);                      // _94
+	virtual bool append(const ResTIMG*, JUTPalette*, float);         // _98
+	virtual bool append(const char*, float);                         // _9C
+	virtual bool append(const char*, JUTPalette*, float);            // _A0
+	virtual bool append(JUTTexture*, float);                         // _A4
+	virtual bool prepend(const ResTIMG*, float);                     // _A8
+	virtual bool prepend(const ResTIMG*, JUTPalette*, float);        // _AC
+	virtual bool prepend(const char*, float);                        // _B0
+	virtual bool prepend(const char*, JUTPalette*, float);           // _B4
+	virtual bool prepend(JUTTexture*, float);                        // _B8
+	virtual bool insert(const ResTIMG*, uchar, float);               // _BC
+	virtual bool insert(const ResTIMG*, JUTPalette*, uchar, float);  // _C0
+	virtual bool insert(const char*, uchar, float);                  // _C4
+	virtual bool insert(const char*, JUTPalette*, uchar, float);     // _C8
+	virtual bool insert(JUTTexture*, uchar, float);                  // _CC
+	virtual int remove(uchar);                                       // _D0
+	virtual int remove();                                            // _D4
+	virtual int remove(JUTTexture*);                                 // _D8
+	virtual void draw(float, float, bool, bool, bool);               // _DC
+	virtual void draw(float, float, uchar, bool, bool, bool);        // _E0
+	virtual void draw(float, float, float, float, bool, bool, bool); // _E4
+	virtual void drawOut(float, float, float, float, float, float);  // _E8
+	virtual void drawOut(float, float, float, float, float, float, float,
+	                     float); // _EC
+	virtual void drawOut(const JGeometry::TBox2f&,
+	                     const JGeometry::TBox2f&); // _F0
+	virtual void load(GXTexMapID, uchar);           // _F4
+	virtual void load(uchar);                       // _F8
+	virtual void setBlendColorRatio(float, float, float, float, float, float,
+	                                float, float); // _100
+	virtual void setBlendAlphaRatio(float, float, float, float, float, float,
+	                                float, float);                      // _104
+	virtual ResTIMG* changeTexture(const ResTIMG*, uchar);              // _108
+	virtual ResTIMG* changeTexture(const char*, uchar);                 // _10C
+	virtual ResTIMG* changeTexture(const ResTIMG*, uchar, JUTPalette*); // _110
+	virtual ResTIMG* changeTexture(const char*, uchar, JUTPalette*);    // _114
+	virtual JUTTexture* getTexture(uchar) const;                        // _118
+	virtual uchar getTextureCount() const;                              // _11C
+	virtual bool setBlack(JUtility::TColor);                            // _120
+	virtual bool setWhite(JUtility::TColor);                            // _124
+	virtual bool setBlackWhite(JUtility::TColor, JUtility::TColor);     // _128
+	virtual JUtility::TColor getBlack() const;                          // _12C
+	virtual JUtility::TColor getWhite() const;                          // _130
+	virtual J2DMaterial* getMaterial() const;                           // _134
+	virtual void drawFullSet(float, float, float, float,
+	                         float (*)[3][4]); // _138
+	virtual void drawTexCoord(float, float, float, float, short, short, short,
+	                          short, short, short, short, short,
+	                          float (*)[3][4]); // _13C
+	virtual uchar getUsableTlut(uchar);         // _140
+	virtual void _144() = 0;                    // _144
 
 	// J2DPane _000
 	J2DMaterial* _168;                     // _168

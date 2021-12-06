@@ -1,3 +1,7 @@
+#include "Dolphin/gx.h"
+#include "JSystem/J2D/ind.h"
+#include "JSystem/J2D/J2DAnm.h"
+#include "JSystem/J2D/J2DMaterial.h"
 #include "types.h"
 
 /*
@@ -408,7 +412,7 @@ lbl_800522B8:
  * Address:	800522CC
  * Size:	0001B4
  */
-void J2DMaterial::createTevBlock(int, bool)
+J2DTevBlock* J2DMaterial::createTevBlock(int, bool)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -568,7 +572,7 @@ lbl_80052470:
  * Address:	80052480
  * Size:	0001D8
  */
-void J2DMaterial::createIndBlock(int, bool)
+J2DIndBlock* J2DMaterial::createIndBlock(int, bool)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1688,7 +1692,7 @@ lbl_8005323C:
  * Address:	80053278
  * Size:	000004
  */
-void J2DAnmColor::getColor(unsigned short, _GXColor*) const { }
+void J2DAnmColor::getColor(unsigned short, GXColor*) const { }
 
 /*
  * --INFO--
@@ -1702,7 +1706,7 @@ void J2DIndBlockNull::setGX() { }
  * Address:	80053280
  * Size:	00000C
  */
-void J2DIndBlockNull::getType()
+uint J2DIndBlockNull::getType()
 {
 	/*
 	lis      r3, 0x49424C4E@ha

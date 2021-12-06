@@ -2,7 +2,7 @@
 #define _OBJECTMGR_H
 
 #include "Container.h"
-#include "Game/GenericObjectMgr.h"
+#include "GenericObjectMgr.h"
 
 template <typename T> struct ObjectMgr : public Container<T>, GenericObjectMgr {
 	// first VTBL:
@@ -30,9 +30,7 @@ template <typename T> struct NodeObjectMgr : public ObjectMgr<T> {
 	// second VTBL:
 	virtual void resetMgr(); // _20
 
-	// TODO: Remove this once the VTBLs work properly
-	u32 _1C_REMOVE_ME_PLEASE; // _1C
-	TObjectNode<T> m_node;    // _20
+	TObjectNode<T> m_node; // _20
 };
 
 #endif

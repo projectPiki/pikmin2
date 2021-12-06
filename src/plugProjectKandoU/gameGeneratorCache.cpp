@@ -1,3 +1,4 @@
+#include "Game/gameGeneratorCache.h"
 #include "types.h"
 
 /*
@@ -190,43 +191,22 @@ namespace Game {
  * Size:	000088
  */
 GeneratorCache::GeneratorCache(void)
+    : _00(-1)
+    , _3C(-1)
+    , m_generator()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, -1
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       __ct__Q24Game11CourseCacheFi
-	addi     r3, r31, 0x3c
-	li       r4, -1
-	bl       __ct__Q24Game11CourseCacheFi
-	addi     r3, r31, 0x8c
-	bl       __ct__Q24Game9GeneratorFv
-	li       r0, 0
-	mr       r3, r31
-	stw      r0, 0x10(r31)
-	stw      r0, 0xc(r31)
-	stw      r0, 8(r31)
-	stw      r0, 4(r31)
-	stw      r0, 0x4c(r31)
-	stw      r0, 0x48(r31)
-	stw      r0, 0x44(r31)
-	stw      r0, 0x40(r31)
-	bl       createHeap__Q24Game14GeneratorCacheFv
-	stw      r31, generatorCache__4Game@sda21(r13)
-	li       r0, 0
-	mr       r3, r31
-	stw      r0, 0x78(r31)
-	bl       clearGeneratorList__Q24Game14GeneratorCacheFv
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	_00._10 = nullptr;
+	_00._0C = nullptr;
+	_00._08 = nullptr;
+	_00._04 = nullptr;
+	_3C._10 = nullptr;
+	_3C._0C = nullptr;
+	_3C._08 = nullptr;
+	_3C._04 = nullptr;
+	createHeap();
+	generatorCache = this;
+	_78            = nullptr;
+	clearGeneratorList();
 }
 
 /*

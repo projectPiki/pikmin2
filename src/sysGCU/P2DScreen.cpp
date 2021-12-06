@@ -1,7 +1,7 @@
+#include "JSystem/JUT/JUTException.h"
+#include "P2DScreen.h"
 #include "System.h"
 #include "types.h"
-#include "P2DScreen.h"
-#include "JSystem/JUT/JUTException.h"
 
 /*
     Generated from dpostproc
@@ -148,7 +148,6 @@
 P2DScreen::Mgr::Mgr()
     : J2DScreen()
     , _118()
-    , _130(0)
 {
 	/*
 	stwu     r1, -0x10(r1)

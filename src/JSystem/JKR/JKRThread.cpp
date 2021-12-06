@@ -1,3 +1,4 @@
+#include "JSystem/JKR/JKRThread.h"
 #include "types.h"
 
 /*

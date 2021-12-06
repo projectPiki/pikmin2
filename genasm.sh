@@ -51,7 +51,7 @@ CompilerVersion="2.6"
 CompilerDir="tools/mwcc_compiler/${CompilerVersion}"
 CompilerExe="mwcceppc.exe"
 # Compiler Options. Make sure to set the include folder!
-Opts="-Cpp_exceptions off -proc gekko -RTTI off -fp hard -fp_contract on -rostr -O4,p -use_lmw_stmw on -sdata 8 -sdata2 8 -nodefaults -msgstyle gcc -i ${IncludeDir}/ -c"
+Opts="-Cpp_exceptions off -inline auto -proc gekko -RTTI off -fp hard -fp_contract on -rostr -O4,p -use_lmw_stmw on -sdata 8 -sdata2 8 -nodefaults -msgstyle gcc -i ${IncludeDir}/ -c"
 
 # Settings are over, now garbage shell script is my new friend!
 
@@ -97,6 +97,8 @@ ${Wine}${CompilerExe} -S ${Opts} ${BuildASMDir}/${CodeUnitPath}.o -o ${Theirs}
 # sed -i 's#\s*Hunk:\s+Kind=HUNK_LOCAL_CODE\s+Name="lbl_.*##g' $Theirs
 # Purge all branch labels from the ASM disassembly.
 sed -ri '/\s*Hunk:\s+Kind=HUNK_LOCAL_CODE\s+Name="lbl_.*/d' $Theirs
+# Experimental: Actually, do the same with HUNK_GLOBAL_CODE, because of switch statements...
+sed -ri '/\s*Hunk:\s+Kind=HUNK_GLOBAL_CODE\s+Name="lbl_.*/d' $Theirs
 # sed -ri '/\n\s*Hunk:\s+Kind=HUNK_LOCAL_CODE\s+Name="lbl_.*/='
 
 function stripFile () {
@@ -113,7 +115,7 @@ function stripFile () {
 	# ...or start of next section if it's the last function in the file:
 	sed -ri '/==>.*/,$d' ${File}
 
-	if (($ShouldCutAddresses > 0)); then	
+	if (($ShouldCutAddresses > 0)); then
 		# Delete branch offsets. They're signal noise when looking for differences.
 		sed -ri 's/\s+;\s*0x.*$//g' ${File}
 		# cut doesn't buffer input, so just simulating an "in-place" by redirecting output to same file as input results in a blank file.

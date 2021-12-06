@@ -1,3 +1,4 @@
+#include "LoadResource.h"
 #include "types.h"
 
 /*
@@ -174,7 +175,8 @@ LoadResource::Arg::Arg(char const*)
  * Address:	8044C61C
  * Size:	000048
  */
-LoadResource::ArgAramOnly::ArgAramOnly(char const*)
+LoadResource::ArgAramOnly::ArgAramOnly(char const* p1)
+    : Arg(p1)
 {
 	/*
 	stw      r4, 0(r3)
@@ -292,7 +294,7 @@ void LoadResource::Mgr::dump(void)
  * Address:	8044C714
  * Size:	00008C
  */
-void LoadResource::Mgr::mountArchive(LoadResource::Arg&)
+LoadResource::Node* LoadResource::Mgr::mountArchive(LoadResource::Arg& arg)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -595,15 +597,15 @@ lbl_8044CAAC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	8044CAC4
- * Size:	000008
- */
-@24 @LoadResource::Node::~Node(void)
-{
-	/*
-	addi     r3, r3, -24
-	b        __dt__Q212LoadResource4NodeFv
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	8044CAC4
+//  * Size:	000008
+//  */
+// @24 @LoadResource::Node::~Node(void)
+// {
+// 	/*
+// 	addi     r3, r3, -24
+// 	b        __dt__Q212LoadResource4NodeFv
+// 	*/
+// }

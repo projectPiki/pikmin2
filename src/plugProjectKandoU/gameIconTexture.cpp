@@ -1,3 +1,10 @@
+#include "Game/IconTexture.h"
+#include "JSystem/JKR/JKRArchive.h"
+#include "JSystem/JKR/JKRDisposer.h"
+#include "JSystem/JUT/JUTTexture.h"
+#include "JSystem/JUT/JUTException.h"
+#include "JSystem/ResTIMG.h"
+#include "LoadResource.h"
 #include "types.h"
 
 /*
@@ -48,27 +55,10 @@ namespace Game {
  * Size:	000048
  */
 IconTexture::Loader::Loader(void)
+    : JKRDisposer()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       __ct__11JKRDisposerFv
-	lis      r3, __vt__Q34Game11IconTexture6Loader@ha
-	li       r0, 0
-	addi     r4, r3, __vt__Q34Game11IconTexture6Loader@l
-	mr       r3, r31
-	stw      r4, 0(r31)
-	stw      r0, 0x1c(r31)
-	stw      r0, 0x18(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_archive = nullptr;
+	m_node    = nullptr;
 }
 
 /*
@@ -78,49 +68,12 @@ IconTexture::Loader::Loader(void)
  */
 IconTexture::Loader::~Loader(void)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8023353C
-	lis      r3, __vt__Q34Game11IconTexture6Loader@ha
-	addi     r0, r3, __vt__Q34Game11IconTexture6Loader@l
-	stw      r0, 0(r30)
-	lwz      r0, 0x1c(r30)
-	cmplwi   r0, 0
-	beq      lbl_8023350C
-	li       r0, 0
-	stw      r0, 0x1c(r30)
-
-lbl_8023350C:
-	lwz      r0, 0x18(r30)
-	cmplwi   r0, 0
-	beq      lbl_80233520
-	li       r0, 0
-	stw      r0, 0x18(r30)
-
-lbl_80233520:
-	mr       r3, r30
-	li       r4, 0
-	bl       __dt__11JKRDisposerFv
-	extsh.   r0, r31
-	ble      lbl_8023353C
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_8023353C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (m_archive) {
+		m_archive = nullptr;
+	}
+	if (m_node) {
+		m_node = nullptr;
+	}
 }
 
 /*
@@ -128,47 +81,15 @@ lbl_8023353C:
  * Address:	80233558
  * Size:	000084
  */
-void IconTexture::Loader::loadResource(char*)
+void IconTexture::Loader::loadResource(char* path)
 {
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stw      r31, 0x3c(r1)
-	mr       r31, r4
-	stw      r30, 0x38(r1)
-	mr       r30, r3
-	addi     r3, r1, 8
-	bl       __ct__Q212LoadResource3ArgFPCc
-	lwz      r3, gLoadResourceMgr@sda21(r13)
-	addi     r4, r1, 8
-	bl       mountArchive__Q212LoadResource3MgrFRQ212LoadResource3Arg
-	stw      r3, 0x18(r30)
-	lwz      r3, 0x18(r30)
-	cmplwi   r3, 0
-	beq      lbl_802335A4
-	lwz      r0, 0x34(r3)
-	stw      r0, 0x1c(r30)
-	b        lbl_802335C4
-
-lbl_802335A4:
-	lis      r3, lbl_804839F0@ha
-	lis      r4, lbl_80483A04@ha
-	addi     r5, r4, lbl_80483A04@l
-	mr       r6, r31
-	addi     r3, r3, lbl_804839F0@l
-	li       r4, 0x2d
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_802335C4:
-	lwz      r0, 0x44(r1)
-	lwz      r31, 0x3c(r1)
-	lwz      r30, 0x38(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+	LoadResource::Arg arg(path);
+	m_node = gLoadResourceMgr->mountArchive(arg);
+	if (m_node != nullptr) {
+		m_archive = m_node->m_archive;
+		return;
+	}
+	JUT_PANICLINE(45, "failed to open [%s]\n", path);
 }
 
 /*
@@ -176,22 +97,9 @@ lbl_802335C4:
  * Address:	802335DC
  * Size:	000030
  */
-void IconTexture::Loader::getResTIMG(char*)
+ResTIMG* IconTexture::Loader::getResTIMG(char* path)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x1c(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x14(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return (ResTIMG*)m_archive->getResource(path);
 }
 
 /*
@@ -200,77 +108,24 @@ void IconTexture::Loader::getResTIMG(char*)
  * Size:	000048
  */
 IconTexture::Mgr::Mgr(void)
+    : JKRDisposer()
+    , m_textures(nullptr)
+    , m_count(0)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       __ct__11JKRDisposerFv
-	lis      r3, __vt__Q34Game11IconTexture3Mgr@ha
-	li       r0, 0
-	addi     r4, r3, __vt__Q34Game11IconTexture3Mgr@l
-	mr       r3, r31
-	stw      r4, 0(r31)
-	stw      r0, 0x18(r31)
-	stw      r0, 0x1c(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
-/*
+/* __dt__Q34Game11IconTexture3MgrFv
  * --INFO--
  * Address:	80233654
  * Size:	00008C
  */
 IconTexture::Mgr::~Mgr(void)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_802336C4
-	lis      r3, __vt__Q34Game11IconTexture3Mgr@ha
-	addi     r0, r3, __vt__Q34Game11IconTexture3Mgr@l
-	stw      r0, 0(r30)
-	lwz      r3, 0x18(r30)
-	cmplwi   r3, 0
-	beq      lbl_802336A0
-	lis      r4, __dt__10JUTTextureFv@ha
-	addi     r4, r4, __dt__10JUTTextureFv@l
-	bl       __destroy_new_array
-	li       r0, 0
-	stw      r0, 0x18(r30)
-
-lbl_802336A0:
-	li       r0, 0
-	mr       r3, r30
-	stw      r0, 0x1c(r30)
-	li       r4, 0
-	bl       __dt__11JKRDisposerFv
-	extsh.   r0, r31
-	ble      lbl_802336C4
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_802336C4:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (m_textures) {
+		delete[] m_textures;
+		m_textures = nullptr;
+	}
+	m_count = 0;
 }
 
 /*
@@ -278,45 +133,11 @@ lbl_802336C4:
  * Address:	802336E0
  * Size:	000084
  */
-void IconTexture::Mgr::create(int)
+void IconTexture::Mgr::create(int count)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r4, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bgt      lbl_8023371C
-	lis      r3, lbl_804839F0@ha
-	lis      r5, lbl_80483A1C@ha
-	addi     r3, r3, lbl_804839F0@l
-	li       r4, 0x4e
-	addi     r5, r5, lbl_80483A1C@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_8023371C:
-	slwi     r3, r31, 6
-	addi     r3, r3, 0x10
-	bl       __nwa__FUl
-	lis      r4, __ct__10JUTTextureFv@ha
-	lis      r5, __dt__10JUTTextureFv@ha
-	addi     r4, r4, __ct__10JUTTextureFv@l
-	mr       r7, r31
-	addi     r5, r5, __dt__10JUTTextureFv@l
-	li       r6, 0x40
-	bl       __construct_new_array
-	stw      r3, 0x18(r30)
-	stw      r31, 0x1c(r30)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	P2ASSERTLINE(78, count > 0);
+	m_textures = new JUTTexture[count];
+	m_count    = count;
 }
 
 /*
@@ -324,49 +145,11 @@ lbl_8023371C:
  * Address:	80233764
  * Size:	00008C
  */
-void IconTexture::Mgr::setTexture(int, ResTIMG*)
+void IconTexture::Mgr::setTexture(int index, ResTIMG* resource)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r5
-	stw      r30, 0x18(r1)
-	or.      r30, r4, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	blt      lbl_80233798
-	lwz      r0, 0x1c(r29)
-	cmpw     r30, r0
-	blt      lbl_802337BC
-
-lbl_80233798:
-	lis      r3, lbl_804839F0@ha
-	lis      r4, lbl_80483A28@ha
-	addi     r5, r4, lbl_80483A28@l
-	lwz      r7, 0x1c(r29)
-	addi     r3, r3, lbl_804839F0@l
-	mr       r6, r30
-	li       r4, 0x56
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_802337BC:
-	lwz      r3, 0x18(r29)
-	slwi     r0, r30, 6
-	mr       r4, r31
-	li       r5, 0
-	add      r3, r3, r0
-	bl       storeTIMG__10JUTTextureFPC7ResTIMGUc
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	JUT_ASSERTLINE(86, (0 <= index && index < m_count),
+	               "illegal index [%d] [0..%d)\n", index, m_count);
+	m_textures[index].storeTIMG(resource, (uchar)'\0');
 }
 
 /*
@@ -374,24 +157,11 @@ lbl_802337BC:
  * Address:	802337F0
  * Size:	00002C
  */
-void IconTexture::Mgr::getTexture(int)
+JUTTexture* IconTexture::Mgr::getTexture(int index)
 {
-	/*
-	cmpwi    r4, 0
-	blt      lbl_80233804
-	lwz      r0, 0x1c(r3)
-	cmpw     r4, r0
-	blt      lbl_8023380C
-
-lbl_80233804:
-	li       r3, 0
-	blr
-
-lbl_8023380C:
-	lwz      r3, 0x18(r3)
-	slwi     r0, r4, 6
-	add      r3, r3, r0
-	blr
-	*/
+	if (0 > index || index >= m_count) {
+		return nullptr;
+	}
+	return &m_textures[index];
 }
 } // namespace Game

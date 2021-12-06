@@ -1,11 +1,11 @@
 #include "types.h"
-
+#include "Dolphin/math.h"
 #include "Game/cellPyramid.h"
 #include "BaseParm.h"
 #include "CellMgrParms.h"
 #include "Dolphin/math.h"
 #include "fdlibm.h"
-#include "JSystem/JUTException.h"
+#include "JSystem/JUT/JUTException.h"
 #include "JSystem/JKR/JKRHeap.h"
 
 /*
@@ -146,7 +146,6 @@
 
 // #pragma auto_inline on
 #define MAX(v1, v2) (((v1) > (v2)) ? (v1) : (v2))
-#define SQUARE(v)   ((v) * (v))
 
 namespace Game {
 static CellPyramid* cellMgr;

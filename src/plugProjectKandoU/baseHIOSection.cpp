@@ -1,3 +1,4 @@
+#include "Game/BaseHIOSection.h"
 #include "types.h"
 
 /*
@@ -435,7 +436,7 @@ void BaseHIOSection::createScreenRootNode(void) { }
  * Address:	80164FA8
  * Size:	000008
  */
-u32 BaseHIOSection::doUpdate(void) { return 0x1; }
+bool BaseHIOSection::doUpdate() { return true; }
 
 /*
  * --INFO--
@@ -525,7 +526,7 @@ void Section::drawInit(Graphics&, Section::EDrawInitMode)
  * Address:	80165058
  * Size:	000008
  */
-u32 Section::forceFinish() { return 0x0; }
+bool Section::forceFinish() { return false; }
 
 /*
  * --INFO--

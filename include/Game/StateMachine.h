@@ -10,12 +10,15 @@ struct StateArg {
 };
 
 template <typename T> struct FSMState {
-	virtual void init(T*, StateArg*)    = 0; // _00
-	virtual void exec(T*)               = 0; // _04
-	virtual void cleanup(T*)            = 0; // _08
-	virtual void resume(T*)             = 0; // _0C
-	virtual void restart(T*)            = 0; // _10
-	virtual void transit(T*, StateArg*) = 0; // _14
+	inline FSMState(int id)
+	    : m_id(id)
+	    , m_stateMachine(nullptr) {};
+	virtual void init(T*, StateArg*);         // _00
+	virtual void exec(T*);                    // _04
+	virtual void cleanup(T*);                 // _08
+	virtual void resume(T*);                  // _0C
+	virtual void restart(T*);                 // _10
+	virtual void transit(T*, int, StateArg*); // _14
 
 	// VTBL _00
 	int m_id;                        // _04
@@ -23,10 +26,44 @@ template <typename T> struct FSMState {
 };
 
 template <typename T> struct StateMachine {
-	virtual void init(T*)                    = 0; // _00
-	virtual u32 start(T*, int, StateArg*)    = 0; // _04
-	virtual void exec(T*)                    = 0; // _08
-	virtual void transit(T*, int, StateArg*) = 0; // _0C
+	inline StateMachine()
+	    : m_currentID(-1)
+	{
+	}
+	// virtual void init(T*)                    = 0; // _00
+	// virtual void start(T*, int, StateArg*)    = 0; // _04
+	// virtual void exec(T*)                    = 0; // _08
+	// virtual void transit(T*, int, StateArg*) = 0; // _0C
+	virtual void init(T*);                    // _00
+	virtual void start(T*, int, StateArg*);   // _04
+	virtual void exec(T*);                    // _08
+	virtual void transit(T*, int, StateArg*); // _0C
+
+	// #pragma dont_inline on
+	void create(int limit);
+	// {
+	// 	m_limit          = limit;
+	// 	m_count          = 0;
+	// 	m_states         = new FSMState<T>*[m_limit];
+	// 	m_indexToIDArray = new int[m_limit];
+	// 	m_idToIndexArray = new int[m_limit];
+	// }
+
+	void registerState(FSMState<T>* state);
+	// {
+	// 	if (m_limit <= m_count) {
+	// 		return;
+	// 	}
+	// 	m_states[m_count] = state;
+	// 	if (!(-1 < state->m_id && state->m_id < m_limit)) {
+	// 		return;
+	// 	}
+	// 	state->m_stateMachine = this;
+	// 	m_indexToIDArray[m_count] = state->m_id;
+	// 	m_idToIndexArray[state->m_id] = m_count;
+	// 	m_count++;
+	// }
+	// #pragma dont_inline reset
 
 	// VTBL _00
 	FSMState<T>** m_states; // _04
@@ -47,5 +84,21 @@ template <typename T> struct StateMachine {
 	int m_currentID; // _18
 };
 } // namespace Game
+
+#define SPECIALIZED_STATE_MACHINE_DECL(T)         \
+	template <> struct StateMachine<T> {          \
+		virtual void init(T*);                    \
+		virtual void start(T*, int, StateArg*);   \
+		virtual void exec(T*);                    \
+		virtual void transit(T*, int, StateArg*); \
+                                                  \
+		void create(int);                         \
+		void registerState(FSMState<T>*);         \
+	}
+
+template <> void Game::FSMState<void>::transit(void* obj, int id, StateArg* arg)
+{
+	m_stateMachine->transit(obj, id, arg);
+}
 
 #endif

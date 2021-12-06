@@ -28,10 +28,16 @@ struct SceneArg {
 };
 
 struct StartSceneArg : public SceneArg {
+	virtual SceneType getSceneType(); // _00
+	virtual int getClassSize();       // _04
+
 	float _04; // _04
 };
 
 struct SetSceneArg : public SceneArg {
+	virtual SceneType getSceneType(); // _00
+	virtual int getClassSize();       // _04
+
 	SceneType m_sceneType;                    // _04
 	u8 _08;                                   // _08
 	u8 _09;                                   // _09
@@ -39,6 +45,9 @@ struct SetSceneArg : public SceneArg {
 };
 
 struct EndSceneArg : public SceneArg {
+	virtual SceneType getSceneType(); // _00
+	virtual int getClassSize();       // _04
+
 	u8 _04; // _04
 };
 

@@ -23,6 +23,8 @@ typedef uint GXCullMode;
 typedef uint GXTexMapID;
 typedef uint _GXAttr;
 typedef uint _GXAttrType;
+typedef uint _GXTexFmt;
+typedef uint _GXTexMapID;
 typedef uint _GXVtxFmt;
 typedef uint _GXVtxFmt;
 typedef uint _GXCompCnt;
@@ -186,6 +188,32 @@ void GXSaveCPUFifo(GXFifoObj* fifo);
 void GXSaveGPFifo(GXFifoObj* fifo);
 
 void GXSetProjection(PSMatrix, u32);
+
+
+typedef u8 _GXTlut;
+typedef u8 _GXTlutFmt;
+
+typedef struct GXTlutObj {
+	u32 _00; // _00
+	u32 _04; // _04
+	u16 _08; // _08
+} GXTlutObj;
+
+// TODO: Figure this out
+typedef struct GXTlutRegion {
+	u32 _00; // _00
+	u8 _04[0xC]; // _04
+} GXTlutRegion;
+
+typedef GXTlutRegion* GXTlutRegionCallback(_GXTlut);
+
+void GXInitTlutObj(GXTlutObj*, const uchar*, _GXTlutFmt, ushort);
+// TODO: Params aren't fully worked out yet.
+void GXInitTlutRegion(u32*, int, uint);
+void GXLoadTlut(GXTlutObj*, _GXTlut);
+void GXSetTlutRegionCallback(GXTlutRegionCallback*);
+
+GXTlutRegion* __GXDefaultTlutRegionCallback(_GXTlut);
 
 #ifdef __cplusplus
 };

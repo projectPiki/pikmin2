@@ -3,7 +3,7 @@
 
 #include "types.h"
 
-typedef enum J3DAnmKind {
+enum J3DAnmKind {
 	CLUSTER         = 3,
 	CLUSTER_FULL    = 12,
 	CLUSTER_KEY     = 13,
@@ -21,6 +21,11 @@ typedef enum J3DAnmKind {
 	VTX_COLOR_FULL  = 14,
 	VTX_COLOR_KEY   = 15
 };
+
+#pragma enumalwaysint off
+// Intended size: byte
+enum J3DAnmAttr { J3DAA_UNKNOWN_0 = 0 };
+#pragma enumalwaysint reset
 
 struct J3DAnmBase {
 	virtual void getKind() const   = 0;

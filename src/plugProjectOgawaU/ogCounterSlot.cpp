@@ -1,3 +1,4 @@
+#include "og/Screen/callbackNodes.h"
 #include "types.h"
 
 /*
@@ -90,8 +91,9 @@ namespace Screen {
 	 * Address:	........
 	 * Size:	000084
 	 */
-	CallBack_CounterSlot::CallBack_CounterSlot(char**, unsigned short,
-	                                           unsigned short, JKRArchive*)
+	CallBack_CounterSlot::CallBack_CounterSlot(char** p1, ushort p2, ushort p3,
+	                                           JKRArchive* archive)
+	    : CallBack_CounterRV(p1, p2, p3, archive)
 	{
 		// UNUSED FUNCTION
 	}

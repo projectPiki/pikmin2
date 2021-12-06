@@ -1,3 +1,6 @@
+#include "Sys/GridDivider.h"
+#include "Sys/TriangleTable.h"
+#include "Sys/TriDivider.h"
 #include "types.h"
 
 /*
@@ -36,7 +39,7 @@ namespace Sys {
  * Address:	80421ACC
  * Size:	000120
  */
-void TriDivider::clone(Matrixf&)
+void* TriDivider::clone(Matrixf&)
 {
 	/*
 	stwu     r1, -0x20(r1)

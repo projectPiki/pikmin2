@@ -1,8 +1,7 @@
-#include "types.h"
 #include "CollInfo.h"
 #include "Dolphin/mtx.h"
-#include "Game/Creature.h"
 #include "Game/cellPyramid.h"
+#include "Game/Creature.h"
 #include "Game/gameGenerator.h"
 #include "Game/GameSystem.h"
 #include "Game/shadowMgr.h"
@@ -11,6 +10,7 @@
 #include "ObjectTypes.h"
 #include "SysShape/Model.h"
 #include "Sys/Sphere.h"
+#include "types.h"
 #include "Vector3.h"
 
 // inline float _sqrt(register float x) {
@@ -579,8 +579,7 @@ inline void Creature::setPosition(Vector3f& position, bool skipProcessing)
 	if (!skipProcessing) {
 		updateTrMatrix();
 		if (m_model != nullptr) {
-			PSMTXCopy(m_mainMatrix.m_matrix.arrayView,
-			          m_model->m_j3dModel->_24);
+			PSMTXCopy(m_mainMatrix.m_matrix.mtxView, m_model->m_j3dModel->_24);
 			m_model->m_j3dModel->calc();
 			if (m_collTree != nullptr) {
 				m_collTree->update();

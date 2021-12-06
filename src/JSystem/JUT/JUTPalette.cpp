@@ -1,3 +1,6 @@
+#include "JSystem/JUT/JUTPalette.h"
+#include "Dolphin/os.h"
+#include "JSystem/ResTLUT.h"
 #include "types.h"
 
 /*
@@ -19,8 +22,19 @@
  * Address:	8002EEC4
  * Size:	000098
  */
-void JUTPalette::storeTLUT(_GXTlut, ResTLUT*)
+void JUTPalette::storeTLUT(_GXTlut tlutID, ResTLUT* resource)
 {
+	if (resource == nullptr) {
+		OSErrorLine(35, "JUTTexture: TLUT is NULL\n");
+	}
+	// storeTLUT(tlutID, resource->m_format, resource->m_transparency,
+	// resource->_02, resource->_20);
+	m_tlutID       = tlutID;
+	m_tlutFormat   = resource->m_format;
+	m_transparency = resource->m_transparency;
+	_14            = resource->_02;
+	_10            = resource->_20;
+	GXInitTlutObj(&m_tlutObj, _10, m_tlutFormat, _14);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -66,32 +80,21 @@ lbl_8002EF08:
 }
 
 /*
+ * storeTLUT__10JUTPaletteF7_GXTlut10_GXTlutFmt15JUTTransparencyUsPv
+ *
  * --INFO--
  * Address:	8002EF5C
  * Size:	000040
  */
-void JUTPalette::storeTLUT(_GXTlut, _GXTlutFmt, JUTTransparency, unsigned short,
-                           void*)
+void JUTPalette::storeTLUT(_GXTlut id, _GXTlutFmt format,
+                           JUTTransparency transparency, ushort p4, void* p5)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stb       r4, 0xC(r3)
-	  stb       r5, 0xD(r3)
-	  stb       r6, 0x16(r3)
-	  sth       r7, 0x14(r3)
-	  stw       r8, 0x10(r3)
-	  lwz       r4, 0x10(r3)
-	  lbz       r5, 0xD(r3)
-	  lhz       r6, 0x14(r3)
-	  bl        0xB87DC
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	m_tlutID       = id;
+	m_tlutFormat   = format;
+	m_transparency = transparency;
+	_14            = p4;
+	_10            = (uchar*)p5;
+	GXInitTlutObj(&m_tlutObj, _10, m_tlutFormat, _14);
 }
 
 /*
@@ -99,27 +102,11 @@ void JUTPalette::storeTLUT(_GXTlut, _GXTlutFmt, JUTTransparency, unsigned short,
  * Address:	8002EF9C
  * Size:	000044
  */
-void JUTPalette::load()
+bool JUTPalette::load()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	lhz      r4, 0x14(r3)
-	neg      r0, r4
-	or       r0, r0, r4
-	rlwinm.  r31, r0, 1, 0x1f, 0x1f
-	beq      lbl_8002EFC8
-	lbz      r4, 0xc(r3)
-	bl       GXLoadTlut
-
-lbl_8002EFC8:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	bool result = (_14 != 0);
+	if (result) {
+		GXLoadTlut(&m_tlutObj, m_tlutID);
+	}
+	return result;
 }

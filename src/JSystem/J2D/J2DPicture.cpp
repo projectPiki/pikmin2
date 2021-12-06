@@ -1,3 +1,4 @@
+#include "JSystem/J2D/J2DPane.h"
 #include "types.h"
 
 /*
@@ -178,7 +179,7 @@ J2DPicture::J2DPicture()
 JUtility::TColor::TColor()
 {
 	// Generated from stw r0, 0x0(r3)
-	_00 = -1;
+	asU32 = -1;
 }
 
 /*
@@ -186,7 +187,7 @@ JUtility::TColor::TColor()
  * Address:	80039BA0
  * Size:	000004
  */
-void JGeometry::TVec2<short>::TVec2() { }
+JGeometry::TVec2<short>::TVec2() { }
 
 /*
  * --INFO--
@@ -769,7 +770,7 @@ lbl_8003A334:
  * Address:	8003A360
  * Size:	000030
  */
-void J2DPicture::append(const ResTIMG*, float)
+bool J2DPicture::append(const ResTIMG*, float)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -792,7 +793,7 @@ void J2DPicture::append(const ResTIMG*, float)
  * Address:	8003A390
  * Size:	000034
  */
-void J2DPicture::insert(const ResTIMG*, unsigned char, float)
+bool J2DPicture::insert(const ResTIMG*, uchar, float)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -887,7 +888,7 @@ lbl_8003A480:
  * Address:	8003A4AC
  * Size:	000030
  */
-void J2DPicture::append(const char*, float)
+bool J2DPicture::append(const char*, float)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -910,7 +911,7 @@ void J2DPicture::append(const char*, float)
  * Address:	8003A4DC
  * Size:	000034
  */
-void J2DPicture::insert(const char*, unsigned char, float)
+bool J2DPicture::insert(const char*, uchar, float)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1005,7 +1006,7 @@ lbl_8003A5CC:
  * Address:	8003A5F8
  * Size:	000030
  */
-void J2DPicture::append(JUTTexture*, float)
+bool J2DPicture::append(JUTTexture*, float)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1028,7 +1029,7 @@ void J2DPicture::append(JUTTexture*, float)
  * Address:	8003A628
  * Size:	0000EC
  */
-J2DPicture::J2DPicture(unsigned long long, const JGeometry::TBox2<float>&)
+J2DPicture::J2DPicture(ulonglong, const JGeometry::TBox2f&)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1746,7 +1747,7 @@ lbl_8003AF64:
  * Address:	8003AF7C
  * Size:	0000E0
  */
-void J2DPicture::prepareTexture(unsigned char)
+void J2DPicture::prepareTexture(uchar)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1827,7 +1828,7 @@ lbl_8003B03C:
  * Address:	8003B05C
  * Size:	00032C
  */
-void J2DPicture::insert(const ResTIMG*, JUTPalette*, unsigned char, float)
+bool J2DPicture::insert(const ResTIMG*, JUTPalette*, uchar, float)
 {
 	/*
 	stwu     r1, -0x60(r1)
@@ -2077,7 +2078,7 @@ lbl_8003B36C:
  * Address:	8003B388
  * Size:	000078
  */
-void J2DPicture::insert(const char*, JUTPalette*, unsigned char, float)
+bool J2DPicture::insert(const char*, JUTPalette*, uchar, float)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2118,7 +2119,7 @@ void J2DPicture::insert(const char*, JUTPalette*, unsigned char, float)
  * Address:	8003B400
  * Size:	0001D8
  */
-void J2DPicture::insert(JUTTexture*, unsigned char, float)
+bool J2DPicture::insert(JUTTexture*, uchar, float)
 {
 	/*
 	stwu     r1, -0x50(r1)
@@ -2261,7 +2262,7 @@ lbl_8003B5B4:
  * Address:	8003B5D8
  * Size:	000130
  */
-void J2DPicture::remove(unsigned char)
+int J2DPicture::remove(uchar)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2360,7 +2361,7 @@ lbl_8003B6E8:
  * Address:	8003B708
  * Size:	000060
  */
-void J2DPicture::remove(JUTTexture*)
+int J2DPicture::remove(JUTTexture*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2401,7 +2402,7 @@ lbl_8003B744:
  * Address:	8003B768
  * Size:	0000E8
  */
-void J2DPicture::changeTexture(const ResTIMG*, unsigned char)
+ResTIMG* J2DPicture::changeTexture(const ResTIMG*, uchar)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2480,7 +2481,7 @@ lbl_8003B83C:
  * Address:	8003B850
  * Size:	000024
  */
-void J2DPicture::getTexture(unsigned char) const
+JUTTexture* J2DPicture::getTexture(uchar) const
 {
 	/*
 	clrlwi   r0, r4, 0x18
@@ -2502,7 +2503,7 @@ lbl_8003B86C:
  * Address:	8003B874
  * Size:	000058
  */
-void J2DPicture::changeTexture(const char*, unsigned char)
+ResTIMG* J2DPicture::changeTexture(const char*, unsigned char)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2535,7 +2536,7 @@ void J2DPicture::changeTexture(const char*, unsigned char)
  * Address:	8003B8CC
  * Size:	000108
  */
-void J2DPicture::changeTexture(const ResTIMG*, unsigned char, JUTPalette*)
+ResTIMG* J2DPicture::changeTexture(const ResTIMG*, unsigned char, JUTPalette*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2622,7 +2623,7 @@ lbl_8003B9C0:
  * Address:	8003B9D4
  * Size:	000030
  */
-void J2DPicture::append(const ResTIMG*, JUTPalette*, float)
+bool J2DPicture::append(const ResTIMG*, JUTPalette*, float)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2645,7 +2646,7 @@ void J2DPicture::append(const ResTIMG*, JUTPalette*, float)
  * Address:	8003BA04
  * Size:	000068
  */
-void J2DPicture::changeTexture(const char*, unsigned char, JUTPalette*)
+ResTIMG* J2DPicture::changeTexture(const char*, unsigned char, JUTPalette*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -3032,7 +3033,7 @@ void J2DPicture::load(unsigned char)
  * Address:	8003BEDC
  * Size:	00004C
  */
-void J2DPicture::load(_GXTexMapID, unsigned char)
+void J2DPicture::load(GXTexMapID, uchar)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4538,7 +4539,7 @@ void J2DPicture::setTexCoord(JGeometry::TVec2<short>*, const JUTTexture*,
  * Address:	8003D1BC
  * Size:	000064
  */
-void J2DPicture::isUsed(const ResTIMG*)
+bool J2DPicture::isUsed(const ResTIMG*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4582,7 +4583,7 @@ lbl_8003D210:
  * Address:	8003D220
  * Size:	0000D0
  */
-void J2DPicture::getUsableTlut(unsigned char)
+uchar J2DPicture::getUsableTlut(uchar)
 {
 	/*
 	lbz      r6, 0x110(r3)
@@ -4692,7 +4693,7 @@ u32 J2DPicture::getTypeID() const { return 0x12; }
  * Address:	8003D32C
  * Size:	000030
  */
-void J2DPicture::append(const char*, JUTPalette*, float)
+bool J2DPicture::append(const char*, JUTPalette*, float)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4715,7 +4716,7 @@ void J2DPicture::append(const char*, JUTPalette*, float)
  * Address:	8003D35C
  * Size:	000030
  */
-void J2DPicture::prepend(JUTTexture*, float)
+bool J2DPicture::prepend(JUTTexture*, float)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4738,7 +4739,7 @@ void J2DPicture::prepend(JUTTexture*, float)
  * Address:	8003D38C
  * Size:	000030
  */
-void J2DPicture::prepend(const char*, JUTPalette*, float)
+bool J2DPicture::prepend(const char*, JUTPalette*, float)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4761,7 +4762,7 @@ void J2DPicture::prepend(const char*, JUTPalette*, float)
  * Address:	8003D3BC
  * Size:	000030
  */
-void J2DPicture::prepend(const char*, float)
+bool J2DPicture::prepend(const char*, float)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4784,7 +4785,7 @@ void J2DPicture::prepend(const char*, float)
  * Address:	8003D3EC
  * Size:	000030
  */
-void J2DPicture::prepend(const ResTIMG*, JUTPalette*, float)
+bool J2DPicture::prepend(const ResTIMG*, JUTPalette*, float)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4807,7 +4808,7 @@ void J2DPicture::prepend(const ResTIMG*, JUTPalette*, float)
  * Address:	8003D41C
  * Size:	000030
  */
-void J2DPicture::prepend(const ResTIMG*, float)
+bool J2DPicture::prepend(const ResTIMG*, float)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4830,7 +4831,7 @@ void J2DPicture::prepend(const ResTIMG*, float)
  * Address:	8003D44C
  * Size:	000038
  */
-void J2DPicture::remove()
+int J2DPicture::remove()
 {
 	/*
 	stwu     r1, -0x10(r1)

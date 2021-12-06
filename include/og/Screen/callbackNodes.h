@@ -22,9 +22,15 @@ namespace Screen {
 
 	// Size: 0x44
 	struct CallBack_CatchPiki : public P2DScreen::CallBackNode {
+		CallBack_CatchPiki();
+
 		virtual ~CallBack_CatchPiki(); // _00
 		virtual void update();         // _08
 		virtual void _14();            // _14
+
+		// TODO: Could init have been virtual, but not inserted into vtable?
+		void init(J2DScreen*, ulonglong, ulong*, JKRArchive*);
+		void setPikiIcon(int);
 
 		ulong* _1C;          // _1C
 		J2DPicture* _20;     // _20
@@ -37,6 +43,8 @@ namespace Screen {
 			ECM_UNKNOWN_2   = 2,
 			_ECM_FORCE_UINT = 0xFFFFFFFF
 		};
+
+		CallBack_CounterRV(char**, ushort, ushort, JKRArchive*);
 
 		virtual ~CallBack_CounterRV();                 // _00
 		virtual void update();                         // _08
@@ -55,7 +63,9 @@ namespace Screen {
 		void setKetaSub(int, bool, bool);
 		void setPuyoAnim(bool);
 		void setPuyoAnimZero(bool);
-		void setZeroAlpha(bool);
+		void setRandMode(bool);
+		void setValPtr(ulong*);
+		void setZeroAlpha(uchar);
 		void startPuyoUp(float);
 
 		char** m_characterTexturePaths; // _1C
@@ -107,6 +117,8 @@ namespace Screen {
 	};
 
 	struct CallBack_CounterDay : public CallBack_CounterRV {
+		CallBack_CounterDay(char**, ushort, JKRArchive*);
+
 		virtual ~CallBack_CounterDay(); // _00
 		virtual void update();          // _08
 		virtual void init(J2DScreen*, ulonglong, ulonglong, ulonglong, ulong*,
@@ -120,6 +132,8 @@ namespace Screen {
 
 	// Size: 0xCC
 	struct CallBack_CounterSlot : public CallBack_CounterRV {
+		CallBack_CounterSlot(char**, ushort, ushort, JKRArchive*);
+
 		virtual ~CallBack_CounterSlot(); // _00
 		virtual void update();           // _08
 		virtual void init(J2DScreen*, ulonglong, ulonglong, ulonglong, ulong*,
@@ -147,6 +161,8 @@ namespace Screen {
 
 	// Size: 0x28
 	struct CallBack_DrawAfter : public P2DScreen::CallBackNode {
+		CallBack_DrawAfter(P2DScreen::Mgr*, ulonglong);
+
 		virtual ~CallBack_DrawAfter();                 // _00
 		virtual void update();                         // _08
 		virtual void draw(Graphics&, J2DGrafContext&); // _0C
@@ -159,10 +175,17 @@ namespace Screen {
 
 	// Size: 0x4C
 	struct CallBack_Furiko : public P2DScreen::CallBackNode {
+		CallBack_Furiko();
+
 		virtual ~CallBack_Furiko();                    // _00
 		virtual void update();                         // _08
 		virtual void draw(Graphics&, J2DGrafContext&); // _0C
 		virtual void _14();                            // _14
+
+		// TODO: Could init have been virtual, but not inserted into vtable?
+		void init(J2DPane*, float, float, float);
+		void setParam(float, float, float);
+		void stop();
 
 		J2DPane* _1C; // _1C
 		u8 _20;       // _20
@@ -182,9 +205,16 @@ namespace Screen {
 	struct CallBack_LifeGauge : public P2DScreen::CallBackNode {
 		enum LifeGaugeType { _LGT_FORCE_UINT = 0xFFFFFFFF };
 
+		CallBack_LifeGauge();
+
 		virtual ~CallBack_LifeGauge();                 // _00
 		virtual void update();                         // _08
 		virtual void draw(Graphics&, J2DGrafContext&); // _0C
+
+		void init(P2DScreen::Mgr*, DataNavi*, LifeGaugeType);
+		void moveIcon();
+		void setType(LifeGaugeType);
+		void setOffset(float, float);
 
 		DataNavi* m_data;              // _1C
 		float m_naviLifeRatioMaybe;    // _20
@@ -243,6 +273,9 @@ namespace Screen {
 		virtual void draw(Graphics&, J2DGrafContext&); // _0C
 		virtual void _14();                            // _14
 
+		void changeScreen(P2DScreen::Mgr*, ulonglong);
+		J2DScreen* getPartsScreen();
+
 		J2DScreen* m_partsScreen; // _1C
 		J2DPane* _20;             // _20
 		J2DTextBox* _24;          // _24
@@ -262,9 +295,15 @@ namespace Screen {
 	};
 
 	struct CallBack_SunMeter : public P2DScreen::CallBackNode {
+		CallBack_SunMeter();
+
 		virtual ~CallBack_SunMeter(); // _00
 		virtual void update();        // _08
 		virtual void _14();           // _14
+
+		// TODO: Could init have been virtual, but not inserted into vtable?
+		void init(J2DScreen*, float*);
+		void startEffectChime();
 
 		float _1C;            // _1C
 		u8 _20[4];            // _20

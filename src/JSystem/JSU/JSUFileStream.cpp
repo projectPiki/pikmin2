@@ -1,6 +1,6 @@
-#include "types.h"
 #include "JSystem/JKR/JKRFile.h"
 #include "JSystem/JSU/JSUStream.h"
+#include "types.h"
 
 /*
     Generated from dpostproc
@@ -28,7 +28,6 @@
  * Size:	000044
  */
 JSUFileInputStream::JSUFileInputStream(JKRFile* file)
-    : JSURandomInputStream()
 {
 	m_object = file;
 	m_length = 0;

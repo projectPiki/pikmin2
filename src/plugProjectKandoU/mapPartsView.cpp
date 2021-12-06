@@ -1,5 +1,5 @@
+#include "Game/mapParts.h"
 #include "types.h"
-#include "Game/PartsView.h"
 
 /*
     Generated from dpostproc

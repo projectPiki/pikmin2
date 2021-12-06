@@ -1,3 +1,4 @@
+#include "Game/Data.h"
 #include "types.h"
 
 /*
@@ -1392,7 +1393,7 @@ lbl_80234EC0:
  * Address:	80234EE0
  * Size:	000018
  */
-void Lowscore::do_higher(int, int)
+bool Lowscore::do_higher(int, int)
 {
 	/*
 	xor      r0, r5, r4

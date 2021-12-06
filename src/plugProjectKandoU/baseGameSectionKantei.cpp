@@ -1,3 +1,6 @@
+#include "Camera.h"
+#include "Controller.h"
+#include "Game/BaseGameSection.h"
 #include "types.h"
 
 /*
@@ -559,14 +562,13 @@ lbl_8023BA44:
 	*/
 }
 
-} // namespace Game
-
 /*
  * --INFO--
  * Address:	8023BA64
  * Size:	0000CC
  */
-void onKanteiDone__Q24Game15BaseGameSectionFR7Rect<float>(void)
+// void onKanteiDone__Q24Game15BaseGameSectionFR7Rect<float>(void)
+void BaseGameSection::onKanteiDone(Rectf& rect)
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -623,8 +625,6 @@ void onKanteiDone__Q24Game15BaseGameSectionFR7Rect<float>(void)
 	*/
 }
 
-namespace Game {
-
 /*
  * --INFO--
  * Address:	........
@@ -640,8 +640,9 @@ void BaseGameSection::closeZoomWindow(void)
  * Address:	8023BB30
  * Size:	000114
  */
-void init__Q34Game15BaseGameSection10ZoomCameraFffR10Vector3f
-P10Controller(void)
+// void init__Q34Game15BaseGameSection10ZoomCameraFffR10Vector3f
+// P10Controller(void)
+void BaseGameSection::ZoomCamera::init(float, float, Vector3f&, Controller*)
 {
 	/*
 	.loc_0x0:

@@ -1,3 +1,5 @@
+#include "ebi/Omake.h"
+#include "ebi/E2DCallBack.h"
 #include "types.h"
 
 /*
@@ -1141,7 +1143,7 @@ lbl_803EDFA8:
 	 * Address:	803EE190
 	 * Size:	000084
 	 */
-	void TOmake::doUpdateStateOpen(void)
+	bool TOmake::doUpdateStateOpen()
 	{
 		/*
 	stwu     r1, -0x10(r1)
@@ -1191,7 +1193,7 @@ lbl_803EE200:
 	 * Address:	803EE214
 	 * Size:	000484
 	 */
-	void TOmake::doUpdateStateWait(void)
+	bool TOmake::doUpdateStateWait()
 	{
 		/*
 	stwu     r1, -0x50(r1)
@@ -1535,7 +1537,7 @@ lbl_803EE678:
 	 * Address:	803EE698
 	 * Size:	000074
 	 */
-	void TOmake::doUpdateStateClose(void)
+	bool TOmake::doUpdateStateClose()
 	{
 		/*
 	stwu     r1, -0x10(r1)
@@ -1783,7 +1785,7 @@ lbl_803EE934:
 	 * Address:	803EE994
 	 * Size:	000064
 	 */
-	void TOmake::showPanes_(void)
+	void TOmake::showPanes_() const
 	{
 		/*
 	lwz      r4, 0x5c(r3)
@@ -1819,7 +1821,7 @@ lbl_803EE934:
 	 * Address:	803EE9F8
 	 * Size:	000028
 	 */
-	void TOmake::hidePanes_(void)
+	void TOmake::hidePanes_() const
 	{
 		/*
 	lwz      r4, 0x5c(r3)
@@ -1840,7 +1842,7 @@ lbl_803EE934:
 	 * Address:	803EEA20
 	 * Size:	000054
 	 */
-	void TOmake::openFromMovie_(void)
+	void TOmake::openFromMovie_() const
 	{
 		/*
 	stwu     r1, -0x10(r1)
@@ -1872,7 +1874,7 @@ lbl_803EE934:
 	 * Address:	803EEA74
 	 * Size:	0000B0
 	 */
-	void TOmake::openFromCardE_(void)
+	void TOmake::openFromCardE_() const
 	{
 		/*
 	stwu     r1, -0x10(r1)
@@ -1921,72 +1923,82 @@ lbl_803EE934:
 	blr
 		*/
 	}
+} // namespace Screen
 
+/*
+ * --INFO--
+ * Address:	803EEB24
+ * Size:	0000BC
+ */
+E2DCallBack_BlinkFontColor::E2DCallBack_BlinkFontColor()
+    : E2DCallBack_Base()
+    , _20()
+    , _40(0.0f)
+    , _44(0.03333f)
+    , _48(1)
+    , _49(0)
+{
+	_1C = 0;
 	/*
-	 * --INFO--
-	 * Address:	803EEB24
-	 * Size:	0000BC
-	 */
-	E2DCallBack_BlinkFontColor::E2DCallBack_BlinkFontColor(void)
-	{
-		/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r3
-	mr       r31, r30
-	bl       __ct__5CNodeFv
-	lis      r3, __vt__Q29P2DScreen4Node@ha
-	lis      r4, __vt__Q29P2DScreen12CallBackNode@ha
-	addi     r0, r3, __vt__Q29P2DScreen4Node@l
-	lis      r6, __vt__Q23ebi16E2DCallBack_Base@ha
-	stw      r0, 0(r31)
-	li       r0, 0
-	lis      r3, __ct__Q23ebi16E2DFullFontColorFv@ha
-	li       r7, 1
-	stw      r0, 0x18(r31)
-	addi     r0, r4, __vt__Q29P2DScreen12CallBackNode@l
-	addi     r4, r3, __ct__Q23ebi16E2DFullFontColorFv@l
-	addi     r3, r6, __vt__Q23ebi16E2DCallBack_Base@l
-	stw      r0, 0(r31)
-	lis      r5, __vt__Q23ebi26E2DCallBack_BlinkFontColor@ha
-	addi     r0, r5, __vt__Q23ebi26E2DCallBack_BlinkFontColor@l
-	li       r6, 0x10
-	stw      r3, 0(r31)
-	addi     r3, r30, 0x20
-	li       r5, 0
-	stb      r7, 0x1c(r31)
-	li       r7, 2
-	stw      r0, 0(r30)
-	bl       __construct_array
-	lfs      f1, lbl_8051FE64@sda21(r2)
-	li       r4, 1
-	lfs      f0, lbl_8051FE68@sda21(r2)
-	li       r0, 0
-	stfs     f1, 0x40(r30)
-	mr       r3, r30
-	stfs     f0, 0x44(r30)
-	stb      r4, 0x48(r30)
-	stb      r0, 0x49(r30)
-	stb      r0, 0x1c(r30)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-		*/
-	}
+stwu     r1, -0x10(r1)
+mflr     r0
+stw      r0, 0x14(r1)
+stw      r31, 0xc(r1)
+stw      r30, 8(r1)
+mr       r30, r3
+mr       r31, r30
+bl       __ct__5CNodeFv
+lis      r3, __vt__Q29P2DScreen4Node@ha
+lis      r4, __vt__Q29P2DScreen12CallBackNode@ha
+addi     r0, r3, __vt__Q29P2DScreen4Node@l
+lis      r6, __vt__Q23ebi16E2DCallBack_Base@ha
+stw      r0, 0(r31)
+li       r0, 0
+lis      r3, __ct__Q23ebi16E2DFullFontColorFv@ha
+li       r7, 1
+stw      r0, 0x18(r31)
+addi     r0, r4, __vt__Q29P2DScreen12CallBackNode@l
+addi     r4, r3, __ct__Q23ebi16E2DFullFontColorFv@l
+addi     r3, r6, __vt__Q23ebi16E2DCallBack_Base@l
+stw      r0, 0(r31)
+lis      r5, __vt__Q23ebi26E2DCallBack_BlinkFontColor@ha
+addi     r0, r5, __vt__Q23ebi26E2DCallBack_BlinkFontColor@l
+li       r6, 0x10
+stw      r3, 0(r31)
+addi     r3, r30, 0x20
+li       r5, 0
+stb      r7, 0x1c(r31)
+li       r7, 2
+stw      r0, 0(r30)
+bl       __construct_array
+lfs      f1, lbl_8051FE64@sda21(r2)
+li       r4, 1
+lfs      f0, lbl_8051FE68@sda21(r2)
+li       r0, 0
+stfs     f1, 0x40(r30)
+mr       r3, r30
+stfs     f0, 0x44(r30)
+stb      r4, 0x48(r30)
+stb      r0, 0x49(r30)
+stb      r0, 0x1c(r30)
+lwz      r31, 0xc(r1)
+lwz      r30, 8(r1)
+lwz      r0, 0x14(r1)
+mtlr     r0
+addi     r1, r1, 0x10
+blr
+	*/
+}
 
+namespace Screen {
 	/*
 	 * --INFO--
 	 * Address:	803EEBE0
 	 * Size:	000008
 	 */
-	void TOmake::getName(void)
+	char* TOmake::getName()
 	{
+		return "TOmake";
 		/*
 	addi     r3, r2, lbl_8051FE98@sda21
 	blr

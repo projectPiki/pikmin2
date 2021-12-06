@@ -1,3 +1,4 @@
+#include "JSystem/J3D/J3DFrameCtrl.h"
 #include "types.h"
 
 /*

@@ -21,7 +21,22 @@ namespace Screen {
 		virtual char* getName(void) { return "ArgClose"; }
 	};
 
-	struct TScreenBase {
+	struct TScreenBaseInterface {
+		virtual void setArchive(JKRArchive*) = 0; // _00
+		virtual bool openScreen(ArgOpen*)    = 0; // _04
+		virtual bool closeScreen(ArgClose*)  = 0; // _08
+		virtual void killScreen()            = 0; // _0C
+		virtual void update()                = 0; // _10
+		virtual void draw()                  = 0; // _14
+		virtual u8 isFinishScreen()          = 0; // _18
+	};
+
+	struct TScreenBase : public TScreenBaseInterface {
+		inline TScreenBase()
+		    : m_archive(nullptr)
+		    , m_state(0)
+		{
+		}
 		virtual void setArchive(JKRArchive*);   // _00
 		virtual bool openScreen(ArgOpen*);      // _04
 		virtual bool closeScreen(ArgClose*);    // _08

@@ -1,3 +1,4 @@
+#include "JSystem/JUT/JUTGraphFifo.h"
 #include "types.h"
 
 /*
@@ -28,7 +29,7 @@
  * Address:	8002EB34
  * Size:	0000DC
  */
-JUTGraphFifo::JUTGraphFifo(unsigned long)
+JUTGraphFifo::JUTGraphFifo(ulong)
 {
 	/*
 	stwu     r1, -0x10(r1)

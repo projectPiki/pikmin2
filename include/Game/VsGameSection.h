@@ -27,7 +27,7 @@ struct VsGameSection : public BaseGameSection {
 
 	void addChallengeScore(int);
 	void calcVsScores();
-	void challengeDisablePelplant();
+	bool challengeDisablePelplant();
 	void clearCaveMenus();
 	void clearGetCherryCount();
 	void clearGetDopeCount();
@@ -38,9 +38,10 @@ struct VsGameSection : public BaseGameSection {
 	void doDraw(Graphics&);
 	virtual bool doUpdate();
 	void dropCard(DropCardArg&);
-	void getCaveFilename();
+	char* getCaveFilename();
 	void getCurrFloor();
 	void getEditorFilename();
+	u32 getGetCherryCount(int);
 	void getGetDopeCount(int, int);
 	void getVsEditNumber();
 	void gmOrimaDown(int);
@@ -59,7 +60,7 @@ struct VsGameSection : public BaseGameSection {
 	void onSetupFloatMemory();
 	void openCaveMoreMenu(ItemHole::Item*, Controller*);
 	void openKanketuMenu(ItemBigFountain::Item*, Controller*);
-	void player2enabled();
+	bool player2enabled();
 	void postSetupFloatMemory();
 	void pre2dDraw(Graphics&);
 	void section_fadeout();

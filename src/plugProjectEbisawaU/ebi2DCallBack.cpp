@@ -1,3 +1,7 @@
+#include "JSystem/J2D/J2DAnm.h"
+#include "JSystem/JUT/JUTException.h"
+#include "JSystem/JKR/JKRFileLoader.h"
+#include "ebi/E2DCallBack.h"
 #include "types.h"
 
 /*
@@ -110,6 +114,12 @@ namespace ebi {
  */
 void E2DCallBack_Purupuru::do_update(void)
 {
+	if (_18) {
+		_3C                = m_scaleMgr.calc();
+		_18->m_widthScale  = _3C;
+		_18->m_heightScale = _3C;
+		_18->calcMtx();
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -436,8 +446,17 @@ lbl_803D0AC0:
  * Address:	803D0AD0
  * Size:	0000C8
  */
-void E2DCallBack_AnmBase::loadAnm(char*, JKRArchive*, long, long)
+void E2DCallBack_AnmBase::loadAnm(char* path, JKRArchive* archive, long p3,
+                                  long p4)
 {
+	void* resource = JKRFileLoader::getGlbResource(path, archive);
+	P2ASSERTLINE(74, (resource != nullptr));
+	m_anm           = J2DAnmLoaderDataBase::load(resource);
+	m_frameCtrl._06 = p3;
+	m_frameCtrl._10 = p3;
+	m_frameCtrl._0A = p3;
+	m_frameCtrl._08 = ((m_anm->m_maxFrame < p4) ? m_anm->m_maxFrame : p4);
+
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -672,6 +691,8 @@ lbl_803D0D80:
  */
 void E2DCallBack_AnmBase::stop(void)
 {
+	_1C        = 0;
+	m_isFinish = true;
 	/*
 	li       r4, 0
 	li       r0, 1
@@ -698,6 +719,8 @@ void E2DCallBack_AnmBase::disconnect(void)
  */
 void E2DCallBack_AnmBase::setStartFrame(void)
 {
+	m_frameCtrl._10       = m_frameCtrl._06;
+	m_anm->m_currentFrame = m_frameCtrl._10;
 	/*
 	stwu     r1, -0x10(r1)
 	lis      r0, 0x4330
@@ -724,6 +747,8 @@ void E2DCallBack_AnmBase::setStartFrame(void)
  */
 void E2DCallBack_AnmBase::setEndFrame(void)
 {
+	m_frameCtrl._10       = m_frameCtrl._08;
+	m_anm->m_currentFrame = m_frameCtrl._10;
 	/*
 	stwu     r1, -0x10(r1)
 	lis      r0, 0x4330
@@ -807,8 +832,9 @@ void E2DCallBack_AnmBase::setRandFrame(void)
  * Address:	803D0F00
  * Size:	000054
  */
-void E2DCallBack_AnmBase::getPlayFinRate(void)
+float E2DCallBack_AnmBase::getPlayFinRate(void)
 {
+	return (m_frameCtrl._10 - m_frameCtrl._06) / m_frameCtrl._08;
 	/*
 	stwu     r1, -0x20(r1)
 	lis      r4, 0x4330
@@ -841,6 +867,13 @@ void E2DCallBack_AnmBase::getPlayFinRate(void)
  */
 void E2DCallBack_AnmBase::do_update(void)
 {
+	if (_18) {
+		m_frameCtrl.update();
+		m_anm->m_currentFrame = m_frameCtrl._10;
+	}
+	if (m_frameCtrl.m_attr & 1) {
+		m_isFinish = true;
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -877,8 +910,9 @@ lbl_803D0F9C:
  * Address:	803D0FB0
  * Size:	000008
  */
-void E2DCallBack_AnmBase::isFinish(void)
+bool E2DCallBack_AnmBase::isFinish(void)
 {
+	return m_isFinish;
 	/*
 	lbz      r3, 0x38(r3)
 	blr

@@ -1,3 +1,8 @@
+#include "Sys/GridDivider.h"
+#include "Sys/Triangle.h"
+#include "Sys/TriangleTable.h"
+#include "Sys/TriIndexList.h"
+#include "Sys/Tube.h"
 #include "types.h"
 
 /*

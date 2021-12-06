@@ -165,7 +165,7 @@ JSYSTEM:=\
 	$(BUILD_DIR)/asm/JSystem/JPA/JPAResource.o\
 	$(BUILD_DIR)/asm/JSystem/JPA/JPAResourceLoader.o\
 	$(BUILD_DIR)/asm/JSystem/JPA/JPAResourceManager.o\
-	$(BUILD_DIR)/asm/JSystem/JPA/JPATexture.o\
+	$(BUILD_DIR)/src/JSystem/JPA/JPATexture.o\
 	$(BUILD_DIR)/asm/JSystem/JSG/JSGSystem.o\
 	$(BUILD_DIR)/asm/JSystem/JSG/JSGCamera.o\
 	$(BUILD_DIR)/asm/JSystem/JSG/JSGObject.o\
@@ -605,7 +605,7 @@ KANDO:=\
 	$(BUILD_DIR)/asm/plugProjectKandoU/aiBore.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/mapPartsView.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/singleGS_Ending.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/gameIconTexture.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/gameIconTexture.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/gameTekiStat.o\
 	$(BUILD_DIR)/src/plugProjectKandoU/gameHighscore.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/gamePlayCommonData.o\

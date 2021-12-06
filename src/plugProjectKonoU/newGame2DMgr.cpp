@@ -1,3 +1,4 @@
+#include "Screen/Game2DMgr.h"
 #include "types.h"
 
 /*
@@ -459,7 +460,7 @@ lbl_803FC1AC:
  * Address:	803FC1C4
  * Size:	000060
  */
-void Game2DMgr::is_GameGround()
+bool Game2DMgr::is_GameGround()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -622,7 +623,7 @@ lbl_803FC3C0:
  * Address:	803FC3D8
  * Size:	000060
  */
-void Game2DMgr::is_GameCave()
+bool Game2DMgr::is_GameCave()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1968,7 +1969,7 @@ lbl_803FD434:
  * Address:	803FD448
  * Size:	000074
  */
-void Game2DMgr::update_Kantei()
+bool Game2DMgr::update_Kantei()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2291,7 +2292,7 @@ lbl_803FD7A8:
  * Address:	803FD7BC
  * Size:	000090
  */
-void Game2DMgr::open_CourseName(og::Screen::DispMemberCourseName&)
+bool Game2DMgr::open_CourseName(og::Screen::DispMemberCourseName&)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -3691,7 +3692,7 @@ lbl_803FE78C:
  * Address:	803FE7A8
  * Size:	0000A8
  */
-void Game2DMgr::open_FinalMessage(og::Screen::DispMemberFinalMessage&)
+bool Game2DMgr::open_FinalMessage(og::Screen::DispMemberFinalMessage&)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -4965,7 +4966,7 @@ lbl_803FF5F0:
  * Address:	803FF604
  * Size:	000030
  */
-void Game2DMgr::isZukanEnemy()
+bool Game2DMgr::isZukanEnemy()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4988,7 +4989,7 @@ void Game2DMgr::isZukanEnemy()
  * Address:	803FF634
  * Size:	000030
  */
-void Game2DMgr::isZukanItem()
+bool Game2DMgr::isZukanItem()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -5353,7 +5354,7 @@ lbl_803FF9F0:
  * Address:	803FFA04
  * Size:	0000E4
  */
-void Game2DMgr::isZukanEnlargedWindow()
+bool Game2DMgr::isZukanEnlargedWindow()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -5437,7 +5438,7 @@ lbl_803FFACC:
  * Address:	803FFAE8
  * Size:	0000E4
  */
-void Game2DMgr::isZukanMemoWindow()
+bool Game2DMgr::isZukanMemoWindow()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -5521,7 +5522,7 @@ lbl_803FFBB0:
  * Address:	803FFBCC
  * Size:	0000C4
  */
-void Game2DMgr::isAppearConfirmWindow()
+bool Game2DMgr::isAppearConfirmWindow()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -5737,7 +5738,7 @@ lbl_803FFE20:
  * Address:	803FFE34
  * Size:	000034
  */
-void Game2DMgr::isEndChallengeResult()
+bool Game2DMgr::isEndChallengeResult()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -5912,7 +5913,7 @@ lbl_80400004:
  * Address:	80400018
  * Size:	000058
  */
-void Game2DMgr::isEndHighScore()
+bool Game2DMgr::isEndHighScore()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -6043,18 +6044,15 @@ lbl_8040014C:
  * Address:	80400168
  * Size:	000008
  */
-u32 EndSceneArg::getClassSize() { return 0x8; }
-
-namespace og {
-
-} // namespace og
+int EndSceneArg::getClassSize() { return 0x8; }
+} // namespace Screen
 
 /*
  * --INFO--
  * Address:	80400170
  * Size:	000008
  */
-u32 newScreen::SArgChallenge1P::getSceneType() const { return 0x2727; }
+int newScreen::SArgChallenge1P::getSceneType() const { return 0x2727; }
 
 /*
  * --INFO--
@@ -6083,64 +6081,64 @@ namespace kh {
 
 namespace Screen {
 
-	/*
-	 * --INFO--
-	 * Address:	80400190
-	 * Size:	000008
-	 */
-	u32 DispReadyGo::getSize() { return 0x14; }
+/*
+ * --INFO--
+ * Address:	80400190
+ * Size:	000008
+ */
+u32 DispReadyGo::getSize() { return 0x14; }
 
-	/*
-	 * --INFO--
-	 * Address:	80400198
-	 * Size:	000008
-	 */
-	u32 DispReadyGo::getOwnerID() { return 0x4B48; }
+/*
+ * --INFO--
+ * Address:	80400198
+ * Size:	000008
+ */
+u32 DispReadyGo::getOwnerID() { return 0x4B48; }
 
+/*
+ * --INFO--
+ * Address:	804001A0
+ * Size:	000014
+ */
+void DispReadyGo::getMemberID()
+{
 	/*
-	 * --INFO--
-	 * Address:	804001A0
-	 * Size:	000014
-	 */
-	void DispReadyGo::getMemberID()
-	{
-		/*
-	lis      r4, 0x595F474F@ha
-	lis      r3, 0x52454144@ha
-	addi     r4, r4, 0x595F474F@l
-	addi     r3, r3, 0x52454144@l
-	blr
-		*/
-	}
+lis      r4, 0x595F474F@ha
+lis      r3, 0x52454144@ha
+addi     r4, r4, 0x595F474F@l
+addi     r3, r3, 0x52454144@l
+blr
+	*/
+}
 
-	/*
-	 * --INFO--
-	 * Address:	804001B4
-	 * Size:	000008
-	 */
-	u32 DispFinalFloor::getSize() { return 0xC; }
+/*
+ * --INFO--
+ * Address:	804001B4
+ * Size:	000008
+ */
+u32 DispFinalFloor::getSize() { return 0xC; }
 
-	/*
-	 * --INFO--
-	 * Address:	804001BC
-	 * Size:	000008
-	 */
-	u32 DispFinalFloor::getOwnerID() { return 0x4B48; }
+/*
+ * --INFO--
+ * Address:	804001BC
+ * Size:	000008
+ */
+u32 DispFinalFloor::getOwnerID() { return 0x4B48; }
 
+/*
+ * --INFO--
+ * Address:	804001C4
+ * Size:	000014
+ */
+void DispFinalFloor::getMemberID()
+{
 	/*
-	 * --INFO--
-	 * Address:	804001C4
-	 * Size:	000014
-	 */
-	void DispFinalFloor::getMemberID()
-	{
-		/*
-	lis      r4, 0x5F464C52@ha
-	lis      r3, 0x0046494E@ha
-	addi     r4, r4, 0x5F464C52@l
-	addi     r3, r3, 0x0046494E@l
-	blr
-		*/
-	}
+lis      r4, 0x5F464C52@ha
+lis      r3, 0x0046494E@ha
+addi     r4, r4, 0x5F464C52@l
+addi     r3, r3, 0x0046494E@l
+blr
+	*/
+}
 } // namespace Screen
 } // namespace Screen

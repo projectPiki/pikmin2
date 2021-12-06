@@ -1,4 +1,5 @@
 #include "types.h"
+#include "ebi/Utility.h"
 
 /*
     Generated from dpostproc
@@ -425,12 +426,12 @@ void EUTDebug_Wait()
  * Address:	803C1EB4
  * Size:	000004
  */
-void EUTDebug_Tag64ToName(unsigned long long, char*) { }
+void EUTDebug_Tag64ToName(ulonglong, char*) { }
 
 /*
  * --INFO--
  * Address:	803C1EB8
  * Size:	000004
  */
-void EUTDebug_Tag32ToName(unsigned long, char*) { }
+void EUTDebug_Tag32ToName(ulong, char*) { }
 } // namespace ebi

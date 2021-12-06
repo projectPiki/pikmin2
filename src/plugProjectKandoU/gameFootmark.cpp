@@ -121,14 +121,14 @@ void Footmarks::add(Footmark& mark)
 	                    + (v3 * v3))),
 	           v6 >= 20.0f)) {
 		this->m_marks[this->_04].position = mark.position;
-		this->m_marks[this->_04].flag     = Game::gameSystem->_50;
+		this->m_marks[this->_04].flag     = Game::gameSystem->m_frameTimer;
 		this->_04
 		    = this->_04 + 1 - (this->_04 + 1) / this->m_count * this->m_count;
 
 		u32 v8 = this->_08;
 		if (v8 < this->m_count)
 			this->_08 = v8 + 1;
-		this->_10 = Game::gameSystem->_50;
+		this->_10 = Game::gameSystem->m_frameTimer;
 		namespace Game {
 
 		}

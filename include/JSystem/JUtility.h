@@ -5,7 +5,7 @@
 
 namespace JUtility {
 struct TColor {
-	TColor() {};
+	inline TColor();
 	inline TColor(u8 red, u8 green, u8 blue, u8 alpha)
 	{
 		channels.r = red;
@@ -14,6 +14,16 @@ struct TColor {
 		channels.a = alpha;
 	}
 	inline TColor(u32 value) { asU32 = value; }
+	inline TColor(const TColor& other) { asU32 = other.asU32; }
+	inline TColor& operator=(TColor other)
+	{
+		channels = other.channels;
+		// channels.r = other.channels.r;
+		// channels.g = other.channels.g;
+		// channels.b = other.channels.b;
+		// channels.a = other.channels.a;
+		return *this;
+	}
 	union {
 		u32 asU32;
 		struct {

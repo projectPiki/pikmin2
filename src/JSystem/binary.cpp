@@ -1,3 +1,4 @@
+#include "JSystem/JGadget/binary.h"
 #include "types.h"
 
 /*
@@ -43,7 +44,7 @@ void JGadget::binary::parseVariableUInt_8_16(void const**,
  * Size:	000068
  */
 void JGadget::binary::parseVariableUInt_16_32_following(
-    (void const*, unsigned long*, unsigned long*, JGadget::binary::TEBit*))
+    void const*, unsigned long*, unsigned long*, JGadget::binary::TEBit*)
 {
 	/*
 	.loc_0x0:

@@ -1,3 +1,5 @@
+#include "JSystem/JKR/JKRArchive.h"
+#include "JSystem/JKR/JKRFileLoader.h"
 #include "types.h"
 
 /*
@@ -108,8 +110,8 @@ lbl_8001A5A8:
  * Address:	8001A5C4
  * Size:	00004C
  */
-void JKRArchive::isSameName(JKRArchive::CArcName&, unsigned long,
-                            unsigned short) const
+bool JKRArchive::isSameName(JKRArchive::CArcName& archiveName,
+                            ulong nameTableOffset, ushort hash) const
 {
 	/*
 	.loc_0x0:
@@ -144,7 +146,7 @@ void JKRArchive::isSameName(JKRArchive::CArcName&, unsigned long,
  * Address:	8001A610
  * Size:	00031C
  */
-void JKRArchive::findDirectory(const char*, unsigned long) const
+u32 JKRArchive::findDirectory(const char* directoryName, ulong) const
 {
 	/*
 	stwu     r1, -0x450(r1)
@@ -436,8 +438,9 @@ JKRArchive::CArcName::CArcName(const char**, char)
  * Address:	8001A970
  * Size:	000008
  */
-void JKRArchive::CArcName::getString() const
+const char* JKRArchive::CArcName::getString() const
 {
+	return m_string;
 	/*
 	addi     r3, r3, 4
 	blr
@@ -449,8 +452,9 @@ void JKRArchive::CArcName::getString() const
  * Address:	8001A978
  * Size:	000008
  */
-void JKRArchive::CArcName::getHash() const
+ushort JKRArchive::CArcName::getHash() const
 {
+	return m_hash;
 	/*
 	lhz      r3, 0(r3)
 	blr
@@ -462,7 +466,7 @@ void JKRArchive::CArcName::getHash() const
  * Address:	8001A980
  * Size:	0000F4
  */
-void JKRArchive::findTypeResource(unsigned long, const char*) const
+JKRArchive::SDIFileEntry* JKRArchive::findTypeResource(ulong, const char*) const
 {
 	/*
 	stwu     r1, -0x130(r1)
@@ -556,7 +560,7 @@ lbl_8001AA60:
  * Address:	8001AA74
  * Size:	000340
  */
-void JKRArchive::findFsResource(const char*, unsigned long) const
+JKRArchive::SDIFileEntry* JKRArchive::findFsResource(const char*, ulong) const
 {
 	/*
 	stwu     r1, -0x450(r1)
@@ -837,7 +841,7 @@ lbl_8001ADA0:
  * Address:	8001ADB4
  * Size:	000028
  */
-void JKRArchive::findIdxResource(unsigned long) const
+JKRArchive::SDIFileEntry* JKRArchive::findIdxResource(ulong) const
 {
 	/*
 	lwz      r5, 0x44(r3)
@@ -860,7 +864,7 @@ lbl_8001ADD4:
  * Address:	8001ADDC
  * Size:	0000A4
  */
-void JKRArchive::findNameResource(const char*) const
+JKRArchive::SDIFileEntry* JKRArchive::findNameResource(const char*) const
 {
 	/*
 	stwu     r1, -0x130(r1)
@@ -924,7 +928,7 @@ lbl_8001AE6C:
  * Address:	8001AE80
  * Size:	000034
  */
-void JKRArchive::findPtrResource(const void*) const
+JKRArchive::SDIFileEntry* JKRArchive::findPtrResource(const void*) const
 {
 	/*
 	lwz      r5, 0x44(r3)
@@ -952,7 +956,7 @@ lbl_8001AEAC:
  * Address:	8001AEB4
  * Size:	000080
  */
-void JKRArchive::findIdResource(unsigned short) const
+JKRArchive::SDIFileEntry* JKRArchive::findIdResource(ushort) const
 {
 	/*
 	clrlwi   r5, r4, 0x10
@@ -1058,7 +1062,7 @@ lbl_8001AF94:
  * Address:	8001AFCC
  * Size:	0000C8
  */
-void JKRArchive::CArcName::store(const char*, char)
+char* JKRArchive::CArcName::store(const char*, char)
 {
 	/*
 	stwu     r1, -0x20(r1)

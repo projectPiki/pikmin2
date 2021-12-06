@@ -1,3 +1,4 @@
+#include "JSystem/J2D/J2DAnm.h"
 #include "types.h"
 
 /*
@@ -65,7 +66,7 @@
  * Address:	8004791C
  * Size:	00079C
  */
-void J2DAnmLoaderDataBase::load(const void*)
+J2DAnmBase* J2DAnmLoaderDataBase::load(const void*)
 {
 	/*
 	stwu     r1, -0x60(r1)

@@ -1,3 +1,4 @@
+#include "JSystem/JKR/Aram.h"
 #include "types.h"
 
 /*
@@ -271,7 +272,7 @@ lbl_80018B9C:
  * Address:	80018BB8
  * Size:	000334
  */
-void JKRAramArchive::open(long)
+bool JKRAramArchive::open(long)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -527,7 +528,7 @@ lbl_80018ED8:
  * Address:	80018EEC
  * Size:	000124
  */
-void JKRAramArchive::fetchResource(JKRArchive::SDIFileEntry*, unsigned long*)
+u32 JKRAramArchive::fetchResource(JKRArchive::SDIFileEntry*, unsigned long*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -629,8 +630,8 @@ lbl_80018FF0:
  * Address:	80019010
  * Size:	0000F8
  */
-void JKRAramArchive::fetchResource(void*, unsigned long,
-                                   JKRArchive::SDIFileEntry*, unsigned long*)
+void* JKRAramArchive::fetchResource(void*, unsigned long,
+                                    JKRArchive::SDIFileEntry*, unsigned long*)
 {
 	/*
 	.loc_0x0:
@@ -724,9 +725,7 @@ void JKRAramArchive::fetchResource(void*, unsigned long,
  * Address:	80019108
  * Size:	0000BC
  */
-void JKRAramArchive::fetchResource_subroutine(unsigned long, unsigned long,
-                                              unsigned char*, unsigned long,
-                                              int)
+void JKRAramArchive::fetchResource_subroutine(ulong, ulong, uchar*, ulong, int)
 {
 	/*
 	.loc_0x0:
@@ -795,8 +794,8 @@ void JKRAramArchive::fetchResource_subroutine(unsigned long, unsigned long,
  * Address:	800191C4
  * Size:	00014C
  */
-void JKRAramArchive::fetchResource_subroutine(unsigned long, unsigned long,
-                                              JKRHeap*, int, unsigned char**)
+void JKRAramArchive::fetchResource_subroutine(ulong, ulong, JKRHeap*, int,
+                                              uchar**)
 {
 	/*
 	.loc_0x0:

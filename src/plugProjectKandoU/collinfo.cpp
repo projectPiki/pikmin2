@@ -1,6 +1,6 @@
 #include "CNode.h"
 #include "CollInfo.h"
-#include "JSystem/JUTException.h"
+#include "JSystem/JUT/JUTException.h"
 #include "Sys/OBB.h"
 #include "Sys/OBBTree.h"
 #include "Sys/GridDivider.h"

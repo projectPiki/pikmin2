@@ -9,6 +9,7 @@ struct Triangle;
 struct Plane;
 
 struct Cylinder {
+	inline Cylinder() { }
 	Cylinder(const Vector3f&, const Vector3f&, float);
 	Cylinder(const Vector3f&, const Vector3f&, float, float);
 

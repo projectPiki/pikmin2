@@ -18,13 +18,15 @@ enum GameSystemMode {
 	GSM_VERSUS_MODE,
 	GSM_ONE_PLAYER_CHALLENGE,
 	GSM_TWO_PLAYER_CHALLENGE,
-	GSM_PIKLOPEDIA
+	GSM_PIKLOPEDIA,
+	GSM_FORCE_UINT = 0xFFFFFFFF
 };
 #pragma enumalwaysint reset
 struct GameSystem : public NodeObjectMgr<GenericObjectMgr> {
 	GameSystem(Game::BaseGameSection*);
-	~GameSystem();
-
+	// vtable 1
+	virtual ~GameSystem(); // _00
+	// vtable 2
 	virtual void doAnimation();           // _00
 	virtual void doEntry();               // _04
 	virtual void doSetView(int);          // _08

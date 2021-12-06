@@ -1,3 +1,8 @@
+#include "ebi/E2DGraph.h"
+#include "ebi/Utility.h"
+#include "JSystem/J2D/J2DPane.h"
+#include "JSystem/JUT/JUTException.h"
+#include "P2DScreen.h"
 #include "types.h"
 
 /*
@@ -31,47 +36,13 @@ namespace ebi {
  * Address:	803CA358
  * Size:	00008C
  */
-void E2DScreen_searchAssert(J2DScreen*, unsigned long long)
+J2DPane* E2DScreen_searchAssert(J2DScreen* screen, ulonglong tag)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	stw      r30, 0x28(r1)
-	mr       r30, r5
-	stw      r29, 0x24(r1)
-	mr       r29, r6
-	lwz      r12, 0(r3)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	or.      r31, r3, r3
-	bne      lbl_803CA3C4
-	mr       r4, r29
-	mr       r3, r30
-	addi     r5, r1, 8
-	bl       EUTDebug_Tag64ToName__3ebiFUxPc
-	cmplwi   r31, 0
-	bne      lbl_803CA3C4
-	lis      r3, lbl_80496428@ha
-	lis      r5, lbl_80496438@ha
-	addi     r3, r3, lbl_80496428@l
-	li       r4, 0x14
-	addi     r5, r5, lbl_80496438@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803CA3C4:
-	lwz      r0, 0x34(r1)
-	mr       r3, r31
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	lwz      r29, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	char name[16];
+	J2DPane* result = screen->search(tag);
+	P2ASSERTLINE(20, (result != nullptr
+	                  || (EUTDebug_Tag64ToName(tag, name), result != nullptr)));
+	return result;
 }
 
 /*
@@ -79,8 +50,9 @@ lbl_803CA3C4:
  * Address:	803CA3E4
  * Size:	0001D8
  */
-void E2DPane_setTreeInfluencedAlpha(J2DPane*, bool)
+void E2DPane_setTreeInfluencedAlpha(J2DPane* pane, bool p2)
 {
+	// pane->setInfluencedAlpha(p2, false);
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -381,7 +353,7 @@ lbl_803CA744:
 void J2DPane::show()
 {
 	// Generated from stb r0, 0xB0(r3)
-	_B0 = 1;
+	m_isVisible = true;
 }
 
 namespace ebi {
@@ -538,7 +510,7 @@ lbl_803CA8F4:
 void J2DPane::hide()
 {
 	// Generated from stb r0, 0xB0(r3)
-	_B0 = 0;
+	m_isVisible = false;
 }
 
 namespace ebi {

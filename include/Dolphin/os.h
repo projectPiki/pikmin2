@@ -34,6 +34,7 @@ typedef struct OSThreadQueue {
 
 OSThread* OSGetCurrentThread(void);
 int OSSuspendThread(OSThread* thread);
+int OSResumeThread(OSThread* thread);
 
 typedef struct OSMessageQueue {
 	char filler[32];

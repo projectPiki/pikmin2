@@ -1,3 +1,4 @@
+#include "JSystem/J3D/J3DShape.h"
 #include "types.h"
 
 /*
@@ -170,7 +171,7 @@ lbl_80060988:
  * Address:	800609B8
  * Size:	0000EC
  */
-void J3DShape::isSameVcdVatCmd(J3DShape*)
+bool J3DShape::isSameVcdVatCmd(J3DShape*)
 {
 	/*
 	li       r0, 0x18

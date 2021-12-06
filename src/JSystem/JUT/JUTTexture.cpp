@@ -1,3 +1,4 @@
+#include "JSystem/JUT/JUTTexture.h"
 #include "types.h"
 
 /*

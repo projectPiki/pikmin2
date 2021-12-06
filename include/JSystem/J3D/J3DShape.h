@@ -4,9 +4,23 @@
 #include "types.h"
 
 struct J3DJos32Tree;
+struct Vec;
 
 struct J3DShape {
-	u32 _00;               // _00, VTBL!
+	virtual void draw() const;            // _00
+	virtual void drawFast() const;        // _04
+	virtual void simpleDraw() const;      // _08
+	virtual void simpleDrawCache() const; // _0C
+
+	void calcNBTScale(const Vec&, float (*)[3][3], float (*)[3][3]);
+	void countBumpMtxNum() const;
+	void initialize();
+	bool isSameVcdVatCmd(J3DShape*);
+	void loadPreDrawSetting() const;
+	void makeVcdVatCmd();
+	void makeVtxArrayCmd();
+
+	// VTBL _00
 	s32* _04;              // _04
 	s16 m_id;              // _08
 	u16 _0A;               // _0A

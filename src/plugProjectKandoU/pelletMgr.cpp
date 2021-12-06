@@ -1,6 +1,5 @@
-#include "types.h"
-
 #include "Game/PelletMgr.h"
+#include "types.h"
 
 /*
     Generated from dpostproc
@@ -13692,7 +13691,7 @@ void PelletMgr::encode(unsigned char, int)
  * Address:	8016EDA8
  * Size:	0000B4
  */
-void PelletMgr::getCaveName(int)
+char* PelletMgr::getCaveName(int)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -14216,7 +14215,7 @@ lbl_8016F3AC:
  * Address:	8016F3C8
  * Size:	00000C
  */
-void PelletMgr::getMgrName(void)
+char* PelletMgr::getMgrName(void)
 {
 	/*
 	lis      r3, lbl_8047E494@ha

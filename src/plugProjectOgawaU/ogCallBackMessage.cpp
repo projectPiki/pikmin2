@@ -1,5 +1,5 @@
+#include "og/Screen/callbackNodes.h"
 #include "types.h"
-
 /*
     Generated from dpostproc
 
@@ -716,8 +716,9 @@ lbl_80309D7C:
  * Address:	80309D98
  * Size:	000010
  */
-void J2DPane::getUserInfo() const
+ulonglong J2DPane::getUserInfo() const
 {
+	return m_messageID;
 	/*
 	mr       r4, r3
 	lwz      r3, 0x18(r3)
@@ -726,14 +727,12 @@ void J2DPane::getUserInfo() const
 	*/
 }
 
-namespace og {
-
 /*
  * --INFO--
  * Address:	80309DA8
  * Size:	000008
  */
-void Lib2D::getMsgPtr(void)
+void og::Lib2D::getMsgPtr(void)
 {
 	/*
 	lwz      r3, 0x18(r3)
@@ -772,6 +771,7 @@ P2DScreen::CallBackNode::CallBackNode(void)
 	*/
 }
 
+namespace og {
 namespace Screen {
 
 	/*

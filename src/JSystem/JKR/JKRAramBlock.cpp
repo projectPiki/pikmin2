@@ -1,3 +1,4 @@
+#include "JSystem/JKR/Aram.h"
 #include "types.h"
 
 /*
@@ -17,8 +18,7 @@
  * Address:	80019444
  * Size:	00006C
  */
-JKRAramBlock::JKRAramBlock(unsigned long, unsigned long, unsigned long,
-                           unsigned char, bool)
+JKRAramBlock::JKRAramBlock(ulong, ulong, ulong, uchar, bool)
 {
 	/*
 	.loc_0x0:
@@ -123,7 +123,7 @@ lbl_80019550:
  * Address:	8001956C
  * Size:	0000A8
  */
-void JKRAramBlock::allocHead(unsigned long, unsigned char, JKRAramHeap*)
+JKRAramBlock* JKRAramBlock::allocHead(ulong, uchar, JKRAramHeap*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -178,7 +178,7 @@ lbl_800195E4:
  * Address:	80019614
  * Size:	0000B4
  */
-void JKRAramBlock::allocTail(unsigned long, unsigned char, JKRAramHeap*)
+JKRAramBlock* JKRAramBlock::allocTail(ulong, uchar, JKRAramHeap*)
 {
 	/*
 	stwu     r1, -0x20(r1)

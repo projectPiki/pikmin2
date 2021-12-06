@@ -56,7 +56,7 @@ struct Camera : public CullFrustum {
 	virtual void doUpdate();                 // _70
 
 	void calcProperDistance(float, float);
-	void calcScreenSize(Sys::Sphere&);
+	float calcScreenSize(Sys::Sphere&);
 	void copyFrom(Camera*);
 	float getFar();
 	Vector3f getLookAtPosition();
@@ -85,6 +85,8 @@ struct Camera : public CullFrustum {
 };
 
 struct LookAtCamera : public Camera {
+	LookAtCamera();
+
 	virtual void startVibration(int); // _74
 
 	Matrixf _144;  // _144

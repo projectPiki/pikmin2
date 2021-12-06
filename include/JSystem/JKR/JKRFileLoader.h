@@ -7,9 +7,10 @@
 struct JKRArchive;
 struct JKRFileLoader : public JKRDisposer {
 	JKRFileLoader();
-	virtual ~JKRFileLoader();
 
-	void unmount();
+	virtual ~JKRFileLoader();
+	virtual void unmount();
+
 	static void* getGlbResource(char const*);
 	static void* getGlbResource(char const*, JKRFileLoader*);
 	static JKRArchive* findVolume(char const**);

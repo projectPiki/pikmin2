@@ -17,6 +17,7 @@ struct Sphere;
 struct CurrTriInfo;
 
 struct OBB {
+	OBB();
 	~OBB();
 
 	void autoDivide(Sys::VertexTable&, Sys::TriangleTable&, int, int);

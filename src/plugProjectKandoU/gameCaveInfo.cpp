@@ -1,9 +1,9 @@
-#include "types.h"
-
-#include "Game/Cave/Info.h"
 #include "Dolphin/string.h"
+#include "Game/Cave/Info.h"
 #include "Game/generalEnemyMgr.h"
 #include "Game/PelletMgr.h"
+#include "JSystem/JUT/JUTException.h"
+#include "types.h"
 
 /*
     Generated from dpostproc
@@ -338,13 +338,10 @@ namespace Cave {
 		char* inputString = stream.readString(nullptr, 0);
 		if (*inputString == '$') {
 			char rawDropMode = inputString[1];
-			if (rawDropMode < '1')
-				|| ('9' < rawDropMode)
-				{
-					inputString++;
-					m_dropMode = DropOnPikminOrLeader;
-				}
-			else {
+			if ((rawDropMode < '1') || (rawDropMode > '9')) {
+				inputString++;
+				m_dropMode = DropOnPikminOrLeader;
+			} else {
 				inputString += 2;
 				m_dropMode = DropMode(rawDropMode - '0');
 			}
@@ -594,8 +591,13 @@ lbl_801D6430:
 	 * Address:	801D645C
 	 * Size:	00008C
 	 */
-	void GateInfo::read(Stream&)
+	void GateInfo::read(Stream& input)
 	{
+		char* name = input.readString(nullptr, 0);
+		m_caveID   = Game::pelletMgr->getCaveID(name);
+		JUT_ASSERTLINE(659, m_caveID != -1, "�ςȃy���b�g�l�[���ł�!\n");
+		m_weight = input.readInt();
+		m_name   = name;
 		/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -645,15 +647,20 @@ lbl_801D6430:
 		return (!m_doesNotHaveTeki ? m_tekiInfo : nullptr);
 	}
 
-#ifdef NOPE
-
 	/*
 	 * --INFO--
 	 * Address:	801D6504
 	 * Size:	0000C8
 	 */
-	void CapInfo::read(Stream&)
+	void CapInfo::read(Stream& input)
 	{
+		m_doesNotHaveTeki = input.readByte();
+		if (m_doesNotHaveTeki == false) {
+			m_tekiInfo      = new TekiInfo();
+			m_tekiInfo->_0C = m_tekiInfo;
+			getTekiInfo()->read(input);
+		}
+
 		/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -2399,7 +2406,6 @@ lbl_801D77EC:
 	blr
 		*/
 	}
-#endif
 } // namespace Cave
 } // namespace Game
 

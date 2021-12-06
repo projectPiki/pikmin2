@@ -1,3 +1,12 @@
+#include "Dolphin/runtime.h"
+#include "JSystem/JGeometry.h"
+#include "ebi/E2DGraph.h"
+#include "ebi/Option.h"
+#include "Game/Data.h"
+#include "JSystem/JUT/JUTException.h"
+#include "og/newScreen/ogUtil.h"
+#include "P2DScreen.h"
+#include "System.h"
 #include "types.h"
 
 /*
@@ -161,6 +170,13 @@
         .4byte 0x696F6E00
 */
 
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	0000E4
+ */
+void _Print(char* name, ...) { OSReport("ebiScreenOption"); }
+
 namespace ebi {
 
 namespace Screen {
@@ -172,82 +188,25 @@ namespace Screen {
 	 */
 	void TOptionParameter::loadRam(void)
 	{
-		/*
-	stwu     r1, -0x30(r1)
-	lwz      r4, sys@sda21(r13)
-	lwz      r5, 0x60(r4)
-	lbz      r4, 0x3c(r5)
-	neg      r0, r4
-	or       r0, r0, r4
-	srwi     r0, r0, 0x1f
-	stb      r0, 0(r3)
-	lbz      r4, 0x3b(r5)
-	neg      r0, r4
-	or       r0, r0, r4
-	srwi     r0, r0, 0x1f
-	stb      r0, 1(r3)
-	lbz      r0, 0x38(r5)
-	cmpwi    r0, 1
-	beq      lbl_803CAE30
-	bge      lbl_803CAE18
-	cmpwi    r0, 0
-	bge      lbl_803CAE24
-	b        lbl_803CAE44
-
-lbl_803CAE18:
-	cmpwi    r0, 3
-	bge      lbl_803CAE44
-	b        lbl_803CAE3C
-
-lbl_803CAE24:
-	li       r0, 0
-	stw      r0, 4(r3)
-	b        lbl_803CAE44
-
-lbl_803CAE30:
-	li       r0, 1
-	stw      r0, 4(r3)
-	b        lbl_803CAE44
-
-lbl_803CAE3C:
-	li       r0, 2
-	stw      r0, 4(r3)
-
-lbl_803CAE44:
-	lbz      r4, 0x39(r5)
-	lis      r0, 0x4330
-	stw      r0, 8(r1)
-	lfd      f2, lbl_8051FA08@sda21(r2)
-	stw      r4, 0xc(r1)
-	lfs      f1, lbl_8051FA04@sda21(r2)
-	lfd      f0, 8(r1)
-	lfs      f3, lbl_8051FA00@sda21(r2)
-	fsubs    f0, f0, f2
-	stw      r0, 0x18(r1)
-	fdivs    f0, f0, f1
-	fmuls    f0, f3, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x10(r1)
-	lwz      r0, 0x14(r1)
-	stw      r0, 8(r3)
-	lbz      r0, 0x3a(r5)
-	stw      r0, 0x1c(r1)
-	lfd      f0, 0x18(r1)
-	fsubs    f0, f0, f2
-	fdivs    f0, f0, f1
-	fmuls    f0, f3, f0
-	fctiwz   f0, f0
-	stfd     f0, 0x20(r1)
-	lwz      r0, 0x24(r1)
-	stw      r0, 0xc(r3)
-	lbz      r4, 0x3d(r5)
-	neg      r0, r4
-	or       r0, r0, r4
-	srwi     r0, r0, 0x1f
-	stb      r0, 0x10(r3)
-	addi     r1, r1, 0x30
-	blr
-		*/
+		Game::CommonSaveData::Mgr* mgr = sys->m_playData;
+		_00                            = mgr->_3C;
+		_01                            = mgr->_3B;
+		switch (mgr->m_soundMode) {
+		case 0:
+			if (true) {
+				m_soundMode = 0;
+			}
+			break;
+		case 1:
+			m_soundMode = 1;
+			break;
+		case 2:
+			m_soundMode = 2;
+			break;
+		}
+		m_bgmVolume   = (float)mgr->_39 / 255.0f * 10.0f;
+		m_seVolume    = (float)mgr->_3A / 255.0f * 10.0f;
+		m_isDeflicker = mgr->_3D;
 	}
 
 	/*
@@ -257,6 +216,24 @@ lbl_803CAE44:
 	 */
 	void TOptionParameter::saveRam(void)
 	{
+		Game::CommonSaveData::Mgr* mgr = sys->m_playData;
+		mgr->_3C                       = _00;
+		mgr->_3B                       = _01;
+		switch (m_soundMode) {
+		case 0:
+			mgr->setSoundModeMono();
+			break;
+		case 1:
+			mgr->setSoundModeStereo();
+			break;
+		case 2:
+			mgr->setSoundModeSurround();
+			break;
+		}
+		mgr->setBgmVolume(m_bgmVolume / 10.0f);
+		mgr->setSeVolume(m_seVolume / 10.0f);
+		mgr->setDeflicker(m_isDeflicker);
+
 		/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -341,17 +318,12 @@ lbl_803CAF40:
 	 */
 	void TOptionParameter::initParamForTest(void)
 	{
-		/*
-	li       r4, 0
-	li       r0, 1
-	stb      r4, 0(r3)
-	stb      r4, 1(r3)
-	stw      r4, 4(r3)
-	stw      r0, 8(r3)
-	stw      r0, 0xc(r3)
-	stb      r4, 0x10(r3)
-	blr
-		*/
+		_00           = false;
+		_01           = false;
+		m_soundMode   = 0;
+		m_bgmVolume   = 1;
+		m_seVolume    = 1;
+		m_isDeflicker = false;
 	}
 
 	/*
@@ -359,8 +331,102 @@ lbl_803CAF40:
 	 * Address:	803CAFE8
 	 * Size:	0008D4
 	 */
-	void TOption::doSetArchive(JKRArchive*)
+	void TOption::doSetArchive(JKRArchive* archive)
 	{
+		sys->heapStatusStart("Screen::TOption::setArchive", nullptr);
+		sys->heapStatusStart("Screen::TOption::set_blo_P2DScreen::Mgr",
+		                     nullptr);
+		_10C = new P2DScreen::Mgr_tuning();
+		_10C->set("option.blo", 0x1100000, archive);
+		sys->heapStatusEnd("Screen::TOption::set_blo_P2DScreen::Mgr");
+		_110 = (J2DTextBox*)E2DScreen_searchAssert(_10C, 'Tsin_y');
+		_114 = (J2DTextBox*)E2DScreen_searchAssert(_10C, 'Tsin_n');
+		_118 = (J2DTextBox*)E2DScreen_searchAssert(_10C, 'Tmon');
+		_11C = (J2DTextBox*)E2DScreen_searchAssert(_10C, 'Tste');
+		_120 = (J2DTextBox*)E2DScreen_searchAssert(_10C, 'Tsro');
+		_124 = (J2DTextBox*)E2DScreen_searchAssert(_10C, 'Tdef_y');
+		_128 = (J2DTextBox*)E2DScreen_searchAssert(_10C, 'Tdef_n');
+		for (int i = 0; i < 10; i++) {
+			_154[i] = E2DScreen_searchAssert(_10C, 'Pbgmm00' + i);
+			_12C[i] = E2DScreen_searchAssert(_10C, 'Psem00' + i);
+		}
+		_17C    = E2DScreen_searchAssert(_10C, 'NDEF');
+		_180[7] = E2DScreen_searchAssert(_10C, 'Tdefmg0');
+		_180[8] = E2DScreen_searchAssert(_10C, 'Tdefmg0s');
+		_180[0] = E2DScreen_searchAssert(_10C, 'Ngrpfri');
+		_180[1] = E2DScreen_searchAssert(_10C, 'Ngrpsin');
+		_180[2] = E2DScreen_searchAssert(_10C, 'Ngrpsou');
+		_180[3] = E2DScreen_searchAssert(_10C, 'Ngrpbgm');
+		_180[4] = E2DScreen_searchAssert(_10C, 'Ngrpse');
+		_180[5] = E2DScreen_searchAssert(_10C, 'Ngrpdef');
+		_180[6] = E2DScreen_searchAssert(_10C, 'Ngrpsav');
+		_180[9] = E2DScreen_searchAssert(_10C, 'Wselctw');
+		_1A8    = E2DScreen_searchAssert(_10C, 'Wsetfri');
+		_1AC    = E2DScreen_searchAssert(_10C, 'Wsetsin');
+		_1B0    = E2DScreen_searchAssert(_10C, 'Wsetsro');
+		_1B4    = E2DScreen_searchAssert(_10C, 'Wsetbgm');
+		_1B8    = E2DScreen_searchAssert(_10C, 'Wsetse');
+		_1BC    = E2DScreen_searchAssert(_10C, 'Wsetdef');
+		_1C0    = E2DScreen_searchAssert(_10C, 'Wsetsav');
+		sys->heapStatusStart("Screen::TOption::new_ogCallBack", nullptr);
+		E2DPane_setTreeCallBackMessage(_10C, _10C);
+		sys->heapStatusEnd("Screen::TOption::new_ogCallBack");
+		_10C->addCallBackPane(_10C, &_1E4);
+		_10C->addCallBackPane(_10C, &_220);
+		_1E4.loadAnm("option.bck", archive, 0x14, 0x29);
+		_10C->addCallBack('Psin_yc', &_2EC[0]);
+		_10C->addCallBack('Psin_nc', &_2EC[1]);
+		_10C->addCallBack('Pmonc', &_2EC[2]);
+		_10C->addCallBack('Pstec', &_2EC[3]);
+		_10C->addCallBack('Psroc', &_2EC[4]);
+		_10C->addCallBack('Pdef_yc', &_2EC[5]);
+		_10C->addCallBack('Pdef_nc', &_2EC[6]);
+		for (int i = 0; i < 10; i++) {
+			_10C->addCallBack('Pbgmm00' + i, &_4AC[i]);
+			_10C->addCallBack('Pbgmm00c' + i * 0x100, &_72C[i]);
+			_10C->addCallBack('Psem00' + i, &_9AC[i]);
+			_10C->addCallBack('Psem00c' + i * 0x100, &_C2C[i]);
+		}
+		J2DTextBox* tb = (J2DTextBox*)E2DScreen_searchAssert(_10C, 'Tsin_y');
+		_1C4._00       = tb->_104;
+		_1C4._04       = tb->_108;
+		_1C4.m_white   = tb->getWhite();
+		_1C4.m_black   = tb->getBlack();
+		tb             = (J2DTextBox*)E2DScreen_searchAssert(_10C, 'Thscolor');
+		_1D4._00       = tb->_104;
+		_1D4._04       = tb->_108;
+		_1D4.m_white   = tb->getWhite();
+		_1D4.m_black   = tb->getBlack();
+		_240.set((J2DTextBox*)E2DScreen_searchAssert(_10C, 'Tsin_y'),
+		         (J2DTextBox*)E2DScreen_searchAssert(_10C, 'Tscolor'));
+		_240._1C = 1;
+		_240._44 = sys->m_secondsPerFrame * 3.3333333f;
+		_240._40 = 0.0f;
+		_240._48 = 1;
+		_240._49 = 0;
+		_10C->addCallBackPane(nullptr, &_240);
+		_10C->addCallBackPane(nullptr, &_28C);
+		_28C._2C       = 0xff;
+		_28C._2D       = 0x55;
+		_28C._1C       = 1;
+		_28C._24       = sys->m_secondsPerFrame * 3.3333333f;
+		_28C._20       = 0.0f;
+		_28C._28       = 1;
+		_28C._29       = 0;
+		J2DPane* Nbotn = E2DScreen_searchAssert(_10C, 'Nbotn');
+		_10C->addCallBackPane(Nbotn, &_2BC);
+		E2DPane_setTreeInfluencedAlpha(Nbotn, true);
+		_10C->addCallBack('Wselctw', &_EAC[0]);
+		E2DPane_setTreeShow(_10C);
+		E2DScreen_searchAssert(_10C, 'Ngrpwset')->setAlpha(0);
+		for (int i = 0; i < 7; i++) {
+			E2DPane_setTreeInfluencedAlpha(&_1A8[i], true);
+			_1A8[i].setAlpha(0);
+		}
+		E2DPane_setTreeHide(E2DScreen_searchAssert(_10C, 'DATA'));
+		E2DPane_setTreeInfluencedAlpha(_17C, true);
+		_17C->setAlpha(0);
+		sys->heapStatusEnd("Screen::TOption::setArchive");
 		/*
 	stwu     r1, -0x60(r1)
 	mflr     r0
@@ -945,6 +1011,25 @@ lbl_803CB82C:
 	 */
 	void TOption::doOpenScreen(ebi::Screen::ArgOpen*)
 	{
+		_1E4.play(60.0f * sys->m_secondsPerFrame, J3DAA_UNKNOWN_0, true);
+		setOptionParamToScreen_();
+		ulong uVar2
+		    = __cvt_fp2unsigned(E2DFader::kFadeTime / sys->m_secondsPerFrame);
+		_0FC                      = uVar2;
+		_100                      = uVar2;
+		_0F8                      = 1;
+		_104                      = 1;
+		_108                      = 1;
+		_180[0]->m_isVisible      = false;
+		JGeometry::TBox2f* bounds = _1A8[_104].getBounds();
+		uVar2     = __cvt_fp2unsigned(0.1f / sys->m_secondsPerFrame);
+		_EAC->_40 = uVar2;
+		_EAC->_44 = uVar2;
+		_EAC->_20 = *bounds;
+		_EAC->_30 = *bounds;
+		_EAC->_1C = 1;
+		_EAC->_68 = _180[_104];
+		initScreen_();
 		/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -1033,6 +1118,11 @@ lbl_803CB82C:
 	 */
 	void TOption::doCloseScreen(ebi::Screen::ArgClose*)
 	{
+		ulong v1 = __cvt_fp2unsigned((float)E2DFader::kFadeTime
+		                             / sys->m_secondsPerFrame);
+		_0FC     = v1;
+		_100     = v1;
+		_0F8     = 2;
 		/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1061,28 +1151,20 @@ lbl_803CB82C:
 	 * Address:	803CBA3C
 	 * Size:	000024
 	 */
-	void TOption::doInitWaitState(void)
-	{
-		/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	addi     r3, r3, 0x1e4
-	stw      r0, 0x14(r1)
-	bl       stop__Q23ebi19E2DCallBack_AnmBaseFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-		*/
-	}
+	void TOption::doInitWaitState() { _1E4.stop(); }
 
 	/*
 	 * --INFO--
 	 * Address:	803CBA60
 	 * Size:	000084
 	 */
-	void TOption::doUpdateStateOpen(void)
+	bool TOption::doUpdateStateOpen(void)
 	{
+		if (_0F8 != 0 && _0FC != 0) {
+			_0FC--;
+		}
+		_10C->update();
+		return (_1E4.isFinish() && _0FC == 0);
 		/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1131,7 +1213,7 @@ lbl_803CBAD0:
 	 * Address:	803CBAE4
 	 * Size:	0009B4
 	 */
-	void TOption::doUpdateStateWait(void)
+	bool TOption::doUpdateStateWait(void)
 	{
 		/*
 	stwu     r1, -0x40(r1)
@@ -1882,8 +1964,18 @@ lbl_803CC398:
 	 * Address:	803CC498
 	 * Size:	000074
 	 */
-	void TOption::doUpdateStateClose(void)
+	bool TOption::doUpdateStateClose(void)
 	{
+		_10C->update();
+		if (_0F8 != 0 && _0FC != 0) {
+			_0FC--;
+		}
+		if (_0FC == 0) {
+			return true;
+		} else {
+			return false;
+		}
+		// return (_0FC != 0) ? false : true;
 		/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -2103,55 +2195,14 @@ lbl_803CC734:
 	 */
 	void TOption::loadResource(void)
 	{
-		/*
-	stwu     r1, -0x120(r1)
-	mflr     r0
-	lis      r4, lbl_80496448@ha
-	li       r5, 0
-	stw      r0, 0x124(r1)
-	stw      r31, 0x11c(r1)
-	addi     r31, r4, lbl_80496448@l
-	addi     r4, r31, 0x8c
-	stw      r30, 0x118(r1)
-	stw      r29, 0x114(r1)
-	mr       r29, r3
-	lwz      r3, sys@sda21(r13)
-	bl       heapStatusStart__6SystemFPcP7JKRHeap
-	addi     r3, r1, 8
-	addi     r4, r31, 0xa4
-	bl       makeLanguageResName__Q22og9newScreenFPcPCc
-	addi     r3, r1, 8
-	li       r4, 1
-	li       r5, 0
-	li       r6, 1
-	bl
-mount__10JKRArchiveFPCcQ210JKRArchive10EMountModeP7JKRHeapQ210JKRArchive15EMountDirection
-	or.      r30, r3, r3
-	bne      lbl_803CC7C0
-	addi     r3, r31, 0xb4
-	addi     r5, r31, 0xc8
-	li       r4, 0x2f5
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_803CC7C0:
-	lwz      r3, sys@sda21(r13)
-	addi     r4, r31, 0x8c
-	bl       heapStatusEnd__6SystemFPc
-	mr       r3, r29
-	mr       r4, r30
-	lwz      r12, 0(r29)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x124(r1)
-	lwz      r31, 0x11c(r1)
-	lwz      r30, 0x118(r1)
-	lwz      r29, 0x114(r1)
-	mtlr     r0
-	addi     r1, r1, 0x120
-	blr
-		*/
+		char resName[256];
+		sys->heapStatusStart("TOption::loadResource", nullptr);
+		og::newScreen::makeLanguageResName(resName, "option_us.szs");
+		JKRArchive* archive = JKRArchive::mount(resName, JKRArchive::EMM_Unk1,
+		                                        nullptr, JKRArchive::EMD_Unk1);
+		P2ASSERTLINE(757, (archive != nullptr));
+		sys->heapStatusEnd("TOption::loadResource");
+		setArchive(archive);
 	}
 
 	/*
@@ -2159,8 +2210,21 @@ lbl_803CC7C0:
 	 * Address:	803CC800
 	 * Size:	0000BC
 	 */
-	void TOption::setController(Controller*)
+	void TOption::setController(Controller* controller)
 	{
+		m_controller = controller;
+		m_padInterfaces[0].init(controller, 0, 10, &_0C8.m_bgmVolume,
+		                        EUTPadInterface_countNum::MODE_UNKNOWN_1, 0.66f,
+		                        0.15f);
+		m_padInterfaces[1].init(controller, 0, 10, &_0C8.m_seVolume,
+		                        EUTPadInterface_countNum::MODE_UNKNOWN_1, 0.66f,
+		                        0.15f);
+		m_padInterfaces[2].init(controller, 0, 2, &_0C8.m_soundMode,
+		                        EUTPadInterface_countNum::MODE_UNKNOWN_1, 0.66f,
+		                        0.15f);
+		m_padInterfaces[3].init(controller, 0, 6, &_104,
+		                        EUTPadInterface_countNum::MODE_UNKNOWN_3, 0.66f,
+		                        0.15f);
 		/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -2221,7 +2285,7 @@ lbl_803CC7C0:
 	 * Address:	803CC8BC
 	 * Size:	000174
 	 */
-	void TOption::initScreen_(void)
+	void TOption::initScreen_(void) const
 	{
 		/*
 	stwu     r1, -0x20(r1)
@@ -2349,6 +2413,450 @@ lbl_803CC9FC:
 	 */
 	void TOption::setOptionParamToScreen_(void)
 	{
+#if !MATCHING
+		// if (_0C8._01) {
+		// 	_110->_104.channels = JUtility::TColor(_1C4._00).channels;
+		// 	_110->_108.channels = JUtility::TColor(_1C4._04).channels;
+		// 	_110->setWhite(JUtility::TColor(_1C4.m_white));
+		// 	_110->setBlack(JUtility::TColor(_1C4.m_black));
+		// 	_114->_104.channels = JUtility::TColor(_1D4._00).channels;
+		// 	_114->_108.channels = JUtility::TColor(_1D4._04).channels;
+		// 	_114->setWhite(JUtility::TColor(_1D4.m_white));
+		// 	_114->setBlack(JUtility::TColor(_1D4.m_black));
+		// } else {
+		// 	_110->_104.channels = JUtility::TColor(_1D4._00).channels;
+		// 	_110->_108.channels = JUtility::TColor(_1D4._04).channels;
+		// 	_110->setWhite(JUtility::TColor(_1D4.m_white));
+		// 	_110->setBlack(JUtility::TColor(_1D4.m_black));
+		// 	_114->_104.channels = JUtility::TColor(_1C4._00).channels;
+		// 	_114->_108.channels = JUtility::TColor(_1C4._04).channels;
+		// 	_114->setWhite(JUtility::TColor(_1C4.m_white));
+		// 	_114->setBlack(JUtility::TColor(_1C4.m_black));
+		// }
+		// switch (_0C8.m_soundMode) {
+		// case 0:
+		// 	_118->_104.channels = JUtility::TColor(_1C4._00).channels;
+		// 	_118->_108.channels = JUtility::TColor(_1C4._04).channels;
+		// 	_118->setWhite(JUtility::TColor(_1C4.m_white));
+		// 	_118->setBlack(JUtility::TColor(_1C4.m_black));
+		// 	_11C->_104.channels = JUtility::TColor(_1D4._00).channels;
+		// 	_11C->_108.channels = JUtility::TColor(_1D4._04).channels;
+		// 	_11C->setWhite(JUtility::TColor(_1D4.m_white));
+		// 	_11C->setBlack(JUtility::TColor(_1D4.m_black));
+		// 	_120->_104.channels = JUtility::TColor(_1D4._00).channels;
+		// 	_120->_108.channels = JUtility::TColor(_1D4._04).channels;
+		// 	_120->setWhite(JUtility::TColor(_1D4.m_white));
+		// 	_120->setBlack(JUtility::TColor(_1D4.m_black));
+		// 	break;
+		// case 1:
+		// 	_118->_104.channels = JUtility::TColor(_1D4._00).channels;
+		// 	_118->_108.channels = JUtility::TColor(_1D4._04).channels;
+		// 	_118->setWhite(JUtility::TColor(_1D4.m_white));
+		// 	_118->setBlack(JUtility::TColor(_1D4.m_black));
+		// 	_11C->_104.channels = JUtility::TColor(_1C4._00).channels;
+		// 	_11C->_108.channels = JUtility::TColor(_1C4._04).channels;
+		// 	_11C->setWhite(JUtility::TColor(_1C4.m_white));
+		// 	_11C->setBlack(JUtility::TColor(_1C4.m_black));
+		// 	_120->_104.channels = JUtility::TColor(_1D4._00).channels;
+		// 	_120->_108.channels = JUtility::TColor(_1D4._04).channels;
+		// 	_120->setWhite(JUtility::TColor(_1D4.m_white));
+		// 	_120->setBlack(JUtility::TColor(_1D4.m_black));
+		// 	break;
+		// case 2:
+		// 	_118->_104.channels = JUtility::TColor(_1D4._00).channels;
+		// 	_118->_108.channels = JUtility::TColor(_1D4._04).channels;
+		// 	_118->setWhite(JUtility::TColor(_1D4.m_white));
+		// 	_118->setBlack(JUtility::TColor(_1D4.m_black));
+		// 	_11C->_104.channels = JUtility::TColor(_1D4._00).channels;
+		// 	_11C->_108.channels = JUtility::TColor(_1D4._04).channels;
+		// 	_11C->setWhite(JUtility::TColor(_1D4.m_white));
+		// 	_11C->setBlack(JUtility::TColor(_1D4.m_black));
+		// 	_120->_104.channels = JUtility::TColor(_1C4._00).channels;
+		// 	_120->_108.channels = JUtility::TColor(_1C4._04).channels;
+		// 	_120->setWhite(JUtility::TColor(_1C4.m_white));
+		// 	_120->setBlack(JUtility::TColor(_1C4.m_black));
+		// 	break;
+		// default:
+		// 	break;
+		// }
+
+		// if (_0C8._01) {
+		// 	_110->_104.channels = _1C4._00.channels;
+		// 	_110->_108.channels = _1C4._04.channels;
+		// 	_110->setWhite(_1C4.m_white);
+		// 	_110->setBlack(_1C4.m_black);
+		// 	_114->_104.channels = _1D4._00.channels;
+		// 	_114->_108.channels = _1D4._04.channels;
+		// 	_114->setWhite(_1D4.m_white);
+		// 	_114->setBlack(_1D4.m_black);
+		// } else {
+		// 	_110->_104.channels = _1D4._00.channels;
+		// 	_110->_108.channels = _1D4._04.channels;
+		// 	_110->setWhite(_1D4.m_white);
+		// 	_110->setBlack(_1D4.m_black);
+		// 	_114->_104.channels = _1C4._00.channels;
+		// 	_114->_108.channels = _1C4._04.channels;
+		// 	_114->setWhite(_1C4.m_white);
+		// 	_114->setBlack(_1C4.m_black);
+		// }
+		// switch (_0C8.m_soundMode) {
+		// case 0:
+		// 	_118->_104.channels = _1C4._00.channels;
+		// 	_118->_108.channels = _1C4._04.channels;
+		// 	_118->setWhite(_1C4.m_white);
+		// 	_118->setBlack(_1C4.m_black);
+		// 	_11C->_104.channels = _1D4._00.channels;
+		// 	_11C->_108.channels = _1D4._04.channels;
+		// 	_11C->setWhite(_1D4.m_white);
+		// 	_11C->setBlack(_1D4.m_black);
+		// 	_120->_104.channels = _1D4._00.channels;
+		// 	_120->_108.channels = _1D4._04.channels;
+		// 	_120->setWhite(_1D4.m_white);
+		// 	_120->setBlack(_1D4.m_black);
+		// 	break;
+		// case 1:
+		// 	_118->_104.channels = _1D4._00.channels;
+		// 	_118->_108.channels = _1D4._04.channels;
+		// 	_118->setWhite(_1D4.m_white);
+		// 	_118->setBlack(_1D4.m_black);
+		// 	_11C->_104.channels = _1C4._00.channels;
+		// 	_11C->_108.channels = _1C4._04.channels;
+		// 	_11C->setWhite(_1C4.m_white);
+		// 	_11C->setBlack(_1C4.m_black);
+		// 	_120->_104.channels = _1D4._00.channels;
+		// 	_120->_108.channels = _1D4._04.channels;
+		// 	_120->setWhite(_1D4.m_white);
+		// 	_120->setBlack(_1D4.m_black);
+		// 	break;
+		// case 2:
+		// 	_118->_104.channels = _1D4._00.channels;
+		// 	_118->_108.channels = _1D4._04.channels;
+		// 	_118->setWhite(_1D4.m_white);
+		// 	_118->setBlack(_1D4.m_black);
+		// 	_11C->_104.channels = _1D4._00.channels;
+		// 	_11C->_108.channels = _1D4._04.channels;
+		// 	_11C->setWhite(_1D4.m_white);
+		// 	_11C->setBlack(_1D4.m_black);
+		// 	_120->_104.channels = _1C4._00.channels;
+		// 	_120->_108.channels = _1C4._04.channels;
+		// 	_120->setWhite(_1C4.m_white);
+		// 	_120->setBlack(_1C4.m_black);
+		// 	break;
+		// default:
+		// 	break;
+		// }
+
+		// if (_0C8._01) {
+		// 	_110->_104.channels.r = _1C4._00.channels.r;
+		// 	_110->_104.channels.g = _1C4._00.channels.g;
+		// 	_110->_104.channels.b = _1C4._00.channels.b;
+		// 	_110->_104.channels.a = _1C4._00.channels.a;
+		// 	_110->_108.channels.r = _1C4._04.channels.r;
+		// 	_110->_108.channels.g = _1C4._04.channels.g;
+		// 	_110->_108.channels.b = _1C4._04.channels.b;
+		// 	_110->_108.channels.a = _1C4._04.channels.a;
+		// 	_110->setWhite(_1C4.m_white);
+		// 	_110->setBlack(_1C4.m_black);
+		// 	_114->_104.channels.r = _1D4._00.channels.r;
+		// 	_114->_104.channels.g = _1D4._00.channels.g;
+		// 	_114->_104.channels.b = _1D4._00.channels.b;
+		// 	_114->_104.channels.a = _1D4._00.channels.a;
+		// 	_114->_108.channels.r = _1D4._04.channels.r;
+		// 	_114->_108.channels.g = _1D4._04.channels.g;
+		// 	_114->_108.channels.b = _1D4._04.channels.b;
+		// 	_114->_108.channels.a = _1D4._04.channels.a;
+		// 	_114->setWhite(_1D4.m_white);
+		// 	_114->setBlack(_1D4.m_black);
+		// } else {
+		// 	_110->_104.channels.r = _1D4._00.channels.r;
+		// 	_110->_104.channels.g = _1D4._00.channels.g;
+		// 	_110->_104.channels.b = _1D4._00.channels.b;
+		// 	_110->_104.channels.a = _1D4._00.channels.a;
+		// 	_110->_108.channels.r = _1D4._04.channels.r;
+		// 	_110->_108.channels.g = _1D4._04.channels.g;
+		// 	_110->_108.channels.b = _1D4._04.channels.b;
+		// 	_110->_108.channels.a = _1D4._04.channels.a;
+		// 	_110->setWhite(_1D4.m_white);
+		// 	_110->setBlack(_1D4.m_black);
+		// 	_114->_104.channels.r = _1C4._00.channels.r;
+		// 	_114->_104.channels.g = _1C4._00.channels.g;
+		// 	_114->_104.channels.b = _1C4._00.channels.b;
+		// 	_114->_104.channels.a = _1C4._00.channels.a;
+		// 	_114->_108.channels.r = _1C4._04.channels.r;
+		// 	_114->_108.channels.g = _1C4._04.channels.g;
+		// 	_114->_108.channels.b = _1C4._04.channels.b;
+		// 	_114->_108.channels.a = _1C4._04.channels.a;
+		// 	_114->setWhite(_1C4.m_white);
+		// 	_114->setBlack(_1C4.m_black);
+		// }
+		// switch (_0C8.m_soundMode) {
+		// case 0:
+		// 	_118->_104.channels.r = _1C4._00.channels.r;
+		// 	_118->_104.channels.g = _1C4._00.channels.g;
+		// 	_118->_104.channels.b = _1C4._00.channels.b;
+		// 	_118->_104.channels.a = _1C4._00.channels.a;
+		// 	_118->_108.channels.r = _1C4._04.channels.r;
+		// 	_118->_108.channels.g = _1C4._04.channels.g;
+		// 	_118->_108.channels.b = _1C4._04.channels.b;
+		// 	_118->_108.channels.a = _1C4._04.channels.a;
+		// 	_118->setWhite(_1C4.m_white);
+		// 	_118->setBlack(_1C4.m_black);
+		// 	_11C->_104.channels.r = _1D4._00.channels.r;
+		// 	_11C->_104.channels.g = _1D4._00.channels.g;
+		// 	_11C->_104.channels.b = _1D4._00.channels.b;
+		// 	_11C->_104.channels.a = _1D4._00.channels.a;
+		// 	_11C->_108.channels.r = _1D4._04.channels.r;
+		// 	_11C->_108.channels.g = _1D4._04.channels.g;
+		// 	_11C->_108.channels.b = _1D4._04.channels.b;
+		// 	_11C->_108.channels.a = _1D4._04.channels.a;
+		// 	_11C->setWhite(_1D4.m_white);
+		// 	_11C->setBlack(_1D4.m_black);
+		// 	_120->_104.channels.r = _1D4._00.channels.r;
+		// 	_120->_104.channels.g = _1D4._00.channels.g;
+		// 	_120->_104.channels.b = _1D4._00.channels.b;
+		// 	_120->_104.channels.a = _1D4._00.channels.a;
+		// 	_120->_108.channels.r = _1D4._04.channels.r;
+		// 	_120->_108.channels.g = _1D4._04.channels.g;
+		// 	_120->_108.channels.b = _1D4._04.channels.b;
+		// 	_120->_108.channels.a = _1D4._04.channels.a;
+		// 	_120->setWhite(_1D4.m_white);
+		// 	_120->setBlack(_1D4.m_black);
+		// 	break;
+		// case 1:
+		// 	_118->_104.channels.r = _1D4._00.channels.r;
+		// 	_118->_104.channels.g = _1D4._00.channels.g;
+		// 	_118->_104.channels.b = _1D4._00.channels.b;
+		// 	_118->_104.channels.a = _1D4._00.channels.a;
+		// 	_118->_108.channels.r = _1D4._04.channels.r;
+		// 	_118->_108.channels.g = _1D4._04.channels.g;
+		// 	_118->_108.channels.b = _1D4._04.channels.b;
+		// 	_118->_108.channels.a = _1D4._04.channels.a;
+		// 	_118->setWhite(_1D4.m_white);
+		// 	_118->setBlack(_1D4.m_black);
+		// 	_11C->_104.channels.r = _1C4._00.channels.r;
+		// 	_11C->_104.channels.g = _1C4._00.channels.g;
+		// 	_11C->_104.channels.b = _1C4._00.channels.b;
+		// 	_11C->_104.channels.a = _1C4._00.channels.a;
+		// 	_11C->_108.channels.r = _1C4._04.channels.r;
+		// 	_11C->_108.channels.g = _1C4._04.channels.g;
+		// 	_11C->_108.channels.b = _1C4._04.channels.b;
+		// 	_11C->_108.channels.a = _1C4._04.channels.a;
+		// 	_11C->setWhite(_1C4.m_white);
+		// 	_11C->setBlack(_1C4.m_black);
+		// 	_120->_104.channels.r = _1D4._00.channels.r;
+		// 	_120->_104.channels.g = _1D4._00.channels.g;
+		// 	_120->_104.channels.b = _1D4._00.channels.b;
+		// 	_120->_104.channels.a = _1D4._00.channels.a;
+		// 	_120->_108.channels.r = _1D4._04.channels.r;
+		// 	_120->_108.channels.g = _1D4._04.channels.g;
+		// 	_120->_108.channels.b = _1D4._04.channels.b;
+		// 	_120->_108.channels.a = _1D4._04.channels.a;
+		// 	_120->setWhite(_1D4.m_white);
+		// 	_120->setBlack(_1D4.m_black);
+		// 	break;
+		// case 2:
+		// 	_118->_104.channels.r = _1D4._00.channels.r;
+		// 	_118->_104.channels.g = _1D4._00.channels.g;
+		// 	_118->_104.channels.b = _1D4._00.channels.b;
+		// 	_118->_104.channels.a = _1D4._00.channels.a;
+		// 	_118->_108.channels.r = _1D4._04.channels.r;
+		// 	_118->_108.channels.g = _1D4._04.channels.g;
+		// 	_118->_108.channels.b = _1D4._04.channels.b;
+		// 	_118->_108.channels.a = _1D4._04.channels.a;
+		// 	_118->setWhite(_1D4.m_white);
+		// 	_118->setBlack(_1D4.m_black);
+		// 	_11C->_104.channels.r = _1D4._00.channels.r;
+		// 	_11C->_104.channels.g = _1D4._00.channels.g;
+		// 	_11C->_104.channels.b = _1D4._00.channels.b;
+		// 	_11C->_104.channels.a = _1D4._00.channels.a;
+		// 	_11C->_108.channels.r = _1D4._04.channels.r;
+		// 	_11C->_108.channels.g = _1D4._04.channels.g;
+		// 	_11C->_108.channels.b = _1D4._04.channels.b;
+		// 	_11C->_108.channels.a = _1D4._04.channels.a;
+		// 	_11C->setWhite(_1D4.m_white);
+		// 	_11C->setBlack(_1D4.m_black);
+		// 	_120->_104.channels.r = _1C4._00.channels.r;
+		// 	_120->_104.channels.g = _1C4._00.channels.g;
+		// 	_120->_104.channels.b = _1C4._00.channels.b;
+		// 	_120->_104.channels.a = _1C4._00.channels.a;
+		// 	_120->_108.channels.r = _1C4._04.channels.r;
+		// 	_120->_108.channels.g = _1C4._04.channels.g;
+		// 	_120->_108.channels.b = _1C4._04.channels.b;
+		// 	_120->_108.channels.a = _1C4._04.channels.a;
+		// 	_120->setWhite(_1C4.m_white);
+		// 	_120->setBlack(_1C4.m_black);
+		// 	break;
+		// default:
+		// 	break;
+		// }
+#else
+		if (_0C8._01) {
+			_110->_104 = _1C4._00;
+			_110->_108 = _1C4._04;
+			_110->setWhite(_1C4.m_white);
+			_110->setBlack(_1C4.m_black);
+			_114->_104 = _1D4._00;
+			_114->_108 = _1D4._04;
+			_114->setWhite(_1D4.m_white);
+			_114->setBlack(_1D4.m_black);
+		} else {
+			_110->_104 = _1D4._00;
+			_110->_108 = _1D4._04;
+			_110->setWhite(_1D4.m_white);
+			_110->setBlack(_1D4.m_black);
+			_114->_104 = _1C4._00;
+			_114->_108 = _1C4._04;
+			_114->setWhite(_1C4.m_white);
+			_114->setBlack(_1C4.m_black);
+		}
+		switch (_0C8.m_soundMode) {
+		case 0:
+			_118->_104 = _1C4._00;
+			_118->_108 = _1C4._04;
+			_118->setWhite(_1C4.m_white);
+			_118->setBlack(_1C4.m_black);
+			_11C->_104 = _1D4._00;
+			_11C->_108 = _1D4._04;
+			_11C->setWhite(_1D4.m_white);
+			_11C->setBlack(_1D4.m_black);
+			_120->_104 = _1D4._00;
+			_120->_108 = _1D4._04;
+			_120->setWhite(_1D4.m_white);
+			_120->setBlack(_1D4.m_black);
+			break;
+		case 1:
+			_118->_104 = _1D4._00;
+			_118->_108 = _1D4._04;
+			_118->setWhite(_1D4.m_white);
+			_118->setBlack(_1D4.m_black);
+			_11C->_104 = _1C4._00;
+			_11C->_108 = _1C4._04;
+			_11C->setWhite(_1C4.m_white);
+			_11C->setBlack(_1C4.m_black);
+			_120->_104 = _1D4._00;
+			_120->_108 = _1D4._04;
+			_120->setWhite(_1D4.m_white);
+			_120->setBlack(_1D4.m_black);
+			break;
+		case 2:
+			_118->_104 = _1D4._00;
+			_118->_108 = _1D4._04;
+			_118->setWhite(_1D4.m_white);
+			_118->setBlack(_1D4.m_black);
+			_11C->_104 = _1D4._00;
+			_11C->_108 = _1D4._04;
+			_11C->setWhite(_1D4.m_white);
+			_11C->setBlack(_1D4.m_black);
+			_120->_104 = _1C4._00;
+			_120->_108 = _1C4._04;
+			_120->setWhite(_1C4.m_white);
+			_120->setBlack(_1C4.m_black);
+			break;
+		default:
+			break;
+		}
+#endif
+		for (int i = 0; i < 10; i++) {
+			if (i < _0C8.m_bgmVolume) {
+				_154[i]->m_isVisible = true;
+				_154[i]->setAlpha(0xff);
+			} else {
+				_154[i]->m_isVisible = false;
+			}
+		}
+		for (int i = 0; i < 10; i++) {
+			if (i < _0C8.m_seVolume) {
+				_12C[i]->m_isVisible = true;
+				_12C[i]->setAlpha(0xff);
+			} else {
+				_12C[i]->m_isVisible = false;
+			}
+		}
+		// if (_0C8.m_isDeflicker) {
+		// 	_124->_104.channels = JUtility::TColor(_1C4._00).channels;
+		// 	_124->_108.channels = JUtility::TColor(_1C4._04).channels;
+		// 	_124->setWhite(JUtility::TColor(_1C4.m_white));
+		// 	_124->setBlack(JUtility::TColor(_1C4.m_black));
+		// 	_128->_104.channels = JUtility::TColor(_1D4._00).channels;
+		// 	_128->_108.channels = JUtility::TColor(_1D4._04).channels;
+		// 	_128->setWhite(JUtility::TColor(_1D4.m_white));
+		// 	_128->setBlack(JUtility::TColor(_1D4.m_black));
+		// } else {
+		// 	_124->_104.channels = JUtility::TColor(_1D4._00).channels;
+		// 	_124->_108.channels = JUtility::TColor(_1D4._04).channels;
+		// 	_124->setWhite(JUtility::TColor(_1D4.m_white));
+		// 	_124->setBlack(JUtility::TColor(_1D4.m_black));
+		// 	_128->_104.channels = JUtility::TColor(_1C4._00).channels;
+		// 	_128->_108.channels = JUtility::TColor(_1C4._04).channels;
+		// 	_128->setWhite(JUtility::TColor(_1C4.m_white));
+		// 	_128->setBlack(JUtility::TColor(_1C4.m_black));
+		// }
+		if (_0C8.m_isDeflicker) {
+			_124->_104 = _1C4._00;
+			_124->_108 = _1C4._04;
+			_124->setWhite(_1C4.m_white);
+			_124->setBlack(_1C4.m_black);
+			_128->_104 = _1D4._00;
+			_128->_108 = _1D4._04;
+			_128->setWhite(_1D4.m_white);
+			_128->setBlack(_1D4.m_black);
+		} else {
+			_124->_104 = _1D4._00;
+			_124->_108 = _1D4._04;
+			_124->setWhite(_1D4.m_white);
+			_124->setBlack(_1D4.m_black);
+			_128->_104 = _1C4._00;
+			_128->_108 = _1C4._04;
+			_128->setWhite(_1C4.m_white);
+			_128->setBlack(_1C4.m_black);
+		}
+		switch (_104) {
+		case 0:
+			break;
+		case 1:
+			if (_0C8._01) {
+				_240._18 = _110;
+			} else {
+				_240._18 = _114;
+			}
+			_28C._18 = nullptr;
+			break;
+		case 2:
+			_240._18 = _118 + _0C8.m_soundMode;
+			_28C._18 = nullptr;
+			break;
+		case 3:
+			_240._18 = nullptr;
+			if (_0C8.m_bgmVolume == 0) {
+				_28C._18 = nullptr;
+			} else {
+				_28C._18 = _12C[9 + _0C8.m_bgmVolume];
+			}
+			break;
+		case 4:
+			_240._18 = nullptr;
+			if (_0C8.m_seVolume == 0) {
+				_28C._18 = nullptr;
+			} else {
+				_28C._18 = _128 + _0C8.m_seVolume;
+			}
+			break;
+		case 5:
+			if (_0C8.m_isDeflicker) {
+				_240._18 = _124;
+			} else {
+				_240._18 = _128;
+			}
+			_28C._18 = nullptr;
+			break;
+		case 6:
+			_240._18 = nullptr;
+			_28C._18 = nullptr;
+			break;
+		default:
+			_240._18 = nullptr;
+			_28C._18 = nullptr;
+		}
 		/*
 	stwu     r1, -0x1c0(r1)
 	mflr     r0
@@ -3230,8 +3738,9 @@ lbl_803CD6B8:
 	 * Address:	803CD6CC
 	 * Size:	000008
 	 */
-	void TOption::getName(void)
+	char* TOption::getName(void)
 	{
+		return "TOption";
 		/*
 	addi     r3, r2, lbl_8051FA4C@sda21
 	blr

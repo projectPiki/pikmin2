@@ -1,3 +1,6 @@
+#include "Game/BaseGameSection.h"
+#include "IDelegate.h"
+#include "Viewport.h"
 #include "types.h"
 
 /*

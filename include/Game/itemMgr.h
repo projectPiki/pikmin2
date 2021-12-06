@@ -1,7 +1,7 @@
 #ifndef _GAME_BASEITEM_H
 #define _GAME_BASEITEM_H
 
-#include "Game/GenericObjectMgr.h"
+#include "GenericObjectMgr.h"
 #include "types.h"
 #include "stream.h"
 #include "Game/genItem.h"

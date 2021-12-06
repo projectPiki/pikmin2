@@ -1,11 +1,11 @@
-
+#include "Dolphin/runtime.h"
 
 /*
  * --INFO--
  * Address:	800C1B4C
  * Size:	00005C
  */
-void __cvt_fp2unsigned(void)
+unsigned long __cvt_fp2unsigned(double)
 {
 	/*
 	.loc_0x0:

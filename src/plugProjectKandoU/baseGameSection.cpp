@@ -1,3 +1,5 @@
+#include "Game/BaseGameSection.h"
+#include "og/Screen//ogScreen.h"
 #include "types.h"
 
 /*
@@ -854,79 +856,81 @@ namespace Screen {
 	{
 		// UNUSED FUNCTION
 	}
+} // namespace Screen
+} // namespace og
 
-	namespace Game {
+namespace Game {
 
-		/*
-		 * --INFO--
-		 * Address:	8014ADA0
-		 * Size:	00021C
-		 */
-		BaseGameSection::BaseGameSection(JKRHeap*)
-		{
-			/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	stw      r0, 0x34(r1)
-	stw      r31, 0x2c(r1)
-	mr       r31, r3
-	stw      r30, 0x28(r1)
-	bl       __ct__Q24Game14BaseHIOSectionFP7JKRHeap
-	lis      r4, __vt__Q24Game15BaseGameSection@ha
-	addi     r3, r31, 0x5c
-	addi     r0, r4, __vt__Q24Game15BaseGameSection@l
-	stw      r0, 0(r31)
-	bl       __ct__16DvdThreadCommandFv
-	li       r0, 0
-	li       r3, 0
-	stb      r0, 0x164(r31)
-	li       r5, 2
-	li       r6, 1
-	lwz      r4, 0x1c(r31)
-	bl
+/*
+ * --INFO--
+ * Address:	8014ADA0
+ * Size:	00021C
+ */
+BaseGameSection::BaseGameSection(JKRHeap*)
+{
+	/*
+stwu     r1, -0x30(r1)
+mflr     r0
+stw      r0, 0x34(r1)
+stw      r31, 0x2c(r1)
+mr       r31, r3
+stw      r30, 0x28(r1)
+bl       __ct__Q24Game14BaseHIOSectionFP7JKRHeap
+lis      r4, __vt__Q24Game15BaseGameSection@ha
+addi     r3, r31, 0x5c
+addi     r0, r4, __vt__Q24Game15BaseGameSection@l
+stw      r0, 0(r31)
+bl       __ct__16DvdThreadCommandFv
+li       r0, 0
+li       r3, 0
+stb      r0, 0x164(r31)
+li       r5, 2
+li       r6, 1
+lwz      r4, 0x1c(r31)
+bl
 createManager__10JFWDisplayFPC16_GXRenderModeObjP7JKRHeapQ26JUTXfb10EXfbNumberb
-	mr       r4, r3
-	mr       r3, r31
-	li       r5, 1
-	bl       setDisplay__Q24Game14BaseHIOSectionFP10JFWDisplayi
-	li       r3, 2
-	li       r0, 0
-	stw      r3, 0x114(r31)
-	li       r3, 0x14
-	stw      r0, 0x13c(r31)
-	stw      r0, 0x14c(r31)
-	bl       __nw__FUl
-	cmplwi   r3, 0
-	beq      lbl_8014AE68
-	lis      r4, lbl_804B0C8C@ha
-	lis      r5, "__vt__21IDelegate1<R7Rect<f>>"@ha
-	addi     r8, r4, lbl_804B0C8C@l
-	lis      r4, "__vt__45Delegate1<Q24Game15BaseGameSection,R7Rect<f>>"@ha
-	lwz      r7, 0(r8)
-	addi     r5, r5, "__vt__21IDelegate1<R7Rect<f>>"@l
-	lwz      r6, 4(r8)
-	addi     r0, r4, "__vt__45Delegate1<Q24Game15BaseGameSection,R7Rect<f>>"@l
-	lwz      r4, 8(r8)
-	stw      r7, 0x14(r1)
-	stw      r5, 0(r3)
-	stw      r0, 0(r3)
-	stw      r31, 4(r3)
-	stw      r7, 8(r3)
-	stw      r6, 0xc(r3)
-	stw      r6, 0x18(r1)
-	stw      r4, 0x1c(r1)
-	stw      r4, 0x10(r3)
+mr       r4, r3
+mr       r3, r31
+li       r5, 1
+bl       setDisplay__Q24Game14BaseHIOSectionFP10JFWDisplayi
+li       r3, 2
+li       r0, 0
+stw      r3, 0x114(r31)
+li       r3, 0x14
+stw      r0, 0x13c(r31)
+stw      r0, 0x14c(r31)
+bl       __nw__FUl
+cmplwi   r3, 0
+beq      lbl_8014AE68
+lis      r4, lbl_804B0C8C@ha
+lis      r5, "__vt__21IDelegate1<R7Rect<f>>"@ha
+addi     r8, r4, lbl_804B0C8C@l
+lis      r4, "__vt__45Delegate1<Q24Game15BaseGameSection,R7Rect<f>>"@ha
+lwz      r7, 0(r8)
+addi     r5, r5, "__vt__21IDelegate1<R7Rect<f>>"@l
+lwz      r6, 4(r8)
+addi     r0, r4, "__vt__45Delegate1<Q24Game15BaseGameSection,R7Rect<f>>"@l
+lwz      r4, 8(r8)
+stw      r7, 0x14(r1)
+stw      r5, 0(r3)
+stw      r0, 0(r3)
+stw      r31, 4(r3)
+stw      r7, 8(r3)
+stw      r6, 0xc(r3)
+stw      r6, 0x18(r1)
+stw      r4, 0x1c(r1)
+stw      r4, 0x10(r3)
 
 lbl_8014AE68:
-	stw      r3, 0x148(r31)
-	li       r3, 0x14
-	bl       __nw__FUl
-	cmplwi   r3, 0
-	beq      lbl_8014AEC4
-	lis      r4, lbl_804B0C98@ha
-	lis      r5, "__vt__30IDelegate1<PQ24Game9CameraArg>"@ha
-	addi     r8, r4, lbl_804B0C98@l
-	lis      r4,
+stw      r3, 0x148(r31)
+li       r3, 0x14
+bl       __nw__FUl
+cmplwi   r3, 0
+beq      lbl_8014AEC4
+lis      r4, lbl_804B0C98@ha
+lis      r5, "__vt__30IDelegate1<PQ24Game9CameraArg>"@ha
+addi     r8, r4, lbl_804B0C98@l
+lis      r4,
 "__vt__54Delegate1<Q24Game15BaseGameSection,PQ24Game9CameraArg>"@ha lwz      r7,
 0(r8) addi     r5, r5, "__vt__30IDelegate1<PQ24Game9CameraArg>"@l lwz      r6,
 4(r8) addi     r0, r4,
@@ -936,84 +940,79 @@ lbl_8014AE68:
 0x10(r1) stw      r4, 0x10(r3)
 
 lbl_8014AEC4:
-	stw      r3, cameraMgrCallback@sda21(r13)
-	li       r0, 0
-	li       r3, 0x2c
-	stw      r0, 0x50(r31)
-	stw      r0, cameraMgr__4Game@sda21(r13)
-	stw      r0, rumbleMgr__4Game@sda21(r13)
-	stw      r0, shadowMgr__4Game@sda21(r13)
-	stw      r0, lifeGaugeMgr@sda21(r13)
-	stw      r0, carryInfoMgr@sda21(r13)
-	stw      r0, 0x128(r31)
-	stw      r0, 0x118(r31)
-	stw      r0, 0xfc(r31)
-	stw      r0, theExpHeap@sda21(r13)
-	stw      r0, 0x100(r31)
-	stw      r0, 0x168(r31)
-	stw      r0, 0x158(r31)
-	stw      r0, 0x154(r31)
-	stw      r0, 0x15c(r31)
-	stw      r0, 0x160(r31)
-	stw      r0, 0x170(r31)
-	stw      r0, 0x16c(r31)
-	stw      r0, 0xe0(r31)
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8014AF30
-	bl       __ct__10BlackFaderFv
-	mr       r0, r3
+stw      r3, cameraMgrCallback@sda21(r13)
+li       r0, 0
+li       r3, 0x2c
+stw      r0, 0x50(r31)
+stw      r0, cameraMgr__4Game@sda21(r13)
+stw      r0, rumbleMgr__4Game@sda21(r13)
+stw      r0, shadowMgr__4Game@sda21(r13)
+stw      r0, lifeGaugeMgr@sda21(r13)
+stw      r0, carryInfoMgr@sda21(r13)
+stw      r0, 0x128(r31)
+stw      r0, 0x118(r31)
+stw      r0, 0xfc(r31)
+stw      r0, theExpHeap@sda21(r13)
+stw      r0, 0x100(r31)
+stw      r0, 0x168(r31)
+stw      r0, 0x158(r31)
+stw      r0, 0x154(r31)
+stw      r0, 0x15c(r31)
+stw      r0, 0x160(r31)
+stw      r0, 0x170(r31)
+stw      r0, 0x16c(r31)
+stw      r0, 0xe0(r31)
+bl       __nw__FUl
+or.      r0, r3, r3
+beq      lbl_8014AF30
+bl       __ct__10BlackFaderFv
+mr       r0, r3
 
 lbl_8014AF30:
-	stw      r0, 0xd0(r31)
-	li       r3, 0x28
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8014AF4C
-	bl       __ct__11WipeInFaderFv
-	mr       r0, r3
+stw      r0, 0xd0(r31)
+li       r3, 0x28
+bl       __nw__FUl
+or.      r0, r3, r3
+beq      lbl_8014AF4C
+bl       __ct__11WipeInFaderFv
+mr       r0, r3
 
 lbl_8014AF4C:
-	stw      r0, 0xd4(r31)
-	li       r3, 0x28
-	bl       __nw__FUl
-	or.      r0, r3, r3
-	beq      lbl_8014AF68
-	bl       __ct__12WipeOutFaderFv
-	mr       r0, r3
+stw      r0, 0xd4(r31)
+li       r3, 0x28
+bl       __nw__FUl
+or.      r0, r3, r3
+beq      lbl_8014AF68
+bl       __ct__12WipeOutFaderFv
+mr       r0, r3
 
 lbl_8014AF68:
-	stw      r0, 0xd8(r31)
-	li       r3, 0x78
-	bl       __nw__FUl
-	or.      r30, r3, r3
-	beq      lbl_8014AF9C
-	bl       __ct__8WipeBaseFv
-	lis      r4, __vt__14WipeOutInFader@ha
-	addi     r3, r30, 0x24
-	addi     r0, r4, __vt__14WipeOutInFader@l
-	stw      r0, 0(r30)
-	bl       __ct__12WipeOutFaderFv
-	addi     r3, r30, 0x4c
-	bl       __ct__11WipeInFaderFv
+stw      r0, 0xd8(r31)
+li       r3, 0x78
+bl       __nw__FUl
+or.      r30, r3, r3
+beq      lbl_8014AF9C
+bl       __ct__8WipeBaseFv
+lis      r4, __vt__14WipeOutInFader@ha
+addi     r3, r30, 0x24
+addi     r0, r4, __vt__14WipeOutInFader@l
+stw      r0, 0(r30)
+bl       __ct__12WipeOutFaderFv
+addi     r3, r30, 0x4c
+bl       __ct__11WipeInFaderFv
 
 lbl_8014AF9C:
-	stw      r30, 0xdc(r31)
-	mr       r3, r31
-	lwz      r0, 0x34(r1)
-	lwz      r31, 0x2c(r1)
-	lwz      r30, 0x28(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-			*/
-		}
-
-	} // namespace Game
-
-} // namespace Screen
-
-} // namespace og
+stw      r30, 0xdc(r31)
+mr       r3, r31
+lwz      r0, 0x34(r1)
+lwz      r31, 0x2c(r1)
+lwz      r30, 0x28(r1)
+mtlr     r0
+addi     r1, r1, 0x30
+blr
+	*/
+}
+} // namespace Game
 
 /*
  * --INFO--

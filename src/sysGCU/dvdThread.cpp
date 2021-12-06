@@ -1,3 +1,4 @@
+#include "DvdThreadCommand.h"
 #include "types.h"
 
 /*

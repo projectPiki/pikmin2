@@ -1,3 +1,4 @@
+#include "SysShape/AnimInfo.h"
 #include "types.h"
 
 /*

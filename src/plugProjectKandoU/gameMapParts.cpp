@@ -1,6 +1,6 @@
-#include "Vector3.h"
 #include "Game/mapParts.h"
 #include "types.h"
+#include "Vector3.h"
 
 /*
     Generated from dpostproc
@@ -673,7 +673,7 @@ namespace Game {
  */
 Door* MapUnitInterface::getDoor(int idx)
 {
-	return this->_118.getChildAt(idx)
+	return this->m_door.getChildAt(idx);
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x10(r1)
@@ -763,16 +763,16 @@ void Door::write(Stream&)
  */
 void Door::read(Stream& stream)
 {
-	_18 = stream.readInt();
-	_44 = stream.readInt();
-	_48 = stream.readInt();
-	_4C = stream.readInt();
-	_1C = stream.readInt();
-	for (int i = 0; i < _1C; i++) {
+	m_index     = stream.readInt();
+	m_dir       = stream.readInt();
+	m_offs      = stream.readInt();
+	m_wpIndex   = stream.readInt();
+	m_linkCount = stream.readInt();
+	for (int i = 0; i < m_linkCount; i++) {
 		// inlined constructor
 		DoorLink* link = new Game::DoorLink();
-		link->_18      = stream.readFloat();
-		link->_1C      = stream.readInt();
+		link->m_dist   = stream.readFloat();
+		link->m_doorID = stream.readInt();
 		int v0         = stream.readInt();
 
 		// TODO: WTF does this evaluate to?
@@ -782,9 +782,9 @@ void Door::read(Stream& stream)
 		// addi      r3, r28, 0x20 # ' '
 		// srwi      r0, r0, 31 <-- conversion to byte
 		// stb       r0, 0x20(r31)
-		link->_20 = (-v0 | v0); // < 0?
+		link->m_tekiFlag = (-v0 | v0); // < 0?
 		// _20 = CNode
-		_20.add(link);
+		m_rootLink.add(link);
 	}
 	/*
 	.loc_0x0:
@@ -970,8 +970,8 @@ void MapUnit::save(Stream&)
  */
 void MapUnit::load(Stream& stream)
 {
-	_94 = stream.readShort();
-	_96 = stream.readShort();
+	m_cellSize.x = stream.readShort();
+	m_cellSize.y = stream.readShort();
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x10(r1)
@@ -1013,7 +1013,7 @@ MapUnitMgr::MapUnitMgr(void)
  * Address:	801B66F8
  * Size:	0000C8
  */
-void NodeObjectMgr<Game::MapUnit>::~NodeObjectMgr()
+NodeObjectMgr<Game::MapUnit>::~NodeObjectMgr()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1080,7 +1080,7 @@ lbl_801B67A4:
  * Address:	801B67C0
  * Size:	000060
  */
-void TObjectNode<Game::MapUnit>::~TObjectNode()
+TObjectNode<Game::MapUnit>::~TObjectNode()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1166,7 +1166,7 @@ lbl_801B688C:
  * Address:	801B68A8
  * Size:	000070
  */
-void Container<Game::MapUnit>::~Container()
+Container<Game::MapUnit>::~Container()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1278,7 +1278,7 @@ void MapUnitMgr::findMapUnit(char*)
  * Address:	801B69A0
  * Size:	00004C
  */
-void Iterator<Game::MapUnit>::isDone()
+bool Iterator<Game::MapUnit>::isDone()
 {
 	/*
 	stwu     r1, -0x10(r1)

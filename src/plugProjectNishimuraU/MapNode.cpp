@@ -1,3 +1,4 @@
+#include "Game/Cave/Info.h"
 #include "types.h"
 
 /*

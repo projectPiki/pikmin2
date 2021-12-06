@@ -1,3 +1,4 @@
+#include "Game/mapParts.h"
 #include "types.h"
 
 /*

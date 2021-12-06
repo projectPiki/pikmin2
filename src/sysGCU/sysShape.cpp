@@ -1,3 +1,7 @@
+#include "SysShape/Animator.h"
+#include "SysShape/AnimInfo.h"
+#include "SysShape/Model.h"
+#include "SysShape/MtxObject.h"
 #include "types.h"
 
 /*

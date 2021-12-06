@@ -1,3 +1,4 @@
+#include "og/Screen/callbackNodes.h"
 #include "types.h"
 
 /*
@@ -25,7 +26,7 @@ namespace Screen {
 	 * Address:	........
 	 * Size:	0000B4
 	 */
-	CallBack_DrawAfter::CallBack_DrawAfter(P2DScreen::Mgr*, unsigned long long)
+	CallBack_DrawAfter::CallBack_DrawAfter(P2DScreen::Mgr*, ulonglong)
 	{
 		// UNUSED FUNCTION
 	}

@@ -1,3 +1,4 @@
+#include "BootSection.h"
 #include "types.h"
 
 /*

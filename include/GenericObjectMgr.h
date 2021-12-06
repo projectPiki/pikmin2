@@ -1,5 +1,5 @@
-#ifndef _GAME_GENERICOBJECTMGR_H
-#define _GAME_GENERICOBJECTMGR_H
+#ifndef _GENERICOBJECTMGR_H
+#define _GENERICOBJECTMGR_H
 
 #include "types.h"
 

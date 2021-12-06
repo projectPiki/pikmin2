@@ -1,7 +1,6 @@
+#include "Game/InteractBattle.h"
+#include "Game/Creature.h"
 #include "types.h"
-
-#include "game/interactBattle.h"
-#include "game/Creature.h"
 
 /*
     Generated from dpostproc

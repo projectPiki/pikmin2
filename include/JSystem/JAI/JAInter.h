@@ -1,6 +1,8 @@
 #ifndef _JSYSTEM_JAI_JAINTER_H
 #define _JSYSTEM_JAI_JAINTER_H
 
+#include "types.h"
+
 namespace JAInter {
 namespace SequenceMgr {
 	struct CustomHeapInfo {
@@ -38,6 +40,11 @@ struct SoundInfo {
 };
 struct SoundTable {
 };
+
+void deleteTmpDVDFile(uchar**);
+void loadTmpDVDFile(char*, uchar**);
+void transInitDataFile(uchar*, ulong);
+void routeToTrack(ulong);
 } // namespace JAInter
 
 #endif

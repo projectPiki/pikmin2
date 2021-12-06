@@ -5,10 +5,16 @@
 #include "Dolphin/gx.h"
 
 struct JUTGraphFifo {
+	JUTGraphFifo(ulong);
+
+	virtual ~JUTGraphFifo(); // _00
+
+	void becomeCurrent();
+	void setBreakPt();
+
 	static JUTGraphFifo* sCurrentFifo;
 	static u8 mGpStatus[5];
 
-	u32 _00;
 	GXFifoObj* m_fifo;
 };
 

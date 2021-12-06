@@ -7,10 +7,10 @@ struct CNode;
 struct Controller;
 struct JFWDisplay;
 struct JKRHeap;
-struct HIORootNode;
 
 namespace Game {
 struct GameMessage;
+struct HIORootNode;
 struct BaseHIOSection : public Section {
 	BaseHIOSection(JKRHeap*);
 

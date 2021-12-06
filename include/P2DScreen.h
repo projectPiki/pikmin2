@@ -34,7 +34,6 @@ struct Mgr : public J2DScreen {
 	void addCallBackPane(J2DPane*, Node*);
 
 	Node _118;  // _118
-	u32 _130;   // _130
 	u8 _134[4]; // _134
 };
 

@@ -1,3 +1,4 @@
+#include "og/Screen/callbackNodes.h"
 #include "types.h"
 
 /*
@@ -307,7 +308,7 @@ lbl_8030B7B0:
 	 * Address:	8030B7C0
 	 * Size:	000018
 	 */
-	void CallBack_CounterRV::getMotherPane(void)
+	J2DPane* CallBack_CounterRV::getMotherPane(void)
 	{
 		/*
 	lbz      r0, 0x88(r3)
@@ -327,7 +328,7 @@ lbl_8030B7B0:
 	void CallBack_CounterRV::setPuyoAnim(bool a1)
 	{
 		// Generated from stb r4, 0x84(r3)
-		_84 = a1;
+		m_isPuyoAnim = a1;
 	}
 
 	/*
@@ -338,7 +339,7 @@ lbl_8030B7B0:
 	void CallBack_CounterRV::setPuyoAnimZero(bool a1)
 	{
 		// Generated from stb r4, 0x85(r3)
-		_85 = a1;
+		m_isPuyoAnimZero = a1;
 	}
 
 	/*
@@ -349,7 +350,7 @@ lbl_8030B7B0:
 	void CallBack_CounterRV::setBlind(bool a1)
 	{
 		// Generated from stb r4, 0x86(r3)
-		_86 = a1;
+		m_isBlind = a1;
 	}
 
 	/*
@@ -380,7 +381,7 @@ lbl_8030B7B0:
 	void CallBack_CounterRV::setZeroAlpha(unsigned char a1)
 	{
 		// Generated from stb r4, 0x90(r3)
-		_90 = a1;
+		m_zeroAlpha = a1;
 	}
 
 	/*
@@ -462,8 +463,7 @@ lbl_8030B8A8:
 	 * Address:	8030B8DC
 	 * Size:	000008
 	 */
-	void CallBack_CounterRV::setCenteringMode(
-	    (og::Screen::CallBack_CounterRV::EnumCenteringMode))
+	void CallBack_CounterRV::setCenteringMode(EnumCenteringMode)
 	{
 		/*
 		.loc_0x0:

@@ -1,3 +1,4 @@
+#include "Game/VsGameSection.h"
 #include "types.h"
 
 /*
@@ -5578,7 +5579,7 @@ void VsGameSection::clearGetCherryCount(void)
  * Address:	........
  * Size:	00007C
  */
-void VsGameSection::getGetCherryCount(int)
+u32 VsGameSection::getGetCherryCount(int playerIndex)
 {
 	// UNUSED FUNCTION
 }
@@ -5588,21 +5589,21 @@ void VsGameSection::getGetCherryCount(int)
  * Address:	801C49B8
  * Size:	000008
  */
-u32 VsGameSection::challengeDisablePelplant(void) { return 0x0; }
+bool VsGameSection::challengeDisablePelplant(void) { return false; }
 
 /*
  * --INFO--
  * Address:	801C49C0
  * Size:	000008
  */
-u32 VsGameSection::player2enabled(void) { return 0x1; }
+bool VsGameSection::player2enabled(void) { return true; }
 
 /*
  * --INFO--
  * Address:	801C49C8
  * Size:	000008
  */
-void VsGameSection::getCaveFilename(void)
+char* VsGameSection::getCaveFilename(void)
 {
 	/*
 	addi     r3, r3, 0x224

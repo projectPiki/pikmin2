@@ -1,3 +1,4 @@
+#include "og/newScreen/TitleMsg.h"
 #include "types.h"
 
 /*

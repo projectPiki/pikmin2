@@ -1,4 +1,5 @@
 #include "types.h"
+#include "JSystem/J2D/J2DPane.h"
 
 /*
     Generated from dpostproc

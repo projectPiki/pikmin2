@@ -1,3 +1,4 @@
+#include "Game/TimeMgr.h"
 #include "types.h"
 
 /*
@@ -662,7 +663,7 @@ lbl_801272A4:
  * Address:	801272C4
  * Size:	000060
  */
-void TimeMgr::getSunGaugeRatio()
+float TimeMgr::getSunGaugeRatio()
 {
 	/*
 	lfs      f1, 0x20c(r3)
@@ -745,7 +746,7 @@ lbl_80127388:
  * Address:	80127398
  * Size:	000018
  */
-void TimeMgr::isDayOver()
+bool TimeMgr::isDayOver()
 {
 	/*
 	lfs      f1, 0x20c(r3)
@@ -762,7 +763,7 @@ void TimeMgr::isDayOver()
  * Address:	801273B0
  * Size:	000030
  */
-void TimeMgr::isDayTime()
+bool TimeMgr::isDayTime()
 {
 	/*
 	lfs      f1, 0x20c(r3)
@@ -787,7 +788,7 @@ lbl_801273D8:
  * Address:	801273E0
  * Size:	000020
  */
-void TimeMgr::getRealDayTime()
+float TimeMgr::getRealDayTime()
 {
 	/*
 	lfs      f2, 0x64(r3)

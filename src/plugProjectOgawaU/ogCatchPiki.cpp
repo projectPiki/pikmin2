@@ -1,3 +1,5 @@
+#include "og/Screen/callbackNodes.h"
+#include "og/Screen/ScaleMgr.h"
 #include "types.h"
 
 /*

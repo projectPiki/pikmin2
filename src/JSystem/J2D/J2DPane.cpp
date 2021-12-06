@@ -597,14 +597,14 @@ J2DPane::J2DPane(J2DPane* parent, JSURandomInputStream* input, uchar version)
 		input->read(&header, sizeof(J2DScrnBlockHeader));
 		m_bloBlockType = header.m_bloBlockType;
 		makePaneStream(parent, input);
-		input->seek(position + header.m_blockLength, 0);
+		input->seek(position + header.m_blockLength, SEEK_SET);
 	} else {
 		J2DScrnBlockHeader header;
 		int position = input->getPosition();
 		input->read(&header, sizeof(J2DScrnBlockHeader));
 		m_bloBlockType = header.m_bloBlockType;
 		makePaneExStream(parent, input);
-		input->seek(position + header.m_blockLength, 0);
+		input->seek(position + header.m_blockLength, SEEK_SET);
 	}
 	/*
 	stwu     r1, -0x30(r1)

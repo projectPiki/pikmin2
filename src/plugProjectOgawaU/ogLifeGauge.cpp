@@ -1,3 +1,4 @@
+#include "og/Screen/callbackNodes.h"
 #include "types.h"
 
 /*
@@ -133,18 +134,14 @@
         .4byte 0x00000000
 */
 
-namespace og {
-
-namespace Screen {
-
+/*
+ * --INFO--
+ * Address:	80306038
+ * Size:	000158
+ */
+og::Screen::CallBack_LifeGauge::CallBack_LifeGauge(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	80306038
-	 * Size:	000158
-	 */
-	CallBack_LifeGauge::CallBack_LifeGauge(void)
-	{
-		/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
 	stw      r0, 0x14(r1)
@@ -237,17 +234,17 @@ lbl_80306160:
 	mtlr     r0
 	addi     r1, r1, 0x10
 	blr
-		*/
-	}
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	80306190
+ * Size:	000070
+ */
+P2DScreen::CallBackNode::~CallBackNode(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	80306190
-	 * Size:	000070
-	 */
-	P2DScreen::CallBackNode::~CallBackNode(void)
-	{
-		/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
 	stw      r0, 0x14(r1)
@@ -280,17 +277,17 @@ lbl_803061E4:
 	mtlr     r0
 	addi     r1, r1, 0x10
 	blr
-		*/
-	}
+	*/
+}
 
+namespace og {
+namespace Screen {
 	/*
 	 * --INFO--
 	 * Address:	80306200
 	 * Size:	0002C4
 	 */
-	void CallBack_LifeGauge::init(
-	    (P2DScreen::Mgr*, og::Screen::DataNavi*,
-	     og::Screen::CallBack_LifeGauge::LifeGaugeType))
+	void CallBack_LifeGauge::init(P2DScreen::Mgr*, DataNavi*, LifeGaugeType)
 	{
 		/*
 		.loc_0x0:
@@ -489,8 +486,7 @@ lbl_803061E4:
 	 * Address:	803064C4
 	 * Size:	000434
 	 */
-	void CallBack_LifeGauge::setType(
-	    (og::Screen::CallBack_LifeGauge::LifeGaugeType))
+	void CallBack_LifeGauge::setType(LifeGaugeType)
 	{
 		/*
 		.loc_0x0:
@@ -1281,8 +1277,8 @@ lbl_80306F90:
 	 * Address:	80306FA8
 	 * Size:	000118
 	 */
-	void NaviLifeGauge::setCallBack(
-	    (og::Screen::DataNavi*, og::Screen::CallBack_LifeGauge::LifeGaugeType))
+	void NaviLifeGauge::setCallBack(DataNavi*,
+	                                CallBack_LifeGauge::LifeGaugeType)
 	{
 		/*
 		.loc_0x0:
@@ -1370,7 +1366,7 @@ lbl_80306F90:
 	 * Address:	803070C0
 	 * Size:	00002C
 	 */
-	void NaviLifeGauge::setType(og::Screen::CallBack_LifeGauge::LifeGaugeType)
+	void NaviLifeGauge::setType(CallBack_LifeGauge::LifeGaugeType)
 	{
 		/*
 	stwu     r1, -0x10(r1)

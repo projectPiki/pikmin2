@@ -1,4 +1,5 @@
 #include "types.h"
+#include "og/Screen/callbackNodes.h"
 
 /*
     Generated from dpostproc
@@ -85,13 +86,7 @@ namespace Screen {
 	 * Address:	8030B414
 	 * Size:	000008
 	 */
-	void CallBack_Screen::getPartsScreen(void)
-	{
-		/*
-	lwz      r3, 0x1c(r3)
-	blr
-		*/
-	}
+	J2DScreen* CallBack_Screen::getPartsScreen(void) { return m_partsScreen; }
 
 	/*
 	 * --INFO--

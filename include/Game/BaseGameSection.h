@@ -49,6 +49,7 @@ struct BaseGameSection : public BaseHIOSection {
 	void changeGeneratorCursor(Vector3f&);
 	void clearHeap();
 	void closeContainerWindow();
+	void closeZoomWindow();
 	void createFallPikminSound();
 	void directDraw(Graphics&, struct Viewport*);
 	void directDrawPost(Graphics&, Viewport*);
@@ -97,8 +98,12 @@ struct BaseGameSection : public BaseHIOSection {
 	void j3dSetView(Viewport*, bool);
 	void loadSync(struct IDelegate*, bool);
 	void movieDone(Game::MovieConfig*, unsigned long, unsigned long);
+	void newdraw_draw3D(Graphics&);
 	void newdraw_draw3D_all(Graphics&);
 	void newdraw_drawAll(Viewport*);
+	void newdraw_drawParticle(Graphics&);
+	void newdraw_drawPostShadow(Viewport*);
+	void newdraw_drawPreShadow(Viewport*);
 	void on_setCamController(int);
 	void onCameraBlendFinished(Game::CameraArg*);
 	void onClearHeap();

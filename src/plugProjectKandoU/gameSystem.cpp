@@ -1,4 +1,5 @@
 #include "types.h"
+#include "Game/GameSystem.h"
 
 /*
     Generated from dpostproc

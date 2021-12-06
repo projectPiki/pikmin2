@@ -33,7 +33,7 @@ struct AStarContext {
 	AStarContext();
 	void init(RouteMgr*, int);
 	void getNode(short);
-	void makepath(PathNode*, PathNode*);
+	void makepath(PathNode*, PathNode**);
 
 	u8 _00[0x64]; // _00
 };
@@ -60,7 +60,7 @@ struct Pathfinder {
 	Pathfinder();
 	void create(int, RouteMgr*);
 	void update();
-	int start(PathfindRequest*);
+	int start(PathfindRequest&);
 	int makepath(ulong, PathNode**);
 	int makepath(ulong, short*, int);
 	void release(ulong);

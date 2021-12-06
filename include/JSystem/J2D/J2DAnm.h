@@ -200,7 +200,7 @@ struct J2DAnmVtxColorKey : public J2DAnmVtxColor {
 };
 
 struct J2DAnmLoaderDataBase {
-	static J2DAnmBase* load(void*);
+	static J2DAnmBase* load(const void*);
 };
 
 #endif

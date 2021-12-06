@@ -8,6 +8,12 @@
 template <typename T> struct Vector3 {
 	T x, y, z;
 	inline Vector3() {};
+	inline Vector3(T x, T y, T z)
+	{
+		this->x = x;
+		this->y = y;
+		this->z = z;
+	}
 	inline Vector3(const Vector3<T>& other)
 	{
 		x = other.x;
@@ -15,7 +21,7 @@ template <typename T> struct Vector3 {
 		z = other.z;
 	}
 
-	inline Vector3& operator=(Vector3& other)
+	inline Vector3& operator=(const Vector3& other)
 	{
 		x = other.x;
 		y = other.y;

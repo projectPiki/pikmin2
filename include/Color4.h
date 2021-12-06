@@ -4,7 +4,8 @@
 #include "types.h"
 
 struct Color4 {
-	Color4();
+	// TODO: Remove inline def when linking singleGS_ZukanParms.cpp!
+	inline Color4() {};
 	inline Color4(u8 red, u8 green, u8 blue, u8 alpha)
 	    : r(red)
 	    , g(green)

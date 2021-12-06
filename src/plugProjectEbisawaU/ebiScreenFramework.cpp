@@ -1,4 +1,4 @@
-#include "ebi/screen/TScreenBase.h"
+#include "ebi/Screen/TScreenBase.h"
 
 namespace ebi {
 namespace Screen {

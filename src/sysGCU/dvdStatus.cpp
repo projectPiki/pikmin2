@@ -1,3 +1,7 @@
+#include "Dolphin/dvd.h"
+#include "DvdStatus.h"
+#include "JSystem/JUT/JUTException.h"
+#include "System.h"
 #include "types.h"
 
 /*
@@ -69,13 +73,8 @@
  */
 DvdStatus::DvdStatus()
 {
-	/*
-	li       r4, 0
-	li       r0, -1
-	stw      r4, 4(r3)
-	stw      r0, 0(r3)
-	blr
-	*/
+	m_fader = nullptr;
+	_00     = -1;
 }
 
 /*
@@ -83,8 +82,15 @@ DvdStatus::DvdStatus()
  * Address:	8042A328
  * Size:	00002C
  */
-void DvdStatus::isErrorOccured()
+bool DvdStatus::isErrorOccured()
 {
+	if (m_fader == nullptr) {
+		return false;
+	}
+	if (sys->m_cardMgr->_E4 & 1) {
+		return false;
+	}
+	return true;
 	/*
 	lwz      r0, 4(r3)
 	li       r3, 0
@@ -107,6 +113,61 @@ void DvdStatus::isErrorOccured()
  */
 void DvdStatus::update()
 {
+	int status = DVDGetDriveStatus();
+	switch (status) {
+	case -1:
+		_00 = 1;
+		break;
+	case 11:
+		_00 = 2;
+		break;
+	case 4:
+		_00 = 3;
+		break;
+	case 5:
+		_00 = 4;
+		break;
+	case 6:
+		_00 = 5;
+		break;
+	default:
+		if (_00 == -1 || status != 1) {
+			_00 = -1;
+		}
+		break;
+	}
+	if (m_fader == nullptr) {
+		if (0 < _00) {
+			JFWDisplay* display = sys->m_display;
+			// This is line 170? Really???
+			JUT_ASSERTLINE(170, display != nullptr, "no display.\n");
+			m_fader          = display->m_fader;
+			display->m_fader = nullptr;
+			PADControlMotor(0, 2);
+			PADControlMotor(1, 2);
+			PADControlMotor(2, 2);
+			PADControlMotor(3, 2);
+			sys->disableCPULockDetector();
+			_08 = status;
+			ebi::FileSelect::TMgr::onDvdErrorOccured();
+			ebi::Save::TMgr::onDvdErrorOccured();
+		}
+	} else {
+		if (_00 == -1) {
+			JFWDisplay* display = sys->m_display;
+			// This is line 204? Really???
+			JUT_ASSERTLINE(204, display != nullptr, "no display.\n");
+			// Line 197 now???
+			JUT_ASSERTLINE(197, display->m_fader != nullptr,
+			               "display changed !\n");
+			display->m_fader = m_fader;
+			m_fader          = nullptr;
+			sys->enableCPULockDetector(_08);
+			ebi::FileSelect::TMgr::onDvdErrorRecovered();
+			ebi::Save::TMgr::onDvdErrorRecovered();
+		}
+	}
+	// return m_fader != nullptr???
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0

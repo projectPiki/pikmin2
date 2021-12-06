@@ -1,3 +1,4 @@
+#include "Game/pathfinder.h"
 #include "types.h"
 
 /*
@@ -294,7 +295,7 @@ void Pathfinder::getContext(unsigned long)
  * Address:	801A3854
  * Size:	00014C
  */
-void Pathfinder::start(Game::PathfindRequest&)
+int Pathfinder::start(PathfindRequest&)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -404,7 +405,7 @@ lbl_801A3980:
  * Address:	801A39A0
  * Size:	0000C0
  */
-void Pathfinder::makepath(unsigned long, Game::PathNode**)
+int Pathfinder::makepath(unsigned long, Game::PathNode**)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -479,7 +480,7 @@ lbl_801A3A50:
  * Address:	........
  * Size:	0000C8
  */
-void Pathfinder::makepath(unsigned long, short*, int)
+int Pathfinder::makepath(unsigned long, short*, int)
 {
 	// UNUSED FUNCTION
 }
@@ -718,10 +719,10 @@ AStarPathfinder::AStarPathfinder(void)
  * Address:	801A3BEC
  * Size:	000008
  */
-void AStarPathfinder::setContext(Game::AStarContext* a1)
+void AStarPathfinder::setContext(AStarContext* context)
 {
 	// Generated from stw r4, 0x0(r3)
-	_00 = a1;
+	m_context = context;
 }
 
 /*
@@ -1355,7 +1356,7 @@ lbl_801A42C4:
  * Address:	801A42DC
  * Size:	000034
  */
-void AStarContext::makepath(Game::PathNode*, Game::PathNode**)
+void AStarContext::makepath(PathNode*, PathNode**)
 {
 	/*
 	lwz      r6, 8(r4)

@@ -1,6 +1,7 @@
-#include "Vector3.h"
-#include "types.h"
 #include "Camera.h"
+#include "BlendCamera.h"
+#include "types.h"
+#include "Vector3.h"
 
 /*
     Generated from dpostproc
@@ -1224,7 +1225,7 @@ u32 Camera::on_getPositionPtr() { return 0x0; }
  * Address:	8041AD0C
  * Size:	00001C
  */
-void Camera::getNear()
+float Camera::getNear()
 {
 	/*
 	lbz      r0, 0x6c(r3)
@@ -1245,7 +1246,7 @@ lbl_8041AD20:
  * Address:	8041AD28
  * Size:	00001C
  */
-void Camera::getFar()
+float Camera::getFar()
 {
 	/*
 	lbz      r0, 0x6c(r3)
@@ -1603,7 +1604,7 @@ lbl_8041B0C4:
  * Address:	8041B0F8
  * Size:	0000B8
  */
-void Camera::calcScreenSize(Sys::Sphere&)
+float Camera::calcScreenSize(Sys::Sphere&)
 {
 	/*
 	stwu     r1, -0x20(r1)

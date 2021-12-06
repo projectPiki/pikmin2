@@ -1,3 +1,4 @@
+#include "JSystem/JKR/JKRArchive.h"
 #include "types.h"
 
 /*
@@ -33,8 +34,8 @@
  * Address:	8001B130
  * Size:	000064
  */
-void JKRArchive::mount(const char*, JKRArchive::EMountMode, JKRHeap*,
-                       JKRArchive::EMountDirection)
+JKRArchive* JKRArchive::mount(const char*, JKRArchive::EMountMode, JKRHeap*,
+                              JKRArchive::EMountDirection)
 {
 	/*
 	.loc_0x0:

@@ -4,13 +4,13 @@
 #include "types.h"
 #include "Dolphin/gx.h"
 #include "Matrixf.h"
+#include "Color4.h"
 #include "JSystem/J2D/J2DGrafContext.h"
 
 struct Color4;
 template <typename T> struct IDelegate1;
 template <typename A, typename B> struct IDelegate2;
 struct JUTTexture;
-struct PerspPrintfInfo;
 struct Plane;
 template <typename T> struct Rect;
 typedef Rect<float> Rectf;
@@ -19,6 +19,18 @@ struct Viewport;
 namespace Sys {
 struct Sphere;
 }
+
+struct PerspPrintfInfo {
+	inline PerspPrintfInfo() {};
+
+	struct JUTFont* m_font; // _00
+	uint _04;               // _04
+	uint _08;               // _08
+	int _0C;                // _0C
+	float _10;              // _10
+	Color4 _14;             // _14
+	Color4 _18;             // _18
+};
 
 struct _GraphicsParent {
 	ushort m_primitiveDrawCount; // _000

@@ -1,6 +1,5 @@
-#include "types.h"
-
 #include "sysMath.h"
+#include "types.h"
 #include "Vector3.h"
 
 /*
@@ -416,7 +415,7 @@ asm float angDist(float, float)
 		fmr f1, f2
 		fcmpo cr0, f2, f0
 		cror 2, 1, 2
-		bnelr 
+		bnelr
 		lfs f1, lbl_805202A8
 		lfs f0, lbl_80520270
 		fsubs f2, f1, f2

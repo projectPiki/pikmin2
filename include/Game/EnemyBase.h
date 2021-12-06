@@ -3,6 +3,7 @@
 
 #include "Game/AILODParm.h"
 #include "Game/Creature.h"
+#include "Game/PelletView.h"
 #include "SysShape/Animator.h"
 #include "Vector3.h"
 #include "types.h"
@@ -16,7 +17,9 @@ struct MotionListener {
 
 namespace Game {
 struct EnemyInitialParamBase;
-struct EnemyBase : public Creature, SysShape::MotionListener {
+struct EnemyBase : public Creature,
+                   public SysShape::MotionListener,
+                   virtual public PelletView {
 	virtual Vector3f getPosition();                             // _00
 	virtual void checkCollision(CellObject*);                   // _04
 	virtual void getBoundingSphere(Sys::Sphere&);               // _08

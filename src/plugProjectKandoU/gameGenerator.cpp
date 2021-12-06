@@ -1,3 +1,11 @@
+#include "Dolphin/string.h"
+#include "Game/Creature.h"
+#include "Game/gameGenerator.h"
+#include "Game/gameGeneratorCache.h"
+#include "Game/GameSystem.h"
+#include "Game/TimeMgr.h"
+#include "JSystem/JUT/JUTException.h"
+#include "Parameters.h"
 #include "types.h"
 
 /*
@@ -204,6 +212,8 @@
         .4byte 0x67720000
 */
 
+uint GeneratorCurrentVersion = 'v0.3';
+
 namespace Game {
 
 /*
@@ -211,32 +221,14 @@ namespace Game {
  * Address:	801AA6E4
  * Size:	000050
  */
-GenBase::GenBase(unsigned long, char*, char*)
+GenBase::GenBase(ulong p1, char* p2, char* p3)
+    : Parameters(nullptr, "gen base")
 {
-	/*
-	extsh.   r0, r4
-	beq      lbl_801AA6F4
-	addi     r0, r3, 0x24
-	stw      r0, 0(r3)
-
-lbl_801AA6F4:
-	li       r9, 0
-	lis      r4, lbl_8047F680@ha
-	stw      r9, 4(r3)
-	addi     r0, r4, lbl_8047F680@l
-	lis      r8, __vt__Q24Game7GenBase@ha
-	lis      r4, 0x5F5F5F5F@ha
-	stw      r0, 8(r3)
-	addi     r8, r8, __vt__Q24Game7GenBase@l
-	addi     r0, r4, 0x5F5F5F5F@l
-	stw      r8, 0xc(r3)
-	stw      r5, 0x10(r3)
-	stw      r6, 0x18(r3)
-	stw      r7, 0x1c(r3)
-	stw      r0, 0x14(r3)
-	stw      r9, 0x20(r3)
-	blr
-	*/
+	m_typeID = p1;
+	_18      = p2;
+	_1C      = p3;
+	m_rawID  = '____';
+	_20      = 0;
 }
 
 /*
@@ -254,21 +246,14 @@ void GenBase::writeVersion(Stream&)
  * Address:	801AA734
  * Size:	00000C
  */
-void GenBase::getLatestVersion(void)
-{
-	/*
-	lis      r3, 0x75646566@ha
-	addi     r3, r3, 0x75646566@l
-	blr
-	*/
-}
+uint GenBase::getLatestVersion() { return 'udef'; }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	0000DC
  */
-void GenBase::write(Stream&)
+void GenBase::write(Stream& output)
 {
 	// UNUSED FUNCTION
 }
@@ -285,38 +270,14 @@ void GenBase::doWrite(Stream&) { }
  * Address:	801AA744
  * Size:	000020
  */
-void GenBase::ramSaveParameters(Stream&)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       write__10ParametersFR6Stream
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void GenBase::ramSaveParameters(Stream& output) { Parameters::write(output); }
 
 /*
  * --INFO--
  * Address:	801AA764
  * Size:	000020
  */
-void GenBase::ramLoadParameters(Stream&)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	bl       read__10ParametersFR6Stream
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void GenBase::ramLoadParameters(Stream& input) { Parameters::read(input); }
 
 /*
  * --INFO--
@@ -333,7 +294,7 @@ void GenBase::readVersion(Stream&)
  * Address:	........
  * Size:	0000C0
  */
-void GenBase::read(Stream&)
+void GenBase::read(Stream& input)
 {
 	// UNUSED FUNCTION
 }
@@ -346,12 +307,25 @@ void GenBase::read(Stream&)
 void GenBase::doRead(Stream&) { }
 
 /*
+ * getLatestVersion__Q24Game9GenObjectFv
  * --INFO--
  * Address:	801AA788
  * Size:	000050
  */
-void GenObject::getLatestVersion(void)
+uint GenObject::getLatestVersion()
 {
+	uint count = GenObjectFactory::factory->m_count;
+	if (count <= 0) {
+		return m_typeID;
+	}
+	int i = 0;
+	do {
+		if (m_typeID == GenObjectFactory::factory->m_factories[i].m_typeID) {
+			return GenObjectFactory::factory->m_factories[i].m_version;
+		}
+		i++;
+	} while (--count != 0);
+	return m_typeID;
 	/*
 	lwz      r7, factory__Q24Game16GenObjectFactory@sda21(r13)
 	li       r4, 0
@@ -385,7 +359,7 @@ lbl_801AA7C8:
  * Address:	........
  * Size:	000060
  */
-void GenObjectFactory::createInstance(void)
+void GenObjectFactory::createInstance()
 {
 	// UNUSED FUNCTION
 }
@@ -395,79 +369,39 @@ void GenObjectFactory::createInstance(void)
  * Address:	801AA7D8
  * Size:	00000C
  */
-void Generator::initialiseSystem(void)
-{
-	/*
-	li       r0, 0
-	stw      r0, factory__Q24Game16GenObjectFactory@sda21(r13)
-	blr
-	*/
-}
+void Generator::initialiseSystem() { GenObjectFactory::factory = nullptr; }
 
 /*
+ * __ct__Q24Game9GeneratorFv
  * --INFO--
  * Address:	801AA7E4
  * Size:	0000DC
  */
-Generator::Generator(void)
+Generator::Generator()
+    : CNode()
+    , _40()
+    , m_version()
+    , m_position(0.0f, 0.0f, 0.0f)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       __ct__5CNodeFv
-	lis      r4, __vt__Q24Game9Generator@ha
-	addi     r3, r31, 0x40
-	addi     r0, r4, __vt__Q24Game9Generator@l
-	stw      r0, 0(r31)
-	bl       __ct__4ID32Fv
-	addi     r3, r31, 0x4c
-	bl       __ct__4ID32Fv
-	lfs      f0, lbl_80519258@sda21(r2)
-	lis      r3, 0x5F5F5F5F@ha
-	lis      r4, 0x20202020@ha
-	li       r5, 0
-	stfs     f0, 0x94(r31)
-	addi     r0, r3, 0x5F5F5F5F@l
-	addi     r3, r31, 0x40
-	addi     r4, r4, 0x20202020@l
-	stfs     f0, 0x98(r31)
-	stfs     f0, 0x9c(r31)
-	stw      r5, 0x18(r31)
-	stw      r0, 0x1c(r31)
-	sth      r5, 0x5c(r31)
-	bl       setID__4ID32FUl
-	lwz      r4, GeneratorCurrentVersion@sda21(r13)
-	addi     r3, r31, 0x4c
-	bl       setID__4ID32FUl
-	addi     r3, r31, 0x20
-	addi     r4, r2, lbl_8051925C@sda21
-	bl       strcpy
-	li       r5, 0
-	li       r4, 1
-	stw      r5, 0x64(r31)
-	li       r0, -1
-	mr       r3, r31
-	stw      r5, 0x60(r31)
-	stw      r5, 0x6c(r31)
-	stw      r5, 0x7c(r31)
-	stw      r5, 0x10(r31)
-	stw      r5, 0xc(r31)
-	stw      r5, 8(r31)
-	stw      r5, 4(r31)
-	stb      r4, 0xac(r31)
-	stw      r0, 0x84(r31)
-	stw      r5, 0x74(r31)
-	stw      r5, 0x78(r31)
-	stw      r5, 0x70(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	_18 = nullptr;
+	_1C = '____';
+	_5C = 0;
+	_40.setID('    ');
+	m_version.setID(GeneratorCurrentVersion);
+	strcpy(_20, "unset");
+	_64             = 0;
+	_60             = 0;
+	m_creature      = nullptr;
+	_7C             = 0;
+	_10             = nullptr;
+	_0C             = nullptr;
+	_08             = nullptr;
+	_04             = nullptr;
+	_AC             = 1;
+	m_dayLimitMaybe = -1;
+	_74             = 0;
+	_78             = 0;
+	_70             = 0;
 }
 
 /*
@@ -485,7 +419,7 @@ Generator::Generator(int)
  * Address:	801AA8C0
  * Size:	000068
  */
-Generator::~Generator(void)
+Generator::~Generator()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -520,38 +454,16 @@ lbl_801AA90C:
 }
 
 /*
+ * updateUseList__Q24Game9GeneratorFv
  * --INFO--
  * Address:	801AA928
  * Size:	000058
  */
-void Generator::updateUseList(void)
+void Generator::updateUseList()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       isExpired__Q24Game9GeneratorFv
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801AA96C
-	lwz      r3, 0x18(r31)
-	cmplwi   r3, 0
-	beq      lbl_801AA96C
-	lwz      r12, 0xc(r3)
-	mr       r4, r31
-	li       r5, 1
-	lwz      r12, 0x2c(r12)
-	mtctr    r12
-	bctrl
-
-lbl_801AA96C:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (!isExpired() && (_18 != nullptr)) {
+		_18->updateUseList(this, 1);
+	}
 }
 
 /*
@@ -559,32 +471,19 @@ lbl_801AA96C:
  * Address:	801AA980
  * Size:	000004
  */
-void GenObject::updateUseList(Game::Generator*, int) { }
+void GenObject::updateUseList(Generator*, int) { }
 
 /*
  * --INFO--
  * Address:	801AA984
  * Size:	000034
  */
-void Generator::isExpired(void)
+bool Generator::isExpired()
 {
-	/*
-	lwz      r0, 0x84(r3)
-	cmpwi    r0, -1
-	bne      lbl_801AA998
-	li       r3, 0
-	blr
-
-lbl_801AA998:
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	lwz      r3, 0x40(r3)
-	lwz      r3, 0x218(r3)
-	xor      r0, r3, r0
-	cntlzw   r0, r0
-	slw      r0, r3, r0
-	srwi     r3, r0, 0x1f
-	blr
-	*/
+	if (m_dayLimitMaybe == -1) {
+		return false;
+	}
+	return m_dayLimitMaybe < gameSystem->m_timeMgr->m_dayCount;
 }
 
 /*
@@ -659,63 +558,55 @@ lbl_801AAA58:
  * Address:	801AAA70
  * Size:	000008
  */
-u32 GenObject::generate(Game::Generator*) { return 0x0; }
+Creature* GenObject::generate(Generator*) { return nullptr; }
 
 /*
  * --INFO--
  * Address:	801AAA78
  * Size:	00007C
  */
-void Generator::need_saveCreature(void)
+bool Generator::need_saveCreature(void)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r3, 0x6c(r3)
-	cmplwi   r3, 0
-	bne      lbl_801AAAA0
-	li       r3, 1
-	b        lbl_801AAAE0
-
-lbl_801AAAA0:
-	lwz      r12, 0(r3)
-	lwz      r12, 0xa8(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_801AAADC
-	lwz      r3, 0x6c(r31)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x80(r12)
-	mtctr    r12
-	bctrl
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_801AAADC
-	li       r3, 0
-	b        lbl_801AAAE0
-
-lbl_801AAADC:
-	li       r3, 1
-
-lbl_801AAAE0:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	// FIRST TRY! ^_^
+	bool shouldSave;
+	if (m_creature == nullptr) {
+		shouldSave = true;
+	} else {
+		if ((!m_creature->isAlive() && m_creature->isPellet())) {
+			shouldSave = false;
+		} else {
+			shouldSave = true;
+		}
+	}
+	return shouldSave;
 }
 
 /*
+ * saveCreature__Q24Game9GeneratorFR6Stream
  * --INFO--
  * Address:	801AAAF4
  * Size:	0000C8
  */
-void Generator::saveCreature(Stream&)
+void Generator::saveCreature(Stream& output)
 {
+	if (m_creature != nullptr) {
+		ushort flags = _5C;
+		// uchar saveFlag = (flags & 8);
+		bool conversion = false;
+		if (flags & 8) {
+			conversion = true;
+		}
+		// bool conversion = saveFlag == 0 ? false : true;
+		// bool conversion = saveFlag != 0;
+		// ??? I guess there was some debug usage of these that was removed?
+		m_creature->getTypeName();
+		m_creature->getCreatureName();
+		m_creature->getCreatureID();
+		m_creature->save(output, conversion);
+		return;
+	}
+	// sic
+	JUT_PANICLINE(448, "Generaotr::saveCreature creature is 0\n");
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -783,6 +674,31 @@ lbl_801AABA0:
  */
 void Generator::generate(void)
 {
+	if (isExpired()) {
+		_7C        = 0;
+		m_creature = nullptr;
+	} else {
+		if (ramMode == 0) {
+			_7C = 0;
+			_74 = 0;
+			_78 = gameSystem->m_timeMgr->m_dayCount;
+		} else if ((_5C & 4) == 0) {
+			_7C = 0;
+			return;
+		}
+		m_creature = nullptr;
+		if (_18 != nullptr) {
+			if (ramMode != 0 && (_5C & 4) != 0
+			    && _78 + _70 <= gameSystem->m_timeMgr->m_dayCount) {
+				_78 = gameSystem->m_timeMgr->m_dayCount;
+				_74 = 0;
+			}
+			m_creature = _18->generate(this);
+			if (m_creature != nullptr) {
+				m_creature->m_generator = this;
+			}
+		}
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -928,8 +844,92 @@ void Generator::render(Graphics&)
  * Address:	801AAD18
  * Size:	0003A4
  */
-void Generator::read(Stream&)
+void Generator::read(Stream& input)
 {
+	m_version.read(input);
+	if (m_version.m_id.raw < 'v0.0') {
+		_5C = input.readInt();
+	} else {
+		_5C = input.readShort();
+	}
+	if (m_version.m_id.raw < 'v0.3') {
+		if (m_version.m_id.raw < 'v0.1') {
+			_70 = 0;
+		} else {
+			_70 = input.readInt();
+		}
+	} else {
+		_70 = input.readShort();
+	}
+	if (ramMode == 0) {
+		int i = 0;
+		do {
+			_20[i] = input.readByte();
+		} while (++i < 0x20);
+	} else {
+		if (m_version.m_id.raw < 'v0.2') {
+			_20[0] = '\0';
+		} else if (input.readByte() == '\0') {
+			_20[0] = '\0';
+		} else {
+			int i = 0;
+			do {
+				_20[i] = input.readByte();
+			} while (++i < 0x20);
+		}
+		_74             = input.readShort();
+		_78             = input.readShort();
+		m_dayLimitMaybe = input.readShort();
+	}
+	if (ramMode == '\0') {
+		m_position.read(input);
+	} else {
+		m_position.x = input.readShort();
+		m_position.y = input.readShort();
+		m_position.z = input.readShort();
+	}
+	if (ramMode == '\0') {
+		m_offset.read(input);
+	} else {
+		m_offset.x = 0.0f;
+		m_offset.y = 0.0f;
+		m_offset.z = 0.0f;
+	}
+	_18 = nullptr;
+	ID32 temp;
+	temp.read(input);
+	int i                 = 0;
+	uint count            = GenObjectFactory::factory->m_count;
+	GenObject* makeResult = nullptr;
+	if (0 < count) {
+		do {
+			if (temp.m_id.raw
+			    == GenObjectFactory::factory->m_factories[i].m_typeID) {
+				makeResult = GenObjectFactory::factory->m_factories[i]
+				                 .m_makeFunction();
+				break;
+			}
+		} while (--count != 0);
+	}
+	_18 = makeResult;
+	if (_18 == nullptr) {
+		temp.print();
+	} else {
+		if (Generator::ramMode == '\0') {
+			ID32 temp2;
+			temp2.read(input);
+			_18->m_rawID = temp2.m_id.raw;
+		} else {
+			_18->m_rawID = _18->getLatestVersion();
+		}
+		_18->doRead(input);
+		if (Generator::ramMode == '\0') {
+			((Parameters*)_18)->read(input);
+		} else {
+			_18->ramLoadParameters(input);
+		}
+		_1C = temp.m_id.raw;
+	}
 	/*
 	stwu     r1, -0x50(r1)
 	mflr     r0
@@ -1603,7 +1603,7 @@ lbl_801AB59C:
  * Address:	........
  * Size:	000028
  */
-void GeneratorMgr::isRootMgr(void)
+bool GeneratorMgr::isRootMgr(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1726,8 +1726,12 @@ lbl_801AB6E0:
  * Address:	801AB6FC
  * Size:	00001C
  */
-void GeneratorMgr::setDayLimit(int)
+void GeneratorMgr::setDayLimit(int dayLimit)
 {
+	for (Generator* generator = m_generator; generator != nullptr;
+	     generator            = generator->_64) {
+		generator->m_dayLimitMaybe = dayLimit;
+	}
 	/*
 	lwz      r3, 0x30(r3)
 	b        lbl_801AB70C
@@ -1750,6 +1754,10 @@ lbl_801AB70C:
  */
 void GeneratorMgr::updateUseList(void)
 {
+	for (Generator* generator = m_generator; generator != nullptr;
+	     generator            = generator->_64) {
+		generator->updateUseList();
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1829,8 +1837,9 @@ void GeneratorMgr::render(Graphics&)
  * Address:	801AB7B0
  * Size:	000008
  */
-void GeneratorMgr::getNext(void)
+GeneratorMgr* GeneratorMgr::getNext(void)
 {
+	return m_nextMgr;
 	/*
 	lwz      r3, 0x18(r3)
 	blr
@@ -1842,357 +1851,95 @@ void GeneratorMgr::getNext(void)
  * Address:	801AB7B8
  * Size:	000008
  */
-void GeneratorMgr::getChild(void)
+GeneratorMgr* GeneratorMgr::getChild(void)
 {
+	return m_childMgr;
 	/*
 	lwz      r3, 0x1c(r3)
 	blr
 	*/
 }
 
-} // namespace Game
-
 /*
  * --INFO--
  * Address:	801AB7C0
  * Size:	00043C
  */
-void updateCursorPos__Q24Game12GeneratorMgrFR10Vector3f(void)
+void GeneratorMgr::updateCursorPos(Vector3f& position)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stmw     r27, 0xc(r1)
-	mr       r31, r4
-	mr       r27, r3
-	lfs      f0, 0(r4)
-	stfs     f0, 0x24(r3)
-	lfs      f0, 4(r4)
-	stfs     f0, 0x28(r3)
-	lfs      f0, 8(r4)
-	stfs     f0, 0x2c(r3)
-	lwz      r29, 0x1c(r3)
-	cmplwi   r29, 0
-	beq      lbl_801AB9EC
-	lfs      f0, 0(r31)
-	stfs     f0, 0x24(r29)
-	lfs      f0, 4(r31)
-	stfs     f0, 0x28(r29)
-	lfs      f0, 8(r31)
-	stfs     f0, 0x2c(r29)
-	lwz      r28, 0x1c(r29)
-	cmplwi   r28, 0
-	beq      lbl_801AB900
-	lfs      f0, 0(r31)
-	stfs     f0, 0x24(r28)
-	lfs      f0, 4(r31)
-	stfs     f0, 0x28(r28)
-	lfs      f0, 8(r31)
-	stfs     f0, 0x2c(r28)
-	lwz      r0, 0x1c(r28)
-	cmplwi   r0, 0
-	beq      lbl_801AB89C
-	mr       r3, r28
-	bl       getChild__Q24Game12GeneratorMgrFv
-	mr       r30, r3
-	mr       r4, r31
-	addi     r3, r30, 0x24
-	bl       "__as__10Vector3<f>FRC10Vector3<f>"
-	mr       r3, r30
-	bl       getChild__Q24Game12GeneratorMgrFv
-	cmplwi   r3, 0
-	beq      lbl_801AB87C
-	mr       r3, r30
-	bl       getChild__Q24Game12GeneratorMgrFv
-	mr       r4, r31
-	bl       "updateCursorPos__Q24Game12GeneratorMgrFR10Vector3<f>"
-
-lbl_801AB87C:
-	mr       r3, r30
-	bl       getNext__Q24Game12GeneratorMgrFv
-	cmplwi   r3, 0
-	beq      lbl_801AB89C
-	mr       r3, r30
-	bl       getNext__Q24Game12GeneratorMgrFv
-	mr       r4, r31
-	bl       "updateCursorPos__Q24Game12GeneratorMgrFR10Vector3<f>"
-
-lbl_801AB89C:
-	lwz      r0, 0x18(r28)
-	cmplwi   r0, 0
-	beq      lbl_801AB900
-	mr       r3, r28
-	bl       getNext__Q24Game12GeneratorMgrFv
-	mr       r30, r3
-	mr       r4, r31
-	addi     r3, r30, 0x24
-	bl       "__as__10Vector3<f>FRC10Vector3<f>"
-	mr       r3, r30
-	bl       getChild__Q24Game12GeneratorMgrFv
-	cmplwi   r3, 0
-	beq      lbl_801AB8E0
-	mr       r3, r30
-	bl       getChild__Q24Game12GeneratorMgrFv
-	mr       r4, r31
-	bl       "updateCursorPos__Q24Game12GeneratorMgrFR10Vector3<f>"
-
-lbl_801AB8E0:
-	mr       r3, r30
-	bl       getNext__Q24Game12GeneratorMgrFv
-	cmplwi   r3, 0
-	beq      lbl_801AB900
-	mr       r3, r30
-	bl       getNext__Q24Game12GeneratorMgrFv
-	mr       r4, r31
-	bl       "updateCursorPos__Q24Game12GeneratorMgrFR10Vector3<f>"
-
-lbl_801AB900:
-	lwz      r28, 0x18(r29)
-	cmplwi   r28, 0
-	beq      lbl_801AB9EC
-	lfs      f0, 0(r31)
-	stfs     f0, 0x24(r28)
-	lfs      f0, 4(r31)
-	stfs     f0, 0x28(r28)
-	lfs      f0, 8(r31)
-	stfs     f0, 0x2c(r28)
-	lwz      r0, 0x1c(r28)
-	cmplwi   r0, 0
-	beq      lbl_801AB988
-	mr       r3, r28
-	bl       getChild__Q24Game12GeneratorMgrFv
-	mr       r30, r3
-	mr       r4, r31
-	addi     r3, r30, 0x24
-	bl       "__as__10Vector3<f>FRC10Vector3<f>"
-	mr       r3, r30
-	bl       getChild__Q24Game12GeneratorMgrFv
-	cmplwi   r3, 0
-	beq      lbl_801AB968
-	mr       r3, r30
-	bl       getChild__Q24Game12GeneratorMgrFv
-	mr       r4, r31
-	bl       "updateCursorPos__Q24Game12GeneratorMgrFR10Vector3<f>"
-
-lbl_801AB968:
-	mr       r3, r30
-	bl       getNext__Q24Game12GeneratorMgrFv
-	cmplwi   r3, 0
-	beq      lbl_801AB988
-	mr       r3, r30
-	bl       getNext__Q24Game12GeneratorMgrFv
-	mr       r4, r31
-	bl       "updateCursorPos__Q24Game12GeneratorMgrFR10Vector3<f>"
-
-lbl_801AB988:
-	lwz      r0, 0x18(r28)
-	cmplwi   r0, 0
-	beq      lbl_801AB9EC
-	mr       r3, r28
-	bl       getNext__Q24Game12GeneratorMgrFv
-	mr       r30, r3
-	mr       r4, r31
-	addi     r3, r30, 0x24
-	bl       "__as__10Vector3<f>FRC10Vector3<f>"
-	mr       r3, r30
-	bl       getChild__Q24Game12GeneratorMgrFv
-	cmplwi   r3, 0
-	beq      lbl_801AB9CC
-	mr       r3, r30
-	bl       getChild__Q24Game12GeneratorMgrFv
-	mr       r4, r31
-	bl       "updateCursorPos__Q24Game12GeneratorMgrFR10Vector3<f>"
-
-lbl_801AB9CC:
-	mr       r3, r30
-	bl       getNext__Q24Game12GeneratorMgrFv
-	cmplwi   r3, 0
-	beq      lbl_801AB9EC
-	mr       r3, r30
-	bl       getNext__Q24Game12GeneratorMgrFv
-	mr       r4, r31
-	bl       "updateCursorPos__Q24Game12GeneratorMgrFR10Vector3<f>"
-
-lbl_801AB9EC:
-	lwz      r28, 0x18(r27)
-	cmplwi   r28, 0
-	beq      lbl_801ABBE8
-	lfs      f0, 0(r31)
-	stfs     f0, 0x24(r28)
-	lfs      f0, 4(r31)
-	stfs     f0, 0x28(r28)
-	lfs      f0, 8(r31)
-	stfs     f0, 0x2c(r28)
-	lwz      r29, 0x1c(r28)
-	cmplwi   r29, 0
-	beq      lbl_801ABAFC
-	lfs      f0, 0(r31)
-	stfs     f0, 0x24(r29)
-	lfs      f0, 4(r31)
-	stfs     f0, 0x28(r29)
-	lfs      f0, 8(r31)
-	stfs     f0, 0x2c(r29)
-	lwz      r0, 0x1c(r29)
-	cmplwi   r0, 0
-	beq      lbl_801ABA98
-	mr       r3, r29
-	bl       getChild__Q24Game12GeneratorMgrFv
-	mr       r30, r3
-	mr       r4, r31
-	addi     r3, r30, 0x24
-	bl       "__as__10Vector3<f>FRC10Vector3<f>"
-	mr       r3, r30
-	bl       getChild__Q24Game12GeneratorMgrFv
-	cmplwi   r3, 0
-	beq      lbl_801ABA78
-	mr       r3, r30
-	bl       getChild__Q24Game12GeneratorMgrFv
-	mr       r4, r31
-	bl       "updateCursorPos__Q24Game12GeneratorMgrFR10Vector3<f>"
-
-lbl_801ABA78:
-	mr       r3, r30
-	bl       getNext__Q24Game12GeneratorMgrFv
-	cmplwi   r3, 0
-	beq      lbl_801ABA98
-	mr       r3, r30
-	bl       getNext__Q24Game12GeneratorMgrFv
-	mr       r4, r31
-	bl       "updateCursorPos__Q24Game12GeneratorMgrFR10Vector3<f>"
-
-lbl_801ABA98:
-	lwz      r0, 0x18(r29)
-	cmplwi   r0, 0
-	beq      lbl_801ABAFC
-	mr       r3, r29
-	bl       getNext__Q24Game12GeneratorMgrFv
-	mr       r30, r3
-	mr       r4, r31
-	addi     r3, r30, 0x24
-	bl       "__as__10Vector3<f>FRC10Vector3<f>"
-	mr       r3, r30
-	bl       getChild__Q24Game12GeneratorMgrFv
-	cmplwi   r3, 0
-	beq      lbl_801ABADC
-	mr       r3, r30
-	bl       getChild__Q24Game12GeneratorMgrFv
-	mr       r4, r31
-	bl       "updateCursorPos__Q24Game12GeneratorMgrFR10Vector3<f>"
-
-lbl_801ABADC:
-	mr       r3, r30
-	bl       getNext__Q24Game12GeneratorMgrFv
-	cmplwi   r3, 0
-	beq      lbl_801ABAFC
-	mr       r3, r30
-	bl       getNext__Q24Game12GeneratorMgrFv
-	mr       r4, r31
-	bl       "updateCursorPos__Q24Game12GeneratorMgrFR10Vector3<f>"
-
-lbl_801ABAFC:
-	lwz      r28, 0x18(r28)
-	cmplwi   r28, 0
-	beq      lbl_801ABBE8
-	lfs      f0, 0(r31)
-	stfs     f0, 0x24(r28)
-	lfs      f0, 4(r31)
-	stfs     f0, 0x28(r28)
-	lfs      f0, 8(r31)
-	stfs     f0, 0x2c(r28)
-	lwz      r0, 0x1c(r28)
-	cmplwi   r0, 0
-	beq      lbl_801ABB84
-	mr       r3, r28
-	bl       getChild__Q24Game12GeneratorMgrFv
-	mr       r30, r3
-	mr       r4, r31
-	addi     r3, r30, 0x24
-	bl       "__as__10Vector3<f>FRC10Vector3<f>"
-	mr       r3, r30
-	bl       getChild__Q24Game12GeneratorMgrFv
-	cmplwi   r3, 0
-	beq      lbl_801ABB64
-	mr       r3, r30
-	bl       getChild__Q24Game12GeneratorMgrFv
-	mr       r4, r31
-	bl       "updateCursorPos__Q24Game12GeneratorMgrFR10Vector3<f>"
-
-lbl_801ABB64:
-	mr       r3, r30
-	bl       getNext__Q24Game12GeneratorMgrFv
-	cmplwi   r3, 0
-	beq      lbl_801ABB84
-	mr       r3, r30
-	bl       getNext__Q24Game12GeneratorMgrFv
-	mr       r4, r31
-	bl       "updateCursorPos__Q24Game12GeneratorMgrFR10Vector3<f>"
-
-lbl_801ABB84:
-	lwz      r0, 0x18(r28)
-	cmplwi   r0, 0
-	beq      lbl_801ABBE8
-	mr       r3, r28
-	bl       getNext__Q24Game12GeneratorMgrFv
-	mr       r30, r3
-	mr       r4, r31
-	addi     r3, r30, 0x24
-	bl       "__as__10Vector3<f>FRC10Vector3<f>"
-	mr       r3, r30
-	bl       getChild__Q24Game12GeneratorMgrFv
-	cmplwi   r3, 0
-	beq      lbl_801ABBC8
-	mr       r3, r30
-	bl       getChild__Q24Game12GeneratorMgrFv
-	mr       r4, r31
-	bl       "updateCursorPos__Q24Game12GeneratorMgrFR10Vector3<f>"
-
-lbl_801ABBC8:
-	mr       r3, r30
-	bl       getNext__Q24Game12GeneratorMgrFv
-	cmplwi   r3, 0
-	beq      lbl_801ABBE8
-	mr       r3, r30
-	bl       getNext__Q24Game12GeneratorMgrFv
-	mr       r4, r31
-	bl       "updateCursorPos__Q24Game12GeneratorMgrFR10Vector3<f>"
-
-lbl_801ABBE8:
-	lmw      r27, 0xc(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	m_cursorPosition = position;
+	if (getChild() != nullptr) {
+		getChild()->updateCursorPos(position);
+	}
+	if (getNext() != nullptr) {
+		getNext()->updateCursorPos(position);
+	}
 }
 
 /*
+ * Autogenerated here due to usage in recursive GeneratorMgr::updateCursorPos.
+ *
  * --INFO--
  * Address:	801ABBFC
  * Size:	00001C
  */
-void Vector3f::operator=(const Vector3f&)
-{
-	/*
-	lfs      f0, 0(r4)
-	lfs      f1, 4(r4)
-	stfs     f0, 0(r3)
-	lfs      f0, 8(r4)
-	stfs     f1, 4(r3)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}
-
-namespace Game {
+// void Vector3f::operator=(const Vector3f&)
+// {
+// 	/*
+// 	lfs      f0, 0(r4)
+// 	lfs      f1, 4(r4)
+// 	stfs     f0, 0(r3)
+// 	lfs      f0, 8(r4)
+// 	stfs     f1, 4(r3)
+// 	stfs     f0, 8(r3)
+// 	blr
+// 	*/
+// }
 
 /*
+ * read__Q24Game12GeneratorMgrFR6Streamb
  * --INFO--
  * Address:	801ABC18
  * Size:	0002F0
  */
-void GeneratorMgr::read(Stream&, bool)
+void GeneratorMgr::read(Stream& input, bool)
 {
+	if (m_generator != nullptr) {
+		delete m_generator;
+		_4C = 0;
+	}
+	_40.read(input);
+	_40 == 'v0.0';
+	// TODO: Replace with Vector3.read()?
+	_5C = input.readFloat();
+	_60 = input.readFloat();
+	_64 = input.readFloat();
+	if (_40 == 'v0.1') {
+		_68 = input.readFloat();
+	}
+	_4C         = input.readInt();
+	m_generator = nullptr;
+	for (int i = 0; i < _4C; i++) {
+		if (m_generator == nullptr) {
+			m_generator = new Generator();
+			m_generator->read(input);
+			m_generator->m_mgr = this;
+			generatorCache->addGenerator(m_generator);
+		} else {
+			Generator* newGenerator = new Generator();
+			newGenerator->m_mgr     = this;
+			newGenerator->read(input);
+			Generator* next = m_generator;
+			Generator* priorToNext;
+			do {
+				priorToNext = next;
+				next        = priorToNext->_64;
+			} while (priorToNext->_64 != nullptr);
+			priorToNext->_64  = newGenerator;
+			newGenerator->_60 = priorToNext;
+			generatorCache->addGenerator(newGenerator);
+		}
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -2880,18 +2627,18 @@ void GenBase::render(Graphics&, Game::Generator*) { }
  * Address:	801AC398
  * Size:	000028
  */
-void __sinit_gameGenerator_cpp(void)
-{
-	/*
-	lis      r4, __float_nan@ha
-	li       r0, -1
-	lfs      f0, __float_nan@l(r4)
-	lis      r3, lbl_804B55F0@ha
-	stw      r0, lbl_80515A18@sda21(r13)
-	stfsu    f0, lbl_804B55F0@l(r3)
-	stfs     f0, lbl_80515A1C@sda21(r13)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}
+// void __sinit_gameGenerator_cpp(void)
+// {
+// 	/*
+// 	lis      r4, __float_nan@ha
+// 	li       r0, -1
+// 	lfs      f0, __float_nan@l(r4)
+// 	lis      r3, lbl_804B55F0@ha
+// 	stw      r0, lbl_80515A18@sda21(r13)
+// 	stfsu    f0, lbl_804B55F0@l(r3)
+// 	stfs     f0, lbl_80515A1C@sda21(r13)
+// 	stfs     f0, 4(r3)
+// 	stfs     f0, 8(r3)
+// 	blr
+// 	*/
+// }
