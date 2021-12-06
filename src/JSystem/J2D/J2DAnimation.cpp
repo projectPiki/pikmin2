@@ -1346,8 +1346,7 @@ lbl_8005BE24:
  * Address:	8005BE48
  * Size:	000240
  */
-void J2DAnmVtxColorFull::getColor(uchar, ushort,
-                                  GXColor*) const
+void J2DAnmVtxColorFull::getColor(uchar, ushort, GXColor*) const
 {
 	/*
 	.loc_0x0:

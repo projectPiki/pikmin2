@@ -2791,14 +2791,7 @@ u8 Game::PlatInstance::getObjType()
  * Address:	801C697C
  * Size:	000008
  */
-bool Game::PlatInstance::collisionUpdatable()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+bool Game::PlatInstance::collisionUpdatable() { return 0x0; }
 
 /*
  * --INFO--
@@ -2847,14 +2840,7 @@ void NodeObjectMgr<Game::PlatInstance>::getStart()
  * Address:	801C699C
  * Size:	000008
  */
-void NodeObjectMgr<Game::PlatInstance>::getEnd()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 NodeObjectMgr<Game::PlatInstance>::getEnd() { return 0x0; }
 
 /*
  * --INFO--
@@ -3845,28 +3831,14 @@ void Container<Game::PlatInstance>::getObject(void*)
  * Address:	801C75B4
  * Size:	000008
  */
-void Container<Game::PlatInstance>::getAt(int)
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Container<Game::PlatInstance>::getAt(int) { return 0x0; }
 
 /*
  * --INFO--
  * Address:	801C75BC
  * Size:	000008
  */
-void Container<Game::PlatInstance>::getTo()
-{
-	/*
-	.loc_0x0:
-	  li        r3, 0
-	  blr
-	*/
-}
+u32 Container<Game::PlatInstance>::getTo() { return 0x0; }
 
 /*
  * --INFO--

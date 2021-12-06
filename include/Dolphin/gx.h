@@ -189,7 +189,6 @@ void GXSaveGPFifo(GXFifoObj* fifo);
 
 void GXSetProjection(PSMatrix, u32);
 
-
 typedef u8 _GXTlut;
 typedef u8 _GXTlutFmt;
 
@@ -201,7 +200,7 @@ typedef struct GXTlutObj {
 
 // TODO: Figure this out
 typedef struct GXTlutRegion {
-	u32 _00; // _00
+	u32 _00;     // _00
 	u8 _04[0xC]; // _04
 } GXTlutRegion;
 

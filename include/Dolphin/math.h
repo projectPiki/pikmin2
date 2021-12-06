@@ -9,7 +9,7 @@ extern "C" {
 
 #ifndef __MWERKS__
 // Get clangd to shut up about __fabs being undefined.
-#define __fabs(x) (x)
+#define __fabs(x)    (x)
 #define __frsqrte(x) (x)
 #endif
 

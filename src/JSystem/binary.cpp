@@ -43,8 +43,10 @@ void JGadget::binary::parseVariableUInt_8_16(void const**,
  * Address:	80027128
  * Size:	000068
  */
-void JGadget::binary::parseVariableUInt_16_32_following(
-    void const*, unsigned long*, unsigned long*, JGadget::binary::TEBit*)
+void JGadget::binary::parseVariableUInt_16_32_following(void const*,
+                                                        unsigned long*,
+                                                        unsigned long*,
+                                                        JGadget::binary::TEBit*)
 {
 	/*
 	.loc_0x0:
