@@ -195,39 +195,4 @@ void ID32::sprint(char* str)
 	str[4] = '\0';
 }
 
-// TODO: Figure out how to do sinit in this style
-
-// extern "C" void __sinit_id32_cpp(){
-// ID32::eof.m_id.str[0] = '_';
-// ID32::eof.m_id.str[1] = 'e';
-// ID32::eof.m_id.str[2] = 'o';
-// ID32::eof.m_id.str[3] = 'f';
-// ID32::eof.m_id.str[4] = '\0';
-// ID32::eof.m_id.raw = '_eof';
-// return;
-//}
-/*
- * --INFO--
- * Address:	80413618
- * Size:	000040
- */
-// void __sinit_id32_cpp(void)
-
-/*
-    lis      r4, 0x5F656F66@ha
-    lis      r3, eof__4ID32@ha
-    addi     r4, r4, 0x5F656F66@l
-    li       r0, 0
-    addi     r7, r3, eof__4ID32@l
-    stw      r4, 8(r7)
-    lbz      r6, 8(r7)
-    lbz      r5, 9(r7)
-    lbz      r4, 0xa(r7)
-    lbz      r3, 0xb(r7)
-    stb      r6, 0(r7)
-    stb      r5, 1(r7)
-    stb      r4, 2(r7)
-    stb      r3, 3(r7)
-    stb      r0, 4(r7)
-    blr
-*/
+ID32 ID32::eof('_eof');
