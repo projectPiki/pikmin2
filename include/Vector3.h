@@ -29,7 +29,7 @@ template <typename T> struct Vector3 {
 		return *this;
 	}
 
-	inline void operator=(const Vector3<T>& other)
+	inline void operator=(Vector3<T>& other)
 	{
 		x = other.x;
 		y = other.y;

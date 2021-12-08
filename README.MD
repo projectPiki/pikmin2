@@ -66,6 +66,7 @@ pikmin2.usa.dol: `sha1: 90d328bf8f190c90472e8c19e7e53c6ad0fe0d1a`
 	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/plugProjectOgawaU/ogLib2D.cpp">plugProjectOgawaU/ogLib2D.cpp</a>
 - plugProjectKandoU
 	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/plugProjectKandoU/gameHighscore.cpp">plugProjectKandoU/gameHighscore.cpp</a>
+	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/plugProjectKandoU/gameIconTexture.cpp">plugProjectKandoU/gameIconTexture.cpp</a>
 	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/plugProjectKandoU/gameSoundEvent.cpp">plugProjectKandoU/gameSoundEvent.cpp</a>
 	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/plugProjectKandoU/kandoLib.cpp">plugProjectKandoU/kandoLib.cpp</a>
 	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/plugProjectKandoU/objectTypes.cpp">plugProjectKandoU/objectTypes.cpp</a>
@@ -150,6 +151,7 @@ pikmin2.usa.dol: `sha1: 90d328bf8f190c90472e8c19e7e53c6ad0fe0d1a`
 	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/JSystem/JAS/JASInstEffect.cpp">JSystem/JAS/JASInstEffect.cpp</a>
 	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/JSystem/JAS/JASWaveBank.cpp">JSystem/JAS/JASWaveBank.cpp</a>
 	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/JSystem/JKR/JKRFile.cpp">JSystem/JKR/JKRFile.cpp</a>
+	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/JSystem/JPA/JPATexture.cpp">JSystem/JPA/JPATexture.cpp</a>
 	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/JSystem/JUT/JUTFontData_Ascfont_fix12.cpp">JSystem/JUT/JUTFontData_Ascfont_fix12.cpp</a>
 ### WIP
 - sysBootupU
