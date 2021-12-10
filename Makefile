@@ -5,6 +5,16 @@ ifneq ($(findstring MSYS,$(shell uname)),)
   WINDOWS := 1
 endif
 
+# If 0, tells the console to chill out. (Quiets the make process.)
+VERBOSE ?= 0
+
+# If MAPGENFLAG set to 1, tells LDFLAGS to generate a mapfile, which makes linking take several minutes.
+MAPGENFLAG ?= 0
+
+ifeq ($(VERBOSE),0)
+  QUIET := @
+endif
+
 #-------------------------------------------------------------------------------
 # Files
 #-------------------------------------------------------------------------------
@@ -27,6 +37,10 @@ READMEGEN := tools/UpdateReadme.exe
 DOL     := $(BUILD_DIR)/main.dol
 ELF     := $(DOL:.dol=.elf)
 MAP     := $(BUILD_DIR)/pikmin2UP.MAP
+
+ifeq ($(MAPGENFLAG),1)
+  MAPGEN := -map $(MAP)
+endif
 
 include obj_files.mk
 
@@ -63,13 +77,20 @@ PYTHON  := python3
 INCLUDES := -i include/
 
 ASFLAGS := -mgekko -I include/ 
-# this set of LDFLAGS generates a mapfile and makes linking take several minutes.
-# LDFLAGS := -map $(MAP) -fp hard -nodefaults
-# this set of LDFLAGS is faster, but does not generate a mapfile.
-# LDFLAGS := -fp hard -nodefaults
-# this set of LDFLAGS is faster, but does not generate a mapfile. Generates no warnings.
-LDFLAGS := -fp hard -nodefaults -w off
+ifeq ($(VERBOSE),1)
+# this set of LDFLAGS outputs warnings.
+LDFLAGS := $(MAPGEN) -fp hard -nodefaults
+endif
+ifeq ($(VERBOSE),0)
+# this set of LDFLAGS generates no warnings.
+LDFLAGS := $(MAPGEN) -fp hard -nodefaults -w off
+endif
 CFLAGS  := -Cpp_exceptions off -inline auto -proc gekko -RTTI off -fp hard -fp_contract on -rostr -O4,p -use_lmw_stmw on -sdata 8 -sdata2 8 -nodefaults -msgstyle gcc $(INCLUDES)
+
+ifeq ($(VERBOSE),0)
+# this set of CFLAGS generates no warnings.
+CFLAGS += -w off
+endif
 
 # for postprocess.py
 # PROCFLAGS := -fsymbol-fixup
@@ -96,13 +117,13 @@ DUMMY != mkdir -p $(ALL_DIRS)
 .PHONY: tools
 
 $(LDSCRIPT): ldscript.lcf
-	$(CPP) -MMD -MP -MT $@ -MF $@.d -I include/ -I . -DBUILD_DIR=$(BUILD_DIR) -o $@ $<
+	$(QUIET) $(CPP) -MMD -MP -MT $@ -MF $@.d -I include/ -I . -DBUILD_DIR=$(BUILD_DIR) -o $@ $<
 
 $(DOL): $(ELF) | tools
-	$(ELF2DOL) $< $@
-	$(SHA1SUM) -c sha1/$(NAME).$(VERSION).sha1
+	$(QUIET) $(ELF2DOL) $< $@
+	$(QUIET) $(SHA1SUM) -c sha1/$(NAME).$(VERSION).sha1
 ifneq ($(findstring -map,$(LDFLAGS)),)
-	$(PYTHON) calcprogress.py $@
+	$(QUIET) $(PYTHON) calcprogress.py $@
 endif
 	./$(READMEGEN)
 
@@ -114,17 +135,21 @@ tools:
 	$(MAKE) -C tools
 
 $(ELF): $(O_FILES) $(LDSCRIPT)
-	@echo $(O_FILES) > build/o_files
-	$(LD) $(LDFLAGS) -o $@ -lcf $(LDSCRIPT) @build/o_files
+	@echo Linking ELF $@
+	$(QUIET) @echo $(O_FILES) > build/o_files
+	$(QUIET) $(LD) $(LDFLAGS) -o $@ -lcf $(LDSCRIPT) @build/o_files
 
 $(BUILD_DIR)/%.o: %.s
-	$(AS) $(ASFLAGS) -o $@ $<
+	@echo Assembling $<
+	$(QUIET) $(AS) $(ASFLAGS) -o $@ $<
 	
 $(BUILD_DIR)/%.o: %.c
-	$(CC) $(CFLAGS) -c -o $@ $<
+	@echo Compiling $<
+	$(QUIET) $(CC) $(CFLAGS) -c -o $@ $<
 
 $(BUILD_DIR)/%.o: %.cpp
-	$(CC) $(CFLAGS) -c -o $@ $<
+	@echo Compiling $<
+	$(QUIET) $(CC) $(CFLAGS) -c -o $@ $<
 
 ### Debug Print ###
 
