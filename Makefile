@@ -75,8 +75,9 @@ PYTHON  := python3
 
 # Options
 INCLUDES := -i include/
+ASM_INCLUDES := -I include/
 
-ASFLAGS := -mgekko -I include/ 
+ASFLAGS := -mgekko $(ASM_INCLUDES)
 ifeq ($(VERBOSE),1)
 # this set of LDFLAGS outputs warnings.
 LDFLAGS := $(MAPGEN) -fp hard -nodefaults
