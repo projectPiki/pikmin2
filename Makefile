@@ -89,8 +89,8 @@ endif
 CFLAGS  := -Cpp_exceptions off -inline auto -proc gekko -RTTI off -fp hard -fp_contract on -rostr -O4,p -use_lmw_stmw on -sdata 8 -sdata2 8 -nodefaults -msgstyle gcc $(INCLUDES)
 
 ifeq ($(VERBOSE),0)
-# this set of CFLAGS generates no warnings.
-CFLAGS += -w off
+# this set of ASFLAGS generates no warnings.
+ASFLAGS += -W
 endif
 
 # for postprocess.py
