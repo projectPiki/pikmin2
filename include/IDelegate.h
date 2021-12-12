@@ -6,8 +6,12 @@
 struct IDelegate {
 };
 
-template <typename T> struct IDelegate1 : public IDelegate {
-	virtual void invoke(T);
+template <typename A> struct IDelegate1 : public IDelegate {
+	virtual void invoke(A);
+};
+
+template <typename A, typename B> struct IDelegate2 : public IDelegate {
+	virtual void invoke(A, B);
 };
 
 template <typename A, typename B, typename C>
@@ -33,6 +37,23 @@ template <typename T, typename A> struct Delegate1 : public IDelegate1<A> {
 	// u32 _08;        // _08
 	// u32 _0C;        // _0C
 	void (T::*m_function)(A); // _10
+};
+
+template <typename T, typename A, typename B>
+struct Delegate2 : public IDelegate2<A, B> {
+	inline Delegate2(T* obj, void (T::*func)(A, B))
+	{
+		m_object   = obj;
+		m_function = func;
+	}
+
+	virtual void invoke(A a, B b) { (m_object->*m_function)(a, b); }
+
+	// VTBL _00
+	T* m_object; // _04
+	// u32 _08;        // _08
+	// u32 _0C;        // _0C
+	void (T::*m_function)(A, B); // _10
 };
 
 template <typename T, typename A, typename B, typename C>

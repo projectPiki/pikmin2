@@ -1,4 +1,6 @@
 #include "Game/DynCreature.h"
+#include "Game/DynParticle.h"
+#include "Iterator.h"
 #include "types.h"
 
 /*
@@ -362,64 +364,65 @@ DynParticleMgr::DynParticleMgr(int)
 	*/
 }
 
-} // namespace Game
+// } // namespace Game
 
 /*
+ * Generated?
  * --INFO--
  * Address:	801A7F98
  * Size:	0000A0
  */
-void MonoObjectMgr<Game::DynParticle>::~MonoObjectMgr()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_801A801C
-	lis      r4, "__vt__35MonoObjectMgr<Q24Game11DynParticle>"@ha
-	addi     r4, r4, "__vt__35MonoObjectMgr<Q24Game11DynParticle>"@l
-	stw      r4, 0(r30)
-	addi     r0, r4, 0x2c
-	stw      r0, 0x1c(r30)
-	beq      lbl_801A800C
-	lis      r4, "__vt__31ObjectMgr<Q24Game11DynParticle>"@ha
-	addi     r4, r4, "__vt__31ObjectMgr<Q24Game11DynParticle>"@l
-	stw      r4, 0(r30)
-	addi     r0, r4, 0x2c
-	stw      r0, 0x1c(r30)
-	beq      lbl_801A800C
-	lis      r4, "__vt__31Container<Q24Game11DynParticle>"@ha
-	addi     r0, r4, "__vt__31Container<Q24Game11DynParticle>"@l
-	stw      r0, 0(r30)
-	beq      lbl_801A800C
-	lis      r5, __vt__16GenericContainer@ha
-	li       r4, 0
-	addi     r0, r5, __vt__16GenericContainer@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
+// void MonoObjectMgr<Game::DynParticle>::~MonoObjectMgr()
+// {
+/*
+stwu     r1, -0x10(r1)
+mflr     r0
+stw      r0, 0x14(r1)
+stw      r31, 0xc(r1)
+mr       r31, r4
+stw      r30, 8(r1)
+or.      r30, r3, r3
+beq      lbl_801A801C
+lis      r4, "__vt__35MonoObjectMgr<Q24Game11DynParticle>"@ha
+addi     r4, r4, "__vt__35MonoObjectMgr<Q24Game11DynParticle>"@l
+stw      r4, 0(r30)
+addi     r0, r4, 0x2c
+stw      r0, 0x1c(r30)
+beq      lbl_801A800C
+lis      r4, "__vt__31ObjectMgr<Q24Game11DynParticle>"@ha
+addi     r4, r4, "__vt__31ObjectMgr<Q24Game11DynParticle>"@l
+stw      r4, 0(r30)
+addi     r0, r4, 0x2c
+stw      r0, 0x1c(r30)
+beq      lbl_801A800C
+lis      r4, "__vt__31Container<Q24Game11DynParticle>"@ha
+addi     r0, r4, "__vt__31Container<Q24Game11DynParticle>"@l
+stw      r0, 0(r30)
+beq      lbl_801A800C
+lis      r5, __vt__16GenericContainer@ha
+li       r4, 0
+addi     r0, r5, __vt__16GenericContainer@l
+stw      r0, 0(r30)
+bl       __dt__5CNodeFv
 
 lbl_801A800C:
-	extsh.   r0, r31
-	ble      lbl_801A801C
-	mr       r3, r30
-	bl       __dl__FPv
+extsh.   r0, r31
+ble      lbl_801A801C
+mr       r3, r30
+bl       __dl__FPv
 
 lbl_801A801C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+lwz      r0, 0x14(r1)
+mr       r3, r30
+lwz      r31, 0xc(r1)
+lwz      r30, 8(r1)
+mtlr     r0
+addi     r1, r1, 0x10
+blr
+*/
+// }
 
-namespace Game {
+// namespace Game {
 
 /*
  * --INFO--
@@ -453,7 +456,7 @@ lbl_801A8050:
  * Address:	801A8068
  * Size:	000078
  */
-void DynParticle::getAt(int)
+DynParticle* DynParticle::getAt(int)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1093,7 +1096,8 @@ lbl_801A87D0:
  * Address:	801A87D8
  * Size:	0000B4
  */
-void tracemoveCallback__Q24Game11DynCreatureFR10Vector3f R10Vector3f(void)
+// void tracemoveCallback__Q24Game11DynCreatureFR10Vector3f R10Vector3f(void)
+void DynCreature::tracemoveCallback(Vector3f&, Vector3f&)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1187,7 +1191,7 @@ void DynCreature::getContactParticeRatio(void)
  * Address:	........
  * Size:	00002C
  */
-void DynCreature::getContactParticleNum(void)
+int DynCreature::getContactParticleNum(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1197,7 +1201,7 @@ void DynCreature::getContactParticleNum(void)
  * Address:	........
  * Size:	000020
  */
-void DynCreature::getParticleNum(void)
+int DynCreature::getParticleNum(void)
 {
 	// UNUSED FUNCTION
 }
@@ -1565,7 +1569,7 @@ lbl_801A8CE0:
  * Address:	801A8D34
  * Size:	00001C
  */
-void DynCreature::getPosition(void)
+Vector3f DynCreature::getPosition(void)
 {
 	/*
 	lfs      f0, 0x1b0(r4)
@@ -1578,14 +1582,13 @@ void DynCreature::getPosition(void)
 	*/
 }
 
-} // namespace Game
-
 /*
  * --INFO--
  * Address:	801A8D50
  * Size:	0000AC
  */
-void onSetPosition__Q24Game11DynCreatureFR10Vector3f(void)
+// void onSetPosition__Q24Game11DynCreatureFR10Vector3f(void)
+void DynCreature::onSetPosition(Vector3f&)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1634,8 +1637,6 @@ void onSetPosition__Q24Game11DynCreatureFR10Vector3f(void)
 	*/
 }
 
-namespace Game {
-
 /*
  * --INFO--
  * Address:	801A8DFC
@@ -1648,7 +1649,7 @@ void DynCreature::onSetPosition(void) { }
  * Address:	801A8E00
  * Size:	00001C
  */
-void DynCreature::getVelocity(void)
+Vector3f DynCreature::getVelocity(void)
 {
 	/*
 	lfs      f0, 0x1bc(r4)
@@ -1661,14 +1662,13 @@ void DynCreature::getVelocity(void)
 	*/
 }
 
-} // namespace Game
-
 /*
  * --INFO--
  * Address:	801A8E1C
  * Size:	00001C
  */
-void setVelocity__Q24Game11DynCreatureFR10Vector3f(void)
+// void setVelocity__Q24Game11DynCreatureFR10Vector3f(void)
+void DynCreature::setVelocity(Vector3f&)
 {
 	/*
 	lfs      f0, 0(r4)
@@ -1686,7 +1686,8 @@ void setVelocity__Q24Game11DynCreatureFR10Vector3f(void)
  * Address:	801A8E38
  * Size:	000088
  */
-void getVelocityAt__Q24Game11DynCreatureFR10Vector3f R10Vector3f(void)
+// void getVelocityAt__Q24Game11DynCreatureFR10Vector3f R10Vector3f(void)
+void DynCreature::getVelocityAt(Vector3f&, Vector3f&)
 {
 	/*
 	lfs      f0, 0x1bc(r3)
@@ -1731,7 +1732,8 @@ void getVelocityAt__Q24Game11DynCreatureFR10Vector3f R10Vector3f(void)
  * Address:	801A8EC0
  * Size:	000008
  */
-void getAngularEffect__Q24Game11DynCreatureFR10Vector3f R10Vector3f(void)
+// void getAngularEffect__Q24Game11DynCreatureFR10Vector3f R10Vector3f(void)
+void DynCreature::getAngularEffect(Vector3f&, Vector3f&)
 {
 	/*
 	lfs      f1, lbl_80519238@sda21(r2)
@@ -1744,7 +1746,8 @@ void getAngularEffect__Q24Game11DynCreatureFR10Vector3f R10Vector3f(void)
  * Address:	801A8EC8
  * Size:	000044
  */
-void applyImpulse__Q24Game11DynCreatureFR10Vector3f R10Vector3f(void)
+// void applyImpulse__Q24Game11DynCreatureFR10Vector3f R10Vector3f(void)
+void DynCreature::applyImpulse(Vector3f&, Vector3f&)
 {
 	/*
 	lfs      f6, 0x118(r3)
@@ -1766,8 +1769,6 @@ void applyImpulse__Q24Game11DynCreatureFR10Vector3f R10Vector3f(void)
 	blr
 	*/
 }
-
-namespace Game {
 
 /*
  * --INFO--
