@@ -1,229 +1,388 @@
 #include "types.h"
+#include "JSystem/JKR/JKRDisposer.h"
+// #include "PSGame/PSGame.h"
+#include "PSSystem/PSScene.h"
+#include "SoundID.h"
+
+namespace PSM {
+class Demo : public JKRDisposer { /* #Extends(JKRDisposer) #Size(0x2c) (see
+	                                 Game::MoviePlayer::loadResource) */
+	s8 unknown1_0x18;
+	u8 doStartWithAudio; /* From PikDecomp. */
+	u8 field5_0x1a;
+	u8 field6_0x1b;
+	enum SoundID soundID;  /* From PikDecomp. */
+	enum SoundID systemSE; /* Name from PikDecomp. */
+	u32* pFunction_0x24;
+	char* currentDemoName; /* Name from PikDecomp. */
+
+	virtual ~Demo();
+	// virtual init(Vec *,Vec *,float *[][][][], PSM::DemoArg)
+	Demo();
+};
+} // namespace PSM
 
 /*
     Generated from dpostproc
 
     .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_8049D080
+    .balign 8
     lbl_8049D080:
         .asciz "PSMainSide_Demo.cpp"
+    .balign 4
+    lbl_8049D094:
         .asciz "P2Assert"
-        .skip 3
+    .balign 4
+    lbl_8049D0A0:
         .asciz "PSGame.h"
-        .skip 3
+    .balign 4
+    lbl_8049D0AC:
         .asciz "PSScene.h"
-        .skip 2
+    .balign 4
+    lbl_8049D0B8:
         .asciz "get sound scene at\ninvalid timming\n"
-    .global lbl_8049D0DC
+    .balign 4
     lbl_8049D0DC:
         .asciz "s21_dayend_takeoff"
-        .skip 1
-    audio_info:
+    .balign 4
+    audio_info: # unnamed rodata struct formatted as u32 array at 0x8049D0F0
         .4byte 0
         .4byte 0x7F030000
         .float 1.0
         .float 0.0078125
+    .balign 4
+    lbl_8049D100:
         .asciz "s02_dayend_result"
-        .skip 2
+    .balign 4
+    lbl_8049D114:
         .asciz "s01_dayend"
-        .skip 1
+    .balign 4
+    lbl_8049D120:
         .asciz "s03_orimadown"
-        .skip 2
+    .balign 4
+    lbl_8049D130:
         .asciz "s05_pikminzero"
-        .skip 1
+    .balign 4
+    lbl_8049D140:
         .asciz "s11_dope_first_b"
-        .skip 3
+    .balign 4
+    lbl_8049D154:
         .asciz "s11_dope_first_r"
-        .skip 3
+    .balign 4
+    lbl_8049D168:
         .asciz "s11_dopebin_first_b"
+    .balign 4
+    lbl_8049D17C:
         .asciz "s11_dopebin_first_r"
+    .balign 4
+    lbl_8049D190:
         .asciz "s17_suck_equipment"
-        .skip 1
+    .balign 4
+    lbl_8049D1A4:
         .asciz "s22_cv_suck_equipment"
-        .skip 2
+    .balign 4
+    lbl_8049D1BC:
         .asciz "s10_suck_treasure"
-        .skip 2
+    .balign 4
+    lbl_8049D1D0:
         .asciz "s22_cv_suck_treasure"
-        .skip 3
+    .balign 4
+    lbl_8049D1E8:
         .asciz "s04_dayend_orimadown"
-        .skip 3
+    .balign 4
+    lbl_8049D200:
         .asciz "s06_dayend_pikminzero"
-        .skip 2
+    .balign 4
+    lbl_8049D218:
         .asciz "g1A_red_doping"
-        .skip 1
+    .balign 4
+    lbl_8049D228:
         .asciz "g1B_black_doping"
-        .skip 3
+    .balign 4
+    lbl_8049D23C:
         .asciz "g02_boot_onyonR"
+    .balign 4
+    lbl_8049D24C:
         .asciz "g1E_boot_onyonY"
+    .balign 4
+    lbl_8049D25C:
         .asciz "g20_boot_onyonB"
+    .balign 4
+    lbl_8049D26C:
         .asciz "g03_meet_redpikmin"
-        .skip 1
+    .balign 4
+    lbl_8049D280:
         .asciz "g1F_meet_yellowpikmin"
-        .skip 2
+    .balign 4
+    lbl_8049D298:
         .asciz "g21_meet_bluepikmin"
+    .balign 4
+    lbl_8049D2AC:
         .asciz "g24_meet_blackpikmin"
-        .skip 3
+    .balign 4
+    lbl_8049D2C4:
         .asciz "g27_meet_whitepikmin"
-        .skip 3
+    .balign 4
+    lbl_8049D2DC:
         .asciz "g33_camera_demo"
+    .balign 4
+    lbl_8049D2EC:
         .asciz "s09_holein"
-        .skip 1
+    .balign 4
+    lbl_8049D2F8:
         .asciz "s16_find_item_00"
-        .skip 3
+    .balign 4
+    lbl_8049D30C:
         .asciz "s16_find_item_01"
-        .skip 3
+    .balign 4
+    lbl_8049D320:
         .asciz "s16_find_item_02"
-        .skip 3
+    .balign 4
+    lbl_8049D334:
         .asciz "s16_find_item_03"
-        .skip 3
+    .balign 4
+    lbl_8049D348:
         .asciz "s16_find_item_04"
-        .skip 3
+    .balign 4
+    lbl_8049D35C:
         .asciz "s16_find_item_05"
-        .skip 3
+    .balign 4
+    lbl_8049D370:
         .asciz "s16_find_item_06"
-        .skip 3
+    .balign 4
+    lbl_8049D384:
         .asciz "s16_find_item_07"
-        .skip 3
+    .balign 4
+    lbl_8049D398:
         .asciz "s16_find_item_08"
-        .skip 3
+    .balign 4
+    lbl_8049D3AC:
         .asciz "s16_find_item_09"
-        .skip 3
+    .balign 4
+    lbl_8049D3C0:
         .asciz "s16_find_item_10"
-        .skip 3
+    .balign 4
+    lbl_8049D3D4:
         .asciz "s16_find_item_11"
-        .skip 3
+    .balign 4
+    lbl_8049D3E8:
         .asciz "s16_find_item_12"
-        .skip 3
+    .balign 4
+    lbl_8049D3FC:
         .asciz "s0C_cv_escape"
-        .skip 2
+    .balign 4
+    lbl_8049D40C:
         .asciz "g01_pick_me"
+    .balign 4
+    lbl_8049D418:
         .asciz "g04_find_treasure"
-        .skip 2
+    .balign 4
+    lbl_8049D42C:
         .asciz "g05_find_cave_f_01"
-        .skip 1
+    .balign 4
+    lbl_8049D440:
         .asciz "g05_find_cave_f_02"
-        .skip 1
+    .balign 4
+    lbl_8049D454:
         .asciz "g05_find_cave_f_03"
-        .skip 1
+    .balign 4
+    lbl_8049D468:
         .asciz "g05_find_cave_f_04"
-        .skip 1
+    .balign 4
+    lbl_8049D47C:
         .asciz "g05_find_cave_l_01"
-        .skip 1
+    .balign 4
+    lbl_8049D490:
         .asciz "g05_find_cave_l_02"
-        .skip 1
+    .balign 4
+    lbl_8049D4A4:
         .asciz "g05_find_cave_l_03"
-        .skip 1
+    .balign 4
+    lbl_8049D4B8:
         .asciz "g05_find_cave_t_01"
-        .skip 1
+    .balign 4
+    lbl_8049D4CC:
         .asciz "g05_find_cave_t_02"
-        .skip 1
+    .balign 4
+    lbl_8049D4E0:
         .asciz "g05_find_cave_t_03"
-        .skip 1
+    .balign 4
+    lbl_8049D4F4:
         .asciz "g05_find_cave_y_01"
-        .skip 1
+    .balign 4
+    lbl_8049D508:
         .asciz "g05_find_cave_y_02"
-        .skip 1
+    .balign 4
+    lbl_8049D51C:
         .asciz "g05_find_cave_y_03"
-        .skip 1
+    .balign 4
+    lbl_8049D530:
         .asciz "g05_find_cave_y_04"
-        .skip 1
+    .balign 4
+    lbl_8049D544:
         .asciz "g0A_cv_find_hole"
-        .skip 3
+    .balign 4
+    lbl_8049D558:
         .asciz "g0B_cv_find_fountain"
-        .skip 3
+    .balign 4
+    lbl_8049D570:
         .asciz "g18_find_gate"
-        .skip 2
+    .balign 4
+    lbl_8049D580:
         .asciz "g19_find_rock"
-        .skip 2
+    .balign 4
+    lbl_8049D590:
         .asciz "g2D_red_extract"
+    .balign 4
+    lbl_8049D5A0:
         .asciz "g2E_black_extract"
-        .skip 2
+    .balign 4
+    lbl_8049D5B4:
         .asciz "g34_yellow_extract"
-        .skip 1
+    .balign 4
+    lbl_8049D5C8:
         .asciz "g37_get_louie"
-        .skip 2
+    .balign 4
+    lbl_8049D5D8:
         .asciz "g38_find_whitepom"
-        .skip 2
+    .balign 4
+    lbl_8049D5EC:
         .asciz "g39_find_blackpom"
-        .skip 2
+    .balign 4
+    lbl_8049D600:
         .asciz "x01_gamestart"
-        .skip 2
+    .balign 4
+    lbl_8049D610:
         .asciz "x02_watch_red_pikmin"
-        .skip 3
+    .balign 4
+    lbl_8049D628:
         .asciz "x06_join"
-        .skip 3
+    .balign 4
+    lbl_8049D634:
         .asciz "x12_drain_water"
+    .balign 4
+    lbl_8049D644:
         .asciz "x10_find_yellow_onyon"
-        .skip 2
+    .balign 4
+    lbl_8049D65C:
         .asciz "x11_find_blue_onyon"
+    .balign 4
+    lbl_8049D670:
         .asciz "x16_hiba"
-        .skip 3
+    .balign 4
+    lbl_8049D67C:
         .asciz "x13_exp_leafchappy"
-        .skip 1
+    .balign 4
+    lbl_8049D690:
         .asciz "x20_blackman"
-        .skip 3
+    .balign 4
+    lbl_8049D6A0:
         .asciz "s13_pikmin_supply"
-        .skip 2
+    .balign 4
+    lbl_8049D6B4:
         .asciz "s0B_cv_coursein"
+    .balign 4
+    lbl_8049D6C4:
         .asciz "s0E_return_cave"
+    .balign 4
+    lbl_8049D6D4:
         .asciz "e00_E3_cavestart"
-        .skip 3
+    .balign 4
+    lbl_8049D6E8:
         .asciz "g07_cv_gamestart"
-        .skip 3
+    .balign 4
+    lbl_8049D6FC:
         .asciz "g08_first_return"
-        .skip 3
+    .balign 4
+    lbl_8049D710:
         .asciz "g09_first_sunset"
-        .skip 3
+    .balign 4
+    lbl_8049D724:
         .asciz "g16_100_pikmin"
-        .skip 1
+    .balign 4
+    lbl_8049D734:
         .asciz "g16_95_pikmin"
-        .skip 2
+    .balign 4
+    lbl_8049D744:
         .asciz "g26_inout_black"
+    .balign 4
+    lbl_8049D754:
         .asciz "g29_inout_white"
+    .balign 4
+    lbl_8049D764:
         .asciz "g2B_white_poison"
-        .skip 3
+    .balign 4
+    lbl_8049D778:
         .asciz "g2C_inout_red"
-        .skip 2
+    .balign 4
+    lbl_8049D788:
         .asciz "g36_find_louie"
-        .skip 1
+    .balign 4
+    lbl_8049D798:
         .asciz "x01_coursein_forest"
+    .balign 4
+    lbl_8049D7AC:
         .asciz "x01_coursein_yakushima"
-        .skip 1
+    .balign 4
+    lbl_8049D7C4:
         .asciz "x01_coursein_last"
-        .skip 2
+    .balign 4
+    lbl_8049D7D8:
         .asciz "x04_exp_y"
-        .skip 2
+    .balign 4
+    lbl_8049D7E4:
         .asciz "x05_louiestart"
-        .skip 1
+    .balign 4
+    lbl_8049D7F4:
         .asciz "x07_first_recovery"
-        .skip 1
+    .balign 4
+    lbl_8049D808:
         .asciz "x08_cv_suck_carcass"
+    .balign 4
+    lbl_8049D81C:
         .asciz "x09_exp_detector"
-        .skip 3
+    .balign 4
+    lbl_8049D830:
         .asciz "x14_white_dig"
-        .skip 2
+    .balign 4
+    lbl_8049D840:
         .asciz "g32_get_map"
+    .balign 4
+    lbl_8049D84C:
         .asciz "g35_president_gamestart"
+    .balign 4
+    lbl_8049D864:
         .asciz "x15_exp_x"
-        .skip 2
+    .balign 4
+    lbl_8049D870:
         .asciz "x17_join_guide"
-        .skip 1
+    .balign 4
+    lbl_8049D880:
         .asciz "x18_exp_pellet"
-        .skip 1
+    .balign 4
+    lbl_8049D890:
         .asciz "x03_find_red_onyon"
-        .skip 1
+    .balign 4
+    lbl_8049D8A4:
         .asciz "x19_vs_bedama"
-        .skip 2
+    .balign 4
+    lbl_8049D8B4:
         .asciz "g2F_appear_hole"
+    .balign 4
+    lbl_8049D8C4:
         .asciz "g30_appear_fountain"
+    .balign 4
+    lbl_8049D8D8:
         .asciz "PSMainSide_Scene.h"
-        .skip 1
+    .balign 4
+    lbl_8049D8EC:
         .asciz "PSCommon.h"
-        .skip 1
+    .balign 4
+    lbl_8049D8F8:
         .asciz "s12_cv_giveup"
-        .skip 2
 
     .section .data, "wa"  # 0x8049E220 - 0x804EFC20
+    .balign 8
     .global __vt__Q23PSM4Demo
     __vt__Q23PSM4Demo:
         .4byte 0
@@ -234,11 +393,10 @@
         .4byte initDemoScene__Q23PSM4DemoFRQ23PSM7DemoArgPQ23PSM10Scene_Demo
 
     .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_80520C90
+    .balign 8
     lbl_80520C90:
         .asciz ""
-        .skip 3
-    .global lbl_80520C94
+    .balign 4
     lbl_80520C94:
         .asciz "key"
 */
@@ -250,34 +408,14 @@ namespace PSM {
  * Address:	80463FE8
  * Size:	00005C
  */
-Demo::Demo()
+Demo::Demo() // matches
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       __ct__11JKRDisposerFv
-	lis      r3, __vt__Q23PSM4Demo@ha
-	li       r5, 0
-	addi     r0, r3, __vt__Q23PSM4Demo@l
-	li       r4, 1
-	stw      r0, 0(r31)
-	li       r0, -1
-	mr       r3, r31
-	stb      r5, 0x18(r31)
-	stb      r4, 0x19(r31)
-	stw      r0, 0x1c(r31)
-	stw      r0, 0x20(r31)
-	stw      r5, 0x24(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+	unknown1_0x18    = 0;
+	doStartWithAudio = 1;
+	soundID          = _PSSE_FORCE_UINT;
+	systemSE         = _PSSE_FORCE_UINT;
+	pFunction_0x24   = nullptr;
+};
 
 /*
  * --INFO--
