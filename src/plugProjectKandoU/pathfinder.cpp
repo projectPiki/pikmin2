@@ -1,4 +1,5 @@
 #include "Game/pathfinder.h"
+#include "System.h"
 #include "types.h"
 
 /*
@@ -56,6 +57,11 @@ namespace Game {
  */
 Pathfinder::Pathfinder(void)
 {
+	m_aStarPathfinder   = new AStarPathfinder();
+	m_aStarContextCount = 0;
+	m_clientCount       = 0;
+	m_aStarContexts     = nullptr;
+	_00                 = 1;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -91,8 +97,17 @@ lbl_801A3618:
  * Address:	801A364C
  * Size:	0000C4
  */
-void Pathfinder::create(int, Game::RouteMgr*)
+void Pathfinder::create(int contextCount, Game::RouteMgr* routeMgr)
 {
+	sys->heapStatusStart("pathfinder", nullptr);
+	m_clientCount       = 0;
+	m_aStarContextCount = contextCount;
+	m_aStarContexts     = new AStarContext[contextCount];
+	for (int i = 0; i < contextCount; i++) {
+		m_aStarContexts[i].init(routeMgr, 0);
+	}
+	_00 = 1;
+	sys->heapStatusEnd("pathfinder");
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -157,6 +172,11 @@ lbl_801A36DC:
  */
 AStarContext::AStarContext(void)
 {
+	_04                             = 0;
+	_00                             = -1;
+	_02                             = -1;
+	Game::PathfindContext::routeMgr = nullptr;
+	_60                             = 0;
 	/*
 	li       r4, 0
 	li       r0, -1
@@ -176,6 +196,9 @@ AStarContext::AStarContext(void)
  */
 void Pathfinder::update(void)
 {
+	// sys->m_timers->_start("path", true);
+	// uint contextsRemaining = m_aStarContextCount;
+
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0

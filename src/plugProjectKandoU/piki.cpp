@@ -1,3 +1,5 @@
+#include "Game/Piki.h"
+#include "Game/StateMachine.h"
 #include "types.h"
 
 /*
@@ -931,7 +933,7 @@ lbl_80147CF4:
  * Address:	80147D10
  * Size:	0000B4
  */
-void Piki::isWalking(void)
+bool Piki::isWalking()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -995,7 +997,7 @@ lbl_80147DB0:
  * Address:	80147DC4
  * Size:	000050
  */
-void Piki::getFormationSlotID(void)
+int Piki::getFormationSlotID()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1065,7 +1067,7 @@ void Piki::clearCurrAction(void)
  * Address:	80147E48
  * Size:	00000C
  */
-void Piki::getCurrActionID(void)
+int Piki::getCurrActionID(void)
 {
 	/*
 	lwz      r3, 0x294(r3)
@@ -1264,8 +1266,9 @@ lbl_80148084:
  * Address:	801480D4
  * Size:	000034
  */
-void start__Q24Game26StateMachine<Game::Piki>
-FPQ24Game4PikiiPQ24Game8StateArg(void)
+// void start__Q24Game26StateMachine<Game::Piki>
+// FPQ24Game4PikiiPQ24Game8StateArg(void)
+template <> void StateMachine<Piki>::start(Piki*, int, StateArg*)
 {
 	/*
 	.loc_0x0:
@@ -1746,14 +1749,14 @@ lbl_801486D0:
  * Address:	801486E8
  * Size:	000008
  */
-u32 PikiState::dead(void) { return 0x0; }
+bool PikiState::dead(void) { return false; }
 
 /*
  * --INFO--
  * Address:	801486F0
  * Size:	000058
  */
-void Piki::isAlive(void)
+bool Piki::isAlive(void)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1835,7 +1838,7 @@ lbl_8014879C:
  * Address:	801487B0
  * Size:	000008
  */
-void Piki::getCreatureID(void)
+s32 Piki::getCreatureID(void)
 {
 	/*
 	lwz      r3, 0x2c0(r3)
@@ -1904,14 +1907,13 @@ void Piki::movieStartDemoAnimation(SysShape::AnimInfo*)
 	*/
 }
 
-} // namespace Game
-
 /*
  * --INFO--
  * Address:	8014883C
  * Size:	000088
  */
-void movieSetTranslation__Q24Game4PikiFR10Vector3f f(void)
+// void movieSetTranslation__Q24Game4PikiFR10Vector3f f(void)
+void Piki::movieSetTranslation(Vector3f&, float)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1956,16 +1958,15 @@ void movieSetTranslation__Q24Game4PikiFR10Vector3f f(void)
  * Address:	801488C4
  * Size:	000008
  */
-u32 movieGotoPosition__Q24Game4PikiFR10Vector3f(void) { return 0x0; }
-
-namespace Game {
+// u32 movieGotoPosition__Q24Game4PikiFR10Vector3f(void) { return 0x0; }
+bool Piki::movieGotoPosition(Vector3f&) { return false; }
 
 /*
  * --INFO--
  * Address:	801488CC
  * Size:	000040
  */
-void Piki::startSound(unsigned long, bool)
+void Piki::startSound(ulong, bool)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1996,7 +1997,7 @@ lbl_801488FC:
  * Address:	8014890C
  * Size:	000048
  */
-void Piki::startSound(unsigned long, PSGame::SeMgr::SetSeId)
+void Piki::startSound(ulong, PSGame::SeMgr::SetSeId)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2029,7 +2030,7 @@ lbl_80148944:
  * Address:	80148954
  * Size:	000070
  */
-void Piki::startSound(Game::Creature*, unsigned long, bool)
+void Piki::startSound(Game::Creature*, ulong, bool)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2072,7 +2073,7 @@ lbl_801489AC:
  * Address:	801489C4
  * Size:	0000CC
  */
-void Piki::startSound(Game::Creature*, unsigned long, PSGame::SeMgr::SetSeId)
+void Piki::startSound(Game::Creature*, ulong, PSGame::SeMgr::SetSeId)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2155,8 +2156,9 @@ void Piki::getJAIObject(void)
  * Address:	80148AA4
  * Size:	000008
  */
-void Piki::getPSCreature(void)
+PSM::Creature* Piki::getPSCreature(void)
 {
+	return m_soundObj;
 	/*
 	lwz      r3, 0x250(r3)
 	blr
@@ -2168,7 +2170,7 @@ void Piki::getPSCreature(void)
  * Address:	80148AAC
  * Size:	000030
  */
-void Piki::canVsBattle(void)
+bool Piki::canVsBattle(void)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2191,14 +2193,14 @@ void Piki::canVsBattle(void)
  * Address:	80148ADC
  * Size:	000008
  */
-u32 PikiState::battleOK(void) { return 0x0; }
+bool PikiState::battleOK() { return false; }
 
 /*
  * --INFO--
  * Address:	80148AE4
  * Size:	00003C
  */
-void Piki::getVsBattlePiki(void)
+void Piki::getVsBattlePiki()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2299,7 +2301,7 @@ lbl_80148BC0:
  * Address:	80148BD0
  * Size:	000148
  */
-void Piki::inWaterCallback(Game::WaterBox*)
+void Piki::inWaterCallback(WaterBox*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2609,7 +2611,7 @@ void PikiState::onKeyEvent(Game::Piki*, SysShape::KeyEvent const&) { }
  * Address:	80148F34
  * Size:	00001C
  */
-void Piki::getStateID(void)
+int Piki::getStateID(void)
 {
 	/*
 	lwz      r3, 0x290(r3)
@@ -2695,14 +2697,13 @@ lbl_80148FFC:
 	*/
 }
 
-} // namespace Game
-
 /*
  * --INFO--
  * Address:	80149018
  * Size:	0001C0
  */
-void setSpeed__Q24Game4PikiFfR10Vector3f(void)
+// void setSpeed__Q24Game4PikiFfR10Vector3f(void)
+void Piki::setSpeed(float, Vector3f&)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2844,8 +2845,6 @@ lbl_801491B8:
 	*/
 }
 
-namespace Game {
-
 /*
  * --INFO--
  * Address:	........
@@ -2856,14 +2855,13 @@ void Piki::getSpeed(float, float)
 	// UNUSED FUNCTION
 }
 
-} // namespace Game
-
 /*
  * --INFO--
  * Address:	801491D8
  * Size:	00020C
  */
-void setSpeed__Q24Game4PikiFfR10Vector3f f(void)
+// void setSpeed__Q24Game4PikiFfR10Vector3f f(void)
+void Piki::setSpeed(float, Vector3f&, float)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -3032,14 +3030,12 @@ lbl_801493BC:
 	*/
 }
 
-namespace Game {
-
 /*
  * --INFO--
  * Address:	801493E4
  * Size:	000040
  */
-void Piki::isPikmin(void)
+bool Piki::isPikmin(void)
 {
 	/*
 	lbz      r0, sTekiChappyFlag__Q24Game12BaseHIOParms@sda21(r13)
@@ -3070,7 +3066,7 @@ lbl_8014941C:
  * Address:	80149424
  * Size:	00004C
  */
-void Piki::isThrowable(void)
+bool Piki::isThrowable(void)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3104,14 +3100,14 @@ lbl_80149460:
  * Address:	80149470
  * Size:	000008
  */
-u32 PikiState::throwable(void) { return 0x0; }
+bool PikiState::throwable(void) { return false; }
 
 /*
  * --INFO--
  * Address:	80149478
  * Size:	000040
  */
-void Piki::getDownfloorMass(void)
+int Piki::getDownfloorMass(void)
 {
 	/*
 	lwz      r4, 0x290(r3)
@@ -3144,7 +3140,7 @@ lbl_801494A0:
  * Address:	801494B8
  * Size:	000014
  */
-void Piki::gasInvicible(void)
+bool Piki::gasInvicible(void)
 {
 	/*
 	lbz      r3, 0x2a6(r3)
@@ -3160,10 +3156,10 @@ void Piki::gasInvicible(void)
  * Address:	801494CC
  * Size:	000008
  */
-void Piki::setGasInvincible(unsigned char a1)
+void Piki::setGasInvincible(uchar a1)
 {
 	// Generated from stb r4, 0x2A6(r3)
-	_2A6 = a1;
+	m_gasInvincible = a1;
 }
 
 /*
@@ -3281,7 +3277,7 @@ lbl_801495D0:
  * Address:	801495E4
  * Size:	0000C0
  */
-void Piki::getThrowHeight(void)
+float Piki::getThrowHeight(void)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3626,7 +3622,7 @@ namespace Game {
  * Address:	80149984
  * Size:	000008
  */
-u32 PikiState::aiActive(void) { return 0x0; }
+bool PikiState::aiActive(void) { return false; }
 
 /*
  * --INFO--
@@ -3635,14 +3631,13 @@ u32 PikiState::aiActive(void) { return 0x0; }
  */
 void PikiState::bounceCallback(Game::Piki*, Sys::Triangle*) { }
 
-} // namespace Game
-
 /*
  * --INFO--
  * Address:	80149990
  * Size:	0000A0
  */
-void wallCallback__Q24Game4PikiFR10Vector3f(void)
+// void wallCallback__Q24Game4PikiFR10Vector3f(void)
+void Piki::wallCallback(Vector3f&)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3691,22 +3686,24 @@ lbl_80149A18:
 	blr
 	*/
 }
+} // namespace Game
 
 /*
  * --INFO--
  * Address:	80149A30
  * Size:	000004
  */
-void wallCallback__Q26PikiAI6ActionFR10Vector3f(void) { }
+// void wallCallback__Q26PikiAI6ActionFR10Vector3f(void) { }
+void PikiAI::Action::wallCallback(Vector3f&) { }
 
+namespace Game {
 /*
  * --INFO--
  * Address:	80149A34
  * Size:	000004
  */
-void wallCallback__Q24Game9PikiStateFPQ24Game4PikiR10Vector3f(void) { }
-
-namespace Game {
+// void wallCallback__Q24Game9PikiStateFPQ24Game4PikiR10Vector3f(void) { }
+void PikiState::wallCallback(Piki*, Vector3f&) { }
 
 /*
  * --INFO--
@@ -3918,7 +3915,7 @@ void PikiState::platCallback(Game::Piki*, Game::PlatEvent&) { }
  * Address:	80149C6C
  * Size:	000050
  */
-void Piki::ignoreAtari(Game::Creature*)
+bool Piki::ignoreAtari(Game::Creature*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -3951,7 +3948,7 @@ lbl_80149CA8:
  * Address:	80149CBC
  * Size:	000008
  */
-u32 PikiState::ignoreAtari(Game::Piki*, Game::Creature*) { return 0x0; }
+bool PikiState::ignoreAtari(Game::Piki*, Game::Creature*) { return false; }
 
 /*
  * --INFO--
@@ -4232,7 +4229,7 @@ lbl_80149FC8:
  * Address:	80149FE0
  * Size:	000018
  */
-void Piki::doped(void)
+bool Piki::doped()
 {
 	/*
 	lha      r4, 0x284(r3)
@@ -4450,7 +4447,7 @@ lbl_8014A1C0:
  * Address:	8014A208
  * Size:	000080
  */
-void Piki::isMyPikmin(Game::Creature*)
+bool Piki::isMyPikmin(Game::Creature*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4499,7 +4496,7 @@ lbl_8014A270:
  * Address:	8014A288
  * Size:	000018
  */
-void Piki::isTekiFollowAI(void)
+bool Piki::isTekiFollowAI(void)
 {
 	/*
 	lwz      r3, 0x294(r3)
@@ -4780,7 +4777,7 @@ void Piki::doDirectDraw(Graphics&) { }
  * Address:	8014A598
  * Size:	000028
  */
-void Piki::getBaseScale(void)
+float Piki::getBaseScale(void)
 {
 	/*
 	lbz      r0, 0x2b8(r3)
@@ -4937,7 +4934,7 @@ lbl_8014A6C0:
 void Piki::changeHappa(int a1)
 {
 	// Generated from stb r4, 0x2B9(r3)
-	_2B9 = a1;
+	m_pikminGrowth = a1;
 }
 
 /*
@@ -5219,14 +5216,14 @@ lbl_8014AAC8:
  * Address:	8014AAD0
  * Size:	000008
  */
-u32 Piki::deferPikiCollision(void) { return 0x1; }
+bool Piki::deferPikiCollision() { return true; }
 
 /*
  * --INFO--
  * Address:	8014AAD8
  * Size:	000008
  */
-void Piki::getCreatureName(void)
+char* Piki::getCreatureName(void)
 {
 	/*
 	addi     r3, r2, lbl_8051848C@sda21

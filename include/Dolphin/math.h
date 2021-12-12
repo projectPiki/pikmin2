@@ -22,6 +22,16 @@ extern "C" {
 #define PI      3.1415927f
 #define HALF_PI 1.5707964f
 
+#define LONG_TAU 6.2831854820251465
+
+double cos(double);
+float cosf(float);
+double sin(double);
+double tan(double);
+float tanf(float);
+double atan(double);
+double atan2(double, double);
+
 #ifdef __cplusplus
 };
 #endif // ifdef __cplusplus

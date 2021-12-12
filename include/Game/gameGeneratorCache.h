@@ -12,7 +12,7 @@ struct CourseCache : public CNode {
 	virtual ~CourseCache(); // _00
 
 	void beginSave(int);
-	void getColorMePikmins(uchar*, int);
+	int getColorMePikmins(uchar*, int);
 	void read(Stream&);
 	void write(Stream&);
 
@@ -20,11 +20,11 @@ struct CourseCache : public CNode {
 	u32 m_offset;         // _1C
 	u32 m_size;           // _20
 	u32 m_generatorCount; // _24
-	u32 m_generatorSize;  // _28
+	int m_generatorSize;  // _28
 	u32 m_creatureCount;  // _2C
-	u32 m_creatureSize;   // _30
-	u32 m_pikiheadCount;  // _34
-	u32 m_pikiheadSize;   // _38
+	int m_creatureSize;   // _30
+	int m_pikiheadCount;  // _34
+	int m_pikiheadSize;   // _38
 };
 
 /// @size{0x140}
@@ -41,11 +41,11 @@ struct GeneratorCache {
 	void createNumberGenerators();
 	void destroyHeap();
 	void endSave();
-	void findCache(CourseCache&, int);
+	CourseCache* findCache(CourseCache&, int);
 	void findRamGenerator(int);
-	void getColorMePikmins(int);
-	void getFirstGenerator();
-	void getTotalMePikmins();
+	int getColorMePikmins(int);
+	Generator* getFirstGenerator();
+	int getTotalMePikmins();
 	void loadCreatures(int);
 	void loadGenerators(int);
 	void loadPikiheads();

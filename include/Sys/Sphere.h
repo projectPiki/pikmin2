@@ -4,6 +4,7 @@
 #include "Vector3.h"
 
 namespace Sys {
+// @size{0x10}
 struct Sphere {
 	inline Sphere() {};
 	// inline Sphere() : m_position(nullptr), m_radius() {};

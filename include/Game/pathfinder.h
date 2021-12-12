@@ -30,7 +30,7 @@ struct PathNode {
 };
 
 struct AStarContext {
-	AStarContext();
+	inline AStarContext();
 	void init(RouteMgr*, int);
 	void getNode(short);
 	void makepath(PathNode*, PathNode**);
@@ -51,12 +51,6 @@ struct AStarPathfinder {
 	AStarContext* m_context; // _00
 };
 struct Pathfinder {
-	u32 _00;                          // _00
-	s32 m_clientCount;                // _04
-	s32 aStarContextCount;            // _08
-	AStarContext* aStarContexts;      // _0C
-	AStarPathfinder* aStarPathfinder; // _10
-
 	Pathfinder();
 	void create(int, RouteMgr*);
 	void update();
@@ -67,6 +61,12 @@ struct Pathfinder {
 	uchar check(ulong);
 	void getFreeContext();
 	void getContext(ulong);
+
+	u32 _00;                            // _00
+	s32 m_clientCount;                  // _04
+	s32 m_aStarContextCount;            // _08
+	AStarContext* m_aStarContexts;      // _0C
+	AStarPathfinder* m_aStarPathfinder; // _10
 };
 } // namespace Game
 

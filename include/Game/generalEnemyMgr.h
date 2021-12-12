@@ -38,7 +38,6 @@ struct GeneralEnemyMgr : public GenericObjectMgr {
 
 	CNode _04;                    // _04
 	u8 _1C;                       // _1C
-	u8 _1D[3];                    // _1D
 	EnemyMgrNode _20;             // _20
 	u8 _44[4];                    // _44
 	EEnemyTypeID* m_enemyNumList; // _48

@@ -19,6 +19,8 @@ struct Cylinder;
 
 struct CullPlane : public ArrayContainer<Plane> {
 	CullPlane(int);
+	virtual void writeObject(Stream&, Plane&) {};
+	virtual void readObject(Stream&, Plane&) {};
 	bool isPointVisible(Vector3f&, float);
 	bool isVisible(Sys::Sphere&);
 	bool isCylinderVisible(Sys::Cylinder&);
@@ -43,17 +45,23 @@ struct CullFrustum : public CullPlane {
 // Size: 0x144
 struct Camera : public CullFrustum {
 	Camera();
-	virtual ~Camera();                       // _00
-	virtual void updateScreenConstants();    // _4C
-	virtual Vector3f getLookAtPosition_();   // _50
-	virtual float getTargetDistance();       // _54
-	virtual Vector3f* getPositionPtr();      // _58
-	virtual Vector3f* on_getPositionPtr();   // _5C
-	virtual Vector3f* getSoundPositionPtr(); // _60
-	virtual Matrixf* getSoundMatrixPtr();    // _64
-	virtual bool isSpecialCamera();          // _68
-	virtual void updateMatrix();             // _6C
-	virtual void doUpdate();                 // _70
+	virtual ~Camera();                     // _00
+	virtual void updateScreenConstants();  // _4C
+	virtual Vector3f getLookAtPosition_(); // _50
+	virtual float getTargetDistance();     // _54
+	virtual Vector3f* getPositionPtr();    // _58
+	virtual Vector3f* on_getPositionPtr(); // _5C
+	inline virtual Vector3f* getSoundPositionPtr()
+	{ // _60
+		return &m_soundPosition;
+	}
+	inline virtual Matrixf* getSoundMatrixPtr()
+	{ // _64
+		return &m_soundMatrix;
+	}
+	virtual bool isSpecialCamera(); // _68
+	virtual void updateMatrix();    // _6C
+	virtual void doUpdate();        // _70
 
 	void calcProperDistance(float, float);
 	float calcScreenSize(Sys::Sphere&);

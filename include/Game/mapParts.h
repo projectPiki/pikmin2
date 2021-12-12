@@ -2,9 +2,9 @@
 #define _GAME_MAPPARTS_H
 
 #include "BoundBox.h"
-#include "types.h"
 #include "CNode.h"
-#include "cellPyramid.h"
+#include "Game/cellPyramid.h"
+#include "Dolphin/mtx.h"
 #include "Game/pathfinder.h"
 #include "Game/routeMgr.h"
 #include "Game/MapMgr.h"
@@ -14,6 +14,7 @@
 #include "ObjectMgr.h"
 #include "Sys/Cylinder.h"
 #include "Sys/Sphere.h"
+#include "types.h"
 #include "Vector3.h"
 
 struct Graphics;
@@ -118,7 +119,7 @@ struct PartsView : public CNode {
 
 	MapUnit* m_mapUnit;           // _018
 	SysShape::Model* m_model;     // _01C
-	u8 _20[0x30];                 // _020
+	PSMatrix _20;                 // _020
 	u32 _50;                      // _050
 	u32 _54;                      // _054
 	u32 _58;                      // _058
@@ -126,10 +127,11 @@ struct PartsView : public CNode {
 	u32 _60;                      // _060
 	u8 _64[8];                    // _064
 	ushort m_unitKind;            // _06C
-	u8 _6E[2];                    // _06E
+	Vector2<uchar> _6E;           // _06E
 	EditorRouteMgr m_routeMgr;    // _070
 	AStarContext m_aStarContext;  // _0AC
 	AStarPathfinder m_pathFinder; // _110
+	int m_doorCount;              // _114
 	Door m_door;                  // _118
 	Cave::BaseGen* m_baseGen;     // _168
 };

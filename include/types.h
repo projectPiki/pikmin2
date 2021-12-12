@@ -58,4 +58,9 @@ typedef int BOOL;
 #define RoundUp20B(x)   (((u32)(x) + 0x1F) & ~(0x1F))
 #define RoundDown20B(x) (((u32)(x)) & ~(0x1F))
 
+#define ASSERT_HANG(cond) \
+	if (!(cond)) {        \
+		while (true) { }  \
+	}
+
 #endif

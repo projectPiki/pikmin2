@@ -1,3 +1,4 @@
+#include "Game/GameSystem.h"
 #include "Game/mapParts.h"
 #include "types.h"
 
@@ -18,10 +19,23 @@ namespace Game {
  * Address:	8024C5E4
  * Size:	0000F0
  */
-void RoomMapMgr::nishimuraCreateRandomMap(Game::MapUnitInterface*, int,
-                                          Game::Cave::FloorInfo*, bool,
-                                          Game::Cave::EditMapUnit*)
+void RoomMapMgr::nishimuraCreateRandomMap(MapUnitInterface* muiArray, int p2,
+                                          Cave::FloorInfo* floorInfo, bool p4,
+                                          Cave::EditMapUnit* unit)
 {
+	bool isVersusHiba = false;
+	if (gameSystem != nullptr && gameSystem->m_mode == GSM_VERSUS_MODE
+	    && gGameConfig.m_parms.m_vsHiba.m_value != 0) {
+		isVersusHiba = true;
+	}
+	RandMapMgr* mgr        = new RandMapMgr(isVersusHiba);
+	Game::Cave::randMapMgr = mgr;
+	mgr->loadResource(muiArray, p2, floorInfo, p4, unit);
+	Game::Cave::randMapMgr->create();
+	int numRooms = Game::Cave::randMapMgr->getNumRooms();
+	for (int roomIndex = 0; roomIndex < numRooms; roomIndex++) {
+		useUnit(Game::Cave::randMapMgr->useUnitName(roomIndex));
+	}
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x30(r1)

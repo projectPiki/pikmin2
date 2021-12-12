@@ -348,7 +348,7 @@ lbl_801B4D20:
  * Address:	801B4D58
  * Size:	000020
  */
-void GameSystem::calcFrameDist(int)
+s32 GameSystem::calcFrameDist(int)
 {
 	/*
 	lwz      r5, 0x50(r3)
@@ -596,7 +596,7 @@ lbl_801B4F74:
 void GameSystem::setMoviePause(bool, char* a1)
 {
 	// Generated from stb r4, 0x4D(r3)
-	_4D = a1;
+	m_isMoviePause = a1;
 }
 
 /*
@@ -607,7 +607,7 @@ void GameSystem::setMoviePause(bool, char* a1)
 void GameSystem::setFrozen(bool, char* a1)
 {
 	// Generated from stb r4, 0x4A(r3)
-	_4A = a1;
+	m_isFrozen = a1;
 }
 
 /*
@@ -637,8 +637,9 @@ void GameSystem::setPause(bool, char*, int)
  * Address:	801B4FC0
  * Size:	000008
  */
-void GameSystem::paused_soft(void)
+bool GameSystem::paused_soft(void)
 {
+	return m_isPausedSoft;
 	/*
 	lbz      r3, 0x4c(r3)
 	blr
@@ -650,7 +651,7 @@ void GameSystem::paused_soft(void)
  * Address:	801B4FC8
  * Size:	000028
  */
-void GameSystem::paused(void)
+bool GameSystem::paused()
 {
 	/*
 	lbz      r0, 0x4b(r3)
@@ -734,7 +735,7 @@ lbl_801B505C:
  * Address:	801B506C
  * Size:	00000C
  */
-void GameSystem::getLightMgr(void)
+LightMgr* GameSystem::getLightMgr(void)
 {
 	/*
 	lwz      r3, 0x58(r3)
@@ -1975,20 +1976,20 @@ void GameSystem::detachObjectMgr(GenericObjectMgr*)
  * Address:	........
  * Size:	000054
  */
-void GameSystem::detachAllMgr(void)
+void GameSystem::detachAllMgr()
 {
 	// UNUSED FUNCTION
 }
-
-} // namespace Game
 
 /*
  * --INFO--
  * Address:	801B5FD4
  * Size:	000024
  */
-void addObjectMgr_reuse__Q24Game10GameSystemFP31TObjectNode<GenericObjectMgr>(
-    void)
+// void
+// addObjectMgr_reuse__Q24Game10GameSystemFP31TObjectNode<GenericObjectMgr>(
+//    void)
+void GameSystem::addObjectMgr_reuse(TObjectNode<GenericObjectMgr>*)
 {
 	/*
 	.loc_0x0:
@@ -2003,8 +2004,6 @@ void addObjectMgr_reuse__Q24Game10GameSystemFP31TObjectNode<GenericObjectMgr>(
 	  blr
 	*/
 }
-
-namespace Game {
 
 /*
  * --INFO--
@@ -2277,88 +2276,88 @@ void __sinit_gameSystem_cpp(void)
  * Address:	801B6278
  * Size:	000008
  */
-void @28 @Game::GameSystem::doSimpleDraw(Viewport*)
-{
-	/*
-	addi     r3, r3, -28
-	b        doSimpleDraw__Q24Game10GameSystemFP8Viewport
-	*/
-}
+// void @28 @Game::GameSystem::doSimpleDraw(Viewport*)
+// {
+// 	/*
+// 	addi     r3, r3, -28
+// 	b        doSimpleDraw__Q24Game10GameSystemFP8Viewport
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801B6280
  * Size:	000008
  */
-void @28 @Game::GameSystem::doDirectDraw(Graphics&)
-{
-	/*
-	addi     r3, r3, -28
-	b        doDirectDraw__Q24Game10GameSystemFR8Graphics
-	*/
-}
+// void @28 @Game::GameSystem::doDirectDraw(Graphics&)
+// {
+// 	/*
+// 	addi     r3, r3, -28
+// 	b        doDirectDraw__Q24Game10GameSystemFR8Graphics
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801B6288
  * Size:	000008
  */
-void @28 @Game::GameSystem::doSimulation(float)
-{
-	/*
-	addi     r3, r3, -28
-	b        doSimulation__Q24Game10GameSystemFf
-	*/
-}
+// void @28 @Game::GameSystem::doSimulation(float)
+// {
+// 	/*
+// 	addi     r3, r3, -28
+// 	b        doSimulation__Q24Game10GameSystemFf
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801B6290
  * Size:	000008
  */
-void @28 @Game::GameSystem::doViewCalc(void)
-{
-	/*
-	addi     r3, r3, -28
-	b        doViewCalc__Q24Game10GameSystemFv
-	*/
-}
+// void @28 @Game::GameSystem::doViewCalc(void)
+// {
+// 	/*
+// 	addi     r3, r3, -28
+// 	b        doViewCalc__Q24Game10GameSystemFv
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801B6298
  * Size:	000008
  */
-void @28 @Game::GameSystem::doSetView(int)
-{
-	/*
-	addi     r3, r3, -28
-	b        doSetView__Q24Game10GameSystemFi
-	*/
-}
+// void @28 @Game::GameSystem::doSetView(int)
+// {
+// 	/*
+// 	addi     r3, r3, -28
+// 	b        doSetView__Q24Game10GameSystemFi
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801B62A0
  * Size:	000008
  */
-void @28 @Game::GameSystem::doEntry(void)
-{
-	/*
-	addi     r3, r3, -28
-	b        doEntry__Q24Game10GameSystemFv
-	*/
-}
+// void @28 @Game::GameSystem::doEntry(void)
+// {
+// 	/*
+// 	addi     r3, r3, -28
+// 	b        doEntry__Q24Game10GameSystemFv
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801B62A8
  * Size:	000008
  */
-void @28 @Game::GameSystem::doAnimation(void)
-{
-	/*
-	addi     r3, r3, -28
-	b        doAnimation__Q24Game10GameSystemFv
-	*/
-}
+// void @28 @Game::GameSystem::doAnimation(void)
+// {
+// 	/*
+// 	addi     r3, r3, -28
+// 	b        doAnimation__Q24Game10GameSystemFv
+// 	*/
+// }

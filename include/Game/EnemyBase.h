@@ -1,25 +1,46 @@
 #ifndef _GAME_ENEMYBASE_H
 #define _GAME_ENEMYBASE_H
 
+#include "BitFlag.h"
 #include "Game/AILODParm.h"
+#include "Game/CollEvent.h"
 #include "Game/Creature.h"
+#include "Game/CurrTriInfo.h"
+#include "Game/EnemyPelletInfo.h"
+#include "Game/EnemyStateMachine.h"
 #include "Game/PelletView.h"
-#include "SysShape/Animator.h"
+#include "Game/PelletMgr.h"
+#include "Matrix3f.h"
+#include "Sys/Sphere.h"
+#include "SysShape/MotionListener.h"
 #include "Vector3.h"
 #include "types.h"
 
-namespace SysShape {
-struct KeyEvent;
-struct MotionListener {
-	virtual void onKeyEvent(const KeyEvent&);
-};
-} // namespace SysShape
+namespace PSM {
+struct EnemyBase;
+} // namespace PSM
+
+namespace WalkSmokeEffect {
+struct Mgr;
+} // namespace WalkSmokeEffect
 
 namespace Game {
+struct EnemyAnimatorBase;
+struct EnemyAnimKeyEvent;
+struct EnemyEffectNodeHamon;
 struct EnemyInitialParamBase;
+struct EnemyMgrBase;
+
+namespace EnemyStone {
+	struct Obj;
+} // namespace EnemyStone
+
 struct EnemyBase : public Creature,
                    public SysShape::MotionListener,
-                   virtual public PelletView {
+                   virtual public Game::PelletView {
+	EnemyBase();
+
+	// vtable 1 (Creature)
 	virtual Vector3f getPosition();                             // _00
 	virtual void checkCollision(CellObject*);                   // _04
 	virtual void getBoundingSphere(Sys::Sphere&);               // _08
@@ -93,7 +114,7 @@ struct EnemyBase : public Creature,
 	virtual void movieSetAnimationLastFrame();                  // _118
 	virtual void movieSetTranslation(Vector3f&, float);         // _11C
 	virtual void movieSetFaceDir(float);                        // _120
-	virtual void movieGotoPosition(Vector3f&);                  // _124
+	virtual bool movieGotoPosition(Vector3f&);                  // _124
 	virtual void movieUserCommand(unsigned long, MoviePlayer*); // _128
 	virtual void getShadowParam(ShadowParam&);                  // _12C
 	virtual bool needShadow();                                  // _130
@@ -126,7 +147,7 @@ struct EnemyBase : public Creature,
 	virtual void stimulate(Interaction&);                       // _19C
 	virtual char* getCreatureName();                            // _1A0
 	virtual s32 getCreatureID();                                // _1A4
-	// VTBL 2
+	// vtable 2 (MotionListener+self)
 	virtual ~EnemyBase();                                           // _1AC
 	virtual void birth(Vector3f&, float);                           // _1B0
 	virtual void SetInitialSetting(EnemyInitialParamBase*) = 0;     // _1B4
@@ -147,7 +168,7 @@ struct EnemyBase : public Creature,
 	virtual void changeMaterial();                                  // _1F0
 	virtual void getCommonEffectPos(Vector3f&);                     // _1F4
 	virtual void getFitEffectPos();                                 // _1F8
-	virtual void viewGetShape();                                    // _1FC
+	virtual SysShape::Model* viewGetShape();                        // _1FC
 	virtual void view_start_carrymotion();                          // _200
 	virtual void view_finish_carrymotion();                         // _204
 	virtual void viewStartPreCarryMotion();                         // _208
@@ -157,7 +178,7 @@ struct EnemyBase : public Creature,
 	virtual void setParameters();                                   // _218
 	virtual void initMouthSlots();                                  // _21C
 	virtual void initWalkSmokeEffect();                             // _220
-	virtual void getWalkSmokeEffectMgr();                           // _224
+	virtual WalkSmokeEffect::Mgr* getWalkSmokeEffectMgr();          // _224
 	virtual void onKeyEvent(const SysShape::KeyEvent&);             // _228
 	virtual void injure();                                          // _22C
 	virtual void setCollEvent(CollEvent&);                          // _230
@@ -196,37 +217,223 @@ struct EnemyBase : public Creature,
 	virtual void startCarcassMotion();                              // _2C4
 	virtual void setCarcassArg(struct PelletViewArg&);              // _2C8
 	virtual void getCarcassArgHeight();                             // _2C4
-	virtual void doBecomeCarcass();                                 // _2C8
+	virtual bool doBecomeCarcass();                                 // _2C8
 	virtual void startWaitingBirthTypeDrop();                       // _2CC
 	virtual void finishWaitingBirthTypeDrop();                      // _2D0
 	virtual bool isFinishableWaitingBirthTypeDrop();                // _2D4
 	virtual void doStartWaitingBirthTypeDrop();                     // _2D8
 	virtual void doFinishWaitingBirthTypeDrop();                    // _2DC
 	virtual void wallCallback(const struct MoveInfo&);              // _2E0
-	virtual void getDownSmokeScale();                               // _2E4
+	virtual float getDownSmokeScale();                              // _2E4
 	virtual void doStartMovie();                                    // _2E8
 	virtual void doEndMovie();                                      // _2EC
-	virtual void _2F0() = 0;                                        // _2F0
-	virtual void _2F4() = 0;                                        // _2F4
-	virtual void viewGetBaseScale();                                // _2F8
-	                                                                /*
-	                                                            virtual void @700 @12 @viewGetShape();                           // _2FC
-	                                                            virtual void viewGetCollTreeJointIndex();                        // _300
-	                                                            virtual void viewGetCollTreeOffset();                            // _304
-	                                                            virtual void @700 @12 @view_start_carrymotion();                 // _308
-	                                                            virtual void @700 @12 @view_finish_carrymotion();                // _30C
-	                                                            virtual void @700 @12 @viewStartPreCarryMotion();                // _310
-	                                                            virtual void @700 @12 @viewStartCarryMotion();                   // _314
-	                                                            virtual void @700 @12 @viewOnPelletKilled();                     // _318
-	                                                            virtual void viewEntryShape(Matrixf&, Vector3f&);          // _31C
-	                                                                */
+	// virtual void _2F0() = 0;                                        // _2F0
+	// virtual void _2F4() = 0;                                        // _2F4
+	// vtable 3 (PelletView)
+	virtual float viewGetBaseScale();                 // _2F8
+	virtual int viewGetCollTreeJointIndex();          // _300
+	virtual Vector3f viewGetCollTreeOffset();         // _304
+	virtual void viewEntryShape(Matrixf&, Vector3f&); // _31C
 
-	u8 _04[0x1DC];             // _04
-	u32 m_flags;               // _1E0
-	u8 _1E4[0x80];             // _1E4
-	Game::AILODParm m_lodParm; // _264
-	u8 _268[0x58 - 8];         // _268
+	void addDamage(float, float);
+
+	void bounceProcedure(Sys::Triangle*);
+
+	void collisionMapAndPlat(float);
+
+	void createEffects();
+	void createBounceEffect(const Vector3f&, float);
+	void createDeadBombEffect();
+	void createDropEffect(const Vector3f&, float);
+	void createSplashDownEffect(const Vector3f&, float);
+	void fadeEffects();
+
+	void doEntryCarcass();
+	void doEntryLiving();
+	void doSimulationConstraint(float);
+
+	void finishDropping(bool);
+
+	void deathProcedure();
+	void gotoHell();
+
+	bool isCullingOff();
+
+	void setEmotionCaution();
+	void setEmotionExcitement();
+	void setEmotionNone();
+
+	void setAnimMgr(SysShape::AnimMgr*);
+	void setOtakaraCode(PelletMgr::OtakaraItemCode&);
+	void setPSEnemyBaseAnime();
+	void setZukanVisible(bool);
+
+	void endBlend();
+
+	void show();
+	void hide();
+
+	void startStoneState();
+
+	void scaleDamageAnim();
+	void finishScaleDamageAnim();
+
+	void updateSpheres();
+
+	// Creature: _000 - _178
+	// MotionListener: _178 - _17C
+	// ptr to PelletView: _17C
+	EnemyMgrBase* m_mgr;               // _180
+	EnemyAnimatorBase* m_animator;     // _184
+	EnemyAnimKeyEvent* m_animKeyEvent; // _188
+	Vector3f m_position;               // _18C
+	Vector3f m_homePosition;           // _198
+	Matrix3f _1A4;                     // _1A4
+	Vector3f m_velocity;               // _1C8
+	Vector3f _1D4;                     // _1D4
+	BitFlag<ulong> _1E0[2];            // _1E0
+	BitFlag<ulong> _1E8[2];            // _1E8
+	u8 m_emotion;                      // _1F0
+	u8 m_enemyIndexForType;            // _1F1
+	u8 _1F2;                           // _1F2
+	u8 m_inZukan;                      // _1F3
+	int m_stickPikminCount;            // _1F4
+	float m_scaleModifier;             // _1F8
+	float m_faceDir;                   // _1FC
+	float m_health;                    // _200
+	float m_maxHealth;                 // _204
+	float m_instantDamage;             // _208
+	float m_toFlick;                   // _20C
+	float _210;                        // _210
+	// TODO: Name is from PikDecomp. Sodium called this "purpleStunTimer". Which
+	// name is more accurate?
+	float m_scaleTimer;                          // _214
+	float m_friction;                            // _218
+	float m_stoneTimer;                          // _21C
+	Sys::Sphere m_boundingSphere;                // _220
+	Creature* m_targetCreature;                  // _230
+	CollEvent m_collEvent;                       // _234
+	Vector3f m_commonEffectOffset;               // _240
+	EnemyStone::Obj* m_enemyStoneObj;            // _24C
+	PelletMgr::OtakaraItemCode m_pelletDropCode; // _250
+	Pellet* m_heldPellet;                        // _254
+	EnemyPelletInfo m_pelletInfo;                // _258
+	AILODParm m_lodParm;                         // _264
+	Sys::Sphere m_lodRange;                      // _270
+	WaterBox* m_waterBox;                        // _280
+	EnemyEffectNodeHamon* m_effectNodeHamon;     // _284
+	u32 _288;                                    // _288
+	PSM::EnemyBase* m_soundObj;                  // _28C
+	CNode m_effectNodeHamonRoot;                 // _290
+	float _2A8;                                  // _2A8
+	float _2AC;                                  // _2AC
+	u8 m_dropGroup;                              // _2B0
+	EnemyFSMState* m_currentLifecycleState;      // _2B4
+	EnemyStateMachine* m_lifecycleFSM;           // _2B8
+	                                             // PelletView: _2BC - _2C8
 };
+namespace EnemyBaseFSM {
+	/**
+	 * Generic lifecycle FSM that every teki has, often in addition to a more
+	 * specific FSM derived from Game::StateMachine.
+	 */
+	struct StateMachine : public Game::EnemyStateMachine {
+		virtual void init(EnemyBase*);                            // _00
+		virtual EnemyFSMState* getCurrState(EnemyBase*);          // _14
+		virtual void setCurrState(EnemyBase*, EnemyFSMState*);    // _18
+		virtual void update(EnemyBase*);                          // _1C
+		virtual void entry(EnemyBase*);                           // _20
+		virtual void simulation(EnemyBase*, float);               // _24
+		virtual void animation(EnemyBase*);                       // _28
+		virtual void bounceProcedure(EnemyBase*, Sys::Triangle*); // _2C
+	};
+
+	/**
+	 * Generic lifecycle state.
+	 */
+	struct State : public Game::EnemyFSMState {
+		virtual void update(EnemyBase*);                          // _1C
+		virtual void entry(EnemyBase*);                           // _20
+		virtual void simulation(EnemyBase*, float);               // _24
+		virtual void bounceProcedure(EnemyBase*, Sys::Triangle*); // _28
+		virtual void animation(EnemyBase*);                       // _2C
+
+		// _00 VTBL
+	};
+
+	/**
+	 * Generic birth-by-dropping state.
+	 */
+	struct BirthTypeDropState : public State {
+		virtual void init(EnemyBase*, StateArg*);   // _00
+		virtual void cleanup(EnemyBase*);           // _08
+		virtual void update(EnemyBase*);            // _1C
+		virtual void entry(EnemyBase*);             // _20
+		virtual void simulation(EnemyBase*, float); // _24
+		virtual void animation(EnemyBase*);         // _2C
+
+		virtual bool isFinishableWaitingBirthTypeDrop(EnemyBase*); // _30
+	};
+
+	struct BirthTypeDropPikminState : public BirthTypeDropState {
+		virtual bool isFinishableWaitingBirthTypeDrop(EnemyBase*); // _30
+	};
+
+	struct BirthTypeDropOlimarState : public BirthTypeDropState {
+		virtual bool isFinishableWaitingBirthTypeDrop(EnemyBase*); // _30
+	};
+
+	struct BirthTypeDropTreasureState : public BirthTypeDropState {
+		virtual bool isFinishableWaitingBirthTypeDrop(EnemyBase*); // _30
+	};
+
+	struct BirthTypeDropEarthquakeState : public BirthTypeDropState {
+		virtual bool isFinishableWaitingBirthTypeDrop(EnemyBase*); // _30
+	};
+
+	/**
+	 * Birth-without-dropping state?
+	 */
+	struct AppearState : public State {
+		virtual void init(EnemyBase*, StateArg*);   // _00
+		virtual void cleanup(EnemyBase*);           // _08
+		virtual void update(EnemyBase*);            // _1C
+		virtual void entry(EnemyBase*);             // _20
+		virtual void simulation(EnemyBase*, float); // _24
+	};
+
+	/**
+	 * Generic "alive" state.
+	 */
+	struct LivingState : public State {
+		virtual void simulation(EnemyBase*, float); // _24
+		virtual void update(EnemyBase*);            // _1C
+		virtual void entry(EnemyBase*);             // _20
+		virtual void updateCullingOff(EnemyBase*);  // _30
+		virtual void updateAlways(EnemyBase*);      // _34
+	};
+
+	struct StoneState : public LivingState {
+		virtual void init(EnemyBase*, StateArg*);                 // _00
+		virtual void cleanup(EnemyBase*);                         // _08
+		virtual void bounceProcedure(EnemyBase*, Sys::Triangle*); // _28
+		virtual void updateCullingOff(EnemyBase*);                // _30
+		virtual void updateAlways(EnemyBase*);                    // _34
+	};
+
+	struct EarthquakeState : public LivingState {
+		virtual void init(EnemyBase*, StateArg*);  // _00
+		virtual void cleanup(EnemyBase*);          // _08
+		virtual void updateCullingOff(EnemyBase*); // _30
+	};
+
+	struct FitState : public LivingState {
+		virtual void init(EnemyBase*, StateArg*);  // _00
+		virtual void cleanup(EnemyBase*);          // _08
+		virtual void updateCullingOff(EnemyBase*); // _30
+		virtual void updateAlways(EnemyBase*);     // _34
+	};
+} // namespace EnemyBaseFSM
 } // namespace Game
 
 #endif

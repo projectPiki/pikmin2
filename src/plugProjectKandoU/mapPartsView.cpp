@@ -1,4 +1,8 @@
+#include "Dolphin/mtx.h"
+#include "Game/Cave/Info.h"
 #include "Game/mapParts.h"
+#include "JSystem/J3D/J3DModel.h"
+#include "SysShape/Model.h"
 #include "types.h"
 
 /*
@@ -50,12 +54,40 @@ void PartsView::getOffset(void)
 }
 
 /*
+ * __ct
+ * TODO: This depends on AStarContext being inlineable.
+ *
  * --INFO--
  * Address:	8023233C
  * Size:	000140
  */
 PartsView::PartsView(void)
+    : CNode()
+    , _6E()
+    , m_routeMgr()
+    , m_aStarContext()
+    , m_pathFinder()
+    , m_door()
 {
+	m_door.m_rootLink.m_dist     = 0.0f;
+	m_door.m_rootLink.m_tekiFlag = 1;
+	m_door.m_linkCount           = 0;
+	m_door.m_dir                 = 0;
+	m_door.m_offs                = 0;
+	m_mapUnit                    = nullptr;
+	m_model                      = nullptr;
+	_60                          = 8;
+	_5C                          = 8;
+	_58                          = 0;
+	_50                          = 0.0f;
+	_54                          = 0.0f;
+	// TODO: Magic number
+	m_aStarContext.init(&m_routeMgr, 0x80);
+	m_pathFinder.setContext(&m_aStarContext);
+	m_unitKind = 1;
+	_6E.x      = 0;
+	_6E.y      = 0;
+	m_baseGen  = new Cave::BaseGen();
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -166,39 +198,11 @@ void PartsView::doDirectDraw(Graphics&) { }
  */
 void PartsView::doAnimation(void)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r3, 0x1c(r3)
-	cmplwi   r3, 0
-	beq      lbl_802324E0
-	lwz      r4, 8(r3)
-	addi     r3, r31, 0x20
-	addi     r4, r4, 0x24
-	bl       PSMTXCopy
-	lwz      r3, 0x1c(r31)
-	lwz      r3, 8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x10(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x1c(r31)
-	lwz      r3, 8(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0xc(r12)
-	mtctr    r12
-	bctrl
-
-lbl_802324E0:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (m_model != nullptr) {
+		PSMTXCopy(_20, m_model->m_j3dModel->_24);
+		m_model->m_j3dModel->calc();
+		m_model->m_j3dModel->entry();
+	}
 }
 
 /*
@@ -213,23 +217,11 @@ void PartsView::doEntry(void) { }
  * Address:	802324F8
  * Size:	00002C
  */
-void PartsView::doSetView(int)
+void PartsView::doSetView(int index)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x1c(r3)
-	cmplwi   r3, 0
-	beq      lbl_80232514
-	bl       setCurrentViewNo__Q28SysShape5ModelFUl
-
-lbl_80232514:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (m_model != nullptr) {
+		m_model->setCurrentViewNo(index);
+	}
 }
 
 /*
@@ -239,21 +231,9 @@ lbl_80232514:
  */
 void PartsView::doViewCalc(void)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r3, 0x1c(r3)
-	cmplwi   r3, 0
-	beq      lbl_80232540
-	bl       viewCalc__Q28SysShape5ModelFv
-
-lbl_80232540:
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (m_model != nullptr) {
+		m_model->viewCalc();
+	}
 }
 
 /*
@@ -261,8 +241,40 @@ lbl_80232540:
  * Address:	80232550
  * Size:	000158
  */
-void PartsView::read(Stream&)
+void PartsView::read(Stream& input)
 {
+	m_mapUnit = new MapUnit();
+	// TODO: Rename when we know what 6E is.
+	uint shouldRead6E = input.readInt();
+	char* name        = input.readString(nullptr, 0);
+	m_name            = name;
+	m_mapUnit->m_name = name;
+	m_mapUnit->load(input);
+	m_unitKind = input.readShort();
+	if (shouldRead6E >= 1) {
+		int i       = 0;
+		uchar* vptr = (uchar*)&_6E;
+		do {
+			uchar c = input.readByte();
+			i++;
+			*vptr = c;
+			vptr++;
+		} while (i < 2);
+	} else {
+		_6E.x = 0;
+		_6E.y = 0;
+	}
+	m_doorCount = input.readInt();
+	for (int i = 0; i < m_doorCount; i++) {
+		Door* door                  = new Door();
+		door->m_rootLink.m_dist     = 0.0f;
+		door->m_rootLink.m_tekiFlag = 1;
+		door->m_linkCount           = 0;
+		door->m_dir                 = 0;
+		door->m_offs                = 0;
+		door->read(input);
+		m_door.add(door);
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0

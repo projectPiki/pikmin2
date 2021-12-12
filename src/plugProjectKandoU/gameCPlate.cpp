@@ -1,3 +1,5 @@
+#include "Dolphin/os.h"
+#include "Game/CPlate.h"
 #include "types.h"
 
 /*
@@ -149,6 +151,13 @@
         .float 0.1
 */
 
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	0000E0
+ */
+void _Print(char* name, ...) { OSReport(""); }
+
 namespace Game {
 
 /*
@@ -198,15 +207,16 @@ void CPlate::getNext(void*)
  * Address:	80195044
  * Size:	000008
  */
-u32 CPlate::getStart(void) { return 0x0; }
+int CPlate::getStart() { return 0; }
 
 /*
  * --INFO--
  * Address:	8019504C
  * Size:	000008
  */
-void CPlate::getEnd(void)
+int CPlate::getEnd()
 {
+	return m_slotCount;
 	/*
 	lwz      r3, 0xc8(r3)
 	blr
@@ -218,7 +228,7 @@ void CPlate::getEnd(void)
  * Address:	80195054
  * Size:	00000C
  */
-void CPlate::shrink(void)
+void CPlate::shrink()
 {
 	// Generated from stb r0, 0x100(r3)
 	_100 = 10;
@@ -239,8 +249,35 @@ void CPlate::updateShrink(void)
  * Address:	80195060
  * Size:	0001F0
  */
-CPlate::CPlate(int)
+CPlate::CPlate(int slotLimit)
+    : Container<Creature>()
+    , m_parms()
+    , m_slotLimit(slotLimit)
 {
+	_B4          = 10.0f;
+	_B0          = 10.0f;
+	m_position.x = 0.0f;
+	m_position.y = 0.0f;
+	m_position.z = 0.0f;
+	_F0          = 0.0f;
+	m_slots      = new Slot[m_slotLimit];
+	_BC          = 0;
+	m_slotCount  = 0;
+	_110         = 0;
+	_111         = 1;
+	_F4          = 0.0f;
+	_F8          = 0.0f;
+	_FC          = 0.0f;
+	_104         = 0;
+	_108         = 0;
+	_10C         = 0;
+	m_velocity.x = 0.0f;
+	m_velocity.y = 0.0f;
+	m_velocity.z = 0.0f;
+	_D8.x        = 0.0f;
+	_D8.y        = 0.0f;
+	_D8.z        = 0.0f;
+	_100         = 0;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -376,6 +413,14 @@ CPlate::CPlate(int)
  */
 CPlate::Slot::Slot(void)
 {
+	m_creature = nullptr;
+	_1C        = 0;
+	_00.x      = 0.0f;
+	_00.y      = 0.0f;
+	_00.z      = 0.0f;
+	_0C.x      = 0.0f;
+	_0C.y      = 0.0f;
+	_0C.z      = 0.0f;
 	/*
 	li       r0, 0
 	lfs      f0, lbl_80518EF4@sda21(r2)
@@ -391,58 +436,59 @@ CPlate::Slot::Slot(void)
 	*/
 }
 
-} // namespace Game
+// /*
+//  * --INFO--
+//  * Address:	8019527C
+//  * Size:	000070
+//  */
+// void Container<Game::Creature>::~Container()
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r4
+// 	stw      r30, 8(r1)
+// 	or.      r30, r3, r3
+// 	beq      lbl_801952D0
+// 	lis      r4, "__vt__27Container<Q24Game8Creature>"@ha
+// 	addi     r0, r4, "__vt__27Container<Q24Game8Creature>"@l
+// 	stw      r0, 0(r30)
+// 	beq      lbl_801952C0
+// 	lis      r5, __vt__16GenericContainer@ha
+// 	li       r4, 0
+// 	addi     r0, r5, __vt__16GenericContainer@l
+// 	stw      r0, 0(r30)
+// 	bl       __dt__5CNodeFv
 
-/*
- * --INFO--
- * Address:	8019527C
- * Size:	000070
- */
-void Container<Game::Creature>::~Container()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_801952D0
-	lis      r4, "__vt__27Container<Q24Game8Creature>"@ha
-	addi     r0, r4, "__vt__27Container<Q24Game8Creature>"@l
-	stw      r0, 0(r30)
-	beq      lbl_801952C0
-	lis      r5, __vt__16GenericContainer@ha
-	li       r4, 0
-	addi     r0, r5, __vt__16GenericContainer@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
+// lbl_801952C0:
+// 	extsh.   r0, r31
+// 	ble      lbl_801952D0
+// 	mr       r3, r30
+// 	bl       __dl__FPv
 
-lbl_801952C0:
-	extsh.   r0, r31
-	ble      lbl_801952D0
-	mr       r3, r30
-	bl       __dl__FPv
-
-lbl_801952D0:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// lbl_801952D0:
+// 	lwz      r0, 0x14(r1)
+// 	mr       r3, r30
+// 	lwz      r31, 0xc(r1)
+// 	lwz      r30, 8(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801952EC
  * Size:	000210
  */
-void setPos__Q24Game6CPlateFR10Vector3f fR10Vector3f f(void)
+// void setPos__Q24Game6CPlateFR10Vector3f fR10Vector3f f(void)
+void CPlate::setPos(Vector3f& position, float directionMaybe,
+                    Vector3f& velocity, float p4)
 {
+
 	/*
 	stwu     r1, -0x40(r1)
 	lfs      f4, 0xe4(r3)
@@ -602,7 +648,8 @@ lbl_801954C0:
  * Address:	801954FC
  * Size:	00020C
  */
-void setPosGray__Q24Game6CPlateFR10Vector3f fR10Vector3f f(void)
+// void setPosGray__Q24Game6CPlateFR10Vector3f fR10Vector3f f(void)
+void CPlate::setPosGray(Vector3f& p1, float p2, Vector3f& p3, float p4)
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -762,12 +809,11 @@ lbl_801956CC:
  * Address:	........
  * Size:	00004C
  */
-void setPosNeutral__Q24Game6CPlateFR10Vector3f fR10Vector3f f(void)
+// void setPosNeutral__Q24Game6CPlateFR10Vector3f fR10Vector3f f(void)
+void CPlate::setPosNeutral(Vector3f& p1, float p2, Vector3f& p3, float p4)
 {
 	// UNUSED FUNCTION
 }
-
-namespace Game {
 
 /*
  * --INFO--
@@ -993,7 +1039,7 @@ void CPlate::swapSlot(int, int)
  * Address:	80195990
  * Size:	000024
  */
-void CPlate::validSlot(int)
+bool CPlate::validSlot(int)
 {
 	/*
 	cmpwi    r4, 0
@@ -1383,14 +1429,13 @@ lbl_80195E34:
 	*/
 }
 
-} // namespace Game
-
 /*
  * --INFO--
  * Address:	80195E54
  * Size:	0001E0
  */
-void rearrangeSlot__Q24Game6CPlateFR10Vector3f fR10Vector3f(void)
+// void rearrangeSlot__Q24Game6CPlateFR10Vector3f fR10Vector3f(void)
+void CPlate::rearrangeSlot(Vector3f& p1, float p2, Vector3f& p3)
 {
 	/*
 	stwu     r1, -0x60(r1)
@@ -1539,7 +1584,8 @@ lbl_80196008:
  * Address:	80196034
  * Size:	0000C4
  */
-void getSlotPosition__Q24Game6CPlateFiR10Vector3f(void)
+// void getSlotPosition__Q24Game6CPlateFiR10Vector3f(void)
+void CPlate::getSlotPosition(int p1, Vector3f& p2)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1601,8 +1647,6 @@ lbl_8019609C:
 	blr
 	*/
 }
-
-namespace Game {
 
 /*
  * --INFO--
@@ -1970,20 +2014,18 @@ lbl_8019652C:
 }
 
 /*
+ * update__Q24Game6CPlateFv
+ *
  * --INFO--
  * Address:	8019659C
  * Size:	000018
  */
 void CPlate::update(void)
 {
-	/*
-	lbz      r4, 0x100(r3)
-	cmplwi   r4, 0
-	beqlr
-	addi     r0, r4, -1
-	stb      r0, 0x100(r3)
-	blr
-	*/
+	if (_100 == 0) {
+		return;
+	}
+	_100--;
 }
 
 /*
@@ -2001,82 +2043,82 @@ void CPlate::directDraw(Graphics&)
  * Address:	801965B4
  * Size:	000080
  */
-CPlate::~CPlate(void)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80196618
-	lis      r4, __vt__Q24Game6CPlate@ha
-	addi     r0, r4, __vt__Q24Game6CPlate@l
-	stw      r0, 0(r30)
-	beq      lbl_80196608
-	lis      r4, "__vt__27Container<Q24Game8Creature>"@ha
-	addi     r0, r4, "__vt__27Container<Q24Game8Creature>"@l
-	stw      r0, 0(r30)
-	beq      lbl_80196608
-	lis      r5, __vt__16GenericContainer@ha
-	li       r4, 0
-	addi     r0, r5, __vt__16GenericContainer@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
+// CPlate::~CPlate(void)
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	stw      r31, 0xc(r1)
+// 	mr       r31, r4
+// 	stw      r30, 8(r1)
+// 	or.      r30, r3, r3
+// 	beq      lbl_80196618
+// 	lis      r4, __vt__Q24Game6CPlate@ha
+// 	addi     r0, r4, __vt__Q24Game6CPlate@l
+// 	stw      r0, 0(r30)
+// 	beq      lbl_80196608
+// 	lis      r4, "__vt__27Container<Q24Game8Creature>"@ha
+// 	addi     r0, r4, "__vt__27Container<Q24Game8Creature>"@l
+// 	stw      r0, 0(r30)
+// 	beq      lbl_80196608
+// 	lis      r5, __vt__16GenericContainer@ha
+// 	li       r4, 0
+// 	addi     r0, r5, __vt__16GenericContainer@l
+// 	stw      r0, 0(r30)
+// 	bl       __dt__5CNodeFv
 
-lbl_80196608:
-	extsh.   r0, r31
-	ble      lbl_80196618
-	mr       r3, r30
-	bl       __dl__FPv
+// lbl_80196608:
+// 	extsh.   r0, r31
+// 	ble      lbl_80196618
+// 	mr       r3, r30
+// 	bl       __dl__FPv
 
-lbl_80196618:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// lbl_80196618:
+// 	lwz      r0, 0x14(r1)
+// 	mr       r3, r30
+// 	lwz      r31, 0xc(r1)
+// 	lwz      r30, 8(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
 } // namespace Game
 
-/*
- * --INFO--
- * Address:	80196634
- * Size:	00002C
- */
-void Container<Game::Creature>::getObject(void*)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x20(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	80196634
+//  * Size:	00002C
+//  */
+// void Container<Game::Creature>::getObject(void*)
+// {
+// 	/*
+// 	stwu     r1, -0x10(r1)
+// 	mflr     r0
+// 	stw      r0, 0x14(r1)
+// 	lwz      r12, 0(r3)
+// 	lwz      r12, 0x20(r12)
+// 	mtctr    r12
+// 	bctrl
+// 	lwz      r0, 0x14(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x10
+// 	blr
+// 	*/
+// }
 
-/*
- * --INFO--
- * Address:	80196660
- * Size:	000008
- */
-u32 Container<Game::Creature>::getAt(int) { return 0x0; }
+// /*
+//  * --INFO--
+//  * Address:	80196660
+//  * Size:	000008
+//  */
+// u32 Container<Game::Creature>::getAt(int) { return 0x0; }
 
-/*
- * --INFO--
- * Address:	80196668
- * Size:	000008
- */
-u32 Container<Game::Creature>::getTo() { return 0x0; }
+// /*
+//  * --INFO--
+//  * Address:	80196668
+//  * Size:	000008
+//  */
+// u32 Container<Game::Creature>::getTo() { return 0x0; }

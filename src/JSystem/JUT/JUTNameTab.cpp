@@ -1,5 +1,7 @@
-#include "types.h"
+#include "Dolphin/string.h"
 #include "JSystem/JUT/JUTNameTab.h"
+#include "JSystem/JUT/ResNTAB.h"
+#include "types.h"
 
 /*
     Generated from dpostproc
@@ -18,35 +20,16 @@
  * Address:	8002ECCC
  * Size:	000040
  */
-JUTNameTab::JUTNameTab()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r4, __vt__10JUTNameTab@ha
-	stw      r0, 0x14(r1)
-	addi     r0, r4, __vt__10JUTNameTab@l
-	li       r4, 0
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r0, 0(r3)
-	bl       setResource__10JUTNameTabFPC7ResNTAB
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+JUTNameTab::JUTNameTab() { setResource(nullptr); }
 
 /*
  * --INFO--
  * Address:	8002ED0C
  * Size:	00003C
  */
-JUTNameTab::JUTNameTab(const ResNTAB*)
+JUTNameTab::JUTNameTab(const ResNTAB* resource)
 {
+	setResource(resource);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -81,8 +64,18 @@ JUTNameTab::JUTNameTab(const JUTNameTab&)
  * Address:	8002ED48
  * Size:	00003C
  */
-void JUTNameTab::setResource(const ResNTAB*)
+void JUTNameTab::setResource(const ResNTAB* resource)
 {
+	m_resource = resource;
+	if (resource) {
+		_0C = resource->_00;
+		_08 = resource->m_table[_0C];
+		// ushort v1 = _0C<<2;
+		// _08 = (const ResNTAB*)(resource->_04 + v1);
+		return;
+	}
+	_0C = 0;
+	_08 = 0;
 	/*
 	cmplwi   r4, 0
 	stw      r4, 4(r3)
@@ -109,8 +102,26 @@ lbl_8002ED74:
  * Address:	8002ED84
  * Size:	000098
  */
-void JUTNameTab::getIndex(const char*) const
+int JUTNameTab::getIndex(const char* p1) const
 {
+	const ResNTAB* currentTab = m_resource;
+	int cmpResult;
+	ushort keyCode = calcKeyCode(p1);
+	// const ResNTAB* head = m_resource;
+	ushort i = 0;
+	for (currentTab = currentTab->_04;; i++, currentTab = currentTab->_04) {
+		currentTab = currentTab->_04;
+		if (_0C <= i) {
+			return -1;
+		}
+		if ((currentTab->_00 == keyCode)
+		    && (cmpResult = strcmp(
+		            (const char*)(&m_resource->_00 + m_resource->_04[i]._02),
+		            p1),
+		        cmpResult == 0)) {
+			return i;
+		}
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -166,8 +177,11 @@ lbl_8002EE08:
  * Address:	8002EE1C
  * Size:	000030
  */
-char* JUTNameTab::getName(ushort) const
+char* JUTNameTab::getName(ushort index) const
 {
+	if (index < _0C) {
+		return m_resource[m_resource[0]->]
+	}
 	/*
 	lhz      r0, 0xc(r3)
 	clrlwi   r5, r4, 0x10
@@ -191,7 +205,7 @@ lbl_8002EE44:
  * Address:	8002EE4C
  * Size:	000030
  */
-void JUTNameTab::calcKeyCode(const char*) const
+ushort JUTNameTab::calcKeyCode(const char*) const
 {
 	/*
 	li       r5, 0

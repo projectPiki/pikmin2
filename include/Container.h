@@ -28,8 +28,8 @@ template <typename T> struct Container : public CNode {
 };
 
 template <typename T> struct ArrayContainer : public Container<T> {
-	virtual void writeObject(Stream&, T&);
-	virtual void readObject(Stream&, T&);
+	virtual void writeObject(Stream&, T&) {};
+	virtual void readObject(Stream&, T&) {};
 	virtual void write(Stream&);
 	virtual void read(Stream&);
 	virtual void alloc(int);

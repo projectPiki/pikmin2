@@ -1,3 +1,4 @@
+#include "Dolphin/math.h"
 #include "JSystem/JMath.h"
 #include "types.h"
 
@@ -68,7 +69,8 @@
  * Address:	........
  * Size:	0000D4
  */
-void atan___Q25JMath18TAtanTable<1024, float> CFf(void)
+// void atan___Q25JMath18TAtanTable<1024, float> CFf(void)
+float JMath::TAtanTable<1024, float>::atan_(float) const
 {
 	// UNUSED FUNCTION
 }
@@ -78,8 +80,128 @@ void atan___Q25JMath18TAtanTable<1024, float> CFf(void)
  * Address:	80035108
  * Size:	000258
  */
-void atan2___Q25JMath18TAtanTable<1024, float> CFff(void)
+// void atan2___Q25JMath18TAtanTable<1024, float> CFff(void)
+float JMath::TAtanTable<1024, float>::atan2_(float param_1, float param_2) const
 {
+	// const register float zero = 0.0f;
+	// float fVar1 = 0.0f;
+	float result;
+	if (param_1 >= 0.0f) {
+		if (param_2 >= 0.0f) {
+			if (param_2 >= param_1) {
+				// if (param_2 != 0.0f) {
+				// 	fVar1 = m_table[(int)((param_1 * 1024.0f) / param_2 +
+				// 0.5f)];
+				// }
+				// return param_2 == 0.0f ? fVar1 : m_table[(int)((param_1 *
+				// 1024.0f) / param_2 + 0.5f)]; fVar1 = param_2 == 0.0f ? fVar1
+				// : m_table[(int)((param_1 * 1024.0f) / param_2 + 0.5f)];
+				// return (param_2 == 0.0f ? 0.0f : m_table[(int)((param_1 *
+				// 1024.0f) / param_2 + 0.5f)]);
+				result = (param_2 == 0.0f
+				              ? 0.0f
+				              : m_table[(int)((param_1 * 1024.0f) / param_2
+				                              + 0.5f)]);
+			} else {
+				// if (param_1 != 0.0f) {
+				// 	fVar1 = m_table[(int)((param_2 * 1024.0f) / param_1 +
+				// 0.5f)];
+				// }
+				// fVar1 = HALF_PI - fVar1;
+				// return HALF_PI - (param_1 == 0.0f ? 0.0f :
+				// m_table[(int)((param_2 * 1024.0f) / param_1 + 0.5f)]);
+				result = HALF_PI
+				         - (param_1 == 0.0f
+				                ? 0.0f
+				                : m_table[(int)((param_2 * 1024.0f) / param_1
+				                                + 0.5f)]);
+			}
+		} else {
+			float fVar2 = -param_2;
+			if (fVar2 < param_1) {
+				// if (param_1 != 0.0f) {
+				// 	fVar1 = m_table[(int)((fVar2 * 1024.0f) / param_1 + 0.5f)];
+				// }
+				// fVar1 = fVar1 + HALF_PI;
+				// return (param_1 == 0.0f ? 0.0f : m_table[(int)((fVar2 *
+				// 1024.0f) / param_1 + 0.5f)]) + HALF_PI;
+				result
+				    = (param_1 == 0.0f
+				           ? 0.0f
+				           : m_table[(int)((fVar2 * 1024.0f) / param_1 + 0.5f)])
+				      + HALF_PI;
+			} else {
+				// if (fVar2 != 0.0f) {
+				// 	fVar1 = m_table[(int)((param_1 * 1024.0f) / fVar2 + 0.5f)];
+				// }
+				// fVar1 = PI - fVar1;
+				// return PI - (fVar2 == 0.0f ? 0.0f : m_table[(int)((param_1 *
+				// 1024.0f) / fVar2 + 0.5f)]);
+				result = PI
+				         - (fVar2 == 0.0f
+				                ? 0.0f
+				                : m_table[(int)((param_1 * 1024.0f) / fVar2
+				                                + 0.5f)]);
+			}
+		}
+	} else {
+		float fVar2 = -param_1;
+		if (param_2 < 0.0f) {
+			float fVar3 = -param_2;
+			if (fVar3 >= fVar2) {
+				// if (fVar3 != 0.0f) {
+				// 	fVar1 = m_table[(int)((fVar2 * 1024.0f) / fVar3 + 0.5f)];
+				// }
+				// fVar1 = fVar1 + -PI;
+				// return (fVar3 == 0.0f ? 0.0f : m_table[(int)((fVar2 *
+				// 1024.0f) / fVar3 + 0.5f)]) + -PI;
+				result
+				    = (fVar3 == 0.0f
+				           ? 0.0f
+				           : m_table[(int)((fVar2 * 1024.0f) / fVar3 + 0.5f)])
+				      + -PI;
+			} else {
+				// if (fVar2 != 0.0f) {
+				// 	fVar1 = m_table[(int)((fVar3 * 1024.0f) / fVar2 + 0.5f)];
+				// }
+				// fVar1 = -HALF_PI - fVar1;
+				// return -HALF_PI - (fVar2 == 0.0f ? 0.0f :
+				// m_table[(int)((fVar3 * 1024.0f) / fVar2 + 0.5f)]);
+				result
+				    = -HALF_PI
+				      - (fVar2 == 0.0f ? 0.0f
+				                       : m_table[(int)((fVar3 * 1024.0f) / fVar2
+				                                       + 0.5f)]);
+			}
+		} else {
+			if (param_2 < fVar2) {
+				// if (fVar2 != 0.0f) {
+				// 	fVar1 = m_table[(int)((param_2 * 1024.0f) / fVar2 + 0.5f)];
+				// }
+				// fVar1 = fVar1 + -HALF_PI;
+				// return (fVar2 == 0.0f ? 0.0f : m_table[(int)((param_2 *
+				// 1024.0f) / fVar2 + 0.5f)]) + -HALF_PI;
+				result
+				    = (fVar2 == 0.0f
+				           ? 0.0f
+				           : m_table[(int)((param_2 * 1024.0f) / fVar2 + 0.5f)])
+				      + -HALF_PI;
+			} else {
+				// if (param_2 != 0.0f) {
+				// 	fVar1 = m_table[(int)((fVar2 * 1024.0f) / param_2 + 0.5f)];
+				// }
+				// fVar1 = -fVar1;
+				// return -(param_2 == 0.0f ? 0.0f : m_table[(int)((fVar2 *
+				// 1024.0f) / param_2 + 0.5f)]);
+				result = -(
+				    param_2 == 0.0f
+				        ? 0.0f
+				        : m_table[(int)((fVar2 * 1024.0f) / param_2 + 0.5f)]);
+			}
+		}
+	}
+	// return fVar1;
+	return result;
 	/*
 	lfs      f0, lbl_80516738@sda21(r2)
 	stwu     r1, -0x10(r1)
@@ -280,146 +402,152 @@ lbl_80035354:
 	*/
 }
 
+namespace JMath {
+const TSinCosTable<2048, float> sincosTable_;
+const TAtanTable<1024, float> atanTable_;
+} // namespace JMath
+
 /*
  * --INFO--
  * Address:	80035360
  * Size:	0001C0
  */
-void __sinit_JMATrigonometric_cpp(void)
-{
-	/*
-	stwu     r1, -0x60(r1)
-	mflr     r0
-	stw      r0, 0x64(r1)
-	stfd     f31, 0x50(r1)
-	psq_st   f31, 88(r1), 0, qr0
-	stfd     f30, 0x40(r1)
-	psq_st   f30, 72(r1), 0, qr0
-	stfd     f29, 0x30(r1)
-	psq_st   f29, 56(r1), 0, qr0
-	stfd     f28, 0x20(r1)
-	psq_st   f28, 40(r1), 0, qr0
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	lis      r3, sincosTable___5JMath@ha
-	lis      r4, "__ct__Q23std9pair<f,f>Fv"@ha
-	addi     r3, r3, sincosTable___5JMath@l
-	li       r5, 0
-	addi     r4, r4, "__ct__Q23std9pair<f,f>Fv"@l
-	li       r6, 8
-	li       r7, 0x800
-	bl       __construct_array
-	lis      r3, sincosTable___5JMath@ha
-	lfd      f29, lbl_80516778@sda21(r2)
-	lfd      f31, lbl_80516758@sda21(r2)
-	addi     r29, r3, sincosTable___5JMath@l
-	lfd      f30, lbl_80516760@sda21(r2)
-	li       r30, 0
-	lis      r31, 0x4330
+// void __sinit_JMATrigonometric_cpp(void)
+// {
+// 	/*
+// 	stwu     r1, -0x60(r1)
+// 	mflr     r0
+// 	stw      r0, 0x64(r1)
+// 	stfd     f31, 0x50(r1)
+// 	psq_st   f31, 88(r1), 0, qr0
+// 	stfd     f30, 0x40(r1)
+// 	psq_st   f30, 72(r1), 0, qr0
+// 	stfd     f29, 0x30(r1)
+// 	psq_st   f29, 56(r1), 0, qr0
+// 	stfd     f28, 0x20(r1)
+// 	psq_st   f28, 40(r1), 0, qr0
+// 	stw      r31, 0x1c(r1)
+// 	stw      r30, 0x18(r1)
+// 	stw      r29, 0x14(r1)
+// 	lis      r3, sincosTable___5JMath@ha
+// 	lis      r4, "__ct__Q23std9pair<f,f>Fv"@ha
+// 	addi     r3, r3, sincosTable___5JMath@l
+// 	li       r5, 0
+// 	addi     r4, r4, "__ct__Q23std9pair<f,f>Fv"@l
+// 	li       r6, 8
+// 	li       r7, 0x800
+// 	bl       __construct_array
+// 	lis      r3, sincosTable___5JMath@ha
+// 	lfd      f29, lbl_80516778@sda21(r2)
+// 	lfd      f31, lbl_80516758@sda21(r2)
+// 	addi     r29, r3, sincosTable___5JMath@l
+// 	lfd      f30, lbl_80516760@sda21(r2)
+// 	li       r30, 0
+// 	lis      r31, 0x4330
 
-lbl_800353D4:
-	xoris    r0, r30, 0x8000
-	stw      r31, 8(r1)
-	stw      r0, 0xc(r1)
-	lfd      f0, 8(r1)
-	fsub     f0, f0, f29
-	fmul     f0, f0, f31
-	fdiv     f28, f0, f30
-	fmr      f1, f28
-	bl       sin
-	frsp     f0, f1
-	fmr      f1, f28
-	stfs     f0, 0(r29)
-	bl       cos
-	frsp     f0, f1
-	addi     r30, r30, 1
-	cmpwi    r30, 0x800
-	stfs     f0, 4(r29)
-	addi     r29, r29, 8
-	blt      lbl_800353D4
-	lis      r3, atanTable___5JMath@ha
-	lfd      f31, lbl_80516778@sda21(r2)
-	lfd      f30, lbl_80516768@sda21(r2)
-	addi     r29, r3, atanTable___5JMath@l
-	li       r30, 0
-	lis      r31, 0x4330
+// lbl_800353D4:
+// 	xoris    r0, r30, 0x8000
+// 	stw      r31, 8(r1)
+// 	stw      r0, 0xc(r1)
+// 	lfd      f0, 8(r1)
+// 	fsub     f0, f0, f29
+// 	fmul     f0, f0, f31
+// 	fdiv     f28, f0, f30
+// 	fmr      f1, f28
+// 	bl       sin
+// 	frsp     f0, f1
+// 	fmr      f1, f28
+// 	stfs     f0, 0(r29)
+// 	bl       cos
+// 	frsp     f0, f1
+// 	addi     r30, r30, 1
+// 	cmpwi    r30, 0x800
+// 	stfs     f0, 4(r29)
+// 	addi     r29, r29, 8
+// 	blt      lbl_800353D4
+// 	lis      r3, atanTable___5JMath@ha
+// 	lfd      f31, lbl_80516778@sda21(r2)
+// 	lfd      f30, lbl_80516768@sda21(r2)
+// 	addi     r29, r3, atanTable___5JMath@l
+// 	li       r30, 0
+// 	lis      r31, 0x4330
 
-lbl_80035438:
-	xoris    r0, r30, 0x8000
-	stw      r31, 8(r1)
-	stw      r0, 0xc(r1)
-	lfd      f0, 8(r1)
-	fsub     f0, f0, f31
-	fmul     f1, f0, f30
-	bl       atan
-	frsp     f0, f1
-	addi     r30, r30, 1
-	cmplwi   r30, 0x400
-	stfs     f0, 0(r29)
-	addi     r29, r29, 4
-	blt      lbl_80035438
-	lis      r3, atanTable___5JMath@ha
-	lfs      f1, lbl_80516738@sda21(r2)
-	addi     r4, r3, atanTable___5JMath@l
-	lfs      f0, lbl_80516770@sda21(r2)
-	lis      r3, asinAcosTable___5JMath@ha
-	stfs     f1, 0(r4)
-	lfd      f30, lbl_80516778@sda21(r2)
-	addi     r29, r3, asinAcosTable___5JMath@l
-	stfs     f0, 0x1000(r4)
-	li       r30, 0
-	lfd      f31, lbl_80516768@sda21(r2)
-	lis      r31, 0x4330
+// lbl_80035438:
+// 	xoris    r0, r30, 0x8000
+// 	stw      r31, 8(r1)
+// 	stw      r0, 0xc(r1)
+// 	lfd      f0, 8(r1)
+// 	fsub     f0, f0, f31
+// 	fmul     f1, f0, f30
+// 	bl       atan
+// 	frsp     f0, f1
+// 	addi     r30, r30, 1
+// 	cmplwi   r30, 0x400
+// 	stfs     f0, 0(r29)
+// 	addi     r29, r29, 4
+// 	blt      lbl_80035438
+// 	lis      r3, atanTable___5JMath@ha
+// 	lfs      f1, lbl_80516738@sda21(r2)
+// 	addi     r4, r3, atanTable___5JMath@l
+// 	lfs      f0, lbl_80516770@sda21(r2)
+// 	lis      r3, asinAcosTable___5JMath@ha
+// 	stfs     f1, 0(r4)
+// 	lfd      f30, lbl_80516778@sda21(r2)
+// 	addi     r29, r3, asinAcosTable___5JMath@l
+// 	stfs     f0, 0x1000(r4)
+// 	li       r30, 0
+// 	lfd      f31, lbl_80516768@sda21(r2)
+// 	lis      r31, 0x4330
 
-lbl_8003549C:
-	xoris    r0, r30, 0x8000
-	stw      r31, 8(r1)
-	stw      r0, 0xc(r1)
-	lfd      f0, 8(r1)
-	fsub     f0, f0, f30
-	fmul     f1, f0, f31
-	bl       asin
-	frsp     f0, f1
-	addi     r30, r30, 1
-	cmpwi    r30, 0x400
-	stfs     f0, 0(r29)
-	addi     r29, r29, 4
-	blt      lbl_8003549C
-	lfs      f1, lbl_80516738@sda21(r2)
-	lis      r3, asinAcosTable___5JMath@ha
-	lfs      f0, lbl_80516770@sda21(r2)
-	stfsu    f1, asinAcosTable___5JMath@l(r3)
-	stfs     f0, 0x1000(r3)
-	psq_l    f31, 88(r1), 0, qr0
-	lfd      f31, 0x50(r1)
-	psq_l    f30, 72(r1), 0, qr0
-	lfd      f30, 0x40(r1)
-	psq_l    f29, 56(r1), 0, qr0
-	lfd      f29, 0x30(r1)
-	psq_l    f28, 40(r1), 0, qr0
-	lfd      f28, 0x20(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r0, 0x64(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x60
-	blr
-	*/
-}
+// lbl_8003549C:
+// 	xoris    r0, r30, 0x8000
+// 	stw      r31, 8(r1)
+// 	stw      r0, 0xc(r1)
+// 	lfd      f0, 8(r1)
+// 	fsub     f0, f0, f30
+// 	fmul     f1, f0, f31
+// 	bl       asin
+// 	frsp     f0, f1
+// 	addi     r30, r30, 1
+// 	cmpwi    r30, 0x400
+// 	stfs     f0, 0(r29)
+// 	addi     r29, r29, 4
+// 	blt      lbl_8003549C
+// 	lfs      f1, lbl_80516738@sda21(r2)
+// 	lis      r3, asinAcosTable___5JMath@ha
+// 	lfs      f0, lbl_80516770@sda21(r2)
+// 	stfsu    f1, asinAcosTable___5JMath@l(r3)
+// 	stfs     f0, 0x1000(r3)
+// 	psq_l    f31, 88(r1), 0, qr0
+// 	lfd      f31, 0x50(r1)
+// 	psq_l    f30, 72(r1), 0, qr0
+// 	lfd      f30, 0x40(r1)
+// 	psq_l    f29, 56(r1), 0, qr0
+// 	lfd      f29, 0x30(r1)
+// 	psq_l    f28, 40(r1), 0, qr0
+// 	lfd      f28, 0x20(r1)
+// 	lwz      r31, 0x1c(r1)
+// 	lwz      r30, 0x18(r1)
+// 	lwz      r0, 0x64(r1)
+// 	lwz      r29, 0x14(r1)
+// 	mtlr     r0
+// 	addi     r1, r1, 0x60
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	80035520
  * Size:	000010
  */
-void __ct__Q23std9pair<float, float> Fv(void)
-{
-	/*
-	lfs      f0, lbl_80516738@sda21(r2)
-	stfs     f0, 0(r3)
-	stfs     f0, 4(r3)
-	blr
-	*/
-}
+// void __ct__Q23std9pair<float, float> Fv(void)
+// std::pair<float, float>::pair()
+// {
+// 	/*
+// 	lfs      f0, lbl_80516738@sda21(r2)
+// 	stfs     f0, 0(r3)
+// 	stfs     f0, 4(r3)
+// 	blr
+// 	*/
+// }

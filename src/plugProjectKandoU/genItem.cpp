@@ -1,3 +1,5 @@
+#include "Game/gameGenerator.h"
+#include "Game/genItem.h"
 #include "types.h"
 
 /*
@@ -299,7 +301,7 @@ namespace Game {
  * Address:	801ACF54
  * Size:	000050
  */
-void GenItem::getShape(void)
+J3DModelData* GenItem::getShape(void)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -575,7 +577,7 @@ void GenItem::ramLoadParameters(Stream&) { }
  * Address:	801AD25C
  * Size:	000078
  */
-void GenItem::generate(Game::Generator*)
+Creature* GenItem::generate(Game::Generator*)
 {
 	/*
 	stwu     r1, -0x20(r1)

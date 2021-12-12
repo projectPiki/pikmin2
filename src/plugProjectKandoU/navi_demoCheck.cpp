@@ -1,3 +1,4 @@
+#include "Game/Navi.h"
 #include "types.h"
 
 /*
@@ -1848,7 +1849,7 @@ lbl_80220B34:
  * Address:	80220B60
  * Size:	000058
  */
-void Vector3f::distance(Vector3f&)
+template <> float Vector3f::distance(Vector3f&)
 {
 	/*
 	lfs      f1, 4(r3)

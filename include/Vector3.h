@@ -35,6 +35,30 @@ template <typename T> struct Vector3 {
 		y = other.y;
 		z = other.z;
 	}
+	// 	inline Vector3& operator+(const Vector3 other) {
+	//     Vector3 newVector = *this;
+	//     x += other.x;
+	//     y += other.y;
+	//     z += other.z;
+	//     return newVector;
+	// }
+	// inline Vector3& operator*(const float other) {
+	//     Vector3 newVector = *this;
+	//     newVector.x *= other;
+	//     newVector.y *= other;
+	//     newVector.z *= other;
+	//     return newVector;
+	// }
+	// inline void operator*=(const float other) {
+	//     this->x *= other;
+	//     this->y *= other;
+	//     this->z *= other;
+	// }
+	// inline void operator+=(const Vector3& other) {
+	//     this->x += other.x;
+	//     this->y += other.y;
+	//     this->z += other.z;
+	// }
 	inline T distance(Vector3<T>&);
 	void length() const;
 	float normalise();

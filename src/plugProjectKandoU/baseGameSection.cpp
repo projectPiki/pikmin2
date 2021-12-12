@@ -1,5 +1,11 @@
+#include "Controller.h"
+#include "DvdThreadCommand.h"
 #include "Game/BaseGameSection.h"
-#include "og/Screen//ogScreen.h"
+#include "Game/BaseHIOSection.h"
+#include "Game/GameSystem.h"
+#include "JSystem/JUT/JUTException.h"
+#include "og/Screen/ogScreen.h"
+#include "System.h"
 #include "types.h"
 
 /*
@@ -866,8 +872,42 @@ namespace Game {
  * Address:	8014ADA0
  * Size:	00021C
  */
-BaseGameSection::BaseGameSection(JKRHeap*)
+BaseGameSection::BaseGameSection(JKRHeap* heap)
+    : BaseHIOSection(heap)
+    , m_dvdThreadCommand()
 {
+	_164 = 0;
+	setDisplay(JFWDisplay::createManager(nullptr, _1C, 2, true), 1);
+	m_playerMode         = 2;
+	m_draw2DCreature     = nullptr;
+	m_treasureZoomCamera = nullptr;
+	m_kanteiDelegate     = new Delegate1<BaseGameSection, Rectf&>(
+        this, &BaseGameSection::onKanteiDone);
+	cameraMgrCallback = new Delegate1<BaseGameSection, CameraArg*>(
+	    this, &BaseGameSection::onCameraBlendFinished);
+	m_blendCamera    = nullptr;
+	Game::cameraMgr  = nullptr;
+	Game::rumbleMgr  = nullptr;
+	Game::shadowMgr  = nullptr;
+	lifeGaugeMgr     = nullptr;
+	carryInfoMgr     = nullptr;
+	m_lightMgr       = nullptr;
+	m_splitter       = nullptr;
+	m_theExpHeap     = nullptr;
+	theExpHeap       = nullptr;
+	_100             = nullptr;
+	_168             = nullptr;
+	m_fbTexture      = nullptr;
+	m_xfbImage       = nullptr;
+	m_xfbTexture1    = 0;
+	m_xfbTexture2    = 0;
+	_170             = 0;
+	m_texData1       = 0;
+	_E0              = 0;
+	m_blackFader     = new BlackFader();
+	m_wipeInFader    = new WipeInFader();
+	m_wipeOutFader   = new WipeOutFader();
+	m_wipeOutInFader = new WipeOutInFader();
 	/*
 stwu     r1, -0x30(r1)
 mflr     r0
@@ -1154,8 +1194,12 @@ namespace Game {
  * Address:	8014B0FC
  * Size:	000074
  */
-void BaseGameSection::useSpecificFBTexture(JUTTexture*)
+void BaseGameSection::useSpecificFBTexture(JUTTexture* texture)
 {
+	JUT_ASSERTLINE(1523, m_fbTexture == nullptr, "２回は無理ｗ\n");
+	m_fbTexture           = m_xfbImage;
+	m_xfbImage            = texture;
+	Game::gameSystem->_54 = m_xfbImage;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1196,8 +1240,13 @@ lbl_8014B140:
  * Address:	8014B170
  * Size:	00006C
  */
-void BaseGameSection::restoreFBTexture(void)
+void BaseGameSection::restoreFBTexture()
 {
+	JUT_ASSERTLINE(1533, m_fbTexture == nullptr,
+	               "useSpecificFBTexture してないｗ\n");
+	m_xfbImage            = m_fbTexture;
+	m_fbTexture           = nullptr;
+	Game::gameSystem->_54 = m_xfbImage;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1324,8 +1373,10 @@ lbl_8014B2D0:
  * Address:	8014B2F0
  * Size:	000050
  */
-void BaseGameSection::loadSync(IDelegate*, bool)
+void BaseGameSection::loadSync(IDelegate* delegate, bool p2)
 {
+	sys->dvdLoadUseCallBack(&m_dvdThreadCommand, delegate);
+	waitSyncLoad(p2);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1766,7 +1817,7 @@ void BaseGameSection::section_fadeout(void) { }
  * Address:	8014B87C
  * Size:	0003A8
  */
-void BaseGameSection::doUpdate(void)
+bool BaseGameSection::doUpdate()
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -4765,7 +4816,7 @@ void BaseGameSection::on_setCamController(int) { }
  * Address:	........
  * Size:	000018
  */
-void BaseGameSection::getNumWindows(void)
+int BaseGameSection::getNumWindows()
 {
 	// UNUSED FUNCTION
 }
@@ -4775,7 +4826,7 @@ void BaseGameSection::getNumWindows(void)
  * Address:	........
  * Size:	000008
  */
-void BaseGameSection::getActivePlayerID(void)
+int BaseGameSection::getActivePlayerID()
 {
 	// UNUSED FUNCTION
 }
@@ -4892,40 +4943,41 @@ lbl_8014E008:
 	*/
 }
 
-} // namespace Game
-
 /*
+ * Generated.
  * --INFO--
  * Address:	8014E120
  * Size:	000008
  */
-void Camera::getSoundMatrixPtr()
-{
-	/*
-	addi     r3, r3, 0x84
-	blr
-	*/
-}
+// void Camera::getSoundMatrixPtr()
+// {
+// 	/*
+// 	addi     r3, r3, 0x84
+// 	blr
+// 	*/
+// }
 
 /*
+ * Generated.
  * --INFO--
  * Address:	8014E128
  * Size:	000008
  */
-void Camera::getSoundPositionPtr()
-{
-	/*
-	addi     r3, r3, 0x78
-	blr
-	*/
-}
+// void Camera::getSoundPositionPtr()
+// {
+// 	/*
+// 	addi     r3, r3, 0x78
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	8014E130
  * Size:	00068C
  */
-void prepareHoleIn__Q24Game15BaseGameSectionFR10Vector3f b(void)
+// void prepareHoleIn__Q24Game15BaseGameSectionFR10Vector3f b(void)
+void BaseGameSection::prepareHoleIn(Vector3f&, bool)
 {
 	/*
 	stwu     r1, -0x80(r1)
@@ -5411,7 +5463,8 @@ lbl_8014E7A0:
  * Address:	8014E7BC
  * Size:	000714
  */
-void prepareFountainOn__Q24Game15BaseGameSectionFR10Vector3f(void)
+// void prepareFountainOn__Q24Game15BaseGameSectionFR10Vector3f(void)
+void BaseGameSection::prepareFountainOn(Vector3f&)
 {
 	/*
 	stwu     r1, -0x60(r1)
@@ -5925,8 +5978,6 @@ lbl_8014EEB8:
 	blr
 	*/
 }
-
-namespace Game {
 
 /*
  * --INFO--
@@ -6710,14 +6761,13 @@ lbl_8014F740:
 	*/
 }
 
-} // namespace Game
-
 /*
  * --INFO--
  * Address:	8014F754
  * Size:	00004C
  */
-void changeGeneratorCursor__Q24Game15BaseGameSectionFR10Vector3f(void)
+// void changeGeneratorCursor__Q24Game15BaseGameSectionFR10Vector3f(void)
+void BaseGameSection::changeGeneratorCursor(Vector3f&)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -6741,8 +6791,6 @@ void changeGeneratorCursor__Q24Game15BaseGameSectionFR10Vector3f(void)
 	blr
 	*/
 }
-
-namespace Game {
 
 /*
  * --INFO--
@@ -6958,7 +7006,7 @@ lbl_8014FA20:
  * Address:	........
  * Size:	000074
  */
-void BaseGameSection::initBlendCamera(void)
+void BaseGameSection::initBlendCamera()
 {
 	// UNUSED FUNCTION
 }
@@ -7082,7 +7130,7 @@ lbl_8014FB88:
  * Address:	........
  * Size:	0000DC
  */
-void BaseGameSection::blend1to2(void)
+void BaseGameSection::blend1to2()
 {
 	// UNUSED FUNCTION
 }
@@ -7092,7 +7140,7 @@ void BaseGameSection::blend1to2(void)
  * Address:	........
  * Size:	0000DC
  */
-void BaseGameSection::blend2to1(void)
+void BaseGameSection::blend2to1()
 {
 	// UNUSED FUNCTION
 }
@@ -7144,7 +7192,7 @@ lbl_8014FBE0:
  * Address:	........
  * Size:	00000C
  */
-void BaseGameSection::startSplit(void)
+void BaseGameSection::startSplit()
 {
 	// UNUSED FUNCTION
 }
@@ -7154,7 +7202,7 @@ void BaseGameSection::startSplit(void)
  * Address:	........
  * Size:	00000C
  */
-void BaseGameSection::changeSplit(void)
+void BaseGameSection::changeSplit()
 {
 	// UNUSED FUNCTION
 }
@@ -7316,7 +7364,7 @@ void BaseGameSection::doDirectDraw(Graphics&, Viewport*) { }
  * Address:	........
  * Size:	000078
  */
-void BaseGameSection::startHeap(void)
+void BaseGameSection::startHeap()
 {
 	// UNUSED FUNCTION
 }
@@ -7528,6 +7576,7 @@ lbl_8014FFE4:
 } // namespace Game
 
 /*
+ * Controller
  * --INFO--
  * Address:	8015004C
  * Size:	000060
@@ -9547,18 +9596,20 @@ lbl_80151824:
 }
 
 /*
+ * Generated?
  * --INFO--
  * Address:	80151840
  * Size:	000004
  */
-void CullPlane::readObject(Stream&, Plane&) { }
+// void CullPlane::readObject(Stream&, Plane&) { }
 
 /*
+ * Generated?
  * --INFO--
  * Address:	80151844
  * Size:	000004
  */
-void CullPlane::writeObject(Stream&, Plane&) { }
+// void CullPlane::writeObject(Stream&, Plane&) { }
 
 /*
  * --INFO--
@@ -9618,7 +9669,7 @@ namespace Game {
  * Address:	801518D8
  * Size:	000010
  */
-void BaseGameSection::forceFinish(void)
+bool BaseGameSection::forceFinish(void)
 {
 	/*
 	li       r0, 1
@@ -9799,21 +9850,23 @@ u32 Section::doLoading() { return 0x0; }
  * Address:	80151958
  * Size:	000008
  */
-u32 Section::isFinishable() { return 0x1; }
+bool Section::isFinishable() { return true; }
 
 /*
+ * Generated?
  * --INFO--
  * Address:	80151960
  * Size:	000004
  */
-void ArrayContainer<Plane>::writeObject(Stream&, Plane&) { }
+// void ArrayContainer<Plane>::writeObject(Stream&, Plane&) { }
 
 /*
+ * Generated?
  * --INFO--
  * Address:	80151964
  * Size:	000004
  */
-void ArrayContainer<Plane>::readObject(Stream&, Plane&) { }
+// void ArrayContainer<Plane>::readObject(Stream&, Plane&) { }
 
 /*
  * --INFO--

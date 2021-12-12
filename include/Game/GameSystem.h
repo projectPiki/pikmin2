@@ -7,6 +7,7 @@
 
 struct Graphics;
 struct JUTTexture;
+struct LightMgr;
 struct Viewport;
 namespace Game {
 struct BaseGameSection;
@@ -51,13 +52,14 @@ struct GameSystem : public NodeObjectMgr<GenericObjectMgr> {
 	void addObjectMgr_reuse(TObjectNode<GenericObjectMgr>*);
 	void addObjectMgr(GenericObjectMgr*);
 	s32 calcFrameDist(int);
+	void detachAllMgr();
 	void detachObjectMgr_reuse(GenericObjectMgr*);
 	void detachObjectMgr(GenericObjectMgr*);
-	void getLightMgr();
+	LightMgr* getLightMgr();
 	void init();
-	void isZukanMode();
-	void paused_soft();
-	void paused();
+	bool isZukanMode();
+	bool paused_soft();
+	bool paused();
 	void setDrawBuffer(int);
 	void setFrozen(bool, char*);
 	void setMoviePause(bool, char*);

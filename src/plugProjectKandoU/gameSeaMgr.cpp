@@ -1,4 +1,6 @@
+#include "Game/seaMgr.h"
 #include "types.h"
+#include "Vector3.h"
 
 /*
     Generated from dpostproc
@@ -1197,7 +1199,7 @@ lbl_801AEF88:
  * Address:	801AEF9C
  * Size:	000104
  */
-void AABBWaterBox::inWater(Sys::Sphere&)
+bool AABBWaterBox::inWater(Sys::Sphere&)
 {
 	/*
 	lfs      f1, 0x34(r3)
@@ -1295,7 +1297,7 @@ lbl_801AF098:
  * Address:	801AF0A0
  * Size:	0000E4
  */
-void AABBWaterBox::inWater2d(Sys::Sphere&)
+bool AABBWaterBox::inWater2d(Sys::Sphere&)
 {
 	/*
 	lfs      f1, 0(r4)
@@ -1378,19 +1380,16 @@ lbl_801AF17C:
 	*/
 }
 
-} // namespace Game
-
 /*
  * --INFO--
  * Address:	........
  * Size:	000060
  */
-void create__Q24Game12AABBWaterBoxFR10Vector3f R10Vector3f(void)
+// void create__Q24Game12AABBWaterBoxFR10Vector3f R10Vector3f(void)
+void AABBWaterBox::create(Vector3f&, Vector3f&)
 {
 	// UNUSED FUNCTION
 }
-
-namespace Game {
 
 /*
  * --INFO--
@@ -1999,7 +1998,7 @@ void WaterBox::attachModel(J3DModelData*, Sys::MatTexAnimation*, float) { }
  * Address:	801AF86C
  * Size:	000214
  */
-void SeaMgr::findWater(Sys::Sphere&)
+WaterBox* SeaMgr::findWater(Sys::Sphere&)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2163,7 +2162,7 @@ lbl_801AFA68:
  * Address:	801AFA80
  * Size:	000214
  */
-void SeaMgr::findWater2d(Sys::Sphere&)
+WaterBox* SeaMgr::findWater2d(Sys::Sphere&)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -3324,88 +3323,88 @@ void __sinit_gameSeaMgr_cpp(void)
  * Address:	801B0788
  * Size:	000008
  */
-void NodeObjectMgr<Game::WaterBox>::@28 @resetMgr()
-{
-	/*
-	addi     r3, r3, -28
-	b        "resetMgr__31NodeObjectMgr<Q24Game8WaterBox>Fv"
-	*/
-}
+// void NodeObjectMgr<Game::WaterBox>::@28 @resetMgr()
+// {
+// 	/*
+// 	addi     r3, r3, -28
+// 	b        "resetMgr__31NodeObjectMgr<Q24Game8WaterBox>Fv"
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801B0790
  * Size:	000008
  */
-void ObjectMgr<Game::WaterBox>::@28 @doDirectDraw(Graphics&)
-{
-	/*
-	addi     r3, r3, -28
-	b        "doDirectDraw__27ObjectMgr<Q24Game8WaterBox>FR8Graphics"
-	*/
-}
+// void ObjectMgr<Game::WaterBox>::@28 @doDirectDraw(Graphics&)
+// {
+// 	/*
+// 	addi     r3, r3, -28
+// 	b        "doDirectDraw__27ObjectMgr<Q24Game8WaterBox>FR8Graphics"
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801B0798
  * Size:	000008
  */
-void ObjectMgr<Game::WaterBox>::@28 @doSimulation(float)
-{
-	/*
-	addi     r3, r3, -28
-	b        "doSimulation__27ObjectMgr<Q24Game8WaterBox>Ff"
-	*/
-}
+// void ObjectMgr<Game::WaterBox>::@28 @doSimulation(float)
+// {
+// 	/*
+// 	addi     r3, r3, -28
+// 	b        "doSimulation__27ObjectMgr<Q24Game8WaterBox>Ff"
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801B07A0
  * Size:	000008
  */
-void ObjectMgr<Game::WaterBox>::@28 @doViewCalc()
-{
-	/*
-	addi     r3, r3, -28
-	b        "doViewCalc__27ObjectMgr<Q24Game8WaterBox>Fv"
-	*/
-}
+// void ObjectMgr<Game::WaterBox>::@28 @doViewCalc()
+// {
+// 	/*
+// 	addi     r3, r3, -28
+// 	b        "doViewCalc__27ObjectMgr<Q24Game8WaterBox>Fv"
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801B07A8
  * Size:	000008
  */
-void ObjectMgr<Game::WaterBox>::@28 @doSetView(int)
-{
-	/*
-	addi     r3, r3, -28
-	b        "doSetView__27ObjectMgr<Q24Game8WaterBox>Fi"
-	*/
-}
+// void ObjectMgr<Game::WaterBox>::@28 @doSetView(int)
+// {
+// 	/*
+// 	addi     r3, r3, -28
+// 	b        "doSetView__27ObjectMgr<Q24Game8WaterBox>Fi"
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801B07B0
  * Size:	000008
  */
-void ObjectMgr<Game::WaterBox>::@28 @doEntry()
-{
-	/*
-	addi     r3, r3, -28
-	b        "doEntry__27ObjectMgr<Q24Game8WaterBox>Fv"
-	*/
-}
+// void ObjectMgr<Game::WaterBox>::@28 @doEntry()
+// {
+// 	/*
+// 	addi     r3, r3, -28
+// 	b        "doEntry__27ObjectMgr<Q24Game8WaterBox>Fv"
+// 	*/
+// }
 
 /*
  * --INFO--
  * Address:	801B07B8
  * Size:	000008
  */
-void ObjectMgr<Game::WaterBox>::@28 @doAnimation()
-{
-	/*
-	addi     r3, r3, -28
-	b        "doAnimation__27ObjectMgr<Q24Game8WaterBox>Fv"
-	*/
-}
+// void ObjectMgr<Game::WaterBox>::@28 @doAnimation()
+// {
+// 	/*
+// 	addi     r3, r3, -28
+// 	b        "doAnimation__27ObjectMgr<Q24Game8WaterBox>Fv"
+// 	*/
+// }

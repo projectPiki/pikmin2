@@ -1,3 +1,4 @@
+#include "Game/Navi.h"
 #include "types.h"
 
 /*
@@ -1394,6 +1395,8 @@ lbl_80140040:
 	*/
 }
 
+} // namespace efx
+
 /*
  * --INFO--
  * Address:	8014005C
@@ -1427,8 +1430,6 @@ ContextChasePos::ContextChasePos()
 }
 
 namespace Game {
-
-} // namespace Game
 
 /*
  * --INFO--
@@ -1617,8 +1618,9 @@ lbl_801402D4:
  * Address:	80140340
  * Size:	000008
  */
-void Navi::getCreatureID()
+int Navi::getCreatureID()
 {
+	return m_naviIndex;
 	/*
 	lhz      r3, 0x2dc(r3)
 	blr
@@ -2387,7 +2389,7 @@ lbl_80140C64:
 	*/
 }
 
-} // namespace efx
+} // namespace Game
 
 /*
  * --INFO--

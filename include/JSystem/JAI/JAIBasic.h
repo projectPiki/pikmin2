@@ -29,6 +29,14 @@ struct JAIBasic {
 	u32 _14;                    // _14
 	u32 _18;                    // _18
 	u32 _1C;                    // _1C
+
+	static JAIBasic* msBasic;
+	static JKRHeap* msCurrentHeap;
+	static bool msStopMode;
+	static ulong msAudioStopTime;
+	static float msDspLevel;
+	static float msAutoLevel;
+	static float msAutoDif;
 };
 
 #endif

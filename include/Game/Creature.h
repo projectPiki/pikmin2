@@ -139,7 +139,7 @@ struct Creature : public CellObject {
 	virtual void movieSetAnimationLastFrame();                 // _118
 	virtual void movieSetTranslation(Vector3f&, float);        // _11C
 	virtual void movieSetFaceDir(float);                       // _120
-	virtual void movieGotoPosition(Vector3f&);                 // _124
+	virtual bool movieGotoPosition(Vector3f&);                 // _124
 	virtual void movieUserCommand(ulong, MoviePlayer*);        // _128
 	virtual void getShadowParam(ShadowParam&);                 // _12C
 	virtual bool needShadow();                                 // _130

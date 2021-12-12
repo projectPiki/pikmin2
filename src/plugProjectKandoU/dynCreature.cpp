@@ -1,3 +1,4 @@
+#include "Game/DynCreature.h"
 #include "types.h"
 
 /*

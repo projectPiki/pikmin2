@@ -12,6 +12,7 @@ struct SeaMgr : public NodeObjectMgr<WaterBox> {
 	virtual ~SeaMgr(); // _00 of vtable 1
 
 	void addSeaMgr(SeaMgr*, Matrixf&);
+	void addWaterBox(WaterBox*);
 	WaterBox* findWater(Sys::Sphere&);
 	WaterBox* findWater2d(Sys::Sphere&);
 	void read(Stream&);

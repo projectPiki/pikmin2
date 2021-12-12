@@ -200,5 +200,6 @@ struct JKRExpHeap : public JKRHeap {
 void JKRDefaultMemoryErrorRoutine(void*, ulong, int);
 
 void* operator new(size_t, JKRHeap*, int);
+void* operator new[](size_t, JKRHeap*, int);
 
 #endif

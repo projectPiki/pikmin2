@@ -38,8 +38,22 @@ struct SeqUpdateData {
 };
 struct SoundInfo {
 };
-struct SoundTable {
-};
+namespace SoundTable {
+	void init(uchar*, ulong);
+	SoundInfo* getInfoPointer(ulong);
+	void getInfoFormat(ulong);
+	void setInfoTrack(ulong, uchar);
+	uchar getCategotyMax(void);
+	void getSoundMax(uchar);
+	void getSoundTablePointer(void);
+
+	extern u8 mVersion;
+	extern u8 mCategotyMax;
+	extern ushort* mSoundMax;
+	extern ulong mDataSize;
+	extern SoundInfo** mPointerCategory;
+	extern uchar* mAddress;
+}; // namespace SoundTable
 
 void deleteTmpDVDFile(uchar**);
 void loadTmpDVDFile(char*, uchar**);

@@ -10,4 +10,7 @@
 #define USAFINAL    2
 #define BUILDTARGET USAFINAL
 
+// The following are constants that mods might be interested in tweaking.
+#define GENERATOR_CACHE_HEAP_SIZE 0xA000
+
 #endif

@@ -1,4 +1,7 @@
+#include "Dolphin/stl.h"
 #include "Game/gameGeneratorCache.h"
+#include "JSystem/JUT/JUTException.h"
+#include "stream.h"
 #include "types.h"
 
 /*
@@ -190,7 +193,7 @@ namespace Game {
  * Address:	801F1908
  * Size:	000088
  */
-GeneratorCache::GeneratorCache(void)
+GeneratorCache::GeneratorCache()
     : _00(-1)
     , _3C(-1)
     , m_generator()
@@ -214,7 +217,7 @@ GeneratorCache::GeneratorCache(void)
  * Address:	801F1990
  * Size:	000060
  */
-CourseCache::~CourseCache(void)
+CourseCache::~CourseCache()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -251,7 +254,7 @@ lbl_801F19D4:
  * Address:	801F19F0
  * Size:	000098
  */
-void GeneratorCache::clearCache(void)
+void GeneratorCache::clearCache()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -306,7 +309,7 @@ lbl_801F1A40:
  * Address:	........
  * Size:	000098
  */
-GeneratorCache::~GeneratorCache(void)
+GeneratorCache::~GeneratorCache()
 {
 	// UNUSED FUNCTION
 }
@@ -316,16 +319,12 @@ GeneratorCache::~GeneratorCache(void)
  * Address:	801F1A88
  * Size:	000018
  */
-void GeneratorCache::clearGeneratorList(void)
+void GeneratorCache::clearGeneratorList()
 {
-	/*
-	li       r0, 0
-	stw      r0, 0x9c(r3)
-	stw      r0, 0x98(r3)
-	stw      r0, 0x94(r3)
-	stw      r0, 0x90(r3)
-	blr
-	*/
+	m_generator._10 = nullptr;
+	m_generator._0C = nullptr;
+	m_generator._08 = nullptr;
+	m_generator._04 = nullptr;
 }
 
 /*
@@ -333,48 +332,20 @@ void GeneratorCache::clearGeneratorList(void)
  * Address:	801F1AA0
  * Size:	000078
  */
-void GeneratorCache::addGenerator(Game::Generator*)
+void GeneratorCache::addGenerator(Game::Generator* newGenerator)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	li       r31, 0
-	stw      r30, 0x18(r1)
-	mr       r30, r4
-	stw      r29, 0x14(r1)
-	mr       r29, r3
-	bl       getFirstGenerator__Q24Game14GeneratorCacheFv
-	b        lbl_801F1AE0
-
-lbl_801F1ACC:
-	lbz      r0, 0xac(r3)
-	cmplwi   r0, 0
-	bne      lbl_801F1ADC
-	addi     r31, r31, 1
-
-lbl_801F1ADC:
-	lwz      r3, 4(r3)
-
-lbl_801F1AE0:
-	cmplwi   r3, 0
-	bne      lbl_801F1ACC
-	cmpwi    r31, 0x50
-	bge      lbl_801F1AFC
-	mr       r4, r30
-	addi     r3, r29, 0x8c
-	bl       add__5CNodeFP5CNode
-
-lbl_801F1AFC:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	int count = 0;
+	for (Generator* gen = getFirstGenerator(); gen != nullptr;
+	     gen            = (Generator*)gen->_04) {
+		if (gen->_AC == 0) {
+			count++;
+		}
+	}
+	// TODO: Remove magic number
+	// TODO: Move this to checkOverflow.
+	if (count < 0x50) {
+		m_generator.add(newGenerator);
+	}
 }
 
 /*
@@ -382,12 +353,9 @@ lbl_801F1AFC:
  * Address:	801F1B18
  * Size:	000008
  */
-void GeneratorCache::getFirstGenerator(void)
+Generator* GeneratorCache::getFirstGenerator()
 {
-	/*
-	lwz      r3, 0x9c(r3)
-	blr
-	*/
+	return (Generator*)m_generator._10;
 }
 
 /*
@@ -405,8 +373,14 @@ void GeneratorCache::findRamGenerator(int)
  * Address:	801F1B20
  * Size:	000024
  */
-void GeneratorCache::getTotalMePikmins(void)
+int GeneratorCache::getTotalMePikmins()
 {
+	int count = 0;
+	for (CourseCache* cache = (CourseCache*)_00._10; cache != nullptr;
+	     cache              = (CourseCache*)cache->_04) {
+		count += cache->m_pikiheadCount;
+	}
+	return count;
 	/*
 	lwz      r4, 0x10(r3)
 	li       r3, 0
@@ -429,52 +403,38 @@ lbl_801F1B38:
  * Address:	801F1B44
  * Size:	000074
  */
-void GeneratorCache::getColorMePikmins(int)
+int GeneratorCache::getColorMePikmins(int pikminType)
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	li       r31, 0
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	lwz      r30, 0x10(r3)
-	b        lbl_801F1B8C
-
-lbl_801F1B74:
-	lwz      r4, 0x7c(r28)
-	mr       r3, r30
-	mr       r5, r29
-	bl       getColorMePikmins__Q24Game11CourseCacheFPUci
-	add      r31, r31, r3
-	lwz      r30, 4(r30)
-
-lbl_801F1B8C:
-	cmplwi   r30, 0
-	bne      lbl_801F1B74
-	lwz      r0, 0x24(r1)
-	mr       r3, r31
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	int count = 0;
+	for (CourseCache* cache = (CourseCache*)_00._10; cache != nullptr;
+	     cache              = (CourseCache*)cache->_04) {
+		count += cache->getColorMePikmins(m_heapBuffer, pikminType);
+	}
+	return count;
 }
 
 /*
+ * getColorMePikmins__Q24Game11CourseCacheFPUci
+ *
  * --INFO--
  * Address:	801F1BB8
  * Size:	00009C
  */
-void CourseCache::getColorMePikmins(unsigned char*, int)
+int CourseCache::getColorMePikmins(unsigned char* buffer, int pikminType)
 {
+	int count = 0;
+	RamStream stream(buffer + m_generatorSize + m_offset + m_creatureSize,
+	                 m_pikiheadSize);
+	for (int i = 0; i < m_pikiheadCount; i++) {
+		u8 pikiheadFlags = stream.readByte();
+		Vector3f position;
+		position.read(stream);
+		// TODO: Replace 0xf with define for ItemPikiheadTypeMask?
+		if ((pikiheadFlags & 0xF) == (uchar)pikminType) {
+			count++;
+		}
+	}
+	return count;
 	/*
 	stwu     r1, -0x450(r1)
 	mflr     r0
@@ -531,6 +491,14 @@ lbl_801F1C30:
  */
 void GeneratorCache::createHeap(void)
 {
+	m_heapBuffer = new uchar[GENERATOR_CACHE_HEAP_SIZE];
+	m_heapSize   = GENERATOR_CACHE_HEAP_SIZE;
+	m_freeOffset = 0;
+	m_freeSize   = m_heapSize;
+	for (int i = 0; i < Game::stageList->m_courseCount; i++) {
+		_3C.add(new CourseCache(i));
+	}
+
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -595,8 +563,20 @@ void GeneratorCache::destroyHeap(void)
  * Address:	801F1CF0
  * Size:	000038
  */
-void GeneratorCache::findCache(Game::CourseCache&, int)
+CourseCache* GeneratorCache::findCache(Game::CourseCache& haystack,
+                                       int courseIndex)
 {
+	// TODO: Perhaps one check is checking the child before assigning?
+	for (CourseCache* cache = (CourseCache*)haystack._10; cache != nullptr;
+	     cache              = (CourseCache*)cache->_04) {
+		if (cache == nullptr) {
+			return nullptr;
+		}
+		if (cache->m_courseIndex == courseIndex) {
+			return cache;
+		}
+	}
+	return nullptr;
 	/*
 	lwz      r3, 0x10(r4)
 	b        lbl_801F1D18
@@ -1039,8 +1019,14 @@ lbl_801F218C:
  * Address:	801F21DC
  * Size:	00004C
  */
-void GeneratorCache::updateUseList(void)
+void GeneratorCache::updateUseList()
 {
+	for (Generator* gen = getFirstGenerator(); gen != nullptr;
+	     gen            = (Generator*)gen->_04) {
+		if (gen->_AC == 0) {
+			gen->updateUseList();
+		}
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1077,6 +1063,14 @@ lbl_801F220C:
  */
 void GeneratorCache::createNumberGenerators(void)
 {
+	for (Generator* gen = getFirstGenerator(); gen != nullptr;
+	     gen            = (Generator*)gen->_04) {
+		if (gen->_AC == 0 && (gen->_5C & 4U) != 0) {
+			Generator::ramMode = 1;
+			gen->generate();
+			Generator::ramMode = 0;
+		}
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -1219,8 +1213,23 @@ lbl_801F2378:
  * Address:	801F2398
  * Size:	0000C8
  */
-void GeneratorCache::endSave(void)
+void GeneratorCache::endSave()
 {
+	P2ASSERTLINE(554, _78 != nullptr);
+	CourseCache* cache = (CourseCache*)_3C._10;
+	for (; cache != nullptr; cache = (CourseCache*)cache->_04) {
+		if (cache == nullptr) {
+			break;
+		}
+		if (cache->m_courseIndex == _78->m_courseIndex) {
+			break;
+		}
+	}
+	// TODO: This is immediately after previous assert? How???
+	P2ASSERTLINE(555, cache != nullptr);
+	_78->del();
+	_00.add(_78);
+
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1294,8 +1303,23 @@ lbl_801F2438:
  * Address:	801F2460
  * Size:	0000F0
  */
-void GeneratorCache::saveGenerator(Game::Generator*)
+void GeneratorCache::saveGenerator(Game::Generator* generator)
 {
+	if (generator->isExpired()) {
+		return;
+	}
+	if (generator->need_saveCreature()) {
+		RamStream output(m_heapBuffer + m_freeOffset, m_freeSize);
+		generator->m_generatorIndexMaybe = _78->m_generatorCount;
+		Generator::ramMode               = 1;
+		generator->write(output);
+		Generator::ramMode = 0;
+		m_freeOffset += output.m_position;
+		m_freeSize -= output.m_position;
+		_78->m_generatorCount++;
+		_78->m_size += output.m_position;
+		_78->m_generatorSize += output.m_position;
+	}
 	/*
 	stwu     r1, -0x430(r1)
 	mflr     r0
@@ -1691,8 +1715,18 @@ void GeneratorCache::checkOverflow(void)
  * Address:	801F2960
  * Size:	000070
  */
-CourseCache::CourseCache(int)
+CourseCache::CourseCache(int courseIndex)
+    : CNode()
 {
+	m_courseIndex    = courseIndex;
+	m_size           = 0;
+	m_offset         = 0;
+	m_generatorCount = 0;
+	m_generatorSize  = 0;
+	m_creatureCount  = 0;
+	m_creatureSize   = 0;
+	m_pikiheadCount  = 0;
+	m_pikiheadSize   = 0;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1730,8 +1764,16 @@ CourseCache::CourseCache(int)
  * Address:	801F29D0
  * Size:	000028
  */
-void CourseCache::beginSave(int)
+void CourseCache::beginSave(int offset)
 {
+	m_offset         = offset;
+	m_size           = 0;
+	m_generatorCount = 0;
+	m_generatorSize  = 0;
+	m_creatureCount  = 0;
+	m_creatureSize   = 0;
+	m_pikiheadCount  = 0;
+	m_pikiheadSize   = 0;
 	/*
 	stw      r4, 0x1c(r3)
 	li       r0, 0
@@ -2180,8 +2222,50 @@ lbl_801F2EA4:
  * Address:	801F2EDC
  * Size:	0001D4
  */
-void CourseCache::write(Stream&)
+void CourseCache::write(Stream& output)
 {
+	char header[256];
+
+	sprintf(header, "CourseCache %d", m_courseIndex);
+	output.textBeginGroup(header);
+
+	output.textWriteTab(output.m_tabCount);
+	output.writeInt(m_courseIndex);
+	output.textWriteText("# courseindex\r\n");
+
+	output.textWriteTab(output.m_tabCount);
+	output.writeInt(m_offset);
+	output.textWriteText("# offset\r\n");
+
+	output.textWriteTab(output.m_tabCount);
+	output.writeInt(m_size);
+	output.textWriteText("# size\r\n");
+
+	output.textWriteTab(output.m_tabCount);
+	output.writeInt(m_generatorCount);
+	output.textWriteText("# numGenerators\r\n");
+
+	output.textWriteTab(output.m_tabCount);
+	output.writeInt(m_generatorSize);
+	output.textWriteText("# generatorSize\r\n");
+
+	output.textWriteTab(output.m_tabCount);
+	output.writeInt(m_creatureCount);
+	output.textWriteText("# numCreatures\r\n");
+
+	output.textWriteTab(output.m_tabCount);
+	output.writeInt(m_creatureSize);
+	output.textWriteText("# creatureSize\r\n");
+
+	output.textWriteTab(output.m_tabCount);
+	output.writeInt(m_pikiheadCount);
+	output.textWriteText("# numPikiheads\r\n");
+
+	output.textWriteTab(output.m_tabCount);
+	output.writeInt(m_pikiheadSize);
+	output.textWriteText("# pikiheadSize\r\n");
+
+	output.textEndGroup();
 	/*
 	stwu     r1, -0x120(r1)
 	mflr     r0
@@ -2308,8 +2392,23 @@ void CourseCache::write(Stream&)
  * Address:	801F30B0
  * Size:	0000BC
  */
-void CourseCache::read(Stream&)
+void CourseCache::read(Stream& input)
 {
+#if MATCHING
+	// Why would you do this? I guess maybe to print out to console what's being
+	// parsed?
+	char header[256];
+	sprintf(header, "CourseCache %d", m_courseIndex);
+#endif
+	m_courseIndex    = input.readInt();
+	m_offset         = input.readInt();
+	m_size           = input.readInt();
+	m_generatorCount = input.readInt();
+	m_generatorSize  = input.readInt();
+	m_creatureCount  = input.readInt();
+	m_creatureSize   = input.readInt();
+	m_pikiheadCount  = input.readInt();
+	m_pikiheadSize   = input.readInt();
 	/*
 	stwu     r1, -0x110(r1)
 	mflr     r0

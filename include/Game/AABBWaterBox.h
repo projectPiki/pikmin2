@@ -1,6 +1,10 @@
 #ifndef _GAME_AABBWATERBOX_H
 #define _GAME_AABBWATERBOX_H
 
+struct Matrixf;
+template <typename T> struct Vector3;
+typedef Vector3<float> Vector3f;
+
 namespace Sys {
 struct MatTexAnimation;
 struct Sphere;
@@ -45,7 +49,8 @@ struct AABBWaterBox : public WaterBox {
 	                         float); // _38
 	virtual void calcMatrix();       // _3C
 
-	void globalise(Game::AABBWaterBox*, struct Matrixf&);
+	void create(Vector3f&, Vector3f&);
+	void globalise(Game::AABBWaterBox*, Matrixf&);
 };
 } // namespace Game
 

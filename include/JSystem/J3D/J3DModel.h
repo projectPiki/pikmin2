@@ -14,7 +14,7 @@ struct J3DShapePacket;
 struct J3DSkinDeform;
 struct J3DVtxColorCalc;
 
-struct J3DModel : public J3DVertexBuffer {
+struct J3DModel {
 	virtual void update();         // _00
 	virtual void entry();          // _04
 	virtual void calc();           // _08

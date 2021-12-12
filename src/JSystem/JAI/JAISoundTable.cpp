@@ -1,3 +1,6 @@
+#include "JSystem/JKR/JKRHeap.h"
+#include "JSystem/JAI/JAIBasic.h"
+#include "JSystem/JAI/JAInter.h"
 #include "types.h"
 
 /*
@@ -29,8 +32,22 @@
  * Address:	800B744C
  * Size:	0000CC
  */
-void JAInter::SoundTable::init(unsigned char*, unsigned long)
+void JAInter::SoundTable::init(uchar* data, ulong dataSize)
 {
+	mVersion         = data[3];
+	mDataSize        = dataSize;
+	mAddress         = data;
+	mSoundMax        = new (JAIBasic::msCurrentHeap, 4) ushort[0x12];
+	mPointerCategory = new (JAIBasic::msCurrentHeap, 4) SoundInfo*[0x12];
+	for (u8 i = 0; i < 0x12; i++) {
+		mSoundMax[i]        = *(ushort*)(mAddress + (i * 4) + 6);
+		mPointerCategory[i] = *(
+		    SoundInfo**)(mAddress + *(ushort*)(mAddress + (i * 4) + 8) * 0x10
+		                 + 0x50);
+		if (i < 0x10 && mSoundMax[i] != 0) {
+			mCategotyMax = i + 1;
+		}
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -97,8 +114,29 @@ lbl_800B74FC:
  * Address:	800B7518
  * Size:	0000C4
  */
-void JAInter::SoundTable::getInfoPointer(unsigned long)
+JAInter::SoundInfo* JAInter::SoundTable::getInfoPointer(ulong soundID)
 {
+	uint maskedID   = soundID & 0xC0000000;
+	SoundInfo* info = nullptr;
+	uint category   = 0;
+	if (maskedID == 0xC0000000) {
+		category = 0x11;
+	} else {
+		if (maskedID < 0xC0000000) {
+			if (maskedID < 0x80000001) {
+				category = 0x10;
+			}
+		} else {
+			if (maskedID == 0) {
+				category = (soundID >> 0xC) & 0xFF;
+				JAIGlobalParameter::getParamSeCategoryMax();
+			}
+		}
+	}
+	if (mAddress != nullptr && (soundID & 0x3FF) < (uint)mSoundMax[category]) {
+		info = mPointerCategory[category] + (soundID & 0x3FF);
+	}
+	return info;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -218,7 +256,7 @@ void JAInter::SoundTable::setInfoTrack(unsigned long, unsigned char)
  * Address:	800B7634
  * Size:	000008
  */
-void JAInter::SoundTable::getCategotyMax(void)
+uchar JAInter::SoundTable::getCategotyMax(void)
 {
 	/*
 	lbz      r3, mCategotyMax__Q27JAInter10SoundTable@sda21(r13)

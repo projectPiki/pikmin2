@@ -8,6 +8,8 @@
 #include "CNode.h"
 #include "id32.h"
 
+struct J3DModelData;
+
 namespace Game {
 struct Creature;
 struct GeneratorMgr;
@@ -32,7 +34,7 @@ struct Generator : public CNode {
 	bool isExpired();
 	bool need_saveCreature();
 
-	void loadCreature(Stream&);
+	bool loadCreature(Stream&);
 	void saveCreature(Stream&);
 
 	void read(Stream&);
@@ -40,29 +42,31 @@ struct Generator : public CNode {
 
 	void informDeath(Creature*);
 
-	GenObject* _18;            // _18
-	uint _1C;                  // _1C /* Initialized to '____' */
-	char _20[32];              // _20
-	ID32 _40;                  // _40
-	ID32 m_version;            // _4C
-	u8 _58[4];                 // _58
-	ushort _5C;                // _5C
-	Generator* _60;            // _60 /* m_prev */
-	Generator* _64;            // _64 /* m_next */
-	GeneratorMgr* m_mgr;       // _68
-	Creature* m_creature;      // _6C
-	int _70;                   // _70
-	u32 _74;                   // _74
-	u32 _78;                   // _78
-	u32 _7C;                   // _7C
-	u8 _80[4];                 // _80
-	int m_dayLimitMaybe;       // _84
-	u8 _88[12];                // _88
-	Vector3f m_position;       // _94
-	Vector3f m_offset;         // _A0
-	u8 _AC;                    // _AC
+	GenObject* _18;       // _18
+	uint _1C;             // _1C /* Initialized to '____' */
+	char _20[32];         // _20 /* shift-jis name given in generator files */
+	ID32 _40;             // _40
+	ID32 m_version;       // _4C
+	u8 _58[4];            // _58
+	ushort _5C;           // _5C
+	Generator* _60;       // _60 /* m_prev */
+	Generator* _64;       // _64 /* m_next */
+	GeneratorMgr* m_mgr;  // _68
+	Creature* m_creature; // _6C
+	int _70;              // _70
+	u32 _74;              // _74
+	u32 _78;              // _78
+	u32 _7C;              // _7C
+	u8 _80[4];            // _80
+	int m_dayLimitMaybe;  // _84
+	u8 _88[12];           // _88
+	Vector3f m_position;  // _94
+	Vector3f m_offset;    // _A0
+	u8 _AC;               // _AC
 	int m_generatorIndexMaybe; // _B0
 
+	//  0: format of the generator files on disc
+	// !0: format of the gencache?
 	static u8 ramMode;
 };
 
@@ -91,7 +95,7 @@ struct GeneratorMgr : public CNode {
 
 	GeneratorMgr* m_nextMgr;   // _18
 	GeneratorMgr* m_childMgr;  // _1C
-	u32 _20;                   // _20
+	GeneratorMgr* _20;         // _20 /* root(/parent?) manager */
 	Vector3f m_cursorPosition; // _24
 	Generator* m_generator;    // _28
 	ID32 _34;                  // _34
@@ -118,12 +122,12 @@ struct GenBase : public Parameters {
 	virtual void doWrite(Stream&);              // _00
 	virtual void ramSaveParameters(Stream&);    // _04
 	virtual void ramLoadParameters(Stream&);    // _08
-	virtual void doEvent(unsigned long);        // _0C
+	virtual void doEvent(ulong);                // _0C
 	virtual void doRead(Stream&);               // _10
 	virtual void update(Generator*);            // _14
 	virtual void render(Graphics&, Generator*); // _18
-	virtual uint getLatestVersion();            // _1C
-	virtual u32 getShape();                     // _20
+	virtual ulong getLatestVersion();           // _1C
+	virtual J3DModelData* getShape();           // _20
 
 	void readVersion(Stream&);
 	void read(Stream&);
@@ -140,27 +144,14 @@ struct GenBase : public Parameters {
 };
 
 struct GenObject : public GenBase {
-	virtual void render(Graphics&, Generator*);                  // _18
-	virtual uint getLatestVersion();                             // _1C
-	virtual u32 getShape();                                      // _20
-	virtual void updateUseList(Generator*, int);                 // _24
-	virtual Creature* generate(Generator*);                      // _28
-	virtual void birth(GenArg*);                                 // _2C
-	virtual void generatorMakeMatrix(Matrixf&, Vector3<float>&); // _30
-	virtual void getDebugInfo(char*);                            // _34
-
-	// TODO: Data members
-};
-
-/**
- * @fabricatedName
- * @size{0x10}
- */
-struct GenObjectFactoryFactory {
-	uint m_count;                         // _00
-	uint m_limit;                         // _04
-	struct GenObjectFactory* m_factories; // _08
-	u8 _0C[4];                            // _0C
+	virtual void render(Graphics&, Generator*);            // _18
+	virtual ulong getLatestVersion();                      // _1C
+	virtual J3DModelData* getShape();                      // _20
+	virtual void updateUseList(Generator*, int);           // _24
+	virtual Creature* generate(Generator*);                // _28
+	virtual void birth(GenArg*);                           // _2C
+	virtual void generatorMakeMatrix(Matrixf&, Vector3f&); // _30
+	virtual void getDebugInfo(char*);                      // _34
 };
 
 /**
@@ -175,7 +166,24 @@ struct GenObjectFactory {
 	char* m_name;                 // _08
 	uint m_version;               // _0C
 
-	static GenObjectFactoryFactory* factory;
+	static struct GenObjectFactoryFactory* factory;
+};
+
+/**
+ * @fabricatedName
+ * @size{0x10}
+ */
+struct GenObjectFactoryFactory {
+	inline GenObjectFactoryFactory()
+	{
+		m_factories = new GenObjectFactory[12];
+		m_limit     = 12;
+		m_count     = 0;
+	}
+	uint m_count;                  // _00
+	uint m_limit;                  // _04
+	GenObjectFactory* m_factories; // _08
+	u8 _0C[4];                     // _0C
 };
 } // namespace Game
 

@@ -1,7 +1,23 @@
 #ifndef _GAME_PIKI_H
 #define _GAME_PIKI_H
 
+#include "Game/FakePiki.h"
+#include "JSystem/JUtility.h"
 #include "types.h"
+
+namespace efx {
+struct Context;
+struct TPkEffect;
+} // namespace efx
+
+namespace PikiAI {
+struct Brain;
+struct ActTransportArg;
+} // namespace PikiAI
+
+namespace PSM {
+struct Piki;
+} // namespace PSM
 
 namespace Sys {
 struct Sphere;
@@ -9,6 +25,7 @@ struct Sphere;
 
 namespace SysShape {
 struct AnimInfo;
+struct Joint;
 } // namespace SysShape
 
 namespace PSGame {
@@ -18,13 +35,16 @@ namespace SeMgr {
 } // namespace PSGame
 
 namespace Game {
-struct Creature;
+struct Navi;
 struct MoviePlayer;
 struct WaterBox;
 struct ShadowParam;
 struct CreatureInitArg;
 struct CreatureKillArg;
 struct Interaction;
+struct Piki;
+struct PikiState;
+struct StateArg;
 
 typedef enum EPikiColor {
 	Blue    = 0,
@@ -44,112 +64,138 @@ typedef enum EPikiHappa {
 	Flower_Red = 4,
 } EPikiHappa;
 
-struct StateArg {
-	u16 _00[4];
-};
-
 struct PikiFSM {
-	virtual void init(struct Game::Piki*);                   // _00
+	virtual void init(Game::Piki*);                          // _00
 	virtual void start(Game::Piki*, int, Game::StateArg*);   // _04
 	virtual void exec(Game::Piki*);                          // _08
 	virtual void transit(Game::Piki*, int, Game::StateArg*); // _0C
 };
 
-struct Piki {
-	u8 _00[0x28C];
-	Game::PikiFSM* m_fsm; // _28C
-	u8 _290[0x38];        // _290
-
+struct Piki : public FakePiki {
 	struct InvokeAIFreeArg {
 	};
 
 	Piki();
+
+	// vtable 1 (Creature)
+	virtual bool deferPikiCollision();                          // _18
+	virtual void onInit(CreatureInitArg*);                      // _28
+	virtual void onKill(CreatureKillArg*);                      // _2C
+	virtual void doAnimation();                                 // _34
+	virtual void doDirectDraw(Graphics&);                       // _48
+	virtual void inWaterCallback(WaterBox*);                    // _7C
+	virtual void outWaterCallback();                            // _80
+	virtual bool isAlive();                                     // _A0
+	virtual void bounceCallback(Sys::Triangle*);                // _E0
+	virtual void collisionCallback(CollEvent&);                 // _E4
+	virtual void platCallback(PlatEvent&);                      // _E8
+	virtual void getJAIObject();                                // _EC
+	virtual PSM::Creature* getPSCreature();                     // _F0
+	virtual void on_movie_begin(bool);                          // _108
+	virtual void on_movie_end(bool);                            // _10C
+	virtual void movieStartAnimation(ulong);                    // _110
+	virtual void movieStartDemoAnimation(SysShape::AnimInfo*);  // _114
+	virtual void movieSetTranslation(Vector3f&, float);         // _11C
+	virtual bool movieGotoPosition(Vector3f&);                  // _124
+	virtual void movieUserCommand(unsigned long, MoviePlayer*); // _128
+	virtual void getShadowParam(ShadowParam&);                  // _12C
+	virtual void getLODSphere(Sys::Sphere&);                    // _138
+	virtual void onStickStartSelf(Creature*);                   // _158
+	virtual void onStickEndSelf(Creature*);                     // _15C
+	virtual bool ignoreAtari(Creature*);                        // _188
+	virtual void stimulate(Interaction&);                       // _19C
+	virtual char* getCreatureName();                            // _1A0
+	virtual s32 getCreatureID();                                // _1A4
+	// vtable 2 (MotionListener + FakePiki + self)
+	virtual int getDownfloorMass();       // _1B4
+	virtual bool isPikmin();              // _1B8
+	virtual void doColorChange();         // _1BC
+	virtual void doDebugDL();             // _1C0
+	virtual void update();                // _1C4
+	virtual void wallCallback(Vector3f&); // _1FC
+	virtual void startMotion(int, int, SysShape::MotionListener*,
+	                         SysShape::MotionListener*); // _200
+	virtual void onKeyEvent(const SysShape::KeyEvent&);  // _204
+	virtual void do_updateLookCreature();                // _20C
+	virtual void onSetPosition();                        // _210
+	virtual bool isWalking();                            // _214
+
 	void attachRadar(bool);
-	void bounceCallback(Sys::Triangle*);
-	void canVsBattle();
+	bool canVsBattle();
 	void changeHappa(int);
 	void changeShape(int);
 	void checkInvokeAI(bool);
 	void clearCurrAction();
 	void clearDope();
-	void collisionCallback(Game::CollEvent&);
-	void deferPikiCollision();
-	void do_updateLookCreature();
-	void doAnimation();
-	void doColorChange();
-	void doDebugDL();
-	void doDirectDraw(Graphics&);
-	void doped();
+	bool doped();
 	void extendDopeTime();
-	void gasInvicible();
+	bool gasInvicible();
 	void getAttackDamage();
-	void getBaseScale();
-	void getCreatureID();
-	void getCreatureName();
+	float getBaseScale();
 	void getCurrAction();
-	void getCurrActionID();
-	void getDownfloorMass();
-	void getFormationSlotID();
-	void getJAIObject();
-	void getLODSphere(Sys::Sphere&);
+	int getCurrActionID();
+	int getFormationSlotID();
 	void getPelletCarryPower();
-	void getPSCreature();
-	void getShadowParam(Game::ShadowParam&);
 	void getSpeed(float);
-	void getStateID();
-	void getThrowHeight();
+	int getStateID();
+	float getThrowHeight();
 	void getVsBattlePiki();
 	void graspSituation_Fast(Game::Creature**);
 	void graspSituation(Game::Creature**);
-	void ignoreAtari(Game::Creature*);
 	void initColor();
 	void invokeAI();
 	void invokeAI(Game::CollEvent*, bool);
 	void invokeAI(Game::PlatEvent*);
 	void invokeAIFree(Game::Piki::InvokeAIFreeArg&);
-	void inWaterCallback(Game::WaterBox*);
-	void isAlive();
-	void isMyPikmin(Game::Creature*);
-	void isPikmin();
-	void isTekiFollowAI();
-	void isThrowable();
-	void isWalking();
+	bool isMyPikmin(Game::Creature*);
+	bool isTekiFollowAI();
+	bool isThrowable();
 	void might_bury();
-	void movieGotoPosition(Vector3<float>&);
-	void movieSetTranslation(Vector3<float>&, float);
-	void movieStartAnimation(unsigned long);
-	void movieStartDemoAnimation(SysShape::AnimInfo*);
-	void movieUserCommand(unsigned long, Game::MoviePlayer*);
-	void on_movie_begin(bool);
-	void on_movie_end(bool);
-	void onInit(Game::CreatureInitArg*);
-	void onKeyEvent(const SysShape::KeyEvent&);
-	void onKill(Game::CreatureKillArg*);
-	void onSetPosition();
-	void onStickEndSelf(Game::Creature*);
-	void onStickStartSelf(Game::Creature*);
-	void outWaterCallback();
-	void platCallback(Game::PlatEvent&);
 	void setActTransportArg(PikiAI::ActTransportArg&);
 	void setDopeEffect(bool);
 	void setFreeLightEffect(bool);
-	void setGasInvincible(unsigned char);
+	void setGasInvincible(uchar);
 	void setPastel(bool);
-	void setSpeed(float, Vector3<float>&, float);
-	void setSpeed(float, Vector3<float>&);
+	void setSpeed(float, Vector3f&, float);
+	void setSpeed(float, Vector3f&);
 	void setTekiKillID(int);
 	void startDope(int);
-	void startMotion(int, int, SysShape::MotionListener*,
-	                 SysShape::MotionListener*);
-	void startSound(Game::Creature*, unsigned long, bool);
-	void startSound(Game::Creature*, unsigned long, PSGame::SeMgr::SetSeId);
-	void startSound(unsigned long, bool);
-	void startSound(unsigned long, PSGame::SeMgr::SetSeId);
-	void stimulate(Game::Interaction&);
+	void startSound(Game::Creature*, ulong, bool);
+	void startSound(Game::Creature*, ulong, PSGame::SeMgr::SetSeId);
+	void startSound(ulong, bool);
+	void startSound(ulong, PSGame::SeMgr::SetSeId);
 	void surviveDayEnd();
-	void update();
 	void updateGasInvincible();
-	void wallCallback(Vector3<float>&);
+	void updateDope();
+	void updateColor();
+
+	// FakePiki: _000 - _24C
+	PSM::Piki* m_soundObj;          // _250
+	float m_targetLookAngle;        // _254
+	efx::TPkEffect* m_effectsObj;   // _258
+	Vector3f _25C;                  // _25C
+	SysShape::Joint* m_happaJoint3; // _268
+	Vector3f _26C;                  // _26C
+	SysShape::Joint* m_happaJoint1; // _278
+	efx::Context* m_effectsContext; // _27C
+	u8 _280[4];                     // _280
+	short m_isDoped;                // _284
+	float m_dopeTime;               // _288
+	PikiFSM* m_fsm;                 // _28C
+	PikiState* m_currentState;      // _290
+	PikiAI::Brain* m_brain;         // _294
+	UpdateContext m_updateContext;  // _298
+	short m_tekiKillID;             // _2A4
+	uchar m_gasInvincible;          // _2A6
+	JUtility::TColor _2A7;          // _2A7
+	JUtility::TColor _2AB;          // _2AB
+	JUtility::TColor m_pikiColor;   // _2AF
+	float m_colorFloat;             // _2B4
+	u8 m_pikminType;                // _2B8
+	u8 m_pikminGrowth;              // _2B9
+	u32 m_leafModel;                // _2BC
+	int m_mgrIndex;                 // _2C0
+	Navi* m_navi;                   // _2C4
 };
 } // namespace Game
 

@@ -1,3 +1,4 @@
+#include "Game/FakePiki.h"
 #include "types.h"
 
 /*
@@ -753,10 +754,10 @@ void FakePiki::movieSetFaceDir(float)
  * Address:	8013D0E4
  * Size:	000008
  */
-void FakePiki::setDoAnimCallback(IDelegate* a1)
+void FakePiki::setDoAnimCallback(IDelegate* callback)
 {
 	// Generated from stw r4, 0x188(r3)
-	_188 = a1;
+	m_doAnimCallback = callback;
 }
 
 /*
@@ -767,7 +768,7 @@ void FakePiki::setDoAnimCallback(IDelegate* a1)
 void FakePiki::clearDoAnimCallback()
 {
 	// Generated from stw r0, 0x188(r3)
-	_188 = 0;
+	m_doAnimCallback = nullptr;
 }
 
 /*
@@ -1251,7 +1252,7 @@ lbl_8013D6D8:
  * Address:	8013D6F0
  * Size:	0000C0
  */
-void FakePiki::startLookCreature(Game::Creature*)
+void FakePiki::startLookCreature(Creature*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2557,7 +2558,7 @@ void GameStat::PikiCounter::__opi()
  * Address:	8013E790
  * Size:	000014
  */
-void FakePiki::inWater()
+bool FakePiki::inWater()
 {
 	/*
 	lwz      r3, 0x190(r3)
@@ -2596,7 +2597,7 @@ void FakePiki::useMapCollision()
  * Address:	8013E7BC
  * Size:	000008
  */
-void FakePiki::getMapCollisionRadius()
+float FakePiki::getMapCollisionRadius()
 {
 	/*
 	lfs      f1, lbl_805182B0@sda21(r2)
@@ -3512,7 +3513,7 @@ lbl_8013F31C:
  * Address:	8013F33C
  * Size:	00001C
  */
-void BaseItem::getPosition()
+Vector3f BaseItem::getPosition()
 {
 	/*
 	lfs      f0, 0x19c(r4)
@@ -3533,7 +3534,7 @@ void BaseItem::getPosition()
 void FakePiki::initCaptureStomach()
 {
 	// Generated from stw r0, 0x194(r3)
-	_194 = 0;
+	m_stomachCaptureCollPart = nullptr;
 }
 
 /*
@@ -3541,10 +3542,10 @@ void FakePiki::initCaptureStomach()
  * Address:	8013F364
  * Size:	000008
  */
-void FakePiki::startCaptureStomach(CollPart* a1)
+void FakePiki::startCaptureStomach(CollPart* collPart)
 {
 	// Generated from stw r4, 0x194(r3)
-	_194 = a1;
+	m_stomachCaptureCollPart = collPart;
 }
 
 /*
@@ -3555,7 +3556,7 @@ void FakePiki::startCaptureStomach(CollPart* a1)
 void FakePiki::endCaptureStomach()
 {
 	// Generated from stw r0, 0x194(r3)
-	_194 = 0;
+	m_stomachCaptureCollPart = nullptr;
 }
 
 /*
@@ -3668,21 +3669,21 @@ lbl_8013F400:
  * Address:	8013F4D0
  * Size:	000008
  */
-u32 FakePiki::debugShapeDL(char*) { return 0x1; }
+bool FakePiki::debugShapeDL(char*) { return true; }
 
 /*
  * --INFO--
  * Address:	8013F4D8
  * Size:	000008
  */
-u32 FakePiki::getDownfloorMass() { return 0x0; }
+int FakePiki::getDownfloorMass() { return 0; }
 
 /*
  * --INFO--
  * Address:	8013F4E0
  * Size:	000008
  */
-u32 FakePiki::isPikmin() { return 0x1; }
+bool FakePiki::isPikmin() { return true; }
 
 /*
  * --INFO--
@@ -3795,7 +3796,7 @@ lbl_8013F580:
  * Address:	8013F590
  * Size:	00000C
  */
-void FakePiki::isZikatu()
+bool FakePiki::isZikatu()
 {
 	/*
 	lwz      r0, 0x17c(r3)
@@ -3839,7 +3840,7 @@ lbl_8013F5C0:
  * Address:	8013F5D8
  * Size:	00000C
  */
-void FakePiki::wasZikatu()
+bool FakePiki::wasZikatu()
 {
 	/*
 	lwz      r0, 0x17c(r3)
@@ -3902,7 +3903,7 @@ void FakePiki::onSetPosition(Vector3f&)
  * Address:	8013F634
  * Size:	000008
  */
-void FakePiki::getFaceDir()
+float FakePiki::getFaceDir()
 {
 	/*
 	lfs      f1, 0x1fc(r3)
@@ -3915,7 +3916,7 @@ void FakePiki::getFaceDir()
  * Address:	8013F63C
  * Size:	00001C
  */
-void FakePiki::getVelocity()
+Vector3f FakePiki::getVelocity()
 {
 	/*
 	lfs      f0, 0x200(r4)
@@ -3969,7 +3970,7 @@ void FakePiki::getVelocityAt(Vector3f&, Vector3f&)
  * Address:	8013F690
  * Size:	000008
  */
-void FakePiki::getSound_PosPtr()
+Vector3f* FakePiki::getSound_PosPtr()
 {
 	/*
 	addi     r3, r3, 0x20c
@@ -3982,7 +3983,7 @@ void FakePiki::getSound_PosPtr()
  * Address:	8013F698
  * Size:	000008
  */
-u32 FakePiki::isWalking() { return 0x0; }
+bool FakePiki::isWalking() { return false; }
 
 /*
  * --INFO--
@@ -4014,18 +4015,18 @@ void __sinit_fakePiki_cpp(void)
 	*/
 }
 
-namespace Game {
+// namespace Game {
 
-/*
- * --INFO--
- * Address:	8013F6CC
- * Size:	000008
- */
-void FakePiki::@376 @onKeyEvent(const SysShape::KeyEvent&)
-{
-	/*
-	addi     r3, r3, -376
-	b        onKeyEvent__Q24Game8FakePikiFRCQ28SysShape8KeyEvent
-	*/
-}
-} // namespace Game
+// /*
+//  * --INFO--
+//  * Address:	8013F6CC
+//  * Size:	000008
+//  */
+// void FakePiki::@376 @onKeyEvent(const SysShape::KeyEvent&)
+// {
+// 	/*
+// 	addi     r3, r3, -376
+// 	b        onKeyEvent__Q24Game8FakePikiFRCQ28SysShape8KeyEvent
+// 	*/
+// }
+// } // namespace Game

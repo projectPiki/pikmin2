@@ -1,3 +1,4 @@
+#include "Game/Creature.h"
 #include "types.h"
 
 /*
