@@ -10,6 +10,7 @@
 #include "Game/EnemyStateMachine.h"
 #include "Game/PelletView.h"
 #include "Game/PelletMgr.h"
+#include "Dolphin/rand.h"
 #include "Matrix3f.h"
 #include "Sys/Sphere.h"
 #include "SysShape/MotionListener.h"
@@ -290,7 +291,7 @@ struct EnemyBase : public Creature,
 	Vector3f m_homePosition;           // _198
 	Matrix3f _1A4;                     // _1A4
 	Vector3f m_velocity;               // _1C8
-	Vector3f _1D4;                     // _1D4
+	Vector3f m_velocity2;              // _1D4
 	BitFlag<ulong> _1E0[2];            // _1E0
 	BitFlag<ulong> _1E8[2];            // _1E8
 	u8 m_emotion;                      // _1F0

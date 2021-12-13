@@ -12701,49 +12701,18 @@ void EnemyBase::doEndMovie() { }
  * Address:	801078CC
  * Size:	000094
  */
-void EnemyBase::doStartEarthquakeState(float)
+void EnemyBase::doStartEarthquakeState(float param_1)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x30(r1)
-	  mflr      r0
-	  stw       r0, 0x34(r1)
-	  stfd      f31, 0x20(r1)
-	  psq_st    f31,0x28(r1),0,0
-	  stw       r31, 0x1C(r1)
-	  lfs       f0, -0x6BB0(r2)
-	  mr        r31, r3
-	  fmr       f31, f1
-	  stfs      f0, 0x1D4(r3)
-	  stfs      f0, 0x1D8(r3)
-	  stfs      f0, 0x1DC(r3)
-	  stfs      f0, 0x1C8(r3)
-	  stfs      f0, 0x1CC(r3)
-	  stfs      f0, 0x1D0(r3)
-	  bl        -0x3E368
-	  xoris     r3, r3, 0x8000
-	  lis       r0, 0x4330
-	  stw       r3, 0xC(r1)
-	  lfd       f3, -0x6BA8(r2)
-	  stw       r0, 0x8(r1)
-	  lfs       f2, -0x6BC4(r2)
-	  lfd       f1, 0x8(r1)
-	  lfs       f0, -0x6B1C(r2)
-	  fsubs     f3, f1, f3
-	  lfs       f1, -0x6B28(r2)
-	  fdivs     f2, f3, f2
-	  fmuls     f0, f0, f2
-	  fmadds    f0, f1, f31, f0
-	  stfs      f0, 0x1CC(r31)
-	  psq_l     f31,0x28(r1),0,0
-	  lwz       r0, 0x34(r1)
-	  lfd       f31, 0x20(r1)
-	  lwz       r31, 0x1C(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x30
-	  blr
-	*/
-}
+	m_velocity2.x = 0.0f;
+	m_velocity2.y = 0.0f;
+	m_velocity2.z = 0.0f;
+
+	m_velocity.x = 0.0f;
+	m_velocity.y = 0.0f;
+	m_velocity.z = 0.0f;
+
+	m_velocity.y = (param_1 * 200.0f + randFloat() * 100.0f);
+};
 
 /*
  * --INFO--

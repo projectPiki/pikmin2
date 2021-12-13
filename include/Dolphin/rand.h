@@ -6,4 +6,5 @@
 void srand(u32);
 s16 rand(void);
 
+inline f32 randFloat() { return rand() / 32768.0f; }
 #endif
