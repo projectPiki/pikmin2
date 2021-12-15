@@ -1,23 +1,54 @@
 #ifndef _CAPTION_H
 #define _CAPTION_H
 
-struct Caption {
-	struct Mgr {
-		Mgr();
-		~Mgr();
+#include "CNode.h"
 
-		void draw(struct Graphics&);
-		void getFreeMessage();
-		void read(struct Stream&);
-		void reset();
-		void resetMessageObjs();
-		void update(long);
-	};
+struct Graphics;
+struct Stream;
+namespace P2JME {
+namespace Caption {
+	struct TControl;
+} // namespace Caption
+} // namespace P2JME
 
-	struct Node {
-		~Node();
-		void read(Stream&);
-	};
+namespace Caption {
+
+/**
+ * @size{0x28}
+ */
+struct Node : public CNode {
+	Node();
+
+	virtual ~Node();            // _00
+	virtual void read(Stream&); // _08
+
+	ulong _18;             // _18
+	ulong _1C;             // _1C
+	char m_textIDMaybe[8]; // _20
 };
+
+/**
+ * @size{0x24}
+ */
+struct Mgr : public CNode {
+	Mgr();
+
+	virtual ~Mgr();             // _00
+	virtual void read(Stream&); // _08
+
+	void draw(Graphics&);
+	P2JME::Caption::TControl* getFreeMessage();
+	void reset();
+	void resetMessageObjs();
+	void update(long);
+
+	// Unused/inlined:
+	void setCurrentNode(long);
+
+	P2JME::Caption::TControl* m_controls; // _18
+	Node* m_node;                         // _1C
+	u8 _20[4];                            // _20
+};
+} // namespace Caption
 
 #endif

@@ -2,10 +2,29 @@
 #define _JSYSTEM_JUT_JUTEXCEPTION_H
 
 #include "Dolphin/os.h"
+#include "JSystem/JKR/JKRThread.h"
+#include "JSystem/JUT/JUTGamePad.h"
 #include "types.h"
 
-struct JUTException {
+struct JUTDirectPrint;
+
+/**
+ * @size{0xA4}
+ */
+struct JUTException : public JKRThread {
 	static void panic_f(char const* file, int line, char const* msg, ...);
+
+	u8 _78[4];                      // _78
+	void* m_frameBuffer;            // _7C
+	JUTDirectPrint* m_directPrint;  // _80
+	u32 _84;                        // _84
+	JUTGamePad::EPadPort m_padPort; // _88
+	int _8C;                        // _8C
+	int _90;                        // _90
+	int _94;                        // _94
+	u32 _98;                        // _98
+	int _9C;                        // _9C
+	void* m_stackPointer;           // _A0
 
 	static u32* sConsole;
 	static u32* sErrorManager;
