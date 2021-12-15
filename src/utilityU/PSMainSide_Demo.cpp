@@ -13,7 +13,7 @@ class Demo : public JKRDisposer { /* #Extends(JKRDisposer) #Size(0x2c) (see
 	u8 field6_0x1b;
 	enum SoundID soundID;  /* From PikDecomp. */
 	enum SoundID systemSE; /* Name from PikDecomp. */
-	u32* pFunction_0x24;
+	void* (*funcptr)(void);
 	char* currentDemoName; /* Name from PikDecomp. */
 
 	virtual ~Demo();
@@ -414,7 +414,7 @@ Demo::Demo() // matches
 	doStartWithAudio = 1;
 	soundID          = _PSSE_FORCE_UINT;
 	systemSE         = _PSSE_FORCE_UINT;
-	pFunction_0x24   = nullptr;
+	funcptr          = nullptr;
 };
 
 /*
