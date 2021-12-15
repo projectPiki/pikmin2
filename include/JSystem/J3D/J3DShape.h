@@ -7,6 +7,7 @@ struct J3DJos32Tree;
 struct Vec;
 
 struct J3DShape {
+	enum Flags { IsHidden = 0x1, Invalid = 0xFFFFFFFF };
 	virtual void draw() const;            // _00
 	virtual void drawFast() const;        // _04
 	virtual void simpleDraw() const;      // _08
@@ -24,7 +25,7 @@ struct J3DShape {
 	s32* _04;              // _04
 	s16 m_id;              // _08
 	u16 _0A;               // _0A
-	u32 m_flags;           // _0C
+	Flags m_flags;         // _0C
 	f32 _10;               // _10
 	f32 _14;               // _14
 	f32 _18;               // _18

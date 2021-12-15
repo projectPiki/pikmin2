@@ -1,5 +1,14 @@
+#include "Camera.h"
+#include "Graphics.h"
+#include "JSystem/J3D/J3DJoint.h"
+#include "JSystem/J3D/J3DMaterial.h"
+#include "JSystem/J3D/J3DModel.h"
+#include "JSystem/J3D/J3DShape.h"
 #include "SysShape/Model.h"
+#include "SysShape/Joint.h"
+#include "System.h"
 #include "types.h"
+#include "Viewport.h"
 
 /*
     Generated from dpostproc
@@ -673,8 +682,22 @@ void Model::entry(Sys::Sphere&)
  * Address:	8043E8A4
  * Size:	000098
  */
-void Model::isVisible(Sys::Sphere&)
+bool Model::isVisible(Sys::Sphere& sphere)
 {
+	int i = 0;
+	while (true) {
+		if (sys->m_gfx->m_viewportCount <= i) {
+			m_isVisible = false;
+			return false;
+		}
+		Viewport* viewport = sys->m_gfx->getViewport(i);
+		if (viewport->viewable() && viewport->m_camera->isVisible(sphere)) {
+			break;
+		}
+		i++;
+	}
+	m_isVisible = true;
+	return true;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -730,8 +753,23 @@ lbl_8043E928:
  * Address:	8043E93C
  * Size:	000080
  */
-void Model::jointVisible(bool, int)
+void Model::jointVisible(bool newVisibility, int jointIndex)
 {
+	if (newVisibility != false) {
+		for (J3DMaterial* material = m_j3dModel->m_modelData->m_jointTree
+		                                 ->m_joints[(ushort)jointIndex]
+		                                 ->m_material;
+		     material != nullptr; material = material->_04) {
+			material->m_shape->m_flags &= ~J3DShape::IsHidden;
+		}
+		return;
+	}
+	for (J3DMaterial* material
+	     = m_j3dModel->m_modelData->m_jointTree->m_joints[(ushort)jointIndex]
+	           ->m_material;
+	     material != nullptr; material = material->_04) {
+		material->m_shape->m_flags |= J3DShape::IsHidden;
+	}
 	/*
 	clrlwi.  r0, r4, 0x18
 	beq      lbl_8043E980
@@ -785,6 +823,13 @@ lbl_8043E9B0:
  */
 void Model::hide(void)
 {
+	for (ushort i = 0; i < m_jointCount; i++) {
+		for (J3DMaterial* material
+		     = m_j3dModel->m_modelData->m_jointTree->m_joints[i]->m_material;
+		     material != nullptr; material = material->_04) {
+			material->m_shape->m_flags |= J3DShape::IsHidden;
+		}
+	}
 	/*
 	li       r5, 0
 	b        lbl_8043EA00
@@ -826,6 +871,13 @@ lbl_8043EA00:
  */
 void Model::show(void)
 {
+	for (ushort i = 0; i < m_jointCount; i++) {
+		for (J3DMaterial* material
+		     = m_j3dModel->m_modelData->m_jointTree->m_joints[i]->m_material;
+		     material != nullptr; material = material->_04) {
+			material->m_shape->m_flags &= ~J3DShape::IsHidden;
+		}
+	}
 	/*
 	li       r5, 0
 	b        lbl_8043EA58
@@ -1397,7 +1449,7 @@ lbl_8043F02C:
  * Address:	........
  * Size:	000050
  */
-void Model::update(void)
+void Model::update()
 {
 	// UNUSED FUNCTION
 }
@@ -1435,7 +1487,7 @@ void Model::setViewCalcModeInd(void)
  * Address:	........
  * Size:	000040
  */
-void Model::needViewCalc(void)
+bool Model::needViewCalc()
 {
 	// UNUSED FUNCTION
 }
@@ -1536,15 +1588,16 @@ void Model::isMtxImmediate(void)
  * Address:	8043F120
  * Size:	000008
  */
-u32 Model::isModel(void) { return 0x1; }
+bool Model::isModel() { return true; }
 
 /*
  * --INFO--
  * Address:	8043F128
  * Size:	000008
  */
-void Model::isVisible(void)
+bool Model::isVisible(void)
 {
+	return m_isVisible;
 	/*
 	lbz      r3, 6(r3)
 	blr

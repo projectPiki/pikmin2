@@ -4,23 +4,32 @@
 #include "types.h"
 
 struct IDelegate {
+	virtual void invoke() = 0;
 };
 
-template <typename A> struct IDelegate1 : public IDelegate {
-	virtual void invoke(A);
+template <typename A> struct IDelegate1 {
+	virtual void invoke(A) = 0;
 };
 
-template <typename A, typename B> struct IDelegate2 : public IDelegate {
-	virtual void invoke(A, B);
+template <typename A, typename B> struct IDelegate2 {
+	virtual void invoke(A, B) = 0;
 };
 
-template <typename A, typename B, typename C>
-struct IDelegate3 : public IDelegate {
-	virtual void invoke(A, B, C);
+template <typename A, typename B, typename C> struct IDelegate3 {
+	virtual void invoke(A, B, C) = 0;
 };
 
-template <typename T> struct Delegate : public IDelegate1<T> {
-	virtual void invoke(T);
+template <typename T> struct Delegate : public IDelegate {
+	inline Delegate(T* obj, void (T::*func)())
+	{
+		m_object   = obj;
+		m_function = func;
+	}
+	virtual void invoke() { (m_object->*m_function)(); }
+
+	// VTBL _00
+	T* m_object;             // _04
+	void (T::*m_function)(); // _08
 };
 
 template <typename T, typename A> struct Delegate1 : public IDelegate1<A> {
@@ -33,10 +42,8 @@ template <typename T, typename A> struct Delegate1 : public IDelegate1<A> {
 	virtual void invoke(A a) { (m_object->*m_function)(a); }
 
 	// VTBL _00
-	T* m_object; // _04
-	// u32 _08;        // _08
-	// u32 _0C;        // _0C
-	void (T::*m_function)(A); // _10
+	T* m_object;              // _04
+	void (T::*m_function)(A); // _08
 };
 
 template <typename T, typename A, typename B>
@@ -50,10 +57,8 @@ struct Delegate2 : public IDelegate2<A, B> {
 	virtual void invoke(A a, B b) { (m_object->*m_function)(a, b); }
 
 	// VTBL _00
-	T* m_object; // _04
-	// u32 _08;        // _08
-	// u32 _0C;        // _0C
-	void (T::*m_function)(A, B); // _10
+	T* m_object;                 // _04
+	void (T::*m_function)(A, B); // _08
 };
 
 template <typename T, typename A, typename B, typename C>
@@ -67,10 +72,8 @@ struct Delegate3 : public IDelegate3<A, B, C> {
 	virtual void invoke(A a, B b, C c) { (m_object->*m_function)(a, b, c); }
 
 	// VTBL _00
-	T* m_object; // _04
-	// u32 _08;        // _08
-	// u32 _0C;        // _0C
-	void (T::*m_function)(A, B, C); // _10
+	T* m_object;                    // _04
+	void (T::*m_function)(A, B, C); // _08
 };
 
 #endif

@@ -1,4 +1,7 @@
 #include "Section.h"
+#include "JSystem/JKR/JKRHeap.h"
+#include "JSystem/JUT/JUTException.h"
+#include "System.h"
 #include "types.h"
 
 /*
@@ -416,6 +419,9 @@ void Section::fadeOut()
  */
 void Section::run()
 {
+	// P2ASSERTLINE(543, m_display != nullptr);
+	// m_display->waitBlanking(1);
+	// doLoadingStart();
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0
@@ -773,28 +779,10 @@ lbl_80423F4C:
  */
 void Section::exit()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	lwz      r12, 0(r3)
-	lwz      r12, 0x24(r12)
-	mtctr    r12
-	bctrl
-	lwz      r3, 0x20(r31)
-	bl       becomeCurrentHeap__7JKRHeapFv
-	lwz      r3, sys@sda21(r13)
-	bl       initGenNode__6SystemFv
-	lwz      r3, sys@sda21(r13)
-	bl       refreshGenNode__6SystemFv
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	doExit();
+	_20->becomeCurrentHeap();
+	sys->initGenNode();
+	sys->refreshGenNode();
 }
 
 /*
@@ -802,8 +790,9 @@ void Section::exit()
  * Address:	80423FCC
  * Size:	000024
  */
-void Section::beginFrame()
+bool Section::beginFrame()
 {
+	return sys->beginFrame();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -824,6 +813,7 @@ void Section::beginFrame()
  */
 void Section::endFrame()
 {
+	sys->endFrame();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -844,6 +834,7 @@ void Section::endFrame()
  */
 void Section::beginRender()
 {
+	sys->beginRender();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -864,6 +855,10 @@ void Section::beginRender()
  */
 void Section::endRender()
 {
+	// if (_18 != nullptr) {
+	// 	_18->_04();
+	// }
+	// sys->endRender();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -891,8 +886,13 @@ lbl_80424060:
  * Address:	80424078
  * Size:	00007C
  */
-void Section::update()
+bool Section::update()
 {
+	if (sys->isDvdErrorOccured() == false) {
+		return doUpdate();
+	}
+	sys->m_cardMgr->update();
+	return false;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -937,8 +937,11 @@ lbl_804240D8:
  * Address:	804240F4
  * Size:	00005C
  */
-void Section::draw(Graphics&)
+void Section::draw(Graphics& gfx)
 {
+	if (sys->isDvdErrorOccured() == false) {
+		doDraw(gfx);
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0

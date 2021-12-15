@@ -11,7 +11,7 @@ struct JUTFader;
 struct ISection : public JKRDisposer {
 	virtual ~ISection();              // _00
 	virtual void run()           = 0; // _04
-	virtual void update()        = 0; // _08
+	virtual bool update()        = 0; // _08
 	virtual void draw(Graphics&) = 0; // _0C
 	virtual void init()          = 0; // _10
 };
@@ -23,7 +23,7 @@ struct Section : public ISection {
 
 	virtual ~Section();                              // _00
 	virtual void run();                              // _04
-	virtual void update();                           // _08
+	virtual bool update();                           // _08
 	virtual void draw(Graphics&);                    // _0C
 	virtual void init();                             // _10
 	virtual void drawInit(Graphics&);                // _14
@@ -43,6 +43,12 @@ struct Section : public ISection {
 	void endFrame();
 	void endRender();
 	void exit();
+
+	// Unused/inlined:
+	void loading();
+	void fadeIn();
+	void main();
+	void fadeOut();
 
 	u32 _18;               // _18
 	JKRHeap* _1C;          // _1C

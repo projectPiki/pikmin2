@@ -1,6 +1,7 @@
 #ifndef _DOLPHIN_CTYPE_H
 #define _DOLPHIN_CTYPE_H
 
+#include "types.h"
 #ifdef __cplusplus
 extern "C" {
 #endif // ifdef __cplusplus
@@ -15,6 +16,13 @@ enum ctype {
 	CTYPE_LOWER  = 0x40,
 	CTYPE_UPPER  = 0x80
 };
+
+extern enum ctype __ctype_map[256];
+
+inline BOOL isdigit(int c)
+{
+	return (__ctype_map[c & 0xFF] & CTYPE_XDIGIT) != 0;
+}
 
 #ifdef __cplusplus
 };

@@ -1,13 +1,15 @@
 #ifndef _DVDTHREADCOMMAND_H
 #define _DVDTHREADCOMMAND_H
 
-#include "types.h"
 #include "JSystem/JSU/JSUPtrLink.h"
+#include "types.h"
 
 struct JKRArchive;
 struct JKRHeap;
 
 struct DvdThreadCommand {
+	DvdThreadCommand();
+
 	u32 _00;                      // _00
 	u32 m_loadType;               // _04
 	char* m_arcPath;              // _08

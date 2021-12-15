@@ -1,11 +1,12 @@
-
+#include "THP/THPVideoDecode.h"
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	8044F8B4
  * Size:	0000D8
  */
-void CreateVideoDecodeThread(void)
+BOOL CreateVideoDecodeThread(int priority, void* taskMaybe)
 {
 	/*
 	.loc_0x0:
@@ -318,7 +319,7 @@ void VideoDecoderForOnMemory(void*)
  * Address:	8044FBF8
  * Size:	000120
  */
-void VideoDecode(THPReadBuffer*)
+void VideoDecode(THPReadBuffer* buffer)
 {
 	/*
 	.loc_0x0:
@@ -418,7 +419,7 @@ void VideoDecode(THPReadBuffer*)
  * Address:	8044FD18
  * Size:	000034
  */
-void PopFreeTextureSet(void)
+OSMessage PopFreeTextureSet()
 {
 	/*
 	.loc_0x0:
@@ -443,7 +444,7 @@ void PopFreeTextureSet(void)
  * Address:	8044FD4C
  * Size:	000030
  */
-void PushFreeTextureSet(void)
+BOOL PushFreeTextureSet(OSMessage* msg)
 {
 	/*
 	.loc_0x0:
@@ -467,7 +468,7 @@ void PushFreeTextureSet(void)
  * Address:	8044FD7C
  * Size:	000044
  */
-void PopDecodedTextureSet(void)
+OSMessage PopDecodedTextureSet()
 {
 	/*
 	.loc_0x0:
@@ -500,7 +501,7 @@ void PopDecodedTextureSet(void)
  * Address:	8044FDC0
  * Size:	000030
  */
-void PushDecodedTextureSet(void)
+BOOL PushDecodedTextureSet(OSMessage* msg)
 {
 	/*
 	.loc_0x0:

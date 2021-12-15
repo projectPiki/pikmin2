@@ -1,12 +1,25 @@
-
+#include "THP/THPRead.h"
+#include "THP/THPVideoDecode.h"
+#include "Dolphin/os.h"
+#include "types.h"
 
 /*
  * --INFO--
  * Address:	8044F58C
  * Size:	0000A0
  */
-void CreateReadThread(void)
+BOOL CreateReadThread(int priority)
 {
+	BOOL created = OSCreateThread(&ReadThread, Reader, nullptr,
+	                              &VideoDecodeThread, 0x1000, priority, 1);
+	if (created) {
+		OSInitMessageQueue(&FreeReadBufferQueue, &FreeReadBufferMessage, 10);
+		OSInitMessageQueue(&ReadedBufferQueue, &ReadedBufferMessage, 10);
+		OSInitMessageQueue(&ReadedBufferQueue2, &ReadedBufferMessage2, 10);
+		ReadThreadCreated = TRUE;
+	}
+	return created != FALSE;
+
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x10(r1)
@@ -61,8 +74,11 @@ void CreateReadThread(void)
  * Address:	8044F62C
  * Size:	000034
  */
-void ReadThreadStart(void)
+void ReadThreadStart()
 {
+	if (ReadThreadCreated != FALSE) {
+		OSResumeThread(&ReadThread);
+	}
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x10(r1)
@@ -88,8 +104,12 @@ void ReadThreadStart(void)
  * Address:	8044F660
  * Size:	00003C
  */
-void ReadThreadCancel(void)
+void ReadThreadCancel()
 {
+	if (ReadThreadCreated != FALSE) {
+		OSCancelThread(&ReadThread);
+		ReadThreadCreated = FALSE;
+	}
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x10(r1)
@@ -200,8 +220,11 @@ void Reader(void*)
  * Address:	8044F788
  * Size:	000034
  */
-void PopReadedBuffer(void)
+OSMessage PopReadedBuffer()
 {
+	OSMessage msg;
+	OSReceiveMessage(&ReadedBufferQueue, msg, MSG_QUEUE_SHOULD_BLOCK);
+	return msg;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x10(r1)
@@ -225,8 +248,9 @@ void PopReadedBuffer(void)
  * Address:	8044F7BC
  * Size:	000030
  */
-void PushReadedBuffer(void)
+BOOL PushReadedBuffer(OSMessage* msg)
 {
+	return OSSendMessage(&ReadedBufferQueue, msg, MSG_QUEUE_SHOULD_BLOCK);
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x10(r1)
@@ -249,8 +273,11 @@ void PushReadedBuffer(void)
  * Address:	8044F7EC
  * Size:	000034
  */
-void PopFreeReadBuffer(void)
+OSMessage PopFreeReadBuffer()
 {
+	OSMessage msg;
+	OSReceiveMessage(&FreeReadBufferQueue, msg, MSG_QUEUE_SHOULD_BLOCK);
+	return msg;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x10(r1)
@@ -274,7 +301,7 @@ void PopFreeReadBuffer(void)
  * Address:	8044F820
  * Size:	000030
  */
-void PushFreeReadBuffer(void)
+BOOL PushFreeReadBuffer(OSMessage*)
 {
 	/*
 	.loc_0x0:
@@ -298,7 +325,7 @@ void PushFreeReadBuffer(void)
  * Address:	8044F850
  * Size:	000034
  */
-void PopReadedBuffer2(void)
+OSMessage PopReadedBuffer2()
 {
 	/*
 	.loc_0x0:
@@ -323,7 +350,7 @@ void PopReadedBuffer2(void)
  * Address:	8044F884
  * Size:	000030
  */
-void PushReadedBuffer2(void)
+BOOL PushReadedBuffer2(OSMessage*)
 {
 	/*
 	.loc_0x0:

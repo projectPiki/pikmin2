@@ -5,6 +5,7 @@
 #include "SysShape/MtxObject.h"
 
 struct J3DModel;
+struct J3DModelData;
 struct Matrixf;
 namespace Sys {
 struct Sphere;
@@ -14,7 +15,7 @@ namespace SysShape {
 struct Joint;
 
 struct Model : MtxObject {
-	Model(struct J3DModelData*, unsigned long, unsigned long);
+	Model(J3DModelData*, ulong, ulong);
 
 	virtual Matrixf* getMatrix();                      // _00
 	virtual bool isModel();                            // _04
@@ -38,10 +39,15 @@ struct Model : MtxObject {
 	void initJoints();
 	void initJointsRec(int, SysShape::Joint*);
 	void isMtxImmediate();
-	void setCurrentViewNo(unsigned long);
+	void setCurrentViewNo(ulong);
 	void setViewCalcModeImm();
 	void setViewCalcModeInd();
 	void viewCalc();
+
+	// Unused/inlined:
+	void entry(Sys::Sphere&);
+	void update();
+	bool needViewCalc();
 
 	// VTBL _00
 	u8 _04;               // _04

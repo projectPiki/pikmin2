@@ -1,4 +1,5 @@
 #include "Dolphin/ctype.h"
+#include "types.h"
 
 enum ctype __ctype_map[256] = { CTYPE_CNTRL,
 	                            CTYPE_CNTRL,
@@ -346,9 +347,10 @@ int tolower(int __c)
  * Address:	........
  * Size:	000018
  */
-void isxdigit(void)
+BOOL isxdigit(unsigned char c)
 {
 	// UNUSED FUNCTION
+	return (__ctype_map[c] & CTYPE_XDIGIT) != 0;
 }
 
 /*
@@ -416,10 +418,10 @@ void isgraph(void)
  * Address:	........
  * Size:	000018
  */
-void isdigit(void)
-{
-	// UNUSED FUNCTION
-}
+// BOOL isdigit(int c)
+// {
+// 	// UNUSED FUNCTION
+// }
 
 /*
  * --INFO--

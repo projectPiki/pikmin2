@@ -1,4 +1,10 @@
+#include "Dolphin/stl.h"
+#include "IDelegate.h"
+#include "JSystem/JUT/JUTException.h"
+#include "JSystem/JUtility.h"
+#include "og/newScreen/ogUtil.h"
 #include "Screen/Bases.h"
+#include "System.h"
 #include "types.h"
 
 /*
@@ -84,7 +90,19 @@ namespace Screen {
  * Size:	000134
  */
 SceneBase::SceneBase(void)
+    : m_controller(nullptr)
+    , m_screenMgr(nullptr)
+    , _10C(this, &SceneBase::userCallBackFunc)
+    , m_stateID(Unknown0)
+    , m_command("no name")
+    , m_objMgr(nullptr)
 {
+	m_objMgr           = new ObjMgrBase();
+	m_dispMemberBuffer = new u8[0x400];
+	P2ASSERTLINE(113, m_dispMemberBuffer != nullptr);
+	DispMemberDummy dummy;
+	memcpy(m_dispMemberBuffer, dummy, sizeof(dummy));
+	sprintf(m_name, "???");
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -164,8 +182,9 @@ lbl_8045186C:
  * Address:	804518C4
  * Size:	000030
  */
-void SceneBase::searchObj(char*)
+IObjBase* SceneBase::searchObj(char* name)
 {
+	return m_objMgr->search(this, name);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -189,6 +208,9 @@ void SceneBase::searchObj(char*)
  */
 void SceneBase::destroy(void)
 {
+	if (m_command._30 != -1) {
+		gResMgr2D->destroy(&m_command);
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -216,6 +238,17 @@ lbl_8045191C:
  */
 void SceneBase::create(void)
 {
+	if (m_command._30 == -1) {
+		m_someTime    = sys->getTime();
+		m_command._B0 = &_10C;
+		if (getResName()[0] == '\0') {
+			gResMgr2D->loadResource(&m_command, "", true);
+		} else {
+			og::newScreen::makeLanguageResName(m_name, getResName());
+			gResMgr2D->loadResource(&m_command, m_name, true);
+		}
+		m_stateID = Unknown1;
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -280,6 +313,38 @@ lbl_804519D4:
  */
 void SceneBase::update(void)
 {
+	switch (m_stateID) {
+	case Unknown0:
+		break;
+	case Unknown1:
+		if (gResMgr2D->sync(&m_command, false) != '\0') {
+			if (getResName()[0] != '\0') {
+				void* res = m_command.getResource();
+				P2ASSERTLINE(194, res != nullptr);
+				m_command.becomeCurrentHeap();
+				JKRArchive* archive = JKRArchive::mount(res, nullptr, 1);
+				P2ASSERTLINE(197, archive != nullptr);
+				createObj(archive);
+				m_command.releaseCurrentHeap();
+			}
+			m_stateID = Unknown2;
+			sys->getTime();
+		}
+		break;
+	case Unknown2:
+		break;
+	case Unknown3:
+		if (updateActive()) {
+			m_stateID = Unknown4;
+		}
+		break;
+	case Unknown4:
+		break;
+	default:
+	case Invalid:
+		JUTException::panic_f(__FILE__, 226, "P2Assert");
+		break;
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -392,8 +457,10 @@ lbl_80451B2C:
  * Address:	80451B44
  * Size:	000040
  */
-void SceneBase::updateActive(void)
+bool SceneBase::updateActive(void)
 {
+	doUpdateActive();
+	m_objMgr->update();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -426,8 +493,21 @@ void SceneBase::doUpdateActive(void) { }
  * Address:	80451B88
  * Size:	000090
  */
-void SceneBase::draw(Graphics&)
+void SceneBase::draw(Graphics& gfx)
 {
+	switch (m_stateID) {
+	case Unknown0:
+	case Unknown1:
+	case Unknown2:
+		return;
+	case Unknown3:
+	case Unknown4:
+		setPort(gfx);
+		m_objMgr->draw(gfx);
+		return;
+	default:
+		JUT_PANICLINE(285, "P2Assert");
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -479,8 +559,13 @@ lbl_80451C00:
  * Address:	80451C18
  * Size:	000050
  */
-void SceneBase::start(Screen::StartSceneArg*)
+bool SceneBase::start(Screen::StartSceneArg* arg)
 {
+	if (m_stateID == Unknown0 || m_stateID == Unknown1) {
+		return false;
+	}
+	m_stateID = Unknown3;
+	return doStart(arg);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -514,8 +599,10 @@ lbl_80451C58:
  * Address:	80451C68
  * Size:	000028
  */
-void SceneBase::doStart(Screen::StartSceneArg*)
+bool SceneBase::doStart(Screen::StartSceneArg* arg)
 {
+	m_objMgr->start(arg);
+	return true;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -535,8 +622,18 @@ void SceneBase::doStart(Screen::StartSceneArg*)
  * Address:	80451C90
  * Size:	000068
  */
-void SceneBase::end(Screen::EndSceneArg*)
+bool SceneBase::end(Screen::EndSceneArg* arg)
 {
+	switch (m_stateID) {
+	case Unknown0:
+	case Unknown2:
+		m_stateID = Unknown4;
+		return true;
+	case Unknown1:
+		return false;
+	default:
+		return doEnd(arg);
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -580,8 +677,9 @@ lbl_80451CE4:
  * Address:	80451CF8
  * Size:	000024
  */
-void SceneBase::doEnd(Screen::EndSceneArg*)
+bool SceneBase::doEnd(Screen::EndSceneArg* arg)
 {
+	m_objMgr->end(arg);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -600,8 +698,9 @@ void SceneBase::doEnd(Screen::EndSceneArg*)
  * Address:	80451D1C
  * Size:	00002C
  */
-void SceneBase::userCallBackFunc(Resource::MgrCommand*)
+void SceneBase::userCallBackFunc(Resource::MgrCommand* command)
 {
+	doUserCallBackFunc(command);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -622,8 +721,9 @@ void SceneBase::userCallBackFunc(Resource::MgrCommand*)
  * Address:	80451D48
  * Size:	00002C
  */
-void SceneBase::createObj(JKRArchive*)
+void SceneBase::createObj(JKRArchive* archive)
 {
+	doCreateObj(archive);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -644,8 +744,10 @@ void SceneBase::createObj(JKRArchive*)
  * Address:	80451D74
  * Size:	00005C
  */
-void SceneBase::registObj(Screen::ObjBase*, JKRArchive*)
+void SceneBase::registObj(Screen::ObjBase* obj, JKRArchive* archive)
 {
+	m_objMgr->registObj(obj, this);
+	obj->create(*archive);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -805,8 +907,9 @@ lbl_80451F14:
  * Address:	80451F30
  * Size:	000030
  */
-void SceneBase::setScene(Screen::SetSceneArg&)
+void SceneBase::setScene(Screen::SetSceneArg& arg)
 {
+	m_screenMgr->setScene(arg);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -828,8 +931,9 @@ void SceneBase::setScene(Screen::SetSceneArg&)
  * Address:	80451F60
  * Size:	000030
  */
-void SceneBase::startScene(Screen::StartSceneArg*)
+void SceneBase::startScene(Screen::StartSceneArg* arg)
 {
+	m_screenMgr->startScene(arg);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -851,8 +955,9 @@ void SceneBase::startScene(Screen::StartSceneArg*)
  * Address:	80451F90
  * Size:	000030
  */
-void SceneBase::endScene(Screen::EndSceneArg*)
+void SceneBase::endScene(Screen::EndSceneArg* arg)
 {
+	m_screenMgr->endScene(arg);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -953,7 +1058,7 @@ lbl_804520A0:
  * Address:	........
  * Size:	000020
  */
-void SceneBase::getBackupSceneType(void)
+u32 SceneBase::getBackupSceneType()
 {
 	// UNUSED FUNCTION
 }
@@ -1056,8 +1161,9 @@ lbl_804521D8:
  * Address:	804521F0
  * Size:	000040
  */
-void SceneBase::getFinishState(void)
+int SceneBase::getFinishState()
 {
+	return (m_stateID == 4) ? doGetFinishState() : -2;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1087,8 +1193,10 @@ lbl_80452220:
  * Address:	80452230
  * Size:	000054
  */
-void SceneBase::getGamePad() const
+Controller* SceneBase::getGamePad() const
 {
+	P2ASSERTLINE(280, m_screenMgr->m_controller != nullptr);
+	return m_screenMgr->m_controller;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1121,9 +1229,10 @@ lbl_8045226C:
  * Address:	80452284
  * Size:	000044
  */
-void SceneBase::setColorBG(unsigned char, unsigned char, unsigned char,
-                           unsigned char)
+void SceneBase::setColorBG(uchar r, uchar g, uchar b, uchar a)
 {
+	JUtility::TColor color(r, g, b, a);
+	m_screenMgr->setColorBG(color);
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x10(r1)
@@ -1173,26 +1282,27 @@ void Mgr::setBGMode(int) { }
 } // namespace Screen
 
 /*
+ * Generated
  * --INFO--
  * Address:	804522D0
  * Size:	000030
  */
-void Delegate1<Screen::SceneBase, Resource::MgrCommand*>::invoke(
-    Resource::MgrCommand*)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  mr        r5, r3
-	  stw       r0, 0x14(r1)
-	  addi      r12, r5, 0x8
-	  lwz       r3, 0x4(r3)
-	  bl        -0x3907C4
-	  nop
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+// void Delegate1<Screen::SceneBase, Resource::MgrCommand*>::invoke(
+//     Resource::MgrCommand*)
+// {
+/*
+.loc_0x0:
+  stwu      r1, -0x10(r1)
+  mflr      r0
+  mr        r5, r3
+  stw       r0, 0x14(r1)
+  addi      r12, r5, 0x8
+  lwz       r3, 0x4(r3)
+  bl        -0x3907C4
+  nop
+  lwz       r0, 0x14(r1)
+  mtlr      r0
+  addi      r1, r1, 0x10
+  blr
+*/
+// }

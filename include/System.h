@@ -62,7 +62,7 @@ struct System {
 	void deleteThreads();
 	struct JFWDisplay* setCurrentDisplay(struct JFWDisplay*);
 	u32 clearCurrentDisplay(struct JFWDisplay*);
-	void beginFrame();
+	bool beginFrame();
 	void endFrame();
 	void beginRender();
 	void endRender();

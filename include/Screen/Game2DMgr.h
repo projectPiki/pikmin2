@@ -57,48 +57,6 @@ struct DispMemberZukanItem;
 
 namespace Screen {
 struct SceneBase;
-struct MgrBase : public JKRDisposer {
-	virtual ~MgrBase();                          // _00
-	virtual void setScene(SetSceneArg&)     = 0; // _04
-	virtual bool startScene(StartSceneArg*) = 0; // _08
-	virtual void endScene(EndSceneArg*)     = 0; // _0C
-};
-
-struct Mgr : public MgrBase {
-	Mgr();
-
-	virtual ~Mgr();                             // _00
-	virtual void setScene(SetSceneArg&);        // _04
-	virtual bool startScene(StartSceneArg*);    // _08
-	virtual void endScene(EndSceneArg*);        // _0C
-	virtual void reset();                       // _10
-	virtual void setColorBG(JUtility::TColor&); // _14
-	virtual void setBGMode(int);                // _18
-	virtual void doGetSceneBase(long);          // _1C
-	virtual void drawBG(Graphics&);             // _20
-	virtual void drawWipe(Graphics&);           // _24
-
-	u8 _18;                     // _18
-	u8 _19;                     // _19
-	u8 _1A;                     // _1A
-	u8 _1B;                     // _1B
-	SceneBase* m_backupScene;   // _1C
-	Controller* controller;     // _20
-	u8 _24[8];                  // _24
-	CNode _2C;                  // _2C
-	CNode _44;                  // _44
-	JKRSolidHeap* _5C;          // _5C
-	CNode _60;                  // _60
-	CNode m_sceneInfoListNode;  // _78
-	u8 _90;                     // _90
-	u8 _91;                     // _91
-	u8 _92;                     // _92
-	u32 _94;                    // _94
-	u32 _98;                    // _98
-	JUtility::TColor m_bgColor; // _9C
-	JUtility::TColor _A0;       // _A0
-	int m_bgMode;               // _A4
-};
 
 struct Game2DMgr : public JKRDisposer {
 	enum GameOverTitle {};

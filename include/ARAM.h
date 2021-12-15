@@ -1,30 +1,27 @@
 #ifndef _ARAM_H
 #define _ARAM_H
 
-// TODO: move to DVD ripper
-namespace JKRDvdRipper {
-typedef int EAllocDirection;
-}
+#include "JSystem/JKR/JKRDvdRipper.h"
+#include "types.h"
 
-typedef int JKRExpandSwitch;
+namespace ARAM {
+struct Mgr {
+	Mgr();
 
-struct ARAM {
-	struct Mgr {
-		Mgr();
-
-		void aramToMainRam(const char*, unsigned char*, unsigned long,
-		                   unsigned long, JKRExpandSwitch, unsigned long,
-		                   struct JKRHeap*, JKRDvdRipper::EAllocDirection, int,
-		                   unsigned long*);
-		void dump();
-		void dvdToAram(const char*, bool);
-		void init();
-		void search(const char*);
-	};
-
-	struct Node {
-		~Node();
-	};
+	void* aramToMainRam(const char*, uchar*, ulong, ulong, JKRExpandSwitch,
+	                    ulong, JKRHeap*, JKRDvdRipper::EAllocDirection, int,
+	                    ulong*);
+	void dump();
+	void dvdToAram(const char*, bool);
+	void init();
+	void search(const char*);
 };
+
+struct Node {
+	~Node();
+};
+} // namespace ARAM
+
+extern ARAM::Mgr* gAramMgr;
 
 #endif

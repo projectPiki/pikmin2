@@ -3,12 +3,16 @@
 
 #include "Dolphin/gx.h"
 #include "JSystem/JKR/JKRDisposer.h"
+#include "JSystem/JUtility.h"
+#include "Resource.h"
 #include "Screen/Enums.h"
 #include "types.h"
 #include "CNode.h"
 
+struct Controller;
 struct Graphics;
 struct JKRArchive;
+struct JKRSolidHeap;
 
 namespace og {
 namespace Screen {
@@ -21,6 +25,10 @@ struct MgrCommand;
 } // namespace Resource
 
 namespace Screen {
+struct IObjBase;
+struct ObjBase;
+struct ObjMgrBase;
+struct Mgr;
 
 struct SceneArg {
 	virtual SceneType getSceneType(); // _00
@@ -52,13 +60,26 @@ struct EndSceneArg : public SceneArg {
 };
 
 struct SceneBase {
+#pragma enumalwaysint on
+	enum StateID {
+		Unknown0 = 0,
+		Unknown1,
+		Unknown2,
+		Unknown3,
+		Unknown4,
+		Invalid = 0xFFFFFFFF
+	};
+#pragma enumalwaysint reset
+
+	SceneBase();
+
 	virtual SceneType getSceneType() = 0;                   // _00
 	virtual uint getOwnerID()        = 0;                   // _04
 	virtual ulonglong getMemberID()  = 0;                   // _08
 	virtual bool isUseBackupSceneInfo();                    // _0C
 	virtual bool isDrawInDemo() const;                      // _10
-	virtual char* getResName() = 0;                         // _14
-	virtual void doCreateObj() = 0;                         // _18
+	virtual char* getResName()            = 0;              // _14
+	virtual void doCreateObj(JKRArchive*) = 0;              // _18
 	virtual void doUserCallBackFunc(Resource::MgrCommand*); // _1C
 	virtual void setPort(Graphics&);                        // _20
 	virtual void doUpdateActive();                          // _24
@@ -70,6 +91,44 @@ struct SceneBase {
 	virtual bool setDefaultDispMember();                    // _3C
 	virtual void doSetBackupScene(SetSceneArg&);            // _40
 	virtual int doGetFinishState();                         // _44
+
+	void confirmEndScene(EndSceneArg*);
+	void confirmSetScene(SetSceneArg&);
+	void confirmStartScene(StartSceneArg*);
+	void create();
+	void createObj(JKRArchive*);
+	void destroy();
+	void draw(Graphics&);
+	bool end(EndSceneArg*);
+	void endScene(EndSceneArg*);
+	int getFinishState();
+	Controller* getGamePad() const;
+	void registObj(ObjBase*, JKRArchive*);
+	IObjBase* searchObj(char*);
+	void setBackupScene();
+	void setColorBG(uchar, uchar, uchar, uchar);
+	void setScene(SetSceneArg&);
+	void setDispMember(og::Screen::DispMemberBase*);
+	bool start(StartSceneArg*);
+	void startScene(StartSceneArg*);
+	void update();
+	bool updateActive();
+	void userCallBackFunc(Resource::MgrCommand*);
+
+	// Unused/inlined:
+	u32 getBackupSceneType();
+	void setBGMode(int);
+
+	// VTBL _00
+	char m_name[256];                                 // _004
+	Controller* m_controller;                         // _104
+	Mgr* m_screenMgr;                                 // _108
+	Delegate1<SceneBase, Resource::MgrCommand*> _10C; // _10C
+	StateID m_stateID;                                // _120
+	float m_someTime;                                 // _124
+	Resource::MgrCommand m_command;                   // _128
+	ObjMgrBase* m_objMgr;                             // _218
+	u8* m_dispMemberBuffer;                           // _21C
 };
 
 struct IObjBase : public CNode, JKRDisposer {
@@ -114,6 +173,62 @@ struct ObjBase : public IObjBase {
 
 	int _30;            // _30
 	SceneBase* m_owner; // _34
+};
+
+struct MgrBase : public JKRDisposer {
+	virtual ~MgrBase();                          // _00
+	virtual void setScene(SetSceneArg&)     = 0; // _04
+	virtual bool startScene(StartSceneArg*) = 0; // _08
+	virtual void endScene(EndSceneArg*)     = 0; // _0C
+};
+struct Mgr : public MgrBase {
+	Mgr();
+
+	virtual ~Mgr();                             // _00
+	virtual void setScene(SetSceneArg&);        // _04
+	virtual bool startScene(StartSceneArg*);    // _08
+	virtual void endScene(EndSceneArg*);        // _0C
+	virtual void reset();                       // _10
+	virtual void setColorBG(JUtility::TColor&); // _14
+	virtual void setBGMode(int);                // _18
+	virtual void doGetSceneBase(long);          // _1C
+	virtual void drawBG(Graphics&);             // _20
+	virtual void drawWipe(Graphics&);           // _24
+
+	u8 _18;                     // _18
+	u8 _19;                     // _19
+	u8 _1A;                     // _1A
+	u8 _1B;                     // _1B
+	SceneBase* m_backupScene;   // _1C
+	Controller* m_controller;   // _20
+	u8 _24[8];                  // _24
+	CNode _2C;                  // _2C
+	CNode _44;                  // _44
+	JKRSolidHeap* _5C;          // _5C
+	CNode _60;                  // _60
+	CNode m_sceneInfoListNode;  // _78
+	u8 _90;                     // _90
+	u8 _91;                     // _91
+	u8 _92;                     // _92
+	u32 _94;                    // _94
+	u32 _98;                    // _98
+	JUtility::TColor m_bgColor; // _9C
+	JUtility::TColor _A0;       // _A0
+	int m_bgMode;               // _A4
+};
+struct ObjMgrBase : public CNode {
+	ObjMgrBase();
+
+	bool confirmSetScene(SetSceneArg&);
+	bool confirmStartScene(StartSceneArg*);
+	bool confirmEndScene(EndSceneArg*);
+	void draw(Graphics&);
+	void registObj(IObjBase*, SceneBase*);
+	IObjBase* search(SceneBase*, char*);
+
+	bool start(StartSceneArg*);
+	bool update();
+	bool end(EndSceneArg*);
 };
 } // namespace Screen
 

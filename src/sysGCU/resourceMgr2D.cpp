@@ -1,3 +1,5 @@
+#include "JSystem/JUT/JUTException.h"
+#include "Resource.h"
 #include "types.h"
 
 /*
@@ -27,14 +29,20 @@
         .skip 0x8
 */
 
+Resource::Mgr2D* gResMgr2D;
+
 /*
  * --INFO--
  * Address:	........
  * Size:	0000A0
  */
-Resource::Mgr2D::Mgr2D(JKRHeap*)
+Resource::Mgr2D::Mgr2D(JKRHeap* heap)
+    : Mgr(heap, 0xD4800)
 {
 	// UNUSED FUNCTION
+	P2ASSERTLINE(34, heap != nullptr);
+	// oldGlobalMgr = mgr;
+	P2ASSERTLINE(36, gResMgr2D == nullptr);
 }
 
 /*
@@ -52,8 +60,14 @@ Resource::Mgr::~Mgr(void)
  * Address:	80433F70
  * Size:	0000B0
  */
-void Resource::Mgr2D::init(JKRHeap*)
+void Resource::Mgr2D::init(JKRHeap* heap)
 {
+	// Mgr2D* oldGlobalMgr = gResMgr2D;
+	// oldGlobalMgr = new Mgr2D(heap);
+	// Mgr2D* newMgr = new Mgr2D(heap);
+	// gResMgr2D = newMgr;
+	// gResMgr2D = oldGlobalMgr;
+	gResMgr2D = new Mgr2D(heap);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0

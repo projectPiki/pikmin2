@@ -1,3 +1,5 @@
+#include "Dolphin/ctype.h"
+#include "P2JME/P2JME.h"
 #include "types.h"
 
 /*
@@ -11,8 +13,10 @@ namespace P2JME {
  * Address:	8043D32C
  * Size:	000048
  */
-void convertU64ToMessageID(unsigned long long, unsigned long*, unsigned long*)
+void convertU64ToMessageID(ulonglong inID, ulong* messageID, ulong* variantID)
 {
+	ulonglong temp = inID << 8;
+	convertCharToMessageID((char*)(temp), messageID, variantID);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -40,8 +44,28 @@ void convertU64ToMessageID(unsigned long long, unsigned long*, unsigned long*)
  * Address:	8043D374
  * Size:	000128
  */
-void convertCharToMessageID(char*, unsigned long*, unsigned long*)
+void convertCharToMessageID(char* str, ulong* messageID, ulong* variantID)
 {
+	*variantID = 0;
+	*messageID = 0;
+	if (isdigit(str[0])) {
+		*messageID = *messageID * 10 + str[0] - '0';
+	}
+	if (isdigit(str[1])) {
+		*messageID = *messageID * 10 + str[1] - '0';
+	}
+	if (isdigit(str[2])) {
+		*messageID = *messageID * 10 + str[2] - '0';
+	}
+	if (isdigit(str[3])) {
+		*messageID = *messageID * 10 + str[3] - '0';
+	}
+	if (isdigit(str[5])) {
+		*variantID = *variantID * 10 + str[5] - '0';
+	}
+	if (isdigit(str[6])) {
+		*variantID = *variantID * 10 + str[6] - '0';
+	}
 	/*
 	li       r0, 0
 	lis      r6, __ctype_map@ha
