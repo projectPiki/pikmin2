@@ -484,7 +484,7 @@ YAMASHITA:=\
 	$(BUILD_DIR)/asm/plugProjectYamashitaU/effectAnimator.o\
 
 KANDO:=\
-	$(BUILD_DIR)/asm/plugProjectKandoU/pikiAnimator.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/pikiAnimator.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/collinfo.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/gameDynamics.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/creature.o\
