@@ -3,48 +3,76 @@
 .balign 0x8
 lbl_8049DE78:
 	.asciz "PSMainSide_TrackMap.cpp"
+.balign 4
+lbl_8049DE90:
 	.asciz "not loaded\n"
+.balign 4
+lbl_8049DE9C:
 	.asciz "endoffile"
-	.skip 2
+.balign 4
+lbl_8049DEA8:
 	.asciz "not find\ntrack map\n(%s)"
+.balign 4
+lbl_8049DEC0:
 	.asciz "basic trk over\n(%s)\n(Cur=%d)"
-	.skip 3
+.balign 4
+lbl_8049DEE0:
 	.asciz "event trk over\n(%s)\n(Cur=%d)"
-	.skip 3
+.balign 4
+lbl_8049DF00:
 	.asciz "otakara trk over\n(%s)\n(Cur=%d)"
-	.skip 1
+.balign 4
+lbl_8049DF20:
 	.asciz "kehai trk over\n(%s)\n(Cur=%d)"
-	.skip 3
+.balign 4
+lbl_8049DF40:
 	.asciz "battle trk over\n(%s)\n(Cur=%d)"
-	.skip 2
+.balign 4
+lbl_8049DF60:
 	.asciz "ground trk over\n(%s)\n(Cur=%d)"
-	.skip 2
+.balign 4
+lbl_8049DF80:
 	.asciz "abnormal pik num\n(%s)\n(Cur=%d)"
-	.skip 1
+.balign 4
+lbl_8049DFA0:
 	.asciz "abnormal pik mask\n(%s)\n(Cur=%d)"
+.balign 4
+lbl_8049DFC0:
 	.asciz "file num over\ntrack map\n(%s)"
-	.skip 3
+.balign 4
+lbl_8049DFE0:
 	.asciz "P2Assert"
-	.skip 3
+.balign 4
+lbl_8049DFEC:
 	.asciz "not find info\n"
-	.skip 1
+.balign 4
+lbl_8049DFFC:
 	.asciz "basic trk over\n(Cur=%d)\n"
-	.skip 3
+.balign 4
+lbl_8049E018:
 	.asciz "event trk over\n(Cur=%d)\n"
-	.skip 3
+.balign 4
+lbl_8049E034:
 	.asciz "otakara trk over\n(Cur=%d)\n"
-	.skip 1
+.balign 4
+lbl_8049E050:
 	.asciz "kehai trk over\n(Cur=%d)\n"
-	.skip 3
+.balign 4
+lbl_8049E06C:
 	.asciz "battle trk over\n(Cur=%d)\n"
-	.skip 2
+.balign 4
+lbl_8049E088:
 	.asciz "ground trk over\n(Cur=%d)\n"
-	.skip 2
+.balign 4
+lbl_8049E0A4:
 	.asciz "abnormal pik num\n(Cur=%d)\n"
-	.skip 1
+.balign 4
+lbl_8049E0C0:
 	.asciz "abnormal pik mask\n(Cur=%d)\n"
+.balign 4
+lbl_8049E0DC:
 	.asciz "file num over\n"
-	.skip 1
+.balign 4
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 0x8
@@ -63,7 +91,7 @@ __vt__Q23PSM15BgmTrackMapFile:
 .balign 0x8
 lbl_80520DB0:
 	.asciz ""
-	.skip 3
+.balign 4
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q23PSM15BgmTrackMapFileFb
@@ -880,7 +908,6 @@ lbl_80472444:
 /* 80472490 0046F3D0  38 21 00 10 */	addi r1, r1, 0x10
 /* 80472494 0046F3D4  4E 80 00 20 */	blr 
 
-.global "@28@__dt__Q23PSM15BgmTrackMapFileFv"
 "@28@__dt__Q23PSM15BgmTrackMapFileFv":
 /* 80472498 0046F3D8  38 63 FF E4 */	addi r3, r3, -28
 /* 8047249C 0046F3DC  4B FF E8 C0 */	b __dt__Q23PSM15BgmTrackMapFileFv
