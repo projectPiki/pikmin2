@@ -1,4 +1,4 @@
-
+#include "Dolphin/bufferstruct.h"
 
 /*
  * --INFO--
@@ -25,69 +25,31 @@ void setvbuf(void)
  * Address:	800C6160
  * Size:	0000C4
  */
-void __flush_buffer(void)
+s32 __flush_buffer(bufferStruct *param_1,u32 *param_2)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  stw       r30, 0x8(r1)
-	  mr        r30, r4
-	  lwz       r3, 0x1C(r3)
-	  lwz       r0, 0x24(r31)
-	  sub.      r0, r0, r3
-	  beq-      .loc_0x78
-	  stw       r0, 0x28(r31)
-	  addi      r5, r31, 0x28
-	  lwz       r12, 0x40(r31)
-	  lwz       r3, 0x0(r31)
-	  lwz       r4, 0x1C(r31)
-	  lwz       r6, 0x48(r31)
-	  mtctr     r12
-	  bctrl
-	  cmplwi    r30, 0
-	  beq-      .loc_0x5C
-	  lwz       r0, 0x28(r31)
-	  stw       r0, 0x0(r30)
-
-	.loc_0x5C:
-	  cmpwi     r3, 0
-	  beq-      .loc_0x68
-	  b         .loc_0xAC
-
-	.loc_0x68:
-	  lwz       r3, 0x18(r31)
-	  lwz       r0, 0x28(r31)
-	  add       r0, r3, r0
-	  stw       r0, 0x18(r31)
-
-	.loc_0x78:
-	  lwz       r0, 0x1C(r31)
-	  li        r3, 0
-	  stw       r0, 0x24(r31)
-	  lwz       r0, 0x20(r31)
-	  stw       r0, 0x28(r31)
-	  lwz       r5, 0x18(r31)
-	  lwz       r4, 0x2C(r31)
-	  lwz       r0, 0x28(r31)
-	  and       r4, r5, r4
-	  sub       r0, r0, r4
-	  stw       r0, 0x28(r31)
-	  lwz       r0, 0x18(r31)
-	  stw       r0, 0x34(r31)
-
-	.loc_0xAC:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  lwz       r30, 0x8(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+  u32 uVar1;
+  s32 iVar2;
+  
+  uVar1 = param_1->field24_0x24 - param_1->field22_0x1c;
+  if (uVar1 != 0) {
+    param_1->field25_0x28 = uVar1;
+    iVar2 = param_1->beans(param_1->field0_0x0,param_1->field22_0x1c,&param_1->field25_0x28,param_1->field45_0x48);
+    if (param_2 != nullptr) {
+      *param_2 = param_1->field25_0x28;
+    }
+    if (iVar2 != 0) {
+      return iVar2;
+    }
+    param_1->field21_0x18 = param_1->field21_0x18 + param_1->field25_0x28;
+  }
+  param_1->field24_0x24 = param_1->field22_0x1c;
+  param_1->field25_0x28 = param_1->field23_0x20;
+  param_1->field25_0x28 = param_1->field25_0x28 - (param_1->field21_0x18 & param_1->field26_0x2c);
+  param_1->field31_0x34 = param_1->field21_0x18;
+  return 0;
 }
+
+
 
 /*
  * --INFO--
@@ -104,24 +66,14 @@ void __load_buffer(void)
  * Address:	800C6224
  * Size:	000034
  */
-void __prep_buffer(void)
+void __prep_buffer(bufferStruct *param_1)
+
 {
-	/*
-	.loc_0x0:
-	  lwz       r0, 0x1C(r3)
-	  stw       r0, 0x24(r3)
-	  lwz       r0, 0x20(r3)
-	  stw       r0, 0x28(r3)
-	  lwz       r5, 0x18(r3)
-	  lwz       r4, 0x2C(r3)
-	  lwz       r0, 0x28(r3)
-	  and       r4, r5, r4
-	  sub       r0, r0, r4
-	  stw       r0, 0x28(r3)
-	  lwz       r0, 0x18(r3)
-	  stw       r0, 0x34(r3)
-	  blr
-	*/
+  param_1->field24_0x24 = param_1->field22_0x1c;
+  param_1->field25_0x28 = param_1->field23_0x20;
+  param_1->field25_0x28 = param_1->field25_0x28 - (param_1->field21_0x18 & param_1->field26_0x2c);
+  param_1->field31_0x34 = param_1->field21_0x18;
+  return;
 }
 
 /*
