@@ -1,3 +1,4 @@
+#include "SysShape/ModelMgr.h"
 #include "types.h"
 
 /*
@@ -43,15 +44,16 @@
         .4byte 0x25640A00
 */
 
-/*
 namespace SysShape {
 
+/*
  * --INFO--
  * Address:	8042AB00
  * Size:	0001D8
  */
-void __ct__Q28SysShape8ModelMgrFiPP12J3DModelDataiUlUlP30IDelegate1<Model*>(
-    void)
+// void __ct__Q28SysShape8ModelMgrFiPP12J3DModelDataiUlUlP30IDelegate1<Model*>(
+//     void)
+ModelMgr::ModelMgr(int, J3DModelData**, int, ulong, ulong, IDelegate1<Model*>*)
 {
 	/*
 	.loc_0x0:
@@ -197,7 +199,7 @@ void __ct__Q28SysShape8ModelMgrFiPP12J3DModelDataiUlUlP30IDelegate1<Model*>(
  * Address:	8042ACD8
  * Size:	000084
  */
-void ModelMgr::calcMaximumModelSize(void)
+int ModelMgr::calcMaximumModelSize()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -247,7 +249,7 @@ lbl_8042AD2C:
  * Address:	8042AD5C
  * Size:	0000A0
  */
-void ModelMgr::calcModelSize(J3DModelData*)
+int ModelMgr::calcModelSize(J3DModelData*)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -306,7 +308,7 @@ lbl_8042ADE0:
  * Address:	8042ADFC
  * Size:	0001C8
  */
-void ModelMgr::createModel(int, int)
+Model* ModelMgr::createModel(int, int)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -455,4 +457,4 @@ lbl_8042AFB0:
 	blr
 	*/
 }
-} // SysShape
+} // namespace SysShape
