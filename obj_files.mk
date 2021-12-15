@@ -514,7 +514,7 @@ KANDO:=\
 	$(BUILD_DIR)/asm/plugProjectKandoU/aiPrimitives.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/aiFormation.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/creatureStick.o\
-	$(BUILD_DIR)/asm/plugProjectKandoU/interactBattle.o\
+	$(BUILD_DIR)/src/plugProjectKandoU/interactBattle.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/aiFree.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/aiAttack.o\
 	$(BUILD_DIR)/asm/plugProjectKandoU/aiTransport.o\
