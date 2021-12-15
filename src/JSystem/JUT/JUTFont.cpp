@@ -294,7 +294,7 @@ void JUTFont::setGX(JUtility::TColor, JUtility::TColor)
  * Address:	8002D400
  * Size:	00002C
  */
-float JUTFont::getCellWidth() const
+ushort JUTFont::getCellWidth() const
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -316,7 +316,7 @@ float JUTFont::getCellWidth() const
  * Address:	8002D42C
  * Size:	00002C
  */
-float JUTFont::getCellHeight() const
+ushort JUTFont::getCellHeight() const
 {
 	/*
 	stwu     r1, -0x10(r1)

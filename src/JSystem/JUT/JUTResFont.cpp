@@ -1,3 +1,4 @@
+#include "JSystem/JUT/JUTFont.h"
 #include "types.h"
 
 /*
@@ -858,7 +859,7 @@ lbl_80031A3C:
  * Address:	80031A54
  * Size:	000404
  */
-void JUTResFont::drawChar_scale(float, float, float, float, int, bool)
+float JUTResFont::drawChar_scale(float, float, float, float, int, bool)
 {
 	/*
 	stwu     r1, -0xb0(r1)
@@ -1136,7 +1137,7 @@ lbl_80031C34:
  * Address:	80031E58
  * Size:	00000C
  */
-void JUTResFont::getDescent() const
+ushort JUTResFont::getDescent() const
 {
 	/*
 	lwz      r3, 0x4c(r3)
@@ -1150,7 +1151,7 @@ void JUTResFont::getDescent() const
  * Address:	80031E64
  * Size:	00005C
  */
-void JUTResFont::getHeight() const
+ushort JUTResFont::getHeight() const
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1184,7 +1185,7 @@ void JUTResFont::getHeight() const
  * Address:	80031EC0
  * Size:	00000C
  */
-void JUTResFont::getAscent() const
+ushort JUTResFont::getAscent() const
 {
 	/*
 	lwz      r3, 0x4c(r3)
@@ -1310,7 +1311,7 @@ lbl_80031FFC:
  * Address:	80032014
  * Size:	00004C
  */
-void JUTResFont::getCellWidth() const
+ushort JUTResFont::getCellWidth() const
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1344,7 +1345,7 @@ lbl_80032050:
  * Address:	80032060
  * Size:	00000C
  */
-void JUTResFont::getWidth() const
+ushort JUTResFont::getWidth() const
 {
 	/*
 	lwz      r3, 0x4c(r3)
@@ -1358,7 +1359,7 @@ void JUTResFont::getWidth() const
  * Address:	8003206C
  * Size:	00004C
  */
-void JUTResFont::getCellHeight() const
+ushort JUTResFont::getCellHeight() const
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1392,7 +1393,7 @@ lbl_800320A8:
  * Address:	800320B8
  * Size:	000030
  */
-void JUTResFont::isLeadByte(int) const
+bool JUTResFont::isLeadByte(int) const
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1415,7 +1416,7 @@ void JUTResFont::isLeadByte(int) const
  * Address:	800320E8
  * Size:	0001AC
  */
-void JUTResFont::getFontCode(int) const
+u32 JUTResFont::getFontCode(int) const
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1557,7 +1558,7 @@ lbl_80032274:
  * Address:	80032294
  * Size:	00000C
  */
-void JUTResFont::getFontType() const
+u32 JUTResFont::getFontType() const
 {
 	/*
 	lwz      r3, 0x4c(r3)
@@ -1722,8 +1723,9 @@ lbl_80032448:
  * Address:	80032464
  * Size:	000008
  */
-void JUTResFont::getResFont() const
+ResFONT* JUTResFont::getResFont() const
 {
+	return m_resource;
 	/*
 	lwz      r3, 0x48(r3)
 	blr
@@ -1735,7 +1737,7 @@ void JUTResFont::getResFont() const
  * Address:	8003246C
  * Size:	00000C
  */
-void JUTResFont::getLeading() const
+ushort JUTResFont::getLeading() const
 {
 	/*
 	lwz      r3, 0x4c(r3)

@@ -1,3 +1,4 @@
+#include "JSystem/JUT/JUTFont.h"
 #include "types.h"
 
 /*
@@ -85,7 +86,7 @@ JUTCacheFont::JUTCacheFont()
  * Address:	........
  * Size:	00007C
  */
-JUTCacheFont::JUTCacheFont(const ResFONT*, void*, unsigned long, JKRHeap*)
+JUTCacheFont::JUTCacheFont(const ResFONT*, void*, ulong, JKRHeap*)
 {
 	// UNUSED FUNCTION
 }
@@ -95,7 +96,7 @@ JUTCacheFont::JUTCacheFont(const ResFONT*, void*, unsigned long, JKRHeap*)
  * Address:	80033F94
  * Size:	000090
  */
-JUTCacheFont::JUTCacheFont(const ResFONT*, unsigned long, JKRHeap*)
+JUTCacheFont::JUTCacheFont(const ResFONT*, ulong, JKRHeap*)
 {
 	/*
 	stwu     r1, -0x20(r1)
