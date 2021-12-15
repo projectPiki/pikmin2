@@ -28,6 +28,9 @@ struct Mgr;
 } // namespace TreasureLight
 
 namespace Game {
+struct PikiContainer {
+};
+
 namespace ItemCave {
 	struct Item;
 } // namespace ItemCave
@@ -244,6 +247,8 @@ struct BaseGameSection : public BaseHIOSection {
 	JUTTexture* _168;                                     // _168
 	int m_texData1;                                       // _16C
 	int _170;                                             // _170
+	u8 _174[0xA8];                                        // _174
+	PikiContainer m_container;                            // _214
 };
 } // namespace Game
 

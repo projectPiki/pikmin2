@@ -1,29 +1,13 @@
 #include "types.h"
+#include "Game/GameSystem.h"
+#include "PSSystem/PSGame.h"
+#include "Game/VsGame/VsGame.h"
 
 /*
     Generated from dpostproc
 
     .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-    .4byte __sinit_vsGS_VSGame_cpp
-
-    .section .rodata  # 0x804732E0 - 0x8049E220
-    .global lbl_80483850
-    lbl_80483850:
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x00000000
-        .4byte 0x76734753
-        .4byte 0x5F47616D
-        .4byte 0x65000000
-        .4byte 0x50534761
-        .4byte 0x6D652E68
-        .4byte 0x00000000
-        .asciz "P2Assert"
-        .skip 3
-        .4byte 0x50535363
-        .4byte 0x656E652E
-        .4byte 0x68000000
-        .4byte 0x00000000
+    .4byte __sinit_vsGS_VsGame_cpp
 
     .section .data, "wa"  # 0x8049E220 - 0x804EFC20
     .global lbl_804C1158
@@ -73,137 +57,70 @@
         .skip 0x4
 */
 
+void _Print(char*, ...)
+{
+	OSReport("\0\0\0\0\0\0\0\0\0\0\0");
+	OSReport("vsGS_Game");
+}
+
+static u32 lbl_80515C90;
+static u32 lbl_80515C94;
+
 namespace Game {
+namespace VsGame {
+	static f32 _data[3] = { 0.0f };
 
-struct VsGameSection;
-struct StateArg;
+	/*6
+	 * --INFO--
+	 * Address:	8022EA94
+	 * Size:	000044
+	 */
+	VSState::VSState()
+	    : GameState()
+	{
+		m_id = 3;
+	}
 
-struct VsGame {
-
-	struct GameState {
-		virtual void init(Game::VsGameSection*, Game::StateArg*);
-		virtual void exec(Game::VsGameSection*);
-		virtual void cleanup(VsGameSection*);
-		// WTF are these symbols?
-	};
-
-	struct VSState {
-	};
-};
-
-/*
- * --INFO--
- * Address:	8022EA94
- * Size:	000044
- */
-VsGame::VSState::VSState(void)
-{
 	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       __ct__Q34Game6VsGame9GameStateFv
-	lis      r3, __vt__Q34Game6VsGame7VSState@ha
-	li       r0, 3
-	addi     r4, r3, __vt__Q34Game6VsGame7VSState@l
-	mr       r3, r31
-	stw      r4, 0(r31)
-	stw      r0, 4(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+	 * --INFO--
+	 * Address:	8022EAD8
+	 * Size:	0000CC
+	 */
+	void VSState::do_init(VsGameSection* gameSection)
+	{
+		gameSystem->m_mode = GSM_VERSUS_MODE;
 
-/*
- * --INFO--
- * Address:	8022EAD8
- * Size:	0000CC
- */
-void VsGame::VSState::do_init(Game::VsGameSection*)
-{
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	li       r0, 1
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	mr       r29, r4
-	lis      r4, lbl_80483850@ha
-	lwz      r3, gameSystem__4Game@sda21(r13)
-	addi     r31, r4, lbl_80483850@l
-	li       r4, 2
-	stw      r0, 0x44(r3)
-	mr       r3, r29
-	bl       setPlayerMode__Q24Game15BaseGameSectionFi
-	mr       r3, r29
-	bl       setCamController__Q24Game15BaseGameSectionFv
-	lwz      r0, spSceneMgr__8PSSystem@sda21(r13)
-	cmplwi   r0, 0
-	bne      lbl_8022EB3C
-	addi     r3, r31, 0x18
-	addi     r5, r31, 0x24
-	li       r4, 0x1d3
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+		gameSection->setPlayerMode(2);
+		gameSection->setCamController();
 
-lbl_8022EB3C:
-	lwz      r30, spSceneMgr__8PSSystem@sda21(r13)
-	lwz      r0, 4(r30)
-	cmplwi   r0, 0
-	bne      lbl_8022EB60
-	addi     r3, r31, 0x30
-	addi     r5, r31, 0x24
-	li       r4, 0xc7
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+		PSSystem::SceneMgr* mgr = PSSystem::getSceneMgr();
+		PSSystem::checkSceneMgr4();
 
-lbl_8022EB60:
-	lwz      r3, 4(r30)
-	lwz      r3, 4(r3)
-	lwz      r12, 0(r3)
-	lwz      r12, 0x1c(r12)
-	mtctr    r12
-	bctrl
-	mr       r3, r29
-	addi     r4, r29, 0x214
-	li       r5, 0
-	bl       createFallPikmins__Q24Game13VsGameSectionFRQ24Game13PikiContaineri
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
+		mgr->_04->_04->_1C();
 
+		gameSection->createFallPikmins(gameSection->m_container, 0);
+	}
+} // namespace VsGame
 } // namespace Game
 
-/*
- * --INFO--
- * Address:	8022EBA4
- * Size:	000028
- */
-void __sinit_vsGS_VSGame_cpp(void)
-{
-	/*
-	lis      r4, __float_nan@ha
-	li       r0, -1
-	lfs      f0, __float_nan@l(r4)
-	lis      r3, lbl_804C1158@ha
-	stw      r0, lbl_80515C90@sda21(r13)
-	stfsu    f0, lbl_804C1158@l(r3)
-	stfs     f0, lbl_80515C94@sda21(r13)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
-	blr
-	*/
-}
+// WTF.
+// /*
+//  * --INFO--
+//  * Address:	8022EBA4
+//  * Size:	000028
+//  */
+// void __sinit_vsGS_VsGame_cpp(void)
+// {
+// 	/*
+// 	lis      r4, __float_nan@ha
+// 	li       r0, -1
+// 	lfs      f0, __float_nan@l(r4)
+// 	lis      r3, lbl_804C1158@ha
+// 	stw      r0, lbl_80515C90@sda21(r13)
+// 	stfsu    f0, lbl_804C1158@l(r3)
+// 	stfs     f0, lbl_80515C94@sda21(r13)
+// 	stfs     f0, 4(r3)
+// 	stfs     f0, 8(r3)
+// 	blr
+// 	*/
+// }

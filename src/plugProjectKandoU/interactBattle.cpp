@@ -2,12 +2,13 @@
 #include "Game/Creature.h"
 #include "types.h"
 
+namespace Game {
+
 /*
  * --INFO--
  * Address:	8019FE78
  * Size:	000044
  */
-namespace Game {
 bool InteractFlick::actCommon(Creature* creature)
 {
 	// On flick, we unstick and get sent flying away. Weeeee.
