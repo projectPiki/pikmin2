@@ -9,6 +9,14 @@ struct J3DMtxCalcAnmBase;
 struct J3DMaterial;
 
 struct J3DJoint {
+	J3DJoint();
+
+	void appendChild(J3DJoint*);
+	void entryIn();
+	J3DJoint* getChild();
+	J3DJoint* getYounger();
+	void recursiveCalc();
+
 	u32 _00;                      // _00
 	u32 m_function;               // _04
 	u32 _08;                      // _08

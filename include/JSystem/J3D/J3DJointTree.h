@@ -7,17 +7,32 @@
 
 #include "JSystem/J3D/J3DDrawMtxData.h"
 
-struct J3DModelHierarchy;
+struct J3DJoint;
 struct J3DJointBlock;
+struct J3DMaterialTable;
+struct J3DModelHierarchy;
+struct J3DMtxBuffer;
+struct J3DMtxCalc;
+struct J3DShapeTable;
 struct JUTNameTab;
+struct Vec;
 
 struct J3DJointTree {
-	u32 _00;                        // _00, VTBL !
+	J3DJointTree();
+
+	virtual void calc(J3DMtxBuffer*, const Vec&, const float (&)[3][4]); // _00
+	virtual ~J3DJointTree();                                             // _04
+
+	void findImportantMtxIndex();
+	void makeHierarchy(J3DJoint*, const J3DModelHierarchy**, J3DMaterialTable*,
+	                   J3DShapeTable*);
+
+	// VTBL _00
 	J3DModelHierarchy* m_hierarchy; // _04
 	s8* _08;                        // _08
 	u32 m_flags;                    // _0C
-	u32 _10;                        // _10
-	u32** m_transformCalc;          // _14
+	J3DJoint* _10;                  // _10
+	J3DMtxCalc** m_transformCalc;   // _14
 	J3DJointBlock* m_jointBlock;    // _18
 	u16 m_jointCnt;                 // _1C
 	u16 m_envelopeCnt;              // _1E
@@ -27,8 +42,6 @@ struct J3DJointTree {
 	u16* _2C;                       // _2C
 	u32 _30;                        // _30
 	J3DDrawMtxData m_mtxData;       // _34
-	s32 _38;                        // _38
-	s32 _3C;                        // _3C
 	u32 _40;                        // _40
 	JUTNameTab* nametab;            // _44
 };
