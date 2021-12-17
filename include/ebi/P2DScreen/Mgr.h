@@ -15,9 +15,10 @@ struct Node : public CNode {
 
 struct Mgr : public J2DScreen {
 	virtual ~Mgr();
+	virtual void update();
+	virtual void draw(Graphics&, J2DGrafContext&);
 
-	char _00[0x114]; // _00
-	Node _118;       // _118
+	Node _118; // _118
 };
 
 } // namespace P2DScreen
