@@ -3,18 +3,6 @@
 #include "id32.h"
 
 /*
-    Generated from dpostproc
-
-    .section .ctors, "wa"  # 0x80472F00 - 0x804732C0
-        .4byte __sinit_id32_cpp
-
-    .section .bss  # 0x804EFC20 - 0x8051467C
-    .global eof__4ID32
-    eof__4ID32:
-        .skip 0xC
-*/
-
-/*
  * --INFO--
  * Address:	80413254
  * Size:	00001C
