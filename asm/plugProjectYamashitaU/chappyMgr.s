@@ -1,19 +1,15 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
-.global lbl_8047AEC8
+.balign 8
 lbl_8047AEC8:
 	.asciz "chappyMgr"
-	.skip 2
-.global lbl_8047AED4
+.balign 4
 lbl_8047AED4:
 	.asciz "/enemy/data/Chappy/moyou_565.1.bti"
-	.skip 1
-.global lbl_8047AEF8
+.balign 4
 lbl_8047AEF8:
 	.asciz "/enemy/data/Chappy/swallow_565.1.bti"
-	.skip 3
-.global lbl_8047AF20
+.balign 4
 lbl_8047AF20:
 	.4byte 0x90D48360
 	.4byte 0x83838362
@@ -21,9 +17,11 @@ lbl_8047AF20:
 	.4byte 0x837D836C
 	.4byte 0x815B8357
 	.4byte 0x83830000
-	.4byte 0x43686170
-	.4byte 0x70795061
-	.4byte 0x726D7300
+.balign 4
+lbl_8047AF38:
+	.asciz "ChappyParms"
+.balign 4
+lbl_8047AF44:
 	.4byte 0x91AB8CB3
 	.4byte 0x94CD88CD
 	.4byte 0x00000000
@@ -215,7 +213,7 @@ lbl_8047AF20:
 	.4byte 0x00000000
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q34Game10ChappyBase5Parms
 __vt__Q34Game10ChappyBase5Parms:
 	.4byte 0
@@ -281,37 +279,28 @@ __vt__Q34Game6Chappy3Mgr:
 	.4byte initGenerator__Q24Game12EnemyMgrBaseFv
 	.4byte getChangeTexture0__Q34Game6Chappy3MgrFv
 	.4byte getChangeTexture1__Q34Game6Chappy3MgrFv
-	.4byte 0
 
 .section .sdata, "wa"  # 0x80514680 - 0x80514D80
-.balign 0x8
-.global "cChappyChangeTexName0__Q34Game6Chappy23@unnamed@chappyMgr_cpp@"
+.balign 8
 "cChappyChangeTexName0__Q34Game6Chappy23@unnamed@chappyMgr_cpp@":
 	.4byte lbl_8047AED4
-.global "cChappyChangeTexName1__Q34Game6Chappy23@unnamed@chappyMgr_cpp@"
 "cChappyChangeTexName1__Q34Game6Chappy23@unnamed@chappyMgr_cpp@":
 	.4byte lbl_8047AEF8
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
-.global lbl_80517B10
+.balign 8
 lbl_80517B10:
-	.4byte 0x42480000
-.global lbl_80517B14
+	.float 50.0
 lbl_80517B14:
-	.4byte 0x00000000
-.global lbl_80517B18
+	.float 0.0
 lbl_80517B18:
-	.4byte 0x42C80000
-.global lbl_80517B1C
+	.float 100.0
 lbl_80517B1C:
-	.4byte 0x43960000
-.global lbl_80517B20
+	.float 300.0
 lbl_80517B20:
-	.4byte 0x447A0000
-.global lbl_80517B24
+	.float 1000.0
 lbl_80517B24:
-	.4byte 0x43C80000
+	.float 400.0
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game6Chappy3MgrFiUc
@@ -633,7 +622,6 @@ getEnemy__Q34Game6Chappy3MgrFi:
 /* 80119BEC 00116B2C  7C 63 02 14 */	add r3, r3, r0
 /* 80119BF0 00116B30  4E 80 00 20 */	blr 
 
-.global "@4@__dt__Q34Game6Chappy3MgrFv"
 "@4@__dt__Q34Game6Chappy3MgrFv":
 /* 80119BF4 00116B34  38 63 FF FC */	addi r3, r3, -4
 /* 80119BF8 00116B38  4B FF FE BC */	b __dt__Q34Game6Chappy3MgrFv
