@@ -6,48 +6,60 @@
 .balign 0x8
 lbl_8047A520:
 	.skip 0xC
+.balign 4
+lbl_8047A52C:
 	.asciz "enemyBase"
-	.skip 2
+.balign 4
 lbl_8047A538:
 	.asciz "e-upd-do"
-	.skip 3
+.balign 4
 lbl_8047A544:
 	.asciz "enemyBase.cpp"
-	.skip 2
+.balign 4
 lbl_8047A554:
 	.asciz "P2Assert"
-	.skip 3
+.balign 4
+lbl_8047A560:
 	.asciz "BirthTypeDrop"
-	.skip 2
+.balign 4
+lbl_8047A570:
 	.asciz "BirthTypeDropPikmin"
+.balign 4
+lbl_8047A584:
 	.asciz "BirthTypeDropOlimar"
+.balign 4
+lbl_8047A598:
 	.asciz "BirthTypeDropTreasure"
-	.skip 2
+.balign 4
+lbl_8047A5B0:
 	.asciz "BirthTypeDropEarthquake"
+.balign 4
+lbl_8047A5C8:
 	.asciz "Earthquake"
-	.skip 1
+.balign 4
 lbl_8047A5D4:
 	.asciz "Unknown birth type:%d"
-	.skip 2
+.balign 4
 lbl_8047A5EC:
 	.asciz "EnemyKillArg"
-	.skip 3
+.balign 4
 lbl_8047A5FC:
 	.asciz "CreatureKillArg"
+.balign 4
 lbl_8047A60C:
 	.asciz "abolished type\n"
+.balign 4
 lbl_8047A61C:
 	.asciz "PelletInitArg"
-	.skip 2
+.balign 4
 lbl_8047A62C:
 	.asciz "ArgScale"
-	.skip 3
+.balign 4
 lbl_8047A638:
 	.asciz "ItemHoney::InitArg"
-	.skip 1
+.balign 4
 lbl_8047A64C:
 	.asciz "ArgEnemyType"
-	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
 .balign 0x8
@@ -649,11 +661,9 @@ __vt__Q34Game12EnemyBaseFSM5State:
 
 .section .sbss # 0x80514D80 - 0x80516360
 .balign 0x8
-.global lbl_80515820
-lbl_80515820:
+gu32NAN___Q24Game5P2JST:
 	.skip 0x4
-.global lbl_80515824
-lbl_80515824:
+gfNAN___Q24Game5P2JST:
 	.skip 0x4
 .global gParmArc__4Game
 gParmArc__4Game:
@@ -690,7 +700,7 @@ gParmArc__4Game:
 	.skip 0x8
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
+.balign 8
 lbl_80517798:
 	.float 300.0
 lbl_8051779C:
@@ -705,7 +715,7 @@ lbl_805177AC:
 	.float 325.9493
 lbl_805177B0:
 	.float 0.0
-	.skip 4
+.balign 8
 lbl_805177B8:
 	.4byte 0x43300000
 	.4byte 0x80000000
@@ -723,21 +733,23 @@ lbl_805177D4:
 	.float 0.25
 lbl_805177D8:
 	.float 0.017453294
-	.skip 4
+.balign 8
 lbl_805177E0:
 	.4byte 0x43300000
 	.4byte 0x00000000
+.balign 4
 lbl_805177E8:
 	.asciz "Appear"
-	.skip 1
+.balign 4
 lbl_805177F0:
 	.asciz "Living"
-	.skip 1
+.balign 4
 lbl_805177F8:
 	.asciz "Stone"
-	.skip 2
+.balign 4
 lbl_80517800:
 	.asciz "Fit"
+.balign 4
 lbl_80517804:
 	.float 2.5
 lbl_80517808:
@@ -752,9 +764,10 @@ lbl_80517818:
 	.float 10.0
 lbl_8051781C:
 	.float 250.0
+.balign 4
 lbl_80517820:
 	.asciz "e-calc"
-	.skip 1
+.balign 4
 lbl_80517828:
 	.float 3.0
 lbl_8051782C:
@@ -773,6 +786,7 @@ lbl_80517844:
 	.float 100.0
 lbl_80517848:
 	.float 1.5
+.balign 4
 lbl_8051784C:
 	.asciz "Arg"
 
@@ -11450,9 +11464,9 @@ __sinit_enemyBase_cpp:
 /* 8010821C 0010515C  38 00 FF FF */	li r0, -1
 /* 80108220 00105160  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
 /* 80108224 00105164  3C 60 80 4B */	lis r3, lbl_804AA150@ha
-/* 80108228 00105168  90 0D 91 A0 */	stw r0, lbl_80515820@sda21(r13)
+/* 80108228 00105168  90 0D 91 A0 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
 /* 8010822C 0010516C  D4 03 A1 50 */	stfsu f0, lbl_804AA150@l(r3)
-/* 80108230 00105170  D0 0D 91 A4 */	stfs f0, lbl_80515824@sda21(r13)
+/* 80108230 00105170  D0 0D 91 A4 */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 80108234 00105174  D0 03 00 04 */	stfs f0, 4(r3)
 /* 80108238 00105178  D0 03 00 08 */	stfs f0, 8(r3)
 /* 8010823C 0010517C  4E 80 00 20 */	blr 
