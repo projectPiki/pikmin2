@@ -37,6 +37,13 @@ struct SeqParameter {
 struct SeqUpdateData {
 };
 struct SoundInfo {
+	int unk1;
+	unsigned long count;
+	unsigned long pitch;
+	union volume_t {
+		unsigned long v1;
+		unsigned char v2;
+	} volume;
 };
 namespace SoundTable {
 	void init(uchar*, ulong);
