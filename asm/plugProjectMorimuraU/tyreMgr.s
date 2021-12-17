@@ -1,37 +1,30 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
-.global lbl_804957D0
+.balign 8
 lbl_804957D0:
 	.4byte 0x835E8343
 	.4byte 0x8384837D
 	.4byte 0x836C815B
 	.4byte 0x83578383
 	.4byte 0x00000000
-.global lbl_804957E4
+.balign 4
 lbl_804957E4:
-	.4byte 0x456E656D
-	.4byte 0x79506172
-	.4byte 0x6D734261
-	.4byte 0x73650000
-.global lbl_804957F4
+	.asciz "EnemyParmsBase"
+.balign 4
 lbl_804957F4:
 	.4byte 0x89F1935D
 	.4byte 0x83588373
 	.4byte 0x815B8368
 	.4byte 0x00000000
-.global lbl_80495804
+.balign 4
 lbl_80495804:
-	.4byte 0x74797265
-	.4byte 0x4D67722E
-	.4byte 0x63707000
-.global lbl_80495810
+	.asciz "tyreMgr.cpp"
+.balign 4
 lbl_80495810:
 	.asciz "P2Assert"
-	.skip 3
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q34Game4Tyre3Mgr
 __vt__Q34Game4Tyre3Mgr:
 	.4byte 0
@@ -95,31 +88,23 @@ __vt__Q34Game4Tyre5Parms:
 	.4byte 0
 	.4byte 0
 	.4byte read__Q34Game4Tyre5ParmsFR6Stream
-	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
-.global lbl_8051F598
+.balign 8
 lbl_8051F598:
 	.float 0.5
-.global lbl_8051F59C
 lbl_8051F59C:
-	.4byte 0x00000000
-.global lbl_8051F5A0
+	.float 0.0
 lbl_8051F5A0:
-	.4byte 0x42C80000
-.global lbl_8051F5A4
+	.float 100.0
 lbl_8051F5A4:
-	.4byte 0x3F400000
-.global lbl_8051F5A8
+	.float 0.75
 lbl_8051F5A8:
 	.float 0.05
-.global lbl_8051F5AC
 lbl_8051F5AC:
-	.4byte 0x3CCCCCCD
-.global lbl_8051F5B0
+	.float 0.025
 lbl_8051F5B0:
-	.4byte 0x3F99999A
+	.float 1.2
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global __ct__Q34Game4Tyre3MgrFiUc
@@ -456,7 +441,6 @@ read__Q34Game4Tyre5ParmsFR6Stream:
 /* 803AC2E0 003A9220  38 21 00 10 */	addi r1, r1, 0x10
 /* 803AC2E4 003A9224  4E 80 00 20 */	blr 
 
-.global "@4@__dt__Q34Game4Tyre3MgrFv"
 "@4@__dt__Q34Game4Tyre3MgrFv":
 /* 803AC2E8 003A9228  38 63 FF FC */	addi r3, r3, -4
 /* 803AC2EC 003A922C  4B FF FD C8 */	b __dt__Q34Game4Tyre3MgrFv

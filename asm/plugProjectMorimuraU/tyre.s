@@ -3,35 +3,32 @@
 .4byte __sinit_tyre_cpp
 
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
-.global lbl_80495820
+.balign 8
 lbl_80495820:
 	.4byte 0x00000000
 	.4byte 0x00000000
 	.4byte 0x00000000
-	.4byte 0x74797265
-	.4byte 0x2E637070
-	.4byte 0x00000000
+.balign 4
+lbl_8049582C:
+	.asciz "tyre.cpp"
+.balign 4
+lbl_80495838:
 	.asciz "P2Assert"
-	.skip 3
-	.4byte 0x74797265
-	.4byte 0x66726F6E
-	.4byte 0x74000000
-	.4byte 0x74797265
-	.4byte 0x6261636B
-	.4byte 0x00000000
-	.4byte 0x41726752
-	.4byte 0x6F745953
-	.4byte 0x63616C65
-	.4byte 0x00000000
-	.4byte 0x41726745
-	.4byte 0x6E656D79
-	.4byte 0x54797065
-	.4byte 0x00000000
+.balign 4
+lbl_80495844:
+	.asciz "tyrefront"
+.balign 4
+lbl_80495850:
+	.asciz "tyreback"
+.balign 4
+lbl_8049585C:
+	.asciz "ArgRotYScale"
+.balign 4
+lbl_8049586C:
+	.asciz "ArgEnemyType"
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
-.global lbl_804E63C8
+.balign 8
 lbl_804E63C8:
 	.4byte 0x00000000
 	.4byte 0x00000000
@@ -276,80 +273,60 @@ __vt__Q34Game4Tyre3Obj:
 	.4byte "@836@12@viewStartCarryMotion__Q24Game9EnemyBaseFv"
 	.4byte "@836@12@viewOnPelletKilled__Q24Game9EnemyBaseFv"
 	.4byte "viewEntryShape__Q24Game10PelletViewFR7MatrixfR10Vector3<f>"
-	.4byte 0
 
 .section .sbss # 0x80514D80 - 0x80516360
-.balign 0x8
-.global lbl_80516068
-lbl_80516068:
+.balign 8
+gu32NAN___Q24Game5P2JST:
 	.skip 0x4
-.global lbl_8051606C
-lbl_8051606C:
+gfNAN___Q24Game5P2JST:
 	.skip 0x4
 .global curT__Q24Game4Tyre
 curT__Q24Game4Tyre:
-	.skip 0x8
+	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
-.global lbl_8051F5B8
+.balign 8
 lbl_8051F5B8:
-	.4byte 0x00000000
-.global lbl_8051F5BC
+	.float 0.0
 lbl_8051F5BC:
-	.4byte 0x3C23D70A
-.global lbl_8051F5C0
+	.float 0.01
 lbl_8051F5C0:
 	.float 0.5
-.global lbl_8051F5C4
 lbl_8051F5C4:
 	.float 1.0
-.global lbl_8051F5C8
 lbl_8051F5C8:
-	.4byte 0xC47A0000
-.global lbl_8051F5CC
+	.float -1000.0
 lbl_8051F5CC:
-	.4byte 0x461C4000
-.global lbl_8051F5D0
+	.float 10000.0
 lbl_8051F5D0:
-	.4byte 0x44610000
-	.4byte 0x00000000
-.global lbl_8051F5D8
+	.float 900.0
+.balign 8
 lbl_8051F5D8:
 	.4byte 0x43300000
 	.4byte 0x80000000
-.global lbl_8051F5E0
 lbl_8051F5E0:
-	.4byte 0x40000000
-.global lbl_8051F5E4
+	.float 2.0
 lbl_8051F5E4:
-	.4byte 0x41A00000
-.global lbl_8051F5E8
+	.float 20.0
 lbl_8051F5E8:
-	.4byte 0x41200000
-.global lbl_8051F5EC
+	.float 10.0
+.balign 4
 lbl_8051F5EC:
-	.4byte 0x74797265
-	.4byte 0x464C0000
-.global lbl_8051F5F4
+	.asciz "tyreFL"
+.balign 4
 lbl_8051F5F4:
-	.4byte 0x54797265
-	.4byte 0x46520000
-.global lbl_8051F5FC
+	.asciz "TyreFR"
+.balign 4
 lbl_8051F5FC:
-	.4byte 0x42C80000
-.global lbl_8051F600
+	.float 100.0
 lbl_8051F600:
-	.4byte 0x40A00000
-.global lbl_8051F604
+	.float 5.0
 lbl_8051F604:
-	.4byte 0x42480000
-.global lbl_8051F608
+	.float 50.0
 lbl_8051F608:
-	.4byte 0x42A00000
-.global lbl_8051F60C
+	.float 80.0
 lbl_8051F60C:
-	.4byte 0x3F4CCCCD
+	.float 0.8
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global frontTyreCallBack__Q24Game4TyreFP8J3DJointi
@@ -2944,14 +2921,13 @@ __sinit_tyre_cpp:
 /* 803AE80C 003AB74C  38 00 FF FF */	li r0, -1
 /* 803AE810 003AB750  C0 04 48 B0 */	lfs f0, __float_nan@l(r4)
 /* 803AE814 003AB754  3C 60 80 4E */	lis r3, lbl_804E63C8@ha
-/* 803AE818 003AB758  90 0D 99 E8 */	stw r0, lbl_80516068@sda21(r13)
+/* 803AE818 003AB758  90 0D 99 E8 */	stw r0, gu32NAN___Q24Game5P2JST@sda21(r13)
 /* 803AE81C 003AB75C  D4 03 63 C8 */	stfsu f0, lbl_804E63C8@l(r3)
-/* 803AE820 003AB760  D0 0D 99 EC */	stfs f0, lbl_8051606C@sda21(r13)
+/* 803AE820 003AB760  D0 0D 99 EC */	stfs f0, gfNAN___Q24Game5P2JST@sda21(r13)
 /* 803AE824 003AB764  D0 03 00 04 */	stfs f0, 4(r3)
 /* 803AE828 003AB768  D0 03 00 08 */	stfs f0, 8(r3)
 /* 803AE82C 003AB76C  4E 80 00 20 */	blr 
 
-.global "@836@12@viewOnPelletKilled__Q24Game9EnemyBaseFv"
 "@836@12@viewOnPelletKilled__Q24Game9EnemyBaseFv":
 /* 803AE830 003AB770  39 60 00 0C */	li r11, 0xc
 /* 803AE834 003AB774  7D 63 58 2E */	lwzx r11, r3, r11
@@ -2959,7 +2935,6 @@ __sinit_tyre_cpp:
 /* 803AE83C 003AB77C  38 63 FC BC */	addi r3, r3, -836
 /* 803AE840 003AB780  4B D5 80 DC */	b viewOnPelletKilled__Q24Game9EnemyBaseFv
 
-.global "@836@12@viewStartCarryMotion__Q24Game9EnemyBaseFv"
 "@836@12@viewStartCarryMotion__Q24Game9EnemyBaseFv":
 /* 803AE844 003AB784  39 60 00 0C */	li r11, 0xc
 /* 803AE848 003AB788  7D 63 58 2E */	lwzx r11, r3, r11
@@ -2967,7 +2942,6 @@ __sinit_tyre_cpp:
 /* 803AE850 003AB790  38 63 FC BC */	addi r3, r3, -836
 /* 803AE854 003AB794  4B D5 7E 54 */	b viewStartCarryMotion__Q24Game9EnemyBaseFv
 
-.global "@836@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv"
 "@836@12@viewStartPreCarryMotion__Q24Game9EnemyBaseFv":
 /* 803AE858 003AB798  39 60 00 0C */	li r11, 0xc
 /* 803AE85C 003AB79C  7D 63 58 2E */	lwzx r11, r3, r11
@@ -2975,7 +2949,6 @@ __sinit_tyre_cpp:
 /* 803AE864 003AB7A4  38 63 FC BC */	addi r3, r3, -836
 /* 803AE868 003AB7A8  4B D5 7E 60 */	b viewStartPreCarryMotion__Q24Game9EnemyBaseFv
 
-.global "@836@12@view_finish_carrymotion__Q24Game9EnemyBaseFv"
 "@836@12@view_finish_carrymotion__Q24Game9EnemyBaseFv":
 /* 803AE86C 003AB7AC  39 60 00 0C */	li r11, 0xc
 /* 803AE870 003AB7B0  7D 63 58 2E */	lwzx r11, r3, r11
@@ -2983,7 +2956,6 @@ __sinit_tyre_cpp:
 /* 803AE878 003AB7B8  38 63 FC BC */	addi r3, r3, -836
 /* 803AE87C 003AB7BC  4B D5 81 FC */	b view_finish_carrymotion__Q24Game9EnemyBaseFv
 
-.global "@836@12@view_start_carrymotion__Q24Game9EnemyBaseFv"
 "@836@12@view_start_carrymotion__Q24Game9EnemyBaseFv":
 /* 803AE880 003AB7C0  39 60 00 0C */	li r11, 0xc
 /* 803AE884 003AB7C4  7D 63 58 2E */	lwzx r11, r3, r11
@@ -2991,7 +2963,6 @@ __sinit_tyre_cpp:
 /* 803AE88C 003AB7CC  38 63 FC BC */	addi r3, r3, -836
 /* 803AE890 003AB7D0  4B D5 81 BC */	b view_start_carrymotion__Q24Game9EnemyBaseFv
 
-.global "@836@12@viewGetShape__Q24Game9EnemyBaseFv"
 "@836@12@viewGetShape__Q24Game9EnemyBaseFv":
 /* 803AE894 003AB7D4  39 60 00 0C */	li r11, 0xc
 /* 803AE898 003AB7D8  7D 63 58 2E */	lwzx r11, r3, r11
@@ -2999,7 +2970,6 @@ __sinit_tyre_cpp:
 /* 803AE8A0 003AB7E0  38 63 FC BC */	addi r3, r3, -836
 /* 803AE8A4 003AB7E4  4B D5 7D FC */	b viewGetShape__Q24Game9EnemyBaseFv
 
-.global "@4@__dt__Q23efx14TKageTyresmokeFv"
 "@4@__dt__Q23efx14TKageTyresmokeFv":
 /* 803AE8A8 003AB7E8  38 63 FF FC */	addi r3, r3, -4
 /* 803AE8AC 003AB7EC  4B FF FE AC */	b __dt__Q23efx14TKageTyresmokeFv

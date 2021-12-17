@@ -1,6 +1,6 @@
 .include "macros.inc"
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q34Game4Tyre9StateDead
 __vt__Q34Game4Tyre9StateDead:
 	.4byte 0
@@ -69,32 +69,25 @@ __vt__Q34Game4Tyre3FSM:
 	.4byte setCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBasePQ24Game13EnemyFSMState
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
-.global lbl_8051F568
+.balign 8
 lbl_8051F568:
-	.4byte 0x6D6F7665
-	.4byte 0x00000000
-.global lbl_8051F570
+	.asciz "move"
+.balign 4
 lbl_8051F570:
-	.4byte 0x3E4CCCCD
-.global lbl_8051F574
+	.float 0.2
 lbl_8051F574:
 	.4byte 0x40C90FDB
-.global lbl_8051F578
 lbl_8051F578:
-	.4byte 0x00000000
-.global lbl_8051F57C
+	.float 0.0
+.balign 4
 lbl_8051F57C:
-	.4byte 0x6C616E64
-	.4byte 0x00000000
-.global lbl_8051F584
+	.asciz "land"
+.balign 4
 lbl_8051F584:
-	.4byte 0x66726565
-	.4byte 0x7A650000
-.global lbl_8051F58C
+	.asciz "freeze"
+.balign 4
 lbl_8051F58C:
-	.4byte 0x64656164
-	.4byte 0x00000000
+	.asciz "dead"
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
 .global init__Q34Game4Tyre3FSMFPQ24Game9EnemyBase
