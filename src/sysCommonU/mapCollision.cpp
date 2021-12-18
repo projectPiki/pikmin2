@@ -1,7 +1,6 @@
 #include "types.h"
 #include "MapCollision.h"
 
-
 /*
     Generated from dpostproc
 

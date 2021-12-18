@@ -148,6 +148,10 @@ $(BUILD_DIR)/%.o: %.c
 	@echo Compiling $<
 	$(QUIET) $(CC) $(CFLAGS) -c -o $@ $<
 
+$(BUILD_DIR)/%.o: %.cp
+	@echo Compiling $<
+	$(QUIET) $(CC) $(CFLAGS) -c -o $@ $<
+
 $(BUILD_DIR)/%.o: %.cpp
 	@echo Compiling $<
 	$(QUIET) $(CC) $(CFLAGS) -c -o $@ $<

@@ -1,5 +1,5 @@
-
-
+#include "types.h"
+extern "C"{
 /*
  * --INFO--
  * Address:	........
@@ -45,23 +45,21 @@ void __init_arr(void)
  * Address:	800C1718
  * Size:	000030
  */
-void __copy(void)
-{
-/*
-.loc_0x0:
-  cmplwi    r3, 0
-  beqlr-    
-  cmplwi    r5, 0
-  beqlr-    
-  mr        r6, r3
 
-.loc_0x14:
-  lbz       r0, 0x0(r4)
-  subic.    r5, r5, 0x1
-  addi      r4, r4, 0x1
-  stb       r0, 0x0(r6)
-  addi      r6, r6, 0x1
-  bne+      .loc_0x14
-  blr
-*/
+void* __copy(char *dest, char *src, size_t size)
+{
+	char *p;
+	
+	if (dest && size) {
+		p = dest;
+		do {
+			*p = *src;
+			++p;
+			++src;
+			--size;
+		} while (size);
+	}
+	
+	return(dest);
+}
 }
