@@ -3,26 +3,39 @@
 
 #include "types.h"
 
-struct ResNTAB;
-
 // Size: 0x10
-struct JUTNameTab {
-	JUTNameTab();
-	JUTNameTab(const ResNTAB*);
-	JUTNameTab(const JUTNameTab&);
 
-	virtual ~JUTNameTab(); // _00
-	// virtual void _04() = 0; // _04
+struct ResNTAB {
+	u16 mEntryNum;
+	u16 mPad0;
+	struct Entry {
+		u16 mKeyCode;
+		u16 mOffs;
+	} mEntries[1];
 
-	ushort calcKeyCode(const char*) const;
-	int getIndex(const char*) const;
-	char* getName(ushort) const;
-	void setResource(const ResNTAB*);
-
-	// _00 VTBL
-	const ResNTAB* m_resource; // _04
-	void* _08;                 // _08
-	ushort _0C;                // _0C
+	inline const char* getName(u32 index) const
+	{
+		return ((const char*)mEntries) + mEntries[index].mOffs - 4;
+	}
 };
 
-#endif
+class JUTNameTab {
+public:
+	JUTNameTab();
+	JUTNameTab(const ResNTAB* pNameTable);
+	virtual ~JUTNameTab() { }
+
+	void setResource(const ResNTAB* pNameTable);
+	s32 getIndex(const char*) const;
+	const char* getName(u16 index) const;
+	u16 calcKeyCode(const char* pName) const;
+	const ResNTAB* getResNameTable() const { return mpNameTable; }
+
+private:
+	// _00 VTBL
+	const ResNTAB* mpNameTable; // _04
+	const char* mpStrData;      // _08
+	u16 mNameNum;               // _0C
+};
+
+#endif /* JUTNAMETAB_H */

@@ -82,7 +82,7 @@ JSYSTEM:=\
 	$(BUILD_DIR)/asm/JSystem/JUT/JUTFont.o\
 	$(BUILD_DIR)/asm/JSystem/JUT/JUTGamePad.o\
 	$(BUILD_DIR)/asm/JSystem/JUT/JUTGraphFifo.o\
-	$(BUILD_DIR)/asm/JSystem/JUT/JUTNameTab.o\
+	$(BUILD_DIR)/src/JSystem/JUT/JUTNameTab.o\
 	$(BUILD_DIR)/asm/JSystem/JUT/JUTPalette.o\
 	$(BUILD_DIR)/asm/JSystem/JUT/JUTProcBar.o\
 	$(BUILD_DIR)/asm/JSystem/JUT/JUTResFont.o\
