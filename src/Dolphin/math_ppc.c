@@ -1,5 +1,5 @@
-
-
+#include "Dolphin/math_ppc.h"
+#include "fdlibm.h"
 /*
  * --INFO--
  * Address:	........
@@ -305,7 +305,7 @@ void modff(float, float*)
  * Address:	........
  * Size:	000008
  */
-void fabs(void)
+double fabs(double)
 {
 	// UNUSED FUNCTION
 }
@@ -475,63 +475,21 @@ void coshf(void)
  * Address:	800CFC50
  * Size:	000024
  */
-void tanf(void)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  bl        -0x368
-	  lwz       r0, 0x14(r1)
-	  frsp      f1, f1
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+float tanf(float __x) { return tan((double)__x); }
 
 /*
  * --INFO--
  * Address:	800CFC74
  * Size:	000024
  */
-void sinf(void)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  bl        -0x464
-	  lwz       r0, 0x14(r1)
-	  frsp      f1, f1
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+float sinf(float __x) { return sin((double)__x); }
 
 /*
  * --INFO--
  * Address:	800CFC98
  * Size:	000024
  */
-void cosf(void)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  bl        -0x9F0
-	  lwz       r0, 0x14(r1)
-	  frsp      f1, f1
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+float cosf(float __x) { return cos((double)__x); }
 
 /*
  * --INFO--
@@ -1078,7 +1036,7 @@ void scalbln(void)
  * Address:	........
  * Size:	000020
  */
-void scalbn(void)
+double scalbn(double, int)
 {
 	// UNUSED FUNCTION
 }
