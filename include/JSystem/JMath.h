@@ -62,7 +62,12 @@ template <> struct TSinCosTable<2048, float> {
 // extern const std::pair<float, float> sincosTable_[2048];
 extern const TSinCosTable<2048, float> sincosTable_;
 extern const TAtanTable<1024, float> atanTable_;
+// from twilight princess repo
+struct TRandom_fast_ {
+	u32 value;
 
+	TRandom_fast_(u32 param_0);
+};
 } // namespace JMath
 
 #endif

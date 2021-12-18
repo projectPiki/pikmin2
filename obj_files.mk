@@ -94,7 +94,7 @@ JSYSTEM:=\
 	$(BUILD_DIR)/asm/JSystem/JUT/JUTXfb.o\
 	$(BUILD_DIR)/asm/JSystem/JUT/JUTCacheFont.o\
 	$(BUILD_DIR)/asm/JSystem/JMath/JMath.o\
-	$(BUILD_DIR)/asm/JSystem/JMath/random.o\
+	$(BUILD_DIR)/src/JSystem/JMath/random.o\
 	$(BUILD_DIR)/asm/JSystem/JMath/JMATrigonometric.o\
 	$(BUILD_DIR)/asm/JSystem/J2D/J2DOrthoGraph.o\
 	$(BUILD_DIR)/asm/JSystem/J2D/J2DPerspGraph.o\
@@ -342,7 +342,7 @@ DOLPHIN:=\
 	$(BUILD_DIR)/src/Dolphin/AmcExi2Stubs.o\
 	$(BUILD_DIR)/asm/Dolphin/ar.o\
 	$(BUILD_DIR)/asm/Dolphin/arq.o\
-	$(BUILD_DIR)/asm/Dolphin/PPCArch.o\
+	$(BUILD_DIR)/src/Dolphin/PPCArch.o\
 	$(BUILD_DIR)/asm/Dolphin/CARDBios.o\
 	$(BUILD_DIR)/asm/Dolphin/CARDUnlock.o\
 	$(BUILD_DIR)/asm/Dolphin/CARDRdwr.o\

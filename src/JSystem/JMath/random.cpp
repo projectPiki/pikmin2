@@ -4,36 +4,32 @@
 /*
     Generated from dpostproc
 */
+namespace JMath {
 
 /*
  * --INFO--
  * Address:	80035100
  * Size:	000008
  */
-JMath::TRandom_fast_::TRandom_fast_(unsigned long)
-{
-	/*
-	stw      r4, 0(r3)
-	blr
-	*/
-}
+TRandom_fast_::TRandom_fast_(u32 param_0) { value = param_0; }
 
 /*
  * --INFO--
  * Address:	........
  * Size:	0000C8
  */
-void JMath::TRandom_enough_::setSeed(unsigned long)
-{
-	// UNUSED FUNCTION
-}
+// void TRandom_enough_::setSeed(unsigned long)
+//{
+// UNUSED FUNCTION
+//}
 
 /*
  * --INFO--
  * Address:	........
  * Size:	0000A8
  */
-void JMath::TRandom_enough_::get(void)
-{
-	// UNUSED FUNCTION
-}
+// void TRandom_enough_::get(void)
+//{
+// UNUSED FUNCTION
+//}
+} // namespace JMath

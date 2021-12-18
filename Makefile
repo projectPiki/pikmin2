@@ -99,6 +99,7 @@ endif
 $(BUILD_DIR)/src/Dolphin/dvdFatal.o: MWCC_VERSION := 1.0
 $(BUILD_DIR)/src/Dolphin/__start.o: MWCC_VERSION := 1.0
 $(BUILD_DIR)/src/Dolphin/OSLink.o: MWCC_VERSION := 1.0
+$(BUILD_DIR)/src/Dolphin/PPCArch.o: MWCC_VERSION := 1.0
 
 #-------------------------------------------------------------------------------
 # Recipes
