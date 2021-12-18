@@ -1,4 +1,5 @@
 #include "types.h"
+#include "Dolphin/db.h"
 
 #define PAD3_BUTTON_ADDR        0x800030E4
 #define OS_RESET_RESTART        0
@@ -22,7 +23,6 @@ extern void exit(int);
 extern void __init_user(void);
 extern void InitMetroTRK_BBA(void);
 extern void OSInit(void);
-extern void DBInit(void);
 extern void OSResetSystem(BOOL reset, u32 resetCode, BOOL forceMenu);
 extern void __init_hardware(void);
 

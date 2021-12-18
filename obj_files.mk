@@ -358,6 +358,7 @@ DOLPHIN:=\
 	$(BUILD_DIR)/asm/Dolphin/CARDStat.o\
 	$(BUILD_DIR)/asm/Dolphin/CARDNet.o\
 	$(BUILD_DIR)/asm/Dolphin/db.o\
+	$(BUILD_DIR)/src/Dolphin/db.o\
 	$(BUILD_DIR)/asm/Dolphin/dsp.o\
 	$(BUILD_DIR)/src/Dolphin/dsp_debug.o\
 	$(BUILD_DIR)/asm/Dolphin/dsp_task.o\

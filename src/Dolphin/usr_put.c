@@ -1,4 +1,8 @@
 #include "types.h"
+//#include "Dolphin/os.h"
+extern void OSReport(const char*);
+extern void SetTRKConnected(u32);
+extern u32 GetTRKConnected(void);
 
 /*
  * --INFO--
