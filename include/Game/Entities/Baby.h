@@ -2,7 +2,7 @@
 #define _GAME_ENTITIES_BABY_H
 
 #include "Game/EnemyAnimatorBase.h"
-
+#include "Game/EnemyBase.h"
 namespace Game {
 namespace Baby {
 	struct ProperAnimator : public EnemyAnimatorBase {
@@ -13,6 +13,14 @@ namespace Baby {
 
 		SysShape::Animator m_animator; // _10
 	};
+	struct StateAttack {
+		u32* _00;
+		u32* _04;
+		u32* _08;
+
+		void cleanup(EnemyBase* baby);
+	};
+
 } // namespace Baby
 } // namespace Game
 

@@ -1,7 +1,6 @@
 #include "types.h"
 #include "MapCollision.h"
 
-#pragma auto_inline on
 
 /*
     Generated from dpostproc
@@ -59,5 +58,3 @@ MapCollision* MapCollision::clone(Matrixf& matrix)
 	clone->m_divider    = (Sys::GridDivider*)m_divider->clone(matrix);
 	return clone;
 }
-
-#pragma auto_inline reset
