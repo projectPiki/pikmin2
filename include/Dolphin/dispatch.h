@@ -1,6 +1,8 @@
 #ifndef _DOLPHIN_DISPATCH_H
 #define _DOLPHIN_DISPATCH_H
+
 #include "types.h"
+
 typedef struct MessageBuffer MessageBuffer, *PMessageBuffer;
 struct MessageBuffer {
 	char filler[0x14];
@@ -20,5 +22,5 @@ u32 TRKDoSetOption(MessageBuffer*);
 u32 TRKDoContinue(MessageBuffer*);
 u32 TRKDoStep(MessageBuffer*);
 u32 TRKDoStop(MessageBuffer*);
-void MWTRACE(u8, char*, ...);
+
 #endif
