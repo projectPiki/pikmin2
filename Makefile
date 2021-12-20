@@ -146,15 +146,15 @@ $(BUILD_DIR)/%.o: %.s
 	$(QUIET) $(AS) $(ASFLAGS) -o $@ $<
 	
 $(BUILD_DIR)/%.o: %.c
-	@echo Compiling $<
+	@echo "Compiling " $<
 	$(QUIET) $(CC) $(CFLAGS) -c -o $@ $<
 
 $(BUILD_DIR)/%.o: %.cp
-	@echo Compiling $<
+	@echo "Compiling " $<
 	$(QUIET) $(CC) $(CFLAGS) -c -o $@ $<
 
 $(BUILD_DIR)/%.o: %.cpp
-	@echo Compiling $<
+	@echo "Compiling " $<
 	$(QUIET) $(CC) $(CFLAGS) -c -o $@ $<
 
 ### Debug Print ###

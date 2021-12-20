@@ -697,7 +697,7 @@ gParmArc__4Game:
 	.skip 0x4
 .global "sInstance__Q28PSSystem42SingletonBase<Q28PSSystem14StreamDataList>"
 "sInstance__Q28PSSystem42SingletonBase<Q28PSSystem14StreamDataList>":
-	.skip 0x8
+	.skip 0x4
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
 .balign 8
