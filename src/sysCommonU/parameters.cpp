@@ -33,14 +33,12 @@
         .4byte 0
 */
 
-extern
-
-    /*
-     * --INFO--
-     * Address:	80413658
-     * Size:	0000AC
-     */
-    BaseParm::BaseParm(Parameters* parameters, ulong rawID, char* comment)
+/*
+ * --INFO--
+ * Address:	80413658
+ * Size:	0000AC
+ */
+BaseParm::BaseParm(Parameters* parameters, ulong rawID, char* comment)
     : m_id()
     , m_comment(comment)
 {
@@ -210,9 +208,7 @@ template <> void Parm<float>::write(Stream& stream)
 {
 	stream.writeFloat(m_value);
 }
-
 #ifdef NOPE
-
 /*
  * --INFO--
  * Address:	80413AB8
@@ -231,133 +227,6 @@ ParmString::ParmString(Parameters* parameters, char* value, int length,
 		m_value[i] = value[i];
 	}
 	m_value[i] = '\0';
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  lis       r9, 0x804F
-	  stw       r0, 0x24(r1)
-	  subi      r0, r9, 0x4A88
-	  stmw      r26, 0x8(r1)
-	  mr        r30, r3
-	  mr        r26, r4
-	  mr        r31, r5
-	  mr        r27, r6
-	  mr        r28, r7
-	  mr        r29, r8
-	  stw       r0, 0x0(r3)
-	  addi      r3, r30, 0x4
-	  bl        -0x880
-	  stw       r29, 0x14(r30)
-	  li        r3, 0
-	  lwz       r4, 0x4(r26)
-	  b         .loc_0x54
-
-	.loc_0x4C:
-	  mr        r3, r4
-	  lwz       r4, 0x10(r4)
-
-	.loc_0x54:
-	  cmplwi    r4, 0
-	  bne+      .loc_0x4C
-	  cmplwi    r3, 0
-	  beq-      .loc_0x6C
-	  stw       r30, 0x10(r3)
-	  b         .loc_0x70
-
-	.loc_0x6C:
-	  stw       r30, 0x4(r26)
-
-	.loc_0x70:
-	  mr        r4, r28
-	  addi      r3, r30, 0x4
-	  bl        -0x72C
-	  li        r0, 0
-	  lis       r3, 0x804F
-	  stw       r0, 0x10(r30)
-	  subi      r0, r3, 0x4A9C
-	  stw       r0, 0x0(r30)
-	  stw       r27, 0x1C(r30)
-	  lwz       r3, 0x1C(r30)
-	  addi      r3, r3, 0x1
-	  bl        -0x3EFBA8
-	  stw       r3, 0x18(r30)
-	  mr        r3, r31
-	  bl        -0x349250
-	  cmpwi     r3, 0
-	  li        r4, 0
-	  ble-      .loc_0x18C
-	  cmpwi     r3, 0x8
-	  subi      r5, r3, 0x8
-	  ble-      .loc_0x160
-	  addi      r0, r5, 0x7
-	  rlwinm    r0,r0,29,3,31
-	  mtctr     r0
-	  cmpwi     r5, 0
-	  ble-      .loc_0x160
-
-	.loc_0xD8:
-	  add       r29, r31, r4
-	  lwz       r5, 0x18(r30)
-	  lbz       r0, 0x0(r29)
-	  addi      r10, r4, 0x1
-	  addi      r9, r4, 0x2
-	  addi      r8, r4, 0x3
-	  stbx      r0, r5, r4
-	  addi      r7, r4, 0x4
-	  addi      r6, r4, 0x5
-	  addi      r5, r4, 0x6
-	  lbz       r12, 0x1(r29)
-	  addi      r0, r4, 0x7
-	  lwz       r11, 0x18(r30)
-	  addi      r4, r4, 0x8
-	  stbx      r12, r11, r10
-	  lbz       r11, 0x2(r29)
-	  lwz       r10, 0x18(r30)
-	  stbx      r11, r10, r9
-	  lbz       r10, 0x3(r29)
-	  lwz       r9, 0x18(r30)
-	  stbx      r10, r9, r8
-	  lbz       r9, 0x4(r29)
-	  lwz       r8, 0x18(r30)
-	  stbx      r9, r8, r7
-	  lbz       r8, 0x5(r29)
-	  lwz       r7, 0x18(r30)
-	  stbx      r8, r7, r6
-	  lbz       r7, 0x6(r29)
-	  lwz       r6, 0x18(r30)
-	  stbx      r7, r6, r5
-	  lbz       r6, 0x7(r29)
-	  lwz       r5, 0x18(r30)
-	  stbx      r6, r5, r0
-	  bdnz+     .loc_0xD8
-
-	.loc_0x160:
-	  sub       r0, r3, r4
-	  add       r5, r31, r4
-	  mtctr     r0
-	  cmpw      r4, r3
-	  bge-      .loc_0x18C
-
-	.loc_0x174:
-	  lbz       r0, 0x0(r5)
-	  addi      r5, r5, 0x1
-	  lwz       r3, 0x18(r30)
-	  stbx      r0, r3, r4
-	  addi      r4, r4, 0x1
-	  bdnz+     .loc_0x174
-
-	.loc_0x18C:
-	  lwz       r5, 0x18(r30)
-	  li        r0, 0
-	  mr        r3, r30
-	  stbx      r0, r5, r4
-	  lmw       r26, 0x8(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
 }
 
 /*
@@ -365,84 +234,27 @@ ParmString::ParmString(Parameters* parameters, char* value, int length,
  * Address:	80413C68
  * Size:	00002C
  */
-void ParmString::write(Stream& stream)
-{
-	Stream::writeString(stream, this->m_value);
-}
+void ParmString::write(Stream& stream) { stream.writeString(m_value); }
 
 /*
  * --INFO--
  * Address:	80413C94
  * Size:	000030
  */
-void ParmString::read(Stream& stream)
-{
-	Stream::readString(stream, this->m_value, this->m_length);
-}
+void ParmString::read(Stream& stream) { stream.readString(m_value, m_length); }
 
 /*
  * --INFO--
  * Address:	80413CC4
  * Size:	0000B8
  */
-ParmEnum::ParmEnum(Parameters*, char**, unsigned long, int, long, char*)
+ParmEnum::ParmEnum(Parameters* parameters, char** doublechar, ulong value,
+                   int length, long rawID, char* comment)
+    : BaseParm(parameters, rawID, comment)
 {
-	/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	lis      r10, __vt__8BaseParm@ha
-	stw      r0, 0x34(r1)
-	addi     r0, r10, __vt__8BaseParm@l
-	stmw     r25, 0x14(r1)
-	mr       r25, r3
-	mr       r26, r4
-	mr       r27, r5
-	mr       r28, r6
-	mr       r29, r7
-	mr       r30, r8
-	mr       r31, r9
-	stw      r0, 0(r3)
-	addi     r3, r25, 4
-	bl       __ct__4ID32Fv
-	stw      r31, 0x14(r25)
-	li       r3, 0
-	lwz      r4, 4(r26)
-	b        lbl_80413D1C
-
-lbl_80413D14:
-	mr       r3, r4
-	lwz      r4, 0x10(r4)
-
-lbl_80413D1C:
-	cmplwi   r4, 0
-	bne      lbl_80413D14
-	cmplwi   r3, 0
-	beq      lbl_80413D34
-	stw      r25, 0x10(r3)
-	b        lbl_80413D38
-
-lbl_80413D34:
-	stw      r25, 4(r26)
-
-lbl_80413D38:
-	mr       r4, r30
-	addi     r3, r25, 4
-	bl       __as__4ID32FUl
-	li       r0, 0
-	lis      r3, __vt__8ParmEnum@ha
-	stw      r0, 0x10(r25)
-	addi     r0, r3, __vt__8ParmEnum@l
-	mr       r3, r25
-	stw      r0, 0(r25)
-	stw      r28, 0x18(r25)
-	stw      r29, 0x1c(r25)
-	stw      r27, 0x20(r25)
-	lmw      r25, 0x14(r1)
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-	*/
+	m_value = value;
+	_1C     = length;
+	_20     = doublechar;
 }
 
 /*
@@ -450,46 +262,14 @@ lbl_80413D38:
  * Address:	80413D7C
  * Size:	00002C
  */
-void ParmEnum::write(Stream&)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	mr       r0, r4
-	lwz      r4, 0x18(r3)
-	mr       r3, r0
-	bl       writeInt__6StreamFi
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void ParmEnum::write(Stream& stream) { stream.writeInt(m_value); }
 
 /*
  * --INFO--
  * Address:	80413DA8
  * Size:	000034
  */
-void ParmEnum::read(Stream&)
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	mr       r3, r4
-	bl       readInt__6StreamFv
-	stw      r3, 0x18(r31)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+void ParmEnum::read(Stream& stream) { m_value = stream.readInt(); }
 
 /*
  * --INFO--
@@ -504,5 +284,4 @@ int ParmEnum::size() { return 4; }
  * Size:	000008
  */
 int ParmString::size() { return -1; }
-
 #endif
