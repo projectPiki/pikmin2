@@ -7,9 +7,9 @@
 
 struct BaseParm {
 	BaseParm(Parameters*, ulong, char*);
-	virtual int size();
-	virtual void write(Stream&);
-	virtual void read(Stream&);
+	inline virtual int size() = 0;
+	inline virtual void write(Stream&) { return; }
+	inline virtual void read(Stream&) { return; }
 
 	// _00 vtbl
 	ID32 m_id;        // _04
@@ -38,7 +38,7 @@ template <typename T> struct Parm : public BaseParm {
 
 struct ParmString : public BaseParm {
 	ParmString(Parameters*, char*, int, unsigned long, char*);
-	virtual int size();
+	inline virtual int size() { return -1; }
 	virtual void write(Stream&);
 	virtual void read(Stream&);
 
@@ -48,7 +48,7 @@ struct ParmString : public BaseParm {
 
 struct ParmEnum : public BaseParm {
 	ParmEnum(Parameters*, char**, ulong, int, long, char*);
-	virtual int size();
+	inline virtual int size() { return 4; }
 	virtual void write(Stream&);
 	virtual void read(Stream&);
 

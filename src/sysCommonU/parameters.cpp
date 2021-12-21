@@ -6,34 +6,6 @@
 #include "Dolphin/string.h"
 
 /*
-    Generated from dpostproc
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__8ParmEnum
-    __vt__8ParmEnum:
-        .4byte 0
-        .4byte 0
-        .4byte size__8ParmEnumFv
-        .4byte write__8ParmEnumFR6Stream
-        .4byte read__8ParmEnumFR6Stream
-    .global __vt__10ParmString
-    __vt__10ParmString:
-        .4byte 0
-        .4byte 0
-        .4byte size__10ParmStringFv
-        .4byte write__10ParmStringFR6Stream
-        .4byte read__10ParmStringFR6Stream
-    .global __vt__8BaseParm
-    __vt__8BaseParm:
-        .4byte 0
-        .4byte 0
-        .4byte 0
-        .4byte write__8BaseParmFR6Stream
-        .4byte read__8BaseParmFR6Stream
-        .4byte 0
-*/
-
-/*
  * --INFO--
  * Address:	80413658
  * Size:	0000AC
@@ -80,13 +52,6 @@ void Parameters::write(Stream& stream)
 
 /*
  * --INFO--
- * Address:	804137F0
- * Size:	000004
- */
-void BaseParm::write(Stream& stream) { return; }
-
-/*
- * --INFO--
  * Address:	804137F4
  * Size:	0000C8
  */
@@ -112,13 +77,6 @@ void Parameters::read(Stream& stream)
 		}
 	}
 }
-
-/*
- * --INFO--
- * Address:	804138BC
- * Size:	000004
- */
-void BaseParm::read(Stream& stream) { return; }
 
 /*
  * --INFO--
@@ -208,7 +166,7 @@ template <> void Parm<float>::write(Stream& stream)
 {
 	stream.writeFloat(m_value);
 }
-#ifdef NOPE
+
 /*
  * --INFO--
  * Address:	80413AB8
@@ -270,18 +228,3 @@ void ParmEnum::write(Stream& stream) { stream.writeInt(m_value); }
  * Size:	000034
  */
 void ParmEnum::read(Stream& stream) { m_value = stream.readInt(); }
-
-/*
- * --INFO--
- * Address:	80413DDC
- * Size:	000008
- */
-int ParmEnum::size() { return 4; }
-
-/*
- * --INFO--
- * Address:	80413DE4
- * Size:	000008
- */
-int ParmString::size() { return -1; }
-#endif
