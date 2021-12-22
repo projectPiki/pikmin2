@@ -1,4 +1,3 @@
-
 #ifndef _No_Floating_Point
 /* @(#)s_ldexp.c 1.2 95/01/04 */
 /* $Id: s_ldexp.c,v 1.3.14.1 2002/01/31 15:24:14 ceciliar Exp $ */
@@ -13,9 +12,8 @@
  * ====================================================
  */
 
-#include "dolphin/fdlibm.h"
-//#include <errno.h>
-#include <math.h> /* for isfinite macro */
+#include "fdlibm.h"
+#include "Dolphin/math.h" /* for isfinite macro */
 static const double
 
     two54
@@ -25,7 +23,7 @@ static const double
 
 double ldexp(double x, int n)
 {
-	_INT32 k, hx, lx; /*- cc 020130 -*/
+	s32 k, hx, lx; /*- cc 020130 -*/
 	if (!isfinite(x) || x == 0.0)
 		return x;
 

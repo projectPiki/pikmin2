@@ -322,7 +322,7 @@ DOLPHIN:=\
 	$(BUILD_DIR)/src/Dolphin/s_cos.o\
 	$(BUILD_DIR)/src/Dolphin/s_floor.o\
 	$(BUILD_DIR)/src/Dolphin/s_frexp.o\
-	$(BUILD_DIR)/asm/Dolphin/s_ldexp.o\
+	$(BUILD_DIR)/src/Dolphin/s_ldexp.o\
 	$(BUILD_DIR)/src/Dolphin/s_modf.o\
 	$(BUILD_DIR)/src/Dolphin/s_sin.o\
 	$(BUILD_DIR)/src/Dolphin/s_tan.o\

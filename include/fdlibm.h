@@ -1,3 +1,5 @@
+#ifndef _FDLIBM_H
+#define _FDLIBM_H
 
 /* @(#)fdlibm.h 1.5 04/04/22 */
 /*
@@ -222,3 +224,5 @@ extern int __kernel_rem_pio2 __P((double*, double*, int, int, int, const int*));
 #ifdef __cplusplus
 };
 #endif // ifdef __cplusplus
+
+#endif
