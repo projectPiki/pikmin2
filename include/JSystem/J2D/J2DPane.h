@@ -149,8 +149,8 @@ struct J2DPane {
 	float _044;                      // _044
 	float _048;                      // _048
 	float _04C;                      // _04C
-	PSMatrix _050;                   // _050
-	PSMatrix _080;                   // _080
+	Mtx _050;                        // _050
+	Mtx _080;                        // _080
 	bool m_isVisible;                // _0B0
 	u8 m_cullMode;                   // _0B1
 	uchar m_alpha;                   // _0B2

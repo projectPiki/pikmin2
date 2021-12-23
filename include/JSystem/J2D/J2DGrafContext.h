@@ -49,10 +49,10 @@ struct J2DGrafContext {
 	u8 m_lineWidth;       // _34
 	float _38;            // _38
 	float _3C;            // _3C
-	PSMatrix _40;         // _40 /* Might actually be larger than Matrixf. See
-	              // C_MTXPerspective, called by J2DPerspGraph::setPort */
+	Mtx _40;              // _40 /* Might actually be larger than Matrixf. See
+	         // C_MTXPerspective, called by J2DPerspGraph::setPort */
 	u8 _70[0x10]; // _70
-	PSMatrix _80; // _80
+	Mtx _80;      // _80
 	u8 _B0;       // _B0
 	u8 _B1;       // _B1
 	u8 _B2;       // _B2

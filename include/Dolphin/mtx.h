@@ -9,31 +9,32 @@ extern "C" {
 
 #include "Dolphin/vec.h"
 
-typedef float PSMatrix[3][4];
-typedef float PSMatrix44[4][4];
-typedef float PSQuat[4];
+typedef float Mtx[3][4];
+typedef float Mtx44[4][4];
+typedef float PSQuaternion[4];
+#define MTXDegToRad(a) ((a)*0.01745329252f)
 
-void PSMTXConcat(PSMatrix, PSMatrix, PSMatrix);
-void PSMTXCopy(PSMatrix, PSMatrix);
-void PSMTXIdentity(PSMatrix);
-void PSMTXTranspose(PSMatrix, PSMatrix);
-void PSMTXInverse(PSMatrix, PSMatrix);
-void PSMTXRotRad(float, PSMatrix, uint);
-void PSMTXRotTrig(float, float, PSMatrix, uint);
-void __PSMTXRotAxisRadInternal(float, float, PSMatrix, PSVector);
-void PSMTXRotAxisRad(double, PSMatrix, PSVector);
-void PSMTXTrans(float, float, float, PSMatrix);
-void PSMTXTransApply(float, float, float, PSMatrix, PSMatrix);
-void PSMTXScale(float, float, float, PSMatrix);
-void PSMTXScaleApply(float, float, float, PSMatrix, PSMatrix);
-void PSMTXQuat(PSMatrix, PSQuat);
-void PSMTXMultVec(PSMatrix, PSVector, PSVector);
-void PSMTXMultVecSR(PSMatrix, PSVector, PSVector);
+void PSMTXConcat(const Mtx, const Mtx, Mtx);
+void PSMTXCopy(const Mtx, Mtx);
+void PSMTXIdentity(Mtx);
+void PSMTXTranspose(const Mtx, Mtx);
+u32 PSMTXInverse(const Mtx, Mtx);
+void PSMTXRotRad(Mtx, char, f32);
+void PSMTXRotTrig(Mtx, char, float, float);
+void __PSMTXRotAxisRadInternal(Mtx, const struct Vec*, f32, f32);
+void PSMTXRotAxisRad(Mtx, const struct Vec*, f32);
+void PSMTXTrans(Mtx, float, float, float);
+void PSMTXTransApply(const Mtx, Mtx, float, float, float);
+void PSMTXScale(Mtx, float, float, float);
+void PSMTXScaleApply(const Mtx, Mtx, float, float, float);
+void PSMTXQuat(Mtx, const PSQuaternion*);
+void PSMTXMultVec(Mtx, Vec, Vec);
+void PSMTXMultVecSR(Mtx, Vec, Vec);
 /* TODO: Determine what these params are. */
-void PSMTXMultVecArraySR(PSMatrix, float*, float*, float*);
-void PSMTX44Copy(PSMatrix44, PSMatrix44);
+void PSMTXMultVecArraySR(Mtx, float*, float*, float*);
+void PSMTX44Copy(Mtx44, Mtx44);
 
-void C_MTXPerspective(float, float, float, float, PSMatrix);
+void C_MTXPerspective(float, float, float, float, Mtx);
 
 #ifdef __cplusplus
 }

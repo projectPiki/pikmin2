@@ -187,7 +187,7 @@ void GXSetGPFifo(GXFifoObj* fifo);
 void GXSaveCPUFifo(GXFifoObj* fifo);
 void GXSaveGPFifo(GXFifoObj* fifo);
 
-void GXSetProjection(PSMatrix, u32);
+void GXSetProjection(Mtx, u32);
 
 typedef u8 _GXTlut;
 typedef u8 _GXTlutFmt;

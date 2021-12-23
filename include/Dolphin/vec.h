@@ -3,8 +3,6 @@
 
 #include "types.h"
 
-typedef float PSVector[3];
-
 #ifdef __cplusplus
 extern "C" {
 #endif // ifdef __cplusplus
@@ -15,11 +13,11 @@ typedef struct Vec {
 	float z;
 } Vec;
 
-void PSVECAdd(PSVector, PSVector, PSVector);
-void PSVECSubtract(PSVector, PSVector, PSVector);
-void PSVECNormalize(PSVector, PSVector);
-float PSVECMag(PSVector);
-double PSVECCrossProduct(PSVector, PSVector, PSVector);
+void PSVECAdd(Vec, Vec, Vec);
+void PSVECSubtract(Vec, Vec, Vec);
+void PSVECNormalize(Vec*, Vec*);
+float PSVECMag(Vec);
+double PSVECCrossProduct(const Vec*, Vec*, Vec*);
 
 #ifdef __cplusplus
 }
