@@ -2,6 +2,7 @@
 #define _GAME_ENTITIES_EGG_H
 
 #include "Game/EnemyAnimatorBase.h"
+#include "Game/EnemyBase.h"
 
 namespace Game {
 namespace Egg {
@@ -12,6 +13,10 @@ namespace Egg {
 		virtual SysShape::Animator& getAnimator(int); // _0C
 
 		SysShape::Animator m_animator; // _10
+	};
+
+	struct FSM : public EnemyStateMachine {
+		virtual void init(EnemyBase*); // _00
 	};
 } // namespace Egg
 } // namespace Game
