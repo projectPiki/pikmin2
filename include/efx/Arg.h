@@ -7,7 +7,7 @@
 
 namespace efx {
 struct Arg {
-	Arg(Vector3f& position)
+	Arg(const Vector3f& position)
 	    : m_position(position)
 	{
 	}
