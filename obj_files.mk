@@ -965,7 +965,7 @@ MORIMURA:=\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/dayEndCount.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/hurryUp2D.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/gameOver2D.o\
-	$(BUILD_DIR)/asm/plugProjectMorimuraU/testBase.o\
+	$(BUILD_DIR)/src/plugProjectMorimuraU/testBase.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/bombState.o\
 	$(BUILD_DIR)/src/plugProjectMorimuraU/bombAnimator.o\
 	$(BUILD_DIR)/asm/plugProjectMorimuraU/bombMgr.o\
