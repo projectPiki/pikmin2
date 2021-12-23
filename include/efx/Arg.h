@@ -49,6 +49,11 @@ struct ArgEnemyType : public Arg {
 };
 
 struct ArgScale : public Arg {
+	ArgScale(Vector3f& position, float scale)
+	    : m_scale(scale)
+	    , Arg(position)
+	{
+	}
 	/**
 	 * @reifiedAddress{80107C44}
 	 * @reifiedFile{plugProjectYamashitaU/enemyBase.cpp}
@@ -57,6 +62,8 @@ struct ArgScale : public Arg {
 	{
 		return "ArgScale";
 	}
+
+	float m_scale; // _10
 };
 } // namespace efx
 

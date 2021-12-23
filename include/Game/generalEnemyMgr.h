@@ -1,11 +1,10 @@
 #ifndef _GAME_GENERALENEMYMGR_H
 #define _GAME_GENERALENEMYMGR_H
 
-#include "types.h"
 #include "CNode.h"
+#include "Game/enemyInfo.h"
 #include "GenericObjectMgr.h"
 #include "JSystem/JKR/JKRHeap.h"
-#include "Game/enemyInfo.h"
 
 namespace Game {
 struct EnemyMgrNode : public CNode, GenericObjectMgr {

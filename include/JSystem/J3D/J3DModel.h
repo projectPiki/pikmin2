@@ -30,8 +30,8 @@ struct J3DModel {
 	void* _10;                       // _10
 	u32 _14;                         // _14
 	JGeometry::TVec3f m_modelScale;  // _18
-	PSMatrix _24;                    // _24
-	PSMatrix _54;                    // _54
+	Mtx _24;                         // _24
+	Mtx _54;                         // _54
 	J3DMtxBuffer* m_mtxBuffer;       // _84
 	J3DVertexBuffer m_vertexBuffer;  // _88
 	J3DMatPacket* m_matPackets;      // _C0

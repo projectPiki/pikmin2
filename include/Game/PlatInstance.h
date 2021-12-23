@@ -44,7 +44,7 @@ struct PlatInstance : public CellObject {
 	void doSimulation(float);
 	void doDirectDraw(Graphics&);
 	char* getTypeName();
-	u8 getObjType();
+	ushort getObjType();
 	bool collisionUpdatable();
 
 	Matrixf* _B8;

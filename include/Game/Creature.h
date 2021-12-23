@@ -47,7 +47,7 @@ struct LifeGaugeParam {
 	Vector3f _00; // _00
 	float _0C;    // _0C
 	float _10;    // _10
-	u8 _14;       // _14
+	bool _14;     // _14
 };
 
 enum CreatureFlags {
@@ -78,7 +78,7 @@ struct Creature : public CellObject {
 	Creature();
 
 	virtual bool collisionUpdatable();         // _0C
-	virtual u8 getObjType();                   // _20
+	virtual ushort getObjType();               // _20
 	virtual void constructor();                // _2C
 	virtual void onInit(CreatureInitArg*);     // _30
 	virtual void onKill(CreatureKillArg*);     // _34
@@ -131,7 +131,7 @@ struct Creature : public CellObject {
 	virtual void platCallback(PlatEvent&);
 	virtual void getJAIObject();
 	virtual PSM::Creature* getPSCreature();
-	virtual void getSound_AILOD();
+	virtual AILOD* getSound_AILOD();
 	virtual Vector3f* getSound_PosPtr();
 	virtual bool sound_culling();
 	virtual float getSound_CurrAnimFrame();
@@ -166,11 +166,11 @@ struct Creature : public CellObject {
 	virtual void onSlotStickEnd(Creature*, short);
 	virtual void calcStickSlotGlobal(short, Vector3f&);
 	virtual void getVelocityAt(Vector3f&, Vector3f&) = 0;
-	virtual void getAngularEffect(Vector3f&, Vector3f&);
+	virtual float getAngularEffect(Vector3f&, Vector3f&);
 	virtual void applyImpulse(Vector3f&, Vector3f&);
 	virtual bool ignoreAtari(Creature*);
-	virtual void getSuckPos();
-	virtual void getGoalPos();
+	virtual Vector3f getSuckPos();
+	virtual Vector3f getGoalPos();
 	virtual bool isSuckReady();
 	virtual bool isSuckArriveWait();
 	virtual void stimulate(Interaction&);

@@ -34,6 +34,16 @@ struct TSimple2 : public TBase {
 };
 
 struct TSimple3 : public TBase {
+	TSimple3(ushort effectID1, ushort effectID2, ushort effectID3)
+	{
+		m_effectIDs[0] = effectID1;
+		m_effectIDs[1] = effectID2;
+		m_effectIDs[2] = effectID3;
+		m_emitters[0]  = nullptr;
+		m_emitters[1]  = nullptr;
+		m_emitters[2]  = nullptr;
+	}
+
 	virtual bool create(Arg*); // _00
 	virtual void forceKill();  // _04
 	virtual void fade();       // _08

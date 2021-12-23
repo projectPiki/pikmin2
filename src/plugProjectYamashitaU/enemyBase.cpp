@@ -1,8 +1,11 @@
 #include "BitFlag.h"
 #include "Dolphin/math.h"
 #include "Dolphin/rand.h"
+#include "Game/generalEnemyMgr.h"
 #include "efx/Arg.h"
 #include "efx/TEnemyApsmoke.h"
+#include "efx/TEnemyDownSmoke.h"
+#include "efx/TEnemyDownWat.h"
 #include "Game/AABBWaterBox.h"
 #include "Game/BaseItem.h"
 #include "Game/cellPyramid.h"
@@ -13,23 +16,27 @@
 #include "Game/EnemyParmsBase.h"
 #include "Game/EnemyStateMachine.h"
 #include "Game/EnemyStone.h"
-#include "Game/generalEnemyMgr.h"
 #include "Game/Interaction.h"
 #include "Game/ItemHoney.h"
 #include "Game/MapMgr.h"
+#include "Game/MoviePlayer.h"
 #include "Game/Pellet.h"
 #include "Game/PelletMgr.h"
 #include "Game/Piki.h"
 #include "Game/shadowMgr.h"
 #include "JSystem/JMath.h"
+#include "JSystem/J3D/J3DModel.h"
 #include "LifeGaugeMgr.h"
 #include "Matrix3f.h"
 #include "ObjectTypes.h"
+#include "PS.h"
 #include "PSM/EnemyBase.h"
 #include "PSM/EnemyHekoi.h"
 #include "Sys/Sphere.h"
-#include "Vector3.h"
+#include "SysShape/Model.h"
+#include "System.h"
 #include "types.h"
+#include "Vector3.h"
 
 /*
     Generated from dpostproc
@@ -6383,6 +6390,11 @@ void EnemyBaseFSM::StateMachine::animation(Game::EnemyBase*)
  */
 void EnemyBase::doAnimationUpdateAnimator()
 {
+	m_animator->animate(sys->m_secondsPerFrame);
+	SysShape::Animator animator = m_animator->getAnimator();
+	SysShape::Model* model      = m_model;
+	// TODO: Final line once J3DJointTree is added
+	// m_model->m_j3dModel->_10->m animator.getCalc();
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x10(r1)
@@ -6567,28 +6579,16 @@ void EnemyBase::doAnimationCullingOff()
  * Address:	80103260
  * Size:	000020
  */
-void EnemyBase::onSetPositionPost(Vector3f&)
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  bl        0x664
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+void EnemyBase::onSetPositionPost(Vector3f&) { updateSpheres(); }
 
 /*
  * --INFO--
  * Address:	80103280
  * Size:	00001C
  */
-void EnemyBase::onSetPosition(Vector3f&)
+void EnemyBase::onSetPosition(Vector3f& position)
 {
+	m_position = position;
 	/*
 	.loc_0x0:
 	  lfs       f0, 0x0(r4)
@@ -6671,6 +6671,14 @@ void EnemyBase::doAnimationCullingOn()
  */
 void EnemyBase::show()
 {
+	// TODO: Do this after EnemyStone::Obj
+	// if (!(_1E0[0].typeView & 0x200)) {
+	// 	m_model->show();
+	// } else if (!(m_enemyStoneObj->_50 & 2)) {
+	// 	m_model->show();
+	// } else {
+	// 	m_model->hide();
+	// }
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x10(r1)
@@ -6720,34 +6728,11 @@ void EnemyBase::show()
  */
 void EnemyBase::hide()
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r0, 0x1E0(r3)
-	  rlwinm.   r0,r0,0,22,22
-	  beq-      .loc_0x30
-	  lwz       r3, 0x174(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  b         .loc_0x44
-
-	.loc_0x30:
-	  lwz       r3, 0x174(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-
-	.loc_0x44:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	if ((_1E0[0].typeView & 0x200)) {
+		m_model->hide();
+	} else {
+		m_model->hide();
+	}
 }
 
 /*
@@ -6757,6 +6742,15 @@ void EnemyBase::hide()
  */
 void EnemyBase::doEntryCarcass()
 {
+	if (m_lod.m_flags & AILOD::FLAG_NEED_SHADOW) {
+		hide();
+	} else {
+		show();
+		changeMaterial();
+	}
+	if (!(_1E0[0].typeView & 0x40000000)) {
+		m_model->m_j3dModel->entry();
+	}
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x10(r1)
@@ -6983,21 +6977,9 @@ void EnemyBase::doEntry()
  * Address:	80103680
  * Size:	000028
  */
-void EnemyBase::doSetView(int)
+void EnemyBase::doSetView(int viewNo)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  rlwinm    r4,r4,0,16,31
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x174(r3)
-	  bl        0x33BA2C
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	m_model->setCurrentViewNo((ushort)viewNo);
 }
 
 /*
@@ -7007,36 +6989,13 @@ void EnemyBase::doSetView(int)
  */
 bool EnemyBase::isCullingOff()
 {
-	/*
-	.loc_0x0:
-	  lwz       r4, 0x17C(r3)
-	  lwz       r0, 0x4(r4)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x18
-	  li        r3, 0x1
-	  blr
-
-	.loc_0x18:
-	  lwz       r0, 0x1E0(r3)
-	  li        r5, 0
-	  rlwinm.   r0,r0,0,25,25
-	  beq-      .loc_0x48
-	  lbz       r4, 0xD8(r3)
-	  rlwinm.   r0,r4,0,29,29
-	  bne-      .loc_0x48
-	  rlwinm.   r0,r4,0,28,28
-	  bne-      .loc_0x48
-	  lwz       r0, 0x1E4(r3)
-	  rlwinm.   r0,r0,0,27,27
-	  beq-      .loc_0x4C
-
-	.loc_0x48:
-	  li        r5, 0x1
-
-	.loc_0x4C:
-	  mr        r3, r5
-	  blr
-	*/
+	if (m_pellet) {
+		return true;
+	}
+	return ((!(_1E0[0].typeView & 0x40))
+	        || (m_lod.m_flags & AILOD::FLAG_NEED_SHADOW)
+	        || (m_lod.m_flags & AILOD::FLAG_UNKNOWN4)
+	        || (_1E0[1].typeView & 0x10));
 }
 
 /*
@@ -7263,8 +7222,14 @@ void EnemyBase::updateSpheres()
  * Address:	80103940
  * Size:	0000B8
  */
-void EnemyBase::createDropEffect(const Vector3f&, float)
+void EnemyBase::createDropEffect(const Vector3f& position, float scale)
 {
+	float temp = 1.0f; // There's an (unused?) 1.0f involved here somewhere.
+	                   // Default param? IDK.
+	efx::Arg arg(position);
+	efx::TEnemyDownSmoke effect(0x53, scale);
+	effect.create(&arg);
+	PSStartEnemyDownSmokeSE(this, scale);
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x40(r1)
@@ -7321,8 +7286,23 @@ void EnemyBase::createDropEffect(const Vector3f&, float)
  * Address:	801039F8
  * Size:	000158
  */
-void EnemyBase::createSplashDownEffect(const Vector3f&, float)
+void EnemyBase::createSplashDownEffect(const Vector3f& position, float scale)
 {
+	Vector3f effectPosition;
+	if (m_waterBox) {
+		effectPosition
+		    = Vector3f(position.x, *m_waterBox->getSeaHeightPtr(), position.z);
+		// effectPosition.y = *m_waterBox->getSeaHeightPtr();
+		// effectPosition.x = position.x;
+		// effectPosition.z = position.z;
+	} else {
+		effectPosition = Vector3f(position);
+		// effectPosition = position;
+	}
+	efx::ArgScale arg(effectPosition, scale);
+	efx::TEnemyDownWat effect(0x54, 0x55, 0x56);
+	effect.create(&arg);
+	PSStartEnemyDownWatSE(this, scale);
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x80(r1)
@@ -7564,6 +7544,10 @@ void EnemyBase::createBounceEffect(const Vector3f&, float)
  */
 void EnemyBase::outWaterCallback()
 {
+	float scale = getDownSmokeScale();
+	if (0.0f < scale) {
+		createSplashDownEffect(m_position, scale);
+	}
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x80(r1)
@@ -7670,8 +7654,12 @@ void EnemyBase::outWaterCallback()
  * Address:	80103E94
  * Size:	000168
  */
-void EnemyBase::inWaterCallback(Game::WaterBox*)
+void EnemyBase::inWaterCallback(Game::WaterBox* water)
 {
+	float scale = getDownSmokeScale();
+	if (0.0f < scale) {
+		createSplashDownEffect(m_position, scale);
+	}
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x80(r1)
@@ -9458,21 +9446,12 @@ bool Interaction::actCommon(Game::Creature*) { return true; }
  */
 void EnemyBase::lifeRecover()
 {
-	/*
-	.loc_0x0:
-	  lwz       r4, 0xC0(r3)
-	  lfs       f2, 0x204(r3)
-	  lfs       f1, 0x154(r4)
-	  lfs       f0, 0x200(r3)
-	  fmadds    f0, f2, f1, f0
-	  stfs      f0, 0x200(r3)
-	  lfs       f0, 0x200(r3)
-	  lfs       f1, 0x204(r3)
-	  fcmpo     cr0, f0, f1
-	  blelr-
-	  stfs      f1, 0x200(r3)
-	  blr
-	*/
+	m_health += m_maxHealth
+	            * static_cast<EnemyParmsBase*>(m_parms)
+	                  ->m_general.m_regenerationRate.m_value;
+	if (m_health > m_maxHealth) {
+		m_health = m_maxHealth;
+	}
 }
 
 /*
@@ -9764,6 +9743,23 @@ void EnemyBase::finishScaleDamageAnim()
  */
 void EnemyBase::deathProcedure()
 {
+	_1E0[0].typeView &= ~8;
+	setAlive(false);
+	if ((_1E0[0].typeView & 0x200) == 0) {
+		throwupItemInDeathProcedure();
+	} else {
+		throwupItem();
+	}
+	startMotion();
+	if (_1E0[0].typeView & 0x100) {
+		createDeadBombEffect();
+		PSStartEnemyFatalHitSE(this, 0.0f);
+	}
+	if (m_soundObj->getCastType() == PSM::CCT_EnemyMidBoss
+	    || m_soundObj->getCastType() == PSM::CCT_EnemyBigBoss) {
+		// TODO: I think this is either calling onDisappear or onDeathMotionTop
+		// m_soundObj->
+	}
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x10(r1)
@@ -9884,23 +9880,13 @@ void EnemyBase::throwupItemInDeathProcedure()
  * Address:	8010584C
  * Size:	000028
  */
-void Creature::setAlive(bool)
+void Creature::setAlive(bool isAlive)
 {
-	/*
-	.loc_0x0:
-	  rlwinm.   r0,r4,0,24,31
-	  beq-      .loc_0x18
-	  lwz       r0, 0xBC(r3)
-	  ori       r0, r0, 0x2
-	  stw       r0, 0xBC(r3)
-	  blr
-
-	.loc_0x18:
-	  lwz       r0, 0xBC(r3)
-	  rlwinm    r0,r0,0,31,29
-	  stw       r0, 0xBC(r3)
-	  blr
-	*/
+	if (isAlive) {
+		m_flags.intView |= CF_IS_ALIVE;
+	} else {
+		m_flags.intView &= ~CF_IS_ALIVE;
+	}
 }
 
 /*
@@ -9974,32 +9960,11 @@ void EnemyBase::createDeadBombEffect()
  * Address:	8010594C
  * Size:	000054
  */
-void EnemyBase::getThrowupItemPosition(Vector3f*)
+void EnemyBase::getThrowupItemPosition(Vector3f* throwupItemPosition)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x20(r1)
-	  mflr      r0
-	  stw       r0, 0x24(r1)
-	  stw       r31, 0x1C(r1)
-	  mr        r31, r4
-	  addi      r4, r1, 0x8
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  lfs       f0, 0x8(r1)
-	  stfs      f0, 0x0(r31)
-	  lfs       f0, 0xC(r1)
-	  stfs      f0, 0x4(r31)
-	  lfs       f0, 0x10(r1)
-	  stfs      f0, 0x8(r31)
-	  lwz       r31, 0x1C(r1)
-	  lwz       r0, 0x24(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x20
-	  blr
-	*/
+	Sys::Sphere sphere;
+	getBoundingSphere(sphere);
+	*throwupItemPosition = sphere.m_position;
 }
 
 /*
@@ -10007,17 +9972,11 @@ void EnemyBase::getThrowupItemPosition(Vector3f*)
  * Address:	801059A0
  * Size:	000018
  */
-void EnemyBase::getThrowupItemVelocity(Vector3f*)
+void EnemyBase::getThrowupItemVelocity(Vector3f* throwupItemVelocity)
 {
-	/*
-	.loc_0x0:
-	  lfs       f1, -0x6BB0(r2)
-	  lfs       f0, -0x6B28(r2)
-	  stfs      f1, 0x0(r4)
-	  stfs      f0, 0x4(r4)
-	  stfs      f1, 0x8(r4)
-	  blr
-	*/
+	throwupItemVelocity->x = 0.0f;
+	throwupItemVelocity->y = 200.0f;
+	throwupItemVelocity->z = 0.0f;
 }
 
 /*
@@ -10376,51 +10335,18 @@ void EnemyBase::doDebugDraw(Graphics&) { }
  * Address:	80105E70
  * Size:	000080
  */
-void EnemyBase::getLifeGaugeParam(Game::LifeGaugeParam&)
+void EnemyBase::getLifeGaugeParam(Game::LifeGaugeParam& param)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r5, -0x64AC(r13)
-	  cmplwi    r5, 0
-	  beq-      .loc_0x30
-	  lwz       r0, 0x1F0(r5)
-	  rlwinm.   r0,r0,0,31,31
-	  beq-      .loc_0x30
-	  li        r0, 0
-	  stb       r0, 0x14(r4)
-	  b         .loc_0x54
-
-	.loc_0x30:
-	  lwz       r0, 0x1E0(r3)
-	  li        r5, 0
-	  rlwinm.   r0,r0,0,20,20
-	  beq-      .loc_0x50
-	  lbz       r0, 0xD8(r3)
-	  rlwinm.   r0,r0,0,29,29
-	  beq-      .loc_0x50
-	  li        r5, 0x1
-
-	.loc_0x50:
-	  stb       r5, 0x14(r4)
-
-	.loc_0x54:
-	  lbz       r0, 0x14(r4)
-	  cmplwi    r0, 0
-	  beq-      .loc_0x70
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x260(r12)
-	  mtctr     r12
-	  bctrl
-
-	.loc_0x70:
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	if ((Game::moviePlayer)
+	    && (moviePlayer->m_flags & MoviePlayer::IS_ACTIVE)) {
+		param._14 = false;
+	} else {
+		param._14 = ((_1E0[0].typeView & 0x800)
+		             && (m_lod.m_flags & AILOD::FLAG_NEED_SHADOW));
+	}
+	if (param._14) {
+		doGetLifeGaugeParam(param);
+	}
 }
 
 /*
@@ -10428,8 +10354,17 @@ void EnemyBase::getLifeGaugeParam(Game::LifeGaugeParam&)
  * Address:	80105EF0
  * Size:	000040
  */
-void EnemyBase::doGetLifeGaugeParam(Game::LifeGaugeParam&)
+void EnemyBase::doGetLifeGaugeParam(Game::LifeGaugeParam& param)
 {
+	float posY = m_position.y;
+	float offsetY
+	    = static_cast<EnemyParmsBase*>(m_parms)->m_general.m_lifeMeterHeight();
+	float posZ  = m_position.z;
+	param._00.x = m_position.x;
+	param._00.y = posY + offsetY;
+	param._00.z = posZ;
+	param._0C   = m_health / m_maxHealth;
+	param._10   = 10.0f;
 	/*
 	.loc_0x0:
 	  lwz       r5, 0xC0(r3)
@@ -10456,33 +10391,11 @@ void EnemyBase::doGetLifeGaugeParam(Game::LifeGaugeParam&)
  * Address:	80105F30
  * Size:	000050
  */
-void EnemyBase::onStickStart(Game::Creature*)
+void EnemyBase::onStickStart(Game::Creature* other)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  mr        r3, r4
-	  lwz       r12, 0x0(r4)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x3C
-	  lwz       r3, 0x1F4(r31)
-	  addi      r0, r3, 0x1
-	  stw       r0, 0x1F4(r31)
-
-	.loc_0x3C:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	if (other->isPiki()) {
+		m_stickPikminCount++;
+	}
 }
 
 /*
@@ -10490,33 +10403,11 @@ void EnemyBase::onStickStart(Game::Creature*)
  * Address:	80105F80
  * Size:	000050
  */
-void EnemyBase::onStickEnd(Game::Creature*)
+void EnemyBase::onStickEnd(Game::Creature* other)
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  mr        r3, r4
-	  lwz       r12, 0x0(r4)
-	  lwz       r12, 0x18(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  beq-      .loc_0x3C
-	  lwz       r3, 0x1F4(r31)
-	  subi      r0, r3, 0x1
-	  stw       r0, 0x1F4(r31)
-
-	.loc_0x3C:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	if (other->isPiki()) {
+		m_stickPikminCount--;
+	}
 }
 
 /*
@@ -10524,38 +10415,20 @@ void EnemyBase::onStickEnd(Game::Creature*)
  * Address:	80105FD0
  * Size:	00005C
  */
-void EnemyBase::injure()
+bool EnemyBase::injure()
 {
-	/*
-	.loc_0x0:
-	  lwz       r4, 0x1E0(r3)
-	  rlwinm.   r0,r4,0,30,30
-	  beq-      .loc_0x54
-	  rlwinm.   r0,r4,0,31,31
-	  bne-      .loc_0x38
-	  lfs       f2, 0x200(r3)
-	  lfs       f1, 0x208(r3)
-	  lfs       f0, -0x6BB0(r2)
-	  fsubs     f1, f2, f1
-	  stfs      f1, 0x200(r3)
-	  lfs       f1, 0x200(r3)
-	  fcmpo     cr0, f1, f0
-	  bge-      .loc_0x38
-	  stfs      f0, 0x200(r3)
-
-	.loc_0x38:
-	  lfs       f0, -0x6BB0(r2)
-	  stfs      f0, 0x208(r3)
-	  lwz       r0, 0x1E0(r3)
-	  rlwinm    r0,r0,0,31,29
-	  stw       r0, 0x1E0(r3)
-	  li        r3, 0x1
-	  blr
-
-	.loc_0x54:
-	  li        r3, 0
-	  blr
-	*/
+	if (_1E0[0].typeView & 2) {
+		if (!(_1E0[0].typeView & 1)) {
+			m_health -= m_instantDamage;
+			if (m_health < 0.0f) {
+				m_health = 0.0f;
+			}
+		}
+		m_instantDamage = 0.0f;
+		_1E0[0].typeView &= ~2;
+		return true;
+	}
+	return false;
 }
 
 /*
@@ -10563,29 +10436,16 @@ void EnemyBase::injure()
  * Address:	8010602C
  * Size:	000040
  */
-void EnemyBase::addDamage(float, float)
+void EnemyBase::addDamage(float p1, float p2)
 {
-	/*
-	.loc_0x0:
-	  lwz       r0, 0x1E0(r3)
-	  rlwinm.   r0,r0,0,31,31
-	  bnelr-
-	  lfs       f0, 0x208(r3)
-	  fadds     f0, f0, f1
-	  stfs      f0, 0x208(r3)
-	  lwz       r0, 0x1E0(r3)
-	  rlwinm.   r0,r0,0,26,26
-	  beq-      .loc_0x30
-	  lfs       f0, 0x20C(r3)
-	  fadds     f0, f0, f2
-	  stfs      f0, 0x20C(r3)
-
-	.loc_0x30:
-	  lwz       r0, 0x1E0(r3)
-	  ori       r0, r0, 0x2
-	  stw       r0, 0x1E0(r3)
-	  blr
-	*/
+	if (_1E0[0].typeView & 1) {
+		return;
+	}
+	m_instantDamage += p1;
+	if (_1E0[0].typeView & 0x20) {
+		m_toFlick += p2;
+	}
+	_1E0[0].typeView |= 2;
 }
 
 /*
@@ -10593,33 +10453,17 @@ void EnemyBase::addDamage(float, float)
  * Address:	8010606C
  * Size:	000048
  */
-bool EnemyBase::damageCallBack(Game::Creature*, float, CollPart*)
+bool EnemyBase::damageCallBack(Game::Creature* sourceCreature, float damage,
+                               CollPart* p3)
 {
-	/*
-	.loc_0x0:
-	  lwz       r0, 0x1E0(r3)
-	  rlwinm.   r0,r0,0,31,31
-	  bne-      .loc_0x40
-	  lfs       f0, 0x208(r3)
-	  fadds     f0, f0, f1
-	  stfs      f0, 0x208(r3)
-	  lwz       r0, 0x1E0(r3)
-	  rlwinm.   r0,r0,0,26,26
-	  beq-      .loc_0x34
-	  lfs       f1, 0x20C(r3)
-	  lfs       f0, -0x6B9C(r2)
-	  fadds     f0, f1, f0
-	  stfs      f0, 0x20C(r3)
-
-	.loc_0x34:
-	  lwz       r0, 0x1E0(r3)
-	  ori       r0, r0, 0x2
-	  stw       r0, 0x1E0(r3)
-
-	.loc_0x40:
-	  li        r3, 0x1
-	  blr
-	*/
+	if (!(_1E0[0].typeView & 1)) {
+		m_instantDamage += damage;
+		if (_1E0[0].typeView & 0x20) {
+			m_toFlick += 1.0f;
+		}
+		_1E0[0].typeView |= 2;
+	}
+	return true;
 }
 
 /*
@@ -10647,8 +10491,21 @@ bool EnemyBase::flyCollisionCallBack(Game::Creature*, float, CollPart*)
  * Address:	801060C4
  * Size:	000248
  */
-bool EnemyBase::hipdropCallBack(Game::Creature*, float, CollPart*)
+bool EnemyBase::hipdropCallBack(Game::Creature* sourceCreature, float damage,
+                                CollPart* p3)
 {
+	damageCallBack(sourceCreature,
+	               static_cast<EnemyParmsBase*>(m_parms)
+	                   ->m_general.m_purplePikminHipDropDamage(),
+	               p3);
+	_1E0[0].typeView |= 0x80000;
+	if (_0C8 != 0) {
+		if (m_waterBox) {
+
+		} else {
+			createDropEffect(m_position, getDownSmokeScale());
+		}
+	}
 	/*
 	.loc_0x0:
 	  stwu      r1, -0xA0(r1)
@@ -12767,16 +12624,7 @@ float EnemyBase::getDownSmokeScale()
  * Address:	8010776C
  * Size:	000010
  */
-void EnemyBase::constraintOff()
-{
-	/*
-	.loc_0x0:
-	  lwz       r0, 0x1E0(r3)
-	  rlwinm    r0,r0,0,22,20
-	  stw       r0, 0x1E0(r3)
-	  blr
-	*/
-}
+void EnemyBase::constraintOff() { _1E0[0].typeView &= ~0x400; }
 
 /*
  * --INFO--
@@ -12785,15 +12633,8 @@ void EnemyBase::constraintOff()
  */
 void EnemyBase::hardConstraintOn()
 {
-	/*
-	.loc_0x0:
-	  lwz       r0, 0x1E0(r3)
-	  lfs       f0, -0x6BB0(r2)
-	  oris      r0, r0, 0x4
-	  stw       r0, 0x1E0(r3)
-	  stfs      f0, 0x118(r3)
-	  blr
-	*/
+	_1E0[0].typeView |= 0x40000;
+	_118 = 0.0f;
 }
 
 /*
@@ -12803,19 +12644,11 @@ void EnemyBase::hardConstraintOn()
  */
 void EnemyBase::hardConstraintOff()
 {
-	/*
-	.loc_0x0:
-	  lwz       r0, 0x1E0(r3)
-	  lfs       f0, -0x6BB0(r2)
-	  rlwinm    r0,r0,0,14,12
-	  stw       r0, 0x1E0(r3)
-	  lfs       f1, 0x218(r3)
-	  stfs      f1, 0x118(r3)
-	  stfs      f0, 0x11C(r3)
-	  stfs      f0, 0x120(r3)
-	  stfs      f0, 0x124(r3)
-	  blr
-	*/
+	_1E0[0].typeView &= ~0x40000;
+	_118   = m_friction;
+	_11C.x = 0.0f;
+	_11C.y = 0.0f;
+	_11C.z = 0.0f;
 }
 
 /*
@@ -13008,23 +12841,7 @@ void EnemyBase::doStartWaitingBirthTypeDrop() { }
  * Address:	8010799C
  * Size:	00002C
  */
-void EnemyBase::finishWaitingBirthTypeDrop()
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x2E4(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+void EnemyBase::finishWaitingBirthTypeDrop() { doFinishWaitingBirthTypeDrop(); }
 
 /*
  * --INFO--
@@ -13033,36 +12850,13 @@ void EnemyBase::finishWaitingBirthTypeDrop()
  */
 void EnemyBase::doFinishWaitingBirthTypeDrop()
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0xCC(r12)
-	  mtctr     r12
-	  bctrl
-	  rlwinm.   r0,r3,0,24,31
-	  bne-      .loc_0x50
-	  lwz       r0, 0x1E4(r31)
-	  mr        r3, r31
-	  ori       r0, r0, 0x10
-	  stw       r0, 0x1E4(r31)
-	  bl        0x6C
-	  lfs       f0, -0x6B9C(r2)
-	  stfs      f0, 0x168(r31)
-	  stfs      f0, 0x16C(r31)
-	  stfs      f0, 0x170(r31)
-
-	.loc_0x50:
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	if (!isFlying()) {
+		_1E0[1].typeView |= 0x10;
+		setDroppingMassZero();
+		m_scale.x = 1.0f;
+		m_scale.y = 1.0f;
+		m_scale.z = 1.0f;
+	}
 }
 
 /*
@@ -13072,6 +12866,8 @@ void EnemyBase::doFinishWaitingBirthTypeDrop()
  */
 bool EnemyBase::isBirthTypeDropGroup()
 {
+	return (m_dropGroup == 1 || m_dropGroup == 2 || m_dropGroup == 3
+	        || m_dropGroup == 4 || m_dropGroup == 5);
 	/*
 	.loc_0x0:
 	  lbz       r0, 0x2B0(r3)
@@ -13099,15 +12895,7 @@ bool EnemyBase::isBirthTypeDropGroup()
  * Address:	80107A68
  * Size:	000008
  */
-Vector3f* EnemyBase::getFitEffectPos()
-{
-	return &m_boundingSphere.m_position;
-	/*
-	.loc_0x0:
-	  addi      r3, r3, 0x220
-	  blr
-	*/
-}
+Vector3f* EnemyBase::getFitEffectPos() { return &m_boundingSphere.m_position; }
 
 /*
  * --INFO--
@@ -13116,15 +12904,8 @@ Vector3f* EnemyBase::getFitEffectPos()
  */
 void EnemyBase::setDroppingMassZero()
 {
-	/*
-	.loc_0x0:
-	  lwz       r0, 0x1E4(r3)
-	  lfs       f0, -0x6BB0(r2)
-	  ori       r0, r0, 0x20
-	  stw       r0, 0x1E4(r3)
-	  stfs      f0, 0x118(r3)
-	  blr
-	*/
+	_1E0[1].typeView |= 0x20;
+	_118 = 0.0f;
 }
 
 /*
@@ -13134,15 +12915,8 @@ void EnemyBase::setDroppingMassZero()
  */
 void EnemyBase::resetDroppingMassZero()
 {
-	/*
-	.loc_0x0:
-	  lwz       r0, 0x1E4(r3)
-	  rlwinm    r0,r0,0,27,25
-	  stw       r0, 0x1E4(r3)
-	  lfs       f0, 0x218(r3)
-	  stfs      f0, 0x118(r3)
-	  blr
-	*/
+	_1E0[1].typeView &= ~0x20;
+	_118 = m_friction;
 }
 
 } // namespace Game
@@ -13470,12 +13244,7 @@ void EnemyBase::doSimpleDraw(Viewport*) { }
  */
 float EnemyBase::getCellRadius()
 {
-	/*
-	.loc_0x0:
-	  lwz       r3, 0xC0(r3)
-	  lfs       f1, 0x1CC(r3)
-	  blr
-	*/
+	return static_cast<EnemyParmsBase*>(m_parms)->m_general.m_cellRadius();
 }
 
 /*
@@ -13485,12 +13254,8 @@ float EnemyBase::getCellRadius()
  */
 float EnemyBase::getBodyRadius()
 {
-	/*
-	.loc_0x0:
-	  lwz       r3, 0xC0(r3)
-	  lfs       f1, 0x1F4(r3)
-	  blr
-	*/
+	return static_cast<EnemyParmsBase*>(m_parms)
+	    ->m_general.m_pikminDamageRadius();
 }
 
 /*
@@ -13498,22 +13263,16 @@ float EnemyBase::getBodyRadius()
  * Address:	80107D28
  * Size:	000008
  */
-float EnemyBase::getFaceDir()
-{
-	/*
-	.loc_0x0:
-	  lfs       f1, 0x1FC(r3)
-	  blr
-	*/
-}
+float EnemyBase::getFaceDir() { return m_faceDir; }
 
 /*
  * --INFO--
  * Address:	80107D30
  * Size:	00001C
  */
-void EnemyBase::setVelocity(Vector3f&)
+void EnemyBase::setVelocity(Vector3f& velocity)
 {
+	m_velocity = velocity;
 	/*
 	.loc_0x0:
 	  lfs       f0, 0x0(r4)
@@ -13533,6 +13292,7 @@ void EnemyBase::setVelocity(Vector3f&)
  */
 Vector3f EnemyBase::getVelocity()
 {
+	return m_velocity;
 	/*
 	.loc_0x0:
 	  lfs       f0, 0x1C8(r4)
@@ -13550,8 +13310,10 @@ Vector3f EnemyBase::getVelocity()
  * Address:	80107D68
  * Size:	000034
  */
-void EnemyBase::getVelocityAt(Vector3f&, Vector3f&)
+void EnemyBase::getVelocityAt(Vector3f& p1, Vector3f& p2)
 {
+	p1 = m_velocity;
+	p2 = m_velocity;
 	/*
 	.loc_0x0:
 	  lfs       f0, 0x1C8(r3)
@@ -13582,14 +13344,7 @@ bool EnemyBase::isTeki() { return true; }
  * Address:	80107DA4
  * Size:	000008
  */
-Vector3f* EnemyBase::getSound_PosPtr()
-{
-	/*
-	.loc_0x0:
-	  addi      r3, r3, 0x18C
-	  blr
-	*/
-}
+Vector3f* EnemyBase::getSound_PosPtr() { return &m_position; }
 
 /*
  * --INFO--
@@ -13612,6 +13367,7 @@ void EnemyBase::initWalkSmokeEffect() { }
  */
 bool EnemyBase::inWater()
 {
+	return (m_waterBox != nullptr);
 	/*
 	.loc_0x0:
 	  lwz       r3, 0x280(r3)
@@ -13627,19 +13383,7 @@ bool EnemyBase::inWater()
  * Address:	80107DC8
  * Size:	00001C
  */
-void EnemyBase::getEfxHamonPos(Vector3f*)
-{
-	/*
-	.loc_0x0:
-	  lfs       f0, 0x18C(r3)
-	  stfs      f0, 0x0(r4)
-	  lfs       f0, 0x190(r3)
-	  stfs      f0, 0x4(r4)
-	  lfs       f0, 0x194(r3)
-	  stfs      f0, 0x8(r4)
-	  blr
-	*/
-}
+void EnemyBase::getEfxHamonPos(Vector3f* pos) { *pos = m_position; }
 
 /*
  * --INFO--
@@ -13695,8 +13439,9 @@ void EnemyBase::getLODSphere(Sys::Sphere&)
  * Address:	80107E34
  * Size:	000008
  */
-void EnemyBase::getDamageCoeStoneState()
+float EnemyBase::getDamageCoeStoneState()
 {
+	return 1.5f;
 	/*
 	.loc_0x0:
 	  lfs       f1, -0x6B18(r2)
@@ -13711,22 +13456,7 @@ void EnemyBase::getDamageCoeStoneState()
  */
 float EnemyBase::getSound_CurrAnimFrame()
 {
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  lwz       r3, 0x184(r3)
-	  lwz       r12, 0x0(r3)
-	  lwz       r12, 0x10(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  lfs       f1, 0x8(r3)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
+	return m_animator->getAnimator().m_timer;
 }
 
 /*
@@ -13734,15 +13464,7 @@ float EnemyBase::getSound_CurrAnimFrame()
  * Address:	80107E70
  * Size:	00000C
  */
-float EnemyBase::getSound_CurrAnimSpeed()
-{
-	/*
-	.loc_0x0:
-	  lwz       r3, 0x184(r3)
-	  lfs       f1, 0x4(r3)
-	  blr
-	*/
-}
+float EnemyBase::getSound_CurrAnimSpeed() { return m_animator->m_animSpeed; }
 
 /*
  * --INFO--
@@ -13775,14 +13497,7 @@ bool EnemyBase::sound_culling()
  * Address:	80107EAC
  * Size:	000008
  */
-void EnemyBase::getCarcassArgHeight()
-{
-	/*
-	.loc_0x0:
-	  lfs       f1, 0x22C(r3)
-	  blr
-	*/
-}
+float EnemyBase::getCarcassArgHeight() { return m_boundingSphere.m_radius; }
 
 /*
  * --INFO--
@@ -13791,6 +13506,7 @@ void EnemyBase::getCarcassArgHeight()
  */
 float PelletView::viewGetBaseScale()
 {
+	return 1.0f;
 	/*
 	.loc_0x0:
 	  lfs       f1, -0x6B9C(r2)
@@ -13879,38 +13595,20 @@ void Creature::onEndCapture() { }
  * Address:	80107F04
  * Size:	00000C
  */
-bool Creature::isAtari()
-{
-	/*
-	.loc_0x0:
-	  lwz       r0, 0xBC(r3)
-	  rlwinm    r3,r0,0,31,31
-	  blr
-	*/
-}
+bool Creature::isAtari() { return (m_flags.intView & CF_IS_ATARI); }
 
 /*
  * --INFO--
  * Address:	80107F10
  * Size:	000028
  */
-void Creature::setAtari(bool)
+void Creature::setAtari(bool atari)
 {
-	/*
-	.loc_0x0:
-	  rlwinm.   r0,r4,0,24,31
-	  beq-      .loc_0x18
-	  lwz       r0, 0xBC(r3)
-	  ori       r0, r0, 0x1
-	  stw       r0, 0xBC(r3)
-	  blr
-
-	.loc_0x18:
-	  lwz       r0, 0xBC(r3)
-	  rlwinm    r0,r0,0,0,30
-	  stw       r0, 0xBC(r3)
-	  blr
-	*/
+	if (atari) {
+		m_flags.intView |= CF_IS_ATARI;
+	} else {
+		m_flags.intView &= ~CF_IS_ATARI;
+	}
 }
 
 /*
@@ -13920,12 +13618,7 @@ void Creature::setAtari(bool)
  */
 bool Creature::isCollisionFlick()
 {
-	/*
-	.loc_0x0:
-	  lwz       r0, 0xBC(r3)
-	  rlwinm    r3,r0,30,31,31
-	  blr
-	*/
+	return (m_flags.intView & CF_IS_COLLISION_FLICK);
 }
 
 /*
@@ -13933,23 +13626,13 @@ bool Creature::isCollisionFlick()
  * Address:	80107F44
  * Size:	000028
  */
-void Creature::setCollisionFlick(bool)
+void Creature::setCollisionFlick(bool collisionFlick)
 {
-	/*
-	.loc_0x0:
-	  rlwinm.   r0,r4,0,24,31
-	  beq-      .loc_0x18
-	  lwz       r0, 0xBC(r3)
-	  ori       r0, r0, 0x4
-	  stw       r0, 0xBC(r3)
-	  blr
-
-	.loc_0x18:
-	  lwz       r0, 0xBC(r3)
-	  rlwinm    r0,r0,0,30,28
-	  stw       r0, 0xBC(r3)
-	  blr
-	*/
+	if (collisionFlick) {
+		m_flags.intView |= CF_IS_COLLISION_FLICK;
+	} else {
+		m_flags.intView &= ~CF_IS_COLLISION_FLICK;
+	}
 }
 
 /*
@@ -13957,15 +13640,7 @@ void Creature::setCollisionFlick(bool)
  * Address:	80107F6C
  * Size:	00000C
  */
-bool Creature::isMovieExtra()
-{
-	/*
-	.loc_0x0:
-	  lwz       r0, 0xBC(r3)
-	  rlwinm    r3,r0,26,31,31
-	  blr
-	*/
-}
+bool Creature::isMovieExtra() { return (m_flags.intView & CF_IS_MOVIE_EXTRA); }
 
 /*
  * --INFO--
@@ -13974,12 +13649,7 @@ bool Creature::isMovieExtra()
  */
 bool Creature::isMovieMotion()
 {
-	/*
-	.loc_0x0:
-	  lwz       r0, 0xBC(r3)
-	  rlwinm    r3,r0,27,31,31
-	  blr
-	*/
+	return (m_flags.intView & CF_IS_MOVIE_MOTION);
 }
 
 /*
@@ -13987,23 +13657,13 @@ bool Creature::isMovieMotion()
  * Address:	80107F84
  * Size:	000028
  */
-void Creature::setMovieMotion(bool)
+void Creature::setMovieMotion(bool movieMotion)
 {
-	/*
-	.loc_0x0:
-	  rlwinm.   r0,r4,0,24,31
-	  beq-      .loc_0x18
-	  lwz       r0, 0xBC(r3)
-	  ori       r0, r0, 0x20
-	  stw       r0, 0xBC(r3)
-	  blr
-
-	.loc_0x18:
-	  lwz       r0, 0xBC(r3)
-	  rlwinm    r0,r0,0,27,25
-	  stw       r0, 0xBC(r3)
-	  blr
-	*/
+	if (movieMotion) {
+		m_flags.intView |= CF_IS_MOVIE_MOTION;
+	} else {
+		m_flags.intView &= ~CF_IS_MOVIE_MOTION;
+	}
 }
 
 /*
@@ -14034,12 +13694,7 @@ bool Creature::isLivingThing() { return true; }
  */
 bool Creature::isDebugCollision()
 {
-	/*
-	.loc_0x0:
-	  lwz       r0, 0xBC(r3)
-	  rlwinm    r3,r0,1,31,31
-	  blr
-	*/
+	return (m_flags.intView & CF_IS_DEBUG_COLLISION);
 }
 
 /*
@@ -14047,23 +13702,13 @@ bool Creature::isDebugCollision()
  * Address:	80107FD0
  * Size:	000028
  */
-void Creature::setDebugCollision(bool)
+void Creature::setDebugCollision(bool debugCollision)
 {
-	/*
-	.loc_0x0:
-	  rlwinm.   r0,r4,0,24,31
-	  beq-      .loc_0x18
-	  lwz       r0, 0xBC(r3)
-	  oris      r0, r0, 0x8000
-	  stw       r0, 0xBC(r3)
-	  blr
-
-	.loc_0x18:
-	  lwz       r0, 0xBC(r3)
-	  rlwinm    r0,r0,0,1,31
-	  stw       r0, 0xBC(r3)
-	  blr
-	*/
+	if (debugCollision) {
+		m_flags.intView |= CF_IS_DEBUG_COLLISION;
+	} else {
+		m_flags.intView &= ~CF_IS_DEBUG_COLLISION;
+	}
 }
 
 /*
@@ -14092,14 +13737,7 @@ void Creature::platCallback(Game::PlatEvent&) { }
  * Address:	80108004
  * Size:	000008
  */
-void Creature::getSound_AILOD()
-{
-	/*
-	.loc_0x0:
-	  addi      r3, r3, 0xD8
-	  blr
-	*/
-}
+AILOD* Creature::getSound_AILOD() { return &m_lod; }
 
 /*
  * --INFO--
@@ -14267,8 +13905,9 @@ void Creature::calcStickSlotGlobal(short, Vector3f&) { }
  * Address:	80108084
  * Size:	000008
  */
-void Creature::getAngularEffect(Vector3f&, Vector3f&)
+float Creature::getAngularEffect(Vector3f&, Vector3f&)
 {
+	return 0.0f;
 	/*
 	.loc_0x0:
 	  lfs       f1, -0x6BB0(r2)
@@ -14288,52 +13927,14 @@ bool Creature::ignoreAtari(Game::Creature*) { return false; }
  * Address:	80108094
  * Size:	000038
  */
-void Creature::getSuckPos()
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r12, 0x0(r4)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+Vector3f Creature::getSuckPos() { return getPosition(); }
 
 /*
  * --INFO--
  * Address:	801080CC
  * Size:	000038
  */
-void Creature::getGoalPos()
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  stw       r0, 0x14(r1)
-	  stw       r31, 0xC(r1)
-	  mr        r31, r3
-	  lwz       r12, 0x0(r4)
-	  lwz       r12, 0x8(r12)
-	  mtctr     r12
-	  bctrl
-	  lwz       r0, 0x14(r1)
-	  lwz       r31, 0xC(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+Vector3f Creature::getGoalPos() { return getPosition(); }
 
 /*
  * --INFO--
@@ -14354,35 +13955,14 @@ bool Creature::isSuckArriveWait() { return false; }
  * Address:	80108114
  * Size:	000008
  */
-u8 Creature::getObjType()
-{
-	/*
-	.loc_0x0:
-	  lhz       r3, 0x128(r3)
-	  blr
-	*/
-}
+ushort Creature::getObjType() { return m_objectTypeID; }
 
 /*
  * --INFO--
  * Address:	8010811C
  * Size:	000024
  */
-bool Creature::collisionUpdatable()
-{
-	/*
-	.loc_0x0:
-	  stwu      r1, -0x10(r1)
-	  mflr      r0
-	  addi      r3, r3, 0x12C
-	  stw       r0, 0x14(r1)
-	  bl        0x8E55C
-	  lwz       r0, 0x14(r1)
-	  mtlr      r0
-	  addi      r1, r1, 0x10
-	  blr
-	*/
-}
+bool Creature::collisionUpdatable() { return m_updateContext.updatable(); }
 
 /*
  * --INFO--

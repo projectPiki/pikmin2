@@ -903,7 +903,7 @@ lbl_8026F8D4:
  * Address:	8026F8EC
  * Size:	00004C
  */
-void ElecHiba::Obj::injure()
+bool ElecHiba::Obj::injure()
 {
 	/*
 	lwz      r0, 0x1e0(r3)

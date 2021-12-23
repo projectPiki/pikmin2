@@ -72,7 +72,7 @@ struct EnemyBase : public Creature,
 	virtual bool isNavi();                                      // _14
 	virtual bool deferPikiCollision();                          // _18
 	virtual char* getTypeName();                                // _1C
-	virtual u8 getObjType();                                    // _20
+	virtual ushort getObjType();                                // _20
 	virtual void constructor();                                 // _24
 	virtual void onInit(CreatureInitArg*);                      // _28
 	virtual void onKill(CreatureKillArg*);                      // _2C
@@ -125,7 +125,7 @@ struct EnemyBase : public Creature,
 	virtual void platCallback(PlatEvent&);                      // _E8
 	virtual void getJAIObject();                                // _EC
 	virtual PSM::Creature* getPSCreature();                     // _F0
-	virtual void getSound_AILOD();                              // _F4
+	virtual AILOD* getSound_AILOD();                            // _F4
 	virtual Vector3f* getSound_PosPtr();                        // _F8
 	virtual bool sound_culling();                               // _FC
 	virtual float getSound_CurrAnimFrame();                     // _100
@@ -160,11 +160,11 @@ struct EnemyBase : public Creature,
 	virtual void onSlotStickEnd(Creature*, short);              // _174
 	virtual void calcStickSlotGlobal(short, Vector3f&);         // _178
 	virtual void getVelocityAt(Vector3f&, Vector3f&);           // _17C
-	virtual void getAngularEffect(Vector3f&, Vector3f&);        // _180
+	virtual float getAngularEffect(Vector3f&, Vector3f&);       // _180
 	virtual void applyImpulse(Vector3f&, Vector3f&);            // _184
 	virtual bool ignoreAtari(Creature*);                        // _188
-	virtual void getSuckPos();                                  // _18C
-	virtual void getGoalPos();                                  // _190
+	virtual Vector3f getSuckPos();                              // _18C
+	virtual Vector3f getGoalPos();                              // _190
 	virtual bool isSuckReady();                                 // _194
 	virtual bool isSuckArriveWait();                            // _198
 	virtual void stimulate(Interaction&);                       // _19C
@@ -203,7 +203,7 @@ struct EnemyBase : public Creature,
 	virtual void initWalkSmokeEffect();                             // _220
 	virtual WalkSmokeEffect::Mgr* getWalkSmokeEffectMgr();          // _224
 	virtual void onKeyEvent(const SysShape::KeyEvent&);             // _228
-	virtual void injure();                                          // _22C
+	virtual bool injure();                                          // _22C
 	virtual void setCollEvent(CollEvent&);                          // _230
 	virtual void getEfxHamonPos(Vector3f*);                         // _234
 	virtual void createInstanceEfxHamon();                          // _238
@@ -231,7 +231,7 @@ struct EnemyBase : public Creature,
 	virtual bool doDopeCallBack(Creature*, int);                    // _2A0
 	virtual void doStartStoneState();                               // _2A4
 	virtual void doFinishStoneState();                              // _2A8
-	virtual void getDamageCoeStoneState();                          // _2AC
+	virtual float getDamageCoeStoneState();                         // _2AC
 	virtual void doStartEarthquakeState(float);                     // _2B0
 	virtual void doFinishEarthquakeState();                         // _2B4
 	virtual void doStartEarthquakeFitState();                       // _2B8
@@ -239,7 +239,7 @@ struct EnemyBase : public Creature,
 	virtual void lifeRecover();                                     // _2C0
 	virtual void startCarcassMotion();                              // _2C4
 	virtual void setCarcassArg(struct PelletViewArg&);              // _2C8
-	virtual void getCarcassArgHeight();                             // _2C4
+	virtual float getCarcassArgHeight();                            // _2C4
 	virtual bool doBecomeCarcass();                                 // _2C8
 	virtual void startWaitingBirthTypeDrop();                       // _2CC
 	virtual void finishWaitingBirthTypeDrop();                      // _2D0

@@ -93,7 +93,7 @@ struct CellObject : public TPositionObject {
 	virtual bool isNavi();
 	virtual bool deferPikiCollision();
 	virtual char* getTypeName();
-	virtual u8 getObjType();
+	virtual ushort getObjType();
 
 	void exitCell();
 	float calcCollisionDistance(CellObject*);
