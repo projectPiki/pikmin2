@@ -7,8 +7,8 @@ namespace SysShape {
 struct KeyEvent : public CNode {
 	virtual ~KeyEvent();
 
-	float _18;  // _18
-	int m_type; // _1C
+	f32 _18;    // _18
+	u32 m_type; // _1C
 };
 } // namespace SysShape
 

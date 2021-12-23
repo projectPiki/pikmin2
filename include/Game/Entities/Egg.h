@@ -7,11 +7,26 @@
 
 namespace efx {
 struct TEggdown : public TSimple1 {
+	TEggdown()
+	    : TSimple1(73, nullptr)
+	{
+	}
+
+	// _00 VTBL
+};
+
+struct TEnemyBomb {
+	TEnemyBomb(Vector3f position)
+	    : m_position(position)
+	{
+	}
+
 	virtual void create(Arg*); // _00
 	virtual void forceKill();  // _04
 	virtual void fade();       // _08
 
 	// _00 VTBL
+	Vector3f m_position;
 };
 } // namespace efx
 
@@ -24,6 +39,10 @@ namespace Egg {
 		virtual SysShape::Animator& getAnimator(int); // _0C
 
 		SysShape::Animator m_animator; // _10
+	};
+
+	struct Obj : public EnemyBase {
+		void genItem();
 	};
 
 	struct EggState {
