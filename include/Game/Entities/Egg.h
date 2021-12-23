@@ -15,13 +15,8 @@ struct TEggdown : public TSimple1 {
 	// _00 VTBL
 };
 
-struct TEnemyBomb {
-	TEnemyBomb(Vector3f position)
-	    : m_position(position)
-	{
-	}
-
-	virtual void create(Arg*); // _00
+struct TEnemyBomb : public TBase {
+	virtual bool create(Arg*); // _00
 	virtual void forceKill();  // _04
 	virtual void fade();       // _08
 

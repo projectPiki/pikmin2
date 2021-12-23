@@ -61,7 +61,7 @@ namespace Egg {
 			efx::TEggdown eggdown;
 			eggdown.create(&type);
 
-			efx::TEnemyBomb enemybomb(fxPos);
+			efx::TEnemyBomb enemybomb;
 			enemybomb.create(&type);
 
 			eggObj->m_soundObj->startSound(0x58DC, 0);
