@@ -25,14 +25,21 @@ struct BaseItem : public Creature, public SysShape::MotionListener {
 	BaseItem(int);
 
 	// vtable 1 (Creature)
-	virtual Vector3f getPosition();                            // _00
-	virtual void getBoundingSphere(Sys::Sphere&);              // _08
-	virtual void constructor();                                // _24
-	virtual void doAnimation();                                // _34
-	virtual void doEntry();                                    // _38
-	virtual void doSimulation(float);                          // _44
-	virtual float getFaceDir();                                // _5C
-	virtual void setVelocity(Vector3f&);                       // _60
+	virtual Vector3f getPosition();               // _00
+	virtual void getBoundingSphere(Sys::Sphere&); // _08
+	virtual void constructor();                   // _24
+	virtual void doAnimation();                   // _34
+	virtual void doEntry();                       // _38
+	virtual void doSimulation(float);             // _44
+	virtual float getFaceDir();                   // _5C
+	/**
+	 * @reifiedAddress{801028D4}
+	 * @reifiedFile{plugProjectYamashitaU/enemyBase.cpp}
+	 */
+	virtual void setVelocity(Vector3f& velocity) // _60
+	{
+		m_velocity = velocity;
+	}
 	virtual Vector3f getVelocity();                            // _64
 	virtual void onSetPosition(Vector3f&);                     // _68
 	virtual void updateTrMatrix();                             // _70

@@ -1,12 +1,17 @@
 #ifndef _PSM_BATTLELINK_H
 #define _PSM_BATTLELINK_H
 
+#include "JSystem/JSU/JSUPtrLink.h"
+
 namespace PSM {
-struct BattleLink {
+/**
+ * @size{0x14}
+ */
+struct BattleLink : public JSUPtrLink {
 	virtual void battleOn();  // _00
 	virtual void battleOff(); // _04
 
-	// _00 VTBL
+	// VTBL _10
 };
 } // namespace PSM
 

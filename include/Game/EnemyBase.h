@@ -11,11 +11,15 @@
 #include "Game/PelletView.h"
 #include "Game/PelletMgr.h"
 #include "Dolphin/rand.h"
+#include "Game/enemyInfo.h"
 #include "Matrix3f.h"
 #include "Sys/Sphere.h"
 #include "SysShape/MotionListener.h"
 #include "Vector3.h"
+#include "efx/TEnemyPiyo.h"
 #include "types.h"
+
+struct MouthSlots;
 
 namespace PSM {
 struct EnemyBase;
@@ -36,15 +40,33 @@ namespace EnemyStone {
 	struct Obj;
 } // namespace EnemyStone
 
+struct EnemyKillArg : public CreatureKillArg {
+	/**
+	 * @reifiedAddress{80107C38}
+	 * @reifiedFile{plugProjectYamashitaU/enemyBase.cpp}
+	 */
+	virtual const char* getName() // _00
+	{
+		return "EnemyKillArg";
+	}
+};
+
 struct EnemyBase : public Creature,
                    public SysShape::MotionListener,
                    virtual public Game::PelletView {
 	EnemyBase();
 
 	// vtable 1 (Creature)
-	virtual Vector3f getPosition();                             // _00
-	virtual void checkCollision(CellObject*);                   // _04
-	virtual void getBoundingSphere(Sys::Sphere&);               // _08
+	virtual Vector3f getPosition();           // _00
+	virtual void checkCollision(CellObject*); // _04
+	/**
+	 * @reifiedAddress{801028F0}
+	 * @reifiedFile{plugProjectYamashitaU/enemyBase.cpp}
+	 */
+	virtual void getBoundingSphere(Sys::Sphere& sphere) // _08
+	{
+		sphere = m_boundingSphere;
+	}
 	virtual bool collisionUpdatable();                          // _0C
 	virtual bool isPiki();                                      // _10
 	virtual bool isNavi();                                      // _14
@@ -76,7 +98,7 @@ struct EnemyBase : public Creature,
 	virtual void inWaterCallback(WaterBox*);                    // _7C
 	virtual void outWaterCallback();                            // _80
 	virtual bool inWater();                                     // _84
-	virtual void getFlockMgr();                                 // _88
+	virtual u32 getFlockMgr();                                  // _88
 	virtual void onStartCapture();                              // _8C
 	virtual void onUpdateCapture(Matrixf&);                     // _90
 	virtual void onEndCapture();                                // _94
@@ -168,7 +190,7 @@ struct EnemyBase : public Creature,
 	virtual void doSimulationStick(float);                          // _1EC
 	virtual void changeMaterial();                                  // _1F0
 	virtual void getCommonEffectPos(Vector3f&);                     // _1F4
-	virtual void getFitEffectPos();                                 // _1F8
+	virtual Vector3f* getFitEffectPos();                            // _1F8
 	virtual SysShape::Model* viewGetShape();                        // _1FC
 	virtual void view_start_carrymotion();                          // _200
 	virtual void view_finish_carrymotion();                         // _204
@@ -188,8 +210,8 @@ struct EnemyBase : public Creature,
 	virtual void updateEfxHamon();                                  // _23C
 	virtual void createEfxHamon();                                  // _240
 	virtual void fadeEfxHamon();                                    // _244
-	virtual s32 getEnemyTypeID() = 0;                               // _248
-	virtual void getMouthSlots();                                   // _24C
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID() = 0;         // _248
+	virtual MouthSlots* getMouthSlots();                            // _24C
 	virtual void doGetLifeGaugeParam(LifeGaugeParam&);              // _250
 	virtual void throwupItem();                                     // _254
 	virtual void getThrowupItemPosition(Vector3f*);                 // _258
@@ -242,6 +264,7 @@ struct EnemyBase : public Creature,
 
 	void collisionMapAndPlat(float);
 
+	PSM::EnemyBase* createPSEnemyBase();
 	void createEffects();
 	void createBounceEffect(const Vector3f&, float);
 	void createDeadBombEffect();
@@ -252,6 +275,9 @@ struct EnemyBase : public Creature,
 	void doEntryCarcass();
 	void doEntryLiving();
 	void doSimulationConstraint(float);
+	void hardConstraintOn();
+	void hardConstraintOff();
+	void constraintOff();
 
 	void finishDropping(bool);
 
@@ -259,6 +285,21 @@ struct EnemyBase : public Creature,
 	void gotoHell();
 
 	bool isCullingOff();
+
+	void startMotion();
+	void startMotion(int, SysShape::MotionListener*);
+	void finishMotion();
+	void stopMotion();
+	bool isFinishMotion();
+	bool isStopMotion();
+	float getFirstKeyFrame();
+	float getMotionFrame();
+	float getMotionFrameMax();
+	void setMotionFrame(float);
+
+	int getCurrAnimIndex();
+	void setAnimSpeed(float);
+	void resetAnimSpeed();
 
 	void setEmotionCaution();
 	void setEmotionExcitement();
@@ -269,17 +310,33 @@ struct EnemyBase : public Creature,
 	void setPSEnemyBaseAnime();
 	void setZukanVisible(bool);
 
+	void startBlend(int, int, SysShape::BlendFunction*, float,
+	                SysShape::MotionListener*);
 	void endBlend();
 
 	void show();
 	void hide();
 
+	int getStateID();
+	bool isBeforeAppearState();
 	void startStoneState();
 
 	void scaleDamageAnim();
 	void finishScaleDamageAnim();
 
 	void updateSpheres();
+	void getWaterSphere(Sys::Sphere*);
+	void updateWaterBox();
+
+	void startMovie();
+	void endMovie();
+
+	bool isBirthTypeDropGroup();
+	bool checkBirthTypeDropEarthquake();
+	void setDroppingMassZero();
+	void resetDroppingMassZero();
+
+	void resetCollEvent();
 
 	// Creature: _000 - _178
 	// MotionListener: _178 - _17C
@@ -334,6 +391,18 @@ struct EnemyBase : public Creature,
 	                                             // PelletView: _2BC - _2C8
 };
 namespace EnemyBaseFSM {
+	enum StateID {
+		EBS_Drop = 0,
+		EBS_DropPikmin,
+		EBS_DropOlimar,
+		EBS_DropTreasure,
+		EBS_DropEarthquake,
+		EBS_Appear,
+		EBS_Living,
+		EBS_Stone,
+		EBS_Earthquake,
+		EBS_Fit
+	};
 	/**
 	 * Generic lifecycle FSM that every teki has, often in addition to a more
 	 * specific FSM derived from Game::StateMachine.
@@ -353,6 +422,11 @@ namespace EnemyBaseFSM {
 	 * Generic lifecycle state.
 	 */
 	struct State : public Game::EnemyFSMState {
+		inline State(int stateID, const char* name)
+		    : EnemyFSMState(stateID, name)
+		{
+		}
+
 		virtual void update(EnemyBase*);                          // _1C
 		virtual void entry(EnemyBase*);                           // _20
 		virtual void simulation(EnemyBase*, float);               // _24
@@ -366,6 +440,11 @@ namespace EnemyBaseFSM {
 	 * Generic birth-by-dropping state.
 	 */
 	struct BirthTypeDropState : public State {
+		inline BirthTypeDropState(int stateID = EBS_Drop)
+		    : State(EBS_Drop, "BirthTypeDrop")
+		{
+		}
+
 		virtual void init(EnemyBase*, StateArg*);   // _00
 		virtual void cleanup(EnemyBase*);           // _08
 		virtual void update(EnemyBase*);            // _1C
@@ -377,18 +456,42 @@ namespace EnemyBaseFSM {
 	};
 
 	struct BirthTypeDropPikminState : public BirthTypeDropState {
+		inline BirthTypeDropPikminState()
+		    : BirthTypeDropState(EBS_DropPikmin)
+		{
+			m_name = "BirthTypeDropPikmin";
+		}
+
 		virtual bool isFinishableWaitingBirthTypeDrop(EnemyBase*); // _30
 	};
 
 	struct BirthTypeDropOlimarState : public BirthTypeDropState {
+		inline BirthTypeDropOlimarState()
+		    : BirthTypeDropState(EBS_DropOlimar)
+		{
+			m_name = "BirthTypeDropOlimar";
+		}
+
 		virtual bool isFinishableWaitingBirthTypeDrop(EnemyBase*); // _30
 	};
 
 	struct BirthTypeDropTreasureState : public BirthTypeDropState {
+		inline BirthTypeDropTreasureState()
+		    : BirthTypeDropState(EBS_DropTreasure)
+		{
+			m_name = "BirthTypeDropTreasure";
+		}
+
 		virtual bool isFinishableWaitingBirthTypeDrop(EnemyBase*); // _30
 	};
 
 	struct BirthTypeDropEarthquakeState : public BirthTypeDropState {
+		inline BirthTypeDropEarthquakeState()
+		    : BirthTypeDropState(EBS_DropEarthquake)
+		{
+			m_name = "BirthTypeDropEarthquake";
+		}
+
 		virtual bool isFinishableWaitingBirthTypeDrop(EnemyBase*); // _30
 	};
 
@@ -396,6 +499,11 @@ namespace EnemyBaseFSM {
 	 * Birth-without-dropping state?
 	 */
 	struct AppearState : public State {
+		inline AppearState()
+		    : State(EBS_Appear, "Appear")
+		{
+		}
+
 		virtual void init(EnemyBase*, StateArg*);   // _00
 		virtual void cleanup(EnemyBase*);           // _08
 		virtual void update(EnemyBase*);            // _1C
@@ -407,6 +515,11 @@ namespace EnemyBaseFSM {
 	 * Generic "alive" state.
 	 */
 	struct LivingState : public State {
+		inline LivingState(int state = EBS_Living)
+		    : State(state, "Living")
+		{
+		}
+
 		virtual void simulation(EnemyBase*, float); // _24
 		virtual void update(EnemyBase*);            // _1C
 		virtual void entry(EnemyBase*);             // _20
@@ -415,6 +528,12 @@ namespace EnemyBaseFSM {
 	};
 
 	struct StoneState : public LivingState {
+		inline StoneState()
+		    : LivingState(EBS_Stone)
+		{
+			m_name = "Stone";
+		}
+
 		virtual void init(EnemyBase*, StateArg*);                 // _00
 		virtual void cleanup(EnemyBase*);                         // _08
 		virtual void bounceProcedure(EnemyBase*, Sys::Triangle*); // _28
@@ -423,16 +542,31 @@ namespace EnemyBaseFSM {
 	};
 
 	struct EarthquakeState : public LivingState {
+		inline EarthquakeState()
+		    : LivingState(EBS_Earthquake)
+		{
+			m_name = "Earthquake";
+		}
+
 		virtual void init(EnemyBase*, StateArg*);  // _00
 		virtual void cleanup(EnemyBase*);          // _08
 		virtual void updateCullingOff(EnemyBase*); // _30
 	};
 
 	struct FitState : public LivingState {
+		inline FitState()
+		    : LivingState(EBS_Fit)
+		    , m_enemyPiyo()
+		{
+			m_name = "Fit";
+		}
+
 		virtual void init(EnemyBase*, StateArg*);  // _00
 		virtual void cleanup(EnemyBase*);          // _08
 		virtual void updateCullingOff(EnemyBase*); // _30
 		virtual void updateAlways(EnemyBase*);     // _34
+
+		efx::TEnemyPiyo m_enemyPiyo; // _10
 	};
 } // namespace EnemyBaseFSM
 } // namespace Game

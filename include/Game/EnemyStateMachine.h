@@ -55,6 +55,12 @@ struct EnemyStateMachine {
 };
 
 struct EnemyFSMState {
+	inline EnemyFSMState(int stateID, const char* name)
+	    : m_stateID(stateID)
+	    , m_stateMachine(nullptr)
+	    , m_name(name)
+	{
+	}
 	virtual void init(EnemyBase*, StateArg*);         // _00
 	virtual void exec(EnemyBase*);                    // _04
 	virtual void cleanup(EnemyBase*);                 // _08

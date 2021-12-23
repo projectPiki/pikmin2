@@ -1,12 +1,14 @@
 #ifndef _PSM_KEHAILINK_H
 #define _PSM_KEHAILINK_H
 
+#include "JSystem/JSU/JSUPtrLink.h"
+
 namespace PSM {
-struct KehaiLink {
+struct KehaiLink : public JSUPtrLink {
 	virtual void kehaiOn();  // _00
 	virtual void kehaiOff(); // _04
 
-	// _00 VTBL
+	// VTBL _10
 };
 } // namespace PSM
 

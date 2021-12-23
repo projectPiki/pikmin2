@@ -60,12 +60,25 @@ enum CreatureFlags {
 	CF_IS_DEBUG_COLLISION = 0x80000000
 };
 
+struct CreatureInitArg {
+	virtual const char* getName() = 0; // _00
+};
+
+struct CreatureKillArg {
+	virtual const char* getName() // _00
+	{
+		return "CreatureKillArg";
+	}
+};
+
 struct Creature : public CellObject {
 	struct CheckHellArg {
 	};
 
 	Creature();
 
+	virtual bool collisionUpdatable();         // _0C
+	virtual u8 getObjType();                   // _20
 	virtual void constructor();                // _2C
 	virtual void onInit(CreatureInitArg*);     // _30
 	virtual void onKill(CreatureKillArg*);     // _34
@@ -91,7 +104,7 @@ struct Creature : public CellObject {
 	virtual void inWaterCallback(WaterBox*);   // _84
 	virtual void outWaterCallback();           // _88
 	virtual bool inWater();                    // _8C
-	virtual void getFlockMgr();                // _90
+	virtual u32 getFlockMgr();                 // _90
 	virtual void onStartCapture();             // _94
 	virtual void onUpdateCapture(Matrixf&);    // _98
 	virtual void onEndCapture();               // _9C
@@ -205,7 +218,7 @@ struct Creature : public CellObject {
 		//     m_isMovieMotion : 1, m_isMovieActor : 1, padding2 : 1,
 		//     m_isCollisionFlick : 1, m_isAlive : 1, m_isAtari : 1;
 	} m_flags;                     // _0BC
-	Parameters* m_parms;           // _0C0
+	void* m_parms;                 // _0C0
 	Generator* m_generator;        // _0C4
 	int _0C8;                      // _0C8
 	Vector3f m_collisionPosition;  // _0CC

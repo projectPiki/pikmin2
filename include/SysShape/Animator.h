@@ -52,6 +52,10 @@ struct Animator : public BaseAnimator {
 	u8 m_flags;                           // _18
 };
 
+struct BlendFunction {
+	virtual float getValue(float) = 0; // _00
+};
+
 struct BlendAnimator : public BaseAnimator {
 	virtual J3DMtxCalc* getCalc(); // _00
 

@@ -101,23 +101,27 @@ struct ShadowMgr : public CNode {
 	virtual void write(Stream&);   // _20
 	virtual void read(Stream&);    // _24
 
+	void createShadow(Creature*);
+
 	// CNode _00
-	int _18;
-	int _1C; // _1C /* Sodium called this max? Unsure why. */
-	ShadowNode* _20;
-	ShadowNode* _24;
-	ShadowCylinder2* _28;
-	ShadowCylinder3* _2C;
-	Viewport** m_viewports;
-	JointShadowRootNode* _34;
-	JointShadowRootNode* _38;
-	u8 _3C;
-	u8 _3D;
-	int _40;
-	int _44;
-	Color4 m_color;
-	ShadowParms* m_parms;
+	int _18;                  // _18
+	int _1C;                  // _1C /* Sodium called this max? Unsure why. */
+	ShadowNode* _20;          // _20
+	ShadowNode* _24;          // _24
+	ShadowCylinder2* _28;     // _28
+	ShadowCylinder3* _2C;     // _2C
+	Viewport** m_viewports;   // _30
+	JointShadowRootNode* _34; // _34
+	JointShadowRootNode* _38; // _38
+	u8 _3C;                   // _3C
+	u8 _3D;                   // _3D
+	int _40;                  // _40
+	int _44;                  // _44
+	Color4 m_color;           // _48
+	ShadowParms* m_parms;     // _4C
 };
+
+extern ShadowMgr* shadowMgr;
 } // namespace Game
 
 #endif

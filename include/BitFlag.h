@@ -4,27 +4,17 @@
 #include "types.h"
 
 template <typename T> struct BitFlag {
-	BitFlag();
+	BitFlag()
+	{
+		for (int i = 0; i < sizeof(T); i++) {
+			byteView[i] = 0;
+		}
+	}
 
-	T flags;
-};
-
-template <> struct BitFlag<u8> {
-	BitFlag();
-
-	u8 flags;
-};
-
-template <> struct BitFlag<ulong> {
-	BitFlag();
-
-	ulong flags;
-};
-
-template <> struct BitFlag<u16> {
-	BitFlag();
-
-	u16 flags;
+	union {
+		uchar byteView[sizeof(T)];
+		T typeView;
+	};
 };
 
 #endif

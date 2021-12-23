@@ -1,4 +1,5 @@
 #include "types.h"
+#include "LifeGaugeMgr.h"
 
 /*
     Generated from dpostproc

@@ -1,11 +1,23 @@
 #ifndef _GAME_MAPMGR_H
 #define _GAME_MAPMGR_H
 
-#include "types.h"
 #include "GenericObjectMgr.h"
+#include "types.h"
+#include "Vector3.h"
+
+struct BoundBox;
+struct BoundBox2d;
+
+namespace Sys {
+struct CreateTriangleArg;
+struct RayIntersectInfo;
+struct Sphere;
+} // namespace Sys
 
 namespace Game {
 struct CourseInfo;
+struct CurrTriInfo;
+struct MoveInfo;
 struct RouteMgr;
 struct SeaMgr;
 // struct GenericObjectMgrReference {
@@ -13,6 +25,28 @@ struct SeaMgr;
 // };
 
 struct MapMgr : virtual public GenericObjectMgr {
+	MapMgr();
+
+	// vtable 1 (MapMgr)
+	virtual bool hasHiddenCollision();                        // _00
+	virtual void constraintBoundBox(Sys::Sphere&);            // _04
+	virtual void getStartPosition(Vector3f&, int);            // _08
+	virtual void getDemoMatrix();                             // _0C
+	virtual void getBoundBox2d(BoundBox2d&) = 0;              // _10
+	virtual void getBoundBox(BoundBox&)     = 0;              // _14
+	virtual void findRayIntersection(Sys::RayIntersectInfo&); // _18
+	virtual void traceMove(MoveInfo&, float) = 0;             // _1C
+	virtual float getMinY(Vector3f&)         = 0;             // _20
+	virtual void getCurrTri(CurrTriInfo&)    = 0;             // _24
+	virtual void createTriangles(Sys::CreateTriangleArg&);    // _28
+	virtual void setupJUTTextures();                          // _2C
+	virtual bool frozenable();                                // _30
+	virtual void update();                                    // _34
+	virtual void do_update();                                 // _38
+	virtual void drawCollision(Graphics&, Sys::Sphere&) = 0;  // _3C
+	virtual void doSimulation(float);                         // _40
+	virtual void doDirectDraw(Graphics&);                     // _44
+
 	// _00: ptr to _0x24 (GenericObjectMgr)
 	// _04: vtable 1
 	RouteMgr* m_routeMgr;     // _08
@@ -25,6 +59,8 @@ struct MapMgr : virtual public GenericObjectMgr {
 
 	// _24: GenericObjectMgr
 };
+
+extern MapMgr* mapMgr;
 } // namespace Game
 
 #endif

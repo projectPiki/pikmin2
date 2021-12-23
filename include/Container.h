@@ -4,6 +4,14 @@
 #include "CNode.h"
 #include "stream.h"
 
+struct GenericContainer : public CNode {
+	virtual ~GenericContainer();        // _00
+	virtual void* getObject(void*) = 0; // _08
+	virtual int getNext(void*)     = 0; // _0C
+	virtual int getStart()         = 0; // _10
+	virtual int getEnd()           = 0; // _14
+};
+
 template <typename T> struct Container : public CNode {
 	virtual ~Container();
 

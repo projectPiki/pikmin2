@@ -192,9 +192,9 @@ struct CellIterator {
 	void find();
 	void first();
 	void getCellObject();
-	void isDone();
+	bool isDone();
 	void next();
-	// void operator*();
+	CellObject* operator*();
 	void satisfy();
 	void step();
 

@@ -12,7 +12,14 @@ struct Sphere;
 
 namespace Game {
 struct WaterBox {
-	virtual bool inWater(Sys::Sphere&);          // _00
+	/**
+	 * @reifiedAddress{80106CE8}
+	 * @reifiedFile{plugProjectYamashitaU/enemyBase.cpp}
+	 */
+	virtual bool inWater(Sys::Sphere&) // _00
+	{
+		return false;
+	}
 	virtual bool inWater2d(Sys::Sphere&);        // _04
 	virtual float getSeaLevel();                 // _08
 	virtual float* getSeaHeightPtr();            // _0C
