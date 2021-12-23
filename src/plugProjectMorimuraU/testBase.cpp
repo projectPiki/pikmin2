@@ -61,82 +61,52 @@
 
 #include "Dolphin/string.h"
 #include "JSystem/JKR/JKRDisposer.h"
-
-namespace Screen {
-struct ObjBase;
-} // namespace Screen
+#include "Screen/Bases.h"
+#include "System.h"
 
 namespace Morimura {
-struct TTestBase {
-	// virtual functions go here
-
-	// _00 vtbl
-	ObjBase* _04;         // _04
-	ObjBase* _08;         // _08
-	ObjBase* _0C;         // _0C
-	ObjBase* _10;         // _10
-	char* name;           // _14
-	JKRDisposer disposer; // _18
-	int _30;              // _30
-	SceneBase* pOwner;    // _34
-	float _38;            // _38
-	float _3C;            // _3C
-	float _40;            // _40
-	uchar _44;            // _44
-	uchar _45;            // _45
-	char* new_name;       // _46
-
+struct TTestBase : public Screen::ObjBase {
 	TTestBase(char*);
-}; // tentatively size 0x4A
 
+	virtual bool doStart(Screen::StartSceneArg const*);
+	virtual bool doEnd(Screen::EndSceneArg const*);
+	virtual bool doUpdateFadein();  // _38
+	virtual bool doUpdateFadeout(); // _48
+	virtual void doUpdateFinish();
+	virtual og::Screen::DispMemberBase* getDispMemberBase() = 0;
+	virtual void _UNK()                                     = 0;
+	virtual ~TTestBase();
+
+	static f64 mIsSection;
+
+	float _38; // _38
+	float _3C; // _3C
+	float _40; // _40
+	uchar _44; // _44
+	uchar _45; // _45
+	char _46;  // _46
+};             // tentative size 0x4A
 } // namespace Morimura
 
 #endif
 
 namespace Morimura {
+f64 TTestBase::mIsSection;
 
 /*
  * --INFO--
  * Address:	803491C8
  * Size:	000084
  */
-TTestBase::TTestBase(char*)
+TTestBase::TTestBase(char* name)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bl       __ct__Q26Screen7ObjBaseFv
-	lis      r3, __vt__Q28Morimura9TTestBase@ha
-	lfs      f1, lbl_8051E2F0@sda21(r2)
-	addi     r3, r3, __vt__Q28Morimura9TTestBase@l
-	lfs      f0, lbl_8051E2F4@sda21(r2)
-	stw      r3, 0(r30)
-	addi     r3, r3, 0x10
-	li       r0, 0
-	mr       r4, r31
-	stw      r3, 0x18(r30)
-	addi     r3, r30, 0x46
-	stfs     f1, 0x38(r30)
-	stfs     f0, 0x3c(r30)
-	stfs     f1, 0x40(r30)
-	stb      r0, 0x44(r30)
-	stb      r0, 0x45(r30)
-	bl       strcpy
-	addi     r0, r30, 0x46
-	mr       r3, r30
-	stw      r0, 0x14(r30)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	_38 = 0.0f;
+	_3C = 0.5f;
+	_40 = 0.0f;
+	_44 = 0;
+	_45 = 0;
+	strcpy(&_46, name);
+	m_name = &_46;
 }
 
 /*
@@ -144,18 +114,13 @@ TTestBase::TTestBase(char*)
  * Address:	8034924C
  * Size:	000020
  */
-void TTestBase::doStart(Screen::StartSceneArg const*)
+bool TTestBase::doStart(Screen::StartSceneArg const*)
 {
-	/*
-	lfs      f0, lbl_8051E2F0@sda21(r2)
-	li       r0, 0
-	stfs     f0, 0x40(r3)
-	stfs     f0, 0x38(r3)
-	stb      r0, 0x44(r3)
-	stb      r0, 0x45(r3)
-	li       r3, 1
-	blr
-	*/
+	_40 = 0.0f;
+	_38 = 0.0f;
+	_44 = 0;
+	_45 = 0;
+	return true;
 }
 
 /*
@@ -163,14 +128,10 @@ void TTestBase::doStart(Screen::StartSceneArg const*)
  * Address:	8034926C
  * Size:	000010
  */
-void TTestBase::doEnd(Screen::EndSceneArg const*)
+bool TTestBase::doEnd(Screen::EndSceneArg const*)
 {
-	/*
-	lfs      f0, lbl_8051E2F0@sda21(r2)
-	stfs     f0, 0x38(r3)
-	li       r3, 1
-	blr
-	*/
+	_38 = 0.0f;
+	return true;
 }
 
 /*
@@ -178,60 +139,22 @@ void TTestBase::doEnd(Screen::EndSceneArg const*)
  * Address:	8034927C
  * Size:	0000B0
  */
-void TTestBase::doUpdateFadein(void)
+bool TTestBase::doUpdateFadein()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	lwz      r4, sys@sda21(r13)
-	lfs      f1, 0x38(r3)
-	lfs      f0, 0x54(r4)
-	fadds    f0, f1, f0
-	stfs     f0, 0x38(r3)
-	lfs      f0, 0x38(r3)
-	lfs      f1, 0x3c(r3)
-	fcmpo    cr0, f0, f1
-	ble      lbl_803492B8
-	stfs     f1, 0x38(r31)
+	_38 += sys->m_secondsPerFrame;
+	if (_38 > _3C) {
+		_38 = _3C;
+	}
+	_40 = _38 / _3C;
+	_44 = 255.0f * _40;
 
-lbl_803492B8:
-	lfs      f2, 0x38(r31)
-	mr       r3, r31
-	lfs      f0, 0x3c(r31)
-	lfs      f1, lbl_8051E2F8@sda21(r2)
-	fdivs    f0, f2, f0
-	stfs     f0, 0x40(r31)
-	lfs      f0, 0x40(r31)
-	fmuls    f0, f1, f0
-	fctiwz   f0, f0
-	stfd     f0, 8(r1)
-	lwz      r0, 0xc(r1)
-	stb      r0, 0x44(r31)
-	lwz      r12, 0(r31)
-	lwz      r12, 0x58(r12)
-	mtctr    r12
-	bctrl
-	lfs      f1, 0x38(r31)
-	lfs      f0, 0x3c(r31)
-	fcmpo    cr0, f1, f0
-	cror     2, 1, 2
-	bne      lbl_80349314
-	li       r3, 1
-	b        lbl_80349318
+	doUpdate();
 
-lbl_80349314:
-	li       r3, 0
+	if (_38 >= _3C) {
+		return true;
+	}
 
-lbl_80349318:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	return false;
 }
 
 /*
@@ -239,88 +162,28 @@ lbl_80349318:
  * Address:	8034932C
  * Size:	00000C
  */
-void TTestBase::doUpdateFinish(void)
-{
-	/*
-	lfs      f0, lbl_8051E2F0@sda21(r2)
-	stfs     f0, 0x38(r3)
-	blr
-	*/
-}
+void TTestBase::doUpdateFinish() { _38 = 0.0f; }
 
 /*
  * --INFO--
  * Address:	80349338
  * Size:	0000B8
  */
-void TTestBase::doUpdateFadeout(void)
+bool TTestBase::doUpdateFadeout()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	mr       r31, r3
-	lwz      r4, sys@sda21(r13)
-	lfs      f1, 0x38(r3)
-	lfs      f0, 0x54(r4)
-	fadds    f0, f1, f0
-	stfs     f0, 0x38(r3)
-	lfs      f0, 0x38(r3)
-	lfs      f1, 0x3c(r3)
-	fcmpo    cr0, f0, f1
-	ble      lbl_80349374
-	stfs     f1, 0x38(r31)
+	_38 += sys->m_secondsPerFrame;
+	if (_38 > _3C) {
+		_38 = _3C;
+	}
+	_40 = 1.0f - (_38 / _3C);
+	_44 = 255.0f * _40;
 
-lbl_80349374:
-	lfs      f1, 0x38(r31)
-	mr       r3, r31
-	lfs      f0, 0x3c(r31)
-	lfs      f2, lbl_8051E2FC@sda21(r2)
-	fdivs    f0, f1, f0
-	lfs      f1, lbl_8051E2F8@sda21(r2)
-	fsubs    f0, f2, f0
-	stfs     f0, 0x40(r31)
-	lfs      f0, 0x40(r31)
-	fmuls    f0, f1, f0
-	fctiwz   f0, f0
-	stfd     f0, 8(r1)
-	lwz      r0, 0xc(r1)
-	stb      r0, 0x44(r31)
-	lwz      r12, 0(r31)
-	lwz      r12, 0x58(r12)
-	mtctr    r12
-	bctrl
-	lfs      f1, 0x38(r31)
-	lfs      f0, 0x3c(r31)
-	fcmpo    cr0, f1, f0
-	cror     2, 1, 2
-	bne      lbl_803493D8
-	li       r3, 1
-	b        lbl_803493DC
+	doUpdate();
 
-lbl_803493D8:
-	li       r3, 0
+	if (_38 >= _3C) {
+		return true;
+	}
 
-lbl_803493DC:
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803493F0
- * Size:	000008
- */
-@24 @Morimura::TTestBase::~TTestBase(void)
-{
-	/*
-	addi     r3, r3, -24
-	b        __dt__Q28Morimura9TTestBaseFv
-	*/
+	return false;
 }
 } // namespace Morimura

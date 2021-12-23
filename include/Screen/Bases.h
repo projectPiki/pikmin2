@@ -140,18 +140,19 @@ struct IObjBase : public CNode, JKRDisposer {
 	virtual bool end(const EndSceneArg*)     = 0; // _10
 	virtual void setOwner(SceneBase*)        = 0; // _14
 	virtual SceneBase* getOwner() const      = 0; // _18
-	virtual void create(JKRArchive&)         = 0; // _1C
+	virtual void create(JKRArchive*)         = 0; // _1C
 };
 
 struct ObjBase : public IObjBase {
 	ObjBase();
+	virtual ~ObjBase();
 	virtual bool update();                            // _04
 	virtual void draw(Graphics&);                     // _08
 	virtual bool start(const StartSceneArg*);         // _0C
 	virtual bool end(const EndSceneArg*);             // _10
 	virtual void setOwner(SceneBase*);                // _14
 	virtual SceneBase* getOwner() const;              // _18
-	virtual void create(JKRArchive&);                 // _1C
+	virtual void create(JKRArchive*);                 // _1C
 	virtual void confirmSetScene(SetSceneArg&);       // _20
 	virtual void confirmStartScene(StartSceneArg*);   // _24
 	virtual void confirmEndScene(EndSceneArg*);       // _28

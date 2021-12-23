@@ -120,6 +120,6 @@ struct System {
 	struct JUTRomFont* m_romFont;                 // _DC
 };
 
-extern System* const sys;
+extern System* sys;
 
 #endif
