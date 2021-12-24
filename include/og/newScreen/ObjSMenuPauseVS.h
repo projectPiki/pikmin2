@@ -40,6 +40,8 @@ namespace newScreen {
 		virtual void out_menu_1();                            // _A8
 		virtual void getResult();                             // _AC
 
+		void blink_Menu(int);
+
 		Screen::DispMemberSMenuPauseVS* m_disp; // _A8
 		int _AC;                                // _AC
 		J2DScreen* _B0;                         // _B0

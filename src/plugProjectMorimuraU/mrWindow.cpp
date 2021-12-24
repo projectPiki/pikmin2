@@ -1,5 +1,11 @@
+#include "og/Screen/DispMemberWorldMapInfoWin0.h"
+#include "og/Screen/ScaleMgr.h"
+#include "og/Screen/anime.h"
+#include "og/Screen/callbackNodes.h"
+#include "og/newScreen/ObjWorldMapInfoWindow0.h"
 #include "types.h"
 #include "Morimura/TScreenBase.h"
+#include "Morimura/TConfirmEndWindow.h"
 
 /*
     Generated from dpostproc
@@ -85,34 +91,16 @@
 */
 
 /*
+ * __ct
  * --INFO--
  * Address:	803A3644
  * Size:	000050
  */
-Morimura::TConfirmEndWindow::TConfirmEndWindow(char const*)
+Morimura::TConfirmEndWindow::TConfirmEndWindow(char const* p1)
+    : og::newScreen::ObjWorldMapInfoWindow0(p1)
+    , m_isOpenMaybe(false)
+    , _D5(0)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       __ct__Q32og9newScreen22ObjWorldMapInfoWindow0FPCc
-	lis      r3, __vt__Q28Morimura17TConfirmEndWindow@ha
-	li       r0, 0
-	addi     r4, r3, __vt__Q28Morimura17TConfirmEndWindow@l
-	mr       r3, r31
-	stw      r4, 0(r31)
-	addi     r4, r4, 0x10
-	stw      r4, 0x18(r31)
-	stb      r0, 0xd4(r31)
-	stb      r0, 0xd5(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
 }
 
 /*
@@ -120,27 +108,13 @@ Morimura::TConfirmEndWindow::TConfirmEndWindow(char const*)
  * Address:	803A3694
  * Size:	000040
  */
-void Morimura::TConfirmEndWindow::doStart(Screen::StartSceneArg const*)
+bool Morimura::TConfirmEndWindow::doStart(Screen::StartSceneArg const* arg)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lfs      f0, lbl_8051F358@sda21(r2)
-	li       r5, 0
-	stw      r0, 0x14(r1)
-	li       r0, 1
-	stfs     f0, 0x44(r3)
-	stb      r5, 0xd4(r3)
-	stb      r0, 0xd5(r3)
-	lwz      r5, 0xcc(r3)
-	stb      r0, 0x21(r5)
-	bl
-	doStart__Q32og9newScreen22ObjWorldMapInfoWindow0FPCQ26Screen13StartSceneArg
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	_44           = 0.0f;
+	m_isOpenMaybe = false;
+	_D5           = 1;
+	_CC->_21      = 1;
+	return og::newScreen::ObjWorldMapInfoWindow0::doStart(arg);
 }
 
 /*
@@ -150,6 +124,10 @@ void Morimura::TConfirmEndWindow::doStart(Screen::StartSceneArg const*)
  */
 void Morimura::TConfirmEndWindow::doUpdateFadeinFinish(void)
 {
+	_B8->open(0.05f);
+	_BC->open(0.1f);
+	blink_Menu(_AC);
+	og::newScreen::ObjSMenuPauseVS::doUpdateFadeinFinish();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -180,8 +158,9 @@ void Morimura::TConfirmEndWindow::doUpdateFadeinFinish(void)
  * Address:	803A3728
  * Size:	000020
  */
-void Morimura::TConfirmEndWindow::doUpdateFadein(void)
+bool Morimura::TConfirmEndWindow::doUpdateFadein(void)
 {
+	og::newScreen::ObjWorldMapInfoWindow0::doUpdateFadein();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -201,6 +180,9 @@ void Morimura::TConfirmEndWindow::doUpdateFadein(void)
  */
 void Morimura::TConfirmEndWindow::doUpdateFadeoutFinish(void)
 {
+	m_isOpenMaybe = false;
+	_B8->stop();
+	_BC->stop();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -226,8 +208,10 @@ void Morimura::TConfirmEndWindow::doUpdateFadeoutFinish(void)
  * Address:	803A3788
  * Size:	000028
  */
-void Morimura::TConfirmEndWindow::doUpdateFadeout(void)
+bool Morimura::TConfirmEndWindow::doUpdateFadeout()
 {
+	_D5 = 0;
+	return og::newScreen::ObjSMenuPauseVS::doUpdateFadeout();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -247,8 +231,13 @@ void Morimura::TConfirmEndWindow::doUpdateFadeout(void)
  * Address:	803A37B0
  * Size:	000038
  */
-void Morimura::TConfirmEndWindow::doDraw(Graphics&)
+void Morimura::TConfirmEndWindow::doDraw(Graphics& gfx)
 {
+	if (m_isOpenMaybe) {
+		ObjSMenuPauseVS::doDraw(gfx);
+	} else {
+		m_isOpenMaybe = true;
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -276,8 +265,9 @@ lbl_803A37D8:
  * Address:	803A37E8
  * Size:	000024
  */
-void Morimura::TConfirmEndWindow::setRetireMsg(unsigned long long)
+void Morimura::TConfirmEndWindow::setRetireMsg(ulonglong msgID)
 {
+	_BC->setText(msgID);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -296,8 +286,16 @@ void Morimura::TConfirmEndWindow::setRetireMsg(unsigned long long)
  * Address:	803A380C
  * Size:	000074
  */
-Morimura::TSelectExplanationWindow::TSelectExplanationWindow(JKRArchive*, int)
+Morimura::TSelectExplanationWindow::TSelectExplanationWindow(
+    JKRArchive* archive, int p2)
+    : TScreenBase(archive, p2)
 {
+	unknown_0x18   = 0;
+	_24            = 0.0f;
+	_28            = 0.0f;
+	_1C            = 0.0f;
+	_20            = 0.0f;
+	pScaleMgr_0x2c = new og::Screen::ScaleMgr();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -340,6 +338,44 @@ lbl_803A3864:
  */
 void Morimura::TSelectExplanationWindow::update(void)
 {
+	if (unknown_0x18 == 0) {
+		_24 = 0.0f;
+	} else {
+		m_pJ2DScreen_0x8->update();
+		for (int i = 0; i < m_0x10; i++) {
+			m_apAnimScreens[i]->update();
+		}
+		switch (unknown_0x18) {
+		case 0:
+			break;
+		case 1:
+			_28 += _24;
+			if (1.0f <= _28) {
+				_28 = 1.0f;
+				_0C();
+				unknown_0x18 = 2;
+			}
+			break;
+		case 2:
+			break;
+		case 3:
+			_28 += _24;
+			if (_28 < 0.0f) {
+				_28          = 0.0f;
+				_24          = 0.0f;
+				unknown_0x18 = 0;
+			}
+			break;
+		default:
+			break;
+		}
+		m_pJ2DScreen_0x8->animation();
+	}
+	m_pJ2DScreen_0x8->_138 = (1.0f - _28) * _1C - 15.2f;
+	m_pJ2DScreen_0x8->_13C = (1.0f - _28) * _20 - 15.2f;
+	float calcResult       = pScaleMgr_0x2c->calc();
+	m_pJ2DScreen_0x8->_140 = calcResult * 0.95f;
+	m_pJ2DScreen_0x8->_144 = calcResult * 0.95f;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -466,8 +502,12 @@ lbl_803A399C:
  * Address:	803A3A14
  * Size:	00002C
  */
-void Morimura::TSelectExplanationWindow::draw(Graphics&, J2DPerspGraph*)
+void Morimura::TSelectExplanationWindow::draw(Graphics& gfx,
+                                              J2DPerspGraph* perspGraph)
 {
+	if (unknown_0x18 != 0) {
+		TScreenBase::draw(gfx, perspGraph);
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -554,15 +594,15 @@ lbl_803A3ACC:
 	*/
 }
 
-/*
- * --INFO--
- * Address:	803A3AE8
- * Size:	000008
- */
-@24 @Morimura::TConfirmEndWindow::~TConfirmEndWindow(void)
-{
-	/*
-	addi     r3, r3, -24
-	b        __dt__Q28Morimura17TConfirmEndWindowFv
-	*/
-}
+// /*
+//  * --INFO--
+//  * Address:	803A3AE8
+//  * Size:	000008
+//  */
+// @24 @Morimura::TConfirmEndWindow::~TConfirmEndWindow(void)
+// {
+// 	/*
+// 	addi     r3, r3, -24
+// 	b        __dt__Q28Morimura17TConfirmEndWindowFv
+// 	*/
+// }

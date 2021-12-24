@@ -1,6 +1,8 @@
 #ifndef _MORIMURA_TSCREENBASE_H
 #define _MORIMURA_TSCREENBASE_H
 
+#include "types.h"
+
 struct Graphics;
 struct J2DPerspGraph;
 struct J2DScreen;
@@ -15,6 +17,8 @@ namespace Screen {
 
 namespace Morimura {
 struct TScreenBase {
+	TScreenBase(JKRArchive*, int);
+
 	virtual void create(const char*, unsigned long); // _00
 	virtual void update();                           // _04
 	virtual void draw(Graphics&, J2DPerspGraph*);    // _08
@@ -28,13 +32,19 @@ struct TScreenBase {
 };
 
 struct TSelectExplanationWindow : public TScreenBase {
+	TSelectExplanationWindow(JKRArchive*, int);
+
 	/* inherited from TScreenBase */
 	virtual void update();                        // _04
 	virtual void draw(Graphics&, J2DPerspGraph*); // _08
+	virtual void _0C() = 0;
+
+	void openWindow();
+	void closeWindow();
 
 	// _00 VTBL
 	// inherited from TScreenBase
-	int unknown_0x18;                     // _18
+	uint unknown_0x18;                    // _18
 	float _1C;                            // _1C
 	float _20;                            // _20
 	float _24;                            // _24

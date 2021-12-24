@@ -132,7 +132,7 @@ struct SceneBase {
 };
 
 struct IObjBase : public CNode, JKRDisposer {
-	// VTBL 2
+	// vtable 2
 	virtual ~IObjBase();                          // _00
 	virtual bool update()                    = 0; // _04
 	virtual void draw(Graphics&)             = 0; // _08
@@ -145,7 +145,9 @@ struct IObjBase : public CNode, JKRDisposer {
 
 struct ObjBase : public IObjBase {
 	ObjBase();
-	virtual ~ObjBase();
+
+	// vtable 2
+	virtual ~ObjBase();                               // _00
 	virtual bool update();                            // _04
 	virtual void draw(Graphics&);                     // _08
 	virtual bool start(const StartSceneArg*);         // _0C

@@ -9,6 +9,10 @@
 
 struct LifeGauge;
 
+namespace JUtility {
+struct TColor;
+} // namespace JUtility
+
 namespace P2JME {
 struct SimpleMessage;
 } // namespace P2JME
@@ -17,6 +21,7 @@ namespace og {
 namespace Screen {
 	struct AngleMgr;
 	struct AnimGroup;
+	struct AnimScreen;
 	struct CounterKeta;
 	struct DataNavi;
 
@@ -316,6 +321,46 @@ namespace Screen {
 		u8 _39;               // _39
 		u8 _3A;               // _3A
 		ScaleMgr* m_scaleMgr; // _3C
+	};
+
+	struct AnimText_Screen : public CallBack_Screen {
+		void open(float);
+		void stop();
+		void setText(ulonglong);
+
+		int _34;                   // _34
+		AnimScreen* _38;           // _38
+		u8 _3C;                    // _3C
+		void* m_msgBodyPane;       // _40
+		J2DTextBox* m_msgBackPane; // _44 // just a guess
+		u8 _48;                    // _48
+		u32 _4C;                   // _4C
+		u32 _50;                   // _50
+		u32 _54;                   // _54
+		float _58;                 // _58
+		float _5C;                 // _5C
+		float _60;                 // _60
+		float _64;                 // _64
+		int _68;                   // _68
+		float _6C;                 // _6C
+		JUtility::TColor _70;      // _70
+		JUtility::TColor _74;      // _74
+		JUtility::TColor _78;      // _78
+		JUtility::TColor _7C;      // _7C
+		JUtility::TColor _80;      // _80
+		JUtility::TColor _84;      // _84
+		JUtility::TColor _88;      // _88
+		JUtility::TColor _8C;      // _8C
+		JUtility::TColor _90;      // _90
+		JUtility::TColor _94;      // _94
+		u8 _98[4];                 // _98
+		int* _9C;                  // _9C
+		JUtility::TColor _A0;      // _A0
+		JUtility::TColor _A4;      // _A4
+		JUtility::TColor _A8;      // _A8
+		JUtility::TColor _AC;      // _AC
+		JUtility::TColor _B0;      // _B0
+		u8 _B4[4];                 // _B4
 	};
 } // namespace Screen
 } // namespace og

@@ -10,6 +10,8 @@ namespace Screen {
 
 namespace newScreen {
 	struct ObjWorldMapInfoWindow0 : public ObjSMenuPauseVS {
+		ObjWorldMapInfoWindow0(const char*);
+
 		virtual ~ObjWorldMapInfoWindow0();                    // _00
 		virtual bool doStart(const ::Screen::StartSceneArg*); // _3C
 		virtual void doCreate(JKRArchive*);                   // _44
