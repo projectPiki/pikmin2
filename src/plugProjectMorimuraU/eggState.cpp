@@ -59,6 +59,7 @@ namespace Egg {
 			efx::ArgEnemyType type(fxPos, id, 1.0f);
 
 			efx::TEggdown eggdown;
+			eggdown.m_emitters[0] = nullptr;
 			eggdown.create(&type);
 
 			efx::TEnemyBomb enemybomb;
