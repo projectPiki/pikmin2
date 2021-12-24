@@ -56,11 +56,39 @@ struct BlendFunction {
 	virtual float getValue(float) = 0; // _00
 };
 
+struct BlendLinearFun : public BlendFunction {
+	/**
+	 * @reifiedAddress{8012E324}
+	 * @reifiedFile{plugProjectYamashitaU/enemyBlendAnimatorBase.cpp}
+	 */
+	virtual float getValue(float value) // _00
+	{
+		return value;
+	}
+};
+
+struct BlendQuadraticFunc : public BlendFunction {
+	/**
+	 * @reifiedAddress{8012E344}
+	 * @reifiedFile{plugProjectYamashitaU/enemyBlendAnimatorBase.cpp}
+	 */
+	virtual float getValue(float value) // _00
+	{
+		return value * value;
+	}
+};
+
 struct BlendAnimator : public BaseAnimator {
+	BlendAnimator();
+
 	virtual J3DMtxCalc* getCalc(); // _00
 
-	Animator _04;                     // _04
-	Animator _20;                     // _20
+	void animate(BlendFunction*, float, float, float);
+	void setAnimMgr(AnimMgr*);
+	void startBlend(BlendFunction*, float, MotionListener*);
+	void endBlend();
+
+	Animator m_animators[2];          // _04
 	float _3C;                        // _3C
 	float _40;                        // _40
 	MotionListener* m_motionListener; // _44

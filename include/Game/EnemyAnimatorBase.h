@@ -35,6 +35,29 @@ struct EnemyAnimatorBase {
 		u32 m_flags; // _0C
 	} m_flags;
 };
+
+struct EnemyBlendAnimatorBase : public EnemyAnimatorBase {
+	EnemyBlendAnimatorBase();
+
+	virtual ~EnemyBlendAnimatorBase();            // _00
+	virtual void setAnimMgr(SysShape::AnimMgr*);  // _04
+	virtual SysShape::Animator& getAnimator();    // _08
+	virtual SysShape::Animator& getAnimator(int); // _0C
+	virtual void animate(float);                  // _10
+	virtual void animate(int, float);             // _14
+	virtual void resetAnimSpeed();                // _18
+	virtual void getTypeID();                     // _1C
+
+	void startBlend(int, int, SysShape::BlendFunction*, float,
+	                SysShape::MotionListener*);
+	void endBlend();
+	void animate(SysShape::BlendFunction*, float, float, float);
+
+	SysShape::BlendAnimator m_animator; // _10
+
+	static SysShape::BlendLinearFun sBlendLinearFun;
+	static SysShape::BlendQuadraticFunc sBlendQuadraticFun;
+};
 } // namespace Game
 
 #endif
