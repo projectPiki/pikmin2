@@ -1,3 +1,5 @@
+#include "Dolphin/math.h"
+#include "System.h"
 #include "types.h"
 #include "LifeGaugeMgr.h"
 
@@ -92,32 +94,18 @@
  * Address:	80119BFC
  * Size:	000034
  */
-LifeGauge::LifeGauge()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r4, 0x20
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       init__9LifeGaugeFUc
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+LifeGauge::LifeGauge() { init(' '); }
 
 /*
  * --INFO--
  * Address:	80119C30
  * Size:	000014
  */
-void LifeGauge::init(unsigned char)
+void LifeGauge::init(uchar c)
 {
+	_00 = 0.0f;
+	_09 = c;
+	_08 = c;
 	/*
 	lfs      f0, lbl_80517B28@sda21(r2)
 	stfs     f0, 0(r3)
@@ -132,8 +120,52 @@ void LifeGauge::init(unsigned char)
  * Address:	80119C44
  * Size:	0001CC
  */
-void LifeGauge::update(float)
+void LifeGauge::update(float p1)
 {
+	float fullnessMaybe = _09 * p1;
+	if (fullnessMaybe < 0.0f) {
+		fullnessMaybe -= 0.5f;
+	} else {
+		fullnessMaybe += 0.5f;
+	}
+	uint uVar3 = (int)fullnessMaybe % 256;
+	if (_08 != uVar3) {
+		fullnessMaybe = sys->m_secondsPerFrame * 150.0f
+		                * FABS((float)(uVar3 - _08) / (float)_09);
+		if (fullnessMaybe < 0.4f) {
+			fullnessMaybe = 0.4f;
+		}
+		_00 += fullnessMaybe;
+		if (1.0f < _00) {
+			char cVar5 = -(char)(uint)_00;
+			if (_08 < uVar3) {
+				cVar5 = (char)(uint)_00;
+			}
+			_08 += cVar5;
+			_00 -= ((uint)_00 % 256);
+		}
+		if (_08 == '\0' && 0.0f < p1) {
+			_08 = '\x01';
+		}
+	}
+	if (0.2 <= p1) {
+		if (0.5 <= p1) {
+			_04.r = 0;
+			_04.g = 0xFF;
+			_04.b = 0;
+			_04.a = 0xFF;
+		} else {
+			_04.r = 0xFF;
+			_04.g = 0xFF;
+			_04.b = 0;
+			_04.a = 0xFF;
+		}
+	} else {
+		_04.r = 0xFF;
+		_04.g = 0;
+		_04.b = 0;
+		_04.a = 0xFF;
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	lis      r0, 0x4330
@@ -276,7 +308,7 @@ lbl_80119E08:
  * Address:	80119E10
  * Size:	0001BC
  */
-void LifeGauge::draw(float, float, float)
+void LifeGauge::draw(float, float x, float y)
 {
 	/*
 	stwu     r1, -0xc0(r1)
