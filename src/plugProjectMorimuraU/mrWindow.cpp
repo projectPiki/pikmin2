@@ -1,4 +1,5 @@
 #include "types.h"
+#include "Morimura/TScreenBase.h"
 
 /*
     Generated from dpostproc
@@ -491,13 +492,8 @@ lbl_803A3A30:
  */
 void Morimura::TSelectExplanationWindow::openWindow(void)
 {
-	/*
-	lfs      f0, lbl_8051F368@sda21(r2)
-	li       r0, 1
-	stfs     f0, 0x24(r3)
-	stw      r0, 0x18(r3)
-	blr
-	*/
+  _24 = 0.12f;
+  unknown_0x18 = 1;
 }
 
 /*
@@ -507,13 +503,8 @@ void Morimura::TSelectExplanationWindow::openWindow(void)
  */
 void Morimura::TSelectExplanationWindow::closeWindow(void)
 {
-	/*
-	lfs      f0, lbl_8051F36C@sda21(r2)
-	li       r0, 3
-	stfs     f0, 0x24(r3)
-	stw      r0, 0x18(r3)
-	blr
-	*/
+  _24 = -0.12f;
+  unknown_0x18 = 3;
 }
 
 /*
