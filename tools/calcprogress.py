@@ -167,6 +167,6 @@ if __name__ == "__main__":
     partCount = math.floor(decomp_code_size / bytesPerPart)
 
     print("Progress:")
-    print(f"\tCode sections: {decomp_code_size} / {dol_code_size} bytes in src ({codeCompletionPcnt:%})")
-    print(f"\tData sections: {decomp_data_size} / {dol_data_size} bytes in src ({dataCompletionPcnt:%})")
+    print(f"\tCode sections: {decomp_code_size} / {dol_code_size}\tbytes in src ({codeCompletionPcnt:%})")
+    print(f"\tData sections: {decomp_data_size} / {dol_data_size}\tbytes in src ({dataCompletionPcnt:%})")
     print("\nYou have {} out of 10000 Pokos and collected {} out of 201 treasures.".format(pokoCount, partCount))
