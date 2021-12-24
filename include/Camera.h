@@ -45,7 +45,7 @@ struct CullFrustum : public CullPlane {
 // Size: 0x144
 struct Camera : public CullFrustum {
 	Camera();
-	virtual ~Camera();                     // _00
+	virtual ~Camera() { }                  // _00
 	virtual void updateScreenConstants();  // _4C
 	virtual Vector3f getLookAtPosition_(); // _50
 	virtual float getTargetDistance();     // _54
@@ -94,6 +94,7 @@ struct Camera : public CullFrustum {
 
 struct LookAtCamera : public Camera {
 	LookAtCamera();
+	virtual ~LookAtCamera() { }
 
 	virtual void startVibration(int); // _74
 

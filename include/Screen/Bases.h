@@ -73,12 +73,12 @@ struct SceneBase {
 
 	SceneBase();
 
-	virtual SceneType getSceneType() = 0;                   // _00
-	virtual uint getOwnerID()        = 0;                   // _04
-	virtual ulonglong getMemberID()  = 0;                   // _08
+	virtual SceneType getSceneType()     = 0;               // _00
+	virtual ScreenOwnerID getOwnerID()   = 0;               // _04
+	virtual ScreenMemberID getMemberID() = 0;               // _08
 	virtual bool isUseBackupSceneInfo();                    // _0C
 	virtual bool isDrawInDemo() const;                      // _10
-	virtual char* getResName()            = 0;              // _14
+	virtual char* getResName() const      = 0;              // _14
 	virtual void doCreateObj(JKRArchive*) = 0;              // _18
 	virtual void doUserCallBackFunc(Resource::MgrCommand*); // _1C
 	virtual void setPort(Graphics&);                        // _20

@@ -12,6 +12,7 @@ namespace title {
 	struct TTitleCameraMgr : public LookAtCamera {
 		struct Parms : public Parameters {
 			inline Parms();
+
 			Parm<float> m_cam1;
 			Parm<float> m_cam2;
 			void* end;

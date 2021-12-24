@@ -6,12 +6,18 @@
 #include "Game/CurrTriInfo.h"
 #include "Sys/CreateTriangleArg.h"
 #include "Sys/GridDivider.h"
+#include "Matrixf.h"
 
 struct MapCollision : public CNode {
-	virtual ~MapCollision();
-	virtual void getBoundBox(BoundBox&);
-	virtual void getCurrTri(Game::CurrTriInfo&);
-	virtual void createTriangles(Sys::CreateTriangleArg&);
+	virtual ~MapCollision() { } // _08
+
+	virtual void getBoundBox(BoundBox& boundingBox)
+	{
+		m_divider->getBoundBox(boundingBox);
+	} // _0C
+
+	virtual void getCurrTri(Game::CurrTriInfo&);           // _10
+	virtual void createTriangles(Sys::CreateTriangleArg&); // _14
 
 	void read(Stream&);
 	MapCollision* clone(Matrixf&);
