@@ -20,7 +20,7 @@ struct JSUPtrList {
 
 	JSUPtrLink* m_head; // _00
 	JSUPtrLink* m_tail; // _04
-	int m_linkCount;    // _08
+	uint m_linkCount;   // _08
 };
 
 // Something fishy here. JSULists can use JSUPtrList functions.

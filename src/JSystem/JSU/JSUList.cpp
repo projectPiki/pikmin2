@@ -12,19 +12,21 @@
  */
 
 /*
+ * __ct__10JSUPtrLinkFPv
  * --INFO--
  * Address:	800267B8
  * Size:	000018
  */
 JSUPtrLink::JSUPtrLink(void* pData)
-    : m_value(pData)
-    , m_list(nullptr)
-    , m_prev(nullptr)
-    , m_next(nullptr)
 {
+	m_list  = nullptr;
+	m_value = pData;
+	m_prev  = nullptr;
+	m_next  = nullptr;
 }
 
 /*
+ * __dt__10JSUPtrLinkFv
  * --INFO--
  * Address:	800267D0
  * Size:	000060
@@ -37,6 +39,7 @@ JSUPtrLink::~JSUPtrLink()
 }
 
 /*
+ * __ct__10JSUPtrListFb
  * --INFO--
  * Address:	80026830
  * Size:	000038
@@ -49,6 +52,7 @@ JSUPtrList::JSUPtrList(bool doInitialize)
 }
 
 /*
+ * __dt__10JSUPtrListFv
  * --INFO--
  * Address:	80026868
  * Size:	000068
@@ -92,8 +96,8 @@ bool JSUPtrList::append(JSUPtrLink* pLink)
 			pLink->m_list = this;
 			pLink->m_prev = nullptr;
 			pLink->m_next = nullptr;
-			m_head        = pLink;
 			m_tail        = pLink;
+			m_head        = pLink;
 			m_linkCount   = 1;
 		} else {
 			pLink->m_list  = this;
@@ -125,8 +129,8 @@ bool JSUPtrList::prepend(JSUPtrLink* pLink)
 			pLink->m_list = this;
 			pLink->m_prev = nullptr;
 			pLink->m_next = nullptr;
-			m_head        = pLink;
 			m_tail        = pLink;
+			m_head        = pLink;
 			m_linkCount   = 1;
 		} else {
 			pLink->m_list  = this;
@@ -216,15 +220,12 @@ bool JSUPtrList::remove(JSUPtrLink* pLink)
  */
 JSUPtrLink* JSUPtrList::getNthLink(ulong n) const
 {
-	if (m_linkCount <= n) {
+	if (n >= m_linkCount) {
 		return nullptr;
 	}
 	JSUPtrLink* curHead = m_head;
-	if (n == 0) {
-		return m_head;
-	}
 	for (int i = 0; i < n; i++) {
-		curHead = m_head;
+		curHead = curHead->m_next;
 	}
 	return curHead;
 }
