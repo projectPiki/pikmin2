@@ -3,7 +3,7 @@
 ################################################################################
 #                                 Description                                  #
 ################################################################################
-# calcprogress: Used to calculate the progress of the Pikmin decomp.           #
+# calcprogress: Used to calculate the progress of the Pikmin 2 decomp.         #
 # Prints to stdout for now, but eventually will have some form of storage,     #
 # i.e. CSV, so that it can be used for a webpage display.                      #
 #                                                                              #
@@ -160,11 +160,13 @@ if __name__ == "__main__":
     # Calculate percentages
     codeCompletionPcnt = (decomp_code_size / dol_code_size)
     dataCompletionPcnt = (decomp_data_size / dol_data_size)
-    bytesPerTreasure = dol_code_size / 10000
+    bytesPerPoko = dol_code_size / 10000
+    bytesPerPart = dol_data_size / 201
     
-    partCount = math.floor(decomp_code_size / bytesPerTreasure)
+    pokoCount = math.floor(decomp_code_size / bytesPerPoko)
+    partCount = math.floor(decomp_code_size / bytesPerPart)
 
     print("Progress:")
     print(f"\tCode sections: {decomp_code_size} / {dol_code_size} bytes in src ({codeCompletionPcnt:%})")
     print(f"\tData sections: {decomp_data_size} / {dol_data_size} bytes in src ({dataCompletionPcnt:%})")
-    print("\nYou have {} out of 10000 Pokos.".format(partCount))
+    print("\nYou have {} out of 10000 Pokos and collected {} out of 201 treasures.".format(pokoCount, partCount))

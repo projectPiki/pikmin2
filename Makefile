@@ -125,7 +125,7 @@ $(DOL): $(ELF) | tools
 	$(QUIET) $(ELF2DOL) $< $@
 	$(QUIET) $(SHA1SUM) -c sha1/$(NAME).$(VERSION).sha1
 ifneq ($(findstring -map,$(LDFLAGS)),)
-	$(QUIET) $(PYTHON) calcprogress.py $@
+	$(QUIET) $(PYTHON) tools/calcprogress.py $@
 endif
 	./$(READMEGEN)
 
