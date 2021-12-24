@@ -498,12 +498,14 @@ og::newScreen::ObjFloor::StaticValues og::newScreen::ObjFloor::msVal
 
 namespace og {
 /*
+namespace newScreen {
+
  * __ct
  * --INFO--
  * Address:	8031A3C8
  * Size:	0000E8
  */
-newScreen::ObjFloor::ObjFloor(char const* name)
+ObjFloor::ObjFloor(char const* name)
     : ::Screen::ObjBase()
     , _58(0.0f)
     , _5C(0.0f)
@@ -540,7 +542,7 @@ newScreen::ObjFloor::ObjFloor(char const* name)
  * Address:	8031A4B0
  * Size:	0000AC
  */
-newScreen::ObjFloor::~ObjFloor(void)
+ObjFloor::~ObjFloor(void)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -630,7 +632,7 @@ inline bool newScreen::ObjFloor::isVS(void)
  * Address:	8031A55C
  * Size:	000460
  */
-void newScreen::ObjFloor::setCaveMsgID(ulong caveid, char* buffer)
+void ObjFloor::setCaveMsgID(ulong caveid, char* buffer)
 {
 	char* cave_msg;
 	switch (caveid) {
@@ -810,7 +812,7 @@ void newScreen::ObjFloor::setCaveMsgID(ulong caveid, char* buffer)
  * Address:	8031A9BC
  * Size:	0008C0
  */
-void newScreen::ObjFloor::doCreate(JKRArchive* archive)
+void ObjFloor::doCreate(JKRArchive* archive)
 {
 	Screen::DispMemberBase* disp = getDispMember();
 	if (disp->isID(OWNER_OGA, MEMBER_FLOOR) == false) {
@@ -1556,7 +1558,7 @@ setCentering__Q32og9newScreen8TitleMsgFQ42og9newScreen8TitleMsg13EnumCentering
  * Address:	8031B27C
  * Size:	000004
  */
-void newScreen::TitleMsg::init() { }
+void TitleMsg::init() { }
 
 /*
  * --INFO--
@@ -1992,14 +1994,14 @@ lbl_8031B800:
  * Address:	8031B818
  * Size:	000004
  */
-void newScreen::TitleMsg::end() { }
+void TitleMsg::end() { }
 
 /*
  * --INFO--
  * Address:	8031B81C
  * Size:	000004
  */
-void newScreen::TitleMsg::update() { }
+void TitleMsg::update() { }
 
 /*
  * --INFO--
@@ -2026,7 +2028,7 @@ bool newScreen::ObjFloor::doUpdate()
  * Address:	8031B840
  * Size:	00019C
  */
-void newScreen::ObjFloor::doDraw(Graphics& graphics)
+void ObjFloor::doDraw(Graphics& graphics)
 {
 	j3dSys.reinitGX();
 	drawBG(graphics);
@@ -2192,14 +2194,14 @@ bool newScreen::ObjFloor::doEnd(::Screen::EndSceneArg const* arg)
  * Address:	8031BA20
  * Size:	000004
  */
-void newScreen::ObjFloor::doUpdateFadeinFinish() { }
+void ObjFloor::doUpdateFadeinFinish() { }
 
 /*
  * --INFO--
  * Address:	8031BA24
  * Size:	000030
  */
-void newScreen::ObjFloor::doUpdateFinish(void)
+void ObjFloor::doUpdateFinish(void)
 {
 	_58 = 0.0f;
 	particle2dMgr->killGroup(2);
@@ -2210,7 +2212,7 @@ void newScreen::ObjFloor::doUpdateFinish(void)
  * Address:	8031BA54
  * Size:	000004
  */
-void newScreen::ObjFloor::doUpdateFadeoutFinish(void) { }
+void ObjFloor::doUpdateFadeoutFinish(void) { }
 
 /*
  * --INFO--
@@ -2325,7 +2327,7 @@ lbl_8031BB20:
  * Address:	8031BB54
  * Size:	000168
  */
-void newScreen::ObjFloor::drawBG(Graphics& gfx)
+void ObjFloor::drawBG(Graphics& gfx)
 {
 	if (_6C != 0) {
 		_70 += sys->m_secondsPerFrame;
@@ -2452,6 +2454,8 @@ lbl_8031BC9C:
 }
 
 } // namespace og
+
+} // newScreen
 
 /*
  * --INFO--

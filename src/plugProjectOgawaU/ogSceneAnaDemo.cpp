@@ -63,206 +63,209 @@
 
 namespace og {
 
-/*
- * --INFO--
- * Address:	8031EA58
- * Size:	000080
- */
-newScreen::AnaDemo::AnaDemo(long)
-{
+namespace newScreen {
+
 	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bl       __ct__Q26Screen9SceneBaseFv
-	addi     r0, r31, -10015
-	lis      r3, __vt__Q32og9newScreen7AnaDemo@ha
-	addi     r3, r3, __vt__Q32og9newScreen7AnaDemo@l
-	cmplwi   r0, 1
-	stw      r3, 0(r30)
-	ble      lbl_8031EA98
-	cmpwi    r31, 0x2721
-	bne      lbl_8031EAA0
+	 * --INFO--
+	 * Address:	8031EA58
+	 * Size:	000080
+	 */
+	AnaDemo::AnaDemo(long)
+	{
+		/*
+		stwu     r1, -0x10(r1)
+		mflr     r0
+		stw      r0, 0x14(r1)
+		stw      r31, 0xc(r1)
+		mr       r31, r4
+		stw      r30, 8(r1)
+		mr       r30, r3
+		bl       __ct__Q26Screen9SceneBaseFv
+		addi     r0, r31, -10015
+		lis      r3, __vt__Q32og9newScreen7AnaDemo@ha
+		addi     r3, r3, __vt__Q32og9newScreen7AnaDemo@l
+		cmplwi   r0, 1
+		stw      r3, 0(r30)
+		ble      lbl_8031EA98
+		cmpwi    r31, 0x2721
+		bne      lbl_8031EAA0
 
-lbl_8031EA98:
-	stw      r31, 0x220(r30)
-	b        lbl_8031EABC
+	lbl_8031EA98:
+		stw      r31, 0x220(r30)
+		b        lbl_8031EABC
 
-lbl_8031EAA0:
-	lis      r3, lbl_8048EE98@ha
-	lis      r5, lbl_8048EEAC@ha
-	addi     r3, r3, lbl_8048EE98@l
-	li       r4, 0x23
-	addi     r5, r5, lbl_8048EEAC@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
+	lbl_8031EAA0:
+		lis      r3, lbl_8048EE98@ha
+		lis      r5, lbl_8048EEAC@ha
+		addi     r3, r3, lbl_8048EE98@l
+		li       r4, 0x23
+		addi     r5, r5, lbl_8048EEAC@l
+		crclr    6
+		bl       panic_f__12JUTExceptionFPCciPCce
 
-lbl_8031EABC:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+	lbl_8031EABC:
+		lwz      r0, 0x14(r1)
+		mr       r3, r30
+		lwz      r31, 0xc(r1)
+		lwz      r30, 8(r1)
+		mtlr     r0
+		addi     r1, r1, 0x10
+		blr
+		*/
+	}
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000074
- */
-newScreen::AnaDemo::~AnaDemo(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	8031EAD8
- * Size:	000004
- */
-void newScreen::AnaDemo::doUserCallBackFunc(Resource::MgrCommand*) { }
-
-/*
- * --INFO--
- * Address:	8031EADC
- * Size:	000078
- */
-void newScreen::AnaDemo::doCreateObj(JKRArchive*)
-{
 	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	li       r3, 0x94
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_8031EB18
-	lis      r4, lbl_8048EECC@ha
-	addi     r4, r4, lbl_8048EECC@l
-	bl       __ct__Q32og9newScreen10ObjAnaDemoFPCc
-	mr       r4, r3
+	 * --INFO--
+	 * Address:	........
+	 * Size:	000074
+	 */
+	AnaDemo::~AnaDemo(void)
+	{
+		// UNUSED FUNCTION
+	}
 
-lbl_8031EB18:
-	mr       r3, r30
-	mr       r5, r31
-	bl       registObj__Q26Screen9SceneBaseFPQ26Screen7ObjBaseP10JKRArchive
-	mr       r3, r30
-	li       r4, 0
-	li       r5, 0
-	li       r6, 0
-	li       r7, 0x96
-	bl       setColorBG__Q26Screen9SceneBaseFUcUcUcUc
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8031EB54
- * Size:	00000C
- */
-void newScreen::AnaDemo::getResName() const
-{
 	/*
-	lis      r3, lbl_8048EEDC@ha
-	addi     r3, r3, lbl_8048EEDC@l
-	blr
-	*/
-}
+	 * --INFO--
+	 * Address:	8031EAD8
+	 * Size:	000004
+	 */
+	void AnaDemo::doUserCallBackFunc(Resource::MgrCommand*) { }
 
-/*
- * --INFO--
- * Address:	8031EB60
- * Size:	000008
- */
-void newScreen::AnaDemo::getSceneType(void)
-{
 	/*
-	lwz      r3, 0x220(r3)
-	blr
-	*/
-}
+	 * --INFO--
+	 * Address:	8031EADC
+	 * Size:	000078
+	 */
+	void AnaDemo::doCreateObj(JKRArchive*)
+	{
+		/*
+		stwu     r1, -0x10(r1)
+		mflr     r0
+		stw      r0, 0x14(r1)
+		stw      r31, 0xc(r1)
+		mr       r31, r4
+		stw      r30, 8(r1)
+		mr       r30, r3
+		li       r3, 0x94
+		bl       __nw__FUl
+		or.      r4, r3, r3
+		beq      lbl_8031EB18
+		lis      r4, lbl_8048EECC@ha
+		addi     r4, r4, lbl_8048EECC@l
+		bl       __ct__Q32og9newScreen10ObjAnaDemoFPCc
+		mr       r4, r3
 
-/*
- * --INFO--
- * Address:	8031EB68
- * Size:	00000C
- */
-void newScreen::AnaDemo::getOwnerID(void)
-{
+	lbl_8031EB18:
+		mr       r3, r30
+		mr       r5, r31
+		bl       registObj__Q26Screen9SceneBaseFPQ26Screen7ObjBaseP10JKRArchive
+		mr       r3, r30
+		li       r4, 0
+		li       r5, 0
+		li       r6, 0
+		li       r7, 0x96
+		bl       setColorBG__Q26Screen9SceneBaseFUcUcUcUc
+		lwz      r0, 0x14(r1)
+		lwz      r31, 0xc(r1)
+		lwz      r30, 8(r1)
+		mtlr     r0
+		addi     r1, r1, 0x10
+		blr
+		*/
+	}
+
 	/*
-	lis      r3, 0x004F4741@ha
-	addi     r3, r3, 0x004F4741@l
-	blr
-	*/
-}
+	 * --INFO--
+	 * Address:	8031EB54
+	 * Size:	00000C
+	 */
+	void AnaDemo::getResName() const
+	{
+		/*
+		lis      r3, lbl_8048EEDC@ha
+		addi     r3, r3, lbl_8048EEDC@l
+		blr
+		*/
+	}
 
-/*
- * --INFO--
- * Address:	8031EB74
- * Size:	00006C
- */
-void newScreen::AnaDemo::getMemberID(void)
-{
 	/*
-	lwz      r0, 0x220(r3)
-	li       r4, 0
-	li       r3, 0
-	cmpwi    r0, 0x2720
-	beq      lbl_8031EBB8
-	bge      lbl_8031EB98
-	cmpwi    r0, 0x271f
-	bge      lbl_8031EBA4
-	blr
+	 * --INFO--
+	 * Address:	8031EB60
+	 * Size:	000008
+	 */
+	void AnaDemo::getSceneType(void)
+	{
+		/*
+		lwz      r3, 0x220(r3)
+		blr
+		*/
+	}
 
-lbl_8031EB98:
-	cmpwi    r0, 0x2722
-	bgelr
-	b        lbl_8031EBCC
+	/*
+	 * --INFO--
+	 * Address:	8031EB68
+	 * Size:	00000C
+	 */
+	void AnaDemo::getOwnerID(void)
+	{
+		/*
+		lis      r3, 0x004F4741@ha
+		addi     r3, r3, 0x004F4741@l
+		blr
+		*/
+	}
 
-lbl_8031EBA4:
-	lis      r4, 0x44454D4F@ha
-	lis      r3, 0x414E415F@ha
-	addi     r4, r4, 0x44454D4F@l
-	addi     r3, r3, 0x414E415F@l
-	blr
+	/*
+	 * --INFO--
+	 * Address:	8031EB74
+	 * Size:	00006C
+	 */
+	void AnaDemo::getMemberID(void)
+	{
+		/*
+		lwz      r0, 0x220(r3)
+		li       r4, 0
+		li       r3, 0
+		cmpwi    r0, 0x2720
+		beq      lbl_8031EBB8
+		bge      lbl_8031EB98
+		cmpwi    r0, 0x271f
+		bge      lbl_8031EBA4
+		blr
 
-lbl_8031EBB8:
-	lis      r4, 0x4B455455@ha
-	lis      r3, 0x004B414E@ha
-	addi     r4, r4, 0x4B455455@l
-	addi     r3, r3, 0x004B414E@l
-	blr
+	lbl_8031EB98:
+		cmpwi    r0, 0x2722
+		bgelr
+		b        lbl_8031EBCC
 
-lbl_8031EBCC:
-	lis      r4, 0x4D4F5245@ha
-	lis      r3, 0x43415645@ha
-	addi     r4, r4, 0x4D4F5245@l
-	addi     r3, r3, 0x43415645@l
-	blr
-	*/
-}
+	lbl_8031EBA4:
+		lis      r4, 0x44454D4F@ha
+		lis      r3, 0x414E415F@ha
+		addi     r4, r4, 0x44454D4F@l
+		addi     r3, r3, 0x414E415F@l
+		blr
 
-/*
- * --INFO--
- * Address:	8031EBE0
- * Size:	000008
- */
-u32 newScreen::AnaDemo::isUseBackupSceneInfo(void) { return 0x1; }
+	lbl_8031EBB8:
+		lis      r4, 0x4B455455@ha
+		lis      r3, 0x004B414E@ha
+		addi     r4, r4, 0x4B455455@l
+		addi     r3, r3, 0x004B414E@l
+		blr
+
+	lbl_8031EBCC:
+		lis      r4, 0x4D4F5245@ha
+		lis      r3, 0x43415645@ha
+		addi     r4, r4, 0x4D4F5245@l
+		addi     r3, r3, 0x43415645@l
+		blr
+		*/
+	}
+
+	/*
+	 * --INFO--
+	 * Address:	8031EBE0
+	 * Size:	000008
+	 */
+	u32 AnaDemo::isUseBackupSceneInfo(void) { return 0x1; }
+} // namespace newScreen
 } // namespace og

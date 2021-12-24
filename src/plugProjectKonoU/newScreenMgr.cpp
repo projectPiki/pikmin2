@@ -316,12 +316,14 @@
         .4byte 0x00000000
 */
 
+namespace newScreen {
+
 /*
  * --INFO--
  * Address:	804001D8
  * Size:	0003CC
  */
-void newScreen::createScene_Ogawa(long)
+void createScene_Ogawa(long)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -717,7 +719,7 @@ lbl_80400594:
  * Address:	804005A4
  * Size:	000348
  */
-void newScreen::createScene_Morimura(long)
+void createScene_Morimura(long)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1005,7 +1007,7 @@ lbl_804008D8:
  * Address:	804008EC
  * Size:	000050
  */
-void newScreen::Mgr::doGetSceneBase(long)
+void Mgr::doGetSceneBase(long)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1040,7 +1042,7 @@ lbl_80400928:
  * Address:	8040093C
  * Size:	0000AC
  */
-void newScreen::Mgr::create()
+void Mgr::create()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1093,64 +1095,64 @@ lbl_80400990:
 
 namespace Screen {
 
-/*
- * --INFO--
- * Address:	804009E8
- * Size:	0000B0
- */
-Mgr::~Mgr()
-{
 	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80400A7C
-	lis      r3, __vt__Q26Screen3Mgr@ha
-	li       r0, 0
-	addi     r4, r3, __vt__Q26Screen3Mgr@l
-	addi     r3, r30, 0x78
-	stw      r4, 0(r30)
-	li       r4, -1
-	stw      r0, sScreenMgr__Q26Screen3Mgr@sda21(r13)
-	bl       __dt__5CNodeFv
-	addi     r3, r30, 0x60
-	li       r4, -1
-	bl       __dt__5CNodeFv
-	addi     r3, r30, 0x44
-	li       r4, -1
-	bl       __dt__5CNodeFv
-	addi     r3, r30, 0x2c
-	li       r4, -1
-	bl       __dt__5CNodeFv
-	cmplwi   r30, 0
-	beq      lbl_80400A6C
-	lis      r4, __vt__Q26Screen7MgrBase@ha
-	mr       r3, r30
-	addi     r0, r4, __vt__Q26Screen7MgrBase@l
-	li       r4, 0
-	stw      r0, 0(r30)
-	bl       __dt__11JKRDisposerFv
+	 * --INFO--
+	 * Address:	804009E8
+	 * Size:	0000B0
+	 */
+	Mgr::~Mgr()
+	{
+		/*
+		stwu     r1, -0x10(r1)
+		mflr     r0
+		stw      r0, 0x14(r1)
+		stw      r31, 0xc(r1)
+		mr       r31, r4
+		stw      r30, 8(r1)
+		or.      r30, r3, r3
+		beq      lbl_80400A7C
+		lis      r3, __vt__Q26Screen3Mgr@ha
+		li       r0, 0
+		addi     r4, r3, __vt__Q26Screen3Mgr@l
+		addi     r3, r30, 0x78
+		stw      r4, 0(r30)
+		li       r4, -1
+		stw      r0, sScreenMgr__Q26Screen3Mgr@sda21(r13)
+		bl       __dt__5CNodeFv
+		addi     r3, r30, 0x60
+		li       r4, -1
+		bl       __dt__5CNodeFv
+		addi     r3, r30, 0x44
+		li       r4, -1
+		bl       __dt__5CNodeFv
+		addi     r3, r30, 0x2c
+		li       r4, -1
+		bl       __dt__5CNodeFv
+		cmplwi   r30, 0
+		beq      lbl_80400A6C
+		lis      r4, __vt__Q26Screen7MgrBase@ha
+		mr       r3, r30
+		addi     r0, r4, __vt__Q26Screen7MgrBase@l
+		li       r4, 0
+		stw      r0, 0(r30)
+		bl       __dt__11JKRDisposerFv
 
-lbl_80400A6C:
-	extsh.   r0, r31
-	ble      lbl_80400A7C
-	mr       r3, r30
-	bl       __dl__FPv
+	lbl_80400A6C:
+		extsh.   r0, r31
+		ble      lbl_80400A7C
+		mr       r3, r30
+		bl       __dl__FPv
 
-lbl_80400A7C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+	lbl_80400A7C:
+		lwz      r0, 0x14(r1)
+		mr       r3, r30
+		lwz      r31, 0xc(r1)
+		lwz      r30, 8(r1)
+		mtlr     r0
+		addi     r1, r1, 0x10
+		blr
+		*/
+	}
 
 } // namespace Screen
 
@@ -1159,7 +1161,7 @@ lbl_80400A7C:
  * Address:	80400A98
  * Size:	0001A0
  */
-void newScreen::Mgr::drawBG(Graphics&)
+void Mgr::drawBG(Graphics&)
 {
 	/*
 	stwu     r1, -0x80(r1)
@@ -1285,7 +1287,7 @@ lbl_80400C08:
  * Address:	80400C38
  * Size:	000064
  */
-void newScreen::Mgr::reset()
+void Mgr::reset()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1325,7 +1327,7 @@ lbl_80400C88:
  * Address:	80400C9C
  * Size:	0000C0
  */
-newScreen::Mgr::~Mgr()
+Mgr::~Mgr()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1388,7 +1390,7 @@ lbl_80400D40:
  * Address:	80400D5C
  * Size:	000024
  */
-void newScreen::Mgr::setColorBG(JUtility::TColor&)
+void Mgr::setColorBG(JUtility::TColor&)
 {
 	/*
 	lbz      r0, 0(r4)
@@ -1408,13 +1410,15 @@ void newScreen::Mgr::setColorBG(JUtility::TColor&)
  * Address:	80400D80
  * Size:	000008
  */
-void newScreen::Mgr::setBGMode(int a1)
+void Mgr::setBGMode(int a1)
 {
 	// Generated from stw r4, 0xA4(r3)
 	_A4 = a1;
 }
 
 namespace Screen {
+
+} // namespace Screen
 
 /*
  * --INFO--
@@ -1460,7 +1464,7 @@ lbl_80400DD0:
 	*/
 }
 
-} // namespace Screen
+} // namespace newScreen
 
 /*
  * --INFO--

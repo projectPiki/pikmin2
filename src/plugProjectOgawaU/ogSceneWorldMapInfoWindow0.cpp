@@ -99,189 +99,193 @@
 
 namespace og {
 
-/*
- * --INFO--
- * Address:	8032BAA4
- * Size:	00003C
- */
-newScreen::WorldMapInfoWindow0::WorldMapInfoWindow0(void)
-{
+namespace newScreen {
+
 	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       __ct__Q32og9newScreen12SMenuPauseVSFv
-	lis      r4, __vt__Q32og9newScreen19WorldMapInfoWindow0@ha
-	mr       r3, r31
-	addi     r0, r4, __vt__Q32og9newScreen19WorldMapInfoWindow0@l
-	stw      r0, 0(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+	 * --INFO--
+	 * Address:	8032BAA4
+	 * Size:	00003C
+	 */
+	WorldMapInfoWindow0::WorldMapInfoWindow0(void)
+	{
+		/*
+		stwu     r1, -0x10(r1)
+		mflr     r0
+		stw      r0, 0x14(r1)
+		stw      r31, 0xc(r1)
+		mr       r31, r3
+		bl       __ct__Q32og9newScreen12SMenuPauseVSFv
+		lis      r4, __vt__Q32og9newScreen19WorldMapInfoWindow0@ha
+		mr       r3, r31
+		addi     r0, r4, __vt__Q32og9newScreen19WorldMapInfoWindow0@l
+		stw      r0, 0(r31)
+		lwz      r31, 0xc(r1)
+		lwz      r0, 0x14(r1)
+		mtlr     r0
+		addi     r1, r1, 0x10
+		blr
+		*/
+	}
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000060
- */
-newScreen::WorldMapInfoWindow0::~WorldMapInfoWindow0(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	8032BAE0
- * Size:	0000A4
- */
-void newScreen::WorldMapInfoWindow0::doCreateObj(JKRArchive*)
-{
 	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	li       r3, 0xd4
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_8032BB1C
-	lis      r4, lbl_8048F608@ha
-	addi     r4, r4, lbl_8048F608@l
-	bl       __ct__Q32og9newScreen22ObjWorldMapInfoWindow0FPCc
-	mr       r4, r3
+	 * --INFO--
+	 * Address:	........
+	 * Size:	000060
+	 */
+	WorldMapInfoWindow0::~WorldMapInfoWindow0(void)
+	{
+		// UNUSED FUNCTION
+	}
 
-lbl_8032BB1C:
-	mr       r3, r30
-	mr       r5, r31
-	bl       registObj__Q26Screen9SceneBaseFPQ26Screen7ObjBaseP10JKRArchive
-	lwz      r31, 0x21c(r30)
-	lis      r4, 0x004F4741@ha
-	lis      r6, 0x57696E30@ha
-	lis      r5, 0x574D6170@ha
-	mr       r3, r31
-	addi     r4, r4, 0x004F4741@l
-	addi     r6, r6, 0x57696E30@l
-	addi     r5, r5, 0x574D6170@l
-	bl       isID__Q32og6Screen14DispMemberBaseFUlUx
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8032BB6C
-	lbz      r7, 0x20(r31)
-	mr       r3, r30
-	li       r4, 0
-	li       r5, 0
-	li       r6, 0
-	bl       setColorBG__Q26Screen9SceneBaseFUcUcUcUc
-
-lbl_8032BB6C:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	8032BB84
- * Size:	000008
- */
-void newScreen::WorldMapInfoWindow0::doConfirmSetScene(Screen::SetSceneArg&)
-{
-	return 0x1;
-}
-
-/*
- * --INFO--
- * Address:	8032BB8C
- * Size:	000064
- */
-void newScreen::WorldMapInfoWindow0::doGetFinishState(void)
-{
 	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r4, 0x004F4741@ha
-	lis      r6, 0x57696E30@ha
-	stw      r0, 0x14(r1)
-	lis      r5, 0x574D6170@ha
-	addi     r4, r4, 0x004F4741@l
-	addi     r6, r6, 0x57696E30@l
-	stw      r31, 0xc(r1)
-	addi     r5, r5, 0x574D6170@l
-	stw      r30, 8(r1)
-	li       r30, 0
-	lwz      r31, 0x21c(r3)
-	mr       r3, r31
-	bl       isID__Q32og6Screen14DispMemberBaseFUlUx
-	clrlwi.  r0, r3, 0x18
-	beq      lbl_8032BBD4
-	lwz      r30, 8(r31)
+	 * --INFO--
+	 * Address:	8032BAE0
+	 * Size:	0000A4
+	 */
+	void WorldMapInfoWindow0::doCreateObj(JKRArchive*)
+	{
+		/*
+		stwu     r1, -0x10(r1)
+		mflr     r0
+		stw      r0, 0x14(r1)
+		stw      r31, 0xc(r1)
+		mr       r31, r4
+		stw      r30, 8(r1)
+		mr       r30, r3
+		li       r3, 0xd4
+		bl       __nw__FUl
+		or.      r4, r3, r3
+		beq      lbl_8032BB1C
+		lis      r4, lbl_8048F608@ha
+		addi     r4, r4, lbl_8048F608@l
+		bl       __ct__Q32og9newScreen22ObjWorldMapInfoWindow0FPCc
+		mr       r4, r3
 
-lbl_8032BBD4:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+	lbl_8032BB1C:
+		mr       r3, r30
+		mr       r5, r31
+		bl       registObj__Q26Screen9SceneBaseFPQ26Screen7ObjBaseP10JKRArchive
+		lwz      r31, 0x21c(r30)
+		lis      r4, 0x004F4741@ha
+		lis      r6, 0x57696E30@ha
+		lis      r5, 0x574D6170@ha
+		mr       r3, r31
+		addi     r4, r4, 0x004F4741@l
+		addi     r6, r6, 0x57696E30@l
+		addi     r5, r5, 0x574D6170@l
+		bl       isID__Q32og6Screen14DispMemberBaseFUlUx
+		clrlwi.  r0, r3, 0x18
+		beq      lbl_8032BB6C
+		lbz      r7, 0x20(r31)
+		mr       r3, r30
+		li       r4, 0
+		li       r5, 0
+		li       r6, 0
+		bl       setColorBG__Q26Screen9SceneBaseFUcUcUcUc
 
-/*
- * --INFO--
- * Address:	8032BBF0
- * Size:	00000C
- */
-void newScreen::WorldMapInfoWindow0::getResName() const
-{
+	lbl_8032BB6C:
+		lwz      r0, 0x14(r1)
+		lwz      r31, 0xc(r1)
+		lwz      r30, 8(r1)
+		mtlr     r0
+		addi     r1, r1, 0x10
+		blr
+		*/
+	}
+
 	/*
-	lis      r3, lbl_8048F624@ha
-	addi     r3, r3, lbl_8048F624@l
-	blr
-	*/
-}
+	 * --INFO--
+	 * Address:	8032BB84
+	 * Size:	000008
+	 */
+	void WorldMapInfoWindow0::doConfirmSetScene(Screen::SetSceneArg&)
+	{
+		return 0x1;
+	}
 
-/*
- * --INFO--
- * Address:	8032BBFC
- * Size:	000008
- */
-u32 newScreen::WorldMapInfoWindow0::getSceneType(void) { return 0x2729; }
-
-/*
- * --INFO--
- * Address:	8032BC04
- * Size:	000014
- */
-void newScreen::WorldMapInfoWindow0::getMemberID(void)
-{
 	/*
-	lis      r4, 0x57696E30@ha
-	lis      r3, 0x574D6170@ha
-	addi     r4, r4, 0x57696E30@l
-	addi     r3, r3, 0x574D6170@l
-	blr
-	*/
-}
+	 * --INFO--
+	 * Address:	8032BB8C
+	 * Size:	000064
+	 */
+	void WorldMapInfoWindow0::doGetFinishState(void)
+	{
+		/*
+		stwu     r1, -0x10(r1)
+		mflr     r0
+		lis      r4, 0x004F4741@ha
+		lis      r6, 0x57696E30@ha
+		stw      r0, 0x14(r1)
+		lis      r5, 0x574D6170@ha
+		addi     r4, r4, 0x004F4741@l
+		addi     r6, r6, 0x57696E30@l
+		stw      r31, 0xc(r1)
+		addi     r5, r5, 0x574D6170@l
+		stw      r30, 8(r1)
+		li       r30, 0
+		lwz      r31, 0x21c(r3)
+		mr       r3, r31
+		bl       isID__Q32og6Screen14DispMemberBaseFUlUx
+		clrlwi.  r0, r3, 0x18
+		beq      lbl_8032BBD4
+		lwz      r30, 8(r31)
 
-/*
- * --INFO--
- * Address:	8032BC18
- * Size:	000008
- */
-u32 newScreen::WorldMapInfoWindow0::isUseBackupSceneInfo(void) { return 0x0; }
+	lbl_8032BBD4:
+		lwz      r0, 0x14(r1)
+		mr       r3, r30
+		lwz      r31, 0xc(r1)
+		lwz      r30, 8(r1)
+		mtlr     r0
+		addi     r1, r1, 0x10
+		blr
+		*/
+	}
+
+	/*
+	 * --INFO--
+	 * Address:	8032BBF0
+	 * Size:	00000C
+	 */
+	void WorldMapInfoWindow0::getResName() const
+	{
+		/*
+		lis      r3, lbl_8048F624@ha
+		addi     r3, r3, lbl_8048F624@l
+		blr
+		*/
+	}
+
+	/*
+	 * --INFO--
+	 * Address:	8032BBFC
+	 * Size:	000008
+	 */
+	u32 WorldMapInfoWindow0::getSceneType(void) { return 0x2729; }
+
+	/*
+	 * --INFO--
+	 * Address:	8032BC04
+	 * Size:	000014
+	 */
+	void WorldMapInfoWindow0::getMemberID(void)
+	{
+		/*
+		lis      r4, 0x57696E30@ha
+		lis      r3, 0x574D6170@ha
+		addi     r4, r4, 0x57696E30@l
+		addi     r3, r3, 0x574D6170@l
+		blr
+		*/
+	}
+
+	/*
+	 * --INFO--
+	 * Address:	8032BC18
+	 * Size:	000008
+	 */
+	u32 WorldMapInfoWindow0::isUseBackupSceneInfo(void) { return 0x0; }
+
+} // namespace newScreen
 
 } // namespace og
 

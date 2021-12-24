@@ -44,202 +44,205 @@
 
 namespace og {
 
-/*
- * --INFO--
- * Address:	803248F4
- * Size:	00003C
- */
-newScreen::UfoMenu::UfoMenu(void)
-{
+namespace newScreen {
+
 	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       __ct__Q26Screen9SceneBaseFv
-	lis      r4, __vt__Q32og9newScreen7UfoMenu@ha
-	mr       r3, r31
-	addi     r0, r4, __vt__Q32og9newScreen7UfoMenu@l
-	stw      r0, 0(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+	 * --INFO--
+	 * Address:	803248F4
+	 * Size:	00003C
+	 */
+	UfoMenu::UfoMenu(void)
+	{
+		/*
+		stwu     r1, -0x10(r1)
+		mflr     r0
+		stw      r0, 0x14(r1)
+		stw      r31, 0xc(r1)
+		mr       r31, r3
+		bl       __ct__Q26Screen9SceneBaseFv
+		lis      r4, __vt__Q32og9newScreen7UfoMenu@ha
+		mr       r3, r31
+		addi     r0, r4, __vt__Q32og9newScreen7UfoMenu@l
+		stw      r0, 0(r31)
+		lwz      r31, 0xc(r1)
+		lwz      r0, 0x14(r1)
+		mtlr     r0
+		addi     r1, r1, 0x10
+		blr
+		*/
+	}
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000074
- */
-newScreen::UfoMenu::~UfoMenu(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	80324930
- * Size:	000004
- */
-void newScreen::UfoMenu::doUserCallBackFunc(Resource::MgrCommand*) { }
-
-/*
- * --INFO--
- * Address:	80324934
- * Size:	000078
- */
-void newScreen::UfoMenu::doCreateObj(JKRArchive*)
-{
 	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	li       r3, 0x90
-	bl       __nw__FUl
-	or.      r4, r3, r3
-	beq      lbl_80324970
-	lis      r4, lbl_8048F2C8@ha
-	addi     r4, r4, lbl_8048F2C8@l
-	bl       __ct__Q32og9newScreen10ObjUfoMenuFPCc
-	mr       r4, r3
+	 * --INFO--
+	 * Address:	........
+	 * Size:	000074
+	 */
+	UfoMenu::~UfoMenu(void)
+	{
+		// UNUSED FUNCTION
+	}
 
-lbl_80324970:
-	mr       r3, r30
-	mr       r5, r31
-	bl       registObj__Q26Screen9SceneBaseFPQ26Screen7ObjBaseP10JKRArchive
-	mr       r3, r30
-	li       r4, 0
-	li       r5, 0
-	li       r6, 0
-	li       r7, 0xa0
-	bl       setColorBG__Q26Screen9SceneBaseFUcUcUcUc
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	803249AC
- * Size:	000060
- */
-void newScreen::UfoMenu::doConfirmSetScene(Screen::SetSceneArg&)
-{
 	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r3, r4
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	li       r31, 0
-	lwz      r12, 0(r4)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	cmpwi    r3, 0x2717
-	bge      lbl_803249E8
-	cmpwi    r3, 0x2710
-	beq      lbl_803249F0
-	b        lbl_803249F4
+	 * --INFO--
+	 * Address:	80324930
+	 * Size:	000004
+	 */
+	void UfoMenu::doUserCallBackFunc(Resource::MgrCommand*) { }
 
-lbl_803249E8:
-	cmpwi    r3, 0x2719
-	bge      lbl_803249F4
-
-lbl_803249F0:
-	li       r31, 1
-
-lbl_803249F4:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
-
-/*
- * --INFO--
- * Address:	80324A0C
- * Size:	00000C
- */
-void newScreen::UfoMenu::doSetBackupScene(Screen::SetSceneArg&)
-{
 	/*
-	li       r0, 0
-	stb      r0, 9(r4)
-	blr
-	*/
-}
+	 * --INFO--
+	 * Address:	80324934
+	 * Size:	000078
+	 */
+	void UfoMenu::doCreateObj(JKRArchive*)
+	{
+		/*
+		stwu     r1, -0x10(r1)
+		mflr     r0
+		stw      r0, 0x14(r1)
+		stw      r31, 0xc(r1)
+		mr       r31, r4
+		stw      r30, 8(r1)
+		mr       r30, r3
+		li       r3, 0x90
+		bl       __nw__FUl
+		or.      r4, r3, r3
+		beq      lbl_80324970
+		lis      r4, lbl_8048F2C8@ha
+		addi     r4, r4, lbl_8048F2C8@l
+		bl       __ct__Q32og9newScreen10ObjUfoMenuFPCc
+		mr       r4, r3
 
-/*
- * --INFO--
- * Address:	80324A18
- * Size:	00000C
- */
-void newScreen::UfoMenu::getResName() const
-{
+	lbl_80324970:
+		mr       r3, r30
+		mr       r5, r31
+		bl       registObj__Q26Screen9SceneBaseFPQ26Screen7ObjBaseP10JKRArchive
+		mr       r3, r30
+		li       r4, 0
+		li       r5, 0
+		li       r6, 0
+		li       r7, 0xa0
+		bl       setColorBG__Q26Screen9SceneBaseFUcUcUcUc
+		lwz      r0, 0x14(r1)
+		lwz      r31, 0xc(r1)
+		lwz      r30, 8(r1)
+		mtlr     r0
+		addi     r1, r1, 0x10
+		blr
+		*/
+	}
+
 	/*
-	lis      r3, lbl_8048F2D8@ha
-	addi     r3, r3, lbl_8048F2D8@l
-	blr
-	*/
-}
+	 * --INFO--
+	 * Address:	803249AC
+	 * Size:	000060
+	 */
+	void UfoMenu::doConfirmSetScene(Screen::SetSceneArg&)
+	{
+		/*
+		stwu     r1, -0x10(r1)
+		mflr     r0
+		mr       r3, r4
+		stw      r0, 0x14(r1)
+		stw      r31, 0xc(r1)
+		li       r31, 0
+		lwz      r12, 0(r4)
+		lwz      r12, 8(r12)
+		mtctr    r12
+		bctrl
+		cmpwi    r3, 0x2717
+		bge      lbl_803249E8
+		cmpwi    r3, 0x2710
+		beq      lbl_803249F0
+		b        lbl_803249F4
 
-/*
- * --INFO--
- * Address:	80324A24
- * Size:	000008
- */
-u32 newScreen::UfoMenu::getSceneType(void) { return 0x2719; }
+	lbl_803249E8:
+		cmpwi    r3, 0x2719
+		bge      lbl_803249F4
 
-/*
- * --INFO--
- * Address:	80324A2C
- * Size:	00000C
- */
-void newScreen::UfoMenu::getOwnerID(void)
-{
+	lbl_803249F0:
+		li       r31, 1
+
+	lbl_803249F4:
+		lwz      r0, 0x14(r1)
+		mr       r3, r31
+		lwz      r31, 0xc(r1)
+		mtlr     r0
+		addi     r1, r1, 0x10
+		blr
+		*/
+	}
+
 	/*
-	lis      r3, 0x004F4741@ha
-	addi     r3, r3, 0x004F4741@l
-	blr
-	*/
-}
+	 * --INFO--
+	 * Address:	80324A0C
+	 * Size:	00000C
+	 */
+	void UfoMenu::doSetBackupScene(Screen::SetSceneArg&)
+	{
+		/*
+		li       r0, 0
+		stb      r0, 9(r4)
+		blr
+		*/
+	}
 
-/*
- * --INFO--
- * Address:	80324A38
- * Size:	000014
- */
-void newScreen::UfoMenu::getMemberID(void)
-{
 	/*
-	lis      r4, 0x4D454E55@ha
-	lis      r3, 0x0055464F@ha
-	addi     r4, r4, 0x4D454E55@l
-	addi     r3, r3, 0x0055464F@l
-	blr
-	*/
-}
+	 * --INFO--
+	 * Address:	80324A18
+	 * Size:	00000C
+	 */
+	void UfoMenu::getResName() const
+	{
+		/*
+		lis      r3, lbl_8048F2D8@ha
+		addi     r3, r3, lbl_8048F2D8@l
+		blr
+		*/
+	}
 
-/*
- * --INFO--
- * Address:	80324A4C
- * Size:	000008
- */
-u32 newScreen::UfoMenu::isUseBackupSceneInfo(void) { return 0x1; }
+	/*
+	 * --INFO--
+	 * Address:	80324A24
+	 * Size:	000008
+	 */
+	u32 UfoMenu::getSceneType(void) { return 0x2719; }
+
+	/*
+	 * --INFO--
+	 * Address:	80324A2C
+	 * Size:	00000C
+	 */
+	void UfoMenu::getOwnerID(void)
+	{
+		/*
+		lis      r3, 0x004F4741@ha
+		addi     r3, r3, 0x004F4741@l
+		blr
+		*/
+	}
+
+	/*
+	 * --INFO--
+	 * Address:	80324A38
+	 * Size:	000014
+	 */
+	void UfoMenu::getMemberID(void)
+	{
+		/*
+		lis      r4, 0x4D454E55@ha
+		lis      r3, 0x0055464F@ha
+		addi     r4, r4, 0x4D454E55@l
+		addi     r3, r3, 0x0055464F@l
+		blr
+		*/
+	}
+
+	/*
+	 * --INFO--
+	 * Address:	80324A4C
+	 * Size:	000008
+	 */
+	u32 UfoMenu::isUseBackupSceneInfo(void) { return 0x1; }
+} // namespace newScreen
 } // namespace og

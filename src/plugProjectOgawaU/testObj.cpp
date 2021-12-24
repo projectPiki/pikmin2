@@ -37,183 +37,187 @@
 
 namespace og {
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000060
- */
-newScreen::Test::Test(char const*)
-{
-	// UNUSED FUNCTION
-}
-
-namespace Screen {
+namespace newScreen {
 
 	/*
 	 * --INFO--
-	 * Address:	8030D868
-	 * Size:	000094
+	 * Address:	........
+	 * Size:	000060
 	 */
-	ObjBase::~ObjBase(void)
+	Test::Test(char const*)
 	{
+		// UNUSED FUNCTION
+	}
+
+	namespace Screen {
+
 		/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_8030D8E0
-	lis      r4, __vt__Q26Screen7ObjBase@ha
-	addi     r4, r4, __vt__Q26Screen7ObjBase@l
-	stw      r4, 0(r30)
-	addi     r0, r4, 0x10
-	stw      r0, 0x18(r30)
-	beq      lbl_8030D8D0
-	lis      r4, __vt__Q26Screen8IObjBase@ha
-	addi     r4, r4, __vt__Q26Screen8IObjBase@l
-	stw      r4, 0(r30)
-	addi     r0, r4, 0x10
-	stw      r0, 0x18(r30)
-	bl       del__5CNodeFv
-	addi     r3, r30, 0x18
-	li       r4, 0
-	bl       __dt__11JKRDisposerFv
-	mr       r3, r30
-	li       r4, 0
-	bl       __dt__5CNodeFv
+		 * --INFO--
+		 * Address:	8030D868
+		 * Size:	000094
+		 */
+		ObjBase::~ObjBase(void)
+		{
+			/*
+		stwu     r1, -0x10(r1)
+		mflr     r0
+		stw      r0, 0x14(r1)
+		stw      r31, 0xc(r1)
+		mr       r31, r4
+		stw      r30, 8(r1)
+		or.      r30, r3, r3
+		beq      lbl_8030D8E0
+		lis      r4, __vt__Q26Screen7ObjBase@ha
+		addi     r4, r4, __vt__Q26Screen7ObjBase@l
+		stw      r4, 0(r30)
+		addi     r0, r4, 0x10
+		stw      r0, 0x18(r30)
+		beq      lbl_8030D8D0
+		lis      r4, __vt__Q26Screen8IObjBase@ha
+		addi     r4, r4, __vt__Q26Screen8IObjBase@l
+		stw      r4, 0(r30)
+		addi     r0, r4, 0x10
+		stw      r0, 0x18(r30)
+		bl       del__5CNodeFv
+		addi     r3, r30, 0x18
+		li       r4, 0
+		bl       __dt__11JKRDisposerFv
+		mr       r3, r30
+		li       r4, 0
+		bl       __dt__5CNodeFv
 
-lbl_8030D8D0:
-	extsh.   r0, r31
-	ble      lbl_8030D8E0
-	mr       r3, r30
-	bl       __dl__FPv
+	lbl_8030D8D0:
+		extsh.   r0, r31
+		ble      lbl_8030D8E0
+		mr       r3, r30
+		bl       __dl__FPv
 
-lbl_8030D8E0:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-		*/
+	lbl_8030D8E0:
+		lwz      r0, 0x14(r1)
+		mr       r3, r30
+		lwz      r31, 0xc(r1)
+		lwz      r30, 8(r1)
+		mtlr     r0
+		addi     r1, r1, 0x10
+		blr
+			*/
+		}
+
+		/*
+		 * --INFO--
+		 * Address:	........
+		 * Size:	0000AC
+		 */
+		Test::~Test(void)
+		{
+			// UNUSED FUNCTION
+		}
+
+	} // namespace Screen
+
+	/*
+	 * --INFO--
+	 * Address:	........
+	 * Size:	00011C
+	 */
+	void Test::doCreate(JKRArchive*)
+	{
+		// UNUSED FUNCTION
 	}
 
 	/*
 	 * --INFO--
 	 * Address:	........
-	 * Size:	0000AC
+	 * Size:	000040
 	 */
-	newScreen::Test::~Test(void)
+	void Test::doUpdate(void)
 	{
 		// UNUSED FUNCTION
 	}
 
-} // namespace Screen
+	/*
+	 * --INFO--
+	 * Address:	........
+	 * Size:	000034
+	 */
+	void Test::doDraw(Graphics&)
+	{
+		// UNUSED FUNCTION
+	}
 
-/*
- * --INFO--
- * Address:	........
- * Size:	00011C
- */
-void newScreen::Test::doCreate(JKRArchive*)
-{
-	// UNUSED FUNCTION
-}
+	/*
+	 * --INFO--
+	 * Address:	........
+	 * Size:	000008
+	 */
+	void Test::doStart(Screen::StartSceneArg const*)
+	{
+		// UNUSED FUNCTION
+	}
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000040
- */
-void newScreen::Test::doUpdate(void)
-{
-	// UNUSED FUNCTION
-}
+	/*
+	 * --INFO--
+	 * Address:	........
+	 * Size:	000008
+	 */
+	void Test::doEnd(Screen::EndSceneArg const*)
+	{
+		// UNUSED FUNCTION
+	}
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000034
- */
-void newScreen::Test::doDraw(Graphics&)
-{
-	// UNUSED FUNCTION
-}
+	/*
+	 * --INFO--
+	 * Address:	........
+	 * Size:	000004
+	 */
+	void Test::doUpdateFadeinFinish(void)
+	{
+		// UNUSED FUNCTION
+	}
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
- */
-void newScreen::Test::doStart(Screen::StartSceneArg const*)
-{
-	// UNUSED FUNCTION
-}
+	/*
+	 * --INFO--
+	 * Address:	........
+	 * Size:	000004
+	 */
+	void Test::doUpdateFinish(void)
+	{
+		// UNUSED FUNCTION
+	}
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
- */
-void newScreen::Test::doEnd(Screen::EndSceneArg const*)
-{
-	// UNUSED FUNCTION
-}
+	/*
+	 * --INFO--
+	 * Address:	........
+	 * Size:	000004
+	 */
+	void Test::doUpdateFadeoutFinish(void)
+	{
+		// UNUSED FUNCTION
+	}
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000004
- */
-void newScreen::Test::doUpdateFadeinFinish(void)
-{
-	// UNUSED FUNCTION
-}
+	/*
+	 * --INFO--
+	 * Address:	........
+	 * Size:	000008
+	 */
+	void Test::doUpdateFadein(void)
+	{
+		// UNUSED FUNCTION
+	}
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000004
- */
-void newScreen::Test::doUpdateFinish(void)
-{
-	// UNUSED FUNCTION
-}
+	/*
+	 * --INFO--
+	 * Address:	........
+	 * Size:	000008
+	 */
+	void Test::doUpdateFadeout(void)
+	{
+		// UNUSED FUNCTION
+	}
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000004
- */
-void newScreen::Test::doUpdateFadeoutFinish(void)
-{
-	// UNUSED FUNCTION
-}
+	namespace Screen {
 
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
- */
-void newScreen::Test::doUpdateFadein(void)
-{
-	// UNUSED FUNCTION
-}
-
-/*
- * --INFO--
- * Address:	........
- * Size:	000008
- */
-void newScreen::Test::doUpdateFadeout(void)
-{
-	// UNUSED FUNCTION
-}
-
-namespace Screen {
+	} // namespace Screen
 
 	/*
 	 * --INFO--
@@ -245,7 +249,7 @@ namespace Screen {
 		// UNUSED FUNCTION
 	}
 
-} // namespace Screen
+} // namespace newScreen
 
 /*
  * --INFO--

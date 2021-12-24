@@ -6054,32 +6054,36 @@ int EndSceneArg::getClassSize() { return 0x8; }
  */
 int newScreen::SArgChallenge1P::getSceneType() const { return 0x2727; }
 
+namespace newScreen {
+
 /*
  * --INFO--
  * Address:	80400178
  * Size:	000008
  */
-u32 newScreen::SArgChallenge1P::getClassSize() { return 0x8; }
+u32 SArgChallenge1P::getClassSize() { return 0x8; }
 
 /*
  * --INFO--
  * Address:	80400180
  * Size:	000008
  */
-u32 newScreen::SArgChallenge2P::getSceneType() const { return 0x2724; }
+u32 SArgChallenge2P::getSceneType() const { return 0x2724; }
 
 /*
  * --INFO--
  * Address:	80400188
  * Size:	000008
  */
-u32 newScreen::SArgChallenge2P::getClassSize() { return 0x8; }
+u32 SArgChallenge2P::getClassSize() { return 0x8; }
 
 namespace kh {
 
 } // namespace kh
 
 namespace Screen {
+
+} // namespace Screen
 
 /*
  * --INFO--
@@ -6140,5 +6144,5 @@ addi     r3, r3, 0x0046494E@l
 blr
 	*/
 }
-} // namespace Screen
+} // namespace newScreen
 } // namespace Screen
