@@ -492,8 +492,8 @@ lbl_803A3A30:
  */
 void Morimura::TSelectExplanationWindow::openWindow(void)
 {
-  _24 = 0.12f;
-  unknown_0x18 = 1;
+	_24          = 0.12f;
+	unknown_0x18 = 1;
 }
 
 /*
@@ -503,8 +503,8 @@ void Morimura::TSelectExplanationWindow::openWindow(void)
  */
 void Morimura::TSelectExplanationWindow::closeWindow(void)
 {
-  _24 = -0.12f;
-  unknown_0x18 = 3;
+	_24          = -0.12f;
+	unknown_0x18 = 3;
 }
 
 /*
