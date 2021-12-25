@@ -71,8 +71,6 @@ ELF2DOL := tools/elf2dol
 SHA1SUM := sha1sum
 PYTHON  := python3
 
-# POSTPROC := tools/postprocess.py
-
 # Options
 INCLUDES := -i include/
 ASM_INCLUDES := -I include/
@@ -93,13 +91,11 @@ ifeq ($(VERBOSE),0)
 ASFLAGS += -W
 endif
 
-# for postprocess.py
-# PROCFLAGS := -fsymbol-fixup
-
 $(BUILD_DIR)/src/Dolphin/dvdFatal.o: MWCC_VERSION := 1.0
 $(BUILD_DIR)/src/Dolphin/__start.o: MWCC_VERSION := 1.0
 $(BUILD_DIR)/src/Dolphin/OSLink.o: MWCC_VERSION := 1.0
 $(BUILD_DIR)/src/Dolphin/PPCArch.o: MWCC_VERSION := 1.0
+$(BUILD_DIR)/src/Dolphin/vec.o: MWCC_VERSION := 1.0
 
 #-------------------------------------------------------------------------------
 # Recipes

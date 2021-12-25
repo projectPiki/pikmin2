@@ -1,5 +1,19 @@
+#include "types.h"
+#include "Dolphin/vec.h"
 
-
+#define R_RET fp1
+#define FP2   fp2
+#define FP3   fp3
+#define FP4   fp4
+#define FP5   fp5
+#define FP6   fp6
+#define FP7   fp7
+#define FP8   fp8
+#define FP9   fp9
+#define FP10  fp10
+#define FP11  fp11
+#define FP12  fp12
+#define FP13  fp13
 /*
  * --INFO--
  * Address:	........
@@ -9,28 +23,31 @@ void C_VECAdd(void)
 {
 	// UNUSED FUNCTION
 }
-
 /*
  * --INFO--
  * Address:	800EAEB4
  * Size:	000024
  */
-void PSVECAdd(void)
+// clang-format off
+asm void PSVECAdd
+(
+    const register Vec *vec1,
+    const register Vec *vec2,
+    register Vec *ret
+)
 {
-	/*
-	.loc_0x0:
-	  psq_l     f2,0x0(r3),0,0
-	  psq_l     f4,0x0(r4),0,0
-	  ps_add    f6, f2, f4
-	  psq_st    f6,0x0(r5),0,0
-	  psq_l     f3,0x8(r3),0x1,0
-	  psq_l     f5,0x8(r4),0x1,0
-	  ps_add    f7, f3, f5
-	  psq_st    f7,0x8(r5),0x1,0
-	  blr
-	*/
+    nofralloc;
+    psq_l     FP2,  0(vec1), 0, 0;
+    psq_l     FP4,  0(vec2), 0, 0;
+    ps_add    FP6, FP2, FP4;
+    psq_st    FP6,  0(ret), 0, 0;
+    psq_l     FP3,   8(vec1), 1, 0;
+    psq_l     FP5,   8(vec2), 1, 0;
+    ps_add    FP7, FP3, FP5;
+    psq_st    FP7,   8(ret), 1, 0;
+    blr
 }
-
+// clang-format on
 /*
  * --INFO--
  * Address:	........
@@ -40,28 +57,31 @@ void C_VECSubtract(void)
 {
 	// UNUSED FUNCTION
 }
-
 /*
  * --INFO--
  * Address:	800EAED8
  * Size:	000024
  */
-void PSVECSubtract(void)
+// clang-format off
+asm void PSVECSubtract
+(
+    const register Vec *vec1,
+    const register Vec *vec2,
+          register Vec *ret
+)
 {
-	/*
-	.loc_0x0:
-	  psq_l     f2,0x0(r3),0,0
-	  psq_l     f4,0x0(r4),0,0
-	  ps_sub    f6, f2, f4
-	  psq_st    f6,0x0(r5),0,0
-	  psq_l     f3,0x8(r3),0x1,0
-	  psq_l     f5,0x8(r4),0x1,0
-	  ps_sub    f7, f3, f5
-	  psq_st    f7,0x8(r5),0x1,0
-	  blr
-	*/
+    nofralloc;
+    psq_l     FP2,  0(vec1), 0, 0;
+    psq_l     FP4,  0(vec2), 0, 0;
+    ps_sub    FP6, FP2, FP4;
+    psq_st    FP6, 0(ret), 0, 0;
+    psq_l     FP3,   8(vec1), 1, 0;
+    psq_l     FP5,   8(vec2), 1, 0;
+    ps_sub    FP7, FP3, FP5;
+    psq_st    FP7,  8(ret), 1, 0;
+    blr
 }
-
+// clang-format on
 /*
  * --INFO--
  * Address:	........
@@ -71,7 +91,6 @@ void C_VECScale(void)
 {
 	// UNUSED FUNCTION
 }
-
 /*
  * --INFO--
  * Address:	........
@@ -81,7 +100,6 @@ void PSVECScale(void)
 {
 	// UNUSED FUNCTION
 }
-
 /*
  * --INFO--
  * Address:	........
@@ -91,36 +109,43 @@ void C_VECNormalize(void)
 {
 	// UNUSED FUNCTION
 }
-
 /*
  * --INFO--
  * Address:	800EAEFC
  * Size:	000044
  */
-void PSVECNormalize(void)
+// clang-format off
+void PSVECNormalize
+(
+    const register Vec *vec1,
+          register Vec *ret
+)
 {
-	/*
-	.loc_0x0:
-	  lfs       f0, -0x6C18(r2)
-	  lfs       f1, -0x6C14(r2)
-	  psq_l     f2,0x0(r3),0,0
-	  ps_mul    f5, f2, f2
-	  psq_l     f3,0x8(r3),0x1,0
-	  ps_madd   f4, f3, f3, f5
-	  ps_sum0   f4, f4, f3, f5
-	  fsqrte    f5, f4
-	  fmuls     f6, f5, f5
-	  fmuls     f0, f5, f0
-	  fnmsubs   f6, f6, f4, f1
-	  fmuls     f5, f6, f0
-	  ps_muls0  f2, f2, f5
-	  psq_st    f2,0x0(r4),0,0
-	  ps_muls0  f3, f3, f5
-	  psq_st    f3,0x8(r4),0x1,0
-	  blr
-	*/
+    register f32 half  = 0.5f;
+    register f32 three = 3.0f;
+    register f32 xx_zz, xx_yy;
+    register f32 square_sum;
+    register f32 ret_sqrt;
+    register f32 n_0, n_1;
+    asm
+    {
+        psq_l       FP2, 0(vec1), 0, 0;
+        ps_mul      xx_yy, FP2, FP2;
+        psq_l       FP3, 8(vec1), 1, 0;
+        ps_madd     xx_zz, FP3, FP3, xx_yy;
+        ps_sum0     square_sum, xx_zz, FP3, xx_yy;
+        frsqrte     ret_sqrt, square_sum;
+        fmuls       n_0, ret_sqrt, ret_sqrt;
+        fmuls       n_1, ret_sqrt, half;
+        fnmsubs     n_0, n_0, square_sum, three;
+        fmuls       ret_sqrt, n_0, n_1;
+        ps_muls0    FP2, FP2, ret_sqrt;
+        psq_st      FP2, 0(ret), 0, 0;
+        ps_muls0    FP3, FP3, ret_sqrt;
+        psq_st      FP3, 8(ret), 1, 0;
+    }
 }
-
+// clang-format on
 /*
  * --INFO--
  * Address:	........
@@ -130,7 +155,6 @@ void C_VECSquareMag(void)
 {
 	// UNUSED FUNCTION
 }
-
 /*
  * --INFO--
  * Address:	........
@@ -140,7 +164,6 @@ void PSVECSquareMag(void)
 {
 	// UNUSED FUNCTION
 }
-
 /*
  * --INFO--
  * Address:	........
@@ -150,38 +173,43 @@ void C_VECMag(void)
 {
 	// UNUSED FUNCTION
 }
-
 /*
  * --INFO--
  * Address:	800EAF40
  * Size:	000044
  */
-void PSVECMag(void)
+// clang-format off
+f32 PSVECMag ( const register Vec *v )
 {
-	/*
-	.loc_0x0:
-	  lfs       f4, -0x6C18(r2)
-	  psq_l     f0,0x0(r3),0,0
-	  ps_mul    f0, f0, f0
-	  lfs       f1, 0x8(r3)
-	  fsubs     f2, f4, f4
-	  ps_madd   f1, f1, f1, f0
-	  ps_sum0   f1, f1, f0, f0
-	  fcmpu     cr0, f1, f2
-	  beq-      .loc_0x40
-	  fsqrte    f0, f1
-	  lfs       f3, -0x6C14(r2)
-	  fmuls     f2, f0, f0
-	  fmuls     f0, f0, f4
-	  fnmsubs   f2, f2, f1, f3
-	  fmuls     f0, f2, f0
-	  fmuls     f1, f1, f0
-
-	.loc_0x40:
-	  blr
-	*/
+    register f32    v_xy, v_zz, square_mag;
+    register f32    ret_mag, n_0, n_1;
+    register f32    three, half, zero;
+    half = 0.5f;
+    asm
+    {
+        psq_l       v_xy, 0(v), 0, 0
+        ps_mul      v_xy, v_xy, v_xy
+        lfs         v_zz, 8(v)
+        fsubs       zero, half, half
+        ps_madd     square_mag, v_zz, v_zz, v_xy
+        ps_sum0     square_mag, square_mag, v_xy, v_xy
+        fcmpu       cr0, square_mag, zero
+        beq-        __exit
+        frsqrte     ret_mag, square_mag
+    }
+    three = 3.0f;
+    asm
+    {
+        fmuls       n_0, ret_mag, ret_mag
+        fmuls       n_1, ret_mag, half
+        fnmsubs     n_0, n_0, square_mag, three
+        fmuls       ret_mag, n_0, n_1
+        fmuls       square_mag, square_mag, ret_mag
+    __exit:
+    }
+    return square_mag;
 }
-
+// clang-format on
 /*
  * --INFO--
  * Address:	........
@@ -191,7 +219,6 @@ void C_VECDotProduct(void)
 {
 	// UNUSED FUNCTION
 }
-
 /*
  * --INFO--
  * Address:	........
@@ -201,7 +228,6 @@ void PSVECDotProduct(void)
 {
 	// UNUSED FUNCTION
 }
-
 /*
  * --INFO--
  * Address:	........
@@ -211,34 +237,37 @@ void C_VECCrossProduct(void)
 {
 	// UNUSED FUNCTION
 }
-
 /*
  * --INFO--
  * Address:	800EAF84
  * Size:	00003C
  */
-void PSVECCrossProduct(void)
+// clang-format off
+asm void PSVECCrossProduct
+(
+    const register Vec *vec1,
+    const register Vec *vec2,
+          register Vec *ret
+)
 {
-	/*
-	.loc_0x0:
-	  psq_l     f1,0x0(r4),0,0
-	  lfs       f2, 0x8(r3)
-	  psq_l     f0,0x0(r3),0,0
-	  ps_merge10f6, f1, f1
-	  lfs       f3, 0x8(r4)
-	  ps_mul    f4, f1, f2
-	  ps_muls0  f7, f1, f0
-	  ps_msub   f5, f0, f3, f4
-	  ps_msub   f8, f0, f6, f7
-	  ps_merge11f9, f5, f5
-	  ps_merge01f10, f5, f8
-	  psq_st    f9,0x0(r5),0x1,0
-	  ps_neg    f10, f10
-	  psq_st    f10,0x4(r5),0,0
-	  blr
-	*/
+    nofralloc;
+    psq_l       fp1, 0(vec2), 0, 0
+    lfs         fp2, 8(vec1)
+    psq_l       fp0, 0(vec1), 0, 0
+    ps_merge10  fp6, fp1, fp1
+    lfs         fp3, 8(vec2)
+    ps_mul      fp4, fp1, fp2
+    ps_muls0    fp7, fp1, fp0
+    ps_msub     fp5, fp0, fp3, fp4
+    ps_msub     fp8, fp0, fp6, fp7
+    ps_merge11  fp9, fp5, fp5
+    ps_merge01  fp10, fp5, fp8
+    psq_st      fp9, 0(ret), 1, 0
+    ps_neg      fp10, fp10
+    psq_st      fp10, 4(ret), 0, 0
+    blr;
 }
-
+// clang-format on
 /*
  * --INFO--
  * Address:	........
@@ -248,7 +277,6 @@ void C_VECHalfAngle(void)
 {
 	// UNUSED FUNCTION
 }
-
 /*
  * --INFO--
  * Address:	........
@@ -258,7 +286,6 @@ void C_VECReflect(void)
 {
 	// UNUSED FUNCTION
 }
-
 /*
  * --INFO--
  * Address:	........
@@ -268,7 +295,6 @@ void C_VECSquareDistance(void)
 {
 	// UNUSED FUNCTION
 }
-
 /*
  * --INFO--
  * Address:	........
@@ -278,7 +304,6 @@ void PSVECSquareDistance(void)
 {
 	// UNUSED FUNCTION
 }
-
 /*
  * --INFO--
  * Address:	........
@@ -288,7 +313,6 @@ void C_VECDistance(void)
 {
 	// UNUSED FUNCTION
 }
-
 /*
  * --INFO--
  * Address:	........

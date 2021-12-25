@@ -13,11 +13,11 @@ typedef struct Vec {
 	float z;
 } Vec;
 
-void PSVECAdd(Vec, Vec, Vec);
-void PSVECSubtract(Vec, Vec, Vec);
-void PSVECNormalize(Vec*, Vec*);
-float PSVECMag(Vec);
-double PSVECCrossProduct(const Vec*, Vec*, Vec*);
+void PSVECAdd(const Vec*, const Vec*, Vec*);
+void PSVECSubtract(const Vec*, const Vec*, Vec*);
+void PSVECNormalize(const Vec*, Vec*);
+float PSVECMag(const Vec*);
+void PSVECCrossProduct(const Vec*, const Vec*, Vec*);
 
 #ifdef __cplusplus
 }

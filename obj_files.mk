@@ -391,7 +391,7 @@ DOLPHIN:=\
 	$(BUILD_DIR)/asm/Dolphin/mtx.o\
 	$(BUILD_DIR)/asm/Dolphin/mtxvec.o\
 	$(BUILD_DIR)/asm/Dolphin/mtx44.o\
-	$(BUILD_DIR)/asm/Dolphin/vec.o\
+	$(BUILD_DIR)/src/Dolphin/vec.o\
 	$(BUILD_DIR)/src/Dolphin/odenotstub.o\
 	$(BUILD_DIR)/asm/Dolphin/OS.o\
 	$(BUILD_DIR)/asm/Dolphin/OSAlarm.o\
