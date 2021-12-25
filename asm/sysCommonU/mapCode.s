@@ -1,13 +1,11 @@
 .include "macros.inc"
 .section .rodata  # 0x804732E0 - 0x8049E220
-.balign 0x8
-.global lbl_804997B8
+.balign 8
 lbl_804997B8:
 	.asciz "# %d/%d\r\n"
-	.skip 0x6
 
 .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-.balign 0x8
+.balign 8
 .global __vt__Q37MapCode3Mgr9CodeArray
 __vt__Q37MapCode3Mgr9CodeArray:
 	.4byte 0
@@ -61,15 +59,11 @@ __vt__Q37MapCode3Mgr9CodeArray:
 	.4byte 0
 	.4byte "getAt__26Container<Q27MapCode4Code>Fi"
 	.4byte "getTo__26Container<Q27MapCode4Code>Fv"
-	.4byte 0
 
 .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-.balign 0x8
-.global lbl_805203A8
+.balign 8
 lbl_805203A8:
 	.asciz "\r\n"
-	.skip 0x1
-	.4byte 0x00000000
 
 
 .section .text, "ax"  # 0x800056C0 - 0x80472F00
