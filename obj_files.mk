@@ -310,7 +310,7 @@ DOLPHIN:=\
 	$(BUILD_DIR)/src/Dolphin/e_fmod.o\
 	$(BUILD_DIR)/asm/Dolphin/e_log.o\
 	$(BUILD_DIR)/asm/Dolphin/e_log10.o\
-	$(BUILD_DIR)/asm/Dolphin/e_pow.o\
+	$(BUILD_DIR)/src/Dolphin/e_pow.o\
 	$(BUILD_DIR)/asm/Dolphin/e_rem_pio2.o\
 	$(BUILD_DIR)/src/Dolphin/k_cos.o\
 	$(BUILD_DIR)/src/Dolphin/k_rem_pio2.o\
