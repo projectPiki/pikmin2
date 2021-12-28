@@ -3,14 +3,13 @@
 
 #include "JSystem/JKR/JKRArchive.h"
 #include "JSystem/JKR/JKRThread.h"
+#include "JSystem/JKR/JKRDvdRipper.h"
 #include "JSystem/JSU/JSUPtrLink.h"
 #include "types.h"
 
 struct JKRDvdFile;
 struct JKRAramHeap;
 struct JKRDecompCommand;
-
-typedef uint JKRExpandSwitch;
 
 struct JKRAramBlock {
 	JKRAramBlock(ulong, ulong, ulong, uchar, bool);
