@@ -5,23 +5,30 @@
 #include "types.h"
 
 namespace ARAM {
+struct Node : CNode {
+	inline Node();
+	~Node();
+
+	inline void dvdToAram(char const*, bool);
+	inline void aramToMainRam(unsigned char*, unsigned long, unsigned long,
+	                          JKRExpandSwitch, unsigned long, JKRHeap*,
+	                          JKRDvdRipper::EAllocDirection, int,
+	                          unsigned long*);
+	inline void dump();
+
+	u32 _18;
+};
+
 struct Mgr {
 	Mgr();
 
-	void* aramToMainRam(const char*, uchar*, ulong, ulong, JKRExpandSwitch,
-	                    ulong, JKRHeap*, JKRDvdRipper::EAllocDirection, int,
-	                    ulong*);
-	void dump();
-	void dvdToAram(const char*, bool);
-	void init();
-	void search(const char*);
-};
+	static void init();
+	void dvdToAram(char const*, bool);
+	Node* search(char const* name);
 
-struct Node {
-	~Node();
+	CNode m_node; // _00
 };
-} // namespace ARAM
-
+}; // namespace ARAM
 extern ARAM::Mgr* gAramMgr;
 
 #endif

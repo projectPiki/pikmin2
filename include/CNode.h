@@ -7,11 +7,11 @@ struct CNode {
 	CNode();
 	inline CNode(char* name)
 	{
-		_10    = nullptr;
-		_0C    = nullptr;
-		_08    = nullptr;
-		_04    = nullptr;
-		m_name = name;
+		m_child  = nullptr;
+		m_parent = nullptr;
+		m_prev   = nullptr;
+		m_next   = nullptr;
+		m_name   = name;
 	};
 	virtual ~CNode();
 
@@ -27,11 +27,11 @@ struct CNode {
 	void setName(char*);
 
 	// _00 vtbl
-	CNode* _04;   // _04
-	CNode* _08;   // _08
-	CNode* _0C;   // _0C
-	CNode* _10;   // _10
-	char* m_name; // _14
+	CNode* m_next;   // _04
+	CNode* m_prev;   // _08
+	CNode* m_parent; // _0C
+	CNode* m_child;  // _10
+	char* m_name;    // _14
 };
 
 #endif
