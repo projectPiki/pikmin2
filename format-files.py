@@ -36,7 +36,6 @@ def format_folders(folder_to_iter):
 
 if __name__ == "__main__":
     if os.path.exists("clang-format.exe"):
-        format_folders("unsorted_include_todo/")
         format_folders("include/")
         format_folders("src/")
         print("Done formatting!")
