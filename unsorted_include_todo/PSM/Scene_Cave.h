@@ -1,6 +1,39 @@
 #ifndef _PSM_SCENE_CAVE_H
 #define _PSM_SCENE_CAVE_H
 
+/*
+    __vt__Q23PSM10Scene_Cave:
+    .4byte 0
+    .4byte 0
+    .4byte init__Q23PSM10Scene_CaveFv
+    .4byte __dt__Q23PSM10Scene_CaveFv
+    .4byte scene1st__Q28PSSystem5SceneFPQ28PSSystem11TaskChecker
+    .4byte scene1stLoadSync__Q28PSSystem5SceneFv
+    .4byte exec__Q23PSM10Scene_CaveFv
+    .4byte startMainSeq__Q23PSM10Scene_CaveFv
+    .4byte stopMainSeq__Q23PSM10Scene_GameFUl
+    .4byte stopAllSound__Q23PSM10Scene_GameFUl
+    .4byte getCamDistVol__Q23PSM13Scene_ObjectsFUc
+    .4byte getEnvSe__Q23PSM10Scene_GameFv
+    .4byte getSceneFx__Q23PSM10Scene_CaveFv
+    .4byte isDemoScene__Q23PSM10Scene_GameFv
+    .4byte getSeSceneGate__Q23PSM13Scene_ObjectsFPQ23PSM7ObjBaseUl
+    .4byte becomeSceneCamera__Q23PSM9SceneBaseFv
+    .4byte isGameScene__Q23PSM10Scene_GameFv
+    .4byte pauseOn_2D__Q23PSM10Scene_GameFUcUc
+    .4byte pauseOff_2D__Q23PSM10Scene_GameFv
+    .4byte pauseOn_Demo__Q23PSM10Scene_GameFv
+    .4byte pauseOff_Demo__Q23PSM10Scene_GameFv
+    .4byte onStartMainSeq__Q23PSM13Scene_ObjectsFv
+    .4byte isCave__Q23PSM10Scene_CaveFv
+    .4byte bossAppear__Q23PSM10Scene_CaveFPQ23PSM9EnemyBossUs
+    .4byte bossKilled__Q23PSM10Scene_CaveFPQ23PSM9EnemyBoss
+    .4byte isBossFloor__Q23PSM10Scene_CaveFv
+    .4byte akubiOK__Q23PSM10Scene_CaveFv
+    .4byte isPollutUp__Q23PSM10Scene_CaveFv
+    .4byte getPollutUpTimer__Q23PSM10Scene_CaveCFv
+*/
+
 namespace PSSystem {
 struct Scene {
 	virtual void _00() = 0;              // _00

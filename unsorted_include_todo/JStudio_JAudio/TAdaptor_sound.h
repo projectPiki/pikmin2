@@ -1,13 +1,69 @@
 #ifndef _JSTUDIO_JAUDIO_TADAPTOR_SOUND_H
 #define _JSTUDIO_JAUDIO_TADAPTOR_SOUND_H
 
+/*
+    __vt__Q214JStudio_JAudio14TAdaptor_sound:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__Q214JStudio_JAudio14TAdaptor_soundFv
+    .4byte
+   adaptor_do_prepare__Q214JStudio_JAudio14TAdaptor_soundFPCQ27JStudio7TObject
+    .4byte adaptor_do_begin__Q27JStudio8TAdaptorFPCQ27JStudio7TObject
+    .4byte
+   adaptor_do_end__Q214JStudio_JAudio14TAdaptor_soundFPCQ27JStudio7TObject
+    .4byte
+   adaptor_do_update__Q214JStudio_JAudio14TAdaptor_soundFPCQ27JStudio7TObjectUl
+    .4byte adaptor_do_data__Q27JStudio8TAdaptorFPCQ27JStudio7TObjectPCvUlPCvUl
+    .4byte
+   adaptor_do_SOUND__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TEOperationDataPCvUl
+    .4byte
+   adaptor_do_BEGIN__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TEOperationDataPCvUl
+    .4byte
+   adaptor_do_BEGIN_FADE_IN__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TEOperationDataPCvUl
+    .4byte
+   adaptor_do_END__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TEOperationDataPCvUl
+    .4byte
+   adaptor_do_END_FADE_OUT__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TEOperationDataPCvUl
+    .4byte
+   adaptor_do_PARENT__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TEOperationDataPCvUl
+    .4byte
+   adaptor_do_PARENT_NODE__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TEOperationDataPCvUl
+    .4byte
+   adaptor_do_PARENT_ENABLE__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TEOperationDataPCvUl
+    .4byte
+   adaptor_do_LOCATED__Q214JStudio_JAudio14TAdaptor_soundFQ37JStudio4data15TEOperationDataPCvUl
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+*/
+
 namespace JStudio {
 struct TAdaptor {
-	virtual void _00() = 0;                        // _00
-	virtual void _04() = 0;                        // _04
-	virtual void adaptor_do_begin(const TObject*); // _08
-	virtual void _0C() = 0;                        // _0C
-	virtual void _10() = 0;                        // _10
+	virtual ~TAdaptor();                                      // _00
+	virtual void adaptor_do_prepare(const JStudio::TObject*); // _04
+	virtual void adaptor_do_begin(const TObject*);            // _08
+	virtual void adaptor_do_end(const JStudio::TObject*);     // _0C
+	virtual void adaptor_do_update(const JStudio::TObject*,
+	                               unsigned long); // _10
 	virtual void adaptor_do_data(const TObject*, const void*, unsigned long,
 	                             const void*, unsigned long); // _14
 

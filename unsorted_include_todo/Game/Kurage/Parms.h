@@ -1,6 +1,14 @@
 #ifndef _GAME_KURAGE_PARMS_H
 #define _GAME_KURAGE_PARMS_H
 
+/*
+    __vt__Q34Game6Kurage5Parms:
+    .4byte 0
+    .4byte 0
+    .4byte read__Q34Game6Kurage5ParmsFR6Stream
+    .4byte 0
+*/
+
 namespace Game {
 namespace Kurage {
 	struct Parms {

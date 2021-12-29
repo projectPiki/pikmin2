@@ -1,6 +1,23 @@
 #ifndef _PSAUTOBGM_CONDUCTOR_H
 #define _PSAUTOBGM_CONDUCTOR_H
 
+/*
+    __vt__Q29PSAutoBgm9Conductor:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__Q29PSAutoBgm9ConductorFv
+    .4byte appendAfter__Q210JADUtility10PrmSetBaseFv
+    .4byte
+   "load__Q210JADUtility28PrmSetRc<Q29PSAutoBgm5Track>FR20JSUMemoryInputStream"
+    .4byte
+   afterRemovingChildButton__Q210JADUtility10PrmSetBaseFPQ210JADUtility10PrmSetBase
+    .4byte
+   afterRemovingThisButton__Q210JADUtility10PrmSetBaseFPQ210JADUtility10PrmSetBase
+    .4byte getEraseLink__Q29PSAutoBgm9ConductorFv
+    .4byte afterGetFromFree__Q210JADUtility10PrmSetBaseFv
+    .4byte "getPrmObjHeap__Q210JADUtility28PrmSetRc<Q29PSAutoBgm5Track>Fv"
+*/
+
 namespace JADUtility {
 struct PrmSetBase {
 	virtual void _00() = 0;                             // _00

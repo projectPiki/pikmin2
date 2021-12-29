@@ -1,15 +1,48 @@
 #ifndef _GAME_BASEITEMMGR_H
 #define _GAME_BASEITEMMGR_H
 
+/*
+    __vt__Q24Game11BaseItemMgr:
+    .4byte 0
+    .4byte 0
+    .4byte doAnimation__Q24Game11BaseItemMgrFv
+    .4byte doEntry__Q24Game11BaseItemMgrFv
+    .4byte doSetView__Q24Game11BaseItemMgrFi
+    .4byte doViewCalc__Q24Game11BaseItemMgrFv
+    .4byte doSimulation__Q24Game11BaseItemMgrFf
+    .4byte doDirectDraw__Q24Game11BaseItemMgrFR8Graphics
+    .4byte doSimpleDraw__16GenericObjectMgrFP8Viewport
+    .4byte loadResources__Q24Game11BaseItemMgrFv
+    .4byte resetMgr__16GenericObjectMgrFv
+    .4byte pausable__16GenericObjectMgrFv
+    .4byte frozenable__16GenericObjectMgrFv
+    .4byte getMatrixLoadType__16GenericObjectMgrFv
+    .4byte 0
+    .4byte killAll__Q24Game11BaseItemMgrFv
+    .4byte setup__Q24Game11BaseItemMgrFPQ24Game8BaseItem
+    .4byte setupSoundViewerAndBas__Q24Game11BaseItemMgrFv
+    .4byte onLoadResources__Q24Game11BaseItemMgrFv
+    .4byte loadEverytime__Q24Game11BaseItemMgrFv
+    .4byte updateUseList__Q24Game11BaseItemMgrFPQ24Game11GenItemParmi
+    .4byte onUpdateUseList__Q24Game11BaseItemMgrFPQ24Game11GenItemParmi
+    .4byte 0
+    .4byte 0
+    .4byte generatorWrite__Q24Game11BaseItemMgrFR6StreamPQ24Game11GenItemParm
+    .4byte generatorRead__Q24Game11BaseItemMgrFR6StreamPQ24Game11GenItemParmUl
+    .4byte generatorLocalVersion__Q24Game11BaseItemMgrFv
+    .4byte generatorGetShape__Q24Game11BaseItemMgrFPQ24Game11GenItemParm
+    .4byte generatorNewItemParm__Q24Game11BaseItemMgrFv
+*/
+
 struct GenericObjectMgr {
-	virtual void _00() = 0;               // _00
-	virtual void _04() = 0;               // _04
-	virtual void _08() = 0;               // _08
-	virtual void _0C() = 0;               // _0C
-	virtual void _10() = 0;               // _10
-	virtual void _14() = 0;               // _14
+	virtual void doAnimation();           // _00
+	virtual void doEntry();               // _04
+	virtual void doSetView(int);          // _08
+	virtual void doViewCalc();            // _0C
+	virtual void doSimulation(float);     // _10
+	virtual void doDirectDraw(Graphics&); // _14
 	virtual void doSimpleDraw(Viewport*); // _18
-	virtual void _1C() = 0;               // _1C
+	virtual void loadResources();         // _1C
 	virtual void resetMgr();              // _20
 	virtual void pausable();              // _24
 	virtual void frozenable();            // _28

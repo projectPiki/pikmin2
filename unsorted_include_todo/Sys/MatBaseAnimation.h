@@ -1,6 +1,17 @@
 #ifndef _SYS_MATBASEANIMATION_H
 #define _SYS_MATBASEANIMATION_H
 
+/*
+    __vt__Q23Sys16MatBaseAnimation:
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+*/
+
 namespace Sys {
 struct MatBaseAnimation {
 	virtual void _00() = 0; // _00

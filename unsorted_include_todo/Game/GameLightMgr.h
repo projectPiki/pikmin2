@@ -1,6 +1,18 @@
 #ifndef _GAME_GAMELIGHTMGR_H
 #define _GAME_GAMELIGHTMGR_H
 
+/*
+    __vt__Q24Game12GameLightMgr:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__Q24Game12GameLightMgrFv
+    .4byte getChildCount__5CNodeFv
+    .4byte update__Q24Game12GameLightMgrFv
+    .4byte set__Q24Game12GameLightMgrFR8Graphics
+    .4byte set__8LightMgrFR7Matrixf
+    .4byte drawDebugInfo__8LightMgrFR8Graphics
+*/
+
 struct CNode {
 	virtual void _00() = 0;       // _00
 	virtual void getChildCount(); // _04

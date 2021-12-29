@@ -1,8 +1,24 @@
 #ifndef _GAME_OBJECTLAYOUTNODE_H
 #define _GAME_OBJECTLAYOUTNODE_H
 
+/*
+    __vt__Q24Game16ObjectLayoutNode:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__Q24Game16ObjectLayoutNodeFv
+    .4byte getChildCount__5CNodeFv
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte getDirection__Q24Game16ObjectLayoutNodeFv
+    .4byte getBirthDoorIndex__Q24Game16ObjectLayoutNodeFv
+    .4byte getBirthPosition__Q24Game16ObjectLayoutNodeFRfRf
+    .4byte getExtraCode__Q24Game16ObjectLayoutNodeFv
+    .4byte isFixedBattery__Q24Game16ObjectLayoutNodeFv
+*/
+
 struct CNode {
-	virtual void _00() = 0;       // _00
+	virtual ~CNode();             // _00
 	virtual void getChildCount(); // _04
 
 	// _00 VTBL

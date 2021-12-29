@@ -1,6 +1,19 @@
 #ifndef _EBI_E2DCALLBACK_BLINKFONTCOLOR_H
 #define _EBI_E2DCALLBACK_BLINKFONTCOLOR_H
 
+/*
+    __vt__Q23ebi26E2DCallBack_BlinkFontColor:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__Q23ebi26E2DCallBack_BlinkFontColorFv
+    .4byte getChildCount__5CNodeFv
+    .4byte update__Q23ebi16E2DCallBack_BaseFv
+    .4byte draw__Q23ebi16E2DCallBack_BaseFR8GraphicsR14J2DGrafContext
+    .4byte doInit__Q29P2DScreen4NodeFv
+    .4byte do_update__Q23ebi26E2DCallBack_BlinkFontColorFv
+    .4byte do_draw__Q23ebi16E2DCallBack_BaseFR8GraphicsR14J2DGrafContext
+*/
+
 struct CNode {
 	virtual void _00() = 0;       // _00
 	virtual void getChildCount(); // _04

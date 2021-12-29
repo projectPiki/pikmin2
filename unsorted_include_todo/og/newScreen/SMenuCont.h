@@ -1,6 +1,31 @@
 #ifndef _OG_NEWSCREEN_SMENUCONT_H
 #define _OG_NEWSCREEN_SMENUCONT_H
 
+/*
+    __vt__Q32og9newScreen9SMenuCont:
+    .4byte 0
+    .4byte 0
+    .4byte getSceneType__Q32og9newScreen9SMenuContFv
+    .4byte getOwnerID__Q32og9newScreen9SMenuContFv
+    .4byte getMemberID__Q32og9newScreen9SMenuContFv
+    .4byte isUseBackupSceneInfo__Q32og9newScreen9SMenuContFv
+    .4byte isDrawInDemo__Q26Screen9SceneBaseCFv
+    .4byte getResName__Q32og9newScreen9SMenuContCFv
+    .4byte doCreateObj__Q32og9newScreen9SMenuContFP10JKRArchive
+    .4byte
+   doUserCallBackFunc__Q32og9newScreen9SMenuContFPQ28Resource10MgrCommand .4byte
+   setPort__Q26Screen9SceneBaseFR8Graphics .4byte
+   doUpdateActive__Q32og9newScreen9SMenuContFv .4byte
+   doConfirmSetScene__Q32og9newScreen9SMenuContFRQ26Screen11SetSceneArg .4byte
+   doConfirmStartScene__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg .4byte
+   doConfirmEndScene__Q26Screen9SceneBaseFRPQ26Screen11EndSceneArg .4byte
+   doStart__Q26Screen9SceneBaseFPQ26Screen13StartSceneArg .4byte
+   doEnd__Q26Screen9SceneBaseFPQ26Screen11EndSceneArg .4byte
+   setDefaultDispMember__Q26Screen9SceneBaseFv .4byte
+   doSetBackupScene__Q32og9newScreen9SMenuContFRQ26Screen11SetSceneArg .4byte
+   doGetFinishState__Q32og9newScreen14SceneSMenuBaseFv
+*/
+
 namespace Screen {
 struct SceneBase {
 	virtual void _00() = 0;                           // _00

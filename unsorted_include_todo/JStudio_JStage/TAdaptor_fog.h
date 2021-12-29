@@ -1,6 +1,30 @@
 #ifndef _JSTUDIO_JSTAGE_TADAPTOR_FOG_H
 #define _JSTUDIO_JSTAGE_TADAPTOR_FOG_H
 
+/*
+    __vt__Q214JStudio_JStage12TAdaptor_fog:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__Q214JStudio_JStage12TAdaptor_fogFv
+    .4byte
+   adaptor_do_prepare__Q214JStudio_JStage12TAdaptor_fogFPCQ27JStudio7TObject
+    .4byte
+   adaptor_do_begin__Q214JStudio_JStage12TAdaptor_fogFPCQ27JStudio7TObject
+    .4byte adaptor_do_end__Q214JStudio_JStage12TAdaptor_fogFPCQ27JStudio7TObject
+    .4byte
+   adaptor_do_update__Q214JStudio_JStage12TAdaptor_fogFPCQ27JStudio7TObjectUl
+    .4byte
+   adaptor_do_data__Q214JStudio_JStage12TAdaptor_fogFPCQ27JStudio7TObjectPCvUlPCvUl
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+*/
+
 namespace JStudio_JStage {
 struct TAdaptor_fog {
 	virtual ~TAdaptor_fog();                                  // _00

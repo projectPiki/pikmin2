@@ -1,6 +1,26 @@
 #ifndef _EFX2D_T2DCURSOR_H
 #define _EFX2D_T2DCURSOR_H
 
+/*
+        __vt__Q25efx2d9T2DCursor:
+        .4byte 0
+        .4byte 0
+        .4byte create__Q25efx2d9T2DCursorFPQ25efx2d3Arg
+        .4byte kill__Q25efx2d8TForeverFv
+        .4byte fade__Q25efx2d8TForeverFv
+        .4byte setGroup__Q25efx2d5TBaseFUc
+        .4byte 0
+        .4byte 0
+        .4byte "@8@__dt__Q25efx2d9T2DCursorFv"
+        .4byte "@8@execute__Q25efx2d9TChasePosFP14JPABaseEmitter"
+        .4byte executeAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
+        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+        .4byte __dt__Q25efx2d9T2DCursorFv
+        .4byte execute__Q25efx2d9TChasePosFP14JPABaseEmitter
+        .4byte 0
+*/
+
 namespace efx2d {
 struct TForever {
     virtual void _00() = 0; // _00
@@ -70,7 +90,6 @@ struct T2DCursor : public TForever,
     virtual void _10() = 0;                     // _10
     virtual void _14() = 0;                     // _14
     virtual void @8 @__dt();                    // _18
-    virtual void _1C() = 0;                     // _1C
     virtual void executeAfter(JPABaseEmitter*); // _20
     virtual void draw(JPABaseEmitter*);         // _24
     virtual void drawAfter(JPABaseEmitter*);    // _28

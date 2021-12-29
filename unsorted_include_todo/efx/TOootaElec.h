@@ -1,6 +1,20 @@
 #ifndef _EFX_TOOOTAELEC_H
 #define _EFX_TOOOTAELEC_H
 
+/*
+    __vt__Q23efx10TOootaElec:
+    .4byte 0
+    .4byte 0
+    .4byte
+   "create__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalZScale>FPQ23efx3Arg"
+    .4byte "forceKill__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalZScale>Fv"
+    .4byte "fade__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalZScale>Fv"
+    .4byte
+   "startDemoDrawOff__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalZScale>Fv"
+    .4byte
+   "endDemoDrawOn__Q23efx44TSyncGroup3<Q23efx23TChasePosPosLocalZScale>Fv"
+*/
+
 namespace efx {
 namespace TSyncGroup3 < efx
 {

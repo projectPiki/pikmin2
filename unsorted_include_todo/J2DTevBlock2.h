@@ -1,6 +1,57 @@
 #ifndef _J2DTEVBLOCK2_H
 #define _J2DTEVBLOCK2_H
 
+/*
+    __vt__12J2DTevBlock2:
+    .4byte 0
+    .4byte 0
+    .4byte initialize__12J2DTevBlock2Fv
+    .4byte setGX__12J2DTevBlock2Fv
+    .4byte loadTexture__12J2DTevBlock2F11_GXTexMapIDUl
+    .4byte getType__12J2DTevBlock2Fv
+    .4byte getMaxStage__12J2DTevBlock2Fv
+    .4byte setTexNo__12J2DTevBlock2FUlUs
+    .4byte getTexNo__12J2DTevBlock2CFUl
+    .4byte setFontNo__12J2DTevBlock2FUs
+    .4byte getFontNo__12J2DTevBlock2CFv
+    .4byte setTevOrder__12J2DTevBlock2FUl11J2DTevOrder
+    .4byte getTevOrder__12J2DTevBlock2FUl
+    .4byte setTevColor__12J2DTevBlock2FUl13J2DGXColorS10
+    .4byte getTevColor__12J2DTevBlock2FUl
+    .4byte setTevKColor__12J2DTevBlock2FUlQ28JUtility6TColor
+    .4byte getTevKColor__12J2DTevBlock2FUl
+    .4byte setTevKColorSel__12J2DTevBlock2FUlUc
+    .4byte getTevKColorSel__12J2DTevBlock2FUl
+    .4byte setTevKAlphaSel__12J2DTevBlock2FUlUc
+    .4byte getTevKAlphaSel__12J2DTevBlock2FUl
+    .4byte setTevStageNum__12J2DTevBlock2FUc
+    .4byte getTevStageNum__12J2DTevBlock2CFv
+    .4byte setTevStage__12J2DTevBlock2FUl11J2DTevStage
+    .4byte getTevStage__12J2DTevBlock2FUl
+    .4byte setTevSwapModeInfo__12J2DTevBlock2FUl18J2DTevSwapModeInfo
+    .4byte setTevSwapModeTable__12J2DTevBlock2FUl19J2DTevSwapModeTable
+    .4byte getTevSwapModeTable__12J2DTevBlock2FUl
+    .4byte setIndTevStage__12J2DTevBlock2FUl14J2DIndTevStage
+    .4byte getIndTevStage__12J2DTevBlock2FUl
+    .4byte insertTexture__12J2DTevBlock2FUlPC7ResTIMG
+    .4byte insertTexture__12J2DTevBlock2FUlPC7ResTIMGP10JUTPalette
+    .4byte insertTexture__12J2DTevBlock2FUlP10JUTTexture
+    .4byte setTexture__12J2DTevBlock2FUlPC7ResTIMG
+    .4byte setTexture__12J2DTevBlock2FUlP10JUTTexture
+    .4byte removeTexture__12J2DTevBlock2FUl
+    .4byte setFont__12J2DTevBlock2FP7ResFONT
+    .4byte setFont__12J2DTevBlock2FP7JUTFont
+    .4byte setPalette__12J2DTevBlock2FUlPC7ResTLUT
+    .4byte prepareTexture__12J2DTevBlock2FUc
+    .4byte getTexture__12J2DTevBlock2FUl
+    .4byte getPalette__12J2DTevBlock2FUl
+    .4byte getFont__12J2DTevBlock2Fv
+    .4byte shiftDeleteFlag__12J2DTevBlock2FUcb
+    .4byte setUndeleteFlag__12J2DTevBlock2FUc
+    .4byte setFontUndeleteFlag__12J2DTevBlock2Fv
+    .4byte __dt__12J2DTevBlock2Fv
+*/
+
 struct J2DTevBlock2 {
 	virtual void initialize();                                            // _00
 	virtual void setGX();                                                 // _04

@@ -1,6 +1,28 @@
 #ifndef _SYS_TRIINDEXLIST_H
 #define _SYS_TRIINDEXLIST_H
 
+/*
+    __vt__Q23Sys12TriIndexList:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__Q23Sys12TriIndexListFv
+    .4byte getChildCount__5CNodeFv
+    .4byte "getObject__12Container<i>FPv"
+    .4byte "getNext__17ArrayContainer<i>FPv"
+    .4byte "getStart__17ArrayContainer<i>Fv"
+    .4byte "getEnd__17ArrayContainer<i>Fv"
+    .4byte "get__17ArrayContainer<i>FPv"
+    .4byte "getAt__17ArrayContainer<i>Fi"
+    .4byte "getTo__17ArrayContainer<i>Fv"
+    .4byte writeObject__Q23Sys9IndexListFR6StreamRi
+    .4byte readObject__Q23Sys9IndexListFR6StreamRi
+    .4byte "write__17ArrayContainer<i>FR6Stream"
+    .4byte "read__17ArrayContainer<i>FR6Stream"
+    .4byte "alloc__17ArrayContainer<i>Fi"
+    .4byte "addOne__17ArrayContainer<i>FRi"
+    .4byte "setArray__17ArrayContainer<i>FPii"
+*/
+
 struct CNode {
 	virtual void _00() = 0;       // _00
 	virtual void getChildCount(); // _04

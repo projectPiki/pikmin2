@@ -1,6 +1,25 @@
 #ifndef _EFX2D_TCHASEPOS_H
 #define _EFX2D_TCHASEPOS_H
 
+/*
+        __vt__Q25efx2d9TChasePos:
+        .4byte 0
+        .4byte 0
+        .4byte create__Q25efx2d9TChasePosFPQ25efx2d3Arg
+        .4byte kill__Q25efx2d8TForeverFv
+        .4byte fade__Q25efx2d8TForeverFv
+        .4byte setGroup__Q25efx2d5TBaseFUc
+        .4byte 0
+        .4byte 0
+        .4byte "@8@__dt__Q25efx2d9TChasePosFv"
+        .4byte "@8@execute__Q25efx2d9TChasePosFP14JPABaseEmitter"
+        .4byte executeAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
+        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+        .4byte __dt__Q25efx2d9TChasePosFv
+        .4byte execute__Q25efx2d9TChasePosFP14JPABaseEmitter
+*/
+
 namespace efx2d {
 struct TForever {
     virtual void _00() = 0; // _00

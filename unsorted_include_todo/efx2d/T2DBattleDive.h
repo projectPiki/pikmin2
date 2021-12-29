@@ -1,6 +1,31 @@
 #ifndef _EFX2D_T2DBATTLEDIVE_H
 #define _EFX2D_T2DBATTLEDIVE_H
 
+/*
+    __vt__Q25efx2d13T2DBattleDive:
+    .4byte 0
+    .4byte 0
+    .4byte create__Q25efx2d8TSimple3FPQ25efx2d3Arg
+    .4byte kill__Q25efx2d8TSimple3Fv
+    .4byte fade__Q25efx2d8TSimple3Fv
+    .4byte setGroup__Q25efx2d5TBaseFUc
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+*/
+
 namespace efx2d {
 struct TSimple3 {
 	virtual void create(Arg*); // _00

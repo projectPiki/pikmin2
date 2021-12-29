@@ -1,6 +1,45 @@
 #ifndef _J3DCOLORBLOCKNULL_H
 #define _J3DCOLORBLOCKNULL_H
 
+/*
+    __vt__17J3DColorBlockNull:
+    .4byte 0
+    .4byte 0
+    .4byte load__13J3DColorBlockFv
+    .4byte reset__13J3DColorBlockFP13J3DColorBlock
+    .4byte patch__13J3DColorBlockFv
+    .4byte patchMatColor__13J3DColorBlockFv
+    .4byte patchLight__13J3DColorBlockFv
+    .4byte diff__13J3DColorBlockFUl
+    .4byte diffMatColor__13J3DColorBlockFv
+    .4byte diffLight__13J3DColorBlockFv
+    .4byte countDLSize__13J3DColorBlockFv
+    .4byte getType__17J3DColorBlockNullFv
+    .4byte setMatColor__13J3DColorBlockFUlPC10J3DGXColor
+    .4byte setMatColor__13J3DColorBlockFUl10J3DGXColor
+    .4byte getMatColor__13J3DColorBlockFUl
+    .4byte setAmbColor__13J3DColorBlockFUlPC10J3DGXColor
+    .4byte setAmbColor__13J3DColorBlockFUl10J3DGXColor
+    .4byte getAmbColor__13J3DColorBlockFUl
+    .4byte setColorChanNum__13J3DColorBlockFUc
+    .4byte setColorChanNum__13J3DColorBlockFPCUc
+    .4byte getColorChanNum__13J3DColorBlockCFv
+    .4byte setColorChan__13J3DColorBlockFUlRC12J3DColorChan
+    .4byte setColorChan__13J3DColorBlockFUlPC12J3DColorChan
+    .4byte getColorChan__13J3DColorBlockFUl
+    .4byte setLight__13J3DColorBlockFUlP11J3DLightObj
+    .4byte getLight__13J3DColorBlockFUl
+    .4byte setCullMode__13J3DColorBlockFPCUc
+    .4byte setCullMode__13J3DColorBlockFUc
+    .4byte getCullMode__13J3DColorBlockCFv
+    .4byte getMatColorOffset__13J3DColorBlockCFv
+    .4byte getColorChanOffset__13J3DColorBlockCFv
+    .4byte setMatColorOffset__13J3DColorBlockFUl
+    .4byte setColorChanOffset__13J3DColorBlockFUl
+    .4byte __dt__17J3DColorBlockNullFv
+    .4byte 0
+*/
+
 struct J3DColorBlock {
 	virtual void load();                                           // _00
 	virtual void reset(J3DColorBlock*);                            // _04
@@ -11,7 +50,7 @@ struct J3DColorBlock {
 	virtual void diffMatColor();                                   // _18
 	virtual void diffLight();                                      // _1C
 	virtual void countDLSize();                                    // _20
-	virtual void _24() = 0;                                        // _24
+	virtual void getType();                                        // _24
 	virtual void setMatColor(unsigned long, const J3DGXColor*);    // _28
 	virtual void setMatColor(unsigned long, J3DGXColor);           // _2C
 	virtual void getMatColor(unsigned long);                       // _30

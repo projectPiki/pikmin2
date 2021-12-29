@@ -1,11 +1,20 @@
 #ifndef _EFX_TENEMYDEAD_H
 #define _EFX_TENEMYDEAD_H
 
+/*
+    __vt__Q23efx10TEnemyDead:
+    .4byte 0
+    .4byte 0
+    .4byte create__Q23efx10TEnemyDeadFPQ23efx3Arg
+    .4byte forceKill__Q23efx8TSimple1Fv
+    .4byte fade__Q23efx8TSimple1Fv
+*/
+
 namespace efx {
 struct TSimple1 {
-	virtual void _00() = 0;   // _00
-	virtual void forceKill(); // _04
-	virtual void fade();      // _08
+	virtual void create(Arg*); // _00
+	virtual void forceKill();  // _04
+	virtual void fade();       // _08
 
 	// _00 VTBL
 };

@@ -1,12 +1,22 @@
 #ifndef _KH_SCREEN_DISPDAYENDRESULTMAIL_H
 #define _KH_SCREEN_DISPDAYENDRESULTMAIL_H
 
+/*
+    __vt__Q32kh6Screen20DispDayEndResultMail:
+    .4byte 0
+    .4byte 0
+    .4byte getSize__Q32kh6Screen20DispDayEndResultMailFv
+    .4byte getOwnerID__Q32kh6Screen20DispDayEndResultMailFv
+    .4byte getMemberID__Q32kh6Screen20DispDayEndResultMailFv
+    .4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
+*/
+
 namespace og {
 namespace Screen {
 	struct DispMemberBase {
-		virtual void _00() = 0;           // _00
-		virtual void _04() = 0;           // _04
-		virtual void _08() = 0;           // _08
+		virtual void getSize();           // _00
+		virtual void getOwnerID();        // _04
+		virtual void getMemberID();       // _08
 		virtual void doSetSubMemberAll(); // _0C
 
 		// _00 VTBL

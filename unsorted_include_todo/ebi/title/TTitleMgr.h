@@ -1,8 +1,19 @@
 #ifndef _EBI_TITLE_TTITLEMGR_H
 #define _EBI_TITLE_TTITLEMGR_H
 
+/*
+        __vt__Q33ebi5title9TTitleMgr:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q33ebi5title9TTitleMgrFv
+        .4byte getChildCount__5CNodeFv
+        .4byte 0
+        .4byte 0
+        .4byte "@24@__dt__Q33ebi5title9TTitleMgrFv"
+*/
+
 struct CNode {
-    virtual void _00() = 0;       // _00
+    virtual ~CNode();             // _00
     virtual void getChildCount(); // _04
 
     // _00 VTBL

@@ -1,6 +1,22 @@
 #ifndef _EBI_OMAKE_FSMSTATE_OMAKESCREEN_H
 #define _EBI_OMAKE_FSMSTATE_OMAKESCREEN_H
 
+/*
+    __vt__Q33ebi5Omake20FSMState_OmakeScreen:
+    .4byte 0
+    .4byte 0
+    .4byte init__Q33ebi5Omake8FSMStateFPQ33ebi5Omake4TMgrPQ24Game8StateArg
+    .4byte exec__Q33ebi5Omake8FSMStateFPQ33ebi5Omake4TMgr
+    .4byte "cleanup__Q24Game27FSMState<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgr"
+    .4byte "resume__Q24Game27FSMState<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgr"
+    .4byte "restart__Q24Game27FSMState<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgr"
+    .4byte
+   "transit__Q24Game27FSMState<Q33ebi5Omake4TMgr>FPQ33ebi5Omake4TMgriPQ24Game8StateArg"
+    .4byte
+   do_init__Q33ebi5Omake20FSMState_OmakeScreenFPQ33ebi5Omake4TMgrPQ24Game8StateArg
+    .4byte do_exec__Q33ebi5Omake20FSMState_OmakeScreenFPQ33ebi5Omake4TMgr
+*/
+
 namespace ebi {
 namespace Omake {
 	struct FSMState {

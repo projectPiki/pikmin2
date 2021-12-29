@@ -1,6 +1,32 @@
 #ifndef _EBI_CARDERROR_FSMSTATE_Q04_DOYOUSTARTGAMEWITHOUTSAVE_H
 #define _EBI_CARDERROR_FSMSTATE_Q04_DOYOUSTARTGAMEWITHOUTSAVE_H
 
+/*
+    __vt__Q33ebi9CardError38FSMState_Q04_DoYouStartGameWithoutSave:
+    .4byte 0
+    .4byte 0
+    .4byte
+   init__Q33ebi9CardError8FSMStateFPQ33ebi9CardError4TMgrPQ24Game8StateArg
+    .4byte exec__Q33ebi9CardError8FSMStateFPQ33ebi9CardError4TMgr
+    .4byte
+   "cleanup__Q24Game31FSMState<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgr"
+    .4byte
+   "resume__Q24Game31FSMState<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgr"
+    .4byte
+   "restart__Q24Game31FSMState<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgr"
+    .4byte
+   "transit__Q24Game31FSMState<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgriPQ24Game8StateArg"
+    .4byte
+   do_init__Q33ebi9CardError17FSMState_QuestionFPQ33ebi9CardError4TMgrPQ24Game8StateArg
+    .4byte do_exec__Q33ebi9CardError17FSMState_QuestionFPQ33ebi9CardError4TMgr
+    .4byte
+   do_open__Q33ebi9CardError38FSMState_Q04_DoYouStartGameWithoutSaveFPQ33ebi9CardError4TMgr
+    .4byte
+   do_transitYes__Q33ebi9CardError38FSMState_Q04_DoYouStartGameWithoutSaveFPQ33ebi9CardError4TMgr
+    .4byte
+   do_transitNo__Q33ebi9CardError38FSMState_Q04_DoYouStartGameWithoutSaveFPQ33ebi9CardError4TMgr
+*/
+
 namespace ebi {
 namespace CardError {
 	struct FSMState {

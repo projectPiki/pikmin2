@@ -6,6 +6,7 @@
 struct AppThread : public JKRThread {
 	AppThread(unsigned long, int, int);
 	virtual ~AppThread();
+	virtual void run(); // _04
 };
 
 #endif

@@ -1,8 +1,19 @@
 #ifndef _MORIMURA_TCALLBACKSCROLLMSG_H
 #define _MORIMURA_TCALLBACKSCROLLMSG_H
 
+/*
+    __vt__Q28Morimura18TCallbackScrollMsg:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__Q28Morimura18TCallbackScrollMsgFv
+    .4byte getChildCount__5CNodeFv
+    .4byte update__Q28Morimura18TCallbackScrollMsgFv
+    .4byte draw__Q28Morimura18TCallbackScrollMsgFR8GraphicsR14J2DGrafContext
+    .4byte doInit__Q28Morimura18TCallbackScrollMsgFv
+*/
+
 struct CNode {
-	virtual void _00() = 0;       // _00
+	virtual ~CNode();             // _00
 	virtual void getChildCount(); // _04
 
 	// _00 VTBL

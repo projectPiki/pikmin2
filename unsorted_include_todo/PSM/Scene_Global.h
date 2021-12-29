@@ -1,6 +1,31 @@
 #ifndef _PSM_SCENE_GLOBAL_H
 #define _PSM_SCENE_GLOBAL_H
 
+/*
+    __vt__Q23PSM12Scene_Global:
+    .4byte 0
+    .4byte 0
+    .4byte init__Q28PSSystem5SceneFv
+    .4byte __dt__Q23PSM12Scene_GlobalFv
+    .4byte scene1st__Q28PSSystem5SceneFPQ28PSSystem11TaskChecker
+    .4byte scene1stLoadSync__Q28PSSystem5SceneFv
+    .4byte exec__Q28PSSystem5SceneFv
+    .4byte startMainSeq__Q28PSSystem5SceneFv
+    .4byte stopMainSeq__Q28PSSystem5SceneFUl
+    .4byte stopAllSound__Q28PSSystem5SceneFUl
+    .4byte getCamDistVol__Q23PSM12Scene_GlobalFUc
+    .4byte getEnvSe__Q23PSM9SceneBaseFv
+    .4byte getSceneFx__Q23PSM9SceneBaseFv
+    .4byte isDemoScene__Q23PSM9SceneBaseFv
+    .4byte getSeSceneGate__Q23PSM12Scene_GlobalFPQ23PSM7ObjBaseUl
+    .4byte becomeSceneCamera__Q23PSM9SceneBaseFv
+    .4byte isGameScene__Q23PSM9SceneBaseFv
+    .4byte pauseOn_2D__Q23PSM9SceneBaseFUcUc
+    .4byte pauseOff_2D__Q23PSM9SceneBaseFv
+    .4byte pauseOn_Demo__Q23PSM9SceneBaseFv
+    .4byte pauseOff_Demo__Q23PSM9SceneBaseFv
+*/
+
 namespace PSSystem {
 struct Scene {
 	virtual void init();                      // _00

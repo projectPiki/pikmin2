@@ -1,6 +1,17 @@
 #ifndef _EFX_WARPZONE_H
 #define _EFX_WARPZONE_H
 
+/*
+    __vt__Q23efx8WarpZone:
+    .4byte 0
+    .4byte 0
+    .4byte "create__Q23efx28TSyncGroup4<Q23efx8TForever>FPQ23efx3Arg"
+    .4byte "forceKill__Q23efx28TSyncGroup4<Q23efx8TForever>Fv"
+    .4byte "fade__Q23efx28TSyncGroup4<Q23efx8TForever>Fv"
+    .4byte "startDemoDrawOff__Q23efx28TSyncGroup4<Q23efx8TForever>Fv"
+    .4byte "endDemoDrawOn__Q23efx28TSyncGroup4<Q23efx8TForever>Fv"
+*/
+
 namespace efx {
 namespace TSyncGroup4 < efx
 {

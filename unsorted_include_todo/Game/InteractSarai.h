@@ -1,6 +1,19 @@
 #ifndef _GAME_INTERACTSARAI_H
 #define _GAME_INTERACTSARAI_H
 
+/*
+    __vt__Q24Game13InteractSarai:
+    .4byte 0
+    .4byte 0
+    .4byte actCommon__Q24Game15InteractSwallowFPQ24Game8Creature
+    .4byte actPiki__Q24Game15InteractSwallowFPQ24Game4Piki
+    .4byte actNavi__Q24Game13InteractSaraiFPQ24Game4Navi
+    .4byte actEnemy__Q24Game14InteractAttackFPQ24Game9EnemyBase
+    .4byte actPellet__Q24Game11InteractionFPQ24Game6Pellet
+    .4byte actOnyon__Q24Game11InteractionFPQ24Game5Onyon
+    .4byte actItem__Q24Game14InteractAttackFPQ24Game8BaseItem
+*/
+
 namespace Game {
 struct InteractSwallow {
 	virtual void actCommon(Creature*); // _00

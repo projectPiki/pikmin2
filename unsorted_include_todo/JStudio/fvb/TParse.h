@@ -1,6 +1,15 @@
 #ifndef _JSTUDIO_FVB_TPARSE_H
 #define _JSTUDIO_FVB_TPARSE_H
 
+/*
+    __vt__Q37JStudio3fvb6TParse:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__Q37JStudio3fvb6TParseFv
+    .4byte parseHeader_next__Q37JStudio3fvb6TParseFPPCvPUlUl
+    .4byte parseBlock_next__Q37JStudio3fvb6TParseFPPCvPUlUl
+*/
+
 namespace JStudio {
 namespace fvb {
 	struct TParse {

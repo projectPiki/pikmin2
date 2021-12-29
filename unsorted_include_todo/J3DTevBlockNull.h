@@ -1,8 +1,67 @@
 #ifndef _J3DTEVBLOCKNULL_H
 #define _J3DTEVBLOCKNULL_H
 
+/*
+    __vt__15J3DTevBlockNull:
+    .4byte 0
+    .4byte 0
+    .4byte reset__15J3DTevBlockNullFP11J3DTevBlock
+    .4byte load__11J3DTevBlockFv
+    .4byte diff__11J3DTevBlockFUl
+    .4byte diffTexNo__11J3DTevBlockFv
+    .4byte diffTevReg__11J3DTevBlockFv
+    .4byte diffTexCoordScale__11J3DTevBlockFv
+    .4byte diffTevStage__11J3DTevBlockFv
+    .4byte diffTevStageIndirect__11J3DTevBlockFv
+    .4byte patch__11J3DTevBlockFv
+    .4byte patchTexNo__11J3DTevBlockFv
+    .4byte patchTevReg__11J3DTevBlockFv
+    .4byte patchTexNoAndTexCoordScale__11J3DTevBlockFv
+    .4byte ptrToIndex__15J3DTevBlockNullFv
+    .4byte indexToPtr__15J3DTevBlockNullFv
+    .4byte getType__15J3DTevBlockNullFv
+    .4byte countDLSize__11J3DTevBlockFv
+    .4byte setTexNo__11J3DTevBlockFUlPCUs
+    .4byte setTexNo__11J3DTevBlockFUlUs
+    .4byte getTexNo__11J3DTevBlockCFUl
+    .4byte setTevOrder__11J3DTevBlockFUlPC11J3DTevOrder
+    .4byte setTevOrder__11J3DTevBlockFUl11J3DTevOrder
+    .4byte getTevOrder__11J3DTevBlockFUl
+    .4byte setTevColor__11J3DTevBlockFUlPC13J3DGXColorS10
+    .4byte setTevColor__11J3DTevBlockFUl13J3DGXColorS10
+    .4byte getTevColor__11J3DTevBlockFUl
+    .4byte setTevKColor__11J3DTevBlockFUlPC10J3DGXColor
+    .4byte setTevKColor__11J3DTevBlockFUl10J3DGXColor
+    .4byte getTevKColor__11J3DTevBlockFUl
+    .4byte setTevKColorSel__11J3DTevBlockFUlPCUc
+    .4byte setTevKColorSel__11J3DTevBlockFUlUc
+    .4byte getTevKColorSel__11J3DTevBlockFUl
+    .4byte setTevKAlphaSel__11J3DTevBlockFUlPCUc
+    .4byte setTevKAlphaSel__11J3DTevBlockFUlUc
+    .4byte getTevKAlphaSel__11J3DTevBlockFUl
+    .4byte setTevStageNum__11J3DTevBlockFPCUc
+    .4byte setTevStageNum__11J3DTevBlockFUc
+    .4byte getTevStageNum__11J3DTevBlockCFv
+    .4byte setTevStage__11J3DTevBlockFUlPC11J3DTevStage
+    .4byte setTevStage__11J3DTevBlockFUl11J3DTevStage
+    .4byte getTevStage__11J3DTevBlockFUl
+    .4byte setTevSwapModeInfo__11J3DTevBlockFUlPC18J3DTevSwapModeInfo
+    .4byte setTevSwapModeInfo__11J3DTevBlockFUl18J3DTevSwapModeInfo
+    .4byte setTevSwapModeTable__11J3DTevBlockFUlPC19J3DTevSwapModeTable
+    .4byte setTevSwapModeTable__11J3DTevBlockFUl19J3DTevSwapModeTable
+    .4byte getTevSwapModeTable__11J3DTevBlockFUl
+    .4byte setIndTevStage__11J3DTevBlockFUlPC14J3DIndTevStage
+    .4byte setIndTevStage__11J3DTevBlockFUl14J3DIndTevStage
+    .4byte getIndTevStage__11J3DTevBlockFUl
+    .4byte getTexNoOffset__11J3DTevBlockCFv
+    .4byte getTevRegOffset__11J3DTevBlockCFv
+    .4byte setTexNoOffset__11J3DTevBlockFUl
+    .4byte setTevRegOffset__11J3DTevBlockFUl
+    .4byte __dt__15J3DTevBlockNullFv
+*/
+
 struct J3DTevBlock {
-	virtual void _00() = 0;                                            // _00
+	virtual void reset(J3DTevBlock*);                                  // _00
 	virtual void load();                                               // _04
 	virtual void diff(unsigned long);                                  // _08
 	virtual void diffTexNo();                                          // _0C
@@ -14,9 +73,9 @@ struct J3DTevBlock {
 	virtual void patchTexNo();                                         // _24
 	virtual void patchTevReg();                                        // _28
 	virtual void patchTexNoAndTexCoordScale();                         // _2C
-	virtual void _30() = 0;                                            // _30
-	virtual void _34() = 0;                                            // _34
-	virtual void _38() = 0;                                            // _38
+	virtual void ptrToIndex();                                         // _30
+	virtual void indexToPtr();                                         // _34
+	virtual void getType();                                            // _38
 	virtual void countDLSize();                                        // _3C
 	virtual void setTexNo(unsigned long, const unsigned short*);       // _40
 	virtual void setTexNo(unsigned long, unsigned short);              // _44

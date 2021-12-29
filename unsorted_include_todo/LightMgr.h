@@ -1,8 +1,20 @@
 #ifndef _LIGHTMGR_H
 #define _LIGHTMGR_H
 
+/*
+    __vt__8LightMgr:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__8LightMgrFv
+    .4byte getChildCount__5CNodeFv
+    .4byte update__8LightMgrFv
+    .4byte set__8LightMgrFR8Graphics
+    .4byte set__8LightMgrFR7Matrixf
+    .4byte drawDebugInfo__8LightMgrFR8Graphics
+*/
+
 struct CNode {
-	virtual void _00() = 0;       // _00
+	virtual ~CNode();             // _00
 	virtual void getChildCount(); // _04
 
 	// _00 VTBL

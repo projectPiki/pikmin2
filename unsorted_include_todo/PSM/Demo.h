@@ -1,6 +1,16 @@
 #ifndef _PSM_DEMO_H
 #define _PSM_DEMO_H
 
+/*
+    __vt__Q23PSM4Demo:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__Q23PSM4DemoFv
+    .4byte init__Q23PSM4DemoFP3VecP3VecPA4_fQ23PSM7DemoArg
+    .4byte initiate__Q23PSM4DemoFQ23PSM7DemoArgPUc
+    .4byte initDemoScene__Q23PSM4DemoFRQ23PSM7DemoArgPQ23PSM10Scene_Demo
+*/
+
 namespace PSM {
 struct Demo {
 	virtual ~Demo();                                      // _00

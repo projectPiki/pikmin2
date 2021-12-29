@@ -1,6 +1,39 @@
 #ifndef _GAME_ITEMUJAMUSHI_UJAMGR_H
 #define _GAME_ITEMUJAMUSHI_UJAMGR_H
 
+/*
+        __vt__Q34Game12ItemUjamushi6UjaMgr:
+        .4byte 0
+        .4byte 0
+        .4byte "getMaxObjects__Q24Game36TFlockMgr<Q34Game12ItemUjamushi3Uja>Fv"
+        .4byte "getNumObjects__Q24Game36TFlockMgr<Q34Game12ItemUjamushi3Uja>Fv"
+        .4byte "isFlagAlive__Q24Game36TFlockMgr<Q34Game12ItemUjamushi3Uja>Fi"
+        .4byte "getFlock__Q24Game36TFlockMgr<Q34Game12ItemUjamushi3Uja>Fi"
+        .4byte
+   "killFlock__Q24Game36TFlockMgr<Q34Game12ItemUjamushi3Uja>FPQ24Game6TFlock"
+        .4byte do_update__Q34Game12ItemUjamushi6UjaMgrFv
+        .4byte do_update_boundSphere__Q34Game12ItemUjamushi6UjaMgrFv
+        .4byte doSimpleDraw__Q24Game12BaseFlockMgrFP8ViewportPP12J3DModelDatai
+        .4byte isWeed__Q24Game12BaseFlockMgrFi
+        .4byte fear__Q24Game12BaseFlockMgrFi
+        .4byte 0
+        .4byte 0
+        .4byte "@32@__dt__Q34Game12ItemUjamushi6UjaMgrFv"
+        .4byte getChildCount__5CNodeFv
+        .4byte "getObject__36Container<Q34Game12ItemUjamushi3Uja>FPv"
+        .4byte "@32@getNext__Q24Game36TFlockMgr<Q34Game12ItemUjamushi3Uja>FPv"
+        .4byte "@32@getStart__Q24Game36TFlockMgr<Q34Game12ItemUjamushi3Uja>Fv"
+        .4byte "@32@getEnd__Q24Game36TFlockMgr<Q34Game12ItemUjamushi3Uja>Fv"
+        .4byte "@32@get__Q24Game36TFlockMgr<Q34Game12ItemUjamushi3Uja>FPv"
+        .4byte "getAt__36Container<Q34Game12ItemUjamushi3Uja>Fi"
+        .4byte "getTo__36Container<Q34Game12ItemUjamushi3Uja>Fv"
+        .4byte "get__Q24Game36TFlockMgr<Q34Game12ItemUjamushi3Uja>FPv"
+        .4byte "getNext__Q24Game36TFlockMgr<Q34Game12ItemUjamushi3Uja>FPv"
+        .4byte "getStart__Q24Game36TFlockMgr<Q34Game12ItemUjamushi3Uja>Fv"
+        .4byte "getEnd__Q24Game36TFlockMgr<Q34Game12ItemUjamushi3Uja>Fv"
+        .4byte __dt__Q34Game12ItemUjamushi6UjaMgrFv
+*/
+
 namespace Game {
 namespace TFlockMgr < Game
 {
@@ -93,10 +126,6 @@ namespace ItemUjamushi {
         virtual void @32 @__dt();                                  // _30
         virtual void getChildCount();                              // _34
         virtual void getObject(void*);                             // _38
-        virtual void _3C() = 0;                                    // _3C
-        virtual void _40() = 0;                                    // _40
-        virtual void _44() = 0;                                    // _44
-        virtual void _48() = 0;                                    // _48
         virtual void getAt(int);                                   // _4C
         virtual void getTo();                                      // _50
         virtual void TFlockMgr < get(void*);                       // _54

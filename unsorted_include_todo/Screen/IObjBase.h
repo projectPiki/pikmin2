@@ -1,8 +1,30 @@
 #ifndef _SCREEN_IOBJBASE_H
 #define _SCREEN_IOBJBASE_H
 
+/*
+        __vt__Q26Screen8IObjBase:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q26Screen8IObjBaseFv
+        .4byte getChildCount__5CNodeFv
+        .4byte 0
+        .4byte 0
+        .4byte "@24@__dt__Q26Screen8IObjBaseFv"
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+*/
+
 struct CNode {
-    virtual void _00() = 0;       // _00
+    virtual ~CNode();             // _00
     virtual void getChildCount(); // _04
 
     // _00 VTBL

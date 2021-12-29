@@ -1,6 +1,24 @@
 #ifndef _EFX2D_T2DCAVECOMPLOOP_H
 #define _EFX2D_T2DCAVECOMPLOOP_H
 
+/*
+        __vt__Q25efx2d15T2DCavecompLoop:
+        .4byte 0
+        .4byte 0
+        .4byte create__Q25efx2d8TForeverFPQ25efx2d3Arg
+        .4byte kill__Q25efx2d8TForeverFv
+        .4byte fade__Q25efx2d8TForeverFv
+        .4byte setGroup__Q25efx2d5TBaseFUc
+        .4byte 0
+        .4byte 0
+        .4byte "@8@__dt__Q25efx2d15T2DCavecompLoopFv"
+        .4byte execute__18JPAEmitterCallBackFP14JPABaseEmitter
+        .4byte executeAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
+        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+        .4byte __dt__Q25efx2d15T2DCavecompLoopFv
+*/
+
 namespace efx2d {
 struct TForever {
     virtual void create(Arg*); // _00

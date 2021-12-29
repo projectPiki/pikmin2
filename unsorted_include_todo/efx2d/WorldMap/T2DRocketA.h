@@ -1,6 +1,16 @@
 #ifndef _EFX2D_WORLDMAP_T2DROCKETA_H
 #define _EFX2D_WORLDMAP_T2DROCKETA_H
 
+/*
+    __vt__Q35efx2d8WorldMap10T2DRocketA:
+    .4byte 0
+    .4byte 0
+    .4byte create__Q35efx2d8WorldMap19TSimple_ArgDirScaleFPQ25efx2d3Arg
+    .4byte kill__Q25efx2d8TSimple1Fv
+    .4byte fade__Q25efx2d8TSimple1Fv
+    .4byte setGroup__Q25efx2d5TBaseFUc
+*/
+
 namespace efx2d {
 namespace WorldMap {
 	struct TSimple_ArgDirScale {

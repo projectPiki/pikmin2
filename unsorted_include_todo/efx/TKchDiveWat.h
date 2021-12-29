@@ -1,6 +1,17 @@
 #ifndef _EFX_TKCHDIVEWAT_H
 #define _EFX_TKCHDIVEWAT_H
 
+/*
+    __vt__Q23efx11TKchDiveWat:
+    .4byte 0
+    .4byte 0
+    .4byte "create__Q23efx34TSyncGroup3<Q23efx13TChasePosYRot>FPQ23efx3Arg"
+    .4byte "forceKill__Q23efx34TSyncGroup3<Q23efx13TChasePosYRot>Fv"
+    .4byte "fade__Q23efx34TSyncGroup3<Q23efx13TChasePosYRot>Fv"
+    .4byte "startDemoDrawOff__Q23efx34TSyncGroup3<Q23efx13TChasePosYRot>Fv"
+    .4byte "endDemoDrawOn__Q23efx34TSyncGroup3<Q23efx13TChasePosYRot>Fv"
+*/
+
 namespace efx {
 namespace TSyncGroup3 < efx
 {

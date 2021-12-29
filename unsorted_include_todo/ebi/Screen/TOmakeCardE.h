@@ -1,20 +1,44 @@
 #ifndef _EBI_SCREEN_TOMAKECARDE_H
 #define _EBI_SCREEN_TOMAKECARDE_H
 
+/*
+    __vt__Q33ebi6Screen11TOmakeCardE:
+    .4byte 0
+    .4byte 0
+    .4byte setArchive__Q33ebi6Screen11TScreenBaseFP10JKRArchive
+    .4byte openScreen__Q33ebi6Screen11TScreenBaseFPQ33ebi6Screen7ArgOpen
+    .4byte closeScreen__Q33ebi6Screen11TScreenBaseFPQ33ebi6Screen8ArgClose
+    .4byte killScreen__Q33ebi6Screen11TScreenBaseFv
+    .4byte update__Q33ebi6Screen11TScreenBaseFv
+    .4byte draw__Q33ebi6Screen11TScreenBaseFv
+    .4byte isFinishScreen__Q33ebi6Screen11TScreenBaseFv
+    .4byte doSetArchive__Q33ebi6Screen11TOmakeCardEFP10JKRArchive
+    .4byte doOpenScreen__Q33ebi6Screen11TOmakeCardEFPQ33ebi6Screen7ArgOpen
+    .4byte doCloseScreen__Q33ebi6Screen11TOmakeCardEFPQ33ebi6Screen8ArgClose
+    .4byte doKillScreen__Q33ebi6Screen11TScreenBaseFv
+    .4byte doInitWaitState__Q33ebi6Screen11TOmakeCardEFv
+    .4byte doUpdateStateOpen__Q33ebi6Screen11TOmakeCardEFv
+    .4byte doUpdateStateWait__Q33ebi6Screen11TOmakeCardEFv
+    .4byte doUpdateStateClose__Q33ebi6Screen11TOmakeCardEFv
+    .4byte doDraw__Q33ebi6Screen11TOmakeCardEFv
+    .4byte getName__Q33ebi6Screen11TOmakeCardEFv
+    .4byte 0
+*/
+
 namespace ebi {
 namespace Screen {
 	struct TScreenBase {
-		virtual void setArchive(JKRArchive*); // _00
-		virtual void openScreen(ArgOpen*);    // _04
-		virtual void closeScreen(ArgClose*);  // _08
-		virtual void killScreen();            // _0C
-		virtual void update();                // _10
-		virtual void draw();                  // _14
-		virtual void isFinishScreen();        // _18
-		virtual void _1C() = 0;               // _1C
-		virtual void _20() = 0;               // _20
-		virtual void _24() = 0;               // _24
-		virtual void doKillScreen();          // _28
+		virtual void setArchive(JKRArchive*);   // _00
+		virtual void openScreen(ArgOpen*);      // _04
+		virtual void closeScreen(ArgClose*);    // _08
+		virtual void killScreen();              // _0C
+		virtual void update();                  // _10
+		virtual void draw();                    // _14
+		virtual void isFinishScreen();          // _18
+		virtual void doSetArchive(JKRArchive*); // _1C
+		virtual void doOpenScreen(ArgOpen*);    // _20
+		virtual void doCloseScreen(ArgClose*);  // _24
+		virtual void doKillScreen();            // _28
 
 		// _00 VTBL
 	};

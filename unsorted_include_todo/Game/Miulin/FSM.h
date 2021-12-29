@@ -1,9 +1,24 @@
 #ifndef _GAME_MIULIN_FSM_H
 #define _GAME_MIULIN_FSM_H
 
+/*
+    __vt__Q34Game6Miulin3FSM:
+    .4byte 0
+    .4byte 0
+    .4byte init__Q34Game6Miulin3FSMFPQ24Game9EnemyBase
+    .4byte
+   start__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseiPQ24Game8StateArg .4byte
+   exec__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase .4byte
+   transit__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseiPQ24Game8StateArg
+    .4byte doDirectDraw__Q24Game17EnemyStateMachineFPQ24Game9EnemyBaseR8Graphics
+    .4byte getCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBase
+    .4byte
+   setCurrState__Q24Game17EnemyStateMachineFPQ24Game9EnemyBasePQ24Game13EnemyFSMState
+*/
+
 namespace Game {
 struct EnemyStateMachine {
-	virtual void _00() = 0;                                // _00
+	virtual void init(EnemyBase*);                         // _00
 	virtual void start(EnemyBase*, int, StateArg*);        // _04
 	virtual void exec(EnemyBase*);                         // _08
 	virtual void transit(EnemyBase*, int, StateArg*);      // _0C

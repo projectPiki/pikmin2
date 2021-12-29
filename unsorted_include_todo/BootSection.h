@@ -1,6 +1,30 @@
 #ifndef _BOOTSECTION_H
 #define _BOOTSECTION_H
 
+/*
+    __vt__11BootSection:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__11BootSectionFv
+    .4byte run__11BootSectionFv
+    .4byte update__7SectionFv
+    .4byte draw__7SectionFR8Graphics
+    .4byte init__11BootSectionFv
+    .4byte drawInit__7SectionFR8Graphics
+    .4byte drawInit__7SectionFR8GraphicsQ27Section13EDrawInitMode
+    .4byte doExit__7SectionFv
+    .4byte forceFinish__7SectionFv
+    .4byte forceReset__11BootSectionFv
+    .4byte getCurrentSection__7SectionFv
+    .4byte doLoadingStart__7SectionFv
+    .4byte doLoading__7SectionFv
+    .4byte doUpdate__11BootSectionFv
+    .4byte doDraw__11BootSectionFR8Graphics
+    .4byte isFinishable__7SectionFv
+    .4byte initHIO__Q24Game14BaseHIOSectionFPQ24Game11HIORootNode
+    .4byte refreshHIO__Q24Game14BaseHIOSectionFv
+*/
+
 struct Section {
 	virtual void _00() = 0;                          // _00
 	virtual void _04() = 0;                          // _04

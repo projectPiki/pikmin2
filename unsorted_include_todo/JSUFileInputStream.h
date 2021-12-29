@@ -1,8 +1,22 @@
 #ifndef _JSUFILEINPUTSTREAM_H
 #define _JSUFILEINPUTSTREAM_H
 
+/*
+    __vt__18JSUFileInputStream:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__18JSUFileInputStreamFv
+    .4byte getAvailable__20JSURandomInputStreamCFv
+    .4byte skip__20JSURandomInputStreamFl
+    .4byte readData__18JSUFileInputStreamFPvl
+    .4byte getLength__18JSUFileInputStreamCFv
+    .4byte getPosition__18JSUFileInputStreamCFv
+    .4byte seekPos__18JSUFileInputStreamFl17JSUStreamSeekFrom
+    .4byte 0
+*/
+
 struct JSURandomInputStream {
-	virtual void _00() = 0;            // _00
+	virtual ~JSURandomInputStream();   // _00
 	virtual void getAvailable() const; // _04
 	virtual void skip(long);           // _08
 

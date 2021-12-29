@@ -1,6 +1,25 @@
 #ifndef _EFX2D_FILESELECT_T2DFILESELM_H
 #define _EFX2D_FILESELECT_T2DFILESELM_H
 
+/*
+        __vt__Q35efx2d10FileSelect11T2DFileselM:
+        .4byte 0
+        .4byte 0
+        .4byte create__Q25efx2d9TChasePosFPQ25efx2d3Arg
+        .4byte kill__Q25efx2d8TForeverFv
+        .4byte fade__Q25efx2d8TForeverFv
+        .4byte setGroup__Q25efx2d5TBaseFUc
+        .4byte 0
+        .4byte 0
+        .4byte "@8@__dt__Q35efx2d10FileSelect11T2DFileselMFv"
+        .4byte "@8@execute__Q25efx2d9TChasePosFP14JPABaseEmitter"
+        .4byte executeAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
+        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+        .4byte __dt__Q35efx2d10FileSelect11T2DFileselMFv
+        .4byte execute__Q25efx2d9TChasePosFP14JPABaseEmitter
+*/
+
 namespace efx2d {
 struct TChasePos {
     virtual void create(Arg*);             // _00
@@ -71,7 +90,6 @@ namespace FileSelect {
         virtual void _10() = 0;                     // _10
         virtual void _14() = 0;                     // _14
         virtual void @8 @__dt();                    // _18
-        virtual void _1C() = 0;                     // _1C
         virtual void executeAfter(JPABaseEmitter*); // _20
         virtual void draw(JPABaseEmitter*);         // _24
         virtual void drawAfter(JPABaseEmitter*);    // _28

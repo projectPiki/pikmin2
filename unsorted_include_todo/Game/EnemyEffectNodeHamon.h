@@ -1,8 +1,19 @@
 #ifndef _GAME_ENEMYEFFECTNODEHAMON_H
 #define _GAME_ENEMYEFFECTNODEHAMON_H
 
+/*
+    __vt__Q24Game20EnemyEffectNodeHamon:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__Q24Game20EnemyEffectNodeHamonFv
+    .4byte getChildCount__5CNodeFv
+    .4byte create__Q24Game20EnemyEffectNodeHamonFPQ24Game9EnemyBase
+    .4byte fade__Q24Game20EnemyEffectNodeHamonFPQ24Game9EnemyBase
+    .4byte forceKill__Q24Game20EnemyEffectNodeHamonFPQ24Game9EnemyBase
+*/
+
 struct CNode {
-	virtual void _00() = 0;       // _00
+	virtual ~CNode();             // _00
 	virtual void getChildCount(); // _04
 
 	// _00 VTBL

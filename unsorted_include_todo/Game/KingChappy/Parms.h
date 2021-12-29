@@ -1,6 +1,14 @@
 #ifndef _GAME_KINGCHAPPY_PARMS_H
 #define _GAME_KINGCHAPPY_PARMS_H
 
+/*
+    __vt__Q34Game10KingChappy5Parms:
+    .4byte 0
+    .4byte 0
+    .4byte read__Q34Game10KingChappy5ParmsFR6Stream
+    .4byte 0
+*/
+
 namespace Game {
 namespace KingChappy {
 	struct Parms {

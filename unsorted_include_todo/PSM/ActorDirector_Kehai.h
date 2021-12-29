@@ -1,6 +1,29 @@
 #ifndef _PSM_ACTORDIRECTOR_KEHAI_H
 #define _PSM_ACTORDIRECTOR_KEHAI_H
 
+/*
+    __vt__Q23PSM19ActorDirector_Kehai:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__Q23PSM19ActorDirector_KehaiFv
+    .4byte exec__Q28PSSystem12DirectorBaseFv
+    .4byte directOn__Q28PSSystem12DirectorBaseFv
+    .4byte directOff__Q28PSSystem12DirectorBaseFv
+    .4byte underDirection__Q23PSM19ActorDirector_EnemyFv
+    .4byte execInner__Q23PSM20ActorDirector_ScaledFv
+    .4byte directOnTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase
+    .4byte
+   directOffTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase .4byte
+   doUpdateRequest__Q28PSSystem16SwitcherDirectorFv .4byte
+   onPlayInit__Q23PSM19TrackOnDirectorBaseFP8JASTrack .4byte
+   onDirectOn__Q28PSSystem12DirectorBaseFv .4byte
+   onDirectOff__Q28PSSystem12DirectorBaseFv .4byte
+   getNearestDistance__Q23PSM20ActorDirector_ScaledFv .4byte
+   onSetMinDistObj__Q23PSM19ActorDirector_EnemyFPQ24Game8Creature .4byte
+   getVolZeroDist__Q23PSM19ActorDirector_KehaiFPQ24Game9EnemyBase .4byte
+   getVolMaxDist__Q23PSM19ActorDirector_KehaiFPQ24Game9EnemyBase
+*/
+
 namespace PSSystem {
 struct DirectorBase {
 	virtual void _00() = 0;     // _00

@@ -1,6 +1,30 @@
 #ifndef _PSSYSTEM_DIRECTEDBGM_H
 #define _PSSYSTEM_DIRECTEDBGM_H
 
+/*
+    __vt__Q28PSSystem11DirectedBgm:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__Q28PSSystem11DirectedBgmFv
+    .4byte init__Q28PSSystem11DirectedBgmFv
+    .4byte scene1st__Q28PSSystem7SeqBaseFPQ28PSSystem11TaskChecker
+    .4byte startSeq__Q28PSSystem11DirectedBgmFv
+    .4byte stopSeq__Q28PSSystem11DirectedBgmFUl
+    .4byte pauseOn__Q28PSSystem7SeqBaseFQ38PSSystem7SeqBase9PauseMode
+    .4byte pauseOff__Q28PSSystem7SeqBaseFv
+    .4byte getCastType__Q28PSSystem11DirectedBgmFv
+    .4byte getSeqType__Q28PSSystem6BgmSeqFv
+    .4byte exec__Q28PSSystem7SeqBaseFv
+    .4byte onPlayingFrame__Q28PSSystem11DirectedBgmFv
+    .4byte isPlaying__Q28PSSystem7SeqBaseFv
+    .4byte seqLoadAfter__Q28PSSystem7SeqBaseFv
+    .4byte getHandleP__Q28PSSystem6BgmSeqFv
+    .4byte setConfigVolume__Q28PSSystem7SeqBaseFv
+    .4byte newSeqTrackRoot__Q28PSSystem11DirectedBgmFv
+    .4byte
+   newSeqTrackChild__Q28PSSystem11DirectedBgmFUcRQ28PSSystem12SeqTrackRoot
+*/
+
 namespace PSSystem {
 struct SeqBase {
 	virtual void _00() = 0;              // _00

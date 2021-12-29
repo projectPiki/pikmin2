@@ -1,6 +1,15 @@
 #ifndef _EFX_THDAMASHOOT_H
 #define _EFX_THDAMASHOOT_H
 
+/*
+    __vt__Q23efx11THdamaShoot:
+    .4byte 0
+    .4byte 0
+    .4byte create__Q23efx11TSimpleMtx3FPQ23efx3Arg
+    .4byte forceKill__Q23efx8TSimple3Fv
+    .4byte fade__Q23efx8TSimple3Fv
+*/
+
 namespace efx {
 struct TSimpleMtx3 {
 	virtual void create(Arg*); // _00

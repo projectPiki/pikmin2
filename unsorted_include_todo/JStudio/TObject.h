@@ -1,6 +1,18 @@
 #ifndef _JSTUDIO_TOBJECT_H
 #define _JSTUDIO_TOBJECT_H
 
+/*
+    __vt__Q27JStudio7TObject:
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte do_begin__Q27JStudio7TObjectFv
+    .4byte do_end__Q27JStudio7TObjectFv
+    .4byte 0
+    .4byte do_wait__Q27JStudio7TObjectFUl
+    .4byte do_data__Q27JStudio7TObjectFPCvUlPCvUl
+*/
+
 namespace JStudio {
 struct TObject {
 	virtual void _00() = 0;              // _00

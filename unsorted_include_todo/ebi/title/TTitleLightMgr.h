@@ -1,6 +1,19 @@
 #ifndef _EBI_TITLE_TTITLELIGHTMGR_H
 #define _EBI_TITLE_TTITLELIGHTMGR_H
 
+/*
+    __vt__Q33ebi5title14TTitleLightMgr:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__Q33ebi5title14TTitleLightMgrFv
+    .4byte getChildCount__5CNodeFv
+    .4byte update__Q33ebi5title14TTitleLightMgrFv
+    .4byte set__8LightMgrFR8Graphics
+    .4byte set__8LightMgrFR7Matrixf
+    .4byte drawDebugInfo__8LightMgrFR8Graphics
+    .4byte 0
+*/
+
 struct CNode {
 	virtual void _00() = 0;       // _00
 	virtual void getChildCount(); // _04

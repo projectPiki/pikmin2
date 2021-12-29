@@ -1,6 +1,16 @@
 #ifndef _EFX2D_TFOREVER5_H
 #define _EFX2D_TFOREVER5_H
 
+/*
+    __vt__Q25efx2d9TForever5:
+    .4byte 0
+    .4byte 0
+    .4byte create__Q25efx2d9TForeverNFPQ25efx2d3Arg
+    .4byte kill__Q25efx2d9TForeverNFv
+    .4byte fade__Q25efx2d9TForeverNFv
+    .4byte setGroup__Q25efx2d9TForeverNFUc
+*/
+
 namespace efx2d {
 struct TForeverN {
 	virtual void create(Arg*);            // _00

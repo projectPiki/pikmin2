@@ -1,6 +1,17 @@
 #ifndef _EFX_TCHASEMTX6_H
 #define _EFX_TCHASEMTX6_H
 
+/*
+    __vt__Q23efx10TChaseMtx6:
+    .4byte 0
+    .4byte 0
+    .4byte "create__Q23efx29TSyncGroup6<Q23efx9TChaseMtx>FPQ23efx3Arg"
+    .4byte "forceKill__Q23efx29TSyncGroup6<Q23efx9TChaseMtx>Fv"
+    .4byte "fade__Q23efx29TSyncGroup6<Q23efx9TChaseMtx>Fv"
+    .4byte "startDemoDrawOff__Q23efx29TSyncGroup6<Q23efx9TChaseMtx>Fv"
+    .4byte "endDemoDrawOn__Q23efx29TSyncGroup6<Q23efx9TChaseMtx>Fv"
+*/
+
 namespace efx {
 namespace TSyncGroup6 < efx
 {

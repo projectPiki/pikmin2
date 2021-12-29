@@ -1,18 +1,62 @@
 #ifndef _P2JME_WINDOW_TRENDERINGPROCESSOR_H
 #define _P2JME_WINDOW_TRENDERINGPROCESSOR_H
 
+/*
+    __vt__Q35P2JME6Window19TRenderingProcessor:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__Q35P2JME6Window19TRenderingProcessorFv
+    .4byte do_reset__Q28JMessage10TProcessorFv
+    .4byte do_character__Q25P2JME19TRenderingProcessorFi
+    .4byte do_tag__Q25P2JME19TRenderingProcessorFUlPCvUl
+    .4byte do_systemTagCode__Q25P2JME19TRenderingProcessorFUsPCvUl
+    .4byte do_select_begin__Q25P2JME19TRenderingProcessorFUl
+    .4byte do_select_end__Q25P2JME19TRenderingProcessorFv
+    .4byte do_select_separate__Q25P2JME19TRenderingProcessorFv
+    .4byte do_reset___Q28JMessage19TRenderingProcessorFPCc
+    .4byte do_setBegin_isReady___Q28JMessage10TProcessorCFv
+    .4byte do_begin___Q28JMessage19TRenderingProcessorFPCvPCc
+    .4byte do_end___Q28JMessage19TRenderingProcessorFv
+    .4byte do_tag___Q28JMessage19TRenderingProcessorFUlPCvUl
+    .4byte do_systemTagCode___Q28JMessage19TRenderingProcessorFUsPCvUl
+    .4byte do_begin__Q25P2JME19TRenderingProcessorFPCvPCc
+    .4byte do_end__Q28JMessage19TRenderingProcessorFv
+    .4byte tagColor__Q25P2JME19TRenderingProcessorFPCvUl
+    .4byte tagSize__Q25P2JME19TRenderingProcessorFPCvUl
+    .4byte tagRuby__Q25P2JME19TRenderingProcessorFPCvUl
+    .4byte tagFont__Q25P2JME19TRenderingProcessorFPCvUl
+    .4byte tagImage__Q25P2JME19TRenderingProcessorFUsPCvUl
+    .4byte tagColorEX__Q25P2JME19TRenderingProcessorFUsPCvUl
+    .4byte tagControl__Q25P2JME19TRenderingProcessorFUsPCvUl
+    .4byte tagPosition__Q25P2JME19TRenderingProcessorFUsPCvUl
+    .4byte update__Q35P2JME6Window19TRenderingProcessorFv
+    .4byte reset__Q35P2JME6Window19TRenderingProcessorFv
+    .4byte newParagraph__Q25P2JME19TRenderingProcessorFv
+    .4byte doDrawImage__Q35P2JME6Window19TRenderingProcessorFP10JUTTextureffff
+    .4byte doDrawRuby__Q35P2JME6Window19TRenderingProcessorFffffib
+    .4byte doDrawLetter__Q35P2JME6Window19TRenderingProcessorFffffib
+    .4byte doTagControlAbtnWait__Q25P2JME19TRenderingProcessorFv
+    .4byte
+   doDrawCommon__Q35P2JME6Window19TRenderingProcessorFffP7MatrixfP7Matrixf
+    .4byte
+   "makeMatrix__Q35P2JME6Window19TRenderingProcessorFP7MatrixfPQ35P2JME6Window8DrawInfof10Vector3<f>"
+    .4byte
+   doGetDrawInfo__Q35P2JME6Window19TRenderingProcessorFPQ35P2JME6Window8DrawInfo
+*/
+
 namespace JMessage {
 struct TProcessor {
-	virtual void _00() = 0;                    // _00
-	virtual void do_reset();                   // _04
-	virtual void _08() = 0;                    // _08
-	virtual void _0C() = 0;                    // _0C
-	virtual void _10() = 0;                    // _10
-	virtual void _14() = 0;                    // _14
-	virtual void _18() = 0;                    // _18
-	virtual void _1C() = 0;                    // _1C
-	virtual void _20() = 0;                    // _20
-	virtual void do_setBegin_isReady_() const; // _24
+	virtual ~TProcessor();                                          // _00
+	virtual void do_reset();                                        // _04
+	virtual void do_character(int);                                 // _08
+	virtual void do_tag(unsigned long, const void*, unsigned long); // _0C
+	virtual void do_systemTagCode(unsigned short, const void*,
+	                              unsigned long); // _10
+	virtual void do_select_begin(unsigned long);  // _14
+	virtual void do_select_end();                 // _18
+	virtual void do_select_separate();            // _1C
+	virtual void do_reset_(const char*);          // _20
+	virtual void do_setBegin_isReady_() const;    // _24
 
 	// _00 VTBL
 };

@@ -1,6 +1,18 @@
 #ifndef _PSM_BGMTRACKMAPFILE_H
 #define _PSM_BGMTRACKMAPFILE_H
 
+/*
+        __vt__Q23PSM15BgmTrackMapFile:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q23PSM15BgmTrackMapFileFv
+        .4byte read__Q23PSM15BgmTrackMapFileFR6Stream
+        .4byte 0
+        .4byte 0
+        .4byte "@28@__dt__Q23PSM15BgmTrackMapFileFv"
+        .4byte 0
+*/
+
 namespace PSM {
 struct BgmTrackMapFile {
     virtual ~BgmTrackMapFile(); // _00

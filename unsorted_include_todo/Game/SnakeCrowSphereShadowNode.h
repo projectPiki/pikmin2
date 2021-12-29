@@ -1,8 +1,16 @@
 #ifndef _GAME_SNAKECROWSPHERESHADOWNODE_H
 #define _GAME_SNAKECROWSPHERESHADOWNODE_H
 
+/*
+    __vt__Q24Game25SnakeCrowSphereShadowNode:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__Q24Game25SnakeCrowSphereShadowNodeFv
+    .4byte getChildCount__5CNodeFv
+*/
+
 struct CNode {
-	virtual void _00() = 0;       // _00
+	virtual ~CNode();             // _00
 	virtual void getChildCount(); // _04
 
 	// _00 VTBL

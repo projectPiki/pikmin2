@@ -1,16 +1,51 @@
 #ifndef _P2JME_WINDOW_TSEQUENCEPROCESSOR_H
 #define _P2JME_WINDOW_TSEQUENCEPROCESSOR_H
 
+/*
+    __vt__Q35P2JME6Window18TSequenceProcessor:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__Q35P2JME6Window18TSequenceProcessorFv
+    .4byte do_reset__Q28JMessage10TProcessorFv
+    .4byte do_character__Q25P2JME18TSequenceProcessorFi
+    .4byte do_tag__Q25P2JME18TSequenceProcessorFUlPCvUl
+    .4byte do_systemTagCode__Q25P2JME18TSequenceProcessorFUsPCvUl
+    .4byte do_select_begin__Q28JMessage10TProcessorFUl
+    .4byte do_select_end__Q28JMessage10TProcessorFv
+    .4byte do_select_separate__Q28JMessage10TProcessorFv
+    .4byte do_reset___Q28JMessage18TSequenceProcessorFPCc
+    .4byte do_setBegin_isReady___Q28JMessage18TSequenceProcessorCFv
+    .4byte do_begin___Q28JMessage18TSequenceProcessorFPCvPCc
+    .4byte do_end___Q28JMessage18TSequenceProcessorFv
+    .4byte do_tag___Q28JMessage18TSequenceProcessorFUlPCvUl
+    .4byte do_systemTagCode___Q28JMessage18TSequenceProcessorFUsPCvUl
+    .4byte do_begin__Q25P2JME18TSequenceProcessorFPCvPCc
+    .4byte do_end__Q25P2JME18TSequenceProcessorFv
+    .4byte do_isReady__Q25P2JME18TSequenceProcessorFv
+    .4byte do_jump_isReady__Q25P2JME18TSequenceProcessorFv
+    .4byte do_jump__Q25P2JME18TSequenceProcessorFPCvPCc
+    .4byte do_branch_query__Q25P2JME18TSequenceProcessorFUs
+    .4byte do_branch_queryResult__Q25P2JME18TSequenceProcessorFv
+    .4byte do_branch__Q25P2JME18TSequenceProcessorFPCvPCc
+    .4byte doResetAbtnWaitSE__Q25P2JME18TSequenceProcessorFv
+    .4byte doCharacterSEStart__Q35P2JME6Window18TSequenceProcessorFv
+    .4byte doCharacterSE__Q35P2JME6Window18TSequenceProcessorFi
+    .4byte doCharacterSEEnd__Q35P2JME6Window18TSequenceProcessorFv
+    .4byte doFastForwardSE__Q35P2JME6Window18TSequenceProcessorFv
+    .4byte reset__Q25P2JME18TSequenceProcessorFv
+*/
+
 namespace JMessage {
 struct TProcessor {
-	virtual void _00() = 0;                      // _00
-	virtual void do_reset();                     // _04
-	virtual void _08() = 0;                      // _08
-	virtual void _0C() = 0;                      // _0C
-	virtual void _10() = 0;                      // _10
-	virtual void do_select_begin(unsigned long); // _14
-	virtual void do_select_end();                // _18
-	virtual void do_select_separate();           // _1C
+	virtual ~TProcessor();                                          // _00
+	virtual void do_reset();                                        // _04
+	virtual void do_character(int);                                 // _08
+	virtual void do_tag(unsigned long, const void*, unsigned long); // _0C
+	virtual void do_systemTagCode(unsigned short, const void*,
+	                              unsigned long); // _10
+	virtual void do_select_begin(unsigned long);  // _14
+	virtual void do_select_end();                 // _18
+	virtual void do_select_separate();            // _1C
 
 	// _00 VTBL
 };

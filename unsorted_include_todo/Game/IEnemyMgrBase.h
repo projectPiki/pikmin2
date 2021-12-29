@@ -1,6 +1,48 @@
 #ifndef _GAME_IENEMYMGRBASE_H
 #define _GAME_IENEMYMGRBASE_H
 
+/*
+        __vt__Q24Game13IEnemyMgrBase:
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte doSimpleDraw__16GenericObjectMgrFP8Viewport
+        .4byte loadResources__16GenericObjectMgrFv
+        .4byte resetMgr__16GenericObjectMgrFv
+        .4byte pausable__16GenericObjectMgrFv
+        .4byte frozenable__16GenericObjectMgrFv
+        .4byte getMatrixLoadType__16GenericObjectMgrFv
+        .4byte 0
+        .4byte 0
+        .4byte "@4@__dt__Q24Game13IEnemyMgrBaseFv"
+        .4byte getChildCount__5CNodeFv
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q24Game13IEnemyMgrBaseFv
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+*/
+
 struct GenericObjectMgr {
     virtual void _00() = 0;               // _00
     virtual void _04() = 0;               // _04

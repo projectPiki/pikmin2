@@ -1,8 +1,17 @@
 #ifndef _CAPTION_MGR_H
 #define _CAPTION_MGR_H
 
+/*
+    __vt__Q27Caption3Mgr:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__Q27Caption3MgrFv
+    .4byte getChildCount__5CNodeFv
+    .4byte read__Q27Caption3MgrFR6Stream
+*/
+
 struct CNode {
-	virtual void _00() = 0;       // _00
+	virtual ~CNode();             // _00
 	virtual void getChildCount(); // _04
 
 	// _00 VTBL

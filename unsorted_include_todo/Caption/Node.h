@@ -1,8 +1,17 @@
 #ifndef _CAPTION_NODE_H
 #define _CAPTION_NODE_H
 
+/*
+    __vt__Q27Caption4Node:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__Q27Caption4NodeFv
+    .4byte getChildCount__5CNodeFv
+    .4byte read__Q27Caption4NodeFR6Stream
+*/
+
 struct CNode {
-	virtual void _00() = 0;       // _00
+	virtual ~CNode();             // _00
 	virtual void getChildCount(); // _04
 
 	// _00 VTBL

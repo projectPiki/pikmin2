@@ -1,6 +1,17 @@
 #ifndef _P2DSCREEN_CALLBACKNODE_H
 #define _P2DSCREEN_CALLBACKNODE_H
 
+/*
+    __vt__Q29P2DScreen12CallBackNode:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__Q29P2DScreen12CallBackNodeFv
+    .4byte getChildCount__5CNodeFv
+    .4byte update__Q29P2DScreen12CallBackNodeFv
+    .4byte draw__Q29P2DScreen4NodeFR8GraphicsR14J2DGrafContext
+    .4byte doInit__Q29P2DScreen4NodeFv
+*/
+
 struct CNode {
 	virtual void _00() = 0;       // _00
 	virtual void getChildCount(); // _04

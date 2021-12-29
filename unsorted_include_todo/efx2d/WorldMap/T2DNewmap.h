@@ -1,6 +1,16 @@
 #ifndef _EFX2D_WORLDMAP_T2DNEWMAP_H
 #define _EFX2D_WORLDMAP_T2DNEWMAP_H
 
+/*
+    __vt__Q35efx2d8WorldMap9T2DNewmap:
+    .4byte 0
+    .4byte 0
+    .4byte create__Q35efx2d8WorldMap9T2DNewmapFPQ25efx2d3Arg
+    .4byte kill__Q25efx2d8TSimple2Fv
+    .4byte fade__Q25efx2d8TSimple2Fv
+    .4byte setGroup__Q25efx2d5TBaseFUc
+*/
+
 namespace efx2d {
 struct TSimple2 {
 	virtual void _00() = 0; // _00

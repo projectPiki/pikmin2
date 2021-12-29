@@ -1,6 +1,20 @@
 #ifndef _EBI_E2DCALLBACK_PURUPURU_H
 #define _EBI_E2DCALLBACK_PURUPURU_H
 
+/*
+    __vt__Q23ebi20E2DCallBack_Purupuru:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__Q23ebi20E2DCallBack_PurupuruFv
+    .4byte getChildCount__5CNodeFv
+    .4byte update__Q23ebi16E2DCallBack_BaseFv
+    .4byte draw__Q23ebi16E2DCallBack_BaseFR8GraphicsR14J2DGrafContext
+    .4byte doInit__Q29P2DScreen4NodeFv
+    .4byte do_update__Q23ebi20E2DCallBack_PurupuruFv
+    .4byte do_draw__Q23ebi16E2DCallBack_BaseFR8GraphicsR14J2DGrafContext
+    .4byte 0
+*/
+
 struct CNode {
 	virtual void _00() = 0;       // _00
 	virtual void getChildCount(); // _04

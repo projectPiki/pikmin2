@@ -1,6 +1,22 @@
 #ifndef _PIKICOND_EXCEPTCHAPPYPIKMIN_H
 #define _PIKICOND_EXCEPTCHAPPYPIKMIN_H
 
+/*
+    __vt__27PikiCond_ExceptChappyPikmin:
+    .4byte 0
+    .4byte 0
+    .4byte satisfy__27PikiCond_ExceptChappyPikminFPQ24Game4Piki
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+*/
+
 struct PikiCond_ExceptChappyPikmin {
 	virtual void satisfy(Game::Piki*); // _00
 	virtual void _04() = 0;            // _04

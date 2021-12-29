@@ -1,6 +1,23 @@
 #ifndef _MODELEFFECT_H
 #define _MODELEFFECT_H
 
+/*
+    __vt__11ModelEffect:
+    .4byte 0
+    .4byte 0
+    .4byte constructor__11ModelEffectFv
+    .4byte doAnimation__11ModelEffectFv
+    .4byte doEntry__11ModelEffectFv
+    .4byte doSetView__11ModelEffectFi
+    .4byte doViewCalc__11ModelEffectFv
+    .4byte changeMaterial__11ModelEffectFv
+    .4byte 0
+    .4byte useCylinderLOD__11ModelEffectFv
+    .4byte getLODCylinder__11ModelEffectFRQ23Sys8Cylinder
+    .4byte doSimulation__11ModelEffectFf
+    .4byte doDirectDraw__11ModelEffectFR8Graphics
+*/
+
 struct ModelEffect {
 	virtual void constructor();                  // _00
 	virtual void doAnimation();                  // _04

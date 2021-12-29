@@ -1,6 +1,46 @@
 #ifndef _GAME_SHAPEMAPMGR_H
 #define _GAME_SHAPEMAPMGR_H
 
+/*
+        __vt__Q24Game11ShapeMapMgr:
+        .4byte 0
+        .4byte 0
+        .4byte hasHiddenCollision__Q24Game6MapMgrFv
+        .4byte constraintBoundBox__Q24Game6MapMgrFRQ23Sys6Sphere
+        .4byte "getStartPosition__Q24Game6MapMgrFR10Vector3<f>i"
+        .4byte getDemoMatrix__Q24Game6MapMgrFv
+        .4byte getBoundBox2d__Q24Game11ShapeMapMgrFR10BoundBox2d
+        .4byte getBoundBox__Q24Game11ShapeMapMgrFR8BoundBox
+        .4byte
+   findRayIntersection__Q24Game11ShapeMapMgrFRQ23Sys16RayIntersectInfo .4byte
+   traceMove__Q24Game11ShapeMapMgrFRQ24Game8MoveInfof .4byte
+   "getMinY__Q24Game11ShapeMapMgrFR10Vector3<f>" .4byte
+   getCurrTri__Q24Game11ShapeMapMgrFRQ24Game11CurrTriInfo .4byte
+   createTriangles__Q24Game11ShapeMapMgrFRQ23Sys17CreateTriangleArg .4byte
+   setupJUTTextures__Q24Game6MapMgrFv .4byte frozenable__Q24Game6MapMgrFv .4byte
+   update__Q24Game6MapMgrFv .4byte do_update__Q24Game11ShapeMapMgrFv .4byte
+   drawCollision__Q24Game11ShapeMapMgrFR8GraphicsRQ23Sys6Sphere .4byte
+   doSimulation__Q24Game6MapMgrFf .4byte doDirectDraw__Q24Game6MapMgrFR8Graphics
+        .4byte doAnimation__Q24Game11ShapeMapMgrFv
+        .4byte doSetView__Q24Game11ShapeMapMgrFi
+        .4byte doViewCalc__Q24Game11ShapeMapMgrFv
+        .4byte doEntry__Q24Game11ShapeMapMgrFv
+        .4byte 0
+        .4byte 0
+        .4byte "@84@4@doAnimation__Q24Game11ShapeMapMgrFv"
+        .4byte "@84@4@doEntry__Q24Game11ShapeMapMgrFv"
+        .4byte "@84@4@doSetView__Q24Game11ShapeMapMgrFi"
+        .4byte "@84@4@doViewCalc__Q24Game11ShapeMapMgrFv"
+        .4byte "@84@4@doSimulation__Q24Game6MapMgrFf"
+        .4byte "@84@4@doDirectDraw__Q24Game6MapMgrFR8Graphics"
+        .4byte doSimpleDraw__16GenericObjectMgrFP8Viewport
+        .4byte loadResources__16GenericObjectMgrFv
+        .4byte resetMgr__16GenericObjectMgrFv
+        .4byte pausable__16GenericObjectMgrFv
+        .4byte "@84@4@frozenable__Q24Game6MapMgrFv"
+        .4byte getMatrixLoadType__16GenericObjectMgrFv
+*/
+
 namespace Game {
 struct MapMgr {
     virtual void hasHiddenCollision();                   // _00
@@ -97,13 +137,10 @@ struct ShapeMapMgr : public MapMgr, public GenericObjectMgr {
     virtual void @84 @4 @doEntry();                           // _64
     virtual void @84 @4 @doSetView(int);                      // _68
     virtual void @84 @4 @doViewCalc();                        // _6C
-    virtual void _70() = 0;                                   // _70
-    virtual void _74() = 0;                                   // _74
     virtual void doSimpleDraw(Viewport*);                     // _78
     virtual void loadResources();                             // _7C
     virtual void resetMgr();                                  // _80
     virtual void pausable();                                  // _84
-    virtual void _88() = 0;                                   // _88
     virtual void getMatrixLoadType();                         // _8C
 
     // _00 VTBL

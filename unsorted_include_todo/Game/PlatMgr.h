@@ -1,6 +1,43 @@
 #ifndef _GAME_PLATMGR_H
 #define _GAME_PLATMGR_H
 
+/*
+        __vt__Q24Game7PlatMgr:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q24Game7PlatMgrFv
+        .4byte getChildCount__5CNodeFv
+        .4byte "getObject__32Container<Q24Game12PlatInstance>FPv"
+        .4byte "getNext__36NodeObjectMgr<Q24Game12PlatInstance>FPv"
+        .4byte "getStart__36NodeObjectMgr<Q24Game12PlatInstance>Fv"
+        .4byte "getEnd__36NodeObjectMgr<Q24Game12PlatInstance>Fv"
+        .4byte "get__36NodeObjectMgr<Q24Game12PlatInstance>FPv"
+        .4byte "getAt__32Container<Q24Game12PlatInstance>Fi"
+        .4byte "getTo__32Container<Q24Game12PlatInstance>Fv"
+        .4byte 0
+        .4byte 0
+        .4byte "@28@doAnimation__32ObjectMgr<Q24Game12PlatInstance>Fv"
+        .4byte "@28@doEntry__32ObjectMgr<Q24Game12PlatInstance>Fv"
+        .4byte "@28@doSetView__32ObjectMgr<Q24Game12PlatInstance>Fi"
+        .4byte "@28@doViewCalc__32ObjectMgr<Q24Game12PlatInstance>Fv"
+        .4byte "@28@doSimulation__32ObjectMgr<Q24Game12PlatInstance>Ff"
+        .4byte "@28@doDirectDraw__Q24Game7PlatMgrFR8Graphics"
+        .4byte doSimpleDraw__16GenericObjectMgrFP8Viewport
+        .4byte loadResources__16GenericObjectMgrFv
+        .4byte "@28@resetMgr__36NodeObjectMgr<Q24Game12PlatInstance>Fv"
+        .4byte pausable__16GenericObjectMgrFv
+        .4byte frozenable__16GenericObjectMgrFv
+        .4byte getMatrixLoadType__16GenericObjectMgrFv
+        .4byte "doAnimation__32ObjectMgr<Q24Game12PlatInstance>Fv"
+        .4byte "doEntry__32ObjectMgr<Q24Game12PlatInstance>Fv"
+        .4byte "doSetView__32ObjectMgr<Q24Game12PlatInstance>Fi"
+        .4byte "doViewCalc__32ObjectMgr<Q24Game12PlatInstance>Fv"
+        .4byte "doSimulation__32ObjectMgr<Q24Game12PlatInstance>Ff"
+        .4byte doDirectDraw__Q24Game7PlatMgrFR8Graphics
+        .4byte "resetMgr__36NodeObjectMgr<Q24Game12PlatInstance>Fv"
+        .4byte findRayIntersection__Q24Game7PlatMgrFRQ23Sys16RayIntersectInfo
+*/
+
 struct CNode {
     virtual void _00() = 0;       // _00
     virtual void getChildCount(); // _04
@@ -88,15 +125,9 @@ struct PlatMgr : public CNode, public PlatInstance >, public GenericObjectMgr {
     virtual void getTo();                                     // _20
     virtual void _24() = 0;                                   // _24
     virtual void _28() = 0;                                   // _28
-    virtual void _2C() = 0;                                   // _2C
-    virtual void _30() = 0;                                   // _30
-    virtual void _34() = 0;                                   // _34
-    virtual void _38() = 0;                                   // _38
-    virtual void _3C() = 0;                                   // _3C
     virtual void @28 @doDirectDraw(Graphics&);                // _40
     virtual void doSimpleDraw(Viewport*);                     // _44
     virtual void loadResources();                             // _48
-    virtual void _4C() = 0;                                   // _4C
     virtual void pausable();                                  // _50
     virtual void frozenable();                                // _54
     virtual void getMatrixLoadType();                         // _58

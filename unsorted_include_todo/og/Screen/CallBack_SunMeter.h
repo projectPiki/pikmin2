@@ -1,6 +1,18 @@
 #ifndef _OG_SCREEN_CALLBACK_SUNMETER_H
 #define _OG_SCREEN_CALLBACK_SUNMETER_H
 
+/*
+    __vt__Q32og6Screen17CallBack_SunMeter:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__Q32og6Screen17CallBack_SunMeterFv
+    .4byte getChildCount__5CNodeFv
+    .4byte update__Q32og6Screen17CallBack_SunMeterFv
+    .4byte draw__Q29P2DScreen4NodeFR8GraphicsR14J2DGrafContext
+    .4byte doInit__Q29P2DScreen4NodeFv
+    .4byte 0
+*/
+
 struct CNode {
 	virtual void _00() = 0;       // _00
 	virtual void getChildCount(); // _04

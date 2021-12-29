@@ -1,6 +1,25 @@
 #ifndef _PSM_TRACKONDIRECTOR_SCALED_H
 #define _PSM_TRACKONDIRECTOR_SCALED_H
 
+/*
+    __vt__Q23PSM22TrackOnDirector_Scaled:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__Q23PSM22TrackOnDirector_ScaledFv
+    .4byte exec__Q28PSSystem12DirectorBaseFv
+    .4byte directOn__Q28PSSystem12DirectorBaseFv
+    .4byte directOff__Q28PSSystem12DirectorBaseFv
+    .4byte underDirection__Q23PSM22TrackOnDirector_ScaledFv
+    .4byte execInner__Q28PSSystem12DirectorBaseFv
+    .4byte directOnTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase
+    .4byte
+   directOffTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase .4byte
+   doUpdateRequest__Q28PSSystem16SwitcherDirectorFv .4byte
+   onPlayInit__Q23PSM19TrackOnDirectorBaseFP8JASTrack .4byte
+   onDirectOn__Q28PSSystem12DirectorBaseFv .4byte
+   onDirectOff__Q28PSSystem12DirectorBaseFv .4byte 0
+*/
+
 namespace PSSystem {
 struct DirectorBase {
 	virtual void _00() = 0;     // _00

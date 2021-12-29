@@ -1,6 +1,37 @@
 #ifndef _PSM_BIGBOSSSEQ_H
 #define _PSM_BIGBOSSSEQ_H
 
+/*
+    __vt__Q23PSM10BigBossSeq:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__Q23PSM10BigBossSeqFv
+    .4byte init__Q28PSSystem11DirectedBgmFv
+    .4byte scene1st__Q28PSSystem7SeqBaseFPQ28PSSystem11TaskChecker
+    .4byte startSeq__Q28PSSystem10JumpBgmSeqFv
+    .4byte stopSeq__Q28PSSystem11DirectedBgmFUl
+    .4byte pauseOn__Q28PSSystem7SeqBaseFQ38PSSystem7SeqBase9PauseMode
+    .4byte pauseOff__Q28PSSystem7SeqBaseFv
+    .4byte getCastType__Q28PSSystem10JumpBgmSeqFv
+    .4byte getSeqType__Q28PSSystem6BgmSeqFv
+    .4byte exec__Q23PSM13MiddleBossSeqFv
+    .4byte onPlayingFrame__Q28PSSystem10JumpBgmSeqFv
+    .4byte isPlaying__Q28PSSystem7SeqBaseFv
+    .4byte seqLoadAfter__Q28PSSystem7SeqBaseFv
+    .4byte getHandleP__Q28PSSystem6BgmSeqFv
+    .4byte setConfigVolume__Q28PSSystem7SeqBaseFv
+    .4byte newSeqTrackRoot__Q28PSSystem10JumpBgmSeqFv
+    .4byte
+   newSeqTrackChild__Q28PSSystem11DirectedBgmFUcRQ28PSSystem12SeqTrackRoot
+    .4byte getSeqStartPoint__Q28PSSystem10JumpBgmSeqFv
+    .4byte requestJumpBgmQuickly__Q23PSM13MiddleBossSeqFUs
+    .4byte requestJumpBgmOnBeat__Q23PSM13MiddleBossSeqFUs
+    .4byte requestJumpBgmEveryBeat__Q23PSM13MiddleBossSeqFUs
+    .4byte outputJumpRequest__Q28PSSystem10JumpBgmSeqFv
+    .4byte onJump__Q23PSM10BigBossSeqFUs
+    .4byte jumpCheck__Q23PSM10BigBossSeqFUs
+*/
+
 namespace PSSystem {
 struct DirectedBgm {
 	virtual void _00() = 0;                                      // _00

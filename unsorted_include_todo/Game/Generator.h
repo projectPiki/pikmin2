@@ -1,8 +1,20 @@
 #ifndef _GAME_GENERATOR_H
 #define _GAME_GENERATOR_H
 
+/*
+    __vt__Q24Game9Generator:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__Q24Game9GeneratorFv
+    .4byte getChildCount__5CNodeFv
+    .4byte doAnimation__Q24Game9GeneratorFv
+    .4byte doEntry__Q24Game9GeneratorFv
+    .4byte doSetView__Q24Game9GeneratorFi
+    .4byte doViewCalc__Q24Game9GeneratorFv
+*/
+
 struct CNode {
-	virtual void _00() = 0;       // _00
+	virtual ~CNode();             // _00
 	virtual void getChildCount(); // _04
 
 	// _00 VTBL

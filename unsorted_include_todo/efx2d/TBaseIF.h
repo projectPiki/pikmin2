@@ -1,6 +1,16 @@
 #ifndef _EFX2D_TBASEIF_H
 #define _EFX2D_TBASEIF_H
 
+/*
+    __vt__Q25efx2d7TBaseIF:
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+*/
+
 namespace efx2d {
 struct TBaseIF {
 	virtual void _00() = 0; // _00

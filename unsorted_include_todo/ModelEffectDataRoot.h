@@ -1,8 +1,19 @@
 #ifndef _MODELEFFECTDATAROOT_H
 #define _MODELEFFECTDATAROOT_H
 
+/*
+    __vt__19ModelEffectDataRoot:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__19ModelEffectDataRootFv
+    .4byte getChildCount__5CNodeFv
+    .4byte loadResources__19ModelEffectDataRootFv
+    .4byte getID__19ModelEffectDataRootFv
+    .4byte onCreate__19ModelEffectDataRootFP20ModelEffectCreateArg
+*/
+
 struct CNode {
-	virtual void _00() = 0;       // _00
+	virtual ~CNode();             // _00
 	virtual void getChildCount(); // _04
 
 	// _00 VTBL

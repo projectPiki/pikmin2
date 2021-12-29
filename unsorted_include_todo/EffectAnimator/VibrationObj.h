@@ -1,8 +1,17 @@
 #ifndef _EFFECTANIMATOR_VIBRATIONOBJ_H
 #define _EFFECTANIMATOR_VIBRATIONOBJ_H
 
+/*
+    __vt__Q214EffectAnimator12VibrationObj:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__Q214EffectAnimator12VibrationObjFv
+    .4byte getChildCount__5CNodeFv
+    .4byte update__Q214EffectAnimator12VibrationObjFPQ23efx13TKechappyTestf
+*/
+
 struct CNode {
-	virtual void _00() = 0;       // _00
+	virtual ~CNode();             // _00
 	virtual void getChildCount(); // _04
 
 	// _00 VTBL

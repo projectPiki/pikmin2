@@ -1,6 +1,15 @@
 #ifndef _JGADGET_BINARY_TPARSE_HEADER_BLOCK_H
 #define _JGADGET_BINARY_TPARSE_HEADER_BLOCK_H
 
+/*
+    __vt__Q37JGadget6binary19TParse_header_block:
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+*/
+
 namespace JGadget {
 namespace binary {
 	struct TParse_header_block {

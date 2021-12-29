@@ -1,6 +1,23 @@
 #ifndef _JADUTILITY_DATALOADMGRNODE_H
 #define _JADUTILITY_DATALOADMGRNODE_H
 
+/*
+        __vt__Q210JADUtility15DataLoadMgrNode:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q210JADUtility15DataLoadMgrNodeFv
+        .4byte isTempBuffaMode__Q210JADUtility15DataLoadMgrNodeFv
+        .4byte init__Q210JADUtility15DataLoadMgrNodeFv
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte "@532@28@__dt__Q210JADUtility15DataLoadMgrNodeFv"
+        .4byte "@532@28@init__Q210JADUtility15DataLoadMgrNodeFv"
+*/
+
 namespace JADUtility {
 struct DataLoadMgrNode {
     virtual ~DataLoadMgrNode();     // _00

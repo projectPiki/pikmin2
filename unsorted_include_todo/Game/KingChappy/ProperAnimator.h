@@ -1,6 +1,20 @@
 #ifndef _GAME_KINGCHAPPY_PROPERANIMATOR_H
 #define _GAME_KINGCHAPPY_PROPERANIMATOR_H
 
+/*
+    __vt__Q34Game10KingChappy14ProperAnimator:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__Q34Game10KingChappy14ProperAnimatorFv
+    .4byte setAnimMgr__Q24Game22EnemyBlendAnimatorBaseFPQ28SysShape7AnimMgr
+    .4byte getAnimator__Q24Game22EnemyBlendAnimatorBaseFv
+    .4byte getAnimator__Q24Game22EnemyBlendAnimatorBaseFi
+    .4byte animate__Q24Game22EnemyBlendAnimatorBaseFf
+    .4byte animate__Q24Game22EnemyBlendAnimatorBaseFif
+    .4byte resetAnimSpeed__Q24Game17EnemyAnimatorBaseFv
+    .4byte getTypeID__Q24Game22EnemyBlendAnimatorBaseFv
+*/
+
 namespace Game {
 struct EnemyBlendAnimatorBase {
 	virtual void _00() = 0;                      // _00

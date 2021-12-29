@@ -1,6 +1,16 @@
 #ifndef _EFX2D_T2DSENSORACT_H
 #define _EFX2D_T2DSENSORACT_H
 
+/*
+    __vt__Q25efx2d12T2DSensorAct:
+    .4byte 0
+    .4byte 0
+    .4byte create__Q25efx2d8TSimple2FPQ25efx2d3Arg
+    .4byte kill__Q25efx2d8TSimple2Fv
+    .4byte fade__Q25efx2d8TSimple2Fv
+    .4byte setGroup__Q25efx2d5TBaseFUc
+*/
+
 namespace efx2d {
 struct TSimple2 {
 	virtual void create(Arg*); // _00

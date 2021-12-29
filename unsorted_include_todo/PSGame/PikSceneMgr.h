@@ -1,6 +1,20 @@
 #ifndef _PSGAME_PIKSCENEMGR_H
 #define _PSGAME_PIKSCENEMGR_H
 
+/*
+    __vt__Q26PSGame11PikSceneMgr:
+    .4byte 0
+    .4byte 0
+    .4byte exec__Q28PSSystem8SceneMgrFv
+    .4byte newAndSetCurrentScene__Q26PSGame11PikSceneMgrFRQ26PSGame9SceneInfo
+    .4byte newAndSetGlobalScene__Q26PSGame11PikSceneMgrFv
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte curSceneIsBigBossFloor__Q26PSGame11PikSceneMgrFv
+    .4byte 0
+*/
+
 namespace PSSystem {
 struct SceneMgr {
 	virtual void exec(); // _00

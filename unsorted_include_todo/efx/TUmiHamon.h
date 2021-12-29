@@ -1,6 +1,17 @@
 #ifndef _EFX_TUMIHAMON_H
 #define _EFX_TUMIHAMON_H
 
+/*
+    __vt__Q23efx9TUmiHamon:
+    .4byte 0
+    .4byte 0
+    .4byte "create__Q23efx29TSyncGroup2<Q23efx9TChasePos>FPQ23efx3Arg"
+    .4byte "forceKill__Q23efx29TSyncGroup2<Q23efx9TChasePos>Fv"
+    .4byte "fade__Q23efx29TSyncGroup2<Q23efx9TChasePos>Fv"
+    .4byte "startDemoDrawOff__Q23efx29TSyncGroup2<Q23efx9TChasePos>Fv"
+    .4byte "endDemoDrawOn__Q23efx29TSyncGroup2<Q23efx9TChasePos>Fv"
+*/
+
 namespace efx {
 namespace TSyncGroup2 < efx
 {

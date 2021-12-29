@@ -1,6 +1,81 @@
 #ifndef _GAME_PELLETITEM_MGR_H
 #define _GAME_PELLETITEM_MGR_H
 
+/*
+        __vt__Q34Game10PelletItem3Mgr:
+        .4byte 0
+        .4byte 0
+        .4byte
+   "doAnimation__Q24Game46FixedSizePelletMgr<Q34Game10PelletItem6Object>Fv"
+        .4byte
+   "doEntry__Q24Game46FixedSizePelletMgr<Q34Game10PelletItem6Object>Fv" .4byte
+   "doSetView__Q24Game46FixedSizePelletMgr<Q34Game10PelletItem6Object>Fi" .4byte
+   "doViewCalc__Q24Game46FixedSizePelletMgr<Q34Game10PelletItem6Object>Fv"
+        .4byte
+   "doSimulation__Q24Game46FixedSizePelletMgr<Q34Game10PelletItem6Object>Ff"
+        .4byte
+   "doDirectDraw__Q24Game46FixedSizePelletMgr<Q34Game10PelletItem6Object>FR8Graphics"
+        .4byte doSimpleDraw__16GenericObjectMgrFP8Viewport
+        .4byte loadResources__16GenericObjectMgrFv
+        .4byte
+   "resetMgr__Q24Game46FixedSizePelletMgr<Q34Game10PelletItem6Object>Fv" .4byte
+   pausable__16GenericObjectMgrFv .4byte frozenable__16GenericObjectMgrFv .4byte
+   getMatrixLoadType__16GenericObjectMgrFv .4byte
+   "resetMgrAndResources__Q24Game46FixedSizePelletMgr<Q34Game10PelletItem6Object>Fv"
+        .4byte
+   "birth__Q24Game46FixedSizePelletMgr<Q34Game10PelletItem6Object>Fv" .4byte
+   "kill__Q24Game46FixedSizePelletMgr<Q34Game10PelletItem6Object>FPQ24Game6Pellet"
+        .4byte setupResources__Q34Game10PelletItem3MgrFv
+        .4byte
+   "birthFromTeki__Q24Game46FixedSizePelletMgr<Q34Game10PelletItem6Object>FPQ24Game12PelletConfig"
+        .4byte
+   "setComeAlive__Q24Game46FixedSizePelletMgr<Q34Game10PelletItem6Object>Fi"
+        .4byte
+   "setComeAlive__Q24Game46FixedSizePelletMgr<Q34Game10PelletItem6Object>FPQ24Game6Pellet"
+        .4byte
+   "onCreateModel__Q24Game46FixedSizePelletMgr<Q34Game10PelletItem6Object>FPQ28SysShape5Model"
+        .4byte getMgrName__Q34Game10PelletItem3MgrFv
+        .4byte getMgrID__Q34Game10PelletItem3MgrFv
+        .4byte
+   "setRevival__Q24Game46FixedSizePelletMgr<Q34Game10PelletItem6Object>FPQ24Game6Pellet"
+        .4byte
+   "setFromTeki__Q24Game46FixedSizePelletMgr<Q34Game10PelletItem6Object>FPQ24Game6Pellet"
+        .4byte
+   "getFlag__Q24Game46FixedSizePelletMgr<Q34Game10PelletItem6Object>FPQ24Game6Pellet"
+        .4byte createShape__Q24Game13BasePelletMgrFii
+        .4byte
+   "generatorBirth__Q34Game10PelletItem3MgrFR10Vector3<f>R10Vector3<f>PQ24Game13GenPelletParm"
+        .4byte
+   generatorWrite__Q34Game10PelletItem3MgrFR6StreamPQ24Game13GenPelletParm
+        .4byte
+   generatorRead__Q34Game10PelletItem3MgrFR6StreamPQ24Game13GenPelletParmUl
+        .4byte generatorLocalVersion__Q34Game10PelletItem3MgrFv
+        .4byte generatorGetShape__Q24Game13BasePelletMgrFPQ24Game13GenPelletParm
+        .4byte generatorNewPelletParm__Q34Game10PelletItem3MgrFv
+        .4byte
+   "getObjectPtr__Q24Game46FixedSizePelletMgr<Q34Game10PelletItem6Object>FPv"
+        .4byte
+   "getNext__Q24Game46FixedSizePelletMgr<Q34Game10PelletItem6Object>FPv" .4byte
+   "getStart__Q24Game46FixedSizePelletMgr<Q34Game10PelletItem6Object>Fv" .4byte
+   "getEnd__Q24Game46FixedSizePelletMgr<Q34Game10PelletItem6Object>Fv" .4byte 0
+        .4byte 0
+        .4byte "@84@__dt__Q34Game10PelletItem3MgrFv"
+        .4byte getChildCount__5CNodeFv
+        .4byte "getObject__37Container<Q34Game10PelletItem6Object>FPv"
+        .4byte
+   "@84@getNext__Q24Game46FixedSizePelletMgr<Q34Game10PelletItem6Object>FPv"
+        .4byte
+   "@84@getStart__Q24Game46FixedSizePelletMgr<Q34Game10PelletItem6Object>Fv"
+        .4byte
+   "@84@getEnd__Q24Game46FixedSizePelletMgr<Q34Game10PelletItem6Object>Fv"
+        .4byte
+   "@84@get__Q24Game46FixedSizePelletMgr<Q34Game10PelletItem6Object>FPv" .4byte
+   "getAt__37Container<Q34Game10PelletItem6Object>Fi" .4byte
+   "getTo__37Container<Q34Game10PelletItem6Object>Fv" .4byte
+   "get__Q24Game46FixedSizePelletMgr<Q34Game10PelletItem6Object>FPv" .4byte
+   __dt__Q34Game10PelletItem3MgrFv
+*/
+
 namespace Game {
 namespace FixedSizePelletMgr < Game
 {
@@ -212,10 +287,6 @@ namespace PelletItem {
         virtual void @84 @__dt();                              // _98
         virtual void getChildCount();                          // _9C
         virtual void getObject(void*);                         // _A0
-        virtual void _A4() = 0;                                // _A4
-        virtual void _A8() = 0;                                // _A8
-        virtual void _AC() = 0;                                // _AC
-        virtual void _B0() = 0;                                // _B0
         virtual void getAt(int);                               // _B4
         virtual void getTo();                                  // _B8
         virtual void FixedSizePelletMgr < get(void*);          // _BC

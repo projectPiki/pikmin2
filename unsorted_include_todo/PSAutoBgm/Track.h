@@ -1,6 +1,23 @@
 #ifndef _PSAUTOBGM_TRACK_H
 #define _PSAUTOBGM_TRACK_H
 
+/*
+    __vt__Q29PSAutoBgm5Track:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__Q29PSAutoBgm5TrackFv
+    .4byte appendAfter__Q210JADUtility10PrmSetBaseFv
+    .4byte
+   "load__Q210JADUtility29PrmSetRc<Q29PSAutoBgm6Module>FR20JSUMemoryInputStream"
+    .4byte
+   afterRemovingChildButton__Q210JADUtility10PrmSetBaseFPQ210JADUtility10PrmSetBase
+    .4byte
+   afterRemovingThisButton__Q210JADUtility10PrmSetBaseFPQ210JADUtility10PrmSetBase
+    .4byte getEraseLink__Q210JADUtility10PrmSetBaseFv
+    .4byte afterGetFromFree__Q29PSAutoBgm5TrackFv
+    .4byte "getPrmObjHeap__Q210JADUtility29PrmSetRc<Q29PSAutoBgm6Module>Fv"
+*/
+
 namespace JADUtility {
 struct PrmSetBase {
 	virtual void _00() = 0;                             // _00

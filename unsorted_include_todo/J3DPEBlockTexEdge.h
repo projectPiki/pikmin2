@@ -1,15 +1,50 @@
 #ifndef _J3DPEBLOCKTEXEDGE_H
 #define _J3DPEBLOCKTEXEDGE_H
 
+/*
+    __vt__17J3DPEBlockTexEdge:
+    .4byte 0
+    .4byte 0
+    .4byte reset__10J3DPEBlockFP10J3DPEBlock
+    .4byte load__17J3DPEBlockTexEdgeFv
+    .4byte patch__10J3DPEBlockFv
+    .4byte diff__10J3DPEBlockFUl
+    .4byte diffFog__10J3DPEBlockFv
+    .4byte diffBlend__10J3DPEBlockFv
+    .4byte countDLSize__17J3DPEBlockTexEdgeFv
+    .4byte getType__17J3DPEBlockTexEdgeFv
+    .4byte setFog__10J3DPEBlockF6J3DFog
+    .4byte setFog__10J3DPEBlockFP6J3DFog
+    .4byte getFog__10J3DPEBlockFv
+    .4byte setAlphaComp__10J3DPEBlockFPC12J3DAlphaComp
+    .4byte setAlphaComp__10J3DPEBlockFRC12J3DAlphaComp
+    .4byte getAlphaComp__10J3DPEBlockFv
+    .4byte setBlend__10J3DPEBlockFPC8J3DBlend
+    .4byte setBlend__10J3DPEBlockFRC8J3DBlend
+    .4byte getBlend__10J3DPEBlockFv
+    .4byte setZMode__10J3DPEBlockFPC8J3DZMode
+    .4byte setZMode__10J3DPEBlockF8J3DZMode
+    .4byte getZMode__10J3DPEBlockFv
+    .4byte setZCompLoc__10J3DPEBlockFPCUc
+    .4byte setZCompLoc__10J3DPEBlockFUc
+    .4byte getZCompLoc__10J3DPEBlockCFv
+    .4byte setDither__10J3DPEBlockFPCUc
+    .4byte setDither__10J3DPEBlockFUc
+    .4byte getDither__10J3DPEBlockCFv
+    .4byte getFogOffset__10J3DPEBlockCFv
+    .4byte setFogOffset__10J3DPEBlockFUl
+    .4byte __dt__17J3DPEBlockTexEdgeFv
+*/
+
 struct J3DPEBlock {
 	virtual void reset(J3DPEBlock*);                // _00
-	virtual void _04() = 0;                         // _04
+	virtual void load();                            // _04
 	virtual void patch();                           // _08
 	virtual void diff(unsigned long);               // _0C
 	virtual void diffFog();                         // _10
 	virtual void diffBlend();                       // _14
-	virtual void _18() = 0;                         // _18
-	virtual void _1C() = 0;                         // _1C
+	virtual void countDLSize();                     // _18
+	virtual void getType();                         // _1C
 	virtual void setFog(J3DFog);                    // _20
 	virtual void setFog(J3DFog*);                   // _24
 	virtual void getFog();                          // _28

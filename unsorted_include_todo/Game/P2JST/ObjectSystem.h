@@ -1,6 +1,44 @@
 #ifndef _GAME_P2JST_OBJECTSYSTEM_H
 #define _GAME_P2JST_OBJECTSYSTEM_H
 
+/*
+        __vt__Q34Game5P2JST12ObjectSystem:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q34Game5P2JST12ObjectSystemFv
+        .4byte JSGFGetType__Q26JStage7TSystemCFv
+        .4byte JSGGetName__Q34Game5P2JST12ObjectSystemCFv
+        .4byte JSGUpdate__Q26JStage7TObjectFv
+        .4byte JSGGetFlag__Q34Game5P2JST12ObjectSystemCFv
+        .4byte JSGSetFlag__Q34Game5P2JST12ObjectSystemFUl
+        .4byte JSGGetData__Q26JStage7TObjectCFUlPvUl
+        .4byte JSGSetData__Q34Game5P2JST12ObjectSystemFUlPCvUl
+        .4byte JSGGetParent__Q26JStage7TObjectCFPPQ26JStage7TObjectPUl
+        .4byte JSGSetParent__Q26JStage7TObjectFPQ26JStage7TObjectUl
+        .4byte JSGSetRelation__Q26JStage7TObjectFbPQ26JStage7TObjectUl
+        .4byte JSGFindNodeID__Q26JStage7TObjectCFPCc
+        .4byte JSGGetNodeTransformation__Q26JStage7TObjectCFUlPA4_f
+        .4byte
+   JSGFindObject__Q34Game5P2JST12ObjectSystemCFPPQ26JStage7TObjectPCcQ26JStage8TEObject
+        .4byte JSGCreateObject__Q26JStage7TSystemFPCcQ26JStage8TEObjectUl
+        .4byte JSGDestroyObject__Q26JStage7TSystemFPQ26JStage7TObject
+        .4byte JSGGetSystemData__Q26JStage7TSystemFUl
+        .4byte JSGSetSystemData__Q26JStage7TSystemFUlUl
+        .4byte 0
+        .4byte 0
+        .4byte "@4@reset__Q34Game5P2JST12ObjectSystemFv"
+        .4byte "@4@update__Q34Game5P2JST12ObjectSystemFv"
+        .4byte "@4@start__Q34Game5P2JST12ObjectSystemFv"
+        .4byte "@4@stop__Q34Game5P2JST12ObjectSystemFv"
+        .4byte parseUserData___Q34Game5P2JST10ObjectBaseFUlPCv
+        .4byte reset__Q34Game5P2JST12ObjectSystemFv
+        .4byte update__Q34Game5P2JST12ObjectSystemFv
+        .4byte entry__Q34Game5P2JST12ObjectSystemFv
+        .4byte start__Q34Game5P2JST12ObjectSystemFv
+        .4byte stop__Q34Game5P2JST12ObjectSystemFv
+        .4byte 0
+*/
+
 namespace JStage {
 struct TSystem {
     virtual void _00() = 0;                                             // _00

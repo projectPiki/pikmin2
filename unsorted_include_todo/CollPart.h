@@ -1,6 +1,23 @@
 #ifndef _COLLPART_H
 #define _COLLPART_H
 
+/*
+    __vt__8CollPart:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__8CollPartFv
+    .4byte getChildCount__8CollPartFv
+    .4byte isMouth__8CollPartFv
+    .4byte draw__8CollPartFR8Graphics
+    .4byte constructor__8CollPartFv
+    .4byte doAnimation__8CollPartFv
+    .4byte doEntry__8CollPartFv
+    .4byte doSetView__8CollPartFUl
+    .4byte doViewCalc__8CollPartFv
+    .4byte doSimulation__8CollPartFf
+    .4byte doDirectDraw__8CollPartFR8Graphics
+*/
+
 struct CollPart {
 	virtual ~CollPart();                   // _00
 	virtual void getChildCount();          // _04

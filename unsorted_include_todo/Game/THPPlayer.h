@@ -1,11 +1,26 @@
 #ifndef _GAME_THPPLAYER_H
 #define _GAME_THPPLAYER_H
 
+/*
+        __vt__Q24Game9THPPlayer:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q24Game9THPPlayerFv
+        .4byte 0
+        .4byte 0
+        .4byte "@24@__dt__Q24Game9THPPlayerFv"
+        .4byte getChildCount__5CNodeFv
+        .4byte update__Q24Game9THPPlayerFv
+        .4byte draw__Q24Game9THPPlayerFR8Graphics
+        .4byte draw__Q24Game9THPPlayerFR8GraphicsllUlUl
+        .4byte draw__Q24Game9THPPlayerFR8Graphicsllf
+*/
+
 struct CNode {
-    virtual void _00() = 0;       // _00
+    virtual ~CNode();             // _00
     virtual void _04() = 0;       // _04
     virtual void _08() = 0;       // _08
-    virtual void _0C() = 0;       // _0C
+    virtual void @24 @__dt();     // _0C
     virtual void getChildCount(); // _10
 
     // _00 VTBL

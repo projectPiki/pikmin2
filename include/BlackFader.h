@@ -3,11 +3,14 @@
 
 struct BlackFader {
 	BlackFader();
-	~BlackFader();
-
-	void do_draw(float);
-	void isBlack();
-	void isWhite();
+	virtual ~BlackFader();        // _00
+	virtual void getChildCount(); // _04
+	virtual void update();        // _08
+	virtual void draw();          // _0C
+	virtual bool isWhite();       // _10
+	virtual bool isBlack();       // _14
+	virtual void on_start();      // _18
+	virtual void do_draw(float);  // _1C
 };
 
 #endif

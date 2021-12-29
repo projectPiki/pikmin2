@@ -1,6 +1,42 @@
 #ifndef _GAME_SEAMGR_H
 #define _GAME_SEAMGR_H
 
+/*
+    __vt__Q24Game6SeaMgr:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__Q24Game6SeaMgrFv
+    .4byte getChildCount__5CNodeFv
+    .4byte "getObject__27Container<Q24Game8WaterBox>FPv"
+    .4byte "getNext__31NodeObjectMgr<Q24Game8WaterBox>FPv"
+    .4byte "getStart__31NodeObjectMgr<Q24Game8WaterBox>Fv"
+    .4byte "getEnd__31NodeObjectMgr<Q24Game8WaterBox>Fv"
+    .4byte "get__31NodeObjectMgr<Q24Game8WaterBox>FPv"
+    .4byte "getAt__27Container<Q24Game8WaterBox>Fi"
+    .4byte "getTo__27Container<Q24Game8WaterBox>Fv"
+    .4byte 0
+    .4byte 0
+    .4byte "@28@doAnimation__27ObjectMgr<Q24Game8WaterBox>Fv"
+    .4byte "@28@doEntry__27ObjectMgr<Q24Game8WaterBox>Fv"
+    .4byte "@28@doSetView__27ObjectMgr<Q24Game8WaterBox>Fi"
+    .4byte "@28@doViewCalc__27ObjectMgr<Q24Game8WaterBox>Fv"
+    .4byte "@28@doSimulation__27ObjectMgr<Q24Game8WaterBox>Ff"
+    .4byte "@28@doDirectDraw__27ObjectMgr<Q24Game8WaterBox>FR8Graphics"
+    .4byte doSimpleDraw__16GenericObjectMgrFP8Viewport
+    .4byte loadResources__16GenericObjectMgrFv
+    .4byte "@28@resetMgr__31NodeObjectMgr<Q24Game8WaterBox>Fv"
+    .4byte pausable__16GenericObjectMgrFv
+    .4byte frozenable__16GenericObjectMgrFv
+    .4byte getMatrixLoadType__16GenericObjectMgrFv
+    .4byte "doAnimation__27ObjectMgr<Q24Game8WaterBox>Fv"
+    .4byte "doEntry__27ObjectMgr<Q24Game8WaterBox>Fv"
+    .4byte "doSetView__27ObjectMgr<Q24Game8WaterBox>Fi"
+    .4byte "doViewCalc__27ObjectMgr<Q24Game8WaterBox>Fv"
+    .4byte "doSimulation__27ObjectMgr<Q24Game8WaterBox>Ff"
+    .4byte "doDirectDraw__27ObjectMgr<Q24Game8WaterBox>FR8Graphics"
+    .4byte "resetMgr__31NodeObjectMgr<Q24Game8WaterBox>Fv"
+*/
+
 struct CNode {
 	virtual void _00() = 0;       // _00
 	virtual void getChildCount(); // _04
@@ -88,15 +124,8 @@ struct SeaMgr : public CNode, public WaterBox >, public GenericObjectMgr {
 	virtual void getTo();                 // _20
 	virtual void _24() = 0;               // _24
 	virtual void _28() = 0;               // _28
-	virtual void _2C() = 0;               // _2C
-	virtual void _30() = 0;               // _30
-	virtual void _34() = 0;               // _34
-	virtual void _38() = 0;               // _38
-	virtual void _3C() = 0;               // _3C
-	virtual void _40() = 0;               // _40
 	virtual void doSimpleDraw(Viewport*); // _44
 	virtual void loadResources();         // _48
-	virtual void _4C() = 0;               // _4C
 	virtual void pausable();              // _50
 	virtual void frozenable();            // _54
 	virtual void getMatrixLoadType();     // _58

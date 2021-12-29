@@ -1,8 +1,17 @@
 #ifndef _J2DANMCOLORFULL_H
 #define _J2DANMCOLORFULL_H
 
+/*
+    __vt__15J2DAnmColorFull:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__15J2DAnmColorFullFv
+    .4byte searchUpdateMaterialID__11J2DAnmColorFP9J2DScreen
+    .4byte getColor__15J2DAnmColorFullCFUsP8_GXColor
+*/
+
 struct J2DAnmColor {
-	virtual void _00() = 0;                          // _00
+	virtual ~J2DAnmColor();                          // _00
 	virtual void searchUpdateMaterialID(J2DScreen*); // _04
 
 	// _00 VTBL

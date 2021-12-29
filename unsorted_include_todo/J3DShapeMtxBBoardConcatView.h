@@ -1,6 +1,20 @@
 #ifndef _J3DSHAPEMTXBBOARDCONCATVIEW_H
 #define _J3DSHAPEMTXBBOARDCONCATVIEW_H
 
+/*
+    __vt__27J3DShapeMtxBBoardConcatView:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__27J3DShapeMtxBBoardConcatViewFv
+    .4byte getType__27J3DShapeMtxBBoardConcatViewCFv
+    .4byte getUseMtxNum__11J3DShapeMtxCFv
+    .4byte getUseMtxIndex__11J3DShapeMtxCFUs
+    .4byte load__27J3DShapeMtxBBoardConcatViewCFv
+    .4byte calcNBTScale__11J3DShapeMtxFRC3VecPA3_A3_fPA3_A3_f
+    .4byte loadNrmMtx__21J3DShapeMtxConcatViewCFiUs
+    .4byte loadNrmMtx__21J3DShapeMtxConcatViewCFiUsPA4_f
+*/
+
 struct J3DShapeMtx {
 	virtual void _00() = 0;                            // _00
 	virtual void _04() = 0;                            // _04

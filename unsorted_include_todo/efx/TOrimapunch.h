@@ -1,6 +1,23 @@
 #ifndef _EFX_TORIMAPUNCH_H
 #define _EFX_TORIMAPUNCH_H
 
+/*
+    __vt__Q23efx11TOrimapunch:
+    .4byte 0
+    .4byte 0
+    .4byte create__Q23efx8TSimple1FPQ23efx3Arg
+    .4byte forceKill__Q23efx8TSimple1Fv
+    .4byte fade__Q23efx8TSimple1Fv
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+*/
+
 namespace efx {
 struct TSimple1 {
 	virtual void create(Arg*); // _00

@@ -1,6 +1,17 @@
 #ifndef _JSUINPUTSTREAM_H
 #define _JSUINPUTSTREAM_H
 
+/*
+    __vt__14JSUInputStream:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__14JSUInputStreamFv
+    .4byte 0
+    .4byte skip__14JSUInputStreamFl
+    .4byte 0
+    .4byte 0
+*/
+
 struct JSUInputStream {
 	virtual ~JSUInputStream(); // _00
 	virtual void _04() = 0;    // _04

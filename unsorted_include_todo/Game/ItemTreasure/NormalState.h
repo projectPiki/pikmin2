@@ -1,19 +1,46 @@
 #ifndef _GAME_ITEMTREASURE_NORMALSTATE_H
 #define _GAME_ITEMTREASURE_NORMALSTATE_H
 
+/*
+    __vt__Q34Game12ItemTreasure11NormalState:
+    .4byte 0
+    .4byte 0
+    .4byte
+   init__Q34Game12ItemTreasure11NormalStateFPQ34Game12ItemTreasure4ItemPQ24Game8StateArg
+    .4byte exec__Q34Game12ItemTreasure11NormalStateFPQ34Game12ItemTreasure4Item
+    .4byte
+   cleanup__Q34Game12ItemTreasure11NormalStateFPQ34Game12ItemTreasure4Item
+    .4byte
+   "resume__Q24Game36FSMState<Q34Game12ItemTreasure4Item>FPQ34Game12ItemTreasure4Item"
+    .4byte
+   "restart__Q24Game36FSMState<Q34Game12ItemTreasure4Item>FPQ34Game12ItemTreasure4Item"
+    .4byte
+   "transit__Q24Game36FSMState<Q34Game12ItemTreasure4Item>FPQ34Game12ItemTreasure4ItemiPQ24Game8StateArg"
+    .4byte
+   onDamage__Q34Game12ItemTreasure11NormalStateFPQ34Game12ItemTreasure4Itemf
+    .4byte
+   "onKeyEvent__Q24Game37ItemState<Q34Game12ItemTreasure4Item>FPQ34Game12ItemTreasure4ItemRCQ28SysShape8KeyEvent"
+    .4byte
+   "onBounce__Q24Game37ItemState<Q34Game12ItemTreasure4Item>FPQ34Game12ItemTreasure4ItemPQ23Sys8Triangle"
+    .4byte
+   "onPlatCollision__Q24Game37ItemState<Q34Game12ItemTreasure4Item>FPQ34Game12ItemTreasure4ItemRQ24Game9PlatEvent"
+    .4byte
+   "onCollision__Q24Game37ItemState<Q34Game12ItemTreasure4Item>FPQ34Game12ItemTreasure4ItemRQ24Game9CollEvent"
+*/
+
 namespace Game {
 namespace FSMState < Game
 {
 	namespace ItemTreasure {
 		struct Item >
 		{
-			virtual void _00() = 0;                                 // _00
-			virtual void _04() = 0;                                 // _04
-			virtual void _08() = 0;                                 // _08
+			virtual void init(Item*, StateArg*);                    // _00
+			virtual void exec(Item*);                               // _04
+			virtual void cleanup(Item*);                            // _08
 			virtual void FSMState < resume(Item*);                  // _0C
 			virtual void FSMState < restart(Item*);                 // _10
 			virtual void FSMState < transit(Item*, int, StateArg*); // _14
-			virtual void _18() = 0;                                 // _18
+			virtual void onDamage(Item*, float);                    // _18
 			virtual void ItemState
 			    < onKeyEvent(Item*, const SysShape::KeyEvent&);          // _1C
 			virtual void ItemState < onBounce(Item*, Sys::Triangle*);    // _20

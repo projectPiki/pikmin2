@@ -1,8 +1,24 @@
 #ifndef _GAME_PARTSVIEW_H
 #define _GAME_PARTSVIEW_H
 
+/*
+    __vt__Q24Game9PartsView:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__Q24Game9PartsViewFv
+    .4byte getChildCount__5CNodeFv
+    .4byte constructor__Q24Game9PartsViewFv
+    .4byte doAnimation__Q24Game9PartsViewFv
+    .4byte doEntry__Q24Game9PartsViewFv
+    .4byte doSetView__Q24Game9PartsViewFi
+    .4byte doViewCalc__Q24Game9PartsViewFv
+    .4byte doSimulation__Q24Game9PartsViewFf
+    .4byte doDirectDraw__Q24Game9PartsViewFR8Graphics
+    .4byte 0
+*/
+
 struct CNode {
-	virtual void _00() = 0;       // _00
+	virtual ~CNode();             // _00
 	virtual void getChildCount(); // _04
 
 	// _00 VTBL

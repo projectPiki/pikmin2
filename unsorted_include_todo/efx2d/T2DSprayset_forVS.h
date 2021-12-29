@@ -1,6 +1,16 @@
 #ifndef _EFX2D_T2DSPRAYSET_FORVS_H
 #define _EFX2D_T2DSPRAYSET_FORVS_H
 
+/*
+    __vt__Q25efx2d17T2DSprayset_forVS:
+    .4byte 0
+    .4byte 0
+    .4byte create__Q25efx2d17T2DSprayset_forVSFPQ25efx2d3Arg
+    .4byte kill__Q25efx2d8TSimple2Fv
+    .4byte fade__Q25efx2d8TSimple2Fv
+    .4byte setGroup__Q25efx2d5TBaseFUc
+*/
+
 namespace efx2d {
 struct TSimple2 {
 	virtual void _00() = 0; // _00

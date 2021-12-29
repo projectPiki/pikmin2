@@ -1,9 +1,27 @@
 #ifndef _PSM_SWITCHERDIRECTOR_H
 #define _PSM_SWITCHERDIRECTOR_H
 
+/*
+    __vt__Q23PSM16SwitcherDirector:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__Q23PSM16SwitcherDirectorFv
+    .4byte exec__Q28PSSystem12DirectorBaseFv
+    .4byte directOn__Q28PSSystem12DirectorBaseFv
+    .4byte directOff__Q28PSSystem12DirectorBaseFv
+    .4byte underDirection__Q28PSSystem12DirectorBaseFv
+    .4byte execInner__Q28PSSystem12DirectorBaseFv
+    .4byte 0
+    .4byte 0
+    .4byte doUpdateRequest__Q28PSSystem16SwitcherDirectorFv
+    .4byte onPlayInit__Q28PSSystem12DirectorBaseFP8JASTrack
+    .4byte onDirectOn__Q28PSSystem12DirectorBaseFv
+    .4byte onDirectOff__Q28PSSystem12DirectorBaseFv
+*/
+
 namespace PSSystem {
 struct DirectorBase {
-	virtual void _00() = 0;             // _00
+	virtual ~DirectorBase();            // _00
 	virtual void exec();                // _04
 	virtual void directOn();            // _08
 	virtual void directOff();           // _0C
@@ -11,7 +29,7 @@ struct DirectorBase {
 	virtual void execInner();           // _14
 	virtual void _18() = 0;             // _18
 	virtual void _1C() = 0;             // _1C
-	virtual void _20() = 0;             // _20
+	virtual void doUpdateRequest();     // _20
 	virtual void onPlayInit(JASTrack*); // _24
 	virtual void onDirectOn();          // _28
 	virtual void onDirectOff();         // _2C

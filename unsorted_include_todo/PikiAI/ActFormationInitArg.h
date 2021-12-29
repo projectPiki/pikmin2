@@ -1,6 +1,51 @@
 #ifndef _PIKIAI_ACTFORMATIONINITARG_H
 #define _PIKIAI_ACTFORMATIONINITARG_H
 
+/*
+    __vt__Q26PikiAI19ActFormationInitArg:
+    .4byte 0
+    .4byte 0
+    .4byte getName__Q26PikiAI17CreatureActionArgFv
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+*/
+
 namespace PikiAI {
 struct CreatureActionArg {
 	virtual void getName(); // _00

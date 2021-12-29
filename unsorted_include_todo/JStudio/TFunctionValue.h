@@ -1,6 +1,18 @@
 #ifndef _JSTUDIO_TFUNCTIONVALUE_H
 #define _JSTUDIO_TFUNCTIONVALUE_H
 
+/*
+    __vt__Q27JStudio14TFunctionValue:
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+*/
+
 namespace JStudio {
 struct TFunctionValue {
 	virtual void _00() = 0; // _00

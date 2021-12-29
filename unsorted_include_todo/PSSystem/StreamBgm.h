@@ -1,20 +1,41 @@
 #ifndef _PSSYSTEM_STREAMBGM_H
 #define _PSSYSTEM_STREAMBGM_H
 
+/*
+    __vt__Q28PSSystem9StreamBgm:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__Q28PSSystem9StreamBgmFv
+    .4byte init__Q28PSSystem9StreamBgmFv
+    .4byte scene1st__Q28PSSystem9StreamBgmFPQ28PSSystem11TaskChecker
+    .4byte startSeq__Q28PSSystem9StreamBgmFv
+    .4byte stopSeq__Q28PSSystem7SeqBaseFUl
+    .4byte pauseOn__Q28PSSystem7SeqBaseFQ38PSSystem7SeqBase9PauseMode
+    .4byte pauseOff__Q28PSSystem7SeqBaseFv
+    .4byte getCastType__Q28PSSystem9StreamBgmFv
+    .4byte getSeqType__Q28PSSystem9StreamBgmFv
+    .4byte exec__Q28PSSystem7SeqBaseFv
+    .4byte onPlayingFrame__Q28PSSystem7SeqBaseFv
+    .4byte isPlaying__Q28PSSystem9StreamBgmFv
+    .4byte seqLoadAfter__Q28PSSystem7SeqBaseFv
+    .4byte getHandleP__Q28PSSystem9StreamBgmFv
+    .4byte setConfigVolume__Q28PSSystem9StreamBgmFv
+*/
+
 namespace PSSystem {
 struct SeqBase {
-	virtual void _00() = 0;              // _00
-	virtual void _04() = 0;              // _04
-	virtual void _08() = 0;              // _08
-	virtual void _0C() = 0;              // _0C
+	virtual ~SeqBase();                  // _00
+	virtual void init();                 // _04
+	virtual void scene1st(TaskChecker*); // _08
+	virtual void startSeq();             // _0C
 	virtual void stopSeq(unsigned long); // _10
 	virtual void pauseOn(PauseMode);     // _14
 	virtual void pauseOff();             // _18
-	virtual void _1C() = 0;              // _1C
-	virtual void _20() = 0;              // _20
+	virtual void getCastType();          // _1C
+	virtual void getSeqType();           // _20
 	virtual void exec();                 // _24
 	virtual void onPlayingFrame();       // _28
-	virtual void _2C() = 0;              // _2C
+	virtual void isPlaying();            // _2C
 	virtual void seqLoadAfter();         // _30
 
 	// _00 VTBL

@@ -1,6 +1,19 @@
 #ifndef _JSURANDOMINPUTSTREAM_H
 #define _JSURANDOMINPUTSTREAM_H
 
+/*
+    __vt__20JSURandomInputStream:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__20JSURandomInputStreamFv
+    .4byte getAvailable__20JSURandomInputStreamCFv
+    .4byte skip__20JSURandomInputStreamFl
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+*/
+
 struct JSURandomInputStream {
 	virtual ~JSURandomInputStream();   // _00
 	virtual void getAvailable() const; // _04

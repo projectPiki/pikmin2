@@ -1,6 +1,17 @@
 #ifndef _EFX_TQUEENDEAD_H
 #define _EFX_TQUEENDEAD_H
 
+/*
+    __vt__Q23efx10TQueenDead:
+    .4byte 0
+    .4byte 0
+    .4byte "create__Q23efx29TSyncGroup4<Q23efx9TChaseMtx>FPQ23efx3Arg"
+    .4byte "forceKill__Q23efx29TSyncGroup4<Q23efx9TChaseMtx>Fv"
+    .4byte "fade__Q23efx29TSyncGroup4<Q23efx9TChaseMtx>Fv"
+    .4byte "startDemoDrawOff__Q23efx29TSyncGroup4<Q23efx9TChaseMtx>Fv"
+    .4byte "endDemoDrawOn__Q23efx29TSyncGroup4<Q23efx9TChaseMtx>Fv"
+*/
+
 namespace efx {
 namespace TSyncGroup4 < efx
 {

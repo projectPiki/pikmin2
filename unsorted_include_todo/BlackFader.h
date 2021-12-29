@@ -1,6 +1,20 @@
 #ifndef _BLACKFADER_H
 #define _BLACKFADER_H
 
+/*
+    __vt__10BlackFader:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__10BlackFaderFv
+    .4byte getChildCount__5CNodeFv
+    .4byte update__8WipeBaseFv
+    .4byte draw__8WipeBaseFv
+    .4byte isWhite__10BlackFaderFv
+    .4byte isBlack__10BlackFaderFv
+    .4byte on_start__8WipeBaseFv
+    .4byte do_draw__10BlackFaderFf
+*/
+
 struct CNode {
 	virtual void _00() = 0;       // _00
 	virtual void getChildCount(); // _04

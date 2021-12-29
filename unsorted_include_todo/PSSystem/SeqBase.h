@@ -1,6 +1,27 @@
 #ifndef _PSSYSTEM_SEQBASE_H
 #define _PSSYSTEM_SEQBASE_H
 
+/*
+    __vt__Q28PSSystem7SeqBase:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__Q28PSSystem7SeqBaseFv
+    .4byte init__Q28PSSystem7SeqBaseFv
+    .4byte scene1st__Q28PSSystem7SeqBaseFPQ28PSSystem11TaskChecker
+    .4byte startSeq__Q28PSSystem7SeqBaseFv
+    .4byte stopSeq__Q28PSSystem7SeqBaseFUl
+    .4byte pauseOn__Q28PSSystem7SeqBaseFQ38PSSystem7SeqBase9PauseMode
+    .4byte pauseOff__Q28PSSystem7SeqBaseFv
+    .4byte 0
+    .4byte 0
+    .4byte exec__Q28PSSystem7SeqBaseFv
+    .4byte onPlayingFrame__Q28PSSystem7SeqBaseFv
+    .4byte isPlaying__Q28PSSystem7SeqBaseFv
+    .4byte seqLoadAfter__Q28PSSystem7SeqBaseFv
+    .4byte 0
+    .4byte setConfigVolume__Q28PSSystem7SeqBaseFv
+*/
+
 namespace PSSystem {
 struct SeqBase {
 	virtual ~SeqBase();                  // _00

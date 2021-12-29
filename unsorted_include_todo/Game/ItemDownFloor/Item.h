@@ -1,6 +1,152 @@
 #ifndef _GAME_ITEMDOWNFLOOR_ITEM_H
 #define _GAME_ITEMDOWNFLOOR_ITEM_H
 
+/*
+        __vt__Q34Game13ItemDownFloor4Item:
+        .4byte 0
+        .4byte 0
+        .4byte getPosition__Q24Game8BaseItemFv
+        .4byte checkCollision__Q24Game8CreatureFPQ24Game10CellObject
+        .4byte getBoundingSphere__Q24Game8BaseItemFRQ23Sys6Sphere
+        .4byte collisionUpdatable__Q24Game8CreatureFv
+        .4byte isPiki__Q24Game8CreatureFv
+        .4byte isNavi__Q24Game8CreatureFv
+        .4byte deferPikiCollision__Q24Game10CellObjectFv
+        .4byte getTypeName__Q24Game8CreatureFv
+        .4byte getObjType__Q24Game8CreatureFv
+        .4byte constructor__Q34Game13ItemDownFloor4ItemFv
+        .4byte onInit__Q34Game13ItemDownFloor4ItemFPQ24Game15CreatureInitArg
+        .4byte onKill__Q24Game8CreatureFPQ24Game15CreatureKillArg
+        .4byte onInitPost__Q24Game8CreatureFPQ24Game15CreatureInitArg
+        .4byte doAnimation__Q24Game8BaseItemFv
+        .4byte doEntry__Q24Game8BaseItemFv
+        .4byte doSetView__Q24Game8CreatureFi
+        .4byte doViewCalc__Q24Game8CreatureFv
+        .4byte doSimulation__Q24Game8BaseItemFf
+        .4byte doDirectDraw__Q24Game8CreatureFR8Graphics
+        .4byte getBodyRadius__Q24Game8CreatureFv
+        .4byte getCellRadius__Q24Game8CreatureFv
+        .4byte "initPosition__Q24Game8CreatureFR10Vector3<f>"
+        .4byte "onInitPosition__Q24Game8CreatureFR10Vector3<f>"
+        .4byte getFaceDir__Q34Game13ItemDownFloor4ItemFv
+        .4byte "setVelocity__Q24Game8BaseItemFR10Vector3<f>"
+        .4byte getVelocity__Q24Game8BaseItemFv
+        .4byte "onSetPosition__Q24Game8BaseItemFR10Vector3<f>"
+        .4byte "onSetPositionPost__Q24Game8CreatureFR10Vector3<f>"
+        .4byte updateTrMatrix__Q24Game8BaseItemFv
+        .4byte isTeki__Q24Game8CreatureFv
+        .4byte isPellet__Q24Game8CreatureFv
+        .4byte inWaterCallback__Q24Game8CreatureFPQ24Game8WaterBox
+        .4byte outWaterCallback__Q24Game8CreatureFv
+        .4byte inWater__Q24Game8CreatureFv
+        .4byte getFlockMgr__Q24Game8CreatureFv
+        .4byte onStartCapture__Q24Game8CreatureFv
+        .4byte onUpdateCapture__Q24Game8CreatureFR7Matrixf
+        .4byte onEndCapture__Q24Game8CreatureFv
+        .4byte isAtari__Q24Game8CreatureFv
+        .4byte setAtari__Q24Game8CreatureFb
+        .4byte isAlive__Q24Game8CreatureFv
+        .4byte setAlive__Q24Game8CreatureFb
+        .4byte isCollisionFlick__Q24Game8CreatureFv
+        .4byte setCollisionFlick__Q24Game8CreatureFb
+        .4byte isMovieActor__Q24Game8CreatureFv
+        .4byte isMovieExtra__Q24Game8CreatureFv
+        .4byte isMovieMotion__Q24Game8CreatureFv
+        .4byte setMovieMotion__Q24Game8CreatureFb
+        .4byte isBuried__Q24Game8CreatureFv
+        .4byte isFlying__Q24Game8CreatureFv
+        .4byte isUnderground__Q24Game8CreatureFv
+        .4byte isLivingThing__Q24Game8CreatureFv
+        .4byte isDebugCollision__Q24Game8CreatureFv
+        .4byte setDebugCollision__Q24Game8CreatureFb
+        .4byte doSave__Q34Game13ItemDownFloor4ItemFR6Stream
+        .4byte doLoad__Q34Game13ItemDownFloor4ItemFR6Stream
+        .4byte
+   "bounceCallback__Q24Game92FSMItem<Q34Game13ItemDownFloor4Item,Q34Game13ItemDownFloor3FSM,Q34Game13ItemDownFloor5State>FPQ23Sys8Triangle"
+        .4byte
+   "collisionCallback__Q24Game92FSMItem<Q34Game13ItemDownFloor4Item,Q34Game13ItemDownFloor3FSM,Q34Game13ItemDownFloor5State>FRQ24Game9CollEvent"
+        .4byte platCallback__Q34Game13ItemDownFloor4ItemFRQ24Game9PlatEvent
+        .4byte getJAIObject__Q24Game8BaseItemFv
+        .4byte getPSCreature__Q24Game8BaseItemFv
+        .4byte getSound_AILOD__Q24Game8CreatureFv
+        .4byte getSound_PosPtr__Q24Game8BaseItemFv
+        .4byte sound_culling__Q24Game8CreatureFv
+        .4byte getSound_CurrAnimFrame__Q24Game8CreatureFv
+        .4byte getSound_CurrAnimSpeed__Q24Game8CreatureFv
+        .4byte on_movie_begin__Q24Game8CreatureFb
+        .4byte on_movie_end__Q24Game8CreatureFb
+        .4byte movieStartAnimation__Q24Game8BaseItemFUl
+        .4byte movieStartDemoAnimation__Q24Game8BaseItemFPQ28SysShape8AnimInfo
+        .4byte movieSetAnimationLastFrame__Q24Game8BaseItemFv
+        .4byte "movieSetTranslation__Q24Game8BaseItemFR10Vector3<f>f"
+        .4byte movieSetFaceDir__Q24Game8CreatureFf
+        .4byte "movieGotoPosition__Q24Game8CreatureFR10Vector3<f>"
+        .4byte movieUserCommand__Q24Game8CreatureFUlPQ24Game11MoviePlayer
+        .4byte getShadowParam__Q24Game8CreatureFRQ24Game11ShadowParam
+        .4byte needShadow__Q24Game8CreatureFv
+        .4byte getLifeGaugeParam__Q24Game8CreatureFRQ24Game14LifeGaugeParam
+        .4byte getLODSphere__Q24Game8CreatureFRQ23Sys6Sphere
+        .4byte getLODCylinder__Q24Game8CreatureFRQ23Sys8Cylinder
+        .4byte startPick__Q24Game8CreatureFv
+        .4byte endPick__Q24Game8CreatureFb
+        .4byte getMabiki__Q24Game8CreatureFv
+        .4byte getFootmarks__Q24Game8CreatureFv
+        .4byte onStickStart__Q24Game8CreatureFPQ24Game8Creature
+        .4byte onStickEnd__Q24Game8CreatureFPQ24Game8Creature
+        .4byte onStickStartSelf__Q24Game8CreatureFPQ24Game8Creature
+        .4byte onStickEndSelf__Q24Game8CreatureFPQ24Game8Creature
+        .4byte isSlotFree__Q24Game8CreatureFs
+        .4byte getFreeStickSlot__Q24Game8CreatureFv
+        .4byte "getNearFreeStickSlot__Q24Game8CreatureFR10Vector3<f>"
+        .4byte getRandomFreeStickSlot__Q24Game8CreatureFv
+        .4byte onSlotStickStart__Q24Game8CreatureFPQ24Game8Creatures
+        .4byte onSlotStickEnd__Q24Game8CreatureFPQ24Game8Creatures
+        .4byte "calcStickSlotGlobal__Q24Game8CreatureFsR10Vector3<f>"
+        .4byte "getVelocityAt__Q24Game8BaseItemFR10Vector3<f>R10Vector3<f>"
+        .4byte "getAngularEffect__Q24Game8CreatureFR10Vector3<f>R10Vector3<f>"
+        .4byte "applyImpulse__Q24Game8CreatureFR10Vector3<f>R10Vector3<f>"
+        .4byte ignoreAtari__Q24Game8CreatureFPQ24Game8Creature
+        .4byte getSuckPos__Q24Game8CreatureFv
+        .4byte getGoalPos__Q24Game8CreatureFv
+        .4byte isSuckReady__Q24Game8CreatureFv
+        .4byte isSuckArriveWait__Q24Game8CreatureFv
+        .4byte stimulate__Q24Game8BaseItemFRQ24Game11Interaction
+        .4byte getCreatureName__Q34Game13ItemDownFloor4ItemFv
+        .4byte getCreatureID__Q24Game8BaseItemFv
+        .4byte 0
+        .4byte 0
+        .4byte
+   "@376@onKeyEvent__Q34Game13ItemDownFloor4ItemFRCQ28SysShape8KeyEvent" .4byte
+   initDependency__Q34Game13ItemDownFloor4ItemFv .4byte
+   startSound__Q24Game8BaseItemFUl .4byte
+   makeTrMatrix__Q34Game13ItemDownFloor4ItemFv .4byte
+   doAI__Q34Game13ItemDownFloor4ItemFv .4byte move__Q24Game8BaseItemFf .4byte
+   changeMaterial__Q34Game13ItemDownFloor4ItemFv .4byte
+   do_updateLOD__Q24Game8BaseItemFv .4byte
+   do_setLODParm__Q24Game8BaseItemFRQ24Game9AILODParm .4byte
+   getMapCollisionRadius__Q24Game8BaseItemFv .4byte
+   interactAttack__Q24Game8BaseItemFRQ24Game14InteractAttack .4byte
+   interactBreakBridge__Q24Game8BaseItemFRQ24Game19InteractBreakBridge .4byte
+   interactEat__Q24Game8BaseItemFRQ24Game11InteractEat .4byte
+   interactFlockAttack__Q24Game8BaseItemFRQ24Game19InteractFlockAttack .4byte
+   interactAbsorb__Q24Game8BaseItemFRQ24Game14InteractAbsorb .4byte
+   interactFue__Q24Game8BaseItemFRQ24Game11InteractFue .4byte
+   interactFarmKarero__Q24Game8BaseItemFRQ24Game18InteractFarmKarero .4byte
+   interactFarmHaero__Q24Game8BaseItemFRQ24Game17InteractFarmHaero .4byte
+   interactGotKey__Q24Game8BaseItemFRQ24Game14InteractGotKey .4byte
+   "getVectorField__Q24Game8BaseItemFRQ23Sys6SphereR10Vector3<f>" .4byte
+   getWorkDistance__Q24Game8BaseItemFRQ23Sys6Sphere .4byte
+   do_doAnimation__Q24Game8BaseItemFv .4byte
+   updateBoundSphere__Q34Game13ItemDownFloor4ItemFv .4byte
+   update__Q24Game8BaseItemFv .4byte entryShape__Q24Game8BaseItemFv .4byte
+   onSetPosition__Q34Game13ItemDownFloor4ItemFv .4byte
+   onKeyEvent__Q34Game13ItemDownFloor4ItemFRCQ28SysShape8KeyEvent .4byte 0
+        .4byte 0
+        .4byte
+   "@480@getCarryInfoParam__Q34Game13ItemDownFloor4ItemFR14CarryInfoParam"
+        .4byte getCarryInfoParam__Q34Game13ItemDownFloor4ItemFR14CarryInfoParam
+*/
+
 namespace Game {
 struct BaseItem {
     virtual void getPosition();                                   // _00

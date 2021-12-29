@@ -1,6 +1,20 @@
 #ifndef _WIPEINFADER_H
 #define _WIPEINFADER_H
 
+/*
+    __vt__11WipeInFader:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__11WipeInFaderFv
+    .4byte getChildCount__5CNodeFv
+    .4byte update__8WipeBaseFv
+    .4byte draw__8WipeBaseFv
+    .4byte isWhite__11WipeInFaderFv
+    .4byte isBlack__11WipeInFaderFv
+    .4byte on_start__8WipeBaseFv
+    .4byte do_draw__11WipeInFaderFf
+*/
+
 struct CNode {
 	virtual void _00() = 0;       // _00
 	virtual void getChildCount(); // _04

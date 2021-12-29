@@ -1,6 +1,30 @@
 #ifndef _PSAUTOBGM_AUTOBGM_H
 #define _PSAUTOBGM_AUTOBGM_H
 
+/*
+    __vt__Q29PSAutoBgm7AutoBgm:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__Q29PSAutoBgm7AutoBgmFv
+    .4byte init__Q28PSSystem11DirectedBgmFv
+    .4byte scene1st__Q29PSAutoBgm7AutoBgmFPQ28PSSystem11TaskChecker
+    .4byte startSeq__Q29PSAutoBgm7AutoBgmFv
+    .4byte stopSeq__Q28PSSystem11DirectedBgmFUl
+    .4byte pauseOn__Q29PSAutoBgm7AutoBgmFQ38PSSystem7SeqBase9PauseMode
+    .4byte pauseOff__Q29PSAutoBgm7AutoBgmFv
+    .4byte getCastType__Q29PSAutoBgm7AutoBgmFv
+    .4byte getSeqType__Q28PSSystem6BgmSeqFv
+    .4byte exec__Q28PSSystem7SeqBaseFv
+    .4byte onPlayingFrame__Q28PSSystem11DirectedBgmFv
+    .4byte isPlaying__Q28PSSystem7SeqBaseFv
+    .4byte seqLoadAfter__Q28PSSystem7SeqBaseFv
+    .4byte getHandleP__Q28PSSystem6BgmSeqFv
+    .4byte setConfigVolume__Q28PSSystem7SeqBaseFv
+    .4byte newSeqTrackRoot__Q29PSAutoBgm7AutoBgmFv
+    .4byte
+   newSeqTrackChild__Q28PSSystem11DirectedBgmFUcRQ28PSSystem12SeqTrackRoot
+*/
+
 namespace PSSystem {
 struct DirectedBgm {
 	virtual void _00() = 0;                                      // _00

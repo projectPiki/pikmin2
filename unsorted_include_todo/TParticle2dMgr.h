@@ -1,8 +1,19 @@
 #ifndef _TPARTICLE2DMGR_H
 #define _TPARTICLE2DMGR_H
 
+/*
+        __vt__14TParticle2dMgr:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__14TParticle2dMgrFv
+        .4byte getChildCount__5CNodeFv
+        .4byte 0
+        .4byte 0
+        .4byte "@24@__dt__14TParticle2dMgrFv"
+*/
+
 struct CNode {
-    virtual void _00() = 0;       // _00
+    virtual ~CNode();             // _00
     virtual void getChildCount(); // _04
 
     // _00 VTBL

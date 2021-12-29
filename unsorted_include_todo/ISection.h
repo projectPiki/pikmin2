@@ -1,6 +1,17 @@
 #ifndef _ISECTION_H
 #define _ISECTION_H
 
+/*
+    __vt__8ISection:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__8ISectionFv
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+*/
+
 struct ISection {
 	virtual ~ISection();    // _00
 	virtual void _04() = 0; // _04

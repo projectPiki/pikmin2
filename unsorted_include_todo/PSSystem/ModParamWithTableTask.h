@@ -1,6 +1,16 @@
 #ifndef _PSSYSTEM_MODPARAMWITHTABLETASK_H
 #define _PSSYSTEM_MODPARAMWITHTABLETASK_H
 
+/*
+    __vt__Q28PSSystem21ModParamWithTableTask:
+    .4byte 0
+    .4byte 0
+    .4byte task__Q28PSSystem21ModParamWithTableTaskFR8JASTrack
+    .4byte 0
+    .4byte 0
+    .4byte 0
+*/
+
 namespace PSSystem {
 struct ModParamWithTableTask {
 	virtual void task(JASTrack&); // _00

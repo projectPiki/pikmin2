@@ -1,6 +1,15 @@
 #ifndef _EFX_TBASE_H
 #define _EFX_TBASE_H
 
+/*
+    __vt__Q23efx5TBase:
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+*/
+
 namespace efx {
 struct TBase {
 	virtual void _00() = 0; // _00

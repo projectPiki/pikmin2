@@ -1,6 +1,42 @@
 #ifndef _GAME_ITEMGATEMGR_H
 #define _GAME_ITEMGATEMGR_H
 
+/*
+    __vt__Q24Game11ItemGateMgr:
+    .4byte 0
+    .4byte 0
+    .4byte doAnimation__Q24Game11ItemGateMgrFv
+    .4byte doEntry__Q24Game11ItemGateMgrFv
+    .4byte doSetView__Q24Game11ItemGateMgrFi
+    .4byte doViewCalc__Q24Game11ItemGateMgrFv
+    .4byte doSimulation__Q24Game11ItemGateMgrFf
+    .4byte doDirectDraw__Q24Game11ItemGateMgrFR8Graphics
+    .4byte doSimpleDraw__16GenericObjectMgrFP8Viewport
+    .4byte loadResources__Q24Game11BaseItemMgrFv
+    .4byte resetMgr__16GenericObjectMgrFv
+    .4byte pausable__16GenericObjectMgrFv
+    .4byte frozenable__16GenericObjectMgrFv
+    .4byte getMatrixLoadType__16GenericObjectMgrFv
+    .4byte initDependency__Q24Game11ItemGateMgrFv
+    .4byte killAll__Q24Game11BaseItemMgrFv
+    .4byte setup__Q24Game11BaseItemMgrFPQ24Game8BaseItem
+    .4byte setupSoundViewerAndBas__Q24Game11BaseItemMgrFv
+    .4byte onLoadResources__Q24Game11BaseItemMgrFv
+    .4byte loadEverytime__Q24Game11BaseItemMgrFv
+    .4byte updateUseList__Q24Game11BaseItemMgrFPQ24Game11GenItemParmi
+    .4byte onUpdateUseList__Q24Game11BaseItemMgrFPQ24Game11GenItemParmi
+    .4byte generatorGetID__Q24Game11ItemGateMgrFv
+    .4byte
+   "generatorBirth__Q24Game11ItemGateMgrFR10Vector3<f>R10Vector3<f>PQ24Game11GenItemParm"
+    .4byte generatorWrite__Q24Game11ItemGateMgrFR6StreamPQ24Game11GenItemParm
+    .4byte generatorRead__Q24Game11ItemGateMgrFR6StreamPQ24Game11GenItemParmUl
+    .4byte generatorLocalVersion__Q24Game11ItemGateMgrFv
+    .4byte generatorGetShape__Q24Game11BaseItemMgrFPQ24Game11GenItemParm
+    .4byte generatorNewItemParm__Q24Game11ItemGateMgrFv
+    .4byte getCaveName__Q24Game11ItemGateMgrFi
+    .4byte getCaveID__Q24Game11ItemGateMgrFPc
+*/
+
 struct GenericObjectMgr {
 	virtual void _00() = 0;               // _00
 	virtual void _04() = 0;               // _04

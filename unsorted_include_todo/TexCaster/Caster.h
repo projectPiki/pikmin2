@@ -1,8 +1,16 @@
 #ifndef _TEXCASTER_CASTER_H
 #define _TEXCASTER_CASTER_H
 
+/*
+    __vt__Q29TexCaster6Caster:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__Q29TexCaster6CasterFv
+    .4byte getChildCount__5CNodeFv
+*/
+
 struct CNode {
-	virtual void _00() = 0;       // _00
+	virtual ~CNode();             // _00
 	virtual void getChildCount(); // _04
 
 	// _00 VTBL

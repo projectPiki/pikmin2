@@ -1,6 +1,94 @@
 #ifndef _MORIMURA_TGXSETPANE_H
 #define _MORIMURA_TGXSETPANE_H
 
+/*
+    __vt__Q28Morimura10TGXSetPane:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__Q28Morimura10TGXSetPaneFv
+    .4byte getTypeID__10J2DPictureCFv
+    .4byte move__7J2DPaneFff
+    .4byte add__7J2DPaneFff
+    .4byte resize__7J2DPaneFff
+    .4byte setCullBack__12J2DPictureExFb
+    .4byte setCullBack__12J2DPictureExF11_GXCullMode
+    .4byte setAlpha__12J2DPictureExFUc
+    .4byte setConnectParent__7J2DPaneFb
+    .4byte calcMtx__7J2DPaneFv
+    .4byte update__7J2DPaneFv
+    .4byte drawSelf__10J2DPictureFff
+    .4byte drawSelf__Q28Morimura10TGXSetPaneFffPA3_A4_f
+    .4byte search__7J2DPaneFUx
+    .4byte searchUserInfo__7J2DPaneFUx
+    .4byte makeMatrix__7J2DPaneFff
+    .4byte makeMatrix__7J2DPaneFffff
+    .4byte isUsed__12J2DPictureExFPC7ResTIMG
+    .4byte isUsed__12J2DPictureExFPC7ResFONT
+    .4byte clearAnmTransform__7J2DPaneFv
+    .4byte rewriteAlpha__12J2DPictureExFv
+    .4byte setAnimation__12J2DPictureExFP10J2DAnmBase
+    .4byte setAnimation__12J2DPictureExFP15J2DAnmTransform
+    .4byte setAnimation__12J2DPictureExFP11J2DAnmColor
+    .4byte setAnimation__12J2DPictureExFP16J2DAnmTexPattern
+    .4byte setAnimation__12J2DPictureExFP19J2DAnmTextureSRTKey
+    .4byte setAnimation__12J2DPictureExFP15J2DAnmTevRegKey
+    .4byte setAnimation__12J2DPictureExFP20J2DAnmVisibilityFull
+    .4byte setAnimation__12J2DPictureExFP14J2DAnmVtxColor
+    .4byte animationTransform__7J2DPaneFPC15J2DAnmTransform
+    .4byte setVisibileAnimation__7J2DPaneFP20J2DAnmVisibilityFull
+    .4byte setAnimationVF__7J2DPaneFP20J2DAnmVisibilityFull
+    .4byte setVtxColorAnimation__7J2DPaneFP14J2DAnmVtxColor
+    .4byte setAnimationVC__7J2DPaneFP14J2DAnmVtxColor
+    .4byte animationPane__12J2DPictureExFPC15J2DAnmTransform
+    .4byte initiate__12J2DPictureExFPC7ResTIMGPC7ResTLUT
+    .4byte prepareTexture__12J2DPictureExFUc
+    .4byte append__12J2DPictureExFPC7ResTIMGf
+    .4byte append__12J2DPictureExFPC7ResTIMGP10JUTPalettef
+    .4byte append__12J2DPictureExFPCcf
+    .4byte append__12J2DPictureExFPCcP10JUTPalettef
+    .4byte append__12J2DPictureExFP10JUTTexturef
+    .4byte prepend__12J2DPictureExFPC7ResTIMGf
+    .4byte prepend__12J2DPictureExFPC7ResTIMGP10JUTPalettef
+    .4byte prepend__12J2DPictureExFPCcf
+    .4byte prepend__12J2DPictureExFPCcP10JUTPalettef
+    .4byte prepend__12J2DPictureExFP10JUTTexturef
+    .4byte insert__12J2DPictureExFPC7ResTIMGUcf
+    .4byte insert__12J2DPictureExFPC7ResTIMGP10JUTPaletteUcf
+    .4byte insert__12J2DPictureExFPCcUcf
+    .4byte insert__12J2DPictureExFPCcP10JUTPaletteUcf
+    .4byte insert__12J2DPictureExFP10JUTTextureUcf
+    .4byte remove__12J2DPictureExFUc
+    .4byte remove__12J2DPictureExFv
+    .4byte remove__12J2DPictureExFP10JUTTexture
+    .4byte draw__12J2DPictureExFffbbb
+    .4byte draw__12J2DPictureExFffUcbbb
+    .4byte draw__12J2DPictureExFffffbbb
+    .4byte drawOut__12J2DPictureExFffffff
+    .4byte drawOut__12J2DPictureExFffffffff
+    .4byte
+   "drawOut__12J2DPictureExFRCQ29JGeometry8TBox2<f>RCQ29JGeometry8TBox2<f>"
+    .4byte load__12J2DPictureExF11_GXTexMapIDUc
+    .4byte load__12J2DPictureExFUc
+    .4byte setBlendRatio__10J2DPictureFffffffff
+    .4byte setBlendColorRatio__12J2DPictureExFffffffff
+    .4byte setBlendAlphaRatio__12J2DPictureExFffffffff
+    .4byte changeTexture__12J2DPictureExFPC7ResTIMGUc
+    .4byte changeTexture__12J2DPictureExFPCcUc
+    .4byte changeTexture__12J2DPictureExFPC7ResTIMGUcP10JUTPalette
+    .4byte changeTexture__12J2DPictureExFPCcUcP10JUTPalette
+    .4byte getTexture__12J2DPictureExCFUc
+    .4byte getTextureCount__12J2DPictureExCFv
+    .4byte setBlack__12J2DPictureExFQ28JUtility6TColor
+    .4byte setWhite__12J2DPictureExFQ28JUtility6TColor
+    .4byte setBlackWhite__12J2DPictureExFQ28JUtility6TColorQ28JUtility6TColor
+    .4byte getBlack__12J2DPictureExCFv
+    .4byte getWhite__12J2DPictureExCFv
+    .4byte getMaterial__12J2DPictureExCFv
+    .4byte drawFullSet__12J2DPictureExFffffPA3_A4_f
+    .4byte drawTexCoord__12J2DPictureExFffffssssssssPA3_A4_f
+    .4byte getUsableTlut__12J2DPictureExFUc
+*/
+
 struct J2DPicture {
 	virtual void _00() = 0;              // _00
 	virtual void getTypeID() const;      // _04

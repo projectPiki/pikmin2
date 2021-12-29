@@ -1,6 +1,67 @@
 #ifndef _JSTUDIO_JSTAGE_TADAPTOR_ACTOR_H
 #define _JSTUDIO_JSTAGE_TADAPTOR_ACTOR_H
 
+/*
+    __vt__Q214JStudio_JStage14TAdaptor_actor:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__Q214JStudio_JStage14TAdaptor_actorFv
+    .4byte
+   adaptor_do_prepare__Q214JStudio_JStage14TAdaptor_actorFPCQ27JStudio7TObject
+    .4byte
+   adaptor_do_begin__Q214JStudio_JStage14TAdaptor_actorFPCQ27JStudio7TObject
+    .4byte
+   adaptor_do_end__Q214JStudio_JStage14TAdaptor_actorFPCQ27JStudio7TObject
+    .4byte
+   adaptor_do_update__Q214JStudio_JStage14TAdaptor_actorFPCQ27JStudio7TObjectUl
+    .4byte
+   adaptor_do_data__Q214JStudio_JStage14TAdaptor_actorFPCQ27JStudio7TObjectPCvUlPCvUl
+    .4byte
+   adaptor_do_PARENT__Q214JStudio_JStage14TAdaptor_actorFQ37JStudio4data15TEOperationDataPCvUl
+    .4byte
+   adaptor_do_PARENT_NODE__Q214JStudio_JStage14TAdaptor_actorFQ37JStudio4data15TEOperationDataPCvUl
+    .4byte
+   adaptor_do_PARENT_ENABLE__Q214JStudio_JStage14TAdaptor_actorFQ37JStudio4data15TEOperationDataPCvUl
+    .4byte
+   adaptor_do_PARENT_FUNCTION__Q214JStudio_JStage14TAdaptor_actorFQ37JStudio4data15TEOperationDataPCvUl
+    .4byte
+   adaptor_do_RELATION__Q214JStudio_JStage14TAdaptor_actorFQ37JStudio4data15TEOperationDataPCvUl
+    .4byte
+   adaptor_do_RELATION_NODE__Q214JStudio_JStage14TAdaptor_actorFQ37JStudio4data15TEOperationDataPCvUl
+    .4byte
+   adaptor_do_RELATION_ENABLE__Q214JStudio_JStage14TAdaptor_actorFQ37JStudio4data15TEOperationDataPCvUl
+    .4byte
+   adaptor_do_SHAPE__Q214JStudio_JStage14TAdaptor_actorFQ37JStudio4data15TEOperationDataPCvUl
+    .4byte
+   adaptor_do_ANIMATION__Q214JStudio_JStage14TAdaptor_actorFQ37JStudio4data15TEOperationDataPCvUl
+    .4byte
+   adaptor_do_ANIMATION_MODE__Q214JStudio_JStage14TAdaptor_actorFQ37JStudio4data15TEOperationDataPCvUl
+    .4byte
+   adaptor_do_TEXTURE_ANIMATION__Q214JStudio_JStage14TAdaptor_actorFQ37JStudio4data15TEOperationDataPCvUl
+    .4byte
+   adaptor_do_TEXTURE_ANIMATION_MODE__Q214JStudio_JStage14TAdaptor_actorFQ37JStudio4data15TEOperationDataPCvUl
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+*/
+
 namespace JStudio_JStage {
 struct TAdaptor_actor {
 	virtual ~TAdaptor_actor();                                // _00

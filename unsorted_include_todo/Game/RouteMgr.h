@@ -1,6 +1,24 @@
 #ifndef _GAME_ROUTEMGR_H
 #define _GAME_ROUTEMGR_H
 
+/*
+    __vt__Q24Game8RouteMgr:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__Q24Game8RouteMgrFv
+    .4byte getChildCount__5CNodeFv
+    .4byte "getObject__27Container<Q24Game8WayPoint>FPv"
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte "getAt__27Container<Q24Game8WayPoint>Fi"
+    .4byte "getTo__27Container<Q24Game8WayPoint>Fv"
+    .4byte 0
+    .4byte 0
+    .4byte write__Q24Game8RouteMgrFR6Stream
+*/
+
 struct CNode {
 	virtual void _00() = 0;       // _00
 	virtual void getChildCount(); // _04

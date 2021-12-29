@@ -1,6 +1,41 @@
 #ifndef _GAME_SINGLEGAME_ENDINGSTATE_H
 #define _GAME_SINGLEGAME_ENDINGSTATE_H
 
+/*
+    __vt__Q34Game10SingleGame11EndingState:
+    .4byte 0
+    .4byte 0
+    .4byte
+   init__Q34Game10SingleGame11EndingStateFPQ24Game17SingleGameSectionPQ24Game8StateArg
+    .4byte exec__Q34Game10SingleGame11EndingStateFPQ24Game17SingleGameSection
+    .4byte cleanup__Q34Game10SingleGame11EndingStateFPQ24Game17SingleGameSection
+    .4byte
+   "resume__Q24Game36FSMState<Q24Game17SingleGameSection>FPQ24Game17SingleGameSection"
+    .4byte
+   "restart__Q24Game36FSMState<Q24Game17SingleGameSection>FPQ24Game17SingleGameSection"
+    .4byte
+   "transit__Q24Game36FSMState<Q24Game17SingleGameSection>FPQ24Game17SingleGameSectioniPQ24Game8StateArg"
+    .4byte
+   draw__Q34Game10SingleGame11EndingStateFPQ24Game17SingleGameSectionR8Graphics
+    .4byte onOrimaDown__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectioni
+    .4byte
+   onMovieStart__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl
+    .4byte
+   onMovieDone__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionPQ24Game11MovieConfigUlUl
+    .4byte
+   onMovieCommand__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectioni .4byte
+   onHoleIn__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionPQ34Game8ItemCave4Item
+    .4byte
+   onNextFloor__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionPQ34Game8ItemHole4Item
+    .4byte
+   onFountainReturn__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionPQ34Game15ItemBigFountain4Item
+    .4byte
+   on_section_fadeout__Q34Game10SingleGame5StateFPQ24Game17SingleGameSection
+    .4byte
+   on_demo_timer__Q34Game10SingleGame5StateFPQ24Game17SingleGameSectionUl .4byte
+   do_dvdload__Q34Game10SingleGame11EndingStateFv
+*/
+
 namespace Game {
 namespace FSMState < Game
 {

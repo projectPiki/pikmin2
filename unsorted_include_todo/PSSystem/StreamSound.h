@@ -1,6 +1,69 @@
 #ifndef _PSSYSTEM_STREAMSOUND_H
 #define _PSSYSTEM_STREAMSOUND_H
 
+/*
+        __vt__Q28PSSystem11StreamSound:
+        .4byte 0
+        .4byte 0
+        .4byte setPortData__9JAIStreamFUcUs
+        .4byte getPortData__9JAIStreamFUc
+        .4byte start__8JAISoundFUl
+        .4byte stop__9JAIStreamFUl
+        .4byte release__8JAISoundFv
+        .4byte setVolume__9JAIStreamFfUlUc
+        .4byte getVolume__9JAIStreamFUc
+        .4byte setPan__9JAIStreamFfUlUc
+        .4byte getPan__9JAIStreamFUc
+        .4byte setPitch__9JAIStreamFfUlUc
+        .4byte getPitch__9JAIStreamFUc
+        .4byte setFxmix__9JAIStreamFfUlUc
+        .4byte getFxmix__9JAIStreamFUc
+        .4byte setDolby__9JAIStreamFfUlUc
+        .4byte getDolby__9JAIStreamFUc
+        .4byte setTempoProportion__8JAISoundFfUl
+        .4byte getTempoProportion__8JAISoundFv
+        .4byte setVolumeU7__9JAIStreamFUcUlUc
+        .4byte getVolumeU7__9JAIStreamFUc
+        .4byte setPanU7__9JAIStreamFUcUlUc
+        .4byte getPanU7__9JAIStreamFUc
+        .4byte setFxmixU7__9JAIStreamFUcUlUc
+        .4byte getFxmixU7__9JAIStreamFUc
+        .4byte setDolbyU7__9JAIStreamFUcUlUc
+        .4byte getDolbyU7__9JAIStreamFUc
+        .4byte setDirectVolume__8JAISoundFfUl
+        .4byte setDirectPan__8JAISoundFfUl
+        .4byte setDirectPitch__8JAISoundFfUl
+        .4byte setDirectFxmix__8JAISoundFfUl
+        .4byte setDirectDolby__8JAISoundFfUl
+        .4byte setDemoVolume__8JAISoundFfUl
+        .4byte setDemoPan__8JAISoundFfUl
+        .4byte setDemoPitch__8JAISoundFfUl
+        .4byte setDemoFxmix__8JAISoundFfUl
+        .4byte setDemoDolby__8JAISoundFfUl
+        .4byte setDemoVolumeU7__8JAISoundFUcUl
+        .4byte setDemoPanU7__8JAISoundFUcUl
+        .4byte setDemoFxmixU7__8JAISoundFUcUl
+        .4byte setDemoDolbyU7__8JAISoundFUcUl
+        .4byte getFadeCounter__9JAIStreamFv
+        .4byte setPrepareFlag__9JAIStreamFUc
+        .4byte checkReady__9JAIStreamFv
+        .4byte setDistanceParameterMoveTime__8JAISoundFUc
+        .4byte setAdjustPriority__8JAISoundFs
+        .4byte setPositionDopplarCommon__8JAISoundFUl
+        .4byte setDistanceVolumeCommon__8JAISoundFfUc
+        .4byte setDistancePanCommon__8JAISoundFv
+        .4byte setDistanceDolbyCommon__8JAISoundFv
+        .4byte
+   initParameter__8JAISoundFPvPQ27JAInter5ActorUlUlUcPQ27JAInter9SoundInfo
+        .4byte onGet__8JAISoundFv
+        .4byte onRelease__8JAISoundFv
+        .4byte 0
+        .4byte 0
+        .4byte stop__Q28PSSystem12SeqSoundBaseFUl
+        .4byte "@472@stopInner__Q28PSSystem11StreamSoundFUl"
+        .4byte stopInner__Q28PSSystem11StreamSoundFUl
+*/
+
 struct JAIStream {
     virtual void setPortData(unsigned char, unsigned short);     // _00
     virtual void getPortData(unsigned char);                     // _04

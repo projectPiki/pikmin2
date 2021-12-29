@@ -1,13 +1,36 @@
 #ifndef _PIKIAI_ACTTRANSPORT_H
 #define _PIKIAI_ACTTRANSPORT_H
 
+/*
+        __vt__Q26PikiAI12ActTransport:
+        .4byte 0
+        .4byte 0
+        .4byte init__Q26PikiAI12ActTransportFPQ26PikiAI9ActionArg
+        .4byte exec__Q26PikiAI12ActTransportFv
+        .4byte cleanup__Q26PikiAI12ActTransportFv
+        .4byte emotion_success__Q26PikiAI12ActTransportFv
+        .4byte emotion_fail__Q26PikiAI12ActTransportFv
+        .4byte applicable__Q26PikiAI6ActionFv
+        .4byte getNextAIType__Q26PikiAI6ActionFv
+        .4byte bounceCallback__Q26PikiAI6ActionFPQ24Game4PikiPQ23Sys8Triangle
+        .4byte
+   collisionCallback__Q26PikiAI6ActionFPQ24Game4PikiRQ24Game9CollEvent .4byte
+   platCallback__Q26PikiAI6ActionFPQ24Game4PikiRQ24Game9PlatEvent .4byte
+   doDirectDraw__Q26PikiAI6ActionFR8Graphics .4byte
+   "wallCallback__Q26PikiAI6ActionFR10Vector3<f>" .4byte
+   getInfo__Q26PikiAI12ActTransportFPc .4byte
+   onKeyEvent__Q26PikiAI12ActTransportFRCQ28SysShape8KeyEvent .4byte 0 .4byte 0
+        .4byte
+   "@60@4@onKeyEvent__Q26PikiAI12ActTransportFRCQ28SysShape8KeyEvent" .4byte 0
+*/
+
 namespace PikiAI {
 struct Action {
-    virtual void _00() = 0;                                        // _00
-    virtual void _04() = 0;                                        // _04
-    virtual void _08() = 0;                                        // _08
-    virtual void _0C() = 0;                                        // _0C
-    virtual void _10() = 0;                                        // _10
+    virtual void init(ActionArg*);                                 // _00
+    virtual void exec();                                           // _04
+    virtual void cleanup();                                        // _08
+    virtual void emotion_success();                                // _0C
+    virtual void emotion_fail();                                   // _10
     virtual void applicable();                                     // _14
     virtual void getNextAIType();                                  // _18
     virtual void bounceCallback(Game::Piki*, Sys::Triangle*);      // _1C

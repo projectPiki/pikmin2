@@ -1,8 +1,23 @@
 #ifndef _J3DMTXCALCNOANMBASE_H
 #define _J3DMTXCALCNOANMBASE_H
 
+/*
+    __vt__19J3DMtxCalcNoAnmBase:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__19J3DMtxCalcNoAnmBaseFv
+    .4byte setAnmTransform__10J3DMtxCalcFP15J3DAnmTransform
+    .4byte getAnmTransform__10J3DMtxCalcFv
+    .4byte setAnmTransform__10J3DMtxCalcFUcP15J3DAnmTransform
+    .4byte getAnmTransform__10J3DMtxCalcFUc
+    .4byte setWeight__10J3DMtxCalcFUcf
+    .4byte getWeight__10J3DMtxCalcCFUc
+    .4byte 0
+    .4byte 0
+*/
+
 struct J3DMtxCalc {
-	virtual void _00() = 0;                                        // _00
+	virtual ~J3DMtxCalc();                                         // _00
 	virtual void setAnmTransform(J3DAnmTransform*);                // _04
 	virtual void getAnmTransform();                                // _08
 	virtual void setAnmTransform(unsigned char, J3DAnmTransform*); // _0C

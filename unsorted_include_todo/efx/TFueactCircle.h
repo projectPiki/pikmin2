@@ -1,6 +1,33 @@
 #ifndef _EFX_TFUEACTCIRCLE_H
 #define _EFX_TFUEACTCIRCLE_H
 
+/*
+        __vt__Q23efx13TFueactCircle:
+        .4byte 0
+        .4byte 0
+        .4byte create__Q23efx13TFueactCircleFPQ23efx3Arg
+        .4byte forceKill__Q23efx13TFueactCircleFv
+        .4byte fade__Q23efx13TFueactCircleFv
+        .4byte 0
+        .4byte 0
+        .4byte "@4@__dt__Q23efx13TFueactCircleFv"
+        .4byte "@4@execute__Q23efx13TFueactCircleFP14JPABaseEmitter"
+        .4byte "@4@executeAfter__Q23efx13TFueactCircleFP14JPABaseEmitter"
+        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
+        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+        .4byte 0
+        .4byte 0
+        .4byte "@8@__dt__Q23efx13TFueactCircleFv"
+        .4byte
+   "@8@execute__Q23efx13TFueactCircleFP14JPABaseEmitterP15JPABaseParticle"
+        .4byte draw__19JPAParticleCallBackFP14JPABaseEmitterP15JPABaseParticle
+        .4byte execute__Q23efx13TFueactCircleFP14JPABaseEmitter
+        .4byte
+   execute__Q23efx13TFueactCircleFP14JPABaseEmitterP15JPABaseParticle .4byte
+   executeAfter__Q23efx13TFueactCircleFP14JPABaseEmitter .4byte
+   __dt__Q23efx13TFueactCircleFv
+*/
+
 struct JPAEmitterCallBack {
     virtual void _00() = 0;                  // _00
     virtual void _04() = 0;                  // _04

@@ -1,6 +1,20 @@
 #ifndef _JKRDVDFILE_H
 #define _JKRDVDFILE_H
 
+/*
+    __vt__10JKRDvdFile:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__10JKRDvdFileFv
+    .4byte open__10JKRDvdFileFPCc
+    .4byte close__10JKRDvdFileFv
+    .4byte readData__10JKRDvdFileFPvll
+    .4byte writeData__10JKRDvdFileFPCvll
+    .4byte getFileSize__10JKRDvdFileCFv
+    .4byte open__10JKRDvdFileFl
+    .4byte 0
+*/
+
 struct JKRDvdFile {
 	virtual ~JKRDvdFile();                           // _00
 	virtual void open(const char*);                  // _04

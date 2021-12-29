@@ -1,6 +1,19 @@
 #ifndef _EBI_SCREEN_TSCREENBASEINTERFACE_H
 #define _EBI_SCREEN_TSCREENBASEINTERFACE_H
 
+/*
+    __vt__Q33ebi6Screen20TScreenBaseInterface:
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+*/
+
 namespace ebi {
 namespace Screen {
 	struct TScreenBaseInterface {

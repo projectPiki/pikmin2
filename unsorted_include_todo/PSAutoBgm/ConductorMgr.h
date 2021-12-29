@@ -1,6 +1,28 @@
 #ifndef _PSAUTOBGM_CONDUCTORMGR_H
 #define _PSAUTOBGM_CONDUCTORMGR_H
 
+/*
+        __vt__Q29PSAutoBgm12ConductorMgr:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q29PSAutoBgm12ConductorMgrFv
+        .4byte isTempBuffaMode__Q210JADUtility15DataLoadMgrNodeFv
+        .4byte init__Q210JADUtility11DataMgrNodeFv
+        .4byte getObjHeap__Q29PSAutoBgm12ConductorMgrFv
+        .4byte getDataHeap__Q29PSAutoBgm12ConductorMgrFv
+        .4byte
+   "initInstance__Q210JADUtility59PrmDataMgrNode<Q29PSAutoBgm9Conductor,Q29PSAutoBgm7AutoBgm>FPvl"
+        .4byte
+   "initInstance__Q210JADUtility59PrmDataMgrNode<Q29PSAutoBgm9Conductor,Q29PSAutoBgm7AutoBgm>Fv"
+        .4byte getPath__Q210JADUtility11DataMgrNodeFv
+        .4byte setPath__Q210JADUtility11DataMgrNodeFPc
+        .4byte getSaveTempHeap__Q29PSAutoBgm12ConductorMgrFv
+        .4byte 0
+        .4byte 0
+        .4byte "@600@28@__dt__Q29PSAutoBgm12ConductorMgrFv"
+        .4byte "@600@28@init__Q210JADUtility11DataMgrNodeFv"
+*/
+
 namespace JADUtility {
 struct DataLoadMgrNode {
     virtual void _00() = 0;         // _00

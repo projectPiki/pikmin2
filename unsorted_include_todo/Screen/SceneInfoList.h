@@ -1,8 +1,17 @@
 #ifndef _SCREEN_SCENEINFOLIST_H
 #define _SCREEN_SCENEINFOLIST_H
 
+/*
+    __vt__Q26Screen13SceneInfoList:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__Q26Screen13SceneInfoListFv
+    .4byte getChildCount__5CNodeFv
+    .4byte 0
+*/
+
 struct CNode {
-	virtual void _00() = 0;       // _00
+	virtual ~CNode();             // _00
 	virtual void getChildCount(); // _04
 
 	// _00 VTBL

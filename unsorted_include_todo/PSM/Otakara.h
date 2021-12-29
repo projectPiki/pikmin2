@@ -1,6 +1,48 @@
 #ifndef _PSM_OTAKARA_H
 #define _PSM_OTAKARA_H
 
+/*
+        __vt__Q23PSM7Otakara:
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte "@16@__dt__Q23PSM7OtakaraFv"
+        .4byte __dt__Q23PSM7OtakaraFv
+        .4byte frameEnd_onPlaySe__Q23PSM11CreatureObjFv
+        .4byte getCastType__Q23PSM7OtakaraFv
+        .4byte exec__Q23PSM8CreatureFv
+        .4byte getJAIObject__Q23PSM11CreatureObjFv
+        .4byte onCalcOn__Q23PSM11CreatureObjFv
+        .4byte loopCalc__Q23PSM8CreatureFRQ23PSM12FrameCalcArg
+        .4byte startSoundInner__Q23PSM8CreatureFRQ23PSM13StartSoundArg
+        .4byte judgeNearWithPlayer__Q23PSM8CreatureFRC3VecRC3Vecff
+        .4byte onPlayingSe__Q23PSM8CreatureFUlP8JAISound
+        .4byte getHandleArea__Q23PSM11CreatureObjFUc
+        .4byte 0
+        .4byte 0
+        .4byte "@48@__dt__Q23PSM7OtakaraFv"
+        .4byte "@48@startSound__Q23PSM11CreatureObjFUlUl"
+        .4byte "@48@startSound__Q23PSM11CreatureObjFUcUlUl"
+        .4byte "@48@startSound__Q23PSM11CreatureObjFPP8JAISoundUlUl"
+        .4byte stopAllSound__Q27JAInter10ObjectBaseFv
+        .4byte stopSound__Q27JAInter10ObjectBaseFUlUl
+        .4byte enable__Q27JAInter10ObjectBaseFv
+        .4byte disable__Q27JAInter6ObjectFv
+        .4byte dispose__Q27JAInter10ObjectBaseFv
+        .4byte getFreeSoundHandlePointer__Q27JAInter10ObjectBaseFv
+        .4byte getUseSoundHandlePointer__Q27JAInter10ObjectBaseFUl
+        .4byte handleStop__Q27JAInter10ObjectBaseFUcUl
+        .4byte loop__Q27JAInter6ObjectFv
+        .4byte startSound__Q23PSM11CreatureObjFUlUl
+        .4byte startSound__Q23PSM11CreatureObjFUcUlUl
+        .4byte startSound__Q23PSM11CreatureObjFPP8JAISoundUlUl
+        .4byte otakaraEventStart__Q23PSM7OtakaraFv
+        .4byte otakaraEventRestart__Q23PSM7OtakaraFv
+        .4byte otakaraEventStop__Q23PSM7OtakaraFv
+        .4byte otakaraEventFinish__Q23PSM7OtakaraFv
+*/
+
 namespace PSM {
 struct CreatureObj {
     virtual void _00() = 0;                                               // _00
@@ -155,9 +197,6 @@ struct Otakara : public CreatureObj,
     virtual void _38() = 0;                                               // _38
     virtual void _3C() = 0;                                               // _3C
     virtual void @48 @__dt();                                             // _40
-    virtual void _44() = 0;                                               // _44
-    virtual void _48() = 0;                                               // _48
-    virtual void _4C() = 0;                                               // _4C
     virtual void stopAllSound();                                          // _50
     virtual void stopSound(unsigned long, unsigned long);                 // _54
     virtual void enable();                                                // _58

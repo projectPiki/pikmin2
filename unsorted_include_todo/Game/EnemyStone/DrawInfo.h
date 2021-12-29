@@ -1,8 +1,16 @@
 #ifndef _GAME_ENEMYSTONE_DRAWINFO_H
 #define _GAME_ENEMYSTONE_DRAWINFO_H
 
+/*
+    __vt__Q34Game10EnemyStone8DrawInfo:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__Q34Game10EnemyStone8DrawInfoFv
+    .4byte getChildCount__5CNodeFv
+*/
+
 struct CNode {
-	virtual void _00() = 0;       // _00
+	virtual ~CNode();             // _00
 	virtual void getChildCount(); // _04
 
 	// _00 VTBL

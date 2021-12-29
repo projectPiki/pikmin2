@@ -1,6 +1,20 @@
 #ifndef _HEAPINFO_H
 #define _HEAPINFO_H
 
+/*
+        __vt__8HeapInfo:
+        .4byte 0
+        .4byte 0
+        .4byte update__4NodeFv
+        .4byte draw__4NodeFR8Graphics
+        .4byte displayInfo__4NodeFi
+        .4byte 0
+        .4byte 0
+        .4byte "@36@__dt__8HeapInfoFv"
+        .4byte __dt__8HeapInfoFv
+        .4byte 0
+*/
+
 struct Node {
     virtual void update();         // _00
     virtual void draw(Graphics&);  // _04

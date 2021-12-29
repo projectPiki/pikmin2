@@ -1,6 +1,36 @@
 #ifndef _MORIMURA_TVSSELECTCBWINNUM_H
 #define _MORIMURA_TVSSELECTCBWINNUM_H
 
+/*
+    __vt__Q28Morimura17TVsSelectCBWinNum:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__Q28Morimura17TVsSelectCBWinNumFv
+    .4byte getChildCount__5CNodeFv
+    .4byte update__Q28Morimura17TVsSelectCBWinNumFv
+    .4byte draw__Q32og6Screen18CallBack_CounterRVFR8GraphicsR14J2DGrafContext
+    .4byte doInit__Q29P2DScreen4NodeFv
+    .4byte init__Q32og6Screen19CallBack_CounterDayFP9J2DScreenUxUxUxPUlb
+    .4byte show__Q32og6Screen19CallBack_CounterDayFv
+    .4byte hide__Q32og6Screen19CallBack_CounterDayFv
+    .4byte setValue__Q28Morimura17TVsSelectCBWinNumFbb
+    .4byte setValue__Q32og6Screen19CallBack_CounterDayFv
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+*/
+
 struct CNode {
 	virtual void _00() = 0;       // _00
 	virtual void getChildCount(); // _04

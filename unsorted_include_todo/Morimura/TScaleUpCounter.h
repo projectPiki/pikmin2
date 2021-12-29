@@ -1,6 +1,22 @@
 #ifndef _MORIMURA_TSCALEUPCOUNTER_H
 #define _MORIMURA_TSCALEUPCOUNTER_H
 
+/*
+    __vt__Q28Morimura15TScaleUpCounter:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__Q28Morimura15TScaleUpCounterFv
+    .4byte getChildCount__5CNodeFv
+    .4byte update__Q32og6Screen18CallBack_CounterRVFv
+    .4byte draw__Q32og6Screen18CallBack_CounterRVFR8GraphicsR14J2DGrafContext
+    .4byte doInit__Q29P2DScreen4NodeFv
+    .4byte init__Q28Morimura15TScaleUpCounterFP9J2DScreenUxUxUxPUlb
+    .4byte show__Q32og6Screen18CallBack_CounterRVFv
+    .4byte hide__Q32og6Screen18CallBack_CounterRVFv
+    .4byte setValue__Q28Morimura15TScaleUpCounterFbb
+    .4byte setValue__Q32og6Screen18CallBack_CounterRVFv
+*/
+
 struct CNode {
 	virtual void _00() = 0;       // _00
 	virtual void getChildCount(); // _04

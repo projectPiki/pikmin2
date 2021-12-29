@@ -1,6 +1,16 @@
 #ifndef _INFOMGRBASE_H
 #define _INFOMGRBASE_H
 
+/*
+    __vt__11InfoMgrBase:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__11InfoMgrBaseFv
+    .4byte 0
+    .4byte 0
+    .4byte 0
+*/
+
 struct InfoMgrBase {
 	virtual ~InfoMgrBase(); // _00
 	virtual void _04() = 0; // _04

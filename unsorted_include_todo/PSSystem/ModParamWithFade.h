@@ -1,6 +1,16 @@
 #ifndef _PSSYSTEM_MODPARAMWITHFADE_H
 #define _PSSYSTEM_MODPARAMWITHFADE_H
 
+/*
+    __vt__Q28PSSystem16ModParamWithFade:
+    .4byte 0
+    .4byte 0
+    .4byte task__Q28PSSystem16ModParamWithFadeFR8JASTrack
+    .4byte 0
+    .4byte 0
+    .4byte 0
+*/
+
 namespace PSSystem {
 struct ModParamWithFade {
 	virtual void task(JASTrack&); // _00

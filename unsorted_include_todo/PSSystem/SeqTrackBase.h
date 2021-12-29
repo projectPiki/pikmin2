@@ -1,6 +1,16 @@
 #ifndef _PSSYSTEM_SEQTRACKBASE_H
 #define _PSSYSTEM_SEQTRACKBASE_H
 
+/*
+    __vt__Q28PSSystem12SeqTrackBase:
+    .4byte 0
+    .4byte 0
+    .4byte update__Q28PSSystem12SeqTrackBaseFv
+    .4byte init__Q28PSSystem12SeqTrackBaseFP8JASTrack
+    .4byte 0
+    .4byte 0
+*/
+
 namespace PSSystem {
 struct SeqTrackBase {
 	virtual void update();        // _00

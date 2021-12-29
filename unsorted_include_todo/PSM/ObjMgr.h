@@ -1,6 +1,19 @@
 #ifndef _PSM_OBJMGR_H
 #define _PSM_OBJMGR_H
 
+/*
+        __vt__Q23PSM6ObjMgr:
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte "@12@__dt__Q23PSM6ObjMgrFv"
+        .4byte 0
+        .4byte 0
+        .4byte "@16@__dt__Q23PSM6ObjMgrFv"
+        .4byte __dt__Q23PSM6ObjMgrFv
+*/
+
 namespace PSM {
 struct ObjMgr {
     virtual void _00() = 0;   // _00

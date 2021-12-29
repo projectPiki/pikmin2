@@ -1,6 +1,24 @@
 #ifndef _EFX2D_T2DCOUNTKIRA_H
 #define _EFX2D_T2DCOUNTKIRA_H
 
+/*
+        __vt__Q25efx2d12T2DCountKira:
+        .4byte 0
+        .4byte 0
+        .4byte create__Q25efx2d12T2DCountKiraFPQ25efx2d3Arg
+        .4byte kill__Q25efx2d8TForeverFv
+        .4byte fade__Q25efx2d8TForeverFv
+        .4byte setGroup__Q25efx2d5TBaseFUc
+        .4byte 0
+        .4byte 0
+        .4byte "@8@__dt__Q25efx2d12T2DCountKiraFv"
+        .4byte execute__18JPAEmitterCallBackFP14JPABaseEmitter
+        .4byte executeAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
+        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+        .4byte __dt__Q25efx2d12T2DCountKiraFv
+*/
+
 namespace efx2d {
 struct TForever {
     virtual void _00() = 0; // _00

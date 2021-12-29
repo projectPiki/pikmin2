@@ -1,8 +1,19 @@
 #ifndef _P2DSCREEN_NODE_H
 #define _P2DSCREEN_NODE_H
 
+/*
+    __vt__Q29P2DScreen4Node:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__Q29P2DScreen4NodeFv
+    .4byte getChildCount__5CNodeFv
+    .4byte update__Q29P2DScreen4NodeFv
+    .4byte draw__Q29P2DScreen4NodeFR8GraphicsR14J2DGrafContext
+    .4byte doInit__Q29P2DScreen4NodeFv
+*/
+
 struct CNode {
-	virtual void _00() = 0;       // _00
+	virtual ~CNode();             // _00
 	virtual void getChildCount(); // _04
 
 	// _00 VTBL

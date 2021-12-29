@@ -1,6 +1,37 @@
 #ifndef _GAME_ITEMWEED_WEEDMGR_H
 #define _GAME_ITEMWEED_WEEDMGR_H
 
+/*
+        __vt__Q34Game8ItemWeed7WeedMgr:
+        .4byte 0
+        .4byte 0
+        .4byte "getMaxObjects__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>Fv"
+        .4byte "getNumObjects__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>Fv"
+        .4byte "isFlagAlive__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>Fi"
+        .4byte "getFlock__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>Fi"
+        .4byte
+   "killFlock__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>FPQ24Game6TFlock" .4byte
+   do_update__Q34Game8ItemWeed7WeedMgrFv .4byte
+   do_update_boundSphere__Q34Game8ItemWeed7WeedMgrFv .4byte
+   doSimpleDraw__Q24Game12BaseFlockMgrFP8ViewportPP12J3DModelDatai .4byte
+   isWeed__Q24Game12BaseFlockMgrFi .4byte fear__Q24Game12BaseFlockMgrFi .4byte 0
+        .4byte 0
+        .4byte "@32@__dt__Q34Game8ItemWeed7WeedMgrFv"
+        .4byte getChildCount__5CNodeFv
+        .4byte "getObject__32Container<Q34Game8ItemWeed4Weed>FPv"
+        .4byte "@32@getNext__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>FPv"
+        .4byte "@32@getStart__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>Fv"
+        .4byte "@32@getEnd__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>Fv"
+        .4byte "@32@get__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>FPv"
+        .4byte "getAt__32Container<Q34Game8ItemWeed4Weed>Fi"
+        .4byte "getTo__32Container<Q34Game8ItemWeed4Weed>Fv"
+        .4byte "get__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>FPv"
+        .4byte "getNext__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>FPv"
+        .4byte "getStart__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>Fv"
+        .4byte "getEnd__Q24Game32TFlockMgr<Q34Game8ItemWeed4Weed>Fv"
+        .4byte __dt__Q34Game8ItemWeed7WeedMgrFv
+*/
+
 namespace Game {
 namespace TFlockMgr < Game
 {
@@ -93,10 +124,6 @@ namespace ItemWeed {
         virtual void @32 @__dt();                                  // _30
         virtual void getChildCount();                              // _34
         virtual void getObject(void*);                             // _38
-        virtual void _3C() = 0;                                    // _3C
-        virtual void _40() = 0;                                    // _40
-        virtual void _44() = 0;                                    // _44
-        virtual void _48() = 0;                                    // _48
         virtual void getAt(int);                                   // _4C
         virtual void getTo();                                      // _50
         virtual void TFlockMgr < get(void*);                       // _54

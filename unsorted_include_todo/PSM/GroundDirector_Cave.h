@@ -1,6 +1,25 @@
 #ifndef _PSM_GROUNDDIRECTOR_CAVE_H
 #define _PSM_GROUNDDIRECTOR_CAVE_H
 
+/*
+    __vt__Q23PSM19GroundDirector_Cave:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__Q23PSM19GroundDirector_CaveFv
+    .4byte exec__Q28PSSystem12DirectorBaseFv
+    .4byte directOn__Q23PSM19GroundDirector_CaveFv
+    .4byte directOff__Q23PSM19GroundDirector_CaveFv
+    .4byte underDirection__Q28PSSystem12DirectorBaseFv
+    .4byte execInner__Q23PSM21ActorDirector_TrackOnFv
+    .4byte directOnTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase
+    .4byte
+   directOffTrack__Q23PSM19TrackOnDirectorBaseFRQ28PSSystem12SeqTrackBase .4byte
+   doUpdateRequest__Q28PSSystem16SwitcherDirectorFv .4byte
+   onPlayInit__Q23PSM19TrackOnDirectorBaseFP8JASTrack .4byte
+   onDirectOn__Q28PSSystem12DirectorBaseFv .4byte
+   onDirectOff__Q28PSSystem12DirectorBaseFv
+*/
+
 namespace PSSystem {
 struct DirectorBase {
 	virtual void _00() = 0;        // _00

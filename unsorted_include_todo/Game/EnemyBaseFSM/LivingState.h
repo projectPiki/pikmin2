@@ -1,6 +1,28 @@
 #ifndef _GAME_ENEMYBASEFSM_LIVINGSTATE_H
 #define _GAME_ENEMYBASEFSM_LIVINGSTATE_H
 
+/*
+    __vt__Q34Game12EnemyBaseFSM11LivingState:
+    .4byte 0
+    .4byte 0
+    .4byte init__Q24Game13EnemyFSMStateFPQ24Game9EnemyBasePQ24Game8StateArg
+    .4byte exec__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+    .4byte cleanup__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+    .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+    .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+    .4byte transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg
+    .4byte doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics
+    .4byte update__Q34Game12EnemyBaseFSM11LivingStateFPQ24Game9EnemyBase
+    .4byte entry__Q34Game12EnemyBaseFSM11LivingStateFPQ24Game9EnemyBase
+    .4byte simulation__Q34Game12EnemyBaseFSM11LivingStateFPQ24Game9EnemyBasef
+    .4byte
+   bounceProcedure__Q34Game12EnemyBaseFSM5StateFPQ24Game9EnemyBasePQ23Sys8Triangle
+    .4byte animation__Q34Game12EnemyBaseFSM5StateFPQ24Game9EnemyBase
+    .4byte
+   updateCullingOff__Q34Game12EnemyBaseFSM11LivingStateFPQ24Game9EnemyBase
+    .4byte updateAlways__Q34Game12EnemyBaseFSM11LivingStateFPQ24Game9EnemyBase
+*/
+
 namespace Game {
 struct EnemyFSMState {
 	virtual void init(EnemyBase*, StateArg*);         // _00

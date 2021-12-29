@@ -1,6 +1,16 @@
 #ifndef _EFX2D_TBASE_H
 #define _EFX2D_TBASE_H
 
+/*
+    __vt__Q25efx2d5TBase:
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte setGroup__Q25efx2d5TBaseFUc
+*/
+
 namespace efx2d {
 struct TBase {
 	virtual void _00() = 0;               // _00

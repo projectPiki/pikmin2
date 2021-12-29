@@ -1,6 +1,52 @@
 #ifndef _GAME_TNODEITEMMGR_H
 #define _GAME_TNODEITEMMGR_H
 
+/*
+        __vt__Q24Game12TNodeItemMgr:
+        .4byte 0
+        .4byte 0
+        .4byte doAnimation__Q24Game12TNodeItemMgrFv
+        .4byte doEntry__Q24Game12TNodeItemMgrFv
+        .4byte doSetView__Q24Game12TNodeItemMgrFi
+        .4byte doViewCalc__Q24Game12TNodeItemMgrFv
+        .4byte doSimulation__Q24Game12TNodeItemMgrFf
+        .4byte doDirectDraw__Q24Game12TNodeItemMgrFR8Graphics
+        .4byte doSimpleDraw__16GenericObjectMgrFP8Viewport
+        .4byte loadResources__Q24Game11BaseItemMgrFv
+        .4byte resetMgr__16GenericObjectMgrFv
+        .4byte pausable__16GenericObjectMgrFv
+        .4byte frozenable__16GenericObjectMgrFv
+        .4byte getMatrixLoadType__16GenericObjectMgrFv
+        .4byte initDependency__Q24Game12TNodeItemMgrFv
+        .4byte killAll__Q24Game12TNodeItemMgrFv
+        .4byte setup__Q24Game11BaseItemMgrFPQ24Game8BaseItem
+        .4byte setupSoundViewerAndBas__Q24Game11BaseItemMgrFv
+        .4byte onLoadResources__Q24Game11BaseItemMgrFv
+        .4byte loadEverytime__Q24Game11BaseItemMgrFv
+        .4byte updateUseList__Q24Game11BaseItemMgrFPQ24Game11GenItemParmi
+        .4byte onUpdateUseList__Q24Game11BaseItemMgrFPQ24Game11GenItemParmi
+        .4byte 0
+        .4byte 0
+        .4byte
+   generatorWrite__Q24Game11BaseItemMgrFR6StreamPQ24Game11GenItemParm .4byte
+   generatorRead__Q24Game11BaseItemMgrFR6StreamPQ24Game11GenItemParmUl .4byte
+   generatorLocalVersion__Q24Game11BaseItemMgrFv .4byte
+   generatorGetShape__Q24Game11BaseItemMgrFPQ24Game11GenItemParm .4byte
+   generatorNewItemParm__Q24Game11BaseItemMgrFv .4byte 0 .4byte 0 .4byte
+   "@48@__dt__Q24Game12TNodeItemMgrFv" .4byte getChildCount__5CNodeFv .4byte
+   "getObject__27Container<Q24Game8BaseItem>FPv" .4byte
+   "@48@getNext__Q24Game12TNodeItemMgrFPv" .4byte
+   "@48@getStart__Q24Game12TNodeItemMgrFv" .4byte
+   "@48@getEnd__Q24Game12TNodeItemMgrFv" .4byte
+   "@48@get__Q24Game12TNodeItemMgrFPv" .4byte
+   "getAt__27Container<Q24Game8BaseItem>Fi" .4byte
+   "getTo__27Container<Q24Game8BaseItem>Fv" .4byte 0 .4byte
+   kill__Q24Game12TNodeItemMgrFPQ24Game8BaseItem .4byte
+   get__Q24Game12TNodeItemMgrFPv .4byte getNext__Q24Game12TNodeItemMgrFPv .4byte
+   getStart__Q24Game12TNodeItemMgrFv .4byte getEnd__Q24Game12TNodeItemMgrFv
+        .4byte __dt__Q24Game12TNodeItemMgrFv
+*/
+
 struct GenericObjectMgr {
     virtual void _00() = 0;               // _00
     virtual void _04() = 0;               // _04

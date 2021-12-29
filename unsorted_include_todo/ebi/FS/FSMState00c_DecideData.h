@@ -1,6 +1,22 @@
 #ifndef _EBI_FS_FSMSTATE00C_DECIDEDATA_H
 #define _EBI_FS_FSMSTATE00C_DECIDEDATA_H
 
+/*
+    __vt__Q33ebi2FS22FSMState00c_DecideData:
+    .4byte 0
+    .4byte 0
+    .4byte init__Q33ebi2FS8FSMStateFPQ33ebi2FS4TMgrPQ24Game8StateArg
+    .4byte exec__Q33ebi2FS8FSMStateFPQ33ebi2FS4TMgr
+    .4byte "cleanup__Q24Game24FSMState<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgr"
+    .4byte "resume__Q24Game24FSMState<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgr"
+    .4byte "restart__Q24Game24FSMState<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgr"
+    .4byte
+   "transit__Q24Game24FSMState<Q33ebi2FS4TMgr>FPQ33ebi2FS4TMgriPQ24Game8StateArg"
+    .4byte
+   do_init__Q33ebi2FS22FSMState00c_DecideDataFPQ33ebi2FS4TMgrPQ24Game8StateArg
+    .4byte do_exec__Q33ebi2FS22FSMState00c_DecideDataFPQ33ebi2FS4TMgr
+*/
+
 namespace ebi {
 namespace FS {
 	struct FSMState {

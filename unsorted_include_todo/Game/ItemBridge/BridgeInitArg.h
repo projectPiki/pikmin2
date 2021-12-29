@@ -1,6 +1,13 @@
 #ifndef _GAME_ITEMBRIDGE_BRIDGEINITARG_H
 #define _GAME_ITEMBRIDGE_BRIDGEINITARG_H
 
+/*
+    __vt__Q34Game10ItemBridge13BridgeInitArg:
+    .4byte 0
+    .4byte 0
+    .4byte getName__Q34Game10ItemBridge13BridgeInitArgFv
+*/
+
 namespace Game {
 namespace ItemBridge {
 	struct BridgeInitArg {

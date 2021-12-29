@@ -1,6 +1,16 @@
 #ifndef _SCREEN_MGRBASE_H
 #define _SCREEN_MGRBASE_H
 
+/*
+    __vt__Q26Screen7MgrBase:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__Q26Screen7MgrBaseFv
+    .4byte 0
+    .4byte 0
+    .4byte 0
+*/
+
 namespace Screen {
 struct MgrBase {
 	virtual ~MgrBase();     // _00

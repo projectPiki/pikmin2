@@ -1,6 +1,18 @@
 #ifndef _GAME_CITEMFSM_H
 #define _GAME_CITEMFSM_H
 
+/*
+    __vt__Q24Game8CItemFSM:
+    .4byte 0
+    .4byte 0
+    .4byte "init__Q24Game30StateMachine<Q24Game8CFSMItem>FPQ24Game8CFSMItem"
+    .4byte
+   "start__Q24Game30StateMachine<Q24Game8CFSMItem>FPQ24Game8CFSMItemiPQ24Game8StateArg"
+    .4byte "exec__Q24Game30StateMachine<Q24Game8CFSMItem>FPQ24Game8CFSMItem"
+    .4byte
+   "transit__Q24Game30StateMachine<Q24Game8CFSMItem>FPQ24Game8CFSMItemiPQ24Game8StateArg"
+*/
+
 namespace Game {
 namespace StateMachine < Game
 {

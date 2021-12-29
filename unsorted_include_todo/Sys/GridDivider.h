@@ -1,6 +1,24 @@
 #ifndef _SYS_GRIDDIVIDER_H
 #define _SYS_GRIDDIVIDER_H
 
+/*
+    __vt__Q23Sys11GridDivider:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__Q23Sys11GridDividerFv
+    .4byte getChildCount__5CNodeFv
+    .4byte "getMinY__Q23Sys11GridDividerFR10Vector3<f>"
+    .4byte findTriLists__Q23Sys11GridDividerFRQ23Sys6Sphere
+    .4byte read__Q23Sys11GridDividerFR6Stream
+    .4byte getCurrTri__Q23Sys11GridDividerFRQ24Game11CurrTriInfo
+    .4byte createTriangles__Q23Sys11GridDividerFRQ23Sys17CreateTriangleArg
+    .4byte getBoundBox__Q23Sys11GridDividerFR8BoundBox
+    .4byte clone__Q23Sys10TriDividerFR7Matrixf
+    .4byte
+   do_clone__Q23Sys11GridDividerFR7MatrixfPQ23Sys11VertexTablePQ23Sys13TriangleTable
+    .4byte 0
+*/
+
 struct CNode {
 	virtual void _00() = 0;       // _00
 	virtual void getChildCount(); // _04

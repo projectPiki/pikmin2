@@ -1,6 +1,26 @@
 #ifndef _GAME_GENOBJECTENEMY_H
 #define _GAME_GENOBJECTENEMY_H
 
+/*
+    __vt__Q24Game14GenObjectEnemy:
+    .4byte 0
+    .4byte 0
+    .4byte doWrite__Q24Game14GenObjectEnemyFR6Stream
+    .4byte ramSaveParameters__Q24Game14GenObjectEnemyFR6Stream
+    .4byte ramLoadParameters__Q24Game14GenObjectEnemyFR6Stream
+    .4byte doEvent__Q24Game7GenBaseFUl
+    .4byte doRead__Q24Game14GenObjectEnemyFR6Stream
+    .4byte update__Q24Game9GenObjectFPQ24Game9Generator
+    .4byte render__Q24Game14GenObjectEnemyFR8GraphicsPQ24Game9Generator
+    .4byte getLatestVersion__Q24Game9GenObjectFv
+    .4byte getShape__Q24Game14GenObjectEnemyFv
+    .4byte updateUseList__Q24Game14GenObjectEnemyFPQ24Game9Generatori
+    .4byte generate__Q24Game14GenObjectEnemyFPQ24Game9Generator
+    .4byte birth__Q24Game14GenObjectEnemyFPQ24Game6GenArg
+    .4byte "generatorMakeMatrix__Q24Game9GenObjectFR7MatrixfR10Vector3<f>"
+    .4byte getDebugInfo__Q24Game9GenObjectFPc
+*/
+
 namespace Game {
 struct GenBase {
 	virtual void _00() = 0;              // _00

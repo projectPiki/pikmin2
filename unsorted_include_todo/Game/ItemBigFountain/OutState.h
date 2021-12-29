@@ -1,6 +1,34 @@
 #ifndef _GAME_ITEMBIGFOUNTAIN_OUTSTATE_H
 #define _GAME_ITEMBIGFOUNTAIN_OUTSTATE_H
 
+/*
+    __vt__Q34Game15ItemBigFountain8OutState:
+    .4byte 0
+    .4byte 0
+    .4byte
+   init__Q34Game15ItemBigFountain8OutStateFPQ34Game15ItemBigFountain4ItemPQ24Game8StateArg
+    .4byte
+   exec__Q34Game15ItemBigFountain8OutStateFPQ34Game15ItemBigFountain4Item .4byte
+   cleanup__Q34Game15ItemBigFountain8OutStateFPQ34Game15ItemBigFountain4Item
+    .4byte
+   "resume__Q24Game39FSMState<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4Item"
+    .4byte
+   "restart__Q24Game39FSMState<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4Item"
+    .4byte
+   "transit__Q24Game39FSMState<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4ItemiPQ24Game8StateArg"
+    .4byte
+   onDamage__Q34Game15ItemBigFountain5StateFPQ34Game15ItemBigFountain4Itemf
+    .4byte
+   "onKeyEvent__Q24Game40ItemState<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4ItemRCQ28SysShape8KeyEvent"
+    .4byte
+   "onBounce__Q24Game40ItemState<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4ItemPQ23Sys8Triangle"
+    .4byte
+   "onPlatCollision__Q24Game40ItemState<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4ItemRQ24Game9PlatEvent"
+    .4byte
+   "onCollision__Q24Game40ItemState<Q34Game15ItemBigFountain4Item>FPQ34Game15ItemBigFountain4ItemRQ24Game9CollEvent"
+    .4byte canRide__Q34Game15ItemBigFountain8OutStateFv
+*/
+
 namespace Game {
 namespace FSMState < Game
 {

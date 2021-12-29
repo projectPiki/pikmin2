@@ -1,6 +1,23 @@
 #ifndef _SYS_OBBTREE_H
 #define _SYS_OBBTREE_H
 
+/*
+    __vt__Q23Sys7OBBTree:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__Q23Sys7OBBTreeFv
+    .4byte getChildCount__5CNodeFv
+    .4byte "getMinY__Q23Sys7OBBTreeFR10Vector3<f>"
+    .4byte findTriLists__Q23Sys7OBBTreeFRQ23Sys6Sphere
+    .4byte read__Q23Sys7OBBTreeFR6Stream
+    .4byte getCurrTri__Q23Sys7OBBTreeFRQ24Game11CurrTriInfo
+    .4byte createTriangles__Q23Sys10TriDividerFRQ23Sys17CreateTriangleArg
+    .4byte getBoundBox__Q23Sys7OBBTreeFR8BoundBox
+    .4byte clone__Q23Sys7OBBTreeFR7Matrixf
+    .4byte
+   do_clone__Q23Sys10TriDividerFR7MatrixfPQ23Sys11VertexTablePQ23Sys13TriangleTable
+*/
+
 struct CNode {
 	virtual void _00() = 0;       // _00
 	virtual void getChildCount(); // _04

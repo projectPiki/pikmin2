@@ -1,6 +1,16 @@
 #ifndef _EFX2D_FILESELECT_T2DFILEDELETEM_H
 #define _EFX2D_FILESELECT_T2DFILEDELETEM_H
 
+/*
+    __vt__Q35efx2d10FileSelect14T2DFiledeleteM:
+    .4byte 0
+    .4byte 0
+    .4byte create__Q35efx2d10FileSelect14T2DFiledeleteMFPQ25efx2d3Arg
+    .4byte kill__Q25efx2d8TSimple1Fv
+    .4byte fade__Q25efx2d8TSimple1Fv
+    .4byte setGroup__Q25efx2d5TBaseFUc
+*/
+
 namespace efx2d {
 struct TSimple1 {
 	virtual void _00() = 0; // _00

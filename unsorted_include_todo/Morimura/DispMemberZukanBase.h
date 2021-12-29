@@ -1,6 +1,22 @@
 #ifndef _MORIMURA_DISPMEMBERZUKANBASE_H
 #define _MORIMURA_DISPMEMBERZUKANBASE_H
 
+/*
+    __vt__Q28Morimura19DispMemberZukanBase:
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+*/
+
 namespace og {
 namespace Screen {
 	struct DispMemberBase {

@@ -1,6 +1,18 @@
 #ifndef _JKRFILE_H
 #define _JKRFILE_H
 
+/*
+    __vt__7JKRFile:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__7JKRFileFv
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+*/
+
 struct JKRFile {
 	virtual ~JKRFile();     // _00
 	virtual void _04() = 0; // _04

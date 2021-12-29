@@ -1,6 +1,20 @@
 #ifndef _JPAPARTICLECALLBACK_H
 #define _JPAPARTICLECALLBACK_H
 
+/*
+    __vt__19JPAParticleCallBack:
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte execute__19JPAParticleCallBackFP14JPABaseEmitterP15JPABaseParticle
+    .4byte draw__19JPAParticleCallBackFP14JPABaseEmitterP15JPABaseParticle
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+*/
+
 struct JPAParticleCallBack {
 	virtual void _00() = 0;                                  // _00
 	virtual void execute(JPABaseEmitter*, JPABaseParticle*); // _04

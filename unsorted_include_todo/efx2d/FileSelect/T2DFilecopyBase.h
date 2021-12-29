@@ -1,6 +1,24 @@
 #ifndef _EFX2D_FILESELECT_T2DFILECOPYBASE_H
 #define _EFX2D_FILESELECT_T2DFILECOPYBASE_H
 
+/*
+        __vt__Q35efx2d10FileSelect15T2DFilecopyBase:
+        .4byte 0
+        .4byte 0
+        .4byte create__Q35efx2d10FileSelect15T2DFilecopyBaseFPQ25efx2d3Arg
+        .4byte kill__Q25efx2d8TForeverFv
+        .4byte fade__Q25efx2d8TForeverFv
+        .4byte setGroup__Q25efx2d5TBaseFUc
+        .4byte 0
+        .4byte 0
+        .4byte "@8@__dt__Q35efx2d10FileSelect15T2DFilecopyBaseFv"
+        .4byte execute__18JPAEmitterCallBackFP14JPABaseEmitter
+        .4byte executeAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+        .4byte draw__18JPAEmitterCallBackFP14JPABaseEmitter
+        .4byte drawAfter__18JPAEmitterCallBackFP14JPABaseEmitter
+        .4byte __dt__Q35efx2d10FileSelect15T2DFilecopyBaseFv
+*/
+
 namespace efx2d {
 struct TForever {
     virtual void _00() = 0; // _00

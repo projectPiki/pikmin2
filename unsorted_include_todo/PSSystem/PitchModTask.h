@@ -1,6 +1,16 @@
 #ifndef _PSSYSTEM_PITCHMODTASK_H
 #define _PSSYSTEM_PITCHMODTASK_H
 
+/*
+    __vt__Q28PSSystem12PitchModTask:
+    .4byte 0
+    .4byte 0
+    .4byte task__Q28PSSystem21ModParamWithTableTaskFR8JASTrack
+    .4byte getTgtWithTable__Q28PSSystem20TriangleTableModTaskFUc
+    .4byte getTableIdxNum__Q28PSSystem20TriangleTableModTaskFv
+    .4byte tableTask__Q28PSSystem12PitchModTaskFR8JASTrackf
+*/
+
 namespace PSSystem {
 struct ModParamWithTableTask {
 	virtual void task(JASTrack&); // _00

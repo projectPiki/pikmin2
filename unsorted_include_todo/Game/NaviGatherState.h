@@ -1,6 +1,36 @@
 #ifndef _GAME_NAVIGATHERSTATE_H
 #define _GAME_NAVIGATHERSTATE_H
 
+/*
+    __vt__Q24Game15NaviGatherState:
+    .4byte 0
+    .4byte 0
+    .4byte init__Q24Game15NaviGatherStateFPQ24Game4NaviPQ24Game8StateArg
+    .4byte exec__Q24Game15NaviGatherStateFPQ24Game4Navi
+    .4byte cleanup__Q24Game15NaviGatherStateFPQ24Game4Navi
+    .4byte "resume__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4Navi"
+    .4byte "restart__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4Navi"
+    .4byte
+   "transit__Q24Game22FSMState<Q24Game4Navi>FPQ24Game4NaviiPQ24Game8StateArg"
+    .4byte invincible__Q24Game9NaviStateFv
+    .4byte onKeyEvent__Q24Game9NaviStateFPQ24Game4NaviRCQ28SysShape8KeyEvent
+    .4byte collisionCallback__Q24Game9NaviStateFPQ24Game4NaviRQ24Game9CollEvent
+    .4byte "wallCallback__Q24Game9NaviStateFPQ24Game4NaviR10Vector3<f>"
+    .4byte bounceCallback__Q24Game9NaviStateFPQ24Game4NaviPQ23Sys8Triangle
+    .4byte pressable__Q24Game9NaviStateFv
+    .4byte callable__Q24Game9NaviStateFv
+    .4byte ignoreAtari__Q24Game9NaviStateFPQ24Game8Creature
+    .4byte needYChangeMotion__Q24Game9NaviStateFv
+    .4byte vsUsableY__Q24Game9NaviStateFv
+    .4byte draw2d__Q24Game9NaviStateFR14J2DGrafContextRi
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+*/
+
 namespace Game {
 namespace FSMState < Game
 {

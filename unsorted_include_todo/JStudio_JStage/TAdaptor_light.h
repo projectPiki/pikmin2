@@ -1,6 +1,27 @@
 #ifndef _JSTUDIO_JSTAGE_TADAPTOR_LIGHT_H
 #define _JSTUDIO_JSTAGE_TADAPTOR_LIGHT_H
 
+/*
+    __vt__Q214JStudio_JStage14TAdaptor_light:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__Q214JStudio_JStage14TAdaptor_lightFv
+    .4byte
+   adaptor_do_prepare__Q214JStudio_JStage14TAdaptor_lightFPCQ27JStudio7TObject
+    .4byte
+   adaptor_do_begin__Q214JStudio_JStage14TAdaptor_lightFPCQ27JStudio7TObject
+    .4byte
+   adaptor_do_end__Q214JStudio_JStage14TAdaptor_lightFPCQ27JStudio7TObject
+    .4byte
+   adaptor_do_update__Q214JStudio_JStage14TAdaptor_lightFPCQ27JStudio7TObjectUl
+    .4byte
+   adaptor_do_data__Q214JStudio_JStage14TAdaptor_lightFPCQ27JStudio7TObjectPCvUlPCvUl
+    .4byte
+   adaptor_do_ENABLE__Q214JStudio_JStage14TAdaptor_lightFQ37JStudio4data15TEOperationDataPCvUl
+    .4byte
+   adaptor_do_FACULTY__Q214JStudio_JStage14TAdaptor_lightFQ37JStudio4data15TEOperationDataPCvUl
+*/
+
 namespace JStudio_JStage {
 struct TAdaptor_light {
 	virtual ~TAdaptor_light();                                // _00

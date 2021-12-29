@@ -1,6 +1,24 @@
 #ifndef _PSSYSTEM_DIRECTORBASE_H
 #define _PSSYSTEM_DIRECTORBASE_H
 
+/*
+    __vt__Q28PSSystem12DirectorBase:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__Q28PSSystem12DirectorBaseFv
+    .4byte exec__Q28PSSystem12DirectorBaseFv
+    .4byte directOn__Q28PSSystem12DirectorBaseFv
+    .4byte directOff__Q28PSSystem12DirectorBaseFv
+    .4byte underDirection__Q28PSSystem12DirectorBaseFv
+    .4byte execInner__Q28PSSystem12DirectorBaseFv
+    .4byte 0
+    .4byte 0
+    .4byte doUpdateRequest__Q28PSSystem12DirectorBaseFv
+    .4byte onPlayInit__Q28PSSystem12DirectorBaseFP8JASTrack
+    .4byte onDirectOn__Q28PSSystem12DirectorBaseFv
+    .4byte onDirectOff__Q28PSSystem12DirectorBaseFv
+*/
+
 namespace PSSystem {
 struct DirectorBase {
 	virtual ~DirectorBase();            // _00

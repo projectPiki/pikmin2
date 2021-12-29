@@ -1,6 +1,67 @@
 #ifndef _GAME_ENEMYMGRBASEALWAYSMOVIEACTOR_H
 #define _GAME_ENEMYMGRBASEALWAYSMOVIEACTOR_H
 
+/*
+        __vt__Q24Game28EnemyMgrBaseAlwaysMovieActor:
+        .4byte 0
+        .4byte 0
+        .4byte doAnimation__Q24Game28EnemyMgrBaseAlwaysMovieActorFv
+        .4byte doEntry__Q24Game28EnemyMgrBaseAlwaysMovieActorFv
+        .4byte doSetView__Q24Game12EnemyMgrBaseFi
+        .4byte doViewCalc__Q24Game12EnemyMgrBaseFv
+        .4byte doSimulation__Q24Game28EnemyMgrBaseAlwaysMovieActorFf
+        .4byte doDirectDraw__Q24Game28EnemyMgrBaseAlwaysMovieActorFR8Graphics
+        .4byte doSimpleDraw__16GenericObjectMgrFP8Viewport
+        .4byte loadResources__16GenericObjectMgrFv
+        .4byte resetMgr__16GenericObjectMgrFv
+        .4byte pausable__16GenericObjectMgrFv
+        .4byte frozenable__16GenericObjectMgrFv
+        .4byte getMatrixLoadType__16GenericObjectMgrFv
+        .4byte 0
+        .4byte 0
+        .4byte "@4@__dt__Q24Game28EnemyMgrBaseAlwaysMovieActorFv"
+        .4byte getChildCount__5CNodeFv
+        .4byte "@4@getObject__Q24Game12EnemyMgrBaseFPv"
+        .4byte "@4@getNext__Q24Game12EnemyMgrBaseFPv"
+        .4byte "@4@getStart__Q24Game12EnemyMgrBaseFv"
+        .4byte "@4@getEnd__Q24Game12EnemyMgrBaseFv"
+        .4byte __dt__Q24Game28EnemyMgrBaseAlwaysMovieActorFv
+        .4byte getObject__Q24Game12EnemyMgrBaseFPv
+        .4byte getNext__Q24Game12EnemyMgrBaseFPv
+        .4byte getStart__Q24Game12EnemyMgrBaseFv
+        .4byte getEnd__Q24Game12EnemyMgrBaseFv
+        .4byte alloc__Q24Game12EnemyMgrBaseFv
+        .4byte birth__Q24Game12EnemyMgrBaseFRQ24Game13EnemyBirthArg
+        .4byte getJ3DModelData__Q24Game12EnemyMgrBaseCFv
+        .4byte getGenerator__Q24Game12EnemyMgrBaseCFv
+        .4byte killAll__Q24Game12EnemyMgrBaseFPQ24Game15CreatureKillArg
+        .4byte setupSoundViewerAndBas__Q24Game12EnemyMgrBaseFv
+        .4byte setDebugParm__Q24Game12EnemyMgrBaseFUl
+        .4byte resetDebugParm__Q24Game12EnemyMgrBaseFUl
+        .4byte getMaxObjects__Q24Game12EnemyMgrBaseCFv
+        .4byte startMovie__Q24Game12EnemyMgrBaseFv
+        .4byte endMovie__Q24Game12EnemyMgrBaseFv
+        .4byte get__Q24Game12EnemyMgrBaseFPv
+        .4byte isAlwaysMovieActor__Q24Game28EnemyMgrBaseAlwaysMovieActorFv
+        .4byte 0
+        .4byte 0
+        .4byte doAlloc__Q24Game12EnemyMgrBaseFv
+        .4byte getEnemyTypeID__Q24Game12EnemyMgrBaseFv
+        .4byte createModel__Q24Game12EnemyMgrBaseFv
+        .4byte initParms__Q24Game12EnemyMgrBaseFv
+        .4byte loadResource__Q24Game12EnemyMgrBaseFv
+        .4byte initObjects__Q24Game12EnemyMgrBaseFv
+        .4byte initStoneSetting__Q24Game12EnemyMgrBaseFv
+        .4byte loadModelData__Q24Game12EnemyMgrBaseFP10JKRArchive
+        .4byte loadModelData__Q24Game12EnemyMgrBaseFv
+        .4byte loadAnimData__Q24Game12EnemyMgrBaseFv
+        .4byte loadTexData__Q24Game12EnemyMgrBaseFv
+        .4byte doLoadBmd__Q24Game12EnemyMgrBaseFPv
+        .4byte doLoadBdl__Q24Game12EnemyMgrBaseFPv
+        .4byte initGenerator__Q24Game12EnemyMgrBaseFv
+        .4byte 0
+*/
+
 namespace Game {
 struct EnemyMgrBase {
     virtual void _00() = 0;                     // _00
@@ -120,10 +181,6 @@ struct EnemyMgrBaseAlwaysMovieActor : public EnemyMgrBase,
     virtual void _34() = 0;                     // _34
     virtual void @4 @__dt();                    // _38
     virtual void getChildCount();               // _3C
-    virtual void _40() = 0;                     // _40
-    virtual void _44() = 0;                     // _44
-    virtual void _48() = 0;                     // _48
-    virtual void _4C() = 0;                     // _4C
     virtual ~EnemyMgrBaseAlwaysMovieActor();    // _50
     virtual void getObject(void*);              // _54
     virtual void getNext(void*);                // _58

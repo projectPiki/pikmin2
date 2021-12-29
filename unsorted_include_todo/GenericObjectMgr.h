@@ -1,6 +1,24 @@
 #ifndef _GENERICOBJECTMGR_H
 #define _GENERICOBJECTMGR_H
 
+/*
+    __vt__16GenericObjectMgr:
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte doEntry__16GenericObjectMgrFv
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte doSimpleDraw__16GenericObjectMgrFP8Viewport
+    .4byte loadResources__16GenericObjectMgrFv
+    .4byte resetMgr__16GenericObjectMgrFv
+    .4byte pausable__16GenericObjectMgrFv
+    .4byte frozenable__16GenericObjectMgrFv
+    .4byte getMatrixLoadType__16GenericObjectMgrFv
+*/
+
 struct GenericObjectMgr {
 	virtual void _00() = 0;               // _00
 	virtual void doEntry();               // _04

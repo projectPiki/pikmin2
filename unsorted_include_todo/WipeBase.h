@@ -1,8 +1,23 @@
 #ifndef _WIPEBASE_H
 #define _WIPEBASE_H
 
+/*
+    __vt__8WipeBase:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__8WipeBaseFv
+    .4byte getChildCount__5CNodeFv
+    .4byte update__8WipeBaseFv
+    .4byte draw__8WipeBaseFv
+    .4byte isWhite__8WipeBaseFv
+    .4byte isBlack__8WipeBaseFv
+    .4byte on_start__8WipeBaseFv
+    .4byte do_draw__8WipeBaseFf
+    .4byte 0
+*/
+
 struct CNode {
-	virtual void _00() = 0;       // _00
+	virtual ~CNode();             // _00
 	virtual void getChildCount(); // _04
 
 	// _00 VTBL

@@ -1,6 +1,27 @@
 #ifndef _EBI_FILESELECT_FSMSTATE_EMPTYUPDATE_H
 #define _EBI_FILESELECT_FSMSTATE_EMPTYUPDATE_H
 
+/*
+    __vt__Q33ebi10FileSelect20FSMState_EmptyUpdate:
+    .4byte 0
+    .4byte 0
+    .4byte
+   init__Q33ebi10FileSelect8FSMStateFPQ33ebi10FileSelect4TMgrPQ24Game8StateArg
+    .4byte exec__Q33ebi10FileSelect8FSMStateFPQ33ebi10FileSelect4TMgr
+    .4byte
+   "cleanup__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgr"
+    .4byte
+   "resume__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgr"
+    .4byte
+   "restart__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgr"
+    .4byte
+   "transit__Q24Game33FSMState<Q33ebi10FileSelect4TMgr>FPQ33ebi10FileSelect4TMgriPQ24Game8StateArg"
+    .4byte
+   do_init__Q33ebi10FileSelect20FSMState_EmptyUpdateFPQ33ebi10FileSelect4TMgrPQ24Game8StateArg
+    .4byte
+   do_exec__Q33ebi10FileSelect20FSMState_EmptyUpdateFPQ33ebi10FileSelect4TMgr
+*/
+
 namespace ebi {
 namespace FileSelect {
 	struct FSMState {

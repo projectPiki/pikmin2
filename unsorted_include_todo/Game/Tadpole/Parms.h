@@ -1,6 +1,13 @@
 #ifndef _GAME_TADPOLE_PARMS_H
 #define _GAME_TADPOLE_PARMS_H
 
+/*
+    __vt__Q34Game7Tadpole5Parms:
+    .4byte 0
+    .4byte 0
+    .4byte read__Q34Game7Tadpole5ParmsFR6Stream
+*/
+
 namespace Game {
 namespace Tadpole {
 	struct Parms {

@@ -1,9 +1,24 @@
 #ifndef _PSM_SCENEMGR_H
 #define _PSM_SCENEMGR_H
 
+/*
+    __vt__Q23PSM8SceneMgr:
+    .4byte 0
+    .4byte 0
+    .4byte exec__Q28PSSystem8SceneMgrFv
+    .4byte newAndSetCurrentScene__Q26PSGame11PikSceneMgrFRQ26PSGame9SceneInfo
+    .4byte newAndSetGlobalScene__Q26PSGame11PikSceneMgrFv
+    .4byte newMainBgm__Q23PSM8SceneMgrFPCcRQ27JAInter9SoundInfo
+    .4byte newDirectedBgm__Q23PSM8SceneMgrFPCcRQ27JAInter9SoundInfo
+    .4byte
+   newAutoBgm__Q23PSM8SceneMgrFPCcPCcRQ27JAInter9SoundInfoQ210JADUtility10AccessModeRQ26PSGame9SceneInfoPQ28PSSystem15DirectorMgrBase
+    .4byte curSceneIsBigBossFloor__Q23PSM8SceneMgrFv
+    .4byte newGameScene__Q23PSM8SceneMgrFUcPQ26PSGame9SceneInfo
+*/
+
 namespace PSGame {
 struct PikSceneMgr {
-	virtual void _00() = 0;                         // _00
+	virtual void exec();                            // _00
 	virtual void newAndSetCurrentScene(SceneInfo&); // _04
 	virtual void newAndSetGlobalScene();            // _08
 

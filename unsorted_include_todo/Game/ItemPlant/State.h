@@ -1,6 +1,36 @@
 #ifndef _GAME_ITEMPLANT_STATE_H
 #define _GAME_ITEMPLANT_STATE_H
 
+/*
+    __vt__Q34Game9ItemPlant5State:
+    .4byte 0
+    .4byte 0
+    .4byte
+   "init__Q24Game32FSMState<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4ItemPQ24Game8StateArg"
+    .4byte
+   "exec__Q24Game32FSMState<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4Item"
+    .4byte
+   "cleanup__Q24Game32FSMState<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4Item"
+    .4byte
+   "resume__Q24Game32FSMState<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4Item"
+    .4byte
+   "restart__Q24Game32FSMState<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4Item"
+    .4byte
+   "transit__Q24Game32FSMState<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4ItemiPQ24Game8StateArg"
+    .4byte
+   "onDamage__Q24Game33ItemState<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4Itemf"
+    .4byte
+   "onKeyEvent__Q24Game33ItemState<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4ItemRCQ28SysShape8KeyEvent"
+    .4byte
+   "onBounce__Q24Game33ItemState<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4ItemPQ23Sys8Triangle"
+    .4byte
+   "onPlatCollision__Q24Game33ItemState<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4ItemRQ24Game9PlatEvent"
+    .4byte
+   "onCollision__Q24Game33ItemState<Q34Game9ItemPlant4Item>FPQ34Game9ItemPlant4ItemRQ24Game9CollEvent"
+    .4byte eventKarero__Q34Game9ItemPlant5StateFPQ34Game9ItemPlant4Item
+    .4byte eventHaero__Q34Game9ItemPlant5StateFPQ34Game9ItemPlant4Item
+*/
+
 namespace Game {
 namespace FSMState < Game
 {

@@ -1,6 +1,42 @@
 #ifndef _GAME_ENEMYMGRNODE_H
 #define _GAME_ENEMYMGRNODE_H
 
+/*
+        __vt__Q24Game12EnemyMgrNode:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q24Game12EnemyMgrNodeFv
+        .4byte getChildCount__5CNodeFv
+        .4byte 0
+        .4byte 0
+        .4byte "@24@doAnimation__Q24Game12EnemyMgrNodeFv"
+        .4byte "@24@doEntry__Q24Game12EnemyMgrNodeFv"
+        .4byte "@24@doSetView__Q24Game12EnemyMgrNodeFi"
+        .4byte "@24@doViewCalc__Q24Game12EnemyMgrNodeFv"
+        .4byte "@24@doSimulation__Q24Game12EnemyMgrNodeFf"
+        .4byte "@24@doDirectDraw__Q24Game12EnemyMgrNodeFR8Graphics"
+        .4byte "@24@doSimpleDraw__Q24Game12EnemyMgrNodeFP8Viewport"
+        .4byte loadResources__16GenericObjectMgrFv
+        .4byte resetMgr__16GenericObjectMgrFv
+        .4byte pausable__16GenericObjectMgrFv
+        .4byte frozenable__16GenericObjectMgrFv
+        .4byte "@24@getMatrixLoadType__Q24Game12EnemyMgrNodeFv"
+        .4byte doAnimation__Q24Game12EnemyMgrNodeFv
+        .4byte doEntry__Q24Game12EnemyMgrNodeFv
+        .4byte doSetView__Q24Game12EnemyMgrNodeFi
+        .4byte doViewCalc__Q24Game12EnemyMgrNodeFv
+        .4byte doSimulation__Q24Game12EnemyMgrNodeFf
+        .4byte doDirectDraw__Q24Game12EnemyMgrNodeFR8Graphics
+        .4byte doSimpleDraw__Q24Game12EnemyMgrNodeFP8Viewport
+        .4byte killAll__Q24Game12EnemyMgrNodeFPQ24Game15CreatureKillArg
+        .4byte setupSoundViewerAndBas__Q24Game12EnemyMgrNodeFv
+        .4byte setDebugParm__Q24Game12EnemyMgrNodeFUl
+        .4byte resetDebugParm__Q24Game12EnemyMgrNodeFUl
+        .4byte startMovie__Q24Game12EnemyMgrNodeFv
+        .4byte endMovie__Q24Game12EnemyMgrNodeFv
+        .4byte getMatrixLoadType__Q24Game12EnemyMgrNodeFv
+*/
+
 struct CNode {
     virtual void _00() = 0;       // _00
     virtual void getChildCount(); // _04

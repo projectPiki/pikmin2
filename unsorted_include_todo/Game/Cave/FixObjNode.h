@@ -1,6 +1,22 @@
 #ifndef _GAME_CAVE_FIXOBJNODE_H
 #define _GAME_CAVE_FIXOBJNODE_H
 
+/*
+    __vt__Q34Game4Cave10FixObjNode:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__Q34Game4Cave10FixObjNodeFv
+    .4byte getChildCount__5CNodeFv
+    .4byte getObjectId__Q34Game4Cave10FixObjNodeFv
+    .4byte getObjectType__Q34Game4Cave10FixObjNodeFv
+    .4byte getBirthCount__Q34Game4Cave10FixObjNodeFv
+    .4byte getDirection__Q34Game4Cave10FixObjNodeFv
+    .4byte getBirthDoorIndex__Q24Game16ObjectLayoutNodeFv
+    .4byte getBirthPosition__Q34Game4Cave10FixObjNodeFRfRf
+    .4byte getExtraCode__Q24Game16ObjectLayoutNodeFv
+    .4byte isFixedBattery__Q24Game16ObjectLayoutNodeFv
+*/
+
 struct CNode {
 	virtual void _00() = 0;       // _00
 	virtual void getChildCount(); // _04

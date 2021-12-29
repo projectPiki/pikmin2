@@ -1,6 +1,17 @@
 #ifndef _EFX_TCHASEPOS4_H
 #define _EFX_TCHASEPOS4_H
 
+/*
+    __vt__Q23efx10TChasePos4:
+    .4byte 0
+    .4byte 0
+    .4byte "create__Q23efx29TSyncGroup4<Q23efx9TChasePos>FPQ23efx3Arg"
+    .4byte "forceKill__Q23efx29TSyncGroup4<Q23efx9TChasePos>Fv"
+    .4byte "fade__Q23efx29TSyncGroup4<Q23efx9TChasePos>Fv"
+    .4byte "startDemoDrawOff__Q23efx29TSyncGroup4<Q23efx9TChasePos>Fv"
+    .4byte "endDemoDrawOn__Q23efx29TSyncGroup4<Q23efx9TChasePos>Fv"
+*/
+
 namespace efx {
 namespace TSyncGroup4 < efx
 {

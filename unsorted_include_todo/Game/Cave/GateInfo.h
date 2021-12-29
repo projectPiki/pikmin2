@@ -1,8 +1,17 @@
 #ifndef _GAME_CAVE_GATEINFO_H
 #define _GAME_CAVE_GATEINFO_H
 
+/*
+    __vt__Q34Game4Cave8GateInfo:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__Q34Game4Cave8GateInfoFv
+    .4byte getChildCount__5CNodeFv
+    .4byte read__Q34Game4Cave8GateInfoFR6Stream
+*/
+
 struct CNode {
-	virtual void _00() = 0;       // _00
+	virtual ~CNode();             // _00
 	virtual void getChildCount(); // _04
 
 	// _00 VTBL

@@ -1,9 +1,33 @@
 #ifndef _JKRFILECACHE_H
 #define _JKRFILECACHE_H
 
+/*
+    __vt__12JKRFileCache:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__12JKRFileCacheFv
+    .4byte unmount__13JKRFileLoaderFv
+    .4byte becomeCurrent__12JKRFileCacheFPCc
+    .4byte getResource__12JKRFileCacheFPCc
+    .4byte getResource__12JKRFileCacheFUlPCc
+    .4byte readResource__12JKRFileCacheFPvUlPCc
+    .4byte readResource__12JKRFileCacheFPvUlUlPCc
+    .4byte removeResourceAll__12JKRFileCacheFv
+    .4byte removeResource__12JKRFileCacheFPv
+    .4byte detachResource__12JKRFileCacheFPv
+    .4byte getResSize__12JKRFileCacheCFPCv
+    .4byte countFile__12JKRFileCacheCFPCc
+    .4byte getFirstFile__12JKRFileCacheCFPCc
+    .4byte getFsResource__12JKRFileCacheFPCc
+    .4byte getNameResource__12JKRFileCacheFUlPCc
+    .4byte readFsResource__12JKRFileCacheFPvUlPCc
+    .4byte readNameResource__12JKRFileCacheFPvUlUlPCc
+    .4byte 0
+*/
+
 struct JKRFileLoader {
-	virtual void _00() = 0; // _00
-	virtual void unmount(); // _04
+	virtual ~JKRFileLoader(); // _00
+	virtual void unmount();   // _04
 
 	// _00 VTBL
 };

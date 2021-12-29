@@ -1,6 +1,14 @@
 #ifndef _OG_NEWSCREEN_SARGCHALLENGEBASE_H
 #define _OG_NEWSCREEN_SARGCHALLENGEBASE_H
 
+/*
+    __vt__Q32og9newScreen17SArgChallengeBase:
+    .4byte 0
+    .4byte 0
+    .4byte getSceneType__Q26Screen12SceneArgBaseCFv
+    .4byte 0
+*/
+
 namespace Screen {
 struct SceneArgBase {
 	virtual void getSceneType() const; // _00

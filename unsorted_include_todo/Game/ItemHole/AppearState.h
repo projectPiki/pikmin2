@@ -1,6 +1,27 @@
 #ifndef _GAME_ITEMHOLE_APPEARSTATE_H
 #define _GAME_ITEMHOLE_APPEARSTATE_H
 
+/*
+    __vt__Q34Game8ItemHole11AppearState:
+    .4byte 0
+    .4byte 0
+    .4byte
+   init__Q34Game8ItemHole11AppearStateFPQ24Game8CFSMItemPQ24Game8StateArg .4byte
+   exec__Q34Game8ItemHole11AppearStateFPQ24Game8CFSMItem .4byte
+   cleanup__Q34Game8ItemHole11AppearStateFPQ24Game8CFSMItem .4byte
+   "resume__Q24Game26FSMState<Q24Game8CFSMItem>FPQ24Game8CFSMItem" .4byte
+   "restart__Q24Game26FSMState<Q24Game8CFSMItem>FPQ24Game8CFSMItem" .4byte
+   "transit__Q24Game26FSMState<Q24Game8CFSMItem>FPQ24Game8CFSMItemiPQ24Game8StateArg"
+    .4byte onDamage__Q24Game10CItemStateFPQ24Game8CFSMItemf
+    .4byte
+   onKeyEvent__Q24Game10CItemStateFPQ24Game8CFSMItemRCQ28SysShape8KeyEvent
+    .4byte onBounce__Q24Game10CItemStateFPQ24Game8CFSMItemPQ23Sys8Triangle
+    .4byte
+   onPlatCollision__Q24Game10CItemStateFPQ24Game8CFSMItemRQ24Game9PlatEvent
+    .4byte onCollision__Q24Game10CItemStateFPQ24Game8CFSMItemRQ24Game9CollEvent
+    .4byte canRide__Q34Game8ItemHole5StateFv
+*/
+
 namespace Game {
 namespace FSMState < Game
 {

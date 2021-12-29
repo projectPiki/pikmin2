@@ -1,6 +1,23 @@
 #ifndef _GAME_BASEFLOCKMGR_H
 #define _GAME_BASEFLOCKMGR_H
 
+/*
+    __vt__Q24Game12BaseFlockMgr:
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte do_update__Q24Game12BaseFlockMgrFv
+    .4byte 0
+    .4byte doSimpleDraw__Q24Game12BaseFlockMgrFP8ViewportPP12J3DModelDatai
+    .4byte isWeed__Q24Game12BaseFlockMgrFi
+    .4byte fear__Q24Game12BaseFlockMgrFi
+    .4byte 0
+*/
+
 namespace Game {
 struct BaseFlockMgr {
 	virtual void _00() = 0;                                    // _00

@@ -1,6 +1,26 @@
 #ifndef _JKRFILELOADER_H
 #define _JKRFILELOADER_H
 
+/*
+    __vt__13JKRFileLoader:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__13JKRFileLoaderFv
+    .4byte unmount__13JKRFileLoaderFv
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+*/
+
 struct JKRFileLoader {
 	virtual ~JKRFileLoader(); // _00
 	virtual void unmount();   // _04

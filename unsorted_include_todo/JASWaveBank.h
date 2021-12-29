@@ -1,6 +1,16 @@
 #ifndef _JASWAVEBANK_H
 #define _JASWAVEBANK_H
 
+/*
+    __vt__11JASWaveBank:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__11JASWaveBankFv
+    .4byte 0
+    .4byte 0
+    .4byte 0
+*/
+
 struct JASWaveBank {
 	virtual ~JASWaveBank(); // _00
 	virtual void _04() = 0; // _04

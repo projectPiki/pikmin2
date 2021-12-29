@@ -1,6 +1,17 @@
 #ifndef _EFX_TFOREVER2_H
 #define _EFX_TFOREVER2_H
 
+/*
+    __vt__Q23efx9TForever2:
+    .4byte 0
+    .4byte 0
+    .4byte "create__Q23efx28TSyncGroup2<Q23efx8TForever>FPQ23efx3Arg"
+    .4byte "forceKill__Q23efx28TSyncGroup2<Q23efx8TForever>Fv"
+    .4byte "fade__Q23efx28TSyncGroup2<Q23efx8TForever>Fv"
+    .4byte "startDemoDrawOff__Q23efx28TSyncGroup2<Q23efx8TForever>Fv"
+    .4byte "endDemoDrawOn__Q23efx28TSyncGroup2<Q23efx8TForever>Fv"
+*/
+
 namespace efx {
 namespace TSyncGroup2 < efx
 {

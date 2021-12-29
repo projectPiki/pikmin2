@@ -1,6 +1,41 @@
 #ifndef _J3DPEBLOCKFULL_H
 #define _J3DPEBLOCKFULL_H
 
+/*
+    __vt__14J3DPEBlockFull:
+    .4byte 0
+    .4byte 0
+    .4byte reset__14J3DPEBlockFullFP10J3DPEBlock
+    .4byte load__14J3DPEBlockFullFv
+    .4byte patch__14J3DPEBlockFullFv
+    .4byte diff__14J3DPEBlockFullFUl
+    .4byte diffFog__14J3DPEBlockFullFv
+    .4byte diffBlend__14J3DPEBlockFullFv
+    .4byte countDLSize__14J3DPEBlockFullFv
+    .4byte getType__14J3DPEBlockFullFv
+    .4byte setFog__14J3DPEBlockFullF6J3DFog
+    .4byte setFog__14J3DPEBlockFullFP6J3DFog
+    .4byte getFog__14J3DPEBlockFullFv
+    .4byte setAlphaComp__14J3DPEBlockFullFPC12J3DAlphaComp
+    .4byte setAlphaComp__14J3DPEBlockFullFRC12J3DAlphaComp
+    .4byte getAlphaComp__14J3DPEBlockFullFv
+    .4byte setBlend__14J3DPEBlockFullFPC8J3DBlend
+    .4byte setBlend__14J3DPEBlockFullFRC8J3DBlend
+    .4byte getBlend__14J3DPEBlockFullFv
+    .4byte setZMode__14J3DPEBlockFullFPC8J3DZMode
+    .4byte setZMode__14J3DPEBlockFullF8J3DZMode
+    .4byte getZMode__14J3DPEBlockFullFv
+    .4byte setZCompLoc__14J3DPEBlockFullFPCUc
+    .4byte setZCompLoc__14J3DPEBlockFullFUc
+    .4byte getZCompLoc__14J3DPEBlockFullCFv
+    .4byte setDither__14J3DPEBlockFullFPCUc
+    .4byte setDither__14J3DPEBlockFullFUc
+    .4byte getDither__14J3DPEBlockFullCFv
+    .4byte getFogOffset__14J3DPEBlockFullCFv
+    .4byte setFogOffset__14J3DPEBlockFullFUl
+    .4byte __dt__14J3DPEBlockFullFv
+*/
+
 struct J3DPEBlockFull {
 	virtual void reset(J3DPEBlock*);                // _00
 	virtual void load();                            // _04

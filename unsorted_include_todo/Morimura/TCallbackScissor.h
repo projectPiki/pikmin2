@@ -1,6 +1,17 @@
 #ifndef _MORIMURA_TCALLBACKSCISSOR_H
 #define _MORIMURA_TCALLBACKSCISSOR_H
 
+/*
+    __vt__Q28Morimura16TCallbackScissor:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__Q28Morimura16TCallbackScissorFv
+    .4byte getChildCount__5CNodeFv
+    .4byte update__Q29P2DScreen12CallBackNodeFv
+    .4byte draw__Q28Morimura16TCallbackScissorFR8GraphicsR14J2DGrafContext
+    .4byte doInit__Q29P2DScreen4NodeFv
+*/
+
 struct CNode {
 	virtual void _00() = 0;       // _00
 	virtual void getChildCount(); // _04

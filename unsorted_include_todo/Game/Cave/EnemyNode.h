@@ -1,6 +1,22 @@
 #ifndef _GAME_CAVE_ENEMYNODE_H
 #define _GAME_CAVE_ENEMYNODE_H
 
+/*
+    __vt__Q34Game4Cave9EnemyNode:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__Q34Game4Cave9EnemyNodeFv
+    .4byte getChildCount__5CNodeFv
+    .4byte getObjectId__Q34Game4Cave9EnemyNodeFv
+    .4byte getObjectType__Q34Game4Cave9EnemyNodeFv
+    .4byte getBirthCount__Q34Game4Cave9EnemyNodeFv
+    .4byte getDirection__Q34Game4Cave9EnemyNodeFv
+    .4byte getBirthDoorIndex__Q34Game4Cave9EnemyNodeFv
+    .4byte getBirthPosition__Q34Game4Cave9EnemyNodeFRfRf
+    .4byte getExtraCode__Q34Game4Cave9EnemyNodeFv
+    .4byte isFixedBattery__Q24Game16ObjectLayoutNodeFv
+*/
+
 struct CNode {
 	virtual void _00() = 0;       // _00
 	virtual void getChildCount(); // _04

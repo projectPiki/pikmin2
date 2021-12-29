@@ -1,6 +1,17 @@
 #ifndef _PSSYSTEM_SEQTRACKROOT_JUMPBGM_H
 #define _PSSYSTEM_SEQTRACKROOT_JUMPBGM_H
 
+/*
+    __vt__Q28PSSystem20SeqTrackRoot_JumpBgm:
+    .4byte 0
+    .4byte 0
+    .4byte update__Q28PSSystem12SeqTrackRootFv
+    .4byte init__Q28PSSystem12SeqTrackRootFP8JASTrack
+    .4byte onStopSeq__Q28PSSystem12SeqTrackRootFv
+    .4byte beatUpdate__Q28PSSystem12SeqTrackRootFv
+    .4byte onBeatTop__Q28PSSystem20SeqTrackRoot_JumpBgmFv
+*/
+
 namespace PSSystem {
 struct SeqTrackRoot {
 	virtual void update();        // _00

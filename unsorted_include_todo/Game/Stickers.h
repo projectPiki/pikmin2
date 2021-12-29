@@ -1,6 +1,22 @@
 #ifndef _GAME_STICKERS_H
 #define _GAME_STICKERS_H
 
+/*
+    __vt__Q24Game8Stickers:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__Q24Game8StickersFv
+    .4byte getChildCount__5CNodeFv
+    .4byte "getObject__27Container<Q24Game8Creature>FPv"
+    .4byte getNext__Q24Game8StickersFPv
+    .4byte getStart__Q24Game8StickersFv
+    .4byte getEnd__Q24Game8StickersFv
+    .4byte get__Q24Game8StickersFPv
+    .4byte "getAt__27Container<Q24Game8Creature>Fi"
+    .4byte "getTo__27Container<Q24Game8Creature>Fv"
+    .4byte 0
+*/
+
 struct CNode {
 	virtual void _00() = 0;       // _00
 	virtual void getChildCount(); // _04

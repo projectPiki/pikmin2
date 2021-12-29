@@ -1,6 +1,20 @@
 #ifndef _WIPEOUTFADER_H
 #define _WIPEOUTFADER_H
 
+/*
+    __vt__12WipeOutFader:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__12WipeOutFaderFv
+    .4byte getChildCount__5CNodeFv
+    .4byte update__8WipeBaseFv
+    .4byte draw__8WipeBaseFv
+    .4byte isWhite__12WipeOutFaderFv
+    .4byte isBlack__12WipeOutFaderFv
+    .4byte on_start__12WipeOutFaderFv
+    .4byte do_draw__12WipeOutFaderFf
+*/
+
 struct CNode {
 	virtual void _00() = 0;       // _00
 	virtual void getChildCount(); // _04

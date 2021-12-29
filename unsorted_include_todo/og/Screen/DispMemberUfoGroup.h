@@ -1,6 +1,22 @@
 #ifndef _OG_SCREEN_DISPMEMBERUFOGROUP_H
 #define _OG_SCREEN_DISPMEMBERUFOGROUP_H
 
+/*
+    __vt__Q32og6Screen18DispMemberUfoGroup:
+    .4byte 0
+    .4byte 0
+    .4byte getSize__Q32og6Screen18DispMemberUfoGroupFv
+    .4byte getOwnerID__Q32og6Screen18DispMemberUfoGroupFv
+    .4byte getMemberID__Q32og6Screen18DispMemberUfoGroupFv
+    .4byte doSetSubMemberAll__Q32og6Screen18DispMemberUfoGroupFv
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+*/
+
 namespace og {
 namespace Screen {
 	struct DispMemberUfoGroup {

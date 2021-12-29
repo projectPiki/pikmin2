@@ -1,6 +1,19 @@
 #ifndef _KH_SCREEN_KHUTILFADEPANEWM_H
 #define _KH_SCREEN_KHUTILFADEPANEWM_H
 
+/*
+    __vt__Q32kh6Screen16khUtilFadePaneWM:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__Q32kh6Screen16khUtilFadePaneWMFv
+    .4byte getChildCount__5CNodeFv
+    .4byte update__Q32kh6Screen14khUtilFadePaneFv
+    .4byte draw__Q29P2DScreen4NodeFR8GraphicsR14J2DGrafContext
+    .4byte doInit__Q29P2DScreen4NodeFv
+    .4byte fadein_finish__Q32kh6Screen14khUtilFadePaneFv
+    .4byte fadeout_finish__Q32kh6Screen16khUtilFadePaneWMFv
+*/
+
 struct CNode {
 	virtual void _00() = 0;       // _00
 	virtual void getChildCount(); // _04

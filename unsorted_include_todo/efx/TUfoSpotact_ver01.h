@@ -1,6 +1,17 @@
 #ifndef _EFX_TUFOSPOTACT_VER01_H
 #define _EFX_TUFOSPOTACT_VER01_H
 
+/*
+    __vt__Q23efx17TUfoSpotact_ver01:
+    .4byte 0
+    .4byte 0
+    .4byte "create__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>FPQ23efx3Arg"
+    .4byte "forceKill__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
+    .4byte "fade__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
+    .4byte "startDemoDrawOff__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
+    .4byte "endDemoDrawOn__Q23efx29TSyncGroup2<Q23efx9TChaseMtx>Fv"
+*/
+
 namespace efx {
 namespace TSyncGroup2 < efx
 {

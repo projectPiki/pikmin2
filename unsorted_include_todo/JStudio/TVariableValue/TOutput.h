@@ -1,6 +1,14 @@
 #ifndef _JSTUDIO_TVARIABLEVALUE_TOUTPUT_H
 #define _JSTUDIO_TVARIABLEVALUE_TOUTPUT_H
 
+/*
+    __vt__Q37JStudio14TVariableValue7TOutput:
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+*/
+
 namespace JStudio {
 namespace TVariableValue {
 	struct TOutput {

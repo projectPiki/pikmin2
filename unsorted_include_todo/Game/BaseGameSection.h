@@ -1,6 +1,86 @@
 #ifndef _GAME_BASEGAMESECTION_H
 #define _GAME_BASEGAMESECTION_H
 
+/*
+    __vt__Q24Game15BaseGameSection:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__Q24Game15BaseGameSectionFv
+    .4byte run__7SectionFv
+    .4byte update__7SectionFv
+    .4byte draw__7SectionFR8Graphics
+    .4byte init__Q24Game15BaseGameSectionFv
+    .4byte drawInit__7SectionFR8Graphics
+    .4byte
+   drawInit__Q24Game15BaseGameSectionFR8GraphicsQ27Section13EDrawInitMode .4byte
+   doExit__7SectionFv .4byte forceFinish__Q24Game15BaseGameSectionFv .4byte
+   forceReset__7SectionFv .4byte getCurrentSection__7SectionFv .4byte
+   doLoadingStart__7SectionFv .4byte doLoading__7SectionFv .4byte
+   doUpdate__Q24Game15BaseGameSectionFv .4byte
+   doDraw__Q24Game15BaseGameSectionFR8Graphics .4byte isFinishable__7SectionFv
+    .4byte initHIO__Q24Game14BaseHIOSectionFPQ24Game11HIORootNode
+    .4byte refreshHIO__Q24Game14BaseHIOSectionFv
+    .4byte sendMessage__Q24Game15BaseGameSectionFRQ24Game11GameMessage
+    .4byte pre2dDraw__Q24Game15BaseGameSectionFR8Graphics
+    .4byte getCurrFloor__Q24Game15BaseGameSectionFv
+    .4byte isDevelopSection__Q24Game15BaseGameSectionFv
+    .4byte addChallengeScore__Q24Game15BaseGameSectionFi
+    .4byte startMainBgm__Q24Game15BaseGameSectionFv
+    .4byte section_fadeout__Q24Game15BaseGameSectionFv
+    .4byte goNextFloor__Q24Game15BaseGameSectionFPQ34Game8ItemHole4Item
+    .4byte goCave__Q24Game15BaseGameSectionFPQ34Game8ItemCave4Item
+    .4byte goMainMap__Q24Game15BaseGameSectionFPQ34Game15ItemBigFountain4Item
+    .4byte getCaveID__Q24Game15BaseGameSectionFv
+    .4byte getCurrentCourseInfo__Q24Game15BaseGameSectionFv
+    .4byte challengeDisablePelplant__Q24Game15BaseGameSectionFv
+    .4byte getCaveFilename__Q24Game15BaseGameSectionFv
+    .4byte getEditorFilename__Q24Game15BaseGameSectionFv
+    .4byte getVsEditNumber__Q24Game15BaseGameSectionFv
+    .4byte openContainerWindow__Q24Game15BaseGameSectionFv
+    .4byte closeContainerWindow__Q24Game15BaseGameSectionFv
+    .4byte
+   playMovie_firstexperience__Q24Game15BaseGameSectionFiPQ24Game8Creature .4byte
+   playMovie_bootup__Q24Game15BaseGameSectionFPQ24Game5Onyon .4byte
+   playMovie_helloPikmin__Q24Game15BaseGameSectionFPQ24Game4Piki .4byte
+   enableTimer__Q24Game15BaseGameSectionFfUl .4byte
+   disableTimer__Q24Game15BaseGameSectionFUl .4byte
+   getTimerType__Q24Game15BaseGameSectionFv .4byte
+   onMovieStart__Q24Game15BaseGameSectionFPQ24Game11MovieConfigUlUl .4byte
+   onMovieDone__Q24Game15BaseGameSectionFPQ24Game11MovieConfigUlUl .4byte
+   onMovieCommand__Q24Game15BaseGameSectionFi .4byte
+   startFadeout__Q24Game15BaseGameSectionFf .4byte
+   startFadein__Q24Game15BaseGameSectionFf .4byte
+   startFadeoutin__Q24Game15BaseGameSectionFf .4byte
+   startFadeblack__Q24Game15BaseGameSectionFv .4byte
+   startFadewhite__Q24Game15BaseGameSectionFv .4byte
+   gmOrimaDown__Q24Game15BaseGameSectionFi .4byte
+   gmPikminZero__Q24Game15BaseGameSectionFv .4byte
+   openCaveInMenu__Q24Game15BaseGameSectionFPQ34Game8ItemCave4Itemi .4byte
+   openCaveMoreMenu__Q24Game15BaseGameSectionFPQ34Game8ItemHole4ItemP10Controller
+    .4byte
+   openKanketuMenu__Q24Game15BaseGameSectionFPQ34Game15ItemBigFountain4ItemP10Controller
+    .4byte on_setCamController__Q24Game15BaseGameSectionFi
+    .4byte onTogglePlayer__Q24Game15BaseGameSectionFv
+    .4byte onPlayerJoin__Q24Game15BaseGameSectionFv
+    .4byte onInit__Q24Game15BaseGameSectionFv
+    .4byte onUpdate__Q24Game15BaseGameSectionFv
+    .4byte initJ3D__Q24Game15BaseGameSectionFv
+    .4byte initViewports__Q24Game15BaseGameSectionFR8Graphics
+    .4byte initResources__Q24Game15BaseGameSectionFv
+    .4byte initGenerators__Q24Game15BaseGameSectionFv
+    .4byte initLights__Q24Game15BaseGameSectionFv
+    .4byte draw3D__Q24Game15BaseGameSectionFR8Graphics
+    .4byte draw2D__Q24Game15BaseGameSectionFR8Graphics
+    .4byte drawParticle__Q24Game15BaseGameSectionFR8Graphicsi
+    .4byte draw_Ogawa2D__Q24Game15BaseGameSectionFR8Graphics
+    .4byte do_drawOtakaraWindow__Q24Game15BaseGameSectionFR8Graphics
+    .4byte onSetupFloatMemory__Q24Game15BaseGameSectionFv
+    .4byte postSetupFloatMemory__Q24Game15BaseGameSectionFv
+    .4byte onSetSoundScene__Q24Game15BaseGameSectionFv
+    .4byte onStartHeap__Q24Game15BaseGameSectionFv
+    .4byte onClearHeap__Q24Game15BaseGameSectionFv
+*/
+
 struct Section {
 	virtual void _00() = 0;           // _00
 	virtual void run();               // _04

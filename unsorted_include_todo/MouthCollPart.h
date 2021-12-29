@@ -1,10 +1,27 @@
 #ifndef _MOUTHCOLLPART_H
 #define _MOUTHCOLLPART_H
 
+/*
+    __vt__13MouthCollPart:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__13MouthCollPartFv
+    .4byte getChildCount__8CollPartFv
+    .4byte isMouth__13MouthCollPartFv
+    .4byte draw__8CollPartFR8Graphics
+    .4byte constructor__8CollPartFv
+    .4byte doAnimation__8CollPartFv
+    .4byte doEntry__8CollPartFv
+    .4byte doSetView__8CollPartFUl
+    .4byte doViewCalc__8CollPartFv
+    .4byte doSimulation__8CollPartFf
+    .4byte doDirectDraw__8CollPartFR8Graphics
+*/
+
 struct CollPart {
-	virtual void _00() = 0;                // _00
+	virtual ~CollPart();                   // _00
 	virtual void getChildCount();          // _04
-	virtual void _08() = 0;                // _08
+	virtual void isMouth();                // _08
 	virtual void draw(Graphics&);          // _0C
 	virtual void constructor();            // _10
 	virtual void doAnimation();            // _14

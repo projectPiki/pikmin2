@@ -1,6 +1,28 @@
 #ifndef _P2JME_WINDOW_TCONTROL_H
 #define _P2JME_WINDOW_TCONTROL_H
 
+/*
+    __vt__Q35P2JME6Window8TControl:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__Q35P2JME6Window8TControlFv
+    .4byte reset__Q35P2JME6Window8TControlFv
+    .4byte update__Q25P2JME8TControlFv
+    .4byte update__Q35P2JME6Window8TControlFP10ControllerP10Controller
+    .4byte draw__Q35P2JME6Window8TControlFR8Graphics
+    .4byte draw__Q35P2JME6Window8TControlFPA4_fPA4_f
+    .4byte setMessageID__Q25P2JME8TControlFUlUl
+    .4byte setMessageID__Q25P2JME8TControlFPc
+    .4byte setMessageID__Q25P2JME8TControlFUx
+    .4byte setMessageCode__Q25P2JME8TControlFUsUs
+    .4byte setMessageCode__Q25P2JME8TControlFUl
+    .4byte onInit__Q35P2JME6Window8TControlFv
+    .4byte createReference__Q25P2JME8TControlFv
+    .4byte createResourceContainer__Q25P2JME8TControlFv
+    .4byte createSequenceProcessor__Q35P2JME6Window8TControlFv
+    .4byte createRenderingProcessor__Q35P2JME6Window8TControlFv
+*/
+
 namespace P2JME {
 namespace Window {
 	struct TControl {

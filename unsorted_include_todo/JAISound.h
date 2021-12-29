@@ -1,6 +1,64 @@
 #ifndef _JAISOUND_H
 #define _JAISOUND_H
 
+/*
+    __vt__8JAISound:
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte start__8JAISoundFUl
+    .4byte stop__8JAISoundFUl
+    .4byte release__8JAISoundFv
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte setTempoProportion__8JAISoundFfUl
+    .4byte getTempoProportion__8JAISoundFv
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte setDirectVolume__8JAISoundFfUl
+    .4byte setDirectPan__8JAISoundFfUl
+    .4byte setDirectPitch__8JAISoundFfUl
+    .4byte setDirectFxmix__8JAISoundFfUl
+    .4byte setDirectDolby__8JAISoundFfUl
+    .4byte setDemoVolume__8JAISoundFfUl
+    .4byte setDemoPan__8JAISoundFfUl
+    .4byte setDemoPitch__8JAISoundFfUl
+    .4byte setDemoFxmix__8JAISoundFfUl
+    .4byte setDemoDolby__8JAISoundFfUl
+    .4byte setDemoVolumeU7__8JAISoundFUcUl
+    .4byte setDemoPanU7__8JAISoundFUcUl
+    .4byte setDemoFxmixU7__8JAISoundFUcUl
+    .4byte setDemoDolbyU7__8JAISoundFUcUl
+    .4byte 0
+    .4byte setPrepareFlag__8JAISoundFUc
+    .4byte checkReady__8JAISoundFv
+    .4byte setDistanceParameterMoveTime__8JAISoundFUc
+    .4byte setAdjustPriority__8JAISoundFs
+    .4byte setPositionDopplarCommon__8JAISoundFUl
+    .4byte setDistanceVolumeCommon__8JAISoundFfUc
+    .4byte setDistancePanCommon__8JAISoundFv
+    .4byte setDistanceDolbyCommon__8JAISoundFv
+    .4byte
+   initParameter__8JAISoundFPvPQ27JAInter5ActorUlUlUcPQ27JAInter9SoundInfo
+    .4byte onGet__8JAISoundFv
+    .4byte onRelease__8JAISoundFv
+*/
+
 struct JAISound {
 	virtual void _00() = 0;                                     // _00
 	virtual void _04() = 0;                                     // _04

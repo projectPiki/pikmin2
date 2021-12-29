@@ -1,10 +1,35 @@
 #ifndef _JSTAGE_TSYSTEM_H
 #define _JSTAGE_TSYSTEM_H
 
+/*
+    __vt__Q26JStage7TSystem:
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte JSGFGetType__Q26JStage7TSystemCFv
+    .4byte JSGGetName__Q26JStage7TObjectCFv
+    .4byte JSGUpdate__Q26JStage7TObjectFv
+    .4byte JSGGetFlag__Q26JStage7TObjectCFv
+    .4byte JSGSetFlag__Q26JStage7TObjectFUl
+    .4byte JSGGetData__Q26JStage7TObjectCFUlPvUl
+    .4byte JSGSetData__Q26JStage7TObjectFUlPCvUl
+    .4byte JSGGetParent__Q26JStage7TObjectCFPPQ26JStage7TObjectPUl
+    .4byte JSGSetParent__Q26JStage7TObjectFPQ26JStage7TObjectUl
+    .4byte JSGSetRelation__Q26JStage7TObjectFbPQ26JStage7TObjectUl
+    .4byte JSGFindNodeID__Q26JStage7TObjectCFPCc
+    .4byte JSGGetNodeTransformation__Q26JStage7TObjectCFUlPA4_f
+    .4byte
+   JSGFindObject__Q26JStage7TSystemCFPPQ26JStage7TObjectPCcQ26JStage8TEObject
+    .4byte JSGCreateObject__Q26JStage7TSystemFPCcQ26JStage8TEObjectUl
+    .4byte JSGDestroyObject__Q26JStage7TSystemFPQ26JStage7TObject
+    .4byte JSGGetSystemData__Q26JStage7TSystemFUl
+    .4byte JSGSetSystemData__Q26JStage7TSystemFUlUl
+*/
+
 namespace JStage {
 struct TObject {
 	virtual void _00() = 0;                                             // _00
-	virtual void _04() = 0;                                             // _04
+	virtual void JSGFGetType() const;                                   // _04
 	virtual void JSGGetName() const;                                    // _08
 	virtual void JSGUpdate();                                           // _0C
 	virtual void JSGGetFlag() const;                                    // _10

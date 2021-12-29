@@ -1,8 +1,25 @@
 #ifndef _SYS_TRIDIVIDER_H
 #define _SYS_TRIDIVIDER_H
 
+/*
+    __vt__Q23Sys10TriDivider:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__Q23Sys10TriDividerFv
+    .4byte getChildCount__5CNodeFv
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte createTriangles__Q23Sys10TriDividerFRQ23Sys17CreateTriangleArg
+    .4byte 0
+    .4byte clone__Q23Sys10TriDividerFR7Matrixf
+    .4byte
+   do_clone__Q23Sys10TriDividerFR7MatrixfPQ23Sys11VertexTablePQ23Sys13TriangleTable
+*/
+
 struct CNode {
-	virtual void _00() = 0;       // _00
+	virtual ~CNode();             // _00
 	virtual void getChildCount(); // _04
 
 	// _00 VTBL

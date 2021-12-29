@@ -1,6 +1,13 @@
 #ifndef _GAME_QURIONE_PARMS_H
 #define _GAME_QURIONE_PARMS_H
 
+/*
+    __vt__Q34Game7Qurione5Parms:
+    .4byte 0
+    .4byte 0
+    .4byte read__Q34Game7Qurione5ParmsFR6Stream
+*/
+
 namespace Game {
 namespace Qurione {
 	struct Parms {

@@ -1,6 +1,16 @@
 #ifndef _OG_SCREEN_DISPMEMBERBASE_H
 #define _OG_SCREEN_DISPMEMBERBASE_H
 
+/*
+    __vt__Q32og6Screen14DispMemberBase:
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte doSetSubMemberAll__Q32og6Screen14DispMemberBaseFv
+*/
+
 namespace og {
 namespace Screen {
 	struct DispMemberBase {

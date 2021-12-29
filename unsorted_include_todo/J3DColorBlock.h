@@ -1,6 +1,44 @@
 #ifndef _J3DCOLORBLOCK_H
 #define _J3DCOLORBLOCK_H
 
+/*
+    __vt__13J3DColorBlock:
+    .4byte 0
+    .4byte 0
+    .4byte load__13J3DColorBlockFv
+    .4byte reset__13J3DColorBlockFP13J3DColorBlock
+    .4byte patch__13J3DColorBlockFv
+    .4byte patchMatColor__13J3DColorBlockFv
+    .4byte patchLight__13J3DColorBlockFv
+    .4byte diff__13J3DColorBlockFUl
+    .4byte diffMatColor__13J3DColorBlockFv
+    .4byte diffLight__13J3DColorBlockFv
+    .4byte countDLSize__13J3DColorBlockFv
+    .4byte 0
+    .4byte setMatColor__13J3DColorBlockFUlPC10J3DGXColor
+    .4byte setMatColor__13J3DColorBlockFUl10J3DGXColor
+    .4byte getMatColor__13J3DColorBlockFUl
+    .4byte setAmbColor__13J3DColorBlockFUlPC10J3DGXColor
+    .4byte setAmbColor__13J3DColorBlockFUl10J3DGXColor
+    .4byte getAmbColor__13J3DColorBlockFUl
+    .4byte setColorChanNum__13J3DColorBlockFUc
+    .4byte setColorChanNum__13J3DColorBlockFPCUc
+    .4byte getColorChanNum__13J3DColorBlockCFv
+    .4byte setColorChan__13J3DColorBlockFUlRC12J3DColorChan
+    .4byte setColorChan__13J3DColorBlockFUlPC12J3DColorChan
+    .4byte getColorChan__13J3DColorBlockFUl
+    .4byte setLight__13J3DColorBlockFUlP11J3DLightObj
+    .4byte getLight__13J3DColorBlockFUl
+    .4byte setCullMode__13J3DColorBlockFPCUc
+    .4byte setCullMode__13J3DColorBlockFUc
+    .4byte getCullMode__13J3DColorBlockCFv
+    .4byte getMatColorOffset__13J3DColorBlockCFv
+    .4byte getColorChanOffset__13J3DColorBlockCFv
+    .4byte setMatColorOffset__13J3DColorBlockFUl
+    .4byte setColorChanOffset__13J3DColorBlockFUl
+    .4byte __dt__13J3DColorBlockFv
+*/
+
 struct J3DColorBlock {
 	virtual void load();                                           // _00
 	virtual void reset(J3DColorBlock*);                            // _04

@@ -1,6 +1,34 @@
 #ifndef _JKRHEAP_H
 #define _JKRHEAP_H
 
+/*
+    __vt__7JKRHeap:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__7JKRHeapFv
+    .4byte callAllDisposer__7JKRHeapFv
+    .4byte 0
+    .4byte 0
+    .4byte dump_sort__7JKRHeapFv
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte do_changeGroupID__7JKRHeapFUc
+    .4byte do_getCurrentGroupId__7JKRHeapFv
+    .4byte state_register__7JKRHeapCFPQ27JKRHeap6TStateUl
+    .4byte state_compare__7JKRHeapCFRCQ27JKRHeap6TStateRCQ27JKRHeap6TState
+    .4byte state_dump__7JKRHeapCFRCQ27JKRHeap6TState
+*/
+
 struct JKRHeap {
 	virtual ~JKRHeap();                                             // _00
 	virtual void callAllDisposer();                                 // _04

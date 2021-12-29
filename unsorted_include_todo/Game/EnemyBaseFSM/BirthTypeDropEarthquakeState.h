@@ -1,6 +1,30 @@
 #ifndef _GAME_ENEMYBASEFSM_BIRTHTYPEDROPEARTHQUAKESTATE_H
 #define _GAME_ENEMYBASEFSM_BIRTHTYPEDROPEARTHQUAKESTATE_H
 
+/*
+    __vt__Q34Game12EnemyBaseFSM28BirthTypeDropEarthquakeState:
+    .4byte 0
+    .4byte 0
+    .4byte
+   init__Q34Game12EnemyBaseFSM18BirthTypeDropStateFPQ24Game9EnemyBasePQ24Game8StateArg
+    .4byte exec__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+    .4byte cleanup__Q34Game12EnemyBaseFSM18BirthTypeDropStateFPQ24Game9EnemyBase
+    .4byte resume__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+    .4byte restart__Q24Game13EnemyFSMStateFPQ24Game9EnemyBase
+    .4byte transit__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseiPQ24Game8StateArg
+    .4byte doDirectDraw__Q24Game13EnemyFSMStateFPQ24Game9EnemyBaseR8Graphics
+    .4byte update__Q34Game12EnemyBaseFSM18BirthTypeDropStateFPQ24Game9EnemyBase
+    .4byte entry__Q34Game12EnemyBaseFSM18BirthTypeDropStateFPQ24Game9EnemyBase
+    .4byte
+   simulation__Q34Game12EnemyBaseFSM18BirthTypeDropStateFPQ24Game9EnemyBasef
+    .4byte
+   bounceProcedure__Q34Game12EnemyBaseFSM5StateFPQ24Game9EnemyBasePQ23Sys8Triangle
+    .4byte
+   animation__Q34Game12EnemyBaseFSM18BirthTypeDropStateFPQ24Game9EnemyBase
+    .4byte
+   isFinishableWaitingBirthTypeDrop__Q34Game12EnemyBaseFSM28BirthTypeDropEarthquakeStateFPQ24Game9EnemyBase
+*/
+
 namespace Game {
 namespace EnemyBaseFSM {
 	struct BirthTypeDropState {

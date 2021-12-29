@@ -1,6 +1,18 @@
 #ifndef _GAME_P2JST_OBJECTBASE_H
 #define _GAME_P2JST_OBJECTBASE_H
 
+/*
+    __vt__Q34Game5P2JST10ObjectBase:
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte parseUserData___Q34Game5P2JST10ObjectBaseFUlPCv
+    .4byte 0
+*/
+
 namespace Game {
 namespace P2JST {
 	struct ObjectBase {

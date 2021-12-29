@@ -1,6 +1,97 @@
 #ifndef _GAME_ILLUSTRATEDBOOK_CAMERA_H
 #define _GAME_ILLUSTRATEDBOOK_CAMERA_H
 
+/*
+    __vt__Q34Game15IllustratedBook6Camera:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__Q34Game15IllustratedBook6CameraFv
+    .4byte getChildCount__5CNodeFv
+    .4byte "getObject__17Container<5Plane>FPv"
+    .4byte "getNext__22ArrayContainer<5Plane>FPv"
+    .4byte "getStart__22ArrayContainer<5Plane>Fv"
+    .4byte "getEnd__22ArrayContainer<5Plane>Fv"
+    .4byte "get__22ArrayContainer<5Plane>FPv"
+    .4byte "getAt__22ArrayContainer<5Plane>Fi"
+    .4byte "getTo__22ArrayContainer<5Plane>Fv"
+    .4byte writeObject__9CullPlaneFR6StreamR5Plane
+    .4byte readObject__9CullPlaneFR6StreamR5Plane
+    .4byte "write__22ArrayContainer<5Plane>FR6Stream"
+    .4byte "read__22ArrayContainer<5Plane>FR6Stream"
+    .4byte "alloc__22ArrayContainer<5Plane>Fi"
+    .4byte "addOne__22ArrayContainer<5Plane>FR5Plane"
+    .4byte "setArray__22ArrayContainer<5Plane>FP5Planei"
+    .4byte getViewMatrix__6CameraFb
+    .4byte getPosition__6CameraFv
+    .4byte updatePlanes__6CameraFv
+    .4byte updateScreenConstants__6CameraFv
+    .4byte getLookAtPosition___12LookAtCameraFv
+    .4byte getTargetDistance__6CameraFv
+    .4byte getPositionPtr__6CameraFv
+    .4byte on_getPositionPtr__12LookAtCameraFv
+    .4byte getSoundPositionPtr__6CameraFv
+    .4byte getSoundMatrixPtr__6CameraFv
+    .4byte isSpecialCamera__6CameraFv
+    .4byte updateMatrix__12LookAtCameraFv
+    .4byte doUpdate__Q34Game15IllustratedBook6CameraFv
+    .4byte startVibration__Q34Game15IllustratedBook6CameraFi
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+*/
+
 struct CNode {
 	virtual void _00() = 0;       // _00
 	virtual void getChildCount(); // _04

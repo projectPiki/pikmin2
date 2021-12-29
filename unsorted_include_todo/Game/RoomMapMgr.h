@@ -1,6 +1,50 @@
 #ifndef _GAME_ROOMMAPMGR_H
 #define _GAME_ROOMMAPMGR_H
 
+/*
+        __vt__Q24Game10RoomMapMgr:
+        .4byte 0
+        .4byte 0
+        .4byte hasHiddenCollision__Q24Game10RoomMapMgrFv
+        .4byte constraintBoundBox__Q24Game10RoomMapMgrFRQ23Sys6Sphere
+        .4byte "getStartPosition__Q24Game10RoomMapMgrFR10Vector3<f>i"
+        .4byte getDemoMatrix__Q24Game10RoomMapMgrFv
+        .4byte getBoundBox2d__Q24Game10RoomMapMgrFR10BoundBox2d
+        .4byte getBoundBox__Q24Game10RoomMapMgrFR8BoundBox
+        .4byte
+   findRayIntersection__Q24Game10RoomMapMgrFRQ23Sys16RayIntersectInfo .4byte
+   traceMove__Q24Game10RoomMapMgrFRQ24Game8MoveInfof .4byte
+   "getMinY__Q24Game10RoomMapMgrFR10Vector3<f>" .4byte
+   getCurrTri__Q24Game10RoomMapMgrFRQ24Game11CurrTriInfo .4byte
+   createTriangles__Q24Game10RoomMapMgrFRQ23Sys17CreateTriangleArg .4byte
+   setupJUTTextures__Q24Game10RoomMapMgrFv .4byte frozenable__Q24Game6MapMgrFv
+        .4byte update__Q24Game6MapMgrFv
+        .4byte do_update__Q24Game6MapMgrFv
+        .4byte drawCollision__Q24Game10RoomMapMgrFR8GraphicsRQ23Sys6Sphere
+        .4byte doSimulation__Q24Game10RoomMapMgrFf
+        .4byte doDirectDraw__Q24Game10RoomMapMgrFR8Graphics
+        .4byte doAnimation__Q24Game10RoomMapMgrFv
+        .4byte doEntry__Q24Game10RoomMapMgrFv
+        .4byte doSetView__Q24Game10RoomMapMgrFi
+        .4byte doViewCalc__Q24Game10RoomMapMgrFv
+        .4byte traceMove_new__Q24Game10RoomMapMgrFRQ24Game8MoveInfof
+        .4byte traceMove_original__Q24Game10RoomMapMgrFRQ24Game8MoveInfof
+        .4byte 0
+        .4byte 0
+        .4byte "@280@4@doAnimation__Q24Game10RoomMapMgrFv"
+        .4byte "@280@4@doEntry__Q24Game10RoomMapMgrFv"
+        .4byte "@280@4@doSetView__Q24Game10RoomMapMgrFi"
+        .4byte "@280@4@doViewCalc__Q24Game10RoomMapMgrFv"
+        .4byte "@280@4@doSimulation__Q24Game10RoomMapMgrFf"
+        .4byte "@280@4@doDirectDraw__Q24Game10RoomMapMgrFR8Graphics"
+        .4byte doSimpleDraw__16GenericObjectMgrFP8Viewport
+        .4byte loadResources__16GenericObjectMgrFv
+        .4byte resetMgr__16GenericObjectMgrFv
+        .4byte pausable__16GenericObjectMgrFv
+        .4byte "@280@4@frozenable__Q24Game6MapMgrFv"
+        .4byte getMatrixLoadType__16GenericObjectMgrFv
+*/
+
 namespace Game {
 struct MapMgr {
     virtual void _00() = 0;    // _00
@@ -104,7 +148,6 @@ struct RoomMapMgr : public MapMgr, public GenericObjectMgr {
     virtual void loadResources();                             // _84
     virtual void resetMgr();                                  // _88
     virtual void pausable();                                  // _8C
-    virtual void _90() = 0;                                   // _90
     virtual void getMatrixLoadType();                         // _94
 
     // _00 VTBL

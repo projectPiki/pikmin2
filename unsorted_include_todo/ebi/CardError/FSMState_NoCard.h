@@ -1,6 +1,29 @@
 #ifndef _EBI_CARDERROR_FSMSTATE_NOCARD_H
 #define _EBI_CARDERROR_FSMSTATE_NOCARD_H
 
+/*
+    __vt__Q33ebi9CardError15FSMState_NoCard:
+    .4byte 0
+    .4byte 0
+    .4byte
+   init__Q33ebi9CardError8FSMStateFPQ33ebi9CardError4TMgrPQ24Game8StateArg
+    .4byte exec__Q33ebi9CardError8FSMStateFPQ33ebi9CardError4TMgr
+    .4byte
+   "cleanup__Q24Game31FSMState<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgr"
+    .4byte
+   "resume__Q24Game31FSMState<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgr"
+    .4byte
+   "restart__Q24Game31FSMState<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgr"
+    .4byte
+   "transit__Q24Game31FSMState<Q33ebi9CardError4TMgr>FPQ33ebi9CardError4TMgriPQ24Game8StateArg"
+    .4byte
+   do_init__Q33ebi9CardError15FSMState_NoCardFPQ33ebi9CardError4TMgrPQ24Game8StateArg
+    .4byte do_exec__Q33ebi9CardError15FSMState_NoCardFPQ33ebi9CardError4TMgr
+    .4byte 0
+    .4byte 0
+    .4byte 0
+*/
+
 namespace ebi {
 namespace CardError {
 	struct FSMState {

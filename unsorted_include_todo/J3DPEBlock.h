@@ -1,6 +1,41 @@
 #ifndef _J3DPEBLOCK_H
 #define _J3DPEBLOCK_H
 
+/*
+    __vt__10J3DPEBlock:
+    .4byte 0
+    .4byte 0
+    .4byte reset__10J3DPEBlockFP10J3DPEBlock
+    .4byte 0
+    .4byte patch__10J3DPEBlockFv
+    .4byte diff__10J3DPEBlockFUl
+    .4byte diffFog__10J3DPEBlockFv
+    .4byte diffBlend__10J3DPEBlockFv
+    .4byte countDLSize__10J3DPEBlockFv
+    .4byte 0
+    .4byte setFog__10J3DPEBlockF6J3DFog
+    .4byte setFog__10J3DPEBlockFP6J3DFog
+    .4byte getFog__10J3DPEBlockFv
+    .4byte setAlphaComp__10J3DPEBlockFPC12J3DAlphaComp
+    .4byte setAlphaComp__10J3DPEBlockFRC12J3DAlphaComp
+    .4byte getAlphaComp__10J3DPEBlockFv
+    .4byte setBlend__10J3DPEBlockFPC8J3DBlend
+    .4byte setBlend__10J3DPEBlockFRC8J3DBlend
+    .4byte getBlend__10J3DPEBlockFv
+    .4byte setZMode__10J3DPEBlockFPC8J3DZMode
+    .4byte setZMode__10J3DPEBlockF8J3DZMode
+    .4byte getZMode__10J3DPEBlockFv
+    .4byte setZCompLoc__10J3DPEBlockFPCUc
+    .4byte setZCompLoc__10J3DPEBlockFUc
+    .4byte getZCompLoc__10J3DPEBlockCFv
+    .4byte setDither__10J3DPEBlockFPCUc
+    .4byte setDither__10J3DPEBlockFUc
+    .4byte getDither__10J3DPEBlockCFv
+    .4byte getFogOffset__10J3DPEBlockCFv
+    .4byte setFogOffset__10J3DPEBlockFUl
+    .4byte __dt__10J3DPEBlockFv
+*/
+
 struct J3DPEBlock {
 	virtual void reset(J3DPEBlock*);                // _00
 	virtual void _04() = 0;                         // _04

@@ -1,9 +1,33 @@
 #ifndef _JKRARCHIVE_H
 #define _JKRARCHIVE_H
 
+/*
+    __vt__10JKRArchive:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__10JKRArchiveFv
+    .4byte unmount__13JKRFileLoaderFv
+    .4byte becomeCurrent__10JKRArchiveFPCc
+    .4byte getResource__10JKRArchiveFPCc
+    .4byte getResource__10JKRArchiveFUlPCc
+    .4byte readResource__10JKRArchiveFPvUlPCc
+    .4byte readResource__10JKRArchiveFPvUlUlPCc
+    .4byte removeResourceAll__10JKRArchiveFv
+    .4byte removeResource__10JKRArchiveFPv
+    .4byte detachResource__10JKRArchiveFPv
+    .4byte getResSize__10JKRArchiveCFPCv
+    .4byte countFile__10JKRArchiveCFPCc
+    .4byte getFirstFile__10JKRArchiveCFPCc
+    .4byte getExpandedResSize__10JKRArchiveCFPCv
+    .4byte 0
+    .4byte 0
+    .4byte setExpandSize__10JKRArchiveFPQ210JKRArchive12SDIFileEntryUl
+    .4byte getExpandSize__10JKRArchiveCFPQ210JKRArchive12SDIFileEntry
+*/
+
 struct JKRFileLoader {
-	virtual void _00() = 0; // _00
-	virtual void unmount(); // _04
+	virtual ~JKRFileLoader(); // _00
+	virtual void unmount();   // _04
 
 	// _00 VTBL
 };

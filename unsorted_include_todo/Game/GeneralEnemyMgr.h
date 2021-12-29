@@ -1,6 +1,29 @@
 #ifndef _GAME_GENERALENEMYMGR_H
 #define _GAME_GENERALENEMYMGR_H
 
+/*
+        __vt__Q24Game15GeneralEnemyMgr:
+        .4byte 0
+        .4byte 0
+        .4byte doAnimation__Q24Game15GeneralEnemyMgrFv
+        .4byte doEntry__Q24Game15GeneralEnemyMgrFv
+        .4byte doSetView__Q24Game15GeneralEnemyMgrFi
+        .4byte doViewCalc__Q24Game15GeneralEnemyMgrFv
+        .4byte doSimulation__Q24Game15GeneralEnemyMgrFf
+        .4byte doDirectDraw__Q24Game15GeneralEnemyMgrFR8Graphics
+        .4byte doSimpleDraw__Q24Game15GeneralEnemyMgrFP8Viewport
+        .4byte loadResources__16GenericObjectMgrFv
+        .4byte resetMgr__16GenericObjectMgrFv
+        .4byte pausable__16GenericObjectMgrFv
+        .4byte frozenable__16GenericObjectMgrFv
+        .4byte getMatrixLoadType__16GenericObjectMgrFv
+        .4byte 0
+        .4byte 0
+        .4byte "@4@__dt__Q24Game15GeneralEnemyMgrFv"
+        .4byte getChildCount__5CNodeFv
+        .4byte __dt__Q24Game15GeneralEnemyMgrFv
+*/
+
 struct GenericObjectMgr {
     virtual void _00() = 0;           // _00
     virtual void _04() = 0;           // _04

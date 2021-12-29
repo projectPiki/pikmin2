@@ -1,8 +1,16 @@
 #ifndef _ARAM_NODE_H
 #define _ARAM_NODE_H
 
+/*
+    __vt__Q24ARAM4Node:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__Q24ARAM4NodeFv
+    .4byte getChildCount__5CNodeFv
+*/
+
 struct CNode {
-	virtual void _00() = 0;       // _00
+	virtual ~CNode();             // _00
 	virtual void getChildCount(); // _04
 
 	// _00 VTBL

@@ -1,6 +1,52 @@
 #ifndef _GAME_NAVIMGR_H
 #define _GAME_NAVIMGR_H
 
+/*
+        __vt__Q24Game7NaviMgr:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q24Game7NaviMgrFv
+        .4byte getChildCount__5CNodeFv
+        .4byte "getObject__23Container<Q24Game4Navi>FPv"
+        .4byte "getNext__27MonoObjectMgr<Q24Game4Navi>FPv"
+        .4byte "getStart__27MonoObjectMgr<Q24Game4Navi>Fv"
+        .4byte "getEnd__27MonoObjectMgr<Q24Game4Navi>Fv"
+        .4byte "get__27MonoObjectMgr<Q24Game4Navi>FPv"
+        .4byte "getAt__27MonoObjectMgr<Q24Game4Navi>Fi"
+        .4byte "getTo__27MonoObjectMgr<Q24Game4Navi>Fv"
+        .4byte 0
+        .4byte 0
+        .4byte "@28@doAnimation__Q24Game7NaviMgrFv"
+        .4byte "@28@doEntry__Q24Game7NaviMgrFv"
+        .4byte "@28@doSetView__27MonoObjectMgr<Q24Game4Navi>Fi"
+        .4byte "@28@doViewCalc__27MonoObjectMgr<Q24Game4Navi>Fv"
+        .4byte "@28@doSimulation__Q24Game7NaviMgrFf"
+        .4byte "@28@doDirectDraw__27MonoObjectMgr<Q24Game4Navi>FR8Graphics"
+        .4byte doSimpleDraw__16GenericObjectMgrFP8Viewport
+        .4byte "@28@loadResources__Q24Game7NaviMgrFv"
+        .4byte "@28@resetMgr__Q24Game7NaviMgrFv"
+        .4byte pausable__16GenericObjectMgrFv
+        .4byte "@28@frozenable__Q24Game7NaviMgrFv"
+        .4byte getMatrixLoadType__16GenericObjectMgrFv
+        .4byte doAnimation__Q24Game7NaviMgrFv
+        .4byte doEntry__Q24Game7NaviMgrFv
+        .4byte "doSetView__27MonoObjectMgr<Q24Game4Navi>Fi"
+        .4byte "doViewCalc__27MonoObjectMgr<Q24Game4Navi>Fv"
+        .4byte doSimulation__Q24Game7NaviMgrFf
+        .4byte "doDirectDraw__27MonoObjectMgr<Q24Game4Navi>FR8Graphics"
+        .4byte birth__Q24Game7NaviMgrFv
+        .4byte resetMgr__Q24Game7NaviMgrFv
+        .4byte "clearMgr__27MonoObjectMgr<Q24Game4Navi>Fv"
+        .4byte "onAlloc__27MonoObjectMgr<Q24Game4Navi>Fv"
+        .4byte 0
+        .4byte 0
+        .4byte "@48@__dt__Q24Game7NaviMgrFv"
+        .4byte killAll__Q24Game7NaviMgrFv
+        .4byte getMgrName__Q24Game7NaviMgrFv
+        .4byte frozenable__Q24Game7NaviMgrFv
+        .4byte loadResources__Q24Game7NaviMgrFv
+*/
+
 struct CNode {
     virtual void _00() = 0;       // _00
     virtual void getChildCount(); // _04
@@ -93,10 +139,7 @@ struct NaviMgr : public CNode, public Navi >, public GenericObjectMgr {
     virtual void _28() = 0;                // _28
     virtual void @28 @doAnimation();       // _2C
     virtual void @28 @doEntry();           // _30
-    virtual void _34() = 0;                // _34
-    virtual void _38() = 0;                // _38
     virtual void @28 @doSimulation(float); // _3C
-    virtual void _40() = 0;                // _40
     virtual void doSimpleDraw(Viewport*);  // _44
     virtual void @28 @loadResources();     // _48
     virtual void @28 @resetMgr();          // _4C

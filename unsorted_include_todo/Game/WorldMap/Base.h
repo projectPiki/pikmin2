@@ -1,6 +1,21 @@
 #ifndef _GAME_WORLDMAP_BASE_H
 #define _GAME_WORLDMAP_BASE_H
 
+/*
+    __vt__Q34Game8WorldMap4Base:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__Q34Game8WorldMap4BaseFv
+    .4byte loadResource__Q34Game8WorldMap4BaseFv
+    .4byte init__Q34Game8WorldMap4BaseFRQ34Game8WorldMap7InitArg
+    .4byte update__Q34Game8WorldMap4BaseFRQ34Game8WorldMap9UpdateArg
+    .4byte draw__Q34Game8WorldMap4BaseFR8Graphics
+    .4byte draw1st__Q34Game8WorldMap4BaseFR8Graphics
+    .4byte draw2nd__Q34Game8WorldMap4BaseFR8Graphics
+    .4byte draw3rd__Q34Game8WorldMap4BaseFR8Graphics
+    .4byte draw4th__Q34Game8WorldMap4BaseFR8Graphics
+*/
+
 namespace Game {
 namespace WorldMap {
 	struct Base {

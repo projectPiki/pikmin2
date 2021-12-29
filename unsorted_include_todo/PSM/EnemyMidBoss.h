@@ -1,6 +1,72 @@
 #ifndef _PSM_ENEMYMIDBOSS_H
 #define _PSM_ENEMYMIDBOSS_H
 
+/*
+        __vt__Q23PSM12EnemyMidBoss:
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte 0
+        .4byte "@16@__dt__Q23PSM12EnemyMidBossFv"
+        .4byte __dt__Q23PSM12EnemyMidBossFv
+        .4byte frameEnd_onPlaySe__Q23PSM13CreatureAnimeFv
+        .4byte getCastType__Q23PSM12EnemyMidBossFv
+        .4byte exec__Q23PSM9EnemyBossFv
+        .4byte getJAIObject__Q23PSM13CreatureAnimeFv
+        .4byte onCalcOn__Q23PSM12EnemyMidBossFv
+        .4byte loopCalc__Q23PSM8CreatureFRQ23PSM12FrameCalcArg
+        .4byte startSoundInner__Q23PSM9EnemyBaseFRQ23PSM13StartSoundArg
+        .4byte judgeNearWithPlayer__Q23PSM9EnemyBossFRC3VecRC3Vecff
+        .4byte onPlayingSe__Q23PSM9EnemyBossFUlP8JAISound
+        .4byte getHandleArea__Q23PSM13CreatureAnimeFUc
+        .4byte 0
+        .4byte 0
+        .4byte "@48@__dt__Q23PSM12EnemyMidBossFv"
+        .4byte "@48@startSound__Q23PSM13CreatureAnimeFUlUl"
+        .4byte "@48@startSound__Q23PSM13CreatureAnimeFUcUlUl"
+        .4byte "@48@startSound__Q23PSM13CreatureAnimeFPP8JAISoundUlUl"
+        .4byte stopAllSound__Q27JAInter10ObjectBaseFv
+        .4byte stopSound__Q27JAInter10ObjectBaseFUlUl
+        .4byte enable__Q27JAInter10ObjectBaseFv
+        .4byte disable__Q27JAInter6ObjectFv
+        .4byte dispose__Q27JAInter10ObjectBaseFv
+        .4byte getFreeSoundHandlePointer__Q27JAInter10ObjectBaseFv
+        .4byte getUseSoundHandlePointer__Q27JAInter10ObjectBaseFUl
+        .4byte handleStop__13JAIAnimeSoundFUcUl
+        .4byte loop__Q27JAInter6ObjectFv
+        .4byte
+   "@48@playActorAnimSound__Q23PSM13CreatureAnimeFPQ27JAInter5ActorfUc" .4byte
+   "@48@startAnimSound__Q23PSM9EnemyBaseFUlPP8JAISoundPQ27JAInter5ActorUc"
+        .4byte
+   setSpeedModifySound__13JAIAnimeSoundFP8JAISoundP22JAIAnimeFrameSoundDataf
+        .4byte startSound__Q23PSM13CreatureAnimeFUlUl
+        .4byte startSound__Q23PSM13CreatureAnimeFUcUlUl
+        .4byte startSound__Q23PSM13CreatureAnimeFPP8JAISoundUlUl
+        .4byte startAnimSound__Q23PSM9EnemyBaseFUlPP8JAISoundPQ27JAInter5ActorUc
+        .4byte playActorAnimSound__Q23PSM13CreatureAnimeFPQ27JAInter5ActorfUc
+        .4byte onCalcTurnOn__Q23PSM9EnemyBaseFv
+        .4byte onCalcTurnOff__Q23PSM9EnemyBaseFv
+        .4byte 0
+        .4byte 0
+        .4byte battleOn__Q23PSM10BattleLinkFv
+        .4byte "@184@battleOff__Q23PSM9EnemyBaseFv"
+        .4byte 0
+        .4byte 0
+        .4byte kehaiOn__Q23PSM9KehaiLinkFv
+        .4byte kehaiOff__Q23PSM9KehaiLinkFv
+        .4byte battleOff__Q23PSM9EnemyBaseFv
+        .4byte setKilled__Q23PSM9EnemyBossFv
+        .4byte updateKehai__Q23PSM9EnemyBaseFv
+        .4byte updateBattle__Q23PSM9EnemyBaseFv
+        .4byte jumpRequest__Q23PSM12EnemyMidBossFUs
+        .4byte postPikiAttack__Q23PSM12EnemyMidBossFb
+        .4byte updateDisappearing__Q23PSM9EnemyBossFv
+        .4byte onDeathMotionTop__Q23PSM9EnemyBossFv
+        .4byte onAppear__Q23PSM9EnemyBossFv
+        .4byte onAppear1st__Q23PSM12EnemyMidBossFv
+        .4byte onDisappear__Q23PSM9EnemyBossFv
+*/
+
 namespace PSM {
 struct CreatureAnime {
     virtual void _00() = 0;                                               // _00
@@ -427,9 +493,6 @@ struct EnemyMidBoss : public CreatureAnime,
     virtual void _38() = 0;                                // _38
     virtual void _3C() = 0;                                // _3C
     virtual void @48 @__dt();                              // _40
-    virtual void _44() = 0;                                // _44
-    virtual void _48() = 0;                                // _48
-    virtual void _4C() = 0;                                // _4C
     virtual void stopAllSound();                           // _50
     virtual void stopSound(unsigned long, unsigned long);  // _54
     virtual void enable();                                 // _58
@@ -439,8 +502,6 @@ struct EnemyMidBoss : public CreatureAnime,
     virtual void getUseSoundHandlePointer(unsigned long);  // _68
     virtual void handleStop(unsigned char, unsigned long); // _6C
     virtual void loop();                                   // _70
-    virtual void _74() = 0;                                // _74
-    virtual void _78() = 0;                                // _78
     virtual void setSpeedModifySound(JAISound*, JAIAnimeFrameSoundData*,
                                      float);                              // _7C
     virtual void startSound(unsigned long, unsigned long);                // _80
@@ -455,7 +516,6 @@ struct EnemyMidBoss : public CreatureAnime,
     virtual void _9C() = 0;                         // _9C
     virtual void _A0() = 0;                         // _A0
     virtual void battleOn();                        // _A4
-    virtual void _A8() = 0;                         // _A8
     virtual void _AC() = 0;                         // _AC
     virtual void _B0() = 0;                         // _B0
     virtual void kehaiOn();                         // _B4

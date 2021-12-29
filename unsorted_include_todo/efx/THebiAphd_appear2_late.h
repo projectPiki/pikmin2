@@ -1,6 +1,15 @@
 #ifndef _EFX_THEBIAPHD_APPEAR2_LATE_H
 #define _EFX_THEBIAPHD_APPEAR2_LATE_H
 
+/*
+    __vt__Q23efx22THebiAphd_appear2_late:
+    .4byte 0
+    .4byte 0
+    .4byte create__Q23efx14THebiAphd_baseFPQ23efx3Arg
+    .4byte forceKill__Q23efx8TSimple4Fv
+    .4byte fade__Q23efx8TSimple4Fv
+*/
+
 namespace efx {
 struct THebiAphd_base {
 	virtual void create(Arg*); // _00

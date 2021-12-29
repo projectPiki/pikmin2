@@ -1,6 +1,21 @@
 #ifndef _JSTUDIO_STB_TPARSE_H
 #define _JSTUDIO_STB_TPARSE_H
 
+/*
+    __vt__Q37JStudio3stb6TParse:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__Q37JStudio3stb6TParseFv
+    .4byte parseHeader_next__Q37JStudio3stb6TParseFPPCvPUlUl
+    .4byte parseBlock_next__Q37JStudio3stb6TParseFPPCvPUlUl
+    .4byte
+   parseHeader__Q37JStudio3stb6TParseFRCQ47JStudio3stb4data14TParse_THeaderUl
+    .4byte
+   parseBlock_block__Q37JStudio3stb6TParseFRCQ47JStudio3stb4data13TParse_TBlockUl
+    .4byte
+   parseBlock_object__Q37JStudio3stb6TParseFRCQ47JStudio3stb4data20TParse_TBlock_objectUl
+*/
+
 namespace JStudio {
 namespace stb {
 	struct TParse {

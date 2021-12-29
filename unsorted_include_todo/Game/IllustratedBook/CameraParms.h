@@ -1,6 +1,13 @@
 #ifndef _GAME_ILLUSTRATEDBOOK_CAMERAPARMS_H
 #define _GAME_ILLUSTRATEDBOOK_CAMERAPARMS_H
 
+/*
+    __vt__Q34Game15IllustratedBook11CameraParms:
+    .4byte 0
+    .4byte 0
+    .4byte read__Q34Game15IllustratedBook11CameraParmsFR6Stream
+*/
+
 namespace Game {
 namespace IllustratedBook {
 	struct CameraParms {

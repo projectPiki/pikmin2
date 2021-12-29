@@ -1,6 +1,14 @@
 #ifndef _KH_SCREEN_SARGDAYENDRESULTBASE_H
 #define _KH_SCREEN_SARGDAYENDRESULTBASE_H
 
+/*
+    __vt__Q32kh6Screen20SArgDayEndResultBase:
+    .4byte 0
+    .4byte 0
+    .4byte getSceneType__Q26Screen12SceneArgBaseCFv
+    .4byte getClassSize__Q32kh6Screen20SArgDayEndResultBaseFv
+*/
+
 namespace Screen {
 struct SceneArgBase {
 	virtual void getSceneType() const; // _00

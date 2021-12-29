@@ -1,6 +1,45 @@
 #ifndef _COLLPARTMGR_H
 #define _COLLPARTMGR_H
 
+/*
+    __vt__11CollPartMgr:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__11CollPartMgrFv
+    .4byte getChildCount__5CNodeFv
+    .4byte "getObject__20Container<8CollPart>FPv"
+    .4byte "getNext__24MonoObjectMgr<8CollPart>FPv"
+    .4byte "getStart__24MonoObjectMgr<8CollPart>Fv"
+    .4byte "getEnd__24MonoObjectMgr<8CollPart>Fv"
+    .4byte "get__24MonoObjectMgr<8CollPart>FPv"
+    .4byte "getAt__24MonoObjectMgr<8CollPart>Fi"
+    .4byte "getTo__24MonoObjectMgr<8CollPart>Fv"
+    .4byte 0
+    .4byte 0
+    .4byte "@28@doAnimation__24MonoObjectMgr<8CollPart>Fv"
+    .4byte "@28@doEntry__24MonoObjectMgr<8CollPart>Fv"
+    .4byte "@28@doSetView__24MonoObjectMgr<8CollPart>Fi"
+    .4byte "@28@doViewCalc__24MonoObjectMgr<8CollPart>Fv"
+    .4byte "@28@doSimulation__24MonoObjectMgr<8CollPart>Ff"
+    .4byte "@28@doDirectDraw__24MonoObjectMgr<8CollPart>FR8Graphics"
+    .4byte doSimpleDraw__16GenericObjectMgrFP8Viewport
+    .4byte loadResources__16GenericObjectMgrFv
+    .4byte "@28@resetMgr__24MonoObjectMgr<8CollPart>Fv"
+    .4byte pausable__16GenericObjectMgrFv
+    .4byte frozenable__16GenericObjectMgrFv
+    .4byte getMatrixLoadType__16GenericObjectMgrFv
+    .4byte "doAnimation__24MonoObjectMgr<8CollPart>Fv"
+    .4byte "doEntry__24MonoObjectMgr<8CollPart>Fv"
+    .4byte "doSetView__24MonoObjectMgr<8CollPart>Fi"
+    .4byte "doViewCalc__24MonoObjectMgr<8CollPart>Fv"
+    .4byte "doSimulation__24MonoObjectMgr<8CollPart>Ff"
+    .4byte "doDirectDraw__24MonoObjectMgr<8CollPart>FR8Graphics"
+    .4byte "birth__24MonoObjectMgr<8CollPart>Fv"
+    .4byte "resetMgr__24MonoObjectMgr<8CollPart>Fv"
+    .4byte "clearMgr__24MonoObjectMgr<8CollPart>Fv"
+    .4byte "onAlloc__24MonoObjectMgr<8CollPart>Fv"
+*/
+
 struct CNode {
 	virtual void _00() = 0;       // _00
 	virtual void getChildCount(); // _04
@@ -97,15 +136,8 @@ struct CollPartMgr : public CNode,
 	virtual void getTo();                 // _20
 	virtual void _24() = 0;               // _24
 	virtual void _28() = 0;               // _28
-	virtual void _2C() = 0;               // _2C
-	virtual void _30() = 0;               // _30
-	virtual void _34() = 0;               // _34
-	virtual void _38() = 0;               // _38
-	virtual void _3C() = 0;               // _3C
-	virtual void _40() = 0;               // _40
 	virtual void doSimpleDraw(Viewport*); // _44
 	virtual void loadResources();         // _48
-	virtual void _4C() = 0;               // _4C
 	virtual void pausable();              // _50
 	virtual void frozenable();            // _54
 	virtual void getMatrixLoadType();     // _58

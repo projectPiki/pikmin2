@@ -1,8 +1,21 @@
 #ifndef _TREASURELIGHT_MGR_H
 #define _TREASURELIGHT_MGR_H
 
+/*
+    __vt__Q213TreasureLight3Mgr:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__Q213TreasureLight3MgrFv
+    .4byte getChildCount__5CNodeFv
+    .4byte update__Q213TreasureLight3MgrFv
+    .4byte set__Q213TreasureLight3MgrFR8Graphics
+    .4byte set__Q213TreasureLight3MgrFR7Matrixf
+    .4byte drawDebugInfo__Q213TreasureLight3MgrFR8Graphics
+    .4byte 0
+*/
+
 struct CNode {
-	virtual void _00() = 0;       // _00
+	virtual ~CNode();             // _00
 	virtual void getChildCount(); // _04
 
 	// _00 VTBL

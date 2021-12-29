@@ -1,6 +1,55 @@
 #ifndef _GAME_ITEMBRIDGE_MGR_H
 #define _GAME_ITEMBRIDGE_MGR_H
 
+/*
+        __vt__Q34Game10ItemBridge3Mgr:
+        .4byte 0
+        .4byte 0
+        .4byte doAnimation__Q24Game12TNodeItemMgrFv
+        .4byte doEntry__Q24Game12TNodeItemMgrFv
+        .4byte doSetView__Q24Game12TNodeItemMgrFi
+        .4byte doViewCalc__Q24Game12TNodeItemMgrFv
+        .4byte doSimulation__Q24Game12TNodeItemMgrFf
+        .4byte doDirectDraw__Q24Game12TNodeItemMgrFR8Graphics
+        .4byte doSimpleDraw__16GenericObjectMgrFP8Viewport
+        .4byte loadResources__Q24Game11BaseItemMgrFv
+        .4byte resetMgr__16GenericObjectMgrFv
+        .4byte pausable__16GenericObjectMgrFv
+        .4byte frozenable__16GenericObjectMgrFv
+        .4byte getMatrixLoadType__16GenericObjectMgrFv
+        .4byte initDependency__Q24Game12TNodeItemMgrFv
+        .4byte killAll__Q24Game12TNodeItemMgrFv
+        .4byte setup__Q24Game11BaseItemMgrFPQ24Game8BaseItem
+        .4byte setupSoundViewerAndBas__Q24Game11BaseItemMgrFv
+        .4byte onLoadResources__Q34Game10ItemBridge3MgrFv
+        .4byte loadEverytime__Q24Game11BaseItemMgrFv
+        .4byte updateUseList__Q24Game11BaseItemMgrFPQ24Game11GenItemParmi
+        .4byte onUpdateUseList__Q24Game11BaseItemMgrFPQ24Game11GenItemParmi
+        .4byte generatorGetID__Q34Game10ItemBridge3MgrFv
+        .4byte
+   "generatorBirth__Q34Game10ItemBridge3MgrFR10Vector3<f>R10Vector3<f>PQ24Game11GenItemParm"
+        .4byte
+   generatorWrite__Q34Game10ItemBridge3MgrFR6StreamPQ24Game11GenItemParm .4byte
+   generatorRead__Q34Game10ItemBridge3MgrFR6StreamPQ24Game11GenItemParmUl .4byte
+   generatorLocalVersion__Q34Game10ItemBridge3MgrFv .4byte
+   generatorGetShape__Q24Game11BaseItemMgrFPQ24Game11GenItemParm .4byte
+   generatorNewItemParm__Q34Game10ItemBridge3MgrFv .4byte 0 .4byte 0 .4byte
+   "@48@__dt__Q34Game10ItemBridge3MgrFv" .4byte getChildCount__5CNodeFv .4byte
+   "getObject__27Container<Q24Game8BaseItem>FPv" .4byte
+   "@48@getNext__Q24Game12TNodeItemMgrFPv" .4byte
+   "@48@getStart__Q24Game12TNodeItemMgrFv" .4byte
+   "@48@getEnd__Q24Game12TNodeItemMgrFv" .4byte
+   "@48@get__Q24Game12TNodeItemMgrFPv" .4byte
+   "getAt__27Container<Q24Game8BaseItem>Fi" .4byte
+   "getTo__27Container<Q24Game8BaseItem>Fv" .4byte
+   doNew__Q34Game10ItemBridge3MgrFv .4byte
+   kill__Q24Game12TNodeItemMgrFPQ24Game8BaseItem .4byte
+   get__Q24Game12TNodeItemMgrFPv .4byte getNext__Q24Game12TNodeItemMgrFPv .4byte
+   getStart__Q24Game12TNodeItemMgrFv .4byte getEnd__Q24Game12TNodeItemMgrFv
+        .4byte __dt__Q34Game10ItemBridge3MgrFv
+        .4byte birth__Q34Game10ItemBridge3MgrFv
+*/
+
 namespace Game {
 struct TNodeItemMgr {
     virtual void doAnimation();           // _00
@@ -225,10 +274,6 @@ namespace ItemBridge {
         virtual void @48 @__dt();                                         // _74
         virtual void getChildCount();                                     // _78
         virtual void getObject(void*);                                    // _7C
-        virtual void _80() = 0;                                           // _80
-        virtual void _84() = 0;                                           // _84
-        virtual void _88() = 0;                                           // _88
-        virtual void _8C() = 0;                                           // _8C
         virtual void getAt(int);                                          // _90
         virtual void getTo();                                             // _94
         virtual void doNew();                                             // _98

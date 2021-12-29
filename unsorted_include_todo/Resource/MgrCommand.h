@@ -1,8 +1,22 @@
 #ifndef _RESOURCE_MGRCOMMAND_H
 #define _RESOURCE_MGRCOMMAND_H
 
+/*
+        __vt__Q28Resource10MgrCommand:
+        .4byte 0
+        .4byte 0
+        .4byte __dt__Q28Resource10MgrCommandFv
+        .4byte getChildCount__5CNodeFv
+        .4byte 0
+        .4byte 0
+        .4byte "@24@__dt__Q28Resource10MgrCommandFv"
+        .4byte memoryCallBackFunc__Q28Resource10MgrCommandFv
+        .4byte dvdLoadCallBackFunc__Q28Resource10MgrCommandFv
+        .4byte aramLoadCallBackFunc__Q28Resource10MgrCommandFv
+*/
+
 struct CNode {
-    virtual void _00() = 0;       // _00
+    virtual ~CNode();             // _00
     virtual void getChildCount(); // _04
 
     // _00 VTBL

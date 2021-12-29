@@ -1,6 +1,26 @@
 #ifndef _JMESSAGE_TPROCESSOR_H
 #define _JMESSAGE_TPROCESSOR_H
 
+/*
+    __vt__Q28JMessage10TProcessor:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__Q28JMessage10TProcessorFv
+    .4byte do_reset__Q28JMessage10TProcessorFv
+    .4byte do_character__Q28JMessage10TProcessorFi
+    .4byte do_tag__Q28JMessage10TProcessorFUlPCvUl
+    .4byte do_systemTagCode__Q28JMessage10TProcessorFUsPCvUl
+    .4byte do_select_begin__Q28JMessage10TProcessorFUl
+    .4byte do_select_end__Q28JMessage10TProcessorFv
+    .4byte do_select_separate__Q28JMessage10TProcessorFv
+    .4byte 0
+    .4byte do_setBegin_isReady___Q28JMessage10TProcessorCFv
+    .4byte 0
+    .4byte 0
+    .4byte 0
+    .4byte 0
+*/
+
 namespace JMessage {
 struct TProcessor {
 	virtual ~TProcessor();                                          // _00

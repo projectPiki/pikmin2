@@ -1,8 +1,17 @@
 #ifndef _GAME_ILLUSTRATEDBOOK_ENEMYMODEPARMS_H
 #define _GAME_ILLUSTRATEDBOOK_ENEMYMODEPARMS_H
 
+/*
+    __vt__Q34Game15IllustratedBook14EnemyModeParms:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__Q34Game15IllustratedBook14EnemyModeParmsFv
+    .4byte getChildCount__5CNodeFv
+    .4byte read__Q34Game15IllustratedBook14EnemyModeParmsFR6Stream
+*/
+
 struct CNode {
-	virtual void _00() = 0;       // _00
+	virtual ~CNode();             // _00
 	virtual void getChildCount(); // _04
 
 	// _00 VTBL

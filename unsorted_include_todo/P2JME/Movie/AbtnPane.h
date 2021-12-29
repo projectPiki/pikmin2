@@ -1,6 +1,17 @@
 #ifndef _P2JME_MOVIE_ABTNPANE_H
 #define _P2JME_MOVIE_ABTNPANE_H
 
+/*
+    __vt__Q35P2JME5Movie8AbtnPane:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__Q35P2JME5Movie8AbtnPaneFv
+    .4byte getChildCount__5CNodeFv
+    .4byte update__Q35P2JME5Movie8AbtnPaneFv
+    .4byte draw__Q29P2DScreen4NodeFR8GraphicsR14J2DGrafContext
+    .4byte doInit__Q35P2JME5Movie8AbtnPaneFv
+*/
+
 struct CNode {
 	virtual void _00() = 0;       // _00
 	virtual void getChildCount(); // _04

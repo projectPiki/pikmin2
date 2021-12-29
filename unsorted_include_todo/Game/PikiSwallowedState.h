@@ -1,6 +1,41 @@
 #ifndef _GAME_PIKISWALLOWEDSTATE_H
 #define _GAME_PIKISWALLOWEDSTATE_H
 
+/*
+    __vt__Q24Game18PikiSwallowedState:
+    .4byte 0
+    .4byte 0
+    .4byte init__Q24Game18PikiSwallowedStateFPQ24Game4PikiPQ24Game8StateArg
+    .4byte exec__Q24Game18PikiSwallowedStateFPQ24Game4Piki
+    .4byte cleanup__Q24Game18PikiSwallowedStateFPQ24Game4Piki
+    .4byte "resume__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki"
+    .4byte "restart__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4Piki"
+    .4byte
+   "transit__Q24Game22FSMState<Q24Game4Piki>FPQ24Game4PikiiPQ24Game8StateArg"
+    .4byte
+   ignoreAtari__Q24Game18PikiSwallowedStateFPQ24Game4PikiPQ24Game8Creature
+    .4byte bounceCallback__Q24Game9PikiStateFPQ24Game4PikiPQ23Sys8Triangle
+    .4byte collisionCallback__Q24Game9PikiStateFPQ24Game4PikiRQ24Game9CollEvent
+    .4byte platCallback__Q24Game9PikiStateFPQ24Game4PikiRQ24Game9PlatEvent
+    .4byte onKeyEvent__Q24Game9PikiStateFPQ24Game4PikiRCQ28SysShape8KeyEvent
+    .4byte getInfo__Q24Game9PikiStateFPc
+    .4byte outWaterCallback__Q24Game9PikiStateFPQ24Game4Piki
+    .4byte "wallCallback__Q24Game9PikiStateFPQ24Game4PikiR10Vector3<f>"
+    .4byte invincible__Q24Game9PikiStateFPQ24Game4Piki
+    .4byte callable__Q24Game18PikiSwallowedStateFv
+    .4byte aiActive__Q24Game9PikiStateFv
+    .4byte dopable__Q24Game9PikiStateFv
+    .4byte releasable__Q24Game9PikiStateFv
+    .4byte throwable__Q24Game9PikiStateFv
+    .4byte dead__Q24Game18PikiSwallowedStateFv
+    .4byte battleOK__Q24Game9PikiStateFv
+    .4byte pressable__Q24Game9PikiStateFv
+    .4byte transittable__Q24Game9PikiStateFi
+    .4byte soft_transittable__Q24Game9PikiStateFi
+    .4byte onFlute__Q24Game9PikiStateFPQ24Game4PikiPQ24Game4Navi
+    .4byte dump__Q24Game9PikiStateFv
+*/
+
 namespace Game {
 namespace FSMState < Game
 {

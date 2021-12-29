@@ -1,8 +1,16 @@
 #ifndef _GAME_FARM_FARM_H
 #define _GAME_FARM_FARM_H
 
+/*
+    __vt__Q34Game4Farm4Farm:
+    .4byte 0
+    .4byte 0
+    .4byte __dt__Q34Game4Farm4FarmFv
+    .4byte getChildCount__5CNodeFv
+*/
+
 struct CNode {
-	virtual void _00() = 0;       // _00
+	virtual ~CNode();             // _00
 	virtual void getChildCount(); // _04
 
 	// _00 VTBL
