@@ -6,16 +6,22 @@
 struct Graphics;
 
 struct Node {
-	f32 m_radius;     // _00
-	Node* m_previous; // _04
-	Node* m_next;     // _08
-	Node* m_current;  // _0C
-	u32 m_flags;      // _10
+	char* m_name; // _00
+	Node* m_next; // _04
+	u32 _08;      // _08
+	Node* _0C;    // _0C
+	Node* _10;    // _10
+	u32 _14;      // _14
+	Node* _18;    // _18
+	u32 _1C;      // _1C
+
+	Node() { init(); }
+
+	virtual void update();         // _08
+	virtual void draw(Graphics&);  // _0C
+	virtual void displayInfo(int); // _10
 
 	void init();
-	void displayInfo(int);
-	void update();
-	void draw(Graphics&);
 };
 
 #endif

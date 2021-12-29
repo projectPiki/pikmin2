@@ -51,9 +51,8 @@
         .skip 2
 */
 
-extern const char lbl_804995F0[12]; // node.cpp
-extern const char lbl_8049962C[28]; // %d child (realchild = %d)!\n
-extern const char lbl_80520260[8];  // CNode
+#include "node.h"
+#include "Dolphin/os.h"
 
 /*
  * --INFO--
@@ -66,64 +65,33 @@ void Node::init() { }
  * --INFO--
  * Address:	80411208
  * Size:	0000B0
+ * Matches
  */
-// void Node::displayInfo(int)
-// {
-/*
-    stwu     r1, -0x20(r1)
-    mflr     r0
-    stw      r0, 0x24(r1)
-    stw      r31, 0x1c(r1)
-    li       r31, 0
-    stw      r30, 0x18(r1)
-    mr       r30, r4
-    stw      r29, 0x14(r1)
-    mr       r29, r3
-    b        lbl_80411240
+void Node::displayInfo(int whitespaceAmt)
+{
+	for (s32 i = 0; i < whitespaceAmt; i++) {
+		OSReport("    ");
+	}
 
-lbl_80411230:
-    addi     r3, r2, lbl_80520250@sda21
-    crclr    6
-    bl       OSReport
-    addi     r31, r31, 1
+	OSReport("[%s]\n", m_name);
 
-lbl_80411240:
-    cmpw     r31, r30
-    blt      lbl_80411230
-    lwz      r4, 0(r29)
-    addi     r3, r2, lbl_80520258@sda21
-    crclr    6
-    bl       OSReport
-    lwz      r31, 4(r29)
-    cmplwi   r31, 0
-    beq      lbl_80411294
-    addi     r31, r31, -12
-    b        lbl_80411294
+	// Some weird inline shit + negative indices?
+	// Is sizeof(Node) == 0xC or 0x24?
 
-lbl_8041126C:
-    lwz      r3, 0xc(r31)
-    addi     r4, r30, 1
-    lwz      r12, 0x20(r3)
-    lwz      r12, 0x10(r12)
-    mtctr    r12
-    bctrl
-    lwz      r31, 0x18(r31)
-    cmplwi   r31, 0
-    beq      lbl_80411294
-    addi     r31, r31, -12
+	Node* next = m_next;
+	if (next) {
+		next = (Node*)(((u8*)next) - 12);
+	}
 
-lbl_80411294:
-    cmplwi   r31, 0
-    bne      lbl_8041126C
-    lwz      r0, 0x24(r1)
-    lwz      r31, 0x1c(r1)
-    lwz      r30, 0x18(r1)
-    lwz      r29, 0x14(r1)
-    mtlr     r0
-    addi     r1, r1, 0x20
-    blr
-*/
-// }
+	while (next) {
+		next->_0C->displayInfo(whitespaceAmt + 1);
+
+		next = next->_18;
+		if (next) {
+			next = (Node*)(((u8*)next) - 12);
+		}
+	}
+}
 
 /*
  * --INFO--
