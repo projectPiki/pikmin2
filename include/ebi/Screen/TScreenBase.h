@@ -14,11 +14,24 @@ namespace Screen {
 	};
 
 	struct ArgOpen {
-		virtual char* getName(void) { return "ArgOpen"; }
+		virtual char* getName() { return "ArgOpen"; }
+	};
+
+	struct ArgOpenOmake : public ArgOpen {
+		virtual char* getName();
+	};
+
+	struct ArgOpenTitleMenu : public ArgOpen {
+	};
+
+	struct ArgOpenTMBack : public ArgOpen {
 	};
 
 	struct ArgClose {
-		virtual char* getName(void) { return "ArgClose"; }
+		virtual char* getName() { return "ArgClose"; }
+	};
+
+	struct ArgCloseTMBack : public ArgClose {
 	};
 
 	struct TScreenBaseInterface {
@@ -37,6 +50,7 @@ namespace Screen {
 		    , m_state(0)
 		{
 		}
+
 		virtual void setArchive(JKRArchive*);   // _00
 		virtual bool openScreen(ArgOpen*);      // _04
 		virtual bool closeScreen(ArgClose*);    // _08
@@ -55,9 +69,9 @@ namespace Screen {
 		virtual void doDraw();                  // _3C
 		virtual char* getName();                // _40
 
-		u8 isOpenScreen(void);
-		u8 isWaitScreen(void);
-		u8 isCloseScreen(void);
+		u8 isOpenScreen();
+		u8 isWaitScreen();
+		u8 isCloseScreen();
 
 		JKRArchive* m_archive; // _04
 		s32 m_state;           // _08

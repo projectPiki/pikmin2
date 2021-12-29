@@ -1,5 +1,5 @@
-#ifndef _EBI_OPTION_H
-#define _EBI_OPTION_H
+#ifndef _EBI_SCREEN_TOPTION_H
+#define _EBI_SCREEN_TOPTION_H
 
 #include "ebi/E2DCallBack.h"
 #include "ebi/Screen/TScreenBase.h"
@@ -18,32 +18,6 @@ namespace Save {
 	struct TMgr;
 } // namespace Save
 } // namespace ebi
-
-/*
- * FSM template specializations
- */
-namespace Game {
-// template <> struct FSMState<ebi::Option::TMgr> {
-// 	inline FSMState(int id)
-// 		: m_id(id) {};
-// 	virtual void init(ebi::Option::TMgr*, StateArg*);    // _00
-// 	virtual void exec(ebi::Option::TMgr*);               // _04
-// 	virtual void cleanup(ebi::Option::TMgr*);            // _08
-// 	virtual void resume(ebi::Option::TMgr*);             // _0C
-// 	virtual void restart(ebi::Option::TMgr*);            // _10
-// 	virtual void transit(ebi::Option::TMgr*, StateArg*); // _14
-// };
-
-// SPECIALIZED_STATE_MACHINE_DECL(ebi::Option::TMgr);
-// // template <> struct StateMachine<ebi::Option::TMgr> {
-// // 	virtual void init(ebi::Option::TMgr*);                    // _00
-// // 	virtual u32 start(ebi::Option::TMgr*, int, StateArg*);    // _04
-// // 	virtual void exec(ebi::Option::TMgr*);                    // _08
-// // 	virtual void transit(ebi::Option::TMgr*, int, StateArg*); // _0C
-
-// // 	// void create(int);
-// // };
-} // namespace Game
 
 namespace ebi {
 /*
