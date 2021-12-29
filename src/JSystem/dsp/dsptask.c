@@ -5,8 +5,13 @@
  * Address:	800AA900
  * Size:	000038
  */
-void DspHandShake(void*)
+void DspHandShake(void* a1)
 {
+	do {
+		;
+	} while (DSPCheckMailFromDSP(a1));
+	DSPCheckMailFromDSP(DSPReadMailFromDSP());
+	Dsp_Running_Start();
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x10(r1)

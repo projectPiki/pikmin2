@@ -25,8 +25,12 @@ void DSPReleaseHalt3(unsigned long, unsigned short)
  * Address:	800AA760
  * Size:	000048
  */
-void DSPReleaseHalt2(unsigned long)
+void DSPReleaseHalt2(unsigned long msg)
 {
+	unsigned long msgs[5];
+	msgs[0] = (msg << 16) | DSP_CreateMap2(msg);
+	DSPSendCommands2(&msgs, 0, NULL);
+
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x20(r1)
@@ -137,6 +141,7 @@ void DsaveBuffer(unsigned short, unsigned long, unsigned long)
  */
 void setup_callback(unsigned short)
 {
+	flag = 0;
 	/*
 	.loc_0x0:
 	  li        r0, 0
@@ -190,8 +195,9 @@ void DsetupTable(unsigned long, unsigned long, unsigned long, unsigned long,
  * Address:	800AA860
  * Size:	000024
  */
-void DsetMixerLevel(float)
+void DsetMixerLevel(float amt)
 {
+	DSP_MIXERLEVEL = 4096.0f * amt;
 	/*
 	.loc_0x0:
 	  lfs       f0, -0x7490(r2)

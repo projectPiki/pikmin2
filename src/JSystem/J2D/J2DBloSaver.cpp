@@ -17,14 +17,7 @@
  * Address:	800494E4
  * Size:	00000C
  */
-void J2DTevBlock::getTexNo(unsigned long) const
-{
-	/*
-	lis      r3, 0x0000FFFF@ha
-	addi     r3, r3, 0x0000FFFF@l
-	blr
-	*/
-}
+u16 J2DTevBlock::getTexNo(unsigned long) const { return 0xFFFF; }
 
 /*
  * --INFO--
@@ -52,14 +45,7 @@ u32 J2DTevBlock::getTevOrder(unsigned long) { return 0x0; }
  * Address:	80049504
  * Size:	00000C
  */
-void J2DTevBlock::getFontNo() const
-{
-	/*
-	lis      r3, 0x0000FFFF@ha
-	addi     r3, r3, 0x0000FFFF@l
-	blr
-	*/
-}
+u16 J2DTevBlock::getFontNo() const { return 0xFFFF; }
 
 /*
  * --INFO--
@@ -75,6 +61,8 @@ u32 J2DIndBlock::getIndTexStageNum() const { return 0x0; }
  */
 J2DBloSaver::CTextureNameConnect::~CTextureNameConnect()
 {
+	clear();
+
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
