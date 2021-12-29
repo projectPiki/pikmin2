@@ -5,14 +5,7 @@
 
 struct CNode {
 	CNode();
-	inline CNode(char* name)
-	{
-		m_child  = nullptr;
-		m_parent = nullptr;
-		m_prev   = nullptr;
-		m_next   = nullptr;
-		m_name   = name;
-	};
+	inline CNode(char* name) { reset(name); };
 	virtual ~CNode();
 
 	virtual int getChildCount();
@@ -25,6 +18,15 @@ struct CNode {
 	void del();
 
 	void setName(char*);
+
+	inline void reset(char* name)
+	{
+		m_child  = nullptr;
+		m_parent = nullptr;
+		m_prev   = nullptr;
+		m_next   = nullptr;
+		m_name   = name;
+	}
 
 	// _00 vtbl
 	CNode* m_next;   // _04

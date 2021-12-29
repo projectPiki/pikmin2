@@ -19,36 +19,6 @@
     .global lbl_8049962C
     lbl_8049962C:
         .asciz "%d child (realchild = %d)!\n"
-
-    .section .data, "wa"  # 0x8049E220 - 0x804EFC20
-    .global __vt__5CNode
-    __vt__5CNode:
-        .4byte 0
-        .4byte 0
-        .4byte __dt__5CNodeFv
-        .4byte getChildCount__5CNodeFv
-    .global __vt__4Node
-    __vt__4Node:
-        .4byte 0
-        .4byte 0
-        .4byte update__4NodeFv
-        .4byte draw__4NodeFR8Graphics
-        .4byte displayInfo__4NodeFi
-        .4byte 0
-
-    .section .sdata2, "a"     # 0x80516360 - 0x80520E40
-    .global lbl_80520250
-    lbl_80520250:
-        .asciz "    "
-        .skip 3
-    .global lbl_80520258
-    lbl_80520258:
-        .asciz "[%s]\n"
-        .skip 2
-    .global lbl_80520260
-    lbl_80520260:
-        .asciz "CNode"
-        .skip 2
 */
 
 #include "node.h"
@@ -97,108 +67,58 @@ void Node::displayInfo(int whitespaceAmt)
  * --INFO--
  * Address:	804112B8
  * Size:	000064
+ * Matches
  */
-// void Node::update()
-// {
-/*
-    stwu     r1, -0x10(r1)
-    mflr     r0
-    stw      r0, 0x14(r1)
-    stw      r31, 0xc(r1)
-    lwz      r31, 4(r3)
-    cmplwi   r31, 0
-    beq      lbl_80411300
-    addi     r31, r31, -12
-    b        lbl_80411300
+void Node::update()
+{
+	Node* next = m_next;
+	if (next) {
+		next = (Node*)(((u8*)next) - 12);
+	}
 
-lbl_804112DC:
-    lwz      r3, 0xc(r31)
-    lwz      r12, 0x20(r3)
-    lwz      r12, 8(r12)
-    mtctr    r12
-    bctrl
-    lwz      r31, 0x18(r31)
-    cmplwi   r31, 0
-    beq      lbl_80411300
-    addi     r31, r31, -12
+	while (next) {
+		next->_0C->update();
 
-lbl_80411300:
-    cmplwi   r31, 0
-    bne      lbl_804112DC
-    lwz      r0, 0x14(r1)
-    lwz      r31, 0xc(r1)
-    mtlr     r0
-    addi     r1, r1, 0x10
-    blr
-*/
-// }
+		next = next->_18;
+		if (next) {
+			next = (Node*)(((u8*)next) - 12);
+		}
+	}
+}
 
 /*
  * --INFO--
  * Address:	8041131C
  * Size:	000074
+ * Matches
  */
-// void Node::draw(Graphics&)
-// {
-/*
-    stwu     r1, -0x10(r1)
-    mflr     r0
-    stw      r0, 0x14(r1)
-    stw      r31, 0xc(r1)
-    stw      r30, 8(r1)
-    mr       r30, r4
-    lwz      r31, 4(r3)
-    cmplwi   r31, 0
-    beq      lbl_80411370
-    addi     r31, r31, -12
-    b        lbl_80411370
+void Node::draw(Graphics& gfx)
+{
+	Node* next = m_next;
+	if (next) {
+		next = (Node*)(((u8*)next) - 12);
+	}
 
-lbl_80411348:
-    lwz      r3, 0xc(r31)
-    mr       r4, r30
-    lwz      r12, 0x20(r3)
-    lwz      r12, 0xc(r12)
-    mtctr    r12
-    bctrl
-    lwz      r31, 0x18(r31)
-    cmplwi   r31, 0
-    beq      lbl_80411370
-    addi     r31, r31, -12
+	while (next) {
+		next->_0C->draw(gfx);
 
-lbl_80411370:
-    cmplwi   r31, 0
-    bne      lbl_80411348
-    lwz      r0, 0x14(r1)
-    lwz      r31, 0xc(r1)
-    lwz      r30, 8(r1)
-    mtlr     r0
-    addi     r1, r1, 0x10
-    blr
-*/
-// }
+		next = next->_18;
+		if (next) {
+			next = (Node*)(((u8*)next) - 12);
+		}
+	}
+}
 
 /*
  * --INFO--
  * Address:	80411390
  * Size:	000030
  */
-// CNode::CNode()
-// {
-/*
-    lis      r5, __vt__5CNode@ha
-    li       r4, 0
-    addi     r5, r5, __vt__5CNode@l
-    addi     r0, r2, lbl_80520260@sda21
-    stw      r5, 0(r3)
-    stw      r4, 0x10(r3)
-    stw      r4, 0xc(r3)
-    stw      r4, 8(r3)
-    stw      r4, 4(r3)
-    stw      r0, 0x14(r3)
-    stw      r0, 0x14(r3)
-    blr
-*/
-// }
+CNode::CNode()
+{
+	reset("CNode");
+	m_name = "CNode";
+}
 
 /*
  * --INFO--
