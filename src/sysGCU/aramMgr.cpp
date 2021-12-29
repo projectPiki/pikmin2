@@ -40,8 +40,11 @@
 
 #include "JSystem/JKR/Aram.h"
 #include "JSystem/JKR/JKRDvdRipper.h"
+#include "JSystem/JKR/JKRDvdAramRipper.h"
 #include "JSystem/JUT/JUTException.h"
+#include "JSystem/JKR/JKRHeap.h"
 #include "CNode.h"
+#include "Dolphin/string.h"
 #include "ARAM.h"
 
 ARAM::Mgr* gAramMgr;
@@ -55,6 +58,7 @@ namespace ARAM {
 inline Node::Node(void)
     : CNode("")
 {
+	m_status = 0;
 }
 
 /*
@@ -62,11 +66,22 @@ inline Node::Node(void)
  * Address:	........
  * Size:	0000A8
  */
-inline void Node::dvdToAram(char const* name, bool unk)
+inline int Node::dvdToAram(char const* name, bool unk)
 {
 #line 105
 	P2ASSERT(m_name);
-	// JKRDvdAramRipper
+	m_name = (char*)name;
+
+	if (!m_status) {
+		if (unk) {
+			m_status = 0;
+		} else {
+			m_status
+			    = JKRDvdAramRipper::loadToAram(m_name, 0, Switch_0, 0, 0, 0);
+		}
+	}
+
+	return m_status;
 }
 
 /*
@@ -87,10 +102,7 @@ inline void Node::aramToMainRam(unsigned char*, unsigned long, unsigned long,
  * Address:	........
  * Size:	000004
  */
-inline void Node::dump(void)
-{
-	// UNUSED FUNCTION
-}
+inline void Node::dump(void) { }
 
 /*
  * --INFO--
@@ -117,13 +129,40 @@ Mgr::Mgr(void)
  * Size:	00024C
  */
 
-void Mgr::dvdToAram(char const* name, bool a2)
+u32 Mgr::dvdToAram(char const* name, bool a2)
 {
-	u32 r30     = 0;
+	u32 errCode = 0;
 	Node* found = search(name);
 
-	if (found) { }
+	if (!found) {
+		Node* newNode = new (JKRHeap::sSystemHeap, 0) Node();
 
+		char* newName
+		    = new (JKRHeap::sSystemHeap, 0) char[(strlen((char*)name) + 1)];
+		strcpy(newName, name);
+
+		if (a2) {
+			errCode = newNode->dvdToAram(newName, a2);
+			m_node.add(newNode);
+			return errCode;
+		}
+
+		u32 newCode = newNode->dvdToAram(newName, false);
+		if (newCode) {
+			m_node.add(newNode);
+			return newCode;
+		}
+
+		delete newName;
+		delete newNode;
+		return errCode;
+	}
+
+	errCode = found->dvdToAram(found->m_name, a2);
+
+	return errCode;
+
+	// return errCode;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
