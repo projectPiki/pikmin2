@@ -4630,7 +4630,7 @@ void NaviChangeState::init(Navi* navi, StateArg* arg)
 	}
 
 	newNavi = naviMgr->getAt(1 - navi->m_naviIndex);
-	finish = 0;
+	finish  = 0;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -4688,7 +4688,7 @@ lbl_8018001C:
  */
 void NaviChangeState::onKeyEvent(Navi* navi, SysShape::KeyEvent const& key)
 {
-	if(key.m_type == 1000) {
+	if (key.m_type == 1000) {
 		finish = true;
 		navi->startMotion(IPikiAnims::RUN2, IPikiAnims::RUN2, navi, nullptr);
 	}
@@ -4727,14 +4727,14 @@ lbl_801800A4:
  */
 void NaviChangeState::exec(Navi* navi)
 {
-	if(navi->isMovieActor()) {
+	if (navi->isMovieActor()) {
 		transit(navi, 0, nullptr);
 	}
 	navi->m_velocity.x = 0.0f;
 	navi->m_velocity.y = 0.0f;
 	navi->m_velocity.z = 0.0f;
 
-	if(finish) {
+	if (finish) {
 		transit(navi, 0, nullptr);
 	}
 	/*
@@ -4802,19 +4802,20 @@ void NaviChangeState::cleanup(Game::Navi*) { }
  */
 void NaviFollowState::init(Game::Navi* navi, Game::StateArg* arg)
 {
-	if(!arg)//theres a check for the first member of the arg being 0 too but idk how StateArg works here
+	if (!arg) // theres a check for the first member of the arg being 0 too but
+	          // idk how StateArg works here
 	{
 		finish = true;
 		navi->startMotion(IPikiAnims::RUN2, IPikiAnims::RUN2, navi, nullptr);
-	}
-	else {
+	} else {
 		navi->startMotion(IPikiAnims::WAIT, IPikiAnims::WAIT, navi, nullptr);
 		finish = false;
 
-		if(!navi->m_naviIndex) {
-			navi->m_soundObj->startSound(0x895, nullptr);//sound id needs an enum
-		}
-		else if(!(PlayData->storyflags & 1))// payed debt flag (for louie/president)
+		if (!navi->m_naviIndex) {
+			navi->m_soundObj->startSound(0x895,
+			                             nullptr); // sound id needs an enum
+		} else if (!(PlayData->storyflags
+		             & 1)) // payed debt flag (for louie/president)
 			navi->m_soundObj->startSound(0x896, nullptr);
 		else
 			navi->m_soundObj->startSound(0x89c, nullptr);
@@ -4823,7 +4824,7 @@ void NaviFollowState::init(Game::Navi* navi, Game::StateArg* arg)
 	targetNavi = NaviMgr->getAt(1 - navi->m_naviIndex);
 	navi->setMoveRotation(1);
 	counter = 0;
-	unk = 0;
+	unk     = 0;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -4934,31 +4935,34 @@ lbl_80180274:
  * Address:	801802D0
  * Size:	000174
  */
-void NaviFollowState::onKeyEvent(Game::Navi* navi, SysShape::KeyEvent const& key)
+void NaviFollowState::onKeyEvent(Game::Navi* navi,
+                                 SysShape::KeyEvent const& key)
 {
-  if (key.m_type == 1000) {
-    if (finish != 1) {
-      	if (!finish) {
-        	finish = 1;
-			navi->startMotion(IPikiAnims::RUN2, IPikiAnims::RUN2, navi, nullptr);
-    	}
-		else if (finish < 3) {
-        	counter = 0;
-        	finish = 1;
-			navi->startMotion(IPikiAnims::WALK, IPikiAnims::WALK, navi, nullptr);
+	if (key.m_type == 1000) {
+		if (finish != 1) {
+			if (!finish) {
+				finish = 1;
+				navi->startMotion(IPikiAnims::RUN2, IPikiAnims::RUN2, navi,
+				                  nullptr);
+			} else if (finish < 3) {
+				counter = 0;
+				finish  = 1;
+				navi->startMotion(IPikiAnims::WALK, IPikiAnims::WALK, navi,
+				                  nullptr);
+			}
 		}
-    }
-  }
-  //animid is missing from this keyevent struct
-  if ((!GameSys || !GameSys->frozen) && key.animid == 0x32 && key.m_type == 200) {
-	if(!navi->m_naviIndex) {
-		navi->m_soundObj->startSound(0x877, nullptr);
 	}
-	else if(!(PlayData->storyflags & 1))// payed debt flag (for louie/president)
-		navi->m_soundObj->startSound(0x878, nullptr);
-	else
-		navi->m_soundObj->startSound(0x879, nullptr);
-  }
+	// animid is missing from this keyevent struct
+	if ((!GameSys || !GameSys->frozen) && key.animid == 0x32
+	    && key.m_type == 200) {
+		if (!navi->m_naviIndex) {
+			navi->m_soundObj->startSound(0x877, nullptr);
+		} else if (!(PlayData->storyflags
+		             & 1)) // payed debt flag (for louie/president)
+			navi->m_soundObj->startSound(0x878, nullptr);
+		else
+			navi->m_soundObj->startSound(0x879, nullptr);
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
