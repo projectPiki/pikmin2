@@ -45,6 +45,7 @@
 #include "JSystem/JKR/JKRHeap.h"
 #include "CNode.h"
 #include "Dolphin/string.h"
+#include "Dolphin/stl.h"
 #include "ARAM.h"
 
 ARAM::Mgr* gAramMgr;
@@ -66,14 +67,14 @@ inline Node::Node(void)
  * Address:	........
  * Size:	0000A8
  */
-inline int Node::dvdToAram(char const* name, bool unk)
+inline int Node::dvdToAram(char const* name, bool useNull)
 {
 #line 105
 	P2ASSERT(name);
 	m_name = (char*)name;
 
 	if (!m_status) {
-		if (unk) {
+		if (useNull) {
 			m_status = 0;
 		} else {
 			m_status
@@ -81,7 +82,7 @@ inline int Node::dvdToAram(char const* name, bool unk)
 		}
 	}
 
-	return m_status;
+	return (u32)m_status;
 }
 
 /*
@@ -89,12 +90,41 @@ inline int Node::dvdToAram(char const* name, bool unk)
  * Address:	........
  * Size:	000140
  */
-inline void Node::aramToMainRam(unsigned char*, unsigned long, unsigned long,
-                                JKRExpandSwitch, unsigned long, JKRHeap*,
-                                JKRDvdRipper::EAllocDirection, int,
-                                unsigned long*)
+inline void* Node::aramToMainRam(unsigned char* a2, unsigned long a3,
+                                 unsigned long a4, JKRExpandSwitch a5,
+                                 unsigned long a6, JKRHeap* a7,
+                                 JKRDvdRipper::EAllocDirection a8, int a9,
+                                 unsigned long* byteCnt)
 {
-	// UNUSED FUNCTION
+	if (!a7) {
+		a7 = JKRHeap::sCurrentHeap;
+	}
+
+	void* addr = nullptr;
+	u32 zero   = 0;
+
+	if (!byteCnt) {
+		byteCnt = &zero;
+	}
+
+	if (!m_status) {
+		dvdToAram(m_name, false);
+	}
+
+	JKRAramBlock* status = m_status;
+	if (status) {
+		addr = JKRAram::aramToMainRam(status, a2, a3, a4, a5, a6, a7, a9,
+		                              byteCnt);
+		DCFlushRange(addr, *byteCnt);
+		if ((s32)a8 == JKRDvdRipper::ALLOC_DIR_BOTTOM) {
+			char* newAddr = new (a7, -0x20) char[*byteCnt];
+			memcpy(newAddr, addr, *byteCnt);
+			delete addr;
+			addr = newAddr;
+		}
+	}
+
+	return addr;
 }
 
 /*
@@ -131,472 +161,175 @@ Mgr::Mgr(void)
 
 u32 Mgr::dvdToAram(char const* name, bool a2)
 {
-	u32 errCode = 0;
+	int success = 0;
 	Node* found = search(name);
 
 	if (!found) {
-		Node* newNode = new (JKRHeap::sSystemHeap, 0) Node();
+		// Is sSystemHeap volatile or something?
+		JKRHeap* sysHeap1 = JKRHeap::sSystemHeap;
+		Node* newNode     = new (sysHeap1, 0) Node;
 
-		char* newName
-		    = new (JKRHeap::sSystemHeap, 0) char[(strlen((char*)name) + 1)];
+		JKRHeap* sysHeap2 = JKRHeap::sSystemHeap;
+		size_t length     = strlen((char*)name) + 1;
+		char* newName     = new (sysHeap2, 0) char[length];
 		strcpy(newName, name);
 
 		if (a2) {
-			errCode = newNode->dvdToAram(newName, a2);
+			newNode->dvdToAram(newName, a2);
 			m_node.add(newNode);
-			return errCode;
-		}
+		} else {
+			success = newNode->dvdToAram(newName, false);
 
-		u32 newCode = newNode->dvdToAram(newName, false);
-		if (newCode) {
-			m_node.add(newNode);
-			return newCode;
+			if (!success) {
+				delete newName;
+				delete newNode;
+			} else {
+				m_node.add(newNode);
+			}
 		}
-
-		delete newName;
-		delete newNode;
-		return errCode;
+	} else {
+		success = found->dvdToAram(found->m_name, a2);
 	}
 
-	errCode = found->dvdToAram(found->m_name, a2);
-
-	return errCode;
-
-	// return errCode;
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stmw     r26, 8(r1)
-	mr       r28, r3
-	mr       r26, r4
-	mr       r29, r5
-	li       r30, 0
-	bl       search__Q24ARAM3MgrFPCc
-	or.      r31, r3, r3
-	bne      lbl_80432D8C
-	lwz      r4, sSystemHeap__7JKRHeap@sda21(r13)
-	li       r3, 0x1c
-	li       r5, 0
-	bl       __nw__FUlP7JKRHeapi
-	or.      r31, r3, r3
-	beq      lbl_80432C44
-	lis      r4, __vt__5CNode@ha
-	lis      r3, __vt__Q24ARAM4Node@ha
-	addi     r0, r4, __vt__5CNode@l
-	li       r5, 0
-	stw      r0, 0(r31)
-	addi     r4, r2, lbl_80520770@sda21
-	addi     r0, r3, __vt__Q24ARAM4Node@l
-	stw      r5, 0x10(r31)
-	stw      r5, 0xc(r31)
-	stw      r5, 8(r31)
-	stw      r5, 4(r31)
-	stw      r4, 0x14(r31)
-	stw      r0, 0(r31)
-	stw      r5, 0x18(r31)
-
-lbl_80432C44:
-	lwz      r27, sSystemHeap__7JKRHeap@sda21(r13)
-	mr       r3, r26
-	bl       strlen
-	addi     r3, r3, 1
-	mr       r4, r27
-	li       r5, 0
-	bl       __nwa__FUlP7JKRHeapi
-	mr       r4, r26
-	mr       r27, r3
-	bl       strcpy
-	clrlwi.  r0, r29, 0x18
-	beq      lbl_80432CEC
-	cmplwi   r27, 0
-	bne      lbl_80432C98
-	lis      r3, lbl_8049A628@ha
-	lis      r5, lbl_8049A634@ha
-	addi     r3, r3, lbl_8049A628@l
-	li       r4, 0x69
-	addi     r5, r5, lbl_8049A634@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80432C98:
-	stw      r27, 0x14(r31)
-	lwz      r0, 0x18(r31)
-	cmplwi   r0, 0
-	bne      lbl_80432CDC
-	clrlwi.  r0, r29, 0x18
-	beq      lbl_80432CBC
-	li       r0, 0
-	stw      r0, 0x18(r31)
-	b        lbl_80432CDC
-
-lbl_80432CBC:
-	lwz      r3, 0x14(r31)
-	li       r4, 0
-	li       r5, 0
-	li       r6, 0
-	li       r7, 0
-	li       r8, 0
-	bl       loadToAram__16JKRDvdAramRipperFPCcUl15JKRExpandSwitchUlUlPUl
-	stw      r3, 0x18(r31)
-
-lbl_80432CDC:
-	mr       r3, r28
-	mr       r4, r31
-	bl       add__5CNodeFP5CNode
-	b        lbl_80432DFC
-
-lbl_80432CEC:
-	cmplwi   r27, 0
-	bne      lbl_80432D10
-	lis      r3, lbl_8049A628@ha
-	lis      r5, lbl_8049A634@ha
-	addi     r3, r3, lbl_8049A628@l
-	li       r4, 0x69
-	addi     r5, r5, lbl_8049A634@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80432D10:
-	stw      r27, 0x14(r31)
-	lwz      r0, 0x18(r31)
-	cmplwi   r0, 0
-	bne      lbl_80432D40
-	lwz      r3, 0x14(r31)
-	li       r4, 0
-	li       r5, 0
-	li       r6, 0
-	li       r7, 0
-	li       r8, 0
-	bl       loadToAram__16JKRDvdAramRipperFPCcUl15JKRExpandSwitchUlUlPUl
-	stw      r3, 0x18(r31)
-
-lbl_80432D40:
-	lwz      r0, 0x18(r31)
-	cmplwi   r0, 0
-	mr       r30, r0
-	beq      lbl_80432D60
-	mr       r3, r28
-	mr       r4, r31
-	bl       add__5CNodeFP5CNode
-	b        lbl_80432DFC
-
-lbl_80432D60:
-	mr       r3, r27
-	bl       __dl__FPv
-	cmplwi   r31, 0
-	beq      lbl_80432DFC
-	mr       r3, r31
-	li       r4, 1
-	lwz      r12, 0(r31)
-	lwz      r12, 8(r12)
-	mtctr    r12
-	bctrl
-	b        lbl_80432DFC
-
-lbl_80432D8C:
-	lwz      r28, 0x14(r31)
-	cmplwi   r28, 0
-	bne      lbl_80432DB4
-	lis      r3, lbl_8049A628@ha
-	lis      r5, lbl_8049A634@ha
-	addi     r3, r3, lbl_8049A628@l
-	li       r4, 0x69
-	addi     r5, r5, lbl_8049A634@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80432DB4:
-	stw      r28, 0x14(r31)
-	lwz      r0, 0x18(r31)
-	cmplwi   r0, 0
-	bne      lbl_80432DF8
-	clrlwi.  r0, r29, 0x18
-	beq      lbl_80432DD8
-	li       r0, 0
-	stw      r0, 0x18(r31)
-	b        lbl_80432DF8
-
-lbl_80432DD8:
-	lwz      r3, 0x14(r31)
-	li       r4, 0
-	li       r5, 0
-	li       r6, 0
-	li       r7, 0
-	li       r8, 0
-	bl       loadToAram__16JKRDvdAramRipperFPCcUl15JKRExpandSwitchUlUlPUl
-	stw      r3, 0x18(r31)
-
-lbl_80432DF8:
-	lwz      r30, 0x18(r31)
-
-lbl_80432DFC:
-	mr       r3, r30
-	lmw      r26, 8(r1)
-	lwz      r0, 0x24(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
- */
+	return success;
 }
-} // namespace ARAM
 
 /*
  * --INFO--
  * Address:	80432E14
  * Size:	000060
-
-ARAM::Node::~Node(void)
-{
-    /*
-    stwu     r1, -0x10(r1)
-    mflr     r0
-    stw      r0, 0x14(r1)
-    stw      r31, 0xc(r1)
-    mr       r31, r4
-    stw      r30, 8(r1)
-    or.      r30, r3, r3
-    beq      lbl_80432E58
-    lis      r5, __vt__Q24ARAM4Node@ha
-    li       r4, 0
-    addi     r0, r5, __vt__Q24ARAM4Node@l
-    stw      r0, 0(r30)
-    bl       __dt__5CNodeFv
-    extsh.   r0, r31
-    ble      lbl_80432E58
-    mr       r3, r30
-    bl       __dl__FPv
-
-lbl_80432E58:
-    lwz      r0, 0x14(r1)
-    mr       r3, r30
-    lwz      r31, 0xc(r1)
-    lwz      r30, 8(r1)
-    mtlr     r0
-    addi     r1, r1, 0x10
-    blr
-
-}
+ */
+Node::~Node() { }
 
 /*
  * --INFO--
  * Address:	80432E74
  * Size:	000154
-
-void ARAM::Mgr::aramToMainRam(char const*, unsigned char*, unsigned long,
-                              unsigned long, JKRExpandSwitch, unsigned long,
-                              JKRHeap*, JKRDvdRipper::EAllocDirection, int,
-                              unsigned long*)
+ * TODO: Match
+ */
+void* Mgr::aramToMainRam(char const* name, unsigned char* a2, unsigned long a3,
+                         unsigned long a4, JKRExpandSwitch a5, unsigned long a6,
+                         JKRHeap* a7, JKRDvdRipper::EAllocDirection a8, int a9,
+                         unsigned long* byteCnt)
 {
-    /*
-    .loc_0x0:
-      stwu      r1, -0x50(r1)
-      mflr      r0
-      stw       r0, 0x54(r1)
-      stmw      r20, 0x20(r1)
-      mr        r21, r5
-      lwz       r27, 0x58(r1)
-      mr        r22, r6
-      lwz       r28, 0x5C(r1)
-      mr        r23, r7
-      lwz       r30, 0x60(r1)
-      mr        r24, r8
-      mr        r25, r9
-      mr        r26, r10
-      li        r20, 0
-      bl        0x1BC
-      mr.       r31, r3
-      beq-      .loc_0x13C
-      cmplwi    r26, 0
-      bne-      .loc_0x50
-      lwz       r26, -0x77D4(r13)
+	void* mem   = nullptr;
+	Node* found = search(name);
 
-    .loc_0x50:
-      li        r29, 0
-      cmplwi    r30, 0
-      stw       r29, 0x10(r1)
-      bne-      .loc_0x64
-      addi      r30, r1, 0x10
+	if (found) {
+		mem = found->aramToMainRam(a2, a3, a4, a5, a6, a7, a8, a9, byteCnt);
+	}
 
-    .loc_0x64:
-      lwz       r0, 0x18(r31)
-      cmplwi    r0, 0
-      bne-      .loc_0xC8
-      lwz       r20, 0x14(r31)
-      cmplwi    r20, 0
-      bne-      .loc_0x98
-      lis       r3, 0x804A
-      lis       r5, 0x804A
-      subi      r3, r3, 0x59D8
-      li        r4, 0x69
-      subi      r5, r5, 0x59CC
-      crclr     6, 0x6
-      bl        -0x4088C8
-
-    .loc_0x98:
-      stw       r20, 0x14(r31)
-      lwz       r0, 0x18(r31)
-      cmplwi    r0, 0
-      bne-      .loc_0xC8
-      lwz       r3, 0x14(r31)
-      li        r4, 0
-      li        r5, 0
-      li        r6, 0
-      li        r7, 0
-      li        r8, 0
-      bl        -0x415844
-      stw       r3, 0x18(r31)
-
-    .loc_0xC8:
-      lwz       r3, 0x18(r31)
-      cmplwi    r3, 0
-      beq-      .loc_0x138
-      stw       r30, 0x8(r1)
-      mr        r4, r21
-      mr        r5, r22
-      mr        r6, r23
-      mr        r7, r24
-      mr        r8, r25
-      mr        r9, r26
-      mr        r10, r28
-      bl        -0x41AD40
-      lwz       r4, 0x0(r30)
-      mr        r29, r3
-      bl        -0x34685C
-      cmpwi     r27, 0x2
-      bne-      .loc_0x138
-      lwz       r3, 0x0(r30)
-      mr        r4, r26
-      li        r5, -0x20
-      bl        -0x40EF44
-      lwz       r5, 0x0(r30)
-      mr        r21, r3
-      mr        r4, r29
-      bl        -0x42DE00
-      mr        r3, r29
-      bl        -0x40EEF0
-      mr        r29, r21
-
-    .loc_0x138:
-      mr        r20, r29
-
-    .loc_0x13C:
-      mr        r3, r20
-      lmw       r20, 0x20(r1)
-      lwz       r0, 0x54(r1)
-      mtlr      r0
-      addi      r1, r1, 0x50
-      blr
-
+	return mem;
 }
+} // namespace ARAM
 
 /*
- * --INFO--
- * Address:	80432FC8
- * Size:	0000A0
+* --INFO--
+* Address:	80432FC8
+* Size:	0000A0
 
 void ARAM::Mgr::dump(void)
 {
-    /*
-    stwu     r1, -0x20(r1)
-    mflr     r0
-    stw      r0, 0x24(r1)
-    stw      r31, 0x1c(r1)
-    li       r31, -1
-    stw      r30, 0x18(r1)
-    li       r30, 0
-    stw      r29, 0x14(r1)
-    mr       r29, r3
-    lwz      r4, sAramObject__7JKRAram@sda21(r13)
-    lwz      r3, 0x94(r4)
-    bl       getFreeSize__11JKRAramHeapFv
-    lwz      r3, sAramObject__7JKRAram@sda21(r13)
-    lwz      r3, 0x94(r3)
-    bl       getFreeSize__11JKRAramHeapFv
-    lwz      r4, 0x10(r29)
-    b        lbl_80433044
+/*
+stwu     r1, -0x20(r1)
+mflr     r0
+stw      r0, 0x24(r1)
+stw      r31, 0x1c(r1)
+li       r31, -1
+stw      r30, 0x18(r1)
+li       r30, 0
+stw      r29, 0x14(r1)
+mr       r29, r3
+lwz      r4, sAramObject__7JKRAram@sda21(r13)
+lwz      r3, 0x94(r4)
+bl       getFreeSize__11JKRAramHeapFv
+lwz      r3, sAramObject__7JKRAram@sda21(r13)
+lwz      r3, 0x94(r3)
+bl       getFreeSize__11JKRAramHeapFv
+lwz      r4, 0x10(r29)
+b        lbl_80433044
 
 lbl_8043300C:
-    lwz      r3, 0x18(r4)
-    cmplwi   r3, 0
-    beq      lbl_80433020
-    lwz      r0, 0x18(r3)
-    b        lbl_80433024
+lwz      r3, 0x18(r4)
+cmplwi   r3, 0
+beq      lbl_80433020
+lwz      r0, 0x18(r3)
+b        lbl_80433024
 
 lbl_80433020:
-    li       r0, 0
+li       r0, 0
 
 lbl_80433024:
-    cmplw    r31, r0
-    ble      lbl_80433034
-    mr       r31, r0
-    b        lbl_80433040
+cmplw    r31, r0
+ble      lbl_80433034
+mr       r31, r0
+b        lbl_80433040
 
 lbl_80433034:
-    cmplw    r30, r0
-    bge      lbl_80433040
-    mr       r30, r0
+cmplw    r30, r0
+bge      lbl_80433040
+mr       r30, r0
 
 lbl_80433040:
-    lwz      r4, 4(r4)
+lwz      r4, 4(r4)
 
 lbl_80433044:
-    cmplwi   r4, 0
-    bne      lbl_8043300C
-    lwz      r0, 0x24(r1)
-    lwz      r31, 0x1c(r1)
-    lwz      r30, 0x18(r1)
-    lwz      r29, 0x14(r1)
-    mtlr     r0
-    addi     r1, r1, 0x20
-    blr
+cmplwi   r4, 0
+bne      lbl_8043300C
+lwz      r0, 0x24(r1)
+lwz      r31, 0x1c(r1)
+lwz      r30, 0x18(r1)
+lwz      r29, 0x14(r1)
+mtlr     r0
+addi     r1, r1, 0x20
+blr
 
 }
 
 /*
- * --INFO--
- * Address:	80433068
- * Size:	000070
+* --INFO--
+* Address:	80433068
+* Size:	000070
 
 void ARAM::Mgr::search(char const*)
 {
-    /*
-    stwu     r1, -0x20(r1)
-    mflr     r0
-    stw      r0, 0x24(r1)
-    stw      r31, 0x1c(r1)
-    li       r31, 0
-    stw      r30, 0x18(r1)
-    stw      r29, 0x14(r1)
-    mr       r29, r4
-    lwz      r30, 0x10(r3)
-    b        lbl_804330B0
+/*
+stwu     r1, -0x20(r1)
+mflr     r0
+stw      r0, 0x24(r1)
+stw      r31, 0x1c(r1)
+li       r31, 0
+stw      r30, 0x18(r1)
+stw      r29, 0x14(r1)
+mr       r29, r4
+lwz      r30, 0x10(r3)
+b        lbl_804330B0
 
 lbl_80433090:
-    lwz      r4, 0x14(r30)
-    mr       r3, r29
-    bl       strcmp
-    cmpwi    r3, 0
-    bne      lbl_804330AC
-    mr       r31, r30
-    b        lbl_804330B8
+lwz      r4, 0x14(r30)
+mr       r3, r29
+bl       strcmp
+cmpwi    r3, 0
+bne      lbl_804330AC
+mr       r31, r30
+b        lbl_804330B8
 
 lbl_804330AC:
-    lwz      r30, 4(r30)
+lwz      r30, 4(r30)
 
 lbl_804330B0:
-    cmplwi   r30, 0
-    bne      lbl_80433090
+cmplwi   r30, 0
+bne      lbl_80433090
 
 lbl_804330B8:
-    lwz      r0, 0x24(r1)
-    mr       r3, r31
-    lwz      r31, 0x1c(r1)
-    lwz      r30, 0x18(r1)
-    lwz      r29, 0x14(r1)
-    mtlr     r0
-    addi     r1, r1, 0x20
-    blr
+lwz      r0, 0x24(r1)
+mr       r3, r31
+lwz      r31, 0x1c(r1)
+lwz      r30, 0x18(r1)
+lwz      r29, 0x14(r1)
+mtlr     r0
+addi     r1, r1, 0x20
+blr
 
 }
 */
