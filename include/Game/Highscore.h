@@ -12,10 +12,11 @@ struct Highscore {
 	void newRecord(int);
 	int entryScore(int);
 	bool higher(int, int);
-	virtual bool do_higher(int, int);
 	void read(Stream&);
 	void write(Stream&);
 	void clear();
+
+	virtual bool do_higher(int, int);
 
 	// VTBL _00
 	int* m_scores;    // _04

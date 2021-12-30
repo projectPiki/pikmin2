@@ -33,14 +33,14 @@ struct PlayCommonData {
 
 namespace CommonSaveData {
 	// Size: 0x48
-	struct Mgr {
+	struct Mgr : public PlayCommonData {
 		Mgr();
 
 		void setup();
 		void setDefault();
 		void setCardSerialNo(ulonglong);
 		void resetCardSerialNo();
-		void resetPlayer(char);
+		void resetPlayer(signed char);
 
 		void read(Stream&);
 		void write(Stream&);
@@ -54,30 +54,29 @@ namespace CommonSaveData {
 		void setDeflicker();
 		void setDeflicker(bool);
 
-		u8 _00[4];                              // _00
-		PlayChallengeGameData* m_challengeData; // _04
-		int _08;                                // _08
-		u8 _0C[0xC];                            // _0C
-		int _18;                                // _18
-		u32 _1C;                                // _1C
-		char m_fileIndex;                       // _20
-		short _22;                              // _22
-		u8 _24[4];                              // _24
-		u32 _28;                                // _28
-		u8 _2C[4];                              // _2C
-		ulonglong m_cardSerialNo;               // _30
-		// TODO: replace with SoundMode enum, once we create it?
-		u8 m_soundMode;                  // _38
-		u8 _39;                          // _39
-		u8 _3A;                          // _3A
-		u8 _3B;                          // _3B
-		u8 _3C;                          // _3C
-		u8 _3D;                          // _3D
-		char _3E;                        // _3E
-		ushort _40;                      // _40
-		bool m_optionBlockSaveFlagMaybe; // _42
-		u32 : 0;                         // reset alignment
-		u8 _44[4];                       // _44
+		int _18;            // _18
+		u32 _1C;            // _1C
+		char m_fileIndex;   // _20
+		char padding;       // _21
+		short _22;          // _22
+		u32 _24;            // _24
+		u32 _28;            // _28
+		u32 _2C;            // _2C
+		u32 m_cardSerialNo; // _30
+		u32 _34;            // _34
+		u8 m_soundMode;     // _38, TODO: Replace with
+		                    // Soundmode enum
+		u8 _39;             // _39
+		s8 _3A;             // _3A
+		u8 _3B;             // _3B
+		u8 _3C;             // _3C
+		u8 _3D;             // _3D
+		char m_region;      // _3E
+		char _3F;           // _3F
+		u8 _40;             // _40
+		u8 _41;             // _41
+		bool _42;           // _42
+		u32 _44;            // _44
 	};
 } // namespace CommonSaveData
 } // namespace Game
