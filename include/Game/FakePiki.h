@@ -13,6 +13,78 @@ struct PikiAnimator {
 };
 
 namespace Game {
+struct IPikiAnims {
+	enum PikiAnims {
+		AKUBI,   // yawn
+		ASIBUMI, // stepped on
+		ATTACK1,
+		CHATTING,
+		DAMAGE,
+		DEAD,
+		DEAD2,
+		DEAD3,
+		ESA, // feed
+		FALL,
+		FUE,      // whistle
+		FURIMUKU, // look over shoulder
+		GAKKARI,  // disappointed
+		GATTU,    // agree
+		GETUP,
+		GFURI1, // shake1
+		GFURI2, // shake2
+		GNUKE,  // evade?
+		GROWUP1,
+		GROWUP2,
+		HNOBORU, // climb
+		IRAIRA,  // frustrated
+		JHIT,
+		JKOKE, // moss?
+		JOB1,
+		JOB2,
+		KOROBU,  // fall over
+		KUTTUKU, // go together
+		NIGERU,  // run away
+		RUN2,
+		WALK,
+		WAIT,
+		KIZUKU, // build
+		THROW,
+		THROWWWAIT,
+		ROLLJUMP, // throwing spin animation
+		HANG,
+		TYAKUSUI, // drowning
+		OBORERU,  // learn
+		SIZUMU,   // feel depressed
+		PICKLOOP,
+		PICK_PUT,
+		NUKU, // pull out
+		NUKU3,
+		NUKARERU, // to be removed from
+		NUKARE3,  // swept away
+		KAIFUKU,
+		KAIFUKU3,
+		KAIFUKU2,
+		MIZUAGE,
+		JUMP,
+		JUMPB1,
+		JUMPR1,
+		SAGASU,   // search
+		SAGASU2,  // search2
+		MIZUNOMI, // drinking
+		SUWARU,   // sit
+		NERU,     // sleep
+		HORU,     // leave alone? throw away
+		DOSIN,
+		KOROBU2, // falldown2
+		GASDEAD,
+		GDEAD,
+		SUWARERU,
+		PUNCH,
+		PUNCH2,
+		PUNCH3
+	};
+};
+
 struct FakePiki : public Creature, public SysShape::MotionListener {
 	FakePiki();
 
