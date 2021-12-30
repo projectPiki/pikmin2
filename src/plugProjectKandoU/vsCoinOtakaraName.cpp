@@ -7,6 +7,7 @@ struct VsOtakaraName {
 	static const char* cBedamaYellow;
 	static float cBedamaYellowDepth;
 };
+
 const char* VsOtakaraName::cCoin         = "flower_red";
 const char* VsOtakaraName::cBedamaBlue   = "be_dama_blue_l";
 const char* VsOtakaraName::cBedamaRed    = "be_dama_red_l";
