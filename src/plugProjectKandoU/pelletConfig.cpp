@@ -94,7 +94,7 @@ PelletConfig::TParms::TParms()
  */
 PelletConfig* PelletConfigList::getPelletConfig(char* str)
 {
-	for (s32 i = 0; i < m_configCnt; i++) {
+	for (int i = 0; i < m_configCnt; i++) {
 		PelletConfig* pConfig = &m_configs[i];
 		u32 len               = strlen(str);
 
@@ -111,7 +111,7 @@ PelletConfig* PelletConfigList::getPelletConfig(char* str)
  * Address:	801B44A8
  * Size:	00007C
  */
-PelletConfig* PelletConfigList::getPelletConfig(s32 index)
+PelletConfig* PelletConfigList::getPelletConfig(int index)
 {
 	bool isValid = 0 <= index && index < m_configCnt;
 #line 125
@@ -125,9 +125,9 @@ PelletConfig* PelletConfigList::getPelletConfig(s32 index)
  * Address:	801B4524
  * Size:	000044
  */
-PelletConfig* PelletConfigList::getPelletConfig_ByDictionaryNo(s32 dictNumber)
+PelletConfig* PelletConfigList::getPelletConfig_ByDictionaryNo(int dictNumber)
 {
-	for (s32 i = 0; i < m_configCnt; i++) {
+	for (int i = 0; i < m_configCnt; i++) {
 		PelletConfig* pConfig = &m_configs[i];
 		if (dictNumber + 1 == pConfig->m_params.m_dictionary.m_data) {
 			return pConfig;
@@ -146,7 +146,7 @@ void PelletConfigList::read(Stream& stream)
 {
 	m_configCnt = stream.readInt();
 	m_configs   = new PelletConfig[m_configCnt];
-	for (s32 i = 0; i < m_configCnt; i++) {
+	for (int i = 0; i < m_configCnt; i++) {
 		m_configs[i].m_params.read(stream);
 		m_configs[i].m_params.m_index = i;
 

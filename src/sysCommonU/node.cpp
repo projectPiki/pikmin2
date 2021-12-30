@@ -166,7 +166,7 @@ void CNode::add(CNode* newAdd)
  */
 int CNode::calcNextCount()
 {
-	s32 i       = 1;
+	int i       = 1;
 	CNode* node = this;
 
 	while (node = node->m_next) {
