@@ -5,10 +5,18 @@
 
 struct CNode {
 	CNode();
-	inline CNode(char* name) { reset(name); };
-	virtual ~CNode();
+	inline CNode(char* name)
+	{
+		m_child  = nullptr;
+		m_parent = nullptr;
+		m_prev   = nullptr;
+		m_next   = nullptr;
+		m_name   = name;
+	};
 
+	virtual ~CNode();
 	virtual int getChildCount();
+
 	s32 calcNextCount();
 	CNode* getChildAt(int);
 

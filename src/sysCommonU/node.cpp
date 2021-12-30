@@ -148,8 +148,8 @@ void CNode::add(CNode* newAdd)
 	newAdd->m_parent = this;
 
 	// Double check we haven't added the child twice!
-	s32 addErrCount = 0;
-	for (CNode* c = m_child; c; c = c->m_next) {
+	CNode* c = m_child;
+	for (s32 addErrCount = 0; c; c = c->m_next) {
 		if (c == newAdd) {
 			addErrCount++;
 		}
