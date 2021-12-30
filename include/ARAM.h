@@ -23,6 +23,11 @@ struct Mgr {
 	Mgr();
 
 	static void init();
+
+	u32 aramToMainRam(char const*, unsigned char*, unsigned long, unsigned long,
+	                  JKRExpandSwitch, unsigned long, JKRHeap*,
+	                  JKRDvdRipper::EAllocDirection, int, unsigned long*);
+
 	u32 dvdToAram(char const*, bool);
 	Node* search(char const* name);
 
