@@ -69,7 +69,7 @@ inline Node::Node(void)
 inline int Node::dvdToAram(char const* name, bool unk)
 {
 #line 105
-	P2ASSERT(m_name);
+	P2ASSERT(name);
 	m_name = (char*)name;
 
 	if (!m_status) {
