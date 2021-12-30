@@ -12,17 +12,17 @@ struct JKRAramHeap;
 struct JKRDecompCommand;
 
 struct JKRAramBlock {
-	JKRAramBlock(ulong, ulong, ulong, uchar, bool);
+	JKRAramBlock(u32, u32, u32, uchar, bool);
 
 	virtual ~JKRAramBlock(); // _00
 
-	JKRAramBlock* allocHead(ulong, uchar, JKRAramHeap*);
-	JKRAramBlock* allocTail(ulong, uchar, JKRAramHeap*);
+	JKRAramBlock* allocHead(u32, uchar, JKRAramHeap*);
+	JKRAramBlock* allocTail(u32, uchar, JKRAramHeap*);
 
 	JSUPtrLink m_link; // _04
-	ulong _14;         // _14
-	ulong _18;         // _18
-	ulong _1C;         // _1C
+	u32 _14;           // _14
+	u32 _18;           // _18
+	u32 _1C;           // _1C
 	uchar _20;         // _20
 	bool _21;          // _21
 };
@@ -30,61 +30,63 @@ struct JKRAramBlock {
 struct JKRAramHeap : public JKRDisposer {
 	enum EAllocMode { AM_Head = 0, AM_Tail };
 
-	JKRAramHeap(ulong, ulong);
+	JKRAramHeap(u32, u32);
 
 	virtual ~JKRAramHeap(); // _00
 
-	JKRAramBlock* alloc(ulong, EAllocMode);
-	JKRAramBlock* allocFromHead(ulong);
-	JKRAramBlock* allocFromTail(ulong);
-	uint getFreeSize();
+	JKRAramBlock* alloc(u32, EAllocMode);
+	JKRAramBlock* allocFromHead(u32);
+	JKRAramBlock* allocFromTail(u32);
+	s32 getFreeSize();
 
 	OSMutexObject m_mutex; // _18
 	JKRHeap* _30;          // _30
-	ulong _34;             // _34
-	ulong _38;             // _38
-	ulong _3C;             // _3C
+	u32 _34;               // _34
+	u32 _38;               // _38
+	u32 _3C;               // _3C
 	u8 _40;                // _40
 };
 
 // Size: 0xA4
 struct JKRAram : public JKRThread {
-	JKRAram(ulong, ulong, long);
+	JKRAram(u32, u32, long);
 
 	virtual ~JKRAram(); // _00
 	virtual void run(); // _04
 
-	static JKRAram* create(ulong, ulong, long, long, long);
-	static JKRAramBlock* mainRamToAram(uchar*, ulong, ulong, JKRExpandSwitch,
-	                                   ulong, JKRHeap*, int, ulong*);
-	static uchar* aramToMainRam(ulong, uchar*, ulong, JKRExpandSwitch, ulong,
-	                            JKRHeap*, int, ulong*);
+	static JKRAram* create(u32, u32, long, long, long);
+	static JKRAramBlock* mainRamToAram(uchar*, u32, u32, JKRExpandSwitch, u32,
+	                                   JKRHeap*, s32, u32*);
+	static uchar* aramToMainRam(u32, uchar*, u32, JKRExpandSwitch, u32,
+	                            JKRHeap*, s32, u32*);
+	static uchar* aramToMainRam(JKRAramBlock*, u8*, u32, u32, JKRExpandSwitch,
+	                            u32, JKRHeap*, s32, u32*);
 
 	u8 _78[8];               // _78
-	ulong _80;               // _80
-	ulong _84;               // _84
-	ulong _88;               // _88
+	u32 _80;                 // _80
+	u32 _84;                 // _84
+	u32 _88;                 // _88
 	u8 _8C[4];               // _8C
-	ulong _90;               // _90
+	u32 _90;                 // _90
 	JKRAramHeap* m_aramHeap; // _94
-	ulong m_blockLength;     // _98
+	u32 m_blockLength;       // _98
 	u8 _9C[4];               // _9C
 };
 
 struct JKRAramArchive : public JKRArchive {
 	JKRAramArchive(long, EMountDirection);
 
-	virtual ~JKRAramArchive();                                        // _00
-	virtual void getExpandedResSize(const void*) const;               // _34
-	virtual u32 fetchResource(SDIFileEntry*, ulong*);                 // _38
-	virtual void* fetchResource(void*, ulong, SDIFileEntry*, ulong*); // _3C
+	virtual ~JKRAramArchive();                                    // _00
+	virtual void getExpandedResSize(const void*) const;           // _34
+	virtual u32 fetchResource(SDIFileEntry*, u32*);               // _38
+	virtual void* fetchResource(void*, u32, SDIFileEntry*, u32*); // _3C
 
 	bool open(long);
-	void fetchResource_subroutine(ulong, ulong, uchar*, ulong, int);
-	void fetchResource_subroutine(ulong, ulong, JKRHeap*, int, uchar**);
+	void fetchResource_subroutine(u32, u32, uchar*, u32, s32);
+	void fetchResource_subroutine(u32, u32, JKRHeap*, s32, uchar**);
 
-	int _5C;               // _5C
-	int _60;               // _60
+	s32 _5C;               // _5C
+	s32 _60;               // _60
 	void* _64;             // _64
 	JKRDvdFile* m_dvdFile; // _68
 };
@@ -97,15 +99,15 @@ struct JKRAMCommand {
 	u8 _00[0x20];          // _00
 	JSUPtrLink _20;        // _20
 	JSUPtrLink _30;        // _30
-	int m_direction;       // _40
-	ulong m_length;        // _44
-	ulong m_source;        // _48
-	ulong m_destination;   // _4C
+	s32 m_direction;       // _40
+	u32 m_length;          // _44
+	u32 m_source;          // _48
+	u32 m_destination;     // _4C
 	JKRAramBlock* _50;     // _50
 	u8 _54[4];             // _54
 	void* _58;             // _58
 	OSMessageQueue* _5C;   // _5C
-	int _60;               // _60
+	s32 _60;               // _60
 	JKRDecompCommand* _64; // _64
 	OSMessageQueue _68;    // _68
 	u8 _88[4];             // _88
@@ -115,8 +117,8 @@ struct JKRAMCommand {
 };
 
 namespace JKRAramPiece {
-void doneDMA(ulong);
-void orderSync(int, ulong, ulong, ulong, JKRAramBlock*);
+void doneDMA(u32);
+void orderSync(s32, u32, u32, u32, JKRAramBlock*);
 void sendCommand(JKRAMCommand*);
 void startDMA(JKRAMCommand*);
 } // namespace JKRAramPiece
