@@ -10,7 +10,7 @@ struct CNode {
 
 	virtual int getChildCount();
 	s32 calcNextCount();
-	CNode* getChildAt(s32);
+	CNode* getChildAt(int);
 
 	void add(CNode*);
 	void addHead(CNode*);
