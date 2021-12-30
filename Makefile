@@ -96,6 +96,8 @@ $(BUILD_DIR)/src/Dolphin/__start.o: MWCC_VERSION := 1.0
 $(BUILD_DIR)/src/Dolphin/OSLink.o: MWCC_VERSION := 1.0
 $(BUILD_DIR)/src/Dolphin/PPCArch.o: MWCC_VERSION := 1.0
 $(BUILD_DIR)/src/Dolphin/vec.o: MWCC_VERSION := 1.0
+$(BUILD_DIR)/src/sysGCU/aramMgr.o: CFLAGS  := -Cpp_exceptions off -enum int -inline auto -proc gekko -RTTI off -fp hard -fp_contract on -rostr -O4,p -use_lmw_stmw on -sdata 8 -sdata2 8 -nodefaults -msgstyle gcc $(INCLUDES)
+
 
 #-------------------------------------------------------------------------------
 # Recipes

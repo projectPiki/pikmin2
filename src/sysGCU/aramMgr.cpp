@@ -90,19 +90,13 @@ inline int Node::dvdToAram(char const* name, bool useNull)
  * Address:	........
  * Size:	000140
  */
-inline void* Node::aramToMainRam(unsigned char* a2, unsigned long a3,
-                                 unsigned long a4, JKRExpandSwitch a5,
-                                 unsigned long a6, JKRHeap* a7,
-                                 JKRDvdRipper::EAllocDirection a8, int a9,
-                                 unsigned long* byteCnt)
+void* Node::aramToMainRam(unsigned char* a2, unsigned long a3, unsigned long a4,
+                          JKRExpandSwitch a5, unsigned long a6, JKRHeap* a7,
+                          JKRDvdRipper::EAllocDirection a8, int a9,
+                          unsigned long* byteCnt)
 {
-	if (!a7) {
-		a7 = JKRHeap::sCurrentHeap;
-	}
-
 	void* addr = nullptr;
 	u32 zero   = 0;
-
 	if (!byteCnt) {
 		byteCnt = &zero;
 	}
@@ -216,6 +210,10 @@ void* Mgr::aramToMainRam(char const* name, unsigned char* a2, unsigned long a3,
 	Node* found = search(name);
 
 	if (found) {
+		if (!a7) {
+			a7 = JKRHeap::sCurrentHeap;
+		}
+
 		mem = found->aramToMainRam(a2, a3, a4, a5, a6, a7, a8, a9, byteCnt);
 	}
 

@@ -10,10 +10,9 @@ struct Node : CNode {
 	~Node();
 
 	inline int dvdToAram(char const*, bool);
-	inline void* aramToMainRam(unsigned char*, unsigned long, unsigned long,
-	                           JKRExpandSwitch, unsigned long, JKRHeap*,
-	                           JKRDvdRipper::EAllocDirection, int,
-	                           unsigned long*);
+	void* aramToMainRam(unsigned char*, unsigned long, unsigned long,
+	                    JKRExpandSwitch, unsigned long, JKRHeap*,
+	                    JKRDvdRipper::EAllocDirection, int, unsigned long*);
 	inline void dump();
 
 	JKRAramBlock* m_status; // _18
