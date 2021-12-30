@@ -4,7 +4,7 @@
 namespace ebi {
 namespace CardEReader {
 	struct TMgr {
-		virtual ~TMgr();        // _00
+		virtual ~TMgr(); // _00
 
 		// _00 VTBL
 	};
