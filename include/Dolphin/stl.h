@@ -31,6 +31,8 @@ int vsnprintf(char*, size_t, const char*, va_list);
 
 int rand();
 
+void* memcpy(void* dest, const void* src, size_t n);
+
 #ifdef __cplusplus
 };
 #endif // ifdef __cplusplus
