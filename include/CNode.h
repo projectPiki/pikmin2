@@ -17,7 +17,7 @@ struct CNode {
 	virtual ~CNode();
 	virtual int getChildCount();
 
-	s32 calcNextCount();
+	int calcNextCount();
 	CNode* getChildAt(int);
 
 	void add(CNode*);

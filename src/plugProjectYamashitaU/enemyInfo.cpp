@@ -109,16 +109,16 @@ EnemyInfo gEnemyInfo[100] = {
 };
 // clang-format on
 
-s32 gEnemyInfoNum = sizeof(gEnemyInfo) / sizeof(gEnemyInfo[0]);
+int gEnemyInfoNum = sizeof(gEnemyInfo) / sizeof(gEnemyInfo[0]);
 
 namespace EnemyInfoFunc {
 	/**
 	 * Common loop used by at least getEnemyName.
 	 */
-	inline EnemyInfo* getInfo(s32 enemyID, s32 enemyFlags)
+	inline EnemyInfo* getInfo(int enemyID, int enemyFlags)
 	{
 		EnemyInfo* result = nullptr;
-		for (s32 enemy_num = gEnemyInfoNum, slot = 0; enemy_num > 0;
+		for (int enemy_num = gEnemyInfoNum, slot = 0; enemy_num > 0;
 		     --enemy_num) {
 			if ((enemyID == gEnemyInfo[slot].m_id)
 			    && ((enemyFlags & (u32)gEnemyInfo[slot].m_flags) != 0)) {
@@ -130,11 +130,11 @@ namespace EnemyInfoFunc {
 		return result;
 	}
 
-	EnemyInfo* getEnemyInfo(s32 enemyID, s32 enemyFlags)
+	EnemyInfo* getEnemyInfo(int enemyID, int enemyFlags)
 	{
 		EnemyInfo* result = nullptr;
-		s32 slot          = 0;
-		s32 enemy_num     = gEnemyInfoNum;
+		int slot          = 0;
+		int enemy_num     = gEnemyInfoNum;
 
 		while (enemy_num > 0) {
 			if ((enemyID == gEnemyInfo[slot].m_id)
@@ -148,13 +148,13 @@ namespace EnemyInfoFunc {
 		return result;
 	}
 
-	char* getEnemyName(s32 enemyID, s32 enemyFlags)
+	char* getEnemyName(int enemyID, int enemyFlags)
 	{
 		EnemyInfo* result = getInfo(enemyID, enemyFlags);
 		return result ? result->m_name : nullptr;
 	}
 
-	char* getEnemyResName(s32 enemyID, s32 enemyFlags)
+	char* getEnemyResName(int enemyID, int enemyFlags)
 	{
 		switch (enemyID) {
 		case EnemyTypeID::EnemyID_FireOtakara:
@@ -174,16 +174,16 @@ namespace EnemyInfoFunc {
 		return result->m_animName == "" ? result->m_name : result->m_animName;
 	}
 
-	char getEnemyMember(s32 enemyID, s32 enemyFlags)
+	char getEnemyMember(int enemyID, int enemyFlags)
 	{
 		EnemyInfo* result = getInfo(enemyID, enemyFlags);
 		return result ? result->m_members : '\0';
 	}
 
-	s32 getEnemyID(char* name, s32 enemyFlags)
+	int getEnemyID(char* name, int enemyFlags)
 	{
 		EnemyInfo* result = nullptr;
-		for (s32 slot = 0; slot < gEnemyInfoNum; ++slot) {
+		for (int slot = 0; slot < gEnemyInfoNum; ++slot) {
 			if ((stricmp(gEnemyInfo[slot].m_name, name) == 0)
 			    && ((enemyFlags & (u32)gEnemyInfo[slot].m_flags) != 0)) {
 				result = &gEnemyInfo[slot];

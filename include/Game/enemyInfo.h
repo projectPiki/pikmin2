@@ -18,8 +18,8 @@ struct EnemyInfo {
 	char* m_paramName;   // _1C
 	char* m_collName;    // _20
 	char* m_stoneName;   // _24
-	s32 m_childID;       // _28
-	s32 m_childNum;      // _2C
+	int m_childID;       // _28
+	int m_childNum;      // _2C
 	char m_bitterDrops;  // _30
 };
 
@@ -146,14 +146,14 @@ enum EEnemyTypeID {//ID      Common Name
 
 extern EnemyInfo gEnemyInfo[100];
 
-extern s32 gEnemyInfoNum;
+extern int gEnemyInfoNum;
 
 namespace EnemyInfoFunc {
-	EnemyInfo* getEnemyInfo(s32, s32);
-	char* getEnemyName(s32, s32);
-	char* getEnemyResName(s32, s32);
-	char getEnemyMember(s32, s32);
-	s32 getEnemyID(char*, s32);
+	EnemyInfo* getEnemyInfo(int, int);
+	char* getEnemyName(int, int);
+	char* getEnemyResName(int, int);
+	char getEnemyMember(int, int);
+	int getEnemyID(char*, int);
 } // namespace EnemyInfoFunc
 } // namespace Game
 #endif

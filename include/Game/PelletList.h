@@ -20,7 +20,7 @@ struct PelletList {
 
 	struct Mgr {
 		static PelletConfigList* getConfigList(cKind);
-		static s32 getCount(cKind);
+		static int getCount(cKind);
 
 		static PelletConfig* getConfigAndKind(char* config, cKind& kind);
 

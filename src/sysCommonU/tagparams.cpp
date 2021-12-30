@@ -203,14 +203,14 @@ void TagParameters::read(Stream& stream)
 	// More cleanup
 	while (true) {
 		char* str   = stream.readString(nullptr, 0);
-		s32 strLen  = strlen("end");
+		int strLen  = strlen("end");
 		bool is_end = ((strncmp("end", str, strLen)) == 0);
 		if (is_end)
 			break;
 
 		for (TagParm* node = this->m_head; node; node = node->m_next) {
 			strLen          = strlen(str);
-			s32 nodeNameLen = strlen(node->m_name);
+			int nodeNameLen = strlen(node->m_name);
 			if (strLen != nodeNameLen) {
 				continue;
 			}

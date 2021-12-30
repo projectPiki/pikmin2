@@ -26,18 +26,18 @@ struct PelletConfig : public CNode {
 		PrimTagParm<f32> m_height;         // _B4
 		PrimTagParm<f32> m_inertiaScaling; // _C4
 		StringTagParm m_particleType;      // _D4
-		PrimTagParm<s32> m_numParticles;   // _E4
+		PrimTagParm<int> m_numParticles;   // _E4
 		PrimTagParm<f32> m_particleSize;   // _F4
 		PrimTagParm<f32> m_friction;       // _104
-		PrimTagParm<s32> m_min;            // _114
-		PrimTagParm<s32> m_max;            // _124
-		PrimTagParm<s32> m_pikiCountMax;   // _134
-		PrimTagParm<s32> m_pikiCountMin;   // _144
+		PrimTagParm<int> m_min;            // _114
+		PrimTagParm<int> m_max;            // _124
+		PrimTagParm<int> m_pikiCountMax;   // _134
+		PrimTagParm<int> m_pikiCountMin;   // _144
 		StringTagParm m_dynamics;          // _154
-		PrimTagParm<s32> m_money;          // _164
+		PrimTagParm<int> m_money;          // _164
 		StringTagParm m_unique;            // _174
 		StringTagParm m_indirect;          // _184
-		PrimTagParm<s32> m_numPMotions;    // _194
+		PrimTagParm<int> m_numPMotions;    // _194
 		PrimTagParm<f32> m_depth;          // _1A4
 		PrimTagParm<f32> m_depthMax;       // _1B4
 		PrimTagParm<f32> m_depthA;         // _1C4
@@ -64,11 +64,11 @@ struct PelletConfigList : public CNode {
 	virtual ~PelletConfigList() {};
 
 	PelletConfig* getPelletConfig(char* name);
-	PelletConfig* getPelletConfig(s32 index);
-	PelletConfig* getPelletConfig_ByDictionaryNo(s32 dictionaryNumber);
+	PelletConfig* getPelletConfig(int index);
+	PelletConfig* getPelletConfig_ByDictionaryNo(int dictionaryNumber);
 	void read(Stream&);
 
-	s32 m_configCnt;         // _18
+	int m_configCnt;         // _18
 	PelletConfig* m_configs; // _1C
 };
 

@@ -1123,7 +1123,7 @@
         .4byte 0x40C90FDB
 */
 
-#include "Game/Navi.h"
+#include "Game/NaviState.h"
 
 namespace Game {
 
@@ -1132,7 +1132,7 @@ namespace Game {
  * Address:	8017D44C
  * Size:	000004
  */
-void NaviState::draw2d(J2DGrafContext&, int&) { }
+void NaviState::draw2d(J2DGrafContext& graf, int& a2) { }
 
 /*
  * --INFO--
@@ -3285,7 +3285,7 @@ lbl_8017EF44:
  * Address:	8017EF60
  * Size:	000008
  */
-u32 NaviState::needYChangeMotion(void) { return 0x0; }
+bool NaviState::needYChangeMotion(void) { return false; }
 
 /*
  * --INFO--
@@ -4623,14 +4623,14 @@ namespace Game {
  * Address:	8017FFB4
  * Size:	0000A8
  */
-void NaviChangeState::init(Game::Navi* navi, Game::StateArg* arg)
+void NaviChangeState::init(Navi* navi, StateArg* arg)
 {
-	if (navi->isMovieActor()) {
-		navi->startMotion(0x20, 0x20, navi, nullptr);
+	if (!navi->isMovieActor()) {
+		navi->startMotion(IPikiAnims::WAIT, IPikiAnims::WAIT, navi, nullptr);
 	}
 
-	_10 = naviMgr->getAt(1 - navi->m_naviIndex);
-	_14 = 0;
+	newNavi = naviMgr->getAt(1 - navi->m_naviIndex);
+	finish  = 0;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -4686,8 +4686,12 @@ lbl_8018001C:
  * Address:	8018005C
  * Size:	000058
  */
-void NaviChangeState::onKeyEvent(Game::Navi*, SysShape::KeyEvent const&)
+void NaviChangeState::onKeyEvent(Navi* navi, SysShape::KeyEvent const& key)
 {
+	if (key.m_type == 1000) {
+		finish = true;
+		navi->startMotion(IPikiAnims::RUN2, IPikiAnims::RUN2, navi, nullptr);
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -4721,8 +4725,18 @@ lbl_801800A4:
  * Address:	801800B4
  * Size:	0000AC
  */
-void NaviChangeState::exec(Game::Navi*)
+void NaviChangeState::exec(Navi* navi)
 {
+	if (navi->isMovieActor()) {
+		transit(navi, 0, nullptr);
+	}
+	navi->m_velocity.x = 0.0f;
+	navi->m_velocity.y = 0.0f;
+	navi->m_velocity.z = 0.0f;
+
+	if (finish) {
+		transit(navi, 0, nullptr);
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -4786,8 +4800,31 @@ void NaviChangeState::cleanup(Game::Navi*) { }
  * Address:	80180164
  * Size:	00016C
  */
-void NaviFollowState::init(Game::Navi*, Game::StateArg*)
+void NaviFollowState::init(Game::Navi* navi, Game::StateArg* arg)
 {
+	if (!arg) // theres a check for the first member of the arg being 0 too but
+	          // idk how StateArg works here
+	{
+		finish = true;
+		navi->startMotion(IPikiAnims::RUN2, IPikiAnims::RUN2, navi, nullptr);
+	} else {
+		navi->startMotion(IPikiAnims::WAIT, IPikiAnims::WAIT, navi, nullptr);
+		finish = false;
+
+		if (!navi->m_naviIndex) {
+			navi->m_soundObj->startSound(0x895,
+			                             nullptr); // sound id needs an enum
+		} else if (!(PlayData->storyflags
+		             & 1)) // payed debt flag (for louie/president)
+			navi->m_soundObj->startSound(0x896, nullptr);
+		else
+			navi->m_soundObj->startSound(0x89c, nullptr);
+	}
+
+	targetNavi = NaviMgr->getAt(1 - navi->m_naviIndex);
+	navi->setMoveRotation(1);
+	counter = 0;
+	unk     = 0;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -4898,8 +4935,34 @@ lbl_80180274:
  * Address:	801802D0
  * Size:	000174
  */
-void NaviFollowState::onKeyEvent(Game::Navi*, SysShape::KeyEvent const&)
+void NaviFollowState::onKeyEvent(Game::Navi* navi,
+                                 SysShape::KeyEvent const& key)
 {
+	if (key.m_type == 1000) {
+		if (finish != 1) {
+			if (!finish) {
+				finish = 1;
+				navi->startMotion(IPikiAnims::RUN2, IPikiAnims::RUN2, navi,
+				                  nullptr);
+			} else if (finish < 3) {
+				counter = 0;
+				finish  = 1;
+				navi->startMotion(IPikiAnims::WALK, IPikiAnims::WALK, navi,
+				                  nullptr);
+			}
+		}
+	}
+	// animid is missing from this keyevent struct
+	if ((!GameSys || !GameSys->frozen) && key.animid == 0x32
+	    && key.m_type == 200) {
+		if (!navi->m_naviIndex) {
+			navi->m_soundObj->startSound(0x877, nullptr);
+		} else if (!(PlayData->storyflags
+		             & 1)) // payed debt flag (for louie/president)
+			navi->m_soundObj->startSound(0x878, nullptr);
+		else
+			navi->m_soundObj->startSound(0x879, nullptr);
+	}
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -16252,14 +16315,14 @@ u32 NaviPressedState::vsUsableY(void) { return 0x0; }
  * Address:	80189028
  * Size:	000008
  */
-u32 NaviState::callable(void) { return 0x0; }
+bool NaviState::callable(void) { return false; }
 
 /*
  * --INFO--
  * Address:	80189030
  * Size:	000008
  */
-u32 NaviState::pressable(void) { return 0x1; }
+bool NaviState::pressable(void) { return true; }
 
 /*
  * --INFO--
@@ -16573,7 +16636,7 @@ u32 NaviNukuState::invincible(void) { return 0x1; }
  * Address:	8018919C
  * Size:	000008
  */
-u32 NaviFollowState::needYChangeMotion(void) { return 0x1; }
+bool NaviFollowState::needYChangeMotion(void) { return true; }
 
 /*
  * --INFO--

@@ -163,8 +163,8 @@ double __ieee754_pow(x, y) double x, y;
 	double z, ax, z_h, z_l, p_h, p_l;
 	double y1, t1, t2, r, s, t, u, v, w;
 	double qqq; // necessary temp
-	s32 i0, i1, i, j, k, yisint, n;
-	s32 hx, hy, ix, iy;
+	int i0, i1, i, j, k, yisint, n;
+	int hx, hy, ix, iy;
 	u32 lx, ly;
 
 	i0 = ((*(int*)&one) >> 29) ^ 1;
@@ -256,7 +256,7 @@ double __ieee754_pow(x, y) double x, y;
 	   but ANSI C says a right shift of a signed negative quantity is
 	   implementation defined.  */
 
-	if (((((s32)hx >> 31) + 1) | yisint) == 0) {
+	if (((((int)hx >> 31) + 1) | yisint) == 0) {
 		errno = 33;
 		return (double)__float_nan;
 	};
@@ -344,7 +344,7 @@ double __ieee754_pow(x, y) double x, y;
 	}
 
 	s = one; /* s (sign of result -ve**odd) = -1 else = 1 */
-	if (((((s32)hx >> 31) + 1) | (yisint - 1)) == 0)
+	if (((((int)hx >> 31) + 1) | (yisint - 1)) == 0)
 		s = -one; /* (-ve)**(odd int) */
 
 	/* split up y into y1+y2 and compute (y1+y2)*(t1+t2) */
