@@ -1123,6 +1123,8 @@
         .4byte 0x40C90FDB
 */
 
+#include "Game/Navi.h"
+
 namespace Game {
 
 /*
@@ -4616,14 +4618,19 @@ void blendVelocity__Q24Game13NaviWalkStateFPQ24Game4NaviR10Vector3f(void)
 }
 
 namespace Game {
-
 /*
  * --INFO--
  * Address:	8017FFB4
  * Size:	0000A8
  */
-void NaviChangeState::init(Game::Navi*, Game::StateArg*)
+void NaviChangeState::init(Game::Navi* navi, Game::StateArg* arg)
 {
+	if (navi->isMovieActor()) {
+		navi->startMotion(0x20, 0x20, navi, nullptr);
+	}
+
+	_10 = naviMgr->getAt(1 - navi->m_naviIndex);
+	_14 = 0;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
