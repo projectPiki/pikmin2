@@ -175,7 +175,7 @@ struct Creature : public CellObject {
 	virtual bool isSuckArriveWait();
 	virtual void stimulate(Interaction&);
 	virtual char* getCreatureName();
-	virtual int getCreatureID();
+	virtual s32 getCreatureID(); // leave as s32 or matching breaks. unsure why.
 
 	void applyAirDrag(float, float, float);
 	void calcSphereDistance(Game::Creature*);
