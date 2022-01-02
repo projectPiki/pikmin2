@@ -5,7 +5,8 @@
  * --INFO--
  * Address:	801F78C8
  * Size:	0000A8
- * A function for getting a random value from a set list of possible values with their own probabilities
+ * A function for getting a random value from a set list of possible values with
+ * their own probabilities
  */
 u32 KandoLib::getRandomChoice(KandoLib::Choice* choices, int choiceAmt)
 {

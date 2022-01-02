@@ -22,9 +22,9 @@ struct Node : public CNode {
 	virtual ~Node();            // _00
 	virtual void read(Stream&); // _08
 
-	ulong m_startFrame;         // _18
-	ulong m_endFrame;           // _1C
-	char m_mesgID[8]; 			// _20
+	u32 m_startFrame; // _18
+	u32 m_endFrame;   // _1C
+	char m_mesgID[8]; // _20
 };
 
 /**

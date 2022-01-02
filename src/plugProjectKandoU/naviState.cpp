@@ -4936,8 +4936,7 @@ lbl_80180274:
  * Address:	801802D0
  * Size:	000174
  */
-void NaviFollowState::onKeyEvent(Navi* navi,
-                                 SysShape::KeyEvent const& key)
+void NaviFollowState::onKeyEvent(Navi* navi, SysShape::KeyEvent const& key)
 {
 	if (key.m_type == 1000) {
 		if (finish != 1) {
@@ -5094,95 +5093,101 @@ void NaviFollowState::messageAttack(Game::Creature*)
  */
 void NaviFollowState::exec(Navi* navi)
 {
-	if(!MoviePlayer || !MoviePlayer->m_demostate) {
-		if(!navi->m_padinput) {
-			if(!finish) {
-				if(!navi->assertMotion(IPikiAnims::WAIT)) {
+	if (!MoviePlayer || !MoviePlayer->m_demostate) {
+		if (!navi->m_padinput) {
+			if (!finish) {
+				if (!navi->assertMotion(IPikiAnims::WAIT)) {
 					finish = true;
-					navi->startMotion(IPikiAnims::RUN2, IPikiAnims::RUN2, navi, nullptr);
+					navi->startMotion(IPikiAnims::RUN2, IPikiAnims::RUN2, navi,
+					                  nullptr);
 				}
 				navi->m_velocity.x = 0.0f;
 				navi->m_velocity.y = 0.0f;
 				navi->m_velocity.z = 0.0f;
-			}
-			else {
-				if(!targetNavi->isStickTo()) {
-					if(finish == 3) {
-						if(unkNavi == nullptr || !unkNavi->isAlive() ||
-							unkNavi->isFlying() || unkNavi->isUnderground()) {
-							finish = 1;
+			} else {
+				if (!targetNavi->isStickTo()) {
+					if (finish == 3) {
+						if (unkNavi == nullptr || !unkNavi->isAlive()
+						    || unkNavi->isFlying()
+						    || unkNavi->isUnderground()) {
+							finish  = 1;
 							unkNavi = nullptr;
-							navi->startMotion(IPikiAnims::RUN2, IPikiAnims::RUN2, navi, nullptr);
-						}
-						else {
+							navi->startMotion(IPikiAnims::RUN2,
+							                  IPikiAnims::RUN2, navi, nullptr);
+						} else {
 							Sys::Sphere targetPos;
 							unkNavi->getBoundingSphere(targetPos);
 							Vector3f naviPos = navi->getPosition();
-							float dx = targetPos.m_position.x - naviPos.x;
-							float dy = targetPos.m_position.y - naviPos.y;
-							float dz = targetPos.m_position.z - naviPos.z;
-							float dist = dx*dx + dy*dy + dz*dz;
-							if(dist > 0.0f)  {
+							float dx   = targetPos.m_position.x - naviPos.x;
+							float dy   = targetPos.m_position.y - naviPos.y;
+							float dz   = targetPos.m_position.z - naviPos.z;
+							float dist = dx * dx + dy * dy + dz * dz;
+							if (dist > 0.0f) {
 								dist = (1.0 / SQRT(dist)) * dist;
 							}
-							if(dist > 0.0f) {
+							if (dist > 0.0f) {
 								dx *= 1.0f / dist;
 								dy *= 1.0f / dist;
 								dz *= 1.0f / dist;
 							}
-							if(8.0f <= dist - targetPos.m_radius) {
+							if (8.0f <= dist - targetPos.m_radius) {
 								counter2++;
-								if(counter2 < 0x3c) {
+								if (counter2 < 0x3c) {
 									navi->control();
-									navi->m_velocity.x = dx * NaviMgr->m_parms.p004.value * 0.5f;
-									navi->m_velocity.y = dx * NaviMgr->m_parms.p004.value * 0.5f;
-									navi->m_velocity.z = dx * NaviMgr->m_parms.p004.value * 0.5f;
-								}
-								else {
+									navi->m_velocity.x
+									    = dx * NaviMgr->m_parms.p004.value
+									      * 0.5f;
+									navi->m_velocity.y
+									    = dx * NaviMgr->m_parms.p004.value
+									      * 0.5f;
+									navi->m_velocity.z
+									    = dx * NaviMgr->m_parms.p004.value
+									      * 0.5f;
+								} else {
 									finish = 1;
-									navi->startMotion(IPikiAnims::RUN2, IPikiAnims::RUN2, navi, nullptr);
+									navi->startMotion(IPikiAnims::RUN2,
+									                  IPikiAnims::RUN2, navi,
+									                  nullptr);
 									unkNavi = nullptr;
 								}
-							}
-							else {
+							} else {
 								navi->turnTo(targetPos.m_position);
-								StateArg arg;//set 0x0 and 0x1 to 1
+								StateArg arg; // set 0x0 and 0x1 to 1
 								transit(navi, 2, &arg);
 							}
 						}
-					}
-					else {
-						float dx = targetNavi->m_position2.x;
-						float dy = targetNavi->m_position2.y;
-						float dz = targetNavi->m_position2.z;
-						float dist = dx*dx + dy*dy + dz*dz;
-						if(dist > 0.0f)  {
+					} else {
+						float dx   = targetNavi->m_position2.x;
+						float dy   = targetNavi->m_position2.y;
+						float dz   = targetNavi->m_position2.z;
+						float dist = dx * dx + dy * dy + dz * dz;
+						if (dist > 0.0f) {
 							dist = (1.0 / SQRT(dist)) * dist;
 						}
-						if(finish == 2) {
-							if(dist < 20.0f) {
-								navi->startMotion(IPikiAnims::WAIT, IPikiAnims::WAIT, navi, nullptr);
+						if (finish == 2) {
+							if (dist < 20.0f) {
+								navi->startMotion(IPikiAnims::WAIT,
+								                  IPikiAnims::WAIT, navi,
+								                  nullptr);
 								finish = 0;
-							}
-							else {
+							} else {
 								navi->m_velocity.x = 0.0f;
 								navi->m_velocity.y = 0.0f;
 								navi->m_velocity.z = 0.0f;
-								if(!navi->assertMotion(motion)) {
+								if (!navi->assertMotion(motion)) {
 									finish = 1;
-									navi->startMotion(IPikiAnims::RUN2, IPikiAnims::RUN2, navi, nullptr);
+									navi->startMotion(IPikiAnims::RUN2,
+									                  IPikiAnims::RUN2, navi,
+									                  nullptr);
 								}
 							}
-						}
-						else {
-							if(dist < 20.0f) {
+						} else {
+							if (dist < 20.0f) {
 								counter = 0;
-							}
-							else {
-								if(counter < 0x5a) {
+							} else {
+								if (counter < 0x5a) {
 									counter++;
-								}
-								else {
+								} else {
 									KandoLib::Choice choice[4];
 									choice[0].m_result = IPikiAnims::JUMP;
 									choice[0].m_chance = 0.25;
@@ -5192,39 +5197,49 @@ void NaviFollowState::exec(Navi* navi)
 									choice[2].m_chance = 0.25;
 									choice[3].m_result = IPikiAnims::SAGASU2;
 									choice[3].m_chance = 0.25;
-									motion = KandoLib::getRandomChoice(choice, 4);
-									navi->startMotion(motion, motion, navi, nullptr);
+									motion
+									    = KandoLib::getRandomChoice(choice, 4);
+									navi->startMotion(motion, motion, navi,
+									                  nullptr);
 									finish = 2;
-									if(!GameSys->frozen) {
+									if (!GameSys->frozen) {
 										int id = navi->m_naviIndex;
-										if(id == 1 && GameSys->gamemode == 0 && PlayData->flags & 1) {
+										if (id == 1 && GameSys->gamemode == 0
+										    && PlayData->flags & 1) {
 											id = 2;
 										}
-										if(motion == IPikiAnims::JUMP) {
-											//NaviJumpSounds is the table at 804b2ccc (thats usa demo 1 address, cry about it :troll:)
-											navi->m_soundObj->startSound(NaviJumpSounds[id], nullptr);
-										}
-										else if (motion == IPikiAnims::AKUBI) {
-											navi->m_soundObj->startSound(NaviNoviSounds[id], nullptr);
-										}
-										else if(motion == IPikiAnims::CHATTING) {
-											navi->m_soundObj->startSound(NaviChatSounds[id], nullptr);
-										}
-										else {
-											navi->m_soundObj->startSound(NaviKyoroSounds[id], nullptr);
+										if (motion == IPikiAnims::JUMP) {
+											// NaviJumpSounds is the table at
+											// 804b2ccc (thats usa demo 1
+											// address, cry about it :troll:)
+											navi->m_soundObj->startSound(
+											    NaviJumpSounds[id], nullptr);
+										} else if (motion
+										           == IPikiAnims::AKUBI) {
+											navi->m_soundObj->startSound(
+											    NaviNoviSounds[id], nullptr);
+										} else if (motion
+										           == IPikiAnims::CHATTING) {
+											navi->m_soundObj->startSound(
+											    NaviChatSounds[id], nullptr);
+										} else {
+											navi->m_soundObj->startSound(
+											    NaviKyoroSounds[id], nullptr);
 										}
 									}
 								}
 							}
 							Vector3f newpos = targetNavi->getPosition();
-							float angle = targetNavi->getFaceDir();
-							int state = targetNavi->getStateID();
-							if(dist < 20.0f || (state != 5 && state != 6)) {
-								if(state == 2) {
-									float timer = -targetNavi->m_cPlateMgr->m_timer;
-									if(angle < 0.0f)
+							float angle     = targetNavi->getFaceDir();
+							int state       = targetNavi->getStateID();
+							if (dist < 20.0f || (state != 5 && state != 6)) {
+								if (state == 2) {
+									float timer
+									    = -targetNavi->m_cPlateMgr->m_timer;
+									if (angle < 0.0f)
 										angle = -angle;
-									// this extremely complicated trig stuff is beyond me ill finish this function later
+									// this extremely complicated trig stuff is
+									// beyond me ill finish this function later
 								}
 							}
 						}

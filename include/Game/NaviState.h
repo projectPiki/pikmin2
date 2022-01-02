@@ -42,8 +42,8 @@ struct NaviFollowState : public NaviState {
 	u8 finish;        // _14
 	Navi* unkNavi;    // _18
 	u8 counter;       // _1C
-	u8 motion;		  // _1D
-	u8 counter2;	  // _1E
+	u8 motion;        // _1D
+	u8 counter2;      // _1E
 };
 
 } // namespace Game

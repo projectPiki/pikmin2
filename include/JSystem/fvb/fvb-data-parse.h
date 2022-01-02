@@ -5,7 +5,6 @@
 
 namespace JStudio::fvb::data {
 
-
-}  // namespace JStudio::fvb::data
+} // namespace JStudio::fvb::data
 
 #endif /* FVB_DATA_PARSE_H */

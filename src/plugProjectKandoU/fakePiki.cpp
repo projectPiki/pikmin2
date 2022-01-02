@@ -566,7 +566,8 @@ lbl_8013CF18:
  * --INFO--
  * Address:	8013CF2C
  * Size:	000028
- * Returns whether the pikmin or captains current animation matches the given animation ID
+ * Returns whether the pikmin or captains current animation matches the given
+ * animation ID
  */
 void FakePiki::assertMotion(int)
 {

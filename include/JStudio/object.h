@@ -4,9 +4,9 @@
 namespace JStudio::object {
 
 struct TPRObject_ID_equal {
-    int* value;
+	int* value;
 };
 
-}
+} // namespace JStudio::object
 
-#endif 
+#endif

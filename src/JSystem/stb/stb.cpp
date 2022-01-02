@@ -86,20 +86,22 @@ TObject::TObject(unsigned long, void const*, unsigned long)
  * Address:	80010278
  * Size:	000070
  */
-TObject::TObject(data::TParse_TBlock_object const& block) {
-	_00 = block.filedata + 3;
-	_04 = block.filedata[2];//should be short 0xa
-	_0C = 0;
-	_10 = 0;
-	pControl = nullptr;
-	signature = block.filedata[1];
-	mFlag = block.filedata[2];//should be short 0x8
-	bSequence_ = false;
-	_20 = 0;
-	pSequence = nullptr;
-	pSequence_next = nullptr;//(int)iVar2 + (*(ushort *)((int)iVar2 + 10) + 3 & 0xfffffffc) + 0xc; this crap
+TObject::TObject(data::TParse_TBlock_object const& block)
+{
+	_00            = block.filedata + 3;
+	_04            = block.filedata[2]; // should be short 0xa
+	_0C            = 0;
+	_10            = 0;
+	pControl       = nullptr;
+	signature      = block.filedata[1];
+	mFlag          = block.filedata[2]; // should be short 0x8
+	bSequence_     = false;
+	_20            = 0;
+	pSequence      = nullptr;
+	pSequence_next = nullptr; //(int)iVar2 + (*(ushort *)((int)iVar2 + 10) + 3 &
+	                          // 0xfffffffc) + 0xc; this crap
 	u32Wait_ = 0;
-	mStatus = STATUS_STILL;
+	mStatus  = STATUS_STILL;
 	/*
 	lwz      r8, 0(r4)
 	lis      r4, __vt__Q37JStudio3stb7TObject@ha
@@ -189,13 +191,14 @@ void TObject::reset(void const*)
  * Address:	80010330
  * Size:	000238
  */
-bool TObject::forward(unsigned long a1) {
+bool TObject::forward(unsigned long a1)
+{
 	bool end = false;
-	while(true) {
+	while (true) {
 		if (mFlag & 0x8000) {
-			if (mStatus == STATUS_SUSPEND || mStatus == STATUS_WAIT ) {
+			if (mStatus == STATUS_SUSPEND || mStatus == STATUS_WAIT) {
 				mStatus = STATUS_INACTIVE;
-				if(bSequence_)
+				if (bSequence_)
 					do_end();
 			}
 			return true;
@@ -204,38 +207,40 @@ bool TObject::forward(unsigned long a1) {
 			do_begin();
 			mStatus = STATUS_WAIT;
 		}
-		if (pControl != nullptr && 0 < pControl->_54 || 0 < _20) break;
+		if (pControl != nullptr && 0 < pControl->_54 || 0 < _20)
+			break;
 
-		while(true) {
+		while (true) {
 			pSequence = pSequence_next;
-		if (pSequence == nullptr) {
-			if (bSequence_) {
-				if (!end) {
-					do_wait(0);
+			if (pSequence == nullptr) {
+				if (bSequence_) {
+					if (!end) {
+						do_wait(0);
+					}
+					bSequence_ = false;
+					mStatus    = STATUS_END;
+					do_end();
 				}
-				bSequence_ = false;
-				mStatus = STATUS_END;
-				do_end();
+				return false;
 			}
-			return false;
-		}
-		if (!bSequence_) {
-			bSequence_ = true;
-			do_begin();
-		}
-		mStatus = STATUS_WAIT;
-		process_sequence();
-		if (u32Wait_ == 0) break;
-		end = true;
-		int seqstateold = u32Wait_;
-		if (a1 < u32Wait_) {
-			u32Wait_ -= a1;
-			do_wait(a1);
-			return true;
-		}
-		u32Wait_ = 0;
-		a1 -= seqstateold;
-		do_wait(u32Wait_);
+			if (!bSequence_) {
+				bSequence_ = true;
+				do_begin();
+			}
+			mStatus = STATUS_WAIT;
+			process_sequence();
+			if (u32Wait_ == 0)
+				break;
+			end             = true;
+			int seqstateold = u32Wait_;
+			if (a1 < u32Wait_) {
+				u32Wait_ -= a1;
+				do_wait(a1);
+				return true;
+			}
+			u32Wait_ = 0;
+			a1 -= seqstateold;
+			do_wait(u32Wait_);
 		}
 	}
 	if (bSequence_) {
@@ -457,9 +462,7 @@ void TObject::do_wait(unsigned long) { }
  * Address:	80010578
  * Size:	000004
  */
-void TObject::do_data(void const*, unsigned long, void const*,
-                           unsigned long)
-{
+void TObject::do_data(void const*, unsigned long, void const*, unsigned long) {
 }
 
 /*
@@ -475,44 +478,42 @@ void TObject::process_sequence_(void)
 	temp.stbData = pSequence;
 	temp.getData(&data);
 	pSequence_next = (void*)data.next;
-	if(data.type == 3) {
-		if(data.param & 0x800000) {
-			data.param |= 0xff000000;//gu32Mask_TSequence_value_signExpansion__Q37JStudio3stb4data;
+	if (data.type == 3) {
+		if (data.param & 0x800000) {
+			data.param
+			    |= 0xff000000; // gu32Mask_TSequence_value_signExpansion__Q37JStudio3stb4data;
 		}
 		pSequence_next = pSequence + data.param;
-	}
-	else if (data.type == 1) {
+	} else if (data.type == 1) {
 		int bitflag = data.param >> 0x10 & 0xff;
-		if(bitflag == 2)
+		if (bitflag == 2)
 			mFlag &= data.param;
-		else if(bitflag == 1)
+		else if (bitflag == 1)
 			mFlag |= data.param;
-		else if(bitflag == 3)
+		else if (bitflag == 3)
 			mFlag ^= data.param;
-	}
-	else if(data.type == 2) {
+	} else if (data.type == 2) {
 		u32Wait_ = data.param;
-	}
-	else if(data.type == 0x80) {
-		while(data.content < data.next) {
+	} else if (data.type == 0x80) {
+		while (data.content < data.next) {
 			data::TParse_TParagraph para;
 			data::TParse_TParagraph::TData data2;
 			para.getData(&data2);
-			if(data2.type < 0x100) {
-				process_paragraph_reserved_(data2.type, data2.content, data2.param);
+			if (data2.type < 0x100) {
+				process_paragraph_reserved_(data2.type, data2.content,
+				                            data2.param);
 				data.content = data2.next;
-			}
-			else {
+			} else {
 				do_paragraph(data2.type, data2.content, data2.param);
 				data.content = data2.next;
 			}
 		}
-	}
-	else if (data.type == 4) {
-		if(data.param & 0x800000) {
-			data.param |= 0xff000000; //gu32Mask_TSequence_value_signExpansion__Q37JStudio3stb4data
+	} else if (data.type == 4) {
+		if (data.param & 0x800000) {
+			data.param
+			    |= 0xff000000; // gu32Mask_TSequence_value_signExpansion__Q37JStudio3stb4data
 		}
-		_20+= data.param;
+		_20 += data.param;
 	}
 	/*
 	stwu     r1, -0x40(r1)
@@ -667,33 +668,28 @@ lbl_80010708:
  * Size:	00013C
  */
 void TObject::process_paragraph_reserved_(unsigned long a1, void const* a2,
-                                               unsigned long a3)
+                                          unsigned long a3)
 {
-	if(a1 == 0x80) {
-		do_data(0,0,a2,a3);
-	}
-	else if (a1 == 2) {
+	if (a1 == 0x80) {
+		do_data(0, 0, a2, a3);
+	} else if (a1 == 2) {
 		u32Wait_ = *(u32*)a2;
-	}
-	else if (a1 == 1) {
-		int flag = *(u32*)a2 >> 0x10 & 0xff;
+	} else if (a1 == 1) {
+		int flag   = *(u32*)a2 >> 0x10 & 0xff;
 		short flip = *(u16*)a2;
-		if(flag == 2) {
+		if (flag == 2) {
 			mFlag &= flip;
-		}
-		else if (flag == 1) {
+		} else if (flag == 1) {
 			mFlag |= flip;
-		}
-		else {
+		} else {
 			mFlag ^= flip;
 		}
-	}
-	else if(a1 == 3) {
+	} else if (a1 == 3) {
 		pSequence_next = pSequence + *(u32*)a2;
-	}
-	else if(a1 == 0x81) {
-		int flag = (int)a2 + (*(ushort *)((int)a2 + 2) + 3 & 0xfffffffc) + 4;
-		do_data(a2 + 4,(uint)*(ushort *)((int)a2 + 2), &flag, a3 - (flag - (int)a2));
+	} else if (a1 == 0x81) {
+		int flag = (int)a2 + (*(ushort*)((int)a2 + 2) + 3 & 0xfffffffc) + 4;
+		do_data(a2 + 4, (uint) * (ushort*)((int)a2 + 2), &flag,
+		        a3 - (flag - (int)a2));
 	}
 	/*
 	.loc_0x0:
@@ -828,7 +824,8 @@ stb::TObject_control::TObject_control(data::TParse_TBlock_object const&)
  * Address:	8001085C
  * Size:	000094
  */
-stb::TControl::TControl(void) {
+stb::TControl::TControl(void)
+{
 	/*
 	lis      r4, __vt__Q37JStudio3stb8TControl@ha
 	lis      r5, __vt__Q37JStudio3stb7TObject@ha
@@ -916,9 +913,9 @@ lbl_80010934:
  * Address:	........
  * Size:	000054
  */
-//void __dt__Q27JGadget37TLinkList<JStudio::stb::TObject, -12> Fv(void)
+// void __dt__Q27JGadget37TLinkList<JStudio::stb::TObject, -12> Fv(void)
 //{
-	// UNUSED FUNCTION
+// UNUSED FUNCTION
 //}
 
 namespace JStudio {
@@ -1083,10 +1080,8 @@ void stb::TControl::getObject(void const*, unsigned long)
  * Address:	80010A7C
  * Size:	00009C
  */
-void find_if(
-    JGadget::TNodeLinkList::iterator,
-    JGadget::TNodeLinkList::iterator,
-    JStudio::object::TPRObject_ID_equal)
+void find_if(JGadget::TNodeLinkList::iterator, JGadget::TNodeLinkList::iterator,
+             JStudio::object::TPRObject_ID_equal)
 {
 	/*
 	.loc_0x0:
@@ -1273,7 +1268,8 @@ lbl_80010C38:
  * Address:	80010C50
  * Size:	000008
  */
-int stb::TFactory::create(JStudio::stb::data::TParse_TBlock_object const&) {
+int stb::TFactory::create(JStudio::stb::data::TParse_TBlock_object const&)
+{
 	return 0;
 }
 
@@ -1470,7 +1466,7 @@ void stb::TParse::parseBlock_next(void const**, unsigned long*, unsigned long)
  * Size:	000008
  */
 int stb::TParse::parseHeader(JStudio::stb::data::TParse_THeader const&,
-                              unsigned long)
+                             unsigned long)
 {
 	return 1;
 }
@@ -1507,7 +1503,8 @@ void stb::TParse::parseBlock_block(JStudio::stb::data::TParse_TBlock const&,
  * Address:	80010E70
  * Size:	000154
  */
-void stb::TParse::parseBlock_object(data::TParse_TBlock_object const&, unsigned long)
+void stb::TParse::parseBlock_object(data::TParse_TBlock_object const&,
+                                    unsigned long)
 {
 	/*
 	.loc_0x0:

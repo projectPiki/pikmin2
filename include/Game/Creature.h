@@ -114,14 +114,14 @@ struct Creature : public CellObject {
 	virtual void setAlive(bool);               // _AC
 	virtual bool isCollisionFlick();           // _B0
 	virtual void setCollisionFlick(bool);      // _B4
-	virtual bool isMovieActor();			   // _B8
-	virtual bool isMovieExtra();			   // _BC
-	virtual bool isMovieMotion();			   // _C0
-	virtual void setMovieMotion(bool);		   // _C4
-	virtual bool isBuried();				   // _C8
-	virtual bool isFlying();				   // _CC
-	virtual bool isUnderground();			   // _D0
-	virtual bool isLivingThing();			   // _D4
+	virtual bool isMovieActor();               // _B8
+	virtual bool isMovieExtra();               // _BC
+	virtual bool isMovieMotion();              // _C0
+	virtual void setMovieMotion(bool);         // _C4
+	virtual bool isBuried();                   // _C8
+	virtual bool isFlying();                   // _CC
+	virtual bool isUnderground();              // _D0
+	virtual bool isLivingThing();              // _D4
 	virtual bool isDebugCollision();
 	virtual void setDebugCollision(bool);
 	virtual void doSave(Stream&);

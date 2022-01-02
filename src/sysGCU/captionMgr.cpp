@@ -69,10 +69,11 @@ Caption::Node::Node(void)
  * Size:	000064
  * Reads a caption node entry from the config file
  */
-void Caption::Node::read(Stream& input) {
+void Caption::Node::read(Stream& input)
+{
 	input.readString(m_mesgID, 8);
 	m_startFrame = input.readShort();
-	m_endFrame = input.readShort();
+	m_endFrame   = input.readShort();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
