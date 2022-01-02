@@ -4,6 +4,7 @@
 #include "Game/StateMachine.h"
 #include "Game/Navi.h"
 #include "SysShape/KeyEvent.h"
+
 namespace Game {
 
 struct NaviState : public FSMState<Navi> {
@@ -39,8 +40,10 @@ struct NaviFollowState : public NaviState {
 	char* name;       // _0C
 	Navi* targetNavi; // _10
 	u8 finish;        // _14
-	int unk;          // _18
-	int counter;      // _1C
+	Navi* unkNavi;    // _18
+	u8 counter;       // _1C
+	u8 motion;		  // _1D
+	u8 counter2;	  // _1E
 };
 
 } // namespace Game

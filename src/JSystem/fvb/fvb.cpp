@@ -1,4 +1,5 @@
-#include "JSystem/fvb/TParse.h"
+#include "JSystem/fvb/fvb.h"
+#include "JStudio/object.h"
 #include "types.h"
 
 /*
@@ -127,18 +128,90 @@
         .4byte 0
 */
 
-namespace JStudio {
-
-namespace fvb {
+namespace JStudio::fvb {
 
 	/*
 	 * --INFO--
 	 * Address:	8000BB48
 	 * Size:	00021C
 	 */
-	void TObject::prepare(const JStudio::fvb::data::TParse_TBlock&,
-	                      JStudio::fvb::TControl*)
+	void TObject::prepare(const JStudio::fvb::data::TParse_TBlock& block,
+	                      JStudio::fvb::TControl* control)
 	{
+		TFunctionValueAttribute_range* attr;
+		JStudio::TFunctionValueAttributeSet set = pfv->getAttributeSet();
+		const void* file = block.file;
+		int a = *(int*)file;
+		int m = ((int)file + (*(ushort *)((int)file + 6) + 3 & 0xfffffffc) + 8);
+		while (true) {
+			data::TParse_TParagraph paragraph = *(data::TParse_TParagraph*)m;
+			data::TParse_TParagraph::TData data;
+			paragraph.getData(&data);
+			const void* m = data.next;
+			switch (*data.param)
+			{
+			case 0:
+				pfv->prepare();
+				return;
+			case 1:
+				prepare_data_(data, control);
+				m = data.next;
+				break;
+			case 0x10:
+				//this is supposed to check something but i have no clue what its doing
+				if(true) {
+					int* content = (int*)data.content;
+					for (int i = *(int*)data.content; i != 0; i--) {
+						m = data.next;
+						int j = content[1];
+						TObject* obj = control->getObject(content + 2, j);
+						if(obj != nullptr) {
+							//JGadget::TVector_pointer_void::insert();
+						}
+						content = (int*)((j + 3 & 0xfffffffc) + (int)(content + 1));
+					}
+				}
+				break;
+			case 0x11:
+				//this is supposed to check something but i have no clue what its doing
+				if(true) {
+					int* j = (int*)data.content;
+					for (int i = *(int*)data.content; i != 0; i--) {
+						j++;
+						m = data.next;
+						TObject* obj = control->getObject_index(*j);
+						if(obj != nullptr) {
+							TFunctionValue* value = obj->pfv;
+							//JGadget::TVector_pointer_void::insert();
+						}
+					}
+				}
+			case 0x12:
+				if(attr != nullptr) {
+					float* fdata = (float*)data.content;
+
+					attr->range_set(*fdata, fdata[1]);
+					m = data.next;
+				}
+			case 0x13:
+				if(attr != nullptr) {
+					attr->mProgress = *(s8*)data.content;
+				}
+			case 0x14:
+				if(attr != nullptr) {
+					attr->mAdjust = *(s8*)data.content;
+				}
+			case 0x15:
+				if(attr != nullptr) {
+					attr->mBegin = *(TFunctionValue::TEOutside*)data.content;
+					attr->mEnd = *(TFunctionValue::TEOutside*)(data.content+1);
+				}
+			case 0x16:
+				if(attr != nullptr) {
+					//idk = *data.content;
+				}
+			}
+		}
 		/*
 		.loc_0x0:
 		  stwu      r1, -0x60(r1)
@@ -302,8 +375,9 @@ namespace fvb {
 	 * Address:	8000BD64
 	 * Size:	00000C
 	 */
-	void @unnamed @fvb_cpp @ ::getCompositeData_raw_(const void*)
+	void getCompositeData_raw_(const void*)
 	{
+
 		/*
 	lwz      r0, 0(r4)
 	stw      r0, 0(r3)
@@ -316,7 +390,7 @@ namespace fvb {
 	 * Address:	8000BD70
 	 * Size:	00000C
 	 */
-	void @unnamed @fvb_cpp @ ::getCompositeData_index_(const void*)
+	void getCompositeData_index_(const void*)
 	{
 		/*
 	lwz      r0, 0(r4)
@@ -330,8 +404,7 @@ namespace fvb {
 	 * Address:	8000BD7C
 	 * Size:	00000C
 	 */
-	void JStudio::fvb::@unnamed @fvb_cpp
-	    @ ::getCompositeData_parameter_(const void*)
+	void getCompositeData_parameter_(const void*)
 	{
 		/*
 		.loc_0x0:
@@ -346,7 +419,7 @@ namespace fvb {
 	 * Address:	8000BD88
 	 * Size:	00000C
 	 */
-	void @unnamed @fvb_cpp @ ::getCompositeData_add_(const void*)
+	void getCompositeData_add_(const void*)
 	{
 		/*
 	lfs      f0, 0(r4)
@@ -360,7 +433,7 @@ namespace fvb {
 	 * Address:	8000BD94
 	 * Size:	00000C
 	 */
-	void @unnamed @fvb_cpp @ ::getCompositeData_subtract_(const void*)
+	void getCompositeData_subtract_(const void*)
 	{
 		/*
 	lfs      f0, 0(r4)
@@ -374,7 +447,7 @@ namespace fvb {
 	 * Address:	8000BDA0
 	 * Size:	00000C
 	 */
-	void @unnamed @fvb_cpp @ ::getCompositeData_multiply_(const void*)
+	void getCompositeData_multiply_(const void*)
 	{
 		/*
 	lfs      f0, 0(r4)
@@ -388,7 +461,7 @@ namespace fvb {
 	 * Address:	8000BDAC
 	 * Size:	00000C
 	 */
-	void @unnamed @fvb_cpp @ ::getCompositeData_divide_(const void*)
+	void getCompositeData_divide_(const void*)
 	{
 		/*
 	lfs      f0, 0(r4)
@@ -402,6 +475,7 @@ namespace fvb {
 	 * Address:	8000BDB8
 	 * Size:	00006C
 	 */
+
 	void TObject_composite::prepare_data_(
 	    const JStudio::fvb::data::TParse_TParagraph::TData&,
 	    JStudio::fvb::TControl*)
@@ -622,7 +696,7 @@ lbl_8000BF54:
 	 * Address:	8000BF70
 	 * Size:	000094
 	 */
-	void TControl::getObject(const void*, unsigned long)
+	TObject* TControl::getObject(void const*, ulong)
 	{
 		/*
 	stwu     r1, -0x50(r1)
@@ -671,11 +745,10 @@ lbl_8000BF54:
 	 * Address:	8000C004
 	 * Size:	00009C
 	 */
-	void std::find_if<JGadget::TLinkList<JStudio::fvb::TObject, -12>::iterator,
-	                  object::TPRObject_ID_equal>(
-	    JGadget::TLinkList<JStudio::fvb::TObject, -12>::iterator,
-	    JGadget::TLinkList<JStudio::fvb::TObject, -12>::iterator,
-	    JStudio::object::TPRObject_ID_equal)
+	void find_if(
+    	JGadget::TNodeLinkList::iterator,
+    	JGadget::TNodeLinkList::iterator,
+    	JStudio::object::TPRObject_ID_equal)
 	{
 		/*
 		.loc_0x0:
@@ -732,7 +805,7 @@ lbl_8000BF54:
 	 * Address:	8000C0A0
 	 * Size:	00007C
 	 */
-	void TControl::getObject_index(unsigned long)
+	TObject* TControl::getObject_index(unsigned long)
 	{
 		/*
 	stwu     r1, -0x10(r1)
@@ -817,8 +890,9 @@ lbl_8000C14C:
 	 * Address:	8000C164
 	 * Size:	000308
 	 */
-	void TFactory::create(const JStudio::fvb::data::TParse_TBlock&)
+	TObject* TFactory::create(const JStudio::fvb::data::TParse_TBlock&)
 	{
+		
 		/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1148,7 +1222,7 @@ lbl_8000C50C:
 	 * Address:	8000C528
 	 * Size:	000098
 	 */
-	void TParse::parseHeader_next(const void**, unsigned long*, unsigned long)
+	bool TParse::parseHeader_next(const void**, unsigned long*, unsigned long)
 	{
 		/*
 	stwu     r1, -0x10(r1)
@@ -1205,7 +1279,7 @@ lbl_8000C5AC:
 	 * Address:	8000C5C0
 	 * Size:	000118
 	 */
-	void TParse::parseBlock_next(const void**, unsigned long*, unsigned long)
+	bool TParse::parseBlock_next(const void**, unsigned long*, unsigned long)
 	{
 		/*
 	stwu     r1, -0x40(r1)
@@ -1615,6 +1689,4 @@ lbl_8000CA20:
 	blr
 		*/
 	}
-} // namespace fvb
-
-} // namespace JStudio
+} // namespace JStudio::fvb

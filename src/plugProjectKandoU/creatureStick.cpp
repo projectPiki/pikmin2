@@ -660,6 +660,7 @@ lbl_8019F560:
  * --INFO--
  * Address:	8019F574
  * Size:	000014
+ * Returns whether the creature is stuck to anything
  */
 void Creature::isStickTo(void)
 {

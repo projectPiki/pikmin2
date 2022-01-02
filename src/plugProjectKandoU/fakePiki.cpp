@@ -566,6 +566,7 @@ lbl_8013CF18:
  * --INFO--
  * Address:	8013CF2C
  * Size:	000028
+ * Returns whether the pikmin or captains current animation matches the given animation ID
  */
 void FakePiki::assertMotion(int)
 {
@@ -635,6 +636,7 @@ lbl_8013CF94:
  * --INFO--
  * Address:	8013CFC0
  * Size:	000100
+ * This function is used to make a pikmin or captain start an animation
  */
 void FakePiki::startMotion(int, int, SysShape::MotionListener*,
                            SysShape::MotionListener*)

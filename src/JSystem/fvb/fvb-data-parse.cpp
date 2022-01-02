@@ -1,14 +1,12 @@
 #include "types.h"
 #include "JSystem/JGadget/binary.h"
-#include "JSystem/fvb/TParse.h"
+#include "JSystem/fvb/fvb.h"
 
 /*
     Generated from dpostproc
 */
 
-namespace JStudio {
-namespace fvb {
-	namespace data {
+namespace JStudio::fvb::data {
 		/*
 		 * --INFO--
 		 * Address:	8000CA3C
@@ -17,17 +15,15 @@ namespace fvb {
 		void TParse_TParagraph::getData(TParse_TParagraph::TData* data) const
 		{
 			u16* data = JGadget::binary::parseVariableUInt_16_32_following(
-			    (void*)this, data->_00, data->_04, nullptr);
+			    (void*)this, data->type, data->param, nullptr);
 
-			if (data->_00) {
-				data->_08 = data;
-				data->_0C = data + ((data->_00 + 3) & ~4);
+			if (data->type) {
+				data->content = data;
+				data->next = data + ((int)(data->type + 3) & ~4);
 			} else {
-				data->_08 = 0;
-				data->_0C = data;
+				data->content = 0;
+				data->next = data;
 			}
 		}
 
-	} // namespace data
-} // namespace fvb
-} // namespace JStudio
+} // namespace JStudio::fvb::data
