@@ -5212,6 +5212,12 @@ void NaviFollowState::exec(Navi* navi)
 											// NaviJumpSounds is the table at
 											// 804b2ccc (thats usa demo 1
 											// address, cry about it :troll:)
+
+											// Address for NaviJumpSounds is
+											// 804B2D8C in USA Retail. There are
+											// other sound tables nearby,
+											// unnamed in the symbol map.
+											// -EpochFlame
 											navi->m_soundObj->startSound(
 											    NaviJumpSounds[id], nullptr);
 										} else if (motion

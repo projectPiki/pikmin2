@@ -165,6 +165,7 @@ pikmin2.usa.dol: `sha1: 90d328bf8f190c90472e8c19e7e53c6ad0fe0d1a`
 	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/JSystem/JSU/JSUList.cpp">JSystem/JSU/JSUList.cpp</a>
 	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/JSystem/JUT/JUTFontData_Ascfont_fix12.cpp">JSystem/JUT/JUTFontData_Ascfont_fix12.cpp</a>
 	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/JSystem/JUT/JUTNameTab.cpp">JSystem/JUT/JUTNameTab.cpp</a>
+	- <a href="https://github.com/doldecomp/pikmin2/tree/main/src/JSystem/stb/stb-data.cpp">JSystem/stb/stb-data.cpp</a>
 ### WIP
 - sysBootupU
 - sysGCU

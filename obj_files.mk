@@ -22,7 +22,7 @@ JSYSTEM:=\
 	$(BUILD_DIR)/asm/JSystem/jstudio/jstudio-object.o\
 	$(BUILD_DIR)/asm/JSystem/object/object-id.o\
 	$(BUILD_DIR)/asm/JSystem/stb/stb.o\
-	$(BUILD_DIR)/asm/JSystem/stb/stb-data.o\
+	$(BUILD_DIR)/src/JSystem/stb/stb-data.o\
 	$(BUILD_DIR)/asm/JSystem/jstudio/jstudio-math.o\
 	$(BUILD_DIR)/asm/JSystem/object/object-light.o\
 	$(BUILD_DIR)/asm/JSystem/object/object.o\
