@@ -49,54 +49,17 @@ namespace stb {
 		 */
 		void TParse_TParagraph::getData(TParse_TParagraph::TData* data) const
 		{
-			u32* block;
-			void* parse = JGadget::binary::parseVariableUInt_16_32_following(
+			u32 block[1];
+			u16* parse = JGadget::binary::parseVariableUInt_16_32_following(
 			    stbData, block, (u32*)data, 0);
-			data->param = block[1];
+			data->param = block[0];
 			if (!block[0]) {
 				data->content = nullptr;
 				data->next    = parse;
 			} else {
 				data->content = parse;
-				data->next    = parse + (block[0] + 3 & 0xfffffffc);
+				data->next    = parse + ((block[0] + 3) >> 1 & ~1);
 			}
-			/*
-			.loc_0x0:
-			  stwu      r1, -0x20(r1)
-			  mflr      r0
-			  lwz       r3, 0x0(r3)
-			  li        r6, 0
-			  stw       r0, 0x24(r1)
-			  stw       r31, 0x1C(r1)
-			  mr        r31, r4
-			  mr        r5, r31
-			  addi      r4, r1, 0x8
-			  bl        0x1E77C
-			  lwz       r0, 0x8(r1)
-			  stw       r0, 0x4(r31)
-			  lwz       r0, 0x8(r1)
-			  cmplwi    r0, 0
-			  bne-      .loc_0x4C
-			  li        r0, 0
-			  stw       r0, 0x8(r31)
-			  stw       r3, 0xC(r31)
-			  b         .loc_0x64
-
-			.loc_0x4C:
-			  stw       r3, 0x8(r31)
-			  lwz       r4, 0x8(r1)
-			  addi      r0, r4, 0x3
-			  rlwinm    r0,r0,0,0,29
-			  add       r0, r3, r0
-			  stw       r0, 0xC(r31)
-
-			.loc_0x64:
-			  lwz       r0, 0x24(r1)
-			  lwz       r31, 0x1C(r1)
-			  mtlr      r0
-			  addi      r1, r1, 0x20
-			  blr
-			*/
 		}
 
 		/*
