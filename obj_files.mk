@@ -18,7 +18,7 @@ JSYSTEM:=\
 	$(BUILD_DIR)/src/JSystem/fvb/fvb-data.o\
 	$(BUILD_DIR)/src/JSystem/fvb/fvb-data-parse.o\
 	$(BUILD_DIR)/asm/JSystem/jstudio/jstudio-control.o\
-	$(BUILD_DIR)/asm/JSystem/jstudio/jstudio-data.o\
+	$(BUILD_DIR)/src/JSystem/jstudio/jstudio-data.o\
 	$(BUILD_DIR)/asm/JSystem/jstudio/jstudio-object.o\
 	$(BUILD_DIR)/asm/JSystem/object/object-id.o\
 	$(BUILD_DIR)/asm/JSystem/stb/stb.o\
