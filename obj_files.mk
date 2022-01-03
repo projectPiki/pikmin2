@@ -12,7 +12,7 @@ JSYSTEM:=\
 	$(BUILD_DIR)/src/JSystem/data.o\
 	$(BUILD_DIR)/asm/JSystem/processor.o\
 	$(BUILD_DIR)/asm/JSystem/control.o\
-	$(BUILD_DIR)/asm/JSystem/stb/stb-data-parse.o\
+	$(BUILD_DIR)/src/JSystem/stb/stb-data-parse.o\
 	$(BUILD_DIR)/asm/JSystem/functionvalue.o\
 	$(BUILD_DIR)/asm/JSystem/fvb/fvb.o\
 	$(BUILD_DIR)/src/JSystem/fvb/fvb-data.o\

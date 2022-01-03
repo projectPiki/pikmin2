@@ -46,6 +46,7 @@ namespace stb {
 		 * --INFO--
 		 * Address:	80008988
 		 * Size:	000078
+		 * Matching!
 		 */
 		void TParse_TParagraph::getData(TParse_TParagraph::TData* data) const
 		{
@@ -66,70 +67,37 @@ namespace stb {
 		 * --INFO--
 		 * Address:	80008A00
 		 * Size:	000080
+		 * Matching!
 		 */
 		void TParse_TParagraph_data::getData(
 		    TParse_TParagraph_data::TData* data) const
 		{
-			void* filedata  = (void*)stbData;
-			data->dataSize  = 0;
-			data->_08       = 0;
-			data->fileCount = 0;
-			data->_10       = 0;
+			u8* set2;
+
+			u8* filedata = (u8*)stbData;
+			int dSize = data->dataSize = 0;
+			data->_08                  = 0;
+			data->fileCount            = nullptr;
+			data->_10                  = nullptr;
 			if (filedata == nullptr)
 				return;
-			bool set     = *(bool*)filedata;
-			data->status = set & 0xf7;
+			u8 set       = *filedata;
+			data->status = set & ~0x8;
 			if (!set)
 				return;
-			short* set2 = (short*)(filedata + 1);
-			int set3    = 1;
+			set2     = (filedata + 1);
+			int set3 = 1;
 			if (set & 8) {
-				set3 = *set2;
-				set2 = (short*)(filedata + 2);
+				set3 = *set2++;
 			}
 			data->_08       = set3;
 			data->fileCount = set2;
+
 			if (!(set & 7))
 				return;
-			data->dataSize = (int)(&gauDataSize_TEParagraph_data)[set & 7];
-			data->_10      = (u8*)(set2 + data->dataSize * set3);
-			/*
-			.loc_0x0:
-			  li        r0, 0
-			  lwz       r3, 0x0(r3)
-			  stw       r0, 0x4(r4)
-			  cmplwi    r3, 0
-			  stw       r0, 0x8(r4)
-			  stw       r0, 0xC(r4)
-			  stw       r0, 0x10(r4)
-			  beqlr-
-			  lbz       r6, 0x0(r3)
-			  rlwinm    r0,r6,0,29,27
-			  cmplwi    r6, 0
-			  stb       r0, 0x0(r4)
-			  beqlr-
-			  rlwinm.   r0,r6,0,28,28
-			  addi      r5, r3, 0x1
-			  li        r7, 0x1
-			  beq-      .loc_0x4C
-			  lbz       r7, 0x0(r5)
-			  addi      r5, r5, 0x1
-
-			.loc_0x4C:
-			  stw       r7, 0x8(r4)
-			  rlwinm.   r0,r6,0,29,31
-			  stw       r5, 0xC(r4)
-			  beqlr-
-			  lis       r3, 0x8047
-			  rlwinm    r0,r0,2,22,29
-			  addi      r3, r3, 0x3460
-			  lwzx      r3, r3, r0
-			  mullw     r0, r3, r7
-			  stw       r3, 0x4(r4)
-			  add       r0, r5, r0
-			  stw       r0, 0x10(r4)
-			  blr
-			*/
+			dSize          = (gauDataSize_TEParagraph_data)[set &= 7];
+			data->dataSize = dSize;
+			data->_10      = (u8*)set2 + (dSize * set3);
 		}
 
 	} // namespace data
