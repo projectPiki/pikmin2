@@ -1,5 +1,6 @@
+#include "Dolphin/pad.h"
+#include "Game/rumble.h"
 #include "types.h"
-
 /*
     Generated from dpostproc
 
@@ -45,106 +46,17 @@ namespace Game {
  * Address:	80252B20
  * Size:	000158
  */
-ContRumble::ContRumble(int, int)
+ContRumble::ContRumble(int p1, int p2)
+    : _00(true)
+    , _04(p1)
+    , _08(0.0f, 0.0f, 0.0f)
+    , _14(new RumbleNode())
+    , _18(new RumbleNode())
 {
-	/*
-	stwu     r1, -0x40(r1)
-	mflr     r0
-	stw      r0, 0x44(r1)
-	stfd     f31, 0x30(r1)
-	psq_st   f31, 56(r1), 0, qr0
-	stmw     r25, 0x14(r1)
-	mr       r30, r3
-	li       r0, 1
-	stb      r0, 0(r3)
-	mr       r31, r5
-	lfs      f0, lbl_8051A968@sda21(r2)
-	li       r3, 0x30
-	stw      r4, 4(r30)
-	stfs     f0, 8(r30)
-	stfs     f0, 0xc(r30)
-	stfs     f0, 0x10(r30)
-	bl       __nw__FUl
-	or.      r27, r3, r3
-	beq      lbl_80252BA0
-	bl       __ct__5CNodeFv
-	lis      r4, __vt__Q24Game10RumbleNode@ha
-	li       r3, -1
-	addi     r0, r4, __vt__Q24Game10RumbleNode@l
-	lfs      f0, lbl_8051A968@sda21(r2)
-	stw      r0, 0(r27)
-	li       r0, 0
-	stw      r3, 0x18(r27)
-	stfs     f0, 0x1c(r27)
-	stfs     f0, 0x20(r27)
-	stfs     f0, 0x24(r27)
-	stfs     f0, 0x28(r27)
-	stw      r0, 0x2c(r27)
-
-lbl_80252BA0:
-	stw      r27, 0x14(r30)
-	li       r3, 0x30
-	bl       __nw__FUl
-	or.      r27, r3, r3
-	beq      lbl_80252BE8
-	bl       __ct__5CNodeFv
-	lis      r4, __vt__Q24Game10RumbleNode@ha
-	li       r3, -1
-	addi     r0, r4, __vt__Q24Game10RumbleNode@l
-	lfs      f0, lbl_8051A968@sda21(r2)
-	stw      r0, 0(r27)
-	li       r0, 0
-	stw      r3, 0x18(r27)
-	stfs     f0, 0x1c(r27)
-	stfs     f0, 0x20(r27)
-	stfs     f0, 0x24(r27)
-	stfs     f0, 0x28(r27)
-	stw      r0, 0x2c(r27)
-
-lbl_80252BE8:
-	lis      r3, __vt__Q24Game10RumbleNode@ha
-	stw      r27, 0x18(r30)
-	lfs      f31, lbl_8051A968@sda21(r2)
-	addi     r27, r3, __vt__Q24Game10RumbleNode@l
-	li       r25, 0
-	li       r28, -1
-	li       r29, 0
-	b        lbl_80252C48
-
-lbl_80252C08:
-	li       r3, 0x30
-	bl       __nw__FUl
-	or.      r26, r3, r3
-	beq      lbl_80252C38
-	bl       __ct__5CNodeFv
-	stw      r27, 0(r26)
-	stw      r28, 0x18(r26)
-	stfs     f31, 0x1c(r26)
-	stfs     f31, 0x20(r26)
-	stfs     f31, 0x24(r26)
-	stfs     f31, 0x28(r26)
-	stw      r29, 0x2c(r26)
-
-lbl_80252C38:
-	lwz      r3, 0x18(r30)
-	mr       r4, r26
-	bl       add__5CNodeFP5CNode
-	addi     r25, r25, 1
-
-lbl_80252C48:
-	cmpw     r25, r31
-	blt      lbl_80252C08
-	li       r0, 0
-	mr       r3, r30
-	stw      r0, 0x1c(r30)
-	psq_l    f31, 56(r1), 0, qr0
-	lfd      f31, 0x30(r1)
-	lmw      r25, 0x14(r1)
-	lwz      r0, 0x44(r1)
-	mtlr     r0
-	addi     r1, r1, 0x40
-	blr
-	*/
+	for (int i = 0; i < p2; i++) {
+		_18->add(new RumbleNode());
+	}
+	m_dataMgr = nullptr;
 }
 
 /*
@@ -154,6 +66,19 @@ lbl_80252C48:
  */
 void ContRumble::init()
 {
+	_00               = true;
+	_08.x             = 0.0f;
+	_08.y             = 0.0f;
+	_08.z             = 0.0f;
+	RumbleNode* node1 = (RumbleNode*)_14->m_child;
+	// This assumes that _14's head has at least child node
+	while (node1 != nullptr) {
+		RumbleNode* node2 = (RumbleNode*)node1->m_next;
+		node1->del();
+		_18->add(node1);
+		node1 = node2;
+	}
+	PADControlMotor(_04, 2);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -409,34 +334,12 @@ lbl_80252F68:
  * Address:	80252F94
  * Size:	000058
  */
-void ContRumble::setController(bool)
+void ContRumble::setController(bool p1)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	clrlwi.  r0, r4, 0x18
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	bne      lbl_80252FD0
-	lbz      r0, 0(r30)
-	cmplwi   r0, 0
-	beq      lbl_80252FD0
-	lwz      r3, 4(r30)
-	li       r4, 2
-	bl       PADControlMotor
-
-lbl_80252FD0:
-	stb      r31, 0(r30)
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if ((!p1) && _00) {
+		PADControlMotor(_04, 2);
+	}
+	_00 = p1;
 }
 
 /*

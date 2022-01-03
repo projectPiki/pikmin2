@@ -1,3 +1,4 @@
+#include "JSystem/J3D/J3DModel.h"
 #include "types.h"
 
 /*
@@ -139,7 +140,7 @@
  * Address:	8006F894
  * Size:	000154
  */
-void J3DModelLoaderDataBase::load(const void*, unsigned long)
+J3DModelData* J3DModelLoaderDataBase::load(const void*, unsigned long)
 {
 	/*
 	stwu     r1, -0x40(r1)
@@ -352,7 +353,8 @@ lbl_8006FAD0:
  * Address:	8006FAE8
  * Size:	0000BC
  */
-void J3DModelLoaderDataBase::loadBinaryDisplayList(const void*, unsigned long)
+J3DModelData* J3DModelLoaderDataBase::loadBinaryDisplayList(const void*,
+                                                            unsigned long)
 {
 	/*
 	stwu     r1, -0x30(r1)

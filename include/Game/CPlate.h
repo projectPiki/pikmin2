@@ -38,11 +38,11 @@ struct CPlate : public Container<Creature> {
 
 	CPlate(int);
 
-	virtual ~CPlate();           // _00
-	virtual void getNext(void*); // _0C
-	virtual int getStart();      // _10
-	virtual int getEnd();        // _14
-	virtual void get(void*);     // _18
+	virtual ~CPlate();            // _00
+	virtual int getNext(void*);   // _0C
+	virtual int getStart();       // _10
+	virtual int getEnd();         // _14
+	virtual Creature* get(void*); // _18
 
 	void changeFlower(Creature*);
 	void directDraw(Graphics&);
@@ -79,7 +79,7 @@ struct CPlate : public Container<Creature> {
 	float _F8;           // _F8
 	float _FC;           // _FC
 	u8 _100;             // _100
-	u32 _104;            // _104
+	u32* _104;           // _104
 	u32 _108;            // _108
 	u32 _10C;            // _10C
 	u8 _110;             // _110

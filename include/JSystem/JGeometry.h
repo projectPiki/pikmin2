@@ -17,6 +17,26 @@ template <typename T> struct TVec3 {
 	    : x(inX)
 	    , y(inY)
 	    , z(inZ) {};
+
+	// TODO: Determine if this could've actually existed, or if I'm just making
+	// it up.
+	inline TVec3(const TVec3<T>& other)
+	{
+		x = other.x;
+		y = other.y;
+		z = other.z;
+	}
+
+	// TODO: Determine if this could've actually existed, or if I'm just making
+	// it up.
+	inline TVec3& operator=(const TVec3& other)
+	{
+		x = other.x;
+		y = other.y;
+		z = other.z;
+		return *this;
+	}
+
 	T x;
 	T y;
 	T z;

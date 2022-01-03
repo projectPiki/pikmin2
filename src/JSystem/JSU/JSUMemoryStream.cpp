@@ -1,5 +1,6 @@
-#include "types.h"
+#include "Dolphin/stl.h"
 #include "JSystem/JSU/JSUStream.h"
+#include "types.h"
 
 /*
     Generated from dpostproc
@@ -26,7 +27,7 @@
  */
 void JSUMemoryInputStream::setBuffer(const void* buffer, long length)
 {
-	m_object   = const_cast<void*>(buffer);
+	m_object   = buffer;
 	m_length   = length;
 	m_position = 0;
 }
@@ -36,44 +37,16 @@ void JSUMemoryInputStream::setBuffer(const void* buffer, long length)
  * Address:	80026D70
  * Size:	000078
  */
-size_t JSUMemoryInputStream::readData(void*, long)
+size_t JSUMemoryInputStream::readData(void* data, long length)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r5
-	stw      r30, 8(r1)
-	mr       r30, r3
-	lwz      r6, 0x10(r3)
-	lwz      r3, 0xc(r3)
-	add      r0, r6, r31
-	cmpw     r0, r3
-	ble      lbl_80026DA4
-	subf     r31, r6, r3
-
-lbl_80026DA4:
-	cmpwi    r31, 0
-	ble      lbl_80026DCC
-	lwz      r0, 8(r30)
-	mr       r3, r4
-	mr       r5, r31
-	add      r4, r0, r6
-	bl       memcpy
-	lwz      r0, 0x10(r30)
-	add      r0, r0, r31
-	stw      r0, 0x10(r30)
-
-lbl_80026DCC:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (m_position + length > m_length) {
+		length = m_length - m_position;
+	}
+	if (length > 0) {
+		memcpy(data, (void*)((int)m_object + m_position), length);
+		m_position += length;
+	}
+	return length;
 }
 
 /*
@@ -111,43 +84,43 @@ int JSUMemoryInputStream::seekPos(long offset, JSUStreamSeekFrom mode)
  * Address:	80026E64
  * Size:	000070
  */
-JSUMemoryInputStream::~JSUMemoryInputStream()
-{
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_80026EB8
-	lis      r4, __vt__20JSUMemoryInputStream@ha
-	addi     r0, r4, __vt__20JSUMemoryInputStream@l
-	stw      r0, 0(r30)
-	beq      lbl_80026EA8
-	lis      r5, __vt__20JSURandomInputStream@ha
-	li       r4, 0
-	addi     r0, r5, __vt__20JSURandomInputStream@l
-	stw      r0, 0(r30)
-	bl       __dt__14JSUInputStreamFv
+// JSUMemoryInputStream::~JSUMemoryInputStream()
+// {
+/*
+stwu     r1, -0x10(r1)
+mflr     r0
+stw      r0, 0x14(r1)
+stw      r31, 0xc(r1)
+mr       r31, r4
+stw      r30, 8(r1)
+or.      r30, r3, r3
+beq      lbl_80026EB8
+lis      r4, __vt__20JSUMemoryInputStream@ha
+addi     r0, r4, __vt__20JSUMemoryInputStream@l
+stw      r0, 0(r30)
+beq      lbl_80026EA8
+lis      r5, __vt__20JSURandomInputStream@ha
+li       r4, 0
+addi     r0, r5, __vt__20JSURandomInputStream@l
+stw      r0, 0(r30)
+bl       __dt__14JSUInputStreamFv
 
 lbl_80026EA8:
-	extsh.   r0, r31
-	ble      lbl_80026EB8
-	mr       r3, r30
-	bl       __dl__FPv
+extsh.   r0, r31
+ble      lbl_80026EB8
+mr       r3, r30
+bl       __dl__FPv
 
 lbl_80026EB8:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
-}
+lwz      r0, 0x14(r1)
+mr       r3, r30
+lwz      r31, 0xc(r1)
+lwz      r30, 8(r1)
+mtlr     r0
+addi     r1, r1, 0x10
+blr
+*/
+// }
 
 /*
  * --INFO--

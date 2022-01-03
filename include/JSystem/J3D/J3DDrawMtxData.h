@@ -4,6 +4,9 @@
 #include "types.h"
 
 struct J3DDrawMtxData {
+	J3DDrawMtxData();
+	~J3DDrawMtxData();
+
 	u16 m_count; // _00
 	u16 _02;     // _02
 	uchar* _04;  // _04

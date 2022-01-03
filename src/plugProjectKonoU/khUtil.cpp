@@ -1,4 +1,10 @@
+#include "kh/khUtil.h"
+#include "JSystem/JGeometry.h"
+#include "JSystem/JSU/JSUTree.h"
+#include "JSystem/JSU/JSUTreeIterator.h"
+#include "JSystem/JUT/JUTException.h"
 #include "types.h"
+#include "Vector3.h"
 
 /*
     Generated from dpostproc
@@ -67,7 +73,7 @@ namespace Screen {
 	 * Address:	8040B3F4
 	 * Size:	00004C
 	 */
-	void getSerialTagName(unsigned long long, int)
+	ulonglong getSerialTagName(ulonglong, int)
 	{
 		/*
 	lis      r6, 0x66666667@ha
@@ -97,30 +103,10 @@ namespace Screen {
 	 * Address:	8040B440
 	 * Size:	000050
 	 */
-	void setTex(J2DScreen*, unsigned long long, const ResTIMG*)
+	void setTex(J2DScreen* screen, ulonglong tag, const ResTIMG* tex)
 	{
-		/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r7
-	lwz      r12, 0(r3)
-	lwz      r12, 0x3c(r12)
-	mtctr    r12
-	bctrl
-	lwz      r12, 0(r3)
-	mr       r4, r31
-	li       r5, 0
-	lwz      r12, 0x110(r12)
-	mtctr    r12
-	bctrl
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-		*/
+		reinterpret_cast<J2DPicture*>(screen->search(tag))
+		    ->changeTexture(tex, '\0');
 	}
 
 	/*
@@ -128,8 +114,10 @@ namespace Screen {
 	 * Address:	8040B490
 	 * Size:	000050
 	 */
-	void setTex(J2DScreen*, unsigned long long, const char*)
+	void setTex(J2DScreen* screen, ulonglong tag, const char* str)
 	{
+		reinterpret_cast<J2DPicture*>(screen->search(tag))
+		    ->changeTexture(str, '\0');
 		/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -159,8 +147,15 @@ namespace Screen {
 	 * Address:	8040B4E0
 	 * Size:	000210
 	 */
-	void setMatAnm(J2DPane*, J2DAnmBase*)
+	void setMatAnm(J2DPane* pane, J2DAnmBase* anm)
 	{
+		pane->setAnimation(anm);
+		JSUTree<J2DPane>* tree = pane->getPaneTree();
+		JSUTreeIterator<J2DPane> iterator(tree->getFirstChild());
+		while (iterator != tree->getEndChild()) {
+			setMatAnm(iterator.getObject(), anm);
+			++iterator;
+		}
 		/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -328,175 +323,182 @@ lbl_8040B6D4:
 	 * Address:	8040B6F0
 	 * Size:	00021C
 	 */
-	void setInfAlpha(J2DPane*)
+	void setInfAlpha(J2DPane* pane)
 	{
+		pane->setInfluencedAlpha(true, false);
+		JSUTree<J2DPane>* tree = pane->getPaneTree();
+		JSUTreeIterator<J2DPane> iterator(tree->getFirstChild());
+		while (iterator != tree->getEndChild()) {
+			setInfAlpha(iterator.getObject());
+			++iterator;
+		}
 		/*
-	stwu     r1, -0x30(r1)
-	mflr     r0
-	li       r4, 1
-	li       r5, 0
-	stw      r0, 0x34(r1)
-	stmw     r25, 0x14(r1)
-	mr       r25, r3
-	bl       setInfluencedAlpha__7J2DPaneFbb
-	lwz      r31, 0xdc(r25)
-	cmplwi   r31, 0
-	beq      lbl_8040B8F0
-	addi     r31, r31, -12
-	b        lbl_8040B8F0
+		stwu     r1, -0x30(r1)
+		mflr     r0
+		li       r4, 1
+		li       r5, 0
+		stw      r0, 0x34(r1)
+		stmw     r25, 0x14(r1)
+		mr       r25, r3
+		bl       setInfluencedAlpha__7J2DPaneFbb
+		lwz      r31, 0xdc(r25)
+		cmplwi   r31, 0
+		beq      lbl_8040B8F0
+		addi     r31, r31, -12
+		b        lbl_8040B8F0
 
-lbl_8040B724:
-	lwz      r27, 0xc(r31)
-	li       r4, 1
-	li       r5, 0
-	mr       r3, r27
-	bl       setInfluencedAlpha__7J2DPaneFbb
-	lwz      r30, 0xdc(r27)
-	cmplwi   r30, 0
-	beq      lbl_8040B8D8
-	addi     r30, r30, -12
-	b        lbl_8040B8D8
+	lbl_8040B724:
+		lwz      r27, 0xc(r31)
+		li       r4, 1
+		li       r5, 0
+		mr       r3, r27
+		bl       setInfluencedAlpha__7J2DPaneFbb
+		lwz      r30, 0xdc(r27)
+		cmplwi   r30, 0
+		beq      lbl_8040B8D8
+		addi     r30, r30, -12
+		b        lbl_8040B8D8
 
-lbl_8040B74C:
-	lwz      r27, 0xc(r30)
-	li       r4, 1
-	li       r5, 0
-	mr       r3, r27
-	bl       setInfluencedAlpha__7J2DPaneFbb
-	lwz      r29, 0xdc(r27)
-	cmplwi   r29, 0
-	beq      lbl_8040B8C0
-	addi     r29, r29, -12
-	b        lbl_8040B8C0
+	lbl_8040B74C:
+		lwz      r27, 0xc(r30)
+		li       r4, 1
+		li       r5, 0
+		mr       r3, r27
+		bl       setInfluencedAlpha__7J2DPaneFbb
+		lwz      r29, 0xdc(r27)
+		cmplwi   r29, 0
+		beq      lbl_8040B8C0
+		addi     r29, r29, -12
+		b        lbl_8040B8C0
 
-lbl_8040B774:
-	lwz      r27, 0xc(r29)
-	li       r4, 1
-	li       r5, 0
-	mr       r3, r27
-	bl       setInfluencedAlpha__7J2DPaneFbb
-	lwz      r28, 0xdc(r27)
-	cmplwi   r28, 0
-	beq      lbl_8040B8A8
-	addi     r28, r28, -12
-	b        lbl_8040B8A8
+	lbl_8040B774:
+		lwz      r27, 0xc(r29)
+		li       r4, 1
+		li       r5, 0
+		mr       r3, r27
+		bl       setInfluencedAlpha__7J2DPaneFbb
+		lwz      r28, 0xdc(r27)
+		cmplwi   r28, 0
+		beq      lbl_8040B8A8
+		addi     r28, r28, -12
+		b        lbl_8040B8A8
 
-lbl_8040B79C:
-	lwz      r27, 0xc(r28)
-	li       r4, 1
-	li       r5, 0
-	mr       r3, r27
-	bl       setInfluencedAlpha__7J2DPaneFbb
-	addi     r3, r27, 0xdc
-	bl       getFirstLink__10JSUPtrListCFv
-	cmplwi   r3, 0
-	beq      lbl_8040B7C4
-	addi     r3, r3, -12
+	lbl_8040B79C:
+		lwz      r27, 0xc(r28)
+		li       r4, 1
+		li       r5, 0
+		mr       r3, r27
+		bl       setInfluencedAlpha__7J2DPaneFbb
+		addi     r3, r27, 0xdc
+		bl       getFirstLink__10JSUPtrListCFv
+		cmplwi   r3, 0
+		beq      lbl_8040B7C4
+		addi     r3, r3, -12
 
-lbl_8040B7C4:
-	mr       r25, r3
-	b        lbl_8040B890
+	lbl_8040B7C4:
+		mr       r25, r3
+		b        lbl_8040B890
 
-lbl_8040B7CC:
-	mr       r3, r25
-	bl       "getObject__17JSUTree<7J2DPane>CFv"
-	mr       r27, r3
-	li       r4, 1
-	li       r5, 0
-	bl       setInfluencedAlpha__7J2DPaneFbb
-	addi     r26, r27, 0xdc
-	mr       r3, r26
-	bl       "getFirstChild__17JSUTree<7J2DPane>CFv"
-	stw      r3, 0xc(r1)
-	b        lbl_8040B86C
+	lbl_8040B7CC:
+		mr       r3, r25
+		bl       "getObject__17JSUTree<7J2DPane>CFv"
+		mr       r27, r3
+		li       r4, 1
+		li       r5, 0
+		bl       setInfluencedAlpha__7J2DPaneFbb
+		addi     r26, r27, 0xdc
+		mr       r3, r26
+		bl       "getFirstChild__17JSUTree<7J2DPane>CFv"
+		stw      r3, 0xc(r1)
+		b        lbl_8040B86C
 
-lbl_8040B7F8:
-	addi     r3, r1, 0xc
-	bl       "getObject__25JSUTreeIterator<7J2DPane>CFv"
-	li       r4, 1
-	mr       r27, r3
-	li       r5, 0
-	bl       setInfluencedAlpha__7J2DPaneFbb
-	mr       r3, r27
-	bl       getPaneTree__7J2DPaneFv
-	mr       r27, r3
-	bl       "getFirstChild__17JSUTree<7J2DPane>CFv"
-	mr       r4, r3
-	addi     r3, r1, 8
-	bl       "__ct__25JSUTreeIterator<7J2DPane>FP17JSUTree<7J2DPane>"
-	b        lbl_8040B844
+	lbl_8040B7F8:
+		addi     r3, r1, 0xc
+		bl       "getObject__25JSUTreeIterator<7J2DPane>CFv"
+		li       r4, 1
+		mr       r27, r3
+		li       r5, 0
+		bl       setInfluencedAlpha__7J2DPaneFbb
+		mr       r3, r27
+		bl       getPaneTree__7J2DPaneFv
+		mr       r27, r3
+		bl       "getFirstChild__17JSUTree<7J2DPane>CFv"
+		mr       r4, r3
+		addi     r3, r1, 8
+		bl       "__ct__25JSUTreeIterator<7J2DPane>FP17JSUTree<7J2DPane>"
+		b        lbl_8040B844
 
-lbl_8040B830:
-	addi     r3, r1, 8
-	bl       "getObject__25JSUTreeIterator<7J2DPane>CFv"
-	bl       setInfAlpha__Q22kh6ScreenFP7J2DPane
-	addi     r3, r1, 8
-	bl       "__pp__25JSUTreeIterator<7J2DPane>Fv"
+	lbl_8040B830:
+		addi     r3, r1, 8
+		bl       "getObject__25JSUTreeIterator<7J2DPane>CFv"
+		bl       setInfAlpha__Q22kh6ScreenFP7J2DPane
+		addi     r3, r1, 8
+		bl       "__pp__25JSUTreeIterator<7J2DPane>Fv"
 
-lbl_8040B844:
-	mr       r3, r27
-	bl       "getEndChild__17JSUTree<7J2DPane>CFv"
-	mr       r4, r3
-	addi     r3, r1, 8
-	bl       "__ne__25JSUTreeIterator<7J2DPane>CFPC17JSUTree<7J2DPane>"
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_8040B830
-	lwz      r3, 0xc(r1)
-	bl       "getNextChild__17JSUTree<7J2DPane>CFv"
-	stw      r3, 0xc(r1)
+	lbl_8040B844:
+		mr       r3, r27
+		bl       "getEndChild__17JSUTree<7J2DPane>CFv"
+		mr       r4, r3
+		addi     r3, r1, 8
+		bl       "__ne__25JSUTreeIterator<7J2DPane>CFPC17JSUTree<7J2DPane>"
+		clrlwi.  r0, r3, 0x18
+		bne      lbl_8040B830
+		lwz      r3, 0xc(r1)
+		bl       "getNextChild__17JSUTree<7J2DPane>CFv"
+		stw      r3, 0xc(r1)
 
-lbl_8040B86C:
-	mr       r3, r26
-	bl       "getEndChild__17JSUTree<7J2DPane>CFv"
-	lwz      r0, 0xc(r1)
-	cmplw    r0, r3
-	bne      lbl_8040B7F8
-	lwz      r25, 0x18(r25)
-	cmplwi   r25, 0
-	beq      lbl_8040B890
-	addi     r25, r25, -12
+	lbl_8040B86C:
+		mr       r3, r26
+		bl       "getEndChild__17JSUTree<7J2DPane>CFv"
+		lwz      r0, 0xc(r1)
+		cmplw    r0, r3
+		bne      lbl_8040B7F8
+		lwz      r25, 0x18(r25)
+		cmplwi   r25, 0
+		beq      lbl_8040B890
+		addi     r25, r25, -12
 
-lbl_8040B890:
-	cmplwi   r25, 0
-	bne      lbl_8040B7CC
-	lwz      r28, 0x18(r28)
-	cmplwi   r28, 0
-	beq      lbl_8040B8A8
-	addi     r28, r28, -12
+	lbl_8040B890:
+		cmplwi   r25, 0
+		bne      lbl_8040B7CC
+		lwz      r28, 0x18(r28)
+		cmplwi   r28, 0
+		beq      lbl_8040B8A8
+		addi     r28, r28, -12
 
-lbl_8040B8A8:
-	cmplwi   r28, 0
-	bne      lbl_8040B79C
-	lwz      r29, 0x18(r29)
-	cmplwi   r29, 0
-	beq      lbl_8040B8C0
-	addi     r29, r29, -12
+	lbl_8040B8A8:
+		cmplwi   r28, 0
+		bne      lbl_8040B79C
+		lwz      r29, 0x18(r29)
+		cmplwi   r29, 0
+		beq      lbl_8040B8C0
+		addi     r29, r29, -12
 
-lbl_8040B8C0:
-	cmplwi   r29, 0
-	bne      lbl_8040B774
-	lwz      r30, 0x18(r30)
-	cmplwi   r30, 0
-	beq      lbl_8040B8D8
-	addi     r30, r30, -12
+	lbl_8040B8C0:
+		cmplwi   r29, 0
+		bne      lbl_8040B774
+		lwz      r30, 0x18(r30)
+		cmplwi   r30, 0
+		beq      lbl_8040B8D8
+		addi     r30, r30, -12
 
-lbl_8040B8D8:
-	cmplwi   r30, 0
-	bne      lbl_8040B74C
-	lwz      r31, 0x18(r31)
-	cmplwi   r31, 0
-	beq      lbl_8040B8F0
-	addi     r31, r31, -12
+	lbl_8040B8D8:
+		cmplwi   r30, 0
+		bne      lbl_8040B74C
+		lwz      r31, 0x18(r31)
+		cmplwi   r31, 0
+		beq      lbl_8040B8F0
+		addi     r31, r31, -12
 
-lbl_8040B8F0:
-	cmplwi   r31, 0
-	bne      lbl_8040B724
-	lmw      r25, 0x14(r1)
-	lwz      r0, 0x34(r1)
-	mtlr     r0
-	addi     r1, r1, 0x30
-	blr
-		*/
+	lbl_8040B8F0:
+		cmplwi   r31, 0
+		bne      lbl_8040B724
+		lmw      r25, 0x14(r1)
+		lwz      r0, 0x34(r1)
+		mtlr     r0
+		addi     r1, r1, 0x30
+		blr
+		    */
 	}
 
 	/*
@@ -504,8 +506,13 @@ lbl_8040B8F0:
 	 * Address:	8040B90C
 	 * Size:	0000EC
 	 */
-	void getPaneCenterX(J2DPane*)
+	float getPaneCenterX(J2DPane* pane)
 	{
+		return (pane->getGlbVtx(POS_BOTTOM_RIGHT).x
+		        + pane->getGlbVtx(POS_BOTTOM_LEFT).x
+		        + pane->getGlbVtx(POS_TOP_LEFT).x
+		        + pane->getGlbVtx(POS_TOP_RIGHT).x)
+		       * 0.25f;
 		/*
 	stwu     r1, -0x70(r1)
 	mflr     r0
@@ -574,8 +581,17 @@ lbl_8040B8F0:
 	 * Address:	8040B9F8
 	 * Size:	0000EC
 	 */
-	void getPaneCenterY(J2DPane*)
+	float getPaneCenterY(J2DPane* pane)
 	{
+		JGeometry::TVec3f br = pane->getGlbVtx(0);
+		JGeometry::TVec3f bl = pane->getGlbVtx(1);
+		JGeometry::TVec3f tl = pane->getGlbVtx(2);
+		JGeometry::TVec3f tr = pane->getGlbVtx(3);
+		return (br.y + bl.y + tl.y + tr.y) * 0.25f;
+		// return (pane->getGlbVtx(POS_BOTTOM_RIGHT).y
+		// + pane->getGlbVtx(POS_BOTTOM_LEFT).y
+		// + pane->getGlbVtx(POS_TOP_LEFT).y
+		// + pane->getGlbVtx(POS_TOP_RIGHT).y) * 0.25f;
 		/*
 	stwu     r1, -0x70(r1)
 	mflr     r0
@@ -644,9 +660,15 @@ lbl_8040B8F0:
 	 * Address:	8040BAE4
 	 * Size:	0000A4
 	 */
-	void khUtilFadePane::create(P2DScreen::Mgr*, unsigned long long,
-	                            unsigned char)
+	khUtilFadePane* khUtilFadePane::create(P2DScreen::Mgr* mgr, ulonglong tag,
+	                                       uchar c)
 	{
+		if (mgr == nullptr) {
+			return nullptr;
+		}
+		khUtilFadePane* pane = new khUtilFadePane(c);
+		P2ASSERTLINE(146, pane != nullptr);
+		pane->add(mgr->addCallBack(tag, pane));
 		/*
 		.loc_0x0:
 		  stwu      r1, -0x20(r1)
@@ -708,8 +730,14 @@ lbl_8040B8F0:
 	 * Address:	8040BB88
 	 * Size:	000088
 	 */
-	khUtilFadePane::khUtilFadePane(unsigned char)
+	khUtilFadePane::khUtilFadePane(uchar c)
+	    : CallBackNode()
+	    , m_paneNode()
+	    , _28(0)
+	    , m_fadePaneAlpha('\0')
+	    , _2D(c)
 	{
+
 		/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -852,8 +880,19 @@ lbl_8040BCF4:
 	 * Address:	8040BD18
 	 * Size:	0000B8
 	 */
-	void khUtilFadePane::add(J2DPane*)
+	void khUtilFadePane::add(J2DPane* pane)
 	{
+		bool result = false;
+		if (pane) {
+			khPaneNode* node        = &m_paneNode;
+			khPaneNode* nonnullNode = nullptr;
+			do {
+				nonnullNode = node;
+				node        = nonnullNode->m_next;
+			} while (node != nullptr);
+			khPaneNode* newNode = new khPaneNode();
+			// TODO: Bleh
+		}
 		/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -961,7 +1000,7 @@ lbl_8040BE04:
 	 * Address:	8040BE10
 	 * Size:	000060
 	 */
-	void khUtilFadePane::set_init_alpha(unsigned char)
+	void khUtilFadePane::set_init_alpha(uchar)
 	{
 		/*
 	stwu     r1, -0x10(r1)
@@ -1000,8 +1039,7 @@ lbl_8040BE50:
 	 * Address:	8040BE70
 	 * Size:	000158
 	 */
-	khUtilColorAnm::khUtilColorAnm(P2DScreen::Mgr*, unsigned long long, int,
-	                               int)
+	khUtilColorAnm::khUtilColorAnm(P2DScreen::Mgr*, ulonglong, int, int)
 	{
 		/*
 		.loc_0x0:

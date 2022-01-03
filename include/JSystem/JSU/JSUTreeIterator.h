@@ -4,10 +4,13 @@
 #include "JSystem/JSU/JSUTree.h"
 
 template <typename T> struct JSUTreeIterator {
-	bool operator!=(const JSUTree<T>*) const;
-	void operator++();
-	T* operator->() const;
 	JSUTreeIterator(JSUTree<T>*);
+
+	bool operator!=(const JSUTree<T>*) const;
+	inline void operator++() { m_tree = m_tree->getNextChild(); }
+	T* operator->() const;
+
+	T* getObject() const;
 
 	// TODO: This is probably wrong?
 	JSUTree<T>* m_tree; // _00

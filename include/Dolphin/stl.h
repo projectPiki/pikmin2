@@ -5,6 +5,10 @@
 extern "C" {
 #endif // ifdef __cplusplus
 
+#ifndef size_t
+typedef unsigned long size_t;
+#endif
+
 __declspec(section ".init") void* memcpy(void*, const void*, size_t);
 __declspec(section ".init") void __fill_mem(void*, int, size_t);
 __declspec(section ".init") void* memset(void*, int, size_t);

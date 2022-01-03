@@ -4,6 +4,9 @@
 #include "JSystem/J3D/J3DTypes.h"
 #include "types.h"
 
+struct J3DAnmColor;
+struct J3DAnmTevRegKey;
+struct J3DAnmTextureSRTKey;
 struct J3DColorBlock;
 struct J3DDisplayListObj;
 struct J3DIndBlock;
@@ -12,7 +15,11 @@ struct J3DMaterialAnm;
 struct J3DPEBlock;
 struct J3DShape;
 struct J3DTevBlock;
+struct J3DTevColorAnm;
 struct J3DTexGenBlock;
+struct J3DTexMtxAnm;
+struct J3DTexture;
+struct JUTNameTab;
 
 /**
  * @size{0x4C}
@@ -100,6 +107,37 @@ struct J3DPatchedMaterial : public J3DMaterial {
 	virtual void change();                // _24
 
 	void initialize();
+};
+
+/**
+ * @size{0x20}
+ */
+struct J3DMaterialTable {
+	J3DMaterialTable();
+
+	virtual ~J3DMaterialTable(); // _00
+
+	void clear();
+
+	void allocTexMtxAnimator(J3DAnmTextureSRTKey*, J3DTexMtxAnm**);
+	void entryTexMtxAnimator(J3DAnmTextureSRTKey*);
+	void removeTexMtxAnimator(J3DAnmTextureSRTKey*);
+
+	void allocTevRegAnimator(J3DAnmTevRegKey*, J3DTevColorAnm**);
+	void entryTevRegAnimator(J3DAnmTevRegKey*);
+	void removeTevRegAnimator(J3DAnmTevRegKey*);
+
+	void entryMatColorAnimator(J3DAnmColor*);
+
+	// VTBL _00
+	ushort m_count1;            // _04
+	ushort m_count2;            // _06
+	J3DMaterial** m_materials1; // _08
+	JUTNameTab* _0C;            // _0C
+	J3DMaterial* m_materials2;  // _10
+	J3DTexture* m_texture;      // _14
+	JUTNameTab* _18;            // _18
+	ushort _1C;
 };
 
 #endif

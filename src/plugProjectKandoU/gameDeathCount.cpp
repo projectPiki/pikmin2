@@ -1,3 +1,5 @@
+#include "Game/BirthMgr.h"
+#include "Game/DeathMgr.h"
 #include "types.h"
 
 /*

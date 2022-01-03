@@ -1,3 +1,13 @@
+#include "JSystem/J2D/J2DAnm.h"
+#include "JSystem/JKR/JKRFileLoader.h"
+#include "JSystem/JKR/JKRHeap.h"
+#include "JSystem/JKR/JKRArchive.h"
+#include "JSystem/JUT/JUTException.h"
+#include "P2DScreen.h"
+#include "kh/khUtil.h"
+#include "kh/WorldMap.h"
+#include "LoadResource.h"
+#include "og/newScreen/ogUtil.h"
 #include "types.h"
 
 /*
@@ -921,7 +931,93 @@ lbl_803F1CE0:
 	 * Size:	0001E8
 	 */
 	WorldMap::WorldMap()
+	    : Base()
+	    , m_initArg()
 	{
+		m_screenKitagawa          = nullptr;
+		m_bckAnm2                 = nullptr;
+		m_bckAnm1                 = nullptr;
+		_3C                       = nullptr;
+		_44                       = nullptr;
+		_40                       = nullptr;
+		_48                       = nullptr;
+		_4C                       = nullptr;
+		_50                       = nullptr;
+		_54                       = nullptr;
+		_60                       = nullptr;
+		_5C                       = nullptr;
+		_58                       = nullptr;
+		m_frameOf60               = 0.0f;
+		m_frameOf5C               = 0.0f;
+		m_frameOf58               = 0.0f;
+		m_frameOf50               = 0.0f;
+		m_frameOf4C               = 0.0f;
+		m_frameOf44               = 0.0f;
+		m_frameOf40               = 0.0f;
+		m_frameOf3C               = 0.0f;
+		m_frameOf38               = 0.0f;
+		m_frameOf34               = 0.0f;
+		_94                       = 0.0f;
+		_90                       = 0.0f;
+		_98                       = 1.0f;
+		_9C.x                     = 0.0f;
+		_9C.y                     = 0.0f;
+		_A4                       = 0.0f;
+		_A8                       = 0.0f;
+		_AC.x                     = 0.0f;
+		_AC.y                     = 0.0f;
+		_B4                       = _AC.x;
+		_B8                       = _AC.y;
+		_BC                       = 0.0f;
+		m_rocketGlow              = nullptr;
+		m_rocketB                 = nullptr;
+		m_mapFlare                = nullptr;
+		m_shstar1                 = nullptr;
+		_D0                       = 0.0f;
+		_D4                       = 0.0f;
+		_D8                       = 0.0f;
+		_DC                       = 1.0f;
+		m_light01Center.x         = 0.0f;
+		m_light01Center.y         = 0.0f;
+		m_starCenter.x            = 0.0f;
+		m_starCenter.y            = 0.0f;
+		m_onyonDynamicsArray      = nullptr;
+		m_onyonDynamicsCount      = 0;
+		m_currentCourseIndex      = 0;
+		_FC                       = 0;
+		_108                      = nullptr;
+		m_groundTreasureCounter   = nullptr;
+		m_pokoCounter             = nullptr;
+		m_groundTreasureMax       = 0;
+		m_groundTreasureCount     = 0;
+		_11C                      = nullptr;
+		m_caveTreasureCounters[0] = nullptr;
+		_144                      = 0;
+		_134                      = 0;
+		m_caveTreasureCounters[1] = nullptr;
+		_148                      = 0;
+		_138                      = 0;
+		m_caveTreasureCounters[0] = nullptr;
+		_14C                      = 0;
+		_13C                      = 0;
+		m_caveTreasureCounters[0] = nullptr;
+		_150                      = 0;
+		_140                      = 0;
+		_154                      = nullptr;
+		_158                      = nullptr;
+		_15C                      = nullptr;
+		_160                      = nullptr;
+		_164                      = nullptr;
+		_168                      = nullptr;
+		_16C                      = nullptr;
+		m_arrowAlphaBlink         = nullptr;
+		m_unknownSwitch           = 0xd;
+		_178                      = 1;
+		_17C                      = 4;
+		m_stateID                 = '\x01';
+		m_courseJustOpenFlags     = 0;
+		m_totalCourseCount        = 0;
+		_183                      = 0;
 		/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1102,8 +1198,16 @@ namespace Screen {
 	 * Address:	803F1F3C
 	 * Size:	0000CC
 	 */
-	void WorldMap::init(Game::WorldMap::InitArg&)
+	void WorldMap::init(::Game::WorldMap::InitArg& arg)
 	{
+		int i     = 0;
+		m_initArg = arg;
+		do {
+			m_totalCourseCount += playData->courseOpen(i);
+			m_courseJustOpenFlags |= playData->courseJustOpen(i) << i;
+			i++;
+		} while (i < 4);
+		m_courseJustOpenFlags |= (m_courseJustOpenFlags << 4);
 		/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -1168,6 +1272,53 @@ lbl_803F1F98:
 	 */
 	void WorldMap::loadResource()
 	{
+		JKRHeap* savedHeap = JKRHeap::sCurrentHeap;
+		m_initArg.m_heap->becomeCurrentHeap();
+		char localizedArchiveFileName[64];
+		og::newScreen::makeLanguageResName(localizedArchiveFileName,
+		                                   "worldmap.szs");
+		LoadResource::Arg loadResourceArg(localizedArchiveFileName);
+		LoadResource::Node* resNode
+		    = gLoadResourceMgr->mountArchive(loadResourceArg);
+		JUT_ASSERTLINE(278, resNode != nullptr, "failed");
+		JKRArchive* archive = resNode->m_archive;
+		P2ASSERTLINE(
+		    279, archive != nullptr); // TODO: How is this one line afterwards?
+		m_screenKitagawa = new P2DScreen::Mgr_tuning();
+		m_screenKitagawa->set("world_map_kitagawa.blo", 0x1040000, archive);
+
+		const void* resData
+		    = JKRFileLoader::getGlbResource("world_map_kitagawa.bck", archive);
+		m_bckAnm1 = (J2DAnmTransform*)J2DAnmLoaderDataBase::load(resData);
+		m_bckAnm2 = (J2DAnmTransformKey*)J2DAnmLoaderDataBase::load(resData);
+		int i     = 0;
+		do {
+			m_screenKitagawa->search(getSerialTagName('Pland0', i))
+			    ->setAnimation(m_bckAnm2);
+			m_screenKitagawa->search(getSerialTagName('Plight0', i))
+			    ->setAnimation(m_bckAnm2);
+		} while (++i < 4);
+
+		_3C = (J2DAnmColorKey*)J2DAnmLoaderDataBase::load(
+		    JKRFileLoader::getGlbResource("world_map_kitagawa.bpk", archive));
+		m_screenKitagawa->setAnimation(_3C);
+		_40 = (J2DAnmTextureSRTKey*)J2DAnmLoaderDataBase::load(
+		    JKRFileLoader::getGlbResource("world_map_kitagawa.btk", archive));
+		m_screenKitagawa->setAnimation(_40);
+		_44 = (J2DAnmTextureSRTKey*)J2DAnmLoaderDataBase::load(
+		    JKRFileLoader::getGlbResource("world_map_kitagawa_02.btk",
+		                                  archive));
+		m_screenKitagawa->setAnimation(_44);
+		const char* worldMapIconsFileNames[2][3];
+		const char** worldMapIconFileNames = worldMapIconsFileNames[0];
+		worldMapIconsFileNames[0][0]       = "worldmap_icon.blo";
+		worldMapIconsFileNames[0][1]       = "worldmap_icon.bck";
+		worldMapIconsFileNames[0][2]       = "worldmap_icon.btp";
+		worldMapIconsFileNames[1][0]       = "worldmap_gicon.blo";
+		worldMapIconsFileNames[1][1]       = "worldmap_gicon.bck";
+		worldMapIconsFileNames[1][2]       = "worldmap_gicon.btp";
+		if (Game::playData->)
+
 		/*
 	stwu     r1, -0x260(r1)
 	mflr     r0
@@ -8106,18 +8257,19 @@ lbl_803F7AF8:
 } // namespace kh
 
 /*
+ * @reified
  * --INFO--
  * Address:	803F80F4
  * Size:	00000C
  */
-void efx2d::WorldMap::ArgDirScale::getName()
-{
-	/*
-	lis      r3, lbl_80498348@ha
-	addi     r3, r3, lbl_80498348@l
-	blr
-	*/
-}
+// void efx2d::WorldMap::ArgDirScale::getName()
+// {
+// 	/*
+// 	lis      r3, lbl_80498348@ha
+// 	addi     r3, r3, lbl_80498348@l
+// 	blr
+// 	*/
+// }
 
 /*
  * --INFO--

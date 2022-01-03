@@ -110,7 +110,7 @@ struct J2DPane {
 	J2DPane* getFirstChildPane();
 	J2DPane* getNextChildPane();
 	J2DPane* getParentPane();
-	JSUTree<J2DPane> getPaneTree();
+	JSUTree<J2DPane>* getPaneTree();
 
 	void initiate();
 	void initialize(J2DPane*, bool, ulonglong, const JGeometry::TBox2f&);

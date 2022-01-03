@@ -1,5 +1,5 @@
+#include "Game/gameStages.h"
 #include "types.h"
-
 /*
     Generated from dpostproc
 
@@ -782,7 +782,7 @@ lbl_801ADA28:
  * Address:	801ADA54
  * Size:	000088
  */
-void CourseInfo::getOtakaraNum(ID32&)
+int CourseInfo::getOtakaraNum(ID32&)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -839,7 +839,7 @@ lbl_801ADAC8:
  * Address:	801ADADC
  * Size:	000038
  */
-void CourseInfo::getOtakaraNum(int)
+int CourseInfo::getOtakaraNum(int)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -868,7 +868,7 @@ lbl_801ADB04:
  * Address:	801ADB14
  * Size:	00008C
  */
-void CourseInfo::getCaveIndex_FromID(ID32&)
+int CourseInfo::getCaveIndex_FromID(ID32&)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -922,7 +922,7 @@ lbl_801ADB7C:
  * Address:	801ADBA0
  * Size:	00009C
  */
-void CourseInfo::getCaveinfoFilename_FromID(ID32&)
+char* CourseInfo::getCaveinfoFilename_FromID(ID32&)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -982,7 +982,7 @@ lbl_801ADC24:
  * Address:	801ADC3C
  * Size:	00003C
  */
-void CourseInfo::getCaveID_FromIndex(int)
+ID32* CourseInfo::getCaveID_FromIndex(int)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1012,7 +1012,7 @@ lbl_801ADC68:
  * Address:	801ADC78
  * Size:	000008
  */
-void CourseInfo::getCaveNum(void)
+int CourseInfo::getCaveNum()
 {
 	/*
 	lwz      r3, 0x9c(r3)
@@ -1233,7 +1233,7 @@ lbl_801ADF20:
  * Address:	........
  * Size:	000008
  */
-void Stages::update(void)
+void Stages::update()
 {
 	// UNUSED FUNCTION
 }
@@ -1243,7 +1243,7 @@ void Stages::update(void)
  * Address:	801ADF3C
  * Size:	000070
  */
-void Stages::getCourseInfo(char*)
+CourseInfo* Stages::getCourseInfo(char*)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1290,7 +1290,7 @@ lbl_801ADF94:
  * Address:	801ADFAC
  * Size:	000074
  */
-void Stages::getCourseInfo(int)
+CourseInfo* Stages::getCourseInfo(int)
 {
 	/*
 	cmpwi    r4, 0

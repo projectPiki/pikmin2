@@ -20,6 +20,7 @@ struct CurrTriInfo;
 struct MoveInfo;
 struct RouteMgr;
 struct SeaMgr;
+struct WaterBox;
 // struct GenericObjectMgrReference {
 // 	GenericObjectMgr* m_genericObjectMgrPtr;
 // };
@@ -46,6 +47,8 @@ struct MapMgr : virtual public GenericObjectMgr {
 	virtual void drawCollision(Graphics&, Sys::Sphere&) = 0;  // _3C
 	virtual void doSimulation(float);                         // _40
 	virtual void doDirectDraw(Graphics&);                     // _44
+
+	WaterBox* findWater(Sys::Sphere&);
 
 	// _00: ptr to _0x24 (GenericObjectMgr)
 	// _04: vtable 1

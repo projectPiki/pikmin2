@@ -119,7 +119,7 @@ struct PartsView : public CNode {
 
 	MapUnit* m_mapUnit;           // _018
 	SysShape::Model* m_model;     // _01C
-	PSMatrix _20;                 // _020
+	Mtx _20;                      // _020
 	u32 _50;                      // _050
 	u32 _54;                      // _054
 	u32 _58;                      // _058
@@ -208,7 +208,7 @@ struct ObjectLayoutNode : public CNode {
 };
 
 struct RoomMapMgr : public MapMgr {
-	void getMinY(Vector3f&);
+	float getMinY(Vector3f&);
 	// void getStartPosition__Q24Game10RoomMapMgrFR10Vector3f i(void)
 	void getStartPosition(Vector3f&, int);
 	void nishimuraCreateRandomMap(MapUnitInterface*, int, Cave::FloorInfo*,

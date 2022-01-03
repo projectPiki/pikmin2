@@ -1,5 +1,7 @@
 #include "Dolphin/os.h"
 #include "Game/CPlate.h"
+#include "Game/Piki.h"
+#include "JSystem/JUT/JUTException.h"
 #include "types.h"
 
 /*
@@ -165,23 +167,14 @@ namespace Game {
  * Address:	80194FF4
  * Size:	000014
  */
-void CPlate::get(void*)
-{
-	/*
-	lwz      r3, 0xc0(r3)
-	slwi     r0, r4, 5
-	add      r3, r3, r0
-	lwz      r3, 0x18(r3)
-	blr
-	*/
-}
+Creature* CPlate::get(void* index) { return m_slots[(long)index].m_creature; }
 
 /*
  * --INFO--
  * Address:	80195008
  * Size:	00003C
  */
-void CPlate::getNext(void*)
+int CPlate::getNext(void* index)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -214,14 +207,7 @@ int CPlate::getStart() { return 0; }
  * Address:	8019504C
  * Size:	000008
  */
-int CPlate::getEnd()
-{
-	return m_slotCount;
-	/*
-	lwz      r3, 0xc8(r3)
-	blr
-	*/
-}
+int CPlate::getEnd() { return m_slotCount; }
 
 /*
  * --INFO--
@@ -245,6 +231,7 @@ void CPlate::updateShrink(void)
 }
 
 /*
+ * ct__
  * --INFO--
  * Address:	80195060
  * Size:	0001F0
@@ -268,7 +255,7 @@ CPlate::CPlate(int slotLimit)
 	_F4          = 0.0f;
 	_F8          = 0.0f;
 	_FC          = 0.0f;
-	_104         = 0;
+	_104         = nullptr;
 	_108         = 0;
 	_10C         = 0;
 	m_velocity.x = 0.0f;
@@ -421,19 +408,6 @@ CPlate::Slot::Slot(void)
 	_0C.x      = 0.0f;
 	_0C.y      = 0.0f;
 	_0C.z      = 0.0f;
-	/*
-	li       r0, 0
-	lfs      f0, lbl_80518EF4@sda21(r2)
-	stw      r0, 0x18(r3)
-	stw      r0, 0x1c(r3)
-	stfs     f0, 0(r3)
-	stfs     f0, 4(r3)
-	stfs     f0, 8(r3)
-	stfs     f0, 0xc(r3)
-	stfs     f0, 0x10(r3)
-	stfs     f0, 0x14(r3)
-	blr
-	*/
 }
 
 // /*
@@ -877,8 +851,12 @@ lbl_80195794:
  * Address:	801957B0
  * Size:	0000B8
  */
-void CPlate::changeFlower(Game::Creature*)
+void CPlate::changeFlower(Game::Creature* creature)
 {
+	P2ASSERTLINE(312, creature->isPiki());
+	_104[static_cast<Piki*>(creature)->m_pikminGrowth]++;
+	_104[(static_cast<Piki*>(creature)->m_pikminGrowth + 2) % 3]--;
+
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0

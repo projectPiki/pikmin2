@@ -26,7 +26,7 @@ typedef uint _GXAttrType;
 typedef uint _GXTexFmt;
 typedef uint _GXTexMapID;
 typedef uint _GXVtxFmt;
-typedef uint _GXVtxFmt;
+typedef uint _GXVtxAttrFmtList;
 typedef uint _GXCompCnt;
 typedef uint _GXCompType;
 
@@ -192,6 +192,10 @@ typedef enum _SDK_GXFogType {
 typedef struct _SDK_GXColor {
 	u8 r, g, b, a;
 } GXColor;
+
+typedef struct _SDK_GXColorS10 {
+	u16 r, g, b, a;
+} GXColorS10;
 
 typedef struct _SDK_GXFogAdjTable {
 	u16 _00[10];
@@ -406,6 +410,9 @@ void GXLoadTlut(GXTlutObj*, _GXTlut);
 void GXSetTlutRegionCallback(GXTlutRegionCallback*);
 
 GXTlutRegion* __GXDefaultTlutRegionCallback(_GXTlut);
+
+void GXLoadPosMtxImm(Mtx, int);
+void GXLoadNrmMtxImm(Mtx, int);
 
 #ifdef __cplusplus
 };

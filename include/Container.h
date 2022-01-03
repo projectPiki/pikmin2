@@ -12,22 +12,24 @@ struct GenericContainer : public CNode {
 	virtual int getEnd()           = 0; // _14
 };
 
-template <typename T> struct Container : public CNode {
+template <typename T> struct Container : public GenericContainer {
+	inline Container() { _18 = 0; }
+
 	virtual ~Container();
 
 	// Wrapper for ::get().
-	virtual T* getObject(int);
+	virtual void* getObject(void*);
 	// Gets the next occupied slot index after the given slot index.
-	virtual int getNext(int);
+	virtual int getNext(void*);
 	// Gets the first occupied slot index.
 	virtual int getStart();
 	// Gets the slot count.
 	virtual int getEnd();
 	// Gets the object at the given slot index (or null if not occupied).
-	virtual T* get(int);
+	virtual T* get(void*);
 	// Gets the object at the given slot index (or null if not occupied)
 	// (actually constrained to taking an int argument, instead of void*).
-	virtual T* getAt(void*);
+	virtual T* getAt(int);
 	// Gets the slot count.
 	virtual int getTo();
 

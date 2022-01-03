@@ -1,3 +1,4 @@
+#include "JSystem/JUT/JUTException.h"
 #include "Screen/Game2DMgr.h"
 #include "types.h"
 
@@ -150,6 +151,9 @@ namespace Screen {
  */
 void Game2DMgr::create()
 {
+	// TODO: Why is this so late in the file?!?
+	P2ASSERTLINE(486, gGame2DMgr == nullptr);
+	gGame2DMgr = new Game2DMgr();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -188,7 +192,11 @@ lbl_803FBF38:
  * Size:	000058
  */
 Game2DMgr::Game2DMgr()
+    : JKRDisposer()
+    , m_screenMgr(nullptr)
 {
+	m_screenMgr = newScreen::Mgr::create();
+	og::Lib2D::create();
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0

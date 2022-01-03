@@ -43,9 +43,9 @@ struct JSUMemoryInputStream : public JSUInputStream {
 
 	void setBuffer(const void*, long);
 
-	void* m_object; // _08
-	long m_length;  // _0C
-	int m_position; // _10
+	const void* m_object; // _08
+	long m_length;        // _0C
+	int m_position;       // _10
 };
 
 struct JSURandomInputStream : public JSUMemoryInputStream {

@@ -1,6 +1,8 @@
 #ifndef _GAME_AABBWATERBOX_H
 #define _GAME_AABBWATERBOX_H
 
+#include "types.h"
+
 struct Matrixf;
 template <typename T> struct Vector3;
 typedef Vector3<float> Vector3f;
@@ -36,6 +38,8 @@ struct WaterBox {
 	virtual void attachModel(struct J3DModelData*, Sys::MatTexAnimation*,
 	                         float); // _38
 	virtual void calcMatrix();       // _3C
+
+	u8 m_flags;
 };
 
 struct AABBWaterBox : public WaterBox {

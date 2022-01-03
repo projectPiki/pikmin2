@@ -3,7 +3,9 @@
 
 #include "types.h"
 
+struct J3DDrawMtxData;
 struct J3DJos32Tree;
+struct J3DVertexData;
 struct Vec;
 
 struct J3DShape {
@@ -45,6 +47,8 @@ struct J3DShape {
 	J3DJos32Tree* m_tree1; // _58
 	J3DJos32Tree* m_tree2; // _5C
 	s32* _60;              // _60
+
+	static u8* sOldVcdVatCmd;
 };
 
 struct J3DShapeMtx {
@@ -70,6 +74,20 @@ struct J3DShapeDraw {
 
 	u32 m_dlSize;            // _04
 	const u8* m_displayList; // _08
+};
+
+struct J3DShapeTable {
+	virtual ~J3DShapeTable(); // _00
+
+	void initShapeNodes(J3DDrawMtxData*, J3DVertexData*);
+	void sortVcdVatCmd();
+
+	// VTBL _00
+	ushort m_count;     // _04
+	J3DShape** m_items; // _08
+
+	// TODO: Are subsequent JUTNameTab* and J3DVertexData in J3DModelData also
+	// part of this?
 };
 
 #endif

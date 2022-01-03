@@ -1,5 +1,5 @@
 #include "JSystem/JUT/JUTException.h"
-#include "Game/PelletConfig.h"
+#include "Game/pelletConfig.h"
 #include "Dolphin/string.h"
 #include "PrimTagParm.h"
 

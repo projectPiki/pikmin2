@@ -58,6 +58,9 @@ struct DispMemberZukanItem;
 namespace Screen {
 struct SceneBase;
 
+/**
+ * @size{0x1C}
+ */
 struct Game2DMgr : public JKRDisposer {
 	enum GameOverTitle {};
 

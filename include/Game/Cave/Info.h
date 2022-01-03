@@ -59,7 +59,7 @@ namespace Cave {
 		virtual ~TekiInfo();
 		virtual void read(Stream&);
 
-		EEnemyTypeID m_enemyID;                             // _18
+		EnemyTypeID m_enemyID;                              // _18
 		int m_weight;                                       // _1C
 		BaseGen::Type m_type;                               // _20
 		DropMode m_dropMode;                                // _24

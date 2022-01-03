@@ -1,4 +1,7 @@
+#include "Game/Piki.h"
+#include "JSystem/JUT/JUTException.h"
 #include "types.h"
+#include "Game/PikiMgr.h"
 
 /*
     Generated from dpostproc
@@ -3458,8 +3461,9 @@ void PikiMgr::createModelCallback(SysShape::Model*)
  * Address:	8015EF54
  * Size:	000024
  */
-void PikiMgr::createModel(int, int)
+SysShape::Model* PikiMgr::createModel(int p1, int p2)
 {
+	return m_modelMgr->createModel(p1, p2);
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -3478,7 +3482,7 @@ void PikiMgr::createModel(int, int)
  * Address:	8015EF78
  * Size:	000008
  */
-u32 PikiMgr::createLeafModel(int, int) { return 0x0; }
+SysShape::Model* PikiMgr::createLeafModel(int, int) { return nullptr; }
 
 /*
  * --INFO--
@@ -4008,8 +4012,21 @@ lbl_8015F5C8:
  * Address:	8015F5F4
  * Size:	000058
  */
-void PikiMgr::setVsXlu(int, bool)
+void PikiMgr::setVsXlu(int p1, bool p2)
 {
+	if (p2) {
+		if (p1 == 0) {
+			m_flags[0] &= ~1;
+		} else {
+			m_flags[0] &= ~2;
+		}
+	} else {
+		if (p1 == 0) {
+			m_flags[0] |= 1;
+		} else {
+			m_flags[0] |= 2;
+		}
+	}
 	/*
 	clrlwi.  r0, r5, 0x18
 	beq      lbl_8015F624
@@ -4220,8 +4237,10 @@ void PikiMgr::setupSoundViewerAndBas(void) { }
  * Address:	8015F84C
  * Size:	000074
  */
-void PikiMgr::getColorTransportScale(int)
+int PikiMgr::getColorTransportScale(int color)
 {
+	P2ASSERTLINE(857, (-1 < color && color < 7));
+	return (color == Purple) ? 10 : 1;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -4329,19 +4348,16 @@ lbl_8015F90C:
 	*/
 }
 
-} // namespace Game
-
 /*
  * --INFO--
  * Address:	........
  * Size:	0002C0
  */
-void saveStorePikmins__Q24Game7PikiMgrFP23Condition<Game::Piki>(void)
+// void saveStorePikmins__Q24Game7PikiMgrFP23Condition<Game::Piki>(void)
+void PikiMgr::saveStorePikmins(Condition<Piki>*)
 {
 	// UNUSED FUNCTION
 }
-
-namespace Game {
 
 /*
  * --INFO--
@@ -4358,7 +4374,9 @@ void PikiMgr::getStorePikmin(int, int)
  * Address:	8015F968
  * Size:	00034C
  */
-void moveAllPikmins__Q24Game7PikiMgrFR10Vector3f fP23Condition<Game::Piki>(void)
+// void moveAllPikmins__Q24Game7PikiMgrFR10Vector3f
+// fP23Condition<Game::Piki>(void)
+void PikiMgr::moveAllPikmins(Vector3f&, float, Condition<Piki>*)
 {
 	/*
 	stwu     r1, -0x90(r1)
@@ -4602,7 +4620,7 @@ lbl_8015FC58:
  * Address:	8015FCB4
  * Size:	000298
  */
-void PikiMgr::forceEnterPikmins(unsigned char)
+void PikiMgr::forceEnterPikmins(uchar)
 {
 	/*
 	stwu     r1, -0x30(r1)
@@ -4799,7 +4817,7 @@ lbl_8015FF14:
  * Address:	8015FF4C
  * Size:	00060C
  */
-void PikiMgr::killDayEndPikmins(Game::PikiContainer&)
+void PikiMgr::killDayEndPikmins(PikiContainer&)
 {
 	/*
 	stwu     r1, -0x260(r1)
@@ -5861,7 +5879,7 @@ lbl_80160D20:
  * Address:	........
  * Size:	000290
  */
-void PikiMgr::saveFormationPikmins(Game::PikiContainer&)
+void PikiMgr::saveFormationPikmins(PikiContainer&)
 {
 	// UNUSED FUNCTION
 }
@@ -5871,7 +5889,7 @@ void PikiMgr::saveFormationPikmins(Game::PikiContainer&)
  * Address:	80160D3C
  * Size:	0002A8
  */
-void PikiMgr::saveAllPikmins(Game::PikiContainer&)
+void PikiMgr::saveAllPikmins(PikiContainer&)
 {
 	/*
 	stwu     r1, -0x1c0(r1)

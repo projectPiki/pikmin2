@@ -10,6 +10,7 @@
 
 struct Camera;
 struct Color4;
+struct Graphics;
 struct Matrixf;
 struct Stream;
 struct Viewport;
@@ -90,18 +91,59 @@ struct ShadowCylinder3 : public CylinderBase {
 
 // Size: 0x50
 struct ShadowMgr : public CNode {
-	virtual ~ShadowMgr();          // _00
-	virtual int getChildCount();   // _04
-	virtual void getSize();        // _08
-	virtual void getMax();         // _0C
-	virtual void getCreature(int); // _10
-	virtual void getFirst();       // _14
-	virtual void getNext(int);     // _18
-	virtual void isDone(int);      // _1C
-	virtual void write(Stream&);   // _20
-	virtual void read(Stream&);    // _24
+	virtual ~ShadowMgr();               // _00
+	virtual int getChildCount();        // _04
+	virtual int getSize();              // _08
+	virtual int getMax();               // _0C
+	virtual Creature* getCreature(int); // _10
+	virtual int getFirst();             // _14
+	virtual int getNext(int);           // _18
+	virtual bool isDone(int);           // _1C
+	virtual void write(Stream&);        // _20
+	virtual void read(Stream&);         // _24
+
+	void init();
+	void update();
+	void loadResource();
+	void readShadowParms(char*);
+
+	uint getShadowMaskType(int, int);
+	uint getShadowType(int, int);
+
+	void setShadowColor(Color4*);
+	void resetShadowColor();
+
+	void setViewport(Viewport*, int);
+	void drawShadowOn();
+	void drawShadowOff();
+	void draw(Graphics&);
+	void draw(Graphics&, int);
+
+	void killAll();
 
 	void createShadow(Creature*);
+	void addShadow(Creature*);
+	void delShadow(Creature*);
+	void killShadow(Creature*);
+
+	void addHeadShadow(Creature*);
+
+	void addNormalShadow(Creature*);
+	void delNormalShadow(Creature*);
+	void killNormalShadow(Creature*);
+	bool isDrawNormalShadow(ShadowNode*, int);
+
+	void addJointShadow(Creature*);
+	void delJointShadow(Creature*);
+	void killJointShadow(Creature*);
+	bool isDrawJointShadow(JointShadowRootNode*, int);
+
+	void addHeadNormalShadow(Creature*);
+	void addHeadJointShadow(Creature*);
+
+	void setJointShadowRootNode(JointShadowRootNode*);
+
+	void setForceVisible(Creature*, bool);
 
 	// CNode _00
 	int _18;                  // _18

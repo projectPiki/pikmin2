@@ -2,12 +2,16 @@
 #define _GAME_ENEMYMGRBASE_H
 
 #include "Container.h"
+#include "Game/EnemyStone.h"
+#include "Game/enemyInfo.h"
 #include "GenericObjectMgr.h"
 
+struct CollPartFactory;
 struct J3DModelData;
 struct JKRArchive;
 
 namespace SysShape {
+struct AnimMgr;
 struct Model;
 } // namespace SysShape
 
@@ -16,6 +20,7 @@ struct CreatureKillArg;
 struct EnemyBase;
 struct EnemyBirthArg;
 struct EnemyGeneratorBase;
+struct EnemyParmsBase;
 
 struct IEnemyMgrBase : public GenericObjectMgr, public GenericContainer {
 	// vtable 2 (GenericContainer + self)
@@ -23,6 +28,8 @@ struct IEnemyMgrBase : public GenericObjectMgr, public GenericContainer {
 };
 
 struct EnemyMgrBase : public IEnemyMgrBase {
+	EnemyMgrBase(int, uchar);
+
 	// vtable 1 (GenericObjectMgr)
 	virtual void doAnimation();           // _00
 	virtual void doEntry();               // _04
@@ -56,23 +63,37 @@ struct EnemyMgrBase : public IEnemyMgrBase {
 	{
 		return false;
 	}
-	virtual void createObj(int)   = 0;       // _60
-	virtual EnemyBase* getEnemy() = 0;       // _64
-	virtual void doAlloc();                  // _68
-	virtual void getEnemyTypeID();           // _6C
-	virtual SysShape::Model* createModel();  // _70
-	virtual void initParms();                // _74
-	virtual void loadResource();             // _78
-	virtual void initObjects();              // _7C
-	virtual void initStoneSetting();         // _80
-	virtual void loadModelData(JKRArchive*); // _84
-	virtual void loadModelData();            // _88
-	virtual void loadAnimData();             // _8C
-	virtual void loadTexData();              // _90
-	virtual void doLoadBmd(void*);           // _94
-	virtual void doLoadBdl(void*);           // _98
-	virtual void initGenerator();            // _9C
+	virtual void createObj(int)   = 0;                  // _60
+	virtual EnemyBase* getEnemy() = 0;                  // _64
+	virtual void doAlloc();                             // _68
+	virtual EnemyTypeID::EEnemyTypeID getEnemyTypeID(); // _6C
+	virtual SysShape::Model* createModel();             // _70
+	virtual void initParms();                           // _74
+	virtual void loadResource();                        // _78
+	virtual void initObjects();                         // _7C
+	virtual void initStoneSetting();                    // _80
+	virtual void loadModelData(JKRArchive*);            // _84
+	virtual void loadModelData();                       // _88
+	virtual void loadAnimData();                        // _8C
+	virtual void loadTexData();                         // _90
+	virtual void doLoadBmd(void*);                      // _94
+	virtual void doLoadBdl(void*);                      // _98
+	virtual void initGenerator();                       // _9C
+
+	void init(EnemyParmsBase*);
+	bool isValidEnemyTypeID();
+
+	J3DModelData* m_modelData;          // _1C
+	SysShape::AnimMgr* m_animMgr;       // _20
+	uchar m_modelType;                  // _24
+	CollPartFactory* m_collPartFactory; // _28
+	int m_objLimit;                     // _2C
+	int m_objCount;                     // _30
+	EnemyParmsBase* m_parms;            // _34
+	EnemyGeneratorBase* m_generator;    // _38
+	EnemyStone::Info m_stoneInfo;       // _3C
 };
+extern JKRArchive* gParmArc;
 } // namespace Game
 
 #endif

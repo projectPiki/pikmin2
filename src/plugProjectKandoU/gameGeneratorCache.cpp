@@ -1,5 +1,6 @@
 #include "Dolphin/stl.h"
 #include "Game/gameGeneratorCache.h"
+#include "Game/gameStages.h"
 #include "JSystem/JUT/JUTException.h"
 #include "stream.h"
 #include "types.h"
@@ -198,14 +199,14 @@ GeneratorCache::GeneratorCache()
     , _3C(-1)
     , m_generator()
 {
-	_00._10 = nullptr;
-	_00._0C = nullptr;
-	_00._08 = nullptr;
-	_00._04 = nullptr;
-	_3C._10 = nullptr;
-	_3C._0C = nullptr;
-	_3C._08 = nullptr;
-	_3C._04 = nullptr;
+	_00.m_child  = nullptr;
+	_00.m_parent = nullptr;
+	_00.m_prev   = nullptr;
+	_00.m_next   = nullptr;
+	_3C.m_child  = nullptr;
+	_3C.m_parent = nullptr;
+	_3C.m_prev   = nullptr;
+	_3C.m_next   = nullptr;
 	createHeap();
 	generatorCache = this;
 	_78            = nullptr;
@@ -321,10 +322,10 @@ GeneratorCache::~GeneratorCache()
  */
 void GeneratorCache::clearGeneratorList()
 {
-	m_generator._10 = nullptr;
-	m_generator._0C = nullptr;
-	m_generator._08 = nullptr;
-	m_generator._04 = nullptr;
+	m_generator.m_child  = nullptr;
+	m_generator.m_parent = nullptr;
+	m_generator.m_prev   = nullptr;
+	m_generator.m_next   = nullptr;
 }
 
 /*
@@ -336,7 +337,7 @@ void GeneratorCache::addGenerator(Game::Generator* newGenerator)
 {
 	int count = 0;
 	for (Generator* gen = getFirstGenerator(); gen != nullptr;
-	     gen            = (Generator*)gen->_04) {
+	     gen            = (Generator*)gen->m_next) {
 		if (gen->_AC == 0) {
 			count++;
 		}
@@ -355,7 +356,7 @@ void GeneratorCache::addGenerator(Game::Generator* newGenerator)
  */
 Generator* GeneratorCache::getFirstGenerator()
 {
-	return (Generator*)m_generator._10;
+	return (Generator*)m_generator.m_child;
 }
 
 /*
@@ -376,8 +377,8 @@ void GeneratorCache::findRamGenerator(int)
 int GeneratorCache::getTotalMePikmins()
 {
 	int count = 0;
-	for (CourseCache* cache = (CourseCache*)_00._10; cache != nullptr;
-	     cache              = (CourseCache*)cache->_04) {
+	for (CourseCache* cache = (CourseCache*)_00.m_child; cache != nullptr;
+	     cache              = (CourseCache*)cache->m_next) {
 		count += cache->m_pikiheadCount;
 	}
 	return count;
@@ -406,8 +407,8 @@ lbl_801F1B38:
 int GeneratorCache::getColorMePikmins(int pikminType)
 {
 	int count = 0;
-	for (CourseCache* cache = (CourseCache*)_00._10; cache != nullptr;
-	     cache              = (CourseCache*)cache->_04) {
+	for (CourseCache* cache = (CourseCache*)_00.m_child; cache != nullptr;
+	     cache              = (CourseCache*)cache->m_next) {
 		count += cache->getColorMePikmins(m_heapBuffer, pikminType);
 	}
 	return count;
@@ -495,7 +496,7 @@ void GeneratorCache::createHeap(void)
 	m_heapSize   = GENERATOR_CACHE_HEAP_SIZE;
 	m_freeOffset = 0;
 	m_freeSize   = m_heapSize;
-	for (int i = 0; i < Game::stageList->m_courseCount; i++) {
+	for (int i = 0; i < stageList->m_courseCount; i++) {
 		_3C.add(new CourseCache(i));
 	}
 
@@ -567,8 +568,8 @@ CourseCache* GeneratorCache::findCache(Game::CourseCache& haystack,
                                        int courseIndex)
 {
 	// TODO: Perhaps one check is checking the child before assigning?
-	for (CourseCache* cache = (CourseCache*)haystack._10; cache != nullptr;
-	     cache              = (CourseCache*)cache->_04) {
+	for (CourseCache* cache = (CourseCache*)haystack.m_child; cache != nullptr;
+	     cache              = (CourseCache*)cache->m_next) {
 		if (cache == nullptr) {
 			return nullptr;
 		}
@@ -1022,7 +1023,7 @@ lbl_801F218C:
 void GeneratorCache::updateUseList()
 {
 	for (Generator* gen = getFirstGenerator(); gen != nullptr;
-	     gen            = (Generator*)gen->_04) {
+	     gen            = (Generator*)gen->m_next) {
 		if (gen->_AC == 0) {
 			gen->updateUseList();
 		}
@@ -1064,51 +1065,13 @@ lbl_801F220C:
 void GeneratorCache::createNumberGenerators(void)
 {
 	for (Generator* gen = getFirstGenerator(); gen != nullptr;
-	     gen            = (Generator*)gen->_04) {
+	     gen            = (Generator*)gen->m_next) {
 		if (gen->_AC == 0 && (gen->_5C & 4U) != 0) {
 			Generator::ramMode = 1;
 			gen->generate();
 			Generator::ramMode = 0;
 		}
 	}
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	stw      r31, 0x1c(r1)
-	li       r31, 0
-	stw      r30, 0x18(r1)
-	li       r30, 1
-	stw      r29, 0x14(r1)
-	lwz      r29, 0x9c(r3)
-	b        lbl_801F227C
-
-lbl_801F2250:
-	lbz      r0, 0xac(r29)
-	cmplwi   r0, 0
-	bne      lbl_801F2278
-	lhz      r0, 0x5c(r29)
-	rlwinm.  r0, r0, 0, 0x1d, 0x1d
-	beq      lbl_801F2278
-	stb      r30, ramMode__Q24Game9Generator@sda21(r13)
-	mr       r3, r29
-	bl       generate__Q24Game9GeneratorFv
-	stb      r31, ramMode__Q24Game9Generator@sda21(r13)
-
-lbl_801F2278:
-	lwz      r29, 4(r29)
-
-lbl_801F227C:
-	cmplwi   r29, 0
-	bne      lbl_801F2250
-	lwz      r0, 0x24(r1)
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
 }
 
 /*
@@ -1216,8 +1179,8 @@ lbl_801F2378:
 void GeneratorCache::endSave()
 {
 	P2ASSERTLINE(554, _78 != nullptr);
-	CourseCache* cache = (CourseCache*)_3C._10;
-	for (; cache != nullptr; cache = (CourseCache*)cache->_04) {
+	CourseCache* cache = (CourseCache*)_3C.m_child;
+	for (; cache != nullptr; cache = (CourseCache*)cache->m_next) {
 		if (cache == nullptr) {
 			break;
 		}
@@ -1760,6 +1723,7 @@ CourseCache::CourseCache(int courseIndex)
 }
 
 /*
+ * beginSave__Q24Game11CourseCacheFi
  * --INFO--
  * Address:	801F29D0
  * Size:	000028
@@ -1774,18 +1738,6 @@ void CourseCache::beginSave(int offset)
 	m_creatureSize   = 0;
 	m_pikiheadCount  = 0;
 	m_pikiheadSize   = 0;
-	/*
-	stw      r4, 0x1c(r3)
-	li       r0, 0
-	stw      r0, 0x20(r3)
-	stw      r0, 0x24(r3)
-	stw      r0, 0x28(r3)
-	stw      r0, 0x2c(r3)
-	stw      r0, 0x30(r3)
-	stw      r0, 0x34(r3)
-	stw      r0, 0x38(r3)
-	blr
-	*/
 }
 
 /*
@@ -2218,6 +2170,7 @@ lbl_801F2EA4:
 }
 
 /*
+ * write__Q24Game11CourseCacheFR6Stream
  * --INFO--
  * Address:	801F2EDC
  * Size:	0001D4
@@ -2266,128 +2219,10 @@ void CourseCache::write(Stream& output)
 	output.textWriteText("# pikiheadSize\r\n");
 
 	output.textEndGroup();
-	/*
-	stwu     r1, -0x120(r1)
-	mflr     r0
-	stw      r0, 0x124(r1)
-	stw      r31, 0x11c(r1)
-	stw      r30, 0x118(r1)
-	mr       r30, r4
-	stw      r29, 0x114(r1)
-	mr       r29, r3
-	lis      r3, lbl_80481480@ha
-	addi     r31, r3, lbl_80481480@l
-	lwz      r5, 0x18(r29)
-	addi     r3, r1, 8
-	addi     r4, r31, 0x164
-	crclr    6
-	bl       sprintf
-	mr       r3, r30
-	addi     r4, r1, 8
-	bl       textBeginGroup__6StreamFPc
-	lwz      r4, 0x414(r30)
-	mr       r3, r30
-	bl       textWriteTab__6StreamFi
-	lwz      r4, 0x18(r29)
-	mr       r3, r30
-	bl       writeInt__6StreamFi
-	mr       r3, r30
-	addi     r4, r31, 0x174
-	crclr    6
-	bl       textWriteText__6StreamFPce
-	lwz      r4, 0x414(r30)
-	mr       r3, r30
-	bl       textWriteTab__6StreamFi
-	lwz      r4, 0x1c(r29)
-	mr       r3, r30
-	bl       writeInt__6StreamFi
-	mr       r3, r30
-	addi     r4, r31, 0x184
-	crclr    6
-	bl       textWriteText__6StreamFPce
-	lwz      r4, 0x414(r30)
-	mr       r3, r30
-	bl       textWriteTab__6StreamFi
-	lwz      r4, 0x20(r29)
-	mr       r3, r30
-	bl       writeInt__6StreamFi
-	mr       r3, r30
-	addi     r4, r31, 0x190
-	crclr    6
-	bl       textWriteText__6StreamFPce
-	lwz      r4, 0x414(r30)
-	mr       r3, r30
-	bl       textWriteTab__6StreamFi
-	lwz      r4, 0x24(r29)
-	mr       r3, r30
-	bl       writeInt__6StreamFi
-	mr       r3, r30
-	addi     r4, r31, 0x19c
-	crclr    6
-	bl       textWriteText__6StreamFPce
-	lwz      r4, 0x414(r30)
-	mr       r3, r30
-	bl       textWriteTab__6StreamFi
-	lwz      r4, 0x28(r29)
-	mr       r3, r30
-	bl       writeInt__6StreamFi
-	mr       r3, r30
-	addi     r4, r31, 0x1b0
-	crclr    6
-	bl       textWriteText__6StreamFPce
-	lwz      r4, 0x414(r30)
-	mr       r3, r30
-	bl       textWriteTab__6StreamFi
-	lwz      r4, 0x2c(r29)
-	mr       r3, r30
-	bl       writeInt__6StreamFi
-	mr       r3, r30
-	addi     r4, r31, 0x1c4
-	crclr    6
-	bl       textWriteText__6StreamFPce
-	lwz      r4, 0x414(r30)
-	mr       r3, r30
-	bl       textWriteTab__6StreamFi
-	lwz      r4, 0x30(r29)
-	mr       r3, r30
-	bl       writeInt__6StreamFi
-	mr       r3, r30
-	addi     r4, r31, 0x1d8
-	crclr    6
-	bl       textWriteText__6StreamFPce
-	lwz      r4, 0x414(r30)
-	mr       r3, r30
-	bl       textWriteTab__6StreamFi
-	lwz      r4, 0x34(r29)
-	mr       r3, r30
-	bl       writeInt__6StreamFi
-	mr       r3, r30
-	addi     r4, r31, 0x1ec
-	crclr    6
-	bl       textWriteText__6StreamFPce
-	lwz      r4, 0x414(r30)
-	mr       r3, r30
-	bl       textWriteTab__6StreamFi
-	lwz      r4, 0x38(r29)
-	mr       r3, r30
-	bl       writeInt__6StreamFi
-	mr       r3, r30
-	addi     r4, r31, 0x200
-	crclr    6
-	bl       textWriteText__6StreamFPce
-	mr       r3, r30
-	bl       textEndGroup__6StreamFv
-	lwz      r0, 0x124(r1)
-	lwz      r31, 0x11c(r1)
-	lwz      r30, 0x118(r1)
-	lwz      r29, 0x114(r1)
-	mtlr     r0
-	addi     r1, r1, 0x120
-	blr
-	*/
 }
 
 /*
+ * read__Q24Game11CourseCacheFR6Stream
  * --INFO--
  * Address:	801F30B0
  * Size:	0000BC
@@ -2409,54 +2244,5 @@ void CourseCache::read(Stream& input)
 	m_creatureSize   = input.readInt();
 	m_pikiheadCount  = input.readInt();
 	m_pikiheadSize   = input.readInt();
-	/*
-	stwu     r1, -0x110(r1)
-	mflr     r0
-	stw      r0, 0x114(r1)
-	stw      r31, 0x10c(r1)
-	mr       r31, r4
-	stw      r30, 0x108(r1)
-	mr       r30, r3
-	lis      r3, lbl_804815E4@ha
-	addi     r0, r3, lbl_804815E4@l
-	lwz      r5, 0x18(r30)
-	addi     r3, r1, 8
-	mr       r4, r0
-	crclr    6
-	bl       sprintf
-	mr       r3, r31
-	bl       readInt__6StreamFv
-	stw      r3, 0x18(r30)
-	mr       r3, r31
-	bl       readInt__6StreamFv
-	stw      r3, 0x1c(r30)
-	mr       r3, r31
-	bl       readInt__6StreamFv
-	stw      r3, 0x20(r30)
-	mr       r3, r31
-	bl       readInt__6StreamFv
-	stw      r3, 0x24(r30)
-	mr       r3, r31
-	bl       readInt__6StreamFv
-	stw      r3, 0x28(r30)
-	mr       r3, r31
-	bl       readInt__6StreamFv
-	stw      r3, 0x2c(r30)
-	mr       r3, r31
-	bl       readInt__6StreamFv
-	stw      r3, 0x30(r30)
-	mr       r3, r31
-	bl       readInt__6StreamFv
-	stw      r3, 0x34(r30)
-	mr       r3, r31
-	bl       readInt__6StreamFv
-	stw      r3, 0x38(r30)
-	lwz      r0, 0x114(r1)
-	lwz      r31, 0x10c(r1)
-	lwz      r30, 0x108(r1)
-	mtlr     r0
-	addi     r1, r1, 0x110
-	blr
-	*/
 }
 } // namespace Game

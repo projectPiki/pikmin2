@@ -1,5 +1,5 @@
+#include "Game/rumble.h"
 #include "types.h"
-
 /*
     Generated from dpostproc
 
@@ -111,27 +111,9 @@ namespace Game {
  * Size:	000048
  */
 RumbleMgr::RumbleMgr()
+    : CNode()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	bl       __ct__5CNodeFv
-	lis      r3, __vt__Q24Game9RumbleMgr@ha
-	lis      r4, lbl_80484878@ha
-	addi     r0, r3, __vt__Q24Game9RumbleMgr@l
-	mr       r3, r31
-	stw      r0, 0(r31)
-	addi     r0, r4, lbl_80484878@l
-	stw      r0, 0x14(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_name = "RumbleMgr";
 }
 
 /*
@@ -785,7 +767,7 @@ lbl_80253ADC:
  * Address:	80253AF8
  * Size:	00007C
  */
-void RumbleMgr::isRumbleUpdateOn()
+bool RumbleMgr::isRumbleUpdateOn()
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -871,7 +853,7 @@ lbl_80253BC0:
  * Address:	80253BD0
  * Size:	000068
  */
-void RumbleMgr::isStartAndEnd(int*, int)
+bool RumbleMgr::isStartAndEnd(int*, int)
 {
 	/*
 	cmpwi    r5, 2

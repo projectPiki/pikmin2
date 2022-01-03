@@ -18,10 +18,20 @@ struct FindCollPartArg;
 struct CollPart : public CNode {
 	CollPart();
 	CollPart(SysShape::MtxObject*);
-	virtual ~CollPart();
-	void constructor();
-	void init(SysShape::MtxObject*);
 
+	virtual ~CollPart();                  // _00
+	virtual int getChildCount();          // _04
+	virtual bool isMouth();               // _08
+	virtual void draw(Graphics&);         // _0C
+	virtual void constructor();           // _10
+	virtual void doAnimation();           // _14
+	virtual void doEntry();               // _18
+	virtual void doSetView(ulong);        // _1C
+	virtual void doViewCalc();            // _20
+	virtual void doSimulation(float);     // _24
+	virtual void doDirectDraw(Graphics&); // _28
+
+	void init(SysShape::MtxObject*);
 	void addChild(CollPart*);
 	void attachModel(SysShape::MtxObject*);
 	void calcStickGlobal(Vector3f&, Vector3f&);
@@ -32,22 +42,13 @@ struct CollPart : public CNode {
 	                         IDelegate3<CollPart*, CollPart*, Vector3f&>*);
 	void clone(SysShape::MtxObject*, CollPartMgr*);
 	void collide(CollPart*, Vector3f&);
-	void doAnimation();
-	void doDirectDraw(Graphics&);
-	void doEntry();
-	void doSetView(ulong);
-	void doSimulation(float);
-	void doViewCalc();
-	virtual void draw(Graphics&);
 	void getAllCollPartToArray(CollPart**, int, int&);
 	CollPart* getChild();
-	virtual int getChildCount();
 	CollPart* getCollPart(ulong);
 	CollPart* getNext();
 	void getSphere(Sys::Sphere&);
 	void getTube(Sys::Tube&);
 	bool isLeaf();
-	virtual bool isMouth();
 	bool isPrim();
 	bool isSphere();
 	bool isStickable();
@@ -79,10 +80,12 @@ struct CollPartMgr : public MonoObjectMgr<CollPart> {
 
 struct MouthCollPart : public CollPart {
 	MouthCollPart();
-	virtual ~MouthCollPart();
+
+	virtual ~MouthCollPart(); // _00
+	virtual bool isMouth();   // _08
+
 	void copyMatrixTo(Matrixf&);
 	void getPosition(Vector3f&);
-	virtual bool isMouth();
 
 	CollPart* _64;        // _64
 	SysShape::Joint* _68; // _68
@@ -102,16 +105,24 @@ struct MouthSlots {
 
 struct AgeCollPart : public CollPart {
 	AgeCollPart(SysShape::Model*);
-	virtual ~AgeCollPart();
-	virtual void draw(Graphics&);
+
+	virtual ~AgeCollPart();       // _00
+	virtual void draw(Graphics&); // _0C
 
 	u8 _64; // _64
 };
 
 struct CollPartFactory : CollPart {
-	virtual ~CollPartFactory();
-	void load(char*);
-	void load(JKRFileLoader*, char*);
+	inline CollPartFactory(Stream& input)
+	    : CollPart()
+	{
+		read(input, false);
+	}
+
+	virtual ~CollPartFactory(); // _00
+
+	static CollPartFactory* load(char*);
+	static CollPartFactory* load(JKRFileLoader*, char*);
 	void createInstance(SysShape::MtxObject*, CollPartMgr*);
 };
 

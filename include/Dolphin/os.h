@@ -117,6 +117,8 @@ void LCFlushQueue(void);
 
 #define LCGetBase() ((void*)LC_BASE)
 
+ulonglong OSGetTime();
+
 #ifdef __cplusplus
 };
 #endif // ifdef __cplusplus

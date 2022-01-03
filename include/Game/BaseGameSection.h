@@ -3,6 +3,7 @@
 
 #include "DvdThreadCommand.h"
 #include "Game/BaseHIOSection.h"
+#include "Game/PikiContainer.h"
 #include "IDelegate.h"
 #include "Vector3.h"
 #include "Rect.h"
@@ -28,9 +29,6 @@ struct Mgr;
 } // namespace TreasureLight
 
 namespace Game {
-struct PikiContainer {
-};
-
 namespace ItemCave {
 	struct Item;
 } // namespace ItemCave

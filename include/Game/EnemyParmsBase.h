@@ -67,6 +67,8 @@ struct EnemyParmsBase : public CreatureParms {
 		Parm<int> m_ip07;
 	};
 
+	EnemyParmsBase();
+
 	bool loadSettingFile(JKRArchive* archive, char* name);
 	void setDebugParm(u32);
 	void resetDebugParm(u32);

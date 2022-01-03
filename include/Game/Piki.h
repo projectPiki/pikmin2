@@ -54,6 +54,7 @@ typedef enum EPikiColor {
 	White   = 4,
 	Bulbmin = 5,
 	Carrot  = 6,
+	PikiColorCount,
 } EPikiColor;
 
 typedef enum EPikiHappa {
