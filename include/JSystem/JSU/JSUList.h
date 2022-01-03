@@ -1,9 +1,20 @@
-#ifndef _JSYSTEM_JSU_JSUPTRLIST_H
-#define _JSYSTEM_JSU_JSUPTRLIST_H
+#ifndef _JSYSTEM_JSU_JSULIST_H
+#define _JSYSTEM_JSU_JSULIST_H
 
 #include "types.h"
 
-struct JSUPtrLink;
+typedef struct JSUPtrList;
+
+// Size: 0x10
+struct JSUPtrLink {
+	JSUPtrLink(void*);
+	~JSUPtrLink();
+
+	void* m_value;      // _00
+	JSUPtrList* m_list; // _04
+	JSUPtrLink* m_prev; // _08
+	JSUPtrLink* m_next; // _0C
+};
 
 // Size: 0xC
 struct JSUPtrList {
@@ -30,11 +41,14 @@ template <typename T> struct JSUList : public JSUPtrList {
 	inline T* getTail() { return m_tail; };
 
 	JSUList();
+};
 
-	JSUList(bool thing)
-	    : JSUPtrList(thing)
-	{
-	}
+template <typename T> struct JSULink : public JSUPtrLink {
+	inline T* getList() { return m_list; }
+	inline T* getPrev() { return m_prev; }
+	inline T* getNext() { return m_next; };
+
+	JSULink();
 };
 
 #endif

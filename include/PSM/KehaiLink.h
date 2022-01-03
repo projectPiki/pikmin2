@@ -1,7 +1,7 @@
 #ifndef _PSM_KEHAILINK_H
 #define _PSM_KEHAILINK_H
 
-#include "JSystem/JSU/JSUPtrLink.h"
+#include "JSystem/JSU/JSUList.h"
 
 namespace PSM {
 struct KehaiLink : public JSUPtrLink {

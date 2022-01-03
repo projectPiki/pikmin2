@@ -2,7 +2,7 @@
 #define _JSYSTEM_JKR_JKRFILELOADER_H
 
 #include "JSystem/JKR/JKRHeap.h"
-#include "JSystem/JSU/JSUPtrLink.h"
+#include "JSystem/JSU/JSUList.h"
 
 struct JKRArchive;
 struct JKRFileLoader : public JKRDisposer {

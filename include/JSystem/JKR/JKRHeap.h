@@ -4,8 +4,7 @@
 #include "types.h"
 #include "Dolphin/os.h"
 #include "JSystem/JKR/JKRDisposer.h"
-#include "JSystem/JSU/JSUPtrLink.h"
-#include "JSystem/JSU/JSUPtrList.h"
+#include "JSystem/JSU/JSUList.h"
 
 typedef void JKRHeapErrorHandler(void*, ulong, int);
 
