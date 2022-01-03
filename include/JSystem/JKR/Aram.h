@@ -4,7 +4,7 @@
 #include "JSystem/JKR/JKRArchive.h"
 #include "JSystem/JKR/JKRThread.h"
 #include "JSystem/JKR/JKRDvdRipper.h"
-#include "JSystem/JSU/JSUPtrLink.h"
+#include "JSystem/JSU/JSUList.h"
 #include "types.h"
 
 struct JKRDvdFile;

@@ -1,8 +1,7 @@
 #ifndef _JSYSTEM_JSU_JSUTREE_H
 #define _JSYSTEM_JSU_JSUTREE_H
 
-#include "JSystem/JSU/JSUPtrLink.h"
-#include "JSystem/JSU/JSUPtrList.h"
+#include "JSystem/JSU/JSUList.h"
 
 template <typename T> struct JSUTree {
 	inline JSUTree(void* owner)

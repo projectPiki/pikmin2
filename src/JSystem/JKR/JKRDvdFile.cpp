@@ -1,7 +1,7 @@
 #include "types.h"
 #include "Dolphin/dvd.h"
 #include "JSystem/JKR/JKRFile.h"
-#include "JSystem/JSU/JSUPtrList.h"
+#include "JSystem/JSU/JSUList.h"
 
 /*
     Generated from dpostproc

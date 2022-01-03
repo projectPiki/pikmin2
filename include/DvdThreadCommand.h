@@ -1,7 +1,7 @@
 #ifndef _DVDTHREADCOMMAND_H
 #define _DVDTHREADCOMMAND_H
 
-#include "JSystem/JSU/JSUPtrLink.h"
+#include "JSystem/JSU/JSUList.h"
 #include "types.h"
 
 struct JKRArchive;

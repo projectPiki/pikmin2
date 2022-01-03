@@ -2,7 +2,7 @@
 #define _PSM_OBJBASE_H
 
 #include "JSystem/JKR/JKRDisposer.h"
-#include "JSystem/JSU/JSUPtrLink.h"
+#include "JSystem/JSU/JSUList.h"
 
 namespace PSM {
 #pragma enumalwaysint off
