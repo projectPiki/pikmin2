@@ -25,8 +25,7 @@ struct JSUPtrList {
 
 // Something fishy here. JSULists can use JSUPtrList functions.
 // They even use its constructor??? (see _sinit_JKRThread_cpp)
-template <typename T> class JSUList : public JSUPtrList {
-public:
+template <typename T> struct JSUList : public JSUPtrList {
 	inline T* getHead() { return m_head; }
 	inline T* getTail() { return m_tail; };
 
