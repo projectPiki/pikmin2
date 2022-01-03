@@ -23,7 +23,7 @@ JKRDisposer::JKRDisposer()
 {
 	m_heap = JKRHeap::findFromRoot(this);
 	if (m_heap) {
-		m_heap->_5C.append(&m_link);
+		m_heap->m_DisposerList.append(&m_link);
 	}
 }
 
@@ -35,6 +35,6 @@ JKRDisposer::JKRDisposer()
 JKRDisposer::~JKRDisposer()
 {
 	if (m_heap) {
-		m_heap->_5C.remove(&m_link);
+		m_heap->m_DisposerList.remove(&m_link);
 	}
 }

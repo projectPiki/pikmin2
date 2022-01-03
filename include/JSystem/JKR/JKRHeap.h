@@ -95,18 +95,18 @@ struct JKRHeap : public JKRDisposer {
 	static void state_dumpDifference(const TState&, const TState&);
 	void state_dump(const TState*) const;
 
-	OSMutexObject m_mutex; // _18
-	void* m_startAddress;  // _30
-	void* m_endAddress;    // _34
-	ulong m_heapSize;      // _38
-	u8 m_fillFlag;         // _3C
-	u8 m_fillCheckFlag;    // _3D
-	u8 _3E[2];             // _3E
-	JSUPtrList _40;        // _40
-	JSUPtrLink _4C;        // _4C
-	JSUPtrList _5C;        // _5C
-	bool _68;              // _68
-	u8 _69;                // _69
+	OSMutexObject m_mutex;               // _18
+	void* m_startAddress;                // _30
+	void* m_endAddress;                  // _34
+	ulong m_heapSize;                    // _38
+	u8 m_fillFlag;                       // _3C
+	u8 m_fillCheckFlag;                  // _3D
+	u8 _3E[2];                           // _3E
+	JSUPtrList _40;                      // _40
+	JSUPtrLink _4C;                      // _4C
+	JSUList<JKRDisposer> m_DisposerList; // _5C
+	bool _68;                            // _68
+	u8 _69;                              // _69
 
 	static u8 sDefaultFillFlag;
 	static u8 sDefaultFillCheckFlag;
