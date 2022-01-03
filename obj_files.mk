@@ -12,17 +12,17 @@ JSYSTEM:=\
 	$(BUILD_DIR)/src/JSystem/data.o\
 	$(BUILD_DIR)/asm/JSystem/processor.o\
 	$(BUILD_DIR)/asm/JSystem/control.o\
-	$(BUILD_DIR)/asm/JSystem/stb/stb-data-parse.o\
+	$(BUILD_DIR)/src/JSystem/stb/stb-data-parse.o\
 	$(BUILD_DIR)/asm/JSystem/functionvalue.o\
 	$(BUILD_DIR)/asm/JSystem/fvb/fvb.o\
-	$(BUILD_DIR)/asm/JSystem/fvb/fvb-data.o\
-	$(BUILD_DIR)/asm/JSystem/fvb/fvb-data-parse.o\
+	$(BUILD_DIR)/src/JSystem/fvb/fvb-data.o\
+	$(BUILD_DIR)/src/JSystem/fvb/fvb-data-parse.o\
 	$(BUILD_DIR)/asm/JSystem/jstudio/jstudio-control.o\
 	$(BUILD_DIR)/asm/JSystem/jstudio/jstudio-data.o\
 	$(BUILD_DIR)/asm/JSystem/jstudio/jstudio-object.o\
 	$(BUILD_DIR)/asm/JSystem/object/object-id.o\
 	$(BUILD_DIR)/asm/JSystem/stb/stb.o\
-	$(BUILD_DIR)/asm/JSystem/stb/stb-data.o\
+	$(BUILD_DIR)/src/JSystem/stb/stb-data.o\
 	$(BUILD_DIR)/asm/JSystem/jstudio/jstudio-math.o\
 	$(BUILD_DIR)/asm/JSystem/object/object-light.o\
 	$(BUILD_DIR)/asm/JSystem/object/object.o\

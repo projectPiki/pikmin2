@@ -129,7 +129,7 @@ struct Navi : public FakePiki, virtual public PelletView {
 	int getDopeCount(int);
 	void getLifeRatio();
 	void getOlimarData();
-	void getStateID();
+	int getStateID();
 	bool hasDope(int);
 	void holeinAllPikis(Vector3f&);
 	void incDopeCount(int);
@@ -169,10 +169,10 @@ struct Navi : public FakePiki, virtual public PelletView {
 	PSM::Navi* m_soundObj;                   // _26C
 	NaviFSM* m_fsm;                          // _270
 	NaviState* m_currentState;               // _274
-	Controller* _278;                        // _278
-	Controller* _27C;                        // _27C
-	PlayCamera* _280;                        // _280
-	PlayCamera* _284;                        // _284
+	Controller* m_padinput;                  // _278
+	Controller* m_padinput2;                 // _27C
+	PlayCamera* m_camera;                    // _280
+	PlayCamera* m_camera2;                   // _284
 	ushort _288;                             // _288
 	NaviWhistle* m_cursor;                   // _28C
 	SysShape::Model* m_cursorModel;          // _290

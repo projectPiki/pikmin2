@@ -134,7 +134,7 @@ struct FakePiki : public Creature, public SysShape::MotionListener {
 	virtual bool isWalking();                            // _214
 	// virtual void _218() = 0;                             // _218
 
-	void assertMotion(int);
+	bool assertMotion(int);
 
 	void initFakePiki();
 	void killFakePiki();
@@ -182,8 +182,8 @@ struct FakePiki : public Creature, public SysShape::MotionListener {
 	Vector3f m_velocity;                // _1E4
 	Vector3f _1F0;                      // _1F0
 	float m_faceDir;                    // _1FC
-	Vector3f _200;                      // _200
-	Vector3f _20C;                      // _20C
+	Vector3f m_position2;               // _200
+	Vector3f m_position;                // _20C
 	Sys::Sphere m_boundingSphere;       // _218
 	int _228;                           // _228
 	u8 _22C[8];                         // _22C
