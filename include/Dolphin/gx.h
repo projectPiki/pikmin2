@@ -20,20 +20,12 @@ typedef u8 GXBool;
 
 // TODO: Replace(?) this block of typedefs. They're just placeholders for now.
 typedef uint GXCullMode;
-typedef uint GXTexMapID;
-typedef uint _GXAttr;
-typedef uint _GXAttrType;
-typedef uint _GXTexFmt;
-typedef uint _GXTexMapID;
-typedef uint _GXVtxFmt;
 typedef uint _GXVtxAttrFmtList;
-typedef uint _GXCompCnt;
-typedef uint _GXCompType;
 
 // Name of the vertex attribute or array. Attributes are listed in the ascending
 // order vertex data is required to be sent to the GP. Havent confirmed the GX
 // docs match pikmin 2 here
-typedef enum GXAttr {
+typedef enum _GXAttr {
 	GX_VA_PNMTXIDX,   // Position coordinate/normal matrix index.
 	GX_VA_TEX0MTXIDX, // GX_TXCOORD0 matrix index.
 	GX_VA_TEX1MTXIDX, // GX_TXCOORD1 matrix index.
@@ -62,16 +54,16 @@ typedef enum GXAttr {
 	GX_LIGHT_ARRAY,   // Light structure array.
 	GX_VA_MAX_ATTR,
 	GX_VA_NULL // Indicates that it is none of these data types.
-};
+} GXAttr;
 
 // Type of attribute reference.
 // Havent confirmed the GX docs match pikmin 2 here
-typedef enum GXAttrType {
+typedef enum _GXAttrType {
 	GX_NONE,   // No data to be sent.
 	GX_DIRECT, // Value sent is value of data.
 	GX_INDEX8, // Value sent is INDEX value of data array (8-bit).
 	GX_INDEX16 // Value sent is INDEX value of data array (16-bit).
-};
+} GXAttrType;
 
 /*
  * RGB, RGBA, Intensity, Intensity/Alpha, Compressed, and Z texture format
@@ -84,7 +76,7 @@ typedef enum GXAttrType {
  */
 // Havent confirmed the GX docs match pikmin 2 here
 // clang-format off
-typedef enum GXTexFmt {
+typedef enum _GXTexFmt {
 	GX_TF_I4,		// 4-bit intensity
 	GX_TF_I8,		// 8-bit intensity
 	GX_TF_IA4,		// 8-bit intensity + alpha (4+4).
@@ -109,12 +101,12 @@ typedef enum GXTexFmt {
 	GX_CTF_Z8M,		// 8-bit Z (median byte). For copying the middle 8 bits of Z.
 	GX_CTF_Z8L,		// 8-bit Z (lower byte). For copying the lower 8 bits of Z.
 	GX_CTF_Z16L		// 16-bit Z (lower portion). For copying the lower 16 bits of Z.
-};
+} GXTexFmt;
 // clang-format on
 
 // Texture map name.
 // Havent confirmed the GX docs match pikmin 2 here
-typedef enum GXTexMapID {
+typedef enum _GXTexMapID {
 	GX_TEXMAP0, // Texture map ID 0.
 	GX_TEXMAP1, // Texture map ID 1.
 	GX_TEXMAP2, // Texture map ID 2.
@@ -126,11 +118,11 @@ typedef enum GXTexMapID {
 	GX_MAX_TEXMAP,
 	GX_TEXMAP_NULL, // No textures used.
 	GX_TEX_DISABLE  // No texture map look-up.
-};
+} GXTexMapID;
 
 // Vertex format number.
 // Havent confirmed the GX docs match pikmin 2 here
-typedef enum GXVtxFmt {
+typedef enum _GXVtxFmt {
 	GX_VTXFMT0, // Vertex attribute format ID 0.
 	GX_VTXFMT1, // Vertex attribute format ID 1.
 	GX_VTXFMT2, // Vertex attribute format ID 2.
@@ -140,11 +132,11 @@ typedef enum GXVtxFmt {
 	GX_VTXFMT6, // Vertex attribute format ID 6.
 	GX_VTXFMT7, // Vertex attribute format ID 7.
 	GX_MAX_VTXFMT
-};
+} GXVtxFmt;
 
 // Number of components in an attribute.
 // Havent confirmed the GX docs match pikmin 2 here
-typedef enum GXCompCnt {
+typedef enum _GXCompCnt {
 	GX_POS_XY,   // Position X, Y (two components).
 	GX_POS_XYZ,  // Position X, Y, Z (three components).
 	GX_NRM_XYZ,  // Normal X, Y, Z (three components).
@@ -155,11 +147,11 @@ typedef enum GXCompCnt {
 	GX_CLR_RGBA, // RGBA (four components).
 	GX_TEX_S,    // Texture coordinate S (one component).
 	GX_TEX_ST    // Texture coordinates S, T (two components).
-};
+} GXCompCnt;
 
 // Type of components in an attribute.
 // Havent confirmed the GX docs match pikmin 2 here
-typedef enum GXCompType {
+typedef enum _GXCompType {
 	GX_U8,     // Unsigned 8-bit.
 	GX_S8,     // Signed 8-bit.
 	GX_U16,    // Unsigned 16-bit.
@@ -171,7 +163,7 @@ typedef enum GXCompType {
 	GX_RGBA4,  // RGBA4444 16-bit.
 	GX_RGBA6,  // RGBA6666 24-bit.
 	GX_RGBA8   // RGBA8888 32-bit.
-};
+} GXCompType;
 
 // Names are guessed
 typedef enum _SDK_GXFogType {
