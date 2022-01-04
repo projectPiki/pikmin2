@@ -913,7 +913,7 @@ int PlatAttacher::getNumShapes()
  * Address:	80133CDC
  * Size:	00007C
  */
-ushort PlatAttacher::getJointIndex(int i)
+u16 PlatAttacher::getJointIndex(int i)
 {
 	// #ifdef MATCHING
 	// #line 311 // Will be 312 on assert line

@@ -653,7 +653,7 @@ lbl_80032D90:
  * Address:	80032DD4
  * Size:	00005C
  */
-ushort JUTRomFont::getHeight() const
+u16 JUTRomFont::getHeight() const
 {
 	return getAscent() + getDescent();
 	/*
@@ -688,28 +688,28 @@ ushort JUTRomFont::getHeight() const
  * Address:	80032E30
  * Size:	00000C
  */
-ushort JUTRomFont::getDescent() const { return spFontHeader_->m_descent; }
+u16 JUTRomFont::getDescent() const { return spFontHeader_->m_descent; }
 
 /*
  * --INFO--
  * Address:	80032E3C
  * Size:	00000C
  */
-ushort JUTRomFont::getAscent() const { return spFontHeader_->m_ascent; }
+u16 JUTRomFont::getAscent() const { return spFontHeader_->m_ascent; }
 
 /*
  * --INFO--
  * Address:	80032E48
  * Size:	00000C
  */
-ushort JUTRomFont::getCellHeight() const { return spFontHeader_->m_cellHeight; }
+u16 JUTRomFont::getCellHeight() const { return spFontHeader_->m_cellHeight; }
 
 /*
  * --INFO--
  * Address:	80032E54
  * Size:	00000C
  */
-ushort JUTRomFont::getCellWidth() const { return spFontHeader_->m_cellWidth; }
+u16 JUTRomFont::getCellWidth() const { return spFontHeader_->m_cellWidth; }
 
 /*
  * --INFO--
@@ -763,7 +763,7 @@ bool JUTRomFont::isLeadByte(int c) const
  * Address:	80032EF0
  * Size:	00000C
  */
-ushort JUTRomFont::getWidth() const
+u16 JUTRomFont::getWidth() const
 {
 	return spFontHeader_->m_width;
 	/*
@@ -778,7 +778,7 @@ ushort JUTRomFont::getWidth() const
  * Address:	80032EFC
  * Size:	00000C
  */
-ushort JUTRomFont::getLeading() const { return spFontHeader_->m_leading; }
+u16 JUTRomFont::getLeading() const { return spFontHeader_->m_leading; }
 
 /*
  * --INFO--

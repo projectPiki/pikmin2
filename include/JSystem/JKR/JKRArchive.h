@@ -13,18 +13,18 @@ struct JKRArchive : public JKRFileLoader {
 		CArcName(const char**, char);
 
 		const char* getString() const;
-		ushort getHash() const;
+		u16 getHash() const;
 		void store(const char*);
 		char* store(const char*, char);
 
-		ushort m_hash;      // _00
+		u16 m_hash;      // _00
 		short _02;          // _02
 		char m_string[256]; // _04
 	};
 
 	struct SDIFileEntry {
 		u8 _00[2];     // _00
-		ushort m_hash; // _02
+		u16 m_hash; // _02
 		uint _04;      // _04
 		int _08;       // _08
 		int m_size;    // _0C
@@ -55,12 +55,12 @@ struct JKRArchive : public JKRFileLoader {
 
 	u32 findDirectory(const char*, ulong) const;
 	SDIFileEntry* findFsResource(const char*, ulong) const;
-	SDIFileEntry* findIdResource(ushort) const;
+	SDIFileEntry* findIdResource(u16) const;
 	SDIFileEntry* findIdxResource(ulong) const;
 	SDIFileEntry* findNameResource(const char*) const;
 	SDIFileEntry* findPtrResource(const void*) const;
 	SDIFileEntry* findTypeResource(ulong, const char*) const;
-	bool isSameName(CArcName&, ulong, ushort) const;
+	bool isSameName(CArcName&, ulong, u16) const;
 
 	static JKRArchive* mount(char const*, JKRArchive::EMountMode, JKRHeap*,
 	                         JKRArchive::EMountDirection);

@@ -333,7 +333,7 @@ void JKRDecomp::decodeSZP(u8* p1, u8* p2, ulong p3, ulong p4)
 				v13++;
 				v7++;
 			} else {
-				ushort* v10 = reinterpret_cast<ushort*>(p1 + v5);
+				u16* v10 = reinterpret_cast<u16*>(p1 + v5);
 				v5 += 2;
 				int v8 = v4 - ((reinterpret_cast<u8*>(v10)[0] & 0xF) << 8)
 				         | (reinterpret_cast<u8*>(v10)[1]);

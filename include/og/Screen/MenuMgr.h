@@ -24,8 +24,8 @@ namespace Screen {
 		void calcCenter(J2DPane*, Vector2f*);
 		void calcPoint(Vector2f*, Vector2f*, float, Vector2f*);
 		void draw(J2DGrafContext*);
-		void init(J2DScreen*, ushort, ulonglong, ulonglong, ulonglong);
-		void init(J2DScreen*, ushort, ulonglong, ulonglong, ulonglong,
+		void init(J2DScreen*, u16, ulonglong, ulonglong, ulonglong);
+		void init(J2DScreen*, u16, ulonglong, ulonglong, ulonglong,
 		          ulonglong, ulonglong);
 		void init2taku(J2DScreen*, ulonglong, ulonglong, ulonglong, ulonglong,
 		               ulonglong, ulonglong, ulonglong, ulonglong);
@@ -33,19 +33,19 @@ namespace Screen {
 		                    ulonglong, ulonglong, ulonglong, ulonglong,
 		                    ulonglong);
 		void initCommon();
-		void initSub(J2DScreen*, ushort, ulonglong, ulonglong, ulonglong);
-		void initSelNum(ushort);
+		void initSub(J2DScreen*, u16, ulonglong, ulonglong, ulonglong);
+		void initSelNum(u16);
 		void killCursor();
 		void startCursor(float);
-		void select(ushort);
-		void selectSub(ushort);
+		void select(u16);
+		void selectSub(u16);
 		void update();
 		void MenuOnOff();
 
 		int _00;                        // _00
 		float _04;                      // _04
-		ushort m_elementCount;          // _08
-		ushort m_currentSelectionIndex; // _0A
+		u16 m_elementCount;          // _08
+		u16 m_currentSelectionIndex; // _0A
 		float _0C;                      // _0C
 		float _10;                      // _10
 		J2DPane** _14;                  // _14 /* ptr to array of ptrs */
@@ -73,7 +73,7 @@ namespace Screen {
 		float _64;                      // _64
 		float _68;                      // _68
 		float _6C;                      // _6C
-		ushort _70;                     // _70
+		u16 _70;                     // _70
 		float _74;                      // _74
 	};
 } // namespace Screen

@@ -645,7 +645,7 @@ bool PlayCommonData::challenge_checkJustOpen(int index)
 {
 	PlayChallengeGameData::CourseState* state
 	    = challenge_get_CourseState(index);
-	ushort flags = state->m_flags.typeView;
+	u16 flags = state->m_flags.typeView;
 	if (flags & PlayChallengeGameData::CourseState::CSF_IsOpen) {
 		state->m_flags.typeView
 		    |= PlayChallengeGameData::CourseState::CSF_WasOpen;

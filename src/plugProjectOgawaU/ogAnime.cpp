@@ -1389,7 +1389,7 @@ lbl_80305684:
 	 * Address:	........
 	 * Size:	000058
 	 */
-	AnimList::AnimList(ushort)
+	AnimList::AnimList(u16)
 	{
 		// UNUSED FUNCTION
 	}

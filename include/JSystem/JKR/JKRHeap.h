@@ -122,7 +122,7 @@ struct JKRHeap : public JKRDisposer {
 
 struct JKRExpHeap : public JKRHeap {
 	struct CMemBlock {
-		ushort m_usageHeader; // _00
+		u16 m_usageHeader; // _00
 
 		/// This &'d with 0x7f is called "aln" by JKRExpHeap::dump
 		u8 _02; // _02

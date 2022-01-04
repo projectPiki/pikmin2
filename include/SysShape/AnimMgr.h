@@ -30,7 +30,7 @@ struct AnimMgr : public CNode {
 
 	Model* m_model;      // _18
 	AnimInfo m_animInfo; // _1C
-	ushort m_count;      // _70
+	u16 m_count;      // _70
 };
 } // namespace SysShape
 

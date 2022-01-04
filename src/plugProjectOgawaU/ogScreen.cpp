@@ -1036,7 +1036,7 @@ lbl_8030275C:
 	 * Address:	80302814
 	 * Size:	00010C
 	 */
-	ulonglong maskTag2(ulonglong, ushort)
+	ulonglong maskTag2(ulonglong, u16)
 	{
 		/*
 	stwu     r1, -0x50(r1)
@@ -1116,7 +1116,7 @@ lbl_80302860:
 	 * Address:	80302920
 	 * Size:	0000A0
 	 */
-	ulonglong maskTag(ulonglong, ushort, ushort)
+	ulonglong maskTag(ulonglong, u16, u16)
 	{
 		/*
 	stwu     r1, -0x20(r1)

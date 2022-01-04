@@ -72,9 +72,9 @@ struct Cell {
 
 	Cell* _00[4]; // _00
 	Cell* _10;    // _10
-	ushort _14;   // _14
-	ushort _16;   // _16
-	ushort _18;   // _18
+	u16 _14;   // _14
+	u16 _16;   // _16
+	u16 _18;   // _18
 	u8 _1A[2];    // _1A
 	CellLeg* _1C; // _1C
 	Cell* _20;    // _20
@@ -93,7 +93,7 @@ struct CellObject : public TPositionObject {
 	virtual bool isNavi();
 	virtual bool deferPikiCollision();
 	virtual char* getTypeName();
-	virtual ushort getObjType();
+	virtual u16 getObjType();
 
 	void exitCell();
 	float calcCollisionDistance(CellObject*);
@@ -127,10 +127,10 @@ struct CellLayer {
 	void assertExtent(Recti&) const;
 	void checkPoint(Vector2i&) const;
 
-	ushort m_sizeX; // _00
-	ushort m_sizeY; // _02
+	u16 m_sizeX; // _00
+	u16 m_sizeY; // _02
 	short _04;      // _04
-	ushort _06;     // _06
+	u16 _06;     // _06
 	Cell* m_cells;  // _08
 	Cell m_cell;    // _0C // maybe this is a Cell?
 };

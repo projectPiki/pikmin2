@@ -9,11 +9,11 @@ struct PlatAttacher {
 	void setMapCodeAll(MapCode::Code&);
 	void read(Stream&);
 	int getNumShapes();
-	ushort getJointIndex(int);
+	u16 getJointIndex(int);
 	Platform* getPlatform(int);
 
 	int m_numShapes;        // _00
-	ushort* m_jointIndices; // _04
+	u16* m_jointIndices; // _04
 	Platform* m_platforms;  // _08
 };
 

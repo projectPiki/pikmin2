@@ -30,14 +30,14 @@ struct J3DModelData {
 	void newSharedDisplayList(ulong);
 	void indexToPtr();
 	void makeSharedDL();
-	void simpleCalcMaterial(ushort, Mtx*);
+	void simpleCalcMaterial(u16, Mtx*);
 	void syncJ3DSysFlags() const;
 
 	u32 _00;                          // _00
 	u8* m_bmd;                        // _04
 	u32 m_modelLoaderFlags;           // _08
-	ushort _0C;                       // _0C
-	ushort m_jointSet;                // _0E
+	u16 _0C;                       // _0C
+	u16 m_jointSet;                // _0E
 	J3DJointTree m_jointTree;         // _10
 	J3DMaterialTable m_materialTable; // _58
 	J3DShapeTable m_shapeTable;       // _78

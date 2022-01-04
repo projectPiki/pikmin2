@@ -1137,7 +1137,7 @@ lbl_80031C34:
  * Address:	80031E58
  * Size:	00000C
  */
-ushort JUTResFont::getDescent() const
+u16 JUTResFont::getDescent() const
 {
 	/*
 	lwz      r3, 0x4c(r3)
@@ -1151,7 +1151,7 @@ ushort JUTResFont::getDescent() const
  * Address:	80031E64
  * Size:	00005C
  */
-ushort JUTResFont::getHeight() const
+u16 JUTResFont::getHeight() const
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1185,7 +1185,7 @@ ushort JUTResFont::getHeight() const
  * Address:	80031EC0
  * Size:	00000C
  */
-ushort JUTResFont::getAscent() const
+u16 JUTResFont::getAscent() const
 {
 	/*
 	lwz      r3, 0x4c(r3)
@@ -1311,7 +1311,7 @@ lbl_80031FFC:
  * Address:	80032014
  * Size:	00004C
  */
-ushort JUTResFont::getCellWidth() const
+u16 JUTResFont::getCellWidth() const
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1345,7 +1345,7 @@ lbl_80032050:
  * Address:	80032060
  * Size:	00000C
  */
-ushort JUTResFont::getWidth() const
+u16 JUTResFont::getWidth() const
 {
 	/*
 	lwz      r3, 0x4c(r3)
@@ -1359,7 +1359,7 @@ ushort JUTResFont::getWidth() const
  * Address:	8003206C
  * Size:	00004C
  */
-ushort JUTResFont::getCellHeight() const
+u16 JUTResFont::getCellHeight() const
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1737,7 +1737,7 @@ ResFONT* JUTResFont::getResFont() const
  * Address:	8003246C
  * Size:	00000C
  */
-ushort JUTResFont::getLeading() const
+u16 JUTResFont::getLeading() const
 {
 	/*
 	lwz      r3, 0x4c(r3)

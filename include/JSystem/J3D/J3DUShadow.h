@@ -42,7 +42,7 @@ struct J3DUMultiTexture {
 	J3DUMultiTexture(ulong, u8);
 	~J3DUMultiTexture();
 	void initResTIMG(u8, _GXTexFmt);
-	void allocateTexture(u8, ushort, ushort, _GXTexFmt);
+	void allocateTexture(u8, u16, u16, _GXTexFmt);
 	void draw(u8, ulong, ulong, _GXTevColorArg, ulong, ulong) const;
 
 #ifdef MATCHING

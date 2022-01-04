@@ -204,7 +204,7 @@ struct J2DScreen : public J2DPane {
 	bool createMaterial(JSURandomInputStream*, ulong, JKRArchive*);
 	void draw(float, float, const J2DGrafContext*);
 	u32 gather(J2DPane**, ulonglong, ulonglong, int);
-	J2DMaterial* getMaterial(ushort);
+	J2DMaterial* getMaterial(u16);
 	void* getResReference(JSURandomInputStream*, ulong);
 	bool getScreenInformation(JSURandomInputStream*);
 	u32 makeHierarchyPanes(J2DPane*, JSURandomInputStream*, ulong, JKRArchive*);
@@ -216,7 +216,7 @@ struct J2DScreen : public J2DPane {
 
 	// J2DPane _000
 	bool _100;                // _100
-	ushort m_materialCount;   // _102
+	u16 m_materialCount;   // _102
 	J2DMaterial* m_materials; // _104
 	void* _108;               // _108
 	void* _10C;               // _10C
@@ -456,8 +456,8 @@ struct J2DTextBoxEx : public J2DTextBox {
 
 	// J2DTextBox _000
 	J2DMaterial* _138;                     // _138
-	ushort _13C;                           // _13C
-	ushort _13E;                           // _13E
+	u16 _13C;                           // _13C
+	u16 _13E;                           // _13E
 	u8 _140[4];                            // _140
 	J2DAnmVisibilityFull* m_anmVisibility; // _144
 };
@@ -492,8 +492,8 @@ struct J2DWindow : public J2DPane {
 	u8 _128[0x10];                 // _128
 	JUtility::TColor m_white;      // _138
 	JUtility::TColor m_black;      // _13C
-	ushort _140;                   // _140
-	ushort _142;                   // _142
+	u16 _140;                   // _140
+	u16 _142;                   // _142
 	u8 _144;                       // _144
 	u8 _145;                       // _145
 };
@@ -505,11 +505,11 @@ struct J2DWindowEx : public J2DWindow {
 	J2DMaterial* _148[2];                  // _148
 	J2DMaterial* _150;                     // _150
 	J2DMaterial* _154;                     // _154
-	ushort _158[2];                        // _158
+	u16 _158[2];                        // _158
 	u8 _15C[4];                            // _15C
 	J2DMaterial* m_contentsMaterial;       // _160
-	ushort _164;                           // _164
-	ushort _166;                           // _166
+	u16 _164;                           // _164
+	u16 _166;                           // _166
 	u8 _168[8];                            // _168
 	u8 _170;                               // _170
 	J2DAnmVisibilityFull* m_anmVisibility; // _174

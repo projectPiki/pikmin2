@@ -49,7 +49,7 @@ namespace Screen {
 			_ECM_FORCE_UINT = 0xFFFFFFFF
 		};
 
-		CallBack_CounterRV(char**, ushort, ushort, JKRArchive*);
+		CallBack_CounterRV(char**, u16, u16, JKRArchive*);
 
 		virtual ~CallBack_CounterRV();                 // _00
 		virtual void update();                         // _08
@@ -77,9 +77,9 @@ namespace Screen {
 		ulong* _20;                     // _20
 		ulong _24;                      // _24
 		ulong _28;                      // _28
-		ushort _2C;                     // _2C
-		ushort m_counterLimit;          // _2E /* allocated slot count of _7C */
-		ushort _30;                     // _30
+		u16 _2C;                     // _2C
+		u16 m_counterLimit;          // _2E /* allocated slot count of _7C */
+		u16 _30;                     // _30
 		float _34;                      // _34
 		float _38;                      // _38
 		float _3C;                      // _3C
@@ -122,7 +122,7 @@ namespace Screen {
 	};
 
 	struct CallBack_CounterDay : public CallBack_CounterRV {
-		CallBack_CounterDay(char**, ushort, JKRArchive*);
+		CallBack_CounterDay(char**, u16, JKRArchive*);
 
 		virtual ~CallBack_CounterDay(); // _00
 		virtual void update();          // _08
@@ -137,7 +137,7 @@ namespace Screen {
 
 	// Size: 0xCC
 	struct CallBack_CounterSlot : public CallBack_CounterRV {
-		CallBack_CounterSlot(char**, ushort, ushort, JKRArchive*);
+		CallBack_CounterSlot(char**, u16, u16, JKRArchive*);
 
 		virtual ~CallBack_CounterSlot(); // _00
 		virtual void update();           // _08

@@ -72,7 +72,7 @@ struct EnemyBase : public Creature,
 	virtual bool isNavi();                                      // _14
 	virtual bool deferPikiCollision();                          // _18
 	virtual char* getTypeName();                                // _1C
-	virtual ushort getObjType();                                // _20
+	virtual u16 getObjType();                                // _20
 	virtual void constructor();                                 // _24
 	virtual void onInit(CreatureInitArg*);                      // _28
 	virtual void onKill(CreatureKillArg*);                      // _2C

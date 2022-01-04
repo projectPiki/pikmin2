@@ -45,8 +45,8 @@ struct JUTTexture {
 	u8 _31;          // _31 /* texWrapMode */
 	u8 _32;          // _32
 	u8 _33;          // _33
-	ushort _34;      // _34
-	ushort _36;      // _36
+	u16 _34;      // _34
+	u16 _36;      // _36
 	short _38;       // _38
 	u8 m_tlut;       // _3A
 	u8 m_flags;      // _3B

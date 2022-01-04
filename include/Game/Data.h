@@ -29,7 +29,7 @@ struct PlayChallengeGameData {
 
 		CourseState();
 
-		BitFlag<ushort> m_flags;   // _00
+		BitFlag<u16> m_flags;   // _00
 		Highscore m_highscores[2]; // _04
 	};
 

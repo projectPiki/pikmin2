@@ -5334,7 +5334,7 @@ lbl_801E9290:
  */
 void PlayData::initLimitGens()
 {
-	ushort courseCount = stageList->m_courseCount;
+	u16 courseCount = stageList->m_courseCount;
 	for (int i = 0; i < courseCount; i++) {
 		LimitGen* limitGen = &m_limitGen[i];
 		limitGen->m_nonLoops.reset();

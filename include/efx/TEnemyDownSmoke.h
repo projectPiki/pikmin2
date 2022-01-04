@@ -6,7 +6,7 @@
 
 namespace efx {
 struct TEnemyDownSmoke : public TSimple1 {
-	TEnemyDownSmoke(ushort effectID, float p2)
+	TEnemyDownSmoke(u16 effectID, float p2)
 	    : TSimple1(effectID, nullptr)
 	    , _0C(p2)
 	{

@@ -119,7 +119,7 @@ void FogMgr::set(Graphics& graphics)
 	// GXSetFogRangeAdj(TRUE, System::getRenderModeObj()->efbHeight / 2,
 	// &table);
 	obj = System::getRenderModeObj();
-	GXSetFogRangeAdj(TRUE, (ushort)(obj->efbHeight / 2), &table);
+	GXSetFogRangeAdj(TRUE, (u16)(obj->efbHeight / 2), &table);
 	/*
 	stwu     r1, -0x40(r1)
 	mflr     r0

@@ -4336,7 +4336,7 @@ lbl_80039A4C:
  * Address:	80039A60
  * Size:	000004
  */
-void J2DAnmTransform::getTransform(ushort, J3DTransformInfo*) const { }
+void J2DAnmTransform::getTransform(u16, J3DTransformInfo*) const { }
 
 /*
  * --INFO--

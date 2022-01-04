@@ -27,7 +27,7 @@ struct TSync : public TBase, public JPAEmitterCallback {
 	virtual ~TSync();                                            // _2C
 
 	JPABaseEmitter* m_emitter;
-	ushort m_effectID;
+	u16 m_effectID;
 	u8 m_flags;
 };
 } // namespace efx

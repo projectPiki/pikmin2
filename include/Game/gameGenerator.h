@@ -48,7 +48,7 @@ struct Generator : public CNode {
 	ID32 _40;             // _40
 	ID32 m_version;       // _4C
 	u8 _58[4];            // _58
-	ushort _5C;           // _5C
+	u16 _5C;           // _5C
 	Generator* _60;       // _60 /* m_prev */
 	Generator* _64;       // _64 /* m_next */
 	GeneratorMgr* m_mgr;  // _68

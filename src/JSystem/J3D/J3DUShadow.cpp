@@ -53,7 +53,7 @@ void J3DUMultiTexture::initResTIMG(u8, _GXTexFmt)
  * Address:	........
  * Size:	0000C8
  */
-void J3DUMultiTexture::allocateTexture(u8, ushort, ushort, _GXTexFmt)
+void J3DUMultiTexture::allocateTexture(u8, u16, u16, _GXTexFmt)
 {
 	// UNUSED FUNCTION
 }

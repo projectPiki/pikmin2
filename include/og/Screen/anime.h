@@ -89,7 +89,7 @@ namespace Screen {
 	};
 
 	struct AnimList {
-		AnimList(ushort);
+		AnimList(u16);
 		void addAnim(AnimScreen*);
 		void nextAnim(float);
 		void start();

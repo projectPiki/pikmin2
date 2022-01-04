@@ -56,7 +56,7 @@ namespace SoundTable {
 
 	extern u8 mVersion;
 	extern u8 mCategotyMax;
-	extern ushort* mSoundMax;
+	extern u16* mSoundMax;
 	extern ulong mDataSize;
 	extern SoundInfo** mPointerCategory;
 	extern u8* mAddress;

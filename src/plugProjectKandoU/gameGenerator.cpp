@@ -626,7 +626,7 @@ bool Generator::need_saveCreature(void)
 void Generator::saveCreature(Stream& output)
 {
 	if (m_creature != nullptr) {
-		ushort flags = _5C;
+		u16 flags = _5C;
 		// u8 saveFlag = (flags & 8);
 		bool conversion = false;
 		if (flags & 8) {
@@ -1298,9 +1298,9 @@ void Generator::write(Stream& output)
 		output.writeShort(m_dayLimitMaybe);
 	}
 	if (ramMode != 0) {
-		output.writeShort((ushort)m_position.x + m_offset.x);
-		output.writeShort((ushort)m_position.y + m_offset.y);
-		output.writeShort((ushort)m_position.z + m_offset.z);
+		output.writeShort((u16)m_position.x + m_offset.x);
+		output.writeShort((u16)m_position.y + m_offset.y);
+		output.writeShort((u16)m_position.z + m_offset.z);
 	} else {
 		output.textWriteTab(output.m_tabCount);
 		// TODO: m_position.write()?

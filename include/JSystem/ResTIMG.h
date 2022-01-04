@@ -7,8 +7,8 @@
 struct ResTIMG {
 	u8 m_textureFormat;        // _00
 	u8 m_transparency;         // _01
-	ushort m_sizeX;            // _02
-	ushort m_sizeY;            // _04
+	u16 m_sizeX;            // _02
+	u16 m_sizeY;            // _04
 	u8 m_wrapS;                // _06
 	u8 m_wrapT;                // _07
 	u8 m_paletteFormat;        // _08

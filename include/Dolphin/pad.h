@@ -8,7 +8,7 @@ extern "C" {
 #endif // ifdef __cplusplus
 
 typedef struct PADStatusSingle {
-	ushort _00;
+	u16 _00;
 	u8 _02;
 	u8 _03;
 	u8 _04;

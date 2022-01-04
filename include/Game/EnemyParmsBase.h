@@ -75,7 +75,7 @@ struct EnemyParmsBase : public CreatureParms {
 
 	virtual void read(Stream&);
 
-	BitFlag<ushort> m_flags[2]; // _DC
+	BitFlag<u16> m_flags[2]; // _DC
 	Parms m_general;            // _E0
 };
 } // namespace Game

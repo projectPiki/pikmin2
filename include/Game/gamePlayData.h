@@ -63,7 +63,7 @@ struct KindCounter {
 	void copyFrom(KindCounter&);
 	void addTo(KindCounter&);
 
-	ushort m_numKinds; // _00
+	u16 m_numKinds; // _00
 	u8* m_kinds;       // _04
 };
 

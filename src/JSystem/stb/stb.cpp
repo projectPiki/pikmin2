@@ -98,7 +98,7 @@ TObject::TObject(data::TParse_TBlock_object const& block)
 	bSequence_     = false;
 	_20            = 0;
 	pSequence      = nullptr;
-	pSequence_next = nullptr; //(int)iVar2 + (*(ushort *)((int)iVar2 + 10) + 3 &
+	pSequence_next = nullptr; //(int)iVar2 + (*(u16 *)((int)iVar2 + 10) + 3 &
 	                          // 0xfffffffc) + 0xc; this crap
 	u32Wait_ = 0;
 	mStatus  = STATUS_STILL;
@@ -687,8 +687,8 @@ void TObject::process_paragraph_reserved_(unsigned long a1, void const* a2,
 	} else if (a1 == 3) {
 		pSequence_next = pSequence + *(u32*)a2;
 	} else if (a1 == 0x81) {
-		int flag = (int)a2 + (*(ushort*)((int)a2 + 2) + 3 & 0xfffffffc) + 4;
-		do_data(a2 + 4, (uint) * (ushort*)((int)a2 + 2), &flag,
+		int flag = (int)a2 + (*(u16*)((int)a2 + 2) + 3 & 0xfffffffc) + 4;
+		do_data(a2 + 4, (uint) * (u16*)((int)a2 + 2), &flag,
 		        a3 - (flag - (int)a2));
 	}
 	/*

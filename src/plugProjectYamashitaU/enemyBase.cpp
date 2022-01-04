@@ -1188,7 +1188,7 @@ void EnemyBaseFSM::BirthTypeDropState::init(Game::EnemyBase* enemy,
 		float f
 		    = (0.0f <= theta)
 		          ? JMath::sincosTable_.m_table[(short)theta].first
-		          : -JMath::sincosTable_.m_table[(short)(ushort)-theta].first;
+		          : -JMath::sincosTable_.m_table[(short)(u16)-theta].first;
 		enemy->m_position.x += f * 50.0f;
 		if (theta < 0.0f) {
 			theta = -theta;
@@ -6979,7 +6979,7 @@ void EnemyBase::doEntry()
  */
 void EnemyBase::doSetView(int viewNo)
 {
-	m_model->setCurrentViewNo((ushort)viewNo);
+	m_model->setCurrentViewNo((u16)viewNo);
 }
 
 /*
@@ -13955,7 +13955,7 @@ bool Creature::isSuckArriveWait() { return false; }
  * Address:	80108114
  * Size:	000008
  */
-ushort Creature::getObjType() { return m_objectTypeID; }
+u16 Creature::getObjType() { return m_objectTypeID; }
 
 /*
  * --INFO--

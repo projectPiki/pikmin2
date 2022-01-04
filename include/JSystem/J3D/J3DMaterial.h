@@ -130,14 +130,14 @@ struct J3DMaterialTable {
 	void entryMatColorAnimator(J3DAnmColor*);
 
 	// VTBL _00
-	ushort m_count1;            // _04
-	ushort m_count2;            // _06
+	u16 m_count1;            // _04
+	u16 m_count2;            // _06
 	J3DMaterial** m_materials1; // _08
 	JUTNameTab* _0C;            // _0C
 	J3DMaterial* m_materials2;  // _10
 	J3DTexture* m_texture;      // _14
 	JUTNameTab* _18;            // _18
-	ushort _1C;
+	u16 _1C;
 };
 
 #endif

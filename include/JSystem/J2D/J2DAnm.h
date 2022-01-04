@@ -46,13 +46,13 @@ struct J2DAnmBase {
 struct J2DAnmColor : public J2DAnmBase {
 	virtual ~J2DAnmColor();                          // _00
 	virtual void searchUpdateMaterialID(J2DScreen*); // _04
-	virtual void getColor(ushort, GXColor*) const;   // _08
+	virtual void getColor(u16, GXColor*) const;   // _08
 
 	short _10;            // _10
 	short _12;            // _12
 	short _14;            // _14
 	short _16;            // _16
-	ushort _18;           // _18
+	u16 _18;           // _18
 	short _1A;            // _1A
 	void* _1C;            // _1C
 	JUTNameTab m_nameTab; // _20
@@ -78,12 +78,12 @@ struct J2DAnmColorKey : public J2DAnmColor {
 
 // Size: 0x74
 struct J2DAnmTevRegKey : public J2DAnmBase {
-	ushort _10;   // _10 /* element count of _24? see J2DScreen::setAnimation */
-	ushort _12;   // _12 /* element count of _38? see J2DScreen::setAnimation */
+	u16 _10;   // _10 /* element count of _24? see J2DScreen::setAnimation */
+	u16 _12;   // _12 /* element count of _38? see J2DScreen::setAnimation */
 	u8 _14[0x10]; // _14
-	ushort* _24;  // _24 /* material index? see J2DScreen::setAnimation */
+	u16* _24;  // _24 /* material index? see J2DScreen::setAnimation */
 	JUTNameTab _28; // _28
-	ushort* _38;    // _38 /* material index? see J2DScreen::setAnimation */
+	u16* _38;    // _38 /* material index? see J2DScreen::setAnimation */
 	JUTNameTab _3C; // _3C
 	J3DAnmCRegKeyTable* _4C; // _4C
 	J3DAnmKRegKeyTable* _50; // _50
@@ -99,11 +99,11 @@ struct J2DAnmTevRegKey : public J2DAnmBase {
 
 // Size: 0x34
 struct J2DAnmTexPattern : public J2DAnmBase {
-	ushort* _10;                         // _10
+	u16* _10;                         // _10
 	J3DAnmTexPatternFullTable* m_tables; // _14
 	u8 _18[2];                           // _18
-	ushort _1A;                          // _1A
-	ushort* _1C;                         // _1C
+	u16 _1A;                          // _1A
+	u16* _1C;                         // _1C
 	JUTNameTab m_nameTab;                // _20
 	J2DAnmTexPatternTIMGPointer* _30;    // _30
 };
@@ -133,14 +133,14 @@ struct J2DAnmTextureSRTKey : public J2DAnmBase {
 	short _60;
 	J3DAnmTransformKeyTable* _64;
 	u8* _68;
-	ushort _6C;
+	u16 _6C;
 	JUTNameTab _70;
 	Vec* _80;
 	u32 _84;
 };
 
 struct J2DAnmTransform : public J2DAnmBase {
-	virtual void getTransform(ushort, J3DTransformInfo*) const; // _08
+	virtual void getTransform(u16, J3DTransformInfo*) const; // _08
 
 	float* _10; // _10
 	short* _14; // _14
@@ -169,17 +169,17 @@ struct J2DAnmVisibilityFull : public J2DAnmBase {
 };
 
 struct J2DAnmVtxColor : public J2DAnmBase {
-	virtual void getColor(u8, ushort, GXColor*) const; // _08
+	virtual void getColor(u8, u16, GXColor*) const; // _08
 
 	short _10;                    // _10
 	short _12;                    // _12
 	J3DAnmVtxColorIndexData* _14; // _14
 	J3DAnmVtxColorIndexData* _18; // _18
-	ushort* _1C;                  // _1C
+	u16* _1C;                  // _1C
 };
 
 struct J2DAnmVtxColorFull : public J2DAnmVtxColor {
-	ushort* _20;               // _20
+	u16* _20;               // _20
 	J3DAnmColorFullTable* _24; // _24
 	J3DAnmColorFullTable* _28; // _28
 	u8* _2C;                // _2C
@@ -190,7 +190,7 @@ struct J2DAnmVtxColorFull : public J2DAnmVtxColor {
 
 // Size: 0x3C
 struct J2DAnmVtxColorKey : public J2DAnmVtxColor {
-	ushort* _20;              // _20
+	u16* _20;              // _20
 	J3DAnmColorKeyTable* _24; // _24
 	J3DAnmColorKeyTable* _28; // _28
 	short* _2C;               // _2C

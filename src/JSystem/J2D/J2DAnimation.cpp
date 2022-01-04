@@ -1346,7 +1346,7 @@ lbl_8005BE24:
  * Address:	8005BE48
  * Size:	000240
  */
-void J2DAnmVtxColorFull::getColor(u8, ushort, GXColor*) const
+void J2DAnmVtxColorFull::getColor(u8, u16, GXColor*) const
 {
 	/*
 	.loc_0x0:
@@ -1526,7 +1526,7 @@ void J2DAnmVtxColorFull::getColor(u8, ushort, GXColor*) const
  * Address:	8005C088
  * Size:	0002F4
  */
-void J2DAnmVtxColorKey::getColor(u8, ushort, GXColor*) const
+void J2DAnmVtxColorKey::getColor(u8, u16, GXColor*) const
 {
 	/*
 	stwu     r1, -0x40(r1)

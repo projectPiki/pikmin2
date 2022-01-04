@@ -1484,7 +1484,7 @@ void KindCounter::write(Stream& output)
 void KindCounter::read(Stream& input)
 {
 	// UNUSED FUNCTION
-	ushort count = input.readShort();
+	u16 count = input.readShort();
 	JUT_ASSERTLINE(794, count == (int)m_numKinds,
 	               "read count %d : mNumKinds %d : mismatch !\n", count,
 	               m_numKinds);

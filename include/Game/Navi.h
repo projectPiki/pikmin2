@@ -173,7 +173,7 @@ struct Navi : public FakePiki, virtual public PelletView {
 	Controller* m_padinput2;                 // _27C
 	PlayCamera* m_camera;                    // _280
 	PlayCamera* m_camera2;                   // _284
-	ushort _288;                             // _288
+	u16 _288;                             // _288
 	NaviWhistle* m_cursor;                   // _28C
 	SysShape::Model* m_cursorModel;          // _290
 	SysShape::Model* m_markerModel;          // _294

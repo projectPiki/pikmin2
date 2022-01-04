@@ -997,7 +997,7 @@ void Graphics::updateJ3D()
  * Address:	804256E0
  * Size:	000030
  */
-void graphicsTokenCallback(ushort)
+void graphicsTokenCallback(u16)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1080,7 +1080,7 @@ char* Graphics::getTokenName(unsigned short)
  * Address:	........
  * Size:	000038
  */
-ushort Graphics::getToken()
+u16 Graphics::getToken()
 {
 	// UNUSED FUNCTION
 }
@@ -1282,7 +1282,7 @@ void Graphics::drawPoint(Vector3f&)
  * Address:	........
  * Size:	00012C
  */
-void Graphics::drawPoint(Vector3f*, ushort)
+void Graphics::drawPoint(Vector3f*, u16)
 {
 	// UNUSED FUNCTION
 }

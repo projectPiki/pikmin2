@@ -115,7 +115,7 @@ struct RouteMgr : public Container<WayPoint> {
 	void sonarCheck(SonarArg&);
 	void directDraw(Graphics&, WayPoint*, WayPoint*, int, short*);
 
-	ushort m_count; // _1C
+	u16 m_count; // _1C
 };
 
 struct EditorRouteMgr : public RouteMgr {

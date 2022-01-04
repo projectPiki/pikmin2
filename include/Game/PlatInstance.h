@@ -44,7 +44,7 @@ struct PlatInstance : public CellObject {
 	void doSimulation(float);
 	void doDirectDraw(Graphics&);
 	char* getTypeName();
-	ushort getObjType();
+	u16 getObjType();
 	bool collisionUpdatable();
 
 	Matrixf* _B8;
@@ -64,11 +64,11 @@ struct PlatInstanceAttacher {
 	void addToMgr(Creature*, ID32&, PlatAttacher*, bool);
 	void fixCollision(bool);
 	void fixCollision(bool, char*);
-	void fixCollision(bool, ushort);
+	void fixCollision(bool, u16);
 	void setCode(ID32&, char*);
-	void setCode(ID32&, ushort);
+	void setCode(ID32&, u16);
 	void setCollision(bool, char*);
-	void setCollision(bool, ushort);
+	void setCollision(bool, u16);
 	void setShapeVisibility();
 
 	int m_instanceCount;            // _00

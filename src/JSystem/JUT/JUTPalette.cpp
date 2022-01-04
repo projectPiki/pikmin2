@@ -87,7 +87,7 @@ lbl_8002EF08:
  * Size:	000040
  */
 void JUTPalette::storeTLUT(_GXTlut id, _GXTlutFmt format,
-                           JUTTransparency transparency, ushort p4, void* p5)
+                           JUTTransparency transparency, u16 p4, void* p5)
 {
 	m_tlutID       = id;
 	m_tlutFormat   = format;

@@ -44,7 +44,7 @@ struct J3DTexCoord {
 	u8 _00;     // _00
 	u8 _01;     // _01
 	u8 _02;     // _02
-	ushort _04; // _04
+	u16 _04; // _04
 };
 
 struct J3DNBTScale {

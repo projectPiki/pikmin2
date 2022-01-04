@@ -48,8 +48,8 @@ namespace Screen {
 	CallBack_Furiko* getFurikoPtr(P2DScreen::Mgr*, ulonglong);
 	void kakomiPane(J2DPane*);
 	ResTIMG** makeSujiFontTable(char**, JKRArchive*);
-	ulonglong maskTag(ulonglong, ushort, ushort);
-	ulonglong maskTag2(ulonglong, ushort);
+	ulonglong maskTag(ulonglong, u16, u16);
+	ulonglong maskTag2(ulonglong, u16);
 	ulonglong MojiToNum(ulonglong, int);
 	ulonglong NameToTag(char*);
 	void registAnimGroupPane(AnimGroup*, JKRArchive*, J2DScreen*, ulonglong,
@@ -64,26 +64,26 @@ namespace Screen {
 	void setCallBack_CStickSmall(JKRArchive*, P2DScreen::Mgr*, ulonglong);
 	CallBack_CounterDay* setCallBack_CounterDay(P2DScreen::Mgr*, ulonglong,
 	                                            ulonglong, ulonglong, ulong*,
-	                                            ushort, JKRArchive*);
+	                                            u16, JKRArchive*);
 	CallBack_CounterDay* setCallBack_CounterDay(char**, P2DScreen::Mgr*,
 	                                            ulonglong, ulonglong, ulonglong,
-	                                            ulong*, ushort, JKRArchive*);
+	                                            ulong*, u16, JKRArchive*);
 	void setCallBack_CounterMap(P2DScreen::Mgr*, ulonglong, ulonglong,
-	                            ulonglong, ulong*, ushort, ushort, bool,
+	                            ulonglong, ulong*, u16, u16, bool,
 	                            JKRArchive*);
 	CallBack_CounterRV* setCallBack_CounterRV(P2DScreen::Mgr*, ulonglong,
 	                                          ulonglong, ulonglong, ulong*,
-	                                          ushort, ushort, bool,
+	                                          u16, u16, bool,
 	                                          JKRArchive*);
 	CallBack_CounterRV* setCallBack_CounterRV(P2DScreen::Mgr*, ulonglong,
-	                                          ulong*, ushort, bool, bool,
+	                                          ulong*, u16, bool, bool,
 	                                          JKRArchive*);
 	CallBack_CounterRV* setCallBack_CounterRV(P2DScreen::Mgr*, ulonglong, ulong,
-	                                          ushort, bool, bool, JKRArchive*);
-	void setCallBack_CounterRV2(P2DScreen::Mgr*, ulonglong, ulong*, ushort,
+	                                          u16, bool, bool, JKRArchive*);
+	void setCallBack_CounterRV2(P2DScreen::Mgr*, ulonglong, ulong*, u16,
 	                            bool, bool, JKRArchive*);
 	CallBack_CounterSlot* setCallBack_CounterSlot(P2DScreen::Mgr*, ulonglong,
-	                                              ulong*, ushort, bool, bool,
+	                                              ulong*, u16, bool, bool,
 	                                              JKRArchive*);
 	CallBack_DrawAfter* setCallBack_DrawAfter(P2DScreen::Mgr*, ulonglong);
 	CallBack_Furiko* setCallBack_Furiko(P2DScreen::Mgr*, ulonglong);

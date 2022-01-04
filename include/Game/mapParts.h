@@ -126,7 +126,7 @@ struct PartsView : public CNode {
 	u32 _5C;                      // _05C
 	u32 _60;                      // _060
 	u8 _64[8];                    // _064
-	ushort m_unitKind;            // _06C
+	u16 m_unitKind;            // _06C
 	Vector2<u8> _6E;           // _06E
 	EditorRouteMgr m_routeMgr;    // _070
 	AStarContext m_aStarContext;  // _0AC

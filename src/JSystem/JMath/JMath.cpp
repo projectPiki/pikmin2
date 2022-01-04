@@ -23,25 +23,25 @@
  */
 void JMAEulerToQuat(short x, short y, short z, Quaternion* quat)
 {
-	// int iX = (ushort)(x/2) % 2048;
-	// int iY = (ushort)(y/2) % 2048;
-	// int iX = (ushort)(x/2) >> 5;
-	// int iY = (ushort)(y/2) >> 5;
+	// int iX = (u16)(x/2) % 2048;
+	// int iY = (u16)(y/2) % 2048;
+	// int iX = (u16)(x/2) >> 5;
+	// int iY = (u16)(y/2) >> 5;
 	// int iZ = ((z/2) >> 2) & 0x3FF8;
-	float sinX = JMath::sincosTable_[(ushort)(x / 2) / 32].first;
+	float sinX = JMath::sincosTable_[(u16)(x / 2) / 32].first;
 	// int iZ = ((z/2) >> 2) % 2048;
-	float sinY = JMath::sincosTable_[(ushort)(y / 2) / 32].first;
-	float sinZ = JMath::sincosTable_[((ushort)(z / 2) >> 2) & 0x3FF8].first;
-	float cosX = JMath::sincosTable_[(ushort)(x / 2) / 32].second;
-	float cosY = JMath::sincosTable_[(ushort)(y / 2) / 32].second;
-	float cosZ = JMath::sincosTable_[((ushort)(z / 2) >> 2) & 0x3FF8].second;
-	// int iX = ((ushort)(x/2)) >> 5;
+	float sinY = JMath::sincosTable_[(u16)(y / 2) / 32].first;
+	float sinZ = JMath::sincosTable_[((u16)(z / 2) >> 2) & 0x3FF8].first;
+	float cosX = JMath::sincosTable_[(u16)(x / 2) / 32].second;
+	float cosY = JMath::sincosTable_[(u16)(y / 2) / 32].second;
+	float cosZ = JMath::sincosTable_[((u16)(z / 2) >> 2) & 0x3FF8].second;
+	// int iX = ((u16)(x/2)) >> 5;
 	// float sinX = JMath::sincosTable_[iX].first;
-	// float sinY = JMath::sincosTable_[((ushort)(y/2)) >> 5].first;
+	// float sinY = JMath::sincosTable_[((u16)(y/2)) >> 5].first;
 	// int iZ = ((z/2) >> 2) & 0x3FF8;
 	// float sinZ = JMath::sincosTable_[iZ].first;
 	// float cosX = JMath::sincosTable_[iX].second;
-	// float cosY = JMath::sincosTable_[((ushort)(y/2)) >> 5].second;
+	// float cosY = JMath::sincosTable_[((u16)(y/2)) >> 5].second;
 	// float cosZ = JMath::sincosTable_[iZ].second;
 	quat->_0C = cosX * cosY * cosZ + sinX * sinY * sinZ;
 	quat->_00 = sinX * cosY * cosZ - cosX * sinY * sinZ;

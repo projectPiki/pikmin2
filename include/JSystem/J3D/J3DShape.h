@@ -83,7 +83,7 @@ struct J3DShapeTable {
 	void sortVcdVatCmd();
 
 	// VTBL _00
-	ushort m_count;     // _04
+	u16 m_count;     // _04
 	J3DShape** m_items; // _08
 
 	// TODO: Are subsequent JUTNameTab* and J3DVertexData in J3DModelData also

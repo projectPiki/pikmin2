@@ -6,7 +6,7 @@
 
 namespace efx {
 struct TChasePos : public TSync {
-	inline TChasePos(ushort effectID, Vector3f* position = nullptr)
+	inline TChasePos(u16 effectID, Vector3f* position = nullptr)
 	    : TSync()
 	    , m_position(position)
 	{

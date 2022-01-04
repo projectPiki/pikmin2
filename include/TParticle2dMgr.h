@@ -21,10 +21,10 @@ struct TParticle2dMgr : public CNode, JKRDisposer {
 
 	void clearSceneEmitterAndResourceManager();
 	void clearSceneResourceManager();
-	JPABaseEmitter* create(ushort, Vector2f&, u8, u8);
+	JPABaseEmitter* create(u16, Vector2f&, u8, u8);
 	void createHeap(ulong);
 	void createMgr(char*, ulong, ulong, ulong);
-	void draw(u8, ushort);
+	void draw(u8, u16);
 	void fade(JPABaseEmitter*);
 	void kill(JPABaseEmitter*);
 	void killAll();

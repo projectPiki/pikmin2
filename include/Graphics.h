@@ -33,7 +33,7 @@ struct PerspPrintfInfo {
 };
 
 struct _GraphicsParent {
-	ushort m_primitiveDrawCount; // _000
+	u16 m_primitiveDrawCount; // _000
 	char* m_tokens[0x20];        // _004
 	u8 _084;                     // _084
 	u8 _085;                     // _085
@@ -73,9 +73,9 @@ struct Graphics : public _GraphicsParent {
 	void updateJ3D();
 
 	int findTokenIndex(char*);
-	ushort getToken();
-	char* getTokenName(ushort);
-	void graphicsTokenCallback(ushort);
+	u16 getToken();
+	char* getTokenName(u16);
+	void graphicsTokenCallback(u16);
 	void setToken(char*);
 
 	void drawAxis(float, Matrixf*);
@@ -88,7 +88,7 @@ struct Graphics : public _GraphicsParent {
 	void drawMesh(Matrixf*);
 	void drawPlane(Plane&, float);
 	void drawPoint(Vector3f&);
-	void drawPoint(Vector3f*, ushort);
+	void drawPoint(Vector3f*, u16);
 	void drawRect(Rectf&, Color4&);
 	void drawRect(Rectf&, JUTTexture*);
 	void drawRectangle(Rectf&, bool);

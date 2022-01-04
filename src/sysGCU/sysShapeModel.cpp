@@ -757,7 +757,7 @@ void Model::jointVisible(bool newVisibility, int jointIndex)
 {
 	if (newVisibility != false) {
 		for (J3DMaterial* material = m_j3dModel->m_modelData->m_jointTree
-		                                 ->m_joints[(ushort)jointIndex]
+		                                 ->m_joints[(u16)jointIndex]
 		                                 ->m_material;
 		     material != nullptr; material = material->_04) {
 			material->m_shape->m_flags &= ~J3DShape::IsHidden;
@@ -765,7 +765,7 @@ void Model::jointVisible(bool newVisibility, int jointIndex)
 		return;
 	}
 	for (J3DMaterial* material
-	     = m_j3dModel->m_modelData->m_jointTree->m_joints[(ushort)jointIndex]
+	     = m_j3dModel->m_modelData->m_jointTree->m_joints[(u16)jointIndex]
 	           ->m_material;
 	     material != nullptr; material = material->_04) {
 		material->m_shape->m_flags |= J3DShape::IsHidden;
@@ -823,7 +823,7 @@ lbl_8043E9B0:
  */
 void Model::hide(void)
 {
-	for (ushort i = 0; i < m_jointCount; i++) {
+	for (u16 i = 0; i < m_jointCount; i++) {
 		for (J3DMaterial* material
 		     = m_j3dModel->m_modelData->m_jointTree->m_joints[i]->m_material;
 		     material != nullptr; material = material->_04) {
@@ -871,7 +871,7 @@ lbl_8043EA00:
  */
 void Model::show(void)
 {
-	for (ushort i = 0; i < m_jointCount; i++) {
+	for (u16 i = 0; i < m_jointCount; i++) {
 		for (J3DMaterial* material
 		     = m_j3dModel->m_modelData->m_jointTree->m_joints[i]->m_material;
 		     material != nullptr; material = material->_04) {

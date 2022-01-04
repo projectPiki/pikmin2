@@ -6,7 +6,7 @@
 
 namespace efx {
 struct TEnemyDownWat : public TSimple3 {
-	TEnemyDownWat(ushort effectID1, ushort effectID2, ushort effectID3)
+	TEnemyDownWat(u16 effectID1, u16 effectID2, u16 effectID3)
 	    : TSimple3(effectID1, effectID2, effectID3)
 	{
 	}

@@ -142,7 +142,7 @@ void TObject::prepare(const JStudio::fvb::data::TParse_TBlock& block,
 	JStudio::TFunctionValueAttributeSet set = pfv->getAttributeSet();
 	const void* file                        = block.file;
 	int a                                   = *(int*)file;
-	int m = ((int)file + (*(ushort*)((int)file + 6) + 3 & 0xfffffffc) + 8);
+	int m = ((int)file + (*(u16*)((int)file + 6) + 3 & 0xfffffffc) + 8);
 	while (true) {
 		data::TParse_TParagraph paragraph = *(data::TParse_TParagraph*)m;
 		data::TParse_TParagraph::TData data;

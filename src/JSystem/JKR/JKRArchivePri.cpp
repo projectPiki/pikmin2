@@ -111,7 +111,7 @@ lbl_8001A5A8:
  * Size:	00004C
  */
 bool JKRArchive::isSameName(JKRArchive::CArcName& archiveName,
-                            ulong nameTableOffset, ushort hash) const
+                            ulong nameTableOffset, u16 hash) const
 {
 	/*
 	.loc_0x0:
@@ -452,7 +452,7 @@ const char* JKRArchive::CArcName::getString() const
  * Address:	8001A978
  * Size:	000008
  */
-ushort JKRArchive::CArcName::getHash() const
+u16 JKRArchive::CArcName::getHash() const
 {
 	return m_hash;
 	/*
@@ -956,7 +956,7 @@ lbl_8001AEAC:
  * Address:	8001AEB4
  * Size:	000080
  */
-JKRArchive::SDIFileEntry* JKRArchive::findIdResource(ushort) const
+JKRArchive::SDIFileEntry* JKRArchive::findIdResource(u16) const
 {
 	/*
 	clrlwi   r5, r4, 0x10

@@ -37,12 +37,12 @@ void JAInter::SoundTable::init(u8* data, ulong dataSize)
 	mVersion         = data[3];
 	mDataSize        = dataSize;
 	mAddress         = data;
-	mSoundMax        = new (JAIBasic::msCurrentHeap, 4) ushort[0x12];
+	mSoundMax        = new (JAIBasic::msCurrentHeap, 4) u16[0x12];
 	mPointerCategory = new (JAIBasic::msCurrentHeap, 4) SoundInfo*[0x12];
 	for (u8 i = 0; i < 0x12; i++) {
-		mSoundMax[i]        = *(ushort*)(mAddress + (i * 4) + 6);
+		mSoundMax[i]        = *(u16*)(mAddress + (i * 4) + 6);
 		mPointerCategory[i] = *(
-		    SoundInfo**)(mAddress + *(ushort*)(mAddress + (i * 4) + 8) * 0x10
+		    SoundInfo**)(mAddress + *(u16*)(mAddress + (i * 4) + 8) * 0x10
 		                 + 0x50);
 		if (i < 0x10 && mSoundMax[i] != 0) {
 			mCategotyMax = i + 1;

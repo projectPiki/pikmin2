@@ -91,7 +91,7 @@ namespace Screen {
 	 * Address:	........
 	 * Size:	000084
 	 */
-	CallBack_CounterSlot::CallBack_CounterSlot(char** p1, ushort p2, ushort p3,
+	CallBack_CounterSlot::CallBack_CounterSlot(char** p1, u16 p2, u16 p3,
 	                                           JKRArchive* archive)
 	    : CallBack_CounterRV(p1, p2, p3, archive)
 	{
