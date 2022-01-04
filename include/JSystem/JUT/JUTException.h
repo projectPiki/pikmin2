@@ -53,4 +53,12 @@ struct JUTException : public JKRThread {
 
 #define P2ASSERTLINE(line, cond) JUT_ASSERTLINE(line, cond, "P2Assert")
 
+#define P2ASSERTBOUNDSLINE(line, lowerLimitInclusive, var,         \
+                           upperLimitExclusive)                    \
+	bool check##line = false;                                      \
+	if (lowerLimitInclusive <= var && var < upperLimitExclusive) { \
+		check##line = true;                                        \
+	}                                                              \
+	P2ASSERTLINE(line, check##line)
+
 #endif

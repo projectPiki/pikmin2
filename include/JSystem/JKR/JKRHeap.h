@@ -196,6 +196,39 @@ struct JKRExpHeap : public JKRHeap {
 	CMemBlock* m_tailUsedList; // _84
 };
 
+struct JKRSolidHeap : public JKRHeap {
+	JKRSolidHeap(void*, u32, JKRHeap*, bool);
+
+	virtual ~JKRSolidHeap();                                        // _00
+	virtual u32 getHeapType();                                      // _08
+	virtual bool check();                                           // _0C
+	virtual bool dump();                                            // _14
+	virtual void do_destroy();                                      // _18
+	virtual void* do_alloc(unsigned long, int);                     // _1C
+	virtual void do_free(void*);                                    // _20
+	virtual void do_freeAll();                                      // _24
+	virtual void do_freeTail();                                     // _28
+	virtual void do_fillFreeArea();                                 // _2C
+	virtual int do_resize(void*, unsigned long);                    // _30
+	virtual int do_getSize(void*);                                  // _34
+	virtual u32 do_getFreeSize();                                   // _38
+	virtual void* do_getMaxFreeBlock();                             // _3C
+	virtual u32 do_getTotalFreeSize();                              // _40
+	virtual void state_register(TState*, unsigned long) const;      // _4C
+	virtual bool state_compare(const TState&, const TState&) const; // _50
+
+	void adjustSize();
+	void allocFromHead(unsigned long, int);
+	void allocFromTail(unsigned long, int);
+
+	static JKRSolidHeap* create(unsigned long, JKRHeap*, bool);
+
+	u32 m_freeSize; // _6C
+	void* _70;      // _70
+	void* _74;      // _74
+	u32 _78;        // _78
+};
+
 void JKRDefaultMemoryErrorRoutine(void*, u32, int);
 
 void* operator new(size_t, JKRHeap*, int);

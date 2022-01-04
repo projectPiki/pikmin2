@@ -17,9 +17,9 @@ struct ModelMgr {
 	int calcModelSize(J3DModelData*);
 	Model* createModel(int, int);
 
-	int _00;                        // _00
+	int m_modelDataLimit;           // _00
 	J3DModelData** m_modelData;     // _04
-	int _08;                        // _08
+	int m_heapLimit;                // _08
 	JKRSolidHeap** m_heaps;         // _0C
 	u32 _10;                        // _10
 	u32 _14;                        // _14
