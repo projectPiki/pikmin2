@@ -245,7 +245,7 @@ DOLPHIN:=\
 	$(BUILD_DIR)/asm/Dolphin/msg.o\
 	$(BUILD_DIR)/asm/Dolphin/msgbuf.o\
 	$(BUILD_DIR)/asm/Dolphin/serpoll.o\
-	$(BUILD_DIR)/asm/Dolphin/usr_put.o\
+	$(BUILD_DIR)/src/Dolphin/usr_put.o\
 	$(BUILD_DIR)/src/Dolphin/dispatch.o\
 	$(BUILD_DIR)/asm/Dolphin/msghndlr.o\
 	$(BUILD_DIR)/asm/Dolphin/support.o\
