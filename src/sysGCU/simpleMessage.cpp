@@ -15,9 +15,9 @@ SimpleMessage::SimpleMessage(void) { }
  * Address:	8043DBF0
  * Size:	00006C
  */
-void SimpleMessage::init(void)
+void SimpleMessage::init()
 {
-	m_processor = new P2JME::TRenderingProcessor(gP2JMEMgr->m_messageRef);
+	m_processor = new P2JME::TRenderingProcessor(gP2JMEMgr->m_msgRef);
 
 	m_processor->setFont(gP2JMEMgr->m_font);
 	m_processor->m_jmeFont = gP2JMEMgr->m_font;
@@ -28,15 +28,15 @@ void SimpleMessage::init(void)
  * Address:	8043DC5C
  * Size:	000080
  */
-void SimpleMessage::drawMessageID(Graphics& gfx, unsigned long r5,
-                                  unsigned long r6)
+void SimpleMessage::drawMessageID(Graphics& gfx, unsigned long lowerHalf,
+                                  unsigned long upperHalf)
 {
-	m_processor->preProcID(r5, r6);
+	m_processor->preProcID(lowerHalf, upperHalf);
 
 	JMessage::TRenderingProcessor* jmProc
 	    = static_cast<JMessage::TRenderingProcessor*>(m_processor);
 	jmProc->reset_(nullptr);
-	jmProc->setBegin_messageID(r5, r6, nullptr);
+	jmProc->setBegin_messageID(lowerHalf, upperHalf, nullptr);
 	jmProc->process(nullptr);
 }
 } // namespace P2JME
