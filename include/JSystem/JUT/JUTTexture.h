@@ -19,14 +19,14 @@ struct JUTTexture {
 	~JUTTexture();
 	;
 	void attachPalette(JUTPalette*);
-	void capture(int, int, _GXTexFmt, bool, uchar);
+	void capture(int, int, _GXTexFmt, bool, u8);
 	void captureTexture(int, int, int, int, bool, _GXTexFmt, _GXTexFmt);
 	void captureDolTexture(void*, int, int, int, int, bool, _GXTexFmt);
 	void init();
 	void initTexObj();
 	void initTexObj(_GXTlut);
 	void load(_GXTexMapID);
-	void storeTIMG(const ResTIMG*, uchar);
+	void storeTIMG(const ResTIMG*, u8);
 	void storeTIMG(const ResTIMG*, JUTPalette*);
 	void storeTIMG(const ResTIMG*, JUTPalette*, _GXTlut);
 

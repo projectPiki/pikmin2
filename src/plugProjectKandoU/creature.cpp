@@ -747,7 +747,7 @@ void Creature::getLifeGaugeParam(Game::LifeGaugeParam& param)
  * Address:	8013B574
  * Size:	000090
  */
-void Creature::save(Stream& output, uchar flags)
+void Creature::save(Stream& output, u8 flags)
 {
 	if (flags & 1) {
 		Vector3f position = getPosition();
@@ -761,7 +761,7 @@ void Creature::save(Stream& output, uchar flags)
  * Address:	8013B604
  * Size:	0000E4
  */
-void Creature::load(Stream& input, uchar flags)
+void Creature::load(Stream& input, u8 flags)
 {
 	if (flags & 1) {
 		Vector3f position;

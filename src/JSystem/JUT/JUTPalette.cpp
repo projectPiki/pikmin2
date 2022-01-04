@@ -93,7 +93,7 @@ void JUTPalette::storeTLUT(_GXTlut id, _GXTlutFmt format,
 	m_tlutFormat   = format;
 	m_transparency = transparency;
 	_14            = p4;
-	_10            = (uchar*)p5;
+	_10            = (u8*)p5;
 	GXInitTlutObj(&m_tlutObj, _10, m_tlutFormat, _14);
 }
 

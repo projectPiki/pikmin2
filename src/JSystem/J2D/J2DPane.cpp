@@ -587,7 +587,7 @@ void J2DPane::initialize(ulonglong tag, const JGeometry::TBox2f& box)
  * Address:	80036FC8
  * Size:	000120
  */
-J2DPane::J2DPane(J2DPane* parent, JSURandomInputStream* input, uchar version)
+J2DPane::J2DPane(J2DPane* parent, JSURandomInputStream* input, u8 version)
     : m_tree(this)
     , m_transform(nullptr)
 {
@@ -3315,14 +3315,14 @@ lbl_80038F5C:
  * Address:	80038F90
  * Size:	000008
  */
-void J2DPane::setAlpha(uchar alpha) { m_alpha = alpha; }
+void J2DPane::setAlpha(u8 alpha) { m_alpha = alpha; }
 
 /*
  * --INFO--
  * Address:	80038F98
  * Size:	0000D8
  */
-JGeometry::TVec3f J2DPane::getGlbVtx(uchar) const
+JGeometry::TVec3f J2DPane::getGlbVtx(u8) const
 {
 	/*
 	clrlwi   r6, r5, 0x18
@@ -3639,7 +3639,7 @@ lbl_800392C4:
  * Address:	80039308
  * Size:	0000B8
  */
-s16 J2DPane::J2DCast_F32_to_S16(f32, uchar)
+s16 J2DPane::J2DCast_F32_to_S16(f32, u8)
 {
 	/*
 	clrlwi   r0, r3, 0x18

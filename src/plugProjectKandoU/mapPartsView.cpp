@@ -253,9 +253,9 @@ void PartsView::read(Stream& input)
 	m_unitKind = input.readShort();
 	if (shouldRead6E >= 1) {
 		int i       = 0;
-		uchar* vptr = (uchar*)&_6E;
+		u8* vptr = (u8*)&_6E;
 		do {
-			uchar c = input.readByte();
+			u8 c = input.readByte();
 			i++;
 			*vptr = c;
 			vptr++;

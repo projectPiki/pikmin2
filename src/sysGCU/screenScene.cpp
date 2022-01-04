@@ -1229,7 +1229,7 @@ lbl_8045226C:
  * Address:	80452284
  * Size:	000044
  */
-void SceneBase::setColorBG(uchar r, uchar g, uchar b, uchar a)
+void SceneBase::setColorBG(u8 r, u8 g, u8 b, u8 a)
 {
 	JUtility::TColor color(r, g, b, a);
 	m_screenMgr->setColorBG(color);

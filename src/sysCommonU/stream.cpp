@@ -561,7 +561,7 @@ void Stream::skipReading(ulong byteCount)
 {
 	if (m_isTextMode == true) {
 		while (!eof()) {
-			uchar next = _readByte();
+			u8 next = _readByte();
 			if (next == '\r' || next == '\n') {
 				return;
 			}
@@ -738,7 +738,7 @@ void Stream::textWriteTab(int tabCount)
  * Address:	8041449C
  * Size:	000278
  */
-uchar Stream::readByte()
+u8 Stream::readByte()
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -951,7 +951,7 @@ lbl_804146F8:
  * Address:	80414714
  * Size:	000050
  */
-uchar Stream::_readByte()
+u8 Stream::_readByte()
 {
 	char buffer[1];
 	read(buffer, 1);
@@ -2254,9 +2254,9 @@ void Stream::writeFixedString(char*)
  * Address:	80415670
  * Size:	000070
  */
-void Stream::writeByte(uchar c)
+void Stream::writeByte(u8 c)
 {
-	uchar buffer = c;
+	u8 buffer = c;
 	if (m_isTextMode == 1) {
 		printf("%d ", c);
 	} else {
@@ -2270,9 +2270,9 @@ void Stream::writeByte(uchar c)
  * Address:	804156E0
  * Size:	000050
  */
-void Stream::_writeByte(uchar c)
+void Stream::_writeByte(u8 c)
 {
-	uchar buffer = c;
+	u8 buffer = c;
 	write(&buffer, 1);
 	m_position++;
 }
@@ -2480,7 +2480,7 @@ lbl_80415928:
  * Address:	........
  * Size:	000014
  */
-void RamStream::set(uchar*, int)
+void RamStream::set(u8*, int)
 {
 	// UNUSED FUNCTION
 }

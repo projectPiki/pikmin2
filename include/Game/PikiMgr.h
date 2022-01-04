@@ -56,7 +56,7 @@ struct PikiMgr : public MonoObjectMgr<Game::Piki> {
 	void saveStorePikmins(Condition<Piki>*);
 	void getStorePikmin(int, int);
 	void moveAllPikmins(Vector3f&, float, Condition<Piki>*);
-	void forceEnterPikmins(uchar);
+	void forceEnterPikmins(u8);
 	void killDayEndPikmins(PikiContainer&);
 	void killAllPikmins();
 	void caveSaveFormationPikmins(bool);

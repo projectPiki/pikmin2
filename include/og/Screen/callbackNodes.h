@@ -70,7 +70,7 @@ namespace Screen {
 		void setPuyoAnimZero(bool);
 		void setRandMode(bool);
 		void setValPtr(ulong*);
-		void setZeroAlpha(uchar);
+		void setZeroAlpha(u8);
 		void startPuyoUp(float);
 
 		char** m_characterTexturePaths; // _1C
@@ -107,7 +107,7 @@ namespace Screen {
 		bool _88;                          // _88
 		u8 _89;                            // _89
 		EnumCenteringMode m_centeringMode; // _8C
-		uchar m_zeroAlpha;                 // _90
+		u8 m_zeroAlpha;                 // _90
 		SoundID m_scaleUpSoundID;          // _94
 		SoundID m_scaleDownSoundID;        // _98
 		u8 _9C;                            // _9C

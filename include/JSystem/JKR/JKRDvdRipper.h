@@ -17,13 +17,13 @@ struct JKRDvdRipper {
 	};
 #pragma enumsalwaysint reset
 
-	static void* loadToMainRAM(const char*, uchar*, JKRExpandSwitch, ulong,
+	static void* loadToMainRAM(const char*, u8*, JKRExpandSwitch, ulong,
 	                           JKRHeap*, EAllocDirection, ulong, int*, ulong*);
-	static void* loadToMainRAM(long, uchar*, JKRExpandSwitch, ulong, JKRHeap*,
+	static void* loadToMainRAM(long, u8*, JKRExpandSwitch, ulong, JKRHeap*,
 	                           EAllocDirection, ulong, int*, ulong*);
-	static void* loadToMainRAMAsync(const char*, uchar*, JKRExpandSwitch, ulong,
+	static void* loadToMainRAMAsync(const char*, u8*, JKRExpandSwitch, ulong,
 	                                JKRHeap*, ulong*);
-	static void* loadToMainRAMAsync(long, uchar*, JKRExpandSwitch, ulong,
+	static void* loadToMainRAMAsync(long, u8*, JKRExpandSwitch, ulong,
 	                                JKRHeap*, ulong*);
 
 	static void syncAll(int);

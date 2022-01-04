@@ -28,7 +28,7 @@ struct Creature : public ObjBase {
 	virtual bool judgeNearWithPlayer(const Vec&, const Vec&, float,
 	                                 float);    // _24
 	virtual void onPlayingSe(ulong, JAISound*); // _28
-	virtual void getHandleArea(uchar) = 0;      // _2C
+	virtual void getHandleArea(u8) = 0;      // _2C
 
 	Game::Creature* m_gameObj;
 };

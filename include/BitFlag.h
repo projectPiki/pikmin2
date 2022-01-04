@@ -12,7 +12,7 @@ template <typename T> struct BitFlag {
 	}
 
 	union {
-		uchar byteView[sizeof(T)];
+		u8 byteView[sizeof(T)];
 		T typeView;
 	};
 };

@@ -13,15 +13,15 @@ struct CreatureAnime : public Creature, public JAIAnimeSound {
 	virtual void exec();                     // _10
 	virtual JAInter::Object* getJAIObject(); // _14
 	virtual void onCalcOn();                 // _18
-	virtual void getHandleArea(uchar);       // _2C
+	virtual void getHandleArea(u8);       // _2C
 	// vtable 3 (JAIAnimeSound + self)
 	virtual void startSound(ulong, ulong);             // _40
-	virtual void startSound(uchar, ulong, ulong);      // _44
+	virtual void startSound(u8, ulong, ulong);      // _44
 	virtual void startSound(JAISound**, ulong, ulong); // _48
 	virtual void startAnimSound(ulong, JAISound**, JAInter::Actor*,
-	                            uchar); // _4C
+	                            u8); // _4C
 	virtual void playActorAnimSound(JAInter::Actor*, float,
-	                                uchar); // _50
+	                                u8); // _50
 	virtual void onCalcTurnOn();            // _54
 	virtual void onCalcTurnOff();           // _58
 

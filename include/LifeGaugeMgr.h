@@ -18,14 +18,14 @@ struct LifeGauge {
 
 	void draw(float, float, float);
 	void drawOneTri(Vector3f*, Color4&);
-	void init(uchar);
+	void init(u8);
 	void initLifeGaugeDraw();
 	void update(float);
 
 	float _00;  // _00
 	Color4 _04; // _04 // might be TColor
-	uchar _08;  // _08
-	uchar _09;  // _09
+	u8 _08;  // _08
+	u8 _09;  // _09
 };
 
 /**

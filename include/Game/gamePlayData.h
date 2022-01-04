@@ -207,7 +207,7 @@ struct PlayData : public CNode {
 	void losePellet(BasePelletMgr*, int);
 	void obtainPellet_Main(Pellet*);
 	void obtainPellet_Cave(Pellet*);
-	bool isPelletEverGot(uchar, uchar);
+	bool isPelletEverGot(u8, u8);
 	bool isPelletZukanVisible(int);
 	bool isPelletZukanWhatsNew(int);
 	bool hasPelletZukanWhatsNew();

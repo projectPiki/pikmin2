@@ -1885,7 +1885,7 @@ lbl_80303174:
 	 * Address:	80303184
 	 * Size:	000190
 	 */
-	uchar AlphaMgr::calc()
+	u8 AlphaMgr::calc()
 	{
 		/*
 	stwu     r1, -0x10(r1)

@@ -560,7 +560,7 @@ lbl_801A3AA8:
  * Address:	801A3AD0
  * Size:	000098
  */
-uchar Pathfinder::check(ulong)
+u8 Pathfinder::check(ulong)
 {
 	/*
 	stwu     r1, -0x10(r1)

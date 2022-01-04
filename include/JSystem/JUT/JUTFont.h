@@ -140,7 +140,7 @@ struct JUTResFont : public JUTFont {
 	int _44;             // _44
 	ResFONT* m_resource; // _48
 	// INF1
-	uchar* m_infoBlock; // _4C
+	u8* m_infoBlock; // _4C
 	void* m_memBlocks;  // _50
 	// WID1
 	void** m_widthBlocks; // _54

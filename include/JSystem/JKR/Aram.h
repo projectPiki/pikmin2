@@ -12,18 +12,18 @@ struct JKRAramHeap;
 struct JKRDecompCommand;
 
 struct JKRAramBlock {
-	JKRAramBlock(u32, u32, u32, uchar, bool);
+	JKRAramBlock(u32, u32, u32, u8, bool);
 
 	virtual ~JKRAramBlock(); // _00
 
-	JKRAramBlock* allocHead(u32, uchar, JKRAramHeap*);
-	JKRAramBlock* allocTail(u32, uchar, JKRAramHeap*);
+	JKRAramBlock* allocHead(u32, u8, JKRAramHeap*);
+	JKRAramBlock* allocTail(u32, u8, JKRAramHeap*);
 
 	JSUPtrLink m_link; // _04
 	u32 _14;           // _14
 	u32 _18;           // _18
 	u32 _1C;           // _1C
-	uchar _20;         // _20
+	u8 _20;         // _20
 	bool _21;          // _21
 };
 
@@ -55,11 +55,11 @@ struct JKRAram : public JKRThread {
 	virtual void run(); // _04
 
 	static JKRAram* create(u32, u32, long, long, long);
-	static JKRAramBlock* mainRamToAram(uchar*, u32, u32, JKRExpandSwitch, u32,
+	static JKRAramBlock* mainRamToAram(u8*, u32, u32, JKRExpandSwitch, u32,
 	                                   JKRHeap*, s32, u32*);
-	static uchar* aramToMainRam(u32, uchar*, u32, JKRExpandSwitch, u32,
+	static u8* aramToMainRam(u32, u8*, u32, JKRExpandSwitch, u32,
 	                            JKRHeap*, s32, u32*);
-	static uchar* aramToMainRam(JKRAramBlock*, u8*, u32, u32, JKRExpandSwitch,
+	static u8* aramToMainRam(JKRAramBlock*, u8*, u32, u32, JKRExpandSwitch,
 	                            u32, JKRHeap*, s32, u32*);
 
 	u8 _78[8];               // _78
@@ -82,8 +82,8 @@ struct JKRAramArchive : public JKRArchive {
 	virtual void* fetchResource(void*, u32, SDIFileEntry*, u32*); // _3C
 
 	bool open(long);
-	void fetchResource_subroutine(u32, u32, uchar*, u32, s32);
-	void fetchResource_subroutine(u32, u32, JKRHeap*, s32, uchar**);
+	void fetchResource_subroutine(u32, u32, u8*, u32, s32);
+	void fetchResource_subroutine(u32, u32, JKRHeap*, s32, u8**);
 
 	s32 _5C;               // _5C
 	s32 _60;               // _60

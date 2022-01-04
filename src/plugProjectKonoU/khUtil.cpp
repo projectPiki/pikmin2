@@ -661,7 +661,7 @@ lbl_8040B6D4:
 	 * Size:	0000A4
 	 */
 	khUtilFadePane* khUtilFadePane::create(P2DScreen::Mgr* mgr, ulonglong tag,
-	                                       uchar c)
+	                                       u8 c)
 	{
 		if (mgr == nullptr) {
 			return nullptr;
@@ -730,7 +730,7 @@ lbl_8040B6D4:
 	 * Address:	8040BB88
 	 * Size:	000088
 	 */
-	khUtilFadePane::khUtilFadePane(uchar c)
+	khUtilFadePane::khUtilFadePane(u8 c)
 	    : CallBackNode()
 	    , m_paneNode()
 	    , _28(0)
@@ -1000,7 +1000,7 @@ lbl_8040BE04:
 	 * Address:	8040BE10
 	 * Size:	000060
 	 */
-	void khUtilFadePane::set_init_alpha(uchar)
+	void khUtilFadePane::set_init_alpha(u8)
 	{
 		/*
 	stwu     r1, -0x10(r1)

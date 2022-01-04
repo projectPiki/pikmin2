@@ -11,7 +11,7 @@ struct ResTLUT {
 	JUTTransparency m_transparency; // _01
 	ushort _02;   // _02 // maybe sizeX, given similarities to ResTIMG?
 	u8 _04[0x1C]; // _04
-	uchar* _20;   // _20
+	u8* _20;   // _20
 };
 
 #endif

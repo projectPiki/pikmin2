@@ -39,11 +39,11 @@ struct J3DUShadowCameraPolicyUsingSphere {
 };
 
 struct J3DUMultiTexture {
-	J3DUMultiTexture(ulong, uchar);
+	J3DUMultiTexture(ulong, u8);
 	~J3DUMultiTexture();
-	void initResTIMG(uchar, _GXTexFmt);
-	void allocateTexture(uchar, ushort, ushort, _GXTexFmt);
-	void draw(uchar, ulong, ulong, _GXTevColorArg, ulong, ulong) const;
+	void initResTIMG(u8, _GXTexFmt);
+	void allocateTexture(u8, ushort, ushort, _GXTexFmt);
+	void draw(u8, ulong, ulong, _GXTevColorArg, ulong, ulong) const;
 
 #ifdef MATCHING
 	// The following is purely made up for the sake of matching.
@@ -54,7 +54,7 @@ struct J3DUMultiTexture {
 };
 
 struct J3DUShadowManager {
-	J3DUShadowManager(ulong, _GXTexFmt, uchar, bool);
+	J3DUShadowManager(ulong, _GXTexFmt, u8, bool);
 	~J3DUShadowManager();
 
 	void getFormatCoefficient(_GXTexFmt) const;

@@ -184,7 +184,7 @@ struct Navi : public FakePiki, virtual public PelletView {
 	// TODO: If this is the same sort of thing as m_health elsewhere, rename to
 	// that.
 	float m_currentLife;     // _2A0
-	uchar m_invincibleTimer; // _2A4
+	u8 m_invincibleTimer; // _2A4
 	Piki* m_nextThrowPiki;   // _2A8
 	u8 _2AC[4];              // _2AC
 	float m_holdPikiTimer;   // _2B0

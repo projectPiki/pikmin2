@@ -1981,7 +1981,7 @@ lbl_8005613C:
  * Address:	8005615C
  * Size:	000054
  */
-bool J2DPictureEx::isRemove(uchar) const
+bool J2DPictureEx::isRemove(u8) const
 {
 	/*
 	lwz      r3, 0x168(r3)
@@ -4252,7 +4252,7 @@ lbl_80057EC4:
  * Address:	80057ED8
  * Size:	000058
  */
-ResTIMG* J2DPictureEx::changeTexture(const char*, uchar)
+ResTIMG* J2DPictureEx::changeTexture(const char*, u8)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4476,7 +4476,7 @@ lbl_80058140:
  * Address:	80058150
  * Size:	000020
  */
-uchar J2DPictureEx::getTextureCount() const
+u8 J2DPictureEx::getTextureCount() const
 {
 	/*
 	lwz      r3, 0x168(r3)

@@ -33,22 +33,22 @@ namespace Screen {
 			khPaneNode* m_next; // _08
 		};
 
-		khUtilFadePane(uchar);
+		khUtilFadePane(u8);
 
 		virtual ~khUtilFadePane();     // _00
 		virtual void update();         // _08
 		virtual void fadeout_finish(); // _18
 
 		void add(J2DPane*);
-		khUtilFadePane* create(P2DScreen::Mgr*, ulonglong, uchar);
+		khUtilFadePane* create(P2DScreen::Mgr*, ulonglong, u8);
 		void fadein();
 		void fadeout();
-		void set_init_alpha(uchar);
+		void set_init_alpha(u8);
 
 		khPaneNode m_paneNode; // _1C
 		int _28;               // _28
-		uchar m_fadePaneAlpha; // _2C
-		uchar _2D;             // _2D
+		u8 m_fadePaneAlpha; // _2C
+		u8 _2D;             // _2D
 	};
 
 	struct khUtilFadePaneWM : public khUtilFadePane {

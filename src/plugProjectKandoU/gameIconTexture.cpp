@@ -149,7 +149,7 @@ void IconTexture::Mgr::setTexture(int index, ResTIMG* resource)
 {
 	JUT_ASSERTLINE(86, (0 <= index && index < m_count),
 	               "illegal index [%d] [0..%d)\n", index, m_count);
-	m_textures[index].storeTIMG(resource, (uchar)'\0');
+	m_textures[index].storeTIMG(resource, (u8)'\0');
 }
 
 /*

@@ -9,10 +9,10 @@ extern "C" {
 
 typedef struct PADStatusSingle {
 	ushort _00;
-	uchar _02;
-	uchar _03;
-	uchar _04;
-	uchar _05;
+	u8 _02;
+	u8 _03;
+	u8 _04;
+	u8 _05;
 	u8 _06;
 	char _07;
 	u8 _08;

@@ -4620,7 +4620,7 @@ lbl_8015FC58:
  * Address:	8015FCB4
  * Size:	000298
  */
-void PikiMgr::forceEnterPikmins(uchar)
+void PikiMgr::forceEnterPikmins(u8)
 {
 	/*
 	stwu     r1, -0x30(r1)

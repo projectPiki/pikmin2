@@ -49,7 +49,7 @@ namespace Nest {
 	};
 
 	struct Mgr : public EnemyMgrBase {
-		Mgr(int, uchar);
+		Mgr(int, u8);
 
 		// vtable 1
 		virtual void doSimpleDraw(Viewport*); // _18

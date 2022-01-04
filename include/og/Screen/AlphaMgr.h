@@ -12,7 +12,7 @@ namespace Screen {
 		void in(float);
 		void out(float);
 		void blink(float);
-		uchar calc();
+		u8 calc();
 
 		int _00;   // _00
 		float _04; // _04

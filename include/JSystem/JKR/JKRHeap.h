@@ -64,8 +64,8 @@ struct JKRHeap : public JKRDisposer {
 	void resize(void*, ulong);
 	ulong getFreeSize();
 	uint getTotalFreeSize();
-	uchar changeGroupID(uchar);
-	uchar getCurrentGroupId();
+	u8 changeGroupID(u8);
+	u8 getCurrentGroupId();
 	ulong getMaxAllocatableSize(int);
 	static JKRHeap* findFromRoot(void*);
 	JKRHeap* find(void*) const;
@@ -87,8 +87,8 @@ struct JKRHeap : public JKRDisposer {
 	virtual ulong do_getFreeSize();
 	virtual void* do_getMaxFreeBlock();
 	virtual ulong do_getTotalFreeSize();
-	virtual uchar do_changeGroupID(uchar);
-	virtual uchar do_getCurrentGroupId();
+	virtual u8 do_changeGroupID(u8);
+	virtual u8 do_getCurrentGroupId();
 	virtual void state_register(TState*, ulong) const;
 	virtual bool state_compare(const TState&, const TState&) const;
 	static void state_dumpDifference(const TState&, const TState&);
@@ -125,10 +125,10 @@ struct JKRExpHeap : public JKRHeap {
 		ushort m_usageHeader; // _00
 
 		/// This &'d with 0x7f is called "aln" by JKRExpHeap::dump
-		uchar _02; // _02
+		u8 _02; // _02
 
 		/// Called "gid" by JKRExpHeap::dump
-		uchar m_groupID; // _03
+		u8 m_groupID; // _03
 
 		/// Called "size" by JKRExpHeap::dump
 		ulong m_allocatedSpace; // _04
@@ -145,11 +145,11 @@ struct JKRExpHeap : public JKRHeap {
 		 */
 		CMemBlock* m_nextPtr; // _0C
 
-		u32 allocBack(ulong, uchar, uchar, uchar, uchar);
-		u32 allocFore(ulong, uchar, uchar, uchar, uchar);
+		u32 allocBack(ulong, u8, u8, u8, u8);
+		u32 allocFore(ulong, u8, u8, u8, u8);
 		void free(JKRExpHeap*);
 		static u32 getHeapBlock(void*);
-		void initiate(CMemBlock*, CMemBlock*, ulong, uchar, uchar);
+		void initiate(CMemBlock*, CMemBlock*, ulong, u8, u8);
 	};
 
 	JKRExpHeap(void*, ulong, JKRHeap*, bool);
@@ -170,8 +170,8 @@ struct JKRExpHeap : public JKRHeap {
 	virtual ulong do_getFreeSize();        // _38
 	virtual void* do_getMaxFreeBlock();    // _3C
 	virtual ulong do_getTotalFreeSize();   // _40
-	virtual uchar do_changeGroupID(uchar); // _44
-	virtual uchar do_getCurrentGroupId();  // _48
+	virtual u8 do_changeGroupID(u8); // _44
+	virtual u8 do_getCurrentGroupId();  // _48
 
 	u32 allocFromHead(ulong, int);
 	u32 allocFromHead(ulong);
@@ -180,7 +180,7 @@ struct JKRExpHeap : public JKRHeap {
 	u32 appendUsedList(CMemBlock*);
 	static JKRExpHeap* create(ulong, JKRHeap*, bool);
 	static JKRExpHeap* createRoot(int, bool);
-	int freeGroup(uchar);
+	int freeGroup(u8);
 	void joinTwoBlocks(CMemBlock*);
 	void recycleFreeBlock(CMemBlock*);
 	void removeFreeBlock(CMemBlock*);

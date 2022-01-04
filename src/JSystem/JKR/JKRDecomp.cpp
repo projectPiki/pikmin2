@@ -205,7 +205,7 @@ BOOL JKRDecomp::sendCommand(JKRDecompCommand* command)
  * Address:	8001CB3C
  * Size:	0000A0
  */
-bool JKRDecomp::orderSync(uchar* p1, uchar* p2, ulong p3, ulong p4)
+bool JKRDecomp::orderSync(u8* p1, u8* p2, ulong p3, ulong p4)
 {
 	JKRDecompCommand* command
 	    = new (JKRHeap::sSystemHeap, -4) JKRDecompCommand();
@@ -226,7 +226,7 @@ bool JKRDecomp::orderSync(uchar* p1, uchar* p2, ulong p3, ulong p4)
  * Address:	8001CBDC
  * Size:	00008C
  */
-void JKRDecomp::decode(uchar* p1, uchar* p2, ulong p3, ulong p4)
+void JKRDecomp::decode(u8* p1, u8* p2, ulong p3, ulong p4)
 {
 	switch (checkCompressed(p1)) {
 	case YAY0:
@@ -296,7 +296,7 @@ void JKRDecomp::decode(uchar* p1, uchar* p2, ulong p3, ulong p4)
  * Address:	8001CC68
  * Size:	0001A4
  */
-void JKRDecomp::decodeSZP(uchar* p1, uchar* p2, ulong p3, ulong p4)
+void JKRDecomp::decodeSZP(u8* p1, u8* p2, ulong p3, ulong p4)
 {
 	// uint v5 = (uint)p1[11] | (uint)p1[10] << 8 | (uint)p1[9] << 16 |
 	// (uint)p1[8] << 24; uint v2 = (uint)p1[7]  | (uint)p1[6]  << 8 |
@@ -308,13 +308,13 @@ void JKRDecomp::decodeSZP(uchar* p1, uchar* p2, ulong p3, ulong p4)
 	int v3  = 0x10;
 	uint vr;
 	if (p3 != 0 && p4 <= v2) {
-		// uchar* v7 = p1 + ((uint)p1[15] | (uint)p1[14] << 8 | (uint)p1[13] <<
+		// u8* v7 = p1 + ((uint)p1[15] | (uint)p1[14] << 8 | (uint)p1[13] <<
 		// 16 | (uint)p1[12] << 24)
-		uchar* v7  = p1 + EXTRACT_TO_UINT(p1, 15, 14, 13, 12);
-		uchar* v13 = p2;
+		u8* v7  = p1 + EXTRACT_TO_UINT(p1, 15, 14, 13, 12);
+		u8* v13 = p2;
 		do {
 			if (v6 == 0) {
-				uchar* v9 = p1 + v3;
+				u8* v9 = p1 + v3;
 				v6        = 0x20;
 				v3 += 4;
 				vr = EXTRACT_TO_UINT(v9, 3, 2, 1, 0);
@@ -335,9 +335,9 @@ void JKRDecomp::decodeSZP(uchar* p1, uchar* p2, ulong p3, ulong p4)
 			} else {
 				ushort* v10 = reinterpret_cast<ushort*>(p1 + v5);
 				v5 += 2;
-				int v8 = v4 - ((reinterpret_cast<uchar*>(v10)[0] & 0xF) << 8)
-				         | (reinterpret_cast<uchar*>(v10)[1]);
-				uchar v1;
+				int v8 = v4 - ((reinterpret_cast<u8*>(v10)[0] & 0xF) << 8)
+				         | (reinterpret_cast<u8*>(v10)[1]);
+				u8 v1;
 				int v11;
 				if ((int)*v10 >> 0xC == 0) {
 					v1 = *v7;
@@ -349,7 +349,7 @@ void JKRDecomp::decodeSZP(uchar* p1, uchar* p2, ulong p3, ulong p4)
 				if (v11 > v2 - v4) {
 					v11 = v2 - v4;
 				}
-				uchar* v12 = p2 + v4;
+				u8* v12 = p2 + v4;
 				if (0 < v11) {
 					do {
 						if (p4 == 0) {
@@ -605,7 +605,7 @@ void JKRDecomp::decodeSZS(unsigned char*, unsigned char*, unsigned long,
  * Address:	8001CEF0
  * Size:	000050
  */
-JKRDecomp::CompressionMode JKRDecomp::checkCompressed(uchar*)
+JKRDecomp::CompressionMode JKRDecomp::checkCompressed(u8*)
 {
 	/*
 	lbz      r0, 0(r3)

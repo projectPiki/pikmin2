@@ -25,7 +25,7 @@ struct EnemyBase : public CreatureAnime, public BattleLink, public KehaiLink {
 	                                 float); // _24
 	// vtable 3 (CreatureAnime)
 	virtual void startAnimSound(ulong, JAISound**, JAInter::Actor*,
-	                            uchar); // _4C
+	                            u8); // _4C
 	virtual void onCalcTurnOn();        // _54
 	virtual void onCalcTurnOff();       // _58
 	// vtable 4 (BattleLink)

@@ -60,10 +60,10 @@ struct J2DAnmColor : public J2DAnmBase {
 
 // Size: 0x44
 struct J2DAnmColorFull : public J2DAnmColor {
-	uchar* _30;                     // _30
-	uchar* _34;                     // _34
-	uchar* _38;                     // _38
-	uchar* _3C;                     // _3C
+	u8* _30;                     // _30
+	u8* _34;                     // _34
+	u8* _38;                     // _38
+	u8* _3C;                     // _3C
 	J3DAnmColorFullTable* m_tables; // _40
 };
 
@@ -120,7 +120,7 @@ struct J2DAnmTextureSRTKey : public J2DAnmBase {
 	float* _24;
 	short* _28;
 	float* _2C;
-	uchar* _30;
+	u8* _30;
 	short* _34;
 	JUTNameTab m_nameTab;
 	Vec* _48;
@@ -132,7 +132,7 @@ struct J2DAnmTextureSRTKey : public J2DAnmBase {
 	u32 _5C;
 	short _60;
 	J3DAnmTransformKeyTable* _64;
-	uchar* _68;
+	u8* _68;
 	ushort _6C;
 	JUTNameTab _70;
 	Vec* _80;
@@ -165,11 +165,11 @@ struct J2DAnmVisibilityFull : public J2DAnmBase {
 	short _10;                           // _10
 	short _12;                           // _12
 	J3DAnmVisibilityFullTable* m_tables; // _14
-	uchar* _18;                          // _18
+	u8* _18;                          // _18
 };
 
 struct J2DAnmVtxColor : public J2DAnmBase {
-	virtual void getColor(uchar, ushort, GXColor*) const; // _08
+	virtual void getColor(u8, ushort, GXColor*) const; // _08
 
 	short _10;                    // _10
 	short _12;                    // _12
@@ -182,10 +182,10 @@ struct J2DAnmVtxColorFull : public J2DAnmVtxColor {
 	ushort* _20;               // _20
 	J3DAnmColorFullTable* _24; // _24
 	J3DAnmColorFullTable* _28; // _28
-	uchar* _2C;                // _2C
-	uchar* _30;                // _30
-	uchar* _34;                // _34
-	uchar* _38;                // _38
+	u8* _2C;                // _2C
+	u8* _30;                // _30
+	u8* _34;                // _34
+	u8* _38;                // _38
 };
 
 // Size: 0x3C

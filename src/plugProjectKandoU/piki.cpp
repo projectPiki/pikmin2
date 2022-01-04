@@ -3156,7 +3156,7 @@ bool Piki::gasInvicible(void)
  * Address:	801494CC
  * Size:	000008
  */
-void Piki::setGasInvincible(uchar a1)
+void Piki::setGasInvincible(u8 a1)
 {
 	// Generated from stb r4, 0x2A6(r3)
 	m_gasInvincible = a1;

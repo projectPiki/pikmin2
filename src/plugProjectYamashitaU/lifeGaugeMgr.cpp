@@ -101,7 +101,7 @@ LifeGauge::LifeGauge() { init(' '); }
  * Address:	80119C30
  * Size:	000014
  */
-void LifeGauge::init(uchar c)
+void LifeGauge::init(u8 c)
 {
 	_00 = 0.0f;
 	_09 = c;

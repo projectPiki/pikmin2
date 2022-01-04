@@ -773,7 +773,7 @@ uint JKRHeap::getTotalFreeSize()
  * Address:	8002380C
  * Size:	00002C
  */
-uchar JKRHeap::changeGroupID(uchar newGroupID)
+u8 JKRHeap::changeGroupID(u8 newGroupID)
 {
 	return do_changeGroupID(newGroupID);
 	/*
@@ -797,7 +797,7 @@ uchar JKRHeap::changeGroupID(uchar newGroupID)
  * Address:	80023838
  * Size:	000008
  */
-u8 JKRHeap::do_changeGroupID(uchar newGroupID)
+u8 JKRHeap::do_changeGroupID(u8 newGroupID)
 {
 	return 0;
 	return 0x0;
@@ -808,7 +808,7 @@ u8 JKRHeap::do_changeGroupID(uchar newGroupID)
  * Address:	80023840
  * Size:	00002C
  */
-uchar JKRHeap::getCurrentGroupId()
+u8 JKRHeap::getCurrentGroupId()
 {
 	return do_getCurrentGroupId();
 	/*
@@ -832,7 +832,7 @@ uchar JKRHeap::getCurrentGroupId()
  * Address:	8002386C
  * Size:	000008
  */
-uchar JKRHeap::do_getCurrentGroupId()
+u8 JKRHeap::do_getCurrentGroupId()
 {
 	return 0;
 	return 0x0;

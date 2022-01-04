@@ -32,7 +32,7 @@
  * Address:	800B744C
  * Size:	0000CC
  */
-void JAInter::SoundTable::init(uchar* data, ulong dataSize)
+void JAInter::SoundTable::init(u8* data, ulong dataSize)
 {
 	mVersion         = data[3];
 	mDataSize        = dataSize;
@@ -256,7 +256,7 @@ void JAInter::SoundTable::setInfoTrack(unsigned long, unsigned char)
  * Address:	800B7634
  * Size:	000008
  */
-uchar JAInter::SoundTable::getCategotyMax(void)
+u8 JAInter::SoundTable::getCategotyMax(void)
 {
 	/*
 	lbz      r3, mCategotyMax__Q27JAInter10SoundTable@sda21(r13)

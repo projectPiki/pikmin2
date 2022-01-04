@@ -31,7 +31,7 @@ struct J2DGrafContext {
 	void scissor(const JGeometry::TBox2f&);
 	void setColor(JUtility::TColor, JUtility::TColor, JUtility::TColor,
 	              JUtility::TColor);
-	void setLineWidth(uchar);
+	void setLineWidth(u8);
 
 	// VTBL _00
 	float _04;            // _04

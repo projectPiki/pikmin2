@@ -19,7 +19,7 @@ struct TForever : public TBase, public JPAEmitterCallback {
 	// vtable 2 (JPABaseEmitter + self)
 	virtual ~TForever(); // _14
 
-	void setGlobalAlpha(uchar);
+	void setGlobalAlpha(u8);
 	void setGlobalEnvColor(JUtility::TColor&);
 	void setGlobalScale(float);
 
@@ -28,14 +28,14 @@ struct TForever : public TBase, public JPAEmitterCallback {
 };
 
 struct TForeverN : public TBase {
-	TForeverN(uchar);
+	TForeverN(u8);
 
 	virtual bool create(Arg*);    // _00
 	virtual void kill();          // _04
 	virtual void fade();          // _08
-	virtual void setGroup(uchar); // _0C
+	virtual void setGroup(u8); // _0C
 
-	void setGlobalAlpha(uchar);
+	void setGlobalAlpha(u8);
 };
 } // namespace efx2d
 

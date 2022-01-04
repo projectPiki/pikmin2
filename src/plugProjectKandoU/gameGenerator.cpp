@@ -627,7 +627,7 @@ void Generator::saveCreature(Stream& output)
 {
 	if (m_creature != nullptr) {
 		ushort flags = _5C;
-		// uchar saveFlag = (flags & 8);
+		// u8 saveFlag = (flags & 8);
 		bool conversion = false;
 		if (flags & 8) {
 			conversion = true;

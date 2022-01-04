@@ -14,7 +14,7 @@ struct JUTPalette {
 	void storeTLUT(_GXTlut, ResTLUT*);
 	// void storeTLUT(_GXTlut id, _GXTlutFmt format, JUTTransparency
 	// transparency, ushort p4, void* p5) { 	m_tlutID = id; 	m_tlutFormat =
-	// format; 	m_transparency = transparency; 	_14 = p4; 	_10 = (uchar*)p5;
+	// format; 	m_transparency = transparency; 	_14 = p4; 	_10 = (u8*)p5;
 	// 	GXInitTlutObj(&m_tlutObj, _10, m_tlutFormat, _14);
 	// }
 

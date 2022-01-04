@@ -793,7 +793,7 @@ bool J2DPicture::append(const ResTIMG*, float)
  * Address:	8003A390
  * Size:	000034
  */
-bool J2DPicture::insert(const ResTIMG*, uchar, float)
+bool J2DPicture::insert(const ResTIMG*, u8, float)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -911,7 +911,7 @@ bool J2DPicture::append(const char*, float)
  * Address:	8003A4DC
  * Size:	000034
  */
-bool J2DPicture::insert(const char*, uchar, float)
+bool J2DPicture::insert(const char*, u8, float)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1747,7 +1747,7 @@ lbl_8003AF64:
  * Address:	8003AF7C
  * Size:	0000E0
  */
-void J2DPicture::prepareTexture(uchar)
+void J2DPicture::prepareTexture(u8)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -1828,7 +1828,7 @@ lbl_8003B03C:
  * Address:	8003B05C
  * Size:	00032C
  */
-bool J2DPicture::insert(const ResTIMG*, JUTPalette*, uchar, float)
+bool J2DPicture::insert(const ResTIMG*, JUTPalette*, u8, float)
 {
 	/*
 	stwu     r1, -0x60(r1)
@@ -2078,7 +2078,7 @@ lbl_8003B36C:
  * Address:	8003B388
  * Size:	000078
  */
-bool J2DPicture::insert(const char*, JUTPalette*, uchar, float)
+bool J2DPicture::insert(const char*, JUTPalette*, u8, float)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2119,7 +2119,7 @@ bool J2DPicture::insert(const char*, JUTPalette*, uchar, float)
  * Address:	8003B400
  * Size:	0001D8
  */
-bool J2DPicture::insert(JUTTexture*, uchar, float)
+bool J2DPicture::insert(JUTTexture*, u8, float)
 {
 	/*
 	stwu     r1, -0x50(r1)
@@ -2262,7 +2262,7 @@ lbl_8003B5B4:
  * Address:	8003B5D8
  * Size:	000130
  */
-int J2DPicture::remove(uchar)
+int J2DPicture::remove(u8)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2402,7 +2402,7 @@ lbl_8003B744:
  * Address:	8003B768
  * Size:	0000E8
  */
-ResTIMG* J2DPicture::changeTexture(const ResTIMG*, uchar)
+ResTIMG* J2DPicture::changeTexture(const ResTIMG*, u8)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2481,7 +2481,7 @@ lbl_8003B83C:
  * Address:	8003B850
  * Size:	000024
  */
-JUTTexture* J2DPicture::getTexture(uchar) const
+JUTTexture* J2DPicture::getTexture(u8) const
 {
 	/*
 	clrlwi   r0, r4, 0x18
@@ -3033,7 +3033,7 @@ void J2DPicture::load(unsigned char)
  * Address:	8003BEDC
  * Size:	00004C
  */
-void J2DPicture::load(GXTexMapID, uchar)
+void J2DPicture::load(GXTexMapID, u8)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -4583,7 +4583,7 @@ lbl_8003D210:
  * Address:	8003D220
  * Size:	0000D0
  */
-uchar J2DPicture::getUsableTlut(uchar)
+u8 J2DPicture::getUsableTlut(u8)
 {
 	/*
 	lbz      r6, 0x110(r3)

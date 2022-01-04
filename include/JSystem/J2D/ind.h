@@ -7,7 +7,7 @@ struct J2DIndTexCoordScale {
 	J2DIndTexCoordScale();
 	~J2DIndTexCoordScale();
 
-	void load(uchar);
+	void load(u8);
 };
 
 struct J2DIndTexMtx {

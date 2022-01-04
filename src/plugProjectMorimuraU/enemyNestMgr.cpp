@@ -344,7 +344,7 @@ namespace Nest {
 	 * Address:	8036C194
 	 * Size:	000070
 	 */
-	Mgr::Mgr(int p1, uchar p2)
+	Mgr::Mgr(int p1, u8 p2)
 	    : EnemyMgrBase(p1, p2)
 	{
 		m_modelData2 = nullptr;

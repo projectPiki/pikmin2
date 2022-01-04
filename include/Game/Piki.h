@@ -155,7 +155,7 @@ struct Piki : public FakePiki {
 	void setActTransportArg(PikiAI::ActTransportArg&);
 	void setDopeEffect(bool);
 	void setFreeLightEffect(bool);
-	void setGasInvincible(uchar);
+	void setGasInvincible(u8);
 	void setPastel(bool);
 	void setSpeed(float, Vector3f&, float);
 	void setSpeed(float, Vector3f&);
@@ -187,7 +187,7 @@ struct Piki : public FakePiki {
 	PikiAI::Brain* m_brain;         // _294
 	UpdateContext m_updateContext;  // _298
 	short m_tekiKillID;             // _2A4
-	uchar m_gasInvincible;          // _2A6
+	u8 m_gasInvincible;          // _2A6
 	JUtility::TColor _2A7;          // _2A7
 	JUtility::TColor _2AB;          // _2AB
 	JUtility::TColor m_pikiColor;   // _2AF

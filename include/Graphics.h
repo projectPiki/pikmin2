@@ -110,7 +110,7 @@ struct Graphics : public _GraphicsParent {
 
 	void clearVtxDesc();
 	void setVtxDesc(_GXAttr, _GXAttrType);
-	void setVtxAttrFmt(_GXVtxFmt, _GXAttr, _GXCompCnt, _GXCompType, uchar);
+	void setVtxAttrFmt(_GXVtxFmt, _GXAttr, _GXCompCnt, _GXCompType, u8);
 
 	void disableLight();
 	void disableTexture();

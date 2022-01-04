@@ -431,7 +431,7 @@ int CourseCache::getColorMePikmins(unsigned char* buffer, int pikminType)
 		Vector3f position;
 		position.read(stream);
 		// TODO: Replace 0xf with define for ItemPikiheadTypeMask?
-		if ((pikiheadFlags & 0xF) == (uchar)pikminType) {
+		if ((pikiheadFlags & 0xF) == (u8)pikminType) {
 			count++;
 		}
 	}
@@ -492,7 +492,7 @@ lbl_801F1C30:
  */
 void GeneratorCache::createHeap(void)
 {
-	m_heapBuffer = new uchar[GENERATOR_CACHE_HEAP_SIZE];
+	m_heapBuffer = new u8[GENERATOR_CACHE_HEAP_SIZE];
 	m_heapSize   = GENERATOR_CACHE_HEAP_SIZE;
 	m_freeOffset = 0;
 	m_freeSize   = m_heapSize;

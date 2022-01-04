@@ -12,7 +12,7 @@ struct CourseCache : public CNode {
 	virtual ~CourseCache(); // _00
 
 	void beginSave(int);
-	int getColorMePikmins(uchar*, int);
+	int getColorMePikmins(u8*, int);
 	void read(Stream&);
 	void write(Stream&);
 
@@ -60,7 +60,7 @@ struct GeneratorCache {
 	CourseCache _00;       // _00
 	CourseCache _3C;       // _3C
 	CourseCache* _78;      // _78
-	uchar* m_heapBuffer;   // _7C
+	u8* m_heapBuffer;   // _7C
 	int m_heapSize;        // _80
 	uint m_freeOffset;     // _84
 	int m_freeSize;        // _88

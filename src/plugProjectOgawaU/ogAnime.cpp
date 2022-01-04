@@ -897,7 +897,7 @@ lbl_80305684:
 	 * Address:	........
 	 * Size:	000040
 	 */
-	void AnimGroup::setAlpha(uchar alpha)
+	void AnimGroup::setAlpha(u8 alpha)
 	{
 		// UNUSED FUNCTION
 		// TODO: Confirm size.

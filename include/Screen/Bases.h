@@ -106,7 +106,7 @@ struct SceneBase {
 	void registObj(ObjBase*, JKRArchive*);
 	IObjBase* searchObj(char*);
 	void setBackupScene();
-	void setColorBG(uchar, uchar, uchar, uchar);
+	void setColorBG(u8, u8, u8, u8);
 	void setScene(SetSceneArg&);
 	void setDispMember(og::Screen::DispMemberBase*);
 	bool start(StartSceneArg*);

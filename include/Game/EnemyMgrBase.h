@@ -28,7 +28,7 @@ struct IEnemyMgrBase : public GenericObjectMgr, public GenericContainer {
 };
 
 struct EnemyMgrBase : public IEnemyMgrBase {
-	EnemyMgrBase(int, uchar);
+	EnemyMgrBase(int, u8);
 
 	// vtable 1 (GenericObjectMgr)
 	virtual void doAnimation();           // _00
@@ -85,7 +85,7 @@ struct EnemyMgrBase : public IEnemyMgrBase {
 
 	J3DModelData* m_modelData;          // _1C
 	SysShape::AnimMgr* m_animMgr;       // _20
-	uchar m_modelType;                  // _24
+	u8 m_modelType;                  // _24
 	CollPartFactory* m_collPartFactory; // _28
 	int m_objLimit;                     // _2C
 	int m_objCount;                     // _30

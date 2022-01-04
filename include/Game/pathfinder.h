@@ -58,7 +58,7 @@ struct Pathfinder {
 	int makepath(ulong, PathNode**);
 	int makepath(ulong, short*, int);
 	void release(ulong);
-	uchar check(ulong);
+	u8 check(ulong);
 	void getFreeContext();
 	void getContext(ulong);
 

@@ -103,7 +103,7 @@ struct MapUnit {
 
 struct PartsView : public CNode {
 	PartsView();
-	PartsView(MapUnit*, uchar*);
+	PartsView(MapUnit*, u8*);
 	virtual void constructor();           // _08
 	virtual void doAnimation();           // _0C
 	virtual void doEntry();               // _10
@@ -127,7 +127,7 @@ struct PartsView : public CNode {
 	u32 _60;                      // _060
 	u8 _64[8];                    // _064
 	ushort m_unitKind;            // _06C
-	Vector2<uchar> _6E;           // _06E
+	Vector2<u8> _6E;           // _06E
 	EditorRouteMgr m_routeMgr;    // _070
 	AStarContext m_aStarContext;  // _0AC
 	AStarPathfinder m_pathFinder; // _110

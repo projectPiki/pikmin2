@@ -609,7 +609,7 @@ JKRAramBlock* JKRAram::mainRamToAram(unsigned char*, unsigned long,
  * Address:	80017F4C
  * Size:	0002DC
  */
-uchar* JKRAram::aramToMainRam(ulong, uchar*, ulong, JKRExpandSwitch, ulong,
+u8* JKRAram::aramToMainRam(ulong, u8*, ulong, JKRExpandSwitch, ulong,
                               JKRHeap*, int, ulong*)
 {
 	/*
