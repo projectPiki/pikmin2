@@ -54,6 +54,8 @@ struct GameConfig {
 	~GameConfig();
 
 	static void load(char*);
+
+	Parms m_parms; // _00
 };
 
 extern GameConfig gGameConfig;
