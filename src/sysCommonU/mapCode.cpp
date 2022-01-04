@@ -765,7 +765,7 @@ void ArrayContainer<MapCode::Code>::setArray(MapCode::Code* objects, int count)
  */
 template <> MapCode::Code* ArrayContainer<MapCode::Code>::get(void* index)
 {
-	return &m_objects[(ulong)index];
+	return &m_objects[(u32)index];
 	/*
 	.loc_0x0:
 	  lwz       r0, 0x24(r3)
@@ -781,7 +781,7 @@ template <> MapCode::Code* ArrayContainer<MapCode::Code>::get(void* index)
  */
 template <> int ArrayContainer<MapCode::Code>::getNext(void* index)
 {
-	return ((ulong)index) + 1;
+	return ((u32)index) + 1;
 
 	/*
 	.loc_0x0:
@@ -850,7 +850,7 @@ template <> int ArrayContainer<MapCode::Code>::getTo()
  */
 template <> MapCode::Code* Container<MapCode::Code>::getObject(void* index)
 {
-	return get((ulong)index);
+	return get((u32)index);
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x10(r1)

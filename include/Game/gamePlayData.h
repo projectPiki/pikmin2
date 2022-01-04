@@ -28,7 +28,7 @@ struct CaveSaveData {
 	}
 
 	void write(Stream&);
-	void read(Stream&, ulong);
+	void read(Stream&, u32);
 
 	bool m_isInCave;          // _00
 	int m_currentCourse;      // _04 // TODO: Should this be currentCourseIndex?
@@ -316,7 +316,7 @@ struct PlayData : public CNode {
 	int m_pikminYesterday[6]; // _100
 	int m_pikminToday[6];     // _118
 
-	static ulong mVersion;
+	static u32 mVersion;
 	static int sCurrPlayDataSize;
 	static int sMaxPlayDataSize;
 };

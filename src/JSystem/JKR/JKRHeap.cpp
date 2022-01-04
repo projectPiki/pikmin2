@@ -100,7 +100,7 @@ typedef void Destructor(void*, short);
  * Address:	800232B4
  * Size:	000124
  */
-JKRHeap::JKRHeap(void* startPtr, ulong size, JKRHeap* parentHeap,
+JKRHeap::JKRHeap(void* startPtr, u32 size, JKRHeap* parentHeap,
                  bool shouldSetErrorHandlerMaybe)
     : _40()
     , _4C(this)
@@ -331,7 +331,7 @@ lbl_800234D0:
  * Address:	800234EC
  * Size:	0000A8
  */
-bool JKRHeap::initArena(char** outUserRamStart, ulong* outUserRamSize,
+bool JKRHeap::initArena(char** outUserRamStart, u32* outUserRamSize,
                         int numHeaps)
 {
 	void* arenaLo    = OSGetArenaLo();
@@ -339,8 +339,8 @@ bool JKRHeap::initArena(char** outUserRamStart, ulong* outUserRamSize,
 	bool sanityCheck = (arenaLo != arenaHi);
 	if (sanityCheck) {
 		OSInitAlloc(arenaLo, arenaHi, numHeaps);
-		u8* userRamEnd   = (u8*)((ulong)arenaHi & ~0x1f);
-		u8* userRamStart = (u8*)(((ulong)arenaLo + 0x1f) & ~0x1f);
+		u8* userRamEnd   = (u8*)((u32)arenaHi & ~0x1f);
+		u8* userRamStart = (u8*)(((u32)arenaLo + 0x1f) & ~0x1f);
 		// TODO: Remove hardcoding of start of memory?
 		mCodeStart = (u8*)0x80000000;
 		// TODO: Remove hardcoding of what I've called OS::PhysicalMemorySize.
@@ -351,7 +351,7 @@ bool JKRHeap::initArena(char** outUserRamStart, ulong* outUserRamSize,
 		OSSetArenaLo(userRamEnd);
 		OSSetArenaHi(userRamEnd);
 		*outUserRamStart = (char*)userRamStart;
-		*outUserRamSize  = (ulong)userRamEnd - (ulong)userRamStart;
+		*outUserRamSize  = (u32)userRamEnd - (u32)userRamStart;
 	}
 	return sanityCheck;
 	/*
@@ -472,7 +472,7 @@ void JKRHeap::destroy()
  * Address:	800235E0
  * Size:	000060
  */
-void* JKRHeap::alloc(ulong byteCount, int padding, JKRHeap* heap)
+void* JKRHeap::alloc(u32 byteCount, int padding, JKRHeap* heap)
 {
 	void* memory;
 	if (heap) {
@@ -525,7 +525,7 @@ void* JKRHeap::alloc(ulong byteCount, int padding, JKRHeap* heap)
  * Address:	80023640
  * Size:	00002C
  */
-void* JKRHeap::alloc(ulong byteCount, int padding)
+void* JKRHeap::alloc(u32 byteCount, int padding)
 {
 	return do_alloc(byteCount, padding);
 	/*
@@ -701,7 +701,7 @@ void JKRHeap::freeTail()
  * Address:	80023788
  * Size:	00002C
  */
-void JKRHeap::resize(void* memoryBlock, ulong newSize)
+void JKRHeap::resize(void* memoryBlock, u32 newSize)
 {
 	do_resize(memoryBlock, newSize);
 	/*
@@ -725,7 +725,7 @@ void JKRHeap::resize(void* memoryBlock, ulong newSize)
  * Address:	800237B4
  * Size:	00002C
  */
-ulong JKRHeap::getFreeSize()
+u32 JKRHeap::getFreeSize()
 {
 	return do_getFreeSize();
 	/*
@@ -846,13 +846,13 @@ u8 JKRHeap::do_getCurrentGroupId()
  * Address:	80023874
  * Size:	000080
  */
-ulong JKRHeap::getMaxAllocatableSize(int p1)
+u32 JKRHeap::getMaxAllocatableSize(int p1)
 {
 	// u8* maxFreeBlock = do_getMaxFreeBlock();
-	// ulong freeSize = do_getFreeSize();
+	// u32 freeSize = do_getFreeSize();
 	return ~(p1 - 1)
 	       & do_getFreeSize()
-	             - (p1 - 1 & p1 - (ulong)do_getMaxFreeBlock() & 0xf);
+	             - (p1 - 1 & p1 - (u32)do_getMaxFreeBlock() & 0xf);
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x20(r1)
@@ -1299,7 +1299,7 @@ JSUPtrLink* JSUPtrList::getFirstLink() const { return m_head; }
  * Address:	80023C28
  * Size:	0000A8
  */
-u32 JKRHeap::dispose(void* memory, ulong p2)
+u32 JKRHeap::dispose(void* memory, u32 p2)
 {
 	int returnValue   = 0;
 	JSUPtrLink* link1 = _5C.m_head;
@@ -1584,7 +1584,7 @@ JKRHeapErrorHandler* JKRHeap::setErrorHandler(JKRHeapErrorHandler* newHandler)
  * Address:	80023EA4
  * Size:	00004C
  */
-void* operator new(ulong byteCount)
+void* operator new(u32 byteCount)
 {
 	return (JKRHeap::sCurrentHeap)
 	           ? JKRHeap::sCurrentHeap->do_alloc(byteCount, 4)
@@ -1629,7 +1629,7 @@ void* operator new(ulong byteCount)
  * Address:	80023EF0
  * Size:	000050
  */
-void* operator new(ulong byteCount, int p2)
+void* operator new(u32 byteCount, int p2)
 {
 	return (JKRHeap::sCurrentHeap)
 	           ? JKRHeap::sCurrentHeap->do_alloc(byteCount, p2)
@@ -1668,7 +1668,7 @@ void* operator new(ulong byteCount, int p2)
  * Address:	80023F40
  * Size:	00006C
  */
-void* operator new(ulong byteCount, JKRHeap* heap, int p3)
+void* operator new(u32 byteCount, JKRHeap* heap, int p3)
 {
 	if (heap) {
 		return heap->do_alloc(byteCount, p3);
@@ -1720,7 +1720,7 @@ void* operator new(ulong byteCount, JKRHeap* heap, int p3)
  * Address:	80023FAC
  * Size:	00004C
  */
-void* operator new[](ulong byteCount)
+void* operator new[](u32 byteCount)
 {
 	return (JKRHeap::sCurrentHeap)
 	           ? JKRHeap::sCurrentHeap->do_alloc(byteCount, 4)
@@ -1758,7 +1758,7 @@ void* operator new[](ulong byteCount)
  * Address:	80023FF8
  * Size:	000050
  */
-void* operator new[](ulong byteCount, int p2)
+void* operator new[](u32 byteCount, int p2)
 {
 	return (JKRHeap::sCurrentHeap)
 	           ? JKRHeap::sCurrentHeap->do_alloc(byteCount, p2)
@@ -1797,7 +1797,7 @@ void* operator new[](ulong byteCount, int p2)
  * Address:	80024048
  * Size:	00006C
  */
-void* operator new[](ulong byteCount, JKRHeap* heap, int p3)
+void* operator new[](u32 byteCount, JKRHeap* heap, int p3)
 {
 	if (heap) {
 		return heap->do_alloc(byteCount, p3);
@@ -2250,7 +2250,7 @@ bool JKRHeap::TState::isVerbose() { return bVerbose; }
  * Address:	8002454C
  * Size:	000080
  */
-JKRHeap::TState::TState(const JKRHeap* heap, ulong id,
+JKRHeap::TState::TState(const JKRHeap* heap, u32 id,
                         bool isCompareOnDestructed)
     : _00(0)
     , _04(0)
@@ -2328,7 +2328,7 @@ JKRHeap::TState::TLocation::TLocation()
  * Address:	800245E8
  * Size:	000020
  */
-JKRHeap::TState::TArgument::TArgument(const JKRHeap* heap, ulong p2, bool p3)
+JKRHeap::TState::TArgument::TArgument(const JKRHeap* heap, u32 p2, bool p3)
     : m_heap((heap) ? heap : JKRHeap::sCurrentHeap)
     , _04(p2)
     , _08(p3)
@@ -2369,7 +2369,7 @@ u32 JKRHeap::TState::getId() const { return m_id; }
  * Address:	80024618
  * Size:	000004
  */
-void JKRHeap::state_register(JKRHeap::TState*, ulong) const { }
+void JKRHeap::state_register(JKRHeap::TState*, u32) const { }
 
 /*
  * --INFO--

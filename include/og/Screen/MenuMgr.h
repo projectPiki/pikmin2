@@ -24,16 +24,16 @@ namespace Screen {
 		void calcCenter(J2DPane*, Vector2f*);
 		void calcPoint(Vector2f*, Vector2f*, float, Vector2f*);
 		void draw(J2DGrafContext*);
-		void init(J2DScreen*, u16, ulonglong, ulonglong, ulonglong);
-		void init(J2DScreen*, u16, ulonglong, ulonglong, ulonglong,
-		          ulonglong, ulonglong);
-		void init2taku(J2DScreen*, ulonglong, ulonglong, ulonglong, ulonglong,
-		               ulonglong, ulonglong, ulonglong, ulonglong);
-		void init2takuTitle(J2DScreen*, ulonglong, ulonglong, ulonglong,
-		                    ulonglong, ulonglong, ulonglong, ulonglong,
-		                    ulonglong);
+		void init(J2DScreen*, u16, u64, u64, u64);
+		void init(J2DScreen*, u16, u64, u64, u64,
+		          u64, u64);
+		void init2taku(J2DScreen*, u64, u64, u64, u64,
+		               u64, u64, u64, u64);
+		void init2takuTitle(J2DScreen*, u64, u64, u64,
+		                    u64, u64, u64, u64,
+		                    u64);
 		void initCommon();
-		void initSub(J2DScreen*, u16, ulonglong, ulonglong, ulonglong);
+		void initSub(J2DScreen*, u16, u64, u64, u64);
 		void initSelNum(u16);
 		void killCursor();
 		void startCursor(float);

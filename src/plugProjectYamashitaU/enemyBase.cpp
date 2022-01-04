@@ -4220,7 +4220,7 @@ EnemyBase::EnemyBase()
 //  * Address:	80101770
 //  * Size:	000018
 //  */
-// template <> BitFlag<ulong>::BitFlag()
+// template <> BitFlag<u32>::BitFlag()
 // {
 // 	/*
 // 	.loc_0x0:

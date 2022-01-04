@@ -39,22 +39,22 @@ struct J3DUShadowCameraPolicyUsingSphere {
 };
 
 struct J3DUMultiTexture {
-	J3DUMultiTexture(ulong, u8);
+	J3DUMultiTexture(u32, u8);
 	~J3DUMultiTexture();
 	void initResTIMG(u8, _GXTexFmt);
 	void allocateTexture(u8, u16, u16, _GXTexFmt);
-	void draw(u8, ulong, ulong, _GXTevColorArg, ulong, ulong) const;
+	void draw(u8, u32, u32, _GXTevColorArg, u32, u32) const;
 
 #ifdef MATCHING
 	// The following is purely made up for the sake of matching.
 	// We have no idea what the structure actually looked like.
-	ulong m_count;
+	u32 m_count;
 	JUTTexture* m_textures;
 #endif
 };
 
 struct J3DUShadowManager {
-	J3DUShadowManager(ulong, _GXTexFmt, u8, bool);
+	J3DUShadowManager(u32, _GXTexFmt, u8, bool);
 	~J3DUShadowManager();
 
 	void getFormatCoefficient(_GXTexFmt) const;

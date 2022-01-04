@@ -229,7 +229,7 @@ namespace Game {
  * Address:	801AA6E4
  * Size:	000050
  */
-GenBase::GenBase(ulong p1, char* p2, char* p3)
+GenBase::GenBase(u32 p1, char* p2, char* p3)
     : Parameters(nullptr, "gen base")
 {
 	m_typeID = p1;
@@ -248,7 +248,7 @@ GenBase::GenBase(ulong p1, char* p2, char* p3)
 void GenBase::writeVersion(Stream& output)
 {
 	// INLINED FUNCTION
-	ulong versionRaw = getLatestVersion();
+	u32 versionRaw = getLatestVersion();
 	ID32 versionID32(versionRaw);
 	versionID32.write(output);
 }
@@ -258,7 +258,7 @@ void GenBase::writeVersion(Stream& output)
  * Address:	801AA734
  * Size:	00000C
  */
-ulong GenBase::getLatestVersion() { return 'udef'; }
+u32 GenBase::getLatestVersion() { return 'udef'; }
 
 /*
  * --INFO--
@@ -336,7 +336,7 @@ void GenBase::doRead(Stream&) { }
  * Address:	801AA788
  * Size:	000050
  */
-ulong GenObject::getLatestVersion()
+u32 GenObject::getLatestVersion()
 {
 	i32 count = GenObjectFactory::factory->m_count;
 	if (count <= 0) {

@@ -725,7 +725,7 @@ void* JKRAramArchive::fetchResource(void*, unsigned long,
  * Address:	80019108
  * Size:	0000BC
  */
-void JKRAramArchive::fetchResource_subroutine(ulong, ulong, u8*, ulong, int)
+void JKRAramArchive::fetchResource_subroutine(u32, u32, u8*, u32, int)
 {
 	/*
 	.loc_0x0:
@@ -794,7 +794,7 @@ void JKRAramArchive::fetchResource_subroutine(ulong, ulong, u8*, ulong, int)
  * Address:	800191C4
  * Size:	00014C
  */
-void JKRAramArchive::fetchResource_subroutine(ulong, ulong, JKRHeap*, int,
+void JKRAramArchive::fetchResource_subroutine(u32, u32, JKRHeap*, int,
                                               u8**)
 {
 	/*

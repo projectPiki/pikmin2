@@ -101,7 +101,7 @@ namespace CommonSaveData {
 
 		void setup();
 		void setDefault();
-		void setCardSerialNo(ulonglong);
+		void setCardSerialNo(u64);
 		void resetCardSerialNo();
 		void resetPlayer(signed char);
 

@@ -397,7 +397,7 @@ typedef GXTlutRegion* GXTlutRegionCallback(_GXTlut);
 
 void GXInitTlutObj(GXTlutObj*, const u8*, _GXTlutFmt, u16);
 // TODO: Params aren't fully worked out yet.
-void GXInitTlutRegion(u32*, int, uint);
+void GXInitTlutRegion(u32*, int, i32);
 void GXLoadTlut(GXTlutObj*, _GXTlut);
 void GXSetTlutRegionCallback(GXTlutRegionCallback*);
 

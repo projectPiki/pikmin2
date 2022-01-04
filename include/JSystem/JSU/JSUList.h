@@ -27,7 +27,7 @@ struct JSUPtrList {
 	bool prepend(JSUPtrLink*);
 	bool insert(JSUPtrLink*, JSUPtrLink*);
 	bool remove(JSUPtrLink*);
-	JSUPtrLink* getNthLink(ulong) const;
+	JSUPtrLink* getNthLink(u32) const;
 
 	JSUPtrLink* m_head; // _00
 	JSUPtrLink* m_tail; // _04

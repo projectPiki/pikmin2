@@ -75,12 +75,12 @@ struct Navi : public FakePiki, virtual public PelletView {
 	virtual PSM::Creature* getPSCreature();                    // _F0
 	virtual void on_movie_begin(bool);                         // _108
 	virtual void on_movie_end(bool);                           // _10C
-	virtual void movieStartAnimation(ulong);                   // _110
+	virtual void movieStartAnimation(u32);                   // _110
 	virtual void movieStartDemoAnimation(SysShape::AnimInfo*); // _114
 	virtual void movieSetTranslation(Vector3f&, float);        // _11C
 	virtual void movieSetFaceDir(float);                       // _120
 	virtual bool movieGotoPosition(Vector3f&);                 // _124
-	virtual void movieUserCommand(ulong, MoviePlayer*);        // _128
+	virtual void movieUserCommand(u32, MoviePlayer*);        // _128
 	virtual void getShadowParam(ShadowParam&);                 // _12C
 	virtual void getLODSphere(Sys::Sphere&);                   // _138
 	virtual void onStickStart(Creature*);                      // _150

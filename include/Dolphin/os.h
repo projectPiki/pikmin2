@@ -94,7 +94,7 @@ void LCFlushQueue(void);
 
 #define LCGetBase() ((void*)LC_BASE)
 
-ulonglong OSGetTime();
+u64 OSGetTime();
 
 typedef struct OSThread OSThread;
 typedef struct OSThreadQueue OSThreadQueue;

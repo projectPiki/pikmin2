@@ -54,9 +54,9 @@ struct CellLeg {
 struct Cell {
 	Cell();
 	void clear();
-	void mapSearch(IDelegate1<CellObject*>*, ulong);
-	void mapSearchUp(IDelegate1<CellObject*>*, ulong);
-	void mapSearchDown(IDelegate1<CellObject*>*, ulong);
+	void mapSearch(IDelegate1<CellObject*>*, u32);
+	void mapSearchUp(IDelegate1<CellObject*>*, u32);
+	void mapSearchDown(IDelegate1<CellObject*>*, u32);
 	void resolveCollision();
 	void resolveCollision_1();
 	void resolveCollision_2();
@@ -110,7 +110,7 @@ struct CellObject : public TPositionObject {
 			CellLeg Z2;
 		} structView;
 	} m_cellLegs;                      // _54
-	ulong m_passID;                    // _A4
+	u32 m_passID;                    // _A4
 	CollisionBuffer m_collisionBuffer; // _A8
 };
 
@@ -165,7 +165,7 @@ struct CellPyramid : public SweepPrune::World {
 	 * Incremented at the start of every resolve/search pass.
 	 * Passed on to CellObjects to prevent evaluating multiple times per pass.
 	 */
-	ulong m_passID; // _44
+	u32 m_passID; // _44
 
 	static u8 sOptResolveColl;
 	static u8 sSpeedUpResolveColl;

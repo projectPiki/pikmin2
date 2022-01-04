@@ -30,7 +30,7 @@ struct Mgr : public J2DScreen {
 	virtual void update();                         // _28
 	virtual void draw(Graphics&, J2DGrafContext&); // _94
 
-	J2DPane* addCallBack(ulonglong, Node*);
+	J2DPane* addCallBack(u64, Node*);
 	void addCallBackPane(J2DPane*, Node*);
 
 	Node _118;  // _118

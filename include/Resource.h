@@ -68,7 +68,7 @@ struct MgrCommand : public CNode, JKRDisposer {
 };
 
 struct Mgr {
-	Mgr(JKRHeap*, ulong);
+	Mgr(JKRHeap*, u32);
 	~Mgr();
 
 	virtual void drawDump(Graphics&, int, int); // _00
@@ -89,7 +89,7 @@ struct Mgr {
 
 	// VTBL _00
 	JKRHeap* _04; // _04
-	ulong _08;    // _08
+	u32 _08;    // _08
 	u32 _0C;      // _0C
 	CNode _10;    // _10
 	CNode _28;    // _28

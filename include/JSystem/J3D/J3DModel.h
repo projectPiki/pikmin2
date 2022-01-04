@@ -27,7 +27,7 @@ struct J3DModelData {
 	virtual ~J3DModelData(); // _00
 
 	void clear();
-	void newSharedDisplayList(ulong);
+	void newSharedDisplayList(u32);
 	void indexToPtr();
 	void makeSharedDL();
 	void simpleCalcMaterial(u16, Mtx*);
@@ -75,8 +75,8 @@ struct J3DModel {
 };
 
 struct J3DModelLoaderDataBase {
-	static J3DModelData* load(const void*, ulong);
-	static J3DModelData* loadBinaryDisplayList(const void*, ulong);
+	static J3DModelData* load(const void*, u32);
+	static J3DModelData* loadBinaryDisplayList(const void*, u32);
 };
 
 #endif

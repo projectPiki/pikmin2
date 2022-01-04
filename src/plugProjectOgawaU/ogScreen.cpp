@@ -1036,7 +1036,7 @@ lbl_8030275C:
 	 * Address:	80302814
 	 * Size:	00010C
 	 */
-	ulonglong maskTag2(ulonglong, u16)
+	u64 maskTag2(u64, u16)
 	{
 		/*
 	stwu     r1, -0x50(r1)
@@ -1116,7 +1116,7 @@ lbl_80302860:
 	 * Address:	80302920
 	 * Size:	0000A0
 	 */
-	ulonglong maskTag(ulonglong, u16, u16)
+	u64 maskTag(u64, u16, u16)
 	{
 		/*
 	stwu     r1, -0x20(r1)
@@ -1175,7 +1175,7 @@ lbl_803029AC:
 	 * Address:	803029C0
 	 * Size:	0000B4
 	 */
-	i32 CalcKeta(ulong)
+	i32 CalcKeta(u32)
 	{
 		/*
 	stwu     r1, -0x40(r1)
@@ -1344,7 +1344,7 @@ lbl_80302BA0:
 	 * Address:	80302BCC
 	 * Size:	000158
 	 */
-	void TagToName(ulonglong, char*)
+	void TagToName(u64, char*)
 	{
 		/*
 	li       r8, 0xff
@@ -1471,7 +1471,7 @@ lbl_80302D1C:
 	 * Address:	........
 	 * Size:	000134
 	 */
-	ulonglong NameToTag(char*)
+	u64 NameToTag(char*)
 	{
 		// UNUSED FUNCTION
 	}
@@ -1481,7 +1481,7 @@ lbl_80302D1C:
 	 * Address:	80302D24
 	 * Size:	0000F4
 	 */
-	ulonglong CharCodeToTag(char*)
+	u64 CharCodeToTag(char*)
 	{
 		/*
 	stwu     r1, -0x20(r1)
@@ -1553,7 +1553,7 @@ lbl_80302D1C:
 	 * Address:	80302E18
 	 * Size:	000094
 	 */
-	void TagToHex(ulonglong, char*)
+	void TagToHex(u64, char*)
 	{
 		/*
 	stwu     r1, -0x30(r1)
@@ -1605,7 +1605,7 @@ lbl_80302E78:
 	 * Address:	80302EAC
 	 * Size:	00018C
 	 */
-	J2DPane* TagSearch(J2DScreen* parentScreen, ulonglong tag)
+	J2DPane* TagSearch(J2DScreen* parentScreen, u64 tag)
 	{
 		/*
 	stwu     r1, -0x430(r1)
@@ -2230,7 +2230,7 @@ float J2DPane::getTranslateX() const
  * Address:	803034FC
  * Size:	000010
  */
-ulonglong J2DPane::getTagName() const
+u64 J2DPane::getTagName() const
 {
 	return m_tag;
 	/*

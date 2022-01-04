@@ -94,7 +94,7 @@ struct Piki : public FakePiki {
 	virtual PSM::Creature* getPSCreature();                     // _F0
 	virtual void on_movie_begin(bool);                          // _108
 	virtual void on_movie_end(bool);                            // _10C
-	virtual void movieStartAnimation(ulong);                    // _110
+	virtual void movieStartAnimation(u32);                    // _110
 	virtual void movieStartDemoAnimation(SysShape::AnimInfo*);  // _114
 	virtual void movieSetTranslation(Vector3f&, float);         // _11C
 	virtual bool movieGotoPosition(Vector3f&);                  // _124
@@ -161,10 +161,10 @@ struct Piki : public FakePiki {
 	void setSpeed(float, Vector3f&);
 	void setTekiKillID(int);
 	void startDope(int);
-	void startSound(Game::Creature*, ulong, bool);
-	void startSound(Game::Creature*, ulong, PSGame::SeMgr::SetSeId);
-	void startSound(ulong, bool);
-	void startSound(ulong, PSGame::SeMgr::SetSeId);
+	void startSound(Game::Creature*, u32, bool);
+	void startSound(Game::Creature*, u32, PSGame::SeMgr::SetSeId);
+	void startSound(u32, bool);
+	void startSound(u32, PSGame::SeMgr::SetSeId);
 	void surviveDayEnd();
 	void updateGasInvincible();
 	void updateDope();

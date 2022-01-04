@@ -19,7 +19,7 @@ struct Parameters : virtual IParameters {
 	}
 	void write(Stream&);
 	void read(Stream&);
-	BaseParm* findParm(ulong);
+	BaseParm* findParm(u32);
 
 	BaseParm* m_parmsHead; // _04
 	char* m_name;          // _08

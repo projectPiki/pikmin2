@@ -6,7 +6,7 @@
 #include "JSystem/JKR/JKRDisposer.h"
 #include "JSystem/JSU/JSUList.h"
 
-typedef void JKRHeapErrorHandler(void*, ulong, int);
+typedef void JKRHeapErrorHandler(void*, u32, int);
 
 struct JKRHeap : public JKRDisposer {
 
@@ -14,7 +14,7 @@ struct JKRHeap : public JKRDisposer {
 		~TState();
 		void dump() const;
 		static bool isVerbose();
-		TState(const JKRHeap*, ulong, bool);
+		TState(const JKRHeap*, u32, bool);
 		bool isCompareOnDestructed() const;
 		const JKRHeap* getHeap() const;
 		u32 getId() const;
@@ -26,10 +26,10 @@ struct JKRHeap : public JKRDisposer {
 			int _04; // _04
 		};
 		struct TArgument {
-			TArgument(const JKRHeap*, ulong, bool);
+			TArgument(const JKRHeap*, u32, bool);
 
 			const JKRHeap* m_heap; // _00
-			ulong _04;             // _04
+			u32 _04;             // _04
 			bool _08;              // _08
 		};
 
@@ -46,14 +46,14 @@ struct JKRHeap : public JKRDisposer {
 		static bool bVerbose;
 	};
 
-	JKRHeap(void*, ulong, JKRHeap*, bool);
+	JKRHeap(void*, u32, JKRHeap*, bool);
 	virtual ~JKRHeap();
-	static bool initArena(char**, ulong*, int);
+	static bool initArena(char**, u32*, int);
 	JKRHeap* becomeSystemHeap();
 	JKRHeap* becomeCurrentHeap();
 	void destroy();
-	static void* alloc(ulong, int, JKRHeap*);
-	void* alloc(ulong, int);
+	static void* alloc(u32, int, JKRHeap*);
+	void* alloc(u32, int);
 	static void free(void*, JKRHeap*);
 	void free(void*);
 	virtual void callAllDisposer();
@@ -61,35 +61,35 @@ struct JKRHeap : public JKRDisposer {
 	virtual bool check();
 	void freeAll();
 	void freeTail();
-	void resize(void*, ulong);
-	ulong getFreeSize();
+	void resize(void*, u32);
+	u32 getFreeSize();
 	i32 getTotalFreeSize();
 	u8 changeGroupID(u8);
 	u8 getCurrentGroupId();
-	ulong getMaxAllocatableSize(int);
+	u32 getMaxAllocatableSize(int);
 	static JKRHeap* findFromRoot(void*);
 	JKRHeap* find(void*) const;
-	u32 dispose(void*, ulong);
+	u32 dispose(void*, u32);
 	void dispose(void*, void*);
 	void dispose();
-	static void copyMemory(void*, void*, ulong);
+	static void copyMemory(void*, void*, u32);
 	static JKRHeapErrorHandler* setErrorHandler(JKRHeapErrorHandler*);
 	virtual bool dump_sort();
 	virtual bool dump();
 	virtual void do_destroy();
-	virtual void* do_alloc(ulong, int);
+	virtual void* do_alloc(u32, int);
 	virtual void do_free(void*);
 	virtual void do_freeAll();
 	virtual void do_freeTail();
 	virtual void do_fillFreeArea();
-	virtual int do_resize(void*, ulong);
+	virtual int do_resize(void*, u32);
 	virtual int do_getSize(void*);
-	virtual ulong do_getFreeSize();
+	virtual u32 do_getFreeSize();
 	virtual void* do_getMaxFreeBlock();
-	virtual ulong do_getTotalFreeSize();
+	virtual u32 do_getTotalFreeSize();
 	virtual u8 do_changeGroupID(u8);
 	virtual u8 do_getCurrentGroupId();
-	virtual void state_register(TState*, ulong) const;
+	virtual void state_register(TState*, u32) const;
 	virtual bool state_compare(const TState&, const TState&) const;
 	static void state_dumpDifference(const TState&, const TState&);
 	void state_dump(const TState*) const;
@@ -97,7 +97,7 @@ struct JKRHeap : public JKRDisposer {
 	OSMutexObject m_mutex;               // _18
 	void* m_startAddress;                // _30
 	void* m_endAddress;                  // _34
-	ulong m_heapSize;                    // _38
+	u32 m_heapSize;                    // _38
 	u8 m_fillFlag;                       // _3C
 	u8 m_fillCheckFlag;                  // _3D
 	u8 _3E[2];                           // _3E
@@ -131,7 +131,7 @@ struct JKRExpHeap : public JKRHeap {
 		u8 m_groupID; // _03
 
 		/// Called "size" by JKRExpHeap::dump
-		ulong m_allocatedSpace; // _04
+		u32 m_allocatedSpace; // _04
 
 		/*
 		 * Called "prev_ptr" by JKRExpHeap::dump.
@@ -145,14 +145,14 @@ struct JKRExpHeap : public JKRHeap {
 		 */
 		CMemBlock* m_nextPtr; // _0C
 
-		u32 allocBack(ulong, u8, u8, u8, u8);
-		u32 allocFore(ulong, u8, u8, u8, u8);
+		u32 allocBack(u32, u8, u8, u8, u8);
+		u32 allocFore(u32, u8, u8, u8, u8);
 		void free(JKRExpHeap*);
 		static u32 getHeapBlock(void*);
-		void initiate(CMemBlock*, CMemBlock*, ulong, u8, u8);
+		void initiate(CMemBlock*, CMemBlock*, u32, u8, u8);
 	};
 
-	JKRExpHeap(void*, ulong, JKRHeap*, bool);
+	JKRExpHeap(void*, u32, JKRHeap*, bool);
 
 	virtual ~JKRExpHeap();                 // _00
 	virtual u32 getHeapType();             // _08
@@ -160,25 +160,25 @@ struct JKRExpHeap : public JKRHeap {
 	virtual bool dump_sort();              // _10
 	virtual bool dump();                   // _14
 	virtual void do_destroy();             // _18
-	virtual void* do_alloc(ulong, int);    // _1C
+	virtual void* do_alloc(u32, int);    // _1C
 	virtual void do_free(void*);           // _20
 	virtual void do_freeAll();             // _24
 	virtual void do_freeTail();            // _28
 	virtual void do_fillFreeArea();        // _2C
-	virtual int do_resize(void*, ulong);   // _30
+	virtual int do_resize(void*, u32);   // _30
 	virtual int do_getSize(void*);         // _34
-	virtual ulong do_getFreeSize();        // _38
+	virtual u32 do_getFreeSize();        // _38
 	virtual void* do_getMaxFreeBlock();    // _3C
-	virtual ulong do_getTotalFreeSize();   // _40
+	virtual u32 do_getTotalFreeSize();   // _40
 	virtual u8 do_changeGroupID(u8); // _44
 	virtual u8 do_getCurrentGroupId();  // _48
 
-	u32 allocFromHead(ulong, int);
-	u32 allocFromHead(ulong);
-	u32 allocFromTail(ulong, int);
-	u32 allocFromTail(ulong);
+	u32 allocFromHead(u32, int);
+	u32 allocFromHead(u32);
+	u32 allocFromTail(u32, int);
+	u32 allocFromTail(u32);
 	u32 appendUsedList(CMemBlock*);
-	static JKRExpHeap* create(ulong, JKRHeap*, bool);
+	static JKRExpHeap* create(u32, JKRHeap*, bool);
 	static JKRExpHeap* createRoot(int, bool);
 	int freeGroup(u8);
 	void joinTwoBlocks(CMemBlock*);
@@ -196,7 +196,7 @@ struct JKRExpHeap : public JKRHeap {
 	CMemBlock* m_tailUsedList; // _84
 };
 
-void JKRDefaultMemoryErrorRoutine(void*, ulong, int);
+void JKRDefaultMemoryErrorRoutine(void*, u32, int);
 
 void* operator new(size_t, JKRHeap*, int);
 void* operator new[](size_t, JKRHeap*, int);

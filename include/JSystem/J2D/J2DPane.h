@@ -52,8 +52,8 @@ struct J2DScrnBlockHeader {
 // Size: 0x100
 struct J2DPane {
 	J2DPane();
-	J2DPane(J2DPane*, bool, ulonglong, const JGeometry::TBox2f&);
-	J2DPane(ulonglong, const JGeometry::TBox2f&);
+	J2DPane(J2DPane*, bool, u64, const JGeometry::TBox2f&);
+	J2DPane(u64, const JGeometry::TBox2f&);
 	J2DPane(J2DPane*, JSURandomInputStream*, u8);
 	virtual ~J2DPane();                                                  // _00
 	virtual i32 getTypeID() const;                                      // _04
@@ -68,8 +68,8 @@ struct J2DPane {
 	virtual void update();                                               // _28
 	virtual void drawSelf(float, float);                                 // _2C
 	virtual void drawSelf(float, float, float (*)[3][4]);                // _30
-	virtual J2DPane* search(ulonglong);                                  // _34
-	virtual J2DPane* searchUserInfo(ulonglong);                          // _38
+	virtual J2DPane* search(u64);                                  // _34
+	virtual J2DPane* searchUserInfo(u64);                          // _38
 	virtual void makeMatrix(float, float);                               // _3C
 	virtual void makeMatrix(float, float, float, float);                 // _40
 	virtual bool isUsed(const ResTIMG*);                                 // _44
@@ -97,15 +97,15 @@ struct J2DPane {
 	void changeUseTrans(J2DPane*);
 	void clip(const JGeometry::TBox2f&);
 	void draw(float, float, const J2DGrafContext*, bool, bool);
-	void gather(J2DPane**, ulonglong, ulonglong, int, int&);
+	void gather(J2DPane**, u64, u64, int, int&);
 
 	JGeometry::TBox2f* getBounds();
 	JGeometry::TVec3f getGlbVtx(u8) const;
-	void* getPointer(JSURandomInputStream*, ulong, JKRArchive*);
-	ulonglong getTagName() const;
+	void* getPointer(JSURandomInputStream*, u32, JKRArchive*);
+	u64 getTagName() const;
 	float getTranslateX() const;
 	float getTranslateY() const;
-	ulonglong getUserInfo() const;
+	u64 getUserInfo() const;
 
 	J2DPane* getFirstChildPane();
 	J2DPane* getNextChildPane();
@@ -113,8 +113,8 @@ struct J2DPane {
 	JSUTree<J2DPane>* getPaneTree();
 
 	void initiate();
-	void initialize(J2DPane*, bool, ulonglong, const JGeometry::TBox2f&);
-	void initialize(ulonglong, const JGeometry::TBox2f&);
+	void initialize(J2DPane*, bool, u64, const JGeometry::TBox2f&);
+	void initialize(u64, const JGeometry::TBox2f&);
 	void makePaneStream(J2DPane*, JSURandomInputStream*);
 	void makePaneExStream(J2DPane*, JSURandomInputStream*);
 	void place(const JGeometry::TBox2f&);
@@ -138,8 +138,8 @@ struct J2DPane {
 	short _006;                      // _006
 	i32 m_bloBlockType;             // _008
 	u8 _00C[4];                      // _00C
-	ulonglong m_tag;                 // _010
-	ulonglong m_messageID;           // _018
+	u64 m_tag;                 // _010
+	u64 m_messageID;           // _018
 	JGeometry::TBox2f _020;          // _020
 	float _030;                      // _030
 	float _034;                      // _034
@@ -177,8 +177,8 @@ struct J2DScreen : public J2DPane {
 	virtual ~J2DScreen();                                 // _00
 	virtual void calcMtx();                               // _24
 	virtual void drawSelf(float, float, float (*)[3][4]); // _30
-	virtual J2DPane* search(ulonglong);                   // _34
-	virtual J2DPane* searchUserInfo(ulonglong);           // _38
+	virtual J2DPane* search(u64);                   // _34
+	virtual J2DPane* searchUserInfo(u64);           // _38
 	virtual bool isUsed(const ResTIMG*);                  // _44
 	virtual bool isUsed(const ResFONT*);                  // _48
 	virtual void clearAnmTransform();                     // _4C
@@ -193,24 +193,24 @@ struct J2DScreen : public J2DPane {
 	virtual void setAnimationVF(J2DAnmVisibilityFull*);   // _7C
 	virtual void setAnimationVC(J2DAnmVtxColor*);         // _84
 	virtual void createPane(const J2DScrnBlockHeader&, JSURandomInputStream*,
-	                        J2DPane*, ulong); // _8C
+	                        J2DPane*, u32); // _8C
 	virtual void createPane(const J2DScrnBlockHeader&, JSURandomInputStream*,
-	                        J2DPane*, ulong, JKRArchive*); // _90
+	                        J2DPane*, u32, JKRArchive*); // _90
 	// virtual void _94() = 0;                                // _94
 
 	void animation();
 	bool checkSignature(JSURandomInputStream*);
 	void clean();
-	bool createMaterial(JSURandomInputStream*, ulong, JKRArchive*);
+	bool createMaterial(JSURandomInputStream*, u32, JKRArchive*);
 	void draw(float, float, const J2DGrafContext*);
-	u32 gather(J2DPane**, ulonglong, ulonglong, int);
+	u32 gather(J2DPane**, u64, u64, int);
 	J2DMaterial* getMaterial(u16);
-	void* getResReference(JSURandomInputStream*, ulong);
+	void* getResReference(JSURandomInputStream*, u32);
 	bool getScreenInformation(JSURandomInputStream*);
-	u32 makeHierarchyPanes(J2DPane*, JSURandomInputStream*, ulong, JKRArchive*);
-	bool set(const char*, ulong, JKRArchive*);
-	bool set(JSURandomInputStream*, ulong);
-	bool private_set(JSURandomInputStream*, ulong, JKRArchive*);
+	u32 makeHierarchyPanes(J2DPane*, JSURandomInputStream*, u32, JKRArchive*);
+	bool set(const char*, u32, JKRArchive*);
+	bool set(JSURandomInputStream*, u32);
+	bool private_set(JSURandomInputStream*, u32, JKRArchive*);
 
 	static void* getNameResource(char*);
 
@@ -234,7 +234,7 @@ struct J2DPicture : public J2DPane {
 	J2DPicture(const ResTIMG*);
 	J2DPicture(const char*);
 	J2DPicture(JUTTexture*);
-	J2DPicture(ulonglong, const JGeometry::TBox2f&);
+	J2DPicture(u64, const JGeometry::TBox2f&);
 
 	virtual ~J2DPicture();                                           // _00
 	virtual i32 getTypeID() const;                                  // _04
@@ -320,10 +320,10 @@ struct J2DPicture : public J2DPane {
 // Size: 0x1A8
 struct J2DPictureEx : public J2DPicture {
 	J2DPictureEx();
-	J2DPictureEx(const ResTIMG*, ulong);
-	J2DPictureEx(J2DPane*, JSURandomInputStream*, ulong, JKRArchive*);
-	J2DPictureEx(ulonglong, const JGeometry::TBox2f&, const ResTIMG*, ulong);
-	J2DPictureEx(ulonglong, const JGeometry::TBox2f&, const char*, ulong);
+	J2DPictureEx(const ResTIMG*, u32);
+	J2DPictureEx(J2DPane*, JSURandomInputStream*, u32, JKRArchive*);
+	J2DPictureEx(u64, const JGeometry::TBox2f&, const ResTIMG*, u32);
+	J2DPictureEx(u64, const JGeometry::TBox2f&, const char*, u32);
 
 	virtual ~J2DPictureEx();                                         // _00
 	virtual void setCullBack(bool);                                  // _14

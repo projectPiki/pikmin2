@@ -59,7 +59,7 @@ namespace Screen {
 		virtual void start();    // _00
 		virtual void moveAnim(); // _04
 
-		void init(JKRArchive*, J2DScreen*, ulonglong, char*);
+		void init(JKRArchive*, J2DScreen*, u64, char*);
 
 		J2DPane* m_pane;
 	};

@@ -35,23 +35,23 @@ struct J3DMaterial {
 	virtual void load();                             // _10
 	virtual void loadSharedDL();                     // _14
 	virtual void patch();                            // _18
-	virtual void diff(ulong);                        // _1C
+	virtual void diff(u32);                        // _1C
 	virtual void reset();                            // _20
 	virtual void change();                           // _24
 
 	void calcCurrentMtx();
-	i32 calcSizePEBlock(J3DModelLoaderFlags, ulong);
+	i32 calcSizePEBlock(J3DModelLoaderFlags, u32);
 	i32 calcSizeTevBlock(int);
 	i32 calcSizeTexGenBlock(J3DModelLoaderFlags);
 	i32 countDLSize();
-	J3DColorBlock* createColorBlock(ulong);
+	J3DColorBlock* createColorBlock(u32);
 	J3DIndBlock* createIndBlock(int);
-	J3DPEBlock* createPEBlock(ulong, ulong);
+	J3DPEBlock* createPEBlock(u32, u32);
 	J3DTevBlock* createTevBlock(int);
-	J3DTexGenBlock* createTexGenBlock(ulong);
+	J3DTexGenBlock* createTexGenBlock(u32);
 	void initialize();
-	int newSharedDisplayList(ulong);
-	int newSingleSharedDisplayList(ulong);
+	int newSharedDisplayList(u32);
+	int newSingleSharedDisplayList(u32);
 	void setCurrentMtx();
 
 	// VTBL _00
@@ -86,7 +86,7 @@ struct J3DLockedMaterial : public J3DMaterial {
 	virtual void load();                   // _10
 	virtual void loadSharedDL();           // _14
 	virtual void patch();                  // _18
-	virtual void diff(ulong);              // _1C
+	virtual void diff(u32);              // _1C
 	virtual void reset();                  // _20
 	virtual void change();                 // _24
 

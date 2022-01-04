@@ -45,13 +45,13 @@ struct MoviePlayArg {
 	char* m_movieName;                           // _00
 	char* m_courseName;                          // _04
 	char* _08;                                   // _08
-	IDelegate3<MovieConfig*, ulong, ulong>* _0C; // _0C
-	IDelegate3<MovieConfig*, void*, ulong>*
+	IDelegate3<MovieConfig*, u32, u32>* _0C; // _0C
+	IDelegate3<MovieConfig*, void*, u32>*
 	    _10;           // _10 /* Second type is unknown. */
 	u32 _14;           // _14
 	Vector3f m_origin; // _18 /* previously called m_itemPosition */
 	float m_angle;     // _24 /* previously called m_itemFaceDirection */
-	ulong m_naviID;    // _28
+	u32 m_naviID;    // _28
 	i32 m_streamID;   // _2C
 	Vector3f* m_soundPosition; // _30
 };
@@ -86,9 +86,9 @@ struct MoviePlayer {
 	Vector3f m_offset;
 	PSM::Demo* m_demoPSM;
 	MovieConfig* m_currentConfig;
-	IDelegate3<MovieConfig*, ulong, ulong>* _0B4;
+	IDelegate3<MovieConfig*, u32, u32>* _0B4;
 	u32 m_naviID;
-	IDelegate3<MovieConfig*, void*, ulong>* _0BC;
+	IDelegate3<MovieConfig*, void*, u32>* _0BC;
 	char* _0C0;
 	i32 m_streamID;
 	MovieContext* m_contexts;

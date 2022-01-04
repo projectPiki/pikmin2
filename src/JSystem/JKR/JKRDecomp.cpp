@@ -205,7 +205,7 @@ BOOL JKRDecomp::sendCommand(JKRDecompCommand* command)
  * Address:	8001CB3C
  * Size:	0000A0
  */
-bool JKRDecomp::orderSync(u8* p1, u8* p2, ulong p3, ulong p4)
+bool JKRDecomp::orderSync(u8* p1, u8* p2, u32 p3, u32 p4)
 {
 	JKRDecompCommand* command
 	    = new (JKRHeap::sSystemHeap, -4) JKRDecompCommand();
@@ -226,7 +226,7 @@ bool JKRDecomp::orderSync(u8* p1, u8* p2, ulong p3, ulong p4)
  * Address:	8001CBDC
  * Size:	00008C
  */
-void JKRDecomp::decode(u8* p1, u8* p2, ulong p3, ulong p4)
+void JKRDecomp::decode(u8* p1, u8* p2, u32 p3, u32 p4)
 {
 	switch (checkCompressed(p1)) {
 	case YAY0:
@@ -296,7 +296,7 @@ void JKRDecomp::decode(u8* p1, u8* p2, ulong p3, ulong p4)
  * Address:	8001CC68
  * Size:	0001A4
  */
-void JKRDecomp::decodeSZP(u8* p1, u8* p2, ulong p3, ulong p4)
+void JKRDecomp::decodeSZP(u8* p1, u8* p2, u32 p3, u32 p4)
 {
 	// i32 v5 = (uint)p1[11] | (uint)p1[10] << 8 | (uint)p1[9] << 16 |
 	// (uint)p1[8] << 24; i32 v2 = (uint)p1[7]  | (uint)p1[6]  << 8 |

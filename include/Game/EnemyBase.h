@@ -349,8 +349,8 @@ struct EnemyBase : public Creature,
 	Matrix3f _1A4;                     // _1A4
 	Vector3f m_velocity;               // _1C8
 	Vector3f m_velocity2;              // _1D4
-	BitFlag<ulong> _1E0[2];            // _1E0
-	BitFlag<ulong> _1E8[2];            // _1E8
+	BitFlag<u32> _1E0[2];            // _1E0
+	BitFlag<u32> _1E8[2];            // _1E8
 	u8 m_emotion;                      // _1F0
 	u8 m_enemyIndexForType;            // _1F1
 	u8 _1F2;                           // _1F2

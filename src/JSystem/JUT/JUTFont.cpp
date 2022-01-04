@@ -153,7 +153,7 @@ void JUTFont::setGradColor(JUtility::TColor, JUtility::TColor)
  * Size:	000118
  */
 void JUTFont::drawString_size_scale(float, float, float, float, const char*,
-                                    ulong, bool)
+                                    u32, bool)
 {
 	/*
 	.loc_0x0:

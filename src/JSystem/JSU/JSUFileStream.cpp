@@ -61,7 +61,7 @@ size_t JSUFileInputStream::readData(void* buffer, long byteCount)
 {
 	int readBytes = 0;
 	if (((JKRFile*)m_object)->_18) {
-		if ((ulong)(m_length + byteCount)
+		if ((u32)(m_length + byteCount)
 		    > ((JKRFile*)m_object)->getFileSize()) {
 			byteCount = ((JKRFile*)m_object)->getFileSize() - m_length;
 		}
@@ -85,7 +85,7 @@ size_t JSUFileInputStream::readData(void* buffer, long byteCount)
  */
 int JSUFileInputStream::seekPos(long offset, JSUStreamSeekFrom mode)
 {
-	ulong originalLength = m_length;
+	u32 originalLength = m_length;
 	switch (mode) {
 	case SEEK_SET:
 		m_length = offset;

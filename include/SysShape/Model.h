@@ -15,7 +15,7 @@ namespace SysShape {
 struct Joint;
 
 struct Model : MtxObject {
-	Model(J3DModelData*, ulong, ulong);
+	Model(J3DModelData*, u32, u32);
 
 	virtual Matrixf* getMatrix();                      // _00
 	virtual bool isModel();                            // _04
@@ -39,7 +39,7 @@ struct Model : MtxObject {
 	void initJoints();
 	void initJointsRec(int, SysShape::Joint*);
 	void isMtxImmediate();
-	void setCurrentViewNo(ulong);
+	void setCurrentViewNo(u32);
 	void setViewCalcModeImm();
 	void setViewCalcModeInd();
 	void viewCalc();

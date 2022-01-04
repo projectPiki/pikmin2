@@ -32,7 +32,7 @@
  * Address:	800B744C
  * Size:	0000CC
  */
-void JAInter::SoundTable::init(u8* data, ulong dataSize)
+void JAInter::SoundTable::init(u8* data, u32 dataSize)
 {
 	mVersion         = data[3];
 	mDataSize        = dataSize;
@@ -114,7 +114,7 @@ lbl_800B74FC:
  * Address:	800B7518
  * Size:	0000C4
  */
-JAInter::SoundInfo* JAInter::SoundTable::getInfoPointer(ulong soundID)
+JAInter::SoundInfo* JAInter::SoundTable::getInfoPointer(u32 soundID)
 {
 	i32 maskedID   = soundID & 0xC0000000;
 	SoundInfo* info = nullptr;

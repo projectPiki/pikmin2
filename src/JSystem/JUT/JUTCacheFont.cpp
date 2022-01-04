@@ -86,7 +86,7 @@ JUTCacheFont::JUTCacheFont()
  * Address:	........
  * Size:	00007C
  */
-JUTCacheFont::JUTCacheFont(const ResFONT*, void*, ulong, JKRHeap*)
+JUTCacheFont::JUTCacheFont(const ResFONT*, void*, u32, JKRHeap*)
 {
 	// UNUSED FUNCTION
 }
@@ -96,7 +96,7 @@ JUTCacheFont::JUTCacheFont(const ResFONT*, void*, ulong, JKRHeap*)
  * Address:	80033F94
  * Size:	000090
  */
-JUTCacheFont::JUTCacheFont(const ResFONT*, ulong, JKRHeap*)
+JUTCacheFont::JUTCacheFont(const ResFONT*, u32, JKRHeap*)
 {
 	/*
 	stwu     r1, -0x20(r1)

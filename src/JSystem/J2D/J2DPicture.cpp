@@ -1029,7 +1029,7 @@ bool J2DPicture::append(JUTTexture*, float)
  * Address:	8003A628
  * Size:	0000EC
  */
-J2DPicture::J2DPicture(ulonglong, const JGeometry::TBox2f&)
+J2DPicture::J2DPicture(u64, const JGeometry::TBox2f&)
 {
 	/*
 	stwu     r1, -0x10(r1)

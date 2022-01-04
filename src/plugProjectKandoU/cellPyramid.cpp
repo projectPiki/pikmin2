@@ -322,7 +322,7 @@ inline void Cell::clear()
  * Size:	0000C4
  */
 // void mapSearch__Q24Game4CellFP32IDelegate1<CellObject*> Ul()
-void Cell::mapSearch(IDelegate1<CellObject*>* delegate, ulong passID)
+void Cell::mapSearch(IDelegate1<CellObject*>* delegate, u32 passID)
 {
 	for (CellLeg* leg = _1C; leg != nullptr; leg = leg->m_next) {
 		if (leg->m_object->m_passID != passID) {
@@ -349,7 +349,7 @@ void Cell::mapSearch(IDelegate1<CellObject*>* delegate, ulong passID)
  * Size:	000238
  */
 // void mapSearchUp__Q24Game4CellFP32IDelegate1<CellObject*> Ul()
-inline void Cell::mapSearchUp(IDelegate1<CellObject*>* delegate, ulong passID)
+inline void Cell::mapSearchUp(IDelegate1<CellObject*>* delegate, u32 passID)
 {
 	for (CellLeg* leg = _1C; leg != nullptr; leg = leg->m_next) {
 		if (leg->m_object->m_passID != passID) {
@@ -368,7 +368,7 @@ inline void Cell::mapSearchUp(IDelegate1<CellObject*>* delegate, ulong passID)
  * Size:	000280
  */
 // void mapSearchDown__Q24Game4CellFP32IDelegate1<CellObject*> Ul()
-void Cell::mapSearchDown(IDelegate1<CellObject*>* delegate, ulong passID)
+void Cell::mapSearchDown(IDelegate1<CellObject*>* delegate, u32 passID)
 {
 	for (CellLeg* leg = _1C; leg != nullptr; leg = leg->m_next) {
 		if (leg->m_object->m_passID != passID) {
@@ -3513,8 +3513,8 @@ void Cell::resolveCollision_1()
 		     legB          = legB->m_next) {
 			// TODO: What is going on with m_passID?
 			if ((legA->m_object != legB->m_object)
-			    && (legB->m_object->m_passID != (ulong)legA->m_object)) {
-				legB->m_object->m_passID = (ulong)legA->m_object;
+			    && (legB->m_object->m_passID != (u32)legA->m_object)) {
+				legB->m_object->m_passID = (u32)legA->m_object;
 				legA->m_object->checkCollision(legB->m_object);
 			}
 		}
@@ -3523,8 +3523,8 @@ void Cell::resolveCollision_1()
 			     legB          = legB->m_next) {
 				// TODO: What is going on with m_passID?
 				if ((legA->m_object != legB->m_object)
-				    && (legB->m_object->m_passID != (ulong)legA->m_object)) {
-					legB->m_object->m_passID = (ulong)legA->m_object;
+				    && (legB->m_object->m_passID != (u32)legA->m_object)) {
+					legB->m_object->m_passID = (u32)legA->m_object;
 					legA->m_object->checkCollision(legB->m_object);
 				}
 			}
@@ -3558,7 +3558,7 @@ void Cell::resolveCollision_3()
 					if (CellMgrParms::mInstance->m_p001.m_value) {
 						if (legB->m_object
 						    != (CellObject*)legA->m_object->m_passID) {
-							legA->m_object->m_passID = (ulong)legB->m_object;
+							legA->m_object->m_passID = (u32)legB->m_object;
 							legA->m_object->checkCollision(legB->m_object);
 							legA->m_object->updateCollisionBuffer(
 							    legB->m_object);
@@ -3578,7 +3578,7 @@ void Cell::resolveCollision_3()
 							if (legB->m_object
 							    != (CellObject*)legA->m_object->m_passID) {
 								legA->m_object->m_passID
-								    = (ulong)legB->m_object;
+								    = (u32)legB->m_object;
 								legA->m_object->checkCollision(legB->m_object);
 								legA->m_object->updateCollisionBuffer(
 								    legB->m_object);

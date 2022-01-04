@@ -697,7 +697,7 @@ blr
  * Address:	8000BF70
  * Size:	000094
  */
-TObject* TControl::getObject(void const*, ulong)
+TObject* TControl::getObject(void const*, u32)
 {
 	/*
 stwu     r1, -0x50(r1)

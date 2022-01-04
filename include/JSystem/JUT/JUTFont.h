@@ -37,7 +37,7 @@ struct JUTFont {
 	void initialize_state();
 	void setCharColor(JUtility::TColor);
 	void setGradColor(JUtility::TColor, JUtility::TColor);
-	void drawString_size_scale(float, float, float, float, const char*, ulong,
+	void drawString_size_scale(float, float, float, float, const char*, u32,
 	                           bool);
 
 	static bool isLeadByte_1Byte(int);
@@ -57,7 +57,7 @@ struct JUTRomFont : public JUTFont {
 	// @fabricatedName
 	struct AboutEncoding {
 		u32 m_fontType;
-		ulong m_dataSize;
+		u32 m_dataSize;
 		IsLeadByte* m_isLeadByteFunction;
 	};
 	// @fabricatedName
@@ -169,8 +169,8 @@ struct JUTCacheFont : public JUTResFont {
 	};
 
 	JUTCacheFont();
-	JUTCacheFont(const ResFONT*, void*, ulong, JKRHeap*);
-	JUTCacheFont(const ResFONT*, ulong, JKRHeap*);
+	JUTCacheFont(const ResFONT*, void*, u32, JKRHeap*);
+	JUTCacheFont(const ResFONT*, u32, JKRHeap*);
 
 	virtual ~JUTCacheFont();                                             // _00
 	virtual void setGX();                                                // _04
@@ -190,14 +190,14 @@ struct JUTCacheFont : public JUTResFont {
 	virtual void setBlock();                                             // _40
 	// virtual void _44(); // _44
 
-	void allocArea(void*, ulong, JKRHeap*);
+	void allocArea(void*, u32, JKRHeap*);
 	void allocArray(JKRHeap*);
 	void deleteMemBlocks_CacheFont();
-	void getMemorySize(const ResFONT*, u16*, ulong*, u16*, ulong*,
-	                   u16*, ulong*, ulong*);
+	void getMemorySize(const ResFONT*, u16*, u32*, u16*, u32*,
+	                   u16*, u32*, u32*);
 	void initialize_state();
-	void initiate(const ResFONT*, void*, ulong, JKRHeap*);
-	void internal_initiate(const ResFONT*, void*, ulong, JKRHeap*);
+	void initiate(const ResFONT*, void*, u32, JKRHeap*);
+	void internal_initiate(const ResFONT*, void*, u32, JKRHeap*);
 	void invalidiateAllCache();
 	void loadCache_char_subroutine(int*, bool);
 	void loadCache_string(const char*, bool);
@@ -208,22 +208,22 @@ struct JUTCacheFont : public JUTResFont {
 	void determineBlankPage();
 	void getGlyphFromAram(TGlyphCacheInfo*, TCachePage*, int*, int*);
 	void loadCache_char(int, bool);
-	void loadCache_string_size(const char*, ulong, bool);
+	void loadCache_string_size(const char*, u32, bool);
 	void unlockCache_all();
 	void unlockCache_char(int);
 	void unlockCache_string(const char*);
-	void unlockCache_string_size(const char*, ulong);
+	void unlockCache_string_size(const char*, u32);
 
-	ulong _70;                 // _70
-	ulong _74;                 // _74
-	ulong _78;                 // _78
+	u32 _70;                 // _70
+	u32 _74;                 // _74
+	u32 _78;                 // _78
 	void* _7C;                 // _7C
 	void* _80;                 // _80
 	void* _84;                 // _84
 	u32 _88;                   // _88
 	int _8C;                   // _8C
 	void* _90;                 // _90
-	ulong _94;                 // _94
+	u32 _94;                 // _94
 	u8 _98[4];                 // _98
 	TGlyphCacheInfo* _9C;      // _9C
 	TGlyphCacheInfo* _A0;      // _A0

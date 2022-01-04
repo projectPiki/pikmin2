@@ -15,8 +15,8 @@ namespace PSSystem {
 struct SysIF : public JAIBasic {
 	SysIF(const SetupArg&);
 	void stopSoundSystem();
-	void playSystemSe(ulong, ulong);
-	void playSystemSe(ulong, JAISound**, ulong);
+	void playSystemSe(u32, u32);
+	void playSystemSe(u32, JAISound**, u32);
 	void initIF(const SetupArg&);
 	void makeSe();
 	void mainLoop();

@@ -24,7 +24,7 @@ struct EnemyBase : public CreatureAnime, public BattleLink, public KehaiLink {
 	virtual bool judgeNearWithPlayer(const Vec&, const Vec&, float,
 	                                 float); // _24
 	// vtable 3 (CreatureAnime)
-	virtual void startAnimSound(ulong, JAISound**, JAInter::Actor*,
+	virtual void startAnimSound(u32, JAISound**, JAInter::Actor*,
 	                            u8); // _4C
 	virtual void onCalcTurnOn();        // _54
 	virtual void onCalcTurnOff();       // _58

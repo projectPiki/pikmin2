@@ -173,7 +173,7 @@ J2DPictureEx::J2DPictureEx()
  * Address:	80054B38
  * Size:	00007C
  */
-J2DPictureEx::J2DPictureEx(const ResTIMG*, ulong)
+J2DPictureEx::J2DPictureEx(const ResTIMG*, u32)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -566,8 +566,8 @@ J2DPictureEx::J2DPictureEx(J2DPane*, JSURandomInputStream*, unsigned long,
  * Address:	8005502C
  * Size:	000110
  */
-J2DPictureEx::J2DPictureEx(ulonglong, const JGeometry::TBox2f&, const ResTIMG*,
-                           ulong)
+J2DPictureEx::J2DPictureEx(u64, const JGeometry::TBox2f&, const ResTIMG*,
+                           u32)
 {
 	/*
 	.loc_0x0:
@@ -649,8 +649,8 @@ J2DPictureEx::J2DPictureEx(ulonglong, const JGeometry::TBox2f&, const ResTIMG*,
  * Address:	8005513C
  * Size:	000110
  */
-J2DPictureEx::J2DPictureEx(ulonglong, const JGeometry::TBox2f&, const char*,
-                           ulong)
+J2DPictureEx::J2DPictureEx(u64, const JGeometry::TBox2f&, const char*,
+                           u32)
 {
 	/*
 	.loc_0x0:

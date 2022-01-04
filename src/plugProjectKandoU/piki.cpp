@@ -1966,7 +1966,7 @@ bool Piki::movieGotoPosition(Vector3f&) { return false; }
  * Address:	801488CC
  * Size:	000040
  */
-void Piki::startSound(ulong, bool)
+void Piki::startSound(u32, bool)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -1997,7 +1997,7 @@ lbl_801488FC:
  * Address:	8014890C
  * Size:	000048
  */
-void Piki::startSound(ulong, PSGame::SeMgr::SetSeId)
+void Piki::startSound(u32, PSGame::SeMgr::SetSeId)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2030,7 +2030,7 @@ lbl_80148944:
  * Address:	80148954
  * Size:	000070
  */
-void Piki::startSound(Game::Creature*, ulong, bool)
+void Piki::startSound(Game::Creature*, u32, bool)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -2073,7 +2073,7 @@ lbl_801489AC:
  * Address:	801489C4
  * Size:	0000CC
  */
-void Piki::startSound(Game::Creature*, ulong, PSGame::SeMgr::SetSeId)
+void Piki::startSound(Game::Creature*, u32, PSGame::SeMgr::SetSeId)
 {
 	/*
 	stwu     r1, -0x20(r1)

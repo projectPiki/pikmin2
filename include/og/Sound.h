@@ -5,7 +5,7 @@
 
 namespace og {
 struct Sound {
-	void setSE(ulong);
+	void setSE(u32);
 	void setLifeDanger();
 	void setChimeNoon();
 	void setChime();

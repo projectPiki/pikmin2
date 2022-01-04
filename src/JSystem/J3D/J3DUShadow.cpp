@@ -9,7 +9,7 @@
  * Address:	........
  * Size:	0000FC
  */
-inline J3DUMultiTexture::J3DUMultiTexture(ulong count, u8)
+inline J3DUMultiTexture::J3DUMultiTexture(u32 count, u8)
 {
 	// UNUSED FUNCTION
 	m_count    = count;
@@ -63,8 +63,8 @@ void J3DUMultiTexture::allocateTexture(u8, u16, u16, _GXTexFmt)
  * Address:	........
  * Size:	0002B8
  */
-void J3DUMultiTexture::draw(u8, ulong, ulong, _GXTevColorArg, ulong,
-                            ulong) const
+void J3DUMultiTexture::draw(u8, u32, u32, _GXTevColorArg, u32,
+                            u32) const
 {
 	// UNUSED FUNCTION
 }
@@ -116,7 +116,7 @@ void J3DUShadowManager::getFormatCoefficient(_GXTexFmt) const
  * Address:	........
  * Size:	00021C
  */
-J3DUShadowManager::J3DUShadowManager(ulong p1, _GXTexFmt p2, u8 p3, bool p4)
+J3DUShadowManager::J3DUShadowManager(u32 p1, _GXTexFmt p2, u8 p3, bool p4)
     : m_multiTexture(p1, p3)
 {
 	// UNUSED FUNCTION

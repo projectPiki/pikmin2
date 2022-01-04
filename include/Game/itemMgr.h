@@ -34,7 +34,7 @@ struct BaseItemMgr : GenericObjectMgr {
 	virtual void generatorGetID()                                   = 0; // _50
 	virtual void generatorBirth(Vector3f&, Vector3f&, GenItemParm*) = 0; // _54
 	virtual void generatorWrite(Stream&, GenItemParm*)              = 0; // _58
-	virtual void generatorRead(Stream&, GenItemParm*, ulong)        = 0; // _5C
+	virtual void generatorRead(Stream&, GenItemParm*, u32)        = 0; // _5C
 	virtual u32 generatorLocalVersion()                             = 0; // _60
 	virtual J3DModelData* generatorGetShape(GenItemParm*)           = 0; // _64
 	virtual GenItemParm* generatorNewItemParm()                     = 0; // _68

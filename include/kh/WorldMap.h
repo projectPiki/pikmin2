@@ -136,7 +136,7 @@ namespace Screen {
 		void postureControl(J2DPane*);
 		void rocketMove(J2DPane*, bool);
 		void rocketUpdate(J2DPane*);
-		void tag2num(ulonglong);
+		void tag2num(u64);
 
 		Game::WorldMap::InitArg m_initArg;                         // _18
 		P2DScreen::Mgr_tuning* m_screenKitagawa;                   // _30
@@ -197,14 +197,14 @@ namespace Screen {
 		og::Screen::CallBack_CounterRV* _128;                      // _128
 		int m_groundTreasureCount;                                 // _12C
 		int m_groundTreasureMax;                                   // _130
-		ulong _134;                                                // _134
-		ulong _138;                                                // _138
-		ulong _13C;                                                // _13C
-		ulong _140;                                                // _140
-		ulong _144;                                                // _144
-		ulong _148;                                                // _148
-		ulong _14C;                                                // _14C
-		ulong _150;                                                // _150
+		u32 _134;                                                // _134
+		u32 _138;                                                // _138
+		u32 _13C;                                                // _13C
+		u32 _140;                                                // _140
+		u32 _144;                                                // _144
+		u32 _148;                                                // _148
+		u32 _14C;                                                // _14C
+		u32 _150;                                                // _150
 		khUtilFadePaneWM* _154;                                    // _154
 		khUtilColorAnmWM* _158;                                    // _158
 		khUtilColorAnmWM* _15C;                                    // _15C

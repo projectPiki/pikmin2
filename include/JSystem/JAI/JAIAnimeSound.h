@@ -12,10 +12,10 @@ struct Actor;
 
 struct JAIAnimeSound : public JAInter::Object {
 	virtual ~JAIAnimeSound();              // _00
-	virtual void handleStop(u8, ulong); // _2C
+	virtual void handleStop(u8, u32); // _2C
 	virtual void playActorAnimSound(JAInter::Actor*, float,
 	                                u8); // _34
-	virtual void startAnimSound(ulong, JAISound**, JAInter::Actor*,
+	virtual void startAnimSound(u32, JAISound**, JAInter::Actor*,
 	                            u8); // _38
 	virtual void setSpeedModifySound(JAISound*, JAIAnimeFrameSoundData*,
 	                                 float); // _3C
@@ -24,7 +24,7 @@ struct JAIAnimeSound : public JAInter::Object {
 	void* _40;                      // _40
 	void* _44;                      // _44
 	u8 _48[0x14];                   // _48
-	ulong _5C;                      // _5C
+	u32 _5C;                      // _5C
 	u8 _60[8];                      // _60
 	i32 _68;                       // _68
 	int _6C;                        // _6C

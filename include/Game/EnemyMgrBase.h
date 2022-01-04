@@ -49,8 +49,8 @@ struct EnemyMgrBase : public IEnemyMgrBase {
 	virtual EnemyGeneratorBase* getGenerator() const; // _38
 	virtual void killAll(CreatureKillArg*);           // _3C
 	virtual void setupSoundViewerAndBas();            // _40
-	virtual void setDebugParm(ulong);                 // _44
-	virtual void resetDebugParm(ulong);               // _48
+	virtual void setDebugParm(u32);                 // _44
+	virtual void resetDebugParm(u32);               // _48
 	virtual int getMaxObjects() const;                // _4C
 	virtual void startMovie();                        // _50
 	virtual void endMovie();                          // _54

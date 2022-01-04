@@ -53,7 +53,7 @@ namespace SysShape {
  */
 // void __ct__Q28SysShape8ModelMgrFiPP12J3DModelDataiUlUlP30IDelegate1<Model*>(
 //     void)
-ModelMgr::ModelMgr(int, J3DModelData**, int, ulong, ulong, IDelegate1<Model*>*)
+ModelMgr::ModelMgr(int, J3DModelData**, int, u32, u32, IDelegate1<Model*>*)
 {
 	/*
 	.loc_0x0:

@@ -138,13 +138,13 @@ struct Creature : public CellObject {
 	virtual float getSound_CurrAnimSpeed();
 	virtual void on_movie_begin(bool);
 	virtual void on_movie_end(bool);
-	virtual void movieStartAnimation(ulong);
+	virtual void movieStartAnimation(u32);
 	virtual void movieStartDemoAnimation(SysShape::AnimInfo*);
 	virtual void movieSetAnimationLastFrame();
 	virtual void movieSetTranslation(Vector3f&, float);
 	virtual void movieSetFaceDir(float);
 	virtual bool movieGotoPosition(Vector3f&);
-	virtual void movieUserCommand(ulong, MoviePlayer*);
+	virtual void movieUserCommand(u32, MoviePlayer*);
 	virtual void getShadowParam(ShadowParam&);
 	virtual bool needShadow();
 	virtual void getLifeGaugeParam(LifeGaugeParam&);

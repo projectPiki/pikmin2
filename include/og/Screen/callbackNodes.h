@@ -34,12 +34,12 @@ namespace Screen {
 		virtual void _14();            // _14
 
 		// TODO: Could init have been virtual, but not inserted into vtable?
-		void init(J2DScreen*, ulonglong, ulong*, JKRArchive*);
+		void init(J2DScreen*, u64, u32*, JKRArchive*);
 		void setPikiIcon(int);
 
-		ulong* _1C;          // _1C
+		u32* _1C;          // _1C
 		J2DPicture* _20;     // _20
-		ulong _24;           // _24
+		u32 _24;           // _24
 		ScaleMgr m_scaleMgr; // _28
 	};
 
@@ -54,7 +54,7 @@ namespace Screen {
 		virtual ~CallBack_CounterRV();                 // _00
 		virtual void update();                         // _08
 		virtual void draw(Graphics&, J2DGrafContext&); // _0C
-		virtual void init(J2DScreen*, ulonglong, ulonglong, ulonglong, ulong*,
+		virtual void init(J2DScreen*, u64, u64, u64, u32*,
 		                  bool);           // _14
 		virtual void show();               // _18
 		virtual void hide();               // _1C
@@ -69,14 +69,14 @@ namespace Screen {
 		void setPuyoAnim(bool);
 		void setPuyoAnimZero(bool);
 		void setRandMode(bool);
-		void setValPtr(ulong*);
+		void setValPtr(u32*);
 		void setZeroAlpha(u8);
 		void startPuyoUp(float);
 
 		char** m_characterTexturePaths; // _1C
-		ulong* _20;                     // _20
-		ulong _24;                      // _24
-		ulong _28;                      // _28
+		u32* _20;                     // _20
+		u32 _24;                      // _24
+		u32 _28;                      // _28
 		u16 _2C;                     // _2C
 		u16 m_counterLimit;          // _2E /* allocated slot count of _7C */
 		u16 _30;                     // _30
@@ -126,7 +126,7 @@ namespace Screen {
 
 		virtual ~CallBack_CounterDay(); // _00
 		virtual void update();          // _08
-		virtual void init(J2DScreen*, ulonglong, ulonglong, ulonglong, ulong*,
+		virtual void init(J2DScreen*, u64, u64, u64, u32*,
 		                  bool); // _14
 		virtual void show();     // _18
 		virtual void hide();     // _1C
@@ -141,7 +141,7 @@ namespace Screen {
 
 		virtual ~CallBack_CounterSlot(); // _00
 		virtual void update();           // _08
-		virtual void init(J2DScreen*, ulonglong, ulonglong, ulonglong, ulong*,
+		virtual void init(J2DScreen*, u64, u64, u64, u32*,
 		                  bool);           // _14
 		virtual void setValue(bool, bool); // _20
 		virtual void setValue();           // _24
@@ -166,7 +166,7 @@ namespace Screen {
 
 	// Size: 0x28
 	struct CallBack_DrawAfter : public P2DScreen::CallBackNode {
-		CallBack_DrawAfter(P2DScreen::Mgr*, ulonglong);
+		CallBack_DrawAfter(P2DScreen::Mgr*, u64);
 
 		virtual ~CallBack_DrawAfter();                 // _00
 		virtual void update();                         // _08
@@ -262,8 +262,8 @@ namespace Screen {
 		virtual void _14();                            // _14
 
 		P2JME::SimpleMessage* m_message; // _1C
-		ulonglong m_messageIDAsULL;      // _20
-		ulong m_messageIDAs2UL[2];       // _28
+		u64 m_messageIDAsULL;      // _20
+		u32 m_messageIDAs2UL[2];       // _28
 		float _30;                       // _30
 		float _34;                       // _34
 		float _38;                       // _38
@@ -278,7 +278,7 @@ namespace Screen {
 		virtual void draw(Graphics&, J2DGrafContext&); // _0C
 		virtual void _14();                            // _14
 
-		void changeScreen(P2DScreen::Mgr*, ulonglong);
+		void changeScreen(P2DScreen::Mgr*, u64);
 		J2DScreen* getPartsScreen();
 
 		J2DScreen* m_partsScreen; // _1C
@@ -326,7 +326,7 @@ namespace Screen {
 	struct AnimText_Screen : public CallBack_Screen {
 		void open(float);
 		void stop();
-		void setText(ulonglong);
+		void setText(u64);
 
 		int _34;                   // _34
 		AnimScreen* _38;           // _38

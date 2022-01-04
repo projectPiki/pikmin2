@@ -78,10 +78,10 @@ void strpbrk(void)
  */
 char* strrchr(const char* str, int chr)
 {
-	const uchar* p = (uchar*)str - 1;
-	const uchar* q = 0;
-	ulong c        = (chr & 0xFF);
-	ulong ch;
+	const u8* p = (u8*)str - 1;
+	const u8* q = 0;
+	u32 c       = (chr & 0xFF);
+	u32 ch;
 
 	while (ch = *++p)
 		if (ch == c)
@@ -120,9 +120,9 @@ void strcoll(void)
  */
 char* strchr(const char* str, int chr)
 {
-	const uchar* p = (uchar*)str - 1;
-	ulong c        = (chr & 0xFF);
-	ulong ch;
+	const u8* p = (u8*)str - 1;
+	u32 c       = (chr & 0xFF);
+	u32 ch;
 
 	while (ch = *++p)
 		if (ch == c)
@@ -138,9 +138,9 @@ char* strchr(const char* str, int chr)
  */
 int strncmp(const char* str1, const char* str2, size_t n)
 {
-	const uchar* p1 = (uchar*)str1 - 1;
-	const uchar* p2 = (uchar*)str2 - 1;
-	ulong c1, c2;
+	const u8* p1 = (u8*)str1 - 1;
+	const u8* p2 = (u8*)str2 - 1;
+	u32 c1, c2;
 
 	n++;
 
@@ -161,9 +161,9 @@ int strcmp(const char* str1, const char* str2)
 {
 	// bless metrowerks for this implementation
 
-	register uchar* left  = (uchar*)str1;
-	register uchar* right = (uchar*)str2;
-	uint align, l1, r1, x;
+	register u8* left  = (u8*)str1;
+	register u8* right = (u8*)str2;
+	i32 align, l1, r1, x;
 
 	l1 = *left;
 	r1 = *right;
@@ -249,8 +249,8 @@ void strncat(void)
  */
 char* strcat(char* dst, const char* src)
 {
-	const uchar* p = (uchar*)src - 1;
-	uchar* q       = (uchar*)dst - 1;
+	const u8* p = (u8*)src - 1;
+	u8* q       = (u8*)dst - 1;
 
 	while (*++q)
 		;
@@ -292,11 +292,11 @@ char* strncpy(char* dst, const char* src, size_t n)
  */
 char*(strcpy)(char* dst, const char* src)
 {
-	register uchar *destb, *fromb;
-	register uint w, t, align;
+	register u8 *destb, *fromb;
+	register i32 w, t, align;
 
-	fromb = (uchar*)src;
-	destb = (uchar*)dst;
+	fromb = (u8*)src;
+	destb = (u8*)dst;
 
 	if ((align = ((int)fromb & 3)) != ((int)destb & 3)) {
 		goto bytecopy;
@@ -353,7 +353,7 @@ bytecopy:
 size_t(strlen)(const char* str)
 {
 	size_t len = -1;
-	uchar* p   = (uchar*)str - 1;
+	u8* p      = (u8*)str - 1;
 
 	do
 		len++;

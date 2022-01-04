@@ -34,81 +34,81 @@ namespace Screen {
 	void blendPictureTreeColor(PictureTreeColorCaptureInfo*, JUtility::TColor&,
 	                           JUtility::TColor&, float);
 	void calcGlbCenter(J2DPane*, Vector2f*);
-	i32 CalcKeta(ulong);
+	i32 CalcKeta(u32);
 	float calcSmooth0to1(float, float);
 	u32* capturePictureTreeColor(J2DPane*, int);
 	void centeringPane(J2DPane*, bool, bool);
-	ulonglong CharCodeToTag(char*);
+	u64 CharCodeToTag(char*);
 	bool checkVisibleGlb(J2DPane*);
-	J2DPictureEx* CopyPicture(J2DPictureEx*, ulonglong);
+	J2DPictureEx* CopyPicture(J2DPictureEx*, u64);
 	J2DPictureEx* CopyPictureToPane(J2DPictureEx*, J2DPane*, float, float,
-	                                ulonglong);
+	                                u64);
 	void drawPaneFrame(J2DGrafContext&, J2DPane*, JUtility::TColor&);
 	void dumpInfoResTIMG(ResTIMG const*);
-	CallBack_Furiko* getFurikoPtr(P2DScreen::Mgr*, ulonglong);
+	CallBack_Furiko* getFurikoPtr(P2DScreen::Mgr*, u64);
 	void kakomiPane(J2DPane*);
 	ResTIMG** makeSujiFontTable(char**, JKRArchive*);
-	ulonglong maskTag(ulonglong, u16, u16);
-	ulonglong maskTag2(ulonglong, u16);
-	ulonglong MojiToNum(ulonglong, int);
-	ulonglong NameToTag(char*);
-	void registAnimGroupPane(AnimGroup*, JKRArchive*, J2DScreen*, ulonglong,
+	u64 maskTag(u64, u16, u16);
+	u64 maskTag2(u64, u16);
+	u64 MojiToNum(u64, int);
+	u64 NameToTag(char*);
+	void registAnimGroupPane(AnimGroup*, JKRArchive*, J2DScreen*, u64,
 	                         char*, float);
 	void registAnimGroupScreen(AnimGroup*, JKRArchive*, J2DScreen*, char*,
 	                           float);
 	void setAlphaScreen(J2DPane*);
-	void setAnimTextScreen(JKRArchive*, P2DScreen::Mgr*, ulonglong);
-	void setCallBack_3DStick(JKRArchive*, P2DScreen::Mgr*, ulonglong);
-	void setCallBack_3DStickSmall(JKRArchive*, P2DScreen::Mgr*, ulonglong);
-	void setCallBack_CStick(JKRArchive*, P2DScreen::Mgr*, ulonglong);
-	void setCallBack_CStickSmall(JKRArchive*, P2DScreen::Mgr*, ulonglong);
-	CallBack_CounterDay* setCallBack_CounterDay(P2DScreen::Mgr*, ulonglong,
-	                                            ulonglong, ulonglong, ulong*,
+	void setAnimTextScreen(JKRArchive*, P2DScreen::Mgr*, u64);
+	void setCallBack_3DStick(JKRArchive*, P2DScreen::Mgr*, u64);
+	void setCallBack_3DStickSmall(JKRArchive*, P2DScreen::Mgr*, u64);
+	void setCallBack_CStick(JKRArchive*, P2DScreen::Mgr*, u64);
+	void setCallBack_CStickSmall(JKRArchive*, P2DScreen::Mgr*, u64);
+	CallBack_CounterDay* setCallBack_CounterDay(P2DScreen::Mgr*, u64,
+	                                            u64, u64, u32*,
 	                                            u16, JKRArchive*);
 	CallBack_CounterDay* setCallBack_CounterDay(char**, P2DScreen::Mgr*,
-	                                            ulonglong, ulonglong, ulonglong,
-	                                            ulong*, u16, JKRArchive*);
-	void setCallBack_CounterMap(P2DScreen::Mgr*, ulonglong, ulonglong,
-	                            ulonglong, ulong*, u16, u16, bool,
+	                                            u64, u64, u64,
+	                                            u32*, u16, JKRArchive*);
+	void setCallBack_CounterMap(P2DScreen::Mgr*, u64, u64,
+	                            u64, u32*, u16, u16, bool,
 	                            JKRArchive*);
-	CallBack_CounterRV* setCallBack_CounterRV(P2DScreen::Mgr*, ulonglong,
-	                                          ulonglong, ulonglong, ulong*,
+	CallBack_CounterRV* setCallBack_CounterRV(P2DScreen::Mgr*, u64,
+	                                          u64, u64, u32*,
 	                                          u16, u16, bool,
 	                                          JKRArchive*);
-	CallBack_CounterRV* setCallBack_CounterRV(P2DScreen::Mgr*, ulonglong,
-	                                          ulong*, u16, bool, bool,
+	CallBack_CounterRV* setCallBack_CounterRV(P2DScreen::Mgr*, u64,
+	                                          u32*, u16, bool, bool,
 	                                          JKRArchive*);
-	CallBack_CounterRV* setCallBack_CounterRV(P2DScreen::Mgr*, ulonglong, ulong,
+	CallBack_CounterRV* setCallBack_CounterRV(P2DScreen::Mgr*, u64, u32,
 	                                          u16, bool, bool, JKRArchive*);
-	void setCallBack_CounterRV2(P2DScreen::Mgr*, ulonglong, ulong*, u16,
+	void setCallBack_CounterRV2(P2DScreen::Mgr*, u64, u32*, u16,
 	                            bool, bool, JKRArchive*);
-	CallBack_CounterSlot* setCallBack_CounterSlot(P2DScreen::Mgr*, ulonglong,
-	                                              ulong*, u16, bool, bool,
+	CallBack_CounterSlot* setCallBack_CounterSlot(P2DScreen::Mgr*, u64,
+	                                              u32*, u16, bool, bool,
 	                                              JKRArchive*);
-	CallBack_DrawAfter* setCallBack_DrawAfter(P2DScreen::Mgr*, ulonglong);
-	CallBack_Furiko* setCallBack_Furiko(P2DScreen::Mgr*, ulonglong);
-	CallBack_Picture* setCallBack_Picture(JKRArchive*, char*, ulonglong,
-	                                      P2DScreen::Mgr*, ulonglong);
+	CallBack_DrawAfter* setCallBack_DrawAfter(P2DScreen::Mgr*, u64);
+	CallBack_Furiko* setCallBack_Furiko(P2DScreen::Mgr*, u64);
+	CallBack_Picture* setCallBack_Picture(JKRArchive*, char*, u64,
+	                                      P2DScreen::Mgr*, u64);
 	void setCallBackMessage(P2DScreen::Mgr*);
 	void setCallBackMessageSub(P2DScreen::Mgr*, J2DPane*);
 	void setFurikoScreen(P2DScreen::Mgr*);
-	void setMenuScreen(JKRArchive*, P2DScreen::Mgr*, ulonglong);
-	void setMenuTitleScreen(JKRArchive*, P2DScreen::Mgr*, ulonglong);
-	void setP2DScreen(char*, ulong, JKRArchive*);
-	J2DPane* TagSearch(J2DScreen*, ulonglong);
-	void TagToHex(ulonglong, char*);
-	void TagToName(ulonglong, char*);
+	void setMenuScreen(JKRArchive*, P2DScreen::Mgr*, u64);
+	void setMenuTitleScreen(JKRArchive*, P2DScreen::Mgr*, u64);
+	void setP2DScreen(char*, u32, JKRArchive*);
+	J2DPane* TagSearch(J2DScreen*, u64);
+	void TagToHex(u64, char*);
+	void TagToName(u64, char*);
 
 	struct DispMemberBase {
 		virtual i32 getSize()          = 0; // _00
-		virtual ulong getOwnerID()      = 0; // _04
-		virtual ulonglong getMemberID() = 0; // _08
+		virtual u32 getOwnerID()      = 0; // _04
+		virtual u64 getMemberID() = 0; // _08
 		virtual void doSetSubMemberAll();    // _10
 
-		bool isID(ulong, ulonglong);
+		bool isID(u32, u64);
 		void getMemberName(char*);
 		bool setSubMember(DispMemberBase*);
-		DispMemberBase* getSubMember(ulong, ulonglong);
+		DispMemberBase* getSubMember(u32, u64);
 		void setSubMemberAll();
 
 		// inline void getOwnerName(char* outName) {

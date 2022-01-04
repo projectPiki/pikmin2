@@ -13,9 +13,9 @@ namespace P2JME {
  * Address:	8043D32C
  * Size:	000048
  */
-void convertU64ToMessageID(ulonglong inID, ulong* messageID, ulong* variantID)
+void convertU64ToMessageID(u64 inID, u32* messageID, u32* variantID)
 {
-	ulonglong temp = inID << 8;
+	u64 temp = inID << 8;
 	convertCharToMessageID((char*)(temp), messageID, variantID);
 	/*
 	stwu     r1, -0x10(r1)
@@ -44,7 +44,7 @@ void convertU64ToMessageID(ulonglong inID, ulong* messageID, ulong* variantID)
  * Address:	8043D374
  * Size:	000128
  */
-void convertCharToMessageID(char* str, ulong* messageID, ulong* variantID)
+void convertCharToMessageID(char* str, u32* messageID, u32* variantID)
 {
 	*variantID = 0;
 	*messageID = 0;

@@ -13,13 +13,13 @@ namespace stb {
 
 		// vt
 		// virtual ~TParse();
-		virtual void parseHeader_next(void const**, ulong*, ulong);
-		virtual void parseBlock_next(void const**, ulong*, ulong);
-		virtual int parseHeader(data::TParse_THeader const&, ulong);
+		virtual void parseHeader_next(void const**, u32*, u32);
+		virtual void parseBlock_next(void const**, u32*, u32);
+		virtual int parseHeader(data::TParse_THeader const&, u32);
 		virtual void parseBlock_block(data::TParse_TBlock const&,
 		                              unsigned long);
 		virtual void parseBlock_object(data::TParse_TBlock_object const&,
-		                               ulong);
+		                               u32);
 
 		// TControl* control;
 	};
@@ -57,7 +57,7 @@ namespace stb {
 
 	/*struct TObject_control : TObject {
 	    TObject_control();
-	    TObject_control(void const*, ulong);
+	    TObject_control(void const*, u32);
 	    TObject_control(data::TParse_TBlock_object const&);
 
 	    virtual ~TObject_control(void);
@@ -74,7 +74,7 @@ namespace stb {
 		};
 
 		TObject();
-		TObject(ulong, void const*, ulong);
+		TObject(u32, void const*, u32);
 		TObject(data::TParse_TBlock_object const&);
 
 		// vtable

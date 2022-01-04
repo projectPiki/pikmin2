@@ -68,8 +68,8 @@ namespace Screen {
 		u8 _0F3;                                     // _0F3
 		u8 _0F4;                                     // _0F4
 		int _0F8;                                    // _0F8
-		ulong _0FC;                                  // _0FC
-		ulong _100;                                  // _100
+		u32 _0FC;                                  // _0FC
+		u32 _100;                                  // _100
 		long _104;                                   // _104
 		int _108;                                    // _108
 		P2DScreen::Mgr_tuning* _10C;                 // _10C

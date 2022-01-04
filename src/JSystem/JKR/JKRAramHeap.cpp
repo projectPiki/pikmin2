@@ -152,7 +152,7 @@ lbl_80019828:
  * Address:	80019848
  * Size:	000080
  */
-JKRAramBlock* JKRAramHeap::alloc(ulong, JKRAramHeap::EAllocMode)
+JKRAramBlock* JKRAramHeap::alloc(u32, JKRAramHeap::EAllocMode)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -199,7 +199,7 @@ lbl_800198A0:
  * Address:	800198C8
  * Size:	000088
  */
-JKRAramBlock* JKRAramHeap::allocFromHead(ulong)
+JKRAramBlock* JKRAramHeap::allocFromHead(u32)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -256,7 +256,7 @@ lbl_80019940:
  * Address:	80019950
  * Size:	000078
  */
-JKRAramBlock* JKRAramHeap::allocFromTail(ulong)
+JKRAramBlock* JKRAramHeap::allocFromTail(u32)
 {
 	/*
 	stwu     r1, -0x10(r1)

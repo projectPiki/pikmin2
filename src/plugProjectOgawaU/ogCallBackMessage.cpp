@@ -716,7 +716,7 @@ lbl_80309D7C:
  * Address:	80309D98
  * Size:	000010
  */
-ulonglong J2DPane::getUserInfo() const
+u64 J2DPane::getUserInfo() const
 {
 	return m_messageID;
 	/*

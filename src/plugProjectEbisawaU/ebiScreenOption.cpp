@@ -1013,7 +1013,7 @@ lbl_803CB82C:
 	{
 		_1E4.play(60.0f * sys->m_secondsPerFrame, J3DAA_UNKNOWN_0, true);
 		setOptionParamToScreen_();
-		ulong uVar2
+		u32 uVar2
 		    = __cvt_fp2unsigned(E2DFader::kFadeTime / sys->m_secondsPerFrame);
 		_0FC                      = uVar2;
 		_100                      = uVar2;
@@ -1118,7 +1118,7 @@ lbl_803CB82C:
 	 */
 	void TOption::doCloseScreen(ebi::Screen::ArgClose*)
 	{
-		ulong v1 = __cvt_fp2unsigned((float)E2DFader::kFadeTime
+		u32 v1 = __cvt_fp2unsigned((float)E2DFader::kFadeTime
 		                             / sys->m_secondsPerFrame);
 		_0FC     = v1;
 		_100     = v1;

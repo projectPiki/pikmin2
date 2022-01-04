@@ -5,8 +5,8 @@
 #include "JSystem/JKR/JKRDvdRipper.h"
 
 struct JKRDvdAramRipper {
-	static JKRAramBlock* loadToAram(char const*, ulong, JKRExpandSwitch, ulong,
-	                                ulong, ulong*);
+	static JKRAramBlock* loadToAram(char const*, u32, JKRExpandSwitch, u32,
+	                                u32, u32*);
 };
 
 #endif

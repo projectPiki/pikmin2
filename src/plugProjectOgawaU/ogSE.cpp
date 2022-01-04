@@ -31,7 +31,7 @@ Sound ogSound;
  * Address:	8030C9B0
  * Size:	000028
  */
-void Sound::setSE(ulong soundID)
+void Sound::setSE(u32 soundID)
 {
 	PSSystem::spSysIF->playSystemSe(soundID, 0);
 }

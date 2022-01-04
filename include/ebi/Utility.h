@@ -38,8 +38,8 @@ struct EUTPadInterface_countNum {
 void EUTColor_complement(JUtility::TColor&, JUtility::TColor&, float, float,
                          JUtility::TColor*);
 void EUTDebug_Wait();
-void EUTDebug_Tag32ToName(ulong, char*);
-void EUTDebug_Tag64ToName(ulonglong, char*);
+void EUTDebug_Tag32ToName(u32, char*);
+void EUTDebug_Tag64ToName(u64, char*);
 
 } // namespace ebi
 

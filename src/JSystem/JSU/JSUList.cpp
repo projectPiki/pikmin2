@@ -217,7 +217,7 @@ bool JSUPtrList::remove(JSUPtrLink* pLink)
  * Address:	80026CD4
  * Size:	000088
  */
-JSUPtrLink* JSUPtrList::getNthLink(ulong n) const
+JSUPtrLink* JSUPtrList::getNthLink(u32 n) const
 {
 	if (n >= m_linkCount) {
 		return nullptr;

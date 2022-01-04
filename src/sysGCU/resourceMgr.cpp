@@ -536,7 +536,7 @@ bool Resource::MgrCommand::destroy()
  * Address:	804336D0
  * Size:	00010C
  */
-Resource::Mgr::Mgr(JKRHeap* heap, ulong size)
+Resource::Mgr::Mgr(JKRHeap* heap, u32 size)
     : _04(nullptr)
     , _08(0)
     , _0C(0)

@@ -73,7 +73,7 @@ namespace Screen {
 	 * Address:	8040B3F4
 	 * Size:	00004C
 	 */
-	ulonglong getSerialTagName(ulonglong, int)
+	u64 getSerialTagName(u64, int)
 	{
 		/*
 	lis      r6, 0x66666667@ha
@@ -103,7 +103,7 @@ namespace Screen {
 	 * Address:	8040B440
 	 * Size:	000050
 	 */
-	void setTex(J2DScreen* screen, ulonglong tag, const ResTIMG* tex)
+	void setTex(J2DScreen* screen, u64 tag, const ResTIMG* tex)
 	{
 		reinterpret_cast<J2DPicture*>(screen->search(tag))
 		    ->changeTexture(tex, '\0');
@@ -114,7 +114,7 @@ namespace Screen {
 	 * Address:	8040B490
 	 * Size:	000050
 	 */
-	void setTex(J2DScreen* screen, ulonglong tag, const char* str)
+	void setTex(J2DScreen* screen, u64 tag, const char* str)
 	{
 		reinterpret_cast<J2DPicture*>(screen->search(tag))
 		    ->changeTexture(str, '\0');
@@ -660,7 +660,7 @@ lbl_8040B6D4:
 	 * Address:	8040BAE4
 	 * Size:	0000A4
 	 */
-	khUtilFadePane* khUtilFadePane::create(P2DScreen::Mgr* mgr, ulonglong tag,
+	khUtilFadePane* khUtilFadePane::create(P2DScreen::Mgr* mgr, u64 tag,
 	                                       u8 c)
 	{
 		if (mgr == nullptr) {
@@ -1039,7 +1039,7 @@ lbl_8040BE50:
 	 * Address:	8040BE70
 	 * Size:	000158
 	 */
-	khUtilColorAnm::khUtilColorAnm(P2DScreen::Mgr*, ulonglong, int, int)
+	khUtilColorAnm::khUtilColorAnm(P2DScreen::Mgr*, u64, int, int)
 	{
 		/*
 		.loc_0x0:

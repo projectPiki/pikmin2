@@ -228,7 +228,7 @@ lbl_8030EC38:
 	 * Size:	000338
 	 */
 	J2DPictureEx* CopyPictureToPane(J2DPictureEx*, J2DPane*, float, float,
-	                                ulonglong)
+	                                u64)
 	{
 		/*
 		.loc_0x0:

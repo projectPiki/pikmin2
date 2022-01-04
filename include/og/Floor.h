@@ -24,8 +24,8 @@ namespace Screen {
 	// Size: 0x14
 	struct DispMemberFloor : public DispMemberBase {
 		virtual i32 getSize();          // _00
-		virtual ulong getOwnerID();      // _04
-		virtual ulonglong getMemberID(); // _08
+		virtual u32 getOwnerID();      // _04
+		virtual u64 getMemberID(); // _08
 
 		int _08;      // _08
 		int m_caveID; // _0C
@@ -43,7 +43,7 @@ namespace newScreen {
 	struct Floor : public ::Screen::SceneBase {
 		virtual SceneType getSceneType();                           // _00
 		virtual i32 getOwnerID();                                  // _04
-		virtual ulonglong getMemberID();                            // _08
+		virtual u64 getMemberID();                            // _08
 		virtual bool isUseBackupSceneInfo();                        // _0C
 		virtual bool isDrawInDemo() const;                          // _10
 		virtual void getResName() const;                            // _14
@@ -80,7 +80,7 @@ namespace newScreen {
 		bool isFLOOR();
 		bool isCHALLENGE();
 		bool isVS();
-		void setCaveMsgID(ulong, char*);
+		void setCaveMsgID(u32, char*);
 		bool commonUpdate();
 		void drawBG(Graphics&);
 
@@ -145,7 +145,7 @@ namespace newScreen {
 		} msVal;
 	};
 
-	extern const ulonglong vsRuleMsgId[6];
+	extern const u64 vsRuleMsgId[6];
 } // namespace newScreen
 } // namespace og
 

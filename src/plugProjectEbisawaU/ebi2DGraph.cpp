@@ -36,7 +36,7 @@ namespace ebi {
  * Address:	803CA358
  * Size:	00008C
  */
-J2DPane* E2DScreen_searchAssert(J2DScreen* screen, ulonglong tag)
+J2DPane* E2DScreen_searchAssert(J2DScreen* screen, u64 tag)
 {
 	char name[16];
 	J2DPane* result = screen->search(tag);

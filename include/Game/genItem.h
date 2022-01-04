@@ -20,7 +20,7 @@ struct GenItem : public GenObject {
 	virtual void doWrite(Stream&);                         // _00
 	virtual void ramSaveParameters(Stream&);               // _04
 	virtual void ramLoadParameters(Stream&);               // _08
-	virtual void doEvent(ulong);                           // _0C
+	virtual void doEvent(u32);                           // _0C
 	virtual void doRead(Stream&);                          // _10
 	virtual J3DModelData* getShape();                      // _20
 	virtual void updateUseList(Generator*, int);           // _24

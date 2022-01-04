@@ -55,12 +55,12 @@ struct Pathfinder {
 	void create(int, RouteMgr*);
 	void update();
 	int start(PathfindRequest&);
-	int makepath(ulong, PathNode**);
-	int makepath(ulong, short*, int);
-	void release(ulong);
-	u8 check(ulong);
+	int makepath(u32, PathNode**);
+	int makepath(u32, short*, int);
+	void release(u32);
+	u8 check(u32);
 	void getFreeContext();
-	void getContext(ulong);
+	void getContext(u32);
 
 	u32 _00;                            // _00
 	s32 m_clientCount;                  // _04

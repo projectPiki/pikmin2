@@ -440,7 +440,7 @@ long JKRDvdFile::sync()
 	OSReceiveMessage(&_C0, buffer, MSG_QUEUE_SHOULD_BLOCK);
 	_F4 = nullptr;
 	OSUnlockMutex(&_1C);
-	return (ulong)*buffer;
+	return (u32)*buffer;
 }
 
 /*

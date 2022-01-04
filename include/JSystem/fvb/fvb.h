@@ -100,7 +100,7 @@ namespace fvb {
 		void removeObject(TObject*);
 		void destroyObject(TObject*);
 		void destroyObject_all();
-		TObject* getObject(void const*, ulong);
+		TObject* getObject(void const*, u32);
 		TObject* getObject_index(u32);
 
 		TFactory* getFactory() const { return pFactory; }

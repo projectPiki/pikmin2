@@ -26,7 +26,7 @@ struct CollPart : public CNode {
 	virtual void constructor();           // _10
 	virtual void doAnimation();           // _14
 	virtual void doEntry();               // _18
-	virtual void doSetView(ulong);        // _1C
+	virtual void doSetView(u32);        // _1C
 	virtual void doViewCalc();            // _20
 	virtual void doSimulation(float);     // _24
 	virtual void doDirectDraw(Graphics&); // _28
@@ -44,7 +44,7 @@ struct CollPart : public CNode {
 	void collide(CollPart*, Vector3f&);
 	void getAllCollPartToArray(CollPart**, int, int&);
 	CollPart* getChild();
-	CollPart* getCollPart(ulong);
+	CollPart* getCollPart(u32);
 	CollPart* getNext();
 	void getSphere(Sys::Sphere&);
 	void getTube(Sys::Tube&);
@@ -141,7 +141,7 @@ struct CollTree {
 	                         IDelegate3<CollPart*, CollPart*, Vector3f&>*);
 	void findCollPart(FindCollPartArg&);
 	void getBoundingSphere(Sys::Sphere&);
-	CollPart* getCollPart(ulong);
+	CollPart* getCollPart(u32);
 	CollPart* getRandomCollPart();
 	void release();
 	void releaseRec(CollPart*);

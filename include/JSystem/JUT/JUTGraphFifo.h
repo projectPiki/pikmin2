@@ -5,7 +5,7 @@
 #include "Dolphin/gx.h"
 
 struct JUTGraphFifo {
-	JUTGraphFifo(ulong);
+	JUTGraphFifo(u32);
 
 	virtual ~JUTGraphFifo(); // _00
 

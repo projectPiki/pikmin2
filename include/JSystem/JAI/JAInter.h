@@ -46,10 +46,10 @@ struct SoundInfo {
 	} volume;
 };
 namespace SoundTable {
-	void init(u8*, ulong);
-	SoundInfo* getInfoPointer(ulong);
-	void getInfoFormat(ulong);
-	void setInfoTrack(ulong, u8);
+	void init(u8*, u32);
+	SoundInfo* getInfoPointer(u32);
+	void getInfoFormat(u32);
+	void setInfoTrack(u32, u8);
 	u8 getCategotyMax(void);
 	void getSoundMax(u8);
 	void getSoundTablePointer(void);
@@ -57,15 +57,15 @@ namespace SoundTable {
 	extern u8 mVersion;
 	extern u8 mCategotyMax;
 	extern u16* mSoundMax;
-	extern ulong mDataSize;
+	extern u32 mDataSize;
 	extern SoundInfo** mPointerCategory;
 	extern u8* mAddress;
 }; // namespace SoundTable
 
 void deleteTmpDVDFile(u8**);
 void loadTmpDVDFile(char*, u8**);
-void transInitDataFile(u8*, ulong);
-void routeToTrack(ulong);
+void transInitDataFile(u8*, u32);
+void routeToTrack(u32);
 } // namespace JAInter
 
 #endif

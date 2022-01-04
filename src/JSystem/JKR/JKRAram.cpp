@@ -145,7 +145,7 @@
  * Address:	80017A10
  * Size:	000094
  */
-JKRAram* JKRAram::create(ulong, ulong, long, long, long)
+JKRAram* JKRAram::create(u32, u32, long, long, long)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -197,7 +197,7 @@ lbl_80017A70:
  * Address:	80017AA4
  * Size:	00011C
  */
-JKRAram::JKRAram(ulong, ulong, long)
+JKRAram::JKRAram(u32, u32, long)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -609,8 +609,8 @@ JKRAramBlock* JKRAram::mainRamToAram(unsigned char*, unsigned long,
  * Address:	80017F4C
  * Size:	0002DC
  */
-u8* JKRAram::aramToMainRam(ulong, u8*, ulong, JKRExpandSwitch, ulong,
-                              JKRHeap*, int, ulong*)
+u8* JKRAram::aramToMainRam(u32, u8*, u32, JKRExpandSwitch, u32,
+                              JKRHeap*, int, u32*)
 {
 	/*
 	.loc_0x0:

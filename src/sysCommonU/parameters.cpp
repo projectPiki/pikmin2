@@ -10,7 +10,7 @@
  * Address:	80413658
  * Size:	0000AC
  */
-BaseParm::BaseParm(Parameters* parameters, ulong rawID, char* name)
+BaseParm::BaseParm(Parameters* parameters, u32 rawID, char* name)
     : m_id()
     , m_name(name)
 {
@@ -88,7 +88,7 @@ void Parameters::read(Stream& stream)
  * Address:	804138C0
  * Size:	000064
  */
-BaseParm* Parameters::findParm(ulong rawID)
+BaseParm* Parameters::findParm(u32 rawID)
 {
 	for (BaseParm* parm = m_parmsHead; parm != nullptr; parm = parm->m_next) {
 		if (parm->m_id == rawID) {
@@ -179,7 +179,7 @@ template <> void Parm<float>::write(Stream& stream)
  * Size:	0001B0
  */
 ParmString::ParmString(Parameters* parameters, char* value, int length,
-                       ulong rawID, char* comment)
+                       u32 rawID, char* comment)
     : BaseParm(parameters, rawID, comment)
     , m_length(length)
 {
@@ -214,7 +214,7 @@ void ParmString::read(Stream& stream) { stream.readString(m_value, m_length); }
  * Address:	80413CC4
  * Size:	0000B8
  */
-ParmEnum::ParmEnum(Parameters* parameters, char** enumValues, ulong value,
+ParmEnum::ParmEnum(Parameters* parameters, char** enumValues, u32 value,
                    int length, long rawID, char* comment)
     : BaseParm(parameters, rawID, comment)
 {

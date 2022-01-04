@@ -482,7 +482,7 @@ lbl_80304F80:
 	 * Size:	000150
 	 */
 	void AnimPane::init(JKRArchive* archive, J2DScreen* parentScreen,
-	                    ulonglong tag, char* resourcePath)
+	                    u64 tag, char* resourcePath)
 	{
 		AnimBaseBase::init(archive, resourcePath);
 		m_pane = TagSearch(parentScreen, tag);
@@ -1209,7 +1209,7 @@ lbl_80305684:
 	 * Size:	00025C
 	 */
 	void registAnimGroupPane(AnimGroup* group, JKRArchive* archive,
-	                         J2DScreen* parentScreen, ulonglong tag,
+	                         J2DScreen* parentScreen, u64 tag,
 	                         char* resourcePath, float p6)
 	{
 		AnimPane* newGroupPane = new AnimPane();

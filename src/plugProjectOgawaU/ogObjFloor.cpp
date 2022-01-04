@@ -426,7 +426,7 @@
         .4byte 0x41200000
 */
 
-const ulonglong og::newScreen::vsRuleMsgId[6]
+const u64 og::newScreen::vsRuleMsgId[6]
     = { '2021_00', '2022_00', '2023_00', '2024_00', '2025_00', '2026_00' };
 
 inline og::newScreen::ObjFloor::StaticValues::StaticValues()
@@ -632,7 +632,7 @@ inline bool newScreen::ObjFloor::isVS(void)
  * Address:	8031A55C
  * Size:	000460
  */
-void ObjFloor::setCaveMsgID(ulong caveid, char* buffer)
+void ObjFloor::setCaveMsgID(u32 caveid, char* buffer)
 {
 	char* cave_msg;
 	switch (caveid) {
@@ -861,7 +861,7 @@ void ObjFloor::doCreate(JKRArchive* archive)
 		}
 		_54 = og::Screen::setCallBack_CounterRV(
 		    _48, 'fc_r', 'fc_l', 'fc_l',
-		    (ulong*)&((Screen::DispMemberFloor*)m_dispMember)->_08, 3, 2, false,
+		    (u32*)&((Screen::DispMemberFloor*)m_dispMember)->_08, 3, 2, false,
 		    archive);
 	}
 	// TODO: Remove magic number

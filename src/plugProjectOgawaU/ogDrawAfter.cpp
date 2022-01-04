@@ -26,7 +26,7 @@ namespace Screen {
 	 * Address:	........
 	 * Size:	0000B4
 	 */
-	CallBack_DrawAfter::CallBack_DrawAfter(P2DScreen::Mgr*, ulonglong)
+	CallBack_DrawAfter::CallBack_DrawAfter(P2DScreen::Mgr*, u64)
 	{
 		// UNUSED FUNCTION
 	}

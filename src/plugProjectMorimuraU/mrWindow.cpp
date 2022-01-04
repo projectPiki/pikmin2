@@ -265,7 +265,7 @@ lbl_803A37D8:
  * Address:	803A37E8
  * Size:	000024
  */
-void Morimura::TConfirmEndWindow::setRetireMsg(ulonglong msgID)
+void Morimura::TConfirmEndWindow::setRetireMsg(u64 msgID)
 {
 	_BC->setText(msgID);
 	/*

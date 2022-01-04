@@ -20,7 +20,7 @@ struct J2DColorChan {
 
 struct J2DMaterial {
 	J2DMaterial();
-	J2DMaterial(ulong);
+	J2DMaterial(u32);
 
 	void animation();
 	J2DTevBlock* createTevBlock(int, bool);

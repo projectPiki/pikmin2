@@ -298,7 +298,7 @@ void J2DPane::initiate()
  * Address:	80036CB4
  * Size:	000088
  */
-J2DPane::J2DPane(J2DPane* parent, bool isVisible, ulonglong tag,
+J2DPane::J2DPane(J2DPane* parent, bool isVisible, u64 tag,
                  const JGeometry::TBox2f& box)
     : m_tree(this)
     , m_transform(nullptr)
@@ -351,7 +351,7 @@ J2DPane::J2DPane(J2DPane* parent, bool isVisible, ulonglong tag,
  * Address:	80036D3C
  * Size:	000120
  */
-void J2DPane::initialize(J2DPane* parent, bool isVisible, ulonglong tag,
+void J2DPane::initialize(J2DPane* parent, bool isVisible, u64 tag,
                          const JGeometry::TBox2f& box)
 {
 	m_bloBlockType = 'PAN1';
@@ -470,7 +470,7 @@ void J2DPane::initialize(J2DPane* parent, bool isVisible, ulonglong tag,
  * Address:	80036E5C
  * Size:	000078
  */
-J2DPane::J2DPane(ulonglong tag, const JGeometry::TBox2f& box)
+J2DPane::J2DPane(u64 tag, const JGeometry::TBox2f& box)
     : m_tree(this)
     , m_transform(nullptr)
 {
@@ -514,7 +514,7 @@ J2DPane::J2DPane(ulonglong tag, const JGeometry::TBox2f& box)
  * Address:	80036ED4
  * Size:	0000F4
  */
-void J2DPane::initialize(ulonglong tag, const JGeometry::TBox2f& box)
+void J2DPane::initialize(u64 tag, const JGeometry::TBox2f& box)
 {
 	initialize(nullptr, true, tag, box);
 	/*
@@ -2310,7 +2310,7 @@ lbl_800384EC:
  * Address:	80038504
  * Size:	0000B0
  */
-J2DPane* J2DPane::search(ulonglong)
+J2DPane* J2DPane::search(u64)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -2375,7 +2375,7 @@ lbl_80038598:
  * Address:	800385B4
  * Size:	000310
  */
-void J2DPane::gather(J2DPane**, ulonglong, ulonglong, int, int&)
+void J2DPane::gather(J2DPane**, u64, u64, int, int&)
 {
 	/*
 	.loc_0x0:
@@ -2742,7 +2742,7 @@ template <> J2DPane* JSUTree<J2DPane>::getObject() const
  * Address:	80038944
  * Size:	0000B0
  */
-J2DPane* J2DPane::searchUserInfo(ulonglong)
+J2DPane* J2DPane::searchUserInfo(u64)
 {
 	/*
 	stwu     r1, -0x20(r1)
@@ -3708,7 +3708,7 @@ lbl_800393B8:
  * Address:	800393C0
  * Size:	00014C
  */
-void* J2DPane::getPointer(JSURandomInputStream*, ulong, JKRArchive*)
+void* J2DPane::getPointer(JSURandomInputStream*, u32, JKRArchive*)
 {
 	/*
 	stwu     r1, -0x120(r1)

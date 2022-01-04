@@ -56,7 +56,7 @@ size_t JSUMemoryInputStream::readData(void* data, long length)
  */
 int JSUMemoryInputStream::seekPos(long offset, JSUStreamSeekFrom mode)
 {
-	ulong originalPosition = m_position;
+	u32 originalPosition = m_position;
 	switch (mode) {
 	case SEEK_SET:
 		m_position = offset;

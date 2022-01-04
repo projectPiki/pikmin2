@@ -48,19 +48,19 @@ struct JKRArchive : public JKRFileLoader {
 	virtual void countFile(const char*) const;                            // _2C
 	virtual void getFirstFile(const char*) const;                         // _30
 	virtual void getExpandedResSize(const void*) const;                   // _34
-	virtual u32 fetchResource(SDIFileEntry*, ulong*)                 = 0; // _38
-	virtual void* fetchResource(void*, ulong, SDIFileEntry*, ulong*) = 0; // _3C
+	virtual u32 fetchResource(SDIFileEntry*, u32*)                 = 0; // _38
+	virtual void* fetchResource(void*, u32, SDIFileEntry*, u32*) = 0; // _3C
 	virtual void setExpandSize(SDIFileEntry*, unsigned long);             // _40
 	virtual void getExpandSize(SDIFileEntry*) const;                      // _44
 
-	u32 findDirectory(const char*, ulong) const;
-	SDIFileEntry* findFsResource(const char*, ulong) const;
+	u32 findDirectory(const char*, u32) const;
+	SDIFileEntry* findFsResource(const char*, u32) const;
 	SDIFileEntry* findIdResource(u16) const;
-	SDIFileEntry* findIdxResource(ulong) const;
+	SDIFileEntry* findIdxResource(u32) const;
 	SDIFileEntry* findNameResource(const char*) const;
 	SDIFileEntry* findPtrResource(const void*) const;
-	SDIFileEntry* findTypeResource(ulong, const char*) const;
-	bool isSameName(CArcName&, ulong, u16) const;
+	SDIFileEntry* findTypeResource(u32, const char*) const;
+	bool isSameName(CArcName&, u32, u16) const;
 
 	static JKRArchive* mount(char const*, JKRArchive::EMountMode, JKRHeap*,
 	                         JKRArchive::EMountDirection);

@@ -117,16 +117,16 @@ struct GenArg {
 };
 
 struct GenBase : public Parameters {
-	GenBase(ulong, char*, char*);
+	GenBase(u32, char*, char*);
 
 	virtual void doWrite(Stream&);              // _00
 	virtual void ramSaveParameters(Stream&);    // _04
 	virtual void ramLoadParameters(Stream&);    // _08
-	virtual void doEvent(ulong);                // _0C
+	virtual void doEvent(u32);                // _0C
 	virtual void doRead(Stream&);               // _10
 	virtual void update(Generator*);            // _14
 	virtual void render(Graphics&, Generator*); // _18
-	virtual ulong getLatestVersion();           // _1C
+	virtual u32 getLatestVersion();           // _1C
 	virtual J3DModelData* getShape();           // _20
 
 	void readVersion(Stream&);
@@ -136,7 +136,7 @@ struct GenBase : public Parameters {
 
 	// _00 - _0C: Parameters
 	// _0C: vtable
-	ulong m_typeID; // _10
+	u32 m_typeID; // _10
 	i32 m_rawID;   // _14
 	char* _18;      // _18
 	char* _1C;      // _1C
@@ -145,7 +145,7 @@ struct GenBase : public Parameters {
 
 struct GenObject : public GenBase {
 	virtual void render(Graphics&, Generator*);            // _18
-	virtual ulong getLatestVersion();                      // _1C
+	virtual u32 getLatestVersion();                      // _1C
 	virtual J3DModelData* getShape();                      // _20
 	virtual void updateUseList(Generator*, int);           // _24
 	virtual Creature* generate(Generator*);                // _28

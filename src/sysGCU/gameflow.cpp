@@ -370,7 +370,7 @@ lbl_804241EC:
  */
 void GameFlow::setSection()
 {
-	ulong freeSize = JKRHeap::sCurrentHeap->getFreeSize();
+	u32 freeSize = JKRHeap::sCurrentHeap->getFreeSize();
 	if (mActiveSectionFlag == 0x15) {
 		m_section          = new BootSection(JKRHeap::sCurrentHeap);
 		mActiveSectionFlag = 0;

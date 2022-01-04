@@ -111,7 +111,7 @@ lbl_8001A5A8:
  * Size:	00004C
  */
 bool JKRArchive::isSameName(JKRArchive::CArcName& archiveName,
-                            ulong nameTableOffset, u16 hash) const
+                            u32 nameTableOffset, u16 hash) const
 {
 	/*
 	.loc_0x0:
@@ -146,7 +146,7 @@ bool JKRArchive::isSameName(JKRArchive::CArcName& archiveName,
  * Address:	8001A610
  * Size:	00031C
  */
-u32 JKRArchive::findDirectory(const char* directoryName, ulong) const
+u32 JKRArchive::findDirectory(const char* directoryName, u32) const
 {
 	/*
 	stwu     r1, -0x450(r1)
@@ -466,7 +466,7 @@ u16 JKRArchive::CArcName::getHash() const
  * Address:	8001A980
  * Size:	0000F4
  */
-JKRArchive::SDIFileEntry* JKRArchive::findTypeResource(ulong, const char*) const
+JKRArchive::SDIFileEntry* JKRArchive::findTypeResource(u32, const char*) const
 {
 	/*
 	stwu     r1, -0x130(r1)
@@ -560,7 +560,7 @@ lbl_8001AA60:
  * Address:	8001AA74
  * Size:	000340
  */
-JKRArchive::SDIFileEntry* JKRArchive::findFsResource(const char*, ulong) const
+JKRArchive::SDIFileEntry* JKRArchive::findFsResource(const char*, u32) const
 {
 	/*
 	stwu     r1, -0x450(r1)
@@ -841,7 +841,7 @@ lbl_8001ADA0:
  * Address:	8001ADB4
  * Size:	000028
  */
-JKRArchive::SDIFileEntry* JKRArchive::findIdxResource(ulong) const
+JKRArchive::SDIFileEntry* JKRArchive::findIdxResource(u32) const
 {
 	/*
 	lwz      r5, 0x44(r3)

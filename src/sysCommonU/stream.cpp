@@ -537,7 +537,7 @@ lbl_804142A8:
  * Address:	........
  * Size:	000070
  */
-void Stream::writePadding(ulong)
+void Stream::writePadding(u32)
 {
 	// UNUSED FUNCTION
 }
@@ -547,7 +547,7 @@ void Stream::writePadding(ulong)
  * Address:	........
  * Size:	00006C
  */
-void Stream::skipPadding(ulong)
+void Stream::skipPadding(u32)
 {
 	// UNUSED FUNCTION
 }
@@ -557,7 +557,7 @@ void Stream::skipPadding(ulong)
  * Address:	804142C8
  * Size:	0000C4
  */
-void Stream::skipReading(ulong byteCount)
+void Stream::skipReading(u32 byteCount)
 {
 	if (m_isTextMode == true) {
 		while (!eof()) {

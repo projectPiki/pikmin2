@@ -2151,7 +2151,7 @@ void PlayData::reset()
 	m_naviLifeMax[1] = 0.0f;
 	m_naviLifeMax[0] = 0.0f;
 	_20              = 0;
-	ulonglong osTime = OSGetTime();
+	u64 osTime = OSGetTime();
 	m_osTimeLo       = (int)osTime;
 	m_osTimeHi       = (int)(osTime >> 0x20);
 	_18              = false;

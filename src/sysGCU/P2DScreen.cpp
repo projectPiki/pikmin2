@@ -183,7 +183,7 @@ P2DScreen::Mgr::Mgr()
  * Address:	80434B24
  * Size:	000138
  */
-J2DPane* P2DScreen::Mgr::addCallBack(ulonglong tag, P2DScreen::Node* node)
+J2DPane* P2DScreen::Mgr::addCallBack(u64 tag, P2DScreen::Node* node)
 {
 	P2ASSERTLINE(73, (node != nullptr));
 	J2DPane* pane = search(tag);

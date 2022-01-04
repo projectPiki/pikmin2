@@ -426,12 +426,12 @@ void EUTDebug_Wait()
  * Address:	803C1EB4
  * Size:	000004
  */
-void EUTDebug_Tag64ToName(ulonglong, char*) { }
+void EUTDebug_Tag64ToName(u64, char*) { }
 
 /*
  * --INFO--
  * Address:	803C1EB8
  * Size:	000004
  */
-void EUTDebug_Tag32ToName(ulong, char*) { }
+void EUTDebug_Tag32ToName(u32, char*) { }
 } // namespace ebi

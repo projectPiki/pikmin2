@@ -21,10 +21,10 @@ struct Stream {
 
 	void printf(char*, ...);
 
-	void skipReading(ulong);
+	void skipReading(u32);
 	void skipReadingText();
 	void skipSpace();
-	void skipPadding(ulong);
+	void skipPadding(u32);
 
 	char* getNextToken();
 
@@ -34,7 +34,7 @@ struct Stream {
 	void writeFloat(float);
 	void writeString(char*);
 	void writeFixedString(char*);
-	void writePadding(ulong);
+	void writePadding(u32);
 
 	u8 readByte();
 	u16 readU16();

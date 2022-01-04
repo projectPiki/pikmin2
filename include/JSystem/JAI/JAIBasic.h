@@ -13,9 +13,9 @@ struct JAIBasic {
 	virtual void makeSequence();               // _00
 	virtual void makeSe();                     // _04
 	virtual void makeStream();                 // _08
-	virtual void getMapInfoFxline(ulong);      // _0C
-	virtual void getMapInfoGround(ulong);      // _10
-	virtual void getMapInfoFxParameter(ulong); // _14
+	virtual void getMapInfoFxline(u32);      // _0C
+	virtual void getMapInfoGround(u32);      // _10
+	virtual void getMapInfoFxParameter(u32); // _14
 	virtual void setSeExtParameter(JAISound*); // _18
 	virtual void setRegisterTrackCallback();   // _1C
 
@@ -33,7 +33,7 @@ struct JAIBasic {
 	static JAIBasic* msBasic;
 	static JKRHeap* msCurrentHeap;
 	static bool msStopMode;
-	static ulong msAudioStopTime;
+	static u32 msAudioStopTime;
 	static float msDspLevel;
 	static float msAutoLevel;
 	static float msAutoDif;

@@ -17,8 +17,8 @@ struct JKRDecompCommand {
 	u8 _00[4];                // _00
 	u8* _04;               // _04
 	u8* _08;               // _08
-	ulong _0C;                // _0C
-	ulong _10;                // _10
+	u32 _0C;                // _0C
+	u32 _10;                // _10
 	Callback* m_callback;     // _14
 	void* _18;                // _18
 	OSMessageQueue* _1C;      // _1C
@@ -44,10 +44,10 @@ struct JKRDecomp : public JKRThread {
 
 	static CompressionMode checkCompressed(u8*);
 	static JKRDecomp* create(long);
-	static void decode(u8*, u8*, ulong, ulong);
-	static void decodeSZP(u8*, u8*, ulong, ulong);
-	static void decodeSZS(u8*, u8*, ulong, ulong);
-	static bool orderSync(u8*, u8*, ulong, ulong);
+	static void decode(u8*, u8*, u32, u32);
+	static void decodeSZP(u8*, u8*, u32, u32);
+	static void decodeSZS(u8*, u8*, u32, u32);
+	static bool orderSync(u8*, u8*, u32, u32);
 	static BOOL sendCommand(JKRDecompCommand*);
 
 	u8 _78[4]; // _78

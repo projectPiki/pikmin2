@@ -6,7 +6,7 @@
 #include "Parameters.h"
 
 struct BaseParm {
-	BaseParm(Parameters*, ulong, char*);
+	BaseParm(Parameters*, u32, char*);
 	inline virtual int size() = 0;
 	inline virtual void write(Stream&) { }
 	inline virtual void read(Stream&) { }
@@ -18,7 +18,7 @@ struct BaseParm {
 };
 
 template <typename T> struct Parm : public BaseParm {
-	inline Parm(Parameters* parameters, ulong id, char* comment, T value, T min,
+	inline Parm(Parameters* parameters, u32 id, char* comment, T value, T min,
 	            T max)
 	    : BaseParm(parameters, id, comment)
 	    , m_value(value)
@@ -49,12 +49,12 @@ struct ParmString : public BaseParm {
 };
 
 struct ParmEnum : public BaseParm {
-	ParmEnum(Parameters*, char**, ulong, int, long, char*);
+	ParmEnum(Parameters*, char**, u32, int, long, char*);
 	inline virtual int size() { return 4; }
 	virtual void write(Stream&);
 	virtual void read(Stream&);
 
-	ulong m_value;       // _18
+	u32 m_value;       // _18
 	int m_enumElemSize;  // _1C
 	char** m_enumValues; // _20
 };

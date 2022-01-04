@@ -12,9 +12,9 @@ struct ResTIMG;
 
 namespace kh {
 namespace Screen {
-	ulonglong getSerialTagName(ulonglong, int);
-	void setTex(J2DScreen*, ulonglong, const ResTIMG*);
-	void setTex(J2DScreen*, ulonglong, const char*);
+	u64 getSerialTagName(u64, int);
+	void setTex(J2DScreen*, u64, const ResTIMG*);
+	void setTex(J2DScreen*, u64, const char*);
 	void setMatAnm(J2DPane*, J2DAnmBase*);
 	void setInfAlpha(J2DPane*);
 	float getPaneCenterX(J2DPane*);
@@ -40,7 +40,7 @@ namespace Screen {
 		virtual void fadeout_finish(); // _18
 
 		void add(J2DPane*);
-		khUtilFadePane* create(P2DScreen::Mgr*, ulonglong, u8);
+		khUtilFadePane* create(P2DScreen::Mgr*, u64, u8);
 		void fadein();
 		void fadeout();
 		void set_init_alpha(u8);
@@ -56,7 +56,7 @@ namespace Screen {
 	};
 
 	struct khUtilColorAnm : public P2DScreen::Node {
-		khUtilColorAnm(P2DScreen::Mgr*, ulonglong, int, int);
+		khUtilColorAnm(P2DScreen::Mgr*, u64, int, int);
 
 		virtual ~khUtilColorAnm(); // _00
 		virtual void update();     // _08

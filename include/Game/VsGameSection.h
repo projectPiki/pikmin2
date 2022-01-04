@@ -54,8 +54,8 @@ struct VsGameSection : public BaseGameSection {
 	void loadVsStageList();
 	void onClearHeap();
 	void onInit();
-	void onMovieDone(MovieConfig*, ulong, ulong);
-	void onMovieStart(MovieConfig*, ulong, ulong);
+	void onMovieDone(MovieConfig*, u32, u32);
+	void onMovieStart(MovieConfig*, u32, u32);
 	void onSetSoundScene();
 	void onSetupFloatMemory();
 	void openCaveMoreMenu(ItemHole::Item*, Controller*);

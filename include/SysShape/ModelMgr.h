@@ -11,7 +11,7 @@ namespace SysShape {
 struct Model;
 
 struct ModelMgr {
-	ModelMgr(int, J3DModelData**, int, ulong, ulong, IDelegate1<Model*>*);
+	ModelMgr(int, J3DModelData**, int, u32, u32, IDelegate1<Model*>*);
 
 	int calcMaximumModelSize();
 	int calcModelSize(J3DModelData*);
@@ -21,8 +21,8 @@ struct ModelMgr {
 	J3DModelData** m_modelData;     // _04
 	int _08;                        // _08
 	JKRSolidHeap** m_heaps;         // _0C
-	ulong _10;                      // _10
-	ulong _14;                      // _14
+	u32 _10;                      // _10
+	u32 _14;                      // _14
 	IDelegate1<Model*>* m_delegate; // _18
 };
 } // namespace SysShape
