@@ -7,25 +7,27 @@
 #include "types.h"
 
 struct JKRThread : public JKRDisposer {
-	JKRThread(unsigned long, int, int);
+	JKRThread(u32 stackSize, int msgCount, int threadPriority);
 
 	virtual ~JKRThread(); // _00
 	virtual void run();   // _04
 
-	JSUPtrLink _18;                // _18
-	JKRHeap* _28;                  // _28
-	OSThread* m_osThread;          // _2C
-	OSMessageQueue m_messageQueue; // _30
-	u8 _50[4];                     // _50
-	int _54;                       // _54
-	int _58;                       // _58
-	int _5C;                       // _5C
-	u8 _60;                        // _60
-	u32 _64;                       // _64
-	u32 _68;                       // _68
-	u32 _6C;                       // _6C
-	u32 _70;                       // _70
-	u32 _74;                       // _74
+	JSUPtrLink m_link;         // _18
+	JKRHeap* m_heap;           // _28
+	OSThread* m_thread;        // _2C
+	OSMessageQueue m_msgQueue; // _28
+	u8 _48[4];                 // _48
+	u8 _4C[4];                 // _4C
+	u8 _50[4];                 // _50
+	int _54;                   // _54
+	void* m_stack;             // _58
+	u32 m_stackSize;           // _5C
+	u8 _60;                    // _60
+	u32 _64;                   // _64
+	u32 _68;                   // _68
+	u32 _6C;                   // _6C
+	u32 _70;                   // _70
+	u32 _74;                   // _74
 };
 
 #endif

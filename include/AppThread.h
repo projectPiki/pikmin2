@@ -4,7 +4,7 @@
 #include "JSystem/JKR/JKRThread.h"
 
 struct AppThread : public JKRThread {
-	AppThread(unsigned long, int, int);
+	AppThread(u32 stackSize, int msgCount, int threadPriority);
 	virtual ~AppThread();
 	virtual void run(); // _04
 };
