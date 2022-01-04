@@ -30,7 +30,7 @@ struct Joint;
 
 namespace PSGame {
 namespace SeMgr {
-	struct SetSeId;
+struct SetSeId;
 } // namespace SeMgr
 } // namespace PSGame
 

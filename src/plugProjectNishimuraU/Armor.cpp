@@ -2891,18 +2891,18 @@ u32 Armor::Obj::getEnemyTypeID() { return 0xF; }
 
 namespace efx {
 
+/*
+ * --INFO--
+ * Address:	8027F504
+ * Size:	000008
+ */
+TYoroiAttack::@4 @~TYoroiAttack()
+{
 	/*
-	 * --INFO--
-	 * Address:	8027F504
-	 * Size:	000008
-	 */
-	TYoroiAttack::@4 @~TYoroiAttack()
-	{
-		/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx12TYoroiAttackFv
-		*/
-	}
+addi     r3, r3, -4
+b        __dt__Q23efx12TYoroiAttackFv
+	*/
+}
 } // namespace efx
 
 } // namespace efx

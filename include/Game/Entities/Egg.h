@@ -27,43 +27,43 @@ struct TEnemyBomb : public TBase {
 
 namespace Game {
 namespace Egg {
-	struct ProperAnimator : public EnemyAnimatorBase {
-		virtual ~ProperAnimator();                    // _00
-		virtual void setAnimMgr(SysShape::AnimMgr*);  // _04
-		virtual SysShape::Animator& getAnimator();    // _08
-		virtual SysShape::Animator& getAnimator(int); // _0C
+struct ProperAnimator : public EnemyAnimatorBase {
+	virtual ~ProperAnimator();                    // _00
+	virtual void setAnimMgr(SysShape::AnimMgr*);  // _04
+	virtual SysShape::Animator& getAnimator();    // _08
+	virtual SysShape::Animator& getAnimator(int); // _0C
 
-		SysShape::Animator m_animator; // _10
+	SysShape::Animator m_animator; // _10
+};
+
+struct Obj : public EnemyBase {
+	void genItem();
+};
+
+struct EggState {
+	enum State {
+		Wait = 0,
 	};
+};
 
-	struct Obj : public EnemyBase {
-		void genItem();
-	};
+struct State : public EnemyFSMState {
+	inline State(int stateID)
+	    : EnemyFSMState(stateID)
+	{
+	}
+};
 
-	struct EggState {
-		enum State {
-			Wait = 0,
-		};
-	};
+struct StateWait : public State {
+	StateWait(int);
+	virtual void init(EnemyBase*, StateArg*); // _00
+	virtual void exec(EnemyBase*);            // _04
 
-	struct State : public EnemyFSMState {
-		inline State(int stateID)
-		    : EnemyFSMState(stateID)
-		{
-		}
-	};
+	// _00 VTBL
+};
 
-	struct StateWait : public State {
-		StateWait(int);
-		virtual void init(EnemyBase*, StateArg*); // _00
-		virtual void exec(EnemyBase*);            // _04
-
-		// _00 VTBL
-	};
-
-	struct FSM : public EnemyStateMachine {
-		virtual void init(EnemyBase*); // _00
-	};
+struct FSM : public EnemyStateMachine {
+	virtual void init(EnemyBase*); // _00
+};
 } // namespace Egg
 } // namespace Game
 

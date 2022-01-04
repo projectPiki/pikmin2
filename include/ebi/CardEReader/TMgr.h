@@ -3,11 +3,11 @@
 
 namespace ebi {
 namespace CardEReader {
-	struct TMgr {
-		virtual ~TMgr(); // _00
+struct TMgr {
+	virtual ~TMgr(); // _00
 
-		// _00 VTBL
-	};
+	// _00 VTBL
+};
 } // namespace CardEReader
 } // namespace ebi
 

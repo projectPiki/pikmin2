@@ -1233,31 +1233,31 @@ u32 Ftank::Obj::getEnemyTypeID() { return 0x18; }
 
 namespace efx {
 
+/*
+ * --INFO--
+ * Address:	8029EEFC
+ * Size:	000008
+ */
+TTankFireHit::@4 @~TTankFireHit()
+{
 	/*
-	 * --INFO--
-	 * Address:	8029EEFC
-	 * Size:	000008
-	 */
-	TTankFireHit::@4 @~TTankFireHit()
-	{
-		/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx12TTankFireHitFv
-		*/
-	}
+addi     r3, r3, -4
+b        __dt__Q23efx12TTankFireHitFv
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	8029EF04
+ * Size:	000008
+ */
+TTankFireYodare::@4 @~TTankFireYodare()
+{
 	/*
-	 * --INFO--
-	 * Address:	8029EF04
-	 * Size:	000008
-	 */
-	TTankFireYodare::@4 @~TTankFireYodare()
-	{
-		/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx15TTankFireYodareFv
-		*/
-	}
+addi     r3, r3, -4
+b        __dt__Q23efx15TTankFireYodareFv
+	*/
+}
 } // namespace efx
 
 } // namespace efx

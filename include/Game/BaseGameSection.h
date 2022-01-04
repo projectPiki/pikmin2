@@ -30,13 +30,13 @@ struct Mgr;
 
 namespace Game {
 namespace ItemCave {
-	struct Item;
+struct Item;
 } // namespace ItemCave
 namespace ItemBigFountain {
-	struct Item;
+struct Item;
 } // namespace ItemBigFountain
 namespace ItemHole {
-	struct Item;
+struct Item;
 } // namespace ItemHole
 
 struct MovieConfig;

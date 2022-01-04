@@ -8,20 +8,20 @@
 
 namespace ebi {
 namespace title {
-	// Is Camera really parent class ?
-	struct TTitleCameraMgr : public LookAtCamera {
-		struct Parms : public Parameters {
-			inline Parms();
+// Is Camera really parent class ?
+struct TTitleCameraMgr : public LookAtCamera {
+	struct Parms : public Parameters {
+		inline Parms();
 
-			Parm<float> m_cam1;
-			Parm<float> m_cam2;
-			void* end;
-		};
-
-		void update();
-
-		Parms m_parms;
+		Parm<float> m_cam1;
+		Parm<float> m_cam2;
+		void* end;
 	};
+
+	void update();
+
+	Parms m_parms;
+};
 } // namespace title
 } // namespace ebi
 

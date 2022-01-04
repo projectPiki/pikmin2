@@ -2101,18 +2101,18 @@ void EnemyBase::@736 @12 @viewGetShape()
 
 namespace efx {
 
+/*
+ * --INFO--
+ * Address:	80259794
+ * Size:	000008
+ */
+TFrogPota::@4 @~TFrogPota()
+{
 	/*
-	 * --INFO--
-	 * Address:	80259794
-	 * Size:	000008
-	 */
-	TFrogPota::@4 @~TFrogPota()
-	{
-		/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx9TFrogPotaFv
-		*/
-	}
+addi     r3, r3, -4
+b        __dt__Q23efx9TFrogPotaFv
+	*/
+}
 } // namespace efx
 
 } // namespace Game

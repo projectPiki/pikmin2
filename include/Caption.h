@@ -7,7 +7,7 @@ struct Graphics;
 struct Stream;
 namespace P2JME {
 namespace Caption {
-	struct TControl;
+struct TControl;
 } // namespace Caption
 } // namespace P2JME
 

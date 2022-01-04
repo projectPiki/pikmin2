@@ -5085,122 +5085,122 @@ void EnemyBase::@1176 @12 @viewGetShape()
 
 namespace efx {
 
+/*
+ * --INFO--
+ * Address:	802A8A38
+ * Size:	000008
+ */
+TDamaFootw::@4 @~TDamaFootw()
+{
 	/*
-	 * --INFO--
-	 * Address:	802A8A38
-	 * Size:	000008
-	 */
-	TDamaFootw::@4 @~TDamaFootw()
-	{
-		/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx10TDamaFootwFv
-		*/
-	}
+addi     r3, r3, -4
+b        __dt__Q23efx10TDamaFootwFv
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	802A8A40
+ * Size:	000008
+ */
+TDamaHahen::@4 @~TDamaHahen()
+{
 	/*
-	 * --INFO--
-	 * Address:	802A8A40
-	 * Size:	000008
-	 */
-	TDamaHahen::@4 @~TDamaHahen()
-	{
-		/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx10TDamaHahenFv
-		*/
-	}
+addi     r3, r3, -4
+b        __dt__Q23efx10TDamaHahenFv
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	802A8A48
+ * Size:	000008
+ */
+TDamaDeadElecA::@4 @~TDamaDeadElecA()
+{
 	/*
-	 * --INFO--
-	 * Address:	802A8A48
-	 * Size:	000008
-	 */
-	TDamaDeadElecA::@4 @~TDamaDeadElecA()
-	{
-		/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx14TDamaDeadElecAFv
-		*/
-	}
+addi     r3, r3, -4
+b        __dt__Q23efx14TDamaDeadElecAFv
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	802A8A50
+ * Size:	000008
+ */
+TDamaDeadElecB::@4 @~TDamaDeadElecB()
+{
 	/*
-	 * --INFO--
-	 * Address:	802A8A50
-	 * Size:	000008
-	 */
-	TDamaDeadElecB::@4 @~TDamaDeadElecB()
-	{
-		/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx14TDamaDeadElecBFv
-		*/
-	}
+addi     r3, r3, -4
+b        __dt__Q23efx14TDamaDeadElecBFv
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	802A8A58
+ * Size:	000008
+ */
+TDamaDeadHahenA::@4 @~TDamaDeadHahenA()
+{
 	/*
-	 * --INFO--
-	 * Address:	802A8A58
-	 * Size:	000008
-	 */
-	TDamaDeadHahenA::@4 @~TDamaDeadHahenA()
-	{
-		/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx15TDamaDeadHahenAFv
-		*/
-	}
+addi     r3, r3, -4
+b        __dt__Q23efx15TDamaDeadHahenAFv
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	802A8A60
+ * Size:	000008
+ */
+TDamaDeadHahenB::@4 @~TDamaDeadHahenB()
+{
 	/*
-	 * --INFO--
-	 * Address:	802A8A60
-	 * Size:	000008
-	 */
-	TDamaDeadHahenB::@4 @~TDamaDeadHahenB()
-	{
-		/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx15TDamaDeadHahenBFv
-		*/
-	}
+addi     r3, r3, -4
+b        __dt__Q23efx15TDamaDeadHahenBFv
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	802A8A68
+ * Size:	000008
+ */
+TDamaSmoke::@4 @~TDamaSmoke()
+{
 	/*
-	 * --INFO--
-	 * Address:	802A8A68
-	 * Size:	000008
-	 */
-	TDamaSmoke::@4 @~TDamaSmoke()
-	{
-		/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx10TDamaSmokeFv
-		*/
-	}
+addi     r3, r3, -4
+b        __dt__Q23efx10TDamaSmokeFv
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	802A8A70
+ * Size:	000008
+ */
+TDamaDeadHahenC1::@4 @~TDamaDeadHahenC1()
+{
 	/*
-	 * --INFO--
-	 * Address:	802A8A70
-	 * Size:	000008
-	 */
-	TDamaDeadHahenC1::@4 @~TDamaDeadHahenC1()
-	{
-		/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx16TDamaDeadHahenC1Fv
-		*/
-	}
+addi     r3, r3, -4
+b        __dt__Q23efx16TDamaDeadHahenC1Fv
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	802A8A78
+ * Size:	000008
+ */
+TDamaDeadHahenC2::@4 @~TDamaDeadHahenC2()
+{
 	/*
-	 * --INFO--
-	 * Address:	802A8A78
-	 * Size:	000008
-	 */
-	TDamaDeadHahenC2::@4 @~TDamaDeadHahenC2()
-	{
-		/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx16TDamaDeadHahenC2Fv
-		*/
-	}
+addi     r3, r3, -4
+b        __dt__Q23efx16TDamaDeadHahenC2Fv
+	*/
+}
 } // namespace efx
 
 } // namespace Game

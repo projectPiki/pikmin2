@@ -9,7 +9,7 @@
 
 namespace Game {
 namespace P2JST {
-	struct ObjectCamera;
+struct ObjectCamera;
 } // namespace P2JST
 } // namespace Game
 namespace Sys {

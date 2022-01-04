@@ -2589,18 +2589,18 @@ void EnemyBase::@756 @12 @viewGetShape()
 
 namespace efx {
 
+/*
+ * --INFO--
+ * Address:	8029D9E8
+ * Size:	000008
+ */
+TFuebugOnpa::@4 @~TFuebugOnpa()
+{
 	/*
-	 * --INFO--
-	 * Address:	8029D9E8
-	 * Size:	000008
-	 */
-	TFuebugOnpa::@4 @~TFuebugOnpa()
-	{
-		/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx11TFuebugOnpaFv
-		*/
-	}
+addi     r3, r3, -4
+b        __dt__Q23efx11TFuebugOnpaFv
+	*/
+}
 } // namespace efx
 
 } // namespace efx

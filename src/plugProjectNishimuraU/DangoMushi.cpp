@@ -4917,31 +4917,31 @@ lbl_802FF7A4:
 
 namespace efx {
 
+/*
+ * --INFO--
+ * Address:	802FF7BC
+ * Size:	000008
+ */
+TDangoWallBreak::@4 @~TDangoWallBreak()
+{
 	/*
-	 * --INFO--
-	 * Address:	802FF7BC
-	 * Size:	000008
-	 */
-	TDangoWallBreak::@4 @~TDangoWallBreak()
-	{
-		/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx15TDangoWallBreakFv
-		*/
-	}
+addi     r3, r3, -4
+b        __dt__Q23efx15TDangoWallBreakFv
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	802FF7C4
+ * Size:	000008
+ */
+TDangoAttack2::@4 @~TDangoAttack2()
+{
 	/*
-	 * --INFO--
-	 * Address:	802FF7C4
-	 * Size:	000008
-	 */
-	TDangoAttack2::@4 @~TDangoAttack2()
-	{
-		/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx13TDangoAttack2Fv
-		*/
-	}
+addi     r3, r3, -4
+b        __dt__Q23efx13TDangoAttack2Fv
+	*/
+}
 } // namespace efx
 
 } // namespace efx

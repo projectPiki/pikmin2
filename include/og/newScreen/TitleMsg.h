@@ -3,15 +3,15 @@
 
 namespace og {
 namespace newScreen {
-	struct TitleMsg {
-		virtual void init();   // _00
-		virtual void update(); // _04
-		virtual void start();  // _08
-		virtual void end();    // _0C
+struct TitleMsg {
+	virtual void init();   // _00
+	virtual void update(); // _04
+	virtual void start();  // _08
+	virtual void end();    // _0C
 
-		// _00 VTBL
-		// TODO: non-virtual functions and data members
-	};
+	// _00 VTBL
+	// TODO: non-virtual functions and data members
+};
 } // namespace newScreen
 } // namespace og
 

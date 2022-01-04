@@ -3522,44 +3522,44 @@ u32 Kurage::Obj::getEnemyTypeID() { return 0x39; }
 
 namespace efx {
 
+/*
+ * --INFO--
+ * Address:	802AFC5C
+ * Size:	000008
+ */
+TNewkurageEye::@4 @~TNewkurageEye()
+{
 	/*
-	 * --INFO--
-	 * Address:	802AFC5C
-	 * Size:	000008
-	 */
-	TNewkurageEye::@4 @~TNewkurageEye()
-	{
-		/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx13TNewkurageEyeFv
-		*/
-	}
+addi     r3, r3, -4
+b        __dt__Q23efx13TNewkurageEyeFv
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	802AFC64
+ * Size:	000008
+ */
+TNewkurageKira::@4 @~TNewkurageKira()
+{
 	/*
-	 * --INFO--
-	 * Address:	802AFC64
-	 * Size:	000008
-	 */
-	TNewkurageKira::@4 @~TNewkurageKira()
-	{
-		/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx14TNewkurageKiraFv
-		*/
-	}
+addi     r3, r3, -4
+b        __dt__Q23efx14TNewkurageKiraFv
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	802AFC6C
+ * Size:	000008
+ */
+TNewkurageDeadrun::@4 @~TNewkurageDeadrun()
+{
 	/*
-	 * --INFO--
-	 * Address:	802AFC6C
-	 * Size:	000008
-	 */
-	TNewkurageDeadrun::@4 @~TNewkurageDeadrun()
-	{
-		/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx17TNewkurageDeadrunFv
-		*/
-	}
+addi     r3, r3, -4
+b        __dt__Q23efx17TNewkurageDeadrunFv
+	*/
+}
 } // namespace efx
 
 } // namespace efx

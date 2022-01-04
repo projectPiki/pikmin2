@@ -1426,18 +1426,18 @@ u32 Baby::Obj::getEnemyTypeID() { return 0x1F; }
 
 namespace efx {
 
+/*
+ * --INFO--
+ * Address:	8028E040
+ * Size:	000008
+ */
+TBabyBorn::@4 @~TBabyBorn()
+{
 	/*
-	 * --INFO--
-	 * Address:	8028E040
-	 * Size:	000008
-	 */
-	TBabyBorn::@4 @~TBabyBorn()
-	{
-		/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx9TBabyBornFv
-		*/
-	}
+addi     r3, r3, -4
+b        __dt__Q23efx9TBabyBornFv
+	*/
+}
 } // namespace efx
 
 } // namespace efx

@@ -2798,18 +2798,18 @@ lbl_802C58F4:
 
 namespace efx {
 
+/*
+ * --INFO--
+ * Address:	802C5910
+ * Size:	000008
+ */
+THdamaSight::@4 @~THdamaSight()
+{
 	/*
-	 * --INFO--
-	 * Address:	802C5910
-	 * Size:	000008
-	 */
-	THdamaSight::@4 @~THdamaSight()
-	{
-		/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx11THdamaSightFv
-		*/
-	}
+addi     r3, r3, -4
+b        __dt__Q23efx11THdamaSightFv
+	*/
+}
 } // namespace efx
 
 } // namespace efx

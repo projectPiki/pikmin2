@@ -1064,15 +1064,15 @@ BigTreasure::BigTreasureWaterAttack::BigTreasureWaterAttack(
 
 namespace efx {
 
-	/*
-	 * --INFO--
-	 * Address:	........
-	 * Size:	000080
-	 */
-	TChasePos4::~TChasePos4(void)
-	{
-		// UNUSED FUNCTION
-	}
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000080
+ */
+TChasePos4::~TChasePos4(void)
+{
+	// UNUSED FUNCTION
+}
 
 } // namespace efx
 
@@ -1344,63 +1344,63 @@ BigTreasure::BigTreasureElecAttack::BigTreasureElecAttack(
 
 namespace efx {
 
-	/*
-	 * --INFO--
-	 * Address:	........
-	 * Size:	000080
-	 */
-	TChasePosPosLocalZScale3::~TChasePosPosLocalZScale3(void)
-	{
-		// UNUSED FUNCTION
-	}
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000080
+ */
+TChasePosPosLocalZScale3::~TChasePosPosLocalZScale3(void)
+{
+	// UNUSED FUNCTION
+}
 
+/*
+ * --INFO--
+ * Address:	802F44AC
+ * Size:	000084
+ */
+TChasePosPosLocalZScale::~TChasePosPosLocalZScale(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	802F44AC
-	 * Size:	000084
-	 */
-	TChasePosPosLocalZScale::~TChasePosPosLocalZScale(void)
-	{
-		/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_802F4514
-	lis      r3, __vt__Q23efx23TChasePosPosLocalZScale@ha
-	addi     r3, r3, __vt__Q23efx23TChasePosPosLocalZScale@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_802F4504
-	lis      r4, __vt__Q23efx5TSync@ha
-	addi     r3, r30, 4
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x14
-	stw      r0, 4(r30)
-	bl       __dt__18JPAEmitterCallBackFv
+stwu     r1, -0x10(r1)
+mflr     r0
+stw      r0, 0x14(r1)
+stw      r31, 0xc(r1)
+mr       r31, r4
+stw      r30, 8(r1)
+or.      r30, r3, r3
+beq      lbl_802F4514
+lis      r3, __vt__Q23efx23TChasePosPosLocalZScale@ha
+addi     r3, r3, __vt__Q23efx23TChasePosPosLocalZScale@l
+stw      r3, 0(r30)
+addi     r0, r3, 0x14
+stw      r0, 4(r30)
+beq      lbl_802F4504
+lis      r4, __vt__Q23efx5TSync@ha
+addi     r3, r30, 4
+addi     r5, r4, __vt__Q23efx5TSync@l
+li       r4, 0
+stw      r5, 0(r30)
+addi     r0, r5, 0x14
+stw      r0, 4(r30)
+bl       __dt__18JPAEmitterCallBackFv
 
 lbl_802F4504:
-	extsh.   r0, r31
-	ble      lbl_802F4514
-	mr       r3, r30
-	bl       __dl__FPv
+extsh.   r0, r31
+ble      lbl_802F4514
+mr       r3, r30
+bl       __dl__FPv
 
 lbl_802F4514:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-		*/
-	}
+lwz      r0, 0x14(r1)
+mr       r3, r30
+lwz      r31, 0xc(r1)
+lwz      r30, 8(r1)
+mtlr     r0
+addi     r1, r1, 0x10
+blr
+	*/
+}
 
 } // namespace efx
 
@@ -2547,15 +2547,15 @@ BigTreasure::BigTreasureAttackMgr::BigTreasureAttackMgr(
 
 namespace efx {
 
-	/*
-	 * --INFO--
-	 * Address:	........
-	 * Size:	000080
-	 */
-	TChaseMtx6::~TChaseMtx6(void)
-	{
-		// UNUSED FUNCTION
-	}
+/*
+ * --INFO--
+ * Address:	........
+ * Size:	000080
+ */
+TChaseMtx6::~TChaseMtx6(void)
+{
+	// UNUSED FUNCTION
+}
 
 } // namespace efx
 
@@ -5831,397 +5831,397 @@ lbl_802F7C98:
 
 namespace efx {
 
+/*
+ * --INFO--
+ * Address:	802F7CB4
+ * Size:	00009C
+ */
+TOootaElecAttack1::~TOootaElecAttack1(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	802F7CB4
-	 * Size:	00009C
-	 */
-	TOootaElecAttack1::~TOootaElecAttack1(void)
-	{
-		/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_802F7D34
-	lis      r3, __vt__Q23efx17TOootaElecAttack1@ha
-	addi     r3, r3, __vt__Q23efx17TOootaElecAttack1@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_802F7D24
-	lis      r3, __vt__Q23efx9TChasePos@ha
-	addi     r3, r3, __vt__Q23efx9TChasePos@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_802F7D24
-	lis      r4, __vt__Q23efx5TSync@ha
-	addi     r3, r30, 4
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x14
-	stw      r0, 4(r30)
-	bl       __dt__18JPAEmitterCallBackFv
+stwu     r1, -0x10(r1)
+mflr     r0
+stw      r0, 0x14(r1)
+stw      r31, 0xc(r1)
+mr       r31, r4
+stw      r30, 8(r1)
+or.      r30, r3, r3
+beq      lbl_802F7D34
+lis      r3, __vt__Q23efx17TOootaElecAttack1@ha
+addi     r3, r3, __vt__Q23efx17TOootaElecAttack1@l
+stw      r3, 0(r30)
+addi     r0, r3, 0x14
+stw      r0, 4(r30)
+beq      lbl_802F7D24
+lis      r3, __vt__Q23efx9TChasePos@ha
+addi     r3, r3, __vt__Q23efx9TChasePos@l
+stw      r3, 0(r30)
+addi     r0, r3, 0x14
+stw      r0, 4(r30)
+beq      lbl_802F7D24
+lis      r4, __vt__Q23efx5TSync@ha
+addi     r3, r30, 4
+addi     r5, r4, __vt__Q23efx5TSync@l
+li       r4, 0
+stw      r5, 0(r30)
+addi     r0, r5, 0x14
+stw      r0, 4(r30)
+bl       __dt__18JPAEmitterCallBackFv
 
 lbl_802F7D24:
-	extsh.   r0, r31
-	ble      lbl_802F7D34
-	mr       r3, r30
-	bl       __dl__FPv
+extsh.   r0, r31
+ble      lbl_802F7D34
+mr       r3, r30
+bl       __dl__FPv
 
 lbl_802F7D34:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-		*/
-	}
+lwz      r0, 0x14(r1)
+mr       r3, r30
+lwz      r31, 0xc(r1)
+lwz      r30, 8(r1)
+mtlr     r0
+addi     r1, r1, 0x10
+blr
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	802F7D50
+ * Size:	00009C
+ */
+TOootaElecLeg::~TOootaElecLeg(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	802F7D50
-	 * Size:	00009C
-	 */
-	TOootaElecLeg::~TOootaElecLeg(void)
-	{
-		/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_802F7DD0
-	lis      r3, __vt__Q23efx13TOootaElecLeg@ha
-	addi     r3, r3, __vt__Q23efx13TOootaElecLeg@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_802F7DC0
-	lis      r3, __vt__Q23efx23TChasePosPosLocalZScale@ha
-	addi     r3, r3, __vt__Q23efx23TChasePosPosLocalZScale@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_802F7DC0
-	lis      r4, __vt__Q23efx5TSync@ha
-	addi     r3, r30, 4
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x14
-	stw      r0, 4(r30)
-	bl       __dt__18JPAEmitterCallBackFv
+stwu     r1, -0x10(r1)
+mflr     r0
+stw      r0, 0x14(r1)
+stw      r31, 0xc(r1)
+mr       r31, r4
+stw      r30, 8(r1)
+or.      r30, r3, r3
+beq      lbl_802F7DD0
+lis      r3, __vt__Q23efx13TOootaElecLeg@ha
+addi     r3, r3, __vt__Q23efx13TOootaElecLeg@l
+stw      r3, 0(r30)
+addi     r0, r3, 0x14
+stw      r0, 4(r30)
+beq      lbl_802F7DC0
+lis      r3, __vt__Q23efx23TChasePosPosLocalZScale@ha
+addi     r3, r3, __vt__Q23efx23TChasePosPosLocalZScale@l
+stw      r3, 0(r30)
+addi     r0, r3, 0x14
+stw      r0, 4(r30)
+beq      lbl_802F7DC0
+lis      r4, __vt__Q23efx5TSync@ha
+addi     r3, r30, 4
+addi     r5, r4, __vt__Q23efx5TSync@l
+li       r4, 0
+stw      r5, 0(r30)
+addi     r0, r5, 0x14
+stw      r0, 4(r30)
+bl       __dt__18JPAEmitterCallBackFv
 
 lbl_802F7DC0:
-	extsh.   r0, r31
-	ble      lbl_802F7DD0
-	mr       r3, r30
-	bl       __dl__FPv
+extsh.   r0, r31
+ble      lbl_802F7DD0
+mr       r3, r30
+bl       __dl__FPv
 
 lbl_802F7DD0:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-		*/
-	}
+lwz      r0, 0x14(r1)
+mr       r3, r30
+lwz      r31, 0xc(r1)
+lwz      r30, 8(r1)
+mtlr     r0
+addi     r1, r1, 0x10
+blr
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	802F7DEC
+ * Size:	00009C
+ */
+TOootaElecparts::~TOootaElecparts(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	802F7DEC
-	 * Size:	00009C
-	 */
-	TOootaElecparts::~TOootaElecparts(void)
-	{
-		/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_802F7E6C
-	lis      r3, __vt__Q23efx15TOootaElecparts@ha
-	addi     r3, r3, __vt__Q23efx15TOootaElecparts@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_802F7E5C
-	lis      r3, __vt__Q23efx9TChasePos@ha
-	addi     r3, r3, __vt__Q23efx9TChasePos@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_802F7E5C
-	lis      r4, __vt__Q23efx5TSync@ha
-	addi     r3, r30, 4
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x14
-	stw      r0, 4(r30)
-	bl       __dt__18JPAEmitterCallBackFv
+stwu     r1, -0x10(r1)
+mflr     r0
+stw      r0, 0x14(r1)
+stw      r31, 0xc(r1)
+mr       r31, r4
+stw      r30, 8(r1)
+or.      r30, r3, r3
+beq      lbl_802F7E6C
+lis      r3, __vt__Q23efx15TOootaElecparts@ha
+addi     r3, r3, __vt__Q23efx15TOootaElecparts@l
+stw      r3, 0(r30)
+addi     r0, r3, 0x14
+stw      r0, 4(r30)
+beq      lbl_802F7E5C
+lis      r3, __vt__Q23efx9TChasePos@ha
+addi     r3, r3, __vt__Q23efx9TChasePos@l
+stw      r3, 0(r30)
+addi     r0, r3, 0x14
+stw      r0, 4(r30)
+beq      lbl_802F7E5C
+lis      r4, __vt__Q23efx5TSync@ha
+addi     r3, r30, 4
+addi     r5, r4, __vt__Q23efx5TSync@l
+li       r4, 0
+stw      r5, 0(r30)
+addi     r0, r5, 0x14
+stw      r0, 4(r30)
+bl       __dt__18JPAEmitterCallBackFv
 
 lbl_802F7E5C:
-	extsh.   r0, r31
-	ble      lbl_802F7E6C
-	mr       r3, r30
-	bl       __dl__FPv
+extsh.   r0, r31
+ble      lbl_802F7E6C
+mr       r3, r30
+bl       __dl__FPv
 
 lbl_802F7E6C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-		*/
-	}
+lwz      r0, 0x14(r1)
+mr       r3, r30
+lwz      r31, 0xc(r1)
+lwz      r30, 8(r1)
+mtlr     r0
+addi     r1, r1, 0x10
+blr
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	802F7E88
+ * Size:	000060
+ */
+BigTreasure::BigTreasureElecAttack::~BigTreasureElecAttack(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	802F7E88
-	 * Size:	000060
-	 */
-	BigTreasure::BigTreasureElecAttack::~BigTreasureElecAttack(void)
-	{
-		/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_802F7ECC
-	lis      r5, __vt__Q34Game11BigTreasure21BigTreasureElecAttack@ha
-	li       r4, 0
-	addi     r0, r5, __vt__Q34Game11BigTreasure21BigTreasureElecAttack@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-	extsh.   r0, r31
-	ble      lbl_802F7ECC
-	mr       r3, r30
-	bl       __dl__FPv
+stwu     r1, -0x10(r1)
+mflr     r0
+stw      r0, 0x14(r1)
+stw      r31, 0xc(r1)
+mr       r31, r4
+stw      r30, 8(r1)
+or.      r30, r3, r3
+beq      lbl_802F7ECC
+lis      r5, __vt__Q34Game11BigTreasure21BigTreasureElecAttack@ha
+li       r4, 0
+addi     r0, r5, __vt__Q34Game11BigTreasure21BigTreasureElecAttack@l
+stw      r0, 0(r30)
+bl       __dt__5CNodeFv
+extsh.   r0, r31
+ble      lbl_802F7ECC
+mr       r3, r30
+bl       __dl__FPv
 
 lbl_802F7ECC:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-		*/
-	}
+lwz      r0, 0x14(r1)
+mr       r3, r30
+lwz      r31, 0xc(r1)
+lwz      r30, 8(r1)
+mtlr     r0
+addi     r1, r1, 0x10
+blr
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	802F7EE8
+ * Size:	000060
+ */
+BigTreasure::BigTreasureWaterAttack::~BigTreasureWaterAttack(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	802F7EE8
-	 * Size:	000060
-	 */
-	BigTreasure::BigTreasureWaterAttack::~BigTreasureWaterAttack(void)
-	{
-		/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_802F7F2C
-	lis      r5, __vt__Q34Game11BigTreasure22BigTreasureWaterAttack@ha
-	li       r4, 0
-	addi     r0, r5, __vt__Q34Game11BigTreasure22BigTreasureWaterAttack@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-	extsh.   r0, r31
-	ble      lbl_802F7F2C
-	mr       r3, r30
-	bl       __dl__FPv
+stwu     r1, -0x10(r1)
+mflr     r0
+stw      r0, 0x14(r1)
+stw      r31, 0xc(r1)
+mr       r31, r4
+stw      r30, 8(r1)
+or.      r30, r3, r3
+beq      lbl_802F7F2C
+lis      r5, __vt__Q34Game11BigTreasure22BigTreasureWaterAttack@ha
+li       r4, 0
+addi     r0, r5, __vt__Q34Game11BigTreasure22BigTreasureWaterAttack@l
+stw      r0, 0(r30)
+bl       __dt__5CNodeFv
+extsh.   r0, r31
+ble      lbl_802F7F2C
+mr       r3, r30
+bl       __dl__FPv
 
 lbl_802F7F2C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-		*/
-	}
+lwz      r0, 0x14(r1)
+mr       r3, r30
+lwz      r31, 0xc(r1)
+lwz      r30, 8(r1)
+mtlr     r0
+addi     r1, r1, 0x10
+blr
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	802F7F48
+ * Size:	000060
+ */
+BigTreasure::BigTreasureGasAttack::~BigTreasureGasAttack(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	802F7F48
-	 * Size:	000060
-	 */
-	BigTreasure::BigTreasureGasAttack::~BigTreasureGasAttack(void)
-	{
-		/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_802F7F8C
-	lis      r5, __vt__Q34Game11BigTreasure20BigTreasureGasAttack@ha
-	li       r4, 0
-	addi     r0, r5, __vt__Q34Game11BigTreasure20BigTreasureGasAttack@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-	extsh.   r0, r31
-	ble      lbl_802F7F8C
-	mr       r3, r30
-	bl       __dl__FPv
+stwu     r1, -0x10(r1)
+mflr     r0
+stw      r0, 0x14(r1)
+stw      r31, 0xc(r1)
+mr       r31, r4
+stw      r30, 8(r1)
+or.      r30, r3, r3
+beq      lbl_802F7F8C
+lis      r5, __vt__Q34Game11BigTreasure20BigTreasureGasAttack@ha
+li       r4, 0
+addi     r0, r5, __vt__Q34Game11BigTreasure20BigTreasureGasAttack@l
+stw      r0, 0(r30)
+bl       __dt__5CNodeFv
+extsh.   r0, r31
+ble      lbl_802F7F8C
+mr       r3, r30
+bl       __dl__FPv
 
 lbl_802F7F8C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-		*/
-	}
+lwz      r0, 0x14(r1)
+mr       r3, r30
+lwz      r31, 0xc(r1)
+lwz      r30, 8(r1)
+mtlr     r0
+addi     r1, r1, 0x10
+blr
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	802F7FA8
+ * Size:	000060
+ */
+BigTreasure::BigTreasureFireAttack::~BigTreasureFireAttack(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	802F7FA8
-	 * Size:	000060
-	 */
-	BigTreasure::BigTreasureFireAttack::~BigTreasureFireAttack(void)
-	{
-		/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_802F7FEC
-	lis      r5, __vt__Q34Game11BigTreasure21BigTreasureFireAttack@ha
-	li       r4, 0
-	addi     r0, r5, __vt__Q34Game11BigTreasure21BigTreasureFireAttack@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
-	extsh.   r0, r31
-	ble      lbl_802F7FEC
-	mr       r3, r30
-	bl       __dl__FPv
+stwu     r1, -0x10(r1)
+mflr     r0
+stw      r0, 0x14(r1)
+stw      r31, 0xc(r1)
+mr       r31, r4
+stw      r30, 8(r1)
+or.      r30, r3, r3
+beq      lbl_802F7FEC
+lis      r5, __vt__Q34Game11BigTreasure21BigTreasureFireAttack@ha
+li       r4, 0
+addi     r0, r5, __vt__Q34Game11BigTreasure21BigTreasureFireAttack@l
+stw      r0, 0(r30)
+bl       __dt__5CNodeFv
+extsh.   r0, r31
+ble      lbl_802F7FEC
+mr       r3, r30
+bl       __dl__FPv
 
 lbl_802F7FEC:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-		*/
-	}
+lwz      r0, 0x14(r1)
+mr       r3, r30
+lwz      r31, 0xc(r1)
+lwz      r30, 8(r1)
+mtlr     r0
+addi     r1, r1, 0x10
+blr
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	802F8008
+ * Size:	000070
+ */
+BigTreasure::AttackShadowNode::~AttackShadowNode(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	802F8008
-	 * Size:	000070
-	 */
-	BigTreasure::AttackShadowNode::~AttackShadowNode(void)
-	{
-		/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_802F805C
-	lis      r4, __vt__Q34Game11BigTreasure16AttackShadowNode@ha
-	addi     r0, r4, __vt__Q34Game11BigTreasure16AttackShadowNode@l
-	stw      r0, 0(r30)
-	beq      lbl_802F804C
-	lis      r5, __vt__Q24Game15JointShadowNode@ha
-	li       r4, 0
-	addi     r0, r5, __vt__Q24Game15JointShadowNode@l
-	stw      r0, 0(r30)
-	bl       __dt__5CNodeFv
+stwu     r1, -0x10(r1)
+mflr     r0
+stw      r0, 0x14(r1)
+stw      r31, 0xc(r1)
+mr       r31, r4
+stw      r30, 8(r1)
+or.      r30, r3, r3
+beq      lbl_802F805C
+lis      r4, __vt__Q34Game11BigTreasure16AttackShadowNode@ha
+addi     r0, r4, __vt__Q34Game11BigTreasure16AttackShadowNode@l
+stw      r0, 0(r30)
+beq      lbl_802F804C
+lis      r5, __vt__Q24Game15JointShadowNode@ha
+li       r4, 0
+addi     r0, r5, __vt__Q24Game15JointShadowNode@l
+stw      r0, 0(r30)
+bl       __dt__5CNodeFv
 
 lbl_802F804C:
-	extsh.   r0, r31
-	ble      lbl_802F805C
-	mr       r3, r30
-	bl       __dl__FPv
+extsh.   r0, r31
+ble      lbl_802F805C
+mr       r3, r30
+bl       __dl__FPv
 
 lbl_802F805C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-		*/
-	}
+lwz      r0, 0x14(r1)
+mr       r3, r30
+lwz      r31, 0xc(r1)
+lwz      r30, 8(r1)
+mtlr     r0
+addi     r1, r1, 0x10
+blr
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	802F8078
+ * Size:	000008
+ */
+@4 @efx::TOootaElecparts::~TOootaElecparts(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	802F8078
-	 * Size:	000008
-	 */
-	@4 @efx::TOootaElecparts::~TOootaElecparts(void)
-	{
-		/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx15TOootaElecpartsFv
-		*/
-	}
+addi     r3, r3, -4
+b        __dt__Q23efx15TOootaElecpartsFv
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	802F8080
+ * Size:	000008
+ */
+@4 @efx::TOootaElecLeg::~TOootaElecLeg(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	802F8080
-	 * Size:	000008
-	 */
-	@4 @efx::TOootaElecLeg::~TOootaElecLeg(void)
-	{
-		/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx13TOootaElecLegFv
-		*/
-	}
+addi     r3, r3, -4
+b        __dt__Q23efx13TOootaElecLegFv
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	802F8088
+ * Size:	000008
+ */
+@4 @efx::TOootaElecAttack1::~TOootaElecAttack1(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	802F8088
-	 * Size:	000008
-	 */
-	@4 @efx::TOootaElecAttack1::~TOootaElecAttack1(void)
-	{
-		/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx17TOootaElecAttack1Fv
-		*/
-	}
+addi     r3, r3, -4
+b        __dt__Q23efx17TOootaElecAttack1Fv
+	*/
+}
 } // namespace efx
 
 } // namespace Game

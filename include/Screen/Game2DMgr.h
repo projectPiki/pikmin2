@@ -12,37 +12,37 @@ struct JKRSolidHeap;
 
 namespace kh {
 namespace Screen {
-	struct DispCaveResult;
-	struct DispDayEndResult;
-	struct DispFinalResult;
-	struct DispPayDept;
-	struct DispWinLose;
-	struct DispWinLoseReason;
+struct DispCaveResult;
+struct DispDayEndResult;
+struct DispFinalResult;
+struct DispPayDept;
+struct DispWinLose;
+struct DispWinLoseReason;
 } // namespace Screen
 } // namespace kh
 
 namespace og {
 namespace Screen {
-	struct DispMemberAnaDemo;
-	struct DispMemberBase;
-	struct DispMemberCave;
-	struct DispMemberCaveMore;
-	struct DispMemberChallenge1P;
-	struct DispMemberChallenge2P;
-	struct DispMemberContena;
-	struct DispMemberCourseName;
-	struct DispMemberFinalMessage;
-	struct DispMemberFloor;
-	struct DispMemberGround;
-	struct DispMemberKanketuMenu;
-	struct DispMemberKantei;
-	struct DispMemberSave;
-	struct DispMemberSMenuAll;
-	struct DispMemberSpecialItem;
-	struct DispMemberUfoGroup;
-	struct DispMemberVs;
-	struct DispMemberWorldMapInfoWin0;
-	struct DispMemberWorldMapInfoWin1;
+struct DispMemberAnaDemo;
+struct DispMemberBase;
+struct DispMemberCave;
+struct DispMemberCaveMore;
+struct DispMemberChallenge1P;
+struct DispMemberChallenge2P;
+struct DispMemberContena;
+struct DispMemberCourseName;
+struct DispMemberFinalMessage;
+struct DispMemberFloor;
+struct DispMemberGround;
+struct DispMemberKanketuMenu;
+struct DispMemberKantei;
+struct DispMemberSave;
+struct DispMemberSMenuAll;
+struct DispMemberSpecialItem;
+struct DispMemberUfoGroup;
+struct DispMemberVs;
+struct DispMemberWorldMapInfoWin0;
+struct DispMemberWorldMapInfoWin1;
 } // namespace Screen
 } // namespace og
 

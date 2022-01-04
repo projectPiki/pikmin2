@@ -980,31 +980,31 @@ void EnemyBase::@748 @12 @viewGetShape()
 
 namespace efx {
 
+/*
+ * --INFO--
+ * Address:	80300E58
+ * Size:	000008
+ */
+TKkabutoRot::@4 @~TKkabutoRot()
+{
 	/*
-	 * --INFO--
-	 * Address:	80300E58
-	 * Size:	000008
-	 */
-	TKkabutoRot::@4 @~TKkabutoRot()
-	{
-		/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx11TKkabutoRotFv
-		*/
-	}
+addi     r3, r3, -4
+b        __dt__Q23efx11TKkabutoRotFv
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	80300E60
+ * Size:	000008
+ */
+TKkabutoWait::@4 @~TKkabutoWait()
+{
 	/*
-	 * --INFO--
-	 * Address:	80300E60
-	 * Size:	000008
-	 */
-	TKkabutoWait::@4 @~TKkabutoWait()
-	{
-		/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx12TKkabutoWaitFv
-		*/
-	}
+addi     r3, r3, -4
+b        __dt__Q23efx12TKkabutoWaitFv
+	*/
+}
 } // namespace efx
 
 } // namespace efx

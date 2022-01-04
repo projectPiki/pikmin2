@@ -10,8 +10,8 @@ struct JKRArchive;
 
 namespace og {
 namespace Screen {
-	struct AnimScreen;
-	struct ScaleMgr;
+struct AnimScreen;
+struct ScaleMgr;
 } // namespace Screen
 } // namespace og
 

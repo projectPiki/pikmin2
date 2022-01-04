@@ -1804,18 +1804,18 @@ u32 BombSarai::Obj::getEnemyTypeID() { return 0x3A; }
 
 namespace efx {
 
+/*
+ * --INFO--
+ * Address:	802B37A0
+ * Size:	000008
+ */
+TBsaraiSupli::@4 @~TBsaraiSupli()
+{
 	/*
-	 * --INFO--
-	 * Address:	802B37A0
-	 * Size:	000008
-	 */
-	TBsaraiSupli::@4 @~TBsaraiSupli()
-	{
-		/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx12TBsaraiSupliFv
-		*/
-	}
+addi     r3, r3, -4
+b        __dt__Q23efx12TBsaraiSupliFv
+	*/
+}
 } // namespace efx
 
 } // namespace efx

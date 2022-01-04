@@ -3261,59 +3261,59 @@ void Tyre::Obj::scaleUpShadow(void)
 
 namespace efx {
 
+/*
+ * --INFO--
+ * Address:	803AE758
+ * Size:	00009C
+ */
+TKageTyresmoke::~TKageTyresmoke(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	803AE758
-	 * Size:	00009C
-	 */
-	TKageTyresmoke::~TKageTyresmoke(void)
-	{
-		/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_803AE7D8
-	lis      r3, __vt__Q23efx14TKageTyresmoke@ha
-	addi     r3, r3, __vt__Q23efx14TKageTyresmoke@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_803AE7C8
-	lis      r3, __vt__Q23efx13TChasePosYRot@ha
-	addi     r3, r3, __vt__Q23efx13TChasePosYRot@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_803AE7C8
-	lis      r4, __vt__Q23efx5TSync@ha
-	addi     r3, r30, 4
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x14
-	stw      r0, 4(r30)
-	bl       __dt__18JPAEmitterCallBackFv
+stwu     r1, -0x10(r1)
+mflr     r0
+stw      r0, 0x14(r1)
+stw      r31, 0xc(r1)
+mr       r31, r4
+stw      r30, 8(r1)
+or.      r30, r3, r3
+beq      lbl_803AE7D8
+lis      r3, __vt__Q23efx14TKageTyresmoke@ha
+addi     r3, r3, __vt__Q23efx14TKageTyresmoke@l
+stw      r3, 0(r30)
+addi     r0, r3, 0x14
+stw      r0, 4(r30)
+beq      lbl_803AE7C8
+lis      r3, __vt__Q23efx13TChasePosYRot@ha
+addi     r3, r3, __vt__Q23efx13TChasePosYRot@l
+stw      r3, 0(r30)
+addi     r0, r3, 0x14
+stw      r0, 4(r30)
+beq      lbl_803AE7C8
+lis      r4, __vt__Q23efx5TSync@ha
+addi     r3, r30, 4
+addi     r5, r4, __vt__Q23efx5TSync@l
+li       r4, 0
+stw      r5, 0(r30)
+addi     r0, r5, 0x14
+stw      r0, 4(r30)
+bl       __dt__18JPAEmitterCallBackFv
 
 lbl_803AE7C8:
-	extsh.   r0, r31
-	ble      lbl_803AE7D8
-	mr       r3, r30
-	bl       __dl__FPv
+extsh.   r0, r31
+ble      lbl_803AE7D8
+mr       r3, r30
+bl       __dl__FPv
 
 lbl_803AE7D8:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-		*/
-	}
+lwz      r0, 0x14(r1)
+mr       r3, r30
+lwz      r31, 0xc(r1)
+lwz      r30, 8(r1)
+mtlr     r0
+addi     r1, r1, 0x10
+blr
+	*/
+}
 
 } // namespace efx
 

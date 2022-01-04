@@ -2881,175 +2881,175 @@ void MiniHoudai::Obj::effectDrawOff(void)
 
 namespace efx {
 
+/*
+ * --INFO--
+ * Address:	802EDA94
+ * Size:	00009C
+ */
+TChibiDeadLight::~TChibiDeadLight(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	802EDA94
-	 * Size:	00009C
-	 */
-	TChibiDeadLight::~TChibiDeadLight(void)
-	{
-		/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_802EDB14
-	lis      r3, __vt__Q23efx15TChibiDeadLight@ha
-	addi     r3, r3, __vt__Q23efx15TChibiDeadLight@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_802EDB04
-	lis      r3, __vt__Q23efx9TChaseMtx@ha
-	addi     r3, r3, __vt__Q23efx9TChaseMtx@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_802EDB04
-	lis      r4, __vt__Q23efx5TSync@ha
-	addi     r3, r30, 4
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x14
-	stw      r0, 4(r30)
-	bl       __dt__18JPAEmitterCallBackFv
+stwu     r1, -0x10(r1)
+mflr     r0
+stw      r0, 0x14(r1)
+stw      r31, 0xc(r1)
+mr       r31, r4
+stw      r30, 8(r1)
+or.      r30, r3, r3
+beq      lbl_802EDB14
+lis      r3, __vt__Q23efx15TChibiDeadLight@ha
+addi     r3, r3, __vt__Q23efx15TChibiDeadLight@l
+stw      r3, 0(r30)
+addi     r0, r3, 0x14
+stw      r0, 4(r30)
+beq      lbl_802EDB04
+lis      r3, __vt__Q23efx9TChaseMtx@ha
+addi     r3, r3, __vt__Q23efx9TChaseMtx@l
+stw      r3, 0(r30)
+addi     r0, r3, 0x14
+stw      r0, 4(r30)
+beq      lbl_802EDB04
+lis      r4, __vt__Q23efx5TSync@ha
+addi     r3, r30, 4
+addi     r5, r4, __vt__Q23efx5TSync@l
+li       r4, 0
+stw      r5, 0(r30)
+addi     r0, r5, 0x14
+stw      r0, 4(r30)
+bl       __dt__18JPAEmitterCallBackFv
 
 lbl_802EDB04:
-	extsh.   r0, r31
-	ble      lbl_802EDB14
-	mr       r3, r30
-	bl       __dl__FPv
+extsh.   r0, r31
+ble      lbl_802EDB14
+mr       r3, r30
+bl       __dl__FPv
 
 lbl_802EDB14:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-		*/
-	}
+lwz      r0, 0x14(r1)
+mr       r3, r30
+lwz      r31, 0xc(r1)
+lwz      r30, 8(r1)
+mtlr     r0
+addi     r1, r1, 0x10
+blr
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	802EDB30
+ * Size:	00009C
+ */
+TChibiCharge::~TChibiCharge(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	802EDB30
-	 * Size:	00009C
-	 */
-	TChibiCharge::~TChibiCharge(void)
-	{
-		/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	mr       r31, r4
-	stw      r30, 8(r1)
-	or.      r30, r3, r3
-	beq      lbl_802EDBB0
-	lis      r3, __vt__Q23efx12TChibiCharge@ha
-	addi     r3, r3, __vt__Q23efx12TChibiCharge@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_802EDBA0
-	lis      r3, __vt__Q23efx9TChaseMtx@ha
-	addi     r3, r3, __vt__Q23efx9TChaseMtx@l
-	stw      r3, 0(r30)
-	addi     r0, r3, 0x14
-	stw      r0, 4(r30)
-	beq      lbl_802EDBA0
-	lis      r4, __vt__Q23efx5TSync@ha
-	addi     r3, r30, 4
-	addi     r5, r4, __vt__Q23efx5TSync@l
-	li       r4, 0
-	stw      r5, 0(r30)
-	addi     r0, r5, 0x14
-	stw      r0, 4(r30)
-	bl       __dt__18JPAEmitterCallBackFv
+stwu     r1, -0x10(r1)
+mflr     r0
+stw      r0, 0x14(r1)
+stw      r31, 0xc(r1)
+mr       r31, r4
+stw      r30, 8(r1)
+or.      r30, r3, r3
+beq      lbl_802EDBB0
+lis      r3, __vt__Q23efx12TChibiCharge@ha
+addi     r3, r3, __vt__Q23efx12TChibiCharge@l
+stw      r3, 0(r30)
+addi     r0, r3, 0x14
+stw      r0, 4(r30)
+beq      lbl_802EDBA0
+lis      r3, __vt__Q23efx9TChaseMtx@ha
+addi     r3, r3, __vt__Q23efx9TChaseMtx@l
+stw      r3, 0(r30)
+addi     r0, r3, 0x14
+stw      r0, 4(r30)
+beq      lbl_802EDBA0
+lis      r4, __vt__Q23efx5TSync@ha
+addi     r3, r30, 4
+addi     r5, r4, __vt__Q23efx5TSync@l
+li       r4, 0
+stw      r5, 0(r30)
+addi     r0, r5, 0x14
+stw      r0, 4(r30)
+bl       __dt__18JPAEmitterCallBackFv
 
 lbl_802EDBA0:
-	extsh.   r0, r31
-	ble      lbl_802EDBB0
-	mr       r3, r30
-	bl       __dl__FPv
+extsh.   r0, r31
+ble      lbl_802EDBB0
+mr       r3, r30
+bl       __dl__FPv
 
 lbl_802EDBB0:
-	lwz      r0, 0x14(r1)
-	mr       r3, r30
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-		*/
-	}
+lwz      r0, 0x14(r1)
+mr       r3, r30
+lwz      r31, 0xc(r1)
+lwz      r30, 8(r1)
+mtlr     r0
+addi     r1, r1, 0x10
+blr
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	802EDBCC
+ * Size:	0000BC
+ */
+MiniHoudai::Obj::~Obj(void)
+{
 	/*
-	 * --INFO--
-	 * Address:	802EDBCC
-	 * Size:	0000BC
-	 */
-	MiniHoudai::Obj::~Obj(void)
-	{
-		/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r3, r3
-	stw      r30, 8(r1)
-	mr       r30, r4
-	beq      lbl_802EDC6C
-	lis      r3, __vt__Q34Game10MiniHoudai3Obj@ha
-	addi     r0, r31, 0x308
-	addi     r4, r3, __vt__Q34Game10MiniHoudai3Obj@l
-	stw      r4, 0(r31)
-	addi     r3, r4, 0x1b0
-	addi     r4, r4, 0x2fc
-	stw      r3, 0x178(r31)
-	lwz      r3, 0x17c(r31)
-	stw      r4, 0(r3)
-	lwz      r3, 0x17c(r31)
-	subf     r0, r3, r0
-	stw      r0, 0xc(r3)
-	beq      lbl_802EDC5C
-	lis      r3, __vt__Q24Game9EnemyBase@ha
-	addi     r0, r31, 0x2bc
-	addi     r4, r3, __vt__Q24Game9EnemyBase@l
-	addi     r3, r31, 0x290
-	stw      r4, 0(r31)
-	addi     r5, r4, 0x1b0
-	addi     r6, r4, 0x2f8
-	li       r4, -1
-	stw      r5, 0x178(r31)
-	lwz      r5, 0x17c(r31)
-	stw      r6, 0(r5)
-	lwz      r5, 0x17c(r31)
-	subf     r0, r5, r0
-	stw      r0, 0xc(r5)
-	bl       __dt__5CNodeFv
+stwu     r1, -0x10(r1)
+mflr     r0
+stw      r0, 0x14(r1)
+stw      r31, 0xc(r1)
+or.      r31, r3, r3
+stw      r30, 8(r1)
+mr       r30, r4
+beq      lbl_802EDC6C
+lis      r3, __vt__Q34Game10MiniHoudai3Obj@ha
+addi     r0, r31, 0x308
+addi     r4, r3, __vt__Q34Game10MiniHoudai3Obj@l
+stw      r4, 0(r31)
+addi     r3, r4, 0x1b0
+addi     r4, r4, 0x2fc
+stw      r3, 0x178(r31)
+lwz      r3, 0x17c(r31)
+stw      r4, 0(r3)
+lwz      r3, 0x17c(r31)
+subf     r0, r3, r0
+stw      r0, 0xc(r3)
+beq      lbl_802EDC5C
+lis      r3, __vt__Q24Game9EnemyBase@ha
+addi     r0, r31, 0x2bc
+addi     r4, r3, __vt__Q24Game9EnemyBase@l
+addi     r3, r31, 0x290
+stw      r4, 0(r31)
+addi     r5, r4, 0x1b0
+addi     r6, r4, 0x2f8
+li       r4, -1
+stw      r5, 0x178(r31)
+lwz      r5, 0x17c(r31)
+stw      r6, 0(r5)
+lwz      r5, 0x17c(r31)
+subf     r0, r5, r0
+stw      r0, 0xc(r5)
+bl       __dt__5CNodeFv
 
 lbl_802EDC5C:
-	extsh.   r0, r30
-	ble      lbl_802EDC6C
-	mr       r3, r31
-	bl       __dl__FPv
+extsh.   r0, r30
+ble      lbl_802EDC6C
+mr       r3, r31
+bl       __dl__FPv
 
 lbl_802EDC6C:
-	lwz      r0, 0x14(r1)
-	mr       r3, r31
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-		*/
-	}
+lwz      r0, 0x14(r1)
+mr       r3, r31
+lwz      r31, 0xc(r1)
+lwz      r30, 8(r1)
+mtlr     r0
+addi     r1, r1, 0x10
+blr
+	*/
+}
 
 } // namespace efx
 

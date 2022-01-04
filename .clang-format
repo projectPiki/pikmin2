@@ -15,3 +15,5 @@ AlignOperands: true
 AllowShortIfStatementsOnASingleLine: Never
 Cpp11BracedListStyle: false
 Language: Cpp
+CompactNamespaces: false
+NamespaceIndentation: None

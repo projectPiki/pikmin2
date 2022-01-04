@@ -2048,44 +2048,44 @@ void EnemyBase::@764 @12 @viewGetShape()
 
 namespace efx {
 
+/*
+ * --INFO--
+ * Address:	80261334
+ * Size:	000008
+ */
+TQuriGlow::@4 @~TQuriGlow()
+{
 	/*
-	 * --INFO--
-	 * Address:	80261334
-	 * Size:	000008
-	 */
-	TQuriGlow::@4 @~TQuriGlow()
-	{
-		/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx9TQuriGlowFv
-		*/
-	}
+addi     r3, r3, -4
+b        __dt__Q23efx9TQuriGlowFv
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	8026133C
+ * Size:	000008
+ */
+TQuriApp::@4 @~TQuriApp()
+{
 	/*
-	 * --INFO--
-	 * Address:	8026133C
-	 * Size:	000008
-	 */
-	TQuriApp::@4 @~TQuriApp()
-	{
-		/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx8TQuriAppFv
-		*/
-	}
+addi     r3, r3, -4
+b        __dt__Q23efx8TQuriAppFv
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	80261344
+ * Size:	000008
+ */
+TQuriDisap::@4 @~TQuriDisap()
+{
 	/*
-	 * --INFO--
-	 * Address:	80261344
-	 * Size:	000008
-	 */
-	TQuriDisap::@4 @~TQuriDisap()
-	{
-		/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx10TQuriDisapFv
-		*/
-	}
+addi     r3, r3, -4
+b        __dt__Q23efx10TQuriDisapFv
+	*/
+}
 } // namespace efx
 
 } // namespace efx

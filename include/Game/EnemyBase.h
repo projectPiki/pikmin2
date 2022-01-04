@@ -37,7 +37,7 @@ struct EnemyInitialParamBase;
 struct EnemyMgrBase;
 
 namespace EnemyStone {
-	struct Obj;
+struct Obj;
 } // namespace EnemyStone
 
 struct EnemyKillArg : public CreatureKillArg {
@@ -391,183 +391,183 @@ struct EnemyBase : public Creature,
 	                                             // PelletView: _2BC - _2C8
 };
 namespace EnemyBaseFSM {
-	enum StateID {
-		EBS_Drop = 0,
-		EBS_DropPikmin,
-		EBS_DropOlimar,
-		EBS_DropTreasure,
-		EBS_DropEarthquake,
-		EBS_Appear,
-		EBS_Living,
-		EBS_Stone,
-		EBS_Earthquake,
-		EBS_Fit
-	};
-	/**
-	 * Generic lifecycle FSM that every teki has, often in addition to a more
-	 * specific FSM derived from Game::StateMachine.
-	 */
-	struct StateMachine : public Game::EnemyStateMachine {
-		virtual void init(EnemyBase*);                            // _00
-		virtual EnemyFSMState* getCurrState(EnemyBase*);          // _14
-		virtual void setCurrState(EnemyBase*, EnemyFSMState*);    // _18
-		virtual void update(EnemyBase*);                          // _1C
-		virtual void entry(EnemyBase*);                           // _20
-		virtual void simulation(EnemyBase*, float);               // _24
-		virtual void animation(EnemyBase*);                       // _28
-		virtual void bounceProcedure(EnemyBase*, Sys::Triangle*); // _2C
-	};
+enum StateID {
+	EBS_Drop = 0,
+	EBS_DropPikmin,
+	EBS_DropOlimar,
+	EBS_DropTreasure,
+	EBS_DropEarthquake,
+	EBS_Appear,
+	EBS_Living,
+	EBS_Stone,
+	EBS_Earthquake,
+	EBS_Fit
+};
+/**
+ * Generic lifecycle FSM that every teki has, often in addition to a more
+ * specific FSM derived from Game::StateMachine.
+ */
+struct StateMachine : public Game::EnemyStateMachine {
+	virtual void init(EnemyBase*);                            // _00
+	virtual EnemyFSMState* getCurrState(EnemyBase*);          // _14
+	virtual void setCurrState(EnemyBase*, EnemyFSMState*);    // _18
+	virtual void update(EnemyBase*);                          // _1C
+	virtual void entry(EnemyBase*);                           // _20
+	virtual void simulation(EnemyBase*, float);               // _24
+	virtual void animation(EnemyBase*);                       // _28
+	virtual void bounceProcedure(EnemyBase*, Sys::Triangle*); // _2C
+};
 
-	/**
-	 * Generic lifecycle state.
-	 */
-	struct State : public Game::EnemyFSMState {
-		inline State(int stateID, const char* name)
-		    : EnemyFSMState(stateID, name)
-		{
-		}
+/**
+ * Generic lifecycle state.
+ */
+struct State : public Game::EnemyFSMState {
+	inline State(int stateID, const char* name)
+	    : EnemyFSMState(stateID, name)
+	{
+	}
 
-		virtual void update(EnemyBase*);                          // _1C
-		virtual void entry(EnemyBase*);                           // _20
-		virtual void simulation(EnemyBase*, float);               // _24
-		virtual void bounceProcedure(EnemyBase*, Sys::Triangle*); // _28
-		virtual void animation(EnemyBase*);                       // _2C
+	virtual void update(EnemyBase*);                          // _1C
+	virtual void entry(EnemyBase*);                           // _20
+	virtual void simulation(EnemyBase*, float);               // _24
+	virtual void bounceProcedure(EnemyBase*, Sys::Triangle*); // _28
+	virtual void animation(EnemyBase*);                       // _2C
 
-		// _00 VTBL
-	};
+	// _00 VTBL
+};
 
-	/**
-	 * Generic birth-by-dropping state.
-	 */
-	struct BirthTypeDropState : public State {
-		inline BirthTypeDropState(int stateID = EBS_Drop)
-		    : State(EBS_Drop, "BirthTypeDrop")
-		{
-		}
+/**
+ * Generic birth-by-dropping state.
+ */
+struct BirthTypeDropState : public State {
+	inline BirthTypeDropState(int stateID = EBS_Drop)
+	    : State(EBS_Drop, "BirthTypeDrop")
+	{
+	}
 
-		virtual void init(EnemyBase*, StateArg*);   // _00
-		virtual void cleanup(EnemyBase*);           // _08
-		virtual void update(EnemyBase*);            // _1C
-		virtual void entry(EnemyBase*);             // _20
-		virtual void simulation(EnemyBase*, float); // _24
-		virtual void animation(EnemyBase*);         // _2C
+	virtual void init(EnemyBase*, StateArg*);   // _00
+	virtual void cleanup(EnemyBase*);           // _08
+	virtual void update(EnemyBase*);            // _1C
+	virtual void entry(EnemyBase*);             // _20
+	virtual void simulation(EnemyBase*, float); // _24
+	virtual void animation(EnemyBase*);         // _2C
 
-		virtual bool isFinishableWaitingBirthTypeDrop(EnemyBase*); // _30
-	};
+	virtual bool isFinishableWaitingBirthTypeDrop(EnemyBase*); // _30
+};
 
-	struct BirthTypeDropPikminState : public BirthTypeDropState {
-		inline BirthTypeDropPikminState()
-		    : BirthTypeDropState(EBS_DropPikmin)
-		{
-			m_name = "BirthTypeDropPikmin";
-		}
+struct BirthTypeDropPikminState : public BirthTypeDropState {
+	inline BirthTypeDropPikminState()
+	    : BirthTypeDropState(EBS_DropPikmin)
+	{
+		m_name = "BirthTypeDropPikmin";
+	}
 
-		virtual bool isFinishableWaitingBirthTypeDrop(EnemyBase*); // _30
-	};
+	virtual bool isFinishableWaitingBirthTypeDrop(EnemyBase*); // _30
+};
 
-	struct BirthTypeDropOlimarState : public BirthTypeDropState {
-		inline BirthTypeDropOlimarState()
-		    : BirthTypeDropState(EBS_DropOlimar)
-		{
-			m_name = "BirthTypeDropOlimar";
-		}
+struct BirthTypeDropOlimarState : public BirthTypeDropState {
+	inline BirthTypeDropOlimarState()
+	    : BirthTypeDropState(EBS_DropOlimar)
+	{
+		m_name = "BirthTypeDropOlimar";
+	}
 
-		virtual bool isFinishableWaitingBirthTypeDrop(EnemyBase*); // _30
-	};
+	virtual bool isFinishableWaitingBirthTypeDrop(EnemyBase*); // _30
+};
 
-	struct BirthTypeDropTreasureState : public BirthTypeDropState {
-		inline BirthTypeDropTreasureState()
-		    : BirthTypeDropState(EBS_DropTreasure)
-		{
-			m_name = "BirthTypeDropTreasure";
-		}
+struct BirthTypeDropTreasureState : public BirthTypeDropState {
+	inline BirthTypeDropTreasureState()
+	    : BirthTypeDropState(EBS_DropTreasure)
+	{
+		m_name = "BirthTypeDropTreasure";
+	}
 
-		virtual bool isFinishableWaitingBirthTypeDrop(EnemyBase*); // _30
-	};
+	virtual bool isFinishableWaitingBirthTypeDrop(EnemyBase*); // _30
+};
 
-	struct BirthTypeDropEarthquakeState : public BirthTypeDropState {
-		inline BirthTypeDropEarthquakeState()
-		    : BirthTypeDropState(EBS_DropEarthquake)
-		{
-			m_name = "BirthTypeDropEarthquake";
-		}
+struct BirthTypeDropEarthquakeState : public BirthTypeDropState {
+	inline BirthTypeDropEarthquakeState()
+	    : BirthTypeDropState(EBS_DropEarthquake)
+	{
+		m_name = "BirthTypeDropEarthquake";
+	}
 
-		virtual bool isFinishableWaitingBirthTypeDrop(EnemyBase*); // _30
-	};
+	virtual bool isFinishableWaitingBirthTypeDrop(EnemyBase*); // _30
+};
 
-	/**
-	 * Birth-without-dropping state?
-	 */
-	struct AppearState : public State {
-		inline AppearState()
-		    : State(EBS_Appear, "Appear")
-		{
-		}
+/**
+ * Birth-without-dropping state?
+ */
+struct AppearState : public State {
+	inline AppearState()
+	    : State(EBS_Appear, "Appear")
+	{
+	}
 
-		virtual void init(EnemyBase*, StateArg*);   // _00
-		virtual void cleanup(EnemyBase*);           // _08
-		virtual void update(EnemyBase*);            // _1C
-		virtual void entry(EnemyBase*);             // _20
-		virtual void simulation(EnemyBase*, float); // _24
-	};
+	virtual void init(EnemyBase*, StateArg*);   // _00
+	virtual void cleanup(EnemyBase*);           // _08
+	virtual void update(EnemyBase*);            // _1C
+	virtual void entry(EnemyBase*);             // _20
+	virtual void simulation(EnemyBase*, float); // _24
+};
 
-	/**
-	 * Generic "alive" state.
-	 */
-	struct LivingState : public State {
-		inline LivingState(int state = EBS_Living)
-		    : State(state, "Living")
-		{
-		}
+/**
+ * Generic "alive" state.
+ */
+struct LivingState : public State {
+	inline LivingState(int state = EBS_Living)
+	    : State(state, "Living")
+	{
+	}
 
-		virtual void simulation(EnemyBase*, float); // _24
-		virtual void update(EnemyBase*);            // _1C
-		virtual void entry(EnemyBase*);             // _20
-		virtual void updateCullingOff(EnemyBase*);  // _30
-		virtual void updateAlways(EnemyBase*);      // _34
-	};
+	virtual void simulation(EnemyBase*, float); // _24
+	virtual void update(EnemyBase*);            // _1C
+	virtual void entry(EnemyBase*);             // _20
+	virtual void updateCullingOff(EnemyBase*);  // _30
+	virtual void updateAlways(EnemyBase*);      // _34
+};
 
-	struct StoneState : public LivingState {
-		inline StoneState()
-		    : LivingState(EBS_Stone)
-		{
-			m_name = "Stone";
-		}
+struct StoneState : public LivingState {
+	inline StoneState()
+	    : LivingState(EBS_Stone)
+	{
+		m_name = "Stone";
+	}
 
-		virtual void init(EnemyBase*, StateArg*);                 // _00
-		virtual void cleanup(EnemyBase*);                         // _08
-		virtual void bounceProcedure(EnemyBase*, Sys::Triangle*); // _28
-		virtual void updateCullingOff(EnemyBase*);                // _30
-		virtual void updateAlways(EnemyBase*);                    // _34
-	};
+	virtual void init(EnemyBase*, StateArg*);                 // _00
+	virtual void cleanup(EnemyBase*);                         // _08
+	virtual void bounceProcedure(EnemyBase*, Sys::Triangle*); // _28
+	virtual void updateCullingOff(EnemyBase*);                // _30
+	virtual void updateAlways(EnemyBase*);                    // _34
+};
 
-	struct EarthquakeState : public LivingState {
-		inline EarthquakeState()
-		    : LivingState(EBS_Earthquake)
-		{
-			m_name = "Earthquake";
-		}
+struct EarthquakeState : public LivingState {
+	inline EarthquakeState()
+	    : LivingState(EBS_Earthquake)
+	{
+		m_name = "Earthquake";
+	}
 
-		virtual void init(EnemyBase*, StateArg*);  // _00
-		virtual void cleanup(EnemyBase*);          // _08
-		virtual void updateCullingOff(EnemyBase*); // _30
-	};
+	virtual void init(EnemyBase*, StateArg*);  // _00
+	virtual void cleanup(EnemyBase*);          // _08
+	virtual void updateCullingOff(EnemyBase*); // _30
+};
 
-	struct FitState : public LivingState {
-		inline FitState()
-		    : LivingState(EBS_Fit)
-		    , m_enemyPiyo()
-		{
-			m_name = "Fit";
-		}
+struct FitState : public LivingState {
+	inline FitState()
+	    : LivingState(EBS_Fit)
+	    , m_enemyPiyo()
+	{
+		m_name = "Fit";
+	}
 
-		virtual void init(EnemyBase*, StateArg*);  // _00
-		virtual void cleanup(EnemyBase*);          // _08
-		virtual void updateCullingOff(EnemyBase*); // _30
-		virtual void updateAlways(EnemyBase*);     // _34
+	virtual void init(EnemyBase*, StateArg*);  // _00
+	virtual void cleanup(EnemyBase*);          // _08
+	virtual void updateCullingOff(EnemyBase*); // _30
+	virtual void updateAlways(EnemyBase*);     // _34
 
-		efx::TEnemyPiyo m_enemyPiyo; // _10
-	};
+	efx::TEnemyPiyo m_enemyPiyo; // _10
+};
 } // namespace EnemyBaseFSM
 } // namespace Game
 

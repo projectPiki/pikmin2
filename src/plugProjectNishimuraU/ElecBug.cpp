@@ -2342,31 +2342,31 @@ u32 ElecBug::Obj::getEnemyTypeID() { return 0x1C; }
 
 namespace efx {
 
+/*
+ * --INFO--
+ * Address:	8027C3FC
+ * Size:	000008
+ */
+TDnkmsHoudenA::@4 @~TDnkmsHoudenA()
+{
 	/*
-	 * --INFO--
-	 * Address:	8027C3FC
-	 * Size:	000008
-	 */
-	TDnkmsHoudenA::@4 @~TDnkmsHoudenA()
-	{
-		/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx13TDnkmsHoudenAFv
-		*/
-	}
+addi     r3, r3, -4
+b        __dt__Q23efx13TDnkmsHoudenAFv
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	8027C404
+ * Size:	000008
+ */
+TDnkmsHoudenB::@4 @~TDnkmsHoudenB()
+{
 	/*
-	 * --INFO--
-	 * Address:	8027C404
-	 * Size:	000008
-	 */
-	TDnkmsHoudenB::@4 @~TDnkmsHoudenB()
-	{
-		/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx13TDnkmsHoudenBFv
-		*/
-	}
+addi     r3, r3, -4
+b        __dt__Q23efx13TDnkmsHoudenBFv
+	*/
+}
 } // namespace efx
 
 } // namespace efx

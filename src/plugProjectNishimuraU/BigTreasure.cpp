@@ -9027,96 +9027,96 @@ void EnemyBase::@1412 @12 @viewGetShape()
 
 namespace efx {
 
+/*
+ * --INFO--
+ * Address:	802E17FC
+ * Size:	000008
+ */
+TOootaStartOta::@4 @~TOootaStartOta()
+{
 	/*
-	 * --INFO--
-	 * Address:	802E17FC
-	 * Size:	000008
-	 */
-	TOootaStartOta::@4 @~TOootaStartOta()
-	{
-		/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx14TOootaStartOtaFv
-		*/
-	}
+addi     r3, r3, -4
+b        __dt__Q23efx14TOootaStartOtaFv
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	802E1804
+ * Size:	000008
+ */
+TOootaStartLeg::@4 @~TOootaStartLeg()
+{
 	/*
-	 * --INFO--
-	 * Address:	802E1804
-	 * Size:	000008
-	 */
-	TOootaStartLeg::@4 @~TOootaStartLeg()
-	{
-		/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx14TOootaStartLegFv
-		*/
-	}
+addi     r3, r3, -4
+b        __dt__Q23efx14TOootaStartLegFv
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	802E180C
+ * Size:	000008
+ */
+TOootaChangeLeg::@4 @~TOootaChangeLeg()
+{
 	/*
-	 * --INFO--
-	 * Address:	802E180C
-	 * Size:	000008
-	 */
-	TOootaChangeLeg::@4 @~TOootaChangeLeg()
-	{
-		/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx15TOootaChangeLegFv
-		*/
-	}
+addi     r3, r3, -4
+b        __dt__Q23efx15TOootaChangeLegFv
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	802E1814
+ * Size:	000008
+ */
+TOootaStartBody::@4 @~TOootaStartBody()
+{
 	/*
-	 * --INFO--
-	 * Address:	802E1814
-	 * Size:	000008
-	 */
-	TOootaStartBody::@4 @~TOootaStartBody()
-	{
-		/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx15TOootaStartBodyFv
-		*/
-	}
+addi     r3, r3, -4
+b        __dt__Q23efx15TOootaStartBodyFv
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	802E181C
+ * Size:	000008
+ */
+TOootaDeadAwa::@4 @~TOootaDeadAwa()
+{
 	/*
-	 * --INFO--
-	 * Address:	802E181C
-	 * Size:	000008
-	 */
-	TOootaDeadAwa::@4 @~TOootaDeadAwa()
-	{
-		/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx13TOootaDeadAwaFv
-		*/
-	}
+addi     r3, r3, -4
+b        __dt__Q23efx13TOootaDeadAwaFv
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	802E1824
+ * Size:	000008
+ */
+TOootaChangeBody::@4 @~TOootaChangeBody()
+{
 	/*
-	 * --INFO--
-	 * Address:	802E1824
-	 * Size:	000008
-	 */
-	TOootaChangeBody::@4 @~TOootaChangeBody()
-	{
-		/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx16TOootaChangeBodyFv
-		*/
-	}
+addi     r3, r3, -4
+b        __dt__Q23efx16TOootaChangeBodyFv
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	802E182C
+ * Size:	000008
+ */
+TOootaParticle::@4 @~TOootaParticle()
+{
 	/*
-	 * --INFO--
-	 * Address:	802E182C
-	 * Size:	000008
-	 */
-	TOootaParticle::@4 @~TOootaParticle()
-	{
-		/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx14TOootaParticleFv
-		*/
-	}
+addi     r3, r3, -4
+b        __dt__Q23efx14TOootaParticleFv
+	*/
+}
 } // namespace efx
 
 } // namespace Game

@@ -16,7 +16,7 @@ struct JKRSolidHeap;
 
 namespace og {
 namespace Screen {
-	struct DispMemberBase;
+struct DispMemberBase;
 } // namespace Screen
 } // namespace og
 

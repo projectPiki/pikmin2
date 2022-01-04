@@ -17,7 +17,7 @@ struct MovieConfig;
 struct Navi;
 struct PlayCamera;
 namespace P2JST {
-	struct ObjectSystem;
+struct ObjectSystem;
 }
 } // namespace Game
 namespace JStudio {
@@ -32,7 +32,7 @@ struct TCreateObject;
 }
 namespace P2JME {
 namespace Movie {
-	struct TControl;
+struct TControl;
 }
 } // namespace P2JME
 namespace PSM {

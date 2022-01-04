@@ -5541,96 +5541,96 @@ void EnemyBase::@1196 @12 @viewGetShape()
 
 namespace efx {
 
+/*
+ * --INFO--
+ * Address:	802CB914
+ * Size:	000008
+ */
+TOdamaHahen::@4 @~TOdamaHahen()
+{
 	/*
-	 * --INFO--
-	 * Address:	802CB914
-	 * Size:	000008
-	 */
-	TOdamaHahen::@4 @~TOdamaHahen()
-	{
-		/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx11TOdamaHahenFv
-		*/
-	}
+addi     r3, r3, -4
+b        __dt__Q23efx11TOdamaHahenFv
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	802CB91C
+ * Size:	000008
+ */
+TOdamaDeadHahenA::@4 @~TOdamaDeadHahenA()
+{
 	/*
-	 * --INFO--
-	 * Address:	802CB91C
-	 * Size:	000008
-	 */
-	TOdamaDeadHahenA::@4 @~TOdamaDeadHahenA()
-	{
-		/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx16TOdamaDeadHahenAFv
-		*/
-	}
+addi     r3, r3, -4
+b        __dt__Q23efx16TOdamaDeadHahenAFv
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	802CB924
+ * Size:	000008
+ */
+TOdamaDeadHahenB::@4 @~TOdamaDeadHahenB()
+{
 	/*
-	 * --INFO--
-	 * Address:	802CB924
-	 * Size:	000008
-	 */
-	TOdamaDeadHahenB::@4 @~TOdamaDeadHahenB()
-	{
-		/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx16TOdamaDeadHahenBFv
-		*/
-	}
+addi     r3, r3, -4
+b        __dt__Q23efx16TOdamaDeadHahenBFv
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	802CB92C
+ * Size:	000008
+ */
+TOdamaFur2::@4 @~TOdamaFur2()
+{
 	/*
-	 * --INFO--
-	 * Address:	802CB92C
-	 * Size:	000008
-	 */
-	TOdamaFur2::@4 @~TOdamaFur2()
-	{
-		/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx10TOdamaFur2Fv
-		*/
-	}
+addi     r3, r3, -4
+b        __dt__Q23efx10TOdamaFur2Fv
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	802CB934
+ * Size:	000008
+ */
+TOdamaDeadHahenC1::@4 @~TOdamaDeadHahenC1()
+{
 	/*
-	 * --INFO--
-	 * Address:	802CB934
-	 * Size:	000008
-	 */
-	TOdamaDeadHahenC1::@4 @~TOdamaDeadHahenC1()
-	{
-		/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx17TOdamaDeadHahenC1Fv
-		*/
-	}
+addi     r3, r3, -4
+b        __dt__Q23efx17TOdamaDeadHahenC1Fv
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	802CB93C
+ * Size:	000008
+ */
+TOdamaDeadHahenC2::@4 @~TOdamaDeadHahenC2()
+{
 	/*
-	 * --INFO--
-	 * Address:	802CB93C
-	 * Size:	000008
-	 */
-	TOdamaDeadHahenC2::@4 @~TOdamaDeadHahenC2()
-	{
-		/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx17TOdamaDeadHahenC2Fv
-		*/
-	}
+addi     r3, r3, -4
+b        __dt__Q23efx17TOdamaDeadHahenC2Fv
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	802CB944
+ * Size:	000008
+ */
+TOdamaFur1::@4 @~TOdamaFur1()
+{
 	/*
-	 * --INFO--
-	 * Address:	802CB944
-	 * Size:	000008
-	 */
-	TOdamaFur1::@4 @~TOdamaFur1()
-	{
-		/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx10TOdamaFur1Fv
-		*/
-	}
+addi     r3, r3, -4
+b        __dt__Q23efx10TOdamaFur1Fv
+	*/
+}
 } // namespace efx
 
 } // namespace Game

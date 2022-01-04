@@ -5,21 +5,21 @@
 
 namespace og {
 namespace Screen {
-	struct AngleMgr {
-		enum State { AGM_Start = 0, AGM_Chase, AGM_Finish };
+struct AngleMgr {
+	enum State { AGM_Start = 0, AGM_Chase, AGM_Finish };
 
-		AngleMgr();
-		void init(float, float, float);
-		void chase(float, float);
-		float calc();
+	AngleMgr();
+	void init(float, float, float);
+	void chase(float, float);
+	float calc();
 
-		f32 m_currentAngle; // _00, guessed name
-		f32 m_angleStep;    // _04, guessed name
-		f32 m_targetAngle;  // _08, guessed name
-		f32 m_interpRate;   // _0C, guessed name
-		f32 m_scale;        // _10, guessed name
-		s32 m_state;        // _14
-	};
+	f32 m_currentAngle; // _00, guessed name
+	f32 m_angleStep;    // _04, guessed name
+	f32 m_targetAngle;  // _08, guessed name
+	f32 m_interpRate;   // _0C, guessed name
+	f32 m_scale;        // _10, guessed name
+	s32 m_state;        // _14
+};
 } // namespace Screen
 } // namespace og
 

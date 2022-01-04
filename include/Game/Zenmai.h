@@ -11,26 +11,26 @@ namespace Game {
 struct EnemyBirthArg;
 
 namespace Zenmai {
-	struct Mgr {
-		Mgr(int, unsigned char);
-		~Mgr();
+struct Mgr {
+	Mgr(int, unsigned char);
+	~Mgr();
 
-		void birth(Game::EnemyBirthArg&);
-		void createObj(int);
-		void doAlloc();
-		void doLoadBmd(void*);
-		void getEnemy(int);
-		void getEnemyTypeID();
-	};
+	void birth(Game::EnemyBirthArg&);
+	void createObj(int);
+	void doAlloc();
+	void doLoadBmd(void*);
+	void getEnemy(int);
+	void getEnemyTypeID();
+};
 
-	struct Obj {
-		Obj();
-		~Obj();
+struct Obj {
+	Obj();
+	~Obj();
 
-		void getEnemyTypeID();
-		void getLODCylinder(Sys::Cylinder&);
-		void setParameters();
-	};
+	void getEnemyTypeID();
+	void getLODCylinder(Sys::Cylinder&);
+	void setParameters();
+};
 } // namespace Zenmai
 } // namespace Game
 

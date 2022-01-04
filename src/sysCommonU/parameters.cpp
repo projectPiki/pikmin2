@@ -106,6 +106,15 @@ BaseParm* Parameters::findParm(u32 rawID)
  */
 template <> void Parm<int>::read(Stream& stream) { m_value = stream.readInt(); }
 
+struct F {
+};
+int a;
+namespace NS {
+struct Af {
+	int tha;
+};
+} // namespace NS
+
 /*
  * --INFO--
  * Address:	80413958

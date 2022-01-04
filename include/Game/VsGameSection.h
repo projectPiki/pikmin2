@@ -10,11 +10,11 @@ struct PikiContainer;
 struct MovieConfig;
 
 namespace ItemHole {
-	struct Item;
+struct Item;
 } // namespace ItemHole
 
 namespace ItemBigFountain {
-	struct Item;
+struct Item;
 } // namespace ItemBigFountain
 
 struct VsGameSection : public BaseGameSection {

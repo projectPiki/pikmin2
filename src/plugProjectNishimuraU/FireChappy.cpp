@@ -1961,57 +1961,57 @@ void EnemyBase::@768 @12 @viewGetShape()
 
 namespace efx {
 
+/*
+ * --INFO--
+ * Address:	80290704
+ * Size:	000008
+ */
+THanachoY::@4 @~THanachoY()
+{
 	/*
-	 * --INFO--
-	 * Address:	80290704
-	 * Size:	000008
-	 */
-	THanachoY::@4 @~THanachoY()
-	{
-		/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx9THanachoYFv
-		*/
-	}
+addi     r3, r3, -4
+b        __dt__Q23efx9THanachoYFv
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	8029070C
+ * Size:	000008
+ */
+TYakiFlick::@4 @~TYakiFlick()
+{
 	/*
-	 * --INFO--
-	 * Address:	8029070C
-	 * Size:	000008
-	 */
-	TYakiFlick::@4 @~TYakiFlick()
-	{
-		/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx10TYakiFlickFv
-		*/
-	}
+addi     r3, r3, -4
+b        __dt__Q23efx10TYakiFlickFv
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	80290714
+ * Size:	000008
+ */
+TYakiDeadsmoke::@4 @~TYakiDeadsmoke()
+{
 	/*
-	 * --INFO--
-	 * Address:	80290714
-	 * Size:	000008
-	 */
-	TYakiDeadsmoke::@4 @~TYakiDeadsmoke()
-	{
-		/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx14TYakiDeadsmokeFv
-		*/
-	}
+addi     r3, r3, -4
+b        __dt__Q23efx14TYakiDeadsmokeFv
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	8029071C
+ * Size:	000008
+ */
+TYakiSteam::@4 @~TYakiSteam()
+{
 	/*
-	 * --INFO--
-	 * Address:	8029071C
-	 * Size:	000008
-	 */
-	TYakiSteam::@4 @~TYakiSteam()
-	{
-		/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx10TYakiSteamFv
-		*/
-	}
+addi     r3, r3, -4
+b        __dt__Q23efx10TYakiSteamFv
+	*/
+}
 } // namespace efx
 
 } // namespace efx

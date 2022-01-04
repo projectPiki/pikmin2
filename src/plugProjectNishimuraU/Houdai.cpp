@@ -5970,96 +5970,96 @@ void EnemyBase::@1056 @12 @viewGetShape()
 
 namespace efx {
 
+/*
+ * --INFO--
+ * Address:	802C3914
+ * Size:	000008
+ */
+THdamaOnHahen2::@4 @~THdamaOnHahen2()
+{
 	/*
-	 * --INFO--
-	 * Address:	802C3914
-	 * Size:	000008
-	 */
-	THdamaOnHahen2::@4 @~THdamaOnHahen2()
-	{
-		/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx14THdamaOnHahen2Fv
-		*/
-	}
+addi     r3, r3, -4
+b        __dt__Q23efx14THdamaOnHahen2Fv
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	802C391C
+ * Size:	000008
+ */
+THdamaSteam::@4 @~THdamaSteam()
+{
 	/*
-	 * --INFO--
-	 * Address:	802C391C
-	 * Size:	000008
-	 */
-	THdamaSteam::@4 @~THdamaSteam()
-	{
-		/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx11THdamaSteamFv
-		*/
-	}
+addi     r3, r3, -4
+b        __dt__Q23efx11THdamaSteamFv
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	802C3924
+ * Size:	000008
+ */
+THdamaSteamSt::@4 @~THdamaSteamSt()
+{
 	/*
-	 * --INFO--
-	 * Address:	802C3924
-	 * Size:	000008
-	 */
-	THdamaSteamSt::@4 @~THdamaSteamSt()
-	{
-		/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx13THdamaSteamStFv
-		*/
-	}
+addi     r3, r3, -4
+b        __dt__Q23efx13THdamaSteamStFv
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	802C392C
+ * Size:	000008
+ */
+THdamaHahen::@4 @~THdamaHahen()
+{
 	/*
-	 * --INFO--
-	 * Address:	802C392C
-	 * Size:	000008
-	 */
-	THdamaHahen::@4 @~THdamaHahen()
-	{
-		/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx11THdamaHahenFv
-		*/
-	}
+addi     r3, r3, -4
+b        __dt__Q23efx11THdamaHahenFv
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	802C3934
+ * Size:	000008
+ */
+THdamaOnHahen1::@4 @~THdamaOnHahen1()
+{
 	/*
-	 * --INFO--
-	 * Address:	802C3934
-	 * Size:	000008
-	 */
-	THdamaOnHahen1::@4 @~THdamaOnHahen1()
-	{
-		/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx14THdamaOnHahen1Fv
-		*/
-	}
+addi     r3, r3, -4
+b        __dt__Q23efx14THdamaOnHahen1Fv
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	802C393C
+ * Size:	000008
+ */
+THdamaOnSteam1::@4 @~THdamaOnSteam1()
+{
 	/*
-	 * --INFO--
-	 * Address:	802C393C
-	 * Size:	000008
-	 */
-	THdamaOnSteam1::@4 @~THdamaOnSteam1()
-	{
-		/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx14THdamaOnSteam1Fv
-		*/
-	}
+addi     r3, r3, -4
+b        __dt__Q23efx14THdamaOnSteam1Fv
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	802C3944
+ * Size:	000008
+ */
+THdamaSteamBd::@4 @~THdamaSteamBd()
+{
 	/*
-	 * --INFO--
-	 * Address:	802C3944
-	 * Size:	000008
-	 */
-	THdamaSteamBd::@4 @~THdamaSteamBd()
-	{
-		/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx13THdamaSteamBdFv
-		*/
-	}
+addi     r3, r3, -4
+b        __dt__Q23efx13THdamaSteamBdFv
+	*/
+}
 } // namespace efx
 
 } // namespace Game

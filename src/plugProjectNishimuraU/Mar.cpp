@@ -3853,18 +3853,18 @@ void EnemyBase::@804 @12 @viewGetShape()
 
 namespace efx {
 
+/*
+ * --INFO--
+ * Address:	80281E94
+ * Size:	000008
+ */
+TFusenSui::@4 @~TFusenSui()
+{
 	/*
-	 * --INFO--
-	 * Address:	80281E94
-	 * Size:	000008
-	 */
-	TFusenSui::@4 @~TFusenSui()
-	{
-		/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx9TFusenSuiFv
-		*/
-	}
+addi     r3, r3, -4
+b        __dt__Q23efx9TFusenSuiFv
+	*/
+}
 } // namespace efx
 
 } // namespace efx

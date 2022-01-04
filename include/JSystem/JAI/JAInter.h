@@ -5,8 +5,8 @@
 
 namespace JAInter {
 namespace SequenceMgr {
-	struct CustomHeapInfo {
-	};
+struct CustomHeapInfo {
+};
 } // namespace SequenceMgr
 struct Actor {
 };
@@ -46,20 +46,20 @@ struct SoundInfo {
 	} volume;
 };
 namespace SoundTable {
-	void init(u8*, u32);
-	SoundInfo* getInfoPointer(u32);
-	void getInfoFormat(u32);
-	void setInfoTrack(u32, u8);
-	u8 getCategotyMax(void);
-	void getSoundMax(u8);
-	void getSoundTablePointer(void);
+void init(u8*, u32);
+SoundInfo* getInfoPointer(u32);
+void getInfoFormat(u32);
+void setInfoTrack(u32, u8);
+u8 getCategotyMax(void);
+void getSoundMax(u8);
+void getSoundTablePointer(void);
 
-	extern u8 mVersion;
-	extern u8 mCategotyMax;
-	extern u16* mSoundMax;
-	extern u32 mDataSize;
-	extern SoundInfo** mPointerCategory;
-	extern u8* mAddress;
+extern u8 mVersion;
+extern u8 mCategotyMax;
+extern u16* mSoundMax;
+extern u32 mDataSize;
+extern SoundInfo** mPointerCategory;
+extern u8* mAddress;
 }; // namespace SoundTable
 
 void deleteTmpDVDFile(u8**);

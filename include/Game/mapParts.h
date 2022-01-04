@@ -24,10 +24,10 @@ struct ResTIMG;
 namespace Game {
 struct RoomLink;
 namespace Cave {
-	struct BaseGen;
-	struct EditMapUnit;
-	struct ObjectLayout;
-	struct FloorInfo;
+struct BaseGen;
+struct EditMapUnit;
+struct ObjectLayout;
+struct FloorInfo;
 } // namespace Cave
 } // namespace Game
 namespace Sys {

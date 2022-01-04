@@ -2405,18 +2405,18 @@ void EnemyBase::@772 @12 @viewGetShape()
 
 namespace efx {
 
+/*
+ * --INFO--
+ * Address:	80270898
+ * Size:	000008
+ */
+TDenkipoleSign::@4 @~TDenkipoleSign()
+{
 	/*
-	 * --INFO--
-	 * Address:	80270898
-	 * Size:	000008
-	 */
-	TDenkipoleSign::@4 @~TDenkipoleSign()
-	{
-		/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx14TDenkipoleSignFv
-		*/
-	}
+addi     r3, r3, -4
+b        __dt__Q23efx14TDenkipoleSignFv
+	*/
+}
 } // namespace efx
 
 } // namespace efx

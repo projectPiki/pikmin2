@@ -16,7 +16,7 @@ typedef s32 ERenderMode;
 
 namespace Game {
 namespace CommonSaveData {
-	struct Mgr;
+struct Mgr;
 };
 } // namespace Game
 

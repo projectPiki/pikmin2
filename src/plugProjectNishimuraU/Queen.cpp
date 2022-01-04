@@ -4727,96 +4727,96 @@ void EnemyBase::@784 @12 @viewGetShape()
 
 namespace efx {
 
+/*
+ * --INFO--
+ * Address:	8028C54C
+ * Size:	000008
+ */
+TQueenLay::@4 @~TQueenLay()
+{
 	/*
-	 * --INFO--
-	 * Address:	8028C54C
-	 * Size:	000008
-	 */
-	TQueenLay::@4 @~TQueenLay()
-	{
-		/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx9TQueenLayFv
-		*/
-	}
+addi     r3, r3, -4
+b        __dt__Q23efx9TQueenLayFv
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	8028C554
+ * Size:	000008
+ */
+TQueenCrashR::@4 @~TQueenCrashR()
+{
 	/*
-	 * --INFO--
-	 * Address:	8028C554
-	 * Size:	000008
-	 */
-	TQueenCrashR::@4 @~TQueenCrashR()
-	{
-		/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx12TQueenCrashRFv
-		*/
-	}
+addi     r3, r3, -4
+b        __dt__Q23efx12TQueenCrashRFv
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	8028C55C
+ * Size:	000008
+ */
+TQueenCrashL::@4 @~TQueenCrashL()
+{
 	/*
-	 * --INFO--
-	 * Address:	8028C55C
-	 * Size:	000008
-	 */
-	TQueenCrashL::@4 @~TQueenCrashL()
-	{
-		/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx12TQueenCrashLFv
-		*/
-	}
+addi     r3, r3, -4
+b        __dt__Q23efx12TQueenCrashLFv
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	8028C564
+ * Size:	000008
+ */
+TQueenCrashRock::@4 @~TQueenCrashRock()
+{
 	/*
-	 * --INFO--
-	 * Address:	8028C564
-	 * Size:	000008
-	 */
-	TQueenCrashRock::@4 @~TQueenCrashRock()
-	{
-		/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx15TQueenCrashRockFv
-		*/
-	}
+addi     r3, r3, -4
+b        __dt__Q23efx15TQueenCrashRockFv
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	8028C56C
+ * Size:	000008
+ */
+TQueenDamage::@4 @~TQueenDamage()
+{
 	/*
-	 * --INFO--
-	 * Address:	8028C56C
-	 * Size:	000008
-	 */
-	TQueenDamage::@4 @~TQueenDamage()
-	{
-		/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx12TQueenDamageFv
-		*/
-	}
+addi     r3, r3, -4
+b        __dt__Q23efx12TQueenDamageFv
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	8028C574
+ * Size:	000008
+ */
+TQueenWakeup::@4 @~TQueenWakeup()
+{
 	/*
-	 * --INFO--
-	 * Address:	8028C574
-	 * Size:	000008
-	 */
-	TQueenWakeup::@4 @~TQueenWakeup()
-	{
-		/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx12TQueenWakeupFv
-		*/
-	}
+addi     r3, r3, -4
+b        __dt__Q23efx12TQueenWakeupFv
+	*/
+}
 
+/*
+ * --INFO--
+ * Address:	8028C57C
+ * Size:	000008
+ */
+TQueenHanacho::@4 @~TQueenHanacho()
+{
 	/*
-	 * --INFO--
-	 * Address:	8028C57C
-	 * Size:	000008
-	 */
-	TQueenHanacho::@4 @~TQueenHanacho()
-	{
-		/*
-	addi     r3, r3, -4
-	b        __dt__Q23efx13TQueenHanachoFv
-		*/
-	}
+addi     r3, r3, -4
+b        __dt__Q23efx13TQueenHanachoFv
+	*/
+}
 } // namespace efx
 
 } // namespace Game
