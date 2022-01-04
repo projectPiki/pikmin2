@@ -15,7 +15,7 @@ int fwide(FILE* stream, int mode)
 		goto early_exit;
 	if (stream->mode.file_kind == __closed_file)
 	early_exit:
-		return result = 0;
+		return 0;
 	orientation = stream->mode.file_orientation;
 	switch (orientation)
 	{
