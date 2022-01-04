@@ -10,9 +10,9 @@
  * Address:	80413658
  * Size:	0000AC
  */
-BaseParm::BaseParm(Parameters* parameters, ulong rawID, char* comment)
+BaseParm::BaseParm(Parameters* parameters, ulong rawID, char* name)
     : m_id()
-    , m_comment(comment)
+    , m_name(name)
 {
 	BaseParm* parm1;
 	BaseParm* parm2 = nullptr;
@@ -37,16 +37,18 @@ BaseParm::BaseParm(Parameters* parameters, ulong rawID, char* comment)
 void Parameters::write(Stream& stream)
 {
 	stream.textBeginGroup(m_name);
-	for (BaseParm* parm = m_parmsHead; parm != nullptr; parm = parm->m_next) {
-		stream.textWriteTab(stream.m_tabCount);
+
+	for (BaseParm* parm = m_parmsHead; parm; parm = parm->m_next) {
+		stream.addTab();
 		parm->m_id.write(stream);
 		stream.writeInt(parm->size());
 		parm->write(stream);
-		stream.textWriteText("\t# %s\r\n", parm->m_comment);
+		stream.textWriteText("\t# %s\r\n", parm->m_name);
 	}
-	stream.textWriteTab(stream.m_tabCount);
+	stream.addTab();
 	ID32::eof.write(stream);
 	stream.textWriteText("\r\n");
+
 	stream.textEndGroup();
 }
 
@@ -61,14 +63,17 @@ void Parameters::read(Stream& stream)
 	while (true) {
 		ID32 currentID;
 		currentID.read(stream);
+
 		if (currentID.isEof()) {
 			return;
 		}
+
 		char buffer[256];
 		currentID.sprint(buffer);
-		int parmSize = stream.readInt();
-		currentParm  = findParm(currentID.getID());
-		if (currentParm != nullptr) {
+
+		const int parmSize = stream.readInt();
+		// Check if we can find the parameter referenced by the ID in the stream
+		if (currentParm = findParm(currentID.getID())) {
 			currentParm->read(stream);
 		} else if (parmSize != -1) {
 			stream.skipReading(parmSize);
@@ -90,6 +95,7 @@ BaseParm* Parameters::findParm(ulong rawID)
 			return parm;
 		}
 	}
+
 	return nullptr;
 }
 
@@ -177,12 +183,14 @@ ParmString::ParmString(Parameters* parameters, char* value, int length,
     : BaseParm(parameters, rawID, comment)
     , m_length(length)
 {
-	char* buffer     = new char[m_length + 1];
-	m_value          = buffer;
-	int actualLength = strlen(value);
-	int i;
-	for (i = 0; i < actualLength; ++i) {
+	char* buffer = new char[m_length + 1];
+	m_value      = buffer;
+
+	int valueLen = strlen(value);
+	int i        = 0;
+	while (i < valueLen) {
 		m_value[i] = value[i];
+		i++;
 	}
 	m_value[i] = '\0';
 }
@@ -206,13 +214,13 @@ void ParmString::read(Stream& stream) { stream.readString(m_value, m_length); }
  * Address:	80413CC4
  * Size:	0000B8
  */
-ParmEnum::ParmEnum(Parameters* parameters, char** doublechar, ulong value,
+ParmEnum::ParmEnum(Parameters* parameters, char** enumValues, ulong value,
                    int length, long rawID, char* comment)
     : BaseParm(parameters, rawID, comment)
 {
-	m_value = value;
-	_1C     = length;
-	_20     = doublechar;
+	m_value        = value;
+	m_enumElemSize = length;
+	m_enumValues   = enumValues;
 }
 
 /*
