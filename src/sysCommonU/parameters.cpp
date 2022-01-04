@@ -39,13 +39,13 @@ void Parameters::write(Stream& stream)
 	stream.textBeginGroup(m_name);
 
 	for (BaseParm* parm = m_parmsHead; parm; parm = parm->m_next) {
-		stream.addTab();
+		stream.writePadding(STREAM_MODE_TEXT);
 		parm->m_id.write(stream);
 		stream.writeInt(parm->size());
 		parm->write(stream);
 		stream.textWriteText("\t# %s\r\n", parm->m_name);
 	}
-	stream.addTab();
+	stream.writePadding(STREAM_MODE_TEXT);
 	ID32::eof.write(stream);
 	stream.textWriteText("\r\n");
 

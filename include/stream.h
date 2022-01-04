@@ -34,7 +34,6 @@ struct Stream {
 	void writeFloat(float);
 	void writeString(char*);
 	void writeFixedString(char*);
-	void writePadding(u32);
 
 	u8 readByte();
 	u16 readU16();
@@ -56,7 +55,14 @@ struct Stream {
 	u8 _readByte();
 	void _writeByte(u8);
 
-	inline void addTab() { textWriteTab(m_tabCount); }
+	inline void writePadding(u32 mode)
+	{
+		if (mode == STREAM_MODE_TEXT) {
+			textWriteTab(m_tabCount);
+		} else {
+			// Who nose
+		}
+	}
 
 	u32 _04;        // _004
 	int m_position; // _008

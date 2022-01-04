@@ -24,19 +24,19 @@ EnemyPelletInfo::EnemyPelletInfo()
  */
 void EnemyPelletInfo::write(Stream& stream)
 {
-	stream.addTab();
+	stream.writePadding(STREAM_MODE_TEXT);
 	stream.writeByte(m_color);
 	stream.textWriteText("\t\t# %s \r\n", "Pellet color");
-	stream.addTab();
+	stream.writePadding(STREAM_MODE_TEXT);
 	stream.writeByte(m_size);
 	stream.textWriteText("\t\t# %s \r\n", "Pellet size");
-	stream.addTab();
+	stream.writePadding(STREAM_MODE_TEXT);
 	stream.writeByte(m_minPellets);
 	stream.textWriteText("\t\t# %s \r\n", "Pellet Min");
-	stream.addTab();
+	stream.writePadding(STREAM_MODE_TEXT);
 	stream.writeByte(m_maxPellets);
 	stream.textWriteText("\t\t# %s \r\n", "Pellet Max");
-	stream.addTab();
+	stream.writePadding(STREAM_MODE_TEXT);
 	stream.writeFloat(m_spawnThreshold);
 	stream.textWriteText("\t\t# %s \r\n", "Pellet Min");
 }
