@@ -21,7 +21,7 @@ template <int length, typename T> struct TAtanTable {
 template <> struct TAtanTable<1024, float> {
 	TAtanTable()
 	{
-		uint i = 0;
+		i32 i = 0;
 		do {
 			m_table[i] = atan((double)i * 9.765625E-4);
 		} while (i < 1024);
@@ -44,7 +44,7 @@ template <int length, typename T> struct TSinCosTable {
 template <> struct TSinCosTable<2048, float> {
 	inline TSinCosTable()
 	{
-		uint i = 0;
+		i32 i = 0;
 		do {
 			m_table[i].first = sin((double)i * LONG_TAU / 2048.0);
 			m_table[i].first = cos((double)i * LONG_TAU / 2048.0);

@@ -62,7 +62,7 @@ struct JUTRomFont : public JUTFont {
 	};
 	// @fabricatedName
 	struct FontHeader {
-		uint m_fontType;
+		i32 m_fontType;
 		u8 _04[4];
 		u16 m_ascent;
 		u16 m_descent;

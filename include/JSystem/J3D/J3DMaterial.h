@@ -40,10 +40,10 @@ struct J3DMaterial {
 	virtual void change();                           // _24
 
 	void calcCurrentMtx();
-	uint calcSizePEBlock(J3DModelLoaderFlags, ulong);
-	uint calcSizeTevBlock(int);
-	uint calcSizeTexGenBlock(J3DModelLoaderFlags);
-	uint countDLSize();
+	i32 calcSizePEBlock(J3DModelLoaderFlags, ulong);
+	i32 calcSizeTevBlock(int);
+	i32 calcSizeTexGenBlock(J3DModelLoaderFlags);
+	i32 countDLSize();
 	J3DColorBlock* createColorBlock(ulong);
 	J3DIndBlock* createIndBlock(int);
 	J3DPEBlock* createPEBlock(ulong, ulong);
@@ -70,8 +70,8 @@ struct J3DMaterial {
 	J3DPEBlock* m_peBlock;         // _34
 	J3DMaterial* _38;              // _38
 	J3DMaterialAnm* m_anm;         // _3C
-	uint _40;                      // _40
-	uint _44;                      // _44
+	i32 _40;                      // _40
+	i32 _44;                      // _44
 	J3DDisplayListObj* _48;        // _48
 };
 

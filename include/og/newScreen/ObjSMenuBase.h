@@ -46,7 +46,7 @@ namespace newScreen {
 		float _4C;                                  // _4C
 		u8 _50;                                     // _50
 		J2DPictureEx* m_Peffect;                    // _54
-		uint m_buttonStates[2];                     // _58
+		i32 m_buttonStates[2];                     // _58
 		J2DScreen* m_LRScreen;                      // _60
 		J2DPane* m_Nyaji_l;                         // _64
 		J2DPane* m_Nyaji_r;                         // _68

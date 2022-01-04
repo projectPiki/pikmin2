@@ -63,7 +63,7 @@ struct JKRHeap : public JKRDisposer {
 	void freeTail();
 	void resize(void*, ulong);
 	ulong getFreeSize();
-	uint getTotalFreeSize();
+	i32 getTotalFreeSize();
 	u8 changeGroupID(u8);
 	u8 getCurrentGroupId();
 	ulong getMaxAllocatableSize(int);

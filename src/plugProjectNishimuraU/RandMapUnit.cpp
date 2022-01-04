@@ -2332,7 +2332,7 @@ namespace Cave {
 	 * Address:	80247704
 	 * Size:	000130
 	 */
-	uint RandMapUnit::getLoopMapNode(MapNode**)
+	i32 RandMapUnit::getLoopMapNode(MapNode**)
 	{
 		/*
 		stwu     r1, -0x60(r1)

@@ -2341,8 +2341,8 @@ void ObjFloor::drawBG(Graphics& gfx)
 	}
 	if (_68.channels.a != 0) {
 		gfx.m_perspGraph.setPort();
-		uint v1 = System::getRenderModeObj()->efbHeight;
-		uint v2 = System::getRenderModeObj()->xfbHeight;
+		i32 v1 = System::getRenderModeObj()->efbHeight;
+		i32 v2 = System::getRenderModeObj()->xfbHeight;
 		gfx.m_perspGraph.setColor(_68, _68, _68, _68);
 		GXSetAlphaUpdate(GX_FALSE);
 		JGeometry::TBox2f box(0.0f, 0.0f, v1, v2);

@@ -219,7 +219,7 @@ lbl_80026544:
  * Address:	80026564
  * Size:	00008C
  */
-uint JSURandomInputStream::align(long)
+i32 JSURandomInputStream::align(long)
 {
 	/*
 	stwu     r1, -0x10(r1)

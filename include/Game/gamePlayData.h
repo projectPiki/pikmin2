@@ -298,7 +298,7 @@ struct PlayData : public CNode {
 	LimitGen* m_limitGen; // _E4
 
 	// Current Poko count.
-	uint m_pokoCount; // _E8
+	i32 m_pokoCount; // _E8
 
 	int _EC; // _EC
 

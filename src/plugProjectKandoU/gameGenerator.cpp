@@ -213,7 +213,7 @@
         .4byte 0x67720000
 */
 
-uint GeneratorCurrentVersion = 'v0.3';
+i32 GeneratorCurrentVersion = 'v0.3';
 
 /*
  * --INFO--
@@ -338,7 +338,7 @@ void GenBase::doRead(Stream&) { }
  */
 ulong GenObject::getLatestVersion()
 {
-	uint count = GenObjectFactory::factory->m_count;
+	i32 count = GenObjectFactory::factory->m_count;
 	if (count <= 0) {
 		return m_typeID;
 	}
@@ -941,7 +941,7 @@ void Generator::read(Stream& input)
 	ID32 temp;
 	temp.read(input);
 	int i                 = 0;
-	uint count            = GenObjectFactory::factory->m_count;
+	i32 count            = GenObjectFactory::factory->m_count;
 	GenObject* makeResult = nullptr;
 	if (0 < count) {
 		do {

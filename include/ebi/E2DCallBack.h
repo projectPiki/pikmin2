@@ -105,7 +105,7 @@ struct E2DCallBack_WindowCursor : public E2DCallBack_Base {
 
 	JGeometry::TBox2f _20;    // _20
 	JGeometry::TBox2f _30;    // _30
-	uint _40;                 // _40
+	i32 _40;                 // _40
 	u32 _44;                  // _44
 	og::Screen::ScaleMgr _48; // _48
 	float _64;                // _64

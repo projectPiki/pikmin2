@@ -1706,7 +1706,7 @@ void J2DIndBlockNull::setGX() { }
  * Address:	80053280
  * Size:	00000C
  */
-uint J2DIndBlockNull::getType()
+i32 J2DIndBlockNull::getType()
 {
 	/*
 	lis      r3, 0x49424C4E@ha

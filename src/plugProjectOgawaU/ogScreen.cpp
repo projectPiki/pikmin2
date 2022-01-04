@@ -1175,7 +1175,7 @@ lbl_803029AC:
 	 * Address:	803029C0
 	 * Size:	0000B4
 	 */
-	uint CalcKeta(ulong)
+	i32 CalcKeta(ulong)
 	{
 		/*
 	stwu     r1, -0x40(r1)

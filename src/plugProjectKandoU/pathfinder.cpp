@@ -197,7 +197,7 @@ AStarContext::AStarContext(void)
 void Pathfinder::update(void)
 {
 	// sys->m_timers->_start("path", true);
-	// uint contextsRemaining = m_aStarContextCount;
+	// i32 contextsRemaining = m_aStarContextCount;
 
 	/*
 	stwu     r1, -0x20(r1)

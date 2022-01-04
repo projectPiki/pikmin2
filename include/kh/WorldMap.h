@@ -215,7 +215,7 @@ namespace Screen {
 		og::Screen::ArrowAlphaBlink* m_arrowAlphaBlink;            // _170
 		int m_unknownSwitch;                                       // _174
 		int _178;                                                  // _178
-		uint _17C;                                                 // _17C
+		i32 _17C;                                                 // _17C
 		char m_stateID;                                            // _180
 		u8 m_totalCourseCount;                                     // _181
 		u8 m_courseJustOpenFlags;                                  // _182

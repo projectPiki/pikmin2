@@ -18,7 +18,7 @@ struct J3DTexGenBlock {
 	virtual void diff(ulong)                                      = 0; // _1C
 	virtual void diffTexMtx()                                     = 0; // _20
 	virtual void diffTexGen()                                     = 0; // _24
-	virtual uint countDLSize();                                        // _28
+	virtual i32 countDLSize();                                        // _28
 	virtual JBlockType getType() = 0;                                  // _2C
 	virtual void setTexGenNum(const ulong*);                           // _30
 	virtual void setTexGenNum(ulong);                                  // _34
@@ -65,7 +65,7 @@ struct J3DTexGenBlockPatched : public J3DTexGenBlock {
 	virtual void diff(ulong);                                      // _1C
 	virtual void diffTexMtx();                                     // _20
 	virtual void diffTexGen();                                     // _24
-	virtual uint countDLSize();                                    // _28
+	virtual i32 countDLSize();                                    // _28
 	virtual JBlockType getType();                                  // _2C
 	virtual void setTexGenNum(const ulong*);                       // _30
 	virtual void setTexGenNum(ulong);                              // _34
@@ -89,7 +89,7 @@ struct J3DTexGenBlockBasic : public J3DTexGenBlockPatched {
 	virtual void reset(J3DTexGenBlock*);          // _00
 	virtual void load();                          // _14
 	virtual void patch();                         // _18
-	virtual uint countDLSize();                   // _28
+	virtual i32 countDLSize();                   // _28
 	virtual JBlockType getType();                 // _2C
 	virtual void setNBTScale(const J3DNBTScale*); // _4C
 	virtual void setNBTScale(J3DNBTScale);        // _50
@@ -103,7 +103,7 @@ struct J3DTexGenBlock4 : public J3DTexGenBlockPatched {
 	virtual void reset(J3DTexGenBlock*);          // _00
 	virtual void load();                          // _14
 	virtual void patch();                         // _18
-	virtual uint countDLSize();                   // _28
+	virtual i32 countDLSize();                   // _28
 	virtual JBlockType getType();                 // _2C
 	virtual void setNBTScale(const J3DNBTScale*); // _4C
 	virtual void setNBTScale(J3DNBTScale);        // _50

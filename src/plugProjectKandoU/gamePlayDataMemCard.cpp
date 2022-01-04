@@ -355,7 +355,7 @@ void PlayData::write(Stream& output)
 	output.writeInt(_BC);
 	output.textEndGroup();
 	output.textBeginGroup("* 返済度フラグ *");
-	for (uint i = 0; i < 2; i++) {
+	for (i32 i = 0; i < 2; i++) {
 		output.writeByte(_F0[i]);
 	}
 	// int i = 0;
@@ -413,13 +413,13 @@ void PlayData::write(Stream& output)
 	output.textEndGroup();
 	output.textBeginGroup("* ドーピング情報/Doping *");
 	char acStack300[272];
-	for (uint i = 0; i < 2; i++) {
+	for (i32 i = 0; i < 2; i++) {
 		output.textWriteTab(output.m_tabCount);
 		output.writeInt(_C0[i]);
 		sprintf(acStack300, "\t# dope[%d]\r\n", i);
 		output.textWriteText(acStack300);
 	}
-	for (uint i = 0; i < 2; i++) {
+	for (i32 i = 0; i < 2; i++) {
 		output.textWriteTab(output.m_tabCount);
 		output.writeInt(m_berryCount[i]);
 		sprintf(acStack300, "\t# dope-実[%d]\r\n", i);
@@ -445,7 +445,7 @@ void PlayData::write(Stream& output)
 	// } while (i < 2);
 	output.textEndGroup();
 	output.textBeginGroup("* コース情報 *");
-	uint courseCount = stageList->m_courseCount;
+	i32 courseCount = stageList->m_courseCount;
 	output.textWriteTab(output.m_tabCount);
 	output.writeInt((uint)courseCount);
 	output.textWriteText("\t# コース数\r\n");
@@ -457,7 +457,7 @@ void PlayData::write(Stream& output)
 			write_CaveOtakara(output);
 			output.textEndGroup();
 			output.textBeginGroup("* LimitGen *");
-			for (uint i = 0; i < stageList->m_courseCount; i += 1) {
+			for (i32 i = 0; i < stageList->m_courseCount; i += 1) {
 				m_limitGen[i].write(output);
 			}
 			output.textEndGroup();
@@ -489,7 +489,7 @@ void PlayData::write(Stream& output)
 			output.textWriteText("\r\n");
 			output.textEndGroup();
 			output.textBeginGroup("* WorldMap 演出用 *");
-			for (uint i = 0; i < stageList->m_courseCount; i += 1) {
+			for (i32 i = 0; i < stageList->m_courseCount; i += 1) {
 				output.writeByte(m_groundOtakaraCollectedOld[i]);
 			}
 			output.writeInt(m_pokoCountOld);
@@ -499,7 +499,7 @@ void PlayData::write(Stream& output)
 			    = (output.m_position - startPosition)
 			      + (generatorCache->m_heapSize - generatorCache->m_freeSize);
 			output.textBeginGroup("* DayEndResult用 *");
-			for (uint i = 0; i < 6; i++) {
+			for (i32 i = 0; i < 6; i++) {
 				output.writeInt(m_pikminYesterday[i]);
 				output.writeInt(m_pikminToday[i]);
 				output.textWriteText("\r\n");
@@ -1052,7 +1052,7 @@ void PlayData::read(Stream& input)
 		_BC = 0;
 	}
 	if ('j001' <= version.m_id.raw) {
-		for (uint i = 0; i < 2; i++) {
+		for (i32 i = 0; i < 2; i++) {
 			_F0[i] = input.readByte();
 		}
 	}
@@ -1079,8 +1079,8 @@ void PlayData::read(Stream& input)
 	for (int i = 0; i < 2; i++) {
 		m_berryCount[i] = input.readInt();
 	}
-	// uint courseNum = stageList->m_courseCount;
-	// uint cardNum = input.readInt();
+	// i32 courseNum = stageList->m_courseCount;
+	// i32 cardNum = input.readInt();
 	// JUT_ASSERTLINE(633, courseNum == cardNum, "SaveData ERROR : CourseNum=%d
 	// (card num=%d)\n", courseNum, cardNum); for (int i = 0; i < courseNum;
 	// i++) {
@@ -1115,7 +1115,7 @@ void PlayData::read(Stream& input)
 		m_pokoCountOld = input.readInt();
 		read_CaveOtakara_Old(input);
 	}
-	for (uint i = 0; i < 6; i++) {
+	for (i32 i = 0; i < 6; i++) {
 		m_pikminYesterday[i] = input.readInt();
 		m_pikminToday[i]     = input.readInt();
 	}
@@ -1678,7 +1678,7 @@ void PelletCropMemory::read(Stream& input)
 void OlimarData::write(Stream& output)
 {
 	output.textWriteTab(output.m_tabCount);
-	for (uint i = 0; i < 2; i++) {
+	for (i32 i = 0; i < 2; i++) {
 		output.writeByte(m_flags[i]);
 	}
 	output.textWriteText("\t# itemFlag\r\n");
@@ -1692,7 +1692,7 @@ void OlimarData::write(Stream& output)
  */
 void OlimarData::read(Stream& input)
 {
-	for (uint i = 0; i < 2; i++) {
+	for (i32 i = 0; i < 2; i++) {
 		m_flags[i] = input.readByte();
 	}
 }

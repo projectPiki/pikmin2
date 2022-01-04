@@ -52,7 +52,7 @@ struct JSURandomInputStream : public JSUMemoryInputStream {
 	virtual ~JSURandomInputStream(); // _00
 	virtual void skip(long);         // _08
 
-	uint align(long);
+	i32 align(long);
 	size_t peek(void*, long);
 	void seek(long, JSUStreamSeekFrom);
 };

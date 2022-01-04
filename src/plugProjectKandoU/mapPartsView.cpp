@@ -245,7 +245,7 @@ void PartsView::read(Stream& input)
 {
 	m_mapUnit = new MapUnit();
 	// TODO: Rename when we know what 6E is.
-	uint shouldRead6E = input.readInt();
+	i32 shouldRead6E = input.readInt();
 	char* name        = input.readString(nullptr, 0);
 	m_name            = name;
 	m_mapUnit->m_name = name;

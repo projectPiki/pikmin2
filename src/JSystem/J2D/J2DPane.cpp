@@ -4343,7 +4343,7 @@ void J2DAnmTransform::getTransform(u16, J3DTransformInfo*) const { }
  * Address:	80039A64
  * Size:	000008
  */
-uint J2DPane::getTypeID() const { return 0x10; }
+i32 J2DPane::getTypeID() const { return 0x10; }
 
 /*
  * --INFO--

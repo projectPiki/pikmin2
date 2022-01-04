@@ -56,7 +56,7 @@ struct J3DModel {
 
 	// _00 VTBL
 	J3DModelData* m_modelData;       // _04
-	uint _08;                        // _08 /* bitfield of some sort */
+	i32 _08;                        // _08 /* bitfield of some sort */
 	u32 m_displayListFlag;           // _0C
 	void* _10;                       // _10
 	u32 _14;                         // _14

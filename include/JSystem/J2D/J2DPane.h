@@ -29,7 +29,7 @@ struct ResTIMG;
 struct ResTLUT;
 struct TMaterial;
 
-typedef uint J2DRotateAxis;
+typedef i32 J2DRotateAxis;
 
 // Intended to be size 0x1.
 enum J2DBasePosition {
@@ -45,7 +45,7 @@ enum J2DBasePosition {
 };
 
 struct J2DScrnBlockHeader {
-	uint m_bloBlockType;
+	i32 m_bloBlockType;
 	int m_blockLength;
 };
 
@@ -56,7 +56,7 @@ struct J2DPane {
 	J2DPane(ulonglong, const JGeometry::TBox2f&);
 	J2DPane(J2DPane*, JSURandomInputStream*, u8);
 	virtual ~J2DPane();                                                  // _00
-	virtual uint getTypeID() const;                                      // _04
+	virtual i32 getTypeID() const;                                      // _04
 	virtual void move(float, float);                                     // _08
 	virtual void add(float, float);                                      // _0C
 	virtual void resize(float, float);                                   // _10
@@ -136,7 +136,7 @@ struct J2DPane {
 	// _00 VTBL
 	short _004;                      // _004
 	short _006;                      // _006
-	uint m_bloBlockType;             // _008
+	i32 m_bloBlockType;             // _008
 	u8 _00C[4];                      // _00C
 	ulonglong m_tag;                 // _010
 	ulonglong m_messageID;           // _018
@@ -237,7 +237,7 @@ struct J2DPicture : public J2DPane {
 	J2DPicture(ulonglong, const JGeometry::TBox2f&);
 
 	virtual ~J2DPicture();                                           // _00
-	virtual uint getTypeID() const;                                  // _04
+	virtual i32 getTypeID() const;                                  // _04
 	virtual void drawSelf(float, float);                             // _2C
 	virtual void drawSelf(float, float, float (*)[3][4]);            // _30
 	virtual void initiate(const ResTIMG*, const ResTLUT*);           // _8C
@@ -415,8 +415,8 @@ struct J2DPictureEx : public J2DPicture {
 	u8 _1A4;                               // _1A4
 };
 
-typedef uint J2DTextBoxHBinding;
-typedef uint J2DTextBoxVBinding;
+typedef i32 J2DTextBoxHBinding;
+typedef i32 J2DTextBoxVBinding;
 
 // Size: 0x138
 struct J2DTextBox : public J2DPane {

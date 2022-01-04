@@ -43,7 +43,7 @@ struct Generator : public CNode {
 	void informDeath(Creature*);
 
 	GenObject* _18;       // _18
-	uint _1C;             // _1C /* Initialized to '____' */
+	i32 _1C;             // _1C /* Initialized to '____' */
 	char _20[32];         // _20 /* shift-jis name given in generator files */
 	ID32 _40;             // _40
 	ID32 m_version;       // _4C
@@ -137,7 +137,7 @@ struct GenBase : public Parameters {
 	// _00 - _0C: Parameters
 	// _0C: vtable
 	ulong m_typeID; // _10
-	uint m_rawID;   // _14
+	i32 m_rawID;   // _14
 	char* _18;      // _18
 	char* _1C;      // _1C
 	u32 _20;        // _20
@@ -161,10 +161,10 @@ struct GenObjectFactory {
 	typedef GenObject* MakeFunction(void);
 	void createInstance();
 
-	uint m_typeID;                // _00
+	i32 m_typeID;                // _00
 	MakeFunction* m_makeFunction; // _04
 	char* m_name;                 // _08
-	uint m_version;               // _0C
+	i32 m_version;               // _0C
 
 	static struct GenObjectFactoryFactory* factory;
 };
@@ -180,13 +180,13 @@ struct GenObjectFactoryFactory {
 		m_limit     = 12;
 		m_count     = 0;
 	}
-	uint m_count;                  // _00
-	uint m_limit;                  // _04
+	i32 m_count;                  // _00
+	i32 m_limit;                  // _04
 	GenObjectFactory* m_factories; // _08
 	u8 _0C[4];                     // _0C
 };
 } // namespace Game
 
-extern uint GeneratorCurrentVersion;
+extern i32 GeneratorCurrentVersion;
 
 #endif

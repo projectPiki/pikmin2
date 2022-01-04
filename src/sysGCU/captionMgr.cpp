@@ -239,7 +239,7 @@ lbl_804509E4:
  */
 void Caption::Mgr::read(Stream& input)
 {
-	uint nodeCount = input.readInt();
+	i32 nodeCount = input.readInt();
 	P2ASSERTLINE(254, nodeCount >= 0);
 	for (int i = 0; i < nodeCount; i++) {
 		Node* node = new Node();

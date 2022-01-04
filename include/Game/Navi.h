@@ -161,7 +161,7 @@ struct Navi : public FakePiki, virtual public PelletView {
 	CPlate* m_cPlateMgr;                     // _254
 	u8 _258;                                 // _258
 	u8 m_stick;                              // _259
-	uint m_sprayCounts[2];                   // _25C
+	i32 m_sprayCounts[2];                   // _25C
 	u8 _264[4];                              // _264
 	bool m_isAlive;                          // _268
 	u8 _269;                                 // _269

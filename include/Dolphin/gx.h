@@ -19,8 +19,8 @@ typedef u8 GXBool;
 #define GX_DISABLE ((GXBool)0)
 
 // TODO: Replace(?) this block of typedefs. They're just placeholders for now.
-typedef uint GXCullMode;
-typedef uint _GXVtxAttrFmtList;
+typedef i32 GXCullMode;
+typedef i32 _GXVtxAttrFmtList;
 
 // Name of the vertex attribute or array. Attributes are listed in the ascending
 // order vertex data is required to be sent to the GP. Havent confirmed the GX

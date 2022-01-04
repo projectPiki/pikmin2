@@ -749,7 +749,7 @@ ulong JKRHeap::getFreeSize()
  * Address:	800237E0
  * Size:	00002C
  */
-uint JKRHeap::getTotalFreeSize()
+i32 JKRHeap::getTotalFreeSize()
 {
 	return do_getTotalFreeSize();
 	/*

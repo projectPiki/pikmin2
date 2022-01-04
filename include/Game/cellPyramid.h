@@ -139,7 +139,7 @@ struct CellPyramid : public SweepPrune::World {
 	CellPyramid();
 	void mapSearch(Sys::Sphere&, IDelegate1<CellObject*>*);
 	void initFrame();
-	uint getCheckCount();
+	i32 getCheckCount();
 	void resolveCollision();
 	void clearAllCollBuffer();
 	void clear();

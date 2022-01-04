@@ -128,7 +128,7 @@ void LifeGauge::update(float p1)
 	} else {
 		fullnessMaybe += 0.5f;
 	}
-	uint uVar3 = (int)fullnessMaybe % 256;
+	i32 uVar3 = (int)fullnessMaybe % 256;
 	if (_08 != uVar3) {
 		fullnessMaybe = sys->m_secondsPerFrame * 150.0f
 		                * FABS((float)(uVar3 - _08) / (float)_09);

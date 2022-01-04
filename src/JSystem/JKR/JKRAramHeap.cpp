@@ -309,7 +309,7 @@ lbl_800199B8:
  * Address:	800199C8
  * Size:	000078
  */
-uint JKRAramHeap::getFreeSize()
+i32 JKRAramHeap::getFreeSize()
 {
 	/*
 	stwu     r1, -0x10(r1)

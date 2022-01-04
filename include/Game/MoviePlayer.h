@@ -52,7 +52,7 @@ struct MoviePlayArg {
 	Vector3f m_origin; // _18 /* previously called m_itemPosition */
 	float m_angle;     // _24 /* previously called m_itemFaceDirection */
 	ulong m_naviID;    // _28
-	uint m_streamID;   // _2C
+	i32 m_streamID;   // _2C
 	Vector3f* m_soundPosition; // _30
 };
 
@@ -90,7 +90,7 @@ struct MoviePlayer {
 	u32 m_naviID;
 	IDelegate3<MovieConfig*, void*, ulong>* _0BC;
 	char* _0C0;
-	uint m_streamID;
+	i32 m_streamID;
 	MovieContext* m_contexts;
 	MovieContext _0CC;
 	MovieContext _128;
@@ -104,7 +104,7 @@ struct MoviePlayer {
 	PlayCamera* _1A0;
 	IDelegate1<MoviePlayer>* _1A4;
 	JKRHeap* m_movieHeap;
-	uint m_movieHeapFreeSize;
+	i32 m_movieHeapFreeSize;
 	int m_messageEndCount;
 	// TODO: Is this a quat?
 	Vector3f m_transform;
@@ -119,7 +119,7 @@ struct MoviePlayer {
 	u32 m_counter;
 	void* m_stbFile;
 	enum { IS_ACTIVE = 1, _1F0_UNKNOWN_2 = 2, _FORCE_INT = 0xFFFFFFFF } m_flags;
-	// uint m_isActive : 1, m_1F0_Unknown : 1;
+	// i32 m_isActive : 1, m_1F0_Unknown : 1;
 	JPAResourceManager* m_resourceManager;
 };
 

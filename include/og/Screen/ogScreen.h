@@ -34,7 +34,7 @@ namespace Screen {
 	void blendPictureTreeColor(PictureTreeColorCaptureInfo*, JUtility::TColor&,
 	                           JUtility::TColor&, float);
 	void calcGlbCenter(J2DPane*, Vector2f*);
-	uint CalcKeta(ulong);
+	i32 CalcKeta(ulong);
 	float calcSmooth0to1(float, float);
 	u32* capturePictureTreeColor(J2DPane*, int);
 	void centeringPane(J2DPane*, bool, bool);
@@ -100,7 +100,7 @@ namespace Screen {
 	void TagToName(ulonglong, char*);
 
 	struct DispMemberBase {
-		virtual uint getSize()          = 0; // _00
+		virtual i32 getSize()          = 0; // _00
 		virtual ulong getOwnerID()      = 0; // _04
 		virtual ulonglong getMemberID() = 0; // _08
 		virtual void doSetSubMemberAll();    // _10

@@ -24,8 +24,8 @@ struct PerspPrintfInfo {
 	inline PerspPrintfInfo() {};
 
 	struct JUTFont* m_font; // _00
-	uint _04;               // _04
-	uint _08;               // _08
+	i32 _04;               // _04
+	i32 _08;               // _08
 	int _0C;                // _0C
 	float _10;              // _10
 	Color4 _14;             // _14
