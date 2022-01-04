@@ -47,8 +47,8 @@ namespace Screen {
 
 		khPaneNode m_paneNode; // _1C
 		int _28;               // _28
-		u8 m_fadePaneAlpha; // _2C
-		u8 _2D;             // _2D
+		u8 m_fadePaneAlpha;    // _2C
+		u8 _2D;                // _2D
 	};
 
 	struct khUtilFadePaneWM : public khUtilFadePane {

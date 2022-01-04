@@ -54,7 +54,7 @@ struct ParmEnum : public BaseParm {
 	virtual void write(Stream&);
 	virtual void read(Stream&);
 
-	u32 m_value;       // _18
+	u32 m_value;         // _18
 	int m_enumElemSize;  // _1C
 	char** m_enumValues; // _20
 };

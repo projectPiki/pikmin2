@@ -37,9 +37,9 @@ namespace Screen {
 		void init(J2DScreen*, u64, u32*, JKRArchive*);
 		void setPikiIcon(int);
 
-		u32* _1C;          // _1C
+		u32* _1C;            // _1C
 		J2DPicture* _20;     // _20
-		u32 _24;           // _24
+		u32 _24;             // _24
 		ScaleMgr m_scaleMgr; // _28
 	};
 
@@ -74,12 +74,12 @@ namespace Screen {
 		void startPuyoUp(float);
 
 		char** m_characterTexturePaths; // _1C
-		u32* _20;                     // _20
-		u32 _24;                      // _24
-		u32 _28;                      // _28
-		u16 _2C;                     // _2C
-		u16 m_counterLimit;          // _2E /* allocated slot count of _7C */
-		u16 _30;                     // _30
+		u32* _20;                       // _20
+		u32 _24;                        // _24
+		u32 _28;                        // _28
+		u16 _2C;                        // _2C
+		u16 m_counterLimit;             // _2E /* allocated slot count of _7C */
+		u16 _30;                        // _30
 		float _34;                      // _34
 		float _38;                      // _38
 		float _3C;                      // _3C
@@ -92,11 +92,11 @@ namespace Screen {
 		float _58;                      // _58
 		float _5C;                      // _5C
 		i32 m_basePosition; // _60 /* Use J2DBasePosition constants. */
-		u8 _64;              // _64
-		u8 _65[7];           // _65 /* Hopefully this doesn't mess with size. */
-		J2DPictureEx* _6C;   // _6C
-		J2DPane* _70;        // _70
-		J2DPane* _74;        // _74
+		u8 _64;             // _64
+		u8 _65[7];          // _65 /* Hopefully this doesn't mess with size. */
+		J2DPictureEx* _6C;  // _6C
+		J2DPane* _70;       // _70
+		J2DPane* _74;       // _74
 		J2DPane* m_motherPane;             // _78
 		CounterKeta** m_counters;          // _7C
 		ResTIMG** m_imgResources;          // _80
@@ -107,7 +107,7 @@ namespace Screen {
 		bool _88;                          // _88
 		u8 _89;                            // _89
 		EnumCenteringMode m_centeringMode; // _8C
-		u8 m_zeroAlpha;                 // _90
+		u8 m_zeroAlpha;                    // _90
 		SoundID m_scaleUpSoundID;          // _94
 		SoundID m_scaleDownSoundID;        // _98
 		u8 _9C;                            // _9C
@@ -262,8 +262,8 @@ namespace Screen {
 		virtual void _14();                            // _14
 
 		P2JME::SimpleMessage* m_message; // _1C
-		u64 m_messageIDAsULL;      // _20
-		u32 m_messageIDAs2UL[2];       // _28
+		u64 m_messageIDAsULL;            // _20
+		u32 m_messageIDAs2UL[2];         // _28
 		float _30;                       // _30
 		float _34;                       // _34
 		float _38;                       // _38

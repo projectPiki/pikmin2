@@ -303,9 +303,9 @@ void JKRDecomp::decodeSZP(u8* p1, u8* p2, u32 p3, u32 p4)
 	// (uint)p1[5] << 16 | (uint)p1[4] << 24;
 	i32 v5 = EXTRACT_TO_UINT(p1, 11, 10, 9, 8);
 	i32 v2 = EXTRACT_TO_UINT(p1, 7, 6, 5, 4);
-	int v4  = 0;
-	int v6  = 0;
-	int v3  = 0x10;
+	int v4 = 0;
+	int v6 = 0;
+	int v3 = 0x10;
 	i32 vr;
 	if (p3 != 0 && p4 <= v2) {
 		// u8* v7 = p1 + ((uint)p1[15] | (uint)p1[14] << 8 | (uint)p1[13] <<
@@ -315,7 +315,7 @@ void JKRDecomp::decodeSZP(u8* p1, u8* p2, u32 p3, u32 p4)
 		do {
 			if (v6 == 0) {
 				u8* v9 = p1 + v3;
-				v6        = 0x20;
+				v6     = 0x20;
 				v3 += 4;
 				vr = EXTRACT_TO_UINT(v9, 3, 2, 1, 0);
 			}

@@ -72,7 +72,7 @@ struct EnemyBase : public Creature,
 	virtual bool isNavi();                                      // _14
 	virtual bool deferPikiCollision();                          // _18
 	virtual char* getTypeName();                                // _1C
-	virtual u16 getObjType();                                // _20
+	virtual u16 getObjType();                                   // _20
 	virtual void constructor();                                 // _24
 	virtual void onInit(CreatureInitArg*);                      // _28
 	virtual void onKill(CreatureKillArg*);                      // _2C
@@ -349,8 +349,8 @@ struct EnemyBase : public Creature,
 	Matrix3f _1A4;                     // _1A4
 	Vector3f m_velocity;               // _1C8
 	Vector3f m_velocity2;              // _1D4
-	BitFlag<u32> _1E0[2];            // _1E0
-	BitFlag<u32> _1E8[2];            // _1E8
+	BitFlag<u32> _1E0[2];              // _1E0
+	BitFlag<u32> _1E8[2];              // _1E8
 	u8 m_emotion;                      // _1F0
 	u8 m_enemyIndexForType;            // _1F1
 	u8 _1F2;                           // _1F2

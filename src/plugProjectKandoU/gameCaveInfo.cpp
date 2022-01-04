@@ -351,7 +351,7 @@ namespace Cave {
 		buffer1[0]   = '\0';
 		char* _s2    = buffer2;
 		int iVar10   = 0;
-		i32 uVar9   = 0;
+		i32 uVar9    = 0;
 		char* pcVar7 = inputString;
 		do {
 			size_t sVar4 = strlen(inputString);

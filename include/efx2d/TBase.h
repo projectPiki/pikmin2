@@ -7,9 +7,9 @@ namespace efx2d {
 struct Arg;
 
 struct TBaseIF {
-	virtual bool create(Arg*)    = 0; // _00
-	virtual void forceKill()     = 0; // _04
-	virtual void fade()          = 0; // _08
+	virtual bool create(Arg*) = 0; // _00
+	virtual void forceKill()  = 0; // _04
+	virtual void fade()       = 0; // _08
 	virtual void setGroup(u8) = 0; // _0C
 };
 

@@ -94,7 +94,7 @@ struct Piki : public FakePiki {
 	virtual PSM::Creature* getPSCreature();                     // _F0
 	virtual void on_movie_begin(bool);                          // _108
 	virtual void on_movie_end(bool);                            // _10C
-	virtual void movieStartAnimation(u32);                    // _110
+	virtual void movieStartAnimation(u32);                      // _110
 	virtual void movieStartDemoAnimation(SysShape::AnimInfo*);  // _114
 	virtual void movieSetTranslation(Vector3f&, float);         // _11C
 	virtual bool movieGotoPosition(Vector3f&);                  // _124
@@ -187,7 +187,7 @@ struct Piki : public FakePiki {
 	PikiAI::Brain* m_brain;         // _294
 	UpdateContext m_updateContext;  // _298
 	short m_tekiKillID;             // _2A4
-	u8 m_gasInvincible;          // _2A6
+	u8 m_gasInvincible;             // _2A6
 	JUtility::TColor _2A7;          // _2A7
 	JUtility::TColor _2AB;          // _2AB
 	JUtility::TColor m_pikiColor;   // _2AF

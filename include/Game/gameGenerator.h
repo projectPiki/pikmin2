@@ -43,12 +43,12 @@ struct Generator : public CNode {
 	void informDeath(Creature*);
 
 	GenObject* _18;       // _18
-	i32 _1C;             // _1C /* Initialized to '____' */
+	i32 _1C;              // _1C /* Initialized to '____' */
 	char _20[32];         // _20 /* shift-jis name given in generator files */
 	ID32 _40;             // _40
 	ID32 m_version;       // _4C
 	u8 _58[4];            // _58
-	u16 _5C;           // _5C
+	u16 _5C;              // _5C
 	Generator* _60;       // _60 /* m_prev */
 	Generator* _64;       // _64 /* m_next */
 	GeneratorMgr* m_mgr;  // _68
@@ -122,11 +122,11 @@ struct GenBase : public Parameters {
 	virtual void doWrite(Stream&);              // _00
 	virtual void ramSaveParameters(Stream&);    // _04
 	virtual void ramLoadParameters(Stream&);    // _08
-	virtual void doEvent(u32);                // _0C
+	virtual void doEvent(u32);                  // _0C
 	virtual void doRead(Stream&);               // _10
 	virtual void update(Generator*);            // _14
 	virtual void render(Graphics&, Generator*); // _18
-	virtual u32 getLatestVersion();           // _1C
+	virtual u32 getLatestVersion();             // _1C
 	virtual J3DModelData* getShape();           // _20
 
 	void readVersion(Stream&);
@@ -137,15 +137,15 @@ struct GenBase : public Parameters {
 	// _00 - _0C: Parameters
 	// _0C: vtable
 	u32 m_typeID; // _10
-	i32 m_rawID;   // _14
-	char* _18;      // _18
-	char* _1C;      // _1C
-	u32 _20;        // _20
+	i32 m_rawID;  // _14
+	char* _18;    // _18
+	char* _1C;    // _1C
+	u32 _20;      // _20
 };
 
 struct GenObject : public GenBase {
 	virtual void render(Graphics&, Generator*);            // _18
-	virtual u32 getLatestVersion();                      // _1C
+	virtual u32 getLatestVersion();                        // _1C
 	virtual J3DModelData* getShape();                      // _20
 	virtual void updateUseList(Generator*, int);           // _24
 	virtual Creature* generate(Generator*);                // _28
@@ -161,10 +161,10 @@ struct GenObjectFactory {
 	typedef GenObject* MakeFunction(void);
 	void createInstance();
 
-	i32 m_typeID;                // _00
+	i32 m_typeID;                 // _00
 	MakeFunction* m_makeFunction; // _04
 	char* m_name;                 // _08
-	i32 m_version;               // _0C
+	i32 m_version;                // _0C
 
 	static struct GenObjectFactoryFactory* factory;
 };
@@ -180,8 +180,8 @@ struct GenObjectFactoryFactory {
 		m_limit     = 12;
 		m_count     = 0;
 	}
-	i32 m_count;                  // _00
-	i32 m_limit;                  // _04
+	i32 m_count;                   // _00
+	i32 m_limit;                   // _04
 	GenObjectFactory* m_factories; // _08
 	u8 _0C[4];                     // _0C
 };

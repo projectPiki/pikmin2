@@ -26,7 +26,7 @@ struct Arg {
 	Arg(char const*);
 
 	char* _00;                      // _00
-	u8* _04;                     // _04
+	u8* _04;                        // _04
 	u32 _08;                        // _08
 	u32 _0C;                        // _0C
 	JKRExpandSwitch m_expandSwitch; // _10
@@ -35,7 +35,7 @@ struct Arg {
 	int _1C;                        // _1C
 	int _20;                        // _20
 	int* _24;                       // _24
-	u32* _28;                     // _28
+	u32* _28;                       // _28
 	u8 _2C;                         // _2C
 	u8 _2D;                         // _2D
 };

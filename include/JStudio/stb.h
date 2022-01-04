@@ -18,8 +18,7 @@ namespace stb {
 		virtual int parseHeader(data::TParse_THeader const&, u32);
 		virtual void parseBlock_block(data::TParse_TBlock const&,
 		                              unsigned long);
-		virtual void parseBlock_object(data::TParse_TBlock_object const&,
-		                               u32);
+		virtual void parseBlock_object(data::TParse_TBlock_object const&, u32);
 
 		// TControl* control;
 	};

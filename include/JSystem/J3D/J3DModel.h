@@ -36,8 +36,8 @@ struct J3DModelData {
 	u32 _00;                          // _00
 	u8* m_bmd;                        // _04
 	u32 m_modelLoaderFlags;           // _08
-	u16 _0C;                       // _0C
-	u16 m_jointSet;                // _0E
+	u16 _0C;                          // _0C
+	u16 m_jointSet;                   // _0E
 	J3DJointTree m_jointTree;         // _10
 	J3DMaterialTable m_materialTable; // _58
 	J3DShapeTable m_shapeTable;       // _78
@@ -56,7 +56,7 @@ struct J3DModel {
 
 	// _00 VTBL
 	J3DModelData* m_modelData;       // _04
-	i32 _08;                        // _08 /* bitfield of some sort */
+	i32 _08;                         // _08 /* bitfield of some sort */
 	u32 m_displayListFlag;           // _0C
 	void* _10;                       // _10
 	u32 _14;                         // _14

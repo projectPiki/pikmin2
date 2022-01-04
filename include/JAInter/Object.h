@@ -6,10 +6,10 @@
 
 namespace JAInter {
 struct Object : public ObjectBase {
-	virtual ~Object();                     // _00
+	virtual ~Object();                 // _00
 	virtual void startSound(u32, u32); // _04
-	virtual void disable();                // _1C
-	virtual void loop();                   // _30
+	virtual void disable();            // _1C
+	virtual void loop();               // _30
 
 	Vector3f _28;
 	float _34;

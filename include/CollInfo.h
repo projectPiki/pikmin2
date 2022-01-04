@@ -26,7 +26,7 @@ struct CollPart : public CNode {
 	virtual void constructor();           // _10
 	virtual void doAnimation();           // _14
 	virtual void doEntry();               // _18
-	virtual void doSetView(u32);        // _1C
+	virtual void doSetView(u32);          // _1C
 	virtual void doViewCalc();            // _20
 	virtual void doSimulation(float);     // _24
 	virtual void doDirectDraw(Graphics&); // _28
@@ -64,7 +64,7 @@ struct CollPart : public CNode {
 	float _1C;    // _1C   /* PikDecomp calls this `radius`. */
 	Vector3f _20; // _20   /* PikDecomp calls this `Offset`. SodiumDecomp calls
 	              // this `size_0x20`. :shrug: */
-	i32 m_jointIndex;        // _2C
+	i32 m_jointIndex;         // _2C
 	ID32 _30;                 // _30
 	ID32 _3C;                 // _3C
 	short m_attribute;        // _48   /* name from PikDecomp */

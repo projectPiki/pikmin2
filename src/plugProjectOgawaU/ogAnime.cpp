@@ -481,8 +481,8 @@ lbl_80304F80:
 	 * Address:	80305218
 	 * Size:	000150
 	 */
-	void AnimPane::init(JKRArchive* archive, J2DScreen* parentScreen,
-	                    u64 tag, char* resourcePath)
+	void AnimPane::init(JKRArchive* archive, J2DScreen* parentScreen, u64 tag,
+	                    char* resourcePath)
 	{
 		AnimBaseBase::init(archive, resourcePath);
 		m_pane = TagSearch(parentScreen, tag);

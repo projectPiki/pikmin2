@@ -28,7 +28,7 @@ namespace Screen {
 		bool _08;             // _08
 		float _0C;            // _0C
 		u8 _10;               // _10
-		u8 _11;            // _11 /* alpha of pane/screen? */
+		u8 _11;               // _11 /* alpha of pane/screen? */
 		u8 _12;               // _12
 		J2DAnmBase* m_anm;    // _14
 		float m_frame;        // _18

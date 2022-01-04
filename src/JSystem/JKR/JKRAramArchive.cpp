@@ -794,8 +794,7 @@ void JKRAramArchive::fetchResource_subroutine(u32, u32, u8*, u32, int)
  * Address:	800191C4
  * Size:	00014C
  */
-void JKRAramArchive::fetchResource_subroutine(u32, u32, JKRHeap*, int,
-                                              u8**)
+void JKRAramArchive::fetchResource_subroutine(u32, u32, JKRHeap*, int, u8**)
 {
 	/*
 	.loc_0x0:

@@ -227,8 +227,7 @@ lbl_8030EC38:
 	 * Address:	8030EC50
 	 * Size:	000338
 	 */
-	J2DPictureEx* CopyPictureToPane(J2DPictureEx*, J2DPane*, float, float,
-	                                u64)
+	J2DPictureEx* CopyPictureToPane(J2DPictureEx*, J2DPane*, float, float, u64)
 	{
 		/*
 		.loc_0x0:

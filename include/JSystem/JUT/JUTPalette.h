@@ -22,7 +22,7 @@ struct JUTPalette {
 	_GXTlut m_tlutID;               // _0C
 	_GXTlutFmt m_tlutFormat;        // _0D
 	u8* _10;                        // _10
-	u16 _14;                     // _14
+	u16 _14;                        // _14
 	JUTTransparency m_transparency; // _16
 };
 

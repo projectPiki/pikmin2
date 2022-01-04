@@ -18,7 +18,7 @@ struct TSimple1 : public TBase {
 	virtual void forceKill();  // _04
 	virtual void fade();       // _08
 
-	u16 m_effectIDs[1];         // _08
+	u16 m_effectIDs[1];            // _08
 	JPABaseEmitter* m_emitters[1]; // _0C
 };
 
@@ -27,7 +27,7 @@ struct TSimple2 : public TBase {
 	virtual void forceKill();  // _04
 	virtual void fade();       // _08
 
-	u16 m_effectIDs[2];         // _08
+	u16 m_effectIDs[2];            // _08
 	JPABaseEmitter* m_emitters[2]; // _0C
 };
 
@@ -47,7 +47,7 @@ struct TSimple3 : public TBase {
 	virtual void fade();       // _08
 
 	// _00 VTBL
-	u16 m_effectIDs[3];         // _08
+	u16 m_effectIDs[3];            // _08
 	JPABaseEmitter* m_emitters[3]; // _10
 };
 } // namespace efx2d

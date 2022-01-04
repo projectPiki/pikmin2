@@ -19,7 +19,7 @@ struct TSimple1 : public efx::TBase {
 	virtual void fade();       // _08
 
 	// _00 VTBL
-	u16 m_effectIDs[1];         // _04
+	u16 m_effectIDs[1];            // _04
 	JPABaseEmitter* m_emitters[1]; // _08
 };
 
@@ -29,7 +29,7 @@ struct TSimple2 : public TBase {
 	virtual void fade();       // _08
 
 	// _00 VTBL
-	u16 m_effectIDs[2];         // _04
+	u16 m_effectIDs[2];            // _04
 	JPABaseEmitter* m_emitters[2]; // _08
 };
 
@@ -49,7 +49,7 @@ struct TSimple3 : public TBase {
 	virtual void fade();       // _08
 
 	// _00 VTBL
-	u16 m_effectIDs[3];         // _04
+	u16 m_effectIDs[3];            // _04
 	JPABaseEmitter* m_emitters[3]; // _0C
 };
 
@@ -59,7 +59,7 @@ struct TSimple4 : public TBase {
 	virtual void fade();       // _08
 
 	// _00 VTBL
-	u16 m_effectIDs[4];         // _04
+	u16 m_effectIDs[4];            // _04
 	JPABaseEmitter* m_emitters[4]; // _0C
 };
 
@@ -69,7 +69,7 @@ struct TSimple5 : public TBase {
 	virtual void fade();       // _08
 
 	// _00 VTBL
-	u16 m_effectIDs[5];         // _04
+	u16 m_effectIDs[5];            // _04
 	JPABaseEmitter* m_emitters[5]; // _10
 };
 } // namespace efx

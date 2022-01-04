@@ -41,8 +41,7 @@ namespace Screen {
 	u64 CharCodeToTag(char*);
 	bool checkVisibleGlb(J2DPane*);
 	J2DPictureEx* CopyPicture(J2DPictureEx*, u64);
-	J2DPictureEx* CopyPictureToPane(J2DPictureEx*, J2DPane*, float, float,
-	                                u64);
+	J2DPictureEx* CopyPictureToPane(J2DPictureEx*, J2DPane*, float, float, u64);
 	void drawPaneFrame(J2DGrafContext&, J2DPane*, JUtility::TColor&);
 	void dumpInfoResTIMG(ResTIMG const*);
 	CallBack_Furiko* getFurikoPtr(P2DScreen::Mgr*, u64);
@@ -52,8 +51,8 @@ namespace Screen {
 	u64 maskTag2(u64, u16);
 	u64 MojiToNum(u64, int);
 	u64 NameToTag(char*);
-	void registAnimGroupPane(AnimGroup*, JKRArchive*, J2DScreen*, u64,
-	                         char*, float);
+	void registAnimGroupPane(AnimGroup*, JKRArchive*, J2DScreen*, u64, char*,
+	                         float);
 	void registAnimGroupScreen(AnimGroup*, JKRArchive*, J2DScreen*, char*,
 	                           float);
 	void setAlphaScreen(J2DPane*);
@@ -62,29 +61,24 @@ namespace Screen {
 	void setCallBack_3DStickSmall(JKRArchive*, P2DScreen::Mgr*, u64);
 	void setCallBack_CStick(JKRArchive*, P2DScreen::Mgr*, u64);
 	void setCallBack_CStickSmall(JKRArchive*, P2DScreen::Mgr*, u64);
-	CallBack_CounterDay* setCallBack_CounterDay(P2DScreen::Mgr*, u64,
-	                                            u64, u64, u32*,
-	                                            u16, JKRArchive*);
-	CallBack_CounterDay* setCallBack_CounterDay(char**, P2DScreen::Mgr*,
-	                                            u64, u64, u64,
+	CallBack_CounterDay* setCallBack_CounterDay(P2DScreen::Mgr*, u64, u64, u64,
 	                                            u32*, u16, JKRArchive*);
-	void setCallBack_CounterMap(P2DScreen::Mgr*, u64, u64,
-	                            u64, u32*, u16, u16, bool,
+	CallBack_CounterDay* setCallBack_CounterDay(char**, P2DScreen::Mgr*, u64,
+	                                            u64, u64, u32*, u16,
+	                                            JKRArchive*);
+	void setCallBack_CounterMap(P2DScreen::Mgr*, u64, u64, u64, u32*, u16, u16,
+	                            bool, JKRArchive*);
+	CallBack_CounterRV* setCallBack_CounterRV(P2DScreen::Mgr*, u64, u64, u64,
+	                                          u32*, u16, u16, bool,
+	                                          JKRArchive*);
+	CallBack_CounterRV* setCallBack_CounterRV(P2DScreen::Mgr*, u64, u32*, u16,
+	                                          bool, bool, JKRArchive*);
+	CallBack_CounterRV* setCallBack_CounterRV(P2DScreen::Mgr*, u64, u32, u16,
+	                                          bool, bool, JKRArchive*);
+	void setCallBack_CounterRV2(P2DScreen::Mgr*, u64, u32*, u16, bool, bool,
 	                            JKRArchive*);
-	CallBack_CounterRV* setCallBack_CounterRV(P2DScreen::Mgr*, u64,
-	                                          u64, u64, u32*,
-	                                          u16, u16, bool,
-	                                          JKRArchive*);
-	CallBack_CounterRV* setCallBack_CounterRV(P2DScreen::Mgr*, u64,
-	                                          u32*, u16, bool, bool,
-	                                          JKRArchive*);
-	CallBack_CounterRV* setCallBack_CounterRV(P2DScreen::Mgr*, u64, u32,
-	                                          u16, bool, bool, JKRArchive*);
-	void setCallBack_CounterRV2(P2DScreen::Mgr*, u64, u32*, u16,
-	                            bool, bool, JKRArchive*);
-	CallBack_CounterSlot* setCallBack_CounterSlot(P2DScreen::Mgr*, u64,
-	                                              u32*, u16, bool, bool,
-	                                              JKRArchive*);
+	CallBack_CounterSlot* setCallBack_CounterSlot(P2DScreen::Mgr*, u64, u32*,
+	                                              u16, bool, bool, JKRArchive*);
 	CallBack_DrawAfter* setCallBack_DrawAfter(P2DScreen::Mgr*, u64);
 	CallBack_Furiko* setCallBack_Furiko(P2DScreen::Mgr*, u64);
 	CallBack_Picture* setCallBack_Picture(JKRArchive*, char*, u64,
@@ -100,10 +94,10 @@ namespace Screen {
 	void TagToName(u64, char*);
 
 	struct DispMemberBase {
-		virtual i32 getSize()          = 0; // _00
-		virtual u32 getOwnerID()      = 0; // _04
-		virtual u64 getMemberID() = 0; // _08
-		virtual void doSetSubMemberAll();    // _10
+		virtual i32 getSize()     = 0;    // _00
+		virtual u32 getOwnerID()  = 0;    // _04
+		virtual u64 getMemberID() = 0;    // _08
+		virtual void doSetSubMemberAll(); // _10
 
 		bool isID(u32, u64);
 		void getMemberName(char*);

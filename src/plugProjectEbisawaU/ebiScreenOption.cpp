@@ -1119,10 +1119,10 @@ lbl_803CB82C:
 	void TOption::doCloseScreen(ebi::Screen::ArgClose*)
 	{
 		u32 v1 = __cvt_fp2unsigned((float)E2DFader::kFadeTime
-		                             / sys->m_secondsPerFrame);
-		_0FC     = v1;
-		_100     = v1;
-		_0F8     = 2;
+		                           / sys->m_secondsPerFrame);
+		_0FC   = v1;
+		_100   = v1;
+		_0F8   = 2;
 		/*
 	stwu     r1, -0x10(r1)
 	mflr     r0

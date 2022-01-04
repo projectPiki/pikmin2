@@ -26,9 +26,9 @@ struct Creature : public ObjBase {
 	virtual void loopCalc(FrameCalcArg&);         // _1C
 	virtual void startSoundInner(StartSoundArg&); // _20
 	virtual bool judgeNearWithPlayer(const Vec&, const Vec&, float,
-	                                 float);    // _24
+	                                 float);  // _24
 	virtual void onPlayingSe(u32, JAISound*); // _28
-	virtual void getHandleArea(u8) = 0;      // _2C
+	virtual void getHandleArea(u8) = 0;       // _2C
 
 	Game::Creature* m_gameObj;
 };

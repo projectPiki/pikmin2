@@ -12,9 +12,9 @@ struct PlatAttacher {
 	u16 getJointIndex(int);
 	Platform* getPlatform(int);
 
-	int m_numShapes;        // _00
-	u16* m_jointIndices; // _04
-	Platform* m_platforms;  // _08
+	int m_numShapes;       // _00
+	u16* m_jointIndices;   // _04
+	Platform* m_platforms; // _08
 };
 
 #endif

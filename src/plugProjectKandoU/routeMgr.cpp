@@ -3129,7 +3129,7 @@ void Game::EditorRouteMgr::read(Stream& input)
 		delWayPoint(node->m_wayPoint);
 	}
 	u16 count = input.readShort();
-	m_count      = 0;
+	m_count   = 0;
 	for (int i = 0; i < count; i++) {
 		WayPoint* wp = new WayPoint();
 		wp->read(input);

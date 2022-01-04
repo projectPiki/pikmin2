@@ -19,7 +19,7 @@ struct THPPlayer : public JKRDisposer, public CNode {
 	u8 _3C[8];                        // _3C
 	void* m_audioInfo;                // _44
 	u8 _48[8];                        // _48
-	i32 _50;                         // _50
+	i32 _50;                          // _50
 	Caption::Mgr* m_captionMgr;       // _54
 	JKRHeap* _58;                     // _58
 	DvdThreadCommand m_threadCommand; // _5C

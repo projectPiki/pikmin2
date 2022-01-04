@@ -20,7 +20,7 @@ struct EnemyMgrNode : public CNode, GenericObjectMgr {
 	virtual ~EnemyMgrNode();               // _00
 	virtual void killAll();                // _4C
 	virtual void setupSoundViewerAndBas(); // _50
-	virtual void setDebugParm(u32);      // _54
+	virtual void setDebugParm(u32);        // _54
 	virtual void resetDebugParm();         // _58
 	virtual void startMovie();             // _5C
 	virtual void endMovie();               // _60
@@ -41,8 +41,8 @@ struct GeneralEnemyMgr : public GenericObjectMgr {
 	u8 _44[4];                                 // _44
 	EnemyTypeID::EEnemyTypeID* m_enemyNumList; // _48
 	JKRHeap* m_heap;                           // _4C
-	u32 m_heapSize;                          // _50
-	i32 m_flags;                              // _54
+	u32 m_heapSize;                            // _50
+	i32 m_flags;                               // _54
 	// TODO: replace with proper type
 	// EnemyStone::Mgr m_stoneMgr; // _58
 	u8 m_stoneMgr[0x38]; // _58

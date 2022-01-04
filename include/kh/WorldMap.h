@@ -197,14 +197,14 @@ namespace Screen {
 		og::Screen::CallBack_CounterRV* _128;                      // _128
 		int m_groundTreasureCount;                                 // _12C
 		int m_groundTreasureMax;                                   // _130
-		u32 _134;                                                // _134
-		u32 _138;                                                // _138
-		u32 _13C;                                                // _13C
-		u32 _140;                                                // _140
-		u32 _144;                                                // _144
-		u32 _148;                                                // _148
-		u32 _14C;                                                // _14C
-		u32 _150;                                                // _150
+		u32 _134;                                                  // _134
+		u32 _138;                                                  // _138
+		u32 _13C;                                                  // _13C
+		u32 _140;                                                  // _140
+		u32 _144;                                                  // _144
+		u32 _148;                                                  // _148
+		u32 _14C;                                                  // _14C
+		u32 _150;                                                  // _150
 		khUtilFadePaneWM* _154;                                    // _154
 		khUtilColorAnmWM* _158;                                    // _158
 		khUtilColorAnmWM* _15C;                                    // _15C
@@ -215,7 +215,7 @@ namespace Screen {
 		og::Screen::ArrowAlphaBlink* m_arrowAlphaBlink;            // _170
 		int m_unknownSwitch;                                       // _174
 		int _178;                                                  // _178
-		i32 _17C;                                                 // _17C
+		i32 _17C;                                                  // _17C
 		char m_stateID;                                            // _180
 		u8 m_totalCourseCount;                                     // _181
 		u8 m_courseJustOpenFlags;                                  // _182

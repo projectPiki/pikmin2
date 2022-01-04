@@ -21,10 +21,10 @@ struct Joint : public CNode {
 	Matrixf* getWorldMatrix();
 	void init(u16, Model*, J3DJoint*);
 
-	J3DJoint* m_j3d;     // _18
-	Vector3f _1C;        // _1C
-	Vector3f _28;        // _28
-	Model* m_model;      // _34
+	J3DJoint* m_j3d;  // _18
+	Vector3f _1C;     // _1C
+	Vector3f _28;     // _28
+	Model* m_model;   // _34
 	u16 m_jointIndex; // _38
 };
 } // namespace SysShape

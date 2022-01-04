@@ -13,7 +13,7 @@ struct JPATexture {
 	virtual ~JPATexture(); // _00
 
 	JUTTexture m_texture; // _04
-	const u8* _44;     // _44
+	const u8* _44;        // _44
 };
 
 #endif

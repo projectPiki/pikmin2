@@ -35,7 +35,7 @@ struct J3DMaterial {
 	virtual void load();                             // _10
 	virtual void loadSharedDL();                     // _14
 	virtual void patch();                            // _18
-	virtual void diff(u32);                        // _1C
+	virtual void diff(u32);                          // _1C
 	virtual void reset();                            // _20
 	virtual void change();                           // _24
 
@@ -70,8 +70,8 @@ struct J3DMaterial {
 	J3DPEBlock* m_peBlock;         // _34
 	J3DMaterial* _38;              // _38
 	J3DMaterialAnm* m_anm;         // _3C
-	i32 _40;                      // _40
-	i32 _44;                      // _44
+	i32 _40;                       // _40
+	i32 _44;                       // _44
 	J3DDisplayListObj* _48;        // _48
 };
 
@@ -86,7 +86,7 @@ struct J3DLockedMaterial : public J3DMaterial {
 	virtual void load();                   // _10
 	virtual void loadSharedDL();           // _14
 	virtual void patch();                  // _18
-	virtual void diff(u32);              // _1C
+	virtual void diff(u32);                // _1C
 	virtual void reset();                  // _20
 	virtual void change();                 // _24
 
@@ -130,8 +130,8 @@ struct J3DMaterialTable {
 	void entryMatColorAnimator(J3DAnmColor*);
 
 	// VTBL _00
-	u16 m_count1;            // _04
-	u16 m_count2;            // _06
+	u16 m_count1;               // _04
+	u16 m_count2;               // _06
 	J3DMaterial** m_materials1; // _08
 	JUTNameTab* _0C;            // _0C
 	J3DMaterial* m_materials2;  // _10

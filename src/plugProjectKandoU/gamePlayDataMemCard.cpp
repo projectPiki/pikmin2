@@ -1038,7 +1038,7 @@ lbl_8021D720:
 void PlayData::read(Stream& input)
 {
 	int startPosition = input.m_position;
-	u64 osTime  = OSGetTime();
+	u64 osTime        = OSGetTime();
 	m_osTimeLo        = (int)osTime;
 	m_osTimeHi        = (int)(osTime >> 0x20);
 	ID32 version;

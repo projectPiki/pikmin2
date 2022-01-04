@@ -63,8 +63,7 @@ void J3DUMultiTexture::allocateTexture(u8, u16, u16, _GXTexFmt)
  * Address:	........
  * Size:	0002B8
  */
-void J3DUMultiTexture::draw(u8, u32, u32, _GXTevColorArg, u32,
-                            u32) const
+void J3DUMultiTexture::draw(u8, u32, u32, _GXTevColorArg, u32, u32) const
 {
 	// UNUSED FUNCTION
 }

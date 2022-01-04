@@ -196,9 +196,9 @@ struct CarryInfo {
 	float _04;   // _04
 	float _08;   // _08
 	bool hidden; // _0C
-	u8 alpha; // _0D
-	u8 _0E;   // _0E
-	u8 _0F;   // _0F
+	u8 alpha;    // _0D
+	u8 _0E;      // _0E
+	u8 _0F;      // _0F
 
 	void disappear();
 };

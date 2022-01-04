@@ -30,9 +30,9 @@ struct TForever : public TBase, public JPAEmitterCallback {
 struct TForeverN : public TBase {
 	TForeverN(u8);
 
-	virtual bool create(Arg*);    // _00
-	virtual void kill();          // _04
-	virtual void fade();          // _08
+	virtual bool create(Arg*); // _00
+	virtual void kill();       // _04
+	virtual void fade();       // _08
 	virtual void setGroup(u8); // _0C
 
 	void setGlobalAlpha(u8);

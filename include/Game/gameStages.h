@@ -82,9 +82,9 @@ struct Stages {
 	void read(Stream&);
 
 	CourseInfo m_courseInfo; // _00
-	u16 m_courseCount;    // _100
+	u16 m_courseCount;       // _100
 	u32 _104;                // _104
-	u16 _108;             // _108
+	u16 _108;                // _108
 };
 
 extern Stages* stageList;

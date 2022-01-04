@@ -24,8 +24,8 @@ struct PerspPrintfInfo {
 	inline PerspPrintfInfo() {};
 
 	struct JUTFont* m_font; // _00
-	i32 _04;               // _04
-	i32 _08;               // _08
+	i32 _04;                // _04
+	i32 _08;                // _08
 	int _0C;                // _0C
 	float _10;              // _10
 	Color4 _14;             // _14
@@ -33,20 +33,20 @@ struct PerspPrintfInfo {
 };
 
 struct _GraphicsParent {
-	u16 m_primitiveDrawCount; // _000
-	char* m_tokens[0x20];        // _004
-	u8 _084;                     // _084
-	u8 _085;                     // _085
-	u8 _086;                     // _086
-	u8 _087;                     // _087
-	u8 _088[4];                  // _088
-	Matrixf _08C;                // _08C
-	J2DOrthoGraph m_orthoGraph;  // _0BC
-	J2DPerspGraph m_perspGraph;  // _190
-	Viewport* _25C;              // _25C
-	u8 _260[4];                  // _260
-	int m_viewportCount;         // _264
-	Viewport** m_viewports;      // _268
+	u16 m_primitiveDrawCount;   // _000
+	char* m_tokens[0x20];       // _004
+	u8 _084;                    // _084
+	u8 _085;                    // _085
+	u8 _086;                    // _086
+	u8 _087;                    // _087
+	u8 _088[4];                 // _088
+	Matrixf _08C;               // _08C
+	J2DOrthoGraph m_orthoGraph; // _0BC
+	J2DPerspGraph m_perspGraph; // _190
+	Viewport* _25C;             // _25C
+	u8 _260[4];                 // _260
+	int m_viewportCount;        // _264
+	Viewport** m_viewports;     // _268
 };
 
 // Size: 0x2A0

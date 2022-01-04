@@ -40,10 +40,10 @@ void JAInter::SoundTable::init(u8* data, u32 dataSize)
 	mSoundMax        = new (JAIBasic::msCurrentHeap, 4) u16[0x12];
 	mPointerCategory = new (JAIBasic::msCurrentHeap, 4) SoundInfo*[0x12];
 	for (u8 i = 0; i < 0x12; i++) {
-		mSoundMax[i]        = *(u16*)(mAddress + (i * 4) + 6);
-		mPointerCategory[i] = *(
-		    SoundInfo**)(mAddress + *(u16*)(mAddress + (i * 4) + 8) * 0x10
-		                 + 0x50);
+		mSoundMax[i] = *(u16*)(mAddress + (i * 4) + 6);
+		mPointerCategory[i]
+		    = *(SoundInfo**)(mAddress + *(u16*)(mAddress + (i * 4) + 8) * 0x10
+		                     + 0x50);
 		if (i < 0x10 && mSoundMax[i] != 0) {
 			mCategotyMax = i + 1;
 		}
@@ -116,9 +116,9 @@ lbl_800B74FC:
  */
 JAInter::SoundInfo* JAInter::SoundTable::getInfoPointer(u32 soundID)
 {
-	i32 maskedID   = soundID & 0xC0000000;
+	i32 maskedID    = soundID & 0xC0000000;
 	SoundInfo* info = nullptr;
-	i32 category   = 0;
+	i32 category    = 0;
 	if (maskedID == 0xC0000000) {
 		category = 0x11;
 	} else {

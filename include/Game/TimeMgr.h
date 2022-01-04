@@ -52,7 +52,7 @@ struct TimeMgr : public CNode {
 	float m_currentTimeOfDay; // _20C
 	u32 _210;                 // _210
 	float _214;               // _214
-	i32 m_dayCount;          // _218
+	i32 m_dayCount;           // _218
 	float m_speedFactor;      // _21C
 	float _220;               // _220
 	float _224;               // _224
@@ -62,7 +62,7 @@ struct TimeMgr : public CNode {
 	float _234;               // _234
 	float m_dayLength;        // _238
 	float m_sunRatio;         // _23C
-	i32 m_flags;             // _240
+	i32 m_flags;              // _240
 };
 } // namespace Game
 

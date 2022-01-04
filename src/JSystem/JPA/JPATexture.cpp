@@ -25,8 +25,7 @@ JPATexture::JPATexture(const unsigned char* p1)
     : m_texture()
     , _44(p1)
 {
-	m_texture.storeTIMG(reinterpret_cast<const ResTIMG*>(_44 + 0x20),
-	                    (u8)'\0');
+	m_texture.storeTIMG(reinterpret_cast<const ResTIMG*>(_44 + 0x20), (u8)'\0');
 }
 
 /*

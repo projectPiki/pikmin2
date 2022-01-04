@@ -756,9 +756,9 @@ lbl_8043E928:
 void Model::jointVisible(bool newVisibility, int jointIndex)
 {
 	if (newVisibility != false) {
-		for (J3DMaterial* material = m_j3dModel->m_modelData->m_jointTree
-		                                 ->m_joints[(u16)jointIndex]
-		                                 ->m_material;
+		for (J3DMaterial* material
+		     = m_j3dModel->m_modelData->m_jointTree->m_joints[(u16)jointIndex]
+		           ->m_material;
 		     material != nullptr; material = material->_04) {
 			material->m_shape->m_flags &= ~J3DShape::IsHidden;
 		}

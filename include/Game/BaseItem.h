@@ -49,7 +49,7 @@ struct BaseItem : public Creature, public SysShape::MotionListener {
 	virtual void getJAIObject();                               // _EC
 	virtual PSM::Creature* getPSCreature();                    // _F0
 	virtual Vector3f* getSound_PosPtr();                       // _F8
-	virtual void movieStartAnimation(u32);                   // _110
+	virtual void movieStartAnimation(u32);                     // _110
 	virtual void movieStartDemoAnimation(SysShape::AnimInfo*); // _114
 	virtual void movieSetAnimationLastFrame();                 // _118
 	virtual void movieSetTranslation(Vector3f&, float);        // _11C
@@ -60,7 +60,7 @@ struct BaseItem : public Creature, public SysShape::MotionListener {
 	// vtable 2 (MotionListener + self)
 	virtual void onKeyEvent(const SysShape::KeyEvent&) = 0; // _1B0
 	virtual void initDependency();                          // _1B4
-	virtual void startSound(u32);                         // _1B8
+	virtual void startSound(u32);                           // _1B8
 	virtual void makeTrMatrix();                            // _1BC
 	virtual void doAI();                                    // _1C0
 	virtual void move(float);                               // _1C4

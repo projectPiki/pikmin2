@@ -3012,8 +3012,8 @@ void CellPyramid::create(BoundBox2d& box, float p2)
 	_40                = box._00;
 	_34                = p2;
 	_38                = 1.0f / p2;
-	i32 uVar13        = (uint)ceil((double)(FABS(box._08 - box._00) * _38));
-	i32 uVar12        = (uint)ceil(FABS(box._0C - box._04) * _38);
+	i32 uVar13         = (uint)ceil((double)(FABS(box._08 - box._00) * _38));
+	i32 uVar12         = (uint)ceil(FABS(box._0C - box._04) * _38);
 	if ((200 < uVar13) || (200 < uVar12)) {
 		_34    = p2 * 1.5f;
 		_38    = 1.0f / (p2 * 1.5f);
@@ -3577,8 +3577,7 @@ void Cell::resolveCollision_3()
 						if (CellMgrParms::mInstance->m_p001.m_value) {
 							if (legB->m_object
 							    != (CellObject*)legA->m_object->m_passID) {
-								legA->m_object->m_passID
-								    = (u32)legB->m_object;
+								legA->m_object->m_passID = (u32)legB->m_object;
 								legA->m_object->checkCollision(legB->m_object);
 								legA->m_object->updateCollisionBuffer(
 								    legB->m_object);

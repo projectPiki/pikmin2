@@ -78,7 +78,7 @@ struct Creature : public CellObject {
 	Creature();
 
 	virtual bool collisionUpdatable();         // _0C
-	virtual u16 getObjType();               // _20
+	virtual u16 getObjType();                  // _20
 	virtual void constructor();                // _2C
 	virtual void onInit(CreatureInitArg*);     // _30
 	virtual void onKill(CreatureKillArg*);     // _34
@@ -235,7 +235,7 @@ struct Creature : public CellObject {
 	CollTree* m_collTree;          // _114
 	float _118;                    // _118
 	Vector3f _11C;                 // _11C
-	u16 m_objectTypeID;         // _128
+	u16 m_objectTypeID;            // _128
 	UpdateContext m_updateContext; // _12C
 	Matrixf m_mainMatrix;          // _138
 	Vector3f m_scale;              // _168 /* Not sure if just model scale. */

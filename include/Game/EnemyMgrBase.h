@@ -49,8 +49,8 @@ struct EnemyMgrBase : public IEnemyMgrBase {
 	virtual EnemyGeneratorBase* getGenerator() const; // _38
 	virtual void killAll(CreatureKillArg*);           // _3C
 	virtual void setupSoundViewerAndBas();            // _40
-	virtual void setDebugParm(u32);                 // _44
-	virtual void resetDebugParm(u32);               // _48
+	virtual void setDebugParm(u32);                   // _44
+	virtual void resetDebugParm(u32);                 // _48
 	virtual int getMaxObjects() const;                // _4C
 	virtual void startMovie();                        // _50
 	virtual void endMovie();                          // _54
@@ -85,7 +85,7 @@ struct EnemyMgrBase : public IEnemyMgrBase {
 
 	J3DModelData* m_modelData;          // _1C
 	SysShape::AnimMgr* m_animMgr;       // _20
-	u8 m_modelType;                  // _24
+	u8 m_modelType;                     // _24
 	CollPartFactory* m_collPartFactory; // _28
 	int m_objLimit;                     // _2C
 	int m_objCount;                     // _30

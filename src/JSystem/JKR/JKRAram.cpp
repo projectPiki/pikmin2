@@ -609,8 +609,8 @@ JKRAramBlock* JKRAram::mainRamToAram(unsigned char*, unsigned long,
  * Address:	80017F4C
  * Size:	0002DC
  */
-u8* JKRAram::aramToMainRam(u32, u8*, u32, JKRExpandSwitch, u32,
-                              JKRHeap*, int, u32*)
+u8* JKRAram::aramToMainRam(u32, u8*, u32, JKRExpandSwitch, u32, JKRHeap*, int,
+                           u32*)
 {
 	/*
 	.loc_0x0:

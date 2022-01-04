@@ -851,8 +851,7 @@ u32 JKRHeap::getMaxAllocatableSize(int p1)
 	// u8* maxFreeBlock = do_getMaxFreeBlock();
 	// u32 freeSize = do_getFreeSize();
 	return ~(p1 - 1)
-	       & do_getFreeSize()
-	             - (p1 - 1 & p1 - (u32)do_getMaxFreeBlock() & 0xf);
+	       & do_getFreeSize() - (p1 - 1 & p1 - (u32)do_getMaxFreeBlock() & 0xf);
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x20(r1)
@@ -2250,8 +2249,7 @@ bool JKRHeap::TState::isVerbose() { return bVerbose; }
  * Address:	8002454C
  * Size:	000080
  */
-JKRHeap::TState::TState(const JKRHeap* heap, u32 id,
-                        bool isCompareOnDestructed)
+JKRHeap::TState::TState(const JKRHeap* heap, u32 id, bool isCompareOnDestructed)
     : _00(0)
     , _04(0)
     , m_heap(heap ? heap : sCurrentHeap)

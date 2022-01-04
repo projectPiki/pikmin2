@@ -61,8 +61,7 @@ size_t JSUFileInputStream::readData(void* buffer, long byteCount)
 {
 	int readBytes = 0;
 	if (((JKRFile*)m_object)->_18) {
-		if ((u32)(m_length + byteCount)
-		    > ((JKRFile*)m_object)->getFileSize()) {
+		if ((u32)(m_length + byteCount) > ((JKRFile*)m_object)->getFileSize()) {
 			byteCount = ((JKRFile*)m_object)->getFileSize() - m_length;
 		}
 		if (byteCount > 0) {

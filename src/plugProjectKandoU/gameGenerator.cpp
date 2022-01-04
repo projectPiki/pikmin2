@@ -941,7 +941,7 @@ void Generator::read(Stream& input)
 	ID32 temp;
 	temp.read(input);
 	int i                 = 0;
-	i32 count            = GenObjectFactory::factory->m_count;
+	i32 count             = GenObjectFactory::factory->m_count;
 	GenObject* makeResult = nullptr;
 	if (0 < count) {
 		do {

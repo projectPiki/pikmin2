@@ -44,7 +44,7 @@ struct JointShadowRootNode : public CNode {
 struct ShadowNode : public CNode {
 	Creature* m_creature; // _18
 	u32 _1C;              // _1C
-	i32 _20;             // _20 /* bitfield */
+	i32 _20;              // _20 /* bitfield */
 };
 
 struct CylinderBase {

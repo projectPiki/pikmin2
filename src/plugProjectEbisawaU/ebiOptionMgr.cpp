@@ -881,8 +881,8 @@ void Option::FSMState_WaitCloseForNoCard::do_init(ebi::Option::TMgr* obj,
                                                   Game::StateArg* arg)
 {
 	u32 v1 = __cvt_fp2unsigned(1.0f / sys->m_secondsPerFrame);
-	_10      = v1;
-	_14      = v1;
+	_10    = v1;
+	_14    = v1;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x10(r1)

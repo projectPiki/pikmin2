@@ -660,8 +660,7 @@ lbl_8040B6D4:
 	 * Address:	8040BAE4
 	 * Size:	0000A4
 	 */
-	khUtilFadePane* khUtilFadePane::create(P2DScreen::Mgr* mgr, u64 tag,
-	                                       u8 c)
+	khUtilFadePane* khUtilFadePane::create(P2DScreen::Mgr* mgr, u64 tag, u8 c)
 	{
 		if (mgr == nullptr) {
 			return nullptr;

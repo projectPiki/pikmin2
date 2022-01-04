@@ -1185,10 +1185,9 @@ void EnemyBaseFSM::BirthTypeDropState::init(Game::EnemyBase* enemy,
 		break;
 	default:
 		float theta = rand() * TAU;
-		float f
-		    = (0.0f <= theta)
-		          ? JMath::sincosTable_.m_table[(short)theta].first
-		          : -JMath::sincosTable_.m_table[(short)(u16)-theta].first;
+		float f     = (0.0f <= theta)
+		              ? JMath::sincosTable_.m_table[(short)theta].first
+		              : -JMath::sincosTable_.m_table[(short)(u16)-theta].first;
 		enemy->m_position.x += f * 50.0f;
 		if (theta < 0.0f) {
 			theta = -theta;

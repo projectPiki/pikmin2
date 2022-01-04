@@ -13,7 +13,7 @@ namespace Screen {
 	 */
 	bool DispMemberBase::isID(u32 ownerID, u64 memberID)
 	{
-		u32 thisOwnerID      = getOwnerID();
+		u32 thisOwnerID  = getOwnerID();
 		u64 thisMemberID = getMemberID();
 		if ((ownerID == thisOwnerID) && (memberID == thisMemberID)) {
 			return true;
@@ -66,8 +66,7 @@ namespace Screen {
 	 * Address:	8030F4C0
 	 * Size:	00010C
 	 */
-	DispMemberBase* DispMemberBase::getSubMember(u32 ownerID,
-	                                             u64 memberID)
+	DispMemberBase* DispMemberBase::getSubMember(u32 ownerID, u64 memberID)
 	{
 		// int i = 0;
 		// TODO: m_subMember is only fetched once. How does it pull that off?
@@ -77,7 +76,7 @@ namespace Screen {
 			if (member == nullptr) {
 				break;
 			}
-			u32 mo     = member->getOwnerID();
+			u32 mo = member->getOwnerID();
 			u64 mm = member->getMemberID();
 			char ownerName[12];
 			TagToName(mo, ownerName);

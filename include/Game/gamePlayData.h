@@ -64,7 +64,7 @@ struct KindCounter {
 	void addTo(KindCounter&);
 
 	u16 m_numKinds; // _00
-	u8* m_kinds;       // _04
+	u8* m_kinds;    // _04
 };
 
 /**

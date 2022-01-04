@@ -29,7 +29,7 @@ struct JKRHeap : public JKRDisposer {
 			TArgument(const JKRHeap*, u32, bool);
 
 			const JKRHeap* m_heap; // _00
-			u32 _04;             // _04
+			u32 _04;               // _04
 			bool _08;              // _08
 		};
 
@@ -97,7 +97,7 @@ struct JKRHeap : public JKRDisposer {
 	OSMutexObject m_mutex;               // _18
 	void* m_startAddress;                // _30
 	void* m_endAddress;                  // _34
-	u32 m_heapSize;                    // _38
+	u32 m_heapSize;                      // _38
 	u8 m_fillFlag;                       // _3C
 	u8 m_fillCheckFlag;                  // _3D
 	u8 _3E[2];                           // _3E
@@ -154,23 +154,23 @@ struct JKRExpHeap : public JKRHeap {
 
 	JKRExpHeap(void*, u32, JKRHeap*, bool);
 
-	virtual ~JKRExpHeap();                 // _00
-	virtual u32 getHeapType();             // _08
-	virtual bool check();                  // _0C
-	virtual bool dump_sort();              // _10
-	virtual bool dump();                   // _14
-	virtual void do_destroy();             // _18
-	virtual void* do_alloc(u32, int);    // _1C
-	virtual void do_free(void*);           // _20
-	virtual void do_freeAll();             // _24
-	virtual void do_freeTail();            // _28
-	virtual void do_fillFreeArea();        // _2C
-	virtual int do_resize(void*, u32);   // _30
-	virtual int do_getSize(void*);         // _34
-	virtual u32 do_getFreeSize();        // _38
-	virtual void* do_getMaxFreeBlock();    // _3C
-	virtual u32 do_getTotalFreeSize();   // _40
-	virtual u8 do_changeGroupID(u8); // _44
+	virtual ~JKRExpHeap();              // _00
+	virtual u32 getHeapType();          // _08
+	virtual bool check();               // _0C
+	virtual bool dump_sort();           // _10
+	virtual bool dump();                // _14
+	virtual void do_destroy();          // _18
+	virtual void* do_alloc(u32, int);   // _1C
+	virtual void do_free(void*);        // _20
+	virtual void do_freeAll();          // _24
+	virtual void do_freeTail();         // _28
+	virtual void do_fillFreeArea();     // _2C
+	virtual int do_resize(void*, u32);  // _30
+	virtual int do_getSize(void*);      // _34
+	virtual u32 do_getFreeSize();       // _38
+	virtual void* do_getMaxFreeBlock(); // _3C
+	virtual u32 do_getTotalFreeSize();  // _40
+	virtual u8 do_changeGroupID(u8);    // _44
 	virtual u8 do_getCurrentGroupId();  // _48
 
 	u32 allocFromHead(u32, int);

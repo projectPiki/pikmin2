@@ -23,7 +23,7 @@ typedef struct DVDPlayer {
 	u8 _24[4];           // _24
 	void* _28;           // _28
 	u8 _2C[4];           // _2C
-	u32 _30;           // _30
+	u32 _30;             // _30
 	int m_fileSize;      // _34
 	void* m_func;        // _38
 } DVDPlayer;

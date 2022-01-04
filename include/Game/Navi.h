@@ -75,12 +75,12 @@ struct Navi : public FakePiki, virtual public PelletView {
 	virtual PSM::Creature* getPSCreature();                    // _F0
 	virtual void on_movie_begin(bool);                         // _108
 	virtual void on_movie_end(bool);                           // _10C
-	virtual void movieStartAnimation(u32);                   // _110
+	virtual void movieStartAnimation(u32);                     // _110
 	virtual void movieStartDemoAnimation(SysShape::AnimInfo*); // _114
 	virtual void movieSetTranslation(Vector3f&, float);        // _11C
 	virtual void movieSetFaceDir(float);                       // _120
 	virtual bool movieGotoPosition(Vector3f&);                 // _124
-	virtual void movieUserCommand(u32, MoviePlayer*);        // _128
+	virtual void movieUserCommand(u32, MoviePlayer*);          // _128
 	virtual void getShadowParam(ShadowParam&);                 // _12C
 	virtual void getLODSphere(Sys::Sphere&);                   // _138
 	virtual void onStickStart(Creature*);                      // _150
@@ -161,7 +161,7 @@ struct Navi : public FakePiki, virtual public PelletView {
 	CPlate* m_cPlateMgr;                     // _254
 	u8 _258;                                 // _258
 	u8 m_stick;                              // _259
-	i32 m_sprayCounts[2];                   // _25C
+	i32 m_sprayCounts[2];                    // _25C
 	u8 _264[4];                              // _264
 	bool m_isAlive;                          // _268
 	u8 _269;                                 // _269
@@ -173,7 +173,7 @@ struct Navi : public FakePiki, virtual public PelletView {
 	Controller* m_padinput2;                 // _27C
 	PlayCamera* m_camera;                    // _280
 	PlayCamera* m_camera2;                   // _284
-	u16 _288;                             // _288
+	u16 _288;                                // _288
 	NaviWhistle* m_cursor;                   // _28C
 	SysShape::Model* m_cursorModel;          // _290
 	SysShape::Model* m_markerModel;          // _294
@@ -183,13 +183,13 @@ struct Navi : public FakePiki, virtual public PelletView {
 	Sys::MatLoopAnimator* m_arrowMatAnim; // _29C
 	// TODO: If this is the same sort of thing as m_health elsewhere, rename to
 	// that.
-	float m_currentLife;     // _2A0
-	u8 m_invincibleTimer; // _2A4
-	Piki* m_nextThrowPiki;   // _2A8
-	u8 _2AC[4];              // _2AC
-	float m_holdPikiTimer;   // _2B0
-	float _2B4;              // _2B4
-	float _2B8;              // _2B8
+	float m_currentLife;   // _2A0
+	u8 m_invincibleTimer;  // _2A4
+	Piki* m_nextThrowPiki; // _2A8
+	u8 _2AC[4];            // _2AC
+	float m_holdPikiTimer; // _2B0
+	float _2B4;            // _2B4
+	float _2B8;            // _2B8
 	// TODO: PikDecomp calls this "throwable". I think it's disabled when true
 	// though?
 	bool m_isThrowDisabled;         // _2BC

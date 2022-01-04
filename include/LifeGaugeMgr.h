@@ -24,8 +24,8 @@ struct LifeGauge {
 
 	float _00;  // _00
 	Color4 _04; // _04 // might be TColor
-	u8 _08;  // _08
-	u8 _09;  // _09
+	u8 _08;     // _08
+	u8 _09;     // _09
 };
 
 /**
