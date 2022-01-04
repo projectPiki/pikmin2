@@ -7,35 +7,29 @@
  * Size:	000088
  */
 int fwide(FILE* stream, int mode)
-{
-	int orientation;
-	int result;
+{    
+    int orientation;
     
-	if (stream == nullptr)
-		goto early_exit;
-	if (stream->mode.file_kind == __closed_file)
-	early_exit:
-		return 0;
-	orientation = stream->mode.file_orientation;
-	switch (orientation)
-	{
-		case __unoriented:
-			if (mode > 0)
-				stream->mode.file_orientation = __wide_oriented;
-			else if (mode < 0)
-				stream->mode.file_orientation = __char_oriented;
-			result = mode;
-			break;
-			
-		case __wide_oriented:
-			result = 1;
-			break;
-			
-		case __char_oriented:
-			result = -1;
-			break;
-	}
-	return result;
+    if (stream == nullptr || stream->mode.file_kind == __closed_file)
+        return 0;
+
+    orientation = stream->mode.file_orientation;
+    switch (orientation)
+    {
+        case __unoriented:
+            if (mode > 0)
+                stream->mode.file_orientation = __wide_oriented;
+            else if (mode < 0)
+                stream->mode.file_orientation = __char_oriented;
+
+            return mode;
+            
+        case __wide_oriented:
+            return 1;
+            
+        case __char_oriented:
+            return -1;
+    }
 }
 
 /*
