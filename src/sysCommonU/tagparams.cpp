@@ -209,7 +209,7 @@ TagParm::TagParm(TagParameters* container, char* name)
 	m_name = name;
 	m_next = nullptr;
 	if (container->m_head) {
-		this->m_next      = container->m_head;
+		m_next            = container->m_head;
 		container->m_head = this;
 		return;
 	}
@@ -233,7 +233,7 @@ void TagParameters::read(Stream& stream)
 		if (is_end)
 			break;
 
-		for (TagParm* node = this->m_head; node; node = node->m_next) {
+		for (TagParm* node = m_head; node; node = node->m_next) {
 			strLen          = strlen(str);
 			int nodeNameLen = strlen(node->m_name);
 			if (strLen != nodeNameLen) {

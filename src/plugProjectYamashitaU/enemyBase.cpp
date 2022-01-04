@@ -1327,7 +1327,7 @@ void EnemyBaseFSM::BirthTypeDropState::init(Game::EnemyBase* enemy,
 void EnemyBaseFSM::BirthTypeDropState::update(Game::EnemyBase* enemy)
 {
 	if (enemy->isFinishableWaitingBirthTypeDrop()) {
-		this->transit(enemy, EBS_Appear, nullptr);
+		transit(enemy, EBS_Appear, nullptr);
 	}
 	/*
 	.loc_0x0:

@@ -2459,14 +2459,14 @@ lbl_801AC10C:
  */
 void GeneratorMgr::doAnimation(void)
 {
-	if (this->m_generator) {
-		this->m_generator->doAnimation();
+	if (m_generator) {
+		m_generator->doAnimation();
 	}
-	if (this->m_childMgr) {
-		this->m_childMgr->doAnimation();
+	if (m_childMgr) {
+		m_childMgr->doAnimation();
 	}
-	if (this->getNext()) {
-		this->getNext()->doAnimation();
+	if (getNext()) {
+		getNext()->doAnimation();
 	}
 }
 
@@ -2479,14 +2479,14 @@ void GeneratorMgr::doAnimation(void)
  */
 void GeneratorMgr::doEntry(void)
 {
-	if (this->m_generator) {
-		this->m_generator->doEntry();
+	if (m_generator) {
+		m_generator->doEntry();
 	}
-	if (this->m_childMgr) {
-		this->m_childMgr->doEntry();
+	if (m_childMgr) {
+		m_childMgr->doEntry();
 	}
-	if (this->getNext()) {
-		this->getNext()->doEntry();
+	if (getNext()) {
+		getNext()->doEntry();
 	}
 }
 
@@ -2499,14 +2499,14 @@ void GeneratorMgr::doEntry(void)
  */
 void GeneratorMgr::doSetView(int index)
 {
-	if (this->m_generator) {
-		this->m_generator->doSetView(index);
+	if (m_generator) {
+		m_generator->doSetView(index);
 	}
-	if (this->m_childMgr) {
-		this->m_childMgr->doSetView(index);
+	if (m_childMgr) {
+		m_childMgr->doSetView(index);
 	}
-	if (this->getNext()) {
-		this->getNext()->doSetView(index);
+	if (getNext()) {
+		getNext()->doSetView(index);
 	}
 }
 
@@ -2519,14 +2519,14 @@ void GeneratorMgr::doSetView(int index)
  */
 void GeneratorMgr::doViewCalc(void)
 {
-	if (this->m_generator) {
-		this->m_generator->doViewCalc();
+	if (m_generator) {
+		m_generator->doViewCalc();
 	}
-	if (this->m_childMgr) {
-		this->m_childMgr->doViewCalc();
+	if (m_childMgr) {
+		m_childMgr->doViewCalc();
 	}
-	if (this->getNext()) {
-		this->getNext()->doViewCalc();
+	if (getNext()) {
+		getNext()->doViewCalc();
 	}
 }
 

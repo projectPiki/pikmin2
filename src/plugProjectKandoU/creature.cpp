@@ -117,9 +117,9 @@
 // 	if (que <= 0.0f) {
 // 		return 0.0f;
 // 	}
-// 	this->x *= 1.0f / que;
-// 	this->y *= 1.0f / que;
-// 	this->z *= 1.0f / que;
+// 	x *= 1.0f / que;
+// 	y *= 1.0f / que;
+// 	z *= 1.0f / que;
 // 	return que;
 // }
 

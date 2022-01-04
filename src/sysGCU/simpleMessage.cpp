@@ -17,10 +17,10 @@ SimpleMessage::SimpleMessage(void) { }
  */
 void SimpleMessage::init(void)
 {
-	this->m_processor = new P2JME::TRenderingProcessor(gP2JMEMgr->m_messageRef);
+	m_processor = new P2JME::TRenderingProcessor(gP2JMEMgr->m_messageRef);
 
-	this->m_processor->setFont(gP2JMEMgr->m_font);
-	this->m_processor->m_jmeFont = gP2JMEMgr->m_font;
+	m_processor->setFont(gP2JMEMgr->m_font);
+	m_processor->m_jmeFont = gP2JMEMgr->m_font;
 }
 
 /*
@@ -31,10 +31,10 @@ void SimpleMessage::init(void)
 void SimpleMessage::drawMessageID(Graphics& gfx, unsigned long r5,
                                   unsigned long r6)
 {
-	this->m_processor->preProcID(r5, r6);
+	m_processor->preProcID(r5, r6);
 
 	JMessage::TRenderingProcessor* jmProc
-	    = static_cast<JMessage::TRenderingProcessor*>(this->m_processor);
+	    = static_cast<JMessage::TRenderingProcessor*>(m_processor);
 	jmProc->reset_(nullptr);
 	jmProc->setBegin_messageID(r5, r6, nullptr);
 	jmProc->process(nullptr);

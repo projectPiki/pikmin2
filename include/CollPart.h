@@ -27,7 +27,7 @@
 
 struct CollPart : CNode {
 	virtual ~CollPart();                   // _00
-	virtual int getChildCount();          // _04
+	virtual int getChildCount();           // _04
 	virtual void isMouth();                // _08
 	virtual void draw(Graphics&);          // _0C
 	virtual void constructor();            // _10
@@ -39,23 +39,23 @@ struct CollPart : CNode {
 	virtual void doDirectDraw(Graphics&);  // _28
 
 	// _00 VTBL
-	float radius1;				//0x18
-	float radius2;				//0x1c
-	Vector3f offset;			//0x20
-	int jointIndex;				//0x2c
-	ID32 ID;					//0x30
-	ID32 Code;					//0x3c
-	short attribute;			//0x48
-	Vector3f position;			//0x4c
-	u8 collType;				//0x58
-	SysShape::MtxObject* model;	//0x5c
+	float radius1;              // 0x18
+	float radius2;              // 0x1c
+	Vector3f offset;            // 0x20
+	int jointIndex;             // 0x2c
+	ID32 ID;                    // 0x30
+	ID32 Code;                  // 0x3c
+	short attribute;            // 0x48
+	Vector3f position;          // 0x4c
+	u8 collType;                // 0x58
+	SysShape::MtxObject* model; // 0x5c
 	int _60;
-	Game::Creature* owner;		//0x64
+	Game::Creature* owner; // 0x64
 };
 
 struct AgeCollPart : public CollPart {
 	virtual ~AgeCollPart();                // _00
-	virtual int getChildCount();          // _04
+	virtual int getChildCount();           // _04
 	virtual void isMouth();                // _08
 	virtual void draw(Graphics&);          // _0C
 	virtual void constructor();            // _10

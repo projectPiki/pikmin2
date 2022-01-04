@@ -988,10 +988,10 @@ Quat::Quat()
  */
 Quat::Quat(float _w, Vector3f vec)
 {
-	this->w = _w;
-	x       = vec.x;
-	y       = vec.y;
-	z       = vec.z;
+	w = _w;
+	x = vec.x;
+	y = vec.y;
+	z = vec.z;
 }
 
 ///*

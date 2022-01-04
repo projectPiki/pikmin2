@@ -84,7 +84,7 @@ AIConstants::AIConstants()
 	if (handle) {
 		RamStream stream(handle, -1);
 		stream.resetPosition(true, 1);
-		this->read(stream);
+		read(stream);
 		delete[] handle;
 	}
 }

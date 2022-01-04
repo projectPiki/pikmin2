@@ -6443,36 +6443,36 @@ lbl_803F67A8:
 	{
 		switch (m_currentMap) {
 		case 0:
-			return !(this->Controls->buttons & 0x2000002)
-			               && this->Controls->buttons & 0x8000008
+			return !(Controls->buttons & 0x2000002)
+			               && Controls->buttons & 0x8000008
 			           ? 2
 			           : 1;
 			break;
 		case 1:
-			if ((this->Controls->buttons & 0x1000001) == 0
-			    && this->Controls->buttons & 0x8000008) {
-				if (this->maxMap == 3) {
+			if ((Controls->buttons & 0x1000001) == 0
+			    && Controls->buttons & 0x8000008) {
+				if (maxMap == 3) {
 					return 2;
-				} else if (this->maxMap > 3) {
+				} else if (maxMap > 3) {
 					return 3;
 				}
-			} else if (this->Controls->buttons & 0x1000001) {
+			} else if (Controls->buttons & 0x1000001) {
 				return 0;
 			}
 			break;
 
 		case 2:
-			if (!(this->Controls->buttons & 0x2000002)
-			    && this->Controls->buttons & 0x4000004) {
+			if (!(Controls->buttons & 0x2000002)
+			    && Controls->buttons & 0x4000004) {
 				return 0;
 			}
 
-			return this->maxMap == 3 ? 1 : 3;
+			return maxMap == 3 ? 1 : 3;
 			break;
 
 		case 3:
-			return (!(this->Controls->buttons & 0x1000001)
-			        && this->Controls->buttons & 0x4000004)
+			return (!(Controls->buttons & 0x1000001)
+			        && Controls->buttons & 0x4000004)
 			           ? 1
 			           : 2;
 			break;

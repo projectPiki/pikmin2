@@ -103,10 +103,9 @@ void Footmarks::add(Footmark& mark)
 	float v4;
 	float v5;
 	float v6;
-	if (this->_08 < 2
-	            || (v2 = &this->m_marks[this->_04 + this->m_count - 1
-	                                    - (this->_04 + this->m_count - 1)
-	                                          / this->m_count * this->m_count],
+	if (_08 < 2
+	            || (v2 = &m_marks[_04 + m_count - 1
+	                              - (_04 + m_count - 1) / m_count * m_count],
 	                v3 = (v2->position.x - mark.position.y),
 	                v4 = (v2->position.z - mark.position.z),
 	                v5 = (v4 * v4)
@@ -120,15 +119,14 @@ void Footmarks::add(Footmark& mark)
 	                        * (v2->position.x - mark.position.x)
 	                    + (v3 * v3))),
 	           v6 >= 20.0f)) {
-		this->m_marks[this->_04].position = mark.position;
-		this->m_marks[this->_04].flag     = Game::gameSystem->m_frameTimer;
-		this->_04
-		    = this->_04 + 1 - (this->_04 + 1) / this->m_count * this->m_count;
+		m_marks[_04].position = mark.position;
+		m_marks[_04].flag     = Game::gameSystem->m_frameTimer;
+		_04                   = _04 + 1 - (_04 + 1) / m_count * m_count;
 
-		u32 v8 = this->_08;
-		if (v8 < this->m_count)
-			this->_08 = v8 + 1;
-		this->_10 = Game::gameSystem->m_frameTimer;
+		u32 v8 = _08;
+		if (v8 < m_count)
+			_08 = v8 + 1;
+		_10 = Game::gameSystem->m_frameTimer;
 		namespace Game {
 
 		}

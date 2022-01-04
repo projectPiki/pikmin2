@@ -8,20 +8,20 @@
  * Size:	00001C
  */
 
-bool ID32::isEof() { return this->m_id.raw == '_eof'; }
+bool ID32::isEof() { return m_id.raw == '_eof'; }
 /*
  * --INFO--
  * Address:	80413270
  * Size:	000038
  */
-ID32::ID32() { this->setID('none'); }
+ID32::ID32() { setID('none'); }
 
 /*
  * --INFO--
  * Address:	804132A8
  * Size:	000030
  */
-ID32::ID32(unsigned long id) { this->setID(id); }
+ID32::ID32(unsigned long id) { setID(id); }
 
 /*
  * --INFO--
@@ -30,8 +30,8 @@ ID32::ID32(unsigned long id) { this->setID(id); }
  */
 void ID32::setID(unsigned long set_id)
 {
-	this->m_id.raw = set_id;
-	this->updateString();
+	m_id.raw = set_id;
+	updateString();
 }
 
 /*
@@ -42,10 +42,10 @@ void ID32::setID(unsigned long set_id)
 bool ID32::match(unsigned long _id, char exception)
 {
 	char* p_id = reinterpret_cast<char*>(&_id);
-	char* m_id = reinterpret_cast<char*>(&this->m_id.raw);
+	char* c_id = reinterpret_cast<char*>(&m_id.raw);
 
 	for (int i = 0; i < 4; i++) {
-		if (p_id[i] != exception && p_id[i] != m_id[i]) {
+		if (p_id[i] != exception && p_id[i] != c_id[i]) {
 			return false;
 		}
 	}
@@ -59,10 +59,10 @@ bool ID32::match(unsigned long _id, char exception)
  */
 void ID32::updateID()
 {
-	char* m_id = reinterpret_cast<char*>(&this->m_id.raw);
+	char* c_id = reinterpret_cast<char*>(&m_id.raw);
 
 	for (int i = 0; i < 4; i++) {
-		m_id[i] = this->m_str[i];
+		c_id[i] = m_str[i];
 	}
 }
 
@@ -73,10 +73,10 @@ void ID32::updateID()
  */
 void ID32::updateString()
 {
-	char* m_id = reinterpret_cast<char*>(&this->m_id.raw);
+	char* c_id = reinterpret_cast<char*>(&m_id.raw);
 
 	for (int i = 0; i < 4; i++) {
-		this->m_str[i] = m_id[i];
+		m_str[i] = c_id[i];
 	}
 	m_str[4] = '\0';
 }
@@ -88,27 +88,27 @@ void ID32::updateString()
  */
 void ID32::operator=(unsigned long _id)
 {
-	this->m_id.raw = _id;
+	m_id.raw = _id;
 
-	this->m_str[0] = this->m_id.str[0];
-	this->m_str[1] = this->m_id.str[1];
-	this->m_str[2] = this->m_id.str[2];
-	this->m_str[3] = this->m_id.str[3];
-	this->m_str[4] = '\0';
+	m_str[0] = m_id.str[0];
+	m_str[1] = m_id.str[1];
+	m_str[2] = m_id.str[2];
+	m_str[3] = m_id.str[3];
+	m_str[4] = '\0';
 }
 /*
  * --INFO--
  * Address:	80413434
  * Size:	000014
  */
-bool ID32::operator==(unsigned long target) { return this->m_id.raw == target; }
+bool ID32::operator==(unsigned long target) { return m_id.raw == target; }
 
 /*
  * --INFO--
  * Address:	80413448
  * Size:	000018
  */
-bool ID32::operator!=(unsigned long _id) { return this->m_id.raw != _id; }
+bool ID32::operator!=(unsigned long _id) { return m_id.raw != _id; }
 
 /*
  * --INFO--

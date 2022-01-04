@@ -194,13 +194,13 @@ namespace MemoryCard {
 	Mgr::Mgr()
 	    : MemoryCardMgr()
 	{
-		this->_D8 = 0;
-		this->_DC = 0;
-		this->_E0 = 0;
-		this->_E4 = 0;
-		this->_E5 = 0;
-		this->_E6 = 0;
-		this->_E7 = 0;
+		_D8 = 0;
+		_DC = 0;
+		_E0 = 0;
+		_E4 = 0;
+		_E5 = 0;
+		_E6 = 0;
+		_E7 = 0;
 
 		OSReport(lbl_8049ADF4, 0xC000, 0xC000, 0x3C);
 	}

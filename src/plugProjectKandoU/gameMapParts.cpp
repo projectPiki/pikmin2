@@ -673,7 +673,7 @@ namespace Game {
  */
 Door* MapUnitInterface::getDoor(int idx)
 {
-	return this->m_door.getChildAt(idx);
+	return m_door.getChildAt(idx);
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x10(r1)
