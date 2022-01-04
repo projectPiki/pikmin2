@@ -22,9 +22,9 @@ struct BirthMgr {
 	static void read(Stream&);
 	static void write(Stream&);
 
-	static i32 mToday[PikiColorCount];
-	static i32 mCave[PikiColorCount];
-	static i32 mTotal[PikiColorCount];
+	static u32 mToday[PikiColorCount];
+	static u32 mCave[PikiColorCount];
+	static u32 mTotal[PikiColorCount];
 };
 } // namespace Game
 

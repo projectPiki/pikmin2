@@ -338,7 +338,7 @@ void GenBase::doRead(Stream&) { }
  */
 u32 GenObject::getLatestVersion()
 {
-	i32 count = GenObjectFactory::factory->m_count;
+	u32 count = GenObjectFactory::factory->m_count;
 	if (count <= 0) {
 		return m_typeID;
 	}
@@ -941,7 +941,7 @@ void Generator::read(Stream& input)
 	ID32 temp;
 	temp.read(input);
 	int i                 = 0;
-	i32 count             = GenObjectFactory::factory->m_count;
+	u32 count             = GenObjectFactory::factory->m_count;
 	GenObject* makeResult = nullptr;
 	if (0 < count) {
 		do {

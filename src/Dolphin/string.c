@@ -163,7 +163,7 @@ int strcmp(const char* str1, const char* str2)
 
 	register u8* left  = (u8*)str1;
 	register u8* right = (u8*)str2;
-	i32 align, l1, r1, x;
+	u32 align, l1, r1, x;
 
 	l1 = *left;
 	r1 = *right;
@@ -293,7 +293,7 @@ char* strncpy(char* dst, const char* src, size_t n)
 char*(strcpy)(char* dst, const char* src)
 {
 	register u8 *destb, *fromb;
-	register i32 w, t, align;
+	register u32 w, t, align;
 
 	fromb = (u8*)src;
 	destb = (u8*)dst;

@@ -33,12 +33,12 @@ struct DeathMgr {
 	static void read(Stream&);
 	static void write(Stream&);
 
-	static i32 mToday[COD_SourceCount];
-	static i32 mTodayTotal;
-	static i32 mCave[COD_SourceCount];
-	static i32 mCaveTotal;
-	static i32 mTotal[COD_SourceCount];
-	static i32 mTotalTotal;
+	static u32 mToday[COD_SourceCount];
+	static u32 mTodayTotal;
+	static u32 mCave[COD_SourceCount];
+	static u32 mCaveTotal;
+	static u32 mTotal[COD_SourceCount];
+	static u32 mTotalTotal;
 	static int mSoundDeathCount;
 };
 } // namespace Game

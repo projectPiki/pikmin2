@@ -26,7 +26,7 @@ struct ObjectBase : public JKRDisposer {
 	u8 _18;
 	u8 m_handleCount;
 	JAISound** m_sounds;
-	i32 _20;
+	u32 _20;
 	Vector3f* _24;
 };
 } // namespace JAInter

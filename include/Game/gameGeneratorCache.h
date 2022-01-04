@@ -62,7 +62,7 @@ struct GeneratorCache {
 	CourseCache* _78;      // _78
 	u8* m_heapBuffer;      // _7C
 	int m_heapSize;        // _80
-	i32 m_freeOffset;      // _84
+	u32 m_freeOffset;      // _84
 	int m_freeSize;        // _88
 	Generator m_generator; // _8C
 };

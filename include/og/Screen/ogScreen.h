@@ -33,7 +33,7 @@ void blendColor(JUtility::TColor&, JUtility::TColor&, float, JUtility::TColor*);
 void blendPictureTreeColor(PictureTreeColorCaptureInfo*, JUtility::TColor&,
                            JUtility::TColor&, float);
 void calcGlbCenter(J2DPane*, Vector2f*);
-i32 CalcKeta(u32);
+u32 CalcKeta(u32);
 float calcSmooth0to1(float, float);
 u32* capturePictureTreeColor(J2DPane*, int);
 void centeringPane(J2DPane*, bool, bool);
@@ -90,7 +90,7 @@ void TagToHex(u64, char*);
 void TagToName(u64, char*);
 
 struct DispMemberBase {
-	virtual i32 getSize()     = 0;    // _00
+	virtual u32 getSize()     = 0;    // _00
 	virtual u32 getOwnerID()  = 0;    // _04
 	virtual u64 getMemberID() = 0;    // _08
 	virtual void doSetSubMemberAll(); // _10

@@ -42,7 +42,7 @@ struct GeneralEnemyMgr : public GenericObjectMgr {
 	EnemyTypeID::EEnemyTypeID* m_enemyNumList; // _48
 	JKRHeap* m_heap;                           // _4C
 	u32 m_heapSize;                            // _50
-	i32 m_flags;                               // _54
+	u32 m_flags;                               // _54
 	// TODO: replace with proper type
 	// EnemyStone::Mgr m_stoneMgr; // _58
 	u8 m_stoneMgr[0x38]; // _58

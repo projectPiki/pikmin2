@@ -26,7 +26,7 @@ struct J3DSys {
 
 	Mtx44 _00;                     // _000
 	J3DMtxCalc* m_mtxCalc;         // _030
-	i32 _34;                       // _034 /* bitfield */
+	u32 _34;                       // _034 /* bitfield */
 	J3DModel* _38;                 // _038
 	J3DMatPacket* m_matPacket;     // _03C
 	J3DShapePacket* m_shapePacket; // _040
@@ -37,7 +37,7 @@ struct J3DSys {
 	u32 _54;                       // _054
 	J3DTexture* _58;               // _058
 	u8 _5C[4];                     // _05C
-	i32 _60;                       // _060
+	u32 _60;                       // _060
 	u8 _64[0xA0];                  // _064
 	Mtx44* _104;                   // _104
 	Mtx* _108;                     // _108
@@ -47,7 +47,7 @@ struct J3DSys {
 	 */
 	u32 _10C; // _10C
 	u32 _110; // _110
-	i32 _114; // _114 /* bitfield */
+	u32 _114; // _114 /* bitfield */
 
 	static Mtx44 mCurrentMtx;
 	static JGeometry::TVec3f mCurrentS;

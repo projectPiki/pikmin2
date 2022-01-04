@@ -26,7 +26,7 @@ struct JAIAnimeSound : public JAInter::Object {
 	u8 _48[0x14];                   // _48
 	u32 _5C;                        // _5C
 	u8 _60[8];                      // _60
-	i32 _68;                        // _68
+	u32 _68;                        // _68
 	int _6C;                        // _6C
 	float _70;                      // _70
 	float _74;                      // _74

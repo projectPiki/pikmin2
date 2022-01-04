@@ -41,8 +41,8 @@ struct GridDivider : public TriDivider {
 
 	VertexTable* m_vertexTable;
 	TriangleTable* m_triangleTable;
-	i32 _20;
-	i32 _24;
+	u32 _20;
+	u32 _24;
 	TriIndexList* m_triIndexLists;
 	BoundBox m_boundingBox;
 	float _44;

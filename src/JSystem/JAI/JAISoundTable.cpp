@@ -116,9 +116,9 @@ lbl_800B74FC:
  */
 JAInter::SoundInfo* JAInter::SoundTable::getInfoPointer(u32 soundID)
 {
-	i32 maskedID    = soundID & 0xC0000000;
+	u32 maskedID    = soundID & 0xC0000000;
 	SoundInfo* info = nullptr;
-	i32 category    = 0;
+	u32 category    = 0;
 	if (maskedID == 0xC0000000) {
 		category = 0x11;
 	} else {

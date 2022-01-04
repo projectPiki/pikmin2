@@ -445,7 +445,7 @@ void PlayData::write(Stream& output)
 	// } while (i < 2);
 	output.textEndGroup();
 	output.textBeginGroup("* コース情報 *");
-	i32 courseCount = stageList->m_courseCount;
+	u32 courseCount = stageList->m_courseCount;
 	output.textWriteTab(output.m_tabCount);
 	output.writeInt((uint)courseCount);
 	output.textWriteText("\t# コース数\r\n");
@@ -1079,8 +1079,8 @@ void PlayData::read(Stream& input)
 	for (int i = 0; i < 2; i++) {
 		m_berryCount[i] = input.readInt();
 	}
-	// i32 courseNum = stageList->m_courseCount;
-	// i32 cardNum = input.readInt();
+	// u32 courseNum = stageList->m_courseCount;
+	// u32 cardNum = input.readInt();
 	// JUT_ASSERTLINE(633, courseNum == cardNum, "SaveData ERROR : CourseNum=%d
 	// (card num=%d)\n", courseNum, cardNum); for (int i = 0; i < courseNum;
 	// i++) {

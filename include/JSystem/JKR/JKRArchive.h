@@ -25,7 +25,7 @@ struct JKRArchive : public JKRFileLoader {
 	struct SDIFileEntry {
 		u8 _00[2];  // _00
 		u16 m_hash; // _02
-		i32 _04;    // _04
+		u32 _04;    // _04
 		int _08;    // _08
 		int m_size; // _0C
 		int _10;    // _10

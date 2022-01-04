@@ -88,7 +88,7 @@ struct CallBack_CounterRV : public P2DScreen::CallBackNode {
 	float _54;                      // _54
 	float _58;                      // _58
 	float _5C;                      // _5C
-	i32 m_basePosition;             // _60 /* Use J2DBasePosition constants. */
+	u32 m_basePosition;             // _60 /* Use J2DBasePosition constants. */
 	u8 _64;                         // _64
 	u8 _65[7];             // _65 /* Hopefully this doesn't mess with size. */
 	J2DPictureEx* _6C;     // _6C

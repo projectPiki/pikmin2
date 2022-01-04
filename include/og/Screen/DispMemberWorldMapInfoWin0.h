@@ -6,7 +6,7 @@
 namespace og {
 namespace Screen {
 struct DispMemberWorldMapInfoWin0 : public DispMemberBase {
-	virtual i32 getSize();            // _00
+	virtual u32 getSize();            // _00
 	virtual u32 getOwnerID();         // _04
 	virtual u64 getMemberID();        // _08
 	virtual void doSetSubMemberAll(); // _0C

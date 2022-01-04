@@ -27,7 +27,7 @@ typedef struct PADStatus {
 void __PADDisableRecalibration();
 void PADClamp();
 void PADClampCircle(PADStatus*);
-void PADControlMotor(int, uint);
+void PADControlMotor(int, u32);
 void PADInit();
 void PADOriginCallback();
 void PADOriginUpdateCallback();

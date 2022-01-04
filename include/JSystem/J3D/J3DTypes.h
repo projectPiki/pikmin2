@@ -7,7 +7,7 @@
 /**
  * @fabricatedName
  */
-typedef i32 J3DModelLoaderFlags;
+typedef u32 J3DModelLoaderFlags;
 
 // TODO: Convert to '' notation when not lazy.
 enum JBlockType {

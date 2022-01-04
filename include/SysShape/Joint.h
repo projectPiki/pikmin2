@@ -17,7 +17,7 @@ struct Joint : public CNode {
 
 	virtual ~Joint(); // _00
 
-	i32 getJntNo() const;
+	u32 getJntNo() const;
 	Matrixf* getWorldMatrix();
 	void init(u16, Model*, J3DJoint*);
 

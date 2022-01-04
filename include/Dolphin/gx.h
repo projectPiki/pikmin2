@@ -19,8 +19,8 @@ typedef u8 GXBool;
 #define GX_DISABLE ((GXBool)0)
 
 // TODO: Replace(?) this block of typedefs. They're just placeholders for now.
-typedef i32 GXCullMode;
-typedef i32 _GXVtxAttrFmtList;
+typedef u32 GXCullMode;
+typedef u32 _GXVtxAttrFmtList;
 
 // Name of the vertex attribute or array. Attributes are listed in the ascending
 // order vertex data is required to be sent to the GP. Havent confirmed the GX
@@ -397,7 +397,7 @@ typedef GXTlutRegion* GXTlutRegionCallback(_GXTlut);
 
 void GXInitTlutObj(GXTlutObj*, const u8*, _GXTlutFmt, u16);
 // TODO: Params aren't fully worked out yet.
-void GXInitTlutRegion(u32*, int, i32);
+void GXInitTlutRegion(u32*, int, u32);
 void GXLoadTlut(GXTlutObj*, _GXTlut);
 void GXSetTlutRegionCallback(GXTlutRegionCallback*);
 

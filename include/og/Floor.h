@@ -23,7 +23,7 @@ struct CallBack_CounterRV;
 
 // Size: 0x14
 struct DispMemberFloor : public DispMemberBase {
-	virtual i32 getSize();     // _00
+	virtual u32 getSize();     // _00
 	virtual u32 getOwnerID();  // _04
 	virtual u64 getMemberID(); // _08
 
@@ -42,7 +42,7 @@ struct TitleMsg;
 // Size: 0x220
 struct Floor : public ::Screen::SceneBase {
 	virtual SceneType getSceneType();                           // _00
-	virtual i32 getOwnerID();                                   // _04
+	virtual u32 getOwnerID();                                   // _04
 	virtual u64 getMemberID();                                  // _08
 	virtual bool isUseBackupSceneInfo();                        // _0C
 	virtual bool isDrawInDemo() const;                          // _10

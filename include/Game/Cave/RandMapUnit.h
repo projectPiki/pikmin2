@@ -39,7 +39,7 @@ struct RandMapUnit {
 	CardinalDirection getLinkDoorDirection(MapNode*, int, MapNode*, int);
 	MapNode* getLinkDoorNodeFirst(MapNode*, int, int, int, int&);
 	MapNode* getLoopEndMapUnit();
-	i32 getLoopMapNode(MapNode**);
+	u32 getLoopMapNode(MapNode**);
 	MapNode* getLoopRandMapUnit();
 	MapNode* getNormalRandMapUnit();
 	int getOpenDoorNum();

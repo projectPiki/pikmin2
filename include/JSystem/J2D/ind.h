@@ -24,7 +24,7 @@ struct J2DIndBlock {
 struct J2DIndBlockNull : public J2DIndBlock {
 	virtual ~J2DIndBlockNull();
 
-	i32 getType();
+	u32 getType();
 	void setGX();
 };
 

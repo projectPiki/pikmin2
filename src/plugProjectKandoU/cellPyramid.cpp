@@ -419,7 +419,7 @@ inline void CellPyramid::initFrame() { }
  * Address:	........
  * Size:	000008
  */
-inline i32 CellPyramid::getCheckCount() { return m_passID; }
+inline u32 CellPyramid::getCheckCount() { return m_passID; }
 
 /*
  * --INFO--
@@ -3012,16 +3012,16 @@ void CellPyramid::create(BoundBox2d& box, float p2)
 	_40                = box._00;
 	_34                = p2;
 	_38                = 1.0f / p2;
-	i32 uVar13         = (uint)ceil((double)(FABS(box._08 - box._00) * _38));
-	i32 uVar12         = (uint)ceil(FABS(box._0C - box._04) * _38);
+	u32 uVar13         = (uint)ceil((double)(FABS(box._08 - box._00) * _38));
+	u32 uVar12         = (uint)ceil(FABS(box._0C - box._04) * _38);
 	if ((200 < uVar13) || (200 < uVar12)) {
 		_34    = p2 * 1.5f;
 		_38    = 1.0f / (p2 * 1.5f);
 		uVar13 = (uint)ceil((double)(FABS(box._08 - box._00) * _38));
 		uVar12 = (uint)ceil((double)(FABS(box._0C - box._04) * _38));
 	}
-	i32 uVar14 = MAX(uVar12, uVar13);
-	i32 dVar18 = (uint)ceil(log10((double)uVar14) / log10(2.0));
+	u32 uVar14 = MAX(uVar12, uVar13);
+	u32 dVar18 = (uint)ceil(log10((double)uVar14) / log10(2.0));
 	pow(2.0, (double)dVar18);
 	m_layerCount        = dVar18 + 1;
 	m_layers            = new CellLayer[m_layerCount];

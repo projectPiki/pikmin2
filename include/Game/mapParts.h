@@ -46,7 +46,7 @@ struct DoorLink : public CNode {
 	void write(Stream&);
 
 	float m_dist;  // _18
-	i32 m_doorID;  // _1C
+	u32 m_doorID;  // _1C
 	u8 m_tekiFlag; // _20
 };
 

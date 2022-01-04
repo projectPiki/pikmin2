@@ -298,15 +298,15 @@ void JKRDecomp::decode(u8* p1, u8* p2, u32 p3, u32 p4)
  */
 void JKRDecomp::decodeSZP(u8* p1, u8* p2, u32 p3, u32 p4)
 {
-	// i32 v5 = (uint)p1[11] | (uint)p1[10] << 8 | (uint)p1[9] << 16 |
-	// (uint)p1[8] << 24; i32 v2 = (uint)p1[7]  | (uint)p1[6]  << 8 |
+	// u32 v5 = (uint)p1[11] | (uint)p1[10] << 8 | (uint)p1[9] << 16 |
+	// (uint)p1[8] << 24; u32 v2 = (uint)p1[7]  | (uint)p1[6]  << 8 |
 	// (uint)p1[5] << 16 | (uint)p1[4] << 24;
-	i32 v5 = EXTRACT_TO_UINT(p1, 11, 10, 9, 8);
-	i32 v2 = EXTRACT_TO_UINT(p1, 7, 6, 5, 4);
+	u32 v5 = EXTRACT_TO_UINT(p1, 11, 10, 9, 8);
+	u32 v2 = EXTRACT_TO_UINT(p1, 7, 6, 5, 4);
 	int v4 = 0;
 	int v6 = 0;
 	int v3 = 0x10;
-	i32 vr;
+	u32 vr;
 	if (p3 != 0 && p4 <= v2) {
 		// u8* v7 = p1 + ((uint)p1[15] | (uint)p1[14] << 8 | (uint)p1[13] <<
 		// 16 | (uint)p1[12] << 24)

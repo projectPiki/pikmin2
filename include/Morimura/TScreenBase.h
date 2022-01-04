@@ -44,7 +44,7 @@ struct TSelectExplanationWindow : public TScreenBase {
 
 	// _00 VTBL
 	// inherited from TScreenBase
-	i32 unknown_0x18;                     // _18
+	u32 unknown_0x18;                     // _18
 	float _1C;                            // _1C
 	float _20;                            // _20
 	float _24;                            // _24
