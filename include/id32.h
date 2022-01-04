@@ -5,13 +5,16 @@
 #include "stream.h"
 
 class ID32 {
-public:
+private:
 	char m_str[5]; // _00
 	union {
 		char strView[4];
 		u32 intView;
 	} m_id; // _08
 
+	void updateString();
+
+public:
 	bool isEof();
 	ID32();
 	ID32(u32);
@@ -26,10 +29,10 @@ public:
 	void sprint(char*);
 	void print();
 
-	static ID32 eof;
+	inline char* getStrID() { return m_id.strView; }
+	inline u32 getID() { return m_id.intView; }
 
-private:
-	void updateString(); // done
+	static ID32 eof;
 };
 
 #endif
