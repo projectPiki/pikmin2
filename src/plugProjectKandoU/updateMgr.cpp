@@ -117,6 +117,8 @@ void UpdateMgr::update(void)
 	_10 = 0;
 }
 
+#if NOPE
+
 /*
  * updatable__Q24Game9UpdateMgrFPQ24Game13UpdateContext
  * --INFO--
@@ -236,4 +238,5 @@ void UpdateMgr::showInfo(Graphics&, int, int)
 {
 	// UNUSED FUNCTION
 }
+#endif
 } // namespace Game
