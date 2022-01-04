@@ -53,6 +53,8 @@ struct Stream {
 	uchar _readByte();
 	void _writeByte(uchar);
 
+	inline void addTab() { textWriteTab(m_tabCount); }
+
 	u32 _04;           // _004
 	int m_position;    // _008
 	int m_isTextMode;  // _00C
