@@ -1,65 +1,41 @@
-
+#include "types.h"
+#include "Dolphin/wchar_io.h"
 
 /*
  * --INFO--
  * Address:	800CC258
  * Size:	000088
  */
-void fwide(void)
+int fwide(FILE* stream, int mode)
 {
-	/*
-	.loc_0x0:
-	  cmplwi    r3, 0
-	  beq-      .loc_0x14
-	  lhz       r0, 0x4(r3)
-	  rlwinm.   r0,r0,26,29,31
-	  bne-      .loc_0x1C
-
-	.loc_0x14:
-	  li        r3, 0
-	  blr
-
-	.loc_0x1C:
-	  lbz       r5, 0x5(r3)
-	  rlwinm    r0,r5,28,30,31
-	  cmpwi     r0, 0x1
-	  beq-      .loc_0x80
-	  bge-      .loc_0x3C
-	  cmpwi     r0, 0
-	  bge-      .loc_0x48
-	  blr
-
-	.loc_0x3C:
-	  cmpwi     r0, 0x3
-	  bgelr-
-	  b         .loc_0x78
-
-	.loc_0x48:
-	  cmpwi     r4, 0
-	  ble-      .loc_0x60
-	  li        r0, 0x2
-	  rlwimi    r5,r0,4,26,27
-	  stb       r5, 0x5(r3)
-	  b         .loc_0x70
-
-	.loc_0x60:
-	  bge-      .loc_0x70
-	  li        r0, 0x1
-	  rlwimi    r5,r0,4,26,27
-	  stb       r5, 0x5(r3)
-
-	.loc_0x70:
-	  mr        r3, r4
-	  blr
-
-	.loc_0x78:
-	  li        r3, 0x1
-	  blr
-
-	.loc_0x80:
-	  li        r3, -0x1
-	  blr
-	*/
+	int orientation;
+	int result;
+    
+	if (stream == nullptr)
+		goto early_exit;
+	if (stream->mode.file_kind == __closed_file)
+	early_exit:
+		return result = 0;
+	orientation = stream->mode.file_orientation;
+	switch (orientation)
+	{
+		case __unoriented:
+			if (mode > 0)
+				stream->mode.file_orientation = __wide_oriented;
+			else if (mode < 0)
+				stream->mode.file_orientation = __char_oriented;
+			result = mode;
+			break;
+			
+		case __wide_oriented:
+			result = 1;
+			break;
+			
+		case __char_oriented:
+			result = -1;
+			break;
+	}
+	return result;
 }
 
 /*

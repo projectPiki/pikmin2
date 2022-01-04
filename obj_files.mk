@@ -303,7 +303,7 @@ DOLPHIN:=\
 	$(BUILD_DIR)/src/Dolphin/string.o\
 	$(BUILD_DIR)/asm/Dolphin/strtold.o\
 	$(BUILD_DIR)/asm/Dolphin/strtoul.o\
-	$(BUILD_DIR)/asm/Dolphin/wchar_io.o\
+	$(BUILD_DIR)/src/Dolphin/wchar_io.o\
 	$(BUILD_DIR)/asm/Dolphin/uart_console_io_gcn.o\
 	$(BUILD_DIR)/asm/Dolphin/e_asin.o\
 	$(BUILD_DIR)/src/Dolphin/e_atan2.o\
