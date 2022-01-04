@@ -167,7 +167,7 @@ void ID32::read(Stream& stream)
  * Address:	804135DC
  * Size:	000004
  */
-void ID32::print() { return; }
+void ID32::print() { }
 
 /*
  * --INFO--

@@ -134,7 +134,6 @@ JKRHeap::JKRHeap(void* startPtr, ulong size, JKRHeap* parentHeap,
 	m_fillFlag      = JKRHeap::sDefaultFillFlag;
 	m_fillCheckFlag = JKRHeap::sDefaultFillCheckFlag;
 	_69             = 0;
-	return;
 	/*
 	.loc_0x0:
 	  stwu      r1, -0x20(r1)
