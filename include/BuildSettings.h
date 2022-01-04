@@ -12,5 +12,6 @@
 
 // The following are constants that mods might be interested in tweaking.
 #define GENERATOR_CACHE_HEAP_SIZE 0xA000
+#define CHALLENGE_COURSE_COUNT    30
 
 #endif

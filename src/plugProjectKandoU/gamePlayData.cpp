@@ -2527,7 +2527,7 @@ void PlayData::setDevelopSetting(bool p1, bool p2)
  * Address:	801E6F58
  * Size:	0000B4
  */
-void PlayData::calcPlayMinutes()
+int PlayData::calcPlayMinutes()
 {
 
 	/*

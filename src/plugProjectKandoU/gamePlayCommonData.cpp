@@ -1,4 +1,10 @@
+#include "Game/BirthMgr.h"
 #include "Game/Data.h"
+#include "Game/DeathMgr.h"
+#include "Game/GameConfig.h"
+#include "Game/gamePlayData.h"
+#include "JSystem/JUT/JUTException.h"
+#include "System.h"
 #include "types.h"
 
 /*
@@ -30,79 +36,19 @@ namespace Game {
  * Address:	8023410C
  * Size:	0000FC
  */
-PlayCommonData::PlayCommonData(void)
+PlayCommonData::PlayCommonData()
+    : _00(0)
+    , m_challengeData()
 {
-	/*
-	stwu     r1, -0x20(r1)
-	mflr     r0
-	stw      r0, 0x24(r1)
-	li       r0, 0
-	stw      r31, 0x1c(r1)
-	stw      r30, 0x18(r1)
-	stw      r29, 0x14(r1)
-	stw      r28, 0x10(r1)
-	mr       r28, r3
-	stb      r0, 0(r3)
-	addi     r3, r28, 0xc
-	bl       __ct__Q24Game21PlayChallengeGameDataFv
-	li       r3, 0x40
-	bl       __nwa__FUl
-	stw      r3, 4(r28)
-	li       r3, 0x40
-	bl       __nwa__FUl
-	stw      r3, 8(r28)
-	li       r29, 0
-	li       r30, 0
-
-lbl_8023415C:
-	li       r3, 0xc
-	bl       __nw__FUl
-	or.      r31, r3, r3
-	beq      lbl_8023417C
-	bl       __ct__Q24Game9HighscoreFv
-	lis      r3, __vt__Q24Game8Lowscore@ha
-	addi     r0, r3, __vt__Q24Game8Lowscore@l
-	stw      r0, 0(r31)
-
-lbl_8023417C:
-	lwz      r4, 4(r28)
-	li       r3, 0xc
-	stwx     r31, r4, r30
-	bl       __nw__FUl
-	or.      r31, r3, r3
-	beq      lbl_802341A4
-	bl       __ct__Q24Game9HighscoreFv
-	lis      r3, __vt__Q24Game8Lowscore@ha
-	addi     r0, r3, __vt__Q24Game8Lowscore@l
-	stw      r0, 0(r31)
-
-lbl_802341A4:
-	lwz      r3, 8(r28)
-	li       r4, 3
-	stwx     r31, r3, r30
-	lwz      r3, 4(r28)
-	lwzx     r3, r3, r30
-	bl       allocate__Q24Game9HighscoreFi
-	lwz      r3, 8(r28)
-	li       r4, 3
-	lwzx     r3, r3, r30
-	bl       allocate__Q24Game9HighscoreFi
-	addi     r29, r29, 1
-	addi     r30, r30, 4
-	cmpwi    r29, 0x10
-	blt      lbl_8023415C
-	mr       r3, r28
-	bl       reset__Q24Game14PlayCommonDataFv
-	lwz      r0, 0x24(r1)
-	mr       r3, r28
-	lwz      r31, 0x1c(r1)
-	lwz      r30, 0x18(r1)
-	lwz      r29, 0x14(r1)
-	lwz      r28, 0x10(r1)
-	mtlr     r0
-	addi     r1, r1, 0x20
-	blr
-	*/
+	_04 = new Highscore*[16];
+	_08 = new Highscore*[16];
+	for (int i = 0; i < 0x10; i++) {
+		_04[i] = new Lowscore();
+		_08[i] = new Lowscore();
+		_04[i]->allocate(3);
+		_08[i]->allocate(3);
+	}
+	reset();
 }
 
 /*
@@ -112,6 +58,12 @@ lbl_802341A4:
  */
 void PlayCommonData::reset(void)
 {
+	_00 = 0;
+	m_challengeData.reset();
+	for (int i = 0; i < 0x10; i++) {
+		_04[i]->clear();
+		_08[i]->clear();
+	}
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -149,12 +101,26 @@ lbl_8023423C:
 }
 
 /*
+ * reset__Q24Game21PlayChallengeGameDataFv
  * --INFO--
  * Address:	80234280
  * Size:	0000C0
  */
-void PlayChallengeGameData::reset(void)
+void PlayChallengeGameData::reset()
 {
+	m_flags = PCGDF_Unset;
+	for (int i = 0; i < m_courseCount; i++) {
+		CourseState* course = &m_courses[i];
+		course->m_highscores[0].clear();
+		course->m_highscores[1].clear();
+		course->m_flags.byteView[0] = 0;
+		course->m_flags.byteView[1] = 0;
+	}
+	m_courses[0].m_flags.typeView |= CourseState::CSF_IsOpen;
+	m_courses[1].m_flags.typeView |= CourseState::CSF_IsOpen;
+	m_courses[2].m_flags.typeView |= CourseState::CSF_IsOpen;
+	m_courses[3].m_flags.typeView |= CourseState::CSF_IsOpen;
+	m_courses[4].m_flags.typeView |= CourseState::CSF_IsOpen;
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -212,12 +178,20 @@ lbl_802342D0:
 }
 
 /*
+ * write__Q24Game14PlayCommonDataFR6Stream
  * --INFO--
  * Address:	80234340
  * Size:	0000A0
  */
-void PlayCommonData::write(Stream&)
+void PlayCommonData::write(Stream& output)
 {
+	output.writeInt(2);
+	output.writeByte(_00);
+	for (int i = 0; i < 0x10; i++) {
+		_04[i]->write(output);
+		_08[i]->write(output);
+	}
+	m_challengeData.write(output);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -265,6 +239,7 @@ lbl_80234384:
 }
 
 /*
+ * read__Q24Game14PlayCommonDataFR6Stream
  * --INFO--
  * Address:	802343E0
  * Size:	0000EC
@@ -347,44 +322,14 @@ lbl_802344A0:
  * Address:	802344CC
  * Size:	000078
  */
-void PlayCommonData::getHighscore_clear(int)
+Highscore* PlayCommonData::getHighscore_clear(int index)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stw      r31, 0xc(r1)
-	or.      r31, r4, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	blt      lbl_802344FC
-	cmpwi    r31, 0x10
-	bge      lbl_802344FC
-	li       r0, 1
-
-lbl_802344FC:
-	clrlwi.  r0, r0, 0x18
-	bne      lbl_80234520
-	lis      r3, lbl_80483A88@ha
-	lis      r5, lbl_80483AA0@ha
-	addi     r3, r3, lbl_80483A88@l
-	li       r4, 0x9b
-	addi     r5, r5, lbl_80483AA0@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80234520:
-	lwz      r3, 4(r30)
-	slwi     r0, r31, 2
-	lwzx     r3, r3, r0
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	bool isValidIndex = false;
+	if (0 <= index && index < 0x10) {
+		isValidIndex = true;
+	}
+	P2ASSERTLINE(155, isValidIndex);
+	return _04[index];
 }
 
 /*
@@ -392,44 +337,14 @@ lbl_80234520:
  * Address:	80234544
  * Size:	000078
  */
-void PlayCommonData::getHighscore_complete(int)
+Highscore* PlayCommonData::getHighscore_complete(int index)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stw      r31, 0xc(r1)
-	or.      r31, r4, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	blt      lbl_80234574
-	cmpwi    r31, 0x10
-	bge      lbl_80234574
-	li       r0, 1
-
-lbl_80234574:
-	clrlwi.  r0, r0, 0x18
-	bne      lbl_80234598
-	lis      r3, lbl_80483A88@ha
-	lis      r5, lbl_80483AA0@ha
-	addi     r3, r3, lbl_80483A88@l
-	li       r4, 0xa2
-	addi     r5, r5, lbl_80483AA0@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80234598:
-	lwz      r3, 8(r30)
-	slwi     r0, r31, 2
-	lwzx     r3, r3, r0
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	bool isValidIndex = false;
+	if (0 <= index && index < 0x10) {
+		isValidIndex = true;
+	}
+	P2ASSERTLINE(162, isValidIndex);
+	return _08[index];
 }
 
 /*
@@ -437,24 +352,10 @@ lbl_80234598:
  * Address:	802345BC
  * Size:	000038
  */
-void PlayCommonData::entryHighscores_clear(int, int*, int*)
+void PlayCommonData::entryHighscores_clear(int newTotal, int* totals,
+                                           int* scores)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r8, r4
-	mr       r7, r6
-	stw      r0, 0x14(r1)
-	mr       r0, r5
-	mr       r5, r8
-	lwz      r4, 4(r3)
-	mr       r6, r0
-	bl entryHighscores_common__Q24Game14PlayCommonDataFPPQ24Game9HighscoreiPiPi
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	entryHighscores_common(_04, newTotal, totals, scores);
 }
 
 /*
@@ -462,24 +363,10 @@ void PlayCommonData::entryHighscores_clear(int, int*, int*)
  * Address:	802345F4
  * Size:	000038
  */
-void PlayCommonData::entryHighscores_complete(int, int*, int*)
+void PlayCommonData::entryHighscores_complete(int newTotal, int* totals,
+                                              int* scores)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	mr       r8, r4
-	mr       r7, r6
-	stw      r0, 0x14(r1)
-	mr       r0, r5
-	mr       r5, r8
-	lwz      r4, 8(r3)
-	mr       r6, r0
-	bl entryHighscores_common__Q24Game14PlayCommonDataFPPQ24Game9HighscoreiPiPi
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	entryHighscores_common(_08, newTotal, totals, scores);
 }
 
 /*
@@ -487,8 +374,24 @@ void PlayCommonData::entryHighscores_complete(int, int*, int*)
  * Address:	8023462C
  * Size:	0000E0
  */
-void PlayCommonData::entryHighscores_common(Game::Highscore**, int, int*, int*)
+void PlayCommonData::entryHighscores_common(Game::Highscore** highscores,
+                                            int newTotal, int* totals,
+                                            int* scores)
 {
+	totals[0] = newTotal;
+	scores[0] = highscores[0]->entryScore(newTotal);
+	for (int i = 0; i < 8; i++) {
+		totals[i + 1] = DeathMgr::get_total((DeathMgr::CauseOfDeath)i);
+		scores[i + 1] = highscores[i + 1]->entryScore(totals[i + 1]);
+	}
+	for (int i = 0; i < 6; i++) {
+		totals[i + 9] = BirthMgr::get_total(i);
+		scores[i + 9] = highscores[i + 9]->entryScore(totals[i + 9]);
+	}
+	CommonSaveData::Mgr* playCommonData = sys->getPlayCommonData();
+	int timeTotal = playData->calcPlayMinutes() + playCommonData->_1C;
+	totals[0xF]   = timeTotal;
+	scores[0xF]   = highscores[0xF]->entryScore(timeTotal);
 	/*
 	stwu     r1, -0x20(r1)
 	mflr     r0
@@ -558,13 +461,9 @@ lbl_80234698:
  * Address:	8023470C
  * Size:	00000C
  */
-void PlayCommonData::isChallengeGamePlayable(void)
+bool PlayCommonData::isChallengeGamePlayable(void)
 {
-	/*
-	lbz      r0, 0x14(r3)
-	clrlwi   r3, r0, 0x1f
-	blr
-	*/
+	return m_challengeData.m_flags & PlayChallengeGameData::PCGDF_IsPlayable;
 }
 
 /*
@@ -572,13 +471,10 @@ void PlayCommonData::isChallengeGamePlayable(void)
  * Address:	80234718
  * Size:	00000C
  */
-void PlayCommonData::isLouieRescued(void)
+bool PlayCommonData::isLouieRescued(void)
 {
-	/*
-	lbz      r0, 0x14(r3)
-	rlwinm   r3, r0, 0x1e, 0x1f, 0x1f
-	blr
-	*/
+	return m_challengeData.m_flags
+	       & PlayChallengeGameData::PCGDF_IsLouieRescued;
 }
 
 /*
@@ -586,7 +482,7 @@ void PlayCommonData::isLouieRescued(void)
  * Address:	80234724
  * Size:	00008C
  */
-void PlayCommonData::isPerfectChallenge(void)
+bool PlayCommonData::isPerfectChallenge(void)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -644,20 +540,8 @@ lbl_80234798:
  */
 void PlayCommonData::enableChallengeGame(void)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lbz      r0, 0x14(r3)
-	ori      r0, r0, 1
-	stb      r0, 0x14(r3)
-	lwz      r3, sys@sda21(r13)
-	bl       setOptionBlockSaveFlag__6SystemFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_challengeData.m_flags |= PlayChallengeGameData::PCGDF_IsPlayable;
+	sys->setOptionBlockSaveFlag();
 }
 
 /*
@@ -667,20 +551,8 @@ void PlayCommonData::enableChallengeGame(void)
  */
 void PlayCommonData::enableLouieRescue(void)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	lbz      r0, 0x14(r3)
-	ori      r0, r0, 4
-	stb      r0, 0x14(r3)
-	lwz      r3, sys@sda21(r13)
-	bl       setOptionBlockSaveFlag__6SystemFv
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_challengeData.m_flags |= PlayChallengeGameData::PCGDF_IsLouieRescued;
+	sys->setOptionBlockSaveFlag();
 }
 
 /*
@@ -688,17 +560,13 @@ void PlayCommonData::enableLouieRescue(void)
  * Address:	80234810
  * Size:	00001C
  */
-void PlayCommonData::challenge_is_virgin(void)
+bool PlayCommonData::challenge_is_virgin(void)
 {
-	/*
-	lbz      r0, 0x14(r3)
-	rlwinm   r4, r0, 0, 0x1e, 0x1e
-	ori      r0, r0, 2
-	cntlzw   r4, r4
-	stb      r0, 0x14(r3)
-	srwi     r3, r4, 5
-	blr
-	*/
+	bool result = (u8)(m_challengeData.m_flags
+	                   & PlayChallengeGameData::PCGDF_IsNotVirgin)
+	              == 0;
+	m_challengeData.m_flags |= PlayChallengeGameData::PCGDF_IsNotVirgin;
+	return result;
 }
 
 /*
@@ -706,15 +574,11 @@ void PlayCommonData::challenge_is_virgin(void)
  * Address:	8023482C
  * Size:	000014
  */
-void PlayCommonData::challenge_is_virgin_check_only(void)
+bool PlayCommonData::challenge_is_virgin_check_only()
 {
-	/*
-	lbz      r0, 0x14(r3)
-	rlwinm   r0, r0, 0, 0x1e, 0x1e
-	cntlzw   r0, r0
-	srwi     r3, r0, 5
-	blr
-	*/
+	return (u8)(m_challengeData.m_flags
+	            & PlayChallengeGameData::PCGDF_IsNotVirgin)
+	       == 0;
 }
 
 /*
@@ -722,19 +586,10 @@ void PlayCommonData::challenge_is_virgin_check_only(void)
  * Address:	80234840
  * Size:	000024
  */
-void PlayCommonData::challenge_get_CourseState(int)
+PlayChallengeGameData::CourseState*
+PlayCommonData::challenge_get_CourseState(int index)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	addi     r3, r3, 0xc
-	stw      r0, 0x14(r1)
-	bl       getState__Q24Game21PlayChallengeGameDataFi
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return m_challengeData.getState(index);
 }
 
 /*
@@ -742,9 +597,10 @@ void PlayCommonData::challenge_get_CourseState(int)
  * Address:	........
  * Size:	000008
  */
-void PlayCommonData::challenge_get_coursenum(void)
+int PlayCommonData::challenge_get_coursenum()
 {
 	// UNUSED FUNCTION
+	return m_challengeData.m_courseCount;
 }
 
 /*
@@ -752,21 +608,10 @@ void PlayCommonData::challenge_get_coursenum(void)
  * Address:	80234864
  * Size:	00002C
  */
-void PlayCommonData::challenge_checkOpen(int)
+bool PlayCommonData::challenge_checkOpen(int index)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	addi     r3, r3, 0xc
-	stw      r0, 0x14(r1)
-	bl       getState__Q24Game21PlayChallengeGameDataFi
-	lhz      r0, 0(r3)
-	clrlwi   r3, r0, 0x1f
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return challenge_get_CourseState(index)->m_flags.typeView
+	       & PlayChallengeGameData::CourseState::CSF_IsOpen;
 }
 
 /*
@@ -774,21 +619,10 @@ void PlayCommonData::challenge_checkOpen(int)
  * Address:	80234890
  * Size:	00002C
  */
-void PlayCommonData::challenge_checkClear(int)
+bool PlayCommonData::challenge_checkClear(int index)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	addi     r3, r3, 0xc
-	stw      r0, 0x14(r1)
-	bl       getState__Q24Game21PlayChallengeGameDataFi
-	lhz      r0, 0(r3)
-	rlwinm   r3, r0, 0x1f, 0x1f, 0x1f
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return challenge_get_CourseState(index)->m_flags.typeView
+	       & PlayChallengeGameData::CourseState::CSF_IsClear;
 }
 
 /*
@@ -796,21 +630,10 @@ void PlayCommonData::challenge_checkClear(int)
  * Address:	802348BC
  * Size:	00002C
  */
-void PlayCommonData::challenge_checkKunsho(int)
+bool PlayCommonData::challenge_checkKunsho(int index)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	addi     r3, r3, 0xc
-	stw      r0, 0x14(r1)
-	bl       getState__Q24Game21PlayChallengeGameDataFi
-	lhz      r0, 0(r3)
-	rlwinm   r3, r0, 0x1e, 0x1f, 0x1f
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	return challenge_get_CourseState(index)->m_flags.typeView
+	       & PlayChallengeGameData::CourseState::CSF_IsKunsho;
 }
 
 /*
@@ -818,8 +641,17 @@ void PlayCommonData::challenge_checkKunsho(int)
  * Address:	802348E8
  * Size:	00004C
  */
-void PlayCommonData::challenge_checkJustOpen(int)
+bool PlayCommonData::challenge_checkJustOpen(int index)
 {
+	PlayChallengeGameData::CourseState* state
+	    = challenge_get_CourseState(index);
+	ushort flags = state->m_flags.typeView;
+	if (flags & PlayChallengeGameData::CourseState::CSF_IsOpen) {
+		state->m_flags.typeView
+		    |= PlayChallengeGameData::CourseState::CSF_WasOpen;
+		return (flags & PlayChallengeGameData::CourseState::CSF_WasOpen) == 0;
+	}
+	return false;
 	/*
 	stwu     r1, -0x10(r1)
 	mflr     r0
@@ -852,7 +684,7 @@ lbl_80234924:
  * Address:	80234934
  * Size:	00004C
  */
-void PlayCommonData::challenge_checkJustClear(int)
+bool PlayCommonData::challenge_checkJustClear(int)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -886,7 +718,7 @@ lbl_80234970:
  * Address:	80234980
  * Size:	00004C
  */
-void PlayCommonData::challenge_checkJustKunsho(int)
+bool PlayCommonData::challenge_checkJustKunsho(int)
 {
 	/*
 	stwu     r1, -0x10(r1)
@@ -916,61 +748,23 @@ lbl_802349BC:
 }
 
 /*
+ * Returns the index of the newly-opened course, or -1 if no course was opened.
  * --INFO--
  * Address:	802349CC
  * Size:	000094
  */
-void PlayCommonData::challenge_openNewCourse(void)
+int PlayCommonData::challenge_openNewCourse(void)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	lis      r4, gGameConfig__4Game@ha
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r3
-	addi     r3, r4, gGameConfig__4Game@l
-	lwz      r0, 0x228(r3)
-	cmpwi    r0, 0
-	beq      lbl_80234A00
-	li       r3, -1
-	b        lbl_80234A48
-
-lbl_80234A00:
-	li       r31, 0
-	b        lbl_80234A38
-
-lbl_80234A08:
-	mr       r4, r31
-	addi     r3, r30, 0xc
-	bl       getState__Q24Game21PlayChallengeGameDataFi
-	lhz      r0, 0(r3)
-	clrlwi.  r0, r0, 0x1f
-	bne      lbl_80234A34
-	mr       r3, r30
-	mr       r4, r31
-	bl       challenge_setOpen__Q24Game14PlayCommonDataFi
-	mr       r3, r31
-	b        lbl_80234A48
-
-lbl_80234A34:
-	addi     r31, r31, 1
-
-lbl_80234A38:
-	lwz      r0, 0xc(r30)
-	cmpw     r31, r0
-	blt      lbl_80234A08
-	li       r3, -1
-
-lbl_80234A48:
-	lwz      r0, 0x14(r1)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	if (gGameConfig.m_parms.KFesVersion.m_data != 0) {
+		return -1;
+	}
+	for (int i = 0; i < m_challengeData.m_courseCount; i++) {
+		if (!challenge_checkOpen(i)) {
+			challenge_setOpen(i);
+			return i;
+		}
+	}
+	return -1;
 }
 
 /*
@@ -978,22 +772,10 @@ lbl_80234A48:
  * Address:	80234A60
  * Size:	000030
  */
-void PlayCommonData::challenge_setClear(int)
+void PlayCommonData::challenge_setClear(int index)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	addi     r3, r3, 0xc
-	stw      r0, 0x14(r1)
-	bl       getState__Q24Game21PlayChallengeGameDataFi
-	lhz      r0, 0(r3)
-	ori      r0, r0, 2
-	sth      r0, 0(r3)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_challengeData.getState(index)->m_flags.typeView
+	    |= PlayChallengeGameData::CourseState::CSF_IsClear;
 }
 
 /*
@@ -1001,22 +783,10 @@ void PlayCommonData::challenge_setClear(int)
  * Address:	80234A90
  * Size:	000030
  */
-void PlayCommonData::challenge_setOpen(int)
+void PlayCommonData::challenge_setOpen(int index)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	addi     r3, r3, 0xc
-	stw      r0, 0x14(r1)
-	bl       getState__Q24Game21PlayChallengeGameDataFi
-	lhz      r0, 0(r3)
-	ori      r0, r0, 1
-	sth      r0, 0(r3)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_challengeData.getState(index)->m_flags.typeView
+	    |= PlayChallengeGameData::CourseState::CSF_IsOpen;
 }
 
 /*
@@ -1073,149 +843,57 @@ lbl_80234B28:
  * Address:	80234B40
  * Size:	000084
  */
-void PlayCommonData::challenge_getHighscore(int, int)
+Highscore* PlayCommonData::challenge_getHighscore(int courseIndex,
+                                                  int scoreType)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	addi     r3, r3, 0xc
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	stw      r30, 8(r1)
-	mr       r30, r5
-	bl       getState__Q24Game21PlayChallengeGameDataFi
-	cmpwi    r30, 0
-	mr       r31, r3
-	li       r0, 0
-	blt      lbl_80234B7C
-	cmpwi    r30, 1
-	bgt      lbl_80234B7C
-	li       r0, 1
-
-lbl_80234B7C:
-	clrlwi.  r0, r0, 0x18
-	bne      lbl_80234BA0
-	lis      r3, lbl_80483A88@ha
-	lis      r5, lbl_80483AA0@ha
-	addi     r3, r3, lbl_80483A88@l
-	li       r4, 0x191
-	addi     r5, r5, lbl_80483AA0@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80234BA0:
-	mulli    r3, r30, 0xc
-	addi     r3, r3, 4
-	add      r3, r31, r3
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	PlayChallengeGameData::CourseState* state
+	    = m_challengeData.getState(courseIndex);
+	bool isValidScoreType = false;
+	if (0 <= scoreType && scoreType <= 1) {
+		isValidScoreType = true;
+	}
+	P2ASSERTLINE(401, isValidScoreType);
+	return &state->m_highscores[scoreType];
 }
 
 /*
+ * __ct__Q24Game21PlayChallengeGameDataFv
  * --INFO--
  * Address:	80234BC4
  * Size:	0000C8
  */
 PlayChallengeGameData::PlayChallengeGameData(void)
+    : m_flags(PlayChallengeGameData::PCGDF_Unset)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stw      r30, 8(r1)
-	stb      r0, 8(r3)
-	li       r0, 0x1e
-	stw      r0, 0(r3)
-	lwz      r30, 0(r3)
-	mulli    r3, r30, 0x1c
-	addi     r3, r3, 0x10
-	bl       __nwa__FUl
-	lis      r4, __ct__Q34Game21PlayChallengeGameData11CourseStateFv@ha
-	mr       r7, r30
-	addi     r4, r4, __ct__Q34Game21PlayChallengeGameData11CourseStateFv@l
-	li       r5, 0
-	li       r6, 0x1c
-	bl       __construct_new_array
-	stw      r3, 4(r31)
-	li       r0, 0
-	mr       r3, r31
-	lwz      r5, 4(r31)
-	lhz      r4, 0(r5)
-	ori      r4, r4, 1
-	sth      r4, 0(r5)
-	lwz      r5, 4(r31)
-	lhz      r4, 0x1c(r5)
-	ori      r4, r4, 1
-	sth      r4, 0x1c(r5)
-	lwz      r5, 4(r31)
-	lhz      r4, 0x38(r5)
-	ori      r4, r4, 1
-	sth      r4, 0x38(r5)
-	lwz      r5, 4(r31)
-	lhz      r4, 0x54(r5)
-	ori      r4, r4, 1
-	sth      r4, 0x54(r5)
-	lwz      r5, 4(r31)
-	lhz      r4, 0x70(r5)
-	ori      r4, r4, 1
-	sth      r4, 0x70(r5)
-	stb      r0, 8(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_courseCount = CHALLENGE_COURSE_COUNT;
+	m_courses     = new CourseState[m_courseCount];
+	m_courses[0].m_flags.typeView
+	    |= PlayChallengeGameData::CourseState::CSF_IsOpen;
+	m_courses[1].m_flags.typeView
+	    |= PlayChallengeGameData::CourseState::CSF_IsOpen;
+	m_courses[2].m_flags.typeView
+	    |= PlayChallengeGameData::CourseState::CSF_IsOpen;
+	m_courses[3].m_flags.typeView
+	    |= PlayChallengeGameData::CourseState::CSF_IsOpen;
+	m_courses[4].m_flags.typeView
+	    |= PlayChallengeGameData::CourseState::CSF_IsOpen;
+	m_flags = PlayChallengeGameData::PCGDF_Unset;
 }
 
 /*
+ * __ct__Q34Game21PlayChallengeGameData11CourseStateFv
  * --INFO--
  * Address:	80234C8C
  * Size:	000078
  */
 PlayChallengeGameData::CourseState::CourseState(void)
+    : m_flags()
+    , m_highscores()
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	li       r5, 0
-	li       r6, 0xc
-	stw      r0, 0x14(r1)
-	li       r0, 0
-	li       r7, 2
-	stw      r31, 0xc(r1)
-	mr       r31, r3
-	stb      r0, 0(r3)
-	lis      r3, __ct__Q24Game9HighscoreFv@ha
-	addi     r4, r3, __ct__Q24Game9HighscoreFv@l
-	stb      r0, 1(r31)
-	addi     r3, r31, 4
-	bl       __construct_array
-	addi     r3, r31, 4
-	li       r4, 3
-	bl       allocate__Q24Game9HighscoreFi
-	addi     r3, r31, 0x10
-	li       r4, 3
-	bl       allocate__Q24Game9HighscoreFi
-	li       r0, 0
-	mr       r3, r31
-	stb      r0, 0(r31)
-	stb      r0, 1(r31)
-	lwz      r31, 0xc(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	m_highscores[0].allocate(3);
+	m_highscores[1].allocate(3);
+	m_flags.byteView[0] = 0;
+	m_flags.byteView[1] = 0;
 }
 
 /*
@@ -1223,66 +901,34 @@ PlayChallengeGameData::CourseState::CourseState(void)
  * Address:	80234D04
  * Size:	0000A4
  */
-void PlayChallengeGameData::getState(int)
+PlayChallengeGameData::CourseState* PlayChallengeGameData::getState(int index)
 {
-	/*
-	stwu     r1, -0x10(r1)
-	mflr     r0
-	stw      r0, 0x14(r1)
-	stw      r31, 0xc(r1)
-	or.      r31, r4, r4
-	stw      r30, 8(r1)
-	mr       r30, r3
-	li       r3, 0
-	blt      lbl_80234D38
-	lwz      r0, 0(r30)
-	cmpw     r31, r0
-	bge      lbl_80234D38
-	li       r3, 1
-
-lbl_80234D38:
-	clrlwi.  r0, r3, 0x18
-	bne      lbl_80234D5C
-	lis      r3, lbl_80483A88@ha
-	lis      r5, lbl_80483AA0@ha
-	addi     r3, r3, lbl_80483A88@l
-	li       r4, 0x1ab
-	addi     r5, r5, lbl_80483AA0@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80234D5C:
-	lwz      r0, 4(r30)
-	cmplwi   r0, 0
-	bne      lbl_80234D84
-	lis      r3, lbl_80483A88@ha
-	lis      r5, lbl_80483AA0@ha
-	addi     r3, r3, lbl_80483A88@l
-	li       r4, 0x1ac
-	addi     r5, r5, lbl_80483AA0@l
-	crclr    6
-	bl       panic_f__12JUTExceptionFPCciPCce
-
-lbl_80234D84:
-	mulli    r0, r31, 0x1c
-	lwz      r3, 4(r30)
-	add      r3, r3, r0
-	lwz      r31, 0xc(r1)
-	lwz      r30, 8(r1)
-	lwz      r0, 0x14(r1)
-	mtlr     r0
-	addi     r1, r1, 0x10
-	blr
-	*/
+	bool isValidIndex = false;
+	if (0 <= index && index < m_courseCount) {
+		isValidIndex = true;
+	}
+	P2ASSERTLINE(427, isValidIndex);
+	P2ASSERTLINE(428, m_courses != nullptr);
+	return &m_courses[index];
 }
 
 /*
+ * write__Q24Game21PlayChallengeGameDataFR6Stream
  * --INFO--
  * Address:	80234DA8
  * Size:	00009C
  */
-void PlayChallengeGameData::write(Stream&)
+void PlayChallengeGameData::write(Stream& output)
 {
+	output.writeByte(m_flags);
+	for (int i = 0; i < m_courseCount; i++) {
+		CourseState* state = &m_courses[i];
+		for (int j = 0; j < 2; j++) {
+			output.writeByte(state->m_flags.byteView[j]);
+		}
+		state->m_highscores[0].write(output);
+		state->m_highscores[1].write(output);
+	}
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -1333,12 +979,22 @@ lbl_80234E24:
 }
 
 /*
+ * read__Q24Game21PlayChallengeGameDataFR6Stream
  * --INFO--
  * Address:	80234E44
  * Size:	00009C
  */
-void PlayChallengeGameData::read(Stream&)
+void PlayChallengeGameData::read(Stream& input)
 {
+	m_flags = input.readByte();
+	for (int i = 0; i < m_courseCount; i++) {
+		CourseState* state = &m_courses[i];
+		for (int j = 0; j < 2; j++) {
+			state->m_flags.byteView[j] = input.readByte();
+		}
+		state->m_highscores[0].read(input);
+		state->m_highscores[1].read(input);
+	}
 	/*
 	stwu     r1, -0x30(r1)
 	mflr     r0
@@ -1393,15 +1049,5 @@ lbl_80234EC0:
  * Address:	80234EE0
  * Size:	000018
  */
-bool Lowscore::do_higher(int, int)
-{
-	/*
-	xor      r0, r5, r4
-	srawi    r3, r0, 1
-	and      r0, r0, r5
-	subf     r0, r0, r3
-	srwi     r3, r0, 0x1f
-	blr
-	*/
-}
+bool Lowscore::do_higher(int a, int b) { return a < b; }
 } // namespace Game

@@ -182,7 +182,7 @@ struct PlayData : public CNode {
 	void construct();
 	void reset();
 	void setDevelopSetting(bool, bool);
-	void calcPlayMinutes();
+	int calcPlayMinutes();
 	void resetContainerFlag();
 	bool hasContainer(int);
 	bool hasMetPikmin(int);

@@ -1,33 +1,96 @@
 #ifndef _GAME_PLAYCOMMONDATA_H
 #define _GAME_PLAYCOMMONDATA_H
 
+#include "BitFlag.h"
 #include "types.h"
 #include "Game/Highscore.h"
 
+#pragma enumsalwaysint off
+
 namespace Game {
 struct PlayChallengeGameData {
+	enum Flags {
+		PCGDF_Unset          = 0x0,
+		PCGDF_IsPlayable     = 0x1,
+		PCGDF_IsNotVirgin    = 0x2,
+		PCGDF_IsLouieRescued = 0x4,
+	};
+
 	struct CourseState {
-		u8 _00;                    // _00
-		u8 _01;                    // _01
+		enum Flags {
+			CSF_Unset     = 0x00,
+			CSF_IsOpen    = 0x01,
+			CSF_IsClear   = 0x02,
+			CSF_IsKunsho  = 0x04,
+			CSF_WasOpen   = 0x08,
+			CSF_WasClear  = 0x10,
+			CSF_WasKunsho = 0x20,
+		};
+
+		CourseState();
+
+		BitFlag<ushort> m_flags;   // _00
 		Highscore m_highscores[2]; // _04
 	};
 
+	PlayChallengeGameData();
+
 	void reset();
+	void write(Stream&);
+	void read(Stream&);
+	CourseState* getState(int);
 
 	int m_courseCount;      // _00
 	CourseState* m_courses; // _04
-	u8 _08;                 // _08
+	u8 m_flags;             // _08
 };
 
 struct PlayCommonData {
 	PlayCommonData();
+
 	void reset();
+
 	void read(Stream&);
 	void write(Stream&);
 
+	Highscore* getHighscore_clear(int);
+	Highscore* getHighscore_complete(int);
+
+	void entryHighscores_clear(int, int*, int*);
+	void entryHighscores_common(Highscore**, int, int*, int*);
+	void entryHighscores_complete(int, int*, int*);
+
+	bool isChallengeGamePlayable();
+	bool isLouieRescued();
+	bool isPerfectChallenge();
+
+	void enableChallengeGame();
+	void enableLouieRescue();
+
+	bool challenge_is_virgin();
+	bool challenge_is_virgin_check_only();
+
+	PlayChallengeGameData::CourseState* challenge_get_CourseState(int);
+	int challenge_get_coursenum();
+	Highscore* challenge_getHighscore(int, int);
+
+	int challenge_openNewCourse();
+
+	bool challenge_checkOpen(int);
+	bool challenge_checkJustOpen(int);
+	void challenge_setOpen(int);
+
+	bool challenge_checkClear(int);
+	bool challenge_checkJustClear(int);
+	void challenge_setClear(int);
+
+	bool challenge_checkKunsho(int);
+	bool challenge_checkJustKunsho(int);
+	void challenge_setKunsho(int);
+
 	u8 _00;                                // _00
-	Lowscore** _04;                        // _04
-	Lowscore** _08;                        // _08
+	Highscore** _04;                       // _04
+	Highscore** _08;                       // _08
 	PlayChallengeGameData m_challengeData; // _0C
 };
 
@@ -80,5 +143,7 @@ namespace CommonSaveData {
 	};
 } // namespace CommonSaveData
 } // namespace Game
+
+#pragma enumsalwaysint reset
 
 #endif
