@@ -415,11 +415,11 @@ void MapCode::Mgr::write(Stream& stream)
 template <> void ArrayContainer<MapCode::Code>::write(Stream& stream)
 {
 	stream.textBeginGroup(m_name);
-	stream.textWriteTab(stream.m_tabCount);
+	stream.addTab();
 	stream.writeInt(m_count);
 	stream.textWriteText("\r\n");
 	for (int i = 0; i < m_count; i++) {
-		stream.textWriteTab(stream.m_tabCount);
+		stream.addTab();
 		writeObject(stream, m_objects[i]);
 		stream.textWriteText("# %d/%d\r\n", i, m_count);
 	}
