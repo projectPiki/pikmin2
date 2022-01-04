@@ -67,7 +67,7 @@ void Parameters::read(Stream& stream)
 		char buffer[256];
 		currentID.sprint(buffer);
 		int parmSize = stream.readInt();
-		currentParm  = findParm(currentID.m_id.raw);
+		currentParm  = findParm(currentID.getID());
 		if (currentParm != nullptr) {
 			currentParm->read(stream);
 		} else if (parmSize != -1) {
