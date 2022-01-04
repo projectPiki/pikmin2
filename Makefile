@@ -84,7 +84,7 @@ ifeq ($(VERBOSE),0)
 # this set of LDFLAGS generates no warnings.
 LDFLAGS := $(MAPGEN) -fp hard -nodefaults -w off
 endif
-CFLAGS  := -Cpp_exceptions off -inline auto -proc gekko -RTTI off -fp hard -fp_contract on -rostr -O4,p -use_lmw_stmw on -sdata 8 -sdata2 8 -nodefaults -msgstyle gcc $(INCLUDES)
+CFLAGS   = -Cpp_exceptions off -inline auto -proc gekko -RTTI off -fp hard -fp_contract on -rostr -O4,p -use_lmw_stmw on -sdata 8 -sdata2 8 -nodefaults -msgstyle gcc $(INCLUDES)
 
 ifeq ($(VERBOSE),0)
 # this set of ASFLAGS generates no warnings.
@@ -96,7 +96,7 @@ $(BUILD_DIR)/src/Dolphin/__start.o: MWCC_VERSION := 1.0
 $(BUILD_DIR)/src/Dolphin/OSLink.o: MWCC_VERSION := 1.0
 $(BUILD_DIR)/src/Dolphin/PPCArch.o: MWCC_VERSION := 1.0
 $(BUILD_DIR)/src/Dolphin/vec.o: MWCC_VERSION := 1.0
-$(BUILD_DIR)/src/sysGCU/aramMgr.o: CFLAGS  += -enum int
+$(BUILD_DIR)/src/sysGCU/aramMgr.o: CFLAGS += -enum int
 
 
 #-------------------------------------------------------------------------------
